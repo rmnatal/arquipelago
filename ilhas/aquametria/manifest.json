@@ -2,6 +2,66 @@
   "ilha": "aquametria",
   "nome": "Aquametria",
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
+  "dominio": "https://aquametria.com.br",
+  "versao_manifest": 1,
+  "revisao": 0,
+  "atualizado_em": "2026-09-06",
+  "estado": "fundacao",
+  "desembarque": {
+    "aprovado": false,
+    "observacao": "Nada e publicado sem aprovacao do Raphael. O snippet Sync so aplica itens com publicar=true."
+  },
+  "snippets": [
+    {
+      "id": "aquametria-sync",
+      "nome": "Aquametria Sync",
+      "arquivo": "snippets/aquametria-sync.php",
+      "escopo": "global",
+      "ativo": true,
+      "publicar": false,
+      "sha256": "0fab9fde315bcd2749b406697ac390128fd70fe0ee028efd354a9cf0e499ea36",
+      "descricao": "Sincronizador do site com este repositorio. Ja instalado e ativo (Code Snippets id 5, 06/09/2026). O proprio Sync nunca se aplica; publicar=false e so registro de procedencia."
+    }
+  ],
+  "conteudo": [],
+  "dados": [],
+  "esquema": {
+    "snippets": {
+      "id": "identificador estavel, kebab-case, nunca numerado",
+      "nome": "nome descritivo do snippet no Code Snippets",
+      "arquivo": "caminho relativo a esta pasta, em snippets/",
+      "escopo": "global | front-end | admin",
+      "ativo": "true se deve ficar ativo no site",
+      "publicar": "false ate o Raphael aprovar o desembarque",
+      "sha256": "hash do arquivo, conferido pelo Sync apos gravar",
+      "descricao": "o que o snippet faz"
+    },
+    "conteudo": {
+      "id": "identificador estavel, kebab-case",
+      "tipo": "artigo | pagina | pagina-programatica | widget",
+      "titulo": "titulo publicado",
+      "slug": "slug da URL",
+      "arquivo": "caminho relativo a esta pasta, em conteudo/",
+      "cluster": "cluster do corpus de buscas a que pertence",
+      "fontes": "lista de fontes tecnicas citadas no texto",
+      "verificado_em": "data da ultima conferencia dos dados",
+      "publicar": "false ate o Raphael aprovar o desembarque"
+    },
+    "dados": {
+      "id": "identificador estavel, kebab-case",
+      "arquivo": "caminho relativo a esta pasta, em dados/",
+      "formato": "json | csv",
+      "entidade": "filtro | aquecedor | iluminacao | midia | especie | constante",
+      "fonte": "de onde vem cada campo (manual do fabricante, norma, etc.)",
+      "verificado_em": "data da ultima conferencia",
+      "registros": "quantidade de linhas"
+    }
+  }
+}
+{
+  "ilha": "aquametria",
+  "nome": "Aquametria",
+  "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": null,
   "versao_manifest": 1,
   "revisao": 0,
