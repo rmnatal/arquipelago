@@ -3,7 +3,7 @@
   "descricao": "Modelo normalizado do banco de produtos da Aquametria: entidades filtro, aquecedor, iluminacao e midia, mais a entidade cotacao (preco). Define campo a campo o tipo, a unidade, a obrigatoriedade, o vocabulario controlado e a ORIGEM esperada do dado. Nenhum numero entra no banco sem uma entrada correspondente em fontes[]. Este arquivo e o contrato que dados/produtos-*.json cumprem e que ferramentas/validar-produtos.py verifica.",
   "gerado_em": "2026-09-07",
   "bloco": 3,
-  "versao_esquema": 1,
+  "versao_esquema": 2,
   "depende_de": [
     "dados/especificacao-calculadoras.md",
     "dados/constantes-calculadoras.json"
@@ -303,6 +303,73 @@
         ]
       }
     ]
+  },
+  "afiliado": {
+    "descricao": "Como o link de loja mora no banco. O link e um campo de PRODUTO (o produto ou tem anuncio, ou nao tem), enquanto o preco daquele anuncio e uma cotacao datada. Um nao substitui o outro, e nenhum dos dois substitui a url de origem do dado tecnico: a procedencia da especificacao continua sendo o fabricante ou o varejo especializado, nunca a loja que paga comissao.",
+    "obrigatorio": true,
+    "gerado_em": "2026-09-07",
+    "campos": [
+      {
+        "campo": "plataforma",
+        "tipo": "string|null",
+        "vocabulario": [
+          "shopee",
+          "amazon",
+          "mercadolivre",
+          "magalu",
+          null
+        ],
+        "observacao": "null quando o produto nao tem anuncio proprio na plataforma. Nesse caso 'motivo' e obrigatorio e o produto NAO entra no bloco de produto das calculadoras."
+      },
+      {
+        "campo": "url",
+        "tipo": "string",
+        "observacao": "Link curto gerado no painel de afiliados, sempre https."
+      },
+      {
+        "campo": "sub_id_1",
+        "tipo": "string",
+        "observacao": "Identifica a ilha: 'aquametria'."
+      },
+      {
+        "campo": "sub_id_2",
+        "tipo": "string",
+        "observacao": "Identifica a calculadora de onde saiu o clique (C3, C5, C12, C15). E o que permite ler no painel qual calculadora vende."
+      },
+      {
+        "campo": "rel",
+        "tipo": "string",
+        "valor_fixo": "sponsored",
+        "observacao": "O Google prefere sponsored a nofollow para link pago. O template ainda acrescenta target='_blank' e noopener na renderizacao."
+      },
+      {
+        "campo": "verificado_em",
+        "tipo": "data ISO"
+      },
+      {
+        "campo": "anuncio_shopee",
+        "tipo": "string",
+        "observacao": "Titulo exato do anuncio. E o que permite conferir depois se o link ainda aponta para o mesmo produto — link curto de marketplace pode ser reapontado sem aviso."
+      },
+      {
+        "campo": "voltagem_anuncio",
+        "tipo": "string|null",
+        "observacao": "Voltagem DAQUELE anuncio, quando o titulo declara. Nao e o campo voltagem do produto: anuncio de marketplace (nivel 6) nao sustenta campo tecnico. Serve para a tela avisar qual versao o link abre."
+      },
+      {
+        "campo": "motivo",
+        "tipo": "string|null",
+        "observacao": "Obrigatorio quando plataforma e null: por que este produto nao tem link."
+      }
+    ],
+    "regras": [
+      "Preco NUNCA entra aqui: cotacao datada em dados/produtos-cotacoes.json, e na tela sempre com a data ao lado e o aviso de que o valor muda na loja.",
+      "A ordem dos produtos no resultado e por adequacao tecnica ao numero calculado. Comissao nao ordena, nao promove e nao entra no criterio.",
+      "Produto sem link (plataforma null) nao aparece no bloco de produto. Resposta sem produto e melhor que produto errado.",
+      "Toda pagina que renderiza link de afiliado traz aviso visivel de que a Aquametria pode receber comissao.",
+      "Link de afiliado que aponta para OUTRA variante (outra medida, outra potencia) e defeito, nao aproximacao: ou existe o registro daquela variante, ou o produto fica sem link."
+    ],
+    "links_sem_produto": "dados/afiliados-sem-produto.json guarda o link gerado que ainda nao tem registro no banco. Fica fora do banco de proposito: link sem ficha verificada nao pode ser sugerido por calculadora."
   },
   "entidades": {
     "filtro": {
@@ -868,8 +935,12 @@
       "Cotacao de marketplace de terceiro (nivel 6) serve para preco e para nomenclatura; jamais para especificacao.",
       "Sem cotacao coletada no dia, o campo nao existe. Nao se copia preco de resultado de busca sem data de leitura."
     ],
-    "registros_hoje": 0,
-    "por_que_zero": "Coletar preco exige ler a pagina da loja no dia. O egresso da nuvem barra dominios de varejo, e preco visto em resultado de busca nao tem data de leitura confiavel. A entidade fica modelada e vazia ate a coleta ter como ser feita direito."
+    "registros_hoje": 10,
+    "historico": [
+      "Ficou vazia de 07/09/2026 (criacao) ate a primeira leva do mesmo dia: cotar preco exige ler a pagina da loja, e o egresso da nuvem barra dominio de varejo.",
+      "A primeira leva (10 cotacoes) veio do painel Shopee Afiliados, lido pelo operador ao gerar os links curtos: tem loja, data, condicao e titulo do anuncio, que e o minimo para uma cotacao valer. Nao e leitura de pagina pela Aquametria, e o campo origem_leitura de cada registro diz isso.",
+      "Atualizacao recorrente continua barrada. Enquanto nao houver coleta a partir do proprio site, a serie so cresce a mao."
+    ]
   },
   "validacoes": [
     {
@@ -941,6 +1012,12 @@
       "id": "V14",
       "regra": "Registro marcado 'parcial' sem nenhum campo obrigatorio faltante: ou o status esta errado, ou o motivo real precisa estar na observacao.",
       "severidade": "aviso"
+    },
+    {
+      "id": "V15",
+      "regra": "Todo produto tem o campo afiliado. Com plataforma preenchida exige url https, sub_id_1, sub_id_2, anuncio e rel='sponsored', e proibe qualquer campo de preco dentro dele; com plataforma null exige motivo.",
+      "severidade": "erro"
     }
-  ]
+  ],
+  "atualizado_em": "2026-09-07"
 }

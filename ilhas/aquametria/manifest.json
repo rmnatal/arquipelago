@@ -4,7 +4,7 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 5,
+  "revisao": 6,
   "atualizado_em": "2026-09-07",
   "estado": "fundacao",
   "desembarque": {
@@ -69,7 +69,7 @@
       "verificado_em": "2026-09-07",
       "registros": 5,
       "publicar": false,
-      "sha256": "58902b0e51f82826eb039dd3aeef878f955a4f4dec5484b6e3fe594486b8e722",
+      "sha256": "38c0d873c6f4b039e9b988c144c5af67bf09075d125423db991c4b08536c9ac2",
       "descricao": "Modelo do banco de produtos: entidades filtro, aquecedor, iluminacao, midia e cotacao, com campos, unidades, obrigatoriedade, a escada de 6 niveis de fonte, o tratamento de conflito, a politica de preco como serie temporal, as regras V1 a V14 e os 6 achados que a semente de 15 produtos revelou."
     },
     {
@@ -81,8 +81,8 @@
       "verificado_em": "2026-09-07",
       "registros": 5,
       "publicar": false,
-      "sha256": "d13f1ec3736eeb98e65ebaf1a3527510c58890f24c88ea8746857dffd74decfb",
-      "descricao": "Contrato formal do banco de produtos: campos, tipos, unidades, vocabularios controlados, origem esperada por campo, campos derivados (nunca gravados), minimo_para_sugerir por calculadora e as 14 regras de validacao. E o arquivo que ferramentas/validar-produtos.py executa."
+      "sha256": "4fea2f45e0132483df47f074adf9a749ee55300a3742cc3e258dd65526c3d1b3",
+      "descricao": "Contrato formal do banco de produtos: campos, tipos, unidades, vocabularios controlados, origem esperada por campo, campos derivados (nunca gravados), minimo_para_sugerir por calculadora e as 14 regras de validacao. E o arquivo que ferramentas/validar-produtos.py executa. Versao 2 (07/09/2026): documenta o campo afiliado dos produtos e a regra V15."
     },
     {
       "id": "produtos-filtro",
@@ -93,7 +93,7 @@
       "verificado_em": "2026-09-07",
       "registros": 5,
       "publicar": false,
-      "sha256": "77f1155c7b8df570dc4e25cc2e7605e744e4ccc59a8f53c2aa3716fcbe40476c",
+      "sha256": "53f3c65bcc7b9813137129cfe75fc33aa3c8eec0e6f24883c02726d6b1884dd5",
       "descricao": "Semente de filtros: Eheim classic 250 (2213), SunSun HW-303B, Atman AT-3338, Atman AT-3338S e Seachem Tidal 55. Turnover implicito declarado pelos proprios fabricantes vai de 1,76 a 10,0 renovacoes/h."
     },
     {
@@ -105,7 +105,7 @@
       "verificado_em": "2026-09-07",
       "registros": 4,
       "publicar": false,
-      "sha256": "06e6f8dd9ae11c19ecbf571b7b374272c29441d0a1312fbce48ec1ae8f2c9f21",
+      "sha256": "30b42d4e87dfe05ca5e10fcdbfcab663df5d6b749a1df4e6b8feae7949d32288",
       "descricao": "Semente de aquecedores: Eheim Jager 200 W e a linha Roxin HT-1300/Q3 (100, 200 e 300 W). Registra o conflito varejo-contra-varejo da faixa de ajuste (22-34 C x 16-32 C), que deixou o campo null nos tres Roxin."
     },
     {
@@ -115,10 +115,10 @@
       "entidade": "iluminacao",
       "fonte": "ver fontes[] de cada registro: Pro-Aquarista, Aquarios do Rio, Aquario Projetado e Aquarius Hobby (varejo BR)",
       "verificado_em": "2026-09-07",
-      "registros": 4,
+      "registros": 5,
       "publicar": false,
-      "sha256": "dc67d1910b7cebbc3e1ee9e1391a020736c1c5fcbb545a51e79d7540dfdeade8",
-      "descricao": "Semente de iluminacao: Ista IL-401 60 cm, LED 60 cm sem marca declarada, X1-FR 60 W e SunSun ADE-400c. Tres das quatro declaram lumen; nenhuma declara voltagem, e por isso a C15 nao consegue sugerir nenhuma hoje."
+      "sha256": "d7ecd3f8ff554d9918c81d1045df77716cb2f5417d1dec44219f654f2d01d1c7",
+      "descricao": "Semente de iluminacao: Ista IL-401 60 cm, LED 60 cm sem marca declarada, X1-FR 60 W e SunSun ADE-400c. Tres das quatro declaram lumen; nenhuma declara voltagem, e por isso a C15 nao consegue sugerir nenhuma hoje. Em 07/09/2026 o registro X1-FR saiu (sem marca, sem comprimento declarado e sem anuncio real) e entraram Ista I-401 45 cm e Chihiros WRGB II Pro 60, que sao as variantes com anuncio de afiliado."
     },
     {
       "id": "produtos-midia",
@@ -129,7 +129,7 @@
       "verificado_em": "2026-09-07",
       "registros": 2,
       "publicar": false,
-      "sha256": "3b94e2586b06d478305c575a094ea2e21e371fefb92b59f45189809a8bd553d6",
+      "sha256": "68db1d8f4022fccbac3a40f2dc14125476d53de163131663db64b6cf5b674405",
       "descricao": "Semente de midia filtrante: Seachem Matrix 1 L e Eheim SUBSTRAT pro 1 L. Guarda o conflito de dosagem do proprio Seachem (1,25 x 2,6 mL de midia por litro de agua) e as duas areas superficiais declaradas sem metodo publicado (>700 e ~450 m2/L)."
     },
     {
@@ -137,12 +137,24 @@
       "arquivo": "dados/produtos-cotacoes.json",
       "formato": "json",
       "entidade": "cotacao",
-      "fonte": "nenhuma: cotacao exige leitura da pagina da loja no dia, e o egresso da nuvem barra dominios de varejo",
+      "fonte": "painel Shopee Afiliados, lido pelo operador em 07/09/2026 ao gerar os links curtos (campo origem_leitura em cada registro)",
       "verificado_em": "2026-09-07",
-      "registros": 0,
+      "registros": 10,
       "publicar": false,
-      "sha256": "d832bc403a1b6bd8e0306283902a7a33a452cfe1c85465b5025071273328092c",
-      "descricao": "Precos observados, por produto, por loja e por data. Vazio de proposito: preco sem data de leitura seria numero inventado com aparencia de dado. preco_referencia e view desta serie e nunca entra em criterio tecnico de sugestao."
+      "sha256": "2fae2d358563be840714d81c453d54a23c90c82c19048d1852c71a42fc1d0725",
+      "descricao": "Precos observados, por produto, por loja e por data. Primeira leva em 07/09/2026: 10 cotacoes da Shopee vindas do painel de afiliados, cada uma com loja, data, condicao, disponibilidade, titulo do anuncio e link. Preco NAO e campo de produto e nunca entra em criterio tecnico de sugestao; na tela sai sempre com a data ao lado e o aviso de que o valor muda na loja."
+    },
+    {
+      "id": "afiliados-sem-produto",
+      "arquivo": "dados/afiliados-sem-produto.json",
+      "formato": "json",
+      "entidade": "afiliado",
+      "fonte": "painel Shopee Afiliados, 07/09/2026",
+      "verificado_em": "2026-09-07",
+      "registros": 1,
+      "publicar": false,
+      "sha256": "ef128d1a02b2258c051c05dc71f1d716f4622a39d6a1d330015df12f2146047c",
+      "descricao": "Links de afiliado ja gerados que ainda NAO tem registro no banco de produtos, com o motivo e o que desbloqueia cada um. Ficam fora do banco de proposito: link sem ficha tecnica verificada nao pode ser sugerido por calculadora."
     }
   ],
   "esquema": {

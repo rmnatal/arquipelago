@@ -2,49 +2,11 @@
   "id": "produtos-iluminacao",
   "entidade": "iluminacao",
   "esquema": "dados/esquema-produtos.json",
-  "descricao": "Semente do banco de iluminacao. Quatro registros escolhidos para expor a lacuna estrutural da entidade: o varejo brasileiro vende luminaria por centimetro de peca, e o lumen (que e a grandeza da C15) aparece em uma minoria das fichas.",
+  "descricao": "Banco de iluminacao. Os quatro registros de semente foram escolhidos para expor a lacuna estrutural da entidade: o varejo brasileiro vende luminaria por centimetro de peca, e o lumen (que e a grandeza da C15) aparece em uma minoria das fichas. Em 07/09/2026 o X1-FR saiu (sem marca, sem comprimento e sem anuncio real) e entraram a Ista I-401 45 cm e a Chihiros WRGB II Pro 60, que sao as variantes com anuncio de afiliado.",
   "gerado_em": "2026-09-07",
   "bloco": 3,
   "publicar": false,
   "produtos": [
-    {
-      "id": "ista-il-401-60",
-      "entidade": "iluminacao",
-      "marca": "Ista",
-      "linha": "IL-401",
-      "modelo": "IL-401 60 cm",
-      "variante": "60 cm",
-      "nomes_alternativos": ["Ista IL-401", "Luminaria Led Ista 60 cm"],
-      "gtin": null,
-      "disponibilidade_br": "vendido",
-      "voltagem": null,
-      "tipo": "led-calha",
-      "potencia_w": 35,
-      "fluxo_lm": 3717,
-      "temperatura_cor_k": null,
-      "espectro": null,
-      "ppfd_declarado": null,
-      "ppfd_distancia_cm": null,
-      "comprimento_luminaria_cm": 60,
-      "comprimento_aquario_cm": null,
-      "regulagem": null,
-      "volume_atendido_declarado_L": null,
-      "fontes": [
-        {
-          "origem": "varejo",
-          "status": "transcrita-varejo",
-          "referencia": "Pro-Aquarista (varejo BR especializado), ficha da luminaria Ista IL-401 60 cm para aquarios plantados",
-          "url": "https://www.proaquarista.com.br/produto/luminaria-led-ista-60-cm-p-aquarios-plantados-il-401.html",
-          "verificado_em": "2026-09-07",
-          "campos": ["potencia_w", "fluxo_lm", "comprimento_luminaria_cm", "tipo"],
-          "observacao": "Ficha de varejo. Confira a embalagem."
-        }
-      ],
-      "conflitos": [],
-      "verificado_em": "2026-09-07",
-      "status_registro": "completo",
-      "observacao": "Unico registro da semente que a C15 conseguiria sugerir: tem lumen declarado (3717 lm) e comprimento. 106 lm/W e eficacia plausivel para LED atual. Ainda depende da convencao editorial de cobertura (ver pendencia_de_criterio no esquema)."
-    },
     {
       "id": "aquarios-do-rio-led-60cm",
       "entidade": "iluminacao",
@@ -52,7 +14,9 @@
       "linha": null,
       "modelo": "Luminaria LED Aquario 60 cm full spectrum",
       "variante": "60 cm",
-      "nomes_alternativos": ["Luminaria LED 60cm full spectrum"],
+      "nomes_alternativos": [
+        "Luminaria LED 60cm full spectrum"
+      ],
       "gtin": null,
       "disponibilidade_br": "vendido",
       "voltagem": null,
@@ -67,6 +31,11 @@
       "comprimento_aquario_cm": null,
       "regulagem": null,
       "volume_atendido_declarado_L": null,
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "o anuncio generico da Shopee (Newpet Slim 3 modulos, 30 a 60 cm) e outro produto, de outro revendedor, sem ficha tecnica localizavel. Ficou registrado em dados/afiliados-sem-produto.json, sem virar produto: link sem especificacao verificada nao entra no banco.",
+        "verificado_em": "2026-09-07"
+      },
       "fontes": [
         {
           "origem": "varejo",
@@ -74,7 +43,14 @@
           "referencia": "Aquarios do Rio (varejo BR), ficha da luminaria LED 60 cm (24 W, 2400 lm, branco 6500 K + azul 460 nm + vermelho 660 nm + verde 520 nm)",
           "url": "https://aquariosdorio.com.br/loja/iluminacao/luminaria-led-aquario-60cm/",
           "verificado_em": "2026-09-07",
-          "campos": ["potencia_w", "fluxo_lm", "temperatura_cor_k", "espectro", "comprimento_luminaria_cm", "tipo"],
+          "campos": [
+            "potencia_w",
+            "fluxo_lm",
+            "temperatura_cor_k",
+            "espectro",
+            "comprimento_luminaria_cm",
+            "tipo"
+          ],
           "observacao": "Ficha de varejo. Confira a embalagem."
         }
       ],
@@ -84,42 +60,217 @@
       "observacao": "Produto sem marca declarada (importado revendido com nome da loja) — situacao comum no Brasil e o motivo de marca aceitar null com o id derivado da loja. Sem marca, casar cotacoes entre lojas fica impossivel: e o pior caso do banco. 100 lm/W."
     },
     {
-      "id": "aquario-projetado-x1-fr-60w",
+      "id": "chihiros-wrgb-ii-pro-60",
       "entidade": "iluminacao",
-      "marca": null,
-      "linha": "X1-FR",
-      "modelo": "X1-FR 60 W Wi-Fi",
-      "variante": "60 W",
-      "nomes_alternativos": ["Luminaria X1-FR 60W 5000 lumens"],
+      "marca": "Chihiros",
+      "linha": "WRGB II Pro",
+      "modelo": "WRGB II Pro 60",
+      "variante": "60 cm",
+      "nomes_alternativos": [
+        "Chihiros WRGB-2 PRO 60cm",
+        "Chihiros WRGB II Pro 60 cm",
+        "Chihiros WRGB 2 Pro 60"
+      ],
       "gtin": null,
       "disponibilidade_br": "vendido",
       "voltagem": null,
-      "tipo": "led-pendente",
-      "potencia_w": 60,
-      "fluxo_lm": 5000,
+      "tipo": "led-barra",
+      "potencia_w": 74,
+      "fluxo_lm": 6630,
       "temperatura_cor_k": null,
-      "espectro": null,
+      "espectro": "wrgb",
       "ppfd_declarado": null,
       "ppfd_distancia_cm": null,
-      "comprimento_luminaria_cm": null,
-      "comprimento_aquario_cm": null,
+      "comprimento_luminaria_cm": 60,
+      "comprimento_aquario_cm": {
+        "min": 60,
+        "max": 80
+      },
       "regulagem": "app",
       "volume_atendido_declarado_L": null,
+      "afiliado": {
+        "plataforma": "shopee",
+        "url": "https://s.shopee.com.br/20vHM7AtT6",
+        "sub_id_1": "aquametria",
+        "sub_id_2": "C15",
+        "rel": "sponsored",
+        "verificado_em": "2026-09-07",
+        "anuncio_shopee": "Chihiros WRGB-2 PRO 60cm- Luminária P/ Aquário Plantado High",
+        "observacao": "Link curto gerado no painel Shopee Afiliados em 07/09/2026. Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data."
+      },
       "fontes": [
         {
           "origem": "varejo",
           "status": "transcrita-varejo",
-          "referencia": "Aquario Projetado (varejo BR especializado), ficha da luminaria X1-FR 60 W com 5000 lumens e controle Wi-Fi",
-          "url": "https://www.aquarioprojetado.com/luminaria-x1-fr-60w-5000-lumens-wi-fi-luminaria-para-aquario-plantado",
+          "referencia": "Green Aqua (varejo especializado, HU), ficha do Chihiros WRGB II Pro 60: 74 W, 6630 lm, para aquarios de 60 a 80 cm, 60 LEDs WRGB, IP43, controle Bluetooth pelo app My Chihiros",
+          "url": "https://greenaqua.hu/en/chihiros-wrgb-ii-pro-60-cm-led-light-60-80-cm-74-w-6630-lm.html",
           "verificado_em": "2026-09-07",
-          "campos": ["potencia_w", "fluxo_lm", "regulagem", "tipo"],
+          "campos": [
+            "potencia_w",
+            "fluxo_lm",
+            "comprimento_aquario_cm",
+            "espectro",
+            "regulagem",
+            "tipo"
+          ],
+          "observacao": "Ficha de varejo lida por RESULTADO DE BUSCA: chihiros.eu devolveu EGRESS_BLOCKED em 07/09/2026 e a pagina do fabricante nao pode ser aberta. Confira a embalagem."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Aquasabi (varejo especializado, DE), ficha da serie WRGB II PRO 60: dimensoes 600 x 140 x 18 mm, vidro de ate 10 mm",
+          "url": "https://www.aquasabi.com/Chihiros-LED-System-Serie-WRGB-II-PRO-60",
+          "verificado_em": "2026-09-07",
+          "campos": [
+            "comprimento_luminaria_cm"
+          ],
+          "observacao": "Segunda fonte de varejo, do mesmo nivel, CONCORDANDO com a primeira em 74 W e 6630 lm — por isso nao ha conflito. Lida por resultado de busca."
+        },
+        {
+          "origem": "marketplace-anuncio",
+          "status": "anuncio",
+          "referencia": "Anuncio Shopee 'Chihiros WRGB-2 PRO 60cm- Luminária P/ Aquário Plantado High', usado no painel de afiliados em 07/09/2026",
+          "url": "https://s.shopee.com.br/20vHM7AtT6",
+          "verificado_em": "2026-09-07",
+          "campos": [
+            "nomes_alternativos",
+            "disponibilidade_br"
+          ],
+          "observacao": "Anuncio sustenta existencia, nomenclatura e cotacao. Nunca numero tecnico."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-07",
+      "status_registro": "completo",
+      "observacao": "Substitui o registro aquario-projetado-x1-fr-60w (removido em 07/09/2026: produto sem marca, sem comprimento declarado e sem anuncio real). E o unico registro do banco que declara comprimento de aquario E lumen — mas a voltagem nao e declarada em nenhuma das fontes, e voltagem e requisito para a C15 SUGERIR: enquanto nao houver, ele entra como ficha e nao como sugestao. 89,6 lm/W. O PAR ~50-60 citado pelo varejo vem 'no substrato', sem distancia em cm: sem distancia o PPFD e inutil e o validador o rejeita (V5), entao nao foi gravado."
+    },
+    {
+      "id": "ista-i-401-45",
+      "entidade": "iluminacao",
+      "marca": "Ista",
+      "linha": "I-401",
+      "modelo": "I-401 45 cm",
+      "variante": "45 cm luz branca",
+      "nomes_alternativos": [
+        "Ista Luminaria Aquario LED I-401 45cm Branca Bivolt",
+        "Luminaria Led Luz Branca Ista 45cm I-401",
+        "Luminaria Led Ista 45 Cm I-401"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "bivolt"
+      ],
+      "tipo": "led-calha",
+      "potencia_w": 7.6,
+      "fluxo_lm": 810,
+      "temperatura_cor_k": null,
+      "espectro": "branco",
+      "ppfd_declarado": null,
+      "ppfd_distancia_cm": null,
+      "comprimento_luminaria_cm": 47,
+      "comprimento_aquario_cm": {
+        "min": null,
+        "max": 45
+      },
+      "regulagem": null,
+      "volume_atendido_declarado_L": null,
+      "afiliado": {
+        "plataforma": "shopee",
+        "url": "https://s.shopee.com.br/1Vz0l9vrvm",
+        "sub_id_1": "aquametria",
+        "sub_id_2": "C15",
+        "rel": "sponsored",
+        "verificado_em": "2026-09-07",
+        "anuncio_shopee": "Ista Luminária Aquário LED I-401 45cm Branca Bivolt",
+        "observacao": "Link curto gerado no painel Shopee Afiliados em 07/09/2026. Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data."
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Aquarius Hobby (varejo BR especializado), ficha da Ista I-401 45 cm luz branca: 7,6 W, 810 lm, 47 x 6,8 x 1,8 cm, 110-240 V 50-60 Hz, corpo de aluminio anodizado, indicada para aquarios de ate 45 cm",
+          "url": "https://aquariushobby.commercesuite.com.br/agua-doce/iluminacao/luminarias/ista-luminaria-aquario-led-i-401-45cm-branca-bivolt",
+          "verificado_em": "2026-09-07",
+          "campos": [
+            "potencia_w",
+            "fluxo_lm",
+            "comprimento_luminaria_cm",
+            "comprimento_aquario_cm",
+            "voltagem",
+            "espectro",
+            "tipo"
+          ],
+          "observacao": "Ficha de varejo lida por RESULTADO DE BUSCA: o egresso da nuvem barra o dominio (EGRESS_BLOCKED em 07/09/2026), entao a pagina nao foi aberta. Confira a embalagem."
+        },
+        {
+          "origem": "marketplace-anuncio",
+          "status": "anuncio",
+          "referencia": "Anuncio Shopee 'Ista Luminária Aquário LED I-401 45cm Branca Bivolt', usado no painel de afiliados em 07/09/2026",
+          "url": "https://s.shopee.com.br/1Vz0l9vrvm",
+          "verificado_em": "2026-09-07",
+          "campos": [
+            "nomes_alternativos",
+            "disponibilidade_br"
+          ],
+          "observacao": "Anuncio sustenta existencia, nomenclatura e cotacao. Nunca numero tecnico."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-07",
+      "status_registro": "completo",
+      "observacao": "Variante de 45 cm da mesma familia do registro ista-il-401-60, e o unico dos dois com anuncio na Shopee. O varejo brasileiro escreve o 45 cm ora 'I-401' ora 'IL-400' (a Pro-Aquarista chama o 45 cm de IL-400 e o 60 cm de IL-401): a equivalencia NAO foi confirmada no fabricante e por isso 'IL-400' nao entrou em nomes_alternativos. 107 lm/W, coerente com o 60 cm da mesma linha."
+    },
+    {
+      "id": "ista-il-401-60",
+      "entidade": "iluminacao",
+      "marca": "Ista",
+      "linha": "IL-401",
+      "modelo": "IL-401 60 cm",
+      "variante": "60 cm",
+      "nomes_alternativos": [
+        "Ista IL-401",
+        "Luminaria Led Ista 60 cm"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": null,
+      "tipo": "led-calha",
+      "potencia_w": 35,
+      "fluxo_lm": 3717,
+      "temperatura_cor_k": null,
+      "espectro": null,
+      "ppfd_declarado": null,
+      "ppfd_distancia_cm": null,
+      "comprimento_luminaria_cm": 60,
+      "comprimento_aquario_cm": null,
+      "regulagem": null,
+      "volume_atendido_declarado_L": null,
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "o anuncio disponivel na Shopee em 07/09/2026 e da variante de 45 cm (registro ista-i-401-45), com 7,6 W e 810 lm — outro produto. Atribuir aquele link a este registro faria a C15 recomendar 3717 lm e entregar 810 lm.",
+        "verificado_em": "2026-09-07"
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Pro-Aquarista (varejo BR especializado), ficha da luminaria Ista IL-401 60 cm para aquarios plantados",
+          "url": "https://www.proaquarista.com.br/produto/luminaria-led-ista-60-cm-p-aquarios-plantados-il-401.html",
+          "verificado_em": "2026-09-07",
+          "campos": [
+            "potencia_w",
+            "fluxo_lm",
+            "comprimento_luminaria_cm",
+            "tipo"
+          ],
           "observacao": "Ficha de varejo. Confira a embalagem."
         }
       ],
       "conflitos": [],
       "verificado_em": "2026-09-07",
-      "status_registro": "parcial",
-      "observacao": "Tem lumen, nao tem comprimento: cai na validacao V13 e nao pode ser sugerido. Mostra que lumen sozinho nao basta — luminaria que nao cobre o aquario cria sombra nas pontas, e nenhuma loja avisa. 83 lm/W."
+      "status_registro": "completo",
+      "observacao": "Unico registro da semente que a C15 conseguiria sugerir: tem lumen declarado (3717 lm) e comprimento. 106 lm/W e eficacia plausivel para LED atual. Ainda depende da convencao editorial de cobertura (ver pendencia_de_criterio no esquema)."
     },
     {
       "id": "sunsun-ade-400c",
@@ -128,10 +279,15 @@
       "linha": "ADE",
       "modelo": "ADE-400c",
       "variante": null,
-      "nomes_alternativos": ["Sunsun ADE 400c", "Luminaria Led Sunsun ADE-400C 18W"],
+      "nomes_alternativos": [
+        "Sunsun ADE 400c",
+        "Luminaria Led Sunsun ADE-400C 18W"
+      ],
       "gtin": null,
       "disponibilidade_br": "vendido",
-      "voltagem": ["bivolt"],
+      "voltagem": [
+        "bivolt"
+      ],
       "tipo": "led-calha",
       "potencia_w": 18,
       "fluxo_lm": null,
@@ -140,9 +296,22 @@
       "ppfd_declarado": null,
       "ppfd_distancia_cm": null,
       "comprimento_luminaria_cm": 41,
-      "comprimento_aquario_cm": { "min": 48, "max": 65 },
+      "comprimento_aquario_cm": {
+        "min": 48,
+        "max": 65
+      },
       "regulagem": null,
       "volume_atendido_declarado_L": null,
+      "afiliado": {
+        "plataforma": "shopee",
+        "url": "https://s.shopee.com.br/60RQ7XyBRA",
+        "sub_id_1": "aquametria",
+        "sub_id_2": "C15",
+        "rel": "sponsored",
+        "verificado_em": "2026-09-07",
+        "anuncio_shopee": "Luminária Led Aquário 18w Sunsun Ade-400c 48 A 65cm Bivolt",
+        "observacao": "Link curto gerado no painel Shopee Afiliados em 07/09/2026. Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data."
+      },
       "fontes": [
         {
           "origem": "varejo",
@@ -150,7 +319,14 @@
           "referencia": "Aquarius Hobby (varejo BR especializado), ficha da Sunsun ADE-400c (18 W, 7500 K, 41 x 6,3 x 1,5 cm, para aquarios de 48 a 65 cm, bivolt)",
           "url": "https://aquariushobby.commercesuite.com.br/agua-doce/iluminacao/luminarias/luminaria-led-aquario-18w-sunsun-ade-400c-48-a-65cm-bivolt",
           "verificado_em": "2026-09-07",
-          "campos": ["potencia_w", "temperatura_cor_k", "comprimento_luminaria_cm", "comprimento_aquario_cm", "voltagem", "tipo"],
+          "campos": [
+            "potencia_w",
+            "temperatura_cor_k",
+            "comprimento_luminaria_cm",
+            "comprimento_aquario_cm",
+            "voltagem",
+            "tipo"
+          ],
           "observacao": "Ficha de varejo. Confira a embalagem."
         }
       ],
@@ -159,5 +335,6 @@
       "status_registro": "parcial",
       "observacao": "O inverso do X1-FR: declara comprimento de aquario atendido (48 a 65 cm, com hastes) mas nao declara lumen, entao a C15 tambem nao pode sugerir. Note que a peca tem 41 cm e cobre ate 65 cm de aquario — prova de que comprimento_luminaria_cm e comprimento_aquario_cm sao campos diferentes e nao se derivam um do outro."
     }
-  ]
+  ],
+  "atualizado_em": "2026-09-07"
 }

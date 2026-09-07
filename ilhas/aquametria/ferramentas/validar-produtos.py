@@ -4,7 +4,7 @@
 
 Uso (a partir de ilhas/aquametria/):  python3 ferramentas/validar-produtos.py
 
-As regras V1 a V14 estao descritas em dados/esquema-produtos.json e em
+As regras V1 a V15 estao descritas em dados/esquema-produtos.json e em
 dados/modelo-banco-produtos.md. Este arquivo e a versao executavel delas: regra
 que nao roda vira decoracao, e banco de produto sem validacao apodrece em silencio.
 
@@ -207,6 +207,24 @@ def valida_produto(esquema, entidade, produto, vistos):
     if produto.get("conflitos") and status != "conflito":
         erro("V12", pid, "tem conflitos[] mas status_registro e '%s'" % status)
 
+    # V15 - link de afiliado bem formado (ou ausencia justificada)
+    afil = produto.get("afiliado")
+    if afil is None:
+        erro("V15", pid, "sem o campo 'afiliado': todo produto declara o link ou o motivo de nao ter")
+    elif afil.get("plataforma"):
+        for campo in ("url", "sub_id_1", "sub_id_2", "anuncio_shopee", "verificado_em"):
+            if not preenchido(afil.get(campo)):
+                erro("V15", pid, "afiliado sem '%s'" % campo)
+        if not str(afil.get("url", "")).startswith("https://"):
+            erro("V15", pid, "url de afiliado precisa ser https")
+        if afil.get("rel") != "sponsored":
+            erro("V15", pid, "link de afiliado sai com rel='sponsored'; veio '%s'" % afil.get("rel"))
+        for campo in afil:
+            if "preco" in campo or "price" in campo:
+                erro("V15", pid, "preco dentro de afiliado ('%s'): preco mora em cotacoes" % campo)
+    elif not preenchido(afil.get("motivo")):
+        erro("V15", pid, "afiliado sem plataforma precisa dizer o motivo")
+
     # V13 - iluminacao com lumen precisa de comprimento
     if entidade == "iluminacao" and preenchido(produto.get("fluxo_lm")):
         if not (preenchido(produto.get("comprimento_luminaria_cm"))
@@ -274,7 +292,7 @@ def main():
         produtos = arquivo.get("produtos", [])
         minimos = esquema["entidades"][entidade]["minimo_para_sugerir"]
         for calc in minimos:
-            sugeribilidade.setdefault(calc, {"aptos": [], "barrados": []})
+            sugeribilidade.setdefault(calc, {"aptos": [], "sem_link": [], "barrados": []})
 
         print("\n== %s (%d registros) ==" % (entidade, len(produtos)))
         for produto in produtos:
@@ -285,12 +303,15 @@ def main():
             print("  %-28s %-10s %s" % (produto.get("id"),
                                         produto.get("status_registro"),
                                         desc or "(sem derivado calculavel)"))
+            tem_link = bool((produto.get("afiliado") or {}).get("plataforma"))
             for calc, requisitos in minimos.items():
                 faltando = atende(produto, requisitos)
                 bloqueado = produto.get("status_registro") in ("rascunho", "revalidar")
                 if faltando or bloqueado:
                     motivo = ", ".join(faltando) if faltando else "status " + produto["status_registro"]
                     sugeribilidade[calc]["barrados"].append((produto["id"], motivo))
+                elif not tem_link:
+                    sugeribilidade[calc]["sem_link"].append(produto["id"])
                 else:
                     sugeribilidade[calc]["aptos"].append(produto["id"])
 
@@ -304,8 +325,11 @@ def main():
     print("\n== quem cada calculadora consegue sugerir hoje ==")
     for calc in sorted(sugeribilidade):
         dados = sugeribilidade[calc]
-        print("  %-22s %d apto(s), %d barrado(s)"
-              % (calc, len(dados["aptos"]), len(dados["barrados"])))
+        print("  %-22s %d com link, %d apto(s) sem link, %d barrado(s)"
+              % (calc, len(dados["aptos"]), len(dados["sem_link"]), len(dados["barrados"])))
+        for pid in dados["sem_link"]:
+            print("      ~ %-28s tecnicamente apto, mas sem link de afiliado: "
+                  "nao entra no bloco de produto" % pid)
         for pid, motivo in dados["barrados"]:
             print("      - %-28s falta: %s" % (pid, motivo))
 

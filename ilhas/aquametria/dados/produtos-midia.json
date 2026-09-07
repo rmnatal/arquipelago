@@ -38,6 +38,16 @@
         "min": null,
         "max": 200
       },
+      "afiliado": {
+        "plataforma": "shopee",
+        "url": "https://s.shopee.com.br/9Khs5ozO8W",
+        "sub_id_1": "aquametria",
+        "sub_id_2": "C12",
+        "rel": "sponsored",
+        "verificado_em": "2026-09-07",
+        "anuncio_shopee": "Mídia biológica - Matrix 1 Litro (Granel) com Bolsa - Seachem",
+        "observacao": "Link curto gerado no painel Shopee Afiliados em 07/09/2026. Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data."
+      },
       "fontes": [
         {
           "origem": "fabricante-via-busca",
@@ -113,6 +123,16 @@
       "vida_util_declarada_meses": null,
       "posicao_no_fluxo": "biologica",
       "volume_atendido_declarado_L": null,
+      "afiliado": {
+        "plataforma": "shopee",
+        "url": "https://s.shopee.com.br/9051hAWjge",
+        "sub_id_1": "aquametria",
+        "sub_id_2": "C12",
+        "rel": "sponsored",
+        "verificado_em": "2026-09-07",
+        "anuncio_shopee": "Mídia Biológica Eheim Substrat Pro 1L",
+        "observacao": "Link curto gerado no painel Shopee Afiliados em 07/09/2026. Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data."
+      },
       "fontes": [
         {
           "origem": "fabricante-via-busca",
@@ -134,5 +154,6 @@
       "status_registro": "parcial",
       "observacao": "Sem dosagem declarada e sem volume atendido, so entra na C12 pelo caminho da area superficial. Fica como o contraponto do Matrix: 450 contra mais de 700 m2/L, medidos por metodos que nenhum dos dois fabricantes publica."
     }
-  ]
+  ],
+  "atualizado_em": "2026-09-07"
 }

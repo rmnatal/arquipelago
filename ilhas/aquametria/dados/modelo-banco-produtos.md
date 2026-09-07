@@ -300,11 +300,20 @@ origem**: a procedência do preço tem de continuar auditável.
 - **Preço nunca entra em critério técnico de sugestão.** A ordenação é por
   adequação técnica; o preço é coluna, não filtro.
 
-**O arquivo está vazio hoje, de propósito.** Foram vistos valores (R$ 649,90 para
-o Atman AT-3338; R$ 78,90 e R$ 91,00 para o Roxin 200 W), e nenhum entrou: sem
-data de leitura, sem voltagem e sem confirmação de disponibilidade, seriam número
-inventado com aparência de dado. A coleta entra quando houver como ler a página
-da loja no dia.
+**O arquivo nasceu vazio, de propósito**, e recebeu a primeira leva em 07/09/2026:
+10 cotações da Shopee, todas do painel de afiliados, lidas pelo operador no
+momento em que os links curtos foram gerados. Cada uma tem loja, data, condição,
+disponibilidade e o título do anúncio — o mínimo para uma cotação valer. O campo
+`origem_leitura` diz, em cada registro, que não foi a Aquametria que leu a página
+(o egresso da nuvem barra `shopee.com.br`).
+
+Continuam de fora os valores sem data de leitura que apareceram em busca
+(R$ 649,90 para o Atman AT-3338; R$ 91,00 para o Roxin 200 W): sem data, sem
+voltagem e sem confirmação de disponibilidade, seriam número inventado com
+aparência de dado. E a **atualização recorrente segue barrada**: enquanto não
+houver coleta a partir do próprio site, a série só cresce à mão — motivo pelo
+qual a tela nunca crava preço no HTML, e sim mostra o valor com a data ao lado e
+a frase de que ele muda na loja.
 
 ---
 
@@ -472,3 +481,57 @@ Tudo com `publicar: false`. Além disso, três travas próprias deste banco:
 - **Nenhum link de afiliado substitui a URL de origem.** A procedência do preço
   tem de continuar auditável depois do desembarque — é o único ativo que a marca
   tem e o motivo de o banco existir.
+
+---
+
+## 15. O link de afiliado (esquema v2, 07/09/2026)
+
+O link é **campo de produto**; o preço daquele anúncio é **cotação datada**. Um
+não substitui o outro, e nenhum dos dois substitui a URL de origem do dado
+técnico: a procedência da especificação continua sendo o fabricante ou o varejo
+especializado, nunca a loja que paga comissão.
+
+```json
+"afiliado": {
+  "plataforma": "shopee",
+  "url": "https://s.shopee.com.br/…",
+  "sub_id_1": "aquametria",
+  "sub_id_2": "C5",
+  "rel": "sponsored",
+  "verificado_em": "2026-09-07",
+  "anuncio_shopee": "Termostato Com Aquecedor Roxin HT-1300 - Q3 - 300w - 220v",
+  "voltagem_anuncio": "220"
+}
+```
+
+- `sub_id_2` é o código da calculadora (C3, C5, C12, C15). É o que permite ler no
+  painel **qual calculadora vende** — sem ele, a receita chega anônima e não há
+  como decidir o que construir a seguir.
+- `anuncio_shopee` guarda o título exato. Link curto de marketplace pode ser
+  reapontado para outro produto sem aviso; o título é como se confere depois.
+- `voltagem_anuncio` é a voltagem **do anúncio**, não do produto. Anúncio de
+  marketplace é fonte de nível 6 e não sustenta campo técnico: o campo `voltagem`
+  do registro continua `null` até um fabricante ou varejista declarar. A tela
+  usa `voltagem_anuncio` só para avisar qual versão o link abre.
+- Sem anúncio, `plataforma` é `null` e `motivo` é obrigatório. Produto sem link
+  **não aparece** no bloco de produto: resposta sem produto é melhor que produto
+  errado.
+- **Variante errada é defeito, não aproximação.** O anúncio da Ista na Shopee é
+  da luminária de 45 cm (7,6 W, 810 lm); o registro que existia era o de 60 cm
+  (35 W, 3717 lm). Colar aquele link neste registro faria a C15 prometer 3717 lm
+  e entregar 810. Por isso entrou um registro novo (`ista-i-401-45`) e o de 60 cm
+  ficou sem link.
+- `dados/afiliados-sem-produto.json` guarda o link gerado que ainda **não** tem
+  registro no banco (hoje, um LED genérico de 30–60 cm). Fica fora do banco de
+  propósito: link sem ficha verificada não pode ser sugerido por calculadora.
+
+A regra **V15** do validador executa isso: todo produto tem `afiliado`; com
+plataforma preenchida exige URL https, os dois `sub_id`, o título do anúncio e
+`rel: "sponsored"`, e proíbe qualquer campo de preço lá dentro; com plataforma
+`null` exige o motivo. O relatório do validador passou a separar, por
+calculadora, quem está **apto com link** de quem está **apto sem link** — este
+segundo grupo é conteúdo de ficha, não sugestão.
+
+Na renderização, sem exceção: `rel="sponsored"`, `target="_blank"`,
+`rel="noopener"`, e aviso visível na página de que a Aquametria pode receber
+comissão.

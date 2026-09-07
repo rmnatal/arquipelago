@@ -38,6 +38,16 @@
         "min": null,
         "max": 250
       },
+      "afiliado": {
+        "plataforma": "shopee",
+        "url": "https://s.shopee.com.br/6fh6u1wYls",
+        "sub_id_1": "aquametria",
+        "sub_id_2": "C3",
+        "rel": "sponsored",
+        "verificado_em": "2026-09-07",
+        "anuncio_shopee": "Filtro Canister Classic 250 440lh Eheim - 2213",
+        "observacao": "Link curto gerado no painel Shopee Afiliados em 07/09/2026. Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data."
+      },
       "fontes": [
         {
           "origem": "fabricante-via-busca",
@@ -98,6 +108,11 @@
       "volume_atendido_declarado_L": {
         "min": null,
         "max": 350
+      },
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "sem anuncio do produto na Shopee em 07/09/2026 (busca do painel de afiliados so devolveu pecas de reposicao e lampadas UV). Enquanto nao houver link, este produto NAO e sugerido no bloco de produto das calculadoras.",
+        "verificado_em": "2026-09-07"
       },
       "fontes": [
         {
@@ -167,6 +182,11 @@
         "min": null,
         "max": 450
       },
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "sem anuncio do produto na Shopee em 07/09/2026 (busca do painel de afiliados so devolveu pecas de reposicao e lampadas UV). Enquanto nao houver link, este produto NAO e sugerido no bloco de produto das calculadoras.",
+        "verificado_em": "2026-09-07"
+      },
       "fontes": [
         {
           "origem": "varejo",
@@ -221,6 +241,11 @@
         "min": 150,
         "max": 400
       },
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "sem anuncio do produto na Shopee em 07/09/2026 (busca do painel de afiliados so devolveu pecas de reposicao e lampadas UV). Enquanto nao houver link, este produto NAO e sugerido no bloco de produto das calculadoras.",
+        "verificado_em": "2026-09-07"
+      },
       "fontes": [
         {
           "origem": "varejo",
@@ -274,6 +299,16 @@
         "min": null,
         "max": 200
       },
+      "afiliado": {
+        "plataforma": "shopee",
+        "url": "https://s.shopee.com.br/1LfaYURnHi",
+        "sub_id_1": "aquametria",
+        "sub_id_2": "C3",
+        "rel": "sponsored",
+        "verificado_em": "2026-09-07",
+        "anuncio_shopee": "Filtro externo (Hang-on) - Tidal 55 - Seachem",
+        "observacao": "Link curto gerado no painel Shopee Afiliados em 07/09/2026. Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data."
+      },
       "fontes": [
         {
           "origem": "fabricante-via-busca",
@@ -297,5 +332,6 @@
       "status_registro": "revalidar",
       "observacao": "Marcado como revalidar por implausibilidade de eficiencia (V10), nao por erro conhecido: um HOB trabalha com coluna baixissima e pode mesmo ser muito eficiente, mas o numero precisa sair do manual lido antes de virar comparacao publicada de consumo na C7. potencia_w gravada e a de 120 V; em 230 V o manual declara 5 W — e a voltagem vendida no Brasil nao foi confirmada por nenhuma fonte, entao o campo ficou null."
     }
-  ]
+  ],
+  "atualizado_em": "2026-09-07"
 }

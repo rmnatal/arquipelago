@@ -36,6 +36,11 @@
         "min": 30,
         "max": 400
       },
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "sem anuncio do produto na Shopee em 07/09/2026 (busca do painel de afiliados so devolveu pecas de reposicao e lampadas UV). Enquanto nao houver link, este produto NAO e sugerido no bloco de produto das calculadoras.",
+        "verificado_em": "2026-09-07"
+      },
       "fontes": [
         {
           "origem": "fabricante-via-busca",
@@ -85,6 +90,17 @@
       "volume_atendido_declarado_L": {
         "min": 50,
         "max": 150
+      },
+      "afiliado": {
+        "plataforma": "shopee",
+        "url": "https://s.shopee.com.br/50YsvKBY0s",
+        "sub_id_1": "aquametria",
+        "sub_id_2": "C5",
+        "rel": "sponsored",
+        "verificado_em": "2026-09-07",
+        "anuncio_shopee": "ROXIN HT-1300 Q3 100W 127V para aquário até 100 litros",
+        "voltagem_anuncio": "127",
+        "observacao": "voltagem_anuncio e a voltagem DO ANUNCIO, nao do produto: anuncio de marketplace (nivel 6) nao sustenta campo tecnico, por isso o campo voltagem do registro continua null. A tela precisa avisar qual versao o link abre."
       },
       "fontes": [
         {
@@ -160,6 +176,17 @@
         "min": null,
         "max": 200
       },
+      "afiliado": {
+        "plataforma": "shopee",
+        "url": "https://s.shopee.com.br/6L4GVnErqJ",
+        "sub_id_1": "aquametria",
+        "sub_id_2": "C5",
+        "rel": "sponsored",
+        "verificado_em": "2026-09-07",
+        "anuncio_shopee": "Roxin Q3 Ht-1300 Q3 200w 110V",
+        "voltagem_anuncio": "110",
+        "observacao": "voltagem_anuncio e a voltagem DO ANUNCIO, nao do produto: anuncio de marketplace (nivel 6) nao sustenta campo tecnico, por isso o campo voltagem do registro continua null. A tela precisa avisar qual versao o link abre."
+      },
       "fontes": [
         {
           "origem": "varejo",
@@ -234,6 +261,17 @@
         "min": 250,
         "max": 350
       },
+      "afiliado": {
+        "plataforma": "shopee",
+        "url": "https://s.shopee.com.br/AUtpTbdMqc",
+        "sub_id_1": "aquametria",
+        "sub_id_2": "C5",
+        "rel": "sponsored",
+        "verificado_em": "2026-09-07",
+        "anuncio_shopee": "Termostato Com Aquecedor Roxin HT-1300 - Q3 - 300w - 220v",
+        "voltagem_anuncio": "220",
+        "observacao": "voltagem_anuncio e a voltagem DO ANUNCIO, nao do produto: anuncio de marketplace (nivel 6) nao sustenta campo tecnico, por isso o campo voltagem do registro continua null. A tela precisa avisar qual versao o link abre."
+      },
       "fontes": [
         {
           "origem": "varejo",
@@ -282,5 +320,6 @@
       "status_registro": "conflito",
       "observacao": "Fecha a serie da linha popular brasileira: 100 W para 50-150 L, 200 W para ate 200 L, 300 W para 250-350 L. Nenhuma faixa encosta na seguinte de forma continua e a razao W/L varia de 0,67 a 1,2 dentro da mesma linha."
     }
-  ]
+  ],
+  "atualizado_em": "2026-09-07"
 }

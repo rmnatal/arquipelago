@@ -1,0 +1,23 @@
+{
+  "id": "afiliados-sem-produto",
+  "esquema": "dados/esquema-produtos.json",
+  "descricao": "Links de afiliado gerados no painel da plataforma que ainda NAO tem registro correspondente no banco de produtos. Ficam aqui, fora do banco, ate existir ficha tecnica com fonte: link sem especificacao verificada nao pode ser sugerido por calculadora, porque nao ha como provar que o produto atende a faixa calculada. Este arquivo nunca vai para o site.",
+  "gerado_em": "2026-09-07",
+  "atualizado_em": "2026-09-07",
+  "publicar": false,
+  "links": [
+    {
+      "plataforma": "shopee",
+      "url": "https://s.shopee.com.br/20vHM62Uwr",
+      "sub_id_1": "aquametria",
+      "sub_id_2": "C15",
+      "anuncio_shopee": "Luminária LED Aquário Plantado Newpet Slim 3 Módulos de Cor Controlador 30 a 60cm Bivolt",
+      "preco_visto_brl": 63.0,
+      "visto_em": "2026-09-07",
+      "vendas_declaradas_anuncio": 293,
+      "produto_id": null,
+      "por_que_nao_entrou": "E outro produto: o registro generico do banco (aquarios-do-rio-led-60cm) e uma luminaria de 60 cm de outro revendedor, com 24 W e 2400 lm. Para o Newpet Slim nao foi encontrada ficha com potencia e lumen declarados por fabricante ou varejista especializado — a busca de 07/09/2026 so devolveu anuncios de marketplace, que pelo esquema (nivel 6) nao sustentam numero tecnico.",
+      "o_que_desbloqueia": "uma ficha com potencia_w, fluxo_lm e comprimento, de fabricante ou varejo especializado. Com ela o produto entra no banco e o link migra para o registro."
+    }
+  ]
+}

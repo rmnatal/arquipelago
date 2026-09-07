@@ -465,3 +465,143 @@ casca e bumpar `AQUAMETRIA_CASCA_VERSAO`.
 
 Sem ferramenta de memoria nesta sessao: `/areas/projeto-aquametria.md` NAO foi
 atualizado; esta entrada e o `ESTADO.md` sao o registro.
+
+## 2026-09-07 (6º disparo, tarefa extraordinária) — links de afiliado da Shopee no banco
+
+Não foi bloco novo da fila: tarefa extraordinária pedida no disparo, que desbloqueia
+a monetização. Os links foram gerados pelo Raphael no painel Shopee Afiliados em
+07/09/2026, com `Sub_id 1 = aquametria` e `Sub_id 2` = o código da calculadora.
+
+### O que entrou no banco
+
+Campo novo `afiliado` em **todos os 16 produtos** — 10 com link, 6 com o motivo de
+não terem. Ele fica logo antes de `fontes[]` em cada registro:
+
+| Calculadora | Produtos com link |
+|---|---|
+| C3 filtro | Eheim classic 250 (2213), Seachem Tidal 55 |
+| C5 aquecedor | Roxin HT-1300 Q3 100 W (anúncio 127 V), 200 W (110 V), 300 W (220 V) |
+| C12 mídia | Seachem Matrix 1 L, Eheim SUBSTRAT pro 1 L |
+| C15 iluminação | Ista I-401 45 cm, Chihiros WRGB II Pro 60, SunSun ADE-400c |
+
+**Sem anúncio do produto na Shopee em 07/09/2026** (só peças de reposição e
+lâmpadas UV), gravados com `"plataforma": null` e o motivo: SunSun HW-303B,
+Atman AT-3338, Atman AT-3338S e Eheim Jäger 200 W. Enquanto não houver link, eles
+não entram no bloco de produto de nenhuma calculadora.
+
+### Três decisões que mudaram o pedido
+
+1. **Preço não foi para o arquivo de produto.** O pedido dizia guardar
+   `preco_referencia` no produto; o esquema do Bloco 3 proíbe (regra V7: nenhum
+   campo de preço dentro de `produtos-*.json`, porque preço é série temporal e
+   apodrece em semanas), e o validador reprovaria. Os 10 valores viraram **10
+   cotações datadas** em `dados/produtos-cotacoes.json`, cada uma com loja, data,
+   condição, disponibilidade, voltagem do anúncio, título do anúncio, comissão
+   quando informada e o campo `origem_leitura`, que diz que a leitura foi do
+   painel pelo operador — não da página pela Aquametria (o egresso da nuvem barra
+   `shopee.com.br`). É a mesma informação, no lugar onde ela pode ser auditada.
+2. **O link da Ista não foi colado no registro que existia.** O anúncio é da
+   luminária de **45 cm** (7,6 W, 810 lm); o registro do banco era a de **60 cm**
+   (35 W, 3717 lm). São produtos diferentes: colar o link ali faria a C15 prometer
+   3717 lm e entregar 810. Entrou o registro `ista-i-401-45`, com ficha própria
+   (Aquarius Hobby, nível varejo, lida por busca porque o domínio dá
+   EGRESS_BLOCKED), e o de 60 cm ficou sem link, com o motivo escrito.
+3. **O LED genérico "Newpet Slim 30–60 cm" não virou produto.** É outro produto,
+   de outro revendedor, e a busca de 07/09 não achou ficha com potência e lúmen
+   de fabricante ou varejo especializado — só anúncio de marketplace, que pelo
+   esquema (nível 6) não sustenta número técnico. O link ficou em
+   `dados/afiliados-sem-produto.json`, com o que o desbloqueia. Link sem
+   especificação verificada não pode ser sugerido por calculadora.
+
+### Troca de registro na iluminação
+
+`aquario-projetado-x1-fr-60w` **saiu** do banco (pedido do disparo: não tem anúncio
+real na Shopee). Entrou no lugar `chihiros-wrgb-ii-pro-60`, com as specs refeitas
+por duas fontes de varejo especializado que concordam entre si — Green Aqua
+(74 W, 6630 lm, aquários de 60 a 80 cm, 60 LEDs WRGB, IP43, controle por app
+Bluetooth) e Aquasabi (600 × 140 × 18 mm) — ambas lidas por resultado de busca,
+porque `chihiros.eu` devolveu EGRESS_BLOCKED. O PAR de 50–60 citado pelo varejo
+vem "no substrato", sem distância em cm: sem distância o PPFD é inútil e a regra
+V5 o rejeita, então não foi gravado. A voltagem não é declarada por nenhuma das
+fontes — e voltagem é requisito para SUGERIR — então ele entra como ficha, não
+como sugestão.
+
+O registro removido, transcrito para o caso de voltar (também está no histórico do
+git, commit `08d84dc`):
+
+```json
+{
+  "id": "aquario-projetado-x1-fr-60w", "entidade": "iluminacao",
+  "marca": null, "linha": "X1-FR", "modelo": "X1-FR 60 W Wi-Fi", "variante": "60 W",
+  "nomes_alternativos": ["Luminaria X1-FR 60W 5000 lumens"],
+  "gtin": null, "disponibilidade_br": "vendido", "voltagem": null,
+  "tipo": "led-pendente", "potencia_w": 60, "fluxo_lm": 5000,
+  "temperatura_cor_k": null, "espectro": null,
+  "ppfd_declarado": null, "ppfd_distancia_cm": null,
+  "comprimento_luminaria_cm": null, "comprimento_aquario_cm": null,
+  "regulagem": "app", "volume_atendido_declarado_L": null,
+  "fontes": [{ "origem": "varejo", "status": "transcrita-varejo",
+    "referencia": "Aquario Projetado (varejo BR especializado), ficha da luminaria X1-FR 60 W com 5000 lumens e controle Wi-Fi",
+    "url": "https://www.aquarioprojetado.com/luminaria-x1-fr-60w-5000-lumens-wi-fi-luminaria-para-aquario-plantado",
+    "verificado_em": "2026-09-07",
+    "campos": ["potencia_w", "fluxo_lm", "regulagem", "tipo"],
+    "observacao": "Ficha de varejo. Confira a embalagem." }],
+  "conflitos": [], "verificado_em": "2026-09-07", "status_registro": "parcial",
+  "observacao": "Tem lumen, nao tem comprimento: cai na validacao V13 e nao pode ser sugerido. 83 lm/W."
+}
+```
+
+### Regra nova: V15, e o relatório que ela abriu
+
+O esquema virou **v2**: o campo `afiliado` está documentado (`plataforma`, `url`,
+`sub_id_1`, `sub_id_2`, `rel`, `verificado_em`, `anuncio_shopee`,
+`voltagem_anuncio`, `motivo`), com as regras de renderização (`rel="sponsored"`,
+`target="_blank" rel="noopener"`, aviso visível de comissão, preço sempre com data)
+e a proibição de link apontando para outra variante. `ferramentas/validar-produtos.py`
+ganhou a regra **V15**: todo produto tem `afiliado`; com plataforma preenchida
+exige URL https, os dois `sub_id`, o título do anúncio e `rel: "sponsored"`, e
+proíbe qualquer campo de preço lá dentro; com plataforma `null` exige o motivo.
+
+O relatório do validador passou a separar, por calculadora, **apto com link** de
+**apto sem link**. O que ele mostra hoje é o trabalho que sobra:
+
+```
+c12-midia-filtrante    3 com link, 0 apto(s) sem link, 4 barrado(s)
+c15-iluminacao         1 com link, 0 apto(s) sem link, 4 barrado(s)
+c3-vazao-filtro        0 com link, 2 apto(s) sem link, 3 barrado(s)
+c5-aquecedor-delta     0 com link, 0 apto(s) sem link, 4 barrado(s)
+c7-consumo-custo       7 com link, 6 apto(s) sem link, 1 barrado(s)
+16 produtos, 10 cotacoes, 0 erro(s), 2 aviso(s)
+```
+
+**Ter link não basta.** A C15 hoje só consegue sugerir UM produto (a Ista de
+45 cm) e a C5, ZERO. A C5 continua em zero porque os três Roxin
+não declaram `faixa_ajuste_C` nem voltagem — e voltagem de anúncio não conta, que
+é exatamente por que ela foi para `voltagem_anuncio` e não para o campo `voltagem`:
+anúncio de marketplace é nível 6 e não sustenta número técnico. A C3 tem dois
+produtos aptos (Atman) que não têm link, e dois com link (Eheim 2213, Tidal 55)
+barrados por voltagem e coluna máxima. **A coleta que destrava dinheiro agora é
+voltagem e `faixa_ajuste_C` de fabricante, não mais link.**
+
+### Verificação
+- `python3 ferramentas/validar-produtos.py`: **16 produtos, 10 cotações, 0 erros,
+  2 avisos** (os dois avisos são antigos: eficiência implausível do Tidal 55 e
+  faixa de 13,3× do Eheim Jäger).
+- Todo JSON reaberto com `json.load` depois de gravado.
+- `sha256` de todos os arquivos alterados recalculado do arquivo final commitado.
+
+### Manifest
+`revisao` = **6**, `atualizado_em` = `2026-09-07`. Hashes atualizados de
+`produtos-filtro`, `produtos-aquecedor`, `produtos-iluminacao`, `produtos-midia`,
+`produtos-cotacoes` (agora 10 registros), `esquema-produtos` e
+`modelo-banco-produtos`; entrada nova `afiliados-sem-produto`. Tudo continua
+`publicar: false` — é dado interno, não vai para o site sozinho.
+
+Próximo passo desbloqueado (inalterado): **Bloco 4 — C1, a calculadora de
+litragem**, o núcleo e o estado compartilhado (`localStorage`, chave
+`aquametria.aquario`). Ao publicá-la, virar o `estado` da C1 para `publicada` na
+casca e bumpar `AQUAMETRIA_CASCA_VERSAO`. A C1 não tem bloco de produto (litragem
+não vende equipamento); o primeiro bloco de produto com link será o da C3.
+
+Sem ferramenta de memória nesta sessão: `/areas/projeto-aquametria.md` NÃO foi
+atualizado; esta entrada e o `ESTADO.md` são o registro.
