@@ -21,7 +21,9 @@
       ],
       "gtin": null,
       "disponibilidade_br": "vendido",
-      "voltagem": null,
+      "voltagem": [
+        "110"
+      ],
       "tipo": "canister",
       "vazao_nominal_lh": 440,
       "vazao_real_lh": null,
@@ -66,12 +68,23 @@
             "tipo"
           ],
           "observacao": "Pagina do fabricante nao lida direto (egresso bloqueado). Reconfirmar no manual antes do desembarque."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Varejo BR especializado anuncia a versao 110 V do classic 250 (2213): Pro-Aquarista (Campinas/SP) e Bixo da Agua",
+          "url": "https://www.proaquarista.com.br/produto/eheim-classic-250-2213-440lh-110v.html",
+          "verificado_em": "2026-09-08",
+          "campos": [
+            "voltagem"
+          ],
+          "observacao": "Paginas nao lidas direto (egresso bloqueado): titulo e ficha vistos no resultado de busca, que declaram 110 V, 440 L/h, 8 W e 80 a 250 L. Nenhum anuncio brasileiro visto declara a versao 220 V, entao o campo registra so o que tem fonte."
         }
       ],
       "conflitos": [],
       "verificado_em": "2026-09-07",
       "status_registro": "completo",
-      "observacao": "O registro que ancora a C3: 440 L/h para 250 L da 1,8 renovacoes/h, de 3 a 6 vezes ABAIXO das 5 a 10 x/h que as fontes brasileiras repetem. Ficha completa, mas sem voltagem declarada nao entra na sugestao da C3."
+      "observacao": "O registro que ancora a C3: 440 L/h para 250 L da 1,8 renovacoes/h, de 3 a 6 vezes ABAIXO das 5 a 10 x/h que as fontes brasileiras repetem. Voltagem 110 V confirmada em varejo BR em 08/09/2026, o que libera a sugestao da C3. ATENCAO: o anuncio de afiliado nao declara voltagem, e por isso o cartao de produto obriga o aviso de conferir a voltagem antes de comprar."
     },
     {
       "id": "sunsun-hw-303b",
@@ -282,7 +295,10 @@
       ],
       "gtin": null,
       "disponibilidade_br": "vendido",
-      "voltagem": null,
+      "voltagem": [
+        "110",
+        "220"
+      ],
       "tipo": "hang-on",
       "vazao_nominal_lh": 1000,
       "vazao_real_lh": null,
@@ -325,12 +341,27 @@
             "tipo"
           ],
           "observacao": "O PDF do manual esta bloqueado pelo egresso da nuvem (sicce.com devolveu EGRESS_BLOCKED). Numeros colhidos por busca, atribuidos ao manual. RECONFERIR: 1000 L/h com 6 W da 167 L/h por W, muito acima dos outros filtros da semente."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Varejo BR anuncia as duas voltagens do Tidal 55: Biotopos (110 V) e Amazon.com.br (220 V, 1000 L/h, ate 200 L)",
+          "url": "https://www.amazon.com.br/Seachem-Filtro-Tidal-1000L-Hangon/dp/B07Z43HHW3",
+          "verificado_em": "2026-09-08",
+          "campos": [
+            "voltagem",
+            "potencia_w",
+            "vazao_nominal_lh",
+            "volume_atendido_declarado_L"
+          ],
+          "observacao": "Paginas nao lidas direto (egresso bloqueado). As fichas de varejo BR e a ficha internacional convergem: 1000 L/h, 6 W em 110-120 V (5 W em 230 V), camara de midia de 1,2 L, ate 200 L."
         }
       ],
       "conflitos": [],
       "verificado_em": "2026-09-07",
-      "status_registro": "revalidar",
-      "observacao": "Marcado como revalidar por implausibilidade de eficiencia (V10), nao por erro conhecido: um HOB trabalha com coluna baixissima e pode mesmo ser muito eficiente, mas o numero precisa sair do manual lido antes de virar comparacao publicada de consumo na C7. potencia_w gravada e a de 120 V; em 230 V o manual declara 5 W — e a voltagem vendida no Brasil nao foi confirmada por nenhuma fonte, entao o campo ficou null."
+      "status_registro": "completo",
+      "observacao": "Hang-on. NAO tem altura maxima de recalque: o filtro fica pendurado na borda e bombeia contra a propria carcaca, entao coluna_maxima_m nao se aplica (campo coluna_maxima_nao_se_aplica). Em 08/09/2026 saiu de 'revalidar' para 'completo': a eficiencia de 167 L/h por W, que o validador apontava como implausivel, e a declaracao do proprio fabricante e coerente com um hang-on trabalhando a coluna quase zero - o limite de 120 L/h por W foi calibrado para canister, e a regra V10 passou a valer so para canister e sump.",
+      "coluna_maxima_nao_se_aplica": true
     }
   ],
   "atualizado_em": "2026-09-07"

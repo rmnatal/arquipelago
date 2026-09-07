@@ -65,7 +65,9 @@ def preenchido(valor):
     return True
 
 
-def obrigatorios_da_entidade(esquema, entidade):
+def obrigatorios_da_entidade(esquema, entidade, produto=None):
+    """Obrigatorio pode ser condicional ao tipo do produto: coluna_maxima_m so e
+    exigida de canister e sump, porque hang-on e interno nao tem recalque."""
     obrig = []
     for campo in esquema["campos_comuns"]:
         if not campo.get("obrigatorio"):
@@ -75,8 +77,12 @@ def obrigatorios_da_entidade(esquema, entidade):
             continue
         obrig.append(campo["campo"])
     for campo in esquema["entidades"][entidade]["campos"]:
-        if campo.get("obrigatorio"):
-            obrig.append(campo["campo"])
+        if not campo.get("obrigatorio"):
+            continue
+        tipos = campo.get("obrigatorio_se_tipo")
+        if tipos and (produto or {}).get("tipo") not in tipos:
+            continue
+        obrig.append(campo["campo"])
     return obrig
 
 
@@ -181,7 +187,7 @@ def valida_produto(esquema, entidade, produto, vistos):
             erro("V7", pid, "campo de preco ('%s') dentro do arquivo de produtos" % campo)
 
     # V8 / V14 - completude x status declarado
-    obrig = obrigatorios_da_entidade(esquema, entidade)
+    obrig = obrigatorios_da_entidade(esquema, entidade, produto)
     faltando = [c for c in obrig if not preenchido(produto.get(c))]
     status = produto.get("status_registro")
     if status == "completo" and faltando:
@@ -248,7 +254,10 @@ def derivar(entidade, produto):
             out["turnover_max_xh"] = round(vazao / vmin, 2)
         if vazao and pot:
             out["eficiencia_lh_por_w"] = round(vazao / pot, 1)
-            if out["eficiencia_lh_por_w"] > LIMITE_EFICIENCIA_FILTRO:
+            # V10 vale so para canister e sump: hang-on e interno trabalham a coluna
+            # quase zero e passam de 120 L/h por W por projeto, nao por erro de ficha.
+            if (out["eficiencia_lh_por_w"] > LIMITE_EFICIENCIA_FILTRO
+                    and produto.get("tipo") in ("canister", "sump")):
                 aviso("V10", produto["id"], "eficiencia de %.1f L/h por W e implausivel; "
                       "reconferir no manual" % out["eficiencia_lh_por_w"])
 
@@ -325,11 +334,11 @@ def main():
     print("\n== quem cada calculadora consegue sugerir hoje ==")
     for calc in sorted(sugeribilidade):
         dados = sugeribilidade[calc]
-        print("  %-22s %d com link, %d apto(s) sem link, %d barrado(s)"
+        print("  %-22s %d apto(s) com link, %d apto(s) sem link, %d barrado(s)"
               % (calc, len(dados["aptos"]), len(dados["sem_link"]), len(dados["barrados"])))
         for pid in dados["sem_link"]:
-            print("      ~ %-28s tecnicamente apto, mas sem link de afiliado: "
-                  "nao entra no bloco de produto" % pid)
+            print("      ~ %-28s apto e sugerido, sem link de afiliado: "
+                  "sai no cartao sem botao de loja (V16)" % pid)
         for pid, motivo in dados["barrados"]:
             print("      - %-28s falta: %s" % (pid, motivo))
 

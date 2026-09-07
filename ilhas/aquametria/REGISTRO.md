@@ -713,3 +713,150 @@ Depois disso, conferir:
 - `https://aquametria.com.br/calculadoras/` — o cartão da C1 deve ter virado
   "Abrir calculadora";
 - `https://aquametria.com.br/wp-json/aquametria/v1/status` — o log do Sync.
+
+---
+
+## 08/09/2026 — Bloco 4: C3, a calculadora de vazão do filtro, no ar (com o primeiro bloco de produto)
+
+**Disparo extra**, autorizado pelo Raphael, pedindo a C1. A C1 já estava no `main`
+(commits `0989345` e `4cf5a8f`, execução das 20h47 UTC de 07/09) — a referência
+local é que estava velha. Como o bloco pedido estava entregue, esta execução fez
+**o próximo passo desbloqueado: a C3**, que é a primeira calculadora com bloco de
+produto e a primeira a usar os links de afiliado gravados ontem.
+
+### O problema que precisou ser resolvido antes da calculadora
+
+O validador dizia, no início da sessão: `c3-vazao-filtro — 0 com link`. Os dois
+únicos filtros com link de afiliado estavam barrados por campo faltante, e sem
+eles o bloco de produto da C3 nasceria vazio. Foi resolvido com **coleta, não com
+afrouxamento de regra**:
+
+- **Eheim classic 250 (2213)**: ganhou `voltagem: ["110"]`, com fonte de varejo BR
+  (Pró-Aquarista e Bixo da Água anunciam a versão 110 V). Nenhum anúncio brasileiro
+  visto declara a versão 220 V, então o campo registra só o que tem fonte — e o
+  cartão de produto obriga o aviso de conferir a voltagem no anúncio, porque o
+  anúncio de afiliado não a declara.
+- **Seachem Tidal 55**: ganhou `voltagem: ["110","220"]` (Biotopos 110 V,
+  Amazon.com.br 220 V) e saiu de `revalidar` para `completo`.
+- **A correção de modelo que isso revelou**: `coluna_maxima_m` estava marcada como
+  obrigatória para todo filtro, mas **hang-on não tem recalque a vencer** — ele fica
+  pendurado na borda. Exigir o campo dele era defeito do esquema, não dado faltando.
+  Entrou `coluna_maxima_nao_se_aplica`, e a obrigatoriedade virou condicional ao tipo
+  (`obrigatorio_se_tipo: [canister, sump]`), legível pelo validador.
+- **A regra V10** (eficiência acima de 120 L/h por W é implausível) ficou restrita a
+  canister e sump: o Tidal 55 declara 1000 L/h com 6 W — 167 L/h por W — porque
+  hang-on trabalha a coluna quase zero. O limite tinha sido calibrado para canister.
+
+Resultado: a C3 passou de 0 para **4 filtros sugeríveis** (Eheim 2213, Tidal 55,
+Atman AT-3338 e AT-3338S), 2 deles com link. O SunSun HW-303B segue barrado por
+não ter coluna máxima publicada por nenhuma fonte.
+
+### A decisão editorial desta execução (regra V16)
+
+A execução anterior tinha deixado implícito que produto sem link de afiliado não
+entra no bloco. Isso é ordenar por comissão pelo caminho inverso, e contraria a
+regra do projeto ("a ordem é por adequação técnica ao resultado, jamais por
+comissão"). Ficou escrito como regra de validação:
+
+> **V16.** Link de afiliado NÃO entra em critério de sugestão. A lista de produtos
+> de uma calculadora é montada e ordenada só por adequação técnica ao resultado;
+> produto tecnicamente apto é mostrado tenha ou não link, e quem tem link ganha o
+> botão de loja, marcado como patrocinado.
+
+Na prática: os dois Atman aparecem na lista, no lugar que a adequação técnica manda,
+com a frase "ainda não temos link de loja para este modelo".
+
+### O que foi entregue
+
+**`snippets/aquametria-calculadora-vazao.php`** (novo, v1.0.0) — shortcode
+`[aquametria_calculadora_vazao]`. Lê o volume real que a C1 guardou em
+`localStorage`, devolve a faixa em L/h com o critério e a fonte de cada extremo,
+os cartões por banda (piso do fabricante · leitura conservadora BR · regra de bolso
+BR, ou plantado), o volume mínimo do sump quando marcado, o caminho inverso, o
+veredito do filtro que a pessoa já tem, o quadro de fontes e o permalink citável.
+Anuncia-se sozinho no hub pelo filtro `aquametria_calculadoras`.
+
+**O bloco de produto**, que é a novidade estrutural: nasce dentro da resposta, como
+consequência do cálculo. Cada cartão mostra a placa da marca com a vazão, **o
+turnover que aquele filtro entrega naquele aquário** (não no volume genérico do
+catálogo), a ficha com a fonte e a data, e o botão da loja com
+`rel="sponsored noopener" target="_blank"` quando existe link. O aviso de comissão
+é obrigatório e visível dentro do bloco. Sem filtro que atenda a faixa, o bloco
+não aparece e a tela diz quantos filtros o banco tem e por que nenhum serviu.
+**Preço não entra**: snippet é código que fica meses no ar e preço envelheceria na
+tela; a política está escrita na página de divulgação.
+
+**`conteudo/calculadora-de-vazao-do-filtro.md`** — a metodologia: por que a resposta
+é faixa e não número, o argumento dos dois lados, o que a calculadora não faz (fator
+de perda de carga e turnover marinho, ambos pendentes por falta de fonte), o
+protocolo do balde no lugar do fator inventado, a coluna máxima como corte, e as
+três regras do bloco de produto.
+
+**`conteudo/divulgacao-de-afiliados.md`** (página nova) — exigida pelo primeiro
+bloco de produto e pela autorregulamentação publicitária brasileira. Declara o link
+de afiliado, transcreve a V16 na íntegra, mostra a escada de fontes e admite o
+tamanho atual do programa.
+
+**Ligações, para nenhuma página nascer órfã:** a casca (v1.0.3) passou a linkar a
+divulgação no rodapé de todo o site; a C1 (v1.0.1, snippet e página) passou a
+**linkar** a C3, que antes só citava; a C3 aponta de volta para a C1, o hub, a
+metodologia e a divulgação. O hub já mostra C1 e C3 como publicadas.
+
+**`ferramentas/gerar-catalogo-filtros.py`** (nova) — o site não lê o repositório em
+tempo de execução, então o banco de filtros viaja dentro do PHP. Este gerador
+reescreve o trecho entre `CATALOGO-INICIO` e `CATALOGO-FIM` a partir de
+`dados/produtos-filtro.json`, aplicando o `minimo_para_sugerir` do esquema. É o que
+impede as duas cópias de divergirem.
+
+**Sync v1.1.2** — o conversor de Markdown não entendia citação em bloco e imprimia
+o `>` escapado no meio do parágrafo. As duas páginas novas usam citação (a fórmula
+do protocolo do balde e a regra V16), então o conversor foi corrigido, com estilo
+próprio na casca.
+
+### Verificação (o que foi realmente rodado)
+- **`php -l` de verdade** nos quatro snippets (com `<?php` prefixado): limpo.
+- **`ferramentas/proteger-funcoes.php`** nos quatro: saída idêntica ao arquivo —
+  nenhuma função de nível superior desprotegida.
+- **`ferramentas/validar-produtos.py`**: 16 produtos, **0 erro**, 1 aviso conhecido
+  (a faixa de 13,3x do Eheim Jager, que é conteúdo da C5, não defeito).
+- **Teste de fumaça em PHP com stubs de WordPress**: o hub vira C1 e C3 para
+  `publicada` e deixa as outras seis em construção; o shortcode devolve 42 KB na
+  primeira chamada e string vazia na segunda; nenhum id duplicado; 21 `<div>`
+  abertas e 21 fechadas, 5 `<ul>` e 5 fechadas; acentos preservados; catálogo com
+  4 filtros; aviso de comissão e link da divulgação presentes.
+- **Teste em navegador de verdade** (Chromium via Playwright), 12 casos: caso base
+  (110 L comunitário → 190 a 1.100 L/h, Eheim e Tidal na lista, Eheim entregando
+  4,0 x/h); **atributos do link de afiliado** (`sponsored noopener` + `_blank` em
+  todos, aviso de comissão visível); perfil plantado mudando o teto para 550 L/h;
+  coluna de 1,6 m barrando o Eheim de 1,5 m com o motivo na tela; filtro por tipo;
+  **estado vindo da C1** (volume 109,5 preenchido, cálculo automático, e a mescla
+  preservando medidas e apelido da C1 enquanto a C3 acrescenta o dela); permalink
+  por query string; caminho inverso; **aquário de 15 L sem produto que atenda** (o
+  bloco não aparece e a tela explica); sump; erro de unidade escondendo a saída;
+  convite para a C1 quando não há estado; 390 px sem rolagem horizontal.
+  **Zero erro de console.**
+- **Conversão do Markdown pelo próprio Sync** nas três páginas: front matter
+  removido, shortcode fora do `<p>`, tabela em bloco que rola, citação em bloco
+  correta, 6/5/6 `<h2>`, links internos presentes.
+- **sha256 do manifest conferido contra os arquivos finais commitados**: todos batem.
+
+### Desembarque
+Automático. Manifest na revisão 8. Depois do push em `main`, o Sync precisa ser
+acionado; o WebFetch da nuvem cai no bloqueio de egresso, então fica para o
+WP-Cron, que roda a cada 30 minutos. URLs a conferir:
+- `https://aquametria.com.br/calculadora-de-vazao-do-filtro/` — a calculadora nova;
+- `https://aquametria.com.br/divulgacao-de-afiliados/` — a página de afiliados;
+- `https://aquametria.com.br/calculadoras/` — o cartão da C3 deve ter virado
+  "Abrir calculadora";
+- `https://aquametria.com.br/calculadora-de-litragem/` — deve ter ganhado o link
+  para a C3;
+- `https://aquametria.com.br/wp-json/aquametria/v1/status` — o log do Sync.
+
+Próximo passo desbloqueado: **C5 — potência do aquecedor por delta térmico**. Atenção
+ao que o validador já mostra: os quatro aquecedores do banco estão barrados
+(`voltagem` nos quatro, `faixa_ajuste_C` nos três Roxin, que está em conflito
+varejo-contra-varejo). Sem essa coleta, o bloco de produto da C5 nasce vazio — e o
+caminho é o mesmo desta execução: coletar com fonte antes de escrever a calculadora.
+
+Sem ferramenta de memória nesta sessão: `/areas/projeto-aquametria.md` NÃO foi
+atualizado; esta entrada e o `ESTADO.md` são o registro.

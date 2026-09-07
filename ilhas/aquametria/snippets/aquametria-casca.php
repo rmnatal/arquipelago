@@ -1,6 +1,6 @@
 /**
  * Aquametria Casca — identidade e estrutura do site
- * Versão: 1.0.2 (07/09/2026) — rodapé do tema substituído pelo da Aquametria (não mais empilhado)
+ * Versão: 1.0.3 (08/09/2026) — rodapé leva a divulgação de afiliados, que a C3 exige
  *
  * Dá cara de Aquametria ao tema ativo, sozinho, sem construtor de página e sem
  * plugin de tema. Faz seis coisas:
@@ -33,7 +33,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'AQUAMETRIA_CASCA_VERSAO', '1.0.2' );
+	define( 'AQUAMETRIA_CASCA_VERSAO', '1.0.3' );
 	define( 'AQUAMETRIA_CASCA_TAGLINE', 'Calculadoras e dados técnicos para dimensionar o seu aquário' );
 }
 
@@ -195,7 +195,7 @@ function aquametria_casca_rodape_html() {
 	$html  = '<footer class="aqm-rodape"><div class="aqm-rodape-interno">';
 	$html .= '<p class="aqm-tagline">' . esc_html( AQUAMETRIA_CASCA_TAGLINE ) . '</p>';
 	$html .= '<p>Todo número publicado aqui cita a fonte — manual de fabricante, norma técnica ou fonte brasileira nomeada — e leva a data em que foi verificado. Quando as fontes discordam, a Aquametria publica a divergência com a atribuição de cada extremo, nunca a média. Onde não há fonte aceitável, a página diz por que não publica número.</p>';
-	$html .= '<p><a href="' . esc_url( aquametria_casca_url_pagina( 'metodologia' ) ) . '">Metodologia</a> · <a href="' . esc_url( aquametria_casca_url_pagina( 'sobre' ) ) . '">Sobre</a> · Aquametria ' . esc_html( date_i18n( 'Y' ) ) . '</p>';
+	$html .= '<p><a href="' . esc_url( aquametria_casca_url_pagina( 'metodologia' ) ) . '">Metodologia</a> · <a href="' . esc_url( aquametria_casca_url_pagina( 'divulgacao-de-afiliados' ) ) . '">Divulgação de afiliados</a> · <a href="' . esc_url( aquametria_casca_url_pagina( 'sobre' ) ) . '">Sobre</a> · Aquametria ' . esc_html( date_i18n( 'Y' ) ) . '</p>';
 	$html .= '</div></footer>';
 
 	return $html;
@@ -303,6 +303,12 @@ body header .wp-block-group,body .wp-block-template-part header{background:var(-
 .aqm-nota{border-left:3px solid var(--aqm-lamina);background:var(--aqm-superficie);padding:.85rem 1rem;color:var(--aqm-legenda);font-size:.95rem;margin:1.2rem 0 0;}
 .aqm-nota strong{color:var(--aqm-tinta);}
 .aqm-lista{margin:.6rem 0 0;padding-left:1.1rem;}
+/* Citação em bloco vinda do Markdown do repositório (conversor do Sync 1.1.2):
+   é onde mora fórmula e regra citada, então sai em monoespaçada. */
+.aqm-citacao{border-left:3px solid var(--aqm-lamina);background:var(--aqm-superficie);margin:1.2rem 0;padding:.9rem 1.1rem;font-size:.95rem;line-height:1.6;}
+.aqm-citacao p{margin:0 0 .5rem;font-family:var(--aqm-mono);}
+.aqm-citacao p:last-child{margin-bottom:0;}
+.aqm-tabela{margin:1.2rem 0;}
 .aqm-lista li{margin:0 0 .45rem;}
 .aqm-quadro{width:100%;margin:1rem 0 0;font-size:.93rem;}
 .aqm-quadro td:first-child{font-family:var(--aqm-mono);font-size:.85rem;white-space:nowrap;}

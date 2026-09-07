@@ -1,5 +1,6 @@
 /**
  * Aquametria Sync
+ * Versão: 1.1.2 (08/09/2026) — o conversor de Markdown passou a entender citação em bloco
  * Versão: 1.1.1 (07/09/2026) — o conversor de Markdown passou a descartar o front matter
  *   do arquivo e a deixar a linha que só tem shortcode fora do parágrafo (dois defeitos que
  *   o primeiro conteúdo em Markdown, a página da C1, iria expor).
@@ -101,6 +102,7 @@ function aquametria_sync_md( $md ) {
 	$lista  = null;
 	$par    = array();
 	$tabela = array();
+	$citacao = array();
 
 	$inline = function ( $t ) {
 		$t = esc_html( $t );
@@ -142,13 +144,51 @@ function aquametria_sync_md( $md ) {
 		$html  .= "</table></div>\n";
 		$tabela = array();
 	};
+	/* Citação em bloco (linha começando com '>'). Sem isto o '>' saía escapado
+	   no meio do parágrafo, que foi o que aconteceu com a fórmula do protocolo
+	   do balde na página da C3. Linha em branco dentro da citação vira parágrafo
+	   novo dentro dela. */
+	$fecha_citacao = function () use ( &$citacao, &$html, $inline ) {
+		if ( ! $citacao ) {
+			return;
+		}
+		$html .= '<blockquote class="aqm-citacao">';
+		foreach ( $citacao as $p ) {
+			if ( ! $p ) {
+				continue; // parágrafo vazio: veio da linha em branco que fechou a citação
+			}
+			$html .= '<p>' . $inline( implode( ' ', $p ) ) . '</p>';
+		}
+		$html   .= "</blockquote>\n";
+		$citacao = array();
+	};
 
 	foreach ( $linhas as $l ) {
 		$t = rtrim( $l );
 		if ( '' === trim( $t ) ) {
+			if ( $citacao ) {
+				/* Linha em branco dentro da citação: parágrafo novo, a citação segue. */
+				if ( end( $citacao ) ) {
+					$citacao[] = array();
+				}
+				continue;
+			}
 			$fecha_par(); $fecha_lista(); $fecha_tabela();
 			continue;
 		}
+		if ( preg_match( '/^>\s?(.*)$/', $t, $m ) ) {
+			$fecha_par(); $fecha_lista(); $fecha_tabela();
+			if ( ! $citacao ) {
+				$citacao = array( array() );
+			}
+			if ( '' !== trim( $m[1] ) ) {
+				$citacao[ count( $citacao ) - 1 ][] = trim( $m[1] );
+			} elseif ( end( $citacao ) ) {
+				$citacao[] = array();
+			}
+			continue;
+		}
+		$fecha_citacao();
 		if ( preg_match( '/^(#{1,6})\s+(.*)$/', $t, $m ) ) {
 			$fecha_par(); $fecha_lista(); $fecha_tabela();
 			$n     = strlen( $m[1] );
@@ -186,7 +226,7 @@ function aquametria_sync_md( $md ) {
 		$fecha_lista(); $fecha_tabela();
 		$par[] = trim( $t );
 	}
-	$fecha_par(); $fecha_lista(); $fecha_tabela();
+	$fecha_par(); $fecha_lista(); $fecha_tabela(); $fecha_citacao();
 	return $html;
 }
 }

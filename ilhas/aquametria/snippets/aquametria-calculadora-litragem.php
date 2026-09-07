@@ -1,6 +1,6 @@
 /**
  * Aquametria Calculadora de Litragem — C1
- * Versão: 1.0.0 (07/09/2026)
+ * Versão: 1.0.1 (08/09/2026) — o painel "o que este resultado alimenta" agora linka a C3, publicada
  *
  * Núcleo do lote de calculadoras. Converte as medidas do aquário em três
  * volumes — bruto, interno e real de referência — e grava o resultado no
@@ -34,7 +34,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_C1_VERSAO' ) ) {
-	define( 'AQUAMETRIA_C1_VERSAO', '1.0.0' );
+	define( 'AQUAMETRIA_C1_VERSAO', '1.0.1' );
 	define( 'AQUAMETRIA_C1_SLUG', 'calculadora-de-litragem' );
 	define( 'AQUAMETRIA_C1_VERIFICADO_EM', '07/09/2026' );
 	/* Constante 'borda-livre-padrao' (dados/constantes-calculadoras.json):
@@ -634,12 +634,13 @@ if ( ! function_exists( 'aquametria_c1_adiante_html' ) ) {
 function aquametria_c1_adiante_html() {
 	$hub  = function_exists( 'aquametria_casca_url_pagina' ) ? aquametria_casca_url_pagina( 'calculadoras' ) : home_url( '/calculadoras/' );
 	$meto = function_exists( 'aquametria_casca_url_pagina' ) ? aquametria_casca_url_pagina( 'metodologia' ) : home_url( '/metodologia/' );
+	$c3   = function_exists( 'aquametria_casca_url_pagina' ) ? aquametria_casca_url_pagina( 'calculadora-de-vazao-do-filtro' ) : home_url( '/calculadora-de-vazao-do-filtro/' );
 
 	$h  = '<div class="aqm-c1-painel aqm-c1-adiante">';
 	$h .= '<h3>O que este resultado alimenta</h3>';
 	$h .= '<p class="aqm-c1-sub">O volume real fica guardado no seu navegador e é lido por todas as calculadoras abaixo. Você não vai redigitar medidas.</p>';
 	$h .= '<ul>';
-	$h .= '<li><strong>Vazão do filtro e turnover (C3)</strong> — quantas renovações por hora o seu filtro entrega, e por que os fabricantes declaram de 1,8 a 10 x/h para o mesmo aquário.</li>';
+	$h .= '<li><a href="' . esc_url( $c3 ) . '"><strong>Vazão do filtro e turnover (C3)</strong></a> — <strong>já no ar.</strong> Quantas renovações por hora o seu filtro entrega, e por que o fabricante dimensiona 1,76 x/h enquanto a web brasileira pede de 5 a 10. Ela lê o volume desta página sozinha.</li>';
 	$h .= '<li><strong>Potência do aquecedor (C5)</strong> — watts a partir da mínima do seu ambiente, não do velho "1 W por litro".</li>';
 	$h .= '<li><strong>Mídia filtrante (C12)</strong> — mililitros de mídia biológica por litro de água, com as duas âncoras de fabricante que discordam entre si.</li>';
 	$h .= '<li><strong>Lotação (C8)</strong> — três critérios publicados lado a lado. É a única que trata o volume desta página pelo pior caso, porque aqui o erro do substrato seria inseguro.</li>';

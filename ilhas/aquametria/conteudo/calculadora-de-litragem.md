@@ -10,7 +10,7 @@ fontes:
   - "Geometria (definição de litro em centímetro cúbico) — não é constante de terceiro"
   - "borda-livre-padrao, 3 cm, convenção editorial da Aquametria (dados/constantes-calculadoras.json)"
   - "substrato-densidade e substrato-porosidade: constantes PENDENTES, recusadas em fórmula (dados/constantes-calculadoras.json)"
-verificado_em: 2026-09-07
+verificado_em: 2026-09-08
 publicar: true
 ---
 
@@ -70,8 +70,8 @@ Quem já sabe quantos litros quer costuma estar escolhendo o móvel ou o espaço
 
 ## Onde este resultado é usado
 
-O volume real fica guardado no navegador e alimenta as próximas calculadoras, que entram no ar uma por vez: vazão do filtro e turnover, potência do aquecedor por delta térmico, mídia filtrante, consumo elétrico e lotação. A lista completa, com o estado de cada uma, está em [todas as calculadoras](https://aquametria.com.br/calculadoras/).
+O volume real fica guardado no navegador e alimenta as próximas calculadoras. A primeira delas já está no ar: a [calculadora de vazão do filtro](https://aquametria.com.br/calculadora-de-vazao-do-filtro/) pega o volume real desta página e devolve a faixa de L/h que o seu aquário pede — do 1,76 renovações por hora que o fabricante do filtro dimensiona ao 10 x/h que a web brasileira repete. As outras entram no ar uma por vez: potência do aquecedor por delta térmico, mídia filtrante, consumo elétrico e lotação. A lista completa, com o estado de cada uma, está em [todas as calculadoras](https://aquametria.com.br/calculadoras/).
 
 Antes de usar qualquer número desta página em uma compra, vale ler [como a Aquametria calcula](https://aquametria.com.br/metodologia/): toda constante tem fonte nomeada, endereço e data, e o que não tem fonte aceitável fica de fora da fórmula, com o motivo escrito.
 
-**Verificado em 07/09/2026.** Calculadora versão 1.0.0.
+**Verificado em 08/09/2026.** Calculadora versão 1.0.1.

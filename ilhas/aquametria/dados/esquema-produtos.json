@@ -3,7 +3,7 @@
   "descricao": "Modelo normalizado do banco de produtos da Aquametria: entidades filtro, aquecedor, iluminacao e midia, mais a entidade cotacao (preco). Define campo a campo o tipo, a unidade, a obrigatoriedade, o vocabulario controlado e a ORIGEM esperada do dado. Nenhum numero entra no banco sem uma entrada correspondente em fontes[]. Este arquivo e o contrato que dados/produtos-*.json cumprem e que ferramentas/validar-produtos.py verifica.",
   "gerado_em": "2026-09-07",
   "bloco": 3,
-  "versao_esquema": 2,
+  "versao_esquema": 3,
   "depende_de": [
     "dados/especificacao-calculadoras.md",
     "dados/constantes-calculadoras.json"
@@ -213,6 +213,13 @@
       "tipo": "string|null",
       "obrigatorio": false,
       "origem": "editorial"
+    },
+    {
+      "campo": "imagem",
+      "tipo": "objeto|null",
+      "obrigatorio": false,
+      "origem": "a definir na coleta de imagem",
+      "observacao": "Ainda null em todo o banco. Quando existir: {url, largura, altura, credito, licenca, verificado_em}. O cartao de produto NAO usa foto de loja por hotlink - ou a imagem tem origem e licenca registradas aqui, ou o cartao sai com a placa tipografica de marca e modelo, que e o que a C3 faz hoje."
     }
   ],
   "fonte": {
@@ -422,9 +429,20 @@
           "campo": "coluna_maxima_m",
           "tipo": "numero|null",
           "obrigatorio": true,
+          "obrigatorio_se_tipo": [
+            "canister",
+            "sump"
+          ],
           "unidade": "m",
           "origem": "fabricante",
-          "observacao": "Altura maxima de recalque. Obrigatorio para a sugestao da C3; sem ele o registro fica parcial."
+          "observacao": "Altura maxima de recalque. Obrigatorio para a sugestao da C3 quando o filtro e canister ou sump. Hang-on, interno e esponja nao tem recalque a declarar: nesses casos o campo fica null e coluna_maxima_nao_se_aplica vira true."
+        },
+        {
+          "campo": "coluna_maxima_nao_se_aplica",
+          "tipo": "booleano",
+          "obrigatorio": false,
+          "origem": "editorial",
+          "observacao": "true quando o tipo de filtro nao tem altura de recalque a vencer (hang-on, interno, esponja, filtro-de-caixa). Substitui coluna_maxima_m no minimo da C3. Nao e dado de fabricante: e classificacao nossa do tipo de equipamento, e por isso a origem e editorial."
         },
         {
           "campo": "volume_cesto_L",
@@ -480,7 +498,7 @@
       "minimo_para_sugerir": {
         "c3-vazao-filtro": [
           "vazao_nominal_lh",
-          "coluna_maxima_m",
+          "coluna_maxima_m OU coluna_maxima_nao_se_aplica",
           "tipo",
           "volume_atendido_declarado_L",
           "voltagem"
@@ -990,7 +1008,7 @@
     },
     {
       "id": "V10",
-      "regra": "Plausibilidade de filtro: eficiencia_lh_por_w acima de 120 L/h por W e implausivel e pede reconferencia.",
+      "regra": "Plausibilidade de filtro: eficiencia_lh_por_w acima de 120 L/h por W e implausivel e pede reconferencia. Vale SO para canister e sump. Hang-on e interno trabalham a coluna quase zero e passam de 120 L/h por W por projeto - o Seachem Tidal 55 declara 1000 L/h com 6 W (167 L/h por W).",
       "severidade": "aviso"
     },
     {
@@ -1017,7 +1035,12 @@
       "id": "V15",
       "regra": "Todo produto tem o campo afiliado. Com plataforma preenchida exige url https, sub_id_1, sub_id_2, anuncio e rel='sponsored', e proibe qualquer campo de preco dentro dele; com plataforma null exige motivo.",
       "severidade": "erro"
+    },
+    {
+      "id": "V16",
+      "regra": "Link de afiliado NAO entra em criterio de sugestao. A lista de produtos de uma calculadora e montada e ordenada so por adequacao tecnica ao resultado; produto tecnicamente apto e mostrado tenha ou nao link, e quem tem link ganha o botao de loja, marcado como patrocinado. Ordenar ou filtrar por comissao e defeito, nao escolha editorial.",
+      "severidade": "regra de produto, conferida na revisao de cada calculadora"
     }
   ],
-  "atualizado_em": "2026-09-07"
+  "atualizado_em": "2026-09-08"
 }
