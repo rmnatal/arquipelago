@@ -4,7 +4,7 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 4,
+  "revisao": 5,
   "atualizado_em": "2026-09-07",
   "estado": "fundacao",
   "desembarque": {
@@ -30,8 +30,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "387e16d5abe5775311eeafec5fc5bcb65567f87c2eea3291e43df4d9655e7980",
-      "descricao": "Casca do site: carrega Chivo/IBM Plex Sans/IBM Plex Mono e injeta a paleta da Aquametria sobre o tema ativo; troca core/site-title e core/site-logo pelo logotipo em SVG (recipiente graduado) com o wordmark; troca core/navigation pelo menu Calculadoras/Metodologia/Sobre; cria as paginas inicio, calculadoras, metodologia e sobre (conteudo em shortcode do proprio snippet) e fixa inicio como pagina inicial; manda Hello world! e Sample Page para a lixeira; imprime o rodape com a tagline e a nota de fontes. Idempotente."
+      "sha256": "f8f3d1a06e325b458ff48ec01079e099bf2049e435ba9c27bbeb791a7e896479",
+      "descricao": "Casca do site: carrega Chivo/IBM Plex Sans/IBM Plex Mono e injeta a paleta da Aquametria sobre o tema ativo; troca core/site-title e core/site-logo pelo logotipo em SVG (recipiente graduado) com o wordmark; troca core/navigation pelo menu Calculadoras/Metodologia/Sobre; cria as paginas inicio, calculadoras, metodologia e sobre (conteudo em shortcode do proprio snippet) e fixa inicio como pagina inicial; manda Hello world! e Sample Page para a lixeira; SUBSTITUI a template part footer do tema pelo rodape da Aquametria (tagline e nota de fontes), com rede de seguranca em wp_footer e CSS, para nao ficarem dois rodapes empilhados; e some com a tagline padrao do WordPress. Idempotente."
     }
   ],
   "conteudo": [],

@@ -1,6 +1,6 @@
 /**
  * Aquametria Casca — identidade e estrutura do site
- * Versão: 1.0.1 (07/09/2026) — funções protegidas com function_exists
+ * Versão: 1.0.2 (07/09/2026) — rodapé do tema substituído pelo da Aquametria (não mais empilhado)
  *
  * Dá cara de Aquametria ao tema ativo, sozinho, sem construtor de página e sem
  * plugin de tema. Faz seis coisas:
@@ -11,7 +11,8 @@
  *   (d) cria, casando pelo slug, as páginas inicio, calculadoras, metodologia e sobre,
  *       e fixa inicio como página inicial;
  *   (e) manda "Hello world!" e "Sample Page" para a LIXEIRA (nunca apaga);
- *   (f) imprime o rodapé com a tagline e a nota de fontes.
+ *   (f) substitui a template part 'footer' do tema pelo rodapé da Aquametria
+ *       (tagline e nota de fontes), para não ficarem dois rodapés empilhados.
  *
  * O conteúdo das quatro páginas mora em shortcodes deste snippet: atualizar o
  * snippet atualiza as páginas, sem tocar no editor do WordPress.
@@ -32,7 +33,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'AQUAMETRIA_CASCA_VERSAO', '1.0.0' );
+	define( 'AQUAMETRIA_CASCA_VERSAO', '1.0.2' );
 	define( 'AQUAMETRIA_CASCA_TAGLINE', 'Calculadoras e dados técnicos para dimensionar o seu aquário' );
 }
 
@@ -173,6 +174,34 @@ function aquametria_casca_nav_html() {
 }
 }
 
+if ( ! function_exists( 'aquametria_casca_rodape_impresso' ) ) {
+/**
+ * Marca e consulta se o rodapé da Aquametria já saiu nesta requisição.
+ * Evita rodapé duplicado quando o filtro render_block já trocou a template part.
+ */
+function aquametria_casca_rodape_impresso( $marcar = false ) {
+	static $impresso = false;
+	if ( $marcar ) {
+		$impresso = true;
+	}
+	return $impresso;
+}
+}
+
+if ( ! function_exists( 'aquametria_casca_rodape_html' ) ) {
+function aquametria_casca_rodape_html() {
+	aquametria_casca_rodape_impresso( true );
+
+	$html  = '<footer class="aqm-rodape"><div class="aqm-rodape-interno">';
+	$html .= '<p class="aqm-tagline">' . esc_html( AQUAMETRIA_CASCA_TAGLINE ) . '</p>';
+	$html .= '<p>Todo número publicado aqui cita a fonte — manual de fabricante, norma técnica ou fonte brasileira nomeada — e leva a data em que foi verificado. Quando as fontes discordam, a Aquametria publica a divergência com a atribuição de cada extremo, nunca a média. Onde não há fonte aceitável, a página diz por que não publica número.</p>';
+	$html .= '<p><a href="' . esc_url( aquametria_casca_url_pagina( 'metodologia' ) ) . '">Metodologia</a> · <a href="' . esc_url( aquametria_casca_url_pagina( 'sobre' ) ) . '">Sobre</a> · Aquametria ' . esc_html( date_i18n( 'Y' ) ) . '</p>';
+	$html .= '</div></footer>';
+
+	return $html;
+}
+}
+
 add_filter( 'render_block', function ( $conteudo, $bloco ) {
 	if ( is_admin() || ( defined( 'REST_REQUEST' ) && REST_REQUEST ) ) {
 		return $conteudo;
@@ -184,17 +213,31 @@ add_filter( 'render_block', function ( $conteudo, $bloco ) {
 	if ( 'core/navigation' === $nome ) {
 		return aquametria_casca_nav_html();
 	}
+	// A tagline padrão do WordPress ("Just another WordPress site") é resíduo do
+	// tema; a tagline da Aquametria mora no rodapé.
+	if ( 'core/site-tagline' === $nome ) {
+		return '';
+	}
+	// Em tema de blocos o rodapé é uma template part renderizada DENTRO do fluxo
+	// do conteúdo. Trocar a saída dela aqui é o que impede os dois rodapés
+	// empilhados (o do tema, com o crédito "Criado com WordPress", e o nosso).
+	if ( 'core/template-part' === $nome ) {
+		$parte = isset( $bloco['attrs']['slug'] ) ? $bloco['attrs']['slug'] : '';
+		if ( 'footer' === $parte || 'rodape' === $parte ) {
+			return aquametria_casca_rodape_html();
+		}
+	}
 	return $conteudo;
 }, 10, 2 );
 
+// Rede de segurança: se o tema NÃO usa template part de rodapé (ou o filtro não
+// pegou), o rodapé sai aqui. Se já saiu no lugar da template part, não repete.
 add_action( 'wp_footer', function () {
-	$html  = '<footer class="aqm-rodape"><div class="aqm-rodape-interno">';
-	$html .= '<p class="aqm-tagline">' . esc_html( AQUAMETRIA_CASCA_TAGLINE ) . '</p>';
-	$html .= '<p>Todo número publicado aqui cita a fonte — manual de fabricante, norma técnica ou fonte brasileira nomeada — e leva a data em que foi verificado. Quando as fontes discordam, a Aquametria publica a divergência com a atribuição de cada extremo, nunca a média. Onde não há fonte aceitável, a página diz por que não publica número.</p>';
-	$html .= '<p><a href="' . esc_url( aquametria_casca_url_pagina( 'metodologia' ) ) . '">Metodologia</a> · <a href="' . esc_url( aquametria_casca_url_pagina( 'sobre' ) ) . '">Sobre</a> · Aquametria ' . esc_html( date_i18n( 'Y' ) ) . '</p>';
-	$html .= '</div></footer>';
+	if ( aquametria_casca_rodape_impresso() ) {
+		return;
+	}
 
-	echo $html; // markup próprio, já escapado campo a campo
+	echo aquametria_casca_rodape_html(); // markup próprio, já escapado campo a campo
 }, 20 );
 
 /* ---------------------------------------------------------------------------
@@ -269,6 +312,13 @@ body header .wp-block-group,body .wp-block-template-part header{background:var(-
 .aqm-rodape .aqm-tagline{font-family:var(--aqm-display);font-weight:700;font-size:1.1rem;color:var(--aqm-superficie);margin:0;}
 .aqm-rodape p{margin:0;font-size:.86rem;line-height:1.55;color:var(--aqm-traco);}
 .aqm-rodape a{color:var(--aqm-papel);}
+/* Cinto de segurança do rodapé: o caminho principal é o filtro render_block, que
+   troca a template part 'footer' do tema pela da Aquametria. Se ele não pegar,
+   o rodapé do tema fica visível acima do nosso — as regras abaixo escondem o
+   crédito do tema e, havendo rodapé da Aquametria na página, a template part
+   de rodapé que não seja a nossa. */
+.wp-site-blocks > footer.wp-block-template-part .wp-block-group:has(a[href*="wordpress.org"]){display:none;}
+body:has(.aqm-rodape) .wp-site-blocks > footer.wp-block-template-part:not(:has(.aqm-rodape)){display:none;}
 @media (max-width:600px){
 .aqm-linha-mestra{font-size:1.15rem;}
 .aqm-wordmark{font-size:1.25rem;}

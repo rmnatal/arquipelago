@@ -395,3 +395,73 @@ na casca e bumpar `AQUAMETRIA_CASCA_VERSAO`.
 
 Sem ferramenta de memoria nesta sessao: `/areas/projeto-aquametria.md` NAO foi
 atualizado; esta entrada e o `ESTADO.md` sao o registro.
+
+## 2026-09-07 (5o disparo, correcao visual) — rodape duplicado
+
+Nao foi bloco novo: disparo extra para corrigir o que o Raphael viu no site
+depois de a casca entrar no ar (revisao 4 aplicada as 16h36). **Ficaram dois
+rodapes empilhados**: primeiro o do tema Twenty Twenty-Five, com o credito
+"Twenty Twenty-Five · Criado com WordPress", e logo abaixo o rodape escuro da
+Aquametria.
+
+### Causa
+`aquametria-casca.php` v1.0.1 imprimia o rodape proprio no hook `wp_footer`
+(prioridade 20) e nao removia o do tema. Em tema de blocos o rodape e a
+template part `footer` (`core/template-part` com `attrs['slug'] === 'footer'`),
+renderizada DENTRO do fluxo do conteudo — por isso ela sai acima de qualquer
+coisa impressa em `wp_footer`.
+
+### Correcao — casca v1.0.2
+- O rodape virou funcao: `aquametria_casca_rodape_html()` (protegida com
+  `function_exists`, como todas as outras), acompanhada de
+  `aquametria_casca_rodape_impresso()`, que guarda em `static` se o rodape ja
+  saiu nesta requisicao.
+- **Caminho principal:** o filtro `render_block` que ja existia passou a tratar
+  `core/template-part` com slug `footer` (ou `rodape`) e devolve
+  `aquametria_casca_rodape_html()` no lugar do rodape do tema — substituicao,
+  nao empilhamento.
+- O `add_action( 'wp_footer', ... )` que imprimia o rodape foi trocado por uma
+  **rede de seguranca**: so imprime se `aquametria_casca_rodape_impresso()` for
+  falso (tema sem template part de rodape, ou filtro que nao pegou).
+- **Cinto de seguranca em CSS**, para o caso de o filtro nao pegar:
+  `.wp-site-blocks > footer.wp-block-template-part .wp-block-group:has(a[href*="wordpress.org"]){display:none;}`
+  esconde o credito do WordPress, e
+  `body:has(.aqm-rodape) .wp-site-blocks > footer.wp-block-template-part:not(:has(.aqm-rodape)){display:none;}`
+  esconde a template part de rodape que nao seja a nossa, quando a nossa ja
+  esta na pagina.
+- **Residuo extra corrigido na mesma passada:** `core/site-tagline` agora e
+  substituido por vazio no `render_block` — era por onde a tagline padrao do
+  WordPress ("Just another WordPress site") podia aparecer. Nao ha titulo
+  duplicado nem menu do tema sobrando: `core/site-title`, `core/site-logo` e
+  `core/navigation` ja eram substituidos desde a v1.0.0, e as quatro paginas
+  institucionais nao imprimem `<h1>` proprio (o titulo vem do tema).
+
+O rodape da Aquametria continua com a tagline, o paragrafo de procedencia e a
+linha "Metodologia · Sobre · Aquametria 2026". Nenhum credito de tema.
+`AQUAMETRIA_CASCA_VERSAO` foi de `1.0.0` (a constante estava atrasada em relacao
+ao cabecalho) para `1.0.2`, o que faz a casca remontar a estrutura uma vez —
+idempotente, sem duplicar nada.
+
+### Verificacao
+- `ferramentas/proteger-funcoes.php` rodado no arquivo final: saida IDENTICA ao
+  arquivo (nenhuma funcao desprotegida), 16 funcoes conferidas uma a uma.
+- `php -l` de verdade (com `<?php` prefixado, porque o arquivo comeca em `/**`):
+  limpo.
+- `sha256` recalculado do arquivo final commitado:
+  `f8f3d1a06e325b458ff48ec01079e099bf2049e435ba9c27bbeb791a7e896479`.
+
+### Manifest
+`revisao` = **5**, `atualizado_em` = `2026-09-07`, `aquametria-casca` continua
+`publicar: true` e `ativo: true`; a `descricao` passou a dizer que a casca
+substitui o rodape do tema.
+
+Sync **nao acionado** por esta sessao, conforme a instrucao do disparo — quem
+aciona e o Cowork.
+
+Proximo passo desbloqueado (inalterado): **Bloco 4 — C1, a calculadora de
+litragem**, o nucleo e o estado compartilhado (`localStorage`, chave
+`aquametria.aquario`). Ao publica-la, virar o `estado` da C1 para `publicada` na
+casca e bumpar `AQUAMETRIA_CASCA_VERSAO`.
+
+Sem ferramenta de memoria nesta sessao: `/areas/projeto-aquametria.md` NAO foi
+atualizado; esta entrada e o `ESTADO.md` sao o registro.
