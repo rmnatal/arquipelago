@@ -196,3 +196,90 @@ fabricante e a serie W/L da Roxin ja sao dois artigos com dado proprio.
 Coletas baratas que podem ser feitas junto: voltagem dos 9 equipamentos,
 `coluna_maxima_m` do HW-303B e do Tidal 55, `volume_filtragem_L` dos canisters
 e a `faixa_ajuste_C` da Roxin na embalagem.
+
+## 2026-09-07 (3o disparo, extra) — BLOCO 3b entregue: CASCA DO SITE, e o desembarque virou automatico
+
+Sessao SEM ferramenta de memoria (estado lido de `ESTADO.md`). Disparo manual
+pedido pelo Raphael as 11h52 BRT: rodar o 3b hoje, com `publicar: true`.
+
+Pendencias de execucoes anteriores: NENHUMA. O `main` ja estava em `44ec496`
+(Bloco 3), e as branches `claude/lucid-carson-w52jma` e `-sbd8tp` nao tinham
+commit fora do `main`. A branch desta sessao nasceu de `origin/main`.
+
+Entregue:
+- `snippets/aquametria-casca.php` (616 linhas) — nome no Code Snippets
+  "Aquametria Casca — identidade e estrutura do site", escopo global, ativo.
+  Faz as seis coisas do briefing, sozinho, sem tema filho e sem construtor:
+  (a) carrega Chivo, IBM Plex Sans e IBM Plex Mono do Google Fonts e injeta a
+      paleta no `wp_head` (prioridade 20, depois do tema): papel de fundo,
+      tinta no texto, lamina em link e botao, Chivo nos titulos, Plex Mono em
+      numero e unidade. Alem das regras proprias, redefine as variaveis de
+      preset do tema de blocos (`--wp--preset--color--base/contrast/primary/
+      secondary` e as duas de fonte), que e o que realmente recolore um tema
+      de blocos sem editar o tema;
+  (b) `render_block` troca `core/site-title` e `core/site-logo` pelo logotipo
+      inline em SVG — recipiente graduado, linha de enchimento em lamina,
+      marcacoes escuras acima da agua e claras abaixo, sem peixe, sem bolha,
+      sem mascote — seguido do wordmark "Aquametria" em Chivo 900. Trava
+      estatica: se o tema imprimir os dois blocos, o segundo sai vazio em vez
+      de duplicar a marca;
+  (c) `render_block` troca `core/navigation` pelo menu proprio
+      Calculadoras · Metodologia · Sobre;
+  (d) cria, casando pelo slug, `inicio`, `calculadoras`, `metodologia` e
+      `sobre`, e fixa `show_on_front=page` com `page_on_front=inicio`;
+  (e) manda "Hello world!" e "Sample Page" para a LIXEIRA (`wp_trash_post`,
+      nunca apagar), casando por slug E por titulo, nas duas linguas (o site e
+      pt-BR, entao `ola-mundo` e `pagina-exemplo` tambem entram na lista), com
+      guarda para nunca mandar a pagina inicial para a lixeira;
+  (f) rodape proprio no `wp_footer` com a tagline "Calculadoras e dados
+      tecnicos para dimensionar o seu aquario" e a nota de fontes.
+- O texto das quatro paginas NAO ficou no banco do WordPress: cada pagina
+  nasce com um shortcode (`[aquametria_home]`, `[aquametria_calculadoras]`,
+  `[aquametria_metodologia]`, `[aquametria_sobre]`) e o conteudo mora no
+  proprio snippet. Consequencia pratica: atualizar o snippet atualiza as
+  paginas, e o conteudo continua versionado no repositorio, como manda a regra
+  de ouro. A home explica o site em tres linhas e lista as 8 calculadoras.
+- A pagina `metodologia` publica o quadro dos 8 status de constante com a
+  contagem (42 constantes: 24 divergente-fontes-br, 8 pendente, 3
+  fabricante-via-busca, 3 transcrita-varejo, 1 fisica, 1 verificada-fabricante,
+  1 norma-via-secundaria, 1 convencao-editorial) e a lista dos 7 numeros que a
+  Aquametria se recusa a publicar, com o motivo de cada um. Se um dia o banco
+  de constantes for publicado como `dados`, a pagina conta ao vivo pela option
+  `aquametria_dados_constantes-calculadoras` em vez do instantaneo.
+- `manifest.json` revisao 3: o snippet entra com **`publicar: true`** e sha256
+  `20e197fc…`, e **`desembarque.aprovado` virou `true`**, com a data e a
+  observacao da decisao (so conteudo programatico em escala continua preso).
+- `README.md` da ilha, `snippets/README.md` e `conteudo/README.md` atualizados:
+  a nova regra de desembarque e a obrigacao de toda calculadora publicada
+  aparecer no hub.
+
+Verificacao feita antes de marcar `publicar: true`:
+- `php -l` de verdade (PHP 8.4): sem erro de sintaxe.
+- Teste de fumaca com o WordPress simulado por stubs: os 4 shortcodes rendem
+  (4053, 3442, 5249 e 1987 bytes), `wp_head` sai com 5292 bytes, `wp_footer`
+  com 658, `render_block` troca os tres blocos e devolve `core/paragraph`
+  intacto, a estrutura cria 4 paginas com 1 unico `flush_rewrite_rules`, manda
+  os dois posts padrao para a lixeira e nao toca no rascunho de politica de
+  privacidade. **Segunda passada: 0 insercoes** — idempotencia confirmada.
+- Render visual em Chromium (Playwright), 1100 px e retina: cabecalho, home,
+  cards, metodologia e rodape conferidos; o logotipo le como recipiente
+  graduado no tamanho real de cabecalho.
+
+Duas decisoes que valem para os proximos blocos:
+1. **O hub e obrigatorio.** A lista das 8 calculadoras vive em
+   `aquametria_casca_calculadoras()` com `estado` em `em-construcao` ou
+   `publicada`, e passa pelo filtro `aquametria_calculadoras`. Publicar a C1
+   sem virar o estado dela na casca deixa a calculadora orfa: o bloco 4 tem
+   que mexer nos dois arquivos.
+2. **Conteudo institucional mora em shortcode do snippet**, nao em Markdown de
+   `conteudo/`. `conteudo/` continua sendo o lugar dos artigos-ancora e das
+   paginas de calculadora, que sao texto longo com fonte citada.
+
+Nao registrado na memoria: esta sessao nao expoe a ferramenta de memoria,
+entao `/areas/projeto-aquametria.md` NAO foi atualizado. Copiar esta entrada
+para la (e o estado novo em `ESTADO.md`).
+
+Proximo passo desbloqueado: **Bloco 4 — C1, a calculadora de litragem**, que e
+o nucleo e o estado compartilhado (`localStorage`, chave `aquametria.aquario`).
+Ao publica-la, virar o `estado` da C1 para `publicada` na casca e bumpar
+`AQUAMETRIA_CASCA_VERSAO`.

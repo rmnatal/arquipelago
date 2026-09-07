@@ -22,12 +22,26 @@ errado — traga para ca primeiro.
 | `manifest.json` | Indice que o snippet Sync consome |
 | `ferramentas/` | Scripts do repositorio (validacao do banco). NUNCA vao para o site |
 
+## Casca do site
+
+`snippets/aquametria-casca.php` e o snippet que da cara de Aquametria ao tema
+ativo: paleta, tipografia, logotipo em SVG, menu, rodape e as quatro paginas
+institucionais (`inicio`, `calculadoras`, `metodologia`, `sobre`), cujo texto
+mora em shortcodes do proprio snippet — editar o snippet edita as paginas.
+Ele e idempotente e manda "Hello world!" e "Sample Page" para a lixeira, nunca
+para o apagador. **Toda calculadora publicada precisa entrar na lista de
+`aquametria_casca_calculadoras()`** (ou se registrar pelo filtro
+`aquametria_calculadoras`), senao some do hub.
+
 ## Contrato do manifest
 
 `manifest.json` lista `snippets`, `conteudo` e `dados`. O bloco `esquema`
 documenta os campos de cada entrada. Dois campos governam a publicacao:
 
-- `publicar` — fica `false` ate o Raphael aprovar o desembarque.
+- `publicar` — `true` faz o Sync aplicar o item no site. Desde 07/09/2026 o
+  desembarque e automatico para snippet de site, calculadora, pagina-ancora e
+  artigo; so conteudo programatico em escala continua `false` esperando o
+  Raphael (`desembarque.aprovado` no manifest guarda essa decisao).
 - `sha256` — o Sync confere o hash depois de gravar. Nunca confie na
   ausencia de erro: em hospedagem compartilhada o ModSecurity pode matar a
   gravacao em silencio.

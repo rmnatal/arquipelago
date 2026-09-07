@@ -4,12 +4,13 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 2,
+  "revisao": 3,
   "atualizado_em": "2026-09-07",
   "estado": "fundacao",
   "desembarque": {
-    "aprovado": false,
-    "observacao": "Nada e publicado sem aprovacao do Raphael. O snippet Sync so aplica itens com publicar=true."
+    "aprovado": true,
+    "decidido_em": "2026-09-07",
+    "observacao": "Desembarque automatico, decidido pelo Raphael em 07/09/2026: calculadora, pagina-ancora, artigo e snippet de site vao ao ar com publicar=true sem aprovacao previa. Continua exigindo aprovacao humana (publicar=false) apenas conteudo programatico em escala — dezenas de paginas de cauda longa de uma vez."
   },
   "snippets": [
     {
@@ -21,6 +22,16 @@
       "publicar": false,
       "sha256": "0fab9fde315bcd2749b406697ac390128fd70fe0ee028efd354a9cf0e499ea36",
       "descricao": "Sincronizador do site com este repositorio. Ja instalado e ativo (Code Snippets id 5, 06/09/2026). O proprio Sync nunca se aplica; publicar=false e so registro de procedencia."
+    },
+    {
+      "id": "aquametria-casca",
+      "nome": "Aquametria Casca — identidade e estrutura do site",
+      "arquivo": "snippets/aquametria-casca.php",
+      "escopo": "global",
+      "ativo": true,
+      "publicar": true,
+      "sha256": "20e197fceffb834919f3dee93b859336d3db7a030545c1636165e791ebc09cb9",
+      "descricao": "Casca do site: carrega Chivo/IBM Plex Sans/IBM Plex Mono e injeta a paleta da Aquametria sobre o tema ativo; troca core/site-title e core/site-logo pelo logotipo em SVG (recipiente graduado) com o wordmark; troca core/navigation pelo menu Calculadoras/Metodologia/Sobre; cria as paginas inicio, calculadoras, metodologia e sobre (conteudo em shortcode do proprio snippet) e fixa inicio como pagina inicial; manda Hello world! e Sample Page para a lixeira; imprime o rodape com a tagline e a nota de fontes. Idempotente."
     }
   ],
   "conteudo": [],
@@ -141,7 +152,7 @@
       "arquivo": "caminho relativo a esta pasta, em snippets/",
       "escopo": "global | front-end | admin",
       "ativo": "true se deve ficar ativo no site",
-      "publicar": "false ate o Raphael aprovar o desembarque",
+      "publicar": "true para o Sync aplicar no site. Desde 07/09/2026 o desembarque de snippet de site e automatico",
       "sha256": "hash do arquivo, conferido pelo Sync apos gravar",
       "descricao": "o que o snippet faz"
     },
@@ -154,7 +165,7 @@
       "cluster": "cluster do corpus de buscas a que pertence",
       "fontes": "lista de fontes tecnicas citadas no texto",
       "verificado_em": "data da ultima conferencia dos dados",
-      "publicar": "false ate o Raphael aprovar o desembarque"
+      "publicar": "true para o Sync aplicar no site. Desde 07/09/2026 calculadora, pagina-ancora e artigo saem com true; pagina-programatica em escala continua false esperando o Raphael"
     },
     "dados": {
       "id": "identificador estavel, kebab-case",
