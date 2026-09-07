@@ -4,8 +4,8 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 0,
-  "atualizado_em": "2026-09-06",
+  "revisao": 1,
+  "atualizado_em": "2026-09-07",
   "estado": "fundacao",
   "desembarque": {
     "aprovado": false,
@@ -24,7 +24,32 @@
     }
   ],
   "conteudo": [],
-  "dados": [],
+  "dados": [
+    {
+      "id": "especificacao-calculadoras",
+      "arquivo": "dados/especificacao-calculadoras.md",
+      "formato": "md",
+      "entidade": "constante",
+      "fonte": "Bloco 2 da Fundacao: derivada dos 15 clusters do Bloco 1 (corpus de 04/09/2026) mais verificacoes de 07/09/2026 em Cebrace/Saint-Gobain (densidade do vidro), ABNT NBR 6120:2019 via fontes secundarias (carga de piso), Eheim classic 250 (2213) e Eheim Jager (dimensionamento declarado) e Seachem Matrix (volume de midia). Cada constante citada tem id em dados/constantes-calculadoras.json",
+      "verificado_em": "2026-09-07",
+      "registros": 8,
+      "publicar": false,
+      "sha256": "5262f751083928ac7ccb1123e5fafa5c778280e5808431965e7c3ddca28ea66f",
+      "descricao": "Especificacao das 8 calculadoras (C1 litragem, C2 peso e carga, C3 vazao, C5 aquecedor por delta, C7 consumo, C8 lotacao, C12 midia, C15 iluminacao): entradas, formulas, faixas de saida com criterio e fonte em cada extremo, produtos sugeridos, contrato de resposta e estado de aquario compartilhado. Documenta tambem o que fica retido por falta de fonte."
+    },
+    {
+      "id": "constantes-calculadoras",
+      "arquivo": "dados/constantes-calculadoras.json",
+      "formato": "json",
+      "entidade": "constante",
+      "fonte": "ver o campo fonte/url de cada constante no proprio arquivo; nenhuma entra sem fonte e data",
+      "verificado_em": "2026-09-07",
+      "registros": 42,
+      "publicar": false,
+      "sha256": "e6fc0a6c91d67bc04c7f9ea27f6459297915f6609dfe30c9cb2041ca4db30f82",
+      "descricao": "Registro normalizado de toda constante usada ou recusada pelas calculadoras, com fonte, url, data e status (fisica, verificada-fabricante, fabricante-via-busca, norma-via-secundaria, transcrita-varejo, divergente-fontes-br, convencao-editorial, pendente). Constante com status pendente e proibida em formula publicada."
+    }
+  ],
   "esquema": {
     "snippets": {
       "id": "identificador estavel, kebab-case, nunca numerado",
@@ -50,11 +75,14 @@
     "dados": {
       "id": "identificador estavel, kebab-case",
       "arquivo": "caminho relativo a esta pasta, em dados/",
-      "formato": "json | csv",
+      "formato": "json | csv | md",
       "entidade": "filtro | aquecedor | iluminacao | midia | especie | constante",
       "fonte": "de onde vem cada campo (manual do fabricante, norma, etc.)",
       "verificado_em": "data da ultima conferencia",
-      "registros": "quantidade de linhas"
+      "registros": "quantidade de linhas",
+      "publicar": "false ate o Raphael aprovar o desembarque",
+      "sha256": "hash do arquivo, conferido pelo Sync apos gravar",
+      "descricao": "o que o arquivo contem"
     }
   }
 }

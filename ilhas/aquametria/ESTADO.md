@@ -14,13 +14,15 @@ Credenciais NÃO ficam neste arquivo (repositório pode virar público). A Appli
 ## Stack e infra (feito em 06/09/2026)
 - HostGator Plano M, servidor br604, nginx na frente + mu-plugin "Caching" da HostGator (cache de página) → provavelmente sem plugin de cache extra.
 - Plugin Code Snippets 3.10.2 ativo (REST /wp-json/code-snippets/v1/snippets). NUNCA WPCode. Sem construtor de página, sem plugin de SEO (sai por snippet), sem Wordfence.
-- REST + Application Password funciona (header Authorization não é cortado). MAS o container da nuvem NÃO alcança o site por HTTP (proxy de saída bloqueia) — só GitHub. Por isso o desenho é PULL: a nuvem grava neste repositório; o snippet "Aquametria Sync" no site puxa manifest.json + arquivos do raw.githubusercontent.com e aplica só itens com publicar=true, conferindo sha256.
+- REST + Application Password funciona (header Authorization não é cortado). MAS o container da nuvem NÃO alcança o site por HTTP (proxy de saída bloqueia) — só GitHub. Descoberto em 07/09: `WebSearch` FUNCIONA na sessão da nuvem, mas `WebFetch` é bloqueado por domínio (seachem.com devolveu EGRESS_BLOCKED) — então número de fabricante colhido só por busca entra com status `fabricante-via-busca`, a reconfirmar. Por isso o desenho é PULL: a nuvem grava neste repositório; o snippet "Aquametria Sync" no site puxa manifest.json + arquivos do raw.githubusercontent.com e aplica só itens com publicar=true, conferindo sha256.
 - Monetização: Shopee Afiliados aberto. Amazon Associados SÓ quando houver tráfego (regra 3 vendas/180 dias). Ticket típico R$380, comissão ~R$42.
 
 ## Blocos
 - BLOCO 1 CONCLUÍDO (04/09): 480 consultas paramétricas em 15 clusters (abaixo).
-- PRÓXIMO: BLOCO 2 — especificar 5 a 8 calculadoras: entradas, fórmula, faixas de saída, fonte de cada constante, produtos sugeridos. C1 (litragem) = estado compartilhado entre calculadoras; C10 (compatibilidade) = banco de fichas, não calculadora. Saída SEMPRE em faixa com critério e fonte, nunca número seco. Dosagem (C13) só vira calculadora se pedir marca/concentração como entrada.
-- Depois: Bloco 3 (modelo do banco de produtos) → Bloco 4 (12-15 artigos-âncora) → Bloco 5 (lista de prospecção do widget).
+- BLOCO 2 CONCLUÍDO (07/09): 8 calculadoras especificadas em `dados/especificacao-calculadoras.md`, com o registro de constantes em `dados/constantes-calculadoras.json` (42 entradas, cada uma com fonte, data e status). As 8: C1 litragem (núcleo), C2 peso e carga no piso, C3 vazão/turnover, C5 aquecedor por delta térmico, C7 consumo e custo, C8 lotação, C12 mídia filtrante, C15 iluminação. Confirmado: C10 é banco de fichas, não calculadora; C14 foi absorvida pela C12; C13 (dosagem) NÃO entra no lote inicial (risco letal + só 2 dosagens verificadas no fabricante + o volume superestimado da C1 erra para overdose).
+- Regras que o Bloco 2 fixou e que valem para os próximos: (a) toda constante tem id no JSON e status; constante `pendente` é PROIBIDA em fórmula publicada; (b) toda resposta é faixa com critério e constante em cada extremo, mais permalink citável; (c) quando as fontes divergem, a resposta publica a divergência e a atribuição, nunca a média; (d) onde falta fonte, a página explica por que não publica número — é isso que diferencia a Aquametria dos blogs.
+- PRÓXIMO: BLOCO 3 — modelo do banco de produtos. Os campos exigidos de `filtro`, `aquecedor`, `iluminacao` e `midia` já estão listados calculadora por calculadora na especificação. A seção 12 da especificação traz as 8 coletas abertas em ordem de prioridade: 1) coeficiente U do vidro do aquário (libera o cálculo físico da C5 e a C6); 2) porosidade do substrato por medição própria (libera o volume real da C1 e é pré-requisito da C13); 3) reconfirmar Seachem Matrix na embalagem; 4) espessura de vidro (tensão admissível + coeficiente de segurança); 5) mínimas por cidade (INMET); 6) tarifas ANEEL; 7) PPFD de luminárias; 8) fichas completas das 8 espécies iniciais.
+- Depois: Bloco 4 (12-15 artigos-âncora) → Bloco 5 (lista de prospecção do widget).
 - Entregas vão como arquivos em ilhas/aquametria/ (dados/, conteudo/, snippets/) + item no manifest.json (publicar=false até o desembarque).
 
 ## Regras de gravação de snippet (fase 4b do playbook — lições pagas na Real 21)
@@ -84,3 +86,22 @@ Fontes: ~100 buscas no Google e ~70 páginas BR (Aquariofilia.Net, AquaPeixes, B
 - Carvão ativado 1-2 g/L, trocar 15-30 dias; perlon semanal a quinzenal; cerâmica regenerar 6-12 meses (Aquarismo Paulista).
 - Temperatura por espécie (Petz): betta 24-28, kinguio 18-24, guppy 23-26, disco 26-30, tetra 26-30, bandeira 24-28. Barbo sumatra pH 5,0-8,0 / 20-28°C; paulistinha 18-28°C (Aquarismo Paulista).
 - Ordem das mídias no canister (AquaPeixes): cerâmica/argila → perlon → carvão → perlon → cerâmica → perlon.
+
+
+---
+
+# CONSTANTES VERIFICADAS NO BLOCO 2 (07/09/2026) — acréscimo ao corpus
+
+Todas com id, fonte, url, data e status em `dados/constantes-calculadoras.json`.
+
+## Achados de fabricante que nenhuma fonte BR do corpus confronta
+- **Turnover:** Eheim classic 250 (2213) — 440 L/h nominais para até 250 L, coluna máx. 1,5 m, 8 W, cesto 3,5 L, volume de filtragem 3,0 L, Substrat Pro de fábrica. Isso dá **1,8 renovações/h**, contra as 5-10 x/h das regras de bolso BR: divergência de 3 a 6 vezes. Virou o eixo da C3.
+- **Aquecedor:** Eheim Jäger — linha 25 a 300 W (9 tamanhos, 20 a 1000 L), ajuste 18-34 °C ±0,5 °C, e o modelo de **200 W declarado para 30 a 400 L** (faixa de 13x). Serve para escolher potência comercial, nunca para dimensionar.
+- **Mídia (vácuo nº 1):** Seachem Matrix — "250 mL para 200 L" (1,25 mL/L) E "1 L para 100 gal" (2,6 mL/L), as duas leituras da própria copy do fabricante, conflitando por 2x; >~700 m²/L de área. Somado ao Eheim 2213 (3,0 L de filtragem para 250 L = **12 mL/L** de cesto), são as primeiras âncoras BR de mL de mídia por litro com fonte de fabricante. A página de seachem.com está bloqueada pelo egresso: reconfirmar por foto de rótulo no varejo BR.
+
+## Novas constantes fora do aquarismo
+- **Vidro float:** massa específica 2500 kg/m³ = **2,5 kg/m² por mm** de espessura (1 m² de 4 mm = 10 kg). Fonte: Cebrace / Saint-Gobain Sekurit, convergente em duas fontes do setor.
+- **Carga de piso (ABNT NBR 6120:2019, via fontes secundárias — norma paga):** 1,5 kN/m² (~153 kgf/m²) dormitório/sala/cozinha/sanitário; 2,0 área de serviço; 3,0 corredor com acesso público. CRÍTICO: é carga distribuída de projeto, não autoriza carga concentrada de aquário. A C2 dá o número e manda consultar engenheiro — nunca "pode" ou "não pode".
+
+## Recusas registradas (não usar em fórmula até ter fonte)
+Coeficiente U do vidro do aquário · porosidade e densidade do substrato (as fontes conflitam 100 %) · espessura de vidro por litragem · "regra dos 10 %" de lotação (a fonte não define a base) · PPFD por litragem · tarifa de energia · mínima por cidade · as 7 dosagens pendentes do C13 (Prime, sal grosso, banho de sal, azul de metileno, bicarbonato, amoníaco, catálogo Alcon/Labcon).

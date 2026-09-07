@@ -1,0 +1,549 @@
+{
+  "id": "constantes-calculadoras",
+  "descricao": "Registro normalizado de TODA constante usada (ou recusada) pelas calculadoras da Aquametria. Nenhuma formula pode citar um valor que nao esteja aqui. Constante com status 'pendente' NAO entra em formula publicada.",
+  "gerado_em": "2026-09-07",
+  "bloco": 2,
+  "status_vocabulario": {
+    "fisica": "valor tabelado de fisica; a formula declara o arredondamento usado",
+    "verificada-fabricante": "lida diretamente na pagina/manual do fabricante",
+    "fabricante-via-busca": "numero do fabricante colhido por resultado de busca; a pagina NAO foi lida direto (egresso HTTP bloqueado nesta sessao). Reconfirmar antes de publicar",
+    "norma-via-secundaria": "valor de norma ABNT citado por fonte secundaria; norma paga, nao lida direto",
+    "transcrita-varejo": "rotulo/ficha transcrita por varejista; a tela deve pedir para conferir a embalagem",
+    "divergente-fontes-br": "fontes BR conflitam; a resposta publica a faixa E a atribuicao de cada extremo",
+    "convencao-editorial": "escolha da Aquametria, NAO e dado tecnico; a tela precisa dizer isso",
+    "pendente": "sem fonte aceitavel. Proibido em formula publicada"
+  },
+  "constantes": [
+    {
+      "id": "agua-densidade-25c",
+      "grandeza": "densidade da agua doce",
+      "valor": 0.997,
+      "unidade": "kg/L",
+      "condicao": "25 C, agua doce",
+      "usada_em": ["c2-peso-carga"],
+      "fonte": "valor tabelado de fisica (densidade da agua liquida a 25 C)",
+      "url": null,
+      "verificado_em": "2026-09-07",
+      "status": "fisica",
+      "observacao": "A calculadora arredonda para 1,00 kg/L e declara o arredondamento na tela (+0,3 %, a favor da seguranca). Reconfirmar em fonte primaria (IAPWS/NIST) antes do desembarque."
+    },
+    {
+      "id": "vidro-densidade",
+      "grandeza": "massa especifica do vidro float sodo-calcico",
+      "valor": 2500,
+      "unidade": "kg/m3",
+      "equivalencia": "2,5 kg por m2 por mm de espessura (1 m2 de 4 mm = 10 kg)",
+      "usada_em": ["c2-peso-carga"],
+      "fonte": "Cebrace / Saint-Gobain Sekurit (glossario tecnico do vidro float); ficha tecnica de vidro plano float (aecweb)",
+      "url": "https://www.cebrace.com.br/area-tecnica/enciclopedia-do-vidro/os-tipos-de-vidros/",
+      "verificado_em": "2026-09-07",
+      "status": "fabricante-via-busca",
+      "observacao": "Numero convergente em duas fontes independentes do setor vidreiro. Reconfirmar no catalogo tecnico da Cebrace quando o egresso HTTP permitir."
+    },
+    {
+      "id": "carga-acidental-residencial",
+      "grandeza": "carga acidental (variavel) de piso residencial",
+      "faixa": [
+        { "ambiente": "dormitorio, sala, cozinha, sanitario", "valor": 1.5, "unidade": "kN/m2", "equivalente_kgf_m2": 153 },
+        { "ambiente": "area de servico", "valor": 2.0, "unidade": "kN/m2", "equivalente_kgf_m2": 204 },
+        { "ambiente": "corredor/escada com acesso publico", "valor": 3.0, "unidade": "kN/m2", "equivalente_kgf_m2": 306 }
+      ],
+      "usada_em": ["c2-peso-carga"],
+      "fonte": "ABNT NBR 6120:2019, citada por MTA Engenharia, PUCRS (Sistemas Estruturais II) e Portal do Projetista",
+      "url": "https://www.mtaeng.com.br/blog/nbr-6120-guia-completo-das-cargas-para-calculo-de-estruturas",
+      "verificado_em": "2026-09-07",
+      "status": "norma-via-secundaria",
+      "observacao": "CRITICO: carga de norma e DISTRIBUIDA e de projeto; nao autoriza carga concentrada de aquario. A calculadora informa a carga do conjunto e manda consultar engenheiro. Nunca emitir veredito 'pode' ou 'nao pode'."
+    },
+    {
+      "id": "turnover-comunitario-br",
+      "grandeza": "turnover (renovacoes por hora) - aquario comunitario",
+      "faixa": [5, 10],
+      "unidade": "x/h",
+      "usada_em": ["c3-vazao-filtro"],
+      "fonte": "Aquarismo Paulista; AquaOnline (corpus do Bloco 1)",
+      "url": null,
+      "verificado_em": "2026-09-04",
+      "status": "divergente-fontes-br"
+    },
+    {
+      "id": "turnover-comunitario-mybest",
+      "grandeza": "turnover - aquario comunitario (leitura conservadora)",
+      "faixa": [4, 5],
+      "unidade": "x/h",
+      "usada_em": ["c3-vazao-filtro"],
+      "fonte": "my-best BR (corpus do Bloco 1)",
+      "url": null,
+      "verificado_em": "2026-09-04",
+      "status": "divergente-fontes-br"
+    },
+    {
+      "id": "turnover-plantado",
+      "grandeza": "turnover - aquario plantado",
+      "faixa": [3, 5],
+      "unidade": "x/h",
+      "usada_em": ["c3-vazao-filtro"],
+      "fonte": "AquaPeixes (corpus do Bloco 1)",
+      "url": null,
+      "verificado_em": "2026-09-04",
+      "status": "divergente-fontes-br"
+    },
+    {
+      "id": "sump-proporcao-minima",
+      "grandeza": "volume do sump em relacao ao aquario",
+      "valor": 20,
+      "unidade": "% do volume do aquario (minimo)",
+      "usada_em": ["c3-vazao-filtro"],
+      "fonte": "AquaOnline (corpus do Bloco 1)",
+      "url": null,
+      "verificado_em": "2026-09-04",
+      "status": "divergente-fontes-br"
+    },
+    {
+      "id": "eheim-classic-250-2213",
+      "grandeza": "dimensionamento declarado de canister (contraponto do fabricante ao turnover de bolso)",
+      "campos": {
+        "vazao_nominal_lh": 440,
+        "volume_atendido_declarado_L": 250,
+        "coluna_maxima_m": 1.5,
+        "potencia_w": 8,
+        "volume_do_cesto_L": 3.5,
+        "volume_de_filtragem_L": 3.0,
+        "midia_de_fabrica": "Substrat Pro (biologica), Eheim Mech, espumas e perlon"
+      },
+      "derivados": {
+        "turnover_implicito_x_h": 1.76,
+        "volume_de_filtragem_por_litro_de_agua_mL_L": 12
+      },
+      "usada_em": ["c3-vazao-filtro", "c12-midia-filtrante"],
+      "fonte": "Eheim classic 250 (2213), especificacao replicada por aquaristikshop.com e varejo BR (Aquaricamp, Fazenda Submersa, Bixo da Agua)",
+      "url": "https://www.aquaristikshop.com/aquaristic/EHEIM-External-Filter-classic-250-2213/221301/",
+      "verificado_em": "2026-09-07",
+      "status": "fabricante-via-busca",
+      "observacao": "ACHADO DO BLOCO 2: o fabricante dimensiona 440 L/h para 250 L, ou seja ~1,8 x/h com a vazao nominal - de 3 a 6 vezes MENOS que as regras de bolso BR (5-10 x/h). Nenhuma fonte BR confronta isso. E o eixo da metodologia da C3."
+    },
+    {
+      "id": "wl-generico",
+      "grandeza": "potencia de aquecedor por litro (regra generica)",
+      "valor": 1,
+      "unidade": "W/L",
+      "usada_em": ["c5-aquecedor-delta"],
+      "fonte": "repetida sem autoria unica na web BR (corpus do Bloco 1)",
+      "url": null,
+      "verificado_em": "2026-09-04",
+      "status": "divergente-fontes-br",
+      "observacao": "Nenhuma fonte declara para qual delta termico o valor vale. E o vacuo de conteudo n. 2."
+    },
+    {
+      "id": "wl-ehow",
+      "grandeza": "potencia de aquecedor por litro",
+      "valor": 1.3,
+      "unidade": "W/L",
+      "usada_em": ["c5-aquecedor-delta"],
+      "fonte": "eHow (corpus do Bloco 1)",
+      "url": null,
+      "verificado_em": "2026-09-04",
+      "status": "divergente-fontes-br"
+    },
+    {
+      "id": "wl-sul",
+      "grandeza": "potencia de aquecedor por litro - regiao Sul do Brasil",
+      "valor": 2,
+      "unidade": "W/L",
+      "condicao": "regiao Sul",
+      "usada_em": ["c5-aquecedor-delta"],
+      "fonte": "Casa da Ada (corpus do Bloco 1)",
+      "url": null,
+      "verificado_em": "2026-09-04",
+      "status": "divergente-fontes-br"
+    },
+    {
+      "id": "wl-delta-ate-10",
+      "grandeza": "potencia de aquecedor por litro com delta termico declarado",
+      "faixa": [1, 1.5],
+      "unidade": "W/L",
+      "condicao": "delta termico de ate 10 C entre ambiente e alvo",
+      "usada_em": ["c5-aquecedor-delta"],
+      "fonte": "ReefFlow (corpus do Bloco 1)",
+      "url": null,
+      "verificado_em": "2026-09-04",
+      "status": "divergente-fontes-br",
+      "observacao": "UNICA fonte do corpus que amarra W/L a um delta termico. E a base da faixa da C5 v1."
+    },
+    {
+      "id": "eheim-jager-linha-comercial",
+      "grandeza": "linha comercial de aquecedores e volume declarado",
+      "campos": {
+        "potencias_w": [25, 50, 75, 100, 150, 200, 300],
+        "tamanhos_da_linha": 9,
+        "volume_coberto_pela_linha_L": [20, 1000],
+        "exemplo_200w_volume_declarado_L": [30, 400],
+        "faixa_de_ajuste_C": [18, 34],
+        "precisao_C": 0.5
+      },
+      "usada_em": ["c5-aquecedor-delta", "c7-consumo-custo"],
+      "fonte": "Eheim Jager / Thermocontrol, fichas de varejo (ecoarium.pt, tiendanimal.pt, aquaorinoco, Amazon)",
+      "url": "https://aquaorinoco.com/en/equipamento-e-co2/termostatos/eheim-jager-thermocontrol-aquecedor",
+      "verificado_em": "2026-09-07",
+      "status": "transcrita-varejo",
+      "observacao": "ACHADO DO BLOCO 2: o proprio fabricante declara 200 W para 30 a 400 L - uma faixa de 13x. Serve para escolher a potencia comercial mais proxima, NUNCA para dimensionar. Reforca a necessidade do calculo por delta."
+    },
+    {
+      "id": "u-vidro-aquario",
+      "grandeza": "coeficiente global de transmissao termica do vidro do aquario (conveccao natural nas duas faces)",
+      "valor": null,
+      "unidade": "W/(m2.K)",
+      "usada_em": ["c5-aquecedor-delta"],
+      "fonte": null,
+      "verificado_em": null,
+      "status": "pendente",
+      "observacao": "BLOQUEIA o calculo fisico P = U.A.deltaT da C5. Sem este valor com fonte, a C5 publica apenas a sintese atribuida das regras de bolso. Coleta: catalogo tecnico de vidro plano (coeficiente U por espessura) + literatura de troca termica em superficie livre de agua (evaporacao domina)."
+    },
+    {
+      "id": "temperatura-minima-por-cidade",
+      "grandeza": "temperatura minima do ar por cidade brasileira",
+      "valor": null,
+      "usada_em": ["c5-aquecedor-delta", "c7-consumo-custo"],
+      "fonte": null,
+      "verificado_em": null,
+      "status": "pendente",
+      "observacao": "Coleta prevista: Normais Climatologicas do INMET (1991-2020), minima media do mes mais frio por estacao. Enquanto nao houver a tabela, a C5 pede a minima como ENTRADA do usuario."
+    },
+    {
+      "id": "ciclo-de-trabalho-aquecedor",
+      "grandeza": "horas por dia em que o aquecedor fica efetivamente ligado",
+      "faixa": [8, 10],
+      "unidade": "h/dia",
+      "usada_em": ["c7-consumo-custo"],
+      "fonte": "8 h/dia (Seu Pet Saudavel); 10 h/dia (Grupo Sarlo) - corpus do Bloco 1",
+      "url": null,
+      "verificado_em": "2026-09-04",
+      "status": "divergente-fontes-br",
+      "observacao": "Vacuo menor confirmado: todas as demais fontes multiplicam a potencia por 24 h e erram o custo por 2,4 a 3 vezes."
+    },
+    {
+      "id": "tarifa-energia-kwh",
+      "grandeza": "tarifa de energia eletrica com impostos",
+      "valor": null,
+      "unidade": "R$/kWh",
+      "usada_em": ["c7-consumo-custo"],
+      "fonte": null,
+      "verificado_em": null,
+      "status": "pendente",
+      "observacao": "Coleta prevista: tarifas homologadas ANEEL por distribuidora + bandeira. Na v1 a calculadora pede o valor da propria fatura (total pago dividido pelo kWh consumido), que ja inclui ICMS/PIS/COFINS."
+    },
+    {
+      "id": "lotacao-1cm-por-litro",
+      "grandeza": "lotacao - regra classica",
+      "valor": 1,
+      "unidade": "cm de peixe adulto por litro",
+      "usada_em": ["c8-lotacao"],
+      "fonte": "regra classica difundida na web BR, criticada nas proprias fontes (corpus do Bloco 1)",
+      "url": null,
+      "verificado_em": "2026-09-04",
+      "status": "divergente-fontes-br",
+      "observacao": "Publicar como extremo PERMISSIVO da faixa, sempre com a ressalva de que ignora massa, formato e bioload."
+    },
+    {
+      "id": "lotacao-litros-por-cm",
+      "grandeza": "lotacao - litros por cm de peixe adulto",
+      "faixa": [1.5, 4],
+      "unidade": "L/cm",
+      "usada_em": ["c8-lotacao"],
+      "fonte": "fontes BR do corpus do Bloco 1",
+      "url": null,
+      "verificado_em": "2026-09-04",
+      "status": "divergente-fontes-br",
+      "observacao": "Extremo CONSERVADOR da faixa (4 L/cm = 4x mais rigoroso que 1 cm/L)."
+    },
+    {
+      "id": "lotacao-regra-10-porcento",
+      "grandeza": "lotacao - 'regra dos 10 %'",
+      "valor": null,
+      "usada_em": [],
+      "fonte": "citada no corpus do Bloco 1 sem definir a base de calculo",
+      "url": null,
+      "verificado_em": "2026-09-04",
+      "status": "pendente",
+      "observacao": "RECUSADA na C8 v1: a fonte nao diz 10 % de que (comprimento? massa? volume?). Regra cuja definicao nao podemos enunciar nao entra em formula."
+    },
+    {
+      "id": "lotacao-kinguio",
+      "grandeza": "litragem minima por especie - kinguio",
+      "valor": "100 L para o primeiro individuo + 40 L por individuo adicional",
+      "usada_em": ["c8-lotacao"],
+      "fonte": "Aquarismo Paulista (corpus do Bloco 1)",
+      "url": null,
+      "verificado_em": "2026-09-04",
+      "status": "divergente-fontes-br"
+    },
+    {
+      "id": "lotacao-oscar",
+      "grandeza": "litragem minima por especie - oscar (Astronotus ocellatus)",
+      "valor": "100 L para o primeiro individuo + 100 L por individuo adicional",
+      "usada_em": ["c8-lotacao"],
+      "fonte": "corpus do Bloco 1",
+      "url": null,
+      "verificado_em": "2026-09-04",
+      "status": "divergente-fontes-br"
+    },
+    {
+      "id": "tpa-percentual",
+      "grandeza": "troca parcial de agua - percentual e frequencia",
+      "faixa": [
+        { "criterio": "faixa ampla de manutencao", "valor": [10, 30], "unidade": "% do volume", "fonte": "Escola de Aquario" },
+        { "criterio": "semanal", "valor": [25, 30], "unidade": "% do volume", "fonte": "Aquario Vivo" },
+        { "criterio": "teto sem estresse", "valor": 50, "unidade": "% do volume (maximo)", "fonte": "corpus do Bloco 1" }
+      ],
+      "usada_em": ["c12-midia-filtrante"],
+      "fonte": "corpus do Bloco 1",
+      "url": null,
+      "verificado_em": "2026-09-04",
+      "status": "divergente-fontes-br"
+    },
+    {
+      "id": "tpa-diferenca-termica",
+      "grandeza": "diferenca de temperatura tolerada entre agua nova e aquario",
+      "valor": "ate 1 C tolerado; acima de 2 C causa choque termico",
+      "usada_em": ["c12-midia-filtrante"],
+      "fonte": "corpus do Bloco 1",
+      "url": null,
+      "verificado_em": "2026-09-04",
+      "status": "divergente-fontes-br"
+    },
+    {
+      "id": "nitrato-limites",
+      "grandeza": "nitrato - gatilhos de manutencao",
+      "faixa": [
+        { "criterio": "troca urgente", "valor": "> 40", "unidade": "ppm" },
+        { "criterio": "teto para especies sensiveis", "valor": "<= 20", "unidade": "ppm", "fonte": "Aquario Vivo" },
+        { "criterio": "alvo em plantado", "valor": [5, 10], "unidade": "ppm", "fonte": "aquariosplantados" }
+      ],
+      "usada_em": ["c12-midia-filtrante"],
+      "fonte": "corpus do Bloco 1",
+      "url": null,
+      "verificado_em": "2026-09-04",
+      "status": "divergente-fontes-br"
+    },
+    {
+      "id": "seachem-matrix-dosagem",
+      "grandeza": "volume de midia biologica de alta porosidade por volume de agua",
+      "leituras": [
+        { "texto": "250 mL tratam 200 L (50 gal)", "derivado_mL_por_L": 1.25 },
+        { "texto": "1 L trata 100 gal (379 L)", "derivado_mL_por_L": 2.6 }
+      ],
+      "area_superficial_declarada": "> ~700 m2 por litro (equivalente a 170 L de bolas plasticas)",
+      "usada_em": ["c12-midia-filtrante"],
+      "fonte": "Seachem Matrix (pagina do produto)",
+      "url": "https://www.seachem.com/matrix.php",
+      "verificado_em": "2026-09-07",
+      "status": "fabricante-via-busca",
+      "observacao": "As duas leituras da propria copia do fabricante conflitam entre si por ~2x (100 gal/L vs 200 gal/L). A pagina NAO pode ser lida direto nesta sessao (egresso bloqueado para seachem.com). A C12 publica as duas leituras como extremos atribuidos e marca 'a conferir na embalagem' - nao escolhe um numero."
+    },
+    {
+      "id": "carvao-ativado",
+      "grandeza": "carvao ativado - quantidade e troca",
+      "valor": "1 a 2 g por litro de agua; trocar a cada 15 a 30 dias",
+      "usada_em": ["c12-midia-filtrante"],
+      "fonte": "Aquarismo Paulista (corpus do Bloco 1)",
+      "url": null,
+      "verificado_em": "2026-09-04",
+      "status": "divergente-fontes-br"
+    },
+    {
+      "id": "perlon-troca",
+      "grandeza": "perlon (mecanica fina) - troca",
+      "valor": "semanal a quinzenal",
+      "usada_em": ["c12-midia-filtrante"],
+      "fonte": "Aquarismo Paulista (corpus do Bloco 1)",
+      "url": null,
+      "verificado_em": "2026-09-04",
+      "status": "divergente-fontes-br"
+    },
+    {
+      "id": "ceramica-regeneracao",
+      "grandeza": "midia ceramica biologica - substituicao parcial",
+      "valor": "regenerar/substituir parcialmente a cada 6 a 12 meses",
+      "usada_em": ["c12-midia-filtrante"],
+      "fonte": "Aquarismo Paulista (corpus do Bloco 1)",
+      "url": null,
+      "verificado_em": "2026-09-04",
+      "status": "divergente-fontes-br"
+    },
+    {
+      "id": "ordem-midias-canister",
+      "grandeza": "ordem das midias no canister (do fluxo de entrada ao de saida)",
+      "valor": "ceramica/argila expandida -> perlon -> carvao -> perlon -> ceramica -> perlon",
+      "usada_em": ["c12-midia-filtrante"],
+      "fonte": "AquaPeixes (corpus do Bloco 1)",
+      "url": null,
+      "verificado_em": "2026-09-04",
+      "status": "divergente-fontes-br",
+      "observacao": "Conferir contra o manual do proprio modelo antes de publicar por modelo: cada fabricante especifica a sua ordem."
+    },
+    {
+      "id": "iluminacao-lumen-por-litro",
+      "grandeza": "lumens por litro por exigencia de planta",
+      "leituras": [
+        { "fonte": "peixeseaquarismo", "baixa": 20, "media": [30, 40], "alta": 60 },
+        { "fonte": "aquarioturbinado", "baixa": [10, 20], "media": [20, 40], "alta": "> 40" },
+        { "fonte": "aquariosplantados", "baixa": 15, "media": 30, "alta": 60 }
+      ],
+      "unidade": "lm/L",
+      "usada_em": ["c15-iluminacao"],
+      "fonte": "corpus do Bloco 1",
+      "url": null,
+      "verificado_em": "2026-09-04",
+      "status": "divergente-fontes-br",
+      "observacao": "Faixa consolidada com atribuicao: baixa 10-20, media 20-40, alta 40-60+. As tres fontes discordam do mesmo rotulo 'baixa' por 2x."
+    },
+    {
+      "id": "fotoperiodo",
+      "grandeza": "fotoperiodo por regime",
+      "leituras": [
+        { "regime": "low tech (sem CO2)", "valor": [6, 8], "unidade": "h/dia" },
+        { "regime": "high tech (com CO2)", "valor": [8, 10], "unidade": "h/dia" },
+        { "regime": "combate a alga", "valor": [5, 6], "unidade": "h/dia" },
+        { "regime": "durante a ciclagem", "valor": [4, 6], "unidade": "h/dia" }
+      ],
+      "usada_em": ["c15-iluminacao", "c7-consumo-custo"],
+      "fonte": "corpus do Bloco 1",
+      "url": null,
+      "verificado_em": "2026-09-04",
+      "status": "divergente-fontes-br"
+    },
+    {
+      "id": "temperatura-de-cor",
+      "grandeza": "temperatura de cor para aquario plantado",
+      "faixa": [6500, 8000],
+      "unidade": "K",
+      "usada_em": ["c15-iluminacao"],
+      "fonte": "corpus do Bloco 1",
+      "url": null,
+      "verificado_em": "2026-09-04",
+      "status": "divergente-fontes-br"
+    },
+    {
+      "id": "co2-concentracao",
+      "grandeza": "CO2 dissolvido",
+      "faixa": [
+        { "criterio": "faixa util e segura", "valor": [15, 35], "unidade": "mg/L" },
+        { "criterio": "risco de toxicidade para os peixes", "valor": "> 30 a 35", "unidade": "mg/L" }
+      ],
+      "leitura_visual": "drop checker: azul = baixo, verde = na faixa, amarelo = excesso",
+      "usada_em": ["c15-iluminacao"],
+      "fonte": "CO2Art (corpus do Bloco 1)",
+      "url": null,
+      "verificado_em": "2026-09-04",
+      "status": "divergente-fontes-br",
+      "observacao": "Os dois extremos se sobrepoem (35 e 'seguro' e '> 30-35' e toxico). A tela precisa mostrar a sobreposicao, nao esconder."
+    },
+    {
+      "id": "ppfd-por-litragem",
+      "grandeza": "PAR/PPFD alvo por exigencia de planta e por profundidade",
+      "valor": null,
+      "usada_em": [],
+      "fonte": null,
+      "verificado_em": null,
+      "status": "pendente",
+      "observacao": "lm/L ignora profundidade e espectro; PPFD e a medida correta. Nenhuma fonte BR publica PPFD por litragem. Coleta prevista: PPFD declarado por fabricantes de luminaria vendidos no BR."
+    },
+    {
+      "id": "substrato-densidade",
+      "grandeza": "massa de substrato por volume",
+      "leituras": [
+        { "fonte": "guiadoaquarismo", "valor": "1 a 2 kg por litro" },
+        { "fonte": "peixeseaquarismo", "valor": "1 kg ~ 1 L" }
+      ],
+      "usada_em": [],
+      "fonte": "corpus do Bloco 1",
+      "url": null,
+      "verificado_em": "2026-09-04",
+      "status": "pendente",
+      "observacao": "Conflito de 100 %. RECUSADA em formula. Sem ela nao ha como converter kg de substrato em volume deslocado."
+    },
+    {
+      "id": "substrato-porosidade",
+      "grandeza": "fracao de vazios do leito de substrato (agua que fica ENTRE os graos)",
+      "valor": null,
+      "usada_em": [],
+      "fonte": null,
+      "verificado_em": null,
+      "status": "pendente",
+      "observacao": "BLOQUEIA o desconto de substrato na C1. Medicao propria prevista (protocolo na especificacao, secao C1): encher recipiente graduado com substrato seco, adicionar agua ate cobrir, porosidade = agua adicionada / volume do recipiente. Medir para areia grossa, cascalho fino e substrato fertil."
+    },
+    {
+      "id": "borda-livre-padrao",
+      "grandeza": "distancia entre a lamina de agua e a borda superior do aquario",
+      "valor": 3,
+      "unidade": "cm",
+      "usada_em": ["c1-litragem"],
+      "fonte": "convencao da Aquametria (valor inicial do campo)",
+      "url": null,
+      "verificado_em": "2026-09-07",
+      "status": "convencao-editorial",
+      "observacao": "NAO e dado tecnico. A tela precisa dizer 'valor inicial, ajuste para a sua borda' ao lado do campo."
+    },
+    {
+      "id": "especies-parametros-iniciais",
+      "grandeza": "temperatura e pH por especie (nucleo inicial do banco de fichas)",
+      "registros": [
+        { "especie": "betta", "temperatura_C": [24, 28], "fonte": "Petz" },
+        { "especie": "kinguio", "temperatura_C": [18, 24], "fonte": "Petz" },
+        { "especie": "guppy", "temperatura_C": [23, 26], "fonte": "Petz" },
+        { "especie": "acara-disco", "temperatura_C": [26, 30], "fonte": "Petz" },
+        { "especie": "tetra", "temperatura_C": [26, 30], "fonte": "Petz" },
+        { "especie": "acara-bandeira", "temperatura_C": [24, 28], "fonte": "Petz" },
+        { "especie": "barbo-sumatra", "temperatura_C": [20, 28], "ph": [5.0, 8.0], "fonte": "Aquarismo Paulista" },
+        { "especie": "paulistinha", "temperatura_C": [18, 28], "fonte": "Aquarismo Paulista" }
+      ],
+      "usada_em": ["c5-aquecedor-delta", "c8-lotacao"],
+      "fonte": "Petz; Aquarismo Paulista (corpus do Bloco 1)",
+      "url": null,
+      "verificado_em": "2026-09-04",
+      "status": "transcrita-varejo",
+      "observacao": "Sao 8 especies. A C5 e a C8 v1 so aceitam especie que tenha ficha com fonte. O banco completo (tamanho adulto, GH, cardume minimo, agressividade, zona de nado) e trabalho do Bloco 3/4."
+    },
+    {
+      "id": "dosagem-verificadas-no-fabricante",
+      "grandeza": "dosagens confirmadas na fonte do fabricante",
+      "registros": [
+        { "produto": "Mbreda Micronutri", "dose": "1 mL por 10 L brutos, semanal", "fonte": "mbreda.com.br" },
+        { "produto": "Veromar Teste de KH", "dose": "amostra de 5 mL; 1 gota = 0,5 dKH; dKH = gotas / 2", "fonte": "Veromar" }
+      ],
+      "usada_em": [],
+      "verificado_em": "2026-09-04",
+      "status": "verificada-fabricante",
+      "observacao": "Sao as unicas duas dosagens verificadas no fabricante. Insuficiente para abrir a calculadora de dosagem (C13) - ver 'fora do lote inicial' na especificacao."
+    },
+    {
+      "id": "dosagem-transcritas-em-varejo",
+      "grandeza": "dosagens transcritas por varejista (nao lidas no fabricante)",
+      "registros": [
+        { "produto": "Tetra AquaSafe", "dose": "2 gotas/L (frascos de 50 e 100 mL); 5 mL por 38 L (frasco de 250 mL)" },
+        { "produto": "Labcon Aqualife", "dose": "1 gota/L a cada 48 h" },
+        { "produto": "Seachem Stability", "dose": "5 mL por 40 L no dia 1; 5 mL por 80 L nos dias 2 a 7" }
+      ],
+      "usada_em": [],
+      "verificado_em": "2026-09-04",
+      "status": "transcrita-varejo",
+      "observacao": "So podem aparecer com o aviso 'confira a embalagem do seu frasco' em destaque, e nunca como resultado de calculo."
+    },
+    {
+      "id": "dosagem-pendentes",
+      "grandeza": "dosagens recusadas por falta de fonte",
+      "registros": [
+        "Seachem Prime (5 mL/200 L, 'ate 5x' - condicao nao esclarecida)",
+        "sal grosso (3 valores diferentes em 5 fontes)",
+        "banho de sal (10-15 g/L por 20 min vs 5 g/L por 15 min)",
+        "azul de metileno (concentracao nunca declarada)",
+        "bicarbonato de sodio para elevar KH",
+        "amoniaco para ciclagem fishless",
+        "catalogo Alcon e Labcon (o site bloqueia leitura automatizada)"
+      ],
+      "usada_em": [],
+      "status": "pendente",
+      "observacao": "RISCO LETAL. Nenhuma destas entra em calculadora, tabela ou texto como numero. Podem ser citadas apenas como 'as fontes divergem' com os valores atribuidos."
+    }
+  ]
+}
