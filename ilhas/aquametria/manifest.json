@@ -4,7 +4,7 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 6,
+  "revisao": 7,
   "atualizado_em": "2026-09-07",
   "estado": "fundacao",
   "desembarque": {
@@ -20,8 +20,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "b72a007c022f60127a36dff34cfbfb552a8b2ba7086041901b8f567b3856e931",
-      "descricao": "Sincronizador do site com este repositorio. Ja instalado e ativo (Code Snippets id 5, 06/09/2026). v1.1.0 (07/09/2026): compativel com Code Snippets 3.10, grava inativo e ativa em seguida, e um item quebrado nao derruba o sync. O proprio Sync se pula pelo nome, entao publicar=true e inofensivo e deixa o arquivo rastreado."
+      "sha256": "a9665b3357bcfd5959b4ce2a55f90c0ce6cf0bdc66e24904d3662807cbb0a093",
+      "descricao": "Sincronizador do site com este repositorio. Ja instalado e ativo (Code Snippets id 5, 06/09/2026). v1.1.0 (07/09/2026): compativel com Code Snippets 3.10, grava inativo e ativa em seguida, e um item quebrado nao derruba o sync. O proprio Sync se pula pelo nome, entao publicar=true e inofensivo e deixa o arquivo rastreado. v1.1.1 (07/09/2026): o conversor de Markdown descarta o front matter do arquivo, deixa a linha que so tem shortcode fora do paragrafo (div dentro de p e HTML invalido) e poe toda tabela dentro de um bloco que rola no celular."
     },
     {
       "id": "aquametria-casca",
@@ -32,9 +32,37 @@
       "publicar": true,
       "sha256": "f8f3d1a06e325b458ff48ec01079e099bf2049e435ba9c27bbeb791a7e896479",
       "descricao": "Casca do site: carrega Chivo/IBM Plex Sans/IBM Plex Mono e injeta a paleta da Aquametria sobre o tema ativo; troca core/site-title e core/site-logo pelo logotipo em SVG (recipiente graduado) com o wordmark; troca core/navigation pelo menu Calculadoras/Metodologia/Sobre; cria as paginas inicio, calculadoras, metodologia e sobre (conteudo em shortcode do proprio snippet) e fixa inicio como pagina inicial; manda Hello world! e Sample Page para a lixeira; SUBSTITUI a template part footer do tema pelo rodape da Aquametria (tagline e nota de fontes), com rede de seguranca em wp_footer e CSS, para nao ficarem dois rodapes empilhados; e some com a tagline padrao do WordPress. Idempotente."
+    },
+    {
+      "id": "aquametria-calculadora-litragem",
+      "nome": "Aquametria Calculadora de Litragem",
+      "arquivo": "snippets/aquametria-calculadora-litragem.php",
+      "escopo": "front-end",
+      "ativo": true,
+      "publicar": true,
+      "sha256": "5ad24d3ee60eb6e2924a611371db70503f77918c9168d6ced34c2551293388f5",
+      "descricao": "C1, o nucleo do lote. Registra o shortcode [aquametria_calculadora_litragem]: formulario de medidas, os tres volumes (bruto, interno e real de referencia) com o criterio de cada um, caminho inverso (litros para medida), quadro de fontes e permalink citavel. Todo o calculo e JavaScript no navegador, porque o site esta atras de cache de pagina. Grava o estado compartilhado em localStorage, chave aquametria.aquario, que as proximas calculadoras leem. NAO desconta substrato: as constantes estao pendentes e a tela declara a superestimativa e a direcao do erro. Anuncia-se no hub pelo filtro aquametria_calculadoras da casca, entao a casca nao precisa ser editada nem ter a versao bumpada."
     }
   ],
-  "conteudo": [],
+  "conteudo": [
+    {
+      "id": "calculadora-de-litragem",
+      "tipo": "pagina",
+      "titulo": "Calculadora de litragem: quantos litros tem o seu aquário",
+      "slug": "calculadora-de-litragem",
+      "arquivo": "conteudo/calculadora-de-litragem.md",
+      "cluster": "C1",
+      "fontes": [
+        "geometria (definicao de litro em centimetro cubico) — nao e constante de terceiro",
+        "borda-livre-padrao, 3 cm, convencao editorial da Aquametria",
+        "substrato-densidade e substrato-porosidade: PENDENTES, recusadas em formula"
+      ],
+      "verificado_em": "2026-09-07",
+      "publicar": true,
+      "sha256": "fc9cf3fc7e44b18b27b856e774321111245e91db00aadd20a99a411e1b6cc27b",
+      "descricao": "Pagina da C1: abertura, o shortcode da calculadora e a explicacao metodologica — os tres volumes e para que serve cada um, a borda livre como convencao declarada, por que o substrato nao e descontado (conflito de 100 % na densidade, porosidade sem fonte) com a tabela de direcao do erro, o protocolo de medicao que libera o desconto, o caminho inverso e os links internos para o hub e a metodologia."
+    }
+  ],
   "dados": [
     {
       "id": "especificacao-calculadoras",
@@ -45,7 +73,7 @@
       "verificado_em": "2026-09-07",
       "registros": 8,
       "publicar": false,
-      "sha256": "5262f751083928ac7ccb1123e5fafa5c778280e5808431965e7c3ddca28ea66f",
+      "sha256": "34d55a6cc39229fa5b287a37277089ed00272296abeabeb44cb5f4aec9a386e1",
       "descricao": "Especificacao das 8 calculadoras (C1 litragem, C2 peso e carga, C3 vazao, C5 aquecedor por delta, C7 consumo, C8 lotacao, C12 midia, C15 iluminacao): entradas, formulas, faixas de saida com criterio e fonte em cada extremo, produtos sugeridos, contrato de resposta e estado de aquario compartilhado. Documenta tambem o que fica retido por falta de fonte."
     },
     {

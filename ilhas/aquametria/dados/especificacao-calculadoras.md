@@ -117,7 +117,10 @@ lido por todas as calculadoras.
 }
 ```
 
-- Persistência: `localStorage` do visitante, chave `aquametria_aquario`, mais
+- Persistência: `localStorage` do visitante, chave **`aquametria.aquario`** (a
+  especificação dizia `aquametria_aquario`; a chave publicada na C1, em
+  07/09/2026, é a com ponto, e é ela que vale — as outras calculadoras leem
+  desta), mais
   a query string do permalink. Nada de conta, nada de login, nada de coleta
   de dado pessoal.
 - `volumes.real_L` é a **única** entrada de volume que as outras

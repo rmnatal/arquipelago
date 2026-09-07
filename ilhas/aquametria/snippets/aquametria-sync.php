@@ -1,6 +1,9 @@
 /**
  * Aquametria Sync
- * Versão: 1.1.0 (07/09/2026) — compatível com Code Snippets 3.10 (classe Code_Snippets\Model\Snippet,
+ * Versão: 1.1.1 (07/09/2026) — o conversor de Markdown passou a descartar o front matter
+ *   do arquivo e a deixar a linha que só tem shortcode fora do parágrafo (dois defeitos que
+ *   o primeiro conteúdo em Markdown, a página da C1, iria expor).
+ * Versão 1.1.0 (07/09/2026) — compatível com Code Snippets 3.10 (classe Code_Snippets\Model\Snippet,
  *   save_snippet devolve objeto), erro de um item não derruba o sync (try/catch), grava inativo e ativa
  *   em seguida, e relata falha de ativação.
  *
@@ -26,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_SYNC_VERSAO' ) ) {
-	define( 'AQUAMETRIA_SYNC_VERSAO', '1.1.0' );
+	define( 'AQUAMETRIA_SYNC_VERSAO', '1.1.1' );
 	define( 'AQUAMETRIA_SYNC_BASE', 'https://raw.githubusercontent.com/rmnatal/arquipelago/main/ilhas/aquametria/' );
 	define( 'AQUAMETRIA_SYNC_NOME_PROPRIO', 'Aquametria Sync' );
 }
@@ -89,7 +92,10 @@ function aquametria_sync_sha_ok( $corpo, $esperado ) {
 /* Markdown mínimo → HTML (títulos, parágrafos, listas, negrito, itálico, links, código, tabelas simples) */
 if ( ! function_exists( 'aquametria_sync_md' ) ) {
 function aquametria_sync_md( $md ) {
-	$md     = str_replace( "\r\n", "\n", $md );
+	$md = str_replace( "\r\n", "\n", $md );
+	/* Front matter YAML: é metadado do repositório (título, slug, fontes), não texto
+	   de página. Sem este corte ele sairia impresso no topo do post. */
+	$md = preg_replace( '/\A---\n.*?\n---\n?/s', '', $md, 1 );
 	$linhas = explode( "\n", $md );
 	$html   = '';
 	$lista  = null;
@@ -120,6 +126,10 @@ function aquametria_sync_md( $md ) {
 		if ( ! $tabela ) {
 			return;
 		}
+		/* A tabela sai dentro de um bloco que rola: em tela de celular uma tabela
+		   de três colunas empurra a página inteira para o lado, e a rolagem
+		   horizontal do documento é defeito visível em qualquer artigo. */
+		$html .= '<div class="aqm-tabela" style="overflow-x:auto">';
 		$html .= '<table>';
 		foreach ( $tabela as $i => $cels ) {
 			$tag   = 0 === $i ? 'th' : 'td';
@@ -129,7 +139,7 @@ function aquametria_sync_md( $md ) {
 			}
 			$html .= '</tr>';
 		}
-		$html  .= "</table>\n";
+		$html  .= "</table></div>\n";
 		$tabela = array();
 	};
 
@@ -163,6 +173,14 @@ function aquametria_sync_md( $md ) {
 			$fecha_par(); $fecha_tabela();
 			if ( 'ol' !== $lista ) { $fecha_lista(); $html .= "<ol>\n"; $lista = 'ol'; }
 			$html .= '<li>' . $inline( $m[1] ) . "</li>\n";
+			continue;
+		}
+		/* Linha que só tem um shortcode sai sozinha, sem <p>: o shortcode devolve
+		   blocos (div, form, table) e <div> dentro de <p> é HTML inválido — o
+		   navegador fecha o parágrafo no meio e a página fica remendada. */
+		if ( preg_match( '/^\[[a-z0-9_]+(\s[^\]]*)?\]$/i', trim( $t ) ) ) {
+			$fecha_par(); $fecha_lista(); $fecha_tabela();
+			$html .= trim( $t ) . "\n";
 			continue;
 		}
 		$fecha_lista(); $fecha_tabela();

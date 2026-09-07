@@ -605,3 +605,96 @@ não vende equipamento); o primeiro bloco de produto com link será o da C3.
 
 Sem ferramenta de memória nesta sessão: `/areas/projeto-aquametria.md` NÃO foi
 atualizado; esta entrada e o `ESTADO.md` são o registro.
+
+## 2026-09-07 (6º disparo, bloco do dia) — BLOCO 4 começa: C1, a calculadora de litragem
+
+Primeira calculadora no ar. Snippet, página e itens de manifest com `publicar: true`.
+
+### O que foi entregue
+- `snippets/aquametria-calculadora-litragem.php` — snippet **Aquametria
+  Calculadora de Litragem**, escopo front-end, v1.0.0, shortcode
+  `[aquametria_calculadora_litragem]`.
+- `conteudo/calculadora-de-litragem.md` — a página, com front matter, o
+  shortcode no corpo e a explicação metodológica.
+- `manifest.json` revisão **7**, os dois itens com `publicar: true` e sha256
+  conferido do arquivo final.
+
+### Decisões que a construção fixou (valem para C3, C5, C12, C15…)
+
+1. **Todo o cálculo é JavaScript no navegador.** O site está atrás do cache de
+   página da hospedagem: HTML que dependesse da query string seria servido
+   errado para o visitante seguinte. Como consequência, a página é estática e o
+   permalink é lido e escrito pelo próprio JS (`history.replaceState`).
+2. **A calculadora se anuncia no hub, em vez de a casca listá-la.** O snippet
+   registra `add_filter( 'aquametria_calculadoras', ... )` e vira o `estado` da
+   C1 para `publicada`. Ganho: nenhuma edição da casca, nenhum bump de
+   `AQUAMETRIA_CASCA_VERSAO`, e desativar o snippet devolve o cartão para "em
+   construção" sozinho. **É este o caminho para as próximas** — a casca já
+   previa o filtro, ninguém tinha usado.
+3. **A chave do estado compartilhado é `aquametria.aquario`** (com ponto), como
+   manda a tarefa. A especificação do Bloco 2 dizia `aquametria_aquario`; ela
+   foi corrigida para a chave publicada, que é a que vale.
+4. **Vírgula decimal é entrada válida.** Ninguém digita "80.5" no Brasil. Os
+   campos são `text` com `inputmode="decimal"` e a leitura troca vírgula por
+   ponto.
+5. **Litro sai inteiro a partir de 100 L**, com uma casa abaixo disso. Precisão
+   falsa (109,47 L) mente sobre a incerteza de um volume que nem desconta
+   substrato.
+
+### O que a página recusa, e diz por quê
+Não desconta substrato. `substrato-densidade` (1 a 2 kg/L contra 1 kg ≈ 1 L, 100 %
+de diferença) e `substrato-porosidade` (nenhuma fonte publica) estão `pendente`,
+e constante pendente é proibida em fórmula. A tela declara a consequência — o
+volume real fica **superestimado** — e publica a tabela de direção do erro:
+seguro para filtro, aquecedor e mídia; **inseguro** para lotação e dosagem. Fica
+registrado o protocolo de medição própria que libera o desconto.
+
+### Dois defeitos do Sync que a primeira página em Markdown expôs (v1.1.1)
+- **O front matter era impresso na página.** `aquametria_sync_md()` não o
+  descartava; a página teria começado com "titulo:", "slug:", "publicar: true".
+  Agora o bloco `---…---` do topo é cortado antes da conversão.
+- **O shortcode saía dentro de `<p>`.** `<div>` dentro de `<p>` é HTML inválido:
+  o navegador fecha o parágrafo no meio e a página fica remendada. Linha que só
+  tem shortcode agora sai como bloco próprio.
+- De quebra, **toda tabela vinda de Markdown agora sai dentro de um bloco que
+  rola** — uma tabela de três colunas empurrava a página inteira para o lado no
+  celular.
+
+### Verificação (o que foi realmente rodado)
+- `php -l` de verdade nos dois snippets (com `<?php` prefixado, porque o arquivo
+  começa em `/**`): limpo.
+- `ferramentas/proteger-funcoes.php` nos dois: saída **idêntica** ao arquivo —
+  nenhuma função de nível superior desprotegida.
+- **Teste de fumaça em PHP com stubs de WordPress**: o filtro do hub vira só a
+  C1 para `publicada` e deixa a C3 em construção; o shortcode devolve 28 KB de
+  HTML na primeira chamada e string vazia na segunda (uma instância por página);
+  nenhum id duplicado; 26 `<div>` abertas e 26 fechadas; acentos preservados.
+- **Teste em navegador de verdade** (Chromium via Playwright), 9 casos: cálculo
+  com vidro (80 × 40 × 40, 8 mm → 128 L brutos, 118 L internos, 109 L reais);
+  vírgula decimal e desconto de rochas; sem espessura (diz "sem número" e avisa
+  que a lâmina saiu superestimada); medidas internas (bruto = interno); erro de
+  unidade (800 cm barrado, saída escondida); lâmina maior que a altura interna
+  (limitada ao máximo físico, com aviso); caminho inverso (100 L com 80 × 40 →
+  31,3 cm de altura, e a água que caberia); permalink reabrindo com as entradas;
+  estado retomado do `localStorage` em nova visita. **Zero erro de console.**
+- **Conversão do Markdown pelo próprio Sync**: front matter removido, shortcode
+  fora do `<p>`, tabela convertida, 6 `<h2>`, 2 links internos.
+- **Página final montada (conteúdo + shortcode) em 390 px de largura**: sem
+  rolagem horizontal do documento depois da correção da tabela.
+
+### Desembarque
+Automático, como decidido em 07/09/2026. Depois do push em `main`, o Sync precisa
+ser acionado (WebFetch da nuvem costuma cair no bloqueio de egresso; se cair,
+fica para o WP-Cron, que roda a cada 30 minutos). URLs a conferir:
+`https://aquametria.com.br/calculadora-de-litragem/` e o hub
+`https://aquametria.com.br/calculadoras/`, onde o cartão da C1 deve passar de
+"Em construção" para "Abrir calculadora".
+
+Próximo passo desbloqueado: **C3 — vazão do filtro e turnover**, que é a primeira
+com bloco de produto (e a primeira a usar os links de afiliado gravados hoje).
+Ela lê `aquametria.aquario` do navegador. Atenção ao que o validador já mostra:
+dos filtros com link, o Eheim 2213 e o Tidal 55 estão barrados por falta de
+voltagem e coluna máxima — sem coletar isso, o bloco de produto da C3 nasce vazio.
+
+Sem ferramenta de memória nesta sessão: `/areas/projeto-aquametria.md` NÃO foi
+atualizado; esta entrada e o `ESTADO.md` são o registro.
