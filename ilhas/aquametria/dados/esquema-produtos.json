@@ -1,0 +1,946 @@
+{
+  "id": "esquema-produtos",
+  "descricao": "Modelo normalizado do banco de produtos da Aquametria: entidades filtro, aquecedor, iluminacao e midia, mais a entidade cotacao (preco). Define campo a campo o tipo, a unidade, a obrigatoriedade, o vocabulario controlado e a ORIGEM esperada do dado. Nenhum numero entra no banco sem uma entrada correspondente em fontes[]. Este arquivo e o contrato que dados/produtos-*.json cumprem e que ferramentas/validar-produtos.py verifica.",
+  "gerado_em": "2026-09-07",
+  "bloco": 3,
+  "versao_esquema": 1,
+  "depende_de": [
+    "dados/especificacao-calculadoras.md",
+    "dados/constantes-calculadoras.json"
+  ],
+  "principios": [
+    "Procedencia por CAMPO, nao por registro. Um produto costuma ter a vazao do manual e o preco do varejo; o registro guarda as duas origens separadas.",
+    "Declarado nao e medido. Todo campo do fabricante e 'declarado': o banco nunca converte declaracao em desempenho. vazao_real_lh so existe com medicao propria.",
+    "Divergencia e conteudo. Quando duas fontes discordam, o campo vira conflito e o registro publica os dois valores com atribuicao. Nunca a media.",
+    "O que falta fica explicito. Campo sem fonte e null com motivo, nunca um numero plausivel.",
+    "Preco nao e campo de produto: e serie temporal (entidade cotacao) e nunca entra em criterio tecnico de sugestao.",
+    "Derivado nao se escreve a mao. Turnover implicito, W/L e lm/W sao calculados a partir dos campos com fonte; gravar um derivado manualmente e defeito."
+  ],
+  "escada_de_fontes": {
+    "descricao": "Nivel de confianca de uma origem. Em conflito, o nivel mais alto vence e o outro fica registrado. Dentro do mesmo nivel, ninguem vence: o campo vira conflito.",
+    "niveis": [
+      {
+        "nivel": 1,
+        "origem": "medicao-propria",
+        "status": "medida-aquametria",
+        "o_que_pode_sustentar": "vazao real, consumo real, PPFD a distancia declarada. E a unica origem que pode publicar desempenho, e ainda nao existe.",
+        "existe_hoje": false
+      },
+      {
+        "nivel": 2,
+        "origem": "manual-fabricante",
+        "status": "verificada-fabricante",
+        "o_que_pode_sustentar": "qualquer campo tecnico declarado. Exige manual, ficha ou pagina oficial LIDA direto.",
+        "existe_hoje": false,
+        "observacao": "Bloqueado hoje: o egresso da nuvem barra os dominios de fabricante (seachem.com e sicce.com devolveram EGRESS_BLOCKED em 07/09/2026)."
+      },
+      {
+        "nivel": 3,
+        "origem": "fabricante-via-busca",
+        "status": "fabricante-via-busca",
+        "o_que_pode_sustentar": "campo tecnico atribuido ao fabricante, colhido por resultado de busca sem leitura da pagina. Sai na tela com 'a confirmar no manual'.",
+        "existe_hoje": true
+      },
+      {
+        "nivel": 4,
+        "origem": "varejo-oficial",
+        "status": "transcrita-varejo",
+        "o_que_pode_sustentar": "campo tecnico transcrito pela loja oficial da marca no Brasil. Sai na tela com 'confira a embalagem'.",
+        "existe_hoje": true
+      },
+      {
+        "nivel": 5,
+        "origem": "varejo",
+        "status": "transcrita-varejo",
+        "o_que_pode_sustentar": "campo tecnico transcrito por varejista especializado (Cobasi, Petz, lojas de aquarismo). Sai na tela com 'confira a embalagem'.",
+        "existe_hoje": true
+      },
+      {
+        "nivel": 6,
+        "origem": "marketplace-anuncio",
+        "status": "anuncio",
+        "o_que_pode_sustentar": "APENAS a existencia do produto, a nomenclatura usada no Brasil e a cotacao de preco. NUNCA um numero tecnico.",
+        "existe_hoje": true
+      }
+    ]
+  },
+  "status_registro": {
+    "completo": "todos os campos obrigatorios da entidade preenchidos e com fonte. Pode ser sugerido por calculadora.",
+    "parcial": "falta ao menos um campo obrigatorio. Fica no banco (a ficha ja vale como conteudo), mas NAO e sugerido pela calculadora que depende do campo faltante.",
+    "conflito": "algum campo tem valores divergentes de fontes do mesmo nivel. Pode ser sugerido, mas a tela publica a divergencia com atribuicao.",
+    "revalidar": "verificado_em com mais de 180 dias, ou campo marcado como implausivel pelo validador. Sai da sugestao ate ser reconferido.",
+    "rascunho": "registro aberto sem fonte suficiente. Nunca sai na tela."
+  },
+  "identidade": {
+    "descricao": "Como um produto e identificado. O caso Atman AT-3338 x AT-3338S provou que o sufixo de uma letra muda vazao, potencia e volume atendido: variante e campo, nao detalhe de nome.",
+    "regra_id": "kebab-case, marca-modelo[-variante], estavel para sempre. Ex.: atman-at-3338, atman-at-3338s, eheim-classic-250-2213.",
+    "regra_variante": "Toda variante de especificacao e um REGISTRO proprio, com id proprio. Nunca duas especificacoes no mesmo registro.",
+    "regra_nomes_alternativos": "O varejo brasileiro escreve o mesmo produto de varias formas ('Sun Sun HW303B', 'SunSun HW-303 B'). nomes_alternativos guarda essas grafias para casar busca e cotacao; nao tem valor tecnico."
+  },
+  "campos_comuns": [
+    {
+      "campo": "id",
+      "tipo": "string",
+      "obrigatorio": true,
+      "origem": "editorial",
+      "observacao": "kebab-case, unico no banco inteiro (nao apenas na entidade)."
+    },
+    {
+      "campo": "entidade",
+      "tipo": "string",
+      "obrigatorio": true,
+      "vocabulario": [
+        "filtro",
+        "aquecedor",
+        "iluminacao",
+        "midia"
+      ],
+      "origem": "editorial"
+    },
+    {
+      "campo": "marca",
+      "tipo": "string",
+      "obrigatorio": true,
+      "origem": "fabricante ou varejo"
+    },
+    {
+      "campo": "linha",
+      "tipo": "string|null",
+      "obrigatorio": false,
+      "origem": "fabricante",
+      "observacao": "Ex.: 'classic', 'Jager', 'Tidal', 'HT-1300/Q3'."
+    },
+    {
+      "campo": "modelo",
+      "tipo": "string",
+      "obrigatorio": true,
+      "origem": "fabricante ou varejo",
+      "observacao": "Como esta impresso no produto, nao como a loja resumiu."
+    },
+    {
+      "campo": "variante",
+      "tipo": "string|null",
+      "obrigatorio": false,
+      "origem": "fabricante",
+      "observacao": "Sufixo que muda especificacao ('S', 'B', 'UV', potencia)."
+    },
+    {
+      "campo": "nomes_alternativos",
+      "tipo": "lista de string",
+      "obrigatorio": false,
+      "origem": "varejo"
+    },
+    {
+      "campo": "gtin",
+      "tipo": "string|null",
+      "obrigatorio": false,
+      "origem": "varejo",
+      "observacao": "EAN-13 quando publicado. Chave util para casar cotacoes entre lojas."
+    },
+    {
+      "campo": "disponibilidade_br",
+      "tipo": "string",
+      "obrigatorio": true,
+      "vocabulario": [
+        "vendido",
+        "importado",
+        "descontinuado",
+        "desconhecido"
+      ],
+      "origem": "varejo"
+    },
+    {
+      "campo": "voltagem",
+      "tipo": "lista de string|null",
+      "obrigatorio": false,
+      "vocabulario": [
+        "110",
+        "127",
+        "220",
+        "bivolt"
+      ],
+      "origem": "fabricante ou varejo",
+      "observacao": "Campo de risco real no Brasil: aquecedor, bomba e luminaria queimam na voltagem errada e o varejo frequentemente omite. Por isso, mesmo sendo opcional na ficha, e requisito para a calculadora SUGERIR o produto (C3, C5 e C15). Hoje e o campo que mais barra sugestao no banco."
+    },
+    {
+      "campo": "volume_atendido_declarado_L",
+      "tipo": "objeto {min, max}",
+      "obrigatorio": true,
+      "unidade": "L",
+      "origem": "fabricante (preferencial) ou varejo",
+      "observacao": "min pode ser null quando o fabricante so publica o teto ('ate 250 L'). E DECLARACAO, nunca recomendacao da Aquametria. NAO e obrigatorio para iluminacao: fabricante de luminaria dimensiona por comprimento, nao por litragem — dos 4 registros de semente, nenhum declara volume.",
+      "obrigatorio_em": [
+        "filtro",
+        "aquecedor",
+        "midia"
+      ]
+    },
+    {
+      "campo": "fontes",
+      "tipo": "lista de objeto",
+      "obrigatorio": true,
+      "origem": "editorial",
+      "observacao": "Ver bloco 'fonte' abaixo. Todo campo numerico precisa aparecer no array 'campos' de alguma fonte."
+    },
+    {
+      "campo": "conflitos",
+      "tipo": "lista de objeto",
+      "obrigatorio": false,
+      "origem": "editorial",
+      "observacao": "Ver bloco 'conflito' abaixo."
+    },
+    {
+      "campo": "verificado_em",
+      "tipo": "data ISO",
+      "obrigatorio": true,
+      "origem": "editorial"
+    },
+    {
+      "campo": "status_registro",
+      "tipo": "string",
+      "obrigatorio": true,
+      "vocabulario": [
+        "completo",
+        "parcial",
+        "conflito",
+        "revalidar",
+        "rascunho"
+      ],
+      "origem": "editorial"
+    },
+    {
+      "campo": "observacao",
+      "tipo": "string|null",
+      "obrigatorio": false,
+      "origem": "editorial"
+    }
+  ],
+  "fonte": {
+    "descricao": "Entrada do array fontes[] de um produto. Cada uma cobre um subconjunto de campos.",
+    "campos": [
+      {
+        "campo": "origem",
+        "tipo": "string",
+        "obrigatorio": true,
+        "vocabulario": [
+          "medicao-propria",
+          "manual-fabricante",
+          "fabricante-via-busca",
+          "varejo-oficial",
+          "varejo",
+          "marketplace-anuncio"
+        ]
+      },
+      {
+        "campo": "status",
+        "tipo": "string",
+        "obrigatorio": true,
+        "vocabulario": [
+          "medida-aquametria",
+          "verificada-fabricante",
+          "fabricante-via-busca",
+          "transcrita-varejo",
+          "anuncio"
+        ]
+      },
+      {
+        "campo": "referencia",
+        "tipo": "string",
+        "obrigatorio": true,
+        "observacao": "Quem publicou: 'Eheim, pagina do produto', 'Aquaricamp (varejo BR)'."
+      },
+      {
+        "campo": "url",
+        "tipo": "string|null",
+        "obrigatorio": true,
+        "observacao": "null so quando a fonte nao tem URL; o motivo vai em observacao."
+      },
+      {
+        "campo": "verificado_em",
+        "tipo": "data ISO",
+        "obrigatorio": true
+      },
+      {
+        "campo": "campos",
+        "tipo": "lista de string",
+        "obrigatorio": true,
+        "observacao": "Nomes dos campos deste produto que esta fonte sustenta."
+      },
+      {
+        "campo": "observacao",
+        "tipo": "string|null",
+        "obrigatorio": false
+      }
+    ]
+  },
+  "conflito": {
+    "descricao": "Divergencia entre fontes sobre o mesmo campo. Nao se resolve por media: publica-se com atribuicao.",
+    "campos": [
+      {
+        "campo": "campo",
+        "tipo": "string",
+        "obrigatorio": true
+      },
+      {
+        "campo": "valores",
+        "tipo": "lista de {valor, referencia, url, origem}",
+        "obrigatorio": true
+      },
+      {
+        "campo": "razao",
+        "tipo": "string|null",
+        "obrigatorio": false,
+        "observacao": "Diferenca de tamanho, em x ou em %."
+      },
+      {
+        "campo": "tratamento",
+        "tipo": "string",
+        "obrigatorio": true,
+        "vocabulario": [
+          "publicar-os-dois",
+          "nivel-mais-alto-vence",
+          "campo-vira-null"
+        ]
+      }
+    ]
+  },
+  "entidades": {
+    "filtro": {
+      "arquivo": "dados/produtos-filtro.json",
+      "consumida_por": [
+        "c3-vazao-filtro",
+        "c7-consumo-custo",
+        "c12-midia-filtrante"
+      ],
+      "campos": [
+        {
+          "campo": "tipo",
+          "tipo": "string",
+          "obrigatorio": true,
+          "vocabulario": [
+            "canister",
+            "hang-on",
+            "interno",
+            "esponja",
+            "sump",
+            "filtro-de-caixa",
+            "fluidizado"
+          ],
+          "origem": "fabricante ou varejo"
+        },
+        {
+          "campo": "vazao_nominal_lh",
+          "tipo": "numero",
+          "obrigatorio": true,
+          "unidade": "L/h",
+          "origem": "fabricante (preferencial)",
+          "observacao": "Vazao DECLARADA, medida a coluna zero e sem midia. Nao e a vazao no aquario do visitante."
+        },
+        {
+          "campo": "vazao_real_lh",
+          "tipo": "numero|null",
+          "obrigatorio": false,
+          "unidade": "L/h",
+          "origem": "medicao-propria",
+          "observacao": "Sempre null hoje. A C3 registra que nao existe fator de perda com fonte e proibe inventar um."
+        },
+        {
+          "campo": "potencia_w",
+          "tipo": "numero",
+          "obrigatorio": true,
+          "unidade": "W",
+          "origem": "fabricante (preferencial)"
+        },
+        {
+          "campo": "coluna_maxima_m",
+          "tipo": "numero|null",
+          "obrigatorio": true,
+          "unidade": "m",
+          "origem": "fabricante",
+          "observacao": "Altura maxima de recalque. Obrigatorio para a sugestao da C3; sem ele o registro fica parcial."
+        },
+        {
+          "campo": "volume_cesto_L",
+          "tipo": "numero|null",
+          "obrigatorio": false,
+          "unidade": "L",
+          "origem": "fabricante"
+        },
+        {
+          "campo": "volume_filtragem_L",
+          "tipo": "numero|null",
+          "obrigatorio": false,
+          "unidade": "L",
+          "origem": "fabricante",
+          "observacao": "Volume util de midia. E o campo que liga o filtro a C12."
+        },
+        {
+          "campo": "midia_inclusa",
+          "tipo": "lista de string",
+          "obrigatorio": false,
+          "origem": "fabricante ou varejo"
+        },
+        {
+          "campo": "uv_w",
+          "tipo": "numero|null",
+          "obrigatorio": false,
+          "unidade": "W",
+          "origem": "fabricante",
+          "observacao": "Esterilizador UV embutido, quando houver. Conta no consumo total da C7."
+        },
+        {
+          "campo": "mangueira_mm",
+          "tipo": "numero|null",
+          "obrigatorio": false,
+          "unidade": "mm",
+          "origem": "fabricante"
+        }
+      ],
+      "derivados": [
+        {
+          "campo": "turnover_implicito_xh",
+          "formula": "{min: vazao_nominal_lh / volume_atendido_declarado_L.max, max: vazao_nominal_lh / volume_atendido_declarado_L.min}",
+          "unidade": "renovacoes/h",
+          "observacao": "O turnover que o proprio fabricante considera suficiente. E o eixo editorial da C3: os valores encontrados vao de 1,8 (Eheim classic 250) a 10 (Atman AT-3338S no volume minimo), contra as 5 a 10 x/h das regras de bolso brasileiras."
+        },
+        {
+          "campo": "eficiencia_lh_por_w",
+          "formula": "vazao_nominal_lh / potencia_w",
+          "unidade": "L/h por W",
+          "observacao": "Alimenta a comparacao de economia mensal da C7."
+        }
+      ],
+      "minimo_para_sugerir": {
+        "c3-vazao-filtro": [
+          "vazao_nominal_lh",
+          "coluna_maxima_m",
+          "tipo",
+          "volume_atendido_declarado_L",
+          "voltagem"
+        ],
+        "c7-consumo-custo": [
+          "potencia_w",
+          "volume_atendido_declarado_L"
+        ],
+        "c12-midia-filtrante": [
+          "volume_filtragem_L"
+        ]
+      }
+    },
+    "aquecedor": {
+      "arquivo": "dados/produtos-aquecedor.json",
+      "consumida_por": [
+        "c5-aquecedor-delta",
+        "c7-consumo-custo"
+      ],
+      "campos": [
+        {
+          "campo": "potencia_w",
+          "tipo": "numero",
+          "obrigatorio": true,
+          "unidade": "W",
+          "origem": "fabricante (preferencial)"
+        },
+        {
+          "campo": "tipo",
+          "tipo": "string",
+          "obrigatorio": true,
+          "vocabulario": [
+            "resistencia-vidro",
+            "quartzo",
+            "titanio",
+            "cabo",
+            "externo-em-linha"
+          ],
+          "origem": "fabricante ou varejo"
+        },
+        {
+          "campo": "termostato",
+          "tipo": "string",
+          "obrigatorio": true,
+          "vocabulario": [
+            "interno-analogico",
+            "interno-digital",
+            "externo",
+            "nenhum"
+          ],
+          "origem": "fabricante ou varejo"
+        },
+        {
+          "campo": "faixa_ajuste_C",
+          "tipo": "objeto {min, max}|null",
+          "obrigatorio": true,
+          "unidade": "C",
+          "origem": "fabricante"
+        },
+        {
+          "campo": "precisao_C",
+          "tipo": "numero|null",
+          "obrigatorio": false,
+          "unidade": "C",
+          "origem": "fabricante"
+        },
+        {
+          "campo": "comprimento_cm",
+          "tipo": "numero|null",
+          "obrigatorio": false,
+          "unidade": "cm",
+          "origem": "fabricante ou varejo",
+          "observacao": "Decide se cabe no aquario baixo; o varejo quase nunca publica."
+        },
+        {
+          "campo": "submersivel",
+          "tipo": "booleano|null",
+          "obrigatorio": false,
+          "origem": "fabricante"
+        },
+        {
+          "campo": "protecao_funcionamento_a_seco",
+          "tipo": "booleano|null",
+          "obrigatorio": false,
+          "origem": "fabricante",
+          "observacao": "Item de seguranca; nunca preencher por inferencia."
+        }
+      ],
+      "derivados": [
+        {
+          "campo": "w_por_L_declarado",
+          "formula": "{min: potencia_w / volume_atendido_declarado_L.max, max: potencia_w / volume_atendido_declarado_L.min}",
+          "unidade": "W/L",
+          "observacao": "Expoe a largura da faixa do fabricante. O Eheim Jager de 200 W declarado para 30 a 400 L da de 0,5 a 6,7 W/L: serve para escolher potencia comercial, nunca para dimensionar."
+        },
+        {
+          "campo": "largura_faixa_x",
+          "formula": "volume_atendido_declarado_L.max / volume_atendido_declarado_L.min",
+          "unidade": "x",
+          "observacao": "Quantas vezes o teto e maior que o piso da faixa declarada. Acima de 3x, a declaracao nao dimensiona nada e a tela precisa dizer isso."
+        }
+      ],
+      "minimo_para_sugerir": {
+        "c5-aquecedor-delta": [
+          "potencia_w",
+          "volume_atendido_declarado_L",
+          "faixa_ajuste_C",
+          "voltagem"
+        ],
+        "c7-consumo-custo": [
+          "potencia_w"
+        ]
+      }
+    },
+    "iluminacao": {
+      "arquivo": "dados/produtos-iluminacao.json",
+      "consumida_por": [
+        "c15-iluminacao",
+        "c7-consumo-custo"
+      ],
+      "campos": [
+        {
+          "campo": "tipo",
+          "tipo": "string",
+          "obrigatorio": true,
+          "vocabulario": [
+            "led-barra",
+            "led-calha",
+            "led-tampa",
+            "led-pendente",
+            "refletor",
+            "fluorescente"
+          ],
+          "origem": "fabricante ou varejo"
+        },
+        {
+          "campo": "potencia_w",
+          "tipo": "numero",
+          "obrigatorio": true,
+          "unidade": "W",
+          "origem": "fabricante ou varejo"
+        },
+        {
+          "campo": "fluxo_lm",
+          "tipo": "numero|null",
+          "obrigatorio": true,
+          "unidade": "lm",
+          "origem": "fabricante (preferencial)",
+          "observacao": "O varejo brasileiro quase nunca publica lumen: e a maior lacuna desta entidade. Sem ele a C15 nao sugere o produto, porque a formula da C15 e lm/L."
+        },
+        {
+          "campo": "temperatura_cor_k",
+          "tipo": "numero|objeto {min,max}|null",
+          "obrigatorio": false,
+          "unidade": "K",
+          "origem": "fabricante ou varejo"
+        },
+        {
+          "campo": "espectro",
+          "tipo": "string|null",
+          "obrigatorio": false,
+          "vocabulario": [
+            "branco",
+            "branco-azul",
+            "rgb",
+            "wrgb",
+            "full-spectrum"
+          ],
+          "origem": "fabricante"
+        },
+        {
+          "campo": "ppfd_declarado",
+          "tipo": "numero|null",
+          "obrigatorio": false,
+          "unidade": "umol/m2/s",
+          "origem": "fabricante",
+          "observacao": "SEM ppfd_distancia_cm o valor e inutil e nao pode ser gravado: o validador rejeita um sem o outro."
+        },
+        {
+          "campo": "ppfd_distancia_cm",
+          "tipo": "numero|null",
+          "obrigatorio": false,
+          "unidade": "cm",
+          "origem": "fabricante"
+        },
+        {
+          "campo": "comprimento_luminaria_cm",
+          "tipo": "numero|null",
+          "obrigatorio": true,
+          "unidade": "cm",
+          "origem": "fabricante ou varejo",
+          "observacao": "Tamanho fisico da peca. NAO confundir com o comprimento de aquario atendido. O varejo brasileiro nomeia a luminaria pelo proprio tamanho ('LED 60 cm'), quase nunca pelo aquario que cobre: por isso este campo, e nao comprimento_aquario_cm, e o que a C15 tem para trabalhar na maioria dos registros."
+        },
+        {
+          "campo": "comprimento_aquario_cm",
+          "tipo": "objeto {min, max}|null",
+          "obrigatorio": false,
+          "unidade": "cm",
+          "origem": "fabricante ou varejo",
+          "observacao": "Faixa de aquario que a luminaria cobre, quando o fabricante ou a loja declara (a Sunsun ADE-400c declara 48 a 65 cm; a maioria nao declara). Quando existe, tem precedencia sobre comprimento_luminaria_cm no criterio da C15."
+        },
+        {
+          "campo": "regulagem",
+          "tipo": "string|null",
+          "obrigatorio": false,
+          "vocabulario": [
+            "nenhuma",
+            "dimmer",
+            "temporizador",
+            "app",
+            "controlador"
+          ],
+          "origem": "fabricante"
+        }
+      ],
+      "derivados": [
+        {
+          "campo": "eficacia_lm_por_w",
+          "formula": "fluxo_lm / potencia_w",
+          "unidade": "lm/W",
+          "observacao": "Permite estimar ordem de grandeza de lumen para produto sem lumen declarado — mas ESTIMATIVA NAO ENTRA NO BANCO: se sair, sai na tela, marcada como estimativa da Aquametria, e nunca como campo do produto."
+        },
+        {
+          "campo": "lm_por_L_declarado",
+          "formula": "fluxo_lm / volume_atendido_declarado_L.max",
+          "unidade": "lm/L",
+          "observacao": "So existe quando o fabricante declara volume atendido, o que e raro em luminaria."
+        }
+      ],
+      "minimo_para_sugerir": {
+        "c15-iluminacao": [
+          "fluxo_lm",
+          "potencia_w",
+          "comprimento_luminaria_cm OU comprimento_aquario_cm",
+          "voltagem"
+        ],
+        "c7-consumo-custo": [
+          "potencia_w"
+        ]
+      },
+      "pendencia_de_criterio": "A C15 precisa de uma convencao editorial declarada para converter comprimento_luminaria_cm em cobertura do aquario (quanto de sombra e aceitavel nas pontas). Ate essa convencao virar constante em dados/constantes-calculadoras.json, com status convencao-editorial e a regra na tela, a C15 so pode sugerir produto que declare comprimento_aquario_cm."
+    },
+    "midia": {
+      "arquivo": "dados/produtos-midia.json",
+      "consumida_por": [
+        "c12-midia-filtrante"
+      ],
+      "campos": [
+        {
+          "campo": "tipo",
+          "tipo": "string",
+          "obrigatorio": true,
+          "vocabulario": [
+            "biologica",
+            "mecanica",
+            "quimica",
+            "mista"
+          ],
+          "origem": "fabricante"
+        },
+        {
+          "campo": "material",
+          "tipo": "string",
+          "obrigatorio": true,
+          "vocabulario": [
+            "ceramica-porosa",
+            "vidro-sinterizado",
+            "silicato-poroso",
+            "argila-expandida",
+            "espuma",
+            "perlon",
+            "carvao-ativado",
+            "zeolita",
+            "resina",
+            "cascalho"
+          ],
+          "origem": "fabricante"
+        },
+        {
+          "campo": "volume_embalagem_L",
+          "tipo": "numero|null",
+          "obrigatorio": true,
+          "unidade": "L",
+          "origem": "fabricante ou varejo",
+          "observacao": "Midia se compra por volume; peso sem volume nao dimensiona cesto."
+        },
+        {
+          "campo": "peso_g",
+          "tipo": "numero|null",
+          "obrigatorio": false,
+          "unidade": "g",
+          "origem": "fabricante ou varejo"
+        },
+        {
+          "campo": "area_superficial_m2_por_L",
+          "tipo": "numero|null",
+          "obrigatorio": false,
+          "unidade": "m2/L",
+          "origem": "fabricante",
+          "observacao": "Numero de marketing na maioria das marcas: entra com atribuicao e NUNCA compara marcas diferentes sem dizer que o metodo de medicao nao e o mesmo."
+        },
+        {
+          "campo": "dosagem_declarada",
+          "tipo": "objeto {volume_midia_mL, por_volume_agua_L}|null",
+          "obrigatorio": true,
+          "origem": "fabricante",
+          "observacao": "A ancora que a C12 usa. E o vacuo n. 1 do Bloco 1: nenhuma fonte brasileira publica mL de midia por litro."
+        },
+        {
+          "campo": "granulometria_mm",
+          "tipo": "numero|objeto {min,max}|null",
+          "obrigatorio": false,
+          "unidade": "mm",
+          "origem": "fabricante"
+        },
+        {
+          "campo": "regeneravel",
+          "tipo": "booleano|null",
+          "obrigatorio": false,
+          "origem": "fabricante"
+        },
+        {
+          "campo": "vida_util_declarada_meses",
+          "tipo": "numero|objeto {min,max}|null",
+          "obrigatorio": false,
+          "unidade": "meses",
+          "origem": "fabricante",
+          "observacao": "Midia quimica tem validade curta (carvao 15 a 30 dias, pelo corpus); biologica costuma ser permanente."
+        },
+        {
+          "campo": "posicao_no_fluxo",
+          "tipo": "string|null",
+          "obrigatorio": false,
+          "vocabulario": [
+            "pre-filtragem",
+            "mecanica-grossa",
+            "mecanica-fina",
+            "biologica",
+            "quimica",
+            "polimento"
+          ],
+          "origem": "editorial",
+          "observacao": "Classificacao da Aquametria a partir de tipo e material, para publicar a ordem das midias no canister na C12. NAO e dado do fabricante e por isso nao exige fonte propria."
+        }
+      ],
+      "derivados": [
+        {
+          "campo": "dosagem_mL_por_L",
+          "formula": "dosagem_declarada.volume_midia_mL / dosagem_declarada.por_volume_agua_L",
+          "unidade": "mL/L"
+        },
+        {
+          "campo": "embalagens_necessarias",
+          "formula": "ceil((dosagem_mL_por_L * aquario.volumes.real_L) / (volume_embalagem_L * 1000))",
+          "unidade": "unidades",
+          "observacao": "Calculado no momento da resposta, com o volume do visitante. E a comparacao de custo por litro tratado que nenhum varejo brasileiro publica."
+        },
+        {
+          "campo": "densidade_aparente_g_por_L",
+          "formula": "peso_g / volume_embalagem_L",
+          "unidade": "g/L"
+        }
+      ],
+      "minimo_para_sugerir": {
+        "c12-midia-filtrante": [
+          "volume_embalagem_L",
+          "tipo",
+          "dosagem_declarada OU area_superficial_m2_por_L"
+        ]
+      }
+    }
+  },
+  "cotacao": {
+    "arquivo": "dados/produtos-cotacoes.json",
+    "descricao": "Preco e serie temporal, nao atributo. Um preco sem data e sem loja e lixo: perde validade em semanas e nao e reprodutivel. Por isso preco NAO e campo de produtos-*.json.",
+    "campos": [
+      {
+        "campo": "produto_id",
+        "tipo": "string",
+        "obrigatorio": true,
+        "observacao": "Precisa existir em algum produtos-*.json."
+      },
+      {
+        "campo": "loja",
+        "tipo": "string",
+        "obrigatorio": true
+      },
+      {
+        "campo": "tipo_loja",
+        "tipo": "string",
+        "obrigatorio": true,
+        "vocabulario": [
+          "fabricante",
+          "varejo-especializado",
+          "petshop-grande",
+          "marketplace"
+        ]
+      },
+      {
+        "campo": "url",
+        "tipo": "string",
+        "obrigatorio": true
+      },
+      {
+        "campo": "preco_brl",
+        "tipo": "numero",
+        "obrigatorio": true,
+        "unidade": "BRL"
+      },
+      {
+        "campo": "cotado_em",
+        "tipo": "data ISO",
+        "obrigatorio": true,
+        "observacao": "Data em que a Aquametria VIU o preco. Sem ela a cotacao nao entra."
+      },
+      {
+        "campo": "condicao",
+        "tipo": "string",
+        "obrigatorio": true,
+        "vocabulario": [
+          "novo",
+          "usado",
+          "recondicionado"
+        ]
+      },
+      {
+        "campo": "disponivel",
+        "tipo": "booleano",
+        "obrigatorio": true
+      },
+      {
+        "campo": "frete_incluso",
+        "tipo": "booleano|null",
+        "obrigatorio": false
+      },
+      {
+        "campo": "voltagem",
+        "tipo": "string|null",
+        "obrigatorio": false,
+        "observacao": "A mesma peca custa diferente em 110 e 220; sem isso a comparacao mente."
+      },
+      {
+        "campo": "link_afiliado",
+        "tipo": "string|null",
+        "obrigatorio": false,
+        "observacao": "Preenchido so no desembarque. Nunca substitui a url de origem: a procedencia do preco tem de continuar auditavel."
+      }
+    ],
+    "regras": [
+      "preco_referencia de um produto e uma VIEW: mediana das cotacoes novas e disponiveis dos ultimos 30 dias, com n e data na tela. Sem cotacao no periodo, e null e a tela diz 'sem cotacao recente'.",
+      "Preco NUNCA entra em criterio tecnico de sugestao. A ordenacao e por adequacao tecnica; o preco e coluna, nao filtro.",
+      "Cotacao de marketplace de terceiro (nivel 6) serve para preco e para nomenclatura; jamais para especificacao.",
+      "Sem cotacao coletada no dia, o campo nao existe. Nao se copia preco de resultado de busca sem data de leitura."
+    ],
+    "registros_hoje": 0,
+    "por_que_zero": "Coletar preco exige ler a pagina da loja no dia. O egresso da nuvem barra dominios de varejo, e preco visto em resultado de busca nao tem data de leitura confiavel. A entidade fica modelada e vazia ate a coleta ter como ser feita direito."
+  },
+  "validacoes": [
+    {
+      "id": "V1",
+      "regra": "id unico em todo o banco, kebab-case, sem acento.",
+      "severidade": "erro"
+    },
+    {
+      "id": "V2",
+      "regra": "Todo campo tecnico preenchido (nao null) aparece no array campos[] de pelo menos uma fonte. Campo de origem 'editorial' fica de fora: e classificacao da Aquametria, nao dado de terceiro.",
+      "severidade": "erro"
+    },
+    {
+      "id": "V3",
+      "regra": "volume_atendido_declarado_L.min <= max; vazao_nominal_lh > 0; potencia_w > 0; faixa_ajuste_C.min < max.",
+      "severidade": "erro"
+    },
+    {
+      "id": "V4",
+      "regra": "Nenhum campo derivado esta gravado no arquivo de produto.",
+      "severidade": "erro"
+    },
+    {
+      "id": "V5",
+      "regra": "ppfd_declarado e ppfd_distancia_cm sao preenchidos juntos ou nenhum dos dois.",
+      "severidade": "erro"
+    },
+    {
+      "id": "V6",
+      "regra": "Fonte de nivel 6 (marketplace-anuncio) nao sustenta campo tecnico — so nomes_alternativos, gtin e disponibilidade_br.",
+      "severidade": "erro"
+    },
+    {
+      "id": "V7",
+      "regra": "Nenhum campo de preco dentro de produtos-*.json.",
+      "severidade": "erro"
+    },
+    {
+      "id": "V8",
+      "regra": "status_registro 'completo' exige todos os campos obrigatorios da entidade preenchidos.",
+      "severidade": "erro"
+    },
+    {
+      "id": "V9",
+      "regra": "verificado_em nao esta no futuro; acima de 180 dias o registro deve estar como 'revalidar'.",
+      "severidade": "aviso"
+    },
+    {
+      "id": "V10",
+      "regra": "Plausibilidade de filtro: eficiencia_lh_por_w acima de 120 L/h por W e implausivel e pede reconferencia.",
+      "severidade": "aviso"
+    },
+    {
+      "id": "V11",
+      "regra": "Plausibilidade de aquecedor: largura_faixa_x acima de 3 obriga a tela a dizer que a declaracao nao dimensiona.",
+      "severidade": "aviso"
+    },
+    {
+      "id": "V12",
+      "regra": "Registro com conflitos[] nao vazio tem status_registro 'conflito'.",
+      "severidade": "erro"
+    },
+    {
+      "id": "V13",
+      "regra": "Registro de iluminacao com fluxo_lm preenchido e sem comprimento_luminaria_cm nem comprimento_aquario_cm nao tem como ser sugerido pela C15. E aviso, nao erro: o registro incompleto continua valendo como ficha.",
+      "severidade": "aviso"
+    },
+    {
+      "id": "V14",
+      "regra": "Registro marcado 'parcial' sem nenhum campo obrigatorio faltante: ou o status esta errado, ou o motivo real precisa estar na observacao.",
+      "severidade": "aviso"
+    }
+  ]
+}

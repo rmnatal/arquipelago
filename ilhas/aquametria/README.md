@@ -20,6 +20,7 @@ errado — traga para ca primeiro.
 | `conteudo/` | Artigos-ancora, paginas e paginas programaticas, em Markdown |
 | `dados/` | Banco normalizado de produtos e constantes tecnicas, em JSON/CSV |
 | `manifest.json` | Indice que o snippet Sync consome |
+| `ferramentas/` | Scripts do repositorio (validacao do banco). NUNCA vao para o site |
 
 ## Contrato do manifest
 
@@ -38,3 +39,20 @@ Ao alterar qualquer item, incremente `revisao` e atualize `atualizado_em`.
 Nenhuma constante, especificacao ou preco entra sem fonte do fabricante e
 data de verificacao. Isso vale para `dados/` e para toda tabela em
 `conteudo/`.
+
+No banco de produtos a procedencia e por CAMPO, nao por registro: cada
+produto lista em `fontes[]` quem sustenta cada campo, com url, data e nivel
+de confianca. O modelo completo esta em `dados/modelo-banco-produtos.md` e o
+contrato formal em `dados/esquema-produtos.json`.
+
+## Antes de commitar mudanca no banco de produtos
+
+```
+cd ilhas/aquametria && python3 ferramentas/validar-produtos.py
+```
+
+Sai 0 sem erro, 1 com erro. O script confere as regras V1 a V14 do esquema
+(campo sem fonte, derivado gravado a mao, preco dentro do arquivo de produto,
+conflito sem status, PPFD sem distancia, status incoerente) e imprime quais
+produtos cada calculadora consegue sugerir. Avisos nao reprovam: viram tarefa
+de coleta.

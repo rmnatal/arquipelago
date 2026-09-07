@@ -1,0 +1,138 @@
+{
+  "id": "produtos-midia",
+  "entidade": "midia",
+  "esquema": "dados/esquema-produtos.json",
+  "descricao": "Semente do banco de midias filtrantes. Dois registros: as duas referencias mundiais de midia biologica, que sao tambem as unicas ancoras de mL de midia por litro de agua com fonte de fabricante que o projeto tem. E o vacuo n. 1 do Bloco 1.",
+  "gerado_em": "2026-09-07",
+  "bloco": 3,
+  "publicar": false,
+  "produtos": [
+    {
+      "id": "seachem-matrix-1l",
+      "entidade": "midia",
+      "marca": "Seachem",
+      "linha": "Matrix",
+      "modelo": "Matrix 1 L",
+      "variante": "1 L",
+      "nomes_alternativos": [
+        "Seachem Matrix 1 litro",
+        "Matrix Bio-Media 1L"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": null,
+      "tipo": "biologica",
+      "material": "silicato-poroso",
+      "volume_embalagem_L": 1.0,
+      "peso_g": null,
+      "area_superficial_m2_por_L": 700,
+      "dosagem_declarada": {
+        "volume_midia_mL": 250,
+        "por_volume_agua_L": 200
+      },
+      "granulometria_mm": 10,
+      "regeneravel": null,
+      "vida_util_declarada_meses": null,
+      "posicao_no_fluxo": "biologica",
+      "volume_atendido_declarado_L": {
+        "min": null,
+        "max": 200
+      },
+      "fontes": [
+        {
+          "origem": "fabricante-via-busca",
+          "status": "fabricante-via-busca",
+          "referencia": "Seachem, pagina do Matrix (mais de 700 m2 de area por litro; particula de cerca de 10 mm; use 250 mL de Matrix para cada 200 L de agua); mesma coleta que gerou a constante seachem-matrix-dosagem do Bloco 2",
+          "url": "https://www.seachem.com/matrix.php",
+          "verificado_em": "2026-09-07",
+          "campos": [
+            "area_superficial_m2_por_L",
+            "granulometria_mm",
+            "dosagem_declarada",
+            "volume_atendido_declarado_L",
+            "tipo",
+            "material",
+            "volume_embalagem_L"
+          ],
+          "observacao": "seachem.com esta bloqueado pelo egresso da nuvem (EGRESS_BLOCKED em 07/09/2026): numeros atribuidos ao fabricante, colhidos por busca. A leitura de 250 mL/200 L foi reconfirmada em nova busca hoje; a leitura conflitante de 1 L/100 gal nao reapareceu, mas continua registrada. regeneravel ficou null: a copy sustenta que a midia e inerte e nao se degrada, o que nao e o mesmo que declarar lavagem ou regeneracao."
+        }
+      ],
+      "conflitos": [
+        {
+          "campo": "dosagem_declarada",
+          "valores": [
+            {
+              "valor": {
+                "volume_midia_mL": 250,
+                "por_volume_agua_L": 200
+              },
+              "referencia": "Seachem, copy do produto (1,25 mL de midia por litro de agua)",
+              "url": "https://www.seachem.com/matrix.php",
+              "origem": "fabricante-via-busca"
+            },
+            {
+              "valor": {
+                "volume_midia_mL": 1000,
+                "por_volume_agua_L": 378.5
+              },
+              "referencia": "Seachem, copy do produto em outra leitura (1 L para 100 galoes americanos = 2,6 mL por litro)",
+              "url": "https://www.seachem.com/matrix.php",
+              "origem": "fabricante-via-busca"
+            }
+          ],
+          "razao": "2,1 vezes de diferenca dentro da propria comunicacao do fabricante",
+          "tratamento": "publicar-os-dois"
+        }
+      ],
+      "verificado_em": "2026-09-07",
+      "status_registro": "conflito",
+      "observacao": "Ancora principal da C12 e a primeira publicacao brasileira de mL de midia por litro com fonte de fabricante. O conflito e do proprio fabricante consigo mesmo, entao a C12 publica as duas leituras com atribuicao. Compare com o cesto do Eheim classic 250 (3,0 L de midia para 250 L = 12 mL/L): a diferenca entre a dosagem da marca de midia e o cesto do fabricante de filtro chega a uma ordem de grandeza, e ninguem no Brasil discute isso."
+    },
+    {
+      "id": "eheim-substrat-pro-1l",
+      "entidade": "midia",
+      "marca": "Eheim",
+      "linha": "SUBSTRAT pro",
+      "modelo": "SUBSTRAT pro 1 L",
+      "variante": "1 L",
+      "nomes_alternativos": [
+        "Eheim Substrat Pro",
+        "Ehfisubstrat pro"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": null,
+      "tipo": "biologica",
+      "material": "vidro-sinterizado",
+      "volume_embalagem_L": 1.0,
+      "peso_g": null,
+      "area_superficial_m2_por_L": 450,
+      "dosagem_declarada": null,
+      "granulometria_mm": null,
+      "regeneravel": null,
+      "vida_util_declarada_meses": null,
+      "posicao_no_fluxo": "biologica",
+      "volume_atendido_declarado_L": null,
+      "fontes": [
+        {
+          "origem": "fabricante-via-busca",
+          "status": "fabricante-via-busca",
+          "referencia": "Eheim, SUBSTRAT pro (vidro sinterizado em esferas, cerca de 450 m2 de area por litro); midia de fabrica do classic 250 (2213)",
+          "url": "https://eheim.com/en_GB/products/filter-media/biological/substrat",
+          "verificado_em": "2026-09-07",
+          "campos": [
+            "area_superficial_m2_por_L",
+            "tipo",
+            "material",
+            "volume_embalagem_L"
+          ],
+          "observacao": "Pagina do fabricante nao lida direto. O numero de area de midia biologica e um dos mais usados como marketing no setor: sem metodo de medicao declarado, NAO comparar marcas na tela sem dizer que os metodos podem ser diferentes. regeneravel ficou null: fontes de varejo descrevem a midia como lavavel e reutilizavel, mas a declaracao nao foi confirmada no fabricante."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-07",
+      "status_registro": "parcial",
+      "observacao": "Sem dosagem declarada e sem volume atendido, so entra na C12 pelo caminho da area superficial. Fica como o contraponto do Matrix: 450 contra mais de 700 m2/L, medidos por metodos que nenhum dos dois fabricantes publica."
+    }
+  ]
+}

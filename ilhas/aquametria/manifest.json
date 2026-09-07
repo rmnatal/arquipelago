@@ -4,7 +4,7 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 1,
+  "revisao": 2,
   "atualizado_em": "2026-09-07",
   "estado": "fundacao",
   "desembarque": {
@@ -48,6 +48,90 @@
       "publicar": false,
       "sha256": "e6fc0a6c91d67bc04c7f9ea27f6459297915f6609dfe30c9cb2041ca4db30f82",
       "descricao": "Registro normalizado de toda constante usada ou recusada pelas calculadoras, com fonte, url, data e status (fisica, verificada-fabricante, fabricante-via-busca, norma-via-secundaria, transcrita-varejo, divergente-fontes-br, convencao-editorial, pendente). Constante com status pendente e proibida em formula publicada."
+    },
+    {
+      "id": "modelo-banco-produtos",
+      "arquivo": "dados/modelo-banco-produtos.md",
+      "formato": "md",
+      "entidade": "esquema",
+      "fonte": "Bloco 3 da Fundacao: modelo derivado dos campos que a especificacao das calculadoras (Bloco 2) exige de cada produto, testado contra 15 registros de semente colhidos em fabricante (Eheim, Seachem/Sicce, SunSun) e em varejo BR especializado (Aquaricamp, AquaSN, Mega Aquarios, Petlove, Pro-Aquarista, Aquarios do Rio, Aquario Projetado, Aquarius Hobby) em 07/09/2026",
+      "verificado_em": "2026-09-07",
+      "registros": 5,
+      "publicar": false,
+      "sha256": "58902b0e51f82826eb039dd3aeef878f955a4f4dec5484b6e3fe594486b8e722",
+      "descricao": "Modelo do banco de produtos: entidades filtro, aquecedor, iluminacao, midia e cotacao, com campos, unidades, obrigatoriedade, a escada de 6 niveis de fonte, o tratamento de conflito, a politica de preco como serie temporal, as regras V1 a V14 e os 6 achados que a semente de 15 produtos revelou."
+    },
+    {
+      "id": "esquema-produtos",
+      "arquivo": "dados/esquema-produtos.json",
+      "formato": "json",
+      "entidade": "esquema",
+      "fonte": "derivado de dados/especificacao-calculadoras.md; a origem esperada de cada campo esta no proprio esquema",
+      "verificado_em": "2026-09-07",
+      "registros": 5,
+      "publicar": false,
+      "sha256": "d13f1ec3736eeb98e65ebaf1a3527510c58890f24c88ea8746857dffd74decfb",
+      "descricao": "Contrato formal do banco de produtos: campos, tipos, unidades, vocabularios controlados, origem esperada por campo, campos derivados (nunca gravados), minimo_para_sugerir por calculadora e as 14 regras de validacao. E o arquivo que ferramentas/validar-produtos.py executa."
+    },
+    {
+      "id": "produtos-filtro",
+      "arquivo": "dados/produtos-filtro.json",
+      "formato": "json",
+      "entidade": "filtro",
+      "fonte": "ver fontes[] de cada registro: Eheim e SunSun (fabricante-via-busca), Seachem/Sicce (manual via busca, PDF bloqueado pelo egresso), Aquaricamp e AquaSN (varejo BR)",
+      "verificado_em": "2026-09-07",
+      "registros": 5,
+      "publicar": false,
+      "sha256": "77f1155c7b8df570dc4e25cc2e7605e744e4ccc59a8f53c2aa3716fcbe40476c",
+      "descricao": "Semente de filtros: Eheim classic 250 (2213), SunSun HW-303B, Atman AT-3338, Atman AT-3338S e Seachem Tidal 55. Turnover implicito declarado pelos proprios fabricantes vai de 1,76 a 10,0 renovacoes/h."
+    },
+    {
+      "id": "produtos-aquecedor",
+      "arquivo": "dados/produtos-aquecedor.json",
+      "formato": "json",
+      "entidade": "aquecedor",
+      "fonte": "ver fontes[] de cada registro: Eheim (fabricante-via-busca); Mega Aquarios, RS Discus e Petlove (varejo BR)",
+      "verificado_em": "2026-09-07",
+      "registros": 4,
+      "publicar": false,
+      "sha256": "06e6f8dd9ae11c19ecbf571b7b374272c29441d0a1312fbce48ec1ae8f2c9f21",
+      "descricao": "Semente de aquecedores: Eheim Jager 200 W e a linha Roxin HT-1300/Q3 (100, 200 e 300 W). Registra o conflito varejo-contra-varejo da faixa de ajuste (22-34 C x 16-32 C), que deixou o campo null nos tres Roxin."
+    },
+    {
+      "id": "produtos-iluminacao",
+      "arquivo": "dados/produtos-iluminacao.json",
+      "formato": "json",
+      "entidade": "iluminacao",
+      "fonte": "ver fontes[] de cada registro: Pro-Aquarista, Aquarios do Rio, Aquario Projetado e Aquarius Hobby (varejo BR)",
+      "verificado_em": "2026-09-07",
+      "registros": 4,
+      "publicar": false,
+      "sha256": "dc67d1910b7cebbc3e1ee9e1391a020736c1c5fcbb545a51e79d7540dfdeade8",
+      "descricao": "Semente de iluminacao: Ista IL-401 60 cm, LED 60 cm sem marca declarada, X1-FR 60 W e SunSun ADE-400c. Tres das quatro declaram lumen; nenhuma declara voltagem, e por isso a C15 nao consegue sugerir nenhuma hoje."
+    },
+    {
+      "id": "produtos-midia",
+      "arquivo": "dados/produtos-midia.json",
+      "formato": "json",
+      "entidade": "midia",
+      "fonte": "ver fontes[] de cada registro: Seachem e Eheim (fabricante-via-busca; seachem.com bloqueado pelo egresso)",
+      "verificado_em": "2026-09-07",
+      "registros": 2,
+      "publicar": false,
+      "sha256": "3b94e2586b06d478305c575a094ea2e21e371fefb92b59f45189809a8bd553d6",
+      "descricao": "Semente de midia filtrante: Seachem Matrix 1 L e Eheim SUBSTRAT pro 1 L. Guarda o conflito de dosagem do proprio Seachem (1,25 x 2,6 mL de midia por litro de agua) e as duas areas superficiais declaradas sem metodo publicado (>700 e ~450 m2/L)."
+    },
+    {
+      "id": "produtos-cotacoes",
+      "arquivo": "dados/produtos-cotacoes.json",
+      "formato": "json",
+      "entidade": "cotacao",
+      "fonte": "nenhuma: cotacao exige leitura da pagina da loja no dia, e o egresso da nuvem barra dominios de varejo",
+      "verificado_em": "2026-09-07",
+      "registros": 0,
+      "publicar": false,
+      "sha256": "d832bc403a1b6bd8e0306283902a7a33a452cfe1c85465b5025071273328092c",
+      "descricao": "Precos observados, por produto, por loja e por data. Vazio de proposito: preco sem data de leitura seria numero inventado com aparencia de dado. preco_referencia e view desta serie e nunca entra em criterio tecnico de sugestao."
     }
   ],
   "esquema": {
@@ -76,13 +160,25 @@
       "id": "identificador estavel, kebab-case",
       "arquivo": "caminho relativo a esta pasta, em dados/",
       "formato": "json | csv | md",
-      "entidade": "filtro | aquecedor | iluminacao | midia | especie | constante",
+      "entidade": "filtro | aquecedor | iluminacao | midia | especie | constante | cotacao | esquema",
       "fonte": "de onde vem cada campo (manual do fabricante, norma, etc.)",
       "verificado_em": "data da ultima conferencia",
       "registros": "quantidade de linhas",
       "publicar": "false ate o Raphael aprovar o desembarque",
       "sha256": "hash do arquivo, conferido pelo Sync apos gravar",
       "descricao": "o que o arquivo contem"
+    },
+    "ferramentas": {
+      "id": "identificador estavel, kebab-case",
+      "arquivo": "caminho relativo a esta pasta, em ferramentas/",
+      "descricao": "o que a ferramenta faz e quando roda. Ferramenta NUNCA e publicada no site."
     }
-  }
+  },
+  "ferramentas": [
+    {
+      "id": "validar-produtos",
+      "arquivo": "ferramentas/validar-produtos.py",
+      "descricao": "Valida o banco de produtos contra dados/esquema-produtos.json (regras V1 a V14) e imprime os campos derivados e quais produtos cada calculadora consegue sugerir. Rodar antes de todo commit que toque dados/produtos-*.json. Nao vai para o WordPress: e ferramenta do repositorio, por isso fica fora das listas que o Sync consome."
+    }
+  ]
 }

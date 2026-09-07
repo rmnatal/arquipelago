@@ -1,0 +1,286 @@
+{
+  "id": "produtos-aquecedor",
+  "entidade": "aquecedor",
+  "esquema": "dados/esquema-produtos.json",
+  "descricao": "Semente do banco de aquecedores. Quatro registros escolhidos para testar o modelo: a linha importada de referencia (Eheim Jager) e a linha popular brasileira (Roxin HT-1300/Q3), que juntas expoem a incoerencia do dimensionamento declarado.",
+  "gerado_em": "2026-09-07",
+  "bloco": 3,
+  "publicar": false,
+  "produtos": [
+    {
+      "id": "eheim-jager-200w",
+      "entidade": "aquecedor",
+      "marca": "Eheim",
+      "linha": "Jager",
+      "modelo": "Jager 200 W",
+      "variante": "200 W",
+      "nomes_alternativos": [
+        "Eheim Jager 200w",
+        "Termostato Eheim Jager 200W"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": null,
+      "potencia_w": 200,
+      "tipo": "resistencia-vidro",
+      "termostato": "interno-analogico",
+      "faixa_ajuste_C": {
+        "min": 18,
+        "max": 34
+      },
+      "precisao_C": 0.5,
+      "comprimento_cm": null,
+      "submersivel": true,
+      "protecao_funcionamento_a_seco": null,
+      "volume_atendido_declarado_L": {
+        "min": 30,
+        "max": 400
+      },
+      "fontes": [
+        {
+          "origem": "fabricante-via-busca",
+          "status": "fabricante-via-busca",
+          "referencia": "Eheim, linha Jager (25 a 300 W, 9 tamanhos, 20 a 1000 L; ajuste 18 a 34 C com precisao de 0,5 C); mesma coleta que gerou a constante eheim-jager-dimensionamento do Bloco 2",
+          "url": "https://eheim.com/en_GB/products/technology/heating/thermocontrol/jager",
+          "verificado_em": "2026-09-07",
+          "campos": [
+            "potencia_w",
+            "volume_atendido_declarado_L",
+            "faixa_ajuste_C",
+            "precisao_C",
+            "tipo",
+            "termostato",
+            "submersivel"
+          ],
+          "observacao": "Pagina do fabricante nao lida direto (egresso bloqueado). Reconfirmar no manual."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-07",
+      "status_registro": "completo",
+      "observacao": "O registro que ancora a C5: 200 W declarados para 30 a 400 L e uma faixa de 13,3 vezes, ou de 0,5 a 6,7 W/L. Serve para escolher potencia comercial, nunca para dimensionar. Ficha completa, mas sem voltagem nao entra na sugestao da C5: aquecedor na voltagem errada queima."
+    },
+    {
+      "id": "roxin-ht-1300-q3-100w",
+      "entidade": "aquecedor",
+      "marca": "Roxin",
+      "linha": "HT-1300/Q3",
+      "modelo": "HT-1300 100 W",
+      "variante": "100 W",
+      "nomes_alternativos": [
+        "Roxin Q3 100W",
+        "Termostato Roxin HT-1300 100w"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": null,
+      "potencia_w": 100,
+      "tipo": "quartzo",
+      "termostato": "interno-analogico",
+      "faixa_ajuste_C": null,
+      "precisao_C": null,
+      "comprimento_cm": null,
+      "submersivel": true,
+      "protecao_funcionamento_a_seco": null,
+      "volume_atendido_declarado_L": {
+        "min": 50,
+        "max": 150
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Mega Aquarios e RS Discus (varejo BR especializado), fichas do HT-1300/Q3 100 W",
+          "url": "https://www.megaaquarios.com.br/termostato-aquecedor-roxin-q3-100w-termometro-aquario.html",
+          "verificado_em": "2026-09-07",
+          "campos": [
+            "potencia_w",
+            "volume_atendido_declarado_L",
+            "tipo",
+            "termostato",
+            "submersivel"
+          ],
+          "observacao": "Ficha de varejo, tubo de quartzo com resistencia em aco inox. Confira a embalagem."
+        }
+      ],
+      "conflitos": [
+        {
+          "campo": "faixa_ajuste_C",
+          "valores": [
+            {
+              "valor": {
+                "min": 22,
+                "max": 34
+              },
+              "referencia": "fichas de varejo BR da linha HT-1300/Q3",
+              "url": "https://www.rsdiscus.com.br/temperatura/termostatos/roxin-termostato-ht-1300q3-100w-p-aquario-de-100-lts-220v",
+              "origem": "varejo"
+            },
+            {
+              "valor": {
+                "min": 16,
+                "max": 32
+              },
+              "referencia": "outras fichas de varejo BR da mesma linha",
+              "url": "https://www.petlove.com.br/termostato-com-aquecedor-roxin-ht-1300-25w/p",
+              "origem": "varejo"
+            }
+          ],
+          "razao": "os dois extremos discordam: 6 C no piso e 2 C no teto",
+          "tratamento": "campo-vira-null"
+        }
+      ],
+      "verificado_em": "2026-09-07",
+      "status_registro": "conflito",
+      "observacao": "Duas fontes do MESMO nivel (varejo) publicam faixas de ajuste diferentes para a mesma linha, entao nenhuma vence e o campo fica null ate a embalagem ser conferida. E o comportamento que o modelo exige: sem media, sem escolha arbitraria."
+    },
+    {
+      "id": "roxin-ht-1300-q3-200w",
+      "entidade": "aquecedor",
+      "marca": "Roxin",
+      "linha": "HT-1300/Q3",
+      "modelo": "HT-1300 200 W",
+      "variante": "200 W",
+      "nomes_alternativos": [
+        "Roxin Q3 200W",
+        "Termostato Roxin HT-1300 200w"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": null,
+      "potencia_w": 200,
+      "tipo": "quartzo",
+      "termostato": "interno-analogico",
+      "faixa_ajuste_C": null,
+      "precisao_C": null,
+      "comprimento_cm": null,
+      "submersivel": true,
+      "protecao_funcionamento_a_seco": null,
+      "volume_atendido_declarado_L": {
+        "min": null,
+        "max": 200
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Petlove e Fundo do Mar Aquarios (varejo BR), ficha do HT-1300 200 W",
+          "url": "https://www.petlove.com.br/termostato-com-aquecedor-roxin-ht-1300-200w/p",
+          "verificado_em": "2026-09-07",
+          "campos": [
+            "potencia_w",
+            "volume_atendido_declarado_L",
+            "tipo",
+            "termostato",
+            "submersivel"
+          ],
+          "observacao": "Ficha de varejo. Confira a embalagem."
+        }
+      ],
+      "conflitos": [
+        {
+          "campo": "faixa_ajuste_C",
+          "valores": [
+            {
+              "valor": {
+                "min": 22,
+                "max": 34
+              },
+              "referencia": "fichas de varejo BR da linha HT-1300/Q3",
+              "url": "https://www.rsdiscus.com.br/temperatura/termostatos/roxin-termostato-ht-1300q3-100w-p-aquario-de-100-lts-220v",
+              "origem": "varejo"
+            },
+            {
+              "valor": {
+                "min": 16,
+                "max": 32
+              },
+              "referencia": "outras fichas de varejo BR da mesma linha",
+              "url": "https://www.petlove.com.br/termostato-com-aquecedor-roxin-ht-1300-25w/p",
+              "origem": "varejo"
+            }
+          ],
+          "razao": "mesma divergencia da linha inteira",
+          "tratamento": "campo-vira-null"
+        }
+      ],
+      "verificado_em": "2026-09-07",
+      "status_registro": "conflito",
+      "observacao": "200 W para ate 200 L = 1,0 W/L declarado, exatamente a regra de bolso brasileira. Compare com o 100 W (0,67 W/L no teto) e com o 300 W (0,86 W/L no teto): a propria linha nao segue uma regra unica."
+    },
+    {
+      "id": "roxin-ht-1300-q3-300w",
+      "entidade": "aquecedor",
+      "marca": "Roxin",
+      "linha": "HT-1300/Q3",
+      "modelo": "HT-1300 300 W",
+      "variante": "300 W",
+      "nomes_alternativos": [
+        "Roxin Q3 300W",
+        "Termostato Roxin 300w"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": null,
+      "potencia_w": 300,
+      "tipo": "quartzo",
+      "termostato": "interno-analogico",
+      "faixa_ajuste_C": null,
+      "precisao_C": null,
+      "comprimento_cm": null,
+      "submersivel": true,
+      "protecao_funcionamento_a_seco": null,
+      "volume_atendido_declarado_L": {
+        "min": 250,
+        "max": 350
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Mega Aquarios (varejo BR especializado), ficha do Q3 300 W",
+          "url": "https://www.megaaquarios.com.br/termostato-aquecedor-roxin-300w-termometro-aquario.html",
+          "verificado_em": "2026-09-07",
+          "campos": [
+            "potencia_w",
+            "volume_atendido_declarado_L",
+            "tipo",
+            "termostato",
+            "submersivel"
+          ],
+          "observacao": "Ficha de varejo. Confira a embalagem."
+        }
+      ],
+      "conflitos": [
+        {
+          "campo": "faixa_ajuste_C",
+          "valores": [
+            {
+              "valor": {
+                "min": 22,
+                "max": 34
+              },
+              "referencia": "fichas de varejo BR da linha HT-1300/Q3",
+              "url": "https://www.rsdiscus.com.br/temperatura/termostatos/roxin-termostato-ht-1300q3-100w-p-aquario-de-100-lts-220v",
+              "origem": "varejo"
+            },
+            {
+              "valor": {
+                "min": 16,
+                "max": 32
+              },
+              "referencia": "outras fichas de varejo BR da mesma linha",
+              "url": "https://www.petlove.com.br/termostato-com-aquecedor-roxin-ht-1300-25w/p",
+              "origem": "varejo"
+            }
+          ],
+          "razao": "mesma divergencia da linha inteira",
+          "tratamento": "campo-vira-null"
+        }
+      ],
+      "verificado_em": "2026-09-07",
+      "status_registro": "conflito",
+      "observacao": "Fecha a serie da linha popular brasileira: 100 W para 50-150 L, 200 W para ate 200 L, 300 W para 250-350 L. Nenhuma faixa encosta na seguinte de forma continua e a razao W/L varia de 0,67 a 1,2 dentro da mesma linha."
+    }
+  ]
+}

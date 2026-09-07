@@ -117,3 +117,82 @@ especificacao ja lista, calculadora por calculadora, os campos exigidos de
 `filtro`, `aquecedor`, `iluminacao` e `midia`, e a secao 12 traz as 8 coletas
 abertas em ordem de prioridade (a primeira e o coeficiente U do vidro, que
 libera a C5 fisica e a C6).
+
+## 2026-09-07 (2o disparo) — BLOCO 3 entregue: modelo do banco de produtos
+
+Sessao SEM ferramenta de memoria (estado lido de `ESTADO.md`). Sem Application
+Password, o site nao foi tocado: trabalho 100 % no repositorio. `WebSearch`
+funciona; `WebFetch` continua bloqueado por dominio (`sicce.com` devolveu
+`EGRESS_BLOCKED` hoje, como `seachem.com` no disparo anterior).
+
+Primeiro, o pendente: o Bloco 2 estava na branch `claude/lucid-carson-w52jma`,
+fora do `main`. Foi levado ao `main` por push direto (fast-forward
+3399f1b..bbc52c1) e o PR #2 fechou como merged. Nao ha mais trabalho fora do
+`main` de execucoes anteriores.
+
+Entregue:
+- `dados/modelo-banco-produtos.md` — o modelo: 6 principios, identidade do
+  produto, campos comuns, as 4 entidades campo a campo (tipo, unidade,
+  obrigatoriedade, origem esperada), a escada de 6 niveis de fonte, o
+  tratamento de conflito, preco como serie temporal, as 14 regras, os 6
+  achados da semente, as limitacoes conhecidas do esquema v1 e a fila de
+  coletas.
+- `dados/esquema-produtos.json` — o contrato formal (campos, vocabularios,
+  derivados, `minimo_para_sugerir` por calculadora, regras V1 a V14).
+- `dados/produtos-filtro.json` (5), `produtos-aquecedor.json` (4),
+  `produtos-iluminacao.json` (4), `produtos-midia.json` (2) — 15 registros de
+  semente, cada campo amarrado a uma entrada de `fontes[]` com url e data.
+- `dados/produtos-cotacoes.json` — modelado e VAZIO de proposito.
+- `ferramentas/validar-produtos.py` — as regras rodando de verdade. Primeira
+  execucao apontou 12 erros nas proprias sementes (campo sem fonte, voltagem
+  gravada sem origem, status incoerente); todos corrigidos. Estado final:
+  15 produtos, 0 erros, 3 avisos.
+- `manifest.json` revisao 2 (7 itens novos em `dados`, todos `publicar: false`
+  e com sha256; o esquema de `dados` ganhou as entidades `cotacao` e `esquema`,
+  e o manifest ganhou a lista `ferramentas`). `README.md` da ilha documenta a
+  pasta `ferramentas/` e o comando de validacao.
+
+Decisoes de modelo que o dado real forcou:
+1. **Variante e registro proprio.** Atman AT-3338 x AT-3338S: uma letra muda
+   vazao (1200/1500 L/h), potencia (35/18 W), coluna (1,8/1,5 m) e volume
+   (ate 450 / 150 a 400 L).
+2. **Procedencia por campo, nao por registro** — cada `fontes[]` declara quais
+   campos sustenta; o validador reprova campo preenchido sem fonte (V2).
+3. **Preco sai do produto** e vira serie temporal com loja e data. Nenhum dos
+   precos vistos hoje entrou: sem data de leitura seriam numero inventado.
+4. **Voltagem vira requisito de sugestao** (C3, C5, C15), nao da ficha.
+5. **Comprimento da luminaria nao e comprimento do aquario** (SunSun ADE-400c:
+   peca de 41 cm para aquario de 48 a 65 cm). Ficou pendencia de criterio: a
+   C15 so sugere por comprimento de peca depois que a convencao de cobertura
+   virar constante `convencao-editorial`.
+6. **`posicao_no_fluxo` e o unico campo de origem editorial** do banco e por
+   isso nao exige fonte de terceiro.
+
+Achados da semente (todos com fonte nos registros):
+- Turnover implicito DECLARADO pelos proprios fabricantes: Eheim 2213 1,76 x/h,
+  Atman AT-3338 2,67, SunSun HW-303B 4,00, Seachem Tidal 55 5,00, Atman
+  AT-3338S 3,75 a 10,0. Os fabricantes divergem ENTRE SI por 5,7 vezes, alem de
+  divergirem das regras de bolso brasileiras. Material pronto para a C3.
+- Eficiencia de filtro: 34,3 a 166,7 L/h por W — 4,9x entre modelos que
+  "servem" ao mesmo aquario. Base da comparacao de conta de luz da C7.
+- A linha Roxin nao segue regra propria: 0,67, 1,0 e 0,86 W/L nos tres
+  tamanhos, com um vao sem modelo declarado entre 200 e 250 L.
+- Voltagem e o gargalo: 9 dos 13 equipamentos eletricos nao a declaram em
+  nenhuma fonte. Hoje a C5 e a C15 sugeririam ZERO produtos, e a C3, dois.
+- Iluminacao: 3 das 4 luminarias declaram lumen (83 a 106 lm/W, plausiveis) —
+  melhor do que o Bloco 1 previa; o que falta e voltagem, comprimento e ate
+  marca (uma e vendida com o nome da loja).
+- Midia: 700 (Seachem Matrix) contra 450 m2/L (Eheim SUBSTRAT pro), nenhum dos
+  dois publicando o metodo de medicao. A C12 cita os dois e nao ranqueia.
+
+Nao registrado na memoria: esta sessao nao expoe a ferramenta de memoria,
+entao `/areas/projeto-aquametria.md` NAO foi atualizado. Copiar esta entrada
+para la (e o estado novo em `ESTADO.md`).
+
+Proximo passo desbloqueado: **Bloco 4 — rascunhos dos artigos-ancora** (12 a 15
+textos que sustentam as calculadoras; cada tabela tecnica cita o manual do
+fabricante e leva data de verificacao). A tabela de turnover implicito por
+fabricante e a serie W/L da Roxin ja sao dois artigos com dado proprio.
+Coletas baratas que podem ser feitas junto: voltagem dos 9 equipamentos,
+`coluna_maxima_m` do HW-303B e do Tidal 55, `volume_filtragem_L` dos canisters
+e a `faixa_ajuste_C` da Roxin na embalagem.

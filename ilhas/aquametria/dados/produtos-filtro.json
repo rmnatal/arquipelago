@@ -1,0 +1,301 @@
+{
+  "id": "produtos-filtro",
+  "entidade": "filtro",
+  "esquema": "dados/esquema-produtos.json",
+  "descricao": "Semente do banco de filtros. Cinco registros que existem para TESTAR o modelo contra a realidade do mercado brasileiro, nao para cobrir o mercado. A coleta em escala e bloco proprio.",
+  "gerado_em": "2026-09-07",
+  "bloco": 3,
+  "publicar": false,
+  "produtos": [
+    {
+      "id": "eheim-classic-250-2213",
+      "entidade": "filtro",
+      "marca": "Eheim",
+      "linha": "classic",
+      "modelo": "classic 250 (2213)",
+      "variante": null,
+      "nomes_alternativos": [
+        "Eheim 2213",
+        "Eheim Classic 250",
+        "Canister Eheim 2213"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": null,
+      "tipo": "canister",
+      "vazao_nominal_lh": 440,
+      "vazao_real_lh": null,
+      "potencia_w": 8,
+      "coluna_maxima_m": 1.5,
+      "volume_cesto_L": 3.5,
+      "volume_filtragem_L": 3.0,
+      "midia_inclusa": [
+        "EHEIM SUBSTRAT pro"
+      ],
+      "uv_w": null,
+      "mangueira_mm": null,
+      "volume_atendido_declarado_L": {
+        "min": null,
+        "max": 250
+      },
+      "fontes": [
+        {
+          "origem": "fabricante-via-busca",
+          "status": "fabricante-via-busca",
+          "referencia": "Eheim, dados do classic 250 (2213); mesma coleta que gerou a constante eheim-classic-250-2213 do Bloco 2",
+          "url": "https://eheim.com/en_GB/aquatics/aquarium-technology/filter/external-filter/classic-250",
+          "verificado_em": "2026-09-07",
+          "campos": [
+            "vazao_nominal_lh",
+            "potencia_w",
+            "coluna_maxima_m",
+            "volume_cesto_L",
+            "volume_filtragem_L",
+            "midia_inclusa",
+            "volume_atendido_declarado_L",
+            "tipo"
+          ],
+          "observacao": "Pagina do fabricante nao lida direto (egresso bloqueado). Reconfirmar no manual antes do desembarque."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-07",
+      "status_registro": "completo",
+      "observacao": "O registro que ancora a C3: 440 L/h para 250 L da 1,8 renovacoes/h, de 3 a 6 vezes ABAIXO das 5 a 10 x/h que as fontes brasileiras repetem. Ficha completa, mas sem voltagem declarada nao entra na sugestao da C3."
+    },
+    {
+      "id": "sunsun-hw-303b",
+      "entidade": "filtro",
+      "marca": "SunSun",
+      "linha": "HW",
+      "modelo": "HW-303B",
+      "variante": "B (com UV de 9 W)",
+      "nomes_alternativos": [
+        "Sun Sun HW303B",
+        "SunSun HW-303 B",
+        "Canister Sunsun 303B"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "110",
+        "220"
+      ],
+      "tipo": "canister",
+      "vazao_nominal_lh": 1400,
+      "vazao_real_lh": null,
+      "potencia_w": 35,
+      "coluna_maxima_m": null,
+      "volume_cesto_L": null,
+      "volume_filtragem_L": null,
+      "midia_inclusa": [
+        "ceramica",
+        "espuma",
+        "carvao ativado"
+      ],
+      "uv_w": 9,
+      "mangueira_mm": null,
+      "volume_atendido_declarado_L": {
+        "min": null,
+        "max": 350
+      },
+      "fontes": [
+        {
+          "origem": "fabricante-via-busca",
+          "status": "fabricante-via-busca",
+          "referencia": "SunSun, especificacao do HW-303B (370 GPH = 1400 L/h; UV 9 W), replicada na pagina do produto na Amazon.com.br",
+          "url": "https://www.amazon.com.br/SunSun-Hw303B-370GPH-filtro-esterilizador/dp/B00MH2NRIQ",
+          "verificado_em": "2026-09-07",
+          "campos": [
+            "vazao_nominal_lh",
+            "uv_w",
+            "voltagem",
+            "tipo"
+          ],
+          "observacao": "370 GPH americanos convertem para 1400 L/h, coerente com o numero que o varejo brasileiro publica."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Varejo brasileiro especializado (Mundo Aquatico e similares)",
+          "url": "https://mundoaquaticopy.com.br/br/produtos/canister-Sun-Sun/1232-sun-sun-hw-303b",
+          "verificado_em": "2026-09-07",
+          "campos": [
+            "potencia_w",
+            "volume_atendido_declarado_L",
+            "midia_inclusa"
+          ],
+          "observacao": "Confira a embalagem. Coluna maxima e volume de cesto nao sao publicados por nenhuma das fontes vistas."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-07",
+      "status_registro": "parcial",
+      "observacao": "Sem coluna_maxima_m nao entra na sugestao da C3: e justamente o campo que decide se o canister vence a altura do movel. Nenhuma das fontes vistas publica. 1400 L/h para 350 L = 4,0 renovacoes/h."
+    },
+    {
+      "id": "atman-at-3338",
+      "entidade": "filtro",
+      "marca": "Atman",
+      "linha": "AT",
+      "modelo": "AT-3338",
+      "variante": null,
+      "nomes_alternativos": [
+        "Atman 3338",
+        "Filtro Canister Atman AT-3338 1200 L/h"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "110",
+        "127",
+        "220"
+      ],
+      "tipo": "canister",
+      "vazao_nominal_lh": 1200,
+      "vazao_real_lh": null,
+      "potencia_w": 35,
+      "coluna_maxima_m": 1.8,
+      "volume_cesto_L": null,
+      "volume_filtragem_L": null,
+      "midia_inclusa": [
+        "ceramica"
+      ],
+      "uv_w": null,
+      "mangueira_mm": null,
+      "volume_atendido_declarado_L": {
+        "min": null,
+        "max": 450
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Aquaricamp (varejo BR especializado) e outras lojas brasileiras que replicam a mesma ficha",
+          "url": "https://www.aquaricamp.com.br/atman-filtro-canister-at-3338-vaz-o-1200-l-h-gratis-1-litro-ceramica.html",
+          "verificado_em": "2026-09-07",
+          "campos": [
+            "vazao_nominal_lh",
+            "potencia_w",
+            "coluna_maxima_m",
+            "volume_atendido_declarado_L",
+            "midia_inclusa",
+            "voltagem",
+            "tipo"
+          ],
+          "observacao": "Ficha de varejo, nao do fabricante. Confira a embalagem."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-07",
+      "status_registro": "completo",
+      "observacao": "1200 L/h para ate 450 L = 2,7 renovacoes/h declaradas pela propria ficha. Primeiro registro da semente com todos os campos obrigatorios da entidade preenchidos."
+    },
+    {
+      "id": "atman-at-3338s",
+      "entidade": "filtro",
+      "marca": "Atman",
+      "linha": "AT",
+      "modelo": "AT-3338S",
+      "variante": "S",
+      "nomes_alternativos": [
+        "Atman 3338S",
+        "Filtro Canister Atman AT-3338S 1500 L/h"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "220"
+      ],
+      "tipo": "canister",
+      "vazao_nominal_lh": 1500,
+      "vazao_real_lh": null,
+      "potencia_w": 18,
+      "coluna_maxima_m": 1.5,
+      "volume_cesto_L": null,
+      "volume_filtragem_L": null,
+      "midia_inclusa": [],
+      "uv_w": null,
+      "mangueira_mm": null,
+      "volume_atendido_declarado_L": {
+        "min": 150,
+        "max": 400
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "AquaSN (varejo BR especializado), ficha do AT-3338S 220 V",
+          "url": "https://www.aquasn.com.br/atman-filtro-canister-at-3338s-1500-lh-220v",
+          "verificado_em": "2026-09-07",
+          "campos": [
+            "vazao_nominal_lh",
+            "potencia_w",
+            "coluna_maxima_m",
+            "volume_atendido_declarado_L",
+            "voltagem",
+            "tipo"
+          ],
+          "observacao": "Ficha de varejo. Confira a embalagem."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-07",
+      "status_registro": "completo",
+      "observacao": "O caso que justificou o campo variante: uma letra a mais no modelo muda vazao (1200 para 1500 L/h), potencia (35 para 18 W), coluna (1,8 para 1,5 m) e volume atendido (ate 450 para 150 a 400 L). Sao dois produtos, nunca um. Turnover implicito de 3,8 (no teto) a 10,0 (no piso) renovacoes/h."
+    },
+    {
+      "id": "seachem-tidal-55",
+      "entidade": "filtro",
+      "marca": "Seachem",
+      "linha": "Tidal",
+      "modelo": "Tidal 55",
+      "variante": null,
+      "nomes_alternativos": [
+        "Seachem Tidal 55",
+        "Tidal 55 HOB"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": null,
+      "tipo": "hang-on",
+      "vazao_nominal_lh": 1000,
+      "vazao_real_lh": null,
+      "potencia_w": 6,
+      "coluna_maxima_m": null,
+      "volume_cesto_L": 1.2,
+      "volume_filtragem_L": null,
+      "midia_inclusa": [
+        "Seachem Matrix"
+      ],
+      "uv_w": null,
+      "mangueira_mm": null,
+      "volume_atendido_declarado_L": {
+        "min": null,
+        "max": 200
+      },
+      "fontes": [
+        {
+          "origem": "fabricante-via-busca",
+          "status": "fabricante-via-busca",
+          "referencia": "Seachem/Sicce, manual do Tidal 55/75/110 (250 US gph = 1000 L/h; 55 US gal = 200 L; 6 W em 120 V/60 Hz e 5 W em 230 V/50 Hz; cesto de 0,32 US gal = 1,2 L)",
+          "url": "https://www.sicce.com/media/wysiwyg/ISTRUZIONI/80N567-A_Tidal_instructions.pdf",
+          "verificado_em": "2026-09-07",
+          "campos": [
+            "vazao_nominal_lh",
+            "potencia_w",
+            "volume_cesto_L",
+            "volume_atendido_declarado_L",
+            "midia_inclusa",
+            "tipo"
+          ],
+          "observacao": "O PDF do manual esta bloqueado pelo egresso da nuvem (sicce.com devolveu EGRESS_BLOCKED). Numeros colhidos por busca, atribuidos ao manual. RECONFERIR: 1000 L/h com 6 W da 167 L/h por W, muito acima dos outros filtros da semente."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-07",
+      "status_registro": "revalidar",
+      "observacao": "Marcado como revalidar por implausibilidade de eficiencia (V10), nao por erro conhecido: um HOB trabalha com coluna baixissima e pode mesmo ser muito eficiente, mas o numero precisa sair do manual lido antes de virar comparacao publicada de consumo na C7. potencia_w gravada e a de 120 V; em 230 V o manual declara 5 W — e a voltagem vendida no Brasil nao foi confirmada por nenhuma fonte, entao o campo ficou null."
+    }
+  ]
+}

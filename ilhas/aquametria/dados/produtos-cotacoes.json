@@ -1,0 +1,16 @@
+{
+  "id": "produtos-cotacoes",
+  "entidade": "cotacao",
+  "esquema": "dados/esquema-produtos.json",
+  "descricao": "Precos observados, por produto, por loja e por data. Preco NAO e campo de produto: e serie temporal. preco_referencia sai daqui como view (mediana das cotacoes novas e disponiveis dos ultimos 30 dias, com n e data na tela) e nunca entra em criterio tecnico de sugestao.",
+  "gerado_em": "2026-09-07",
+  "bloco": 3,
+  "publicar": false,
+  "cotacoes": [],
+  "por_que_vazio": [
+    "Cotar preco exige ler a pagina da loja no dia da coleta. O egresso da nuvem barra dominios de varejo, e preco que aparece em resultado de busca nao tem data de leitura confiavel.",
+    "Preco sem data e sem loja e lixo: perde validade em semanas, nao e reprodutivel e destruiria a procedencia que e o unico ativo da marca.",
+    "Foram vistos hoje valores como R$ 649,90 para o Atman AT-3338 (aquariumshop.com.br) e R$ 78,90 e R$ 91,00 para o Roxin HT-1300 200 W (Fundo do Mar e Toca dos Peixes). NENHUM deles entrou: sem data de leitura, sem voltagem e sem confirmacao de disponibilidade, seriam numero inventado com aparencia de dado.",
+    "A coleta de preco entra quando houver como ler a pagina da loja (a partir do site, pelo snippet Sync, ou por sessao com egresso liberado)."
+  ]
+}
