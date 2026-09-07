@@ -860,3 +860,12 @@ caminho é o mesmo desta execução: coletar com fonte antes de escrever a calcu
 
 Sem ferramenta de memória nesta sessão: `/areas/projeto-aquametria.md` NÃO foi
 atualizado; esta entrada e o `ESTADO.md` são o registro.
+
+### Nota de desembarque (mesma execução)
+
+**Sync não acionado pela nuvem**: `WebFetch` em `aquametria.com.br` devolveu
+`EGRESS_BLOCKED`, como em todas as execuções anteriores — o container só alcança
+o GitHub. O `raw.githubusercontent.com` **já serve a revisão 8** (conferido nesta
+sessão, sem atraso de cache), então o WP-Cron do próprio site, que roda a cada 30
+minutos, aplica sozinho. Para acionar na hora, basta abrir no navegador:
+`https://aquametria.com.br/?aquametria_sync=kgbErDOIVAFWUtUzutHGrKevVgmWGVjz&forcar=1`
