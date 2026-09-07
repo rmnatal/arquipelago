@@ -698,3 +698,18 @@ voltagem e coluna máxima — sem coletar isso, o bloco de produto da C3 nasce v
 
 Sem ferramenta de memória nesta sessão: `/areas/projeto-aquametria.md` NÃO foi
 atualizado; esta entrada e o `ESTADO.md` são o registro.
+
+### Nota de desembarque (mesma execução)
+
+**Sync não acionado pela nuvem**: `WebFetch` em `aquametria.com.br` devolveu
+`EGRESS_BLOCKED`, como nas execuções anteriores — o container da nuvem não
+alcança o site, só o GitHub. O `raw.githubusercontent.com` **já serve a revisão
+7** (conferido nesta sessão), então o WP-Cron do próprio site, que roda a cada 30
+minutos, aplica sozinho. Para acionar na hora, basta abrir no navegador:
+`https://aquametria.com.br/?aquametria_sync=kgbErDOIVAFWUtUzutHGrKevVgmWGVjz&forcar=1`
+
+Depois disso, conferir:
+- `https://aquametria.com.br/calculadora-de-litragem/` — a calculadora;
+- `https://aquametria.com.br/calculadoras/` — o cartão da C1 deve ter virado
+  "Abrir calculadora";
+- `https://aquametria.com.br/wp-json/aquametria/v1/status` — o log do Sync.
