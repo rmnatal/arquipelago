@@ -1,6 +1,8 @@
 /**
  * Aquametria Sync
- * Versão: 1.0.0 (06/09/2026)
+ * Versão: 1.1.0 (07/09/2026) — compatível com Code Snippets 3.10 (classe Code_Snippets\Model\Snippet,
+ *   save_snippet devolve objeto), erro de um item não derruba o sync (try/catch), grava inativo e ativa
+ *   em seguida, e relata falha de ativação.
  *
  * Puxa o manifest.json da ilha Aquametria no repositório público rmnatal/arquipelago
  * (raw.githubusercontent.com) e aplica no WordPress SOMENTE os itens com publicar=true:
@@ -24,13 +26,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_SYNC_VERSAO' ) ) {
-	define( 'AQUAMETRIA_SYNC_VERSAO', '1.0.0' );
+	define( 'AQUAMETRIA_SYNC_VERSAO', '1.1.0' );
 	define( 'AQUAMETRIA_SYNC_BASE', 'https://raw.githubusercontent.com/rmnatal/arquipelago/main/ilhas/aquametria/' );
 	define( 'AQUAMETRIA_SYNC_NOME_PROPRIO', 'Aquametria Sync' );
 }
 
 /* ---------- utilidades ---------- */
 
+if ( ! function_exists( 'aquametria_sync_token' ) ) {
 function aquametria_sync_token() {
 	$t = get_option( 'aquametria_sync_token' );
 	if ( ! $t ) {
@@ -39,7 +42,9 @@ function aquametria_sync_token() {
 	}
 	return $t;
 }
+}
 
+if ( ! function_exists( 'aquametria_sync_estado' ) ) {
 function aquametria_sync_estado() {
 	$e = get_option( 'aquametria_sync_estado' );
 	if ( ! is_array( $e ) ) {
@@ -47,13 +52,17 @@ function aquametria_sync_estado() {
 	}
 	return $e;
 }
+}
 
+if ( ! function_exists( 'aquametria_sync_log' ) ) {
 function aquametria_sync_log( &$estado, $msg ) {
 	$linha = current_time( 'Y-m-d H:i' ) . ' ' . $msg;
 	array_unshift( $estado['log'], $linha );
 	$estado['log'] = array_slice( $estado['log'], 0, 40 );
 }
+}
 
+if ( ! function_exists( 'aquametria_sync_baixar' ) ) {
 function aquametria_sync_baixar( $rel ) {
 	$url = AQUAMETRIA_SYNC_BASE . ltrim( $rel, '/' ) . '?v=' . time();
 	$r   = wp_remote_get( $url, array( 'timeout' => 25, 'headers' => array( 'Cache-Control' => 'no-cache' ) ) );
@@ -66,15 +75,19 @@ function aquametria_sync_baixar( $rel ) {
 	}
 	return wp_remote_retrieve_body( $r );
 }
+}
 
+if ( ! function_exists( 'aquametria_sync_sha_ok' ) ) {
 function aquametria_sync_sha_ok( $corpo, $esperado ) {
 	if ( empty( $esperado ) ) {
 		return true; // sem hash declarado, não bloqueia
 	}
 	return hash_equals( strtolower( trim( $esperado ) ), hash( 'sha256', $corpo ) );
 }
+}
 
 /* Markdown mínimo → HTML (títulos, parágrafos, listas, negrito, itálico, links, código, tabelas simples) */
+if ( ! function_exists( 'aquametria_sync_md' ) ) {
 function aquametria_sync_md( $md ) {
 	$md     = str_replace( "\r\n", "\n", $md );
 	$linhas = explode( "\n", $md );
@@ -158,12 +171,19 @@ function aquametria_sync_md( $md ) {
 	$fecha_par(); $fecha_lista(); $fecha_tabela();
 	return $html;
 }
+}
 
 /* ---------- aplicação dos itens ---------- */
 
+if ( ! function_exists( 'aquametria_sync_aplicar_snippet' ) ) {
 function aquametria_sync_aplicar_snippet( $item, &$estado ) {
 	if ( ! function_exists( '\Code_Snippets\save_snippet' ) ) {
 		return 'Code Snippets sem API PHP disponível';
+	}
+	$classe = class_exists( '\\Code_Snippets\\Model\\Snippet' ) ? '\\Code_Snippets\\Model\\Snippet'
+		: ( class_exists( '\\Code_Snippets\\Snippet' ) ? '\\Code_Snippets\\Snippet' : '' );
+	if ( '' === $classe ) {
+		return 'classe Snippet do Code Snippets não encontrada';
 	}
 	$nome = isset( $item['nome'] ) ? trim( $item['nome'] ) : '';
 	if ( '' === $nome || $nome === AQUAMETRIA_SYNC_NOME_PROPRIO ) {
@@ -185,7 +205,7 @@ function aquametria_sync_aplicar_snippet( $item, &$estado ) {
 			break;
 		}
 	}
-	$snip = $existente ? $existente : new \Code_Snippets\Snippet();
+	$snip = $existente ? $existente : new $classe();
 	if ( ! $existente ) {
 		$snip->name = $nome;
 	}
@@ -193,25 +213,41 @@ function aquametria_sync_aplicar_snippet( $item, &$estado ) {
 	$snip->desc   = isset( $item['descricao'] ) ? (string) $item['descricao'] : $snip->desc;
 	$escopo       = isset( $item['escopo'] ) ? $item['escopo'] : 'global';
 	$snip->scope  = in_array( $escopo, array( 'global', 'front-end', 'admin' ), true ) ? $escopo : 'global';
-	$snip->active = ! empty( $item['ativo'] );
-	$id           = \Code_Snippets\save_snippet( $snip );
+	// Grava INATIVO: o Code Snippets executa o código ao gravar snippet ativo (test_snippet_code) e,
+	// se o snippet já estiver carregado nesta requisição, isso vira erro. A ativação vem depois.
+	$snip->active = false;
+	$ret = \Code_Snippets\save_snippet( $snip );
+	$id  = is_object( $ret ) && isset( $ret->id ) ? (int) $ret->id : (int) $ret;
 	if ( ! $id ) {
 		return 'save_snippet falhou';
 	}
-	// relê para conferir a gravação de verdade
 	$re = \Code_Snippets\get_snippet( $id );
 	if ( ! $re || strlen( (string) $re->code ) !== strlen( $codigo ) ) {
 		return 'gravação não conferiu (tamanho diferente) — id ' . $id;
 	}
-	if ( ! empty( $item['ativo'] ) && function_exists( '\Code_Snippets\activate_snippet' ) ) {
-		\Code_Snippets\activate_snippet( $id );
-	} elseif ( empty( $item['ativo'] ) && function_exists( '\Code_Snippets\deactivate_snippet' ) ) {
+	if ( ! empty( $item['ativo'] ) ) {
+		if ( function_exists( '\\Code_Snippets\\activate_snippet' ) ) {
+			$a = \Code_Snippets\activate_snippet( $id );
+			if ( is_string( $a ) ) {
+				return 'gravado (#' . $id . ') mas NÃO ativado: ' . $a;
+			}
+			if ( is_wp_error( $a ) ) {
+				return 'gravado (#' . $id . ') mas NÃO ativado: ' . $a->get_error_message();
+			}
+		}
+		$re2 = \Code_Snippets\get_snippet( $id );
+		if ( ! $re2 || empty( $re2->active ) ) {
+			return 'gravado (#' . $id . ') mas continua inativo após activate_snippet';
+		}
+	} elseif ( function_exists( '\\Code_Snippets\\deactivate_snippet' ) ) {
 		\Code_Snippets\deactivate_snippet( $id );
 	}
 	$estado['itens'][ 'snippet:' . $item['id'] ] = array( 'wp_id' => $id, 'sha256' => hash( 'sha256', $corpo ) );
 	return 'ok (snippet #' . $id . ( $existente ? ' atualizado' : ' criado' ) . ')';
 }
+}
 
+if ( ! function_exists( 'aquametria_sync_aplicar_conteudo' ) ) {
 function aquametria_sync_aplicar_conteudo( $item, &$estado ) {
 	$corpo = aquametria_sync_baixar( $item['arquivo'] );
 	if ( is_wp_error( $corpo ) ) {
@@ -255,7 +291,9 @@ function aquametria_sync_aplicar_conteudo( $item, &$estado ) {
 	$estado['itens'][ 'conteudo:' . $item['id'] ] = array( 'wp_id' => $pid, 'sha256' => hash( 'sha256', $corpo ) );
 	return 'ok (' . $post_type . ' #' . $pid . ( $existente ? ' atualizado' : ' criado' ) . ')';
 }
+}
 
+if ( ! function_exists( 'aquametria_sync_aplicar_dados' ) ) {
 function aquametria_sync_aplicar_dados( $item, &$estado ) {
 	$corpo = aquametria_sync_baixar( $item['arquivo'] );
 	if ( is_wp_error( $corpo ) ) {
@@ -283,9 +321,11 @@ function aquametria_sync_aplicar_dados( $item, &$estado ) {
 	$estado['itens'][ 'dados:' . $item['id'] ] = array( 'option' => $chave, 'sha256' => hash( 'sha256', $corpo ) );
 	return 'ok (option ' . $chave . ')';
 }
+}
 
 /* ---------- execução ---------- */
 
+if ( ! function_exists( 'aquametria_sync_executar' ) ) {
 function aquametria_sync_executar( $forcar = false ) {
 	$estado = aquametria_sync_estado();
 	$bruto  = aquametria_sync_baixar( 'manifest.json' );
@@ -326,12 +366,16 @@ function aquametria_sync_executar( $forcar = false ) {
 				&& hash_equals( $estado['itens'][ $chave ]['sha256'], strtolower( $item['sha256'] ) ) ) {
 				continue; // já aplicado nesta versão
 			}
-			if ( 'snippets' === $grupo ) {
-				$res = aquametria_sync_aplicar_snippet( $item, $estado );
-			} elseif ( 'conteudo' === $grupo ) {
-				$res = aquametria_sync_aplicar_conteudo( $item, $estado );
-			} else {
-				$res = aquametria_sync_aplicar_dados( $item, $estado );
+			try {
+				if ( 'snippets' === $grupo ) {
+					$res = aquametria_sync_aplicar_snippet( $item, $estado );
+				} elseif ( 'conteudo' === $grupo ) {
+					$res = aquametria_sync_aplicar_conteudo( $item, $estado );
+				} else {
+					$res = aquametria_sync_aplicar_dados( $item, $estado );
+				}
+			} catch ( \Throwable $e ) {
+				$res = 'ERRO ' . get_class( $e ) . ': ' . $e->getMessage() . ' (' . basename( $e->getFile() ) . ':' . $e->getLine() . ')';
 			}
 			aquametria_sync_log( $estado, $grupo . '/' . $item['id'] . ': ' . $res );
 			if ( 0 === strpos( $res, 'ok' ) ) {
@@ -347,6 +391,7 @@ function aquametria_sync_executar( $forcar = false ) {
 		wp_cache_flush();
 	}
 	return $estado;
+}
 }
 
 /* ---------- gatilhos ---------- */

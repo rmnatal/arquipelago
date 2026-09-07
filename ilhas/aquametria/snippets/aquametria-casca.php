@@ -1,6 +1,6 @@
 /**
  * Aquametria Casca — identidade e estrutura do site
- * Versão: 1.0.0 (07/09/2026)
+ * Versão: 1.0.1 (07/09/2026) — funções protegidas com function_exists
  *
  * Dá cara de Aquametria ao tema ativo, sozinho, sem construtor de página e sem
  * plugin de tema. Faz seis coisas:
@@ -40,6 +40,7 @@ if ( ! defined( 'AQUAMETRIA_CASCA_VERSAO' ) ) {
  * 1. Catálogo de calculadoras (fonte do hub e da home)
  * ------------------------------------------------------------------------- */
 
+if ( ! function_exists( 'aquametria_casca_calculadoras' ) ) {
 function aquametria_casca_calculadoras() {
 	$lista = array(
 		array(
@@ -104,7 +105,9 @@ function aquametria_casca_calculadoras() {
 
 	return is_array( $lista ) ? $lista : array();
 }
+}
 
+if ( ! function_exists( 'aquametria_casca_url_pagina' ) ) {
 function aquametria_casca_url_pagina( $slug ) {
 	$pagina = get_page_by_path( $slug, OBJECT, 'page' );
 	if ( $pagina ) {
@@ -112,11 +115,13 @@ function aquametria_casca_url_pagina( $slug ) {
 	}
 	return home_url( '/' . $slug . '/' );
 }
+}
 
 /* ---------------------------------------------------------------------------
  * 2. Marca, menu e rodapé
  * ------------------------------------------------------------------------- */
 
+if ( ! function_exists( 'aquametria_casca_logo_svg' ) ) {
 function aquametria_casca_logo_svg() {
 	$svg  = '<svg viewBox="0 0 40 48" width="30" height="36" role="img" aria-label="Aquametria" focusable="false">';
 	$svg .= '<path d="M9 4h22v34a5 5 0 0 1-5 5H14a5 5 0 0 1-5-5z" fill="#FFFFFF" stroke="#0D1B22" stroke-width="2.6" stroke-linejoin="round"/>';
@@ -133,7 +138,9 @@ function aquametria_casca_logo_svg() {
 
 	return $svg;
 }
+}
 
+if ( ! function_exists( 'aquametria_casca_marca_html' ) ) {
 function aquametria_casca_marca_html() {
 	static $ja_impressa = false;
 	if ( $ja_impressa ) {
@@ -146,7 +153,9 @@ function aquametria_casca_marca_html() {
 		. '<span class="aqm-wordmark">Aquametria</span>'
 		. '</a>';
 }
+}
 
+if ( ! function_exists( 'aquametria_casca_nav_html' ) ) {
 function aquametria_casca_nav_html() {
 	$itens = array(
 		'calculadoras' => 'Calculadoras',
@@ -161,6 +170,7 @@ function aquametria_casca_nav_html() {
 	$html .= '</ul></nav>';
 
 	return $html;
+}
 }
 
 add_filter( 'render_block', function ( $conteudo, $bloco ) {
@@ -272,6 +282,7 @@ CSS;
  * 4. Conteúdo das quatro páginas (shortcodes)
  * ------------------------------------------------------------------------- */
 
+if ( ! function_exists( 'aquametria_casca_cards_html' ) ) {
 function aquametria_casca_cards_html() {
 	$html = '<ul class="aqm-cards">';
 	foreach ( aquametria_casca_calculadoras() as $c ) {
@@ -292,7 +303,9 @@ function aquametria_casca_cards_html() {
 
 	return $html;
 }
+}
 
+if ( ! function_exists( 'aquametria_casca_conta_publicadas' ) ) {
 function aquametria_casca_conta_publicadas() {
 	$n = 0;
 	foreach ( aquametria_casca_calculadoras() as $c ) {
@@ -301,6 +314,7 @@ function aquametria_casca_conta_publicadas() {
 		}
 	}
 	return $n;
+}
 }
 
 add_shortcode( 'aquametria_home', function () {
@@ -345,6 +359,7 @@ add_shortcode( 'aquametria_calculadoras', function () {
 	return $html;
 } );
 
+if ( ! function_exists( 'aquametria_casca_quadro_constantes' ) ) {
 function aquametria_casca_quadro_constantes() {
 	$vocabulario = array(
 		'fisica'                => 'Valor tabelado de física; a fórmula declara o arredondamento usado.',
@@ -383,6 +398,7 @@ function aquametria_casca_quadro_constantes() {
 	}
 
 	return array( 'vocabulario' => $vocabulario, 'contagem' => $contagem, 'total' => array_sum( $contagem ) );
+}
 }
 
 add_shortcode( 'aquametria_metodologia', function () {
@@ -457,6 +473,7 @@ add_shortcode( 'aquametria_sobre', function () {
  * 5. Estrutura do site: páginas, página inicial e limpeza do tema padrão
  * ------------------------------------------------------------------------- */
 
+if ( ! function_exists( 'aquametria_casca_definicao_paginas' ) ) {
 function aquametria_casca_definicao_paginas() {
 	return array(
 		'inicio'       => array( 'titulo' => 'Início', 'conteudo' => '[aquametria_home]' ),
@@ -465,7 +482,9 @@ function aquametria_casca_definicao_paginas() {
 		'sobre'        => array( 'titulo' => 'Sobre', 'conteudo' => '[aquametria_sobre]' ),
 	);
 }
+}
 
+if ( ! function_exists( 'aquametria_casca_garantir_paginas' ) ) {
 function aquametria_casca_garantir_paginas( &$relato ) {
 	$ids   = array();
 	$criou = false;
@@ -515,7 +534,9 @@ function aquametria_casca_garantir_paginas( &$relato ) {
 
 	return $ids;
 }
+}
 
+if ( ! function_exists( 'aquametria_casca_fixar_home' ) ) {
 function aquametria_casca_fixar_home( $ids, &$relato ) {
 	if ( empty( $ids['inicio'] ) ) {
 		return;
@@ -529,7 +550,9 @@ function aquametria_casca_fixar_home( $ids, &$relato ) {
 		$relato[] = 'page_on_front: #' . (int) $ids['inicio'];
 	}
 }
+}
 
+if ( ! function_exists( 'aquametria_casca_limpar_padrao' ) ) {
 function aquametria_casca_limpar_padrao( &$relato ) {
 	if ( 'feito' === get_option( 'aquametria_casca_limpeza' ) ) {
 		return;
@@ -565,7 +588,9 @@ function aquametria_casca_limpar_padrao( &$relato ) {
 
 	update_option( 'aquametria_casca_limpeza', 'feito', false );
 }
+}
 
+if ( ! function_exists( 'aquametria_casca_montar' ) ) {
 function aquametria_casca_montar( $forcar = false ) {
 	$feita = get_option( 'aquametria_casca_estrutura' );
 	if ( ! $forcar && AQUAMETRIA_CASCA_VERSAO === $feita ) {
@@ -588,7 +613,9 @@ function aquametria_casca_montar( $forcar = false ) {
 
 	return $relato;
 }
+}
 
+if ( ! function_exists( 'aquametria_casca_boot' ) ) {
 function aquametria_casca_boot() {
 	static $ja = false;
 	if ( $ja ) {
@@ -607,6 +634,7 @@ function aquametria_casca_boot() {
 		echo wp_json_encode( array( 'versao' => AQUAMETRIA_CASCA_VERSAO, 'relato' => $relato ), JSON_UNESCAPED_UNICODE );
 		exit;
 	}
+}
 }
 
 add_action( 'init', 'aquametria_casca_boot', 20 );

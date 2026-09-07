@@ -40,6 +40,21 @@ Credenciais NÃO ficam neste arquivo (repositório pode virar público). A Appli
 - Backup antes de editar: link action=clone (nasce INATIVO, sufixo [CLONE]). Dois ativos com as mesmas funções = fatal.
 - Texto para tela sai acentuado (UTF-8). Nome de snippet descritivo e óbvio, nunca numerado.
 
+### Code Snippets 3.10 — o que a API mudou (diagnosticado em 07/09/2026, depois de o site cair com "Há um erro crítico")
+Na versão instalada no site (3.10.2), a API PHP do plugin não é a antiga:
+- A classe do modelo é `Code_Snippets\Model\Snippet`. `new \Code_Snippets\Snippet()` é **fatal** — detecte a classe com `class_exists()` antes de instanciar.
+- `\Code_Snippets\save_snippet()` devolve o **objeto Snippet**, não o id. `$id = save_snippet(...)` vira 0/erro — leia `$ret->id`.
+- `save_snippet()` de um snippet marcado **ativo** roda `test_snippet_code()`, que faz `eval` do código na mesma requisição. Grave **inativo** e chame `activate_snippet()` depois.
+- O validador (`Code_Snippets\Utils\Validator`) recusa com "Cannot redeclare function X" quando o snippet já está carregado naquela requisição.
+
+**Regra que vale para SEMPRE, em todo snippet da ilha:** cada função de nível
+superior tem de estar envolvida em `if ( ! function_exists( 'nome' ) ) { ... }`.
+Sem isso, atualizar um snippet ativo falha ou o deixa inativo em silêncio. Vale
+para a casca e para todas as calculadoras futuras. A ferramenta
+`ferramentas/proteger-funcoes.php` faz isso mecanicamente:
+`php ferramentas/proteger-funcoes.php entrada.php saida.php` (ela não entra no
+manifest — é ferramenta de bancada, não código do site).
+
 ## Portão (desembarque)
 - Publicar em escala nunca é autônomo. A Fundação deixa pronto (publicar=false) e para. Página programática só existe com dado suficiente para ser útil sozinha.
 

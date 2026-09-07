@@ -4,7 +4,7 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 3,
+  "revisao": 4,
   "atualizado_em": "2026-09-07",
   "estado": "fundacao",
   "desembarque": {
@@ -19,9 +19,9 @@
       "arquivo": "snippets/aquametria-sync.php",
       "escopo": "global",
       "ativo": true,
-      "publicar": false,
-      "sha256": "0fab9fde315bcd2749b406697ac390128fd70fe0ee028efd354a9cf0e499ea36",
-      "descricao": "Sincronizador do site com este repositorio. Ja instalado e ativo (Code Snippets id 5, 06/09/2026). O proprio Sync nunca se aplica; publicar=false e so registro de procedencia."
+      "publicar": true,
+      "sha256": "b72a007c022f60127a36dff34cfbfb552a8b2ba7086041901b8f567b3856e931",
+      "descricao": "Sincronizador do site com este repositorio. Ja instalado e ativo (Code Snippets id 5, 06/09/2026). v1.1.0 (07/09/2026): compativel com Code Snippets 3.10, grava inativo e ativa em seguida, e um item quebrado nao derruba o sync. O proprio Sync se pula pelo nome, entao publicar=true e inofensivo e deixa o arquivo rastreado."
     },
     {
       "id": "aquametria-casca",
@@ -30,7 +30,7 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "20e197fceffb834919f3dee93b859336d3db7a030545c1636165e791ebc09cb9",
+      "sha256": "387e16d5abe5775311eeafec5fc5bcb65567f87c2eea3291e43df4d9655e7980",
       "descricao": "Casca do site: carrega Chivo/IBM Plex Sans/IBM Plex Mono e injeta a paleta da Aquametria sobre o tema ativo; troca core/site-title e core/site-logo pelo logotipo em SVG (recipiente graduado) com o wordmark; troca core/navigation pelo menu Calculadoras/Metodologia/Sobre; cria as paginas inicio, calculadoras, metodologia e sobre (conteudo em shortcode do proprio snippet) e fixa inicio como pagina inicial; manda Hello world! e Sample Page para a lixeira; imprime o rodape com a tagline e a nota de fontes. Idempotente."
     }
   ],

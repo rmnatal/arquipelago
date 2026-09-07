@@ -307,3 +307,91 @@ URLs para o Raphael conferir depois que o WP-Cron rodar:
 "Hello world!" e "Sample Page" vao para a LIXEIRA, nao para o apagador: se
 alguma coisa der errado, e so restaurar. Se a estrutura precisar ser refeita a
 mao, um administrador logado abre `https://aquametria.com.br/?aquametria_casca=refazer`.
+
+---
+
+## 2026-09-07 (4o disparo, correcao) — Sync v1.1.0 e casca v1.0.1
+
+**Nao e bloco novo.** Disparo extra de correcao urgente: o site puxou a revisao
+3 e caiu com "Ha um erro critico no seu site". O bloco 4 (C1, litragem)
+continua sendo o proximo passo e NAO foi executado aqui.
+
+### Diagnostico (feito fora desta sessao, confirmado no site)
+A causa foi o proprio `snippets/aquametria-sync.php` (v1.0.0), que falava a API
+antiga do Code Snippets. Na versao instalada (3.10.2):
+
+1. a classe do modelo e `Code_Snippets\Model\Snippet` — `new \Code_Snippets\Snippet()` e fatal;
+2. `\Code_Snippets\save_snippet()` devolve o OBJETO Snippet, nao o id — `$id = save_snippet(...)` vira 0/erro;
+3. `save_snippet()` de um snippet marcado ativo roda `test_snippet_code()`, que da `eval` no codigo na mesma requisicao;
+4. o validador (`Code_Snippets\Utils\Validator`) recusa com "Cannot redeclare function X" quando o snippet ja esta carregado naquela requisicao.
+
+Consequencia que vale para SEMPRE (ja escrita na fase 4b do `ESTADO.md`):
+**toda funcao de nivel superior de qualquer snippet da ilha precisa estar dentro
+de `if ( ! function_exists( 'nome' ) ) { ... }`** — sem isso, atualizar um
+snippet ativo falha ou o deixa inativo em silencio. Vale para a casca e para
+todas as calculadoras futuras.
+
+### O que foi entregue
+
+**`snippets/aquametria-sync.php` → v1.1.0** (edicoes cirurgicas, arquivo nao reescrito):
+- cabecalho e `AQUAMETRIA_SYNC_VERSAO` em `1.1.0`;
+- `aquametria_sync_aplicar_snippet()` detecta a classe do modelo com
+  `class_exists()` (`Model\Snippet`, com queda para a antiga) e instancia
+  `new $classe()`; se nenhuma existir, devolve erro em vez de fatal;
+- grava **inativo** e so entao chama `activate_snippet()`, porque gravar ativo
+  faz o plugin dar `eval` no codigo na mesma requisicao; le o retorno como
+  objeto (`$ret->id`) com queda para inteiro; releu e confere `active` depois
+  de ativar, e **relata** ("gravado (#id) mas NAO ativado: ...") em vez de
+  fingir sucesso;
+- `aquametria_sync_executar()` envolve o despacho dos tres aplicadores em
+  `try/catch ( \Throwable )` — um item quebrado vira linha de log, nao derruba
+  o sync inteiro.
+
+**`ferramentas/proteger-funcoes.php`** (nova; ferramenta de bancada, **nao entra
+no manifest**): le um snippet e envolve cada funcao de nivel superior em
+`if ( ! function_exists( ... ) )`, pulando closures. Uso:
+`php ferramentas/proteger-funcoes.php entrada.php saida.php`.
+
+> Ponto em aberto para a proxima execucao: a instrucao deste disparo foi
+> explicita — "NAO vai para o manifest" — e foi seguida a risca. Mas o manifest
+> tem uma lista `ferramentas` (que o Sync **nao** consome; ele so le `snippets`,
+> `conteudo` e `dados`) onde a ferramenta irma `validar-produtos.py` esta
+> registrada. Registrar `proteger-funcoes.php` la seria inofensivo e mais
+> consistente; fica para o Raphael decidir.
+
+Rodada nos dois snippets: **10 funcoes protegidas no sync** e **14 na casca**,
+exatamente o esperado. Conferido que, fora os involucros, nenhuma linha de
+codigo mudou. A casca virou **v1.0.1** (so a protecao das funcoes; nenhuma
+mudanca de comportamento).
+
+### Verificacao
+- `php -l` **de verdade** (com `<?php` prefixado antes de lintar, porque o
+  arquivo comeca em `/**` e o lint passaria trivialmente sem isso) nos dois
+  snippets: limpo.
+- `sha256` recalculado do arquivo final commitado, nao herdado.
+
+| arquivo | sha256 |
+| --- | --- |
+| `snippets/aquametria-sync.php` | `b72a007c022f60127a36dff34cfbfb552a8b2ba7086041901b8f567b3856e931` |
+| `snippets/aquametria-casca.php` | `387e16d5abe5775311eeafec5fc5bcb65567f87c2eea3291e43df4d9655e7980` |
+
+### Manifest
+`revisao` = **4**, `atualizado_em` = `2026-09-07`. `aquametria-casca` continua
+`publicar: true`. **`aquametria-sync` passou a `publicar: true`** (mantendo
+`ativo: true`): a partir da v1.1.0 o Sync pode se atualizar sozinho, e como ele
+se pula pelo nome (`AQUAMETRIA_SYNC_NOME_PROPRIO`), isso e inofensivo e deixa o
+arquivo rastreado. A `descricao` dele, que ainda dizia "publicar=false e so
+registro de procedencia", foi corrigida.
+
+### Sync do site
+**Nao acionado nesta execucao, de proposito** — quem aciona e o Cowork, que ja
+esta com o navegador aberto. O container da nuvem tambem nao alcanca o dominio
+(`EGRESS_BLOCKED`).
+
+Proximo passo desbloqueado (inalterado): **Bloco 4 — C1, a calculadora de
+litragem**, o nucleo e o estado compartilhado (`localStorage`, chave
+`aquametria.aquario`). Ao publica-la, virar o `estado` da C1 para `publicada`
+na casca e bumpar `AQUAMETRIA_CASCA_VERSAO`.
+
+Sem ferramenta de memoria nesta sessao: `/areas/projeto-aquametria.md` NAO foi
+atualizado; esta entrada e o `ESTADO.md` sao o registro.
