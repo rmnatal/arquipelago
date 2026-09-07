@@ -283,3 +283,27 @@ Proximo passo desbloqueado: **Bloco 4 — C1, a calculadora de litragem**, que e
 o nucleo e o estado compartilhado (`localStorage`, chave `aquametria.aquario`).
 Ao publica-la, virar o `estado` da C1 para `publicada` na casca e bumpar
 `AQUAMETRIA_CASCA_VERSAO`.
+
+### Desembarque desta execucao (07/09/2026, ~15h20 BRT)
+
+Push direto em `main` funcionou (`44ec496..c9e8999`), sem PR. Cinco minutos
+depois, `raw.githubusercontent.com` ja servia a revisao 3 com
+`aquametria-casca` em `publicar: true` (conferido por WebFetch).
+
+**Sync NAO acionado pela nuvem:** o WebFetch em
+`aquametria.com.br/?aquametria_sync=...&forcar=1` voltou `EGRESS_BLOCKED`,
+como o ESTADO.md ja previa para o dominio do site. O WP-Cron do proprio site
+aplica sozinho em ate 30 minutos, sem intervencao. Nada a fazer alem de
+esperar.
+
+URLs para o Raphael conferir depois que o WP-Cron rodar:
+- `https://aquametria.com.br/` — home: logotipo, menu, as tres linhas e os 8 cards
+- `https://aquametria.com.br/calculadoras/` — hub
+- `https://aquametria.com.br/metodologia/` — quadro de status e as 7 recusas
+- `https://aquametria.com.br/sobre/`
+- `https://aquametria.com.br/wp-json/aquametria/v1/status` — log do Sync (deve
+  mostrar `snippets/aquametria-casca: ok` e `revisao 3`)
+
+"Hello world!" e "Sample Page" vao para a LIXEIRA, nao para o apagador: se
+alguma coisa der errado, e so restaurar. Se a estrutura precisar ser refeita a
+mao, um administrador logado abre `https://aquametria.com.br/?aquametria_casca=refazer`.
