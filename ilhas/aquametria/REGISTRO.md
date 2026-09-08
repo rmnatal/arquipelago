@@ -1275,3 +1275,25 @@ padrão que a C12 acabou de aprender a publicar em tabela com atribuição.
 
 Sem ferramenta de memória nesta sessão: `/areas/projeto-aquametria.md` NÃO foi
 atualizado; esta entrada e o `ESTADO.md` são o registro.
+
+### Nota de desembarque (mesma execução)
+
+**Sync não acionado pela nuvem**: `WebFetch` em `aquametria.com.br` devolveu
+`EGRESS_BLOCKED`, como em todas as execuções anteriores — o container só alcança
+o GitHub. O `raw.githubusercontent.com` **já serve a revisão 10** (conferido
+nesta sessão, sem atraso de cache: 6 snippets e 7 páginas com `publicar: true`),
+então o WP-Cron do próprio site, que roda a cada 30 minutos, aplica sozinho.
+Para acionar na hora, basta abrir no navegador:
+`https://aquametria.com.br/?aquametria_sync=kgbErDOIVAFWUtUzutHGrKevVgmWGVjz&forcar=1`
+
+**Uma coisa depende do Raphael, e não bloqueia nada.** As quatro mídias novas
+(JBL MicroMec, Ocean Tech Bio Glass, Seachem MatrixCarbon e Seachem Purigen)
+entraram no banco **sem link de afiliado**, porque a geração do link curto é
+feita à mão no painel Shopee Afiliados, fora desta sessão. Pela regra V16 elas
+já aparecem no bloco de produto, com a quantidade calculada e a ficha completa,
+só sem botão de loja — a página está correta e completa do jeito que está. Mas
+são quatro cartões monetizáveis parados: hoje só o Seachem Matrix e o Eheim
+Substrat pro têm link na C12. Gerar os quatro links (Sub_id_2 = `C12`) e colar
+em `dados/produtos-midia.json` é trabalho de cinco minutos no painel, e a
+próxima execução pega sozinha. O mesmo vale para os 6 aquecedores e as 2
+luminárias que já estão aptos e sem link desde as execuções anteriores.
