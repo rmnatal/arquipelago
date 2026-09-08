@@ -20,7 +20,7 @@ errado — traga para ca primeiro.
 | `conteudo/` | Artigos-ancora, paginas e paginas programaticas, em Markdown |
 | `dados/` | Banco normalizado de produtos e constantes tecnicas, em JSON/CSV |
 | `manifest.json` | Indice que o snippet Sync consome |
-| `ferramentas/` | Scripts do repositorio (validacao do banco). NUNCA vao para o site |
+| `ferramentas/` | Scripts do repositorio (validacao do banco, geradores de catalogo, testes). NUNCA vao para o site |
 
 ## Casca do site
 
@@ -65,8 +65,34 @@ contrato formal em `dados/esquema-produtos.json`.
 cd ilhas/aquametria && python3 ferramentas/validar-produtos.py
 ```
 
-Sai 0 sem erro, 1 com erro. O script confere as regras V1 a V14 do esquema
+Sai 0 sem erro, 1 com erro. O script confere as regras V1 a V18 do esquema
 (campo sem fonte, derivado gravado a mao, preco dentro do arquivo de produto,
-conflito sem status, PPFD sem distancia, status incoerente) e imprime quais
-produtos cada calculadora consegue sugerir. Avisos nao reprovam: viram tarefa
-de coleta.
+conflito sem status, PPFD sem distancia, status incoerente, link de afiliado mal
+formado, intersecao conservadora que nao e a intersecao) e imprime quais produtos
+cada calculadora consegue sugerir. Avisos nao reprovam: viram tarefa de coleta.
+
+**O banco viaja dentro do snippet.** O site nao le este repositorio em tempo de
+execucao, entao cada calculadora com bloco de produto carrega uma copia do banco
+no proprio PHP, entre os marcadores `CATALOGO-INICIO` e `CATALOGO-FIM`. Depois de
+mexer em `dados/produtos-*.json`, rode o gerador da calculadora afetada, ou as
+duas copias divergem em silencio:
+
+```
+python3 ferramentas/gerar-catalogo-filtros.py       # C3
+python3 ferramentas/gerar-catalogo-aquecedores.py   # C5
+```
+
+## Antes de marcar uma calculadora como publicar=true
+
+Alem do `php -l` de verdade e do `ferramentas/proteger-funcoes.php`, a
+calculadora passa por um navegador antes de ir ao ar:
+
+```
+npm i --no-save playwright@1.56.1
+php ferramentas/render-para-teste.php . aquametria_calculadora_aquecedor > /tmp/c5.html
+node ferramentas/teste-navegador-c5.mjs /tmp/c5.html
+```
+
+O `render-para-teste.php` monta a pagina com funcoes falsas do WordPress (o
+calculo todo e JavaScript no navegador, entao nao falta nada) e carrega todos os
+snippets menos o Sync — o que tambem testa a convivencia entre as calculadoras.

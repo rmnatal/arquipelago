@@ -281,7 +281,7 @@
     ]
   },
   "conflito": {
-    "descricao": "Divergencia entre fontes sobre o mesmo campo. Nao se resolve por media: publica-se com atribuicao.",
+    "descricao": "Divergencia entre fontes sobre o mesmo campo. Nao se resolve por media: publica-se com atribuicao. Quando as fontes sao do mesmo nivel e o campo e um intervalo, cabe a intersecao conservadora (V17), que nao inventa numero nenhum — so afirma o que todas as fontes ja afirmam.",
     "campos": [
       {
         "campo": "campo",
@@ -306,8 +306,22 @@
         "vocabulario": [
           "publicar-os-dois",
           "nivel-mais-alto-vence",
-          "campo-vira-null"
-        ]
+          "campo-vira-null",
+          "intersecao-conservadora"
+        ],
+        "observacao": "'intersecao-conservadora' vale so para campo de intervalo {min,max} com fontes do MESMO nivel em conflito: publica-se a intersecao dos intervalos, que e a afirmacao mais fraca que todas as fontes sustentam. Nao e media nem escolha de fonte. Exige valor_conservador e derivacao. Regra V17."
+      },
+      {
+        "campo": "valor_conservador",
+        "tipo": "objeto {min, max}|null",
+        "obrigatorio": false,
+        "observacao": "Obrigatorio quando tratamento e 'intersecao-conservadora'. E a intersecao dos intervalos em conflito: maior dos minimos, menor dos maximos. A calculadora usa este valor no lugar do campo, que fica null, e diz na tela que a faixa e a conservadora e por que."
+      },
+      {
+        "campo": "derivacao",
+        "tipo": "string|null",
+        "obrigatorio": false,
+        "observacao": "Como o valor_conservador saiu dos valores em conflito, em uma frase, para a tela poder repetir."
       }
     ]
   },
@@ -605,7 +619,7 @@
         "c5-aquecedor-delta": [
           "potencia_w",
           "volume_atendido_declarado_L",
-          "faixa_ajuste_C",
+          "faixa_ajuste_C OU conflito:faixa_ajuste_C",
           "voltagem"
         ],
         "c7-consumo-custo": [
@@ -1039,6 +1053,16 @@
     {
       "id": "V16",
       "regra": "Link de afiliado NAO entra em criterio de sugestao. A lista de produtos de uma calculadora e montada e ordenada so por adequacao tecnica ao resultado; produto tecnicamente apto e mostrado tenha ou nao link, e quem tem link ganha o botao de loja, marcado como patrocinado. Ordenar ou filtrar por comissao e defeito, nao escolha editorial.",
+      "severidade": "regra de produto, conferida na revisao de cada calculadora"
+    },
+    {
+      "id": "V17",
+      "regra": "Conflito com tratamento 'intersecao-conservadora' exige valor_conservador e derivacao, so vale para campo de intervalo, so vale entre fontes do MESMO nivel, e o valor_conservador precisa ser exatamente a intersecao (maior dos minimos, menor dos maximos) dos valores em conflito. Intersecao vazia e erro: nesse caso o tratamento e 'campo-vira-null'. A calculadora que usar o valor conservador tem de dizer na tela que a faixa e a conservadora e por que.",
+      "severidade": "erro"
+    },
+    {
+      "id": "V18",
+      "regra": "Aquecedor sugerido por calculadora precisa alcancar a temperatura-alvo dentro da faixa de ajuste que o registro sustenta (a declarada, ou a conservadora do V17). Aquecedor que nao alcanca o alvo nao entra na lista, e o motivo aparece na tela.",
       "severidade": "regra de produto, conferida na revisao de cada calculadora"
     }
   ],

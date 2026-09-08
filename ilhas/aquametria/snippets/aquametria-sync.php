@@ -1,6 +1,10 @@
 /**
  * Aquametria Sync
+ * Versão: 1.1.3 (08/09/2026) — o conversor de Markdown passou a entender bloco de código
+ *   cercado por crases triplas: a fórmula P = U · A · ΔT do artigo do aquecedor sairia com as
+ *   crases impressas e viraria um parágrafo qualquer no meio do texto.
  * Versão: 1.1.2 (08/09/2026) — o conversor de Markdown passou a entender citação em bloco
+ *   (linha começando com '>'), que antes saía com o '>' escapado no meio do parágrafo.
  * Versão: 1.1.1 (07/09/2026) — o conversor de Markdown passou a descartar o front matter
  *   do arquivo e a deixar a linha que só tem shortcode fora do parágrafo (dois defeitos que
  *   o primeiro conteúdo em Markdown, a página da C1, iria expor).
@@ -30,7 +34,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_SYNC_VERSAO' ) ) {
-	define( 'AQUAMETRIA_SYNC_VERSAO', '1.1.1' );
+	define( 'AQUAMETRIA_SYNC_VERSAO', '1.1.3' );
 	define( 'AQUAMETRIA_SYNC_BASE', 'https://raw.githubusercontent.com/rmnatal/arquipelago/main/ilhas/aquametria/' );
 	define( 'AQUAMETRIA_SYNC_NOME_PROPRIO', 'Aquametria Sync' );
 }
@@ -103,13 +107,17 @@ function aquametria_sync_md( $md ) {
 	$par    = array();
 	$tabela = array();
 	$citacao = array();
+	$codigo  = null;   /* null = fora do bloco; array = linhas dentro dele */
 
 	$inline = function ( $t ) {
 		$t = esc_html( $t );
 		$t = preg_replace( '/`([^`]+)`/', '<code>$1</code>', $t );
 		$t = preg_replace( '/\*\*(.+?)\*\*/s', '<strong>$1</strong>', $t );
 		$t = preg_replace( '/(?<![\*\w])\*(?!\s)(.+?)(?<!\s)\*(?![\*\w])/s', '<em>$1</em>', $t );
-		$t = preg_replace( '/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/', '<a href="$2">$1</a>', $t );
+		/* Link absoluto (https://...) e link relativo à raiz (/pagina/). O segundo
+		   caso faltava e era armadilha silenciosa: o texto saía com os colchetes
+		   impressos e ninguém percebia, porque não é erro de sintaxe nenhum. */
+		$t = preg_replace( '/\[([^\]]+)\]\((https?:\/\/[^\s)]+|\/[^\s)]*)\)/', '<a href="$2">$1</a>', $t );
 		return $t;
 	};
 	$fecha_par = function () use ( &$par, &$html, $inline ) {
@@ -163,8 +171,33 @@ function aquametria_sync_md( $md ) {
 		$citacao = array();
 	};
 
+	/* Bloco de código cercado por ``` — a fórmula P = U . A . deltaT do artigo do
+	   aquecedor depende disto. Sem o bloco, as crases sairiam impressas e a
+	   fórmula viraria um parágrafo qualquer no meio do texto. Dentro do bloco
+	   nada é interpretado: nem negrito, nem link, nem shortcode. */
+	$fecha_codigo = function () use ( &$codigo, &$html ) {
+		if ( null === $codigo ) {
+			return;
+		}
+		$html .= '<pre class="aqm-codigo"><code>' . esc_html( implode( "\n", $codigo ) ) . "</code></pre>\n";
+		$codigo = null;
+	};
+
 	foreach ( $linhas as $l ) {
 		$t = rtrim( $l );
+		if ( preg_match( '/^```/', trim( $t ) ) ) {
+			if ( null === $codigo ) {
+				$fecha_par(); $fecha_lista(); $fecha_tabela(); $fecha_citacao();
+				$codigo = array();
+			} else {
+				$fecha_codigo();
+			}
+			continue;
+		}
+		if ( null !== $codigo ) {
+			$codigo[] = $t;
+			continue;
+		}
 		if ( '' === trim( $t ) ) {
 			if ( $citacao ) {
 				/* Linha em branco dentro da citação: parágrafo novo, a citação segue. */
@@ -226,7 +259,7 @@ function aquametria_sync_md( $md ) {
 		$fecha_lista(); $fecha_tabela();
 		$par[] = trim( $t );
 	}
-	$fecha_par(); $fecha_lista(); $fecha_tabela(); $fecha_citacao();
+	$fecha_par(); $fecha_lista(); $fecha_tabela(); $fecha_citacao(); $fecha_codigo();
 	return $html;
 }
 }

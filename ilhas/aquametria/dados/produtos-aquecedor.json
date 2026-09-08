@@ -2,26 +2,132 @@
   "id": "produtos-aquecedor",
   "entidade": "aquecedor",
   "esquema": "dados/esquema-produtos.json",
-  "descricao": "Semente do banco de aquecedores. Quatro registros escolhidos para testar o modelo: a linha importada de referencia (Eheim Jager) e a linha popular brasileira (Roxin HT-1300/Q3), que juntas expoem a incoerencia do dimensionamento declarado.",
+  "descricao": "Banco de aquecedores. Duas linhas: a importada de referencia (Eheim Jager/Thermocontrol) e a popular brasileira (Roxin HT-1300/Q3). Ampliado em 08/09/2026 para alimentar a C5 — nove registros de 25 a 300 W, com a voltagem coletada (era o campo que barrava a sugestao) e a faixa de ajuste da linha Roxin tratada pela intersecao conservadora da regra V17.",
   "gerado_em": "2026-09-07",
+  "atualizado_em": "2026-09-08",
   "bloco": 3,
   "publicar": false,
   "produtos": [
     {
-      "id": "eheim-jager-200w",
+      "id": "roxin-ht-1300-q3-25w",
       "entidade": "aquecedor",
-      "marca": "Eheim",
-      "linha": "Jager",
-      "modelo": "Jager 200 W",
-      "variante": "200 W",
+      "marca": "Roxin",
+      "linha": "HT-1300/Q3",
+      "modelo": "HT-1300 25 W",
+      "variante": "25 W",
       "nomes_alternativos": [
-        "Eheim Jager 200w",
-        "Termostato Eheim Jager 200W"
+        "Roxin Q3 25W",
+        "Termostato Roxin HT-1300 25w"
       ],
       "gtin": null,
       "disponibilidade_br": "vendido",
-      "voltagem": null,
-      "potencia_w": 200,
+      "voltagem": [
+        "110",
+        "220"
+      ],
+      "potencia_w": 25,
+      "tipo": "quartzo",
+      "termostato": "interno-analogico",
+      "faixa_ajuste_C": null,
+      "precisao_C": null,
+      "comprimento_cm": 23.0,
+      "submersivel": true,
+      "protecao_funcionamento_a_seco": null,
+      "volume_atendido_declarado_L": {
+        "min": 20,
+        "max": 35
+      },
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "a coleta de links da Shopee em 07/09/2026 cobriu so as potencias de 100, 200 e 300 W da linha. Este modelo entrou no banco em 08/09 e ainda nao teve link coletado. Pela regra V16 ele e sugerido do mesmo jeito, sem botao de loja.",
+        "verificado_em": "2026-09-08"
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "WorldFish e AquaMaeda (varejo BR), fichas do HT-1300/Q3 25 W (20 a 35 L, 2,3 x 23 cm, cabo de 90 cm, IP68)",
+          "url": "https://worldfish.com.br/produtos/termostato-com-aquecedor-roxin-ht-1300-q3-25w-110v/",
+          "verificado_em": "2026-09-08",
+          "campos": [
+            "potencia_w",
+            "volume_atendido_declarado_L",
+            "tipo",
+            "termostato",
+            "submersivel",
+            "comprimento_cm"
+          ],
+          "observacao": "Ficha de varejo, pagina nao lida direto (egresso bloqueado). Confira a embalagem."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Varejo BR publica a mesma potencia nas duas tomadas: Cobasi (fichas 'HT-1300 110V' e 'HT-1300 220V'), Tudo de Bicho (100 W 110 V e 100 W 220 V), WorldFish (25 W 110 V, 50 W 220 V), AquaMaeda ('110v/220v') e Aquarioz (50 W 220 V)",
+          "url": "https://www.cobasi.com.br/termostato-roxin-ht-1300-220v-3724840/p",
+          "verificado_em": "2026-09-08",
+          "campos": [
+            "voltagem",
+            "disponibilidade_br"
+          ],
+          "observacao": "Parte do varejo rotula a versao de 110 V como 127 V (Amazon). Sao o mesmo produto; o vocabulario do esquema usa '110'. A tela obriga a conferir a voltagem no anuncio."
+        }
+      ],
+      "conflitos": [
+        {
+          "campo": "faixa_ajuste_C",
+          "valores": [
+            {
+              "valor": {
+                "min": 22,
+                "max": 34
+              },
+              "referencia": "fichas de varejo BR da linha HT-1300/Q3 (RS Discus, Mega Aquarios, Cobasi, WorldFish, AquaMaeda)",
+              "url": "https://www.rsdiscus.com.br/temperatura/termostatos/roxin-termostato-ht-1300q3-100w-p-aquario-de-100-lts-220v",
+              "origem": "varejo"
+            },
+            {
+              "valor": {
+                "min": 16,
+                "max": 32
+              },
+              "referencia": "outras fichas de varejo BR da mesma linha (Petlove)",
+              "url": "https://www.petlove.com.br/termostato-com-aquecedor-roxin-ht-1300-25w/p",
+              "origem": "varejo"
+            }
+          ],
+          "razao": "os dois extremos discordam: 6 C no piso e 2 C no teto",
+          "tratamento": "intersecao-conservadora",
+          "valor_conservador": {
+            "min": 22,
+            "max": 32
+          },
+          "derivacao": "intersecao dos dois intervalos: 22 C e o maior dos pisos, 32 C e o menor dos tetos. Nao e media nem escolha de fonte — e a unica faixa que as DUAS fontes concordam que o aparelho cobre. Fora dela, o aparelho pode ou nao alcancar, e a Aquametria nao afirma que alcanca. Regra V17 do esquema.",
+          "verificado_em": "2026-09-08"
+        }
+      ],
+      "verificado_em": "2026-09-08",
+      "status_registro": "conflito",
+      "observacao": "25 W declarados para 20 a 35 L, ou seja de 0.71 a 1.25 W/L. Mega Aquarios rotula o mesmo aparelho como 'aquario pequeno 25 L' no titulo, outro numero ainda. A faixa de ajuste segue em conflito na linha inteira e a C5 usa a intersecao conservadora de 22 a 32 C (regra V17)."
+    },
+    {
+      "id": "eheim-jager-50w",
+      "entidade": "aquecedor",
+      "marca": "Eheim",
+      "linha": "Jager",
+      "modelo": "Jager 50 W",
+      "variante": "50 W",
+      "nomes_alternativos": [
+        "Eheim Jager 50w",
+        "Eheim Thermocontrol 50 W",
+        "Termostato Eheim Jager 50W"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "110",
+        "220"
+      ],
+      "potencia_w": 50,
       "tipo": "resistencia-vidro",
       "termostato": "interno-analogico",
       "faixa_ajuste_C": {
@@ -29,41 +135,250 @@
         "max": 34
       },
       "precisao_C": 0.5,
-      "comprimento_cm": null,
+      "comprimento_cm": 25.0,
       "submersivel": true,
-      "protecao_funcionamento_a_seco": null,
+      "protecao_funcionamento_a_seco": true,
       "volume_atendido_declarado_L": {
-        "min": 30,
-        "max": 400
+        "min": 25,
+        "max": 50
       },
       "afiliado": {
         "plataforma": null,
-        "motivo": "sem anuncio do produto na Shopee em 07/09/2026 (busca do painel de afiliados so devolveu pecas de reposicao e lampadas UV). Enquanto nao houver link, este produto NAO e sugerido no bloco de produto das calculadoras.",
-        "verificado_em": "2026-09-07"
+        "motivo": "sem anuncio deste modelo na Shopee em 07/09/2026 (a busca do painel de afiliados so devolveu pecas de reposicao e lampadas UV) e nao foi refeita em 08/09. Pela regra V16 o produto continua sendo sugerido pela adequacao tecnica; o cartao sai sem botao de loja.",
+        "verificado_em": "2026-09-08"
       },
       "fontes": [
         {
           "origem": "fabricante-via-busca",
           "status": "fabricante-via-busca",
-          "referencia": "Eheim, linha Jager (25 a 300 W, 9 tamanhos, 20 a 1000 L; ajuste 18 a 34 C com precisao de 0,5 C); mesma coleta que gerou a constante eheim-jager-dimensionamento do Bloco 2",
+          "referencia": "Eheim, linha Jager/Thermocontrol (ajuste de 18 a 34 C com precisao de 0,5 C; vidro Schott DURAN; desligamento automatico fora d'agua); mesma coleta que gerou a constante eheim-jager-linha-comercial do Bloco 2",
           "url": "https://eheim.com/en_GB/products/technology/heating/thermocontrol/jager",
           "verificado_em": "2026-09-07",
           "campos": [
-            "potencia_w",
-            "volume_atendido_declarado_L",
             "faixa_ajuste_C",
             "precisao_C",
             "tipo",
             "termostato",
-            "submersivel"
+            "submersivel",
+            "protecao_funcionamento_a_seco"
           ],
           "observacao": "Pagina do fabricante nao lida direto (egresso bloqueado). Reconfirmar no manual."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Tabela da linha Jager publicada por varejo europeu (Aquaeden, Top Corals) e norte-americano (SaltwaterAquarium), com potencia, volume declarado e comprimento modelo a modelo",
+          "url": "https://aquaeden-shop.net/webstore/index.php?id_product=794&controller=product",
+          "verificado_em": "2026-09-08",
+          "campos": [
+            "potencia_w",
+            "volume_atendido_declarado_L",
+            "comprimento_cm"
+          ]
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Varejo BR publica a linha nas duas tomadas: Pro-Aquarista (Thermocontrol 100 W 110 V, 250 W 110 V, 300 W 220 V), Agrosete (150 W 220 V) e Pata Mania (200 W 220 V)",
+          "url": "https://www.proaquarista.com.br/produto/eheim-termostato-thermocontrol-100w-110v.html",
+          "verificado_em": "2026-09-08",
+          "campos": [
+            "voltagem",
+            "disponibilidade_br"
+          ],
+          "observacao": "O que a fonte sustenta e que EXISTE versao de 110 V e versao de 220 V da mesma potencia — nao que um anuncio especifico seja de uma delas. Por isso o cartao de produto obriga a conferir a voltagem no anuncio antes de comprar."
         }
       ],
       "conflitos": [],
-      "verificado_em": "2026-09-07",
+      "verificado_em": "2026-09-08",
       "status_registro": "completo",
-      "observacao": "O registro que ancora a C5: 200 W declarados para 30 a 400 L e uma faixa de 13,3 vezes, ou de 0,5 a 6,7 W/L. Serve para escolher potencia comercial, nunca para dimensionar. Ficha completa, mas sem voltagem nao entra na sugestao da C5: aquecedor na voltagem errada queima."
+      "observacao": "50 W declarados para 25 a 50 L: exatamente 1,0 W/L no teto. Junto com o 25 W (25 L), o 100 W (100 L) e o 150 W (150 L), mostra que a propria linha do fabricante e desenhada sobre a regra de bolso de 1 W/L que a web brasileira repete sem citar."
+    },
+    {
+      "id": "roxin-ht-1300-q3-50w",
+      "entidade": "aquecedor",
+      "marca": "Roxin",
+      "linha": "HT-1300/Q3",
+      "modelo": "HT-1300 50 W",
+      "variante": "50 W",
+      "nomes_alternativos": [
+        "Roxin Q3 50W",
+        "Termostato Roxin HT-1300 50w"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "110",
+        "220"
+      ],
+      "potencia_w": 50,
+      "tipo": "quartzo",
+      "termostato": "interno-analogico",
+      "faixa_ajuste_C": null,
+      "precisao_C": null,
+      "comprimento_cm": 23.0,
+      "submersivel": true,
+      "protecao_funcionamento_a_seco": null,
+      "volume_atendido_declarado_L": {
+        "min": 40,
+        "max": 60
+      },
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "a coleta de links da Shopee em 07/09/2026 cobriu so as potencias de 100, 200 e 300 W da linha. Este modelo entrou no banco em 08/09 e ainda nao teve link coletado. Pela regra V16 ele e sugerido do mesmo jeito, sem botao de loja.",
+        "verificado_em": "2026-09-08"
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "WorldFish e AquaMaeda (varejo BR), fichas do HT-1300/Q3 50 W (40 a 60 L, 2,3 x 23 cm, cabo de 90 cm, IP68)",
+          "url": "https://worldfish.com.br/produtos/termostato-com-aquecedor-roxin-ht-1300-q3-50w-220v/",
+          "verificado_em": "2026-09-08",
+          "campos": [
+            "potencia_w",
+            "volume_atendido_declarado_L",
+            "tipo",
+            "termostato",
+            "submersivel",
+            "comprimento_cm"
+          ],
+          "observacao": "Ficha de varejo, pagina nao lida direto (egresso bloqueado). Confira a embalagem."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Varejo BR publica a mesma potencia nas duas tomadas: Cobasi (fichas 'HT-1300 110V' e 'HT-1300 220V'), Tudo de Bicho (100 W 110 V e 100 W 220 V), WorldFish (25 W 110 V, 50 W 220 V), AquaMaeda ('110v/220v') e Aquarioz (50 W 220 V)",
+          "url": "https://www.cobasi.com.br/termostato-roxin-ht-1300-220v-3724840/p",
+          "verificado_em": "2026-09-08",
+          "campos": [
+            "voltagem",
+            "disponibilidade_br"
+          ],
+          "observacao": "Parte do varejo rotula a versao de 110 V como 127 V (Amazon). Sao o mesmo produto; o vocabulario do esquema usa '110'. A tela obriga a conferir a voltagem no anuncio."
+        }
+      ],
+      "conflitos": [
+        {
+          "campo": "faixa_ajuste_C",
+          "valores": [
+            {
+              "valor": {
+                "min": 22,
+                "max": 34
+              },
+              "referencia": "fichas de varejo BR da linha HT-1300/Q3 (RS Discus, Mega Aquarios, Cobasi, WorldFish, AquaMaeda)",
+              "url": "https://www.rsdiscus.com.br/temperatura/termostatos/roxin-termostato-ht-1300q3-100w-p-aquario-de-100-lts-220v",
+              "origem": "varejo"
+            },
+            {
+              "valor": {
+                "min": 16,
+                "max": 32
+              },
+              "referencia": "outras fichas de varejo BR da mesma linha (Petlove)",
+              "url": "https://www.petlove.com.br/termostato-com-aquecedor-roxin-ht-1300-25w/p",
+              "origem": "varejo"
+            }
+          ],
+          "razao": "os dois extremos discordam: 6 C no piso e 2 C no teto",
+          "tratamento": "intersecao-conservadora",
+          "valor_conservador": {
+            "min": 22,
+            "max": 32
+          },
+          "derivacao": "intersecao dos dois intervalos: 22 C e o maior dos pisos, 32 C e o menor dos tetos. Nao e media nem escolha de fonte — e a unica faixa que as DUAS fontes concordam que o aparelho cobre. Fora dela, o aparelho pode ou nao alcancar, e a Aquametria nao afirma que alcanca. Regra V17 do esquema.",
+          "verificado_em": "2026-09-08"
+        }
+      ],
+      "verificado_em": "2026-09-08",
+      "status_registro": "conflito",
+      "observacao": "50 W declarados para 40 a 60 L, ou seja de 0.83 a 1.25 W/L. Mega Aquarios rotula o mesmo aparelho como 'aquario pequeno 50 L' no titulo, outro numero ainda. A faixa de ajuste segue em conflito na linha inteira e a C5 usa a intersecao conservadora de 22 a 32 C (regra V17)."
+    },
+    {
+      "id": "eheim-jager-100w",
+      "entidade": "aquecedor",
+      "marca": "Eheim",
+      "linha": "Jager",
+      "modelo": "Jager 100 W",
+      "variante": "100 W",
+      "nomes_alternativos": [
+        "Eheim Jager 100w",
+        "Eheim Thermocontrol 100 W",
+        "Termostato Eheim Jager 100W"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "110",
+        "220"
+      ],
+      "potencia_w": 100,
+      "tipo": "resistencia-vidro",
+      "termostato": "interno-analogico",
+      "faixa_ajuste_C": {
+        "min": 18,
+        "max": 34
+      },
+      "precisao_C": 0.5,
+      "comprimento_cm": 32.0,
+      "submersivel": true,
+      "protecao_funcionamento_a_seco": true,
+      "volume_atendido_declarado_L": {
+        "min": 75,
+        "max": 100
+      },
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "sem anuncio deste modelo na Shopee em 07/09/2026 (a busca do painel de afiliados so devolveu pecas de reposicao e lampadas UV) e nao foi refeita em 08/09. Pela regra V16 o produto continua sendo sugerido pela adequacao tecnica; o cartao sai sem botao de loja.",
+        "verificado_em": "2026-09-08"
+      },
+      "fontes": [
+        {
+          "origem": "fabricante-via-busca",
+          "status": "fabricante-via-busca",
+          "referencia": "Eheim, linha Jager/Thermocontrol (ajuste de 18 a 34 C com precisao de 0,5 C; vidro Schott DURAN; desligamento automatico fora d'agua); mesma coleta que gerou a constante eheim-jager-linha-comercial do Bloco 2",
+          "url": "https://eheim.com/en_GB/products/technology/heating/thermocontrol/jager",
+          "verificado_em": "2026-09-07",
+          "campos": [
+            "faixa_ajuste_C",
+            "precisao_C",
+            "tipo",
+            "termostato",
+            "submersivel",
+            "protecao_funcionamento_a_seco"
+          ],
+          "observacao": "Pagina do fabricante nao lida direto (egresso bloqueado). Reconfirmar no manual."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Tabela da linha Jager publicada por varejo europeu (Aquaeden, Top Corals) e norte-americano (SaltwaterAquarium), com potencia, volume declarado e comprimento modelo a modelo",
+          "url": "https://aquaeden-shop.net/webstore/index.php?id_product=794&controller=product",
+          "verificado_em": "2026-09-08",
+          "campos": [
+            "potencia_w",
+            "volume_atendido_declarado_L",
+            "comprimento_cm"
+          ]
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Varejo BR publica a linha nas duas tomadas: Pro-Aquarista (Thermocontrol 100 W 110 V, 250 W 110 V, 300 W 220 V), Agrosete (150 W 220 V) e Pata Mania (200 W 220 V)",
+          "url": "https://www.proaquarista.com.br/produto/eheim-termostato-thermocontrol-100w-110v.html",
+          "verificado_em": "2026-09-08",
+          "campos": [
+            "voltagem",
+            "disponibilidade_br"
+          ],
+          "observacao": "O que a fonte sustenta e que EXISTE versao de 110 V e versao de 220 V da mesma potencia — nao que um anuncio especifico seja de uma delas. Por isso o cartao de produto obriga a conferir a voltagem no anuncio antes de comprar."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-08",
+      "status_registro": "completo",
+      "observacao": "100 W para 75 a 100 L. Fecha o padrao de 1,0 W/L no teto da serie pequena — e por isso o 200 W declarado para 300 a 400 L (0,5 a 0,67 W/L) salta aos olhos."
     },
     {
       "id": "roxin-ht-1300-q3-100w",
@@ -78,7 +393,10 @@
       ],
       "gtin": null,
       "disponibilidade_br": "vendido",
-      "voltagem": null,
+      "voltagem": [
+        "110",
+        "220"
+      ],
       "potencia_w": 100,
       "tipo": "quartzo",
       "termostato": "interno-analogico",
@@ -98,9 +416,9 @@
         "sub_id_2": "C5",
         "rel": "sponsored",
         "verificado_em": "2026-09-07",
-        "anuncio_shopee": "ROXIN HT-1300 Q3 100W 127V para aquário até 100 litros",
+        "anuncio_shopee": "ROXIN HT-1300 Q3 100W 127V para aquario ate 100 litros",
         "voltagem_anuncio": "127",
-        "observacao": "voltagem_anuncio e a voltagem DO ANUNCIO, nao do produto: anuncio de marketplace (nivel 6) nao sustenta campo tecnico, por isso o campo voltagem do registro continua null. A tela precisa avisar qual versao o link abre."
+        "observacao": "voltagem_anuncio e a voltagem DO ANUNCIO, nao do produto: anuncio de marketplace (nivel 6) nao sustenta campo tecnico. O campo voltagem do registro veio do varejo especializado, que publica a mesma potencia em 110 V e em 220 V. A tela precisa avisar qual versao o link abre."
       },
       "fontes": [
         {
@@ -117,6 +435,18 @@
             "submersivel"
           ],
           "observacao": "Ficha de varejo, tubo de quartzo com resistencia em aco inox. Confira a embalagem."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Varejo BR publica a mesma potencia nas duas tomadas: Cobasi (fichas 'HT-1300 110V' e 'HT-1300 220V'), Tudo de Bicho (100 W 110 V e 100 W 220 V), WorldFish (25 W 110 V, 50 W 220 V), AquaMaeda ('110v/220v') e Aquarioz (50 W 220 V)",
+          "url": "https://www.cobasi.com.br/termostato-roxin-ht-1300-220v-3724840/p",
+          "verificado_em": "2026-09-08",
+          "campos": [
+            "voltagem",
+            "disponibilidade_br"
+          ],
+          "observacao": "Parte do varejo rotula a versao de 110 V como 127 V (Amazon). Sao o mesmo produto; o vocabulario do esquema usa '110'. A tela obriga a conferir a voltagem no anuncio."
         }
       ],
       "conflitos": [
@@ -128,7 +458,7 @@
                 "min": 22,
                 "max": 34
               },
-              "referencia": "fichas de varejo BR da linha HT-1300/Q3",
+              "referencia": "fichas de varejo BR da linha HT-1300/Q3 (RS Discus, Mega Aquarios, Cobasi, WorldFish, AquaMaeda)",
               "url": "https://www.rsdiscus.com.br/temperatura/termostatos/roxin-termostato-ht-1300q3-100w-p-aquario-de-100-lts-220v",
               "origem": "varejo"
             },
@@ -137,18 +467,239 @@
                 "min": 16,
                 "max": 32
               },
-              "referencia": "outras fichas de varejo BR da mesma linha",
+              "referencia": "outras fichas de varejo BR da mesma linha (Petlove)",
               "url": "https://www.petlove.com.br/termostato-com-aquecedor-roxin-ht-1300-25w/p",
               "origem": "varejo"
             }
           ],
           "razao": "os dois extremos discordam: 6 C no piso e 2 C no teto",
-          "tratamento": "campo-vira-null"
+          "tratamento": "intersecao-conservadora",
+          "valor_conservador": {
+            "min": 22,
+            "max": 32
+          },
+          "derivacao": "intersecao dos dois intervalos: 22 C e o maior dos pisos, 32 C e o menor dos tetos. Nao e media nem escolha de fonte — e a unica faixa que as DUAS fontes concordam que o aparelho cobre. Fora dela, o aparelho pode ou nao alcancar, e a Aquametria nao afirma que alcanca. Regra V17 do esquema.",
+          "verificado_em": "2026-09-08"
         }
       ],
-      "verificado_em": "2026-09-07",
+      "verificado_em": "2026-09-08",
       "status_registro": "conflito",
-      "observacao": "Duas fontes do MESMO nivel (varejo) publicam faixas de ajuste diferentes para a mesma linha, entao nenhuma vence e o campo fica null ate a embalagem ser conferida. E o comportamento que o modelo exige: sem media, sem escolha arbitraria."
+      "observacao": "100 W para 50 a 150 L: de 0,67 a 2,0 W/L. Voltagem resolvida em 08/09/2026 (110 V e 220 V no varejo BR) e faixa de ajuste tratada pela intersecao conservadora de 22 a 32 C — as duas coisas que barravam a sugestao da C5."
+    },
+    {
+      "id": "eheim-jager-150w",
+      "entidade": "aquecedor",
+      "marca": "Eheim",
+      "linha": "Jager",
+      "modelo": "Jager 150 W",
+      "variante": "150 W",
+      "nomes_alternativos": [
+        "Eheim Jager 150w",
+        "Eheim Thermocontrol 150 W",
+        "Termostato Eheim Jager 150W"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "110",
+        "220"
+      ],
+      "potencia_w": 150,
+      "tipo": "resistencia-vidro",
+      "termostato": "interno-analogico",
+      "faixa_ajuste_C": {
+        "min": 18,
+        "max": 34
+      },
+      "precisao_C": 0.5,
+      "comprimento_cm": 35.0,
+      "submersivel": true,
+      "protecao_funcionamento_a_seco": true,
+      "volume_atendido_declarado_L": {
+        "min": 125,
+        "max": 150
+      },
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "sem anuncio deste modelo na Shopee em 07/09/2026 (a busca do painel de afiliados so devolveu pecas de reposicao e lampadas UV) e nao foi refeita em 08/09. Pela regra V16 o produto continua sendo sugerido pela adequacao tecnica; o cartao sai sem botao de loja.",
+        "verificado_em": "2026-09-08"
+      },
+      "fontes": [
+        {
+          "origem": "fabricante-via-busca",
+          "status": "fabricante-via-busca",
+          "referencia": "Eheim, linha Jager/Thermocontrol (ajuste de 18 a 34 C com precisao de 0,5 C; vidro Schott DURAN; desligamento automatico fora d'agua); mesma coleta que gerou a constante eheim-jager-linha-comercial do Bloco 2",
+          "url": "https://eheim.com/en_GB/products/technology/heating/thermocontrol/jager",
+          "verificado_em": "2026-09-07",
+          "campos": [
+            "faixa_ajuste_C",
+            "precisao_C",
+            "tipo",
+            "termostato",
+            "submersivel",
+            "protecao_funcionamento_a_seco"
+          ],
+          "observacao": "Pagina do fabricante nao lida direto (egresso bloqueado). Reconfirmar no manual."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Tabela da linha Jager publicada por varejo europeu (Aquaeden, Top Corals) e norte-americano (SaltwaterAquarium), com potencia, volume declarado e comprimento modelo a modelo",
+          "url": "https://aquaeden-shop.net/webstore/index.php?id_product=794&controller=product",
+          "verificado_em": "2026-09-08",
+          "campos": [
+            "potencia_w",
+            "volume_atendido_declarado_L",
+            "comprimento_cm"
+          ]
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Varejo BR publica a linha nas duas tomadas: Pro-Aquarista (Thermocontrol 100 W 110 V, 250 W 110 V, 300 W 220 V), Agrosete (150 W 220 V) e Pata Mania (200 W 220 V)",
+          "url": "https://www.proaquarista.com.br/produto/eheim-termostato-thermocontrol-100w-110v.html",
+          "verificado_em": "2026-09-08",
+          "campos": [
+            "voltagem",
+            "disponibilidade_br"
+          ],
+          "observacao": "O que a fonte sustenta e que EXISTE versao de 110 V e versao de 220 V da mesma potencia — nao que um anuncio especifico seja de uma delas. Por isso o cartao de produto obriga a conferir a voltagem no anuncio antes de comprar."
+        }
+      ],
+      "conflitos": [
+        {
+          "campo": "volume_atendido_declarado_L",
+          "valores": [
+            {
+              "valor": {
+                "min": 125,
+                "max": 150
+              },
+              "referencia": "tabela da linha Jager no varejo europeu/americano (Aquaeden, Top Corals)",
+              "url": "https://aquaeden-shop.net/webstore/index.php?id_product=794&controller=product",
+              "origem": "varejo"
+            },
+            {
+              "valor": {
+                "min": 200,
+                "max": 300
+              },
+              "referencia": "Agrosete (varejo BR), ficha do Eheim 150 W 220 V",
+              "url": "https://loja.agrosete.com.br/aquecedor-termostato-eheim-para-aquarios-de-200-a-300-litros-220-volts-150w",
+              "origem": "varejo"
+            }
+          ],
+          "razao": "o mesmo aquecedor de 150 W e declarado para 125-150 L (1,0 a 1,2 W/L) e para 200-300 L (0,5 a 0,75 W/L): duas vezes de diferenca",
+          "tratamento": "publicar-os-dois",
+          "verificado_em": "2026-09-08"
+        }
+      ],
+      "verificado_em": "2026-09-08",
+      "status_registro": "conflito",
+      "observacao": "O registro que expoe o problema de frente: a MESMA potencia de 150 W aparece declarada para 125-150 L numa ficha e para 200-300 L noutra. Nenhuma das duas e o fabricante, as duas sao varejo, e a diferenca e de duas vezes. Volume declarado nao dimensiona aquecedor — e o que a C5 diz na tela."
+    },
+    {
+      "id": "eheim-jager-200w",
+      "entidade": "aquecedor",
+      "marca": "Eheim",
+      "linha": "Jager",
+      "modelo": "Jager 200 W",
+      "variante": "200 W",
+      "nomes_alternativos": [
+        "Eheim Jager 200w",
+        "Termostato Eheim Jager 200W",
+        "Eheim Thermocontrol 200 W"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "110",
+        "220"
+      ],
+      "potencia_w": 200,
+      "tipo": "resistencia-vidro",
+      "termostato": "interno-analogico",
+      "faixa_ajuste_C": {
+        "min": 18,
+        "max": 34
+      },
+      "precisao_C": 0.5,
+      "comprimento_cm": 41.0,
+      "submersivel": true,
+      "protecao_funcionamento_a_seco": true,
+      "volume_atendido_declarado_L": {
+        "min": 30,
+        "max": 400
+      },
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "sem anuncio do produto na Shopee em 07/09/2026 (busca do painel de afiliados so devolveu pecas de reposicao e lampadas UV). Pela regra V16 o produto continua sendo sugerido pela adequacao tecnica; o cartao sai sem botao de loja.",
+        "verificado_em": "2026-09-08"
+      },
+      "fontes": [
+        {
+          "origem": "fabricante-via-busca",
+          "status": "fabricante-via-busca",
+          "referencia": "Eheim, linha Jager (25 a 300 W, 9 tamanhos, 20 a 1000 L; ajuste 18 a 34 C com precisao de 0,5 C; 200 W declarado para 30 a 400 L, 400 mm de comprimento, 24,5 mm de diametro, cabo de 170 cm, vidro Schott DURAN, desliga fora d'agua); mesma coleta que gerou a constante eheim-jager-dimensionamento do Bloco 2",
+          "url": "https://eheim.com/en_GB/products/technology/heating/thermocontrol/jager",
+          "verificado_em": "2026-09-07",
+          "campos": [
+            "potencia_w",
+            "volume_atendido_declarado_L",
+            "faixa_ajuste_C",
+            "precisao_C",
+            "tipo",
+            "termostato",
+            "submersivel",
+            "comprimento_cm",
+            "protecao_funcionamento_a_seco"
+          ],
+          "observacao": "Pagina do fabricante nao lida direto (egresso bloqueado). Reconfirmar no manual."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Varejo BR publica a linha nas duas tomadas: Pro-Aquarista (Thermocontrol 100 W 110 V, 250 W 110 V, 300 W 220 V), Agrosete (150 W 220 V) e Pata Mania (200 W 220 V)",
+          "url": "https://www.proaquarista.com.br/produto/eheim-termostato-thermocontrol-100w-110v.html",
+          "verificado_em": "2026-09-08",
+          "campos": [
+            "voltagem",
+            "disponibilidade_br"
+          ],
+          "observacao": "O que a fonte sustenta e que EXISTE versao de 110 V e versao de 220 V da mesma potencia — nao que um anuncio especifico seja de uma delas. Por isso o cartao de produto obriga a conferir a voltagem no anuncio antes de comprar."
+        }
+      ],
+      "conflitos": [
+        {
+          "campo": "volume_atendido_declarado_L",
+          "valores": [
+            {
+              "valor": {
+                "min": 30,
+                "max": 400
+              },
+              "referencia": "catalogo do proprio fabricante (Eheim), linha Jager",
+              "url": "https://eheim.com/en_GB/products/technology/heating/thermocontrol/jager",
+              "origem": "fabricante"
+            },
+            {
+              "valor": {
+                "min": 300,
+                "max": 400
+              },
+              "referencia": "varejo BR e tabela de varejo da linha (Pata Mania, Aquaeden, Top Corals)",
+              "url": "https://www.patamania.com.br/aquecedor-termostato-eheim-para-aquarios-de-300-a-400-litros-220-volts-200w",
+              "origem": "varejo"
+            }
+          ],
+          "razao": "o piso declarado vai de 30 L a 300 L para o mesmo aparelho: dez vezes",
+          "tratamento": "nivel-mais-alto-vence",
+          "verificado_em": "2026-09-08"
+        }
+      ],
+      "verificado_em": "2026-09-08",
+      "status_registro": "conflito",
+      "observacao": "O registro que ancora a C5. O fabricante declara 200 W para 30 a 400 L: uma faixa de 13,3 vezes, ou de 0,5 a 6,7 W/L. O varejo estreita para 300-400 L, o que da 0,5 a 0,67 W/L e quebra o 1,0 W/L que a propria linha segue no 25, no 50, no 100 e no 150 W. Serve para escolher potencia comercial; nunca para dimensionar. Voltagem resolvida em 08/09/2026 (110 V e 220 V no varejo BR), o que libera a sugestao da C5."
     },
     {
       "id": "roxin-ht-1300-q3-200w",
@@ -163,7 +714,10 @@
       ],
       "gtin": null,
       "disponibilidade_br": "vendido",
-      "voltagem": null,
+      "voltagem": [
+        "110",
+        "220"
+      ],
       "potencia_w": 200,
       "tipo": "quartzo",
       "termostato": "interno-analogico",
@@ -185,7 +739,7 @@
         "verificado_em": "2026-09-07",
         "anuncio_shopee": "Roxin Q3 Ht-1300 Q3 200w 110V",
         "voltagem_anuncio": "110",
-        "observacao": "voltagem_anuncio e a voltagem DO ANUNCIO, nao do produto: anuncio de marketplace (nivel 6) nao sustenta campo tecnico, por isso o campo voltagem do registro continua null. A tela precisa avisar qual versao o link abre."
+        "observacao": "voltagem_anuncio e a voltagem DO ANUNCIO, nao do produto: anuncio de marketplace (nivel 6) nao sustenta campo tecnico. O campo voltagem do registro veio do varejo especializado, que publica a mesma potencia em 110 V e em 220 V. A tela precisa avisar qual versao o link abre."
       },
       "fontes": [
         {
@@ -202,6 +756,18 @@
             "submersivel"
           ],
           "observacao": "Ficha de varejo. Confira a embalagem."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Varejo BR publica a mesma potencia nas duas tomadas: Cobasi (fichas 'HT-1300 110V' e 'HT-1300 220V'), Tudo de Bicho (100 W 110 V e 100 W 220 V), WorldFish (25 W 110 V, 50 W 220 V), AquaMaeda ('110v/220v') e Aquarioz (50 W 220 V)",
+          "url": "https://www.cobasi.com.br/termostato-roxin-ht-1300-220v-3724840/p",
+          "verificado_em": "2026-09-08",
+          "campos": [
+            "voltagem",
+            "disponibilidade_br"
+          ],
+          "observacao": "Parte do varejo rotula a versao de 110 V como 127 V (Amazon). Sao o mesmo produto; o vocabulario do esquema usa '110'. A tela obriga a conferir a voltagem no anuncio."
         }
       ],
       "conflitos": [
@@ -213,7 +779,7 @@
                 "min": 22,
                 "max": 34
               },
-              "referencia": "fichas de varejo BR da linha HT-1300/Q3",
+              "referencia": "fichas de varejo BR da linha HT-1300/Q3 (RS Discus, Mega Aquarios, Cobasi, WorldFish, AquaMaeda)",
               "url": "https://www.rsdiscus.com.br/temperatura/termostatos/roxin-termostato-ht-1300q3-100w-p-aquario-de-100-lts-220v",
               "origem": "varejo"
             },
@@ -222,16 +788,22 @@
                 "min": 16,
                 "max": 32
               },
-              "referencia": "outras fichas de varejo BR da mesma linha",
+              "referencia": "outras fichas de varejo BR da mesma linha (Petlove)",
               "url": "https://www.petlove.com.br/termostato-com-aquecedor-roxin-ht-1300-25w/p",
               "origem": "varejo"
             }
           ],
-          "razao": "mesma divergencia da linha inteira",
-          "tratamento": "campo-vira-null"
+          "razao": "os dois extremos discordam: 6 C no piso e 2 C no teto",
+          "tratamento": "intersecao-conservadora",
+          "valor_conservador": {
+            "min": 22,
+            "max": 32
+          },
+          "derivacao": "intersecao dos dois intervalos: 22 C e o maior dos pisos, 32 C e o menor dos tetos. Nao e media nem escolha de fonte — e a unica faixa que as DUAS fontes concordam que o aparelho cobre. Fora dela, o aparelho pode ou nao alcancar, e a Aquametria nao afirma que alcanca. Regra V17 do esquema.",
+          "verificado_em": "2026-09-08"
         }
       ],
-      "verificado_em": "2026-09-07",
+      "verificado_em": "2026-09-08",
       "status_registro": "conflito",
       "observacao": "200 W para ate 200 L = 1,0 W/L declarado, exatamente a regra de bolso brasileira. Compare com o 100 W (0,67 W/L no teto) e com o 300 W (0,86 W/L no teto): a propria linha nao segue uma regra unica."
     },
@@ -244,11 +816,14 @@
       "variante": "300 W",
       "nomes_alternativos": [
         "Roxin Q3 300W",
-        "Termostato Roxin 300w"
+        "Termostato Roxin HT-1300 300w"
       ],
       "gtin": null,
       "disponibilidade_br": "vendido",
-      "voltagem": null,
+      "voltagem": [
+        "110",
+        "220"
+      ],
       "potencia_w": 300,
       "tipo": "quartzo",
       "termostato": "interno-analogico",
@@ -270,7 +845,7 @@
         "verificado_em": "2026-09-07",
         "anuncio_shopee": "Termostato Com Aquecedor Roxin HT-1300 - Q3 - 300w - 220v",
         "voltagem_anuncio": "220",
-        "observacao": "voltagem_anuncio e a voltagem DO ANUNCIO, nao do produto: anuncio de marketplace (nivel 6) nao sustenta campo tecnico, por isso o campo voltagem do registro continua null. A tela precisa avisar qual versao o link abre."
+        "observacao": "voltagem_anuncio e a voltagem DO ANUNCIO, nao do produto: anuncio de marketplace (nivel 6) nao sustenta campo tecnico. O campo voltagem do registro veio do varejo especializado, que publica a mesma potencia em 110 V e em 220 V. A tela precisa avisar qual versao o link abre."
       },
       "fontes": [
         {
@@ -287,6 +862,18 @@
             "submersivel"
           ],
           "observacao": "Ficha de varejo. Confira a embalagem."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Varejo BR publica a mesma potencia nas duas tomadas: Cobasi (fichas 'HT-1300 110V' e 'HT-1300 220V'), Tudo de Bicho (100 W 110 V e 100 W 220 V), WorldFish (25 W 110 V, 50 W 220 V), AquaMaeda ('110v/220v') e Aquarioz (50 W 220 V)",
+          "url": "https://www.cobasi.com.br/termostato-roxin-ht-1300-220v-3724840/p",
+          "verificado_em": "2026-09-08",
+          "campos": [
+            "voltagem",
+            "disponibilidade_br"
+          ],
+          "observacao": "Parte do varejo rotula a versao de 110 V como 127 V (Amazon). Sao o mesmo produto; o vocabulario do esquema usa '110'. A tela obriga a conferir a voltagem no anuncio."
         }
       ],
       "conflitos": [
@@ -298,7 +885,7 @@
                 "min": 22,
                 "max": 34
               },
-              "referencia": "fichas de varejo BR da linha HT-1300/Q3",
+              "referencia": "fichas de varejo BR da linha HT-1300/Q3 (RS Discus, Mega Aquarios, Cobasi, WorldFish, AquaMaeda)",
               "url": "https://www.rsdiscus.com.br/temperatura/termostatos/roxin-termostato-ht-1300q3-100w-p-aquario-de-100-lts-220v",
               "origem": "varejo"
             },
@@ -307,19 +894,24 @@
                 "min": 16,
                 "max": 32
               },
-              "referencia": "outras fichas de varejo BR da mesma linha",
+              "referencia": "outras fichas de varejo BR da mesma linha (Petlove)",
               "url": "https://www.petlove.com.br/termostato-com-aquecedor-roxin-ht-1300-25w/p",
               "origem": "varejo"
             }
           ],
-          "razao": "mesma divergencia da linha inteira",
-          "tratamento": "campo-vira-null"
+          "razao": "os dois extremos discordam: 6 C no piso e 2 C no teto",
+          "tratamento": "intersecao-conservadora",
+          "valor_conservador": {
+            "min": 22,
+            "max": 32
+          },
+          "derivacao": "intersecao dos dois intervalos: 22 C e o maior dos pisos, 32 C e o menor dos tetos. Nao e media nem escolha de fonte — e a unica faixa que as DUAS fontes concordam que o aparelho cobre. Fora dela, o aparelho pode ou nao alcancar, e a Aquametria nao afirma que alcanca. Regra V17 do esquema.",
+          "verificado_em": "2026-09-08"
         }
       ],
-      "verificado_em": "2026-09-07",
+      "verificado_em": "2026-09-08",
       "status_registro": "conflito",
-      "observacao": "Fecha a serie da linha popular brasileira: 100 W para 50-150 L, 200 W para ate 200 L, 300 W para 250-350 L. Nenhuma faixa encosta na seguinte de forma continua e a razao W/L varia de 0,67 a 1,2 dentro da mesma linha."
+      "observacao": "Fecha a serie da linha popular brasileira: 25 W para 20-35 L, 50 W para 40-60 L, 100 W para 50-150 L, 200 W para ate 200 L, 300 W para 250-350 L. Nenhuma faixa encosta na seguinte de forma continua e a razao W/L varia de 0,67 a 1,25 dentro da mesma linha."
     }
-  ],
-  "atualizado_em": "2026-09-07"
+  ]
 }

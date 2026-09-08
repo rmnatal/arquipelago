@@ -4,7 +4,7 @@
 
 Uso (a partir de ilhas/aquametria/):  python3 ferramentas/validar-produtos.py
 
-As regras V1 a V15 estao descritas em dados/esquema-produtos.json e em
+As regras V1 a V18 estao descritas em dados/esquema-produtos.json e em
 dados/modelo-banco-produtos.md. Este arquivo e a versao executavel delas: regra
 que nao roda vira decoracao, e banco de produto sem validacao apodrece em silencio.
 
@@ -99,12 +99,29 @@ def derivados_da_entidade(esquema, entidade):
     return {d["campo"] for d in esquema["entidades"][entidade].get("derivados", [])}
 
 
+def conservador_de(produto, campo):
+    """A faixa conservadora que o V17 autoriza usar no lugar de um campo em
+    conflito. Devolve None se nao houver conflito tratado por intersecao."""
+    for c in produto.get("conflitos") or []:
+        if c.get("campo") == campo and c.get("tratamento") == "intersecao-conservadora":
+            return c.get("valor_conservador")
+    return None
+
+
 def atende(produto, requisitos):
-    """Um requisito pode ser 'campo' ou 'campo_a OU campo_b'."""
+    """Um requisito pode ser 'campo', 'campo_a OU campo_b' ou, como alternativa,
+    'conflito:campo' — que aceita a faixa conservadora do V17 no lugar do campo
+    que o conflito zerou."""
     faltando = []
     for req in requisitos:
-        alternativas = [p.strip() for p in req.split(" OU ")]
-        if not any(preenchido(produto.get(alt)) for alt in alternativas):
+        ok = False
+        for alt in [p.strip() for p in req.split(" OU ")]:
+            if alt.startswith("conflito:"):
+                if preenchido(conservador_de(produto, alt.split(":", 1)[1])):
+                    ok = True
+            elif preenchido(produto.get(alt)):
+                ok = True
+        if not ok:
             faltando.append(req)
     return faltando
 
@@ -212,6 +229,39 @@ def valida_produto(esquema, entidade, produto, vistos):
     # V12 - conflito declarado exige status conflito
     if produto.get("conflitos") and status != "conflito":
         erro("V12", pid, "tem conflitos[] mas status_registro e '%s'" % status)
+
+    # V17 - intersecao conservadora: existe, e a intersecao mesmo, e nao e vazia
+    for c in produto.get("conflitos") or []:
+        if c.get("tratamento") != "intersecao-conservadora":
+            continue
+        campo = c.get("campo", "<sem campo>")
+        intervalos = [v.get("valor") for v in c.get("valores") or []]
+        if not all(isinstance(i, dict) and i.get("min") is not None
+                   and i.get("max") is not None for i in intervalos):
+            erro("V17", pid, "conflito em '%s' tratado por intersecao, mas nem todos os "
+                             "valores sao intervalos {min,max}" % campo)
+            continue
+        niveis = {v.get("origem") for v in c["valores"]}
+        if len(niveis) > 1:
+            erro("V17", pid, "conflito em '%s' entre niveis diferentes (%s): use "
+                             "'nivel-mais-alto-vence', nao intersecao"
+                 % (campo, ", ".join(sorted(str(n) for n in niveis))))
+        esperado = {"min": max(i["min"] for i in intervalos),
+                    "max": min(i["max"] for i in intervalos)}
+        if esperado["min"] >= esperado["max"]:
+            erro("V17", pid, "intersecao vazia em '%s' (%s a %s): o tratamento tem de ser "
+                             "'campo-vira-null'" % (campo, esperado["min"], esperado["max"]))
+            continue
+        obtido = c.get("valor_conservador")
+        if obtido != esperado:
+            erro("V17", pid, "valor_conservador de '%s' e %s; a intersecao dos valores em "
+                             "conflito e %s" % (campo, obtido, esperado))
+        if not c.get("derivacao"):
+            erro("V17", pid, "conflito em '%s' tratado por intersecao sem 'derivacao': a "
+                             "tela precisa poder repetir como o numero saiu" % campo)
+        if preenchido(produto.get(campo)):
+            erro("V17", pid, "'%s' esta preenchido e ao mesmo tempo tem intersecao "
+                             "conservadora: o campo em conflito fica null" % campo)
 
     # V15 - link de afiliado bem formado (ou ausencia justificada)
     afil = produto.get("afiliado")

@@ -43,7 +43,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_C3_VERSAO' ) ) {
-	define( 'AQUAMETRIA_C3_VERSAO', '1.0.0' );
+	define( 'AQUAMETRIA_C3_VERSAO', '1.0.1' );
 	define( 'AQUAMETRIA_C3_SLUG', 'calculadora-de-vazao-do-filtro' );
 	define( 'AQUAMETRIA_C3_VERIFICADO_EM', '08/09/2026' );
 	/* Constante 'eheim-classic-250-2213' (dados/constantes-calculadoras.json):
@@ -1004,11 +1004,13 @@ function aquametria_c3_adiante_html() {
 	$meto  = function_exists( 'aquametria_casca_url_pagina' ) ? aquametria_casca_url_pagina( 'metodologia' ) : home_url( '/metodologia/' );
 	$c1    = function_exists( 'aquametria_casca_url_pagina' ) ? aquametria_casca_url_pagina( 'calculadora-de-litragem' ) : home_url( '/calculadora-de-litragem/' );
 	$divul = function_exists( 'aquametria_casca_url_pagina' ) ? aquametria_casca_url_pagina( AQUAMETRIA_C3_PAGINA_AFILIADOS ) : home_url( '/' . AQUAMETRIA_C3_PAGINA_AFILIADOS . '/' );
+	$c5    = function_exists( 'aquametria_casca_url_pagina' ) ? aquametria_casca_url_pagina( 'calculadora-de-potencia-do-aquecedor' ) : home_url( '/calculadora-de-potencia-do-aquecedor/' );
 
 	$h  = '<div class="aqm-c3-painel aqm-c3-adiante">';
 	$h .= '<h3>O que conversa com esta página</h3>';
 	$h .= '<ul>';
 	$h .= '<li><a href="' . esc_url( $c1 ) . '"><strong>Calculadora de litragem (C1)</strong></a> — é de onde vem o volume real que esta página usa. Se o número acima veio preenchido, veio de lá.</li>';
+	$h .= '<li><a href="' . esc_url( $c5 ) . '"><strong>Potência do aquecedor (C5)</strong></a> — o outro aparelho que o seu volume dimensiona, e o único que pergunta quanto frio faz no seu cômodo. Usa o mesmo volume real desta página.</li>';
 	$h .= '<li><strong>Mídia filtrante (C12)</strong> — quantos mililitros de mídia biológica o seu filtro precisa carregar. Usa o mesmo volume e o modelo de filtro que você escolher aqui. Ainda em construção.</li>';
 	$h .= '<li><strong>Consumo elétrico (C7)</strong> — o filtro fica ligado 24 horas por dia, e é ele que pesa na conta. Vai ler a potência do modelo escolhido aqui. Ainda em construção.</li>';
 	$h .= '<li><a href="' . esc_url( $meto ) . '"><strong>Como a Aquametria calcula</strong></a> — por que uma faixa com duas fontes que discordam vale mais que um número redondo sem origem.</li>';

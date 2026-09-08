@@ -869,3 +869,217 @@ o GitHub. O `raw.githubusercontent.com` **já serve a revisão 8** (conferido ne
 sessão, sem atraso de cache), então o WP-Cron do próprio site, que roda a cada 30
 minutos, aplica sozinho. Para acionar na hora, basta abrir no navegador:
 `https://aquametria.com.br/?aquametria_sync=kgbErDOIVAFWUtUzutHGrKevVgmWGVjz&forcar=1`
+
+## 2026-09-08 (8º disparo) — BLOCO 4: C5, a potência do aquecedor, no ar com o artigo-âncora pareado
+
+Sessão SEM ferramenta de memória (estado lido de `ESTADO.md` e deste registro).
+Sem Application Password, o site não foi tocado: trabalho 100 % no repositório.
+Egresso: `WebSearch` funciona; `WebFetch` cai em `EGRESS_BLOCKED` em qualquer
+domínio que não seja o GitHub — inclusive Cobasi, tentado hoje. Por isso toda
+ficha coletada nesta execução entrou como `transcrita-varejo` ou
+`fabricante-via-busca`, com a observação de reconferir.
+
+### O bloqueio real não era a calculadora, era o banco
+
+A execução anterior deixou o aviso: os quatro aquecedores do banco estavam
+barrados pelo validador. Faltava `voltagem` nos quatro e `faixa_ajuste_C` nos
+três Roxin, esta última em conflito varejo-contra-varejo. Escrever a C5 sem
+resolver isso entregaria uma calculadora com bloco de produto sempre vazio.
+
+Então a coleta veio primeiro, e mudou o tamanho do banco:
+
+**Voltagem, o campo que barrava tudo.** As duas linhas são vendidas no Brasil
+em 110 V e em 220 V, na mesma potência — Cobasi publica duas fichas do Roxin
+HT-1300, uma por tomada; Tudo de Bicho, WorldFish, AquaMaeda, Aquarioz e
+Peixinho e Cia repetem; a Pró-Aquarista publica Thermocontrol 100 W 110 V,
+250 W 110 V e 300 W 220 V. O campo virou `["110","220"]` nas duas linhas, com a
+ressalva escrita na própria fonte: **o que ela sustenta é que EXISTE versão para
+as duas tomadas**, não que um anúncio específico seja de uma delas. Daí o cartão
+de produto obrigar o aviso de conferir a voltagem, dizendo qual versão o anúncio
+que conferimos abria.
+
+**O banco foi de 4 para 9 aquecedores**: Eheim Jäger 50, 100, 150 e 200 W e
+Roxin HT-1300/Q3 25, 50, 100, 200 e 300 W. Cobre de 25 a 300 W, que é a faixa
+onde mora o aquarismo brasileiro doméstico. O validador saiu de **0 de 4 aptos
+para 9 de 9** na `c5-aquecedor-delta` (3 com link de afiliado, 6 sem — e, pela
+V16, os seis sem link aparecem do mesmo jeito, só sem botão de loja).
+
+### A regra V17, que é a decisão editorial desta execução
+
+A faixa de ajuste da linha Roxin aparece publicada de dois jeitos no varejo:
+22 a 34 °C numas fichas, 16 a 32 °C noutras. As duas são varejo, ou seja, do
+mesmo nível. A regra antiga mandava zerar o campo — e zerar o campo tirava das
+sugestões o aquecedor mais vendido do Brasil, por excesso de escrúpulo.
+
+Ficou escrita a regra V17 no esquema (versão 3):
+
+> Quando duas fontes do MESMO nível discordam sobre um intervalo, publica-se a
+> **interseção** delas: o maior dos mínimos e o menor dos máximos. Não é média
+> nem escolha de fonte — é a única faixa que todas as fontes concordam que o
+> aparelho cobre. Exige `valor_conservador` e `derivacao` no conflito, e a
+> calculadora que usar esse valor **tem de dizer na tela** que a faixa é a
+> conservadora e por quê. Interseção vazia continua sendo `campo-vira-null`.
+
+No caso do Roxin: 22 a 32 °C. Na prática, quem quer 30 °C para acará-disco vê o
+Roxin na lista; quem quer 33 °C não vê, e lê o motivo; quem quer 20 °C para
+kinguio também não vê, porque a faixa conservadora começa em 22 °C. É menos do
+que o aparelho talvez faça, e é exatamente tudo o que as fontes sustentam.
+
+Junto veio a **V18**: aquecedor sugerido tem de alcançar a temperatura-alvo
+dentro da faixa que o registro sustenta. No bloco de produto da C5, duas
+barreiras de segurança vêm ANTES da adequação técnica — a voltagem da tomada e o
+termostato chegar ao alvo. O validador aprendeu a conferir a interseção de
+verdade (se o `valor_conservador` não for a interseção dos valores em conflito,
+é erro) e o `minimo_para_sugerir` aceita a alternativa `conflito:campo`.
+
+### O achado, que virou o artigo
+
+Ao levantar a linha Eheim Jäger inteira para completar a constante
+`eheim-jager-linha-comercial`, apareceu o volume declarado potência a potência:
+
+| Modelo | Volume declarado | W/L no teto |
+|---|---|---|
+| 25 W | 20 a 25 L | 1,00 |
+| 50 W | 25 a 50 L | 1,00 |
+| 75 W | 50 a 75 L | 1,00 |
+| 100 W | 75 a 100 L | 1,00 |
+| 125 W | 100 a 125 L | 1,00 |
+| 150 W | 125 a 150 L | 1,00 |
+| 200 W | 300 a 400 L | 0,50 |
+
+Um vírgula zero, seis vezes seguidas. **O "1 W por litro" que a web brasileira
+repete sem citar ninguém não veio de física: veio da prateleira.** O catálogo do
+fabricante nomeia cada aparelho pelo volume que dá exatamente 1 W/L, e a regra
+de bolso leu a caixa e transformou o rótulo em lei. Isso explica por que fontes
+que não se citam repetem o mesmo número.
+
+E a régua quebra em três lugares, todos registrados como conflito no banco:
+o 200 W sai da série (0,50 W/L); o catálogo Eheim declara esse mesmo 200 W para
+30 a 400 L (treze vezes); e o Jäger de 150 W aparece declarado para 125-150 L
+numa ficha e para 200-300 L noutra, as duas de varejo, o dobro de diferença.
+
+De quebra, a constante ficou completa: faltavam as potências de **125 W e
+250 W**, que eram justamente os dois dos "9 tamanhos" que a coleta do Bloco 2
+não tinha achado.
+
+### O que foi entregue
+
+**`snippets/aquametria-calculadora-aquecedor.php`** (novo, v1.0.0) — shortcode
+`[aquametria_calculadora_aquecedor]`. Pede o volume real (herdado da C1) e **a
+temperatura mínima do cômodo onde o aquário fica**, que é a entrada que nenhuma
+outra calculadora brasileira pede. Devolve a faixa de potência com o nome do
+autor em cada extremo e faz uma coisa que nenhuma fonte faz: **separa as regras
+que se aplicam ao caso das que não se aplicam, e mostra as duas listas** — saber
+qual regra não vale para você é parte da resposta. Traz o degrau da linha
+comercial, o confronto com o volume da caixa, o caminho inverso, o quadro de
+fontes e o permalink citável. Anuncia-se sozinha no hub pelo filtro
+`aquametria_calculadoras`.
+
+**O que ela se recusa a fazer, escrito na página:** não publica a via física
+`P = U · A · ΔT` (falta `u-vidro-aquario`, pendente); não corrige por tampa — o
+campo existe e muda o TEXTO, nunca o número, porque quantificar a perda pela
+lâmina livre é exatamente a constante que falta; não usa mínima por cidade
+(`temperatura-minima-por-cidade`, pendente); e **não extrapola a regra de bolso
+acima de 10 °C de ΔT**, que é o limite que a única fonte com delta declarado
+afirmou — acima disso a tela diz com essas palavras que nenhuma fonte cobre o
+caso e entrega a faixa genérica como PISO. Com ΔT ≤ 0 não devolve número nenhum
+e explica por quê.
+
+**`conteudo/calculadora-de-potencia-do-aquecedor.md`** — a metodologia: a tabela
+das quatro constantes com a condição que cada autor declarou, por que a caixa do
+aquecedor não dimensiona, o que a calculadora não faz e por quê, o que é
+critério editorial declarado (mirar no degrau que cobre o topo; dois aquecedores
+acima de 150 W, que é argumento de modo de falha e não de eficiência) e a
+explicação da faixa conservadora.
+
+**`conteudo/quantos-watts-de-aquecedor-para-aquario.md`** — o artigo-âncora
+pareado, o primeiro do projeto. Não repete a calculadora: mostra de onde o
+"1 W por litro" veio, onde a régua quebra, o caso Belém contra Curitiba (cinco
+vezes mais ΔT para a mesma resposta da regra), o que as quatro fontes brasileiras
+dizem e não dizem, a fórmula que ainda não podemos publicar e por quê, e seis
+recomendações práticas. Linka a calculadora no primeiro terço; a calculadora
+linka de volta.
+
+**Correção na C1 (v1.0.2), dívida que a C5 tornaria pior:** `guardar()`
+SUBSTITUÍA o estado compartilhado em vez de mesclar — voltar à C1 para corrigir
+uma medida zerava a vazão que a C3 tinha calculado e o clima que a C5 tinha
+perguntado. Agora mescla, e `recuperar()` aceita estado sem `medidas`, que é
+como a C3 e a C5 gravam.
+
+**Sync v1.1.3** — duas coisas. O conversor passou a entender bloco de código
+cercado por crases triplas (a fórmula do artigo sairia com as crases impressas).
+E passou a converter **link relativo à raiz**: antes só link `https` virava
+`<a>`, e link relativo saía com os colchetes no meio do texto — defeito
+silencioso, porque não é erro de sintaxe nenhum e só aparece lendo a página no
+ar. Foi pego pelo teste de conversão, não por leitura.
+
+**Ligações, para nenhuma página nascer órfã:** a C1 (v1.0.2) e a C3 (v1.0.1)
+passaram a LINKAR a C5, no snippet; a C5 aponta de volta para a C1, a C3, o hub,
+a metodologia, a divulgação de afiliados e o artigo pareado; o artigo aponta para
+as três calculadoras e para a metodologia. O hub já mostra C1, C3 e C5 como
+publicadas, sozinho.
+
+**Ferramentas novas:** `gerar-catalogo-aquecedores.py` (mantém sincronizadas as
+duas cópias do banco, já que o site não lê o repositório em tempo de execução, e
+carrega a faixa conservadora do V17 quando o campo ficou null);
+`render-para-teste.php` (monta qualquer shortcode numa página HTML solta com
+WordPress falso, carregando todos os snippets menos o Sync — também é teste de
+convivência entre calculadoras); `teste-navegador-c5.mjs` (os 15 cenários).
+
+### Verificação (o que foi realmente rodado)
+- **`php -l` de verdade** nos cinco snippets (com `<?php` prefixado): limpo.
+- **`ferramentas/proteger-funcoes.php`** nos cinco: saída idêntica ao arquivo —
+  nenhuma função de nível superior desprotegida.
+- **`ferramentas/validar-produtos.py`**: 21 produtos, **0 erro**, 1 aviso
+  conhecido (o V11 do Jäger 200 W, que é conteúdo da página, não defeito).
+  `c5-aquecedor-delta`: 9 aptos, 0 barrados.
+- **Teste de fumaça em PHP com stubs de WordPress**: o hub vira C1, C3 e C5 para
+  `publicada`; o shortcode devolve 62 KB na primeira chamada e string vazia na
+  segunda; 38 ids, nenhum duplicado; div, ul, form, table, li e p balanceados;
+  acentos preservados; catálogo com 9 aquecedores, todos com voltagem e faixa de
+  ajuste; aviso de comissão e link da divulgação presentes; nenhuma superglobal
+  de servidor.
+- **Teste em navegador de verdade** (Chromium via Playwright), 15 casos: caso
+  base (110 L, alvo 26 °C, mínima 20 °C → 110 a 165 W, degrau comercial de
+  200 W, 3 produtos); **atributos do link de afiliado** (`sponsored noopener` +
+  `_blank` + https, aviso de comissão visível, aviso de voltagem em todo cartão
+  com link); voltagem 220 V filtrando a lista e avisando que o anúncio conferido
+  era de 110 V; **alvo de 33 °C barrando o Roxin pelo teto conservador de 32 °C**
+  com o motivo na tela; **alvo de 20 °C barrando pelo piso conservador de 22 °C**;
+  ΔT de 14 °C dizendo que nenhuma fonte cobre e marcando a regra do delta como
+  não aplicável; região Sul entrando na conta (teto vai a 220 W); ΔT ≤ 0 sem
+  número nenhum; espécie preenchendo o alvo pelo meio da faixa com a fonte
+  citada; aquário de 900 L sem produto que atenda (o bloco some e a tela
+  explica); **mescla do `localStorage`** preservando as medidas da C1 e a vazão
+  da C3 enquanto a C5 acrescenta clima, voltagem e potência-alvo; permalink;
+  caminho inverso; erros de campo obrigatório e de unidade; 390 px sem rolagem
+  horizontal. **Zero erro de console.**
+- **Conversão do Markdown pelo próprio Sync** nas cinco páginas: front matter
+  removido, shortcode fora do `<p>`, tabelas em bloco que rola, citação em bloco,
+  bloco de código, nenhuma crase solta, links convertidos, tags balanceadas.
+- **sha256 do manifest conferido contra os arquivos finais commitados**: 25 itens,
+  0 divergências.
+
+### Desembarque
+Automático. Manifest na revisão 9. Depois do push em `main`, o Sync precisa ser
+acionado; o WebFetch da nuvem cai no bloqueio de egresso, então fica para o
+WP-Cron, que roda a cada 30 minutos. URLs a conferir:
+- `https://aquametria.com.br/calculadora-de-potencia-do-aquecedor/` — a calculadora nova;
+- `https://aquametria.com.br/quantos-watts-de-aquecedor-para-aquario/` — o artigo-âncora;
+- `https://aquametria.com.br/calculadoras/` — o cartão da C5 deve ter virado "Abrir calculadora";
+- `https://aquametria.com.br/calculadora-de-litragem/` e
+  `https://aquametria.com.br/calculadora-de-vazao-do-filtro/` — devem ter ganhado o link para a C5;
+- `https://aquametria.com.br/wp-json/aquametria/v1/status` — o log do Sync.
+
+Próximo passo desbloqueado: **C12 — mídia filtrante**, pareada com o artigo dela.
+Atenção ao que o validador já mostra: três filtros (Atman AT-3338, AT-3338S e
+Seachem Tidal 55) estão sem `volume_filtragem_L` e por isso barrados na C12, e o
+banco de mídia tem só dois registros. O caminho é o mesmo das duas últimas
+execuções: **coletar com fonte antes de escrever a calculadora** — é a coleta que
+decide se o bloco de produto nasce cheio ou vazio. A C12 é o vácuo de conteúdo
+nº 1 do levantamento e já tem duas âncoras de fabricante que conflitam por duas
+vezes (Seachem Matrix, 1,25 mL/L numa leitura da copy e 2,6 mL/L noutra) mais os
+12 mL/L de cesto do Eheim 2213.
+
+Sem ferramenta de memória nesta sessão: `/areas/projeto-aquametria.md` NÃO foi
+atualizado; esta entrada e o `ESTADO.md` são o registro.

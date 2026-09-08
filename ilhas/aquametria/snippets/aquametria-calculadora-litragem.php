@@ -34,7 +34,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_C1_VERSAO' ) ) {
-	define( 'AQUAMETRIA_C1_VERSAO', '1.0.1' );
+	define( 'AQUAMETRIA_C1_VERSAO', '1.0.2' );
 	define( 'AQUAMETRIA_C1_SLUG', 'calculadora-de-litragem' );
 	define( 'AQUAMETRIA_C1_VERIFICADO_EM', '07/09/2026' );
 	/* Constante 'borda-livre-padrao' (dados/constantes-calculadoras.json):
@@ -331,25 +331,30 @@ function aquametria_c1_js() {
 
 	/* ------------------------------------------------- estado compartilhado */
 
+	/* A C1 é dona das medidas e dos volumes, e sobrescreve os dela sem cerimônia.
+	   O que ela NÃO pode fazer é apagar o que as outras calculadoras guardaram
+	   sobre o mesmo aquário — voltar aqui para corrigir uma medida não deve
+	   zerar a vazão que a C3 calculou nem o clima que a C5 perguntou. Por isso
+	   isto é mescla, e não substituição. */
 	function guardar(r) {
 		var d = r.entradas;
-		var estado = {
-			versao: VERSAO,
-			calculado_em: new Date().toISOString().slice(0, 10),
-			calculadora: 'c1-litragem',
-			apelido: d.apelido || null,
-			medidas: { comprimento_cm: d.c, largura_cm: d.l, altura_cm: d.a, tipo_medida: d.medida },
-			vidro: { espessura_mm: d.e },
-			agua: { altura_lamina_cm: r.lamina_cm, borda_livre_cm: Math.max(0, r.a_int - r.lamina_cm) },
-			substrato: { altura_cm: r.substrato_cm || null, tipo: null, porosidade_medida: null },
-			decoracao: { volume_rochas_L: r.rochas_L || null },
-			volumes: {
-				bruto_L: Math.round(r.bruto * 10) / 10,
-				interno_L: r.interno === null ? null : Math.round(r.interno * 10) / 10,
-				lamina_L: Math.round(r.lamina_L * 10) / 10,
-				real_L: Math.round(r.real * 10) / 10,
-				real_incerteza: 'substrato não descontado'
-			}
+		var estado = recuperar() || {};
+		estado.versao = VERSAO;
+		estado.calculado_em = new Date().toISOString().slice(0, 10);
+		estado.calculadora = 'c1-litragem';
+		estado.apelido = d.apelido || estado.apelido || null;
+		estado.medidas = { comprimento_cm: d.c, largura_cm: d.l, altura_cm: d.a, tipo_medida: d.medida };
+		estado.vidro = { espessura_mm: d.e };
+		estado.agua = { altura_lamina_cm: r.lamina_cm, borda_livre_cm: Math.max(0, r.a_int - r.lamina_cm) };
+		estado.substrato = { altura_cm: r.substrato_cm || null, tipo: null, porosidade_medida: null };
+		estado.decoracao = { volume_rochas_L: r.rochas_L || null };
+		estado.volumes = {
+			bruto_L: Math.round(r.bruto * 10) / 10,
+			interno_L: r.interno === null ? null : Math.round(r.interno * 10) / 10,
+			lamina_L: Math.round(r.lamina_L * 10) / 10,
+			real_L: Math.round(r.real * 10) / 10,
+			real_incerteza: 'substrato não descontado',
+			origem: 'calculado na C1'
 		};
 		try {
 			window.localStorage.setItem(CHAVE, JSON.stringify(estado));
@@ -359,12 +364,15 @@ function aquametria_c1_js() {
 		}
 	}
 
+	/* Aceita qualquer estado do aquário, tenha ou não medidas: a C3 e a C5 gravam
+	   sem elas, e é justamente esse estado que a mescla precisa preservar. Quem
+	   quiser só o aquário já medido confere o.medidas antes de usar. */
 	function recuperar() {
 		try {
 			var bruto = window.localStorage.getItem(CHAVE);
 			if (!bruto) { return null; }
 			var o = JSON.parse(bruto);
-			return (o && o.medidas) ? o : null;
+			return (o && typeof o === 'object') ? o : null;
 		} catch (erro) { return null; }
 	}
 
@@ -478,7 +486,9 @@ function aquametria_c1_js() {
 		pintar(calcular(campos()));
 	} else {
 		var guardadoAntes = recuperar();
-		if (guardadoAntes) {
+		/* Estado gravado só pela C3 ou pela C5 não tem medidas — nesse caso não
+		   há o que retomar aqui, e o formulário abre limpo. */
+		if (guardadoAntes && guardadoAntes.medidas) {
 			doEstado(guardadoAntes);
 			el('aqm-c1-retomado').classList.remove('aqm-c1-oculto');
 		}
@@ -635,13 +645,14 @@ function aquametria_c1_adiante_html() {
 	$hub  = function_exists( 'aquametria_casca_url_pagina' ) ? aquametria_casca_url_pagina( 'calculadoras' ) : home_url( '/calculadoras/' );
 	$meto = function_exists( 'aquametria_casca_url_pagina' ) ? aquametria_casca_url_pagina( 'metodologia' ) : home_url( '/metodologia/' );
 	$c3   = function_exists( 'aquametria_casca_url_pagina' ) ? aquametria_casca_url_pagina( 'calculadora-de-vazao-do-filtro' ) : home_url( '/calculadora-de-vazao-do-filtro/' );
+	$c5   = function_exists( 'aquametria_casca_url_pagina' ) ? aquametria_casca_url_pagina( 'calculadora-de-potencia-do-aquecedor' ) : home_url( '/calculadora-de-potencia-do-aquecedor/' );
 
 	$h  = '<div class="aqm-c1-painel aqm-c1-adiante">';
 	$h .= '<h3>O que este resultado alimenta</h3>';
 	$h .= '<p class="aqm-c1-sub">O volume real fica guardado no seu navegador e é lido por todas as calculadoras abaixo. Você não vai redigitar medidas.</p>';
 	$h .= '<ul>';
 	$h .= '<li><a href="' . esc_url( $c3 ) . '"><strong>Vazão do filtro e turnover (C3)</strong></a> — <strong>já no ar.</strong> Quantas renovações por hora o seu filtro entrega, e por que o fabricante dimensiona 1,76 x/h enquanto a web brasileira pede de 5 a 10. Ela lê o volume desta página sozinha.</li>';
-	$h .= '<li><strong>Potência do aquecedor (C5)</strong> — watts a partir da mínima do seu ambiente, não do velho "1 W por litro".</li>';
+	$h .= '<li><a href="' . esc_url( $c5 ) . '"><strong>Potência do aquecedor (C5)</strong></a> — <strong>já no ar.</strong> Watts a partir da mínima do cômodo onde o aquário fica, e não do velho "1 W por litro" que nenhuma fonte explica. Também lê o volume desta página sozinha.</li>';
 	$h .= '<li><strong>Mídia filtrante (C12)</strong> — mililitros de mídia biológica por litro de água, com as duas âncoras de fabricante que discordam entre si.</li>';
 	$h .= '<li><strong>Lotação (C8)</strong> — três critérios publicados lado a lado. É a única que trata o volume desta página pelo pior caso, porque aqui o erro do substrato seria inseguro.</li>';
 	$h .= '</ul>';

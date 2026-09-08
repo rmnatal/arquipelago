@@ -4,7 +4,7 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 8,
+  "revisao": 9,
   "atualizado_em": "2026-09-08",
   "estado": "fundacao",
   "desembarque": {
@@ -20,8 +20,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "36b457c4401ff6d25072b8df52c065b4e6ff4fd48abef13642ac006c8e6d0660",
-      "descricao": "Sincronizador do site com este repositorio. Ja instalado e ativo (Code Snippets id 5, 06/09/2026). v1.1.0 (07/09/2026): compativel com Code Snippets 3.10, grava inativo e ativa em seguida, e um item quebrado nao derruba o sync. O proprio Sync se pula pelo nome, entao publicar=true e inofensivo e deixa o arquivo rastreado. v1.1.1 (07/09/2026): o conversor de Markdown descarta o front matter do arquivo, deixa a linha que so tem shortcode fora do paragrafo (div dentro de p e HTML invalido) e poe toda tabela dentro de um bloco que rola no celular. v1.1.2 (08/09/2026): o conversor entende citacao em bloco (linha com '>'), que antes saia com o '>' escapado no meio do paragrafo — a formula do protocolo do balde da C3 e a regra V16 da pagina de afiliados dependiam disso."
+      "sha256": "0eb7227fda317aa09451cf70009ecd97f7439bfc016441244791fc1985582747",
+      "descricao": "Sincronizador do site com este repositorio. Ja instalado e ativo (Code Snippets id 5, 06/09/2026). v1.1.0 (07/09/2026): compativel com Code Snippets 3.10, grava inativo e ativa em seguida, e um item quebrado nao derruba o sync. O proprio Sync se pula pelo nome, entao publicar=true e inofensivo e deixa o arquivo rastreado. v1.1.1 (07/09/2026): o conversor de Markdown descarta o front matter do arquivo, deixa a linha que so tem shortcode fora do paragrafo (div dentro de p e HTML invalido) e poe toda tabela dentro de um bloco que rola no celular. v1.1.2 (08/09/2026): o conversor entende citacao em bloco (linha com '>'), que antes saia com o '>' escapado no meio do paragrafo — a formula do protocolo do balde da C3 e a regra V16 da pagina de afiliados dependiam disso. v1.1.3 (08/09/2026): o conversor entende bloco de codigo cercado por crases triplas (a formula P = U . A . deltaT do artigo do aquecedor) e passa a converter link relativo a raiz — antes so link https virava <a>, e link relativo saia com os colchetes impressos no texto, defeito silencioso porque nao e erro de sintaxe."
     },
     {
       "id": "aquametria-casca",
@@ -40,8 +40,8 @@
       "escopo": "front-end",
       "ativo": true,
       "publicar": true,
-      "sha256": "c035077d5c0a5bb7114c9c2434d34b2187574a32a4911de129c1126c73c01336",
-      "descricao": "C1, o nucleo do lote. Registra o shortcode [aquametria_calculadora_litragem]: formulario de medidas, os tres volumes (bruto, interno e real de referencia) com o criterio de cada um, caminho inverso (litros para medida), quadro de fontes e permalink citavel. Todo o calculo e JavaScript no navegador, porque o site esta atras de cache de pagina. Grava o estado compartilhado em localStorage, chave aquametria.aquario, que as proximas calculadoras leem. NAO desconta substrato: as constantes estao pendentes e a tela declara a superestimativa e a direcao do erro. Anuncia-se no hub pelo filtro aquametria_calculadoras da casca, entao a casca nao precisa ser editada nem ter a versao bumpada. v1.0.1 (08/09/2026): o painel 'o que este resultado alimenta' agora LINKA a C3, que entrou no ar — o link de ida da C1 para a C3, de mao dupla com o que a C3 devolve."
+      "sha256": "63e69bdc93fa9caf4d295a5879ae7df2c6fe3aba47699fca13afe7d7e5d4e919",
+      "descricao": "C1, o nucleo do lote. Registra o shortcode [aquametria_calculadora_litragem]: formulario de medidas, os tres volumes (bruto, interno e real de referencia) com o criterio de cada um, caminho inverso (litros para medida), quadro de fontes e permalink citavel. Todo o calculo e JavaScript no navegador, porque o site esta atras de cache de pagina. Grava o estado compartilhado em localStorage, chave aquametria.aquario, que as proximas calculadoras leem. NAO desconta substrato: as constantes estao pendentes e a tela declara a superestimativa e a direcao do erro. Anuncia-se no hub pelo filtro aquametria_calculadoras da casca, entao a casca nao precisa ser editada nem ter a versao bumpada. v1.0.1 (08/09/2026): o painel 'o que este resultado alimenta' agora LINKA a C3, que entrou no ar — o link de ida da C1 para a C3, de mao dupla com o que a C3 devolve. v1.0.2 (08/09/2026): guardar() passou a MESCLAR o estado compartilhado em vez de substitui-lo — voltar a C1 para corrigir uma medida zerava a vazao que a C3 tinha calculado e o clima que a C5 tinha perguntado. A secao final passou a linkar a C5, que entrou no ar."
     },
     {
       "id": "aquametria-calculadora-vazao",
@@ -50,8 +50,18 @@
       "escopo": "front-end",
       "ativo": true,
       "publicar": true,
-      "sha256": "647a89be9fb8282059698b06c81afa8bf8dbd8d5ac4cab9f8d6f6dbd64e297a8",
-      "descricao": "C3, a segunda calculadora do lote e a PRIMEIRA com bloco de produto. Registra o shortcode [aquametria_calculadora_vazao]: le o volume real que a C1 guardou em localStorage (aquametria.aquario), devolve a faixa de vazao em L/h com o criterio e a fonte de cada extremo (piso de 1,76 x/h do fabricante contra teto de 10 x/h da regra de bolso BR, ate 5,7 vezes de divergencia), o volume minimo do sump quando marcado, o caminho inverso (filtro de X L/h cobre quantos litros) e o veredito para o filtro que a pessoa ja tem. Bloco de produto: filtros do catalogo embutido cuja vazao cai dentro da faixa, ordenados por proximidade do meio dela, com o turnover que cada um entrega NAQUELE aquario, ficha com fonte e data, link sponsored/noopener/_blank quando existe e aviso de comissao obrigatorio. Sem produto que atenda, o bloco nao aparece e a tela diz por que. NAO aplica fator de perda de carga (constante pendente) nem publica turnover marinho (sem fonte). Todo o calculo e JavaScript no navegador. Anuncia-se no hub pelo filtro aquametria_calculadoras. O catalogo entre CATALOGO-INICIO e CATALOGO-FIM e gerado por ferramentas/gerar-catalogo-filtros.py — nao editar a mao."
+      "sha256": "494132a7874ea8715a6f205bdabdf4ca930ad291fadc802e023f6115f508b83d",
+      "descricao": "C3, a segunda calculadora do lote e a PRIMEIRA com bloco de produto. Registra o shortcode [aquametria_calculadora_vazao]: le o volume real que a C1 guardou em localStorage (aquametria.aquario), devolve a faixa de vazao em L/h com o criterio e a fonte de cada extremo (piso de 1,76 x/h do fabricante contra teto de 10 x/h da regra de bolso BR, ate 5,7 vezes de divergencia), o volume minimo do sump quando marcado, o caminho inverso (filtro de X L/h cobre quantos litros) e o veredito para o filtro que a pessoa ja tem. Bloco de produto: filtros do catalogo embutido cuja vazao cai dentro da faixa, ordenados por proximidade do meio dela, com o turnover que cada um entrega NAQUELE aquario, ficha com fonte e data, link sponsored/noopener/_blank quando existe e aviso de comissao obrigatorio. Sem produto que atenda, o bloco nao aparece e a tela diz por que. NAO aplica fator de perda de carga (constante pendente) nem publica turnover marinho (sem fonte). Todo o calculo e JavaScript no navegador. Anuncia-se no hub pelo filtro aquametria_calculadoras. O catalogo entre CATALOGO-INICIO e CATALOGO-FIM e gerado por ferramentas/gerar-catalogo-filtros.py — nao editar a mao. v1.0.1 (08/09/2026): passou a linkar a C5, que entrou no ar e divide o mesmo volume real."
+    },
+    {
+      "id": "aquametria-calculadora-aquecedor",
+      "nome": "Aquametria Calculadora de Potência do Aquecedor — C5",
+      "arquivo": "snippets/aquametria-calculadora-aquecedor.php",
+      "escopo": "global",
+      "ativo": true,
+      "publicar": true,
+      "sha256": "9d11b729b6c46359659b6fb6556c9a36eaf2382ebf3ac47b6556b6d348b319d2",
+      "descricao": "v1.0.0 (08/09/2026). Registra o shortcode [aquametria_calculadora_aquecedor] e se anuncia no hub pelo filtro aquametria_calculadoras. Pergunta a MINIMA DO COMODO onde o aquario fica, que e a entrada que nenhuma fonte brasileira pede, e calcula a faixa de potencia com o nome do autor em cada extremo: separa as regras aplicaveis das nao aplicaveis e mostra as duas listas. Com delta acima de 10 C diz com essas palavras que nenhuma fonte cobre o caso e entrega a faixa generica como piso. Com delta zero ou negativo nao devolve numero nenhum. Traz o degrau da linha comercial, o confronto com o volume declarado na caixa (o achado do bloco), o bloco de produto com DUAS barreiras de seguranca antes da adequacao (voltagem da tomada e faixa de ajuste alcancar o alvo, regra V18) e o caminho inverso. Le e grava o estado compartilhado por mescla."
     }
   ],
   "conteudo": [
@@ -108,6 +118,46 @@
       "publicar": true,
       "sha256": "16537bcf33ac91ff5c7a7caedb8aa53b95fdc1179846d96d05fc98a3220fc694",
       "descricao": "Pagina institucional exigida pelo primeiro bloco de produto (C3) e pela autorregulamentacao publicitaria brasileira: declara o link de afiliado, transcreve a regra V16 na integra, explica que quem entra na lista e a ordem sao decididos so por adequacao tecnica, que produto sem link aparece igual e que sem produto adequado nao aparece nada, mostra a escada de fontes na tela, diz por que preco nao e publicado em pagina de calculadora e admite o tamanho atual do programa. Linkada do rodape do site (casca 1.0.3) e do bloco de produto da C3."
+    },
+    {
+      "id": "calculadora-de-potencia-do-aquecedor",
+      "tipo": "pagina",
+      "titulo": "Calculadora de potência do aquecedor: quantos watts, pelo frio que faz aí",
+      "slug": "calculadora-de-potencia-do-aquecedor",
+      "arquivo": "conteudo/calculadora-de-potencia-do-aquecedor.md",
+      "cluster": "C5",
+      "fontes": [
+        "wl-delta-ate-10, 1,0 a 1,5 W/L ate 10 C de delta — ReefFlow (divergente-fontes-br). UNICA fonte do corpus que amarra W/L a um delta declarado",
+        "wl-sul, ate 2,0 W/L na regiao Sul — Casa da Ada (divergente-fontes-br)",
+        "wl-generico, 1,0 W/L — sem autoria unica na web BR (divergente-fontes-br)",
+        "wl-ehow, 1,3 W/L — eHow (divergente-fontes-br)",
+        "eheim-jager-linha-comercial, 9 tamanhos de 25 a 300 W (transcrita-varejo), completada em 08/09/2026",
+        "especies-parametros-iniciais, 8 especies — Petz e Aquarismo Paulista (transcrita-varejo)",
+        "u-vidro-aquario e temperatura-minima-por-cidade: PENDENTES, recusadas em formula",
+        "fichas dos aquecedores sugeridos: dados/produtos-aquecedor.json, fonte e data por campo"
+      ],
+      "verificado_em": "2026-09-08",
+      "publicar": true,
+      "sha256": "fa5cbb9efacfb9a19380968eeb81f52ee2bb6f8e22cd78380a076ede6249abab",
+      "descricao": "Pagina da C5: a abertura poe a pergunta que falta (1 W/L para aquecer de quanto para quanto), o shortcode da calculadora, o que ela faz de diferente, a tabela das quatro constantes com a condicao que cada autor declarou, por que a caixa do aquecedor nao dimensiona (a linha Eheim inteira em 1,00 W/L e o 200 W saindo da serie), o que a calculadora NAO faz e por que (via fisica bloqueada pela u-vidro-aquario, tampa sem constante, minima por cidade pendente, e a recusa de extrapolar acima de 10 C), o que e criterio editorial declarado, as duas barreiras de seguranca do bloco de produto e a explicacao da faixa conservadora (regra V17). Linka C1, C3, o artigo-ancora pareado, metodologia e divulgacao."
+    },
+    {
+      "id": "quantos-watts-de-aquecedor-para-aquario",
+      "tipo": "artigo",
+      "titulo": "Quantos watts de aquecedor o seu aquário precisa (e por que \"1 W por litro\" erra sempre para o mesmo lado)",
+      "slug": "quantos-watts-de-aquecedor-para-aquario",
+      "arquivo": "conteudo/quantos-watts-de-aquecedor-para-aquario.md",
+      "cluster": "C5",
+      "fontes": [
+        "eheim-jager-linha-comercial: volume declarado por potencia, 9 tamanhos (transcrita-varejo, 08/09/2026)",
+        "linha Roxin HT-1300/Q3: volume declarado e faixa de ajuste em conflito entre fichas de varejo BR (dados/produtos-aquecedor.json)",
+        "wl-delta-ate-10, wl-sul, wl-generico, wl-ehow (todas divergente-fontes-br)",
+        "u-vidro-aquario: PENDENTE — bloqueia o calculo fisico, e o texto diz isso"
+      ],
+      "verificado_em": "2026-09-08",
+      "publicar": true,
+      "sha256": "db7ada66141bcc21ab8967237c04e4c1ce3f210f7a339544f550ccf73fe37e47",
+      "descricao": "Artigo-ancora pareado com a C5. Mostra de onde o '1 W por litro' realmente veio: a linha Eheim Jager inteira da 1,00 W/L no teto de seis modelos seguidos — a regra nao derivou de fisica, derivou da prateleira. Depois mostra onde a regua quebra (o 200 W a 0,50 W/L, o 30-400 L de treze vezes, o mesmo 150 W declarado para 125-150 L e para 200-300 L, e a serie Roxin que nao fecha), o caso Belem contra Curitiba com cinco vezes mais delta para a mesma resposta, o que as quatro fontes BR dizem e nao dizem, a formula P = U . A . deltaT que ainda nao podemos publicar e por que, e seis recomendacoes praticas. Linka a C5, a C1, a C3 e a metodologia."
     }
   ],
   "dados": [
@@ -129,11 +179,11 @@
       "formato": "json",
       "entidade": "constante",
       "fonte": "ver o campo fonte/url de cada constante no proprio arquivo; nenhuma entra sem fonte e data",
-      "verificado_em": "2026-09-07",
+      "verificado_em": "2026-09-08",
       "registros": 42,
       "publicar": false,
-      "sha256": "e6fc0a6c91d67bc04c7f9ea27f6459297915f6609dfe30c9cb2041ca4db30f82",
-      "descricao": "Registro normalizado de toda constante usada ou recusada pelas calculadoras, com fonte, url, data e status (fisica, verificada-fabricante, fabricante-via-busca, norma-via-secundaria, transcrita-varejo, divergente-fontes-br, convencao-editorial, pendente). Constante com status pendente e proibida em formula publicada."
+      "sha256": "7e531ed18ce41bc8f6483d4a36b9039401e35a03ac3a29d05dc5ef50c3e76331",
+      "descricao": "Registro normalizado de toda constante usada ou recusada pelas calculadoras, com fonte, url, data e status (fisica, verificada-fabricante, fabricante-via-busca, norma-via-secundaria, transcrita-varejo, divergente-fontes-br, convencao-editorial, pendente). Constante com status pendente e proibida em formula publicada. Em 08/09/2026 a constante eheim-jager-linha-comercial foi completada: faltavam as potencias de 125 W e 250 W (os dois dos 9 tamanhos que a coleta anterior nao achara) e o volume declarado potencia a potencia, que e o que revela o 1,00 W/L cravado na serie."
     },
     {
       "id": "modelo-banco-produtos",
@@ -156,8 +206,8 @@
       "verificado_em": "2026-09-08",
       "registros": 5,
       "publicar": false,
-      "sha256": "2ea7f72e12cf9cb33ce841228b8cd15d6f8c552159e6778b193df7e2b90ad53d",
-      "descricao": "Contrato formal do banco de produtos: campos, tipos, unidades, vocabularios controlados, origem esperada por campo, campos derivados (nunca gravados), minimo_para_sugerir por calculadora e as 14 regras de validacao. E o arquivo que ferramentas/validar-produtos.py executa. Versao 2 (07/09/2026): documenta o campo afiliado dos produtos e a regra V15. Versao 3 (08/09/2026): coluna_maxima_m passou a ser obrigatoria so para canister e sump (hang-on e interno nao tem recalque a vencer, e ganharam o campo coluna_maxima_nao_se_aplica); a regra V10 de plausibilidade de eficiencia ficou restrita a canister e sump; abriu o campo imagem, ainda null em todo o banco; e entrou a regra V16, que proibe link de afiliado de ordenar ou filtrar sugestao de calculadora."
+      "sha256": "e2dba917bf8747baa8711d269c30a60fd75c74cb8ea42c77ffca1c2f99003a38",
+      "descricao": "Contrato formal do banco de produtos: campos, tipos, unidades, vocabularios controlados, origem esperada por campo, campos derivados (nunca gravados), minimo_para_sugerir por calculadora e as 14 regras de validacao. E o arquivo que ferramentas/validar-produtos.py executa. Versao 2 (07/09/2026): documenta o campo afiliado dos produtos e a regra V15. Versao 3 (08/09/2026): coluna_maxima_m passou a ser obrigatoria so para canister e sump (hang-on e interno nao tem recalque a vencer, e ganharam o campo coluna_maxima_nao_se_aplica); a regra V10 de plausibilidade de eficiencia ficou restrita a canister e sump; abriu o campo imagem, ainda null em todo o banco; e entrou a regra V16, que proibe link de afiliado de ordenar ou filtrar sugestao de calculadora. v3 (08/09/2026): tratamento de conflito 'intersecao-conservadora' com valor_conservador e derivacao (regra V17), regra V18 (aquecedor sugerido tem de alcancar a temperatura-alvo) e minimo_para_sugerir da C5 aceitando 'conflito:faixa_ajuste_C'."
     },
     {
       "id": "produtos-filtro",
@@ -177,11 +227,11 @@
       "formato": "json",
       "entidade": "aquecedor",
       "fonte": "ver fontes[] de cada registro: Eheim (fabricante-via-busca); Mega Aquarios, RS Discus e Petlove (varejo BR)",
-      "verificado_em": "2026-09-07",
-      "registros": 4,
+      "verificado_em": "2026-09-08",
+      "registros": 9,
       "publicar": false,
-      "sha256": "30b42d4e87dfe05ca5e10fcdbfcab663df5d6b749a1df4e6b8feae7949d32288",
-      "descricao": "Semente de aquecedores: Eheim Jager 200 W e a linha Roxin HT-1300/Q3 (100, 200 e 300 W). Registra o conflito varejo-contra-varejo da faixa de ajuste (22-34 C x 16-32 C), que deixou o campo null nos tres Roxin."
+      "sha256": "4c727634cf00afa4eba882955a8626fe40dea0a3d26b1d7bf678fd93d7ebbbd7",
+      "descricao": "Banco de aquecedores, ampliado em 08/09/2026 de 4 para 9 registros para alimentar a C5: linha Eheim Jager (50, 100, 150 e 200 W) e linha Roxin HT-1300/Q3 (25, 50, 100, 200 e 300 W). A coleta desta data resolveu o campo que barrava o banco inteiro — voltagem, agora ['110','220'] nas duas linhas com fonte de varejo BR — e tratou a faixa de ajuste da linha Roxin, em conflito varejo-contra-varejo, pela intersecao conservadora de 22 a 32 C (regra V17). Tres conflitos ficam publicados em vez de escondidos: o volume do Jager 200 W (fabricante 30-400 L contra varejo 300-400 L), o do Jager 150 W (125-150 L contra 200-300 L, os dois varejo) e a faixa de ajuste da linha Roxin. Resultado: 9 de 9 aptos a serem sugeridos pela C5, 3 com link de afiliado."
     },
     {
       "id": "produtos-iluminacao",
@@ -276,12 +326,37 @@
     {
       "id": "validar-produtos",
       "arquivo": "ferramentas/validar-produtos.py",
-      "descricao": "Valida o banco de produtos contra dados/esquema-produtos.json (regras V1 a V14) e imprime os campos derivados e quais produtos cada calculadora consegue sugerir. Rodar antes de todo commit que toque dados/produtos-*.json. Nao vai para o WordPress: e ferramenta do repositorio, por isso fica fora das listas que o Sync consome."
+      "publicar": false,
+      "descricao": "Valida o banco de produtos contra dados/esquema-produtos.json (regras V1 a V14) e imprime os campos derivados e quais produtos cada calculadora consegue sugerir. Rodar antes de todo commit que toque dados/produtos-*.json. Nao vai para o WordPress: e ferramenta do repositorio, por isso fica fora das listas que o Sync consome.",
+      "sha256": "7bd99e0f6eadf8f1ef9b5ef00e5621f1e2ad220da6ca8613dab5e40bae3e382f"
     },
     {
       "id": "gerar-catalogo-filtros",
       "arquivo": "ferramentas/gerar-catalogo-filtros.py",
-      "descricao": "Reescreve o catalogo de filtros embutido no snippet da C3 (trecho entre CATALOGO-INICIO e CATALOGO-FIM) a partir de dados/produtos-filtro.json, aplicando o minimo_para_sugerir da c3-vazao-filtro. Rodar SEMPRE depois de mexer no banco de filtros: o site nao le o repositorio em tempo de execucao, entao o banco viaja dentro do PHP e as duas copias nao podem divergir. Nao vai para o WordPress."
+      "publicar": false,
+      "descricao": "Reescreve o catalogo de filtros embutido no snippet da C3 (trecho entre CATALOGO-INICIO e CATALOGO-FIM) a partir de dados/produtos-filtro.json, aplicando o minimo_para_sugerir da c3-vazao-filtro. Rodar SEMPRE depois de mexer no banco de filtros: o site nao le o repositorio em tempo de execucao, entao o banco viaja dentro do PHP e as duas copias nao podem divergir. Nao vai para o WordPress.",
+      "sha256": "4a3bb24213a1d47f37ec301c2a428493bc4f76900d5aad278757b0844cbd95f5"
+    },
+    {
+      "id": "gerar-catalogo-aquecedores",
+      "arquivo": "ferramentas/gerar-catalogo-aquecedores.py",
+      "publicar": false,
+      "sha256": "35f6e21f32bc35498214adafcdc5389082b0b1fa5bb1d21dc6c8986a922325e4",
+      "descricao": "Gera o catalogo de aquecedores que a C5 embute no snippet, a partir de dados/produtos-aquecedor.json e do minimo_para_sugerir do esquema. O site nao le o repositorio em tempo de execucao, entao o banco viaja dentro do PHP; este script e o que impede as duas copias de divergirem. Carrega a faixa conservadora do conflito (V17) quando o campo faixa_ajuste_C ficou null, e marca o item para a tela poder dizer de onde veio a faixa."
+    },
+    {
+      "id": "teste-navegador-c5",
+      "arquivo": "ferramentas/teste-navegador-c5.mjs",
+      "publicar": false,
+      "sha256": "29dad117c512a08a54bee5b44a259d5d11f4b736564a7f060627c366060b3d9e",
+      "descricao": "Teste de navegador da C5 em Chromium de verdade (Playwright): 15 cenarios, entre eles os atributos do link de afiliado (rel='sponsored noopener', target='_blank', https), o aviso de comissao visivel, as duas barreiras de seguranca, o delta acima de 10 C, o delta zero, o caso sem produto que atenda, a mescla do estado compartilhado com C1 e C3, o permalink e o celular de 390 px sem rolagem horizontal."
+    },
+    {
+      "id": "render-para-teste",
+      "arquivo": "ferramentas/render-para-teste.php",
+      "publicar": false,
+      "sha256": "1f532a66c0507708174aa8013ca659d694b5abe96a65f4871c76a24e868a3d3a",
+      "descricao": "Renderiza qualquer shortcode de calculadora numa pagina HTML solta, com funcoes falsas do WordPress, para o teste de navegador rodar sem subir WordPress nenhum. Carrega todos os snippets menos o Sync, entao tambem serve de teste de convivencia entre as calculadoras."
     }
   ]
 }
