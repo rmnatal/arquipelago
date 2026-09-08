@@ -1093,3 +1093,185 @@ sessão, sem atraso de cache: 5 snippets e 5 páginas com `publicar: true`), ent
 o WP-Cron do próprio site, que roda a cada 30 minutos, aplica sozinho. Para
 acionar na hora, basta abrir no navegador:
 `https://aquametria.com.br/?aquametria_sync=kgbErDOIVAFWUtUzutHGrKevVgmWGVjz&forcar=1`
+
+---
+
+## 2026-09-08 (9º disparo) — BLOCO 4: C12, a mídia filtrante, no ar com o artigo-âncora pareado
+
+Bloco entregue: **C12 — mídia filtrante**, quarta calculadora do lote, pareada
+com o artigo `quanta-midia-biologica-o-aquario-precisa`. É o **vácuo de conteúdo
+nº 1** do levantamento do Bloco 1 — e era o vazio que a própria página "Sobre"
+do site cita como um dos motivos de a Aquametria existir.
+
+### A coleta veio antes da calculadora, de novo, e foi ela que decidiu tudo
+
+A execução anterior deixou o diagnóstico certo: o banco tinha **duas** âncoras
+de dosagem, as duas da Seachem, e três filtros barrados por falta de
+`volume_filtragem_L`. Uma calculadora com duas leituras da mesma marca não é
+comparação, é um duelo interno. A primeira hora foi coleta.
+
+**Quatro dosagens declaradas por fabricante, onde havia duas** (todas colhidas
+por busca — o egresso continua bloqueado para `seachem.com`, `jbl.de` e as lojas
+brasileiras — e reconfirmadas em varejo especializado que replica a mesma ficha):
+
+| Constante nova | Valor | Fonte |
+|---|---|---|
+| `jbl-micromec-dosagem` | 5,00 mL/L | JBL: 650 g para 200 L, e a mesma embalagem é vendida como 1 L |
+| `ocean-tech-bio-glass-dosagem` | 12,50 mL/L | Ocean Tech: 1 L para cada 80 L |
+| `seachem-matrixcarbon-dosagem` | 0,625 mL/L | Seachem: 250 mL para 400 L, "vários meses" |
+| `seachem-purigen-dosagem` | 0,25 mL/L | Seachem: 100 mL para 400 L, até 6 meses |
+
+Mais `seachem-tidal-55-midia` (1,2 L de mídia para 200 L = 6,0 mL/L de mídia
+TOTAL), que dá o par do `eheim-classic-250-2213` na segunda família de âncoras.
+
+**O achado que virou o artigo.** A Ocean Tech é a **única marca brasileira** que
+publica mL de mídia por litro de água — e ela pede **dez vezes** o que a Seachem
+pede para a mesma função. A hipótese óbvia (mídias diferentes, áreas diferentes)
+morre na aritmética: área declarada × dosagem declarada = área entregue por litro
+de **água**, e ela vai de 0,88 m² (Seachem) a 7,5 (JBL) a 18,8 (Ocean Tech) —
+**21 vezes**. Pior: a marca que declara MAIS área por litro de mídia (Ocean Tech,
+1.500 m²/L) é a que pede DEZ VEZES mais mídia que a que declara menos (Seachem,
+>700 m²/L). Se a área fosse o critério, a relação seria a inversa. Nenhuma das
+quatro publica método de medição. É o eixo do artigo e é original: não achamos
+ninguém, em português, cruzando essas duas colunas.
+
+**O segundo achado, de brinde:** a Seachem discorda de si mesma em dois níveis.
+Como fabricante de mídia diz que 1,25 mL/L de Matrix bastam; como fabricante de
+filtro põe 6,0 mL/L de espaço de mídia no Tidal 55. E, dentro da mesma copy do
+Matrix, "250 mL para 200 L" (1,25 mL/L) contra "1 L para 100 galões" (2,64 mL/L).
+
+**Volume útil de mídia dos filtros** (`volume_filtragem_L`, que destravava a C12):
+Tidal 55 com 1,2 L do próprio fabricante; Atman AT-3338 e AT-3338S com ficha de
+varejo **ambígua**, e a ambiguidade virou conteúdo. A frase "3 cestos de 17x17x6
+com capacidade de 1,6 litros de mídia" pode ser 1,6 L no total ou por cesto
+(4,8 L) — e a geometria (1,73 L brutos por cesto) apoia a leitura por cesto. No
+modelo irmão a mesma frase dá 3,5 L em cestos de 21×21×7 cm, que têm 3,09 L
+brutos e **não comportam** 3,5 L: aqui só a leitura do conjunto fecha. A mesma
+frase, dois modelos, leituras opostas apoiadas pela própria geometria declarada.
+Registrado como `conflitos[]` com `publicar-os-dois`, e a tela mostra as duas.
+O SunSun HW-303B continua barrado: nenhuma fonte publica a capacidade dos cestos.
+
+### O que foi entregue
+
+**`snippets/aquametria-calculadora-midia.php` (v1.0.0, 1.675 linhas)** — o
+shortcode `[aquametria_calculadora_midia]`. As âncoras **não são digitadas no
+JavaScript**: saem do catálogo embutido, que sai do banco de produtos. Mídia nova
+com dosagem declarada entra na tabela sozinha no próximo gerador — não há como as
+duas cópias divergirem em silêncio.
+
+O que ela entrega: a faixa de mídia biológica (para 110 L, de 140 mL a 1,38 L)
+dizendo com todas as letras que **a faixa é 10 vezes larga porque os fabricantes
+discordam 10 vezes, não porque a conta seja imprecisa**; as duas tabelas de
+âncoras, separadas porque respondem perguntas diferentes; e **o teto físico** —
+quanto do cesto do filtro escolhido cada dosagem ocuparia, com barra e
+porcentagem, avisando quando a camada biológica sozinha estoura ("o problema não
+é a mídia, é o filtro"). Essa conta é trivial e não a encontramos publicada em
+português. Mais: ordem das camadas, camada química nas duas unidades que não
+conversam, calendário de trocas com datas calculadas a partir da última
+manutenção, TPA, gatilhos de nitrato, e o caminho inverso.
+
+**O que ela se recusa a fazer, escrito na tela:** não escolhe uma dosagem; não
+reparte o cesto em porcentagens (`proporcao-entre-camadas-do-cesto`, pendente —
+publica a ORDEM, que tem fonte); não converte grama em mililitro no carvão
+(`densidade-aparente-carvao-ativado`, pendente — mas a FREQUÊNCIA compara sem
+conversão: a regra BR manda trocar de 4 a 10 vezes mais que o fabricante do
+carvão); não compara marcas por área de superfície; não dimensiona mídia sem
+dosagem declarada (o Eheim Substrat pro sai no cartão sem número de compra,
+dizendo por quê); e não estima validade de mídia biológica.
+
+**`conteudo/calculadora-de-midia-filtrante.md`** — a metodologia: as duas tabelas
+com atribuição, o teto físico, as fichas ambíguas do Atman destrinchadas, a lista
+de recusas e o aviso obrigatório sobre lavar mídia biológica publicado como
+**mecanismo explicado** (cloro existe para matar bactéria; a colônia leva semanas;
+por isso a substituição é parcial; para a sujeira grossa, use a água da TPA).
+
+**`conteudo/quanta-midia-biologica-o-aquario-precisa.md`** — o artigo-âncora, o
+segundo do projeto. Não repete a calculadora: desenvolve o paradoxo da área, a
+Seachem contra si mesma, o caso do carvão, e a **crítica de fundo** — todas as
+quatro dosagens são por litro de ÁGUA, mas o trabalho da mídia depende da amônia
+que entra, ou seja, da carga de peixes, que nenhuma declaração pergunta. Fechar
+isso exigiria `taxa-de-nitrificacao-por-area` (pendente, registrada). Linka a
+calculadora no primeiro terço; a calculadora linka de volta.
+
+**Constantes:** 42 → 50. Cinco novas com fonte e três **pendências declaradas**
+(proporção entre camadas, densidade do carvão, taxa de nitrificação), que existem
+no registro justamente para dizer o que a C12 não publica e por quê.
+
+**Banco:** 21 → 25 produtos. Mídias de 2 para 6 (JBL MicroMec, Ocean Tech Bio
+Glass, Seachem MatrixCarbon, Seachem Purigen — todas sem link de afiliado, porque
+a geração do link curto é manual no painel Shopee e fica fora desta sessão; pela
+regra V16 elas saem no cartão do mesmo jeito, sem botão de loja). Três filtros
+ganharam `volume_filtragem_L`.
+
+**Ligações, para nenhuma página nascer órfã:** a C1 (v1.0.3), a C3 (v1.0.2) e a
+C5 (v1.0.1) passaram a LINKAR a C12 nos painéis de ligação; a casca (v1.0.4) teve
+o resumo da C12 no hub reescrito de "duas âncoras" para as quatro reais; a C12
+aponta de volta para C1, C3, C5, hub, metodologia, divulgação de afiliados e o
+artigo pareado.
+
+**Ferramentas novas:** `gerar-catalogo-midias.py` (escreve DOIS blocos no mesmo
+snippet, porque a C12 consome os dois bancos, e carrega a segunda leitura dos
+campos em conflito para a tela publicar as duas) e `teste-navegador-c12.mjs`
+(19 cenários).
+
+### Verificação (o que foi realmente rodado)
+- **`php -l` de verdade** nos seis snippets (com `<?php` prefixado): limpo.
+- **`ferramentas/proteger-funcoes.php`** nos quatro snippets tocados: saída
+  idêntica ao arquivo — nenhuma função de nível superior desprotegida.
+- **`ferramentas/validar-produtos.py`**: 25 produtos, **0 erro**, 1 aviso
+  conhecido (o V11 do Jäger 200 W, que é conteúdo da página, não defeito).
+  `c12-midia-filtrante`: 4 aptos com link, 6 sem link, 1 barrado (o SunSun, por
+  falta de `volume_filtragem_L` — e a tela diz isso).
+- **Teste de fumaça estrutural**: 45 ids, nenhum duplicado; div, ul, li, form,
+  table, p, tbody, span e a todos balanceados; acentos preservados; nenhuma
+  superglobal de servidor no HTML; aviso de comissão e link da divulgação
+  presentes; `rel="sponsored noopener"` no JS; nenhum preço cravado.
+- **Teste em navegador de verdade** (Chromium via Playwright), **19 cenários, todos
+  passando**: caso base; as quatro âncoras com atribuição e link de fonte; a
+  segunda família de âncoras; teto físico num Eheim classic 250 (Seachem 5 %,
+  Ocean Tech 46 %); **teto estourado** (600 L num Tidal 55, com "Não cabe" e "o
+  problema é o filtro"); as duas leituras da ficha do Atman na tela; volume de
+  mídia digitado à mão, com o critério editorial declarando que a medida é da
+  pessoa; ordem das camadas com a recusa da proporção; camada química com as duas
+  unidades e a recusa da conversão; calendário de trocas com datas calculadas
+  (perlon 08–16/09, carvão 16/09–01/10, cerâmica 01/03–01/09 de 2027); TPA e
+  nitrato; **o aviso obrigatório** sobre lavar mídia; bloco de produto com 4
+  mídias (6 com química marcada); **atributos do link de afiliado** (`sponsored
+  noopener` + `_blank` + https nos dois links); **mescla do `localStorage`**
+  preservando medidas da C1, clima da C5 e vazão da C3; permalink; caminho
+  inverso; erros de entrada; 390 px sem rolagem horizontal. **Zero erro de
+  console.**
+- **Teste da C5 rodado de novo** depois de tocar o snippet dela: todos os 15
+  cenários continuam passando (sem regressão pela ligação nova).
+- **Conversão do Markdown pelo próprio Sync** nas sete páginas: front matter
+  removido, shortcode fora do `<p>`, tabelas dentro do bloco que rola, nenhuma
+  crase solta, nenhum link markdown por converter, tags balanceadas.
+- **sha256 do manifest conferido contra os arquivos finais commitados**: 30 itens,
+  0 divergências.
+
+### Desembarque
+Automático. Manifest na **revisão 10**. Depois do push em `main`, o Sync precisa
+ser acionado; o WebFetch da nuvem cai no bloqueio de egresso, então fica para o
+WP-Cron, que roda a cada 30 minutos. URLs a conferir:
+- `https://aquametria.com.br/calculadora-de-midia-filtrante/` — a calculadora nova;
+- `https://aquametria.com.br/quanta-midia-biologica-o-aquario-precisa/` — o artigo-âncora;
+- `https://aquametria.com.br/calculadoras/` — o cartão da C12 deve ter virado "Abrir calculadora", com o resumo novo;
+- `https://aquametria.com.br/calculadora-de-litragem/`, `/calculadora-de-vazao-do-filtro/` e
+  `/calculadora-de-potencia-do-aquecedor/` — devem ter ganhado o link para a C12;
+- `https://aquametria.com.br/wp-json/aquametria/v1/status` — o log do Sync.
+
+**Próximo passo desbloqueado: C15 — iluminação e fotoperíodo**, pareada com o
+artigo dela. Atenção ao que o validador já mostra: dos 5 registros de iluminação,
+**4 estão barrados** — três por falta de `voltagem` (Aquários do Rio LED 60 cm,
+Chihiros WRGB II Pro 60, ISTA IL-401-60) e um por falta de `fluxo_lm` (SunSun
+ADE-400C). O caminho é o mesmo das três últimas execuções: **coletar com fonte
+antes de escrever a calculadora**, porque é a coleta que decide se o bloco de
+produto nasce cheio ou vazio. E há uma armadilha própria da C15 registrada na
+especificação: `ppfd-por-litragem` está **pendente**, e a regra V5 exige que
+`ppfd_declarado` e `ppfd_distancia_cm` andem juntos — PPFD sem distância declarada
+não entra. A constante `iluminacao-lumen-por-litro` tem três fontes que chamam as
+mesmas faixas pelos mesmos nomes com números diferentes, que é exatamente o
+padrão que a C12 acabou de aprender a publicar em tabela com atribuição.
+
+Sem ferramenta de memória nesta sessão: `/areas/projeto-aquametria.md` NÃO foi
+atualizado; esta entrada e o `ESTADO.md` são o registro.

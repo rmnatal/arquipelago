@@ -80,7 +80,13 @@ duas copias divergem em silencio:
 ```
 python3 ferramentas/gerar-catalogo-filtros.py       # C3
 python3 ferramentas/gerar-catalogo-aquecedores.py   # C5
+python3 ferramentas/gerar-catalogo-midias.py        # C12 (midias E filtros)
 ```
+
+O gerador da C12 escreve DOIS blocos no mesmo snippet, porque ela consome os
+dois bancos: as midias (`produtos-midia.json`) para o bloco de produto e a
+dosagem, e os filtros que declaram `volume_filtragem_L` (`produtos-filtro.json`)
+para o teto fisico do cesto. Mexeu em qualquer um dos dois, rode este tambem.
 
 ## Antes de marcar uma calculadora como publicar=true
 
@@ -91,6 +97,9 @@ calculadora passa por um navegador antes de ir ao ar:
 npm i --no-save playwright@1.56.1
 php ferramentas/render-para-teste.php . aquametria_calculadora_aquecedor > /tmp/c5.html
 node ferramentas/teste-navegador-c5.mjs /tmp/c5.html
+
+php ferramentas/render-para-teste.php . aquametria_calculadora_midia > /tmp/c12.html
+node ferramentas/teste-navegador-c12.mjs /tmp/c12.html
 ```
 
 O `render-para-teste.php` monta a pagina com funcoes falsas do WordPress (o

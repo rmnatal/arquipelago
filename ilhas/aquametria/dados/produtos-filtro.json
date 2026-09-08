@@ -185,7 +185,7 @@
       "potencia_w": 35,
       "coluna_maxima_m": 1.8,
       "volume_cesto_L": null,
-      "volume_filtragem_L": null,
+      "volume_filtragem_L": 1.6,
       "midia_inclusa": [
         "ceramica"
       ],
@@ -217,12 +217,43 @@
             "tipo"
           ],
           "observacao": "Ficha de varejo, nao do fabricante. Confira a embalagem."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Ficha replicada pelo varejo BR especializado (Aquaricamp, KZ Power, Aquarismo Total): '3 cestos para midia filtrante com dimensoes de 17x17x6 e capacidade de 1,6 litros de midia'",
+          "url": "https://www.aquaricamp.com.br/atman-filtro-canister-at-3338-vaz-o-1200-l-h-gratis-1-litro-ceramica.html",
+          "verificado_em": "2026-09-08",
+          "campos": [
+            "volume_filtragem_L"
+          ],
+          "observacao": "Paginas nao lidas direto (egresso bloqueado): transcricao por busca. A frase do varejo e ambigua e nao ha ficha de fabricante que a resolva: '1,6 litros' pode ser a capacidade de CADA cesto ou a do conjunto. A geometria declarada apoia a leitura por cesto (17 x 17 x 6 cm = 1,73 L de volume bruto por cesto, e 1,6 L util cabe la dentro), mas apoiar nao e declarar. Por isso o campo fica com a leitura conservadora e o conflito publica as duas."
         }
       ],
-      "conflitos": [],
-      "verificado_em": "2026-09-07",
-      "status_registro": "completo",
-      "observacao": "1200 L/h para ate 450 L = 2,7 renovacoes/h declaradas pela propria ficha. Primeiro registro da semente com todos os campos obrigatorios da entidade preenchidos."
+      "conflitos": [
+        {
+          "campo": "volume_filtragem_L",
+          "valores": [
+            {
+              "valor": 1.6,
+              "referencia": "leitura conservadora: '1,6 litros de midia' lido como a capacidade do CONJUNTO dos tres cestos",
+              "url": "https://www.aquaricamp.com.br/atman-filtro-canister-at-3338-vaz-o-1200-l-h-gratis-1-litro-ceramica.html",
+              "origem": "varejo"
+            },
+            {
+              "valor": 4.8,
+              "referencia": "leitura generosa: '1,6 litros' lido como a capacidade de CADA um dos tres cestos (1,6 x 3), que e o que a geometria de 17 x 17 x 6 cm por cesto comporta",
+              "url": "https://www.aquaricamp.com.br/atman-filtro-canister-at-3338-vaz-o-1200-l-h-gratis-1-litro-ceramica.html",
+              "origem": "varejo"
+            }
+          ],
+          "razao": "3x de diferenca, e a diferenca nao e entre duas fontes: e entre duas leituras da MESMA frase, que nenhuma ficha de fabricante desempata",
+          "tratamento": "publicar-os-dois"
+        }
+      ],
+      "verificado_em": "2026-09-08",
+      "status_registro": "conflito",
+      "observacao": "1200 L/h para ate 450 L = 2,7 renovacoes/h declaradas pela propria ficha. Primeiro registro da semente com todos os campos obrigatorios da entidade preenchidos. Em 08/09/2026 a coleta da C12 trouxe o volume de midia, e trouxe junto uma ambiguidade que a C12 publica em vez de esconder: 1,6 L no conjunto ou 1,6 L por cesto (4,8 L). Pelos 450 L que a ficha declara atender, isso e a diferenca entre 3,6 e 10,7 mL de midia por litro de agua."
     },
     {
       "id": "atman-at-3338s",
@@ -246,7 +277,7 @@
       "potencia_w": 18,
       "coluna_maxima_m": 1.5,
       "volume_cesto_L": null,
-      "volume_filtragem_L": null,
+      "volume_filtragem_L": 3.5,
       "midia_inclusa": [],
       "uv_w": null,
       "mangueira_mm": null,
@@ -275,12 +306,43 @@
             "tipo"
           ],
           "observacao": "Ficha de varejo. Confira a embalagem."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Ficha replicada pelo varejo BR especializado (Aqua SN): '3 cestos para midia filtrante com dimensoes de 21x21x7 cm e capacidade de 3,5 litros de midia'",
+          "url": "https://www.aquasn.com.br/atman-filtro-canister-at-3338s-1500-lh-220v",
+          "verificado_em": "2026-09-08",
+          "campos": [
+            "volume_filtragem_L"
+          ],
+          "observacao": "Pagina nao lida direto (egresso bloqueado): transcricao por busca. Mesma ambiguidade do AT-3338, e aqui a geometria puxa para o outro lado: 21 x 21 x 7 cm da 3,09 L de volume BRUTO por cesto, menos que os 3,5 L declarados, o que torna a leitura 'por cesto' impossivel de sustentar com essas medidas. A leitura do conjunto e a unica coerente com as proprias dimensoes da ficha - mas como e a mesma frase do modelo irmao, lida ao contrario, as duas leituras ficam publicadas."
         }
       ],
-      "conflitos": [],
-      "verificado_em": "2026-09-07",
-      "status_registro": "completo",
-      "observacao": "O caso que justificou o campo variante: uma letra a mais no modelo muda vazao (1200 para 1500 L/h), potencia (35 para 18 W), coluna (1,8 para 1,5 m) e volume atendido (ate 450 para 150 a 400 L). Sao dois produtos, nunca um. Turnover implicito de 3,8 (no teto) a 10,0 (no piso) renovacoes/h."
+      "conflitos": [
+        {
+          "campo": "volume_filtragem_L",
+          "valores": [
+            {
+              "valor": 3.5,
+              "referencia": "leitura do conjunto: '3,5 litros de midia' como capacidade dos tres cestos somados. E a unica coerente com as dimensoes declaradas, porque um cesto de 21 x 21 x 7 cm tem 3,09 L brutos e nao comporta 3,5 L",
+              "url": "https://www.aquasn.com.br/atman-filtro-canister-at-3338s-1500-lh-220v",
+              "origem": "varejo"
+            },
+            {
+              "valor": 10.5,
+              "referencia": "leitura por cesto: 3,5 L em cada um dos tres cestos. E como a mesma frase e lida no AT-3338, e por isso fica registrada - mas as dimensoes do proprio anuncio a contradizem",
+              "url": "https://www.aquasn.com.br/atman-filtro-canister-at-3338s-1500-lh-220v",
+              "origem": "varejo"
+            }
+          ],
+          "razao": "3x, com a geometria declarada apoiando a leitura menor",
+          "tratamento": "publicar-os-dois"
+        }
+      ],
+      "verificado_em": "2026-09-08",
+      "status_registro": "conflito",
+      "observacao": "O caso que justificou o campo variante: uma letra a mais no modelo muda vazao (1200 para 1500 L/h), potencia (35 para 18 W), coluna (1,8 para 1,5 m) e volume atendido (ate 450 para 150 a 400 L). Sao dois produtos, nunca um. Turnover implicito de 3,8 (no teto) a 10,0 (no piso) renovacoes/h. Em 08/09/2026 ganhou volume_filtragem_L pela coleta da C12. Aqui a ficha se contradiz sozinha: as dimensoes que ela mesma publica nao comportam a capacidade que ela mesma declara por cesto."
     },
     {
       "id": "seachem-tidal-55",
@@ -305,7 +367,7 @@
       "potencia_w": 6,
       "coluna_maxima_m": null,
       "volume_cesto_L": 1.2,
-      "volume_filtragem_L": null,
+      "volume_filtragem_L": 1.2,
       "midia_inclusa": [
         "Seachem Matrix"
       ],
@@ -355,14 +417,25 @@
             "volume_atendido_declarado_L"
           ],
           "observacao": "Paginas nao lidas direto (egresso bloqueado). As fichas de varejo BR e a ficha internacional convergem: 1000 L/h, 6 W em 110-120 V (5 W em 230 V), camara de midia de 1,2 L, ate 200 L."
+        },
+        {
+          "origem": "fabricante-via-busca",
+          "status": "fabricante-via-busca",
+          "referencia": "Seachem, pagina comparativa da linha Tidal (Tidal 55: filter volume 0,32 US gal = 1,2 L) e ficha do Tidal 55 replicada por varejo especializado internacional",
+          "url": "https://www.seachem.com/tidal-compare.php",
+          "verificado_em": "2026-09-08",
+          "campos": [
+            "volume_filtragem_L"
+          ],
+          "observacao": "seachem.com continua bloqueado pelo egresso da nuvem (EGRESS_BLOCKED em 08/09/2026): numero atribuido ao fabricante, colhido por busca. No Tidal a camara de midia e uma so, entao o volume do cesto E o volume util de midia - por isso volume_cesto_L e volume_filtragem_L valem os mesmos 1,2 L. Nao ha duas leituras aqui, ha um compartimento so."
         }
       ],
       "conflitos": [],
-      "verificado_em": "2026-09-07",
+      "verificado_em": "2026-09-08",
       "status_registro": "completo",
-      "observacao": "Hang-on. NAO tem altura maxima de recalque: o filtro fica pendurado na borda e bombeia contra a propria carcaca, entao coluna_maxima_m nao se aplica (campo coluna_maxima_nao_se_aplica). Em 08/09/2026 saiu de 'revalidar' para 'completo': a eficiencia de 167 L/h por W, que o validador apontava como implausivel, e a declaracao do proprio fabricante e coerente com um hang-on trabalhando a coluna quase zero - o limite de 120 L/h por W foi calibrado para canister, e a regra V10 passou a valer so para canister e sump.",
+      "observacao": "Hang-on. NAO tem altura maxima de recalque: o filtro fica pendurado na borda e bombeia contra a propria carcaca, entao coluna_maxima_m nao se aplica (campo coluna_maxima_nao_se_aplica). Em 08/09/2026 saiu de 'revalidar' para 'completo': a eficiencia de 167 L/h por W, que o validador apontava como implausivel, e a declaracao do proprio fabricante e coerente com um hang-on trabalhando a coluna quase zero - o limite de 120 L/h por W foi calibrado para canister, e a regra V10 passou a valer so para canister e sump. Em 08/09/2026 ganhou volume_filtragem_L = 1,2 L (coleta da C12): 1,2 L de midia para os 200 L que o fabricante declara atender da 6,0 mL de midia por litro de agua - metade dos 12 mL/L do cesto do Eheim classic 250. Dois fabricantes, o mesmo problema, o dobro de midia.",
       "coluna_maxima_nao_se_aplica": true
     }
   ],
-  "atualizado_em": "2026-09-07"
+  "atualizado_em": "2026-09-08"
 }

@@ -4,7 +4,7 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 9,
+  "revisao": 10,
   "atualizado_em": "2026-09-08",
   "estado": "fundacao",
   "desembarque": {
@@ -30,7 +30,7 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "52c6b1853354e2ead7f53c2a2c21655b8b42f5c02372832ebe6dafc1c2580615",
+      "sha256": "37a625a173fe3af9fae18162cde39f2da9def80f5cf9494f12ea25173fd1ab0e",
       "descricao": "Casca do site: carrega Chivo/IBM Plex Sans/IBM Plex Mono e injeta a paleta da Aquametria sobre o tema ativo; troca core/site-title e core/site-logo pelo logotipo em SVG (recipiente graduado) com o wordmark; troca core/navigation pelo menu Calculadoras/Metodologia/Sobre; cria as paginas inicio, calculadoras, metodologia e sobre (conteudo em shortcode do proprio snippet) e fixa inicio como pagina inicial; manda Hello world! e Sample Page para a lixeira; SUBSTITUI a template part footer do tema pelo rodape da Aquametria (tagline e nota de fontes), com rede de seguranca em wp_footer e CSS, para nao ficarem dois rodapes empilhados; e some com a tagline padrao do WordPress. Idempotente. v1.0.3 (08/09/2026): o rodape passou a linkar a pagina de divulgacao de afiliados, exigida pela C3, e o CSS ganhou estilo para citacao em bloco e para o bloco de tabela que rola. Nenhuma pagina nova nasce orfa: o link do rodape e a entrada da divulgacao."
     },
     {
@@ -40,7 +40,7 @@
       "escopo": "front-end",
       "ativo": true,
       "publicar": true,
-      "sha256": "63e69bdc93fa9caf4d295a5879ae7df2c6fe3aba47699fca13afe7d7e5d4e919",
+      "sha256": "77da6b80b58c29582e30c355f6f249c7577ea2283468a4bb6a7bcb643ef31b59",
       "descricao": "C1, o nucleo do lote. Registra o shortcode [aquametria_calculadora_litragem]: formulario de medidas, os tres volumes (bruto, interno e real de referencia) com o criterio de cada um, caminho inverso (litros para medida), quadro de fontes e permalink citavel. Todo o calculo e JavaScript no navegador, porque o site esta atras de cache de pagina. Grava o estado compartilhado em localStorage, chave aquametria.aquario, que as proximas calculadoras leem. NAO desconta substrato: as constantes estao pendentes e a tela declara a superestimativa e a direcao do erro. Anuncia-se no hub pelo filtro aquametria_calculadoras da casca, entao a casca nao precisa ser editada nem ter a versao bumpada. v1.0.1 (08/09/2026): o painel 'o que este resultado alimenta' agora LINKA a C3, que entrou no ar — o link de ida da C1 para a C3, de mao dupla com o que a C3 devolve. v1.0.2 (08/09/2026): guardar() passou a MESCLAR o estado compartilhado em vez de substitui-lo — voltar a C1 para corrigir uma medida zerava a vazao que a C3 tinha calculado e o clima que a C5 tinha perguntado. A secao final passou a linkar a C5, que entrou no ar."
     },
     {
@@ -50,7 +50,7 @@
       "escopo": "front-end",
       "ativo": true,
       "publicar": true,
-      "sha256": "494132a7874ea8715a6f205bdabdf4ca930ad291fadc802e023f6115f508b83d",
+      "sha256": "a6d21c57eedb73cc1c582f6767ad2b80463351b68b94a41f8de05f2f71498efd",
       "descricao": "C3, a segunda calculadora do lote e a PRIMEIRA com bloco de produto. Registra o shortcode [aquametria_calculadora_vazao]: le o volume real que a C1 guardou em localStorage (aquametria.aquario), devolve a faixa de vazao em L/h com o criterio e a fonte de cada extremo (piso de 1,76 x/h do fabricante contra teto de 10 x/h da regra de bolso BR, ate 5,7 vezes de divergencia), o volume minimo do sump quando marcado, o caminho inverso (filtro de X L/h cobre quantos litros) e o veredito para o filtro que a pessoa ja tem. Bloco de produto: filtros do catalogo embutido cuja vazao cai dentro da faixa, ordenados por proximidade do meio dela, com o turnover que cada um entrega NAQUELE aquario, ficha com fonte e data, link sponsored/noopener/_blank quando existe e aviso de comissao obrigatorio. Sem produto que atenda, o bloco nao aparece e a tela diz por que. NAO aplica fator de perda de carga (constante pendente) nem publica turnover marinho (sem fonte). Todo o calculo e JavaScript no navegador. Anuncia-se no hub pelo filtro aquametria_calculadoras. O catalogo entre CATALOGO-INICIO e CATALOGO-FIM e gerado por ferramentas/gerar-catalogo-filtros.py — nao editar a mao. v1.0.1 (08/09/2026): passou a linkar a C5, que entrou no ar e divide o mesmo volume real."
     },
     {
@@ -60,8 +60,18 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "9d11b729b6c46359659b6fb6556c9a36eaf2382ebf3ac47b6556b6d348b319d2",
+      "sha256": "fc51c5f2957a0a4f653d8c3968df7fa130cc7a773f5e980635ac75e0f28048fc",
       "descricao": "v1.0.0 (08/09/2026). Registra o shortcode [aquametria_calculadora_aquecedor] e se anuncia no hub pelo filtro aquametria_calculadoras. Pergunta a MINIMA DO COMODO onde o aquario fica, que e a entrada que nenhuma fonte brasileira pede, e calcula a faixa de potencia com o nome do autor em cada extremo: separa as regras aplicaveis das nao aplicaveis e mostra as duas listas. Com delta acima de 10 C diz com essas palavras que nenhuma fonte cobre o caso e entrega a faixa generica como piso. Com delta zero ou negativo nao devolve numero nenhum. Traz o degrau da linha comercial, o confronto com o volume declarado na caixa (o achado do bloco), o bloco de produto com DUAS barreiras de seguranca antes da adequacao (voltagem da tomada e faixa de ajuste alcancar o alvo, regra V18) e o caminho inverso. Le e grava o estado compartilhado por mescla."
+    },
+    {
+      "id": "aquametria-calculadora-midia",
+      "nome": "Aquametria Calculadora de Mídia Filtrante — C12",
+      "arquivo": "snippets/aquametria-calculadora-midia.php",
+      "escopo": "global",
+      "ativo": true,
+      "publicar": true,
+      "sha256": "0da3de964d9db9896cf9478fc8e867fc21d2e5eb869b26a72ec512d008062e88",
+      "descricao": "v1.0.0 (08/09/2026). Registra o shortcode [aquametria_calculadora_midia] e se anuncia no hub pelo filtro aquametria_calculadoras. Ataca o VACUO DE CONTEUDO N. 1 do Bloco 1: quanta midia biologica um aquario precisa, em mL por litro de agua. Publica QUATRO dosagens declaradas por fabricante (Seachem 1,25 e 2,64; JBL 5,00; Ocean Tech 12,50 mL/L), que discordam por dez vezes, sem escolher nenhuma; e, numa segunda tabela separada, a midia TOTAL por litro que os fabricantes de FILTRO declaram (volume de filtragem dividido por volume atendido), incluindo as duas leituras das fichas ambiguas do Atman. Entrega o numero que ninguem publica: quanto do cesto do filtro escolhido cada dosagem ocuparia, e avisa quando a camada biologica sozinha estoura. Publica a ordem das camadas e SE RECUSA a publicar a proporcao entre elas, o ranking por area de superficie e a conversao de grama em mililitro no carvao, dizendo por que em cada caso. Traz calendario de trocas com datas calculadas, TPA, gatilhos de nitrato, o aviso de nunca lavar toda a midia biologica de uma vez explicado como mecanismo, o bloco de produto com a quantidade calculada pela dosagem de CADA fabricante, e o caminho inverso. Le e grava o estado compartilhado por mescla. As duas copias do banco (midias e filtros) sao geradas por ferramentas/gerar-catalogo-midias.py."
     }
   ],
   "conteudo": [
@@ -158,6 +168,44 @@
       "publicar": true,
       "sha256": "db7ada66141bcc21ab8967237c04e4c1ce3f210f7a339544f550ccf73fe37e47",
       "descricao": "Artigo-ancora pareado com a C5. Mostra de onde o '1 W por litro' realmente veio: a linha Eheim Jager inteira da 1,00 W/L no teto de seis modelos seguidos — a regra nao derivou de fisica, derivou da prateleira. Depois mostra onde a regua quebra (o 200 W a 0,50 W/L, o 30-400 L de treze vezes, o mesmo 150 W declarado para 125-150 L e para 200-300 L, e a serie Roxin que nao fecha), o caso Belem contra Curitiba com cinco vezes mais delta para a mesma resposta, o que as quatro fontes BR dizem e nao dizem, a formula P = U . A . deltaT que ainda nao podemos publicar e por que, e seis recomendacoes praticas. Linka a C5, a C1, a C3 e a metodologia."
+    },
+    {
+      "id": "calculadora-de-midia-filtrante",
+      "tipo": "pagina",
+      "titulo": "Calculadora de mídia filtrante: quantos mililitros o seu aquário pede",
+      "slug": "calculadora-de-midia-filtrante",
+      "arquivo": "conteudo/calculadora-de-midia-filtrante.md",
+      "cluster": "C12",
+      "fontes": [
+        "seachem-matrix-dosagem: 1,25 e 2,64 mL/L, duas leituras da mesma copy (fabricante-via-busca)",
+        "jbl-micromec-dosagem: 5,00 mL/L (fabricante-via-busca, 08/09/2026)",
+        "ocean-tech-bio-glass-dosagem: 12,50 mL/L, unica marca BR que publica (fabricante-via-busca, 08/09/2026)",
+        "eheim-classic-250-2213 e seachem-tidal-55-midia: midia TOTAL por litro, 12,0 e 6,0 mL/L",
+        "carvao-ativado, perlon-troca, ceramica-regeneracao, ordem-midias-canister, tpa-percentual, tpa-diferenca-termica, nitrato-limites (todas divergente-fontes-br)",
+        "proporcao entre camadas, densidade aparente do carvao e taxa de nitrificacao por area: PENDENTES, recusadas na tela"
+      ],
+      "verificado_em": "2026-09-08",
+      "publicar": true,
+      "sha256": "acfdb902e0df5b419902d38ea8643a4560fd70c8640b2494b65a1199cf195b62",
+      "descricao": "Pagina-ancora da C12, com o shortcode no corpo. Traz as duas tabelas de ancoras com atribuicao, explica o teto fisico do cesto, destrincha as fichas ambiguas do Atman (a mesma frase lida ao contrario em dois modelos irmaos, com a geometria apoiando leituras opostas), lista o que a calculadora se recusa a fazer e por que, e publica o aviso de nunca lavar toda a midia biologica de uma vez como mecanismo explicado. Linka a C1, a C3, a C5, o hub, a metodologia, a divulgacao de afiliados e o artigo pareado."
+    },
+    {
+      "id": "quanta-midia-biologica-o-aquario-precisa",
+      "tipo": "artigo",
+      "titulo": "Quanta mídia biológica o aquário precisa: quatro fabricantes, dez vezes de diferença",
+      "slug": "quanta-midia-biologica-o-aquario-precisa",
+      "arquivo": "conteudo/quanta-midia-biologica-o-aquario-precisa.md",
+      "cluster": "C12",
+      "fontes": [
+        "as quatro dosagens declaradas de midia biologica (Seachem, JBL, Ocean Tech), com area de superficie declarada de cada uma",
+        "eheim-classic-250-2213, seachem-tidal-55-midia, atman-at-3338 e atman-at-3338s: midia total declarada por fabricante de filtro",
+        "carvao-ativado contra seachem-matrixcarbon-dosagem: 15 a 30 dias contra 'varios meses'",
+        "taxa-de-nitrificacao-por-area: PENDENTE, e o texto explica que e ela que fecharia a pergunta"
+      ],
+      "verificado_em": "2026-09-08",
+      "publicar": true,
+      "sha256": "4c900e6021930033784153ffd8bf5c625be9b0315521e29095fa369d2f0f64f6",
+      "descricao": "Artigo-ancora pareado com a C12. O eixo e o PARADOXO DA AREA: area declarada vezes dosagem declarada da a area entregue por litro de agua, e ela vai de 0,88 a 18,8 m2 entre tres marcas - 21 vezes -, com a marca que declara MAIS area pedindo DEZ VEZES mais midia, ou seja, a relacao inversa da esperada. Depois mostra a Seachem discordando de si mesma como marca de midia e como marca de filtro, as fichas ambiguas do Atman, o caso do carvao (a regra BR manda trocar de 4 a 10 vezes mais que o fabricante do carvao) e a critica de fundo: todas as dosagens sao por litro de AGUA quando o trabalho depende da amonia, ou seja, da carga de peixes, que nenhuma declaracao pergunta. Fecha com seis recomendacoes praticas e as tres coletas que faltam. Linka a C12, a C1, a C3, a C5 e a metodologia."
     }
   ],
   "dados": [
@@ -170,7 +218,7 @@
       "verificado_em": "2026-09-07",
       "registros": 8,
       "publicar": false,
-      "sha256": "34d55a6cc39229fa5b287a37277089ed00272296abeabeb44cb5f4aec9a386e1",
+      "sha256": "993415a5cc20b651a79f571e48606fa2f2da8c5e80462402e064853791be2b89",
       "descricao": "Especificacao das 8 calculadoras (C1 litragem, C2 peso e carga, C3 vazao, C5 aquecedor por delta, C7 consumo, C8 lotacao, C12 midia, C15 iluminacao): entradas, formulas, faixas de saida com criterio e fonte em cada extremo, produtos sugeridos, contrato de resposta e estado de aquario compartilhado. Documenta tambem o que fica retido por falta de fonte."
     },
     {
@@ -182,7 +230,7 @@
       "verificado_em": "2026-09-08",
       "registros": 42,
       "publicar": false,
-      "sha256": "7e531ed18ce41bc8f6483d4a36b9039401e35a03ac3a29d05dc5ef50c3e76331",
+      "sha256": "6ecf439370732177fbb597f6edc826e08f9c1a712575f9356dbd1831bbc5f010",
       "descricao": "Registro normalizado de toda constante usada ou recusada pelas calculadoras, com fonte, url, data e status (fisica, verificada-fabricante, fabricante-via-busca, norma-via-secundaria, transcrita-varejo, divergente-fontes-br, convencao-editorial, pendente). Constante com status pendente e proibida em formula publicada. Em 08/09/2026 a constante eheim-jager-linha-comercial foi completada: faltavam as potencias de 125 W e 250 W (os dois dos 9 tamanhos que a coleta anterior nao achara) e o volume declarado potencia a potencia, que e o que revela o 1,00 W/L cravado na serie."
     },
     {
@@ -218,7 +266,7 @@
       "verificado_em": "2026-09-08",
       "registros": 5,
       "publicar": false,
-      "sha256": "c000ebb49faa8034178a89d311655bda506a86eae226bd98476a0e0cab47de2b",
+      "sha256": "60888409bf748f556cede1649fb5dd1c6c9901f2b86ef3b2aa02443087bd4451",
       "descricao": "Semente de filtros: Eheim classic 250 (2213), SunSun HW-303B, Atman AT-3338, Atman AT-3338S e Seachem Tidal 55. Turnover implicito declarado pelos proprios fabricantes vai de 1,76 a 10,0 renovacoes/h. Em 08/09/2026 os dois filtros com link de afiliado sairam do barrado: o Eheim 2213 ganhou voltagem 110 V (varejo BR) e o Seachem Tidal 55 ganhou as duas voltagens, teve a coluna maxima declarada como nao aplicavel (hang-on) e saiu de 'revalidar' para 'completo'. A C3 sugere 4 dos 5 filtros; o SunSun HW-303B segue barrado por coluna maxima."
     },
     {
@@ -254,7 +302,7 @@
       "verificado_em": "2026-09-07",
       "registros": 2,
       "publicar": false,
-      "sha256": "68db1d8f4022fccbac3a40f2dc14125476d53de163131663db64b6cf5b674405",
+      "sha256": "3bf2808088d954ae81287ad1c4d6f49029b597bfa34db54f75c78e54a2c0ecf4",
       "descricao": "Semente de midia filtrante: Seachem Matrix 1 L e Eheim SUBSTRAT pro 1 L. Guarda o conflito de dosagem do proprio Seachem (1,25 x 2,6 mL de midia por litro de agua) e as duas areas superficiais declaradas sem metodo publicado (>700 e ~450 m2/L)."
     },
     {
@@ -357,6 +405,20 @@
       "publicar": false,
       "sha256": "1f532a66c0507708174aa8013ca659d694b5abe96a65f4871c76a24e868a3d3a",
       "descricao": "Renderiza qualquer shortcode de calculadora numa pagina HTML solta, com funcoes falsas do WordPress, para o teste de navegador rodar sem subir WordPress nenhum. Carrega todos os snippets menos o Sync, entao tambem serve de teste de convivencia entre as calculadoras."
+    },
+    {
+      "id": "gerar-catalogo-midias",
+      "arquivo": "ferramentas/gerar-catalogo-midias.py",
+      "publicar": false,
+      "sha256": "e3d36cfd449bf65cb000781cb911758c29105297e777df54d2d8b8b09231f8d9",
+      "descricao": "Gera os DOIS catalogos que a C12 embute no snippet: as midias de dados/produtos-midia.json (bloco CATALOGO-MIDIAS) e os filtros de dados/produtos-filtro.json que declaram volume util de midia (bloco CATALOGO-FILTROS). Aplica o minimo_para_sugerir do esquema, carrega a segunda leitura dos campos em conflito para a tela publicar as duas, e ordena as midias pela dosagem declarada (link de afiliado nao ordena, regra V16). Rodar SEMPRE depois de mexer nos dois bancos. Nao vai para o WordPress."
+    },
+    {
+      "id": "teste-navegador-c12",
+      "arquivo": "ferramentas/teste-navegador-c12.mjs",
+      "publicar": false,
+      "sha256": "9dac987ed9af95f1bd37042cf0d9ab1e95b7ec0a252ecd4b75511f4bc2136533",
+      "descricao": "Teste de navegador da C12 em Chromium de verdade (Playwright): 19 cenarios, entre eles a faixa das quatro dosagens, as duas tabelas de ancoras, o teto fisico do cesto (inclusive o caso que estoura), as duas leituras da ficha ambigua do Atman, o calendario de trocas com datas calculadas, o aviso obrigatorio sobre lavar midia biologica, os atributos do link de afiliado, a recusa de converter grama em mililitro, a mescla do estado compartilhado com C1/C3/C5 e o celular de 390 px sem rolagem horizontal. Nao vai para o WordPress."
     }
   ]
 }

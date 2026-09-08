@@ -1,6 +1,6 @@
 {
   "id": "constantes-calculadoras",
-  "descricao": "Registro normalizado de TODA constante usada (ou recusada) pelas calculadoras da Aquametria. Nenhuma formula pode citar um valor que nao esteja aqui. Constante com status 'pendente' NAO entra em formula publicada.",
+  "descricao": "Registro normalizado de TODA constante usada (ou recusada) pelas calculadoras da Aquametria. Nenhuma formula pode citar um valor que nao esteja aqui. Constante com status 'pendente' NAO entra em formula publicada. Em 08/09/2026 a coleta da C12 acrescentou 8 constantes: 4 dosagens novas de fabricante (JBL MicroMec, Ocean Tech Bio Glass, Seachem MatrixCarbon e Seachem Purigen), 1 ancora de midia total de fabricante de filtro (Seachem Tidal 55) e 3 pendencias declaradas que a C12 se recusa a preencher no chute (proporcao entre camadas, densidade aparente do carvao e taxa de nitrificacao por area).",
   "gerado_em": "2026-09-07",
   "bloco": 2,
   "status_vocabulario": {
@@ -894,6 +894,148 @@
       "usada_em": [],
       "status": "pendente",
       "observacao": "RISCO LETAL. Nenhuma destas entra em calculadora, tabela ou texto como numero. Podem ser citadas apenas como 'as fontes divergem' com os valores atribuidos."
+    },
+    {
+      "id": "jbl-micromec-dosagem",
+      "grandeza": "volume de midia biologica de vidro sinterizado por volume de agua",
+      "valor": 5.0,
+      "unidade": "mL de midia por litro de agua",
+      "leituras": [
+        {
+          "texto": "650 g indicados para aquario de 200 L; a mesma embalagem e vendida como 1 L",
+          "derivado_mL_por_L": 5.0
+        }
+      ],
+      "area_superficial_declarada": "1500 m2 por litro",
+      "usada_em": [
+        "c12-midia-filtrante"
+      ],
+      "fonte": "JBL, pagina do MicroMec",
+      "url": "https://www.jbl.de/pt/produtos/detail/2418/jbl-micromec",
+      "verificado_em": "2026-09-08",
+      "status": "fabricante-via-busca",
+      "observacao": "COLETA DE 08/09/2026, para a C12. E a TERCEIRA ancora de mL/L e a que tirou a comparacao do duelo entre duas marcas: cai entre a Seachem (1,25 a 2,6) e a Ocean Tech (12,5). A equivalencia 650 g = 1 L vem de o produto ser vendido pelos dois rotulos, o que tambem fixa a densidade aparente em 650 g/L. jbl.de bloqueado pelo egresso: numero atribuido ao fabricante, colhido por busca e reconfirmado em varejo BR."
+    },
+    {
+      "id": "ocean-tech-bio-glass-dosagem",
+      "grandeza": "volume de midia biologica de vidro sinterizado por volume de agua",
+      "valor": 12.5,
+      "unidade": "mL de midia por litro de agua",
+      "leituras": [
+        {
+          "texto": "1 litro para cada 80 litros de agua",
+          "derivado_mL_por_L": 12.5
+        }
+      ],
+      "area_superficial_declarada": "1500 m2 por litro",
+      "usada_em": [
+        "c12-midia-filtrante"
+      ],
+      "fonte": "Ocean Tech, ficha do Bio Glass replicada por varejo BR especializado (Aqua Life Brasil, Aquaricamp, Portal dos Bichos, Betta Aquarismo)",
+      "url": "https://www.aqualifebrasil.com.br/midias-filtrantes/midia-biologica-bio-glass-ceramica-1-litro-oceantech",
+      "verificado_em": "2026-09-08",
+      "status": "fabricante-via-busca",
+      "observacao": "COLETA DE 08/09/2026, para a C12. E a UNICA dosagem de midia biologica por litro publicada por uma marca BRASILEIRA que o levantamento achou, e e DEZ VEZES a leitura mais economica da Seachem para a mesma funcao. Paradoxo que a C12 publica: a Ocean Tech declara 1500 m2/L de area, mais que o dobro dos mais de 700 m2/L da Seachem, e ainda assim pede dez vezes mais midia - se a area fosse o criterio, a relacao seria a inversa."
+    },
+    {
+      "id": "seachem-matrixcarbon-dosagem",
+      "grandeza": "volume de carvao ativado por volume de agua, declarado pelo fabricante",
+      "valor": 0.625,
+      "unidade": "mL de midia por litro de agua",
+      "leituras": [
+        {
+          "texto": "250 mL tratam facilmente 400 L por varios meses",
+          "derivado_mL_por_L": 0.625
+        }
+      ],
+      "usada_em": [
+        "c12-midia-filtrante"
+      ],
+      "fonte": "Seachem, ficha do MatrixCarbon replicada por varejo BR (Aqua SN, Fazenda Submersa, Aqua e Pesca, BR Fish)",
+      "url": "https://www.aquasn.com.br/seachem-matrix-carbon-250ml-trata-400-litros",
+      "verificado_em": "2026-09-08",
+      "status": "fabricante-via-busca",
+      "observacao": "COLETA DE 08/09/2026, para a C12. E o contraponto de fabricante a constante carvao-ativado do corpus BR (1 a 2 g/L, troca em 15 a 30 dias). As duas NAO sao comparaveis em quantidade sem a densidade aparente do carvao, que continua pendente - mas a FREQUENCIA compara sem conversao nenhuma: 15 a 30 dias contra 'varios meses'. A C12 publica as duas em suas proprias unidades e diz por que nao converte."
+    },
+    {
+      "id": "seachem-purigen-dosagem",
+      "grandeza": "volume de resina de polimento por volume de agua, declarado pelo fabricante",
+      "valor": 0.25,
+      "unidade": "mL de midia por litro de agua",
+      "leituras": [
+        {
+          "texto": "100 mL tratam ate 400 L, ou 1 mL para cada 4 L, por ate 6 meses",
+          "derivado_mL_por_L": 0.25
+        }
+      ],
+      "usada_em": [
+        "c12-midia-filtrante"
+      ],
+      "fonte": "Seachem, ficha do Purigen replicada por varejo BR (Atlantida Aquarios, Aqua Ura, Pro-Aquarista, Fazenda Submersa)",
+      "url": "https://atlantidaaquarios.com.br/loja1/purigen-100-ml-seachem-trata-400-litros.html",
+      "verificado_em": "2026-09-08",
+      "status": "fabricante-via-busca",
+      "observacao": "COLETA DE 08/09/2026, para a C12. E a dosagem declarada mais precisa do banco: volume por litro E validade em meses. Serve de argumento na C12: a industria SABE publicar dosagem por litro quando quer, o que torna o silencio sobre a midia biologica ainda mais estranho."
+    },
+    {
+      "id": "seachem-tidal-55-midia",
+      "grandeza": "volume util de midia declarado por fabricante de filtro, e midia TOTAL por litro de agua",
+      "campos": {
+        "volume_de_filtragem_L": 1.2,
+        "volume_atendido_declarado_L": 200
+      },
+      "derivados": {
+        "volume_de_filtragem_por_litro_de_agua_mL_L": 6.0
+      },
+      "usada_em": [
+        "c12-midia-filtrante"
+      ],
+      "fonte": "Seachem, pagina comparativa da linha Tidal (Tidal 55: filter volume 0,32 US gal = 1,2 L; 55 US gal = 208 L)",
+      "url": "https://www.seachem.com/tidal-compare.php",
+      "verificado_em": "2026-09-08",
+      "status": "fabricante-via-busca",
+      "observacao": "COLETA DE 08/09/2026, para a C12. E o par do eheim-classic-250-2213 na segunda familia de ancoras: 6,0 contra 12,0 mL/L de midia TOTAL. Dois fabricantes serios, o mesmo problema, o dobro de midia. E ha um detalhe: a Seachem e fabricante de midia E de filtro, e as duas declaracoes dela nao se falam - como marca de midia diz que 1,25 mL/L de Matrix bastam, como marca de filtro poe 6 mL/L de espaco de midia no Tidal 55."
+    },
+    {
+      "id": "proporcao-entre-camadas-do-cesto",
+      "grandeza": "reparticao do volume do cesto entre midia mecanica, biologica e quimica",
+      "valor": null,
+      "usada_em": [
+        "c12-midia-filtrante"
+      ],
+      "fonte": null,
+      "url": null,
+      "verificado_em": "2026-09-08",
+      "status": "pendente",
+      "observacao": "NENHUMA fonte do corpus reparte o cesto em porcentagens. A C12 publica a ORDEM das camadas (ordem-midias-canister, que tem fonte) e se RECUSA a publicar a proporcao, dizendo isso na tela. Coleta prevista: o esquema de carga por cesto que os manuais de canister trazem."
+    },
+    {
+      "id": "densidade-aparente-carvao-ativado",
+      "grandeza": "massa por volume aparente de carvao ativado de aquario",
+      "valor": null,
+      "unidade": "g/L",
+      "usada_em": [
+        "c12-midia-filtrante"
+      ],
+      "fonte": null,
+      "url": null,
+      "verificado_em": "2026-09-08",
+      "status": "pendente",
+      "observacao": "Sem ela, a regra BR em gramas por litro (carvao-ativado) e a declaracao do fabricante em mililitros por litro (seachem-matrixcarbon-dosagem) nao se comparam em quantidade. E o que impede a C12 de dizer qual das duas pede mais carvao - e a C12 diz na tela que nao diz, em vez de estimar."
+    },
+    {
+      "id": "taxa-de-nitrificacao-por-area",
+      "grandeza": "amonia processada por dia por area colonizada de midia, em temperatura e pH declarados",
+      "valor": null,
+      "usada_em": [
+        "c12-midia-filtrante",
+        "c8-lotacao"
+      ],
+      "fonte": null,
+      "url": null,
+      "verificado_em": "2026-09-08",
+      "status": "pendente",
+      "observacao": "A constante que FECHARIA a C12. Todas as quatro dosagens de fabricante sao por litro de AGUA, mas o trabalho da midia biologica depende da amonia que entra no sistema - ou seja, da carga de peixes, que nenhuma das declaracoes pergunta. Existe literatura de engenharia sanitaria sobre isso; nao achamos traducao para aquario com fonte citavel em portugues. Enquanto nao houver, a C12 responde com faixa e atribuicao, nunca com numero proprio."
     }
   ],
   "atualizado_em": "2026-09-08"

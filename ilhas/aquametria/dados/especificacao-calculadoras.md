@@ -27,7 +27,7 @@ em cada caso, o que fica de fora e qual coleta libera.
 | C5 | Potência do aquecedor por delta térmico | C5 | especificada em duas vias (a física está bloqueada) |
 | C7 | Consumo elétrico e custo mensal | C7 | especificada |
 | C8 | Lotação e aquário mínimo | C8 | especificada para 8 espécies |
-| C12 | Mídia filtrante: volume, ordem e troca | C12 | especificada |
+| C12 | Mídia filtrante: volume, ordem e troca | C12 | PUBLICADA 08/09/2026 |
 | C15 | Iluminação e fotoperíodo | C15 | especificada (lm/L; PPFD pendente) |
 
 Fora do lote inicial, com o critério de entrada: C4, C6, C9, C10, C11, C13,
@@ -514,15 +514,37 @@ brasileira publica quantidade de mídia biológica por litragem ou por vazão.
 `V_real` · vazão do filtro (de C3) · modelo do filtro (traz o volume de
 filtragem do banco) · carga de peixes (de C8) · tipo de aquário.
 
-### Fórmulas — duas âncoras de fabricante, que discordam
+### Fórmulas — QUATRO âncoras de fabricante, que discordam por 10x
+Atualizado em 08/09/2026: a coleta da construção da C12 levou de duas para
+quatro as dosagens declaradas, e de uma para duas as âncoras de mídia total.
 ```
-mídia biológica de alta porosidade:
-  1,25 mL/L   [seachem-matrix-dosagem, leitura "250 mL para 200 L"]
-  2,6  mL/L   [seachem-matrix-dosagem, leitura "1 L para 100 gal"]
-  ⇒ as duas leituras são da própria copy do fabricante e conflitam por ~2x
+mídia biológica, dosagem declarada pelo fabricante DA MÍDIA:
+   1,25 mL/L  [seachem-matrix-dosagem, leitura "250 mL para 200 L"]
+   2,64 mL/L  [seachem-matrix-dosagem, leitura "1 L para 100 gal"]
+   5,00 mL/L  [jbl-micromec-dosagem: 650 g = 1 L para 200 L]
+  12,50 mL/L  [ocean-tech-bio-glass-dosagem: 1 L para cada 80 L]
+  ⇒ as duas primeiras são da própria copy da Seachem e conflitam por 2,1x
+  ⇒ do piso ao teto vão 10x, e a Ocean Tech é a única marca BRASILEIRA
+    que publica o número
 
-volume total de cesto (mecânica + biológica + química):
-  12 mL/L     [eheim-classic-250-2213: 3,0 L de filtragem para até 250 L]
+O PARADOXO DA ÁREA (é o eixo do artigo pareado):
+  área declarada × dosagem declarada = área entregue por litro de ÁGUA
+  Seachem Matrix    >700 m2/L × 1,25 mL/L =  0,88 m2 por litro de água
+  JBL MicroMec      1500 m2/L × 5,00 mL/L =  7,5  m2 por litro de água
+  Ocean Tech        1500 m2/L × 12,5 mL/L = 18,8  m2 por litro de água
+  ⇒ 21x de diferença. Se a área fosse o critério, convergiriam — e a marca
+    que declara MAIS área é a que pede DEZ VEZES mais mídia, ou seja, a
+    relação é a inversa da esperada. Nenhuma publica método de medição.
+
+volume total de cesto (mecânica + biológica + química), declarado pelo
+fabricante DO FILTRO, como volume de filtragem ÷ volume atendido:
+  12,0 mL/L   [eheim-classic-250-2213: 3,0 L para até 250 L]
+   6,0 mL/L   [seachem-tidal-55: 1,2 L para até 200 L]
+   3,6 a 10,7 [atman-at-3338: ficha de varejo ambígua, 1,6 L ou 4,8 L]
+   8,8 a 26,3 [atman-at-3338s: ficha ambígua, 3,5 L ou 10,5 L]
+  ⇒ a Seachem é fabricante de mídia E de filtro, e as duas declarações dela
+    não se falam: 1,25 mL/L como marca de mídia, 6,0 mL/L de espaço como
+    marca de filtro
 
 carvão ativado : 1 a 2 g/L, trocar a cada 15 a 30 dias  [carvao-ativado]
 perlon         : trocar semanal a quinzenal             [perlon-troca]
@@ -532,13 +554,45 @@ ordem no canister: cerâmica/argila → perlon → carvão → perlon → cerâm
 ```
 
 ### Como a resposta trata o conflito
-Não escolhe. Publica **as três leituras atribuídas** (1,25 · 2,6 · 12 mL/L),
-diz que a de 12 mL/L inclui mecânica e química e por isso é a maior, e marca
-a de Seachem como *a conferir na embalagem* — a página do fabricante não pôde
-ser lida direto nesta sessão (egresso HTTP bloqueado para `seachem.com`) e o
-número veio por resultado de busca. **Esta é, pelo levantamento do Bloco 1, a
-primeira publicação brasileira de mL de mídia biológica por litro de água com
-fonte de fabricante.** Faz da C12 a peça de autoridade do site.
+Não escolhe. Publica **as quatro dosagens atribuídas em uma tabela e as âncoras
+de mídia total em outra**, separadas porque respondem perguntas diferentes: a
+segunda família inclui mecânica e química e por isso é naturalmente maior. Todas
+as dosagens ficam marcadas como *a conferir na embalagem* — as páginas dos
+fabricantes não puderam ser lidas direto (egresso HTTP bloqueado para
+`seachem.com`, `jbl.de` e as lojas brasileiras) e os números vieram por resultado
+de busca, reconfirmados em varejo especializado que replica a mesma ficha.
+**Esta é, pelo levantamento do Bloco 1, a primeira publicação brasileira de mL de
+mídia biológica por litro de água com fonte de fabricante.** Faz da C12 a peça de
+autoridade do site.
+
+### O teto físico — a saída que nenhuma fonte publica (v1.0.0, 08/09/2026)
+A dosagem só vale se a mídia couber. Escolhido o filtro (ou digitado o volume do
+cesto), a C12 devolve, para cada dosagem, **quanto do volume útil de mídia a
+camada biológica sozinha ocuparia** — e diz, quando estoura, que o problema não
+é a mídia, é o filtro. É conta trivial e não a encontramos publicada em português.
+
+### O que a C12 se RECUSA a publicar (declarado na tela)
+- **Proporção entre as camadas** do cesto: nenhuma fonte do corpus reparte o
+  volume em porcentagens (`proporcao-entre-camadas-do-cesto`, pendente). Publica
+  a ORDEM, que tem fonte.
+- **Conversão de grama em mililitro** no carvão: falta
+  `densidade-aparente-carvao-ativado` (pendente). A regra BR (1 a 2 g/L, troca em
+  15 a 30 dias) e a declaração do fabricante (MatrixCarbon, 0,625 mL/L, "vários
+  meses") saem lado a lado, cada uma na sua unidade. A FREQUÊNCIA compara sem
+  conversão: 4 a 10 vezes mais trocas na regra BR do que o fabricante manda.
+- **Ranking por área de superfície**: nenhum fabricante publica o método.
+- **Dimensionamento de mídia sem dosagem declarada** (Eheim Substrat pro): sai no
+  cartão sem número de compra, dizendo por quê.
+- **Prazo de validade da mídia biológica**: só a substituição PARCIAL de 6 a 12
+  meses, que tem fonte.
+
+### A crítica de fundo, que o artigo pareado desenvolve
+As quatro dosagens são por litro de ÁGUA, mas o trabalho da mídia biológica
+depende da amônia que entra — ou seja, da carga de peixes, que NENHUMA das
+declarações pergunta. Fechar isso exigiria `taxa-de-nitrificacao-por-area`
+(pendente): amônia processada por dia por área colonizada, em temperatura e pH
+declarados. Existe na literatura de engenharia sanitária; não achamos tradução
+para aquário com fonte citável em português.
 
 ### Saídas
 Volume (mL/L e total) de cada camada, com o critério de cada âncora · gramas
@@ -564,9 +618,17 @@ Entidade `midia`. Campos do Bloco 3: `marca`, `modelo`, `tipo`
 o custo por litro tratado — comparação que nenhum varejo brasileiro publica.
 
 ### Constantes usadas
-`seachem-matrix-dosagem`, `eheim-classic-250-2213`, `carvao-ativado`,
+`seachem-matrix-dosagem`, `jbl-micromec-dosagem`, `ocean-tech-bio-glass-dosagem`,
+`seachem-matrixcarbon-dosagem`, `seachem-purigen-dosagem`,
+`eheim-classic-250-2213`, `seachem-tidal-55-midia`, `carvao-ativado`,
 `perlon-troca`, `ceramica-regeneracao`, `ordem-midias-canister`,
 `nitrato-limites`, `tpa-percentual`, `tpa-diferenca-termica`.
+Recusadas por falta de fonte: `proporcao-entre-camadas-do-cesto`,
+`densidade-aparente-carvao-ativado`, `taxa-de-nitrificacao-por-area`.
+
+### Estado
+**PUBLICADA em 08/09/2026**, v1.0.0, em `/calculadora-de-midia-filtrante/`,
+pareada com o artigo `/quanta-midia-biologica-o-aquario-precisa/`.
 
 ---
 

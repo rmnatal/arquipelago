@@ -1,6 +1,7 @@
 /**
  * Aquametria Casca — identidade e estrutura do site
- * Versão: 1.0.3 (08/09/2026) — rodapé leva a divulgação de afiliados, que a C3 exige
+ * Versão: 1.0.4 (08/09/2026) — o resumo da C12 no hub passou de duas para quatro âncoras de
+ * fabricante, que é o que a coleta de 08/09/2026 trouxe. A 1.0.3 pôs a divulgação de afiliados no rodapé
  *
  * Dá cara de Aquametria ao tema ativo, sozinho, sem construtor de página e sem
  * plugin de tema. Faz seis coisas:
@@ -33,7 +34,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'AQUAMETRIA_CASCA_VERSAO', '1.0.3' );
+	define( 'AQUAMETRIA_CASCA_VERSAO', '1.0.4' );
 	define( 'AQUAMETRIA_CASCA_TAGLINE', 'Calculadoras e dados técnicos para dimensionar o seu aquário' );
 }
 
@@ -69,7 +70,7 @@ function aquametria_casca_calculadoras() {
 			'codigo'  => 'C12',
 			'titulo'  => 'Mídia filtrante: volume, ordem e troca',
 			'slug'    => 'calculadora-de-midia-filtrante',
-			'resumo'  => 'Mililitros de mídia biológica por litro de água, com as duas âncoras de fabricante que discordam entre si — número que nenhuma fonte brasileira publica.',
+			'resumo'  => 'Mililitros de mídia biológica por litro de água, pelas quatro dosagens que os fabricantes declaram — e que discordam por dez vezes entre si. Número que nenhuma fonte brasileira publica, com o teto físico do cesto do seu filtro junto.',
 			'estado'  => 'em-construcao',
 		),
 		array(

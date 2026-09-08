@@ -2,7 +2,7 @@
   "id": "produtos-midia",
   "entidade": "midia",
   "esquema": "dados/esquema-produtos.json",
-  "descricao": "Semente do banco de midias filtrantes. Dois registros: as duas referencias mundiais de midia biologica, que sao tambem as unicas ancoras de mL de midia por litro de agua com fonte de fabricante que o projeto tem. E o vacuo n. 1 do Bloco 1.",
+  "descricao": "Banco de midias filtrantes. Em 08/09/2026 a coleta da C12 levou o arquivo de 2 para 6 registros e, com eles, de duas para QUATRO ancoras de dosagem declarada por fabricante - duas biologicas novas (JBL MicroMec, 5,0 mL/L; Ocean Tech Bio Glass, 12,5 mL/L, a unica marca brasileira que publica o numero) e duas quimicas (MatrixCarbon e Purigen). A distancia entre a menor e a maior dosagem biologica declarada e de 10x, e nenhum fabricante publica o metodo. Continua sendo o vacuo n. 1 do Bloco 1.",
   "gerado_em": "2026-09-07",
   "bloco": 3,
   "publicar": false,
@@ -153,7 +153,249 @@
       "verificado_em": "2026-09-07",
       "status_registro": "parcial",
       "observacao": "Sem dosagem declarada e sem volume atendido, so entra na C12 pelo caminho da area superficial. Fica como o contraponto do Matrix: 450 contra mais de 700 m2/L, medidos por metodos que nenhum dos dois fabricantes publica."
+    },
+    {
+      "id": "jbl-micromec-1l",
+      "entidade": "midia",
+      "marca": "JBL",
+      "linha": "MicroMec",
+      "modelo": "MicroMec 1 L",
+      "variante": "1 L (650 g)",
+      "nomes_alternativos": [
+        "JBL Micromec 650 g",
+        "JBL MicroMec Bio-Glass",
+        "Ceramica JBL Micromec esferas"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": null,
+      "tipo": "biologica",
+      "material": "vidro-sinterizado",
+      "volume_embalagem_L": 1.0,
+      "peso_g": 650,
+      "area_superficial_m2_por_L": 1500,
+      "dosagem_declarada": {
+        "volume_midia_mL": 1000,
+        "por_volume_agua_L": 200
+      },
+      "granulometria_mm": 14,
+      "regeneravel": null,
+      "vida_util_declarada_meses": 6,
+      "posicao_no_fluxo": "biologica",
+      "volume_atendido_declarado_L": {
+        "min": null,
+        "max": 200
+      },
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "sem link de afiliado gerado ate 08/09/2026 (a geracao do link curto e feita a mao no painel Shopee Afiliados, fora desta sessao). O registro entra no banco e no cartao da C12 do mesmo jeito, sem botao de loja: link de afiliado nao decide quem e sugerido (regra V16).",
+        "verificado_em": "2026-09-08"
+      },
+      "fontes": [
+        {
+          "origem": "fabricante-via-busca",
+          "status": "fabricante-via-busca",
+          "referencia": "JBL, pagina do MicroMec (650 g indicado para aquario de 200 L, troca a cada 6 meses; 1 L com 1500 m2 de superficie de colonizacao; esferas de vidro sinterizado com cerca de 14 mm; usar como penultimo estagio de filtragem)",
+          "url": "https://www.jbl.de/pt/produtos/detail/2418/jbl-micromec",
+          "verificado_em": "2026-09-08",
+          "campos": [
+            "dosagem_declarada",
+            "volume_atendido_declarado_L",
+            "area_superficial_m2_por_L",
+            "granulometria_mm",
+            "vida_util_declarada_meses",
+            "peso_g",
+            "volume_embalagem_L",
+            "tipo",
+            "material"
+          ],
+          "observacao": "jbl.de bloqueado pelo egresso da nuvem em 08/09/2026: numeros atribuidos ao fabricante, colhidos por busca, e reconfirmados em varejo BR (Aqua SN, BR Fish, World Fish, Aquarium Life) que replica a mesma ficha. A embalagem de 650 g e a de 1 L sao a MESMA: o produto e vendido pelos dois rotulos, o que fixa a densidade aparente em 650 g/L e permite ler a dosagem em volume."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-08",
+      "status_registro": "completo",
+      "observacao": "A TERCEIRA ancora de mL de midia biologica por litro de agua, e a que faltava para a C12 deixar de ser um duelo: 1000 mL para 200 L = 5,0 mL/L. Cai exatamente entre a Seachem (1,25 a 2,6 mL/L) e a Ocean Tech (12,5 mL/L). Repare que a area declarada, 1500 m2/L, e o MESMO numero que a Ocean Tech declara para outro produto, de outro material - sem nenhum dos dois publicar metodo de medicao."
+    },
+    {
+      "id": "ocean-tech-bio-glass-1l",
+      "entidade": "midia",
+      "marca": "Ocean Tech",
+      "linha": "Bio Glass",
+      "modelo": "Bio Glass 1 L",
+      "variante": "1 L",
+      "nomes_alternativos": [
+        "OceanTech Bio Glass 1 litro",
+        "Bio Glass Ring Ocean Tech",
+        "Ceramica Bio Glass Ocean Tech"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": null,
+      "tipo": "biologica",
+      "material": "vidro-sinterizado",
+      "volume_embalagem_L": 1.0,
+      "peso_g": null,
+      "area_superficial_m2_por_L": 1500,
+      "dosagem_declarada": {
+        "volume_midia_mL": 1000,
+        "por_volume_agua_L": 80
+      },
+      "granulometria_mm": null,
+      "regeneravel": null,
+      "vida_util_declarada_meses": null,
+      "posicao_no_fluxo": "biologica",
+      "volume_atendido_declarado_L": {
+        "min": null,
+        "max": 80
+      },
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "sem link de afiliado gerado ate 08/09/2026 (geracao manual no painel Shopee Afiliados, fora desta sessao). Entra no cartao sem botao de loja, pela regra V16.",
+        "verificado_em": "2026-09-08"
+      },
+      "fontes": [
+        {
+          "origem": "fabricante-via-busca",
+          "status": "fabricante-via-busca",
+          "referencia": "Ocean Tech, ficha do Bio Glass replicada pelo varejo BR especializado (Aqua Life Brasil, Aquaricamp, Portal dos Bichos, Betta Aquarismo): midia de vidro sinterizado de alta porosidade chegando a 1500 m2 por litro; dosagem recomendada de 1 litro para cada 80 litros de agua; poros de 60 a 300 micrometros",
+          "url": "https://www.aqualifebrasil.com.br/midias-filtrantes/midia-biologica-bio-glass-ceramica-1-litro-oceantech",
+          "verificado_em": "2026-09-08",
+          "campos": [
+            "dosagem_declarada",
+            "volume_atendido_declarado_L",
+            "area_superficial_m2_por_L",
+            "volume_embalagem_L",
+            "tipo",
+            "material"
+          ],
+          "observacao": "Paginas nao lidas direto (egresso bloqueado): transcricao por busca, com a mesma ficha aparecendo em pelo menos quatro lojas brasileiras. O material e outro ponto de atrito: a propria copy chama de 'vidro sinterizado' e o varejo vende como 'ceramica'. Registramos vidro-sinterizado porque e o que a ficha tecnica afirma."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-08",
+      "status_registro": "completo",
+      "observacao": "A UNICA dosagem de midia biologica por litro de agua publicada por uma marca BRASILEIRA que o levantamento achou: 1 L para cada 80 L = 12,5 mL/L. E DEZ VEZES a leitura mais economica da Seachem (1,25 mL/L) para a mesma funcao. Nao ha metodo publicado dos dois lados que explique a diferenca - e e por isso que a C12 nao escolhe."
+    },
+    {
+      "id": "seachem-matrixcarbon-250ml",
+      "entidade": "midia",
+      "marca": "Seachem",
+      "linha": "MatrixCarbon",
+      "modelo": "MatrixCarbon 250 mL",
+      "variante": "250 mL",
+      "nomes_alternativos": [
+        "Seachem Matrix Carbon 250ml",
+        "MatrixCarbon"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": null,
+      "tipo": "quimica",
+      "material": "carvao-ativado",
+      "volume_embalagem_L": 0.25,
+      "peso_g": null,
+      "area_superficial_m2_por_L": null,
+      "dosagem_declarada": {
+        "volume_midia_mL": 250,
+        "por_volume_agua_L": 400
+      },
+      "granulometria_mm": null,
+      "regeneravel": false,
+      "vida_util_declarada_meses": null,
+      "posicao_no_fluxo": "quimica",
+      "volume_atendido_declarado_L": {
+        "min": null,
+        "max": 400
+      },
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "sem link de afiliado gerado ate 08/09/2026 (geracao manual no painel Shopee Afiliados, fora desta sessao). Entra no cartao sem botao de loja, pela regra V16.",
+        "verificado_em": "2026-09-08"
+      },
+      "fontes": [
+        {
+          "origem": "fabricante-via-busca",
+          "status": "fabricante-via-busca",
+          "referencia": "Seachem, ficha do MatrixCarbon replicada pelo varejo BR (Aqua SN, Fazenda Submersa, Aqua e Pesca, BR Fish): '250 mL tratam facilmente 400 L por varios meses'; carvao macroporoso de carvao betuminoso, baixo teor de cinzas, nao eleva o pH acima de 7,0 nem em agua destilada",
+          "url": "https://www.aquasn.com.br/seachem-matrix-carbon-250ml-trata-400-litros",
+          "verificado_em": "2026-09-08",
+          "campos": [
+            "dosagem_declarada",
+            "volume_atendido_declarado_L",
+            "volume_embalagem_L",
+            "tipo",
+            "material",
+            "regeneravel"
+          ],
+          "observacao": "seachem.com bloqueado pelo egresso; ficha atribuida ao fabricante e colhida por busca, com o mesmo texto em quatro lojas BR. vida_util_declarada_meses ficou null DE PROPOSITO: 'varios meses' nao e numero e nao vira numero aqui. regeneravel=false porque a propria linha Seachem separa o que se regenera (Purigen) do que nao se regenera."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-08",
+      "status_registro": "completo",
+      "observacao": "O contraponto de fabricante a regra brasileira de carvao ativado. O corpus BR (constante carvao-ativado) manda 1 a 2 g por litro de agua e troca a cada 15 a 30 dias; o fabricante declara 250 mL para 400 L, ou seja 0,625 mL por litro, durando varios meses. NAO da para converter uma coisa na outra nesta pagina: falta a densidade aparente do carvao com fonte, e sem ela transformar mL em g seria inventar constante. A C12 publica as duas em suas proprias unidades e diz por que nao converte."
+    },
+    {
+      "id": "seachem-purigen-100ml",
+      "entidade": "midia",
+      "marca": "Seachem",
+      "linha": "Purigen",
+      "modelo": "Purigen 100 mL",
+      "variante": "100 mL",
+      "nomes_alternativos": [
+        "Seachem Purigen 100ml",
+        "Purigen sache 100 mL"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": null,
+      "tipo": "quimica",
+      "material": "resina",
+      "volume_embalagem_L": 0.1,
+      "peso_g": null,
+      "area_superficial_m2_por_L": null,
+      "dosagem_declarada": {
+        "volume_midia_mL": 100,
+        "por_volume_agua_L": 400
+      },
+      "granulometria_mm": null,
+      "regeneravel": true,
+      "vida_util_declarada_meses": 6,
+      "posicao_no_fluxo": "polimento",
+      "volume_atendido_declarado_L": {
+        "min": null,
+        "max": 400
+      },
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "sem link de afiliado gerado ate 08/09/2026 (geracao manual no painel Shopee Afiliados, fora desta sessao). Entra no cartao sem botao de loja, pela regra V16.",
+        "verificado_em": "2026-09-08"
+      },
+      "fontes": [
+        {
+          "origem": "fabricante-via-busca",
+          "status": "fabricante-via-busca",
+          "referencia": "Seachem, ficha do Purigen replicada pelo varejo BR (Atlantida Aquarios, Aqua Ura, Pro-Aquarista, Fazenda Submersa): 100 mL tratam ate 400 L, ou 1 mL para cada 4 L, por ate 6 meses; polimero macro e microporoso; escurece conforme esgota e e regenerado com solucao de agua sanitaria 1:1 por 24 h, seguida de enxague e neutralizacao",
+          "url": "https://atlantidaaquarios.com.br/loja1/purigen-100-ml-seachem-trata-400-litros.html",
+          "verificado_em": "2026-09-08",
+          "campos": [
+            "dosagem_declarada",
+            "volume_atendido_declarado_L",
+            "volume_embalagem_L",
+            "tipo",
+            "material",
+            "regeneravel",
+            "vida_util_declarada_meses"
+          ],
+          "observacao": "seachem.com bloqueado pelo egresso; ficha atribuida ao fabricante e colhida por busca, com o mesmo texto em quatro lojas BR. A C12 NAO publica o procedimento de regeneracao com agua sanitaria como receita: a instrucao completa e do fabricante e mora na embalagem, e errar a neutralizacao mata o aquario."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-08",
+      "status_registro": "completo",
+      "observacao": "Entra no banco como a midia de polimento com dosagem declarada mais precisa que achamos: 0,25 mL por litro de agua, com validade declarada em meses e nao em 'ate saturar'. E a prova de que a industria SABE publicar dosagem por litro quando quer - o que torna o silencio sobre a midia biologica ainda mais estranho."
     }
   ],
-  "atualizado_em": "2026-09-07"
+  "atualizado_em": "2026-09-08"
 }
