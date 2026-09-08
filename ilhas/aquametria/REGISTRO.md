@@ -1083,3 +1083,13 @@ vezes (Seachem Matrix, 1,25 mL/L numa leitura da copy e 2,6 mL/L noutra) mais os
 
 Sem ferramenta de memória nesta sessão: `/areas/projeto-aquametria.md` NÃO foi
 atualizado; esta entrada e o `ESTADO.md` são o registro.
+
+### Nota de desembarque (mesma execução)
+
+**Sync não acionado pela nuvem**: `WebFetch` em `aquametria.com.br` devolveu
+`EGRESS_BLOCKED`, como em todas as execuções anteriores — o container só alcança
+o GitHub. O `raw.githubusercontent.com` **já serve a revisão 9** (conferido nesta
+sessão, sem atraso de cache: 5 snippets e 5 páginas com `publicar: true`), então
+o WP-Cron do próprio site, que roda a cada 30 minutos, aplica sozinho. Para
+acionar na hora, basta abrir no navegador:
+`https://aquametria.com.br/?aquametria_sync=kgbErDOIVAFWUtUzutHGrKevVgmWGVjz&forcar=1`
