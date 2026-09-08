@@ -4,7 +4,7 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 11,
+  "revisao": 12,
   "atualizado_em": "2026-09-08",
   "estado": "fundacao",
   "desembarque": {
@@ -19,9 +19,21 @@
       "arquivo": "snippets/aquametria-sync.php",
       "escopo": "global",
       "ativo": true,
+      "versao": "1.1.4",
       "publicar": true,
-      "sha256": "0eb7227fda317aa09451cf70009ecd97f7439bfc016441244791fc1985582747",
-      "descricao": "Sincronizador do site com este repositorio. Ja instalado e ativo (Code Snippets id 5, 06/09/2026). v1.1.0 (07/09/2026): compativel com Code Snippets 3.10, grava inativo e ativa em seguida, e um item quebrado nao derruba o sync. O proprio Sync se pula pelo nome, entao publicar=true e inofensivo e deixa o arquivo rastreado. v1.1.1 (07/09/2026): o conversor de Markdown descarta o front matter do arquivo, deixa a linha que so tem shortcode fora do paragrafo (div dentro de p e HTML invalido) e poe toda tabela dentro de um bloco que rola no celular. v1.1.2 (08/09/2026): o conversor entende citacao em bloco (linha com '>'), que antes saia com o '>' escapado no meio do paragrafo — a formula do protocolo do balde da C3 e a regra V16 da pagina de afiliados dependiam disso. v1.1.3 (08/09/2026): o conversor entende bloco de codigo cercado por crases triplas (a formula P = U . A . deltaT do artigo do aquecedor) e passa a converter link relativo a raiz — antes so link https virava <a>, e link relativo saia com os colchetes impressos no texto, defeito silencioso porque nao e erro de sintaxe."
+      "sha256": "bc93019affb51ae195aed3425d1f10500ba2ce7478ccf4642d19e3243f3b501e",
+      "descricao": "Sincronizador do site com este repositorio. Ja instalado e ativo (Code Snippets id 5, 06/09/2026). v1.1.0 (07/09/2026): compativel com Code Snippets 3.10, grava inativo e ativa em seguida, e um item quebrado nao derruba o sync. O proprio Sync se pula pelo nome, entao publicar=true e inofensivo e deixa o arquivo rastreado. v1.1.1 (07/09/2026): o conversor de Markdown descarta o front matter do arquivo, deixa a linha que so tem shortcode fora do paragrafo (div dentro de p e HTML invalido) e poe toda tabela dentro de um bloco que rola no celular. v1.1.2 (08/09/2026): o conversor entende citacao em bloco (linha com '>'), que antes saia com o '>' escapado no meio do paragrafo — a formula do protocolo do balde da C3 e a regra V16 da pagina de afiliados dependiam disso. v1.1.3 (08/09/2026): o conversor entende bloco de codigo cercado por crases triplas (a formula P = U . A . deltaT do artigo do aquecedor) e passa a converter link relativo a raiz — antes so link https virava <a>, e link relativo saia com os colchetes impressos no texto, defeito silencioso porque nao e erro de sintaxe. v1.1.4 (08/09/2026): o corte do front matter ficou tolerante — BOM no comeco do arquivo, quebra de linha antiga so com CR, espaco ou tabulacao a direita do delimitador. Nenhuma dessas variacoes aparece no editor e qualquer uma devolvia o metadado impresso no corpo da pagina. IMPORTANTE: o Sync se pula a si mesmo pelo nome, entao esta correcao NAO chega ao site por ele — quem grava e o snippet aquametria-atualizador-sync. O campo versao deste item e o que o atualizador compara com a constante AQUAMETRIA_SYNC_VERSAO que esta rodando no site."
+    },
+    {
+      "id": "aquametria-atualizador-sync",
+      "nome": "Aquametria Sync — atualizador do Sync",
+      "arquivo": "snippets/aquametria-atualizador-sync.php",
+      "escopo": "global",
+      "ativo": true,
+      "versao": "1.0.0",
+      "publicar": true,
+      "sha256": "b0d8e7a9e92b4cb4f2ca56cb8325153ee171244a37aab41e291997565ed0a862",
+      "descricao": "Reescreve o snippet Aquametria Sync do site a partir deste repositorio. Existe porque o Sync se pula a si mesmo de proposito (compara o nome do item com o proprio nome e devolve 'pulado'), o que impede qualquer correcao no proprio Sync de chegar ao site sozinha — gargalo que em 08/09/2026 deixou o site na v1.1.0 publicando o front matter YAML dentro do corpo das paginas enquanto o repositorio ja estava na v1.1.3. Como o NOME deste snippet e diferente, o proprio Sync o instala e ativa pelo caminho que ja funciona. Roda no maximo uma vez por hora (WP-Cron) e so age quando a versao do manifest difere da que esta rodando. Antes de gravar: confere o sha256 do arquivo baixado contra o manifest, confere que o arquivo declara a versao que o manifest anuncia, faz checagem de sintaxe sem executar o codigo (token_get_all com TOKEN_PARSE) e salva o codigo atual na option aquametria_sync_backup_codigo, relendo a option para confirmar — sem backup gravado, nao prossegue. Grava pela API do Code Snippets 3.10 (Model\\Snippet, save_snippet devolve objeto), INATIVO primeiro e ativando depois, em try/catch. Depois verifica numa requisicao NOVA se /wp-json/aquametria/v1/status responde com a versao nova; se nao responder, RESTAURA o backup sozinho. Loopback indisponivel conta como inconclusivo e mantem o codigo novo, em vez de derrubar por falta de prova. Por fim apaga o sha registrado de cada item de conteudo no estado do Sync e zera a revisao, para que as paginas ja no ar sejam reaplicadas pelo conversor novo. Log em /wp-json/aquametria/v1/atualizador (GET publico). Gatilho manual: /?aquametria_atualizar_sync=TOKEN&forcar=1, com o mesmo token do Sync."
     },
     {
       "id": "aquametria-casca",
@@ -390,7 +402,8 @@
       "ativo": "true se deve ficar ativo no site",
       "publicar": "true para o Sync aplicar no site. Desde 07/09/2026 o desembarque de snippet de site e automatico",
       "sha256": "hash do arquivo, conferido pelo Sync apos gravar",
-      "descricao": "o que o snippet faz"
+      "descricao": "o que o snippet faz",
+      "versao": "versao declarada no cabecalho do arquivo. Obrigatoria no item aquametria-sync: e o que o snippet atualizador compara com a versao que esta rodando no site"
     },
     "conteudo": {
       "id": "identificador estavel, kebab-case",
@@ -484,6 +497,20 @@
       "publicar": false,
       "sha256": "6ef0a96c7722e1cc3b990f3c74af8c0403b7a21f3c5f5b1d717d7f5ad4bd2812",
       "descricao": "Teste de navegador da C15 em Chromium de verdade (Playwright): 21 cenarios e mais de 60 verificacoes, entre elas a faixa nos tres niveis, a tabela das tres leituras com a divergencia de 2x, a faixa aberta do nivel alto, o aviso de luz alta sem CO2, a sobreposicao dos limites de CO2, os quatro regimes de fotoperiodo, o aviso de lamina funda, a cobertura de comprimento como barreira do bloco de produto, a lista publicada dos barrados, os atributos do link de afiliado, o painel de consumo em kWh e em reais, o caminho inverso, a mescla do estado compartilhado com C1/C3/C5, o permalink e o celular de 390 px sem rolagem horizontal. Nao vai para o WordPress."
+    },
+    {
+      "id": "teste-conversor-markdown",
+      "arquivo": "ferramentas/teste-conversor-markdown.php",
+      "publicar": false,
+      "sha256": "a4a972a5bcc15c994de6ba715e29da0d18141d725aaf68b59fa9a11d9d70231c",
+      "descricao": "Roda o conversor de Markdown do proprio snippet Aquametria Sync sobre todos os arquivos de conteudo/ e recusa qualquer residuo de front matter no HTML (chaves como publicar:, verificado_em:, slug:), HTML que comece por separador e primeiro bloco que nao seja texto. Cobre tambem as variacoes de front matter que sao invisiveis no editor e quebravam o corte em silencio: BOM, CR sozinho, espaco a direita do delimitador. Nasceu do defeito visto no ar em 08/09/2026 na pagina da C1. Rodar antes de todo commit que toque snippets/aquametria-sync.php ou conteudo/."
+    },
+    {
+      "id": "teste-atualizador-sync",
+      "arquivo": "ferramentas/teste-atualizador-sync.php",
+      "publicar": false,
+      "sha256": "861693e2f193f1fbde381192f2daa1c51226a8294b0bb088a3496bda2addb5d6",
+      "descricao": "Exercita o snippet atualizador do Sync de ponta a ponta com WordPress e Code Snippets falsos, um cenario por processo (a versao instalada e uma constante, e constante nao muda dentro do mesmo processo). Nove cenarios: caminho feliz, sha256 divergente, arquivo com erro de sintaxe, manifest que anuncia versao que o arquivo nao declara, verificacao que falha (tem de restaurar o backup), loopback mudo (tem de manter o codigo novo), site ja atualizado, janela de uma hora e Sync ausente no site. Rodar antes de todo commit que toque snippets/aquametria-atualizador-sync.php."
     }
   ]
 }

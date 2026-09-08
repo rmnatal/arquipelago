@@ -1515,3 +1515,190 @@ barradas** — a Chihiros WRGB II Pro 60 (nenhuma fonte declara voltagem) e a
 SunSun ADE-400c (nenhuma loja publica lúmen). Elas não são sugeridas, e a página
 diz isso na cara, com o motivo. Uma foto da embalagem de qualquer uma das duas
 resolveria o campo que falta.
+
+---
+
+## 2026-09-08 (11º disparo, correção urgente) — o Sync não se atualiza sozinho: nasceu o atualizador
+
+**Fila normal interrompida a pedido do Raphael.** A C2 (peso e carga no piso) fica
+para a próxima execução. Esta rodada resolveu um defeito visível no site e, mais
+importante, o gargalo estrutural que o produziu.
+
+### O defeito
+
+O Raphael abriu `https://aquametria.com.br/calculadora-de-litragem/` e viu o front
+matter YAML do arquivo Markdown impresso **dentro do corpo da página**:
+"— id: calculadora-de-litragem tipo: pagina titulo: … publicar: true —", com a lista
+de fontes virando lista com marcadores. Os `---` viraram travessão porque o
+`wptexturize` do WordPress converte três hifens em em-dash.
+
+### A causa, confirmada nesta sessão
+
+O repositório estava **certo**. O que roda no site é que estava velho.
+
+- `ilhas/aquametria/snippets/aquametria-sync.php` está na v1.1.3 desde 08/09 e corta
+  o front matter em `aquametria_sync_md()` desde a **v1.1.1** (07/09).
+- O snippet "Aquametria Sync" **ativo no site** é a **v1.1.0**, colada à mão pelo
+  Raphael em 07/09.
+- Rodei o conversor da v1.1.3 sobre os 9 arquivos reais de `conteudo/`: **nenhum
+  resíduo de YAML em nenhum deles**. O lado do repositório nunca produziu o defeito.
+
+E o motivo de a correção nunca ter chegado ao site é estrutural, não um esquecimento:
+
+> **O Sync se pula a si mesmo de propósito.** Em `aquametria_sync_aplicar_snippet()`,
+> a checagem `$nome === AQUAMETRIA_SYNC_NOME_PROPRIO` devolve "pulado". Isso protege o
+> site — o Sync não se reescreve no meio da própria execução — e, como efeito colateral
+> permanente, **nenhuma correção no próprio Sync chega ao site sozinha**.
+
+Quatro versões do conversor de Markdown (1.1.1, 1.1.2, 1.1.3 e agora a 1.1.4) ficaram
+só no repositório sem ninguém notar, porque o log do Sync dizia "aplicado com sucesso"
+— e dizia a verdade. As páginas *foram* aplicadas. Pelo conversor velho.
+
+### 1. Sync v1.1.4 — o corte do front matter ficou tolerante
+
+A regex antiga (`/\A---\n.*?\n---\n?/s`) exigia o arquivo perfeito. Três variações que
+**não aparecem no editor** a derrotavam em silêncio, e uma delas produz exatamente a
+tela que o Raphael viu:
+
+| Variação | O que acontecia antes |
+| --- | --- |
+| BOM no começo do arquivo | o BOM fica antes do `---` e o corte não casa |
+| quebra de linha antiga, só `\r` | o arquivo inteiro vira uma linha só |
+| espaço ou tabulação à direita do `---` | o corte não casa e o YAML sai como parágrafo |
+
+Agora o conversor tira o BOM, normaliza `\r\n` **e** `\r` sozinho, e aceita espaço ou
+tabulação à direita dos dois delimitadores. O `---` legítimo no meio do texto continua
+intocado (é caso de teste).
+
+**`ferramentas/teste-conversor-markdown.php`** (novo) roda o conversor do próprio
+snippet Sync sobre todos os arquivos de `conteudo/` e recusa qualquer resíduo de
+metadado no HTML — chaves como `publicar:`, `verificado_em:`, `slug:`, HTML que comece
+por separador, primeiro bloco que não seja texto — mais as oito variações de front
+matter acima. **17 casos, 0 falhas.**
+
+### 2. O ATUALIZADOR — a entrega estrutural
+
+**`snippets/aquametria-atualizador-sync.php`**, nome no Code Snippets
+**"Aquametria Sync — atualizador do Sync"**, escopo global, ativo, `publicar: true`.
+
+Como o **nome é diferente** do nome do Sync, a v1.1.0 que está no site vai instalá-lo e
+ativá-lo pelo caminho que já funciona. E a única coisa que ele faz é reescrever o Sync
+a partir do repositório. Cada trava existe por um motivo:
+
+- **sha256 contra o manifest, antes de qualquer coisa.** Divergiu, aborta e registra —
+  nunca grava código não verificado.
+- **Coerência de versão:** o arquivo tem de declarar a mesma versão que o manifest
+  anuncia. Manifest desatualizado não vira gravação.
+- **Sintaxe de verdade, sem executar o código:** `token_get_all( $codigo, TOKEN_PARSE )`
+  faz o parse completo e levanta `ParseError` em código quebrado. É o mais perto de um
+  `php -l` que dá para fazer dentro do WordPress sem `eval` — e `eval` aqui seria
+  justamente o erro que derrubou o site em 07/09.
+- **Backup, e a releitura que prova que ele existe:** grava o código atual em
+  `aquametria_sync_backup_codigo` (com versão, id do snippet, sha e data) e **relê a
+  option** comparando o tamanho. Sem backup confirmado, não prossegue.
+- **Gravação pelo caminho que a v1.1.0 já usa e que sabidamente funciona:**
+  `Code_Snippets\Model\Snippet`, `save_snippet()` lido como **objeto**, gravação
+  **INATIVA** primeiro e `activate_snippet()` depois, tudo em `try/catch`. Nunca
+  `new \Code_Snippets\Snippet()`.
+- **A verificação é uma REQUISIÇÃO NOVA.** Nesta requisição o código velho continua
+  carregado na memória do PHP, então perguntar à constante não prova nada. Ele busca
+  `/wp-json/aquametria/v1/status` e confere `versao_sync`. Não bateu, ou o endpoint
+  devolveu erro, **restaura o backup automaticamente**. Loopback mudo (o site fechado
+  para si mesmo) conta como **inconclusivo** e mantém o código novo: derrubar a versão
+  nova por falta de prova seria pior que mantê-la, e fica escrito no log.
+- **No máximo uma vez por hora**, por WP-Cron, e só quando a versão do manifest difere
+  da que está rodando. A marca de tentativa é gravada **antes** de tentar, para que uma
+  falha no meio não vire laço.
+- **Log legível** em `GET /wp-json/aquametria/v1/atualizador` (público, só o log).
+  Gatilho manual: `/?aquametria_atualizar_sync=TOKEN&forcar=1`, com o mesmo token do Sync.
+
+**`ferramentas/teste-atualizador-sync.php`** (novo) exercita tudo isso com WordPress e
+Code Snippets falsos, **um processo por cenário** — a versão instalada é uma constante,
+e constante não muda dentro do mesmo processo. **9 cenários, 0 falhas:**
+
+| Cenário | O que tem de acontecer |
+| --- | --- |
+| feliz | grava inativo, ativa, verifica, marca o conteúdo, registra o sha aplicado |
+| sha divergente | aborta sem gravar e sem sequer criar backup |
+| sintaxe quebrada | aborta sem gravar |
+| versão mentirosa | manifest anuncia 9.9.9, arquivo declara outra: aborta |
+| verificação falha | **restaura o backup** e o site volta à 1.1.0 |
+| loopback mudo | mantém o código novo e diz que a verificação foi inconclusiva |
+| já atualizado | não reescreve nada |
+| janela de 1 h | nem chega a baixar o manifest |
+| Sync ausente | aborta — reescreve, não instala do zero |
+
+### 3. Reaplicação das páginas que estão no ar com o YAML sujo
+
+Feita **pelo próprio atualizador**, porque este container não alcança o site. Depois de
+atualizar o Sync com sucesso, ele apaga o `sha256` registrado de cada item `conteudo:*`
+em `aquametria_sync_estado` e zera a revisão — é isso que obriga a reaplicação, já que o
+Sync pula arquivo cujo sha já foi aplicado — e agenda um evento avulso do sync para 60
+segundos depois. Ele **não** roda o sync na mesma requisição: ali quem está carregado é
+o conversor velho, que reescreveria o mesmo defeito. O teste confere que só os itens de
+conteúdo perdem o sha (o de snippet fica) e que nada disso acontece quando houve
+reversão.
+
+### 4. Regra permanente (gravada em ESTADO.md, seção da fase 4b)
+
+> **O snippet Sync não se atualiza sozinho, por desenho.** Toda correção no próprio Sync
+> chega ao site pelo snippet atualizador, nunca por colagem manual do Raphael. Mexeu em
+> `snippets/aquametria-sync.php`? Suba a versão no cabeçalho **e** o campo `versao` do
+> item `aquametria-sync` no manifest — sem isso o atualizador não vê motivo para agir.
+
+> **Depois de publicar qualquer página vinda de `conteudo/`, buscar a URL no ar e
+> conferir que o corpo começa pelo TEXTO, não por metadado.** Nunca confie no "aplicado
+> com sucesso" do log: em 08/09 o log estava certo e a página estava errada, e quem viu
+> o defeito foi o Raphael, não a rotina.
+
+O campo `versao` entrou no `esquema.snippets` do manifest, documentado.
+
+### Verificação (o que foi realmente rodado)
+
+- **`php -l` de verdade** nos 8 snippets, e `ferramentas/proteger-funcoes.php` devolvendo
+  saída idêntica ao arquivo em todos — nenhuma função de nível superior desprotegida.
+- **`teste-conversor-markdown.php`**: 17 casos, 0 falhas. As 9 páginas reais saem sem
+  nenhum resíduo de YAML, e as 8 variações de front matter são cortadas.
+- **`teste-atualizador-sync.php`**: 9 cenários, 0 falhas (tabela acima).
+- **Simulação do Sync DO SITE aplicando a revisão 12**, com Code Snippets falso: ele se
+  pula pelo nome, **cria o "Aquametria Sync — atualizador do Sync"** e o ativa, aplica os
+  outros 6 snippets e as 9 páginas, e **todas as 9 páginas começam por `<p>` com texto de
+  verdade**. É a prova de que o caminho de entrega funciona com a v1.1.0 que está no ar.
+- **sha256 do manifest recalculado e conferido** contra os arquivos finais commitados:
+  todos os itens, 0 divergências.
+
+### Desembarque
+
+Manifest na **revisão 12**. `WebFetch` em `aquametria.com.br` continua devolvendo
+`EGRESS_BLOCKED` — este container só alcança o GitHub —, então **não consegui confirmar
+a página no ar nesta sessão**. A sequência que o site executa sozinho, sem ninguém tocar
+em nada:
+
+1. o WP-Cron do Sync (a cada 30 min) vê a revisão 12 e **instala o atualizador**;
+2. o cron do atualizador (de hora em hora, primeira volta ~3 min depois de ativado) vê
+   a v1.1.4 no manifest contra a v1.1.0 instalada, grava, ativa, verifica e marca as
+   páginas para reaplicação;
+3. o evento avulso do Sync, 60 s depois, reaplica as 9 páginas **com o conversor novo**.
+
+Para acionar na hora, na ordem:
+`https://aquametria.com.br/?aquametria_sync=kgbErDOIVAFWUtUzutHGrKevVgmWGVjz&forcar=1`
+→ `https://aquametria.com.br/?aquametria_atualizar_sync=kgbErDOIVAFWUtUzutHGrKevVgmWGVjz&forcar=1`
+→ o mesmo `?aquametria_sync=…&forcar=1` de novo.
+
+**A CONFERIR (fica para a próxima execução, e é a primeira coisa a fazer):**
+`https://aquametria.com.br/wp-json/aquametria/v1/status` tem de responder
+`"versao_sync":"1.1.4"`; `https://aquametria.com.br/wp-json/aquametria/v1/atualizador`
+mostra o log do atualizador; e o corpo de `/calculadora-de-litragem/`,
+`/calculadora-de-vazao-do-filtro/`, `/calculadora-de-potencia-do-aquecedor/`,
+`/calculadora-de-midia-filtrante/`, `/calculadora-de-iluminacao/` e
+`/quantos-lumens-por-litro-aquario-plantado/` tem de começar pelo texto, não por
+metadado.
+
+**Próximo passo desbloqueado: C2 — peso do aquário cheio e carga no piso**, pareada com
+o artigo dela, depois de conferir as URLs acima. As duas travessas continuam as mesmas:
+a C2 não publica espessura de vidro nem veredito de "a laje aguenta" (falta tensão
+admissível e coeficiente de segurança citáveis), e a carga de projeto da NBR 6120 está
+no corpus como `norma-via-secundaria`, o que a tela precisa dizer com essas palavras.
+
+Sem ferramenta de memória nesta sessão: `/areas/projeto-aquametria.md` NÃO foi
+atualizado; esta entrada e o `ESTADO.md` são o registro.

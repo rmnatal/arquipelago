@@ -1,5 +1,10 @@
 /**
  * Aquametria Sync
+ * Versão: 1.1.4 (08/09/2026) — o corte do front matter ficou tolerante (BOM no começo do
+ *   arquivo, quebra de linha antiga só com CR, espaço ou tabulação à direita do delimitador).
+ *   Nenhuma dessas variações é visível no editor, e qualquer uma delas devolvia o metadado
+ *   impresso no corpo da página. Vem junto o teste ferramentas/teste-conversor-markdown.php,
+ *   que roda este conversor sobre todos os arquivos de conteudo/ e recusa resíduo de YAML.
  * Versão: 1.1.3 (08/09/2026) — o conversor de Markdown passou a entender bloco de código
  *   cercado por crases triplas: a fórmula P = U · A · ΔT do artigo do aquecedor sairia com as
  *   crases impressas e viraria um parágrafo qualquer no meio do texto.
@@ -34,7 +39,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_SYNC_VERSAO' ) ) {
-	define( 'AQUAMETRIA_SYNC_VERSAO', '1.1.3' );
+	define( 'AQUAMETRIA_SYNC_VERSAO', '1.1.4' );
 	define( 'AQUAMETRIA_SYNC_BASE', 'https://raw.githubusercontent.com/rmnatal/arquipelago/main/ilhas/aquametria/' );
 	define( 'AQUAMETRIA_SYNC_NOME_PROPRIO', 'Aquametria Sync' );
 }
@@ -97,10 +102,19 @@ function aquametria_sync_sha_ok( $corpo, $esperado ) {
 /* Markdown mínimo → HTML (títulos, parágrafos, listas, negrito, itálico, links, código, tabelas simples) */
 if ( ! function_exists( 'aquametria_sync_md' ) ) {
 function aquametria_sync_md( $md ) {
-	$md = str_replace( "\r\n", "\n", $md );
+	/* Marca de ordem de byte: alguns editores gravam o arquivo com ela, e o BOM antes
+	   do primeiro '---' faz o corte do front matter falhar sem nenhum erro visível. */
+	if ( 0 === strncmp( $md, "\xEF\xBB\xBF", 3 ) ) {
+		$md = substr( $md, 3 );
+	}
+	$md = str_replace( array( "\r\n", "\r" ), "\n", $md );
 	/* Front matter YAML: é metadado do repositório (título, slug, fontes), não texto
-	   de página. Sem este corte ele sairia impresso no topo do post. */
-	$md = preg_replace( '/\A---\n.*?\n---\n?/s', '', $md, 1 );
+	   de página. Sem este corte ele sairia impresso no topo do post — e sai feio, porque
+	   o wptexturize transforma os três hifens em travessão e o leitor vê "— id: ... —"
+	   antes do texto. Foi o defeito visto no ar na página da C1 em 08/09/2026.
+	   A tolerância importa: espaço ou tabulação à direita de qualquer um dos dois
+	   delimitadores é invisível no editor e quebrava o corte em silêncio. */
+	$md = preg_replace( '/\A---[ \t]*\n.*?\n---[ \t]*(?:\n|\z)/s', '', $md, 1 );
 	$linhas = explode( "\n", $md );
 	$html   = '';
 	$lista  = null;
