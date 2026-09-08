@@ -1,6 +1,7 @@
 /**
  * Aquametria Calculadora de Vazão do Filtro — C3
- * Versão: 1.0.2 (08/09/2026) — o painel de ligações passou a linkar a C12, publicada nesta
+ * Versão: 1.0.3 (08/09/2026) — o painel de ligações passou a linkar a C15, publicada nesta data:
+ * em aquário plantado a corrente e a iluminação decidem juntas o que acontece com o CO2. A 1.0.2 linkou a C12, publicada
  * data: é ela que diz quanta mídia o filtro escolhido aqui precisa carregar. A 1.0.1 linkou a C5
  *
  * Segunda calculadora do lote e a primeira com bloco de produto. Converte o
@@ -44,7 +45,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_C3_VERSAO' ) ) {
-	define( 'AQUAMETRIA_C3_VERSAO', '1.0.2' );
+	define( 'AQUAMETRIA_C3_VERSAO', '1.0.3' );
 	define( 'AQUAMETRIA_C3_SLUG', 'calculadora-de-vazao-do-filtro' );
 	define( 'AQUAMETRIA_C3_VERIFICADO_EM', '08/09/2026' );
 	/* Constante 'eheim-classic-250-2213' (dados/constantes-calculadoras.json):
@@ -1007,6 +1008,7 @@ function aquametria_c3_adiante_html() {
 	$divul = function_exists( 'aquametria_casca_url_pagina' ) ? aquametria_casca_url_pagina( AQUAMETRIA_C3_PAGINA_AFILIADOS ) : home_url( '/' . AQUAMETRIA_C3_PAGINA_AFILIADOS . '/' );
 	$c5    = function_exists( 'aquametria_casca_url_pagina' ) ? aquametria_casca_url_pagina( 'calculadora-de-potencia-do-aquecedor' ) : home_url( '/calculadora-de-potencia-do-aquecedor/' );
 	$c12   = function_exists( 'aquametria_casca_url_pagina' ) ? aquametria_casca_url_pagina( 'calculadora-de-midia-filtrante' ) : home_url( '/calculadora-de-midia-filtrante/' );
+	$c15   = function_exists( 'aquametria_casca_url_pagina' ) ? aquametria_casca_url_pagina( 'calculadora-de-iluminacao' ) : home_url( '/calculadora-de-iluminacao/' );
 
 	$h  = '<div class="aqm-c3-painel aqm-c3-adiante">';
 	$h .= '<h3>O que conversa com esta página</h3>';
@@ -1014,6 +1016,7 @@ function aquametria_c3_adiante_html() {
 	$h .= '<li><a href="' . esc_url( $c1 ) . '"><strong>Calculadora de litragem (C1)</strong></a> — é de onde vem o volume real que esta página usa. Se o número acima veio preenchido, veio de lá.</li>';
 	$h .= '<li><a href="' . esc_url( $c5 ) . '"><strong>Potência do aquecedor (C5)</strong></a> — o outro aparelho que o seu volume dimensiona, e o único que pergunta quanto frio faz no seu cômodo. Usa o mesmo volume real desta página.</li>';
 	$h .= '<li><a href="' . esc_url( $c12 ) . '"><strong>Mídia filtrante (C12)</strong></a> — quantos mililitros de mídia biológica o seu filtro precisa carregar, e se isso cabe no cesto dele. Usa o mesmo volume e o mesmo modelo de filtro que você escolheu aqui. A água precisa passar, e precisa passar por alguma coisa: vazão e mídia são as duas metades da mesma decisão.</li>';
+	$h .= '<li><a href="' . esc_url( $c15 ) . '"><strong>Iluminação e fotoperíodo (C15)</strong></a> — o mesmo volume, do outro lado do aquário. Se o seu é plantado, a faixa de vazão desta página já é mais lenta por causa disso: planta quer corrente suave, e luz forte com CO2 pede que o gás não escape na superfície agitada.</li>';
 	$h .= '<li><strong>Consumo elétrico (C7)</strong> — o filtro fica ligado 24 horas por dia, e é ele que pesa na conta. Vai ler a potência do modelo escolhido aqui. Ainda em construção.</li>';
 	$h .= '<li><a href="' . esc_url( $meto ) . '"><strong>Como a Aquametria calcula</strong></a> — por que uma faixa com duas fontes que discordam vale mais que um número redondo sem origem.</li>';
 	$h .= '<li><a href="' . esc_url( $divul ) . '"><strong>Como a Aquametria ganha dinheiro</strong></a> — o que é link de afiliado, o que muda (nada na ordem) e o que não publicamos.</li>';

@@ -81,7 +81,15 @@ duas copias divergem em silencio:
 python3 ferramentas/gerar-catalogo-filtros.py       # C3
 python3 ferramentas/gerar-catalogo-aquecedores.py   # C5
 python3 ferramentas/gerar-catalogo-midias.py        # C12 (midias E filtros)
+python3 ferramentas/gerar-catalogo-iluminacao.py    # C15 (aptas E barradas)
 ```
+
+O gerador da C15 tambem escreve DOIS blocos, mas por outro motivo: o das
+luminarias APTAS e o das BARRADAS com o motivo de cada uma, porque a C15 publica
+essa lista na tela — quem nao pode ser sugerido, e por que, e o conteudo daquela
+entidade. E ele manda a ESTRUTURA do conflito de comprimento, nunca o texto: o
+banco e escrito sem acento e a tela sai acentuada, entao a frase e escrita no
+JavaScript do snippet. Texto de banco nunca vai para a tela.
 
 O gerador da C12 escreve DOIS blocos no mesmo snippet, porque ela consome os
 dois bancos: as midias (`produtos-midia.json`) para o bloco de produto e a
@@ -100,6 +108,9 @@ node ferramentas/teste-navegador-c5.mjs /tmp/c5.html
 
 php ferramentas/render-para-teste.php . aquametria_calculadora_midia > /tmp/c12.html
 node ferramentas/teste-navegador-c12.mjs /tmp/c12.html
+
+php ferramentas/render-para-teste.php . aquametria_calculadora_iluminacao > /tmp/c15.html
+node ferramentas/teste-navegador-c15.mjs /tmp/c15.html
 ```
 
 O `render-para-teste.php` monta a pagina com funcoes falsas do WordPress (o

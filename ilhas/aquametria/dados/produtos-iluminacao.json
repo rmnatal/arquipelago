@@ -2,7 +2,7 @@
   "id": "produtos-iluminacao",
   "entidade": "iluminacao",
   "esquema": "dados/esquema-produtos.json",
-  "descricao": "Banco de iluminacao. Os quatro registros de semente foram escolhidos para expor a lacuna estrutural da entidade: o varejo brasileiro vende luminaria por centimetro de peca, e o lumen (que e a grandeza da C15) aparece em uma minoria das fichas. Em 07/09/2026 o X1-FR saiu (sem marca, sem comprimento e sem anuncio real) e entraram a Ista I-401 45 cm e a Chihiros WRGB II Pro 60, que sao as variantes com anuncio de afiliado.",
+  "descricao": "Banco de iluminacao. Os registros de semente foram escolhidos para expor a lacuna estrutural da entidade: o varejo brasileiro vende luminaria por centimetro de peca, e o lumen (que e a grandeza da C15) aparece em uma minoria das fichas. Em 07/09/2026 o X1-FR saiu (sem marca, sem comprimento e sem anuncio real) e entraram a Ista I-401 45 cm e a Chihiros WRGB II Pro 60. Em 08/09/2026, coleta que abriu a C15: Ista IL-401 60 e Aquarios do Rio ganharam voltagem e cobertura declarada (e sairam do barrado), entrou a WFish WF-H600 e o conflito nome-contra-ficha do IL-401 (vendida como 60 cm, mede 56) foi registrado.",
   "gerado_em": "2026-09-07",
   "bloco": 3,
   "publicar": false,
@@ -19,7 +19,9 @@
       ],
       "gtin": null,
       "disponibilidade_br": "vendido",
-      "voltagem": null,
+      "voltagem": [
+        "bivolt"
+      ],
       "tipo": "led-calha",
       "potencia_w": 24,
       "fluxo_lm": 2400,
@@ -28,8 +30,11 @@
       "ppfd_declarado": null,
       "ppfd_distancia_cm": null,
       "comprimento_luminaria_cm": 60,
-      "comprimento_aquario_cm": null,
-      "regulagem": null,
+      "comprimento_aquario_cm": {
+        "min": 55,
+        "max": 75
+      },
+      "regulagem": "temporizador",
       "volume_atendido_declarado_L": null,
       "afiliado": {
         "plataforma": null,
@@ -52,12 +57,25 @@
             "tipo"
           ],
           "observacao": "Ficha de varejo. Confira a embalagem."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Aquarios do Rio (varejo BR), segunda leitura da ficha da luminaria LED 60 cm: alimentacao bivolt, suportes reguláveis para aquarios de 55 a 75 cm, timer integrado com ate 3 fotoperiodos por dia e efeito gradual de nascer e por do sol, corpo de aluminio anodizado preto com dissipacao passiva",
+          "url": "https://aquariosdorio.com.br/loja/iluminacao/luminaria-led-aquario-60cm/",
+          "verificado_em": "2026-09-08",
+          "campos": [
+            "voltagem",
+            "comprimento_aquario_cm",
+            "regulagem"
+          ],
+          "observacao": "Segunda leitura da MESMA pagina, agora por RESULTADO DE BUSCA: o dominio devolve EGRESS_BLOCKED para a nuvem em 07 e em 08/09/2026 e a pagina nao pode ser aberta. E esta leitura que traz a voltagem, o campo que barrava a sugestao da C15. Confira a embalagem."
         }
       ],
       "conflitos": [],
-      "verificado_em": "2026-09-07",
+      "verificado_em": "2026-09-08",
       "status_registro": "parcial",
-      "observacao": "Produto sem marca declarada (importado revendido com nome da loja) — situacao comum no Brasil e o motivo de marca aceitar null com o id derivado da loja. Sem marca, casar cotacoes entre lojas fica impossivel: e o pior caso do banco. 100 lm/W."
+      "observacao": "Produto sem marca declarada (importado revendido com nome da loja) — situacao comum no Brasil e o motivo de marca aceitar null com o id derivado da loja. Sem marca, casar cotacoes entre lojas fica impossivel: e o pior caso do banco. 100 lm/W. Segue 'parcial' por causa da marca ausente, e nao por falta de numero: e apto a ser sugerido pela C15. Em 08/09/2026 saiu do barrado: a segunda leitura da ficha trouxe voltagem (bivolt), cobertura declarada de 55 a 75 cm e timer, e com isso passou a ser o registro de MAIOR cobertura declarada do banco de iluminacao — uma peca de 60 cm que a propria loja diz cobrir ate 75 cm de aquario."
     },
     {
       "id": "chihiros-wrgb-ii-pro-60",
@@ -234,7 +252,9 @@
       ],
       "gtin": null,
       "disponibilidade_br": "vendido",
-      "voltagem": null,
+      "voltagem": [
+        "bivolt"
+      ],
       "tipo": "led-calha",
       "potencia_w": 35,
       "fluxo_lm": 3717,
@@ -242,8 +262,11 @@
       "espectro": null,
       "ppfd_declarado": null,
       "ppfd_distancia_cm": null,
-      "comprimento_luminaria_cm": 60,
-      "comprimento_aquario_cm": null,
+      "comprimento_luminaria_cm": 56,
+      "comprimento_aquario_cm": {
+        "min": 56,
+        "max": 66
+      },
       "regulagem": null,
       "volume_atendido_declarado_L": null,
       "afiliado": {
@@ -265,12 +288,46 @@
             "tipo"
           ],
           "observacao": "Ficha de varejo. Confira a embalagem."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Pro-Aquarista (varejo BR especializado), ficha completa da Ista IL-401 60 cm: 35 W, 3717 lm, tensao bivolt (110 V/220 V), dimensoes 56 x 12 x 4,6 cm, indicada para aquarios de 56 a 66 cm, IRC acima de 95 % e queda de 4 % na intensidade apos 6 000 h",
+          "url": "https://www.proaquarista.com.br/produto/luminaria-led-ista-60-cm-p-aquarios-plantados-il-401.html",
+          "verificado_em": "2026-09-08",
+          "campos": [
+            "voltagem",
+            "comprimento_aquario_cm",
+            "comprimento_luminaria_cm"
+          ],
+          "observacao": "Segunda leitura da MESMA pagina, por RESULTADO DE BUSCA (o dominio devolve EGRESS_BLOCKED para a nuvem). Trouxe a voltagem, que era o campo que barrava a sugestao, e a cobertura declarada — e revelou que a peca vendida como '60 cm' mede 56 cm."
         }
       ],
-      "conflitos": [],
-      "verificado_em": "2026-09-07",
-      "status_registro": "completo",
-      "observacao": "Unico registro da semente que a C15 conseguiria sugerir: tem lumen declarado (3717 lm) e comprimento. 106 lm/W e eficacia plausivel para LED atual. Ainda depende da convencao editorial de cobertura (ver pendencia_de_criterio no esquema)."
+      "conflitos": [
+        {
+          "campo": "comprimento_luminaria_cm",
+          "valores": [
+            {
+              "valor": 60,
+              "referencia": "nome comercial do produto no varejo BR: 'Luminaria Led Ista 60 Cm P/ Aquarios Plantados IL-401'",
+              "url": "https://www.proaquarista.com.br/produto/luminaria-led-ista-60-cm-p-aquarios-plantados-il-401.html",
+              "origem": "marketplace-anuncio"
+            },
+            {
+              "valor": 56,
+              "referencia": "ficha de dimensoes da mesma pagina: 56 x 12 x 4,6 cm",
+              "url": "https://www.proaquarista.com.br/produto/luminaria-led-ista-60-cm-p-aquarios-plantados-il-401.html",
+              "origem": "varejo"
+            }
+          ],
+          "razao": "4 cm, ou 7 % do comprimento anunciado",
+          "tratamento": "nivel-mais-alto-vence",
+          "observacao": "O numero do NOME nao e ficha tecnica: e nome comercial, e no varejo brasileiro de iluminacao ele quase sempre indica o aquario de destino, nao a peca. A ficha de dimensoes da mesma pagina vence, e o campo fica 56. Quem compra pelo nome acha que leva 60 cm de luminaria."
+        }
+      ],
+      "verificado_em": "2026-09-08",
+      "status_registro": "conflito",
+      "observacao": "Unico registro da semente com lumen declarado alto (3717 lm) e agora com voltagem: em 08/09/2026 saiu do barrado e virou o registro mais forte do banco de iluminacao — 106 lm/W, cobertura declarada de 56 a 66 cm. Continua SEM link de afiliado: o anuncio disponivel na Shopee e o da variante de 45 cm (registro ista-i-401-45), com 7,6 W e 810 lm. Traz o conflito nome-contra-ficha: vendida como '60 cm', a peca mede 56 cm."
     },
     {
       "id": "sunsun-ade-400c",
@@ -334,7 +391,65 @@
       "verificado_em": "2026-09-07",
       "status_registro": "parcial",
       "observacao": "O inverso do X1-FR: declara comprimento de aquario atendido (48 a 65 cm, com hastes) mas nao declara lumen, entao a C15 tambem nao pode sugerir. Note que a peca tem 41 cm e cobre ate 65 cm de aquario — prova de que comprimento_luminaria_cm e comprimento_aquario_cm sao campos diferentes e nao se derivam um do outro."
+    },
+    {
+      "id": "wfish-wf-h600-wrgb",
+      "entidade": "iluminacao",
+      "marca": "WFish",
+      "linha": "Plant LED",
+      "modelo": "WF-H600 WRGB",
+      "variante": "36 W",
+      "nomes_alternativos": [
+        "Wfish Luminaria Plant Led Wf-h600 Wrgb 36w",
+        "Wfish Luminaria Led Plant WF-H600 RGB 60cm 36w"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "bivolt"
+      ],
+      "tipo": "led-barra",
+      "potencia_w": 36,
+      "fluxo_lm": null,
+      "temperatura_cor_k": null,
+      "espectro": "wrgb",
+      "ppfd_declarado": null,
+      "ppfd_distancia_cm": null,
+      "comprimento_luminaria_cm": 56.7,
+      "comprimento_aquario_cm": {
+        "min": 60,
+        "max": 65
+      },
+      "regulagem": null,
+      "volume_atendido_declarado_L": null,
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "ha anuncio do modelo na Shopee em 08/09/2026, mas o link curto de afiliado e gerado a mao no painel Shopee Afiliados, fora desta sessao. E, sem lumen declarado, a C15 nao sugeriria este produto nem com link: link nao promove produto barrado (regra V16).",
+        "verificado_em": "2026-09-08"
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Pro-Aquarista (varejo BR especializado), ficha da WFish Plant LED WF-H600 WRGB: 36 W, 110/220 V (bivolt), LEDs WRGB (branco, vermelho, verde e azul), peca de 56,7 x 8 cm, indicada para aquarios de 60 a 65 cm, corpo a prova d'agua",
+          "url": "https://www.proaquarista.com.br/wfish-luminaria-plant-led-wf-h600-wrgb-36w",
+          "verificado_em": "2026-09-08",
+          "campos": [
+            "potencia_w",
+            "voltagem",
+            "espectro",
+            "comprimento_luminaria_cm",
+            "comprimento_aquario_cm",
+            "tipo"
+          ],
+          "observacao": "Ficha lida por RESULTADO DE BUSCA: o dominio devolve EGRESS_BLOCKED para a nuvem. Nenhuma das lojas que anunciam o modelo publica o fluxo luminoso — nem a ficha do varejo especializado, nem os anuncios de marketplace. Confira a embalagem."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-08",
+      "status_registro": "parcial",
+      "observacao": "Entrou em 08/09/2026 como o TERCEIRO caso do mesmo padrao, e o mais recente: peca de 56,7 cm vendida como 'H600' para aquario de 60 a 65 cm. Sem fluxo_lm declarado em nenhuma fonte, a C15 nao consegue sugeri-la — a formula publicavel da C15 e lumen por litro. Fica no banco de proposito: e ficha util, e a lacuna dela e o conteudo (o varejo BR vende luminaria por centimetro de peca e omite a grandeza que dimensiona)."
     }
   ],
-  "atualizado_em": "2026-09-07"
+  "atualizado_em": "2026-09-08"
 }

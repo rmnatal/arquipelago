@@ -1,6 +1,7 @@
 /**
  * Aquametria Calculadora de Mídia Filtrante — C12
- * Versão: 1.0.0 (08/09/2026)
+ * Versão: 1.0.1 (08/09/2026) — o painel de ligações passou a linkar a C15, publicada nesta data.
+ * A 1.0.0 estreou a calculadora
  *
  * Quarta calculadora do lote e a que o levantamento do Bloco 1 apontou como o
  * VÁCUO DE CONTEÚDO Nº 1: nenhuma fonte brasileira publica quanta mídia
@@ -61,7 +62,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_C12_VERSAO' ) ) {
-	define( 'AQUAMETRIA_C12_VERSAO', '1.0.0' );
+	define( 'AQUAMETRIA_C12_VERSAO', '1.0.1' );
 	define( 'AQUAMETRIA_C12_SLUG', 'calculadora-de-midia-filtrante' );
 	define( 'AQUAMETRIA_C12_VERIFICADO_EM', '08/09/2026' );
 	define( 'AQUAMETRIA_C12_ARTIGO', 'quanta-midia-biologica-o-aquario-precisa' );
@@ -1620,6 +1621,7 @@ function aquametria_c12_adiante_html() {
 	$c1     = aquametria_c12_url( 'calculadora-de-litragem' );
 	$c3     = aquametria_c12_url( 'calculadora-de-vazao-do-filtro' );
 	$c5     = aquametria_c12_url( 'calculadora-de-potencia-do-aquecedor' );
+	$c15    = aquametria_c12_url( 'calculadora-de-iluminacao' );
 	$artigo = aquametria_c12_url( AQUAMETRIA_C12_ARTIGO );
 	$divul  = aquametria_c12_url( AQUAMETRIA_C12_PAGINA_AFILIADOS );
 
@@ -1630,6 +1632,7 @@ function aquametria_c12_adiante_html() {
 	$h .= '<li><a href="' . esc_url( $c1 ) . '"><strong>Calculadora de litragem (C1)</strong></a> — é de onde vem o volume real que esta página usa. Se o número acima veio preenchido, veio de lá.</li>';
 	$h .= '<li><a href="' . esc_url( $c3 ) . '"><strong>Vazão do filtro (C3)</strong></a> — o filtro que você escolheu aqui é o mesmo que vira renovações por hora lá. Vazão e mídia são as duas metades da mesma decisão: a água precisa passar, e precisa passar por alguma coisa.</li>';
 	$h .= '<li><a href="' . esc_url( $c5 ) . '"><strong>Potência do aquecedor (C5)</strong></a> — usa o mesmo volume de água. A colônia nitrificante também depende de temperatura: aquário frio cicla mais devagar.</li>';
+	$h .= '<li><a href="' . esc_url( $c15 ) . '"><strong>Iluminação e fotoperíodo (C15)</strong></a> — luz forte com CO2 acelera o crescimento das plantas e a carga do filtro junto: mais matéria orgânica para a mídia processar. É a mesma decisão vista pelo outro lado.</li>';
 	$h .= '<li><strong>Lotação e aquário mínimo (C8)</strong> — quantos peixes o volume comporta, que é o que gera a amônia que a mídia biológica processa. Ainda em construção.</li>';
 	$h .= '<li><a href="' . esc_url( $meto ) . '"><strong>Como a Aquametria calcula</strong></a> — por que uma faixa com fontes que discordam vale mais que um número redondo sem origem.</li>';
 	$h .= '<li><a href="' . esc_url( $divul ) . '"><strong>Como a Aquametria ganha dinheiro</strong></a> — o que é link de afiliado, o que muda (nada na ordem) e o que não publicamos.</li>';

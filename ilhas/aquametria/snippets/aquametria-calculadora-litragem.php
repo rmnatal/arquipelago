@@ -1,6 +1,7 @@
 /**
  * Aquametria Calculadora de Litragem — C1
- * Versão: 1.0.3 (08/09/2026) — o painel "o que este resultado alimenta" agora linka a C12,
+ * Versão: 1.0.4 (08/09/2026) — o painel "o que este resultado alimenta" agora linka a C15, que
+ * lê daqui não só o volume, mas também o comprimento e a altura da lâmina. A 1.0.3 linkou a C12,
  * publicada nesta data. A 1.0.2 fez guardar() MESCLAR o estado compartilhado em vez de
  * substituí-lo; a 1.0.1 linkou a C3
  *
@@ -36,7 +37,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_C1_VERSAO' ) ) {
-	define( 'AQUAMETRIA_C1_VERSAO', '1.0.3' );
+	define( 'AQUAMETRIA_C1_VERSAO', '1.0.4' );
 	define( 'AQUAMETRIA_C1_SLUG', 'calculadora-de-litragem' );
 	define( 'AQUAMETRIA_C1_VERIFICADO_EM', '07/09/2026' );
 	/* Constante 'borda-livre-padrao' (dados/constantes-calculadoras.json):
@@ -649,6 +650,7 @@ function aquametria_c1_adiante_html() {
 	$c3   = function_exists( 'aquametria_casca_url_pagina' ) ? aquametria_casca_url_pagina( 'calculadora-de-vazao-do-filtro' ) : home_url( '/calculadora-de-vazao-do-filtro/' );
 	$c5   = function_exists( 'aquametria_casca_url_pagina' ) ? aquametria_casca_url_pagina( 'calculadora-de-potencia-do-aquecedor' ) : home_url( '/calculadora-de-potencia-do-aquecedor/' );
 	$c12  = function_exists( 'aquametria_casca_url_pagina' ) ? aquametria_casca_url_pagina( 'calculadora-de-midia-filtrante' ) : home_url( '/calculadora-de-midia-filtrante/' );
+	$c15  = function_exists( 'aquametria_casca_url_pagina' ) ? aquametria_casca_url_pagina( 'calculadora-de-iluminacao' ) : home_url( '/calculadora-de-iluminacao/' );
 
 	$h  = '<div class="aqm-c1-painel aqm-c1-adiante">';
 	$h .= '<h3>O que este resultado alimenta</h3>';
@@ -657,6 +659,7 @@ function aquametria_c1_adiante_html() {
 	$h .= '<li><a href="' . esc_url( $c3 ) . '"><strong>Vazão do filtro e turnover (C3)</strong></a> — <strong>já no ar.</strong> Quantas renovações por hora o seu filtro entrega, e por que o fabricante dimensiona 1,76 x/h enquanto a web brasileira pede de 5 a 10. Ela lê o volume desta página sozinha.</li>';
 	$h .= '<li><a href="' . esc_url( $c5 ) . '"><strong>Potência do aquecedor (C5)</strong></a> — <strong>já no ar.</strong> Watts a partir da mínima do cômodo onde o aquário fica, e não do velho "1 W por litro" que nenhuma fonte explica. Também lê o volume desta página sozinha.</li>';
 	$h .= '<li><a href="' . esc_url( $c12 ) . '"><strong>Mídia filtrante (C12)</strong></a> — <strong>já no ar.</strong> Mililitros de mídia biológica por litro de água, pelas quatro dosagens que os fabricantes declaram e que discordam por dez vezes entre si — mais o teto físico do cesto do seu filtro. Também lê o volume desta página sozinha.</li>';
+	$h .= '<li><a href="' . esc_url( $c15 ) . '"><strong>Iluminação e fotoperíodo (C15)</strong></a> — <strong>já no ar.</strong> Quantos lúmens o volume desta página pede, pelas três leituras brasileiras que chamam a mesma faixa pelo mesmo nome com o dobro do número. Ela lê daqui o volume, o comprimento e a altura da lâmina — e é a lâmina que decide se a régua de lúmens por litro ainda descreve o seu aquário.</li>';
 	$h .= '<li><strong>Lotação (C8)</strong> — três critérios publicados lado a lado. É a única que trata o volume desta página pelo pior caso, porque aqui o erro do substrato seria inseguro.</li>';
 	$h .= '</ul>';
 	$h .= '<p class="aqm-c1-criterio">Elas entram no ar uma por vez, e cada uma só entra com a fonte de cada constante conferida. Acompanhe em <a href="' . esc_url( $hub ) . '">todas as calculadoras</a>, ou leia antes <a href="' . esc_url( $meto ) . '">como a Aquametria calcula</a>.</p>';

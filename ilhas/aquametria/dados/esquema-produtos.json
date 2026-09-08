@@ -3,7 +3,7 @@
   "descricao": "Modelo normalizado do banco de produtos da Aquametria: entidades filtro, aquecedor, iluminacao e midia, mais a entidade cotacao (preco). Define campo a campo o tipo, a unidade, a obrigatoriedade, o vocabulario controlado e a ORIGEM esperada do dado. Nenhum numero entra no banco sem uma entrada correspondente em fontes[]. Este arquivo e o contrato que dados/produtos-*.json cumprem e que ferramentas/validar-produtos.py verifica.",
   "gerado_em": "2026-09-07",
   "bloco": 3,
-  "versao_esquema": 3,
+  "versao_esquema": 4,
   "depende_de": [
     "dados/especificacao-calculadoras.md",
     "dados/constantes-calculadoras.json"
@@ -746,14 +746,14 @@
         "c15-iluminacao": [
           "fluxo_lm",
           "potencia_w",
-          "comprimento_luminaria_cm OU comprimento_aquario_cm",
+          "comprimento_aquario_cm",
           "voltagem"
         ],
         "c7-consumo-custo": [
           "potencia_w"
         ]
       },
-      "pendencia_de_criterio": "A C15 precisa de uma convencao editorial declarada para converter comprimento_luminaria_cm em cobertura do aquario (quanto de sombra e aceitavel nas pontas). Ate essa convencao virar constante em dados/constantes-calculadoras.json, com status convencao-editorial e a regra na tela, a C15 so pode sugerir produto que declare comprimento_aquario_cm."
+      "pendencia_de_criterio": "RESOLVIDA em 08/09/2026, pelo caminho conservador, quando a C15 foi construida. A conversao de comprimento de peca em cobertura de aquario NAO sera feita: nos 5 registros do banco que declaram os dois numeros, o teto de cobertura declarado vai de 1,15 a 1,59 vez o comprimento da peca e o piso de 0,92 a 1,17 vez — nao ha razao constante a extrair, e inventar uma seria inventar numero. A regra virou a constante 'cobertura-luminaria-declarada' (status convencao-editorial, com a derivacao) em dados/constantes-calculadoras.json, e o minimo_para_sugerir da c15-iluminacao passou a exigir comprimento_aquario_cm declarado. Luminaria com so o comprimento da peca continua no banco como ficha e a pagina explica por que ela nao aparece na lista."
     },
     "midia": {
       "arquivo": "dados/produtos-midia.json",

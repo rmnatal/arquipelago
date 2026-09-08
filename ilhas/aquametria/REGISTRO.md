@@ -1297,3 +1297,194 @@ Substrat pro têm link na C12. Gerar os quatro links (Sub_id_2 = `C12`) e colar
 em `dados/produtos-midia.json` é trabalho de cinco minutos no painel, e a
 próxima execução pega sozinha. O mesmo vale para os 6 aquecedores e as 2
 luminárias que já estão aptos e sem link desde as execuções anteriores.
+
+---
+
+## 2026-09-08 (10º disparo) — BLOCO 4: C15, a iluminação e o fotoperíodo, no ar com o artigo-âncora pareado
+
+Bloco entregue: **C15 — iluminação e fotoperíodo**, quinta calculadora do lote,
+pareada com o artigo `quantos-lumens-por-litro-aquario-plantado`. É o maior
+cluster empatado do levantamento do Bloco 1 (83 consultas, junto com o C10).
+
+### De novo, a coleta veio antes da calculadora — e de novo era o bloqueio real
+
+A execução anterior deixou o diagnóstico: dos 5 registros de iluminação, **4
+estavam barrados** — três por `voltagem`, um por `fluxo_lm`. Com 1 luminária
+sugerível, o bloco de produto nasceria vazio. A primeira hora foi coleta, toda
+por resultado de busca (o egresso da nuvem continua barrando `proaquarista.com.br`,
+`aquariosdorio.com.br` e as demais lojas brasileiras — o WebFetch devolve
+`EGRESS_BLOCKED`, e as fichas entram marcadas como `transcrita-varejo` lida por
+busca, com o pedido de conferir a embalagem).
+
+O que a coleta trouxe:
+
+| Registro | O que faltava | O que a ficha declarou em 08/09 |
+|---|---|---|
+| `ista-il-401-60` | voltagem | bivolt (110/220 V), cobre aquário de 56 a 66 cm, peça de 56 × 12 × 4,6 cm, IRC > 95 % |
+| `aquarios-do-rio-led-60cm` | voltagem | bivolt, cobre 55 a 75 cm com suportes reguláveis, timer com até 3 fotoperíodos e nascer/pôr do sol |
+| `wfish-wf-h600-wrgb` (novo) | — | 36 W, bivolt, WRGB, peça de 56,7 × 8 cm, cobre 60 a 65 cm; **sem lúmen em fonte alguma** |
+| `chihiros-wrgb-ii-pro-60` | voltagem | **nada**: nenhuma fonte declara. Continua barrada, e tem link de afiliado |
+| `sunsun-ade-400c` | lúmen | **nada**: nenhuma loja publica. Continua barrada, e tem link de afiliado |
+
+Resultado: **3 aptas de 6** (contra 1 de 5), 1 delas com link. Duas luminárias
+que TÊM link de afiliado seguem barradas — e isso virou conteúdo de tela, não
+constrangimento escondido: a lista dos barrados é publicada na página, com o
+motivo de cada um e a frase "link não promove produto barrado".
+
+### O achado que virou o artigo: a régua usa a unidade errada
+
+O lúmen é ponderado pela sensibilidade do olho humano, que pesa o verde e
+desconta azul e vermelho profundos — que são exatamente as duas faixas em que a
+clorofila trabalha. Consequência incômoda para a regra de lm/L: **a luminária
+projetada para planta tende a marcar MENOS lúmens que uma calha branca de mesmo
+consumo, e a régua a considera pior.** O nosso banco é coerente com isso — a
+Chihiros WRGB II Pro 60 dá 89,6 lm/W e a calha branca Ista IL-401 dá 106 lm/W —
+e o artigo apresenta os dois números como **indício, não demonstração**, porque
+dois produtos não provam padrão nenhum.
+
+**E a trilha do PPFD termina antes do Brasil.** Procurando a tabela de PAR da
+linha WRGB II Pro para o banco, chegamos ao fórum de suporte da própria
+Chihiros — marca cujo argumento de venda é PAR: a resposta oficial é que **não
+existe teste de PAR oficial** e que o usuário procure medições no YouTube. Ou
+seja, a ausência brasileira não é preguiça de blogueiro: o fabricante não
+publica. `ppfd-por-litragem` continua `pendente`, agora com URL e data, e a
+página publica esse motivo em vez de só dizer "não temos fonte".
+
+### O segundo achado: o nome não é o tamanho da peça
+
+O varejo brasileiro nomeia luminária por centímetro, e o centímetro do nome nem
+sempre é o da peça. A Ista vendida como "IL-401 60 cm" mede **56 cm** na ficha
+de dimensões da mesma página. Registrado como `conflitos[]` (nome comercial,
+origem `marketplace-anuncio`, contra ficha de varejo — `nivel-mais-alto-vence`),
+e a calculadora mostra os dois números no cartão.
+
+Disso saiu a **decisão editorial desta execução**, que fecha uma pendência
+aberta desde o Bloco 3 (`pendencia_de_criterio` da entidade iluminação):
+
+> **A Aquametria NÃO converte comprimento de peça em cobertura de aquário.**
+> Nos 5 registros que declaram os dois números, o teto declarado vai de **1,15 a
+> 1,59 vez** o comprimento da peça (41 cm cobrindo 65; 60 cm cobrindo 66) e o
+> piso de 0,92 a 1,17. Não há razão constante a extrair, e fabricar uma média
+> serviria para recomendar luminária que deixa as pontas na sombra.
+
+Virou a constante `cobertura-luminaria-declarada` (status `convencao-editorial`,
+com a `derivacao` escrita), o `minimo_para_sugerir` da `c15-iluminacao` passou a
+exigir `comprimento_aquario_cm` **declarado**, e o esquema foi para a versão 4.
+O efeito da convenção é só barrar sugestão: ela nunca cria número.
+
+### O que foi entregue
+
+**`snippets/aquametria-calculadora-iluminacao.php` (v1.0.0)** — o shortcode
+`[aquametria_calculadora_iluminacao]`, escopo global, anunciado no hub pelo
+filtro `aquametria_calculadoras`. O que ele põe na tela:
+
+- **A faixa de lúmens** no volume da pessoa, pela faixa consolidada do nível
+  escolhido (baixa 10–20, média 20–40, alta 40–60+ lm/L) — e, ao lado, **a
+  tabela das três leituras brasileiras**, com o nome de quem publicou cada uma.
+  A divergência é calculada e dita: 2,0 vezes sobre o rótulo "baixa".
+- **Faixa aberta no nível alto**: uma das fontes escreve "acima de 40 lm/L" e
+  para aí. A resposta sai com "+" em vez de um teto inventado.
+- **Os quatro regimes de fotoperíodo**, com o da pessoa marcado, e a frase que
+  falta em toda tabela copiada: hora a mais não compensa lúmen a menos.
+- **O bloco de CO2 com os dois limites que se sobrepõem** (útil 15–35 mg/L,
+  risco acima de 30–35) publicados como sobreposição, mais o drop checker; e o
+  aviso obrigatório quando o nível alto é escolhido **sem** CO2.
+- **Aviso de lâmina acima de 45 cm**, que é onde lm/L começa a mentir por não
+  saber a profundidade.
+- **Painel de consumo**: kWh/mês do fotoperíodo escolhido (física pura) e reais
+  **só com a tarifa que o visitante digita** — tarifa de energia não é publicada
+  aqui, e a tela diz por quê.
+- **Bloco de produto** com a cobertura de comprimento como barreira, a lista
+  publicada dos barrados, e um caso que mostra o preço das regras: a luminária
+  mais cara do banco tem link de afiliado e **não** é sugerida.
+- **Caminho inverso** (tenho X lúmens, que aquário isso cobre em cada nível).
+
+**`conteudo/calculadora-de-iluminacao.md`** — página-âncora com o shortcode, a
+tabela das três leituras, as três coisas que a calculadora faz de diferente, as
+quatro que ela recusa fazer com o motivo de cada uma (com a tabela de peça ×
+cobertura), as regras do bloco de produto e as seções de fotoperíodo, CO2 e
+profundidade.
+
+**`conteudo/quantos-lumens-por-litro-aquario-plantado.md`** — o artigo pareado,
+com o eixo da unidade errada, a trilha do PPFD que termina na própria Chihiros,
+o que o varejo declara no lugar (centímetros), a armadilha do nome, onde as três
+fontes **concordam**, seis recomendações práticas e as três coletas que faltam
+— incluindo a recusa de publicar fator de conversão de lux para PPFD, que
+depende do espectro e não tem fonte.
+
+**Banco e ferramentas:** `dados/produtos-iluminacao.json` (6 registros, 0 erro
+no validador), `dados/constantes-calculadoras.json` (51 constantes),
+`dados/esquema-produtos.json` v4, `ferramentas/gerar-catalogo-iluminacao.py`
+(escreve DOIS blocos no snippet: os aptos e os barrados com motivo) e
+`ferramentas/teste-navegador-c15.mjs` (21 cenários).
+
+**Nenhuma página nasce órfã:** C1 (v1.0.4), C3 (v1.0.3), C5 (v1.0.2) e C12
+(v1.0.1) passaram a linkar a C15 no painel de ligações, cada uma com o motivo
+técnico da ligação. A casca não precisou ser tocada: a C15 vira "publicada" no
+hub pelo próprio filtro, e o resumo do cartão é reescrito pelo snippet.
+
+**Uma decisão de arquitetura pequena e que vale para as próximas:** o banco de
+produtos é escrito **sem acento** (convenção do repositório) e a tela sai
+**acentuada**. Então o gerador manda a **estrutura** do conflito (campo, valor,
+origem) e quem escreve a frase é o JavaScript do snippet. Texto de banco não vai
+para a tela.
+
+### Verificação (o que foi realmente rodado)
+
+- **`php -l` de verdade** nos 7 snippets, e `ferramentas/proteger-funcoes.php`
+  devolvendo saída idêntica ao arquivo em todos — nenhuma função de nível
+  superior desprotegida.
+- **`ferramentas/validar-produtos.py`**: 26 produtos, **0 erro**, 1 aviso
+  conhecido (o V11 do Jäger 200 W, que é conteúdo da página). `c15-iluminacao`:
+  1 apto com link, 2 aptos sem link, 3 barrados.
+- **Teste em navegador de verdade** (Chromium via Playwright), **21 cenários e
+  mais de 60 verificações, todos passando**: caso base; as 9 linhas da tabela de
+  leituras com as três fontes nomeadas; a divergência de 2,0 vezes no rótulo
+  "baixa"; a faixa aberta do nível alto com "+"; o aviso de luz alta sem CO2; a
+  sobreposição dos limites de CO2 e o drop checker; os quatro regimes; o aviso
+  de lâmina de 55 cm; a recusa de listar produto sem o comprimento do aquário; o
+  bloco de produto (dois cartões, ordenados pela proximidade do meio da faixa, o
+  conflito nome-contra-ficha publicado no cartão, o modelo de 810 lm barrado
+  pela cobertura com o motivo na tela); a lista dos três barrados; os atributos
+  do link de afiliado (`sponsored noopener`, `_blank`, https); o aviso de
+  comissão e o link da divulgação; o caso sem nenhuma luminária que cubra 120 cm;
+  o consumo (5,0 kWh/mês e R$ 4,79 com tarifa de R$ 0,95) e a recusa de publicar
+  tarifa padrão; o caminho inverso; a **mescla do `localStorage`** preservando
+  medidas da C1, vazão da C3 e clima da C5; o permalink e a reconstrução por
+  query string; os erros de entrada; 390 px sem rolagem horizontal.
+  **Zero erro de console.**
+- **Testes da C5 e da C12 rodados de novo** depois de tocar os dois snippets:
+  todos os cenários continuam passando (sem regressão pelas ligações novas).
+- **Conversão do Markdown pelo próprio Sync** nas duas páginas novas: front
+  matter removido, shortcode fora do `<p>`, as duas tabelas de cada página
+  dentro do bloco que rola, nenhuma crase solta, nenhum link markdown por
+  converter, tags balanceadas, acentos preservados.
+- **sha256 do manifest conferido contra os arquivos finais commitados**: todos
+  os itens, 0 divergências.
+
+### Desembarque
+
+Automático. Manifest na **revisão 11**. Depois do push em `main`, o Sync precisa
+ser acionado; o WebFetch da nuvem cai no bloqueio de egresso, então fica para o
+WP-Cron, que roda a cada 30 minutos. URLs a conferir:
+- `https://aquametria.com.br/calculadora-de-iluminacao/` — a calculadora nova;
+- `https://aquametria.com.br/quantos-lumens-por-litro-aquario-plantado/` — o artigo-âncora;
+- `https://aquametria.com.br/calculadoras/` — o cartão da C15 deve ter virado "Abrir calculadora";
+- `/calculadora-de-litragem/`, `/calculadora-de-vazao-do-filtro/`,
+  `/calculadora-de-potencia-do-aquecedor/` e `/calculadora-de-midia-filtrante/`
+  — devem ter ganhado o link para a C15;
+- `https://aquametria.com.br/wp-json/aquametria/v1/status` — o log do Sync.
+
+**Próximo passo desbloqueado: C2 — peso do aquário cheio e carga no piso**,
+pareada com o artigo dela. É a próxima da ordem depois da C15. Duas travessas
+já conhecidas, registradas na especificação: (a) a C2 **não publica espessura de
+vidro** nem veredito de "a laje aguenta" — falta tensão admissível e coeficiente
+de segurança citáveis; (b) a carga de projeto da NBR 6120 está no corpus como
+`norma-via-secundaria` (norma paga, não lida direto), e a tela precisa dizer isso
+com essas palavras. O que a C2 tem de sólido é a aritmética: volume × densidade
++ vidro + substrato + rochas, e a carga por metro quadrado comparada com a de
+projeto. O padrão das quatro últimas execuções continua valendo: **a coleta vem
+antes da calculadora**.
+
+Sem ferramenta de memória nesta sessão: `/areas/projeto-aquametria.md` NÃO foi
+atualizado; esta entrada e o `ESTADO.md` são o registro.

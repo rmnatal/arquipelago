@@ -1,6 +1,6 @@
 {
   "id": "constantes-calculadoras",
-  "descricao": "Registro normalizado de TODA constante usada (ou recusada) pelas calculadoras da Aquametria. Nenhuma formula pode citar um valor que nao esteja aqui. Constante com status 'pendente' NAO entra em formula publicada. Em 08/09/2026 a coleta da C12 acrescentou 8 constantes: 4 dosagens novas de fabricante (JBL MicroMec, Ocean Tech Bio Glass, Seachem MatrixCarbon e Seachem Purigen), 1 ancora de midia total de fabricante de filtro (Seachem Tidal 55) e 3 pendencias declaradas que a C12 se recusa a preencher no chute (proporcao entre camadas, densidade aparente do carvao e taxa de nitrificacao por area).",
+  "descricao": "Registro normalizado de TODA constante usada (ou recusada) pelas calculadoras da Aquametria. Nenhuma formula pode citar um valor que nao esteja aqui. Constante com status 'pendente' NAO entra em formula publicada. Em 08/09/2026 a coleta da C12 acrescentou 8 constantes: 4 dosagens novas de fabricante (JBL MicroMec, Ocean Tech Bio Glass, Seachem MatrixCarbon e Seachem Purigen), 1 ancora de midia total de fabricante de filtro (Seachem Tidal 55) e 3 pendencias declaradas que a C12 se recusa a preencher no chute (proporcao entre camadas, densidade aparente do carvao e taxa de nitrificacao por area). Em 08/09/2026, a coleta da C15 acrescentou a convencao editorial cobertura-luminaria-declarada e datou de novo a pendencia de PPFD, agora com a fonte que explica a ausencia.",
   "gerado_em": "2026-09-07",
   "bloco": 2,
   "status_vocabulario": {
@@ -706,9 +706,10 @@
       "valor": null,
       "usada_em": [],
       "fonte": null,
-      "verificado_em": null,
+      "verificado_em": "2026-09-08",
       "status": "pendente",
-      "observacao": "lm/L ignora profundidade e espectro; PPFD e a medida correta. Nenhuma fonte BR publica PPFD por litragem. Coleta prevista: PPFD declarado por fabricantes de luminaria vendidos no BR."
+      "observacao": "lm/L ignora profundidade e espectro; PPFD e a medida correta. Nenhuma fonte BR publica PPFD por litragem. Em 08/09/2026 a coleta da C15 achou o motivo a montante: no proprio forum de suporte da Chihiros, marca cujo argumento de venda e PAR, a resposta oficial sobre a tabela de PAR da linha WRGB II Pro e que NAO existe teste oficial e que o usuario procure medicoes no YouTube. Se o fabricante da luminaria de 6630 lm nao publica PPFD com distancia, a fonte brasileira que copiaria dele tambem nao tem. Coleta segue prevista: PPFD declarado COM distancia em cm (regra V5 do esquema de produtos).",
+      "url": "https://bbs.chihirosaquaticstudio.com/threads/par-ratings-for-wrgbii-pro-lights.200/"
     },
     {
       "id": "substrato-densidade",
@@ -1036,6 +1037,21 @@
       "verificado_em": "2026-09-08",
       "status": "pendente",
       "observacao": "A constante que FECHARIA a C12. Todas as quatro dosagens de fabricante sao por litro de AGUA, mas o trabalho da midia biologica depende da amonia que entra no sistema - ou seja, da carga de peixes, que nenhuma das declaracoes pergunta. Existe literatura de engenharia sanitaria sobre isso; nao achamos traducao para aquario com fonte citavel em portugues. Enquanto nao houver, a C12 responde com faixa e atribuicao, nunca com numero proprio."
+    },
+    {
+      "id": "cobertura-luminaria-declarada",
+      "grandeza": "criterio de cobertura de comprimento na sugestao de luminaria",
+      "valor": "so entra na sugestao a luminaria cujo fabricante ou varejista DECLARA o comprimento de aquario atendido; o comprimento da peca nao e convertido em cobertura",
+      "unidade": null,
+      "usada_em": [
+        "c15-iluminacao"
+      ],
+      "fonte": "convencao da Aquametria, derivada dos 6 registros do banco de iluminacao em 08/09/2026",
+      "url": null,
+      "verificado_em": "2026-09-08",
+      "status": "convencao-editorial",
+      "derivacao": "Nos 5 registros que declaram os DOIS numeros, o teto de cobertura declarado vai de 1,15 a 1,59 vez o comprimento da peca (SunSun ADE-400c: peca 41 cm, cobre 48 a 65; Ista IL-401: peca 56, cobre 56 a 66; Aquarios do Rio: peca 60, cobre 55 a 75; WFish WF-H600: peca 56,7, cobre 60 a 65; Chihiros WRGB II Pro 60: peca 60, cobre 60 a 80). O piso vai de 0,92 a 1,17 vez. Nao ha razao constante a extrair: converter peca em cobertura seria inventar numero, e por isso a C15 exige a cobertura declarada.",
+      "observacao": "NAO e dado tecnico: e criterio editorial, e a tela diz isso. O efeito pratico e barrar sugestao, nunca criar numero — luminaria com so o comprimento da peca continua no banco como ficha, e a pagina explica por que ela nao aparece na lista."
     }
   ],
   "atualizado_em": "2026-09-08"
