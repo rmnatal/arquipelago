@@ -1,5 +1,10 @@
 /**
  * Aquametria Sync
+ * Versão: 1.1.5 (08/09/2026) — o log deixou de esconder slug trocado. O WordPress renomeia
+ *   post_name em silêncio quando o endereço já está ocupado, e o Sync respondia "ok" do mesmo
+ *   jeito; era assim que o hub publicava um link para uma URL inexistente. Agora cada página
+ *   aplicada devolve o permalink real, e o slug divergente sai com ATENÇÃO no log e em
+ *   slug_ok:false no estado, que o endpoint de status publica.
  * Versão: 1.1.4 (08/09/2026) — o corte do front matter ficou tolerante (BOM no começo do
  *   arquivo, quebra de linha antiga só com CR, espaço ou tabulação à direita do delimitador).
  *   Nenhuma dessas variações é visível no editor, e qualquer uma delas devolvia o metadado
@@ -39,7 +44,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_SYNC_VERSAO' ) ) {
-	define( 'AQUAMETRIA_SYNC_VERSAO', '1.1.4' );
+	define( 'AQUAMETRIA_SYNC_VERSAO', '1.1.5' );
 	define( 'AQUAMETRIA_SYNC_BASE', 'https://raw.githubusercontent.com/rmnatal/arquipelago/main/ilhas/aquametria/' );
 	define( 'AQUAMETRIA_SYNC_NOME_PROPRIO', 'Aquametria Sync' );
 }
@@ -393,8 +398,28 @@ function aquametria_sync_aplicar_conteudo( $item, &$estado ) {
 	update_post_meta( $pid, '_aquametria_cluster', isset( $item['cluster'] ) ? $item['cluster'] : '' );
 	update_post_meta( $pid, '_aquametria_verificado_em', isset( $item['verificado_em'] ) ? $item['verificado_em'] : '' );
 	update_post_meta( $pid, '_aquametria_fontes', isset( $item['fontes'] ) ? wp_json_encode( $item['fontes'] ) : '' );
-	$estado['itens'][ 'conteudo:' . $item['id'] ] = array( 'wp_id' => $pid, 'sha256' => hash( 'sha256', $corpo ) );
-	return 'ok (' . $post_type . ' #' . $pid . ( $existente ? ' atualizado' : ' criado' ) . ')';
+
+	/* O WordPress NÃO garante o slug pedido: se outra página já ocupa
+	   post_name, wp_insert_post acrescenta "-2" sem avisar e este método
+	   continuaria devolvendo "ok". Foi assim que o hub passou a apontar para uma
+	   URL que dá 404 (defeito 2 de 08/09/2026). Agora a divergência aparece no
+	   log e no endpoint de status, e a URL real vai junto. */
+	$slug_real = get_post_field( 'post_name', $pid );
+	$permalink = get_permalink( $pid );
+	$aviso     = '';
+	if ( $slug_real !== $slug ) {
+		$aviso = ' — ATENÇÃO: slug pedido "' . $slug . '", slug gravado "' . $slug_real . '". Outra página ocupa o endereço; o link interno usa o id, mas confira o site.';
+	}
+
+	$estado['itens'][ 'conteudo:' . $item['id'] ] = array(
+		'wp_id'     => $pid,
+		'sha256'    => hash( 'sha256', $corpo ),
+		'slug'      => $slug_real,
+		'permalink' => $permalink,
+		'slug_ok'   => ( $slug_real === $slug ),
+	);
+
+	return 'ok (' . $post_type . ' #' . $pid . ( $existente ? ' atualizado' : ' criado' ) . ', ' . $permalink . ')' . $aviso;
 }
 }
 

@@ -104,6 +104,55 @@ Credenciais NÃO ficam neste arquivo (repositório pode virar público). A Appli
 - **O snippet Sync NÃO se atualiza sozinho, por desenho.** Toda correção no próprio Sync chega ao site pelo snippet "Aquametria Sync — atualizador do Sync", nunca por colagem manual do Raphael. Mexeu em `snippets/aquametria-sync.php`? Suba a versão no cabeçalho E o campo `versao` do item `aquametria-sync` no manifest — sem isso o atualizador não vê motivo para agir e a correção fica parada no repositório.
 - **Depois de publicar qualquer página vinda de `conteudo/`, buscar a URL no ar e conferir que o corpo começa pelo TEXTO, não por metadado.** Nunca confie no "aplicado com sucesso" do log: em 08/09/2026 o log estava certo e a página estava errada, e quem viu o defeito foi o Raphael, não a rotina. Se a sessão não alcançar o site (egresso bloqueado), registrar a URL a conferir em vez de dar por concluída.
 
+### O defeito de 08/09/2026 — as cinco calculadoras estavam mortas no ar
+
+Diagnosticado pelo Raphael, com o console do navegador aberto. Três regras
+saíram daqui, e **nenhuma delas é negociável**:
+
+- **JS e CSS de shortcode nunca vão no retorno do shortcode — vão no `wp_footer`
+  (comportamento) e no `wp_head` (estilo), senão o WordPress escapa os `&` e
+  quebra o script inteiro.** O que volta do shortcode ainda atravessa os filtros
+  de texto do conteúdo, que trocam cada `&` por `&#038;`. O primeiro `&&` do
+  script vira `&#038;&#038;`, o navegador para com `SyntaxError` e a calculadora
+  inteira morre: o formulário não calcula, a resposta fica com a classe
+  `-oculto` para sempre e **o bloco de produto com os links de afiliado nunca
+  aparece**. As cinco páginas carregavam bem e não calculavam nada — 58
+  ocorrências de `&#038;` na C1, 50 na C3, 48 na C12, 57 na C15. Clicar em
+  "Calcular" só fazia submit nativo do formulário. Corrigir trocando `&&` por
+  `if` aninhado é gambiarra: a causa é o LUGAR do script, não o operador.
+- **Calculadora só conta como entregue depois que alguém EXECUTOU o cálculo e
+  viu o resultado e os links na tela.** Página que carrega não é calculadora que
+  funciona. Sem alcance ao site, o mínimo é rodar
+  `ferramentas/teste-navegador-cinco.mjs`, que clica em Calcular num Chromium de
+  verdade e confere resultado e links de afiliado.
+- **Todo slug publicado é conferido contra o link que o hub publica.** O hub
+  apontava `/calculadora-de-aquecedor/` para a C5, cuja página é
+  `/calculadora-de-potencia-do-aquecedor/`: 404 no ar.
+  `python3 ferramentas/conferir-slugs.py` compara front matter, manifest,
+  constantes `AQUAMETRIA_C*_SLUG`, o catálogo do hub na casca e todo link de raiz
+  escrito em snippet ou conteúdo.
+
+O que ficou de rede permanente (os dois testes têm controle negativo conferido —
+reprovam o código defeituoso e aprovam o corrigido):
+
+| ferramenta | o que garante |
+| --- | --- |
+| `ferramentas/teste-escape-shortcode.php` | retorno do shortcode sem `<script>` e sem `<style>`; zero `&#038;` dentro de script ou style; `&&` intacto; estilo antes do HTML, script depois |
+| `ferramentas/teste-navegador-cinco.mjs` | as cinco calculam num Chromium de verdade; resposta sai do oculto; sem submit nativo; link de afiliado `sponsored` + `noopener` + `_blank` e aviso de comissão |
+| `ferramentas/conferir-slugs.py` | nenhum endereço publicado aponta para página inexistente |
+
+`ferramentas/render-para-teste.php` foi refeito para não mentir: até 08/09/2026
+ele tratava `add_action` como no-op e não aplicava o escape de `&`, então o
+script saía inline e o teste passava enquanto o site estava quebrado. Agora ele
+monta a página como o WordPress monta — `wp_head`, conteúdo já escapado,
+`wp_footer`.
+
+O WordPress também **renomeia `post_name` em silêncio** quando o endereço já está
+ocupado, e o Sync respondia "ok" do mesmo jeito. Desde a v1.1.5 o Sync devolve o
+permalink real e marca `slug_ok:false` no estado; a casca (v1.1.0) resolve o
+endereço de cada página pelo `_aquametria_id`, não por slug adivinhado, e **só
+publica link se a página existir** — sem página, fica o selo "Em construção".
+
 ### Code Snippets 3.10 — o que a API mudou (diagnosticado em 07/09/2026, depois de o site cair com "Há um erro crítico")
 Na versão instalada no site (3.10.2), a API PHP do plugin não é a antiga:
 - A classe do modelo é `Code_Snippets\Model\Snippet`. `new \Code_Snippets\Snippet()` é **fatal** — detecte a classe com `class_exists()` antes de instanciar.

@@ -1702,3 +1702,132 @@ no corpus como `norma-via-secundaria`, o que a tela precisa dizer com essas pala
 
 Sem ferramenta de memória nesta sessão: `/areas/projeto-aquametria.md` NÃO foi
 atualizado; esta entrada e o `ESTADO.md` são o registro.
+
+## 2026-09-08 (3ª execução do dia) — CORREÇÃO CRÍTICA: as cinco calculadoras não calculavam
+
+Fila normal de blocos interrompida. O Raphael abriu as páginas no navegador, com o
+console aberto, e viu o que nenhum teste desta ilha via: **nenhuma das cinco
+calculadoras publicadas funcionava**. A C2 fica para a próxima execução.
+
+### Defeito 1 (o grave) — o WordPress escapava os `&&` e matava o script inteiro
+
+Confirmado no repositório antes de mexer em qualquer coisa: os cinco snippets
+montavam o `<style>` e o `<script>` **dentro** do valor que o shortcode devolve
+(`$h .= '<script id="aquametria-c3-script">' . $js . '</script>';`). Tudo que volta
+do shortcode ainda atravessa os filtros de texto do conteúdo, que trocam cada `&`
+por `&#038;`. O primeiro `&&` do script virava `&#038;&#038;`, o navegador parava
+com `SyntaxError` e a calculadora inteira morria: o formulário nunca calculava, os
+contêineres `aqm-cN-saida` e `aqm-cN-produtos` ficavam com a classe `-oculto` — eles
+nascem ocultos no HTML, quem os revela é o script — e **o bloco de produto com os
+links de afiliado nunca aparecia**. Clicar em "Calcular" só fazia submit nativo do
+formulário. A casca escapou porque já imprimia o CSS dela no `wp_head`.
+
+**Correção, que passa a ser o padrão de toda calculadora futura:** o shortcode
+devolve só o HTML. O estilo sai no `wp_head` (sem piscar sem estilo, com
+`has_shortcode()` decidindo se a página usa) e o comportamento sai no `wp_footer`,
+registrado pelo próprio shortcode quando ele roda. Ambos fora dos filtros de
+conteúdo. Nenhuma linha de cálculo mudou — mudou o lugar de onde o script sai.
+As cinco foram para a v1.1.0.
+
+### Defeito 2 — slug que o hub publicava e que dava 404
+
+`aquametria_casca_calculadoras()` trazia `'slug' => 'calculadora-de-aquecedor'` para
+a C5, cuja página é `/calculadora-de-potencia-do-aquecedor/`. O slug certo só chegava
+ao hub pelo filtro da própria C5; bastava ela não carregar para o hub publicar 404.
+Corrigido o valor **e** a estrutura: a casca (v1.1.0) resolve o endereço de cada
+página pelo `_aquametria_id` que o Sync grava — identidade canônica, que sobrevive
+ao WordPress ter trocado o slug — e **só vira link se a página existir publicada**.
+Sem página, sai o selo "Em construção" ou o rótulo sem link, nunca um 404.
+
+Descoberta na mesma trilha: `wp_insert_post()` **renomeia `post_name` em silêncio**
+quando o endereço já está ocupado (acrescenta `-2`), e o Sync respondia "ok" do
+mesmo jeito — o log dizia uma coisa e o site tinha outra. Sync v1.1.5: cada página
+aplicada devolve o permalink real, o slug divergente sai com ATENÇÃO no log e o
+estado guarda `slug_ok:false`, que o endpoint de status publica.
+
+### Defeito 3 — front matter
+
+Do lado do repositório está resolvido e conferido: `teste-conversor-markdown.php`,
+17 casos, 0 falhas, e as 9 páginas reais saem sem resíduo de YAML.
+`teste-atualizador-sync.php`, 9 cenários, 0 falhas. **Não foi possível confirmar no
+ar**: o `WebFetch` para `aquametria.com.br` devolve `EGRESS_BLOCKED` nesta sessão,
+como nas anteriores. Fica como primeira conferência da próxima execução que
+alcançar o site.
+
+### Por que nenhum teste tinha pego isso — e o que mudou
+
+`ferramentas/render-para-teste.php` mentia. Tratava `add_action` como no-op e não
+aplicava o escape de `&`, então o script saía inline no HTML de teste e tudo passava
+enquanto o site estava quebrado. Agora ele monta a página como o WordPress monta:
+`wp_head`, conteúdo **já passado pelo escape de `&`**, `wp_footer`.
+
+Três redes novas, todas com **controle negativo conferido** — reprovam o código
+defeituoso e aprovam o corrigido:
+
+- `ferramentas/teste-escape-shortcode.php` — 45 afirmações, 5 calculadoras. Com o
+  `<script>` de volta dentro do retorno do shortcode, ele acusa **26 ocorrências de
+  `&#038;`** na C1 e reprova.
+- `ferramentas/teste-navegador-cinco.mjs` — executa o cálculo das cinco num Chromium
+  de verdade: clica em Calcular, confere que a resposta sai do oculto, que há número
+  na tela, que a página não recarregou (submit nativo era o sintoma) e que o bloco de
+  produto traz link `sponsored` + `noopener` + `_blank` com aviso de comissão.
+- `ferramentas/conferir-slugs.py` — compara front matter, manifest, constantes
+  `AQUAMETRIA_C*_SLUG`, o catálogo do hub na casca e todo link de raiz escrito em
+  snippet ou conteúdo. Devolvendo o slug errado à casca, ele acusa exatamente a linha
+  do defeito 2.
+
+### Verificação (o que foi realmente rodado)
+
+- `php -l` nos 8 snippets e nas ferramentas PHP: 0 erros.
+- `proteger-funcoes.php` nos 8 snippets: saída idêntica ao arquivo — nenhuma função
+  de nível superior desprotegida.
+- `teste-escape-shortcode.php`: 45 afirmações, 0 falhas. Controle negativo reprova.
+- **`teste-navegador-cinco.mjs`: as cinco calculam em Chromium de verdade.** C1
+  118 L; C3 180 a 1.000 L/h com 2 links de afiliado; C5 100 a 150 W com 1 link;
+  C12 125 mL a 1,25 L com 2 links; C15 2.000 a 4.000 lúmens. Todo link com
+  `rel="sponsored noopener"` e `target="_blank"`, e aviso de comissão no bloco.
+- `teste-navegador-c5/c12/c15.mjs` (os de cada calculadora): passam. A única falha é
+  "erro de console", que é a Google Fonts barrada pelo proxy do container
+  (`ERR_CONNECTION_RESET`), não defeito da calculadora.
+- `teste-conversor-markdown.php`: 17 casos, 0 falhas.
+- `teste-atualizador-sync.php`: 9 cenários, 0 falhas. Ele tinha a versão `1.1.4`
+  cravada e reprovava a cada correção do Sync; agora lê a versão do próprio snippet.
+- `validar-produtos.py`: 26 produtos, 0 erros, 1 aviso já conhecido (V11, eheim-jager-200w).
+- `conferir-slugs.py`: 9 slugs concordam, nenhum link publicado aponta para página
+  inexistente. Controle negativo reprova.
+- sha256 do manifest recalculado dos arquivos finais commitados.
+
+Nota sobre a C15: ela responde **sem bloco de produto**, de propósito. As três
+luminárias do catálogo estão barradas por não declararem lúmen ou voltagem, e a
+página publica esse motivo. É a regra da ilha funcionando — resposta sem produto é
+melhor que produto errado —, não defeito.
+
+### Desembarque
+
+Manifest na **revisão 13**. `WebFetch` em `aquametria.com.br` continua devolvendo
+`EGRESS_BLOCKED`, então **o Sync não foi acionado por esta sessão e nada foi
+conferido no ar**. A sequência que o site executa sozinho: o WP-Cron do Sync vê a
+revisão 13, o atualizador leva o Sync à v1.1.5, e as calculadoras v1.1.0 e a casca
+v1.1.0 entram pelos itens de snippet.
+
+Para acionar na hora, na ordem:
+`https://aquametria.com.br/?aquametria_sync=kgbErDOIVAFWUtUzutHGrKevVgmWGVjz&forcar=1`
+→ `https://aquametria.com.br/?aquametria_atualizar_sync=kgbErDOIVAFWUtUzutHGrKevVgmWGVjz&forcar=1`
+→ o mesmo `?aquametria_sync=…&forcar=1` de novo.
+
+**A CONFERIR no ar, e é a primeira coisa da próxima execução** — para cada uma das
+cinco URLs (`/calculadora-de-litragem/`, `/calculadora-de-vazao-do-filtro/`,
+`/calculadora-de-potencia-do-aquecedor/`, `/calculadora-de-midia-filtrante/`,
+`/calculadora-de-iluminacao/`): HTTP 200, **zero `&#038;` no HTML**, corpo começando
+pelo texto e não por metadado, e o `<script>` da calculadora vindo depois do
+conteúdo. Mais `/wp-json/aquametria/v1/status` respondendo `"versao_sync":"1.1.5"`.
+
+**Próximo passo desbloqueado: C2 — peso do aquário cheio e carga no piso**, pareada
+com o artigo dela, depois de conferir as URLs acima. As travessas da C2 continuam as
+mesmas: não publica espessura de vidro nem veredito de "a laje aguenta" (falta tensão
+admissível e coeficiente de segurança citáveis), e a carga de projeto da NBR 6120
+está no corpus como `norma-via-secundaria`, o que a tela precisa dizer com essas
+palavras.
+
+Sem ferramenta de memória nesta sessão: `/areas/projeto-aquametria.md` NÃO foi
+atualizado; esta entrada e o `ESTADO.md` são o registro.

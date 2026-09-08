@@ -1,5 +1,12 @@
 /**
  * Aquametria Calculadora de Potência do Aquecedor — C5
+ * Versão: 1.1.0 (08/09/2026) — CORREÇÃO GRAVE: o JS e o CSS saíram de dentro do retorno do
+ *   shortcode e passaram a ser impressos no wp_head (estilo) e no wp_footer (comportamento).
+ *   Dentro do retorno do shortcode eles ainda atravessavam os filtros de texto do conteúdo,
+ *   que trocam cada "&" por "&#038;": o primeiro "&&" do script virava "&#038;&#038;", o
+ *   navegador parava com SyntaxError e a calculadora inteira ficava morta — o formulário não
+ *   calculava, a resposta não aparecia e o bloco de produto com os links de afiliado nunca
+ *   saía do estado oculto. Nenhuma linha de cálculo mudou; mudou o lugar onde o script sai.
  * Versão: 1.0.2 (08/09/2026) — o painel de ligações passou a linkar a C15, publicada nesta data.
  * A 1.0.1 linkou a C12, publicada no mesmo dia
  *
@@ -1448,7 +1455,79 @@ function aquametria_c5_adiante_html() {
 }
 
 /* ---------------------------------------------------------------------------
- * 6. Shortcode
+ * 6. Entrega do estilo e do comportamento — FORA do retorno do shortcode
+ *
+ * REGRA PERMANENTE DO PROJETO, escrita com sangue em 08/09/2026: JS e CSS de
+ * shortcode NUNCA vao dentro do que o shortcode retorna. O retorno do shortcode
+ * ainda atravessa os filtros de texto do conteúdo, que trocam cada "&" por
+ * "&#038;" — e um único "&&" escapado assim mata o script INTEIRO com
+ * SyntaxError: o formulário nunca calcula, a resposta nunca aparece e o bloco de
+ * produto com os links de afiliado nunca sai da classe "-oculto". Foi o que
+ * derrubou as cinco primeiras calculadoras da ilha.
+ *
+ * O caminho seguro é imprimir fora dos filtros de conteúdo:
+ *   - o estilo no wp_head, para a pagina nao piscar sem estilo;
+ *   - o comportamento no wp_footer, depois do HTML que ele controla.
+ * ------------------------------------------------------------------------- */
+
+if ( ! function_exists( 'aquametria_c5_estilo_impresso' ) ) {
+function aquametria_c5_estilo_impresso( $marcar = false ) {
+	static $impresso = false;
+	if ( $marcar ) {
+		$impresso = true;
+	}
+	return $impresso;
+}
+}
+
+if ( ! function_exists( 'aquametria_c5_pagina_usa' ) ) {
+function aquametria_c5_pagina_usa() {
+	if ( ! is_singular() ) {
+		return false;
+	}
+	$pagina = get_post();
+	if ( ! $pagina || ! isset( $pagina->post_content ) ) {
+		return false;
+	}
+	return has_shortcode( $pagina->post_content, 'aquametria_calculadora_aquecedor' );
+}
+}
+
+if ( ! function_exists( 'aquametria_c5_imprimir_estilo' ) ) {
+function aquametria_c5_imprimir_estilo() {
+	if ( aquametria_c5_estilo_impresso() ) {
+		return;
+	}
+	aquametria_c5_estilo_impresso( true );
+	echo '<style id="aquametria-c5-estilo">' . "\n" . aquametria_c5_css() . "\n" . '</style>' . "\n";
+}
+}
+
+if ( ! function_exists( 'aquametria_c5_cabeca' ) ) {
+function aquametria_c5_cabeca() {
+	if ( ! aquametria_c5_pagina_usa() ) {
+		return;
+	}
+	aquametria_c5_imprimir_estilo();
+}
+}
+add_action( 'wp_head', 'aquametria_c5_cabeca', 20 );
+
+if ( ! function_exists( 'aquametria_c5_rodape' ) ) {
+function aquametria_c5_rodape() {
+	/* Rede de segurança: se o shortcode entrou por um caminho que o wp_head não
+	   enxergou (bloco, template, widget), o estilo ainda sai — atrasado, mas sai. */
+	aquametria_c5_imprimir_estilo();
+
+	$js  = 'var AQM_C5_DATA = ' . wp_json_encode( AQUAMETRIA_C5_VERIFICADO_EM ) . ";\n";
+	$js .= 'var AQM_C5_CATALOGO = ' . wp_json_encode( array_values( aquametria_c5_catalogo() ) ) . ";\n";
+	$js .= aquametria_c5_js();
+	echo '<script id="aquametria-c5-script">' . "\n" . $js . "\n" . '</script>' . "\n";
+}
+}
+
+/* ---------------------------------------------------------------------------
+ * 7. Shortcode — devolve SÓ o HTML. Estilo e comportamento saem acima.
  * ------------------------------------------------------------------------- */
 
 if ( ! function_exists( 'aquametria_c5_shortcode' ) ) {
@@ -1461,18 +1540,15 @@ function aquametria_c5_shortcode() {
 	}
 	$ja_saiu = true;
 
-	$js  = 'var AQM_C5_DATA = ' . wp_json_encode( AQUAMETRIA_C5_VERIFICADO_EM ) . ";\n";
-	$js .= 'var AQM_C5_CATALOGO = ' . wp_json_encode( array_values( aquametria_c5_catalogo() ) ) . ";\n";
-	$js .= aquametria_c5_js();
+	/* O comportamento e o estilo saem no rodapé, fora dos filtros de conteúdo. */
+	add_action( 'wp_footer', 'aquametria_c5_rodape', 20 );
 
 	$h  = '<div class="aqm-c5">';
-	$h .= '<style id="aquametria-c5-estilo">' . aquametria_c5_css() . '</style>';
 	$h .= aquametria_c5_form_html();
 	$h .= aquametria_c5_resposta_html();
 	$h .= aquametria_c5_tenho_html();
 	$h .= aquametria_c5_fontes_html();
 	$h .= aquametria_c5_adiante_html();
-	$h .= '<script id="aquametria-c5-script">' . $js . '</script>';
 	$h .= '</div>';
 
 	return $h;

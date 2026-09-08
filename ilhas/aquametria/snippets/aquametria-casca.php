@@ -1,7 +1,11 @@
 /**
  * Aquametria Casca — identidade e estrutura do site
- * Versão: 1.0.4 (08/09/2026) — o resumo da C12 no hub passou de duas para quatro âncoras de
- * fabricante, que é o que a coleta de 08/09/2026 trouxe. A 1.0.3 pôs a divulgação de afiliados no rodapé
+ * Versão: 1.1.0 (08/09/2026) — link do hub nunca mais aponta para página que não existe.
+ * O endereço de cada calculadora passa a ser resolvido pelo id do repositório (_aquametria_id),
+ * não por slug adivinhado, e o card só vira link se a página estiver publicada de verdade;
+ * sem página, fica o selo "Em construção". Corrige o defeito 2 de 08/09/2026: o hub publicava
+ * /calculadora-de-aquecedor/ para a C5, cuja página é /calculadora-de-potencia-do-aquecedor/,
+ * e o clique dava 404. A 1.0.4 tinha ajustado o resumo da C12 no hub.
  *
  * Dá cara de Aquametria ao tema ativo, sozinho, sem construtor de página e sem
  * plugin de tema. Faz seis coisas:
@@ -34,7 +38,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'AQUAMETRIA_CASCA_VERSAO', '1.0.4' );
+	define( 'AQUAMETRIA_CASCA_VERSAO', '1.1.0' );
 	define( 'AQUAMETRIA_CASCA_TAGLINE', 'Calculadoras e dados técnicos para dimensionar o seu aquário' );
 }
 
@@ -62,7 +66,7 @@ function aquametria_casca_calculadoras() {
 		array(
 			'codigo'  => 'C5',
 			'titulo'  => 'Potência do aquecedor por delta térmico',
-			'slug'    => 'calculadora-de-aquecedor',
+			'slug'    => 'calculadora-de-potencia-do-aquecedor',
 			'resumo'  => 'Watts a partir da mínima do seu ambiente e da temperatura alvo, não do velho "1 W por litro". A via física fica retida até haver coeficiente térmico com fonte.',
 			'estado'  => 'em-construcao',
 		),
@@ -109,13 +113,69 @@ function aquametria_casca_calculadoras() {
 }
 }
 
-if ( ! function_exists( 'aquametria_casca_url_pagina' ) ) {
-function aquametria_casca_url_pagina( $slug ) {
+/**
+ * URL REAL da página, ou '' se ela não existe publicada no site.
+ *
+ * Duas vias, nesta ordem:
+ *   1. o id do repositório, que o Sync grava em _aquametria_id. É a identidade
+ *      canônica e sobrevive ao WordPress ter mudado o slug por conflito — quando
+ *      o slug pedido já está ocupado, wp_insert_post acrescenta "-2" em silêncio
+ *      e o log do Sync ainda diz "ok";
+ *   2. o slug, para as páginas que não vieram do Sync.
+ *
+ * Devolve '' quando nenhuma via acha a página, e quem chama NÃO publica link.
+ * Link do hub para página inexistente é 404 no ar: foi o defeito 2 de 08/09/2026.
+ */
+if ( ! function_exists( 'aquametria_casca_url_se_existir' ) ) {
+function aquametria_casca_url_se_existir( $slug ) {
+	$slug = sanitize_title( $slug );
+	if ( '' === $slug ) {
+		return '';
+	}
+
+	$achados = get_posts( array(
+		'post_type'   => 'page',
+		'post_status' => 'publish',
+		'meta_key'    => '_aquametria_id',
+		'meta_value'  => $slug,
+		'numberposts' => 1,
+	) );
+	if ( $achados ) {
+		return get_permalink( $achados[0] );
+	}
+
 	$pagina = get_page_by_path( $slug, OBJECT, 'page' );
-	if ( $pagina ) {
+	if ( $pagina && 'publish' === $pagina->post_status ) {
 		return get_permalink( $pagina );
 	}
-	return home_url( '/' . $slug . '/' );
+
+	return '';
+}
+}
+
+/**
+ * Link de texto que só vira <a> se a página existir. Sem página, sai o rótulo
+ * sozinho — nunca um endereço que devolve 404.
+ */
+if ( ! function_exists( 'aquametria_casca_link_html' ) ) {
+function aquametria_casca_link_html( $slug, $rotulo ) {
+	$url = aquametria_casca_url_se_existir( $slug );
+	if ( '' === $url ) {
+		return '<span class="aqm-sem-link">' . esc_html( $rotulo ) . '</span>';
+	}
+	return '<a href="' . esc_url( $url ) . '">' . esc_html( $rotulo ) . '</a>';
+}
+}
+
+if ( ! function_exists( 'aquametria_casca_url_pagina' ) ) {
+function aquametria_casca_url_pagina( $slug ) {
+	$url = aquametria_casca_url_se_existir( $slug );
+	if ( '' !== $url ) {
+		return $url;
+	}
+	/* Último recurso, só para não devolver href vazio a quem ainda chama isto
+	   direto. Quem publica link novo deve usar aquametria_casca_link_html(). */
+	return home_url( '/' . sanitize_title( $slug ) . '/' );
 }
 }
 
@@ -167,7 +227,7 @@ function aquametria_casca_nav_html() {
 
 	$html = '<nav class="aqm-nav" aria-label="Navegação principal"><ul>';
 	foreach ( $itens as $slug => $rotulo ) {
-		$html .= '<li><a href="' . esc_url( aquametria_casca_url_pagina( $slug ) ) . '">' . esc_html( $rotulo ) . '</a></li>';
+		$html .= '<li>' . aquametria_casca_link_html( $slug, $rotulo ) . '</li>';
 	}
 	$html .= '</ul></nav>';
 
@@ -196,7 +256,10 @@ function aquametria_casca_rodape_html() {
 	$html  = '<footer class="aqm-rodape"><div class="aqm-rodape-interno">';
 	$html .= '<p class="aqm-tagline">' . esc_html( AQUAMETRIA_CASCA_TAGLINE ) . '</p>';
 	$html .= '<p>Todo número publicado aqui cita a fonte — manual de fabricante, norma técnica ou fonte brasileira nomeada — e leva a data em que foi verificado. Quando as fontes discordam, a Aquametria publica a divergência com a atribuição de cada extremo, nunca a média. Onde não há fonte aceitável, a página diz por que não publica número.</p>';
-	$html .= '<p><a href="' . esc_url( aquametria_casca_url_pagina( 'metodologia' ) ) . '">Metodologia</a> · <a href="' . esc_url( aquametria_casca_url_pagina( 'divulgacao-de-afiliados' ) ) . '">Divulgação de afiliados</a> · <a href="' . esc_url( aquametria_casca_url_pagina( 'sobre' ) ) . '">Sobre</a> · Aquametria ' . esc_html( date_i18n( 'Y' ) ) . '</p>';
+	$html .= '<p>' . aquametria_casca_link_html( 'metodologia', 'Metodologia' )
+		. ' · ' . aquametria_casca_link_html( 'divulgacao-de-afiliados', 'Divulgação de afiliados' )
+		. ' · ' . aquametria_casca_link_html( 'sobre', 'Sobre' )
+		. ' · Aquametria ' . esc_html( date_i18n( 'Y' ) ) . '</p>';
 	$html .= '</div></footer>';
 
 	return $html;
@@ -299,6 +362,8 @@ body header .wp-block-group,body .wp-block-template-part header{background:var(-
 .aqm-codigo{font-family:var(--aqm-mono);font-size:.72rem;letter-spacing:.1em;color:var(--aqm-legenda);}
 .aqm-acao{margin-top:auto;padding-top:.3rem;}
 .aqm-acao a{font-weight:600;text-decoration:none;border-bottom:2px solid var(--aqm-lamina);}
+.aqm-sem-link{color:var(--aqm-legenda);}
+.aqm-rodape .aqm-sem-link{color:var(--aqm-traco);}
 .aqm-tag{display:inline-block;font-family:var(--aqm-mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--aqm-alerta);border:1px solid var(--aqm-alerta);border-radius:2px;padding:.15rem .4rem;}
 .aqm-tag-viva{color:var(--aqm-lamina);border-color:var(--aqm-lamina);}
 .aqm-nota{border-left:3px solid var(--aqm-lamina);background:var(--aqm-superficie);padding:.85rem 1rem;color:var(--aqm-legenda);font-size:.95rem;margin:1.2rem 0 0;}
@@ -349,9 +414,13 @@ function aquametria_casca_cards_html() {
 		$html     .= '<h3>' . esc_html( $c['titulo'] ) . '</h3>';
 		$html     .= '<p>' . esc_html( $c['resumo'] ) . '</p>';
 		$html     .= '<span class="aqm-acao">';
-		if ( $publicada ) {
-			$html .= '<a href="' . esc_url( aquametria_casca_url_pagina( $c['slug'] ) ) . '">Abrir calculadora</a>';
+		$url = $publicada ? aquametria_casca_url_se_existir( $c['slug'] ) : '';
+		if ( '' !== $url ) {
+			$html .= '<a href="' . esc_url( $url ) . '">Abrir calculadora</a>';
 		} else {
+			/* A calculadora pode ter se anunciado publicada e a página ainda não
+			   existir (Sync atrasado, slug tomado por outra página). Melhor o
+			   selo honesto que um link que devolve 404. */
 			$html .= '<span class="aqm-tag">Em construção</span>';
 		}
 		$html .= '</span></li>';
@@ -398,7 +467,7 @@ add_shortcode( 'aquametria_home', function () {
 	$html .= '<div class="aqm-secao">';
 	$html .= '<h2>Como a Aquametria calcula</h2>';
 	$html .= '<p>Toda constante usada em uma fórmula tem fonte nomeada, endereço e data de verificação, e carrega um status que diz o quanto ela é firme. Constante sem fonte aceitável é proibida em fórmula publicada — fica registrada como pendente e a página explica a ausência.</p>';
-	$html .= '<p><a href="' . esc_url( aquametria_casca_url_pagina( 'metodologia' ) ) . '">Ler a metodologia completa</a></p>';
+	$html .= '<p>' . aquametria_casca_link_html( 'metodologia', 'Ler a metodologia completa' ) . '</p>';
 	$html .= '</div>';
 	$html .= '</div>';
 
@@ -520,7 +589,7 @@ add_shortcode( 'aquametria_sobre', function () {
 	$html .= '<li>Quando houver link para loja, ele será de afiliado e virá declarado. Comissão não muda ordem de sugestão.</li>';
 	$html .= '</ul></div>';
 
-	$html .= '<p class="aqm-nota">Achou um número errado ou uma fonte melhor? A página de <a href="' . esc_url( aquametria_casca_url_pagina( 'metodologia' ) ) . '">metodologia</a> mostra o critério que usamos para aceitar ou recusar cada constante. Correção com fonte entra e muda a data de verificação.</p>';
+	$html .= '<p class="aqm-nota">Achou um número errado ou uma fonte melhor? A página de ' . aquametria_casca_link_html( 'metodologia', 'metodologia' ) . ' mostra o critério que usamos para aceitar ou recusar cada constante. Correção com fonte entra e muda a data de verificação.</p>';
 	$html .= '</div>';
 
 	return $html;

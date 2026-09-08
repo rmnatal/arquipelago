@@ -1,5 +1,12 @@
 /**
  * Aquametria Calculadora de Litragem — C1
+ * Versão: 1.1.0 (08/09/2026) — CORREÇÃO GRAVE: o JS e o CSS saíram de dentro do retorno do
+ *   shortcode e passaram a ser impressos no wp_head (estilo) e no wp_footer (comportamento).
+ *   Dentro do retorno do shortcode eles ainda atravessavam os filtros de texto do conteúdo,
+ *   que trocam cada "&" por "&#038;": o primeiro "&&" do script virava "&#038;&#038;", o
+ *   navegador parava com SyntaxError e a calculadora inteira ficava morta — o formulário não
+ *   calculava, a resposta não aparecia e o bloco de produto com os links de afiliado nunca
+ *   saía do estado oculto. Nenhuma linha de cálculo mudou; mudou o lugar onde o script sai.
  * Versão: 1.0.4 (08/09/2026) — o painel "o que este resultado alimenta" agora linka a C15, que
  * lê daqui não só o volume, mas também o comprimento e a altura da lâmina. A 1.0.3 linkou a C12,
  * publicada nesta data. A 1.0.2 fez guardar() MESCLAR o estado compartilhado em vez de
@@ -669,7 +676,77 @@ function aquametria_c1_adiante_html() {
 }
 
 /* ---------------------------------------------------------------------------
- * 5. Shortcode
+ * 5. Entrega do estilo e do comportamento — FORA do retorno do shortcode
+ *
+ * REGRA PERMANENTE DO PROJETO, escrita com sangue em 08/09/2026: JS e CSS de
+ * shortcode NUNCA vao dentro do que o shortcode retorna. O retorno do shortcode
+ * ainda atravessa os filtros de texto do conteúdo, que trocam cada "&" por
+ * "&#038;" — e um único "&&" escapado assim mata o script INTEIRO com
+ * SyntaxError: o formulário nunca calcula, a resposta nunca aparece e o bloco de
+ * produto com os links de afiliado nunca sai da classe "-oculto". Foi o que
+ * derrubou as cinco primeiras calculadoras da ilha.
+ *
+ * O caminho seguro é imprimir fora dos filtros de conteúdo:
+ *   - o estilo no wp_head, para a pagina nao piscar sem estilo;
+ *   - o comportamento no wp_footer, depois do HTML que ele controla.
+ * ------------------------------------------------------------------------- */
+
+if ( ! function_exists( 'aquametria_c1_estilo_impresso' ) ) {
+function aquametria_c1_estilo_impresso( $marcar = false ) {
+	static $impresso = false;
+	if ( $marcar ) {
+		$impresso = true;
+	}
+	return $impresso;
+}
+}
+
+if ( ! function_exists( 'aquametria_c1_pagina_usa' ) ) {
+function aquametria_c1_pagina_usa() {
+	if ( ! is_singular() ) {
+		return false;
+	}
+	$pagina = get_post();
+	if ( ! $pagina || ! isset( $pagina->post_content ) ) {
+		return false;
+	}
+	return has_shortcode( $pagina->post_content, 'aquametria_calculadora_litragem' );
+}
+}
+
+if ( ! function_exists( 'aquametria_c1_imprimir_estilo' ) ) {
+function aquametria_c1_imprimir_estilo() {
+	if ( aquametria_c1_estilo_impresso() ) {
+		return;
+	}
+	aquametria_c1_estilo_impresso( true );
+	echo '<style id="aquametria-c1-estilo">' . "\n" . aquametria_c1_css() . "\n" . '</style>' . "\n";
+}
+}
+
+if ( ! function_exists( 'aquametria_c1_cabeca' ) ) {
+function aquametria_c1_cabeca() {
+	if ( ! aquametria_c1_pagina_usa() ) {
+		return;
+	}
+	aquametria_c1_imprimir_estilo();
+}
+}
+add_action( 'wp_head', 'aquametria_c1_cabeca', 20 );
+
+if ( ! function_exists( 'aquametria_c1_rodape' ) ) {
+function aquametria_c1_rodape() {
+	/* Rede de segurança: se o shortcode entrou por um caminho que o wp_head não
+	   enxergou (bloco, template, widget), o estilo ainda sai — atrasado, mas sai. */
+	aquametria_c1_imprimir_estilo();
+
+	$js = 'var AQM_C1_DATA = ' . wp_json_encode( AQUAMETRIA_C1_VERIFICADO_EM ) . ";\n" . aquametria_c1_js();
+	echo '<script id="aquametria-c1-script">' . "\n" . $js . "\n" . '</script>' . "\n";
+}
+}
+
+/* ---------------------------------------------------------------------------
+ * 6. Shortcode — devolve SÓ o HTML. Estilo e comportamento saem acima.
  * ------------------------------------------------------------------------- */
 
 if ( ! function_exists( 'aquametria_c1_shortcode' ) ) {
@@ -677,22 +754,20 @@ function aquametria_c1_shortcode() {
 	static $ja_saiu = false;
 	if ( $ja_saiu ) {
 		/* Uma instância por página: os ids do formulário são únicos e o
-		   comportamento liga na primeira. Um segundo shortcode na mesma
-		   página só duplicaria ids e confundiria o leitor de tela. */
+		   comportamento liga na primeira. */
 		return '';
 	}
 	$ja_saiu = true;
 
-	$js = 'var AQM_C1_DATA = ' . wp_json_encode( AQUAMETRIA_C1_VERIFICADO_EM ) . ";\n" . aquametria_c1_js();
+	/* O comportamento e o estilo saem no rodapé, fora dos filtros de conteúdo. */
+	add_action( 'wp_footer', 'aquametria_c1_rodape', 20 );
 
 	$h  = '<div class="aqm-c1">';
-	$h .= '<style id="aquametria-c1-estilo">' . aquametria_c1_css() . '</style>';
 	$h .= aquametria_c1_form_html();
 	$h .= aquametria_c1_resposta_html();
 	$h .= aquametria_c1_inverso_html();
 	$h .= aquametria_c1_fontes_html();
 	$h .= aquametria_c1_adiante_html();
-	$h .= '<script id="aquametria-c1-script">' . $js . '</script>';
 	$h .= '</div>';
 
 	return $h;

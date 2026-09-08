@@ -42,7 +42,7 @@ $RAIZ    = isset( $argv[1] ) ? rtrim( $argv[1], '/' ) : '.';
 $CENARIO = isset( $argv[2] ) ? $argv[2] : '';
 
 $CENARIOS = array(
-	'feliz'            => 'site na 1.1.0, repositório na 1.1.4: grava, ativa, verifica e marca o conteúdo',
+	'feliz'            => 'site atrás do repositório: grava, ativa, verifica e marca o conteúdo',
 	'sha-divergente'   => 'sha256 do arquivo não bate com o manifest: aborta sem gravar nada',
 	'sintaxe-quebrada' => 'arquivo com erro de sintaxe (e sha coerente): aborta sem gravar nada',
 	'versao-mentirosa' => 'manifest anuncia versão que o arquivo não declara: aborta sem gravar nada',
@@ -99,7 +99,14 @@ function wp_remote_retrieve_body( $r ) { return isset( $r['body'] ) ? $r['body']
 /* ---------- o cenário monta a rede e o banco ---------- */
 $arquivo_sync = $RAIZ . '/snippets/aquametria-sync.php';
 $codigo_novo  = file_get_contents( $arquivo_sync );
-$versao_nova  = '1.1.4';
+/* A versão vem do PRÓPRIO snippet, nunca escrita à mão aqui: com o número
+   cravado, cada correção do Sync fazia os nove cenários reprovarem por
+   desatualização do teste, e não por defeito. */
+if ( ! preg_match( "/define\\( 'AQUAMETRIA_SYNC_VERSAO', '([^']+)' \\);/", $codigo_novo, $mv ) ) {
+	fwrite( STDERR, "não achei AQUAMETRIA_SYNC_VERSAO no snippet do Sync\n" );
+	exit( 1 );
+}
+$versao_nova  = $mv[1];
 $codigo_velho = str_replace( "define( 'AQUAMETRIA_SYNC_VERSAO', '$versao_nova' );", "define( 'AQUAMETRIA_SYNC_VERSAO', '1.1.0' );", $codigo_novo );
 
 $versao_no_site  = 'ja-atualizado' === $CENARIO ? $versao_nova : '1.1.0';
@@ -182,7 +189,7 @@ $exige = function ( $cond, $msg ) use ( &$erros ) { if ( ! $cond ) { $erros[] = 
 
 switch ( $CENARIO ) {
 	case 'feliz':
-		$exige( false !== strpos( $resultado, '1.1.0 → 1.1.4' ), 'o log não conta a troca de versão' );
+		$exige( false !== strpos( $resultado, '1.1.0 → ' . $versao_nova ), 'o log não conta a troca de versão' );
 		$exige( 1 === $gravou, 'esperava 1 save_snippet (a ativação é chamada à parte), houve ' . $gravou );
 		$exige( false === $GLOBALS['__gravacoes'][0]['ativo'], 'a gravação tinha de ser INATIVA — save_snippet de snippet ativo dá eval no código' );
 		$exige( true === $GLOBALS['__snips'][0]->active, 'o snippet ficou inativo no fim' );
