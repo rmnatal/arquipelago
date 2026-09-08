@@ -1488,3 +1488,30 @@ antes da calculadora**.
 
 Sem ferramenta de memória nesta sessão: `/areas/projeto-aquametria.md` NÃO foi
 atualizado; esta entrada e o `ESTADO.md` são o registro.
+
+### Nota de desembarque (mesma execução)
+
+**Sync não acionado pela nuvem**: `WebFetch` em `aquametria.com.br` devolveu
+`EGRESS_BLOCKED`, como em todas as execuções anteriores — o container só alcança
+o GitHub. O `raw.githubusercontent.com` **já serve a revisão 11** (conferido
+nesta sessão, sem atraso de cache: 7 snippets e 9 páginas com `publicar: true`,
+incluindo `calculadora-de-iluminacao` e `quantos-lumens-por-litro-aquario-plantado`),
+então o WP-Cron do próprio site, que roda a cada 30 minutos, aplica sozinho.
+Para acionar na hora, basta abrir no navegador:
+`https://aquametria.com.br/?aquametria_sync=kgbErDOIVAFWUtUzutHGrKevVgmWGVjz&forcar=1`
+
+**O que depende do Raphael, e não bloqueia nada.** A dívida de links de afiliado
+cresceu e agora tem um caso que dói: das 3 luminárias que a C15 consegue sugerir,
+só a Ista I-401 45 cm tem link — o LED 60 cm dos Aquários do Rio e a Ista IL-401
+60 cm entram no cartão sem botão de loja, e a IL-401 é justamente a que mais
+aparece, porque cobre a faixa de aquário mais comum (56 a 66 cm). Somando com o
+que já estava parado: 4 mídias, 6 aquecedores e agora 2 luminárias aptas e sem
+link. Gerar os links no painel Shopee Afiliados (Sub_id_2 = `C15` para as
+luminárias) e colar em `dados/produtos-*.json` é trabalho de minutos, e a
+próxima execução pega sozinha.
+
+E o inverso também está registrado: **duas luminárias que TÊM link continuam
+barradas** — a Chihiros WRGB II Pro 60 (nenhuma fonte declara voltagem) e a
+SunSun ADE-400c (nenhuma loja publica lúmen). Elas não são sugeridas, e a página
+diz isso na cara, com o motivo. Uma foto da embalagem de qualquer uma das duas
+resolveria o campo que falta.
