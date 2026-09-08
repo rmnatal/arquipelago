@@ -3,7 +3,7 @@
  * Versão: 1.1.0 (08/09/2026) — CORREÇÃO GRAVE: o JS e o CSS saíram de dentro do retorno do
  *   shortcode e passaram a ser impressos no wp_head (estilo) e no wp_footer (comportamento).
  *   Dentro do retorno do shortcode eles ainda atravessavam os filtros de texto do conteúdo,
- *   que trocam cada "&" por "&#038;": o primeiro "&&" do script virava "&#038;&#038;", o
+ *   que trocam cada "&" pela entidade numérica dele: o primeiro "&&" do script virava um par
  *   navegador parava com SyntaxError e a calculadora inteira ficava morta — o formulário não
  *   calculava, a resposta não aparecia e o bloco de produto com os links de afiliado nunca
  *   saía do estado oculto. Nenhuma linha de cálculo mudou; mudou o lugar onde o script sai.
@@ -1460,7 +1460,7 @@ function aquametria_c5_adiante_html() {
  * REGRA PERMANENTE DO PROJETO, escrita com sangue em 08/09/2026: JS e CSS de
  * shortcode NUNCA vao dentro do que o shortcode retorna. O retorno do shortcode
  * ainda atravessa os filtros de texto do conteúdo, que trocam cada "&" por
- * "&#038;" — e um único "&&" escapado assim mata o script INTEIRO com
+ * a entidade numérica dele — e um único "&&" escapado assim mata o script INTEIRO com
  * SyntaxError: o formulário nunca calcula, a resposta nunca aparece e o bloco de
  * produto com os links de afiliado nunca sai da classe "-oculto". Foi o que
  * derrubou as cinco primeiras calculadoras da ilha.

@@ -4,7 +4,7 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 13,
+  "revisao": 14,
   "atualizado_em": "2026-09-08",
   "estado": "fundacao",
   "desembarque": {
@@ -42,8 +42,9 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "9b6a0f44c7f63a7f6ef34cfcf74de02c6e0e4bc5c33f53712786f1bd0ddffa1a",
-      "descricao": "Casca do site: carrega Chivo/IBM Plex Sans/IBM Plex Mono e injeta a paleta da Aquametria sobre o tema ativo; troca core/site-title e core/site-logo pelo logotipo em SVG (recipiente graduado) com o wordmark; troca core/navigation pelo menu Calculadoras/Metodologia/Sobre; cria as paginas inicio, calculadoras, metodologia e sobre (conteudo em shortcode do proprio snippet) e fixa inicio como pagina inicial; manda Hello world! e Sample Page para a lixeira; SUBSTITUI a template part footer do tema pelo rodape da Aquametria (tagline e nota de fontes), com rede de seguranca em wp_footer e CSS, para nao ficarem dois rodapes empilhados; e some com a tagline padrao do WordPress. Idempotente. v1.0.3 (08/09/2026): o rodape passou a linkar a pagina de divulgacao de afiliados, exigida pela C3, e o CSS ganhou estilo para citacao em bloco e para o bloco de tabela que rola. Nenhuma pagina nova nasce orfa: o link do rodape e a entrada da divulgacao. v1.1.0 (08/09/2026): o endereco de cada pagina passa a ser resolvido pelo id do repositorio (_aquametria_id) e nao por slug adivinhado, e o card do hub so vira link se a pagina existir publicada — sem pagina, fica o selo Em construcao. Corrige o defeito 2 de 08/09/2026, em que o hub publicava /calculadora-de-aquecedor/ para a C5, cuja pagina e /calculadora-de-potencia-do-aquecedor/, e o clique dava 404."
+      "sha256": "502ec227835e664bc91efc86fb225433c63b85604dff5876f21b36ae0d68ff49",
+      "descricao": "Casca do site: carrega Chivo/IBM Plex Sans/IBM Plex Mono e injeta a paleta da Aquametria sobre o tema ativo; troca core/site-title e core/site-logo pelo logotipo em SVG (recipiente graduado) com o wordmark; troca core/navigation pelo menu Calculadoras/Metodologia/Sobre; cria as paginas inicio, calculadoras, metodologia e sobre (conteudo em shortcode do proprio snippet) e fixa inicio como pagina inicial; manda Hello world! e Sample Page para a lixeira; SUBSTITUI a template part footer do tema pelo rodape da Aquametria (tagline e nota de fontes), com rede de seguranca em wp_footer e CSS, para nao ficarem dois rodapes empilhados; e some com a tagline padrao do WordPress. Idempotente. v1.0.3 (08/09/2026): o rodape passou a linkar a pagina de divulgacao de afiliados, exigida pela C3, e o CSS ganhou estilo para citacao em bloco e para o bloco de tabela que rola. Nenhuma pagina nova nasce orfa: o link do rodape e a entrada da divulgacao. v1.1.0 (08/09/2026): o endereco de cada pagina passa a ser resolvido pelo id do repositorio (_aquametria_id) e nao por slug adivinhado, e o card do hub so vira link se a pagina existir publicada — sem pagina, fica o selo Em construcao. Corrige o defeito 2 de 08/09/2026, em que o hub publicava /calculadora-de-aquecedor/ para a C5, cuja pagina e /calculadora-de-potencia-do-aquecedor/, e o clique dava 404.",
+      "versao": "1.2.0"
     },
     {
       "id": "aquametria-calculadora-litragem",
@@ -52,7 +53,7 @@
       "escopo": "front-end",
       "ativo": true,
       "publicar": true,
-      "sha256": "46c73438abd1218462ca5714aea2903f47ae18de67d47b1075633d2286392250",
+      "sha256": "e88c387aa48bc45a1658826c195d2b3db14d4277362b6b56e1834202b081afd1",
       "descricao": "C1, o nucleo do lote. Registra o shortcode [aquametria_calculadora_litragem]: formulario de medidas, os tres volumes (bruto, interno e real de referencia) com o criterio de cada um, caminho inverso (litros para medida), quadro de fontes e permalink citavel. Todo o calculo e JavaScript no navegador, porque o site esta atras de cache de pagina. Grava o estado compartilhado em localStorage, chave aquametria.aquario, que as proximas calculadoras leem. NAO desconta substrato: as constantes estao pendentes e a tela declara a superestimativa e a direcao do erro. Anuncia-se no hub pelo filtro aquametria_calculadoras da casca, entao a casca nao precisa ser editada nem ter a versao bumpada. v1.0.1 (08/09/2026): o painel 'o que este resultado alimenta' agora LINKA a C3, que entrou no ar — o link de ida da C1 para a C3, de mao dupla com o que a C3 devolve. v1.0.2 (08/09/2026): guardar() passou a MESCLAR o estado compartilhado em vez de substitui-lo — voltar a C1 para corrigir uma medida zerava a vazao que a C3 tinha calculado e o clima que a C5 tinha perguntado. A secao final passou a linkar a C5, que entrou no ar. v1.1.0 (08/09/2026), CORRECAO GRAVE: o JS e o CSS sairam de dentro do retorno do shortcode e passaram para wp_head (estilo) e wp_footer (comportamento). Dentro do retorno do shortcode eles ainda atravessavam os filtros de texto do conteudo, que trocam & por &#038;, e o primeiro && do script matava o JavaScript inteiro com SyntaxError: o formulario nao calculava e o bloco de produto nunca aparecia. Nenhuma linha de calculo mudou."
     },
     {
@@ -62,7 +63,7 @@
       "escopo": "front-end",
       "ativo": true,
       "publicar": true,
-      "sha256": "4d1fc5302336c7a205efc3ec905ec810467f8149e32e1d7f828861fb1e92aeec",
+      "sha256": "699eb5788b70d6c6e9a4021aed057cc7002b4b808b3cac72aa88b9f40b765b37",
       "descricao": "C3, a segunda calculadora do lote e a PRIMEIRA com bloco de produto. Registra o shortcode [aquametria_calculadora_vazao]: le o volume real que a C1 guardou em localStorage (aquametria.aquario), devolve a faixa de vazao em L/h com o criterio e a fonte de cada extremo (piso de 1,76 x/h do fabricante contra teto de 10 x/h da regra de bolso BR, ate 5,7 vezes de divergencia), o volume minimo do sump quando marcado, o caminho inverso (filtro de X L/h cobre quantos litros) e o veredito para o filtro que a pessoa ja tem. Bloco de produto: filtros do catalogo embutido cuja vazao cai dentro da faixa, ordenados por proximidade do meio dela, com o turnover que cada um entrega NAQUELE aquario, ficha com fonte e data, link sponsored/noopener/_blank quando existe e aviso de comissao obrigatorio. Sem produto que atenda, o bloco nao aparece e a tela diz por que. NAO aplica fator de perda de carga (constante pendente) nem publica turnover marinho (sem fonte). Todo o calculo e JavaScript no navegador. Anuncia-se no hub pelo filtro aquametria_calculadoras. O catalogo entre CATALOGO-INICIO e CATALOGO-FIM e gerado por ferramentas/gerar-catalogo-filtros.py — nao editar a mao. v1.0.1 (08/09/2026): passou a linkar a C5, que entrou no ar e divide o mesmo volume real. v1.1.0 (08/09/2026), CORRECAO GRAVE: o JS e o CSS sairam de dentro do retorno do shortcode e passaram para wp_head (estilo) e wp_footer (comportamento). Dentro do retorno do shortcode eles ainda atravessavam os filtros de texto do conteudo, que trocam & por &#038;, e o primeiro && do script matava o JavaScript inteiro com SyntaxError: o formulario nao calculava e o bloco de produto nunca aparecia. Nenhuma linha de calculo mudou."
     },
     {
@@ -72,7 +73,7 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "eb002cc026afcd149b74f228b58e14534362129536bc4c196eb02b970ffe85bb",
+      "sha256": "82e9c2799a7d07c2af9f0a190e495831f76b2805cf2525df1c4b5a117061e5b4",
       "descricao": "v1.0.0 (08/09/2026). Registra o shortcode [aquametria_calculadora_aquecedor] e se anuncia no hub pelo filtro aquametria_calculadoras. Pergunta a MINIMA DO COMODO onde o aquario fica, que e a entrada que nenhuma fonte brasileira pede, e calcula a faixa de potencia com o nome do autor em cada extremo: separa as regras aplicaveis das nao aplicaveis e mostra as duas listas. Com delta acima de 10 C diz com essas palavras que nenhuma fonte cobre o caso e entrega a faixa generica como piso. Com delta zero ou negativo nao devolve numero nenhum. Traz o degrau da linha comercial, o confronto com o volume declarado na caixa (o achado do bloco), o bloco de produto com DUAS barreiras de seguranca antes da adequacao (voltagem da tomada e faixa de ajuste alcancar o alvo, regra V18) e o caminho inverso. Le e grava o estado compartilhado por mescla. v1.1.0 (08/09/2026), CORRECAO GRAVE: o JS e o CSS sairam de dentro do retorno do shortcode e passaram para wp_head (estilo) e wp_footer (comportamento). Dentro do retorno do shortcode eles ainda atravessavam os filtros de texto do conteudo, que trocam & por &#038;, e o primeiro && do script matava o JavaScript inteiro com SyntaxError: o formulario nao calculava e o bloco de produto nunca aparecia. Nenhuma linha de calculo mudou."
     },
     {
@@ -82,7 +83,7 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "0df70b8a7257f6b66c91f90cd14d20585e5a8e07874a44240cfd36fbb843c07a",
+      "sha256": "175249267b796f42e9754fcc35d0b8a9b4a5765ff13bb184ddd37cd103fc36ca",
       "descricao": "v1.0.0 (08/09/2026). Registra o shortcode [aquametria_calculadora_midia] e se anuncia no hub pelo filtro aquametria_calculadoras. Ataca o VACUO DE CONTEUDO N. 1 do Bloco 1: quanta midia biologica um aquario precisa, em mL por litro de agua. Publica QUATRO dosagens declaradas por fabricante (Seachem 1,25 e 2,64; JBL 5,00; Ocean Tech 12,50 mL/L), que discordam por dez vezes, sem escolher nenhuma; e, numa segunda tabela separada, a midia TOTAL por litro que os fabricantes de FILTRO declaram (volume de filtragem dividido por volume atendido), incluindo as duas leituras das fichas ambiguas do Atman. Entrega o numero que ninguem publica: quanto do cesto do filtro escolhido cada dosagem ocuparia, e avisa quando a camada biologica sozinha estoura. Publica a ordem das camadas e SE RECUSA a publicar a proporcao entre elas, o ranking por area de superficie e a conversao de grama em mililitro no carvao, dizendo por que em cada caso. Traz calendario de trocas com datas calculadas, TPA, gatilhos de nitrato, o aviso de nunca lavar toda a midia biologica de uma vez explicado como mecanismo, o bloco de produto com a quantidade calculada pela dosagem de CADA fabricante, e o caminho inverso. Le e grava o estado compartilhado por mescla. As duas copias do banco (midias e filtros) sao geradas por ferramentas/gerar-catalogo-midias.py. v1.1.0 (08/09/2026), CORRECAO GRAVE: o JS e o CSS sairam de dentro do retorno do shortcode e passaram para wp_head (estilo) e wp_footer (comportamento). Dentro do retorno do shortcode eles ainda atravessavam os filtros de texto do conteudo, que trocam & por &#038;, e o primeiro && do script matava o JavaScript inteiro com SyntaxError: o formulario nao calculava e o bloco de produto nunca aparecia. Nenhuma linha de calculo mudou."
     },
     {
@@ -92,7 +93,7 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "484ce52cb22c4b3331b7d813a7304d32ec2b9b1cff16a7b0c2fa3c6e56805dba",
+      "sha256": "1e6cce1c6dff269645ac65c244d9cc33a251d00a64015790590d71b7ae1921d9",
       "descricao": "v1.0.0 (08/09/2026). Registra o shortcode [aquametria_calculadora_iluminacao] e se anuncia no hub pelo filtro aquametria_calculadoras. Ataca o maior cluster empatado do Bloco 1 (83 consultas) e publica a divergencia que ninguem confronta: tres fontes brasileiras chamam a MESMA faixa pelo MESMO rotulo com numeros que diferem por duas vezes ('baixa' e 20 lm/L numa, 10 a 20 noutra e 15 na terceira). Entrega a faixa de lumens no volume da pessoa, as tres leituras lado a lado numa tabela com atribuicao, os quatro regimes de fotoperiodo, a faixa de Kelvin, o consumo em kWh/mes do fotoperiodo escolhido (custo em reais so com a tarifa que o visitante digita, porque tarifa nao e publicada aqui), o bloco de CO2 com os dois limites que SE SOBREPOEM, o aviso de luz alta sem CO2, o aviso de lamina acima de 45 cm e o caminho inverso. Recusa publicar PPFD (constante pendente) e explica o motivo achado a montante: o forum de suporte da propria Chihiros declara que nao existe teste de PAR oficial. Recusa converter comprimento de peca em cobertura de aquario, porque nos 5 registros que declaram os dois numeros a razao varia de 1,15 a 1,59 vez. Bloco de produto com a cobertura declarada como barreira, e a lista PUBLICADA dos barrados com o motivo — inclusive a luminaria mais cara do banco, que tem link de afiliado e nao e sugerida por falta de voltagem declarada. Le e grava o estado compartilhado por mescla. O catalogo entre CATALOGO-INICIO/FIM e BARRADOS-INICIO/FIM e gerado por ferramentas/gerar-catalogo-iluminacao.py — nao editar a mao. v1.1.0 (08/09/2026), CORRECAO GRAVE: o JS e o CSS sairam de dentro do retorno do shortcode e passaram para wp_head (estilo) e wp_footer (comportamento). Dentro do retorno do shortcode eles ainda atravessavam os filtros de texto do conteudo, que trocam & por &#038;, e o primeiro && do script matava o JavaScript inteiro com SyntaxError: o formulario nao calculava e o bloco de produto nunca aparecia. Nenhuma linha de calculo mudou."
     }
   ],
@@ -525,6 +526,20 @@
       "publicar": false,
       "sha256": "ce6e364e211fe0233c3c3d536a2d7d6aadbf7aca49a303285920ff8f604bb993",
       "descricao": "Executa o calculo das CINCO calculadoras num Chromium de verdade (Playwright) e confere na tela o que so um humano conferia: script sem SyntaxError, contêiner de resposta nascendo oculto no HTML servido e ficando visivel depois de calcular, numero na tela, ausencia de submit nativo (a pagina nao recarrega) e o bloco de produto com link de afiliado marcado sponsored/noopener/_blank mais o aviso de comissao. A C15 entra como semProduto: hoje ela responde sem bloco de produto de proposito, porque as luminarias do catalogo nao declaram lumen nem voltagem, e a pagina publica esse motivo."
+    },
+    {
+      "id": "conferir-entidades",
+      "arquivo": "ferramentas/conferir-entidades.mjs",
+      "publicar": false,
+      "descricao": "Portão contra corrupção por entidade HTML: proíbe entidade numérica no fonte dos snippets, proíbe entidade dentro de script/style renderizado (menos a cadeia de esc()) e roda node --check em cada bloco de script. Controle negativo reproduz o SyntaxError de 08/09/2026.",
+      "sha256": "bef6168228ead54032a8cb7e1b5e4f8f344b5f3325e43cab6c114ace1b3f23ed"
+    },
+    {
+      "id": "teste-apelidos",
+      "arquivo": "ferramentas/teste-apelidos.php",
+      "publicar": false,
+      "descricao": "Exercita os apelidos de endereço da casca: cada apelido resolve para o slug canônico, endereço fora do mapa não resolve, e todo destino existe em conteudo/.",
+      "sha256": "484426420c1118cc49bdf09f02e984aae56d8b27e4e0bbd9d5872807b109b1b4"
     }
   ]
 }

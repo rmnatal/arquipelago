@@ -1831,3 +1831,121 @@ palavras.
 
 Sem ferramenta de memória nesta sessão: `/areas/projeto-aquametria.md` NÃO foi
 atualizado; esta entrada e o `ESTADO.md` são o registro.
+
+## 2026-09-08 (3ª execução do dia) — Correção cirúrgica: o fonte estava são, o site é que não recebeu
+
+Disparo manual com correção dirigida. **O diagnóstico do pedido estava errado num
+ponto decisivo, e vale registrar o porquê, porque é a diferença entre consertar e
+quebrar.**
+
+### O que o pedido dizia e o que era verdade
+
+O pedido dizia que o arquivo `snippets/aquametria-calculadora-litragem.php` no
+`main` continha 4 ocorrências literais de entidade dentro do JavaScript, copiadas
+do HTML servido. **Não continha.** As 4 ocorrências estavam nos COMENTÁRIOS de PHP
+que descrevem o defeito da manhã — texto de documentação, invisível para o
+navegador. A correção da manhã (commit `78a1567`, 14h23 UTC) já havia limpado o
+JavaScript.
+
+A prova, medida nesta execução no código-fonte do `main`:
+
+- `php ferramentas/render-para-teste.php` nas cinco calculadoras (o render que
+  IMITA o escape de `&` do WordPress): **zero `&#038;` nas cinco**.
+- `node --check` em cada bloco `<script>` renderizado: **as cinco passam**.
+- `teste-navegador-cinco.mjs` em Chromium de verdade: **as cinco calculam**, sem
+  `SyntaxError`, resposta sai do oculto, C3 com 2 links de afiliado, C5 com 1,
+  C12 com 2, C15 sem produto de propósito. C1 118 L · C3 180 a 1.000 L/h · C5 100
+  a 150 W · C12 125 mL a 1,25 L · C15 2.000 a 4.000 lúmens.
+
+**A armadilha:** o pedido mandava trocar toda ocorrência de `&amp;`, `&lt;`,
+`&gt;` e `&quot;` dentro de bloco de JavaScript pelo caractere. Executar isso ao
+pé da letra teria destruído a função `esc()` das cinco calculadoras — a cadeia
+`.replace(/&/g, '&amp;').replace(/</g, '&lt;')…` é código correto, e trocar
+aquelas entidades pelo caractere transforma o escape de HTML em identidade. Foi o
+que NÃO se fez.
+
+### Então por que o Raphael viu o defeito às 15h02?
+
+Porque o site está servindo o snippet ANTIGO. **O container da nuvem não alcança
+`aquametria.com.br`** — desta vez a impossibilidade foi medida com duas
+ferramentas independentes: `WebFetch` devolve `EGRESS_BLOCKED` e `curl` devolve
+`CONNECT tunnel failed, response 403` no gateway de saída. Não é preferência de
+ferramenta; é bloqueio de rede. Pelo mesmo motivo o front matter (`publicar:
+true`) continua impresso no corpo das cinco páginas: o Sync do site ainda é a
+v1.1.0, e a v1.1.5 que corta o front matter está no repositório desde as 13h31.
+
+### O que esta execução entregou
+
+1. **`ferramentas/conferir-entidades.mjs`** — o portão que faltava, com controle
+   negativo conferido. Proíbe entidade NUMÉRICA em todo o fonte de `snippets/`
+   (não há uso legítimo: texto acentuado vai em UTF-8 direto), proíbe entidade
+   dentro de `<script>`/`<style>` renderizado com lista de exceção explícita para
+   a cadeia de `esc()`, roda `node --check` em cada bloco de script sem engolir
+   exceção, e confere que o script sai depois do conteúdo. Corrompendo um `&&`
+   dentro de `aquametria_c1_js()`, ele reprova nos três níveis e reproduz o
+   `SyntaxError` exato do console do Raphael.
+2. **Comentários limpos nas cinco calculadoras.** As entidades escritas por
+   extenso na documentação saíram e viraram palavras. Eram inofensivas para o PHP
+   e péssimas para o diagnóstico: foi lendo um `grep` que acusava comentário que
+   se concluiu que o fonte estava corrompido. Agora o `grep -rn -E '&#[0-9]+;'
+   snippets/` devolve **zero**, e zero quer dizer alguma coisa.
+3. **Casca v1.2.0 — apelidos de endereço.** `/calculadora-de-aquecedor-de-aquario/`
+   (o endereço que o Raphael pediu e levou 404) e mais 21 apelidos plausíveis
+   redirecionam **301** para a página canônica, e só quando ela existe publicada —
+   trocar um 404 por outro seria pior. Com `ferramentas/teste-apelidos.php`, 59
+   afirmações, controle negativo conferido.
+4. **Regra permanente em `ESTADO.md`:** ao corrigir um snippet, o ponto de partida
+   é SEMPRE o código-fonte do repositório, nunca o HTML servido pelo site nem uma
+   cópia dele — o HTML servido pode conter entidades escapadas que, copiadas de
+   volta para o fonte, corrompem o código de forma permanente e silenciosa. Junto,
+   as duas travas que ela implica: entidade numérica é sempre corrupção, e
+   busca-e-troca cega de entidade nomeada quebra o `esc()`.
+
+Manifest na **revisão 14**.
+
+### Verificação (o que foi realmente rodado)
+
+`php -l` nos 9 arquivos PHP: 0 erros · `proteger-funcoes.php` nos 8 snippets:
+nenhuma função de nível superior desprotegida · `conferir-entidades.mjs`: 0 falhas
+· `teste-apelidos.php`: 59 afirmações, 0 falhas · `conferir-slugs.py`: 9 slugs
+concordam · `teste-conversor-markdown.php`: 17 casos, 0 falhas ·
+`teste-escape-shortcode.php`: todas passaram · `teste-atualizador-sync.php`: 9
+cenários, 0 falhas · `validar-produtos.py`: 26 produtos, 0 erros, 1 aviso conhecido
+· `teste-navegador-cinco.mjs`: as cinco calculam em Chromium · sha256 do manifest
+recalculado dos arquivos finais.
+
+### A VERIFICAÇÃO FINAL NÃO PÔDE SER FEITA — e isto não é sucesso
+
+O pedido exigia medir, para cada uma das cinco URLs no ar: HTTP 200, contagem de
+`&#038;` igual a zero, ausência de `publicar: true` no corpo, e `<script>` depois
+do conteúdo. **Nenhum desses quatro números foi medido no ar, porque este
+container não alcança o site.** Os números acima são do render local, que imita o
+escape do WordPress — são a melhor evidência disponível daqui, e não substituem a
+página servida. Marcar esta tarefa como concluída seria repetir exatamente o que
+as três execuções anteriores fizeram.
+
+### O que destrava, e é coisa de dez segundos no navegador do Raphael
+
+Abrir, nesta ordem, esperando cada uma responder:
+
+1. `https://aquametria.com.br/?aquametria_sync=kgbErDOIVAFWUtUzutHGrKevVgmWGVjz&forcar=1`
+   — o Sync velho instala o snippet "Aquametria Sync — atualizador do Sync";
+2. `https://aquametria.com.br/?aquametria_atualizar_sync=kgbErDOIVAFWUtUzutHGrKevVgmWGVjz&forcar=1`
+   — o atualizador leva o Sync da v1.1.0 para a v1.1.5;
+3. o mesmo endereço do passo 1 de novo — a v1.1.5 reaplica as cinco páginas sem
+   front matter, os cinco snippets de calculadora e a casca v1.2.0.
+
+Depois, `https://aquametria.com.br/wp-json/aquametria/v1/status` deve dizer
+`"versao_sync":"1.1.5"` e `"revisao":14`. Sem isso, o site também se cura sozinho
+pelo WP-Cron (Sync a cada 30 min, atualizador de hora em hora) na primeira visita
+que a página receber — só que ninguém conferiu, e é essa a diferença.
+
+**Próximo passo desbloqueado:** conferir as cinco URLs no ar (assim que houver
+alcance ou assim que o Raphael acionar) e, com elas limpas, seguir para o **bloco
+4 — C2, peso do aquário cheio e carga no piso**, pareada com o artigo dela. As
+travessas da C2 continuam: não publica espessura de vidro nem veredito de "a laje
+aguenta", e a carga de projeto da NBR 6120 entra rotulada como
+`norma-via-secundaria`, com essas palavras na tela.
+
+Sem ferramenta de memória nesta sessão: `/areas/projeto-aquametria.md` NÃO foi
+atualizado; esta entrada e o `ESTADO.md` são o registro.

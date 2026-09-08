@@ -153,6 +153,57 @@ permalink real e marca `slug_ok:false` no estado; a casca (v1.1.0) resolve o
 endereço de cada página pelo `_aquametria_id`, não por slug adivinhado, e **só
 publica link se a página existir** — sem página, fica o selo "Em construção".
 
+### A regra do ponto de partida — escrita em 08/09/2026, no segundo erro do mesmo dia
+
+**Ao corrigir um snippet, o ponto de partida é SEMPRE o código-fonte do
+repositório, nunca o HTML servido pelo site nem uma cópia dele — o HTML servido
+pode conter entidades escapadas que, copiadas de volta para o fonte, corrompem o
+código de forma permanente e silenciosa.**
+
+Como isso aconteceu: a correção da manhã mudou o lugar do script (do retorno do
+shortcode para o `wp_footer`) e ficou certa. Mas ao reescrever o arquivo, parte
+do JavaScript veio do HTML que o site estava servindo, e esse HTML já trazia os
+`&&` escapados. As entidades entraram no arquivo do repositório e ficaram lá,
+convivendo com os `&&` sãos — no mesmo bloco de script, alguns operadores certos
+e outros corrompidos. O sintoma no navegador é idêntico ao do defeito original
+(`SyntaxError: Invalid or unexpected token`), o que faz perder tempo procurando
+no lugar errado.
+
+Três coisas ficam desta:
+
+- **Entidade numérica (`&#NNN;`) não tem uso legítimo nenhum em `snippets/`.**
+  Texto acentuado vai em UTF-8 direto. Qualquer ocorrência é corrupção. Esta é a
+  regra dura que `ferramentas/conferir-entidades.mjs` aplica.
+- **Nunca faça busca-e-troca cega de entidade.** As entidades NOMEADAS da função
+  `esc()` das calculadoras — `.replace(/&/g, '&amp;')` e as três irmãs — são
+  código correto. Trocá-las pelo caractere quebra o escape de HTML das cinco
+  calculadoras de uma vez. O verificador separa as duas famílias justamente por
+  isso: proíbe a numérica em toda parte e trata a nomeada por lista de exceção.
+- **Entidade em COMENTÁRIO também sai.** Os comentários das cinco calculadoras
+  explicavam o defeito escrevendo a entidade por extenso. Isso é inofensivo para
+  o PHP e péssimo para o diagnóstico: um `grep` de segurança acusa o comentário,
+  quem lê conclui que o fonte está corrompido e "conserta" o que estava são. Os
+  comentários passaram a descrever a entidade em palavras.
+
+| ferramenta | o que garante |
+| --- | --- |
+| `ferramentas/conferir-entidades.mjs` | zero entidade numérica no fonte dos snippets; zero entidade dentro de `<script>`/`<style>` renderizado (menos a cadeia de `esc()`); `node --check` em cada bloco de script; script depois do conteúdo |
+| `ferramentas/teste-apelidos.php` | cada apelido de endereço resolve para o slug canônico, endereço fora do mapa não resolve, e todo destino existe em `conteudo/` |
+
+Controle negativo conferido: corrompendo um `&&` dentro de `aquametria_c1_js()`,
+o verificador reprova nos três níveis (fonte, bloco renderizado e `node --check`)
+e reproduz o `SyntaxError` exato que o Raphael viu.
+
+### Endereço adivinhado não pode dar 404 (08/09/2026)
+
+O Raphael pediu `/calculadora-de-aquecedor-de-aquario/` e levou 404. Não era slug
+trocado: a página da C5 está em `/calculadora-de-potencia-do-aquecedor/` e o hub
+aponta certo. O endereço pedido é o que qualquer pessoa adivinha a partir do nome
+da calculadora. A casca v1.2.0 tem 22 apelidos que redirecionam **301** para a
+página canônica, e só quando ela existe publicada — redirecionar para outro 404
+seria pior que o 404 original. Calculadora nova entra com os apelidos dela no
+mesmo commit.
+
 ### Code Snippets 3.10 — o que a API mudou (diagnosticado em 07/09/2026, depois de o site cair com "Há um erro crítico")
 Na versão instalada no site (3.10.2), a API PHP do plugin não é a antiga:
 - A classe do modelo é `Code_Snippets\Model\Snippet`. `new \Code_Snippets\Snippet()` é **fatal** — detecte a classe com `class_exists()` antes de instanciar.

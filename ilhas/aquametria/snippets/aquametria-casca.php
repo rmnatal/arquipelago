@@ -1,5 +1,9 @@
 /**
  * Aquametria Casca — identidade e estrutura do site
+ * Versão: 1.2.0 (08/09/2026) — apelidos de endereço. Endereço adivinhado a partir do nome da
+ * calculadora deixa de dar 404: /calculadora-de-aquecedor-de-aquario/ (o que o Raphael pediu),
+ * /calculadora-de-aquecedor/, /calculadora-de-litros/ e mais dezoito irmãos redirecionam 301
+ * para a página canônica — e só quando ela existe publicada, para nunca trocar um 404 por outro.
  * Versão: 1.1.0 (08/09/2026) — link do hub nunca mais aponta para página que não existe.
  * O endereço de cada calculadora passa a ser resolvido pelo id do repositório (_aquametria_id),
  * não por slug adivinhado, e o card só vira link se a página estiver publicada de verdade;
@@ -17,7 +21,8 @@
  *       e fixa inicio como página inicial;
  *   (e) manda "Hello world!" e "Sample Page" para a LIXEIRA (nunca apaga);
  *   (f) substitui a template part 'footer' do tema pelo rodapé da Aquametria
- *       (tagline e nota de fontes), para não ficarem dois rodapés empilhados.
+ *       (tagline e nota de fontes), para não ficarem dois rodapés empilhados;
+ *   (g) redireciona 301 os apelidos de endereço (seção 1b) para a página canônica.
  *
  * O conteúdo das quatro páginas mora em shortcodes deste snippet: atualizar o
  * snippet atualiza as páginas, sem tocar no editor do WordPress.
@@ -38,7 +43,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'AQUAMETRIA_CASCA_VERSAO', '1.1.0' );
+	define( 'AQUAMETRIA_CASCA_VERSAO', '1.2.0' );
 	define( 'AQUAMETRIA_CASCA_TAGLINE', 'Calculadoras e dados técnicos para dimensionar o seu aquário' );
 }
 
@@ -178,6 +183,119 @@ function aquametria_casca_url_pagina( $slug ) {
 	return home_url( '/' . sanitize_title( $slug ) . '/' );
 }
 }
+
+/* ---------------------------------------------------------------------------
+ * 1b. Apelidos de endereço — o 404 que o visitante não deveria ver
+ *
+ * Defeito de 08/09/2026: o Raphael pediu /calculadora-de-aquecedor-de-aquario/
+ * e levou 404. Não era slug trocado — a página da C5 está publicada em
+ * /calculadora-de-potencia-do-aquecedor/ e o hub aponta certo. O endereço
+ * pedido é o que qualquer pessoa (e qualquer buscador) ADIVINHA a partir do
+ * nome da calculadora, e adivinhar errado não pode custar um 404.
+ *
+ * Cada apelido plausível redireciona 301 para a página canônica. 301 porque a
+ * URL certa é a canônica e é ela que deve acumular sinal de busca; o apelido é
+ * porta de entrada, nunca endereço publicado.
+ *
+ * Trava: o redirecionamento SÓ acontece se a página de destino existir
+ * publicada de verdade (mesma verificação do hub). Sem destino, o 404 segue —
+ * redirecionar para outro 404 é pior que o 404 original.
+ * ------------------------------------------------------------------------- */
+
+if ( ! function_exists( 'aquametria_casca_apelidos' ) ) {
+function aquametria_casca_apelidos() {
+	$mapa = array(
+		/* C1 — litragem */
+		'calculadora-de-litros'                          => 'calculadora-de-litragem',
+		'calculadora-de-volume'                          => 'calculadora-de-litragem',
+		'calculadora-de-volume-de-aquario'               => 'calculadora-de-litragem',
+		'calculadora-de-litragem-de-aquario'             => 'calculadora-de-litragem',
+		'quantos-litros-tem-meu-aquario'                 => 'calculadora-de-litragem',
+		/* C3 — vazão */
+		'calculadora-de-vazao'                           => 'calculadora-de-vazao-do-filtro',
+		'calculadora-de-vazao-de-filtro'                 => 'calculadora-de-vazao-do-filtro',
+		'calculadora-de-filtro'                          => 'calculadora-de-vazao-do-filtro',
+		'calculadora-de-filtro-de-aquario'               => 'calculadora-de-vazao-do-filtro',
+		'calculadora-de-turnover'                        => 'calculadora-de-vazao-do-filtro',
+		/* C5 — aquecedor */
+		'calculadora-de-aquecedor'                       => 'calculadora-de-potencia-do-aquecedor',
+		'calculadora-de-aquecedor-de-aquario'            => 'calculadora-de-potencia-do-aquecedor',
+		'calculadora-de-potencia-do-aquecedor-de-aquario' => 'calculadora-de-potencia-do-aquecedor',
+		'calculadora-de-watts'                           => 'calculadora-de-potencia-do-aquecedor',
+		'calculadora-de-watts-do-aquecedor'              => 'calculadora-de-potencia-do-aquecedor',
+		/* C12 — mídia filtrante */
+		'calculadora-de-midia'                           => 'calculadora-de-midia-filtrante',
+		'calculadora-de-midia-biologica'                 => 'calculadora-de-midia-filtrante',
+		'calculadora-de-midia-filtrante-de-aquario'      => 'calculadora-de-midia-filtrante',
+		/* C15 — iluminação */
+		'calculadora-de-luz'                             => 'calculadora-de-iluminacao',
+		'calculadora-de-lumens'                          => 'calculadora-de-iluminacao',
+		'calculadora-de-iluminacao-de-aquario'           => 'calculadora-de-iluminacao',
+		'calculadora-de-iluminacao-de-aquario-plantado'  => 'calculadora-de-iluminacao',
+	);
+
+	return apply_filters( 'aquametria_apelidos_de_pagina', $mapa );
+}
+}
+
+/**
+ * Slug canônico de um caminho pedido, ou '' se ele não for apelido conhecido.
+ * Isolada da requisição de propósito, para o teste poder exercitá-la sozinha.
+ */
+if ( ! function_exists( 'aquametria_casca_apelido_para_slug' ) ) {
+function aquametria_casca_apelido_para_slug( $caminho ) {
+	$caminho = trim( (string) $caminho );
+	$caminho = trim( $caminho, '/' );
+	if ( '' === $caminho || false !== strpos( $caminho, '/' ) ) {
+		return '';
+	}
+
+	$caminho = sanitize_title( $caminho );
+	$mapa    = aquametria_casca_apelidos();
+
+	return isset( $mapa[ $caminho ] ) ? $mapa[ $caminho ] : '';
+}
+}
+
+/**
+ * Caminho pedido nesta requisição, sem a superglobal de servidor (fase 4b).
+ * $wp->request já vem sem barra inicial, sem barra final e sem query string.
+ */
+if ( ! function_exists( 'aquametria_casca_caminho_pedido' ) ) {
+function aquametria_casca_caminho_pedido() {
+	if ( isset( $GLOBALS['wp'] ) && is_object( $GLOBALS['wp'] ) && isset( $GLOBALS['wp']->request ) ) {
+		return (string) $GLOBALS['wp']->request;
+	}
+
+	$atual = add_query_arg( array() );
+	$atual = strtok( (string) $atual, '?' );
+
+	return trim( (string) $atual, '/' );
+}
+}
+
+if ( ! function_exists( 'aquametria_casca_redirecionar_apelido' ) ) {
+function aquametria_casca_redirecionar_apelido() {
+	if ( ! is_404() ) {
+		return;
+	}
+
+	$destino = aquametria_casca_apelido_para_slug( aquametria_casca_caminho_pedido() );
+	if ( '' === $destino ) {
+		return;
+	}
+
+	$url = aquametria_casca_url_se_existir( $destino );
+	if ( '' === $url ) {
+		return;
+	}
+
+	wp_safe_redirect( $url, 301 );
+	exit;
+}
+}
+
+add_action( 'template_redirect', 'aquametria_casca_redirecionar_apelido' );
 
 /* ---------------------------------------------------------------------------
  * 2. Marca, menu e rodapé
