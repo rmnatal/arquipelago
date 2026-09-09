@@ -3813,3 +3813,145 @@ não da Fundação.
 2. **T7, par C12** — trabalho de repositório, não depende de egresso. Agora se sabe que é bloco
    inteiro de calculadora (tabela + resposta direta + JSON-LD), com o molde pronto na C15.
 3. **T3 (catálogo) segue barrado da nuvem** enquanto o egresso bloquear os sites de fabricante.
+
+---
+
+## 09/09/2026 — execução das 23h17Z: T7, par C12 — a calculadora de mídia deixou de ser um formulário vazio para quem não executa JavaScript
+
+**Bloco:** T7 (visibilidade em IA), par C12. Escolhido por ser o primeiro da fila que **não depende do
+egresso**: o T1 continua dependendo do Chrome do Raphael e o T3 (catálogo) segue barrado enquanto a
+nuvem não alcançar site de fabricante. Manifest **revisão 30**, C12 na versão **1.2.0**.
+
+A ilha foi sorteada pela regra da seção 1 do `ARQUIPELAGO.md`. **A primeira tentativa foi na
+Robometria e o push da reserva foi RECUSADO**: outra execução (`session_013a11...`) commitou a
+reserva dela 13 segundos antes. Rebase, volta ao passo 2, e a Aquametria era a próxima elegível.
+A reserva por commit funcionou exatamente como o contrato promete — duas execuções simultâneas, zero
+atropelo, sem force push.
+
+### O que entrou, e por que é bloco de calculadora e não retoque de schema
+
+O registro anterior já tinha medido isto e vale confirmar: **o T7 na C12 não era "acrescentar
+JSON-LD"**. A página não tinha nenhuma das três peças da seção 5. Entraram as três:
+
+- **(a) Resposta antes da explicação** (`aquametria_c12_resposta_direta_html`, bloco `aqm-c12-direta`,
+  ANTES do formulário). Frase autossuficiente com número, unidade, quem declarou e data — escrita
+  para sobreviver a ser citada por um modelo que leu só aquele parágrafo. 2.052 caracteres, quatro
+  parágrafos: a faixa em 100 L, por que a ilha não escolhe nem tira média, o teto físico, e o que a
+  conta não sabe.
+- **(b) Tabela de exemplos pré-renderizada** (`aquametria_c12_exemplos_html`), seis aquários de 30 a
+  300 L resolvidos no PHP, cinco colunas: a faixa da mídia biológica do piso ao teto com o nome de
+  quem sustenta cada extremo; a mídia TOTAL que quem vende filtro reserva; o **teto físico**; e a
+  mídia do banco para comprar, com a quantidade pela dosagem daquele fabricante e quanto rende a
+  embalagem.
+- **(c) JSON-LD no `wp_head`** — nunca dentro do retorno do shortcode, pelo mesmo motivo que o script
+  sai no rodapé. `WebApplication` com `featureList` de 8 itens e `FAQPage` com **15 perguntas**, cada
+  resposta carregando o mesmo número que a tabela servida mostra.
+
+**Nenhuma fórmula mudou, e nenhuma dosagem foi escolhida.** Tudo que a tabela mostra sai de espelhos
+em PHP das funções do próprio script — `mL()`, `litros()`, `pct()`, `ancorasBio()`, `ancorasFiltro()`
+—, função a função, porque tabela servida que contradiz a calculadora logo acima dela é pior que
+tabela nenhuma. As âncoras continuam saindo do catálogo embutido, que sai do banco: mídia nova com
+dosagem declarada entra na tabela servida sozinha no próximo gerador.
+
+### O achado desta execução: quatro das seis linhas NÃO CABEM no filtro
+
+A coluna do teto físico é a que não existe em português, e pré-renderizá-la tornou visível uma coisa
+que a calculadora só dizia depois de a pessoa preencher o formulário: **a dosagem mais generosa não
+cabe no filtro em quatro dos seis volumes da escada.** Em 100 L ocupa 104 % do cesto do Seachem Tidal
+55; em 150 L, 156 %; em 200 L, 208 %; em 300 L, 107 % do cesto do Atman AT-3338S. Só 30 e 60 L
+sobram folga (16 % e 33 % do SunSun HW-603B). O critério da célula é o da seção 7: entre os filtros
+que o fabricante **declara** para aquele volume, o de menor volume declarado — que é o que a pessoa
+realmente compraria, e é a leitura mais apertada. Filtro que o fabricante não declara para o volume
+não entra na célula nem em último lugar.
+
+### Três defeitos que o teste pegou, e nenhum apareceria em `php -l`
+
+1. **Uma resposta do FAQPage não carregava número** ("Encher o cesto do filtro é melhor?"). FAQPage
+   sem número é FAQPage-lixo, e é lixo detectável. Ganhou o caso medido de 200 L (2,50 L ocupando
+   208 % de um cesto de 1,2 L) e as 6 posições da ordem das camadas.
+2. **A tabela imprimia "30,0 L" e o teste exigia "30 L".** Aqui quem estava certo era a tabela: o
+   `litros()` do script devolve uma casa decimal abaixo de 100 L, e é isso que a calculadora escreve
+   quando a pessoa digita 30. **Exigir "30 L" cravado reprovaria a tabela por ser FIEL ao script**,
+   que é o oposto do que o teste existe para garantir. Quem cedeu foi o teste.
+3. **A C15 tinha as três peças desde a revisão 29 e mesmo assim ficava FORA do teste que as mede.**
+   O bloco de resposta direta dela usava `aqm-c15-citar` — a MESMA classe da caixa de citação do
+   resultado, duas coisas diferentes com o mesmo nome — e o painel de exemplos não tinha onde o teste
+   pendurar o localizador. Peça entregue sem teste é peça que a próxima sessão quebra sem ninguém
+   notar.
+
+### O verde falso que estava no ferramental desde 09/09 de manhã
+
+`conferir-protecao-funcoes.py` recebe os arquivos por argumento. **Chamado sem argumento, ele varria
+uma lista vazia e saía 0 em silêncio.** Verde falso é pior que vermelho: treina a próxima sessão a
+confiar num instrumento que não olhou para nada. Agora, sem argumento, ele varre os snippets da
+própria ilha e diz quantos; e sem achar arquivo nenhum, **reprova em vez de aprovar**. Controle
+negativo conferido: desprotegendo uma função de propósito, ele acusa a linha e sai 1.
+
+**Regra que fica, e é a terceira vez que a ilha tropeça em alguma versão dela:** instrumento que pode
+sair 0 sem ter medido nada não é instrumento. Todo verificador desta ilha precisa reprovar quando não
+mede — nunca aprovar por omissão.
+
+### Verificação desta execução (seção 8 do `ARQUIPELAGO.md`)
+
+- `php -l` nos 9 snippets: limpo, **com controle negativo** — como os snippets não têm `<?php` no
+  topo, o lint foi feito com o marcador prefixado e um erro proposital foi injetado para provar que o
+  instrumento acusa.
+- `conferir-protecao-funcoes.py`: 9 snippets, **214 funções** (34 na C12, eram 22), todas dentro de
+  `function_exists`, **com controle negativo**.
+- `teste-navegador-visibilidade-ia.mjs`: **124 afirmações em Chromium real com o JavaScript
+  DESLIGADO, 0 falha**, agora nas QUATRO calculadoras que têm as três peças (eram 46 afirmações em
+  duas). É o teste que mede o que esta execução entregou: com o script desligado, a tabela e a
+  resposta direta são a única coisa citável que a página serve.
+- `teste-navegador-c12.mjs`: **84 cenários em Chromium real, todos passaram, console limpo** — a
+  calculadora continua calculando, o teto físico continua estourando onde deve, o bloco de produto
+  continua aparecendo dentro da resposta e o celular de 390 px continua sem rolagem horizontal.
+- `conferir-entidades.mjs`: 0 falhas. **C12 passou a `jsonld_ok=1`** (eram C3, C5 e C15). Zero
+  entidade numérica dentro de `<script>` nas cinco calculadoras. Falta só a C1.
+- JSON-LD analisado como JSON de verdade: 2 nós, 15 perguntas, e conferido item a item que o número
+  do FAQ para 100 L (`125 mL a 1,25 L`) é o MESMO que a tabela servida mostra e o mesmo que a
+  calculadora devolve.
+- `teste-escape-shortcode.php`, `teste-conversor-markdown.php` (17 casos), `teste-apelidos.php` (59
+  afirmações), `conferir-slugs.py`: 0 falha.
+- `validar-produtos.py`: 78 produtos, 0 erro, avisos conhecidos. `validar-especies.py`: 36 espécies,
+  0 erro, 1 aviso conhecido (E15 do guppy).
+- `atualizar-manifest.py`: 4 arquivos com sha novo, **revisão 30**, 0 item com sha vencido.
+
+### O que ficou medido para quem pegar o próximo bloco
+
+**Os testes de navegador desta ilha levam DEZENAS de minutos na nuvem, e o motivo não é o teste.**
+Cada `page.goto()` espera o `load`, e o `load` espera as fontes do Google, que o egresso barra até o
+timeout de 30 s — por navegação. O teste da C12 sozinho faz mais de vinte navegações. Rodar três em
+paralelo é PIOR, não melhor: três Chromiums disputam a mesma máquina e todos rastejam. **Rode um de
+cada vez.** Isso não é defeito de código e não reprova nada — mas é a diferença entre uma execução
+que verifica e uma que desiste de verificar, e é assim que verificação morre.
+
+### NÃO CONCLUÍDO — o site continua fora de alcance, e agora são DEZENOVE revisões paradas
+
+`aquametria.com.br` devolveu **EGRESS_BLOCKED** de novo, testado em `/wp-json/aquametria/v1/status`.
+**O Sync não foi acionado e a revisão aplicada não foi conferida**, então nada desta execução pode
+ser dado por "no ar" — só por "no `main`".
+
+**Repositório na revisão 30; a última medição do site, em 08/09 às 13h03, dizia 11.**
+
+**O que destrava tudo continua sendo um gesto de trinta segundos no Chrome do Raphael:** abrir a URL
+do Sync com `&forcar=1` e, uns cinco minutos depois, conferir que `/wp-json/aquametria/v1/status` diz
+**revisão 30**. Depois disso, a medição do item 1 do despacho: `wp-sitemap.xml` sem
+`/category/uncategorized/`, e essa URL servindo `noindex`.
+
+### Produtos esperando link de afiliado: 39 de 78
+
+Sem mudança — nenhum produto entrou nesta execução. Por marca: 10 Atman, 10 Chihiros, 4 Eheim, 3
+Ocean Tech, 3 SunSun, 2 Hopar, 2 Seachem, 1 cada de Roxin, Ista, WFish, JBL e um sem marca.
+Continua valendo o registrado em 09/09: o número "20 sem loja possível" está VENCIDO e não deve ser
+repetido, porque foi medido quando a Shopee era o único programa. Refazer essa medição exige o painel
+do Mercado Livre aberto, e isso é da Sentinela estratégica.
+
+### Próximo passo desbloqueado
+
+1. **T1 — medir a indexação no Search Console.** Continua sendo o primeiro da fila e continua
+   dependendo do Chrome do Raphael. É ele que autoriza ou barra a T4.
+2. **T7, leva 3: a C1 e depois os três artigos.** É o último par de calculadora sem as três peças —
+   `conferir-entidades.mjs` mostra a C1 como a única com `jsonld_ok=0`. Mesmo molde, agora com DOIS
+   exemplos prontos (C15 e C12) e com o teste de visibilidade já preparado para receber o caso novo:
+   basta acrescentar a C1 em `CASOS`, com o eixo e a âncora dela.
+3. **T3 (catálogo) segue barrado da nuvem** enquanto o egresso bloquear sites de fabricante.

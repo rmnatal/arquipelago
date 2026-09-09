@@ -2,9 +2,9 @@
 ilha: aquametria
 estado: viva
 prioridade: 2
-ultima_execucao: 2026-09-09T21:55Z
-executando_desde: 2026-09-09T23:17Z
-bloco_atual: "despacho 1 e 3 + T2 (SEO tecnico) e T7 par C15 — no main, revisao 29; falta o Sync"
+ultima_execucao: 2026-09-09T23:17Z
+executando_desde: null
+bloco_atual: "T7 par C12 (resposta direta, tabela pre-renderizada e JSON-LD) — no main, revisao 30; falta o Sync"
 ultima_ronda: 2026-09-09T19:40Z
 bloqueada_por: null
 ---
@@ -427,3 +427,60 @@ mídia biológica.
 Chrome do Raphael.
 
 **Próximo passo: T1**, medir a indexação no Search Console — depende do Chrome, não da nuvem.
+
+
+---
+
+# T7 PAR C12 (09/09/2026, execução das 23h17Z) — a quarta calculadora ganhou as três peças da seção 5
+
+Manifest **revisão 30**, C12 na **1.2.0**. Bloco escolhido por ser o primeiro da fila que não depende
+do egresso. A ilha foi sorteada pela seção 1 do contrato — e a **primeira tentativa, na Robometria,
+teve o push da reserva RECUSADO** porque outra execução commitou a reserva dela 13 segundos antes.
+Rebase, volta ao passo 2, Aquametria. A reserva por commit fez exatamente o que promete.
+
+- **As três peças, de uma vez:** resposta antes da explicação (bloco `aqm-c12-direta`, antes do
+  formulário), tabela pré-renderizada de 30 a 300 L com cinco colunas, e JSON-LD no `wp_head` com
+  `WebApplication` e `FAQPage` de 15 perguntas. Nenhuma fórmula mudou e nenhuma dosagem foi escolhida:
+  a página continua publicando as quatro declarações com atribuição e recusando a média.
+- **Tudo sai de espelho em PHP do próprio script** — `mL()`, `litros()`, `pct()`, `ancorasBio()`,
+  `ancorasFiltro()`, função a função. É a mesma regra da C15 e ela não é estética: tabela servida que
+  contradiz a calculadora logo acima dela é pior que tabela nenhuma.
+- **O achado: em quatro dos seis volumes da escada, a dosagem mais generosa NÃO CABE no filtro.**
+  104 % do cesto do Tidal 55 a 100 L, 156 % a 150 L, 208 % a 200 L, 107 % do AT-3338S a 300 L. A
+  coluna do teto físico é a que não existe em português, e pré-renderizá-la tornou visível o que a
+  calculadora só dizia depois de a pessoa preencher o formulário. Critério da célula: entre os filtros
+  que o fabricante DECLARA para aquele volume, o de menor volume declarado — elegibilidade declarada
+  antes de adequação, seção 7.
+- **A constante `AQUAMETRIA_C12_VERSAO` estava mentindo na tela**: tinha ficado em `1.0.1` quando a
+  1.1.0 saiu, e é ela que a página imprime. Acertada para 1.2.0.
+- **VERDE FALSO NO FERRAMENTAL, e é a lição que vale para todo verificador da ilha:**
+  `conferir-protecao-funcoes.py` recebe os arquivos por argumento e, chamado **sem** argumento,
+  varria uma lista vazia e saía 0 em silêncio. Agora varre os snippets da própria ilha por padrão e
+  **reprova quando não acha arquivo nenhum**. Controle negativo conferido. Regra: *instrumento que
+  pode sair 0 sem ter medido nada não é instrumento — todo verificador precisa reprovar quando não
+  mede, nunca aprovar por omissão.*
+- **A C15 tinha as três peças e mesmo assim ficava FORA do teste que as mede.** O bloco de resposta
+  direta dela usava `aqm-c15-citar`, a MESMA classe da caixa de citação do resultado. Ganhou
+  `aqm-c15-direta` e `aqm-c15-bloco-exemplos` — localizadores, não estilo. **Peça entregue sem teste é
+  peça que a próxima sessão quebra sem ninguém notar.**
+- **O teste de visibilidade deixou de cravar litro como eixo.** O eixo é propriedade da CALCULADORA:
+  C3, C5 e C12 respondem por volume de água, a C15 por comprimento do vidro. Exigir litro para todas
+  reprovaria a C15 por estar certa — que é como um teste treina a próxima sessão a ignorá-lo. A casa
+  decimal também virou opcional, porque a C12 imprime "30,0 L" com o mesmo `litros()` da calculadora,
+  e exigir "30 L" cravado reprovaria a tabela por ser FIEL ao script. **De 46 para 124 afirmações, de
+  2 para 4 calculadoras medidas.**
+- **Custo de bancada medido, e vale para a próxima sessão:** os testes de navegador levam dezenas de
+  minutos na nuvem porque cada `page.goto()` espera as fontes do Google até o timeout de 30 s, por
+  navegação. **Rodar três em paralelo é pior que em série** — três Chromiums disputam a máquina.
+- Verificação: `php -l` com controle negativo, `conferir-protecao-funcoes.py` com controle negativo
+  (9 snippets, 34 funções na C12), **124 afirmações com o JavaScript desligado (0 falha)**,
+  **84 cenários da C12 em Chromium real com console limpo**, `conferir-entidades.mjs` 0 falha com a
+  C12 passando a `jsonld_ok=1`, JSON-LD analisado como JSON e conferido contra a tabela servida
+  número a número, validadores de produto e de espécie sem erro novo, manifest sem sha vencido.
+
+**NÃO CONFIRMADO NO AR:** o egresso continua bloqueando `aquametria.com.br`. Repositório na revisão
+**30**, site medido pela última vez na **11** — dezenove revisões paradas. Quem aciona o Sync é a
+Sentinela Técnica no Chrome do Raphael.
+
+**Próximo passo: T1** (Search Console, depende do Chrome) e **T7 leva 3 — a C1**, que é a última
+calculadora sem as três peças e agora tem dois moldes prontos.

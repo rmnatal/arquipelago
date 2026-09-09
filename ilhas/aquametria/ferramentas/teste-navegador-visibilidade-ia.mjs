@@ -26,20 +26,53 @@ const CHROME = process.env.AQM_CHROME || '/opt/pw-browsers/chromium-1194/chrome-
 // faixa de uso real do comercio brasileiro, do nano ao aquario de sala.
 const VOLUMES = ['30', '60', '100', '150', '200', '300'];
 
+// O eixo da tabela e propriedade da CALCULADORA, nao do teste. A C3, a C5 e a
+// C12 respondem por volume de agua; a C15 responde por comprimento do vidro,
+// porque cobertura de luminaria e declarada pelo fabricante em centimetros e
+// nenhuma outra coluna faria sentido ali. Fixar litro para todas reprovaria a
+// C15 por estar certa — que e exatamente o modo como um teste treina a proxima
+// sessao a ignora-lo.
+const EIXO_LITROS = { unidade: 'L', valores: VOLUMES };
+const EIXO_CM     = { unidade: 'cm', valores: ['30', '45', '60', '80', '90', '120'] };
+
 const CASOS = [
   {
-    codigo: 'C3', arquivo: 'c3.html', prefixo: 'aqm-c3',
+    codigo: 'C3', arquivo: 'c3.html', prefixo: 'aqm-c3', eixo: EIXO_LITROS,
     // O numero que a calculadora devolve para 100 L comunitario. Se a tabela
     // pre-renderizada nao disser a mesma coisa, uma das duas esta mentindo.
     ancora: '180 a 1.000',
     nomeApp: /vaz[aã]o/i,
   },
   {
-    codigo: 'C5', arquivo: 'c5.html', prefixo: 'aqm-c5',
+    codigo: 'C5', arquivo: 'c5.html', prefixo: 'aqm-c5', eixo: EIXO_LITROS,
     ancora: '100 a 150',
     nomeApp: /aquecedor/i,
   },
+  {
+    // O que a C12 devolve para 100 L: do piso da Seachem (1,25 mL/L) ao teto da
+    // Ocean Tech (12,50 mL/L). Se a tabela servida nao disser o mesmo, uma das
+    // duas esta mentindo na mesma pagina.
+    codigo: 'C12', arquivo: 'c12.html', prefixo: 'aqm-c12', eixo: EIXO_LITROS,
+    ancora: '125 mL a 1,25 L',
+    nomeApp: /m[ií]dia/i,
+  },
+  {
+    // A C15 tinha as tres pecas desde 09/09/2026 e mesmo assim nunca foi medida
+    // aqui. Entrou junto com a C12 porque peca sem teste e peca que a proxima
+    // sessao quebra sem ninguem notar.
+    codigo: 'C15', arquivo: 'c15.html', prefixo: 'aqm-c15', eixo: EIXO_CM,
+    ancora: '1.150 a 2.300',
+    nomeApp: /ilumina[cç][aã]o/i,
+  },
 ];
+
+// Onde cada peca mora, com tolerancia a duas convencoes de marcacao que a ilha
+// criou em execucoes diferentes: nas primeiras calculadoras a classe -exemplos
+// ficou no BLOCO, nas seguintes ficou na TABELA. Em vez de reescrever paginas no
+// ar so para uniformizar nome de classe, o teste aceita as duas e exige o que
+// importa: que exista um bloco, com uma tabela dentro e um aviso proprio.
+function seletorBloco(p) { return '.' + p + '-bloco-exemplos, .' + p + '-exemplos'; }
+function seletorAviso(p) { return '.' + p + '-aviso-tabela, .' + p + '-aviso-afiliado'; }
 
 let falhas = 0;
 function ok(m, extra)  { console.log('  ok    ' + m + (extra ? ' — ' + extra : '')); }
@@ -96,20 +129,31 @@ for (const caso of CASOS) {
   }
 
   // ------------------------------------------ tabela de exemplos no HTML
-  const tabela = await pagina.$('.' + caso.prefixo + '-exemplos table');
+  const bloco = await pagina.$(seletorBloco(caso.prefixo));
+  conferir(!!bloco, 'o bloco de exemplos existe no HTML servido');
+  const tabela = bloco ? await bloco.$('table') : null;
   conferir(!!tabela, 'a tabela de exemplos existe no HTML servido');
 
   if (tabela) {
     const texto = await tabela.innerText();
-    const faltando = VOLUMES.filter(v => !new RegExp('(^|[^\\d.])' + v + ' L').test(texto));
-    conferir(faltando.length === 0, 'a tabela cobre 30, 60, 100, 150, 200 e 300 L',
-      faltando.length ? 'faltam: ' + faltando.join(', ') : VOLUMES.length + ' volumes');
+    const eixo = caso.eixo;
+    // A casa decimal e opcional de proposito. A C12 imprime o degrau com o mesmo
+    // litros() que a calculadora usa, e abaixo de 100 L esse formatador devolve
+    // "30,0 L" — exatamente o que a calculadora escreve quando a pessoa digita
+    // 30. Exigir "30 L" cravado reprovaria a tabela por ser FIEL ao script, que
+    // e o oposto do que este teste existe para garantir.
+    const faltando = eixo.valores.filter(
+      v => !new RegExp('(^|[^\\d.])' + v + '(,\\d+)? ' + eixo.unidade).test(texto));
+    conferir(faltando.length === 0,
+      'a tabela cobre os seis degraus do eixo desta calculadora ('
+        + eixo.valores.join(', ') + ' ' + eixo.unidade + ')',
+      faltando.length ? 'faltam: ' + faltando.join(', ') : eixo.valores.length + ' degraus');
 
     const linhas = await tabela.$$eval('tr', ns => ns.length);
     conferir(linhas >= 7, 'a tabela tem cabecalho mais seis linhas', linhas + ' linhas');
 
     conferir(texto.includes(caso.ancora),
-      'o numero da tabela bate com o que a calculadora devolve para 100 L', caso.ancora);
+      'o numero da tabela bate com o que a calculadora devolve para o caso ancora', caso.ancora);
 
     // -------------------------------- a coluna de produto (bloco 4c, 09/09/2026)
     // Pedido do Raphael: a tabela pre-renderizada tem de dizer QUAL produto
@@ -144,7 +188,7 @@ for (const caso of CASOS) {
 
     // O aviso de comissao tem de estar visivel JUNTO da tabela, nao so no
     // bloco de resultado que o script pinta depois.
-    const aviso = await pagina.$('.' + caso.prefixo + '-exemplos .' + caso.prefixo + '-aviso-afiliado');
+    const aviso = bloco ? await bloco.$(seletorAviso(caso.prefixo)) : null;
     conferir(!!aviso, 'a tabela carrega o aviso de publicidade dela');
     if (aviso) {
       const t = await aviso.innerText();

@@ -1979,7 +1979,13 @@ function aquametria_c15_resposta_direta_html() {
 	$b60 = aquametria_c15_exemplo( 57.6, 60, 'baixa' );
 	$a60 = aquametria_c15_exemplo( 57.6, 60, 'alta' );
 
-	$h  = '<div class="aqm-c15-citar">';
+	/* A classe -direta é a convenção do arquipélago para "resposta antes da
+	   explicação", e é por ela que o teste de visibilidade em IA acha o bloco.
+	   Até 09/09/2026 este bloco tinha SÓ a -citar, que a C15 já usava na caixa de
+	   citação do resultado: duas coisas diferentes com a mesma classe, e a peça
+	   entregue ficava invisível para quem a mede. O estilo continua vindo da
+	   -citar; a -direta é o localizador. */
+	$h  = '<div class="aqm-c15-citar aqm-c15-direta">';
 	$h .= '<p><strong>A resposta curta.</strong> Um aquário plantado pede de <strong>20 a 40 lúmens por litro</strong> de água real para plantas de exigência média, ';
 	$h .= 'de 10 a 20 lm/L para plantas de baixa exigência e de 40 a 60 lm/L para as de alta exigência, que só fazem sentido com CO2 injetado. ';
 	$h .= 'Num aquário de 60 cm com ' . esc_html( aquametria_c15_litros( 57.6 ) ) . ' litros de água, isso dá ';
@@ -2004,7 +2010,13 @@ function aquametria_c15_resposta_direta_html() {
 /* ---- A tabela de exemplos servida (seção 5, item 1) ---------------------- */
 if ( ! function_exists( 'aquametria_c15_exemplos_html' ) ) {
 function aquametria_c15_exemplos_html() {
-	$h  = '<div class="aqm-c15-painel">';
+	/* A classe -bloco-exemplos marca o BLOCO (painel inteiro); a -exemplos marca a
+	   TABELA. Separá-las é o que permite ao teste-navegador-visibilidade-ia.mjs
+	   medir esta calculadora também: até 09/09/2026 a C15 tinha as três peças da
+	   seção 5 e mesmo assim ficava FORA do teste que as mede, por não ter onde o
+	   teste pendurar o localizador. Peça entregue sem teste é peça que a próxima
+	   sessão pode quebrar sem ninguém notar. */
+	$h  = '<div class="aqm-c15-painel aqm-c15-bloco-exemplos">';
 	$h .= '<h3>Seis aquários já resolvidos, nos três níveis de exigência</h3>';
 	$h .= '<p class="aqm-c15-sub">É a mesma conta do formulário acima, aplicada a seis medidas comuns do comércio brasileiro. ';
 	$h .= 'Estes números estão prontos no HTML desta página — não é preciso preencher nada, e quem lê sem executar JavaScript vê os mesmos valores que a calculadora devolve.</p>';

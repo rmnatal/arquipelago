@@ -1,5 +1,12 @@
 /**
  * Aquametria Calculadora de Mídia Filtrante — C12
+ * Versão: 1.2.0 (09/09/2026) — VISIBILIDADE EM IA (seção 5 do ARQUIPELAGO.md), as três peças de
+ *   uma vez: resposta antes da explicação, tabela de exemplos pré-renderizada de 30 a 300 L e
+ *   JSON-LD com WebApplication e FAQPage no wp_head. Nenhuma fórmula mudou: tudo que a tabela
+ *   servida mostra sai de ESPELHOS em PHP das funções do próprio script (mL, litros, pct,
+ *   ancorasBio, ancorasFiltro), porque tabela servida que contradiz a calculadora logo acima
+ *   dela é pior que tabela nenhuma. A constante de versão também foi acertada: ela tinha ficado
+ *   em 1.0.1 quando a 1.1.0 saiu, e é ela que a página imprime na tela.
  * Versão: 1.1.0 (08/09/2026) — CORREÇÃO GRAVE: o JS e o CSS saíram de dentro do retorno do
  *   shortcode e passaram a ser impressos no wp_head (estilo) e no wp_footer (comportamento).
  *   Dentro do retorno do shortcode eles ainda atravessavam os filtros de texto do conteúdo,
@@ -69,7 +76,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_C12_VERSAO' ) ) {
-	define( 'AQUAMETRIA_C12_VERSAO', '1.0.1' );
+	define( 'AQUAMETRIA_C12_VERSAO', '1.2.0' );
 	define( 'AQUAMETRIA_C12_SLUG', 'calculadora-de-midia-filtrante' );
 	define( 'AQUAMETRIA_C12_VERIFICADO_EM', '08/09/2026' );
 	define( 'AQUAMETRIA_C12_ARTIGO', 'quanta-midia-biologica-o-aquario-precisa' );
@@ -451,11 +458,20 @@ max-width:52rem;font-family:var(--c12-texto);color:var(--c12-tinta);}
 .aqm-c12-citar{background:var(--c12-papel);border:1px dashed var(--c12-traco);border-radius:3px;padding:.85rem 1rem;font-size:.9rem;line-height:1.5;margin:0 0 1rem;}
 .aqm-c12-citar p{margin:0 0 .6rem;}
 .aqm-c12-rolagem{overflow-x:auto;-webkit-overflow-scrolling:touch;}
-.aqm-c12-tabela{width:100%;min-width:32rem;font-size:.86rem;border-collapse:collapse;margin:.4rem 0 0;}
-.aqm-c12-tabela th,.aqm-c12-tabela td{border:1px solid var(--c12-traco);padding:.45rem .6rem;text-align:left;vertical-align:top;}
-.aqm-c12-tabela th{background:var(--c12-papel);font-family:var(--c12-display);font-size:.8rem;}
+.aqm-c12-tabela,.aqm-c12-exemplos{width:100%;min-width:32rem;font-size:.86rem;border-collapse:collapse;margin:.4rem 0 0;}
+.aqm-c12-tabela th,.aqm-c12-tabela td,.aqm-c12-exemplos th,.aqm-c12-exemplos td{border:1px solid var(--c12-traco);padding:.45rem .6rem;text-align:left;vertical-align:top;}
+.aqm-c12-tabela th,.aqm-c12-exemplos th{background:var(--c12-papel);font-family:var(--c12-display);font-size:.8rem;}
 .aqm-c12-tabela td:first-child{font-family:var(--c12-mono);font-size:.8rem;white-space:nowrap;}
 .aqm-c12-tabela td.aqm-c12-num{font-family:var(--c12-mono);font-variant-numeric:tabular-nums;white-space:nowrap;}
+.aqm-c12-exemplos{min-width:46rem;}
+.aqm-c12-exemplos .aqm-c12-num{display:block;font-family:var(--c12-mono);font-variant-numeric:tabular-nums;font-size:.92rem;font-weight:600;color:var(--c12-tinta);line-height:1.25;}
+.aqm-c12-exemplos .aqm-c12-un{display:block;font-size:.76rem;color:var(--c12-legenda);line-height:1.35;margin-top:.15rem;}
+.aqm-c12-exemplos .aqm-c12-estoura{color:var(--c12-alerta);font-weight:600;}
+.aqm-c12-direta{background:var(--c12-papel);border:1px dashed var(--c12-traco);border-radius:3px;padding:.85rem 1rem;font-size:.9rem;line-height:1.55;margin:0 0 1.2rem;}
+.aqm-c12-direta p{margin:0 0 .6rem;}
+.aqm-c12-direta p:last-child{margin-bottom:0;}
+.aqm-c12-aviso-tabela{background:var(--c12-papel);border:1px solid var(--c12-traco);border-left:3px solid var(--c12-alerta);border-radius:2px;padding:.8rem 1rem;font-size:.86rem;line-height:1.5;color:var(--c12-legenda);margin:1rem 0 0;}
+.aqm-c12-aviso-tabela strong{color:var(--c12-tinta);}
 .aqm-c12-selo{display:inline-block;font-family:var(--c12-mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--c12-alerta);border:1px solid var(--c12-alerta);border-radius:2px;padding:.1rem .35rem;}
 .aqm-c12-adiante ul{margin:.5rem 0 0;padding-left:1.1rem;}
 .aqm-c12-adiante li{margin:0 0 .4rem;font-size:.94rem;line-height:1.5;}
@@ -1667,6 +1683,626 @@ function aquametria_c12_adiante_html() {
 }
 
 /* ---------------------------------------------------------------------------
+ * 5b. VISIBILIDADE EM IA (seção 5 do ARQUIPELAGO.md) — as três peças
+ *
+ * Uma calculadora que só calcula em JavaScript mostra a um modelo de linguagem
+ * um formulário VAZIO, nunca um número. As três peças que resolvem isso são a
+ * resposta antes da explicação, a tabela de exemplos já resolvida no HTML
+ * servido e o JSON-LD — e nenhuma delas pode contradizer a calculadora logo
+ * acima dela. Por isso tudo aqui é ESPELHO em PHP das mesmas funções do script,
+ * função a função, e o teste de navegador compara a tabela servida com o que a
+ * calculadora devolve para a mesma entrada.
+ * ------------------------------------------------------------------------- */
+
+/* Espelho em PHP do fmt() do script. */
+if ( ! function_exists( 'aquametria_c12_fmt' ) ) {
+function aquametria_c12_fmt( $n, $casas ) {
+	if ( null === $n || ! is_numeric( $n ) ) {
+		return '—';
+	}
+	return number_format_i18n( $n, $casas );
+}
+}
+
+/* Espelho em PHP do litros() do script. */
+if ( ! function_exists( 'aquametria_c12_litros' ) ) {
+function aquametria_c12_litros( $n ) {
+	if ( null === $n || ! is_numeric( $n ) ) {
+		return '—';
+	}
+	return ( $n >= 100 ) ? aquametria_c12_fmt( round( $n ), 0 ) : aquametria_c12_fmt( round( $n * 10 ) / 10, 1 );
+}
+}
+
+/* Espelho em PHP do mL() do script. Mililitro de mídia é número grosso: ninguém
+   mede 137,5 mL com colher, e acima de 1 L a mídia se compra em litro. Se este
+   arredondamento divergir do JavaScript, a tabela servida passa a afirmar um
+   número e a calculadora outro na mesma página. */
+if ( ! function_exists( 'aquametria_c12_ml' ) ) {
+function aquametria_c12_ml( $n ) {
+	if ( null === $n || ! is_numeric( $n ) ) {
+		return '—';
+	}
+	if ( $n >= 1000 ) {
+		return aquametria_c12_fmt( round( $n / 25 ) * 25 / 1000, 2 ) . ' L';
+	}
+	return aquametria_c12_fmt( round( $n / 5 ) * 5, 0 ) . ' mL';
+}
+}
+
+/* Espelho em PHP do pct() do script. */
+if ( ! function_exists( 'aquametria_c12_pct' ) ) {
+function aquametria_c12_pct( $n ) {
+	if ( null === $n || ! is_numeric( $n ) ) {
+		return '—';
+	}
+	return aquametria_c12_fmt( round( $n ), 0 ) . ' %';
+}
+}
+
+/* Espelho em PHP do ancorasBio(). As âncoras NÃO são digitadas aqui: saem do
+   catálogo embutido, que sai do banco. Mídia nova com dosagem declarada entra
+   na tabela servida sozinha, no próximo gerador de catálogo. */
+if ( ! function_exists( 'aquametria_c12_ancoras_bio' ) ) {
+function aquametria_c12_ancoras_bio() {
+	$out = array();
+	foreach ( aquametria_c12_catalogo_midias() as $m ) {
+		if ( 'biologica' !== $m['tipo'] || null === $m['dose_mL_por_L'] ) {
+			continue;
+		}
+		$out[] = array(
+			'id'          => $m['id'],
+			'marca'       => $m['marca'],
+			'modelo'      => $m['modelo'],
+			'mlL'         => $m['dose_mL_por_L'],
+			'texto'       => $m['dose_texto'],
+			'leitura'     => null,
+			'embalagem_L' => $m['embalagem_L'],
+			'link'        => $m['link'],
+			'verificado'  => $m['verificado_em'],
+		);
+		if ( null !== $m['dose_alt_mL_por_L'] ) {
+			$out[] = array(
+				'id'          => $m['id'] . '-alt',
+				'marca'       => $m['marca'],
+				'modelo'      => $m['modelo'],
+				'mlL'         => $m['dose_alt_mL_por_L'],
+				'texto'       => $m['dose_alt_texto'],
+				'leitura'     => $m['dose_alt_ref'],
+				'embalagem_L' => $m['embalagem_L'],
+				'link'        => $m['link'],
+				'verificado'  => $m['verificado_em'],
+			);
+		}
+	}
+	usort( $out, function ( $a, $b ) {
+		if ( $a['mlL'] === $b['mlL'] ) {
+			return 0;
+		}
+		return ( $a['mlL'] < $b['mlL'] ) ? -1 : 1;
+	} );
+	return $out;
+}
+}
+
+/* Espelho em PHP do ancorasFiltro(). A segunda família: quem vende FILTRO
+   declara quanto de mídia cabe nele e para que aquário ele serve. O divisor é o
+   MAIOR volume declarado, que é a leitura menos favorável ao fabricante. */
+if ( ! function_exists( 'aquametria_c12_ancoras_filtro' ) ) {
+function aquametria_c12_ancoras_filtro() {
+	$out = array();
+	foreach ( aquametria_c12_catalogo_filtros() as $f ) {
+		if ( ! $f['midia_L'] || ! $f['volume_max_L'] ) {
+			continue;
+		}
+		$item = array(
+			'id'           => $f['id'],
+			'marca'        => $f['marca'],
+			'modelo'       => $f['modelo'],
+			'tipo'         => $f['tipo'],
+			'mlL'          => round( $f['midia_L'] * 1000 / $f['volume_max_L'] * 100 ) / 100,
+			'midia_L'      => $f['midia_L'],
+			'volume_max_L' => $f['volume_max_L'],
+			'alt_mlL'      => null,
+			'alt_midia_L'  => null,
+			'verificado'   => $f['verificado_em'],
+		);
+		if ( $f['midia_L_alt'] ) {
+			$item['alt_midia_L'] = $f['midia_L_alt'];
+			$item['alt_mlL']     = round( $f['midia_L_alt'] * 1000 / $f['volume_max_L'] * 100 ) / 100;
+		}
+		$out[] = $item;
+	}
+	usort( $out, function ( $a, $b ) {
+		if ( $a['mlL'] === $b['mlL'] ) {
+			return 0;
+		}
+		return ( $a['mlL'] < $b['mlL'] ) ? -1 : 1;
+	} );
+	return $out;
+}
+}
+
+/* Os seis aquários da tabela servida. Mesma escada de 30 a 300 L da C3 e da C5,
+   de propósito: é a escada que as três calculadoras respondem, e repetir a
+   mesma faixa deixa as três páginas comparáveis entre si. */
+if ( ! function_exists( 'aquametria_c12_casos_exemplo' ) ) {
+function aquametria_c12_casos_exemplo() {
+	return array( 30, 60, 100, 150, 200, 300 );
+}
+}
+
+/* Resolve um volume, com as mesmas regras do calcular() do script. */
+if ( ! function_exists( 'aquametria_c12_exemplo' ) ) {
+function aquametria_c12_exemplo( $volume ) {
+	$bio = array();
+	foreach ( aquametria_c12_ancoras_bio() as $a ) {
+		$bio[] = array( 'ancora' => $a, 'mL' => $a['mlL'] * $volume );
+	}
+
+	$totais = array();
+	foreach ( aquametria_c12_ancoras_filtro() as $a ) {
+		$totais[] = array(
+			'ancora' => $a,
+			'mL'     => $a['mlL'] * $volume,
+			'mL_alt' => ( null === $a['alt_mlL'] ) ? null : $a['alt_mlL'] * $volume,
+		);
+	}
+
+	$piso = $bio ? $bio[0] : null;
+	$teto = $bio ? $bio[ count( $bio ) - 1 ] : null;
+
+	/* A faixa da mídia TOTAL abre em todas as leituras publicadas, inclusive as
+	   alternativas: a C12 publica as duas leituras das fichas ambíguas em vez de
+	   desempatar, e esconder uma delas aqui contradiria a própria página. */
+	$total_min = null;
+	$total_max = null;
+	foreach ( $totais as $t ) {
+		foreach ( array( $t['mL'], $t['mL_alt'] ) as $v ) {
+			if ( null === $v ) {
+				continue;
+			}
+			$total_min = ( null === $total_min || $v < $total_min ) ? $v : $total_min;
+			$total_max = ( null === $total_max || $v > $total_max ) ? $v : $total_max;
+		}
+	}
+
+	/* O TETO FÍSICO, que é a saída que ninguém publica em português: escolhido um
+	   filtro que o fabricante declara atender esse volume, quanto do cesto dele a
+	   dosagem do teto ocuparia só com a camada biológica.
+
+	   Qual filtro: entre os que DECLARAM cobrir o volume, o de menor volume
+	   declarado — é o que a pessoa realmente compraria para aquele aquário, e é a
+	   leitura mais apertada, que é onde o teto estoura. Elegibilidade declarada
+	   primeiro, adequação depois: filtro que o fabricante não declara para o
+	   volume não entra na célula nem em último lugar. */
+	$filtro = null;
+	foreach ( aquametria_c12_ancoras_filtro() as $f ) {
+		if ( $f['volume_max_L'] < $volume ) {
+			continue;
+		}
+		if ( null === $filtro || $f['volume_max_L'] < $filtro['volume_max_L'] ) {
+			$filtro = $f;
+		}
+	}
+
+	$ocupacao = null;
+	if ( $filtro && $teto ) {
+		$ocupacao = $teto['mL'] / ( $filtro['midia_L'] * 1000 ) * 100;
+	}
+
+	/* A mídia do banco para comprar: a primeira da ordem que a própria
+	   calculadora usa — dosagem declarada, da mais econômica para a mais
+	   generosa. Comissão não entra em nenhum degrau (V16); leitura alternativa da
+	   mesma ficha não é produto, então só entra registro de verdade. */
+	$compra = null;
+	foreach ( $bio as $b ) {
+		if ( substr( $b['ancora']['id'], -4 ) === '-alt' ) {
+			continue;
+		}
+		$compra = $b;
+		break;
+	}
+
+	return array(
+		'V'         => $volume,
+		'bio'       => $bio,
+		'piso'      => $piso,
+		'teto'      => $teto,
+		'totais'    => $totais,
+		'total_min' => $total_min,
+		'total_max' => $total_max,
+		'filtro'    => $filtro,
+		'ocupacao'  => $ocupacao,
+		'compra'    => $compra,
+	);
+}
+}
+
+/* O nome como a tela escreve: o banco é gravado sem acento de propósito, e a
+   frase é montada aqui. */
+if ( ! function_exists( 'aquametria_c12_ancora_nome' ) ) {
+function aquametria_c12_ancora_nome( $a ) {
+	return trim( ( $a['marca'] ? $a['marca'] . ' ' : '' ) . $a['modelo'] );
+}
+}
+
+/* A célula do teto físico. Sem filtro que declare cobrir o volume, ela DIZ por
+   quê: bloco vazio é portão (seção 7 do contrato), mas silêncio parece defeito. */
+if ( ! function_exists( 'aquametria_c12_teto_celula_html' ) ) {
+function aquametria_c12_teto_celula_html( $e ) {
+	if ( null === $e['filtro'] || null === $e['ocupacao'] ) {
+		return '<td><span class="aqm-c12-semloja">nenhum filtro do nosso banco declara atender '
+			. esc_html( aquametria_c12_litros( $e['V'] ) ) . ' L, então não há cesto conhecido para medir — '
+			. 'é faixa vazia do catálogo brasileiro, não erro da conta</span></td>';
+	}
+	$f      = $e['filtro'];
+	$estoura = ( $e['ocupacao'] > 100 );
+
+	$h  = '<td><span class="aqm-c12-num' . ( $estoura ? ' aqm-c12-estoura' : '' ) . '">';
+	$h .= esc_html( aquametria_c12_pct( $e['ocupacao'] ) ) . ( $estoura ? ' — não cabe' : '' ) . '</span>';
+	$h .= '<span class="aqm-c12-un">' . esc_html( aquametria_c12_ancora_nome( $f ) ) . ' — cesto de '
+		. esc_html( aquametria_c12_fmt( $f['midia_L'], 1 ) ) . ' L, declarado até '
+		. esc_html( aquametria_c12_fmt( $f['volume_max_L'], 0 ) ) . ' L';
+	$h .= $estoura ? ' · o problema não é a mídia, é o filtro' : '';
+	$h .= '</span></td>';
+	return $h;
+}
+}
+
+/* A célula do produto: a mídia do banco, a quantidade que ESSE fabricante manda
+   pôr nesse aquário, e quanto rende a embalagem. */
+if ( ! function_exists( 'aquametria_c12_compra_celula_html' ) ) {
+function aquametria_c12_compra_celula_html( $e ) {
+	if ( null === $e['compra'] ) {
+		return '<td><span class="aqm-c12-semloja">nenhuma mídia do nosso banco publica dosagem por litro — '
+			. 'sem dosagem declarada não dimensionamos, e não inventamos o número</span></td>';
+	}
+	$c = $e['compra'];
+	$a = $c['ancora'];
+
+	$h  = '<td><span class="aqm-c12-num">' . esc_html( aquametria_c12_ancora_nome( $a ) ) . '</span>';
+	$h .= '<span class="aqm-c12-un">' . esc_html( aquametria_c12_ml( $c['mL'] ) ) . ' pela dosagem que a própria marca publica ('
+		. esc_html( aquametria_c12_fmt( $a['mlL'], 2 ) ) . ' mL/L)';
+
+	if ( $a['embalagem_L'] ) {
+		$embalagens = (int) ceil( $c['mL'] / ( $a['embalagem_L'] * 1000 ) );
+		$rende      = $a['embalagem_L'] * 1000 / $a['mlL'];
+		$h         .= ' · ' . esc_html( aquametria_c12_fmt( $embalagens, 0 ) ) . ( 1 === $embalagens ? ' embalagem de ' : ' embalagens de ' )
+			. esc_html( aquametria_c12_fmt( $a['embalagem_L'], 0 ) ) . ' L, que nessa dosagem rende até '
+			. esc_html( aquametria_c12_litros( $rende ) ) . ' L de aquário';
+	}
+
+	$h .= $a['link'] ? '' : ' · sem link de loja';
+	$h .= '</span></td>';
+	return $h;
+}
+}
+
+/* ---- A resposta antes da explicação (seção 5, item 2 do ARQUIPELAGO.md) ---
+   Frase autossuficiente: precisa sobreviver a ser citada fora de contexto, por
+   um modelo de linguagem que leu só este parágrafo. Por isso repete o número, a
+   unidade, quem declarou e a data em vez de dizer "veja acima". */
+if ( ! function_exists( 'aquametria_c12_resposta_direta_html' ) ) {
+function aquametria_c12_resposta_direta_html() {
+	$e100 = aquametria_c12_exemplo( 100 );
+
+	$piso = $e100['piso'];
+	$teto = $e100['teto'];
+
+	$h  = '<div class="aqm-c12-direta">';
+
+	$h .= '<p><strong>A resposta curta.</strong> Não existe um número: existe uma faixa, e ela é larga porque os fabricantes discordam. ';
+	if ( $piso && $teto ) {
+		$h .= 'Para um aquário de 100 litros de água, as dosagens declaradas pedem de <strong>'
+			. esc_html( aquametria_c12_ml( $piso['mL'] ) ) . ' a ' . esc_html( aquametria_c12_ml( $teto['mL'] ) )
+			. ' de mídia biológica</strong> — ' . esc_html( aquametria_c12_ml( $piso['mL'] ) ) . ' pela leitura mais econômica da '
+			. esc_html( aquametria_c12_ancora_nome( $piso['ancora'] ) ) . ' (' . esc_html( aquametria_c12_fmt( $piso['ancora']['mlL'], 2 ) ) . ' mL por litro de água) ';
+		$h .= 'e ' . esc_html( aquametria_c12_ml( $teto['mL'] ) ) . ' pela ' . esc_html( aquametria_c12_ancora_nome( $teto['ancora'] ) )
+			. ' (' . esc_html( aquametria_c12_fmt( $teto['ancora']['mlL'], 2 ) ) . ' mL/L), que é a única marca brasileira que publica o número. ';
+		$h .= 'São <strong>' . esc_html( aquametria_c12_fmt( round( $teto['ancora']['mlL'] / $piso['ancora']['mlL'] * 10 ) / 10, 1 ) )
+			. ' vezes de diferença</strong> para a mesma função, e nenhuma das duas publica o método de medição. ';
+	}
+	$h .= 'Verificado em ' . esc_html( AQUAMETRIA_C12_VERIFICADO_EM ) . '.</p>';
+
+	$h .= '<p><strong>Por que a Aquametria não escolhe uma delas.</strong> ';
+	$h .= 'Publicar ' . ( $piso ? esc_html( aquametria_c12_fmt( $piso['ancora']['mlL'], 2 ) ) : '1,25' ) . ' mL/L como "o" número seria fingir que a Ocean Tech não existe, e o contrário também. ';
+	$h .= 'Também não tiramos média: a média apagaria justamente o desacordo que faz esta página valer, e não há fonte nenhuma sustentando o valor do meio. ';
+	$h .= 'Cada extremo sai com o nome de quem o declarou, o endereço da ficha e a data em que foi conferido. ';
+	$h .= 'E há um segundo desacordo, entre balcões diferentes: quem vende <em>filtro</em> declara quanto de mídia cabe no aparelho — mídia total, com mecânica e química dentro — ';
+	if ( null !== $e100['total_min'] && null !== $e100['total_max'] ) {
+		$h .= 'o que dá de ' . esc_html( aquametria_c12_ml( $e100['total_min'] ) ) . ' a ' . esc_html( aquametria_c12_ml( $e100['total_max'] ) )
+			. ' para os mesmos 100 L. As duas famílias não se comparam de igual para igual, e por isso saem em tabelas separadas.</p>';
+	} else {
+		$h .= 'e essa segunda família sai em tabela separada, porque não se compara de igual para igual com a primeira.</p>';
+	}
+
+	$h .= '<p><strong>O que ninguém publica, e esta página publica: o teto físico.</strong> ';
+	if ( null !== $e100['ocupacao'] && $e100['filtro'] ) {
+		$h .= 'A dosagem mais generosa nem sempre cabe no filtro que a pessoa tem. Nos mesmos 100 L, os '
+			. esc_html( aquametria_c12_ml( $teto['mL'] ) ) . ' do teto ocupariam <strong>' . esc_html( aquametria_c12_pct( $e100['ocupacao'] ) ) . '</strong> '
+			. 'do cesto do ' . esc_html( aquametria_c12_ancora_nome( $e100['filtro'] ) ) . ' — o menor filtro do nosso banco que o fabricante declara para esse volume — '
+			. 'e isso só com a camada biológica, antes da mecânica e da química. ';
+		$h .= 'Quando estoura, o problema não é a mídia: é o filtro. É conta trivial, e não a encontramos publicada em português. ';
+	}
+	$h .= '</p>';
+
+	$h .= '<p><strong>E o que esta conta não sabe.</strong> As quatro dosagens são por litro de <em>água</em>, mas o trabalho da mídia depende da amônia que entra — ';
+	$h .= 'ou seja, da carga de peixes, que nenhuma das declarações pergunta. Todas dimensionam um processo biológico pela variável errada. ';
+	$h .= 'Registramos isso como constante pendente em vez de esconder: dizer o que a conta não alcança é parte da resposta.</p>';
+
+	$h .= '</div>';
+	return $h;
+}
+}
+
+/* ---- A tabela de exemplos servida (seção 5, item 1) ---------------------- */
+if ( ! function_exists( 'aquametria_c12_exemplos_html' ) ) {
+function aquametria_c12_exemplos_html() {
+	/* A classe -bloco-exemplos marca o BLOCO (painel inteiro); a -exemplos marca a
+	   TABELA. São duas coisas, e separá-las é o que permite ao
+	   teste-navegador-visibilidade-ia.mjs achar a tabela, o aviso e a coluna de
+	   produto sem depender de qual calculadora está sendo medida. */
+	$h  = '<div class="aqm-c12-painel aqm-c12-bloco-exemplos">';
+	$h .= '<h3>Seis aquários já resolvidos, do piso ao teto declarado</h3>';
+	$h .= '<p class="aqm-c12-sub">É a mesma conta do formulário acima, aplicada a seis volumes comuns. ';
+	$h .= 'Estes números estão prontos no HTML desta página — não é preciso preencher nada, e quem lê sem executar JavaScript vê os mesmos valores que a calculadora devolve.</p>';
+
+	/* Classe própria, e não .aqm-c12-tabela: aquela é a tabela de constantes, e o
+	   teste de navegador a localiza pelo seletor. Duas tabelas com a mesma classe
+	   quebram o localizador — foi assim que a C15 custou duas rodadas de teste. */
+	$h .= '<div class="aqm-c12-rolagem"><table class="aqm-c12-exemplos">';
+	$h .= '<tr><th>Aquário</th><th>Mídia biológica, do piso ao teto</th>';
+	$h .= '<th>Mídia TOTAL que quem vende filtro reserva</th>';
+	$h .= '<th>Teto físico: quanto o teto ocuparia do cesto</th>';
+	$h .= '<th>Mídia do banco para esse aquário</th></tr>';
+
+	foreach ( aquametria_c12_casos_exemplo() as $volume ) {
+		$e = aquametria_c12_exemplo( $volume );
+
+		$h .= '<tr>';
+		$h .= '<td><span class="aqm-c12-num">' . esc_html( aquametria_c12_litros( $volume ) ) . ' L</span>';
+		$h .= '<span class="aqm-c12-un">de água real, não a etiqueta do aquário</span></td>';
+
+		if ( $e['piso'] && $e['teto'] ) {
+			$h .= '<td><span class="aqm-c12-num">' . esc_html( aquametria_c12_ml( $e['piso']['mL'] ) ) . ' a '
+				. esc_html( aquametria_c12_ml( $e['teto']['mL'] ) ) . '</span>';
+			$h .= '<span class="aqm-c12-un">' . esc_html( aquametria_c12_ancora_nome( $e['piso']['ancora'] ) ) . ' ('
+				. esc_html( aquametria_c12_fmt( $e['piso']['ancora']['mlL'], 2 ) ) . ' mL/L) → '
+				. esc_html( aquametria_c12_ancora_nome( $e['teto']['ancora'] ) ) . ' ('
+				. esc_html( aquametria_c12_fmt( $e['teto']['ancora']['mlL'], 2 ) ) . ' mL/L)</span></td>';
+		} else {
+			$h .= '<td><span class="aqm-c12-semloja">sem dosagem declarada no banco</span></td>';
+		}
+
+		if ( null !== $e['total_min'] && null !== $e['total_max'] ) {
+			$h .= '<td><span class="aqm-c12-num">' . esc_html( aquametria_c12_ml( $e['total_min'] ) ) . ' a '
+				. esc_html( aquametria_c12_ml( $e['total_max'] ) ) . '</span>';
+			$h .= '<span class="aqm-c12-un">' . esc_html( aquametria_c12_fmt( count( $e['totais'] ), 0 ) )
+				. ' filtros do banco, todas as camadas juntas</span></td>';
+		} else {
+			$h .= '<td><span class="aqm-c12-semloja">nenhum filtro do banco declara volume útil de mídia</span></td>';
+		}
+
+		$h .= aquametria_c12_teto_celula_html( $e );
+		$h .= aquametria_c12_compra_celula_html( $e );
+		$h .= '</tr>';
+	}
+
+	$h .= '</table></div>';
+
+	$h .= '<p class="aqm-c12-criterio" style="margin-top:.8rem">Como ler a tabela. ';
+	$h .= 'A primeira coluna é o volume de <strong>água real</strong>, não o número da etiqueta: é sobre a água que existe que a conta é feita, e é por isso que a calculadora de litragem vem antes desta. ';
+	$h .= 'A segunda coluna abre na dosagem declarada mais econômica e fecha na mais generosa, com o nome de quem declarou cada extremo — não é uma faixa de segurança nossa, é o tamanho do desacordo entre fabricantes. ';
+	$h .= 'A terceira é a outra família de âncoras, a de quem vende filtro, e mede mídia <strong>total</strong>: mecânica, biológica e química somadas. As duas não se comparam de igual para igual, e por isso estão em colunas separadas em vez de numa faixa só. ';
+	$h .= 'A quarta é o teto físico, e é a coluna que não existe em nenhum outro lugar em português. ';
+	$h .= 'Nenhum valor desta tabela foi digitado à mão: todos saem das mesmas regras que a calculadora usa, calculados no servidor a cada carregamento.</p>';
+
+	$divulgacao = aquametria_c12_url( AQUAMETRIA_C12_PAGINA_AFILIADOS );
+
+	/* Classe própria, e não a do aviso de publicidade do bloco de produto: o teste
+	   de navegador localiza aquele por .aqm-c12-aviso-afiliado em modo estrito, e
+	   duas ocorrências da mesma classe quebram o localizador. */
+	$h .= '<p class="aqm-c12-aviso-tabela"><strong>Sobre a última coluna.</strong> ';
+	$h .= 'Ela mostra a mídia do banco técnico da Aquametria que abre a faixa — a de dosagem declarada mais econômica — com a quantidade calculada pela dosagem que <em>aquela</em> marca publica, nunca por um número escolhido por nós. ';
+	$h .= 'A ordem é essa e só essa: dosagem declarada, da mais econômica para a mais generosa. A comissão não entra em degrau nenhum, e mídia sem link de loja aparece do mesmo jeito e no mesmo lugar — a coluna diz quando é o caso. ';
+	$h .= 'Escolher a mais econômica não é dizer que ela é a melhor: é o piso da faixa, e a página inteira existe para mostrar que o teto está dez vezes acima dele. ';
+	$h .= 'Alguns desses nomes levam a lojas por link de afiliado, marcado como patrocinado: se você comprar por ele, a Aquametria pode receber comissão, sem custo a mais para você. ';
+	$h .= 'Não publicamos preço aqui, porque preço muda toda semana e número velho na tela é pior que nenhum. ';
+	$h .= '<a href="' . esc_url( $divulgacao ) . '">Como a Aquametria ganha dinheiro</a>.</p>';
+
+	$h .= '</div>';
+	return $h;
+}
+}
+
+/* ---- JSON-LD (seção 5, item 3) ------------------------------------------
+ * Sai no wp_head, e por isso NUNCA dentro do retorno do shortcode: o retorno
+ * atravessa os filtros do the_content, que trocariam cada "&" pela entidade
+ * numérica e quebrariam o JSON tanto quanto quebraram o JavaScript em 08/09.
+ *
+ * Cada resposta do FAQ existe, com o mesmo número, na tabela servida acima —
+ * FAQPage que promete o que a página não mostra é lixo, e seria lixo detectável.
+ * ---------------------------------------------------------------------- */
+if ( ! function_exists( 'aquametria_c12_jsonld_dados' ) ) {
+function aquametria_c12_jsonld_dados() {
+	$url    = aquametria_c12_url( AQUAMETRIA_C12_SLUG );
+	$artigo = aquametria_c12_url( AQUAMETRIA_C12_ARTIGO );
+
+	$editora = array(
+		'@type' => 'Organization',
+		'name'  => 'Aquametria',
+		'url'   => home_url( '/' ),
+	);
+
+	$app = array(
+		'@type'                  => 'WebApplication',
+		'@id'                    => $url . '#calculadora',
+		'name'                   => 'Calculadora de mídia filtrante para aquário',
+		'alternateName'          => 'Aquametria C12 — quanta mídia biológica o aquário precisa',
+		'url'                    => $url,
+		'inLanguage'             => 'pt-BR',
+		'applicationCategory'    => 'UtilitiesApplication',
+		'applicationSubCategory' => 'Calculadora de dimensionamento de aquário',
+		'operatingSystem'        => 'Qualquer navegador com JavaScript',
+		'browserRequirements'    => 'Requer JavaScript. O cálculo roda no navegador e nenhum dado é enviado a servidor.',
+		'isAccessibleForFree'    => true,
+		'offers'                 => array(
+			'@type'         => 'Offer',
+			'price'         => '0',
+			'priceCurrency' => 'BRL',
+		),
+		'softwareVersion' => AQUAMETRIA_C12_VERSAO,
+		'description'     => 'Converte o volume real de água no volume de mídia biológica que cada fabricante declara, publicando as quatro dosagens lado a lado '
+			. 'em vez de escolher uma delas ou tirar média. Cruza esse volume com o cesto do filtro para mostrar o teto físico — quanto da capacidade de mídia '
+			. 'a camada biológica ocuparia — e avisa quando a dosagem simplesmente não cabe no aparelho.',
+		'featureList' => array(
+			'Volume de mídia biológica pelas quatro dosagens declaradas por fabricante, cada uma com o nome da marca',
+			'Faixa do piso ao teto, com a divergência de dez vezes publicada em vez de escondida',
+			'Segunda família de âncoras: a mídia total que quem vende filtro reserva no aparelho',
+			'Teto físico — quanto do cesto do filtro a camada biológica ocuparia, com aviso quando estoura',
+			'Dosagem de mídia química calculada pela declaração de cada fabricante, sem média inventada',
+			'Ordem das camadas no cesto, com fonte, e recusa explícita de repartir o cesto em porcentagens',
+			'Calendário de troca de perlon, carvão e cerâmica a partir da data da última manutenção',
+			'Tabela pré-calculada para seis aquários de 30 a 300 L, já no HTML servido',
+		),
+		'publisher'        => $editora,
+		'isBasedOn'        => 'Fichas de fabricante e de varejo especializado coletadas pela Aquametria até ' . AQUAMETRIA_C12_VERIFICADO_EM,
+		'mainEntityOfPage' => $artigo,
+	);
+
+	$perguntas = array();
+
+	foreach ( aquametria_c12_casos_exemplo() as $volume ) {
+		$e = aquametria_c12_exemplo( $volume );
+		if ( ! $e['piso'] || ! $e['teto'] ) {
+			continue;
+		}
+
+		$texto = 'Um aquário com ' . aquametria_c12_litros( $volume ) . ' litros de água real pede de '
+			. aquametria_c12_ml( $e['piso']['mL'] ) . ' a ' . aquametria_c12_ml( $e['teto']['mL'] ) . ' de mídia biológica, '
+			. 'dependendo de qual fabricante você seguir: ' . aquametria_c12_ml( $e['piso']['mL'] ) . ' pela leitura mais econômica da '
+			. aquametria_c12_ancora_nome( $e['piso']['ancora'] ) . ' (' . aquametria_c12_fmt( $e['piso']['ancora']['mlL'], 2 ) . ' mL por litro de água) '
+			. 'e ' . aquametria_c12_ml( $e['teto']['mL'] ) . ' pela ' . aquametria_c12_ancora_nome( $e['teto']['ancora'] ) . ' ('
+			. aquametria_c12_fmt( $e['teto']['ancora']['mlL'], 2 ) . ' mL/L). '
+			. 'A Aquametria publica os dois extremos com o nome de quem declarou cada um e não tira média entre eles, '
+			. 'porque a média apagaria o desacordo e não há fonte nenhuma sustentando o valor do meio. ';
+
+		if ( null !== $e['total_min'] && null !== $e['total_max'] ) {
+			$texto .= 'Quem vende filtro declara outra coisa — mídia total, com mecânica e química dentro — e para esse volume isso daria de '
+				. aquametria_c12_ml( $e['total_min'] ) . ' a ' . aquametria_c12_ml( $e['total_max'] ) . '. '
+				. 'As duas famílias não se comparam de igual para igual. ';
+		}
+
+		$texto .= 'Verificado em ' . AQUAMETRIA_C12_VERIFICADO_EM . '.';
+
+		$perguntas[] = array(
+			'@type'          => 'Question',
+			'name'           => 'Quanta mídia biológica para um aquário de ' . aquametria_c12_litros( $volume ) . ' litros?',
+			'acceptedAnswer' => array( '@type' => 'Answer', 'text' => $texto ),
+		);
+	}
+
+	foreach ( aquametria_c12_casos_exemplo() as $volume ) {
+		$e = aquametria_c12_exemplo( $volume );
+		if ( null === $e['ocupacao'] || ! $e['filtro'] || ! $e['teto'] ) {
+			continue;
+		}
+
+		$estoura = ( $e['ocupacao'] > 100 );
+		$texto   = 'Depende do filtro, e é uma conta que quase ninguém faz antes de comprar a mídia. '
+			. 'O menor filtro do banco técnico da Aquametria que o fabricante declara para ' . aquametria_c12_litros( $volume )
+			. ' L é o ' . aquametria_c12_ancora_nome( $e['filtro'] ) . ', com cesto de '
+			. aquametria_c12_fmt( $e['filtro']['midia_L'], 1 ) . ' L de volume útil de mídia declarado para até '
+			. aquametria_c12_fmt( $e['filtro']['volume_max_L'], 0 ) . ' L de aquário. '
+			. 'A dosagem do teto (' . aquametria_c12_ancora_nome( $e['teto']['ancora'] ) . ', '
+			. aquametria_c12_fmt( $e['teto']['ancora']['mlL'], 2 ) . ' mL/L) pede ' . aquametria_c12_ml( $e['teto']['mL'] )
+			. ', que ocupa ' . aquametria_c12_pct( $e['ocupacao'] ) . ' desse cesto — e isso só com a camada biológica, antes da mecânica e da química. ';
+
+		if ( $estoura ) {
+			$texto .= 'Ou seja: nesse volume a dosagem mais generosa NÃO CABE no aparelho. Quando isso acontece, o problema não é a mídia, é o filtro — '
+				. 'e a saída honesta é filtro maior, não espremer mídia num cesto que não comporta.';
+		} else {
+			$texto .= 'Ou seja: nesse volume até a dosagem mais generosa cabe, e ainda sobra espaço para as outras camadas.';
+		}
+
+		$perguntas[] = array(
+			'@type'          => 'Question',
+			'name'           => 'A mídia biológica cabe no filtro de um aquário de ' . aquametria_c12_litros( $volume ) . ' litros?',
+			'acceptedAnswer' => array( '@type' => 'Answer', 'text' => $texto ),
+		);
+	}
+
+	$perguntas[] = array(
+		'@type'          => 'Question',
+		'name'           => 'Quantos mililitros de mídia biológica por litro de água?',
+		'acceptedAnswer' => array(
+			'@type' => 'Answer',
+			'text'  => 'Os fabricantes que publicam o número declaram de 1,25 a 12,50 mL de mídia biológica por litro de água — dez vezes de diferença para a mesma função. '
+				. 'Seachem Matrix: 1,25 mL/L numa leitura da própria copy ("250 mL para 200 L") e 2,64 mL/L noutra ("1 L para 100 galões"), o mesmo fabricante discordando de si mesmo por 2,1 vezes. '
+				. 'JBL MicroMec: 5,00 mL/L (650 g, que é 1 L, para 200 L). Ocean Tech Bio Glass: 12,50 mL/L (1 L para cada 80 L), a única marca brasileira que publica o número. '
+				. 'A Aquametria publica as quatro com atribuição e data em vez de escolher uma, e não tira média — nenhuma fonte sustenta o valor do meio. '
+				. 'Pior: a marca que declara MAIS área por litro de mídia é a que pede DEZ VEZES menos mídia, o inverso do que se esperaria, e nenhuma das quatro publica método de medição.',
+		),
+	);
+
+	$perguntas[] = array(
+		'@type'          => 'Question',
+		'name'           => 'Encher o cesto do filtro de mídia biológica é melhor?',
+		'acceptedAnswer' => array(
+			'@type' => 'Answer',
+			'text'  => 'Não é o que os fabricantes declaram, e em vários volumes o cesto nem comporta a dosagem mais generosa: '
+				. 'num aquário de 200 L, os 2,50 L que a dosagem do teto pede ocupariam 208 % do cesto de 1,2 L do Seachem Tidal 55, '
+				. 'que é o menor filtro do nosso banco declarado para esse volume — ou seja, não cabe, e isso só com a camada biológica. '
+				. 'O cesto tem de acomodar as três camadas — mecânica, biológica e química — e a Aquametria publica a ORDEM delas, que tem fonte, '
+				. 'em 6 posições (cerâmica ou argila expandida, perlon, carvão, perlon, cerâmica, perlon), mas se recusa a repartir o cesto em porcentagens: '
+				. 'nenhuma fonte do levantamento declara essa proporção, e inventar percentuais seria exatamente o tipo de número que este site existe para não publicar. '
+				. 'O que dá para dizer com número é o teto físico: quanto do volume útil de mídia declarado pelo fabricante do filtro cada dosagem ocuparia. '
+				. 'E há uma regra de segurança que vale mais que qualquer volume: nunca lave toda a mídia biológica de uma vez, e nunca em água de torneira — '
+				. 'o cloro existe para matar bactéria, e é a colônia nitrificante que faz a filtragem funcionar.',
+		),
+	);
+
+	$perguntas[] = array(
+		'@type'          => 'Question',
+		'name'           => 'Por que a quantidade de mídia não depende de quantos peixes eu tenho?',
+		'acceptedAnswer' => array(
+			'@type' => 'Answer',
+			'text'  => 'Porque nenhuma das dosagens declaradas pergunta isso — e essa é a crítica de fundo que a Aquametria registra em vez de esconder. '
+				. 'As quatro dosagens são por litro de água, mas o trabalho da mídia depende da amônia que entra no sistema, ou seja, da carga de peixes e de ração. '
+				. 'Dois aquários de 100 L com lotações muito diferentes recebem a mesma recomendação de mídia de todos os fabricantes. '
+				. 'Todas dimensionam um processo biológico pela variável errada. A constante que fecharia isso — taxa de nitrificação por área de mídia — '
+				. 'não foi encontrada publicada com fonte, e por isso está registrada como pendente e NÃO entra em nenhuma fórmula desta página. '
+				. 'Constante pendente dentro de fórmula publicada é proibida na Aquametria.',
+		),
+	);
+
+	$faq = array(
+		'@type'      => 'FAQPage',
+		'@id'        => $url . '#faq',
+		'inLanguage' => 'pt-BR',
+		'url'        => $url,
+		'mainEntity' => $perguntas,
+	);
+
+	return array(
+		'@context' => 'https://schema.org',
+		'@graph'   => array( $app, $faq ),
+	);
+}
+}
+
+if ( ! function_exists( 'aquametria_c12_imprimir_jsonld' ) ) {
+function aquametria_c12_imprimir_jsonld() {
+	$json = wp_json_encode( aquametria_c12_jsonld_dados(), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE );
+	if ( ! $json ) {
+		return;
+	}
+	echo '<script type="application/ld+json" id="aquametria-c12-jsonld">' . "\n" . $json . "\n" . '</script>' . "\n";
+}
+}
+
+/* ---------------------------------------------------------------------------
  * 6. Entrega do estilo e do comportamento — FORA do retorno do shortcode
  *
  * REGRA PERMANENTE DO PROJETO, escrita com sangue em 08/09/2026: JS e CSS de
@@ -1721,6 +2357,7 @@ function aquametria_c12_cabeca() {
 		return;
 	}
 	aquametria_c12_imprimir_estilo();
+	aquametria_c12_imprimir_jsonld();
 }
 }
 add_action( 'wp_head', 'aquametria_c12_cabeca', 20 );
@@ -1757,8 +2394,10 @@ function aquametria_c12_shortcode() {
 	add_action( 'wp_footer', 'aquametria_c12_rodape', 20 );
 
 	$h  = '<div class="aqm-c12">';
+	$h .= aquametria_c12_resposta_direta_html();
 	$h .= aquametria_c12_form_html();
 	$h .= aquametria_c12_resposta_html();
+	$h .= aquametria_c12_exemplos_html();
 	$h .= aquametria_c12_tenho_html();
 	$h .= aquametria_c12_fontes_html();
 	$h .= aquametria_c12_adiante_html();
