@@ -2719,3 +2719,19 @@ antes deste lote.
    `-200w`, `-300w`, `chihiros-wrgb-ii-pro-60`, `ista-i-401-45`, `sunsun-ade-400c`,
    `seachem-matrix-1l`, `eheim-substrat-pro-1l`): já vendem, e vão para a vitrine sem foto.
 4. Continuam **10 produtos esperando `afiliado.url`** — a lista da leva anterior não mudou.
+
+### NÃO CONCLUÍDO — o Sync não foi acionado, e agora são DUAS revisões paradas
+
+Esta sessão **não alcança o site**: `aquametria.com.br` devolve `EGRESS_BLOCKED` no proxy de saída,
+tanto na URL do Sync quanto em `/wp-json/aquametria/v1/status`. Não foi possível acionar o
+desembarque nem conferir a revisão aplicada, então **este bloco está entregue no `main` e não está
+no ar** — exatamente como a revisão 18 da leva anterior.
+
+**O repositório está na revisão 19. O site está pelo menos oito revisões atrás.** Alguém com
+navegador precisa abrir a URL do Sync com `&forcar=1` (a chave está na memória e não entra neste
+arquivo, que pode virar público) e, uns cinco minutos depois, conferir que
+`/wp-json/aquametria/v1/status` diz **revisão 19**. A Sentinela Técnica das 11h30 roda no Chrome do
+Raphael e alcança o site; esta sessão, não.
+
+Enquanto isso não for feito, o que está no ar continua sem as 21 fotos, sem os 20 produtos novos,
+sem o aquecedor de 150 W que fecha a janela da C5 e sem as duas Chihiros da C15.
