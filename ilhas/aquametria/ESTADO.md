@@ -1,3 +1,13 @@
+---
+ilha: aquametria
+estado: viva
+prioridade: 2
+ultima_execucao: 2026-09-09T16:00Z
+executando_desde: null
+bloco_atual: "4c"
+bloqueada_por: null
+---
+
 # ESTADO da ilha Aquametria — cópia da memória para sessões SEM ferramenta de memória
 
 Gerado em 06/09/2026 a partir de /areas/projeto-aquametria.md e /areas/aquametria-corpus-buscas.md.

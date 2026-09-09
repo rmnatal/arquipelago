@@ -3157,3 +3157,25 @@ promessa acima do formulário, barra fixa no rodapé do celular enquanto o resul
 fora da tela, e rolagem automática até o resultado com `scroll-margin-top`. As 24 imagens
 do banco só chegam ao visitante nesse bloco. **Se não couber numa execução, entregar por
 calculadora** — começando pela C3, que é a que tem mais itens com foto e link (6 de 13).
+
+## 2026-09-09 — Reorganizacao do Arquipelago aplicada (execucao excepcional, sem bloco da fila)
+
+- Disparo excepcional: a fila de blocos da Aquametria ficou parada de proposito.
+  Nenhum snippet foi tocado, nada foi publicado e o Sync **nao** foi acionado.
+- O Arquipelago deixou de ter uma Fundacao por ilha e passou a ter **uma
+  Fundacao com despachante**, que escolhe a ilha mais atrasada a cada execucao:
+  - criado o `ARQUIPELAGO.md` na raiz, contrato comum a todas as ilhas;
+  - criado o `ilhas/aquametria/PROMPT.md`, com o que e so desta ilha
+    (identidade, endpoints, quem verifica, memoria e fila de blocos);
+  - acrescentado ao topo do `ESTADO.md` desta ilha o cabecalho YAML que o
+    despachante le (`estado: viva`, `prioridade: 2`,
+    `ultima_execucao: 2026-09-09T16:00Z`, `bloco_atual: "4c"`), sem tirar
+    nenhuma linha do que ja existia;
+  - criada a segunda ilha, `ilhas/robometria/`, com pastas, `manifest.json` na
+    revisao 0, `README.md`, `PROMPT.md`, `ESTADO.md` e `REGISTRO.md`;
+  - criado o modelo de ilha nova em `ilhas/_modelo/`;
+  - o `README.md` da raiz ganhou a secao que explica a estrutura nova.
+- **Proximo passo da Aquametria: sem mudanca — continua o bloco 4c**, retrofit
+  de visibilidade em IA, na ordem C3 e C5, depois C12 e C15, depois C1 e os
+  artigos. A partir de agora a fila desta ilha mora em
+  `ilhas/aquametria/PROMPT.md`, e as regras comuns no `ARQUIPELAGO.md` da raiz.
