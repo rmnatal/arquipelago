@@ -2,9 +2,9 @@
 ilha: robometria
 estado: nascendo
 prioridade: 1
-ultima_execucao: 2026-09-09T19:23Z
-executando_desde: 2026-09-09T19:38Z
-bloco_atual: "3"
+ultima_execucao: 2026-09-09T19:38Z
+executando_desde: null
+bloco_atual: "3c"
 bloqueada_por: null
 ---
 
@@ -18,11 +18,15 @@ Espelho legível do estado do projeto. **Nunca guarde credencial aqui.**
 - **Hospedagem:** domínio adicional já criado no cPanel da HostGator, com raiz
   própria — mesmo plano da Aquametria, custo extra zero.
 - **DNS:** nameservers `ns604.hostgator.com.br` e `ns605.hostgator.com.br`
-  apontados no registro.br. Aguardando propagação.
-- **WordPress:** ainda **NÃO instalado**. A instalação espera a propagação do
-  DNS.
-- **Snippet de Sync:** ainda não existe. Enquanto ele não existir, nada desta
-  pasta chega a lugar nenhum — o que é esperado, porque não há site.
+  apontados no registro.br.
+- **WordPress:** o último estado confirmado neste arquivo é **não instalado**.
+  **A nuvem não consegue verificar isso**: `robometria.com.br` devolveu
+  EGRESS_BLOCKED nesta execução (09/09/2026, 19h4x UTC), e isso é por desenho —
+  a seção 12 do `ARQUIPELAGO.md` já diz que a verificação de site precisa do
+  computador do Raphael. Quem atualiza esta linha é quem tem navegador: a
+  Sentinela, ou o próprio Raphael. **A Fundação não escreve aqui infraestrutura
+  que não mediu.**
+- **Snippet de Sync:** ainda não existe. Depende do wp-admin.
 - **Identidade visual:** aprovada pelo Raphael em 09/09/2026. Paleta, tipografia
   e a geometria do símbolo estão no `PROMPT.md` desta pasta.
 
@@ -31,68 +35,109 @@ Sem credenciais neste arquivo.
 ## O que já foi entregue
 
 - 09/09/2026 — pasta da ilha criada dentro da reorganização do Arquipélago em
-  uma única Fundação com despachante. Nenhum bloco da fila foi executado ainda.
-- 09/09/2026 — **Bloco 1 entregue**: `dados/corpus-buscas.md` com o
-  levantamento de buscas paramétricas, separado nos eixos compatibilidade
-  (filtro, escova lateral, mop, bateria) e dimensionamento (Pa, m², autonomia,
-  pelo de pet), procedência marcada consulta a consulta (busca web, página de
-  fabricante, marketplace, fórum, YouTube). Sem acesso a ferramenta de volume
-  de busca nesta coleta — o arquivo diz isso explicitamente em vez de inventar
-  número. Lista inicial de modelos e códigos de peça (Multilaser HO041 e
-  variantes, Positivo PRA500/PRA1000/PRA8000/PRA2000, Xiaomi Mop/Mop 2/S20/
-  S40/H40, iRobot Roomba série s, Velds RALW-C, WAP W90/W100/W400, Electrolux
-  ERB44) fica registrada para o Bloco 3, mas nenhum dado técnico foi copiado
-  para banco — precisa reconfirmação na fonte primária antes disso.
-- 09/09/2026 — **Bloco 2 entregue**: `dados/especificacao-calculadoras.md` e
-  `dados/constantes.json` (manifest na revisão 2). As duas ferramentas âncora
-  estão especificadas ponta a ponta — **R1**, localizador de peça compatível
-  por modelo, e **R2**, dimensionador de sucção e autonomia — com entrada,
-  saída, elegibilidade, tabela de exemplos pré-renderizada, JSON-LD e a
-  classificação de SERP da consulta-alvo de cada uma, como manda a seção 14.9
-  do contrato. 21 constantes gravadas, cada uma com classe de fonte, URL,
-  canal de coleta e data.
-- Três decisões de projeto que este bloco fixa: (1) a R1 **nunca infere
-  compatibilidade** — cada par peça × modelo sai com um de três selos
-  (`declarada_fabricante`, `declarada_terceiro`, `nao_declarada`), e o selo
-  aparece na frase; (2) **divergência de compatibilidade resolve pelo conjunto
-  MAIS ESTREITO**, ao contrário da regra do banco de espécies da Aquametria,
-  que resolve pelo maior — a assimetria de custo decide a direção, porque aqui
-  errar para o lado largo faz alguém comprar peça que não encaixa; (3) a R2
-  publica **ciclos e tempo real até terminar** a partir de dado declarado, em
-  vez de inventar uma taxa de m² por minuto.
+  uma única Fundação que escolhe a ilha de cada execução (seção 1 do contrato).
+- 09/09/2026 — **Bloco 1**: `dados/corpus-buscas.md`, levantamento de buscas
+  paramétricas separado nos eixos compatibilidade (filtro, escova lateral, mop,
+  bateria) e dimensionamento (Pa, m², autonomia, pelo de pet), com procedência
+  marcada consulta a consulta. Sem ferramenta de volume de busca nessa coleta —
+  o arquivo diz isso em vez de inventar número.
+- 09/09/2026 — **Bloco 2**: `dados/especificacao-calculadoras.md` e
+  `dados/constantes.json`. As duas ferramentas âncora especificadas ponta a
+  ponta — **R1**, localizador de peça compatível por modelo, e **R2**,
+  dimensionador de sucção e autonomia — com entrada, saída, elegibilidade,
+  tabela de exemplos pré-renderizada, JSON-LD e classificação de SERP da
+  consulta-alvo. 21 constantes, cada uma com classe de fonte, URL, canal de
+  coleta e data.
+- 09/09/2026 — **Bloco 3 entregue: o modelo do banco existe e é verificável.**
+  `dados/esquema-banco.json` (contrato das entidades MARCA, MODELO_ROBO, PEÇA e
+  COTAÇÃO), `dados/marcas.json` (4), `dados/modelos-robo.json` (17) e
+  `dados/pecas.json` (8 peças, **10 pares peça × modelo, todos declarados pelo
+  fabricante e nenhum inferido**), mais `ferramentas/validar-banco.py`, que roda
+  sem rede e reprova o banco quando alguma invariante do esquema é violada.
+  Manifest na revisão 3.
+
+### As três decisões que este bloco fixa
+
+1. **`variante_de_hardware` é campo de primeira classe.** O fabricante vende
+   duas baterias diferentes para o **mesmo** código de modelo: a PR10127
+   ("Versão A") e a PR8116 ("Mars HO041 versão B"). Saber que o robô é um HO041
+   **não basta** para acertar a peça. Consequência escrita na especificação da
+   R1: quando o modelo tem mais de uma variante conhecida, a ferramenta mostra
+   as duas e explica como a pessoa descobre qual é a dela — devolver uma só
+   seria adivinhar, que é o defeito que esta ilha existe para não cometer.
+2. **Todo número é `{valor, fonte, declarado_como}`.** Número solto não entra:
+   sem a transcrição do texto do fabricante, a página parafraseia em vez de
+   citar, e a frase citável com procedência é justamente o que a seção 5 do
+   contrato exige. Onde o fabricante não declara, o valor é `null` **com
+   motivo** — e o motivo vai para a tela com essas palavras.
+3. **Categoria é portão, e o verificador o aplica.** Registro com
+   `categoria != robo` não pode ser `publicavel`, e o `validar-banco.py` falha
+   se alguém tentar.
+
+## O que este bloco descobriu, e vale dinheiro
+
+- **Pendência do Bloco 2 resolvida:** HO011 e HO012 são aspirador de pó
+  **vertical e de mão 2 em 1** (127 V/1000 W e 220 V/700 W, pelos títulos das
+  páginas do próprio fabricante), **não** robôs. Logo o filtro PR684 não é peça
+  de robô e ficou excluído, com a fonte, para nenhuma execução futura recolhê-lo
+  de novo.
+- **Quatro modelos novos com categoria confirmada pelo fabricante**: HO407
+  (Duster), OB010 (ObaDuster), HO243 (Hydra / Acqua Solution, 90 min declarados)
+  e HO411 (Midnight, com lâmina oficial em PDF esperando o egresso abrir).
+- **Duas peças novas**: o pano PR10342, que fecha o cluster A3 do corpus (mop),
+  que até agora não tinha nenhum item; e a bateria PR8116.
+- **Duas divergências resolvidas pelo conjunto mais estreito**, com as duas
+  declarações publicadas: o filtro PR10205 (dois canais do fabricante discordam
+  sobre o OB010) e a bateria PR8116, cuja divergência está **dentro de uma única
+  página** — o título promete "Mars, Moon e Duster" e o endereço da mesma página
+  diz "Mars HO041 versão B".
+- **O PRA800 tem 2.800 Pa** e portanto fica **abaixo** dos dois limiares que as
+  fontes editoriais recomendam para casa com pet (3.000 Pa no Mundo Conectado,
+  4.000 Pa no Canaltech). É um caso limpo da regra de elegibilidade da seção 7:
+  ele não pode encabeçar a lista de uma consulta com pet.
 
 ## O que este bloco deliberadamente NÃO fez
 
-- **Não criou a taxa de cobertura m²/min.** O banco tem um único par (minutos,
-  m²) declarado por fabricante — os 162 m² em até 120 min do Electrolux ERB44.
-  Um ponto não é um coeficiente, então a constante entrou com status `pendente`
-  e **proibida dentro de fórmula publicada**, por força da seção 10 do
-  contrato. Sai de pendente com 5 pares declarados, de marcas diferentes, e
-  ainda assim publica faixa com a dispersão à mostra, nunca a média.
-- **Quatro números ficaram `nao_publicavel` por atribuição incerta** (a faixa
-  de 5.000–10.000 Pa para carpete, o mínimo de 3.000 Pa para piso frio e a vida
-  útil da escova lateral): apareceram em resumo agregado de busca sem que desse
-  para dizer qual veículo os publica. Número sem autor identificado não vai para
-  a tela.
-- **O filtro PR550 (HO03/HO04) foi excluído do banco**: é peça de aspirador de
-  pó 2 em 1, não de robô. Ficou registrado justamente para a próxima execução
-  não recolhê-lo de novo achando que é robô.
-- **Correção no corpus do Bloco 1:** `PRA8000` não existe em canal oficial
-  nenhum; a linha da Positivo é PRA500, PRA800, PRA1000 e PRA2000. Vale
-  `PRA800`, e nenhum dado técnico foi herdado do nome errado.
+- **Não converteu W em Pa.** O HO041 declara 30 W de potência e nenhum Pa.
+  Potência não é sucção e não existe conversão: `pa_declarado` ficou null com
+  esse motivo escrito.
+- **Não emprestou vida útil de um fabricante para a peça de outro.** O único
+  número de fabricante que a ilha tem é o do manual da Electrolux (6 meses para
+  o filtro HEPA do ERB10/ERB11/ERB20) e ele vale para **aqueles** modelos. As
+  peças da Multi ficaram com `vida_util_declarada` null e motivo.
+- **Não coletou nenhuma imagem.** O campo `imagem{}` existe em todo registro,
+  com a forma completa e `url` null — o egresso barra os domínios de fabricante
+  e de varejo, então não há como baixar nem medir o arquivo. Pela seção 6 do
+  contrato, isso **não** elimina o registro da vitrine: ele aparece com espaço
+  reservado neutro e o nome em destaque.
+- **Não tirou a taxa de cobertura m²/min de `pendente`.** Continua havendo um
+  único par (minutos, m²) declarado por fabricante — os 162 m² em até 120 min do
+  ERB44. Faltam pelo menos quatro pares, de marcas diferentes.
 
 ## O que está travando
 
-Nada. A falta de WordPress **não** é bloqueio: os blocos 1 (feito), 2 (feito) e
-3 (modelo do banco) são de pesquisa e modelagem e rodam sem infraestrutura. Por
-isso `bloqueada_por` continua `null`.
+Nada que pare a fila. Os blocos 1, 2 e 3 eram de pesquisa e modelagem e estão
+entregues; **`bloqueada_por` continua `null`** e continua sendo erro marcar
+bloqueio por causa de infraestrutura.
 
-Nada desta pasta está publicado, e isso é esperado: os três itens do manifest
-estão com `publicar: false` porque são pesquisa, e o site ainda não existe. Não
-há Sync para acionar nem `/status` para conferir — a seção 4 do contrato passa a
-valer nesta ilha quando houver WordPress.
+O bloco **3b, casca do site, é o primeiro que depende do WordPress**: ele só
+começa quando houver Sync, e o Sync só nasce no wp-admin. Enquanto isso, o
+trabalho desbloqueado é **3c — expandir o banco**, e ele vem antes do bloco 6
+(prospecção do widget) por um motivo medido, não por gosto: hoje só **dois**
+modelos do banco têm `pa_declarado`, então a lista de recomendados da R2 sairia
+praticamente vazia em qualquer entrada. Faixa descoberta é a única urgência de
+catálogo (seção 14.3), e número redondo de itens não é critério.
+
+Nada desta pasta está publicado, e isso é esperado: os sete itens do manifest
+estão com `publicar: false` porque são pesquisa, e o Sync ainda não existe. A
+seção 4 do contrato (o site fica para trás em silêncio) passa a valer nesta ilha
+no dia em que o snippet entrar. Itens esperando link de afiliado: **18** (12
+modelos e 6 peças) — o campo `afiliado.url` já nasce presente e vazio em todos.
 
 Uma coleta segue em aberto, e não é bloqueio: o egresso HTTP direto está fechado
-(`multilaser.com.br` e `manuals.plus` devolveram EGRESS_BLOCKED em 09/09/2026),
-então tudo foi colhido por busca restrita ao domínio. A leitura direta das
-páginas de peça e dos manuais em PDF é trabalho a fazer, não dependência humana.
+(`multilaser.com.br`, `suporte.multilaser.com.br`, `lamina.multilaser.com.br`,
+`arquivos.multilaser.com.br`, `mi.com` e `manuals.plus` devolveram
+EGRESS_BLOCKED em 09/09/2026), então tudo foi colhido por busca restrita ao
+domínio, com o canal declarado campo a campo. A leitura direta das páginas de
+peça, das lâminas e dos manuais em PDF é trabalho a fazer, não dependência
+humana.

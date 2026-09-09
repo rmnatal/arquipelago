@@ -1,0 +1,50 @@
+{
+  "id": "marcas",
+  "ilha": "robometria",
+  "entidade": "marca",
+  "esquema": "dados/esquema-banco.json",
+  "gerado_em": "2026-09-09",
+  "nota_de_procedencia": "Coleta de 09/09/2026 por busca web restrita ao dominio de cada fabricante. O egresso HTTP direto desta nuvem esta fechado para multilaser.com.br, suporte.multilaser.com.br, lamina.multilaser.com.br, arquivos.multilaser.com.br, mi.com e manuals.plus (EGRESS_BLOCKED, medido nesta execucao). sameAs[] alimenta o JSON-LD Organization.",
+  "registros": [
+    {
+      "id": "multi",
+      "nome": "Multi (ex-Multilaser)",
+      "site_oficial": "https://www.multilaser.com.br/",
+      "canal_de_pecas": "https://www.multilaser.com.br/multilaser/pecas-de-reposicao/eletroportateis/acessorios-p--aspirador-robo-po",
+      "sameAs": [
+        "https://www.multilaser.com.br/",
+        "https://www.multilaserempresas.com.br/",
+        "https://suporte.multilaser.com.br/"
+      ],
+      "observacao": "E a marca mais importante desta ilha porque e a unica da coleta que publica pagina de PECA com codigo proprio e lista de modelos compativeis — que e exatamente o dado que a R1 vende. Tem TRES canais proprios (varejo, empresas e suporte) e eles ja divergiram entre si sobre compatibilidade nesta coleta: por isso o campo 'canal' existe em divergencias[]. A linha ObaDuster/Obabox (OB010) e vendida dentro do mesmo canal e nao foi separada como marca propria.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "electrolux",
+      "nome": "Electrolux",
+      "site_oficial": "https://loja.electrolux.com.br/",
+      "canal_de_pecas": null,
+      "sameAs": ["https://loja.electrolux.com.br/"],
+      "observacao": "Unica marca da coleta que declara COBERTURA EM M2 POR CARGA (162 m2 no ERB44). Esse par (minutos, m2) e a base do exemplo trabalhado da R2 e, hoje, o unico par declarado que o banco tem.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "xiaomi",
+      "nome": "Xiaomi",
+      "site_oficial": "https://www.mi.com/br/",
+      "canal_de_pecas": null,
+      "sameAs": ["https://www.mi.com/br/"],
+      "observacao": "Publica ficha de especificacao completa e limpa (Pa, mAh, minutos, recarga) e NAO declara cobertura em m2. Esse silencio e o achado: a conversao minutos -> m2 nao existe em fonte nenhuma, e e o vacuo que a R2 ocupa.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "positivo",
+      "nome": "Positivo Casa Inteligente",
+      "site_oficial": "https://www.positivocasainteligente.com.br/",
+      "canal_de_pecas": null,
+      "sameAs": ["https://www.positivocasainteligente.com.br/"],
+      "observacao": "Linha em canal oficial: PRA500, PRA800, PRA1000 e PRA2000. O corpus do Bloco 1 registrou um 'PRA8000' que nao existe em canal nenhum — quase certamente erro de transcricao de PRA800. Nenhum dado tecnico foi herdado do nome errado.",
+      "verificado_em": "2026-09-09"
+    }
+  ]
+}

@@ -1,0 +1,1619 @@
+{
+  "id": "modelos-robo",
+  "ilha": "robometria",
+  "entidade": "modelo-robo",
+  "esquema": "dados/esquema-banco.json",
+  "gerado_em": "2026-09-09",
+  "nota_de_procedencia": "Coleta de 09/09/2026. O egresso HTTP direto desta nuvem esta fechado: multilaser.com.br, suporte.multilaser.com.br, lamina.multilaser.com.br, arquivos.multilaser.com.br e mi.com devolveram EGRESS_BLOCKED nesta execucao. Todo campo abaixo saiu de busca restrita ao dominio da fonte, e o canal de coleta esta declarado campo a campo. A leitura direta dos manuais e laminas continua sendo coleta em aberto — e trabalho a fazer, nao dependencia humana.",
+  "contagem": {
+    "total": 17,
+    "publicavel": 12,
+    "nao_publicavel": 1,
+    "excluido_do_banco": 4,
+    "esperando_link_de_afiliado": 12
+  },
+  "lista_de_compras": [
+    {
+      "codigo": "PRA500",
+      "marca": "positivo",
+      "por_que": "e literalmente a consulta-alvo da R1 na especificacao ('qual filtro serve no robo aspirador Positivo PRA500'). Categoria e ficha por confirmar em canal oficial."
+    },
+    {
+      "codigo": "PRA1000 e PRA2000",
+      "marca": "positivo",
+      "por_que": "completam a linha declarada em canal oficial; nenhum dado colhido"
+    },
+    {
+      "codigo": "Mop, Mop 2, Mop 2 Lite, S40, H40",
+      "marca": "xiaomi",
+      "por_que": "a Xiaomi publica ficha completa e limpa — e a fonte de maior rendimento por consulta para fechar pares (minutos, m2) e mAh"
+    },
+    {
+      "codigo": "ERB10, ERB11, ERB20, ERB44 (numeros)",
+      "marca": "electrolux",
+      "por_que": "a Electrolux e a unica marca que declara m2 por carga; cada modelo dela vale um par para tirar a taxa de cobertura de pendente"
+    },
+    {
+      "codigo": "Roomba serie s",
+      "marca": "irobot",
+      "por_que": "marca de referencia do nicho, ausente do banco"
+    },
+    {
+      "codigo": "W90, W100, W400",
+      "marca": "wap",
+      "por_que": "citada no corpus do Bloco 1, sem nenhuma coleta ainda"
+    },
+    {
+      "codigo": "RALW-C",
+      "marca": "velds",
+      "por_que": "citada no corpus do Bloco 1, sem nenhuma coleta ainda"
+    }
+  ],
+  "prioridade_de_coleta": "A urgencia de catalogo desta ilha NAO e numero de itens (secao 14.3 do ARQUIPELAGO.md descartou meta redonda). E: (1) fechar pares (minutos, m2) declarados, porque sao eles que tiram a taxa de cobertura de pendente e destravam a R2 fora do ERB44; (2) fechar pa_declarado, porque sem ele nenhum modelo passa na elegibilidade da R2 e a lista sai vazia; (3) confirmar categoria dos codigos que so aparecem em lista de compatibilidade.",
+  "registros": [
+    {
+      "id": "multi-ho041",
+      "marca": "multi",
+      "linha": "Mars",
+      "codigo_fabricante": "HO041",
+      "nome_comercial": "Aspirador de Po Robo Mars 3 em 1 (varre, aspira e passa pano)",
+      "categoria": "robo",
+      "variantes_de_hardware": [
+        {
+          "rotulo": "A",
+          "o_que_muda": "bateria — o fabricante vende a peca PR10127 identificada como 'Versao A'",
+          "fonte": "f-bateria-a"
+        },
+        {
+          "rotulo": "B",
+          "o_que_muda": "bateria — o fabricante vende a peca PR8116 identificada como 'Mars HO041 versao B'",
+          "fonte": "f-bateria-b"
+        }
+      ],
+      "pa_declarado": {
+        "valor": null,
+        "unidade": "Pa",
+        "motivo_do_null": "o fabricante nao declara sucao em Pa para este modelo. Declara 30 W de potencia — e potencia NAO e sucao. Converter W em Pa seria dado inventado"
+      },
+      "potencia_w_declarada": {
+        "valor": 30,
+        "unidade": "W",
+        "fonte": "f-empresas",
+        "declarado_como": "Bivolt com 30W"
+      },
+      "autonomia_min_declarada": {
+        "valor": 120,
+        "unidade": "min",
+        "fonte": "f-suporte",
+        "declarado_como": "AUTONOMIA DE 2 HORAS"
+      },
+      "cobertura_m2_declarada": {
+        "valor": null,
+        "unidade": "m2",
+        "motivo_do_null": "o fabricante nao declara area coberta por carga para este modelo. Sem esse numero a R2 mostra so a autonomia e diz isso ao visitante — nao converte minutos em m2"
+      },
+      "recarga_min_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "retoma_apos_recarga": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "bateria_mah": {
+        "valor": null,
+        "unidade": "mAh",
+        "motivo_do_null": "o fabricante nao declara este numero em canal oficial nenhum desta coleta (a pagina diz 'Bateria Recarregavel', sem capacidade)"
+      },
+      "voltagem": {
+        "valor": "bivolt",
+        "unidade": "V",
+        "fonte": "f-empresas",
+        "declarado_como": "Bivolt"
+      },
+      "base_autoesvaziamento": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "navegacao": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "reservatorio_po_ml": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "reservatorio_agua_ml": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso desta nuvem barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R2"
+      },
+      "fontes": {
+        "f-empresas": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "Multi (multilaserempresas.com.br)",
+          "titulo_na_fonte": "Aspirador de Po Robo Mars Varre + Aspira + Passa Pano Bivolt com 30W e Bateria Recarregavel, Vermelho/Preto Multi - HO041",
+          "url": "https://www.multilaserempresas.com.br/produto/eletroportateis-para-sua-casa/lar/aspiradores/aspirador-de-po-robo-mars-varre-+-aspira-+-passa-pano-bivolt-com-30w-e-bateria-recarregavel--vermelhopreto-multi--ho041/HO041/",
+          "canal_de_coleta": "busca web restrita aos dominios multilaser.com.br, multilaserempresas.com.br e suporte.multilaser.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
+          "verificado_em": "2026-09-09"
+        },
+        "f-suporte": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "Multi (suporte.multilaser.com.br)",
+          "titulo_na_fonte": "ASPIRADOR ROBO MARS BIVOLT VARRE, ASPIRA E PASSA PANO, SISTEMA ANTI-QUEDA, AUTONOMIA DE 2 HORAS, 3 FUNCOES PRE-PROGRAMADAS, IDEAL PARA PETS",
+          "url": "https://suporte.multilaser.com.br/produtos/aspirador-robo-mars-bivolt-ho041/duvidas-frequentes",
+          "canal_de_coleta": "busca web restrita aos dominios multilaser.com.br, multilaserempresas.com.br e suporte.multilaser.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
+          "verificado_em": "2026-09-09"
+        },
+        "f-bateria-a": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "Multi (multilaser.com.br)",
+          "titulo_na_fonte": "Bateria p/ Aspirador Robo Ho041 Versao A - PR10127",
+          "url": "https://www.multilaser.com.br/bateria-p-aspirador-robo-ho041-versao-a-pr10127/p",
+          "canal_de_coleta": "busca web restrita aos dominios multilaser.com.br, multilaserempresas.com.br e suporte.multilaser.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
+          "verificado_em": "2026-09-09"
+        },
+        "f-bateria-b": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "Multi (multilaserempresas.com.br)",
+          "titulo_na_fonte": "Bateria Para Aspirador Robo Mars, Moon e Duster Multi - PR8116 (endereco da propria pagina: 'bateria-para-aspirador-robo-mars-ho041-versao-b--pr8116')",
+          "url": "https://www.multilaserempresas.com.br/produto/eletroportateis-para-sua-casa/lar/aspiradores/bateria-para-aspirador-robo-mars-ho041-versao-b--pr8116/PR8116/",
+          "canal_de_coleta": "busca web restrita aos dominios multilaser.com.br, multilaserempresas.com.br e suporte.multilaser.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "ACHADO QUE MUDA O MODELO DO BANCO: o mesmo codigo HO041 tem DUAS baterias de reposicao com codigos diferentes, separadas pelo proprio fabricante como versao A e versao B. Saber o codigo do modelo NAO basta para acertar a peca. Por isso variante_de_hardware virou campo de primeira classe neste bloco, e a R1 tem que avisar quando existe mais de uma variante em vez de devolver uma peca so.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "multi-ho400",
+      "marca": "multi",
+      "linha": "Mars",
+      "codigo_fabricante": "HO400",
+      "nome_comercial": "Aspirador de Po Robo Mars (Multi Home)",
+      "categoria": "robo",
+      "variantes_de_hardware": [],
+      "pa_declarado": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "potencia_w_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "autonomia_min_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "cobertura_m2_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "recarga_min_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "retoma_apos_recarga": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "bateria_mah": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "voltagem": {
+        "valor": "bivolt",
+        "unidade": "V",
+        "fonte": "f-empresas",
+        "declarado_como": "Bivolt"
+      },
+      "base_autoesvaziamento": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "navegacao": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "reservatorio_po_ml": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "reservatorio_agua_ml": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso desta nuvem barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R2"
+      },
+      "fontes": {
+        "f-empresas": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "Multi (multilaserempresas.com.br)",
+          "titulo_na_fonte": "Aspirador de Po Robo Mars Varre, Aspira e Passa Pano Bivolt e Bateria Recarregavel Multi Home - HO400",
+          "url": "https://www.multilaserempresas.com.br/produto/eletroportateis-para-sua-casa/lar/aspiradores/aspirador-de-po-robo-mars-varre--aspira-e-passa-pano-bivolt-e-bateria-recarregavel-multi-home--ho400/HO400/",
+          "canal_de_coleta": "busca web restrita aos dominios multilaser.com.br, multilaserempresas.com.br e suporte.multilaser.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "publicavel",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "multi-ho407",
+      "marca": "multi",
+      "linha": "Duster",
+      "codigo_fabricante": "HO407",
+      "nome_comercial": "Aspirador Robo Duster 3 em 1",
+      "categoria": "robo",
+      "variantes_de_hardware": [],
+      "pa_declarado": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "potencia_w_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "autonomia_min_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "cobertura_m2_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "recarga_min_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "retoma_apos_recarga": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "bateria_mah": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "voltagem": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "base_autoesvaziamento": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "navegacao": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "reservatorio_po_ml": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "reservatorio_agua_ml": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso desta nuvem barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R2"
+      },
+      "fontes": {
+        "f-duster": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "Multi (multilaser.com.br)",
+          "titulo_na_fonte": "Aspirador Robo 3 em 1 Varre, Aspira e Passa Pano Duster Multi - HO407OUT [Reembalado]",
+          "url": "https://www.multilaser.com.br/aspirador-robo-3-em-1-varre-aspira-e-passa-pano-duster-multi-ho407out/p",
+          "canal_de_coleta": "busca web restrita aos dominios multilaser.com.br, multilaserempresas.com.br e suporte.multilaser.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "A categoria 'robo' vem do titulo da pagina do SKU reembalado (HO407OUT), que e canal do proprio fabricante. A pagina do SKU novo nao apareceu nesta coleta — reconfirmar no canal principal e item da lista de compras.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "multi-ho401",
+      "marca": "multi",
+      "linha": "Moon (a confirmar)",
+      "codigo_fabricante": "HO401",
+      "nome_comercial": "Aspirador robo (nome comercial nao confirmado)",
+      "categoria": "a_confirmar",
+      "variantes_de_hardware": [],
+      "pa_declarado": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "potencia_w_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "autonomia_min_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "cobertura_m2_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "recarga_min_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "retoma_apos_recarga": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "bateria_mah": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "voltagem": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "base_autoesvaziamento": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "navegacao": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "reservatorio_po_ml": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "reservatorio_agua_ml": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso desta nuvem barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R2"
+      },
+      "fontes": {
+        "f-peca": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "Multi (multilaser.com.br)",
+          "titulo_na_fonte": "Escova Lateral para Aspirador Robo Mars, Moon e Duster - PR10124",
+          "url": "https://www.multilaser.com.br/escova-lateral-para-aspirador-robo-ho041-e-ob010/p",
+          "canal_de_coleta": "busca web restrita aos dominios multilaser.com.br, multilaserempresas.com.br e suporte.multilaser.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "nao_publicavel",
+      "motivo_do_status": "O codigo HO401 so aparece DENTRO da lista de compatibilidade da peca PR10124. Nenhuma pagina de produto propria foi localizada nesta coleta, entao a categoria nao esta confirmada pelo fabricante — e categoria e portao. Fica no banco, e nao publicavel, justamente para a peca poder apontar para um registro em vez de apontar para o vazio.",
+      "observacao": "Nao confundir com o HO411 (Midnight), que tem lamina propria.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "multi-ob010",
+      "marca": "multi",
+      "linha": "ObaDuster (Obabox)",
+      "codigo_fabricante": "OB010",
+      "nome_comercial": "Aspirador Robo ObaDuster 3 em 1",
+      "categoria": "robo",
+      "variantes_de_hardware": [],
+      "pa_declarado": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "potencia_w_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "autonomia_min_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "cobertura_m2_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "recarga_min_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "retoma_apos_recarga": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "bateria_mah": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "voltagem": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "base_autoesvaziamento": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "navegacao": {
+        "valor": "aleatoria",
+        "fonte": "f-obaduster",
+        "declarado_como": "sensor de obstaculos: entende quando tem degrau ou desnivel e nao cai; percebe obstaculos e nao fica batendo nos moveis. Tres rotinas de faxina programadas"
+      },
+      "reservatorio_po_ml": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "reservatorio_agua_ml": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso desta nuvem barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R2"
+      },
+      "fontes": {
+        "f-obaduster": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "Multi (multilaserempresas.com.br e multilaser.com.br)",
+          "titulo_na_fonte": "Aspirador Robo 3 Em 1 Varre, Aspira E Passa Pano Obaduster Obabox - OB010",
+          "url": "https://www.multilaserempresas.com.br/produto/eletroportateis-para-sua-casa/lar/aspiradores/aspirador-robo-3-em-1-varre--aspira-e-passa-pano-obaduster-obabox--ob010/OB010/",
+          "canal_de_coleta": "busca web restrita aos dominios multilaser.com.br, multilaserempresas.com.br e suporte.multilaser.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "O fabricante declara que 'sobe na maioria dos tapetes sozinho' — declaracao qualitativa, sem altura em mm e sem Pa, entao NAO sustenta elegibilidade em carpete na R2. E o tipo de frase que um anuncio transforma em especificacao; aqui ela fica onde e: observacao, nao campo.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "multi-ho243",
+      "marca": "multi",
+      "linha": "Acqua Solution / Hydra",
+      "codigo_fabricante": "HO243",
+      "nome_comercial": "Aspirador Robo Hydra (Acqua Solution)",
+      "categoria": "robo",
+      "variantes_de_hardware": [],
+      "pa_declarado": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "potencia_w_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "autonomia_min_declarada": {
+        "valor": 90,
+        "unidade": "min",
+        "fonte": "f-suporte",
+        "declarado_como": "AUTONOMIA DE 90 MINUTOS"
+      },
+      "cobertura_m2_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "recarga_min_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "retoma_apos_recarga": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "bateria_mah": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "voltagem": {
+        "valor": "bivolt",
+        "unidade": "V",
+        "fonte": "f-suporte",
+        "declarado_como": "BIVOLT"
+      },
+      "base_autoesvaziamento": {
+        "valor": false,
+        "fonte": "f-suporte",
+        "declarado_como": "BASE CARREGADORA — o fabricante declara base de CARGA, e base de carga nao e base de autoesvaziamento"
+      },
+      "navegacao": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "reservatorio_po_ml": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "reservatorio_agua_ml": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso desta nuvem barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R2"
+      },
+      "fontes": {
+        "f-suporte": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "Multi (suporte.multilaser.com.br)",
+          "titulo_na_fonte": "ASPIRADOR ROBO HYDRA BIVOLT VARRE, ASPIRA E PASSA PANO, COM RESERVATORIO DE AGUA, BASE CARREGADORA, SISTEMA ANTI-QUEDA, AUTONOMIA DE 90 MINUTOS",
+          "url": "https://suporte.multilaser.com.br/produtos/aspirador-robo-acqua-solution-ho243/duvidas-frequentes",
+          "canal_de_coleta": "busca web restrita aos dominios multilaser.com.br, multilaserempresas.com.br e suporte.multilaser.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "DIVERGENCIA DE NOME dentro do proprio canal: o titulo diz 'HYDRA' e o endereco da mesma pagina diz 'acqua-solution'. Os dois nomes ficam gravados porque a pessoa pode digitar qualquer um dos dois na R1.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "multi-ho411",
+      "marca": "multi",
+      "linha": "Midnight",
+      "codigo_fabricante": "HO411",
+      "nome_comercial": "Aspirador Robo Midnight",
+      "categoria": "robo",
+      "variantes_de_hardware": [],
+      "pa_declarado": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "potencia_w_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "autonomia_min_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "cobertura_m2_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "recarga_min_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "retoma_apos_recarga": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "bateria_mah": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "voltagem": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "base_autoesvaziamento": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "navegacao": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "reservatorio_po_ml": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "reservatorio_agua_ml": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso desta nuvem barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R2"
+      },
+      "fontes": {
+        "f-lamina": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "Multi (lamina.multilaser.com.br)",
+          "titulo_na_fonte": "Aspirador Robo Midnight",
+          "url": "https://lamina.multilaser.com.br/ho411.pdf",
+          "canal_de_coleta": "busca web restrita aos dominios multilaser.com.br, multilaserempresas.com.br e suporte.multilaser.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao); a lamina oficial em PDF existe e devolveu EGRESS_BLOCKED na leitura direta",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "Categoria confirmada pelo titulo da lamina oficial do proprio fabricante. Nenhum numero foi colhido: a lamina e fonte de nivel 2 e esta a um WebFetch de distancia assim que o egresso abrir. E o registro de maior retorno por leitura pendente que este banco tem.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "electrolux-erb44",
+      "marca": "electrolux",
+      "linha": null,
+      "codigo_fabricante": "ERB44",
+      "nome_comercial": "Robo Aspirador Electrolux 4 em 1 Wi-Fi Experience",
+      "categoria": "robo",
+      "variantes_de_hardware": [],
+      "pa_declarado": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "potencia_w_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "autonomia_min_declarada": {
+        "valor": 120,
+        "unidade": "min",
+        "fonte": "f-loja",
+        "declarado_como": "ate 2h"
+      },
+      "cobertura_m2_declarada": {
+        "valor": 162,
+        "unidade": "m2",
+        "fonte": "f-loja",
+        "declarado_como": "ate 162 m2 com ate 2h de bateria"
+      },
+      "recarga_min_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "retoma_apos_recarga": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "bateria_mah": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "voltagem": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "base_autoesvaziamento": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "navegacao": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "reservatorio_po_ml": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "reservatorio_agua_ml": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso desta nuvem barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R2"
+      },
+      "fontes": {
+        "f-loja": {
+          "nivel": 4,
+          "origem": "varejo-oficial-da-marca",
+          "publicador": "Electrolux (loja oficial)",
+          "titulo_na_fonte": "Robo Aspirador Electrolux 4 em 1 Wi-Fi Experience ate 2h (ERB44)",
+          "url": "https://loja.electrolux.com.br/robo-aspirador-electrolux-4-em-1-wi-fi-experience-ate-2h-azul--erb44-/p",
+          "canal_de_coleta": "busca web (coleta do Bloco 2, reaproveitada aqui com a mesma data)",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "UNICO par (minutos, m2) declarado por fabricante que o banco tem. E a base do exemplo trabalhado da R2 e NAO e base suficiente para uma taxa geral de m2/min — faltam pelo menos quatro pares, de marcas diferentes, para a constante taxa-cobertura-m2-por-min sair de pendente. Cuidado ao publicar mais de um ciclo com ele: retoma_apos_recarga esta null, e sem esse campo a R2 nao publica multiplos ciclos.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "electrolux-erb10",
+      "marca": "electrolux",
+      "linha": null,
+      "codigo_fabricante": "ERB10",
+      "nome_comercial": "Robo Aspirador Electrolux ERB10",
+      "categoria": "robo",
+      "variantes_de_hardware": [],
+      "pa_declarado": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "potencia_w_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "autonomia_min_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "cobertura_m2_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "recarga_min_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "retoma_apos_recarga": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "bateria_mah": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "voltagem": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "base_autoesvaziamento": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "navegacao": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "reservatorio_po_ml": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "reservatorio_agua_ml": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso desta nuvem barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R2"
+      },
+      "fontes": {
+        "f-manual": {
+          "nivel": 2,
+          "origem": "manual-fabricante",
+          "publicador": "Electrolux (manual hospedado por terceiro em manuals.plus)",
+          "titulo_na_fonte": "Manual do usuario do aspirador robo Electrolux ERB10/ERB11/ERB20",
+          "url": "https://manuals.plus/m/a7d2cf5766298ebb7449842933ed52fe8a527804e53e3684a681bae94bdf7a78",
+          "canal_de_coleta": "busca web restrita ao dominio manuals.plus (WebFetch direto devolveu EGRESS_BLOCKED)",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "Categoria confirmada pelo titulo do manual do proprio fabricante. Nenhuma especificacao numerica foi colhida; o valor deste registro hoje e ancorar a vida util de 6 meses do filtro HEPA, que o manual declara para os tres modelos e que DIVERGE do que os veiculos editoriais dizem (3 meses e 2-3 meses). O manual esta hospedado por terceiro: reler no PDF oficial da Electrolux e coleta em aberto.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "electrolux-erb11",
+      "marca": "electrolux",
+      "linha": null,
+      "codigo_fabricante": "ERB11",
+      "nome_comercial": "Robo Aspirador Electrolux ERB11",
+      "categoria": "robo",
+      "variantes_de_hardware": [],
+      "pa_declarado": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "potencia_w_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "autonomia_min_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "cobertura_m2_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "recarga_min_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "retoma_apos_recarga": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "bateria_mah": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "voltagem": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "base_autoesvaziamento": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "navegacao": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "reservatorio_po_ml": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "reservatorio_agua_ml": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso desta nuvem barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R2"
+      },
+      "fontes": {
+        "f-manual": {
+          "nivel": 2,
+          "origem": "manual-fabricante",
+          "publicador": "Electrolux (manual hospedado por terceiro em manuals.plus)",
+          "titulo_na_fonte": "Manual do usuario do aspirador robo Electrolux ERB10/ERB11/ERB20",
+          "url": "https://manuals.plus/m/a7d2cf5766298ebb7449842933ed52fe8a527804e53e3684a681bae94bdf7a78",
+          "canal_de_coleta": "busca web restrita ao dominio manuals.plus (WebFetch direto devolveu EGRESS_BLOCKED)",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "Categoria confirmada pelo titulo do manual do proprio fabricante. Nenhuma especificacao numerica foi colhida; o valor deste registro hoje e ancorar a vida util de 6 meses do filtro HEPA, que o manual declara para os tres modelos e que DIVERGE do que os veiculos editoriais dizem (3 meses e 2-3 meses). O manual esta hospedado por terceiro: reler no PDF oficial da Electrolux e coleta em aberto.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "electrolux-erb20",
+      "marca": "electrolux",
+      "linha": null,
+      "codigo_fabricante": "ERB20",
+      "nome_comercial": "Robo Aspirador Electrolux ERB20",
+      "categoria": "robo",
+      "variantes_de_hardware": [],
+      "pa_declarado": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "potencia_w_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "autonomia_min_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "cobertura_m2_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "recarga_min_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "retoma_apos_recarga": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "bateria_mah": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "voltagem": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "base_autoesvaziamento": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "navegacao": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "reservatorio_po_ml": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "reservatorio_agua_ml": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso desta nuvem barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R2"
+      },
+      "fontes": {
+        "f-manual": {
+          "nivel": 2,
+          "origem": "manual-fabricante",
+          "publicador": "Electrolux (manual hospedado por terceiro em manuals.plus)",
+          "titulo_na_fonte": "Manual do usuario do aspirador robo Electrolux ERB10/ERB11/ERB20",
+          "url": "https://manuals.plus/m/a7d2cf5766298ebb7449842933ed52fe8a527804e53e3684a681bae94bdf7a78",
+          "canal_de_coleta": "busca web restrita ao dominio manuals.plus (WebFetch direto devolveu EGRESS_BLOCKED)",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "Categoria confirmada pelo titulo do manual do proprio fabricante. Nenhuma especificacao numerica foi colhida; o valor deste registro hoje e ancorar a vida util de 6 meses do filtro HEPA, que o manual declara para os tres modelos e que DIVERGE do que os veiculos editoriais dizem (3 meses e 2-3 meses). O manual esta hospedado por terceiro: reler no PDF oficial da Electrolux e coleta em aberto.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "xiaomi-s20",
+      "marca": "xiaomi",
+      "linha": null,
+      "codigo_fabricante": "S20",
+      "nome_comercial": "Xiaomi Robot Vacuum S20",
+      "categoria": "robo",
+      "variantes_de_hardware": [],
+      "pa_declarado": {
+        "valor": 5000,
+        "unidade": "Pa",
+        "fonte": "f-specs",
+        "declarado_como": "5.000 Pa"
+      },
+      "potencia_w_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "autonomia_min_declarada": {
+        "valor": 120,
+        "unidade": "min",
+        "fonte": "f-specs",
+        "declarado_como": "ate 120 min"
+      },
+      "cobertura_m2_declarada": {
+        "valor": null,
+        "unidade": "m2",
+        "motivo_do_null": "a Xiaomi NAO declara area coberta para este modelo. Este null e RESPOSTA, nao lacuna: e a evidencia de que a conversao minutos -> m2 nao existe em fonte nenhuma, e e o vacuo que a R2 ocupa"
+      },
+      "recarga_min_declarada": {
+        "valor": 220,
+        "unidade": "min",
+        "fonte": "f-specs",
+        "declarado_como": "220 min"
+      },
+      "retoma_apos_recarga": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "bateria_mah": {
+        "valor": 3200,
+        "unidade": "mAh",
+        "fonte": "f-specs",
+        "declarado_como": "3.200 mAh"
+      },
+      "voltagem": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "base_autoesvaziamento": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "navegacao": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "reservatorio_po_ml": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "reservatorio_agua_ml": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso desta nuvem barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R2"
+      },
+      "fontes": {
+        "f-specs": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "Xiaomi Brasil",
+          "titulo_na_fonte": "Xiaomi Robot Vacuum S20 — pagina oficial de especificacoes",
+          "url": "https://www.mi.com/br/product/xiaomi-robot-vacuum-s20/specs/",
+          "canal_de_coleta": "busca web (coleta do Bloco 2; WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "Ficha mais completa do banco e a mais util para a R2: e o unico registro com mAh, minutos e recarga declarados ao mesmo tempo. DIVERGENCIA registrada: terceiros citam 'ate 150 min' de autonomia para o mesmo modelo — vale o numero da pagina oficial, e o de terceiro fica aqui escrito, nao apagado.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "positivo-pra800",
+      "marca": "positivo",
+      "linha": null,
+      "codigo_fabricante": "PRA800",
+      "nome_comercial": "Smart Robo Aspirador Wi-Fi Laser (mapeamento)",
+      "categoria": "robo",
+      "variantes_de_hardware": [],
+      "pa_declarado": {
+        "valor": 2800,
+        "unidade": "Pa",
+        "fonte": "f-oficial",
+        "declarado_como": "2.800 Pa"
+      },
+      "potencia_w_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "autonomia_min_declarada": {
+        "valor": 120,
+        "unidade": "min",
+        "fonte": "f-oficial",
+        "declarado_como": "ate 120 minutos"
+      },
+      "cobertura_m2_declarada": {
+        "valor": null,
+        "unidade": "m2",
+        "motivo_do_null": "a Positivo nao declara area coberta por carga para este modelo"
+      },
+      "recarga_min_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "retoma_apos_recarga": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "bateria_mah": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "voltagem": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "base_autoesvaziamento": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "navegacao": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "reservatorio_po_ml": {
+        "valor": 220,
+        "unidade": "ml",
+        "fonte": "f-oficial",
+        "declarado_como": "reservatorio de po de 220 ml"
+      },
+      "reservatorio_agua_ml": {
+        "valor": 320,
+        "unidade": "ml",
+        "fonte": "f-oficial",
+        "declarado_como": "reservatorio de agua de 320 ml"
+      },
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso desta nuvem barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R2"
+      },
+      "fontes": {
+        "f-oficial": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "Positivo Casa Inteligente",
+          "titulo_na_fonte": "Smart Robo Aspirador Wi-Fi Mapeamento PRA800",
+          "url": "https://www.positivocasainteligente.com.br/smart-robo-aspirador-wifi-mapeamento-pra800",
+          "canal_de_coleta": "busca web (coleta do Bloco 2)",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "Corrige o corpus do Bloco 1, que registrou 'PRA8000': esse codigo nao existe em canal oficial nenhum. Vale PRA800, e nenhum dado tecnico foi herdado do nome errado. Com 2.800 Pa este modelo fica ABAIXO do limiar que as duas fontes editoriais recomendam para casa com pet (3.000 Pa no Mundo Conectado, 4.000 Pa no Canaltech) — e um caso limpo da regra de elegibilidade da secao 7: ele nao pode encabecar a lista de uma consulta com pet.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "multi-ho011",
+      "marca": "multi",
+      "linha": null,
+      "codigo_fabricante": "HO011",
+      "nome_comercial": "Aspirador de Po Vertical e de Mao 2 em 1 (127 V, 1000 W)",
+      "categoria": "aspirador_comum",
+      "variantes_de_hardware": [],
+      "pa_declarado": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "potencia_w_declarada": {
+        "valor": 1000,
+        "unidade": "W",
+        "fonte": "f-produto",
+        "declarado_como": "1000w"
+      },
+      "autonomia_min_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "cobertura_m2_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "recarga_min_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "retoma_apos_recarga": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "bateria_mah": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "voltagem": {
+        "valor": "127",
+        "unidade": "V",
+        "fonte": "f-produto",
+        "declarado_como": "1000w-127v"
+      },
+      "base_autoesvaziamento": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "navegacao": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "reservatorio_po_ml": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "reservatorio_agua_ml": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso desta nuvem barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R2"
+      },
+      "fontes": {
+        "f-produto": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "Multi (multilaser.com.br)",
+          "titulo_na_fonte": "Aspirador de Po Vertical e de Mao 2 em 1 com Coletor de Po Permanente 1000w-127v Multi - HO011",
+          "url": "https://www.multilaser.com.br/aspirador-de-p-vertical-e-de-mao-2-em-1-c-coletor-de-po-permanente-multi-ho011/p",
+          "canal_de_coleta": "busca web restrita aos dominios multilaser.com.br, multilaserempresas.com.br e suporte.multilaser.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "excluido_do_banco",
+      "motivo_do_status": "CONFIRMADO NESTA EXECUCAO: nao e robo aspirador, e aspirador de po vertical e de mao 2 em 1. O Bloco 2 tinha deixado a categoria em aberto e barrado a peca PR684 por causa disso; a pendencia esta resolvida. Fica gravado no banco, e nao so nas constantes, justamente para a proxima execucao nao recolher o modelo nem a peca achando que sao de robo.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "multi-ho012",
+      "marca": "multi",
+      "linha": null,
+      "codigo_fabricante": "HO012",
+      "nome_comercial": "Aspirador de Po Vertical e de Mao 2 em 1 (220 V, 700 W)",
+      "categoria": "aspirador_comum",
+      "variantes_de_hardware": [],
+      "pa_declarado": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "potencia_w_declarada": {
+        "valor": 700,
+        "unidade": "W",
+        "fonte": "f-produto",
+        "declarado_como": "700W"
+      },
+      "autonomia_min_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "cobertura_m2_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "recarga_min_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "retoma_apos_recarga": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "bateria_mah": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "voltagem": {
+        "valor": "220",
+        "unidade": "V",
+        "fonte": "f-produto",
+        "declarado_como": "220V"
+      },
+      "base_autoesvaziamento": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "navegacao": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "reservatorio_po_ml": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "reservatorio_agua_ml": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso desta nuvem barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R2"
+      },
+      "fontes": {
+        "f-produto": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "Multi (multilaser.com.br)",
+          "titulo_na_fonte": "Aspirador de Po Vertical e de Mao Multilaser 220V 700W Branco/Laranja - HO012",
+          "url": "https://www.multilaser.com.br/aspirador-de-po-vertical-2-em-1-700w-multilaser-220v-ho012/p",
+          "canal_de_coleta": "busca web restrita aos dominios multilaser.com.br, multilaserempresas.com.br e suporte.multilaser.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "excluido_do_banco",
+      "motivo_do_status": "CONFIRMADO NESTA EXECUCAO: nao e robo aspirador, e aspirador de po vertical e de mao 2 em 1. O Bloco 2 tinha deixado a categoria em aberto e barrado a peca PR684 por causa disso; a pendencia esta resolvida. Fica gravado no banco, e nao so nas constantes, justamente para a proxima execucao nao recolher o modelo nem a peca achando que sao de robo.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "multi-ho03",
+      "marca": "multi",
+      "linha": null,
+      "codigo_fabricante": "HO03",
+      "nome_comercial": "Aspirador de Po 2 em 1 HO03",
+      "categoria": "aspirador_comum",
+      "variantes_de_hardware": [],
+      "pa_declarado": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "potencia_w_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "autonomia_min_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "cobertura_m2_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "recarga_min_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "retoma_apos_recarga": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "bateria_mah": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "voltagem": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "base_autoesvaziamento": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "navegacao": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "reservatorio_po_ml": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "reservatorio_agua_ml": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso desta nuvem barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R2"
+      },
+      "fontes": {
+        "f-peca": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "Multi (multilaser.com.br)",
+          "titulo_na_fonte": "Filtro HEPA para Aspirador de Po HO03 HO04 Multilaser - PR550",
+          "url": "https://www.multilaser.com.br/filtro-hepa-para-aspirador-de-po-ho03-ho04-multilaser---pr550/p",
+          "canal_de_coleta": "busca web restrita ao dominio multilaser.com.br (coleta do Bloco 2)",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "excluido_do_banco",
+      "motivo_do_status": "Nao e robo aspirador: e aspirador de po 2 em 1, identificado pela propria pagina da peca PR550 do fabricante. O corpus do Bloco 1 trouxe HO03/HO04 na lista de modelos e eles ficam de fora. Gravado para nao ser recolhido de novo.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "multi-ho04",
+      "marca": "multi",
+      "linha": null,
+      "codigo_fabricante": "HO04",
+      "nome_comercial": "Aspirador de Po 2 em 1 HO04",
+      "categoria": "aspirador_comum",
+      "variantes_de_hardware": [],
+      "pa_declarado": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "potencia_w_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "autonomia_min_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "cobertura_m2_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "recarga_min_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "retoma_apos_recarga": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "bateria_mah": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "voltagem": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "base_autoesvaziamento": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "navegacao": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "reservatorio_po_ml": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "reservatorio_agua_ml": {
+        "valor": null,
+        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso desta nuvem barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R2"
+      },
+      "fontes": {
+        "f-peca": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "Multi (multilaser.com.br)",
+          "titulo_na_fonte": "Filtro HEPA para Aspirador de Po HO03 HO04 Multilaser - PR550",
+          "url": "https://www.multilaser.com.br/filtro-hepa-para-aspirador-de-po-ho03-ho04-multilaser---pr550/p",
+          "canal_de_coleta": "busca web restrita ao dominio multilaser.com.br (coleta do Bloco 2)",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "excluido_do_banco",
+      "motivo_do_status": "Nao e robo aspirador: e aspirador de po 2 em 1, identificado pela propria pagina da peca PR550 do fabricante. O corpus do Bloco 1 trouxe HO03/HO04 na lista de modelos e eles ficam de fora. Gravado para nao ser recolhido de novo.",
+      "verificado_em": "2026-09-09"
+    }
+  ]
+}

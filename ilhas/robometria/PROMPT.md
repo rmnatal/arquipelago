@@ -31,6 +31,21 @@ A Bússola verificou em 07/09/2026: a busca **comercial** ("melhor robô aspirad
 
 **3b. CASCA DO SITE** — só depois que o WordPress existir. Snippet de identidade e estrutura: fontes, CSS da paleta, logo SVG inline, menu hambúrguer, favicon próprio, páginas início/ferramentas/metodologia/sobre, rodapé. Tudo conforme a seção 6 do `ARQUIPELAGO.md`, com a paleta e o símbolo desta ilha.
 
+**3c. EXPANDIR O BANCO — não depende de site.** O modelo já existe e o
+`ferramentas/validar-banco.py` já reprova o que estiver fora do contrato; o que falta é
+cobertura. **A urgência não é número de itens** (a seção 14.3 do `ARQUIPELAGO.md`
+descartou meta redonda): é faixa descoberta. Ordem, da maior para a menor:
+(a) **pares (minutos, m²) declarados pelo fabricante** — são eles que tiram a constante
+`taxa-cobertura-m2-por-min` de `pendente` e destravam a R2 fora do ERB44; faltam pelo
+menos quatro, de marcas diferentes, e Xiaomi e Electrolux são as fontes de maior
+rendimento por consulta; (b) **`pa_declarado`** dos modelos que já estão no banco sem
+ele — sem esse campo nenhum modelo passa na elegibilidade da R2 e a lista sai vazia;
+(c) **peças da Xiaomi e da Positivo**, que hoje estão no banco só pelo lado do MODELO e
+não respondem nada na R1; (d) **peças de reposição da Electrolux**, a lacuna mais barata
+de fechar — a ilha já tem a vida útil de 6 meses do manual e não tem o código da peça a
+que ela se aplica. Produto novo entra com `afiliado.url` presente e vazio, e a execução
+reporta quantos itens esperam link.
+
 **4. FERRAMENTAS**, uma por execução, já nascendo com JSON-LD, tabela de exemplos pré-renderizada, resposta antes da explicação e procedência na frase. **Não deixe retrofit para depois** — foi o que custou dias na Aquametria.
 
 **4e. VITRINE DE PRODUTO** dentro do resultado, desde a primeira ferramenta. O cartão diz a especificação que fez o produto entrar: "filtro HEPA H13 — compatível com o seu E10".

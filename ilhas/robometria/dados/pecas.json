@@ -1,0 +1,545 @@
+{
+  "id": "pecas",
+  "ilha": "robometria",
+  "entidade": "peca",
+  "esquema": "dados/esquema-banco.json",
+  "gerado_em": "2026-09-09",
+  "nota_de_procedencia": "Coleta de 09/09/2026 por busca restrita aos dominios do proprio fabricante; o egresso HTTP direto devolveu EGRESS_BLOCKED para multilaser.com.br nesta execucao. TODA compatibilidade abaixo e DECLARADA pelo fabricante — nenhuma foi inferida, e nenhuma linha diz 'serve' sem que o fabricante tenha dito. Onde nao ha declaracao, nao ha linha.",
+  "nota_vida_util": "Nenhuma peca da Multi declara vida util nas paginas desta coleta. O unico numero de fabricante que a ilha tem e o do manual da Electrolux — 6 meses para o filtro HEPA do ERB10/ERB11/ERB20 — e ele esta em constantes.json preso AQUELES modelos. Veiculos editoriais dizem 3 meses e 2-3 meses, e divergem do manual. Manual de fabricante e recomendacao editorial nao se misturam numa frase: a R1 publica o intervalo do FABRICANTE do modelo consultado, e a recomendacao editorial so aparece rotulada como tal.",
+  "contagem": {
+    "total": 8,
+    "publicavel": 6,
+    "excluido_do_banco": 2,
+    "pares_peca_x_modelo_declarados": 10,
+    "esperando_link_de_afiliado": 6
+  },
+  "lista_de_compras": [
+    {
+      "o_que": "pecas de reposicao da Electrolux (ERB10/ERB11/ERB20/ERB44)",
+      "por_que": "a ilha ja tem a vida util de 6 meses do manual e NAO tem o codigo da peca a que ela se aplica. E a lacuna mais barata de fechar do banco"
+    },
+    {
+      "o_que": "filtro, escova e mop da Xiaomi e da Positivo",
+      "por_que": "os dois fabricantes ja estao no banco pelo lado do MODELO e nao tem nenhuma peca — a R1 nao responde nada para quem tem um S20 ou um PRA800"
+    },
+    {
+      "o_que": "escova principal (rolo)",
+      "por_que": "tipo previsto no vocabulario e sem nenhum item; o cluster A2 do corpus mostra busca por ele"
+    },
+    {
+      "o_que": "confirmar se HO400, HO401 e HO407 tem filtro proprio",
+      "por_que": "hoje o banco so sabe que eles compartilham a ESCOVA lateral PR10124. Filtro nao se herda de escova"
+    }
+  ],
+  "registros": [
+    {
+      "id": "multi-pr10124",
+      "marca": "multi",
+      "codigo_fabricante": "PR10124",
+      "tipo": "escova lateral",
+      "nome_na_fonte": "Escova Lateral para Aspirador Robo Mars, Moon e Duster",
+      "compatibilidade": [
+        {
+          "modelo": "multi-ho041",
+          "codigo_declarado": "HO041",
+          "variante_de_hardware": null,
+          "selo": "declarada_fabricante",
+          "fonte": "f-peca"
+        },
+        {
+          "modelo": "multi-ho400",
+          "codigo_declarado": "HO400",
+          "variante_de_hardware": null,
+          "selo": "declarada_fabricante",
+          "fonte": "f-peca"
+        },
+        {
+          "modelo": "multi-ho401",
+          "codigo_declarado": "HO401",
+          "variante_de_hardware": null,
+          "selo": "declarada_fabricante",
+          "fonte": "f-peca"
+        },
+        {
+          "modelo": "multi-ho407",
+          "codigo_declarado": "HO407",
+          "variante_de_hardware": null,
+          "selo": "declarada_fabricante",
+          "fonte": "f-peca"
+        },
+        {
+          "modelo": "multi-ob010",
+          "codigo_declarado": "OB010",
+          "variante_de_hardware": null,
+          "selo": "declarada_fabricante",
+          "fonte": "f-peca"
+        }
+      ],
+      "divergencias": [],
+      "vida_util_declarada": {
+        "valor": null,
+        "unidade": "meses",
+        "motivo_do_null": "a Multi nao declara vida util nas paginas de peca desta coleta. O unico numero de fabricante que o banco tem para vida util e o do manual da Electrolux (6 meses para o filtro HEPA do ERB10/ERB11/ERB20), e ele vale para AQUELES modelos, nao para estes codigos. Emprestar o numero de um fabricante para a peca de outro seria dado inventado."
+      },
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo. O registro NAO some da vitrine — aparece com espaco reservado neutro e o codigo da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R1"
+      },
+      "fontes": {
+        "f-peca": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "Multi (multilaser.com.br)",
+          "titulo_na_fonte": "Escova Lateral para Aspirador Robo Mars, Moon e Duster - PR10124 (endereco da propria pagina: 'escova-lateral-para-aspirador-robo-ho041-e-ob010')",
+          "url": "https://www.multilaser.com.br/escova-lateral-para-aspirador-robo-ho041-e-ob010/p",
+          "canal_de_coleta": "busca web restrita aos dominios multilaser.com.br e multilaserempresas.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "Cinco codigos de modelo para UMA peca — enquanto o filtro da mesma familia cobre menos modelos. E a prova concreta de que compatibilidade nao se herda do modelo para a classe de peca: ela e declarada por codigo de peca, um a um. O HO401 aparece so aqui, sem pagina de produto propria, e por isso o registro dele no banco esta como nao publicavel.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "multi-pr10205",
+      "marca": "multi",
+      "codigo_fabricante": "PR10205",
+      "tipo": "filtro",
+      "nome_na_fonte": "Filtro para Aspirador Robo Mars, Moon e Duster",
+      "compatibilidade": [
+        {
+          "modelo": "multi-ho041",
+          "codigo_declarado": "HO041",
+          "variante_de_hardware": null,
+          "selo": "declarada_fabricante",
+          "fonte": "f-varejo"
+        }
+      ],
+      "divergencias": [
+        {
+          "canal": "multilaser.com.br (varejo)",
+          "conjunto_declarado": [
+            "HO041"
+          ],
+          "titulo_na_fonte": "Filtro para Aspirador Robo Mars, Moon e Duster - PR10205",
+          "url": "https://www.multilaser.com.br/filtro-para-aspirador-robo-mars-moon-duster-pr10205/p",
+          "verificado_em": "2026-09-09"
+        },
+        {
+          "canal": "multilaserempresas.com.br",
+          "conjunto_declarado": [
+            "HO041",
+            "OB010"
+          ],
+          "titulo_na_fonte": "Filtro para Aspirador Robo (HO041 e OB010) - PR10205",
+          "url": "https://www.multilaserempresas.com.br/produto/eletroportateis-para-sua-casa/lar/aspiradores/filtro-para-aspirador-robo-ho041-e-ob010--pr10205/PR10205/",
+          "verificado_em": "2026-09-09"
+        }
+      ],
+      "resolucao": "Vale o conjunto MAIS ESTREITO: HO041. Os dois canais sao do proprio fabricante e discordam sobre o OB010. O erro caro aqui e o do lado largo — mandar alguem comprar um filtro que nao encaixa — entao a assimetria de custo aponta para o conjunto menor. Para o OB010 a R1 aponta o PR10343, que e codigo proprio daquele modelo e reforca a leitura estreita. As DUAS declaracoes vao para a tela, com as duas datas e o nome de cada canal: a divergencia e conteudo, nao ruido a esconder.",
+      "vida_util_declarada": {
+        "valor": null,
+        "unidade": "meses",
+        "motivo_do_null": "a Multi nao declara vida util nas paginas de peca desta coleta. O unico numero de fabricante que o banco tem para vida util e o do manual da Electrolux (6 meses para o filtro HEPA do ERB10/ERB11/ERB20), e ele vale para AQUELES modelos, nao para estes codigos. Emprestar o numero de um fabricante para a peca de outro seria dado inventado."
+      },
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo. O registro NAO some da vitrine — aparece com espaco reservado neutro e o codigo da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R1"
+      },
+      "fontes": {
+        "f-varejo": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "Multi (multilaser.com.br, canal varejo)",
+          "titulo_na_fonte": "Filtro para Aspirador Robo Mars, Moon e Duster - PR10205",
+          "url": "https://www.multilaser.com.br/filtro-para-aspirador-robo-mars-moon-duster-pr10205/p",
+          "canal_de_coleta": "busca web restrita aos dominios multilaser.com.br e multilaserempresas.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
+          "verificado_em": "2026-09-09"
+        },
+        "f-empresas": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "Multi (multilaserempresas.com.br)",
+          "titulo_na_fonte": "Filtro para Aspirador Robo (HO041 e OB010) - PR10205",
+          "url": "https://www.multilaserempresas.com.br/produto/eletroportateis-para-sua-casa/lar/aspiradores/filtro-para-aspirador-robo-ho041-e-ob010--pr10205/PR10205/",
+          "canal_de_coleta": "busca web restrita aos dominios multilaser.com.br e multilaserempresas.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "publicavel",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "multi-pr10343",
+      "marca": "multi",
+      "codigo_fabricante": "PR10343",
+      "tipo": "filtro",
+      "nome_na_fonte": "Filtro para Aspirador Robo OB010",
+      "compatibilidade": [
+        {
+          "modelo": "multi-ob010",
+          "codigo_declarado": "OB010",
+          "variante_de_hardware": null,
+          "selo": "declarada_fabricante",
+          "fonte": "f-peca"
+        }
+      ],
+      "divergencias": [],
+      "vida_util_declarada": {
+        "valor": null,
+        "unidade": "meses",
+        "motivo_do_null": "a Multi nao declara vida util nas paginas de peca desta coleta. O unico numero de fabricante que o banco tem para vida util e o do manual da Electrolux (6 meses para o filtro HEPA do ERB10/ERB11/ERB20), e ele vale para AQUELES modelos, nao para estes codigos. Emprestar o numero de um fabricante para a peca de outro seria dado inventado."
+      },
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo. O registro NAO some da vitrine — aparece com espaco reservado neutro e o codigo da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R1"
+      },
+      "fontes": {
+        "f-peca": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "Multi (multilaser.com.br)",
+          "titulo_na_fonte": "Filtro para Aspirador Robo OB010 - PR10343",
+          "url": "https://www.multilaser.com.br/filtro-para-aspirador-robo-ob010-pr10343/p",
+          "canal_de_coleta": "busca web restrita aos dominios multilaser.com.br e multilaserempresas.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "Codigo de filtro proprio do OB010. E o argumento decisivo da resolucao do PR10205: se o OB010 tem filtro proprio, a leitura larga do PR10205 fica ainda menos provavel.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "multi-pr10342",
+      "marca": "multi",
+      "codigo_fabricante": "PR10342",
+      "tipo": "mop",
+      "nome_na_fonte": "Pano para Aspirador Robo p/ OB010",
+      "compatibilidade": [
+        {
+          "modelo": "multi-ob010",
+          "codigo_declarado": "OB010",
+          "variante_de_hardware": null,
+          "selo": "declarada_fabricante",
+          "fonte": "f-peca"
+        }
+      ],
+      "divergencias": [],
+      "vida_util_declarada": {
+        "valor": null,
+        "unidade": "meses",
+        "motivo_do_null": "a Multi nao declara vida util nas paginas de peca desta coleta. O unico numero de fabricante que o banco tem para vida util e o do manual da Electrolux (6 meses para o filtro HEPA do ERB10/ERB11/ERB20), e ele vale para AQUELES modelos, nao para estes codigos. Emprestar o numero de um fabricante para a peca de outro seria dado inventado."
+      },
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo. O registro NAO some da vitrine — aparece com espaco reservado neutro e o codigo da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R1"
+      },
+      "fontes": {
+        "f-peca": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "Multi (multilaser.com.br)",
+          "titulo_na_fonte": "Pano para Aspirador Robo p/ OB010 - PR10342",
+          "url": "https://www.multilaser.com.br/pano-para-aspirador-robo-ob010/p",
+          "canal_de_coleta": "busca web restrita aos dominios multilaser.com.br e multilaserempresas.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "Achado desta execucao: primeira peca do tipo mop no banco. Fecha o cluster A3 do corpus de buscas, que ate agora nao tinha nenhum item.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "multi-pr10127",
+      "marca": "multi",
+      "codigo_fabricante": "PR10127",
+      "tipo": "bateria",
+      "nome_na_fonte": "Bateria p/ Aspirador Robo Ho041 Versao A",
+      "compatibilidade": [
+        {
+          "modelo": "multi-ho041",
+          "codigo_declarado": "HO041",
+          "variante_de_hardware": "A",
+          "selo": "declarada_fabricante",
+          "fonte": "f-peca"
+        }
+      ],
+      "divergencias": [],
+      "vida_util_declarada": {
+        "valor": null,
+        "unidade": "meses",
+        "motivo_do_null": "a Multi nao declara vida util nas paginas de peca desta coleta. O unico numero de fabricante que o banco tem para vida util e o do manual da Electrolux (6 meses para o filtro HEPA do ERB10/ERB11/ERB20), e ele vale para AQUELES modelos, nao para estes codigos. Emprestar o numero de um fabricante para a peca de outro seria dado inventado."
+      },
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo. O registro NAO some da vitrine — aparece com espaco reservado neutro e o codigo da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R1"
+      },
+      "fontes": {
+        "f-peca": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "Multi (multilaser.com.br)",
+          "titulo_na_fonte": "Bateria p/ Aspirador Robo Ho041 Versao A - PR10127",
+          "url": "https://www.multilaser.com.br/bateria-p-aspirador-robo-ho041-versao-a-pr10127/p",
+          "canal_de_coleta": "busca web restrita aos dominios multilaser.com.br e multilaserempresas.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "O proprio fabricante escreve 'Versao A' no titulo. Saber que o robo e um HO041 NAO basta para comprar a bateria certa — e por isso que variante_de_hardware entrou no esquema deste bloco.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "multi-pr8116",
+      "marca": "multi",
+      "codigo_fabricante": "PR8116",
+      "tipo": "bateria",
+      "nome_na_fonte": "Bateria Para Aspirador Robo Mars, Moon e Duster Multi",
+      "compatibilidade": [
+        {
+          "modelo": "multi-ho041",
+          "codigo_declarado": "HO041",
+          "variante_de_hardware": "B",
+          "selo": "declarada_fabricante",
+          "fonte": "f-peca"
+        }
+      ],
+      "divergencias": [
+        {
+          "canal": "multilaserempresas.com.br — titulo da pagina",
+          "conjunto_declarado": [
+            "Mars",
+            "Moon",
+            "Duster"
+          ],
+          "titulo_na_fonte": "Bateria Para Aspirador Robo Mars, Moon e Duster Multi - PR8116",
+          "url": "https://www.multilaserempresas.com.br/produto/eletroportateis-para-sua-casa/lar/aspiradores/bateria-para-aspirador-robo-mars-ho041-versao-b--pr8116/PR8116/",
+          "verificado_em": "2026-09-09"
+        },
+        {
+          "canal": "multilaserempresas.com.br — endereco da MESMA pagina",
+          "conjunto_declarado": [
+            "HO041 versao B"
+          ],
+          "titulo_na_fonte": "bateria-para-aspirador-robo-mars-ho041-versao-b--pr8116",
+          "url": "https://www.multilaserempresas.com.br/produto/eletroportateis-para-sua-casa/lar/aspiradores/bateria-para-aspirador-robo-mars-ho041-versao-b--pr8116/PR8116/",
+          "verificado_em": "2026-09-09"
+        }
+      ],
+      "resolucao": "Vale o conjunto MAIS ESTREITO: HO041, versao B. A divergencia aqui esta DENTRO de uma unica pagina — o titulo promete tres linhas inteiras (Mars, Moon e Duster) e o endereco da mesma pagina identifica um modelo e uma versao. Bateria e a peca em que errar custa mais caro, entao a leitura larga so entra se o fabricante a declarar sem se contradizer. As duas leituras vao para a tela com a data.",
+      "vida_util_declarada": {
+        "valor": null,
+        "unidade": "meses",
+        "motivo_do_null": "a Multi nao declara vida util nas paginas de peca desta coleta. O unico numero de fabricante que o banco tem para vida util e o do manual da Electrolux (6 meses para o filtro HEPA do ERB10/ERB11/ERB20), e ele vale para AQUELES modelos, nao para estes codigos. Emprestar o numero de um fabricante para a peca de outro seria dado inventado."
+      },
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo. O registro NAO some da vitrine — aparece com espaco reservado neutro e o codigo da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R1"
+      },
+      "fontes": {
+        "f-peca": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "Multi (multilaserempresas.com.br)",
+          "titulo_na_fonte": "Bateria Para Aspirador Robo Mars, Moon e Duster Multi - PR8116",
+          "url": "https://www.multilaserempresas.com.br/produto/eletroportateis-para-sua-casa/lar/aspiradores/bateria-para-aspirador-robo-mars-ho041-versao-b--pr8116/PR8116/",
+          "canal_de_coleta": "busca web restrita aos dominios multilaser.com.br e multilaserempresas.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "ACHADO QUE MUDOU O ESQUEMA: PR10127 (versao A) e PR8116 (versao B) sao baterias diferentes para o MESMO codigo de modelo. Consequencia para a R1: quando o modelo consultado tem mais de uma variante conhecida, a ferramenta NAO devolve uma peca so — ela mostra as duas e diz como a pessoa descobre qual e a dela. Devolver uma so seria adivinhar, que e exatamente o defeito que esta ilha existe para nao cometer.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "multi-pr684",
+      "marca": "multi",
+      "codigo_fabricante": "PR684",
+      "tipo": "filtro",
+      "nome_na_fonte": "Filtro Removivel e Lavavel - PR684",
+      "compatibilidade": [
+        {
+          "modelo": "multi-ho011",
+          "codigo_declarado": "HO011",
+          "variante_de_hardware": null,
+          "selo": "declarada_fabricante",
+          "fonte": "f-peca"
+        },
+        {
+          "modelo": "multi-ho012",
+          "codigo_declarado": "HO012",
+          "variante_de_hardware": null,
+          "selo": "declarada_fabricante",
+          "fonte": "f-peca"
+        }
+      ],
+      "divergencias": [],
+      "vida_util_declarada": {
+        "valor": null,
+        "unidade": "meses",
+        "motivo_do_null": "a Multi nao declara vida util nas paginas de peca desta coleta. O unico numero de fabricante que o banco tem para vida util e o do manual da Electrolux (6 meses para o filtro HEPA do ERB10/ERB11/ERB20), e ele vale para AQUELES modelos, nao para estes codigos. Emprestar o numero de um fabricante para a peca de outro seria dado inventado."
+      },
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo. O registro NAO some da vitrine — aparece com espaco reservado neutro e o codigo da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R1"
+      },
+      "fontes": {
+        "f-peca": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "Multi (multilaser.com.br)",
+          "titulo_na_fonte": "Filtro Removivel e Lavavel Compativel com o Aspirador de Po HO011/HO012 - PR684",
+          "url": "https://www.multilaser.com.br/filtro-do-ho011-ho012-pr684/p",
+          "canal_de_coleta": "busca web restrita aos dominios multilaser.com.br e multilaserempresas.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "excluido_do_banco",
+      "motivo_do_status": "PENDENCIA DO BLOCO 2 RESOLVIDA NESTA EXECUCAO: o HO011 e o HO012 sao aspirador de po VERTICAL e de mao 2 em 1 — 127 V/1000 W e 220 V/700 W, pelos titulos das paginas do proprio fabricante — e nao robo aspirador. Logo esta peca nao e de robo e nao entra no banco desta ilha. Fica gravada, com a fonte, para a proxima execucao nao recolhe-la de novo achando que e de robo.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "multi-pr550",
+      "marca": "multi",
+      "codigo_fabricante": "PR550",
+      "tipo": "filtro",
+      "nome_na_fonte": "Filtro HEPA para Aspirador de Po HO03/HO04",
+      "compatibilidade": [
+        {
+          "modelo": "multi-ho03",
+          "codigo_declarado": "HO03",
+          "variante_de_hardware": null,
+          "selo": "declarada_fabricante",
+          "fonte": "f-peca"
+        },
+        {
+          "modelo": "multi-ho04",
+          "codigo_declarado": "HO04",
+          "variante_de_hardware": null,
+          "selo": "declarada_fabricante",
+          "fonte": "f-peca"
+        }
+      ],
+      "divergencias": [],
+      "vida_util_declarada": {
+        "valor": null,
+        "unidade": "meses",
+        "motivo_do_null": "a Multi nao declara vida util nas paginas de peca desta coleta. O unico numero de fabricante que o banco tem para vida util e o do manual da Electrolux (6 meses para o filtro HEPA do ERB10/ERB11/ERB20), e ele vale para AQUELES modelos, nao para estes codigos. Emprestar o numero de um fabricante para a peca de outro seria dado inventado."
+      },
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo. O registro NAO some da vitrine — aparece com espaco reservado neutro e o codigo da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R1"
+      },
+      "fontes": {
+        "f-peca": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "Multi (multilaser.com.br)",
+          "titulo_na_fonte": "Filtro HEPA para Aspirador de Po HO03 HO04 Multilaser - PR550",
+          "url": "https://www.multilaser.com.br/filtro-hepa-para-aspirador-de-po-ho03-ho04-multilaser---pr550/p",
+          "canal_de_coleta": "busca web restrita aos dominios multilaser.com.br e multilaserempresas.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "excluido_do_banco",
+      "motivo_do_status": "Peca de aspirador de po 2 em 1, nao de robo. Exclusao herdada do Bloco 2 e agora gravada no banco, nao so nas constantes.",
+      "verificado_em": "2026-09-09"
+    }
+  ]
+}

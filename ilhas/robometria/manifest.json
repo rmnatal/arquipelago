@@ -4,7 +4,7 @@
   "nicho": "robo aspirador — compatibilidade de pecas e consumiveis, e dimensionamento de succao e autonomia",
   "dominio": "https://robometria.com.br",
   "versao_manifest": 1,
-  "revisao": 2,
+  "revisao": 3,
   "atualizado_em": "2026-09-09",
   "estado": "nascendo",
   "desembarque": {
@@ -50,9 +50,63 @@
       "publicar": false,
       "sha256": "9ef574b7b36ad9ca0a73a0d795af42b2534fdba824b9da4c4066bd026326d4bb",
       "descricao": "21 constantes das ferramentas R1 e R2, cada uma com classe de fonte (fabricante x recomendacao editorial), URL, canal de coleta e data. Inclui 4 itens marcados nao_publicavel por atribuicao incerta, 1 excluido do banco por nao ser peca de robo, e a taxa de cobertura m2/min com status pendente e PROIBIDA em formula publicada por existir um unico par (minutos, m2) declarado."
+    },
+    {
+      "id": "esquema-banco",
+      "arquivo": "dados/esquema-banco.json",
+      "formato": "json",
+      "entidade": "esquema",
+      "fonte": "Bloco 3 da Fundacao: contrato do banco derivado da secao 4 da especificacao (Bloco 2) e das secoes 6, 7 e 10 do ARQUIPELAGO.md",
+      "verificado_em": "2026-09-09",
+      "registros": 4,
+      "publicar": false,
+      "sha256": "97e7ec95c539ef2dbafd582962ea96c351fd351e0ac20d377d63a2f61945263d",
+      "descricao": "Contrato do banco da Robometria: entidades MARCA, MODELO_ROBO, PECA e COTACAO, campo a campo, com vocabulario controlado, escada de 7 niveis de fonte, a forma campo_de_valor (todo numero carrega fonte e a transcricao do texto declarado), a regra de divergencia pelo conjunto MAIS ESTREITO, o campo imagem{} e o afiliado{} vazio desde o nascimento, e a lista de invariantes que ferramentas/validar-banco.py verifica. Inclui o campo variante_de_hardware, criado neste bloco depois de o fabricante revelar duas baterias diferentes para o mesmo codigo de modelo."
+    },
+    {
+      "id": "marcas",
+      "arquivo": "dados/marcas.json",
+      "formato": "json",
+      "entidade": "marca",
+      "fonte": "Bloco 3 da Fundacao: modelagem a partir da secao 4 da especificacao (Bloco 2), mais coleta de confirmacao por busca web restrita ao dominio do fabricante em 09/09/2026 (multilaser.com.br, multilaserempresas.com.br, suporte.multilaser.com.br, lamina.multilaser.com.br). A leitura direta das paginas devolveu EGRESS_BLOCKED nesta execucao e continua sendo coleta em aberto — o canal esta declarado campo a campo.",
+      "verificado_em": "2026-09-09",
+      "registros": 4,
+      "publicar": false,
+      "sha256": "e2cabb030439b8d024c9e26ce24913898d8698b1cf35c7ae7a7cb14987c78b14",
+      "descricao": "Quatro marcas com site oficial, canal de pecas e sameAs[] para o JSON-LD Organization: Multi (ex-Multilaser), Electrolux, Xiaomi e Positivo Casa Inteligente. Cada uma traz o que ela declara e o que ela cala — a Electrolux e a unica que declara cobertura em m2 por carga; a Xiaomi publica ficha completa e nao declara m2, e esse silencio e o vacuo que a R2 ocupa."
+    },
+    {
+      "id": "modelos-robo",
+      "arquivo": "dados/modelos-robo.json",
+      "formato": "json",
+      "entidade": "modelo-robo",
+      "fonte": "Bloco 3 da Fundacao: modelagem a partir da secao 4 da especificacao (Bloco 2), mais coleta de confirmacao por busca web restrita ao dominio do fabricante em 09/09/2026 (multilaser.com.br, multilaserempresas.com.br, suporte.multilaser.com.br, lamina.multilaser.com.br). A leitura direta das paginas devolveu EGRESS_BLOCKED nesta execucao e continua sendo coleta em aberto — o canal esta declarado campo a campo.",
+      "verificado_em": "2026-09-09",
+      "registros": 17,
+      "publicar": false,
+      "sha256": "a54cde26b788553bc4d81bdfe18e68e3477e4d2304818b6d186273299303b4c8",
+      "descricao": "17 modelos: 12 publicaveis com categoria de robo confirmada pelo proprio fabricante, 1 nao publicavel por categoria a confirmar (HO401, que so aparece dentro da lista de compatibilidade de uma peca) e 4 excluidos por NAO serem robo (HO011, HO012, HO03, HO04). Todo campo tecnico carrega fonte e transcricao; onde o fabricante nao declara, o valor e null COM MOTIVO — inclusive a cobertura em m2 do Xiaomi S20, cujo null e a evidencia central da R2."
+    },
+    {
+      "id": "pecas",
+      "arquivo": "dados/pecas.json",
+      "formato": "json",
+      "entidade": "peca",
+      "fonte": "Bloco 3 da Fundacao: modelagem a partir da secao 4 da especificacao (Bloco 2), mais coleta de confirmacao por busca web restrita ao dominio do fabricante em 09/09/2026 (multilaser.com.br, multilaserempresas.com.br, suporte.multilaser.com.br, lamina.multilaser.com.br). A leitura direta das paginas devolveu EGRESS_BLOCKED nesta execucao e continua sendo coleta em aberto — o canal esta declarado campo a campo.",
+      "verificado_em": "2026-09-09",
+      "registros": 8,
+      "publicar": false,
+      "sha256": "27c0a47e30756f86d3e688cca6b641437e2921b8a725b73947a83c24c17efad7",
+      "descricao": "8 pecas da Multi com 10 pares peca x modelo, TODOS declarados pelo fabricante e nenhum inferido: escova lateral PR10124, filtros PR10205 e PR10343, pano PR10342 e as baterias PR10127 (versao A) e PR8116 (versao B) do mesmo HO041. Duas divergencias resolvidas pelo conjunto mais estreito, com as duas declaracoes publicadas. PR684 e PR550 ficam gravadas como excluidas por serem peca de aspirador comum."
     }
   ],
-  "ferramentas": [],
+  "ferramentas": [
+    {
+      "id": "validar-banco",
+      "arquivo": "ferramentas/validar-banco.py",
+      "descricao": "Verifica se marcas.json, modelos-robo.json e pecas.json cumprem esquema-banco.json. Roda sem rede e sem dependencia (python3 ferramentas/validar-banco.py) e sai com codigo 1 quando qualquer invariante e violada: id duplicado, numero sem fonte, null sem motivo, registro publicavel com categoria que nao e robo, divergencia sem resolucao escrita, peca apontando para modelo inexistente ou excluido, e contagem de cabecalho que nao bate com o arquivo. Ferramenta de bancada: NUNCA e publicada no site."
+    }
+  ],
   "esquema": {
     "snippets": {
       "id": "identificador estavel, kebab-case, nunca numerado",

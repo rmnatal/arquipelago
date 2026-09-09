@@ -159,3 +159,80 @@ o proximo passo desbloqueado, e espelha o mesmo resumo em
   `imagem{url,largura,altura,fonte,coletado_em,alt}` e `afiliado{url,coletado_em}`
   desde ja — a Aquametria descobriu tarde que o banco nao tinha imagem e travou
   a vitrine. Continua sem depender de WordPress nem de dominio.
+
+## 2026-09-09 — Bloco 3: modelo do banco, e o banco ja verificavel
+
+- Entregues `dados/esquema-banco.json` (contrato das entidades MARCA,
+  MODELO_ROBO, PECA e COTACAO), `dados/marcas.json` (4 marcas),
+  `dados/modelos-robo.json` (17 modelos), `dados/pecas.json` (8 pecas, **10
+  pares peca x modelo**) e `ferramentas/validar-banco.py`. Manifest na
+  revisao 3, com sha256 de cada arquivo commitado.
+- **Todo par de compatibilidade e DECLARADO pelo fabricante. Nenhum foi
+  inferido.** Onde nao ha declaracao, nao ha linha — e a R1 diz que nao achou e
+  para ali, em vez de supor.
+- **Todo numero e `{valor, fonte, declarado_como}`**, com a transcricao do texto
+  do fabricante junto do numero. Sem a transcricao a pagina parafraseia em vez
+  de citar, e a frase citavel com procedencia e exatamente o que a secao 5 do
+  contrato exige. Onde o fabricante nao declara, o valor e `null` COM MOTIVO, e
+  o motivo vai para a tela com essas palavras.
+- **ACHADO QUE MUDOU O ESQUEMA: `variante_de_hardware`.** O proprio fabricante
+  vende DUAS baterias para o MESMO codigo de modelo — PR10127 ("Versao A") e
+  PR8116 ("Mars HO041 versao B"). Saber que o robo e um HO041 nao basta para
+  acertar a peca. O campo entrou no esquema e a consequencia ficou escrita: com
+  mais de uma variante conhecida, a R1 mostra as duas e explica como a pessoa
+  descobre qual e a dela. Devolver uma so seria adivinhar.
+- **Pendencia do Bloco 2 RESOLVIDA:** HO011 e HO012 sao aspirador de po vertical
+  e de mao 2 em 1 (127 V/1000 W e 220 V/700 W, pelos titulos das paginas do
+  proprio fabricante), NAO robos. Logo o filtro PR684 nao e peca de robo e ficou
+  `excluido_do_banco`, com a fonte, para nenhuma execucao futura recolhe-lo de
+  novo. Mesmo tratamento do PR550 (HO03/HO04), que ja vinha do Bloco 2.
+- **Quatro modelos novos com categoria confirmada pelo fabricante:** HO407
+  (Duster), OB010 (ObaDuster), HO243 (Hydra / Acqua Solution, 90 minutos
+  declarados) e HO411 (Midnight, com lamina oficial em PDF que devolveu
+  EGRESS_BLOCKED). **Duas pecas novas:** o pano PR10342, que fecha o cluster A3
+  do corpus (mop) — ate agora sem nenhum item — e a bateria PR8116.
+- **Duas divergencias resolvidas pelo conjunto MAIS ESTREITO**, com as duas
+  declaracoes publicadas e datadas: o filtro PR10205, em que dois canais do
+  proprio fabricante discordam sobre o OB010; e a bateria PR8116, cuja
+  divergencia esta DENTRO de uma unica pagina — o titulo promete "Mars, Moon e
+  Duster" e o endereco da mesma pagina diz "Mars HO041 versao B". Antes de
+  resolver, ficou escrito qual e o erro caro: mandar alguem comprar peca que nao
+  encaixa. A direcao saiu sozinha depois disso, como manda a secao 10.
+- **Achado de elegibilidade:** o Positivo PRA800 declara 2.800 Pa e portanto fica
+  ABAIXO dos dois limiares editoriais para casa com pet (3.000 Pa no Mundo
+  Conectado, 4.000 Pa no Canaltech). E um caso limpo da secao 7: ele nao pode
+  encabecar a lista de uma consulta com pet.
+- **VERIFICACAO DESTE BLOCO** (nao ha site, entao a secao 8 se aplica pela parte
+  que existe): `python3 ferramentas/validar-banco.py` roda sem rede e sai
+  APROVADO — 4 marcas, 17 modelos (12 publicaveis, 1 nao publicavel, 4 excluidos
+  por nao serem robo), 8 pecas, 10 pares declarados, 18 itens esperando link. Ele
+  reprova id duplicado, numero sem fonte, null sem motivo, registro publicavel
+  com categoria que nao e robo, divergencia sem resolucao escrita, peca apontando
+  para modelo inexistente ou excluido, e contagem de cabecalho que nao bate com o
+  arquivo. Os tres arquivos de dados passam por ele.
+- **O que este bloco deliberadamente NAO fez:** nao converteu os 30 W do HO041
+  em Pa (potencia nao e succao e nao existe conversao); nao emprestou a vida util
+  de 6 meses do manual da Electrolux para as pecas da Multi; nao coletou nenhuma
+  imagem (o campo `imagem{}` existe completo com `url` null, e pela secao 6 isso
+  NAO elimina o registro da vitrine); e nao tirou a taxa de cobertura m2/min de
+  `pendente`, porque continua havendo um unico par (minutos, m2) declarado.
+- **Infraestrutura: a Fundacao nao escreve o que nao mediu.** `robometria.com.br`
+  devolveu EGRESS_BLOCKED nesta execucao, entao a nuvem nao consegue dizer se ha
+  WordPress no ar. Quem atualiza essa linha do `ESTADO.md` e quem tem navegador
+  (Sentinela ou o proprio Raphael), como ja diz a secao 12 do contrato.
+- Itens esperando link de afiliado nesta ilha: **18** (12 modelos e 6 pecas). O
+  campo `afiliado.url` nasce presente e vazio em todo registro, com
+  `sub_id_1 = robometria` e `sub_id_2` = R1 ou R2.
+- **Proximo passo: bloco 3c — expandir o banco**, e ele vem antes do bloco 6
+  (prospeccao do widget) por um motivo medido: hoje so DOIS modelos tem
+  `pa_declarado`, entao a lista de recomendados da R2 sairia praticamente vazia
+  em qualquer entrada, e faixa descoberta e a unica urgencia de catalogo (secao
+  14.3 — numero redondo de itens nao e criterio). Ordem de coleta, da maior para
+  a menor: (1) pares (minutos, m2) declarados, que sao o que tira a taxa de
+  cobertura de `pendente` e destrava a R2 fora do ERB44 — a Xiaomi e a Electrolux
+  sao as fontes de maior rendimento por consulta; (2) `pa_declarado` dos modelos
+  que ja estao no banco sem ele; (3) pecas da Xiaomi e da Positivo, que hoje
+  estao no banco so pelo lado do MODELO e nao respondem nada na R1; (4) pecas de
+  reposicao da Electrolux, que e a lacuna mais barata — a ilha ja tem a vida util
+  de 6 meses do manual e nao tem o codigo da peca a que ela se aplica. O bloco
+  3b (casca) continua sendo o primeiro que depende do WordPress.
