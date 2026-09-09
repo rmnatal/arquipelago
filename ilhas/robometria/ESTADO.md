@@ -5,6 +5,7 @@ prioridade: 1
 ultima_execucao: 2026-09-09T19:38Z
 executando_desde: null
 bloco_atual: "3c"
+ultima_ronda: null
 bloqueada_por: null
 ---
 
@@ -19,14 +20,26 @@ Espelho legível do estado do projeto. **Nunca guarde credencial aqui.**
   própria — mesmo plano da Aquametria, custo extra zero.
 - **DNS:** nameservers `ns604.hostgator.com.br` e `ns605.hostgator.com.br`
   apontados no registro.br.
-- **WordPress:** o último estado confirmado neste arquivo é **não instalado**.
-  **A nuvem não consegue verificar isso**: `robometria.com.br` devolveu
-  EGRESS_BLOCKED nesta execução (09/09/2026, 19h4x UTC), e isso é por desenho —
-  a seção 12 do `ARQUIPELAGO.md` já diz que a verificação de site precisa do
-  computador do Raphael. Quem atualiza esta linha é quem tem navegador: a
-  Sentinela, ou o próprio Raphael. **A Fundação não escreve aqui infraestrutura
-  que não mediu.**
-- **Snippet de Sync:** ainda não existe. Depende do wp-admin.
+- **DNS propagado em 09/09/2026** — o domínio resolve para 108.179.253.218
+  (br604-ip04.hostgator.com.br), o mesmo servidor da Aquametria.
+- **WordPress: INSTALADO em 09/09/2026, 16h17 BRT**, via Softaculous, em
+  https://robometria.com.br, na raiz do domínio. Versão 7.1, idioma pt_BR,
+  instalação limpa (nenhum plugin de brinde do Softaculous). Usuário
+  administrador não é `admin`. Credenciais foram por e-mail ao Raphael e não
+  entram neste arquivo. **Medido no navegador do Raphael pela sessão de
+  conversa** — a Fundação estava certa em não escrever isto sem medir.
+- **SSL: PENDENTE.** O AutoSSL da HostGator ainda não emitiu certificado; o
+  navegador recusa a conexão. O cPanel desta conta não expõe a aba de status
+  do AutoSSL, então não há como forçar — ele roda sozinho, tipicamente em
+  algumas horas. Enquanto isso o wp-admin não abre (o site nasceu em https),
+  e isso trava **só** os passos de navegador: plugins, snippet de Sync,
+  Search Console. Há uma checagem automática a cada 40 min que retoma a
+  seção 11 do passo 6 em diante assim que o certificado sair.
+- **ARMADILHA:** testar TLS pela nuvem não vale — o proxy de saída intercepta
+  e apresenta certificado próprio, então a nuvem diz "SSL OK" enquanto o
+  Chrome mostra erro. Certificado só se confere no navegador.
+- **Snippet de Sync:** ainda não existe. Depende do wp-admin, que depende do
+  certificado.
 - **Identidade visual:** aprovada pelo Raphael em 09/09/2026. Paleta, tipografia
   e a geometria do símbolo estão no `PROMPT.md` desta pasta.
 

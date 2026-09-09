@@ -217,6 +217,47 @@ PODE corrigir, registrando sempre o que corrigiu e por quê:
 3. **Se a correção exigir tocar em snippet, ela para e despacha.** Sem exceção, mesmo que a mudança pareça de uma linha.
 4. **Teto de 5 correções por execução.** Mais que isso não é "o pequeno" — é bloco de trabalho, e vai para a Fundação. O teto existe para a ronda não virar construção disfarçada.
 
+### 12.1 ACOMPANHAMENTO DE POSIÇÃO — a leitura semanal é dona disto
+
+Indexar é o meio; **a posição é o alvo** (seção 14.9). A leitura semanal mantém, em `dados/posicoes.md` de cada ilha, uma tabela que cresce semana a semana e nunca é sobrescrita:
+
+| consulta | página | posição hoje | posição semana passada | variação | impressões | cliques | banda |
+
+A fonte é o Search Console (Desempenho → Consultas, últimos 28 dias, país Brasil). **Posição é média, não é um lugar** — anote sempre com uma casa decimal e nunca arredonde para "1º lugar".
+
+**AS BANDAS, E O QUE FAZER EM CADA UMA.** A banda decide a ação; a posição sozinha não decide nada.
+
+- **Sem impressão nenhuma.** A página não entrou na disputa. Não é problema de ranqueamento, é de indexação — volta para a seção 14 e para o `dados/indexacao.md`. Não mexa no texto de uma página que o Google ainda não viu.
+- **Posição 21+.** Distância grande demais para conserto de detalhe. O que costuma faltar aqui é **cobertura de intenção**: a página responde a outra pergunta, não à consulta. Despache para a Fundação como lacuna de conteúdo, com a consulta real na mão.
+- **Posição 11 a 20 — É AQUI QUE MORA O DINHEIRO.** É a única banda em que trabalho pequeno vira página um. Priorize sempre esta banda antes de qualquer outra, e trate cada linha dela como uma tarefa nomeada, nunca como "melhorar o SEO da página". O que move: título e meta description que digam a consulta com as palavras da consulta; a resposta direta subindo para o primeiro parágrafo; a tabela de exemplos pré-renderizada cobrindo o caso exato que a pessoa buscou; três links internos de páginas irmãs que já rankeiam, com âncora igual à consulta.
+- **Posição 4 a 10.** Está na primeira página e ainda não é clicada. O trabalho aqui é de **CTR**, não de conteúdo: título que promete o número, meta que promete a faixa e a fonte, e schema que ganhe destaque na SERP. Compare o CTR desta linha com a média das outras na mesma posição — CTR baixo com posição boa é título ruim, e isso é conserto de minutos.
+- **Posição 1 a 3.** Não toque. Sério. Registre e passe adiante.
+
+**O QUE ELA NÃO PODE FAZER, POR MAIS TENTADOR QUE SEJA:**
+- **Não mexer em página que está subindo.** Se a posição melhorou em relação à semana passada, a página fica como está por mais uma semana. Mexer no meio da subida troca um sinal que está funcionando por um palpite.
+- **Não trocar a URL de página posicionada.** Nunca. Nem para "melhorar o slug".
+- **Nada de link pago, troca de link, PBN ou diretório.** A única alavanca de link do Arquipélago é o widget nas lojas (seção 7).
+- **Não inventar concorrente nem diagnóstico de SERP sem ter aberto a SERP.** Se não abriu, escreve "não verifiquei".
+- Toda correção desta seção obedece ao teto e às quatro regras de independência da seção 12 — inclusive a de que **quem corrige não aprova a própria correção na mesma execução**.
+
+**COMO ELA PROPÕE ACELERAR.** No fim da leitura semanal, no máximo **três** propostas, cada uma com: a consulta, a página, a posição de hoje, o que falta, e a estimativa do que muda. Proposta sem consulta nomeada não vale — é opinião. E o que sai daqui vira bloco na fila da Fundação, com o número da posição na descrição, para a execução seguinte saber por que aquilo entrou na fila.
+
+**A PRIMEIRA MEDIÇÃO DE UMA ILHA NOVA É UM ZERO HONESTO.** Ilha recém-nascida não tem posição, e escrever "sem dado ainda" é a resposta certa. A série só começa a valer quando houver duas semanas.
+
+### 12.2 COMO O DESPACHO CHEGA À FUNDAÇÃO — o canal é o repositório, nunca a memória
+
+A Sentinela não tem repositório (limite de plataforma: rotina com navegador não commita). Mas despacho que fica só na memória é esperança, não despacho — a Fundação não tem garantia de abrir o arquivo certo.
+
+Por isso, **ao terminar cada execução**, a Sentinela dispara a rotina **MÃOS NO REPOSITÓRIO** (`trig_01Jg2qeDDsWDJdU9khHVswqd`) por `fire_trigger`, mandando no `text` uma instrução completa e literal: qual arquivo, qual trecho, qual texto. O que ela manda gravar:
+
+1. Em `ilhas/<ilha>/PROMPT.md`, uma seção `## DESPACHO DA SENTINELA — <data>` **no topo da fila de blocos**, com as correções que a Fundação deve aplicar, uma por linha, cada uma dizendo o que medir depois para saber que ficou pronta. Despacho anterior já cumprido é apagado no mesmo commit; despacho não cumprido continua.
+2. Em `ilhas/<ilha>/dados/indexacao.md` (ronda semanal), a linha nova da série. Em `dados/posicoes.md`, idem.
+3. No cabeçalho de `ilhas/<ilha>/ESTADO.md`, o campo `ultima_ronda` com a hora desta execução.
+
+A instrução para as mãos tem que ser **autossuficiente e literal** — texto pronto para colar, não "atualize o arquivo". As mãos não decidem nada; se a instrução vier incompleta, elas param e respondem "sem instrução", e o despacho se perde. Prefira uma instrução longa e chata a uma curta e ambígua.
+
+A Fundação, na execução seguinte, lê o `DESPACHO DA SENTINELA` **antes** de qualquer bloco da fila — despacho tem prioridade sobre fila, porque defeito no ar custa mais que bloco atrasado.
+
 ---
 
 ## 13. ACELERAR NUNCA AFROUXA PORTÃO
