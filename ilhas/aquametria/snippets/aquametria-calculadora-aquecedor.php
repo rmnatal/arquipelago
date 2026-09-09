@@ -1,5 +1,17 @@
 /**
  * Aquametria Calculadora de Potência do Aquecedor — C5
+ * Versão: 1.2.0 (09/09/2026) — BLOCO 4c, visibilidade em IA. A página passou a
+ *   servir RESPOSTA no HTML, e não só formulário. Três acréscimos e um conserto:
+ *   (a) um bloco de resposta direta no topo, com o número, o critério e a
+ *   procedência dentro da própria frase, para sobreviver a ser citado fora de
+ *   contexto; (b) uma tabela de seis aquários já resolvidos (30, 60, 100, 150,
+ *   200 e 300 L), nos dois cenários de diferença de temperatura, pré-renderizada
+ *   no HTML pelo PHP — quem lê esta página por HTTP via um formulário vazio e
+ *   agora vê watts; (c) JSON-LD schema.org no wp_head, com WebApplication e
+ *   FAQPage. O conserto: as regras de W/L e a linha comercial moravam só dentro
+ *   do JavaScript, e qualquer texto que as citasse teria de repeti-las à mão;
+ *   agora nascem no PHP, que as entrega ao script como AQM_C5_REGRAS e
+ *   AQM_C5_LINHA. Nenhuma fórmula mudou.
  * Versão: 1.1.0 (08/09/2026) — CORREÇÃO GRAVE: o JS e o CSS saíram de dentro do retorno do
  *   shortcode e passaram a ser impressos no wp_head (estilo) e no wp_footer (comportamento).
  *   Dentro do retorno do shortcode eles ainda atravessavam os filtros de texto do conteúdo,
@@ -61,7 +73,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_C5_VERSAO' ) ) {
-	define( 'AQUAMETRIA_C5_VERSAO', '1.0.2' );
+	define( 'AQUAMETRIA_C5_VERSAO', '1.2.0' );
 	define( 'AQUAMETRIA_C5_SLUG', 'calculadora-de-potencia-do-aquecedor' );
 	define( 'AQUAMETRIA_C5_VERIFICADO_EM', '08/09/2026' );
 	define( 'AQUAMETRIA_C5_ARTIGO', 'quantos-watts-de-aquecedor-para-aquario' );
@@ -90,6 +102,148 @@ function aquametria_c5_registrar_no_hub( $lista ) {
 }
 }
 add_filter( 'aquametria_calculadoras', 'aquametria_c5_registrar_no_hub' );
+
+/* ---------------------------------------------------------------------------
+ * 1b. As regras de watts por litro, e a linha comercial — FONTE ÚNICA
+ *
+ * Até 09/09/2026 estas duas listas moravam dentro do JavaScript, e o PHP não
+ * tinha como citá-las sem repetir os números. Repetir número é combinar de
+ * divergir depois. Agora nascem aqui: o rodapé as entrega ao script como
+ * AQM_C5_REGRAS e AQM_C5_LINHA, e a tabela de exemplos pré-renderizada lê o
+ * mesmo array. Cada regra guarda a CONDIÇÃO que o próprio autor declarou —
+ * 'sempre' quer dizer que ele não declarou nenhuma, que é exatamente o problema
+ * que esta calculadora existe para expor.
+ * ------------------------------------------------------------------------- */
+
+if ( ! function_exists( 'aquametria_c5_regras' ) ) {
+function aquametria_c5_regras() {
+	return array(
+		array(
+			'id'     => 'wl-delta-ate-10',
+			'wl'     => array( 1, 1.5 ),
+			'quando' => 'delta',
+			'fonte'  => 'ReefFlow',
+			'rotulo' => 'Regra com delta declarado',
+			'nota'   => 'A única fonte do nosso levantamento que amarra watts por litro a uma diferença de temperatura: de 1,0 a 1,5 W/L para até 10 °C de diferença entre o ambiente e a água.',
+		),
+		array(
+			'id'     => 'wl-sul',
+			'wl'     => array( 2, 2 ),
+			'quando' => 'sul',
+			'fonte'  => 'Casa da Ada',
+			'rotulo' => 'Leitura do Sul',
+			'nota'   => 'Até 2,0 W/L para a região Sul. É a única fonte do corpus que reconhece que o Brasil não tem um clima só — mas ela também não diz para qual diferença de temperatura o número vale.',
+		),
+		array(
+			'id'     => 'wl-generico',
+			'wl'     => array( 1, 1 ),
+			'quando' => 'sempre',
+			'fonte'  => 'repetida sem autoria única na web BR',
+			'rotulo' => 'Regra genérica',
+			'nota'   => '1 W por litro. É o número que quase toda página brasileira publica, sem autor identificável e sem dizer para qual diferença de temperatura vale.',
+		),
+		array(
+			'id'     => 'wl-ehow',
+			'wl'     => array( 1.3, 1.3 ),
+			'quando' => 'sempre',
+			'fonte'  => 'eHow',
+			'rotulo' => 'Variante da regra genérica',
+			'nota'   => '1,3 W por litro, também sem condição declarada. Está aqui porque discorda do 1,0 W/L — e a discordância é o conteúdo.',
+		),
+	);
+}
+}
+
+/* Constante 'eheim-jager-linha-comercial': os 9 tamanhos da linha. Aquecedor não
+   se vende em qualquer potência; a escolha real é entre estes degraus. */
+if ( ! function_exists( 'aquametria_c5_linha_comercial' ) ) {
+function aquametria_c5_linha_comercial() {
+	return array( 25, 50, 75, 100, 125, 150, 200, 250, 300 );
+}
+}
+
+/* ---------------------------------------------------------------------------
+ * 1c. Os seis aquários resolvidos no servidor
+ *
+ * O motivo, escrito em 09/09/2026: todo o cálculo desta página é JavaScript no
+ * navegador, de propósito (o site está atrás de cache de página). A consequência
+ * que ninguém tinha medido é que um modelo de linguagem — ou o leitor que não
+ * preenche formulário — recebia um formulário VAZIO e ia embora sem um watt
+ * sequer. As funções abaixo resolvem seis volumes no PHP, com as MESMAS regras
+ * do script, e o resultado sai no HTML servido. É o mesmo cálculo, feito antes.
+ * ------------------------------------------------------------------------- */
+
+if ( ! function_exists( 'aquametria_c5_volumes_exemplo' ) ) {
+function aquametria_c5_volumes_exemplo() {
+	return array( 30, 60, 100, 150, 200, 300 );
+}
+}
+
+/* Espelho em PHP do watts() do script: watts é número grosso numa conta que vem
+   de regra de bolso, então arredonda para 5 W. Os dois têm de devolver a mesma
+   string, senão a tabela servida contradiz a calculadora logo acima dela. */
+if ( ! function_exists( 'aquametria_c5_watts' ) ) {
+function aquametria_c5_watts( $n ) {
+	return number_format_i18n( round( $n / 5 ) * 5, 0 );
+}
+}
+
+/* Resolve um volume para um cenário. $delta_coberto diz se a diferença entre o
+   cômodo e a água está dentro dos 10 °C que a ReefFlow declarou; $sul diz se a
+   leitura da região Sul entra. Fora isso, sobram as regras genéricas — que é o
+   que acontece acima de 10 °C, e a tela precisa dizer isso com essas palavras. */
+if ( ! function_exists( 'aquametria_c5_exemplo' ) ) {
+function aquametria_c5_exemplo( $volume, $delta_coberto = true, $sul = false ) {
+	$aplicaveis = array();
+	foreach ( aquametria_c5_regras() as $g ) {
+		$vale = ( 'sempre' === $g['quando'] )
+			|| ( 'delta' === $g['quando'] && $delta_coberto )
+			|| ( 'sul' === $g['quando'] && $sul );
+		if ( $vale ) {
+			$aplicaveis[] = $g;
+		}
+	}
+
+	$piso = null;
+	$teto = null;
+	foreach ( $aplicaveis as $g ) {
+		$min = $volume * $g['wl'][0];
+		$max = $volume * $g['wl'][1];
+		$piso = ( null === $piso ) ? $min : min( $piso, $min );
+		$teto = ( null === $teto ) ? $max : max( $teto, $max );
+	}
+
+	$comercial = null;
+	foreach ( aquametria_c5_linha_comercial() as $w ) {
+		if ( $w >= $teto ) {
+			$comercial = $w;
+			break;
+		}
+	}
+
+	return array(
+		'volume'     => $volume,
+		'piso'       => $piso,
+		'teto'       => $teto,
+		'wl_piso'    => $piso / $volume,
+		'wl_teto'    => $teto / $volume,
+		'comercial'  => $comercial,
+		'aplicaveis' => $aplicaveis,
+	);
+}
+}
+
+/* O degrau comercial em texto — ou a frase que diz que a faixa passou do maior
+   degrau da linha de referência, que é o que acontece a partir de 300 L. */
+if ( ! function_exists( 'aquametria_c5_comercial_texto' ) ) {
+function aquametria_c5_comercial_texto( $e ) {
+	$linha = aquametria_c5_linha_comercial();
+	if ( $e['comercial'] ) {
+		return number_format_i18n( $e['comercial'], 0 ) . ' W';
+	}
+	return 'acima dos ' . number_format_i18n( $linha[ count( $linha ) - 1 ], 0 ) . ' W da linha, mais de um aparelho';
+}
+}
 
 /* ---------------------------------------------------------------------------
  * 2. Catálogo de aquecedores
@@ -534,6 +688,15 @@ max-width:52rem;font-family:var(--c5-texto);color:var(--c5-tinta);}
 .aqm-c5-selo{display:inline-block;font-family:var(--c5-mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--c5-alerta);border:1px solid var(--c5-alerta);border-radius:2px;padding:.1rem .35rem;}
 .aqm-c5-adiante ul{margin:.5rem 0 0;padding-left:1.1rem;}
 .aqm-c5-adiante li{margin:0 0 .4rem;font-size:.94rem;line-height:1.5;}
+.aqm-c5-direta{background:var(--c5-papel);border-left:3px solid var(--c5-lamina);border-radius:0 3px 3px 0;padding:1.05rem 1.25rem;margin:0 0 1.2rem;}
+.aqm-c5-direta p{font-size:.94rem;line-height:1.62;margin:0 0 .75rem;color:var(--c5-tinta);}
+.aqm-c5-direta p:last-child{margin-bottom:0;}
+.aqm-c5-direta .aqm-c5-destaque{font-size:1.06rem;line-height:1.5;}
+.aqm-c5-direta .aqm-c5-destaque strong{font-family:var(--c5-display);}
+.aqm-c5-exemplos .aqm-c5-fontes td{font-size:.84rem;}
+.aqm-c5-exemplos .aqm-c5-fontes td:first-child{font-weight:600;color:var(--c5-tinta);}
+.aqm-c5-num{font-family:var(--c5-mono);font-variant-numeric:tabular-nums;white-space:nowrap;}
+.aqm-c5-wl{display:block;color:var(--c5-legenda);font-family:var(--c5-texto);font-size:.76rem;}
 .aqm-c5-oculto{display:none;}
 @media (max-width:600px){.aqm-c5-valor{font-size:1.6rem;}
 .aqm-c5-produto{grid-template-columns:1fr;}
@@ -560,28 +723,19 @@ function aquametria_c5_js() {
 	   maior, e cada extremo carrega o nome de quem o publicou.
 	   'sempre' = o autor não declarou condição nenhuma — que é justamente o
 	   problema que esta calculadora existe para expor. */
-	var REGRAS = [
-		{ id: 'wl-delta-ate-10', wl: [1.0, 1.5], quando: 'delta', fonte: 'ReefFlow',
-		  rotulo: 'Regra com delta declarado',
-		  nota: 'A única fonte do nosso levantamento que amarra watts por litro a uma diferença de temperatura: de 1,0 a 1,5 W/L para até 10 °C de diferença entre o ambiente e a água.' },
-		{ id: 'wl-sul', wl: [2.0, 2.0], quando: 'sul', fonte: 'Casa da Ada',
-		  rotulo: 'Leitura do Sul',
-		  nota: 'Até 2,0 W/L para a região Sul. É a única fonte do corpus que reconhece que o Brasil não tem um clima só — mas ela também não diz para qual diferença de temperatura o número vale.' },
-		{ id: 'wl-generico', wl: [1.0, 1.0], quando: 'sempre', fonte: 'repetida sem autoria única na web BR',
-		  rotulo: 'Regra genérica',
-		  nota: '1 W por litro. É o número que quase toda página brasileira publica, sem autor identificável e sem dizer para qual diferença de temperatura vale.' },
-		{ id: 'wl-ehow', wl: [1.3, 1.3], quando: 'sempre', fonte: 'eHow',
-		  rotulo: 'Variante da regra genérica',
-		  nota: '1,3 W por litro, também sem condição declarada. Está aqui porque discorda do 1,0 W/L — e a discordância é o conteúdo.' }
-	];
+	/* As regras de bolso do corpus, cada uma com a condição que o PRÓPRIO autor
+	   declarou, e a linha comercial de referência. Desde 09/09/2026 as duas NÃO
+	   são escritas aqui: vêm do PHP (aquametria_c5_regras() e
+	   aquametria_c5_linha_comercial()) pelas variáveis impressas no rodapé. O
+	   motivo é a tabela de exemplos pré-renderizada, que precisa das mesmas
+	   regras — e duas cópias das mesmas regras divergem em silêncio.
+	   Não há média entre elas: a faixa vai do menor W/L aplicável ao maior, e
+	   cada extremo carrega o nome de quem o publicou. 'sempre' quer dizer que o
+	   autor não declarou condição nenhuma — que é o problema desta página. */
+	var REGRAS = (typeof AQM_C5_REGRAS !== 'undefined') ? AQM_C5_REGRAS : null;
+	var LINHA = (typeof AQM_C5_LINHA !== 'undefined') ? AQM_C5_LINHA : null;
+	if (!REGRAS || !REGRAS.length || !LINHA || !LINHA.length) { return; }
 
-	/* Constante 'eheim-jager-linha-comercial': os 9 tamanhos da linha. Aquecedor
-	   não se vende em qualquer potência; a escolha real é entre estes degraus. */
-	var LINHA = [25, 50, 75, 100, 125, 150, 200, 250, 300];
-
-	/* Constante 'especies-parametros-iniciais' (Petz; Aquarismo Paulista). São 8
-	   espécies com ficha e fonte. Espécie sem ficha não entra: aqui não se
-	   inventa temperatura de peixe. */
 	var ESPECIES = [
 		{ id: 'betta', nome: 'Betta', t: [24, 28], fonte: 'Petz' },
 		{ id: 'kinguio', nome: 'Kinguio', t: [18, 24], fonte: 'Petz' },
@@ -1313,6 +1467,233 @@ function aquametria_c5_url( $slug ) {
 }
 }
 
+/* ---------------------------------------------------------------------------
+ * 5a. Resposta antes da explicação, e a tabela de exemplos servida no HTML
+ *
+ * Regra de primeira classe do projeto (08/09/2026): ser recomendado pelas IAs
+ * vale tanto quanto ranquear no Google, e um modelo de linguagem cita PASSAGEM,
+ * não página. Uma passagem só sobrevive ao recorte se carregar, na mesma frase,
+ * o número, o critério e de quem é o número. É o que estes blocos fazem — no
+ * servidor, porque formulário vazio não se cita.
+ * ------------------------------------------------------------------------- */
+
+if ( ! function_exists( 'aquametria_c5_resposta_direta_html' ) ) {
+function aquametria_c5_resposta_direta_html() {
+	$e   = aquametria_c5_exemplo( 100, true, false );
+	$fra = aquametria_c5_exemplo( 100, false, false );
+
+	$h  = '<div class="aqm-c5-direta">';
+
+	$h .= '<p class="aqm-c5-destaque"><strong>Um aquário de 100 litros de água real, num cômodo que não fica mais de ';
+	$h .= esc_html( number_format_i18n( AQUAMETRIA_C5_DELTA_COBERTO, 0 ) ) . ' °C abaixo da temperatura que os peixes pedem, precisa de ';
+	$h .= esc_html( aquametria_c5_watts( $e['piso'] ) ) . ' a ' . esc_html( aquametria_c5_watts( $e['teto'] ) ) . ' W de aquecedor</strong> — ';
+	$h .= 'na prateleira, um aparelho de ' . esc_html( aquametria_c5_comercial_texto( $e ) ) . '.</p>';
+
+	$h .= '<p>O piso de ' . esc_html( number_format_i18n( $e['wl_piso'], 1 ) ) . ' W por litro é a regra genérica que quase toda página brasileira repete, sem autor identificável e sem dizer para qual diferença de temperatura vale. ';
+	$h .= 'O teto de ' . esc_html( number_format_i18n( $e['wl_teto'], 1 ) ) . ' W por litro vem da ReefFlow, a única fonte do levantamento da Aquametria de 04/09/2026 que amarra watts por litro a uma diferença declarada: ';
+	$h .= 'de 1,0 a 1,5 W/L para até ' . esc_html( number_format_i18n( AQUAMETRIA_C5_DELTA_COBERTO, 0 ) ) . ' °C entre o ambiente e a água. ';
+	$h .= 'Entre dois degraus da linha comercial esta página indica o que cobre o TOPO da faixa, e diz que isso é critério editorial declarado, não constante com fonte.</p>';
+
+	$h .= '<p><strong>A pergunta que decide o número não é o volume do aquário: é quanto o cômodo esfria na noite mais fria do ano.</strong> ';
+	$h .= 'Acima de ' . esc_html( number_format_i18n( AQUAMETRIA_C5_DELTA_COBERTO, 0 ) ) . ' °C de diferença nenhuma fonte do nosso levantamento cobre o caso — sobram as regras genéricas, ';
+	$h .= 'que para os mesmos 100 litros dariam ' . esc_html( aquametria_c5_watts( $fra['piso'] ) ) . ' a ' . esc_html( aquametria_c5_watts( $fra['teto'] ) ) . ' W, ';
+	$h .= 'e essa faixa é um PISO que pode ser insuficiente: extrapolar regra de bolso para além do delta que a fonte declarou seria inventar constante. ';
+	$h .= 'É a razão de esta calculadora perguntar a temperatura mínima do cômodo, o que nenhuma outra do nicho pergunta.</p>';
+
+	$h .= '<p class="aqm-c5-criterio">O achado que o próprio catálogo do fabricante entrega, e que esta página publica em vez de esconder: ';
+	$h .= 'a linha Eheim Jäger tem 25 W para 25 L, 50 W para 50 L, 100 W para 100 L e 150 W para 150 L — ';
+	$h .= 'ou seja, o catálogo do fabricante é construído sobre a mesma regra de 1 W/L que a web repete. ';
+	$h .= 'E a mesma Eheim declara o Jäger de 200 W para 30 a 400 litros, uma faixa de treze vezes: serve para escolher potência na loja, não para dimensionar (coletado em 07/09/2026).</p>';
+
+	$h .= '</div>';
+	return $h;
+}
+}
+
+if ( ! function_exists( 'aquametria_c5_exemplos_html' ) ) {
+function aquametria_c5_exemplos_html() {
+	$h  = '<div class="aqm-c5-painel aqm-c5-exemplos">';
+	$h .= '<h3>Seis aquários já resolvidos, nos dois cenários de frio</h3>';
+	$h .= '<p class="aqm-c5-sub">É a mesma conta do formulário acima, aplicada aos seis volumes mais comuns do comércio brasileiro e aos dois cenários que mudam tudo: ';
+	$h .= 'o cômodo que fica até ' . esc_html( number_format_i18n( AQUAMETRIA_C5_DELTA_COBERTO, 0 ) ) . ' °C abaixo da temperatura da água, e o que fica mais que isso. ';
+	$h .= 'Estes números estão prontos no HTML desta página — não é preciso preencher nada.</p>';
+
+	$h .= '<div class="aqm-c5-rolagem"><table class="aqm-c5-fontes">';
+	$h .= '<tr><th>Volume real</th><th>Até ' . esc_html( number_format_i18n( AQUAMETRIA_C5_DELTA_COBERTO, 0 ) ) . ' °C de diferença</th><th>Na prateleira</th>';
+	$h .= '<th>Acima de ' . esc_html( number_format_i18n( AQUAMETRIA_C5_DELTA_COBERTO, 0 ) ) . ' °C</th><th>Na prateleira</th></tr>';
+
+	foreach ( aquametria_c5_volumes_exemplo() as $v ) {
+		$e   = aquametria_c5_exemplo( $v, true, false );
+		$fra = aquametria_c5_exemplo( $v, false, false );
+
+		$h .= '<tr>';
+		$h .= '<td>' . esc_html( number_format_i18n( $v, 0 ) ) . ' L</td>';
+
+		$h .= '<td><span class="aqm-c5-num">' . esc_html( aquametria_c5_watts( $e['piso'] ) ) . ' a ' . esc_html( aquametria_c5_watts( $e['teto'] ) ) . ' W</span>';
+		$h .= '<span class="aqm-c5-wl">' . esc_html( number_format_i18n( $e['wl_piso'], 1 ) ) . ' a ' . esc_html( number_format_i18n( $e['wl_teto'], 1 ) ) . ' W/L</span></td>';
+		$h .= '<td><span class="aqm-c5-num">' . esc_html( aquametria_c5_comercial_texto( $e ) ) . '</span></td>';
+
+		$h .= '<td><span class="aqm-c5-num">' . esc_html( aquametria_c5_watts( $fra['piso'] ) ) . ' a ' . esc_html( aquametria_c5_watts( $fra['teto'] ) ) . ' W</span>';
+		$h .= '<span class="aqm-c5-wl">' . esc_html( number_format_i18n( $fra['wl_piso'], 1 ) ) . ' a ' . esc_html( number_format_i18n( $fra['wl_teto'], 1 ) ) . ' W/L, e é piso</span></td>';
+		$h .= '<td><span class="aqm-c5-num">' . esc_html( aquametria_c5_comercial_texto( $fra ) ) . '</span></td>';
+
+		$h .= '</tr>';
+	}
+
+	$h .= '</table></div>';
+
+	$h .= '<p class="aqm-c5-criterio" style="margin-top:.8rem">Como ler a tabela. ';
+	$h .= 'A coluna da esquerda vale quando o cômodo não fica mais de ' . esc_html( number_format_i18n( AQUAMETRIA_C5_DELTA_COBERTO, 0 ) ) . ' °C abaixo da temperatura da água: ';
+	$h .= 'aí entra a ReefFlow, a única fonte do levantamento de 04/09/2026 que declarou para qual diferença o número dela vale (1,0 a 1,5 W/L até 10 °C). ';
+	$h .= 'A coluna da direita vale acima disso, e nela sobram apenas as regras sem condição declarada — a genérica de 1,0 W/L, repetida sem autoria na web brasileira, e a de 1,3 W/L do eHow. ';
+	$h .= 'Por isso ela está marcada como PISO: nenhuma fonte cobre esse caso, e esticar o número da ReefFlow para além dos 10 °C que ela declarou seria inventar constante. ';
+	$h .= 'Quem está na região Sul tem ainda uma terceira leitura, de até 2,0 W/L (Casa da Ada) — marque a opção no formulário e a faixa sobe. ';
+	$h .= 'Aquário destampado perde mais calor, principalmente por evaporação, e esta página NÃO corrige o número por isso: a constante que quantificaria a perda está pendente, sem fonte. ';
+	$h .= 'A partir de 300 litros a faixa passa do maior degrau da linha de referência (300 W), e a resposta honesta é mais de um aparelho — o que também é o mais seguro, por modo de falha do termostato. ';
+	$h .= 'Nenhum número desta tabela foi digitado à mão: todos saem das mesmas regras que a calculadora usa, calculados no servidor a cada carregamento.</p>';
+
+	$h .= '</div>';
+	return $h;
+}
+}
+
+/* ---------------------------------------------------------------------------
+ * 5b. JSON-LD (schema.org)
+ *
+ * Sai no wp_head, e por isso NUNCA dentro do retorno do shortcode: o retorno do
+ * shortcode atravessa os filtros do the_content, que trocariam cada "&" pela
+ * entidade numérica dele e quebrariam o JSON. Mesma regra do script, mesmo
+ * motivo. Medido em 09/09/2026: a ilha tinha JSON-LD ZERO em 13 de 13 páginas.
+ *
+ * Dois nós: WebApplication e FAQPage. Cada resposta do FAQ existe, com o mesmo
+ * número, na tabela de exemplos servida acima — FAQPage que promete o que a
+ * página não mostra é lixo, e seria lixo detectável.
+ * ------------------------------------------------------------------------- */
+
+if ( ! function_exists( 'aquametria_c5_jsonld_dados' ) ) {
+function aquametria_c5_jsonld_dados() {
+	$url    = aquametria_c5_url( AQUAMETRIA_C5_SLUG );
+	$artigo = aquametria_c5_url( AQUAMETRIA_C5_ARTIGO );
+
+	$editora = array(
+		'@type' => 'Organization',
+		'name'  => 'Aquametria',
+		'url'   => home_url( '/' ),
+	);
+
+	$app = array(
+		'@type'                  => 'WebApplication',
+		'@id'                    => $url . '#calculadora',
+		'name'                   => 'Calculadora de potência do aquecedor de aquário',
+		'alternateName'          => 'Aquametria C5 — quantos watts de aquecedor',
+		'url'                    => $url,
+		'inLanguage'             => 'pt-BR',
+		'applicationCategory'    => 'UtilitiesApplication',
+		'applicationSubCategory' => 'Calculadora de dimensionamento de aquário',
+		'operatingSystem'        => 'Qualquer navegador com JavaScript',
+		'browserRequirements'    => 'Requer JavaScript. O cálculo roda no navegador e nenhum dado é enviado a servidor.',
+		'isAccessibleForFree'    => true,
+		'offers'                 => array(
+			'@type'         => 'Offer',
+			'price'         => '0',
+			'priceCurrency' => 'BRL',
+		),
+		'softwareVersion' => AQUAMETRIA_C5_VERSAO,
+		'description'     => 'Converte o volume real de água e a temperatura mínima do cômodo na faixa de potência de aquecedor que o aquário pede, em watts, '
+			. 'e no degrau da linha comercial que a cobre. É a única calculadora do nicho no Brasil que pergunta quanto frio faz onde o aquário está: '
+			. 'toda a web repete 1 W por litro sem dizer para qual diferença de temperatura o número vale, e a diferença é o que decide a conta.',
+		'featureList' => array(
+			'Faixa de potência em watts a partir do volume real e da temperatura mínima do cômodo',
+			'Cada regra de watts por litro com a condição que o próprio autor declarou',
+			'Aviso explícito quando a diferença de temperatura passa dos 10 °C que a única fonte com delta declarou',
+			'Temperatura-alvo a partir da ficha de 8 espécies, com fonte',
+			'Degrau da linha comercial que cobre o topo da faixa',
+			'Caminho inverso: o aquecedor que você já tem serve para quantos litros',
+			'Barreira de voltagem e de faixa de ajuste antes de sugerir qualquer aparelho',
+			'Tabela pré-calculada para 30, 60, 100, 150, 200 e 300 litros, nos dois cenários de frio',
+		),
+		'publisher'  => $editora,
+		'isBasedOn'  => 'Levantamento de fontes brasileiras da Aquametria, 04/09/2026, e fichas de fabricante coletadas em 07/09/2026',
+		'mainEntityOfPage' => $artigo,
+	);
+
+	$perguntas = array();
+	foreach ( aquametria_c5_volumes_exemplo() as $v ) {
+		$e   = aquametria_c5_exemplo( $v, true, false );
+		$fra = aquametria_c5_exemplo( $v, false, false );
+
+		$perguntas[] = array(
+			'@type' => 'Question',
+			'name'  => 'Quantos watts de aquecedor para um aquário de ' . number_format_i18n( $v, 0 ) . ' litros?',
+			'acceptedAnswer' => array(
+				'@type' => 'Answer',
+				'text'  => 'Um aquário de ' . number_format_i18n( $v, 0 ) . ' litros de água real, num cômodo que não fica mais de '
+					. number_format_i18n( AQUAMETRIA_C5_DELTA_COBERTO, 0 ) . ' °C abaixo da temperatura da água, pede de '
+					. aquametria_c5_watts( $e['piso'] ) . ' a ' . aquametria_c5_watts( $e['teto'] ) . ' W — na prateleira, '
+					. aquametria_c5_comercial_texto( $e ) . '. '
+					. 'O piso de ' . number_format_i18n( $e['wl_piso'], 1 ) . ' W/L é a regra genérica repetida sem autoria pela web brasileira; '
+					. 'o teto de ' . number_format_i18n( $e['wl_teto'], 1 ) . ' W/L vem da ReefFlow, a única fonte do levantamento da Aquametria de 04/09/2026 '
+					. 'que declarou para qual diferença de temperatura o número vale (até ' . number_format_i18n( AQUAMETRIA_C5_DELTA_COBERTO, 0 ) . ' °C). '
+					. 'Se o cômodo esfriar mais que isso, nenhuma fonte cobre o caso: sobram as regras genéricas, que dariam '
+					. aquametria_c5_watts( $fra['piso'] ) . ' a ' . aquametria_c5_watts( $fra['teto'] ) . ' W, e essa faixa é um piso que pode ser insuficiente. '
+					. 'O que decide o número não é o volume, é quanto o cômodo esfria na noite mais fria do ano.',
+			),
+		);
+	}
+
+	$perguntas[] = array(
+		'@type' => 'Question',
+		'name'  => 'A regra de 1 watt por litro para aquecedor de aquário está certa?',
+		'acceptedAnswer' => array(
+			'@type' => 'Answer',
+			'text'  => 'Ela está incompleta, e de um jeito que importa. 1 W por litro é o número que quase toda página brasileira publica, '
+				. 'sem autor identificável e sem dizer para qual diferença de temperatura vale — e um aquário a 26 °C num quarto que cai a 22 °C '
+				. 'não é o mesmo problema que o mesmo aquário num quarto que cai a 12 °C. '
+				. 'No levantamento da Aquametria de 04/09/2026, a única fonte que amarrou watts por litro a uma diferença declarada foi a ReefFlow: '
+				. 'de 1,0 a 1,5 W/L para até ' . number_format_i18n( AQUAMETRIA_C5_DELTA_COBERTO, 0 ) . ' °C. O eHow publica 1,3 W/L, também sem condição; '
+				. 'a Casa da Ada publica até 2,0 W/L para a região Sul, o que ao menos reconhece que o Brasil não tem um clima só. '
+				. 'A própria linha Eheim Jäger é construída sobre 1 W/L (25 W para 25 L, 100 W para 100 L, 150 W para 150 L), '
+				. 'o que explica de onde a regra veio sem torná-la um dimensionamento.',
+		),
+	);
+
+	$perguntas[] = array(
+		'@type' => 'Question',
+		'name'  => 'Aquário destampado precisa de aquecedor mais forte?',
+		'acceptedAnswer' => array(
+			'@type' => 'Answer',
+			'text'  => 'Perde mais calor, sim, e perde principalmente por evaporação na lâmina livre, que costuma ser a maior parcela da perda. '
+				. 'Mas a Aquametria não corrige o número por isso: a constante que quantificaria essa perda está pendente no nosso banco, sem fonte, '
+				. 'e dizer "some 20 % se for destampado" seria inventar constante. '
+				. 'Na prática, com o aquário aberto, trate a faixa calculada como piso e considere o degrau comercial seguinte.',
+		),
+	);
+
+	$faq = array(
+		'@type'      => 'FAQPage',
+		'@id'        => $url . '#faq',
+		'inLanguage' => 'pt-BR',
+		'url'        => $url,
+		'mainEntity' => $perguntas,
+	);
+
+	return array(
+		'@context' => 'https://schema.org',
+		'@graph'   => array( $app, $faq ),
+	);
+}
+}
+
+if ( ! function_exists( 'aquametria_c5_imprimir_jsonld' ) ) {
+function aquametria_c5_imprimir_jsonld() {
+	$json = wp_json_encode( aquametria_c5_jsonld_dados(), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE );
+	if ( ! $json ) {
+		return;
+	}
+	echo '<script type="application/ld+json" id="aquametria-c5-jsonld">' . "\n" . $json . "\n" . '</script>' . "\n";
+}
+}
+
 if ( ! function_exists( 'aquametria_c5_form_html' ) ) {
 function aquametria_c5_form_html() {
 	$c1 = aquametria_c5_url( 'calculadora-de-litragem' );
@@ -1613,6 +1994,7 @@ function aquametria_c5_cabeca() {
 		return;
 	}
 	aquametria_c5_imprimir_estilo();
+	aquametria_c5_imprimir_jsonld();
 }
 }
 add_action( 'wp_head', 'aquametria_c5_cabeca', 20 );
@@ -1625,6 +2007,8 @@ function aquametria_c5_rodape() {
 
 	$js  = 'var AQM_C5_DATA = ' . wp_json_encode( AQUAMETRIA_C5_VERIFICADO_EM ) . ";\n";
 	$js .= 'var AQM_C5_CATALOGO = ' . wp_json_encode( array_values( aquametria_c5_catalogo() ) ) . ";\n";
+	$js .= 'var AQM_C5_REGRAS = ' . wp_json_encode( aquametria_c5_regras() ) . ";\n";
+	$js .= 'var AQM_C5_LINHA = ' . wp_json_encode( aquametria_c5_linha_comercial() ) . ";\n";
 	$js .= aquametria_c5_js();
 	echo '<script id="aquametria-c5-script">' . "\n" . $js . "\n" . '</script>' . "\n";
 }
@@ -1648,8 +2032,10 @@ function aquametria_c5_shortcode() {
 	add_action( 'wp_footer', 'aquametria_c5_rodape', 20 );
 
 	$h  = '<div class="aqm-c5">';
+	$h .= aquametria_c5_resposta_direta_html();
 	$h .= aquametria_c5_form_html();
 	$h .= aquametria_c5_resposta_html();
+	$h .= aquametria_c5_exemplos_html();
 	$h .= aquametria_c5_tenho_html();
 	$h .= aquametria_c5_fontes_html();
 	$h .= aquametria_c5_adiante_html();

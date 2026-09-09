@@ -1,5 +1,16 @@
 /**
  * Aquametria Calculadora de Vazão do Filtro — C3
+ * Versão: 1.2.0 (09/09/2026) — BLOCO 4c, visibilidade em IA. A página passou a
+ *   servir RESPOSTA no HTML, e não só formulário. Três acréscimos e um conserto:
+ *   (a) um bloco de resposta direta no topo, com o número, o critério e a
+ *   procedência dentro da própria frase, para sobreviver a ser citado fora de
+ *   contexto; (b) uma tabela de seis aquários já resolvidos (30, 60, 100, 150,
+ *   200 e 300 L), pré-renderizada no HTML pelo PHP — um modelo de linguagem que
+ *   lê esta página via HTTP via um formulário vazio e agora lê números;
+ *   (c) JSON-LD schema.org no wp_head, com WebApplication e FAQPage. O conserto:
+ *   as bandas de turnover moravam em dois lugares (no JavaScript e na cabeça de
+ *   quem escrevesse uma tabela) e agora moram só no PHP, que as entrega ao
+ *   script como AQM_C3_BANDAS. Nenhuma fórmula mudou.
  * Versão: 1.1.0 (08/09/2026) — CORREÇÃO GRAVE: o JS e o CSS saíram de dentro do retorno do
  *   shortcode e passaram a ser impressos no wp_head (estilo) e no wp_footer (comportamento).
  *   Dentro do retorno do shortcode eles ainda atravessavam os filtros de texto do conteúdo,
@@ -52,7 +63,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_C3_VERSAO' ) ) {
-	define( 'AQUAMETRIA_C3_VERSAO', '1.0.3' );
+	define( 'AQUAMETRIA_C3_VERSAO', '1.2.0' );
 	define( 'AQUAMETRIA_C3_SLUG', 'calculadora-de-vazao-do-filtro' );
 	define( 'AQUAMETRIA_C3_VERIFICADO_EM', '08/09/2026' );
 	/* Constante 'eheim-classic-250-2213' (dados/constantes-calculadoras.json):
@@ -340,6 +351,112 @@ function aquametria_c3_catalogo() {
  * 3. Estilo (impresso uma vez por página, junto do primeiro shortcode)
  * ------------------------------------------------------------------------- */
 
+/* ---------------------------------------------------------------------------
+ * 2b. Bandas de turnover — FONTE ÚNICA (09/09/2026)
+ *
+ * Até hoje estas faixas moravam dentro do JavaScript, e qualquer texto da
+ * página que quisesse citá-las tinha de repetir os números à mão. Repetir é
+ * divergir mais cedo ou mais tarde. Agora elas nascem aqui: o rodapé as entrega
+ * ao script como AQM_C3_BANDAS e a tabela de exemplos pré-renderizada lê o
+ * mesmo array. Mudar a faixa em um lugar muda nos dois, porque só há um lugar.
+ *
+ * Cada faixa é uma constante registrada em dados/constantes-calculadoras.json,
+ * com fonte, url e data. O piso da resposta NÃO está aqui: ele é único e vem do
+ * fabricante (AQUAMETRIA_C3_FABRICANTE_XH).
+ * ------------------------------------------------------------------------- */
+
+if ( ! function_exists( 'aquametria_c3_bandas' ) ) {
+function aquametria_c3_bandas() {
+	return array(
+		'comunitario' => array(
+			array(
+				'id'     => 'turnover-comunitario-mybest',
+				'rotulo' => 'Leitura conservadora BR',
+				'curto'  => 'leitura conservadora da my-best BR',
+				'faixa'  => array( 4, 5 ),
+				'fonte'  => 'my-best BR',
+			),
+			array(
+				'id'     => 'turnover-comunitario-br',
+				'rotulo' => 'Regra de bolso BR',
+				'curto'  => 'regra de bolso brasileira',
+				'faixa'  => array( 5, 10 ),
+				'fonte'  => 'Aquarismo Paulista; AquaOnline',
+			),
+		),
+		'plantado' => array(
+			array(
+				'id'     => 'turnover-plantado',
+				'rotulo' => 'Plantado BR',
+				'curto'  => 'faixa brasileira para plantado',
+				'faixa'  => array( 3, 5 ),
+				'fonte'  => 'AquaPeixes',
+			),
+		),
+	);
+}
+}
+
+/* A banda de bolso é a ÚLTIMA da lista do perfil — a que a maioria das fontes
+   brasileiras repete e sobre a qual a carga de peixes se posiciona. O JavaScript
+   usa exatamente a mesma convenção (r.bolso), e é por isso que ela está escrita
+   aqui em vez de ficar subentendida. */
+if ( ! function_exists( 'aquametria_c3_banda_bolso' ) ) {
+function aquametria_c3_banda_bolso( $perfil ) {
+	$bandas = aquametria_c3_bandas();
+	$lista  = isset( $bandas[ $perfil ] ) ? $bandas[ $perfil ] : $bandas['comunitario'];
+	return $lista[ count( $lista ) - 1 ];
+}
+}
+
+/* ---------------------------------------------------------------------------
+ * 2c. Os seis aquários resolvidos no servidor
+ *
+ * O motivo desta seção existir, escrito em 09/09/2026: todo o cálculo desta
+ * página é JavaScript no navegador, de propósito (o site está atrás de cache de
+ * página). A consequência que ninguém tinha medido é que um modelo de linguagem
+ * — ou qualquer leitor que não preencha o formulário — recebia um formulário
+ * VAZIO e ia embora sem um número sequer. As funções abaixo resolvem seis
+ * volumes no PHP, com as MESMAS constantes do script, e o resultado sai no HTML
+ * servido. Não é um segundo cálculo: é o mesmo, feito antes.
+ * ------------------------------------------------------------------------- */
+
+if ( ! function_exists( 'aquametria_c3_volumes_exemplo' ) ) {
+function aquametria_c3_volumes_exemplo() {
+	return array( 30, 60, 100, 150, 200, 300 );
+}
+}
+
+/* Espelho em PHP do lh() do script: vazão é número grosso, então arredonda para
+   a dezena abaixo de 1000 L/h e para a cinquentena acima. Os dois têm de
+   devolver a mesma string, senão a tabela servida contradiz a calculadora. */
+if ( ! function_exists( 'aquametria_c3_lh' ) ) {
+function aquametria_c3_lh( $n ) {
+	$passo = ( $n >= 1000 ) ? 50 : 10;
+	return number_format_i18n( round( $n / $passo ) * $passo, 0 );
+}
+}
+
+if ( ! function_exists( 'aquametria_c3_exemplo' ) ) {
+function aquametria_c3_exemplo( $volume ) {
+	$bolso_com = aquametria_c3_banda_bolso( 'comunitario' );
+	$bolso_pla = aquametria_c3_banda_bolso( 'plantado' );
+
+	$piso = $volume * AQUAMETRIA_C3_FABRICANTE_XH;
+
+	return array(
+		'volume'       => $volume,
+		'piso'         => $piso,
+		'com_teto'     => $volume * $bolso_com['faixa'][1],
+		'com_xh'       => $bolso_com['faixa'],
+		'com_mira'     => ( $volume * $bolso_com['faixa'][0] + $volume * $bolso_com['faixa'][1] ) / 2,
+		'pla_teto'     => $volume * $bolso_pla['faixa'][1],
+		'pla_xh'       => $bolso_pla['faixa'],
+		'razao'        => ( $volume * $bolso_com['faixa'][1] ) / $piso,
+	);
+}
+}
+
 if ( ! function_exists( 'aquametria_c3_css' ) ) {
 function aquametria_c3_css() {
 	return <<<'CSS'
@@ -414,6 +531,15 @@ max-width:52rem;font-family:var(--c3-texto);color:var(--c3-tinta);}
 .aqm-c3-selo{display:inline-block;font-family:var(--c3-mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--c3-alerta);border:1px solid var(--c3-alerta);border-radius:2px;padding:.1rem .35rem;}
 .aqm-c3-adiante ul{margin:.5rem 0 0;padding-left:1.1rem;}
 .aqm-c3-adiante li{margin:0 0 .4rem;font-size:.94rem;line-height:1.5;}
+.aqm-c3-direta{background:var(--c3-papel);border-left:3px solid var(--c3-lamina);border-radius:0 3px 3px 0;padding:1.05rem 1.25rem;margin:0 0 1.2rem;}
+.aqm-c3-direta p{font-size:.94rem;line-height:1.62;margin:0 0 .75rem;color:var(--c3-tinta);}
+.aqm-c3-direta p:last-child{margin-bottom:0;}
+.aqm-c3-direta .aqm-c3-destaque{font-size:1.06rem;line-height:1.5;}
+.aqm-c3-direta .aqm-c3-destaque strong{font-family:var(--c3-display);}
+.aqm-c3-exemplos .aqm-c3-fontes td{font-size:.84rem;}
+.aqm-c3-exemplos .aqm-c3-fontes td:first-child{font-weight:600;color:var(--c3-tinta);}
+.aqm-c3-num{font-family:var(--c3-mono);font-variant-numeric:tabular-nums;white-space:nowrap;}
+.aqm-c3-xh{display:block;color:var(--c3-legenda);font-family:var(--c3-texto);font-size:.76rem;}
 .aqm-c3-oculto{display:none;}
 @media (max-width:600px){.aqm-c3-valor{font-size:1.6rem;}
 .aqm-c3-produto{grid-template-columns:1fr;}
@@ -438,16 +564,13 @@ function aquametria_c3_js() {
 
 	/* Bandas de turnover, por perfil. Cada uma é uma constante do registro em
 	   dados/constantes-calculadoras.json, com fonte e data. Não há banda para
-	   aquário marinho: o levantamento não trouxe nenhuma, e aqui não se inventa. */
-	var BANDAS = {
-		comunitario: [
-			{ id: 'turnover-comunitario-mybest', rotulo: 'Leitura conservadora BR', curto: 'leitura conservadora da my-best BR', faixa: [4, 5], fonte: 'my-best BR' },
-			{ id: 'turnover-comunitario-br', rotulo: 'Regra de bolso BR', curto: 'regra de bolso brasileira', faixa: [5, 10], fonte: 'Aquarismo Paulista; AquaOnline' }
-		],
-		plantado: [
-			{ id: 'turnover-plantado', rotulo: 'Plantado BR', curto: 'faixa brasileira para plantado', faixa: [3, 5], fonte: 'AquaPeixes' }
-		]
-	};
+	   aquário marinho: o levantamento não trouxe nenhuma, e aqui não se inventa.
+	   Desde 09/09/2026 elas NÃO são escritas aqui: vêm do PHP, de
+	   aquametria_c3_bandas(), pela variável AQM_C3_BANDAS impressa no rodapé.
+	   O motivo é a tabela de exemplos pré-renderizada, que precisa das mesmas
+	   faixas — e duas cópias das mesmas faixas divergem em silêncio. */
+	var BANDAS = (typeof AQM_C3_BANDAS === 'object' && AQM_C3_BANDAS) ? AQM_C3_BANDAS : {};
+	if (!BANDAS.comunitario || !BANDAS.plantado) { return; }
 
 	var raiz = document.querySelector('.aqm-c3');
 	if (!raiz) { return; }
@@ -959,6 +1082,232 @@ JS;
  * 5. Formulário e moldura da resposta
  * ------------------------------------------------------------------------- */
 
+/* ---------------------------------------------------------------------------
+ * 5a. Resposta antes da explicação, e a tabela de exemplos servida no HTML
+ *
+ * Regra de primeira classe do projeto (08/09/2026): ser recomendado pelas IAs
+ * vale tanto quanto ranquear no Google, e um modelo de linguagem cita PASSAGEM,
+ * não página. Uma passagem só sobrevive a ser recortada se carregar, na mesma
+ * frase, o número, o critério e de quem é o número. É o que os dois blocos
+ * abaixo fazem — e fazem no servidor, porque formulário vazio não se cita.
+ * ------------------------------------------------------------------------- */
+
+if ( ! function_exists( 'aquametria_c3_resposta_direta_html' ) ) {
+function aquametria_c3_resposta_direta_html() {
+	$e   = aquametria_c3_exemplo( 100 );
+	$pla = $e;
+
+	$h  = '<div class="aqm-c3-direta">';
+
+	$h .= '<p class="aqm-c3-destaque"><strong>Um aquário de 100 litros de água real, comunitário, pede um filtro de ';
+	$h .= esc_html( aquametria_c3_lh( $e['piso'] ) ) . ' a ' . esc_html( aquametria_c3_lh( $e['com_teto'] ) ) . ' L/h</strong> — ';
+	$h .= 'de ' . esc_html( number_format_i18n( AQUAMETRIA_C3_FABRICANTE_XH, 2 ) ) . ' a ';
+	$h .= esc_html( number_format_i18n( $e['com_xh'][1], 0 ) ) . ' renovações do volume por hora, conforme a fonte que se consulte.</p>';
+
+	$h .= '<p>O piso é o único extremo que vem de quem fabrica filtro: o Eheim classic 250 (2213) declara 440 L/h para aquários de até 250 litros, ';
+	$h .= 'o que dá ' . esc_html( number_format_i18n( AQUAMETRIA_C3_FABRICANTE_XH, 2 ) ) . ' renovações por hora (ficha coletada pela Aquametria em 07/09/2026). ';
+	$h .= 'O teto vem da regra de bolso de ' . esc_html( number_format_i18n( $e['com_xh'][0], 0 ) ) . ' a ' . esc_html( number_format_i18n( $e['com_xh'][1], 0 ) ) . ' renovações por hora, ';
+	$h .= 'repetida por Aquarismo Paulista e AquaOnline no levantamento da Aquametria de 04/09/2026, sem que nenhuma das duas explique de onde o número saiu. ';
+	$h .= 'As duas pontas discordam em ' . esc_html( number_format_i18n( $e['razao'], 1 ) ) . ' vezes, e esta página publica a divergência em vez da média: ';
+	$h .= 'média entre fontes que discordam não é dado, é opinião com cara de número.</p>';
+
+	$h .= '<p>Para aquário plantado a faixa é mais lenta — de ' . esc_html( aquametria_c3_lh( $pla['piso'] ) ) . ' a ';
+	$h .= esc_html( aquametria_c3_lh( $pla['pla_teto'] ) ) . ' L/h nos mesmos 100 litros, ou seja até ';
+	$h .= esc_html( number_format_i18n( $pla['pla_xh'][1], 0 ) ) . ' renovações por hora, segundo o AquaPeixes (levantamento de 04/09/2026): ';
+	$h .= 'planta quer corrente suave e superfície pouco agitada, para o CO2 não escapar. ';
+	$h .= 'Para aquário marinho esta calculadora não publica número nenhum, porque o nosso levantamento não trouxe turnover de marinho com fonte — e constante sem origem é proibida aqui.</p>';
+
+	$h .= '<p class="aqm-c3-criterio">Um aviso que vale para as duas faixas e que quase nenhuma página faz: ';
+	$h .= '<strong>vazão nominal não é a vazão que chega ao seu aquário.</strong> O número da caixa é medido sem mídia no cesto e com a bomba na altura da água. ';
+	$h .= 'Quanto se perde, não publicamos: não existe fator de perda com fonte no nosso levantamento. Existe medição sua, e ela está mais abaixo, no protocolo do balde.</p>';
+
+	$h .= '</div>';
+	return $h;
+}
+}
+
+if ( ! function_exists( 'aquametria_c3_exemplos_html' ) ) {
+function aquametria_c3_exemplos_html() {
+	$h  = '<div class="aqm-c3-painel aqm-c3-exemplos">';
+	$h .= '<h3>Seis aquários já resolvidos</h3>';
+	$h .= '<p class="aqm-c3-sub">Estes números estão prontos no HTML desta página: são a mesma conta que o formulário acima faz, ';
+	$h .= 'aplicada aos seis volumes mais comuns do comércio brasileiro. Servem a quem não quer preencher nada e a quem lê esta página por máquina.</p>';
+
+	$h .= '<div class="aqm-c3-rolagem"><table class="aqm-c3-fontes">';
+	$h .= '<tr><th>Volume real de água</th><th>Comunitário</th><th>Mira com carga média</th><th>Plantado</th></tr>';
+
+	foreach ( aquametria_c3_volumes_exemplo() as $v ) {
+		$e = aquametria_c3_exemplo( $v );
+
+		$h .= '<tr>';
+		$h .= '<td>' . esc_html( number_format_i18n( $e['volume'], 0 ) ) . ' L</td>';
+
+		$h .= '<td><span class="aqm-c3-num">' . esc_html( aquametria_c3_lh( $e['piso'] ) ) . ' a ' . esc_html( aquametria_c3_lh( $e['com_teto'] ) ) . ' L/h</span>';
+		$h .= '<span class="aqm-c3-xh">' . esc_html( number_format_i18n( AQUAMETRIA_C3_FABRICANTE_XH, 2 ) ) . ' a ';
+		$h .= esc_html( number_format_i18n( $e['com_xh'][1], 0 ) ) . ' renovações/h</span></td>';
+
+		$h .= '<td><span class="aqm-c3-num">' . esc_html( aquametria_c3_lh( $e['com_mira'] ) ) . ' L/h</span>';
+		$h .= '<span class="aqm-c3-xh">meio da faixa de bolso</span></td>';
+
+		$h .= '<td><span class="aqm-c3-num">' . esc_html( aquametria_c3_lh( $e['piso'] ) ) . ' a ' . esc_html( aquametria_c3_lh( $e['pla_teto'] ) ) . ' L/h</span>';
+		$h .= '<span class="aqm-c3-xh">' . esc_html( number_format_i18n( AQUAMETRIA_C3_FABRICANTE_XH, 2 ) ) . ' a ';
+		$h .= esc_html( number_format_i18n( $e['pla_xh'][1], 0 ) ) . ' renovações/h</span></td>';
+
+		$h .= '</tr>';
+	}
+
+	$h .= '</table></div>';
+
+	$h .= '<p class="aqm-c3-criterio" style="margin-top:.8rem">O piso é o mesmo critério em todas as linhas: ';
+	$h .= esc_html( number_format_i18n( AQUAMETRIA_C3_FABRICANTE_XH, 2 ) ) . ' renovações por hora, que é o que o Eheim classic 250 (2213) dimensiona quando declara 440 L/h para até 250 litros ';
+	$h .= '(coletado em 07/09/2026). O teto do comunitário são 10 renovações por hora, topo da regra de bolso de Aquarismo Paulista e AquaOnline (04/09/2026); ';
+	$h .= 'o do plantado são 5, do AquaPeixes (04/09/2026). A coluna do meio é convenção editorial declarada, não constante com fonte: ';
+	$h .= 'é o meio da faixa de bolso, onde esta página manda mirar quando a carga de peixes é média. ';
+	$h .= 'Nenhum número desta tabela foi digitado à mão — todos saem das mesmas constantes que a calculadora usa, calculados no servidor a cada carregamento.</p>';
+
+	$h .= '</div>';
+	return $h;
+}
+}
+
+/* ---------------------------------------------------------------------------
+ * 5b. JSON-LD (schema.org)
+ *
+ * Sai no wp_head, e por isso NUNCA dentro do retorno do shortcode: o retorno do
+ * shortcode atravessa os filtros do the_content, que trocariam cada "&" pela
+ * entidade numérica dele e quebrariam o JSON. Mesma regra do script, mesmo
+ * motivo. Medido em 09/09/2026: a ilha tinha JSON-LD ZERO em 13 de 13 páginas.
+ *
+ * Dois nós: WebApplication (o que esta ferramenta é, para quem cataloga
+ * ferramentas) e FAQPage (as perguntas que esta página realmente responde no
+ * HTML servido — cada resposta abaixo existe, com o mesmo número, na tabela de
+ * exemplos acima; FAQPage que promete o que a página não mostra é lixo).
+ * ------------------------------------------------------------------------- */
+
+if ( ! function_exists( 'aquametria_c3_jsonld_dados' ) ) {
+function aquametria_c3_jsonld_dados() {
+	$url = function_exists( 'aquametria_casca_url_pagina' )
+		? aquametria_casca_url_pagina( AQUAMETRIA_C3_SLUG )
+		: home_url( '/' . AQUAMETRIA_C3_SLUG . '/' );
+
+	$editora = array(
+		'@type' => 'Organization',
+		'name'  => 'Aquametria',
+		'url'   => home_url( '/' ),
+	);
+
+	$app = array(
+		'@type'                  => 'WebApplication',
+		'@id'                    => $url . '#calculadora',
+		'name'                   => 'Calculadora de vazão do filtro de aquário',
+		'alternateName'          => 'Aquametria C3 — vazão e renovações por hora',
+		'url'                    => $url,
+		'inLanguage'             => 'pt-BR',
+		'applicationCategory'    => 'UtilitiesApplication',
+		'applicationSubCategory' => 'Calculadora de dimensionamento de aquário',
+		'operatingSystem'        => 'Qualquer navegador com JavaScript',
+		'browserRequirements'    => 'Requer JavaScript. O cálculo roda no navegador e nenhum dado é enviado a servidor.',
+		'isAccessibleForFree'    => true,
+		'offers'                 => array(
+			'@type'         => 'Offer',
+			'price'         => '0',
+			'priceCurrency' => 'BRL',
+		),
+		'softwareVersion' => AQUAMETRIA_C3_VERSAO,
+		'description'     => 'Converte o volume real de água do aquário na faixa de vazão que o filtro precisa entregar, em litros por hora. '
+			. 'A faixa vai de ' . number_format_i18n( AQUAMETRIA_C3_FABRICANTE_XH, 2 ) . ' renovações por hora, que é o dimensionamento do próprio fabricante '
+			. '(Eheim classic 250, 440 L/h para até 250 L), até 10 renovações por hora, topo da regra de bolso brasileira. '
+			. 'Publica a divergência entre as fontes em vez da média, e sugere filtros do banco técnico da Aquametria cuja vazão declarada cai dentro da faixa calculada.',
+		'featureList' => array(
+			'Faixa de vazão em L/h a partir do volume real de água',
+			'Piso vindo do dimensionamento declarado pelo fabricante, não de regra de bolso',
+			'Cada extremo da faixa com a fonte e a data ao lado',
+			'Caminho inverso: até quantos litros cobre o filtro que você já tem',
+			'Volume mínimo de sump, para quem tem ou vai ter',
+			'Protocolo do balde para medir a vazão real, já com mídia e coluna',
+			'Lista de filtros do banco técnico ordenada por adequação, nunca por comissão',
+			'Tabela pré-calculada para 30, 60, 100, 150, 200 e 300 litros',
+		),
+		'publisher' => $editora,
+		'isBasedOn' => 'Levantamento de fontes brasileiras da Aquametria, 04/09/2026, e fichas de fabricante coletadas em 07/09/2026',
+	);
+
+	$perguntas = array();
+	foreach ( aquametria_c3_volumes_exemplo() as $v ) {
+		$e = aquametria_c3_exemplo( $v );
+
+		$perguntas[] = array(
+			'@type' => 'Question',
+			'name'  => 'Qual a vazão de filtro para um aquário de ' . number_format_i18n( $v, 0 ) . ' litros?',
+			'acceptedAnswer' => array(
+				'@type' => 'Answer',
+				'text'  => 'Um aquário de ' . number_format_i18n( $v, 0 ) . ' litros de água real, comunitário, pede um filtro de '
+					. aquametria_c3_lh( $e['piso'] ) . ' a ' . aquametria_c3_lh( $e['com_teto'] ) . ' L/h — de '
+					. number_format_i18n( AQUAMETRIA_C3_FABRICANTE_XH, 2 ) . ' a ' . number_format_i18n( $e['com_xh'][1], 0 ) . ' renovações do volume por hora. '
+					. 'O piso vem do fabricante: o Eheim classic 250 (2213) declara 440 L/h para até 250 L, ou seja '
+					. number_format_i18n( AQUAMETRIA_C3_FABRICANTE_XH, 2 ) . ' renovações por hora (coletado em 07/09/2026). '
+					. 'O teto vem da regra de bolso brasileira de ' . number_format_i18n( $e['com_xh'][0], 0 ) . ' a ' . number_format_i18n( $e['com_xh'][1], 0 )
+					. ' renovações por hora, repetida por Aquarismo Paulista e AquaOnline (levantamento de 04/09/2026). '
+					. 'Com carga de peixes média, mire o meio da faixa de bolso, cerca de ' . aquametria_c3_lh( $e['com_mira'] ) . ' L/h. '
+					. 'Se o aquário for plantado, a faixa é mais lenta: ' . aquametria_c3_lh( $e['piso'] ) . ' a ' . aquametria_c3_lh( $e['pla_teto'] )
+					. ' L/h, até ' . number_format_i18n( $e['pla_xh'][1], 0 ) . ' renovações por hora, segundo o AquaPeixes. '
+					. 'Vazão nominal é medida sem mídia e a coluna zero, então a que chega ao aquário é menor.',
+			),
+		);
+	}
+
+	$perguntas[] = array(
+		'@type' => 'Question',
+		'name'  => 'Quantas renovações por hora o filtro do aquário precisa fazer?',
+		'acceptedAnswer' => array(
+			'@type' => 'Answer',
+			'text'  => 'Depende de quem responde, e a diferença é grande o bastante para ser o assunto. O fabricante dimensiona '
+				. number_format_i18n( AQUAMETRIA_C3_FABRICANTE_XH, 2 ) . ' renovações por hora: o Eheim classic 250 (2213) declara 440 L/h para aquários de até 250 litros '
+				. '(coletado em 07/09/2026). A web brasileira repete de 5 a 10 renovações por hora para aquário comunitário '
+				. '(Aquarismo Paulista e AquaOnline, levantamento de 04/09/2026) e de 3 a 5 para plantado (AquaPeixes). '
+				. 'São até 5,7 vezes de diferença, e nenhuma das fontes brasileiras explica a origem do número nem confronta o dimensionamento do fabricante. '
+				. 'A Aquametria publica as duas pontas com o nome de quem as sustenta, em vez de publicar a média.',
+		),
+	);
+
+	$perguntas[] = array(
+		'@type' => 'Question',
+		'name'  => 'A vazão que vem na caixa do filtro é a que chega ao aquário?',
+		'acceptedAnswer' => array(
+			'@type' => 'Answer',
+			'text'  => 'Não. A vazão nominal do catálogo é medida com o filtro vazio, sem mídia no cesto, e com a bomba na altura da água. '
+				. 'No móvel, com o cesto cheio e a mangueira subindo, chega menos. Quanto menos, a Aquametria não publica: '
+				. 'não existe fator de perda de carga com fonte no nosso levantamento, e constante sem origem não entra. '
+				. 'O que existe é medição própria: com o filtro ligado, aponte a saída para um balde de volume conhecido e cronometre. '
+				. 'Vazão real em L/h é o volume do balde em litros dividido pelo tempo em horas — 10 litros em 45 segundos são 800 L/h.',
+		),
+	);
+
+	$faq = array(
+		'@type'      => 'FAQPage',
+		'@id'        => $url . '#faq',
+		'inLanguage' => 'pt-BR',
+		'url'        => $url,
+		'mainEntity' => $perguntas,
+	);
+
+	return array(
+		'@context' => 'https://schema.org',
+		'@graph'   => array( $app, $faq ),
+	);
+}
+}
+
+if ( ! function_exists( 'aquametria_c3_imprimir_jsonld' ) ) {
+function aquametria_c3_imprimir_jsonld() {
+	$json = wp_json_encode( aquametria_c3_jsonld_dados(), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE );
+	if ( ! $json ) {
+		return;
+	}
+	echo '<script type="application/ld+json" id="aquametria-c3-jsonld">' . "\n" . $json . "\n" . '</script>' . "\n";
+}
+}
+
 if ( ! function_exists( 'aquametria_c3_form_html' ) ) {
 function aquametria_c3_form_html() {
 	$c1 = function_exists( 'aquametria_casca_url_pagina' ) ? aquametria_casca_url_pagina( 'calculadora-de-litragem' ) : home_url( '/calculadora-de-litragem/' );
@@ -1227,6 +1576,7 @@ function aquametria_c3_cabeca() {
 		return;
 	}
 	aquametria_c3_imprimir_estilo();
+	aquametria_c3_imprimir_jsonld();
 }
 }
 add_action( 'wp_head', 'aquametria_c3_cabeca', 20 );
@@ -1238,6 +1588,7 @@ function aquametria_c3_rodape() {
 	aquametria_c3_imprimir_estilo();
 
 	$js  = 'var AQM_C3_DATA = ' . wp_json_encode( AQUAMETRIA_C3_VERIFICADO_EM ) . ";\n";
+	$js .= 'var AQM_C3_BANDAS = ' . wp_json_encode( aquametria_c3_bandas() ) . ";\n";
 	$js .= 'var AQM_C3_CATALOGO = ' . wp_json_encode( array_values( aquametria_c3_catalogo() ) ) . ";\n";
 	$js .= aquametria_c3_js();
 	echo '<script id="aquametria-c3-script">' . "\n" . $js . "\n" . '</script>' . "\n";
@@ -1262,8 +1613,10 @@ function aquametria_c3_shortcode() {
 	add_action( 'wp_footer', 'aquametria_c3_rodape', 20 );
 
 	$h  = '<div class="aqm-c3">';
+	$h .= aquametria_c3_resposta_direta_html();
 	$h .= aquametria_c3_form_html();
 	$h .= aquametria_c3_resposta_html();
+	$h .= aquametria_c3_exemplos_html();
 	$h .= aquametria_c3_tenho_html();
 	$h .= aquametria_c3_fontes_html();
 	$h .= aquametria_c3_adiante_html();

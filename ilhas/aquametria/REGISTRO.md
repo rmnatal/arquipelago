@@ -2427,3 +2427,178 @@ não tem link de afiliado, por desenho.
 
 Sem ferramenta de memória nesta sessão: `/areas/projeto-aquametria.md` NÃO foi atualizado; esta
 entrada e o `ESTADO.md` são o registro.
+
+## 2026-09-09 — BLOCO 4c, leva 1: a C3 e a C5 passaram a servir RESPOSTA no HTML
+
+Disparo extra das 10h25 BRT, a pedido do Raphael, para começar o 4c em vez de esperar a madrugada.
+Sessão SEM ferramenta de memória: o estado foi lido de `ESTADO.md` e do `REGISTRO.md`, e é neles que
+esta entrada fica. Manifest da **revisão 17 para a 18**.
+
+### O defeito que a Sentinela mediu, dito sem eufemismo
+
+Em 09/09 pela manhã a Sentinela Técnica abriu as treze páginas da ilha e contou **JSON-LD zero em 13
+de 13**. Nenhum `WebApplication`, nenhum `Product`, nenhum `FAQPage`. A regra de primeira classe que o
+Raphael fixou em 08/09 — ser recomendado pelas IAs vale tanto quanto ranquear no Google — não tinha
+sido implementada em lugar nenhum.
+
+E havia um defeito maior por baixo, que a regra do Raphael já nomeava: **todo o cálculo desta ilha é
+JavaScript no navegador**, de propósito, porque o site está atrás do cache de página da hospedagem.
+A consequência que ninguém tinha medido é que quem lê a página por HTTP sem executar script — um
+crawler de IA, e também o visitante que não quer preencher formulário — recebia **um formulário
+vazio**. Cinco calculadoras publicadas, nenhum número servido. Não havia o que citar.
+
+### O que foi entregue, nas duas que já vendem
+
+**C3, vazão do filtro** (`snippets/aquametria-calculadora-vazao.php`, v1.0.3 → **1.2.0**) e
+**C5, potência do aquecedor** (`snippets/aquametria-calculadora-aquecedor.php`, v1.0.2 → **1.2.0**).
+Foram escolhidas primeiro porque são as duas com bloco de produto e link de afiliado no ar: é onde a
+citação por IA encosta em receita.
+
+**(a) Resposta antes da explicação.** Um bloco novo, `aquametria_cN_resposta_direta_html()`, que sai
+ANTES do formulário e diz o número, o critério e a procedência na mesma frase — porque um modelo cita
+PASSAGEM, não página, e passagem sem fonte dentro dela não sobrevive ao recorte. A da C3 abre assim:
+
+> Um aquário de 100 litros de água real, comunitário, pede um filtro de 180 a 1.000 L/h — de 1,76 a
+> 10 renovações do volume por hora. O piso é o único extremo que vem de quem fabrica filtro: o Eheim
+> classic 250 (2213) declara 440 L/h para aquários de até 250 litros, o que dá 1,76 renovações por
+> hora (ficha coletada pela Aquametria em 07/09/2026).
+
+A da C5 fecha com a frase que é a tese da página: **a pergunta que decide o número não é o volume do
+aquário, é quanto o cômodo esfria na noite mais fria do ano.**
+
+**(b) Tabela de exemplos pré-renderizada**, `aquametria_cN_exemplos_html()`, cobrindo 30, 60, 100,
+150, 200 e 300 L, resolvida em PHP no servidor e servida no HTML. A C3 publica três colunas — faixa
+comunitária, mira de carga média e faixa de plantado. A C5 publica os **dois cenários de frio**: até
+10 °C de diferença, onde vale a ReefFlow, e acima disso, onde só sobram as regras sem condição
+declarada — e ali a faixa vai marcada como **PISO**, com essas palavras, porque esticar o número da
+ReefFlow para além dos 10 °C que ela declarou seria inventar constante.
+
+**(c) JSON-LD**, `aquametria_cN_imprimir_jsonld()`, um bloco por página com `@graph` de dois nós:
+`WebApplication` (com `applicationCategory`, `featureList` de 8 itens, `isAccessibleForFree`, `offers`
+a preço zero, `softwareVersion` e `publisher`) e `FAQPage` com **8 perguntas em cada página** — seis
+por volume, mais duas de método. Cada resposta carrega número e fonte, e cada uma existe, com o mesmo
+número, na tabela servida: FAQPage que promete o que a página não mostra é lixo, e lixo detectável.
+
+**Onde o JSON-LD sai importa tanto quanto o que ele diz.** Ele sai no `wp_head`, e nunca dentro do
+retorno do shortcode, **pelo mesmo motivo que o script sai no `wp_footer` desde 08/09**: o retorno do
+shortcode atravessa os filtros do `the_content`, que trocam cada `&` pela entidade numérica dele. Isso
+matou o JavaScript das cinco calculadoras em 08/09 e quebraria o JSON exatamente do mesmo jeito.
+
+### O conserto que o 4c obrigou, e que vale para as próximas levas
+
+Pré-renderizar a tabela criou um perigo que não existia: **o mesmo número passando a viver em dois
+lugares** — no JavaScript que calcula e no PHP que serve a tabela. Dois lugares divergem em silêncio,
+e divergir aqui significaria a página contradizer a calculadora que está logo abaixo dela.
+
+Então as constantes compartilhadas saíram do JavaScript e passaram a nascer no PHP, viajando para o
+script como variável impressa no rodapé, do mesmo jeito que o catálogo de produtos já viajava:
+
+| Antes (só no JS) | Agora (nasce no PHP) | Chega ao script como |
+|---|---|---|
+| bandas de turnover da C3 | `aquametria_c3_bandas()` | `AQM_C3_BANDAS` |
+| regras de W/L da C5 | `aquametria_c5_regras()` | `AQM_C5_REGRAS` |
+| linha comercial da C5 | `aquametria_c5_linha_comercial()` | `AQM_C5_LINHA` |
+
+Para não errar na transcrição, o array PHP da C5 foi **gerado a partir do literal JavaScript
+original**, e depois foi conferido que o JSON que o PHP emite é **idêntico** ao literal que estava lá.
+Nenhuma fórmula mudou; mudou de onde os números vêm.
+
+### Ferramenta nova nº 1: o teste que mede o que a Sentinela mediu
+
+`ferramentas/teste-navegador-visibilidade-ia.mjs`. Abre a página num Chromium de verdade **com o
+JavaScript DESLIGADO** — e é isso que faz o teste valer. Com script ligado, qualquer número na tela
+pode ter sido desenhado pela calculadora; desligado, o que aparece é o que um crawler de IA recebe.
+
+Confere, por calculadora: JSON-LD presente e fazendo parse; `WebApplication` com nome, categoria,
+`featureList`, `isAccessibleForFree` e `publisher`; `FAQPage` com pelo menos seis perguntas, toda
+resposta com texto, com número, e longa o bastante para ser citada; a tabela de exemplos existindo no
+HTML servido e cobrindo os seis volumes; o bloco de resposta direta vindo ANTES do formulário, com
+número e data de verificação. E uma asserção que fecha o círculo: **o número que a tabela servida dá
+para 100 L tem de ser o mesmo que a calculadora devolve para 100 L.**
+
+Confere também o inverso, que é fácil errar em nome do SEO: sem JavaScript, o contêiner de resultado
+tem de continuar **oculto**. Número de resultado vazando para o HTML servido seria número sem
+entrada — pior que formulário vazio, porque seria mentira em vez de silêncio.
+
+### Ferramenta nova nº 2: a proteção das funções finalmente se confere
+
+Existia só `ferramentas/proteger-funcoes.php`, que **reescreve** o arquivo. Ferramenta que reescreve
+não serve como verificação antes do commit, e a regra do projeto pede a verificação. Nasceu
+`ferramentas/conferir-protecao-funcoes.py`, que só confere e nomeia função e linha quando falha
+(pulando docblock entre o guarda e a função, que era o falso positivo óbvio).
+
+### Verificação — o que foi realmente rodado, com número
+
+- `php -l` nos dois snippets: sem erro de sintaxe.
+- `python3 ferramentas/conferir-protecao-funcoes.py snippets/*.php`: **8 snippets, 147 funções, todas
+  dentro de `function_exists`**.
+- `node ferramentas/teste-navegador-cinco.mjs`: **as CINCO calculadoras executadas em Chromium, tudo
+  passou** — nenhum SyntaxError, resposta saindo do estado oculto, bloco de produto com link
+  `sponsored`/`noopener`/`_blank` e aviso de comissão. A C3 devolveu **180 a 1.000 L/h** para 100 L
+  comunitário e a C5 devolveu **100 a 150 W** para 100 L com alvo 26 °C e mínima 18 °C — que é
+  exatamente o que as tabelas pré-renderizadas publicam para 100 L. A leva não quebrou a C1, a C12
+  nem a C15.
+- `node ferramentas/teste-navegador-visibilidade-ia.mjs`: **46 asserções, 46 passaram**, com o
+  JavaScript desligado.
+- Contagem de `&#038;` **extraindo só os blocos `<script>`**, que é o teste certo: **zero** nos dois
+  snippets. O `&amp;` que aparece 1x é o da função `esc()` da própria calculadora, legítimo.
+- JSON emitido pelo PHP conferido contra o literal JavaScript original: **idêntico** nos três casos
+  (`AQM_C3_BANDAS`, `AQM_C5_REGRAS`, `AQM_C5_LINHA`).
+- `python3 ferramentas/validar-produtos.py`: 36 produtos, 0 erro, 1 aviso conhecido (V11,
+  `eheim-jager-200w`) · `python3 ferramentas/validar-especies.py`: 25 espécies, 0 erro, 1 aviso
+  conhecido (E15, guppy). Nenhum dos dois bancos foi tocado hoje.
+- **sha256 de TODOS os 48 itens do manifest reconferido contra o arquivo em disco**, não só dos que
+  mudaram: nenhum divergente. Só dois snippets mudaram de hash, que são os dois esperados.
+
+### NÃO CONCLUÍDO, e é preciso dizer com essas palavras
+
+**O Sync não foi acionado e a revisão aplicada no site NÃO foi conferida.** O egresso desta sessão
+para `aquametria.com.br` continua bloqueado pelo proxy da nuvem (`EGRESS_BLOCKED`), o mesmo bloqueio
+registrado em 08/09. Então:
+
+- o bloco está **commitado e no `main`**, que é onde ele conta como entregue pelo Passo 0;
+- mas ele **não está confirmado no ar**. Não foi possível bater a revisão de
+  `https://aquametria.com.br/wp-json/aquametria/v1/status` contra a **18** do manifest.
+
+Isso é exatamente o cenário do Passo 0b: o desenho é PULL, o WP-Cron do WordPress só dispara quando
+alguém VISITA o site, e site novo sem tráfego não tem cron. Em 09/09 de manhã o site estava **seis
+revisões atrás** do repositório sem ninguém ter percebido. **Alguém precisa acionar o Sync**: abrir
+`https://aquametria.com.br/?aquametria_sync=<chave>&forcar=1` (a chave está na memória e não entra
+neste arquivo, que pode virar público) e, uns cinco minutos depois, conferir que
+`/wp-json/aquametria/v1/status` diz revisão 18. A Sentinela Técnica das 11h30 roda no Chrome do
+Raphael e alcança o site; esta sessão não alcança.
+
+Enquanto isso não for feito, **o 4c está entregue no repositório e não está no ar.**
+
+### Próximo passo desbloqueado
+
+**4c, leva 2: C12 mídia filtrante e C15 iluminação**, com exatamente o mesmo desenho — resposta
+direta, tabela pré-renderizada de 30 a 300 L, JSON-LD `WebApplication` + `FAQPage`, procedência na
+frase, e toda constante que apareça nos dois lugares nascendo no PHP. Ao publicar, **acrescentar o
+caso novo em `teste-navegador-visibilidade-ia.mjs`**: o teste é a única parte desta leva que
+sobrevive à sessão.
+
+Depois, **leva 3: C1 litragem e os três artigos-âncora** (nos artigos, `FAQPage`; e a `Organization`
+com `sameAs` na home, que mora na casca e ainda não existe).
+
+Continuam na fila, sem mudança: o resto do 4b (mais filtros e aquecedores de Ocean Tech, Hopar, Boyu e
+Sarlo Better nas faixas de 200 a 400 L; `fluxo_lm` do `sunsun-ade-400c` e do `wfish-wf-h600-wrgb` e a
+voltagem do Chihiros, os três que barram a C15; os quatro registros de espécie barrados e a segunda
+fonte do guppy, que agora exige outro CORPO e não outro espelho); os dois ajustes menores do 4d
+(categoria de verdade para os artigos, que hoje caem em `/category/uncategorized/`, e o subtítulo em
+branco quando o bloco de produto da C15 sai vazio); e só depois a malha de links.
+
+**Dois achados desta leva que valem para a fila do 4b, porque a tabela nova os tornou visíveis:**
+
+1. **A partir de 300 L a faixa da C5 passa do maior degrau da linha de referência (300 W)**, e a
+   resposta honesta passou a ser "mais de um aparelho" — que também é o mais seguro, por modo de
+   falha do termostato. Está publicado na tabela, com essas palavras.
+2. **O buraco de catálogo que a Sentinela apontou agora está escrito na página.** A 100 L o degrau
+   comercial é 150 W, e nenhum dos aquecedores com link de afiliado do banco é de 150 W (são 100, 200
+   e 300 W). A calculadora responde certo e não tem o que vender. É perda de venda direta, e reforça
+   o 4b(c).
+
+**Para a Sentinela Estratégica:** continuam **10 produtos esperando `afiliado.url`** — `atman-hf-0400`,
+`atman-hf-0600`, `sunsun-hw-603b`, `atman-at-100`, `atman-at-150`, `atman-at-200`, `atman-hf-0800`,
+`atman-at-3336`, `atman-at-300`, `sunsun-hw-303b`. Nada mudou nisso hoje: esta leva não tocou o banco.
+O `atman-at-150` merece prioridade — é justamente o degrau de 150 W que falta na faixa de 100 L.

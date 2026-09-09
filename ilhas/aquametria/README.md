@@ -122,3 +122,55 @@ node ferramentas/teste-navegador-c15.mjs /tmp/c15.html
 O `render-para-teste.php` monta a pagina com funcoes falsas do WordPress (o
 calculo todo e JavaScript no navegador, entao nao falta nada) e carrega todos os
 snippets menos o Sync — o que tambem testa a convivencia entre as calculadoras.
+
+E, desde 09/09/2026, uma calculadora tambem passa pelo teste de **visibilidade
+em IA** — o que a Sentinela Tecnica mediu a mao naquele dia e encontrou zero em
+13 de 13 paginas:
+
+```
+node ferramentas/teste-navegador-visibilidade-ia.mjs /tmp
+```
+
+Ele abre a pagina com o **JavaScript DESLIGADO**, que e o que um crawler de IA
+recebe, e e a unica prova honesta de que o numero esta no HTML servido e nao foi
+desenhado pela calculadora depois. Confere JSON-LD que faz parse, `WebApplication`
+com `applicationCategory`/`featureList`/`isAccessibleForFree`/`publisher`,
+`FAQPage` com respostas que carregam numero, a tabela de exemplos cobrindo 30,
+60, 100, 150, 200 e 300 L, o bloco de resposta direta ANTES do formulario — e
+que, sem JavaScript, o container de resultado continua **oculto**: numero de
+resultado sem entrada seria pior que formulario vazio.
+
+E a protecao das funcoes se confere sem reescrever o arquivo:
+
+```
+python3 ferramentas/conferir-protecao-funcoes.py snippets/*.php
+```
+
+`ferramentas/proteger-funcoes.php` TRANSFORMA o arquivo, entao nao serve como
+verificacao antes do commit. Este sai 0 sem problema e 1 com problema, nomeando
+a funcao e a linha.
+
+## Visibilidade em IA: onde ela mora no codigo
+
+A regra de primeira classe do projeto (08/09/2026) diz que toda pagina precisa
+ser legivel e citavel por um modelo de linguagem, nao so rastreavel pelo
+Googlebot. Nas calculadoras isso se traduz em tres funcoes por snippet, e uma
+regra sobre onde cada coisa sai:
+
+| Funcao | O que entrega | Onde sai |
+|---|---|---|
+| `aquametria_cN_resposta_direta_html()` | O numero, o criterio e a procedencia na propria frase, ANTES do formulario | retorno do shortcode |
+| `aquametria_cN_exemplos_html()` | Tabela de 30/60/100/150/200/300 L resolvida no PHP | retorno do shortcode |
+| `aquametria_cN_imprimir_jsonld()` | `WebApplication` e `FAQPage` | **`wp_head`** |
+
+O JSON-LD sai no `wp_head` **pelo mesmo motivo que o script sai no `wp_footer`**:
+o retorno do shortcode atravessa os filtros do `the_content`, que trocam cada
+`&` pela entidade numerica dele — e isso quebraria o JSON tanto quanto quebrou o
+JavaScript em 08/09/2026.
+
+**A tabela pre-renderizada e a calculadora nao podem divergir.** Por isso as
+constantes que as duas usam moram no PHP e viajam para o script como variavel:
+`AQM_C3_BANDAS` na C3, `AQM_C5_REGRAS` e `AQM_C5_LINHA` na C5. Nada de faixa
+escrita duas vezes. O teste de visibilidade confere isso de fato: compara o
+numero da tabela servida para 100 L com o numero que a calculadora devolve para
+100 L.
