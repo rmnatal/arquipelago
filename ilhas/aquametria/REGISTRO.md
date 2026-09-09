@@ -2996,6 +2996,24 @@ declara uma so — "Eheim classic 600 (2217) (127 V)" —, no cartao, na tabela 
   dois arquivos, incluindo as 6 celulas de produto da tabela servida e os 6 links `sponsored`.
 - `teste-navegador-cinco.mjs` (JavaScript ligado, as cinco calculadoras) → tudo passou.
 
+### NAO CONCLUIDO — o Sync continua fora de alcance, e agora sao QUATRO revisoes paradas
+
+`aquametria.com.br` devolve `EGRESS_BLOCKED` nesta sessao, tanto na URL do Sync com `&forcar=1`
+quanto em `/wp-json/aquametria/v1/status`. **Nao foi possivel acionar o desembarque nem conferir a
+revisao aplicada.** Este bloco esta entregue no `main` e **nao esta no ar**, como as revisoes 18,
+19 e 20.
+
+**O repositorio esta na revisao 21. O site estava na 11 na ultima medicao (08/09, 13h03).** Dez
+revisoes de diferenca. O que esta no ar hoje NAO tem: a dupla condicao (ou seja, **a C3 no ar
+continua recomendando em primeiro lugar o Atman HF-0600 para o aquario de 189,6 L do Raphael**),
+o desempate por link, as 24 fotos, os 28 produtos novos, o aquecedor de 150 W que fecha a janela
+da C5, as duas Chihiros da C15, o JSON-LD e a tabela pre-renderizada.
+
+Quem alcanca o site e a **Sentinela Tecnica das 11h30, que roda no Chrome do Raphael**. Basta abrir
+a URL do Sync com `&forcar=1` (a chave esta na memoria e nao entra neste arquivo, que pode virar
+publico) e, uns cinco minutos depois, conferir que `/wp-json/aquametria/v1/status` diz
+**revisao 21**.
+
 ### Proximo passo desbloqueado
 
 O Raphael disse "nao adiante o proximo bloco — eu disparo em seguida". O que estava na fila
