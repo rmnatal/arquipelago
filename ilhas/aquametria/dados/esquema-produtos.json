@@ -3,7 +3,7 @@
   "descricao": "Modelo normalizado do banco de produtos da Aquametria: entidades filtro, aquecedor, iluminacao e midia, mais a entidade cotacao (preco). Define campo a campo o tipo, a unidade, a obrigatoriedade, o vocabulario controlado e a ORIGEM esperada do dado. Nenhum numero entra no banco sem uma entrada correspondente em fontes[]. Este arquivo e o contrato que dados/produtos-*.json cumprem e que ferramentas/validar-produtos.py verifica.",
   "gerado_em": "2026-09-07",
   "bloco": 3,
-  "versao_esquema": 6,
+  "versao_esquema": 7,
   "depende_de": [
     "dados/especificacao-calculadoras.md",
     "dados/constantes-calculadoras.json"
@@ -1091,7 +1091,7 @@
     },
     {
       "id": "V12",
-      "regra": "Registro com conflitos[] nao vazio tem status_registro 'conflito'.",
+      "regra": "Registro com conflitos[] nao vazio tem status_registro 'conflito' — ou 'revalidar', ou 'parcial' QUANDO tambem falta campo obrigatorio. EMENDA DE 09/09/2026, a mesma que o banco de especies ja tinha no E10: completude e divergencia sao fatos ortogonais e status_registro carrega um campo so, entao vale o MAIS RESTRITIVO, e 'parcial' e mais restritivo que 'conflito' porque barra a sugestao. O caso que obrigou a emenda e a Chihiros WRGB II Pro 120: duas lojas do mesmo nivel declaram 7.700 e 11.170 lm para o mesmo aparelho, o tratamento 'campo-vira-null' esvazia fluxo_lm e potencia_w, e o campo vazio deixa o registro parcial. Ou seja, o conflito e a CAUSA da incompletude, e exigir 'conflito' ali obrigaria o banco a declarar completo o que nao esta. A regra tambem passou a reprovar o inverso: status 'conflito' sem nenhum conflito declarado.",
       "severidade": "erro"
     },
     {

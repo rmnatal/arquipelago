@@ -78,7 +78,17 @@ for (const c of CALCULADORAS) {
 
   const numericasDoc = (html.match(NUMERICA) || []).length;
   const numericas038  = (html.match(/&#0*38;/g) || []).length;
-  const scripts = [...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)].map(m => m[1]).filter(s => s.trim());
+  // Guardamos a ABERTURA da tag junto do corpo porque desde o bloco 4c (09/09/2026)
+  // nem todo <script> da página é JavaScript: o JSON-LD sai num
+  // <script type="application/ld+json">, e passar JSON por `node --check` reprova
+  // SEMPRE — um objeto literal solto é sintaxe inválida em script. O teste ficou
+  // vermelho em C3 e C5 desde que o JSON-LD nasceu, medindo a coisa errada. Regra
+  // que fica: cada bloco é conferido pelo verificador da LINGUAGEM dele.
+  const blocosScript = [...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/g)]
+    .map(m => ({ atributos: m[1] || '', corpo: m[2] }))
+    .filter(b => b.corpo.trim());
+  const ehJsonLd = b => /type\s*=\s*["']application\/ld\+json["']/i.test(b.atributos);
+  const scripts = blocosScript.map(b => b.corpo);
   const styles  = [...html.matchAll(/<style\b[^>]*>([\s\S]*?)<\/style>/g)].map(m => m[1]).filter(s => s.trim());
 
   if (!scripts.length) { falhar(`${c.codigo}: nenhum bloco <script> no render`); continue; }
@@ -100,12 +110,24 @@ for (const c of CALCULADORAS) {
     });
   }
 
-  // node --check SÓ nos blocos de script, e sem perdão: erro aqui é a
-  // calculadora morta no navegador. Nada de engolir exceção.
-  let sintaxeOk = 0;
-  scripts.forEach((corpo, i) => {
+  // Sem perdão nos dois casos: JavaScript quebrado é a calculadora morta no
+  // navegador, e JSON-LD quebrado é a página invisível para o robô e para o
+  // modelo de IA — que é a regra de primeira classe do Raphael. O que muda é só
+  // QUAL verificador roda em cada bloco.
+  let sintaxeOk = 0, jsonLdOk = 0;
+  blocosScript.forEach((b, i) => {
+    if (ehJsonLd(b)) {
+      // JSON.parse é mais severo aqui do que node --check seria: ele reprova
+      // exatamente o defeito de 08/09/2026 se ele reaparecer no JSON-LD, porque
+      // um `&#038;` no meio de uma string escapada quebra a análise.
+      try { JSON.parse(b.corpo); jsonLdOk++; }
+      catch (e) {
+        falhar(`${c.codigo} script[${i}] (JSON-LD): JSON.parse reprovou — ${e.message}`);
+      }
+      return;
+    }
     const f = join(tmp, `${c.codigo}-${i}.js`);
-    writeFileSync(f, corpo);
+    writeFileSync(f, b.corpo);
     try { execFileSync(process.execPath, ['--check', f], { stdio: 'pipe' }); sintaxeOk++; }
     catch (e) {
       falhar(`${c.codigo} script[${i}]: node --check reprovou — `
@@ -119,8 +141,8 @@ for (const c of CALCULADORAS) {
   const ordemOk   = posScript > posForm;
   if (!ordemOk) falhar(`${c.codigo}: o <script> vem ANTES do conteúdo — ele tem de sair no wp_footer`);
 
-  console.log(`  ${c.codigo}: script=${scripts.length} style=${styles.length} js_ok=${sintaxeOk} `
-            + `entidade_038_no_documento=${numericas038} numéricas_no_documento=${numericasDoc} `
+  console.log(`  ${c.codigo}: script=${scripts.length} style=${styles.length} `
+            + `js_ok=${sintaxeOk} jsonld_ok=${jsonLdOk} entidade_038_no_documento=${numericas038} numéricas_no_documento=${numericasDoc} `
             + `script_depois_do_conteúdo=${ordemOk ? 'sim' : 'NÃO'}`);
 }
 

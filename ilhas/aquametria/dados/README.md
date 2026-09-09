@@ -17,9 +17,21 @@ intervalos, ou seja, a afirmacao mais fraca que todas as fontes sustentam. Nao e
 media nem escolha: e o que ninguem discorda. A calculadora que usar esse valor
 tem de dizer na tela que a faixa e a conservadora e por que.
 
+Desde 09/09/2026 (esquema versao 7) vale a EMENDA A V12, gemea da que o banco de
+especies ja tinha no E10: um registro pode estar `parcial` E ter `conflitos[]`.
+Completude e divergencia sao fatos ortogonais, `status_registro` carrega um campo
+so, e vale o mais restritivo — `parcial` barra a sugestao, `conflito` so obriga a
+tela a publicar a divergencia. Acontece quando o proprio conflito e a CAUSA da
+incompletude: duas fontes do mesmo nivel discordam, o tratamento
+`campo-vira-null` esvazia o campo, e o campo vazio deixa o registro parcial.
+
 Depois de qualquer mudanca em `produtos-*.json`, rode
 `ferramentas/validar-produtos.py` **e** o gerador de catalogo da calculadora
 afetada: a copia do banco que viaja dentro do snippet nao se atualiza sozinha.
+E depois de mexer em QUALQUER arquivo listado no manifest, rode
+`python3 ferramentas/atualizar-manifest.py`, que recalcula os sha256 e sobe a
+revisao. Sha vencido no manifest faz o Sync recusar o item no ar sem avisar
+ninguem — em 09/09/2026 havia quatro assim, todos esquecidos a mao.
 
 ## Banco de especies (desde 09/09/2026)
 

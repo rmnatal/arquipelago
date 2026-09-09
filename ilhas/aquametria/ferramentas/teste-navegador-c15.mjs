@@ -128,7 +128,12 @@ ok('avisa que luminária curta deixa as pontas na sombra', (await txt('#aqm-c15-
 console.log('\n9. bloco de produto — 110 L e 60 cm');
 await preencher('110', { comprimento: 60 });
 const cards = await page.locator('#aqm-c15-produtos-lista .aqm-c15-produto').count();
-ok('duas luminárias sugeridas', cards === 2, `veio ${cards}`);
+// Fixava em DOIS o numero de cartoes ate 09/09/2026, e ficou vermelho quando a leva
+// de fechamento de faixa destravou a Chihiros WRGB II Pro 60 (que cobre de 60 a 80 cm)
+// pela voltagem. Numero de catalogo nao e contrato de tela — e a mesma correcao que a
+// C5 e a lista de barradas ja receberam. O que a tela promete aqui e que aparece pelo
+// menos um cartao e que TODO cartao cobre o aquario que a pessoa digitou.
+ok('sugere pelo menos uma luminária', cards >= 1, `veio ${cards}`);
 const primeiro = await page.locator('#aqm-c15-produtos-lista .aqm-c15-produto').first().innerText();
 ok('a mais próxima do meio da faixa vem primeiro (IL-401, 3717 lm)', primeiro.includes('IL-401'), primeiro.split('\n')[1]);
 ok('mostra os lm/L entregues no aquário da pessoa', primeiro.includes('lm/L'));
@@ -153,9 +158,20 @@ const barrados = await page.locator('#aqm-c15-barrados li').count();
 // que a C5 ja tinha recebido na contagem de cartoes.
 ok('a lista de barradas nao esconde ninguem', barrados >= 3, `veio ${barrados}`);
 const barradosTxt = await txt('#aqm-c15-barrados');
-ok('Chihiros barrada por voltagem', barradosTxt.includes('Chihiros') && barradosTxt.includes('voltagem'));
+// Havia aqui uma asserção de que a Chihiros aparecia barrada POR VOLTAGEM. Ela media
+// um defeito de coleta nosso, não uma promessa da tela — e caiu em 09/09/2026, quando
+// a família WRGB II inteira entrou no banco e o varejo BR declarou a linha bivolt.
+// Teste que exige que um buraco continue aberto reprova exatamente o trabalho que a
+// fila manda fazer. O que fica no lugar é o contrato de verdade: toda barrada aparece
+// com um motivo escrito, e produto COM link continua barrado quando lhe falta campo.
 ok('SunSun e WFish barradas por não declararem lúmens',
   barradosTxt.includes('SunSun') && barradosTxt.includes('WFish') && barradosTxt.includes('fluxo luminoso'));
+ok('a linha Soma inteira aparece barrada, e ela é a que TEM link',
+  (barradosTxt.match(/Soma/g) || []).length >= 8, `veio ${(barradosTxt.match(/Soma/g) || []).length}`);
+const linhasBarradas = await page.locator('#aqm-c15-barrados li').allInnerTexts();
+ok('nenhuma barrada sai sem motivo escrito',
+  linhasBarradas.every(l => /não declara/.test(l)),
+  linhasBarradas.filter(l => !/não declara/.test(l)).join(' | ') || 'todas com motivo');
 ok('diz que link de afiliado não promove produto barrado', barradosTxt.includes('link não promove produto barrado'));
 
 console.log('\n11. atributos do link de afiliado (45 L, nível baixo, 40 cm)');
@@ -174,8 +190,15 @@ ok('aviso diz que comissão não ordena', aviso.includes('não muda quem aparece
 ok('aviso linka a página de divulgação',
   (await page.locator('.aqm-c15-aviso-afiliado a').getAttribute('href')).includes('divulgacao-de-afiliados'));
 
-console.log('\n12. nenhum produto cobre um aquário de 120 cm');
-await preencher('300', { comprimento: 120 });
+// Este caso mede o CAMINHO "nenhum produto atende", que precisa continuar existindo e
+// dizendo por quê. Ele usava 120 cm, e 120 cm deixou de ser um buraco em 09/09/2026:
+// a Chihiros WRGB II 120 e a Slim 120 declaram cobertura de 120 a 140 cm e agora
+// aparecem. Trocado para 115 cm, que é o buraco que a varredura de cobertura ainda
+// mede vazio — as peças do mercado declaram 90 a 110 ou 120 a 140, e ninguém declara o
+// meio. Quando 115 cm for coberto, troque de novo em vez de afrouxar a asserção: o que
+// se testa aqui é a tela dizer a verdade quando não tem o que sugerir.
+console.log('\n12. nenhum produto cobre um aquário de 115 cm');
+await preencher('300', { comprimento: 115 });
 ok('bloco de produtos escondido', (await page.locator('#aqm-c15-produtos').getAttribute('class')).includes('oculto'));
 const semProduto = await txt('#aqm-c15-produtos-nada');
 ok('diz quantas luminárias o banco tem e quantas são barradas',

@@ -229,8 +229,24 @@ def valida_produto(esquema, entidade, produto, vistos):
                   % LIMITE_DIAS_REVALIDAR)
 
     # V12 - conflito declarado exige status conflito
-    if produto.get("conflitos") and status != "conflito":
-        erro("V12", pid, "tem conflitos[] mas status_registro e '%s'" % status)
+    #
+    # EMENDA DE 09/09/2026, a mesma que o banco de especies ja tinha no E10:
+    # 'parcial' tambem vale quando o registro tem campo obrigatorio faltando.
+    # Completude e divergencia sao fatos ortogonais e status_registro carrega um
+    # campo so, entao vale o MAIS RESTRITIVO — e 'parcial' e mais restritivo que
+    # 'conflito', porque barra a sugestao enquanto 'conflito' apenas obriga a tela
+    # a publicar a divergencia. O caso que obrigou a emenda: a Chihiros WRGB II
+    # Pro 120, cujo fluxo declarado e 7.700 lm no varejo BR e 11.170 lm no varejo
+    # estrangeiro. Empate de nivel faz o campo virar null (tratamento
+    # 'campo-vira-null'), e o campo null faz o registro ficar parcial — ou seja, o
+    # conflito e a CAUSA da incompletude. Exigir status 'conflito' ali seria
+    # obrigar o banco a declarar completo o que nao esta.
+    aceitos_com_conflito = ["conflito", "revalidar"] + (["parcial"] if faltando else [])
+    if produto.get("conflitos") and status not in aceitos_com_conflito:
+        erro("V12", pid, "tem conflitos[] mas status_registro e '%s' (aceitos: conflito, "
+                         "revalidar, ou parcial quando falta obrigatorio)" % status)
+    if status == "conflito" and not produto.get("conflitos"):
+        erro("V12", pid, "status 'conflito' sem nenhum conflito declarado")
 
     # V17 - intersecao conservadora: existe, e a intersecao mesmo, e nao e vazia
     for c in produto.get("conflitos") or []:

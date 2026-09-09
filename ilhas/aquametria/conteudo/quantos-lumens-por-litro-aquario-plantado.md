@@ -58,8 +58,10 @@ Enquanto isso, o lúmen fica como a única grandeza que ainda aparece nas fichas
 Montando o banco de iluminação, o padrão apareceu rápido. De seis luminárias vendidas no Brasil com ficha catalogada:
 
 - **duas não declaram lúmen nenhum** em fonte alguma — nem a ficha do varejo especializado, nem os anúncios de marketplace (SunSun ADE-400c e WFish WF-H600);
-- **uma não declara voltagem** em nenhuma fonte que encontramos — e é a mais cara do banco, a Chihiros de 6 630 lm;
+- **uma não declarava voltagem** em nenhuma fonte que encontramos — a Chihiros de 6 630 lm, a mais cara do banco. Essa saiu do buraco em 09/09/2026, quando catalogamos a família WRGB II inteira e o varejo brasileiro especializado anunciou dois membros da linha como bivolt; a lacuna era da nossa coleta, não do mercado;
 - **todas as seis declaram centímetros**.
+
+O banco cresceu bastante depois desse retrato — 26 luminárias em 09/09/2026 — e a proporção não melhorou: onze delas continuam barradas por não declarar lúmen, e oito dessas onze são a linha Soma WRGB inteira, que cobre de 20 a 130 cm de aquário e é vendida em nove lojas brasileiras. Nenhuma das nove publica o número.
 
 Faz sentido comercial: o cliente chega na loja com a fita métrica do aquário na cabeça, não com o cálculo de lúmens. O problema é que centímetro não dimensiona luz. Uma peça de 60 cm pode ser de 24 W ou de 74 W — três vezes de diferença — e as duas cabem no mesmo aquário.
 

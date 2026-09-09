@@ -3448,3 +3448,249 @@ o banco": é fechar buraco medido, e agora existe o instrumento que diz quando o
 - **Produtos esperando link de afiliado: 29** de 68 (39 já têm link) — 9 aquecedores, 9 filtros,
   7 luminárias (4 delas as Chihiros que nasceram hoje) e 4 mídias. Pela regra V16 todos já são
   sugeridos pela adequação técnica; o cartão sai sem botão de loja.
+
+## 2026-09-09 (execução da noite) — T3: a leva de FECHAMENTO DE FAIXA, e a primeira vez que o buraco medido foi a lista de compras
+
+Primeira execução da Aquametria depois que `dados/cobertura-de-faixa.md` passou a existir, e a
+primeira em que a fila não veio de julgamento: veio da varredura. O bloco anterior mediu 87 faixas
+e deixou uma ordem de compra escrita. Esta execução atacou os dois primeiros itens dela —
+**luminária acima de 80 cm com fluxo declarado** e **aquecedor acima de 300 W** — e não escolheu
+mais nada por conta própria.
+
+Manifest revisão 27. C5 na 1.3.1, C15 na 1.1.2. Banco de 68 para **78 produtos**.
+
+### O que entrou, e por que exatamente isto
+
+**Quatro aquecedores, e o banco passa dos 300 W pela primeira vez.** A varredura mediu a C5 VAZIA
+de 310 a 400 L nas quatro combinações de delta e tomada, por uma razão simples: o banco parava em
+300 W e a janela de potência a 400 L começa em 400 W. Entraram:
+
+| id | W | ajuste | volume declarado | o que ele fecha |
+|---|---|---|---|---|
+| `hopar-j-226-400w` | 400 | 18 a 34 °C | até 500 L | o único degrau de 400 W do levantamento |
+| `hopar-j-226-500w` | 500 | 17 a 35 °C | até 500 L | acima de 350 L |
+| `oceantech-warmer-x-5-250w` | 250 | 20 a 34 °C | até 260 L | tira do piso a faixa de 210 a 300 L |
+| `oceantech-warmer-x-5-500w` | 500 | 20 a 34 °C | até 500 L (4 leituras) | acima de 350 L |
+
+A **Hopar é marca nova no banco**, e entrou por cobertura, não por marca: das fichas conferidas, é
+a única que publica um degrau de 400 W. Nenhum dos quatro tem link de afiliado — quem gera link é
+a Sentinela Estratégica, e pela regra V16 os quatro já são sugeridos pela adequação técnica, com o
+cartão saindo sem botão de loja.
+
+**Seis luminárias, a família Chihiros WRGB II inteira.** A C15 não cumpria o critério em faixa
+nenhuma das 22 medidas, e saía vazia em toda a escala acima de 80 cm. A escolha da família tem dois
+motivos e **nenhum deles é marca**: ela declara fluxo luminoso em toda a escada de tamanhos — que é
+o campo que barra a C15 — e declara **cobertura em FAIXA** (90 a 110 cm, 120 a 140 cm) em vez de um
+comprimento cravado. Esse segundo ponto é o que resolve o buraco de verdade: as duas Chihiros
+A-Series que já estavam no banco declaram 80 cm e 90 cm exatos, então 95, 100, 105 e 110 cm saíam
+sem nenhuma opção mesmo com elas lá.
+
+| id | lm | W | aquário coberto | status |
+|---|---|---|---|---|
+| `chihiros-wrgb-ii-pro-90` | 9250 | 110 | 90 a 110 cm | completo |
+| `chihiros-wrgb-ii-90` | 8400 | 100 | 90 a 110 cm | conflito (publicado) |
+| `chihiros-wrgb-ii-slim-90` | 3600 | 69 | 90 a 110 cm | parcial (falta comprimento da peça) |
+| `chihiros-wrgb-ii-120` | 11000 | 130 | 120 a 140 cm | completo |
+| `chihiros-wrgb-ii-slim-120` | 4800 | 90 | 120 a 140 cm | completo |
+| `chihiros-wrgb-ii-pro-120` | — | — | 120 a 140 cm | parcial, e é o caso mais desconfortável |
+
+### O achado que vale dinheiro: um campo colhido para um produto destravou outro
+
+A `chihiros-wrgb-ii-pro-60` estava no banco desde 07/09/2026, **com link de afiliado**, e barrada
+pela C15 por um campo só: `voltagem`. A página da calculadora publicava isso como exemplo do que as
+regras custam — "a luminária mais cara do banco tem link e não é sugerida".
+
+Catalogando a família WRGB II para cobrir os aquários grandes, a declaração apareceu: o varejo
+brasileiro especializado (AquaBetta) anuncia **dois membros diferentes da linha** como bivolt, no
+próprio título, e a ficha da série descreve a alimentação como entrada de 100 a 240 V por fonte
+externa de 12 V. Não é inferência de voltagem, que a ilha proíbe — é declaração de varejo sobre a
+linha, e a família inteira acende pela mesma fonte externa.
+
+**Resultado: a C15 foi de 3 para 4 luminárias sugeríveis COM link, sem que nada mudasse no produto.**
+E fica a regra: quando um campo barra vários registros, colher esse campo para a linha vale mais que
+colher dez produtos novos.
+
+Consequência que a mesma execução foi obrigada a pagar: **duas páginas no ar diziam algo que deixou
+de ser verdade.** `conteudo/calculadora-de-iluminacao.md` e
+`conteudo/quantos-lumens-por-litro-aquario-plantado.md` afirmavam que a Chihiros não é sugerida por
+falta de voltagem. As duas foram corrigidas na mesma passada, e a correção virou conteúdo melhor que
+o original: o exemplo não deixou de existir, ele foi **resolvido**, e a história de como — um campo
+que apareceu, nunca uma exceção aberta para um produto que rende comissão — é exatamente o que
+separa a Aquametria de uma fazenda de conteúdo. Página que contradiz o próprio catálogo é o defeito
+de julgamento que a Sentinela procura, e ele não sobrevive a uma execução aqui.
+
+### Duas regras de banco que este bloco fixou
+
+**EMENDA À V12: `parcial` vale junto com `conflitos[]` quando falta obrigatório.** É a mesma emenda
+que o banco de espécies já tinha no E10, e o caso que a obrigou é a `chihiros-wrgb-ii-pro-120`: a
+Fazenda Submersa declara **7.700 lm com 130 W** e a Green Aqua declara **11.170 lm com 138 W** para
+o mesmo aparelho — 45 % de diferença no fluxo, duas lojas especializadas do mesmo nível da escada.
+Empate de nível faz o campo virar null (`campo-vira-null`), e campo null deixa o registro `parcial`.
+Ou seja, **o conflito é a CAUSA da incompletude**, e exigir status `conflito` ali obrigaria o banco
+a declarar completo o que não está. Completude e divergência são fatos ortogonais, `status_registro`
+carrega um campo só, e vale o mais restritivo. A V12 também passou a reprovar o inverso: status
+`conflito` sem nenhum conflito declarado. Esquema na **versão 7**.
+
+O caso é desconfortável de propósito e fica publicado por isso: é a única luminária de 120 cm da
+família que uma loja brasileira anuncia, tem link em potencial, e **mesmo assim não é sugerida**.
+Se a diferença for versão do produto, é a loja que precisa dizer qual está vendendo; se for erro de
+transcrição, é a prova de que o número que dimensiona iluminação no Brasil não passa por conferência
+nenhuma. Desempata quem tiver a caixa na mão.
+
+**Anúncio de marketplace continua não sustentando campo técnico, e agora com custo medido.** O
+título do anúncio do Hopar J-226 400 W diz "até 400 L"; o varejo especializado diz "até 500 L". Não
+é empate: nível 6 não sustenta número técnico. A ficha publica o 500 e registra o 400 com
+atribuição, para o leitor saber que a divergência existe.
+
+### O achado editorial: entre 300 W e 500 W o mercado brasileiro não tem degrau
+
+Procurando o aquecedor que fecharia a faixa, a busca devolveu 300 W e 500 W em todas as linhas, e
+**400 W em uma só** (Hopar J-226). A janela de potência a 310 L vai de 310 a 465 W. Ou seja: para o
+aquário de 310 a 333 litros existe, no Brasil, **exatamente um** aparelho único possível — e acima
+disso a resposta honesta continua sendo dois aquecedores, que é também o arranjo mais seguro por
+modo de falha do termostato, coisa que a C5 já dizia na tela desde 08/09/2026 sem saber que estava
+descrevendo uma lacuna de catálogo do país inteiro.
+
+### Ferramenta nova, e ela nasceu de um defeito medido
+
+`ferramentas/atualizar-manifest.py` recalcula o sha256 de todo item do manifest e sobe a revisão
+quando algum mudou. Não é conveniência: **na primeira execução ele achou QUATRO itens com sha
+vencido** — `render-para-teste.php`, `teste-navegador-c5.mjs`, `-c12.mjs` e `-c15.mjs` —, todos
+alterados em execuções anteriores sem que ninguém atualizasse o registro. Nos quatro casos é
+ferramenta de bancada com `publicar: false`, então o site não quebrou. O mesmo esquecimento num item
+publicável faz o Sync recusar o arquivo no ar e a revisão do site ficar para trás **em silêncio**,
+que é exatamente o defeito da seção 4 do `ARQUIPELAGO.md`. O passo manual que a gente esquece é o
+passo que vira ferramenta.
+
+Ele também lista o que está na pasta e fora do manifest, e isso expôs uma inconsistência que fica
+anotada como dívida: das 21 ferramentas, 14 estão no manifest e 7 não, sem critério visível —
+`conferir-slugs.py`, `varrer-cobertura.mjs`, `teste-navegador-casca.mjs`, `render-casca-para-teste.php`,
+`gerar-favicon.php`, `proteger-funcoes.php` e os três `README.md` de pasta.
+
+### Dois testes que estavam medindo a coisa errada
+
+**`conferir-entidades.mjs` estava VERMELHO desde 09/09 de manhã, e não era defeito de código.** Ele
+passava **todo** bloco `<script>` por `node --check` — inclusive o `<script type="application/ld+json">`
+que nasceu com o JSON-LD do bloco 4c. JSON não é JavaScript: um objeto literal solto é sintaxe
+inválida, então C3 e C5 reprovavam desde que ganharam visibilidade em IA. Agora cada bloco é
+conferido pelo verificador da linguagem dele, e o JSON-LD passa por `JSON.parse`, que aqui é **mais
+severo** que `node --check` seria: um `&#038;` no meio de uma string escapada quebra a análise, que
+é exatamente o defeito de 08/09/2026 reaparecendo no lugar novo. Saída passou a contar `jsonld_ok`
+à parte de `js_ok`. Falhas: 3 → 0.
+
+Na mesma varredura saiu a terceira ocorrência da regra "entidade em comentário também sai": a casca
+1.3.0, escrita ontem, voltou a escrever a entidade por extenso num comentário explicando o defeito.
+Trocada pela descrição em palavras.
+
+**`teste-navegador-c15.mjs` reprovou em 5 asserções, e três delas eram o buraco que este bloco
+fechou.** É a terceira vez que a ilha tropeça no mesmo padrão, então vale escrito de uma vez:
+*teste que fixa tamanho de catálogo, ou que exige que um buraco continue aberto, reprova exatamente
+o trabalho que a fila manda fazer.* O que mudou:
+
+- `duas luminárias sugeridas` (contagem fixa) → **pelo menos uma**, porque a Pro 60 destravada passou
+  a cobrir os 60 cm do caso.
+- `Chihiros barrada por voltagem` → caiu. Ela media um defeito de coleta nosso, não uma promessa da
+  tela. No lugar entraram duas asserções que são contrato de verdade: a linha Soma inteira (oito
+  registros, todos COM link) aparece na lista de barradas, e **nenhuma barrada sai sem motivo
+  escrito**.
+- `nenhum produto cobre um aquário de 120 cm` → trocado para **115 cm**, com o porquê no comentário:
+  120 cm deixou de ser buraco nesta execução, e 115 cm é o buraco que sobrou, porque as peças do
+  mercado declaram 90 a 110 ou 120 a 140 e ninguém declara o meio. Quando 115 cm for coberto, troque
+  de novo em vez de afrouxar a asserção — o que se testa ali é a tela dizer a verdade quando não tem
+  o que sugerir.
+
+### A medida, e ela é o ponto do bloco
+
+Varredura rodada de novo com o **mesmo instrumento e o mesmo eixo** (`varrer-cobertura.mjs`,
+Chromium de verdade, 486 pontos). Comparação por PONTO medido, não por linha de tabela — as linhas
+agrupam pontos contíguos de mesma contagem e se re-segmentam a cada medição, então contar linhas
+não compara com nada.
+
+| | manhã | noite |
+|---|---:|---:|
+| pontos que cumprem o critério | 312 de 486 | **379 de 486** |
+| pontos abaixo do piso de 3 | 81 | 73 |
+| pontos VAZIOS | 93 | **34** |
+
+| | ok | abaixo de 3 | VAZIA |
+|---|---:|---:|---:|
+| C3 (manhã e noite) | 131 | 13 | 12 |
+| C5 manhã | 64 | 52 | 40 |
+| **C5 noite** | **128** | **28** | **0** |
+| C12 (manhã e noite) | 117 | 0 | 0 |
+| C15 manhã | 0 | 16 | 41 |
+| **C15 noite** | **3** | **32** | **22** |
+
+**A C3 e a C12 devolveram número IDÊNTICO nas duas medições.** Não é detalhe: o banco delas não foi
+tocado, então a repetição exata é o controle que prova que o instrumento é estável e que a diferença
+na C5 e na C15 veio do banco, não da medida.
+
+**A C5 não tem mais nenhum ponto vazio de 20 a 400 L.** Era o buraco número 2 da lista de compras, e
+está fechado. **A C15 cumpriu o critério pela primeira vez desde que existe**, em dois degraus: 60 a
+65 cm na exigência média e 90 cm na alta.
+
+### O que a medição nova ensinou, e que a anterior não sabia pedir
+
+**A exigência BAIXA virou o pior caso da C15, por inversão.** De 85 a 120 cm ela sai vazia
+justamente porque as luminárias que entraram são potentes DEMAIS: a faixa de lúmens que a exigência
+baixa pede fica abaixo do que uma WRGB II de 90 a 130 W entrega. A compra que falta não é "mais
+luminária grande" — é **barra econômica de 100 a 120 cm com lúmen declarado**. A lista de compras da
+manhã pedia o oposto, e teria sido gasto errado se seguida às cegas. É o argumento da seção 14.3 do
+contrato funcionando: cobertura se mede, não se estima.
+
+**Aquecedor acima de 300 W saiu da lista de compras.** A faixa está coberta e o único trecho magro
+(310 a 330 L, com um aparelho) é lacuna do mercado brasileiro, não do banco — comprar mais não
+fecha, e a tela já explica.
+
+### NÃO CONCLUÍDO — o Sync continua fora de alcance, e agora são QUINZE revisões paradas
+
+`aquametria.com.br` devolveu **EGRESS_BLOCKED** nesta sessão, testado no fim da execução em
+`/wp-json/aquametria/v1/status`. **Não foi possível acionar o desembarque nem conferir a revisão
+aplicada**, então nada deste bloco pode ser dado por "no ar" — só por "no `main`".
+
+**O repositório está na revisão 27. A última medição do site, em 08/09 às 13h03, dizia 11.** Quem
+alcança o site é a Sentinela Técnica das 11h30, que roda no Chrome do Raphael: basta abrir a URL do
+Sync com `&forcar=1` e, uns cinco minutos depois, conferir que `/wp-json/aquametria/v1/status` diz
+**revisão 27**.
+
+O que este bloco muda no site quando o Sync rodar: a C5 passa a sugerir aquecedor acima de 300 W, a
+C15 passa a sugerir luminária para aquário de 90 a 140 cm e volta a sugerir a Chihiros WRGB II Pro 60
+(que tem link), e duas páginas param de afirmar algo que deixou de ser verdade. O banco em si é
+`publicar: false` e não vai para o site por desenho.
+
+### Verificação desta execução (seção 8 do `ARQUIPELAGO.md`)
+
+- `php -l` nos 8 snippets: limpo. `conferir-protecao-funcoes.py`: limpo.
+- `conferir-entidades.mjs`: **0 falhas** (eram 3, e as 3 eram do próprio instrumento — ver acima).
+- `conferir-slugs.py`: 9 slugs concordam, nenhum link publicado aponta para página inexistente.
+- `teste-conversor-markdown.php`: 17 casos, 0 falha. `teste-apelidos.php`: 59 afirmações, 0 falha.
+- `teste-escape-shortcode.php`: todas as afirmações passaram.
+- `validar-produtos.py`: **78 produtos, 39 cotações, 0 erro**, 9 avisos (todos conhecidos: V20 de
+  produto com link e sem foto, e o V11 do Jäger 200 W, que é conteúdo da página).
+- **`teste-navegador-c5.mjs`: 15 cenários em Chromium real, todos passaram.**
+- **`teste-navegador-c15.mjs`: 78 asserções em Chromium real, todas passaram** depois das correções
+  descritas acima.
+- **C1, C3 e C12 não foram re-testados no navegador de propósito, e dá para provar por quê:**
+  `git diff` mostra os três snippets **byte a byte idênticos**. Só C5, C15 e um comentário da casca
+  mudaram. Além disso, a varredura de cobertura re-executou a C3 e a C12 inteiras num Chromium de
+  verdade e devolveu o número idêntico ao da manhã, o que é um teste de regressão melhor que
+  re-rodar as asserções.
+- Site no ar: **não conferido** — egresso bloqueado, registrado acima como não concluído.
+
+### Produtos esperando link de afiliado: 39 de 78
+
+Metade do banco. Por entidade: 13 luminárias, 13 aquecedores, 9 filtros e 4 mídias. Os 10 que
+entraram hoje estão todos nessa conta. Pela regra V16 todos já são sugeridos pela adequação técnica;
+o cartão sai sem botão de loja. **Este número é trabalho pendente de verdade, e é da Sentinela
+Estratégica** — não consome execução da Fundação, então nunca compete por fila.
+
+### Próximo passo desbloqueado
+
+**T1 — medir a indexação no Search Console** continua sendo o primeiro bloco da fila e continua
+dependendo do Chrome do Raphael (Site Kit no wp-admin), não da nuvem. É ele que autoriza ou barra a
+T4, a malha de páginas, que é o motor de tráfego da ilha.
+
+O que a nuvem consegue fazer sozinha, agora com a lista de compras corrigida pela medição da noite:
+**luminária de exigência baixa (lúmen modesto) de 85 a 120 cm**, que é a faixa vazia mais larga que
+sobrou e que a medição da manhã nem enxergava; depois luminária com lúmen declarado de 30 a 55 cm; e
+filtro de baixa vazão para 20 a 40 L, que é a entrada da C3 e continua vazia desde a manhã.

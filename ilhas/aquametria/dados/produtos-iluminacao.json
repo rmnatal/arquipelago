@@ -1,1488 +1,2026 @@
 {
- "id": "produtos-iluminacao",
- "entidade": "iluminacao",
- "esquema": "dados/esquema-produtos.json",
- "descricao": "Banco de iluminacao. Os registros de semente foram escolhidos para expor a lacuna estrutural da entidade: o varejo brasileiro vende luminaria por centimetro de peca, e o lumen (que e a grandeza da C15) aparece em uma minoria das fichas. Em 07/09/2026 o X1-FR saiu (sem marca, sem comprimento e sem anuncio real) e entraram a Ista I-401 45 cm e a Chihiros WRGB II Pro 60. Em 08/09/2026, coleta que abriu a C15: Ista IL-401 60 e Aquarios do Rio ganharam voltagem e cobertura declarada (e sairam do barrado), entrou a WFish WF-H600 e o conflito nome-contra-ficha do IL-401 (vendida como 60 cm, mede 56) foi registrado. Em 09/09/2026 o banco saiu de 6 para 16 registros: entrou a linha Soma WRGB inteira (S-200 a S-1200, de 20 a 130 cm de aquario) e duas Chihiros A-Series (A901 e A451M), todas com link de afiliado e imagem do anuncio. O lote confirma a lacuna em vez de desmenti-la: as 8 Soma tem potencia, tamanho de peca, cobertura declarada e bivolt de varejo, e NENHUMA tem lumen publicado por ninguem — ficam 'parcial' e barradas na C15. As duas Chihiros tem lumen de varejo especializado e sao as primeiras luminarias sugeriveis COM link depois da Ista I-401.",
- "gerado_em": "2026-09-07",
- "bloco": 3,
- "publicar": false,
- "produtos": [
-  {
-   "id": "aquarios-do-rio-led-60cm",
-   "entidade": "iluminacao",
-   "marca": null,
-   "linha": null,
-   "modelo": "Luminaria LED Aquario 60 cm full spectrum",
-   "variante": "60 cm",
-   "nomes_alternativos": [
-    "Luminaria LED 60cm full spectrum"
-   ],
-   "gtin": null,
-   "disponibilidade_br": "vendido",
-   "voltagem": [
-    "bivolt"
-   ],
-   "tipo": "led-calha",
-   "potencia_w": 24,
-   "fluxo_lm": 2400,
-   "temperatura_cor_k": 6500,
-   "espectro": "full-spectrum",
-   "ppfd_declarado": null,
-   "ppfd_distancia_cm": null,
-   "comprimento_luminaria_cm": 60,
-   "comprimento_aquario_cm": {
-    "min": 55,
-    "max": 75
-   },
-   "regulagem": "temporizador",
-   "volume_atendido_declarado_L": null,
-   "imagem": null,
-   "afiliado": {
-    "plataforma": null,
-    "motivo": "o anuncio generico da Shopee (Newpet Slim 3 modulos, 30 a 60 cm) e outro produto, de outro revendedor, sem ficha tecnica localizavel. Ficou registrado em dados/afiliados-sem-produto.json, sem virar produto: link sem especificacao verificada nao entra no banco.",
-    "verificado_em": "2026-09-07"
-   },
-   "fontes": [
+  "id": "produtos-iluminacao",
+  "entidade": "iluminacao",
+  "esquema": "dados/esquema-produtos.json",
+  "descricao": "Banco de iluminacao. Os registros de semente foram escolhidos para expor a lacuna estrutural da entidade: o varejo brasileiro vende luminaria por centimetro de peca, e o lumen (que e a grandeza da C15) aparece em uma minoria das fichas. Em 07/09/2026 o X1-FR saiu (sem marca, sem comprimento e sem anuncio real) e entraram a Ista I-401 45 cm e a Chihiros WRGB II Pro 60. Em 08/09/2026, coleta que abriu a C15: Ista IL-401 60 e Aquarios do Rio ganharam voltagem e cobertura declarada (e sairam do barrado), entrou a WFish WF-H600 e o conflito nome-contra-ficha do IL-401 (vendida como 60 cm, mede 56) foi registrado. Em 09/09/2026 o banco saiu de 6 para 16 registros: entrou a linha Soma WRGB inteira (S-200 a S-1200, de 20 a 130 cm de aquario) e duas Chihiros A-Series (A901 e A451M), todas com link de afiliado e imagem do anuncio. O lote confirma a lacuna em vez de desmenti-la: as 8 Soma tem potencia, tamanho de peca, cobertura declarada e bivolt de varejo, e NENHUMA tem lumen publicado por ninguem — ficam 'parcial' e barradas na C15. As duas Chihiros tem lumen de varejo especializado e sao as primeiras luminarias sugeriveis COM link depois da Ista I-401. Em 09/09/2026, leva de FECHAMENTO DE FAIXA: o banco passou de 20 para 26 registros com a familia Chihiros WRGB II (90, Slim 90, Pro 90, 120, Slim 120, Pro 120). A varredura de cobertura mediu a C15 sem cumprir o criterio em NENHUMA das 22 faixas, e vazia em toda a escala acima de 80 cm. A familia WRGB II foi escolhida por dois motivos e nenhum deles e marca: declara fluxo luminoso em toda a escada de tamanhos, que e o campo que barra a C15, e declara COBERTURA EM FAIXA (90 a 110 cm, 120 a 140 cm) em vez de um comprimento cravado, que e o que fazia 95, 100, 105 e 110 cm sairem sem nenhuma opcao mesmo com as duas Chihiros A-Series ja no banco.",
+  "gerado_em": "2026-09-07",
+  "bloco": 3,
+  "publicar": false,
+  "produtos": [
     {
-     "origem": "varejo",
-     "status": "transcrita-varejo",
-     "referencia": "Aquarios do Rio (varejo BR), ficha da luminaria LED 60 cm (24 W, 2400 lm, branco 6500 K + azul 460 nm + vermelho 660 nm + verde 520 nm)",
-     "url": "https://aquariosdorio.com.br/loja/iluminacao/luminaria-led-aquario-60cm/",
-     "verificado_em": "2026-09-07",
-     "campos": [
-      "potencia_w",
-      "fluxo_lm",
-      "temperatura_cor_k",
-      "espectro",
-      "comprimento_luminaria_cm",
-      "tipo"
-     ],
-     "observacao": "Ficha de varejo. Confira a embalagem."
-    },
-    {
-     "origem": "varejo",
-     "status": "transcrita-varejo",
-     "referencia": "Aquarios do Rio (varejo BR), segunda leitura da ficha da luminaria LED 60 cm: alimentacao bivolt, suportes reguláveis para aquarios de 55 a 75 cm, timer integrado com ate 3 fotoperiodos por dia e efeito gradual de nascer e por do sol, corpo de aluminio anodizado preto com dissipacao passiva",
-     "url": "https://aquariosdorio.com.br/loja/iluminacao/luminaria-led-aquario-60cm/",
-     "verificado_em": "2026-09-08",
-     "campos": [
-      "voltagem",
-      "comprimento_aquario_cm",
-      "regulagem"
-     ],
-     "observacao": "Segunda leitura da MESMA pagina, agora por RESULTADO DE BUSCA: o dominio devolve EGRESS_BLOCKED para a nuvem em 07 e em 08/09/2026 e a pagina nao pode ser aberta. E esta leitura que traz a voltagem, o campo que barrava a sugestao da C15. Confira a embalagem."
-    }
-   ],
-   "conflitos": [],
-   "verificado_em": "2026-09-08",
-   "status_registro": "parcial",
-   "observacao": "Produto sem marca declarada (importado revendido com nome da loja) — situacao comum no Brasil e o motivo de marca aceitar null com o id derivado da loja. Sem marca, casar cotacoes entre lojas fica impossivel: e o pior caso do banco. 100 lm/W. Segue 'parcial' por causa da marca ausente, e nao por falta de numero: e apto a ser sugerido pela C15. Em 08/09/2026 saiu do barrado: a segunda leitura da ficha trouxe voltagem (bivolt), cobertura declarada de 55 a 75 cm e timer, e com isso passou a ser o registro de MAIOR cobertura declarada do banco de iluminacao — uma peca de 60 cm que a propria loja diz cobrir ate 75 cm de aquario."
-  },
-  {
-   "id": "chihiros-a-series-a301",
-   "entidade": "iluminacao",
-   "marca": "Chihiros",
-   "linha": "A-Series",
-   "modelo": "A301",
-   "variante": "30 cm 18 W",
-   "nomes_alternativos": [
-    "Chihiros A-Series A301",
-    "Chihiros A301 LED 30 cm"
-   ],
-   "gtin": null,
-   "disponibilidade_br": null,
-   "voltagem": [
-    "bivolt"
-   ],
-   "tipo": "led-barra",
-   "potencia_w": 18,
-   "fluxo_lm": 2800,
-   "temperatura_cor_k": 8000,
-   "espectro": "branco",
-   "ppfd_declarado": null,
-   "ppfd_distancia_cm": null,
-   "comprimento_luminaria_cm": 29.0,
-   "comprimento_aquario_cm": {
-    "min": 30,
-    "max": 30
-   },
-   "regulagem": null,
-   "volume_atendido_declarado_L": null,
-   "imagem": null,
-   "afiliado": {
-    "plataforma": null,
-    "motivo": "produto novo no banco, entrou em 09/09/2026 pelo bloco T3(a2) para fechar faixa de comprimento descoberta na C15. Quem gera link de afiliado e a Sentinela Estrategica, ate 10 por semana; este registro espera link. Pela regra V16 o produto ja e sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
-    "verificado_em": "2026-09-09"
-   },
-   "fontes": [
-    {
-     "origem": "fabricante-via-busca",
-     "status": "fabricante-via-busca",
-     "referencia": "Chihiros Aquatic Studio, ficha da A-Series A301: consumo 18 W, fluxo luminoso 2800 lm, 54 LEDs, temperatura de cor de cerca de 8.000 K, peca de 290 mm, alimentacao AC 100-240 V 50/60 Hz, para aquario de 30 cm",
-     "url": "https://www.chihirosaquaticstudio.com/products/chihiros-a-series-led-light",
-     "verificado_em": "2026-09-09",
-     "campos": [
-      "potencia_w",
-      "fluxo_lm",
-      "temperatura_cor_k",
-      "espectro",
-      "tipo",
-      "comprimento_luminaria_cm",
-      "comprimento_aquario_cm",
-      "voltagem"
-     ],
-     "observacao": "Colhido por RESULTADO DE BUSCA em 09/09/2026, com a ficha da A-Series atribuida ao fabricante e reconferida numa segunda formulacao independente que devolveu os mesmos numeros. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para chihirosaquaticstudio.com, como para todo dominio que nao seja o GitHub. A confirmar no manual."
-    }
-   ],
-   "conflitos": [],
-   "verificado_em": "2026-09-09",
-   "status_registro": "parcial",
-   "observacao": "Entrou em 09/09/2026 no bloco T3(a2), e o motivo de entrar e cobertura, nao marca: a linha A-Series e a unica do catalogo que DECLARA fluxo luminoso em toda a escada de tamanhos, e fluxo e o campo que barra a C15. As oito luminarias Soma, que cobririam de 20 a 130 cm e ja tem link de afiliado, continuam barradas porque nem a marca nem nove lojas brasileiras publicam lumen - e estimar lumen a partir do watt seria inventar numero. SEM LINK DE AFILIADO: quem gera o link e a Sentinela Estrategica. O espectro e branco de 8.000 K, sem RGB: a C15 dimensiona por lm/L e o cartao tem de dizer que esta peca nao tem a renderizacao de cor que a linha WRGB entrega. O fabricante declara UM comprimento de aquario (30 cm), nao uma faixa - a mesma leitura que ja valia para a A451M e a A901. Fica 'parcial' por UM campo: disponibilidade_br. A ficha tecnica veio do fabricante, mas nenhuma loja brasileira foi conferida para este tamanho em 09/09/2026 - e disponibilidade no Brasil so o varejo brasileiro sustenta (nivel 4 ou 5 da escada). A C15 continua podendo sugerir: o campo que falta nao esta no minimo_para_sugerir dela."
-  },
-  {
-   "id": "chihiros-a-series-a361",
-   "entidade": "iluminacao",
-   "marca": "Chihiros",
-   "linha": "A-Series",
-   "modelo": "A361",
-   "variante": "36 cm 21 W",
-   "nomes_alternativos": [
-    "Chihiros A-Series A361",
-    "Chihiros A361 LED 36 cm"
-   ],
-   "gtin": null,
-   "disponibilidade_br": null,
-   "voltagem": [
-    "bivolt"
-   ],
-   "tipo": "led-barra",
-   "potencia_w": 21,
-   "fluxo_lm": 3450,
-   "temperatura_cor_k": 8000,
-   "espectro": "branco",
-   "ppfd_declarado": null,
-   "ppfd_distancia_cm": null,
-   "comprimento_luminaria_cm": 36.0,
-   "comprimento_aquario_cm": {
-    "min": 36,
-    "max": 36
-   },
-   "regulagem": null,
-   "volume_atendido_declarado_L": null,
-   "imagem": null,
-   "afiliado": {
-    "plataforma": null,
-    "motivo": "produto novo no banco, entrou em 09/09/2026 pelo bloco T3(a2) para fechar faixa de comprimento descoberta na C15. Quem gera link de afiliado e a Sentinela Estrategica, ate 10 por semana; este registro espera link. Pela regra V16 o produto ja e sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
-    "verificado_em": "2026-09-09"
-   },
-   "fontes": [
-    {
-     "origem": "fabricante-via-busca",
-     "status": "fabricante-via-busca",
-     "referencia": "Chihiros Aquatic Studio, ficha da A-Series A361: consumo 21 W, fluxo luminoso 3450 lm, 63 LEDs, temperatura de cor de cerca de 8.000 K, peca de 360 mm, alimentacao AC 100-240 V 50/60 Hz, para aquario de 36 cm",
-     "url": "https://www.chihirosaquaticstudio.com/products/chihiros-a-series-led-light",
-     "verificado_em": "2026-09-09",
-     "campos": [
-      "potencia_w",
-      "fluxo_lm",
-      "temperatura_cor_k",
-      "espectro",
-      "tipo",
-      "comprimento_luminaria_cm",
-      "comprimento_aquario_cm",
-      "voltagem"
-     ],
-     "observacao": "Colhido por RESULTADO DE BUSCA em 09/09/2026, com a ficha da A-Series atribuida ao fabricante e reconferida numa segunda formulacao independente que devolveu os mesmos numeros. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para chihirosaquaticstudio.com, como para todo dominio que nao seja o GitHub. A confirmar no manual."
-    }
-   ],
-   "conflitos": [],
-   "verificado_em": "2026-09-09",
-   "status_registro": "parcial",
-   "observacao": "Entrou em 09/09/2026 no bloco T3(a2), e o motivo de entrar e cobertura, nao marca: a linha A-Series e a unica do catalogo que DECLARA fluxo luminoso em toda a escada de tamanhos, e fluxo e o campo que barra a C15. As oito luminarias Soma, que cobririam de 20 a 130 cm e ja tem link de afiliado, continuam barradas porque nem a marca nem nove lojas brasileiras publicam lumen - e estimar lumen a partir do watt seria inventar numero. SEM LINK DE AFILIADO: quem gera o link e a Sentinela Estrategica. O espectro e branco de 8.000 K, sem RGB: a C15 dimensiona por lm/L e o cartao tem de dizer que esta peca nao tem a renderizacao de cor que a linha WRGB entrega. O fabricante declara UM comprimento de aquario (36 cm), nao uma faixa - a mesma leitura que ja valia para a A451M e a A901. Fica 'parcial' por UM campo: disponibilidade_br. A ficha tecnica veio do fabricante, mas nenhuma loja brasileira foi conferida para este tamanho em 09/09/2026 - e disponibilidade no Brasil so o varejo brasileiro sustenta (nivel 4 ou 5 da escada). A C15 continua podendo sugerir: o campo que falta nao esta no minimo_para_sugerir dela."
-  },
-  {
-   "id": "chihiros-a-series-a451m",
-   "entidade": "iluminacao",
-   "marca": "Chihiros",
-   "linha": "A-Series Marine",
-   "modelo": "A451M",
-   "variante": "45 cm 27 W marinho",
-   "nomes_alternativos": [
-    "Chihiros Marine A-Series A451M 45cm 27w",
-    "Chihiros A451M Marine LED"
-   ],
-   "gtin": null,
-   "disponibilidade_br": "vendido",
-   "voltagem": [
-    "bivolt"
-   ],
-   "tipo": "led-barra",
-   "potencia_w": 27,
-   "fluxo_lm": 3500,
-   "temperatura_cor_k": null,
-   "espectro": "wrgb",
-   "ppfd_declarado": null,
-   "ppfd_distancia_cm": null,
-   "comprimento_luminaria_cm": 45.0,
-   "comprimento_aquario_cm": {
-    "min": 45,
-    "max": 45
-   },
-   "regulagem": "dimmer",
-   "volume_atendido_declarado_L": null,
-   "imagem": {
-    "url": "https://down-bs-br.img.susercontent.com/sg-11134201-22110-t3qqfgb4fnjvc8.webp",
-    "largura": null,
-    "altura": null,
-    "fonte": "anuncio-shopee",
-    "coletado_em": "2026-09-09",
-    "verificado_em": null,
-    "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
-    "alt": "Luminaria LED Chihiros Marine A-Series A451M de 45 cm, barra de aluminio com LEDs brancos e azuis para aquario marinho",
-    "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
-   },
-   "afiliado": {
-    "plataforma": "shopee",
-    "url": "https://s.shopee.com.br/6Akt2vHtq4",
-    "sub_id_1": "aquametria",
-    "sub_id_2": "C15",
-    "rel": "sponsored",
-    "verificado_em": "2026-09-09",
-    "anuncio_shopee": "Chihiros Marine A-Series A451M 45 cm 27 W 3.850 lm bivolt",
-    "voltagem_anuncio": "bivolt",
-    "observacao": "Titulo e voltagem como o operador transcreveu do painel Shopee Afiliados em 09/09/2026. ATENCAO: o anuncio declara 3.850 lm e a ficha de varejo declara 3.500 lm. O banco publica 3.500 lm, porque anuncio de marketplace (nivel 6) nao sustenta campo tecnico. A divergencia fica aqui de proposito, para a tela poder avisar."
-   },
-   "fontes": [
-    {
-     "origem": "varejo",
-     "status": "transcrita-varejo",
-     "referencia": "Varejo especializado (Water Plant Street, Pro-Aquarium, IndianAquarium) e anuncio de varejo BR na Amazon, ficha da Chihiros Marine A-Series A451M: 45 x 6 x 5 cm, 27 W, 3.500 lm, 99 LEDs (33 brancos, 50 azuis, 8 vermelhos, 8 verdes), dimmer de 6 passos, para aquarios de 45 cm",
-     "url": "https://www.waterplantstreet.com/chihiros-a-series-led-lighting-system-marine-type.html",
-     "verificado_em": "2026-09-09",
-     "campos": [
-      "potencia_w",
-      "fluxo_lm",
-      "tipo",
-      "espectro",
-      "regulagem",
-      "comprimento_luminaria_cm",
-      "comprimento_aquario_cm"
-     ],
-     "observacao": "Lido por RESULTADO DE BUSCA; o site do fabricante da EGRESS_BLOCKED para a nuvem em 09/09/2026. O anuncio da Shopee declara 3.850 lm para a mesma peca: numero de anuncio nao entra no banco."
-    },
-    {
-     "origem": "varejo",
-     "status": "transcrita-varejo",
-     "referencia": "AquaBetta (loja de aquarismo BR), anuncio da Marine A-Series A451M 45 cm 27 W declarado bivolt",
-     "url": "https://www.aquabetta.com.br/MLB-1102600754-luminaria-led-marine-a-series-a451m-45cm-27w-bivolt-_JM",
-     "verificado_em": "2026-09-09",
-     "campos": [
-      "voltagem",
-      "disponibilidade_br"
-     ],
-     "observacao": "Loja especializada com vitrine hospedada em marketplace; lido por resultado de busca. Confira a etiqueta da fonte antes de ligar."
-    }
-   ],
-   "conflitos": [],
-   "verificado_em": "2026-09-09",
-   "status_registro": "completo",
-   "observacao": "Luminaria MARINHA: 50 dos 99 LEDs sao azuis. 3.500 lm com 27 W da 130 lm/W. A C15 dimensiona planta por lm/L e esta peca nao foi feita para planta — quando ela sair no resultado, o cartao tem de dizer que o espectro e de aquario marinho. O fabricante declara UM comprimento (45 cm), nao uma faixa."
-  },
-  {
-   "id": "chihiros-a-series-a601",
-   "entidade": "iluminacao",
-   "marca": "Chihiros",
-   "linha": "A-Series",
-   "modelo": "A601",
-   "variante": "60 cm 39 W",
-   "nomes_alternativos": [
-    "Chihiros A-Series A601",
-    "Chihiros A601 LED 60 cm"
-   ],
-   "gtin": null,
-   "disponibilidade_br": null,
-   "voltagem": [
-    "bivolt"
-   ],
-   "tipo": "led-barra",
-   "potencia_w": 39,
-   "fluxo_lm": 5800,
-   "temperatura_cor_k": 8000,
-   "espectro": "branco",
-   "ppfd_declarado": null,
-   "ppfd_distancia_cm": null,
-   "comprimento_luminaria_cm": 60.0,
-   "comprimento_aquario_cm": {
-    "min": 60,
-    "max": 60
-   },
-   "regulagem": null,
-   "volume_atendido_declarado_L": null,
-   "imagem": null,
-   "afiliado": {
-    "plataforma": null,
-    "motivo": "produto novo no banco, entrou em 09/09/2026 pelo bloco T3(a2) para fechar faixa de comprimento descoberta na C15. Quem gera link de afiliado e a Sentinela Estrategica, ate 10 por semana; este registro espera link. Pela regra V16 o produto ja e sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
-    "verificado_em": "2026-09-09"
-   },
-   "fontes": [
-    {
-     "origem": "fabricante-via-busca",
-     "status": "fabricante-via-busca",
-     "referencia": "Chihiros Aquatic Studio, ficha da A-Series A601: consumo 39 W, fluxo luminoso 5800 lm, 117 LEDs, temperatura de cor de cerca de 8.000 K, peca de 600 mm, alimentacao AC 100-240 V 50/60 Hz, para aquario de 60 cm",
-     "url": "https://www.chihirosaquaticstudio.com/products/chihiros-a-series-led-light",
-     "verificado_em": "2026-09-09",
-     "campos": [
-      "potencia_w",
-      "fluxo_lm",
-      "temperatura_cor_k",
-      "espectro",
-      "tipo",
-      "comprimento_luminaria_cm",
-      "comprimento_aquario_cm",
-      "voltagem"
-     ],
-     "observacao": "Colhido por RESULTADO DE BUSCA em 09/09/2026, com a ficha da A-Series atribuida ao fabricante e reconferida numa segunda formulacao independente que devolveu os mesmos numeros. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para chihirosaquaticstudio.com, como para todo dominio que nao seja o GitHub. A confirmar no manual."
-    }
-   ],
-   "conflitos": [],
-   "verificado_em": "2026-09-09",
-   "status_registro": "parcial",
-   "observacao": "Entrou em 09/09/2026 no bloco T3(a2), e o motivo de entrar e cobertura, nao marca: a linha A-Series e a unica do catalogo que DECLARA fluxo luminoso em toda a escada de tamanhos, e fluxo e o campo que barra a C15. As oito luminarias Soma, que cobririam de 20 a 130 cm e ja tem link de afiliado, continuam barradas porque nem a marca nem nove lojas brasileiras publicam lumen - e estimar lumen a partir do watt seria inventar numero. SEM LINK DE AFILIADO: quem gera o link e a Sentinela Estrategica. O espectro e branco de 8.000 K, sem RGB: a C15 dimensiona por lm/L e o cartao tem de dizer que esta peca nao tem a renderizacao de cor que a linha WRGB entrega. O fabricante declara UM comprimento de aquario (60 cm), nao uma faixa - a mesma leitura que ja valia para a A451M e a A901. Fica 'parcial' por UM campo: disponibilidade_br. A ficha tecnica veio do fabricante, mas nenhuma loja brasileira foi conferida para este tamanho em 09/09/2026 - e disponibilidade no Brasil so o varejo brasileiro sustenta (nivel 4 ou 5 da escada). A C15 continua podendo sugerir: o campo que falta nao esta no minimo_para_sugerir dela."
-  },
-  {
-   "id": "chihiros-a-series-a801",
-   "entidade": "iluminacao",
-   "marca": "Chihiros",
-   "linha": "A-Series",
-   "modelo": "A801",
-   "variante": "80 cm 50 W",
-   "nomes_alternativos": [
-    "Chihiros A-Series A801",
-    "Chihiros A801 LED 80 cm"
-   ],
-   "gtin": null,
-   "disponibilidade_br": null,
-   "voltagem": [
-    "bivolt"
-   ],
-   "tipo": "led-barra",
-   "potencia_w": 50,
-   "fluxo_lm": 7200,
-   "temperatura_cor_k": 8000,
-   "espectro": "branco",
-   "ppfd_declarado": null,
-   "ppfd_distancia_cm": null,
-   "comprimento_luminaria_cm": 80.0,
-   "comprimento_aquario_cm": {
-    "min": 80,
-    "max": 80
-   },
-   "regulagem": null,
-   "volume_atendido_declarado_L": null,
-   "imagem": null,
-   "afiliado": {
-    "plataforma": null,
-    "motivo": "produto novo no banco, entrou em 09/09/2026 pelo bloco T3(a2) para fechar faixa de comprimento descoberta na C15. Quem gera link de afiliado e a Sentinela Estrategica, ate 10 por semana; este registro espera link. Pela regra V16 o produto ja e sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
-    "verificado_em": "2026-09-09"
-   },
-   "fontes": [
-    {
-     "origem": "fabricante-via-busca",
-     "status": "fabricante-via-busca",
-     "referencia": "Chihiros Aquatic Studio, ficha da A-Series A801: consumo 50 W, fluxo luminoso 7200 lm, 162 LEDs, temperatura de cor de cerca de 8.000 K, peca de 800 mm, alimentacao AC 100-240 V 50/60 Hz, para aquario de 80 cm",
-     "url": "https://www.chihirosaquaticstudio.com/products/chihiros-a-series-led-light",
-     "verificado_em": "2026-09-09",
-     "campos": [
-      "potencia_w",
-      "fluxo_lm",
-      "temperatura_cor_k",
-      "espectro",
-      "tipo",
-      "comprimento_luminaria_cm",
-      "comprimento_aquario_cm",
-      "voltagem"
-     ],
-     "observacao": "Colhido por RESULTADO DE BUSCA em 09/09/2026, com a ficha da A-Series atribuida ao fabricante e reconferida numa segunda formulacao independente que devolveu os mesmos numeros. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para chihirosaquaticstudio.com, como para todo dominio que nao seja o GitHub. A confirmar no manual."
-    }
-   ],
-   "conflitos": [],
-   "verificado_em": "2026-09-09",
-   "status_registro": "parcial",
-   "observacao": "Entrou em 09/09/2026 no bloco T3(a2), e o motivo de entrar e cobertura, nao marca: a linha A-Series e a unica do catalogo que DECLARA fluxo luminoso em toda a escada de tamanhos, e fluxo e o campo que barra a C15. As oito luminarias Soma, que cobririam de 20 a 130 cm e ja tem link de afiliado, continuam barradas porque nem a marca nem nove lojas brasileiras publicam lumen - e estimar lumen a partir do watt seria inventar numero. SEM LINK DE AFILIADO: quem gera o link e a Sentinela Estrategica. O espectro e branco de 8.000 K, sem RGB: a C15 dimensiona por lm/L e o cartao tem de dizer que esta peca nao tem a renderizacao de cor que a linha WRGB entrega. O fabricante declara UM comprimento de aquario (80 cm), nao uma faixa - a mesma leitura que ja valia para a A451M e a A901. Fica 'parcial' por UM campo: disponibilidade_br. A ficha tecnica veio do fabricante, mas nenhuma loja brasileira foi conferida para este tamanho em 09/09/2026 - e disponibilidade no Brasil so o varejo brasileiro sustenta (nivel 4 ou 5 da escada). A C15 continua podendo sugerir: o campo que falta nao esta no minimo_para_sugerir dela."
-  },
-  {
-   "id": "chihiros-a-series-a901",
-   "entidade": "iluminacao",
-   "marca": "Chihiros",
-   "linha": "A-Series",
-   "modelo": "A901",
-   "variante": "90 cm 55 W",
-   "nomes_alternativos": [
-    "Chihiros A-Series A901 90cm 55w",
-    "Chihiros LED A901"
-   ],
-   "gtin": null,
-   "disponibilidade_br": "vendido",
-   "voltagem": [
-    "bivolt"
-   ],
-   "tipo": "led-barra",
-   "potencia_w": 55,
-   "fluxo_lm": 8200,
-   "temperatura_cor_k": null,
-   "espectro": "full-spectrum",
-   "ppfd_declarado": null,
-   "ppfd_distancia_cm": null,
-   "comprimento_luminaria_cm": 90.0,
-   "comprimento_aquario_cm": {
-    "min": 90,
-    "max": 90
-   },
-   "regulagem": null,
-   "volume_atendido_declarado_L": null,
-   "imagem": {
-    "url": "https://down-bs-br.img.susercontent.com/sg-11134201-7rd3v-lvuh440s5u5jc3.webp",
-    "largura": null,
-    "altura": null,
-    "fonte": "anuncio-shopee",
-    "coletado_em": "2026-09-09",
-    "verificado_em": null,
-    "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
-    "alt": "Luminaria LED Chihiros A-Series A901, barra de aluminio anodizado de 90 cm com LEDs brancos de espectro completo acesos",
-    "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
-   },
-   "afiliado": {
-    "plataforma": "shopee",
-    "url": "https://s.shopee.com.br/2BEkHXpG4E",
-    "sub_id_1": "aquametria",
-    "sub_id_2": "C15",
-    "rel": "sponsored",
-    "verificado_em": "2026-09-09",
-    "anuncio_shopee": "Chihiros A-Series A901 90 cm 55 W 8.200 lm bivolt",
-    "voltagem_anuncio": "bivolt",
-    "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
-   },
-   "fontes": [
-    {
-     "origem": "varejo",
-     "status": "transcrita-varejo",
-     "referencia": "Varejo especializado internacional (Aquariums India, IndianAquarium, Water Plant Street), ficha da Chihiros A-Series A901: 90 x 6 x 5 cm, 55 W, 8.200 lm, 180 LEDs, espectro completo de 400 a 700 nm, para aquarios de 90 cm",
-     "url": "https://www.aquariumsindia.com/shop/lighting-units/chihiros-led-lighting-system-a901/",
-     "verificado_em": "2026-09-09",
-     "campos": [
-      "potencia_w",
-      "fluxo_lm",
-      "tipo",
-      "espectro",
-      "comprimento_luminaria_cm",
-      "comprimento_aquario_cm"
-     ],
-     "observacao": "Lido por RESULTADO DE BUSCA; chihirosaquaticstudio.com, que seria a fonte de nivel 2, da EGRESS_BLOCKED para a nuvem em 09/09/2026. O numero precisa ser reconferido na ficha do fabricante quando houver navegador."
-    },
-    {
-     "origem": "varejo",
-     "status": "transcrita-varejo",
-     "referencia": "AquaBetta (loja de aquarismo BR), anuncio da A-Series A901 90 cm 55 W declarado bivolt",
-     "url": "https://www.aquabetta.com.br/MLB-1821048063-luminaria-led-chihiros-a-series-a901-90cm-55w-bivolt-_JM",
-     "verificado_em": "2026-09-09",
-     "campos": [
-      "voltagem",
-      "disponibilidade_br"
-     ],
-     "observacao": "Loja especializada com vitrine hospedada em marketplace; lido por resultado de busca. A Chihiros alimenta a A-Series por fonte externa, que no Brasil e vendida como bivolt, e o anuncio da Shopee tambem diz bivolt. Ainda assim a tela obriga a conferir a etiqueta da fonte antes de ligar."
-    }
-   ],
-   "conflitos": [],
-   "verificado_em": "2026-09-09",
-   "status_registro": "completo",
-   "observacao": "8.200 lm com 55 W da 149 lm/W, a maior eficacia do banco — numero de varejo, nao de fabricante. Atencao a geracao: a Serie A II 901, outra versao da mesma marca, e publicada com 7.200 lm pelo varejo europeu (Aquasabi); sao produtos diferentes e a ficha aqui e da A901 da A-Series. O fabricante declara UM comprimento (90 cm), nao uma faixa, entao a C15 so sugere esta luminaria para aquario de 90 cm: transformar peca de 90 cm em cobertura mais larga seria inventar faixa."
-  },
-  {
-   "id": "chihiros-wrgb-ii-pro-60",
-   "entidade": "iluminacao",
-   "marca": "Chihiros",
-   "linha": "WRGB II Pro",
-   "modelo": "WRGB II Pro 60",
-   "variante": "60 cm",
-   "nomes_alternativos": [
-    "Chihiros WRGB-2 PRO 60cm",
-    "Chihiros WRGB II Pro 60 cm",
-    "Chihiros WRGB 2 Pro 60"
-   ],
-   "gtin": null,
-   "disponibilidade_br": "vendido",
-   "voltagem": null,
-   "tipo": "led-barra",
-   "potencia_w": 74,
-   "fluxo_lm": 6630,
-   "temperatura_cor_k": null,
-   "espectro": "wrgb",
-   "ppfd_declarado": null,
-   "ppfd_distancia_cm": null,
-   "comprimento_luminaria_cm": 60,
-   "comprimento_aquario_cm": {
-    "min": 60,
-    "max": 80
-   },
-   "regulagem": "app",
-   "volume_atendido_declarado_L": null,
-   "imagem": null,
-   "afiliado": {
-    "plataforma": "shopee",
-    "url": "https://s.shopee.com.br/20vHM7AtT6",
-    "sub_id_1": "aquametria",
-    "sub_id_2": "C15",
-    "rel": "sponsored",
-    "verificado_em": "2026-09-07",
-    "anuncio_shopee": "Chihiros WRGB-2 PRO 60cm- Luminária P/ Aquário Plantado High",
-    "observacao": "Link curto gerado no painel Shopee Afiliados em 07/09/2026. Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data."
-   },
-   "fontes": [
-    {
-     "origem": "varejo",
-     "status": "transcrita-varejo",
-     "referencia": "Green Aqua (varejo especializado, HU), ficha do Chihiros WRGB II Pro 60: 74 W, 6630 lm, para aquarios de 60 a 80 cm, 60 LEDs WRGB, IP43, controle Bluetooth pelo app My Chihiros",
-     "url": "https://greenaqua.hu/en/chihiros-wrgb-ii-pro-60-cm-led-light-60-80-cm-74-w-6630-lm.html",
-     "verificado_em": "2026-09-07",
-     "campos": [
-      "potencia_w",
-      "fluxo_lm",
-      "comprimento_aquario_cm",
-      "espectro",
-      "regulagem",
-      "tipo"
-     ],
-     "observacao": "Ficha de varejo lida por RESULTADO DE BUSCA: chihiros.eu devolveu EGRESS_BLOCKED em 07/09/2026 e a pagina do fabricante nao pode ser aberta. Confira a embalagem."
-    },
-    {
-     "origem": "varejo",
-     "status": "transcrita-varejo",
-     "referencia": "Aquasabi (varejo especializado, DE), ficha da serie WRGB II PRO 60: dimensoes 600 x 140 x 18 mm, vidro de ate 10 mm",
-     "url": "https://www.aquasabi.com/Chihiros-LED-System-Serie-WRGB-II-PRO-60",
-     "verificado_em": "2026-09-07",
-     "campos": [
-      "comprimento_luminaria_cm"
-     ],
-     "observacao": "Segunda fonte de varejo, do mesmo nivel, CONCORDANDO com a primeira em 74 W e 6630 lm — por isso nao ha conflito. Lida por resultado de busca."
-    },
-    {
-     "origem": "marketplace-anuncio",
-     "status": "anuncio",
-     "referencia": "Anuncio Shopee 'Chihiros WRGB-2 PRO 60cm- Luminária P/ Aquário Plantado High', usado no painel de afiliados em 07/09/2026",
-     "url": "https://s.shopee.com.br/20vHM7AtT6",
-     "verificado_em": "2026-09-07",
-     "campos": [
-      "nomes_alternativos",
-      "disponibilidade_br"
-     ],
-     "observacao": "Anuncio sustenta existencia, nomenclatura e cotacao. Nunca numero tecnico."
-    }
-   ],
-   "conflitos": [],
-   "verificado_em": "2026-09-07",
-   "status_registro": "completo",
-   "observacao": "Substitui o registro aquario-projetado-x1-fr-60w (removido em 07/09/2026: produto sem marca, sem comprimento declarado e sem anuncio real). E o unico registro do banco que declara comprimento de aquario E lumen — mas a voltagem nao e declarada em nenhuma das fontes, e voltagem e requisito para a C15 SUGERIR: enquanto nao houver, ele entra como ficha e nao como sugestao. 89,6 lm/W. O PAR ~50-60 citado pelo varejo vem 'no substrato', sem distancia em cm: sem distancia o PPFD e inutil e o validador o rejeita (V5), entao nao foi gravado."
-  },
-  {
-   "id": "ista-i-401-45",
-   "entidade": "iluminacao",
-   "marca": "Ista",
-   "linha": "I-401",
-   "modelo": "I-401 45 cm",
-   "variante": "45 cm luz branca",
-   "nomes_alternativos": [
-    "Ista Luminaria Aquario LED I-401 45cm Branca Bivolt",
-    "Luminaria Led Luz Branca Ista 45cm I-401",
-    "Luminaria Led Ista 45 Cm I-401"
-   ],
-   "gtin": null,
-   "disponibilidade_br": "vendido",
-   "voltagem": [
-    "bivolt"
-   ],
-   "tipo": "led-calha",
-   "potencia_w": 7.6,
-   "fluxo_lm": 810,
-   "temperatura_cor_k": null,
-   "espectro": "branco",
-   "ppfd_declarado": null,
-   "ppfd_distancia_cm": null,
-   "comprimento_luminaria_cm": 47,
-   "comprimento_aquario_cm": {
-    "min": null,
-    "max": 45
-   },
-   "regulagem": null,
-   "volume_atendido_declarado_L": null,
-   "imagem": null,
-   "afiliado": {
-    "plataforma": "shopee",
-    "url": "https://s.shopee.com.br/1Vz0l9vrvm",
-    "sub_id_1": "aquametria",
-    "sub_id_2": "C15",
-    "rel": "sponsored",
-    "verificado_em": "2026-09-07",
-    "anuncio_shopee": "Ista Luminária Aquário LED I-401 45cm Branca Bivolt",
-    "observacao": "Link curto gerado no painel Shopee Afiliados em 07/09/2026. Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data."
-   },
-   "fontes": [
-    {
-     "origem": "varejo",
-     "status": "transcrita-varejo",
-     "referencia": "Aquarius Hobby (varejo BR especializado), ficha da Ista I-401 45 cm luz branca: 7,6 W, 810 lm, 47 x 6,8 x 1,8 cm, 110-240 V 50-60 Hz, corpo de aluminio anodizado, indicada para aquarios de ate 45 cm",
-     "url": "https://aquariushobby.commercesuite.com.br/agua-doce/iluminacao/luminarias/ista-luminaria-aquario-led-i-401-45cm-branca-bivolt",
-     "verificado_em": "2026-09-07",
-     "campos": [
-      "potencia_w",
-      "fluxo_lm",
-      "comprimento_luminaria_cm",
-      "comprimento_aquario_cm",
-      "voltagem",
-      "espectro",
-      "tipo"
-     ],
-     "observacao": "Ficha de varejo lida por RESULTADO DE BUSCA: o egresso da nuvem barra o dominio (EGRESS_BLOCKED em 07/09/2026), entao a pagina nao foi aberta. Confira a embalagem."
-    },
-    {
-     "origem": "marketplace-anuncio",
-     "status": "anuncio",
-     "referencia": "Anuncio Shopee 'Ista Luminária Aquário LED I-401 45cm Branca Bivolt', usado no painel de afiliados em 07/09/2026",
-     "url": "https://s.shopee.com.br/1Vz0l9vrvm",
-     "verificado_em": "2026-09-07",
-     "campos": [
-      "nomes_alternativos",
-      "disponibilidade_br"
-     ],
-     "observacao": "Anuncio sustenta existencia, nomenclatura e cotacao. Nunca numero tecnico."
-    }
-   ],
-   "conflitos": [],
-   "verificado_em": "2026-09-07",
-   "status_registro": "completo",
-   "observacao": "Variante de 45 cm da mesma familia do registro ista-il-401-60, e o unico dos dois com anuncio na Shopee. O varejo brasileiro escreve o 45 cm ora 'I-401' ora 'IL-400' (a Pro-Aquarista chama o 45 cm de IL-400 e o 60 cm de IL-401): a equivalencia NAO foi confirmada no fabricante e por isso 'IL-400' nao entrou em nomes_alternativos. 107 lm/W, coerente com o 60 cm da mesma linha."
-  },
-  {
-   "id": "ista-il-401-60",
-   "entidade": "iluminacao",
-   "marca": "Ista",
-   "linha": "IL-401",
-   "modelo": "IL-401 60 cm",
-   "variante": "60 cm",
-   "nomes_alternativos": [
-    "Ista IL-401",
-    "Luminaria Led Ista 60 cm"
-   ],
-   "gtin": null,
-   "disponibilidade_br": "vendido",
-   "voltagem": [
-    "bivolt"
-   ],
-   "tipo": "led-calha",
-   "potencia_w": 35,
-   "fluxo_lm": 3717,
-   "temperatura_cor_k": null,
-   "espectro": null,
-   "ppfd_declarado": null,
-   "ppfd_distancia_cm": null,
-   "comprimento_luminaria_cm": 56,
-   "comprimento_aquario_cm": {
-    "min": 56,
-    "max": 66
-   },
-   "regulagem": null,
-   "volume_atendido_declarado_L": null,
-   "imagem": null,
-   "afiliado": {
-    "plataforma": null,
-    "motivo": "o anuncio disponivel na Shopee em 07/09/2026 e da variante de 45 cm (registro ista-i-401-45), com 7,6 W e 810 lm — outro produto. Atribuir aquele link a este registro faria a C15 recomendar 3717 lm e entregar 810 lm.",
-    "verificado_em": "2026-09-07"
-   },
-   "fontes": [
-    {
-     "origem": "varejo",
-     "status": "transcrita-varejo",
-     "referencia": "Pro-Aquarista (varejo BR especializado), ficha da luminaria Ista IL-401 60 cm para aquarios plantados",
-     "url": "https://www.proaquarista.com.br/produto/luminaria-led-ista-60-cm-p-aquarios-plantados-il-401.html",
-     "verificado_em": "2026-09-07",
-     "campos": [
-      "potencia_w",
-      "fluxo_lm",
-      "comprimento_luminaria_cm",
-      "tipo"
-     ],
-     "observacao": "Ficha de varejo. Confira a embalagem."
-    },
-    {
-     "origem": "varejo",
-     "status": "transcrita-varejo",
-     "referencia": "Pro-Aquarista (varejo BR especializado), ficha completa da Ista IL-401 60 cm: 35 W, 3717 lm, tensao bivolt (110 V/220 V), dimensoes 56 x 12 x 4,6 cm, indicada para aquarios de 56 a 66 cm, IRC acima de 95 % e queda de 4 % na intensidade apos 6 000 h",
-     "url": "https://www.proaquarista.com.br/produto/luminaria-led-ista-60-cm-p-aquarios-plantados-il-401.html",
-     "verificado_em": "2026-09-08",
-     "campos": [
-      "voltagem",
-      "comprimento_aquario_cm",
-      "comprimento_luminaria_cm"
-     ],
-     "observacao": "Segunda leitura da MESMA pagina, por RESULTADO DE BUSCA (o dominio devolve EGRESS_BLOCKED para a nuvem). Trouxe a voltagem, que era o campo que barrava a sugestao, e a cobertura declarada — e revelou que a peca vendida como '60 cm' mede 56 cm."
-    }
-   ],
-   "conflitos": [
-    {
-     "campo": "comprimento_luminaria_cm",
-     "valores": [
-      {
-       "valor": 60,
-       "referencia": "nome comercial do produto no varejo BR: 'Luminaria Led Ista 60 Cm P/ Aquarios Plantados IL-401'",
-       "url": "https://www.proaquarista.com.br/produto/luminaria-led-ista-60-cm-p-aquarios-plantados-il-401.html",
-       "origem": "marketplace-anuncio"
+      "id": "chihiros-wrgb-ii-pro-120",
+      "entidade": "iluminacao",
+      "marca": "Chihiros",
+      "linha": "WRGB II Pro",
+      "modelo": "WRGB II Pro 120",
+      "variante": "120 cm",
+      "nomes_alternativos": [
+        "Chihiros WRGB2 Pro 120cm",
+        "Luminaria Chihiros Wrgb II Pro 120cm"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "bivolt"
+      ],
+      "tipo": "led-barra",
+      "potencia_w": null,
+      "fluxo_lm": null,
+      "temperatura_cor_k": null,
+      "espectro": "wrgb",
+      "ppfd_declarado": null,
+      "ppfd_distancia_cm": null,
+      "comprimento_luminaria_cm": 120.0,
+      "comprimento_aquario_cm": {
+        "min": 120,
+        "max": 140
       },
-      {
-       "valor": 56,
-       "referencia": "ficha de dimensoes da mesma pagina: 56 x 12 x 4,6 cm",
-       "url": "https://www.proaquarista.com.br/produto/luminaria-led-ista-60-cm-p-aquarios-plantados-il-401.html",
-       "origem": "varejo"
-      }
-     ],
-     "razao": "4 cm, ou 7 % do comprimento anunciado",
-     "tratamento": "nivel-mais-alto-vence",
-     "observacao": "O numero do NOME nao e ficha tecnica: e nome comercial, e no varejo brasileiro de iluminacao ele quase sempre indica o aquario de destino, nao a peca. A ficha de dimensoes da mesma pagina vence, e o campo fica 56. Quem compra pelo nome acha que leva 60 cm de luminaria."
-    }
-   ],
-   "verificado_em": "2026-09-08",
-   "status_registro": "conflito",
-   "observacao": "Unico registro da semente com lumen declarado alto (3717 lm) e agora com voltagem: em 08/09/2026 saiu do barrado e virou o registro mais forte do banco de iluminacao — 106 lm/W, cobertura declarada de 56 a 66 cm. Continua SEM link de afiliado: o anuncio disponivel na Shopee e o da variante de 45 cm (registro ista-i-401-45), com 7,6 W e 810 lm. Traz o conflito nome-contra-ficha: vendida como '60 cm', a peca mede 56 cm."
-  },
-  {
-   "id": "soma-s-1000-wrgb",
-   "entidade": "iluminacao",
-   "marca": "Soma",
-   "linha": "WRGB",
-   "modelo": "S-1000",
-   "variante": "32 W",
-   "nomes_alternativos": [
-    "Luminaria Led Soma S-1000 32w",
-    "LUMINARIA LED SOMA S-1000 (32W) LED WRGB AUTOVOLT"
-   ],
-   "gtin": null,
-   "disponibilidade_br": "vendido",
-   "voltagem": [
-    "bivolt"
-   ],
-   "tipo": "led-barra",
-   "potencia_w": 32,
-   "fluxo_lm": null,
-   "temperatura_cor_k": null,
-   "espectro": "wrgb",
-   "ppfd_declarado": null,
-   "ppfd_distancia_cm": null,
-   "comprimento_luminaria_cm": 97.0,
-   "comprimento_aquario_cm": {
-    "min": 100,
-    "max": 110
-   },
-   "regulagem": null,
-   "volume_atendido_declarado_L": null,
-   "imagem": {
-    "url": "https://down-bs-br.img.susercontent.com/br-11134207-7r98o-lp8e9by04ms5ad.webp",
-    "largura": null,
-    "altura": null,
-    "fonte": "anuncio-shopee",
-    "coletado_em": "2026-09-09",
-    "verificado_em": null,
-    "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
-    "alt": "Luminaria LED Soma S-1000 WRGB, barra de aluminio preta ultrafina com hastes reguladas para apoiar na borda do aquario",
-    "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
-   },
-   "afiliado": {
-    "plataforma": "shopee",
-    "url": "https://s.shopee.com.br/AUtsD1Spc3",
-    "sub_id_1": "aquametria",
-    "sub_id_2": "C15",
-    "rel": "sponsored",
-    "verificado_em": "2026-09-09",
-    "anuncio_shopee": "Luminaria Led Soma S-1000 WRGB 32W bivolt aquario 100-110 cm",
-    "voltagem_anuncio": "bivolt",
-    "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
-   },
-   "fontes": [
+      "regulagem": "aplicativo",
+      "volume_atendido_declarado_L": null,
+      "imagem": null,
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "produto novo no banco, entrou em 09/09/2026 na leva de fechamento de faixa para cobrir buraco que ferramentas/varrer-cobertura.mjs mediu. Quem gera link de afiliado e a Sentinela Estrategica, no navegador do Raphael, e tem teto de calendario. Pela regra V16 o produto ja e sugerido pela adequacao tecnica; o cartao sai sem botao de loja ate o link existir.",
+        "verificado_em": "2026-09-09"
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Fazenda Submersa (varejo BR especializado), ficha da Chihiros WRGB II Pro 120 cm: tamanho de aquario de 120 a 140 cm de largura, luminaria de 120 x 14 x 1,8 cm, consumo de 130 W, 120 LEDs, fluxo luminoso de 7.700 lm",
+          "url": "https://www.fazendasubmersa.com.br/marcas/chihiros/luminaria-chihiros-wrgb2-pro",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "tipo",
+            "espectro",
+            "comprimento_luminaria_cm",
+            "comprimento_aquario_cm",
+            "regulagem",
+            "disponibilidade_br"
+          ],
+          "observacao": "Lido por RESULTADO DE BUSCA (EGRESS_BLOCKED no dominio). Os campos potencia_w e fluxo_lm NAO sao sustentados por esta fonte sozinha: ela discorda da Green Aqua, do mesmo nivel da escada, e por isso os dois campos ficaram null."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Green Aqua (varejo especializado estrangeiro), ficha da Chihiros WRGB II Pro 120: tamanho de aquario de 120 a 140 cm, consumo de 138 W, fluxo luminoso de 11.170 lm",
+          "url": "https://greenaqua.hu/en/chihiros-wrgb-ii-pro-120-cm-led-light-120-140-cm-138-w-11170-lm.html",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "comprimento_aquario_cm"
+          ],
+          "observacao": "As duas lojas concordam na cobertura declarada (120 a 140 cm) e discordam no consumo e no fluxo. A cobertura entra; os outros dois campos ficam null."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "AquaBetta (varejo BR especializado), anuncios da familia Chihiros WRGB II declarando BIVOLT no proprio titulo em dois membros diferentes da linha: 'Luminaria Led Wrgb2 Pro 90cm 110w (9250 Lumens) Bivolt' e 'Luminaria Led Chihiros Wrgb 2 Series 45cm 49 W Bivolt'. A ficha da serie descreve a alimentacao como entrada de 100 a 240 V, 50-60 Hz, por fonte externa de 12 V",
+          "url": "https://www.aquabetta.com.br/MLB-2950531227-luminaria-led-wrgb2-pro-90cm-110w-9250-lumens-bivolt-_JM",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "voltagem"
+          ],
+          "observacao": "A WRGB II acende por fonte externa de 12 V com entrada de 100 a 240 V, que e o que a torna bivolt de verdade — diferente do aquecedor, que e aparelho de tomada e queima na voltagem errada. Ainda assim a tela manda conferir a etiqueta da fonte antes de ligar. Lido por RESULTADO DE BUSCA (EGRESS_BLOCKED no dominio)."
+        }
+      ],
+      "conflitos": [
+        {
+          "campo": "fluxo_lm",
+          "valores": [
+            {
+              "valor": 7700,
+              "referencia": "Fazenda Submersa (varejo BR especializado): 130 W e 7.700 lm",
+              "url": "https://www.fazendasubmersa.com.br/marcas/chihiros/luminaria-chihiros-wrgb2-pro",
+              "origem": "varejo"
+            },
+            {
+              "valor": 11170,
+              "referencia": "Green Aqua (varejo especializado estrangeiro): 138 W e 11.170 lm",
+              "url": "https://greenaqua.hu/en/chihiros-wrgb-ii-pro-120-cm-led-light-120-140-cm-138-w-11170-lm.html",
+              "origem": "varejo"
+            }
+          ],
+          "razao": "45 por cento de diferenca no fluxo declarado do MESMO produto entre duas lojas especializadas do mesmo nivel da escada de fontes. Empate de nivel: ninguem vence e o campo vira null, entao a C15 nao sugere esta luminaria. Publicar a media seria inventar um numero que nenhuma das duas fontes afirma.",
+          "tratamento": "campo-vira-null",
+          "valor_conservador": null,
+          "derivacao": null,
+          "verificado_em": "2026-09-09"
+        },
+        {
+          "campo": "potencia_w",
+          "valores": [
+            {
+              "valor": 130,
+              "referencia": "Fazenda Submersa (varejo BR especializado)",
+              "url": "https://www.fazendasubmersa.com.br/marcas/chihiros/luminaria-chihiros-wrgb2-pro",
+              "origem": "varejo"
+            },
+            {
+              "valor": 138,
+              "referencia": "Green Aqua (varejo especializado estrangeiro)",
+              "url": "https://greenaqua.hu/en/chihiros-wrgb-ii-pro-120-cm-led-light-120-140-cm-138-w-11170-lm.html",
+              "origem": "varejo"
+            }
+          ],
+          "razao": "6 por cento de diferenca no consumo declarado, duas fontes do mesmo nivel. Campo vira null.",
+          "tratamento": "campo-vira-null",
+          "valor_conservador": null,
+          "derivacao": null,
+          "verificado_em": "2026-09-09"
+        }
+      ],
+      "verificado_em": "2026-09-09",
+      "status_registro": "parcial",
+      "observacao": "O CASO MAIS DESCONFORTAVEL DA LEVA, e ele fica publicado justamente por isso: e a unica luminaria de 120 cm da familia que uma loja brasileira anuncia, tem link em potencial, e MESMO ASSIM a C15 nao vai sugeri-la — porque a loja brasileira declara 7.700 lm e a estrangeira declara 11.170 lm para o mesmo aparelho, e a regra do banco manda o campo virar null em empate de nivel. Fica no banco como ficha e como conteudo: se a diferenca for a versao do produto, e a loja que precisa dizer qual esta vendendo; se for erro de transcricao, e a prova de que o numero que dimensiona iluminacao no Brasil nao passa por conferencia nenhuma. Desempata quem tiver a caixa na mao."
+    },
     {
-     "origem": "varejo",
-     "status": "transcrita-varejo",
-     "referencia": "Varejo especializado BR (Mega Aquarios, Fazenda Submersa, Garagem do Aquarismo, Pro-Aquarista, World Fish, Aquarioz), ficha da Soma S-1000: 32 W, peca de 97 cm, aquario de 100 a 110 cm, alimentacao bivolt (autovolt), corpo ultrafino de 6 mm com hastes regulaveis e LED WRGB (126 brancos, 22 azuis, 22 verdes e 22 vermelhos)",
-     "url": "https://www.fazendasubmersa.com.br/soma-/luminaria-led-s-1000-wrgb-soma-bivolt-32w-100cm",
-     "verificado_em": "2026-09-09",
-     "campos": [
-      "potencia_w",
-      "tipo",
-      "espectro",
-      "comprimento_luminaria_cm",
-      "comprimento_aquario_cm",
-      "voltagem",
-      "disponibilidade_br"
-     ],
-     "observacao": "Lido por RESULTADO DE BUSCA: o egresso da nuvem barra os dominios do varejo brasileiro (EGRESS_BLOCKED em 09/09/2026) e a pagina nao pode ser aberta. Confira a embalagem."
-    }
-   ],
-   "conflitos": [],
-   "verificado_em": "2026-09-09",
-   "status_registro": "parcial",
-   "observacao": "Entrou em 09/09/2026 no lote de 21 anuncios colhidos a mao no painel Shopee Afiliados, com link e imagem. Fica 'parcial' por um campo so: fluxo_lm — a linha Soma WRGB nao publica fluxo luminoso: nem a marca nem as nove lojas de aquarismo brasileiras conferidas em 09/09/2026 (Mega Aquarios, Garagem do Aquarismo, Fazenda Submersa, Pro-Aquarista, World Fish, Aquarioz, Fish House, Fish Nature e Antonio Candido) declaram lumen em ficha nenhuma. O anuncio da Shopee tambem nao declara. Sem lumen de fonte tecnica a C15, que dimensiona por lm/L, nao sugere o produto — e estimar lumen a partir da potencia seria inventar numero. Enquanto isso a ficha vale como conteudo e a C15 publica o produto na lista de barrados, com o motivo."
-  },
-  {
-   "id": "soma-s-1200-wrgb",
-   "entidade": "iluminacao",
-   "marca": "Soma",
-   "linha": "WRGB",
-   "modelo": "S-1200",
-   "variante": "36 W",
-   "nomes_alternativos": [
-    "Luminaria Led Soma S-1200 36w",
-    "LUMINARIA LED SOMA S-1200 (36W) LED WRGB AUTOVOLT"
-   ],
-   "gtin": null,
-   "disponibilidade_br": "vendido",
-   "voltagem": [
-    "bivolt"
-   ],
-   "tipo": "led-barra",
-   "potencia_w": 36,
-   "fluxo_lm": null,
-   "temperatura_cor_k": null,
-   "espectro": "wrgb",
-   "ppfd_declarado": null,
-   "ppfd_distancia_cm": null,
-   "comprimento_luminaria_cm": 117.8,
-   "comprimento_aquario_cm": {
-    "min": 120,
-    "max": 130
-   },
-   "regulagem": null,
-   "volume_atendido_declarado_L": null,
-   "imagem": {
-    "url": "https://down-bs-br.img.susercontent.com/br-11134207-7r98o-lp8fc8qlkl0505.webp",
-    "largura": null,
-    "altura": null,
-    "fonte": "anuncio-shopee",
-    "coletado_em": "2026-09-09",
-    "verificado_em": null,
-    "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
-    "alt": "Luminaria LED Soma S-1200 WRGB, barra de aluminio preta ultrafina com hastes reguladas para apoiar na borda do aquario",
-    "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
-   },
-   "afiliado": {
-    "plataforma": "shopee",
-    "url": "https://s.shopee.com.br/3B7HTYh94c",
-    "sub_id_1": "aquametria",
-    "sub_id_2": "C15",
-    "rel": "sponsored",
-    "verificado_em": "2026-09-09",
-    "anuncio_shopee": "Luminaria Led Soma S-1200 WRGB 36W bivolt aquario 120-130 cm",
-    "voltagem_anuncio": "bivolt",
-    "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
-   },
-   "fontes": [
+      "id": "ista-i-401-45",
+      "entidade": "iluminacao",
+      "marca": "Ista",
+      "linha": "I-401",
+      "modelo": "I-401 45 cm",
+      "variante": "45 cm luz branca",
+      "nomes_alternativos": [
+        "Ista Luminaria Aquario LED I-401 45cm Branca Bivolt",
+        "Luminaria Led Luz Branca Ista 45cm I-401",
+        "Luminaria Led Ista 45 Cm I-401"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "bivolt"
+      ],
+      "tipo": "led-calha",
+      "potencia_w": 7.6,
+      "fluxo_lm": 810,
+      "temperatura_cor_k": null,
+      "espectro": "branco",
+      "ppfd_declarado": null,
+      "ppfd_distancia_cm": null,
+      "comprimento_luminaria_cm": 47,
+      "comprimento_aquario_cm": {
+        "min": null,
+        "max": 45
+      },
+      "regulagem": null,
+      "volume_atendido_declarado_L": null,
+      "imagem": null,
+      "afiliado": {
+        "plataforma": "shopee",
+        "url": "https://s.shopee.com.br/1Vz0l9vrvm",
+        "sub_id_1": "aquametria",
+        "sub_id_2": "C15",
+        "rel": "sponsored",
+        "verificado_em": "2026-09-07",
+        "anuncio_shopee": "Ista Luminária Aquário LED I-401 45cm Branca Bivolt",
+        "observacao": "Link curto gerado no painel Shopee Afiliados em 07/09/2026. Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data."
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Aquarius Hobby (varejo BR especializado), ficha da Ista I-401 45 cm luz branca: 7,6 W, 810 lm, 47 x 6,8 x 1,8 cm, 110-240 V 50-60 Hz, corpo de aluminio anodizado, indicada para aquarios de ate 45 cm",
+          "url": "https://aquariushobby.commercesuite.com.br/agua-doce/iluminacao/luminarias/ista-luminaria-aquario-led-i-401-45cm-branca-bivolt",
+          "verificado_em": "2026-09-07",
+          "campos": [
+            "potencia_w",
+            "fluxo_lm",
+            "comprimento_luminaria_cm",
+            "comprimento_aquario_cm",
+            "voltagem",
+            "espectro",
+            "tipo"
+          ],
+          "observacao": "Ficha de varejo lida por RESULTADO DE BUSCA: o egresso da nuvem barra o dominio (EGRESS_BLOCKED em 07/09/2026), entao a pagina nao foi aberta. Confira a embalagem."
+        },
+        {
+          "origem": "marketplace-anuncio",
+          "status": "anuncio",
+          "referencia": "Anuncio Shopee 'Ista Luminária Aquário LED I-401 45cm Branca Bivolt', usado no painel de afiliados em 07/09/2026",
+          "url": "https://s.shopee.com.br/1Vz0l9vrvm",
+          "verificado_em": "2026-09-07",
+          "campos": [
+            "nomes_alternativos",
+            "disponibilidade_br"
+          ],
+          "observacao": "Anuncio sustenta existencia, nomenclatura e cotacao. Nunca numero tecnico."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-07",
+      "status_registro": "completo",
+      "observacao": "Variante de 45 cm da mesma familia do registro ista-il-401-60, e o unico dos dois com anuncio na Shopee. O varejo brasileiro escreve o 45 cm ora 'I-401' ora 'IL-400' (a Pro-Aquarista chama o 45 cm de IL-400 e o 60 cm de IL-401): a equivalencia NAO foi confirmada no fabricante e por isso 'IL-400' nao entrou em nomes_alternativos. 107 lm/W, coerente com o 60 cm da mesma linha."
+    },
     {
-     "origem": "varejo",
-     "status": "transcrita-varejo",
-     "referencia": "Varejo especializado BR (Mega Aquarios, Fazenda Submersa, Garagem do Aquarismo, Pro-Aquarista, World Fish, Aquarioz), ficha da Soma S-1200: 36 W, peca de 117.8 cm, aquario de 120 a 130 cm, alimentacao bivolt (autovolt), corpo ultrafino de 6 mm com hastes regulaveis e LED WRGB (150 brancos, 26 azuis, 26 verdes e 26 vermelhos)",
-     "url": "https://www.antoniocandidoaquarismo.com.br/produtos/luminaria-led-soma-s-120036wled-wrgb-autovolt/",
-     "verificado_em": "2026-09-09",
-     "campos": [
-      "potencia_w",
-      "tipo",
-      "espectro",
-      "comprimento_luminaria_cm",
-      "comprimento_aquario_cm",
-      "voltagem",
-      "disponibilidade_br"
-     ],
-     "observacao": "Lido por RESULTADO DE BUSCA: o egresso da nuvem barra os dominios do varejo brasileiro (EGRESS_BLOCKED em 09/09/2026) e a pagina nao pode ser aberta. Confira a embalagem."
-    }
-   ],
-   "conflitos": [],
-   "verificado_em": "2026-09-09",
-   "status_registro": "parcial",
-   "observacao": "Entrou em 09/09/2026 no lote de 21 anuncios colhidos a mao no painel Shopee Afiliados, com link e imagem. Fica 'parcial' por um campo so: fluxo_lm — a linha Soma WRGB nao publica fluxo luminoso: nem a marca nem as nove lojas de aquarismo brasileiras conferidas em 09/09/2026 (Mega Aquarios, Garagem do Aquarismo, Fazenda Submersa, Pro-Aquarista, World Fish, Aquarioz, Fish House, Fish Nature e Antonio Candido) declaram lumen em ficha nenhuma. O anuncio da Shopee tambem nao declara. Sem lumen de fonte tecnica a C15, que dimensiona por lm/L, nao sugere o produto — e estimar lumen a partir da potencia seria inventar numero. Enquanto isso a ficha vale como conteudo e a C15 publica o produto na lista de barrados, com o motivo."
-  },
-  {
-   "id": "soma-s-200-wrgb",
-   "entidade": "iluminacao",
-   "marca": "Soma",
-   "linha": "WRGB",
-   "modelo": "S-200",
-   "variante": "10 W",
-   "nomes_alternativos": [
-    "Luminaria Led Soma S-200 10w",
-    "LUMINARIA LED SOMA S-200 (10W) LED WRGB AUTOVOLT"
-   ],
-   "gtin": null,
-   "disponibilidade_br": "vendido",
-   "voltagem": [
-    "bivolt"
-   ],
-   "tipo": "led-barra",
-   "potencia_w": 10,
-   "fluxo_lm": null,
-   "temperatura_cor_k": null,
-   "espectro": "wrgb",
-   "ppfd_declarado": null,
-   "ppfd_distancia_cm": null,
-   "comprimento_luminaria_cm": 17.8,
-   "comprimento_aquario_cm": {
-    "min": 20,
-    "max": 30
-   },
-   "regulagem": null,
-   "volume_atendido_declarado_L": null,
-   "imagem": {
-    "url": "https://down-bs-br.img.susercontent.com/br-11134207-7r98o-lp8e9bxzgr4ldc.webp",
-    "largura": null,
-    "altura": null,
-    "fonte": "anuncio-shopee",
-    "coletado_em": "2026-09-09",
-    "verificado_em": null,
-    "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
-    "alt": "Luminaria LED Soma S-200 WRGB, barra de aluminio preta ultrafina com hastes reguladas para apoiar na borda do aquario",
-    "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
-   },
-   "afiliado": {
-    "plataforma": "shopee",
-    "url": "https://s.shopee.com.br/1Vz3UXvDQV",
-    "sub_id_1": "aquametria",
-    "sub_id_2": "C15",
-    "rel": "sponsored",
-    "verificado_em": "2026-09-09",
-    "anuncio_shopee": "Luminaria Led Soma S-200 WRGB 10W bivolt aquario 20-30 cm",
-    "voltagem_anuncio": "bivolt",
-    "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
-   },
-   "fontes": [
+      "id": "soma-s-200-wrgb",
+      "entidade": "iluminacao",
+      "marca": "Soma",
+      "linha": "WRGB",
+      "modelo": "S-200",
+      "variante": "10 W",
+      "nomes_alternativos": [
+        "Luminaria Led Soma S-200 10w",
+        "LUMINARIA LED SOMA S-200 (10W) LED WRGB AUTOVOLT"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "bivolt"
+      ],
+      "tipo": "led-barra",
+      "potencia_w": 10,
+      "fluxo_lm": null,
+      "temperatura_cor_k": null,
+      "espectro": "wrgb",
+      "ppfd_declarado": null,
+      "ppfd_distancia_cm": null,
+      "comprimento_luminaria_cm": 17.8,
+      "comprimento_aquario_cm": {
+        "min": 20,
+        "max": 30
+      },
+      "regulagem": null,
+      "volume_atendido_declarado_L": null,
+      "imagem": {
+        "url": "https://down-bs-br.img.susercontent.com/br-11134207-7r98o-lp8e9bxzgr4ldc.webp",
+        "largura": null,
+        "altura": null,
+        "fonte": "anuncio-shopee",
+        "coletado_em": "2026-09-09",
+        "verificado_em": null,
+        "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
+        "alt": "Luminaria LED Soma S-200 WRGB, barra de aluminio preta ultrafina com hastes reguladas para apoiar na borda do aquario",
+        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+      },
+      "afiliado": {
+        "plataforma": "shopee",
+        "url": "https://s.shopee.com.br/1Vz3UXvDQV",
+        "sub_id_1": "aquametria",
+        "sub_id_2": "C15",
+        "rel": "sponsored",
+        "verificado_em": "2026-09-09",
+        "anuncio_shopee": "Luminaria Led Soma S-200 WRGB 10W bivolt aquario 20-30 cm",
+        "voltagem_anuncio": "bivolt",
+        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Varejo especializado BR (Mega Aquarios, Fazenda Submersa, Garagem do Aquarismo, Pro-Aquarista, World Fish, Aquarioz), ficha da Soma S-200: 10 W, peca de 17.8 cm, aquario de 20 a 30 cm, alimentacao bivolt (autovolt), corpo ultrafino de 6 mm com hastes regulaveis e LED WRGB (30 brancos, 6 azuis, 6 verdes e 6 vermelhos)",
+          "url": "https://www.megaaquarios.com.br/luminaria-soma-s-200-ultra-fina-led-aquario-pequeno-110v-220.html",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "potencia_w",
+            "tipo",
+            "espectro",
+            "comprimento_luminaria_cm",
+            "comprimento_aquario_cm",
+            "voltagem",
+            "disponibilidade_br"
+          ],
+          "observacao": "Lido por RESULTADO DE BUSCA: o egresso da nuvem barra os dominios do varejo brasileiro (EGRESS_BLOCKED em 09/09/2026) e a pagina nao pode ser aberta. Confira a embalagem."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "parcial",
+      "observacao": "Entrou em 09/09/2026 no lote de 21 anuncios colhidos a mao no painel Shopee Afiliados, com link e imagem. Fica 'parcial' por um campo so: fluxo_lm — a linha Soma WRGB nao publica fluxo luminoso: nem a marca nem as nove lojas de aquarismo brasileiras conferidas em 09/09/2026 (Mega Aquarios, Garagem do Aquarismo, Fazenda Submersa, Pro-Aquarista, World Fish, Aquarioz, Fish House, Fish Nature e Antonio Candido) declaram lumen em ficha nenhuma. O anuncio da Shopee tambem nao declara. Sem lumen de fonte tecnica a C15, que dimensiona por lm/L, nao sugere o produto — e estimar lumen a partir da potencia seria inventar numero. Enquanto isso a ficha vale como conteudo e a C15 publica o produto na lista de barrados, com o motivo."
+    },
     {
-     "origem": "varejo",
-     "status": "transcrita-varejo",
-     "referencia": "Varejo especializado BR (Mega Aquarios, Fazenda Submersa, Garagem do Aquarismo, Pro-Aquarista, World Fish, Aquarioz), ficha da Soma S-200: 10 W, peca de 17.8 cm, aquario de 20 a 30 cm, alimentacao bivolt (autovolt), corpo ultrafino de 6 mm com hastes regulaveis e LED WRGB (30 brancos, 6 azuis, 6 verdes e 6 vermelhos)",
-     "url": "https://www.megaaquarios.com.br/luminaria-soma-s-200-ultra-fina-led-aquario-pequeno-110v-220.html",
-     "verificado_em": "2026-09-09",
-     "campos": [
-      "potencia_w",
-      "tipo",
-      "espectro",
-      "comprimento_luminaria_cm",
-      "comprimento_aquario_cm",
-      "voltagem",
-      "disponibilidade_br"
-     ],
-     "observacao": "Lido por RESULTADO DE BUSCA: o egresso da nuvem barra os dominios do varejo brasileiro (EGRESS_BLOCKED em 09/09/2026) e a pagina nao pode ser aberta. Confira a embalagem."
-    }
-   ],
-   "conflitos": [],
-   "verificado_em": "2026-09-09",
-   "status_registro": "parcial",
-   "observacao": "Entrou em 09/09/2026 no lote de 21 anuncios colhidos a mao no painel Shopee Afiliados, com link e imagem. Fica 'parcial' por um campo so: fluxo_lm — a linha Soma WRGB nao publica fluxo luminoso: nem a marca nem as nove lojas de aquarismo brasileiras conferidas em 09/09/2026 (Mega Aquarios, Garagem do Aquarismo, Fazenda Submersa, Pro-Aquarista, World Fish, Aquarioz, Fish House, Fish Nature e Antonio Candido) declaram lumen em ficha nenhuma. O anuncio da Shopee tambem nao declara. Sem lumen de fonte tecnica a C15, que dimensiona por lm/L, nao sugere o produto — e estimar lumen a partir da potencia seria inventar numero. Enquanto isso a ficha vale como conteudo e a C15 publica o produto na lista de barrados, com o motivo."
-  },
-  {
-   "id": "soma-s-300-wrgb",
-   "entidade": "iluminacao",
-   "marca": "Soma",
-   "linha": "WRGB",
-   "modelo": "S-300",
-   "variante": "12 W",
-   "nomes_alternativos": [
-    "Luminaria Led Soma S-300 12w",
-    "LUMINARIA LED SOMA S-300 (12W) LED WRGB AUTOVOLT"
-   ],
-   "gtin": null,
-   "disponibilidade_br": "vendido",
-   "voltagem": [
-    "bivolt"
-   ],
-   "tipo": "led-barra",
-   "potencia_w": 12,
-   "fluxo_lm": null,
-   "temperatura_cor_k": null,
-   "espectro": "wrgb",
-   "ppfd_declarado": null,
-   "ppfd_distancia_cm": null,
-   "comprimento_luminaria_cm": 27.8,
-   "comprimento_aquario_cm": {
-    "min": 30,
-    "max": 40
-   },
-   "regulagem": null,
-   "volume_atendido_declarado_L": null,
-   "imagem": {
-    "url": "https://down-bs-br.img.susercontent.com/br-11134207-7r98o-lp8e9bxzqlc5c5.webp",
-    "largura": null,
-    "altura": null,
-    "fonte": "anuncio-shopee",
-    "coletado_em": "2026-09-09",
-    "verificado_em": null,
-    "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
-    "alt": "Luminaria LED Soma S-300 WRGB, barra de aluminio preta ultrafina com hastes reguladas para apoiar na borda do aquario",
-    "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
-   },
-   "afiliado": {
-    "plataforma": "shopee",
-    "url": "https://s.shopee.com.br/20vK5O8Fvm",
-    "sub_id_1": "aquametria",
-    "sub_id_2": "C15",
-    "rel": "sponsored",
-    "verificado_em": "2026-09-09",
-    "anuncio_shopee": "Luminaria Led Soma S-300 WRGB 12W bivolt aquario 30-40 cm",
-    "voltagem_anuncio": "bivolt",
-    "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
-   },
-   "fontes": [
+      "id": "soma-s-300-wrgb",
+      "entidade": "iluminacao",
+      "marca": "Soma",
+      "linha": "WRGB",
+      "modelo": "S-300",
+      "variante": "12 W",
+      "nomes_alternativos": [
+        "Luminaria Led Soma S-300 12w",
+        "LUMINARIA LED SOMA S-300 (12W) LED WRGB AUTOVOLT"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "bivolt"
+      ],
+      "tipo": "led-barra",
+      "potencia_w": 12,
+      "fluxo_lm": null,
+      "temperatura_cor_k": null,
+      "espectro": "wrgb",
+      "ppfd_declarado": null,
+      "ppfd_distancia_cm": null,
+      "comprimento_luminaria_cm": 27.8,
+      "comprimento_aquario_cm": {
+        "min": 30,
+        "max": 40
+      },
+      "regulagem": null,
+      "volume_atendido_declarado_L": null,
+      "imagem": {
+        "url": "https://down-bs-br.img.susercontent.com/br-11134207-7r98o-lp8e9bxzqlc5c5.webp",
+        "largura": null,
+        "altura": null,
+        "fonte": "anuncio-shopee",
+        "coletado_em": "2026-09-09",
+        "verificado_em": null,
+        "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
+        "alt": "Luminaria LED Soma S-300 WRGB, barra de aluminio preta ultrafina com hastes reguladas para apoiar na borda do aquario",
+        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+      },
+      "afiliado": {
+        "plataforma": "shopee",
+        "url": "https://s.shopee.com.br/20vK5O8Fvm",
+        "sub_id_1": "aquametria",
+        "sub_id_2": "C15",
+        "rel": "sponsored",
+        "verificado_em": "2026-09-09",
+        "anuncio_shopee": "Luminaria Led Soma S-300 WRGB 12W bivolt aquario 30-40 cm",
+        "voltagem_anuncio": "bivolt",
+        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Varejo especializado BR (Mega Aquarios, Fazenda Submersa, Garagem do Aquarismo, Pro-Aquarista, World Fish, Aquarioz), ficha da Soma S-300: 12 W, peca de 27.8 cm, aquario de 30 a 40 cm, alimentacao bivolt (autovolt), corpo ultrafino de 6 mm com hastes regulaveis e LED WRGB (39 brancos, 7 azuis, 7 verdes e 7 vermelhos)",
+          "url": "https://www.megaaquarios.com.br/luminaria-soma-s-300-ultra-fina-led-aquario-pequeno-110v-220.html",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "potencia_w",
+            "tipo",
+            "espectro",
+            "comprimento_luminaria_cm",
+            "comprimento_aquario_cm",
+            "voltagem",
+            "disponibilidade_br"
+          ],
+          "observacao": "Lido por RESULTADO DE BUSCA: o egresso da nuvem barra os dominios do varejo brasileiro (EGRESS_BLOCKED em 09/09/2026) e a pagina nao pode ser aberta. Confira a embalagem."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "parcial",
+      "observacao": "Entrou em 09/09/2026 no lote de 21 anuncios colhidos a mao no painel Shopee Afiliados, com link e imagem. Fica 'parcial' por um campo so: fluxo_lm — a linha Soma WRGB nao publica fluxo luminoso: nem a marca nem as nove lojas de aquarismo brasileiras conferidas em 09/09/2026 (Mega Aquarios, Garagem do Aquarismo, Fazenda Submersa, Pro-Aquarista, World Fish, Aquarioz, Fish House, Fish Nature e Antonio Candido) declaram lumen em ficha nenhuma. O anuncio da Shopee tambem nao declara. Sem lumen de fonte tecnica a C15, que dimensiona por lm/L, nao sugere o produto — e estimar lumen a partir da potencia seria inventar numero. Enquanto isso a ficha vale como conteudo e a C15 publica o produto na lista de barrados, com o motivo."
+    },
     {
-     "origem": "varejo",
-     "status": "transcrita-varejo",
-     "referencia": "Varejo especializado BR (Mega Aquarios, Fazenda Submersa, Garagem do Aquarismo, Pro-Aquarista, World Fish, Aquarioz), ficha da Soma S-300: 12 W, peca de 27.8 cm, aquario de 30 a 40 cm, alimentacao bivolt (autovolt), corpo ultrafino de 6 mm com hastes regulaveis e LED WRGB (39 brancos, 7 azuis, 7 verdes e 7 vermelhos)",
-     "url": "https://www.megaaquarios.com.br/luminaria-soma-s-300-ultra-fina-led-aquario-pequeno-110v-220.html",
-     "verificado_em": "2026-09-09",
-     "campos": [
-      "potencia_w",
-      "tipo",
-      "espectro",
-      "comprimento_luminaria_cm",
-      "comprimento_aquario_cm",
-      "voltagem",
-      "disponibilidade_br"
-     ],
-     "observacao": "Lido por RESULTADO DE BUSCA: o egresso da nuvem barra os dominios do varejo brasileiro (EGRESS_BLOCKED em 09/09/2026) e a pagina nao pode ser aberta. Confira a embalagem."
-    }
-   ],
-   "conflitos": [],
-   "verificado_em": "2026-09-09",
-   "status_registro": "parcial",
-   "observacao": "Entrou em 09/09/2026 no lote de 21 anuncios colhidos a mao no painel Shopee Afiliados, com link e imagem. Fica 'parcial' por um campo so: fluxo_lm — a linha Soma WRGB nao publica fluxo luminoso: nem a marca nem as nove lojas de aquarismo brasileiras conferidas em 09/09/2026 (Mega Aquarios, Garagem do Aquarismo, Fazenda Submersa, Pro-Aquarista, World Fish, Aquarioz, Fish House, Fish Nature e Antonio Candido) declaram lumen em ficha nenhuma. O anuncio da Shopee tambem nao declara. Sem lumen de fonte tecnica a C15, que dimensiona por lm/L, nao sugere o produto — e estimar lumen a partir da potencia seria inventar numero. Enquanto isso a ficha vale como conteudo e a C15 publica o produto na lista de barrados, com o motivo."
-  },
-  {
-   "id": "soma-s-400-wrgb",
-   "entidade": "iluminacao",
-   "marca": "Soma",
-   "linha": "WRGB",
-   "modelo": "S-400",
-   "variante": "18 W",
-   "nomes_alternativos": [
-    "Luminaria Led Soma S-400 18w",
-    "LUMINARIA LED SOMA S-400 (18W) LED WRGB AUTOVOLT"
-   ],
-   "gtin": null,
-   "disponibilidade_br": "vendido",
-   "voltagem": [
-    "bivolt"
-   ],
-   "tipo": "led-barra",
-   "potencia_w": 18,
-   "fluxo_lm": null,
-   "temperatura_cor_k": null,
-   "espectro": "wrgb",
-   "ppfd_declarado": null,
-   "ppfd_distancia_cm": null,
-   "comprimento_luminaria_cm": 37.8,
-   "comprimento_aquario_cm": {
-    "min": 40,
-    "max": 50
-   },
-   "regulagem": null,
-   "volume_atendido_declarado_L": null,
-   "imagem": {
-    "url": "https://down-bs-br.img.susercontent.com/br-11134207-7r98o-lp8e9bxzi5rmb1.webp",
-    "largura": null,
-    "altura": null,
-    "fonte": "anuncio-shopee",
-    "coletado_em": "2026-09-09",
-    "verificado_em": null,
-    "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
-    "alt": "Luminaria LED Soma S-400 WRGB, barra de aluminio preta ultrafina com hastes reguladas para apoiar na borda do aquario",
-    "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
-   },
-   "afiliado": {
-    "plataforma": "shopee",
-    "url": "https://s.shopee.com.br/3g3Y4VwAdE",
-    "sub_id_1": "aquametria",
-    "sub_id_2": "C15",
-    "rel": "sponsored",
-    "verificado_em": "2026-09-09",
-    "anuncio_shopee": "Luminaria Led Soma S-400 WRGB 18W bivolt aquario 40-50 cm",
-    "voltagem_anuncio": "bivolt",
-    "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
-   },
-   "fontes": [
+      "id": "chihiros-a-series-a301",
+      "entidade": "iluminacao",
+      "marca": "Chihiros",
+      "linha": "A-Series",
+      "modelo": "A301",
+      "variante": "30 cm 18 W",
+      "nomes_alternativos": [
+        "Chihiros A-Series A301",
+        "Chihiros A301 LED 30 cm"
+      ],
+      "gtin": null,
+      "disponibilidade_br": null,
+      "voltagem": [
+        "bivolt"
+      ],
+      "tipo": "led-barra",
+      "potencia_w": 18,
+      "fluxo_lm": 2800,
+      "temperatura_cor_k": 8000,
+      "espectro": "branco",
+      "ppfd_declarado": null,
+      "ppfd_distancia_cm": null,
+      "comprimento_luminaria_cm": 29.0,
+      "comprimento_aquario_cm": {
+        "min": 30,
+        "max": 30
+      },
+      "regulagem": null,
+      "volume_atendido_declarado_L": null,
+      "imagem": null,
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "produto novo no banco, entrou em 09/09/2026 pelo bloco T3(a2) para fechar faixa de comprimento descoberta na C15. Quem gera link de afiliado e a Sentinela Estrategica, ate 10 por semana; este registro espera link. Pela regra V16 o produto ja e sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
+        "verificado_em": "2026-09-09"
+      },
+      "fontes": [
+        {
+          "origem": "fabricante-via-busca",
+          "status": "fabricante-via-busca",
+          "referencia": "Chihiros Aquatic Studio, ficha da A-Series A301: consumo 18 W, fluxo luminoso 2800 lm, 54 LEDs, temperatura de cor de cerca de 8.000 K, peca de 290 mm, alimentacao AC 100-240 V 50/60 Hz, para aquario de 30 cm",
+          "url": "https://www.chihirosaquaticstudio.com/products/chihiros-a-series-led-light",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "potencia_w",
+            "fluxo_lm",
+            "temperatura_cor_k",
+            "espectro",
+            "tipo",
+            "comprimento_luminaria_cm",
+            "comprimento_aquario_cm",
+            "voltagem"
+          ],
+          "observacao": "Colhido por RESULTADO DE BUSCA em 09/09/2026, com a ficha da A-Series atribuida ao fabricante e reconferida numa segunda formulacao independente que devolveu os mesmos numeros. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para chihirosaquaticstudio.com, como para todo dominio que nao seja o GitHub. A confirmar no manual."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "parcial",
+      "observacao": "Entrou em 09/09/2026 no bloco T3(a2), e o motivo de entrar e cobertura, nao marca: a linha A-Series e a unica do catalogo que DECLARA fluxo luminoso em toda a escada de tamanhos, e fluxo e o campo que barra a C15. As oito luminarias Soma, que cobririam de 20 a 130 cm e ja tem link de afiliado, continuam barradas porque nem a marca nem nove lojas brasileiras publicam lumen - e estimar lumen a partir do watt seria inventar numero. SEM LINK DE AFILIADO: quem gera o link e a Sentinela Estrategica. O espectro e branco de 8.000 K, sem RGB: a C15 dimensiona por lm/L e o cartao tem de dizer que esta peca nao tem a renderizacao de cor que a linha WRGB entrega. O fabricante declara UM comprimento de aquario (30 cm), nao uma faixa - a mesma leitura que ja valia para a A451M e a A901. Fica 'parcial' por UM campo: disponibilidade_br. A ficha tecnica veio do fabricante, mas nenhuma loja brasileira foi conferida para este tamanho em 09/09/2026 - e disponibilidade no Brasil so o varejo brasileiro sustenta (nivel 4 ou 5 da escada). A C15 continua podendo sugerir: o campo que falta nao esta no minimo_para_sugerir dela."
+    },
     {
-     "origem": "varejo",
-     "status": "transcrita-varejo",
-     "referencia": "Varejo especializado BR (Mega Aquarios, Fazenda Submersa, Garagem do Aquarismo, Pro-Aquarista, World Fish, Aquarioz), ficha da Soma S-400: 18 W, peca de 37.8 cm, aquario de 40 a 50 cm, alimentacao bivolt (autovolt), corpo ultrafino de 6 mm com hastes regulaveis e LED WRGB (54 brancos, 10 azuis, 10 verdes e 10 vermelhos)",
-     "url": "https://www.fazendasubmersa.com.br/marcas/soma/luminaria-led-s-400-wrgb-soma-bivolt-18w",
-     "verificado_em": "2026-09-09",
-     "campos": [
-      "potencia_w",
-      "tipo",
-      "espectro",
-      "comprimento_luminaria_cm",
-      "comprimento_aquario_cm",
-      "voltagem",
-      "disponibilidade_br"
-     ],
-     "observacao": "Lido por RESULTADO DE BUSCA: o egresso da nuvem barra os dominios do varejo brasileiro (EGRESS_BLOCKED em 09/09/2026) e a pagina nao pode ser aberta. Confira a embalagem."
-    }
-   ],
-   "conflitos": [],
-   "verificado_em": "2026-09-09",
-   "status_registro": "parcial",
-   "observacao": "Entrou em 09/09/2026 no lote de 21 anuncios colhidos a mao no painel Shopee Afiliados, com link e imagem. Fica 'parcial' por um campo so: fluxo_lm — a linha Soma WRGB nao publica fluxo luminoso: nem a marca nem as nove lojas de aquarismo brasileiras conferidas em 09/09/2026 (Mega Aquarios, Garagem do Aquarismo, Fazenda Submersa, Pro-Aquarista, World Fish, Aquarioz, Fish House, Fish Nature e Antonio Candido) declaram lumen em ficha nenhuma. O anuncio da Shopee tambem nao declara. Sem lumen de fonte tecnica a C15, que dimensiona por lm/L, nao sugere o produto — e estimar lumen a partir da potencia seria inventar numero. Enquanto isso a ficha vale como conteudo e a C15 publica o produto na lista de barrados, com o motivo."
-  },
-  {
-   "id": "soma-s-500-wrgb",
-   "entidade": "iluminacao",
-   "marca": "Soma",
-   "linha": "WRGB",
-   "modelo": "S-500",
-   "variante": "21 W",
-   "nomes_alternativos": [
-    "Luminaria Led Soma S-500 21w",
-    "LUMINARIA LED SOMA S-500 (21W) LED WRGB AUTOVOLT"
-   ],
-   "gtin": null,
-   "disponibilidade_br": "vendido",
-   "voltagem": [
-    "bivolt"
-   ],
-   "tipo": "led-barra",
-   "potencia_w": 21,
-   "fluxo_lm": null,
-   "temperatura_cor_k": null,
-   "espectro": "wrgb",
-   "ppfd_declarado": null,
-   "ppfd_distancia_cm": null,
-   "comprimento_luminaria_cm": 47.8,
-   "comprimento_aquario_cm": {
-    "min": 50,
-    "max": 60
-   },
-   "regulagem": null,
-   "volume_atendido_declarado_L": null,
-   "imagem": {
-    "url": "https://down-bs-br.img.susercontent.com/br-11134207-7r98o-lp8e9bxzxm6d16.webp",
-    "largura": null,
-    "altura": null,
-    "fonte": "anuncio-shopee",
-    "coletado_em": "2026-09-09",
-    "verificado_em": null,
-    "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
-    "alt": "Luminaria LED Soma S-500 WRGB, barra de aluminio preta ultrafina com hastes reguladas para apoiar na borda do aquario",
-    "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
-   },
-   "afiliado": {
-    "plataforma": "shopee",
-    "url": "https://s.shopee.com.br/40gOT39z0L",
-    "sub_id_1": "aquametria",
-    "sub_id_2": "C15",
-    "rel": "sponsored",
-    "verificado_em": "2026-09-09",
-    "anuncio_shopee": "Luminaria Led Soma S-500 WRGB 21W bivolt aquario 50-60 cm",
-    "voltagem_anuncio": "bivolt",
-    "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
-   },
-   "fontes": [
+      "id": "soma-s-400-wrgb",
+      "entidade": "iluminacao",
+      "marca": "Soma",
+      "linha": "WRGB",
+      "modelo": "S-400",
+      "variante": "18 W",
+      "nomes_alternativos": [
+        "Luminaria Led Soma S-400 18w",
+        "LUMINARIA LED SOMA S-400 (18W) LED WRGB AUTOVOLT"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "bivolt"
+      ],
+      "tipo": "led-barra",
+      "potencia_w": 18,
+      "fluxo_lm": null,
+      "temperatura_cor_k": null,
+      "espectro": "wrgb",
+      "ppfd_declarado": null,
+      "ppfd_distancia_cm": null,
+      "comprimento_luminaria_cm": 37.8,
+      "comprimento_aquario_cm": {
+        "min": 40,
+        "max": 50
+      },
+      "regulagem": null,
+      "volume_atendido_declarado_L": null,
+      "imagem": {
+        "url": "https://down-bs-br.img.susercontent.com/br-11134207-7r98o-lp8e9bxzi5rmb1.webp",
+        "largura": null,
+        "altura": null,
+        "fonte": "anuncio-shopee",
+        "coletado_em": "2026-09-09",
+        "verificado_em": null,
+        "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
+        "alt": "Luminaria LED Soma S-400 WRGB, barra de aluminio preta ultrafina com hastes reguladas para apoiar na borda do aquario",
+        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+      },
+      "afiliado": {
+        "plataforma": "shopee",
+        "url": "https://s.shopee.com.br/3g3Y4VwAdE",
+        "sub_id_1": "aquametria",
+        "sub_id_2": "C15",
+        "rel": "sponsored",
+        "verificado_em": "2026-09-09",
+        "anuncio_shopee": "Luminaria Led Soma S-400 WRGB 18W bivolt aquario 40-50 cm",
+        "voltagem_anuncio": "bivolt",
+        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Varejo especializado BR (Mega Aquarios, Fazenda Submersa, Garagem do Aquarismo, Pro-Aquarista, World Fish, Aquarioz), ficha da Soma S-400: 18 W, peca de 37.8 cm, aquario de 40 a 50 cm, alimentacao bivolt (autovolt), corpo ultrafino de 6 mm com hastes regulaveis e LED WRGB (54 brancos, 10 azuis, 10 verdes e 10 vermelhos)",
+          "url": "https://www.fazendasubmersa.com.br/marcas/soma/luminaria-led-s-400-wrgb-soma-bivolt-18w",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "potencia_w",
+            "tipo",
+            "espectro",
+            "comprimento_luminaria_cm",
+            "comprimento_aquario_cm",
+            "voltagem",
+            "disponibilidade_br"
+          ],
+          "observacao": "Lido por RESULTADO DE BUSCA: o egresso da nuvem barra os dominios do varejo brasileiro (EGRESS_BLOCKED em 09/09/2026) e a pagina nao pode ser aberta. Confira a embalagem."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "parcial",
+      "observacao": "Entrou em 09/09/2026 no lote de 21 anuncios colhidos a mao no painel Shopee Afiliados, com link e imagem. Fica 'parcial' por um campo so: fluxo_lm — a linha Soma WRGB nao publica fluxo luminoso: nem a marca nem as nove lojas de aquarismo brasileiras conferidas em 09/09/2026 (Mega Aquarios, Garagem do Aquarismo, Fazenda Submersa, Pro-Aquarista, World Fish, Aquarioz, Fish House, Fish Nature e Antonio Candido) declaram lumen em ficha nenhuma. O anuncio da Shopee tambem nao declara. Sem lumen de fonte tecnica a C15, que dimensiona por lm/L, nao sugere o produto — e estimar lumen a partir da potencia seria inventar numero. Enquanto isso a ficha vale como conteudo e a C15 publica o produto na lista de barrados, com o motivo."
+    },
     {
-     "origem": "varejo",
-     "status": "transcrita-varejo",
-     "referencia": "Varejo especializado BR (Mega Aquarios, Fazenda Submersa, Garagem do Aquarismo, Pro-Aquarista, World Fish, Aquarioz), ficha da Soma S-500: 21 W, peca de 47.8 cm, aquario de 50 a 60 cm, alimentacao bivolt (autovolt), corpo ultrafino de 6 mm com hastes regulaveis e LED WRGB (66 brancos, 12 azuis, 12 verdes e 12 vermelhos)",
-     "url": "https://www.fazendasubmersa.com.br/marcas/soma/luminaria-led-s-500-wrgb-soma-bivolt-21w",
-     "verificado_em": "2026-09-09",
-     "campos": [
-      "potencia_w",
-      "tipo",
-      "espectro",
-      "comprimento_luminaria_cm",
-      "comprimento_aquario_cm",
-      "voltagem",
-      "disponibilidade_br"
-     ],
-     "observacao": "Lido por RESULTADO DE BUSCA: o egresso da nuvem barra os dominios do varejo brasileiro (EGRESS_BLOCKED em 09/09/2026) e a pagina nao pode ser aberta. Confira a embalagem."
-    }
-   ],
-   "conflitos": [],
-   "verificado_em": "2026-09-09",
-   "status_registro": "parcial",
-   "observacao": "Entrou em 09/09/2026 no lote de 21 anuncios colhidos a mao no painel Shopee Afiliados, com link e imagem. Fica 'parcial' por um campo so: fluxo_lm — a linha Soma WRGB nao publica fluxo luminoso: nem a marca nem as nove lojas de aquarismo brasileiras conferidas em 09/09/2026 (Mega Aquarios, Garagem do Aquarismo, Fazenda Submersa, Pro-Aquarista, World Fish, Aquarioz, Fish House, Fish Nature e Antonio Candido) declaram lumen em ficha nenhuma. O anuncio da Shopee tambem nao declara. Sem lumen de fonte tecnica a C15, que dimensiona por lm/L, nao sugere o produto — e estimar lumen a partir da potencia seria inventar numero. Enquanto isso a ficha vale como conteudo e a C15 publica o produto na lista de barrados, com o motivo."
-  },
-  {
-   "id": "soma-s-600-wrgb",
-   "entidade": "iluminacao",
-   "marca": "Soma",
-   "linha": "WRGB",
-   "modelo": "S-600",
-   "variante": "24 W",
-   "nomes_alternativos": [
-    "Luminaria Led Soma S-600 24w",
-    "LUMINARIA LED SOMA S-600 (24W) LED WRGB AUTOVOLT"
-   ],
-   "gtin": null,
-   "disponibilidade_br": "vendido",
-   "voltagem": [
-    "bivolt"
-   ],
-   "tipo": "led-barra",
-   "potencia_w": 24,
-   "fluxo_lm": null,
-   "temperatura_cor_k": null,
-   "espectro": "wrgb",
-   "ppfd_declarado": null,
-   "ppfd_distancia_cm": null,
-   "comprimento_luminaria_cm": 57.8,
-   "comprimento_aquario_cm": {
-    "min": 60,
-    "max": 70
-   },
-   "regulagem": null,
-   "volume_atendido_declarado_L": null,
-   "imagem": {
-    "url": "https://down-bs-br.img.susercontent.com/br-11134207-7r98o-lp8e9bxzjk9h77.webp",
-    "largura": null,
-    "altura": null,
-    "fonte": "anuncio-shopee",
-    "coletado_em": "2026-09-09",
-    "verificado_em": null,
-    "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
-    "alt": "Luminaria LED Soma S-600 WRGB, barra de aluminio preta ultrafina com hastes reguladas para apoiar na borda do aquario",
-    "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
-   },
-   "afiliado": {
-    "plataforma": "shopee",
-    "url": "https://s.shopee.com.br/2qUR4y8GtU",
-    "sub_id_1": "aquametria",
-    "sub_id_2": "C15",
-    "rel": "sponsored",
-    "verificado_em": "2026-09-09",
-    "anuncio_shopee": "Luminaria Led Soma S-600 WRGB 24W bivolt aquario 60-70 cm",
-    "voltagem_anuncio": "bivolt",
-    "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
-   },
-   "fontes": [
+      "id": "sunsun-ade-400c",
+      "entidade": "iluminacao",
+      "marca": "SunSun",
+      "linha": "ADE",
+      "modelo": "ADE-400c",
+      "variante": null,
+      "nomes_alternativos": [
+        "Sunsun ADE 400c",
+        "Luminaria Led Sunsun ADE-400C 18W"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "bivolt"
+      ],
+      "tipo": "led-calha",
+      "potencia_w": 18,
+      "fluxo_lm": null,
+      "temperatura_cor_k": 7500,
+      "espectro": null,
+      "ppfd_declarado": null,
+      "ppfd_distancia_cm": null,
+      "comprimento_luminaria_cm": 41,
+      "comprimento_aquario_cm": {
+        "min": 48,
+        "max": 65
+      },
+      "regulagem": null,
+      "volume_atendido_declarado_L": null,
+      "imagem": null,
+      "afiliado": {
+        "plataforma": "shopee",
+        "url": "https://s.shopee.com.br/60RQ7XyBRA",
+        "sub_id_1": "aquametria",
+        "sub_id_2": "C15",
+        "rel": "sponsored",
+        "verificado_em": "2026-09-07",
+        "anuncio_shopee": "Luminária Led Aquário 18w Sunsun Ade-400c 48 A 65cm Bivolt",
+        "observacao": "Link curto gerado no painel Shopee Afiliados em 07/09/2026. Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data."
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Aquarius Hobby (varejo BR especializado), ficha da Sunsun ADE-400c (18 W, 7500 K, 41 x 6,3 x 1,5 cm, para aquarios de 48 a 65 cm, bivolt)",
+          "url": "https://aquariushobby.commercesuite.com.br/agua-doce/iluminacao/luminarias/luminaria-led-aquario-18w-sunsun-ade-400c-48-a-65cm-bivolt",
+          "verificado_em": "2026-09-07",
+          "campos": [
+            "potencia_w",
+            "temperatura_cor_k",
+            "comprimento_luminaria_cm",
+            "comprimento_aquario_cm",
+            "voltagem",
+            "tipo"
+          ],
+          "observacao": "Ficha de varejo. Confira a embalagem."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-07",
+      "status_registro": "parcial",
+      "observacao": "O inverso do X1-FR: declara comprimento de aquario atendido (48 a 65 cm, com hastes) mas nao declara lumen, entao a C15 tambem nao pode sugerir. Note que a peca tem 41 cm e cobre ate 65 cm de aquario — prova de que comprimento_luminaria_cm e comprimento_aquario_cm sao campos diferentes e nao se derivam um do outro."
+    },
     {
-     "origem": "varejo",
-     "status": "transcrita-varejo",
-     "referencia": "Varejo especializado BR (Mega Aquarios, Fazenda Submersa, Garagem do Aquarismo, Pro-Aquarista, World Fish, Aquarioz), ficha da Soma S-600: 24 W, peca de 57.8 cm, aquario de 60 a 70 cm, alimentacao bivolt (autovolt), corpo ultrafino de 6 mm com hastes regulaveis e LED WRGB (78 brancos, 14 azuis, 14 verdes e 14 vermelhos)",
-     "url": "https://www.fazendasubmersa.com.br/marcas/soma/luminaria-led-s-600-wrgb-soma-bivolt-24w",
-     "verificado_em": "2026-09-09",
-     "campos": [
-      "potencia_w",
-      "tipo",
-      "espectro",
-      "comprimento_luminaria_cm",
-      "comprimento_aquario_cm",
-      "voltagem",
-      "disponibilidade_br"
-     ],
-     "observacao": "Lido por RESULTADO DE BUSCA: o egresso da nuvem barra os dominios do varejo brasileiro (EGRESS_BLOCKED em 09/09/2026) e a pagina nao pode ser aberta. Confira a embalagem."
-    }
-   ],
-   "conflitos": [],
-   "verificado_em": "2026-09-09",
-   "status_registro": "parcial",
-   "observacao": "Entrou em 09/09/2026 no lote de 21 anuncios colhidos a mao no painel Shopee Afiliados, com link e imagem. Fica 'parcial' por um campo so: fluxo_lm — a linha Soma WRGB nao publica fluxo luminoso: nem a marca nem as nove lojas de aquarismo brasileiras conferidas em 09/09/2026 (Mega Aquarios, Garagem do Aquarismo, Fazenda Submersa, Pro-Aquarista, World Fish, Aquarioz, Fish House, Fish Nature e Antonio Candido) declaram lumen em ficha nenhuma. O anuncio da Shopee tambem nao declara. Sem lumen de fonte tecnica a C15, que dimensiona por lm/L, nao sugere o produto — e estimar lumen a partir da potencia seria inventar numero. Enquanto isso a ficha vale como conteudo e a C15 publica o produto na lista de barrados, com o motivo."
-  },
-  {
-   "id": "soma-s-800-wrgb",
-   "entidade": "iluminacao",
-   "marca": "Soma",
-   "linha": "WRGB",
-   "modelo": "S-800",
-   "variante": "26 W",
-   "nomes_alternativos": [
-    "Luminaria Led Soma S-800 26w",
-    "LUMINARIA LED SOMA S-800 (26W) LED WRGB AUTOVOLT"
-   ],
-   "gtin": null,
-   "disponibilidade_br": "vendido",
-   "voltagem": [
-    "bivolt"
-   ],
-   "tipo": "led-barra",
-   "potencia_w": 26,
-   "fluxo_lm": null,
-   "temperatura_cor_k": null,
-   "espectro": "wrgb",
-   "ppfd_declarado": null,
-   "ppfd_distancia_cm": null,
-   "comprimento_luminaria_cm": 77.8,
-   "comprimento_aquario_cm": {
-    "min": 80,
-    "max": 90
-   },
-   "regulagem": null,
-   "volume_atendido_declarado_L": null,
-   "imagem": {
-    "url": "https://down-bs-br.img.susercontent.com/br-11134207-7r98o-lp8e9bxzrzo53c.webp",
-    "largura": null,
-    "altura": null,
-    "fonte": "anuncio-shopee",
-    "coletado_em": "2026-09-09",
-    "verificado_em": null,
-    "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
-    "alt": "Luminaria LED Soma S-800 WRGB, barra de aluminio preta ultrafina com hastes reguladas para apoiar na borda do aquario",
-    "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
-   },
-   "afiliado": {
-    "plataforma": "shopee",
-    "url": "https://s.shopee.com.br/AUtsD6ZTPQ",
-    "sub_id_1": "aquametria",
-    "sub_id_2": "C15",
-    "rel": "sponsored",
-    "verificado_em": "2026-09-09",
-    "anuncio_shopee": "Luminaria Led Soma S-800 WRGB 26W bivolt aquario 80-90 cm",
-    "voltagem_anuncio": "bivolt",
-    "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
-   },
-   "fontes": [
+      "id": "chihiros-a-series-a361",
+      "entidade": "iluminacao",
+      "marca": "Chihiros",
+      "linha": "A-Series",
+      "modelo": "A361",
+      "variante": "36 cm 21 W",
+      "nomes_alternativos": [
+        "Chihiros A-Series A361",
+        "Chihiros A361 LED 36 cm"
+      ],
+      "gtin": null,
+      "disponibilidade_br": null,
+      "voltagem": [
+        "bivolt"
+      ],
+      "tipo": "led-barra",
+      "potencia_w": 21,
+      "fluxo_lm": 3450,
+      "temperatura_cor_k": 8000,
+      "espectro": "branco",
+      "ppfd_declarado": null,
+      "ppfd_distancia_cm": null,
+      "comprimento_luminaria_cm": 36.0,
+      "comprimento_aquario_cm": {
+        "min": 36,
+        "max": 36
+      },
+      "regulagem": null,
+      "volume_atendido_declarado_L": null,
+      "imagem": null,
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "produto novo no banco, entrou em 09/09/2026 pelo bloco T3(a2) para fechar faixa de comprimento descoberta na C15. Quem gera link de afiliado e a Sentinela Estrategica, ate 10 por semana; este registro espera link. Pela regra V16 o produto ja e sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
+        "verificado_em": "2026-09-09"
+      },
+      "fontes": [
+        {
+          "origem": "fabricante-via-busca",
+          "status": "fabricante-via-busca",
+          "referencia": "Chihiros Aquatic Studio, ficha da A-Series A361: consumo 21 W, fluxo luminoso 3450 lm, 63 LEDs, temperatura de cor de cerca de 8.000 K, peca de 360 mm, alimentacao AC 100-240 V 50/60 Hz, para aquario de 36 cm",
+          "url": "https://www.chihirosaquaticstudio.com/products/chihiros-a-series-led-light",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "potencia_w",
+            "fluxo_lm",
+            "temperatura_cor_k",
+            "espectro",
+            "tipo",
+            "comprimento_luminaria_cm",
+            "comprimento_aquario_cm",
+            "voltagem"
+          ],
+          "observacao": "Colhido por RESULTADO DE BUSCA em 09/09/2026, com a ficha da A-Series atribuida ao fabricante e reconferida numa segunda formulacao independente que devolveu os mesmos numeros. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para chihirosaquaticstudio.com, como para todo dominio que nao seja o GitHub. A confirmar no manual."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "parcial",
+      "observacao": "Entrou em 09/09/2026 no bloco T3(a2), e o motivo de entrar e cobertura, nao marca: a linha A-Series e a unica do catalogo que DECLARA fluxo luminoso em toda a escada de tamanhos, e fluxo e o campo que barra a C15. As oito luminarias Soma, que cobririam de 20 a 130 cm e ja tem link de afiliado, continuam barradas porque nem a marca nem nove lojas brasileiras publicam lumen - e estimar lumen a partir do watt seria inventar numero. SEM LINK DE AFILIADO: quem gera o link e a Sentinela Estrategica. O espectro e branco de 8.000 K, sem RGB: a C15 dimensiona por lm/L e o cartao tem de dizer que esta peca nao tem a renderizacao de cor que a linha WRGB entrega. O fabricante declara UM comprimento de aquario (36 cm), nao uma faixa - a mesma leitura que ja valia para a A451M e a A901. Fica 'parcial' por UM campo: disponibilidade_br. A ficha tecnica veio do fabricante, mas nenhuma loja brasileira foi conferida para este tamanho em 09/09/2026 - e disponibilidade no Brasil so o varejo brasileiro sustenta (nivel 4 ou 5 da escada). A C15 continua podendo sugerir: o campo que falta nao esta no minimo_para_sugerir dela."
+    },
     {
-     "origem": "varejo",
-     "status": "transcrita-varejo",
-     "referencia": "Varejo especializado BR (Mega Aquarios, Fazenda Submersa, Garagem do Aquarismo, Pro-Aquarista, World Fish, Aquarioz), ficha da Soma S-800: 26 W, peca de 77.8 cm, aquario de 80 a 90 cm, alimentacao bivolt (autovolt), corpo ultrafino de 6 mm com hastes regulaveis e LED WRGB (102 brancos, 18 azuis, 18 verdes e 18 vermelhos)",
-     "url": "https://www.megaaquarios.com.br/luminaria-soma-s-800-ultra-fina-led-aquario-pequeno-110v-220.html",
-     "verificado_em": "2026-09-09",
-     "campos": [
-      "potencia_w",
-      "tipo",
-      "espectro",
-      "comprimento_luminaria_cm",
-      "comprimento_aquario_cm",
-      "voltagem",
-      "disponibilidade_br"
-     ],
-     "observacao": "Lido por RESULTADO DE BUSCA: o egresso da nuvem barra os dominios do varejo brasileiro (EGRESS_BLOCKED em 09/09/2026) e a pagina nao pode ser aberta. Confira a embalagem."
-    }
-   ],
-   "conflitos": [],
-   "verificado_em": "2026-09-09",
-   "status_registro": "parcial",
-   "observacao": "Entrou em 09/09/2026 no lote de 21 anuncios colhidos a mao no painel Shopee Afiliados, com link e imagem. Fica 'parcial' por um campo so: fluxo_lm — a linha Soma WRGB nao publica fluxo luminoso: nem a marca nem as nove lojas de aquarismo brasileiras conferidas em 09/09/2026 (Mega Aquarios, Garagem do Aquarismo, Fazenda Submersa, Pro-Aquarista, World Fish, Aquarioz, Fish House, Fish Nature e Antonio Candido) declaram lumen em ficha nenhuma. O anuncio da Shopee tambem nao declara. Sem lumen de fonte tecnica a C15, que dimensiona por lm/L, nao sugere o produto — e estimar lumen a partir da potencia seria inventar numero. Enquanto isso a ficha vale como conteudo e a C15 publica o produto na lista de barrados, com o motivo."
-  },
-  {
-   "id": "sunsun-ade-400c",
-   "entidade": "iluminacao",
-   "marca": "SunSun",
-   "linha": "ADE",
-   "modelo": "ADE-400c",
-   "variante": null,
-   "nomes_alternativos": [
-    "Sunsun ADE 400c",
-    "Luminaria Led Sunsun ADE-400C 18W"
-   ],
-   "gtin": null,
-   "disponibilidade_br": "vendido",
-   "voltagem": [
-    "bivolt"
-   ],
-   "tipo": "led-calha",
-   "potencia_w": 18,
-   "fluxo_lm": null,
-   "temperatura_cor_k": 7500,
-   "espectro": null,
-   "ppfd_declarado": null,
-   "ppfd_distancia_cm": null,
-   "comprimento_luminaria_cm": 41,
-   "comprimento_aquario_cm": {
-    "min": 48,
-    "max": 65
-   },
-   "regulagem": null,
-   "volume_atendido_declarado_L": null,
-   "imagem": null,
-   "afiliado": {
-    "plataforma": "shopee",
-    "url": "https://s.shopee.com.br/60RQ7XyBRA",
-    "sub_id_1": "aquametria",
-    "sub_id_2": "C15",
-    "rel": "sponsored",
-    "verificado_em": "2026-09-07",
-    "anuncio_shopee": "Luminária Led Aquário 18w Sunsun Ade-400c 48 A 65cm Bivolt",
-    "observacao": "Link curto gerado no painel Shopee Afiliados em 07/09/2026. Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data."
-   },
-   "fontes": [
+      "id": "soma-s-500-wrgb",
+      "entidade": "iluminacao",
+      "marca": "Soma",
+      "linha": "WRGB",
+      "modelo": "S-500",
+      "variante": "21 W",
+      "nomes_alternativos": [
+        "Luminaria Led Soma S-500 21w",
+        "LUMINARIA LED SOMA S-500 (21W) LED WRGB AUTOVOLT"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "bivolt"
+      ],
+      "tipo": "led-barra",
+      "potencia_w": 21,
+      "fluxo_lm": null,
+      "temperatura_cor_k": null,
+      "espectro": "wrgb",
+      "ppfd_declarado": null,
+      "ppfd_distancia_cm": null,
+      "comprimento_luminaria_cm": 47.8,
+      "comprimento_aquario_cm": {
+        "min": 50,
+        "max": 60
+      },
+      "regulagem": null,
+      "volume_atendido_declarado_L": null,
+      "imagem": {
+        "url": "https://down-bs-br.img.susercontent.com/br-11134207-7r98o-lp8e9bxzxm6d16.webp",
+        "largura": null,
+        "altura": null,
+        "fonte": "anuncio-shopee",
+        "coletado_em": "2026-09-09",
+        "verificado_em": null,
+        "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
+        "alt": "Luminaria LED Soma S-500 WRGB, barra de aluminio preta ultrafina com hastes reguladas para apoiar na borda do aquario",
+        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+      },
+      "afiliado": {
+        "plataforma": "shopee",
+        "url": "https://s.shopee.com.br/40gOT39z0L",
+        "sub_id_1": "aquametria",
+        "sub_id_2": "C15",
+        "rel": "sponsored",
+        "verificado_em": "2026-09-09",
+        "anuncio_shopee": "Luminaria Led Soma S-500 WRGB 21W bivolt aquario 50-60 cm",
+        "voltagem_anuncio": "bivolt",
+        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Varejo especializado BR (Mega Aquarios, Fazenda Submersa, Garagem do Aquarismo, Pro-Aquarista, World Fish, Aquarioz), ficha da Soma S-500: 21 W, peca de 47.8 cm, aquario de 50 a 60 cm, alimentacao bivolt (autovolt), corpo ultrafino de 6 mm com hastes regulaveis e LED WRGB (66 brancos, 12 azuis, 12 verdes e 12 vermelhos)",
+          "url": "https://www.fazendasubmersa.com.br/marcas/soma/luminaria-led-s-500-wrgb-soma-bivolt-21w",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "potencia_w",
+            "tipo",
+            "espectro",
+            "comprimento_luminaria_cm",
+            "comprimento_aquario_cm",
+            "voltagem",
+            "disponibilidade_br"
+          ],
+          "observacao": "Lido por RESULTADO DE BUSCA: o egresso da nuvem barra os dominios do varejo brasileiro (EGRESS_BLOCKED em 09/09/2026) e a pagina nao pode ser aberta. Confira a embalagem."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "parcial",
+      "observacao": "Entrou em 09/09/2026 no lote de 21 anuncios colhidos a mao no painel Shopee Afiliados, com link e imagem. Fica 'parcial' por um campo so: fluxo_lm — a linha Soma WRGB nao publica fluxo luminoso: nem a marca nem as nove lojas de aquarismo brasileiras conferidas em 09/09/2026 (Mega Aquarios, Garagem do Aquarismo, Fazenda Submersa, Pro-Aquarista, World Fish, Aquarioz, Fish House, Fish Nature e Antonio Candido) declaram lumen em ficha nenhuma. O anuncio da Shopee tambem nao declara. Sem lumen de fonte tecnica a C15, que dimensiona por lm/L, nao sugere o produto — e estimar lumen a partir da potencia seria inventar numero. Enquanto isso a ficha vale como conteudo e a C15 publica o produto na lista de barrados, com o motivo."
+    },
     {
-     "origem": "varejo",
-     "status": "transcrita-varejo",
-     "referencia": "Aquarius Hobby (varejo BR especializado), ficha da Sunsun ADE-400c (18 W, 7500 K, 41 x 6,3 x 1,5 cm, para aquarios de 48 a 65 cm, bivolt)",
-     "url": "https://aquariushobby.commercesuite.com.br/agua-doce/iluminacao/luminarias/luminaria-led-aquario-18w-sunsun-ade-400c-48-a-65cm-bivolt",
-     "verificado_em": "2026-09-07",
-     "campos": [
-      "potencia_w",
-      "temperatura_cor_k",
-      "comprimento_luminaria_cm",
-      "comprimento_aquario_cm",
-      "voltagem",
-      "tipo"
-     ],
-     "observacao": "Ficha de varejo. Confira a embalagem."
-    }
-   ],
-   "conflitos": [],
-   "verificado_em": "2026-09-07",
-   "status_registro": "parcial",
-   "observacao": "O inverso do X1-FR: declara comprimento de aquario atendido (48 a 65 cm, com hastes) mas nao declara lumen, entao a C15 tambem nao pode sugerir. Note que a peca tem 41 cm e cobre ate 65 cm de aquario — prova de que comprimento_luminaria_cm e comprimento_aquario_cm sao campos diferentes e nao se derivam um do outro."
-  },
-  {
-   "id": "wfish-wf-h600-wrgb",
-   "entidade": "iluminacao",
-   "marca": "WFish",
-   "linha": "Plant LED",
-   "modelo": "WF-H600 WRGB",
-   "variante": "36 W",
-   "nomes_alternativos": [
-    "Wfish Luminaria Plant Led Wf-h600 Wrgb 36w",
-    "Wfish Luminaria Led Plant WF-H600 RGB 60cm 36w"
-   ],
-   "gtin": null,
-   "disponibilidade_br": "vendido",
-   "voltagem": [
-    "bivolt"
-   ],
-   "tipo": "led-barra",
-   "potencia_w": 36,
-   "fluxo_lm": null,
-   "temperatura_cor_k": null,
-   "espectro": "wrgb",
-   "ppfd_declarado": null,
-   "ppfd_distancia_cm": null,
-   "comprimento_luminaria_cm": 56.7,
-   "comprimento_aquario_cm": {
-    "min": 60,
-    "max": 65
-   },
-   "regulagem": null,
-   "volume_atendido_declarado_L": null,
-   "imagem": null,
-   "afiliado": {
-    "plataforma": null,
-    "motivo": "ha anuncio do modelo na Shopee em 08/09/2026, mas o link curto de afiliado e gerado a mao no painel Shopee Afiliados, fora desta sessao. E, sem lumen declarado, a C15 nao sugeriria este produto nem com link: link nao promove produto barrado (regra V16).",
-    "verificado_em": "2026-09-08"
-   },
-   "fontes": [
+      "id": "aquarios-do-rio-led-60cm",
+      "entidade": "iluminacao",
+      "marca": null,
+      "linha": null,
+      "modelo": "Luminaria LED Aquario 60 cm full spectrum",
+      "variante": "60 cm",
+      "nomes_alternativos": [
+        "Luminaria LED 60cm full spectrum"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "bivolt"
+      ],
+      "tipo": "led-calha",
+      "potencia_w": 24,
+      "fluxo_lm": 2400,
+      "temperatura_cor_k": 6500,
+      "espectro": "full-spectrum",
+      "ppfd_declarado": null,
+      "ppfd_distancia_cm": null,
+      "comprimento_luminaria_cm": 60,
+      "comprimento_aquario_cm": {
+        "min": 55,
+        "max": 75
+      },
+      "regulagem": "temporizador",
+      "volume_atendido_declarado_L": null,
+      "imagem": null,
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "o anuncio generico da Shopee (Newpet Slim 3 modulos, 30 a 60 cm) e outro produto, de outro revendedor, sem ficha tecnica localizavel. Ficou registrado em dados/afiliados-sem-produto.json, sem virar produto: link sem especificacao verificada nao entra no banco.",
+        "verificado_em": "2026-09-07"
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Aquarios do Rio (varejo BR), ficha da luminaria LED 60 cm (24 W, 2400 lm, branco 6500 K + azul 460 nm + vermelho 660 nm + verde 520 nm)",
+          "url": "https://aquariosdorio.com.br/loja/iluminacao/luminaria-led-aquario-60cm/",
+          "verificado_em": "2026-09-07",
+          "campos": [
+            "potencia_w",
+            "fluxo_lm",
+            "temperatura_cor_k",
+            "espectro",
+            "comprimento_luminaria_cm",
+            "tipo"
+          ],
+          "observacao": "Ficha de varejo. Confira a embalagem."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Aquarios do Rio (varejo BR), segunda leitura da ficha da luminaria LED 60 cm: alimentacao bivolt, suportes reguláveis para aquarios de 55 a 75 cm, timer integrado com ate 3 fotoperiodos por dia e efeito gradual de nascer e por do sol, corpo de aluminio anodizado preto com dissipacao passiva",
+          "url": "https://aquariosdorio.com.br/loja/iluminacao/luminaria-led-aquario-60cm/",
+          "verificado_em": "2026-09-08",
+          "campos": [
+            "voltagem",
+            "comprimento_aquario_cm",
+            "regulagem"
+          ],
+          "observacao": "Segunda leitura da MESMA pagina, agora por RESULTADO DE BUSCA: o dominio devolve EGRESS_BLOCKED para a nuvem em 07 e em 08/09/2026 e a pagina nao pode ser aberta. E esta leitura que traz a voltagem, o campo que barrava a sugestao da C15. Confira a embalagem."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-08",
+      "status_registro": "parcial",
+      "observacao": "Produto sem marca declarada (importado revendido com nome da loja) — situacao comum no Brasil e o motivo de marca aceitar null com o id derivado da loja. Sem marca, casar cotacoes entre lojas fica impossivel: e o pior caso do banco. 100 lm/W. Segue 'parcial' por causa da marca ausente, e nao por falta de numero: e apto a ser sugerido pela C15. Em 08/09/2026 saiu do barrado: a segunda leitura da ficha trouxe voltagem (bivolt), cobertura declarada de 55 a 75 cm e timer, e com isso passou a ser o registro de MAIOR cobertura declarada do banco de iluminacao — uma peca de 60 cm que a propria loja diz cobrir ate 75 cm de aquario."
+    },
     {
-     "origem": "varejo",
-     "status": "transcrita-varejo",
-     "referencia": "Pro-Aquarista (varejo BR especializado), ficha da WFish Plant LED WF-H600 WRGB: 36 W, 110/220 V (bivolt), LEDs WRGB (branco, vermelho, verde e azul), peca de 56,7 x 8 cm, indicada para aquarios de 60 a 65 cm, corpo a prova d'agua",
-     "url": "https://www.proaquarista.com.br/wfish-luminaria-plant-led-wf-h600-wrgb-36w",
-     "verificado_em": "2026-09-08",
-     "campos": [
-      "potencia_w",
-      "voltagem",
-      "espectro",
-      "comprimento_luminaria_cm",
-      "comprimento_aquario_cm",
-      "tipo"
-     ],
-     "observacao": "Ficha lida por RESULTADO DE BUSCA: o dominio devolve EGRESS_BLOCKED para a nuvem. Nenhuma das lojas que anunciam o modelo publica o fluxo luminoso — nem a ficha do varejo especializado, nem os anuncios de marketplace. Confira a embalagem."
+      "id": "soma-s-600-wrgb",
+      "entidade": "iluminacao",
+      "marca": "Soma",
+      "linha": "WRGB",
+      "modelo": "S-600",
+      "variante": "24 W",
+      "nomes_alternativos": [
+        "Luminaria Led Soma S-600 24w",
+        "LUMINARIA LED SOMA S-600 (24W) LED WRGB AUTOVOLT"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "bivolt"
+      ],
+      "tipo": "led-barra",
+      "potencia_w": 24,
+      "fluxo_lm": null,
+      "temperatura_cor_k": null,
+      "espectro": "wrgb",
+      "ppfd_declarado": null,
+      "ppfd_distancia_cm": null,
+      "comprimento_luminaria_cm": 57.8,
+      "comprimento_aquario_cm": {
+        "min": 60,
+        "max": 70
+      },
+      "regulagem": null,
+      "volume_atendido_declarado_L": null,
+      "imagem": {
+        "url": "https://down-bs-br.img.susercontent.com/br-11134207-7r98o-lp8e9bxzjk9h77.webp",
+        "largura": null,
+        "altura": null,
+        "fonte": "anuncio-shopee",
+        "coletado_em": "2026-09-09",
+        "verificado_em": null,
+        "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
+        "alt": "Luminaria LED Soma S-600 WRGB, barra de aluminio preta ultrafina com hastes reguladas para apoiar na borda do aquario",
+        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+      },
+      "afiliado": {
+        "plataforma": "shopee",
+        "url": "https://s.shopee.com.br/2qUR4y8GtU",
+        "sub_id_1": "aquametria",
+        "sub_id_2": "C15",
+        "rel": "sponsored",
+        "verificado_em": "2026-09-09",
+        "anuncio_shopee": "Luminaria Led Soma S-600 WRGB 24W bivolt aquario 60-70 cm",
+        "voltagem_anuncio": "bivolt",
+        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Varejo especializado BR (Mega Aquarios, Fazenda Submersa, Garagem do Aquarismo, Pro-Aquarista, World Fish, Aquarioz), ficha da Soma S-600: 24 W, peca de 57.8 cm, aquario de 60 a 70 cm, alimentacao bivolt (autovolt), corpo ultrafino de 6 mm com hastes regulaveis e LED WRGB (78 brancos, 14 azuis, 14 verdes e 14 vermelhos)",
+          "url": "https://www.fazendasubmersa.com.br/marcas/soma/luminaria-led-s-600-wrgb-soma-bivolt-24w",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "potencia_w",
+            "tipo",
+            "espectro",
+            "comprimento_luminaria_cm",
+            "comprimento_aquario_cm",
+            "voltagem",
+            "disponibilidade_br"
+          ],
+          "observacao": "Lido por RESULTADO DE BUSCA: o egresso da nuvem barra os dominios do varejo brasileiro (EGRESS_BLOCKED em 09/09/2026) e a pagina nao pode ser aberta. Confira a embalagem."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "parcial",
+      "observacao": "Entrou em 09/09/2026 no lote de 21 anuncios colhidos a mao no painel Shopee Afiliados, com link e imagem. Fica 'parcial' por um campo so: fluxo_lm — a linha Soma WRGB nao publica fluxo luminoso: nem a marca nem as nove lojas de aquarismo brasileiras conferidas em 09/09/2026 (Mega Aquarios, Garagem do Aquarismo, Fazenda Submersa, Pro-Aquarista, World Fish, Aquarioz, Fish House, Fish Nature e Antonio Candido) declaram lumen em ficha nenhuma. O anuncio da Shopee tambem nao declara. Sem lumen de fonte tecnica a C15, que dimensiona por lm/L, nao sugere o produto — e estimar lumen a partir da potencia seria inventar numero. Enquanto isso a ficha vale como conteudo e a C15 publica o produto na lista de barrados, com o motivo."
+    },
+    {
+      "id": "soma-s-800-wrgb",
+      "entidade": "iluminacao",
+      "marca": "Soma",
+      "linha": "WRGB",
+      "modelo": "S-800",
+      "variante": "26 W",
+      "nomes_alternativos": [
+        "Luminaria Led Soma S-800 26w",
+        "LUMINARIA LED SOMA S-800 (26W) LED WRGB AUTOVOLT"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "bivolt"
+      ],
+      "tipo": "led-barra",
+      "potencia_w": 26,
+      "fluxo_lm": null,
+      "temperatura_cor_k": null,
+      "espectro": "wrgb",
+      "ppfd_declarado": null,
+      "ppfd_distancia_cm": null,
+      "comprimento_luminaria_cm": 77.8,
+      "comprimento_aquario_cm": {
+        "min": 80,
+        "max": 90
+      },
+      "regulagem": null,
+      "volume_atendido_declarado_L": null,
+      "imagem": {
+        "url": "https://down-bs-br.img.susercontent.com/br-11134207-7r98o-lp8e9bxzrzo53c.webp",
+        "largura": null,
+        "altura": null,
+        "fonte": "anuncio-shopee",
+        "coletado_em": "2026-09-09",
+        "verificado_em": null,
+        "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
+        "alt": "Luminaria LED Soma S-800 WRGB, barra de aluminio preta ultrafina com hastes reguladas para apoiar na borda do aquario",
+        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+      },
+      "afiliado": {
+        "plataforma": "shopee",
+        "url": "https://s.shopee.com.br/AUtsD6ZTPQ",
+        "sub_id_1": "aquametria",
+        "sub_id_2": "C15",
+        "rel": "sponsored",
+        "verificado_em": "2026-09-09",
+        "anuncio_shopee": "Luminaria Led Soma S-800 WRGB 26W bivolt aquario 80-90 cm",
+        "voltagem_anuncio": "bivolt",
+        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Varejo especializado BR (Mega Aquarios, Fazenda Submersa, Garagem do Aquarismo, Pro-Aquarista, World Fish, Aquarioz), ficha da Soma S-800: 26 W, peca de 77.8 cm, aquario de 80 a 90 cm, alimentacao bivolt (autovolt), corpo ultrafino de 6 mm com hastes regulaveis e LED WRGB (102 brancos, 18 azuis, 18 verdes e 18 vermelhos)",
+          "url": "https://www.megaaquarios.com.br/luminaria-soma-s-800-ultra-fina-led-aquario-pequeno-110v-220.html",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "potencia_w",
+            "tipo",
+            "espectro",
+            "comprimento_luminaria_cm",
+            "comprimento_aquario_cm",
+            "voltagem",
+            "disponibilidade_br"
+          ],
+          "observacao": "Lido por RESULTADO DE BUSCA: o egresso da nuvem barra os dominios do varejo brasileiro (EGRESS_BLOCKED em 09/09/2026) e a pagina nao pode ser aberta. Confira a embalagem."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "parcial",
+      "observacao": "Entrou em 09/09/2026 no lote de 21 anuncios colhidos a mao no painel Shopee Afiliados, com link e imagem. Fica 'parcial' por um campo so: fluxo_lm — a linha Soma WRGB nao publica fluxo luminoso: nem a marca nem as nove lojas de aquarismo brasileiras conferidas em 09/09/2026 (Mega Aquarios, Garagem do Aquarismo, Fazenda Submersa, Pro-Aquarista, World Fish, Aquarioz, Fish House, Fish Nature e Antonio Candido) declaram lumen em ficha nenhuma. O anuncio da Shopee tambem nao declara. Sem lumen de fonte tecnica a C15, que dimensiona por lm/L, nao sugere o produto — e estimar lumen a partir da potencia seria inventar numero. Enquanto isso a ficha vale como conteudo e a C15 publica o produto na lista de barrados, com o motivo."
+    },
+    {
+      "id": "chihiros-a-series-a451m",
+      "entidade": "iluminacao",
+      "marca": "Chihiros",
+      "linha": "A-Series Marine",
+      "modelo": "A451M",
+      "variante": "45 cm 27 W marinho",
+      "nomes_alternativos": [
+        "Chihiros Marine A-Series A451M 45cm 27w",
+        "Chihiros A451M Marine LED"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "bivolt"
+      ],
+      "tipo": "led-barra",
+      "potencia_w": 27,
+      "fluxo_lm": 3500,
+      "temperatura_cor_k": null,
+      "espectro": "wrgb",
+      "ppfd_declarado": null,
+      "ppfd_distancia_cm": null,
+      "comprimento_luminaria_cm": 45.0,
+      "comprimento_aquario_cm": {
+        "min": 45,
+        "max": 45
+      },
+      "regulagem": "dimmer",
+      "volume_atendido_declarado_L": null,
+      "imagem": {
+        "url": "https://down-bs-br.img.susercontent.com/sg-11134201-22110-t3qqfgb4fnjvc8.webp",
+        "largura": null,
+        "altura": null,
+        "fonte": "anuncio-shopee",
+        "coletado_em": "2026-09-09",
+        "verificado_em": null,
+        "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
+        "alt": "Luminaria LED Chihiros Marine A-Series A451M de 45 cm, barra de aluminio com LEDs brancos e azuis para aquario marinho",
+        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+      },
+      "afiliado": {
+        "plataforma": "shopee",
+        "url": "https://s.shopee.com.br/6Akt2vHtq4",
+        "sub_id_1": "aquametria",
+        "sub_id_2": "C15",
+        "rel": "sponsored",
+        "verificado_em": "2026-09-09",
+        "anuncio_shopee": "Chihiros Marine A-Series A451M 45 cm 27 W 3.850 lm bivolt",
+        "voltagem_anuncio": "bivolt",
+        "observacao": "Titulo e voltagem como o operador transcreveu do painel Shopee Afiliados em 09/09/2026. ATENCAO: o anuncio declara 3.850 lm e a ficha de varejo declara 3.500 lm. O banco publica 3.500 lm, porque anuncio de marketplace (nivel 6) nao sustenta campo tecnico. A divergencia fica aqui de proposito, para a tela poder avisar."
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Varejo especializado (Water Plant Street, Pro-Aquarium, IndianAquarium) e anuncio de varejo BR na Amazon, ficha da Chihiros Marine A-Series A451M: 45 x 6 x 5 cm, 27 W, 3.500 lm, 99 LEDs (33 brancos, 50 azuis, 8 vermelhos, 8 verdes), dimmer de 6 passos, para aquarios de 45 cm",
+          "url": "https://www.waterplantstreet.com/chihiros-a-series-led-lighting-system-marine-type.html",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "potencia_w",
+            "fluxo_lm",
+            "tipo",
+            "espectro",
+            "regulagem",
+            "comprimento_luminaria_cm",
+            "comprimento_aquario_cm"
+          ],
+          "observacao": "Lido por RESULTADO DE BUSCA; o site do fabricante da EGRESS_BLOCKED para a nuvem em 09/09/2026. O anuncio da Shopee declara 3.850 lm para a mesma peca: numero de anuncio nao entra no banco."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "AquaBetta (loja de aquarismo BR), anuncio da Marine A-Series A451M 45 cm 27 W declarado bivolt",
+          "url": "https://www.aquabetta.com.br/MLB-1102600754-luminaria-led-marine-a-series-a451m-45cm-27w-bivolt-_JM",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "voltagem",
+            "disponibilidade_br"
+          ],
+          "observacao": "Loja especializada com vitrine hospedada em marketplace; lido por resultado de busca. Confira a etiqueta da fonte antes de ligar."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "completo",
+      "observacao": "Luminaria MARINHA: 50 dos 99 LEDs sao azuis. 3.500 lm com 27 W da 130 lm/W. A C15 dimensiona planta por lm/L e esta peca nao foi feita para planta — quando ela sair no resultado, o cartao tem de dizer que o espectro e de aquario marinho. O fabricante declara UM comprimento (45 cm), nao uma faixa."
+    },
+    {
+      "id": "soma-s-1000-wrgb",
+      "entidade": "iluminacao",
+      "marca": "Soma",
+      "linha": "WRGB",
+      "modelo": "S-1000",
+      "variante": "32 W",
+      "nomes_alternativos": [
+        "Luminaria Led Soma S-1000 32w",
+        "LUMINARIA LED SOMA S-1000 (32W) LED WRGB AUTOVOLT"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "bivolt"
+      ],
+      "tipo": "led-barra",
+      "potencia_w": 32,
+      "fluxo_lm": null,
+      "temperatura_cor_k": null,
+      "espectro": "wrgb",
+      "ppfd_declarado": null,
+      "ppfd_distancia_cm": null,
+      "comprimento_luminaria_cm": 97.0,
+      "comprimento_aquario_cm": {
+        "min": 100,
+        "max": 110
+      },
+      "regulagem": null,
+      "volume_atendido_declarado_L": null,
+      "imagem": {
+        "url": "https://down-bs-br.img.susercontent.com/br-11134207-7r98o-lp8e9by04ms5ad.webp",
+        "largura": null,
+        "altura": null,
+        "fonte": "anuncio-shopee",
+        "coletado_em": "2026-09-09",
+        "verificado_em": null,
+        "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
+        "alt": "Luminaria LED Soma S-1000 WRGB, barra de aluminio preta ultrafina com hastes reguladas para apoiar na borda do aquario",
+        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+      },
+      "afiliado": {
+        "plataforma": "shopee",
+        "url": "https://s.shopee.com.br/AUtsD1Spc3",
+        "sub_id_1": "aquametria",
+        "sub_id_2": "C15",
+        "rel": "sponsored",
+        "verificado_em": "2026-09-09",
+        "anuncio_shopee": "Luminaria Led Soma S-1000 WRGB 32W bivolt aquario 100-110 cm",
+        "voltagem_anuncio": "bivolt",
+        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Varejo especializado BR (Mega Aquarios, Fazenda Submersa, Garagem do Aquarismo, Pro-Aquarista, World Fish, Aquarioz), ficha da Soma S-1000: 32 W, peca de 97 cm, aquario de 100 a 110 cm, alimentacao bivolt (autovolt), corpo ultrafino de 6 mm com hastes regulaveis e LED WRGB (126 brancos, 22 azuis, 22 verdes e 22 vermelhos)",
+          "url": "https://www.fazendasubmersa.com.br/soma-/luminaria-led-s-1000-wrgb-soma-bivolt-32w-100cm",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "potencia_w",
+            "tipo",
+            "espectro",
+            "comprimento_luminaria_cm",
+            "comprimento_aquario_cm",
+            "voltagem",
+            "disponibilidade_br"
+          ],
+          "observacao": "Lido por RESULTADO DE BUSCA: o egresso da nuvem barra os dominios do varejo brasileiro (EGRESS_BLOCKED em 09/09/2026) e a pagina nao pode ser aberta. Confira a embalagem."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "parcial",
+      "observacao": "Entrou em 09/09/2026 no lote de 21 anuncios colhidos a mao no painel Shopee Afiliados, com link e imagem. Fica 'parcial' por um campo so: fluxo_lm — a linha Soma WRGB nao publica fluxo luminoso: nem a marca nem as nove lojas de aquarismo brasileiras conferidas em 09/09/2026 (Mega Aquarios, Garagem do Aquarismo, Fazenda Submersa, Pro-Aquarista, World Fish, Aquarioz, Fish House, Fish Nature e Antonio Candido) declaram lumen em ficha nenhuma. O anuncio da Shopee tambem nao declara. Sem lumen de fonte tecnica a C15, que dimensiona por lm/L, nao sugere o produto — e estimar lumen a partir da potencia seria inventar numero. Enquanto isso a ficha vale como conteudo e a C15 publica o produto na lista de barrados, com o motivo."
+    },
+    {
+      "id": "ista-il-401-60",
+      "entidade": "iluminacao",
+      "marca": "Ista",
+      "linha": "IL-401",
+      "modelo": "IL-401 60 cm",
+      "variante": "60 cm",
+      "nomes_alternativos": [
+        "Ista IL-401",
+        "Luminaria Led Ista 60 cm"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "bivolt"
+      ],
+      "tipo": "led-calha",
+      "potencia_w": 35,
+      "fluxo_lm": 3717,
+      "temperatura_cor_k": null,
+      "espectro": null,
+      "ppfd_declarado": null,
+      "ppfd_distancia_cm": null,
+      "comprimento_luminaria_cm": 56,
+      "comprimento_aquario_cm": {
+        "min": 56,
+        "max": 66
+      },
+      "regulagem": null,
+      "volume_atendido_declarado_L": null,
+      "imagem": null,
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "o anuncio disponivel na Shopee em 07/09/2026 e da variante de 45 cm (registro ista-i-401-45), com 7,6 W e 810 lm — outro produto. Atribuir aquele link a este registro faria a C15 recomendar 3717 lm e entregar 810 lm.",
+        "verificado_em": "2026-09-07"
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Pro-Aquarista (varejo BR especializado), ficha da luminaria Ista IL-401 60 cm para aquarios plantados",
+          "url": "https://www.proaquarista.com.br/produto/luminaria-led-ista-60-cm-p-aquarios-plantados-il-401.html",
+          "verificado_em": "2026-09-07",
+          "campos": [
+            "potencia_w",
+            "fluxo_lm",
+            "comprimento_luminaria_cm",
+            "tipo"
+          ],
+          "observacao": "Ficha de varejo. Confira a embalagem."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Pro-Aquarista (varejo BR especializado), ficha completa da Ista IL-401 60 cm: 35 W, 3717 lm, tensao bivolt (110 V/220 V), dimensoes 56 x 12 x 4,6 cm, indicada para aquarios de 56 a 66 cm, IRC acima de 95 % e queda de 4 % na intensidade apos 6 000 h",
+          "url": "https://www.proaquarista.com.br/produto/luminaria-led-ista-60-cm-p-aquarios-plantados-il-401.html",
+          "verificado_em": "2026-09-08",
+          "campos": [
+            "voltagem",
+            "comprimento_aquario_cm",
+            "comprimento_luminaria_cm"
+          ],
+          "observacao": "Segunda leitura da MESMA pagina, por RESULTADO DE BUSCA (o dominio devolve EGRESS_BLOCKED para a nuvem). Trouxe a voltagem, que era o campo que barrava a sugestao, e a cobertura declarada — e revelou que a peca vendida como '60 cm' mede 56 cm."
+        }
+      ],
+      "conflitos": [
+        {
+          "campo": "comprimento_luminaria_cm",
+          "valores": [
+            {
+              "valor": 60,
+              "referencia": "nome comercial do produto no varejo BR: 'Luminaria Led Ista 60 Cm P/ Aquarios Plantados IL-401'",
+              "url": "https://www.proaquarista.com.br/produto/luminaria-led-ista-60-cm-p-aquarios-plantados-il-401.html",
+              "origem": "marketplace-anuncio"
+            },
+            {
+              "valor": 56,
+              "referencia": "ficha de dimensoes da mesma pagina: 56 x 12 x 4,6 cm",
+              "url": "https://www.proaquarista.com.br/produto/luminaria-led-ista-60-cm-p-aquarios-plantados-il-401.html",
+              "origem": "varejo"
+            }
+          ],
+          "razao": "4 cm, ou 7 % do comprimento anunciado",
+          "tratamento": "nivel-mais-alto-vence",
+          "observacao": "O numero do NOME nao e ficha tecnica: e nome comercial, e no varejo brasileiro de iluminacao ele quase sempre indica o aquario de destino, nao a peca. A ficha de dimensoes da mesma pagina vence, e o campo fica 56. Quem compra pelo nome acha que leva 60 cm de luminaria."
+        }
+      ],
+      "verificado_em": "2026-09-08",
+      "status_registro": "conflito",
+      "observacao": "Unico registro da semente com lumen declarado alto (3717 lm) e agora com voltagem: em 08/09/2026 saiu do barrado e virou o registro mais forte do banco de iluminacao — 106 lm/W, cobertura declarada de 56 a 66 cm. Continua SEM link de afiliado: o anuncio disponivel na Shopee e o da variante de 45 cm (registro ista-i-401-45), com 7,6 W e 810 lm. Traz o conflito nome-contra-ficha: vendida como '60 cm', a peca mede 56 cm."
+    },
+    {
+      "id": "soma-s-1200-wrgb",
+      "entidade": "iluminacao",
+      "marca": "Soma",
+      "linha": "WRGB",
+      "modelo": "S-1200",
+      "variante": "36 W",
+      "nomes_alternativos": [
+        "Luminaria Led Soma S-1200 36w",
+        "LUMINARIA LED SOMA S-1200 (36W) LED WRGB AUTOVOLT"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "bivolt"
+      ],
+      "tipo": "led-barra",
+      "potencia_w": 36,
+      "fluxo_lm": null,
+      "temperatura_cor_k": null,
+      "espectro": "wrgb",
+      "ppfd_declarado": null,
+      "ppfd_distancia_cm": null,
+      "comprimento_luminaria_cm": 117.8,
+      "comprimento_aquario_cm": {
+        "min": 120,
+        "max": 130
+      },
+      "regulagem": null,
+      "volume_atendido_declarado_L": null,
+      "imagem": {
+        "url": "https://down-bs-br.img.susercontent.com/br-11134207-7r98o-lp8fc8qlkl0505.webp",
+        "largura": null,
+        "altura": null,
+        "fonte": "anuncio-shopee",
+        "coletado_em": "2026-09-09",
+        "verificado_em": null,
+        "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
+        "alt": "Luminaria LED Soma S-1200 WRGB, barra de aluminio preta ultrafina com hastes reguladas para apoiar na borda do aquario",
+        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+      },
+      "afiliado": {
+        "plataforma": "shopee",
+        "url": "https://s.shopee.com.br/3B7HTYh94c",
+        "sub_id_1": "aquametria",
+        "sub_id_2": "C15",
+        "rel": "sponsored",
+        "verificado_em": "2026-09-09",
+        "anuncio_shopee": "Luminaria Led Soma S-1200 WRGB 36W bivolt aquario 120-130 cm",
+        "voltagem_anuncio": "bivolt",
+        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Varejo especializado BR (Mega Aquarios, Fazenda Submersa, Garagem do Aquarismo, Pro-Aquarista, World Fish, Aquarioz), ficha da Soma S-1200: 36 W, peca de 117.8 cm, aquario de 120 a 130 cm, alimentacao bivolt (autovolt), corpo ultrafino de 6 mm com hastes regulaveis e LED WRGB (150 brancos, 26 azuis, 26 verdes e 26 vermelhos)",
+          "url": "https://www.antoniocandidoaquarismo.com.br/produtos/luminaria-led-soma-s-120036wled-wrgb-autovolt/",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "potencia_w",
+            "tipo",
+            "espectro",
+            "comprimento_luminaria_cm",
+            "comprimento_aquario_cm",
+            "voltagem",
+            "disponibilidade_br"
+          ],
+          "observacao": "Lido por RESULTADO DE BUSCA: o egresso da nuvem barra os dominios do varejo brasileiro (EGRESS_BLOCKED em 09/09/2026) e a pagina nao pode ser aberta. Confira a embalagem."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "parcial",
+      "observacao": "Entrou em 09/09/2026 no lote de 21 anuncios colhidos a mao no painel Shopee Afiliados, com link e imagem. Fica 'parcial' por um campo so: fluxo_lm — a linha Soma WRGB nao publica fluxo luminoso: nem a marca nem as nove lojas de aquarismo brasileiras conferidas em 09/09/2026 (Mega Aquarios, Garagem do Aquarismo, Fazenda Submersa, Pro-Aquarista, World Fish, Aquarioz, Fish House, Fish Nature e Antonio Candido) declaram lumen em ficha nenhuma. O anuncio da Shopee tambem nao declara. Sem lumen de fonte tecnica a C15, que dimensiona por lm/L, nao sugere o produto — e estimar lumen a partir da potencia seria inventar numero. Enquanto isso a ficha vale como conteudo e a C15 publica o produto na lista de barrados, com o motivo."
+    },
+    {
+      "id": "wfish-wf-h600-wrgb",
+      "entidade": "iluminacao",
+      "marca": "WFish",
+      "linha": "Plant LED",
+      "modelo": "WF-H600 WRGB",
+      "variante": "36 W",
+      "nomes_alternativos": [
+        "Wfish Luminaria Plant Led Wf-h600 Wrgb 36w",
+        "Wfish Luminaria Led Plant WF-H600 RGB 60cm 36w"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "bivolt"
+      ],
+      "tipo": "led-barra",
+      "potencia_w": 36,
+      "fluxo_lm": null,
+      "temperatura_cor_k": null,
+      "espectro": "wrgb",
+      "ppfd_declarado": null,
+      "ppfd_distancia_cm": null,
+      "comprimento_luminaria_cm": 56.7,
+      "comprimento_aquario_cm": {
+        "min": 60,
+        "max": 65
+      },
+      "regulagem": null,
+      "volume_atendido_declarado_L": null,
+      "imagem": null,
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "ha anuncio do modelo na Shopee em 08/09/2026, mas o link curto de afiliado e gerado a mao no painel Shopee Afiliados, fora desta sessao. E, sem lumen declarado, a C15 nao sugeriria este produto nem com link: link nao promove produto barrado (regra V16).",
+        "verificado_em": "2026-09-08"
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Pro-Aquarista (varejo BR especializado), ficha da WFish Plant LED WF-H600 WRGB: 36 W, 110/220 V (bivolt), LEDs WRGB (branco, vermelho, verde e azul), peca de 56,7 x 8 cm, indicada para aquarios de 60 a 65 cm, corpo a prova d'agua",
+          "url": "https://www.proaquarista.com.br/wfish-luminaria-plant-led-wf-h600-wrgb-36w",
+          "verificado_em": "2026-09-08",
+          "campos": [
+            "potencia_w",
+            "voltagem",
+            "espectro",
+            "comprimento_luminaria_cm",
+            "comprimento_aquario_cm",
+            "tipo"
+          ],
+          "observacao": "Ficha lida por RESULTADO DE BUSCA: o dominio devolve EGRESS_BLOCKED para a nuvem. Nenhuma das lojas que anunciam o modelo publica o fluxo luminoso — nem a ficha do varejo especializado, nem os anuncios de marketplace. Confira a embalagem."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-08",
+      "status_registro": "parcial",
+      "observacao": "Entrou em 08/09/2026 como o TERCEIRO caso do mesmo padrao, e o mais recente: peca de 56,7 cm vendida como 'H600' para aquario de 60 a 65 cm. Sem fluxo_lm declarado em nenhuma fonte, a C15 nao consegue sugeri-la — a formula publicavel da C15 e lumen por litro. Fica no banco de proposito: e ficha util, e a lacuna dela e o conteudo (o varejo BR vende luminaria por centimetro de peca e omite a grandeza que dimensiona)."
+    },
+    {
+      "id": "chihiros-a-series-a601",
+      "entidade": "iluminacao",
+      "marca": "Chihiros",
+      "linha": "A-Series",
+      "modelo": "A601",
+      "variante": "60 cm 39 W",
+      "nomes_alternativos": [
+        "Chihiros A-Series A601",
+        "Chihiros A601 LED 60 cm"
+      ],
+      "gtin": null,
+      "disponibilidade_br": null,
+      "voltagem": [
+        "bivolt"
+      ],
+      "tipo": "led-barra",
+      "potencia_w": 39,
+      "fluxo_lm": 5800,
+      "temperatura_cor_k": 8000,
+      "espectro": "branco",
+      "ppfd_declarado": null,
+      "ppfd_distancia_cm": null,
+      "comprimento_luminaria_cm": 60.0,
+      "comprimento_aquario_cm": {
+        "min": 60,
+        "max": 60
+      },
+      "regulagem": null,
+      "volume_atendido_declarado_L": null,
+      "imagem": null,
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "produto novo no banco, entrou em 09/09/2026 pelo bloco T3(a2) para fechar faixa de comprimento descoberta na C15. Quem gera link de afiliado e a Sentinela Estrategica, ate 10 por semana; este registro espera link. Pela regra V16 o produto ja e sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
+        "verificado_em": "2026-09-09"
+      },
+      "fontes": [
+        {
+          "origem": "fabricante-via-busca",
+          "status": "fabricante-via-busca",
+          "referencia": "Chihiros Aquatic Studio, ficha da A-Series A601: consumo 39 W, fluxo luminoso 5800 lm, 117 LEDs, temperatura de cor de cerca de 8.000 K, peca de 600 mm, alimentacao AC 100-240 V 50/60 Hz, para aquario de 60 cm",
+          "url": "https://www.chihirosaquaticstudio.com/products/chihiros-a-series-led-light",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "potencia_w",
+            "fluxo_lm",
+            "temperatura_cor_k",
+            "espectro",
+            "tipo",
+            "comprimento_luminaria_cm",
+            "comprimento_aquario_cm",
+            "voltagem"
+          ],
+          "observacao": "Colhido por RESULTADO DE BUSCA em 09/09/2026, com a ficha da A-Series atribuida ao fabricante e reconferida numa segunda formulacao independente que devolveu os mesmos numeros. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para chihirosaquaticstudio.com, como para todo dominio que nao seja o GitHub. A confirmar no manual."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "parcial",
+      "observacao": "Entrou em 09/09/2026 no bloco T3(a2), e o motivo de entrar e cobertura, nao marca: a linha A-Series e a unica do catalogo que DECLARA fluxo luminoso em toda a escada de tamanhos, e fluxo e o campo que barra a C15. As oito luminarias Soma, que cobririam de 20 a 130 cm e ja tem link de afiliado, continuam barradas porque nem a marca nem nove lojas brasileiras publicam lumen - e estimar lumen a partir do watt seria inventar numero. SEM LINK DE AFILIADO: quem gera o link e a Sentinela Estrategica. O espectro e branco de 8.000 K, sem RGB: a C15 dimensiona por lm/L e o cartao tem de dizer que esta peca nao tem a renderizacao de cor que a linha WRGB entrega. O fabricante declara UM comprimento de aquario (60 cm), nao uma faixa - a mesma leitura que ja valia para a A451M e a A901. Fica 'parcial' por UM campo: disponibilidade_br. A ficha tecnica veio do fabricante, mas nenhuma loja brasileira foi conferida para este tamanho em 09/09/2026 - e disponibilidade no Brasil so o varejo brasileiro sustenta (nivel 4 ou 5 da escada). A C15 continua podendo sugerir: o campo que falta nao esta no minimo_para_sugerir dela."
+    },
+    {
+      "id": "chihiros-a-series-a801",
+      "entidade": "iluminacao",
+      "marca": "Chihiros",
+      "linha": "A-Series",
+      "modelo": "A801",
+      "variante": "80 cm 50 W",
+      "nomes_alternativos": [
+        "Chihiros A-Series A801",
+        "Chihiros A801 LED 80 cm"
+      ],
+      "gtin": null,
+      "disponibilidade_br": null,
+      "voltagem": [
+        "bivolt"
+      ],
+      "tipo": "led-barra",
+      "potencia_w": 50,
+      "fluxo_lm": 7200,
+      "temperatura_cor_k": 8000,
+      "espectro": "branco",
+      "ppfd_declarado": null,
+      "ppfd_distancia_cm": null,
+      "comprimento_luminaria_cm": 80.0,
+      "comprimento_aquario_cm": {
+        "min": 80,
+        "max": 80
+      },
+      "regulagem": null,
+      "volume_atendido_declarado_L": null,
+      "imagem": null,
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "produto novo no banco, entrou em 09/09/2026 pelo bloco T3(a2) para fechar faixa de comprimento descoberta na C15. Quem gera link de afiliado e a Sentinela Estrategica, ate 10 por semana; este registro espera link. Pela regra V16 o produto ja e sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
+        "verificado_em": "2026-09-09"
+      },
+      "fontes": [
+        {
+          "origem": "fabricante-via-busca",
+          "status": "fabricante-via-busca",
+          "referencia": "Chihiros Aquatic Studio, ficha da A-Series A801: consumo 50 W, fluxo luminoso 7200 lm, 162 LEDs, temperatura de cor de cerca de 8.000 K, peca de 800 mm, alimentacao AC 100-240 V 50/60 Hz, para aquario de 80 cm",
+          "url": "https://www.chihirosaquaticstudio.com/products/chihiros-a-series-led-light",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "potencia_w",
+            "fluxo_lm",
+            "temperatura_cor_k",
+            "espectro",
+            "tipo",
+            "comprimento_luminaria_cm",
+            "comprimento_aquario_cm",
+            "voltagem"
+          ],
+          "observacao": "Colhido por RESULTADO DE BUSCA em 09/09/2026, com a ficha da A-Series atribuida ao fabricante e reconferida numa segunda formulacao independente que devolveu os mesmos numeros. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para chihirosaquaticstudio.com, como para todo dominio que nao seja o GitHub. A confirmar no manual."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "parcial",
+      "observacao": "Entrou em 09/09/2026 no bloco T3(a2), e o motivo de entrar e cobertura, nao marca: a linha A-Series e a unica do catalogo que DECLARA fluxo luminoso em toda a escada de tamanhos, e fluxo e o campo que barra a C15. As oito luminarias Soma, que cobririam de 20 a 130 cm e ja tem link de afiliado, continuam barradas porque nem a marca nem nove lojas brasileiras publicam lumen - e estimar lumen a partir do watt seria inventar numero. SEM LINK DE AFILIADO: quem gera o link e a Sentinela Estrategica. O espectro e branco de 8.000 K, sem RGB: a C15 dimensiona por lm/L e o cartao tem de dizer que esta peca nao tem a renderizacao de cor que a linha WRGB entrega. O fabricante declara UM comprimento de aquario (80 cm), nao uma faixa - a mesma leitura que ja valia para a A451M e a A901. Fica 'parcial' por UM campo: disponibilidade_br. A ficha tecnica veio do fabricante, mas nenhuma loja brasileira foi conferida para este tamanho em 09/09/2026 - e disponibilidade no Brasil so o varejo brasileiro sustenta (nivel 4 ou 5 da escada). A C15 continua podendo sugerir: o campo que falta nao esta no minimo_para_sugerir dela."
+    },
+    {
+      "id": "chihiros-a-series-a901",
+      "entidade": "iluminacao",
+      "marca": "Chihiros",
+      "linha": "A-Series",
+      "modelo": "A901",
+      "variante": "90 cm 55 W",
+      "nomes_alternativos": [
+        "Chihiros A-Series A901 90cm 55w",
+        "Chihiros LED A901"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "bivolt"
+      ],
+      "tipo": "led-barra",
+      "potencia_w": 55,
+      "fluxo_lm": 8200,
+      "temperatura_cor_k": null,
+      "espectro": "full-spectrum",
+      "ppfd_declarado": null,
+      "ppfd_distancia_cm": null,
+      "comprimento_luminaria_cm": 90.0,
+      "comprimento_aquario_cm": {
+        "min": 90,
+        "max": 90
+      },
+      "regulagem": null,
+      "volume_atendido_declarado_L": null,
+      "imagem": {
+        "url": "https://down-bs-br.img.susercontent.com/sg-11134201-7rd3v-lvuh440s5u5jc3.webp",
+        "largura": null,
+        "altura": null,
+        "fonte": "anuncio-shopee",
+        "coletado_em": "2026-09-09",
+        "verificado_em": null,
+        "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
+        "alt": "Luminaria LED Chihiros A-Series A901, barra de aluminio anodizado de 90 cm com LEDs brancos de espectro completo acesos",
+        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+      },
+      "afiliado": {
+        "plataforma": "shopee",
+        "url": "https://s.shopee.com.br/2BEkHXpG4E",
+        "sub_id_1": "aquametria",
+        "sub_id_2": "C15",
+        "rel": "sponsored",
+        "verificado_em": "2026-09-09",
+        "anuncio_shopee": "Chihiros A-Series A901 90 cm 55 W 8.200 lm bivolt",
+        "voltagem_anuncio": "bivolt",
+        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Varejo especializado internacional (Aquariums India, IndianAquarium, Water Plant Street), ficha da Chihiros A-Series A901: 90 x 6 x 5 cm, 55 W, 8.200 lm, 180 LEDs, espectro completo de 400 a 700 nm, para aquarios de 90 cm",
+          "url": "https://www.aquariumsindia.com/shop/lighting-units/chihiros-led-lighting-system-a901/",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "potencia_w",
+            "fluxo_lm",
+            "tipo",
+            "espectro",
+            "comprimento_luminaria_cm",
+            "comprimento_aquario_cm"
+          ],
+          "observacao": "Lido por RESULTADO DE BUSCA; chihirosaquaticstudio.com, que seria a fonte de nivel 2, da EGRESS_BLOCKED para a nuvem em 09/09/2026. O numero precisa ser reconferido na ficha do fabricante quando houver navegador."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "AquaBetta (loja de aquarismo BR), anuncio da A-Series A901 90 cm 55 W declarado bivolt",
+          "url": "https://www.aquabetta.com.br/MLB-1821048063-luminaria-led-chihiros-a-series-a901-90cm-55w-bivolt-_JM",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "voltagem",
+            "disponibilidade_br"
+          ],
+          "observacao": "Loja especializada com vitrine hospedada em marketplace; lido por resultado de busca. A Chihiros alimenta a A-Series por fonte externa, que no Brasil e vendida como bivolt, e o anuncio da Shopee tambem diz bivolt. Ainda assim a tela obriga a conferir a etiqueta da fonte antes de ligar."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "completo",
+      "observacao": "8.200 lm com 55 W da 149 lm/W, a maior eficacia do banco — numero de varejo, nao de fabricante. Atencao a geracao: a Serie A II 901, outra versao da mesma marca, e publicada com 7.200 lm pelo varejo europeu (Aquasabi); sao produtos diferentes e a ficha aqui e da A901 da A-Series. O fabricante declara UM comprimento (90 cm), nao uma faixa, entao a C15 so sugere esta luminaria para aquario de 90 cm: transformar peca de 90 cm em cobertura mais larga seria inventar faixa."
+    },
+    {
+      "id": "chihiros-wrgb-ii-slim-90",
+      "entidade": "iluminacao",
+      "marca": "Chihiros",
+      "linha": "WRGB II Slim",
+      "modelo": "WRGB II Slim 90",
+      "variante": "90 cm 69 W",
+      "nomes_alternativos": [
+        "Chihiros WRGB II SLIM 90",
+        "Chihiros WRGB2 Slim 90cm"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "desconhecido",
+      "voltagem": [
+        "bivolt"
+      ],
+      "tipo": "led-barra",
+      "potencia_w": 69,
+      "fluxo_lm": 3600,
+      "temperatura_cor_k": null,
+      "espectro": "wrgb",
+      "ppfd_declarado": null,
+      "ppfd_distancia_cm": null,
+      "comprimento_luminaria_cm": null,
+      "comprimento_aquario_cm": {
+        "min": 90,
+        "max": 110
+      },
+      "regulagem": "aplicativo",
+      "volume_atendido_declarado_L": null,
+      "imagem": null,
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "produto novo no banco, entrou em 09/09/2026 na leva de fechamento de faixa para cobrir buraco que ferramentas/varrer-cobertura.mjs mediu. Quem gera link de afiliado e a Sentinela Estrategica, no navegador do Raphael, e tem teto de calendario. Pela regra V16 o produto ja e sugerido pela adequacao tecnica; o cartao sai sem botao de loja ate o link existir.",
+        "verificado_em": "2026-09-09"
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Green Aqua e Aqua Zones (varejo especializado estrangeiro), ficha da Chihiros WRGB II Slim 90: tamanho de aquario de 90 a 110 cm, consumo de 69 W, fluxo luminoso de 3.600 lm",
+          "url": "https://www.aquazones.in/chihiros-wrgb-ii-slim-90-cm-led-light/",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "potencia_w",
+            "fluxo_lm",
+            "tipo",
+            "espectro",
+            "comprimento_aquario_cm",
+            "regulagem"
+          ],
+          "observacao": "Lido por RESULTADO DE BUSCA. Duas lojas estrangeiras publicam o mesmo par."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "AquaBetta (varejo BR especializado), anuncios da familia Chihiros WRGB II declarando BIVOLT no proprio titulo em dois membros diferentes da linha: 'Luminaria Led Wrgb2 Pro 90cm 110w (9250 Lumens) Bivolt' e 'Luminaria Led Chihiros Wrgb 2 Series 45cm 49 W Bivolt'. A ficha da serie descreve a alimentacao como entrada de 100 a 240 V, 50-60 Hz, por fonte externa de 12 V",
+          "url": "https://www.aquabetta.com.br/MLB-2950531227-luminaria-led-wrgb2-pro-90cm-110w-9250-lumens-bivolt-_JM",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "voltagem"
+          ],
+          "observacao": "A WRGB II acende por fonte externa de 12 V com entrada de 100 a 240 V, que e o que a torna bivolt de verdade — diferente do aquecedor, que e aparelho de tomada e queima na voltagem errada. Ainda assim a tela manda conferir a etiqueta da fonte antes de ligar. Lido por RESULTADO DE BUSCA (EGRESS_BLOCKED no dominio)."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "parcial",
+      "observacao": "Fica 'parcial' por UM campo: nenhuma das fichas conferidas publica o comprimento da PECA da Slim 90 — a irma de 120 cm publica 1184 x 128 x 15 mm e esta nao publica nada. E ausencia de fonte, nao de importancia: o comprimento da peca nao entra no criterio da C15 (que dimensiona por lumen e por cobertura declarada), entao o registro continua sendo sugerido normalmente. disponibilidade_br ficou 'desconhecido' porque nenhuma das lojas brasileiras conferidas em 09/09/2026 anuncia a versao Slim, so a WRGB II e a WRGB II Pro. O registro entra porque a C15 dimensiona por lumen e cobertura, nao por loja, e porque a Slim e o contraponto util da familia: mesma cobertura de 90 a 110 cm com 3.600 lm contra os 9.250 lm da Pro — 2,6 vezes menos luz no mesmo aquario, o que separa exigencia baixa de exigencia alta melhor do que qualquer regra de bolso."
+    },
+    {
+      "id": "chihiros-wrgb-ii-pro-60",
+      "entidade": "iluminacao",
+      "marca": "Chihiros",
+      "linha": "WRGB II Pro",
+      "modelo": "WRGB II Pro 60",
+      "variante": "60 cm",
+      "nomes_alternativos": [
+        "Chihiros WRGB-2 PRO 60cm",
+        "Chihiros WRGB II Pro 60 cm",
+        "Chihiros WRGB 2 Pro 60"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "bivolt"
+      ],
+      "tipo": "led-barra",
+      "potencia_w": 74,
+      "fluxo_lm": 6630,
+      "temperatura_cor_k": null,
+      "espectro": "wrgb",
+      "ppfd_declarado": null,
+      "ppfd_distancia_cm": null,
+      "comprimento_luminaria_cm": 60,
+      "comprimento_aquario_cm": {
+        "min": 60,
+        "max": 80
+      },
+      "regulagem": "app",
+      "volume_atendido_declarado_L": null,
+      "imagem": null,
+      "afiliado": {
+        "plataforma": "shopee",
+        "url": "https://s.shopee.com.br/20vHM7AtT6",
+        "sub_id_1": "aquametria",
+        "sub_id_2": "C15",
+        "rel": "sponsored",
+        "verificado_em": "2026-09-07",
+        "anuncio_shopee": "Chihiros WRGB-2 PRO 60cm- Luminária P/ Aquário Plantado High",
+        "observacao": "Link curto gerado no painel Shopee Afiliados em 07/09/2026. Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data."
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Green Aqua (varejo especializado, HU), ficha do Chihiros WRGB II Pro 60: 74 W, 6630 lm, para aquarios de 60 a 80 cm, 60 LEDs WRGB, IP43, controle Bluetooth pelo app My Chihiros",
+          "url": "https://greenaqua.hu/en/chihiros-wrgb-ii-pro-60-cm-led-light-60-80-cm-74-w-6630-lm.html",
+          "verificado_em": "2026-09-07",
+          "campos": [
+            "potencia_w",
+            "fluxo_lm",
+            "comprimento_aquario_cm",
+            "espectro",
+            "regulagem",
+            "tipo"
+          ],
+          "observacao": "Ficha de varejo lida por RESULTADO DE BUSCA: chihiros.eu devolveu EGRESS_BLOCKED em 07/09/2026 e a pagina do fabricante nao pode ser aberta. Confira a embalagem."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Aquasabi (varejo especializado, DE), ficha da serie WRGB II PRO 60: dimensoes 600 x 140 x 18 mm, vidro de ate 10 mm",
+          "url": "https://www.aquasabi.com/Chihiros-LED-System-Serie-WRGB-II-PRO-60",
+          "verificado_em": "2026-09-07",
+          "campos": [
+            "comprimento_luminaria_cm"
+          ],
+          "observacao": "Segunda fonte de varejo, do mesmo nivel, CONCORDANDO com a primeira em 74 W e 6630 lm — por isso nao ha conflito. Lida por resultado de busca."
+        },
+        {
+          "origem": "marketplace-anuncio",
+          "status": "anuncio",
+          "referencia": "Anuncio Shopee 'Chihiros WRGB-2 PRO 60cm- Luminária P/ Aquário Plantado High', usado no painel de afiliados em 07/09/2026",
+          "url": "https://s.shopee.com.br/20vHM7AtT6",
+          "verificado_em": "2026-09-07",
+          "campos": [
+            "nomes_alternativos",
+            "disponibilidade_br"
+          ],
+          "observacao": "Anuncio sustenta existencia, nomenclatura e cotacao. Nunca numero tecnico."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "AquaBetta (varejo BR especializado), anuncios da familia Chihiros WRGB II declarando BIVOLT no proprio titulo em dois membros diferentes da linha: 'Luminaria Led Wrgb2 Pro 90cm 110w (9250 Lumens) Bivolt' e 'Luminaria Led Chihiros Wrgb 2 Series 45cm 49 W Bivolt'. A ficha da serie descreve a alimentacao como entrada de 100 a 240 V, 50-60 Hz, por fonte externa de 12 V",
+          "url": "https://www.aquabetta.com.br/MLB-2950531227-luminaria-led-wrgb2-pro-90cm-110w-9250-lumens-bivolt-_JM",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "voltagem"
+          ],
+          "observacao": "A WRGB II acende por fonte externa de 12 V com entrada de 100 a 240 V, que e o que a torna bivolt de verdade — diferente do aquecedor, que e aparelho de tomada e queima na voltagem errada. Ainda assim a tela manda conferir a etiqueta da fonte antes de ligar. Lido por RESULTADO DE BUSCA (EGRESS_BLOCKED no dominio)."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "completo",
+      "observacao": "Substitui o registro aquario-projetado-x1-fr-60w (removido em 07/09/2026: produto sem marca, sem comprimento declarado e sem anuncio real). E o unico registro do banco que declara comprimento de aquario E lumen — mas a voltagem nao e declarada em nenhuma das fontes, e voltagem e requisito para a C15 SUGERIR: enquanto nao houver, ele entra como ficha e nao como sugestao. 89,6 lm/W. O PAR ~50-60 citado pelo varejo vem 'no substrato', sem distancia em cm: sem distancia o PPFD e inutil e o validador o rejeita (V5), entao nao foi gravado. DESTRAVADA EM 09/09/2026, na leva de fechamento de faixa: a voltagem apareceu quando a familia WRGB II inteira entrou no banco. A AquaBetta, varejo BR especializado, declara BIVOLT no titulo de dois membros diferentes da linha (WRGB2 Pro 90 cm e WRGB 2 Series 45 cm), e a ficha da serie descreve a alimentacao como entrada de 100 a 240 V por fonte externa de 12 V. Nao e inferencia de voltagem, que a ilha proibe: e declaracao de varejo sobre a linha, e a familia inteira acende pela mesma fonte externa. Consequencia direta: esta e a PRIMEIRA luminaria com link de afiliado que sai de barrada para sugerida sem ter mudado nada nela — o que faltava era um campo colhido para outro produto."
+    },
+    {
+      "id": "chihiros-wrgb-ii-slim-120",
+      "entidade": "iluminacao",
+      "marca": "Chihiros",
+      "linha": "WRGB II Slim",
+      "modelo": "WRGB II Slim 120",
+      "variante": "120 cm 90 W",
+      "nomes_alternativos": [
+        "Chihiros WRGB II SLIM 120",
+        "Chihiros WRGB2 Slim 120cm"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "desconhecido",
+      "voltagem": [
+        "bivolt"
+      ],
+      "tipo": "led-barra",
+      "potencia_w": 90,
+      "fluxo_lm": 4800,
+      "temperatura_cor_k": null,
+      "espectro": "wrgb",
+      "ppfd_declarado": null,
+      "ppfd_distancia_cm": null,
+      "comprimento_luminaria_cm": 118.4,
+      "comprimento_aquario_cm": {
+        "min": 120,
+        "max": 140
+      },
+      "regulagem": "aplicativo",
+      "volume_atendido_declarado_L": null,
+      "imagem": null,
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "produto novo no banco, entrou em 09/09/2026 na leva de fechamento de faixa para cobrir buraco que ferramentas/varrer-cobertura.mjs mediu. Quem gera link de afiliado e a Sentinela Estrategica, no navegador do Raphael, e tem teto de calendario. Pela regra V16 o produto ja e sugerido pela adequacao tecnica; o cartao sai sem botao de loja ate o link existir.",
+        "verificado_em": "2026-09-09"
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Green Aqua e Aqua Zones (varejo especializado estrangeiro), ficha da Chihiros WRGB II Slim 120: tamanho de aquario de 120 a 140 cm, consumo de 90 W, fluxo luminoso de 4.800 lm, 80 LEDs, grau de protecao IP 43, peca de 1184 x 128 x 15 mm",
+          "url": "https://www.aquazones.in/chihiros-wrgb-ii-slim-120-cm-led-light/",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "potencia_w",
+            "fluxo_lm",
+            "tipo",
+            "espectro",
+            "comprimento_luminaria_cm",
+            "comprimento_aquario_cm",
+            "regulagem"
+          ],
+          "observacao": "Lido por RESULTADO DE BUSCA. Duas lojas estrangeiras publicam o mesmo par."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "AquaBetta (varejo BR especializado), anuncios da familia Chihiros WRGB II declarando BIVOLT no proprio titulo em dois membros diferentes da linha: 'Luminaria Led Wrgb2 Pro 90cm 110w (9250 Lumens) Bivolt' e 'Luminaria Led Chihiros Wrgb 2 Series 45cm 49 W Bivolt'. A ficha da serie descreve a alimentacao como entrada de 100 a 240 V, 50-60 Hz, por fonte externa de 12 V",
+          "url": "https://www.aquabetta.com.br/MLB-2950531227-luminaria-led-wrgb2-pro-90cm-110w-9250-lumens-bivolt-_JM",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "voltagem"
+          ],
+          "observacao": "A WRGB II acende por fonte externa de 12 V com entrada de 100 a 240 V, que e o que a torna bivolt de verdade — diferente do aquecedor, que e aparelho de tomada e queima na voltagem errada. Ainda assim a tela manda conferir a etiqueta da fonte antes de ligar. Lido por RESULTADO DE BUSCA (EGRESS_BLOCKED no dominio)."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "completo",
+      "observacao": "Mesma razao da Slim 90 para o disponibilidade_br. A peca mede 118,4 cm e a cobertura declarada e de 120 a 140 cm: e mais um caso do padrao que a ilha ja registrou tres vezes — o numero do nome nao e o tamanho da peca, e a peca nao e a cobertura. Aqui o proprio fabricante declara os dois numeros e eles nao coincidem, o que e justamente a prova de que converter um no outro seria inventar faixa. Sobre o status: 'desconhecido' e um valor do vocabulario, nao um campo vazio, entao o registro e COMPLETO e a C15 pode sugeri-lo. A incerteza fica onde ela existe de verdade, que e dentro do campo de disponibilidade, e a tela diz que nao confirmamos loja brasileira para este modelo."
+    },
+    {
+      "id": "chihiros-wrgb-ii-90",
+      "entidade": "iluminacao",
+      "marca": "Chihiros",
+      "linha": "WRGB II",
+      "modelo": "WRGB II 90",
+      "variante": "90 cm 100 W",
+      "nomes_alternativos": [
+        "Chihiros WRGB 2 Series 90-110cm 100 W",
+        "Chihiros WRGB II 90 10th Edition"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "bivolt"
+      ],
+      "tipo": "led-barra",
+      "potencia_w": 100,
+      "fluxo_lm": 8400,
+      "temperatura_cor_k": null,
+      "espectro": "wrgb",
+      "ppfd_declarado": null,
+      "ppfd_distancia_cm": null,
+      "comprimento_luminaria_cm": null,
+      "comprimento_aquario_cm": {
+        "min": 90,
+        "max": 110
+      },
+      "regulagem": "aplicativo",
+      "volume_atendido_declarado_L": null,
+      "imagem": null,
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "produto novo no banco, entrou em 09/09/2026 na leva de fechamento de faixa para cobrir buraco que ferramentas/varrer-cobertura.mjs mediu. Quem gera link de afiliado e a Sentinela Estrategica, no navegador do Raphael, e tem teto de calendario. Pela regra V16 o produto ja e sugerido pela adequacao tecnica; o cartao sai sem botao de loja ate o link existir.",
+        "verificado_em": "2026-09-09"
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Green Aqua e Aqua Zones (varejo especializado estrangeiro), ficha da Chihiros WRGB II 90: tamanho de aquario de 90 a 110 cm de largura, consumo de 100 W, fluxo luminoso de 8.400 lm, 90 LEDs WRGB, controle pelo aplicativo My Chihiros",
+          "url": "https://www.aquazones.in/chihiros-wrgb-ii-90-cm-led-light/",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "potencia_w",
+            "fluxo_lm",
+            "tipo",
+            "espectro",
+            "comprimento_aquario_cm",
+            "regulagem"
+          ],
+          "observacao": "Lido por RESULTADO DE BUSCA. Duas lojas estrangeiras independentes publicam o mesmo par (100 W / 8.400 lm) para a mesma cobertura declarada."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Mercado Livre e MadeiraMadeira, vitrine BR da 'Luminaria Led Chihiros Wrgb 2 Series 90-110cm 100 W Bivolt': confirma que o modelo e vendido no Brasil com a mesma cobertura declarada de 90 a 110 cm e o mesmo consumo de 100 W",
+          "url": "https://produto.mercadolivre.com.br/MLB-1725100941-luminaria-led-chihiros-wrgb-2-series-90-110cm-100-w-bivolt-_JM",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "disponibilidade_br"
+          ],
+          "observacao": "Anuncio de marketplace e nivel 6 da escada: sustenta APENAS a existencia do produto no Brasil e a nomenclatura usada aqui. Os numeros tecnicos deste registro vieram do varejo especializado, e a voltagem veio da ficha da familia no AquaBetta."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "AquaBetta (varejo BR especializado), anuncios da familia Chihiros WRGB II declarando BIVOLT no proprio titulo em dois membros diferentes da linha: 'Luminaria Led Wrgb2 Pro 90cm 110w (9250 Lumens) Bivolt' e 'Luminaria Led Chihiros Wrgb 2 Series 45cm 49 W Bivolt'. A ficha da serie descreve a alimentacao como entrada de 100 a 240 V, 50-60 Hz, por fonte externa de 12 V",
+          "url": "https://www.aquabetta.com.br/MLB-2950531227-luminaria-led-wrgb2-pro-90cm-110w-9250-lumens-bivolt-_JM",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "voltagem"
+          ],
+          "observacao": "A WRGB II acende por fonte externa de 12 V com entrada de 100 a 240 V, que e o que a torna bivolt de verdade — diferente do aquecedor, que e aparelho de tomada e queima na voltagem errada. Ainda assim a tela manda conferir a etiqueta da fonte antes de ligar. Lido por RESULTADO DE BUSCA (EGRESS_BLOCKED no dominio)."
+        }
+      ],
+      "conflitos": [
+        {
+          "campo": "fluxo_lm",
+          "valores": [
+            {
+              "valor": 8400,
+              "referencia": "Green Aqua (titulo e ficha) e Aqua Zones: 8.400 lm com 100 W",
+              "url": "https://www.aquazones.in/chihiros-wrgb-ii-90-cm-led-light/",
+              "origem": "varejo"
+            },
+            {
+              "valor": 6200,
+              "referencia": "endereco da propria pagina da Green Aqua, que traz '100-w-6200-lm' enquanto o titulo e a ficha da mesma pagina dizem 8.400 lm",
+              "url": "https://greenaqua.hu/en/chihiros-wrgb-ii-90-cm-led-lampa-90-110-cm-100-w-6200-lm.html",
+              "origem": "varejo"
+            }
+          ],
+          "razao": "a mesma pagina de varejo carrega dois numeros de fluxo para o mesmo produto: 8.400 lm no titulo e na ficha, 6.200 lm no proprio endereco. 35 por cento de diferenca. A leitura mais provavel e que o endereco ficou de uma versao anterior do produto (a ficha se chama '10th Edition'), mas isso e hipotese e nao entra como numero: a ficha publica o valor do titulo, que e o que a loja afirma hoje, e registra o outro.",
+          "tratamento": "publicar-os-dois",
+          "valor_conservador": null,
+          "derivacao": null,
+          "verificado_em": "2026-09-09"
+        }
+      ],
+      "verificado_em": "2026-09-09",
+      "status_registro": "conflito",
+      "observacao": "Entrou pela mesma razao da Pro 90: cobre a FAIXA de 90 a 110 cm, que estava vazia. O conflito de fluxo dentro de uma unica pagina de loja e o segundo achado do bloco e vale como conteudo: quando o proprio varejo especializado nao consegue manter dois numeros iguais na mesma pagina, a regra de bolso de 'lumens por litro' que a web brasileira repete esta sendo aplicada sobre um dado que ninguem confere."
+    },
+    {
+      "id": "chihiros-wrgb-ii-pro-90",
+      "entidade": "iluminacao",
+      "marca": "Chihiros",
+      "linha": "WRGB II Pro",
+      "modelo": "WRGB II Pro 90",
+      "variante": "90 cm 110 W",
+      "nomes_alternativos": [
+        "Chihiros WRGB2 Pro 90cm",
+        "Luminaria Chihiros Wrgb II Pro 90cm",
+        "Chihiros WRGB-2 PRO 90cm"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "bivolt"
+      ],
+      "tipo": "led-barra",
+      "potencia_w": 110,
+      "fluxo_lm": 9250,
+      "temperatura_cor_k": null,
+      "espectro": "wrgb",
+      "ppfd_declarado": null,
+      "ppfd_distancia_cm": null,
+      "comprimento_luminaria_cm": 90.0,
+      "comprimento_aquario_cm": {
+        "min": 90,
+        "max": 110
+      },
+      "regulagem": "aplicativo",
+      "volume_atendido_declarado_L": null,
+      "imagem": null,
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "produto novo no banco, entrou em 09/09/2026 na leva de fechamento de faixa para cobrir buraco que ferramentas/varrer-cobertura.mjs mediu. Quem gera link de afiliado e a Sentinela Estrategica, no navegador do Raphael, e tem teto de calendario. Pela regra V16 o produto ja e sugerido pela adequacao tecnica; o cartao sai sem botao de loja ate o link existir.",
+        "verificado_em": "2026-09-09"
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Fazenda Submersa e AquaBetta (varejo BR especializado), ficha da Chihiros WRGB II Pro 90 cm: tamanho da luminaria 90 x 14 x 1,8 cm, consumo de 110 W, 90 LEDs, fluxo luminoso de 9.250 lm, LEDs WRGB, grau de protecao IP 43, controlador Bluetooth integrado e aplicativo My Chihiros",
+          "url": "https://www.fazendasubmersa.com.br/marcas/chihiros/luminaria-chihiros-wrgb-ii-pro90",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "potencia_w",
+            "fluxo_lm",
+            "tipo",
+            "espectro",
+            "comprimento_luminaria_cm",
+            "regulagem",
+            "disponibilidade_br"
+          ],
+          "observacao": "Lido por RESULTADO DE BUSCA (EGRESS_BLOCKED no dominio). Tres lojas brasileiras especializadas anunciam este modelo (Fazenda Submersa, AquaBetta e WaterMello) e as duas que publicam numero dizem o mesmo: 110 W e 9.250 lm."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Green Aqua e Aqua Zones (varejo especializado estrangeiro), ficha da Chihiros WRGB II Pro 90: tamanho de aquario declarado de 90 a 110 cm de largura, 110 W, 9.250 lm, suporte de aco inoxidavel extensivel incluso",
+          "url": "https://greenaqua.hu/en/chihiros-wrgb-ii-pro-90-cm-led-light-90-110-cm-110-w-9250-lm.html",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "comprimento_aquario_cm"
+          ],
+          "observacao": "A COBERTURA declarada (90 a 110 cm) vem daqui e nao foi derivada do comprimento da peca: a convencao editorial da ilha, fixada em 08/09/2026, proibe converter centimetro de peca em cobertura de aquario. O suporte extensivel e o que sustenta a faixa em vez de um numero unico."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "AquaBetta (varejo BR especializado), anuncios da familia Chihiros WRGB II declarando BIVOLT no proprio titulo em dois membros diferentes da linha: 'Luminaria Led Wrgb2 Pro 90cm 110w (9250 Lumens) Bivolt' e 'Luminaria Led Chihiros Wrgb 2 Series 45cm 49 W Bivolt'. A ficha da serie descreve a alimentacao como entrada de 100 a 240 V, 50-60 Hz, por fonte externa de 12 V",
+          "url": "https://www.aquabetta.com.br/MLB-2950531227-luminaria-led-wrgb2-pro-90cm-110w-9250-lumens-bivolt-_JM",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "voltagem"
+          ],
+          "observacao": "A WRGB II acende por fonte externa de 12 V com entrada de 100 a 240 V, que e o que a torna bivolt de verdade — diferente do aquecedor, que e aparelho de tomada e queima na voltagem errada. Ainda assim a tela manda conferir a etiqueta da fonte antes de ligar. Lido por RESULTADO DE BUSCA (EGRESS_BLOCKED no dominio)."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "completo",
+      "observacao": "PRIMEIRA luminaria do banco que cobre uma FAIXA acima de 80 cm em vez de um comprimento unico, e por isso e a que mais move a cobertura da C15: as duas Chihiros A-Series que ja existiam ali declaram 80 cm e 90 cm cravados, entao 95, 100, 105 e 110 cm saiam sem nenhuma opcao. 9.250 lm com 110 W da 84,1 lm/W, abaixo da Ista branca de 106 lm/W — que e exatamente o indicio do artigo da C15: o lumen e ponderado pela visao humana e desconta o azul e o vermelho, as duas faixas da clorofila, entao a luminaria feita para planta tende a marcar MENOS lumen que a calha branca de mesmo consumo."
+    },
+    {
+      "id": "chihiros-wrgb-ii-120",
+      "entidade": "iluminacao",
+      "marca": "Chihiros",
+      "linha": "WRGB II",
+      "modelo": "WRGB II 120",
+      "variante": "120 cm 130 W",
+      "nomes_alternativos": [
+        "Chihiros WRGB II 120 10th Edition",
+        "Chihiros WRGB 2 Series 120cm"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "desconhecido",
+      "voltagem": [
+        "bivolt"
+      ],
+      "tipo": "led-barra",
+      "potencia_w": 130,
+      "fluxo_lm": 11000,
+      "temperatura_cor_k": null,
+      "espectro": "wrgb",
+      "ppfd_declarado": null,
+      "ppfd_distancia_cm": null,
+      "comprimento_luminaria_cm": 120.0,
+      "comprimento_aquario_cm": {
+        "min": 120,
+        "max": 140
+      },
+      "regulagem": "aplicativo",
+      "volume_atendido_declarado_L": null,
+      "imagem": null,
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "produto novo no banco, entrou em 09/09/2026 na leva de fechamento de faixa para cobrir buraco que ferramentas/varrer-cobertura.mjs mediu. Quem gera link de afiliado e a Sentinela Estrategica, no navegador do Raphael, e tem teto de calendario. Pela regra V16 o produto ja e sugerido pela adequacao tecnica; o cartao sai sem botao de loja ate o link existir.",
+        "verificado_em": "2026-09-09"
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Green Aqua e Aqua Zones (varejo especializado estrangeiro), ficha da Chihiros WRGB II 120: tamanho de aquario de 120 a 140 cm de largura, consumo de 130 W, fluxo luminoso de 11.000 lm, 120 LEDs, peca de 1200 x 140 x 18 mm",
+          "url": "https://www.aquazones.in/chihiros-wrgb-ii-120-cm-led-light/",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "potencia_w",
+            "fluxo_lm",
+            "tipo",
+            "espectro",
+            "comprimento_luminaria_cm",
+            "comprimento_aquario_cm",
+            "regulagem"
+          ],
+          "observacao": "Lido por RESULTADO DE BUSCA. Duas lojas estrangeiras publicam o mesmo par."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "AquaBetta (varejo BR especializado), anuncios da familia Chihiros WRGB II declarando BIVOLT no proprio titulo em dois membros diferentes da linha: 'Luminaria Led Wrgb2 Pro 90cm 110w (9250 Lumens) Bivolt' e 'Luminaria Led Chihiros Wrgb 2 Series 45cm 49 W Bivolt'. A ficha da serie descreve a alimentacao como entrada de 100 a 240 V, 50-60 Hz, por fonte externa de 12 V",
+          "url": "https://www.aquabetta.com.br/MLB-2950531227-luminaria-led-wrgb2-pro-90cm-110w-9250-lumens-bivolt-_JM",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "voltagem"
+          ],
+          "observacao": "A WRGB II acende por fonte externa de 12 V com entrada de 100 a 240 V, que e o que a torna bivolt de verdade — diferente do aquecedor, que e aparelho de tomada e queima na voltagem errada. Ainda assim a tela manda conferir a etiqueta da fonte antes de ligar. Lido por RESULTADO DE BUSCA (EGRESS_BLOCKED no dominio)."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "completo",
+      "observacao": "O registro e completo; disponibilidade_br fica 'desconhecido': das lojas brasileiras conferidas em 09/09/2026, so a Fazenda Submersa anuncia um modelo de 120 cm da familia, e o dela e o PRO. Este registro fecha o degrau de 120 cm que a varredura mediu VAZIO em toda a escala de exigencia. Sobre o status: 'desconhecido' e um valor do vocabulario, nao um campo vazio, entao o registro e COMPLETO e a C15 pode sugeri-lo. A incerteza fica onde ela existe de verdade, que e dentro do campo de disponibilidade, e a tela diz que nao confirmamos loja brasileira para este modelo."
     }
-   ],
-   "conflitos": [],
-   "verificado_em": "2026-09-08",
-   "status_registro": "parcial",
-   "observacao": "Entrou em 08/09/2026 como o TERCEIRO caso do mesmo padrao, e o mais recente: peca de 56,7 cm vendida como 'H600' para aquario de 60 a 65 cm. Sem fluxo_lm declarado em nenhuma fonte, a C15 nao consegue sugeri-la — a formula publicavel da C15 e lumen por litro. Fica no banco de proposito: e ficha util, e a lacuna dela e o conteudo (o varejo BR vende luminaria por centimetro de peca e omite a grandeza que dimensiona)."
-  }
- ],
- "atualizado_em": "2026-09-09"
+  ],
+  "atualizado_em": "2026-09-09"
 }

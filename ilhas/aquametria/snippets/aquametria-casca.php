@@ -624,7 +624,8 @@ CSS;
  *
  * O script sai no wp_footer, NUNCA dentro do retorno de um shortcode. É a regra
  * que nasceu do defeito de 08/09/2026: o WordPress roda os filtros de texto do
- * conteúdo sobre o que o shortcode devolve, cada "&" vira "&#038;" e o
+ * conteúdo sobre o que o shortcode devolve, cada E-comercial vira a entidade
+ * numérica correspondente e o
  * JavaScript inteiro morre com erro de sintaxe. Aqui ele não passa por filtro
  * nenhum.
  *

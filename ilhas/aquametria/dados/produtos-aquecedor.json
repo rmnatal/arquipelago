@@ -2,7 +2,7 @@
   "id": "produtos-aquecedor",
   "entidade": "aquecedor",
   "esquema": "dados/esquema-produtos.json",
-  "descricao": "Banco de aquecedores. Duas linhas: a importada de referencia (Eheim Jager/Thermocontrol) e a popular brasileira (Roxin HT-1300/Q3). Ampliado em 08/09/2026 para alimentar a C5 — nove registros de 25 a 300 W, com a voltagem coletada (era o campo que barrava a sugestao) e a faixa de ajuste da linha Roxin tratada pela intersecao conservadora da regra V17. Em 09/09/2026 o banco saiu de 13 para 23 registros com o lote colhido no painel Shopee Afiliados: 7 Maxxi, 1 RS-50, 1 Ocean Tech Warmer X-5 150 W e 1 Sicce Scuba Contactless 150 W, todos com link e imagem, e o Roxin Q3 50 W (que ja era apto) ganhou link. O lote mostra onde esta o gargalo: dos 10 novos, so o Warmer X-5 tem os quatro campos que a C5 exige — e e ele que fecha a janela de 110 a 150 W que estava vazia. Os 7 Maxxi e o RS-50 entram com potencia de varejo e NADA mais; o Sicce tem a melhor ficha do lote e para em um campo so, a voltagem.",
+  "descricao": "Banco de aquecedores. Duas linhas: a importada de referencia (Eheim Jager/Thermocontrol) e a popular brasileira (Roxin HT-1300/Q3). Ampliado em 08/09/2026 para alimentar a C5 — nove registros de 25 a 300 W, com a voltagem coletada (era o campo que barrava a sugestao) e a faixa de ajuste da linha Roxin tratada pela intersecao conservadora da regra V17. Em 09/09/2026 o banco saiu de 13 para 23 registros com o lote colhido no painel Shopee Afiliados: 7 Maxxi, 1 RS-50, 1 Ocean Tech Warmer X-5 150 W e 1 Sicce Scuba Contactless 150 W, todos com link e imagem, e o Roxin Q3 50 W (que ja era apto) ganhou link. O lote mostra onde esta o gargalo: dos 10 novos, so o Warmer X-5 tem os quatro campos que a C5 exige — e e ele que fecha a janela de 110 a 150 W que estava vazia. Os 7 Maxxi e o RS-50 entram com potencia de varejo e NADA mais; o Sicce tem a melhor ficha do lote e para em um campo so, a voltagem. Em 09/09/2026, leva de FECHAMENTO DE FAIXA: o banco passou de 23 para 27 registros e ganhou o primeiro aparelho acima de 300 W. A varredura de cobertura (ferramentas/varrer-cobertura.mjs) tinha medido a C5 VAZIA de 310 a 400 L nas quatro combinacoes de delta e tomada, porque o banco parava em 300 W. Entraram Hopar J-226 400 W e 500 W (marca nova no banco, escolhida por ser a unica do levantamento com degrau de 400 W) e Ocean Tech Warmer X-5 250 W e 500 W. Nenhum dos quatro tem link de afiliado ainda.",
   "gerado_em": "2026-09-07",
   "atualizado_em": "2026-09-09",
   "bloco": 3,
@@ -1708,6 +1708,81 @@
       "observacao": "200 W para ate 200 L = 1,0 W/L declarado, exatamente a regra de bolso brasileira. Compare com o 100 W (0,67 W/L no teto) e com o 300 W (0,86 W/L no teto): a propria linha nao segue uma regra unica."
     },
     {
+      "id": "oceantech-warmer-x-5-250w",
+      "entidade": "aquecedor",
+      "marca": "Ocean Tech",
+      "linha": "Warmer X-5",
+      "modelo": "Warmer X-5 250 W",
+      "variante": "250 W",
+      "nomes_alternativos": [
+        "OceanTech X-5 250W",
+        "Termostato para aquario com aquecedor Ocean Tech Warmer X-5 250W"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "110",
+        "220"
+      ],
+      "potencia_w": 250,
+      "tipo": "quartzo",
+      "termostato": "interno-analogico",
+      "faixa_ajuste_C": {
+        "min": 20,
+        "max": 34
+      },
+      "precisao_C": 1.0,
+      "comprimento_cm": 35.0,
+      "submersivel": true,
+      "protecao_funcionamento_a_seco": null,
+      "volume_atendido_declarado_L": {
+        "min": null,
+        "max": 260
+      },
+      "imagem": null,
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "produto novo no banco, entrou em 09/09/2026 na leva de fechamento de faixa para cobrir buraco que ferramentas/varrer-cobertura.mjs mediu. Quem gera link de afiliado e a Sentinela Estrategica, no navegador do Raphael, e tem teto de calendario. Pela regra V16 o produto ja e sugerido pela adequacao tecnica; o cartao sai sem botao de loja ate o link existir.",
+        "verificado_em": "2026-09-09"
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Aquario Itaquera (varejo BR especializado), ficha do Ocean Tech Warmer X-5 250 W em 110 V: recomendado para aquarios de ate 260 litros, cerca de 35 cm de comprimento",
+          "url": "https://www.aquarioitaquera.com.br/produtos/termostato-para-aquario-com-aquecedor-ocean-tech-warmer-x-5-250w/",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "potencia_w",
+            "comprimento_cm",
+            "volume_atendido_declarado_L",
+            "disponibilidade_br"
+          ],
+          "observacao": "Lido por RESULTADO DE BUSCA (EGRESS_BLOCKED no dominio). Confira a embalagem."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Varejo BR especializado (Aquaricamp; Fazenda Submersa; Lupi Pet), ficha da LINHA Ocean Tech Warmer X-5, vendida de 25 a 500 W: temperatura ajustavel de 20 a 34 C com tolerancia menor que 1 C, resistencia de puro niquel-cromo que nao enferruja, tubo de quartzo de alta performance resistente a corrosao, totalmente submersivel com duplo isolamento, disponivel em 127 V e em 220 V",
+          "url": "https://www.aquaricamp.com.br/ocean-tech-aquecedor-com-termostato-warmer-x-5-300w.html",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "tipo",
+            "termostato",
+            "faixa_ajuste_C",
+            "precisao_C",
+            "submersivel",
+            "voltagem"
+          ],
+          "observacao": "Campos da LINHA, nao deste SKU: a faixa de ajuste, o tubo de quartzo e o duplo isolamento sao descritos igual em todas as potencias do X-5, e o registro de 150 W que ja estava no banco desde 09/09/2026 traz os mesmos numeros da mesma fonte."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "completo",
+      "observacao": "Entrou para tirar do piso a faixa de 210 a 300 L, que a varredura de 09/09/2026 mediu com apenas 2 aquecedores elegiveis nas quatro combinacoes de delta e tomada. 250 W e um degrau da linha comercial de referencia (Eheim) que o banco nao tinha em nenhuma marca."
+    },
+    {
       "id": "atman-at-300",
       "entidade": "aquecedor",
       "marca": "Atman",
@@ -2025,6 +2100,286 @@
       "verificado_em": "2026-09-08",
       "status_registro": "conflito",
       "observacao": "Fecha a serie da linha popular brasileira: 25 W para 20-35 L, 50 W para 40-60 L, 100 W para 50-150 L, 200 W para ate 200 L, 300 W para 250-350 L. Nenhuma faixa encosta na seguinte de forma continua e a razao W/L varia de 0,67 a 1,25 dentro da mesma linha."
+    },
+    {
+      "id": "hopar-j-226-400w",
+      "entidade": "aquecedor",
+      "marca": "Hopar",
+      "linha": "J-226",
+      "modelo": "J-226 400 W",
+      "variante": "400 W",
+      "nomes_alternativos": [
+        "Hopar Termostato J-226 400W",
+        "Aquecedor com Termostato Hopar J-226 400w"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "110",
+        "220"
+      ],
+      "potencia_w": 400,
+      "tipo": "quartzo",
+      "termostato": "interno-analogico",
+      "faixa_ajuste_C": {
+        "min": 18,
+        "max": 34
+      },
+      "precisao_C": null,
+      "comprimento_cm": 50.0,
+      "submersivel": true,
+      "protecao_funcionamento_a_seco": null,
+      "volume_atendido_declarado_L": {
+        "min": null,
+        "max": 500
+      },
+      "imagem": null,
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "produto novo no banco, entrou em 09/09/2026 na leva de fechamento de faixa para cobrir buraco que ferramentas/varrer-cobertura.mjs mediu. Quem gera link de afiliado e a Sentinela Estrategica, no navegador do Raphael, e tem teto de calendario. Pela regra V16 o produto ja e sugerido pela adequacao tecnica; o cartao sai sem botao de loja ate o link existir.",
+        "verificado_em": "2026-09-09"
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Varejo BR especializado (Rei dos Aquarios; Royal Pets), ficha do Hopar J-226 400 W: termostato interno com protecao anti-explosao, tubo de quartzo resistente a corrosao, vidro resistente com vedacao dupla, fixacao por ventosa, LED indicador de acionamento, ajuste de 18 a 34 C, diametro 3,5 cm, comprimento 50 cm, cabo de 1,02 m, vendido em 127 V e em 220 V, indicado para aquarios de ate 500 litros",
+          "url": "https://www.lojareidosaquarios.com.br/produto/hopar-termostato-j-226-400w-127v.html",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "potencia_w",
+            "tipo",
+            "termostato",
+            "faixa_ajuste_C",
+            "comprimento_cm",
+            "submersivel",
+            "voltagem",
+            "volume_atendido_declarado_L",
+            "disponibilidade_br"
+          ],
+          "observacao": "Lido por RESULTADO DE BUSCA: o egresso da nuvem barra os dominios do varejo BR em 09/09/2026. Confira a embalagem. A Hopar entra no banco por COBERTURA, nao por marca: e o unico fabricante do levantamento que publica um degrau de 400 W, que e exatamente a potencia que falta para o aquario de 310 a 400 L ter alguma opcao de aparelho unico."
+        }
+      ],
+      "conflitos": [
+        {
+          "campo": "volume_atendido_declarado_L",
+          "valores": [
+            {
+              "valor": {
+                "min": null,
+                "max": 500
+              },
+              "referencia": "Rei dos Aquarios e Royal Pets (varejo BR especializado): 'para aquarios de ate 500 litros'",
+              "url": "https://www.royalpets.com.br/aquecedor-com-termostato-para-aquarios-hopar-j-226-400w.html",
+              "origem": "varejo"
+            },
+            {
+              "valor": {
+                "min": null,
+                "max": 400
+              },
+              "referencia": "titulo de anuncio de marketplace: 'Termostato Aquecedor 400W para Aquarios ate 400 L Hopar J-226'",
+              "url": "https://shopee.com.br/Termostato-Aquecedor-400W-para-Aquarios-at%C3%A9-400-L-Hopar-J-226-i.307772269.11442526639",
+              "origem": "marketplace-anuncio"
+            }
+          ],
+          "razao": "o varejo especializado declara ate 500 L e o titulo do anuncio declara ate 400 L para o MESMO aparelho. Nao e empate: anuncio de marketplace e nivel 6 da escada e NAO pode sustentar campo tecnico, so existencia, nomenclatura e preco. A ficha publica o numero do varejo e registra o do anuncio para o leitor saber que existe.",
+          "tratamento": "nivel-mais-alto-vence",
+          "valor_conservador": null,
+          "derivacao": null,
+          "verificado_em": "2026-09-09"
+        }
+      ],
+      "verificado_em": "2026-09-09",
+      "status_registro": "conflito",
+      "observacao": "E O REGISTRO QUE FECHA A FAIXA MEDIDA VAZIA: ate 09/09/2026 o banco parava em 300 W e a C5 nao sugeria NENHUM aquecedor de 310 a 400 L. Com 400 W ele e o unico aparelho unico que cabe na janela de potencia dos 310 L (de 310 a 465 W) — e isso mesmo e o achado do bloco: entre o degrau de 300 W e o de 500 W o mercado brasileiro nao tem nada, entao de 310 a 333 L a resposta honesta continua sendo dois aparelhos, que tambem e o arranjo mais seguro por modo de falha do termostato."
+    },
+    {
+      "id": "hopar-j-226-500w",
+      "entidade": "aquecedor",
+      "marca": "Hopar",
+      "linha": "J-226",
+      "modelo": "J-226 500 W",
+      "variante": "500 W",
+      "nomes_alternativos": [
+        "Termostato Hopar J-226 500W",
+        "Hopar J226 500w"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "110",
+        "220"
+      ],
+      "potencia_w": 500,
+      "tipo": "quartzo",
+      "termostato": "interno-analogico",
+      "faixa_ajuste_C": {
+        "min": 17,
+        "max": 35
+      },
+      "precisao_C": null,
+      "comprimento_cm": 35.0,
+      "submersivel": true,
+      "protecao_funcionamento_a_seco": null,
+      "volume_atendido_declarado_L": {
+        "min": null,
+        "max": 500
+      },
+      "imagem": null,
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "produto novo no banco, entrou em 09/09/2026 na leva de fechamento de faixa para cobrir buraco que ferramentas/varrer-cobertura.mjs mediu. Quem gera link de afiliado e a Sentinela Estrategica, no navegador do Raphael, e tem teto de calendario. Pela regra V16 o produto ja e sugerido pela adequacao tecnica; o cartao sai sem botao de loja ate o link existir.",
+        "verificado_em": "2026-09-09"
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Aquaricamp (varejo BR especializado), ficha do Termostato Hopar J-226 500 W: indicado para aquarios de ate 500 litros, mantem a temperatura entre 17 e 35 C, comprimento aproximado de 35 cm, vidro resistente com protecao adicional e sistema de protecao contra choque termico, duas ventosas, uso na vertical ou na horizontal",
+          "url": "https://www.aquaricamp.com.br/termostato-hopar-j-226-500w.html",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "potencia_w",
+            "tipo",
+            "termostato",
+            "faixa_ajuste_C",
+            "comprimento_cm",
+            "submersivel",
+            "volume_atendido_declarado_L",
+            "disponibilidade_br"
+          ],
+          "observacao": "Lido por RESULTADO DE BUSCA (EGRESS_BLOCKED no dominio). Confira a embalagem."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Rei dos Aquarios (varejo BR especializado), pagina da marca Hopar: a linha J-226 e vendida em 127 V (110 V) e em 220 V",
+          "url": "https://www.lojareidosaquarios.com.br/marca/hopar.html",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "voltagem"
+          ],
+          "observacao": "A voltagem e declarada para a LINHA J-226, nao para este SKU especifico. Nao ha bivolt aqui: sao aparelhos diferentes por tomada, e ligar na tomada errada queima. A tela obriga a conferir a etiqueta do anuncio antes de comprar."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "completo",
+      "observacao": "Segundo aparelho acima de 300 W do banco. Repare na incoerencia que a ficha PUBLICA em vez de esconder: o varejo declara 50 cm para o J-226 de 400 W e 35 cm para o de 500 W, ou seja, o modelo mais potente da MESMA linha seria 15 cm mais curto. Nenhuma das duas leituras foi corrigida por plausibilidade — o comprimento nao entra em criterio de sugestao, entra na ficha, e quem mede a peca de verdade e quem tem o aparelho na mao."
+    },
+    {
+      "id": "oceantech-warmer-x-5-500w",
+      "entidade": "aquecedor",
+      "marca": "Ocean Tech",
+      "linha": "Warmer X-5",
+      "modelo": "Warmer X-5 500 W",
+      "variante": "500 W",
+      "nomes_alternativos": [
+        "OceanTech X-5 500W",
+        "Termostato Aquecedor X-5 500w Ocean Tech"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "110",
+        "220"
+      ],
+      "potencia_w": 500,
+      "tipo": "quartzo",
+      "termostato": "interno-analogico",
+      "faixa_ajuste_C": {
+        "min": 20,
+        "max": 34
+      },
+      "precisao_C": 1.0,
+      "comprimento_cm": 45.0,
+      "submersivel": true,
+      "protecao_funcionamento_a_seco": null,
+      "volume_atendido_declarado_L": {
+        "min": null,
+        "max": 500
+      },
+      "imagem": null,
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "produto novo no banco, entrou em 09/09/2026 na leva de fechamento de faixa para cobrir buraco que ferramentas/varrer-cobertura.mjs mediu. Quem gera link de afiliado e a Sentinela Estrategica, no navegador do Raphael, e tem teto de calendario. Pela regra V16 o produto ja e sugerido pela adequacao tecnica; o cartao sai sem botao de loja ate o link existir.",
+        "verificado_em": "2026-09-09"
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Varejo BR especializado (Aquarista Amador; Fazenda Submersa; Eco Bichos), ficha do Ocean Tech Warmer X-5 500 W: 500 W, 220 V ou 110 V, dimensoes 45 x 2,5 x 2,5 cm, cabo de 1,13 m, ajuste de 20 a 34 C com tolerancia menor que 1 C, tubo de quartzo, totalmente submersivel com duplo isolamento",
+          "url": "https://www.aquaristaamador.com.br/termostato-ocen-tech-warmer-x-5-500w",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "potencia_w",
+            "tipo",
+            "termostato",
+            "faixa_ajuste_C",
+            "precisao_C",
+            "comprimento_cm",
+            "submersivel",
+            "voltagem",
+            "disponibilidade_br"
+          ],
+          "observacao": "Lido por RESULTADO DE BUSCA (EGRESS_BLOCKED no dominio). Confira a embalagem."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Leitura agregada das fichas de varejo BR do Warmer X-5 500 W, que declaram QUATRO leituras de volume para o mesmo aparelho: 500 L (Rilcomercial, Dinho's Reef), 350 a 600 L (Mega Aquarios), litragem recomendada de 600 L e 'adequado para aquarios de 500 a 1000 L' (Aquarista Amador). A ficha publica o TETO MAIS BAIXO, 500 L, que e a unica afirmacao que as quatro leituras sustentam",
+          "url": null,
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "volume_atendido_declarado_L"
+          ],
+          "observacao": "url null porque a leitura e agregada e nem todo teto pode ser atribuido a uma pagina; as paginas nao abrem para a nuvem (EGRESS_BLOCKED). Mesmo tratamento que o registro de 150 W recebeu em 09/09/2026: as leituras ficam em conflitos[] com atribuicao e a tela publica todas."
+        }
+      ],
+      "conflitos": [
+        {
+          "campo": "volume_atendido_declarado_L",
+          "valores": [
+            {
+              "valor": {
+                "min": null,
+                "max": 500
+              },
+              "referencia": "Rilcomercial e Dinho's Reef (varejo BR): 'aquecedor termostato Ocean Tech 500w aquarios 500 litros'",
+              "url": "https://www.rilcomercial.com.br/produtos/aquecedor-termostato-ocean-tech500w-aquarios500-litros2vkatdlk/",
+              "origem": "varejo"
+            },
+            {
+              "valor": {
+                "min": 350,
+                "max": 600
+              },
+              "referencia": "Mega Aquarios (varejo BR): 'adequado para aquarios de 350 a 600 litros', com termometro externo adesivo e ventosas na embalagem",
+              "url": "https://www.megaaquarios.com.br/oceantech-termostato-aquecedor-500w-aquario-laguinho-ate-600l.html",
+              "origem": "varejo"
+            },
+            {
+              "valor": {
+                "min": 500,
+                "max": 1000
+              },
+              "referencia": "Aquarista Amador (varejo BR): litragem recomendada de 600 L no quadro de especificacoes e 'adequado para aquarios de 500 a 1000 litros' no texto da MESMA pagina",
+              "url": "https://www.aquaristaamador.com.br/termostato-ocen-tech-warmer-x-5-500w",
+              "origem": "varejo"
+            }
+          ],
+          "razao": "quatro leituras de volume para o mesmo aparelho de 500 W, de 500 a 1000 L: duas vezes de diferenca entre o menor e o maior teto. E a MESMA pagina do Aquarista Amador declara 600 L no quadro e 500 a 1000 L no texto — a fonte discorda de si mesma.",
+          "tratamento": "publicar-os-dois",
+          "valor_conservador": null,
+          "derivacao": null,
+          "verificado_em": "2026-09-09"
+        }
+      ],
+      "verificado_em": "2026-09-09",
+      "status_registro": "conflito",
+      "observacao": "Entrou com o Hopar J-226 400 W para fechar a faixa que a varredura de 09/09/2026 mediu VAZIA: de 310 a 400 L a C5 nao tinha o que sugerir, porque o banco parava em 300 W. O criterio da C5 e a janela de POTENCIA, entao a divergencia de volume declarado nao muda quem e sugerido — muda o que a ficha diz, e o que ela diz aqui e que o proprio varejo nao sabe para que tamanho de aquario este aparelho serve."
     }
   ]
 }
