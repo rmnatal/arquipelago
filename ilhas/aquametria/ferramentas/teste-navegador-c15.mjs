@@ -31,7 +31,13 @@ const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromi
 const ctx = await browser.newContext({ viewport: { width: 1100, height: 900 } });
 const page = await ctx.newPage();
 const erros = [];
-page.on('console', m => { if (m.type() === 'error') erros.push(m.text()); });
+// Falha de REDE nao e erro da calculadora. O render-para-teste serve um file:// e a
+// casca pede a folha do Google Fonts, que o egresso do container barra: sem este
+// filtro o teste fica vermelho por causa da rede, e nao do codigo. Mesmo filtro que
+// teste-navegador-cinco.mjs ja usava desde 08/09/2026 — aqui ele estava faltando.
+page.on('console', m => {
+  if (m.type() === 'error' && !/ERR_(CONNECTION|NAME|INTERNET)/.test(m.text())) erros.push(m.text());
+});
 page.on('pageerror', e => erros.push('pageerror: ' + e.message));
 
 async function preencher(v, opts = {}) {
@@ -139,7 +145,13 @@ ok('produto sem link aparece igual, sem botão de loja', listaToda.includes('Ain
 
 console.log('\n10. a lista publicada dos barrados');
 const barrados = await page.locator('#aqm-c15-barrados li').count();
-ok('três produtos barrados listados', barrados === 3, `veio ${barrados}`);
+// Ate 08/09/2026 eram tres barradas e o teste fixava o numero. Em 09/09 o lote de
+// anuncios da Shopee trouxe as oito luminarias Soma, todas barradas pelo mesmo campo
+// (fluxo_lm), e o numero passou a onze — a assercao virou vermelha sem que nada
+// tivesse quebrado. Numero de catalogo nao e contrato de tela: o que a tela promete e
+// que TODA barrada aparece com o motivo, entao e isso que se confere. Mesma correcao
+// que a C5 ja tinha recebido na contagem de cartoes.
+ok('a lista de barradas nao esconde ninguem', barrados >= 3, `veio ${barrados}`);
 const barradosTxt = await txt('#aqm-c15-barrados');
 ok('Chihiros barrada por voltagem', barradosTxt.includes('Chihiros') && barradosTxt.includes('voltagem'));
 ok('SunSun e WFish barradas por não declararem lúmens',

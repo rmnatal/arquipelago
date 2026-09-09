@@ -184,6 +184,33 @@ python3 ferramentas/conferir-protecao-funcoes.py snippets/*.php
 verificacao antes do commit. Este sai 0 sem problema e 1 com problema, nomeando
 a funcao e a linha.
 
+## Cobertura de faixa: a medida que substituiu "60 produtos"
+
+A secao 14.3 do `ARQUIPELAGO.md` diz que o tamanho do banco nao e um numero
+redondo, e sim **cobertura**: nenhuma faixa que as calculadoras conseguem
+produzir pode sair com menos de 3 produtos elegiveis. Quem mede isso e
+
+```
+php ferramentas/render-para-teste.php . aquametria_calculadora_vazao      > /tmp/c3.html
+php ferramentas/render-para-teste.php . aquametria_calculadora_aquecedor  > /tmp/c5.html
+php ferramentas/render-para-teste.php . aquametria_calculadora_midia      > /tmp/c12.html
+php ferramentas/render-para-teste.php . aquametria_calculadora_iluminacao > /tmp/c15.html
+node ferramentas/varrer-cobertura.mjs /tmp > /tmp/cobertura.md
+```
+
+Ele abre cada calculadora num Chromium de verdade e a preenche **ponto a ponto**
+ao longo da faixa de entrada declarada, em cada combinacao de condicao que a
+tela oferece, e conta os cartoes de produto que apareceram. **Nao reimplementa
+regra de selecao nenhuma**, e isso e o ponto: uma segunda copia da regra em
+Python divergiria da calculadora em silencio, que e o mesmo defeito que os
+geradores de catalogo existem para impedir.
+
+A saida e markdown e vai para `dados/cobertura-de-faixa.md`, que e **historico**:
+cada medicao vira uma secao nova, nunca sobrescreve a anterior. Faixa vazia ou
+com menos de 3 itens nao e erro de codigo — e a **lista de compras do banco**, e
+e ela que decide qual produto vale coletar em seguida. Produto que nao fecha
+nenhuma faixa descoberta nao e prioridade, por melhor que seja a comissao.
+
 ## Visibilidade em IA: onde ela mora no codigo
 
 A regra de primeira classe do projeto (08/09/2026) diz que toda pagina precisa

@@ -3270,3 +3270,167 @@ Três espécies novas ficaram em UM corpo de fonte só (`symphysodon-aequifascia
 `pethia-conchonius`, `nannostomus-beckfordi`): a busca restrita ao Seriously Fish devolveu a ficha
 mas nenhum número dela, e o número das congêneres do gênero foi **recusado** — número de outra
 espécie não é fonte, ainda que o resumo da busca o ofereça de bandeja.
+
+## 2026-09-09 (mutirão, bloco 2) — T3(a2): a C15 ganha quatro luminárias, e o buraco de lúmen é confirmado como estrutural
+
+**Bloco entregue: T3(a2), catálogo de iluminação.** Banco de produtos de 64 para **68 registros**,
+`produtos-iluminacao.json` de 16 para **20**, C15 de **5 para 9 luminárias aptas**, snippet da C15
+na **1.1.1** (só o catálogo embutido mudou; nenhuma linha de cálculo foi tocada), manifest na
+**revisão 24**. Validador de produtos: **0 erro**.
+
+### O que entrou, e por que foi a Chihiros A-Series
+
+| id | W | lm | lm/W | aquário |
+|---|---:|---:|---:|---|
+| `chihiros-a-series-a301` | 18 | 2.800 | 155,6 | 30 cm |
+| `chihiros-a-series-a361` | 21 | 3.450 | 164,3 | 36 cm |
+| `chihiros-a-series-a601` | 39 | 5.800 | 148,7 | 60 cm |
+| `chihiros-a-series-a801` | 50 | 7.200 | 144,0 | 80 cm |
+
+Não entrou por ser marca boa: entrou porque é **a única linha do catálogo que declara fluxo
+luminoso em toda a escada de tamanhos**, e fluxo é exatamente o campo que barra a C15. Os quatro
+números foram colhidos por busca atribuída ao fabricante e **reconferidos numa segunda formulação
+independente**, que devolveu os mesmos valores; a eficácia dos quatro cai entre 144 e 164 lm/W,
+uma família coerente com a A451M (130 lm/W, marinha, mais azul) e a A901 (149 lm/W) que já
+estavam no banco. Os quatro entram **sem `afiliado.url`** — quem gera link é a Sentinela
+Estratégica —, com `plataforma: null` e o motivo escrito, e ficam `parcial` por um campo só:
+`disponibilidade_br`, que só varejo brasileiro sustenta e não foi conferido para estes tamanhos.
+A A1201 (120 cm) foi tentada e **não entrou**: a busca devolveu a dimensão da peça e não devolveu
+o fluxo. Registro sem o campo que a calculadora exige não é ganho de catálogo, é ruído.
+
+### O buraco de lúmen da C15 é ESTRUTURAL, e agora está medido duas vezes
+
+As oito luminárias Soma cobrem de 20 a 130 cm, **todas com link de afiliado e voltagem fechada**,
+e continuam barradas por um campo só: `fluxo_lm`. A coleta de 09/09 já tinha registrado que nem a
+marca nem nove lojas brasileiras publicam lúmen; **esta execução reconferiu por busca
+independente e confirmou**: as fichas de varejo declaram watt, comprimento, contagem de LEDs por
+cor, espessura, peso e comprimento do fio — e nenhuma declara lúmen. O anúncio da Shopee também
+não. Junte a SunSun ADE-400c e a WFish WF-H600 e são **dez luminárias barradas pelo mesmo campo**.
+
+Isto não é falha de coleta, é um fato do mercado: **a C15 dimensiona por lm/L, e o meio do mercado
+brasileiro não publica lm.** Enquanto isso valer, ampliar o catálogo de iluminação com marca
+brasileira não aumenta a receita da C15 em nada — os produtos entram e ficam na lista de
+barrados. As saídas possíveis, nenhuma delas decidida aqui: (a) importar marca que declara fluxo,
+que foi o que este bloco fez; (b) a C15 passar a aceitar um segundo caminho de dimensionamento
+com fonte (PPFD declarado a distância declarada, que o esquema já prevê); (c) medição própria,
+que hoje não existe. **Estimar lúmen a partir do watt continua proibido** — seria inventar
+constante, e a eficácia medida no próprio banco varia de 89,6 a 164,3 lm/W, quase o dobro.
+
+### T3(b), voltagem: duas tentativas, nenhum número, e é assim que tem de ser
+
+- **Chihiros WRGB II Pro 60** (tem link de afiliado, cobre 60 a 80 cm): busca restrita ao domínio
+  do fabricante em três formulações não devolveu a tensão de entrada da fonte. `voltagem`
+  continua `null` e o produto continua barrado.
+- **Sicce Scuba Contactless 150 W** — o aquecedor da ficha mais completa do banco, e justamente o
+  que cairia na janela de 110 a 150 W que a Sentinela mediu vazia a 108 L: a busca restrita a
+  `sicce.com` devolveu a faixa de ajuste (15 a 35 °C), a linha de 50 a 400 W e o modo de economia,
+  e **não devolveu a tensão**. Continua `null`.
+
+Somados aos sete registros Maxxi (cujo anúncio declara a tensão, mas anúncio de marketplace é
+nível 6 e **nunca** sustenta campo técnico) e ao RS-50 sem marca, são **dez elétricos com
+`voltagem: null`**, cada um com o motivo no registro. Nenhum foi chutado. A regra "nunca chute 110
+nem 220" custou dez produtos neste banco, e continua certa: aquecedor ligado na tensão errada
+queima, e a Aquametria não tem como pedir desculpa depois.
+
+## 2026-09-09 (mutirão, bloco 3) — T3(c): a cobertura de faixa deixou de ser opinião e virou medida
+
+**Bloco entregue: T3(c), catálogo geral — mas com o critério novo.** O Raphael descartou a meta
+de "60 produtos" hoje; o critério passou a ser **cobertura**: nenhuma faixa que as calculadoras
+conseguem produzir pode sair com menos de 3 produtos elegíveis (seção 14.3 do `ARQUIPELAGO.md`).
+Este bloco construiu o instrumento que mede isso e publicou a primeira medição. Manifest na
+**revisão 25**.
+
+### `ferramentas/varrer-cobertura.mjs`, arquivo novo
+
+Ele **não reimplementa regra de seleção nenhuma**, e essa é a decisão que importa. Reescrever a
+seleção de produto em Python criaria uma segunda cópia da regra, que divergiria da calculadora em
+silêncio — exatamente o defeito que os geradores de catálogo existem para impedir. Em vez disso a
+calculadora **de verdade** roda num Chromium de verdade, é preenchida ponto a ponto ao longo da
+faixa de entrada declarada, em cada combinação de condição que a tela oferece, e o que se conta é
+o cartão que apareceu. 87 faixas medidas em 486 pontos.
+
+### A primeira medição, em `dados/cobertura-de-faixa.md` (arquivo histórico, nunca sobrescrito)
+
+| | faixas | vazias | com 1 ou 2 | cumprem |
+|---|---:|---:|---:|---:|
+| **total** | 87 | 18 | 28 | 41 |
+
+E o detalhe é mais duro que o total:
+
+- **A C15 não cumpre o critério em NENHUMA das 22 faixas.** O melhor resultado em toda a escada de
+  30 a 120 cm é **duas** luminárias; oito faixas saem vazias. Acima de 80 cm não há nada, em
+  nenhum nível de exigência. Não é tamanho de catálogo: são 20 luminárias e 11 barradas pelo
+  mesmo campo.
+- **A C5 fica sem nenhum aquecedor de 310 a 400 L**, nas quatro combinações de delta e tomada — o
+  banco não tem aparelho acima de 300 W. E entrega dois (um abaixo do piso) de 30 a 50 L e de 210
+  a 300 L.
+- **Descoberta lateral da C5:** trocar a tomada de 110 para 220 V **não muda uma linha sequer**.
+  Todos os aquecedores aptos declaram as duas tensões, então a barreira de voltagem hoje não
+  elimina ninguém — ela só elimina os dez registros que estão com `voltagem: null`. A barreira de
+  segurança está certa e continua; o que ela custa hoje é catálogo, não sugestão.
+- **A C3 tem um buraco na ENTRADA: de 20 a 40 L não há filtro nenhum**, nos três perfis
+  comunitários. É o aquário de começo, que é justamente por onde mais gente chega pela busca. No
+  perfil plantado o buraco vai até 170 L, porque a dupla condição corta mais fundo.
+- **A C12 cumpre em toda a faixa, mas exatamente no piso:** 3 mídias de 20 a 400 L nos três
+  perfis. Não é folga — qualquer mídia que saia do banco derruba a calculadora abaixo do critério.
+
+### A lista de compras que estes números determinam
+
+1. Luminária com fluxo declarado **acima de 80 cm** (C15 vazia em toda a faixa alta).
+2. Aquecedor **acima de 300 W** (C5 vazia de 310 a 400 L).
+3. Filtro de **baixa vazão, 150 a 400 L/h**, para 20 a 40 L (C3 vazia na entrada).
+4. Luminária com fluxo declarado de **30 a 55 cm** para exigência alta.
+5. Aquecedor de **250 W** e um segundo de **25 a 50 W**.
+6. Uma **quarta mídia biológica**, para a C12 sair do piso.
+
+Isto substitui qualquer meta de número redondo: o banco não precisa de 60 itens, precisa destes
+seis buracos fechados. Um produto que não fecha nenhuma faixa descoberta não é prioridade, por
+melhor que seja a comissão.
+
+### Um teste que estava vermelho antes deste mutirão
+
+`teste-navegador-c15.mjs` fixava em **3** o número de luminárias barradas. O lote de anúncios de
+09/09 tinha levado esse número a **11** (as oito Soma, mais SunSun, WFish e Chihiros), e a
+asserção ficou vermelha sem que nada tivesse quebrado — a contagem já era 11 **antes** de este
+bloco tocar em qualquer coisa. Número de catálogo não é contrato de tela: o que a tela promete é
+que **toda** barrada aparece com o motivo. A asserção passou a conferir isso, e o comentário no
+teste registra o porquê. É a mesma correção que a C5 já tinha recebido na contagem de cartões, e
+vale como regra: **teste que fixa tamanho de catálogo reprova a cada coleta bem-sucedida.**
+
+E um segundo vermelho, do mesmo tipo: **`teste-navegador-c15.mjs`, `-c5` e `-c12` reprovavam por
+falha de REDE**, não de código. O `render-para-teste` serve um `file://` e a casca pede a folha do
+Google Fonts, que o egresso deste container barra — o console enchia de
+`net::ERR_CONNECTION_RESET` e a asserção "nenhum erro de console" ficava vermelha. O
+`teste-navegador-cinco.mjs` já filtrava exatamente isso desde 08/09/2026
+(`!/ERR_(CONNECTION|NAME|INTERNET)/`); os três testes por calculadora estavam sem o filtro. Agora
+têm, com o comentário dizendo por quê. O sinal que importa — `pageerror`, `SyntaxError`, o defeito
+do `&&` escapado que derrubou as cinco calculadoras em 08/09 — continua inteiro: o filtro só
+descarta falha de carregamento de recurso externo.
+
+### NÃO CONCLUÍDO — o Sync continua fora de alcance, e agora são OITO revisões paradas
+
+`aquametria.com.br` devolveu **EGRESS_BLOCKED** nesta sessão, tanto na URL do Sync com `&forcar=1`
+quanto em `/wp-json/aquametria/v1/status`, testados nas duas pontas da execução. **Não foi
+possível acionar o desembarque nem conferir a revisão aplicada**, e por isso nenhum destes três
+blocos pode ser dado por "no ar" — só por "no `main`".
+
+**O repositório está na revisão 25. A última medição do site, em 08/09 às 13h03, dizia 11.** Quem
+alcança o site é a **Sentinela Técnica das 11h30, que roda no Chrome do Raphael**: basta abrir a
+URL do Sync com `&forcar=1` e, uns cinco minutos depois, conferir que
+`/wp-json/aquametria/v1/status` diz **revisão 25**. Enquanto isso não acontecer, o que mudou no ar
+foi nada — nem as calculadoras da revisão 24, nem o catálogo novo da C15.
+
+O que ESTE bloco muda no site, quando o Sync rodar: só a C15, que passa a poder sugerir quatro
+luminárias a mais. O banco de espécies e o arquivo de cobertura são `publicar: false` e não vão
+para o site por desenho — são insumo de página futura e lista de compras, não conteúdo.
+
+### Próximo passo desbloqueado
+
+**T1 — medir a indexação no Search Console**, que continua sendo o primeiro bloco da fila e
+depende do Chrome do Raphael (Site Kit no wp-admin), não da nuvem. Ele é o que autoriza ou barra a
+T4, a malha de páginas.
+
+Enquanto a T1 não roda, o que a nuvem consegue fazer sozinha, em ordem de valor, é o que a
+varredura de cobertura acabou de nomear: **fechar as seis faixas descobertas**, começando pela
+luminária acima de 80 cm com fluxo declarado e pelo aquecedor acima de 300 W. Não é mais "ampliar
+o banco": é fechar buraco medido, e agora existe o instrumento que diz quando o buraco fechou.

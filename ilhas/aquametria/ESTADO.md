@@ -2,9 +2,9 @@
 ilha: aquametria
 estado: viva
 prioridade: 2
-ultima_execucao: 2026-09-09T16:00Z
+ultima_execucao: 2026-09-09T18:30Z
 executando_desde: null
-bloco_atual: "T1"
+bloco_atual: "T3"
 bloqueada_por: null
 ---
 
@@ -375,3 +375,43 @@ Todas com id, fonte, url, data e status em `dados/constantes-calculadoras.json`.
 
 ## Recusas registradas (não usar em fórmula até ter fonte)
 Coeficiente U do vidro do aquário · porosidade e densidade do substrato (as fontes conflitam 100 %) · espessura de vidro por litragem · "regra dos 10 %" de lotação (a fonte não define a base) · PPFD por litragem · tarifa de energia · mínima por cidade · **proporção entre as camadas do cesto** (nenhuma fonte reparte o volume em porcentagens — a C12 publica a ORDEM e recusa a proporção) · **densidade aparente do carvão ativado** (sem ela, a regra BR em g/L e a declaração do fabricante em mL/L não se comparam) · **taxa de nitrificação por área de mídia** (é a constante que fecharia a C12: as dosagens são por litro de água quando o trabalho depende da amônia) · as 7 dosagens pendentes do C13 (Prime, sal grosso, banho de sal, azul de metileno, bicarbonato, amoníaco, catálogo Alcon/Labcon).
+
+
+---
+
+# MUTIRÃO DE 09/09/2026 (3ª execução do dia) — três blocos entregues no `main`
+
+Contrato: nasceu a **seção 14.9 do `ARQUIPELAGO.md`** — o alvo não é indexar, é a PRIMEIRA
+PÁGINA, com palavra-chave que vende. Toda página nasce com a consulta-alvo escrita e a
+justificativa de por que ela chega ao top 10; antes de criar, olhar a SERP e classificar quem
+ocupa as 10 primeiras. A 14.6 passou a exigir "indexou **E** apareceu" para dobrar a leva. A 14.3
+registrou que o Raphael descartou a meta de "60 produtos".
+
+- **T3(a) — banco de espécies: 25 → 36.** Página de espécie apta subiu de 21 para 24; C8 de 22
+  para 28; C5 de 23 para 33. Duas recusas documentadas: o **porte do gurami mel** (13,7 cm TL
+  atribuído à FishBase em duas buscas, implausível e contraditório com a própria ficha) e o
+  **Poecilia wingei inteiro** (sem temperatura e sem tamanho de aquário). Precedente novo: número
+  atribuído que contradiz a própria ficha não entra só porque tem dono.
+- **T3(a2) — iluminação: 16 → 20 luminárias**, C15 de 5 para 9 aptas, snippet 1.1.1. Entraram
+  Chihiros A301/A361/A601/A801, as únicas que declaram fluxo em toda a escada. **O buraco de
+  lúmen é estrutural**: 11 das 20 luminárias estão barradas por `fluxo_lm`, e o meio do mercado
+  brasileiro (as 8 Soma inclusive, todas com link) não publica lúmen.
+- **T3(b) — voltagem: nenhum número novo.** Chihiros WRGB II Pro 60 e Sicce Scuba Contactless
+  150 W tentados, nenhuma fonte declara a tensão. São **dez elétricos com `voltagem: null`**, cada
+  um com o motivo. Nada foi chutado.
+- **T3(c) — cobertura de faixa: nasceu o instrumento.** `ferramentas/varrer-cobertura.mjs` abre
+  cada calculadora num Chromium e a preenche ponto a ponto; `dados/cobertura-de-faixa.md` é a
+  série histórica. Primeira medição: **87 faixas, 18 vazias, 28 abaixo do piso de 3, 41 ok.**
+  A C15 não cumpre o critério em NENHUMA faixa; a C5 fica sem aquecedor de 310 a 400 L; a C3 não
+  tem filtro nenhum de 20 a 40 L; a C12 cumpre em toda a faixa mas exatamente no piso.
+
+**Lista de compras que substitui qualquer meta de número redondo:** (1) luminária com fluxo acima
+de 80 cm; (2) aquecedor acima de 300 W; (3) filtro de 150 a 400 L/h para 20 a 40 L; (4) luminária
+de 30 a 55 cm para exigência alta; (5) aquecedor de 250 W e outro de 25 a 50 W; (6) uma quarta
+mídia biológica.
+
+**Bloqueio que persiste:** `aquametria.com.br` devolve EGRESS_BLOCKED para a nuvem. Repositório na
+**revisão 25**, site medido pela última vez na **11**. Quem aciona o Sync é a Sentinela Técnica no
+Chrome do Raphael.
+
+**Próximo passo: T1**, medir a indexação no Search Console — depende do Chrome, não da nuvem.

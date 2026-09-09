@@ -33,7 +33,13 @@ const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromi
 const ctx = await browser.newContext({ viewport: { width: 1100, height: 900 } });
 const page = await ctx.newPage();
 const erros = [];
-page.on('console', m => { if (m.type() === 'error') erros.push(m.text()); });
+// Falha de REDE nao e erro da calculadora. O render-para-teste serve um file:// e a
+// casca pede a folha do Google Fonts, que o egresso do container barra: sem este
+// filtro o teste fica vermelho por causa da rede, e nao do codigo. Mesmo filtro que
+// teste-navegador-cinco.mjs ja usava desde 08/09/2026 — aqui ele estava faltando.
+page.on('console', m => {
+  if (m.type() === 'error' && !/ERR_(CONNECTION|NAME|INTERNET)/.test(m.text())) erros.push(m.text());
+});
 page.on('pageerror', e => erros.push('pageerror: ' + e.message));
 
 async function preencher(v, min, opts = {}) {

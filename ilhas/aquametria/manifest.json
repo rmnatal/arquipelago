@@ -4,7 +4,7 @@
  "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
  "dominio": "https://aquametria.com.br",
  "versao_manifest": 1,
- "revisao": 23,
+ "revisao": 25,
  "atualizado_em": "2026-09-09",
  "estado": "fundacao",
  "desembarque": {
@@ -95,8 +95,9 @@
    "escopo": "global",
    "ativo": true,
    "publicar": true,
-   "sha256": "cc56ba98e68a2eacfb19e76691dc5e7c1e892246055df271d70b821879bf9932",
-   "descricao": "v1.0.0 (08/09/2026). Registra o shortcode [aquametria_calculadora_iluminacao] e se anuncia no hub pelo filtro aquametria_calculadoras. Ataca o maior cluster empatado do Bloco 1 (83 consultas) e publica a divergencia que ninguem confronta: tres fontes brasileiras chamam a MESMA faixa pelo MESMO rotulo com numeros que diferem por duas vezes ('baixa' e 20 lm/L numa, 10 a 20 noutra e 15 na terceira). Entrega a faixa de lumens no volume da pessoa, as tres leituras lado a lado numa tabela com atribuicao, os quatro regimes de fotoperiodo, a faixa de Kelvin, o consumo em kWh/mes do fotoperiodo escolhido (custo em reais so com a tarifa que o visitante digita, porque tarifa nao e publicada aqui), o bloco de CO2 com os dois limites que SE SOBREPOEM, o aviso de luz alta sem CO2, o aviso de lamina acima de 45 cm e o caminho inverso. Recusa publicar PPFD (constante pendente) e explica o motivo achado a montante: o forum de suporte da propria Chihiros declara que nao existe teste de PAR oficial. Recusa converter comprimento de peca em cobertura de aquario, porque nos 5 registros que declaram os dois numeros a razao varia de 1,15 a 1,59 vez. Bloco de produto com a cobertura declarada como barreira, e a lista PUBLICADA dos barrados com o motivo — inclusive a luminaria mais cara do banco, que tem link de afiliado e nao e sugerida por falta de voltagem declarada. Le e grava o estado compartilhado por mescla. O catalogo entre CATALOGO-INICIO/FIM e BARRADOS-INICIO/FIM e gerado por ferramentas/gerar-catalogo-iluminacao.py — nao editar a mao. v1.1.0 (08/09/2026), CORRECAO GRAVE: o JS e o CSS sairam de dentro do retorno do shortcode e passaram para wp_head (estilo) e wp_footer (comportamento). Dentro do retorno do shortcode eles ainda atravessavam os filtros de texto do conteudo, que trocam & por &#038;, e o primeiro && do script matava o JavaScript inteiro com SyntaxError: o formulario nao calculava e o bloco de produto nunca aparecia. Nenhuma linha de calculo mudou."
+   "sha256": "3f4fab036bea39cccc4688d67f88499fb251a9fce89753ee1450fbc250c9414e",
+   "descricao": "v1.0.0 (08/09/2026). Registra o shortcode [aquametria_calculadora_iluminacao] e se anuncia no hub pelo filtro aquametria_calculadoras. Ataca o maior cluster empatado do Bloco 1 (83 consultas) e publica a divergencia que ninguem confronta: tres fontes brasileiras chamam a MESMA faixa pelo MESMO rotulo com numeros que diferem por duas vezes ('baixa' e 20 lm/L numa, 10 a 20 noutra e 15 na terceira). Entrega a faixa de lumens no volume da pessoa, as tres leituras lado a lado numa tabela com atribuicao, os quatro regimes de fotoperiodo, a faixa de Kelvin, o consumo em kWh/mes do fotoperiodo escolhido (custo em reais so com a tarifa que o visitante digita, porque tarifa nao e publicada aqui), o bloco de CO2 com os dois limites que SE SOBREPOEM, o aviso de luz alta sem CO2, o aviso de lamina acima de 45 cm e o caminho inverso. Recusa publicar PPFD (constante pendente) e explica o motivo achado a montante: o forum de suporte da propria Chihiros declara que nao existe teste de PAR oficial. Recusa converter comprimento de peca em cobertura de aquario, porque nos 5 registros que declaram os dois numeros a razao varia de 1,15 a 1,59 vez. Bloco de produto com a cobertura declarada como barreira, e a lista PUBLICADA dos barrados com o motivo — inclusive a luminaria mais cara do banco, que tem link de afiliado e nao e sugerida por falta de voltagem declarada. Le e grava o estado compartilhado por mescla. O catalogo entre CATALOGO-INICIO/FIM e BARRADOS-INICIO/FIM e gerado por ferramentas/gerar-catalogo-iluminacao.py — nao editar a mao. v1.1.0 (08/09/2026), CORRECAO GRAVE: o JS e o CSS sairam de dentro do retorno do shortcode e passaram para wp_head (estilo) e wp_footer (comportamento). Dentro do retorno do shortcode eles ainda atravessavam os filtros de texto do conteudo, que trocam & por &#038;, e o primeiro && do script matava o JavaScript inteiro com SyntaxError: o formulario nao calculava e o bloco de produto nunca aparecia. Nenhuma linha de calculo mudou.",
+   "versao": "1.1.1"
   }
  ],
  "conteudo": [
@@ -354,9 +355,9 @@
    "entidade": "iluminacao",
    "fonte": "ver fontes[] de cada registro: Pro-Aquarista, Aquarios do Rio, Aquarius Hobby, Green Aqua e Aquasabi (varejo)",
    "verificado_em": "2026-09-09",
-   "registros": 16,
+   "registros": 20,
    "publicar": false,
-   "sha256": "a3f44e44eb16eb75653a0d6ab687f0a7ce8fa54ce8c9e8daa389cdf67b114bdf",
+   "sha256": "c6377ce16986c77b2b23b684d935760479ca3bf333f5269f2186bdbd7ecf7084",
    "descricao": "Banco de iluminacao, ampliado em 08/09/2026 pela coleta que abriu a C15: Ista IL-401 60 e o LED 60 cm dos Aquarios do Rio ganharam voltagem (bivolt) e cobertura declarada e sairam do barrado; entrou a WFish WF-H600 WRGB, terceiro caso do padrao 'peca menor que o nome'; e ficou registrado o conflito nome-contra-ficha do IL-401, vendida como 60 cm e medindo 56. Resultado: 6 registros, 3 aptos a serem sugeridos pela C15 (1 com link) e 3 barrados — dois por nao declararem lumen e um, o mais caro do banco, por nao declarar voltagem mesmo tendo link de afiliado. A lacuna estrutural continua sendo o conteudo: o varejo brasileiro vende luminaria por centimetro de peca e omite o lumen. Em 09/09/2026 entraram 10 registros com link e imagem (Soma WRGB S-200 a S-1200 e Chihiros A901 e A451M): as 8 Soma ficaram 'parcial' por falta de lumen publicado e as 2 Chihiros sao as primeiras luminarias sugeriveis com link depois da Ista."
   },
   {
@@ -418,6 +419,14 @@
    "publicar": false,
    "sha256": "b3a1306a9bd0973d324d6558ff85e5bc0b6c8ae62106bed3fe330cffafdf031d",
    "descricao": "Banco de especies: 36 peixes do varejo brasileiro, de 2,0 cm (tetra ember) a 48,0 cm (kinguio), com porte, faixa termica, pH, dureza, cardume minimo, frente e base minimas de aquario, familia e convivencia, cada campo atribuido a uma fonte com url e data. Frentes minimas declaradas de 45 a 180 cm, em dez degraus — e a malha de pagina de volume sem repetir numero. 24 dos 36 passam no portao de pagina de especie; os 12 barrados dizem no proprio registro qual campo falta e por que nao foi estimado, e um deles (gurami mel) tem o porte RECUSADO por implausibilidade, com o motivo escrito. Existe para destravar o eixo aberto 'quantos litros para X peixes' com dado em vez da regra de bolso de 1 cm por litro."
+  },
+  {
+   "id": "cobertura-de-faixa",
+   "arquivo": "dados/cobertura-de-faixa.md",
+   "formato": "markdown",
+   "publicar": false,
+   "sha256": "295bc7389fec397b8f557e0eef0348f40d7c120d69914650009224f5cde2fa56",
+   "descricao": "Serie historica da cobertura de faixa das calculadoras, medida por ferramentas/varrer-cobertura.mjs num Chromium de verdade, ponto a ponto. E o instrumento do criterio da secao 14.3 do ARQUIPELAGO.md (nenhuma faixa produzivel com menos de 3 produtos elegiveis), que substituiu a meta de '60 produtos'. Nao vai para o site: e a lista de compras do banco."
   }
  ],
  "esquema": {
