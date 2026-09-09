@@ -3179,3 +3179,21 @@ calculadora** — começando pela C3, que é a que tem mais itens com foto e lin
   de visibilidade em IA, na ordem C3 e C5, depois C12 e C15, depois C1 e os
   artigos. A partir de agora a fila desta ilha mora em
   `ilhas/aquametria/PROMPT.md`, e as regras comuns no `ARQUIPELAGO.md` da raiz.
+
+## 2026-09-09 — Fila reordenada pela meta de trafego organico (execucao excepcional, sem bloco da fila)
+
+- Decisao do Raphael em 09/09/2026: a Aquametria so conta como completa quando
+  estiver **entrando trafego organico** — pagina indexada, aparecendo em busca e
+  recebendo visita. Nao e numero de calculadora publicada e nao e a primeira venda.
+- A fila de `ilhas/aquametria/PROMPT.md` foi reescrita por essa meta: T1 medir a
+  indexacao, T2 limpar o que atrapalha a indexacao, T3 banco de dados (especies
+  primeiro), T4 malha de paginas, T5 artigos-ancora, T6 prospeccao do widget,
+  T7 schema e visibilidade em IA, T8 vitrine de produto. C2, C7 e C8 saem da fila
+  por ora — ferramenta nova nao traz trafego enquanto as que existem nao estiverem
+  indexadas.
+- Execucao excepcional: nenhum snippet foi tocado, nada foi publicado, o Sync
+  **nao** foi acionado e nenhum arquivo da Robometria ou o `ARQUIPELAGO.md` foi
+  alterado. O cabecalho do `PROMPT.md` (identidade, endpoints, quem verifica,
+  memoria) ficou intacto.
+- **Proximo passo: bloco T1** — medir a indexacao no Search Console e gravar a
+  primeira secao de `dados/indexacao.md`.

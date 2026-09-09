@@ -4,7 +4,7 @@ estado: viva
 prioridade: 2
 ultima_execucao: 2026-09-09T16:00Z
 executando_desde: null
-bloco_atual: "4c"
+bloco_atual: "T1"
 bloqueada_por: null
 ---
 
