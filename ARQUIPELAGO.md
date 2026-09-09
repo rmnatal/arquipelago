@@ -263,6 +263,7 @@ Esta ordem vale para toda ilha. Não pule etapa para "ganhar tempo".
 Nunca persiga uma meta do tipo "60 produtos" — número redondo não é critério.
 **O critério é: nenhuma faixa que as ferramentas da ilha conseguem produzir pode sair sem pelo menos 3 produtos elegíveis.** Mede-se varrendo a faixa de entrada de cada ferramenta de ponta a ponta e contando quantos itens do banco passam em TODAS as condições declaradas (seção 7). O que falta nessa varredura é a lista de compras do banco — e o número final aparece sozinho: pode dar 40, pode dar 90.
 Produto que não fecha nenhuma faixa descoberta não é prioridade, por melhor que seja a comissão. Faixa descoberta é a única urgência de catálogo.
+**O Raphael descartou explicitamente a meta de "60 produtos" em 09/09/2026** — foi número redondo, não critério. Vale a cobertura de faixa.
 
 ### 14.4 Categorias e listagens: poucas, e cada uma é uma página de verdade
 - Listagem só existe com **3 itens ou mais** e um critério que alguém realmente busca.
@@ -280,7 +281,7 @@ Produto que não fecha nenhuma faixa descoberta não é prioridade, por melhor q
 - **JSON-LD** em toda página (seção 5).
 
 ### 14.6 A rampa, e o gatilho de parada
-Primeira leva de 5 a 10 páginas. Medir. **Só dobra se indexou.** Se a leva anterior ficou em "descoberta — não indexada", **não publique mais nenhuma página de malha** até descobrir por quê: mais páginas nesse estado pioram o problema em vez de compensá-lo.
+Primeira leva de 5 a 10 páginas. Medir. Só dobra se a leva anterior **indexou E apareceu** — com impressão registrada e posição medida. Indexar sem impressão significa que a palavra-chave estava errada; nesse caso corrija a escolha de consulta antes de aumentar o volume. Se a leva anterior ficou em "descoberta — não indexada", **não publique mais nenhuma página de malha** até descobrir por quê: mais páginas nesse estado pioram o problema em vez de compensá-lo.
 Cauda longa só nasce **depois** de a página-âncora do mesmo assunto estar indexada. Âncora primeiro, ramificação depois.
 
 ### 14.7 Sinais externos, porque domínio sem link é raramente visitado
@@ -290,3 +291,12 @@ Cauda longa só nasce **depois** de a página-âncora do mesmo assunto estar ind
 
 ### 14.8 A decisão é tomada com número, nunca com sensação
 Toda ilha mantém `dados/indexacao.md` como **série histórica** (seção 11, passo 9): cada medição é uma seção nova, nunca sobrescreve. É essa série — e não impressão de ninguém — que autoriza dobrar a leva, manter ou parar.
+
+### 14.9 O alvo não é indexar — é a PRIMEIRA PÁGINA, com palavra-chave que vende
+Raphael, 09/09/2026: *"indexação, ranqueamento, primeira página do Google — é isso que importa, com foco em palavra-chave que vai gerar venda e dinheiro no nosso bolso."*
+Indexar é o começo, não o fim: página indexada na posição 40 vale zero. Por isso toda página nasce com DOIS compromissos escritos no próprio arquivo: **a consulta principal que ela mira** e **por que ela consegue chegar às 10 primeiras**.
+**ANTES de criar a página, olhe a SERP daquela consulta e classifique quem ocupa o top 10:**
+- Fazenda de conteúdo, marketplace e fabricante com domínio forte ocupando quase tudo → **a página NÃO nasce agora.** Anote numa lista de "quando houver autoridade" e siga para a próxima consulta. Publicar ali é gastar rastreamento de domínio novo para estacionar na página 4.
+- Fórum, vídeo, blog de loja velho, ou resposta genérica que não dá número → **é alvo.** É onde a resposta paramétrica com fonte e data ganha, e é exatamente o buraco que a Bússola procura ao aprovar um nicho.
+**A prioridade é o cruzamento de duas coisas, nunca de uma só:** intenção de compra × chance real de primeira página. Volume alto sem chance é página desperdiçada; chance alta sem intenção é visita que não vira dinheiro. Consulta sem nenhuma das duas não entra na fila, por mais fácil que seja de escrever.
+**Meça posição, não só indexação.** Em `dados/indexacao.md`, cada página registra a consulta-alvo e a posição média dela.
