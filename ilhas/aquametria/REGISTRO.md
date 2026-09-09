@@ -3197,3 +3197,76 @@ calculadora** — começando pela C3, que é a que tem mais itens com foto e lin
   memoria) ficou intacto.
 - **Proximo passo: bloco T1** — medir a indexacao no Search Console e gravar a
   primeira secao de `dados/indexacao.md`.
+
+## 2026-09-09 (mutirão, bloco 1 de N) — T3(a): o banco de espécies vai a 36, e duas recusas viram conteúdo
+
+**Bloco entregue: T3(a), banco de espécies, leva 3.** 25 → **36 registros**, manifest na
+**revisão 23**. Validador `validar-especies.py`: **0 erro**, 1 aviso antigo (o espelho do guppy).
+
+### O que entrou
+
+| id | porte | temperatura | frente mínima | status |
+|---|---|---|---|---|
+| `hyphessobrycon-amandae` (tetra ember) | 2,0 cm SL | 24–28 °C | — | parcial |
+| `danio-margaritatus` (rasbora galáxia) | 2,1 cm SL | — | — | parcial |
+| `tanichthys-albonubes` (peixe-neve) | 4,0 cm TL | 18–22 °C | 60 cm | parcial |
+| `corydoras-paleatus` (coridora pimenta) | 6,6 cm SL | 18–23 °C | 61 cm | conflito |
+| `nannostomus-beckfordi` (peixe-lápis) | 6,5 cm SL | 24–26 °C | 60 cm | parcial |
+| `corydoras-sterbai` | 6,8 cm SL | 21–25 °C | 45 cm | **completo** |
+| `melanotaenia-boesemani` (arco-íris) | 9,0 cm SL | 27–30 °C | 120 cm | conflito |
+| `trichopodus-leerii` (gurami pérola) | 12,0 cm TL | 24–28 °C | 120 cm | parcial |
+| `symphysodon-aequifasciatus` (acará-disco) | 13,7 cm SL | 26–30 °C | 120 cm | parcial |
+| `pethia-conchonius` (barbo rosado) | 14,0 cm TL | 18–22 °C | 80 cm | parcial |
+| `trichogaster-chuna` (gurami mel) | **recusado** | 22–28 °C | 60 cm | parcial |
+
+Quem passa no portão de página de espécie subiu de **21 para 24**; a C8 (lotação) de 22 para 28;
+a C5 de 23 para 33. A faixa de porte agora vai de 2,0 a 48,0 cm e as frentes mínimas declaradas
+ganharam um décimo degrau (45 cm), que é o menor do banco.
+
+### As duas recusas, que são o conteúdo mais valioso desta leva
+
+**1. O porte do gurami mel foi RECUSADO por implausibilidade.** A busca restrita à FishBase
+devolveu **13,7 cm TL em duas formulações independentes** — e 13,7 cm é o mesmo número que a
+mesma busca tinha acabado de devolver para o acará-disco. O comércio brasileiro vende o gurami
+mel a 4–5 cm, e a **própria ficha se contradiz** ao recomendar aquário mínimo de 60 cm para um
+peixe que teria 13,7 cm. `porte_adulto_cm` ficou `null` com o motivo escrito no registro.
+**Precedente que este bloco fixa: número atribuído que contradiz a própria ficha não entra só
+porque tem dono.** A regra de atribuição do esquema garante que colher não é inventar; ela não
+garante que a colheita esteja certa, e é por isso que a plausibilidade continua sendo trabalho
+de quem grava.
+
+**2. O `Poecilia wingei` (guppy endler) ficou de FORA**, e o motivo foi gravado no campo novo
+`especies_recusadas[]` do banco: a busca devolveu porte, família e distribuição, mas nenhuma
+faixa de temperatura e nenhum tamanho mínimo de aquário, em três formulações. Sem temperatura o
+registro não serve nem à página de espécie nem à C5 — sobraria uma ficha que só repete o nome.
+
+E uma terceira recusa, menor: a temperatura da rasbora galáxia. Os 22–24 °C que a busca devolveu
+são a temperatura **do hábitat medida no campo**, e a fonte diz isso com essas palavras. Hábitat
+não é faixa de manutenção; publicar um como o outro seria trocar uma medida por outra.
+
+### Divergência publicada, não resolvida na média
+
+Dois conflitos novos, os dois em campo de bem-estar, os dois resolvidos pelo MAIOR (regra própria
+deste banco, oposta à do banco de produtos):
+
+- **`melanotaenia-boesemani`, frente mínima: FishBase diz 80 cm, Seriously Fish diz 120 cm.** 50%
+  de diferença, e não é arredondamento. Vale 120. São **120 cm de frente para um peixe de 9 cm** —
+  a maior exigência já registrada aqui em relação ao porte, e o exemplo mais limpo de por que
+  "1 cm de peixe por litro" não dimensiona nada. Cardume: 5 (FishBase) contra 6 (Seriously Fish) →
+  vale 6; o "de preferência mais" da fonte não é número e não foi gravado.
+- **`corydoras-paleatus`, frente mínima: 60 contra 61 cm** — este é só o arredondamento das 24
+  polegadas, e o registro diz isso em vez de esconder a diferença.
+
+### O que a coleta ensinou sobre o canal
+
+O egresso continua fechado: `fishbase.se`, `fishbase.org`, `seriouslyfish.com` e
+`en.wikipedia.org` devolveram **EGRESS_BLOCKED** de novo em 09/09/2026, e o mesmo vale para
+`aquametria.com.br`. Toda coleta desta leva saiu de **busca restrita ao domínio**, níveis 3 e 5
+da escada. O que mudou é que agora existe um caso documentado de a busca restrita devolver número
+errado com atribuição certa — e é por isso que a nota de procedência do arquivo continua dizendo
+que a leitura direta é uma coleta em aberto, não um capricho.
+
+Três espécies novas ficaram em UM corpo de fonte só (`symphysodon-aequifasciatus`,
+`pethia-conchonius`, `nannostomus-beckfordi`): a busca restrita ao Seriously Fish devolveu a ficha
+mas nenhum número dela, e o número das congêneres do gênero foi **recusado** — número de outra
+espécie não é fonte, ainda que o resumo da busca o ofereça de bandeja.

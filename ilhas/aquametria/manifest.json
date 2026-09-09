@@ -1,606 +1,606 @@
 {
-  "ilha": "aquametria",
-  "nome": "Aquametria",
-  "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
-  "dominio": "https://aquametria.com.br",
-  "versao_manifest": 1,
-  "revisao": 22,
-  "atualizado_em": "2026-09-09",
-  "estado": "fundacao",
-  "desembarque": {
-    "aprovado": true,
-    "decidido_em": "2026-09-07",
-    "observacao": "Desembarque automatico, decidido pelo Raphael em 07/09/2026: calculadora, pagina-ancora, artigo e snippet de site vao ao ar com publicar=true sem aprovacao previa. Continua exigindo aprovacao humana (publicar=false) apenas conteudo programatico em escala — dezenas de paginas de cauda longa de uma vez."
+ "ilha": "aquametria",
+ "nome": "Aquametria",
+ "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
+ "dominio": "https://aquametria.com.br",
+ "versao_manifest": 1,
+ "revisao": 23,
+ "atualizado_em": "2026-09-09",
+ "estado": "fundacao",
+ "desembarque": {
+  "aprovado": true,
+  "decidido_em": "2026-09-07",
+  "observacao": "Desembarque automatico, decidido pelo Raphael em 07/09/2026: calculadora, pagina-ancora, artigo e snippet de site vao ao ar com publicar=true sem aprovacao previa. Continua exigindo aprovacao humana (publicar=false) apenas conteudo programatico em escala — dezenas de paginas de cauda longa de uma vez."
+ },
+ "snippets": [
+  {
+   "id": "aquametria-sync",
+   "nome": "Aquametria Sync",
+   "arquivo": "snippets/aquametria-sync.php",
+   "escopo": "global",
+   "ativo": true,
+   "versao": "1.1.5",
+   "publicar": true,
+   "sha256": "09850186f9dd4d7387cd86124d2e2341be3d64402859119d947dd875872627df",
+   "descricao": "Sincronizador do site com este repositorio. Ja instalado e ativo (Code Snippets id 5, 06/09/2026). v1.1.0 (07/09/2026): compativel com Code Snippets 3.10, grava inativo e ativa em seguida, e um item quebrado nao derruba o sync. O proprio Sync se pula pelo nome, entao publicar=true e inofensivo e deixa o arquivo rastreado. v1.1.1 (07/09/2026): o conversor de Markdown descarta o front matter do arquivo, deixa a linha que so tem shortcode fora do paragrafo (div dentro de p e HTML invalido) e poe toda tabela dentro de um bloco que rola no celular. v1.1.2 (08/09/2026): o conversor entende citacao em bloco (linha com '>'), que antes saia com o '>' escapado no meio do paragrafo — a formula do protocolo do balde da C3 e a regra V16 da pagina de afiliados dependiam disso. v1.1.3 (08/09/2026): o conversor entende bloco de codigo cercado por crases triplas (a formula P = U . A . deltaT do artigo do aquecedor) e passa a converter link relativo a raiz — antes so link https virava <a>, e link relativo saia com os colchetes impressos no texto, defeito silencioso porque nao e erro de sintaxe. v1.1.4 (08/09/2026): o corte do front matter ficou tolerante — BOM no comeco do arquivo, quebra de linha antiga so com CR, espaco ou tabulacao a direita do delimitador. Nenhuma dessas variacoes aparece no editor e qualquer uma devolvia o metadado impresso no corpo da pagina. IMPORTANTE: o Sync se pula a si mesmo pelo nome, entao esta correcao NAO chega ao site por ele — quem grava e o snippet aquametria-atualizador-sync. O campo versao deste item e o que o atualizador compara com a constante AQUAMETRIA_SYNC_VERSAO que esta rodando no site. v1.1.5 (08/09/2026): o log deixou de esconder slug trocado. O WordPress renomeia post_name em silencio quando o endereco ja esta ocupado e o Sync respondia ok do mesmo jeito; agora cada pagina aplicada devolve o permalink real, o slug divergente sai com ATENCAO no log e o estado guarda slug_ok:false."
   },
-  "snippets": [
-    {
-      "id": "aquametria-sync",
-      "nome": "Aquametria Sync",
-      "arquivo": "snippets/aquametria-sync.php",
-      "escopo": "global",
-      "ativo": true,
-      "versao": "1.1.5",
-      "publicar": true,
-      "sha256": "09850186f9dd4d7387cd86124d2e2341be3d64402859119d947dd875872627df",
-      "descricao": "Sincronizador do site com este repositorio. Ja instalado e ativo (Code Snippets id 5, 06/09/2026). v1.1.0 (07/09/2026): compativel com Code Snippets 3.10, grava inativo e ativa em seguida, e um item quebrado nao derruba o sync. O proprio Sync se pula pelo nome, entao publicar=true e inofensivo e deixa o arquivo rastreado. v1.1.1 (07/09/2026): o conversor de Markdown descarta o front matter do arquivo, deixa a linha que so tem shortcode fora do paragrafo (div dentro de p e HTML invalido) e poe toda tabela dentro de um bloco que rola no celular. v1.1.2 (08/09/2026): o conversor entende citacao em bloco (linha com '>'), que antes saia com o '>' escapado no meio do paragrafo — a formula do protocolo do balde da C3 e a regra V16 da pagina de afiliados dependiam disso. v1.1.3 (08/09/2026): o conversor entende bloco de codigo cercado por crases triplas (a formula P = U . A . deltaT do artigo do aquecedor) e passa a converter link relativo a raiz — antes so link https virava <a>, e link relativo saia com os colchetes impressos no texto, defeito silencioso porque nao e erro de sintaxe. v1.1.4 (08/09/2026): o corte do front matter ficou tolerante — BOM no comeco do arquivo, quebra de linha antiga so com CR, espaco ou tabulacao a direita do delimitador. Nenhuma dessas variacoes aparece no editor e qualquer uma devolvia o metadado impresso no corpo da pagina. IMPORTANTE: o Sync se pula a si mesmo pelo nome, entao esta correcao NAO chega ao site por ele — quem grava e o snippet aquametria-atualizador-sync. O campo versao deste item e o que o atualizador compara com a constante AQUAMETRIA_SYNC_VERSAO que esta rodando no site. v1.1.5 (08/09/2026): o log deixou de esconder slug trocado. O WordPress renomeia post_name em silencio quando o endereco ja esta ocupado e o Sync respondia ok do mesmo jeito; agora cada pagina aplicada devolve o permalink real, o slug divergente sai com ATENCAO no log e o estado guarda slug_ok:false."
-    },
-    {
-      "id": "aquametria-atualizador-sync",
-      "nome": "Aquametria Sync — atualizador do Sync",
-      "arquivo": "snippets/aquametria-atualizador-sync.php",
-      "escopo": "global",
-      "ativo": true,
-      "versao": "1.0.0",
-      "publicar": true,
-      "sha256": "b0d8e7a9e92b4cb4f2ca56cb8325153ee171244a37aab41e291997565ed0a862",
-      "descricao": "Reescreve o snippet Aquametria Sync do site a partir deste repositorio. Existe porque o Sync se pula a si mesmo de proposito (compara o nome do item com o proprio nome e devolve 'pulado'), o que impede qualquer correcao no proprio Sync de chegar ao site sozinha — gargalo que em 08/09/2026 deixou o site na v1.1.0 publicando o front matter YAML dentro do corpo das paginas enquanto o repositorio ja estava na v1.1.3. Como o NOME deste snippet e diferente, o proprio Sync o instala e ativa pelo caminho que ja funciona. Roda no maximo uma vez por hora (WP-Cron) e so age quando a versao do manifest difere da que esta rodando. Antes de gravar: confere o sha256 do arquivo baixado contra o manifest, confere que o arquivo declara a versao que o manifest anuncia, faz checagem de sintaxe sem executar o codigo (token_get_all com TOKEN_PARSE) e salva o codigo atual na option aquametria_sync_backup_codigo, relendo a option para confirmar — sem backup gravado, nao prossegue. Grava pela API do Code Snippets 3.10 (Model\\Snippet, save_snippet devolve objeto), INATIVO primeiro e ativando depois, em try/catch. Depois verifica numa requisicao NOVA se /wp-json/aquametria/v1/status responde com a versao nova; se nao responder, RESTAURA o backup sozinho. Loopback indisponivel conta como inconclusivo e mantem o codigo novo, em vez de derrubar por falta de prova. Por fim apaga o sha registrado de cada item de conteudo no estado do Sync e zera a revisao, para que as paginas ja no ar sejam reaplicadas pelo conversor novo. Log em /wp-json/aquametria/v1/atualizador (GET publico). Gatilho manual: /?aquametria_atualizar_sync=TOKEN&forcar=1, com o mesmo token do Sync."
-    },
-    {
-      "id": "aquametria-casca",
-      "nome": "Aquametria Casca — identidade e estrutura do site",
-      "arquivo": "snippets/aquametria-casca.php",
-      "escopo": "global",
-      "ativo": true,
-      "publicar": true,
-      "sha256": "7cc004910126b11b18aa0107be52b2a11e4c34874a5d9320b679e38691852566",
-      "descricao": "Casca do site: carrega Chivo/IBM Plex Sans/IBM Plex Mono e injeta a paleta da Aquametria sobre o tema ativo; troca core/site-title e core/site-logo pelo logotipo em SVG (recipiente graduado) com o wordmark; troca core/navigation pelo menu Calculadoras/Metodologia/Sobre; cria as paginas inicio, calculadoras, metodologia e sobre (conteudo em shortcode do proprio snippet) e fixa inicio como pagina inicial; manda Hello world! e Sample Page para a lixeira; SUBSTITUI a template part footer do tema pelo rodape da Aquametria (tagline e nota de fontes), com rede de seguranca em wp_footer e CSS, para nao ficarem dois rodapes empilhados; e some com a tagline padrao do WordPress. Idempotente. v1.0.3 (08/09/2026): o rodape passou a linkar a pagina de divulgacao de afiliados, exigida pela C3, e o CSS ganhou estilo para citacao em bloco e para o bloco de tabela que rola. Nenhuma pagina nova nasce orfa: o link do rodape e a entrada da divulgacao. v1.1.0 (08/09/2026): o endereco de cada pagina passa a ser resolvido pelo id do repositorio (_aquametria_id) e nao por slug adivinhado, e o card do hub so vira link se a pagina existir publicada — sem pagina, fica o selo Em construcao. Corrige o defeito 2 de 08/09/2026, em que o hub publicava /calculadora-de-aquecedor/ para a C5, cuja pagina e /calculadora-de-potencia-do-aquecedor/, e o clique dava 404. v1.3.0 (09/09/2026): casca no celular e icone proprio. O menu vira sanfona abaixo de 782 px, atras de um botao com aria-expanded e aria-controls, que fecha no Escape (devolvendo o foco ao botao), no clique fora e ao alargar a janela; os tres links continuam SEMPRE no HTML servido dentro de <nav>, e quem esconde a lista e um seletor que depende de um atributo posto pelo JavaScript do rodape — sem JavaScript o menu nao some, volta a ser a fileira de links de sempre, que e o que o crawler de IA recebe. E o icone do site deixa de ser o do WordPress (remove_action do wp_site_icon) e passa a ser o recipiente graduado da marca: SVG na aba, PNG de 32 px como alternativa e PNG de 180 px para o iOS, os tres como data URI dentro do snippet, sem nada subir para a biblioteca de midia. O desenho e gerado por ferramentas/gerar-favicon.php entre os marcadores FAVICON-INICIO e FAVICON-FIM.",
-      "versao": "1.3.0"
-    },
-    {
-      "id": "aquametria-calculadora-litragem",
-      "nome": "Aquametria Calculadora de Litragem",
-      "arquivo": "snippets/aquametria-calculadora-litragem.php",
-      "escopo": "front-end",
-      "ativo": true,
-      "publicar": true,
-      "sha256": "e88c387aa48bc45a1658826c195d2b3db14d4277362b6b56e1834202b081afd1",
-      "descricao": "C1, o nucleo do lote. Registra o shortcode [aquametria_calculadora_litragem]: formulario de medidas, os tres volumes (bruto, interno e real de referencia) com o criterio de cada um, caminho inverso (litros para medida), quadro de fontes e permalink citavel. Todo o calculo e JavaScript no navegador, porque o site esta atras de cache de pagina. Grava o estado compartilhado em localStorage, chave aquametria.aquario, que as proximas calculadoras leem. NAO desconta substrato: as constantes estao pendentes e a tela declara a superestimativa e a direcao do erro. Anuncia-se no hub pelo filtro aquametria_calculadoras da casca, entao a casca nao precisa ser editada nem ter a versao bumpada. v1.0.1 (08/09/2026): o painel 'o que este resultado alimenta' agora LINKA a C3, que entrou no ar — o link de ida da C1 para a C3, de mao dupla com o que a C3 devolve. v1.0.2 (08/09/2026): guardar() passou a MESCLAR o estado compartilhado em vez de substitui-lo — voltar a C1 para corrigir uma medida zerava a vazao que a C3 tinha calculado e o clima que a C5 tinha perguntado. A secao final passou a linkar a C5, que entrou no ar. v1.1.0 (08/09/2026), CORRECAO GRAVE: o JS e o CSS sairam de dentro do retorno do shortcode e passaram para wp_head (estilo) e wp_footer (comportamento). Dentro do retorno do shortcode eles ainda atravessavam os filtros de texto do conteudo, que trocam & por &#038;, e o primeiro && do script matava o JavaScript inteiro com SyntaxError: o formulario nao calculava e o bloco de produto nunca aparecia. Nenhuma linha de calculo mudou."
-    },
-    {
-      "id": "aquametria-calculadora-vazao",
-      "nome": "Aquametria Calculadora de Vazão do Filtro",
-      "arquivo": "snippets/aquametria-calculadora-vazao.php",
-      "escopo": "front-end",
-      "ativo": true,
-      "publicar": true,
-      "sha256": "0d848a7499f1dbf1ebe83fb1aed6b52a3f0fcdb6337ee31a6edd67c814bab75f",
-      "descricao": "C3, a segunda calculadora do lote e a PRIMEIRA com bloco de produto. Registra o shortcode [aquametria_calculadora_vazao]: le o volume real que a C1 guardou em localStorage (aquametria.aquario), devolve a faixa de vazao em L/h com o criterio e a fonte de cada extremo (piso de 1,76 x/h do fabricante contra teto de 10 x/h da regra de bolso BR, ate 5,7 vezes de divergencia), o volume minimo do sump quando marcado, o caminho inverso (filtro de X L/h cobre quantos litros) e o veredito para o filtro que a pessoa ja tem. Bloco de produto: filtros do catalogo embutido cuja vazao cai dentro da faixa, ordenados por proximidade do meio dela, com o turnover que cada um entrega NAQUELE aquario, ficha com fonte e data, link sponsored/noopener/_blank quando existe e aviso de comissao obrigatorio. Sem produto que atenda, o bloco nao aparece e a tela diz por que. NAO aplica fator de perda de carga (constante pendente) nem publica turnover marinho (sem fonte). Todo o calculo e JavaScript no navegador. Anuncia-se no hub pelo filtro aquametria_calculadoras. O catalogo entre CATALOGO-INICIO e CATALOGO-FIM e gerado por ferramentas/gerar-catalogo-filtros.py — nao editar a mao. v1.0.1 (08/09/2026): passou a linkar a C5, que entrou no ar e divide o mesmo volume real. v1.1.0 (08/09/2026), CORRECAO GRAVE: o JS e o CSS sairam de dentro do retorno do shortcode e passaram para wp_head (estilo) e wp_footer (comportamento). Dentro do retorno do shortcode eles ainda atravessavam os filtros de texto do conteudo, que trocam & por &#038;, e o primeiro && do script matava o JavaScript inteiro com SyntaxError: o formulario nao calculava e o bloco de produto nunca aparecia. Nenhuma linha de calculo mudou. v1.2.0 (09/09/2026), BLOCO 4c — visibilidade em IA: a pagina passou a servir RESPOSTA no HTML, e nao so formulario. (a) bloco de resposta direta ANTES do formulario, com o numero, o criterio e a procedencia dentro da propria frase; (b) tabela de seis aquarios ja resolvidos (30, 60, 100, 150, 200 e 300 L), pre-renderizada pelo PHP no HTML servido, com a faixa comunitaria, a mira de carga media e a faixa de plantado; (c) JSON-LD no wp_head com WebApplication (applicationCategory, featureList, isAccessibleForFree, publisher) e FAQPage com 8 perguntas, cada resposta carregando numero e fonte. Conserto junto: as bandas de turnover moravam so dentro do JavaScript e agora nascem no PHP (aquametria_c3_bandas), entregues ao script como AQM_C3_BANDAS — a tabela servida e a calculadora leem a MESMA lista, entao nao podem divergir. Nenhuma formula mudou. Conferido em Chromium com JavaScript DESLIGADO por ferramentas/teste-navegador-visibilidade-ia.mjs. v1.3.0 (09/09/2026), BLOCO 4c FECHAMENTO — a tabela pre-renderizada passou a dizer QUAL produto atende cada faixa. Antes ela respondia ao leitor e nao respondia ao comprador: a recomendacao so aparecia depois de preencher o formulario inteiro e rolar ate o fim, e no celular isso e grave. Cada uma das seis linhas traz agora o filtro do banco cuja vazao cai mais perto do meio daquela faixa, com a especificacao que o fez entrar (L/h e renovacoes/h NAQUELE volume), a procedencia e a data na mesma frase, e o link de loja quando existe (rel=sponsored noopener, target=_blank), com aviso de comissao proprio junto da tabela e link para a pagina de divulgacao. Quando quem atende melhor ainda nao tem link, sai embaixo e ROTULADA a opcao da mesma faixa que tem — a ordem continua por adequacao tecnica, nunca por comissao (V16). Faixa sem nenhum produto escreve por que esta vazia, nunca sai muda. Quando o volume declarado pelo fabricante e menor que o do exemplo, a celula diz isso. O FAQPage foi de 8 para 13 perguntas: entraram seis de COMPRA ('qual filtro comprar para X litros'), cada uma respondida com o mesmo modelo e o mesmo numero que a tabela serve. Espelhos novos em PHP do que o script ja fazia: escolher() virou aquametria_c3_produtos_exemplo, dataBr() virou aquametria_c3_data_br. Nenhuma formula mudou. Conferido em Chromium com JavaScript DESLIGADO (teste-navegador-visibilidade-ia.mjs, que ganhou os casos da coluna de produto) e com JavaScript ligado (teste-navegador-cinco.mjs). v1.4.0 (09/09/2026), CORRECAO GRAVE de credibilidade vista pelo Raphael na pagina no ar: a elegibilidade do bloco de produto olhava so a VAZAO, e num aquario de 189,6 L o PRIMEIRO recomendado era o Atman HF-0600 enquanto o cartao dele escrevia que o fabricante declara o modelo para ate 150 L e nao cobre esse caso. Agora vale a DUPLA CONDICAO (regra V22 do esquema): entra nos recomendados so quem tem vazao dentro da faixa E volume do visitante dentro do volume declarado pelo fabricante; quem nao declara volume entra com a ressalva escrita; quem declara e nao cobre vai para uma secao SEPARADA, abaixo, rotulada 'Atendem a vazao, mas o fabricante nao cobre esse volume'. A ordem passou a ter tres degraus — elegibilidade dupla, adequacao tecnica, e so como DESEMPATE entre itens tecnicamente equivalentes (mesmo decimo da largura da faixa) quem tem link de loja aparece antes; comissao continua sem ser comparada em lugar nenhum e produto sem link continua aparecendo. O nome de tela passou a carregar a voltagem quando o registro declara uma so, porque o banco tem o Eheim 2217 em 127 V e em 220 V. Conferido por ferramentas/teste-navegador-c3-dupla-condicao.mjs, que executa o caso do Raphael num Chromium de verdade.",
-      "versao": "1.4.0"
-    },
-    {
-      "id": "aquametria-calculadora-aquecedor",
-      "nome": "Aquametria Calculadora de Potência do Aquecedor — C5",
-      "arquivo": "snippets/aquametria-calculadora-aquecedor.php",
-      "escopo": "global",
-      "ativo": true,
-      "publicar": true,
-      "sha256": "96b990707510abf5383950ae585c151854937a69962afc9c06249a859aed2825",
-      "descricao": "v1.0.0 (08/09/2026). Registra o shortcode [aquametria_calculadora_aquecedor] e se anuncia no hub pelo filtro aquametria_calculadoras. Pergunta a MINIMA DO COMODO onde o aquario fica, que e a entrada que nenhuma fonte brasileira pede, e calcula a faixa de potencia com o nome do autor em cada extremo: separa as regras aplicaveis das nao aplicaveis e mostra as duas listas. Com delta acima de 10 C diz com essas palavras que nenhuma fonte cobre o caso e entrega a faixa generica como piso. Com delta zero ou negativo nao devolve numero nenhum. Traz o degrau da linha comercial, o confronto com o volume declarado na caixa (o achado do bloco), o bloco de produto com DUAS barreiras de seguranca antes da adequacao (voltagem da tomada e faixa de ajuste alcancar o alvo, regra V18) e o caminho inverso. Le e grava o estado compartilhado por mescla. v1.1.0 (08/09/2026), CORRECAO GRAVE: o JS e o CSS sairam de dentro do retorno do shortcode e passaram para wp_head (estilo) e wp_footer (comportamento). Dentro do retorno do shortcode eles ainda atravessavam os filtros de texto do conteudo, que trocam & por &#038;, e o primeiro && do script matava o JavaScript inteiro com SyntaxError: o formulario nao calculava e o bloco de produto nunca aparecia. Nenhuma linha de calculo mudou. v1.2.0 (09/09/2026), BLOCO 4c — visibilidade em IA: a pagina passou a servir RESPOSTA no HTML, e nao so formulario. (a) bloco de resposta direta ANTES do formulario, dizendo o numero, o criterio e que a pergunta que decide a conta e quanto o comodo esfria, com fonte e data na propria frase; (b) tabela de seis aquarios ja resolvidos (30, 60, 100, 150, 200 e 300 L) nos DOIS cenarios de diferenca de temperatura — ate 10 graus, onde vale a ReefFlow, e acima disso, onde so sobram as regras sem condicao declarada e a faixa vira piso —, com o degrau da linha comercial de cada caso, pre-renderizada pelo PHP; (c) JSON-LD no wp_head com WebApplication e FAQPage de 8 perguntas. Conserto junto: as regras de W/L e a linha comercial moravam so dentro do JavaScript e agora nascem no PHP (aquametria_c5_regras e aquametria_c5_linha_comercial), entregues ao script como AQM_C5_REGRAS e AQM_C5_LINHA. Nenhuma formula mudou. Conferido em Chromium com JavaScript DESLIGADO por ferramentas/teste-navegador-visibilidade-ia.mjs. v1.3.0 (09/09/2026), BLOCO 4c FECHAMENTO — a tabela pre-renderizada passou a dizer QUAL aparelho atende cada faixa, pelo mesmo motivo e no mesmo formato da C3. Cada linha traz o aquecedor do banco cuja potencia cai mais perto do topo da faixa, com a VOLTAGEM que a ficha declara — ou a frase dizendo que ela nao esta confirmada, porque voltagem errada queima aparelho e aqui nao se chuta 110 nem 220 —, procedencia e data na mesma frase, e link de loja quando existe (sponsored, noopener, aba nova), com aviso de comissao proprio. Quem atende melhor sem link cede a linha de baixo, rotulada, ao primeiro da MESMA ordem que tem link; a ordem nao muda por comissao (V16). As DUAS barreiras de seguranca do formulario (voltagem da tomada e faixa de ajuste alcancar o alvo, V18) nao cabem na tabela, que nao conhece nenhum dos dois, e o texto abaixo dela diz isso com essas palavras. A linha de 300 L avisa que a faixa passa do maior degrau da linha de referencia e que ali a resposta e mais de um aparelho. O FAQPage foi de 8 para 14 perguntas, com seis de COMPRA. Espelhos novos em PHP do que o script ja fazia: escolher() virou aquametria_c5_produtos_exemplo, dataBr() virou aquametria_c5_data_br. Nenhuma formula mudou.",
-      "versao": "1.3.0"
-    },
-    {
-      "id": "aquametria-calculadora-midia",
-      "nome": "Aquametria Calculadora de Mídia Filtrante — C12",
-      "arquivo": "snippets/aquametria-calculadora-midia.php",
-      "escopo": "global",
-      "ativo": true,
-      "publicar": true,
-      "sha256": "76a52a0074c49e06d190506e4dda4826a8ab2366febbc21171fe1f6cd998e58c",
-      "descricao": "v1.0.0 (08/09/2026). Registra o shortcode [aquametria_calculadora_midia] e se anuncia no hub pelo filtro aquametria_calculadoras. Ataca o VACUO DE CONTEUDO N. 1 do Bloco 1: quanta midia biologica um aquario precisa, em mL por litro de agua. Publica QUATRO dosagens declaradas por fabricante (Seachem 1,25 e 2,64; JBL 5,00; Ocean Tech 12,50 mL/L), que discordam por dez vezes, sem escolher nenhuma; e, numa segunda tabela separada, a midia TOTAL por litro que os fabricantes de FILTRO declaram (volume de filtragem dividido por volume atendido), incluindo as duas leituras das fichas ambiguas do Atman. Entrega o numero que ninguem publica: quanto do cesto do filtro escolhido cada dosagem ocuparia, e avisa quando a camada biologica sozinha estoura. Publica a ordem das camadas e SE RECUSA a publicar a proporcao entre elas, o ranking por area de superficie e a conversao de grama em mililitro no carvao, dizendo por que em cada caso. Traz calendario de trocas com datas calculadas, TPA, gatilhos de nitrato, o aviso de nunca lavar toda a midia biologica de uma vez explicado como mecanismo, o bloco de produto com a quantidade calculada pela dosagem de CADA fabricante, e o caminho inverso. Le e grava o estado compartilhado por mescla. As duas copias do banco (midias e filtros) sao geradas por ferramentas/gerar-catalogo-midias.py. v1.1.0 (08/09/2026), CORRECAO GRAVE: o JS e o CSS sairam de dentro do retorno do shortcode e passaram para wp_head (estilo) e wp_footer (comportamento). Dentro do retorno do shortcode eles ainda atravessavam os filtros de texto do conteudo, que trocam & por &#038;, e o primeiro && do script matava o JavaScript inteiro com SyntaxError: o formulario nao calculava e o bloco de produto nunca aparecia. Nenhuma linha de calculo mudou."
-    },
-    {
-      "id": "aquametria-calculadora-iluminacao",
-      "nome": "Aquametria Calculadora de Iluminação e Fotoperíodo — C15",
-      "arquivo": "snippets/aquametria-calculadora-iluminacao.php",
-      "escopo": "global",
-      "ativo": true,
-      "publicar": true,
-      "sha256": "cc56ba98e68a2eacfb19e76691dc5e7c1e892246055df271d70b821879bf9932",
-      "descricao": "v1.0.0 (08/09/2026). Registra o shortcode [aquametria_calculadora_iluminacao] e se anuncia no hub pelo filtro aquametria_calculadoras. Ataca o maior cluster empatado do Bloco 1 (83 consultas) e publica a divergencia que ninguem confronta: tres fontes brasileiras chamam a MESMA faixa pelo MESMO rotulo com numeros que diferem por duas vezes ('baixa' e 20 lm/L numa, 10 a 20 noutra e 15 na terceira). Entrega a faixa de lumens no volume da pessoa, as tres leituras lado a lado numa tabela com atribuicao, os quatro regimes de fotoperiodo, a faixa de Kelvin, o consumo em kWh/mes do fotoperiodo escolhido (custo em reais so com a tarifa que o visitante digita, porque tarifa nao e publicada aqui), o bloco de CO2 com os dois limites que SE SOBREPOEM, o aviso de luz alta sem CO2, o aviso de lamina acima de 45 cm e o caminho inverso. Recusa publicar PPFD (constante pendente) e explica o motivo achado a montante: o forum de suporte da propria Chihiros declara que nao existe teste de PAR oficial. Recusa converter comprimento de peca em cobertura de aquario, porque nos 5 registros que declaram os dois numeros a razao varia de 1,15 a 1,59 vez. Bloco de produto com a cobertura declarada como barreira, e a lista PUBLICADA dos barrados com o motivo — inclusive a luminaria mais cara do banco, que tem link de afiliado e nao e sugerida por falta de voltagem declarada. Le e grava o estado compartilhado por mescla. O catalogo entre CATALOGO-INICIO/FIM e BARRADOS-INICIO/FIM e gerado por ferramentas/gerar-catalogo-iluminacao.py — nao editar a mao. v1.1.0 (08/09/2026), CORRECAO GRAVE: o JS e o CSS sairam de dentro do retorno do shortcode e passaram para wp_head (estilo) e wp_footer (comportamento). Dentro do retorno do shortcode eles ainda atravessavam os filtros de texto do conteudo, que trocam & por &#038;, e o primeiro && do script matava o JavaScript inteiro com SyntaxError: o formulario nao calculava e o bloco de produto nunca aparecia. Nenhuma linha de calculo mudou."
-    }
-  ],
-  "conteudo": [
-    {
-      "id": "calculadora-de-litragem",
-      "tipo": "pagina",
-      "titulo": "Calculadora de litragem: quantos litros tem o seu aquário",
-      "slug": "calculadora-de-litragem",
-      "arquivo": "conteudo/calculadora-de-litragem.md",
-      "cluster": "C1",
-      "fontes": [
-        "geometria (definicao de litro em centimetro cubico) — nao e constante de terceiro",
-        "borda-livre-padrao, 3 cm, convencao editorial da Aquametria",
-        "substrato-densidade e substrato-porosidade: PENDENTES, recusadas em formula"
-      ],
-      "verificado_em": "2026-09-08",
-      "publicar": true,
-      "sha256": "849307c2a45439d8cde675b4cf1c6030472ba623bb41ba232fe6655da0631a07",
-      "descricao": "Pagina da C1: abertura, o shortcode da calculadora e a explicacao metodologica — os tres volumes e para que serve cada um, a borda livre como convencao declarada, por que o substrato nao e descontado (conflito de 100 % na densidade, porosidade sem fonte) com a tabela de direcao do erro, o protocolo de medicao que libera o desconto, o caminho inverso e os links internos para o hub e a metodologia. Em 08/09/2026 a secao final passou a LINKAR a calculadora de vazao do filtro, que entrou no ar."
-    },
-    {
-      "id": "calculadora-de-vazao-do-filtro",
-      "tipo": "pagina",
-      "titulo": "Calculadora de vazão do filtro: quantos L/h o seu aquário pede",
-      "slug": "calculadora-de-vazao-do-filtro",
-      "arquivo": "conteudo/calculadora-de-vazao-do-filtro.md",
-      "cluster": "C3",
-      "fontes": [
-        "eheim-classic-250-2213: 440 L/h para ate 250 L, ou 1,76 renovacoes/h (fabricante-via-busca)",
-        "turnover-comunitario-br, 5 a 10 x/h — Aquarismo Paulista e AquaOnline (divergente-fontes-br)",
-        "turnover-comunitario-mybest, 4 a 5 x/h — my-best BR (divergente-fontes-br)",
-        "turnover-plantado, 3 a 5 x/h — AquaPeixes (divergente-fontes-br)",
-        "sump-proporcao-minima, 20 % do volume — AquaOnline (divergente-fontes-br)",
-        "fator de perda de carga e turnover marinho: PENDENTES, recusados em formula",
-        "fichas dos filtros sugeridos: dados/produtos-filtro.json, fonte e data por campo"
-      ],
-      "verificado_em": "2026-09-08",
-      "publicar": true,
-      "sha256": "72dec6a55b61c1c84e0270f176ee78cbad4888a8e8357d62565cb231ab2b3c2e",
-      "descricao": "Pagina da C3: a abertura poe o achado de frente (o fabricante dimensiona 1,76 x/h, a web BR pede 5 a 10), o shortcode da calculadora, por que a resposta e faixa e nao numero, o que a calculadora NAO faz (fator de perda de carga e turnover marinho, com o motivo), o protocolo do balde no lugar do fator, a coluna maxima como criterio de corte, as tres regras do bloco de produto (ordem tecnica, comissao nao ordena, ficha com fonte e data) e os links internos de mao dupla para a C1, o hub, a metodologia e a divulgacao de afiliados."
-    },
-    {
-      "id": "divulgacao-de-afiliados",
-      "tipo": "pagina",
-      "titulo": "Como a Aquametria ganha dinheiro",
-      "slug": "divulgacao-de-afiliados",
-      "arquivo": "conteudo/divulgacao-de-afiliados.md",
-      "cluster": "institucional",
-      "fontes": [
-        "regra V16 de dados/esquema-produtos.json: link de afiliado nao entra em criterio de sugestao",
-        "politica de preco como serie temporal (dados/produtos-cotacoes.json), separada do produto"
-      ],
-      "verificado_em": "2026-09-08",
-      "publicar": true,
-      "sha256": "16537bcf33ac91ff5c7a7caedb8aa53b95fdc1179846d96d05fc98a3220fc694",
-      "descricao": "Pagina institucional exigida pelo primeiro bloco de produto (C3) e pela autorregulamentacao publicitaria brasileira: declara o link de afiliado, transcreve a regra V16 na integra, explica que quem entra na lista e a ordem sao decididos so por adequacao tecnica, que produto sem link aparece igual e que sem produto adequado nao aparece nada, mostra a escada de fontes na tela, diz por que preco nao e publicado em pagina de calculadora e admite o tamanho atual do programa. Linkada do rodape do site (casca 1.0.3) e do bloco de produto da C3."
-    },
-    {
-      "id": "calculadora-de-potencia-do-aquecedor",
-      "tipo": "pagina",
-      "titulo": "Calculadora de potência do aquecedor: quantos watts, pelo frio que faz aí",
-      "slug": "calculadora-de-potencia-do-aquecedor",
-      "arquivo": "conteudo/calculadora-de-potencia-do-aquecedor.md",
-      "cluster": "C5",
-      "fontes": [
-        "wl-delta-ate-10, 1,0 a 1,5 W/L ate 10 C de delta — ReefFlow (divergente-fontes-br). UNICA fonte do corpus que amarra W/L a um delta declarado",
-        "wl-sul, ate 2,0 W/L na regiao Sul — Casa da Ada (divergente-fontes-br)",
-        "wl-generico, 1,0 W/L — sem autoria unica na web BR (divergente-fontes-br)",
-        "wl-ehow, 1,3 W/L — eHow (divergente-fontes-br)",
-        "eheim-jager-linha-comercial, 9 tamanhos de 25 a 300 W (transcrita-varejo), completada em 08/09/2026",
-        "especies-parametros-iniciais, 8 especies — Petz e Aquarismo Paulista (transcrita-varejo)",
-        "u-vidro-aquario e temperatura-minima-por-cidade: PENDENTES, recusadas em formula",
-        "fichas dos aquecedores sugeridos: dados/produtos-aquecedor.json, fonte e data por campo"
-      ],
-      "verificado_em": "2026-09-08",
-      "publicar": true,
-      "sha256": "fa5cbb9efacfb9a19380968eeb81f52ee2bb6f8e22cd78380a076ede6249abab",
-      "descricao": "Pagina da C5: a abertura poe a pergunta que falta (1 W/L para aquecer de quanto para quanto), o shortcode da calculadora, o que ela faz de diferente, a tabela das quatro constantes com a condicao que cada autor declarou, por que a caixa do aquecedor nao dimensiona (a linha Eheim inteira em 1,00 W/L e o 200 W saindo da serie), o que a calculadora NAO faz e por que (via fisica bloqueada pela u-vidro-aquario, tampa sem constante, minima por cidade pendente, e a recusa de extrapolar acima de 10 C), o que e criterio editorial declarado, as duas barreiras de seguranca do bloco de produto e a explicacao da faixa conservadora (regra V17). Linka C1, C3, o artigo-ancora pareado, metodologia e divulgacao."
-    },
-    {
-      "id": "quantos-watts-de-aquecedor-para-aquario",
-      "tipo": "artigo",
-      "titulo": "Quantos watts de aquecedor o seu aquário precisa (e por que \"1 W por litro\" erra sempre para o mesmo lado)",
-      "slug": "quantos-watts-de-aquecedor-para-aquario",
-      "arquivo": "conteudo/quantos-watts-de-aquecedor-para-aquario.md",
-      "cluster": "C5",
-      "fontes": [
-        "eheim-jager-linha-comercial: volume declarado por potencia, 9 tamanhos (transcrita-varejo, 08/09/2026)",
-        "linha Roxin HT-1300/Q3: volume declarado e faixa de ajuste em conflito entre fichas de varejo BR (dados/produtos-aquecedor.json)",
-        "wl-delta-ate-10, wl-sul, wl-generico, wl-ehow (todas divergente-fontes-br)",
-        "u-vidro-aquario: PENDENTE — bloqueia o calculo fisico, e o texto diz isso"
-      ],
-      "verificado_em": "2026-09-08",
-      "publicar": true,
-      "sha256": "db7ada66141bcc21ab8967237c04e4c1ce3f210f7a339544f550ccf73fe37e47",
-      "descricao": "Artigo-ancora pareado com a C5. Mostra de onde o '1 W por litro' realmente veio: a linha Eheim Jager inteira da 1,00 W/L no teto de seis modelos seguidos — a regra nao derivou de fisica, derivou da prateleira. Depois mostra onde a regua quebra (o 200 W a 0,50 W/L, o 30-400 L de treze vezes, o mesmo 150 W declarado para 125-150 L e para 200-300 L, e a serie Roxin que nao fecha), o caso Belem contra Curitiba com cinco vezes mais delta para a mesma resposta, o que as quatro fontes BR dizem e nao dizem, a formula P = U . A . deltaT que ainda nao podemos publicar e por que, e seis recomendacoes praticas. Linka a C5, a C1, a C3 e a metodologia."
-    },
-    {
-      "id": "calculadora-de-midia-filtrante",
-      "tipo": "pagina",
-      "titulo": "Calculadora de mídia filtrante: quantos mililitros o seu aquário pede",
-      "slug": "calculadora-de-midia-filtrante",
-      "arquivo": "conteudo/calculadora-de-midia-filtrante.md",
-      "cluster": "C12",
-      "fontes": [
-        "seachem-matrix-dosagem: 1,25 e 2,64 mL/L, duas leituras da mesma copy (fabricante-via-busca)",
-        "jbl-micromec-dosagem: 5,00 mL/L (fabricante-via-busca, 08/09/2026)",
-        "ocean-tech-bio-glass-dosagem: 12,50 mL/L, unica marca BR que publica (fabricante-via-busca, 08/09/2026)",
-        "eheim-classic-250-2213 e seachem-tidal-55-midia: midia TOTAL por litro, 12,0 e 6,0 mL/L",
-        "carvao-ativado, perlon-troca, ceramica-regeneracao, ordem-midias-canister, tpa-percentual, tpa-diferenca-termica, nitrato-limites (todas divergente-fontes-br)",
-        "proporcao entre camadas, densidade aparente do carvao e taxa de nitrificacao por area: PENDENTES, recusadas na tela"
-      ],
-      "verificado_em": "2026-09-08",
-      "publicar": true,
-      "sha256": "acfdb902e0df5b419902d38ea8643a4560fd70c8640b2494b65a1199cf195b62",
-      "descricao": "Pagina-ancora da C12, com o shortcode no corpo. Traz as duas tabelas de ancoras com atribuicao, explica o teto fisico do cesto, destrincha as fichas ambiguas do Atman (a mesma frase lida ao contrario em dois modelos irmaos, com a geometria apoiando leituras opostas), lista o que a calculadora se recusa a fazer e por que, e publica o aviso de nunca lavar toda a midia biologica de uma vez como mecanismo explicado. Linka a C1, a C3, a C5, o hub, a metodologia, a divulgacao de afiliados e o artigo pareado."
-    },
-    {
-      "id": "quanta-midia-biologica-o-aquario-precisa",
-      "tipo": "artigo",
-      "titulo": "Quanta mídia biológica o aquário precisa: quatro fabricantes, dez vezes de diferença",
-      "slug": "quanta-midia-biologica-o-aquario-precisa",
-      "arquivo": "conteudo/quanta-midia-biologica-o-aquario-precisa.md",
-      "cluster": "C12",
-      "fontes": [
-        "as quatro dosagens declaradas de midia biologica (Seachem, JBL, Ocean Tech), com area de superficie declarada de cada uma",
-        "eheim-classic-250-2213, seachem-tidal-55-midia, atman-at-3338 e atman-at-3338s: midia total declarada por fabricante de filtro",
-        "carvao-ativado contra seachem-matrixcarbon-dosagem: 15 a 30 dias contra 'varios meses'",
-        "taxa-de-nitrificacao-por-area: PENDENTE, e o texto explica que e ela que fecharia a pergunta"
-      ],
-      "verificado_em": "2026-09-08",
-      "publicar": true,
-      "sha256": "4c900e6021930033784153ffd8bf5c625be9b0315521e29095fa369d2f0f64f6",
-      "descricao": "Artigo-ancora pareado com a C12. O eixo e o PARADOXO DA AREA: area declarada vezes dosagem declarada da a area entregue por litro de agua, e ela vai de 0,88 a 18,8 m2 entre tres marcas - 21 vezes -, com a marca que declara MAIS area pedindo DEZ VEZES mais midia, ou seja, a relacao inversa da esperada. Depois mostra a Seachem discordando de si mesma como marca de midia e como marca de filtro, as fichas ambiguas do Atman, o caso do carvao (a regra BR manda trocar de 4 a 10 vezes mais que o fabricante do carvao) e a critica de fundo: todas as dosagens sao por litro de AGUA quando o trabalho depende da amonia, ou seja, da carga de peixes, que nenhuma declaracao pergunta. Fecha com seis recomendacoes praticas e as tres coletas que faltam. Linka a C12, a C1, a C3, a C5 e a metodologia."
-    },
-    {
-      "id": "calculadora-de-iluminacao",
-      "tipo": "pagina",
-      "titulo": "Calculadora de iluminação e fotoperíodo: quantos lúmens o seu aquário pede",
-      "slug": "calculadora-de-iluminacao",
-      "arquivo": "conteudo/calculadora-de-iluminacao.md",
-      "cluster": "C15",
-      "fontes": [
-        "iluminacao-lumen-por-litro: tres leituras BR do corpus (peixeseaquarismo 20/30-40/60, aquarioturbinado 10-20/20-40/>40, aquariosplantados 15/30/60) — divergente-fontes-br",
-        "fotoperiodo: low tech 6-8 h, high tech 8-10 h, combate a alga 5-6 h, ciclagem 4-6 h (divergente-fontes-br)",
-        "temperatura-de-cor, 6500 a 8000 K (divergente-fontes-br)",
-        "co2-concentracao, 15-35 mg/L uteis e risco acima de 30-35 — CO2Art (divergente-fontes-br), com os dois limites se sobrepondo",
-        "cobertura-luminaria-declarada: convencao editorial de 08/09/2026, derivada dos 5 registros que declaram peca E cobertura",
-        "ppfd-por-litragem: PENDENTE, recusada em formula — forum de suporte da Chihiros declara que nao ha teste de PAR oficial",
-        "fichas das luminarias sugeridas: dados/produtos-iluminacao.json, fonte e data por campo"
-      ],
-      "verificado_em": "2026-09-08",
-      "publicar": true,
-      "sha256": "8fa1764885ec08520b69f4ed7a7411e86df896e870b048d99faa8d88d5a1920d",
-      "descricao": "Pagina-ancora da C15, com o shortcode no corpo. Poe a divergencia na abertura (o mesmo rotulo com o dobro do numero em tres fontes), publica a tabela das tres leituras, explica as tres coisas que a calculadora faz de diferente (divergencia sem media, cobertura de comprimento conferida, custo da luz acesa) e as quatro que ela se recusa a fazer, com o motivo de cada uma: PPFD, conversao de peca em cobertura (com a tabela de 5 produtos que mostra a razao variando de 1,15 a 1,59 vez), numero para marinho e preco. Traz as tres regras do bloco de produto e o caso que mostra o custo delas — a luminaria mais cara do banco tem link e nao e sugerida. Fecha com fotoperiodo que nao compensa lumen, a sobreposicao do CO2 e a cegueira da regua para profundidade. Linka C1, C3, C5, C12, o artigo pareado, metodologia e divulgacao."
-    },
-    {
-      "id": "quantos-lumens-por-litro-aquario-plantado",
-      "tipo": "artigo",
-      "titulo": "Quantos lúmens por litro o aquário plantado precisa (e por que o lúmen é a unidade errada para medir luz de planta)",
-      "slug": "quantos-lumens-por-litro-aquario-plantado",
-      "arquivo": "conteudo/quantos-lumens-por-litro-aquario-plantado.md",
-      "cluster": "C15",
-      "fontes": [
-        "iluminacao-lumen-por-litro: as tres leituras BR, com a tabela completa (divergente-fontes-br)",
-        "definicao fotometrica do lumen (ponderacao pela visao humana, pico no verde) contra as faixas de absorcao da clorofila (azul e vermelho): conhecimento de definicao, declarado como tal no texto",
-        "eficacia calculada dos registros do banco: Chihiros WRGB II Pro 60 com 89,6 lm/W contra Ista IL-401 60 com 106 lm/W — indicio, nao demonstracao, e o texto diz isso",
-        "ppfd-por-litragem PENDENTE: forum de suporte da Chihiros, 'nao existe teste de PAR oficial' (08/09/2026)",
-        "nome comercial contra ficha de dimensoes: Ista IL-401 vendida como 60 cm mede 56 (conflito registrado em dados/produtos-iluminacao.json)",
-        "fatores de conversao de lux para PPFD: NAO publicados, porque dependem do espectro e nao ha fonte"
-      ],
-      "verificado_em": "2026-09-08",
-      "publicar": true,
-      "sha256": "1b5bfe9232a83e2deee28d33758051c1128eaf96f5a63a979c3eeed5c6a3c951",
-      "descricao": "Artigo-ancora pareado com a C15. O eixo e a UNIDADE ERRADA: o lumen e ponderado pela sensibilidade do olho humano, que pesa o verde e desconta azul e vermelho — exatamente as duas faixas em que a clorofila trabalha —, de modo que a regua de lm/L penaliza justamente a luminaria projetada para planta; os dois registros do banco (89,6 contra 106 lm/W) sao apresentados como indicio, nao prova. Depois mostra onde a trilha do PPFD termina (o proprio fabricante nao publica teste de PAR), o que o varejo brasileiro declara no lugar (centimetros: 2 de 6 registros sem lumen, 1 sem voltagem, 6 de 6 com centimetro), a armadilha do nome que nao e o tamanho da peca, onde as tres fontes CONCORDAM, por que mais horas nao compensam menos lumens, a cegueira da regua para profundidade, seis recomendacoes praticas e as tres coletas que faltam. Linka a C15, a C1, a C12, a C3 e a metodologia."
-    }
-  ],
-  "dados": [
-    {
-      "id": "especificacao-calculadoras",
-      "arquivo": "dados/especificacao-calculadoras.md",
-      "formato": "md",
-      "entidade": "constante",
-      "fonte": "Bloco 2 da Fundacao: derivada dos 15 clusters do Bloco 1 (corpus de 04/09/2026) mais verificacoes de 07/09/2026 em Cebrace/Saint-Gobain (densidade do vidro), ABNT NBR 6120:2019 via fontes secundarias (carga de piso), Eheim classic 250 (2213) e Eheim Jager (dimensionamento declarado) e Seachem Matrix (volume de midia). Cada constante citada tem id em dados/constantes-calculadoras.json",
-      "verificado_em": "2026-09-07",
-      "registros": 8,
-      "publicar": false,
-      "sha256": "993415a5cc20b651a79f571e48606fa2f2da8c5e80462402e064853791be2b89",
-      "descricao": "Especificacao das 8 calculadoras (C1 litragem, C2 peso e carga, C3 vazao, C5 aquecedor por delta, C7 consumo, C8 lotacao, C12 midia, C15 iluminacao): entradas, formulas, faixas de saida com criterio e fonte em cada extremo, produtos sugeridos, contrato de resposta e estado de aquario compartilhado. Documenta tambem o que fica retido por falta de fonte."
-    },
-    {
-      "id": "constantes-calculadoras",
-      "arquivo": "dados/constantes-calculadoras.json",
-      "formato": "json",
-      "entidade": "constante",
-      "fonte": "ver o campo fonte/url de cada constante no proprio arquivo; nenhuma entra sem fonte e data",
-      "verificado_em": "2026-09-08",
-      "registros": 51,
-      "publicar": false,
-      "sha256": "db3e09745da37494ee2a0ddcc018fb586ef4e9d98e646ca65e792b031dc6163e",
-      "descricao": "Registro normalizado de toda constante usada ou recusada pelas calculadoras, com fonte, url, data e status (fisica, verificada-fabricante, fabricante-via-busca, norma-via-secundaria, transcrita-varejo, divergente-fontes-br, convencao-editorial, pendente). Constante com status pendente e proibida em formula publicada. Em 08/09/2026 a constante eheim-jager-linha-comercial foi completada: faltavam as potencias de 125 W e 250 W (os dois dos 9 tamanhos que a coleta anterior nao achara) e o volume declarado potencia a potencia, que e o que revela o 1,00 W/L cravado na serie. Em 08/09/2026 a coleta da C15 acrescentou a convencao editorial 'cobertura-luminaria-declarada', com a derivacao a partir dos 5 registros do banco que declaram peca e cobertura, e datou de novo 'ppfd-por-litragem', que continua pendente mas agora tem a fonte que explica a ausencia: o forum de suporte da Chihiros declarando que nao existe teste de PAR oficial da linha WRGB II Pro."
-    },
-    {
-      "id": "modelo-banco-produtos",
-      "arquivo": "dados/modelo-banco-produtos.md",
-      "formato": "md",
-      "entidade": "esquema",
-      "fonte": "Bloco 3 da Fundacao: modelo derivado dos campos que a especificacao das calculadoras (Bloco 2) exige de cada produto, testado contra 15 registros de semente colhidos em fabricante (Eheim, Seachem/Sicce, SunSun) e em varejo BR especializado (Aquaricamp, AquaSN, Mega Aquarios, Petlove, Pro-Aquarista, Aquarios do Rio, Aquario Projetado, Aquarius Hobby) em 07/09/2026",
-      "verificado_em": "2026-09-07",
-      "registros": 5,
-      "publicar": false,
-      "sha256": "38c0d873c6f4b039e9b988c144c5af67bf09075d125423db991c4b08536c9ac2",
-      "descricao": "Modelo do banco de produtos: entidades filtro, aquecedor, iluminacao, midia e cotacao, com campos, unidades, obrigatoriedade, a escada de 6 niveis de fonte, o tratamento de conflito, a politica de preco como serie temporal, as regras V1 a V14 e os 6 achados que a semente de 15 produtos revelou."
-    },
-    {
-      "id": "esquema-produtos",
-      "arquivo": "dados/esquema-produtos.json",
-      "formato": "json",
-      "entidade": "esquema",
-      "fonte": "derivado de dados/especificacao-calculadoras.md; a origem esperada de cada campo esta no proprio esquema",
-      "verificado_em": "2026-09-09",
-      "registros": 5,
-      "publicar": false,
-      "sha256": "feb5b0f5988f825b8b583e0fd675e9c151a187b19032468d627886f80f353917",
-      "descricao": "Contrato formal do banco de produtos: campos, tipos, unidades, vocabularios controlados, origem esperada por campo, campos derivados (nunca gravados), minimo_para_sugerir por calculadora e as 14 regras de validacao. E o arquivo que ferramentas/validar-produtos.py executa. Versao 2 (07/09/2026): documenta o campo afiliado dos produtos e a regra V15. Versao 3 (08/09/2026): coluna_maxima_m passou a ser obrigatoria so para canister e sump (hang-on e interno nao tem recalque a vencer, e ganharam o campo coluna_maxima_nao_se_aplica); a regra V10 de plausibilidade de eficiencia ficou restrita a canister e sump; abriu o campo imagem, ainda null em todo o banco; e entrou a regra V16, que proibe link de afiliado de ordenar ou filtrar sugestao de calculadora. v3 (08/09/2026): tratamento de conflito 'intersecao-conservadora' com valor_conservador e derivacao (regra V17), regra V18 (aquecedor sugerido tem de alcancar a temperatura-alvo) e minimo_para_sugerir da C5 aceitando 'conflito:faixa_ajuste_C'. Versao 4 (08/09/2026): a pendencia_de_criterio da entidade iluminacao foi RESOLVIDA pelo caminho conservador — o comprimento da peca nao vira cobertura de aquario, e o minimo_para_sugerir da c15-iluminacao passou a exigir comprimento_aquario_cm declarado. Em 09/09/2026 subiu para a versao 5 do esquema: o campo imagem deixou de ser placeholder e passou a ter subcampos, vocabulario de fonte e regras de tela (V19), e o V20 passou a CONTAR os produtos com link e sem foto. Versao 6 do esquema (09/09/2026): o campo imagem ganhou verificado_em e motivo_sem_verificacao. Motivo escrito por extenso porque quase se perdeu dado bom por causa dele: a sessao da nuvem NAO alcanca down-bs-br.img.susercontent.com (o egresso barra todo dominio de loja), e nao conseguir BUSCAR um arquivo nao e evidencia de que a URL esteja errada. As 21 URLs foram colhidas do painel de afiliados da Shopee, no navegador do Raphael, em 09/09/2026. Quem confere se a foto carrega e a Sentinela Tecnica, que roda no Chrome. A regra V21 do validador passa a exigir que imagem sem verificado_em diga por que, em vez de a imagem ser anulada."
-    },
-    {
-      "id": "produtos-filtro",
-      "arquivo": "dados/produtos-filtro.json",
-      "formato": "json",
-      "entidade": "filtro",
-      "fonte": "ver fontes[] de cada registro: Eheim e SunSun (fabricante-via-busca), Seachem/Sicce (manual via busca, PDF bloqueado pelo egresso), Aquaricamp, AquaSN, Pet Hobby, Pro-Aquarista, Fazenda Submersa, AquaMaeda, AquaBetta, Franco Aquarismo e Aqua Mais (varejo BR), Wiltec (varejo europeu, so a altura de coluna do HW-702)",
-      "verificado_em": "2026-09-09",
-      "registros": 19,
-      "publicar": false,
-      "sha256": "9bc51e548bb419ebeb5017d7e286c76ff83c84ef9a926888a058e0f26f0d9a2c",
-      "descricao": "Semente de filtros: Eheim classic 250 (2213), SunSun HW-303B, Atman AT-3338, Atman AT-3338S e Seachem Tidal 55. Turnover implicito declarado pelos proprios fabricantes vai de 1,76 a 10,0 renovacoes/h. Em 08/09/2026 os dois filtros com link de afiliado sairam do barrado: o Eheim 2213 ganhou voltagem 110 V (varejo BR) e o Seachem Tidal 55 ganhou as duas voltagens, teve a coluna maxima declarada como nao aplicavel (hang-on) e saiu de 'revalidar' para 'completo'. A C3 sugere 4 dos 5 filtros; o SunSun HW-303B segue barrado por coluna maxima. Em 09/09/2026 entrou o lote colhido a mao no painel da Shopee: 8 filtros novos com link e imagem (Ocean Tech CT-1000-3, SunSun HW-702A, SunSun HW-702B 220 V, Maxxi Pro MP-600, SunSun XBL-600, Aquaverso APK-600 e o Eheim classic 600 (2217) em 127 V e em 220 V, registros separados porque voltagem e chave de compatibilidade), mais a imagem do Eheim classic 250 e do Seachem Tidal 55. Dos 8, tres fecham o minimo da C3 e ja sao sugeridos COM link e foto (HW-702B 220 V e as duas Eheim 2217); os outros cinco ficaram 'parcial' e esperam UM ou DOIS campos com fonte de fabricante ou varejo — voltagem em quatro deles, e vazao no MP-600 e no APK-600, que a busca nao achou em fonte nenhuma acima de anuncio. Numero do anuncio NAO virou dado tecnico em nenhum caso."
-    },
-    {
-      "id": "produtos-aquecedor",
-      "arquivo": "dados/produtos-aquecedor.json",
-      "formato": "json",
-      "entidade": "aquecedor",
-      "fonte": "ver fontes[] de cada registro: Eheim (fabricante-via-busca); Mega Aquarios, RS Discus e Petlove (varejo BR)",
-      "verificado_em": "2026-09-09",
-      "registros": 23,
-      "publicar": false,
-      "sha256": "cbc81a122b981f7cd0c2e77ae6059d1b4b07690b287456f49cd16169f5b1072d",
-      "descricao": "Banco de aquecedores, ampliado em 08/09/2026 de 4 para 9 registros para alimentar a C5: linha Eheim Jager (50, 100, 150 e 200 W) e linha Roxin HT-1300/Q3 (25, 50, 100, 200 e 300 W). A coleta desta data resolveu o campo que barrava o banco inteiro — voltagem, agora ['110','220'] nas duas linhas com fonte de varejo BR — e tratou a faixa de ajuste da linha Roxin, em conflito varejo-contra-varejo, pela intersecao conservadora de 22 a 32 C (regra V17). Tres conflitos ficam publicados em vez de escondidos: o volume do Jager 200 W (fabricante 30-400 L contra varejo 300-400 L), o do Jager 150 W (125-150 L contra 200-300 L, os dois varejo) e a faixa de ajuste da linha Roxin. Resultado: 9 de 9 aptos a serem sugeridos pela C5, 3 com link de afiliado. Em 09/09/2026 entraram 10 registros com link e imagem (7 Maxxi, RS-50, Ocean Tech Warmer X-5 150 W e Sicce Scuba Contactless 150 W) e o Roxin Q3 50 W ganhou link. O Warmer X-5 e o registro que fecha a janela de 110 a 150 W."
-    },
-    {
-      "id": "produtos-iluminacao",
-      "arquivo": "dados/produtos-iluminacao.json",
-      "formato": "json",
-      "entidade": "iluminacao",
-      "fonte": "ver fontes[] de cada registro: Pro-Aquarista, Aquarios do Rio, Aquarius Hobby, Green Aqua e Aquasabi (varejo)",
-      "verificado_em": "2026-09-09",
-      "registros": 16,
-      "publicar": false,
-      "sha256": "a3f44e44eb16eb75653a0d6ab687f0a7ce8fa54ce8c9e8daa389cdf67b114bdf",
-      "descricao": "Banco de iluminacao, ampliado em 08/09/2026 pela coleta que abriu a C15: Ista IL-401 60 e o LED 60 cm dos Aquarios do Rio ganharam voltagem (bivolt) e cobertura declarada e sairam do barrado; entrou a WFish WF-H600 WRGB, terceiro caso do padrao 'peca menor que o nome'; e ficou registrado o conflito nome-contra-ficha do IL-401, vendida como 60 cm e medindo 56. Resultado: 6 registros, 3 aptos a serem sugeridos pela C15 (1 com link) e 3 barrados — dois por nao declararem lumen e um, o mais caro do banco, por nao declarar voltagem mesmo tendo link de afiliado. A lacuna estrutural continua sendo o conteudo: o varejo brasileiro vende luminaria por centimetro de peca e omite o lumen. Em 09/09/2026 entraram 10 registros com link e imagem (Soma WRGB S-200 a S-1200 e Chihiros A901 e A451M): as 8 Soma ficaram 'parcial' por falta de lumen publicado e as 2 Chihiros sao as primeiras luminarias sugeriveis com link depois da Ista."
-    },
-    {
-      "id": "produtos-midia",
-      "arquivo": "dados/produtos-midia.json",
-      "formato": "json",
-      "entidade": "midia",
-      "fonte": "ver fontes[] de cada registro: Seachem e Eheim (fabricante-via-busca; seachem.com bloqueado pelo egresso)",
-      "verificado_em": "2026-09-09",
-      "registros": 6,
-      "publicar": false,
-      "sha256": "5aaefcfd9682ffdc6936ff91da8345e84162ccbad7e2878b562e7b239d67cdf7",
-      "descricao": "Semente de midia filtrante: Seachem Matrix 1 L e Eheim SUBSTRAT pro 1 L. Guarda o conflito de dosagem do proprio Seachem (1,25 x 2,6 mL de midia por litro de agua) e as duas areas superficiais declaradas sem metodo publicado (>700 e ~450 m2/L). Em 09/09/2026 o Seachem Matrix 1 L ganhou imagem do anuncio da Shopee; o Eheim SUBSTRAT pro segue com link e sem foto."
-    },
-    {
-      "id": "produtos-cotacoes",
-      "arquivo": "dados/produtos-cotacoes.json",
-      "formato": "json",
-      "entidade": "cotacao",
-      "fonte": "painel Shopee Afiliados, lido pelo operador em 07/09/2026 ao gerar os links curtos (campo origem_leitura em cada registro)",
-      "verificado_em": "2026-09-09",
-      "registros": 39,
-      "publicar": false,
-      "sha256": "8fae13f93b93c46655e89607c6445b1619dfa9dea75804e9b5795a3adc6fd62a",
-      "descricao": "Precos observados, por produto, por loja e por data. Primeira leva em 07/09/2026: 10 cotacoes da Shopee vindas do painel de afiliados, cada uma com loja, data, condicao, disponibilidade, titulo do anuncio e link. Preco NAO e campo de produto e nunca entra em criterio tecnico de sugestao; na tela sai sempre com a data ao lado e o aviso de que o valor muda na loja. Em 09/09/2026 entrou a segunda leva: 21 cotacoes do painel Shopee Afiliados, na mesma passada dos 21 links e das 21 imagens. Em 09/09/2026, ainda, entrou a terceira leva: 8 cotacoes do lote de filtros colhido a mao no painel as 11h40, de R$ 249,90 (SunSun XBL-600) a R$ 2.700,76 (Eheim classic 600 nas duas voltagens)."
-    },
-    {
-      "id": "afiliados-sem-produto",
-      "arquivo": "dados/afiliados-sem-produto.json",
-      "formato": "json",
-      "entidade": "afiliado",
-      "fonte": "painel Shopee Afiliados, 07/09/2026",
-      "verificado_em": "2026-09-07",
-      "registros": 1,
-      "publicar": false,
-      "sha256": "ef128d1a02b2258c051c05dc71f1d716f4622a39d6a1d330015df12f2146047c",
-      "descricao": "Links de afiliado ja gerados que ainda NAO tem registro no banco de produtos, com o motivo e o que desbloqueia cada um. Ficam fora do banco de proposito: link sem ficha tecnica verificada nao pode ser sugerido por calculadora."
-    },
-    {
-      "id": "esquema-especies",
-      "arquivo": "dados/esquema-especies.json",
-      "formato": "json",
-      "entidade": "especie",
-      "fonte": "contrato proprio da ilha; herda a forma de dados/esquema-produtos.json",
-      "verificado_em": "2026-09-09",
-      "registros": 0,
-      "publicar": false,
-      "sha256": "deab5277b4d83e9876d47bef5c844323e1100958f43905130e06b43fa45aa983",
-      "descricao": "Contrato formal do banco de especies (versao 2): campos, unidades, vocabulario controlado, a escada de 6 niveis de fonte para especie (nao existe fabricante de peixe: existem base cientifica e compendio de aquarismo), a tabela dominio_por_campo — que diz qual escada manda em qual campo, porque FishBase e melhor em biologia e o compendio e melhor em manutencao — e as regras E1 a E15. Tres decisoes valem para sempre: em conflito de campo de BEM-ESTAR o conservador e o MAIOR (o oposto do banco de produtos), volume minimo em litro nunca se grava porque e derivado da base com a altura do usuario, e espelho nao confere espelho (fishbase.se e fishbase.org sao uma fonte so, regra E15)."
-    },
-    {
-      "id": "especies-agua-doce",
-      "arquivo": "dados/especies-agua-doce.json",
-      "formato": "json",
-      "entidade": "especie",
-      "fonte": "ver fontes[] de cada registro: FishBase (base-cientifica-via-busca) e Seriously Fish (compendio-via-busca), os dois colhidos por busca restrita ao dominio porque o egresso bloqueia leitura direta",
-      "verificado_em": "2026-09-09",
-      "registros": 25,
-      "publicar": false,
-      "sha256": "d50c18b948ed168783958a13c260db8bbcda565bf639c91b9d20ab80b087698f",
-      "descricao": "Banco de especies: 25 peixes do varejo brasileiro, de 2,2 cm (neon) a 45,7 cm (oscar), com porte, faixa termica, pH, dureza, cardume minimo, frente e base minimas de aquario, familia e convivencia, cada campo atribuido a uma fonte com url e data. Frentes minimas declaradas de 45 a 180 cm, em nove degraus — e a malha de pagina de volume sem repetir numero. 21 dos 25 passam no portao de pagina de especie; os quatro barrados dizem no proprio registro qual campo falta e por que nao foi estimado. Existe para destravar o eixo aberto 'quantos litros para X peixes' com dado em vez da regra de bolso de 1 cm por litro."
-    }
-  ],
-  "esquema": {
-    "snippets": {
-      "id": "identificador estavel, kebab-case, nunca numerado",
-      "nome": "nome descritivo do snippet no Code Snippets",
-      "arquivo": "caminho relativo a esta pasta, em snippets/",
-      "escopo": "global | front-end | admin",
-      "ativo": "true se deve ficar ativo no site",
-      "publicar": "true para o Sync aplicar no site. Desde 07/09/2026 o desembarque de snippet de site e automatico",
-      "sha256": "hash do arquivo, conferido pelo Sync apos gravar",
-      "descricao": "o que o snippet faz",
-      "versao": "versao declarada no cabecalho do arquivo. Obrigatoria no item aquametria-sync: e o que o snippet atualizador compara com a versao que esta rodando no site"
-    },
-    "conteudo": {
-      "id": "identificador estavel, kebab-case",
-      "tipo": "artigo | pagina | pagina-programatica | widget",
-      "titulo": "titulo publicado",
-      "slug": "slug da URL",
-      "arquivo": "caminho relativo a esta pasta, em conteudo/",
-      "cluster": "cluster do corpus de buscas a que pertence",
-      "fontes": "lista de fontes tecnicas citadas no texto",
-      "verificado_em": "data da ultima conferencia dos dados",
-      "publicar": "true para o Sync aplicar no site. Desde 07/09/2026 calculadora, pagina-ancora e artigo saem com true; pagina-programatica em escala continua false esperando o Raphael"
-    },
-    "dados": {
-      "id": "identificador estavel, kebab-case",
-      "arquivo": "caminho relativo a esta pasta, em dados/",
-      "formato": "json | csv | md",
-      "entidade": "filtro | aquecedor | iluminacao | midia | especie | constante | cotacao | esquema",
-      "fonte": "de onde vem cada campo (manual do fabricante, norma, etc.)",
-      "verificado_em": "data da ultima conferencia",
-      "registros": "quantidade de linhas",
-      "publicar": "false ate o Raphael aprovar o desembarque",
-      "sha256": "hash do arquivo, conferido pelo Sync apos gravar",
-      "descricao": "o que o arquivo contem"
-    },
-    "ferramentas": {
-      "id": "identificador estavel, kebab-case",
-      "arquivo": "caminho relativo a esta pasta, em ferramentas/",
-      "descricao": "o que a ferramenta faz e quando roda. Ferramenta NUNCA e publicada no site."
-    }
+  {
+   "id": "aquametria-atualizador-sync",
+   "nome": "Aquametria Sync — atualizador do Sync",
+   "arquivo": "snippets/aquametria-atualizador-sync.php",
+   "escopo": "global",
+   "ativo": true,
+   "versao": "1.0.0",
+   "publicar": true,
+   "sha256": "b0d8e7a9e92b4cb4f2ca56cb8325153ee171244a37aab41e291997565ed0a862",
+   "descricao": "Reescreve o snippet Aquametria Sync do site a partir deste repositorio. Existe porque o Sync se pula a si mesmo de proposito (compara o nome do item com o proprio nome e devolve 'pulado'), o que impede qualquer correcao no proprio Sync de chegar ao site sozinha — gargalo que em 08/09/2026 deixou o site na v1.1.0 publicando o front matter YAML dentro do corpo das paginas enquanto o repositorio ja estava na v1.1.3. Como o NOME deste snippet e diferente, o proprio Sync o instala e ativa pelo caminho que ja funciona. Roda no maximo uma vez por hora (WP-Cron) e so age quando a versao do manifest difere da que esta rodando. Antes de gravar: confere o sha256 do arquivo baixado contra o manifest, confere que o arquivo declara a versao que o manifest anuncia, faz checagem de sintaxe sem executar o codigo (token_get_all com TOKEN_PARSE) e salva o codigo atual na option aquametria_sync_backup_codigo, relendo a option para confirmar — sem backup gravado, nao prossegue. Grava pela API do Code Snippets 3.10 (Model\\Snippet, save_snippet devolve objeto), INATIVO primeiro e ativando depois, em try/catch. Depois verifica numa requisicao NOVA se /wp-json/aquametria/v1/status responde com a versao nova; se nao responder, RESTAURA o backup sozinho. Loopback indisponivel conta como inconclusivo e mantem o codigo novo, em vez de derrubar por falta de prova. Por fim apaga o sha registrado de cada item de conteudo no estado do Sync e zera a revisao, para que as paginas ja no ar sejam reaplicadas pelo conversor novo. Log em /wp-json/aquametria/v1/atualizador (GET publico). Gatilho manual: /?aquametria_atualizar_sync=TOKEN&forcar=1, com o mesmo token do Sync."
   },
-  "ferramentas": [
-    {
-      "id": "validar-produtos",
-      "arquivo": "ferramentas/validar-produtos.py",
-      "publicar": false,
-      "descricao": "Valida o banco de produtos contra dados/esquema-produtos.json (regras V1 a V20, imagem inclusa) e imprime os campos derivados e quais produtos cada calculadora consegue sugerir. Rodar antes de todo commit que toque dados/produtos-*.json. Nao vai para o WordPress: e ferramenta do repositorio, por isso fica fora das listas que o Sync consome. V21 (09/09/2026): imagem com verificado_em null precisa de motivo_sem_verificacao. Apagar URL de foto boa porque a nuvem nao consegue busca-la seria trocar o certo pelo bonito ao contrario — o lugar da falta e o campo, nao o lixo.",
-      "sha256": "f2f16b31091c63e6510ea1cd407325533a83c46a41db125f3161c8d3f99f979d"
-    },
-    {
-      "id": "gerar-catalogo-filtros",
-      "arquivo": "ferramentas/gerar-catalogo-filtros.py",
-      "publicar": false,
-      "descricao": "Reescreve o catalogo de filtros embutido no snippet da C3 (trecho entre CATALOGO-INICIO e CATALOGO-FIM) a partir de dados/produtos-filtro.json, aplicando o minimo_para_sugerir da c3-vazao-filtro. Rodar SEMPRE depois de mexer no banco de filtros: o site nao le o repositorio em tempo de execucao, entao o banco viaja dentro do PHP e as duas copias nao podem divergir. Nao vai para o WordPress.",
-      "sha256": "4a3bb24213a1d47f37ec301c2a428493bc4f76900d5aad278757b0844cbd95f5"
-    },
-    {
-      "id": "gerar-catalogo-aquecedores",
-      "arquivo": "ferramentas/gerar-catalogo-aquecedores.py",
-      "publicar": false,
-      "sha256": "d2846cceaacd076cdd2c3180358b7e1726ed8b07b28de52f6355a8458e2b07ad",
-      "descricao": "Gera o catalogo de aquecedores que a C5 embute no snippet, a partir de dados/produtos-aquecedor.json e do minimo_para_sugerir do esquema. O site nao le o repositorio em tempo de execucao, entao o banco viaja dentro do PHP; este script e o que impede as duas copias de divergirem. Carrega a faixa conservadora do conflito (V17) quando o campo faixa_ajuste_C ficou null, e marca o item para a tela poder dizer de onde veio a faixa."
-    },
-    {
-      "id": "teste-navegador-c5",
-      "arquivo": "ferramentas/teste-navegador-c5.mjs",
-      "publicar": false,
-      "sha256": "6543e64887f15d98485a77a245824ca8294ceb9a7a083e13fa21f804ae853d5c",
-      "descricao": "Teste de navegador da C5 em Chromium de verdade (Playwright): 15 cenarios, entre eles os atributos do link de afiliado (rel='sponsored noopener', target='_blank', https), o aviso de comissao visivel, as duas barreiras de seguranca, o delta acima de 10 C, o delta zero, o caso sem produto que atenda, a mescla do estado compartilhado com C1 e C3, o permalink e o celular de 390 px sem rolagem horizontal."
-    },
-    {
-      "id": "render-para-teste",
-      "arquivo": "ferramentas/render-para-teste.php",
-      "publicar": false,
-      "sha256": "4262a60dcc6b36348d63d25a2c37d6fe90efbbec1fb21d8b112f61855e4432c6",
-      "descricao": "Renderiza qualquer shortcode de calculadora numa pagina HTML solta, com funcoes falsas do WordPress, para o teste de navegador rodar sem subir WordPress nenhum. Carrega todos os snippets menos o Sync, entao tambem serve de teste de convivencia entre as calculadoras."
-    },
-    {
-      "id": "gerar-catalogo-midias",
-      "arquivo": "ferramentas/gerar-catalogo-midias.py",
-      "publicar": false,
-      "sha256": "e3d36cfd449bf65cb000781cb911758c29105297e777df54d2d8b8b09231f8d9",
-      "descricao": "Gera os DOIS catalogos que a C12 embute no snippet: as midias de dados/produtos-midia.json (bloco CATALOGO-MIDIAS) e os filtros de dados/produtos-filtro.json que declaram volume util de midia (bloco CATALOGO-FILTROS). Aplica o minimo_para_sugerir do esquema, carrega a segunda leitura dos campos em conflito para a tela publicar as duas, e ordena as midias pela dosagem declarada (link de afiliado nao ordena, regra V16). Rodar SEMPRE depois de mexer nos dois bancos. Nao vai para o WordPress."
-    },
-    {
-      "id": "teste-navegador-c12",
-      "arquivo": "ferramentas/teste-navegador-c12.mjs",
-      "publicar": false,
-      "sha256": "a3678504b5e42907949fa61a05c32ffd4a2c7bf4b7070395f0228647713b8adb",
-      "descricao": "Teste de navegador da C12 em Chromium de verdade (Playwright): 19 cenarios, entre eles a faixa das quatro dosagens, as duas tabelas de ancoras, o teto fisico do cesto (inclusive o caso que estoura), as duas leituras da ficha ambigua do Atman, o calendario de trocas com datas calculadas, o aviso obrigatorio sobre lavar midia biologica, os atributos do link de afiliado, a recusa de converter grama em mililitro, a mescla do estado compartilhado com C1/C3/C5 e o celular de 390 px sem rolagem horizontal. Nao vai para o WordPress."
-    },
-    {
-      "id": "gerar-catalogo-iluminacao",
-      "arquivo": "ferramentas/gerar-catalogo-iluminacao.py",
-      "publicar": false,
-      "sha256": "87789ac0a56ef16bd737a602c7ac430cbcab2c21d2cda88fe1be84fc21319a7f",
-      "descricao": "Gera os DOIS blocos que a C15 embute no snippet a partir de dados/produtos-iluminacao.json: o catalogo das luminarias aptas (CATALOGO-INICIO/FIM) e a lista dos BARRADOS com o motivo de cada um (BARRADOS-INICIO/FIM), que a tela publica. Aplica o minimo_para_sugerir da c15-iluminacao, que desde 08/09/2026 exige comprimento_aquario_cm DECLARADO. Manda a ESTRUTURA do conflito de comprimento, nunca o texto: o banco e escrito sem acento e a tela sai acentuada, entao a frase e escrita no JavaScript do snippet. Rodar SEMPRE depois de mexer no banco de iluminacao. Nao vai para o WordPress."
-    },
-    {
-      "id": "teste-navegador-c15",
-      "arquivo": "ferramentas/teste-navegador-c15.mjs",
-      "publicar": false,
-      "sha256": "6ef0a96c7722e1cc3b990f3c74af8c0403b7a21f3c5f5b1d717d7f5ad4bd2812",
-      "descricao": "Teste de navegador da C15 em Chromium de verdade (Playwright): 21 cenarios e mais de 60 verificacoes, entre elas a faixa nos tres niveis, a tabela das tres leituras com a divergencia de 2x, a faixa aberta do nivel alto, o aviso de luz alta sem CO2, a sobreposicao dos limites de CO2, os quatro regimes de fotoperiodo, o aviso de lamina funda, a cobertura de comprimento como barreira do bloco de produto, a lista publicada dos barrados, os atributos do link de afiliado, o painel de consumo em kWh e em reais, o caminho inverso, a mescla do estado compartilhado com C1/C3/C5, o permalink e o celular de 390 px sem rolagem horizontal. Nao vai para o WordPress."
-    },
-    {
-      "id": "teste-conversor-markdown",
-      "arquivo": "ferramentas/teste-conversor-markdown.php",
-      "publicar": false,
-      "sha256": "a4a972a5bcc15c994de6ba715e29da0d18141d725aaf68b59fa9a11d9d70231c",
-      "descricao": "Roda o conversor de Markdown do proprio snippet Aquametria Sync sobre todos os arquivos de conteudo/ e recusa qualquer residuo de front matter no HTML (chaves como publicar:, verificado_em:, slug:), HTML que comece por separador e primeiro bloco que nao seja texto. Cobre tambem as variacoes de front matter que sao invisiveis no editor e quebravam o corte em silencio: BOM, CR sozinho, espaco a direita do delimitador. Nasceu do defeito visto no ar em 08/09/2026 na pagina da C1. Rodar antes de todo commit que toque snippets/aquametria-sync.php ou conteudo/."
-    },
-    {
-      "id": "teste-atualizador-sync",
-      "arquivo": "ferramentas/teste-atualizador-sync.php",
-      "publicar": false,
-      "sha256": "84fed30100d4f6691523ffadf274f61a5643e3eca51eac304942814de49af4a3",
-      "descricao": "Exercita o snippet atualizador do Sync de ponta a ponta com WordPress e Code Snippets falsos, um cenario por processo (a versao instalada e uma constante, e constante nao muda dentro do mesmo processo). Nove cenarios: caminho feliz, sha256 divergente, arquivo com erro de sintaxe, manifest que anuncia versao que o arquivo nao declara, verificacao que falha (tem de restaurar o backup), loopback mudo (tem de manter o codigo novo), site ja atualizado, janela de uma hora e Sync ausente no site. Rodar antes de todo commit que toque snippets/aquametria-atualizador-sync.php."
-    },
-    {
-      "id": "teste-escape-shortcode",
-      "arquivo": "ferramentas/teste-escape-shortcode.php",
-      "publicar": false,
-      "sha256": "8dd070dfcfa9e046116c2e7fb6e0dd54621c4af80f49401c19fba36069c2da27",
-      "descricao": "O teste que teria pego o defeito de 08/09/2026 e existe para que ele nao volte. Monta as cinco calculadoras como o WordPress monta (wp_head, conteudo passado pelo escape de & dos filtros de conteudo, wp_footer) e afirma, para cada uma: retorno do shortcode sem <script> e sem <style>, zero &#038; dentro de script ou style, operador && intacto, estilo antes do HTML, script depois do HTML. Controle negativo conferido: com o <script> de volta dentro do retorno do shortcode, ele reprova com 26 ocorrencias de &#038; na C1."
-    },
-    {
-      "id": "teste-navegador-cinco",
-      "arquivo": "ferramentas/teste-navegador-cinco.mjs",
-      "publicar": false,
-      "sha256": "ce6e364e211fe0233c3c3d536a2d7d6aadbf7aca49a303285920ff8f604bb993",
-      "descricao": "Executa o calculo das CINCO calculadoras num Chromium de verdade (Playwright) e confere na tela o que so um humano conferia: script sem SyntaxError, contêiner de resposta nascendo oculto no HTML servido e ficando visivel depois de calcular, numero na tela, ausencia de submit nativo (a pagina nao recarrega) e o bloco de produto com link de afiliado marcado sponsored/noopener/_blank mais o aviso de comissao. A C15 entra como semProduto: hoje ela responde sem bloco de produto de proposito, porque as luminarias do catalogo nao declaram lumen nem voltagem, e a pagina publica esse motivo."
-    },
-    {
-      "id": "conferir-entidades",
-      "arquivo": "ferramentas/conferir-entidades.mjs",
-      "publicar": false,
-      "descricao": "Portão contra corrupção por entidade HTML: proíbe entidade numérica no fonte dos snippets, proíbe entidade dentro de script/style renderizado (menos a cadeia de esc()) e roda node --check em cada bloco de script. Controle negativo reproduz o SyntaxError de 08/09/2026.",
-      "sha256": "bef6168228ead54032a8cb7e1b5e4f8f344b5f3325e43cab6c114ace1b3f23ed"
-    },
-    {
-      "id": "teste-apelidos",
-      "arquivo": "ferramentas/teste-apelidos.php",
-      "publicar": false,
-      "descricao": "Exercita os apelidos de endereço da casca: cada apelido resolve para o slug canônico, endereço fora do mapa não resolve, e todo destino existe em conteudo/.",
-      "sha256": "484426420c1118cc49bdf09f02e984aae56d8b27e4e0bbd9d5872807b109b1b4"
-    },
-    {
-      "id": "validar-especies",
-      "arquivo": "ferramentas/validar-especies.py",
-      "publicar": false,
-      "descricao": "Valida o banco de especies contra dados/esquema-especies.json (regras E1 a E15) e imprime quem ja passa no minimo_para_sugerir de cada consumidor (pagina de especie, C8 lotacao, C5 aquecedor), mais a faixa de porte e as frentes minimas cobertas. Aceita um caminho no argv, o que permite roda-lo contra bancos de teste. Rodar antes de todo commit que toque dados/especies-*.json. Ferramenta do repositorio: nao vai para o WordPress.",
-      "sha256": "b52b16ba520e646aafe2b1407247e9afcf0f5d8edaa520bb9e1cd56a8e9e655f"
-    },
-    {
-      "id": "testar-validador-especies",
-      "arquivo": "ferramentas/testar-validador-especies.py",
-      "publicar": false,
-      "descricao": "Testes NEGATIVOS do validador de especies: corrompe uma copia do banco de proposito, uma corrupcao por regra E1 a E15, e exige que a regra certa reprove com o codigo certo. Existe porque validar-especies.py so prova que o banco de hoje passa — nao prova que a regra pega o defeito que promete pegar, e regra escrita errada aprova tudo em silencio. O banco real nunca e tocado (copias em diretorio temporario) e o teste confere isso no fim. Rodar junto com o validador. Ferramenta do repositorio: nao vai para o WordPress.",
-      "sha256": "284246a460b6645089acf6d31eb907de5013020e43ee7f45085bbd84da2af67b"
-    },
-    {
-      "id": "teste-navegador-visibilidade-ia",
-      "arquivo": "ferramentas/teste-navegador-visibilidade-ia.mjs",
-      "publicar": false,
-      "descricao": "Mede num Chromium de verdade, e com o JAVASCRIPT DESLIGADO, o que a Sentinela Tecnica mediu a mao em 09/09/2026 e encontrou zero em 13 de 13 paginas: se a pagina de ferramenta serve algo citavel por um modelo de linguagem. Confere, por calculadora, que existe JSON-LD e que ele faz parse; que ha um no WebApplication com applicationCategory, featureList, isAccessibleForFree e publisher; que ha um FAQPage com pelo menos seis perguntas, toda resposta com texto, com numero e longa o bastante para ser citada; que a tabela de exemplos esta no HTML SERVIDO e cobre 30, 60, 100, 150, 200 e 300 L; que o numero da tabela para 100 L bate com o que a calculadora devolve para 100 L; que o bloco de resposta direta vem ANTES do formulario, com numero e data; e que, sem JavaScript, o container de resultado continua oculto — numero de resultado sem entrada seria pior que formulario vazio. Desligar o JavaScript e o coracao do teste: e o que um crawler de IA recebe, e a unica prova honesta de que o numero esta no HTML e nao foi desenhado depois. Nao vai para o WordPress. 09/09/2026: passou a conferir tambem a COLUNA DE PRODUTO da tabela pre-renderizada — uma celula por volume, nenhuma muda, todo link sponsored + noopener + aba nova e com texto (teclado e leitor de tela), e o aviso de comissao presente junto da tabela. Com o script desligado essa coluna e a unica recomendacao de compra que a pagina serve, entao se ela sumir ninguem percebe pela tela.",
-      "sha256": "94271f87450f331034d3bb76cd2c1ade4efafb01378f36caeb6d708d54e8aa44"
-    },
-    {
-      "id": "conferir-protecao-funcoes",
-      "arquivo": "ferramentas/conferir-protecao-funcoes.py",
-      "publicar": false,
-      "descricao": "Confere, SEM reescrever nada, que toda declaracao de funcao no comeco de linha de um snippet vem logo depois do guarda if ( ! function_exists( mesmo-nome ) ) {, pulando docblock e comentario. Existia so o transformador ferramentas/proteger-funcoes.php, que REESCREVE o arquivo e por isso nao serve como verificacao antes do commit; este sai 0 sem problema e 1 com problema, nomeando funcao e linha. Rodar em snippets/*.php antes de marcar qualquer coisa como publicar=true. Nao vai para o WordPress.",
-      "sha256": "480fa461c3ed612153008c52adfb055d01f00c71c18dee208f07dd934fea4689"
-    },
-    {
-      "id": "teste-navegador-c3-dupla-condicao",
-      "arquivo": "ferramentas/teste-navegador-c3-dupla-condicao.mjs",
-      "publicar": false,
-      "descricao": "Executa a C3 num Chromium de verdade no caso exato que o Raphael abriu em 09/09/2026 (aquario de 189,6 L, plantado, carga media) e mede a regra V22 do esquema e o desempate da V16: nenhum recomendado com volume declarado que nao cubra o aquario, o Atman HF-0600 fora dos recomendados, a secao separada existindo, rotulada e ABAIXO no HTML, e o link de loja desempatando so entre itens do mesmo degrau de adequacao. Roda um segundo caso, o mesmo volume em perfil comunitario, porque no plantado a faixa e estreita demais para dois filtros caírem no mesmo degrau e o desempate nunca dispararia — teste que nao exercita a regra nao prova a regra. Casa cada linha da tela com a ficha do catalogo embutido e REPROVA quando nao acha, para nao passar em silencio depois que o nome de tela mudar. Nao vai para o WordPress.",
-      "sha256": "e6024da31141b98f41834d4c12e6ef95dd6b7aeb0b53520e854962b664b9bf83"
-    }
-  ]
+  {
+   "id": "aquametria-casca",
+   "nome": "Aquametria Casca — identidade e estrutura do site",
+   "arquivo": "snippets/aquametria-casca.php",
+   "escopo": "global",
+   "ativo": true,
+   "publicar": true,
+   "sha256": "7cc004910126b11b18aa0107be52b2a11e4c34874a5d9320b679e38691852566",
+   "descricao": "Casca do site: carrega Chivo/IBM Plex Sans/IBM Plex Mono e injeta a paleta da Aquametria sobre o tema ativo; troca core/site-title e core/site-logo pelo logotipo em SVG (recipiente graduado) com o wordmark; troca core/navigation pelo menu Calculadoras/Metodologia/Sobre; cria as paginas inicio, calculadoras, metodologia e sobre (conteudo em shortcode do proprio snippet) e fixa inicio como pagina inicial; manda Hello world! e Sample Page para a lixeira; SUBSTITUI a template part footer do tema pelo rodape da Aquametria (tagline e nota de fontes), com rede de seguranca em wp_footer e CSS, para nao ficarem dois rodapes empilhados; e some com a tagline padrao do WordPress. Idempotente. v1.0.3 (08/09/2026): o rodape passou a linkar a pagina de divulgacao de afiliados, exigida pela C3, e o CSS ganhou estilo para citacao em bloco e para o bloco de tabela que rola. Nenhuma pagina nova nasce orfa: o link do rodape e a entrada da divulgacao. v1.1.0 (08/09/2026): o endereco de cada pagina passa a ser resolvido pelo id do repositorio (_aquametria_id) e nao por slug adivinhado, e o card do hub so vira link se a pagina existir publicada — sem pagina, fica o selo Em construcao. Corrige o defeito 2 de 08/09/2026, em que o hub publicava /calculadora-de-aquecedor/ para a C5, cuja pagina e /calculadora-de-potencia-do-aquecedor/, e o clique dava 404. v1.3.0 (09/09/2026): casca no celular e icone proprio. O menu vira sanfona abaixo de 782 px, atras de um botao com aria-expanded e aria-controls, que fecha no Escape (devolvendo o foco ao botao), no clique fora e ao alargar a janela; os tres links continuam SEMPRE no HTML servido dentro de <nav>, e quem esconde a lista e um seletor que depende de um atributo posto pelo JavaScript do rodape — sem JavaScript o menu nao some, volta a ser a fileira de links de sempre, que e o que o crawler de IA recebe. E o icone do site deixa de ser o do WordPress (remove_action do wp_site_icon) e passa a ser o recipiente graduado da marca: SVG na aba, PNG de 32 px como alternativa e PNG de 180 px para o iOS, os tres como data URI dentro do snippet, sem nada subir para a biblioteca de midia. O desenho e gerado por ferramentas/gerar-favicon.php entre os marcadores FAVICON-INICIO e FAVICON-FIM.",
+   "versao": "1.3.0"
+  },
+  {
+   "id": "aquametria-calculadora-litragem",
+   "nome": "Aquametria Calculadora de Litragem",
+   "arquivo": "snippets/aquametria-calculadora-litragem.php",
+   "escopo": "front-end",
+   "ativo": true,
+   "publicar": true,
+   "sha256": "e88c387aa48bc45a1658826c195d2b3db14d4277362b6b56e1834202b081afd1",
+   "descricao": "C1, o nucleo do lote. Registra o shortcode [aquametria_calculadora_litragem]: formulario de medidas, os tres volumes (bruto, interno e real de referencia) com o criterio de cada um, caminho inverso (litros para medida), quadro de fontes e permalink citavel. Todo o calculo e JavaScript no navegador, porque o site esta atras de cache de pagina. Grava o estado compartilhado em localStorage, chave aquametria.aquario, que as proximas calculadoras leem. NAO desconta substrato: as constantes estao pendentes e a tela declara a superestimativa e a direcao do erro. Anuncia-se no hub pelo filtro aquametria_calculadoras da casca, entao a casca nao precisa ser editada nem ter a versao bumpada. v1.0.1 (08/09/2026): o painel 'o que este resultado alimenta' agora LINKA a C3, que entrou no ar — o link de ida da C1 para a C3, de mao dupla com o que a C3 devolve. v1.0.2 (08/09/2026): guardar() passou a MESCLAR o estado compartilhado em vez de substitui-lo — voltar a C1 para corrigir uma medida zerava a vazao que a C3 tinha calculado e o clima que a C5 tinha perguntado. A secao final passou a linkar a C5, que entrou no ar. v1.1.0 (08/09/2026), CORRECAO GRAVE: o JS e o CSS sairam de dentro do retorno do shortcode e passaram para wp_head (estilo) e wp_footer (comportamento). Dentro do retorno do shortcode eles ainda atravessavam os filtros de texto do conteudo, que trocam & por &#038;, e o primeiro && do script matava o JavaScript inteiro com SyntaxError: o formulario nao calculava e o bloco de produto nunca aparecia. Nenhuma linha de calculo mudou."
+  },
+  {
+   "id": "aquametria-calculadora-vazao",
+   "nome": "Aquametria Calculadora de Vazão do Filtro",
+   "arquivo": "snippets/aquametria-calculadora-vazao.php",
+   "escopo": "front-end",
+   "ativo": true,
+   "publicar": true,
+   "sha256": "0d848a7499f1dbf1ebe83fb1aed6b52a3f0fcdb6337ee31a6edd67c814bab75f",
+   "descricao": "C3, a segunda calculadora do lote e a PRIMEIRA com bloco de produto. Registra o shortcode [aquametria_calculadora_vazao]: le o volume real que a C1 guardou em localStorage (aquametria.aquario), devolve a faixa de vazao em L/h com o criterio e a fonte de cada extremo (piso de 1,76 x/h do fabricante contra teto de 10 x/h da regra de bolso BR, ate 5,7 vezes de divergencia), o volume minimo do sump quando marcado, o caminho inverso (filtro de X L/h cobre quantos litros) e o veredito para o filtro que a pessoa ja tem. Bloco de produto: filtros do catalogo embutido cuja vazao cai dentro da faixa, ordenados por proximidade do meio dela, com o turnover que cada um entrega NAQUELE aquario, ficha com fonte e data, link sponsored/noopener/_blank quando existe e aviso de comissao obrigatorio. Sem produto que atenda, o bloco nao aparece e a tela diz por que. NAO aplica fator de perda de carga (constante pendente) nem publica turnover marinho (sem fonte). Todo o calculo e JavaScript no navegador. Anuncia-se no hub pelo filtro aquametria_calculadoras. O catalogo entre CATALOGO-INICIO e CATALOGO-FIM e gerado por ferramentas/gerar-catalogo-filtros.py — nao editar a mao. v1.0.1 (08/09/2026): passou a linkar a C5, que entrou no ar e divide o mesmo volume real. v1.1.0 (08/09/2026), CORRECAO GRAVE: o JS e o CSS sairam de dentro do retorno do shortcode e passaram para wp_head (estilo) e wp_footer (comportamento). Dentro do retorno do shortcode eles ainda atravessavam os filtros de texto do conteudo, que trocam & por &#038;, e o primeiro && do script matava o JavaScript inteiro com SyntaxError: o formulario nao calculava e o bloco de produto nunca aparecia. Nenhuma linha de calculo mudou. v1.2.0 (09/09/2026), BLOCO 4c — visibilidade em IA: a pagina passou a servir RESPOSTA no HTML, e nao so formulario. (a) bloco de resposta direta ANTES do formulario, com o numero, o criterio e a procedencia dentro da propria frase; (b) tabela de seis aquarios ja resolvidos (30, 60, 100, 150, 200 e 300 L), pre-renderizada pelo PHP no HTML servido, com a faixa comunitaria, a mira de carga media e a faixa de plantado; (c) JSON-LD no wp_head com WebApplication (applicationCategory, featureList, isAccessibleForFree, publisher) e FAQPage com 8 perguntas, cada resposta carregando numero e fonte. Conserto junto: as bandas de turnover moravam so dentro do JavaScript e agora nascem no PHP (aquametria_c3_bandas), entregues ao script como AQM_C3_BANDAS — a tabela servida e a calculadora leem a MESMA lista, entao nao podem divergir. Nenhuma formula mudou. Conferido em Chromium com JavaScript DESLIGADO por ferramentas/teste-navegador-visibilidade-ia.mjs. v1.3.0 (09/09/2026), BLOCO 4c FECHAMENTO — a tabela pre-renderizada passou a dizer QUAL produto atende cada faixa. Antes ela respondia ao leitor e nao respondia ao comprador: a recomendacao so aparecia depois de preencher o formulario inteiro e rolar ate o fim, e no celular isso e grave. Cada uma das seis linhas traz agora o filtro do banco cuja vazao cai mais perto do meio daquela faixa, com a especificacao que o fez entrar (L/h e renovacoes/h NAQUELE volume), a procedencia e a data na mesma frase, e o link de loja quando existe (rel=sponsored noopener, target=_blank), com aviso de comissao proprio junto da tabela e link para a pagina de divulgacao. Quando quem atende melhor ainda nao tem link, sai embaixo e ROTULADA a opcao da mesma faixa que tem — a ordem continua por adequacao tecnica, nunca por comissao (V16). Faixa sem nenhum produto escreve por que esta vazia, nunca sai muda. Quando o volume declarado pelo fabricante e menor que o do exemplo, a celula diz isso. O FAQPage foi de 8 para 13 perguntas: entraram seis de COMPRA ('qual filtro comprar para X litros'), cada uma respondida com o mesmo modelo e o mesmo numero que a tabela serve. Espelhos novos em PHP do que o script ja fazia: escolher() virou aquametria_c3_produtos_exemplo, dataBr() virou aquametria_c3_data_br. Nenhuma formula mudou. Conferido em Chromium com JavaScript DESLIGADO (teste-navegador-visibilidade-ia.mjs, que ganhou os casos da coluna de produto) e com JavaScript ligado (teste-navegador-cinco.mjs). v1.4.0 (09/09/2026), CORRECAO GRAVE de credibilidade vista pelo Raphael na pagina no ar: a elegibilidade do bloco de produto olhava so a VAZAO, e num aquario de 189,6 L o PRIMEIRO recomendado era o Atman HF-0600 enquanto o cartao dele escrevia que o fabricante declara o modelo para ate 150 L e nao cobre esse caso. Agora vale a DUPLA CONDICAO (regra V22 do esquema): entra nos recomendados so quem tem vazao dentro da faixa E volume do visitante dentro do volume declarado pelo fabricante; quem nao declara volume entra com a ressalva escrita; quem declara e nao cobre vai para uma secao SEPARADA, abaixo, rotulada 'Atendem a vazao, mas o fabricante nao cobre esse volume'. A ordem passou a ter tres degraus — elegibilidade dupla, adequacao tecnica, e so como DESEMPATE entre itens tecnicamente equivalentes (mesmo decimo da largura da faixa) quem tem link de loja aparece antes; comissao continua sem ser comparada em lugar nenhum e produto sem link continua aparecendo. O nome de tela passou a carregar a voltagem quando o registro declara uma so, porque o banco tem o Eheim 2217 em 127 V e em 220 V. Conferido por ferramentas/teste-navegador-c3-dupla-condicao.mjs, que executa o caso do Raphael num Chromium de verdade.",
+   "versao": "1.4.0"
+  },
+  {
+   "id": "aquametria-calculadora-aquecedor",
+   "nome": "Aquametria Calculadora de Potência do Aquecedor — C5",
+   "arquivo": "snippets/aquametria-calculadora-aquecedor.php",
+   "escopo": "global",
+   "ativo": true,
+   "publicar": true,
+   "sha256": "96b990707510abf5383950ae585c151854937a69962afc9c06249a859aed2825",
+   "descricao": "v1.0.0 (08/09/2026). Registra o shortcode [aquametria_calculadora_aquecedor] e se anuncia no hub pelo filtro aquametria_calculadoras. Pergunta a MINIMA DO COMODO onde o aquario fica, que e a entrada que nenhuma fonte brasileira pede, e calcula a faixa de potencia com o nome do autor em cada extremo: separa as regras aplicaveis das nao aplicaveis e mostra as duas listas. Com delta acima de 10 C diz com essas palavras que nenhuma fonte cobre o caso e entrega a faixa generica como piso. Com delta zero ou negativo nao devolve numero nenhum. Traz o degrau da linha comercial, o confronto com o volume declarado na caixa (o achado do bloco), o bloco de produto com DUAS barreiras de seguranca antes da adequacao (voltagem da tomada e faixa de ajuste alcancar o alvo, regra V18) e o caminho inverso. Le e grava o estado compartilhado por mescla. v1.1.0 (08/09/2026), CORRECAO GRAVE: o JS e o CSS sairam de dentro do retorno do shortcode e passaram para wp_head (estilo) e wp_footer (comportamento). Dentro do retorno do shortcode eles ainda atravessavam os filtros de texto do conteudo, que trocam & por &#038;, e o primeiro && do script matava o JavaScript inteiro com SyntaxError: o formulario nao calculava e o bloco de produto nunca aparecia. Nenhuma linha de calculo mudou. v1.2.0 (09/09/2026), BLOCO 4c — visibilidade em IA: a pagina passou a servir RESPOSTA no HTML, e nao so formulario. (a) bloco de resposta direta ANTES do formulario, dizendo o numero, o criterio e que a pergunta que decide a conta e quanto o comodo esfria, com fonte e data na propria frase; (b) tabela de seis aquarios ja resolvidos (30, 60, 100, 150, 200 e 300 L) nos DOIS cenarios de diferenca de temperatura — ate 10 graus, onde vale a ReefFlow, e acima disso, onde so sobram as regras sem condicao declarada e a faixa vira piso —, com o degrau da linha comercial de cada caso, pre-renderizada pelo PHP; (c) JSON-LD no wp_head com WebApplication e FAQPage de 8 perguntas. Conserto junto: as regras de W/L e a linha comercial moravam so dentro do JavaScript e agora nascem no PHP (aquametria_c5_regras e aquametria_c5_linha_comercial), entregues ao script como AQM_C5_REGRAS e AQM_C5_LINHA. Nenhuma formula mudou. Conferido em Chromium com JavaScript DESLIGADO por ferramentas/teste-navegador-visibilidade-ia.mjs. v1.3.0 (09/09/2026), BLOCO 4c FECHAMENTO — a tabela pre-renderizada passou a dizer QUAL aparelho atende cada faixa, pelo mesmo motivo e no mesmo formato da C3. Cada linha traz o aquecedor do banco cuja potencia cai mais perto do topo da faixa, com a VOLTAGEM que a ficha declara — ou a frase dizendo que ela nao esta confirmada, porque voltagem errada queima aparelho e aqui nao se chuta 110 nem 220 —, procedencia e data na mesma frase, e link de loja quando existe (sponsored, noopener, aba nova), com aviso de comissao proprio. Quem atende melhor sem link cede a linha de baixo, rotulada, ao primeiro da MESMA ordem que tem link; a ordem nao muda por comissao (V16). As DUAS barreiras de seguranca do formulario (voltagem da tomada e faixa de ajuste alcancar o alvo, V18) nao cabem na tabela, que nao conhece nenhum dos dois, e o texto abaixo dela diz isso com essas palavras. A linha de 300 L avisa que a faixa passa do maior degrau da linha de referencia e que ali a resposta e mais de um aparelho. O FAQPage foi de 8 para 14 perguntas, com seis de COMPRA. Espelhos novos em PHP do que o script ja fazia: escolher() virou aquametria_c5_produtos_exemplo, dataBr() virou aquametria_c5_data_br. Nenhuma formula mudou.",
+   "versao": "1.3.0"
+  },
+  {
+   "id": "aquametria-calculadora-midia",
+   "nome": "Aquametria Calculadora de Mídia Filtrante — C12",
+   "arquivo": "snippets/aquametria-calculadora-midia.php",
+   "escopo": "global",
+   "ativo": true,
+   "publicar": true,
+   "sha256": "76a52a0074c49e06d190506e4dda4826a8ab2366febbc21171fe1f6cd998e58c",
+   "descricao": "v1.0.0 (08/09/2026). Registra o shortcode [aquametria_calculadora_midia] e se anuncia no hub pelo filtro aquametria_calculadoras. Ataca o VACUO DE CONTEUDO N. 1 do Bloco 1: quanta midia biologica um aquario precisa, em mL por litro de agua. Publica QUATRO dosagens declaradas por fabricante (Seachem 1,25 e 2,64; JBL 5,00; Ocean Tech 12,50 mL/L), que discordam por dez vezes, sem escolher nenhuma; e, numa segunda tabela separada, a midia TOTAL por litro que os fabricantes de FILTRO declaram (volume de filtragem dividido por volume atendido), incluindo as duas leituras das fichas ambiguas do Atman. Entrega o numero que ninguem publica: quanto do cesto do filtro escolhido cada dosagem ocuparia, e avisa quando a camada biologica sozinha estoura. Publica a ordem das camadas e SE RECUSA a publicar a proporcao entre elas, o ranking por area de superficie e a conversao de grama em mililitro no carvao, dizendo por que em cada caso. Traz calendario de trocas com datas calculadas, TPA, gatilhos de nitrato, o aviso de nunca lavar toda a midia biologica de uma vez explicado como mecanismo, o bloco de produto com a quantidade calculada pela dosagem de CADA fabricante, e o caminho inverso. Le e grava o estado compartilhado por mescla. As duas copias do banco (midias e filtros) sao geradas por ferramentas/gerar-catalogo-midias.py. v1.1.0 (08/09/2026), CORRECAO GRAVE: o JS e o CSS sairam de dentro do retorno do shortcode e passaram para wp_head (estilo) e wp_footer (comportamento). Dentro do retorno do shortcode eles ainda atravessavam os filtros de texto do conteudo, que trocam & por &#038;, e o primeiro && do script matava o JavaScript inteiro com SyntaxError: o formulario nao calculava e o bloco de produto nunca aparecia. Nenhuma linha de calculo mudou."
+  },
+  {
+   "id": "aquametria-calculadora-iluminacao",
+   "nome": "Aquametria Calculadora de Iluminação e Fotoperíodo — C15",
+   "arquivo": "snippets/aquametria-calculadora-iluminacao.php",
+   "escopo": "global",
+   "ativo": true,
+   "publicar": true,
+   "sha256": "cc56ba98e68a2eacfb19e76691dc5e7c1e892246055df271d70b821879bf9932",
+   "descricao": "v1.0.0 (08/09/2026). Registra o shortcode [aquametria_calculadora_iluminacao] e se anuncia no hub pelo filtro aquametria_calculadoras. Ataca o maior cluster empatado do Bloco 1 (83 consultas) e publica a divergencia que ninguem confronta: tres fontes brasileiras chamam a MESMA faixa pelo MESMO rotulo com numeros que diferem por duas vezes ('baixa' e 20 lm/L numa, 10 a 20 noutra e 15 na terceira). Entrega a faixa de lumens no volume da pessoa, as tres leituras lado a lado numa tabela com atribuicao, os quatro regimes de fotoperiodo, a faixa de Kelvin, o consumo em kWh/mes do fotoperiodo escolhido (custo em reais so com a tarifa que o visitante digita, porque tarifa nao e publicada aqui), o bloco de CO2 com os dois limites que SE SOBREPOEM, o aviso de luz alta sem CO2, o aviso de lamina acima de 45 cm e o caminho inverso. Recusa publicar PPFD (constante pendente) e explica o motivo achado a montante: o forum de suporte da propria Chihiros declara que nao existe teste de PAR oficial. Recusa converter comprimento de peca em cobertura de aquario, porque nos 5 registros que declaram os dois numeros a razao varia de 1,15 a 1,59 vez. Bloco de produto com a cobertura declarada como barreira, e a lista PUBLICADA dos barrados com o motivo — inclusive a luminaria mais cara do banco, que tem link de afiliado e nao e sugerida por falta de voltagem declarada. Le e grava o estado compartilhado por mescla. O catalogo entre CATALOGO-INICIO/FIM e BARRADOS-INICIO/FIM e gerado por ferramentas/gerar-catalogo-iluminacao.py — nao editar a mao. v1.1.0 (08/09/2026), CORRECAO GRAVE: o JS e o CSS sairam de dentro do retorno do shortcode e passaram para wp_head (estilo) e wp_footer (comportamento). Dentro do retorno do shortcode eles ainda atravessavam os filtros de texto do conteudo, que trocam & por &#038;, e o primeiro && do script matava o JavaScript inteiro com SyntaxError: o formulario nao calculava e o bloco de produto nunca aparecia. Nenhuma linha de calculo mudou."
+  }
+ ],
+ "conteudo": [
+  {
+   "id": "calculadora-de-litragem",
+   "tipo": "pagina",
+   "titulo": "Calculadora de litragem: quantos litros tem o seu aquário",
+   "slug": "calculadora-de-litragem",
+   "arquivo": "conteudo/calculadora-de-litragem.md",
+   "cluster": "C1",
+   "fontes": [
+    "geometria (definicao de litro em centimetro cubico) — nao e constante de terceiro",
+    "borda-livre-padrao, 3 cm, convencao editorial da Aquametria",
+    "substrato-densidade e substrato-porosidade: PENDENTES, recusadas em formula"
+   ],
+   "verificado_em": "2026-09-08",
+   "publicar": true,
+   "sha256": "849307c2a45439d8cde675b4cf1c6030472ba623bb41ba232fe6655da0631a07",
+   "descricao": "Pagina da C1: abertura, o shortcode da calculadora e a explicacao metodologica — os tres volumes e para que serve cada um, a borda livre como convencao declarada, por que o substrato nao e descontado (conflito de 100 % na densidade, porosidade sem fonte) com a tabela de direcao do erro, o protocolo de medicao que libera o desconto, o caminho inverso e os links internos para o hub e a metodologia. Em 08/09/2026 a secao final passou a LINKAR a calculadora de vazao do filtro, que entrou no ar."
+  },
+  {
+   "id": "calculadora-de-vazao-do-filtro",
+   "tipo": "pagina",
+   "titulo": "Calculadora de vazão do filtro: quantos L/h o seu aquário pede",
+   "slug": "calculadora-de-vazao-do-filtro",
+   "arquivo": "conteudo/calculadora-de-vazao-do-filtro.md",
+   "cluster": "C3",
+   "fontes": [
+    "eheim-classic-250-2213: 440 L/h para ate 250 L, ou 1,76 renovacoes/h (fabricante-via-busca)",
+    "turnover-comunitario-br, 5 a 10 x/h — Aquarismo Paulista e AquaOnline (divergente-fontes-br)",
+    "turnover-comunitario-mybest, 4 a 5 x/h — my-best BR (divergente-fontes-br)",
+    "turnover-plantado, 3 a 5 x/h — AquaPeixes (divergente-fontes-br)",
+    "sump-proporcao-minima, 20 % do volume — AquaOnline (divergente-fontes-br)",
+    "fator de perda de carga e turnover marinho: PENDENTES, recusados em formula",
+    "fichas dos filtros sugeridos: dados/produtos-filtro.json, fonte e data por campo"
+   ],
+   "verificado_em": "2026-09-08",
+   "publicar": true,
+   "sha256": "72dec6a55b61c1c84e0270f176ee78cbad4888a8e8357d62565cb231ab2b3c2e",
+   "descricao": "Pagina da C3: a abertura poe o achado de frente (o fabricante dimensiona 1,76 x/h, a web BR pede 5 a 10), o shortcode da calculadora, por que a resposta e faixa e nao numero, o que a calculadora NAO faz (fator de perda de carga e turnover marinho, com o motivo), o protocolo do balde no lugar do fator, a coluna maxima como criterio de corte, as tres regras do bloco de produto (ordem tecnica, comissao nao ordena, ficha com fonte e data) e os links internos de mao dupla para a C1, o hub, a metodologia e a divulgacao de afiliados."
+  },
+  {
+   "id": "divulgacao-de-afiliados",
+   "tipo": "pagina",
+   "titulo": "Como a Aquametria ganha dinheiro",
+   "slug": "divulgacao-de-afiliados",
+   "arquivo": "conteudo/divulgacao-de-afiliados.md",
+   "cluster": "institucional",
+   "fontes": [
+    "regra V16 de dados/esquema-produtos.json: link de afiliado nao entra em criterio de sugestao",
+    "politica de preco como serie temporal (dados/produtos-cotacoes.json), separada do produto"
+   ],
+   "verificado_em": "2026-09-08",
+   "publicar": true,
+   "sha256": "16537bcf33ac91ff5c7a7caedb8aa53b95fdc1179846d96d05fc98a3220fc694",
+   "descricao": "Pagina institucional exigida pelo primeiro bloco de produto (C3) e pela autorregulamentacao publicitaria brasileira: declara o link de afiliado, transcreve a regra V16 na integra, explica que quem entra na lista e a ordem sao decididos so por adequacao tecnica, que produto sem link aparece igual e que sem produto adequado nao aparece nada, mostra a escada de fontes na tela, diz por que preco nao e publicado em pagina de calculadora e admite o tamanho atual do programa. Linkada do rodape do site (casca 1.0.3) e do bloco de produto da C3."
+  },
+  {
+   "id": "calculadora-de-potencia-do-aquecedor",
+   "tipo": "pagina",
+   "titulo": "Calculadora de potência do aquecedor: quantos watts, pelo frio que faz aí",
+   "slug": "calculadora-de-potencia-do-aquecedor",
+   "arquivo": "conteudo/calculadora-de-potencia-do-aquecedor.md",
+   "cluster": "C5",
+   "fontes": [
+    "wl-delta-ate-10, 1,0 a 1,5 W/L ate 10 C de delta — ReefFlow (divergente-fontes-br). UNICA fonte do corpus que amarra W/L a um delta declarado",
+    "wl-sul, ate 2,0 W/L na regiao Sul — Casa da Ada (divergente-fontes-br)",
+    "wl-generico, 1,0 W/L — sem autoria unica na web BR (divergente-fontes-br)",
+    "wl-ehow, 1,3 W/L — eHow (divergente-fontes-br)",
+    "eheim-jager-linha-comercial, 9 tamanhos de 25 a 300 W (transcrita-varejo), completada em 08/09/2026",
+    "especies-parametros-iniciais, 8 especies — Petz e Aquarismo Paulista (transcrita-varejo)",
+    "u-vidro-aquario e temperatura-minima-por-cidade: PENDENTES, recusadas em formula",
+    "fichas dos aquecedores sugeridos: dados/produtos-aquecedor.json, fonte e data por campo"
+   ],
+   "verificado_em": "2026-09-08",
+   "publicar": true,
+   "sha256": "fa5cbb9efacfb9a19380968eeb81f52ee2bb6f8e22cd78380a076ede6249abab",
+   "descricao": "Pagina da C5: a abertura poe a pergunta que falta (1 W/L para aquecer de quanto para quanto), o shortcode da calculadora, o que ela faz de diferente, a tabela das quatro constantes com a condicao que cada autor declarou, por que a caixa do aquecedor nao dimensiona (a linha Eheim inteira em 1,00 W/L e o 200 W saindo da serie), o que a calculadora NAO faz e por que (via fisica bloqueada pela u-vidro-aquario, tampa sem constante, minima por cidade pendente, e a recusa de extrapolar acima de 10 C), o que e criterio editorial declarado, as duas barreiras de seguranca do bloco de produto e a explicacao da faixa conservadora (regra V17). Linka C1, C3, o artigo-ancora pareado, metodologia e divulgacao."
+  },
+  {
+   "id": "quantos-watts-de-aquecedor-para-aquario",
+   "tipo": "artigo",
+   "titulo": "Quantos watts de aquecedor o seu aquário precisa (e por que \"1 W por litro\" erra sempre para o mesmo lado)",
+   "slug": "quantos-watts-de-aquecedor-para-aquario",
+   "arquivo": "conteudo/quantos-watts-de-aquecedor-para-aquario.md",
+   "cluster": "C5",
+   "fontes": [
+    "eheim-jager-linha-comercial: volume declarado por potencia, 9 tamanhos (transcrita-varejo, 08/09/2026)",
+    "linha Roxin HT-1300/Q3: volume declarado e faixa de ajuste em conflito entre fichas de varejo BR (dados/produtos-aquecedor.json)",
+    "wl-delta-ate-10, wl-sul, wl-generico, wl-ehow (todas divergente-fontes-br)",
+    "u-vidro-aquario: PENDENTE — bloqueia o calculo fisico, e o texto diz isso"
+   ],
+   "verificado_em": "2026-09-08",
+   "publicar": true,
+   "sha256": "db7ada66141bcc21ab8967237c04e4c1ce3f210f7a339544f550ccf73fe37e47",
+   "descricao": "Artigo-ancora pareado com a C5. Mostra de onde o '1 W por litro' realmente veio: a linha Eheim Jager inteira da 1,00 W/L no teto de seis modelos seguidos — a regra nao derivou de fisica, derivou da prateleira. Depois mostra onde a regua quebra (o 200 W a 0,50 W/L, o 30-400 L de treze vezes, o mesmo 150 W declarado para 125-150 L e para 200-300 L, e a serie Roxin que nao fecha), o caso Belem contra Curitiba com cinco vezes mais delta para a mesma resposta, o que as quatro fontes BR dizem e nao dizem, a formula P = U . A . deltaT que ainda nao podemos publicar e por que, e seis recomendacoes praticas. Linka a C5, a C1, a C3 e a metodologia."
+  },
+  {
+   "id": "calculadora-de-midia-filtrante",
+   "tipo": "pagina",
+   "titulo": "Calculadora de mídia filtrante: quantos mililitros o seu aquário pede",
+   "slug": "calculadora-de-midia-filtrante",
+   "arquivo": "conteudo/calculadora-de-midia-filtrante.md",
+   "cluster": "C12",
+   "fontes": [
+    "seachem-matrix-dosagem: 1,25 e 2,64 mL/L, duas leituras da mesma copy (fabricante-via-busca)",
+    "jbl-micromec-dosagem: 5,00 mL/L (fabricante-via-busca, 08/09/2026)",
+    "ocean-tech-bio-glass-dosagem: 12,50 mL/L, unica marca BR que publica (fabricante-via-busca, 08/09/2026)",
+    "eheim-classic-250-2213 e seachem-tidal-55-midia: midia TOTAL por litro, 12,0 e 6,0 mL/L",
+    "carvao-ativado, perlon-troca, ceramica-regeneracao, ordem-midias-canister, tpa-percentual, tpa-diferenca-termica, nitrato-limites (todas divergente-fontes-br)",
+    "proporcao entre camadas, densidade aparente do carvao e taxa de nitrificacao por area: PENDENTES, recusadas na tela"
+   ],
+   "verificado_em": "2026-09-08",
+   "publicar": true,
+   "sha256": "acfdb902e0df5b419902d38ea8643a4560fd70c8640b2494b65a1199cf195b62",
+   "descricao": "Pagina-ancora da C12, com o shortcode no corpo. Traz as duas tabelas de ancoras com atribuicao, explica o teto fisico do cesto, destrincha as fichas ambiguas do Atman (a mesma frase lida ao contrario em dois modelos irmaos, com a geometria apoiando leituras opostas), lista o que a calculadora se recusa a fazer e por que, e publica o aviso de nunca lavar toda a midia biologica de uma vez como mecanismo explicado. Linka a C1, a C3, a C5, o hub, a metodologia, a divulgacao de afiliados e o artigo pareado."
+  },
+  {
+   "id": "quanta-midia-biologica-o-aquario-precisa",
+   "tipo": "artigo",
+   "titulo": "Quanta mídia biológica o aquário precisa: quatro fabricantes, dez vezes de diferença",
+   "slug": "quanta-midia-biologica-o-aquario-precisa",
+   "arquivo": "conteudo/quanta-midia-biologica-o-aquario-precisa.md",
+   "cluster": "C12",
+   "fontes": [
+    "as quatro dosagens declaradas de midia biologica (Seachem, JBL, Ocean Tech), com area de superficie declarada de cada uma",
+    "eheim-classic-250-2213, seachem-tidal-55-midia, atman-at-3338 e atman-at-3338s: midia total declarada por fabricante de filtro",
+    "carvao-ativado contra seachem-matrixcarbon-dosagem: 15 a 30 dias contra 'varios meses'",
+    "taxa-de-nitrificacao-por-area: PENDENTE, e o texto explica que e ela que fecharia a pergunta"
+   ],
+   "verificado_em": "2026-09-08",
+   "publicar": true,
+   "sha256": "4c900e6021930033784153ffd8bf5c625be9b0315521e29095fa369d2f0f64f6",
+   "descricao": "Artigo-ancora pareado com a C12. O eixo e o PARADOXO DA AREA: area declarada vezes dosagem declarada da a area entregue por litro de agua, e ela vai de 0,88 a 18,8 m2 entre tres marcas - 21 vezes -, com a marca que declara MAIS area pedindo DEZ VEZES mais midia, ou seja, a relacao inversa da esperada. Depois mostra a Seachem discordando de si mesma como marca de midia e como marca de filtro, as fichas ambiguas do Atman, o caso do carvao (a regra BR manda trocar de 4 a 10 vezes mais que o fabricante do carvao) e a critica de fundo: todas as dosagens sao por litro de AGUA quando o trabalho depende da amonia, ou seja, da carga de peixes, que nenhuma declaracao pergunta. Fecha com seis recomendacoes praticas e as tres coletas que faltam. Linka a C12, a C1, a C3, a C5 e a metodologia."
+  },
+  {
+   "id": "calculadora-de-iluminacao",
+   "tipo": "pagina",
+   "titulo": "Calculadora de iluminação e fotoperíodo: quantos lúmens o seu aquário pede",
+   "slug": "calculadora-de-iluminacao",
+   "arquivo": "conteudo/calculadora-de-iluminacao.md",
+   "cluster": "C15",
+   "fontes": [
+    "iluminacao-lumen-por-litro: tres leituras BR do corpus (peixeseaquarismo 20/30-40/60, aquarioturbinado 10-20/20-40/>40, aquariosplantados 15/30/60) — divergente-fontes-br",
+    "fotoperiodo: low tech 6-8 h, high tech 8-10 h, combate a alga 5-6 h, ciclagem 4-6 h (divergente-fontes-br)",
+    "temperatura-de-cor, 6500 a 8000 K (divergente-fontes-br)",
+    "co2-concentracao, 15-35 mg/L uteis e risco acima de 30-35 — CO2Art (divergente-fontes-br), com os dois limites se sobrepondo",
+    "cobertura-luminaria-declarada: convencao editorial de 08/09/2026, derivada dos 5 registros que declaram peca E cobertura",
+    "ppfd-por-litragem: PENDENTE, recusada em formula — forum de suporte da Chihiros declara que nao ha teste de PAR oficial",
+    "fichas das luminarias sugeridas: dados/produtos-iluminacao.json, fonte e data por campo"
+   ],
+   "verificado_em": "2026-09-08",
+   "publicar": true,
+   "sha256": "8fa1764885ec08520b69f4ed7a7411e86df896e870b048d99faa8d88d5a1920d",
+   "descricao": "Pagina-ancora da C15, com o shortcode no corpo. Poe a divergencia na abertura (o mesmo rotulo com o dobro do numero em tres fontes), publica a tabela das tres leituras, explica as tres coisas que a calculadora faz de diferente (divergencia sem media, cobertura de comprimento conferida, custo da luz acesa) e as quatro que ela se recusa a fazer, com o motivo de cada uma: PPFD, conversao de peca em cobertura (com a tabela de 5 produtos que mostra a razao variando de 1,15 a 1,59 vez), numero para marinho e preco. Traz as tres regras do bloco de produto e o caso que mostra o custo delas — a luminaria mais cara do banco tem link e nao e sugerida. Fecha com fotoperiodo que nao compensa lumen, a sobreposicao do CO2 e a cegueira da regua para profundidade. Linka C1, C3, C5, C12, o artigo pareado, metodologia e divulgacao."
+  },
+  {
+   "id": "quantos-lumens-por-litro-aquario-plantado",
+   "tipo": "artigo",
+   "titulo": "Quantos lúmens por litro o aquário plantado precisa (e por que o lúmen é a unidade errada para medir luz de planta)",
+   "slug": "quantos-lumens-por-litro-aquario-plantado",
+   "arquivo": "conteudo/quantos-lumens-por-litro-aquario-plantado.md",
+   "cluster": "C15",
+   "fontes": [
+    "iluminacao-lumen-por-litro: as tres leituras BR, com a tabela completa (divergente-fontes-br)",
+    "definicao fotometrica do lumen (ponderacao pela visao humana, pico no verde) contra as faixas de absorcao da clorofila (azul e vermelho): conhecimento de definicao, declarado como tal no texto",
+    "eficacia calculada dos registros do banco: Chihiros WRGB II Pro 60 com 89,6 lm/W contra Ista IL-401 60 com 106 lm/W — indicio, nao demonstracao, e o texto diz isso",
+    "ppfd-por-litragem PENDENTE: forum de suporte da Chihiros, 'nao existe teste de PAR oficial' (08/09/2026)",
+    "nome comercial contra ficha de dimensoes: Ista IL-401 vendida como 60 cm mede 56 (conflito registrado em dados/produtos-iluminacao.json)",
+    "fatores de conversao de lux para PPFD: NAO publicados, porque dependem do espectro e nao ha fonte"
+   ],
+   "verificado_em": "2026-09-08",
+   "publicar": true,
+   "sha256": "1b5bfe9232a83e2deee28d33758051c1128eaf96f5a63a979c3eeed5c6a3c951",
+   "descricao": "Artigo-ancora pareado com a C15. O eixo e a UNIDADE ERRADA: o lumen e ponderado pela sensibilidade do olho humano, que pesa o verde e desconta azul e vermelho — exatamente as duas faixas em que a clorofila trabalha —, de modo que a regua de lm/L penaliza justamente a luminaria projetada para planta; os dois registros do banco (89,6 contra 106 lm/W) sao apresentados como indicio, nao prova. Depois mostra onde a trilha do PPFD termina (o proprio fabricante nao publica teste de PAR), o que o varejo brasileiro declara no lugar (centimetros: 2 de 6 registros sem lumen, 1 sem voltagem, 6 de 6 com centimetro), a armadilha do nome que nao e o tamanho da peca, onde as tres fontes CONCORDAM, por que mais horas nao compensam menos lumens, a cegueira da regua para profundidade, seis recomendacoes praticas e as tres coletas que faltam. Linka a C15, a C1, a C12, a C3 e a metodologia."
+  }
+ ],
+ "dados": [
+  {
+   "id": "especificacao-calculadoras",
+   "arquivo": "dados/especificacao-calculadoras.md",
+   "formato": "md",
+   "entidade": "constante",
+   "fonte": "Bloco 2 da Fundacao: derivada dos 15 clusters do Bloco 1 (corpus de 04/09/2026) mais verificacoes de 07/09/2026 em Cebrace/Saint-Gobain (densidade do vidro), ABNT NBR 6120:2019 via fontes secundarias (carga de piso), Eheim classic 250 (2213) e Eheim Jager (dimensionamento declarado) e Seachem Matrix (volume de midia). Cada constante citada tem id em dados/constantes-calculadoras.json",
+   "verificado_em": "2026-09-07",
+   "registros": 8,
+   "publicar": false,
+   "sha256": "993415a5cc20b651a79f571e48606fa2f2da8c5e80462402e064853791be2b89",
+   "descricao": "Especificacao das 8 calculadoras (C1 litragem, C2 peso e carga, C3 vazao, C5 aquecedor por delta, C7 consumo, C8 lotacao, C12 midia, C15 iluminacao): entradas, formulas, faixas de saida com criterio e fonte em cada extremo, produtos sugeridos, contrato de resposta e estado de aquario compartilhado. Documenta tambem o que fica retido por falta de fonte."
+  },
+  {
+   "id": "constantes-calculadoras",
+   "arquivo": "dados/constantes-calculadoras.json",
+   "formato": "json",
+   "entidade": "constante",
+   "fonte": "ver o campo fonte/url de cada constante no proprio arquivo; nenhuma entra sem fonte e data",
+   "verificado_em": "2026-09-08",
+   "registros": 51,
+   "publicar": false,
+   "sha256": "db3e09745da37494ee2a0ddcc018fb586ef4e9d98e646ca65e792b031dc6163e",
+   "descricao": "Registro normalizado de toda constante usada ou recusada pelas calculadoras, com fonte, url, data e status (fisica, verificada-fabricante, fabricante-via-busca, norma-via-secundaria, transcrita-varejo, divergente-fontes-br, convencao-editorial, pendente). Constante com status pendente e proibida em formula publicada. Em 08/09/2026 a constante eheim-jager-linha-comercial foi completada: faltavam as potencias de 125 W e 250 W (os dois dos 9 tamanhos que a coleta anterior nao achara) e o volume declarado potencia a potencia, que e o que revela o 1,00 W/L cravado na serie. Em 08/09/2026 a coleta da C15 acrescentou a convencao editorial 'cobertura-luminaria-declarada', com a derivacao a partir dos 5 registros do banco que declaram peca e cobertura, e datou de novo 'ppfd-por-litragem', que continua pendente mas agora tem a fonte que explica a ausencia: o forum de suporte da Chihiros declarando que nao existe teste de PAR oficial da linha WRGB II Pro."
+  },
+  {
+   "id": "modelo-banco-produtos",
+   "arquivo": "dados/modelo-banco-produtos.md",
+   "formato": "md",
+   "entidade": "esquema",
+   "fonte": "Bloco 3 da Fundacao: modelo derivado dos campos que a especificacao das calculadoras (Bloco 2) exige de cada produto, testado contra 15 registros de semente colhidos em fabricante (Eheim, Seachem/Sicce, SunSun) e em varejo BR especializado (Aquaricamp, AquaSN, Mega Aquarios, Petlove, Pro-Aquarista, Aquarios do Rio, Aquario Projetado, Aquarius Hobby) em 07/09/2026",
+   "verificado_em": "2026-09-07",
+   "registros": 5,
+   "publicar": false,
+   "sha256": "38c0d873c6f4b039e9b988c144c5af67bf09075d125423db991c4b08536c9ac2",
+   "descricao": "Modelo do banco de produtos: entidades filtro, aquecedor, iluminacao, midia e cotacao, com campos, unidades, obrigatoriedade, a escada de 6 niveis de fonte, o tratamento de conflito, a politica de preco como serie temporal, as regras V1 a V14 e os 6 achados que a semente de 15 produtos revelou."
+  },
+  {
+   "id": "esquema-produtos",
+   "arquivo": "dados/esquema-produtos.json",
+   "formato": "json",
+   "entidade": "esquema",
+   "fonte": "derivado de dados/especificacao-calculadoras.md; a origem esperada de cada campo esta no proprio esquema",
+   "verificado_em": "2026-09-09",
+   "registros": 5,
+   "publicar": false,
+   "sha256": "feb5b0f5988f825b8b583e0fd675e9c151a187b19032468d627886f80f353917",
+   "descricao": "Contrato formal do banco de produtos: campos, tipos, unidades, vocabularios controlados, origem esperada por campo, campos derivados (nunca gravados), minimo_para_sugerir por calculadora e as 14 regras de validacao. E o arquivo que ferramentas/validar-produtos.py executa. Versao 2 (07/09/2026): documenta o campo afiliado dos produtos e a regra V15. Versao 3 (08/09/2026): coluna_maxima_m passou a ser obrigatoria so para canister e sump (hang-on e interno nao tem recalque a vencer, e ganharam o campo coluna_maxima_nao_se_aplica); a regra V10 de plausibilidade de eficiencia ficou restrita a canister e sump; abriu o campo imagem, ainda null em todo o banco; e entrou a regra V16, que proibe link de afiliado de ordenar ou filtrar sugestao de calculadora. v3 (08/09/2026): tratamento de conflito 'intersecao-conservadora' com valor_conservador e derivacao (regra V17), regra V18 (aquecedor sugerido tem de alcancar a temperatura-alvo) e minimo_para_sugerir da C5 aceitando 'conflito:faixa_ajuste_C'. Versao 4 (08/09/2026): a pendencia_de_criterio da entidade iluminacao foi RESOLVIDA pelo caminho conservador — o comprimento da peca nao vira cobertura de aquario, e o minimo_para_sugerir da c15-iluminacao passou a exigir comprimento_aquario_cm declarado. Em 09/09/2026 subiu para a versao 5 do esquema: o campo imagem deixou de ser placeholder e passou a ter subcampos, vocabulario de fonte e regras de tela (V19), e o V20 passou a CONTAR os produtos com link e sem foto. Versao 6 do esquema (09/09/2026): o campo imagem ganhou verificado_em e motivo_sem_verificacao. Motivo escrito por extenso porque quase se perdeu dado bom por causa dele: a sessao da nuvem NAO alcanca down-bs-br.img.susercontent.com (o egresso barra todo dominio de loja), e nao conseguir BUSCAR um arquivo nao e evidencia de que a URL esteja errada. As 21 URLs foram colhidas do painel de afiliados da Shopee, no navegador do Raphael, em 09/09/2026. Quem confere se a foto carrega e a Sentinela Tecnica, que roda no Chrome. A regra V21 do validador passa a exigir que imagem sem verificado_em diga por que, em vez de a imagem ser anulada."
+  },
+  {
+   "id": "produtos-filtro",
+   "arquivo": "dados/produtos-filtro.json",
+   "formato": "json",
+   "entidade": "filtro",
+   "fonte": "ver fontes[] de cada registro: Eheim e SunSun (fabricante-via-busca), Seachem/Sicce (manual via busca, PDF bloqueado pelo egresso), Aquaricamp, AquaSN, Pet Hobby, Pro-Aquarista, Fazenda Submersa, AquaMaeda, AquaBetta, Franco Aquarismo e Aqua Mais (varejo BR), Wiltec (varejo europeu, so a altura de coluna do HW-702)",
+   "verificado_em": "2026-09-09",
+   "registros": 19,
+   "publicar": false,
+   "sha256": "9bc51e548bb419ebeb5017d7e286c76ff83c84ef9a926888a058e0f26f0d9a2c",
+   "descricao": "Semente de filtros: Eheim classic 250 (2213), SunSun HW-303B, Atman AT-3338, Atman AT-3338S e Seachem Tidal 55. Turnover implicito declarado pelos proprios fabricantes vai de 1,76 a 10,0 renovacoes/h. Em 08/09/2026 os dois filtros com link de afiliado sairam do barrado: o Eheim 2213 ganhou voltagem 110 V (varejo BR) e o Seachem Tidal 55 ganhou as duas voltagens, teve a coluna maxima declarada como nao aplicavel (hang-on) e saiu de 'revalidar' para 'completo'. A C3 sugere 4 dos 5 filtros; o SunSun HW-303B segue barrado por coluna maxima. Em 09/09/2026 entrou o lote colhido a mao no painel da Shopee: 8 filtros novos com link e imagem (Ocean Tech CT-1000-3, SunSun HW-702A, SunSun HW-702B 220 V, Maxxi Pro MP-600, SunSun XBL-600, Aquaverso APK-600 e o Eheim classic 600 (2217) em 127 V e em 220 V, registros separados porque voltagem e chave de compatibilidade), mais a imagem do Eheim classic 250 e do Seachem Tidal 55. Dos 8, tres fecham o minimo da C3 e ja sao sugeridos COM link e foto (HW-702B 220 V e as duas Eheim 2217); os outros cinco ficaram 'parcial' e esperam UM ou DOIS campos com fonte de fabricante ou varejo — voltagem em quatro deles, e vazao no MP-600 e no APK-600, que a busca nao achou em fonte nenhuma acima de anuncio. Numero do anuncio NAO virou dado tecnico em nenhum caso."
+  },
+  {
+   "id": "produtos-aquecedor",
+   "arquivo": "dados/produtos-aquecedor.json",
+   "formato": "json",
+   "entidade": "aquecedor",
+   "fonte": "ver fontes[] de cada registro: Eheim (fabricante-via-busca); Mega Aquarios, RS Discus e Petlove (varejo BR)",
+   "verificado_em": "2026-09-09",
+   "registros": 23,
+   "publicar": false,
+   "sha256": "cbc81a122b981f7cd0c2e77ae6059d1b4b07690b287456f49cd16169f5b1072d",
+   "descricao": "Banco de aquecedores, ampliado em 08/09/2026 de 4 para 9 registros para alimentar a C5: linha Eheim Jager (50, 100, 150 e 200 W) e linha Roxin HT-1300/Q3 (25, 50, 100, 200 e 300 W). A coleta desta data resolveu o campo que barrava o banco inteiro — voltagem, agora ['110','220'] nas duas linhas com fonte de varejo BR — e tratou a faixa de ajuste da linha Roxin, em conflito varejo-contra-varejo, pela intersecao conservadora de 22 a 32 C (regra V17). Tres conflitos ficam publicados em vez de escondidos: o volume do Jager 200 W (fabricante 30-400 L contra varejo 300-400 L), o do Jager 150 W (125-150 L contra 200-300 L, os dois varejo) e a faixa de ajuste da linha Roxin. Resultado: 9 de 9 aptos a serem sugeridos pela C5, 3 com link de afiliado. Em 09/09/2026 entraram 10 registros com link e imagem (7 Maxxi, RS-50, Ocean Tech Warmer X-5 150 W e Sicce Scuba Contactless 150 W) e o Roxin Q3 50 W ganhou link. O Warmer X-5 e o registro que fecha a janela de 110 a 150 W."
+  },
+  {
+   "id": "produtos-iluminacao",
+   "arquivo": "dados/produtos-iluminacao.json",
+   "formato": "json",
+   "entidade": "iluminacao",
+   "fonte": "ver fontes[] de cada registro: Pro-Aquarista, Aquarios do Rio, Aquarius Hobby, Green Aqua e Aquasabi (varejo)",
+   "verificado_em": "2026-09-09",
+   "registros": 16,
+   "publicar": false,
+   "sha256": "a3f44e44eb16eb75653a0d6ab687f0a7ce8fa54ce8c9e8daa389cdf67b114bdf",
+   "descricao": "Banco de iluminacao, ampliado em 08/09/2026 pela coleta que abriu a C15: Ista IL-401 60 e o LED 60 cm dos Aquarios do Rio ganharam voltagem (bivolt) e cobertura declarada e sairam do barrado; entrou a WFish WF-H600 WRGB, terceiro caso do padrao 'peca menor que o nome'; e ficou registrado o conflito nome-contra-ficha do IL-401, vendida como 60 cm e medindo 56. Resultado: 6 registros, 3 aptos a serem sugeridos pela C15 (1 com link) e 3 barrados — dois por nao declararem lumen e um, o mais caro do banco, por nao declarar voltagem mesmo tendo link de afiliado. A lacuna estrutural continua sendo o conteudo: o varejo brasileiro vende luminaria por centimetro de peca e omite o lumen. Em 09/09/2026 entraram 10 registros com link e imagem (Soma WRGB S-200 a S-1200 e Chihiros A901 e A451M): as 8 Soma ficaram 'parcial' por falta de lumen publicado e as 2 Chihiros sao as primeiras luminarias sugeriveis com link depois da Ista."
+  },
+  {
+   "id": "produtos-midia",
+   "arquivo": "dados/produtos-midia.json",
+   "formato": "json",
+   "entidade": "midia",
+   "fonte": "ver fontes[] de cada registro: Seachem e Eheim (fabricante-via-busca; seachem.com bloqueado pelo egresso)",
+   "verificado_em": "2026-09-09",
+   "registros": 6,
+   "publicar": false,
+   "sha256": "5aaefcfd9682ffdc6936ff91da8345e84162ccbad7e2878b562e7b239d67cdf7",
+   "descricao": "Semente de midia filtrante: Seachem Matrix 1 L e Eheim SUBSTRAT pro 1 L. Guarda o conflito de dosagem do proprio Seachem (1,25 x 2,6 mL de midia por litro de agua) e as duas areas superficiais declaradas sem metodo publicado (>700 e ~450 m2/L). Em 09/09/2026 o Seachem Matrix 1 L ganhou imagem do anuncio da Shopee; o Eheim SUBSTRAT pro segue com link e sem foto."
+  },
+  {
+   "id": "produtos-cotacoes",
+   "arquivo": "dados/produtos-cotacoes.json",
+   "formato": "json",
+   "entidade": "cotacao",
+   "fonte": "painel Shopee Afiliados, lido pelo operador em 07/09/2026 ao gerar os links curtos (campo origem_leitura em cada registro)",
+   "verificado_em": "2026-09-09",
+   "registros": 39,
+   "publicar": false,
+   "sha256": "8fae13f93b93c46655e89607c6445b1619dfa9dea75804e9b5795a3adc6fd62a",
+   "descricao": "Precos observados, por produto, por loja e por data. Primeira leva em 07/09/2026: 10 cotacoes da Shopee vindas do painel de afiliados, cada uma com loja, data, condicao, disponibilidade, titulo do anuncio e link. Preco NAO e campo de produto e nunca entra em criterio tecnico de sugestao; na tela sai sempre com a data ao lado e o aviso de que o valor muda na loja. Em 09/09/2026 entrou a segunda leva: 21 cotacoes do painel Shopee Afiliados, na mesma passada dos 21 links e das 21 imagens. Em 09/09/2026, ainda, entrou a terceira leva: 8 cotacoes do lote de filtros colhido a mao no painel as 11h40, de R$ 249,90 (SunSun XBL-600) a R$ 2.700,76 (Eheim classic 600 nas duas voltagens)."
+  },
+  {
+   "id": "afiliados-sem-produto",
+   "arquivo": "dados/afiliados-sem-produto.json",
+   "formato": "json",
+   "entidade": "afiliado",
+   "fonte": "painel Shopee Afiliados, 07/09/2026",
+   "verificado_em": "2026-09-07",
+   "registros": 1,
+   "publicar": false,
+   "sha256": "ef128d1a02b2258c051c05dc71f1d716f4622a39d6a1d330015df12f2146047c",
+   "descricao": "Links de afiliado ja gerados que ainda NAO tem registro no banco de produtos, com o motivo e o que desbloqueia cada um. Ficam fora do banco de proposito: link sem ficha tecnica verificada nao pode ser sugerido por calculadora."
+  },
+  {
+   "id": "esquema-especies",
+   "arquivo": "dados/esquema-especies.json",
+   "formato": "json",
+   "entidade": "especie",
+   "fonte": "contrato proprio da ilha; herda a forma de dados/esquema-produtos.json",
+   "verificado_em": "2026-09-09",
+   "registros": 0,
+   "publicar": false,
+   "sha256": "deab5277b4d83e9876d47bef5c844323e1100958f43905130e06b43fa45aa983",
+   "descricao": "Contrato formal do banco de especies (versao 2): campos, unidades, vocabulario controlado, a escada de 6 niveis de fonte para especie (nao existe fabricante de peixe: existem base cientifica e compendio de aquarismo), a tabela dominio_por_campo — que diz qual escada manda em qual campo, porque FishBase e melhor em biologia e o compendio e melhor em manutencao — e as regras E1 a E15. Tres decisoes valem para sempre: em conflito de campo de BEM-ESTAR o conservador e o MAIOR (o oposto do banco de produtos), volume minimo em litro nunca se grava porque e derivado da base com a altura do usuario, e espelho nao confere espelho (fishbase.se e fishbase.org sao uma fonte so, regra E15)."
+  },
+  {
+   "id": "especies-agua-doce",
+   "arquivo": "dados/especies-agua-doce.json",
+   "formato": "json",
+   "entidade": "especie",
+   "fonte": "ver fontes[] de cada registro: FishBase (base-cientifica-via-busca) e Seriously Fish (compendio-via-busca), os dois colhidos por busca restrita ao dominio porque o egresso bloqueia leitura direta",
+   "verificado_em": "2026-09-09",
+   "registros": 36,
+   "publicar": false,
+   "sha256": "b3a1306a9bd0973d324d6558ff85e5bc0b6c8ae62106bed3fe330cffafdf031d",
+   "descricao": "Banco de especies: 36 peixes do varejo brasileiro, de 2,0 cm (tetra ember) a 48,0 cm (kinguio), com porte, faixa termica, pH, dureza, cardume minimo, frente e base minimas de aquario, familia e convivencia, cada campo atribuido a uma fonte com url e data. Frentes minimas declaradas de 45 a 180 cm, em dez degraus — e a malha de pagina de volume sem repetir numero. 24 dos 36 passam no portao de pagina de especie; os 12 barrados dizem no proprio registro qual campo falta e por que nao foi estimado, e um deles (gurami mel) tem o porte RECUSADO por implausibilidade, com o motivo escrito. Existe para destravar o eixo aberto 'quantos litros para X peixes' com dado em vez da regra de bolso de 1 cm por litro."
+  }
+ ],
+ "esquema": {
+  "snippets": {
+   "id": "identificador estavel, kebab-case, nunca numerado",
+   "nome": "nome descritivo do snippet no Code Snippets",
+   "arquivo": "caminho relativo a esta pasta, em snippets/",
+   "escopo": "global | front-end | admin",
+   "ativo": "true se deve ficar ativo no site",
+   "publicar": "true para o Sync aplicar no site. Desde 07/09/2026 o desembarque de snippet de site e automatico",
+   "sha256": "hash do arquivo, conferido pelo Sync apos gravar",
+   "descricao": "o que o snippet faz",
+   "versao": "versao declarada no cabecalho do arquivo. Obrigatoria no item aquametria-sync: e o que o snippet atualizador compara com a versao que esta rodando no site"
+  },
+  "conteudo": {
+   "id": "identificador estavel, kebab-case",
+   "tipo": "artigo | pagina | pagina-programatica | widget",
+   "titulo": "titulo publicado",
+   "slug": "slug da URL",
+   "arquivo": "caminho relativo a esta pasta, em conteudo/",
+   "cluster": "cluster do corpus de buscas a que pertence",
+   "fontes": "lista de fontes tecnicas citadas no texto",
+   "verificado_em": "data da ultima conferencia dos dados",
+   "publicar": "true para o Sync aplicar no site. Desde 07/09/2026 calculadora, pagina-ancora e artigo saem com true; pagina-programatica em escala continua false esperando o Raphael"
+  },
+  "dados": {
+   "id": "identificador estavel, kebab-case",
+   "arquivo": "caminho relativo a esta pasta, em dados/",
+   "formato": "json | csv | md",
+   "entidade": "filtro | aquecedor | iluminacao | midia | especie | constante | cotacao | esquema",
+   "fonte": "de onde vem cada campo (manual do fabricante, norma, etc.)",
+   "verificado_em": "data da ultima conferencia",
+   "registros": "quantidade de linhas",
+   "publicar": "false ate o Raphael aprovar o desembarque",
+   "sha256": "hash do arquivo, conferido pelo Sync apos gravar",
+   "descricao": "o que o arquivo contem"
+  },
+  "ferramentas": {
+   "id": "identificador estavel, kebab-case",
+   "arquivo": "caminho relativo a esta pasta, em ferramentas/",
+   "descricao": "o que a ferramenta faz e quando roda. Ferramenta NUNCA e publicada no site."
+  }
+ },
+ "ferramentas": [
+  {
+   "id": "validar-produtos",
+   "arquivo": "ferramentas/validar-produtos.py",
+   "publicar": false,
+   "descricao": "Valida o banco de produtos contra dados/esquema-produtos.json (regras V1 a V20, imagem inclusa) e imprime os campos derivados e quais produtos cada calculadora consegue sugerir. Rodar antes de todo commit que toque dados/produtos-*.json. Nao vai para o WordPress: e ferramenta do repositorio, por isso fica fora das listas que o Sync consome. V21 (09/09/2026): imagem com verificado_em null precisa de motivo_sem_verificacao. Apagar URL de foto boa porque a nuvem nao consegue busca-la seria trocar o certo pelo bonito ao contrario — o lugar da falta e o campo, nao o lixo.",
+   "sha256": "f2f16b31091c63e6510ea1cd407325533a83c46a41db125f3161c8d3f99f979d"
+  },
+  {
+   "id": "gerar-catalogo-filtros",
+   "arquivo": "ferramentas/gerar-catalogo-filtros.py",
+   "publicar": false,
+   "descricao": "Reescreve o catalogo de filtros embutido no snippet da C3 (trecho entre CATALOGO-INICIO e CATALOGO-FIM) a partir de dados/produtos-filtro.json, aplicando o minimo_para_sugerir da c3-vazao-filtro. Rodar SEMPRE depois de mexer no banco de filtros: o site nao le o repositorio em tempo de execucao, entao o banco viaja dentro do PHP e as duas copias nao podem divergir. Nao vai para o WordPress.",
+   "sha256": "4a3bb24213a1d47f37ec301c2a428493bc4f76900d5aad278757b0844cbd95f5"
+  },
+  {
+   "id": "gerar-catalogo-aquecedores",
+   "arquivo": "ferramentas/gerar-catalogo-aquecedores.py",
+   "publicar": false,
+   "sha256": "d2846cceaacd076cdd2c3180358b7e1726ed8b07b28de52f6355a8458e2b07ad",
+   "descricao": "Gera o catalogo de aquecedores que a C5 embute no snippet, a partir de dados/produtos-aquecedor.json e do minimo_para_sugerir do esquema. O site nao le o repositorio em tempo de execucao, entao o banco viaja dentro do PHP; este script e o que impede as duas copias de divergirem. Carrega a faixa conservadora do conflito (V17) quando o campo faixa_ajuste_C ficou null, e marca o item para a tela poder dizer de onde veio a faixa."
+  },
+  {
+   "id": "teste-navegador-c5",
+   "arquivo": "ferramentas/teste-navegador-c5.mjs",
+   "publicar": false,
+   "sha256": "6543e64887f15d98485a77a245824ca8294ceb9a7a083e13fa21f804ae853d5c",
+   "descricao": "Teste de navegador da C5 em Chromium de verdade (Playwright): 15 cenarios, entre eles os atributos do link de afiliado (rel='sponsored noopener', target='_blank', https), o aviso de comissao visivel, as duas barreiras de seguranca, o delta acima de 10 C, o delta zero, o caso sem produto que atenda, a mescla do estado compartilhado com C1 e C3, o permalink e o celular de 390 px sem rolagem horizontal."
+  },
+  {
+   "id": "render-para-teste",
+   "arquivo": "ferramentas/render-para-teste.php",
+   "publicar": false,
+   "sha256": "4262a60dcc6b36348d63d25a2c37d6fe90efbbec1fb21d8b112f61855e4432c6",
+   "descricao": "Renderiza qualquer shortcode de calculadora numa pagina HTML solta, com funcoes falsas do WordPress, para o teste de navegador rodar sem subir WordPress nenhum. Carrega todos os snippets menos o Sync, entao tambem serve de teste de convivencia entre as calculadoras."
+  },
+  {
+   "id": "gerar-catalogo-midias",
+   "arquivo": "ferramentas/gerar-catalogo-midias.py",
+   "publicar": false,
+   "sha256": "e3d36cfd449bf65cb000781cb911758c29105297e777df54d2d8b8b09231f8d9",
+   "descricao": "Gera os DOIS catalogos que a C12 embute no snippet: as midias de dados/produtos-midia.json (bloco CATALOGO-MIDIAS) e os filtros de dados/produtos-filtro.json que declaram volume util de midia (bloco CATALOGO-FILTROS). Aplica o minimo_para_sugerir do esquema, carrega a segunda leitura dos campos em conflito para a tela publicar as duas, e ordena as midias pela dosagem declarada (link de afiliado nao ordena, regra V16). Rodar SEMPRE depois de mexer nos dois bancos. Nao vai para o WordPress."
+  },
+  {
+   "id": "teste-navegador-c12",
+   "arquivo": "ferramentas/teste-navegador-c12.mjs",
+   "publicar": false,
+   "sha256": "a3678504b5e42907949fa61a05c32ffd4a2c7bf4b7070395f0228647713b8adb",
+   "descricao": "Teste de navegador da C12 em Chromium de verdade (Playwright): 19 cenarios, entre eles a faixa das quatro dosagens, as duas tabelas de ancoras, o teto fisico do cesto (inclusive o caso que estoura), as duas leituras da ficha ambigua do Atman, o calendario de trocas com datas calculadas, o aviso obrigatorio sobre lavar midia biologica, os atributos do link de afiliado, a recusa de converter grama em mililitro, a mescla do estado compartilhado com C1/C3/C5 e o celular de 390 px sem rolagem horizontal. Nao vai para o WordPress."
+  },
+  {
+   "id": "gerar-catalogo-iluminacao",
+   "arquivo": "ferramentas/gerar-catalogo-iluminacao.py",
+   "publicar": false,
+   "sha256": "87789ac0a56ef16bd737a602c7ac430cbcab2c21d2cda88fe1be84fc21319a7f",
+   "descricao": "Gera os DOIS blocos que a C15 embute no snippet a partir de dados/produtos-iluminacao.json: o catalogo das luminarias aptas (CATALOGO-INICIO/FIM) e a lista dos BARRADOS com o motivo de cada um (BARRADOS-INICIO/FIM), que a tela publica. Aplica o minimo_para_sugerir da c15-iluminacao, que desde 08/09/2026 exige comprimento_aquario_cm DECLARADO. Manda a ESTRUTURA do conflito de comprimento, nunca o texto: o banco e escrito sem acento e a tela sai acentuada, entao a frase e escrita no JavaScript do snippet. Rodar SEMPRE depois de mexer no banco de iluminacao. Nao vai para o WordPress."
+  },
+  {
+   "id": "teste-navegador-c15",
+   "arquivo": "ferramentas/teste-navegador-c15.mjs",
+   "publicar": false,
+   "sha256": "6ef0a96c7722e1cc3b990f3c74af8c0403b7a21f3c5f5b1d717d7f5ad4bd2812",
+   "descricao": "Teste de navegador da C15 em Chromium de verdade (Playwright): 21 cenarios e mais de 60 verificacoes, entre elas a faixa nos tres niveis, a tabela das tres leituras com a divergencia de 2x, a faixa aberta do nivel alto, o aviso de luz alta sem CO2, a sobreposicao dos limites de CO2, os quatro regimes de fotoperiodo, o aviso de lamina funda, a cobertura de comprimento como barreira do bloco de produto, a lista publicada dos barrados, os atributos do link de afiliado, o painel de consumo em kWh e em reais, o caminho inverso, a mescla do estado compartilhado com C1/C3/C5, o permalink e o celular de 390 px sem rolagem horizontal. Nao vai para o WordPress."
+  },
+  {
+   "id": "teste-conversor-markdown",
+   "arquivo": "ferramentas/teste-conversor-markdown.php",
+   "publicar": false,
+   "sha256": "a4a972a5bcc15c994de6ba715e29da0d18141d725aaf68b59fa9a11d9d70231c",
+   "descricao": "Roda o conversor de Markdown do proprio snippet Aquametria Sync sobre todos os arquivos de conteudo/ e recusa qualquer residuo de front matter no HTML (chaves como publicar:, verificado_em:, slug:), HTML que comece por separador e primeiro bloco que nao seja texto. Cobre tambem as variacoes de front matter que sao invisiveis no editor e quebravam o corte em silencio: BOM, CR sozinho, espaco a direita do delimitador. Nasceu do defeito visto no ar em 08/09/2026 na pagina da C1. Rodar antes de todo commit que toque snippets/aquametria-sync.php ou conteudo/."
+  },
+  {
+   "id": "teste-atualizador-sync",
+   "arquivo": "ferramentas/teste-atualizador-sync.php",
+   "publicar": false,
+   "sha256": "84fed30100d4f6691523ffadf274f61a5643e3eca51eac304942814de49af4a3",
+   "descricao": "Exercita o snippet atualizador do Sync de ponta a ponta com WordPress e Code Snippets falsos, um cenario por processo (a versao instalada e uma constante, e constante nao muda dentro do mesmo processo). Nove cenarios: caminho feliz, sha256 divergente, arquivo com erro de sintaxe, manifest que anuncia versao que o arquivo nao declara, verificacao que falha (tem de restaurar o backup), loopback mudo (tem de manter o codigo novo), site ja atualizado, janela de uma hora e Sync ausente no site. Rodar antes de todo commit que toque snippets/aquametria-atualizador-sync.php."
+  },
+  {
+   "id": "teste-escape-shortcode",
+   "arquivo": "ferramentas/teste-escape-shortcode.php",
+   "publicar": false,
+   "sha256": "8dd070dfcfa9e046116c2e7fb6e0dd54621c4af80f49401c19fba36069c2da27",
+   "descricao": "O teste que teria pego o defeito de 08/09/2026 e existe para que ele nao volte. Monta as cinco calculadoras como o WordPress monta (wp_head, conteudo passado pelo escape de & dos filtros de conteudo, wp_footer) e afirma, para cada uma: retorno do shortcode sem <script> e sem <style>, zero &#038; dentro de script ou style, operador && intacto, estilo antes do HTML, script depois do HTML. Controle negativo conferido: com o <script> de volta dentro do retorno do shortcode, ele reprova com 26 ocorrencias de &#038; na C1."
+  },
+  {
+   "id": "teste-navegador-cinco",
+   "arquivo": "ferramentas/teste-navegador-cinco.mjs",
+   "publicar": false,
+   "sha256": "ce6e364e211fe0233c3c3d536a2d7d6aadbf7aca49a303285920ff8f604bb993",
+   "descricao": "Executa o calculo das CINCO calculadoras num Chromium de verdade (Playwright) e confere na tela o que so um humano conferia: script sem SyntaxError, contêiner de resposta nascendo oculto no HTML servido e ficando visivel depois de calcular, numero na tela, ausencia de submit nativo (a pagina nao recarrega) e o bloco de produto com link de afiliado marcado sponsored/noopener/_blank mais o aviso de comissao. A C15 entra como semProduto: hoje ela responde sem bloco de produto de proposito, porque as luminarias do catalogo nao declaram lumen nem voltagem, e a pagina publica esse motivo."
+  },
+  {
+   "id": "conferir-entidades",
+   "arquivo": "ferramentas/conferir-entidades.mjs",
+   "publicar": false,
+   "descricao": "Portão contra corrupção por entidade HTML: proíbe entidade numérica no fonte dos snippets, proíbe entidade dentro de script/style renderizado (menos a cadeia de esc()) e roda node --check em cada bloco de script. Controle negativo reproduz o SyntaxError de 08/09/2026.",
+   "sha256": "bef6168228ead54032a8cb7e1b5e4f8f344b5f3325e43cab6c114ace1b3f23ed"
+  },
+  {
+   "id": "teste-apelidos",
+   "arquivo": "ferramentas/teste-apelidos.php",
+   "publicar": false,
+   "descricao": "Exercita os apelidos de endereço da casca: cada apelido resolve para o slug canônico, endereço fora do mapa não resolve, e todo destino existe em conteudo/.",
+   "sha256": "484426420c1118cc49bdf09f02e984aae56d8b27e4e0bbd9d5872807b109b1b4"
+  },
+  {
+   "id": "validar-especies",
+   "arquivo": "ferramentas/validar-especies.py",
+   "publicar": false,
+   "descricao": "Valida o banco de especies contra dados/esquema-especies.json (regras E1 a E15) e imprime quem ja passa no minimo_para_sugerir de cada consumidor (pagina de especie, C8 lotacao, C5 aquecedor), mais a faixa de porte e as frentes minimas cobertas. Aceita um caminho no argv, o que permite roda-lo contra bancos de teste. Rodar antes de todo commit que toque dados/especies-*.json. Ferramenta do repositorio: nao vai para o WordPress.",
+   "sha256": "b52b16ba520e646aafe2b1407247e9afcf0f5d8edaa520bb9e1cd56a8e9e655f"
+  },
+  {
+   "id": "testar-validador-especies",
+   "arquivo": "ferramentas/testar-validador-especies.py",
+   "publicar": false,
+   "descricao": "Testes NEGATIVOS do validador de especies: corrompe uma copia do banco de proposito, uma corrupcao por regra E1 a E15, e exige que a regra certa reprove com o codigo certo. Existe porque validar-especies.py so prova que o banco de hoje passa — nao prova que a regra pega o defeito que promete pegar, e regra escrita errada aprova tudo em silencio. O banco real nunca e tocado (copias em diretorio temporario) e o teste confere isso no fim. Rodar junto com o validador. Ferramenta do repositorio: nao vai para o WordPress.",
+   "sha256": "284246a460b6645089acf6d31eb907de5013020e43ee7f45085bbd84da2af67b"
+  },
+  {
+   "id": "teste-navegador-visibilidade-ia",
+   "arquivo": "ferramentas/teste-navegador-visibilidade-ia.mjs",
+   "publicar": false,
+   "descricao": "Mede num Chromium de verdade, e com o JAVASCRIPT DESLIGADO, o que a Sentinela Tecnica mediu a mao em 09/09/2026 e encontrou zero em 13 de 13 paginas: se a pagina de ferramenta serve algo citavel por um modelo de linguagem. Confere, por calculadora, que existe JSON-LD e que ele faz parse; que ha um no WebApplication com applicationCategory, featureList, isAccessibleForFree e publisher; que ha um FAQPage com pelo menos seis perguntas, toda resposta com texto, com numero e longa o bastante para ser citada; que a tabela de exemplos esta no HTML SERVIDO e cobre 30, 60, 100, 150, 200 e 300 L; que o numero da tabela para 100 L bate com o que a calculadora devolve para 100 L; que o bloco de resposta direta vem ANTES do formulario, com numero e data; e que, sem JavaScript, o container de resultado continua oculto — numero de resultado sem entrada seria pior que formulario vazio. Desligar o JavaScript e o coracao do teste: e o que um crawler de IA recebe, e a unica prova honesta de que o numero esta no HTML e nao foi desenhado depois. Nao vai para o WordPress. 09/09/2026: passou a conferir tambem a COLUNA DE PRODUTO da tabela pre-renderizada — uma celula por volume, nenhuma muda, todo link sponsored + noopener + aba nova e com texto (teclado e leitor de tela), e o aviso de comissao presente junto da tabela. Com o script desligado essa coluna e a unica recomendacao de compra que a pagina serve, entao se ela sumir ninguem percebe pela tela.",
+   "sha256": "94271f87450f331034d3bb76cd2c1ade4efafb01378f36caeb6d708d54e8aa44"
+  },
+  {
+   "id": "conferir-protecao-funcoes",
+   "arquivo": "ferramentas/conferir-protecao-funcoes.py",
+   "publicar": false,
+   "descricao": "Confere, SEM reescrever nada, que toda declaracao de funcao no comeco de linha de um snippet vem logo depois do guarda if ( ! function_exists( mesmo-nome ) ) {, pulando docblock e comentario. Existia so o transformador ferramentas/proteger-funcoes.php, que REESCREVE o arquivo e por isso nao serve como verificacao antes do commit; este sai 0 sem problema e 1 com problema, nomeando funcao e linha. Rodar em snippets/*.php antes de marcar qualquer coisa como publicar=true. Nao vai para o WordPress.",
+   "sha256": "480fa461c3ed612153008c52adfb055d01f00c71c18dee208f07dd934fea4689"
+  },
+  {
+   "id": "teste-navegador-c3-dupla-condicao",
+   "arquivo": "ferramentas/teste-navegador-c3-dupla-condicao.mjs",
+   "publicar": false,
+   "descricao": "Executa a C3 num Chromium de verdade no caso exato que o Raphael abriu em 09/09/2026 (aquario de 189,6 L, plantado, carga media) e mede a regra V22 do esquema e o desempate da V16: nenhum recomendado com volume declarado que nao cubra o aquario, o Atman HF-0600 fora dos recomendados, a secao separada existindo, rotulada e ABAIXO no HTML, e o link de loja desempatando so entre itens do mesmo degrau de adequacao. Roda um segundo caso, o mesmo volume em perfil comunitario, porque no plantado a faixa e estreita demais para dois filtros caírem no mesmo degrau e o desempate nunca dispararia — teste que nao exercita a regra nao prova a regra. Casa cada linha da tela com a ficha do catalogo embutido e REPROVA quando nao acha, para nao passar em silencio depois que o nome de tela mudar. Nao vai para o WordPress.",
+   "sha256": "e6024da31141b98f41834d4c12e6ef95dd6b7aeb0b53520e854962b664b9bf83"
+  }
+ ]
 }
