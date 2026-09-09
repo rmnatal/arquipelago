@@ -2,7 +2,7 @@
   "id": "produtos-aquecedor",
   "entidade": "aquecedor",
   "esquema": "dados/esquema-produtos.json",
-  "descricao": "Banco de aquecedores. Duas linhas: a importada de referencia (Eheim Jager/Thermocontrol) e a popular brasileira (Roxin HT-1300/Q3). Ampliado em 08/09/2026 para alimentar a C5 — nove registros de 25 a 300 W, com a voltagem coletada (era o campo que barrava a sugestao) e a faixa de ajuste da linha Roxin tratada pela intersecao conservadora da regra V17.",
+  "descricao": "Banco de aquecedores. Duas linhas: a importada de referencia (Eheim Jager/Thermocontrol) e a popular brasileira (Roxin HT-1300/Q3). Ampliado em 08/09/2026 para alimentar a C5 — nove registros de 25 a 300 W, com a voltagem coletada (era o campo que barrava a sugestao) e a faixa de ajuste da linha Roxin tratada pela intersecao conservadora da regra V17. Em 09/09/2026 o banco saiu de 13 para 23 registros com o lote colhido no painel Shopee Afiliados: 7 Maxxi, 1 RS-50, 1 Ocean Tech Warmer X-5 150 W e 1 Sicce Scuba Contactless 150 W, todos com link e imagem, e o Roxin Q3 50 W (que ja era apto) ganhou link. O lote mostra onde esta o gargalo: dos 10 novos, so o Warmer X-5 tem os quatro campos que a C5 exige — e e ele que fecha a janela de 110 a 150 W que estava vazia. Os 7 Maxxi e o RS-50 entram com potencia de varejo e NADA mais; o Sicce tem a melhor ficha do lote e para em um campo so, a voltagem.",
   "gerado_em": "2026-09-07",
   "atualizado_em": "2026-09-09",
   "bloco": 3,
@@ -37,6 +37,7 @@
         "min": 20,
         "max": 35
       },
+      "imagem": null,
       "afiliado": {
         "plataforma": null,
         "motivo": "a coleta de links da Shopee em 07/09/2026 cobriu so as potencias de 100, 200 e 300 W da linha. Este modelo entrou no banco em 08/09 e ainda nao teve link coletado. Pela regra V16 ele e sugerido do mesmo jeito, sem botao de loja.",
@@ -142,6 +143,7 @@
         "min": 25,
         "max": 50
       },
+      "imagem": null,
       "afiliado": {
         "plataforma": null,
         "motivo": "sem anuncio deste modelo na Shopee em 07/09/2026 (a busca do painel de afiliados so devolveu pecas de reposicao e lampadas UV) e nao foi refeita em 08/09. Pela regra V16 o produto continua sendo sugerido pela adequacao tecnica; o cartao sai sem botao de loja.",
@@ -195,6 +197,68 @@
       "observacao": "50 W declarados para 25 a 50 L: exatamente 1,0 W/L no teto. Junto com o 25 W (25 L), o 100 W (100 L) e o 150 W (150 L), mostra que a propria linha do fabricante e desenhada sobre a regra de bolso de 1 W/L que a web brasileira repete sem citar."
     },
     {
+      "id": "maxxi-m-050-anuncio-220v",
+      "entidade": "aquecedor",
+      "marca": "Maxxi",
+      "linha": null,
+      "modelo": "M-050",
+      "variante": "50 W (anuncio 220 V)",
+      "nomes_alternativos": [
+        "Maxxi Termostato M-050 50W",
+        "Termostato com aquecedor Maxxi 50 W"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": null,
+      "potencia_w": 50,
+      "tipo": null,
+      "termostato": null,
+      "faixa_ajuste_C": null,
+      "precisao_C": null,
+      "comprimento_cm": null,
+      "submersivel": null,
+      "protecao_funcionamento_a_seco": null,
+      "volume_atendido_declarado_L": null,
+      "imagem": {
+        "url": "https://down-bs-br.img.susercontent.com/sg-11134201-8259h-mge5jlcqmbyhc4.webp",
+        "largura": null,
+        "altura": null,
+        "fonte": "anuncio-shopee",
+        "coletado_em": "2026-09-09",
+        "alt": "Termostato com aquecedor Maxxi M-050 de 50 W, tubo submersivel com dial de ajuste no topo",
+        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+      },
+      "afiliado": {
+        "plataforma": "shopee",
+        "url": "https://s.shopee.com.br/20vK5bcCc2",
+        "sub_id_1": "aquametria",
+        "sub_id_2": "C5",
+        "rel": "sponsored",
+        "verificado_em": "2026-09-09",
+        "anuncio_shopee": "Maxxi Termostato M-050 50 W 220 V para aquario ate 50 litros",
+        "voltagem_anuncio": "220",
+        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Pro-Aquarista (varejo BR), pagina da marca Maxxi, que lista os termostatos M-050 50 W, M-100 100 W, M-150 150 W, M-200 200 W (codigo MXM2001) e M-300 300 W, todos anunciados em 110 V",
+          "url": "https://www.proaquarista.com.br/marca/Maxxi.html",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "potencia_w",
+            "disponibilidade_br"
+          ],
+          "observacao": "Lido por RESULTADO DE BUSCA: proaquarista.com.br da EGRESS_BLOCKED para a nuvem em 09/09/2026. A pagina da marca sustenta a existencia do modelo e a potencia, e NADA mais: nao publica faixa de ajuste, tipo de resistencia, volume atendido nem a versao 220 V."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "parcial",
+      "observacao": "Entrou em 09/09/2026 com link e imagem, e fica 'parcial' porque falta o que a C5 precisa para sugerir: faixa_ajuste_C, volume_atendido_declarado_L, tipo, termostato e voltagem seguem null. A potencia tem fonte de varejo (pagina da marca na Pro-Aquarista); o resto existe so no texto do anuncio, e anuncio de marketplace nao sustenta campo tecnico. A voltagem e o caso mais grave: o varejo localizado publica a linha em 110 V e este anuncio abre 220 V — nenhuma fonte de nivel 2 a 5 confirma versao por versao, e voltagem errada queima o aparelho. O que destrava o registro e uma ficha de varejo especializado (ou o manual) com faixa de ajuste, volume declarado e voltagem do modelo."
+    },
+    {
       "id": "roxin-ht-1300-q3-50w",
       "entidade": "aquecedor",
       "marca": "Roxin",
@@ -223,10 +287,25 @@
         "min": 40,
         "max": 60
       },
+      "imagem": {
+        "url": "https://down-bs-br.img.susercontent.com/br-11134207-7r98o-lvyuqrs817sla5.webp",
+        "largura": null,
+        "altura": null,
+        "fonte": "anuncio-shopee",
+        "coletado_em": "2026-09-09",
+        "alt": "Termostato com aquecedor Roxin Q3 de 50 W, tubo de quartzo submersivel com dial de ajuste de temperatura no topo",
+        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+      },
       "afiliado": {
-        "plataforma": null,
-        "motivo": "a coleta de links da Shopee em 07/09/2026 cobriu so as potencias de 100, 200 e 300 W da linha. Este modelo entrou no banco em 08/09 e ainda nao teve link coletado. Pela regra V16 ele e sugerido do mesmo jeito, sem botao de loja.",
-        "verificado_em": "2026-09-08"
+        "plataforma": "shopee",
+        "url": "https://s.shopee.com.br/Ln66ZQPqy",
+        "sub_id_1": "aquametria",
+        "sub_id_2": "C5",
+        "rel": "sponsored",
+        "verificado_em": "2026-09-09",
+        "anuncio_shopee": "Roxin Q3 50 W 220 V",
+        "voltagem_anuncio": "220",
+        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
       },
       "fontes": [
         {
@@ -293,7 +372,153 @@
       ],
       "verificado_em": "2026-09-08",
       "status_registro": "conflito",
-      "observacao": "50 W declarados para 40 a 60 L, ou seja de 0.83 a 1.25 W/L. Mega Aquarios rotula o mesmo aparelho como 'aquario pequeno 50 L' no titulo, outro numero ainda. A faixa de ajuste segue em conflito na linha inteira e a C5 usa a intersecao conservadora de 22 a 32 C (regra V17)."
+      "observacao": "50 W declarados para 40 a 60 L, ou seja de 0.83 a 1.25 W/L. Mega Aquarios rotula o mesmo aparelho como 'aquario pequeno 50 L' no titulo, outro numero ainda. A faixa de ajuste segue em conflito na linha inteira e a C5 usa a intersecao conservadora de 22 a 32 C (regra V17). Em 09/09/2026 ganhou link de afiliado e imagem: era um dos dez aptos SEM link da C5 e passou a sair no cartao com botao de loja. O anuncio abre a versao 220 V, e o campo voltagem do registro continua vindo do varejo especializado, que publica a mesma potencia nas duas tomadas."
+    },
+    {
+      "id": "rs-50-50w",
+      "entidade": "aquecedor",
+      "marca": null,
+      "linha": null,
+      "modelo": "RS-50",
+      "variante": "50 W (anuncio 220 V)",
+      "nomes_alternativos": [
+        "Termostato Aquecedor para Aquario RS-50 50W",
+        "RS 50W"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": null,
+      "potencia_w": 50,
+      "tipo": null,
+      "termostato": null,
+      "faixa_ajuste_C": null,
+      "precisao_C": null,
+      "comprimento_cm": null,
+      "submersivel": null,
+      "protecao_funcionamento_a_seco": null,
+      "volume_atendido_declarado_L": null,
+      "imagem": {
+        "url": "https://down-bs-br.img.susercontent.com/sg-11134201-7rbmi-lm9a2t4hpwe129.webp",
+        "largura": null,
+        "altura": null,
+        "fonte": "anuncio-shopee",
+        "coletado_em": "2026-09-09",
+        "alt": "Termostato aquecedor RS-50 de 50 W, tubo de vidro submersivel com anel de ajuste de temperatura",
+        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+      },
+      "afiliado": {
+        "plataforma": "shopee",
+        "url": "https://s.shopee.com.br/2BEkHvSVCf",
+        "sub_id_1": "aquametria",
+        "sub_id_2": "C5",
+        "rel": "sponsored",
+        "verificado_em": "2026-09-09",
+        "anuncio_shopee": "Termostato Aquecedor para Aquario RS-50 50 W 220 V",
+        "voltagem_anuncio": "220",
+        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Loja Kalango (varejo BR), ficha do 'Termostato Aquecedor para Aquario RS-50 50W 110V'",
+          "url": "https://www.lojakalango.com/termostato-aquecedor-para-aquario-rs-25-50w-110v",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "potencia_w",
+            "disponibilidade_br"
+          ],
+          "observacao": "Lido por RESULTADO DE BUSCA (egresso barra o dominio). A ficha sustenta potencia e existencia, e nada mais: nao publica faixa de ajuste, volume nem tipo."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "parcial",
+      "observacao": "Aquecedor sem marca declarada: o varejo vende pelo codigo do modelo (RS-50), que e o pior caso do banco porque impede casar cotacoes entre lojas. Entrou em 09/09/2026 com link e imagem. Fica 'parcial': faltam faixa_ajuste_C, volume, tipo, termostato e voltagem. A voltagem e divergente na origem — a ficha de varejo localizada e 110 V e o anuncio com link abre 220 V — e a Aquametria nao afirma nenhuma das duas."
+    },
+    {
+      "id": "atman-at-100",
+      "entidade": "aquecedor",
+      "marca": "Atman",
+      "linha": "AT",
+      "modelo": "AT-100",
+      "variante": "100 W",
+      "nomes_alternativos": [
+        "Atman AT100",
+        "Termostato Atman 100 W",
+        "Aquecedor com termostato Atman 100w AT-100"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "110",
+        "220"
+      ],
+      "potencia_w": 100,
+      "tipo": "quartzo",
+      "termostato": "interno-analogico",
+      "faixa_ajuste_C": {
+        "min": 20,
+        "max": 34
+      },
+      "precisao_C": null,
+      "comprimento_cm": 25.0,
+      "submersivel": true,
+      "protecao_funcionamento_a_seco": null,
+      "volume_atendido_declarado_L": {
+        "min": null,
+        "max": 100
+      },
+      "imagem": null,
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "produto novo no banco em 09/09/2026, entrou pela expansao do catalogo (bloco 4b). O link de afiliado e gerado pela Sentinela Estrategica no painel da Shopee; enquanto nao houver, pela regra V16 o produto continua sendo sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
+        "verificado_em": "2026-09-09"
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Aqua SN e Aquarius Hobby (varejo BR especializado) publicam a mesma ficha descritiva da linha Atman AT de termostato eletronico submerso: corpo de quartzo, ajuste do aquarista em escala de 20 a 34 C, par de ventosas, uso em agua doce e salgada",
+          "url": "https://www.aquasn.com.br/atman-termostato-eletronico-submerso-100wts-codigo-at-100-220v",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "tipo",
+            "termostato",
+            "faixa_ajuste_C",
+            "submersivel"
+          ],
+          "observacao": "Texto de varejo, nao manual do fabricante: o egresso da nuvem bloqueia WebFetch e a pagina da Atman nao foi lida direto. A escala de 20 a 34 C aparece repetida modelo a modelo (AT-100, AT-150 e AT-300 conferidos em 09/09/2026), e e a mesma boilerplate que o lojista publica para a linha inteira. Reconfirmar no manual quando houver alcance."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "O varejo BR anuncia a linha AT nas duas tomadas: World Fish e FishPet vendem a versao 110 V e a Aqua SN vende a de 220 V do mesmo codigo",
+          "url": "https://worldfish.com.br/produtos/termostato-atman-at100w-100w-110v/",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "voltagem",
+            "disponibilidade_br"
+          ],
+          "observacao": "A fonte sustenta que EXISTE versao 110 V e versao 220 V do mesmo modelo, nao que um anuncio especifico seja de uma delas. Aquecedor na tomada errada queima: o cartao obriga a conferir a voltagem no anuncio."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Aqua SN e Aquarius Hobby (varejo BR), ficha do AT-100: 100 W, aquarios de ate 100 L, 25 cm de comprimento",
+          "url": "https://www.aquasn.com.br/atman-termostato-eletronico-submerso-100wts-codigo-at-100-220v",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "potencia_w",
+            "volume_atendido_declarado_L",
+            "comprimento_cm"
+          ]
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "completo",
+      "observacao": "1,0 W por litro no teto declarado. E exatamente a regra de bolso brasileira de 1 W/L, que a propria ficha do lojista repete — e que a C5 nao aceita como dimensionamento, porque nao pergunta o delta termico da casa. A tela precisa dizer que o fabricante declara o teto, nao a potencia necessaria."
     },
     {
       "id": "eheim-jager-100w",
@@ -328,6 +553,7 @@
         "min": 75,
         "max": 100
       },
+      "imagem": null,
       "afiliado": {
         "plataforma": null,
         "motivo": "sem anuncio deste modelo na Shopee em 07/09/2026 (a busca do painel de afiliados so devolveu pecas de reposicao e lampadas UV) e nao foi refeita em 08/09. Pela regra V16 o produto continua sendo sugerido pela adequacao tecnica; o cartao sai sem botao de loja.",
@@ -381,6 +607,68 @@
       "observacao": "100 W para 75 a 100 L. Fecha o padrao de 1,0 W/L no teto da serie pequena — e por isso o 200 W declarado para 300 a 400 L (0,5 a 0,67 W/L) salta aos olhos."
     },
     {
+      "id": "maxxi-m-100-anuncio-127v",
+      "entidade": "aquecedor",
+      "marca": "Maxxi",
+      "linha": null,
+      "modelo": "M-100",
+      "variante": "100 W (anuncio 127 V)",
+      "nomes_alternativos": [
+        "Maxxi Termostato M-100 100W",
+        "Termostato com aquecedor Maxxi 100 W"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": null,
+      "potencia_w": 100,
+      "tipo": null,
+      "termostato": null,
+      "faixa_ajuste_C": null,
+      "precisao_C": null,
+      "comprimento_cm": null,
+      "submersivel": null,
+      "protecao_funcionamento_a_seco": null,
+      "volume_atendido_declarado_L": null,
+      "imagem": {
+        "url": "https://down-bs-br.img.susercontent.com/br-11134207-820lr-mo8paw9ivi80cb.webp",
+        "largura": null,
+        "altura": null,
+        "fonte": "anuncio-shopee",
+        "coletado_em": "2026-09-09",
+        "alt": "Termostato com aquecedor Maxxi M-100 de 100 W, tubo submersivel com dial de ajuste no topo",
+        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+      },
+      "afiliado": {
+        "plataforma": "shopee",
+        "url": "https://s.shopee.com.br/6Akt3KKrUA",
+        "sub_id_1": "aquametria",
+        "sub_id_2": "C5",
+        "rel": "sponsored",
+        "verificado_em": "2026-09-09",
+        "anuncio_shopee": "Maxxi Termostato M-100 100 W 127 V para aquario ate 100 litros",
+        "voltagem_anuncio": "127",
+        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Pro-Aquarista (varejo BR), pagina da marca Maxxi, que lista os termostatos M-050 50 W, M-100 100 W, M-150 150 W, M-200 200 W (codigo MXM2001) e M-300 300 W, todos anunciados em 110 V",
+          "url": "https://www.proaquarista.com.br/marca/Maxxi.html",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "potencia_w",
+            "disponibilidade_br"
+          ],
+          "observacao": "Lido por RESULTADO DE BUSCA: proaquarista.com.br da EGRESS_BLOCKED para a nuvem em 09/09/2026. A pagina da marca sustenta a existencia do modelo e a potencia, e NADA mais: nao publica faixa de ajuste, tipo de resistencia, volume atendido nem a versao 220 V."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "parcial",
+      "observacao": "Entrou em 09/09/2026 com link e imagem, e fica 'parcial' porque falta o que a C5 precisa para sugerir: faixa_ajuste_C, volume_atendido_declarado_L, tipo, termostato e voltagem seguem null. A potencia tem fonte de varejo (pagina da marca na Pro-Aquarista); o resto existe so no texto do anuncio, e anuncio de marketplace nao sustenta campo tecnico. A voltagem e o caso mais grave: o varejo localizado publica a linha em 110 V e este anuncio abre 127 V — nenhuma fonte de nivel 2 a 5 confirma versao por versao, e voltagem errada queima o aparelho. O que destrava o registro e uma ficha de varejo especializado (ou o manual) com faixa de ajuste, volume declarado e voltagem do modelo."
+    },
+    {
       "id": "roxin-ht-1300-q3-100w",
       "entidade": "aquecedor",
       "marca": "Roxin",
@@ -409,6 +697,7 @@
         "min": 50,
         "max": 150
       },
+      "imagem": null,
       "afiliado": {
         "plataforma": "shopee",
         "url": "https://s.shopee.com.br/50YsvKBY0s",
@@ -487,6 +776,90 @@
       "observacao": "100 W para 50 a 150 L: de 0,67 a 2,0 W/L. Voltagem resolvida em 08/09/2026 (110 V e 220 V no varejo BR) e faixa de ajuste tratada pela intersecao conservadora de 22 a 32 C — as duas coisas que barravam a sugestao da C5."
     },
     {
+      "id": "atman-at-150",
+      "entidade": "aquecedor",
+      "marca": "Atman",
+      "linha": "AT",
+      "modelo": "AT-150",
+      "variante": "150 W",
+      "nomes_alternativos": [
+        "Atman AT150",
+        "Termostato Atman 150 W",
+        "Aquecedor com termostato Atman 150w AT-150"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "110",
+        "220"
+      ],
+      "potencia_w": 150,
+      "tipo": "quartzo",
+      "termostato": "interno-analogico",
+      "faixa_ajuste_C": {
+        "min": 20,
+        "max": 34
+      },
+      "precisao_C": null,
+      "comprimento_cm": 27.0,
+      "submersivel": true,
+      "protecao_funcionamento_a_seco": null,
+      "volume_atendido_declarado_L": {
+        "min": null,
+        "max": 150
+      },
+      "imagem": null,
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "produto novo no banco em 09/09/2026, entrou pela expansao do catalogo (bloco 4b). O link de afiliado e gerado pela Sentinela Estrategica no painel da Shopee; enquanto nao houver, pela regra V16 o produto continua sendo sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
+        "verificado_em": "2026-09-09"
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Aqua SN e Aquarius Hobby (varejo BR especializado) publicam a mesma ficha descritiva da linha Atman AT de termostato eletronico submerso: corpo de quartzo, ajuste do aquarista em escala de 20 a 34 C, par de ventosas, uso em agua doce e salgada",
+          "url": "https://www.aquasn.com.br/atman-termostato-eletronico-submerso-100wts-codigo-at-100-220v",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "tipo",
+            "termostato",
+            "faixa_ajuste_C",
+            "submersivel"
+          ],
+          "observacao": "Texto de varejo, nao manual do fabricante: o egresso da nuvem bloqueia WebFetch e a pagina da Atman nao foi lida direto. A escala de 20 a 34 C aparece repetida modelo a modelo (AT-100, AT-150 e AT-300 conferidos em 09/09/2026), e e a mesma boilerplate que o lojista publica para a linha inteira. Reconfirmar no manual quando houver alcance."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "O varejo BR anuncia a linha AT nas duas tomadas: World Fish e FishPet vendem a versao 110 V e a Aqua SN vende a de 220 V do mesmo codigo",
+          "url": "https://worldfish.com.br/produtos/termostato-atman-at100w-100w-110v/",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "voltagem",
+            "disponibilidade_br"
+          ],
+          "observacao": "A fonte sustenta que EXISTE versao 110 V e versao 220 V do mesmo modelo, nao que um anuncio especifico seja de uma delas. Aquecedor na tomada errada queima: o cartao obriga a conferir a voltagem no anuncio."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Aquarius Hobby e Aqua SN (varejo BR), ficha do AT-150: 150 W, aquarios de ate 150 L, 27 cm",
+          "url": "https://aquariushobby.commercesuite.com.br/agua-doce/controle-de-temperatura/termostatos-e-aquecedores/aquecedor-com-termostato-atman-150w-at-150",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "potencia_w",
+            "volume_atendido_declarado_L",
+            "comprimento_cm"
+          ]
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "completo",
+      "observacao": "1,0 W por litro no teto declarado, como o resto da linha. A mesma ficha recomenda 1,5 W/L em regiao fria sem dizer qual delta termico isso cobre — e o vacuo que a C5 existe para preencher."
+    },
+    {
       "id": "eheim-jager-150w",
       "entidade": "aquecedor",
       "marca": "Eheim",
@@ -519,6 +892,7 @@
         "min": 125,
         "max": 150
       },
+      "imagem": null,
       "afiliado": {
         "plataforma": null,
         "motivo": "sem anuncio deste modelo na Shopee em 07/09/2026 (a busca do painel de afiliados so devolveu pecas de reposicao e lampadas UV) e nao foi refeita em 08/09. Pela regra V16 o produto continua sendo sugerido pela adequacao tecnica; o cartao sai sem botao de loja.",
@@ -599,6 +973,388 @@
       "observacao": "O registro que expoe o problema de frente: a MESMA potencia de 150 W aparece declarada para 125-150 L numa ficha e para 200-300 L noutra. Nenhuma das duas e o fabricante, as duas sao varejo, e a diferenca e de duas vezes. Volume declarado nao dimensiona aquecedor — e o que a C5 diz na tela."
     },
     {
+      "id": "maxxi-m-150-anuncio-220v",
+      "entidade": "aquecedor",
+      "marca": "Maxxi",
+      "linha": null,
+      "modelo": "M-150",
+      "variante": "150 W (anuncio 220 V)",
+      "nomes_alternativos": [
+        "Maxxi Termostato M-150 150W",
+        "Termostato com aquecedor Maxxi 150 W"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": null,
+      "potencia_w": 150,
+      "tipo": null,
+      "termostato": null,
+      "faixa_ajuste_C": null,
+      "precisao_C": null,
+      "comprimento_cm": null,
+      "submersivel": null,
+      "protecao_funcionamento_a_seco": null,
+      "volume_atendido_declarado_L": null,
+      "imagem": {
+        "url": "https://down-bs-br.img.susercontent.com/br-11134207-820ld-mo8ms8dpvk022b.webp",
+        "largura": null,
+        "altura": null,
+        "fonte": "anuncio-shopee",
+        "coletado_em": "2026-09-09",
+        "alt": "Termostato com aquecedor Maxxi M-150 de 150 W, tubo submersivel com dial de ajuste no topo",
+        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+      },
+      "afiliado": {
+        "plataforma": "shopee",
+        "url": "https://s.shopee.com.br/40gOTCNoD8",
+        "sub_id_1": "aquametria",
+        "sub_id_2": "C5",
+        "rel": "sponsored",
+        "verificado_em": "2026-09-09",
+        "anuncio_shopee": "Maxxi Termostato M-150 150 W 220 V para aquario ate 150 litros",
+        "voltagem_anuncio": "220",
+        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Pro-Aquarista (varejo BR), pagina da marca Maxxi, que lista os termostatos M-050 50 W, M-100 100 W, M-150 150 W, M-200 200 W (codigo MXM2001) e M-300 300 W, todos anunciados em 110 V",
+          "url": "https://www.proaquarista.com.br/marca/Maxxi.html",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "potencia_w",
+            "disponibilidade_br"
+          ],
+          "observacao": "Lido por RESULTADO DE BUSCA: proaquarista.com.br da EGRESS_BLOCKED para a nuvem em 09/09/2026. A pagina da marca sustenta a existencia do modelo e a potencia, e NADA mais: nao publica faixa de ajuste, tipo de resistencia, volume atendido nem a versao 220 V."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "parcial",
+      "observacao": "Entrou em 09/09/2026 com link e imagem, e fica 'parcial' porque falta o que a C5 precisa para sugerir: faixa_ajuste_C, volume_atendido_declarado_L, tipo, termostato e voltagem seguem null. A potencia tem fonte de varejo (pagina da marca na Pro-Aquarista); o resto existe so no texto do anuncio, e anuncio de marketplace nao sustenta campo tecnico. A voltagem e o caso mais grave: o varejo localizado publica a linha em 110 V e este anuncio abre 220 V — nenhuma fonte de nivel 2 a 5 confirma versao por versao, e voltagem errada queima o aparelho. O que destrava o registro e uma ficha de varejo especializado (ou o manual) com faixa de ajuste, volume declarado e voltagem do modelo."
+    },
+    {
+      "id": "oceantech-warmer-x-5-150w",
+      "entidade": "aquecedor",
+      "marca": "Ocean Tech",
+      "linha": "Warmer X-5",
+      "modelo": "Warmer X-5 150 W",
+      "variante": "150 W",
+      "nomes_alternativos": [
+        "OceanTech X-5 150W",
+        "Termostato Ocean Tech Warmer X-5 150 W",
+        "Aquecedor com Termostato Warmer X-5 OceanTech"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "110",
+        "220"
+      ],
+      "potencia_w": 150,
+      "tipo": "quartzo",
+      "termostato": "interno-analogico",
+      "faixa_ajuste_C": {
+        "min": 20,
+        "max": 34
+      },
+      "precisao_C": 1.0,
+      "comprimento_cm": 29.0,
+      "submersivel": true,
+      "protecao_funcionamento_a_seco": null,
+      "volume_atendido_declarado_L": {
+        "min": null,
+        "max": 100
+      },
+      "imagem": {
+        "url": "https://down-bs-br.img.susercontent.com/2bb44a02215e58113eb2e28a852f5552.webp",
+        "largura": null,
+        "altura": null,
+        "fonte": "anuncio-shopee",
+        "coletado_em": "2026-09-09",
+        "alt": "Termostato aquecedor Ocean Tech Warmer X-5 de 150 W, tubo de quartzo submersivel com escala de temperatura e dial de ajuste no topo",
+        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+      },
+      "afiliado": {
+        "plataforma": "shopee",
+        "url": "https://s.shopee.com.br/6VNjRo5IKE",
+        "sub_id_1": "aquametria",
+        "sub_id_2": "C5",
+        "rel": "sponsored",
+        "verificado_em": "2026-09-09",
+        "anuncio_shopee": "OceanTech X-5 150 W 220 V / 110 V",
+        "voltagem_anuncio": "220",
+        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Varejo especializado BR (Aquaricamp, Aquaripesca, Barbusfish, Pet Patao Shop), ficha do Ocean Tech Warmer X-5 150 W: 150 W, 29 cm de comprimento, 3 cm de diametro, cabo de 1,20 m, ajuste de 20 a 34 C com tolerancia menor que 1 C, resistencia de niquel-cromo, tubo de quartzo a prova de explosao, totalmente submerso na vertical, disponivel em 110 e em 220 V",
+          "url": "https://www.aquaricamp.com.br/termostato-ocean-tech-warmer-x-5-150w.html",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "potencia_w",
+            "tipo",
+            "termostato",
+            "faixa_ajuste_C",
+            "precisao_C",
+            "comprimento_cm",
+            "submersivel",
+            "voltagem",
+            "disponibilidade_br"
+          ],
+          "observacao": "Lido por RESULTADO DE BUSCA: o egresso da nuvem barra os dominios do varejo BR em 09/09/2026. Confira a embalagem."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Leitura agregada das fichas de varejo BR do Warmer X-5 150 W, que declaram TRES tetos diferentes para o mesmo aparelho: ate 150 L (Pet Patao Shop e Aquariando Pet, no titulo), ate 130 L e ate 100 L (fichas de varejo lidas por busca). A ficha publica o teto MAIS BAIXO, 100 L, que e a unica afirmacao que as tres leituras sustentam",
+          "url": null,
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "volume_atendido_declarado_L"
+          ],
+          "observacao": "url null porque a leitura e agregada: as paginas nao abrem para a nuvem (EGRESS_BLOCKED) e nao foi possivel atribuir cada teto a uma pagina, com excecao do de 150 L. As tres leituras ficam em conflitos[], com atribuicao do que deu para atribuir, e a tela publica as tres."
+        }
+      ],
+      "conflitos": [
+        {
+          "campo": "volume_atendido_declarado_L",
+          "valores": [
+            {
+              "valor": {
+                "min": null,
+                "max": 150
+              },
+              "referencia": "titulos de varejo BR (Pet Patao Shop; Aquariando Pet): 'para aquarios ate 150 litros'",
+              "url": "https://www.petpataoshop.com.br/produto/termostato-150w-ocean-tech-warmer-x-5-220v-p-aquarios-de-ate-150-litros/41402",
+              "origem": "varejo"
+            },
+            {
+              "valor": {
+                "min": null,
+                "max": 130
+              },
+              "referencia": "ficha de varejo BR lida por resultado de busca, sem pagina atribuida: 'indicado para aquarios de ate 130 litros'",
+              "url": null,
+              "origem": "varejo"
+            },
+            {
+              "valor": {
+                "min": null,
+                "max": 100
+              },
+              "referencia": "ficha de varejo BR lida por resultado de busca, sem pagina atribuida: 'indicado para aquario ate 100 litros'",
+              "url": null,
+              "origem": "varejo"
+            }
+          ],
+          "razao": "tetos de 100, 130 e 150 L para o MESMO aparelho de 150 W: 1,5x de diferenca entre o menor e o maior",
+          "tratamento": "publicar-os-dois",
+          "valor_conservador": null,
+          "derivacao": null,
+          "verificado_em": "2026-09-09"
+        }
+      ],
+      "verificado_em": "2026-09-09",
+      "status_registro": "conflito",
+      "observacao": "E o registro que FECHA a janela de 110 a 150 W que a Sentinela mediu vazia em 09/09/2026: a C5 a 108 L pede 110 a 150 W e ate agora os aquecedores com link eram de 100, 200 e 300 W. Tem os quatro campos que a C5 exige (potencia, volume, faixa de ajuste e voltagem) e tem link. A ficha publica o teto de volume mais baixo dos tres declarados pelo varejo (100 L) e a tela mostra os tres, porque divergencia e conteudo e media seria invencao. O criterio da C5 e a janela de POTENCIA, entao a divergencia de volume nao muda quem e sugerido: muda o que a ficha diz."
+    },
+    {
+      "id": "sicce-scuba-contactless-150w",
+      "entidade": "aquecedor",
+      "marca": "Sicce",
+      "linha": "Scuba Contactless",
+      "modelo": "Scuba Contactless 150",
+      "variante": "150 W NFC",
+      "nomes_alternativos": [
+        "Sicce Scuba NFC 150W",
+        "SICCE Scuba CTL Heater 150W",
+        "Sicce Scuba Contactless 150"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": null,
+      "potencia_w": 150,
+      "tipo": "resistencia-vidro",
+      "termostato": "interno-digital",
+      "faixa_ajuste_C": {
+        "min": 15,
+        "max": 35
+      },
+      "precisao_C": 1.0,
+      "comprimento_cm": null,
+      "submersivel": true,
+      "protecao_funcionamento_a_seco": true,
+      "volume_atendido_declarado_L": {
+        "min": 120,
+        "max": 180
+      },
+      "imagem": {
+        "url": "https://down-bs-br.img.susercontent.com/sg-11134201-7rcc2-lteetuyd2pgz1f.webp",
+        "largura": null,
+        "altura": null,
+        "fonte": "anuncio-shopee",
+        "coletado_em": "2026-09-09",
+        "alt": "Aquecedor Sicce Scuba Contactless de 150 W, corpo de vidro preto sem dial, ajustado por aproximacao do celular (NFC)",
+        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+      },
+      "afiliado": {
+        "plataforma": "shopee",
+        "url": "https://s.shopee.com.br/1AFhsKleW",
+        "sub_id_1": "aquametria",
+        "sub_id_2": "C5",
+        "rel": "sponsored",
+        "verificado_em": "2026-09-09",
+        "anuncio_shopee": "Sicce Scuba NFC 150 W 220 V com termometro",
+        "voltagem_anuncio": "220",
+        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Varejo especializado internacional (Green Aqua, Charterhouse Aquatics, Premium Aquatics, Bulk Reef Supply, Zoanthus), ficha do Sicce Scuba Contactless 150 W: indicado para aquarios de 120 a 180 L, ajuste de 15 a 35 C com tolerancia de +/- 1 C, cabo de 1,5 m, vidro de alta densidade termica, totalmente submersivel, duas protecoes contra funcionamento a seco (eletronica e termo-eletromecanica) e ajuste por NFC pelo aplicativo",
+          "url": "https://greenaqua.hu/en/sicce-scuba-contactless-150-w.html",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "potencia_w",
+            "tipo",
+            "termostato",
+            "faixa_ajuste_C",
+            "precisao_C",
+            "submersivel",
+            "protecao_funcionamento_a_seco",
+            "volume_atendido_declarado_L"
+          ],
+          "observacao": "Lido por RESULTADO DE BUSCA; sicce.com, que seria a fonte de nivel 2, nao foi aberta pela nuvem. Confira a embalagem."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Aquamazing e Fazenda Submersa (varejo BR de aquarismo), que vendem o Scuba NFC 150 W na versao 110 V",
+          "url": "https://www.aquamazing.com.br/Doce/Equipamentos/Termostato/sicce-termostato-scuba-nfc-150w-110v___1553874-SIT.html",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "disponibilidade_br"
+          ],
+          "observacao": "Esta fonte sustenta SO a disponibilidade no Brasil. Ela publica a versao 110 V, e o anuncio com link abre 220 V: por isso o campo voltagem do registro fica null em vez de receber qualquer dos dois."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "completo",
+      "observacao": "Aquecedor de 150 W com a ficha tecnica mais completa do lote — faixa de 15 a 35 C, 120 a 180 L, dupla protecao contra funcionamento a seco e ajuste por NFC — e a ficha esta 'completo' porque todo campo obrigatorio da entidade tem fonte. Ainda assim a C5 NAO sugere este aquecedor, e por UM campo: voltagem. O varejo BR localizado vende a versao 110 V e o anuncio com link abre 220 V; nenhuma fonte de nivel 2 a 5 confirma a versao 220 V, e voltagem errada queima o aparelho. A C5 exige voltagem para sugerir, entao este registro fica de fora do bloco de produto ate a versao do anuncio ser confirmada em ficha. Desbloqueia com uma ficha de varejo especializado BR da versao 220 V, ou com o manual."
+    },
+    {
+      "id": "atman-at-200",
+      "entidade": "aquecedor",
+      "marca": "Atman",
+      "linha": "AT",
+      "modelo": "AT-200",
+      "variante": "200 W",
+      "nomes_alternativos": [
+        "Atman AT200",
+        "Termostato Atman 200 W",
+        "Aquecedor com termostato Atman 200w AT-200"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "110",
+        "220"
+      ],
+      "potencia_w": 200,
+      "tipo": "quartzo",
+      "termostato": "interno-analogico",
+      "faixa_ajuste_C": {
+        "min": 20,
+        "max": 34
+      },
+      "precisao_C": null,
+      "comprimento_cm": 30.0,
+      "submersivel": true,
+      "protecao_funcionamento_a_seco": null,
+      "volume_atendido_declarado_L": {
+        "min": null,
+        "max": 200
+      },
+      "imagem": null,
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "produto novo no banco em 09/09/2026, entrou pela expansao do catalogo (bloco 4b). O link de afiliado e gerado pela Sentinela Estrategica no painel da Shopee; enquanto nao houver, pela regra V16 o produto continua sendo sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
+        "verificado_em": "2026-09-09"
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Aqua SN e Aquarius Hobby (varejo BR especializado) publicam a mesma ficha descritiva da linha Atman AT de termostato eletronico submerso: corpo de quartzo, ajuste do aquarista em escala de 20 a 34 C, par de ventosas, uso em agua doce e salgada",
+          "url": "https://www.aquasn.com.br/atman-termostato-eletronico-submerso-100wts-codigo-at-100-220v",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "tipo",
+            "termostato",
+            "faixa_ajuste_C",
+            "submersivel"
+          ],
+          "observacao": "Texto de varejo, nao manual do fabricante: o egresso da nuvem bloqueia WebFetch e a pagina da Atman nao foi lida direto. A escala de 20 a 34 C aparece repetida modelo a modelo (AT-100, AT-150 e AT-300 conferidos em 09/09/2026), e e a mesma boilerplate que o lojista publica para a linha inteira. Reconfirmar no manual quando houver alcance."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "O varejo BR anuncia a linha AT nas duas tomadas: World Fish e FishPet vendem a versao 110 V e a Aqua SN vende a de 220 V do mesmo codigo",
+          "url": "https://worldfish.com.br/produtos/termostato-atman-at100w-100w-110v/",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "voltagem",
+            "disponibilidade_br"
+          ],
+          "observacao": "A fonte sustenta que EXISTE versao 110 V e versao 220 V do mesmo modelo, nao que um anuncio especifico seja de uma delas. Aquecedor na tomada errada queima: o cartao obriga a conferir a voltagem no anuncio."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Pro-Aquarista (varejo BR especializado), ficha do AT-200: 200 W, 30 cm, aquarios de ate 200 L",
+          "url": "https://www.proaquarista.com.br/atman-termostato-at-200-200w",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "potencia_w",
+            "volume_atendido_declarado_L",
+            "comprimento_cm"
+          ]
+        }
+      ],
+      "conflitos": [
+        {
+          "campo": "comprimento_cm",
+          "valores": [
+            {
+              "valor": 30.0,
+              "referencia": "Pro-Aquarista",
+              "url": "https://www.proaquarista.com.br/atman-termostato-at-200-200w",
+              "origem": "varejo"
+            },
+            {
+              "valor": 32.0,
+              "referencia": "FishPet, que anuncia o AT-200 200 W como 32 cm",
+              "url": "https://www.fishpet.com.br/peixes/termometros-termostatos/termostato-atman-at-200-200w-32cm-110v",
+              "origem": "varejo"
+            }
+          ],
+          "razao": "2 cm de diferenca (6,7 %) no comprimento do tubo.",
+          "tratamento": "publicar-os-dois",
+          "valor_conservador": null,
+          "derivacao": null
+        }
+      ],
+      "verificado_em": "2026-09-09",
+      "status_registro": "conflito",
+      "observacao": "1,0 W por litro no teto declarado. O comprimento diverge entre duas lojas brasileiras (30 contra 32 cm) e isso importa de verdade: e o numero que decide se o aquecedor deita dentro de um aquario baixo."
+    },
+    {
       "id": "eheim-jager-200w",
       "entidade": "aquecedor",
       "marca": "Eheim",
@@ -631,6 +1387,7 @@
         "min": 30,
         "max": 400
       },
+      "imagem": null,
       "afiliado": {
         "plataforma": null,
         "motivo": "sem anuncio do produto na Shopee em 07/09/2026 (busca do painel de afiliados so devolveu pecas de reposicao e lampadas UV). Pela regra V16 o produto continua sendo sugerido pela adequacao tecnica; o cartao sai sem botao de loja.",
@@ -702,6 +1459,130 @@
       "observacao": "O registro que ancora a C5. O fabricante declara 200 W para 30 a 400 L: uma faixa de 13,3 vezes, ou de 0,5 a 6,7 W/L. O varejo estreita para 300-400 L, o que da 0,5 a 0,67 W/L e quebra o 1,0 W/L que a propria linha segue no 25, no 50, no 100 e no 150 W. Serve para escolher potencia comercial; nunca para dimensionar. Voltagem resolvida em 08/09/2026 (110 V e 220 V no varejo BR), o que libera a sugestao da C5."
     },
     {
+      "id": "maxxi-m-200-anuncio-110v",
+      "entidade": "aquecedor",
+      "marca": "Maxxi",
+      "linha": null,
+      "modelo": "M-200",
+      "variante": "200 W (anuncio 110 V)",
+      "nomes_alternativos": [
+        "Maxxi Termostato M-200 200W",
+        "Termostato com aquecedor Maxxi 200 W"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": null,
+      "potencia_w": 200,
+      "tipo": null,
+      "termostato": null,
+      "faixa_ajuste_C": null,
+      "precisao_C": null,
+      "comprimento_cm": null,
+      "submersivel": null,
+      "protecao_funcionamento_a_seco": null,
+      "volume_atendido_declarado_L": null,
+      "imagem": {
+        "url": "https://down-bs-br.img.susercontent.com/sg-11134201-8258j-mrtkrk3tf85c15.webp",
+        "largura": null,
+        "altura": null,
+        "fonte": "anuncio-shopee",
+        "coletado_em": "2026-09-09",
+        "alt": "Termostato com aquecedor Maxxi M-200 de 200 W, tubo submersivel com dial de ajuste no topo",
+        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+      },
+      "afiliado": {
+        "plataforma": "shopee",
+        "url": "https://s.shopee.com.br/2BEkI1LkO0",
+        "sub_id_1": "aquametria",
+        "sub_id_2": "C5",
+        "rel": "sponsored",
+        "verificado_em": "2026-09-09",
+        "anuncio_shopee": "Maxxi Termostato M-200 200 W 110 V",
+        "voltagem_anuncio": "110",
+        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Pro-Aquarista (varejo BR), pagina da marca Maxxi, que lista os termostatos M-050 50 W, M-100 100 W, M-150 150 W, M-200 200 W (codigo MXM2001) e M-300 300 W, todos anunciados em 110 V",
+          "url": "https://www.proaquarista.com.br/marca/Maxxi.html",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "potencia_w",
+            "disponibilidade_br"
+          ],
+          "observacao": "Lido por RESULTADO DE BUSCA: proaquarista.com.br da EGRESS_BLOCKED para a nuvem em 09/09/2026. A pagina da marca sustenta a existencia do modelo e a potencia, e NADA mais: nao publica faixa de ajuste, tipo de resistencia, volume atendido nem a versao 220 V."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "parcial",
+      "observacao": "Entrou em 09/09/2026 com link e imagem, e fica 'parcial' porque falta o que a C5 precisa para sugerir: faixa_ajuste_C, volume_atendido_declarado_L, tipo, termostato e voltagem seguem null. A potencia tem fonte de varejo (pagina da marca na Pro-Aquarista); o resto existe so no texto do anuncio, e anuncio de marketplace nao sustenta campo tecnico. A voltagem e o caso mais grave: o varejo localizado publica a linha em 110 V e este anuncio abre 110 V — nenhuma fonte de nivel 2 a 5 confirma versao por versao, e voltagem errada queima o aparelho. O que destrava o registro e uma ficha de varejo especializado (ou o manual) com faixa de ajuste, volume declarado e voltagem do modelo. Este modelo tem DOIS registros no banco, um por anuncio (110 V e 220 V), porque o link e especifico da voltagem e um link que abre a outra tomada seria defeito, nao aproximacao. O que separa os dois hoje e o anuncio, nao um campo tecnico: voltagem segue null nos dois."
+    },
+    {
+      "id": "maxxi-m-200-anuncio-220v",
+      "entidade": "aquecedor",
+      "marca": "Maxxi",
+      "linha": null,
+      "modelo": "M-200",
+      "variante": "200 W (anuncio 220 V)",
+      "nomes_alternativos": [
+        "Maxxi Termostato M-200 200W",
+        "Termostato com aquecedor Maxxi 200 W"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": null,
+      "potencia_w": 200,
+      "tipo": null,
+      "termostato": null,
+      "faixa_ajuste_C": null,
+      "precisao_C": null,
+      "comprimento_cm": null,
+      "submersivel": null,
+      "protecao_funcionamento_a_seco": null,
+      "volume_atendido_declarado_L": null,
+      "imagem": {
+        "url": "https://down-bs-br.img.susercontent.com/sg-11134201-8259h-mge5jlcqmbyhc4.webp",
+        "largura": null,
+        "altura": null,
+        "fonte": "anuncio-shopee",
+        "coletado_em": "2026-09-09",
+        "alt": "Termostato com aquecedor Maxxi M-200 de 200 W, tubo submersivel com dial de ajuste no topo",
+        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+      },
+      "afiliado": {
+        "plataforma": "shopee",
+        "url": "https://s.shopee.com.br/9054QY10fI",
+        "sub_id_1": "aquametria",
+        "sub_id_2": "C5",
+        "rel": "sponsored",
+        "verificado_em": "2026-09-09",
+        "anuncio_shopee": "Maxxi Termostato M-200 200 W 220 V",
+        "voltagem_anuncio": "220",
+        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Pro-Aquarista (varejo BR), pagina da marca Maxxi, que lista os termostatos M-050 50 W, M-100 100 W, M-150 150 W, M-200 200 W (codigo MXM2001) e M-300 300 W, todos anunciados em 110 V",
+          "url": "https://www.proaquarista.com.br/marca/Maxxi.html",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "potencia_w",
+            "disponibilidade_br"
+          ],
+          "observacao": "Lido por RESULTADO DE BUSCA: proaquarista.com.br da EGRESS_BLOCKED para a nuvem em 09/09/2026. A pagina da marca sustenta a existencia do modelo e a potencia, e NADA mais: nao publica faixa de ajuste, tipo de resistencia, volume atendido nem a versao 220 V."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "parcial",
+      "observacao": "Entrou em 09/09/2026 com link e imagem, e fica 'parcial' porque falta o que a C5 precisa para sugerir: faixa_ajuste_C, volume_atendido_declarado_L, tipo, termostato e voltagem seguem null. A potencia tem fonte de varejo (pagina da marca na Pro-Aquarista); o resto existe so no texto do anuncio, e anuncio de marketplace nao sustenta campo tecnico. A voltagem e o caso mais grave: o varejo localizado publica a linha em 110 V e este anuncio abre 220 V — nenhuma fonte de nivel 2 a 5 confirma versao por versao, e voltagem errada queima o aparelho. O que destrava o registro e uma ficha de varejo especializado (ou o manual) com faixa de ajuste, volume declarado e voltagem do modelo. Este modelo tem DOIS registros no banco, um por anuncio (110 V e 220 V), porque o link e especifico da voltagem e um link que abre a outra tomada seria defeito, nao aproximacao. O que separa os dois hoje e o anuncio, nao um campo tecnico: voltagem segue null nos dois."
+    },
+    {
       "id": "roxin-ht-1300-q3-200w",
       "entidade": "aquecedor",
       "marca": "Roxin",
@@ -730,6 +1611,7 @@
         "min": null,
         "max": 200
       },
+      "imagem": null,
       "afiliado": {
         "plataforma": "shopee",
         "url": "https://s.shopee.com.br/6L4GVnErqJ",
@@ -808,6 +1690,214 @@
       "observacao": "200 W para ate 200 L = 1,0 W/L declarado, exatamente a regra de bolso brasileira. Compare com o 100 W (0,67 W/L no teto) e com o 300 W (0,86 W/L no teto): a propria linha nao segue uma regra unica."
     },
     {
+      "id": "atman-at-300",
+      "entidade": "aquecedor",
+      "marca": "Atman",
+      "linha": "AT",
+      "modelo": "AT-300",
+      "variante": "300 W",
+      "nomes_alternativos": [
+        "Atman AT300",
+        "Termostato Atman 300 W",
+        "Aquecedor com termostato Atman 300w AT-300"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "110",
+        "220"
+      ],
+      "potencia_w": 300,
+      "tipo": "quartzo",
+      "termostato": "interno-analogico",
+      "faixa_ajuste_C": {
+        "min": 20,
+        "max": 34
+      },
+      "precisao_C": null,
+      "comprimento_cm": 37.0,
+      "submersivel": true,
+      "protecao_funcionamento_a_seco": null,
+      "volume_atendido_declarado_L": {
+        "min": null,
+        "max": 300
+      },
+      "imagem": null,
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "produto novo no banco em 09/09/2026, entrou pela expansao do catalogo (bloco 4b). O link de afiliado e gerado pela Sentinela Estrategica no painel da Shopee; enquanto nao houver, pela regra V16 o produto continua sendo sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
+        "verificado_em": "2026-09-09"
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Aqua SN e Aquarius Hobby (varejo BR especializado) publicam a mesma ficha descritiva da linha Atman AT de termostato eletronico submerso: corpo de quartzo, ajuste do aquarista em escala de 20 a 34 C, par de ventosas, uso em agua doce e salgada",
+          "url": "https://www.aquasn.com.br/atman-termostato-eletronico-submerso-100wts-codigo-at-100-220v",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "tipo",
+            "termostato",
+            "faixa_ajuste_C",
+            "submersivel"
+          ],
+          "observacao": "Texto de varejo, nao manual do fabricante: o egresso da nuvem bloqueia WebFetch e a pagina da Atman nao foi lida direto. A escala de 20 a 34 C aparece repetida modelo a modelo (AT-100, AT-150 e AT-300 conferidos em 09/09/2026), e e a mesma boilerplate que o lojista publica para a linha inteira. Reconfirmar no manual quando houver alcance."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "O varejo BR anuncia a linha AT nas duas tomadas: World Fish e FishPet vendem a versao 110 V e a Aqua SN vende a de 220 V do mesmo codigo",
+          "url": "https://worldfish.com.br/produtos/termostato-atman-at100w-100w-110v/",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "voltagem",
+            "disponibilidade_br"
+          ],
+          "observacao": "A fonte sustenta que EXISTE versao 110 V e versao 220 V do mesmo modelo, nao que um anuncio especifico seja de uma delas. Aquecedor na tomada errada queima: o cartao obriga a conferir a voltagem no anuncio."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Pro-Aquarista (varejo BR especializado), ficha do AT-300: 300 W, 37 cm de comprimento por 2,3 cm de diametro, aquarios de ate 300 L, escala de 20 a 34 C, vendido em 110 V e em 220 V",
+          "url": "https://www.proaquarista.com.br/produto/atman-termostato-at-300-300w-110v.html",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "potencia_w",
+            "volume_atendido_declarado_L",
+            "comprimento_cm"
+          ]
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "completo",
+      "observacao": "1,0 W por litro no teto declarado. Com 37 cm e o mais longo da linha: em aquario de 40 cm de altura util ele so entra deitado, e a tela precisa avisar."
+    },
+    {
+      "id": "maxxi-m-300-anuncio-110v",
+      "entidade": "aquecedor",
+      "marca": "Maxxi",
+      "linha": null,
+      "modelo": "M-300",
+      "variante": "300 W (anuncio 110 V)",
+      "nomes_alternativos": [
+        "Maxxi Termostato M-300 300W",
+        "Termostato com aquecedor Maxxi 300 W"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": null,
+      "potencia_w": 300,
+      "tipo": null,
+      "termostato": null,
+      "faixa_ajuste_C": null,
+      "precisao_C": null,
+      "comprimento_cm": null,
+      "submersivel": null,
+      "protecao_funcionamento_a_seco": null,
+      "volume_atendido_declarado_L": null,
+      "imagem": {
+        "url": "https://down-bs-br.img.susercontent.com/sg-11134201-825ap-mgcqyhcddg5pa4.webp",
+        "largura": null,
+        "altura": null,
+        "fonte": "anuncio-shopee",
+        "coletado_em": "2026-09-09",
+        "alt": "Termostato com aquecedor Maxxi M-300 de 300 W, tubo submersivel com dial de ajuste no topo",
+        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+      },
+      "afiliado": {
+        "plataforma": "shopee",
+        "url": "https://s.shopee.com.br/50YvfEk9sw",
+        "sub_id_1": "aquametria",
+        "sub_id_2": "C5",
+        "rel": "sponsored",
+        "verificado_em": "2026-09-09",
+        "anuncio_shopee": "Maxxi Termostato M-300 300 W 110 V",
+        "voltagem_anuncio": "110",
+        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Pro-Aquarista (varejo BR), pagina da marca Maxxi, que lista os termostatos M-050 50 W, M-100 100 W, M-150 150 W, M-200 200 W (codigo MXM2001) e M-300 300 W, todos anunciados em 110 V",
+          "url": "https://www.proaquarista.com.br/marca/Maxxi.html",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "potencia_w",
+            "disponibilidade_br"
+          ],
+          "observacao": "Lido por RESULTADO DE BUSCA: proaquarista.com.br da EGRESS_BLOCKED para a nuvem em 09/09/2026. A pagina da marca sustenta a existencia do modelo e a potencia, e NADA mais: nao publica faixa de ajuste, tipo de resistencia, volume atendido nem a versao 220 V."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "parcial",
+      "observacao": "Entrou em 09/09/2026 com link e imagem, e fica 'parcial' porque falta o que a C5 precisa para sugerir: faixa_ajuste_C, volume_atendido_declarado_L, tipo, termostato e voltagem seguem null. A potencia tem fonte de varejo (pagina da marca na Pro-Aquarista); o resto existe so no texto do anuncio, e anuncio de marketplace nao sustenta campo tecnico. A voltagem e o caso mais grave: o varejo localizado publica a linha em 110 V e este anuncio abre 110 V — nenhuma fonte de nivel 2 a 5 confirma versao por versao, e voltagem errada queima o aparelho. O que destrava o registro e uma ficha de varejo especializado (ou o manual) com faixa de ajuste, volume declarado e voltagem do modelo. Este modelo tem DOIS registros no banco, um por anuncio (110 V e 220 V), porque o link e especifico da voltagem e um link que abre a outra tomada seria defeito, nao aproximacao. O que separa os dois hoje e o anuncio, nao um campo tecnico: voltagem segue null nos dois."
+    },
+    {
+      "id": "maxxi-m-300-anuncio-220v",
+      "entidade": "aquecedor",
+      "marca": "Maxxi",
+      "linha": null,
+      "modelo": "M-300",
+      "variante": "300 W (anuncio 220 V)",
+      "nomes_alternativos": [
+        "Maxxi Termostato M-300 300W",
+        "Termostato com aquecedor Maxxi 300 W"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": null,
+      "potencia_w": 300,
+      "tipo": null,
+      "termostato": null,
+      "faixa_ajuste_C": null,
+      "precisao_C": null,
+      "comprimento_cm": null,
+      "submersivel": null,
+      "protecao_funcionamento_a_seco": null,
+      "volume_atendido_declarado_L": null,
+      "imagem": {
+        "url": "https://down-bs-br.img.susercontent.com/br-11134207-820m8-mo8ms8dpzrpe06.webp",
+        "largura": null,
+        "altura": null,
+        "fonte": "anuncio-shopee",
+        "coletado_em": "2026-09-09",
+        "alt": "Termostato com aquecedor Maxxi M-300 de 300 W, tubo submersivel com dial de ajuste no topo",
+        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+      },
+      "afiliado": {
+        "plataforma": "shopee",
+        "url": "https://s.shopee.com.br/5VVCG853ta",
+        "sub_id_1": "aquametria",
+        "sub_id_2": "C5",
+        "rel": "sponsored",
+        "verificado_em": "2026-09-09",
+        "anuncio_shopee": "Maxxi Termostato M-300 300 W 220 V para aquario ate 300 litros",
+        "voltagem_anuncio": "220",
+        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Pro-Aquarista (varejo BR), pagina da marca Maxxi, que lista os termostatos M-050 50 W, M-100 100 W, M-150 150 W, M-200 200 W (codigo MXM2001) e M-300 300 W, todos anunciados em 110 V",
+          "url": "https://www.proaquarista.com.br/marca/Maxxi.html",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "potencia_w",
+            "disponibilidade_br"
+          ],
+          "observacao": "Lido por RESULTADO DE BUSCA: proaquarista.com.br da EGRESS_BLOCKED para a nuvem em 09/09/2026. A pagina da marca sustenta a existencia do modelo e a potencia, e NADA mais: nao publica faixa de ajuste, tipo de resistencia, volume atendido nem a versao 220 V."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "parcial",
+      "observacao": "Entrou em 09/09/2026 com link e imagem, e fica 'parcial' porque falta o que a C5 precisa para sugerir: faixa_ajuste_C, volume_atendido_declarado_L, tipo, termostato e voltagem seguem null. A potencia tem fonte de varejo (pagina da marca na Pro-Aquarista); o resto existe so no texto do anuncio, e anuncio de marketplace nao sustenta campo tecnico. A voltagem e o caso mais grave: o varejo localizado publica a linha em 110 V e este anuncio abre 220 V — nenhuma fonte de nivel 2 a 5 confirma versao por versao, e voltagem errada queima o aparelho. O que destrava o registro e uma ficha de varejo especializado (ou o manual) com faixa de ajuste, volume declarado e voltagem do modelo. Este modelo tem DOIS registros no banco, um por anuncio (110 V e 220 V), porque o link e especifico da voltagem e um link que abre a outra tomada seria defeito, nao aproximacao. O que separa os dois hoje e o anuncio, nao um campo tecnico: voltagem segue null nos dois."
+    },
+    {
       "id": "roxin-ht-1300-q3-300w",
       "entidade": "aquecedor",
       "marca": "Roxin",
@@ -836,6 +1926,7 @@
         "min": 250,
         "max": 350
       },
+      "imagem": null,
       "afiliado": {
         "plataforma": "shopee",
         "url": "https://s.shopee.com.br/AUtpTbdMqc",
@@ -912,360 +2003,6 @@
       "verificado_em": "2026-09-08",
       "status_registro": "conflito",
       "observacao": "Fecha a serie da linha popular brasileira: 25 W para 20-35 L, 50 W para 40-60 L, 100 W para 50-150 L, 200 W para ate 200 L, 300 W para 250-350 L. Nenhuma faixa encosta na seguinte de forma continua e a razao W/L varia de 0,67 a 1,25 dentro da mesma linha."
-    },
-    {
-      "id": "atman-at-100",
-      "entidade": "aquecedor",
-      "marca": "Atman",
-      "linha": "AT",
-      "modelo": "AT-100",
-      "variante": "100 W",
-      "nomes_alternativos": [
-        "Atman AT100",
-        "Termostato Atman 100 W",
-        "Aquecedor com termostato Atman 100w AT-100"
-      ],
-      "gtin": null,
-      "disponibilidade_br": "vendido",
-      "voltagem": [
-        "110",
-        "220"
-      ],
-      "potencia_w": 100,
-      "tipo": "quartzo",
-      "termostato": "interno-analogico",
-      "faixa_ajuste_C": {
-        "min": 20,
-        "max": 34
-      },
-      "precisao_C": null,
-      "comprimento_cm": 25.0,
-      "submersivel": true,
-      "protecao_funcionamento_a_seco": null,
-      "volume_atendido_declarado_L": {
-        "min": null,
-        "max": 100
-      },
-      "afiliado": {
-        "plataforma": null,
-        "motivo": "produto novo no banco em 09/09/2026, entrou pela expansao do catalogo (bloco 4b). O link de afiliado e gerado pela Sentinela Estrategica no painel da Shopee; enquanto nao houver, pela regra V16 o produto continua sendo sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
-        "verificado_em": "2026-09-09"
-      },
-      "fontes": [
-        {
-          "origem": "varejo",
-          "status": "transcrita-varejo",
-          "referencia": "Aqua SN e Aquarius Hobby (varejo BR especializado) publicam a mesma ficha descritiva da linha Atman AT de termostato eletronico submerso: corpo de quartzo, ajuste do aquarista em escala de 20 a 34 C, par de ventosas, uso em agua doce e salgada",
-          "url": "https://www.aquasn.com.br/atman-termostato-eletronico-submerso-100wts-codigo-at-100-220v",
-          "verificado_em": "2026-09-09",
-          "campos": [
-            "tipo",
-            "termostato",
-            "faixa_ajuste_C",
-            "submersivel"
-          ],
-          "observacao": "Texto de varejo, nao manual do fabricante: o egresso da nuvem bloqueia WebFetch e a pagina da Atman nao foi lida direto. A escala de 20 a 34 C aparece repetida modelo a modelo (AT-100, AT-150 e AT-300 conferidos em 09/09/2026), e e a mesma boilerplate que o lojista publica para a linha inteira. Reconfirmar no manual quando houver alcance."
-        },
-        {
-          "origem": "varejo",
-          "status": "transcrita-varejo",
-          "referencia": "O varejo BR anuncia a linha AT nas duas tomadas: World Fish e FishPet vendem a versao 110 V e a Aqua SN vende a de 220 V do mesmo codigo",
-          "url": "https://worldfish.com.br/produtos/termostato-atman-at100w-100w-110v/",
-          "verificado_em": "2026-09-09",
-          "campos": [
-            "voltagem",
-            "disponibilidade_br"
-          ],
-          "observacao": "A fonte sustenta que EXISTE versao 110 V e versao 220 V do mesmo modelo, nao que um anuncio especifico seja de uma delas. Aquecedor na tomada errada queima: o cartao obriga a conferir a voltagem no anuncio."
-        },
-        {
-          "origem": "varejo",
-          "status": "transcrita-varejo",
-          "referencia": "Aqua SN e Aquarius Hobby (varejo BR), ficha do AT-100: 100 W, aquarios de ate 100 L, 25 cm de comprimento",
-          "url": "https://www.aquasn.com.br/atman-termostato-eletronico-submerso-100wts-codigo-at-100-220v",
-          "verificado_em": "2026-09-09",
-          "campos": [
-            "potencia_w",
-            "volume_atendido_declarado_L",
-            "comprimento_cm"
-          ]
-        }
-      ],
-      "conflitos": [],
-      "verificado_em": "2026-09-09",
-      "status_registro": "completo",
-      "observacao": "1,0 W por litro no teto declarado. E exatamente a regra de bolso brasileira de 1 W/L, que a propria ficha do lojista repete — e que a C5 nao aceita como dimensionamento, porque nao pergunta o delta termico da casa. A tela precisa dizer que o fabricante declara o teto, nao a potencia necessaria."
-    },
-    {
-      "id": "atman-at-150",
-      "entidade": "aquecedor",
-      "marca": "Atman",
-      "linha": "AT",
-      "modelo": "AT-150",
-      "variante": "150 W",
-      "nomes_alternativos": [
-        "Atman AT150",
-        "Termostato Atman 150 W",
-        "Aquecedor com termostato Atman 150w AT-150"
-      ],
-      "gtin": null,
-      "disponibilidade_br": "vendido",
-      "voltagem": [
-        "110",
-        "220"
-      ],
-      "potencia_w": 150,
-      "tipo": "quartzo",
-      "termostato": "interno-analogico",
-      "faixa_ajuste_C": {
-        "min": 20,
-        "max": 34
-      },
-      "precisao_C": null,
-      "comprimento_cm": 27.0,
-      "submersivel": true,
-      "protecao_funcionamento_a_seco": null,
-      "volume_atendido_declarado_L": {
-        "min": null,
-        "max": 150
-      },
-      "afiliado": {
-        "plataforma": null,
-        "motivo": "produto novo no banco em 09/09/2026, entrou pela expansao do catalogo (bloco 4b). O link de afiliado e gerado pela Sentinela Estrategica no painel da Shopee; enquanto nao houver, pela regra V16 o produto continua sendo sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
-        "verificado_em": "2026-09-09"
-      },
-      "fontes": [
-        {
-          "origem": "varejo",
-          "status": "transcrita-varejo",
-          "referencia": "Aqua SN e Aquarius Hobby (varejo BR especializado) publicam a mesma ficha descritiva da linha Atman AT de termostato eletronico submerso: corpo de quartzo, ajuste do aquarista em escala de 20 a 34 C, par de ventosas, uso em agua doce e salgada",
-          "url": "https://www.aquasn.com.br/atman-termostato-eletronico-submerso-100wts-codigo-at-100-220v",
-          "verificado_em": "2026-09-09",
-          "campos": [
-            "tipo",
-            "termostato",
-            "faixa_ajuste_C",
-            "submersivel"
-          ],
-          "observacao": "Texto de varejo, nao manual do fabricante: o egresso da nuvem bloqueia WebFetch e a pagina da Atman nao foi lida direto. A escala de 20 a 34 C aparece repetida modelo a modelo (AT-100, AT-150 e AT-300 conferidos em 09/09/2026), e e a mesma boilerplate que o lojista publica para a linha inteira. Reconfirmar no manual quando houver alcance."
-        },
-        {
-          "origem": "varejo",
-          "status": "transcrita-varejo",
-          "referencia": "O varejo BR anuncia a linha AT nas duas tomadas: World Fish e FishPet vendem a versao 110 V e a Aqua SN vende a de 220 V do mesmo codigo",
-          "url": "https://worldfish.com.br/produtos/termostato-atman-at100w-100w-110v/",
-          "verificado_em": "2026-09-09",
-          "campos": [
-            "voltagem",
-            "disponibilidade_br"
-          ],
-          "observacao": "A fonte sustenta que EXISTE versao 110 V e versao 220 V do mesmo modelo, nao que um anuncio especifico seja de uma delas. Aquecedor na tomada errada queima: o cartao obriga a conferir a voltagem no anuncio."
-        },
-        {
-          "origem": "varejo",
-          "status": "transcrita-varejo",
-          "referencia": "Aquarius Hobby e Aqua SN (varejo BR), ficha do AT-150: 150 W, aquarios de ate 150 L, 27 cm",
-          "url": "https://aquariushobby.commercesuite.com.br/agua-doce/controle-de-temperatura/termostatos-e-aquecedores/aquecedor-com-termostato-atman-150w-at-150",
-          "verificado_em": "2026-09-09",
-          "campos": [
-            "potencia_w",
-            "volume_atendido_declarado_L",
-            "comprimento_cm"
-          ]
-        }
-      ],
-      "conflitos": [],
-      "verificado_em": "2026-09-09",
-      "status_registro": "completo",
-      "observacao": "1,0 W por litro no teto declarado, como o resto da linha. A mesma ficha recomenda 1,5 W/L em regiao fria sem dizer qual delta termico isso cobre — e o vacuo que a C5 existe para preencher."
-    },
-    {
-      "id": "atman-at-200",
-      "entidade": "aquecedor",
-      "marca": "Atman",
-      "linha": "AT",
-      "modelo": "AT-200",
-      "variante": "200 W",
-      "nomes_alternativos": [
-        "Atman AT200",
-        "Termostato Atman 200 W",
-        "Aquecedor com termostato Atman 200w AT-200"
-      ],
-      "gtin": null,
-      "disponibilidade_br": "vendido",
-      "voltagem": [
-        "110",
-        "220"
-      ],
-      "potencia_w": 200,
-      "tipo": "quartzo",
-      "termostato": "interno-analogico",
-      "faixa_ajuste_C": {
-        "min": 20,
-        "max": 34
-      },
-      "precisao_C": null,
-      "comprimento_cm": 30.0,
-      "submersivel": true,
-      "protecao_funcionamento_a_seco": null,
-      "volume_atendido_declarado_L": {
-        "min": null,
-        "max": 200
-      },
-      "afiliado": {
-        "plataforma": null,
-        "motivo": "produto novo no banco em 09/09/2026, entrou pela expansao do catalogo (bloco 4b). O link de afiliado e gerado pela Sentinela Estrategica no painel da Shopee; enquanto nao houver, pela regra V16 o produto continua sendo sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
-        "verificado_em": "2026-09-09"
-      },
-      "fontes": [
-        {
-          "origem": "varejo",
-          "status": "transcrita-varejo",
-          "referencia": "Aqua SN e Aquarius Hobby (varejo BR especializado) publicam a mesma ficha descritiva da linha Atman AT de termostato eletronico submerso: corpo de quartzo, ajuste do aquarista em escala de 20 a 34 C, par de ventosas, uso em agua doce e salgada",
-          "url": "https://www.aquasn.com.br/atman-termostato-eletronico-submerso-100wts-codigo-at-100-220v",
-          "verificado_em": "2026-09-09",
-          "campos": [
-            "tipo",
-            "termostato",
-            "faixa_ajuste_C",
-            "submersivel"
-          ],
-          "observacao": "Texto de varejo, nao manual do fabricante: o egresso da nuvem bloqueia WebFetch e a pagina da Atman nao foi lida direto. A escala de 20 a 34 C aparece repetida modelo a modelo (AT-100, AT-150 e AT-300 conferidos em 09/09/2026), e e a mesma boilerplate que o lojista publica para a linha inteira. Reconfirmar no manual quando houver alcance."
-        },
-        {
-          "origem": "varejo",
-          "status": "transcrita-varejo",
-          "referencia": "O varejo BR anuncia a linha AT nas duas tomadas: World Fish e FishPet vendem a versao 110 V e a Aqua SN vende a de 220 V do mesmo codigo",
-          "url": "https://worldfish.com.br/produtos/termostato-atman-at100w-100w-110v/",
-          "verificado_em": "2026-09-09",
-          "campos": [
-            "voltagem",
-            "disponibilidade_br"
-          ],
-          "observacao": "A fonte sustenta que EXISTE versao 110 V e versao 220 V do mesmo modelo, nao que um anuncio especifico seja de uma delas. Aquecedor na tomada errada queima: o cartao obriga a conferir a voltagem no anuncio."
-        },
-        {
-          "origem": "varejo",
-          "status": "transcrita-varejo",
-          "referencia": "Pro-Aquarista (varejo BR especializado), ficha do AT-200: 200 W, 30 cm, aquarios de ate 200 L",
-          "url": "https://www.proaquarista.com.br/atman-termostato-at-200-200w",
-          "verificado_em": "2026-09-09",
-          "campos": [
-            "potencia_w",
-            "volume_atendido_declarado_L",
-            "comprimento_cm"
-          ]
-        }
-      ],
-      "conflitos": [
-        {
-          "campo": "comprimento_cm",
-          "valores": [
-            {
-              "valor": 30.0,
-              "referencia": "Pro-Aquarista",
-              "url": "https://www.proaquarista.com.br/atman-termostato-at-200-200w",
-              "origem": "varejo"
-            },
-            {
-              "valor": 32.0,
-              "referencia": "FishPet, que anuncia o AT-200 200 W como 32 cm",
-              "url": "https://www.fishpet.com.br/peixes/termometros-termostatos/termostato-atman-at-200-200w-32cm-110v",
-              "origem": "varejo"
-            }
-          ],
-          "razao": "2 cm de diferenca (6,7 %) no comprimento do tubo.",
-          "tratamento": "publicar-os-dois",
-          "valor_conservador": null,
-          "derivacao": null
-        }
-      ],
-      "verificado_em": "2026-09-09",
-      "status_registro": "conflito",
-      "observacao": "1,0 W por litro no teto declarado. O comprimento diverge entre duas lojas brasileiras (30 contra 32 cm) e isso importa de verdade: e o numero que decide se o aquecedor deita dentro de um aquario baixo."
-    },
-    {
-      "id": "atman-at-300",
-      "entidade": "aquecedor",
-      "marca": "Atman",
-      "linha": "AT",
-      "modelo": "AT-300",
-      "variante": "300 W",
-      "nomes_alternativos": [
-        "Atman AT300",
-        "Termostato Atman 300 W",
-        "Aquecedor com termostato Atman 300w AT-300"
-      ],
-      "gtin": null,
-      "disponibilidade_br": "vendido",
-      "voltagem": [
-        "110",
-        "220"
-      ],
-      "potencia_w": 300,
-      "tipo": "quartzo",
-      "termostato": "interno-analogico",
-      "faixa_ajuste_C": {
-        "min": 20,
-        "max": 34
-      },
-      "precisao_C": null,
-      "comprimento_cm": 37.0,
-      "submersivel": true,
-      "protecao_funcionamento_a_seco": null,
-      "volume_atendido_declarado_L": {
-        "min": null,
-        "max": 300
-      },
-      "afiliado": {
-        "plataforma": null,
-        "motivo": "produto novo no banco em 09/09/2026, entrou pela expansao do catalogo (bloco 4b). O link de afiliado e gerado pela Sentinela Estrategica no painel da Shopee; enquanto nao houver, pela regra V16 o produto continua sendo sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
-        "verificado_em": "2026-09-09"
-      },
-      "fontes": [
-        {
-          "origem": "varejo",
-          "status": "transcrita-varejo",
-          "referencia": "Aqua SN e Aquarius Hobby (varejo BR especializado) publicam a mesma ficha descritiva da linha Atman AT de termostato eletronico submerso: corpo de quartzo, ajuste do aquarista em escala de 20 a 34 C, par de ventosas, uso em agua doce e salgada",
-          "url": "https://www.aquasn.com.br/atman-termostato-eletronico-submerso-100wts-codigo-at-100-220v",
-          "verificado_em": "2026-09-09",
-          "campos": [
-            "tipo",
-            "termostato",
-            "faixa_ajuste_C",
-            "submersivel"
-          ],
-          "observacao": "Texto de varejo, nao manual do fabricante: o egresso da nuvem bloqueia WebFetch e a pagina da Atman nao foi lida direto. A escala de 20 a 34 C aparece repetida modelo a modelo (AT-100, AT-150 e AT-300 conferidos em 09/09/2026), e e a mesma boilerplate que o lojista publica para a linha inteira. Reconfirmar no manual quando houver alcance."
-        },
-        {
-          "origem": "varejo",
-          "status": "transcrita-varejo",
-          "referencia": "O varejo BR anuncia a linha AT nas duas tomadas: World Fish e FishPet vendem a versao 110 V e a Aqua SN vende a de 220 V do mesmo codigo",
-          "url": "https://worldfish.com.br/produtos/termostato-atman-at100w-100w-110v/",
-          "verificado_em": "2026-09-09",
-          "campos": [
-            "voltagem",
-            "disponibilidade_br"
-          ],
-          "observacao": "A fonte sustenta que EXISTE versao 110 V e versao 220 V do mesmo modelo, nao que um anuncio especifico seja de uma delas. Aquecedor na tomada errada queima: o cartao obriga a conferir a voltagem no anuncio."
-        },
-        {
-          "origem": "varejo",
-          "status": "transcrita-varejo",
-          "referencia": "Pro-Aquarista (varejo BR especializado), ficha do AT-300: 300 W, 37 cm de comprimento por 2,3 cm de diametro, aquarios de ate 300 L, escala de 20 a 34 C, vendido em 110 V e em 220 V",
-          "url": "https://www.proaquarista.com.br/produto/atman-termostato-at-300-300w-110v.html",
-          "verificado_em": "2026-09-09",
-          "campos": [
-            "potencia_w",
-            "volume_atendido_declarado_L",
-            "comprimento_cm"
-          ]
-        }
-      ],
-      "conflitos": [],
-      "verificado_em": "2026-09-09",
-      "status_registro": "completo",
-      "observacao": "1,0 W por litro no teto declarado. Com 37 cm e o mais longo da linha: em aquario de 40 cm de altura util ele so entra deitado, e a tela precisa avisar."
     }
   ]
 }

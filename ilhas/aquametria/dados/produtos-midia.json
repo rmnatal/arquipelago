@@ -38,6 +38,7 @@
         "min": null,
         "max": 200
       },
+      "imagem": null,
       "afiliado": {
         "plataforma": "shopee",
         "url": "https://s.shopee.com.br/9Khs5ozO8W",
@@ -123,6 +124,7 @@
       "vida_util_declarada_meses": null,
       "posicao_no_fluxo": "biologica",
       "volume_atendido_declarado_L": null,
+      "imagem": null,
       "afiliado": {
         "plataforma": "shopee",
         "url": "https://s.shopee.com.br/9051hAWjge",
@@ -186,6 +188,7 @@
         "min": null,
         "max": 200
       },
+      "imagem": null,
       "afiliado": {
         "plataforma": null,
         "motivo": "sem link de afiliado gerado ate 08/09/2026 (a geracao do link curto e feita a mao no painel Shopee Afiliados, fora desta sessao). O registro entra no banco e no cartao da C12 do mesmo jeito, sem botao de loja: link de afiliado nao decide quem e sugerido (regra V16).",
@@ -249,6 +252,7 @@
         "min": null,
         "max": 80
       },
+      "imagem": null,
       "afiliado": {
         "plataforma": null,
         "motivo": "sem link de afiliado gerado ate 08/09/2026 (geracao manual no painel Shopee Afiliados, fora desta sessao). Entra no cartao sem botao de loja, pela regra V16.",
@@ -308,6 +312,7 @@
         "min": null,
         "max": 400
       },
+      "imagem": null,
       "afiliado": {
         "plataforma": null,
         "motivo": "sem link de afiliado gerado ate 08/09/2026 (geracao manual no painel Shopee Afiliados, fora desta sessao). Entra no cartao sem botao de loja, pela regra V16.",
@@ -367,6 +372,7 @@
         "min": null,
         "max": 400
       },
+      "imagem": null,
       "afiliado": {
         "plataforma": null,
         "motivo": "sem link de afiliado gerado ate 08/09/2026 (geracao manual no painel Shopee Afiliados, fora desta sessao). Entra no cartao sem botao de loja, pela regra V16.",
@@ -397,5 +403,5 @@
       "observacao": "Entra no banco como a midia de polimento com dosagem declarada mais precisa que achamos: 0,25 mL por litro de agua, com validade declarada em meses e nao em 'ate saturar'. E a prova de que a industria SABE publicar dosagem por litro quando quer - o que torna o silencio sobre a midia biologica ainda mais estranho."
     }
   ],
-  "atualizado_em": "2026-09-08"
+  "atualizado_em": "2026-09-09"
 }

@@ -3,7 +3,7 @@
   "descricao": "Modelo normalizado do banco de produtos da Aquametria: entidades filtro, aquecedor, iluminacao e midia, mais a entidade cotacao (preco). Define campo a campo o tipo, a unidade, a obrigatoriedade, o vocabulario controlado e a ORIGEM esperada do dado. Nenhum numero entra no banco sem uma entrada correspondente em fontes[]. Este arquivo e o contrato que dados/produtos-*.json cumprem e que ferramentas/validar-produtos.py verifica.",
   "gerado_em": "2026-09-07",
   "bloco": 3,
-  "versao_esquema": 4,
+  "versao_esquema": 5,
   "depende_de": [
     "dados/especificacao-calculadoras.md",
     "dados/constantes-calculadoras.json"
@@ -218,8 +218,56 @@
       "campo": "imagem",
       "tipo": "objeto|null",
       "obrigatorio": false,
-      "origem": "a definir na coleta de imagem",
-      "observacao": "Ainda null em todo o banco. Quando existir: {url, largura, altura, credito, licenca, verificado_em}. O cartao de produto NAO usa foto de loja por hotlink - ou a imagem tem origem e licenca registradas aqui, ou o cartao sai com a placa tipografica de marca e modelo, que e o que a C3 faz hoje."
+      "origem": "comercial (anuncio) ou fabricante",
+      "observacao": "Foto do produto, para o cartao do resultado parecer comercio e nao bibliografia (bloco 4e, decisao do Raphael em 09/09/2026). IMAGEM E DADO COMERCIAL, como preco e link: vem do anuncio, nunca entra em fontes[] e JAMAIS sustenta campo tecnico. Produto sem imagem NAO sai do resultado: o cartao cai na placa tipografica de marca e modelo. Perder a sugestao tecnica por falta de foto seria trocar o certo pelo bonito.",
+      "subcampos": [
+        {
+          "campo": "url",
+          "tipo": "string",
+          "observacao": "https obrigatorio. Hoje aponta para o CDN do proprio anuncio (down-bs-br.img.susercontent.com). E hotlink consciente: a URL pode sumir sem aviso, e quando sumir o cartao cai na placa tipografica — por isso o alt e obrigatorio e descritivo."
+        },
+        {
+          "campo": "largura",
+          "tipo": "numero|null",
+          "observacao": "Pixels. null quando a Aquametria nao mediu — o egresso da nuvem barra o CDN do marketplace. Nao se chuta dimensao."
+        },
+        {
+          "campo": "altura",
+          "tipo": "numero|null",
+          "observacao": "Idem largura."
+        },
+        {
+          "campo": "fonte",
+          "tipo": "string",
+          "vocabulario": [
+            "anuncio-shopee",
+            "fabricante",
+            "varejo",
+            "propria"
+          ],
+          "observacao": "De onde veio o arquivo. 'anuncio-shopee' e dado comercial."
+        },
+        {
+          "campo": "coletado_em",
+          "tipo": "data ISO"
+        },
+        {
+          "campo": "alt",
+          "tipo": "string",
+          "observacao": "Descricao real do que aparece na foto, nao repeticao do nome. E acessibilidade e e leitura de IA ao mesmo tempo, e e o que sobra quando a imagem nao carrega."
+        },
+        {
+          "campo": "motivo_sem_medida",
+          "tipo": "string|null",
+          "observacao": "Por que largura e altura estao null."
+        }
+      ],
+      "regras_de_tela": [
+        "loading='lazy' em toda imagem de cartao.",
+        "Sem largura e altura medidas, o cartao reserva o espaco por CSS (aspect-ratio 1/1 com object-fit contain). Isso nao salta o layout qualquer que seja a proporcao real do arquivo, e e o que permite publicar a foto sem inventar dimensao.",
+        "Imagem nunca ordena o resultado. A ordem e por adequacao tecnica, e um produto com foto nao passa na frente de um produto sem foto que atende melhor."
+      ],
+      "historico": "Nasceu como placeholder em 07/09/2026 prevendo licenca e credito de foto de loja. Em 09/09/2026 o campo foi definido de verdade para o bloco da vitrine, com a foto do proprio anuncio de afiliado, que e o uso que o programa de afiliados permite."
     }
   ],
   "fonte": {
@@ -1064,7 +1112,17 @@
       "id": "V18",
       "regra": "Aquecedor sugerido por calculadora precisa alcancar a temperatura-alvo dentro da faixa de ajuste que o registro sustenta (a declarada, ou a conservadora do V17). Aquecedor que nao alcanca o alvo nao entra na lista, e o motivo aparece na tela.",
       "severidade": "regra de produto, conferida na revisao de cada calculadora"
+    },
+    {
+      "id": "V19",
+      "regra": "imagem preenchida exige url https, fonte no vocabulario, coletado_em em AAAA-MM-DD e alt descritivo (minimo de 20 caracteres). largura e altura sao null ou maiores que zero — nunca zero nem negativo. Imagem nunca aparece em fontes[]: e dado comercial.",
+      "severidade": "erro"
+    },
+    {
+      "id": "V20",
+      "regra": "Produto com link de afiliado e sem imagem e aviso, nao erro: o cartao sai com a placa tipografica e continua vendendo. O aviso existe para a falta ser CONTADA a cada rodada, em vez de sumir em silencio.",
+      "severidade": "aviso"
     }
   ],
-  "atualizado_em": "2026-09-08"
+  "atualizado_em": "2026-09-09"
 }

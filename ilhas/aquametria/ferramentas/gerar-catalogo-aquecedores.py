@@ -75,6 +75,19 @@ def atende(produto, requisitos):
     return faltando
 
 
+def faixa_em_texto(valor):
+    """'de 125 a 150 L' ou 'ate 100 L'. O varejo brasileiro declara teto sem piso na maioria
+    das fichas de aquecedor, e imprimir 'None a 100 L' na tela seria defeito visivel."""
+    vmin, vmax = (valor or {}).get("min"), (valor or {}).get("max")
+    if vmin is not None and vmax is not None:
+        return "de %s a %s L" % (vmin, vmax)
+    if vmax is not None:
+        return "ate %s L" % vmax
+    if vmin is not None:
+        return "a partir de %s L" % vmin
+    return "volume nao declarado"
+
+
 def fonte_principal(produto, campo):
     """A fonte de maior nivel que sustenta o campo — e o que a tela cita."""
     fontes = produto.get("fontes") or []
@@ -153,8 +166,7 @@ def main():
         for c in p.get("conflitos") or []:
             if c.get("campo") == "volume_atendido_declarado_L":
                 conflito_vol = "; ".join(
-                    "%s a %s L segundo %s" % (v["valor"].get("min"), v["valor"].get("max"),
-                                              v.get("referencia"))
+                    faixa_em_texto(v["valor"]) + " segundo " + (v.get("referencia") or "?")
                     for v in c.get("valores") or [])
                 break
 

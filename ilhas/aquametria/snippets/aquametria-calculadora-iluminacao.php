@@ -160,6 +160,32 @@ function aquametria_c15_catalogo() {
 			'observacao' => 'Produto sem marca declarada (importado revendido com nome da loja) — situacao comum no Brasil e o motivo de marca aceitar null com o id derivado da loja. Sem marca, casar cotacoes entre lojas fica impossivel: e o pior caso do banco. 100 lm/W. Segue \'parcial\' por causa da marca ausente, e nao por falta de numero: e apto a ser sugerido pela C15. Em 08/09/2026 saiu do barrado: a segunda leitura da ficha trouxe voltagem (bivolt), cobertura declarada de 55 a 75 cm e timer, e com isso passou a ser o registro de MAIOR cobertura declarada do banco de iluminacao — uma peca de 60 cm que a propria loja diz cobrir ate 75 cm de aquario.',
 		),
 		array(
+			'id' => 'chihiros-a-series-a451m',
+			'marca' => 'Chihiros',
+			'modelo' => 'A451M',
+			'tipo' => 'led-barra',
+			'potencia_w' => 27,
+			'fluxo_lm' => 3500,
+			'kelvin' => null,
+			'espectro' => 'wrgb',
+			'peca_cm' => 45.0,
+			'aquario_min_cm' => 45,
+			'aquario_max_cm' => 45,
+			'voltagem' => array( 'bivolt' ),
+			'regulagem' => 'dimmer',
+			'ppfd' => null,
+			'ppfd_distancia_cm' => null,
+			'fonte_ref' => 'Varejo especializado (Water Plant Street, Pro-Aquarium, IndianAquarium) e anuncio de varejo BR na Amazon, ficha da Chihiros Marine A-Series A451M: 45 x 6 x 5 cm, 27 W, 3.500 lm, 99 LEDs (33 brancos, 50 azuis, 8 vermelhos, 8 verdes), dimmer de 6 passos, para aquarios de 45 cm',
+			'fonte_url' => 'https://www.waterplantstreet.com/chihiros-a-series-led-lighting-system-marine-type.html',
+			'fonte_status' => 'transcrita-varejo',
+			'verificado_em' => '2026-09-09',
+			'link' => 'https://s.shopee.com.br/6Akt2vHtq4',
+			'anuncio' => 'Chihiros Marine A-Series A451M 45 cm 27 W 3.850 lm bivolt',
+			'loja' => 'shopee',
+			'conflito' => null,
+			'observacao' => 'Luminaria MARINHA: 50 dos 99 LEDs sao azuis. 3.500 lm com 27 W da 130 lm/W. A C15 dimensiona planta por lm/L e esta peca nao foi feita para planta — quando ela sair no resultado, o cartao tem de dizer que o espectro e de aquario marinho. O fabricante declara UM comprimento (45 cm), nao uma faixa.',
+		),
+		array(
 			'id' => 'ista-il-401-60',
 			'marca' => 'Ista',
 			'modelo' => 'IL-401 60 cm',
@@ -195,6 +221,32 @@ function aquametria_c15_catalogo() {
 			),
 			'observacao' => 'Unico registro da semente com lumen declarado alto (3717 lm) e agora com voltagem: em 08/09/2026 saiu do barrado e virou o registro mais forte do banco de iluminacao — 106 lm/W, cobertura declarada de 56 a 66 cm. Continua SEM link de afiliado: o anuncio disponivel na Shopee e o da variante de 45 cm (registro ista-i-401-45), com 7,6 W e 810 lm. Traz o conflito nome-contra-ficha: vendida como \'60 cm\', a peca mede 56 cm.',
 		),
+		array(
+			'id' => 'chihiros-a-series-a901',
+			'marca' => 'Chihiros',
+			'modelo' => 'A901',
+			'tipo' => 'led-barra',
+			'potencia_w' => 55,
+			'fluxo_lm' => 8200,
+			'kelvin' => null,
+			'espectro' => 'full-spectrum',
+			'peca_cm' => 90.0,
+			'aquario_min_cm' => 90,
+			'aquario_max_cm' => 90,
+			'voltagem' => array( 'bivolt' ),
+			'regulagem' => null,
+			'ppfd' => null,
+			'ppfd_distancia_cm' => null,
+			'fonte_ref' => 'Varejo especializado internacional (Aquariums India, IndianAquarium, Water Plant Street), ficha da Chihiros A-Series A901: 90 x 6 x 5 cm, 55 W, 8.200 lm, 180 LEDs, espectro completo de 400 a 700 nm, para aquarios de 90 cm',
+			'fonte_url' => 'https://www.aquariumsindia.com/shop/lighting-units/chihiros-led-lighting-system-a901/',
+			'fonte_status' => 'transcrita-varejo',
+			'verificado_em' => '2026-09-09',
+			'link' => 'https://s.shopee.com.br/2BEkHXpG4E',
+			'anuncio' => 'Chihiros A-Series A901 90 cm 55 W 8.200 lm bivolt',
+			'loja' => 'shopee',
+			'conflito' => null,
+			'observacao' => '8.200 lm com 55 W da 149 lm/W, a maior eficacia do banco — numero de varejo, nao de fabricante. Atencao a geracao: a Serie A II 901, outra versao da mesma marca, e publicada com 7.200 lm pelo varejo europeu (Aquasabi); sao produtos diferentes e a ficha aqui e da A901 da A-Series. O fabricante declara UM comprimento (90 cm), nao uma faixa, entao a C15 so sugere esta luminaria para aquario de 90 cm: transformar peca de 90 cm em cobertura mais larga seria inventar faixa.',
+		),
 	);
 	/* CATALOGO-FIM */
 }
@@ -208,6 +260,54 @@ function aquametria_c15_barrados() {
 			'id' => 'chihiros-wrgb-ii-pro-60',
 			'nome' => 'Chihiros WRGB II Pro 60',
 			'motivo' => 'não declara a voltagem',
+			'tem_link' => true,
+		),
+		array(
+			'id' => 'soma-s-1000-wrgb',
+			'nome' => 'Soma S-1000',
+			'motivo' => 'não declara o fluxo luminoso (lúmens)',
+			'tem_link' => true,
+		),
+		array(
+			'id' => 'soma-s-1200-wrgb',
+			'nome' => 'Soma S-1200',
+			'motivo' => 'não declara o fluxo luminoso (lúmens)',
+			'tem_link' => true,
+		),
+		array(
+			'id' => 'soma-s-200-wrgb',
+			'nome' => 'Soma S-200',
+			'motivo' => 'não declara o fluxo luminoso (lúmens)',
+			'tem_link' => true,
+		),
+		array(
+			'id' => 'soma-s-300-wrgb',
+			'nome' => 'Soma S-300',
+			'motivo' => 'não declara o fluxo luminoso (lúmens)',
+			'tem_link' => true,
+		),
+		array(
+			'id' => 'soma-s-400-wrgb',
+			'nome' => 'Soma S-400',
+			'motivo' => 'não declara o fluxo luminoso (lúmens)',
+			'tem_link' => true,
+		),
+		array(
+			'id' => 'soma-s-500-wrgb',
+			'nome' => 'Soma S-500',
+			'motivo' => 'não declara o fluxo luminoso (lúmens)',
+			'tem_link' => true,
+		),
+		array(
+			'id' => 'soma-s-600-wrgb',
+			'nome' => 'Soma S-600',
+			'motivo' => 'não declara o fluxo luminoso (lúmens)',
+			'tem_link' => true,
+		),
+		array(
+			'id' => 'soma-s-800-wrgb',
+			'nome' => 'Soma S-800',
+			'motivo' => 'não declara o fluxo luminoso (lúmens)',
 			'tem_link' => true,
 		),
 		array(
@@ -537,6 +637,15 @@ function aquametria_c15_js() {
 	/* Adequação técnica, e só ela: lúmens dentro da faixa calculada e cobertura
 	   de comprimento DECLARADA que contenha o aquário. Link de afiliado não entra
 	   no critério nem na ordem (regra V16 do esquema do banco). */
+	/* Cobertura declarada em texto. A Chihiros A-Series declara UM comprimento de
+	   aquário (90 cm), não uma faixa: imprimir '90 a 90 cm' seria defeito visível. */
+	function cobertura(p) {
+		if (p.aquario_min_cm === null) { return 'até ' + fmt(p.aquario_max_cm, 0) + ' cm'; }
+		if (p.aquario_max_cm === null) { return 'a partir de ' + fmt(p.aquario_min_cm, 0) + ' cm'; }
+		if (p.aquario_min_cm === p.aquario_max_cm) { return 'exatamente ' + fmt(p.aquario_min_cm, 0) + ' cm'; }
+		return fmt(p.aquario_min_cm, 0) + ' a ' + fmt(p.aquario_max_cm, 0) + ' cm';
+	}
+
 	function escolher(r, d) {
 		var fora = [];
 		var regulaveis = [];
@@ -555,8 +664,8 @@ function aquametria_c15_js() {
 				&& (p.aquario_max_cm === null || d.comprimento <= p.aquario_max_cm);
 			if (!cobre) {
 				fora.push(nome(p) + ' entrega ' + lm(p.fluxo_lm) + ' lm, mas o fabricante declara cobertura de '
-					+ (p.aquario_min_cm === null ? 'até ' + fmt(p.aquario_max_cm, 0) : fmt(p.aquario_min_cm, 0) + ' a ' + fmt(p.aquario_max_cm, 0))
-					+ ' cm de aquário, e o seu tem ' + fmt(d.comprimento, 0) + ' cm.');
+					+ cobertura(p)
+					+ ' de aquário, e o seu tem ' + fmt(d.comprimento, 0) + ' cm.');
 				return;
 			}
 			if (p.fluxo_lm >= r.min && (r.aberto || p.fluxo_lm <= r.max)) {
@@ -857,8 +966,8 @@ function aquametria_c15_js() {
 				: 'dentro da faixa de ' + fmt(r.nivel.consolidado[0], 0) + ' a ' + fmt(r.nivel.consolidado[1], 0)
 					+ ' lm/L que este nível pede.')
 			+ ' A cobertura declarada é de '
-			+ (p.aquario_min_cm === null ? 'até ' + fmt(p.aquario_max_cm, 0) : fmt(p.aquario_min_cm, 0) + ' a ' + fmt(p.aquario_max_cm, 0))
-			+ ' cm de aquário, e o seu tem ' + fmt(r.entradas.comprimento, 0) + ' cm.';
+			+ cobertura(p)
+			+ ' de aquário, e o seu tem ' + fmt(r.entradas.comprimento, 0) + ' cm.';
 		corpo.appendChild(porque);
 
 		var ficha = document.createElement('ul');

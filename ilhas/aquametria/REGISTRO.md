@@ -2602,3 +2602,120 @@ branco quando o bloco de produto da C15 sai vazio); e só depois a malha de link
 `atman-hf-0600`, `sunsun-hw-603b`, `atman-at-100`, `atman-at-150`, `atman-at-200`, `atman-hf-0800`,
 `atman-at-3336`, `atman-at-300`, `sunsun-hw-303b`. Nada mudou nisso hoje: esta leva não tocou o banco.
 O `atman-at-150` merece prioridade — é justamente o degrau de 150 W que falta na faixa de 100 L.
+
+---
+
+## 2026-09-09 — LOTE DE BANCO: 21 anúncios com link e IMAGEM, e o campo `imagem` nasce de verdade
+
+Execução extraordinária, disparada com um lote colhido à mão no painel da Shopee às ~10h50 BRT:
+21 produtos novos com link de afiliado, preço e foto, na mesma passada. O bloco 4c fica para a
+próxima; este é o bloco do banco, e ele muda **o que as calculadoras têm para vender**.
+
+### Ponto de partida medido
+
+Antes deste lote: 36 produtos, 10 cotações, 12 links de afiliado, **zero imagens**. A C15
+iluminação tinha **uma** luminária sugerível com link (Ista I-401 45 cm, 810 lm, que não cai em
+faixa nenhuma útil) e a C5 tinha três aquecedores com link — 100, 200 e 300 W —, com a **janela de
+110 a 150 W vazia**, que é justamente a que a Sentinela mediu num aquário de 108 L.
+
+### Entregue
+
+- **56 produtos** (era 36) e **31 cotações** (era 10). 21 links novos, 21 imagens novas.
+- **Iluminação: 6 → 16 registros.** Entrou a linha Soma WRGB inteira (S-200 a S-1200, cobrindo de
+  20 a 130 cm de aquário) e duas Chihiros A-Series (A901 e A451M).
+- **Aquecedor: 13 → 23 registros.** 7 Maxxi, o RS-50, o Ocean Tech Warmer X-5 150 W e o Sicce
+  Scuba Contactless 150 W. O Roxin Q3 50 W, que já era apto e estava **sem link**, ganhou link e
+  imagem.
+- **O campo `imagem` deixou de ser placeholder.** No esquema (versão 4 → 5) ele tem subcampos
+  (`url`, `largura`, `altura`, `fonte`, `coletado_em`, `alt`, `motivo_sem_medida`), vocabulário de
+  fonte e regras de tela. Está preenchido nos 21 do lote e **explicitamente `null`** nos outros,
+  para a falta ser contável.
+- **Duas regras novas no validador, e elas rodam:** `V19` (imagem exige https, fonte do
+  vocabulário, data e `alt` de no mínimo 20 caracteres; imagem NUNCA aparece em `fontes[]`, porque
+  é dado comercial) e `V20` (aviso: produto com link e sem foto — hoje são **10**, todos da coleta
+  de 07 e 08/09).
+
+### O que isso destravou, com número
+
+| Calculadora | Sugeríveis COM link, antes | Depois |
+|---|---|---|
+| C5 aquecedor | 3 (100, 200, 300 W) | **5** — entra o **Ocean Tech Warmer X-5 150 W** e o **Roxin Q3 50 W** |
+| C15 iluminação | 1 | **3** — entram a **Chihiros A901** (8.200 lm) e a **A451M** (3.500 lm) |
+
+**A janela de 110 a 150 W fechou.** O Warmer X-5 150 W é o único do lote com os quatro campos que
+a C5 exige (potência, volume declarado, faixa de ajuste e voltagem) — 20 a 34 °C, 29 cm, tubo de
+quartzo, 110 e 220 V, tudo de varejo especializado (Aquaricamp, Aquaripesca, Barbusfish, Pet
+Patão). O catálogo embutido na C5 foi de 13 para 14 itens e o de 150 W deixou de ser só Atman e
+Eheim sem link.
+
+### A regra das duas camadas de procedência, aplicada com consequência
+
+O lote veio com potência, voltagem, volume e lúmen **declarados no anúncio**. Nada disso virou dado
+técnico. O que entrou como técnico foi reconferido em varejo especializado, campo a campo — e a
+diferença apareceu três vezes:
+
+1. **Chihiros A451M:** o anúncio declara **3.850 lm**; a ficha de varejo declara **3.500 lm**. O
+   banco publica 3.500 e guarda os 3.850 em `afiliado.observacao`, para a tela poder avisar.
+2. **As 8 Soma ficaram `parcial` por um campo só: `fluxo_lm`.** Nem a marca nem as nove lojas
+   brasileiras conferidas publicam lúmen de nenhum modelo da linha. Elas entram no banco com
+   potência, tamanho de peça, cobertura declarada e bivolt — e a C15, que dimensiona por lm/L,
+   **não sugere nenhuma**: aparecem na lista de barrados, com o motivo escrito.
+3. **Voltagem: 9 dos 10 aquecedores novos ficaram com `voltagem: null`.** O varejo localizado
+   publica a linha Maxxi e o RS-50 em 110 V, e parte dos anúncios com link abre 220 V. Voltagem
+   errada queima o aparelho e nenhuma fonte de nível 2 a 5 confirma versão por versão, então a
+   Aquametria não afirma nenhuma das duas. O Sicce Scuba Contactless 150 W tem a **melhor ficha do
+   lote** (15 a 35 °C, 120 a 180 L, dupla proteção contra funcionamento a seco) e para exatamente
+   nisso: um campo.
+
+### Um conflito real, publicado em vez de resolvido na média
+
+O Warmer X-5 150 W é vendido no Brasil com **três tetos diferentes de volume**: até 150 L, até
+130 L e até 100 L. A ficha publica **o mais baixo (100 L)**, que é a única afirmação que as três
+leituras sustentam, e `conflitos[]` guarda as três com atribuição — a tela mostra as três. Não
+muda quem é sugerido (o critério da C5 é a janela de potência), muda o que a ficha diz.
+
+### Dois defeitos de tela consertados antes de aparecerem
+
+- O gerador da C5 imprimia `None a 100 L` quando o varejo declara teto sem piso ("até 100 L"), que
+  é a forma dominante no Brasil. Agora imprime `até 100 L` (função `faixa_em_texto`).
+- A C15 imprimiria `cobre 90 a 90 cm` para a Chihiros A901, porque o fabricante declara **um**
+  comprimento e não uma faixa. Agora imprime `exatamente 90 cm` (função `cobertura`). Transformar
+  peça de 90 cm em faixa mais larga seria inventar cobertura, então a A901 só é sugerida para
+  aquário de 90 cm mesmo — e a A451M só para 45 cm.
+
+### Verificação (o que foi realmente rodado)
+
+- `python3 ferramentas/validar-produtos.py` → **56 produtos, 31 cotações, 0 erro, 12 avisos**
+  (10 são o V20 novo — link sem foto; 1 é o V11 do Eheim 200 W, antigo; 1 era o V14 do Sicce, e o
+  status foi corrigido para `completo`).
+- `python3 ferramentas/gerar-catalogo-aquecedores.py` → 14 itens embutidos, 5 com link.
+- `python3 ferramentas/gerar-catalogo-iluminacao.py` → 5 itens embutidos, 3 com link, 11 barrados
+  com motivo.
+- `php -l` nos dois snippets tocados → sem erro.
+- `python3 ferramentas/conferir-protecao-funcoes.py` e `conferir-slugs.py` → ok.
+- **Imagem NÃO pôde ser conferida por esta sessão:** `down-bs-br.img.susercontent.com` devolve
+  `EGRESS_BLOCKED`, como todo domínio de loja. Por isso `largura` e `altura` estão `null` com
+  motivo, e o cartão vai reservar o espaço por CSS (`aspect-ratio: 1/1` + `object-fit: contain`),
+  que não salta o layout qualquer que seja a proporção real. **Quem consegue conferir se as 21
+  fotos carregam é a Sentinela Técnica, que roda no Chrome.**
+
+### Próximo passo desbloqueado
+
+**Bloco 4e — a vitrine.** O banco agora tem foto, e é o que faltava para o cartão de produto
+parecer comércio: rolagem horizontal com `scroll-snap`, cartão que é link de verdade, promessa
+acima da dobra e barra fixa no celular. As 21 imagens só chegam ao visitante nesse bloco.
+
+Depois dele, o **4c leva 2** (JSON-LD e tabela pré-renderizada na C12 e na C15), que era o próximo
+antes deste lote.
+
+**Para a Sentinela Estratégica**, em ordem de retorno:
+
+1. **Lúmen da linha Soma** — 8 produtos com link e foto, todos barrados por um número que nenhuma
+   loja brasileira publica. Se a Soma responder por e-mail ou se alguém fotografar a caixa,
+   destravam 8 vendas de uma vez, cobrindo de 20 a 130 cm.
+2. **Voltagem confirmada em ficha** dos 7 Maxxi, do RS-50 e do Sicce — 9 links parados por um
+   campo.
+3. **Imagem dos 10 antigos** (`eheim-classic-250-2213`, `seachem-tidal-55`, `roxin-ht-1300-q3-100w`,
+   `-200w`, `-300w`, `chihiros-wrgb-ii-pro-60`, `ista-i-401-45`, `sunsun-ade-400c`,
+   `seachem-matrix-1l`, `eheim-substrat-pro-1l`): já vendem, e vão para a vitrine sem foto.
+4. Continuam **10 produtos esperando `afiliado.url`** — a lista da leva anterior não mudou.

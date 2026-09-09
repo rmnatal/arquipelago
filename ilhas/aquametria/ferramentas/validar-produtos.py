@@ -32,8 +32,10 @@ ID_VALIDO = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 CAMPOS_META = {
     "id", "entidade", "marca", "linha", "modelo", "variante", "nomes_alternativos",
     "gtin", "disponibilidade_br", "fontes", "conflitos", "verificado_em",
-    "status_registro", "observacao",
+    "status_registro", "observacao", "imagem",
 }
+IMAGEM_FONTES = {"anuncio-shopee", "fabricante", "varejo", "propria"}
+MINIMO_ALT = 20
 LIMITE_DIAS_REVALIDAR = 180
 LIMITE_EFICIENCIA_FILTRO = 120.0   # L/h por W
 LIMITE_LARGURA_FAIXA = 3.0         # x
@@ -280,6 +282,38 @@ def valida_produto(esquema, entidade, produto, vistos):
                 erro("V15", pid, "preco dentro de afiliado ('%s'): preco mora em cotacoes" % campo)
     elif not preenchido(afil.get("motivo")):
         erro("V15", pid, "afiliado sem plataforma precisa dizer o motivo")
+
+    # V19 - imagem e dado COMERCIAL: existe com url, fonte, data e alt, ou nao existe
+    img = produto.get("imagem")
+    if img is not None:
+        if not str(img.get("url", "")).startswith("https://"):
+            erro("V19", pid, "imagem sem url https")
+        if img.get("fonte") not in IMAGEM_FONTES:
+            erro("V19", pid, "imagem com fonte fora do vocabulario: %r" % img.get("fonte"))
+        try:
+            datetime.strptime(img.get("coletado_em", ""), "%Y-%m-%d")
+        except ValueError:
+            erro("V19", pid, "imagem sem coletado_em em AAAA-MM-DD")
+        alt = (img.get("alt") or "").strip()
+        if len(alt) < MINIMO_ALT:
+            erro("V19", pid, "alt da imagem com %d caractere(s): descreva o que aparece na foto "
+                             "(minimo de %d)" % (len(alt), MINIMO_ALT))
+        for lado in ("largura", "altura"):
+            valor = img.get(lado)
+            if valor is not None and valor <= 0:
+                erro("V19", pid, "imagem com %s igual a %r" % (lado, valor))
+        if img.get("largura") is None and not preenchido(img.get("motivo_sem_medida")):
+            erro("V19", pid, "imagem sem largura e sem motivo_sem_medida: dimensao que nao foi "
+                             "medida precisa dizer por que")
+        for fonte in fontes:
+            if "imagem" in (fonte.get("campos") or []):
+                erro("V19", pid, "fonte sustentando 'imagem': imagem e dado comercial e nao "
+                                 "entra em fontes[]")
+
+    # V20 - aviso: tem link e nao tem foto. O cartao sai com placa tipografica.
+    if (afil or {}).get("plataforma") and img is None:
+        aviso("V20", pid, "tem link de afiliado e nao tem imagem: o cartao sai com a placa "
+                          "tipografica de marca e modelo")
 
     # V13 - iluminacao com lumen precisa de comprimento
     if entidade == "iluminacao" and preenchido(produto.get("fluxo_lm")):

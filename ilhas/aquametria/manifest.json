@@ -4,7 +4,7 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 18,
+  "revisao": 19,
   "atualizado_em": "2026-09-09",
   "estado": "fundacao",
   "desembarque": {
@@ -73,7 +73,7 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "d7980823514f171b28c755caa7afd01ee12923ef6472722fc316a5f341bf6f9e",
+      "sha256": "37729279af1e0922d6b989bede783b9498b82ca6f9163fdb36c0ffe372be153b",
       "descricao": "v1.0.0 (08/09/2026). Registra o shortcode [aquametria_calculadora_aquecedor] e se anuncia no hub pelo filtro aquametria_calculadoras. Pergunta a MINIMA DO COMODO onde o aquario fica, que e a entrada que nenhuma fonte brasileira pede, e calcula a faixa de potencia com o nome do autor em cada extremo: separa as regras aplicaveis das nao aplicaveis e mostra as duas listas. Com delta acima de 10 C diz com essas palavras que nenhuma fonte cobre o caso e entrega a faixa generica como piso. Com delta zero ou negativo nao devolve numero nenhum. Traz o degrau da linha comercial, o confronto com o volume declarado na caixa (o achado do bloco), o bloco de produto com DUAS barreiras de seguranca antes da adequacao (voltagem da tomada e faixa de ajuste alcancar o alvo, regra V18) e o caminho inverso. Le e grava o estado compartilhado por mescla. v1.1.0 (08/09/2026), CORRECAO GRAVE: o JS e o CSS sairam de dentro do retorno do shortcode e passaram para wp_head (estilo) e wp_footer (comportamento). Dentro do retorno do shortcode eles ainda atravessavam os filtros de texto do conteudo, que trocam & por &#038;, e o primeiro && do script matava o JavaScript inteiro com SyntaxError: o formulario nao calculava e o bloco de produto nunca aparecia. Nenhuma linha de calculo mudou. v1.2.0 (09/09/2026), BLOCO 4c — visibilidade em IA: a pagina passou a servir RESPOSTA no HTML, e nao so formulario. (a) bloco de resposta direta ANTES do formulario, dizendo o numero, o criterio e que a pergunta que decide a conta e quanto o comodo esfria, com fonte e data na propria frase; (b) tabela de seis aquarios ja resolvidos (30, 60, 100, 150, 200 e 300 L) nos DOIS cenarios de diferenca de temperatura — ate 10 graus, onde vale a ReefFlow, e acima disso, onde so sobram as regras sem condicao declarada e a faixa vira piso —, com o degrau da linha comercial de cada caso, pre-renderizada pelo PHP; (c) JSON-LD no wp_head com WebApplication e FAQPage de 8 perguntas. Conserto junto: as regras de W/L e a linha comercial moravam so dentro do JavaScript e agora nascem no PHP (aquametria_c5_regras e aquametria_c5_linha_comercial), entregues ao script como AQM_C5_REGRAS e AQM_C5_LINHA. Nenhuma formula mudou. Conferido em Chromium com JavaScript DESLIGADO por ferramentas/teste-navegador-visibilidade-ia.mjs."
     },
     {
@@ -93,7 +93,7 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "1e6cce1c6dff269645ac65c244d9cc33a251d00a64015790590d71b7ae1921d9",
+      "sha256": "cc56ba98e68a2eacfb19e76691dc5e7c1e892246055df271d70b821879bf9932",
       "descricao": "v1.0.0 (08/09/2026). Registra o shortcode [aquametria_calculadora_iluminacao] e se anuncia no hub pelo filtro aquametria_calculadoras. Ataca o maior cluster empatado do Bloco 1 (83 consultas) e publica a divergencia que ninguem confronta: tres fontes brasileiras chamam a MESMA faixa pelo MESMO rotulo com numeros que diferem por duas vezes ('baixa' e 20 lm/L numa, 10 a 20 noutra e 15 na terceira). Entrega a faixa de lumens no volume da pessoa, as tres leituras lado a lado numa tabela com atribuicao, os quatro regimes de fotoperiodo, a faixa de Kelvin, o consumo em kWh/mes do fotoperiodo escolhido (custo em reais so com a tarifa que o visitante digita, porque tarifa nao e publicada aqui), o bloco de CO2 com os dois limites que SE SOBREPOEM, o aviso de luz alta sem CO2, o aviso de lamina acima de 45 cm e o caminho inverso. Recusa publicar PPFD (constante pendente) e explica o motivo achado a montante: o forum de suporte da propria Chihiros declara que nao existe teste de PAR oficial. Recusa converter comprimento de peca em cobertura de aquario, porque nos 5 registros que declaram os dois numeros a razao varia de 1,15 a 1,59 vez. Bloco de produto com a cobertura declarada como barreira, e a lista PUBLICADA dos barrados com o motivo — inclusive a luminaria mais cara do banco, que tem link de afiliado e nao e sugerida por falta de voltagem declarada. Le e grava o estado compartilhado por mescla. O catalogo entre CATALOGO-INICIO/FIM e BARRADOS-INICIO/FIM e gerado por ferramentas/gerar-catalogo-iluminacao.py — nao editar a mao. v1.1.0 (08/09/2026), CORRECAO GRAVE: o JS e o CSS sairam de dentro do retorno do shortcode e passaram para wp_head (estilo) e wp_footer (comportamento). Dentro do retorno do shortcode eles ainda atravessavam os filtros de texto do conteudo, que trocam & por &#038;, e o primeiro && do script matava o JavaScript inteiro com SyntaxError: o formulario nao calculava e o bloco de produto nunca aparecia. Nenhuma linha de calculo mudou."
     }
   ],
@@ -315,11 +315,11 @@
       "formato": "json",
       "entidade": "esquema",
       "fonte": "derivado de dados/especificacao-calculadoras.md; a origem esperada de cada campo esta no proprio esquema",
-      "verificado_em": "2026-09-08",
+      "verificado_em": "2026-09-09",
       "registros": 5,
       "publicar": false,
-      "sha256": "3d2cb74a151ab4ae21574f3e592b965dc3c649bdce885c44f0aa6afa647943c6",
-      "descricao": "Contrato formal do banco de produtos: campos, tipos, unidades, vocabularios controlados, origem esperada por campo, campos derivados (nunca gravados), minimo_para_sugerir por calculadora e as 14 regras de validacao. E o arquivo que ferramentas/validar-produtos.py executa. Versao 2 (07/09/2026): documenta o campo afiliado dos produtos e a regra V15. Versao 3 (08/09/2026): coluna_maxima_m passou a ser obrigatoria so para canister e sump (hang-on e interno nao tem recalque a vencer, e ganharam o campo coluna_maxima_nao_se_aplica); a regra V10 de plausibilidade de eficiencia ficou restrita a canister e sump; abriu o campo imagem, ainda null em todo o banco; e entrou a regra V16, que proibe link de afiliado de ordenar ou filtrar sugestao de calculadora. v3 (08/09/2026): tratamento de conflito 'intersecao-conservadora' com valor_conservador e derivacao (regra V17), regra V18 (aquecedor sugerido tem de alcancar a temperatura-alvo) e minimo_para_sugerir da C5 aceitando 'conflito:faixa_ajuste_C'. Versao 4 (08/09/2026): a pendencia_de_criterio da entidade iluminacao foi RESOLVIDA pelo caminho conservador — o comprimento da peca nao vira cobertura de aquario, e o minimo_para_sugerir da c15-iluminacao passou a exigir comprimento_aquario_cm declarado."
+      "sha256": "1b64405f3d1d2768520844931e59a8c599c3be5047b14a7ff73c38912a974d14",
+      "descricao": "Contrato formal do banco de produtos: campos, tipos, unidades, vocabularios controlados, origem esperada por campo, campos derivados (nunca gravados), minimo_para_sugerir por calculadora e as 14 regras de validacao. E o arquivo que ferramentas/validar-produtos.py executa. Versao 2 (07/09/2026): documenta o campo afiliado dos produtos e a regra V15. Versao 3 (08/09/2026): coluna_maxima_m passou a ser obrigatoria so para canister e sump (hang-on e interno nao tem recalque a vencer, e ganharam o campo coluna_maxima_nao_se_aplica); a regra V10 de plausibilidade de eficiencia ficou restrita a canister e sump; abriu o campo imagem, ainda null em todo o banco; e entrou a regra V16, que proibe link de afiliado de ordenar ou filtrar sugestao de calculadora. v3 (08/09/2026): tratamento de conflito 'intersecao-conservadora' com valor_conservador e derivacao (regra V17), regra V18 (aquecedor sugerido tem de alcancar a temperatura-alvo) e minimo_para_sugerir da C5 aceitando 'conflito:faixa_ajuste_C'. Versao 4 (08/09/2026): a pendencia_de_criterio da entidade iluminacao foi RESOLVIDA pelo caminho conservador — o comprimento da peca nao vira cobertura de aquario, e o minimo_para_sugerir da c15-iluminacao passou a exigir comprimento_aquario_cm declarado. Em 09/09/2026 subiu para a versao 5 do esquema: o campo imagem deixou de ser placeholder e passou a ter subcampos, vocabulario de fonte e regras de tela (V19), e o V20 passou a CONTAR os produtos com link e sem foto."
     },
     {
       "id": "produtos-filtro",
@@ -327,10 +327,10 @@
       "formato": "json",
       "entidade": "filtro",
       "fonte": "ver fontes[] de cada registro: Eheim e SunSun (fabricante-via-busca), Seachem/Sicce (manual via busca, PDF bloqueado pelo egresso), Aquaricamp e AquaSN (varejo BR)",
-      "verificado_em": "2026-09-08",
-      "registros": 5,
+      "verificado_em": "2026-09-09",
+      "registros": 11,
       "publicar": false,
-      "sha256": "37f0216fee64ec84a7eed33bde9b77f55b42aac0df3acdd4f0f36feaa6ee2fc8",
+      "sha256": "365975b349664c42f5176b32bc85ceef583040104135a1524e3498d36ae0cd25",
       "descricao": "Semente de filtros: Eheim classic 250 (2213), SunSun HW-303B, Atman AT-3338, Atman AT-3338S e Seachem Tidal 55. Turnover implicito declarado pelos proprios fabricantes vai de 1,76 a 10,0 renovacoes/h. Em 08/09/2026 os dois filtros com link de afiliado sairam do barrado: o Eheim 2213 ganhou voltagem 110 V (varejo BR) e o Seachem Tidal 55 ganhou as duas voltagens, teve a coluna maxima declarada como nao aplicavel (hang-on) e saiu de 'revalidar' para 'completo'. A C3 sugere 4 dos 5 filtros; o SunSun HW-303B segue barrado por coluna maxima."
     },
     {
@@ -339,11 +339,11 @@
       "formato": "json",
       "entidade": "aquecedor",
       "fonte": "ver fontes[] de cada registro: Eheim (fabricante-via-busca); Mega Aquarios, RS Discus e Petlove (varejo BR)",
-      "verificado_em": "2026-09-08",
-      "registros": 9,
+      "verificado_em": "2026-09-09",
+      "registros": 23,
       "publicar": false,
-      "sha256": "e19c5db19cb553b95bbb0882a986b07738a331cf04fe548c756a3d9d1ec84a3d",
-      "descricao": "Banco de aquecedores, ampliado em 08/09/2026 de 4 para 9 registros para alimentar a C5: linha Eheim Jager (50, 100, 150 e 200 W) e linha Roxin HT-1300/Q3 (25, 50, 100, 200 e 300 W). A coleta desta data resolveu o campo que barrava o banco inteiro — voltagem, agora ['110','220'] nas duas linhas com fonte de varejo BR — e tratou a faixa de ajuste da linha Roxin, em conflito varejo-contra-varejo, pela intersecao conservadora de 22 a 32 C (regra V17). Tres conflitos ficam publicados em vez de escondidos: o volume do Jager 200 W (fabricante 30-400 L contra varejo 300-400 L), o do Jager 150 W (125-150 L contra 200-300 L, os dois varejo) e a faixa de ajuste da linha Roxin. Resultado: 9 de 9 aptos a serem sugeridos pela C5, 3 com link de afiliado."
+      "sha256": "50ed9762a1172c513c721d67edec14eae658122e87b68669da4960f0d927bf52",
+      "descricao": "Banco de aquecedores, ampliado em 08/09/2026 de 4 para 9 registros para alimentar a C5: linha Eheim Jager (50, 100, 150 e 200 W) e linha Roxin HT-1300/Q3 (25, 50, 100, 200 e 300 W). A coleta desta data resolveu o campo que barrava o banco inteiro — voltagem, agora ['110','220'] nas duas linhas com fonte de varejo BR — e tratou a faixa de ajuste da linha Roxin, em conflito varejo-contra-varejo, pela intersecao conservadora de 22 a 32 C (regra V17). Tres conflitos ficam publicados em vez de escondidos: o volume do Jager 200 W (fabricante 30-400 L contra varejo 300-400 L), o do Jager 150 W (125-150 L contra 200-300 L, os dois varejo) e a faixa de ajuste da linha Roxin. Resultado: 9 de 9 aptos a serem sugeridos pela C5, 3 com link de afiliado. Em 09/09/2026 entraram 10 registros com link e imagem (7 Maxxi, RS-50, Ocean Tech Warmer X-5 150 W e Sicce Scuba Contactless 150 W) e o Roxin Q3 50 W ganhou link. O Warmer X-5 e o registro que fecha a janela de 110 a 150 W."
     },
     {
       "id": "produtos-iluminacao",
@@ -351,11 +351,11 @@
       "formato": "json",
       "entidade": "iluminacao",
       "fonte": "ver fontes[] de cada registro: Pro-Aquarista, Aquarios do Rio, Aquarius Hobby, Green Aqua e Aquasabi (varejo)",
-      "verificado_em": "2026-09-08",
-      "registros": 6,
+      "verificado_em": "2026-09-09",
+      "registros": 16,
       "publicar": false,
-      "sha256": "014f48d16fadce5e220dbf3b1be821575fa13f114c25ac94686752aef3b0d1df",
-      "descricao": "Banco de iluminacao, ampliado em 08/09/2026 pela coleta que abriu a C15: Ista IL-401 60 e o LED 60 cm dos Aquarios do Rio ganharam voltagem (bivolt) e cobertura declarada e sairam do barrado; entrou a WFish WF-H600 WRGB, terceiro caso do padrao 'peca menor que o nome'; e ficou registrado o conflito nome-contra-ficha do IL-401, vendida como 60 cm e medindo 56. Resultado: 6 registros, 3 aptos a serem sugeridos pela C15 (1 com link) e 3 barrados — dois por nao declararem lumen e um, o mais caro do banco, por nao declarar voltagem mesmo tendo link de afiliado. A lacuna estrutural continua sendo o conteudo: o varejo brasileiro vende luminaria por centimetro de peca e omite o lumen."
+      "sha256": "3f5e1e1bbc9db18d0065be928754c24c4e7838fd6586668472adbcb50c363e8a",
+      "descricao": "Banco de iluminacao, ampliado em 08/09/2026 pela coleta que abriu a C15: Ista IL-401 60 e o LED 60 cm dos Aquarios do Rio ganharam voltagem (bivolt) e cobertura declarada e sairam do barrado; entrou a WFish WF-H600 WRGB, terceiro caso do padrao 'peca menor que o nome'; e ficou registrado o conflito nome-contra-ficha do IL-401, vendida como 60 cm e medindo 56. Resultado: 6 registros, 3 aptos a serem sugeridos pela C15 (1 com link) e 3 barrados — dois por nao declararem lumen e um, o mais caro do banco, por nao declarar voltagem mesmo tendo link de afiliado. A lacuna estrutural continua sendo o conteudo: o varejo brasileiro vende luminaria por centimetro de peca e omite o lumen. Em 09/09/2026 entraram 10 registros com link e imagem (Soma WRGB S-200 a S-1200 e Chihiros A901 e A451M): as 8 Soma ficaram 'parcial' por falta de lumen publicado e as 2 Chihiros sao as primeiras luminarias sugeriveis com link depois da Ista."
     },
     {
       "id": "produtos-midia",
@@ -363,10 +363,10 @@
       "formato": "json",
       "entidade": "midia",
       "fonte": "ver fontes[] de cada registro: Seachem e Eheim (fabricante-via-busca; seachem.com bloqueado pelo egresso)",
-      "verificado_em": "2026-09-07",
-      "registros": 2,
+      "verificado_em": "2026-09-09",
+      "registros": 6,
       "publicar": false,
-      "sha256": "3bf2808088d954ae81287ad1c4d6f49029b597bfa34db54f75c78e54a2c0ecf4",
+      "sha256": "60b44d8d38138275ea49939d0986b16d445d60303922f7f2f08983bb470b4689",
       "descricao": "Semente de midia filtrante: Seachem Matrix 1 L e Eheim SUBSTRAT pro 1 L. Guarda o conflito de dosagem do proprio Seachem (1,25 x 2,6 mL de midia por litro de agua) e as duas areas superficiais declaradas sem metodo publicado (>700 e ~450 m2/L)."
     },
     {
@@ -375,11 +375,11 @@
       "formato": "json",
       "entidade": "cotacao",
       "fonte": "painel Shopee Afiliados, lido pelo operador em 07/09/2026 ao gerar os links curtos (campo origem_leitura em cada registro)",
-      "verificado_em": "2026-09-07",
-      "registros": 10,
+      "verificado_em": "2026-09-09",
+      "registros": 31,
       "publicar": false,
-      "sha256": "2fae2d358563be840714d81c453d54a23c90c82c19048d1852c71a42fc1d0725",
-      "descricao": "Precos observados, por produto, por loja e por data. Primeira leva em 07/09/2026: 10 cotacoes da Shopee vindas do painel de afiliados, cada uma com loja, data, condicao, disponibilidade, titulo do anuncio e link. Preco NAO e campo de produto e nunca entra em criterio tecnico de sugestao; na tela sai sempre com a data ao lado e o aviso de que o valor muda na loja."
+      "sha256": "00e5bd138b57f74283c72aac71701d0325bcc2125083f108c485532e60b7f444",
+      "descricao": "Precos observados, por produto, por loja e por data. Primeira leva em 07/09/2026: 10 cotacoes da Shopee vindas do painel de afiliados, cada uma com loja, data, condicao, disponibilidade, titulo do anuncio e link. Preco NAO e campo de produto e nunca entra em criterio tecnico de sugestao; na tela sai sempre com a data ao lado e o aviso de que o valor muda na loja. Em 09/09/2026 entrou a segunda leva: 21 cotacoes do painel Shopee Afiliados, na mesma passada dos 21 links e das 21 imagens."
     },
     {
       "id": "afiliados-sem-produto",
@@ -464,8 +464,8 @@
       "id": "validar-produtos",
       "arquivo": "ferramentas/validar-produtos.py",
       "publicar": false,
-      "descricao": "Valida o banco de produtos contra dados/esquema-produtos.json (regras V1 a V14) e imprime os campos derivados e quais produtos cada calculadora consegue sugerir. Rodar antes de todo commit que toque dados/produtos-*.json. Nao vai para o WordPress: e ferramenta do repositorio, por isso fica fora das listas que o Sync consome.",
-      "sha256": "7bd99e0f6eadf8f1ef9b5ef00e5621f1e2ad220da6ca8613dab5e40bae3e382f"
+      "descricao": "Valida o banco de produtos contra dados/esquema-produtos.json (regras V1 a V20, imagem inclusa) e imprime os campos derivados e quais produtos cada calculadora consegue sugerir. Rodar antes de todo commit que toque dados/produtos-*.json. Nao vai para o WordPress: e ferramenta do repositorio, por isso fica fora das listas que o Sync consome.",
+      "sha256": "97dadcabd6a3648b8b641d5e73212b63e3c202dc01e1206b7d6e9383fff52188"
     },
     {
       "id": "gerar-catalogo-filtros",
@@ -478,7 +478,7 @@
       "id": "gerar-catalogo-aquecedores",
       "arquivo": "ferramentas/gerar-catalogo-aquecedores.py",
       "publicar": false,
-      "sha256": "35f6e21f32bc35498214adafcdc5389082b0b1fa5bb1d21dc6c8986a922325e4",
+      "sha256": "d2846cceaacd076cdd2c3180358b7e1726ed8b07b28de52f6355a8458e2b07ad",
       "descricao": "Gera o catalogo de aquecedores que a C5 embute no snippet, a partir de dados/produtos-aquecedor.json e do minimo_para_sugerir do esquema. O site nao le o repositorio em tempo de execucao, entao o banco viaja dentro do PHP; este script e o que impede as duas copias de divergirem. Carrega a faixa conservadora do conflito (V17) quando o campo faixa_ajuste_C ficou null, e marca o item para a tela poder dizer de onde veio a faixa."
     },
     {
