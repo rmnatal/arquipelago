@@ -4,36 +4,137 @@
   "entidade": "modelo-robo",
   "esquema": "dados/esquema-banco.json",
   "gerado_em": "2026-09-09",
-  "nota_de_procedencia": "Coleta de 09/09/2026. O egresso HTTP direto desta nuvem esta fechado: multilaser.com.br, suporte.multilaser.com.br, lamina.multilaser.com.br, arquivos.multilaser.com.br e mi.com devolveram EGRESS_BLOCKED nesta execucao. Todo campo abaixo saiu de busca restrita ao dominio da fonte, e o canal de coleta esta declarado campo a campo. A leitura direta dos manuais e laminas continua sendo coleta em aberto — e trabalho a fazer, nao dependencia humana. Bloco 3c (09/09/2026): 7 modelos novos e 4 atualizados, todos por busca restrita ao dominio oficial da marca — o egresso continua fechado para leitura direta.",
+  "nota_de_procedencia": "Coleta de 09/09/2026. O egresso HTTP direto desta nuvem esta fechado: multilaser.com.br, suporte.multilaser.com.br, lamina.multilaser.com.br, arquivos.multilaser.com.br e mi.com devolveram EGRESS_BLOCKED nesta execucao. Todo campo abaixo saiu de busca restrita ao dominio da fonte, e o canal de coleta esta declarado campo a campo. A leitura direta dos manuais e laminas continua sendo coleta em aberto — e trabalho a fazer, nao dependencia humana. Bloco 3c (09/09/2026): 7 modelos novos e 4 atualizados, todos por busca restrita ao dominio oficial da marca — o egresso continua fechado para leitura direta. SEGUNDA LEVA DO BLOCO 3c (09/09/2026): coleta dirigida ao campo pa_declarado fora da Electrolux, por busca restrita a mi.com, wap.ind.br, positivocasainteligente.com.br e loja.meupositivo.com.br. Toda leitura direta continua devolvendo EGRESS_BLOCKED — inclusive os PDFs de manual da WAP (mais.conteudo.wap.ind.br) e o guia rapido da Positivo (static.positivocasainteligente.com.br), que ficaram registrados em fontes{} como alvo da releitura de nivel 2.",
   "contagem": {
-    "total": 24,
-    "publicavel": 19,
+    "total": 33,
+    "publicavel": 28,
     "nao_publicavel": 1,
     "excluido_do_banco": 4,
-    "esperando_link_de_afiliado": 19,
-    "com_pa_declarado": 2,
-    "com_par_minutos_m2_declarado": 5
+    "esperando_link_de_afiliado": 28,
+    "com_pa_declarado": 11,
+    "com_par_minutos_m2_declarado": 5,
+    "marcas_que_declaram_pa": [
+      "positivo",
+      "wap",
+      "xiaomi"
+    ],
+    "marcas_medidas_que_NAO_declaram_pa": [
+      "electrolux",
+      "multi"
+    ]
+  },
+  "cobertura_de_faixa_r2": {
+    "o_que_e": "Medicao exigida pela secao 14.3 do ARQUIPELAGO.md: varredura da faixa de entrada da R2 de ponta a ponta, contando quantos modelos do banco passam na elegibilidade de cada faixa. O criterio NAO e numero redondo de itens — e que nenhuma faixa que a ferramenta consegue produzir saia com menos de 3 elegiveis.",
+    "medido_em": "2026-09-09",
+    "faixa_de_pa_do_banco": {
+      "minimo": 1400,
+      "minimo_em": "wap-w400",
+      "maximo": 10000,
+      "maximo_em": "xiaomi-h40",
+      "modelos_com_pa": 11
+    },
+    "faixas": [
+      {
+        "constante": "pa-piso-liso-sujeira-leve",
+        "rotulo": "piso liso, sujeira leve",
+        "limiar_pa": 1500,
+        "elegiveis": 10,
+        "marcas": [
+          "positivo",
+          "xiaomi"
+        ],
+        "portao_3_itens": "OK",
+        "concentracao_de_marca": "distribuida entre marcas"
+      },
+      {
+        "constante": "pa-apartamento-piso-liso",
+        "rotulo": "apartamento com piso liso e pouca circulacao",
+        "limiar_pa": 2000,
+        "elegiveis": 9,
+        "marcas": [
+          "positivo",
+          "xiaomi"
+        ],
+        "portao_3_itens": "OK",
+        "concentracao_de_marca": "ATENCAO: 7 de 9 elegiveis sao da mesma marca (xiaomi)"
+      },
+      {
+        "constante": "pa-apartamento-pequeno-sem-pet",
+        "rotulo": "apartamento pequeno sem animais",
+        "limiar_pa": 3000,
+        "elegiveis": 6,
+        "marcas": [
+          "xiaomi"
+        ],
+        "portao_3_itens": "OK",
+        "concentracao_de_marca": "ATENCAO: 6 de 6 elegiveis sao da mesma marca (xiaomi)"
+      },
+      {
+        "constante": "pa-limiar-pet-mundoconectado",
+        "rotulo": "casa com pet — consenso do Mundo Conectado",
+        "limiar_pa": 3000,
+        "elegiveis": 6,
+        "marcas": [
+          "xiaomi"
+        ],
+        "portao_3_itens": "OK",
+        "concentracao_de_marca": "ATENCAO: 6 de 6 elegiveis sao da mesma marca (xiaomi)"
+      },
+      {
+        "constante": "pa-limiar-pet-canaltech",
+        "rotulo": "casa com pet e carpete — limiar do Canaltech",
+        "limiar_pa": 4000,
+        "elegiveis": 6,
+        "marcas": [
+          "xiaomi"
+        ],
+        "portao_3_itens": "OK",
+        "concentracao_de_marca": "ATENCAO: 6 de 6 elegiveis sao da mesma marca (xiaomi)"
+      },
+      {
+        "constante": "pa-limite-pratico-percebido",
+        "rotulo": "acima do limite pratico percebido",
+        "limiar_pa": 6000,
+        "elegiveis": 2,
+        "marcas": [
+          "xiaomi"
+        ],
+        "portao_3_itens": "FAIXA DESCOBERTA",
+        "concentracao_de_marca": "ATENCAO: 2 de 2 elegiveis sao da mesma marca (xiaomi)"
+      }
+    ],
+    "leitura": "ANTES desta leva a R2 saia com lista VAZIA em toda faixa, porque so 2 modelos tinham Pa. AGORA sao 11 modelos, de 1.400 a 10.000 Pa, e CINCO das seis faixas passam no portao de 3 itens da secao 9. Sobram um buraco e um defeito de composicao, e os dois sao trabalho de verdade, nao estatistica: (1) FAIXA DESCOBERTA — acima de 6.000 Pa so ha 2 elegiveis (S40 e H40). Pela secao 14.3, faixa descoberta e a unica urgencia de catalogo, entao ela e o topo da lista de compras. (2) CONCENTRACAO DE MARCA, o achado que so aparece olhando a varredura inteira: TODA faixa igual ou acima de 3.000 Pa e 100% Xiaomi. Os seis elegiveis da faixa de pet sao seis Xiaomi. O portao de 3 itens passa contando e a vitrine ainda assim sairia como catalogo de uma marca so — o que, numa ilha que existe para comparar CROSS-MARCA, esvazia a propria promessa. Isso NAO e defeito de elegibilidade e NAO se conserta afrouxando a regra da secao 7: conserta-se colhendo Pa de outras marcas dentro da faixa. Fica escrito aqui para a proxima execucao nao ler '6 elegiveis' e dar a faixa por resolvida. A causa das duas coisas e a mesma, e esta medida nesta execucao: Electrolux e Multi NAO publicam Pa em canal nenhum, e a WAP so publica na parte barata da linha (1.400 Pa no W400; o topo W1000 declara 'tres modos de succao' e nenhum numero). Quem declara succao alta no Brasil, hoje, e essencialmente a Xiaomi — e esse e um fato de mercado que a pagina de metodologia pode publicar, porque nenhum comparador diz isso."
   },
   "lista_de_compras": [
     {
-      "codigo": "PRA1000",
-      "marca": "positivo",
-      "por_que": "completa a linha declarada em canal oficial; PRA500, PRA800 e PRA2000 ja estao no banco"
-    },
-    {
-      "codigo": "Mop, Mop 2, Mop 2 Lite, S40, H40",
-      "marca": "xiaomi",
-      "por_que": "a Xiaomi publica ficha completa e limpa e e a unica marca do banco que declara Pa. E a maior fonte de pa_declarado por consulta"
-    },
-    {
-      "codigo": "ERB10, ERB11, ERB20, ERB30, ERB44, ERB60, ERB61, ERB62, ERB80 (cobertura em m2)",
-      "marca": "electrolux",
-      "por_que": "so o ERB44 e a familia ERB60 declaram m2. Um par por modelo restante aumentaria a amostra sem sair da marca — o que NAO resolve: o criterio da taxa exige marcas DIFERENTES"
+      "codigo": "qualquer modelo NAO-Xiaomi com Pa declarado acima de 3.000",
+      "marca": "positivo, wap, irobot, e o que aparecer",
+      "por_que": "URGENCIA NUMERO 1 DO CATALOGO, medida na varredura desta execucao (cobertura_de_faixa_r2). Duas coisas de uma vez: acima de 6.000 Pa so ha 2 elegiveis (faixa DESCOBERTA pelo portao de 3 itens da secao 9), e toda faixa acima de 3.000 Pa e 100% Xiaomi. Uma ilha que se vende como comparador cross-marca nao pode ter a faixa que mais vende — casa com pet — ocupada por uma marca so. Nao se resolve afrouxando elegibilidade: resolve-se achando Pa de outra marca nessa faixa"
     },
     {
       "codigo": "qualquer modelo com par (minutos, m2) declarado",
       "marca": "xiaomi, multi, positivo, wap, irobot",
-      "por_que": "URGENCIA NUMERO 1 do catalogo. A taxa de cobertura precisa de 5 pares de marcas diferentes e hoje tem 2 declaracoes de UMA marca so"
+      "por_que": "CONTINUA SENDO A URGENCIA NUMERO 1, e a segunda leva do 3c mediu por que ela nao se resolve por esforco: Xiaomi, WAP, Multi e Positivo foram varridas e NENHUMA declara cobertura em m2 em canal nenhum. Quatro marcas medidas contra uma que declara (Electrolux). A taxa m2/min segue pendente e proibida em formula, e agora com a evidencia de que o dado quase nao existe no mercado brasileiro — o que muda a natureza do trabalho: nao e coletar mais, e a R2 nunca prometer area onde o fabricante so declarou minutos"
+    },
+    {
+      "codigo": "manual em PDF de qualquer WAP Robot (W400, W1000, W310, W95, W90, W100, W300)",
+      "marca": "wap",
+      "por_que": "MAIOR CHANCE DE NIVEL 2 QUE A ILHA JA TEVE. A WAP publica um manual por modelo em endereco proprio e estavel, com revisao e data no nome do arquivo. Hoje o dominio devolve EGRESS_BLOCKED; no dia em que abrir, esses PDFs sobem o banco inteiro da marca de nivel 3 para nivel 2 de uma vez, e trazem Pa dos modelos que a loja declara so como 'tres modos de succao'"
+    },
+    {
+      "codigo": "PRA1000, PRA100",
+      "marca": "positivo",
+      "por_que": "completam a linha declarada em canal oficial; PRA500, PRA800 e PRA2000 ja estao no banco com Pa. O PRA100 apareceu nesta coleta como modelo de entrada e ainda nao foi lido"
+    },
+    {
+      "codigo": "W3000, W4000, W95, W90, W100, W300",
+      "marca": "wap",
+      "por_que": "o resto da linha WAP, ja localizada com URL de produto e de manual. W3000 e W4000 declaram QUATRO modos de succao e navegacao a laser (LDS/SLAM), e o W4000 declara base autolimpante com esvaziamento a cada ~60 dias — o unico candidato a base_autoesvaziamento fora da Positivo"
+    },
+    {
+      "codigo": "Mop, Mop 2 Lite, S20+, S10+",
+      "marca": "xiaomi",
+      "por_que": "a Xiaomi e a marca de maior rendimento por consulta do banco: ficha limpa, com Pa e minutos sempre declarados. Os sufixos '+' sao aparelhos DIFERENTES e entram como registros proprios, nunca herdando do irmao sem sufixo"
     },
     {
       "codigo": "Roomba serie s",
@@ -41,17 +142,12 @@
       "por_que": "marca de referencia do nicho, ausente do banco"
     },
     {
-      "codigo": "W90, W100, W400",
-      "marca": "wap",
-      "por_que": "citada no corpus do Bloco 1, sem nenhuma coleta ainda"
-    },
-    {
       "codigo": "RALW-C",
       "marca": "velds",
       "por_que": "citada no corpus do Bloco 1, sem nenhuma coleta ainda"
     }
   ],
-  "prioridade_de_coleta": "Atualizada no Bloco 3c. (1) PARES (minutos, m2) DE MARCAS DIFERENTES — o banco passou de 1 para 2 declaracoes, mas as duas sao Electrolux, e o criterio da constante exige 5 de marcas diferentes; enquanto isso a R2 so estima area para modelo que declara m2. (2) pa_declarado: continua em 2 modelos de 21 (Xiaomi S20 e Positivo PRA800), e a descoberta desta execucao e que a Electrolux NAO publica Pa em canal nenhum — logo o campo tem que vir de Xiaomi, Multi, WAP e Positivo, nao da Electrolux. (3) pecas da Xiaomi com codigo, que dependem do guia do usuario em PDF (egresso fechado).",
+  "prioridade_de_coleta": "Atualizada na segunda leva do Bloco 3c. (1) A LACUNA DE Pa DEIXOU DE SER A URGENCIA: o campo passou de 2 para 11 modelos publicaveis, em 3 marcas (Xiaomi, Positivo e WAP), cobrindo de 1.400 Pa a 10.000 Pa numa escala continua. A R2 deixa de sair com lista vazia em qualquer entrada. (2) PARES (minutos, m2): a lacuna virou outra coisa. Xiaomi, WAP, Multi e Positivo foram varridas e NENHUMA declara area em m2 — so a Electrolux declara. Nao e mais 'coletar mais pares': e um fato de mercado, e a taxa m2/min continua pendente e PROIBIDA em formula publicada. (3) Pa dos modelos WAP sem numero, que depende dos manuais em PDF (egresso fechado) e e a melhor porta de entrada da ilha para o nivel 2 da escada de fontes. (4) pecas da Xiaomi e da WAP com codigo, que a R1 precisa e que a busca restrita ainda nao devolveu.",
   "registros": [
     {
       "id": "multi-ho041",
@@ -129,6 +225,7 @@
         "valor": null,
         "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
       },
+      "divergencias": [],
       "imagem": {
         "url": null,
         "largura": null,
@@ -245,6 +342,7 @@
         "valor": null,
         "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
       },
+      "divergencias": [],
       "imagem": {
         "url": null,
         "largura": null,
@@ -331,6 +429,7 @@
         "valor": null,
         "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
       },
+      "divergencias": [],
       "imagem": {
         "url": null,
         "largura": null,
@@ -418,6 +517,7 @@
         "valor": null,
         "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
       },
+      "divergencias": [],
       "imagem": {
         "url": null,
         "largura": null,
@@ -507,6 +607,7 @@
         "valor": null,
         "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
       },
+      "divergencias": [],
       "imagem": {
         "url": null,
         "largura": null,
@@ -599,6 +700,7 @@
         "valor": null,
         "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
       },
+      "divergencias": [],
       "imagem": {
         "url": null,
         "largura": null,
@@ -686,6 +788,7 @@
         "valor": null,
         "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
       },
+      "divergencias": [],
       "imagem": {
         "url": null,
         "largura": null,
@@ -782,6 +885,7 @@
         "fonte": "f-loja",
         "declarado_como": "capacidade do reservatorio para agua de 150 ml"
       },
+      "divergencias": [],
       "imagem": {
         "url": null,
         "largura": null,
@@ -872,6 +976,7 @@
         "valor": null,
         "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
       },
+      "divergencias": [],
       "imagem": {
         "url": null,
         "largura": null,
@@ -971,6 +1076,7 @@
         "valor": null,
         "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
       },
+      "divergencias": [],
       "imagem": {
         "url": null,
         "largura": null,
@@ -1068,6 +1174,7 @@
         "valor": null,
         "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
       },
+      "divergencias": [],
       "imagem": {
         "url": null,
         "largura": null,
@@ -1164,6 +1271,7 @@
         "valor": null,
         "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
       },
+      "divergencias": [],
       "imagem": {
         "url": null,
         "largura": null,
@@ -1260,6 +1368,7 @@
         "fonte": "f-oficial",
         "declarado_como": "reservatorio de agua de 320 ml"
       },
+      "divergencias": [],
       "imagem": {
         "url": null,
         "largura": null,
@@ -1351,6 +1460,7 @@
         "valor": null,
         "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
       },
+      "divergencias": [],
       "imagem": {
         "url": null,
         "largura": null,
@@ -1442,6 +1552,7 @@
         "valor": null,
         "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
       },
+      "divergencias": [],
       "imagem": {
         "url": null,
         "largura": null,
@@ -1529,6 +1640,7 @@
         "valor": null,
         "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
       },
+      "divergencias": [],
       "imagem": {
         "url": null,
         "largura": null,
@@ -1616,6 +1728,7 @@
         "valor": null,
         "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
       },
+      "divergencias": [],
       "imagem": {
         "url": null,
         "largura": null,
@@ -1716,6 +1829,7 @@
         "unidade": "ml",
         "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
       },
+      "divergencias": [],
       "imagem": {
         "url": null,
         "largura": null,
@@ -1816,6 +1930,7 @@
         "unidade": "ml",
         "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
       },
+      "divergencias": [],
       "imagem": {
         "url": null,
         "largura": null,
@@ -1916,6 +2031,7 @@
         "unidade": "ml",
         "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
       },
+      "divergencias": [],
       "imagem": {
         "url": null,
         "largura": null,
@@ -2016,6 +2132,7 @@
         "unidade": "ml",
         "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
       },
+      "divergencias": [],
       "imagem": {
         "url": null,
         "largura": null,
@@ -2112,6 +2229,7 @@
         "unidade": "ml",
         "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
       },
+      "divergencias": [],
       "imagem": {
         "url": null,
         "largura": null,
@@ -2152,19 +2270,22 @@
       "categoria": "robo",
       "variantes_de_hardware": [],
       "pa_declarado": {
-        "valor": null,
+        "valor": 2800,
         "unidade": "Pa",
-        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+        "fonte": "f-ficha",
+        "declarado_como": "a potencia maxima de succao e de 2800 Pa"
       },
       "potencia_w_declarada": {
-        "valor": null,
+        "valor": 30,
         "unidade": "W",
-        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+        "fonte": "f-ficha",
+        "declarado_como": "potencia: 30W"
       },
       "autonomia_min_declarada": {
-        "valor": null,
+        "valor": 120,
         "unidade": "min",
-        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+        "fonte": "f-ficha",
+        "declarado_como": "tempo de funcionamento de ate 120 minutos"
       },
       "cobertura_m2_declarada": {
         "valor": null,
@@ -2172,18 +2293,20 @@
         "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
       },
       "recarga_min_declarada": {
-        "valor": null,
+        "valor": 360,
         "unidade": "min",
-        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+        "fonte": "f-ficha",
+        "declarado_como": "tempo de carregamento e de 5 a 6 horas"
       },
       "retoma_apos_recarga": {
         "valor": null,
         "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
       },
       "bateria_mah": {
-        "valor": null,
+        "valor": 3200,
         "unidade": "mAh",
-        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+        "fonte": "f-ficha",
+        "declarado_como": "bateria com capacidade de 3200 mAh"
       },
       "voltagem": {
         "valor": null,
@@ -2200,15 +2323,18 @@
         "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
       },
       "reservatorio_po_ml": {
-        "valor": null,
+        "valor": 220,
         "unidade": "ml",
-        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+        "fonte": "f-ficha",
+        "declarado_como": "tanque de po: 220ml"
       },
       "reservatorio_agua_ml": {
-        "valor": null,
+        "valor": 320,
         "unidade": "ml",
-        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+        "fonte": "f-ficha",
+        "declarado_como": "tanque de agua: 320ml"
       },
+      "divergencias": [],
       "imagem": {
         "url": null,
         "largura": null,
@@ -2234,10 +2360,19 @@
           "url": "https://www.positivocasainteligente.com.br/smart-robo-aspirador-wifi-autolimpante-pra2000-positivo-casa-inteligente-11206197/p",
           "canal_de_coleta": "busca web restrita aos dominios positivocasainteligente.com.br e meupositivo.com.br",
           "verificado_em": "2026-09-09"
+        },
+        "f-ficha": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "Positivo Casa Inteligente",
+          "titulo_na_fonte": "Smart Robo Aspirador Wi-Fi Autolimpante PRA2000 | Positivo Casa Inteligente",
+          "url": "https://www.positivocasainteligente.com.br/smart-robo-aspirador-wifi-autolimpante-pra2000",
+          "canal_de_coleta": "busca web restrita aos dominios positivocasainteligente.com.br e loja.meupositivo.com.br; static.positivocasainteligente.com.br, onde fica o guia rapido em PDF, devolveu EGRESS_BLOCKED em 09/09/2026",
+          "verificado_em": "2026-09-09"
         }
       },
       "status": "publicavel",
-      "observacao": "Entrou porque as tres pecas novas da Positivo declaram compatibilidade com PRA800 E PRA2000: sem ele no banco, metade de cada par ficaria como codigo solto.",
+      "observacao": "Entrou porque as tres pecas novas da Positivo declaram compatibilidade com PRA800 E PRA2000: sem ele no banco, metade de cada par ficaria como codigo solto. SEGUNDA LEVA DO 3c: ficha tecnica inteira colhida — 2800 Pa, 30 W, 120 min, 3200 mAh, tanques de 220 ml (po) e 320 ml (agua). A RECARGA foi declarada como FAIXA ('de 5 a 6 horas') e ficou gravada em 360 min, o extremo LONGO, pela assimetria de custo: a recarga entra na formula de ciclos da R2, e subestimar a recarga faz a ferramenta prometer mais ciclos por dia do que o aparelho entrega. A transcricao da faixa inteira esta em declarado_como, entao a pagina cita 'de 5 a 6 horas' e nao o numero escolhido. Note que ele declara os MESMOS 2800 Pa do PRA800, que e o modelo abaixo dele na linha: o que o PRA2000 acrescenta e a base autolimpante, nao succao.",
       "verificado_em": "2026-09-09"
     },
     {
@@ -2249,9 +2384,10 @@
       "categoria": "robo",
       "variantes_de_hardware": [],
       "pa_declarado": {
-        "valor": null,
+        "valor": 1600,
         "unidade": "Pa",
-        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+        "fonte": "f-marca",
+        "declarado_como": "1600 Pa de poder de succao"
       },
       "potencia_w_declarada": {
         "valor": null,
@@ -2259,9 +2395,10 @@
         "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
       },
       "autonomia_min_declarada": {
-        "valor": null,
+        "valor": 100,
         "unidade": "min",
-        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+        "fonte": "f-marca",
+        "declarado_como": "bateria de 4400 mAh com autonomia de ate 100 minutos"
       },
       "cobertura_m2_declarada": {
         "valor": null,
@@ -2278,9 +2415,10 @@
         "motivo_do_null": "o fabricante declara 'Retorna base', que e outra coisa: voltar a base nao e retomar de onde parou. Sem declaracao de retomada, fica null"
       },
       "bateria_mah": {
-        "valor": null,
+        "valor": 4400,
         "unidade": "mAh",
-        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+        "fonte": "f-marca",
+        "declarado_como": "bateria de 4400 mAh"
       },
       "voltagem": {
         "valor": null,
@@ -2292,19 +2430,51 @@
         "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
       },
       "navegacao": {
-        "valor": null,
-        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+        "valor": "giroscopio",
+        "fonte": "f-marca",
+        "declarado_como": "sensores anti-queda, anti-colisao, obstaculos e giroscopio"
       },
       "reservatorio_po_ml": {
-        "valor": null,
+        "valor": 380,
         "unidade": "ml",
-        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+        "fonte": "f-marca",
+        "declarado_como": "tanque de agua 600mL (200mL agua | 380 mL poeira)"
       },
       "reservatorio_agua_ml": {
-        "valor": null,
+        "valor": 200,
         "unidade": "ml",
-        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+        "fonte": "f-marca",
+        "declarado_como": "tanque de agua 600mL (200mL agua | 380 mL poeira)"
       },
+      "divergencias": [
+        {
+          "campo": "pa_declarado",
+          "canal": "positivocasainteligente.com.br — pagina do proprio produto",
+          "valor_declarado": 1600,
+          "titulo_na_fonte": "Smart Robo Aspirador Wi-Fi+ PRA 500 | Exclusivo Loja Positivo Casa Inteligente",
+          "transcricao": "1600 Pa de poder de succao",
+          "url": "https://www.positivocasainteligente.com.br/exclusivo-smart-robo-aspirador-wi-fi-plus/p",
+          "verificado_em": "2026-09-09"
+        },
+        {
+          "campo": "pa_declarado",
+          "canal": "positivocasainteligente.com.br — texto descritivo do MESMO canal",
+          "valor_declarado": 2000,
+          "titulo_na_fonte": "Smart Robo Aspirador Wi-Fi+ PRA 500 | Exclusivo Loja Positivo Casa Inteligente",
+          "transcricao": "poder de succao de 2000Pa e tanque de agua, perfeito para pisos, tapetes, carpetes e laminados",
+          "url": "https://www.positivocasainteligente.com.br/exclusivo-smart-robo-aspirador-wi-fi-plus/p",
+          "verificado_em": "2026-09-09"
+        },
+        {
+          "campo": "pa_declarado",
+          "canal": "loja.meupositivo.com.br — a outra loja oficial da marca",
+          "valor_declarado": null,
+          "titulo_na_fonte": "Smart Robo Aspirador Wi-Fi+ PRA500 Positivo Casa Inteligente",
+          "transcricao": "a ficha tecnica deste canal traz tanque, bateria e sensores e NAO traz Pa nenhum",
+          "url": "https://loja.meupositivo.com.br/smart-robo-aspirador-wi-fi-plus/p",
+          "verificado_em": "2026-09-09"
+        }
+      ],
       "imagem": {
         "url": null,
         "largura": null,
@@ -2330,10 +2500,892 @@
           "url": "https://loja.meupositivo.com.br/smart-robo-aspirador-wi-fi-plus/p",
           "canal_de_coleta": "busca web restrita aos dominios positivocasainteligente.com.br e meupositivo.com.br",
           "verificado_em": "2026-09-09"
+        },
+        "f-marca": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "Positivo Casa Inteligente",
+          "titulo_na_fonte": "Smart Robo Aspirador Wi-Fi+ PRA 500 | Exclusivo Loja Positivo Casa Inteligente",
+          "url": "https://www.positivocasainteligente.com.br/exclusivo-smart-robo-aspirador-wi-fi-plus/p",
+          "canal_de_coleta": "busca web restrita aos dominios positivocasainteligente.com.br e loja.meupositivo.com.br; static.positivocasainteligente.com.br, onde fica o guia rapido em PDF, devolveu EGRESS_BLOCKED em 09/09/2026",
+          "verificado_em": "2026-09-09"
         }
       },
       "status": "publicavel",
-      "observacao": "E LITERALMENTE a consulta-alvo da R1 na especificacao ('qual filtro serve no robo aspirador Positivo PRA500') e ate agora estava so na lista de compras. ATENCAO: as tres pecas novas da Positivo declaram PRA800 e PRA2000, e NAO citam o PRA500. Pelo conjunto mais estreito, a R1 tem que dizer que nao achou peca declarada para o PRA500 — dizer que serve seria exatamente o erro caro desta ilha.",
+      "observacao": "E LITERALMENTE a consulta-alvo da R1 na especificacao ('qual filtro serve no robo aspirador Positivo PRA500') e ate agora estava so na lista de compras. ATENCAO: as tres pecas novas da Positivo declaram PRA800 e PRA2000, e NAO citam o PRA500. Pelo conjunto mais estreito, a R1 tem que dizer que nao achou peca declarada para o PRA500 — dizer que serve seria exatamente o erro caro desta ilha. SEGUNDA LEVA DO 3c: o Pa saiu do null e o modelo trouxe junto a primeira divergencia de ESPECIFICACAO DE APARELHO do banco — 1600 Pa na ficha contra 2000 Pa no texto de venda da mesma pagina. Foi ela que forcou divergencias[] e resolucao a existirem tambem em MODELO_ROBO, e nao so em PECA.",
+      "verificado_em": "2026-09-09",
+      "resolucao": "VALE 1600 Pa. As duas declaracoes sao do MESMO canal e do MESMO nivel da escada de fontes — nao ha nivel mais alto para desempatar —, entao quem decide e a assimetria de custo da secao 10 do ARQUIPELAGO.md, nunca a media (1800 Pa seria a unica saida proibida). Aqui o erro caro e o do lado ALTO: se a ilha publica 2000 Pa e o aparelho entrega 1600, alguem compra um robo fraco demais para o pelo que tem em casa por recomendacao nossa. Errar para baixo so tira o PRA500 de uma lista que ele talvez coubesse. Alem disso 1600 Pa vem da ficha de especificacao e 2000 Pa do texto de venda da mesma pagina — e ficha e texto de venda nao tem o mesmo compromisso. As DUAS declaracoes vao para a tela com atribuicao: a divergencia e conteudo, e e justamente o que nenhum anuncio de marketplace mostra."
+    },
+    {
+      "id": "xiaomi-s10",
+      "marca": "xiaomi",
+      "linha": null,
+      "codigo_fabricante": "S10",
+      "nome_comercial": "Xiaomi Robot Vacuum S10",
+      "categoria": "robo",
+      "variantes_de_hardware": [],
+      "pa_declarado": {
+        "valor": 4000,
+        "unidade": "Pa",
+        "fonte": "f-specs",
+        "declarado_como": "a succao e de 4.000 Pa, verificada atraves de teste com maquina de succao em diferentes niveis de potencia"
+      },
+      "potencia_w_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "autonomia_min_declarada": {
+        "valor": 117,
+        "unidade": "min",
+        "fonte": "f-specs",
+        "declarado_como": "ate 130 minutos de limpeza no modo padrao, 130 minutos +-10% no modo padrao"
+      },
+      "cobertura_m2_declarada": {
+        "valor": null,
+        "unidade": "m2",
+        "motivo_do_null": "a Xiaomi NAO declara area coberta para este modelo, como nao declara para nenhum outro da linha. Este null e RESPOSTA, nao lacuna, e e o vacuo que a R2 ocupa"
+      },
+      "recarga_min_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "retoma_apos_recarga": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "bateria_mah": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "voltagem": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "base_autoesvaziamento": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "navegacao": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "reservatorio_po_ml": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "reservatorio_agua_ml": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "divergencias": [],
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso desta nuvem barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R2"
+      },
+      "fontes": {
+        "f-specs": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "Xiaomi Brasil",
+          "titulo_na_fonte": "Xiaomi Robot Vacuum S10 Especificacoes — Xiaomi Brasil",
+          "url": "https://www.mi.com/br/product/xiaomi-robot-vacuum-s10/specs/",
+          "canal_de_coleta": "busca web restrita ao dominio mi.com; a leitura direta da pagina de especificacoes devolveu EGRESS_BLOCKED em 09/09/2026",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "Entrou na segunda leva do 3c pelo campo que a R2 precisa: 4.000 Pa. A AUTONOMIA veio declarada com TOLERANCIA ('130 minutos +-10% no modo padrao') e ficou gravada em 117 min, o extremo BAIXO da faixa que o proprio fabricante declara — pela assimetria de custo da secao 10: em autonomia o erro caro e o do lado alto, porque faz a ferramenta dizer que o robo termina a casa quando ele para no meio. A transcricao com o +-10% esta em declarado_como, entao a pagina cita a tolerancia inteira e nao so o 117. bateria_mah ficou null DE PROPOSITO: a busca devolveu 3.200 mAh, exatamente o numero do S20, e a Aquametria ja registrou busca restrita devolvendo numero certo com atribuicao errada. Um numero que pode ser contaminacao do vizinho de prateleira nao entra sem leitura direta.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "xiaomi-e10",
+      "marca": "xiaomi",
+      "linha": null,
+      "codigo_fabricante": "E10",
+      "nome_comercial": "Xiaomi Robot Vacuum E10",
+      "categoria": "robo",
+      "variantes_de_hardware": [],
+      "pa_declarado": {
+        "valor": 4000,
+        "unidade": "Pa",
+        "fonte": "f-specs",
+        "declarado_como": "a potencia de succao no duto de ar foi verificada capaz de alcancar 4.000 Pa na engrenagem superior"
+      },
+      "potencia_w_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "autonomia_min_declarada": {
+        "valor": 110,
+        "unidade": "min",
+        "fonte": "f-specs",
+        "declarado_como": "totalmente carregada, a unidade principal no modo de espera (aspirador e esfregao) suporta 110 minutos de limpeza antes de ficar baixa"
+      },
+      "cobertura_m2_declarada": {
+        "valor": null,
+        "unidade": "m2",
+        "motivo_do_null": "a Xiaomi NAO declara area coberta para este modelo. Este null e RESPOSTA, nao lacuna"
+      },
+      "recarga_min_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "retoma_apos_recarga": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "bateria_mah": {
+        "valor": 2600,
+        "unidade": "mAh",
+        "fonte": "f-specs",
+        "declarado_como": "capacidade nominal da bateria: 2.600 mAh"
+      },
+      "voltagem": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "base_autoesvaziamento": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "navegacao": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "reservatorio_po_ml": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "reservatorio_agua_ml": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "divergencias": [],
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso desta nuvem barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R2"
+      },
+      "fontes": {
+        "f-specs": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "Xiaomi Brasil",
+          "titulo_na_fonte": "Xiaomi Robot Vacuum E10 Especificacoes — Xiaomi Brasil",
+          "url": "https://www.mi.com/br/product/xiaomi-robot-vacuum-e10/specs/",
+          "canal_de_coleta": "busca web restrita ao dominio mi.com; a leitura direta da pagina de especificacoes devolveu EGRESS_BLOCKED em 09/09/2026",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "Modelo de entrada da linha e o mais util da leva para a R2: e o unico Xiaomi novo com Pa, minutos e mAh declarados na mesma ficha. Repare que ele declara os MESMOS 4.000 Pa do S10 com uma bateria menor (2.600 contra a do S10, nao declarada aqui) — succao e autonomia sao eixos independentes, e e exatamente isso que a R2 existe para separar. O 'na engrenagem superior' da transcricao importa: o numero e do modo mais forte, nao do modo padrao, e a pagina tem que dizer isso.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "xiaomi-s40",
+      "marca": "xiaomi",
+      "linha": null,
+      "codigo_fabricante": "S40",
+      "nome_comercial": "Xiaomi Robot Vacuum S40",
+      "categoria": "robo",
+      "variantes_de_hardware": [],
+      "pa_declarado": {
+        "valor": 10000,
+        "unidade": "Pa",
+        "fonte": "f-specs",
+        "declarado_como": "com carga completa e no modo turbo, o Xiaomi Robot Vacuum S40 pode atingir succao de ate 10.000 Pa"
+      },
+      "potencia_w_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "autonomia_min_declarada": {
+        "valor": 180,
+        "unidade": "min",
+        "fonte": "f-specs",
+        "declarado_como": "pode aspirar e esfregar por >=180 minutos no modo padrao com uma unica execucao"
+      },
+      "cobertura_m2_declarada": {
+        "valor": null,
+        "unidade": "m2",
+        "motivo_do_null": "a Xiaomi NAO declara area coberta para este modelo. Este null e RESPOSTA, nao lacuna"
+      },
+      "recarga_min_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "retoma_apos_recarga": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "bateria_mah": {
+        "valor": 5200,
+        "unidade": "mAh",
+        "fonte": "f-specs",
+        "declarado_como": "bateria de 5200mAh"
+      },
+      "voltagem": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "base_autoesvaziamento": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "navegacao": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "reservatorio_po_ml": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "reservatorio_agua_ml": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "divergencias": [],
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso desta nuvem barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R2"
+      },
+      "fontes": {
+        "f-specs": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "Xiaomi Brasil",
+          "titulo_na_fonte": "Xiaomi Robot Vacuum S40 — Todas as especificacoes e funcionalidades | Xiaomi Brasil",
+          "url": "https://www.mi.com/br/product/xiaomi-robot-vacuum-s40/specs/",
+          "canal_de_coleta": "busca web restrita ao dominio mi.com; a leitura direta da pagina de especificacoes devolveu EGRESS_BLOCKED em 09/09/2026",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "Topo de succao do banco junto com o H40, e o registro que finalmente da a R2 a ponta ALTA da faixa: com ele o banco cobre de 1.400 Pa (WAP W400) a 10.000 Pa numa escala so. Duas ressalvas que vao para a tela junto com o numero: os 10.000 Pa sao 'no modo turbo' e 'com carga completa', nao no modo padrao; e os >=180 min sao do modo padrao, nao do turbo. Prometer os dois extremos ao mesmo tempo seria vender um aparelho que nao existe.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "xiaomi-s40c",
+      "marca": "xiaomi",
+      "linha": null,
+      "codigo_fabricante": "S40C",
+      "nome_comercial": "Xiaomi Robot Vacuum S40C",
+      "categoria": "robo",
+      "variantes_de_hardware": [],
+      "pa_declarado": {
+        "valor": 5000,
+        "unidade": "Pa",
+        "fonte": "f-specs",
+        "declarado_como": "ventilador com succao potente de 5.000 Pa"
+      },
+      "potencia_w_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "autonomia_min_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "cobertura_m2_declarada": {
+        "valor": null,
+        "unidade": "m2",
+        "motivo_do_null": "a Xiaomi NAO declara area coberta para este modelo. Este null e RESPOSTA, nao lacuna"
+      },
+      "recarga_min_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "retoma_apos_recarga": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "bateria_mah": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "voltagem": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "base_autoesvaziamento": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "navegacao": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "reservatorio_po_ml": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "reservatorio_agua_ml": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "divergencias": [],
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso desta nuvem barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R2"
+      },
+      "fontes": {
+        "f-specs": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "Xiaomi Brasil",
+          "titulo_na_fonte": "Xiaomi Robot Vacuum S40c — Todas as especificacoes e funcionalidades | Xiaomi Brasil",
+          "url": "https://www.mi.com/br/product/xiaomi-robot-vacuum-s40c/specs/",
+          "canal_de_coleta": "busca web restrita ao dominio mi.com; a leitura direta da pagina de especificacoes devolveu EGRESS_BLOCKED em 09/09/2026",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "Entrou so pelo Pa, e isso basta para o que este bloco precisava: 5.000 Pa preenche a faixa entre os 4.000 do E10/S10 e os 10.000 do S40/H40. O 'C' do nome NAO e o mesmo aparelho do S40 com outro acabamento — declara metade da succao do S40 —, e por isso os dois sao registros separados: tratar sufixo de modelo como variante cosmetica e exatamente o erro que esta ilha existe para nao cometer. Autonomia e bateria ficaram null porque a busca restrita nao devolveu os campos para ESTE codigo, e herdar do S40 seria inventar.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "xiaomi-h40",
+      "marca": "xiaomi",
+      "linha": null,
+      "codigo_fabricante": "H40",
+      "nome_comercial": "Xiaomi Robot Vacuum H40",
+      "categoria": "robo",
+      "variantes_de_hardware": [],
+      "pa_declarado": {
+        "valor": 10000,
+        "unidade": "Pa",
+        "fonte": "f-specs",
+        "declarado_como": "ventilador de succao potente de 10.000 Pa"
+      },
+      "potencia_w_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "autonomia_min_declarada": {
+        "valor": 180,
+        "unidade": "min",
+        "fonte": "f-specs",
+        "declarado_como": "pode aspirar e passar pano por ate 180 minutos com carga total no modo padrao"
+      },
+      "cobertura_m2_declarada": {
+        "valor": null,
+        "unidade": "m2",
+        "motivo_do_null": "a Xiaomi NAO declara area coberta para este modelo. Este null e RESPOSTA, nao lacuna"
+      },
+      "recarga_min_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "retoma_apos_recarga": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "bateria_mah": {
+        "valor": 5200,
+        "unidade": "mAh",
+        "fonte": "f-specs",
+        "declarado_como": "bateria de alta capacidade de 5.200 mAh, com autonomia ultra-longa"
+      },
+      "voltagem": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "base_autoesvaziamento": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "navegacao": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "reservatorio_po_ml": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "reservatorio_agua_ml": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "divergencias": [
+        {
+          "campo": "autonomia_min_declarada",
+          "canal": "mi.com/br — pagina do produto",
+          "valor_declarado": 180,
+          "titulo_na_fonte": "Xiaomi Robot Vacuum H40 — Xiaomi Brasil",
+          "transcricao": "pode aspirar e passar pano por ate 180 minutos com carga total no modo padrao",
+          "url": "https://www.mi.com/br/product/xiaomi-robot-vacuum-h40/",
+          "verificado_em": "2026-09-09"
+        },
+        {
+          "campo": "autonomia_min_declarada",
+          "canal": "mi.com/br — pagina de especificacoes do mesmo produto",
+          "valor_declarado": 180,
+          "titulo_na_fonte": "Xiaomi Robot Vacuum H40 Especificacoes, Funcionalidades | Xiaomi Brasil",
+          "transcricao": "pode aspirar e passar pano por >=180 minutos no modo padrao em uma unica execucao",
+          "url": "https://www.mi.com/br/product/xiaomi-robot-vacuum-h40/specs/",
+          "verificado_em": "2026-09-09"
+        }
+      ],
+      "resolucao": "O NUMERO e o mesmo, 180; o que diverge e a DIRECAO. 'Ate 180' e teto e '>=180' e piso, e um canal so nao pode declarar as duas coisas. Vale a leitura de TETO, pela assimetria de custo da secao 10: em autonomia o erro caro e o do lado alto, porque faz a R2 prometer que o robo termina a casa quando ele pode parar antes. Se algum dia a leitura direta do manual confirmar o piso, o modelo so melhora — e ninguem comprou errado no meio tempo. As duas redacoes vao para a tela com atribuicao.",
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso desta nuvem barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R2"
+      },
+      "fontes": {
+        "f-specs": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "Xiaomi Brasil",
+          "titulo_na_fonte": "Xiaomi Robot Vacuum H40 Especificacoes, Funcionalidades | Xiaomi Brasil",
+          "url": "https://www.mi.com/br/product/xiaomi-robot-vacuum-h40/specs/",
+          "canal_de_coleta": "busca web restrita ao dominio mi.com; a leitura direta da pagina de especificacoes devolveu EGRESS_BLOCKED em 09/09/2026",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "Mesma succao e mesma bateria declaradas do S40, o que e plausivel (mesma plataforma) e esta registrado como observacao, nao como fato de engenharia: a ilha nao afirma que os dois compartilham hardware, so que o fabricante declara os mesmos numeros. A AUTONOMIA veio com duas redacoes no mesmo canal — 'ate 180 minutos' numa passagem e '>=180 minutos' noutra — e isso esta em divergencias[]: sao leituras opostas (teto contra piso) do mesmo numero.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "xiaomi-mop-2",
+      "marca": "xiaomi",
+      "linha": null,
+      "codigo_fabricante": "Mop 2",
+      "nome_comercial": "Mi Robot Vacuum-Mop 2",
+      "categoria": "robo",
+      "variantes_de_hardware": [],
+      "pa_declarado": {
+        "valor": 2700,
+        "unidade": "Pa",
+        "fonte": "f-specs",
+        "declarado_como": "ventilador com potente succao de 2.700 Pa"
+      },
+      "potencia_w_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "autonomia_min_declarada": {
+        "valor": 110,
+        "unidade": "min",
+        "fonte": "f-specs",
+        "declarado_como": "ate 110 minutos de autonomia da bateria"
+      },
+      "cobertura_m2_declarada": {
+        "valor": null,
+        "unidade": "m2",
+        "motivo_do_null": "a Xiaomi NAO declara area coberta para este modelo. Este null e RESPOSTA, nao lacuna"
+      },
+      "recarga_min_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "retoma_apos_recarga": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "bateria_mah": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "voltagem": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "base_autoesvaziamento": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "navegacao": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "reservatorio_po_ml": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "reservatorio_agua_ml": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "divergencias": [],
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso desta nuvem barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R2"
+      },
+      "fontes": {
+        "f-specs": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "Xiaomi Brasil",
+          "titulo_na_fonte": "Mi Robot Vacuum-Mop 2 — Xiaomi Brasil",
+          "url": "https://www.mi.com/br/product/mi-robot-vacuum-mop-2/",
+          "canal_de_coleta": "busca web restrita ao dominio mi.com; a leitura direta da pagina de especificacoes devolveu EGRESS_BLOCKED em 09/09/2026",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "O modelo mais fraco da Xiaomi no banco, e por isso util: com 2.700 Pa ele fica ABAIXO dos dois limiares editoriais para casa com pet (3.000 Pa no Mundo Conectado, 4.000 Pa no Canaltech), igual ao PRA800. Sao dois casos de marcas diferentes para a mesma regra de elegibilidade da secao 7 — e ter DOIS torna a explicacao da R2 concreta em vez de anedotica. Fecha tambem o cluster A3 do corpus pelo lado do aparelho: e o primeiro Xiaomi do banco cujo nome comercial ja carrega a funcao mop.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "wap-w400",
+      "marca": "wap",
+      "linha": null,
+      "codigo_fabricante": "W400",
+      "nome_comercial": "Robo Aspirador de Po WAP Robot W400",
+      "categoria": "robo",
+      "variantes_de_hardware": [],
+      "pa_declarado": {
+        "valor": 1400,
+        "unidade": "Pa",
+        "fonte": "f-loja",
+        "declarado_como": "forca de succao de 1400 Pa"
+      },
+      "potencia_w_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "autonomia_min_declarada": {
+        "valor": 100,
+        "unidade": "min",
+        "fonte": "f-loja",
+        "declarado_como": "autonomia de ate 1h40min"
+      },
+      "cobertura_m2_declarada": {
+        "valor": null,
+        "unidade": "m2",
+        "motivo_do_null": "a WAP NAO declara area coberta em m2 para nenhum modelo da linha — declara autonomia em horas e minutos e capacidade do reservatorio em ml. Este null e RESPOSTA, nao lacuna"
+      },
+      "recarga_min_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "retoma_apos_recarga": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "bateria_mah": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "voltagem": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "base_autoesvaziamento": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "navegacao": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "reservatorio_po_ml": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "reservatorio_agua_ml": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "divergencias": [],
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso desta nuvem barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R2"
+      },
+      "fontes": {
+        "f-loja": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "WAP",
+          "titulo_na_fonte": "Robo Aspirador de Po WAP Robot W400 — Lojas WAP",
+          "url": "https://loja.wap.ind.br/robo-aspirador-de-po-wap-robot-w400/p",
+          "canal_de_coleta": "busca web restrita ao dominio wap.ind.br; loja.wap.ind.br e mais.conteudo.wap.ind.br (onde ficam os manuais em PDF) devolveram EGRESS_BLOCKED na leitura direta em 09/09/2026",
+          "verificado_em": "2026-09-09"
+        },
+        "f-manual": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "WAP",
+          "titulo_na_fonte": "MANUAL DE INSTRUCOES WAP ROBOT W400 FW009293 REV00MAI23",
+          "url": "https://mais.conteudo.wap.ind.br/wap/produtos/aspirador/robo/aspirador_robo_w400_fw009251/arquivos/manual/manual_aspirador_robo_w400.pdf",
+          "canal_de_coleta": "manual oficial LOCALIZADO por busca restrita ao dominio e NAO LIDO: o egresso barrou o PDF (EGRESS_BLOCKED em 09/09/2026). Fica registrado como o alvo da releitura de nivel 2",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "Primeiro registro da WAP no banco e o unico da marca com Pa declarado na coleta: 1.400 Pa, que e o PISO da faixa de succao do banco inteiro. Isso importa mais do que parece para a R2: sem uma ponta baixa real, a ferramenta so saberia dizer 'quanto mais Pa melhor', que e o que qualquer anuncio ja diz. O manual oficial em PDF esta localizado e registrado em fontes{} com a revisao no nome do arquivo (REV00MAI23) — ele e o candidato numero 1 a primeira fonte de NIVEL 2 desta ilha no dia em que o egresso abrir, e ate la o campo continua declarado como nivel 3.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "wap-w1000",
+      "marca": "wap",
+      "linha": null,
+      "codigo_fabricante": "W1000",
+      "nome_comercial": "Robo Aspirador de Po WAP Robot W1000",
+      "categoria": "robo",
+      "variantes_de_hardware": [],
+      "pa_declarado": {
+        "valor": null,
+        "unidade": "Pa",
+        "motivo_do_null": "MEDIDO nesta coleta: a pagina oficial do produto declara 'tres modos de succao' e NAO publica Pa. Nao e falta de procura — e a marca declarando nivel em vez de numero, do mesmo jeito que a Electrolux"
+      },
+      "potencia_w_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "autonomia_min_declarada": {
+        "valor": 160,
+        "unidade": "min",
+        "fonte": "f-loja",
+        "declarado_como": "bateria com capacidade de carga de 2.600mAh, que o alimenta por ate 2h40 de autonomia"
+      },
+      "cobertura_m2_declarada": {
+        "valor": null,
+        "unidade": "m2",
+        "motivo_do_null": "a WAP NAO declara area coberta em m2 para nenhum modelo da linha. Este null e RESPOSTA, nao lacuna"
+      },
+      "recarga_min_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "retoma_apos_recarga": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "bateria_mah": {
+        "valor": 2600,
+        "unidade": "mAh",
+        "fonte": "f-loja",
+        "declarado_como": "bateria com capacidade de carga de 2.600mAh"
+      },
+      "voltagem": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "base_autoesvaziamento": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "navegacao": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "reservatorio_po_ml": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "reservatorio_agua_ml": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "divergencias": [],
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso desta nuvem barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R2"
+      },
+      "fontes": {
+        "f-loja": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "WAP",
+          "titulo_na_fonte": "Robo Aspirador de Po WAP Robot W1000 — Lojas WAP",
+          "url": "https://loja.wap.ind.br/robo-aspirador-de-po-wap-robot-w1000/p",
+          "canal_de_coleta": "busca web restrita ao dominio wap.ind.br; loja.wap.ind.br e mais.conteudo.wap.ind.br (onde ficam os manuais em PDF) devolveram EGRESS_BLOCKED na leitura direta em 09/09/2026",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "A maior autonomia declarada do banco inteiro: 2h40. Entrou justamente porque NAO tem Pa — e o contraexemplo que prova que autonomia e succao nao andam juntas, e o banco precisa desse par para a R2 nao virar um ranking de um numero so. Note o desenho da linha WAP: o W400, mais barato, publica Pa, e o W1000, topo de linha, nao publica. Publicar Pa e decisao de marketing por modelo, nao politica de marca — e isso e conteudo para a pagina de metodologia.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "wap-w310",
+      "marca": "wap",
+      "linha": null,
+      "codigo_fabricante": "W310",
+      "nome_comercial": "Robo Aspirador WAP Robot W310",
+      "categoria": "robo",
+      "variantes_de_hardware": [],
+      "pa_declarado": {
+        "valor": null,
+        "unidade": "Pa",
+        "motivo_do_null": "MEDIDO nesta coleta: a pagina oficial declara 'tres niveis de succao' e NAO publica Pa"
+      },
+      "potencia_w_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "autonomia_min_declarada": {
+        "valor": 130,
+        "unidade": "min",
+        "fonte": "f-loja",
+        "declarado_como": "ate duas horas e dez minutos de autonomia em apenas uma recarga"
+      },
+      "cobertura_m2_declarada": {
+        "valor": null,
+        "unidade": "m2",
+        "motivo_do_null": "a WAP NAO declara area coberta em m2 para nenhum modelo da linha. Este null e RESPOSTA, nao lacuna"
+      },
+      "recarga_min_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "retoma_apos_recarga": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "bateria_mah": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "voltagem": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "base_autoesvaziamento": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "navegacao": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "reservatorio_po_ml": {
+        "valor": 420,
+        "unidade": "ml",
+        "fonte": "f-loja",
+        "declarado_como": "recipiente para po de 420ml, com duas escovas rotativas, para maxima potencia ao aspirar"
+      },
+      "reservatorio_agua_ml": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (EGRESS_BLOCKED medido em 09/09/2026)"
+      },
+      "divergencias": [],
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso desta nuvem barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R2"
+      },
+      "fontes": {
+        "f-loja": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "WAP",
+          "titulo_na_fonte": "Robo Aspirador WAP Robot W310 | Limpeza Automatica — Lojas WAP",
+          "url": "https://loja.wap.ind.br/robot-w310-1/p",
+          "canal_de_coleta": "busca web restrita ao dominio wap.ind.br; loja.wap.ind.br e mais.conteudo.wap.ind.br (onde ficam os manuais em PDF) devolveram EGRESS_BLOCKED na leitura direta em 09/09/2026",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "Maior reservatorio de po do banco (420 ml) e segunda maior autonomia (2h10). Sem Pa, como quase toda a linha WAP. Vale registrado porque o reservatorio e o campo que responde a segunda pergunta de quem tem casa grande — 'ele enche antes de terminar?' — e hoje nenhuma ferramenta da ilha usa esse campo. E lacuna de FERRAMENTA, nao de banco, e esta anotada como tal.",
       "verificado_em": "2026-09-09"
     }
   ]

@@ -37,25 +37,32 @@ cobertura. **A urgência não é número de itens** (a seção 14.3 do `ARQUIPEL
 descartou meta redonda): é faixa descoberta. Produto novo entra com `afiliado.url`
 presente e vazio, e a execução reporta quantos itens esperam link.
 
-A primeira leva do 3c foi entregue em 09/09/2026 e **fechou as lacunas (c) e (d)** da
-ordem original: Positivo e Xiaomi já respondem na R1, e o Kit Performance **KPCEL01** deu
-dono à vida útil de 6 meses do manual da Electrolux. **A ordem que resta, da maior para a
-menor:**
+A primeira leva do 3c (09/09/2026) fechou as lacunas (c) e (d) da ordem original. A
+**segunda leva (09/09/2026, 23h16Z) fechou a lacuna (a)**: `pa_declarado` saiu de 2 para
+**11 modelos publicáveis**, em 3 marcas, cobrindo de 1.400 a 10.000 Pa — a R2 deixa de
+sair com lista vazia. **A ordem que resta, da maior para a menor:**
 
-(a) **`pa_declarado` — a maior urgência, e o alvo mudou.** Sem esse campo nenhum modelo
-passa na elegibilidade da R2 e a lista de recomendados sai vazia; hoje são **2 de 19**
-modelos publicáveis. **Não procure na Electrolux:** ficou medido que ela não publica Pa em
-canal nenhum — declara *níveis* de sucção, e editorial não sustenta especificação de
-aparelho. O campo tem que vir de **Xiaomi, Multi, WAP e Positivo**.
-(b) **pares (minutos, m²) de marcas DIFERENTES.** São eles que tiram a constante
-`taxa-cobertura-m2-por-min` de `pendente`. O banco tem 2 declarações e as duas são
-Electrolux, discordando 23% entre si — o critério pede 5, de marcas diferentes. Mais um par
-da Electrolux não resolve.
-(c) **peça declarada para o PRA500**, que é a consulta-alvo da R1 e hoje não tem nenhuma:
-as três peças da Positivo declaram PRA800 e PRA2000 sem citá-lo. Enquanto não houver
-declaração, a resposta certa é "não encontramos" — nunca a peça do PRA800.
-(d) **composição dos kits do ERB44 e do ERB30**, hoje no banco com a composição em aberto:
-a R1 pode dizer QUE servem e ainda não O QUE vem dentro.
+(a) **FAIXA DESCOBERTA E CONCENTRAÇÃO DE MARCA — a urgência agora, e ela só apareceu
+porque a varredura foi feita.** A medição está em `cobertura_de_faixa_r2`, dentro de
+`dados/modelos-robo.json`. Duas coisas: acima de **6.000 Pa** só existem 2 elegíveis (o
+portão da seção 9 pede 3), e **toda faixa acima de 3.000 Pa é 100% Xiaomi** — inclusive a
+faixa de pet, que é a que vende. Uma ilha que se vende como comparador **cross-marca** não
+pode ter a faixa mais cara ocupada por uma marca só. Não se conserta afrouxando
+elegibilidade: conserta-se achando Pa de **outra marca** nessa faixa.
+(b) **MANUAIS EM PDF DA WAP — a melhor porta de entrada para o NÍVEL 2 da escada de
+fontes.** A WAP publica um manual por modelo em `mais.conteudo.wap.ind.br`, com revisão e
+data no nome do arquivo. Hoje o domínio devolve `EGRESS_BLOCKED`; no dia em que abrir,
+esses PDFs sobem o banco inteiro da marca de nível 3 para nível 2 de uma vez e trazem o Pa
+dos modelos que a loja declara só como "três modos de sucção". Toda a ilha está em nível 3
+ou 4 — nenhuma fonte de nível 2 ainda.
+(c) **pares (minutos, m²): a lacuna mudou de natureza e NÃO é mais coleta.** Ficou medido
+que Xiaomi, WAP, Multi e Positivo **não declaram m² em canal nenhum** — só a Electrolux
+declara. Não adianta procurar mais: o número não está publicado. A
+`taxa-cobertura-m2-por-min` continua `pendente` e **proibida em fórmula**, e a recusa
+virou conteúdo: a R2 mostra os minutos, diz que o fabricante não declara área e explica
+por que não chuta.
+(d) **peças da Xiaomi e da WAP com código**, que a R1 precisa e que a busca restrita ainda
+não devolveu.
 
 **4. FERRAMENTAS**, uma por execução, já nascendo com JSON-LD, tabela de exemplos pré-renderizada, resposta antes da explicação e procedência na frase. **Não deixe retrofit para depois** — foi o que custou dias na Aquametria.
 

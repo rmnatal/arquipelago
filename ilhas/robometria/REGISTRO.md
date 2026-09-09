@@ -327,3 +327,107 @@ o proximo passo desbloqueado, e espelha o mesmo resumo em
   composicao dos kits do ERB44 e do ERB30, hoje no banco com a composicao em
   aberto. O bloco 3b (casca) continua sendo o primeiro que depende do WordPress,
   que depende do certificado.
+
+---
+
+## 2026-09-09T23:16Z — Bloco 3c, SEGUNDA LEVA: `pa_declarado` fora da Electrolux
+
+**Ilha reservada por commit** (secao 1 do ARQUIPELAGO.md) as 23:16Z, com a Aquametria
+livre e a Robometria com `ultima_execucao` mais antiga (21:26Z contra 21:55Z). Sem
+DESPACHO DA SENTINELA na fila desta ilha e sem branch ou PR pendente.
+
+**O QUE FOI ENTREGUE.** O banco foi de 24 para **33 modelos** e de 4 para **5 marcas**.
+Entraram seis Xiaomi (S10, E10, S40, S40C, H40 e Mop 2) e tres WAP (W400, W1000, W310), e
+as fichas de PRA500 e PRA2000 sairam do vazio. Esquema na **versao 3**, manifest na
+**revisao 5**.
+
+**O NUMERO QUE IMPORTA: `pa_declarado` passou de 2 para 11 modelos publicaveis**, em 3
+marcas, cobrindo de **1.400 Pa (WAP W400) a 10.000 Pa (Xiaomi S40 e H40)** numa escala
+continua. Antes desta leva a R2 sairia com **lista vazia em qualquer entrada**. Agora nao
+sai.
+
+- **A VARREDURA QUE A SECAO 14.3 EXIGE FOI FEITA, e esta gravada em
+  `cobertura_de_faixa_r2` dentro de `modelos-robo.json`.** A faixa de entrada da R2 foi
+  percorrida de ponta a ponta contra as seis constantes de limiar de Pa. Resultado: **5
+  das 6 faixas passam** no portao de 3 itens da secao 9.
+- **A FAIXA DESCOBERTA que sobrou:** acima de **6.000 Pa** so ha 2 elegiveis (S40 e H40).
+  Pela secao 14.3, faixa descoberta e a unica urgencia de catalogo — entao ela virou o
+  topo da `lista_de_compras`.
+- **O ACHADO QUE SO APARECEU PORQUE A VARREDURA FOI OLHADA INTEIRA, e que contar elegiveis
+  esconde: TODA faixa igual ou acima de 3.000 Pa e 100% Xiaomi.** Os seis elegiveis da
+  faixa de pet do Canaltech sao seis Xiaomi. O portao de 3 itens passa contando, e a
+  vitrine ainda assim sairia como catalogo de uma marca so — numa ilha cuja promessa e ser
+  o comparador **cross-marca** que o nicho nao tem. Isso NAO e defeito de elegibilidade e
+  NAO se conserta afrouxando a regra da secao 7: conserta-se colhendo Pa de outra marca
+  dentro da faixa. Ficou escrito em tres lugares para nenhuma execucao futura ler "6
+  elegiveis" e dar a faixa por resolvida.
+- **A CAUSA DAS DUAS COISAS ESTA MEDIDA, e vira conteudo:** Electrolux e Multi **nao
+  publicam Pa em canal nenhum** (declaram *niveis* de succao), e a WAP so publica na parte
+  barata da linha — 1.400 Pa no W400, e nenhum numero no topo W1000, que declara so "tres
+  modos de succao". Publicar Pa e decisao de marketing por modelo, nao politica de marca.
+  Quem declara succao alta no Brasil, hoje, e essencialmente a Xiaomi.
+- **A LACUNA DE m² MUDOU DE NATUREZA E DEIXOU DE SER COLETA.** Xiaomi, WAP, Multi e
+  Positivo foram varridas modelo a modelo e **NENHUMA declara area coberta em m2 em canal
+  nenhum**. So a Electrolux declara. Nao adianta procurar mais: o numero nao esta
+  publicado. A `taxa-cobertura-m2-por-min` continua `pendente` e **PROIBIDA em formula**,
+  agora com quatro marcas de silencio medido sustentando o porque — e a recusa da R2 deixa
+  de ser pendencia envergonhada e vira a resposta publicavel: quando um site promete
+  "atende ate 120 m2" para um robo cujo fabricante so declarou minutos, esse numero foi
+  inventado por alguem. Essa e a frase que um modelo de linguagem cita.
+- **PRIMEIRA DIVERGENCIA DE ESPECIFICACAO DE APARELHO DO BANCO, e ela forcou o esquema.**
+  O PRA500 declara **1600 Pa na ficha e 2000 Pa no texto de venda da MESMA pagina do
+  fabricante**. Mesmo canal, mesmo nivel: nao ha desempate por escada de fontes, e a media
+  (1800) e a unica saida proibida pela secao 10. **Valeu 1600**, porque o erro caro e o do
+  lado ALTO — publicar 2000 faz alguem comprar um robo fraco demais para o pelo que tem em
+  casa, por recomendacao nossa. Errar para baixo so tira o PRA500 de uma lista que ele
+  talvez coubesse. As duas declaracoes vao para a tela com atribuicao. Ate a versao 2 so
+  PECA tinha `divergencias[]`; agora MODELO_ROBO tambem tem.
+- **REGRA NOVA DA VERSAO 3, escrita antes de custar caro: faixa e tolerancia declaradas
+  resolvem para o lado em que errar doi menos, NUNCA para o meio.** O fabricante quase
+  nunca da numero: da "de 5 a 6 horas" (recarga do PRA2000) ou "130 minutos +-10%"
+  (autonomia do S10). Por campo: **Pa para baixo** e **autonomia para baixo** (errar para
+  cima promete um aparelho que nao existe); **recarga para cima** (errar para baixo faz a
+  R2 prometer mais ciclos por dia do que o robo entrega). `declarado_como` guarda a faixa
+  INTEIRA, entao a pagina cita "de 5 a 6 horas" e nao o numero escolhido.
+- **A WAP entrou no banco e e a melhor chance de NIVEL 2 que a ilha ja teve.** E a unica
+  marca da coleta que publica um manual em PDF por modelo, em endereco proprio e estavel,
+  com revisao e data no nome do arquivo (`REV00MAI23` no W400). Hoje o dominio devolve
+  EGRESS_BLOCKED e o PDF ficou registrado em `fontes{}` como alvo da releitura. **A ilha
+  inteira esta em nivel 3 e 4: nao existe nenhuma fonte de nivel 2 ate agora.**
+
+**VERIFICACAO DESTE BLOCO** (nao ha site, entao a secao 8 se aplica pela parte que
+existe): `python3 ferramentas/validar-banco.py` roda sem rede e sai **APROVADO** — 5
+marcas, 33 modelos (28 publicaveis, 4 excluidos por nao serem robo, 1 a confirmar), 18
+pecas, 33 pares declarados, 44 itens esperando link. O verificador ganhou **tres
+invariantes** da versao 3 mais a **conferencia das contagens do cabecalho** de
+`modelos-robo.json`, e **as seis quebras foram testadas de proposito numa copia**:
+`divergencias` ausente, divergencia sem `resolucao`, divergencia apontando campo
+inexistente, divergencia sem transcricao, `contagem.com_pa_declarado` mentindo e
+`contagem.marcas_que_declaram_pa` mentindo. As seis reprovam alto. Verificador que nao
+falha nao vale nada. Os sete sha256 do manifest foram recalculados e conferidos um a um.
+
+**O que este bloco deliberadamente NAO fez:** nao gravou a bateria do S10, porque a busca
+devolveu 3.200 mAh — exatamente o numero do S20 — e a Aquametria ja registrou busca
+restrita devolvendo numero com atribuicao contaminada pelo vizinho de prateleira; nao
+herdou autonomia nem bateria do S40 para o S40C, que declara METADE da succao e portanto
+nao e o mesmo aparelho com outro acabamento; nao converteu W em Pa em nenhum modelo da
+Multi; nao tratou os 10.000 Pa do S40 como numero de modo padrao (sao "no modo turbo e com
+carga completa", e isso vai para a tela junto); e nao coletou imagem nenhuma, porque o
+egresso segue fechado.
+
+**Egresso medido nesta execucao:** `www.mi.com`, `loja.wap.ind.br`,
+`mais.conteudo.wap.ind.br` (os manuais em PDF) e `static.positivocasainteligente.com.br`
+(o guia rapido em PDF) devolveram EGRESS_BLOCKED, somando-se aos dominios ja medidos. Toda
+a coleta saiu de busca restrita ao dominio oficial, com o canal declarado campo a campo.
+
+**Itens esperando link de afiliado nesta ilha: 44** (28 modelos e 16 pecas), contra 35
+antes. Pela secao 7 isso e trabalho pendente de verdade e nao compete com a fila da
+Fundacao: quem gera link e a Sentinela estrategica, no navegador do Raphael, com teto de
+calendario.
+
+**Proximo passo desbloqueado:** continuar o 3c com o alvo novo — **Pa de marca que nao
+seja Xiaomi acima de 3.000**, que resolve a faixa descoberta e a concentracao de marca de
+uma vez; depois os manuais em PDF da WAP, que sao a porta de entrada do nivel 2; depois as
+pecas da Xiaomi e da WAP com codigo, que a R1 precisa. A lacuna de m2 saiu da fila de
+coleta de proposito: ela e fato de mercado, nao trabalho pendente. O bloco 3b (casca)
+continua sendo o primeiro que depende do WordPress, que depende do certificado.

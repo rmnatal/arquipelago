@@ -150,6 +150,29 @@ for r in modelos["registros"]:
     if v.get("valor") is not None and str(v["valor"]) not in [x for x in VOC["voltagem"] if x]:
         erro("%s: voltagem %r fora do vocabulario. Nunca chutar 127 ou 220" % (onde, v["valor"]))
 
+    # Divergencia de ESPECIFICACAO DE APARELHO, nova na versao 3 do esquema. Ate a versao 2
+    # so PECA divergia, porque a divergencia conhecida era de compatibilidade. O PRA500
+    # declara 1600 Pa na ficha e 2000 Pa no texto de venda da MESMA pagina — e um numero
+    # de succao errado manda alguem comprar um robo fraco demais para a casa dele.
+    if "divergencias" not in r:
+        erro("%s: divergencias ausente. Lista vazia e afirmacao ('nao encontramos "
+             "declaracao divergente'); ausencia e omissao" % onde)
+    if r.get("divergencias") and not r.get("resolucao"):
+        erro("%s: tem divergencias e nao diz qual valor valeu nem qual e o erro caro que "
+             "decidiu a direcao. Divergencia sem resolucao escrita e a ilha empurrando a "
+             "duvida para o visitante — e escolher pela media e proibido" % onde)
+    for dv in r.get("divergencias", []):
+        campo = dv.get("campo")
+        if not campo:
+            erro("%s: item de divergencias sem 'campo' — nao da para saber o que diverge"
+                 % onde)
+        elif campo not in r:
+            erro("%s: divergencia sobre o campo %r, que nao existe neste registro"
+                 % (onde, campo))
+        if not dv.get("transcricao"):
+            erro("%s: divergencia sem transcricao. Sem o texto do fabricante a pagina "
+                 "parafraseia os DOIS lados em vez de citar" % onde)
+
 # ------------------------------------------------------------------ PECAS
 ids_peca = set()
 pares = 0
@@ -256,6 +279,22 @@ def conferir_contagem(doc, arquivo, chave, esperado):
              % (arquivo, chave, declarado, esperado))
 
 conferir_contagem(modelos, "modelos-robo.json", "total", len(modelos["registros"]))
+
+# O cabecalho de modelos-robo.json anuncia a cobertura do campo que decide se a R2 sai com
+# lista ou vazia. Contagem que nao bate com o arquivo e pior que contagem nenhuma: e um
+# numero que a proxima execucao vai acreditar sem conferir.
+_pub = [r for r in modelos["registros"] if r["status"] == "publicavel"]
+conferir_contagem(modelos, "modelos-robo.json", "publicavel", len(_pub))
+conferir_contagem(modelos, "modelos-robo.json", "com_pa_declarado",
+                  sum(1 for r in _pub if r["pa_declarado"]["valor"] is not None))
+conferir_contagem(modelos, "modelos-robo.json", "com_par_minutos_m2_declarado",
+                  sum(1 for r in _pub if r["autonomia_min_declarada"]["valor"] is not None
+                      and r["cobertura_m2_declarada"]["valor"] is not None))
+conferir_contagem(modelos, "modelos-robo.json", "marcas_que_declaram_pa",
+                  sorted({r["marca"] for r in _pub
+                          if r["pa_declarado"]["valor"] is not None}))
+conferir_contagem(modelos, "modelos-robo.json", "esperando_link_de_afiliado",
+                  sum(1 for r in _pub if not r["afiliado"]["url"]))
 conferir_contagem(pecas, "pecas.json", "total", len(pecas["registros"]))
 conferir_contagem(pecas, "pecas.json", "pares_peca_x_modelo_declarados", pares)
 

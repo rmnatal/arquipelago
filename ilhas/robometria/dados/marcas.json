@@ -4,7 +4,7 @@
   "entidade": "marca",
   "esquema": "dados/esquema-banco.json",
   "gerado_em": "2026-09-09",
-  "nota_de_procedencia": "Coleta de 09/09/2026 por busca web restrita ao dominio de cada fabricante. O egresso HTTP direto desta nuvem esta fechado para multilaser.com.br, suporte.multilaser.com.br, lamina.multilaser.com.br, arquivos.multilaser.com.br, mi.com e manuals.plus (EGRESS_BLOCKED, medido nesta execucao). sameAs[] alimenta o JSON-LD Organization. Bloco 3c (09/09/2026): canal_de_pecas de electrolux, positivo e xiaomi encontrado por busca restrita ao dominio. Continua sem leitura direta — o egresso segue fechado.",
+  "nota_de_procedencia": "Coleta de 09/09/2026 por busca web restrita ao dominio de cada fabricante. O egresso HTTP direto desta nuvem esta fechado para multilaser.com.br, suporte.multilaser.com.br, lamina.multilaser.com.br, arquivos.multilaser.com.br, mi.com e manuals.plus (EGRESS_BLOCKED, medido nesta execucao). sameAs[] alimenta o JSON-LD Organization. Bloco 3c (09/09/2026): canal_de_pecas de electrolux, positivo e xiaomi encontrado por busca restrita ao dominio. Continua sem leitura direta — o egresso segue fechado. Segunda leva do Bloco 3c (09/09/2026): entrou a marca WAP, colhida por busca restrita a wap.ind.br. A leitura direta de loja.wap.ind.br e de mais.conteudo.wap.ind.br (manuais em PDF) devolveu EGRESS_BLOCKED, somando-se aos dominios ja medidos.",
   "registros": [
     {
       "id": "multi",
@@ -50,6 +50,20 @@
         "https://www.positivocasainteligente.com.br/"
       ],
       "observacao": "Linha em canal oficial: PRA500, PRA800, PRA1000 e PRA2000. O corpus do Bloco 1 registrou um 'PRA8000' que nao existe em canal nenhum — quase certamente erro de transcricao de PRA800. Nenhum dado tecnico foi herdado do nome errado. CANAL DE PECAS ENCONTRADO NO BLOCO 3c — e a fonte primaria da R1 para esta marca, e ate agora estava null.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "wap",
+      "nome": "WAP",
+      "site_oficial": "https://www.wap.ind.br/",
+      "canal_de_pecas": null,
+      "sameAs": [
+        "https://www.wap.ind.br/",
+        "https://loja.wap.ind.br/",
+        "https://ajuda.wap.ind.br/",
+        "https://blog.wap.ind.br/"
+      ],
+      "observacao": "Quinta marca do banco, aberta na segunda leva do Bloco 3c. E a UNICA marca da coleta que publica o manual de instrucoes em PDF num endereco proprio e estavel (mais.conteudo.wap.ind.br, um PDF por modelo, com revisao e data no nome do arquivo). Isso a torna a candidata mais provavel a primeira fonte de NIVEL 2 desta ilha — manual-fabricante lido direto — no dia em que o egresso abrir: hoje o dominio dos manuais devolve EGRESS_BLOCKED. Declara Pa em parte da linha e NAO declara cobertura em m2 em nenhum modelo, o que reforca o achado da Xiaomi. canal_de_pecas ainda null: a busca restrita ao dominio nao devolveu pagina de peca de reposicao com codigo, e a R1 precisa dela.",
       "verificado_em": "2026-09-09"
     }
   ]

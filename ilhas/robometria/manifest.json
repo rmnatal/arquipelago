@@ -4,7 +4,7 @@
   "nicho": "robo aspirador — compatibilidade de pecas e consumiveis, e dimensionamento de succao e autonomia",
   "dominio": "https://robometria.com.br",
   "versao_manifest": 1,
-  "revisao": 4,
+  "revisao": 5,
   "atualizado_em": "2026-09-09",
   "estado": "nascendo",
   "desembarque": {
@@ -48,8 +48,8 @@
       "verificado_em": "2026-09-09",
       "registros": 22,
       "publicar": false,
-      "sha256": "1ac50e66bf71543de0555530f79ab321ce35c4d683850358c9ead71bb81d39e4",
-      "descricao": "22 constantes das ferramentas R1 e R2, cada uma com classe de fonte (fabricante x recomendacao editorial), URL, canal de coleta e data. O Bloco 3c acrescentou o segundo par (minutos, m2) declarado — 166 m2 em ate 1h40 da familia ERB60 — e reescreveu a taxa de cobertura m2/min, que CONTINUA pendente e PROIBIDA em formula publicada: as duas declaracoes que o banco tem sao da mesma marca e diferem 23% entre si (1,35 contra 1,66 m2/min), o que e a melhor evidencia de que taxa geral nao existe."
+      "sha256": "918928d22c8513ae8a75cbbca0a6478965711e2e74e9883d72952b2ea9ae81c1",
+      "descricao": "22 constantes das ferramentas R1 e R2, cada uma com classe de fonte, URL, canal de coleta e data. A segunda leva do Bloco 3c reescreveu a taxa de cobertura m2/min: ela continua pendente e PROIBIDA em formula publicada, e agora por um motivo medido e mais forte — Xiaomi, WAP, Multi e Positivo foram varridas e NENHUMA declara area em m2 em canal nenhum. A lacuna deixou de ser de esforco e virou fato de mercado, o que transforma a recusa da R2 em conteudo publicavel."
     },
     {
       "id": "esquema-banco",
@@ -60,8 +60,8 @@
       "verificado_em": "2026-09-09",
       "registros": 4,
       "publicar": false,
-      "sha256": "005a113a27375fb9d3f1893ce45836fb060c3e95b5a607ca2cc614a392c17285",
-      "descricao": "Contrato do banco da Robometria (versao 2 do esquema, elevada no Bloco 3c): entidades MARCA, MODELO_ROBO, PECA e COTACAO, campo a campo, com vocabulario controlado, escada de 7 niveis de fonte, a forma campo_de_valor, a regra de divergencia pelo conjunto MAIS ESTREITO, imagem{} e afiliado{} vazio desde o nascimento, e as invariantes que ferramentas/validar-banco.py verifica. A versao 2 acrescenta o tipo de peca 'kit' com composicao[] — porque a Electrolux nao vende filtro de robo avulso, so o Kit Performance, e sem isso a R1 nao responde a propria consulta-alvo — e permite codigo_fabricante null COM motivo_sem_codigo, ja que Electrolux identifica peca por titulo e Positivo por SKU."
+      "sha256": "36640e4a33d5ca3fd3cdb6941ae4587c28d48f7c059d8d8aeb0f842806a53cb9",
+      "descricao": "Contrato do banco da Robometria, versao 3 do esquema (elevada na segunda leva do Bloco 3c). A versao 3 acrescenta divergencias[] e resolucao tambem em MODELO_ROBO — ate entao so PECA divergia, e o PRA500 declara 1600 Pa na ficha e 2000 Pa no texto de venda da MESMA pagina — e escreve a regra da FAIXA DECLARADA: faixa e tolerancia resolvem para o lado em que errar doi menos, nunca para o meio, com a faixa inteira preservada em declarado_como. Pa e autonomia resolvem para baixo; tempo de recarga resolve para cima."
     },
     {
       "id": "marcas",
@@ -70,10 +70,10 @@
       "entidade": "marca",
       "fonte": "Bloco 3 da Fundacao: modelagem a partir da secao 4 da especificacao (Bloco 2), mais coleta de confirmacao por busca web restrita ao dominio do fabricante em 09/09/2026 (multilaser.com.br, multilaserempresas.com.br, suporte.multilaser.com.br, lamina.multilaser.com.br). A leitura direta das paginas devolveu EGRESS_BLOCKED nesta execucao e continua sendo coleta em aberto — o canal esta declarado campo a campo. Bloco 3c (09/09/2026): expansao do banco por busca web restrita aos dominios oficiais de Electrolux (loja, content, cuida e compraparceiros), Positivo Casa Inteligente/meupositivo e Xiaomi (mi.com). A leitura direta continua devolvendo EGRESS_BLOCKED e segue como coleta em aberto.",
       "verificado_em": "2026-09-09",
-      "registros": 4,
+      "registros": 5,
       "publicar": false,
-      "sha256": "691cae62778624e5d582c7824461d0dd1b36c39bf3a28489bf7fd6c6dde6ee5d",
-      "descricao": "Quatro marcas com site oficial, canal de pecas e sameAs[] para o JSON-LD Organization: Multi (ex-Multilaser), Electrolux, Xiaomi e Positivo Casa Inteligente. O Bloco 3c encontrou o canal_de_pecas de Electrolux, Positivo e Xiaomi, que ate entao era null nas tres — e o canal de pecas e a fonte primaria da R1."
+      "sha256": "8700ae86b5c96126760f10029c8cb10bf576a15b41348644b831d6da6c9c32b9",
+      "descricao": "Cinco marcas com site oficial, canal de pecas e sameAs[] para o JSON-LD Organization: Multi (ex-Multilaser), Electrolux, Xiaomi, Positivo Casa Inteligente e WAP. A WAP entrou na segunda leva do Bloco 3c e e a unica da coleta que publica manual em PDF por modelo em endereco proprio e estavel — e portanto a candidata a primeira fonte de NIVEL 2 desta ilha no dia em que o egresso abrir."
     },
     {
       "id": "modelos-robo",
@@ -82,10 +82,10 @@
       "entidade": "modelo-robo",
       "fonte": "Bloco 3 da Fundacao: modelagem a partir da secao 4 da especificacao (Bloco 2), mais coleta de confirmacao por busca web restrita ao dominio do fabricante em 09/09/2026 (multilaser.com.br, multilaserempresas.com.br, suporte.multilaser.com.br, lamina.multilaser.com.br). A leitura direta das paginas devolveu EGRESS_BLOCKED nesta execucao e continua sendo coleta em aberto — o canal esta declarado campo a campo. Bloco 3c (09/09/2026): expansao do banco por busca web restrita aos dominios oficiais de Electrolux (loja, content, cuida e compraparceiros), Positivo Casa Inteligente/meupositivo e Xiaomi (mi.com). A leitura direta continua devolvendo EGRESS_BLOCKED e segue como coleta em aberto.",
       "verificado_em": "2026-09-09",
-      "registros": 24,
+      "registros": 33,
       "publicar": false,
-      "sha256": "5ff8047a068f14a2f34d0acf15bb92ee2890387e3b2e74e601c47b31155c2033",
-      "descricao": "24 modelos: 19 publicaveis com categoria de robo confirmada pelo proprio fabricante, 1 nao publicavel por categoria a confirmar (HO401) e 4 excluidos por NAO serem robo. O Bloco 3c acrescentou ERB30, ERB60, ERB61, ERB62 e ERB80 da Electrolux e PRA500 e PRA2000 da Positivo, e fechou o segundo par (minutos, m2) declarado do banco. Todo campo tecnico carrega fonte e transcricao; onde o fabricante nao declara, o valor e null COM MOTIVO — inclusive o Pa de toda a linha Electrolux, que a marca simplesmente nao publica em canal nenhum."
+      "sha256": "1f08eaeb731d5e70a59850de8167be095f8d11fb3a041bb666c94bf6d52ddb15",
+      "descricao": "33 modelos: 28 publicaveis, 1 nao publicavel (HO401, categoria a confirmar) e 4 excluidos por NAO serem robo. A segunda leva do Bloco 3c acrescentou seis Xiaomi (S10, E10, S40, S40C, H40 e Mop 2) e tres WAP (W400, W1000, W310), e preencheu a ficha de PRA500 e PRA2000. O campo pa_declarado saiu de 2 para 11 modelos publicaveis, em 3 marcas, cobrindo de 1.400 a 10.000 Pa — a R2 deixa de sair com lista vazia. Traz a varredura cobertura_de_faixa_r2 exigida pela secao 14.3: cinco das seis faixas passam no portao de 3 itens, acima de 6.000 Pa a faixa esta DESCOBERTA, e toda faixa acima de 3.000 Pa e 100% Xiaomi."
     },
     {
       "id": "pecas",
@@ -104,7 +104,7 @@
     {
       "id": "validar-banco",
       "arquivo": "ferramentas/validar-banco.py",
-      "descricao": "Verifica se marcas.json, modelos-robo.json e pecas.json cumprem esquema-banco.json. Roda sem rede e sem dependencia (python3 ferramentas/validar-banco.py) e sai com codigo 1 quando qualquer invariante e violada: id duplicado, numero sem fonte, null sem motivo, registro publicavel com categoria que nao e robo, divergencia sem resolucao escrita, peca apontando para modelo inexistente ou excluido, e contagem de cabecalho que nao bate com o arquivo. O Bloco 3c acrescentou cinco invariantes da versao 2 do esquema: kit sem composicao, kit dentro de kit, tipo de composicao fora do vocabulario, item de composicao sem tipo e sem descricao, composicao em peca que nao e kit, e codigo_fabricante null sem motivo_sem_codigo. As cinco foram testadas quebrando o banco de proposito numa copia e conferindo que reprovam. Ferramenta de bancada: NUNCA e publicada no site."
+      "descricao": "Verifica se marcas.json, modelos-robo.json e pecas.json cumprem esquema-banco.json. Roda sem rede e sem dependencia (python3 ferramentas/validar-banco.py) e sai com codigo 1 quando qualquer invariante e violada: id duplicado, numero sem fonte, null sem motivo, registro publicavel com categoria que nao e robo, divergencia sem resolucao escrita, peca apontando para modelo inexistente ou excluido, e contagem de cabecalho que nao bate com o arquivo. O Bloco 3c acrescentou cinco invariantes da versao 2 do esquema: kit sem composicao, kit dentro de kit, tipo de composicao fora do vocabulario, item de composicao sem tipo e sem descricao, composicao em peca que nao e kit, e codigo_fabricante null sem motivo_sem_codigo. As cinco foram testadas quebrando o banco de proposito numa copia e conferindo que reprovam. Ferramenta de bancada: NUNCA e publicada no site. A segunda leva do Bloco 3c acrescentou tres invariantes da versao 3: modelo sem divergencias[], modelo com divergencias e sem resolucao escrita, e item de divergencia que nao nomeia um campo existente ou nao traz a transcricao do fabricante; mais a conferencia das contagens do cabecalho de modelos-robo.json (publicavel, com_pa_declarado, com_par_minutos_m2_declarado, marcas_que_declaram_pa e esperando_link_de_afiliado), para que nenhuma execucao futura acredite num numero de cobertura que o arquivo nao sustenta. Todas foram testadas quebrando o banco de proposito numa copia e conferindo que reprovam."
     }
   ],
   "esquema": {

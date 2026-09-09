@@ -2,9 +2,9 @@
 ilha: robometria
 estado: nascendo
 prioridade: 1
-ultima_execucao: 2026-09-09T21:26Z
-executando_desde: 2026-09-09T23:16Z
-bloco_atual: "3c — expansao do banco (concluida)"
+ultima_execucao: 2026-09-09T23:16Z
+executando_desde: null
+bloco_atual: "3c segunda leva — pa_declarado fora da Electrolux (concluida); banco na revisao 5"
 ultima_ronda: null
 bloqueada_por: null
 ---
@@ -62,6 +62,13 @@ Sem credenciais neste arquivo.
   tabela de exemplos pré-renderizada, JSON-LD e classificação de SERP da
   consulta-alvo. 21 constantes, cada uma com classe de fonte, URL, canal de
   coleta e data.
+- 09/09/2026 — **Bloco 3c, segunda leva: a R2 deixou de sair vazia.**
+  `pa_declarado` passou de **2 para 11 modelos publicáveis**, em 3 marcas, cobrindo de
+  **1.400 a 10.000 Pa** numa escala contínua. 33 modelos (eram 24) e 5 marcas (eram 4),
+  com a WAP entrando no banco. Esquema na versão 3, manifest na revisão 5,
+  `validar-banco.py` APROVADO com três invariantes novas mais a conferência das contagens
+  do cabeçalho — e todas foram testadas quebrando o banco de propósito numa cópia.
+
 - 09/09/2026 — **Bloco 3c entregue: o banco saiu do modelo e virou cobertura.**
   24 modelos (eram 17), 18 peças (eram 8) e **33 pares peça × modelo declarados**
   (eram 10). Esquema na versão 2, manifest na revisão 4, `validar-banco.py`
@@ -74,6 +81,44 @@ Sem credenciais neste arquivo.
   fabricante e nenhum inferido**), mais `ferramentas/validar-banco.py`, que roda
   sem rede e reprova o banco quando alguma invariante do esquema é violada.
   Manifest na revisão 3.
+
+### O que a SEGUNDA LEVA do 3c descobriu, e muda a estratégia inteira
+
+1. **A lacuna de Pa está fechada, e a que sobrou é de OUTRO tipo.** A varredura da faixa
+   de entrada da R2 de ponta a ponta (seção 14.3), gravada em `cobertura_de_faixa_r2`,
+   mostrou que 5 das 6 faixas passam no portão de 3 itens. Sobraram duas coisas: acima de
+   **6.000 Pa** só há 2 elegíveis, e — o achado que só aparece olhando a varredura inteira
+   — **toda faixa acima de 3.000 Pa é 100% Xiaomi**, faixa de pet inclusive. Contar
+   elegíveis diz que está resolvido; olhar a composição diz que não. Numa ilha que se
+   vende como comparador **cross-marca**, a faixa que mais vende não pode ser catálogo de
+   uma marca só.
+2. **Quem declara sucção alta no Brasil é essencialmente a Xiaomi.** Electrolux e Multi
+   não publicam Pa em canal nenhum (as duas declaram *níveis*), e a WAP só publica na
+   parte barata da linha: 1.400 Pa no W400, e nada no topo W1000, que declara "três modos
+   de sucção". Isso é fato de mercado medido, não impressão — e é conteúdo publicável na
+   página de metodologia, porque nenhum comparador diz isso.
+3. **A lacuna de m² não é de esforço, é de mercado — e isso vira conteúdo.** Xiaomi, WAP,
+   Multi e Positivo foram varridas modelo a modelo e **nenhuma** declara área coberta em
+   m². Só a Electrolux declara. Não adianta coletar mais: o número não está publicado. A
+   `taxa-cobertura-m2-por-min` segue proibida em fórmula, e a recusa da R2 deixa de ser
+   uma pendência envergonhada e passa a ser a resposta: quando um site promete "atende até
+   120 m²" para um robô cujo fabricante só declarou minutos, esse número foi inventado
+   por alguém.
+4. **Divergência de especificação não é só de peça — e o PRA500 provou.** O mesmo canal do
+   fabricante declara **1600 Pa na ficha e 2000 Pa no texto de venda da MESMA página**.
+   Não há nível mais alto para desempatar, e a média (1800) é a única saída proibida.
+   Valeu 1600, porque o erro caro é o do lado alto: publicar 2000 faz alguém comprar um
+   robô fraco demais por recomendação nossa. Isso forçou `divergencias[]` e `resolucao` a
+   existirem também em `MODELO_ROBO`, na versão 3 do esquema.
+5. **Faixa e tolerância declaradas resolvem para o lado caro, nunca para o meio.** O
+   fabricante quase nunca dá número: dá "de 5 a 6 horas" ou "130 minutos ±10%". A versão 3
+   escreveu a regra por campo — Pa e autonomia para **baixo**, tempo de recarga para
+   **cima** — e `declarado_como` guarda a faixa inteira, para a página citar a faixa e não
+   o número escolhido.
+6. **A WAP é a melhor chance de NÍVEL 2 que a ilha já teve.** É a única marca que publica
+   um manual em PDF por modelo, em endereço próprio e estável, com revisão e data no nome
+   do arquivo. Hoje `EGRESS_BLOCKED`; no dia em que abrir, sobe o banco inteiro da marca
+   de uma vez. A ilha ainda não tem **nenhuma** fonte de nível 2.
 
 ### O que o Bloco 3c descobriu, e muda a estratégia de coleta
 
@@ -178,29 +223,34 @@ bloqueio por causa de infraestrutura.
 O bloco **3b, casca do site, é o primeiro que depende do WordPress**: ele só
 começa quando houver Sync, e o Sync só nasce no wp-admin.
 
-**O trabalho desbloqueado continua sendo 3c, e o motivo é o mesmo de antes, só
-que agora medido com mais precisão:** a R1 saiu do zero — 33 pares declarados
-contra 10 —, mas a **R2 ainda sairia com lista vazia**, porque `pa_declarado`
-está em **2 de 19** modelos publicáveis. A novidade é que a coleta tem que mudar
-de alvo: **a Electrolux não publica Pa e não vai resolver isso**. O campo tem que
-vir de Xiaomi, Multi, WAP e Positivo. Faixa descoberta é a única urgência de
-catálogo (seção 14.3), e número redondo de itens não é critério.
+**O trabalho desbloqueado continua sendo 3c, mas o alvo mudou de novo — e desta
+vez porque a lacuna anterior fechou.** A R2 não sai mais vazia: `pa_declarado`
+está em **11 de 28** modelos publicáveis, em 3 marcas, de 1.400 a 10.000 Pa. O
+que sobrou está medido em `cobertura_de_faixa_r2` e é de outra natureza: acima de
+**6.000 Pa** só há 2 elegíveis (o portão pede 3), e **toda faixa acima de 3.000
+Pa é 100% Xiaomi**. Faixa descoberta continua sendo a única urgência de catálogo
+(seção 14.3) — e agora a concentração de marca anda junto dela, porque uma ilha
+que promete comparação cross-marca não entrega isso com um catálogo de uma marca
+só na faixa que mais vende.
 
 Nada desta pasta está publicado, e isso é esperado: os sete itens do manifest
 estão com `publicar: false` porque são pesquisa, e o Sync ainda não existe. A
 seção 4 do contrato (o site fica para trás em silêncio) passa a valer nesta ilha
-no dia em que o snippet entrar. Itens esperando link de afiliado: **35** (19
+no dia em que o snippet entrar. Itens esperando link de afiliado: **44** (28
 modelos e 16 peças) — o campo `afiliado.url` já nasce presente e vazio em todos.
-O número quase dobrou neste bloco, e isso é trabalho pendente de verdade, não
+Subiu de 35 para 44 nesta leva, e isso é trabalho pendente de verdade, não
 estatística: pela seção 7 do contrato, quem gera link é a Sentinela estratégica,
 no navegador do Raphael, com teto de calendário — o cano enche em paralelo e não
 compete com a fila da Fundação.
 
 Uma coleta segue em aberto, e não é bloqueio: o egresso HTTP direto está fechado
 (`multilaser.com.br`, `suporte.multilaser.com.br`, `lamina.multilaser.com.br`,
-`arquivos.multilaser.com.br`, `mi.com`, `manuals.plus` e, medido nesta execução,
-também `loja.electrolux.com.br` e `content.electrolux.com.br` devolveram
-EGRESS_BLOCKED em 09/09/2026), então tudo foi colhido por busca restrita ao
-domínio, com o canal declarado campo a campo. A leitura direta das páginas de
-peça, das lâminas e dos manuais em PDF é trabalho a fazer, não dependência
-humana.
+`arquivos.multilaser.com.br`, `mi.com`, `manuals.plus`, `loja.electrolux.com.br`,
+`content.electrolux.com.br` e, medido nesta execução, também
+`www.mi.com`, `loja.wap.ind.br`, `mais.conteudo.wap.ind.br` e
+`static.positivocasainteligente.com.br` devolveram EGRESS_BLOCKED em
+09/09/2026), então tudo foi colhido por busca restrita ao domínio, com o canal
+declarado campo a campo. A leitura direta das páginas de peça, das lâminas e dos
+manuais em PDF é trabalho a fazer, não dependência humana — e os manuais da WAP
+são o alvo de maior retorno, porque são a única chance de NÍVEL 2 que a ilha tem
+hoje. A ilha inteira está em nível 3 e 4: **nenhuma fonte de nível 2 ainda.**

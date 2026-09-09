@@ -3,7 +3,7 @@
   "ilha": "robometria",
   "bloco": 3,
   "gerado_em": "2026-09-09",
-  "versao_esquema": 2,
+  "versao_esquema": 3,
   "descricao": "Modelo normalizado do banco da Robometria: entidades MARCA, MODELO_ROBO, PECA e COTACAO. Define campo a campo o tipo, a unidade, a obrigatoriedade, o vocabulario controlado e a ORIGEM esperada do dado. Nenhum numero entra no banco sem uma entrada correspondente em fontes{}. Este arquivo e o contrato que dados/marcas.json, dados/modelos-robo.json e dados/pecas.json cumprem e que ferramentas/validar-banco.py verifica.",
   "depende_de": [
     "dados/especificacao-calculadoras.md",
@@ -21,12 +21,14 @@
     "PRECO NAO E CAMPO DE PRODUTO. E serie temporal (entidade COTACAO) e nunca entra em criterio tecnico de recomendacao.",
     "IMAGEM AUSENTE NAO ELIMINA O REGISTRO. Produto sem imagem aparece na vitrine com espaco reservado neutro e o nome em destaque. Perder a recomendacao tecnica certa por falta de foto e trocar o certo pelo bonito (secao 6 do ARQUIPELAGO.md).",
     "CONSUMIVEL VENDIDO EM KIT E UM REGISTRO, NAO TRES. Achado do Bloco 3c: a Electrolux nao vende filtro de robo avulso — vende o Kit Performance, que traz filtro HEPA, pano de microfibra e escovas de canto juntos. Sem o tipo 'kit' a R1 nao consegue responder 'qual filtro serve no meu ERB10', que e exatamente a consulta-alvo. O kit declara sua composicao em composicao[], e cada item aponta um tipo do vocabulario.",
-    "CODIGO DE PECA NEM SEMPRE EXISTE, E ISSO SE ESCREVE. A Multi publica codigo proprio (PR10205); a Electrolux publica varias pecas so pelo titulo; a Positivo identifica pelo SKU do canal oficial. Por isso codigo_fabricante aceita null COM motivo_sem_codigo, pela mesma regra que ja vale para os numeros: null e resposta, nao lacuna."
+    "CODIGO DE PECA NEM SEMPRE EXISTE, E ISSO SE ESCREVE. A Multi publica codigo proprio (PR10205); a Electrolux publica varias pecas so pelo titulo; a Positivo identifica pelo SKU do canal oficial. Por isso codigo_fabricante aceita null COM motivo_sem_codigo, pela mesma regra que ja vale para os numeros: null e resposta, nao lacuna.",
+    "FAIXA E TOLERANCIA DECLARADAS RESOLVEM PARA O LADO EM QUE ERRAR DOI MENOS, NUNCA PARA O MEIO. Achado da segunda leva do Bloco 3c: o fabricante costuma declarar faixa ('carrega de 5 a 6 horas') ou tolerancia ('130 minutos +-10%') em vez de numero. A media e a unica saida proibida (secao 10 do ARQUIPELAGO.md). O campo grava o extremo conservador e declarado_como carrega a faixa INTEIRA, para a pagina citar a faixa e nao o numero escolhido. Por campo: succao em Pa resolve para BAIXO (errar para cima faz recomendar robo fraco demais); autonomia em minutos resolve para BAIXO (errar para cima faz prometer que ele termina a casa); tempo de recarga resolve para CIMA (errar para baixo faz a R2 prometer mais ciclos por dia do que o aparelho entrega).",
+    "DIVERGENCIA DE ESPECIFICACAO NAO E SO DE PECA. Ate a versao 2 so PECA tinha divergencias[], porque a divergencia conhecida era de compatibilidade. A segunda leva do Bloco 3c encontrou o mesmo problema em MODELO_ROBO — o PRA500 declara 1600 Pa na ficha e 2000 Pa no texto de venda da MESMA pagina — entao divergencias[] e resolucao passam a existir tambem em MODELO_ROBO, com a mesma regra: lista vazia e afirmacao, e divergencia sem resolucao escrita e a ilha empurrando a duvida para o visitante."
   ],
   "regra_de_divergencia": {
     "compatibilidade": "Vale o conjunto MAIS ESTREITO, e as duas declaracoes sao publicadas com suas datas.",
     "por_que": "A assimetria de custo decide a direcao do arredondamento, nunca a media e nunca o gosto de quem grava (secao 10 do ARQUIPELAGO.md). Aqui o erro caro e o do lado largo: faz alguem comprar peca que nao encaixa. E o OPOSTO do banco de especies da Aquametria, que resolve pelo maior porque la errar para cima so da ao peixe mais espaco do que precisa.",
-    "especificacao_de_aparelho": "Quando dois canais do fabricante declaram numeros diferentes para o mesmo modelo, vale o canal de nivel mais alto na escada_de_fontes e o outro fica registrado em divergencias[]. Empate de nivel nao tem vencedor: o campo vira conflito e os dois valores vao para a tela com atribuicao.",
+    "especificacao_de_aparelho": "Quando dois canais do fabricante declaram numeros diferentes para o mesmo modelo, vale o canal de nivel mais alto na escada_de_fontes e o outro fica registrado em divergencias[]. EMPATE DE NIVEL (inclusive duas declaracoes do MESMO canal, que foi o caso do PRA500): o campo grava o valor do lado em que ERRAR DOI MENOS, conforme o principio da faixa, e resolucao explica qual e o erro caro. As DUAS declaracoes vao para a tela com atribuicao — a divergencia e conteudo, e e exatamente o que nenhum anuncio de marketplace mostra. Escolher pela media continua proibido.",
     "recomendacao_editorial": "Nunca resolve. Publica o desacordo com o nome de quem recomenda cada numero."
   },
   "escada_de_fontes": {
@@ -270,6 +272,16 @@
           "unidade": "ml",
           "obrigatorio": false
         },
+        "divergencias": {
+          "tipo": "lista",
+          "obrigatorio": true,
+          "descricao": "um item por declaracao divergente, {campo, canal, valor_declarado, titulo_na_fonte, transcricao, url, verificado_em}. Lista vazia e AFIRMACAO ('nao encontramos declaracao divergente'); ausencia e omissao"
+        },
+        "resolucao": {
+          "tipo": "texto",
+          "obrigatorio": false,
+          "descricao": "obrigatorio quando divergencias nao esta vazia. Diz qual valor valeu e QUAL E O ERRO CARO que decidiu a direcao — nunca a media"
+        },
         "imagem": {
           "tipo": "imagem",
           "obrigatorio": true
@@ -470,6 +482,9 @@
     "Todo registro tem imagem{} e afiliado{} com a forma completa, mesmo vazios.",
     "Nenhuma constante com status pendente e usada em campo publicavel.",
     "Toda peca com tipo=kit tem composicao nao vazia, e nenhum item da composicao e do tipo kit.",
-    "Toda peca com codigo_fabricante null tem motivo_sem_codigo escrito."
+    "Toda peca com codigo_fabricante null tem motivo_sem_codigo escrito.",
+    "Todo MODELO_ROBO tem divergencias[] presente, e todo modelo com divergencias nao vazias tem resolucao escrita.",
+    "Todo item de divergencias[] nomeia o campo divergente, e esse campo existe no registro.",
+    "As contagens do cabecalho de modelos-robo.json (com_pa_declarado, marcas_que_declaram_pa, esperando_link_de_afiliado) batem com o que o arquivo tem."
   ]
 }
