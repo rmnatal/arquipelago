@@ -3694,3 +3694,122 @@ O que a nuvem consegue fazer sozinha, agora com a lista de compras corrigida pel
 **luminária de exigência baixa (lúmen modesto) de 85 a 120 cm**, que é a faixa vazia mais larga que
 sobrou e que a medição da manhã nem enxergava; depois luminária com lúmen declarado de 30 a 55 cm; e
 filtro de baixa vazão para 20 a 40 L, que é a entrada da C3 e continua vazia desde a manhã.
+
+---
+
+## 09/09/2026 — 21h a 22h UTC · Fundação · despacho da Sentinela (itens 1 e 3), T2 e o par C15 do T7
+
+**Revisão do repositório: 27 → 29.** A ilha foi escolhida pela regra da seção 1 do
+`ARQUIPELAGO.md` na SEGUNDA tentativa: a primeira reserva foi da Robometria e o push perdeu a
+corrida para outra execução da Fundação que reservou a mesma ilha no mesmo minuto. Rebase, volta ao
+passo 2, Aquametria reservada às 21h18. **A reserva por commit funcionou exatamente como projetada** —
+é o primeiro registro de duas execuções simultâneas se cruzando, e nenhuma das duas trabalhou em
+ilha alheia.
+
+### Item 1 do despacho (= T2): `/category/uncategorized/` no sitemap
+
+A causa de raiz não estava no sitemap: **está no Sync**, que grava artigo com `wp_insert_post` e
+nunca atribui categoria — então o WordPress despeja tudo na padrão. Consertar pelo Sync exigiria
+passar pelo atualizador (caminho mais longo e mais arriscado, e o Sync se pula a si mesmo por
+desenho), então o conserto foi feito pelo lado que **se auto-corrige**: um snippet novo,
+`aquametria-seo-tecnico` v1.0.0, que varre a categoria padrão a cada carregamento enquanto ela tiver
+post dentro. Artigo novo que o Sync criar amanhã cai na mesma varredura.
+
+O que ele faz: (a) cria a categoria "Métodos", move para ela todo post da categoria padrão e **troca
+a categoria padrão**, para o problema não voltar pela porta que o criou; (b) tira do
+`wp-sitemap.xml` o provedor de autores sempre, e o de taxonomias enquanto nenhuma categoria estiver
+curada; (c) manda `noindex, follow` para arquivo por data, autor, tag, categoria não curada (a "sem
+categoria" inclusive), anexo, busca e 404 — **pelo filtro `wp_robots` do próprio núcleo**, e não
+imprimindo meta na mão, porque duas metas "robots" na mesma página o Google resolve pelo lado mais
+restritivo; (d) desliga a página de anexo pelo interruptor do núcleo; (e) **não toca em página,
+artigo nem home.**
+
+**A categoria "Métodos" nasce FORA do sitemap e com `noindex`, de propósito** — e essa foi a decisão
+que exigiu mais cuidado, porque os itens 1 e 2 do despacho se contradizem na superfície: o item 1
+manda criar categoria de verdade, o item 2 proíbe URL nova até 16/09. A saída que atende os dois é
+tirar os artigos da "sem categoria" **sem pedir ao Google que indexe a categoria nova**. Quando a
+leitura de 16/09 liberar e a listagem tiver texto próprio (seção 14.4), basta acrescentar `metodos`
+em `aquametria_seo_categorias_no_sitemap()`: entra no sitemap e sai do `noindex` na mesma linha.
+
+### Item 3 do despacho: a regra das ilhas que não se interligam
+
+Escrita na seção 10 do `ARQUIPELAGO.md`, que era a condição para apagar o item — e apagada de lá no
+mesmo commit, como o despacho manda. A regra ficou escrita pelo motivo, não pelo par: público sem
+sobreposição, arquipélago é economia de fábrica e não rede de links, e a exceção futura exige nomear
+as duas ilhas e justificar pelo leitor.
+
+### T7, par C15 — e o achado que muda o tamanho do bloco seguinte
+
+A C15 recebeu as **três** peças da seção 5 que faltavam nela, não só o JSON-LD: resposta antes da
+explicação, tabela de exemplos pré-renderizada e JSON-LD (`WebApplication` + `FAQPage` de 15
+perguntas). Seis aquários de 30 a 120 cm resolvidos em PHP com as mesmas regras do script — `lm()` e
+`litros()` espelhados função a função, porque tabela servida que contradiz a calculadora logo acima
+dela é pior que tabela nenhuma.
+
+**Três das seis linhas dizem que NENHUMA luminária do banco atende**, com o motivo escrito. Não é
+defeito: é a faixa vazia que a varredura de cobertura já tinha medido, agora visível na página em
+vez de escondida atrás de um formulário. Bloco de produto vazio é portão (seção 7) — mas silêncio
+parece defeito, e por isso a célula explica.
+
+**O achado, e ele custa tempo de quem pegar o próximo bloco:** medindo para escrever isto, ficou
+claro que **nem a C12 nem a C1 servem tabela de exemplos, e nenhuma das duas tem resposta direta no
+topo**. O T7 nessas duas não é "acrescentar schema", é o pacote inteiro — planeje como bloco de
+calculadora. O molde está pronto na C15.
+
+### Verificação desta execução (seção 8 do `ARQUIPELAGO.md`)
+
+- `php -l` nos 9 snippets: limpo, **com controle negativo** — como os snippets não têm `<?php` no
+  topo, `php -l` cru passaria mesmo com erro de sintaxe; o lint foi feito com o marcador prefixado e
+  um erro proposital foi injetado para provar que o instrumento acusa.
+- `conferir-protecao-funcoes.py`: 9 snippets, todas as funções dentro de `function_exists`.
+- `teste-seo-tecnico.php` (novo): **28 afirmações, 0 falha.** Exercita as duas metades do risco — o
+  que tem que sair do índice sai, e **o que não pode sair fica**. Um `noindex` sobrando numa
+  calculadora seria um defeito muito pior do que o consertado aqui.
+- `teste-navegador-c15.mjs`: **78 afirmações em Chromium real, TUDO PASSOU, console limpo.**
+- **O teste de navegador pegou dois defeitos meus, em duas rodadas**, e vale registrar porque é
+  exatamente para isso que ele existe: eu tinha reusado `.aqm-c15-aviso-afiliado` e depois
+  `.aqm-c15-fontes` nos elementos novos, e cada reuso quebrou um localizador que o teste usa em modo
+  estrito. Nenhum dos dois é erro de sintaxe, e nenhum apareceria em `php -l`. Viraram classes
+  próprias (`aqm-c15-aviso-tabela`, `aqm-c15-exemplos`) com o estilo herdado pela lista de seletores.
+- `conferir-entidades.mjs`: 0 falhas. **C15 passou a `jsonld_ok=1`** (eram C3 e C5 só). Zero
+  entidade `&#038;` dentro de `<script>` nas cinco calculadoras.
+- JSON-LD analisado como JSON de verdade: 2 nós (`WebApplication`, `FAQPage`), 15 perguntas, cada
+  resposta conferida contra o número que a tabela servida mostra.
+- `validar-produtos.py`: 78 produtos, 0 erro, 9 avisos conhecidos. `conferir-slugs.py`: limpo.
+- `teste-conversor-markdown.php` (17 casos), `teste-apelidos.php` (59 afirmações),
+  `teste-escape-shortcode.php`: 0 falha.
+
+### NÃO CONCLUÍDO — o site continua fora de alcance, e agora são DEZOITO revisões paradas
+
+`aquametria.com.br` devolveu **EGRESS_BLOCKED** de novo, testado em
+`/wp-json/aquametria/v1/status`. **O Sync não foi acionado e a revisão aplicada não foi conferida**,
+então nada desta execução pode ser dado por "no ar" — só por "no `main`".
+
+**Repositório na revisão 29; a última medição do site, em 08/09 às 13h03, dizia 11.** E o egresso não
+bloqueia só o site: `chihirosaquaticstudio.com` também foi recusado, o que **torna o T3 (catálogo)
+inexecutável da nuvem** — produto novo exige ficha de fabricante com fonte e data, e inventar dado
+técnico é proibido. Foi por isso que esta execução fez despacho + T2 + T7, e não banco.
+
+**O que destrava tudo é um gesto de trinta segundos no Chrome do Raphael:** abrir a URL do Sync com
+`&forcar=1` e, uns cinco minutos depois, conferir que `/wp-json/aquametria/v1/status` diz **revisão
+29**. Depois disso, a medição do item 1 do despacho: `wp-sitemap.xml` sem `/category/uncategorized/`,
+e essa URL servindo `noindex`.
+
+### Produtos esperando link de afiliado: 39 de 78
+
+Sem mudança — nenhum produto entrou nesta execução. Por marca: 10 Atman, 10 Chihiros, 4 Eheim, 3
+Ocean Tech, 3 SunSun, 2 Hopar, 2 Seachem, 1 cada de Roxin, Ista, WFish, JBL e um sem marca.
+
+**O número "20 sem loja possível" do item 4 do despacho está VENCIDO e não deve ser repetido.** Ele
+foi medido quando a Shopee era o único programa; o Mercado Livre entrou em 09/09 justamente porque a
+Shopee não vende Eheim, Atman canister, Chihiros e JBL — que são **24 dos 39** desta lista. Quem
+refizer essa medição precisa do painel do Mercado Livre aberto, e isso é da Sentinela estratégica,
+não da Fundação.
+
+### Próximo passo desbloqueado
+
+1. **T1 — medir a indexação no Search Console.** Continua sendo o primeiro da fila e continua
+   dependendo do Chrome do Raphael. É ele que autoriza ou barra a T4.
+2. **T7, par C12** — trabalho de repositório, não depende de egresso. Agora se sabe que é bloco
+   inteiro de calculadora (tabela + resposta direta + JSON-LD), com o molde pronto na C15.
+3. **T3 (catálogo) segue barrado da nuvem** enquanto o egresso bloquear os sites de fabricante.

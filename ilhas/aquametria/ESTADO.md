@@ -2,9 +2,9 @@
 ilha: aquametria
 estado: viva
 prioridade: 2
-ultima_execucao: 2026-09-09T20:05Z
-executando_desde: 2026-09-09T21:18Z
-bloco_atual: "T3 — leva de fechamento de faixa (concluida)"
+ultima_execucao: 2026-09-09T21:55Z
+executando_desde: null
+bloco_atual: "despacho 1 e 3 + T2 (SEO tecnico) e T7 par C15 — no main, revisao 29; falta o Sync"
 ultima_ronda: 2026-09-09T19:40Z
 bloqueada_por: null
 ---

@@ -58,7 +58,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_C15_VERSAO' ) ) {
-	define( 'AQUAMETRIA_C15_VERSAO', '1.1.2' );
+	define( 'AQUAMETRIA_C15_VERSAO', '1.2.0' );
 	define( 'AQUAMETRIA_C15_SLUG', 'calculadora-de-iluminacao' );
 	define( 'AQUAMETRIA_C15_VERIFICADO_EM', '08/09/2026' );
 	define( 'AQUAMETRIA_C15_PAGINA_AFILIADOS', 'divulgacao-de-afiliados' );
@@ -69,6 +69,9 @@ if ( ! defined( 'AQUAMETRIA_C15_VERSAO' ) ) {
 	/* Profundidade a partir da qual lm/L deixa de descrever o que chega ao
 	   substrato. Convenção editorial declarada, não constante de terceiro. */
 	define( 'AQUAMETRIA_C15_LAMINA_FUNDA_CM', 45 );
+	/* Convencao editorial declarada da Aquametria, a mesma da C1: aquario cheio
+	   ate a borda nao existe, e a agua real desconta 3 cm da altura do vidro. */
+	define( 'AQUAMETRIA_C15_BORDA_LIVRE_CM', 3 );
 }
 
 /* ---------------------------------------------------------------------------
@@ -657,15 +660,15 @@ max-width:52rem;font-family:var(--c15-texto);color:var(--c15-tinta);}
 .aqm-c15-loja{display:inline-block;font-family:var(--c15-texto);font-weight:600;font-size:.88rem;padding:.45rem .9rem;border-radius:2px;background:var(--c15-lamina);color:var(--c15-superficie);text-decoration:none;}
 .aqm-c15-loja:hover{filter:brightness(1.08);color:var(--c15-superficie);}
 .aqm-c15-semloja{font-size:.82rem;color:var(--c15-legenda);font-style:italic;}
-.aqm-c15-aviso-afiliado{background:var(--c15-papel);border:1px solid var(--c15-traco);border-left:3px solid var(--c15-alerta);border-radius:2px;padding:.8rem 1rem;font-size:.86rem;line-height:1.5;color:var(--c15-legenda);margin:1rem 0 0;}
-.aqm-c15-aviso-afiliado strong{color:var(--c15-tinta);}
+.aqm-c15-aviso-afiliado,.aqm-c15-aviso-tabela{background:var(--c15-papel);border:1px solid var(--c15-traco);border-left:3px solid var(--c15-alerta);border-radius:2px;padding:.8rem 1rem;font-size:.86rem;line-height:1.5;color:var(--c15-legenda);margin:1rem 0 0;}
+.aqm-c15-aviso-afiliado strong,.aqm-c15-aviso-tabela strong{color:var(--c15-tinta);}
 .aqm-c15-citar{background:var(--c15-papel);border:1px dashed var(--c15-traco);border-radius:3px;padding:.85rem 1rem;font-size:.9rem;line-height:1.5;margin:0 0 1rem;}
 .aqm-c15-citar p{margin:0 0 .6rem;}
 .aqm-c15-rolagem{overflow-x:auto;-webkit-overflow-scrolling:touch;}
-.aqm-c15-fontes{width:100%;min-width:32rem;font-size:.86rem;border-collapse:collapse;margin:.4rem 0 0;}
-.aqm-c15-fontes th,.aqm-c15-fontes td{border:1px solid var(--c15-traco);padding:.45rem .6rem;text-align:left;vertical-align:top;}
-.aqm-c15-fontes th{background:var(--c15-papel);font-family:var(--c15-display);font-size:.8rem;}
-.aqm-c15-fontes td:first-child{font-family:var(--c15-mono);font-size:.8rem;white-space:nowrap;}
+.aqm-c15-fontes,.aqm-c15-exemplos{width:100%;min-width:32rem;font-size:.86rem;border-collapse:collapse;margin:.4rem 0 0;}
+.aqm-c15-fontes th,.aqm-c15-fontes td,.aqm-c15-exemplos th,.aqm-c15-exemplos td{border:1px solid var(--c15-traco);padding:.45rem .6rem;text-align:left;vertical-align:top;}
+.aqm-c15-fontes th,.aqm-c15-exemplos th{background:var(--c15-papel);font-family:var(--c15-display);font-size:.8rem;}
+.aqm-c15-fontes td:first-child,.aqm-c15-exemplos td:first-child{font-family:var(--c15-mono);font-size:.8rem;white-space:nowrap;}
 .aqm-c15-leituras{width:100%;min-width:30rem;font-size:.88rem;border-collapse:collapse;margin:.6rem 0 0;}
 .aqm-c15-leituras th,.aqm-c15-leituras td{border:1px solid var(--c15-traco);padding:.45rem .6rem;text-align:left;vertical-align:top;}
 .aqm-c15-leituras th{background:var(--c15-papel);font-family:var(--c15-display);font-size:.8rem;}
@@ -1810,6 +1813,444 @@ function aquametria_c15_adiante_html() {
  *   - o comportamento no wp_footer, depois do HTML que ele controla.
  * ------------------------------------------------------------------------- */
 
+/* ---------------------------------------------------------------------------
+ * 5c. Seis aquários resolvidos no servidor, e o JSON-LD
+ *
+ * Escrito em 09/09/2026, e o motivo é uma medição, não um gosto: todo o cálculo
+ * desta página é JavaScript no navegador, de propósito (o site está atrás de
+ * cache de página). A consequência é que um modelo de linguagem — ou o leitor
+ * que não preenche formulário — recebia um formulário VAZIO e ia embora sem um
+ * lúmen sequer. É o defeito que a seção 5 do ARQUIPELAGO.md chama pelo nome, e
+ * que a C5 já tinha consertado; aqui a C15 recebe o mesmo tratamento.
+ *
+ * As funções abaixo resolvem seis aquários em PHP, com as MESMAS regras do
+ * script, e o resultado sai no HTML servido. Onde o script arredonda, elas
+ * arredondam igual — tabela servida que contradiz a calculadora logo acima dela
+ * é pior que tabela nenhuma.
+ * ------------------------------------------------------------------------- */
+
+/* Espelho em PHP do lm() do script: lúmen é número grosso, então arredonda para
+   a dezena, ou para a centena acima de 10 000. */
+if ( ! function_exists( 'aquametria_c15_lm' ) ) {
+function aquametria_c15_lm( $n ) {
+	if ( null === $n || ! is_numeric( $n ) ) {
+		return '—';
+	}
+	$passo = ( $n >= 10000 ) ? 100 : 10;
+	return number_format_i18n( round( $n / $passo ) * $passo, 0 );
+}
+}
+
+/* Espelho em PHP do litros() do script. */
+if ( ! function_exists( 'aquametria_c15_litros' ) ) {
+function aquametria_c15_litros( $n ) {
+	if ( null === $n || ! is_numeric( $n ) ) {
+		return '—';
+	}
+	return ( $n >= 100 ) ? number_format_i18n( round( $n ), 0 ) : number_format_i18n( round( $n * 10 ) / 10, 1 );
+}
+}
+
+/* Espelho em PHP do NIVEIS do script. Se um número divergir entre os dois, a
+   página passa a afirmar duas coisas — por isso o teste de navegador compara a
+   tabela servida com o que a calculadora devolve para a mesma entrada. */
+if ( ! function_exists( 'aquametria_c15_niveis' ) ) {
+function aquametria_c15_niveis() {
+	return array(
+		'baixa' => array( 'rotulo' => 'baixa exigência', 'consolidado' => array( 10, 20 ), 'aberto' => false ),
+		'media' => array( 'rotulo' => 'exigência média', 'consolidado' => array( 20, 40 ), 'aberto' => false ),
+		'alta'  => array( 'rotulo' => 'alta exigência',  'consolidado' => array( 40, 60 ), 'aberto' => true ),
+	);
+}
+}
+
+/* Os seis aquários. As medidas são as do comércio brasileiro, e o volume de
+   água NÃO é o produto das três: desconta-se a borda livre de 3 cm, que é a
+   convenção editorial declarada da Aquametria e a mesma que a C1 usa. Escrever
+   "60 × 30 × 35 = 63 L" seria publicar um aquário cheio até a borda, que não
+   existe. */
+if ( ! function_exists( 'aquametria_c15_casos_exemplo' ) ) {
+function aquametria_c15_casos_exemplo() {
+	$casos = array(
+		array( 'c' => 30,  'l' => 20, 'a' => 25 ),
+		array( 'c' => 45,  'l' => 25, 'a' => 30 ),
+		array( 'c' => 60,  'l' => 30, 'a' => 35 ),
+		array( 'c' => 80,  'l' => 35, 'a' => 40 ),
+		array( 'c' => 90,  'l' => 45, 'a' => 45 ),
+		array( 'c' => 120, 'l' => 50, 'a' => 50 ),
+	);
+	foreach ( $casos as $i => $caso ) {
+		$lamina                 = $caso['a'] - AQUAMETRIA_C15_BORDA_LIVRE_CM;
+		$casos[ $i ]['lamina']  = $lamina;
+		$casos[ $i ]['volume']  = ( $caso['c'] * $caso['l'] * $lamina ) / 1000;
+		$casos[ $i ]['funda']   = ( $lamina > AQUAMETRIA_C15_LAMINA_FUNDA_CM );
+	}
+	return $casos;
+}
+}
+
+/* Resolve um aquário num nível de exigência, com as regras do script. */
+if ( ! function_exists( 'aquametria_c15_exemplo' ) ) {
+function aquametria_c15_exemplo( $volume, $comprimento, $nivel_id ) {
+	$niveis = aquametria_c15_niveis();
+	$nivel  = isset( $niveis[ $nivel_id ] ) ? $niveis[ $nivel_id ] : $niveis['media'];
+
+	$r = array(
+		'nivel_id' => $nivel_id,
+		'rotulo'   => $nivel['rotulo'],
+		'aberto'   => $nivel['aberto'],
+		'min'      => $volume * $nivel['consolidado'][0],
+		'max'      => $volume * $nivel['consolidado'][1],
+		'lm_l'     => $nivel['consolidado'],
+	);
+
+	/* Mesma peneira do escolher() do script: primeiro a cobertura declarada pelo
+	   fabricante, depois o fluxo dentro da faixa. A ordem importa e é a da seção
+	   7 do ARQUIPELAGO.md — elegibilidade técnica COMPLETA antes de qualquer
+	   coisa. Peça que não cobre o vidro não entra na lista nem em último lugar. */
+	$dentro = array();
+	foreach ( aquametria_c15_catalogo() as $p ) {
+		$cobre = ( null === $p['aquario_min_cm'] || $comprimento >= $p['aquario_min_cm'] )
+			&& ( null === $p['aquario_max_cm'] || $comprimento <= $p['aquario_max_cm'] );
+		if ( ! $cobre ) {
+			continue;
+		}
+		if ( null === $p['fluxo_lm'] ) {
+			continue;
+		}
+		if ( $p['fluxo_lm'] >= $r['min'] && ( $r['aberto'] || $p['fluxo_lm'] <= $r['max'] ) ) {
+			$dentro[] = $p;
+		}
+	}
+
+	/* Desempate: o mais perto do meio da faixa, exatamente como o script. */
+	$meio = ( $r['min'] + $r['max'] ) / 2;
+	usort( $dentro, function ( $a, $b ) use ( $meio ) {
+		$da = abs( $a['fluxo_lm'] - $meio );
+		$db = abs( $b['fluxo_lm'] - $meio );
+		if ( $da === $db ) {
+			return 0;
+		}
+		return ( $da < $db ) ? -1 : 1;
+	} );
+
+	$r['produtos'] = array_slice( $dentro, 0, 5 );
+	$r['produto']  = $dentro ? $dentro[0] : null;
+	return $r;
+}
+}
+
+/* O nome do produto como a tela escreve — o banco é gravado sem acento de
+   propósito, e a frase é montada aqui. */
+if ( ! function_exists( 'aquametria_c15_produto_nome' ) ) {
+function aquametria_c15_produto_nome( $p ) {
+	return trim( ( $p['marca'] ? $p['marca'] . ' ' : '' ) . $p['modelo'] );
+}
+}
+
+/* A célula do produto. Sem item que atenda, ela DIZ por quê: a seção 7 do
+   contrato trata bloco vazio como portão, não como defeito — mas silêncio
+   parece defeito, e por isso a frase existe. */
+if ( ! function_exists( 'aquametria_c15_produto_celula_html' ) ) {
+function aquametria_c15_produto_celula_html( $e ) {
+	if ( null === $e['produto'] ) {
+		return '<td><span class="aqm-c15-semloja">nenhuma luminária do banco cobre esse comprimento dentro de '
+			. esc_html( aquametria_c15_lm( $e['min'] ) ) . ' a ' . esc_html( aquametria_c15_lm( $e['max'] ) )
+			. ' lm — é faixa vazia do catálogo brasileiro, não erro da conta</span></td>';
+	}
+	$p = $e['produto'];
+	$h = '<td><span class="aqm-c15-num">' . esc_html( aquametria_c15_produto_nome( $p ) ) . '</span>';
+	$h .= '<span class="aqm-c15-un">' . esc_html( aquametria_c15_lm( $p['fluxo_lm'] ) ) . ' lm · cobre ';
+	$h .= esc_html( ( null === $p['aquario_min_cm'] ? 'até ' : number_format_i18n( $p['aquario_min_cm'], 0 ) . ' a ' )
+		. ( null === $p['aquario_max_cm'] ? 'qualquer' : number_format_i18n( $p['aquario_max_cm'], 0 ) ) . ' cm' );
+	$h .= $p['link'] ? '' : ' · sem link de loja';
+	$h .= '</span></td>';
+	return $h;
+}
+}
+
+/* ---- A resposta antes da explicação (seção 5, item 2 do ARQUIPELAGO.md) ---
+   Frase autossuficiente: precisa sobreviver a ser citada fora de contexto, por
+   um modelo de linguagem que leu só este parágrafo. Por isso repete o número, a
+   unidade, a condição e a data em vez de dizer "veja acima". */
+if ( ! function_exists( 'aquametria_c15_resposta_direta_html' ) ) {
+function aquametria_c15_resposta_direta_html() {
+	$e60 = aquametria_c15_exemplo( 57.6, 60, 'media' );
+	$b60 = aquametria_c15_exemplo( 57.6, 60, 'baixa' );
+	$a60 = aquametria_c15_exemplo( 57.6, 60, 'alta' );
+
+	$h  = '<div class="aqm-c15-citar">';
+	$h .= '<p><strong>A resposta curta.</strong> Um aquário plantado pede de <strong>20 a 40 lúmens por litro</strong> de água real para plantas de exigência média, ';
+	$h .= 'de 10 a 20 lm/L para plantas de baixa exigência e de 40 a 60 lm/L para as de alta exigência, que só fazem sentido com CO2 injetado. ';
+	$h .= 'Num aquário de 60 cm com ' . esc_html( aquametria_c15_litros( 57.6 ) ) . ' litros de água, isso dá ';
+	$h .= '<strong>' . esc_html( aquametria_c15_lm( $e60['min'] ) ) . ' a ' . esc_html( aquametria_c15_lm( $e60['max'] ) ) . ' lm</strong> no nível médio, ';
+	$h .= esc_html( aquametria_c15_lm( $b60['min'] ) ) . ' a ' . esc_html( aquametria_c15_lm( $b60['max'] ) ) . ' lm no baixo e ';
+	$h .= 'a partir de ' . esc_html( aquametria_c15_lm( $a60['min'] ) ) . ' lm no alto.</p>';
+
+	$h .= '<p><strong>De onde vem esse número, e por que ele é uma faixa e não um valor.</strong> ';
+	$h .= 'Três fontes brasileiras publicam lúmens por litro com o mesmo rótulo e números diferentes: peixeseaquarismo, aquarioturbinado e aquariosplantados. ';
+	$h .= 'A Aquametria publica a união do que as três afirmam, com o nome de cada uma ao lado, e <strong>não tira média</strong> — média apagaria justamente o desacordo que faz esta página valer. ';
+	$h .= 'Levantamento verificado em ' . esc_html( AQUAMETRIA_C15_VERIFICADO_EM ) . '.</p>';
+
+	$h .= '<p><strong>E o que essa conta não sabe.</strong> Lúmen por litro ignora a profundidade: acima de ' . esc_html( AQUAMETRIA_C15_LAMINA_FUNDA_CM ) . ' cm de lâmina d\'água ';
+	$h .= 'o mesmo número de lúmens entrega muito menos luz no substrato, e a medida que resolveria isso — PPFD por profundidade — não está publicada aqui porque não temos fonte para ela. ';
+	$h .= 'Dizer o que a conta não alcança é parte da resposta.</p>';
+	$h .= '</div>';
+
+	return $h;
+}
+}
+
+/* ---- A tabela de exemplos servida (seção 5, item 1) ---------------------- */
+if ( ! function_exists( 'aquametria_c15_exemplos_html' ) ) {
+function aquametria_c15_exemplos_html() {
+	$h  = '<div class="aqm-c15-painel">';
+	$h .= '<h3>Seis aquários já resolvidos, nos três níveis de exigência</h3>';
+	$h .= '<p class="aqm-c15-sub">É a mesma conta do formulário acima, aplicada a seis medidas comuns do comércio brasileiro. ';
+	$h .= 'Estes números estão prontos no HTML desta página — não é preciso preencher nada, e quem lê sem executar JavaScript vê os mesmos valores que a calculadora devolve.</p>';
+
+	/* Classe propria, e nao .aqm-c15-fontes: aquela e a tabela de divergencia das
+	   fontes, e o teste de navegador a localiza pelo seletor. Duas tabelas com a
+	   mesma classe quebram o localizador — foi o teste que pegou isto. */
+	$h .= '<div class="aqm-c15-rolagem"><table class="aqm-c15-exemplos">';
+	$h .= '<tr><th>Aquário</th><th>Água real</th><th>Baixa exigência</th><th>Exigência média</th><th>Alta exigência</th><th>Luminária do banco para o nível médio</th></tr>';
+
+	foreach ( aquametria_c15_casos_exemplo() as $caso ) {
+		$b = aquametria_c15_exemplo( $caso['volume'], $caso['c'], 'baixa' );
+		$m = aquametria_c15_exemplo( $caso['volume'], $caso['c'], 'media' );
+		$a = aquametria_c15_exemplo( $caso['volume'], $caso['c'], 'alta' );
+
+		$h .= '<tr>';
+		$h .= '<td><span class="aqm-c15-num">' . esc_html( number_format_i18n( $caso['c'], 0 ) ) . ' cm</span>';
+		$h .= '<span class="aqm-c15-un">' . esc_html( number_format_i18n( $caso['c'], 0 ) . ' × ' . number_format_i18n( $caso['l'], 0 ) . ' × ' . number_format_i18n( $caso['a'], 0 ) ) . ' cm</span></td>';
+
+		$h .= '<td><span class="aqm-c15-num">' . esc_html( aquametria_c15_litros( $caso['volume'] ) ) . ' L</span>';
+		$h .= '<span class="aqm-c15-un">lâmina de ' . esc_html( number_format_i18n( $caso['lamina'], 0 ) ) . ' cm';
+		$h .= $caso['funda'] ? ' — funda' : '';
+		$h .= '</span></td>';
+
+		$h .= '<td><span class="aqm-c15-num">' . esc_html( aquametria_c15_lm( $b['min'] ) ) . ' a ' . esc_html( aquametria_c15_lm( $b['max'] ) ) . ' lm</span>';
+		$h .= '<span class="aqm-c15-un">10 a 20 lm/L</span></td>';
+
+		$h .= '<td><span class="aqm-c15-num">' . esc_html( aquametria_c15_lm( $m['min'] ) ) . ' a ' . esc_html( aquametria_c15_lm( $m['max'] ) ) . ' lm</span>';
+		$h .= '<span class="aqm-c15-un">20 a 40 lm/L</span></td>';
+
+		$h .= '<td><span class="aqm-c15-num">a partir de ' . esc_html( aquametria_c15_lm( $a['min'] ) ) . ' lm</span>';
+		$h .= '<span class="aqm-c15-un">40 lm/L, sem teto declarado</span></td>';
+
+		$h .= aquametria_c15_produto_celula_html( $m );
+		$h .= '</tr>';
+	}
+
+	$h .= '</table></div>';
+
+	$h .= '<p class="aqm-c15-criterio" style="margin-top:.8rem">Como ler a tabela. ';
+	$h .= 'A água real desconta 3 cm de borda livre da altura do vidro — é a convenção editorial declarada da Aquametria, a mesma da calculadora de litragem, e existe porque aquário cheio até a borda não existe. ';
+	$h .= 'A coluna da alta exigência não tem teto porque a fonte aquarioturbinado publica "acima de 40 lm/L" sem dizer até onde, e inventar um teto para fechar a faixa seria inventar constante. ';
+	$h .= 'A palavra "funda" na segunda coluna marca as lâminas acima de ' . esc_html( AQUAMETRIA_C15_LAMINA_FUNDA_CM ) . ' cm, em que lúmen por litro começa a mentir e o número da linha vale menos do que parece. ';
+	$h .= 'Nenhum valor desta tabela foi digitado à mão: todos saem das mesmas regras que a calculadora usa, calculados no servidor a cada carregamento.</p>';
+
+	$divulgacao = aquametria_c15_url( AQUAMETRIA_C15_PAGINA_AFILIADOS );
+
+	/* Classe propria, e nao a mesma do aviso de publicidade la de cima: o teste de
+	   navegador localiza aquele por .aqm-c15-aviso-afiliado, e duas ocorrencias
+	   da mesma classe quebram o localizador. Foi o teste que pegou isto. */
+	$h .= '<p class="aqm-c15-aviso-tabela"><strong>Sobre a última coluna.</strong> ';
+	$h .= 'Ela mostra a luminária do banco técnico da Aquametria que <em>cobre o comprimento daquele aquário segundo o fabricante</em> e cujo fluxo cai mais perto do meio da faixa do nível médio. ';
+	$h .= 'Os dois cortes nessa ordem, e a comissão não entra em nenhum deles: peça que não cobre o vidro não aparece nem em último lugar, e modelo sem link de loja aparece do mesmo jeito — a coluna diz quando é o caso. ';
+	$h .= 'Onde a célula diz que nada atende, é faixa vazia do catálogo brasileiro medida por nós, não erro da conta. ';
+	$h .= 'Alguns desses nomes levam a lojas por link de afiliado, marcado como patrocinado: se você comprar por ele, a Aquametria pode receber comissão, sem custo a mais para você. ';
+	$h .= 'Não publicamos preço aqui, porque preço muda toda semana e número velho na tela é pior que nenhum. ';
+	$h .= '<a href="' . esc_url( $divulgacao ) . '">Como a Aquametria ganha dinheiro</a>.</p>';
+
+	$h .= '</div>';
+	return $h;
+}
+}
+
+/* ---- JSON-LD (seção 5, item 3) ------------------------------------------
+ * Sai no wp_head, e por isso NUNCA dentro do retorno do shortcode: o retorno
+ * atravessa os filtros do the_content, que trocariam cada "&" pela entidade
+ * numérica e quebrariam o JSON. Mesma regra do script, mesmo motivo.
+ *
+ * Cada resposta do FAQ existe, com o mesmo número, na tabela servida acima —
+ * FAQPage que promete o que a página não mostra é lixo, e seria lixo detectável.
+ * ---------------------------------------------------------------------- */
+if ( ! function_exists( 'aquametria_c15_jsonld_dados' ) ) {
+function aquametria_c15_jsonld_dados() {
+	$url    = aquametria_c15_url( AQUAMETRIA_C15_SLUG );
+	$artigo = aquametria_c15_url( AQUAMETRIA_C15_ARTIGO );
+
+	$editora = array(
+		'@type' => 'Organization',
+		'name'  => 'Aquametria',
+		'url'   => home_url( '/' ),
+	);
+
+	$app = array(
+		'@type'                  => 'WebApplication',
+		'@id'                    => $url . '#calculadora',
+		'name'                   => 'Calculadora de iluminação de aquário plantado',
+		'alternateName'          => 'Aquametria C15 — quantos lúmens por litro',
+		'url'                    => $url,
+		'inLanguage'             => 'pt-BR',
+		'applicationCategory'    => 'UtilitiesApplication',
+		'applicationSubCategory' => 'Calculadora de dimensionamento de aquário',
+		'operatingSystem'        => 'Qualquer navegador com JavaScript',
+		'browserRequirements'    => 'Requer JavaScript. O cálculo roda no navegador e nenhum dado é enviado a servidor.',
+		'isAccessibleForFree'    => true,
+		'offers'                 => array(
+			'@type'         => 'Offer',
+			'price'         => '0',
+			'priceCurrency' => 'BRL',
+		),
+		'softwareVersion' => AQUAMETRIA_C15_VERSAO,
+		'description'     => 'Converte o volume real de água e a exigência das plantas na faixa de lúmens que o aquário pede, '
+			. 'e cruza essa faixa com o comprimento do vidro para dizer quais luminárias do banco técnico realmente cobrem a peça. '
+			. 'Publica as três leituras brasileiras de lúmens por litro separadas, com o nome de cada fonte, em vez de tirar média delas.',
+		'featureList' => array(
+			'Faixa de lúmens a partir do volume real de água e do nível de exigência das plantas',
+			'As três leituras brasileiras de lúmens por litro, cada uma com o nome da fonte',
+			'Fotoperíodo por regime: low tech, high tech com CO2, combate a alga e ciclagem',
+			'Aviso quando o nível alto é escolhido sem CO2 injetado',
+			'Aviso quando a lâmina d\'água passa dos ' . AQUAMETRIA_C15_LAMINA_FUNDA_CM . ' cm em que lúmen por litro começa a mentir',
+			'Barreira de cobertura declarada pelo fabricante antes de sugerir qualquer luminária',
+			'Caminho inverso: a luminária que você já tem serve para qual aquário',
+			'Tabela pré-calculada para seis aquários de 30 a 120 cm, nos três níveis de exigência',
+			'Luminária do banco indicada para cada um desses seis aquários, já no HTML servido',
+		),
+		'publisher'  => $editora,
+		'isBasedOn'  => 'Levantamento de fontes brasileiras da Aquametria e fichas de fabricante e de varejo especializado coletadas até ' . AQUAMETRIA_C15_VERIFICADO_EM,
+		'mainEntityOfPage' => $artigo,
+	);
+
+	$perguntas = array();
+
+	foreach ( aquametria_c15_casos_exemplo() as $caso ) {
+		$b = aquametria_c15_exemplo( $caso['volume'], $caso['c'], 'baixa' );
+		$m = aquametria_c15_exemplo( $caso['volume'], $caso['c'], 'media' );
+		$a = aquametria_c15_exemplo( $caso['volume'], $caso['c'], 'alta' );
+
+		$texto = 'Um aquário de ' . number_format_i18n( $caso['c'], 0 ) . ' cm com '
+			. aquametria_c15_litros( $caso['volume'] ) . ' litros de água real pede de '
+			. aquametria_c15_lm( $m['min'] ) . ' a ' . aquametria_c15_lm( $m['max'] ) . ' lúmens para plantas de exigência média (20 a 40 lm/L), '
+			. 'de ' . aquametria_c15_lm( $b['min'] ) . ' a ' . aquametria_c15_lm( $b['max'] ) . ' lm para plantas de baixa exigência (10 a 20 lm/L) '
+			. 'e a partir de ' . aquametria_c15_lm( $a['min'] ) . ' lm para as de alta exigência (40 lm/L, sem teto declarado pelas fontes). '
+			. 'A faixa é a união do que três fontes brasileiras publicam sob o mesmo rótulo — peixeseaquarismo, aquarioturbinado e aquariosplantados — '
+			. 'e a Aquametria não tira média delas de propósito: a média apagaria o desacordo, que é o que a página tem a dizer. '
+			. 'Verificado em ' . AQUAMETRIA_C15_VERIFICADO_EM . '.';
+
+		if ( $caso['funda'] ) {
+			$texto .= ' Atenção neste tamanho: a lâmina d\'água tem ' . number_format_i18n( $caso['lamina'], 0 ) . ' cm, acima dos '
+				. AQUAMETRIA_C15_LAMINA_FUNDA_CM . ' cm em que lúmen por litro começa a mentir — o mesmo número de lúmens entrega menos luz no substrato de um aquário fundo.';
+		}
+
+		$perguntas[] = array(
+			'@type' => 'Question',
+			'name'  => 'Quantos lúmens de luminária para um aquário de ' . number_format_i18n( $caso['c'], 0 ) . ' cm?',
+			'acceptedAnswer' => array( '@type' => 'Answer', 'text' => $texto ),
+		);
+	}
+
+	foreach ( aquametria_c15_casos_exemplo() as $caso ) {
+		$m = aquametria_c15_exemplo( $caso['volume'], $caso['c'], 'media' );
+
+		if ( null === $m['produto'] ) {
+			/* Faixa vazia é resposta legítima, e é dita com essas palavras: um FAQ
+			   que fica calado onde o banco não cobre parece defeito. */
+			$texto = 'Hoje, nenhuma. O banco técnico da Aquametria não tem luminária que ao mesmo tempo declare cobrir '
+				. number_format_i18n( $caso['c'], 0 ) . ' cm de aquário e entregue entre '
+				. aquametria_c15_lm( $m['min'] ) . ' e ' . aquametria_c15_lm( $m['max'] ) . ' lúmens, que é o que esse aquário pede no nível médio. '
+				. 'Isso é uma faixa vazia do catálogo brasileiro medida por nós, não um erro da conta — e está na nossa lista de compras do banco. '
+				. 'Preferimos dizer isso a empurrar uma peça que não cobre o vidro.';
+		} else {
+			$p     = $m['produto'];
+			$texto = 'Para um aquário de ' . number_format_i18n( $caso['c'], 0 ) . ' cm com ' . aquametria_c15_litros( $caso['volume'] )
+				. ' litros de água real e plantas de exigência média, a faixa é de ' . aquametria_c15_lm( $m['min'] ) . ' a '
+				. aquametria_c15_lm( $m['max'] ) . ' lúmens, e a luminária do banco técnico da Aquametria que cai mais perto do meio dela é a '
+				. aquametria_c15_produto_nome( $p ) . ', com ' . aquametria_c15_lm( $p['fluxo_lm'] ) . ' lm declarados. '
+				. 'Ela entra na lista por dois cortes nessa ordem: o fabricante declara que ela cobre '
+				. ( null === $p['aquario_min_cm'] ? 'até ' : number_format_i18n( $p['aquario_min_cm'], 0 ) . ' a ' )
+				. ( null === $p['aquario_max_cm'] ? 'qualquer comprimento' : number_format_i18n( $p['aquario_max_cm'], 0 ) . ' cm' )
+				. ' de aquário, e só então o fluxo dela é comparado com a faixa. '
+				. 'A comissão não entra no critério: '
+				. ( $p['link'] ? 'este modelo tem link de loja, e teria aparecido na mesma posição sem ele.' : 'este modelo NÃO tem link de loja no nosso banco e aparece assim mesmo.' )
+				. ' Antes de comprar, confira a voltagem e se a peça cabe no móvel: a ficha declara '
+				. ( $p['peca_cm'] ? number_format_i18n( $p['peca_cm'], 0 ) . ' cm de peça' : 'o comprimento da peça sem confirmação' ) . '.';
+		}
+
+		$perguntas[] = array(
+			'@type' => 'Question',
+			'name'  => 'Qual luminária comprar para um aquário plantado de ' . number_format_i18n( $caso['c'], 0 ) . ' cm?',
+			'acceptedAnswer' => array( '@type' => 'Answer', 'text' => $texto ),
+		);
+	}
+
+	$perguntas[] = array(
+		'@type' => 'Question',
+		'name'  => 'Quantos lúmens por litro um aquário plantado precisa?',
+		'acceptedAnswer' => array(
+			'@type' => 'Answer',
+			'text'  => 'Depende da exigência das plantas, e a resposta honesta é uma faixa, não um número. '
+				. 'De 10 a 20 lm/L para plantas de baixa exigência — anúbias, musgos, samambaias e cripitas, as que crescem devagar e vivem à sombra. '
+				. 'De 20 a 40 lm/L para exigência média, que é a maioria das plantas de haste, vallisnerias e echinodorus. '
+				. 'De 40 lm/L para cima na alta exigência: carpetes, plantas vermelhas e o aquário de competição. '
+				. 'Essas faixas são a união de três fontes brasileiras que publicam o mesmo rótulo com números diferentes: peixeseaquarismo (20, 30 a 40 e 60 lm/L), '
+				. 'aquarioturbinado (10 a 20, 20 a 40 e acima de 40) e aquariosplantados (15, 30 e 60). A Aquametria publica as três com o nome de cada uma '
+				. 'em vez de tirar média, porque a média esconderia exatamente o desacordo que o leitor precisa ver.',
+		),
+	);
+
+	$perguntas[] = array(
+		'@type' => 'Question',
+		'name'  => 'Luz forte causa alga no aquário plantado?',
+		'acceptedAnswer' => array(
+			'@type' => 'Answer',
+			'text'  => 'Luz forte sem carbono disponível causa, e a distinção importa. '
+				. 'As fontes que publicam de 40 a 60 lm/L publicam esse número junto de CO2 injetado: com luz nesse patamar e sem CO2, a planta não consegue usar a luz que recebe e a alga usa. '
+				. 'Por isso esta calculadora avisa quando o nível alto é escolhido sem CO2, e a saída é uma das duas — descer para o nível médio, ou pôr CO2 na conta. '
+				. 'Reduzir o fotoperíodo ajuda como medida de combate (de 5 a 6 horas), mas não conserta um aquário iluminado acima do que ele consegue processar.',
+		),
+	);
+
+	$perguntas[] = array(
+		'@type' => 'Question',
+		'name'  => 'Lúmen por litro serve para aquário fundo?',
+		'acceptedAnswer' => array(
+			'@type' => 'Answer',
+			'text'  => 'Cada vez menos, à medida que a lâmina d\'água aumenta, e acima de ' . AQUAMETRIA_C15_LAMINA_FUNDA_CM . ' cm a Aquametria avisa na tela. '
+				. 'O motivo é que lúmen por litro não sabe a que profundidade a luz precisa chegar: o mesmo número de lúmens entrega muito menos luz no substrato de um aquário fundo do que num raso de mesmo volume. '
+				. 'A medida que resolveria isso é PPFD por profundidade, e ela NÃO está publicada aqui porque não temos fonte de fabricante para ela — '
+				. 'a maioria das luminárias vendidas no Brasil não declara PPFD, e inventar a conversão seria inventar constante. '
+				. 'Nesse caso, trate a faixa como piso e trate a escolha como aproximada.',
+		),
+	);
+
+	$faq = array(
+		'@type'      => 'FAQPage',
+		'@id'        => $url . '#faq',
+		'inLanguage' => 'pt-BR',
+		'url'        => $url,
+		'mainEntity' => $perguntas,
+	);
+
+	return array(
+		'@context' => 'https://schema.org',
+		'@graph'   => array( $app, $faq ),
+	);
+}
+}
+
+if ( ! function_exists( 'aquametria_c15_imprimir_jsonld' ) ) {
+function aquametria_c15_imprimir_jsonld() {
+	$json = wp_json_encode( aquametria_c15_jsonld_dados(), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE );
+	if ( ! $json ) {
+		return;
+	}
+	echo '<script type="application/ld+json" id="aquametria-c15-jsonld">' . "\n" . $json . "\n" . '</script>' . "\n";
+}
+}
+
 if ( ! function_exists( 'aquametria_c15_estilo_impresso' ) ) {
 function aquametria_c15_estilo_impresso( $marcar = false ) {
 	static $impresso = false;
@@ -1849,6 +2290,7 @@ function aquametria_c15_cabeca() {
 		return;
 	}
 	aquametria_c15_imprimir_estilo();
+	aquametria_c15_imprimir_jsonld();
 }
 }
 add_action( 'wp_head', 'aquametria_c15_cabeca', 20 );
@@ -1885,8 +2327,10 @@ function aquametria_c15_shortcode() {
 	add_action( 'wp_footer', 'aquametria_c15_rodape', 20 );
 
 	$h  = '<div class="aqm-c15">';
+	$h .= aquametria_c15_resposta_direta_html();
 	$h .= aquametria_c15_form_html();
 	$h .= aquametria_c15_resposta_html();
+	$h .= aquametria_c15_exemplos_html();
 	$h .= aquametria_c15_consumo_html();
 	$h .= aquametria_c15_inverso_html();
 	$h .= aquametria_c15_fontes_html();

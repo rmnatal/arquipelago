@@ -4,7 +4,7 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 27,
+  "revisao": 29,
   "atualizado_em": "2026-09-09",
   "estado": "fundacao",
   "desembarque": {
@@ -45,6 +45,17 @@
       "sha256": "528433bff6f31722050c57ada9774cb570318b53719f4a069055ae4cd4a0a4ac",
       "descricao": "Casca do site: carrega Chivo/IBM Plex Sans/IBM Plex Mono e injeta a paleta da Aquametria sobre o tema ativo; troca core/site-title e core/site-logo pelo logotipo em SVG (recipiente graduado) com o wordmark; troca core/navigation pelo menu Calculadoras/Metodologia/Sobre; cria as paginas inicio, calculadoras, metodologia e sobre (conteudo em shortcode do proprio snippet) e fixa inicio como pagina inicial; manda Hello world! e Sample Page para a lixeira; SUBSTITUI a template part footer do tema pelo rodape da Aquametria (tagline e nota de fontes), com rede de seguranca em wp_footer e CSS, para nao ficarem dois rodapes empilhados; e some com a tagline padrao do WordPress. Idempotente. v1.0.3 (08/09/2026): o rodape passou a linkar a pagina de divulgacao de afiliados, exigida pela C3, e o CSS ganhou estilo para citacao em bloco e para o bloco de tabela que rola. Nenhuma pagina nova nasce orfa: o link do rodape e a entrada da divulgacao. v1.1.0 (08/09/2026): o endereco de cada pagina passa a ser resolvido pelo id do repositorio (_aquametria_id) e nao por slug adivinhado, e o card do hub so vira link se a pagina existir publicada — sem pagina, fica o selo Em construcao. Corrige o defeito 2 de 08/09/2026, em que o hub publicava /calculadora-de-aquecedor/ para a C5, cuja pagina e /calculadora-de-potencia-do-aquecedor/, e o clique dava 404. v1.3.0 (09/09/2026): casca no celular e icone proprio. O menu vira sanfona abaixo de 782 px, atras de um botao com aria-expanded e aria-controls, que fecha no Escape (devolvendo o foco ao botao), no clique fora e ao alargar a janela; os tres links continuam SEMPRE no HTML servido dentro de <nav>, e quem esconde a lista e um seletor que depende de um atributo posto pelo JavaScript do rodape — sem JavaScript o menu nao some, volta a ser a fileira de links de sempre, que e o que o crawler de IA recebe. E o icone do site deixa de ser o do WordPress (remove_action do wp_site_icon) e passa a ser o recipiente graduado da marca: SVG na aba, PNG de 32 px como alternativa e PNG de 180 px para o iOS, os tres como data URI dentro do snippet, sem nada subir para a biblioteca de midia. O desenho e gerado por ferramentas/gerar-favicon.php entre os marcadores FAVICON-INICIO e FAVICON-FIM.",
       "versao": "1.3.0"
+    },
+    {
+      "id": "aquametria-seo-tecnico",
+      "nome": "Aquametria SEO Tecnico — sitemap e diretiva de robos",
+      "arquivo": "snippets/aquametria-seo-tecnico.php",
+      "escopo": "global",
+      "ativo": true,
+      "versao": "1.0.0",
+      "publicar": true,
+      "sha256": "879a7f5de067446788ec29c700aa6782d6dc4913b5f2ef90b03d05a90892d966",
+      "descricao": "Conserta o item 1 do despacho da Sentinela de 09/09/2026: /category/uncategorized/ respondia 200 e estava no wp-sitemap.xml, gastando o orcamento de rastreamento de um dominio novo com um artefato do CMS enquanto a leva de 6 paginas de 08/09 nao indexava. A causa de raiz e o Sync, que grava artigo sem atribuir categoria e por isso deixa tudo cair na padrao; este snippet conserta pelo lado que se auto-corrige, sem mexer no Sync (que so chega ao site pelo atualizador). Faz cinco coisas: (a) cria a categoria de verdade \"Metodos\" (slug metodos), move para ela todo post que estiver na categoria padrao e passa a categoria padrao a ser ela, para o problema nao voltar pela porta que o criou; (b) tira do wp-sitemap.xml o provedor de autores sempre, e o de taxonomias enquanto nenhuma categoria estiver curada — sitemap e curadoria, nao inventario (secao 14.1 do ARQUIPELAGO.md); (c) manda noindex,follow para arquivo por data, autor, tag, categoria nao curada (a sem categoria inclusive), anexo, busca e 404, pelo filtro wp_robots do proprio nucleo, para nao sair meta robots repetida; (d) desliga a pagina de anexo pelo interruptor do nucleo (wp_attachment_pages_enabled); (e) nao toca em pagina, artigo nem home. A categoria Metodos nasce FORA do sitemap e com noindex de proposito: o item 2 do mesmo despacho congelou pagina nova ate 16/09 e a secao 14.4 exige texto proprio na listagem — quando ela tiver esse texto, basta acrescentar o slug em aquametria_seo_categorias_no_sitemap(). A decisao de indexar mora numa funcao pura (aquametria_seo_deve_noindex), exercitada por ferramentas/teste-seo-tecnico.php em 28 afirmacoes sem subir WordPress."
     },
     {
       "id": "aquametria-calculadora-litragem",
@@ -95,9 +106,9 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "8a68004fc504ef47cc4e37c27c233450ba705057e74bac5093925835b1bf7221",
-      "descricao": "v1.0.0 (08/09/2026). Registra o shortcode [aquametria_calculadora_iluminacao] e se anuncia no hub pelo filtro aquametria_calculadoras. Ataca o maior cluster empatado do Bloco 1 (83 consultas) e publica a divergencia que ninguem confronta: tres fontes brasileiras chamam a MESMA faixa pelo MESMO rotulo com numeros que diferem por duas vezes ('baixa' e 20 lm/L numa, 10 a 20 noutra e 15 na terceira). Entrega a faixa de lumens no volume da pessoa, as tres leituras lado a lado numa tabela com atribuicao, os quatro regimes de fotoperiodo, a faixa de Kelvin, o consumo em kWh/mes do fotoperiodo escolhido (custo em reais so com a tarifa que o visitante digita, porque tarifa nao e publicada aqui), o bloco de CO2 com os dois limites que SE SOBREPOEM, o aviso de luz alta sem CO2, o aviso de lamina acima de 45 cm e o caminho inverso. Recusa publicar PPFD (constante pendente) e explica o motivo achado a montante: o forum de suporte da propria Chihiros declara que nao existe teste de PAR oficial. Recusa converter comprimento de peca em cobertura de aquario, porque nos 5 registros que declaram os dois numeros a razao varia de 1,15 a 1,59 vez. Bloco de produto com a cobertura declarada como barreira, e a lista PUBLICADA dos barrados com o motivo — inclusive a luminaria mais cara do banco, que tem link de afiliado e nao e sugerida por falta de voltagem declarada. Le e grava o estado compartilhado por mescla. O catalogo entre CATALOGO-INICIO/FIM e BARRADOS-INICIO/FIM e gerado por ferramentas/gerar-catalogo-iluminacao.py — nao editar a mao. v1.1.0 (08/09/2026), CORRECAO GRAVE: o JS e o CSS sairam de dentro do retorno do shortcode e passaram para wp_head (estilo) e wp_footer (comportamento). Dentro do retorno do shortcode eles ainda atravessavam os filtros de texto do conteudo, que trocam & por &#038;, e o primeiro && do script matava o JavaScript inteiro com SyntaxError: o formulario nao calculava e o bloco de produto nunca aparecia. Nenhuma linha de calculo mudou.",
-      "versao": "1.1.1"
+      "sha256": "4ca42d9cc84a00164aa3d383cb921347c933987e1aeddf41e91410f15ff49b59",
+      "descricao": "v1.2.0 (09/09/2026): a C15 deixa de ser um formulario vazio para quem nao executa JavaScript. Tres pecas da secao 5 do ARQUIPELAGO.md que faltavam nesta pagina e ja existiam na C5: (a) RESPOSTA ANTES DA EXPLICACAO, em frase autossuficiente com o numero, a unidade, a condicao e a data, escrita para sobreviver a ser citada fora de contexto; (b) TABELA DE EXEMPLOS PRE-RENDERIZADA no HTML servido — seis aquarios de 30 a 120 cm resolvidos no PHP com as MESMAS regras do script (o lm() e o litros() sao espelhados funcao a funcao, senao a tabela contradiria a calculadora logo acima dela), nos tres niveis de exigencia, com a luminaria do banco que atende o nivel medio; tres das seis linhas dizem que NENHUMA luminaria atende, com o motivo, porque bloco vazio e portao e nao defeito, e silencio parece defeito; (c) JSON-LD no wp_head (NUNCA dentro do retorno do shortcode, que atravessa os filtros do the_content) com WebApplication e FAQPage de 15 perguntas, cada resposta carregando o mesmo numero que a tabela servida mostra. A escolha do produto na tabela repete a peneira do escolher() do script na ordem da secao 7: cobertura declarada pelo fabricante primeiro, fluxo dentro da faixa depois, comissao nunca. Duas classes CSS novas (aqm-c15-exemplos, aqm-c15-aviso-tabela) porque reusar as antigas quebrava os localizadores do teste de navegador — defeito pego pelo proprio teste. Verificado: 78 afirmacoes em Chromium real, console limpo; JSON-LD analisado e valido; zero entidade &#038; dentro de <script>. Anterior — v1.1.1: catalogo de iluminacao e barrados.",
+      "versao": "1.2.0"
     }
   ],
   "conteudo": [
@@ -617,6 +628,13 @@
       "publicar": false,
       "sha256": "a8905786ce28408e928d54dccea860066576ca357152a7e74e318c03672aba03",
       "descricao": "Recalcula o sha256 de todo item do manifest e sobe a revisao quando algum mudou. Nasceu em 09/09/2026 de um defeito medido, nao de uma ideia: ao rodar pela primeira vez ele achou QUATRO itens com sha vencido no manifest (render-para-teste.php, teste-navegador-c5.mjs, -c12.mjs e -c15.mjs), todos alterados em execucoes anteriores sem que ninguem atualizasse o registro. Nos quatro casos e ferramenta de bancada com publicar=false, entao o site nao quebrou — mas o mesmo esquecimento num item publicavel faz o Sync recusar o arquivo no ar e a revisao do site ficar para tras em silencio, que e o defeito da secao 4 do ARQUIPELAGO.md. Ele tambem lista o que esta na pasta e fora do manifest, e nunca inventa item."
+    },
+    {
+      "id": "teste-seo-tecnico",
+      "arquivo": "ferramentas/teste-seo-tecnico.php",
+      "publicar": false,
+      "sha256": "92a9a1b14968ae9cd70a7b65f85cfc2c3e3c0a2c0c9bd7a1270b3d5a080ae5f7",
+      "descricao": "Exercita o snippet de SEO tecnico sem WordPress: confere que arquivo por data, autor, tag, categoria nao curada, anexo, busca e 404 saem do indice; que pagina, artigo e home NAO saem (noindex sobrando numa calculadora seria defeito pior que o consertado); e que o provedor de autores sai sempre do sitemap enquanto o de taxonomias volta assim que houver categoria curada."
     }
   ]
 }
