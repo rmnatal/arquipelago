@@ -4,7 +4,7 @@
   "nicho": "robo aspirador — compatibilidade de pecas e consumiveis, e dimensionamento de succao e autonomia",
   "dominio": "https://robometria.com.br",
   "versao_manifest": 1,
-  "revisao": 0,
+  "revisao": 1,
   "atualizado_em": "2026-09-09",
   "estado": "nascendo",
   "desembarque": {
@@ -14,7 +14,20 @@
   },
   "snippets": [],
   "conteudo": [],
-  "dados": [],
+  "dados": [
+    {
+      "id": "corpus-buscas",
+      "arquivo": "dados/corpus-buscas.md",
+      "formato": "md",
+      "entidade": "constante",
+      "fonte": "Bloco 1 da Fundacao: coleta de busca web em 09/09/2026 (paginas oficiais de fabricante, marketplaces, foruns, titulos de video), sem ferramenta de volume de busca disponivel nesta coleta",
+      "verificado_em": "2026-09-09",
+      "registros": 8,
+      "publicar": false,
+      "sha256": "7157ac0094994ee5a7eb3441bbca8585247ef02ff64e749b71b262181097fcca",
+      "descricao": "Levantamento de buscas parametricas do nicho robo aspirador, separado nos eixos compatibilidade (filtro, escova lateral, mop, bateria) e dimensionamento (Pa, cobertura em m2, autonomia por carga, pelo de pet), com procedencia por consulta e lista inicial de modelos/codigos de peca citados para o Bloco 3."
+    }
+  ],
   "ferramentas": [],
   "esquema": {
     "snippets": {
