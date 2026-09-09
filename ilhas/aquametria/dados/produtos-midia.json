@@ -38,7 +38,17 @@
         "min": null,
         "max": 200
       },
-      "imagem": null,
+      "imagem": {
+        "url": "https://down-bs-br.img.susercontent.com/sg-11134201-8262j-ml3uq5wz57gh0d.webp",
+        "largura": null,
+        "altura": null,
+        "fonte": "anuncio-shopee",
+        "coletado_em": "2026-09-09",
+        "verificado_em": null,
+        "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
+        "alt": "Midia biologica Seachem Matrix, saco de 1 litro de granulado ceramico poroso claro com a bolsa de tela inclusa",
+        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+      },
       "afiliado": {
         "plataforma": "shopee",
         "url": "https://s.shopee.com.br/9Khs5ozO8W",

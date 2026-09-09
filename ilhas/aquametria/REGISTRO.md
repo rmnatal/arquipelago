@@ -2873,3 +2873,140 @@ Depois dele, o **4c leva 2** (JSON-LD e tabela pre-renderizada na C12 e na C15) 
 produtos com link e foto barrados por um numero), voltagem confirmada dos 7 Maxxi, do RS-50 e do
 Sicce (9 links parados por um campo), imagem dos 10 antigos que ja vendem, e 10 produtos
 esperando `afiliado.url`.
+
+## 2026-09-09 (terceira execucao do dia) — A DUPLA CONDICAO: a C3 para de recomendar filtro que ela mesma diz que nao serve
+
+Disparo manual do Raphael, com tres itens vistos por ele na C3 NO AR (aquario de 189,6 L,
+plantado, carga media). Os tres foram feitos nesta execucao, antes da fila normal.
+
+### Item 1 — o defeito grave, e ele era de credibilidade e nao de calculo
+
+O primeiro produto recomendado era o **Atman HF-0600**, e o cartao dele escrevia, logo abaixo do
+nome: "O fabricante declara que ele atende ate 150 L — o seu volume passa disso, e a declaracao do
+fabricante nao cobre o seu caso." A pagina recomendava em PRIMEIRO lugar um filtro que ela mesma
+dizia nao servir.
+
+A causa era a que o Raphael suspeitou: a elegibilidade olhava so a VAZAO (650 L/h caem na faixa
+334-948 L/h daquele aquario) e ignorava o volume atendido declarado pelo fabricante.
+
+A regra nova esta escrita no esquema do banco como **V22** e implementada nos DOIS lados da C3, o
+PHP que serve a tabela e o JavaScript que calcula na tela:
+
+- entra nos recomendados so quem passa nas **duas** condicoes — vazao dentro da faixa **E** volume
+  do visitante dentro do volume declarado pelo fabricante (o corte vale nas duas pontas: modelo
+  declarado "a partir de 180 L" tambem nao cobre um aquario de 100 L);
+- fabricante que **nao declara** volume entra, com a ressalva escrita no cartao;
+- fabricante que declara e nao cobre **sai dos recomendados** e vai para uma secao SEPARADA,
+  abaixo, rotulada "Atendem a vazao, mas o fabricante nao cobre esse volume". Nunca misturado,
+  nunca em primeiro lugar. Some quando nao ha ninguem nela.
+
+A funcao `aquametria_c3_volume_ressalva` mudou de assunto junto: como recomendado nao fura mais o
+volume, o que sobra para ressalvar e o outro caso, o fabricante que nao declara volume nenhum.
+
+### Item 2 — o topo da lista
+
+A ordem passou a ter **tres degraus**: (1) elegibilidade tecnica dupla; (2) adequacao tecnica entre
+os elegiveis, que e a distancia ate o meio da faixa; (3) so como DESEMPATE entre itens
+**tecnicamente equivalentes**, quem tem link de loja aparece antes.
+
+"Tecnicamente equivalente" precisava de um numero, senao o desempate come a ordem tecnica: dois
+filtros sao equivalentes quando as distancias deles ate o meio da faixa caem no **mesmo decimo da
+largura da faixa**. E convencao editorial da Aquametria, declarada na tela e no codigo, nao
+constante de fabricante. A regra V16 do esquema foi reescrita para dizer exatamente isso e para
+repetir o que continua proibido: taxa de comissao nao e comparada em lugar nenhum, produto pior
+nunca sobe por pagar mais, e "produto sem link de loja aparece do mesmo jeito" continua valendo —
+muda a POSICAO de quem ja era equivalente, nao a presenca de ninguem.
+
+**Numero medido, e ele importa:** no caso exato do Raphael (189,6 L, PLANTADO) a faixa e estreita
+(334 a 948 L/h, decimo de 61 L/h) e nenhum par de filtros cai no mesmo degrau — o desempate nao
+dispara, e o topo continua sendo o Atman AT-3336, que ainda nao tem link. Isso nao e o desempate
+falhando: e ele fazendo o que foi mandado fazer, que e nao passar na frente da adequacao tecnica.
+O que resolve esse caso e link para o AT-3336, e isso e trabalho da Sentinela Estrategica. No mesmo
+volume em perfil COMUNITARIO, onde a faixa vai a 1.896 L/h e cinco modelos caem no mesmo decimo, o
+desempate dispara e o topo virou quatro itens com link (Eheim 2217 nas duas voltagens, Seachem
+Tidal 55, SunSun HW-702B), com o Atman AT-3338 sem link caindo para quinto.
+
+### Item 3 — o lote de filtro e midia colhido a mao no painel da Shopee
+
+Entraram **8 filtros novos** com link e imagem, mais a imagem de 3 registros que ja vendiam
+(Eheim classic 250, Seachem Tidal 55, Seachem Matrix 1 L) e **8 cotacoes** novas.
+
+O que o lote virou depois de conferido contra a escada de fontes — e aqui esta a parte que importa,
+porque as specs vieram do ANUNCIO e anuncio de marketplace (nivel 6) sustenta so existencia,
+nomenclatura e preco, **nunca numero tecnico**. Cada numero abaixo foi reconferido em varejo BR
+especializado por resultado de busca (nivel 5), que e o que o egresso da nuvem permite:
+
+- **Eheim classic 600 (2217), 127 V e 220 V** — registros SEPARADOS, porque voltagem e chave de
+  compatibilidade e cada anuncio vende uma versao so. 1000 L/h, 20 W, coluna de 2,25 m, ate 600 L,
+  repetidos por AquaMaeda, Pro-Aquarista, Fazenda Submersa e AquaBetta; a voltagem de cada versao
+  sai do titulo da loja BR que a vende. **Os dois entraram no catalogo da C3 como completos, com
+  link E foto.** Sao os primeiros do banco a fechar a faixa acima de 200 L vendendo.
+- **SunSun HW-702B 220 V** — 1000 L/h para ate 200 L (Pet Hobby), coluna de 1,4 m (Wiltec), UV de
+  9 W (Pet Hobby e Aqua Mais), 220 V (Aqua Mais). **Entrou no catalogo da C3, com link e foto.**
+- **Ocean Tech CT-1000-3** — 1000 L/h, 15 W, ate 200 L confirmados por quatro lojas BR. Ficou
+  `parcial`: falta coluna maxima (o "1,4 m" das fichas e COMPRIMENTO DE CABO, nao recalque) e falta
+  voltagem — o varejo vende o mesmo modelo em 110/127 V e em 220 V e nenhuma fonte diz qual versao
+  este anuncio abre.
+- **SunSun HW-702A** — mesma ficha do B, sem UV. `parcial` por UM campo: voltagem. O anuncio abre
+  110 V, e isso ficou em `afiliado.voltagem_anuncio`, que e onde voltagem de anuncio mora.
+- **SunSun XBL-600** — 500 L/h, 7 W, ate 150 L (Pet Hobby). `parcial` por UM campo: voltagem. As
+  fichas dizem que sai em 110 V **ou** em 220 V e que NAO e bivolt, sem dizer qual e a deste
+  anuncio. Chutar 110 ou 220 e proibido aqui, e queima aparelho.
+- **Maxxi Pro MP-600** e **Aquaverso APK-600** — `parcial` com NENHUM numero tecnico. A busca nao
+  achou ficha de fabricante nem de varejo especializado para nenhum dos dois; o que aparece com
+  600 L/h na linha Maxxi e o hang-on HF-800, que e outro modelo, e a loja oficial da Aquaverso
+  (lojaaquaverso.com.br) devolve EGRESS_BLOCKED. Os 600 L/h do titulo do anuncio ficaram onde
+  valem, que e no anuncio. O campo `tipo` tambem ficou null nos dois: "mini canister de pendurar" e
+  nomenclatura de anuncio, e `tipo` e campo tecnico aqui porque e ele que decide se a C3 cobra
+  altura de coluna do modelo.
+
+**Placar do lote: 3 de 8 ja vendem dentro do resultado da C3; 5 esperam UM ou DOIS campos** — 4
+esperam so voltagem, 2 esperam vazao. Todos os 8 tem foto e link no banco.
+
+Uma coisa que a lista de nomes tornou necessaria: com o Eheim 2217 no banco duas vezes, a tela
+mostrava dois itens de nome identico. O nome de tela passa a carregar a voltagem quando o registro
+declara uma so — "Eheim classic 600 (2217) (127 V)" —, no cartao, na tabela servida e no FAQ.
+
+### Verificacao (o que foi realmente rodado, com numero)
+
+- `php -l` no snippet da C3 → sem erro. `conferir-protecao-funcoes.py` → sai 0, todas as funcoes
+  novas (`aquametria_c3_cobre_volume`, `_degrau_adequacao`, `_ordenar`, `_produtos_fora_do_volume`,
+  `_fora_do_volume_frase`, `_nome_produto`) dentro de `function_exists`. `conferir-slugs.py` → ok.
+- `validar-produtos.py` → **64 produtos, 39 cotacoes, 0 erro, 9 avisos**. Os erros que apareceram na
+  primeira passada foram consertados no dado, nao afrouxando a regra: o HW-702B saiu de `completo`
+  para `parcial` (potencia_w e obrigatorio da entidade e ficou null porque a unica ficha que a
+  publica diz 24 W no titulo e 15 W na descricao, e somar 15 W de bomba com 9 W de UV para chegar
+  aos 24 seria derivacao nossa), e o MP-600 e o APK-600 perderam o `tipo`, que nenhuma fonte
+  acima de anuncio sustentava. O aviso V14 do XBL-600 fica de proposito: falta voltagem, que nao
+  esta na lista de obrigatorios da entidade mas esta no minimo da C3, e a observacao do registro
+  diz isso com essas palavras.
+- `gerar-catalogo-filtros.py` → **13 filtros no catalogo da C3** (eram 10), 6 com link (eram 3).
+- **`teste-navegador-c3-dupla-condicao.mjs`, arquivo NOVO** → 16 casos, todos passaram, em Chromium
+  de verdade, executando o caso do Raphael. Ele confere o que este bloco promete: nenhum recomendado
+  com volume declarado que nao cubra o aquario, o HF-0600 fora dos recomendados e dentro da secao
+  separada, a secao rotulada e ABAIXO no HTML, o desempate por link so entre itens do mesmo degrau,
+  e todo botao de loja `sponsored` + `noopener` + aba nova com texto. Duas decisoes de desenho do
+  teste, e as duas existem para ele nao mentir: (a) ele roda um SEGUNDO caso, o mesmo volume em
+  perfil comunitario, porque no plantado a faixa e estreita demais para dois filtros cairem no mesmo
+  degrau e o desempate nunca dispararia — teste que nao exercita a regra nao prova a regra; (b) ele
+  casa cada linha da tela com a ficha do catalogo embutido e **reprova quando nao acha**, em vez de
+  filtrar os orfaos e passar em silencio (foi exatamente o que quase aconteceu quando o nome de tela
+  ganhou a voltagem).
+- `teste-navegador-visibilidade-ia.mjs`, em Chromium **com JavaScript DESLIGADO** → tudo passou nos
+  dois arquivos, incluindo as 6 celulas de produto da tabela servida e os 6 links `sponsored`.
+- `teste-navegador-cinco.mjs` (JavaScript ligado, as cinco calculadoras) → tudo passou.
+
+### Proximo passo desbloqueado
+
+O Raphael disse "nao adiante o proximo bloco — eu disparo em seguida". O que estava na fila
+continua sendo o **4e, a vitrine**: cartao com FOTO em rolagem horizontal com `scroll-snap`, linha
+de promessa no topo, barra fixa no celular e rolagem automatica ate o resultado. As 24 imagens do
+banco (21 da leva anterior mais 3 desta) so chegam ao visitante nesse bloco — hoje elas existem no
+dado e nao aparecem na tela.
+
+**Para a Sentinela Estrategica**, a fila de link cresceu e mudou de forma. O que trava venda hoje,
+em ordem de dano: (1) **voltagem** de 4 registros novos que ja tem link E foto e nao podem ser
+sugeridos por causa de um campo — HW-702A, XBL-600 e CT-1000-3 (que tambem precisa da coluna) —,
+mais os 9 antigos na mesma situacao; (2) **link para o Atman AT-3336**, que e o primeiro
+recomendado do caso real do Raphael e nao tem onde comprar; (3) vazao com fonte para o MP-600 e o
+APK-600; (4) lumen da linha Soma, imagem dos que vendem sem foto.

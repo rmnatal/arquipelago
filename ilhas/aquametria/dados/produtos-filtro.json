@@ -40,7 +40,17 @@
         "min": null,
         "max": 250
       },
-      "imagem": null,
+      "imagem": {
+        "url": "https://down-bs-br.img.susercontent.com/br-11134207-7r98o-m8eusegtvu9dea.webp",
+        "largura": null,
+        "altura": null,
+        "fonte": "anuncio-shopee",
+        "coletado_em": "2026-09-09",
+        "verificado_em": null,
+        "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
+        "alt": "Filtro canister Eheim classic 250 (2213) verde-escuro, corpo cilindrico com cabecote e torneiras duplas de mangueira",
+        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+      },
       "afiliado": {
         "plataforma": "shopee",
         "url": "https://s.shopee.com.br/6fh6u1wYls",
@@ -393,7 +403,17 @@
         "min": null,
         "max": 200
       },
-      "imagem": null,
+      "imagem": {
+        "url": "https://down-bs-br.img.susercontent.com/sg-11134201-8259a-mfv658qccpho62.webp",
+        "largura": null,
+        "altura": null,
+        "fonte": "anuncio-shopee",
+        "coletado_em": "2026-09-09",
+        "verificado_em": null,
+        "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
+        "alt": "Filtro externo hang-on Seachem Tidal 55 preto, caixa retangular com bomba interna e cesto de midia visivel pela tampa",
+        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+      },
       "afiliado": {
         "plataforma": "shopee",
         "url": "https://s.shopee.com.br/1LfaYURnHi",
@@ -971,6 +991,656 @@
       "verificado_em": "2026-09-09",
       "status_registro": "parcial",
       "observacao": "Registro incompleto de proposito. Faltam voltagem e altura maxima de recalque, e nenhuma das fontes vistas publica os dois — por isso NAO e sugerido pela C3 (a regra exige voltagem e coluna). Entra no banco porque serve a C7 pelo consumo e porque o modelo e comum no mercado BR: quando a voltagem for fechada com fonte, vira sugerivel sem coleta nova. Nunca chutar 110 nem 220."
+    },
+    {
+      "id": "oceantech-ct-1000-3",
+      "entidade": "filtro",
+      "marca": "Ocean Tech",
+      "linha": null,
+      "modelo": "CT-1000-3",
+      "variante": null,
+      "nomes_alternativos": [
+        "Canister CT 1000-3",
+        "OceanTech CT-1000-3",
+        "Ocean Tech Canister 1000 L/h"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": null,
+      "tipo": "canister",
+      "vazao_nominal_lh": 1000,
+      "vazao_real_lh": null,
+      "potencia_w": 15.0,
+      "coluna_maxima_m": null,
+      "volume_cesto_L": null,
+      "volume_filtragem_L": null,
+      "midia_inclusa": [],
+      "uv_w": null,
+      "mangueira_mm": null,
+      "volume_atendido_declarado_L": {
+        "min": null,
+        "max": 200
+      },
+      "imagem": {
+        "url": "https://down-bs-br.img.susercontent.com/sg-11134201-8258w-msr4ctahgzd058.webp",
+        "largura": null,
+        "altura": null,
+        "fonte": "anuncio-shopee",
+        "coletado_em": "2026-09-09",
+        "verificado_em": null,
+        "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
+        "alt": "Filtro canister Ocean Tech CT-1000-3 fechado, corpo cilindrico escuro com tampa e duas conexoes de mangueira no topo",
+        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+      },
+      "afiliado": {
+        "plataforma": "shopee",
+        "url": "https://s.shopee.com.br/7fZgsh6uNU",
+        "sub_id_1": "aquametria",
+        "sub_id_2": "C3",
+        "rel": "sponsored",
+        "verificado_em": "2026-09-09",
+        "anuncio_shopee": "Filtro Canister Ocean Tech CT-1000-3 1000 L/h para aquarios ate 200 L",
+        "observacao": "Link curto colhido a mao pelo operador no painel Shopee Afiliados em 09/09/2026, as 11h40. A pagina do anuncio nao abre para a nuvem (o egresso barra shopee.com.br). Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data."
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Rilcomercial, Franco Aquarismo, Watermello e Paiva Agrofish (varejo BR), fichas do Ocean Tech CT-1000-3: 1000 L/h, 15 W, aquarios de ate 200 L, 226x226x328 mm",
+          "url": "https://www.francoaquarismo.com.br/canister-ct-1000-3-ocean-tech-1000lh-para-aquarios-ate-200l",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "vazao_nominal_lh",
+            "potencia_w",
+            "volume_atendido_declarado_L",
+            "tipo"
+          ],
+          "observacao": "Lido por RESULTADO DE BUSCA: os dominios de varejo BR dao EGRESS_BLOCKED para a nuvem em 09/09/2026. Quatro lojas repetem os mesmos numeros. O '1,4 m' que aparece nessas fichas e COMPRIMENTO DE CABO, nao altura de coluna, e por isso coluna_maxima_m continua null."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "parcial",
+      "observacao": "Entrou em 09/09/2026 com link e imagem. Fica 'parcial' e NAO e sugerido pela C3 porque faltam dois dos cinco campos do minimo_para_sugerir: coluna_maxima_m e voltagem. Canister sem altura de recalque declarada nao pode ser sugerido — a C3 usa esse campo para barrar filtro que nao vence o movel do visitante. A voltagem e o caso mais grave: o varejo BR vende o mesmo CT-1000-3 em 110/127 V e em 220 V, e nenhuma fonte de nivel 2 a 5 diz qual versao este anuncio abre. Nao se chuta voltagem aqui. O que destrava: uma ficha de varejo especializado (ou o manual) com a altura de coluna e a voltagem do modelo."
+    },
+    {
+      "id": "sunsun-hw-702a-anuncio-110v",
+      "entidade": "filtro",
+      "marca": "SunSun",
+      "linha": "HW",
+      "modelo": "HW-702A",
+      "variante": "anuncio 110 V",
+      "nomes_alternativos": [
+        "SunSun HW702A",
+        "Filtro Canister HW-702-A",
+        "Sunsun HW 702 A"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": null,
+      "tipo": "canister",
+      "vazao_nominal_lh": 1000,
+      "vazao_real_lh": null,
+      "potencia_w": null,
+      "coluna_maxima_m": 1.4,
+      "volume_cesto_L": null,
+      "volume_filtragem_L": null,
+      "midia_inclusa": [],
+      "uv_w": null,
+      "mangueira_mm": null,
+      "volume_atendido_declarado_L": {
+        "min": null,
+        "max": 200
+      },
+      "imagem": {
+        "url": "https://down-bs-br.img.susercontent.com/sg-11134201-8258b-mgfeotje1qtm6c.webp",
+        "largura": null,
+        "altura": null,
+        "fonte": "anuncio-shopee",
+        "coletado_em": "2026-09-09",
+        "verificado_em": null,
+        "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
+        "alt": "Filtro canister SunSun HW-702A, corpo cilindrico branco e azul com cabecote escuro, mangueiras e conexoes ao lado",
+        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+      },
+      "afiliado": {
+        "plataforma": "shopee",
+        "url": "https://s.shopee.com.br/5AsLu77DqC",
+        "sub_id_1": "aquametria",
+        "sub_id_2": "C3",
+        "rel": "sponsored",
+        "verificado_em": "2026-09-09",
+        "anuncio_shopee": "Filtro Canister HW-702-A Sunsun 1000 l/h",
+        "voltagem_anuncio": "110",
+        "observacao": "Link curto colhido a mao pelo operador no painel Shopee Afiliados em 09/09/2026, as 11h40, com 39 vendas registradas no anuncio. voltagem_anuncio e a voltagem DAQUELE anuncio, transcrita do painel, e NAO campo tecnico do produto: anuncio de marketplace nao sustenta numero tecnico. Preco mora em dados/produtos-cotacoes.json."
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Pet Hobby (varejo BR especializado), ficha do SunSun HW-702A: canister de 1000 L/h para aquarios de ate 200 L",
+          "url": "https://www.pethobby.com.br/filtro-canister-hw-702a-sunsun-1000lh-aquarios-ate-200l",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "vazao_nominal_lh",
+            "volume_atendido_declarado_L",
+            "tipo"
+          ],
+          "observacao": "Lido por RESULTADO DE BUSCA: pethobby.com.br da EGRESS_BLOCKED para a nuvem em 09/09/2026. O titulo e a ficha do resultado sustentam vazao, volume atendido e tipo, e nada mais: a pagina nao publica voltagem nem altura de coluna."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Wiltec (varejo europeu de equipamento), ficha do SunSun HW-702A/HW-702B: 1000 L/h, 3 estagios, altura maxima de recalque de 1,4 m",
+          "url": "https://www.wiltec.de/en/sunsun-hw-702a-aquarium-external-canister-1000-l-h-24-w-aquarium-filter-with-3-stages/50948",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "coluna_maxima_m"
+          ],
+          "observacao": "Lido por RESULTADO DE BUSCA. E varejo ESTRANGEIRO, e esta aqui por um motivo especifico: nenhuma das lojas BR vistas publica a altura de coluna, que e justamente o campo que a C3 precisa para nao sugerir canister que nao vence o movel do visitante. A mesma ficha divergia na potencia (24 W no titulo, 15 W na descricao), e por isso potencia_w ficou null."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "parcial",
+      "observacao": "Entrou em 09/09/2026 com link, imagem e 39 vendas no anuncio. Fica 'parcial' e NAO e sugerido pela C3 por UM campo: voltagem. O anuncio abre 110 V (registrado em afiliado.voltagem_anuncio), mas anuncio de marketplace so sustenta existencia, nomenclatura e preco — nunca numero tecnico —, e voltagem errada queima o aparelho. Nenhuma loja BR vista publica a voltagem do HW-702A na ficha. A potencia tambem ficou null: a mesma ficha da Wiltec diz 24 W no titulo e 15 W na descricao, e conflito de fonte com ela mesma nao vira numero publicado. O que destrava: uma ficha de varejo especializado com a voltagem da versao vendida."
+    },
+    {
+      "id": "sunsun-hw-702b-220v",
+      "entidade": "filtro",
+      "marca": "SunSun",
+      "linha": "HW",
+      "modelo": "HW-702B",
+      "variante": "220 V, com UV 9 W",
+      "nomes_alternativos": [
+        "SunSun HW702B",
+        "Sunsun HW 702B com UV",
+        "Filtro Canister HW-702-B"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "220"
+      ],
+      "tipo": "canister",
+      "vazao_nominal_lh": 1000,
+      "vazao_real_lh": null,
+      "potencia_w": null,
+      "coluna_maxima_m": 1.4,
+      "volume_cesto_L": null,
+      "volume_filtragem_L": null,
+      "midia_inclusa": [],
+      "uv_w": 9.0,
+      "mangueira_mm": null,
+      "volume_atendido_declarado_L": {
+        "min": null,
+        "max": 200
+      },
+      "imagem": {
+        "url": "https://down-bs-br.img.susercontent.com/sg-11134201-825af-mgfepyprq7m0f6.webp",
+        "largura": null,
+        "altura": null,
+        "fonte": "anuncio-shopee",
+        "coletado_em": "2026-09-09",
+        "verificado_em": null,
+        "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
+        "alt": "Filtro canister SunSun HW-702B, corpo cilindrico branco e azul com cabecote escuro e modulo UV, mangueiras e conexoes ao lado",
+        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+      },
+      "afiliado": {
+        "plataforma": "shopee",
+        "url": "https://s.shopee.com.br/gPwXrF9Pl",
+        "sub_id_1": "aquametria",
+        "sub_id_2": "C3",
+        "rel": "sponsored",
+        "verificado_em": "2026-09-09",
+        "anuncio_shopee": "Filtro Canister HW-702-B Sunsun 1000 l/h 220 V",
+        "voltagem_anuncio": "220",
+        "observacao": "Link curto colhido a mao pelo operador no painel Shopee Afiliados em 09/09/2026, as 11h40. A pagina do anuncio nao abre para a nuvem (o egresso barra shopee.com.br). Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data."
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Pet Hobby (varejo BR especializado), ficha do SunSun HW-702A: canister de 1000 L/h para aquarios de ate 200 L",
+          "url": "https://www.pethobby.com.br/filtro-canister-hw-702a-sunsun-1000lh-aquarios-ate-200l",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "vazao_nominal_lh",
+            "volume_atendido_declarado_L",
+            "tipo"
+          ],
+          "observacao": "Lido por RESULTADO DE BUSCA: pethobby.com.br da EGRESS_BLOCKED para a nuvem em 09/09/2026. O titulo e a ficha do resultado sustentam vazao, volume atendido e tipo, e nada mais: a pagina nao publica voltagem nem altura de coluna."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Wiltec (varejo europeu de equipamento), ficha do SunSun HW-702A/HW-702B: 1000 L/h, 3 estagios, altura maxima de recalque de 1,4 m",
+          "url": "https://www.wiltec.de/en/sunsun-hw-702a-aquarium-external-canister-1000-l-h-24-w-aquarium-filter-with-3-stages/50948",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "coluna_maxima_m"
+          ],
+          "observacao": "Lido por RESULTADO DE BUSCA. E varejo ESTRANGEIRO, e esta aqui por um motivo especifico: nenhuma das lojas BR vistas publica a altura de coluna, que e justamente o campo que a C3 precisa para nao sugerir canister que nao vence o movel do visitante. A mesma ficha divergia na potencia (24 W no titulo, 15 W na descricao), e por isso potencia_w ficou null."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Aqua Mais Aquarismo (varejo BR), anuncio de loja do SunSun HW-702B: 1.000 L/h, UV de 9 W, 220 V",
+          "url": "https://www.aquamaisaquarismo.com.br/MLB-3154228408-sunsun-filtro-canister-hw-702b-1000-l-h-uv-9w-220v-_JM",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "voltagem",
+            "uv_w",
+            "disponibilidade_br"
+          ],
+          "observacao": "Lido por RESULTADO DE BUSCA. Sustenta que EXISTE a versao 220 V do HW-702B vendida no Brasil e que este modelo traz UV de 9 W — a Pet Hobby publica o mesmo UV de 9 W, e a ficha da Wiltec atribui o UV ao B e nao ao A. O cartao da C3 continua obrigando a conferir a voltagem no proprio anuncio antes de comprar."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Pet Hobby (varejo BR especializado), ficha do SunSun HW-702B com UV de 9 W",
+          "url": "https://www.pethobby.com.br/filtro-canister-sunsun-hw-702b-com-uv-9w-p-aquarios",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "uv_w"
+          ],
+          "observacao": "Lido por RESULTADO DE BUSCA. Segunda fonte BR para o UV de 9 W, que separa o HW-702B do HW-702A."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "parcial",
+      "observacao": "Fecha os cinco campos do minimo_para_sugerir da C3 COM link e foto, e por isso e sugerido; fica 'parcial' porque potencia_w, que e obrigatorio da entidade e alimenta a C7, continua null. Na faixa de 150 a 200 L e o primeiro canister do banco com link E foto: 1000 L/h declarados para ate 200 L dao 5,0 renovacoes por hora no teto do volume, exatamente o piso da regra de bolso brasileira. O UV de 9 W entra no consumo total da C7 e nao no dimensionamento da C3. A potencia da bomba ficou null porque a unica ficha que a publica (Wiltec) diz 24 W no titulo e 15 W na descricao — numero que briga consigo mesmo nao vai para a tela, e somar 15 W de bomba com 9 W de UV para chegar aos 24 W seria derivacao nossa, nao declaracao de fabricante."
+    },
+    {
+      "id": "maxxi-pro-mp-600",
+      "entidade": "filtro",
+      "marca": "Maxxi",
+      "linha": "Pro",
+      "modelo": "MP-600",
+      "variante": null,
+      "nomes_alternativos": [
+        "Maxxi Pro MP600",
+        "Mini canister hang-on Maxxi MP-600"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": null,
+      "tipo": null,
+      "vazao_nominal_lh": null,
+      "vazao_real_lh": null,
+      "potencia_w": null,
+      "coluna_maxima_m": null,
+      "volume_cesto_L": null,
+      "volume_filtragem_L": null,
+      "midia_inclusa": [],
+      "uv_w": null,
+      "mangueira_mm": null,
+      "volume_atendido_declarado_L": null,
+      "imagem": {
+        "url": "https://down-bs-br.img.susercontent.com/sg-11134201-8259u-mqxs78nksphcbc.webp",
+        "largura": null,
+        "altura": null,
+        "fonte": "anuncio-shopee",
+        "coletado_em": "2026-09-09",
+        "verificado_em": null,
+        "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
+        "alt": "Mini canister hang-on Maxxi Pro MP-600, caixa retangular compacta com tubo de entrada e saida em cascata para pendurar na borda do aquario",
+        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+      },
+      "afiliado": {
+        "plataforma": "shopee",
+        "url": "https://s.shopee.com.br/AKaS3fCbPA",
+        "sub_id_1": "aquametria",
+        "sub_id_2": "C3",
+        "rel": "sponsored",
+        "verificado_em": "2026-09-09",
+        "anuncio_shopee": "Filtro Mini Canister Hang On Maxxi Pro MP-600 600 l/h",
+        "observacao": "Link curto colhido a mao pelo operador no painel Shopee Afiliados em 09/09/2026, as 11h40. A pagina do anuncio nao abre para a nuvem (o egresso barra shopee.com.br). Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data."
+      },
+      "fontes": [
+        {
+          "origem": "marketplace-anuncio",
+          "status": "anuncio",
+          "referencia": "Anuncio da Shopee transcrito do painel de afiliados: mini canister hang-on Maxxi Pro MP-600, 600 L/h",
+          "url": "https://s.shopee.com.br/AKaS3fCbPA",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "disponibilidade_br"
+          ],
+          "observacao": "Nivel 6 da escada de fontes: sustenta APENAS que o produto existe e como ele e chamado no Brasil. Os 600 L/h do titulo NAO viraram vazao_nominal_lh — anuncio de marketplace nunca sustenta numero tecnico."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "parcial",
+      "observacao": "Entrou em 09/09/2026 com link e imagem e NENHUM numero tecnico. Foi o unico do lote que a busca nao encontrou em varejo especializado nem em pagina de fabricante: o que aparece com 600 L/h na linha Maxxi e o hang-on HF-800, que e outro modelo. Sem vazao com fonte, a C3 nao pode sugeri-lo — e os 600 L/h do titulo do anuncio ficam onde eles valem, que e no anuncio. O que destrava: uma ficha de varejo especializado ou a embalagem do MP-600. O campo 'tipo' tambem ficou null: as unicas fontes deste registro chamam o produto de mini canister de pendurar, e essa e nomenclatura de anuncio, nao classificacao com ficha — e 'tipo' e campo tecnico aqui, porque e ele que decide se a C3 cobra altura de coluna do modelo."
+    },
+    {
+      "id": "sunsun-xbl-600",
+      "entidade": "filtro",
+      "marca": "SunSun",
+      "linha": "XBL",
+      "modelo": "XBL-600",
+      "variante": null,
+      "nomes_alternativos": [
+        "Sunsun Xiaoli XBL-600",
+        "Mini canister hang-on SunSun XBL 600",
+        "Filtro externo SunSun XBL-600"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": null,
+      "tipo": "hang-on",
+      "vazao_nominal_lh": 500,
+      "vazao_real_lh": null,
+      "potencia_w": 7.0,
+      "coluna_maxima_m": null,
+      "volume_cesto_L": null,
+      "volume_filtragem_L": null,
+      "midia_inclusa": [],
+      "uv_w": null,
+      "mangueira_mm": null,
+      "volume_atendido_declarado_L": {
+        "min": null,
+        "max": 150
+      },
+      "imagem": {
+        "url": "https://down-bs-br.img.susercontent.com/br-11134201-820lo-mqym2c8d4v7r48.webp",
+        "largura": null,
+        "altura": null,
+        "fonte": "anuncio-shopee",
+        "coletado_em": "2026-09-09",
+        "verificado_em": null,
+        "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
+        "alt": "Mini canister externo SunSun XBL-600 preto, caixa alta e estreita para pendurar na borda do aquario, com tubos de entrada e retorno",
+        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+      },
+      "afiliado": {
+        "plataforma": "shopee",
+        "url": "https://s.shopee.com.br/9KhurppoVA",
+        "sub_id_1": "aquametria",
+        "sub_id_2": "C3",
+        "rel": "sponsored",
+        "verificado_em": "2026-09-09",
+        "anuncio_shopee": "Filtro Externo Mini Canister Sunsun XBL-600 500 l/h 7 W para aquarios ate 150 L",
+        "observacao": "Link curto colhido a mao pelo operador no painel Shopee Afiliados em 09/09/2026, as 11h40. A pagina do anuncio nao abre para a nuvem (o egresso barra shopee.com.br). Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data."
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Pet Hobby e anuncio de loja no Mercado Livre (varejo BR), ficha do SunSun XBL-600: filtro externo hang-on de 500 L/h, 7 W, para aquarios de ate 150 L, 195 x 100 x 300 mm",
+          "url": "https://www.pethobby.com.br/filtro-externo-hangon-sunsun-xbl-600-500lh-p-aquario-",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "vazao_nominal_lh",
+            "potencia_w",
+            "volume_atendido_declarado_L",
+            "tipo"
+          ],
+          "observacao": "Lido por RESULTADO DE BUSCA: pethobby.com.br da EGRESS_BLOCKED para a nuvem em 09/09/2026. As fichas dizem que o modelo sai em 110 V OU em 220 V e que NAO e bivolt, sem dizer qual versao cada anuncio abre — por isso voltagem ficou null."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "parcial",
+      "observacao": "Entrou em 09/09/2026 com link e imagem. Fica 'parcial' e NAO e sugerido pela C3 por UM campo: voltagem. Hang-on nao tem altura de recalque a vencer (coluna_maxima_nao_se_aplica), entao os outros quatro campos do minimo ja estao fechados. As fontes de varejo dizem que o XBL-600 sai em 110 V ou em 220 V e que NAO e bivolt; nenhuma diz qual delas este anuncio abre, e chutar 110 ou 220 e proibido aqui. Se a voltagem fechar, ele vira a opcao barata da faixa de 100 a 150 L: 500 L/h nos 150 L declarados dao 3,3 renovacoes por hora.",
+      "coluna_maxima_nao_se_aplica": true
+    },
+    {
+      "id": "aquaverso-apk-600",
+      "entidade": "filtro",
+      "marca": "Aquaverso",
+      "linha": "Aquapack",
+      "modelo": "APK-600",
+      "variante": null,
+      "nomes_alternativos": [
+        "Mini Canister Aquapack APK-600",
+        "Aquaverso APK 600",
+        "Canister de pendurar Aquaverso APK-600"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": null,
+      "tipo": null,
+      "vazao_nominal_lh": null,
+      "vazao_real_lh": null,
+      "potencia_w": null,
+      "coluna_maxima_m": null,
+      "volume_cesto_L": null,
+      "volume_filtragem_L": null,
+      "midia_inclusa": [],
+      "uv_w": null,
+      "mangueira_mm": null,
+      "volume_atendido_declarado_L": null,
+      "imagem": {
+        "url": "https://down-bs-br.img.susercontent.com/br-11134207-820lk-ms5tsef4s3d223.webp",
+        "largura": null,
+        "altura": null,
+        "fonte": "anuncio-shopee",
+        "coletado_em": "2026-09-09",
+        "verificado_em": null,
+        "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
+        "alt": "Mini canister de pendurar Aquaverso Aquapack APK-600, caixa compacta com tampa e conexoes de mangueira, para fixar na borda do aquario",
+        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+      },
+      "afiliado": {
+        "plataforma": "shopee",
+        "url": "https://s.shopee.com.br/AUtsFzGEth",
+        "sub_id_1": "aquametria",
+        "sub_id_2": "C3",
+        "rel": "sponsored",
+        "verificado_em": "2026-09-09",
+        "anuncio_shopee": "Filtro Canister de Pendurar Aquaverso APK 600 600 l/h",
+        "observacao": "Link curto colhido a mao pelo operador no painel Shopee Afiliados em 09/09/2026, as 11h40. A pagina do anuncio nao abre para a nuvem (o egresso barra shopee.com.br). Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data."
+      },
+      "fontes": [
+        {
+          "origem": "varejo-oficial",
+          "status": "transcrita-varejo",
+          "referencia": "Loja Aquaverso (loja oficial da marca no Brasil), pagina do Mini Canister Aquapack APK-600",
+          "url": "https://lojaaquaverso.com.br/",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "disponibilidade_br"
+          ],
+          "observacao": "Lido por RESULTADO DE BUSCA e tentado por WebFetch: lojaaquaverso.com.br devolve EGRESS_BLOCKED em 09/09/2026. O resultado sustenta que a loja oficial da marca vende o modelo e como ele e chamado (Mini Canister Aquapack APK-600) — a ficha tecnica nao aparece no resultado, e nenhum numero foi transcrito daqui."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "parcial",
+      "observacao": "Entrou em 09/09/2026 com link e imagem e NENHUM numero tecnico. A loja oficial da marca vende o modelo, mas a ficha nao abre para a nuvem e nao aparece no resultado de busca; o varejo especializado so publica os canister FC-650, FC-1000 e FC-1800 da Aquaverso, que sao outros produtos. Os 600 L/h do titulo do anuncio nao viraram vazao_nominal_lh. O que destrava: a ficha da propria Aquaverso ou de um varejo especializado com vazao, potencia e volume atendido. O campo 'tipo' tambem ficou null: as unicas fontes deste registro chamam o produto de mini canister de pendurar, e essa e nomenclatura de anuncio, nao classificacao com ficha — e 'tipo' e campo tecnico aqui, porque e ele que decide se a C3 cobra altura de coluna do modelo."
+    },
+    {
+      "id": "eheim-classic-600-2217-220v",
+      "entidade": "filtro",
+      "marca": "Eheim",
+      "linha": "classic",
+      "modelo": "classic 600 (2217)",
+      "variante": "220 V",
+      "nomes_alternativos": [
+        "Eheim 2217",
+        "Eheim Classic 600",
+        "Canister Eheim 2217",
+        "Eheim classic 2217 plus"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "220"
+      ],
+      "tipo": "canister",
+      "vazao_nominal_lh": 1000,
+      "vazao_real_lh": null,
+      "potencia_w": 20.0,
+      "coluna_maxima_m": 2.25,
+      "volume_cesto_L": null,
+      "volume_filtragem_L": null,
+      "midia_inclusa": [
+        "EHEIM SUBSTRAT pro",
+        "EHEIM MECH",
+        "espuma",
+        "perlon"
+      ],
+      "uv_w": null,
+      "mangueira_mm": null,
+      "volume_atendido_declarado_L": {
+        "min": null,
+        "max": 600
+      },
+      "imagem": {
+        "url": "https://down-bs-br.img.susercontent.com/sg-11134201-7rd58-m7bniamcy29b62.webp",
+        "largura": null,
+        "altura": null,
+        "fonte": "anuncio-shopee",
+        "coletado_em": "2026-09-09",
+        "verificado_em": null,
+        "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
+        "alt": "Filtro canister Eheim classic 600 (2217) em 220 V, corpo cilindrico verde-escuro com cabecote e torneiras duplas de mangueira",
+        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+      },
+      "afiliado": {
+        "plataforma": "shopee",
+        "url": "https://s.shopee.com.br/9AOUfYKdQv",
+        "sub_id_1": "aquametria",
+        "sub_id_2": "C3",
+        "rel": "sponsored",
+        "verificado_em": "2026-09-09",
+        "anuncio_shopee": "Filtro Canister Eheim Classic 600 (2217) 1000 l/h 20 W 220 V",
+        "voltagem_anuncio": "220",
+        "observacao": "Link curto colhido a mao pelo operador no painel Shopee Afiliados em 09/09/2026, as 11h40. A pagina do anuncio nao abre para a nuvem (o egresso barra shopee.com.br). Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data."
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "AquaMaeda, Pro-Aquarista, Fazenda Submersa e AquaBetta (varejo BR especializado), fichas do Eheim classic 600 (2217): 1000 L/h, 20 W, coluna d'agua de ate 2,25 m, aquarios de ate 600 L",
+          "url": "https://www.aquamaeda.com.br/filtro-canister-eheim-classic-600-1000-lh-2217",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "vazao_nominal_lh",
+            "potencia_w",
+            "coluna_maxima_m",
+            "volume_atendido_declarado_L",
+            "tipo",
+            "midia_inclusa"
+          ],
+          "observacao": "Lido por RESULTADO DE BUSCA: eheim.com e os dominios de varejo BR dao EGRESS_BLOCKED para a nuvem em 09/09/2026. Quatro lojas BR repetem os mesmos numeros. A AquaMaeda escreve a faixa como '180 a 600 litros, dependendo da quantidade de peixes'; as outras escrevem so 'ate 600 L'. O campo registra o teto de 600 L, que e o que as quatro sustentam, e deixa o piso em null porque uma so fonte o declara e ele nao e limite de equipamento, e recomendacao de lotacao."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Pro-Aquarista (varejo BR especializado, Campinas/SP) anuncia o Eheim Classic 600 (2217) 1000 L/h na versao 220 V",
+          "url": "https://www.proaquarista.com.br/produto/eheim-classic-600-2217-1000lh-220v.html",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "voltagem",
+            "disponibilidade_br"
+          ],
+          "observacao": "Lido por RESULTADO DE BUSCA: os dominios de varejo BR dao EGRESS_BLOCKED para a nuvem em 09/09/2026. O titulo do anuncio de loja declara a voltagem da versao vendida no Brasil, que e o que este campo registra. O cartao da C3 continua obrigando a conferir a voltagem no proprio anuncio antes de comprar."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "completo",
+      "observacao": "O contraponto de cima da C3, e o primeiro registro do banco que fecha os cinco campos do minimo_para_sugerir com link E foto na faixa acima de 200 L: 1000 L/h declarados para ate 600 L dao 1,7 renovacoes por hora no teto do volume — o mesmo dimensionamento conservador do classic 250 (2213), tres a seis vezes abaixo da regra de bolso brasileira, e por isso ele aparece com folga em aquarios de 100 a 300 L. Coluna de 2,25 m: vence movel alto, que e onde os canister baratos do banco (0,85 a 1,4 m) caem fora. Registro separado por voltagem de proposito: e chave de compatibilidade e cada anuncio vende uma versao so."
+    },
+    {
+      "id": "eheim-classic-600-2217-127v",
+      "entidade": "filtro",
+      "marca": "Eheim",
+      "linha": "classic",
+      "modelo": "classic 600 (2217)",
+      "variante": "127 V",
+      "nomes_alternativos": [
+        "Eheim 2217",
+        "Eheim Classic 600",
+        "Canister Eheim 2217",
+        "Eheim classic 2217 plus"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "127"
+      ],
+      "tipo": "canister",
+      "vazao_nominal_lh": 1000,
+      "vazao_real_lh": null,
+      "potencia_w": 20.0,
+      "coluna_maxima_m": 2.25,
+      "volume_cesto_L": null,
+      "volume_filtragem_L": null,
+      "midia_inclusa": [
+        "EHEIM SUBSTRAT pro",
+        "EHEIM MECH",
+        "espuma",
+        "perlon"
+      ],
+      "uv_w": null,
+      "mangueira_mm": null,
+      "volume_atendido_declarado_L": {
+        "min": null,
+        "max": 600
+      },
+      "imagem": {
+        "url": "https://down-bs-br.img.susercontent.com/sg-11134201-7rdvk-m192mqgywnem2a.webp",
+        "largura": null,
+        "altura": null,
+        "fonte": "anuncio-shopee",
+        "coletado_em": "2026-09-09",
+        "verificado_em": null,
+        "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
+        "alt": "Filtro canister Eheim classic 600 (2217) em 127 V, corpo cilindrico verde-escuro com cabecote e torneiras duplas de mangueira",
+        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+      },
+      "afiliado": {
+        "plataforma": "shopee",
+        "url": "https://s.shopee.com.br/6Akt6313pJ",
+        "sub_id_1": "aquametria",
+        "sub_id_2": "C3",
+        "rel": "sponsored",
+        "verificado_em": "2026-09-09",
+        "anuncio_shopee": "Filtro Canister Eheim Classic 600 (2217) 1000 l/h 20 W 127 V",
+        "voltagem_anuncio": "127",
+        "observacao": "Link curto colhido a mao pelo operador no painel Shopee Afiliados em 09/09/2026, as 11h40. A pagina do anuncio nao abre para a nuvem (o egresso barra shopee.com.br). Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data."
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "AquaMaeda, Pro-Aquarista, Fazenda Submersa e AquaBetta (varejo BR especializado), fichas do Eheim classic 600 (2217): 1000 L/h, 20 W, coluna d'agua de ate 2,25 m, aquarios de ate 600 L",
+          "url": "https://www.aquamaeda.com.br/filtro-canister-eheim-classic-600-1000-lh-2217",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "vazao_nominal_lh",
+            "potencia_w",
+            "coluna_maxima_m",
+            "volume_atendido_declarado_L",
+            "tipo",
+            "midia_inclusa"
+          ],
+          "observacao": "Lido por RESULTADO DE BUSCA: eheim.com e os dominios de varejo BR dao EGRESS_BLOCKED para a nuvem em 09/09/2026. Quatro lojas BR repetem os mesmos numeros. A AquaMaeda escreve a faixa como '180 a 600 litros, dependendo da quantidade de peixes'; as outras escrevem so 'ate 600 L'. O campo registra o teto de 600 L, que e o que as quatro sustentam, e deixa o piso em null porque uma so fonte o declara e ele nao e limite de equipamento, e recomendacao de lotacao."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Fazenda Submersa e AquaBetta (varejo BR especializado) anunciam o Eheim Classic 600 (2217) 1000 L/h 20 W na versao 127 V",
+          "url": "https://www.fazendasubmersa.com.br/equipamentos/filtro-canister-classic-600-1000lh-eheim",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "voltagem",
+            "disponibilidade_br"
+          ],
+          "observacao": "Lido por RESULTADO DE BUSCA: os dominios de varejo BR dao EGRESS_BLOCKED para a nuvem em 09/09/2026. O titulo do anuncio de loja declara a voltagem da versao vendida no Brasil, que e o que este campo registra. O cartao da C3 continua obrigando a conferir a voltagem no proprio anuncio antes de comprar."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "completo",
+      "observacao": "O contraponto de cima da C3, e o primeiro registro do banco que fecha os cinco campos do minimo_para_sugerir com link E foto na faixa acima de 200 L: 1000 L/h declarados para ate 600 L dao 1,7 renovacoes por hora no teto do volume — o mesmo dimensionamento conservador do classic 250 (2213), tres a seis vezes abaixo da regra de bolso brasileira, e por isso ele aparece com folga em aquarios de 100 a 300 L. Coluna de 2,25 m: vence movel alto, que e onde os canister baratos do banco (0,85 a 1,4 m) caem fora. Registro separado por voltagem de proposito: e chave de compatibilidade e cada anuncio vende uma versao so."
     }
   ],
   "atualizado_em": "2026-09-09"

@@ -1111,7 +1111,7 @@
     },
     {
       "id": "V16",
-      "regra": "Link de afiliado NAO entra em criterio de sugestao. A lista de produtos de uma calculadora e montada e ordenada so por adequacao tecnica ao resultado; produto tecnicamente apto e mostrado tenha ou nao link, e quem tem link ganha o botao de loja, marcado como patrocinado. Ordenar ou filtrar por comissao e defeito, nao escolha editorial.",
+      "regra": "Link de afiliado NAO entra em criterio de sugestao nem em criterio de ordem tecnica. Quem entra na lista de uma calculadora e decidido so pela adequacao tecnica ao resultado, e produto tecnicamente apto e mostrado tenha ou nao link; quem tem link ganha o botao de loja, marcado como patrocinado. Desde 09/09/2026 existe UM desempate, e so ele: entre itens TECNICAMENTE EQUIVALENTES (a C3 define equivalencia como cair no mesmo decimo da largura da faixa calculada), quem tem link de loja aparece antes. Nenhum item muda de posicao para outro item de adequacao diferente, nenhum item deixa de aparecer, e taxa de comissao NAO e comparada em lugar nenhum: ordenar ou filtrar por comissao continua sendo defeito, nao escolha editorial.",
       "severidade": "regra de produto, conferida na revisao de cada calculadora"
     },
     {
@@ -1133,6 +1133,11 @@
       "id": "V20",
       "regra": "Produto com link de afiliado e sem imagem e aviso, nao erro: o cartao sai com a placa tipografica e continua vendendo. O aviso existe para a falta ser CONTADA a cada rodada, em vez de sumir em silencio.",
       "severidade": "aviso"
+    },
+    {
+      "id": "V22",
+      "regra": "DUPLA CONDICAO de elegibilidade, escrita em 09/09/2026 depois de um defeito visto no ar: a calculadora recomenda um produto so quando ele passa nas DUAS condicoes — o numero calculado (vazao, potencia, lumen) dentro da faixa E o volume do visitante dentro do volume_atendido_declarado_L do fabricante. Fabricante que NAO declara volume: o produto entra, com a ressalva escrita no cartao. Fabricante que declara e o volume do visitante passa (ou nao alcanca) a declaracao: o produto NAO entra nos recomendados; se aparecer, e em secao separada, ABAIXO, rotulada 'atendem a vazao mas o fabricante nao cobre esse volume'. Nunca misturado, nunca em primeiro lugar. O que motivou: a C3 no ar recomendava em PRIMEIRO lugar o Atman HF-0600 para um aquario de 189,6 L e o proprio cartao dele escrevia que o fabricante declara o modelo para ate 150 L. Recomendar o que a propria pagina diz que nao serve destroi a unica coisa que separa a ilha das fazendas de conteudo.",
+      "severidade": "regra de produto, conferida na revisao de cada calculadora"
     }
   ],
   "atualizado_em": "2026-09-09"

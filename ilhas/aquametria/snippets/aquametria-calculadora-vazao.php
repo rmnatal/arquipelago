@@ -14,6 +14,30 @@
  *   perguntas de compra ("qual filtro comprar para X litros"), cada uma
  *   respondida com o mesmo modelo e o mesmo número que a tabela serve. Nenhuma
  *   fórmula mudou.
+ * Versão: 1.4.0 (09/09/2026) — DUPLA CONDIÇÃO e ordem em três degraus, depois
+ *   de três coisas vistas pelo Raphael na página no ar (aquário de 189,6 L,
+ *   plantado, carga média):
+ *   (a) DEFEITO GRAVE. O primeiro item recomendado era o Atman HF-0600, e o
+ *   próprio cartão dele escrevia que o fabricante declara o modelo para até
+ *   150 L e que "a declaração do fabricante não cobre o seu caso". A página
+ *   recomendava em primeiro lugar um filtro que ela mesma dizia não servir,
+ *   porque a elegibilidade olhava só a VAZÃO. Agora entra nos recomendados só
+ *   quem passa nas DUAS condições — vazão dentro da faixa E volume do visitante
+ *   dentro do volume declarado pelo fabricante. Quem não declara volume entra,
+ *   com a ressalva escrita. Quem declara e não cobre sai para uma seção
+ *   separada, ABAIXO, rotulada "atendem a vazão, mas o fabricante não cobre
+ *   esse volume". Nunca misturado, nunca em primeiro lugar.
+ *   (b) O topo da lista não vendia: os dois primeiros traziam "ainda não temos
+ *   link de loja". A ordem passa a ter três degraus — elegibilidade técnica
+ *   dupla, adequação técnica entre os elegíveis, e SÓ COMO DESEMPATE entre
+ *   itens tecnicamente equivalentes (mesmo décimo da largura da faixa), quem
+ *   tem link aparece antes. Não é ordenar por comissão: taxa de comissão não é
+ *   comparada em lugar nenhum, produto pior nunca sobe por pagar mais, e a
+ *   frase "produto sem link de loja aparece do mesmo jeito" continua valendo —
+ *   muda a POSIÇÃO de quem já era equivalente, não a presença de ninguém.
+ *   (c) O catálogo embutido foi regerado: entraram o Eheim classic 600 (2217)
+ *   em 127 V e em 220 V e o SunSun HW-702B 220 V, os três com link de loja.
+ *   Nenhuma fórmula mudou.
  * Versão: 1.2.0 (09/09/2026) — BLOCO 4c, visibilidade em IA. A página passou a
  *   servir RESPOSTA no HTML, e não só formulário. Três acréscimos e um conserto:
  *   (a) um bloco de resposta direta no topo, com o número, o critério e a
@@ -62,10 +86,13 @@
  *
  * Bloco de produto: os filtros vêm do catálogo embutido mais abaixo, gerado por
  * ferramentas/gerar-catalogo-filtros.py a partir de dados/produtos-filtro.json.
- * Mexeu no banco, rode o gerador — as duas cópias não podem divergir. A ordem é
- * por adequação técnica ao resultado; link de afiliado não ordena nem filtra
- * (regra V16 do esquema). Produto sem link aparece igual, só que sem botão de
- * loja. Preço não entra: snippet é estático e preço envelhece na tela.
+ * Mexeu no banco, rode o gerador — as duas cópias não podem divergir. Quem entra
+ * na lista é decidido pela ficha técnica e por nada mais (regra V16 do esquema):
+ * elegibilidade dupla (vazão na faixa E volume declarado cobrindo o visitante,
+ * regra V22), depois adequação técnica. Link de afiliado não filtra ninguém e só
+ * desempata entre itens tecnicamente equivalentes. Produto sem link aparece
+ * igual, só que sem botão de loja. Preço não entra: snippet é estático e preço
+ * envelhece na tela.
  *
  * Regras herdadas (fase 4b): sem "<?php" no topo (o Code Snippets põe); toda
  * função de nível superior dentro de function_exists; não usa superglobal de
@@ -77,9 +104,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_C3_VERSAO' ) ) {
-	define( 'AQUAMETRIA_C3_VERSAO', '1.3.0' );
+	define( 'AQUAMETRIA_C3_VERSAO', '1.4.0' );
 	define( 'AQUAMETRIA_C3_SLUG', 'calculadora-de-vazao-do-filtro' );
-	define( 'AQUAMETRIA_C3_VERIFICADO_EM', '08/09/2026' );
+	define( 'AQUAMETRIA_C3_VERIFICADO_EM', '09/09/2026' );
 	/* Constante 'eheim-classic-250-2213' (dados/constantes-calculadoras.json):
 	   440 L/h declarados para até 250 L, ou seja 1,76 renovações por hora. É o
 	   contraponto do fabricante às regras de bolso brasileiras. */
@@ -288,6 +315,75 @@ function aquametria_c3_catalogo() {
 			'observacao' => 'Hang-on. NAO tem altura maxima de recalque: o filtro fica pendurado na borda e bombeia contra a propria carcaca, entao coluna_maxima_m nao se aplica (campo coluna_maxima_nao_se_aplica). Em 08/09/2026 saiu de \'revalidar\' para \'completo\': a eficiencia de 167 L/h por W, que o validador apontava como implausivel, e a declaracao do proprio fabricante e coerente com um hang-on trabalhando a coluna quase zero - o limite de 120 L/h por W foi calibrado para canister, e a regra V10 passou a valer so para canister e sump. Em 08/09/2026 ganhou volume_filtragem_L = 1,2 L (coleta da C12): 1,2 L de midia para os 200 L que o fabricante declara atender da 6,0 mL de midia por litro de agua - metade dos 12 mL/L do cesto do Eheim classic 250. Dois fabricantes, o mesmo problema, o dobro de midia.',
 		),
 		array(
+			'id' => 'sunsun-hw-702b-220v',
+			'marca' => 'SunSun',
+			'modelo' => 'HW-702B',
+			'tipo' => 'canister',
+			'vazao_lh' => 1000,
+			'potencia_w' => null,
+			'coluna_m' => 1.4,
+			'coluna_na' => false,
+			'volume_min_L' => null,
+			'volume_max_L' => 200,
+			'voltagem' => array( '220' ),
+			'uv_w' => 9.0,
+			'midia' => array(),
+			'fonte_ref' => 'Pet Hobby (varejo BR especializado), ficha do SunSun HW-702A: canister de 1000 L/h para aquarios de ate 200 L',
+			'fonte_url' => 'https://www.pethobby.com.br/filtro-canister-hw-702a-sunsun-1000lh-aquarios-ate-200l',
+			'fonte_status' => 'transcrita-varejo',
+			'verificado_em' => '2026-09-09',
+			'link' => 'https://s.shopee.com.br/gPwXrF9Pl',
+			'anuncio' => 'Filtro Canister HW-702-B Sunsun 1000 l/h 220 V',
+			'loja' => 'shopee',
+			'observacao' => 'Fecha os cinco campos do minimo_para_sugerir da C3 COM link e foto, e por isso e sugerido; fica \'parcial\' porque potencia_w, que e obrigatorio da entidade e alimenta a C7, continua null. Na faixa de 150 a 200 L e o primeiro canister do banco com link E foto: 1000 L/h declarados para ate 200 L dao 5,0 renovacoes por hora no teto do volume, exatamente o piso da regra de bolso brasileira. O UV de 9 W entra no consumo total da C7 e nao no dimensionamento da C3. A potencia da bomba ficou null porque a unica ficha que a publica (Wiltec) diz 24 W no titulo e 15 W na descricao — numero que briga consigo mesmo nao vai para a tela, e somar 15 W de bomba com 9 W de UV para chegar aos 24 W seria derivacao nossa, nao declaracao de fabricante.',
+		),
+		array(
+			'id' => 'eheim-classic-600-2217-220v',
+			'marca' => 'Eheim',
+			'modelo' => 'classic 600 (2217)',
+			'tipo' => 'canister',
+			'vazao_lh' => 1000,
+			'potencia_w' => 20.0,
+			'coluna_m' => 2.25,
+			'coluna_na' => false,
+			'volume_min_L' => null,
+			'volume_max_L' => 600,
+			'voltagem' => array( '220' ),
+			'uv_w' => null,
+			'midia' => array( 'EHEIM SUBSTRAT pro', 'EHEIM MECH', 'espuma', 'perlon' ),
+			'fonte_ref' => 'AquaMaeda, Pro-Aquarista, Fazenda Submersa e AquaBetta (varejo BR especializado), fichas do Eheim classic 600 (2217): 1000 L/h, 20 W, coluna d\'agua de ate 2,25 m, aquarios de ate 600 L',
+			'fonte_url' => 'https://www.aquamaeda.com.br/filtro-canister-eheim-classic-600-1000-lh-2217',
+			'fonte_status' => 'transcrita-varejo',
+			'verificado_em' => '2026-09-09',
+			'link' => 'https://s.shopee.com.br/9AOUfYKdQv',
+			'anuncio' => 'Filtro Canister Eheim Classic 600 (2217) 1000 l/h 20 W 220 V',
+			'loja' => 'shopee',
+			'observacao' => 'O contraponto de cima da C3, e o primeiro registro do banco que fecha os cinco campos do minimo_para_sugerir com link E foto na faixa acima de 200 L: 1000 L/h declarados para ate 600 L dao 1,7 renovacoes por hora no teto do volume — o mesmo dimensionamento conservador do classic 250 (2213), tres a seis vezes abaixo da regra de bolso brasileira, e por isso ele aparece com folga em aquarios de 100 a 300 L. Coluna de 2,25 m: vence movel alto, que e onde os canister baratos do banco (0,85 a 1,4 m) caem fora. Registro separado por voltagem de proposito: e chave de compatibilidade e cada anuncio vende uma versao so.',
+		),
+		array(
+			'id' => 'eheim-classic-600-2217-127v',
+			'marca' => 'Eheim',
+			'modelo' => 'classic 600 (2217)',
+			'tipo' => 'canister',
+			'vazao_lh' => 1000,
+			'potencia_w' => 20.0,
+			'coluna_m' => 2.25,
+			'coluna_na' => false,
+			'volume_min_L' => null,
+			'volume_max_L' => 600,
+			'voltagem' => array( '127' ),
+			'uv_w' => null,
+			'midia' => array( 'EHEIM SUBSTRAT pro', 'EHEIM MECH', 'espuma', 'perlon' ),
+			'fonte_ref' => 'AquaMaeda, Pro-Aquarista, Fazenda Submersa e AquaBetta (varejo BR especializado), fichas do Eheim classic 600 (2217): 1000 L/h, 20 W, coluna d\'agua de ate 2,25 m, aquarios de ate 600 L',
+			'fonte_url' => 'https://www.aquamaeda.com.br/filtro-canister-eheim-classic-600-1000-lh-2217',
+			'fonte_status' => 'transcrita-varejo',
+			'verificado_em' => '2026-09-09',
+			'link' => 'https://s.shopee.com.br/6Akt6313pJ',
+			'anuncio' => 'Filtro Canister Eheim Classic 600 (2217) 1000 l/h 20 W 127 V',
+			'loja' => 'shopee',
+			'observacao' => 'O contraponto de cima da C3, e o primeiro registro do banco que fecha os cinco campos do minimo_para_sugerir com link E foto na faixa acima de 200 L: 1000 L/h declarados para ate 600 L dao 1,7 renovacoes por hora no teto do volume — o mesmo dimensionamento conservador do classic 250 (2213), tres a seis vezes abaixo da regra de bolso brasileira, e por isso ele aparece com folga em aquarios de 100 a 300 L. Coluna de 2,25 m: vence movel alto, que e onde os canister baratos do banco (0,85 a 1,4 m) caem fora. Registro separado por voltagem de proposito: e chave de compatibilidade e cada anuncio vende uma versao so.',
+		),
+		array(
 			'id' => 'atman-at-3338',
 			'marca' => 'Atman',
 			'modelo' => 'AT-3338',
@@ -480,57 +576,156 @@ function aquametria_c3_exemplo( $volume ) {
  * preencher o formulário inteiro e rolar até o fim.
  *
  * A escolha é o MESMO critério do script (função escolher()): vazão declarada
- * dentro da faixa calculada, ordem pela distância até o meio da faixa. Duas
- * diferenças, e as duas são por honestidade e não por atalho: a tabela não sabe
- * o tipo de filtro que a pessoa quer nem a altura da coluna do móvel dela, então
- * não pode aplicar esses dois cortes — e o texto abaixo da tabela diz isso com
- * essas palavras. Link de afiliado NÃO entra no critério nem na ordem (regra V16
- * do esquema do banco): quem atende melhor vem primeiro, com link ou sem.
+ * dentro da faixa calculada E volume da linha dentro do volume declarado pelo
+ * fabricante, ordem pela distância até o meio da faixa com o link desempatando
+ * entre equivalentes. Duas diferenças, e as duas são por honestidade e não por
+ * atalho: a tabela não sabe o tipo de filtro que a pessoa quer nem a altura da
+ * coluna do móvel dela, então não pode aplicar esses dois cortes — e o texto
+ * abaixo da tabela diz isso com essas palavras. Link de afiliado NÃO decide quem
+ * entra (regra V16 do esquema do banco); ele só desempata quem já era
+ * tecnicamente equivalente.
  * ------------------------------------------------------------------------- */
 
-if ( ! function_exists( 'aquametria_c3_produtos_exemplo' ) ) {
-function aquametria_c3_produtos_exemplo( $piso, $teto ) {
+/* A DUPLA CONDIÇÃO, escrita em 09/09/2026 depois de um defeito visto no ar.
+ *
+ * O que acontecia: a C3 elegia o filtro só pela VAZÃO. Num aquário de 189,6 L,
+ * o primeiro da lista era o Atman HF-0600 — 650 L/h, dentro da faixa — e o
+ * próprio cartão dele dizia, embaixo do nome, que o fabricante declara o modelo
+ * para até 150 L e que "a declaração do fabricante não cobre o seu caso". A
+ * página recomendava em primeiro lugar um filtro que ela mesma dizia não servir.
+ *
+ * A regra passa a ser: entra nos recomendados quem passa nas DUAS condições —
+ * vazão dentro da faixa calculada E volume do visitante dentro do volume que o
+ * fabricante declara. Quem não declara volume entra, com a ressalva escrita.
+ * Quem declara e não cobre sai da lista de recomendados e vai para uma seção
+ * separada, abaixo e rotulada. Nunca misturado, nunca em primeiro lugar. */
+if ( ! function_exists( 'aquametria_c3_cobre_volume' ) ) {
+function aquametria_c3_cobre_volume( $p, $volume ) {
+	if ( null !== $p['volume_max_L'] && $volume > $p['volume_max_L'] ) {
+		return false;
+	}
+	if ( null !== $p['volume_min_L'] && $volume < $p['volume_min_L'] ) {
+		return false;
+	}
+	return true;
+}
+}
+
+/* A ordem, em três degraus e nesta ordem: (1) elegibilidade técnica dupla, que
+ * já aconteceu no filtro acima; (2) adequação técnica entre os elegíveis, que é
+ * a distância até o meio da faixa; (3) e SÓ COMO DESEMPATE entre itens
+ * tecnicamente equivalentes, quem tem link de loja aparece antes.
+ *
+ * "Tecnicamente equivalentes" precisa de um número, senão o desempate come a
+ * ordem técnica: dois filtros são equivalentes quando as distâncias deles até o
+ * meio da faixa caem no mesmo décimo da largura da faixa. É convenção editorial
+ * da Aquametria, declarada, e não constante de fabricante.
+ *
+ * Isto NÃO é ordenar por comissão, e a proibição continua integral: taxa de
+ * comissão não é comparada em lugar nenhum, e produto pior nunca sobe por pagar
+ * mais. Muda a POSIÇÃO de quem já era equivalente, não a presença de ninguém. */
+if ( ! function_exists( 'aquametria_c3_degrau_adequacao' ) ) {
+function aquametria_c3_degrau_adequacao( $p, $piso, $teto ) {
 	$meio   = ( $piso + $teto ) / 2;
+	$passo  = ( $teto - $piso ) / 10;
+	$dist   = abs( $p['vazao_lh'] - $meio );
+
+	if ( $passo <= 0 ) {
+		return $dist;
+	}
+
+	return floor( $dist / $passo );
+}
+}
+
+if ( ! function_exists( 'aquametria_c3_ordenar' ) ) {
+function aquametria_c3_ordenar( $lista, $piso, $teto ) {
+	usort(
+		$lista,
+		function ( $a, $b ) use ( $piso, $teto ) {
+			$ga = aquametria_c3_degrau_adequacao( $a, $piso, $teto );
+			$gb = aquametria_c3_degrau_adequacao( $b, $piso, $teto );
+
+			if ( $ga !== $gb ) {
+				return ( $ga < $gb ) ? -1 : 1;
+			}
+
+			$la = $a['link'] ? 0 : 1;
+			$lb = $b['link'] ? 0 : 1;
+
+			if ( $la !== $lb ) {
+				return $la - $lb;
+			}
+
+			$meio = ( $piso + $teto ) / 2;
+			$da   = abs( $a['vazao_lh'] - $meio );
+			$db   = abs( $b['vazao_lh'] - $meio );
+
+			if ( abs( $da - $db ) >= 0.001 ) {
+				return ( $da < $db ) ? -1 : 1;
+			}
+
+			return strcmp( $a['id'], $b['id'] );
+		}
+	);
+
+	return $lista;
+}
+}
+
+if ( ! function_exists( 'aquametria_c3_produtos_exemplo' ) ) {
+function aquametria_c3_produtos_exemplo( $piso, $teto, $volume ) {
 	$dentro = array();
 
 	foreach ( aquametria_c3_catalogo() as $p ) {
 		if ( $p['vazao_lh'] < $piso || $p['vazao_lh'] > $teto ) {
 			continue;
 		}
+		if ( ! aquametria_c3_cobre_volume( $p, $volume ) ) {
+			continue;
+		}
 		$dentro[] = $p;
 	}
 
-	usort(
-		$dentro,
-		function ( $a, $b ) use ( $meio ) {
-			$da = abs( $a['vazao_lh'] - $meio );
-			$db = abs( $b['vazao_lh'] - $meio );
-			if ( abs( $da - $db ) < 0.001 ) {
-				return strcmp( $a['id'], $b['id'] );
-			}
-			return ( $da < $db ) ? -1 : 1;
-		}
-	);
+	return aquametria_c3_ordenar( $dentro, $piso, $teto );
+}
+}
 
-	return $dentro;
+/* Os que atendem a vazão e o fabricante NÃO cobre o volume. Existem na tela,
+   separados e rotulados, porque esconder o modelo inteiro seria pior: a pessoa
+   procuraria por ele e não saberia por que sumiu. */
+if ( ! function_exists( 'aquametria_c3_produtos_fora_do_volume' ) ) {
+function aquametria_c3_produtos_fora_do_volume( $piso, $teto, $volume ) {
+	$fora = array();
+
+	foreach ( aquametria_c3_catalogo() as $p ) {
+		if ( $p['vazao_lh'] < $piso || $p['vazao_lh'] > $teto ) {
+			continue;
+		}
+		if ( aquametria_c3_cobre_volume( $p, $volume ) ) {
+			continue;
+		}
+		$fora[] = $p;
+	}
+
+	return aquametria_c3_ordenar( $fora, $piso, $teto );
 }
 }
 
 if ( ! function_exists( 'aquametria_c3_produto_exemplo' ) ) {
-function aquametria_c3_produto_exemplo( $piso, $teto ) {
-	$lista = aquametria_c3_produtos_exemplo( $piso, $teto );
+function aquametria_c3_produto_exemplo( $piso, $teto, $volume ) {
+	$lista = aquametria_c3_produtos_exemplo( $piso, $teto, $volume );
 	return $lista ? $lista[0] : null;
 }
 }
 
-/* O primeiro da MESMA ordem que já tem link de loja hoje. Existe para uma
-   situação concreta e frequente: o modelo que atende melhor costuma ser um que
-   o banco ainda não conseguiu link, e a pessoa fica sem saber onde comprar
-   nenhum. A ordem NÃO muda por isso — quem atende melhor continua em primeiro,
-   e a linha do comprável sai rotulada como o que é, embaixo e em segundo. */
+/* O primeiro da MESMA ordem que já tem link de loja hoje. Depois do desempate
+   por link, o caso em que os dois são diferentes ficou raro — ele sobra quando
+   quem atende melhor está um degrau de adequação à frente de todo mundo que tem
+   link, e aí a ordem técnica manda e este aqui sai embaixo, rotulado. */
 if ( ! function_exists( 'aquametria_c3_produto_com_link' ) ) {
-function aquametria_c3_produto_com_link( $piso, $teto ) {
-	foreach ( aquametria_c3_produtos_exemplo( $piso, $teto ) as $p ) {
+function aquametria_c3_produto_com_link( $piso, $teto, $volume ) {
+	foreach ( aquametria_c3_produtos_exemplo( $piso, $teto, $volume ) as $p ) {
 		if ( $p['link'] ) {
 			return $p;
 		}
@@ -543,11 +738,28 @@ function aquametria_c3_produto_com_link( $piso, $teto ) {
    especificação QUE FEZ ELE ENTRAR e o número do aquário daquela linha — é o
    formato que sobrevive a ser recortado por um modelo de linguagem, e é também
    o que um comprador precisa ler para saber por que aquele aparelho e não outro. */
+/* O banco separa por VOLTAGEM quando cada anúncio vende uma versão só — o Eheim
+   classic 600 (2217) está lá duas vezes, em 127 V e em 220 V. Sem a voltagem no
+   nome, a lista mostra dois itens de nome idêntico e o leitor acha que é defeito.
+   Ela entra só quando o registro declara uma voltagem, que é quando ela
+   identifica; registro que declara duas não ganha nada aqui. */
+if ( ! function_exists( 'aquametria_c3_nome_produto' ) ) {
+function aquametria_c3_nome_produto( $p ) {
+	$nome = $p['marca'] . ' ' . $p['modelo'];
+
+	if ( is_array( $p['voltagem'] ) && 1 === count( $p['voltagem'] ) ) {
+		$nome .= ' (' . $p['voltagem'][0] . ' V)';
+	}
+
+	return $nome;
+}
+}
+
 if ( ! function_exists( 'aquametria_c3_produto_frase' ) ) {
 function aquametria_c3_produto_frase( $p, $volume ) {
 	$turno = $p['vazao_lh'] / $volume;
 
-	return $p['marca'] . ' ' . $p['modelo'] . ' — ' . aquametria_c3_lh( $p['vazao_lh'] ) . ' L/h, '
+	return aquametria_c3_nome_produto( $p ) . ' — ' . aquametria_c3_lh( $p['vazao_lh'] ) . ' L/h, '
 		. number_format_i18n( round( $turno * 10 ) / 10, 1 ) . ' renovações por hora nos '
 		. number_format_i18n( $volume, 0 ) . ' litros, segundo ' . aquametria_c3_origem_texto( $p['fonte_status'] )
 		. ' (fonte: ' . aquametria_c3_fonte_nome( $p['fonte_ref'] ) . '), conferida em ' . aquametria_c3_data_br( $p['verificado_em'] );
@@ -602,25 +814,47 @@ function aquametria_c3_data_br( $iso ) {
 }
 }
 
-/* O filtro entra pela VAZÃO, e o volume que o fabricante declara é outro número
-   — às vezes menor que o do exemplo. O cartão que o script pinta já diz isso; a
-   tabela servida e o FAQ precisam dizer também, senão a mesma página afirma duas
-   coisas diferentes conforme o leitor execute ou não JavaScript. */
+/* Desde a dupla condição de 09/09/2026, um recomendado NUNCA fura o volume
+   declarado. O que sobra para ressalvar é o outro caso: o fabricante que não
+   declara volume nenhum. Esse entra na lista, por decisão escrita, mas o leitor
+   precisa saber que ali não existe declaração para conferir. A tabela servida e
+   o FAQ dizem a mesma coisa que o cartão do script, senão a mesma página afirma
+   duas coisas diferentes conforme o leitor execute ou não JavaScript. */
 if ( ! function_exists( 'aquametria_c3_volume_ressalva' ) ) {
 function aquametria_c3_volume_ressalva( $p, $volume ) {
-	if ( null === $p['volume_max_L'] || $p['volume_max_L'] >= $volume ) {
+	if ( null !== $p['volume_max_L'] ) {
 		return '';
 	}
 
-	return 'O fabricante declara esse modelo para até ' . number_format_i18n( $p['volume_max_L'], 0 )
-		. ' litros, abaixo dos ' . number_format_i18n( $volume, 0 )
-		. ' deste exemplo: ele entra pela vazão, e a declaração de volume não cobre esse caso.';
+	return 'O fabricante não declara volume atendido para esse modelo: ele entra pela vazão, '
+		. 'e não há declaração de volume para conferir contra os ' . number_format_i18n( $volume, 0 )
+		. ' litros deste exemplo.';
+}
+}
+
+/* A frase da seção separada: atende a vazão, e o fabricante não cobre o volume.
+   Nunca sai misturada com os recomendados nem em primeiro lugar. */
+if ( ! function_exists( 'aquametria_c3_fora_do_volume_frase' ) ) {
+function aquametria_c3_fora_do_volume_frase( $p, $volume ) {
+	if ( null !== $p['volume_max_L'] && $volume > $p['volume_max_L'] ) {
+		return 'O fabricante declara esse modelo para até ' . number_format_i18n( $p['volume_max_L'], 0 )
+			. ' litros, abaixo dos ' . number_format_i18n( $volume, 0 )
+			. ' deste caso: a vazão cabe na faixa, a declaração de volume não cobre.';
+	}
+
+	if ( null !== $p['volume_min_L'] && $volume < $p['volume_min_L'] ) {
+		return 'O fabricante declara esse modelo a partir de ' . number_format_i18n( $p['volume_min_L'], 0 )
+			. ' litros, acima dos ' . number_format_i18n( $volume, 0 )
+			. ' deste caso: a vazão cabe na faixa, a declaração de volume não cobre.';
+	}
+
+	return '';
 }
 }
 
 if ( ! function_exists( 'aquametria_c3_produto_celula_html' ) ) {
 function aquametria_c3_produto_celula_html( $e ) {
-	$p = aquametria_c3_produto_exemplo( $e['piso'], $e['com_teto'] );
+	$p = aquametria_c3_produto_exemplo( $e['piso'], $e['com_teto'], $e['volume'] );
 
 	/* Bloco vazio nunca sai mudo: silêncio na tela parece defeito, e o leitor
 	   não tem como saber se faltou produto ou se quebrou a página. */
@@ -630,7 +864,7 @@ function aquametria_c3_produto_celula_html( $e ) {
 			. ' L/h. Assim que houver um com ficha completa, ele aparece aqui.</span></td>';
 	}
 
-	$nome  = $p['marca'] . ' ' . $p['modelo'];
+	$nome  = aquametria_c3_nome_produto( $p );
 	$turno = $p['vazao_lh'] / $e['volume'];
 
 	$h = '<td>';
@@ -660,7 +894,7 @@ function aquametria_c3_produto_celula_html( $e ) {
 
 	$h .= '<span class="aqm-c3-xh">ainda sem link de loja</span>';
 
-	$c = aquametria_c3_produto_com_link( $e['piso'], $e['com_teto'] );
+	$c = aquametria_c3_produto_com_link( $e['piso'], $e['com_teto'], $e['volume'] );
 
 	if ( null === $c ) {
 		$h .= '<span class="aqm-c3-sem">Nenhum filtro dessa faixa tem link de loja no banco hoje.</span>';
@@ -669,7 +903,7 @@ function aquametria_c3_produto_celula_html( $e ) {
 	}
 
 	$h .= '<span class="aqm-c3-sem">Com link hoje, na mesma faixa: <a class="aqm-c3-prod" href="'
-		. esc_url( $c['link'] ) . '" target="_blank" rel="sponsored noopener">' . esc_html( $c['marca'] . ' ' . $c['modelo'] )
+		. esc_url( $c['link'] ) . '" target="_blank" rel="sponsored noopener">' . esc_html( aquametria_c3_nome_produto( $c ) )
 		. '</a> — ' . esc_html( aquametria_c3_lh( $c['vazao_lh'] ) ) . ' L/h, '
 		. esc_html( number_format_i18n( round( ( $c['vazao_lh'] / $e['volume'] ) * 10 ) / 10, 1 ) ) . ' renovações/h. Link patrocinado. '
 		. esc_html( aquametria_c3_volume_ressalva( $c, $e['volume'] ) ) . '</span>';
@@ -726,6 +960,8 @@ max-width:52rem;font-family:var(--c3-texto);color:var(--c3-tinta);}
 .aqm-c3-nota.aqm-c3-nota-alerta{border-left-color:var(--c3-alerta);}
 .aqm-c3-vazio{font-family:var(--c3-texto);font-size:.95rem;color:var(--c3-legenda);font-weight:500;}
 .aqm-c3-produtos{margin:0 0 1.2rem;}
+.aqm-c3-fora{border-left:3px solid var(--c3-alerta);}
+.aqm-c3-fora .aqm-c3-numero{color:var(--c3-alerta);}
 .aqm-c3-produtos h3{font-family:var(--c3-display);font-size:1.05rem;margin:0 0 .2rem;}
 .aqm-c3-lista{list-style:none;margin:1rem 0 0;padding:0;display:grid;gap:.9rem;}
 .aqm-c3-produto{background:var(--c3-superficie);border:1px solid var(--c3-traco);border-radius:3px;padding:1rem 1.1rem;display:grid;grid-template-columns:6.5rem 1fr;gap:1rem;align-items:start;}
@@ -891,29 +1127,66 @@ function aquametria_c3_js() {
 		return r;
 	}
 
-	/* Adequação técnica, e só ela: vazão dentro da faixa calculada, coluna
-	   suficiente, tipo compatível. Link de afiliado não entra no critério nem
-	   na ordem (regra V16 do esquema do banco). */
-	function escolher(r, d) {
-		var meio = (r.piso + r.teto) / 2;
-		var fora = [];
-		var dentro = AQM_C3_CATALOGO.filter(function (p) {
-			if (d.tipo !== 'qualquer' && p.tipo !== d.tipo) { return false; }
-			if (p.vazao_lh < r.piso || p.vazao_lh > r.teto) { return false; }
-			if (d.coluna !== null && d.coluna > 0 && !p.coluna_na && p.coluna_m !== null && p.coluna_m < d.coluna) {
-				fora.push(p.marca + ' ' + p.modelo + ' atende a faixa, mas a coluna máxima declarada ('
-					+ fmt(p.coluna_m, 1) + ' m) é menor que os ' + fmt(d.coluna, 1) + ' m que você informou.');
-				return false;
-			}
-			return true;
-		});
+	/* A DUPLA CONDIÇÃO. Espelho exato de aquametria_c3_cobre_volume() no PHP:
+	   quem não declara volume entra (com a ressalva escrita no cartão), quem
+	   declara e não cobre o volume do visitante NÃO entra nos recomendados. */
+	function cobreVolume(p, V) {
+		if (p.volume_max_L !== null && V > p.volume_max_L) { return false; }
+		if (p.volume_min_L !== null && V < p.volume_min_L) { return false; }
+		return true;
+	}
 
-		dentro.sort(function (a, b) {
-			return Math.abs(a.vazao_lh - meio) - Math.abs(b.vazao_lh - meio);
+	/* Espelho de aquametria_c3_degrau_adequacao(): a adequação vira degrau de um
+	   décimo da largura da faixa, para que "tecnicamente equivalente" seja um
+	   número e não uma impressão. */
+	function degrau(p, r) {
+		var meio = (r.piso + r.teto) / 2;
+		var passo = (r.teto - r.piso) / 10;
+		var dist = Math.abs(p.vazao_lh - meio);
+		return passo <= 0 ? dist : Math.floor(dist / passo);
+	}
+
+	/* Três degraus, nesta ordem: adequação técnica; depois, SÓ entre equivalentes,
+	   quem tem link de loja; depois a distância exata e o id, para a ordem ser
+	   sempre a mesma. Comissão não é comparada em lugar nenhum. */
+	function ordenar(lista, r) {
+		var meio = (r.piso + r.teto) / 2;
+		return lista.sort(function (a, b) {
+			var ga = degrau(a, r), gb = degrau(b, r);
+			if (ga !== gb) { return ga - gb; }
+			var la = a.link ? 0 : 1, lb = b.link ? 0 : 1;
+			if (la !== lb) { return la - lb; }
+			var da = Math.abs(a.vazao_lh - meio), db = Math.abs(b.vazao_lh - meio);
+			if (Math.abs(da - db) >= 0.001) { return da - db; }
+			return a.id < b.id ? -1 : (a.id > b.id ? 1 : 0);
+		});
+	}
+
+	/* Elegibilidade: vazão dentro da faixa calculada, coluna suficiente, tipo
+	   compatível E volume do visitante dentro do volume que o fabricante declara.
+	   Quem passa em tudo menos no volume declarado vai para a seção separada, e
+	   nunca para os recomendados: até 09/09/2026 a página recomendava em primeiro
+	   lugar um filtro que ela mesma dizia não cobrir o aquário. */
+	function escolher(r, d) {
+		var V = d.volume;
+		var fora = [];
+		var dentro = [];
+		var foraVolume = [];
+
+		AQM_C3_CATALOGO.forEach(function (p) {
+			if (d.tipo !== 'qualquer' && p.tipo !== d.tipo) { return; }
+			if (p.vazao_lh < r.piso || p.vazao_lh > r.teto) { return; }
+			if (d.coluna !== null && d.coluna > 0 && !p.coluna_na && p.coluna_m !== null && p.coluna_m < d.coluna) {
+				fora.push(nomeProduto(p) + ' atende a faixa, mas a coluna máxima declarada ('
+					+ fmt(p.coluna_m, 1) + ' m) é menor que os ' + fmt(d.coluna, 1) + ' m que você informou.');
+				return;
+			}
+			if (cobreVolume(p, V)) { dentro.push(p); } else { foraVolume.push(p); }
 		});
 
 		r.barrados_por_coluna = fora;
-		return dentro.slice(0, 5);
+		r.fora_do_volume = ordenar(foraVolume, r).slice(0, 5);
+		return ordenar(dentro, r).slice(0, 5);
 	}
 
 	/* ------------------------------------------------------------------ tela */
@@ -1028,13 +1301,17 @@ function aquametria_c3_js() {
 		var nada = el('aqm-c3-produtos-nada');
 		lista.innerHTML = '';
 
+		pintarForaDoVolume(r);
+
 		if (!r.produtos.length) {
 			bloco.classList.add('aqm-c3-oculto');
 			nada.classList.remove('aqm-c3-oculto');
-			nada.textContent = 'Nenhum filtro do nosso banco entrega entre ' + lh(r.piso) + ' e ' + lh(r.teto)
-				+ ' L/h com ficha técnica conferida'
-				+ (r.entradas.tipo !== 'qualquer' ? ' no tipo que você escolheu' : '')
-				+ (r.barrados_por_coluna.length ? ', e ' + r.barrados_por_coluna.length + ' modelo(s) foram barrados pela altura da coluna' : '')
+			nada.textContent = 'Nenhum filtro do nosso banco atende ao mesmo tempo às duas condições do seu caso: '
+				+ 'entregar entre ' + lh(r.piso) + ' e ' + lh(r.teto) + ' L/h e ter, do fabricante, declaração de volume que cubra '
+				+ litros(r.entradas.volume) + ' L'
+				+ (r.entradas.tipo !== 'qualquer' ? ', no tipo que você escolheu' : '')
+				+ (r.barrados_por_coluna.length ? '. ' + r.barrados_por_coluna.length + ' modelo(s) foram barrados pela altura da coluna' : '')
+				+ (r.fora_do_volume.length ? '. ' + r.fora_do_volume.length + ' modelo(s) atendem a vazão mas o fabricante não cobre esse volume, e estão listados logo abaixo' : '')
 				+ '. O banco tem ' + AQM_C3_CATALOGO.length + ' filtro(s) com ficha completa hoje e cresce a cada coleta. '
 				+ 'Preferimos não mostrar produto nenhum a mostrar um que não atende o seu número.';
 			return;
@@ -1043,9 +1320,11 @@ function aquametria_c3_js() {
 		nada.classList.add('aqm-c3-oculto');
 		bloco.classList.remove('aqm-c3-oculto');
 		el('aqm-c3-produtos-sub').textContent =
-			'São os filtros do nosso banco cuja vazão declarada cai dentro da faixa que o seu aquário pede — '
-			+ lh(r.piso) + ' a ' + lh(r.teto) + ' L/h. A ordem é por proximidade do meio da faixa. '
-			+ 'Nada aqui é ordenado por comissão, e produto sem link de loja aparece do mesmo jeito.';
+			'São os filtros do nosso banco que passam nas DUAS condições: a vazão declarada cai dentro da faixa que o seu aquário pede — '
+			+ lh(r.piso) + ' a ' + lh(r.teto) + ' L/h — e o volume que o fabricante declara cobre os '
+			+ litros(r.entradas.volume) + ' L que você informou. Quem não declara volume nenhum entra também, e o cartão diz isso. '
+			+ 'A ordem é por proximidade do meio da faixa; entre modelos tecnicamente equivalentes (mesmo décimo da faixa), '
+			+ 'quem tem link de loja aparece antes. Comissão não é comparada em lugar nenhum, e produto sem link de loja aparece do mesmo jeito.';
 
 		r.produtos.forEach(function (p) {
 			lista.appendChild(produtoHtml(p, r));
@@ -1059,7 +1338,31 @@ function aquametria_c3_js() {
 		}
 	}
 
-	function produtoHtml(p, r) {
+	/* A seção separada. Ela vem SEMPRE depois dos recomendados no HTML e no
+	   sentido: são filtros que a faixa aceita e que a declaração do fabricante
+	   não cobre. Some quando não há nenhum. */
+	function pintarForaDoVolume(r) {
+		var bloco = el('aqm-c3-fora');
+		var lista = el('aqm-c3-fora-lista');
+		lista.innerHTML = '';
+
+		if (!r.fora_do_volume || !r.fora_do_volume.length) {
+			bloco.classList.add('aqm-c3-oculto');
+			return;
+		}
+
+		bloco.classList.remove('aqm-c3-oculto');
+		el('aqm-c3-fora-sub').textContent =
+			'Estes entregam a vazão que o seu aquário pede, mas o fabricante declara um volume atendido que não inclui os '
+			+ litros(r.entradas.volume) + ' L que você informou. Não são recomendação: estão aqui porque você pode encontrá-los '
+			+ 'por aí com essa vazão e merece saber por que a Aquametria não os coloca na lista de cima.';
+
+		r.fora_do_volume.forEach(function (p) {
+			lista.appendChild(produtoHtml(p, r, true));
+		});
+	}
+
+	function produtoHtml(p, r, foraDoVolume) {
 		var V = r.entradas.volume;
 		var turno = p.vazao_lh / V;
 
@@ -1075,19 +1378,13 @@ function aquametria_c3_js() {
 		var corpo = document.createElement('div');
 
 		var h = document.createElement('h4');
-		h.textContent = p.marca + ' ' + p.modelo;
+		h.textContent = nomeProduto(p);
 		corpo.appendChild(h);
 
 		var porque = document.createElement('p');
 		porque.className = 'aqm-c3-porque';
 		porque.innerHTML = 'No seu aquário de ' + litros(V) + ' L, este filtro entrega <strong>'
-			+ fmt(Math.round(turno * 10) / 10, 1) + ' renovações por hora</strong>. '
-			+ (p.volume_max_L
-				? 'O fabricante declara que ele atende até ' + litros(p.volume_max_L) + ' L'
-					+ (p.volume_max_L >= V
-						? ' — o seu volume cabe nessa declaração.'
-						: ' — o seu volume passa disso, e a declaração do fabricante não cobre o seu caso.')
-				: 'O fabricante não declara volume atendido para este modelo.');
+			+ fmt(Math.round(turno * 10) / 10, 1) + ' renovações por hora</strong>. ' + textoVolume(p, V, foraDoVolume);
 		corpo.appendChild(porque);
 
 		var ficha = document.createElement('ul');
@@ -1124,13 +1421,49 @@ function aquametria_c3_js() {
 		} else {
 			var sem = document.createElement('p');
 			sem.className = 'aqm-c3-semloja';
-			sem.textContent = 'Ainda não temos link de loja para este modelo. Ele aparece aqui porque atende ao seu número, e é só isso que decide a lista.';
+			sem.textContent = 'Ainda não temos link de loja para este modelo. Ele aparece aqui porque atende ao seu número — '
+				+ 'quem entra na lista é decidido pela ficha técnica, e nunca por ter ou não link. O link só desempata entre modelos tecnicamente equivalentes.';
 			corpo.appendChild(sem);
 		}
 
 		li.appendChild(placa);
 		li.appendChild(corpo);
 		return li;
+	}
+
+	/* A frase de volume declarado, em um lugar só, porque ela é o que separa um
+	   recomendado de um listado à parte — e uma página que diz duas coisas sobre
+	   isso perde a única coisa que ela tem de valioso, que é ser confiável. */
+	function textoVolume(p, V, foraDoVolume) {
+		if (p.volume_max_L === null && p.volume_min_L === null) {
+			return 'O fabricante não declara volume atendido para este modelo: ele entra pela vazão, '
+				+ 'e não há declaração de volume para conferir contra os ' + litros(V) + ' L do seu aquário.';
+		}
+
+		if (!foraDoVolume) {
+			return 'O fabricante declara que ele atende '
+				+ (p.volume_min_L !== null ? 'de ' + litros(p.volume_min_L) + ' a ' : 'até ')
+				+ litros(p.volume_max_L !== null ? p.volume_max_L : V) + ' L — o seu volume cabe nessa declaração.';
+		}
+
+		if (p.volume_max_L !== null && V > p.volume_max_L) {
+			return '<strong>O fabricante declara este modelo para até ' + litros(p.volume_max_L)
+				+ ' L, abaixo dos ' + litros(V) + ' L do seu aquário.</strong> A vazão cabe na faixa; a declaração de volume não cobre o seu caso, '
+				+ 'e por isso ele não está na lista de recomendados.';
+		}
+
+		return '<strong>O fabricante declara este modelo a partir de ' + litros(p.volume_min_L)
+			+ ' L, acima dos ' + litros(V) + ' L do seu aquário.</strong> A vazão cabe na faixa; a declaração de volume não cobre o seu caso, '
+			+ 'e por isso ele não está na lista de recomendados.';
+	}
+
+	/* Espelho de aquametria_c3_nome_produto(): o banco separa por voltagem quando
+	   cada anúncio vende uma versão só, e sem isso a lista mostra dois itens de
+	   nome idêntico. */
+	function nomeProduto(p) {
+		var nome = p.marca + ' ' + p.modelo;
+		if (p.voltagem && p.voltagem.length === 1) { nome += ' (' + p.voltagem[0] + ' V)'; }
+		return nome;
 	}
 
 	function esc(t) {
@@ -1399,9 +1732,12 @@ function aquametria_c3_exemplos_html() {
 		: home_url( '/' . AQUAMETRIA_C3_PAGINA_AFILIADOS . '/' );
 
 	$h .= '<p class="aqm-c3-aviso-afiliado"><strong>Sobre a última coluna.</strong> ';
-	$h .= 'Ela mostra o filtro do banco técnico da Aquametria cuja vazão declarada cai mais perto do meio da faixa daquela linha — ';
-	$h .= 'é o mesmo critério que a calculadora acima aplica, e a comissão não entra nele: modelo sem link de loja aparece do mesmo jeito. ';
-	$h .= 'Quando esse modelo ainda não tem link de loja no banco, aparece embaixo, rotulada, a opção da MESMA faixa que já tem — o primeiro da mesma ordem, não o de maior comissão. ';
+	$h .= 'Ela mostra o filtro do banco técnico da Aquametria que passa nas duas condições daquela linha — vazão declarada dentro da faixa E ';
+	$h .= 'volume do fabricante cobrindo o volume da linha — e, entre esses, o que cai mais perto do meio da faixa. ';
+	$h .= 'É o mesmo critério que a calculadora acima aplica, e a comissão não entra nele: modelo sem link de loja aparece do mesmo jeito. ';
+	$h .= 'Entre modelos tecnicamente equivalentes (mesmo décimo da largura da faixa), quem tem link de loja aparece antes — é desempate, não ordenação por comissão: ';
+	$h .= 'taxa de comissão não é comparada em lugar nenhum e modelo pior nunca sobe por pagar mais. ';
+	$h .= 'Quando o escolhido ainda não tem link de loja no banco, aparece embaixo, rotulada, a opção da MESMA faixa que já tem — o primeiro da mesma ordem, não o de maior comissão. ';
 	$h .= 'A tabela não sabe duas coisas que o formulário pergunta: o tipo de filtro que você quer e a altura entre a bomba e a superfície da água. ';
 	$h .= 'Por isso ela indica um só modelo por faixa, e a lista completa, já filtrada pelo seu caso, sai depois do cálculo. ';
 	$h .= 'Alguns desses nomes levam a lojas por link de afiliado, marcado como patrocinado: se você comprar por ele, a Aquametria pode receber comissão, sem custo a mais para você. ';
@@ -1432,7 +1768,7 @@ function aquametria_c3_exemplos_html() {
    dentro do array do FAQ deixaria o array ilegível. */
 if ( ! function_exists( 'aquametria_c3_faq_com_link' ) ) {
 function aquametria_c3_faq_com_link( $e, $volume ) {
-	$c = aquametria_c3_produto_com_link( $e['piso'], $e['com_teto'] );
+	$c = aquametria_c3_produto_com_link( $e['piso'], $e['com_teto'], $volume );
 
 	if ( null === $c ) {
 		return 'Nenhum filtro dessa faixa tem link de loja no banco da Aquametria hoje. ';
@@ -1486,7 +1822,7 @@ function aquametria_c3_jsonld_dados() {
 			'Caminho inverso: até quantos litros cobre o filtro que você já tem',
 			'Volume mínimo de sump, para quem tem ou vai ter',
 			'Protocolo do balde para medir a vazão real, já com mídia e coluna',
-			'Lista de filtros do banco técnico ordenada por adequação, nunca por comissão',
+			'Lista de filtros do banco técnico elegíveis pelas duas condições (vazão na faixa e volume declarado pelo fabricante), ordenada por adequação técnica, nunca por comissão',
 			'Tabela pré-calculada para 30, 60, 100, 150, 200 e 300 litros',
 			'Filtro do banco indicado para cada um desses seis volumes, já no HTML servido',
 		),
@@ -1523,7 +1859,7 @@ function aquametria_c3_jsonld_dados() {
 	   que promete o que a página não mostra é lixo, e é lixo detectável. */
 	foreach ( aquametria_c3_volumes_exemplo() as $v ) {
 		$e   = aquametria_c3_exemplo( $v );
-		$p   = aquametria_c3_produto_exemplo( $e['piso'], $e['com_teto'] );
+		$p   = aquametria_c3_produto_exemplo( $e['piso'], $e['com_teto'], $v );
 
 		if ( null === $p ) {
 			continue;
@@ -1537,7 +1873,8 @@ function aquametria_c3_jsonld_dados() {
 				'text'  => 'Para um aquário de ' . number_format_i18n( $v, 0 ) . ' litros de água real, o filtro do banco técnico da Aquametria que cai mais perto do meio da faixa é o '
 					. aquametria_c3_produto_frase( $p, $v ) . '. '
 					. 'A faixa que esse volume pede é de ' . aquametria_c3_lh( $e['piso'] ) . ' a ' . aquametria_c3_lh( $e['com_teto'] ) . ' L/h, '
-					. 'e o critério é a vazão declarada, nunca a comissão: modelo sem link de loja aparece na lista do mesmo jeito. '
+					. 'e o critério é duplo: a vazão declarada dentro dessa faixa e o volume que o fabricante declara cobrindo os '
+					. number_format_i18n( $v, 0 ) . ' litros. Nunca a comissão: modelo sem link de loja aparece na lista do mesmo jeito. '
 					. aquametria_c3_volume_ressalva( $p, $v ) . ( aquametria_c3_volume_ressalva( $p, $v ) ? ' ' : '' )
 					. ( $p['link'] ? '' : aquametria_c3_faq_com_link( $e, $v ) )
 					. 'Antes de comprar, confira dois números que esta indicação não conhece: a voltagem da sua tomada e a altura entre a bomba e a superfície da água, '
@@ -1720,12 +2057,23 @@ function aquametria_c3_produtos_html() {
 	$h .= '<ul class="aqm-c3-lista" id="aqm-c3-produtos-lista"></ul>';
 	$h .= '<p class="aqm-c3-aviso-afiliado"><strong>Aviso de publicidade.</strong> ';
 	$h .= 'Alguns dos botões acima levam a lojas por links de afiliado: se você comprar por eles, a Aquametria pode receber uma comissão, sem custo nenhum a mais para você. ';
-	$h .= 'Isso não muda quem aparece na lista nem em que ordem — a ordem é pela vazão mais próxima do meio da faixa que o seu aquário pede, e modelo sem link aparece do mesmo jeito. ';
+	$h .= 'Isso não muda quem aparece na lista: quem entra é decidido pela ficha técnica — vazão dentro da faixa que o seu aquário pede E volume declarado pelo fabricante cobrindo o seu volume —, e modelo sem link aparece do mesmo jeito. ';
+	$h .= 'Na ordem, o link tem um papel só: desempatar entre modelos tecnicamente equivalentes, isto é, que caem no mesmo décimo da faixa. ';
+	$h .= 'Taxa de comissão não é comparada em lugar nenhum, e modelo pior nunca sobe por pagar mais. ';
 	$h .= 'A ficha técnica de cada filtro vem do fabricante ou do varejo especializado, com o endereço e a data ao lado; o anúncio da loja nunca é a nossa fonte. ';
 	$h .= 'Também não publicamos preço nesta página: preço muda toda semana e um número velho na tela seria pior que nenhum. ';
 	$h .= '<a href="' . esc_url( $divulgacao ) . '">Como a Aquametria ganha dinheiro</a>.</p>';
 	$h .= '</div>';
 	$h .= '<p class="aqm-c3-nota aqm-c3-oculto" id="aqm-c3-produtos-nada"></p>';
+
+	/* Seção SEPARADA, abaixo e rotulada: quem atende a vazão e o fabricante não
+	   cobre o volume. Ela nunca se mistura com os recomendados — foi exatamente
+	   essa mistura o defeito visto no ar em 09/09/2026. */
+	$h .= '<div class="aqm-c3-produtos aqm-c3-fora aqm-c3-painel aqm-c3-oculto" id="aqm-c3-fora">';
+	$h .= '<h3>Atendem a vazão, mas o fabricante não cobre esse volume</h3>';
+	$h .= '<p class="aqm-c3-sub" id="aqm-c3-fora-sub"></p>';
+	$h .= '<ul class="aqm-c3-lista" id="aqm-c3-fora-lista"></ul>';
+	$h .= '</div>';
 
 	return $h;
 }
