@@ -65,6 +65,12 @@ contrato formal em `dados/esquema-produtos.json`.
 cd ilhas/aquametria && python3 ferramentas/validar-produtos.py
 ```
 
+E o banco de especies tem validador proprio, com regras proprias:
+
+```
+cd ilhas/aquametria && python3 ferramentas/validar-especies.py
+```
+
 Sai 0 sem erro, 1 com erro. O script confere as regras V1 a V18 do esquema
 (campo sem fonte, derivado gravado a mao, preco dentro do arquivo de produto,
 conflito sem status, PPFD sem distancia, status incoerente, link de afiliado mal

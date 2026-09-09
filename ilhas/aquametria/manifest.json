@@ -4,7 +4,7 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 15,
+  "revisao": 16,
   "atualizado_em": "2026-09-09",
   "estado": "fundacao",
   "desembarque": {
@@ -392,6 +392,30 @@
       "publicar": false,
       "sha256": "ef128d1a02b2258c051c05dc71f1d716f4622a39d6a1d330015df12f2146047c",
       "descricao": "Links de afiliado ja gerados que ainda NAO tem registro no banco de produtos, com o motivo e o que desbloqueia cada um. Ficam fora do banco de proposito: link sem ficha tecnica verificada nao pode ser sugerido por calculadora."
+    },
+    {
+      "id": "esquema-especies",
+      "arquivo": "dados/esquema-especies.json",
+      "formato": "json",
+      "entidade": "especie",
+      "fonte": "contrato proprio da ilha; herda a forma de dados/esquema-produtos.json",
+      "verificado_em": "2026-09-09",
+      "registros": 0,
+      "publicar": false,
+      "sha256": "c4feab2f4d07db3277a9e791f0792b4a3651d8265bc5fc43dddb07e9b6c4b790",
+      "descricao": "Contrato formal do banco de especies: campos, unidades, vocabulario controlado, a escada de 6 niveis de fonte para especie (nao existe fabricante de peixe: existem base cientifica e compendio de aquarismo), a tabela dominio_por_campo — que diz qual escada manda em qual campo, porque FishBase e melhor em biologia e o compendio e melhor em manutencao — e as regras E1 a E14. Duas decisoes valem para sempre: em conflito de campo de BEM-ESTAR o conservador e o MAIOR (o oposto do banco de produtos), e volume minimo em litro nunca se grava, porque e derivado da base declarada com a altura do usuario."
+    },
+    {
+      "id": "especies-agua-doce",
+      "arquivo": "dados/especies-agua-doce.json",
+      "formato": "json",
+      "entidade": "especie",
+      "fonte": "ver fontes[] de cada registro: FishBase (base-cientifica-via-busca) e Seriously Fish (compendio-via-busca), os dois colhidos por busca restrita ao dominio porque o egresso bloqueia leitura direta",
+      "verificado_em": "2026-09-09",
+      "registros": 12,
+      "publicar": false,
+      "sha256": "1eb78d1fd857f9a174d53b6f23b218ded6894b2098336c0529f9927f01225434",
+      "descricao": "Primeira leva do banco de especies: 12 peixes do varejo brasileiro, de 2,2 cm (neon) a 48 cm (kinguio), com porte, faixa termica, pH, dureza, cardume minimo, frente minima de aquario e convivencia, cada campo atribuido a uma fonte com url e data. 11 dos 12 ja passam no portao de pagina de especie; o guppy fica parcial porque o compendio de referencia nao tem ficha propria dele. Existe para destravar o eixo aberto 'quantos litros para X peixes' com dado em vez da regra de bolso de 1 cm por litro."
     }
   ],
   "esquema": {
@@ -540,6 +564,13 @@
       "publicar": false,
       "descricao": "Exercita os apelidos de endereço da casca: cada apelido resolve para o slug canônico, endereço fora do mapa não resolve, e todo destino existe em conteudo/.",
       "sha256": "484426420c1118cc49bdf09f02e984aae56d8b27e4e0bbd9d5872807b109b1b4"
+    },
+    {
+      "id": "validar-especies",
+      "arquivo": "ferramentas/validar-especies.py",
+      "publicar": false,
+      "descricao": "Valida o banco de especies contra dados/esquema-especies.json (regras E1 a E14) e imprime quem ja passa no minimo_para_sugerir de cada consumidor (pagina de especie, C8 lotacao, C5 aquecedor), mais a faixa de porte e as frentes minimas cobertas. Rodar antes de todo commit que toque dados/especies-*.json. Ferramenta do repositorio: nao vai para o WordPress.",
+      "sha256": "64da85e0b54ae8391396768e336279730332e9dce2a195293b7e1c5f11976042"
     }
   ]
 }

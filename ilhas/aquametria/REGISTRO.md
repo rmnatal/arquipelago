@@ -2079,3 +2079,177 @@ IA** nas cinco calculadoras publicadas.
 
 Sem ferramenta de memória nesta sessão: `/areas/projeto-aquametria.md` NÃO foi atualizado; esta
 entrada e o `ESTADO.md` são o registro.
+
+---
+
+## 09/09/2026 — Bloco 4b(c): nasce o banco de espécies, e ele contradiz a regra de bolso do nicho
+
+**Disparo automático das 05h10 (3ª execução do dia). Sessão SEM ferramenta de memória:** o estado
+veio de `ESTADO.md`, `REGISTRO.md` e `README.md`, e o que iria para a memória está aqui.
+
+### Ponto de partida medido
+
+`git fetch origin main` primeiro, como manda a regra. `main` em `e70ffc0` (leva 1 do 4b, 36
+produtos), branch `claude/lucid-carson-ayi8ca` no mesmo commit, nenhum PR aberto, nada pendente de
+merge. O próximo passo que a leva 1 deixou escrito era **4b(c), iniciar o banco de espécies**, e foi
+o que esta execução fez — bloco único, sem adiantar o (b) nem o (c) da fila de produtos.
+
+### Por que espécie antes de mais produto
+
+O item (a) da leva 2 estava certo em vir primeiro por um motivo que ficou mais claro construindo:
+**espécie não depende de link de afiliado.** Os dez produtos que a leva 1 acrescentou estão parados
+esperando a Sentinela Estratégica gerar link na Shopee; o banco de espécies não espera ninguém, e é
+ele que destrava o eixo que a Bússola verificou ABERTO na SERP brasileira — "quantos litros para X
+peixes" — enquanto "melhor filtro para aquário de X litros" já foi tomado por três fazendas de
+conteúdo. Espécie é o multiplicador que não tem gargalo externo.
+
+### Entregue
+
+**Três arquivos novos, manifest na revisão 16:**
+
+| arquivo | o que é |
+|---|---|
+| `dados/esquema-especies.json` | contrato formal da entidade `especie`: campos, unidades, vocabulário, escada de fontes, `dominio_por_campo` e as regras E1 a E14 |
+| `dados/especies-agua-doce.json` | 12 espécies com ficha completa e fonte por campo |
+| `ferramentas/validar-especies.py` | as regras E1 a E14 em código, mais o relatório de quem já passa em cada portão |
+
+**As 12 espécies, escolhidas por serem as mais vendidas no varejo brasileiro e por cobrirem a faixa
+útil de porte:** neon (*P. innesi*), cardinal (*P. axelrodi*), guppy (*P. reticulata*), platy
+(*X. maculatus*), betta (*B. splendens*), coridora bronze (*C. aeneus*), paulistinha (*D. rerio*),
+rasbora arlequim (*T. heteromorpha*), acará-bandeira (*P. scalare*), barbo-sumatra
+(*P. tetrazona*), kinguio (*C. auratus*) e otocinclo (*O. vittatus*).
+
+Faixa coberta: **de 2,2 cm (neon) a 48 cm (kinguio)**. Frentes mínimas declaradas: **45, 60, 80, 90
+e 100 cm** — cinco degraus, o que já é malha suficiente para páginas de volume sem repetir número.
+
+### Três decisões de modelagem que valem para sempre
+
+**1. Não existe fabricante de peixe, então a escada é outra.** No banco de produtos o topo é o
+manual do fabricante. Aqui o topo é base científica (FishBase) e compêndio de aquarismo (Seriously
+Fish) — e as duas não competem: uma é melhor em biologia, a outra em manutenção. Por isso o esquema
+tem a tabela **`dominio_por_campo`**: biologia (porte, família, distribuição) decide pela base
+científica; manutenção (frente mínima, cardume, temperamento) decide pelo compêndio. Sem essa
+tabela, "nível mais alto vence" daria à FishBase a última palavra sobre tamanho de aquário, que não
+é o assunto dela.
+
+**2. Em conflito de campo de BEM-ESTAR o conservador é o MAIOR — o oposto do banco de produtos,
+e está escrito no esquema exatamente assim.** Errar espaço para menos custa a vida do animal; errar
+para mais custa espaço. A regra E9 executa isso: conflito em `cardume_minimo`,
+`comprimento_minimo_aquario_cm`, `base_minima_cm` ou `altura_minima_cm` cujo `valor_conservador` não
+seja o maior dos valores é ERRO, não aviso.
+
+**3. Litro não se grava.** A fonte declara frente e base em centímetros, nunca litro. O litro é
+derivado pela calculadora, com a altura que a pessoa informar. A regra E7 detecta litro que bate com
+`base × altura` para qualquer altura de 25 a 60 cm e reprova como derivado gravado à mão.
+
+### O achado editorial: o banco contradiz a regra de bolso, com fonte
+
+A regra brasileira de "1 cm de peixe por litro" não sobrevive a nenhum destes três registros, e é
+por isso que eles entraram na leva 1:
+
+- **Paulistinha:** 3,8 cm de peixe pedindo **90 × 30 cm de base** pelo compêndio. Nenhuma regra
+  proporcional a comprimento chega nesse número, porque o que manda é velocidade de natação, não
+  massa.
+- **Acará-bandeira:** único registro com **altura mínima declarada, 50 cm**. Um aquário de 100 L em
+  formato baixo não atende um adulto. Litro não descreve o problema; a fonte declara
+  100 × 40 × 50 cm.
+- **Coridora bronze:** peixe de fundo, o que limita é a **área da base (80 × 30 cm)**, não o volume.
+  60 L em coluna alta não servem; 60 L espalhados servem.
+
+Junte-se a eles o **betta**: a fonte de manutenção declara base de 45 × 30 cm para UM macho, e o
+varejo brasileiro vende o peixe em pote de menos de 2 L. A ficha existe para publicar essa distância
+com fonte e data ao lado, não para opinar.
+
+E o **kinguio**, que é o registro deliberadamente incômodo: 48 cm de comprimento máximo, 100 cm de
+frente mínima, 30 a 40 anos de vida, e a fonte de manutenção falando explicitamente em nanismo
+severo quando o peixe é criado em aquário de 30 × 20 cm.
+
+### Um caso que virou regra de segurança: temperatura que é tolerância
+
+A FishBase publica **0 a 41 °C** para o kinguio. Isso é a faixa de TOLERÂNCIA da espécie na
+natureza, não recomendação de manutenção — e alimentar a C5 com ela produziria dimensionamento de
+aquecedor sem sentido. O esquema ganhou o campo `temperatura_e_tolerancia` e a **regra E13**: faixa
+com amplitude maior que 20 °C sem esse campo marcado é ERRO. Com ele marcado, o registro sai do
+`minimo_para_sugerir` da C5 automaticamente. Hoje o kinguio é o único registro nessa condição, e o
+validador imprime isso na tela.
+
+### Procedência: o que dá para sustentar, e o que não dá
+
+**Nenhuma página foi lida direto.** O egresso da nuvem devolveu `EGRESS_BLOCKED` para
+`fishbase.se`, `fishbase.org`, `seriouslyfish.com` e `en.wikipedia.org`, todos testados hoje — o
+mesmo bloqueio de 07 e 08/09, agora confirmado também para as fontes de espécie. Só a busca
+atravessa.
+
+Por isso o esquema escreveu a **regra de atribuição por busca**, que é o que separa colher de
+inventar: um número só entra pelos níveis 3 e 5 da escada quando a busca foi **restrita ao domínio
+da fonte** (`allowed_domains`) ou quando o resumo atribui o número à fonte pelo nome. Número que
+aparece em resumo de busca aberta, sem dono, **não entra no banco**. Foi assim que as 24 buscas
+desta execução foram feitas, e está registrado campo a campo em cada `fontes[]`.
+
+O limite dessa técnica apareceu no cardinal, e ficou publicado como conflito em vez de escondido:
+**duas leituras da MESMA página da FishBase, no mesmo dia, devolveram 2,5 cm SL e 3,0 cm SL.** Não é
+divergência entre autores — é o teto de colher número por resumo sem poder abrir a página. O banco
+publica os dois e usa o maior, porque em lotação errar o porte para menos é o lado que lota demais.
+
+### Quatro coisas deliberadamente NÃO preenchidas
+
+- **`dificuldade`** — julgamento editorial, não fonte. Fica `null` na leva inteira, em vez de virar
+  opinião com cara de dado.
+- **`familia`** — nenhuma busca devolveu a família atribuída, e taxonomia sem fonte não entra.
+- **`comportamento`** — só 5 dos 12 registros têm uma frase de fonte que sustente o campo (platy,
+  paulistinha, betta, acará-bandeira e barbo-sumatra). Nos outros 7 fica `null`. Por isso o campo
+  **não é obrigatório** e não entra no mínimo de sugestão: quem sustenta lotação é `convivencia`,
+  não temperamento inventado.
+- **`volume_minimo_declarado_L`** — nenhuma fonte declarou litro. Vide regra E7.
+
+### O guppy é o achado que mais surpreendeu
+
+**O peixe mais vendido do Brasil não tem ficha própria no compêndio de referência.** A busca
+restrita ao `seriouslyfish.com` encontrou ficha de *P. wingei*, *P. sphenops*, *P. velifera* e
+*P. latipinna* — de todas as irmãs — e nenhuma de *P. reticulata*. O registro ficou com **uma fonte
+só**, e por isso é `parcial` e não passa no portão de página de espécie.
+
+Isso gerou a **regra E14**: `status_registro` `completo` exige pelo menos **duas fontes de url
+distinta**. Uma só leitura não se confere a si mesma, ainda mais num banco inteiro colhido por
+busca. Fechar a segunda fonte do guppy é tarefa da próxima leva.
+
+### Verificação (o que foi realmente rodado)
+
+`python3 ferramentas/validar-especies.py`: **12 espécies, 0 erro, 0 aviso** · **12 testes negativos
+com o banco deliberadamente corrompido**, um por regra, cada um conferido para reprovar com o código
+certo: E1 (id fora do nome científico), E2 (obrigatório faltando), E3 (campo sem fonte), E4 (status
+incoerente com a origem), E5 (varejo sustentando manutenção), E7 (litro derivado gravado à mão), E8
+(min > max), E9 (conservador que não é o maior), E10 (conflito sem status), E12 (solitário com
+cardume), E13 (tolerância disfarçada de recomendação) e E14 (completo com fonte única) — todos
+saíram com código 1 e a mensagem correta, e o banco foi restaurado byte a byte depois · JSON dos três
+arquivos relido e validado · `python3 ferramentas/validar-produtos.py`: **36 produtos, 0 erro**,
+1 aviso já conhecido (V11, `eheim-jager-200w`) — o banco de produtos não foi tocado e continua são ·
+sha256 recalculado dos três arquivos novos e gravado no manifest.
+
+**Nenhum snippet foi alterado, nenhum arquivo mudou de `publicar: false` para `true`.** Este bloco é
+de dados: as três entradas novas do manifest nascem com `publicar: false`, como todas as outras de
+`dados/`. Logo **não houve desembarque, o Sync não foi acionado e nada foi medido no ar** — e não
+havia o que medir, porque nenhuma página do site mudou. As cinco calculadoras publicadas continuam
+exatamente como a execução anterior as deixou.
+
+### Próximo passo desbloqueado
+
+**4b, leva 3**, nesta ordem:
+
+1. **Ampliar o banco de espécies para 25 a 30 registros**, agora que o contrato existe e o validador
+   roda. Alvos que a leva 1 deixou de fora e o mercado brasileiro pede: molinésia, espada, colisa,
+   mato-grosso, rodóstomo, tricogaster, apistograma, ancistrus (o cascudo que todo mundo compra sem
+   saber o porte adulto) e camarão *Neocaridina*. Fechar junto a **segunda fonte do guppy** e a
+   **família** dos 12 registros atuais.
+2. **Fechar `fluxo_lm`** do `sunsun-ade-400c` e do `wfish-wf-h600-wrgb` e a **voltagem do Chihiros**
+   — os três únicos itens que barram a C15, hoje a calculadora publicada com o catálogo mais fraco.
+3. Mais filtros e aquecedores de marcas ausentes (Ocean Tech, Hopar, Boyu, Sarlo Better), com
+   atenção às faixas de 200 a 400 L.
+
+Depois da leva 3 vem o **4c, retrofit de visibilidade em IA** nas cinco calculadoras publicadas —
+tabela de exemplos pré-renderizada, resposta antes da explicação, JSON-LD e procedência na frase.
+
+**Para a Sentinela Estratégica:** continuam **10 produtos esperando `afiliado.url`**, na ordem que a
+leva 1 sugeriu (`atman-hf-0400`, `atman-hf-0600`, `sunsun-hw-603b`, `atman-at-100`, `atman-at-150`,
+`atman-at-200`, `atman-hf-0800`, `atman-at-3336`, `atman-at-300`, `sunsun-hw-303b`). Nada mudou
+nisso hoje: espécie não tem link de afiliado, por desenho.
