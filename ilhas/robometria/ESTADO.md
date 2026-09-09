@@ -40,6 +40,7 @@ Espelho legível do estado do projeto. **Nunca guarde credencial aqui.**
   Chrome mostra erro. Certificado só se confere no navegador.
 - **Snippet de Sync:** ainda não existe. Depende do wp-admin, que depende do
   certificado.
+- **Search Console: propriedade de domínio `sc-domain:robometria.com.br` criada e VERIFICADA em 09/09/2026** (TXT `google-site-verification=xvI914rD2M69UhAao_MF2csPC3XAKKSUmol9JU-xxwg` gravado no Editor de Zona DNS; passo 4b da seção 11). Falta só submeter o sitemap, o que depende do wp-admin, que depende do certificado. `dados/indexacao.md` nasce com a primeira medição, que vai ser zero.
 - **Identidade visual:** aprovada pelo Raphael em 09/09/2026. Paleta, tipografia
   e a geometria do símbolo estão no `PROMPT.md` desta pasta.
 
