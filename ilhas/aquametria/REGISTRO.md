@@ -3434,3 +3434,17 @@ Enquanto a T1 não roda, o que a nuvem consegue fazer sozinha, em ordem de valor
 varredura de cobertura acabou de nomear: **fechar as seis faixas descobertas**, começando pela
 luminária acima de 80 cm com fluxo declarado e pelo aquecedor acima de 300 W. Não é mais "ampliar
 o banco": é fechar buraco medido, e agora existe o instrumento que diz quando o buraco fechou.
+
+### Números do mutirão de 09/09/2026 (resposta às três perguntas do disparo)
+
+- **Blocos entregues: 4** — o contrato (14.9 / 14.6 / 14.3), T3(a) espécies, T3(a2) iluminação
+  com T3(b) voltagem dentro, e T3(c) cobertura. Todos no `main`.
+- **Faixas ainda descobertas, por calculadora** (87 medidas ao todo):
+  - **C15 — 22 de 22 fora do critério**, sendo 8 vazias. Nenhuma faixa cumpre.
+  - **C5 — 12 de 32 fora**, sendo 4 vazias (310 a 400 L nas quatro combinações).
+  - **C3 — 12 de 30 fora**, sendo 4 vazias (20 a 40 L nos três perfis comunitários, e 20 a 70 L
+    no plantado).
+  - **C12 — 0 de 3 fora**, mas as três exatamente no piso de 3.
+- **Produtos esperando link de afiliado: 29** de 68 (39 já têm link) — 9 aquecedores, 9 filtros,
+  7 luminárias (4 delas as Chihiros que nasceram hoje) e 4 mídias. Pela regra V16 todos já são
+  sugeridos pela adequação técnica; o cartão sai sem botão de loja.
