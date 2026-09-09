@@ -6,7 +6,7 @@ Vocabulário: cada site de nicho é uma **ilha**, o conjunto é o **arquipélago
 
 ---
 
-## 1. O DESPACHANTE — como a ilha do dia é escolhida
+## 1. COMO A FUNDAÇÃO ESCOLHE A ILHA DE CADA EXECUÇÃO
 
 Existe **uma** Fundação para o arquipélago inteiro, não uma por ilha. A cada execução:
 
