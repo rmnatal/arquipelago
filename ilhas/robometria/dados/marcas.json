@@ -4,7 +4,7 @@
   "entidade": "marca",
   "esquema": "dados/esquema-banco.json",
   "gerado_em": "2026-09-09",
-  "nota_de_procedencia": "Coleta de 09/09/2026 por busca web restrita ao dominio de cada fabricante. O egresso HTTP direto desta nuvem esta fechado para multilaser.com.br, suporte.multilaser.com.br, lamina.multilaser.com.br, arquivos.multilaser.com.br, mi.com e manuals.plus (EGRESS_BLOCKED, medido nesta execucao). sameAs[] alimenta o JSON-LD Organization.",
+  "nota_de_procedencia": "Coleta de 09/09/2026 por busca web restrita ao dominio de cada fabricante. O egresso HTTP direto desta nuvem esta fechado para multilaser.com.br, suporte.multilaser.com.br, lamina.multilaser.com.br, arquivos.multilaser.com.br, mi.com e manuals.plus (EGRESS_BLOCKED, medido nesta execucao). sameAs[] alimenta o JSON-LD Organization. Bloco 3c (09/09/2026): canal_de_pecas de electrolux, positivo e xiaomi encontrado por busca restrita ao dominio. Continua sem leitura direta — o egresso segue fechado.",
   "registros": [
     {
       "id": "multi",
@@ -23,27 +23,33 @@
       "id": "electrolux",
       "nome": "Electrolux",
       "site_oficial": "https://loja.electrolux.com.br/",
-      "canal_de_pecas": null,
-      "sameAs": ["https://loja.electrolux.com.br/"],
-      "observacao": "Unica marca da coleta que declara COBERTURA EM M2 POR CARGA (162 m2 no ERB44). Esse par (minutos, m2) e a base do exemplo trabalhado da R2 e, hoje, o unico par declarado que o banco tem.",
+      "canal_de_pecas": "https://loja.electrolux.com.br/pecas-e-acessorios/pecas-para-aspirador-de-po",
+      "sameAs": [
+        "https://loja.electrolux.com.br/"
+      ],
+      "observacao": "Unica marca da coleta que declara COBERTURA EM M2 POR CARGA (162 m2 no ERB44). Esse par (minutos, m2) e a base do exemplo trabalhado da R2 e, hoje, o unico par declarado que o banco tem. CANAL DE PECAS ENCONTRADO NO BLOCO 3c — e a fonte primaria da R1 para esta marca, e ate agora estava null.",
       "verificado_em": "2026-09-09"
     },
     {
       "id": "xiaomi",
       "nome": "Xiaomi",
       "site_oficial": "https://www.mi.com/br/",
-      "canal_de_pecas": null,
-      "sameAs": ["https://www.mi.com/br/"],
-      "observacao": "Publica ficha de especificacao completa e limpa (Pa, mAh, minutos, recarga) e NAO declara cobertura em m2. Esse silencio e o achado: a conversao minutos -> m2 nao existe em fonte nenhuma, e e o vacuo que a R2 ocupa.",
+      "canal_de_pecas": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s20-accessories/",
+      "sameAs": [
+        "https://www.mi.com/br/"
+      ],
+      "observacao": "Publica ficha de especificacao completa e limpa (Pa, mAh, minutos, recarga) e NAO declara cobertura em m2. Esse silencio e o achado: a conversao minutos -> m2 nao existe em fonte nenhuma, e e o vacuo que a R2 ocupa. CANAL DE PECAS ENCONTRADO NO BLOCO 3c — e a fonte primaria da R1 para esta marca, e ate agora estava null.",
       "verificado_em": "2026-09-09"
     },
     {
       "id": "positivo",
       "nome": "Positivo Casa Inteligente",
       "site_oficial": "https://www.positivocasainteligente.com.br/",
-      "canal_de_pecas": null,
-      "sameAs": ["https://www.positivocasainteligente.com.br/"],
-      "observacao": "Linha em canal oficial: PRA500, PRA800, PRA1000 e PRA2000. O corpus do Bloco 1 registrou um 'PRA8000' que nao existe em canal nenhum — quase certamente erro de transcricao de PRA800. Nenhum dado tecnico foi herdado do nome errado.",
+      "canal_de_pecas": "https://www.positivocasainteligente.com.br/acessorios/robo-aspirador",
+      "sameAs": [
+        "https://www.positivocasainteligente.com.br/"
+      ],
+      "observacao": "Linha em canal oficial: PRA500, PRA800, PRA1000 e PRA2000. O corpus do Bloco 1 registrou um 'PRA8000' que nao existe em canal nenhum — quase certamente erro de transcricao de PRA800. Nenhum dado tecnico foi herdado do nome errado. CANAL DE PECAS ENCONTRADO NO BLOCO 3c — e a fonte primaria da R1 para esta marca, e ate agora estava null.",
       "verificado_em": "2026-09-09"
     }
   ]

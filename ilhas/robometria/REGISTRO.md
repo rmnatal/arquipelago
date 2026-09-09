@@ -236,3 +236,94 @@ o proximo passo desbloqueado, e espelha o mesmo resumo em
   reposicao da Electrolux, que e a lacuna mais barata — a ilha ja tem a vida util
   de 6 meses do manual e nao tem o codigo da peca a que ela se aplica. O bloco
   3b (casca) continua sendo o primeiro que depende do WordPress.
+
+## 2026-09-09 21:26Z — Bloco 3c: o banco saiu do modelo e virou cobertura
+
+- **Entregue:** 24 modelos de robo (eram 17), 18 pecas (eram 8) e **33 pares
+  peca x modelo declarados** (eram 10). Esquema na **versao 2**, manifest na
+  **revisao 4**. Nenhum par inferido: todos saem de declaracao do fabricante,
+  com titulo transcrito, URL, canal de coleta e data campo a campo.
+- **Modelos novos (7):** Electrolux ERB30, ERB60, ERB61, ERB62 e ERB80;
+  Positivo PRA500 e PRA2000. **Atualizados (4):** ERB10 e ERB11 ganharam
+  autonomia declarada (140 min, "2h20"), o ERB44 ganhou os dois reservatorios
+  (520 ml de po e 150 ml de agua), e os quatro Electrolux ganharam o motivo
+  correto no `pa_declarado` null.
+- **Pecas novas (10):** Kit Performance **KPCEL01** (ERB10/ERB11/ERB20), filtro
+  HEPA com espuma (ERB44/60/61/62), Kit Performance (ERB60/61/62), escova
+  rotativa central (ERB60/61/62/80), kits do ERB44 e do ERB30, as tres pecas da
+  Positivo para PRA800/PRA2000 (escova lateral 11206518, escova central 11206519
+  e mop 11206540) e os acessorios do Xiaomi S20.
+- **LACUNA (d) FECHADA.** Desde o Bloco 3 a ilha tinha a vida util de 6 meses do
+  manual da Electrolux e **nao tinha o codigo da peca a que ela se aplica**.
+  Agora tem: e o filtro HEPA dentro do KPCEL01. O achado que muda a R1 e que a
+  Electrolux **nao vende filtro de robo avulso** nesta linha — quem procura
+  "filtro do ERB10" compra o kit.
+- **LACUNA (c) FECHADA nas duas pontas.** Positivo e Xiaomi estavam no banco so
+  pelo lado do MODELO e nao respondiam nada na R1. Agora respondem.
+- **DESCOBERTA QUE MUDA A ESTRATEGIA DE COLETA: a Electrolux nao publica succao
+  em Pa em canal nenhum** — loja oficial, content, cuida e compraparceiros
+  declaram NIVEIS de succao (minimo, medio, maximo), nunca pascal. Veiculos
+  editoriais citam 4.000 Pa para a linha, mas pela escada_de_fontes editorial
+  NUNCA sustenta especificacao de aparelho, entao o numero ficou de fora de
+  proposito. Isso **corrige a suposicao do bloco anterior**, que tratava a
+  Electrolux como fonte de maior rendimento: `pa_declarado` segue em **2 de 19**
+  modelos publicaveis e tem que vir de Xiaomi, Multi, WAP e Positivo.
+- **LACUNA (a) AVANCOU E CONTINUA ABERTA, com numero na mao.** O segundo par
+  (minutos, m2) declarado entrou: 166 m2 em ate 1h40 na familia ERB60/61/62/80,
+  contra 162 m2 em ate 2h do ERB44. Sao **1,66 contra 1,35 m2/min — 23% de
+  diferenca DENTRO da mesma marca**. A `taxa-cobertura-m2-por-min` **continua
+  PROIBIDA em formula publicada**, e agora com dois numeros do proprio fabricante
+  sustentando o porque. Faltam pares de marcas DIFERENTES: sao 2 declaracoes de 1
+  marca e o criterio pede 5 de marcas diferentes. Publicar a media seria a unica
+  saida proibida pela secao 10 do contrato.
+- **O ESQUEMA SUBIU PARA A VERSAO 2, e os dois campos novos foram forcados pelo
+  dado, nao pelo gosto:** (1) tipo de peca **`kit`** com `composicao[]`, porque
+  sem ele a R1 nao responde a propria consulta-alvo quando a marca so vende
+  consumivel em kit; (2) **`codigo_fabricante` aceita null COM
+  `motivo_sem_codigo`**, porque a Multi publica codigo proprio, a Electrolux
+  identifica peca por titulo e a Positivo por SKU do canal oficial. E a mesma
+  regra que ja valia para numero: null e resposta, nao lacuna.
+- **"COMPATIBILIDADE NAO SE HERDA" APARECEU NO CATALOGO DO PROPRIO FABRICANTE:**
+  o ERB80 esta na lista da escova rotativa central e **nao** esta na do filtro
+  HEPA com espuma nem na do Kit Performance do ERB60/61/62. A R1 nao pode
+  completar lista por analogia, e agora a ilha tem o exemplo para mostrar.
+- **ARMADILHA DA R1, ESCRITA ANTES DE CUSTAR CARO:** o **PRA500** e literalmente
+  a consulta-alvo da especificacao, e as tres pecas novas da Positivo declaram
+  **PRA800 e PRA2000 sem cita-lo**. Pelo conjunto mais estreito, a resposta certa
+  para o PRA500 e "nao encontramos peca declarada". Esta escrito no registro do
+  modelo e no de cada peca, para nenhuma execucao futura afrouxar isso.
+- **VERIFICACAO DESTE BLOCO** (nao ha site, entao a secao 8 se aplica pela parte
+  que existe): `python3 ferramentas/validar-banco.py` roda sem rede e sai
+  **APROVADO** — 4 marcas, 24 modelos (19 publicaveis, 4 excluidos por nao serem
+  robo, 1 a confirmar), 18 pecas (16 publicaveis), 33 pares declarados, 35 itens
+  esperando link. O verificador ganhou **cinco invariantes** da versao 2, e as
+  cinco foram **testadas quebrando o banco de proposito numa copia**: kit sem
+  composicao, kit dentro de kit, item de composicao sem tipo e sem descricao,
+  composicao em peca que nao e kit, e codigo null sem motivo. As cinco reprovam
+  alto. Verificador que nao falha nao vale nada.
+- **O que este bloco deliberadamente NAO fez:** nao aceitou os 4.000 Pa
+  editoriais para a linha Electrolux; nao leu a diferenca de texto entre "base de
+  carregamento inteligente" (ERB60/61/62) e "base autolimpante" (ERB80) como
+  declaracao de ausencia de autoesvaziamento nos tres primeiros; nao estendeu os
+  acessorios do Xiaomi S20 ao S20+, que tem FAQ propria e nao esta no banco; nao
+  gravou o KPCEL02 nem o controle remoto CRCEL01 (o primeiro tem codigo e nao tem
+  compatibilidade confirmada, o segundo nao e consumivel e nao tem tipo no
+  vocabulario) — os dois foram para a lista de compras; e nao coletou imagem
+  nenhuma, porque o egresso segue fechado.
+- **Egresso medido nesta execucao:** `loja.electrolux.com.br` e
+  `content.electrolux.com.br` devolveram EGRESS_BLOCKED, somando-se aos dominios
+  da Multi, ao `mi.com` e ao `manuals.plus`. Toda a coleta saiu de busca restrita
+  ao dominio oficial, com o canal declarado campo a campo.
+- Itens esperando link de afiliado nesta ilha: **35** (19 modelos e 16 pecas) —
+  quase o dobro dos 18 anteriores. Pela secao 7 do contrato isso e trabalho
+  pendente de verdade e nao compete com a fila da Fundacao: quem gera link e a
+  Sentinela estrategica, no navegador do Raphael, com teto de calendario.
+- **Proximo passo: continuar o 3c, com o alvo trocado.** A ordem agora e (1)
+  `pa_declarado` em **Xiaomi, Multi, WAP e Positivo** — nunca mais na Electrolux,
+  que nao publica o campo — porque sem ele a lista de recomendados da R2 sai
+  vazia em qualquer entrada; (2) pares (minutos, m2) de marcas DIFERENTES, que
+  sao o que tira a taxa de cobertura de pendente; (3) confirmar se existe peca
+  declarada para o PRA500, que e a consulta-alvo da R1; (4) transcrever a
+  composicao dos kits do ERB44 e do ERB30, hoje no banco com a composicao em
+  aberto. O bloco 3b (casca) continua sendo o primeiro que depende do WordPress,
+  que depende do certificado.

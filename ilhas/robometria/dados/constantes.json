@@ -3,7 +3,7 @@
   "bloco": "2",
   "versao": 1,
   "gerado_em": "2026-09-09",
-  "nota_de_procedencia": "Coleta de 09/09/2026. O egresso HTTP direto esta fechado nesta nuvem (multilaser.com.br e manuals.plus devolveram EGRESS_BLOCKED), entao toda constante abaixo saiu de busca web, restrita ao dominio da fonte quando a atribuicao precisava ser exata. O canal de coleta esta declarado em cada item. Leitura direta das paginas de peca e dos manuais em PDF continua sendo coleta em aberto.",
+  "nota_de_procedencia": "Coleta de 09/09/2026. O egresso HTTP direto esta fechado nesta nuvem (multilaser.com.br e manuals.plus devolveram EGRESS_BLOCKED), entao toda constante abaixo saiu de busca web, restrita ao dominio da fonte quando a atribuicao precisava ser exata. O canal de coleta esta declarado em cada item. Leitura direta das paginas de peca e dos manuais em PDF continua sendo coleta em aberto. Bloco 3c (09/09/2026): entrou erb60-familia-cobertura-por-carga (2o par declarado) e a taxa-cobertura-m2-por-min foi reescrita com a dispersao medida. Descoberta que muda a coleta: a Electrolux nao publica sucao em Pa em canal nenhum — declara niveis de sucao. Pa tem que vir de Xiaomi, Multi, WAP e Positivo.",
   "regras": {
     "classe_de_fonte": "fabricante e recomendacao_editorial NAO sao a mesma coisa e nunca se misturam numa frase. Fabricante declara o Pa do aparelho; quanto Pa uma casa precisa e opiniao publicada, e opiniao publicada tem autor.",
     "status_pendente": "Constante com status pendente e PROIBIDA dentro de formula publicada (secao 10 do ARQUIPELAGO.md).",
@@ -29,7 +29,9 @@
       "canal_de_coleta": "busca web restrita ao dominio mundoconectado.com.br",
       "verificado_em": "2026-09-09",
       "status": "publicavel",
-      "usada_em": ["R2"]
+      "usada_em": [
+        "R2"
+      ]
     },
     {
       "id": "pa-apartamento-piso-liso",
@@ -43,7 +45,9 @@
       "canal_de_coleta": "busca web restrita ao dominio mundoconectado.com.br",
       "verificado_em": "2026-09-09",
       "status": "publicavel",
-      "usada_em": ["R2"]
+      "usada_em": [
+        "R2"
+      ]
     },
     {
       "id": "pa-apartamento-pequeno-sem-pet",
@@ -57,7 +61,9 @@
       "canal_de_coleta": "busca web restrita ao dominio mundoconectado.com.br",
       "verificado_em": "2026-09-09",
       "status": "publicavel",
-      "usada_em": ["R2"]
+      "usada_em": [
+        "R2"
+      ]
     },
     {
       "id": "pa-limiar-pet-canaltech",
@@ -71,14 +77,19 @@
       "canal_de_coleta": "busca web restrita ao dominio canaltech.com.br",
       "verificado_em": "2026-09-09",
       "status": "publicavel",
-      "usada_em": ["R2"],
+      "usada_em": [
+        "R2"
+      ],
       "observacao": "Diverge de pa-limiar-pet-mundoconectado. As duas sao publicadas lado a lado, com o nome de quem recomenda cada uma."
     },
     {
       "id": "pa-limiar-pet-mundoconectado",
       "descricao": "Casa com pet: consenso acima de 3.000 Pa, faixa confortavel entre 4.000 e 6.000 Pa",
       "valor_minimo": 3000,
-      "faixa_confortavel": [4000, 6000],
+      "faixa_confortavel": [
+        4000,
+        6000
+      ],
       "unidade": "Pa",
       "tipo": "recomendacao_editorial",
       "fonte": "Mundo Conectado — 'O que significa a medida Pa no seu robo-aspirador?'",
@@ -86,7 +97,9 @@
       "canal_de_coleta": "busca web restrita ao dominio mundoconectado.com.br",
       "verificado_em": "2026-09-09",
       "status": "publicavel",
-      "usada_em": ["R2"]
+      "usada_em": [
+        "R2"
+      ]
     },
     {
       "id": "pa-limite-pratico-percebido",
@@ -100,13 +113,18 @@
       "canal_de_coleta": "busca web restrita ao dominio mundoconectado.com.br",
       "verificado_em": "2026-09-09",
       "status": "publicavel",
-      "usada_em": ["R2"],
+      "usada_em": [
+        "R2"
+      ],
       "observacao": "Constante util contra o proprio nicho: e o que impede a R2 de virar corrida de Pa. Numero maior deixa de comprar melhora percebida a partir daqui."
     },
     {
       "id": "pa-carpete-faixa-alta",
       "descricao": "Faixa citada como ideal para tapete e carpete",
-      "faixa": [5000, 10000],
+      "faixa": [
+        5000,
+        10000
+      ],
       "unidade": "Pa",
       "tipo": "recomendacao_editorial",
       "fonte": "ATRIBUICAO INCERTA — a faixa apareceu no resumo agregado de uma busca cujo conjunto de resultados incluia O Povo, O Cafezinho e melhoraspiradordepo.com.br, sem que fosse possivel dizer qual delas publica este numero",
@@ -137,29 +155,44 @@
       "descricao": "Vida util do filtro HEPA declarada em manual do fabricante; se apresentar dano antes do prazo, substituir imediatamente",
       "valor": 6,
       "unidade": "meses",
-      "aplica_a": ["Electrolux ERB10", "Electrolux ERB11", "Electrolux ERB20"],
+      "aplica_a": [
+        "Electrolux ERB10",
+        "Electrolux ERB11",
+        "Electrolux ERB20"
+      ],
       "tipo": "fabricante",
       "fonte": "Manual do usuario do aspirador robo Electrolux ERB10/ERB11/ERB20",
       "url": "https://manuals.plus/m/a7d2cf5766298ebb7449842933ed52fe8a527804e53e3684a681bae94bdf7a78",
       "canal_de_coleta": "busca web restrita ao dominio manuals.plus (WebFetch direto devolveu EGRESS_BLOCKED)",
       "verificado_em": "2026-09-09",
       "status": "publicavel",
-      "usada_em": ["R1"],
+      "usada_em": [
+        "R1"
+      ],
       "observacao": "manuals.plus e hospedeiro terceiro do manual do fabricante. A releitura no PDF oficial da Electrolux fica como coleta em aberto do Bloco 3."
     },
     {
       "id": "limpeza-reservatorio-electrolux",
       "descricao": "Intervalo recomendado para limpar o reservatorio de po, ou sempre que estiver cheio",
-      "faixa": [15, 30],
+      "faixa": [
+        15,
+        30
+      ],
       "unidade": "dias",
-      "aplica_a": ["Electrolux ERB10", "Electrolux ERB11", "Electrolux ERB20"],
+      "aplica_a": [
+        "Electrolux ERB10",
+        "Electrolux ERB11",
+        "Electrolux ERB20"
+      ],
       "tipo": "fabricante",
       "fonte": "Manual do usuario do aspirador robo Electrolux ERB10/ERB11/ERB20",
       "url": "https://manuals.plus/m/a7d2cf5766298ebb7449842933ed52fe8a527804e53e3684a681bae94bdf7a78",
       "canal_de_coleta": "busca web restrita ao dominio manuals.plus",
       "verificado_em": "2026-09-09",
       "status": "publicavel",
-      "usada_em": ["R1"]
+      "usada_em": [
+        "R1"
+      ]
     },
     {
       "id": "vida-util-filtro-editorial",
@@ -172,7 +205,10 @@
           "url": "https://guiadecomprasbrasil.com.br/filtro-hepa-robo-aspirador-quando-trocar/"
         },
         {
-          "valor": [2, 3],
+          "valor": [
+            2,
+            3
+          ],
           "unidade": "meses",
           "fonte": "roboaspiradortech.com.br, para Xiaomi Mop 2, com checagem pelo app Mi Home",
           "url": "https://www.roboaspiradortech.com.br/"
@@ -182,7 +218,9 @@
       "canal_de_coleta": "busca web",
       "verificado_em": "2026-09-09",
       "status": "publicavel",
-      "usada_em": ["R1"],
+      "usada_em": [
+        "R1"
+      ],
       "observacao": "Diverge do manual da Electrolux (6 meses). A R1 publica o intervalo do FABRICANTE do modelo consultado; a recomendacao editorial so aparece rotulada como tal, e nunca substitui o manual."
     },
     {
@@ -210,7 +248,9 @@
       "canal_de_coleta": "busca web",
       "verificado_em": "2026-09-09",
       "status": "publicavel",
-      "usada_em": ["R2"],
+      "usada_em": [
+        "R2"
+      ],
       "observacao": "UNICO par (minutos, m2) declarado por fabricante que esta coleta encontrou. E a base do exemplo trabalhado da R2, e NAO e base suficiente para uma taxa geral."
     },
     {
@@ -227,7 +267,9 @@
       "canal_de_coleta": "busca web",
       "verificado_em": "2026-09-09",
       "status": "publicavel",
-      "usada_em": ["R2"],
+      "usada_em": [
+        "R2"
+      ],
       "observacao": "cobertura_m2 e null porque a Xiaomi NAO declara area coberta. Null aqui e resposta, nao lacuna: e a evidencia de que a conversao minutos -> m2 e o vacuo que a R2 ocupa. Terceiros citam 'ate 150 min' para o mesmo modelo; a divergencia fica registrada e vale o numero da pagina oficial."
     },
     {
@@ -244,7 +286,9 @@
       "canal_de_coleta": "busca web",
       "verificado_em": "2026-09-09",
       "status": "publicavel",
-      "usada_em": ["R2"],
+      "usada_em": [
+        "R2"
+      ],
       "observacao": "Corrige o corpus do Bloco 1, que registrou 'PRA8000'. A linha da Positivo que aparece em canal oficial e PRA500, PRA800, PRA1000 e PRA2000. Nenhum dado tecnico foi herdado do nome errado."
     },
     {
@@ -254,16 +298,23 @@
       "unidade": "m2/min",
       "tipo": "pendente",
       "status": "PROIBIDA_EM_FORMULA_PUBLICADA",
-      "motivo_do_status": "O banco tem UM unico par (minutos, m2) declarado por fabricante — os 162 m2 em ate 120 min do ERB44, que dariam 1,35 m2/min. Um ponto nao e um coeficiente.",
-      "criterio_para_sair_de_pendente": "Pelo menos 5 pares (minutos, m2) declarados pelo proprio fabricante, de marcas diferentes. E, mesmo entao, publica FAIXA com a dispersao a mostra, nunca a media.",
+      "motivo_do_status": "O banco tem DUAS declaracoes de par (minutos, m2) e as duas sao da mesma marca: 162 m2 em ate 120 min do ERB44 (1,35 m2/min) e 166 m2 em ate 100 min da familia ERB60/61/62/80 (1,66 m2/min). Dois pontos de uma marca so nao sao um coeficiente — e a diferenca de 23% entre eles, DENTRO do mesmo fabricante, e a melhor evidencia de que uma taxa geral nao existe.",
+      "criterio_para_sair_de_pendente": "Pelo menos 5 pares (minutos, m2) declarados pelo proprio fabricante, de marcas diferentes. Hoje: 2 declaracoes, 1 marca. E, mesmo cumprido o criterio, publica FAIXA com a dispersao a mostra, nunca a media.",
       "verificado_em": "2026-09-09",
-      "usada_em": []
+      "usada_em": [],
+      "observacao": "Bloco 3c: a dispersao de 23% dentro da Electrolux virou conteudo da R2. A pagina passa a poder dizer, com dois numeros do proprio fabricante na frase, por que ela NAO converte minutos em metros quadrados — que e justamente o que as fazendas de conteudo fazem sem avisar."
     },
     {
       "id": "compat-multilaser-pr10124",
       "descricao": "Escova lateral Multilaser PR10124 (linha Mars, Moon e Duster)",
       "tipo_de_peca": "escova lateral",
-      "modelos_declarados": ["HO041", "HO400", "HO401", "HO407", "OB010"],
+      "modelos_declarados": [
+        "HO041",
+        "HO400",
+        "HO401",
+        "HO407",
+        "OB010"
+      ],
       "selo_de_compatibilidade": "declarada_fabricante",
       "tipo": "fabricante",
       "fonte": "Multilaser (Multi) — pagina oficial da peca PR10124",
@@ -271,25 +322,34 @@
       "canal_de_coleta": "busca web restrita aos dominios multilaser.com.br e multilaserempresas.com.br (WebFetch direto devolveu EGRESS_BLOCKED)",
       "verificado_em": "2026-09-09",
       "status": "publicavel",
-      "usada_em": ["R1"],
+      "usada_em": [
+        "R1"
+      ],
       "observacao": "Uma peca para cinco codigos de modelo — enquanto o filtro da MESMA familia cobre menos modelos. Compatibilidade nao se herda do modelo para a classe de peca: e declarada por codigo de peca."
     },
     {
       "id": "compat-multilaser-pr10205",
       "descricao": "Filtro Multilaser PR10205 (linha Mars, Moon e Duster) — DIVERGENCIA ENTRE CANAIS DO PROPRIO FABRICANTE",
       "tipo_de_peca": "filtro",
-      "modelos_declarados": ["HO041"],
+      "modelos_declarados": [
+        "HO041"
+      ],
       "selo_de_compatibilidade": "declarada_fabricante",
       "divergencias": [
         {
           "canal": "multilaser.com.br (varejo)",
-          "conjunto_declarado": ["HO041"],
+          "conjunto_declarado": [
+            "HO041"
+          ],
           "titulo_na_fonte": "Filtro para Aspirador Robo Mars, Moon e Duster — PR10205",
           "verificado_em": "2026-09-09"
         },
         {
           "canal": "multilaserempresas.com.br",
-          "conjunto_declarado": ["HO041", "OB010"],
+          "conjunto_declarado": [
+            "HO041",
+            "OB010"
+          ],
           "titulo_na_fonte": "Filtro para Aspirador Robo (HO041 e OB010) — PR10205",
           "verificado_em": "2026-09-09"
         }
@@ -300,13 +360,17 @@
       "canal_de_coleta": "busca web restrita aos dominios multilaser.com.br e multilaserempresas.com.br",
       "verificado_em": "2026-09-09",
       "status": "publicavel",
-      "usada_em": ["R1"]
+      "usada_em": [
+        "R1"
+      ]
     },
     {
       "id": "compat-multilaser-pr10343",
       "descricao": "Filtro Multilaser PR10343, com codigo proprio para o OB010",
       "tipo_de_peca": "filtro",
-      "modelos_declarados": ["OB010"],
+      "modelos_declarados": [
+        "OB010"
+      ],
       "selo_de_compatibilidade": "declarada_fabricante",
       "tipo": "fabricante",
       "fonte": "Multilaser (Multi) — pagina oficial da peca PR10343",
@@ -314,13 +378,18 @@
       "canal_de_coleta": "busca web restrita ao dominio multilaser.com.br",
       "verificado_em": "2026-09-09",
       "status": "publicavel",
-      "usada_em": ["R1"]
+      "usada_em": [
+        "R1"
+      ]
     },
     {
       "id": "compat-multilaser-pr684",
       "descricao": "Filtro removivel e lavavel PR684, declarado para HO011 e HO012",
       "tipo_de_peca": "filtro",
-      "modelos_declarados": ["HO011", "HO012"],
+      "modelos_declarados": [
+        "HO011",
+        "HO012"
+      ],
       "selo_de_compatibilidade": "declarada_fabricante",
       "tipo": "fabricante",
       "fonte": "Multilaser (Multi) — pagina oficial da peca PR684",
@@ -335,7 +404,10 @@
       "id": "compat-multilaser-pr550",
       "descricao": "Filtro HEPA PR550 — do ASPIRADOR DE PO 2 EM 1 HO03/HO04, que NAO e robo aspirador",
       "tipo_de_peca": "filtro",
-      "modelos_declarados": ["HO03", "HO04"],
+      "modelos_declarados": [
+        "HO03",
+        "HO04"
+      ],
       "selo_de_compatibilidade": "declarada_fabricante",
       "tipo": "fabricante",
       "fonte": "Multilaser (Multi) — pagina oficial da peca PR550",
@@ -345,6 +417,28 @@
       "status": "excluido_do_banco",
       "motivo_do_status": "Nao e peca de robo aspirador. O corpus do Bloco 1 trouxe HO03/HO04 na lista de modelos e eles ficam de fora. Registrado aqui justamente para que a proxima execucao nao os recolha de novo achando que sao robo.",
       "usada_em": []
+    },
+    {
+      "id": "erb60-familia-cobertura-por-carga",
+      "descricao": "Cobertura declarada por carga e autonomia declarada da familia Electrolux ERB60/ERB61/ERB62/ERB80",
+      "cobertura_m2": 166,
+      "autonomia_min": 100,
+      "tipo": "fabricante",
+      "aplica_a": [
+        "Electrolux ERB60",
+        "Electrolux ERB61",
+        "Electrolux ERB62",
+        "Electrolux ERB80"
+      ],
+      "fonte": "Loja oficial Electrolux — 'Robo Aspirador Electrolux 4 em 1 Wi-Fi Experience ate 1h40 Mapeamento'",
+      "url": "https://loja.electrolux.com.br/robo-aspirador-electrolux-4-em-1-wi-fi-experience-ate-1h40-mapeamento-preto--erb60-/p",
+      "canal_de_coleta": "busca web restrita aos dominios electrolux.com.br, loja.electrolux.com.br e compraparceiros.electrolux.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
+      "verificado_em": "2026-09-09",
+      "status": "publicavel",
+      "usada_em": [
+        "R2"
+      ],
+      "observacao": "SEGUNDO par (minutos, m2) declarado do banco, colhido no Bloco 3c. Dá 1,66 m2/min contra 1,35 m2/min do ERB44 — 23% de diferenca dentro da MESMA marca. Esse espalhamento e o argumento da R2: quem promete area a partir de minutos esta extrapolando, e o proprio fabricante nao sustenta a conta."
     }
   ]
 }

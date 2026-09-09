@@ -4,34 +4,36 @@
   "entidade": "modelo-robo",
   "esquema": "dados/esquema-banco.json",
   "gerado_em": "2026-09-09",
-  "nota_de_procedencia": "Coleta de 09/09/2026. O egresso HTTP direto desta nuvem esta fechado: multilaser.com.br, suporte.multilaser.com.br, lamina.multilaser.com.br, arquivos.multilaser.com.br e mi.com devolveram EGRESS_BLOCKED nesta execucao. Todo campo abaixo saiu de busca restrita ao dominio da fonte, e o canal de coleta esta declarado campo a campo. A leitura direta dos manuais e laminas continua sendo coleta em aberto — e trabalho a fazer, nao dependencia humana.",
+  "nota_de_procedencia": "Coleta de 09/09/2026. O egresso HTTP direto desta nuvem esta fechado: multilaser.com.br, suporte.multilaser.com.br, lamina.multilaser.com.br, arquivos.multilaser.com.br e mi.com devolveram EGRESS_BLOCKED nesta execucao. Todo campo abaixo saiu de busca restrita ao dominio da fonte, e o canal de coleta esta declarado campo a campo. A leitura direta dos manuais e laminas continua sendo coleta em aberto — e trabalho a fazer, nao dependencia humana. Bloco 3c (09/09/2026): 7 modelos novos e 4 atualizados, todos por busca restrita ao dominio oficial da marca — o egresso continua fechado para leitura direta.",
   "contagem": {
-    "total": 17,
-    "publicavel": 12,
+    "total": 24,
+    "publicavel": 19,
     "nao_publicavel": 1,
     "excluido_do_banco": 4,
-    "esperando_link_de_afiliado": 12
+    "esperando_link_de_afiliado": 19,
+    "com_pa_declarado": 2,
+    "com_par_minutos_m2_declarado": 5
   },
   "lista_de_compras": [
     {
-      "codigo": "PRA500",
+      "codigo": "PRA1000",
       "marca": "positivo",
-      "por_que": "e literalmente a consulta-alvo da R1 na especificacao ('qual filtro serve no robo aspirador Positivo PRA500'). Categoria e ficha por confirmar em canal oficial."
-    },
-    {
-      "codigo": "PRA1000 e PRA2000",
-      "marca": "positivo",
-      "por_que": "completam a linha declarada em canal oficial; nenhum dado colhido"
+      "por_que": "completa a linha declarada em canal oficial; PRA500, PRA800 e PRA2000 ja estao no banco"
     },
     {
       "codigo": "Mop, Mop 2, Mop 2 Lite, S40, H40",
       "marca": "xiaomi",
-      "por_que": "a Xiaomi publica ficha completa e limpa — e a fonte de maior rendimento por consulta para fechar pares (minutos, m2) e mAh"
+      "por_que": "a Xiaomi publica ficha completa e limpa e e a unica marca do banco que declara Pa. E a maior fonte de pa_declarado por consulta"
     },
     {
-      "codigo": "ERB10, ERB11, ERB20, ERB44 (numeros)",
+      "codigo": "ERB10, ERB11, ERB20, ERB30, ERB44, ERB60, ERB61, ERB62, ERB80 (cobertura em m2)",
       "marca": "electrolux",
-      "por_que": "a Electrolux e a unica marca que declara m2 por carga; cada modelo dela vale um par para tirar a taxa de cobertura de pendente"
+      "por_que": "so o ERB44 e a familia ERB60 declaram m2. Um par por modelo restante aumentaria a amostra sem sair da marca — o que NAO resolve: o criterio da taxa exige marcas DIFERENTES"
+    },
+    {
+      "codigo": "qualquer modelo com par (minutos, m2) declarado",
+      "marca": "xiaomi, multi, positivo, wap, irobot",
+      "por_que": "URGENCIA NUMERO 1 do catalogo. A taxa de cobertura precisa de 5 pares de marcas diferentes e hoje tem 2 declaracoes de UMA marca so"
     },
     {
       "codigo": "Roomba serie s",
@@ -49,7 +51,7 @@
       "por_que": "citada no corpus do Bloco 1, sem nenhuma coleta ainda"
     }
   ],
-  "prioridade_de_coleta": "A urgencia de catalogo desta ilha NAO e numero de itens (secao 14.3 do ARQUIPELAGO.md descartou meta redonda). E: (1) fechar pares (minutos, m2) declarados, porque sao eles que tiram a taxa de cobertura de pendente e destravam a R2 fora do ERB44; (2) fechar pa_declarado, porque sem ele nenhum modelo passa na elegibilidade da R2 e a lista sai vazia; (3) confirmar categoria dos codigos que so aparecem em lista de compatibilidade.",
+  "prioridade_de_coleta": "Atualizada no Bloco 3c. (1) PARES (minutos, m2) DE MARCAS DIFERENTES — o banco passou de 1 para 2 declaracoes, mas as duas sao Electrolux, e o criterio da constante exige 5 de marcas diferentes; enquanto isso a R2 so estima area para modelo que declara m2. (2) pa_declarado: continua em 2 modelos de 21 (Xiaomi S20 e Positivo PRA800), e a descoberta desta execucao e que a Electrolux NAO publica Pa em canal nenhum — logo o campo tem que vir de Xiaomi, Multi, WAP e Positivo, nao da Electrolux. (3) pecas da Xiaomi com codigo, que dependem do guia do usuario em PDF (egresso fechado).",
   "registros": [
     {
       "id": "multi-ho041",
@@ -725,7 +727,8 @@
       "variantes_de_hardware": [],
       "pa_declarado": {
         "valor": null,
-        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+        "unidade": "Pa",
+        "motivo_do_null": "a Electrolux nao publica sucao em Pa em nenhuma pagina oficial desta coleta: declara NIVEIS de sucao (minimo, medio, maximo), nao pascal. Veiculos editoriais citam 4.000 Pa para a linha, mas pela escada_de_fontes editorial NUNCA sustenta especificacao de aparelho — entao o numero fica de fora do banco, de proposito"
       },
       "potencia_w_declarada": {
         "valor": null,
@@ -768,12 +771,16 @@
         "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
       },
       "reservatorio_po_ml": {
-        "valor": null,
-        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+        "valor": 520,
+        "unidade": "ml",
+        "fonte": "f-loja",
+        "declarado_como": "capacidade do reservatorio para po de 520 ml"
       },
       "reservatorio_agua_ml": {
-        "valor": null,
-        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+        "valor": 150,
+        "unidade": "ml",
+        "fonte": "f-loja",
+        "declarado_como": "capacidade do reservatorio para agua de 150 ml"
       },
       "imagem": {
         "url": null,
@@ -803,7 +810,7 @@
         }
       },
       "status": "publicavel",
-      "observacao": "UNICO par (minutos, m2) declarado por fabricante que o banco tem. E a base do exemplo trabalhado da R2 e NAO e base suficiente para uma taxa geral de m2/min — faltam pelo menos quatro pares, de marcas diferentes, para a constante taxa-cobertura-m2-por-min sair de pendente. Cuidado ao publicar mais de um ciclo com ele: retoma_apos_recarga esta null, e sem esse campo a R2 nao publica multiplos ciclos.",
+      "observacao": "DEIXOU DE SER o unico par (minutos, m2) do banco no Bloco 3c: a familia ERB60/61/62/80 declara 166 m2 em ate 1h40. Sao 1,35 m2/min aqui contra 1,66 m2/min la — 23% de diferenca dentro da MESMA marca, e por isso a taxa geral continua proibida em formula publicada. Cuidado ao publicar mais de um ciclo com ele: retoma_apos_recarga esta null.",
       "verificado_em": "2026-09-09"
     },
     {
@@ -816,15 +823,18 @@
       "variantes_de_hardware": [],
       "pa_declarado": {
         "valor": null,
-        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+        "unidade": "Pa",
+        "motivo_do_null": "a Electrolux nao publica sucao em Pa em nenhuma pagina oficial desta coleta: declara NIVEIS de sucao (minimo, medio, maximo), nao pascal. Veiculos editoriais citam 4.000 Pa para a linha, mas pela escada_de_fontes editorial NUNCA sustenta especificacao de aparelho — entao o numero fica de fora do banco, de proposito"
       },
       "potencia_w_declarada": {
         "valor": null,
         "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
       },
       "autonomia_min_declarada": {
-        "valor": null,
-        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+        "valor": 140,
+        "unidade": "min",
+        "fonte": "f-loja",
+        "declarado_como": "bateria de Lithium com autonomia de 2h20m"
       },
       "cobertura_m2_declarada": {
         "valor": null,
@@ -886,6 +896,15 @@
           "titulo_na_fonte": "Manual do usuario do aspirador robo Electrolux ERB10/ERB11/ERB20",
           "url": "https://manuals.plus/m/a7d2cf5766298ebb7449842933ed52fe8a527804e53e3684a681bae94bdf7a78",
           "canal_de_coleta": "busca web restrita ao dominio manuals.plus (WebFetch direto devolveu EGRESS_BLOCKED)",
+          "verificado_em": "2026-09-09"
+        },
+        "f-loja": {
+          "nivel": 4,
+          "origem": "varejo-oficial-da-marca",
+          "publicador": "Electrolux (loja oficial)",
+          "titulo_na_fonte": "Robo Aspirador de Po Electrolux Home-e Speed Experience Com Autonomous Technology ERB10",
+          "url": "https://loja.electrolux.com.br/robo-apirador-de-po-electrolux-home-e-speed-experience-com-autonomous-technology-erb10/p",
+          "canal_de_coleta": "busca web restrita aos dominios electrolux.com.br, loja.electrolux.com.br e compraparceiros.electrolux.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
           "verificado_em": "2026-09-09"
         }
       },
@@ -903,15 +922,18 @@
       "variantes_de_hardware": [],
       "pa_declarado": {
         "valor": null,
-        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+        "unidade": "Pa",
+        "motivo_do_null": "a Electrolux nao publica sucao em Pa em nenhuma pagina oficial desta coleta: declara NIVEIS de sucao (minimo, medio, maximo), nao pascal. Veiculos editoriais citam 4.000 Pa para a linha, mas pela escada_de_fontes editorial NUNCA sustenta especificacao de aparelho — entao o numero fica de fora do banco, de proposito"
       },
       "potencia_w_declarada": {
         "valor": null,
         "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
       },
       "autonomia_min_declarada": {
-        "valor": null,
-        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+        "valor": 140,
+        "unidade": "min",
+        "fonte": "f-loja",
+        "declarado_como": "bateria de ate 2h20 de autonomia"
       },
       "cobertura_m2_declarada": {
         "valor": null,
@@ -974,6 +996,15 @@
           "url": "https://manuals.plus/m/a7d2cf5766298ebb7449842933ed52fe8a527804e53e3684a681bae94bdf7a78",
           "canal_de_coleta": "busca web restrita ao dominio manuals.plus (WebFetch direto devolveu EGRESS_BLOCKED)",
           "verificado_em": "2026-09-09"
+        },
+        "f-loja": {
+          "nivel": 4,
+          "origem": "varejo-oficial-da-marca",
+          "publicador": "Electrolux (loja oficial)",
+          "titulo_na_fonte": "Robo Aspirador de Po Electrolux Home-e Speed Experience Com Autonomous Technology ERB11",
+          "url": "https://loja.electrolux.com.br/robo-apirador-de-po-electrolux-home-e-speed-experience-com-autonomous-technology-erb11/p",
+          "canal_de_coleta": "busca web restrita aos dominios electrolux.com.br, loja.electrolux.com.br e compraparceiros.electrolux.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
+          "verificado_em": "2026-09-09"
         }
       },
       "status": "publicavel",
@@ -990,7 +1021,8 @@
       "variantes_de_hardware": [],
       "pa_declarado": {
         "valor": null,
-        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+        "unidade": "Pa",
+        "motivo_do_null": "a Electrolux nao publica sucao em Pa em nenhuma pagina oficial desta coleta: declara NIVEIS de sucao (minimo, medio, maximo), nao pascal. Veiculos editoriais citam 4.000 Pa para a linha, mas pela escada_de_fontes editorial NUNCA sustenta especificacao de aparelho — entao o numero fica de fora do banco, de proposito"
       },
       "potencia_w_declarada": {
         "valor": null,
@@ -1613,6 +1645,695 @@
       },
       "status": "excluido_do_banco",
       "motivo_do_status": "Nao e robo aspirador: e aspirador de po 2 em 1, identificado pela propria pagina da peca PR550 do fabricante. O corpus do Bloco 1 trouxe HO03/HO04 na lista de modelos e eles ficam de fora. Gravado para nao ser recolhido de novo.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "electrolux-erb60",
+      "marca": "electrolux",
+      "linha": "Experience Mapeamento",
+      "codigo_fabricante": "ERB60",
+      "nome_comercial": "Robo Aspirador Electrolux 4 em 1 Wi-Fi Experience",
+      "categoria": "robo",
+      "variantes_de_hardware": [],
+      "pa_declarado": {
+        "valor": null,
+        "unidade": "Pa",
+        "motivo_do_null": "a Electrolux nao publica sucao em Pa em nenhuma pagina oficial desta coleta: declara NIVEIS de sucao (minimo, medio, maximo), nao pascal. Veiculos editoriais citam 4.000 Pa para a linha, mas pela escada_de_fontes editorial NUNCA sustenta especificacao de aparelho — entao o numero fica de fora do banco, de proposito"
+      },
+      "potencia_w_declarada": {
+        "valor": null,
+        "unidade": "W",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "autonomia_min_declarada": {
+        "valor": 100,
+        "unidade": "min",
+        "fonte": "f-loja",
+        "declarado_como": "ate 1h40"
+      },
+      "cobertura_m2_declarada": {
+        "valor": 166,
+        "unidade": "m2",
+        "fonte": "f-loja",
+        "declarado_como": "a bateria de litio oferece uma autonomia de ate 1h40 de uso, limpando ate 166 m2 de uma so vez"
+      },
+      "recarga_min_declarada": {
+        "valor": null,
+        "unidade": "min",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "retoma_apos_recarga": {
+        "valor": true,
+        "fonte": "f-loja",
+        "declarado_como": "base de carregamento inteligente que faz com que o robo volte sozinho quando a bateria estiver prestes a acabar, retomando a limpeza de onde parou apos recarregar"
+      },
+      "bateria_mah": {
+        "valor": null,
+        "unidade": "mAh",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "voltagem": {
+        "valor": null,
+        "unidade": "V",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "base_autoesvaziamento": {
+        "valor": null,
+        "motivo_do_null": "o fabricante declara 'base de carregamento inteligente' para o ERB60/61/62 e reserva a 'base autolimpante' ao ERB80, mas em nenhum momento declara a AUSENCIA de autoesvaziamento nestes tres. Ler a diferenca de texto como negacao seria inferencia, e aqui inferencia nao vira dado"
+      },
+      "navegacao": {
+        "valor": "laser",
+        "fonte": "f-loja",
+        "declarado_como": "mapeamento inteligente a laser 360o com selecao de comodos, areas restritas e retorno automatico a base"
+      },
+      "reservatorio_po_ml": {
+        "valor": null,
+        "unidade": "ml",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "reservatorio_agua_ml": {
+        "valor": null,
+        "unidade": "ml",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R2"
+      },
+      "fontes": {
+        "f-loja": {
+          "nivel": 4,
+          "origem": "varejo-oficial-da-marca",
+          "publicador": "Electrolux (loja oficial)",
+          "titulo_na_fonte": "Robo Aspirador Electrolux 4 em 1 Wi-Fi Experience ate 1h40 Mapeamento Preto (ERB60)",
+          "url": "https://loja.electrolux.com.br/robo-aspirador-electrolux-4-em-1-wi-fi-experience-ate-1h40-mapeamento-preto--erb60-/p",
+          "canal_de_coleta": "busca web restrita aos dominios electrolux.com.br, loja.electrolux.com.br e compraparceiros.electrolux.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "Segundo par (minutos, m2) declarado que a ilha tem, e o primeiro fora do ERB44. 166 m2 em ate 1h40 dao 1,66 m2/min, contra 1,35 m2/min do ERB44 — 23% de diferenca DENTRO da mesma marca. E esse espalhamento que mantem taxa-cobertura-m2-por-min proibida em formula publicada. O ERB60, o ERB61 e o ERB62 diferem so pela cor no texto oficial.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "electrolux-erb61",
+      "marca": "electrolux",
+      "linha": "Experience Mapeamento",
+      "codigo_fabricante": "ERB61",
+      "nome_comercial": "Robo Aspirador Electrolux 4 em 1 Wi-Fi Experience",
+      "categoria": "robo",
+      "variantes_de_hardware": [],
+      "pa_declarado": {
+        "valor": null,
+        "unidade": "Pa",
+        "motivo_do_null": "a Electrolux nao publica sucao em Pa em nenhuma pagina oficial desta coleta: declara NIVEIS de sucao (minimo, medio, maximo), nao pascal. Veiculos editoriais citam 4.000 Pa para a linha, mas pela escada_de_fontes editorial NUNCA sustenta especificacao de aparelho — entao o numero fica de fora do banco, de proposito"
+      },
+      "potencia_w_declarada": {
+        "valor": null,
+        "unidade": "W",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "autonomia_min_declarada": {
+        "valor": 100,
+        "unidade": "min",
+        "fonte": "f-loja",
+        "declarado_como": "ate 1h40"
+      },
+      "cobertura_m2_declarada": {
+        "valor": 166,
+        "unidade": "m2",
+        "fonte": "f-loja",
+        "declarado_como": "a bateria de litio oferece uma autonomia de ate 1h40 de uso, limpando ate 166 m2 de uma so vez"
+      },
+      "recarga_min_declarada": {
+        "valor": null,
+        "unidade": "min",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "retoma_apos_recarga": {
+        "valor": true,
+        "fonte": "f-loja",
+        "declarado_como": "base de carregamento inteligente que faz com que o robo volte sozinho quando a bateria estiver prestes a acabar, retomando a limpeza de onde parou apos recarregar"
+      },
+      "bateria_mah": {
+        "valor": null,
+        "unidade": "mAh",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "voltagem": {
+        "valor": null,
+        "unidade": "V",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "base_autoesvaziamento": {
+        "valor": null,
+        "motivo_do_null": "o fabricante declara 'base de carregamento inteligente' para o ERB60/61/62 e reserva a 'base autolimpante' ao ERB80, mas em nenhum momento declara a AUSENCIA de autoesvaziamento nestes tres. Ler a diferenca de texto como negacao seria inferencia, e aqui inferencia nao vira dado"
+      },
+      "navegacao": {
+        "valor": "laser",
+        "fonte": "f-loja",
+        "declarado_como": "mapeamento inteligente a laser 360o com selecao de comodos, areas restritas e retorno automatico a base"
+      },
+      "reservatorio_po_ml": {
+        "valor": null,
+        "unidade": "ml",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "reservatorio_agua_ml": {
+        "valor": null,
+        "unidade": "ml",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R2"
+      },
+      "fontes": {
+        "f-loja": {
+          "nivel": 4,
+          "origem": "varejo-oficial-da-marca",
+          "publicador": "Electrolux (loja oficial)",
+          "titulo_na_fonte": "Robo Aspirador Electrolux 4 em 1 Wi-Fi Experience ate 1h40 Mapeamento Cinza (ERB61)",
+          "url": "https://loja.electrolux.com.br/robo-aspirador-electrolux-4-em-1-wi-fi-experience-ate-1h40-mapeamento-cinza--erb61-/p",
+          "canal_de_coleta": "busca web restrita aos dominios electrolux.com.br, loja.electrolux.com.br e compraparceiros.electrolux.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "Segundo par (minutos, m2) declarado que a ilha tem, e o primeiro fora do ERB44. 166 m2 em ate 1h40 dao 1,66 m2/min, contra 1,35 m2/min do ERB44 — 23% de diferenca DENTRO da mesma marca. E esse espalhamento que mantem taxa-cobertura-m2-por-min proibida em formula publicada. O ERB60, o ERB61 e o ERB62 diferem so pela cor no texto oficial.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "electrolux-erb62",
+      "marca": "electrolux",
+      "linha": "Experience Mapeamento",
+      "codigo_fabricante": "ERB62",
+      "nome_comercial": "Robo Aspirador Electrolux 4 em 1 Wi-Fi Experience",
+      "categoria": "robo",
+      "variantes_de_hardware": [],
+      "pa_declarado": {
+        "valor": null,
+        "unidade": "Pa",
+        "motivo_do_null": "a Electrolux nao publica sucao em Pa em nenhuma pagina oficial desta coleta: declara NIVEIS de sucao (minimo, medio, maximo), nao pascal. Veiculos editoriais citam 4.000 Pa para a linha, mas pela escada_de_fontes editorial NUNCA sustenta especificacao de aparelho — entao o numero fica de fora do banco, de proposito"
+      },
+      "potencia_w_declarada": {
+        "valor": null,
+        "unidade": "W",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "autonomia_min_declarada": {
+        "valor": 100,
+        "unidade": "min",
+        "fonte": "f-loja",
+        "declarado_como": "ate 1h40"
+      },
+      "cobertura_m2_declarada": {
+        "valor": 166,
+        "unidade": "m2",
+        "fonte": "f-loja",
+        "declarado_como": "a bateria de litio oferece uma autonomia de ate 1h40 de uso, limpando ate 166 m2 de uma so vez"
+      },
+      "recarga_min_declarada": {
+        "valor": null,
+        "unidade": "min",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "retoma_apos_recarga": {
+        "valor": true,
+        "fonte": "f-loja",
+        "declarado_como": "base de carregamento inteligente que faz com que o robo volte sozinho quando a bateria estiver prestes a acabar, retomando a limpeza de onde parou apos recarregar"
+      },
+      "bateria_mah": {
+        "valor": null,
+        "unidade": "mAh",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "voltagem": {
+        "valor": null,
+        "unidade": "V",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "base_autoesvaziamento": {
+        "valor": null,
+        "motivo_do_null": "o fabricante declara 'base de carregamento inteligente' para o ERB60/61/62 e reserva a 'base autolimpante' ao ERB80, mas em nenhum momento declara a AUSENCIA de autoesvaziamento nestes tres. Ler a diferenca de texto como negacao seria inferencia, e aqui inferencia nao vira dado"
+      },
+      "navegacao": {
+        "valor": "laser",
+        "fonte": "f-loja",
+        "declarado_como": "mapeamento inteligente a laser 360o com selecao de comodos, areas restritas e retorno automatico a base"
+      },
+      "reservatorio_po_ml": {
+        "valor": null,
+        "unidade": "ml",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "reservatorio_agua_ml": {
+        "valor": null,
+        "unidade": "ml",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R2"
+      },
+      "fontes": {
+        "f-loja": {
+          "nivel": 4,
+          "origem": "varejo-oficial-da-marca",
+          "publicador": "Electrolux (loja oficial)",
+          "titulo_na_fonte": "Robo Aspirador Electrolux 4 em 1 Wi-Fi Experience ate 1h40 Mapeamento Branco (ERB62)",
+          "url": "https://loja.electrolux.com.br/robo-aspirador-electrolux-4-em-1-wi-fi-experience-ate-1h40-mapeamento-branco--erb62-/p",
+          "canal_de_coleta": "busca web restrita aos dominios electrolux.com.br, loja.electrolux.com.br e compraparceiros.electrolux.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "Segundo par (minutos, m2) declarado que a ilha tem, e o primeiro fora do ERB44. 166 m2 em ate 1h40 dao 1,66 m2/min, contra 1,35 m2/min do ERB44 — 23% de diferenca DENTRO da mesma marca. E esse espalhamento que mantem taxa-cobertura-m2-por-min proibida em formula publicada. O ERB60, o ERB61 e o ERB62 diferem so pela cor no texto oficial.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "electrolux-erb80",
+      "marca": "electrolux",
+      "linha": "Experience Mapeamento",
+      "codigo_fabricante": "ERB80",
+      "nome_comercial": "Robo Aspirador Electrolux 4 em 1 Wi-Fi Experience",
+      "categoria": "robo",
+      "variantes_de_hardware": [],
+      "pa_declarado": {
+        "valor": null,
+        "unidade": "Pa",
+        "motivo_do_null": "a Electrolux nao publica sucao em Pa em nenhuma pagina oficial desta coleta: declara NIVEIS de sucao (minimo, medio, maximo), nao pascal. Veiculos editoriais citam 4.000 Pa para a linha, mas pela escada_de_fontes editorial NUNCA sustenta especificacao de aparelho — entao o numero fica de fora do banco, de proposito"
+      },
+      "potencia_w_declarada": {
+        "valor": null,
+        "unidade": "W",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "autonomia_min_declarada": {
+        "valor": 100,
+        "unidade": "min",
+        "fonte": "f-loja",
+        "declarado_como": "ate 1h40"
+      },
+      "cobertura_m2_declarada": {
+        "valor": 166,
+        "unidade": "m2",
+        "fonte": "f-loja",
+        "declarado_como": "a bateria de litio oferece uma autonomia de ate 1h40 de uso, limpando ate 166 m2 de uma so vez"
+      },
+      "recarga_min_declarada": {
+        "valor": null,
+        "unidade": "min",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "retoma_apos_recarga": {
+        "valor": null,
+        "motivo_do_null": "o texto oficial do ERB80 descreve a base autolimpante e nao repete a frase de retomada de onde parou que aparece no ERB60/61/62. Sem declaracao propria, fica null — e sem este campo a R2 nao publica resultado de mais de um ciclo"
+      },
+      "bateria_mah": {
+        "valor": null,
+        "unidade": "mAh",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "voltagem": {
+        "valor": null,
+        "unidade": "V",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "base_autoesvaziamento": {
+        "valor": true,
+        "fonte": "f-loja",
+        "declarado_como": "base autolimpante inteligente que esvazia automaticamente a sujeira em uma base de 4L, reduzindo em ate 7x o contato com o po"
+      },
+      "navegacao": {
+        "valor": "laser",
+        "fonte": "f-loja",
+        "declarado_como": "mapeamento inteligente a laser 360o com selecao de comodos, areas restritas e retorno automatico a base"
+      },
+      "reservatorio_po_ml": {
+        "valor": null,
+        "unidade": "ml",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "reservatorio_agua_ml": {
+        "valor": null,
+        "unidade": "ml",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R2"
+      },
+      "fontes": {
+        "f-loja": {
+          "nivel": 4,
+          "origem": "varejo-oficial-da-marca",
+          "publicador": "Electrolux (loja oficial)",
+          "titulo_na_fonte": "Robo Aspirador Electrolux 4 em 1 Wi-Fi Experience ate 1h40 Mapeamento e Base Autolimpante (ERB80)",
+          "url": "https://loja.electrolux.com.br/robo-aspirador-electrolux-4-em-1-wi-fi-experience-ate-1h40-mapeamento-e-base-autolimpante--erb80-/p",
+          "canal_de_coleta": "busca web restrita aos dominios electrolux.com.br, loja.electrolux.com.br e compraparceiros.electrolux.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "Segundo par (minutos, m2) declarado que a ilha tem, e o primeiro fora do ERB44. 166 m2 em ate 1h40 dao 1,66 m2/min, contra 1,35 m2/min do ERB44 — 23% de diferenca DENTRO da mesma marca. E esse espalhamento que mantem taxa-cobertura-m2-por-min proibida em formula publicada. UNICO modelo do banco com autoesvaziamento declarado pelo fabricante.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "electrolux-erb30",
+      "marca": "electrolux",
+      "linha": "Home-E Power Experience",
+      "codigo_fabricante": "ERB30",
+      "nome_comercial": "Robo Aspirador de Po Electrolux Home-E Power Experience com Autonomous Technology",
+      "categoria": "robo",
+      "variantes_de_hardware": [],
+      "pa_declarado": {
+        "valor": null,
+        "unidade": "Pa",
+        "motivo_do_null": "a Electrolux nao publica sucao em Pa em nenhuma pagina oficial desta coleta: declara NIVEIS de sucao (minimo, medio, maximo), nao pascal. Veiculos editoriais citam 4.000 Pa para a linha, mas pela escada_de_fontes editorial NUNCA sustenta especificacao de aparelho — entao o numero fica de fora do banco, de proposito"
+      },
+      "potencia_w_declarada": {
+        "valor": null,
+        "unidade": "W",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "autonomia_min_declarada": {
+        "valor": null,
+        "unidade": "min",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "cobertura_m2_declarada": {
+        "valor": null,
+        "unidade": "m2",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "recarga_min_declarada": {
+        "valor": null,
+        "unidade": "min",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "retoma_apos_recarga": {
+        "valor": null,
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "bateria_mah": {
+        "valor": null,
+        "unidade": "mAh",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "voltagem": {
+        "valor": null,
+        "unidade": "V",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "base_autoesvaziamento": {
+        "valor": null,
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "navegacao": {
+        "valor": null,
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "reservatorio_po_ml": {
+        "valor": null,
+        "unidade": "ml",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "reservatorio_agua_ml": {
+        "valor": null,
+        "unidade": "ml",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R2"
+      },
+      "fontes": {
+        "f-loja": {
+          "nivel": 4,
+          "origem": "varejo-oficial-da-marca",
+          "publicador": "Electrolux (loja oficial)",
+          "titulo_na_fonte": "Robo Aspirador de Po Electrolux Home-E Power Experience com Autonomous Technology (ERB30)",
+          "url": "https://loja.electrolux.com.br/robo-apirador-de-po-electrolux-home-e-power-experience-com-autonomous-technology--erb30-/p",
+          "canal_de_coleta": "busca web restrita aos dominios electrolux.com.br, loja.electrolux.com.br e compraparceiros.electrolux.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "Entrou pela porta da R1, nao da R2: a ficha nao foi colhida, mas a Electrolux publica um Kit Performance dedicado a ele, e sem o modelo no banco esse kit ficaria orfao. Serve compatibilidade hoje e dimensionamento quando a ficha vier.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "positivo-pra2000",
+      "marca": "positivo",
+      "linha": "Smart Robo Aspirador",
+      "codigo_fabricante": "PRA2000",
+      "nome_comercial": "Smart Robo Aspirador Wi-Fi Autolimpante PRA2000 Positivo Casa Inteligente",
+      "categoria": "robo",
+      "variantes_de_hardware": [],
+      "pa_declarado": {
+        "valor": null,
+        "unidade": "Pa",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "potencia_w_declarada": {
+        "valor": null,
+        "unidade": "W",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "autonomia_min_declarada": {
+        "valor": null,
+        "unidade": "min",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "cobertura_m2_declarada": {
+        "valor": null,
+        "unidade": "m2",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "recarga_min_declarada": {
+        "valor": null,
+        "unidade": "min",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "retoma_apos_recarga": {
+        "valor": null,
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "bateria_mah": {
+        "valor": null,
+        "unidade": "mAh",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "voltagem": {
+        "valor": null,
+        "unidade": "V",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "base_autoesvaziamento": {
+        "valor": true,
+        "fonte": "f-oficial",
+        "declarado_como": "Smart Robo Aspirador Wi-Fi Autolimpante PRA2000 — o fabricante poe 'Autolimpante' no proprio nome do produto"
+      },
+      "navegacao": {
+        "valor": null,
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "reservatorio_po_ml": {
+        "valor": null,
+        "unidade": "ml",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "reservatorio_agua_ml": {
+        "valor": null,
+        "unidade": "ml",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R2"
+      },
+      "fontes": {
+        "f-oficial": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "Positivo Casa Inteligente",
+          "titulo_na_fonte": "Smart Robo Aspirador Wi-Fi Autolimpante PRA2000 Positivo Casa Inteligente",
+          "url": "https://www.positivocasainteligente.com.br/smart-robo-aspirador-wifi-autolimpante-pra2000-positivo-casa-inteligente-11206197/p",
+          "canal_de_coleta": "busca web restrita aos dominios positivocasainteligente.com.br e meupositivo.com.br",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "Entrou porque as tres pecas novas da Positivo declaram compatibilidade com PRA800 E PRA2000: sem ele no banco, metade de cada par ficaria como codigo solto.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "positivo-pra500",
+      "marca": "positivo",
+      "linha": "Smart Robo Aspirador",
+      "codigo_fabricante": "PRA500",
+      "nome_comercial": "Smart Robo Aspirador Wi-Fi+ PRA500 Positivo Casa Inteligente",
+      "categoria": "robo",
+      "variantes_de_hardware": [],
+      "pa_declarado": {
+        "valor": null,
+        "unidade": "Pa",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "potencia_w_declarada": {
+        "valor": null,
+        "unidade": "W",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "autonomia_min_declarada": {
+        "valor": null,
+        "unidade": "min",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "cobertura_m2_declarada": {
+        "valor": null,
+        "unidade": "m2",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "recarga_min_declarada": {
+        "valor": null,
+        "unidade": "min",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "retoma_apos_recarga": {
+        "valor": null,
+        "motivo_do_null": "o fabricante declara 'Retorna base', que e outra coisa: voltar a base nao e retomar de onde parou. Sem declaracao de retomada, fica null"
+      },
+      "bateria_mah": {
+        "valor": null,
+        "unidade": "mAh",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "voltagem": {
+        "valor": null,
+        "unidade": "V",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "base_autoesvaziamento": {
+        "valor": null,
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "navegacao": {
+        "valor": null,
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "reservatorio_po_ml": {
+        "valor": null,
+        "unidade": "ml",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "reservatorio_agua_ml": {
+        "valor": null,
+        "unidade": "ml",
+        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+      },
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R2"
+      },
+      "fontes": {
+        "f-oficial": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "Positivo Casa Inteligente",
+          "titulo_na_fonte": "Smart Robo Aspirador Wi-Fi+ PRA500 Positivo Casa Inteligente - Varre, Aspira, Passa Pano e Retorna base - App/Alexa",
+          "url": "https://loja.meupositivo.com.br/smart-robo-aspirador-wi-fi-plus/p",
+          "canal_de_coleta": "busca web restrita aos dominios positivocasainteligente.com.br e meupositivo.com.br",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "E LITERALMENTE a consulta-alvo da R1 na especificacao ('qual filtro serve no robo aspirador Positivo PRA500') e ate agora estava so na lista de compras. ATENCAO: as tres pecas novas da Positivo declaram PRA800 e PRA2000, e NAO citam o PRA500. Pelo conjunto mais estreito, a R1 tem que dizer que nao achou peca declarada para o PRA500 — dizer que serve seria exatamente o erro caro desta ilha.",
       "verificado_em": "2026-09-09"
     }
   ]

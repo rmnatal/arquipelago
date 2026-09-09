@@ -34,17 +34,28 @@ A Bússola verificou em 07/09/2026: a busca **comercial** ("melhor robô aspirad
 **3c. EXPANDIR O BANCO — não depende de site.** O modelo já existe e o
 `ferramentas/validar-banco.py` já reprova o que estiver fora do contrato; o que falta é
 cobertura. **A urgência não é número de itens** (a seção 14.3 do `ARQUIPELAGO.md`
-descartou meta redonda): é faixa descoberta. Ordem, da maior para a menor:
-(a) **pares (minutos, m²) declarados pelo fabricante** — são eles que tiram a constante
-`taxa-cobertura-m2-por-min` de `pendente` e destravam a R2 fora do ERB44; faltam pelo
-menos quatro, de marcas diferentes, e Xiaomi e Electrolux são as fontes de maior
-rendimento por consulta; (b) **`pa_declarado`** dos modelos que já estão no banco sem
-ele — sem esse campo nenhum modelo passa na elegibilidade da R2 e a lista sai vazia;
-(c) **peças da Xiaomi e da Positivo**, que hoje estão no banco só pelo lado do MODELO e
-não respondem nada na R1; (d) **peças de reposição da Electrolux**, a lacuna mais barata
-de fechar — a ilha já tem a vida útil de 6 meses do manual e não tem o código da peça a
-que ela se aplica. Produto novo entra com `afiliado.url` presente e vazio, e a execução
-reporta quantos itens esperam link.
+descartou meta redonda): é faixa descoberta. Produto novo entra com `afiliado.url`
+presente e vazio, e a execução reporta quantos itens esperam link.
+
+A primeira leva do 3c foi entregue em 09/09/2026 e **fechou as lacunas (c) e (d)** da
+ordem original: Positivo e Xiaomi já respondem na R1, e o Kit Performance **KPCEL01** deu
+dono à vida útil de 6 meses do manual da Electrolux. **A ordem que resta, da maior para a
+menor:**
+
+(a) **`pa_declarado` — a maior urgência, e o alvo mudou.** Sem esse campo nenhum modelo
+passa na elegibilidade da R2 e a lista de recomendados sai vazia; hoje são **2 de 19**
+modelos publicáveis. **Não procure na Electrolux:** ficou medido que ela não publica Pa em
+canal nenhum — declara *níveis* de sucção, e editorial não sustenta especificação de
+aparelho. O campo tem que vir de **Xiaomi, Multi, WAP e Positivo**.
+(b) **pares (minutos, m²) de marcas DIFERENTES.** São eles que tiram a constante
+`taxa-cobertura-m2-por-min` de `pendente`. O banco tem 2 declarações e as duas são
+Electrolux, discordando 23% entre si — o critério pede 5, de marcas diferentes. Mais um par
+da Electrolux não resolve.
+(c) **peça declarada para o PRA500**, que é a consulta-alvo da R1 e hoje não tem nenhuma:
+as três peças da Positivo declaram PRA800 e PRA2000 sem citá-lo. Enquanto não houver
+declaração, a resposta certa é "não encontramos" — nunca a peça do PRA800.
+(d) **composição dos kits do ERB44 e do ERB30**, hoje no banco com a composição em aberto:
+a R1 pode dizer QUE servem e ainda não O QUE vem dentro.
 
 **4. FERRAMENTAS**, uma por execução, já nascendo com JSON-LD, tabela de exemplos pré-renderizada, resposta antes da explicação e procedência na frase. **Não deixe retrofit para depois** — foi o que custou dias na Aquametria.
 

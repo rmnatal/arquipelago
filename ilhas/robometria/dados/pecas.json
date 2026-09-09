@@ -4,31 +4,46 @@
   "entidade": "peca",
   "esquema": "dados/esquema-banco.json",
   "gerado_em": "2026-09-09",
-  "nota_de_procedencia": "Coleta de 09/09/2026 por busca restrita aos dominios do proprio fabricante; o egresso HTTP direto devolveu EGRESS_BLOCKED para multilaser.com.br nesta execucao. TODA compatibilidade abaixo e DECLARADA pelo fabricante — nenhuma foi inferida, e nenhuma linha diz 'serve' sem que o fabricante tenha dito. Onde nao ha declaracao, nao ha linha.",
-  "nota_vida_util": "Nenhuma peca da Multi declara vida util nas paginas desta coleta. O unico numero de fabricante que a ilha tem e o do manual da Electrolux — 6 meses para o filtro HEPA do ERB10/ERB11/ERB20 — e ele esta em constantes.json preso AQUELES modelos. Veiculos editoriais dizem 3 meses e 2-3 meses, e divergem do manual. Manual de fabricante e recomendacao editorial nao se misturam numa frase: a R1 publica o intervalo do FABRICANTE do modelo consultado, e a recomendacao editorial so aparece rotulada como tal.",
+  "nota_de_procedencia": "Coleta de 09/09/2026 por busca restrita aos dominios do proprio fabricante; o egresso HTTP direto devolveu EGRESS_BLOCKED para multilaser.com.br nesta execucao. TODA compatibilidade abaixo e DECLARADA pelo fabricante — nenhuma foi inferida, e nenhuma linha diz 'serve' sem que o fabricante tenha dito. Onde nao ha declaracao, nao ha linha. Bloco 3c (09/09/2026): 10 pecas novas — 6 da Electrolux, 3 da Positivo e 1 da Xiaomi. Todas por busca restrita ao dominio oficial; o egresso segue fechado para leitura direta.",
+  "nota_vida_util": "Nenhuma peca da Multi declara vida util nas paginas desta coleta. O unico numero de fabricante que a ilha tem e o do manual da Electrolux — 6 meses para o filtro HEPA do ERB10/ERB11/ERB20 — e ele esta em constantes.json preso AQUELES modelos. Veiculos editoriais dizem 3 meses e 2-3 meses, e divergem do manual. Manual de fabricante e recomendacao editorial nao se misturam numa frase: a R1 publica o intervalo do FABRICANTE do modelo consultado, e a recomendacao editorial so aparece rotulada como tal. Bloco 3c: a vida util de 6 meses do manual da Electrolux finalmente tem peca — e o filtro HEPA dentro do Kit Performance KPCEL01. E a Xiaomi trouxe o primeiro conjunto de intervalos por TIPO de peca (filtro 3-6, escova lateral 3-6, escova principal 6-12, mop 3 meses), que valem para o S20 e para nenhum outro modelo do banco.",
   "contagem": {
-    "total": 8,
-    "publicavel": 6,
+    "total": 18,
+    "publicavel": 16,
     "excluido_do_banco": 2,
-    "pares_peca_x_modelo_declarados": 10,
-    "esperando_link_de_afiliado": 6
+    "nao_publicavel": 0,
+    "pares_peca_x_modelo_declarados": 33,
+    "esperando_link_de_afiliado": 16
   },
   "lista_de_compras": [
     {
-      "o_que": "pecas de reposicao da Electrolux (ERB10/ERB11/ERB20/ERB44)",
-      "por_que": "a ilha ja tem a vida util de 6 meses do manual e NAO tem o codigo da peca a que ela se aplica. E a lacuna mais barata de fechar do banco"
+      "codigo": "KPCEL02",
+      "marca": "electrolux",
+      "por_que": "codigo confirmado no canal de parceiros ('KPCEL02 KIT PERFORMANCE ROBO', 41047453) e compatibilidade NAO confirmada. Nao entrou no banco de proposito: peca sem par declarado nao vira registro nesta ilha"
     },
     {
-      "o_que": "filtro, escova e mop da Xiaomi e da Positivo",
-      "por_que": "os dois fabricantes ja estao no banco pelo lado do MODELO e nao tem nenhuma peca — a R1 nao responde nada para quem tem um S20 ou um PRA800"
+      "codigo": "CRCEL01",
+      "marca": "electrolux",
+      "por_que": "Controle Remoto para Aspirador Robo, com codigo publicado. Nao entrou porque controle remoto nao e consumivel e nao ha tipo para ele no vocabulario — decidir se vira tipo novo antes de gravar"
     },
     {
-      "o_que": "escova principal (rolo)",
-      "por_que": "tipo previsto no vocabulario e sem nenhum item; o cluster A2 do corpus mostra busca por ele"
+      "codigo": "composicao dos kits ERB44 e ERB30",
+      "marca": "electrolux",
+      "por_que": "os dois registros estao no banco com a composicao em aberto; a R1 pode dizer QUE serve e ainda nao O QUE vem dentro"
     },
     {
-      "o_que": "confirmar se HO400, HO401 e HO407 tem filtro proprio",
-      "por_que": "hoje o banco so sabe que eles compartilham a ESCOVA lateral PR10124. Filtro nao se herda de escova"
+      "codigo": "peca declarada para o PRA500",
+      "marca": "positivo",
+      "por_que": "URGENTE PARA A R1: o PRA500 e a consulta-alvo da especificacao e as tres pecas da Positivo declaram PRA800/PRA2000 sem cita-lo. Hoje a resposta honesta e 'nao encontramos', e ela precisa ser confirmada no canal oficial"
+    },
+    {
+      "codigo": "codigos de peca do Xiaomi S20",
+      "marca": "xiaomi",
+      "por_que": "o guia do usuario em PDF traria o codigo por item; esta atras do egresso"
+    },
+    {
+      "codigo": "pecas da Multi para HO243, HO407, HO411",
+      "marca": "multi",
+      "por_que": "tres modelos no banco sem nenhuma peca declarada"
     }
   ],
   "registros": [
@@ -539,6 +554,726 @@
       },
       "status": "excluido_do_banco",
       "motivo_do_status": "Peca de aspirador de po 2 em 1, nao de robo. Exclusao herdada do Bloco 2 e agora gravada no banco, nao so nas constantes.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "electrolux-kpcel01",
+      "marca": "electrolux",
+      "codigo_fabricante": "KPCEL01",
+      "tipo": "kit",
+      "nome_na_fonte": "Kit Performance para Robos Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
+      "composicao": [
+        {
+          "tipo": "filtro",
+          "quantidade": 1,
+          "descricao_na_fonte": "01 Filtro HEPA para Aspirador Robo"
+        },
+        {
+          "tipo": "mop",
+          "quantidade": 1,
+          "descricao_na_fonte": "01 Pano de Microfibra para Aspirador Robo (seco)"
+        },
+        {
+          "tipo": "escova lateral",
+          "quantidade": 2,
+          "descricao_na_fonte": "02 Escovas de Varrer Cantos para Aspiradores Robo"
+        }
+      ],
+      "compatibilidade": [
+        {
+          "modelo": "electrolux-erb10",
+          "codigo_declarado": "ERB10",
+          "variante_de_hardware": null,
+          "selo": "declarada_fabricante",
+          "fonte": "f-peca"
+        },
+        {
+          "modelo": "electrolux-erb11",
+          "codigo_declarado": "ERB11",
+          "variante_de_hardware": null,
+          "selo": "declarada_fabricante",
+          "fonte": "f-peca"
+        },
+        {
+          "modelo": "electrolux-erb20",
+          "codigo_declarado": "ERB20",
+          "variante_de_hardware": null,
+          "selo": "declarada_fabricante",
+          "fonte": "f-peca"
+        }
+      ],
+      "divergencias": [],
+      "vida_util_declarada": {
+        "valor": 6,
+        "unidade": "meses",
+        "fonte": "f-manual",
+        "declarado_como": "vida util do filtro HEPA declarada em manual do fabricante; se apresentar dano antes do prazo, substituir imediatamente"
+      },
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R1"
+      },
+      "fontes": {
+        "f-peca": {
+          "nivel": 4,
+          "origem": "varejo-oficial-da-marca",
+          "publicador": "Electrolux (loja oficial)",
+          "titulo_na_fonte": "Kit Performance para Robos Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
+          "url": "https://loja.electrolux.com.br/kit-performance-para-robos-aspiradores-erb10-erb11-e-erb20---electrolux/p",
+          "canal_de_coleta": "busca web restrita aos dominios electrolux.com.br, loja.electrolux.com.br e compraparceiros.electrolux.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
+          "verificado_em": "2026-09-09"
+        },
+        "f-codigo": {
+          "nivel": 4,
+          "origem": "varejo-oficial-da-marca",
+          "publicador": "Electrolux Parceiros",
+          "titulo_na_fonte": "KPCEL01 KIT PERFORMANCE ROBO",
+          "url": "https://compraparceiros.electrolux.com.br/kpcel01-kit-performance-robo-41047452/p",
+          "canal_de_coleta": "busca web restrita aos dominios electrolux.com.br, loja.electrolux.com.br e compraparceiros.electrolux.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
+          "verificado_em": "2026-09-09"
+        },
+        "f-manual": {
+          "nivel": 2,
+          "origem": "manual-fabricante",
+          "publicador": "Electrolux (manual hospedado por terceiro em manuals.plus)",
+          "titulo_na_fonte": "Manual do usuario do aspirador robo Electrolux ERB10/ERB11/ERB20",
+          "url": "https://manuals.plus/m/a7d2cf5766298ebb7449842933ed52fe8a527804e53e3684a681bae94bdf7a78",
+          "canal_de_coleta": "busca web restrita ao dominio manuals.plus (WebFetch direto devolveu EGRESS_BLOCKED)",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "FECHA A LACUNA (d) DO BLOCO 3c. Desde o Bloco 3 a ilha tinha a vida util de 6 meses do manual da Electrolux e NAO tinha o codigo da peca a que ela se aplica — agora tem: e o filtro HEPA dentro deste kit. O achado que muda a R1 e que a Electrolux NAO vende o filtro de robo avulso nesta linha; quem procura 'filtro do ERB10' compra o Kit Performance. A vida util de 6 meses e do FILTRO, nao do kit inteiro: o manual nao declara prazo para o pano nem para as escovas.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "electrolux-filtro-hepa-espuma-erb44-erb60-erb61-erb62",
+      "marca": "electrolux",
+      "codigo_fabricante": null,
+      "motivo_sem_codigo": "a Electrolux nao publica codigo de peca nesta pagina — identifica o item pelo titulo e pela lista de modelos. O codigo KPCEL01/KPCEL02 so aparece no canal de parceiros, e nem toda peca tem um la",
+      "tipo": "filtro",
+      "nome_na_fonte": "Filtro HEPA com Espuma Electrolux para Robos Aspiradores ERB44, ERB60, ERB61 e ERB62",
+      "compatibilidade": [
+        {
+          "modelo": "electrolux-erb44",
+          "codigo_declarado": "ERB44",
+          "variante_de_hardware": null,
+          "selo": "declarada_fabricante",
+          "fonte": "f-peca"
+        },
+        {
+          "modelo": "electrolux-erb60",
+          "codigo_declarado": "ERB60",
+          "variante_de_hardware": null,
+          "selo": "declarada_fabricante",
+          "fonte": "f-peca"
+        },
+        {
+          "modelo": "electrolux-erb61",
+          "codigo_declarado": "ERB61",
+          "variante_de_hardware": null,
+          "selo": "declarada_fabricante",
+          "fonte": "f-peca"
+        },
+        {
+          "modelo": "electrolux-erb62",
+          "codigo_declarado": "ERB62",
+          "variante_de_hardware": null,
+          "selo": "declarada_fabricante",
+          "fonte": "f-peca"
+        }
+      ],
+      "divergencias": [],
+      "vida_util_declarada": {
+        "valor": null,
+        "unidade": "meses",
+        "motivo_do_null": "o fabricante nao declara vida util nesta pagina, e o banco nao empresta o numero de um fabricante para a peca de outro"
+      },
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R1"
+      },
+      "fontes": {
+        "f-peca": {
+          "nivel": 4,
+          "origem": "varejo-oficial-da-marca",
+          "publicador": "Electrolux (loja oficial)",
+          "titulo_na_fonte": "Filtro HEPA com Espuma Electrolux para Robos Aspiradores ERB44, ERB60, ERB61 e ERB62",
+          "url": "https://loja.electrolux.com.br/filtro-hepa-com-espuma-electrolux-para-robos-aspiradores-erb44--erb60--erb61-e-erb62/p",
+          "canal_de_coleta": "busca web restrita aos dominios electrolux.com.br, loja.electrolux.com.br e compraparceiros.electrolux.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "Primeira peca do banco para o ERB44, que ate agora era so ficha tecnica. Repare que o ERB80 NAO esta na lista deste filtro, embora esteja na da escova rotativa central — e o principio 'compatibilidade nao se herda' aparecendo no proprio catalogo do fabricante. A R1 nao pode completar a lista por analogia.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "electrolux-kit-performance-erb60-erb61-erb62",
+      "marca": "electrolux",
+      "codigo_fabricante": null,
+      "motivo_sem_codigo": "a Electrolux nao publica codigo de peca nesta pagina — identifica o item pelo titulo e pela lista de modelos. O codigo KPCEL01/KPCEL02 so aparece no canal de parceiros, e nem toda peca tem um la",
+      "tipo": "kit",
+      "nome_na_fonte": "Kit Performance Electrolux para Robos Aspiradores ERB60, ERB61 e ERB62",
+      "composicao": [
+        {
+          "tipo": "filtro",
+          "quantidade": null,
+          "descricao_na_fonte": "Filtro HEPA com alto nivel de filtragem (filtra ate 99,9% das impurezas)"
+        },
+        {
+          "tipo": "escova lateral",
+          "quantidade": null,
+          "descricao_na_fonte": "Escovas de Varrer Cantos"
+        },
+        {
+          "tipo": "mop",
+          "quantidade": null,
+          "descricao_na_fonte": "Pano de Microfibra, para limpeza com pano seco"
+        }
+      ],
+      "compatibilidade": [
+        {
+          "modelo": "electrolux-erb60",
+          "codigo_declarado": "ERB60",
+          "variante_de_hardware": null,
+          "selo": "declarada_fabricante",
+          "fonte": "f-peca"
+        },
+        {
+          "modelo": "electrolux-erb61",
+          "codigo_declarado": "ERB61",
+          "variante_de_hardware": null,
+          "selo": "declarada_fabricante",
+          "fonte": "f-peca"
+        },
+        {
+          "modelo": "electrolux-erb62",
+          "codigo_declarado": "ERB62",
+          "variante_de_hardware": null,
+          "selo": "declarada_fabricante",
+          "fonte": "f-peca"
+        }
+      ],
+      "divergencias": [],
+      "vida_util_declarada": {
+        "valor": null,
+        "unidade": "meses",
+        "motivo_do_null": "o fabricante nao declara vida util nesta pagina, e o banco nao empresta o numero de um fabricante para a peca de outro"
+      },
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R1"
+      },
+      "fontes": {
+        "f-peca": {
+          "nivel": 4,
+          "origem": "varejo-oficial-da-marca",
+          "publicador": "Electrolux (loja oficial)",
+          "titulo_na_fonte": "Kit Performance Electrolux para Robos Aspiradores ERB60, ERB61 e ERB62",
+          "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robos-aspiradores-erb60--erb61-e-erb62/p",
+          "canal_de_coleta": "busca web restrita aos dominios electrolux.com.br, loja.electrolux.com.br e compraparceiros.electrolux.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "O ERB80 nao aparece na compatibilidade declarada deste kit, mesmo compartilhando a escova rotativa central com o ERB60/61/62. Ficou como esta declarado.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "electrolux-escova-rotativa-central-erb60-erb61-erb62-erb80",
+      "marca": "electrolux",
+      "codigo_fabricante": null,
+      "motivo_sem_codigo": "a Electrolux nao publica codigo de peca nesta pagina — identifica o item pelo titulo e pela lista de modelos. O codigo KPCEL01/KPCEL02 so aparece no canal de parceiros, e nem toda peca tem um la",
+      "tipo": "escova principal",
+      "nome_na_fonte": "Escova Rotativa Central Electrolux para Robos Aspiradores ERB60, ERB61, ERB62 e ERB80",
+      "compatibilidade": [
+        {
+          "modelo": "electrolux-erb60",
+          "codigo_declarado": "ERB60",
+          "variante_de_hardware": null,
+          "selo": "declarada_fabricante",
+          "fonte": "f-peca"
+        },
+        {
+          "modelo": "electrolux-erb61",
+          "codigo_declarado": "ERB61",
+          "variante_de_hardware": null,
+          "selo": "declarada_fabricante",
+          "fonte": "f-peca"
+        },
+        {
+          "modelo": "electrolux-erb62",
+          "codigo_declarado": "ERB62",
+          "variante_de_hardware": null,
+          "selo": "declarada_fabricante",
+          "fonte": "f-peca"
+        },
+        {
+          "modelo": "electrolux-erb80",
+          "codigo_declarado": "ERB80",
+          "variante_de_hardware": null,
+          "selo": "declarada_fabricante",
+          "fonte": "f-peca"
+        }
+      ],
+      "divergencias": [],
+      "vida_util_declarada": {
+        "valor": null,
+        "unidade": "meses",
+        "motivo_do_null": "o fabricante nao declara vida util nesta pagina, e o banco nao empresta o numero de um fabricante para a peca de outro"
+      },
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R1"
+      },
+      "fontes": {
+        "f-peca": {
+          "nivel": 4,
+          "origem": "varejo-oficial-da-marca",
+          "publicador": "Electrolux (loja oficial)",
+          "titulo_na_fonte": "Escova Rotativa Central Electrolux para Robos Aspiradores ERB60, ERB61, ERB62 e ERB80",
+          "url": "https://loja.electrolux.com.br/escova-rotativa-central-electrolux-para-robos-aspiradores-erb60--erb61--erb62-e-erb80/p",
+          "canal_de_coleta": "busca web restrita aos dominios electrolux.com.br, loja.electrolux.com.br e compraparceiros.electrolux.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "Primeira 'escova principal' do banco — ate aqui a ilha so tinha escova lateral. Unica peca desta coleta que inclui o ERB80.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "electrolux-kit-performance-erb44",
+      "marca": "electrolux",
+      "codigo_fabricante": null,
+      "motivo_sem_codigo": "a Electrolux nao publica codigo de peca nesta pagina — identifica o item pelo titulo e pela lista de modelos. O codigo KPCEL01/KPCEL02 so aparece no canal de parceiros, e nem toda peca tem um la",
+      "tipo": "kit",
+      "nome_na_fonte": "Kit Performance Electrolux para Robo Aspirador ERB44",
+      "composicao": [
+        {
+          "tipo": null,
+          "quantidade": null,
+          "descricao_na_fonte": "composicao nao transcrita nesta coleta: a busca restrita devolveu o titulo e a compatibilidade, nao a lista de itens. E trabalho a fazer, nao lacuna permanente"
+        }
+      ],
+      "compatibilidade": [
+        {
+          "modelo": "electrolux-erb44",
+          "codigo_declarado": "ERB44",
+          "variante_de_hardware": null,
+          "selo": "declarada_fabricante",
+          "fonte": "f-peca"
+        }
+      ],
+      "divergencias": [],
+      "vida_util_declarada": {
+        "valor": null,
+        "unidade": "meses",
+        "motivo_do_null": "o fabricante nao declara vida util nesta pagina, e o banco nao empresta o numero de um fabricante para a peca de outro"
+      },
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R1"
+      },
+      "fontes": {
+        "f-peca": {
+          "nivel": 4,
+          "origem": "varejo-oficial-da-marca",
+          "publicador": "Electrolux (loja oficial)",
+          "titulo_na_fonte": "Kit Performance Electrolux para Robo Aspirador ERB44",
+          "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robo-aspirador-erb44/p",
+          "canal_de_coleta": "busca web restrita aos dominios electrolux.com.br, loja.electrolux.com.br e compraparceiros.electrolux.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "Kit dedicado a um unico modelo. A composicao ainda nao foi transcrita, entao a R1 pode afirmar QUE ele serve e nao pode ainda dizer O QUE vem dentro.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "electrolux-kit-performance-erb30",
+      "marca": "electrolux",
+      "codigo_fabricante": null,
+      "motivo_sem_codigo": "a Electrolux nao publica codigo de peca nesta pagina — identifica o item pelo titulo e pela lista de modelos. O codigo KPCEL01/KPCEL02 so aparece no canal de parceiros, e nem toda peca tem um la",
+      "tipo": "kit",
+      "nome_na_fonte": "Kit Performance para Robo Aspirador ERB30 - Electrolux",
+      "composicao": [
+        {
+          "tipo": null,
+          "quantidade": null,
+          "descricao_na_fonte": "composicao nao transcrita nesta coleta: a busca restrita devolveu o titulo e a compatibilidade, nao a lista de itens. E trabalho a fazer, nao lacuna permanente"
+        }
+      ],
+      "compatibilidade": [
+        {
+          "modelo": "electrolux-erb30",
+          "codigo_declarado": "ERB30",
+          "variante_de_hardware": null,
+          "selo": "declarada_fabricante",
+          "fonte": "f-peca"
+        }
+      ],
+      "divergencias": [],
+      "vida_util_declarada": {
+        "valor": null,
+        "unidade": "meses",
+        "motivo_do_null": "o fabricante nao declara vida util nesta pagina, e o banco nao empresta o numero de um fabricante para a peca de outro"
+      },
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R1"
+      },
+      "fontes": {
+        "f-peca": {
+          "nivel": 4,
+          "origem": "varejo-oficial-da-marca",
+          "publicador": "Electrolux (loja oficial)",
+          "titulo_na_fonte": "Kit Performance para Robo Aspirador ERB30 - Electrolux",
+          "url": "https://loja.electrolux.com.br/kit-performance-para-robo-aspirador-erb30---electrolux/p",
+          "canal_de_coleta": "busca web restrita aos dominios electrolux.com.br, loja.electrolux.com.br e compraparceiros.electrolux.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "Kit dedicado a um unico modelo. A composicao ainda nao foi transcrita, entao a R1 pode afirmar QUE ele serve e nao pode ainda dizer O QUE vem dentro.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "positivo-11206518",
+      "marca": "positivo",
+      "codigo_fabricante": "11206518",
+      "tipo": "escova lateral",
+      "nome_na_fonte": "Escova Lateral para Smart Robo Aspirador PRA800/PRA2000 Positivo Casa Inteligente",
+      "compatibilidade": [
+        {
+          "modelo": "positivo-pra800",
+          "codigo_declarado": "PRA800",
+          "variante_de_hardware": null,
+          "selo": "declarada_fabricante",
+          "fonte": "f-peca"
+        },
+        {
+          "modelo": "positivo-pra2000",
+          "codigo_declarado": "PRA2000",
+          "variante_de_hardware": null,
+          "selo": "declarada_fabricante",
+          "fonte": "f-peca"
+        }
+      ],
+      "divergencias": [],
+      "vida_util_declarada": {
+        "valor": null,
+        "unidade": "meses",
+        "motivo_do_null": "o fabricante nao declara vida util nesta pagina, e o banco nao empresta o numero de um fabricante para a peca de outro"
+      },
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R1"
+      },
+      "fontes": {
+        "f-peca": {
+          "nivel": 4,
+          "origem": "varejo-oficial-da-marca",
+          "publicador": "Positivo Casa Inteligente (loja oficial)",
+          "titulo_na_fonte": "Escova Lateral para Smart Robo Aspirador PRA800/PRA2000 Positivo Casa Inteligente",
+          "url": "https://loja.meupositivo.com.br/escova-lateral-para-smart-robo-aspirador-laser-pra800-e-autolimpante-pra2000-11206518/p",
+          "canal_de_coleta": "busca web restrita aos dominios positivocasainteligente.com.br e meupositivo.com.br",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "FECHA METADE DA LACUNA (c) DO BLOCO 3c: a Positivo estava no banco so pelo lado do MODELO e nao respondia nada na R1. O fabricante declara dimensoes de 138 x 52 mm e peso de 11,7 g. ATENCAO PARA A R1: a compatibilidade declarada e PRA800 e PRA2000 e NAO inclui o PRA500, que e a consulta-alvo da especificacao. Pelo conjunto mais estreito, a resposta certa para o PRA500 e 'nao encontramos peca declarada', nao esta peca. codigo do canal oficial da marca (SKU da Loja Positivo Casa Inteligente). A Positivo nao publica codigo de peca separado do SKU, e e por esse numero que a peca e encontrada e comprada.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "positivo-11206519",
+      "marca": "positivo",
+      "codigo_fabricante": "11206519",
+      "tipo": "escova principal",
+      "nome_na_fonte": "Escova Central para Smart Robo Aspirador Laser PRA800 e Autolimpante PRA2000",
+      "compatibilidade": [
+        {
+          "modelo": "positivo-pra800",
+          "codigo_declarado": "PRA800",
+          "variante_de_hardware": null,
+          "selo": "declarada_fabricante",
+          "fonte": "f-peca"
+        },
+        {
+          "modelo": "positivo-pra2000",
+          "codigo_declarado": "PRA2000",
+          "variante_de_hardware": null,
+          "selo": "declarada_fabricante",
+          "fonte": "f-peca"
+        }
+      ],
+      "divergencias": [],
+      "vida_util_declarada": {
+        "valor": null,
+        "unidade": "meses",
+        "motivo_do_null": "o fabricante nao declara vida util nesta pagina, e o banco nao empresta o numero de um fabricante para a peca de outro"
+      },
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R1"
+      },
+      "fontes": {
+        "f-peca": {
+          "nivel": 4,
+          "origem": "varejo-oficial-da-marca",
+          "publicador": "Positivo Casa Inteligente (loja oficial)",
+          "titulo_na_fonte": "Escova Central para Smart Robo Aspirador Laser PRA800 e Autolimpante PRA2000",
+          "url": "https://www.positivocasainteligente.com.br/escova-central-para-smart-robo-aspirador-laser-pra800-e-autolimpante-pra2000-11206519/p",
+          "canal_de_coleta": "busca web restrita aos dominios positivocasainteligente.com.br e meupositivo.com.br",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "FECHA METADE DA LACUNA (c) DO BLOCO 3c: a Positivo estava no banco so pelo lado do MODELO e nao respondia nada na R1. O fabricante declara dimensoes de 40 x 199 mm. ATENCAO PARA A R1: a compatibilidade declarada e PRA800 e PRA2000 e NAO inclui o PRA500, que e a consulta-alvo da especificacao. Pelo conjunto mais estreito, a resposta certa para o PRA500 e 'nao encontramos peca declarada', nao esta peca. codigo do canal oficial da marca (SKU da Loja Positivo Casa Inteligente). A Positivo nao publica codigo de peca separado do SKU, e e por esse numero que a peca e encontrada e comprada.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "positivo-11206540",
+      "marca": "positivo",
+      "codigo_fabricante": "11206540",
+      "tipo": "mop",
+      "nome_na_fonte": "Mop para Smart Robo Aspirador Laser PRA800/PRA2000 Positivo Casa Inteligente",
+      "compatibilidade": [
+        {
+          "modelo": "positivo-pra800",
+          "codigo_declarado": "PRA800",
+          "variante_de_hardware": null,
+          "selo": "declarada_fabricante",
+          "fonte": "f-peca"
+        },
+        {
+          "modelo": "positivo-pra2000",
+          "codigo_declarado": "PRA2000",
+          "variante_de_hardware": null,
+          "selo": "declarada_fabricante",
+          "fonte": "f-peca"
+        }
+      ],
+      "divergencias": [],
+      "vida_util_declarada": {
+        "valor": null,
+        "unidade": "meses",
+        "motivo_do_null": "o fabricante nao declara vida util nesta pagina, e o banco nao empresta o numero de um fabricante para a peca de outro"
+      },
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R1"
+      },
+      "fontes": {
+        "f-peca": {
+          "nivel": 4,
+          "origem": "varejo-oficial-da-marca",
+          "publicador": "Positivo Casa Inteligente (loja oficial)",
+          "titulo_na_fonte": "Mop para Smart Robo Aspirador Laser PRA800/PRA2000 Positivo Casa Inteligente",
+          "url": "https://loja.meupositivo.com.br/mop-para-smart-robo-aspirador-laser-pra800-e-autolimpante-pra2000-11206540/p",
+          "canal_de_coleta": "busca web restrita aos dominios positivocasainteligente.com.br e meupositivo.com.br",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "FECHA METADE DA LACUNA (c) DO BLOCO 3c: a Positivo estava no banco so pelo lado do MODELO e nao respondia nada na R1. O fabricante declara dimensoes de 293 x 99 x 4 mm e peso de 8 g. ATENCAO PARA A R1: a compatibilidade declarada e PRA800 e PRA2000 e NAO inclui o PRA500, que e a consulta-alvo da especificacao. Pelo conjunto mais estreito, a resposta certa para o PRA500 e 'nao encontramos peca declarada', nao esta peca. codigo do canal oficial da marca (SKU da Loja Positivo Casa Inteligente). A Positivo nao publica codigo de peca separado do SKU, e e por esse numero que a peca e encontrada e comprada.",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "xiaomi-s20-acessorios",
+      "marca": "xiaomi",
+      "codigo_fabricante": null,
+      "motivo_sem_codigo": "a Xiaomi identifica consumivel pelo nome do acessorio e pelo modelo compativel, nao por codigo de peca. O guia do usuario em PDF, que poderia trazer codigo, esta atras do egresso fechado",
+      "tipo": "kit",
+      "nome_na_fonte": "Xiaomi Robot Vacuum S20 Accessories",
+      "composicao": [
+        {
+          "tipo": "mop",
+          "quantidade": null,
+          "descricao_na_fonte": "Mop Pad"
+        },
+        {
+          "tipo": "escova lateral",
+          "quantidade": null,
+          "descricao_na_fonte": "Side Brush"
+        },
+        {
+          "tipo": "escova principal",
+          "quantidade": null,
+          "descricao_na_fonte": "Main Brush"
+        },
+        {
+          "tipo": "filtro",
+          "quantidade": null,
+          "descricao_na_fonte": "Filter"
+        },
+        {
+          "tipo": null,
+          "quantidade": null,
+          "descricao_na_fonte": "Main Brush Cover — nao ha tipo no vocabulario para tampa de escova, e inventar um so para este item seria alargar o vocabulario sem necessidade"
+        }
+      ],
+      "compatibilidade": [
+        {
+          "modelo": "xiaomi-s20",
+          "codigo_declarado": "Xiaomi Robot Vacuum S20",
+          "variante_de_hardware": null,
+          "selo": "declarada_fabricante",
+          "fonte": "f-peca"
+        }
+      ],
+      "divergencias": [],
+      "vida_util_declarada": {
+        "valor": null,
+        "unidade": "meses",
+        "motivo_do_null": "a Xiaomi declara vida util POR TIPO de peca e nao para o conjunto: filtro a cada 3-6 meses, escova lateral a cada 3-6 meses, escova principal a cada 6-12 meses e mop a cada 3 meses (FAQ oficial do S20, KA-233335, verificado em 09/09/2026). Cravar um numero unico para o kit seria inventar o que o fabricante nao disse"
+      },
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R1"
+      },
+      "fontes": {
+        "f-peca": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "Xiaomi Global",
+          "titulo_na_fonte": "Xiaomi Robot Vacuum S20 Accessories",
+          "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s20-accessories/",
+          "canal_de_coleta": "busca web restrita ao dominio mi.com (WebFetch direto devolveu EGRESS_BLOCKED)",
+          "verificado_em": "2026-09-09"
+        },
+        "f-faq": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "Xiaomi Global (suporte)",
+          "titulo_na_fonte": "How to maintain the components of the Xiaomi Robot Vacuum S20?",
+          "url": "https://www.mi.com/global/support/faq/details/KA-233335/",
+          "canal_de_coleta": "busca web restrita ao dominio mi.com (WebFetch direto devolveu EGRESS_BLOCKED)",
+          "verificado_em": "2026-09-09"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "FECHA A OUTRA METADE DA LACUNA (c). A compatibilidade ficou so no S20, de proposito: o S20+ tem FAQ propria (KA-378764) e nao esta no banco, e estender por semelhanca de nome e exatamente o erro caro desta ilha. Os intervalos de troca por tipo estao escritos em vida_util_declarada.motivo_do_null e sao dado publicavel — a frase da pagina cita a FAQ do fabricante com a data.",
       "verificado_em": "2026-09-09"
     }
   ]

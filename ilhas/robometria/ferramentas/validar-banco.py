@@ -163,6 +163,32 @@ for p in pecas["registros"]:
         erro("%s: marca %r nao existe em marcas.json" % (onde, p["marca"]))
     if p["tipo"] not in VOC["tipo_de_peca"]:
         erro("%s: tipo %r fora do vocabulario" % (onde, p["tipo"]))
+
+    # Kit e caixa fechada ate declarar o que tem dentro. Sem isto a R1 sabe QUE o kit
+    # serve e nao consegue dizer que o filtro do ERB10 vem dentro dele — que e a resposta
+    # que a pessoa procurou.
+    if p["tipo"] == "kit":
+        if not p.get("composicao"):
+            erro("%s: tipo kit sem composicao. Kit sem composicao e caixa fechada: a R1 nao "
+                 "consegue responder 'qual filtro serve no meu modelo'" % onde)
+        for item in p.get("composicao", []):
+            t = item.get("tipo")
+            if t == "kit":
+                erro("%s: composicao com item do tipo kit — kit dentro de kit nao existe "
+                     "neste banco" % onde)
+            elif t is not None and t not in VOC["tipo_de_peca"]:
+                erro("%s: composicao com tipo %r fora do vocabulario" % (onde, t))
+            elif t is None and not item.get("descricao_na_fonte"):
+                erro("%s: item de composicao sem tipo E sem descricao_na_fonte — nao sobra "
+                     "nada para a tela" % onde)
+    elif p.get("composicao"):
+        erro("%s: composicao so existe em peca do tipo kit" % onde)
+
+    # Nem todo fabricante publica codigo. Isso e resposta, e como toda resposta null
+    # nesta ilha, ela tem que estar escrita.
+    if p.get("codigo_fabricante") is None and not p.get("motivo_sem_codigo"):
+        erro("%s: codigo_fabricante null sem motivo_sem_codigo. 'o fabricante nao publica "
+             "codigo' e resposta legitima, mas precisa estar escrita" % onde)
     if p["status"] not in VOC["status_do_registro"]:
         erro("%s: status %r fora do vocabulario" % (onde, p["status"]))
     if p["status"] != "publicavel" and not p.get("motivo_do_status"):
