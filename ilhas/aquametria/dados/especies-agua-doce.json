@@ -1,1161 +1,2585 @@
 {
- "id": "especies-agua-doce",
- "entidade": "especie",
- "esquema": "dados/esquema-especies.json",
- "descricao": "Primeira leva do banco de especies de agua doce da Aquametria (bloco 4b(c), 09/09/2026): 12 especies escolhidas por serem as mais vendidas no varejo brasileiro e por cobrirem a faixa util de porte, de 2,2 a 48 cm. Existe para destravar o eixo aberto 'quantos litros para X peixes', que a Bussola verificou livre na SERP, com dado atribuido em vez da regra de bolso de 1 cm por litro. Nenhum registro tem link de afiliado: especie nao e produto.",
- "gerado_em": "2026-09-09",
- "bloco": "4b(c)",
- "publicar": false,
- "nota_de_procedencia": "Nenhuma pagina foi lida direto: em 09/09/2026 o egresso da nuvem devolveu EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org. Todo numero deste arquivo foi colhido por busca RESTRITA ao dominio da fonte (niveis 3 e 5 da escada), o que garante a atribuicao mas nao substitui a leitura. Reconferir na ficha quando o egresso abrir e uma coleta em aberto.",
- "campos_deliberadamente_vazios": [
-  "dificuldade: julgamento editorial, nao fonte. Fica null na leva 1 inteira em vez de virar opiniao com cara de dado.",
-  "familia: nenhuma das buscas devolveu a familia atribuida, e taxonomia sem fonte nao entra. Coleta em aberto.",
-  "disponibilidade_br: exige fonte de varejo brasileiro, que esta leva nao colheu.",
-  "volume_minimo_declarado_L: nenhuma fonte declarou litro. O litro e derivado pela calculadora a partir da base, com a altura do usuario (regra E7)."
- ],
- "especies": [
-  {
-   "id": "paracheirodon-axelrodi",
-   "entidade": "especie",
-   "nome_cientifico": "Paracheirodon axelrodi",
-   "sinonimos_cientificos": [
-    "Cheirodon axelrodi",
-    "Hyphessobrycon cardinalis"
-   ],
-   "nomes_populares_br": [
-    "neon cardinal",
-    "tetra cardinal",
-    "cardinal"
-   ],
-   "familia": null,
-   "origem_geografica": "Alto Orinoco e bacia do rio Negro, America do Sul",
-   "porte_adulto_cm": 3.0,
-   "porte_medida": "SL",
-   "porte_sexo": "nao-sexado",
-   "expectativa_vida_anos": null,
-   "temperatura_C": {
-    "min": 23,
-    "max": 27
-   },
-   "temperatura_e_tolerancia": false,
-   "ph": {
-    "min": 4.0,
-    "max": 6.0
-   },
-   "dureza_dgh": {
-    "min": 5,
-    "max": 12
-   },
-   "cardume_minimo": 8,
-   "comprimento_minimo_aquario_cm": 60,
-   "base_minima_cm": {
-    "comprimento": 60,
-    "largura": 30
-   },
-   "altura_minima_cm": null,
-   "volume_minimo_declarado_L": null,
-   "nivel_natacao": "meio",
-   "comportamento": null,
-   "convivencia": "cardume",
-   "alimentacao": null,
-   "dificuldade": null,
-   "exige_aquario_maduro": null,
-   "disponibilidade_br": null,
-   "fontes": [
+  "id": "especies-agua-doce",
+  "entidade": "especie",
+  "esquema": "dados/esquema-especies.json",
+  "descricao": "Banco de especies de agua doce da Aquametria. Leva 1 (bloco 4b(c), 09/09/2026): 12 especies. Leva 2 (bloco 4b leva 3, 09/09/2026): mais 13 especies e a familia dos 12 primeiros, fechando 25 registros de 2,2 cm (neon) a 45,7 cm (oscar), com frente minima declarada de 45 a 180 cm. Existe para destravar o eixo aberto 'quantos litros para X peixes', que a Bussola verificou livre na SERP, com dado atribuido em vez da regra de bolso de 1 cm por litro. Nenhum registro tem link de afiliado: especie nao e produto.",
+  "gerado_em": "2026-09-09",
+  "bloco": "4b(c) leva 1 + 4b leva 3",
+  "publicar": false,
+  "nota_de_procedencia": "Nenhuma pagina foi lida direto: em 09/09/2026 o egresso da nuvem devolveu EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org. Todo numero deste arquivo foi colhido por busca RESTRITA ao dominio da fonte (niveis 3 e 5 da escada), o que garante a atribuicao mas nao substitui a leitura. Reconferir na ficha quando o egresso abrir e uma coleta em aberto.",
+  "campos_deliberadamente_vazios": [
+    "dificuldade: julgamento editorial, nao fonte. Fica null nos 25 registros em vez de virar opiniao com cara de dado.",
+    "disponibilidade_br: exige fonte de varejo brasileiro, que nenhuma das duas levas colheu.",
+    "volume_minimo_declarado_L: nenhuma fonte declarou litro. O litro e derivado pela calculadora a partir da base, com a altura do usuario (regra E7).",
+    "comportamento: so entra quando ha frase de fonte que o sustente. Em 09/09/2026 sao 11 dos 25 registros; nos outros 14 fica null, porque quem sustenta lotacao e convivencia, nao temperamento inventado.",
+    "nivel_natacao e alimentacao: nenhuma das buscas devolveu a atribuicao explicita, e os dois campos so valem se vierem da fonte. Coleta em aberto."
+  ],
+  "especies": [
     {
-     "origem": "base-cientifica-via-busca",
-     "status": "base-cientifica-via-busca",
-     "referencia": "FishBase — ficha da especie: 23 a 27 C, pH 4,0 a 6,0, dH 5 a 12; ocorre sobretudo em cardumes nas camadas medias da coluna; alto Orinoco e rio Negro. Max 2,5 cm SL na busca restrita de 09/09/2026 e 3,0 cm SL na busca aberta do mesmo dia (ver conflitos).",
-     "url": "https://www.fishbase.se/summary/paracheirodon-axelrodi.html",
-     "verificado_em": "2026-09-09",
-     "campos": [
-      "porte_adulto_cm",
-      "porte_medida",
-      "porte_sexo",
-      "temperatura_C",
-      "ph",
-      "dureza_dgh",
-      "nivel_natacao",
-      "origem_geografica"
-     ],
-     "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, todos testados nesta data. A confirmar na ficha."
-    },
-    {
-     "origem": "compendio-via-busca",
-     "status": "compendio-via-busca",
-     "referencia": "Seriously Fish — ficha da especie: aquario com base de 60 x 30 cm ou maior; manter em grupo misto de pelo menos 8 a 10 exemplares, e junto de outros cardumes para dar seguranca ao grupo.",
-     "url": "https://www.seriouslyfish.com/species/paracheirodon-axelrodi/",
-     "verificado_em": "2026-09-09",
-     "campos": [
-      "comprimento_minimo_aquario_cm",
-      "base_minima_cm",
-      "cardume_minimo",
-      "convivencia"
-     ],
-     "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED. A confirmar na ficha."
-    }
-   ],
-   "conflitos": [
-    {
-     "campo": "porte_adulto_cm",
-     "valores": [
-      {
-       "valor": 2.5,
-       "referencia": "FishBase, leitura por busca restrita ao dominio em 09/09/2026: max 2,5 cm SL",
-       "url": "https://www.fishbase.se/summary/paracheirodon-axelrodi.html",
-       "origem": "base-cientifica-via-busca"
+      "id": "paracheirodon-axelrodi",
+      "entidade": "especie",
+      "nome_cientifico": "Paracheirodon axelrodi",
+      "sinonimos_cientificos": [
+        "Cheirodon axelrodi",
+        "Hyphessobrycon cardinalis"
+      ],
+      "nomes_populares_br": [
+        "neon cardinal",
+        "tetra cardinal",
+        "cardinal"
+      ],
+      "familia": "Acestrorhamphidae",
+      "origem_geografica": "Alto Orinoco e bacia do rio Negro, America do Sul",
+      "porte_adulto_cm": 3.0,
+      "porte_medida": "SL",
+      "porte_sexo": "nao-sexado",
+      "expectativa_vida_anos": null,
+      "temperatura_C": {
+        "min": 23,
+        "max": 27
       },
-      {
-       "valor": 3.0,
-       "referencia": "FishBase, leitura por busca aberta em 09/09/2026, com a atribuicao explicita a FishBase no resumo: 3,0 cm SL",
-       "url": "https://fishbase.org/summary/8195",
-       "origem": "base-cientifica-via-busca"
-      }
-     ],
-     "razao": "Duas leituras da MESMA fonte, no mesmo dia, devolveram 2,5 e 3,0 cm SL. Nao e divergencia entre autores: e o limite de colher numero por resumo de busca sem poder abrir a pagina. Enquanto o egresso nao abrir, o banco publica os dois e usa o maior, porque em lotacao errar o porte para menos e o lado que lota demais.",
-     "tratamento": "publicar-os-dois",
-     "valor_conservador": 3.0,
-     "derivacao": null
-    }
-   ],
-   "verificado_em": "2026-09-09",
-   "status_registro": "conflito",
-   "observacao": "Peixe-bandeira do nicho no Brasil e o caso que mais expoe a distancia entre banco e regra de bolso: 3 cm de peixe nao viram 3 L de aquario, porque o que limita o cardume e a frente de 60 cm que a fonte declara para o grupo de 8 a 10. pH declarado de 4,0 a 6,0 e agua muito mole: a ficha nao pode sugerir a especie para agua de torneira dura sem dizer isso."
-  },
-  {
-   "id": "paracheirodon-innesi",
-   "entidade": "especie",
-   "nome_cientifico": "Paracheirodon innesi",
-   "sinonimos_cientificos": [],
-   "nomes_populares_br": [
-    "tetra neon",
-    "neon",
-    "neon comum"
-   ],
-   "familia": null,
-   "origem_geografica": null,
-   "porte_adulto_cm": 2.2,
-   "porte_medida": "SL",
-   "porte_sexo": "nao-sexado",
-   "expectativa_vida_anos": null,
-   "temperatura_C": {
-    "min": 20,
-    "max": 26
-   },
-   "temperatura_e_tolerancia": false,
-   "ph": {
-    "min": 5.0,
-    "max": 7.0
-   },
-   "dureza_dgh": {
-    "min": 1,
-    "max": 2
-   },
-   "cardume_minimo": 5,
-   "comprimento_minimo_aquario_cm": 60,
-   "base_minima_cm": {
-    "comprimento": 60,
-    "largura": 30
-   },
-   "altura_minima_cm": null,
-   "volume_minimo_declarado_L": null,
-   "nivel_natacao": "meio",
-   "comportamento": null,
-   "convivencia": "cardume",
-   "alimentacao": null,
-   "dificuldade": null,
-   "exige_aquario_maduro": null,
-   "disponibilidade_br": null,
-   "fontes": [
-    {
-     "origem": "base-cientifica-via-busca",
-     "status": "base-cientifica-via-busca",
-     "referencia": "FishBase — ficha da especie: max 2,2 cm SL; 20 a 26 C; pH 5,0 a 7,0; dH 1 a 2; secao de aquario: manter em grupos de 5 ou mais individuos, aquario minimo de 60 cm.",
-     "url": "https://www.fishbase.se/summary/Paracheirodon-innesi",
-     "verificado_em": "2026-09-09",
-     "campos": [
-      "porte_adulto_cm",
-      "porte_medida",
-      "porte_sexo",
-      "temperatura_C",
-      "ph",
-      "dureza_dgh",
-      "cardume_minimo",
-      "comprimento_minimo_aquario_cm",
-      "convivencia"
-     ],
-     "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, todos testados nesta data. A confirmar na ficha."
-    },
-    {
-     "origem": "compendio-via-busca",
-     "status": "compendio-via-busca",
-     "referencia": "Seriously Fish — ficha da especie: aquario com base de 60 x 30 cm ou maior; agua tipicamente acida, de dureza de carbonatos desprezivel, tingida por substancias humicas.",
-     "url": "https://www.seriouslyfish.com/species/paracheirodon-innesi/",
-     "verificado_em": "2026-09-09",
-     "campos": [
-      "base_minima_cm",
-      "nivel_natacao"
-     ],
-     "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED. A confirmar na ficha."
-    }
-   ],
-   "conflitos": [],
-   "verificado_em": "2026-09-09",
-   "status_registro": "completo",
-   "observacao": "A dureza declarada pela FishBase, 1 a 2 dGH, e agua praticamente destilada e nao descreve o neon de criadouro que o Brasil vende ha decadas. O campo entra como esta na fonte, e a ficha precisa dizer que o numero descreve a agua de origem, nao a exigencia do peixe de aquario. E o primeiro caso do banco em que a fonte esta certa e a leitura ingenua estaria errada."
-  },
-  {
-   "id": "poecilia-reticulata",
-   "entidade": "especie",
-   "nome_cientifico": "Poecilia reticulata",
-   "sinonimos_cientificos": [],
-   "nomes_populares_br": [
-    "guppy",
-    "lebiste",
-    "barrigudinho"
-   ],
-   "familia": null,
-   "origem_geografica": null,
-   "porte_adulto_cm": 5.0,
-   "porte_medida": "SL",
-   "porte_sexo": "femea",
-   "expectativa_vida_anos": null,
-   "temperatura_C": {
-    "min": 18,
-    "max": 28
-   },
-   "temperatura_e_tolerancia": false,
-   "ph": {
-    "min": 7.0,
-    "max": 8.0
-   },
-   "dureza_dgh": {
-    "min": 9,
-    "max": 19
-   },
-   "cardume_minimo": 5,
-   "comprimento_minimo_aquario_cm": 60,
-   "base_minima_cm": null,
-   "altura_minima_cm": null,
-   "volume_minimo_declarado_L": null,
-   "nivel_natacao": null,
-   "comportamento": null,
-   "convivencia": "grupo",
-   "alimentacao": null,
-   "dificuldade": null,
-   "exige_aquario_maduro": null,
-   "disponibilidade_br": null,
-   "fontes": [
-    {
-     "origem": "base-cientifica-via-busca",
-     "status": "base-cientifica-via-busca",
-     "referencia": "FishBase — ficha da especie: femea ate 5 cm SL; 18 a 28 C; pH 7,0 a 8,0; dH 9 a 19; secao de aquario: manter em grupos de 5 ou mais individuos, aquario minimo de 60 cm.",
-     "url": "https://www.fishbase.org/summary/Poecilia_reticulata.html",
-     "verificado_em": "2026-09-09",
-     "campos": [
-      "porte_adulto_cm",
-      "porte_medida",
-      "porte_sexo",
-      "temperatura_C",
-      "ph",
-      "dureza_dgh",
-      "cardume_minimo",
-      "comprimento_minimo_aquario_cm",
-      "convivencia"
-     ],
-     "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, todos testados nesta data. A confirmar na ficha."
-    }
-   ],
-   "conflitos": [],
-   "verificado_em": "2026-09-09",
-   "status_registro": "parcial",
-   "observacao": "Registro sustentado por UMA fonte so, e isso e um achado, nao um descuido: a busca restrita ao Seriously Fish em 09/09/2026 nao encontrou ficha propria de P. reticulata no compendio, so das especies irmas (P. wingei, P. sphenops, P. velifera, P. latipinna). O peixe mais vendido do Brasil e um dos poucos sem ficha no compendio de referencia. Por isso comportamento fica null e o registro fica parcial: entra como conteudo, nao e sugerido pela C8 ate ter a segunda fonte. Faixa de pH declarada de 7,0 a 8,0 e agua dura, o contrario do cardinal — e o par que mostra por que 'peixe comunitario' nao e uma categoria util."
-  },
-  {
-   "id": "xiphophorus-maculatus",
-   "entidade": "especie",
-   "nome_cientifico": "Xiphophorus maculatus",
-   "sinonimos_cientificos": [],
-   "nomes_populares_br": [
-    "platy",
-    "plati",
-    "moeda"
-   ],
-   "familia": null,
-   "origem_geografica": null,
-   "porte_adulto_cm": 6.0,
-   "porte_medida": "TL",
-   "porte_sexo": "femea",
-   "expectativa_vida_anos": null,
-   "temperatura_C": {
-    "min": 18,
-    "max": 25
-   },
-   "temperatura_e_tolerancia": false,
-   "ph": {
-    "min": 7.0,
-    "max": 8.0
-   },
-   "dureza_dgh": {
-    "min": 9,
-    "max": 19
-   },
-   "cardume_minimo": null,
-   "comprimento_minimo_aquario_cm": 60,
-   "base_minima_cm": null,
-   "altura_minima_cm": null,
-   "volume_minimo_declarado_L": null,
-   "nivel_natacao": null,
-   "comportamento": "pacifico",
-   "convivencia": "harem",
-   "alimentacao": null,
-   "dificuldade": null,
-   "exige_aquario_maduro": null,
-   "disponibilidade_br": null,
-   "fontes": [
-    {
-     "origem": "base-cientifica-via-busca",
-     "status": "base-cientifica-via-busca",
-     "referencia": "FishBase — ficha da especie: max 4,0 cm TL macho e 6,0 cm TL femea; 18 a 25 C; pH 7,0 a 8,0; dH 9 a 19; secao de aquario: aquario minimo de 60 cm.",
-     "url": "https://www.fishbase.se/summary/Xiphophorus-maculatus.html",
-     "verificado_em": "2026-09-09",
-     "campos": [
-      "porte_adulto_cm",
-      "porte_medida",
-      "porte_sexo",
-      "temperatura_C",
-      "ph",
-      "dureza_dgh",
-      "comprimento_minimo_aquario_cm"
-     ],
-     "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, todos testados nesta data. A confirmar na ficha."
-    },
-    {
-     "origem": "compendio-via-busca",
-     "status": "compendio-via-busca",
-     "referencia": "Seriously Fish — ficha da especie: muito pacifico e convive com a maioria das especies comunitarias, sem a agressividade de alguns espadas e molinesias, com os machos se tolerando; quando machos e femeas dividem o aquario deve haver mais femeas que machos, para dissipar o assedio dos machos; macho cerca de 5 cm e femea cerca de 7,5 cm; a agua do habitat natural fica em media entre 23 e 24 C.",
-     "url": "https://www.seriouslyfish.com/species/xiphophorus-maculatus/",
-     "verificado_em": "2026-09-09",
-     "campos": [
-      "comportamento",
-      "convivencia"
-     ],
-     "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED. A confirmar na ficha."
-    }
-   ],
-   "conflitos": [],
-   "verificado_em": "2026-09-09",
-   "status_registro": "completo",
-   "observacao": "Porte com conflito NAO declarado como conflito de campo, e a razao esta aqui: FishBase publica 6,0 cm TL para a femea e o Seriously Fish cerca de 7,5 cm sem dizer a medida. Sao grandezas diferentes (TL contra medida nao declarada), entao nao ha o que intersectar; o banco fica com o valor da base cientifica, que declara a medida, e a ficha cita o outro numero no texto. Sem cardume_minimo: a fonte de manutencao descreve proporcao entre sexos, nao tamanho de grupo, e por isso convivencia e harem."
-  },
-  {
-   "id": "betta-splendens",
-   "entidade": "especie",
-   "nome_cientifico": "Betta splendens",
-   "sinonimos_cientificos": [
-    "Micracanthus marchei"
-   ],
-   "nomes_populares_br": [
-    "betta",
-    "beta",
-    "peixe-de-briga"
-   ],
-   "familia": null,
-   "origem_geografica": null,
-   "porte_adulto_cm": 6.5,
-   "porte_medida": "TL",
-   "porte_sexo": "macho",
-   "expectativa_vida_anos": null,
-   "temperatura_C": {
-    "min": 24,
-    "max": 30
-   },
-   "temperatura_e_tolerancia": false,
-   "ph": {
-    "min": 6.0,
-    "max": 8.0
-   },
-   "dureza_dgh": {
-    "min": 5,
-    "max": 19
-   },
-   "cardume_minimo": null,
-   "comprimento_minimo_aquario_cm": 45,
-   "base_minima_cm": {
-    "comprimento": 45,
-    "largura": 30
-   },
-   "altura_minima_cm": null,
-   "volume_minimo_declarado_L": null,
-   "nivel_natacao": null,
-   "comportamento": "agressivo",
-   "convivencia": "solitario",
-   "alimentacao": null,
-   "dificuldade": null,
-   "exige_aquario_maduro": null,
-   "disponibilidade_br": null,
-   "fontes": [
-    {
-     "origem": "base-cientifica-via-busca",
-     "status": "base-cientifica-via-busca",
-     "referencia": "FishBase — ficha da especie: max 6,5 cm TL para o macho; 24 a 30 C; pH 6,0 a 8,0; dH 5 a 19.",
-     "url": "https://www.fishbase.se/summary/betta-splendens.html",
-     "verificado_em": "2026-09-09",
-     "campos": [
-      "porte_adulto_cm",
-      "porte_medida",
-      "porte_sexo",
-      "temperatura_C",
-      "dureza_dgh"
-     ],
-     "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, todos testados nesta data. A confirmar na ficha."
-    },
-    {
-     "origem": "compendio-via-busca",
-     "status": "compendio-via-busca",
-     "referencia": "Seriously Fish — ficha da especie: aquario com base de 45 x 30 cm ou equivalente ja e grande para um macho sozinho ou um casal; melhor manter sozinho, as linhagens ornamentais sao mais agressivas que qualquer outra especie de Betta e na maioria dos casos so um individuo por aquario; manter o aquario bem tampado e nao encher ate a borda, porque a especie precisa de acesso a camada de ar umido acima da agua e e excelente saltadora; exemplares selvagens preferem pH entre 5,0 e 7,0 e as linhagens ornamentais aceitam de 6,0 a 8,0.",
-     "url": "https://www.seriouslyfish.com/species/betta-splendens/",
-     "verificado_em": "2026-09-09",
-     "campos": [
-      "comprimento_minimo_aquario_cm",
-      "base_minima_cm",
-      "convivencia",
-      "comportamento",
-      "ph"
-     ],
-     "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED. A confirmar na ficha."
-    }
-   ],
-   "conflitos": [],
-   "verificado_em": "2026-09-09",
-   "status_registro": "completo",
-   "observacao": "O registro que mais desmente o mercado brasileiro: a fonte de manutencao declara base de 45 x 30 cm para UM macho, e o varejo vende o betta em pote de menos de 2 L. A ficha existe para publicar essa distancia com fonte e data do lado, nao para opinar. Convivencia solitario aqui significa um por aquario, e nao 'peixe que gosta de ficar sozinho'. Temperatura de 24 a 30 C e das mais altas do banco: e um dos poucos peixes deste grupo que exige aquecedor em quase todo o Brasil."
-  },
-  {
-   "id": "corydoras-aeneus",
-   "entidade": "especie",
-   "nome_cientifico": "Corydoras aeneus",
-   "sinonimos_cientificos": [
-    "Osteogaster aenea",
-    "Corydoras schultzei",
-    "Corydoras venezuelanus"
-   ],
-   "nomes_populares_br": [
-    "coridora bronze",
-    "coridora",
-    "cascudinho"
-   ],
-   "familia": null,
-   "origem_geografica": "America do Sul, da Colombia e Trinidad ate a bacia do Prata, a leste dos Andes",
-   "porte_adulto_cm": 7.5,
-   "porte_medida": "SL",
-   "porte_sexo": "nao-sexado",
-   "expectativa_vida_anos": null,
-   "temperatura_C": {
-    "min": 25,
-    "max": 28
-   },
-   "temperatura_e_tolerancia": false,
-   "ph": {
-    "min": 6.0,
-    "max": 8.0
-   },
-   "dureza_dgh": {
-    "min": 5,
-    "max": 19
-   },
-   "cardume_minimo": 6,
-   "comprimento_minimo_aquario_cm": 80,
-   "base_minima_cm": {
-    "comprimento": 80,
-    "largura": 30
-   },
-   "altura_minima_cm": null,
-   "volume_minimo_declarado_L": null,
-   "nivel_natacao": "fundo",
-   "comportamento": null,
-   "convivencia": "cardume",
-   "alimentacao": null,
-   "dificuldade": null,
-   "exige_aquario_maduro": null,
-   "disponibilidade_br": null,
-   "fontes": [
-    {
-     "origem": "base-cientifica-via-busca",
-     "status": "base-cientifica-via-busca",
-     "referencia": "FishBase — ficha da especie (publicada tambem como Osteogaster aenea): max 7,5 cm SL; 25 a 28 C; pH 6,0 a 8,0; dH 5 a 19; demersal; da Colombia e Trinidad ate a bacia do Prata; secao de aquario: manter em grupos de 5 ou mais individuos, aquario minimo de 60 cm.",
-     "url": "https://fishbase.se/summary/7777",
-     "verificado_em": "2026-09-09",
-     "campos": [
-      "porte_adulto_cm",
-      "porte_medida",
-      "porte_sexo",
-      "temperatura_C",
-      "ph",
-      "dureza_dgh",
-      "nivel_natacao",
-      "origem_geografica",
-      "convivencia"
-     ],
-     "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, todos testados nesta data. A confirmar na ficha."
-    },
-    {
-     "origem": "compendio-via-busca",
-     "status": "compendio-via-busca",
-     "referencia": "Seriously Fish — ficha da especie: base de 80 x 30 cm ou equivalente para manutencao de longo prazo; areia fina e o substrato ideal, cascalho arredondado serve desde que mantido escrupulosamente limpo; grupo de pelo menos seis da o comportamento e a confianca normais do genero.",
-     "url": "https://www.seriouslyfish.com/species/corydoras-aeneus/",
-     "verificado_em": "2026-09-09",
-     "campos": [
-      "comprimento_minimo_aquario_cm",
-      "base_minima_cm",
-      "cardume_minimo"
-     ],
-     "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED. A confirmar na ficha."
-    }
-   ],
-   "conflitos": [
-    {
-     "campo": "comprimento_minimo_aquario_cm",
-     "valores": [
-      {
-       "valor": 60,
-       "referencia": "FishBase, secao de aquario: aquario minimo de 60 cm",
-       "url": "https://fishbase.se/summary/7777",
-       "origem": "base-cientifica-via-busca"
+      "temperatura_e_tolerancia": false,
+      "ph": {
+        "min": 4.0,
+        "max": 6.0
       },
-      {
-       "valor": 80,
-       "referencia": "Seriously Fish: base de 80 x 30 cm ou equivalente para manutencao de longo prazo",
-       "url": "https://www.seriouslyfish.com/species/corydoras-aeneus/",
-       "origem": "compendio-via-busca"
-      }
-     ],
-     "razao": "Campo de manutencao: pela tabela dominio_por_campo quem manda e o compendio, e o compendio pede mais espaco. Como e campo de bem-estar, o conservador e o MAIOR, e as duas declaracoes saem atribuidas na ficha.",
-     "tratamento": "publicar-os-dois",
-     "valor_conservador": 80,
-     "derivacao": null
-    },
-    {
-     "campo": "cardume_minimo",
-     "valores": [
-      {
-       "valor": 5,
-       "referencia": "FishBase, secao de aquario: grupos de 5 ou mais individuos",
-       "url": "https://fishbase.se/summary/7777",
-       "origem": "base-cientifica-via-busca"
+      "dureza_dgh": {
+        "min": 5,
+        "max": 12
       },
-      {
-       "valor": 6,
-       "referencia": "Seriously Fish: grupo de pelo menos seis",
-       "url": "https://www.seriouslyfish.com/species/corydoras-aeneus/",
-       "origem": "compendio-via-busca"
-      }
-     ],
-     "razao": "Mesma logica: campo de manutencao e de bem-estar, vence o maior, e os dois numeros ficam publicados.",
-     "tratamento": "publicar-os-dois",
-     "valor_conservador": 6,
-     "derivacao": null
-    }
-   ],
-   "verificado_em": "2026-09-09",
-   "status_registro": "conflito",
-   "observacao": "Peixe de fundo: o que limita nao e o volume, e a AREA da base, e por isso este registro guarda 80 x 30 cm e nao um litro. E o argumento concreto contra a regra de bolso de litragem — 60 L em coluna alta nao servem a uma coridora, 60 L espalhados servem. A sinonimia importa para busca: parte da literatura recente ja publica a especie como Osteogaster aenea e o comercio brasileiro segue vendendo como Corydoras aeneus."
-  },
-  {
-   "id": "danio-rerio",
-   "entidade": "especie",
-   "nome_cientifico": "Danio rerio",
-   "sinonimos_cientificos": [
-    "Brachydanio rerio",
-    "Brachydanio frankei"
-   ],
-   "nomes_populares_br": [
-    "paulistinha",
-    "zebrafish",
-    "peixe-zebra"
-   ],
-   "familia": null,
-   "origem_geografica": null,
-   "porte_adulto_cm": 3.8,
-   "porte_medida": "SL",
-   "porte_sexo": "nao-sexado",
-   "expectativa_vida_anos": null,
-   "temperatura_C": {
-    "min": 18,
-    "max": 24
-   },
-   "temperatura_e_tolerancia": false,
-   "ph": {
-    "min": 6.0,
-    "max": 8.0
-   },
-   "dureza_dgh": {
-    "min": 5,
-    "max": 19
-   },
-   "cardume_minimo": 5,
-   "comprimento_minimo_aquario_cm": 90,
-   "base_minima_cm": {
-    "comprimento": 90,
-    "largura": 30
-   },
-   "altura_minima_cm": null,
-   "volume_minimo_declarado_L": null,
-   "nivel_natacao": null,
-   "comportamento": "pacifico",
-   "convivencia": "cardume",
-   "alimentacao": null,
-   "dificuldade": null,
-   "exige_aquario_maduro": null,
-   "disponibilidade_br": null,
-   "fontes": [
-    {
-     "origem": "base-cientifica-via-busca",
-     "status": "base-cientifica-via-busca",
-     "referencia": "FishBase — ficha da especie: max 3,8 cm SL; 18 a 24 C; pH 6,0 a 8,0; dH 5 a 19; secao de aquario: manter em grupos de 5 ou mais individuos, aquario minimo de 60 cm.",
-     "url": "https://www.fishbase.se/summary/danio-rerio.html",
-     "verificado_em": "2026-09-09",
-     "campos": [
-      "porte_adulto_cm",
-      "porte_medida",
-      "porte_sexo",
-      "temperatura_C",
-      "ph",
-      "dureza_dgh",
-      "cardume_minimo",
-      "convivencia"
-     ],
-     "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, todos testados nesta data. A confirmar na ficha."
-    },
-    {
-     "origem": "compendio-via-busca",
-     "status": "compendio-via-busca",
-     "referencia": "Seriously Fish — ficha da especie (publicada como Brachydanio rerio): especie ativa, entao mesmo um grupo pequeno precisa de aquario com base minima de 90 x 30 cm; tamanho usual de 40 a 50 mm; e pacifica, rustica e barata.",
-     "url": "https://www.seriouslyfish.com/species/danio-rerio/",
-     "verificado_em": "2026-09-09",
-     "campos": [
-      "comprimento_minimo_aquario_cm",
-      "base_minima_cm",
-      "comportamento"
-     ],
-     "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED. A confirmar na ficha."
-    }
-   ],
-   "conflitos": [
-    {
-     "campo": "comprimento_minimo_aquario_cm",
-     "valores": [
-      {
-       "valor": 60,
-       "referencia": "FishBase, secao de aquario: aquario minimo de 60 cm",
-       "url": "https://www.fishbase.se/summary/danio-rerio.html",
-       "origem": "base-cientifica-via-busca"
+      "cardume_minimo": 8,
+      "comprimento_minimo_aquario_cm": 60,
+      "base_minima_cm": {
+        "comprimento": 60,
+        "largura": 30
       },
-      {
-       "valor": 90,
-       "referencia": "Seriously Fish: especie ativa, base minima de 90 x 30 cm mesmo para grupo pequeno",
-       "url": "https://www.seriouslyfish.com/species/danio-rerio/",
-       "origem": "compendio-via-busca"
-      }
-     ],
-     "razao": "Meia diferenca de frente para o mesmo peixe de 4 cm. O compendio manda em campo de manutencao e o campo e de bem-estar: fica o maior, 90 cm, e a ficha publica o outro numero atribuido.",
-     "tratamento": "publicar-os-dois",
-     "valor_conservador": 90,
-     "derivacao": null
-    }
-   ],
-   "verificado_em": "2026-09-09",
-   "status_registro": "conflito",
-   "observacao": "O contraexemplo mais util do banco inteiro: 3,8 cm de peixe pedindo 90 cm de frente. Nenhuma regra proporcional a comprimento chega nesse numero, porque o que manda aqui e velocidade de natacao, nao massa. Faixa termica de 18 a 24 C tambem e das mais frias do banco: e um dos poucos que dispensa aquecedor em boa parte do Brasil, e nao deve dividir aquario com peixe de 28 C."
-  },
-  {
-   "id": "trigonostigma-heteromorpha",
-   "entidade": "especie",
-   "nome_cientifico": "Trigonostigma heteromorpha",
-   "sinonimos_cientificos": [
-    "Rasbora heteromorpha"
-   ],
-   "nomes_populares_br": [
-    "rasbora arlequim",
-    "arlequim",
-    "rasbora"
-   ],
-   "familia": null,
-   "origem_geografica": "Sudeste asiatico: Malasia, Singapura e Indonesia",
-   "porte_adulto_cm": 5.0,
-   "porte_medida": "TL",
-   "porte_sexo": "nao-sexado",
-   "expectativa_vida_anos": null,
-   "temperatura_C": {
-    "min": 22,
-    "max": 25
-   },
-   "temperatura_e_tolerancia": false,
-   "ph": {
-    "min": 5.0,
-    "max": 7.0
-   },
-   "dureza_dgh": {
-    "min": 5,
-    "max": 12
-   },
-   "cardume_minimo": 5,
-   "comprimento_minimo_aquario_cm": 60,
-   "base_minima_cm": {
-    "comprimento": 60,
-    "largura": 30
-   },
-   "altura_minima_cm": null,
-   "volume_minimo_declarado_L": null,
-   "nivel_natacao": "meio",
-   "comportamento": null,
-   "convivencia": "cardume",
-   "alimentacao": null,
-   "dificuldade": null,
-   "exige_aquario_maduro": null,
-   "disponibilidade_br": null,
-   "fontes": [
-    {
-     "origem": "base-cientifica-via-busca",
-     "status": "base-cientifica-via-busca",
-     "referencia": "FishBase — ficha da especie: max 5,0 cm TL; 22 a 25 C; pH 5,0 a 7,0; dH 5 a 12; bentopelagica; Malasia, Singapura e Indonesia; secao de aquario: manter em grupos de 5 ou mais individuos, aquario minimo de 60 cm.",
-     "url": "https://www.fishbase.se/summary/10881",
-     "verificado_em": "2026-09-09",
-     "campos": [
-      "porte_adulto_cm",
-      "porte_medida",
-      "porte_sexo",
-      "temperatura_C",
-      "ph",
-      "dureza_dgh",
-      "cardume_minimo",
-      "comprimento_minimo_aquario_cm",
-      "origem_geografica",
-      "nivel_natacao",
-      "convivencia"
-     ],
-     "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, todos testados nesta data. A confirmar na ficha."
+      "altura_minima_cm": null,
+      "volume_minimo_declarado_L": null,
+      "nivel_natacao": "meio",
+      "comportamento": null,
+      "convivencia": "cardume",
+      "alimentacao": null,
+      "dificuldade": null,
+      "exige_aquario_maduro": null,
+      "disponibilidade_br": null,
+      "fontes": [
+        {
+          "origem": "base-cientifica-via-busca",
+          "status": "base-cientifica-via-busca",
+          "referencia": "FishBase — ficha da especie: 23 a 27 C, pH 4,0 a 6,0, dH 5 a 12; ocorre sobretudo em cardumes nas camadas medias da coluna; alto Orinoco e rio Negro. Max 2,5 cm SL na busca restrita de 09/09/2026 e 3,0 cm SL na busca aberta do mesmo dia (ver conflitos).",
+          "url": "https://www.fishbase.se/summary/paracheirodon-axelrodi.html",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "porte_adulto_cm",
+            "porte_medida",
+            "porte_sexo",
+            "temperatura_C",
+            "ph",
+            "dureza_dgh",
+            "nivel_natacao",
+            "origem_geografica"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, todos testados nesta data. A confirmar na ficha."
+        },
+        {
+          "origem": "compendio-via-busca",
+          "status": "compendio-via-busca",
+          "referencia": "Seriously Fish — ficha da especie: aquario com base de 60 x 30 cm ou maior; manter em grupo misto de pelo menos 8 a 10 exemplares, e junto de outros cardumes para dar seguranca ao grupo.",
+          "url": "https://www.seriouslyfish.com/species/paracheirodon-axelrodi/",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "comprimento_minimo_aquario_cm",
+            "base_minima_cm",
+            "cardume_minimo",
+            "convivencia"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED. A confirmar na ficha."
+        },
+        {
+          "origem": "base-cientifica-via-busca",
+          "status": "base-cientifica-via-busca",
+          "referencia": "FishBase — ficha da especie: Characiformes > Acestrorhamphidae (tetras americanos). A familia mudou de nome na revisao recente dos caracideos: a ficha nao diz mais Characidae.",
+          "url": "https://www.fishbase.se/summary/paracheirodon-axelrodi.html",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "familia"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
+        }
+      ],
+      "conflitos": [
+        {
+          "campo": "porte_adulto_cm",
+          "valores": [
+            {
+              "valor": 2.5,
+              "referencia": "FishBase, leitura por busca restrita ao dominio em 09/09/2026: max 2,5 cm SL",
+              "url": "https://www.fishbase.se/summary/paracheirodon-axelrodi.html",
+              "origem": "base-cientifica-via-busca"
+            },
+            {
+              "valor": 3.0,
+              "referencia": "FishBase, leitura por busca aberta em 09/09/2026, com a atribuicao explicita a FishBase no resumo: 3,0 cm SL",
+              "url": "https://fishbase.org/summary/8195",
+              "origem": "base-cientifica-via-busca"
+            }
+          ],
+          "razao": "Duas leituras da MESMA fonte, no mesmo dia, devolveram 2,5 e 3,0 cm SL. Nao e divergencia entre autores: e o limite de colher numero por resumo de busca sem poder abrir a pagina. Enquanto o egresso nao abrir, o banco publica os dois e usa o maior, porque em lotacao errar o porte para menos e o lado que lota demais.",
+          "tratamento": "publicar-os-dois",
+          "valor_conservador": 3.0,
+          "derivacao": null
+        }
+      ],
+      "verificado_em": "2026-09-09",
+      "status_registro": "conflito",
+      "observacao": "Peixe-bandeira do nicho no Brasil e o caso que mais expoe a distancia entre banco e regra de bolso: 3 cm de peixe nao viram 3 L de aquario, porque o que limita o cardume e a frente de 60 cm que a fonte declara para o grupo de 8 a 10. pH declarado de 4,0 a 6,0 e agua muito mole: a ficha nao pode sugerir a especie para agua de torneira dura sem dizer isso."
     },
     {
-     "origem": "compendio-via-busca",
-     "status": "compendio-via-busca",
-     "referencia": "Seriously Fish — ficha da especie: base de 60 x 30 cm deve ser a menor a considerar, porque a especie tem de ser mantida em numero; pH 5,0 a 6,0 e dureza de 1 a 5 graus, com a temperatura na parte alta da faixa.",
-     "url": "https://www.seriouslyfish.com/species/trigonostigma-heteromorpha",
-     "verificado_em": "2026-09-09",
-     "campos": [
-      "base_minima_cm"
-     ],
-     "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED. A confirmar na ficha."
-    }
-   ],
-   "conflitos": [
-    {
-     "campo": "ph",
-     "valores": [
-      {
-       "valor": {
+      "id": "paracheirodon-innesi",
+      "entidade": "especie",
+      "nome_cientifico": "Paracheirodon innesi",
+      "sinonimos_cientificos": [],
+      "nomes_populares_br": [
+        "tetra neon",
+        "neon",
+        "neon comum"
+      ],
+      "familia": "Acestrorhamphidae",
+      "origem_geografica": null,
+      "porte_adulto_cm": 2.2,
+      "porte_medida": "SL",
+      "porte_sexo": "nao-sexado",
+      "expectativa_vida_anos": null,
+      "temperatura_C": {
+        "min": 20,
+        "max": 26
+      },
+      "temperatura_e_tolerancia": false,
+      "ph": {
         "min": 5.0,
         "max": 7.0
-       },
-       "referencia": "FishBase: pH 5,0 a 7,0",
-       "url": "https://www.fishbase.se/summary/10881",
-       "origem": "base-cientifica-via-busca"
       },
-      {
-       "valor": {
+      "dureza_dgh": {
+        "min": 1,
+        "max": 2
+      },
+      "cardume_minimo": 5,
+      "comprimento_minimo_aquario_cm": 60,
+      "base_minima_cm": {
+        "comprimento": 60,
+        "largura": 30
+      },
+      "altura_minima_cm": null,
+      "volume_minimo_declarado_L": null,
+      "nivel_natacao": "meio",
+      "comportamento": null,
+      "convivencia": "cardume",
+      "alimentacao": null,
+      "dificuldade": null,
+      "exige_aquario_maduro": null,
+      "disponibilidade_br": null,
+      "fontes": [
+        {
+          "origem": "base-cientifica-via-busca",
+          "status": "base-cientifica-via-busca",
+          "referencia": "FishBase — ficha da especie: max 2,2 cm SL; 20 a 26 C; pH 5,0 a 7,0; dH 1 a 2; secao de aquario: manter em grupos de 5 ou mais individuos, aquario minimo de 60 cm.",
+          "url": "https://www.fishbase.se/summary/Paracheirodon-innesi",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "porte_adulto_cm",
+            "porte_medida",
+            "porte_sexo",
+            "temperatura_C",
+            "ph",
+            "dureza_dgh",
+            "cardume_minimo",
+            "comprimento_minimo_aquario_cm",
+            "convivencia"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, todos testados nesta data. A confirmar na ficha."
+        },
+        {
+          "origem": "compendio-via-busca",
+          "status": "compendio-via-busca",
+          "referencia": "Seriously Fish — ficha da especie: aquario com base de 60 x 30 cm ou maior; agua tipicamente acida, de dureza de carbonatos desprezivel, tingida por substancias humicas.",
+          "url": "https://www.seriouslyfish.com/species/paracheirodon-innesi/",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "base_minima_cm",
+            "nivel_natacao"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED. A confirmar na ficha."
+        },
+        {
+          "origem": "base-cientifica-via-busca",
+          "status": "base-cientifica-via-busca",
+          "referencia": "FishBase — ficha da especie: Characiformes > Acestrorhamphidae (tetras americanos).",
+          "url": "https://fishbase.org/summary/10691",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "familia"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "completo",
+      "observacao": "A dureza declarada pela FishBase, 1 a 2 dGH, e agua praticamente destilada e nao descreve o neon de criadouro que o Brasil vende ha decadas. O campo entra como esta na fonte, e a ficha precisa dizer que o numero descreve a agua de origem, nao a exigencia do peixe de aquario. E o primeiro caso do banco em que a fonte esta certa e a leitura ingenua estaria errada."
+    },
+    {
+      "id": "poecilia-reticulata",
+      "entidade": "especie",
+      "nome_cientifico": "Poecilia reticulata",
+      "sinonimos_cientificos": [],
+      "nomes_populares_br": [
+        "guppy",
+        "lebiste",
+        "barrigudinho"
+      ],
+      "familia": "Poeciliidae",
+      "origem_geografica": null,
+      "porte_adulto_cm": 5.0,
+      "porte_medida": "SL",
+      "porte_sexo": "femea",
+      "expectativa_vida_anos": null,
+      "temperatura_C": {
+        "min": 18,
+        "max": 28
+      },
+      "temperatura_e_tolerancia": false,
+      "ph": {
+        "min": 7.0,
+        "max": 8.0
+      },
+      "dureza_dgh": {
+        "min": 9,
+        "max": 19
+      },
+      "cardume_minimo": 5,
+      "comprimento_minimo_aquario_cm": 60,
+      "base_minima_cm": null,
+      "altura_minima_cm": null,
+      "volume_minimo_declarado_L": null,
+      "nivel_natacao": null,
+      "comportamento": null,
+      "convivencia": "grupo",
+      "alimentacao": null,
+      "dificuldade": null,
+      "exige_aquario_maduro": null,
+      "disponibilidade_br": null,
+      "fontes": [
+        {
+          "origem": "base-cientifica-via-busca",
+          "status": "base-cientifica-via-busca",
+          "referencia": "FishBase — ficha da especie: femea ate 5 cm SL; 18 a 28 C; pH 7,0 a 8,0; dH 9 a 19; secao de aquario: manter em grupos de 5 ou mais individuos, aquario minimo de 60 cm.",
+          "url": "https://www.fishbase.org/summary/Poecilia_reticulata.html",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "porte_adulto_cm",
+            "porte_medida",
+            "porte_sexo",
+            "temperatura_C",
+            "ph",
+            "dureza_dgh",
+            "cardume_minimo",
+            "comprimento_minimo_aquario_cm",
+            "convivencia"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, todos testados nesta data. A confirmar na ficha."
+        },
+        {
+          "origem": "base-cientifica-via-busca",
+          "status": "base-cientifica-via-busca",
+          "referencia": "FishBase — ficha da especie: Cyprinodontiformes (Rivulines, killifishes and live bearers) > Poeciliidae (Poeciliids) > subfamilia Poeciliinae.",
+          "url": "https://www.fishbase.se/summary/Poecilia-reticulata.html",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "familia"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "parcial",
+      "observacao": "Registro sustentado por UMA fonte so, e isso e um achado, nao um descuido: a busca restrita ao Seriously Fish em 09/09/2026 nao encontrou ficha propria de P. reticulata no compendio, so das especies irmas (P. wingei, P. sphenops, P. velifera, P. latipinna). O peixe mais vendido do Brasil e um dos poucos sem ficha no compendio de referencia. Por isso comportamento fica null e o registro fica parcial: entra como conteudo, nao e sugerido pela C8 ate ter a segunda fonte. Faixa de pH declarada de 7,0 a 8,0 e agua dura, o contrario do cardinal — e o par que mostra por que 'peixe comunitario' nao e uma categoria util."
+    },
+    {
+      "id": "xiphophorus-maculatus",
+      "entidade": "especie",
+      "nome_cientifico": "Xiphophorus maculatus",
+      "sinonimos_cientificos": [],
+      "nomes_populares_br": [
+        "platy",
+        "plati",
+        "moeda"
+      ],
+      "familia": "Poeciliidae",
+      "origem_geografica": null,
+      "porte_adulto_cm": 6.0,
+      "porte_medida": "TL",
+      "porte_sexo": "femea",
+      "expectativa_vida_anos": null,
+      "temperatura_C": {
+        "min": 18,
+        "max": 25
+      },
+      "temperatura_e_tolerancia": false,
+      "ph": {
+        "min": 7.0,
+        "max": 8.0
+      },
+      "dureza_dgh": {
+        "min": 9,
+        "max": 19
+      },
+      "cardume_minimo": null,
+      "comprimento_minimo_aquario_cm": 60,
+      "base_minima_cm": null,
+      "altura_minima_cm": null,
+      "volume_minimo_declarado_L": null,
+      "nivel_natacao": null,
+      "comportamento": "pacifico",
+      "convivencia": "harem",
+      "alimentacao": null,
+      "dificuldade": null,
+      "exige_aquario_maduro": null,
+      "disponibilidade_br": null,
+      "fontes": [
+        {
+          "origem": "base-cientifica-via-busca",
+          "status": "base-cientifica-via-busca",
+          "referencia": "FishBase — ficha da especie: max 4,0 cm TL macho e 6,0 cm TL femea; 18 a 25 C; pH 7,0 a 8,0; dH 9 a 19; secao de aquario: aquario minimo de 60 cm.",
+          "url": "https://www.fishbase.se/summary/Xiphophorus-maculatus.html",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "porte_adulto_cm",
+            "porte_medida",
+            "porte_sexo",
+            "temperatura_C",
+            "ph",
+            "dureza_dgh",
+            "comprimento_minimo_aquario_cm"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, todos testados nesta data. A confirmar na ficha."
+        },
+        {
+          "origem": "compendio-via-busca",
+          "status": "compendio-via-busca",
+          "referencia": "Seriously Fish — ficha da especie: muito pacifico e convive com a maioria das especies comunitarias, sem a agressividade de alguns espadas e molinesias, com os machos se tolerando; quando machos e femeas dividem o aquario deve haver mais femeas que machos, para dissipar o assedio dos machos; macho cerca de 5 cm e femea cerca de 7,5 cm; a agua do habitat natural fica em media entre 23 e 24 C.",
+          "url": "https://www.seriouslyfish.com/species/xiphophorus-maculatus/",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "comportamento",
+            "convivencia"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED. A confirmar na ficha."
+        },
+        {
+          "origem": "base-cientifica-via-busca",
+          "status": "base-cientifica-via-busca",
+          "referencia": "FishBase — ficha da especie: Cyprinodontiformes > Poeciliidae (Poeciliids).",
+          "url": "https://www.fishbase.se/summary/Xiphophorus-maculatus.html",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "familia"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "completo",
+      "observacao": "Porte com conflito NAO declarado como conflito de campo, e a razao esta aqui: FishBase publica 6,0 cm TL para a femea e o Seriously Fish cerca de 7,5 cm sem dizer a medida. Sao grandezas diferentes (TL contra medida nao declarada), entao nao ha o que intersectar; o banco fica com o valor da base cientifica, que declara a medida, e a ficha cita o outro numero no texto. Sem cardume_minimo: a fonte de manutencao descreve proporcao entre sexos, nao tamanho de grupo, e por isso convivencia e harem."
+    },
+    {
+      "id": "betta-splendens",
+      "entidade": "especie",
+      "nome_cientifico": "Betta splendens",
+      "sinonimos_cientificos": [
+        "Micracanthus marchei"
+      ],
+      "nomes_populares_br": [
+        "betta",
+        "beta",
+        "peixe-de-briga"
+      ],
+      "familia": "Osphronemidae",
+      "origem_geografica": null,
+      "porte_adulto_cm": 6.5,
+      "porte_medida": "TL",
+      "porte_sexo": "macho",
+      "expectativa_vida_anos": null,
+      "temperatura_C": {
+        "min": 24,
+        "max": 30
+      },
+      "temperatura_e_tolerancia": false,
+      "ph": {
+        "min": 6.0,
+        "max": 8.0
+      },
+      "dureza_dgh": {
+        "min": 5,
+        "max": 19
+      },
+      "cardume_minimo": null,
+      "comprimento_minimo_aquario_cm": 45,
+      "base_minima_cm": {
+        "comprimento": 45,
+        "largura": 30
+      },
+      "altura_minima_cm": null,
+      "volume_minimo_declarado_L": null,
+      "nivel_natacao": null,
+      "comportamento": "agressivo",
+      "convivencia": "solitario",
+      "alimentacao": null,
+      "dificuldade": null,
+      "exige_aquario_maduro": null,
+      "disponibilidade_br": null,
+      "fontes": [
+        {
+          "origem": "base-cientifica-via-busca",
+          "status": "base-cientifica-via-busca",
+          "referencia": "FishBase — ficha da especie: max 6,5 cm TL para o macho; 24 a 30 C; pH 6,0 a 8,0; dH 5 a 19.",
+          "url": "https://www.fishbase.se/summary/betta-splendens.html",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "porte_adulto_cm",
+            "porte_medida",
+            "porte_sexo",
+            "temperatura_C",
+            "dureza_dgh"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, todos testados nesta data. A confirmar na ficha."
+        },
+        {
+          "origem": "compendio-via-busca",
+          "status": "compendio-via-busca",
+          "referencia": "Seriously Fish — ficha da especie: aquario com base de 45 x 30 cm ou equivalente ja e grande para um macho sozinho ou um casal; melhor manter sozinho, as linhagens ornamentais sao mais agressivas que qualquer outra especie de Betta e na maioria dos casos so um individuo por aquario; manter o aquario bem tampado e nao encher ate a borda, porque a especie precisa de acesso a camada de ar umido acima da agua e e excelente saltadora; exemplares selvagens preferem pH entre 5,0 e 7,0 e as linhagens ornamentais aceitam de 6,0 a 8,0.",
+          "url": "https://www.seriouslyfish.com/species/betta-splendens/",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "comprimento_minimo_aquario_cm",
+            "base_minima_cm",
+            "convivencia",
+            "comportamento",
+            "ph"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED. A confirmar na ficha."
+        },
+        {
+          "origem": "base-cientifica-via-busca",
+          "status": "base-cientifica-via-busca",
+          "referencia": "FishBase — ficha da especie: familia Osphronemidae (gouramis).",
+          "url": "https://fishbase.se/summary/speciessummary.php?id=4768",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "familia"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "completo",
+      "observacao": "O registro que mais desmente o mercado brasileiro: a fonte de manutencao declara base de 45 x 30 cm para UM macho, e o varejo vende o betta em pote de menos de 2 L. A ficha existe para publicar essa distancia com fonte e data do lado, nao para opinar. Convivencia solitario aqui significa um por aquario, e nao 'peixe que gosta de ficar sozinho'. Temperatura de 24 a 30 C e das mais altas do banco: e um dos poucos peixes deste grupo que exige aquecedor em quase todo o Brasil."
+    },
+    {
+      "id": "corydoras-aeneus",
+      "entidade": "especie",
+      "nome_cientifico": "Corydoras aeneus",
+      "sinonimos_cientificos": [
+        "Osteogaster aenea",
+        "Corydoras schultzei",
+        "Corydoras venezuelanus"
+      ],
+      "nomes_populares_br": [
+        "coridora bronze",
+        "coridora",
+        "cascudinho"
+      ],
+      "familia": "Callichthyidae",
+      "origem_geografica": "America do Sul, da Colombia e Trinidad ate a bacia do Prata, a leste dos Andes",
+      "porte_adulto_cm": 7.5,
+      "porte_medida": "SL",
+      "porte_sexo": "nao-sexado",
+      "expectativa_vida_anos": null,
+      "temperatura_C": {
+        "min": 25,
+        "max": 28
+      },
+      "temperatura_e_tolerancia": false,
+      "ph": {
+        "min": 6.0,
+        "max": 8.0
+      },
+      "dureza_dgh": {
+        "min": 5,
+        "max": 19
+      },
+      "cardume_minimo": 6,
+      "comprimento_minimo_aquario_cm": 80,
+      "base_minima_cm": {
+        "comprimento": 80,
+        "largura": 30
+      },
+      "altura_minima_cm": null,
+      "volume_minimo_declarado_L": null,
+      "nivel_natacao": "fundo",
+      "comportamento": null,
+      "convivencia": "cardume",
+      "alimentacao": null,
+      "dificuldade": null,
+      "exige_aquario_maduro": null,
+      "disponibilidade_br": null,
+      "fontes": [
+        {
+          "origem": "base-cientifica-via-busca",
+          "status": "base-cientifica-via-busca",
+          "referencia": "FishBase — ficha da especie (publicada tambem como Osteogaster aenea): max 7,5 cm SL; 25 a 28 C; pH 6,0 a 8,0; dH 5 a 19; demersal; da Colombia e Trinidad ate a bacia do Prata; secao de aquario: manter em grupos de 5 ou mais individuos, aquario minimo de 60 cm.",
+          "url": "https://fishbase.se/summary/7777",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "porte_adulto_cm",
+            "porte_medida",
+            "porte_sexo",
+            "temperatura_C",
+            "ph",
+            "dureza_dgh",
+            "nivel_natacao",
+            "origem_geografica",
+            "convivencia"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, todos testados nesta data. A confirmar na ficha."
+        },
+        {
+          "origem": "compendio-via-busca",
+          "status": "compendio-via-busca",
+          "referencia": "Seriously Fish — ficha da especie: base de 80 x 30 cm ou equivalente para manutencao de longo prazo; areia fina e o substrato ideal, cascalho arredondado serve desde que mantido escrupulosamente limpo; grupo de pelo menos seis da o comportamento e a confianca normais do genero.",
+          "url": "https://www.seriouslyfish.com/species/corydoras-aeneus/",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "comprimento_minimo_aquario_cm",
+            "base_minima_cm",
+            "cardume_minimo"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED. A confirmar na ficha."
+        },
+        {
+          "origem": "base-cientifica-via-busca",
+          "status": "base-cientifica-via-busca",
+          "referencia": "FishBase — ficha da especie (publicada como Osteogaster aenea): Siluriformes (Catfishes) > Callichthyidae (Callichthyid armored catfishes) > subfamilia Corydoradinae.",
+          "url": "https://www.fishbase.se/summary/Corydoras-aeneus",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "familia"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
+        }
+      ],
+      "conflitos": [
+        {
+          "campo": "comprimento_minimo_aquario_cm",
+          "valores": [
+            {
+              "valor": 60,
+              "referencia": "FishBase, secao de aquario: aquario minimo de 60 cm",
+              "url": "https://fishbase.se/summary/7777",
+              "origem": "base-cientifica-via-busca"
+            },
+            {
+              "valor": 80,
+              "referencia": "Seriously Fish: base de 80 x 30 cm ou equivalente para manutencao de longo prazo",
+              "url": "https://www.seriouslyfish.com/species/corydoras-aeneus/",
+              "origem": "compendio-via-busca"
+            }
+          ],
+          "razao": "Campo de manutencao: pela tabela dominio_por_campo quem manda e o compendio, e o compendio pede mais espaco. Como e campo de bem-estar, o conservador e o MAIOR, e as duas declaracoes saem atribuidas na ficha.",
+          "tratamento": "publicar-os-dois",
+          "valor_conservador": 80,
+          "derivacao": null
+        },
+        {
+          "campo": "cardume_minimo",
+          "valores": [
+            {
+              "valor": 5,
+              "referencia": "FishBase, secao de aquario: grupos de 5 ou mais individuos",
+              "url": "https://fishbase.se/summary/7777",
+              "origem": "base-cientifica-via-busca"
+            },
+            {
+              "valor": 6,
+              "referencia": "Seriously Fish: grupo de pelo menos seis",
+              "url": "https://www.seriouslyfish.com/species/corydoras-aeneus/",
+              "origem": "compendio-via-busca"
+            }
+          ],
+          "razao": "Mesma logica: campo de manutencao e de bem-estar, vence o maior, e os dois numeros ficam publicados.",
+          "tratamento": "publicar-os-dois",
+          "valor_conservador": 6,
+          "derivacao": null
+        }
+      ],
+      "verificado_em": "2026-09-09",
+      "status_registro": "conflito",
+      "observacao": "Peixe de fundo: o que limita nao e o volume, e a AREA da base, e por isso este registro guarda 80 x 30 cm e nao um litro. E o argumento concreto contra a regra de bolso de litragem — 60 L em coluna alta nao servem a uma coridora, 60 L espalhados servem. A sinonimia importa para busca: parte da literatura recente ja publica a especie como Osteogaster aenea e o comercio brasileiro segue vendendo como Corydoras aeneus."
+    },
+    {
+      "id": "danio-rerio",
+      "entidade": "especie",
+      "nome_cientifico": "Danio rerio",
+      "sinonimos_cientificos": [
+        "Brachydanio rerio",
+        "Brachydanio frankei"
+      ],
+      "nomes_populares_br": [
+        "paulistinha",
+        "zebrafish",
+        "peixe-zebra"
+      ],
+      "familia": "Danionidae",
+      "origem_geografica": null,
+      "porte_adulto_cm": 3.8,
+      "porte_medida": "SL",
+      "porte_sexo": "nao-sexado",
+      "expectativa_vida_anos": null,
+      "temperatura_C": {
+        "min": 18,
+        "max": 24
+      },
+      "temperatura_e_tolerancia": false,
+      "ph": {
+        "min": 6.0,
+        "max": 8.0
+      },
+      "dureza_dgh": {
+        "min": 5,
+        "max": 19
+      },
+      "cardume_minimo": 5,
+      "comprimento_minimo_aquario_cm": 90,
+      "base_minima_cm": {
+        "comprimento": 90,
+        "largura": 30
+      },
+      "altura_minima_cm": null,
+      "volume_minimo_declarado_L": null,
+      "nivel_natacao": null,
+      "comportamento": "pacifico",
+      "convivencia": "cardume",
+      "alimentacao": null,
+      "dificuldade": null,
+      "exige_aquario_maduro": null,
+      "disponibilidade_br": null,
+      "fontes": [
+        {
+          "origem": "base-cientifica-via-busca",
+          "status": "base-cientifica-via-busca",
+          "referencia": "FishBase — ficha da especie: max 3,8 cm SL; 18 a 24 C; pH 6,0 a 8,0; dH 5 a 19; secao de aquario: manter em grupos de 5 ou mais individuos, aquario minimo de 60 cm.",
+          "url": "https://www.fishbase.se/summary/danio-rerio.html",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "porte_adulto_cm",
+            "porte_medida",
+            "porte_sexo",
+            "temperatura_C",
+            "ph",
+            "dureza_dgh",
+            "cardume_minimo",
+            "convivencia"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, todos testados nesta data. A confirmar na ficha."
+        },
+        {
+          "origem": "compendio-via-busca",
+          "status": "compendio-via-busca",
+          "referencia": "Seriously Fish — ficha da especie (publicada como Brachydanio rerio): especie ativa, entao mesmo um grupo pequeno precisa de aquario com base minima de 90 x 30 cm; tamanho usual de 40 a 50 mm; e pacifica, rustica e barata.",
+          "url": "https://www.seriouslyfish.com/species/danio-rerio/",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "comprimento_minimo_aquario_cm",
+            "base_minima_cm",
+            "comportamento"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED. A confirmar na ficha."
+        },
+        {
+          "origem": "base-cientifica-via-busca",
+          "status": "base-cientifica-via-busca",
+          "referencia": "FishBase — ficha da especie: Teleostei > Cypriniformes (Carps) > Danionidae (Danios) > Danioninae.",
+          "url": "https://www.fishbase.se/summary/danio-rerio.html",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "familia"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
+        }
+      ],
+      "conflitos": [
+        {
+          "campo": "comprimento_minimo_aquario_cm",
+          "valores": [
+            {
+              "valor": 60,
+              "referencia": "FishBase, secao de aquario: aquario minimo de 60 cm",
+              "url": "https://www.fishbase.se/summary/danio-rerio.html",
+              "origem": "base-cientifica-via-busca"
+            },
+            {
+              "valor": 90,
+              "referencia": "Seriously Fish: especie ativa, base minima de 90 x 30 cm mesmo para grupo pequeno",
+              "url": "https://www.seriouslyfish.com/species/danio-rerio/",
+              "origem": "compendio-via-busca"
+            }
+          ],
+          "razao": "Meia diferenca de frente para o mesmo peixe de 4 cm. O compendio manda em campo de manutencao e o campo e de bem-estar: fica o maior, 90 cm, e a ficha publica o outro numero atribuido.",
+          "tratamento": "publicar-os-dois",
+          "valor_conservador": 90,
+          "derivacao": null
+        }
+      ],
+      "verificado_em": "2026-09-09",
+      "status_registro": "conflito",
+      "observacao": "O contraexemplo mais util do banco inteiro: 3,8 cm de peixe pedindo 90 cm de frente. Nenhuma regra proporcional a comprimento chega nesse numero, porque o que manda aqui e velocidade de natacao, nao massa. Faixa termica de 18 a 24 C tambem e das mais frias do banco: e um dos poucos que dispensa aquecedor em boa parte do Brasil, e nao deve dividir aquario com peixe de 28 C."
+    },
+    {
+      "id": "trigonostigma-heteromorpha",
+      "entidade": "especie",
+      "nome_cientifico": "Trigonostigma heteromorpha",
+      "sinonimos_cientificos": [
+        "Rasbora heteromorpha"
+      ],
+      "nomes_populares_br": [
+        "rasbora arlequim",
+        "arlequim",
+        "rasbora"
+      ],
+      "familia": "Danionidae",
+      "origem_geografica": "Sudeste asiatico: Malasia, Singapura e Indonesia",
+      "porte_adulto_cm": 5.0,
+      "porte_medida": "TL",
+      "porte_sexo": "nao-sexado",
+      "expectativa_vida_anos": null,
+      "temperatura_C": {
+        "min": 22,
+        "max": 25
+      },
+      "temperatura_e_tolerancia": false,
+      "ph": {
+        "min": 5.0,
+        "max": 7.0
+      },
+      "dureza_dgh": {
+        "min": 5,
+        "max": 12
+      },
+      "cardume_minimo": 5,
+      "comprimento_minimo_aquario_cm": 60,
+      "base_minima_cm": {
+        "comprimento": 60,
+        "largura": 30
+      },
+      "altura_minima_cm": null,
+      "volume_minimo_declarado_L": null,
+      "nivel_natacao": "meio",
+      "comportamento": null,
+      "convivencia": "cardume",
+      "alimentacao": null,
+      "dificuldade": null,
+      "exige_aquario_maduro": null,
+      "disponibilidade_br": null,
+      "fontes": [
+        {
+          "origem": "base-cientifica-via-busca",
+          "status": "base-cientifica-via-busca",
+          "referencia": "FishBase — ficha da especie: max 5,0 cm TL; 22 a 25 C; pH 5,0 a 7,0; dH 5 a 12; bentopelagica; Malasia, Singapura e Indonesia; secao de aquario: manter em grupos de 5 ou mais individuos, aquario minimo de 60 cm.",
+          "url": "https://www.fishbase.se/summary/10881",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "porte_adulto_cm",
+            "porte_medida",
+            "porte_sexo",
+            "temperatura_C",
+            "ph",
+            "dureza_dgh",
+            "cardume_minimo",
+            "comprimento_minimo_aquario_cm",
+            "origem_geografica",
+            "nivel_natacao",
+            "convivencia"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, todos testados nesta data. A confirmar na ficha."
+        },
+        {
+          "origem": "compendio-via-busca",
+          "status": "compendio-via-busca",
+          "referencia": "Seriously Fish — ficha da especie: base de 60 x 30 cm deve ser a menor a considerar, porque a especie tem de ser mantida em numero; pH 5,0 a 6,0 e dureza de 1 a 5 graus, com a temperatura na parte alta da faixa.",
+          "url": "https://www.seriouslyfish.com/species/trigonostigma-heteromorpha",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "base_minima_cm"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED. A confirmar na ficha."
+        },
+        {
+          "origem": "base-cientifica-via-busca",
+          "status": "base-cientifica-via-busca",
+          "referencia": "FishBase — ficha da especie: familia Danionidae.",
+          "url": "https://www.fishbase.se/summary/trigonostigma-heteromorpha.html",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "familia"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
+        }
+      ],
+      "conflitos": [
+        {
+          "campo": "ph",
+          "valores": [
+            {
+              "valor": {
+                "min": 5.0,
+                "max": 7.0
+              },
+              "referencia": "FishBase: pH 5,0 a 7,0",
+              "url": "https://www.fishbase.se/summary/10881",
+              "origem": "base-cientifica-via-busca"
+            },
+            {
+              "valor": {
+                "min": 5.0,
+                "max": 6.0
+              },
+              "referencia": "Seriously Fish: pH 5,0 a 6,0, dureza de 1 a 5 graus",
+              "url": "https://www.seriouslyfish.com/species/trigonostigma-heteromorpha",
+              "origem": "compendio-via-busca"
+            }
+          ],
+          "razao": "Intervalos encaixados, nao contraditorios: o compendio e mais estreito e mais acido. Campo de manutencao que NAO e de bem-estar direto, entao vale a intersecao conservadora da regra V17 do banco de produtos — a afirmacao que as duas fontes sustentam e 5,0 a 6,0.",
+          "tratamento": "intersecao-conservadora",
+          "valor_conservador": {
+            "min": 5.0,
+            "max": 6.0
+          },
+          "derivacao": "intersecao de [5,0; 7,0] com [5,0; 6,0]"
+        }
+      ],
+      "verificado_em": "2026-09-09",
+      "status_registro": "conflito",
+      "observacao": "Registro com as duas fontes concordando na frente minima de 60 cm, o que e raro no banco e por isso vale registrar. A dureza declarada pelo compendio, 1 a 5 graus, e bem mais mole que os 5 a 12 dGH da base cientifica; os dois numeros ficam, porque descrevem coisas diferentes (o que a especie tolera e onde ela fica bem)."
+    },
+    {
+      "id": "pterophyllum-scalare",
+      "entidade": "especie",
+      "nome_cientifico": "Pterophyllum scalare",
+      "sinonimos_cientificos": [],
+      "nomes_populares_br": [
+        "acara-bandeira",
+        "bandeira",
+        "anjo"
+      ],
+      "familia": "Cichlidae",
+      "origem_geografica": null,
+      "porte_adulto_cm": 15.0,
+      "porte_medida": "TL",
+      "porte_sexo": "nao-sexado",
+      "expectativa_vida_anos": null,
+      "temperatura_C": {
+        "min": 24,
+        "max": 30
+      },
+      "temperatura_e_tolerancia": false,
+      "ph": {
+        "min": 6.0,
+        "max": 8.0
+      },
+      "dureza_dgh": {
+        "min": 5,
+        "max": 13
+      },
+      "cardume_minimo": 5,
+      "comprimento_minimo_aquario_cm": 100,
+      "base_minima_cm": {
+        "comprimento": 100,
+        "largura": 40
+      },
+      "altura_minima_cm": 50,
+      "volume_minimo_declarado_L": null,
+      "nivel_natacao": null,
+      "comportamento": "semi-agressivo",
+      "convivencia": "grupo",
+      "alimentacao": "onivoro",
+      "dificuldade": null,
+      "exige_aquario_maduro": null,
+      "disponibilidade_br": null,
+      "fontes": [
+        {
+          "origem": "base-cientifica-via-busca",
+          "status": "base-cientifica-via-busca",
+          "referencia": "FishBase — ficha da especie: max 15 cm TL; 24 a 30 C; pH 6,0 a 8,0; dH 5 a 13; secao de aquario: manter em grupos de 5 ou mais individuos, casais em aquario pequeno so para reproducao, aquario minimo de 100 cm.",
+          "url": "https://www.fishbase.se/summary/Pterophyllum-scalare.html",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "porte_adulto_cm",
+            "porte_medida",
+            "porte_sexo",
+            "temperatura_C",
+            "ph",
+            "dureza_dgh",
+            "cardume_minimo",
+            "comprimento_minimo_aquario_cm",
+            "convivencia"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, todos testados nesta data. A confirmar na ficha."
+        },
+        {
+          "origem": "compendio-via-busca",
+          "status": "compendio-via-busca",
+          "referencia": "Seriously Fish — ficha da especie: base minima de 100 x 40 x 50 cm, com altura de pelo menos 50 cm para o adulto, e e despropositado sugerir que o adulto caiba em aquario bem menor; ciclideo geralmente pacifico que briga com os proprios, melhor em grupo pequeno; bom peixe comunitario, mas come peixe pequeno como tetras; onivoro, o selvagem come sobretudo pequenos crustaceos e invertebrados aquaticos e o de criadouro aceita racao.",
+          "url": "https://www.seriouslyfish.com/species/pterophyllum-scalare/",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "base_minima_cm",
+            "altura_minima_cm",
+            "comportamento",
+            "alimentacao"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED. A confirmar na ficha."
+        },
+        {
+          "origem": "base-cientifica-via-busca",
+          "status": "base-cientifica-via-busca",
+          "referencia": "FishBase — ficha da especie: familia Cichlidae.",
+          "url": "https://fishbase.se/summary/4717",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "familia"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "completo",
+      "observacao": "Unico registro da leva com altura minima declarada, e ele existe no banco justamente por isso: e o peixe que prova que litro nao basta. Um aquario de 100 L em formato baixo nao atende um adulto que precisa de 50 cm de coluna. Tambem e o unico com incompatibilidade declarada pela fonte — come tetras pequenos —, o que barra de saida a combinacao com cardinal e neon que o varejo brasileiro vende junto."
+    },
+    {
+      "id": "puntigrus-tetrazona",
+      "entidade": "especie",
+      "nome_cientifico": "Puntigrus tetrazona",
+      "sinonimos_cientificos": [
+        "Puntius tetrazona",
+        "Systomus tetrazona",
+        "Barbus tetrazona"
+      ],
+      "nomes_populares_br": [
+        "barbo sumatra",
+        "sumatrano",
+        "tigre"
+      ],
+      "familia": "Cyprinidae",
+      "origem_geografica": null,
+      "porte_adulto_cm": 7.0,
+      "porte_medida": "TL",
+      "porte_sexo": "nao-sexado",
+      "expectativa_vida_anos": null,
+      "temperatura_C": {
+        "min": 20,
+        "max": 26
+      },
+      "temperatura_e_tolerancia": false,
+      "ph": {
+        "min": 6.0,
+        "max": 8.0
+      },
+      "dureza_dgh": {
+        "min": 5,
+        "max": 19
+      },
+      "cardume_minimo": 8,
+      "comprimento_minimo_aquario_cm": 80,
+      "base_minima_cm": {
+        "comprimento": 80,
+        "largura": 30
+      },
+      "altura_minima_cm": null,
+      "volume_minimo_declarado_L": null,
+      "nivel_natacao": null,
+      "comportamento": "semi-agressivo",
+      "convivencia": "cardume",
+      "alimentacao": null,
+      "dificuldade": null,
+      "exige_aquario_maduro": null,
+      "disponibilidade_br": null,
+      "fontes": [
+        {
+          "origem": "base-cientifica-via-busca",
+          "status": "base-cientifica-via-busca",
+          "referencia": "FishBase — ficha da especie (barbo-de-sumatra): max 7,0 cm TL; 20 a 26 C; pH 6,0 a 8,0; dH 5 a 19; secao de aquario: manter em grupos de 5 ou mais individuos, NAO manter com peixes de nadadeiras longas, aquario minimo de 60 cm.",
+          "url": "https://www.fishbase.se/summary/Puntigrus-tetrazona",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "porte_adulto_cm",
+            "porte_medida",
+            "porte_sexo",
+            "temperatura_C",
+            "ph",
+            "dureza_dgh",
+            "convivencia"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, todos testados nesta data. A confirmar na ficha."
+        },
+        {
+          "origem": "compendio-via-busca",
+          "status": "compendio-via-busca",
+          "referencia": "Seriously Fish — ficha da especie: base de 80 x 30 cm ou equivalente deve ser a menor a considerar; grupo de pelo menos 8 a 10 exemplares deve ser a compra minima, porque assim os peixes se distraem entre si em vez de perturbar os companheiros de aquario, e o conjunto fica mais natural.",
+          "url": "https://www.seriouslyfish.com/species/puntigrus-tetrazona/",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "comprimento_minimo_aquario_cm",
+            "base_minima_cm",
+            "cardume_minimo",
+            "comportamento"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED. A confirmar na ficha."
+        },
+        {
+          "origem": "base-cientifica-via-busca",
+          "status": "base-cientifica-via-busca",
+          "referencia": "FishBase — ficha da especie: familia Cyprinidae.",
+          "url": "https://www.fishbase.se/summary/Puntigrus-tetrazona",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "familia"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
+        }
+      ],
+      "conflitos": [
+        {
+          "campo": "cardume_minimo",
+          "valores": [
+            {
+              "valor": 5,
+              "referencia": "FishBase, secao de aquario: grupos de 5 ou mais individuos",
+              "url": "https://www.fishbase.se/summary/Puntigrus-tetrazona",
+              "origem": "base-cientifica-via-busca"
+            },
+            {
+              "valor": 8,
+              "referencia": "Seriously Fish: grupo de pelo menos 8 a 10 exemplares como compra minima",
+              "url": "https://www.seriouslyfish.com/species/puntigrus-tetrazona/",
+              "origem": "compendio-via-busca"
+            }
+          ],
+          "razao": "Campo de manutencao e de bem-estar: manda o compendio e vence o maior. Aqui o numero maior nao e so conforto do peixe, e seguranca dos vizinhos: as duas fontes ligam grupo pequeno a agressao dirigida para fora do cardume.",
+          "tratamento": "publicar-os-dois",
+          "valor_conservador": 8,
+          "derivacao": null
+        }
+      ],
+      "verificado_em": "2026-09-09",
+      "status_registro": "conflito",
+      "observacao": "O registro que sustenta pagina de incompatibilidade com fonte, e nao com opiniao de forum: a base cientifica diz para nao manter com peixes de nadadeiras longas e o compendio explica o mecanismo (grupo pequeno vira mordida em vizinho). Isso barra a combinacao com betta e com acara-bandeira, as duas mais vendidas junto no Brasil."
+    },
+    {
+      "id": "carassius-auratus",
+      "entidade": "especie",
+      "nome_cientifico": "Carassius auratus",
+      "sinonimos_cientificos": [],
+      "nomes_populares_br": [
+        "kinguio",
+        "peixe dourado",
+        "japones"
+      ],
+      "familia": "Cyprinidae",
+      "origem_geografica": null,
+      "porte_adulto_cm": 48.0,
+      "porte_medida": "TL",
+      "porte_sexo": "nao-sexado",
+      "expectativa_vida_anos": 30,
+      "temperatura_C": {
+        "min": 0,
+        "max": 41
+      },
+      "temperatura_e_tolerancia": true,
+      "ph": {
+        "min": 6.0,
+        "max": 8.0
+      },
+      "dureza_dgh": {
+        "min": 5,
+        "max": 19
+      },
+      "cardume_minimo": 5,
+      "comprimento_minimo_aquario_cm": 100,
+      "base_minima_cm": null,
+      "altura_minima_cm": null,
+      "volume_minimo_declarado_L": null,
+      "nivel_natacao": null,
+      "comportamento": null,
+      "convivencia": "grupo",
+      "alimentacao": null,
+      "dificuldade": null,
+      "exige_aquario_maduro": null,
+      "disponibilidade_br": null,
+      "fontes": [
+        {
+          "origem": "base-cientifica-via-busca",
+          "status": "base-cientifica-via-busca",
+          "referencia": "FishBase — ficha da especie: max 48,0 cm TL; faixa termica de 0 a 41 C; pH 6,0 a 8,0; dH 5 a 19; secao de aquario: manter em grupos de 5 ou mais individuos, aquario minimo de 100 cm.",
+          "url": "https://www.fishbase.se/summary/Carassius-auratus.html",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "porte_adulto_cm",
+            "porte_medida",
+            "porte_sexo",
+            "temperatura_C",
+            "ph",
+            "dureza_dgh",
+            "cardume_minimo",
+            "comprimento_minimo_aquario_cm",
+            "convivencia"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, todos testados nesta data. A confirmar na ficha."
+        },
+        {
+          "origem": "compendio-via-busca",
+          "status": "compendio-via-busca",
+          "referencia": "Seriously Fish — artigo 'Stunted growth means stunted lives': mantido de forma correta, C. auratus chega a 30 cm e vive 30 ou 40 anos; um kinguio mantido em aquario de 30 x 20 cm pode sobreviver alguns anos e continuar com poucos centimetros, e isso e nanismo severo, nao tamanho natural.",
+          "url": "https://www.seriouslyfish.com/stunted-growth-means-stunted-lives/",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "expectativa_vida_anos"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED. A confirmar na ficha."
+        },
+        {
+          "origem": "base-cientifica-via-busca",
+          "status": "base-cientifica-via-busca",
+          "referencia": "FishBase — ficha da especie: familia Cyprinidae (minnows, carps).",
+          "url": "https://www.fishbase.se/summary/271",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "familia"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
+        }
+      ],
+      "conflitos": [
+        {
+          "campo": "porte_adulto_cm",
+          "valores": [
+            {
+              "valor": 48.0,
+              "referencia": "FishBase: max 48,0 cm TL",
+              "url": "https://www.fishbase.se/summary/Carassius-auratus.html",
+              "origem": "base-cientifica-via-busca"
+            },
+            {
+              "valor": 30.0,
+              "referencia": "Seriously Fish: mantido de forma correta chega a 30 cm",
+              "url": "https://www.seriouslyfish.com/stunted-growth-means-stunted-lives/",
+              "origem": "compendio-via-busca"
+            }
+          ],
+          "razao": "Nao e a mesma grandeza: 48 cm e o maximo registrado da especie e 30 cm e o que se espera em aquario bem mantido. Porte e campo de BIOLOGIA, entao pela tabela dominio_por_campo fica o valor da base cientifica, e o numero do compendio sai publicado do lado porque e ele que descreve o que o leitor vai ter em casa.",
+          "tratamento": "publicar-os-dois",
+          "valor_conservador": 48.0,
+          "derivacao": null
+        }
+      ],
+      "verificado_em": "2026-09-09",
+      "status_registro": "conflito",
+      "observacao": "Registro deliberadamente incomodo. A faixa de 0 a 41 C e TOLERANCIA da especie, nao recomendacao de manutencao, e por isso temperatura_e_tolerancia e true: a C5 esta proibida de dimensionar aquecedor a partir dela (regra E13). O kinguio esta no banco porque e o peixe mais vendido em pote no Brasil e o unico da leva cuja fonte de manutencao fala explicitamente de nanismo por aquario pequeno — 100 cm de frente e 30 a 40 anos de vida sao os dois numeros que a ficha precisa publicar de cara."
+    },
+    {
+      "id": "otocinclus-vittatus",
+      "entidade": "especie",
+      "nome_cientifico": "Otocinclus vittatus",
+      "sinonimos_cientificos": [],
+      "nomes_populares_br": [
+        "otocinclo",
+        "oto",
+        "limpa-vidro"
+      ],
+      "familia": "Loricariidae",
+      "origem_geografica": null,
+      "porte_adulto_cm": 3.3,
+      "porte_medida": "TL",
+      "porte_sexo": "nao-sexado",
+      "expectativa_vida_anos": null,
+      "temperatura_C": {
+        "min": 20,
+        "max": 25
+      },
+      "temperatura_e_tolerancia": false,
+      "ph": {
+        "min": 6.0,
+        "max": 7.5
+      },
+      "dureza_dgh": {
+        "min": 2,
+        "max": 18
+      },
+      "cardume_minimo": 6,
+      "comprimento_minimo_aquario_cm": 45,
+      "base_minima_cm": null,
+      "altura_minima_cm": null,
+      "volume_minimo_declarado_L": null,
+      "nivel_natacao": "fundo",
+      "comportamento": null,
+      "convivencia": "grupo",
+      "alimentacao": "herbivoro",
+      "dificuldade": null,
+      "exige_aquario_maduro": true,
+      "disponibilidade_br": null,
+      "fontes": [
+        {
+          "origem": "base-cientifica-via-busca",
+          "status": "base-cientifica-via-busca",
+          "referencia": "FishBase — ficha da especie: max 3,3 cm TL; 20 a 25 C; pH 6,0 a 7,5; dH 2 a 18.",
+          "url": "https://www.fishbase.se/summary/Otocinclus-vittatus",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "porte_adulto_cm",
+            "porte_medida",
+            "porte_sexo",
+            "temperatura_C",
+            "ph",
+            "dureza_dgh"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, todos testados nesta data. A confirmar na ficha."
+        },
+        {
+          "origem": "compendio-via-busca",
+          "status": "compendio-via-busca",
+          "referencia": "Seriously Fish — ficha do genero Otocinclus (pagina de O. macrospilus): sao gregarios por natureza e o ideal e manter em grupo de 6 exemplares ou mais; o menor aquario a considerar seguro para o genero tem pelo menos 45 cm de comprimento, por causa das arrancadas de nado; a unica atividade diurna e raspar alga de folha, tronco, rocha e vidro, e sem planta e superficie em abundancia o peixe se sente exposto, o que traz doenca e morte precoce; muitos aquaristas relatam menos problema quando os peixes entram em aquario maduro e plantado, com qualidade de agua estavel e microrganismos e algas em quantidade.",
+          "url": "https://www.seriouslyfish.com/species/otocinclus-macrospilus/",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "cardume_minimo",
+            "comprimento_minimo_aquario_cm",
+            "convivencia",
+            "alimentacao",
+            "exige_aquario_maduro",
+            "nivel_natacao"
+          ],
+          "observacao": "ATENCAO: a orientacao de manutencao e do GENERO, colhida na ficha de O. macrospilus; a busca restrita ao dominio nao encontrou ficha propria de O. vittatus no compendio. Vale para o grupo e esta declarada como tal, nao como afirmacao sobre a especie. Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED. A confirmar na ficha."
+        },
+        {
+          "origem": "base-cientifica-via-busca",
+          "status": "base-cientifica-via-busca",
+          "referencia": "FishBase — ficha da especie: Loricariidae (Armored catfishes) > subfamilia Hypoptopomatinae.",
+          "url": "https://www.fishbase.se/summary/Otocinclus-vittatus",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "familia"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "completo",
+      "observacao": "Unico registro do banco com exige_aquario_maduro true, e e o campo que mais evita morte de peixe: o otocinclo entra em aquario ja rodado, com alga, e nao na semana da montagem. Menor frente minima da leva, 45 cm, o que faz dele uma das poucas opcoes reais para aquario pequeno — mas a manutencao vem do genero, nao da especie, e a ficha tem de dizer isso. Quase todo otocinclo do comercio e capturado na natureza, o que explica a fragilidade na chegada."
+    },
+    {
+      "id": "xiphophorus-hellerii",
+      "entidade": "especie",
+      "nome_cientifico": "Xiphophorus hellerii",
+      "sinonimos_cientificos": [
+        "Xiphophorus helleri",
+        "Xiphophorus guntheri"
+      ],
+      "nomes_populares_br": [
+        "espada",
+        "espadinha",
+        "peixe-espada"
+      ],
+      "familia": "Poeciliidae",
+      "origem_geografica": null,
+      "porte_adulto_cm": 16.0,
+      "porte_medida": "TL",
+      "porte_sexo": "femea",
+      "expectativa_vida_anos": null,
+      "temperatura_C": {
+        "min": 22,
+        "max": 28
+      },
+      "temperatura_e_tolerancia": false,
+      "ph": {
+        "min": 7.0,
+        "max": 8.0
+      },
+      "dureza_dgh": {
+        "min": 9,
+        "max": 19
+      },
+      "cardume_minimo": null,
+      "comprimento_minimo_aquario_cm": 120,
+      "base_minima_cm": {
+        "comprimento": 120,
+        "largura": 30
+      },
+      "altura_minima_cm": null,
+      "volume_minimo_declarado_L": null,
+      "nivel_natacao": null,
+      "comportamento": null,
+      "convivencia": "harem",
+      "alimentacao": null,
+      "dificuldade": null,
+      "exige_aquario_maduro": null,
+      "disponibilidade_br": null,
+      "fontes": [
+        {
+          "origem": "base-cientifica-via-busca",
+          "status": "base-cientifica-via-busca",
+          "referencia": "FishBase — ficha da especie: familia Poeciliidae; macho ate 14,0 cm TL e femea ate 16,0 cm TL; 22 a 28 C; pH 7,0 a 8,0; dH 9 a 19.",
+          "url": "https://www.fishbase.se/summary/Xiphophorus-hellerii.html",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "familia",
+            "porte_adulto_cm",
+            "porte_medida",
+            "porte_sexo",
+            "temperatura_C",
+            "ph",
+            "dureza_dgh"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
+        },
+        {
+          "origem": "compendio-via-busca",
+          "status": "compendio-via-busca",
+          "referencia": "Seriously Fish — ficha da especie: aquario com base de 120 x 30 cm ou equivalente e o menor a considerar (volume citado de 108 litros); machos ate 14 cm e femeas ate 16 cm TL; havendo machos e femeas juntos, manter varias femeas para cada macho, porque o assedio do macho e implacavel.",
+          "url": "https://www.seriouslyfish.com/species/xiphophorus-hellerii/",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "porte_adulto_cm",
+            "porte_medida",
+            "comprimento_minimo_aquario_cm",
+            "base_minima_cm",
+            "convivencia"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED, reconfirmado nesta data com WebFetch. A confirmar na ficha."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "completo",
+      "observacao": "O contraste com o platy (X. maculatus, ja no banco) e o achado: dois vivipara da mesma familia, vendidos lado a lado na mesma loja, e o compendio pede 60 cm de frente para um e 120 cm para o outro. A espada e o peixe que mais aparece em aquario de 60 L no Brasil e o que menos cabe nele. Convivencia harem, e nao grupo, porque a fonte declara varias femeas por macho: e o assedio do macho, nao a lotacao, que define o arranjo."
+    },
+    {
+      "id": "poecilia-sphenops",
+      "entidade": "especie",
+      "nome_cientifico": "Poecilia sphenops",
+      "sinonimos_cientificos": [],
+      "nomes_populares_br": [
+        "molinesia",
+        "black molly",
+        "molinesia preta"
+      ],
+      "familia": "Poeciliidae",
+      "origem_geografica": null,
+      "porte_adulto_cm": 12.0,
+      "porte_medida": "SL",
+      "porte_sexo": "femea",
+      "expectativa_vida_anos": null,
+      "temperatura_C": {
+        "min": 18,
+        "max": 28
+      },
+      "temperatura_e_tolerancia": false,
+      "ph": {
+        "min": 7.5,
+        "max": 8.2
+      },
+      "dureza_dgh": {
+        "min": 11,
+        "max": 30
+      },
+      "cardume_minimo": null,
+      "comprimento_minimo_aquario_cm": null,
+      "base_minima_cm": null,
+      "altura_minima_cm": null,
+      "volume_minimo_declarado_L": null,
+      "nivel_natacao": null,
+      "comportamento": null,
+      "convivencia": "harem",
+      "alimentacao": null,
+      "dificuldade": null,
+      "exige_aquario_maduro": null,
+      "disponibilidade_br": null,
+      "fontes": [
+        {
+          "origem": "base-cientifica-via-busca",
+          "status": "base-cientifica-via-busca",
+          "referencia": "FishBase — ficha da especie: familia Poeciliidae; max 7,5 cm SL macho/nao sexado; pH 7,5 a 8,2; dH 11 a 30; 18 a 28 C; agua doce e salobra.",
+          "url": "https://www.fishbase.se/summary/4680",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "familia",
+            "temperatura_C",
+            "ph",
+            "dureza_dgh"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
+        },
+        {
+          "origem": "compendio-via-busca",
+          "status": "compendio-via-busca",
+          "referencia": "Seriously Fish — ficha da especie: machos chegam a 8 cm e femeas a 12 cm; a especie tem de ser mantida em agua de dureza moderada ou maior e pH basico, e enfraquece rapido em agua mole ou acida (tremor, fungo, nadadeiras fechadas); manter varias femeas para cada macho, porque o macho e incessante na perseguicao.",
+          "url": "https://www.seriouslyfish.com/species/poecilia-sphenops/",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "porte_adulto_cm",
+            "porte_medida",
+            "porte_sexo",
+            "convivencia"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED, reconfirmado nesta data com WebFetch. A confirmar na ficha."
+        }
+      ],
+      "conflitos": [
+        {
+          "campo": "porte_adulto_cm",
+          "valores": [
+            {
+              "valor": 7.5,
+              "referencia": "FishBase: max 7,5 cm SL macho/nao sexado",
+              "url": "https://www.fishbase.se/summary/4680",
+              "origem": "base-cientifica-via-busca"
+            },
+            {
+              "valor": 12.0,
+              "referencia": "Seriously Fish: femeas chegam a 12 cm",
+              "url": "https://www.seriouslyfish.com/species/poecilia-sphenops/",
+              "origem": "compendio-via-busca"
+            }
+          ],
+          "razao": "60 % de diferenca de porte para o mesmo peixe. A base cientifica publica o maximo de macho/nao sexado e o compendio separa por sexo; em vivipara e a femea que define a carga, e por isso fica o valor da femea. O numero da base sai publicado do lado, atribuido.",
+          "tratamento": "publicar-os-dois",
+          "valor_conservador": 12.0,
+          "derivacao": null
+        }
+      ],
+      "verificado_em": "2026-09-09",
+      "status_registro": "parcial",
+      "observacao": "Falta comprimento_minimo_aquario_cm: a ficha do compendio tem a secao de dimensoes, mas nenhuma das buscas restritas de 09/09/2026 devolveu o numero, e frente de aquario nao se estima. Sem ele o registro nao passa no portao de pagina de especie nem alimenta a C8. Fica no banco porque a exigencia de agua DURA E ALCALINA (pH 7,5 a 8,2, dH ate 30) ja e conteudo publicavel sozinho: e o oposto do cardinal e do rodostomo, e explica por que 'peixe comunitario' nao e categoria util."
+    },
+    {
+      "id": "trichogaster-lalius",
+      "entidade": "especie",
+      "nome_cientifico": "Trichogaster lalius",
+      "sinonimos_cientificos": [
+        "Colisa lalia"
+      ],
+      "nomes_populares_br": [
+        "colisa",
+        "colisa-anao",
+        "gurami-anao"
+      ],
+      "familia": "Osphronemidae",
+      "origem_geografica": "Asia: Paquistao, India e Bangladesh",
+      "porte_adulto_cm": 9.5,
+      "porte_medida": "TL",
+      "porte_sexo": "nao-sexado",
+      "expectativa_vida_anos": null,
+      "temperatura_C": {
+        "min": 25,
+        "max": 28
+      },
+      "temperatura_e_tolerancia": false,
+      "ph": {
+        "min": 6.0,
+        "max": 8.0
+      },
+      "dureza_dgh": {
+        "min": 5,
+        "max": 19
+      },
+      "cardume_minimo": null,
+      "comprimento_minimo_aquario_cm": 60,
+      "base_minima_cm": {
+        "comprimento": 60,
+        "largura": 30
+      },
+      "altura_minima_cm": null,
+      "volume_minimo_declarado_L": null,
+      "nivel_natacao": null,
+      "comportamento": null,
+      "convivencia": "casal",
+      "alimentacao": null,
+      "dificuldade": null,
+      "exige_aquario_maduro": null,
+      "disponibilidade_br": null,
+      "fontes": [
+        {
+          "origem": "base-cientifica-via-busca",
+          "status": "base-cientifica-via-busca",
+          "referencia": "FishBase — ficha da especie: familia Osphronemidae; max 9,5 cm TL macho/nao sexado; pH 6,0 a 8,0; dH 5 a 19; 25 a 28 C; Asia: Paquistao, India e Bangladesh.",
+          "url": "https://www.fishbase.se/summary/4774",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "familia",
+            "origem_geografica",
+            "porte_adulto_cm",
+            "porte_medida",
+            "porte_sexo",
+            "temperatura_C",
+            "ph",
+            "dureza_dgh"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
+        },
+        {
+          "origem": "compendio-via-busca",
+          "status": "compendio-via-busca",
+          "referencia": "Seriously Fish — ficha da especie: um aquario de 60 x 30 x 30 cm (56 litros) e apenas grande o bastante para UM CASAL, desde que montado corretamente; peixe timido, que pede aquario densamente plantado, substrato escuro e vegetacao flutuante; populacoes selvagens vivem em agua mole e acida.",
+          "url": "https://www.seriouslyfish.com/species/trichogaster-lalius/",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "comprimento_minimo_aquario_cm",
+            "base_minima_cm",
+            "convivencia"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED, reconfirmado nesta data com WebFetch. A confirmar na ficha."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "completo",
+      "observacao": "O registro existe para dizer, com fonte, que os 60 cm de frente sao para UM CASAL, e nao para uma colecao de machos coloridos: a loja vende o macho isolado porque so ele tem cor. Faixa termica de 25 a 28 C, das mais quentes e mais estreitas do banco, o que faz dele um dos poucos que puxa aquecedor mesmo em cidade quente."
+    },
+    {
+      "id": "trichopodus-trichopterus",
+      "entidade": "especie",
+      "nome_cientifico": "Trichopodus trichopterus",
+      "sinonimos_cientificos": [
+        "Trichogaster trichopterus"
+      ],
+      "nomes_populares_br": [
+        "tricogaster",
+        "gurami-azul",
+        "tricogaster-tres-pintas"
+      ],
+      "familia": "Osphronemidae",
+      "origem_geografica": null,
+      "porte_adulto_cm": 15.0,
+      "porte_medida": "SL",
+      "porte_sexo": "nao-sexado",
+      "expectativa_vida_anos": null,
+      "temperatura_C": {
+        "min": 24,
+        "max": 30
+      },
+      "temperatura_e_tolerancia": false,
+      "ph": {
+        "min": 6.0,
+        "max": 8.0
+      },
+      "dureza_dgh": {
+        "min": 5,
+        "max": 19
+      },
+      "cardume_minimo": null,
+      "comprimento_minimo_aquario_cm": 100,
+      "base_minima_cm": null,
+      "altura_minima_cm": null,
+      "volume_minimo_declarado_L": null,
+      "nivel_natacao": null,
+      "comportamento": "territorial",
+      "convivencia": null,
+      "alimentacao": null,
+      "dificuldade": null,
+      "exige_aquario_maduro": null,
+      "disponibilidade_br": null,
+      "fontes": [
+        {
+          "origem": "base-cientifica-via-busca",
+          "status": "base-cientifica-via-busca",
+          "referencia": "FishBase — ficha da especie: familia Osphronemidae; max 15,0 cm SL macho/nao sexado; pH 6,0 a 8,0; dH 5 a 19; 22 a 28 C; secao de aquario: aquario minimo de 100 cm.",
+          "url": "https://www.fishbase.se/summary/4675",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "familia",
+            "porte_adulto_cm",
+            "porte_medida",
+            "porte_sexo",
+            "ph",
+            "dureza_dgh",
+            "comprimento_minimo_aquario_cm"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
+        },
+        {
+          "origem": "compendio-via-busca",
+          "status": "compendio-via-busca",
+          "referencia": "Seriously Fish — ficha da especie: faixa de manutencao de 24 a 30 C; os machos sao territoriais e brigam entre si, ficando muito agressivos na reproducao; embora seja sempre recomendado como peixe comunitario, nem sempre e — alguns individuos ficam muito rancorosos ao amadurecer, outros permanecem pacificos.",
+          "url": "https://www.seriouslyfish.com/species/trichopodus-trichopterus",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "temperatura_C",
+            "comportamento"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED, reconfirmado nesta data com WebFetch. A confirmar na ficha."
+        }
+      ],
+      "conflitos": [
+        {
+          "campo": "temperatura_C",
+          "valores": [
+            {
+              "valor": {
+                "min": 22,
+                "max": 28
+              },
+              "referencia": "FishBase: 22 a 28 C",
+              "url": "https://www.fishbase.se/summary/4675",
+              "origem": "base-cientifica-via-busca"
+            },
+            {
+              "valor": {
+                "min": 24,
+                "max": 30
+              },
+              "referencia": "Seriously Fish: 24 a 30 C",
+              "url": "https://www.seriouslyfish.com/species/trichopodus-trichopterus",
+              "origem": "compendio-via-busca"
+            }
+          ],
+          "razao": "Duas faixas deslocadas em 2 C nas duas pontas. Temperatura e campo de MANUTENCAO, entao pela tabela dominio_por_campo manda o compendio e o campo guarda 24 a 30 C. Para dimensionar aquecedor, quem vale e a intersecao: 24 a 28 C atende as duas fontes ao mesmo tempo.",
+          "tratamento": "intersecao-conservadora",
+          "valor_conservador": {
+            "min": 24,
+            "max": 28
+          },
+          "derivacao": null
+        }
+      ],
+      "verificado_em": "2026-09-09",
+      "status_registro": "parcial",
+      "observacao": "Falta convivencia: nenhuma das fontes declara cardume, grupo, casal ou harem para a especie — o compendio fala em territorialidade entre machos, que e outra coisa, e inventar o arranjo social e exatamente o que a fazenda de conteudo faz. Sem convivencia o registro nao alimenta a C8. Entra no banco assim mesmo porque e o unico gurami grande do lote (15 cm SL, 100 cm de frente) e porque a frase do compendio sobre 'peixe comunitario que nem sempre e' e conteudo de pagina por si so."
+    },
+    {
+      "id": "hyphessobrycon-eques",
+      "entidade": "especie",
+      "nome_cientifico": "Hyphessobrycon eques",
+      "sinonimos_cientificos": [
+        "Hyphessobrycon callistus",
+        "Hyphessobrycon serpae",
+        "Megalamphodus eques"
+      ],
+      "nomes_populares_br": [
+        "mato-grosso",
+        "serpae",
+        "tetra-serpae"
+      ],
+      "familia": "Characidae",
+      "origem_geografica": null,
+      "porte_adulto_cm": 4.0,
+      "porte_medida": "SL",
+      "porte_sexo": "nao-sexado",
+      "expectativa_vida_anos": null,
+      "temperatura_C": {
+        "min": 22,
+        "max": 26
+      },
+      "temperatura_e_tolerancia": false,
+      "ph": {
+        "min": 5.0,
+        "max": 7.5
+      },
+      "dureza_dgh": {
+        "min": 10,
+        "max": 25
+      },
+      "cardume_minimo": 5,
+      "comprimento_minimo_aquario_cm": 80,
+      "base_minima_cm": {
+        "comprimento": 80,
+        "largura": 30
+      },
+      "altura_minima_cm": null,
+      "volume_minimo_declarado_L": null,
+      "nivel_natacao": null,
+      "comportamento": "agressivo",
+      "convivencia": "cardume",
+      "alimentacao": null,
+      "dificuldade": null,
+      "exige_aquario_maduro": null,
+      "disponibilidade_br": null,
+      "fontes": [
+        {
+          "origem": "base-cientifica-via-busca",
+          "status": "base-cientifica-via-busca",
+          "referencia": "FishBase — ficha da especie: familia Characidae (subfamilia Stethaprioninae); max 4 cm SL macho/nao sexado; pH 5,0 a 7,8; dH 10 a 25; 22 a 26 C; secao de aquario: agressivo, em grupos de 5 ou mais individuos, aquario minimo de 60 cm.",
+          "url": "https://www.fishbase.se/Summary/SpeciesSummary.php?id=46294",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "familia",
+            "porte_adulto_cm",
+            "porte_medida",
+            "porte_sexo",
+            "temperatura_C",
+            "dureza_dgh",
+            "cardume_minimo",
+            "comportamento",
+            "convivencia"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
+        },
+        {
+          "origem": "compendio-via-busca",
+          "status": "compendio-via-busca",
+          "referencia": "Seriously Fish — ficha da especie: aquario com base de 80 x 30 cm ou equivalente e o minimo absoluto a considerar (volume citado de 72 litros); os exemplares de criadouro sao adaptaveis quanto a quimica da agua e ficam bem na faixa de pH 5,0 a 7,5.",
+          "url": "https://www.seriouslyfish.com/species/hyphessobrycon-eques/",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "comprimento_minimo_aquario_cm",
+            "base_minima_cm",
+            "ph"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED, reconfirmado nesta data com WebFetch. A confirmar na ficha."
+        }
+      ],
+      "conflitos": [
+        {
+          "campo": "comprimento_minimo_aquario_cm",
+          "valores": [
+            {
+              "valor": 60,
+              "referencia": "FishBase, secao de aquario: aquario minimo de 60 cm",
+              "url": "https://www.fishbase.se/Summary/SpeciesSummary.php?id=46294",
+              "origem": "base-cientifica-via-busca"
+            },
+            {
+              "valor": 80,
+              "referencia": "Seriously Fish: base de 80 x 30 cm e o minimo absoluto",
+              "url": "https://www.seriouslyfish.com/species/hyphessobrycon-eques/",
+              "origem": "compendio-via-busca"
+            }
+          ],
+          "razao": "Um terco a mais de frente para o mesmo peixe de 4 cm. O compendio manda em campo de manutencao e o campo e de bem-estar: fica o maior, 80 cm.",
+          "tratamento": "publicar-os-dois",
+          "valor_conservador": 80,
+          "derivacao": null
+        },
+        {
+          "campo": "ph",
+          "valores": [
+            {
+              "valor": {
+                "min": 5.0,
+                "max": 7.8
+              },
+              "referencia": "FishBase: pH 5,0 a 7,8",
+              "url": "https://www.fishbase.se/Summary/SpeciesSummary.php?id=46294",
+              "origem": "base-cientifica-via-busca"
+            },
+            {
+              "valor": {
+                "min": 5.0,
+                "max": 7.5
+              },
+              "referencia": "Seriously Fish: exemplares de criadouro ficam bem de 5,0 a 7,5",
+              "url": "https://www.seriouslyfish.com/species/hyphessobrycon-eques/",
+              "origem": "compendio-via-busca"
+            }
+          ],
+          "razao": "Divergencia pequena (0,3 no teto) e no mesmo sentido. pH e campo de manutencao: fica o do compendio, que e tambem o mais estreito.",
+          "tratamento": "publicar-os-dois",
+          "valor_conservador": {
+            "min": 5.0,
+            "max": 7.5
+          },
+          "derivacao": null
+        }
+      ],
+      "verificado_em": "2026-09-09",
+      "status_registro": "conflito",
+      "observacao": "E o registro que desmente a lista de 'peixe comunitario para iniciante' do varejo brasileiro: a propria base cientifica classifica a especie como AGRESSIVA na secao de aquario, e o compendio pede 80 x 30 cm de base para um peixe de 4 cm. Vendido como tetra pacifico, e o mordedor de nadadeira mais comum das lojas."
+    },
+    {
+      "id": "hemigrammus-rhodostomus",
+      "entidade": "especie",
+      "nome_cientifico": "Hemigrammus rhodostomus",
+      "sinonimos_cientificos": [
+        "Petitella rhodostoma"
+      ],
+      "nomes_populares_br": [
+        "rodostomo",
+        "nariz-vermelho",
+        "cabeca-de-fosforo"
+      ],
+      "familia": "Characidae",
+      "origem_geografica": null,
+      "porte_adulto_cm": 5.0,
+      "porte_medida": "TL",
+      "porte_sexo": "nao-sexado",
+      "expectativa_vida_anos": null,
+      "temperatura_C": {
+        "min": 26.5,
+        "max": 29
+      },
+      "temperatura_e_tolerancia": false,
+      "ph": {
+        "min": 5.5,
+        "max": 6.5
+      },
+      "dureza_dgh": {
+        "min": 1,
+        "max": 5
+      },
+      "cardume_minimo": 10,
+      "comprimento_minimo_aquario_cm": 90,
+      "base_minima_cm": null,
+      "altura_minima_cm": null,
+      "volume_minimo_declarado_L": null,
+      "nivel_natacao": null,
+      "comportamento": null,
+      "convivencia": "cardume",
+      "alimentacao": null,
+      "dificuldade": null,
+      "exige_aquario_maduro": null,
+      "disponibilidade_br": null,
+      "fontes": [
+        {
+          "origem": "base-cientifica-via-busca",
+          "status": "base-cientifica-via-busca",
+          "referencia": "FishBase — ficha da especie (hoje publicada como Petitella rhodostoma): familia Characidae; max 5,0 cm TL; secao de aquario: em grupos de 5 ou mais individuos, aquario minimo de 80 cm; especie tropical das bacias do baixo Amazonas e do Orinoco.",
+          "url": "https://www.fishbase.se/summary/Hemigrammus-rhodostomus.html",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "familia",
+            "porte_adulto_cm",
+            "porte_medida",
+            "porte_sexo",
+            "cardume_minimo",
+            "comprimento_minimo_aquario_cm",
+            "convivencia"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
+        },
+        {
+          "origem": "compendio-via-busca",
+          "status": "compendio-via-busca",
+          "referencia": "Seriously Fish — ficha da especie: agua mole e acida, pH 5,5 a 6,5, gH 1 a 5, temperatura em torno de 26,5 a 29 C; manter em grupos de 10 ou de preferencia mais, porque e um dos pequenos tetras de cardume mais coeso e nao vai bem em numero insuficiente; a natacao ativa pede aquario de no minimo 90 cm de comprimento.",
+          "url": "https://www.seriouslyfish.com/species/hemigrammus-rhodostomus",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "temperatura_C",
+            "ph",
+            "dureza_dgh",
+            "cardume_minimo",
+            "comprimento_minimo_aquario_cm"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED, reconfirmado nesta data com WebFetch. A confirmar na ficha."
+        }
+      ],
+      "conflitos": [
+        {
+          "campo": "cardume_minimo",
+          "valores": [
+            {
+              "valor": 5,
+              "referencia": "FishBase, secao de aquario: grupos de 5 ou mais",
+              "url": "https://www.fishbase.se/summary/Hemigrammus-rhodostomus.html",
+              "origem": "base-cientifica-via-busca"
+            },
+            {
+              "valor": 10,
+              "referencia": "Seriously Fish: grupos de 10 ou de preferencia mais",
+              "url": "https://www.seriouslyfish.com/species/hemigrammus-rhodostomus",
+              "origem": "compendio-via-busca"
+            }
+          ],
+          "razao": "O dobro de peixes para o mesmo cardume. Campo de bem-estar: fica o maior, 10, e o numero da base sai publicado do lado. Dobrar o cardume dobra a carga biologica, entao esta divergencia muda o filtro e o aquario que a pessoa compra.",
+          "tratamento": "publicar-os-dois",
+          "valor_conservador": 10,
+          "derivacao": null
+        },
+        {
+          "campo": "comprimento_minimo_aquario_cm",
+          "valores": [
+            {
+              "valor": 80,
+              "referencia": "FishBase, secao de aquario: aquario minimo de 80 cm",
+              "url": "https://www.fishbase.se/summary/Hemigrammus-rhodostomus.html",
+              "origem": "base-cientifica-via-busca"
+            },
+            {
+              "valor": 90,
+              "referencia": "Seriously Fish: no minimo 90 cm de comprimento",
+              "url": "https://www.seriouslyfish.com/species/hemigrammus-rhodostomus",
+              "origem": "compendio-via-busca"
+            }
+          ],
+          "razao": "Campo de bem-estar com duas declaracoes proximas: fica o maior, 90 cm.",
+          "tratamento": "publicar-os-dois",
+          "valor_conservador": 90,
+          "derivacao": null
+        }
+      ],
+      "verificado_em": "2026-09-09",
+      "status_registro": "conflito",
+      "observacao": "Faixa termica de 26,5 a 29 C e dureza de 1 a 5 dGH: e o registro mais exigente do banco em agua, e o unico cuja faixa termica NAO se sobrepoe a do paulistinha (18 a 24 C). Serve de prova, com fonte dos dois lados, de que 'comunitario' nao e criterio de convivencia. FishBase ja publica a especie como Petitella rhodostoma; o comercio brasileiro continua vendendo como Hemigrammus, e por isso o id do banco segue o nome do comercio, com o novo genero na sinonimia."
+    },
+    {
+      "id": "mikrogeophagus-ramirezi",
+      "entidade": "especie",
+      "nome_cientifico": "Mikrogeophagus ramirezi",
+      "sinonimos_cientificos": [
+        "Apistogramma ramirezi",
+        "Papiliochromis ramirezi",
+        "Microgeophagus ramirezi"
+      ],
+      "nomes_populares_br": [
+        "ramirezi",
+        "borboleta-boliviana",
+        "acara-borboleta"
+      ],
+      "familia": "Cichlidae",
+      "origem_geografica": null,
+      "porte_adulto_cm": 4.2,
+      "porte_medida": "SL",
+      "porte_sexo": "nao-sexado",
+      "expectativa_vida_anos": null,
+      "temperatura_C": {
+        "min": 27,
+        "max": 30
+      },
+      "temperatura_e_tolerancia": false,
+      "ph": {
         "min": 5.0,
         "max": 6.0
-       },
-       "referencia": "Seriously Fish: pH 5,0 a 6,0, dureza de 1 a 5 graus",
-       "url": "https://www.seriouslyfish.com/species/trigonostigma-heteromorpha",
-       "origem": "compendio-via-busca"
-      }
-     ],
-     "razao": "Intervalos encaixados, nao contraditorios: o compendio e mais estreito e mais acido. Campo de manutencao que NAO e de bem-estar direto, entao vale a intersecao conservadora da regra V17 do banco de produtos — a afirmacao que as duas fontes sustentam e 5,0 a 6,0.",
-     "tratamento": "intersecao-conservadora",
-     "valor_conservador": {
-      "min": 5.0,
-      "max": 6.0
-     },
-     "derivacao": "intersecao de [5,0; 7,0] com [5,0; 6,0]"
-    }
-   ],
-   "verificado_em": "2026-09-09",
-   "status_registro": "conflito",
-   "observacao": "Registro com as duas fontes concordando na frente minima de 60 cm, o que e raro no banco e por isso vale registrar. A dureza declarada pelo compendio, 1 a 5 graus, e bem mais mole que os 5 a 12 dGH da base cientifica; os dois numeros ficam, porque descrevem coisas diferentes (o que a especie tolera e onde ela fica bem)."
-  },
-  {
-   "id": "pterophyllum-scalare",
-   "entidade": "especie",
-   "nome_cientifico": "Pterophyllum scalare",
-   "sinonimos_cientificos": [],
-   "nomes_populares_br": [
-    "acara-bandeira",
-    "bandeira",
-    "anjo"
-   ],
-   "familia": null,
-   "origem_geografica": null,
-   "porte_adulto_cm": 15.0,
-   "porte_medida": "TL",
-   "porte_sexo": "nao-sexado",
-   "expectativa_vida_anos": null,
-   "temperatura_C": {
-    "min": 24,
-    "max": 30
-   },
-   "temperatura_e_tolerancia": false,
-   "ph": {
-    "min": 6.0,
-    "max": 8.0
-   },
-   "dureza_dgh": {
-    "min": 5,
-    "max": 13
-   },
-   "cardume_minimo": 5,
-   "comprimento_minimo_aquario_cm": 100,
-   "base_minima_cm": {
-    "comprimento": 100,
-    "largura": 40
-   },
-   "altura_minima_cm": 50,
-   "volume_minimo_declarado_L": null,
-   "nivel_natacao": null,
-   "comportamento": "semi-agressivo",
-   "convivencia": "grupo",
-   "alimentacao": "onivoro",
-   "dificuldade": null,
-   "exige_aquario_maduro": null,
-   "disponibilidade_br": null,
-   "fontes": [
-    {
-     "origem": "base-cientifica-via-busca",
-     "status": "base-cientifica-via-busca",
-     "referencia": "FishBase — ficha da especie: max 15 cm TL; 24 a 30 C; pH 6,0 a 8,0; dH 5 a 13; secao de aquario: manter em grupos de 5 ou mais individuos, casais em aquario pequeno so para reproducao, aquario minimo de 100 cm.",
-     "url": "https://www.fishbase.se/summary/Pterophyllum-scalare.html",
-     "verificado_em": "2026-09-09",
-     "campos": [
-      "porte_adulto_cm",
-      "porte_medida",
-      "porte_sexo",
-      "temperatura_C",
-      "ph",
-      "dureza_dgh",
-      "cardume_minimo",
-      "comprimento_minimo_aquario_cm",
-      "convivencia"
-     ],
-     "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, todos testados nesta data. A confirmar na ficha."
-    },
-    {
-     "origem": "compendio-via-busca",
-     "status": "compendio-via-busca",
-     "referencia": "Seriously Fish — ficha da especie: base minima de 100 x 40 x 50 cm, com altura de pelo menos 50 cm para o adulto, e e despropositado sugerir que o adulto caiba em aquario bem menor; ciclideo geralmente pacifico que briga com os proprios, melhor em grupo pequeno; bom peixe comunitario, mas come peixe pequeno como tetras; onivoro, o selvagem come sobretudo pequenos crustaceos e invertebrados aquaticos e o de criadouro aceita racao.",
-     "url": "https://www.seriouslyfish.com/species/pterophyllum-scalare/",
-     "verificado_em": "2026-09-09",
-     "campos": [
-      "base_minima_cm",
-      "altura_minima_cm",
-      "comportamento",
-      "alimentacao"
-     ],
-     "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED. A confirmar na ficha."
-    }
-   ],
-   "conflitos": [],
-   "verificado_em": "2026-09-09",
-   "status_registro": "completo",
-   "observacao": "Unico registro da leva com altura minima declarada, e ele existe no banco justamente por isso: e o peixe que prova que litro nao basta. Um aquario de 100 L em formato baixo nao atende um adulto que precisa de 50 cm de coluna. Tambem e o unico com incompatibilidade declarada pela fonte — come tetras pequenos —, o que barra de saida a combinacao com cardinal e neon que o varejo brasileiro vende junto."
-  },
-  {
-   "id": "puntigrus-tetrazona",
-   "entidade": "especie",
-   "nome_cientifico": "Puntigrus tetrazona",
-   "sinonimos_cientificos": [
-    "Puntius tetrazona",
-    "Systomus tetrazona",
-    "Barbus tetrazona"
-   ],
-   "nomes_populares_br": [
-    "barbo sumatra",
-    "sumatrano",
-    "tigre"
-   ],
-   "familia": null,
-   "origem_geografica": null,
-   "porte_adulto_cm": 7.0,
-   "porte_medida": "TL",
-   "porte_sexo": "nao-sexado",
-   "expectativa_vida_anos": null,
-   "temperatura_C": {
-    "min": 20,
-    "max": 26
-   },
-   "temperatura_e_tolerancia": false,
-   "ph": {
-    "min": 6.0,
-    "max": 8.0
-   },
-   "dureza_dgh": {
-    "min": 5,
-    "max": 19
-   },
-   "cardume_minimo": 8,
-   "comprimento_minimo_aquario_cm": 80,
-   "base_minima_cm": {
-    "comprimento": 80,
-    "largura": 30
-   },
-   "altura_minima_cm": null,
-   "volume_minimo_declarado_L": null,
-   "nivel_natacao": null,
-   "comportamento": "semi-agressivo",
-   "convivencia": "cardume",
-   "alimentacao": null,
-   "dificuldade": null,
-   "exige_aquario_maduro": null,
-   "disponibilidade_br": null,
-   "fontes": [
-    {
-     "origem": "base-cientifica-via-busca",
-     "status": "base-cientifica-via-busca",
-     "referencia": "FishBase — ficha da especie (barbo-de-sumatra): max 7,0 cm TL; 20 a 26 C; pH 6,0 a 8,0; dH 5 a 19; secao de aquario: manter em grupos de 5 ou mais individuos, NAO manter com peixes de nadadeiras longas, aquario minimo de 60 cm.",
-     "url": "https://www.fishbase.se/summary/Puntigrus-tetrazona",
-     "verificado_em": "2026-09-09",
-     "campos": [
-      "porte_adulto_cm",
-      "porte_medida",
-      "porte_sexo",
-      "temperatura_C",
-      "ph",
-      "dureza_dgh",
-      "convivencia"
-     ],
-     "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, todos testados nesta data. A confirmar na ficha."
-    },
-    {
-     "origem": "compendio-via-busca",
-     "status": "compendio-via-busca",
-     "referencia": "Seriously Fish — ficha da especie: base de 80 x 30 cm ou equivalente deve ser a menor a considerar; grupo de pelo menos 8 a 10 exemplares deve ser a compra minima, porque assim os peixes se distraem entre si em vez de perturbar os companheiros de aquario, e o conjunto fica mais natural.",
-     "url": "https://www.seriouslyfish.com/species/puntigrus-tetrazona/",
-     "verificado_em": "2026-09-09",
-     "campos": [
-      "comprimento_minimo_aquario_cm",
-      "base_minima_cm",
-      "cardume_minimo",
-      "comportamento"
-     ],
-     "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED. A confirmar na ficha."
-    }
-   ],
-   "conflitos": [
-    {
-     "campo": "cardume_minimo",
-     "valores": [
-      {
-       "valor": 5,
-       "referencia": "FishBase, secao de aquario: grupos de 5 ou mais individuos",
-       "url": "https://www.fishbase.se/summary/Puntigrus-tetrazona",
-       "origem": "base-cientifica-via-busca"
       },
-      {
-       "valor": 8,
-       "referencia": "Seriously Fish: grupo de pelo menos 8 a 10 exemplares como compra minima",
-       "url": "https://www.seriouslyfish.com/species/puntigrus-tetrazona/",
-       "origem": "compendio-via-busca"
-      }
-     ],
-     "razao": "Campo de manutencao e de bem-estar: manda o compendio e vence o maior. Aqui o numero maior nao e so conforto do peixe, e seguranca dos vizinhos: as duas fontes ligam grupo pequeno a agressao dirigida para fora do cardume.",
-     "tratamento": "publicar-os-dois",
-     "valor_conservador": 8,
-     "derivacao": null
-    }
-   ],
-   "verificado_em": "2026-09-09",
-   "status_registro": "conflito",
-   "observacao": "O registro que sustenta pagina de incompatibilidade com fonte, e nao com opiniao de forum: a base cientifica diz para nao manter com peixes de nadadeiras longas e o compendio explica o mecanismo (grupo pequeno vira mordida em vizinho). Isso barra a combinacao com betta e com acara-bandeira, as duas mais vendidas junto no Brasil."
-  },
-  {
-   "id": "carassius-auratus",
-   "entidade": "especie",
-   "nome_cientifico": "Carassius auratus",
-   "sinonimos_cientificos": [],
-   "nomes_populares_br": [
-    "kinguio",
-    "peixe dourado",
-    "japones"
-   ],
-   "familia": null,
-   "origem_geografica": null,
-   "porte_adulto_cm": 48.0,
-   "porte_medida": "TL",
-   "porte_sexo": "nao-sexado",
-   "expectativa_vida_anos": 30,
-   "temperatura_C": {
-    "min": 0,
-    "max": 41
-   },
-   "temperatura_e_tolerancia": true,
-   "ph": {
-    "min": 6.0,
-    "max": 8.0
-   },
-   "dureza_dgh": {
-    "min": 5,
-    "max": 19
-   },
-   "cardume_minimo": 5,
-   "comprimento_minimo_aquario_cm": 100,
-   "base_minima_cm": null,
-   "altura_minima_cm": null,
-   "volume_minimo_declarado_L": null,
-   "nivel_natacao": null,
-   "comportamento": null,
-   "convivencia": "grupo",
-   "alimentacao": null,
-   "dificuldade": null,
-   "exige_aquario_maduro": null,
-   "disponibilidade_br": null,
-   "fontes": [
-    {
-     "origem": "base-cientifica-via-busca",
-     "status": "base-cientifica-via-busca",
-     "referencia": "FishBase — ficha da especie: max 48,0 cm TL; faixa termica de 0 a 41 C; pH 6,0 a 8,0; dH 5 a 19; secao de aquario: manter em grupos de 5 ou mais individuos, aquario minimo de 100 cm.",
-     "url": "https://www.fishbase.se/summary/Carassius-auratus.html",
-     "verificado_em": "2026-09-09",
-     "campos": [
-      "porte_adulto_cm",
-      "porte_medida",
-      "porte_sexo",
-      "temperatura_C",
-      "ph",
-      "dureza_dgh",
-      "cardume_minimo",
-      "comprimento_minimo_aquario_cm",
-      "convivencia"
-     ],
-     "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, todos testados nesta data. A confirmar na ficha."
-    },
-    {
-     "origem": "compendio-via-busca",
-     "status": "compendio-via-busca",
-     "referencia": "Seriously Fish — artigo 'Stunted growth means stunted lives': mantido de forma correta, C. auratus chega a 30 cm e vive 30 ou 40 anos; um kinguio mantido em aquario de 30 x 20 cm pode sobreviver alguns anos e continuar com poucos centimetros, e isso e nanismo severo, nao tamanho natural.",
-     "url": "https://www.seriouslyfish.com/stunted-growth-means-stunted-lives/",
-     "verificado_em": "2026-09-09",
-     "campos": [
-      "expectativa_vida_anos"
-     ],
-     "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED. A confirmar na ficha."
-    }
-   ],
-   "conflitos": [
-    {
-     "campo": "porte_adulto_cm",
-     "valores": [
-      {
-       "valor": 48.0,
-       "referencia": "FishBase: max 48,0 cm TL",
-       "url": "https://www.fishbase.se/summary/Carassius-auratus.html",
-       "origem": "base-cientifica-via-busca"
+      "dureza_dgh": {
+        "min": 5,
+        "max": 12
       },
-      {
-       "valor": 30.0,
-       "referencia": "Seriously Fish: mantido de forma correta chega a 30 cm",
-       "url": "https://www.seriouslyfish.com/stunted-growth-means-stunted-lives/",
-       "origem": "compendio-via-busca"
-      }
-     ],
-     "razao": "Nao e a mesma grandeza: 48 cm e o maximo registrado da especie e 30 cm e o que se espera em aquario bem mantido. Porte e campo de BIOLOGIA, entao pela tabela dominio_por_campo fica o valor da base cientifica, e o numero do compendio sai publicado do lado porque e ele que descreve o que o leitor vai ter em casa.",
-     "tratamento": "publicar-os-dois",
-     "valor_conservador": 48.0,
-     "derivacao": null
-    }
-   ],
-   "verificado_em": "2026-09-09",
-   "status_registro": "conflito",
-   "observacao": "Registro deliberadamente incomodo. A faixa de 0 a 41 C e TOLERANCIA da especie, nao recomendacao de manutencao, e por isso temperatura_e_tolerancia e true: a C5 esta proibida de dimensionar aquecedor a partir dela (regra E13). O kinguio esta no banco porque e o peixe mais vendido em pote no Brasil e o unico da leva cuja fonte de manutencao fala explicitamente de nanismo por aquario pequeno — 100 cm de frente e 30 a 40 anos de vida sao os dois numeros que a ficha precisa publicar de cara."
-  },
-  {
-   "id": "otocinclus-vittatus",
-   "entidade": "especie",
-   "nome_cientifico": "Otocinclus vittatus",
-   "sinonimos_cientificos": [],
-   "nomes_populares_br": [
-    "otocinclo",
-    "oto",
-    "limpa-vidro"
-   ],
-   "familia": null,
-   "origem_geografica": null,
-   "porte_adulto_cm": 3.3,
-   "porte_medida": "TL",
-   "porte_sexo": "nao-sexado",
-   "expectativa_vida_anos": null,
-   "temperatura_C": {
-    "min": 20,
-    "max": 25
-   },
-   "temperatura_e_tolerancia": false,
-   "ph": {
-    "min": 6.0,
-    "max": 7.5
-   },
-   "dureza_dgh": {
-    "min": 2,
-    "max": 18
-   },
-   "cardume_minimo": 6,
-   "comprimento_minimo_aquario_cm": 45,
-   "base_minima_cm": null,
-   "altura_minima_cm": null,
-   "volume_minimo_declarado_L": null,
-   "nivel_natacao": "fundo",
-   "comportamento": null,
-   "convivencia": "grupo",
-   "alimentacao": "herbivoro",
-   "dificuldade": null,
-   "exige_aquario_maduro": true,
-   "disponibilidade_br": null,
-   "fontes": [
-    {
-     "origem": "base-cientifica-via-busca",
-     "status": "base-cientifica-via-busca",
-     "referencia": "FishBase — ficha da especie: max 3,3 cm TL; 20 a 25 C; pH 6,0 a 7,5; dH 2 a 18.",
-     "url": "https://www.fishbase.se/summary/Otocinclus-vittatus",
-     "verificado_em": "2026-09-09",
-     "campos": [
-      "porte_adulto_cm",
-      "porte_medida",
-      "porte_sexo",
-      "temperatura_C",
-      "ph",
-      "dureza_dgh"
-     ],
-     "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, todos testados nesta data. A confirmar na ficha."
+      "cardume_minimo": null,
+      "comprimento_minimo_aquario_cm": 60,
+      "base_minima_cm": null,
+      "altura_minima_cm": null,
+      "volume_minimo_declarado_L": null,
+      "nivel_natacao": null,
+      "comportamento": "territorial",
+      "convivencia": "casal",
+      "alimentacao": null,
+      "dificuldade": null,
+      "exige_aquario_maduro": null,
+      "disponibilidade_br": null,
+      "fontes": [
+        {
+          "origem": "base-cientifica-via-busca",
+          "status": "base-cientifica-via-busca",
+          "referencia": "FishBase — ficha da especie: familia Cichlidae; max 4,2 cm SL; pH 5,0 a 6,0; dH 5 a 12; 27 a 30 C; secao de aquario: aquario minimo de 60 cm, aos pares.",
+          "url": "https://www.fishbase.se/summary/Mikrogeophagus-ramirezi",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "familia",
+            "porte_adulto_cm",
+            "porte_medida",
+            "porte_sexo",
+            "temperatura_C",
+            "ph",
+            "dureza_dgh",
+            "comprimento_minimo_aquario_cm",
+            "convivencia"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
+        },
+        {
+          "origem": "compendio-via-busca",
+          "status": "compendio-via-busca",
+          "referencia": "Seriously Fish — ficha da especie: ao atingir a maturidade sexual os ramirezi formam casais, e cada casal passa a defender um territorio de cerca de meio metro de diametro.",
+          "url": "https://www.seriouslyfish.com/species/mikrogeophagus-ramirezi/",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "comportamento",
+            "convivencia"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED, reconfirmado nesta data com WebFetch. A confirmar na ficha."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "completo",
+      "observacao": "Faixa de 27 a 30 C com pH de 5,0 a 6,0: e o registro que mais restringe o aquario comunitario brasileiro, porque quase nenhum vizinho do banco aceita as duas exigencias ao mesmo tempo. E o unico ciclideo pequeno da leva, e o territorio declarado pelo compendio (cerca de meio metro por casal) e o dado que transforma 'quantos cabem' em conta de area, nao de litro."
     },
     {
-     "origem": "compendio-via-busca",
-     "status": "compendio-via-busca",
-     "referencia": "Seriously Fish — ficha do genero Otocinclus (pagina de O. macrospilus): sao gregarios por natureza e o ideal e manter em grupo de 6 exemplares ou mais; o menor aquario a considerar seguro para o genero tem pelo menos 45 cm de comprimento, por causa das arrancadas de nado; a unica atividade diurna e raspar alga de folha, tronco, rocha e vidro, e sem planta e superficie em abundancia o peixe se sente exposto, o que traz doenca e morte precoce; muitos aquaristas relatam menos problema quando os peixes entram em aquario maduro e plantado, com qualidade de agua estavel e microrganismos e algas em quantidade.",
-     "url": "https://www.seriouslyfish.com/species/otocinclus-macrospilus/",
-     "verificado_em": "2026-09-09",
-     "campos": [
-      "cardume_minimo",
-      "comprimento_minimo_aquario_cm",
-      "convivencia",
-      "alimentacao",
-      "exige_aquario_maduro",
-      "nivel_natacao"
-     ],
-     "observacao": "ATENCAO: a orientacao de manutencao e do GENERO, colhida na ficha de O. macrospilus; a busca restrita ao dominio nao encontrou ficha propria de O. vittatus no compendio. Vale para o grupo e esta declarada como tal, nao como afirmacao sobre a especie. Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED. A confirmar na ficha."
+      "id": "ancistrus-cirrhosus",
+      "entidade": "especie",
+      "nome_cientifico": "Ancistrus cirrhosus",
+      "sinonimos_cientificos": [],
+      "nomes_populares_br": [
+        "cascudo-ancistrus",
+        "ancistrus",
+        "cascudo-barbudo"
+      ],
+      "familia": "Loricariidae",
+      "origem_geografica": "America do Sul: bacia do rio Parana",
+      "porte_adulto_cm": 8.9,
+      "porte_medida": "SL",
+      "porte_sexo": "nao-sexado",
+      "expectativa_vida_anos": null,
+      "temperatura_C": null,
+      "temperatura_e_tolerancia": false,
+      "ph": null,
+      "dureza_dgh": null,
+      "cardume_minimo": null,
+      "comprimento_minimo_aquario_cm": 60,
+      "base_minima_cm": {
+        "comprimento": 60,
+        "largura": 30
+      },
+      "altura_minima_cm": null,
+      "volume_minimo_declarado_L": null,
+      "nivel_natacao": null,
+      "comportamento": null,
+      "convivencia": "casal",
+      "alimentacao": null,
+      "dificuldade": null,
+      "exige_aquario_maduro": null,
+      "disponibilidade_br": null,
+      "fontes": [
+        {
+          "origem": "base-cientifica-via-busca",
+          "status": "base-cientifica-via-busca",
+          "referencia": "FishBase — ficha da especie: familia Loricariidae (armored catfishes); max 8,9 cm SL macho/nao sexado; America do Sul, bacia do rio Parana; habita corregos, de agua parada muito turva sobre argila a agua corrente limpa sobre cascalho; comedor de algas.",
+          "url": "https://www.fishbase.se/summary/Ancistrus-cirrhosus",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "familia",
+            "origem_geografica",
+            "porte_adulto_cm",
+            "porte_medida",
+            "porte_sexo"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
+        },
+        {
+          "origem": "compendio-via-busca",
+          "status": "compendio-via-busca",
+          "referencia": "Seriously Fish — ficha de Ancistrus sp. '3' (cascudo-barbudo comum do comercio, tratado como cf. cirrhosus): um aquario com base de 60 x 30 cm ou equivalente basta para um exemplar ou um casal reprodutor, e um grupo exige mais espaco; comparado a outros do genero e pouco exigente, mas prefere agua bem oxigenada.",
+          "url": "https://www.seriouslyfish.com/species/ancistrus-cf-cirrhosus/",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "comprimento_minimo_aquario_cm",
+            "base_minima_cm",
+            "convivencia"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED, reconfirmado nesta data com WebFetch. A confirmar na ficha."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "parcial",
+      "observacao": "Falta temperatura_C, campo obrigatorio: nenhuma das buscas restritas de 09/09/2026 devolveu faixa termica atribuida para esta especie, e as faixas das especies irmas do genero (A. triradiatus, A. ranunculus) NAO foram copiadas, porque parametro de agua de especie vizinha e chute com cara de dado. Sem temperatura o registro nao passa no portao de pagina nem alimenta a C5. O segundo limite e taxonomico e maior: o cascudo vendido no Brasil como 'ancistrus' quase nunca e A. cirrhosus descrito — o compendio publica a ficha do peixe do comercio como Ancistrus sp. '3', especie ainda nao descrita, apenas comparada a cirrhosus. O banco guarda o nome que o comercio usa e diz isto aqui em vez de fingir identificacao."
+    },
+    {
+      "id": "gymnocorymbus-ternetzi",
+      "entidade": "especie",
+      "nome_cientifico": "Gymnocorymbus ternetzi",
+      "sinonimos_cientificos": [],
+      "nomes_populares_br": [
+        "tetra-negro",
+        "viuva-negra",
+        "tetra-preto"
+      ],
+      "familia": "Acestrorhamphidae",
+      "origem_geografica": null,
+      "porte_adulto_cm": 7.5,
+      "porte_medida": "SL",
+      "porte_sexo": "nao-sexado",
+      "expectativa_vida_anos": null,
+      "temperatura_C": {
+        "min": 20,
+        "max": 26
+      },
+      "temperatura_e_tolerancia": false,
+      "ph": {
+        "min": 6.0,
+        "max": 8.0
+      },
+      "dureza_dgh": {
+        "min": 5,
+        "max": 19
+      },
+      "cardume_minimo": null,
+      "comprimento_minimo_aquario_cm": 75,
+      "base_minima_cm": {
+        "comprimento": 75,
+        "largura": 30
+      },
+      "altura_minima_cm": null,
+      "volume_minimo_declarado_L": null,
+      "nivel_natacao": null,
+      "comportamento": "pacifico",
+      "convivencia": "cardume",
+      "alimentacao": null,
+      "dificuldade": null,
+      "exige_aquario_maduro": null,
+      "disponibilidade_br": null,
+      "fontes": [
+        {
+          "origem": "base-cientifica-via-busca",
+          "status": "base-cientifica-via-busca",
+          "referencia": "FishBase — ficha da especie: familia Acestrorhamphidae (tetras americanos); max 7,5 cm SL; pH 6,0 a 8,0; dH 5 a 19; 20 a 26 C (subtropical); peixe de cardume pacifico.",
+          "url": "https://www.fishbase.se/summary/4682",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "familia",
+            "porte_adulto_cm",
+            "porte_medida",
+            "porte_sexo",
+            "temperatura_C",
+            "ph",
+            "dureza_dgh",
+            "comportamento",
+            "convivencia"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
+        },
+        {
+          "origem": "compendio-via-busca",
+          "status": "compendio-via-busca",
+          "referencia": "Seriously Fish — ficha da especie: um grupo pode ser mantido em aquario padrao de 75 x 30 cm (70 litros); especie ativa, que quer bastante espaco aberto para nadar mais areas de plantio denso e vegetacao flutuante para amenizar a luz.",
+          "url": "https://www.seriouslyfish.com/species/gymnocorymbus-ternetzi/",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "comprimento_minimo_aquario_cm",
+            "base_minima_cm"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED, reconfirmado nesta data com WebFetch. A confirmar na ficha."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "completo",
+      "observacao": "Cardume sem numero: nenhuma das duas fontes declara quantos individuos formam o cardume minimo, entao cardume_minimo fica null e a convivencia entra sustentada pela frase de cardume da base. E o registro mais frio do banco depois do paulistinha (20 a 26 C) e um dos poucos que dispensa aquecedor em boa parte do Brasil."
+    },
+    {
+      "id": "corydoras-panda",
+      "entidade": "especie",
+      "nome_cientifico": "Corydoras panda",
+      "sinonimos_cientificos": [
+        "Hoplisoma panda"
+      ],
+      "nomes_populares_br": [
+        "coridora-panda",
+        "cory-panda"
+      ],
+      "familia": "Callichthyidae",
+      "origem_geografica": null,
+      "porte_adulto_cm": 3.8,
+      "porte_medida": "SL",
+      "porte_sexo": "nao-sexado",
+      "expectativa_vida_anos": null,
+      "temperatura_C": {
+        "min": 20,
+        "max": 25
+      },
+      "temperatura_e_tolerancia": false,
+      "ph": {
+        "min": 6.0,
+        "max": 8.0
+      },
+      "dureza_dgh": {
+        "min": 2,
+        "max": 25
+      },
+      "cardume_minimo": 6,
+      "comprimento_minimo_aquario_cm": 45,
+      "base_minima_cm": {
+        "comprimento": 45,
+        "largura": 30
+      },
+      "altura_minima_cm": null,
+      "volume_minimo_declarado_L": null,
+      "nivel_natacao": null,
+      "comportamento": null,
+      "convivencia": "cardume",
+      "alimentacao": null,
+      "dificuldade": null,
+      "exige_aquario_maduro": null,
+      "disponibilidade_br": null,
+      "fontes": [
+        {
+          "origem": "base-cientifica-via-busca",
+          "status": "base-cientifica-via-busca",
+          "referencia": "FishBase — ficha da especie (hoje publicada como Hoplisoma panda): familia Callichthyidae (callichthyid armored catfishes); max 3,8 cm SL; pH 6,0 a 8,0; dH 2 a 25; 20 a 25 C; alto Amazonas.",
+          "url": "https://www.fishbase.se/summary/corydoras-panda.html",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "familia",
+            "porte_adulto_cm",
+            "porte_medida",
+            "porte_sexo",
+            "temperatura_C",
+            "ph",
+            "dureza_dgh"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
+        },
+        {
+          "origem": "compendio-via-busca",
+          "status": "compendio-via-busca",
+          "referencia": "Seriously Fish — ficha da especie: um aquario de 45 x 30 x 30 cm ja atende um grupo pequeno; coridoras devem ser mantidas em grupo, e um grupo de pelo menos SEIS e o melhor; temperatura em torno de 24 C esta bem.",
+          "url": "https://www.seriouslyfish.com/species/corydoras-panda",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "comprimento_minimo_aquario_cm",
+            "base_minima_cm",
+            "cardume_minimo",
+            "convivencia"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED, reconfirmado nesta data com WebFetch. A confirmar na ficha."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "completo",
+      "observacao": "E o menor requisito de frente do banco inteiro (45 cm) e por isso e o registro que sustenta a pagina de aquario de 30 a 40 litros sem mentir. Repete, em outra especie, a licao da coridora bronze: o que limita peixe de fundo e a AREA da base, nao o volume — 45 x 30 cm espalhados servem, os mesmos litros em coluna alta nao. Faixa termica de 20 a 25 C e mais fria que a do neon e a do cardinal, o que desaconselha o trio que a loja vende junto."
+    },
+    {
+      "id": "chromobotia-macracanthus",
+      "entidade": "especie",
+      "nome_cientifico": "Chromobotia macracanthus",
+      "sinonimos_cientificos": [
+        "Botia macracanthus",
+        "Botia macracantha"
+      ],
+      "nomes_populares_br": [
+        "botia-palhaco",
+        "botia"
+      ],
+      "familia": "Botiidae",
+      "origem_geografica": null,
+      "porte_adulto_cm": 30.5,
+      "porte_medida": "TL",
+      "porte_sexo": "nao-sexado",
+      "expectativa_vida_anos": null,
+      "temperatura_C": {
+        "min": 25,
+        "max": 30
+      },
+      "temperatura_e_tolerancia": false,
+      "ph": {
+        "min": 5.0,
+        "max": 8.0
+      },
+      "dureza_dgh": {
+        "min": 5,
+        "max": 12
+      },
+      "cardume_minimo": 5,
+      "comprimento_minimo_aquario_cm": 180,
+      "base_minima_cm": {
+        "comprimento": 180,
+        "largura": 60
+      },
+      "altura_minima_cm": null,
+      "volume_minimo_declarado_L": null,
+      "nivel_natacao": null,
+      "comportamento": null,
+      "convivencia": "cardume",
+      "alimentacao": null,
+      "dificuldade": null,
+      "exige_aquario_maduro": null,
+      "disponibilidade_br": null,
+      "fontes": [
+        {
+          "origem": "base-cientifica-via-busca",
+          "status": "base-cientifica-via-busca",
+          "referencia": "FishBase — ficha da especie: familia Botiidae (pointface loaches); max 30,5 cm TL macho/nao sexado; pH 5,0 a 8,0; dH 5 a 12; 25 a 30 C; secao de aquario: em grupos de 5 ou mais individuos, aquario minimo de 150 cm.",
+          "url": "https://www.fishbase.se/summary/10897",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "familia",
+            "porte_adulto_cm",
+            "porte_medida",
+            "porte_sexo",
+            "temperatura_C",
+            "ph",
+            "dureza_dgh",
+            "cardume_minimo",
+            "comprimento_minimo_aquario_cm",
+            "convivencia"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
+        },
+        {
+          "origem": "compendio-via-busca",
+          "status": "compendio-via-busca",
+          "referencia": "Seriously Fish — ficha da especie: um aquario com base de 180 x 60 cm ou equivalente e o minimo absoluto para abrigar um grupo (volume citado de 648 litros).",
+          "url": "https://www.seriouslyfish.com/species/chromobotia-macracanthus/",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "comprimento_minimo_aquario_cm",
+            "base_minima_cm"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED, reconfirmado nesta data com WebFetch. A confirmar na ficha."
+        }
+      ],
+      "conflitos": [
+        {
+          "campo": "comprimento_minimo_aquario_cm",
+          "valores": [
+            {
+              "valor": 150,
+              "referencia": "FishBase, secao de aquario: aquario minimo de 150 cm",
+              "url": "https://www.fishbase.se/summary/10897",
+              "origem": "base-cientifica-via-busca"
+            },
+            {
+              "valor": 180,
+              "referencia": "Seriously Fish: base de 180 x 60 cm e o minimo absoluto",
+              "url": "https://www.seriouslyfish.com/species/chromobotia-macracanthus/",
+              "origem": "compendio-via-busca"
+            }
+          ],
+          "razao": "Campo de bem-estar: fica o maior, 180 cm. A diferenca entre os dois numeros, na pratica, e de 648 para cerca de 450 litros — nenhum dos dois cabe na sala de quem comprou cinco filhotes de 4 cm.",
+          "tratamento": "publicar-os-dois",
+          "valor_conservador": 180,
+          "derivacao": null
+        }
+      ],
+      "verificado_em": "2026-09-09",
+      "status_registro": "conflito",
+      "observacao": "O registro mais incomodo desta leva, e entrou por isso. O botia-palhaco e vendido como filhote de 4 cm em loja brasileira, chega a 30,5 cm, e as duas fontes so divergem sobre se o minimo e 150 ou 180 cm de frente — nenhuma admite aquario de sala. Junto com o kinguio, e o par que sustenta a pagina 'peixes que a loja vende e o aquario nao comporta'."
+    },
+    {
+      "id": "hemigrammus-erythrozonus",
+      "entidade": "especie",
+      "nome_cientifico": "Hemigrammus erythrozonus",
+      "sinonimos_cientificos": [],
+      "nomes_populares_br": [
+        "tetra-brilhante",
+        "glowlight",
+        "tetra-luminoso"
+      ],
+      "familia": "Acestrorhamphidae",
+      "origem_geografica": null,
+      "porte_adulto_cm": 3.3,
+      "porte_medida": "TL",
+      "porte_sexo": "nao-sexado",
+      "expectativa_vida_anos": null,
+      "temperatura_C": {
+        "min": 24,
+        "max": 28
+      },
+      "temperatura_e_tolerancia": false,
+      "ph": {
+        "min": 5.5,
+        "max": 7.5
+      },
+      "dureza_dgh": {
+        "min": 5,
+        "max": 12
+      },
+      "cardume_minimo": 6,
+      "comprimento_minimo_aquario_cm": 60,
+      "base_minima_cm": {
+        "comprimento": 60,
+        "largura": 37.5
+      },
+      "altura_minima_cm": null,
+      "volume_minimo_declarado_L": null,
+      "nivel_natacao": null,
+      "comportamento": "pacifico",
+      "convivencia": "cardume",
+      "alimentacao": null,
+      "dificuldade": null,
+      "exige_aquario_maduro": null,
+      "disponibilidade_br": null,
+      "fontes": [
+        {
+          "origem": "base-cientifica-via-busca",
+          "status": "base-cientifica-via-busca",
+          "referencia": "FishBase — ficha da especie: familia Acestrorhamphidae (tetras americanos); max 3,3 cm TL; pH 6,0 a 8,0; dH 5 a 12; 24 a 28 C; secao de aquario: em grupos de 5 ou mais individuos, aquario minimo de 60 cm.",
+          "url": "https://www.fishbase.se/summary/10642",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "familia",
+            "porte_adulto_cm",
+            "porte_medida",
+            "porte_sexo",
+            "temperatura_C",
+            "dureza_dgh",
+            "cardume_minimo",
+            "comprimento_minimo_aquario_cm",
+            "convivencia"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
+        },
+        {
+          "origem": "compendio-via-busca",
+          "status": "compendio-via-busca",
+          "referencia": "Seriously Fish — ficha da especie: um aquario de 60 x 37,5 x 30 cm (70 litros) abriga confortavelmente um grupo pequeno; comprar sempre grupo de pelo menos 6, de preferencia 10 ou mais, porque e especie de cardume e vai muito melhor entre os seus; pH 5,5 a 7,5, mais colorida em agua acida; e um dos melhores tetras para o aquario comunitario geral: ativa, colorida e pacifica.",
+          "url": "https://www.seriouslyfish.com/species/hemigrammus-erythrozonus/",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "comprimento_minimo_aquario_cm",
+            "base_minima_cm",
+            "cardume_minimo",
+            "ph",
+            "comportamento",
+            "convivencia"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED, reconfirmado nesta data com WebFetch. A confirmar na ficha."
+        }
+      ],
+      "conflitos": [
+        {
+          "campo": "cardume_minimo",
+          "valores": [
+            {
+              "valor": 5,
+              "referencia": "FishBase, secao de aquario: grupos de 5 ou mais",
+              "url": "https://www.fishbase.se/summary/10642",
+              "origem": "base-cientifica-via-busca"
+            },
+            {
+              "valor": 6,
+              "referencia": "Seriously Fish: pelo menos 6, de preferencia 10 ou mais",
+              "url": "https://www.seriouslyfish.com/species/hemigrammus-erythrozonus/",
+              "origem": "compendio-via-busca"
+            }
+          ],
+          "razao": "Campo de bem-estar com divergencia de um individuo: fica o maior, 6.",
+          "tratamento": "publicar-os-dois",
+          "valor_conservador": 6,
+          "derivacao": null
+        },
+        {
+          "campo": "ph",
+          "valores": [
+            {
+              "valor": {
+                "min": 6.0,
+                "max": 8.0
+              },
+              "referencia": "FishBase: pH 6,0 a 8,0",
+              "url": "https://www.fishbase.se/summary/10642",
+              "origem": "base-cientifica-via-busca"
+            },
+            {
+              "valor": {
+                "min": 5.5,
+                "max": 7.5
+              },
+              "referencia": "Seriously Fish: pH 5,5 a 7,5, mais colorida em agua acida",
+              "url": "https://www.seriouslyfish.com/species/hemigrammus-erythrozonus/",
+              "origem": "compendio-via-busca"
+            }
+          ],
+          "razao": "Faixas deslocadas em meio ponto de pH nas duas pontas. Campo de manutencao: manda o compendio.",
+          "tratamento": "publicar-os-dois",
+          "valor_conservador": {
+            "min": 5.5,
+            "max": 7.5
+          },
+          "derivacao": null
+        }
+      ],
+      "verificado_em": "2026-09-09",
+      "status_registro": "conflito",
+      "observacao": "As duas fontes concordam na frente minima (60 cm) e divergem em um individuo de cardume: e o registro mais bem sustentado da leva e o melhor candidato a exemplo de pagina de volume pequeno. Faixa termica de 24 a 28 C se sobrepoe a do neon e a do cardinal, o que o torna um dos poucos trios de cardume defensavel com fonte."
+    },
+    {
+      "id": "astronotus-ocellatus",
+      "entidade": "especie",
+      "nome_cientifico": "Astronotus ocellatus",
+      "sinonimos_cientificos": [
+        "Lobotes ocellatus",
+        "Astronotus orbiculatus"
+      ],
+      "nomes_populares_br": [
+        "oscar",
+        "apaiari",
+        "acara-acu"
+      ],
+      "familia": "Cichlidae",
+      "origem_geografica": null,
+      "porte_adulto_cm": 45.7,
+      "porte_medida": "TL",
+      "porte_sexo": "nao-sexado",
+      "expectativa_vida_anos": 20,
+      "temperatura_C": {
+        "min": 22,
+        "max": 25
+      },
+      "temperatura_e_tolerancia": false,
+      "ph": {
+        "min": 6.0,
+        "max": 8.0
+      },
+      "dureza_dgh": {
+        "min": 5,
+        "max": 19
+      },
+      "cardume_minimo": null,
+      "comprimento_minimo_aquario_cm": 150,
+      "base_minima_cm": {
+        "comprimento": 150,
+        "largura": 60
+      },
+      "altura_minima_cm": null,
+      "volume_minimo_declarado_L": null,
+      "nivel_natacao": null,
+      "comportamento": null,
+      "convivencia": "solitario",
+      "alimentacao": null,
+      "dificuldade": null,
+      "exige_aquario_maduro": null,
+      "disponibilidade_br": null,
+      "fontes": [
+        {
+          "origem": "base-cientifica-via-busca",
+          "status": "base-cientifica-via-busca",
+          "referencia": "FishBase — ficha da especie: familia Cichlidae; max 45,7 cm TL; pH 6,0 a 8,0; dH 5 a 19; 22 a 25 C; habita aguas rasas e paradas de fundo de lama ou areia.",
+          "url": "https://www.fishbase.se/summary/Astronotus-ocellatus.html",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "familia",
+            "porte_adulto_cm",
+            "porte_medida",
+            "porte_sexo",
+            "temperatura_C",
+            "ph",
+            "dureza_dgh"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
+        },
+        {
+          "origem": "compendio-via-busca",
+          "status": "compendio-via-busca",
+          "referencia": "Seriously Fish — ficha da especie: um aquario com base de 150 x 60 cm e apenas grande o bastante para abrigar UM adulto, e um casal ou grupo exige mais espaco; e peixe de aquario popular, mas o tamanho adulto e a expectativa de vida tipica de 10 a 20 anos tem de ser considerados antes da compra.",
+          "url": "https://www.seriouslyfish.com/species/astronotus-ocellatus/",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "comprimento_minimo_aquario_cm",
+            "base_minima_cm",
+            "convivencia",
+            "expectativa_vida_anos"
+          ],
+          "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED, reconfirmado nesta data com WebFetch. A confirmar na ficha."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "completo",
+      "observacao": "Convivencia 'solitario' aqui significa exatamente o que a fonte declara: NA BASE MINIMA DECLARADA cabe um adulto, e casal ou grupo exige mais que 150 x 60 cm. Nao e afirmacao sobre a sociabilidade da especie. Com 45,7 cm e 10 a 20 anos de vida, o oscar e o teto de porte do banco e o registro que fecha a faixa: de 2,2 cm (neon) a 45,7 cm, com frente minima de 45 a 180 cm."
     }
-   ],
-   "conflitos": [],
-   "verificado_em": "2026-09-09",
-   "status_registro": "completo",
-   "observacao": "Unico registro do banco com exige_aquario_maduro true, e e o campo que mais evita morte de peixe: o otocinclo entra em aquario ja rodado, com alga, e nao na semana da montagem. Menor frente minima da leva, 45 cm, o que faz dele uma das poucas opcoes reais para aquario pequeno — mas a manutencao vem do genero, nao da especie, e a ficha tem de dizer isso. Quase todo otocinclo do comercio e capturado na natureza, o que explica a fragilidade na chegada."
-  }
- ],
- "atualizado_em": "2026-09-09"
+  ],
+  "atualizado_em": "2026-09-09",
+  "nota_taxonomia": "Colhido em 09/09/2026, a taxonomia das fichas esta em revisao e o banco publica o que a fonte publicou, sem uniformizar: os Paracheirodon, o Gymnocorymbus ternetzi e o Hemigrammus erythrozonus vieram como Acestrorhamphidae (tetras americanos), enquanto o Hyphessobrycon eques e o Hemigrammus rhodostomus vieram como Characidae na mesma base e no mesmo dia. Tres registros ja aparecem na fonte sob genero novo — Corydoras aeneus como Osteogaster aenea, Corydoras panda como Hoplisoma panda e Hemigrammus rhodostomus como Petitella rhodostoma. O id do banco segue o nome com que o comercio brasileiro vende, e o nome novo entra em sinonimos_cientificos: e assim que a busca do leitor casa com a ficha. Consequencia pratica: este banco envelhece por revisao taxonomica, nao por preco, e por isso o prazo de revalidacao dele e de 365 dias e nao dos 180 do banco de produtos."
 }

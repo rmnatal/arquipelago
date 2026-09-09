@@ -2253,3 +2253,177 @@ tabela de exemplos pré-renderizada, resposta antes da explicação, JSON-LD e p
 leva 1 sugeriu (`atman-hf-0400`, `atman-hf-0600`, `sunsun-hw-603b`, `atman-at-100`, `atman-at-150`,
 `atman-at-200`, `atman-hf-0800`, `atman-at-3336`, `atman-at-300`, `sunsun-hw-303b`). Nada mudou
 nisso hoje: espécie não tem link de afiliado, por desenho.
+
+---
+
+## 09/09/2026 — Bloco 4b leva 3: o banco de espécies vai a 25, e uma regra nova impede que espelho conte como conferência
+
+**Disparo automático (4ª execução do dia). Sessão SEM ferramenta de memória:** o estado veio de
+`ESTADO.md`, `REGISTRO.md` e `README.md`, e o que iria para a memória está aqui.
+
+### Ponto de partida medido
+
+`git fetch origin main` primeiro. `main` em `14e5df2` (leva 4b(c), 12 espécies), branch
+`claude/lucid-carson-eze5qq` no mesmo commit, nenhum PR aberto, nada pendente de merge. O próximo
+passo escrito pela execução anterior era **4b leva 3, item 1: ampliar o banco de espécies para 25 a
+30 registros, fechar a família dos 12 e a segunda fonte do guppy**. Foi o que esta execução fez —
+bloco único, sem adiantar produto nem retrofit.
+
+### Entregue: 12 → 25 espécies, e família em todos os 25
+
+**Treze registros novos**, escolhidos para cobrir o que faltava de porte e de frente mínima, não
+para engordar contagem:
+
+| espécie | porte | frente mínima | por que entrou |
+|---|---|---|---|
+| espada (*Xiphophorus hellerii*) | 16,0 cm TL ♀ | **120 cm** | o irmão do platy que pede o dobro de aquário |
+| molinésia (*Poecilia sphenops*) | 12,0 cm SL ♀ | — | exige água DURA e alcalina (pH 7,5–8,2) |
+| colisa (*Trichogaster lalius*) | 9,5 cm TL | 60 cm | os 60 cm são para UM CASAL, não para um macho |
+| tricogaster (*Trichopodus trichopterus*) | 15,0 cm SL | 100 cm | o gurami grande do lote |
+| mato-grosso (*Hyphessobrycon eques*) | 4,0 cm SL | **80 cm** | a própria base científica o classifica como agressivo |
+| rodóstomo (*Hemigrammus rhodostomus*) | 5,0 cm TL | 90 cm | cardume de 10 e 26,5–29 °C: o mais exigente do banco |
+| ramirezi (*Mikrogeophagus ramirezi*) | 4,2 cm SL | 60 cm | 27–30 °C com pH 5,0–6,0; território por casal |
+| ancistrus (*Ancistrus cirrhosus*) | 8,9 cm SL | 60 cm | o cascudo que todo mundo compra sem saber o porte |
+| tetra-negro (*Gymnocorymbus ternetzi*) | 7,5 cm SL | 75 cm | 20–26 °C, dispensa aquecedor em boa parte do BR |
+| coridora-panda (*Corydoras panda*) | 3,8 cm SL | **45 cm** | o menor requisito do banco: sustenta a página de 30–40 L |
+| botia-palhaço (*Chromobotia macracanthus*) | 30,5 cm TL | **180 cm** | vendido como filhote de 4 cm |
+| tetra-brilhante (*Hemigrammus erythrozonus*) | 3,3 cm TL | 60 cm | o registro mais bem sustentado da leva |
+| oscar (*Astronotus ocellatus*) | 45,7 cm TL | **150 cm** | 10 a 20 anos de vida; teto de porte do banco |
+
+**Faixa coberta agora: 2,2 cm (neon) a 48 cm (kinguio), com 45,7 cm de porte declarado por fonte de
+manutenção no oscar. Frentes mínimas declaradas: 45, 60, 75, 80, 90, 100, 120, 150 e 180 cm — nove
+degraus.** Era isso que faltava para a malha de páginas de volume não repetir número: cada degrau é
+uma página de "aquário de X" com espécie real por trás.
+
+**Família fechada nos 12 registros da leva 1**, o campo que ficou `null` inteiro na leva passada por
+falta de atribuição. Agora os 25 têm família com fonte e url.
+
+### A regra nova, e o defeito que ela pegou em flagrante
+
+Fechar a família do guppy trouxe a mesma ficha da FishBase pelo **outro domínio** — a leva 1 citou
+`fishbase.org`, a coleta de hoje devolveu `fishbase.se`. Duas urls distintas. E a regra E14, escrita
+na leva 1, dizia exatamente isto: *"completo exige pelo menos duas fontes com url distinta"*.
+
+**O guppy teria passado de `parcial` a conferido sem ninguém ter conferido nada.** É o pior tipo de
+defeito de dado: silencioso, plausível e auto-infligido por uma regra bem-intencionada.
+
+Daí a **regra E15: espelho não confere espelho.** Antes de contar fontes distintas, o validador
+colapsa os domínios que leem o mesmo corpo de conhecimento — `fishbase.se` e `fishbase.org` viram
+`fishbase`. Registro com duas urls e um corpo só sai com aviso e **não conta como conferido**, nem no
+E14 nem no `minimo_para_sugerir`. O guppy continua parcial, que é o que ele é: o peixe mais vendido
+do Brasil segue sem ficha própria no compêndio de referência, e a segunda fonte dele tem de vir de
+outro corpo — coleta ainda em aberto.
+
+**Segunda mudança de esquema, menor: emenda ao E10.** Dois registros novos são ao mesmo tempo
+incompletos e divergentes (a molinésia, sem frente mínima e com porte conflitante; o tricogaster, sem
+convivência e com faixa térmica conflitante). O E10 exigia status `conflito`, o E2 exigia `parcial`,
+e os dois não cabiam no mesmo campo. Completude e divergência são fatos **ortogonais**; como
+`status_registro` carrega um campo só, vale o mais restritivo, e `parcial` é mais restritivo que
+`conflito` porque barra a página. O E10 passou a aceitar `parcial` quando há campo obrigatório
+faltando — sem esconder o conflito, que continua declarado em `conflitos[]`.
+
+### Ferramenta nova: os testes negativos viraram código
+
+A leva 1 fez 12 testes negativos **à mão** e descreveu o resultado no registro. Isso não sobrevive à
+próxima sessão: ninguém re-roda o que não é um comando. Nasceu
+`ferramentas/testar-validador-especies.py` — corrompe uma cópia do banco de propósito, **uma
+corrupção por regra, E1 a E15**, roda o validador contra a cópia e exige que a regra certa reprove
+com o código certo. No fim confere que o banco real não foi tocado. O validador passou a aceitar um
+caminho no argv só para isso.
+
+Resultado hoje: **15 testes, 15 pegaram o defeito, 0 falha.** Inclusive o E15, testado com a
+corrupção exata que motivou a regra: trocar o compêndio por um espelho da base e ver se o registro
+passa por conferido. Não passa.
+
+### Cinco achados editoriais desta leva
+
+1. **A espada contra o platy.** Dois vivíparos da mesma família, vendidos lado a lado na mesma loja:
+   o compêndio pede 60 cm de frente para um e **120 cm** para o outro. Nenhuma regra de bolso de
+   litro por centímetro de peixe produz esse par.
+2. **O mato-grosso é agressivo segundo a própria base científica** — a seção de aquário da FishBase
+   diz "aggressive" — e o compêndio pede 80 × 30 cm de base para um peixe de 4 cm. É vendido no
+   Brasil como tetra pacífico de aquário comunitário.
+3. **O botia-palhaço fecha o argumento do kinguio.** Vendido como filhote de 4 cm, chega a 30,5 cm, e
+   as duas fontes só divergem sobre se o mínimo é 150 ou **180 cm** de frente. Nenhuma admite aquário
+   de sala. É o par que sustenta a página "peixes que a loja vende e o aquário não comporta".
+4. **A coridora-panda repete a lição da bronze em outra espécie:** o que limita peixe de fundo é a
+   **área da base** (45 × 30 cm), não o volume. E sua faixa térmica, 20–25 °C, é mais fria que a do
+   neon e a do cardinal — o trio que a loja vende junto não fecha em temperatura.
+5. **O rodóstomo e o paulistinha não se encontram:** 26,5–29 °C contra 18–24 °C, sem sobreposição
+   nenhuma. Com fonte dos dois lados, é a prova de que "comunitário" não é critério de convivência.
+
+### A taxonomia está em revisão, e o banco publica o que a fonte publicou
+
+Colhido hoje, o mesmo dia e a mesma base devolveram **famílias diferentes para peixes do mesmo
+grupo**: os *Paracheirodon*, o *Gymnocorymbus ternetzi* e o *Hemigrammus erythrozonus* vieram como
+**Acestrorhamphidae** (tetras americanos), enquanto o *Hyphessobrycon eques* e o *Hemigrammus
+rhodostomus* vieram como **Characidae**. O banco não uniformiza: publica o que cada ficha publicou,
+com url e data, e diz isso no campo `nota_taxonomia`.
+
+Três registros já aparecem na fonte sob gênero novo — *Corydoras aeneus* como **Osteogaster aenea**,
+*Corydoras panda* como **Hoplisoma panda** e *Hemigrammus rhodostomus* como **Petitella rhodostoma**.
+O id do banco segue o nome com que o comércio brasileiro vende, e o nome novo entra em
+`sinonimos_cientificos`: é assim que a busca do leitor casa com a ficha. **Consequência prática: este
+banco envelhece por revisão taxonômica, não por preço** — e é por isso que o prazo de revalidação
+dele é de 365 dias, e não dos 180 do banco de produtos.
+
+### Quatro registros barrados, e por quê — nenhum número foi estimado
+
+- **molinésia:** falta `comprimento_minimo_aquario_cm`. A ficha do compêndio tem a seção, nenhuma
+  busca restrita devolveu o número, e frente de aquário não se estima.
+- **tricogaster:** falta `convivencia`. Nenhuma fonte declara cardume, grupo, casal ou harém; o
+  compêndio fala de territorialidade entre machos, que é outra coisa.
+- **ancistrus:** falta `temperatura_C`. As faixas das espécies irmãs do gênero (*A. triradiatus*,
+  *A. ranunculus*) apareceram na busca e **não foram copiadas**: parâmetro de água de espécie vizinha
+  é chute com cara de dado. Some-se o limite taxonômico, maior: o compêndio publica o cascudo do
+  comércio como *Ancistrus* sp. '3', espécie **ainda não descrita**, apenas comparada a *cirrhosus*.
+- **guppy:** uma fonte só, agora por corpo e não por url (E15).
+
+Também ficaram fora da leva, deliberadamente: o **camarão *Neocaridina davidi***, porque o compêndio
+de referência não cobre invertebrado e o que a busca devolveu foi artigo científico, que não é nível
+da escada; e o **acará-disco (*Symphysodon aequifasciatus*)**, porque nenhuma das duas fontes
+devolveu frente mínima atribuída — entraria como registro barrado, e registro barrado não é entrega.
+
+### Verificação (o que foi realmente rodado)
+
+`python3 ferramentas/validar-especies.py`: **25 espécies, 0 erro, 1 aviso** — e o aviso é o E15 no
+guppy, que é a regra funcionando, não defeito · `python3 ferramentas/testar-validador-especies.py`:
+**15 testes negativos, 15 pegaram, 0 falha**, banco real conferido intacto no fim ·
+`python3 ferramentas/validar-produtos.py`: **36 produtos, 0 erro**, 1 aviso já conhecido (V11,
+`eheim-jager-200w`) — o banco de produtos não foi tocado · JSON dos três arquivos relido e validado ·
+**sha256 de TODOS os itens do manifest reconferido contra o arquivo em disco, não só dos que
+mudaram** — nenhum divergente.
+
+**Nenhum snippet foi alterado, nenhum arquivo mudou de `publicar: false` para `true`.** Bloco de
+dados: as entradas de `dados/` e `ferramentas/` nascem e continuam com `publicar: false`. Logo **não
+houve desembarque, o Sync não foi acionado e nada foi medido no ar** — e não havia o que medir,
+porque nenhuma página do site mudou. As cinco calculadoras publicadas continuam exatamente como a
+execução anterior as deixou. Manifest na **revisão 17**.
+
+### Próximo passo desbloqueado
+
+**4c, o retrofit de visibilidade em IA nas cinco calculadoras publicadas** — é a próxima da fila e
+agora está desbloqueada: a fila manda o 4c "logo após o 4b", e o banco já passou dos 25 registros de
+espécie que a leva 3 pedia. Uma ou duas calculadoras por execução, com tabela de exemplos
+pré-renderizada no HTML cobrindo 30/60/100/150/200/300 L, resposta-antes-da-explicação no topo,
+JSON-LD (`WebApplication`) e procedência na própria frase, mais a verificação de sempre no navegador
+e a contagem de `&#038;` **só dentro dos blocos `<script>`**. Sugestão de ordem: **C3 (vazão) e C5
+(aquecedor) primeiro**, porque são as duas com bloco de produto e link no ar — é onde a citação por
+IA encosta em receita.
+
+Ficam para depois, na mesma prioridade em que estavam:
+1. Restante do 4b(b): mais filtros e aquecedores das marcas ausentes (Ocean Tech, Hopar, Boyu, Sarlo
+   Better), faixas de 200 a 400 L, e `fluxo_lm` do `sunsun-ade-400c` e do `wfish-wf-h600-wrgb` mais a
+   voltagem do Chihiros — os três itens que barram a C15.
+2. Fechar os quatro registros de espécie barrados e a segunda fonte do guppy, que agora exige **outro
+   corpo**, não outro espelho.
+3. Depois do 4c, a **malha de links** — e ela já tem dado por trás: nove degraus de frente mínima com
+   espécie real, que é exatamente o que o portão de 3 itens de banco por página exige.
+
+**Para a Sentinela Estratégica:** continuam **10 produtos esperando `afiliado.url`**
+(`atman-hf-0400`, `atman-hf-0600`, `sunsun-hw-603b`, `atman-at-100`, `atman-at-150`, `atman-at-200`,
+`atman-hf-0800`, `atman-at-3336`, `atman-at-300`, `sunsun-hw-303b`). Nada mudou nisso hoje: espécie
+não tem link de afiliado, por desenho.
+
+Sem ferramenta de memória nesta sessão: `/areas/projeto-aquametria.md` NÃO foi atualizado; esta
+entrada e o `ESTADO.md` são o registro.

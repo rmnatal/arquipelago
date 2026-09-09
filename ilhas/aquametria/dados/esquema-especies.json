@@ -1,9 +1,9 @@
 {
   "id": "esquema-especies",
-  "descricao": "Contrato formal do banco de especies de agua doce da Aquametria: campos, tipos, unidades, vocabulario controlado, origem esperada por campo e as regras de validacao E1 a E13 que ferramentas/validar-especies.py executa. E o irmao de esquema-produtos.json para a entidade especie, e existe para destravar o eixo aberto 'quantos litros para X peixes' com dado real por tras, nunca com regra de bolso.",
+  "descricao": "Contrato formal do banco de especies de agua doce da Aquametria: campos, tipos, unidades, vocabulario controlado, origem esperada por campo e as regras de validacao E1 a E15 que ferramentas/validar-especies.py executa. E o irmao de esquema-produtos.json para a entidade especie, e existe para destravar o eixo aberto 'quantos litros para X peixes' com dado real por tras, nunca com regra de bolso.",
   "gerado_em": "2026-09-09",
-  "bloco": "4b(c)",
-  "versao_esquema": 1,
+  "bloco": "4b(c) leva 1; revisado na leva 3 (E15 e a emenda do E10)",
+  "versao_esquema": 2,
   "depende_de": [
     "dados/esquema-produtos.json",
     "dados/especificacao-calculadoras.md"
@@ -69,7 +69,8 @@
         "existe_hoje": true
       }
     ],
-    "regra_de_atribuicao_por_busca": "Um numero so entra pelos niveis 3 e 5 quando a busca foi RESTRITA ao dominio da fonte (allowed_domains) ou quando o resumo da busca atribui o numero a fonte pelo nome. Numero que aparece em resumo de busca aberta, sem dono, nao entra no banco. Isso e o que separa colher de inventar."
+    "regra_de_atribuicao_por_busca": "Um numero so entra pelos niveis 3 e 5 quando a busca foi RESTRITA ao dominio da fonte (allowed_domains) ou quando o resumo da busca atribui o numero a fonte pelo nome. Numero que aparece em resumo de busca aberta, sem dono, nao entra no banco. Isso e o que separa colher de inventar.",
+    "regra_de_espelho": "fishbase.se e fishbase.org sao a MESMA FishBase, e url diferente nao e fonte diferente quando as duas leem o mesmo corpo de conhecimento. Toda contagem de 'duas fontes' colapsa espelhos antes de contar (regra E15). Sem isso, acrescentar o espelho a um registro de fonte unica o faria passar por conferido sem ninguem ter conferido nada — foi o que quase aconteceu com o guppy na leva 3, quando a coleta de familia trouxe a mesma ficha pelo outro dominio."
   },
   "dominio_por_campo": {
     "descricao": "Qual escada manda em qual campo. Existe porque FishBase e Seriously Fish nao competem: uma e melhor em biologia, a outra em manutencao. Sem esta tabela, 'nivel mais alto vence' daria a FishBase a ultima palavra sobre tamanho de aquario, que nao e o assunto dela.",
@@ -431,7 +432,7 @@
     "c5-aquecedor": [
       "temperatura_C com temperatura_e_tolerancia falso ou ausente"
     ],
-    "regra": "Registro com status_registro rascunho ou revalidar nunca e sugerido, mesmo com todos os campos preenchidos."
+    "regra": "Registro com status_registro rascunho ou revalidar nunca e sugerido, mesmo com todos os campos preenchidos. 'duas fontes distintas' significa dois corpos distintos, nao duas urls (E15)."
   },
   "regras_validacao": [
     {
@@ -472,7 +473,7 @@
     },
     {
       "id": "E10",
-      "regra": "status_registro conflito exige conflitos nao vazio; conflitos nao vazio exige status conflito ou revalidar."
+      "regra": "status_registro conflito exige conflitos nao vazio; conflitos nao vazio exige status conflito, revalidar ou — desde a leva 3 — parcial, quando o mesmo registro tambem tem campo obrigatorio faltando. Completude e divergencia sao fatos ortogonais e status_registro carrega um campo so: nesse caso vale o mais restritivo, e parcial e mais restritivo que conflito porque barra a pagina."
     },
     {
       "id": "E11",
@@ -488,7 +489,11 @@
     },
     {
       "id": "E14",
-      "regra": "status_registro completo exige pelo menos duas fontes com url distinta. Fonte unica e parcial, mesmo com todos os campos preenchidos: uma so leitura nao se confere a si mesma, e este banco inteiro foi colhido por busca."
+      "regra": "status_registro completo exige pelo menos duas fontes de CORPOS distintos (ver E15). Fonte unica e parcial, mesmo com todos os campos preenchidos: uma so leitura nao se confere a si mesma, e este banco inteiro foi colhido por busca."
+    },
+    {
+      "id": "E15",
+      "regra": "Espelho nao confere espelho. Antes de contar fontes distintas, o validador colapsa os dominios que leem o mesmo corpo (fishbase.se e fishbase.org viram 'fishbase'). Registro com duas urls e um corpo so sai com aviso e nao conta como conferido, nem no E14 nem no minimo_para_sugerir."
     }
   ],
   "o_que_nao_entra": [
@@ -515,8 +520,8 @@
     "nota_nome_cientifico": "nome_cientifico e isento porque e a chave do registro e aparece por inteiro na referencia de toda fonte citada; qualquer afirmacao sobre ele (autoria, sinonimia, revisao) e que exige fonte."
   },
   "status_registro": {
-    "completo": "todos os campos obrigatorios preenchidos e com fonte, e pelo menos DUAS fontes de url distinta. Pode virar pagina e alimentar calculadora.",
-    "parcial": "falta campo obrigatorio, ou o registro se apoia em uma fonte so. Fica no banco porque a ficha ja vale como conteudo, mas nao passa no portao de pagina.",
+    "completo": "todos os campos obrigatorios preenchidos e com fonte, e pelo menos DUAS fontes de corpos distintos (espelhos do mesmo corpo contam como um, regra E15). Pode virar pagina e alimentar calculadora.",
+    "parcial": "falta campo obrigatorio, ou o registro se apoia em um corpo de fonte so. Fica no banco porque a ficha ja vale como conteudo, mas nao passa no portao de pagina. Um registro pode ser parcial E ter conflitos declarados (emenda do E10).",
     "conflito": "algum campo tem valores divergentes tratados em conflitos[]. Pode ser usado; a tela publica a divergencia com atribuicao.",
     "revalidar": "verificado_em com mais de 365 dias, ou campo marcado como implausivel. Sai de uso ate ser reconferido.",
     "rascunho": "registro aberto sem fonte suficiente. Nunca sai na tela."

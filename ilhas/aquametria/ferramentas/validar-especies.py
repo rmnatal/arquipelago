@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 """Valida o banco de especies da ilha Aquametria contra dados/esquema-especies.json.
 
-Uso (a partir de ilhas/aquametria/):  python3 ferramentas/validar-especies.py
+Uso (a partir de ilhas/aquametria/):  python3 ferramentas/validar-especies.py [arquivo]
 
-As regras E1 a E13 estao descritas em dados/esquema-especies.json. Este arquivo e a
+As regras E1 a E15 estao descritas em dados/esquema-especies.json. Este arquivo e a
 versao executavel delas, pelo mesmo motivo do validador de produtos: regra que nao
 roda vira decoracao. Imprime tambem quem passa no minimo_para_sugerir de cada
 consumidor, que e a resposta pratica para "esta especie ja pode virar pagina?".
@@ -17,10 +17,13 @@ import os
 import re
 import sys
 from datetime import date, datetime
+from urllib.parse import urlparse
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ESQUEMA = os.path.join(RAIZ, "dados", "esquema-especies.json")
-ARQUIVO = "dados/especies-agua-doce.json"
+# Aceita um caminho no argv para que ferramentas/testar-validador-especies.py possa
+# rodar as regras contra bancos deliberadamente corrompidos sem tocar no arquivo real.
+ARQUIVO = sys.argv[1] if len(sys.argv) > 1 else "dados/especies-agua-doce.json"
 
 ID_VALIDO = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 LIMITE_DIAS_REVALIDAR = 365
@@ -55,6 +58,32 @@ def preenchido(valor):
 
 def intervalo(valor):
     return isinstance(valor, dict) and "min" in valor and "max" in valor
+
+
+# Espelhos do MESMO corpo de conhecimento. Regra E15: url diferente nao e fonte
+# diferente quando as duas leem a mesma base. fishbase.se e fishbase.org sao a
+# mesma FishBase; sem esta tabela, acrescentar o espelho faria um registro de
+# fonte unica passar por conferido.
+ESPELHOS = {
+    "fishbase.se": "fishbase",
+    "fishbase.org": "fishbase",
+    "seriouslyfish.com": "seriouslyfish",
+}
+
+
+def corpo_da_fonte(url):
+    """Corpo de conhecimento por tras da url, com espelhos colapsados."""
+    host = (urlparse(url or "").netloc or "").lower()
+    if host.startswith("www."):
+        host = host[4:]
+    if host in ESPELHOS:
+        return ESPELHOS[host]
+    partes = host.split(".")
+    return ".".join(partes[-2:]) if len(partes) > 1 else host
+
+
+def corpos_de(registro):
+    return {corpo_da_fonte(f.get("url")) for f in registro.get("fontes", []) if f.get("url")}
 
 
 def main():
@@ -96,10 +125,14 @@ def main():
             elif not r.get("observacao"):
                 erro("E2", rid, "registro parcial sem observacao dizendo o que falta")
 
-        # E14 - completo exige duas fontes distintas
+        # E14 / E15 - completo exige duas fontes de CORPOS distintos, nao so de urls distintas
         urls_fonte = {f.get("url") for f in r.get("fontes", []) if f.get("url")}
-        if r.get("status_registro") == "completo" and len(urls_fonte) < 2:
-            erro("E14", rid, "status completo com %d fonte(s) de url distinta" % len(urls_fonte))
+        corpos = corpos_de(r)
+        if r.get("status_registro") == "completo" and len(corpos) < 2:
+            erro("E14", rid, "status completo com %d corpo(s) de fonte distinto(s)" % len(corpos))
+        if len(urls_fonte) >= 2 and len(corpos) < 2:
+            aviso("E15", rid, "tem %d urls mas um corpo de fonte so (%s): espelho nao confere "
+                              "espelho" % (len(urls_fonte), ", ".join(sorted(corpos))))
 
         # E4 - fontes bem formadas, e o indice campo -> origens
         sustentado = {}
@@ -167,8 +200,14 @@ def main():
                 if numeros and c.get("valor_conservador") != max(numeros):
                     erro("E9", rid, "conflito de bem-estar em '%s': o conservador tem de ser o maior (%s)"
                          % (c["campo"], max(numeros)))
-        if confs and r.get("status_registro") not in ("conflito", "revalidar"):
-            erro("E10", rid, "tem conflitos mas o status nao e conflito nem revalidar")
+        # E10: 'parcial' tambem vale quando o registro tem campo obrigatorio faltando.
+        # Completude e divergencia sao fatos ortogonais e status_registro carrega um campo so:
+        # nesse caso vale o mais restritivo, e 'parcial' e mais restritivo que 'conflito'
+        # porque barra a pagina.
+        aceitos_com_conflito = ["conflito", "revalidar"] + (["parcial"] if faltando else [])
+        if confs and r.get("status_registro") not in aceitos_com_conflito:
+            erro("E10", rid, "tem conflitos mas o status nao e conflito, revalidar nem parcial "
+                             "com campo obrigatorio faltando")
         if r.get("status_registro") == "conflito" and not confs:
             erro("E10", rid, "status conflito sem nenhum conflito declarado")
 
@@ -204,9 +243,8 @@ def main():
             falta = []
             for req in requisitos:
                 if req == "duas fontes distintas":
-                    urls = {f.get("url") for f in r.get("fontes", [])}
-                    if len(urls) < 2:
-                        falta.append(req)
+                    if len(corpos_de(r)) < 2:
+                        falta.append("duas fontes de corpos distintos")
                 elif req.startswith("cardume_minimo OU"):
                     if not preenchido(r.get("cardume_minimo")) and \
                        r.get("convivencia") not in ("solitario", "casal", "harem"):
