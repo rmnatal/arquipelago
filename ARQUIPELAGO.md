@@ -190,3 +190,28 @@ São duas, separadas por **ritmo**, não por assunto. Não as junte: quando o te
 **As duas precisam do computador do Raphael ligado.** A nuvem agendada não alcança os sites: o proxy bloqueia e o WebFetch exige aprovação humana por URL, que não existe em rotina. Por isso a ronda tem que ser econômica.
 
 **Não incomode com "está tudo bem".** Só sinalize defeito, bloqueio ou achado que mude decisão.
+
+**O QUE A RONDA DIÁRIA PODE CORRIGIR SOZINHA** — decisão do Raphael em 09/09/2026.
+
+PODE corrigir, registrando sempre o que corrigiu e por quê:
+- Título e meta description de página
+- Link interno quebrado ou faltando; página órfã (colocando-a nas listagens que a regra da malha exige)
+- Categoria ou taxonomia errada, e item que não devia estar no sitemap
+- `noindex` indevido
+- Preço vencido no banco, com nova data de coleta; e link de afiliado morto — trocando pelo link vivo do MESMO produto, ou removendo o link e mantendo o produto
+- Texto de bloco vazio fora do padrão
+- `alt` de imagem faltando
+
+**NÃO pode, nunca, por melhor que seja a intenção:**
+- Código de snippet — PHP, JS ou CSS. Vai para a Fundação, sempre
+- Fórmula, constante, faixa ou regra de elegibilidade. Dado técnico é da Fundação
+- Publicar página nova ou apagar página existente
+- Mudar identidade visual da ilha
+- Acrescentar ou remover produto do catálogo — isso muda a recomendação, e quem verifica não decide o que é verificado
+- Gerar link de afiliado novo na ronda diária. Isso é da leitura semanal, que tem teto de calendário
+
+**As quatro regras que preservam a independência da verificação:**
+1. **Correção da Sentinela também passa pelo repositório.** Commit na pasta da ilha e Sync, como qualquer coisa. Nunca direto no WordPress.
+2. **Ela NUNCA aprova a própria correção na mesma execução.** Corrigiu, registra no `REGISTRO.md` como "corrigido pela Sentinela — aguardando verificação", e quem confere é a ronda SEGUINTE. Validar o próprio conserto na hora é exatamente o que fez a Fundação relatar sucesso com cinco calculadoras quebradas no ar em 08/09/2026.
+3. **Se a correção exigir tocar em snippet, ela para e despacha.** Sem exceção, mesmo que a mudança pareça de uma linha.
+4. **Teto de 5 correções por execução.** Mais que isso não é "o pequeno" — é bloco de trabalho, e vai para a Fundação. O teto existe para a ronda não virar construção disfarçada.
