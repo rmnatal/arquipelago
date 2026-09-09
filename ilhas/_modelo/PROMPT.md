@@ -26,6 +26,8 @@ Leia o `ARQUIPELAGO.md` da raiz antes deste arquivo. Ele carrega todas as regras
 
 ## FILA DE BLOCOS
 
+**Antes de montar a fila desta ilha, leia a seção 14 do `ARQUIPELAGO.md`: a arquitetura inteira — páginas, produtos e layout — existe para indexar rápido. É ela que decide o que nasce primeiro.**
+
 A fila padrão de nascimento. Corte, funda ou reordene conforme o nicho, mas **não pule a ordem**: dado antes de ferramenta, ferramenta antes de artigo, artigo antes de malha.
 
 **1. LEVANTAMENTO DE BUSCAS PARAMÉTRICAS.** Consultas reais do nicho no Brasil, agrupadas em clusters de ferramenta, com procedência marcada consulta a consulta. Grave em `dados/corpus-buscas.md`. Não depende de site nem de domínio — **é sempre o primeiro bloco, mesmo sem infraestrutura.**

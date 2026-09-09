@@ -238,3 +238,55 @@ Decisão do Raphael, 09/09/2026, para todo o Arquipélago: *"vamos seguir o plan
 **O teste, quando bater a dúvida:** se a pressa fizer você publicar algo que depois vai precisar ser refeito, corrigido ou desindexado, aquilo não é aceleração, é dívida com juros. Prefira entregar menos no dia e não ter que voltar.
 
 **MUTIRÃO.** Quando a fila estiver cheia e o material pronto, uma execução PODE entregar vários blocos em sequência — desde que **cada um passe pela verificação da seção 8 inteira, individualmente, antes de começar o próximo**. Mutirão é fazer mais coisa certa, nunca conferir menos.
+
+---
+
+## 14. INDEXAÇÃO É A PRIORIDADE MÁXIMA DE TODA ILHA NOVA
+
+Decisão do Raphael, 09/09/2026: *"nosso foco é indexação rápida no Google e nas ferramentas de IA. A estratégia de arquitetura completa, produtos, layout, tudo, deve ser em prol disso."*
+
+**O princípio, e o teste:** toda decisão de arquitetura, de banco e de layout precisa ser explicável como "isso faz uma página ser rastreada, indexada e citada mais cedo". O que não passa nesse teste espera a vez, por melhor que pareça.
+
+### 14.1 O recurso escasso é o orçamento de rastreamento
+Domínio novo tem orçamento de rastreamento minúsculo. Cada URL fraca gasta orçamento que uma página boa precisaria, e ainda ensina ao Google que este site produz coisa que não vale voltar para buscar. Daí a regra que inverte a intuição: **menos páginas, melhores, indexam mais rápido do que muitas.** Volume é consequência da indexação, nunca causa.
+O sitemap é **curadoria, não inventário**. Página que não merece ser indexada não entra nele — e, quase sempre, não deveria existir.
+
+### 14.2 Ordem de nascimento das páginas, por valor de indexação
+Esta ordem vale para toda ilha. Não pule etapa para "ganhar tempo".
+
+1. **PÁGINAS DE PARÂMETRO** — a busca é literalmente a pergunta e a resposta é um número calculado pela própria ilha ("quantos watts de aquecedor para 60 litros", "quantos Pa para pelo de cachorro em 80 m²"). Maior retorno de indexação que existe aqui: a intenção é exata, a concorrência é fraca, e a resposta é nossa. **Nascem primeiro, sempre.**
+2. **PÁGINAS DE ENTIDADE do nicho** — espécie, modelo de equipamento, tipo de peça. Busca perene e de volume, e a ilha acrescenta um número que ninguém dá ("quantos litros para N deste peixe").
+3. **CRUZAMENTOS** entidade × parâmetro — cauda longa de verdade, só com dado real nas duas pontas.
+4. **FICHA DE PRODUTO — por último, e seletiva.** Ficha de produto de site afiliado compete com o fabricante, com o marketplace e com dez lojas, todos com mais autoridade e com a página que a pessoa realmente quer, que é onde dá para comprar. Sem preço e sem estoque, ela é fina e duplicada — o perfil de afiliado que o update de março de 2026 pune. **Só crie ficha de produto quando existir dúvida paramétrica que o fabricante e a loja NÃO respondem** ("este filtro serve mesmo no meu aquário de 120 L?"), e a página tem que carregar o número, o critério, a fonte e a data. Sem isso, o produto vive dentro do resultado da ferramenta e da vitrine, não numa página própria.
+
+### 14.3 O tamanho do banco é COBERTURA, não número redondo
+Nunca persiga uma meta do tipo "60 produtos" — número redondo não é critério.
+**O critério é: nenhuma faixa que as ferramentas da ilha conseguem produzir pode sair sem pelo menos 3 produtos elegíveis.** Mede-se varrendo a faixa de entrada de cada ferramenta de ponta a ponta e contando quantos itens do banco passam em TODAS as condições declaradas (seção 7). O que falta nessa varredura é a lista de compras do banco — e o número final aparece sozinho: pode dar 40, pode dar 90.
+Produto que não fecha nenhuma faixa descoberta não é prioridade, por melhor que seja a comissão. Faixa descoberta é a única urgência de catálogo.
+
+### 14.4 Categorias e listagens: poucas, e cada uma é uma página de verdade
+- Listagem só existe com **3 itens ou mais** e um critério que alguém realmente busca.
+- Toda listagem tem texto próprio explicando o critério — listagem que é só uma grade de links é página fina.
+- Categoria automática do CMS (a "sem categoria", arquivos por data, tags geradas) fica **fora do sitemap**, e de preferência com `noindex`.
+- Paginação com `canonical` correto; nunca duas URLs servindo o mesmo conteúdo.
+
+### 14.5 O layout também serve à indexação
+- **O que responde tem que estar no HTML SERVIDO.** Ferramenta que só calcula em JavaScript é página vazia para robô e para modelo de IA: por isso a tabela de exemplos pré-renderizada é obrigatória (seção 5).
+- **Resposta antes da explicação**, na primeira dobra, em frase autossuficiente com fonte e data. É essa frase que é citada.
+- **Título e H1 são a pergunta que a pessoa digita**, não o nome interno da ferramenta.
+- **Nenhuma página órfã:** toda página entra em pelo menos 2 listagens e aponta para 3 irmãs (seção 9). Página que ninguém linka, o robô não acha.
+- **Navegação em HTML servido**, com `<a href>` de verdade — é por isso que o menu hambúrguer é feito do jeito descrito na seção 6.
+- **Peso e estabilidade:** sem biblioteca desnecessária, imagem com `width`/`height` e `loading="lazy"`. Página lenta é página rastreada com menos frequência.
+- **JSON-LD** em toda página (seção 5).
+
+### 14.6 A rampa, e o gatilho de parada
+Primeira leva de 5 a 10 páginas. Medir. **Só dobra se indexou.** Se a leva anterior ficou em "descoberta — não indexada", **não publique mais nenhuma página de malha** até descobrir por quê: mais páginas nesse estado pioram o problema em vez de compensá-lo.
+Cauda longa só nasce **depois** de a página-âncora do mesmo assunto estar indexada. Âncora primeiro, ramificação depois.
+
+### 14.7 Sinais externos, porque domínio sem link é raramente visitado
+- **Submeter o sitemap** e pedir indexação manual das primeiras páginas de cada leva.
+- A **prospecção do widget em lojas** é a única alavanca de link do projeto e por isso vale mais no começo do que no fim: backlink é o que faz o robô voltar.
+- Nada de link pago, PBN ou troca em escala — a penalização custa mais do que o ganho.
+
+### 14.8 A decisão é tomada com número, nunca com sensação
+Toda ilha mantém `dados/indexacao.md` como **série histórica** (seção 11, passo 9): cada medição é uma seção nova, nunca sobrescreve. É essa série — e não impressão de ninguém — que autoriza dobrar a leva, manter ou parar.
