@@ -215,3 +215,26 @@ PODE corrigir, registrando sempre o que corrigiu e por quê:
 2. **Ela NUNCA aprova a própria correção na mesma execução.** Corrigiu, registra no `REGISTRO.md` como "corrigido pela Sentinela — aguardando verificação", e quem confere é a ronda SEGUINTE. Validar o próprio conserto na hora é exatamente o que fez a Fundação relatar sucesso com cinco calculadoras quebradas no ar em 08/09/2026.
 3. **Se a correção exigir tocar em snippet, ela para e despacha.** Sem exceção, mesmo que a mudança pareça de uma linha.
 4. **Teto de 5 correções por execução.** Mais que isso não é "o pequeno" — é bloco de trabalho, e vai para a Fundação. O teto existe para a ronda não virar construção disfarçada.
+
+---
+
+## 13. ACELERAR NUNCA AFROUXA PORTÃO
+
+Decisão do Raphael, 09/09/2026, para todo o Arquipélago: *"vamos seguir o plano de acelerar, mas de forma segura, porque o mais importante é a nossa indexação no Google e nas ferramentas de IA — não podemos comprometer estes passos de forma alguma."*
+
+**O que a pressa PODE mudar:**
+- Quantos blocos uma execução entrega — deixa de ser um por execução quando a fila está cheia e o material já está pronto
+- Quantas execuções por dia
+- Quantos trabalhadores em paralelo
+- A ordem da fila
+
+**O que a pressa NUNCA muda, por mais urgente que pareça:**
+1. **O portão de dado** (seção 9): pelo menos 3 itens de banco reais e um número calculado próprio por página. Página sem isso não nasce, nem que a fila fique parada.
+2. **A rampa de indexação** (seções 9 e 11): leva de 5 a 10 páginas, medir, e só dobrar se indexou. Soltar dezenas de uma vez em domínio novo desindexa em bloco — isso é acelerar para trás.
+3. **A verificação antes de publicar** (seção 8): buscar a URL no ar e conferir com número medido. "Aplicado com sucesso" no log não é evidência de nada.
+4. **A visibilidade em IA** (seção 5): tabela de exemplos pré-renderizada, resposta antes da explicação, JSON-LD e procedência na frase. Página publicada sem isso nasce invisível para modelo de linguagem, e teria que ser refeita inteira.
+5. **Nunca inventar dado técnico.** Constante sem fonte e voltagem chutada não aceleram nada — criam retrabalho e destroem a confiança, que é o único ativo que separa o Arquipélago das fazendas de conteúdo.
+
+**O teste, quando bater a dúvida:** se a pressa fizer você publicar algo que depois vai precisar ser refeito, corrigido ou desindexado, aquilo não é aceleração, é dívida com juros. Prefira entregar menos no dia e não ter que voltar.
+
+**MUTIRÃO.** Quando a fila estiver cheia e o material pronto, uma execução PODE entregar vários blocos em sequência — desde que **cada um passe pela verificação da seção 8 inteira, individualmente, antes de começar o próximo**. Mutirão é fazer mais coisa certa, nunca conferir menos.
