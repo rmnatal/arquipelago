@@ -1,5 +1,13 @@
 /**
  * Aquametria Casca — identidade e estrutura do site
+ * Versão: 1.3.0 (09/09/2026) — casca no celular e ícone próprio. Duas coisas que
+ * a Sentinela Técnica pega abrindo o site no telefone: (a) o menu passa a ser um
+ * botão sanfona abaixo de 782 px, com aria-expanded/aria-controls, Escape e clique
+ * fora fechando — e os três links continuam no HTML servido, dentro de <nav>, para
+ * quem lê sem JavaScript (crawler de IA inclusive); sem JavaScript o menu não some,
+ * volta a ser a lista de sempre; (b) o ícone do site deixa de ser o do WordPress e
+ * passa a ser o recipiente graduado da marca, em SVG na aba e em PNG no iOS, os dois
+ * como data URI dentro do snippet — nada sobe para a biblioteca de mídia.
  * Versão: 1.2.0 (08/09/2026) — apelidos de endereço. Endereço adivinhado a partir do nome da
  * calculadora deixa de dar 404: /calculadora-de-aquecedor-de-aquario/ (o que o Raphael pediu),
  * /calculadora-de-aquecedor/, /calculadora-de-litros/ e mais dezoito irmãos redirecionam 301
@@ -22,7 +30,8 @@
  *   (e) manda "Hello world!" e "Sample Page" para a LIXEIRA (nunca apaga);
  *   (f) substitui a template part 'footer' do tema pelo rodapé da Aquametria
  *       (tagline e nota de fontes), para não ficarem dois rodapés empilhados;
- *   (g) redireciona 301 os apelidos de endereço (seção 1b) para a página canônica.
+ *   (g) redireciona 301 os apelidos de endereço (seção 1b) para a página canônica;
+ *   (h) publica o ícone do site (seção 2b), no lugar do que o WordPress imprimiria.
  *
  * O conteúdo das quatro páginas mora em shortcodes deste snippet: atualizar o
  * snippet atualiza as páginas, sem tocar no editor do WordPress.
@@ -43,7 +52,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'AQUAMETRIA_CASCA_VERSAO', '1.2.0' );
+	define( 'AQUAMETRIA_CASCA_VERSAO', '1.3.0' );
 	define( 'AQUAMETRIA_CASCA_TAGLINE', 'Calculadoras e dados técnicos para dimensionar o seu aquário' );
 }
 
@@ -335,19 +344,49 @@ function aquametria_casca_marca_html() {
 }
 }
 
+/**
+ * O menu. Abaixo de 782 px ele vira sanfona atrás de um botão; acima, é a mesma
+ * fileira de links de sempre.
+ *
+ * Três decisões, e nenhuma delas é enfeite:
+ *
+ *   1. Os links saem SEMPRE no HTML servido, dentro de <nav>. O botão não gera
+ *      link nenhum: ele só mostra e esconde o que já está lá. É o que faz o menu
+ *      continuar existindo para quem lê a página sem executar JavaScript — o
+ *      crawler de IA, que é regra de primeira classe do projeto, e o visitante
+ *      cujo script não carregou.
+ *   2. Quem esconde a lista no celular é o seletor [data-aqm-menu], e esse
+ *      atributo quem põe é o JavaScript do rodapé. Sem JavaScript o atributo não
+ *      existe, a regra não casa e o menu fica visível como lista, que é
+ *      exatamente o que o site fazia antes desta versão. Esconder por padrão e
+ *      contar com o script para revelar seria trocar um defeito por outro pior.
+ *   3. O id é contado, porque o filtro render_block pode trocar mais de um bloco
+ *      core/navigation na mesma página, e aria-controls que aponta para um id
+ *      repetido não controla coisa nenhuma.
+ */
 if ( ! function_exists( 'aquametria_casca_nav_html' ) ) {
 function aquametria_casca_nav_html() {
+	static $quantos = 0;
+	$quantos++;
+	$id = 'aqm-nav-lista' . ( $quantos > 1 ? '-' . $quantos : '' );
+
 	$itens = array(
 		'calculadoras' => 'Calculadoras',
 		'metodologia'  => 'Metodologia',
 		'sobre'        => 'Sobre',
 	);
 
-	$html = '<nav class="aqm-nav" aria-label="Navegação principal"><ul>';
+	$html  = '<div class="aqm-nav-caixa">';
+	$html .= '<button type="button" class="aqm-nav-botao" aria-expanded="false" aria-controls="' . esc_attr( $id ) . '">';
+	$html .= '<span class="aqm-nav-tracos" aria-hidden="true"></span>';
+	$html .= '<span class="aqm-nav-rotulo">Menu</span>';
+	$html .= '</button>';
+	$html .= '<nav class="aqm-nav" id="' . esc_attr( $id ) . '" aria-label="Navegação principal"><ul>';
 	foreach ( $itens as $slug => $rotulo ) {
 		$html .= '<li>' . aquametria_casca_link_html( $slug, $rotulo ) . '</li>';
 	}
 	$html .= '</ul></nav>';
+	$html .= '</div>';
 
 	return $html;
 }
@@ -423,6 +462,46 @@ add_action( 'wp_footer', function () {
 }, 20 );
 
 /* ---------------------------------------------------------------------------
+ * 2b. Ícone do site
+ *
+ * O WordPress imprime o ícone dele em wp_head na prioridade 99, e sem tirar
+ * aquele de lá o site sairia com dois — a aba escolheria um, o iOS outro. Aqui
+ * o ícone é o recipiente graduado da marca, viajando dentro do snippet como
+ * data URI: nada sobe para a biblioteca de mídia.
+ *
+ * O desenho não se edita à mão neste arquivo: ele é gerado por
+ * ferramentas/gerar-favicon.php, entre os marcadores abaixo, pelo mesmo motivo
+ * que o catálogo de produtos é gerado dentro das calculadoras — desenho mantido
+ * em dois lugares diverge em silêncio.
+ * ------------------------------------------------------------------------- */
+
+/* FAVICON-INICIO — gerado por ferramentas/gerar-favicon.php, nao edite a mao */
+if ( ! defined( 'AQUAMETRIA_CASCA_ICONE_SVG' ) ) {
+	define( 'AQUAMETRIA_CASCA_ICONE_SVG', '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0D1B22"/><rect x="7" y="4" width="18" height="1.8" rx=".9" fill="#FFFFFF"/><path d="M9 6.6h14V24a4 4 0 0 1-4 4h-6a4 4 0 0 1-4-4z" fill="#FFFFFF"/><path d="M9 17.4h14V24a4 4 0 0 1-4 4h-6a4 4 0 0 1-4-4z" fill="#0E7C8C"/><g fill="#0D1B22"><rect x="11.6" y="9.6" width="8.8" height="1.8" rx=".9"/><rect x="11.6" y="13.2" width="5.4" height="1.8" rx=".9"/></g></svg>' );
+	define( 'AQUAMETRIA_CASCA_ICONE_PNG_180', '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' );
+	define( 'AQUAMETRIA_CASCA_ICONE_PNG_32', 'iVBORw0KGgoAAAANSUhEUgAAACAAAAAgBAMAAACBVGfHAAAAElBMVEX9/f0MeosMGiDX2dkMangyPkRE6xmSAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAATklEQVQoz2NQQgMMZAowQAETVEAZJsCKUwtUCTNJAiBSAa8AMWYoowowKSmQ5g4VQUdBRxFBESQBMKCxgBJEQAiPgCJYADmiVKAmkBW3AE2xNWcHmXfXAAAAAElFTkSuQmCC' );
+}
+/* FAVICON-FIM */
+
+remove_action( 'wp_head', 'wp_site_icon', 99 );
+
+add_action( 'wp_head', function () {
+	if ( ! defined( 'AQUAMETRIA_CASCA_ICONE_SVG' ) ) {
+		return;
+	}
+
+	echo '<link rel="icon" type="image/svg+xml" href="' . esc_attr( 'data:image/svg+xml,' . rawurlencode( AQUAMETRIA_CASCA_ICONE_SVG ) ) . '">' . "\n";
+	// Segunda linha para quem não desenha SVG na aba: o mesmo desenho, em PNG de
+	// 32 px. 'alternate icon' é o rel que o navegador só usa quando desiste do
+	// primeiro.
+	echo '<link rel="alternate icon" type="image/png" sizes="32x32" href="' . esc_attr( 'data:image/png;base64,' . AQUAMETRIA_CASCA_ICONE_PNG_32 ) . '">' . "\n";
+	// O iOS não aceita SVG neste rel, e ele aplica a própria máscara de canto —
+	// por isso o PNG é quadrado, em sangria, sem arredondamento por baixo.
+	echo '<link rel="apple-touch-icon" sizes="180x180" href="' . esc_attr( 'data:image/png;base64,' . AQUAMETRIA_CASCA_ICONE_PNG_180 ) . '">' . "\n";
+	echo '<meta name="theme-color" content="#0D1B22">' . "\n";
+}, 5 );
+
+/* ---------------------------------------------------------------------------
  * 3. Tipografia e paleta por cima do tema ativo
  * ------------------------------------------------------------------------- */
 
@@ -467,6 +546,16 @@ body header .wp-block-group,body .wp-block-template-part header{background:var(-
 .aqm-nav li{margin:0;}
 .aqm-nav a{font-family:var(--aqm-texto);font-weight:600;font-size:.95rem;color:var(--aqm-tinta);text-decoration:none;padding-bottom:.15rem;border-bottom:2px solid transparent;}
 .aqm-nav a:hover{color:var(--aqm-lamina);border-bottom-color:var(--aqm-lamina);}
+.aqm-nav-caixa{position:relative;}
+/* O botao do menu so aparece no celular, e so quando ha JavaScript para ele
+   comandar (o atributo data-aqm-menu e posto pelo script do rodape). */
+.aqm-nav-botao{display:none;align-items:center;gap:.55rem;background:transparent;color:var(--aqm-tinta);border:1px solid var(--aqm-traco);border-radius:2px;padding:.5rem .75rem;font-family:var(--aqm-texto);font-weight:600;font-size:.92rem;line-height:1;cursor:pointer;}
+.aqm-nav-botao:hover{border-color:var(--aqm-lamina);color:var(--aqm-lamina);}
+.aqm-nav-tracos{position:relative;display:block;width:1.05rem;height:2px;background:currentColor;border-radius:2px;}
+.aqm-nav-tracos::before,.aqm-nav-tracos::after{content:"";position:absolute;left:0;width:100%;height:2px;background:currentColor;border-radius:2px;}
+.aqm-nav-tracos::before{top:-.36rem;}
+.aqm-nav-tracos::after{top:.36rem;}
+.aqm-nav-botao:focus-visible,.aqm-nav a:focus-visible,.aqm-marca:focus-visible{outline:2px solid var(--aqm-lamina);outline-offset:3px;}
 .aqm-bloco{max-width:52rem;}
 .aqm-linha-mestra{font-family:var(--aqm-display);font-size:1.35rem;line-height:1.35;font-weight:700;margin:0 0 .8rem;}
 .aqm-abertura p{margin:0 0 .7rem;}
@@ -513,10 +602,92 @@ body:has(.aqm-rodape) .wp-site-blocks > footer.wp-block-template-part:not(:has(.
 .aqm-linha-mestra{font-size:1.15rem;}
 .aqm-wordmark{font-size:1.25rem;}
 }
+/* Menu sanfona. 782 px e a largura em que o proprio WordPress considera que a
+   tela virou celular; seguir a mesma quebra evita cabecalho meio empilhado.
+   Tudo aqui depende de [data-aqm-menu]: sem JavaScript nada disso vale e o menu
+   continua sendo a fileira de links, visivel, que sempre foi. */
+@media (max-width:782px){
+.aqm-nav-caixa[data-aqm-menu] .aqm-nav-botao{display:inline-flex;}
+.aqm-nav-caixa[data-aqm-menu] .aqm-nav{display:none;position:absolute;right:0;top:calc(100% + .55rem);z-index:60;min-width:13rem;background:var(--aqm-superficie);border:1px solid var(--aqm-traco);border-radius:3px;box-shadow:0 12px 32px rgba(13,27,34,.16);padding:.35rem 0;}
+.aqm-nav-caixa[data-aqm-menu][data-aqm-aberto="1"] .aqm-nav{display:block;}
+.aqm-nav-caixa[data-aqm-menu] .aqm-nav ul,.aqm-nav-caixa[data-aqm-menu] .aqm-nav li{display:block;}
+.aqm-nav-caixa[data-aqm-menu] .aqm-nav a,.aqm-nav-caixa[data-aqm-menu] .aqm-nav .aqm-sem-link{display:block;padding:.65rem 1.05rem;font-size:1rem;border-bottom:0;}
+.aqm-nav-caixa[data-aqm-menu] .aqm-nav a:hover{background:var(--aqm-papel);color:var(--aqm-lamina);}
+}
 CSS;
 
 	echo '<style id="aquametria-casca">' . $css . '</style>' . "\n";
 }, 20 );
+
+/* ---------------------------------------------------------------------------
+ * 3b. O comando do menu sanfona
+ *
+ * O script sai no wp_footer, NUNCA dentro do retorno de um shortcode. É a regra
+ * que nasceu do defeito de 08/09/2026: o WordPress roda os filtros de texto do
+ * conteúdo sobre o que o shortcode devolve, cada "&" vira "&#038;" e o
+ * JavaScript inteiro morre com erro de sintaxe. Aqui ele não passa por filtro
+ * nenhum.
+ *
+ * O script não desenha menu: ele só assume o comando do que o PHP já serviu. A
+ * primeira coisa que faz é pôr data-aqm-menu na caixa, e é esse atributo que
+ * liga as regras de CSS do celular — ou seja, o menu só se fecha depois que
+ * existe alguém para reabri-lo.
+ * ------------------------------------------------------------------------- */
+
+add_action( 'wp_footer', function () {
+	$js = <<<'JS'
+(function () {
+	var caixas = document.querySelectorAll('.aqm-nav-caixa');
+	if (!caixas.length) { return; }
+
+	Array.prototype.forEach.call(caixas, function (caixa) {
+		var botao = caixa.querySelector('.aqm-nav-botao');
+		var lista = caixa.querySelector('.aqm-nav');
+		if (!botao || !lista) { return; }
+
+		/* A partir daqui o CSS do celular vale: há quem reabra o menu. */
+		caixa.setAttribute('data-aqm-menu', '1');
+
+		function aberto() {
+			return caixa.getAttribute('data-aqm-aberto') === '1';
+		}
+		function estado(abrir) {
+			caixa.setAttribute('data-aqm-aberto', abrir ? '1' : '0');
+			botao.setAttribute('aria-expanded', abrir ? 'true' : 'false');
+		}
+		estado(false);
+
+		botao.addEventListener('click', function (ev) {
+			ev.preventDefault();
+			estado(!aberto());
+		});
+
+		/* Escape fecha e devolve o foco ao botão: quem abriu pelo teclado não
+		   pode ficar com o foco preso num menu que sumiu. */
+		caixa.addEventListener('keydown', function (ev) {
+			if (!aberto()) { return; }
+			if (ev.key === 'Escape' || ev.key === 'Esc') {
+				estado(false);
+				botao.focus();
+			}
+		});
+
+		document.addEventListener('click', function (ev) {
+			if (aberto() && !caixa.contains(ev.target)) { estado(false); }
+		});
+
+		/* Girar o telefone ou alargar a janela passa da faixa do celular: o menu
+		   volta a ser fileira de links e não pode continuar marcado como aberto,
+		   senão o aria-expanded mente para o leitor de tela. */
+		window.addEventListener('resize', function () {
+			if (aberto() && window.innerWidth > 782) { estado(false); }
+		});
+	});
+})();
+JS;
+
+	echo '<script id="aquametria-casca-menu">' . $js . '</script>' . "\n";
+}, 25 );
 
 /* ---------------------------------------------------------------------------
  * 4. Conteúdo das quatro páginas (shortcodes)

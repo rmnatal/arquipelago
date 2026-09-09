@@ -29,7 +29,8 @@ $GLOBALS['__filtros']=array(); $GLOBALS['__shortcodes']=array(); $GLOBALS['__aco
 $GLOBALS['__conteudo_pagina']='';
 
 function add_filter($h,$f,$p=10,$a=1){ $GLOBALS['__filtros'][$h][]=$f; }
-function apply_filters($h,$v){ foreach(($GLOBALS['__filtros'][$h]??[]) as $f){ $v=call_user_func($f,$v);} return $v; }
+function apply_filters($h,$v){ $extra=array_slice(func_get_args(),2);
+	foreach(($GLOBALS['__filtros'][$h]??[]) as $f){ $v=call_user_func_array($f, array_merge(array($v),$extra)); } return $v; }
 function add_action($h,$f,$p=10,$a=1){ $GLOBALS['__acoes'][$h][]=array($p,count($GLOBALS['__acoes'][$h]??[]),$f); }
 function do_action($h){
 	$lista = $GLOBALS['__acoes'][$h] ?? array();
@@ -37,6 +38,18 @@ function do_action($h){
 	foreach ($lista as $item) { call_user_func($item[2]); }
 }
 function add_shortcode($t,$f){ $GLOBALS['__shortcodes'][$t]=$f; }
+/* remove_action DE VERDADE: casa gancho, funcao e prioridade, como o WordPress.
+   Sem isso nao da para provar que o icone do WordPress saiu do wp_head. */
+function remove_action($h,$f,$p=10){
+	if (!isset($GLOBALS['__acoes'][$h])) { return false; }
+	foreach ($GLOBALS['__acoes'][$h] as $i=>$item) {
+		if ($item[2]===$f && $item[0]===$p) { unset($GLOBALS['__acoes'][$h][$i]); return true; }
+	}
+	return false;
+}
+/* O icone que o WordPress imprime sozinho, na mesma prioridade do core. A casca
+   tira este daqui; se um dia parar de tirar, ele reaparece no HTML do teste. */
+function wp_site_icon(){ echo '<link rel="icon" href="https://aquametria.com.br/icone-do-wordpress.png">'."\n"; }
 function home_url($p=''){ return 'https://aquametria.com.br'.$p; }
 function esc_url($u){ return htmlspecialchars($u, ENT_QUOTES); }
 function esc_html($t){ return htmlspecialchars($t, ENT_QUOTES); }
@@ -49,8 +62,18 @@ function wp_strip_all_tags($t){ return strip_tags($t); }
 function is_admin(){ return false; } function did_action($h){ return 0; }
 function is_singular($t=''){ return true; }
 function get_post($p=null){ return (object) array('ID'=>1,'post_content'=>$GLOBALS['__conteudo_pagina'],'post_status'=>'publish','post_name'=>'pagina-de-teste'); }
-function get_posts($a=array()){ return array(); }
-function get_permalink($p=null){ return 'https://aquametria.com.br/pagina-de-teste/'; }
+/* Paginas que 'existem' no site de teste: mapa slug => true em __paginas.
+   Vazio por padrao, entao quem nao mexe nele continua vendo o que via. */
+function get_posts($a=array()){
+	$mapa = isset($GLOBALS['__paginas']) ? $GLOBALS['__paginas'] : array();
+	$chave = isset($a['meta_value']) ? $a['meta_value'] : '';
+	if ('' !== $chave && isset($mapa[$chave])) { return array((object) array('ID'=>1,'post_name'=>$chave)); }
+	return array();
+}
+function get_permalink($p=null){
+	if (is_object($p) && isset($p->post_name)) { return 'https://aquametria.com.br/'.$p->post_name.'/'; }
+	return 'https://aquametria.com.br/pagina-de-teste/';
+}
 function get_post_field($c,$p){ return 'pagina-de-teste'; }
 function has_shortcode($conteudo,$tag){ return false !== strpos((string)$conteudo, '['.$tag); }
 function get_page_by_path($p,$saida=null,$tipo=null){ return null; }
@@ -71,6 +94,8 @@ function add_query_arg($a=array()){ return '/'; } function __($t,$d=null){ retur
 function aquametria_teste_escapar_conteudo($html) {
 	return preg_replace('/&(?!#[0-9]{1,6};|#x[0-9a-fA-F]{1,6};|[a-zA-Z][a-zA-Z0-9]{1,8};)/', '&#038;', $html);
 }
+
+add_action('wp_head','wp_site_icon',99);
 
 function aquametria_teste_carregar($raiz) {
 	foreach (glob($raiz.'/snippets/*.php') as $arquivo) {

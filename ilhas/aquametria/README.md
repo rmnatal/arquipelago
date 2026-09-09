@@ -33,6 +33,40 @@ para o apagador. **Toda calculadora publicada precisa entrar na lista de
 `aquametria_casca_calculadoras()`** (ou se registrar pelo filtro
 `aquametria_calculadoras`), senao some do hub.
 
+Desde a versao 1.3.0 (09/09/2026) ela tambem cuida de duas coisas de celular e de
+aba:
+
+- **Menu sanfona abaixo de 782 px.** Os tres links saem SEMPRE no HTML servido,
+  dentro de `<nav>`; quem esconde a lista e o seletor
+  `.aqm-nav-caixa[data-aqm-menu]`, e esse atributo quem poe e o JavaScript do
+  rodape. **Sem JavaScript o menu nao some** — volta a ser a fileira de links,
+  que e o que o crawler de IA recebe. Nao inverta isso.
+- **Icone do site.** A casca tira o `wp_site_icon` do WordPress do `wp_head` e
+  publica o recipiente graduado da marca como data URI (SVG na aba, PNG de 32 px
+  alternativo, `apple-touch-icon` de 180 px). Nada sobe para a biblioteca de
+  midia. **O desenho nao se edita a mao no snippet**: ele mora entre os
+  marcadores `FAVICON-INICIO` e `FAVICON-FIM` e sai de
+
+  ```
+  php ferramentas/gerar-favicon.php .            # so o snippet
+  php ferramentas/gerar-favicon.php . /tmp/i.png # e uma copia para olhar
+  ```
+
+E a casca tem teste de navegador proprio, porque o cabecalho nao vem de
+shortcode nenhum — vem do filtro `render_block`, e o `render-para-teste.php`
+monta pagina de calculadora:
+
+```
+php ferramentas/render-casca-para-teste.php . > /tmp/casca.html
+node ferramentas/teste-navegador-casca.mjs /tmp/casca.html
+```
+
+Ele confere o menu no desktop e no celular (clique, Escape com o foco de volta no
+botao, Enter, Tab, clique fora, alargar a janela), o mesmo celular **com o
+JavaScript desligado** — onde os tres links tem de continuar visiveis — e mede os
+tres icones por `naturalWidth`, alem de conferir que o icone do WordPress sumiu do
+`wp_head`.
+
 ## Contrato do manifest
 
 `manifest.json` lista `snippets`, `conteudo` e `dados`. O bloco `esquema`

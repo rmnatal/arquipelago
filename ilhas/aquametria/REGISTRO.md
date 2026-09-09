@@ -3028,3 +3028,132 @@ sugeridos por causa de um campo — HW-702A, XBL-600 e CT-1000-3 (que tambem pre
 mais os 9 antigos na mesma situacao; (2) **link para o Atman AT-3336**, que e o primeiro
 recomendado do caso real do Raphael e nao tem onde comprar; (3) vazao com fonte para o MP-600 e o
 APK-600; (4) lumen da linha Soma, imagem dos que vendem sem foto.
+
+---
+
+## 2026-09-09 (redisparo das 12h) — BLOCO 4d: a casca no celular ganha menu, e o site ganha ícone próprio
+
+**Antes de mais nada, sobre a execução que falhou.** O disparo das 12h20 (sessão
+`cse_01R1msCiPtLH1iFvqdgmUfLT`) morreu às 12h26 sem empurrar nada, e esta execução
+**não achou rastro do que a matou**: não há branch `claude/*` divergente, não há PR
+aberto e o `main` estava intacto na revisão 21 — ou seja, ela morreu antes de commitar
+qualquer coisa, e não deixou trabalho pela metade para recuperar. Não sei a causa e não
+vou inventar uma. O que ficou de aprendizado prático desta execução, e que pode ser a
+causa: o bloco 4e inteiro (vitrine em quatro calculadoras + promessa + barra fixa +
+rolagem) é grande demais para uma execução; o payload do redisparo mandou entregar em
+partes, e foi o que foi feito.
+
+**Entregue: os dois itens de casca do bloco 4d, no mesmo snippet, como pedido.**
+Manifest revisão **22**, casca na versão **1.3.0**.
+
+### (1) Menu hambúrguer no celular
+
+Abaixo de 782 px — a mesma quebra que o próprio WordPress usa para decidir que a tela
+virou celular — o menu vira sanfona atrás de um botão. Acima disso nada muda: é a mesma
+fileira de links de sempre.
+
+**A decisão que governa o resto, e que é de indexação, não de layout:** os três links
+saem **sempre** no HTML servido, dentro de `<nav>`, e o botão não gera link nenhum — ele
+só mostra e esconde o que já está lá. Quem esconde a lista no celular é o seletor
+`.aqm-nav-caixa[data-aqm-menu]`, e esse atributo quem põe é o JavaScript do rodapé.
+**Sem JavaScript o atributo não existe, a regra de CSS não casa e o menu não some**:
+volta a ser a lista visível que o site tinha antes desta versão. Esconder por padrão e
+contar com o script para revelar teria trocado um defeito de celular por um defeito de
+visibilidade em IA — que é regra de primeira classe do projeto desde 08/09.
+
+O que o botão carrega: `aria-expanded` que muda de verdade, `aria-controls` apontando
+para o id do `<nav>` (id **contado**, porque o filtro `render_block` pode trocar mais de
+um bloco `core/navigation` na mesma página e `aria-controls` para id repetido não
+controla nada), fecho no **Escape** com o foco devolvido ao botão, fecho no clique fora,
+e reset ao alargar a janela — sem esse último o `aria-expanded` continuaria dizendo
+"aberto" para o leitor de tela depois de o menu já ter virado fileira.
+
+O script sai no **`wp_footer`**, nunca dentro do retorno de shortcode. É a regra que
+nasceu do defeito de 08/09/2026, e ela vale para a casca do mesmo jeito que vale para
+calculadora.
+
+### (2) Ícone próprio do site
+
+`remove_action( 'wp_head', 'wp_site_icon', 99 )` tira o ícone que o WordPress imprime
+sozinho — sem isso o site sairia com dois e o navegador escolheria o errado. No lugar
+entram três, todos como data URI dentro do snippet, **nada sobe para a biblioteca de
+mídia**: o SVG da aba (`rel="icon" type="image/svg+xml"`, 464 bytes), um PNG de 32 px
+como `alternate icon` para quem não desenha SVG na aba (186 bytes), e o
+`apple-touch-icon` de 180 px para o iOS (3.238 bytes), mais `theme-color` na tinta da
+marca.
+
+O desenho é o mesmo do logotipo: o recipiente graduado com a linha de enchimento, em
+tinta #0D1B22 e lâmina #0E7C8C. Sem peixe, sem bolha, sem wordmark — a 16 px o wordmark
+vira borrão e o que sobrevive é o recipiente.
+
+Duas decisões de desenho, cada uma com motivo: **o SVG da aba tem canto arredondado e o
+PNG do iOS não tem**, porque o iOS aplica a própria máscara e canto arredondado por baixo
+de máscara vira borda dupla; e o PNG passa por redução de paleta para 64 cores, o que o
+levou de 9.124 para 3.238 bytes sem mudar nada do que se vê — o desenho tem três cores, e
+o PNG truecolor estava carregando milhares de tons de borda que viravam 12 KB de base64
+dentro do snippet.
+
+**`ferramentas/gerar-favicon.php`, arquivo novo:** o desenho não se edita à mão no
+snippet. Ele é gerado entre os marcadores `FAVICON-INICIO` e `FAVICON-FIM`, pelo mesmo
+motivo que o catálogo de produtos é gerado dentro das calculadoras — desenho mantido em
+dois lugares diverge em silêncio.
+
+### O ferramental que este bloco obrigou a criar
+
+Nenhum teste do projeto olhava para o **cabeçalho**: o `render-para-teste.php` monta
+página de calculadora, cujo corpo é o retorno de um shortcode, e o cabeçalho da
+Aquametria não vem de shortcode nenhum — vem do filtro `render_block`. Então nasceram:
+
+- **`ferramentas/render-casca-para-teste.php`**, que monta a página como o tema de blocos
+  monta: `wp_head`, o cabeçalho vindo do filtro, o conteúdo (esse sim passando pelo
+  escape de `&` dos filtros de conteúdo) e `wp_footer`.
+- **`ferramentas/teste-navegador-casca.mjs`**, **31 asserções, todas passaram** em
+  Chromium de verdade: HTML servido (três `<a href>` dentro do `<nav>`, `aria-controls`,
+  zero `&#038;` dentro de `<script>`), desktop a 1100 px (botão escondido, três links
+  visíveis), celular a 390 px (abre, fecha no Escape com foco devolvido, abre no Enter,
+  Tab chega ao primeiro link **com endereço de verdade**, clique fora fecha, alargar
+  reseta o `aria-expanded`), **celular com o JavaScript DESLIGADO** (os três links
+  continuam visíveis e o botão não aparece) e os ícones medidos por `naturalWidth`: SVG
+  desenha, PNG do iOS tem 180×180, alternativo tem 32×32, e o ícone do WordPress sumiu do
+  `wp_head`.
+- Três acréscimos ao `render-para-teste.php`, todos compatíveis com o que já existia:
+  `apply_filters` passou a repassar argumentos extras (o `render_block` recebe dois),
+  `get_posts` passou a consultar um mapa `__paginas` (vazio por padrão — sem ele a casca
+  serve `<span>` em vez de `<a>`, de propósito, e o teste estaria conferindo o caso
+  errado), e nasceram `remove_action` de verdade mais um `wp_site_icon` de mentira
+  registrado no `wp_head` na prioridade do core: é ele que permite **provar** que a casca
+  tirou o ícone do WordPress de lá.
+
+### Verificação (o que foi realmente rodado)
+
+- `php -l` nos três arquivos novos/alterados → sem erro.
+- `conferir-protecao-funcoes.py` nos 8 snippets → **sai 0**, 22 funções da casca dentro
+  de `function_exists`.
+- `teste-navegador-casca.mjs` → **31 de 31**.
+- `teste-navegador-cinco.mjs` (as cinco calculadoras, JavaScript ligado) → tudo passou.
+- `teste-navegador-visibilidade-ia.mjs` (JavaScript desligado) → tudo passou.
+- `teste-apelidos.php` → 59 afirmações, 0 falha. `conferir-slugs.py` → ok.
+- sha256 do manifest conferido contra os arquivos: **0 divergentes**.
+- Inspeção visual em Chromium a 390 px e a 1100 px: o menu aberto e o cabeçalho de
+  desktop foram fotografados e olhados, não só medidos.
+
+### NÃO CONCLUÍDO — o Sync continua fora de alcance, e agora são CINCO revisões paradas
+
+`aquametria.com.br` devolve `EGRESS_BLOCKED` nesta sessão, tanto na URL do Sync com
+`&forcar=1` quanto em `/wp-json/aquametria/v1/status`. **Não foi possível acionar o
+desembarque nem conferir a revisão aplicada.** Este bloco está entregue no `main` e
+**não está no ar**, como as revisões 18, 19, 20 e 21.
+
+**O repositório está na revisão 22. O site estava na 11 na última medição (08/09,
+13h03).** Quem alcança o site é a **Sentinela Técnica das 11h30, que roda no Chrome do
+Raphael**: basta abrir a URL do Sync com `&forcar=1` e, uns cinco minutos depois,
+conferir que `/wp-json/aquametria/v1/status` diz **revisão 22**.
+
+### Próximo passo desbloqueado
+
+**BLOCO 4e — A VITRINE**, inteiro, e ele é grande: cartão de produto com foto em rolagem
+horizontal com `scroll-snap` (sem biblioteca, cartão que é `<a>` de verdade), linha de
+promessa acima do formulário, barra fixa no rodapé do celular enquanto o resultado está
+fora da tela, e rolagem automática até o resultado com `scroll-margin-top`. As 24 imagens
+do banco só chegam ao visitante nesse bloco. **Se não couber numa execução, entregar por
+calculadora** — começando pela C3, que é a que tem mais itens com foto e link (6 de 13).
