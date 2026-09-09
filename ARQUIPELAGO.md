@@ -34,6 +34,7 @@ prioridade: 2             # 1 alta, 2 normal, 3 baixa
 ultima_execucao: 2026-09-09T18:00Z
 executando_desde: null
 bloco_atual: "4c"
+ultima_ronda: 2026-09-09T14:36Z   # última vez que a Sentinela olhou esta ilha; null se nunca
 bloqueada_por: null       # texto curto quando depende de algo humano; null quando não
 ---
 ```
@@ -43,6 +44,7 @@ Regras do cabeçalho:
 - Ao desbloquear, apague o texto e volte para `null` na mesma execução.
 - `ultima_execucao` é gravada mesmo quando o bloco falha; senão a mesma ilha é escolhida para sempre.
 - Abaixo do cabeçalho, o `ESTADO.md` continua sendo prosa livre: credenciais **não**, estado do projeto **sim**.
+- `ultima_ronda` é escrita pela Sentinela, não pela Fundação. É o que faz a verificação ser distribuída por dívida em vez de varrer tudo todo dia (seção 12).
 
 ---
 
@@ -140,3 +142,51 @@ Decisão do Raphael, 08/09/2026: ser recomendado pelas IAs vale tanto quanto ran
 - **A identidade visual da ilha é parte do nascimento, não do acabamento** — paleta, tipografia e símbolo entram no `PROMPT.md` da ilha antes do primeiro bloco de casca. O símbolo vem do **gesto técnico** do nicho, nunca do objeto desenhado.
 - O Raphael **não aparece** em ilha nenhuma: sem rosto, sem vídeo, sem fórum, sem tráfego pago, sem link pago. A autoridade vem de metodologia, procedência e do widget instalado em lojas.
 - Não faça perguntas: você roda sozinho, sem ninguém acompanhando. Só sinalize ao Raphael se estiver bloqueado ou se concluiu um bloco grande.
+
+---
+
+## 11. NASCIMENTO DA ILHA — checklist de infraestrutura, de fábrica
+
+Ordem obrigatória. Ilha nova segue isto inteiro antes de existir site.
+
+1. **[RAPHAEL]** Registrar e pagar o domínio no registro.br. É o único gasto e o único passo que exige CPF e cartão. Nenhuma camada faz isso.
+2. **Domínio adicional na hospedagem ANTES do DNS.** cPanel da HostGator → Domínios → Create A New Domain, com **raiz própria** (`/home3/<usuário>/<dominio>`), NUNCA compartilhando raiz com outra ilha. Isso cria a zona no servidor.
+3. **Só então** apontar os nameservers no registro.br (`ns604` e `ns605.hostgator.com.br`). **Invertendo a ordem o registro.br recusa** ("Pesquisa recusada"), porque valida se os nameservers já respondem pelo domínio. A Aquametria pagou esse erro em 06/09/2026 e a Robometria acertou em 09/09 seguindo esta ordem.
+4. Esperar a propagação — na Aquametria demorou ~2h. Enquanto isso, trabalhe os blocos de pesquisa da ilha, que não dependem de site. Não marque `bloqueada_por` por causa de propagação.
+5. WordPress pelo Softaculous, em **português do Brasil**, instalação limpa — **desmarque todos os plugins sugeridos**.
+6. cPanel → SSL/TLS Status → **Executar AutoSSL** no domínio novo.
+7. No wp-admin: instalar e ativar o **Code Snippets**; remover Akismet e Hello Dolly; instalar **Site Kit by Google**, **Converter for Media** e **Limit Login Attempts Reloaded**. **Sem plugin de cache** (a HostGator já tem mu-plugin) e **sem plugin de SEO**.
+8. Snippet **"<Ilha> Sync"**, copiado do Sync da ilha anterior com as constantes trocadas: nome da ilha, caminho `ilhas/<ilha>/` e **token novo**, gerado na hora. Anote o endpoint do Sync e o do `/status` no `PROMPT.md` da ilha — sem eles a seção 4 não é executável.
+9. **MEDIÇÃO — o passo que ninguém pode pular.** Verificar o domínio no **Search Console** (pelo Site Kit, no navegador do Raphael), **submeter o sitemap**, e gravar a primeira medição em `dados/indexacao.md`: URLs indexadas, em "descoberta — não indexada", em "rastreada — não indexada", excluídas e por quê. Esse arquivo é **série histórica** — cada medição vira uma seção nova, nunca sobrescreve a anterior.
+   **A rampa da seção 9 é inexecutável sem isto.** Enquanto o Search Console não estiver verificado, a ilha **não publica leva de malha** — estaria soltando página no escuro, que é exatamente o que desindexa domínio novo. Pode publicar ferramenta, artigo e banco normalmente.
+10. Favicon próprio e menu hambúrguer entram na **casca** (seção 6), não como acabamento depois.
+
+O que a ilha nova REAPROVEITA, para o custo ficar honesto: o mesmo repositório (é pasta nova, não repo novo), a mesma hospedagem (o Plano M aceita domínios ilimitados — custo extra zero), a mesma conta da Shopee, o snippet de Sync já depurado e a Fundação única, que **não precisa de rotina nova**. Custo real de uma ilha: o domínio, e alguns minutos dele.
+
+---
+
+## 12. A SENTINELA — o que ela verifica em toda ilha
+
+A Sentinela cuida da ilha viva. Ela **nunca conserta código**: emite veredito e despacha o defeito para a Fundação. Quem constrói não pode ser quem aprova — foi por confundir isso que cinco calculadoras da Aquametria ficaram horas quebradas no ar em 08/09/2026 enquanto a Fundação relatava sucesso.
+
+São duas, separadas por **ritmo**, não por assunto. Não as junte: quando o tempo aperta numa execução que faz as duas coisas, é sempre a metade estratégica que cai, porque a técnica é concreta e termina.
+
+**RONDA DIÁRIA — saúde técnica.** Para cada página publicada da ilha:
+- HTTP 200 em tudo que está no sitemap; links internos vivos; nenhuma página órfã
+- Executar cada ferramenta com entradas reais e conferir o número na mão
+- **Zero `&#038;` DENTRO de `<script>`** — extraia só os blocos `<script>`. Contar na página inteira é teste ERRADO: a casca do tema tem dezenas de ocorrências legítimas. `&amp;` `&lt;` `&gt;` `&quot;` uma vez cada dentro do script são a função `esc()` da própria calculadora, e são legítimos
+- Corpo não começa por metadado YAML; script vem do rodapé; tabela de exemplos aparece no HTML servido
+- JSON-LD presente; favicon próprio servido; botão de menu com `aria-expanded`/`aria-controls` e links no HTML servido
+- Revisão aplicada no `/status` **igual** à do manifest
+- Console sem mensagem
+- **COERÊNCIA DA RECOMENDAÇÃO:** reprova se algum produto recomendado for contradito pelo próprio texto da página ("o fabricante declara até X" com X menor que a entrada). Verificação por regra objetiva pega defeito de encanamento; defeito de julgamento só aparece lendo o resultado como um leitor leria
+- **RECEITA:** registra se os primeiros itens da lista não têm link de loja e existem equivalentes que têm — o topo é o espaço mais caro da página
+- Bloco de produto vazio é PORTÃO, não defeito — confirmar lendo o catálogo da página antes de acusar
+
+**LEITURA SEMANAL — o negócio.** Indexação em primeiro lugar (`dados/indexacao.md`, série nova); visitas; vendas por Sub_id; Shopee (link morto, comissão melhor, produto novo vendendo); lacuna de produto e de conteúdo; backlink; **interlinkagem entre ilhas**, que só dá para julgar olhando o arquipélago inteiro; marca. Critério único: ROI. Camada sem dado ainda escreve "ainda sem dado" em vez de inventar análise.
+
+**VERIFICAR POR DÍVIDA, NÃO VARRENDO TUDO.** Primeiro o que foi publicado desde a última ronda (código novo é onde mora defeito), depois a ilha de `ultima_ronda` mais antiga. Mesma reserva por commit da seção 1. Com muitas ilhas, varrer tudo todo dia não cabe numa execução — e tentar é como a verificação morre.
+
+**As duas precisam do computador do Raphael ligado.** A nuvem agendada não alcança os sites: o proxy bloqueia e o WebFetch exige aprovação humana por URL, que não existe em rotina. Por isso a ronda tem que ser econômica.
+
+**Não incomode com "está tudo bem".** Só sinalize defeito, bloqueio ou achado que mude decisão.
