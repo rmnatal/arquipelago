@@ -2735,3 +2735,141 @@ Raphael e alcança o site; esta sessão, não.
 
 Enquanto isso não for feito, o que está no ar continua sem as 21 fotos, sem os 20 produtos novos,
 sem o aquecedor de 150 W que fecha a janela da C5 e sem as duas Chihiros da C15.
+
+## 2026-09-09 — Bloco 4c, leva 1b: a tabela pre-renderizada passou a dizer QUAL produto atende
+
+Disparo encadeado, autorizado pelo Raphael para antecipar a entrega em um dia. O pedido do
+disparo era executar o 4c na C3 e na C5. **Ao ler o `main` antes de trabalhar, o 4c dessas duas
+ja estava entregue** na revisao 18 — JSON-LD, tabela pre-renderizada de 30 a 300 L, resposta antes
+da explicacao e procedencia dentro da frase, tudo conferido em Chromium com o JavaScript
+desligado. Refazer seria trabalho perdido.
+
+O que NAO estava entregue era justamente o item novo do pedido: **a coluna com o produto que
+atende cada faixa**. Foi esse o bloco desta execucao, e ele e a metade do 4e-B que cabe dentro do
+4c — a pessoa passa a saber que sai dali com produto ANTES de preencher qualquer campo.
+
+### O defeito que a coluna corrige, dito sem eufemismo
+
+A tabela servida respondia ao leitor e **nao respondia ao comprador**. Quem chegava com "que
+filtro comprar para 100 litros" via a faixa de L/h e nada mais: a recomendacao de produto so
+existia depois de preencher o formulario inteiro e rolar ate o fim do resultado. No celular isso
+e pior, porque o formulario ocupa a tela toda. E, para um modelo de linguagem, a pagina inteira
+nao continha uma unica indicacao de compra citavel.
+
+### Entregue, nas duas calculadoras
+
+- **Uma coluna nova na tabela**, uma celula por volume. Cada celula traz o modelo, a
+  especificacao QUE FEZ ELE ENTRAR ("650 L/h — 6,5 renovacoes/h nos 100 L"; "150 W — 110 ou
+  220 V"), a procedencia e a data na mesma frase, e o link de loja quando existe
+  (`rel="sponsored noopener"`, `target="_blank"`).
+- **O criterio e o MESMO do script**, e isso e verificavel: a funcao `escolher()` do JavaScript
+  ganhou espelho em PHP (`aquametria_c3_produtos_exemplo`, `aquametria_c5_produtos_exemplo`) —
+  vazao dentro da faixa e ordem pela distancia ate o meio dela na C3; potencia dentro da faixa,
+  com teto no degrau comercial, e ordem pela distancia ate o topo na C5. **Comissao nao ordena
+  nada** (regra V16).
+- **A linha do comprável, rotulada como o que e.** O modelo que atende melhor quase sempre e um
+  que o banco ainda nao conseguiu link — hoje, 4 das 6 linhas da C3 e 5 das 6 da C5. Sem isso a
+  tabela mostrava seis nomes que ninguem sabe onde comprar. Entao, quando o primeiro nao tem
+  link, sai embaixo, escrito "Com link hoje, na mesma faixa", **o primeiro da mesma ordem** que
+  tem. A ordem nao muda; muda o que a tela conta.
+- **Bloco vazio nunca sai mudo.** A faixa de 30 L da C3 nao tem filtro nenhum no banco (o menor
+  e de 400 L/h, e a faixa vai ate 300 L/h), e a celula escreve isso com os dois numeros. Silencio
+  parece defeito.
+- **Aviso de publicidade proprio, junto da tabela** — nao basta o do bloco de resultado, que so
+  aparece depois do calculo e nao existe sem JavaScript. Diz a palavra comissao, diz que a ordem
+  e por adequacao tecnica, diz por que nao publicamos preco e linka a pagina de divulgacao.
+- **FAQPage ganhou as perguntas de COMPRA**, uma por volume: C3 de 8 para 13 perguntas, C5 de 8
+  para 14. Cada resposta nomeia o mesmo modelo e o mesmo numero que a tabela serve — FAQPage que
+  promete o que a pagina nao mostra e lixo detectavel.
+
+### Tres ressalvas que a coluna obrigou a escrever, e que sao o conteudo
+
+1. **A C5 nao filtra por voltagem nem por temperatura-alvo na tabela**, porque a tabela nao
+   conhece nenhum dos dois — e sao exatamente as duas barreiras de seguranca do formulario
+   (V18). Aquecedor na voltagem errada queima. Entao a celula publica a voltagem que a ficha
+   declara, ou a frase de que ela nao esta confirmada, e o aviso abaixo da tabela diz em negrito
+   para conferir a voltagem antes de comprar. Nao se chuta 110 nem 220.
+2. **A linha de 300 L da C5 avisa que a faixa passa do maior degrau da linha de referencia** e
+   que ali a resposta e mais de um aparelho — senao a ultima coluna contradiria a coluna ao lado,
+   que ja dizia isso.
+3. **Quando o volume declarado pelo fabricante e menor que o do exemplo, a celula diz.** Acontece
+   hoje uma vez: o Seachem Tidal 55 e o unico filtro com link na faixa de 300 L, e a ficha dele
+   declara ate 200 L. Ele entra pela vazao; a declaracao de volume nao cobre o caso, e quem le
+   precisa saber disso antes de clicar.
+
+### A correcao do campo `imagem` — dado bom que quase foi jogado fora
+
+O disparo trouxe uma correcao, e ela estava certa: **nao conseguir BUSCAR um arquivo nao e
+evidencia de que a URL esteja errada.** As 21 URLs de foto foram colhidas do painel de afiliados
+da Shopee, no navegador do Raphael, em 09/09/2026. O que esta bloqueado e o egresso da nuvem, que
+barra `down-bs-br.img.susercontent.com` como barra todo dominio de loja.
+
+Conferido no `main`: **nenhuma imagem tinha sido anulada** — as 21 estao la, com `url`, `fonte`,
+`coletado_em` e `alt`. O que faltava era o lugar de registrar a falta de conferencia sem mexer no
+dado. Foi criado:
+
+- `imagem.verificado_em` (null hoje) e `imagem.motivo_sem_verificacao`, no esquema (versao 5 → 6)
+  e nos 21 registros, com o motivo escrito por extenso e nomeando quem consegue conferir: **a
+  Sentinela Tecnica, que roda no Chrome.**
+- **Regra V21 do validador**, para isto nao depender de ninguem lembrar: imagem sem
+  `verificado_em` tem de dizer por que. Testada nos dois sentidos — com o motivo, 0 erro; sem o
+  motivo, erro apontando o produto.
+- A regra escrita no esquema, em uma frase, para a proxima sessao: **jogar fora dado bom por
+  falta de meio de conferencia e a pior troca possivel.**
+
+### Verificacao (o que foi realmente rodado, com numero)
+
+- `php -l` nos dois snippets → sem erro. `conferir-protecao-funcoes.py` → 8 snippets, todas as
+  funcoes dentro de `function_exists`. `conferir-slugs.py` → ok.
+- `validar-produtos.py` → **56 produtos, 31 cotacoes, 0 erro, 11 avisos** (os mesmos 10 do V20,
+  link sem foto, mais o V11 antigo do Eheim 200 W).
+- `teste-navegador-visibilidade-ia.mjs`, em Chromium **com JavaScript DESLIGADO** → **tudo
+  passou**, nos dois arquivos. O teste ganhou os casos deste bloco: uma celula de produto por
+  volume, **nenhuma muda** (celula com menos de 20 caracteres reprova), todo link da tabela
+  `sponsored` + `noopener` + aba nova e **com texto** (teclado e leitor de tela), e o aviso de
+  comissao presente junto da tabela.
+- `teste-navegador-cinco.mjs` (JavaScript LIGADO, as cinco calculadoras) → tudo passou, incluindo
+  **zero `&#038;` no HTML servido** e os links de afiliado do bloco de resultado.
+- `teste-navegador-c5.mjs` → **15 casos, todos passaram**, incluindo as duas barreiras de
+  seguranca e o celular de 390 px **sem rolagem horizontal** com a tabela mais larga (ela rola
+  dentro do proprio `-rolagem`, nao empurra a pagina).
+- Dois consertos no proprio ferramental, para os testes nao mentirem:
+  - o `teste-navegador-c5.mjs` procurava `.aqm-c5-aviso-afiliado` sem escopo e passou a achar
+    DOIS elementos — quebrava por ambiguidade, nao por defeito. Agora confere os dois avisos, um
+    por um, e diz qual e qual;
+  - o caso "console limpo" reprovava por **13 falhas de rede**: o egresso da nuvem barra
+    `fonts.googleapis.com` e `fonts.gstatic.com`, que a casca carrega de verdade e que carregam
+    no navegador do Raphael. Falha de rede agora sai contada e nomeada a parte, e o caso mede o
+    que ele existe para medir: **erro de script**. Um teste que reprova sempre treina a proxima
+    sessao a ignorar o resultado dele, que e o pior estrago possivel.
+
+### NAO CONCLUIDO — o Sync continua fora de alcance, e agora sao TRES revisoes paradas
+
+`aquametria.com.br` devolve `EGRESS_BLOCKED` nesta sessao, tanto na URL do Sync quanto em
+`/wp-json/aquametria/v1/status`. **Nao foi possivel acionar o desembarque nem conferir a revisao
+aplicada.** Este bloco esta entregue no `main` e **nao esta no ar**, como as revisoes 18 e 19.
+
+**O repositorio esta na revisao 20. O site estava na 11 na ultima medicao (08/09, 13h03).** Nove
+revisoes de diferenca. O que esta no ar hoje nao tem: as 21 fotos, os 20 produtos novos, o
+aquecedor de 150 W que fecha a janela da C5, as duas Chihiros da C15, o JSON-LD, a tabela
+pre-renderizada e agora a coluna de produto.
+
+Quem alcanca o site e a **Sentinela Tecnica das 11h30, que roda no Chrome do Raphael**. Basta
+abrir a URL do Sync com `&forcar=1` (a chave esta na memoria e nao entra neste arquivo, que pode
+virar publico) e, uns cinco minutos depois, conferir que `/wp-json/aquametria/v1/status` diz
+**revisao 20**.
+
+### Proximo passo desbloqueado
+
+**Bloco 4e — a vitrine**, agora com a metade B ja meio-caminho andada: a promessa antes do
+formulario existe em forma de tabela com produto, e falta o resto — cartao com FOTO em rolagem
+horizontal com `scroll-snap`, linha de promessa no topo, barra fixa no celular, e rolagem
+automatica ate o resultado. As 21 imagens do banco so chegam ao visitante nesse bloco.
+
+Depois dele, o **4c leva 2** (JSON-LD e tabela pre-renderizada na C12 e na C15) e o 4c leva 3
+(C1 e os tres artigos).
+
+**Para a Sentinela Estratégica**, sem mudanca desde a leva anterior: lumen da linha Soma (8
+produtos com link e foto barrados por um numero), voltagem confirmada dos 7 Maxxi, do RS-50 e do
+Sicce (9 links parados por um campo), imagem dos 10 antigos que ja vendem, e 10 produtos
+esperando `afiliado.url`.

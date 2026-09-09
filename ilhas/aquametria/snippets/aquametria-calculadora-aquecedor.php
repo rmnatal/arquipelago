@@ -1,5 +1,24 @@
 /**
  * Aquametria Calculadora de Potência do Aquecedor — C5
+ * Versão: 1.3.0 (09/09/2026) — BLOCO 4c, fechamento: a tabela pré-renderizada
+ *   passou a dizer QUAL aparelho atende cada faixa. Antes ela respondia ao
+ *   leitor e não respondia ao comprador: a pessoa só descobria que existe
+ *   recomendação depois de preencher o formulário inteiro e rolar até o fim, e
+ *   no celular isso é grave. Agora cada uma das seis linhas traz o aquecedor do
+ *   banco cuja potência cai mais perto do topo daquela faixa, com a voltagem que
+ *   a ficha declara — ou a frase dizendo que ela não está confirmada, porque
+ *   voltagem errada queima aparelho e aqui não se chuta 110 nem 220 —, a
+ *   procedência e a data na mesma frase, e o link de loja quando existe
+ *   (sponsored, noopener, aba nova), com aviso de comissão junto da tabela.
+ *   Quando quem atende melhor ainda não tem link, aparece embaixo e rotulada a
+ *   opção da MESMA faixa que tem: a ordem continua por adequação técnica, nunca
+ *   por comissão (regra V16). As duas barreiras de segurança do formulário
+ *   (voltagem da tomada e faixa de ajuste alcançar o alvo, regra V18) NÃO cabem
+ *   na tabela, que não conhece nenhum dos dois, e o texto abaixo dela diz isso
+ *   com essas palavras. A linha de 300 L avisa que a faixa passa do maior degrau
+ *   da linha de referência e que ali a resposta é mais de um aparelho. O FAQPage
+ *   ganhou seis perguntas de compra, cada uma respondida com o mesmo modelo e o
+ *   mesmo número que a tabela serve. Nenhuma fórmula mudou.
  * Versão: 1.2.0 (09/09/2026) — BLOCO 4c, visibilidade em IA. A página passou a
  *   servir RESPOSTA no HTML, e não só formulário. Três acréscimos e um conserto:
  *   (a) um bloco de resposta direta no topo, com o número, o critério e a
@@ -73,7 +92,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_C5_VERSAO' ) ) {
-	define( 'AQUAMETRIA_C5_VERSAO', '1.2.0' );
+	define( 'AQUAMETRIA_C5_VERSAO', '1.3.0' );
 	define( 'AQUAMETRIA_C5_SLUG', 'calculadora-de-potencia-do-aquecedor' );
 	define( 'AQUAMETRIA_C5_VERIFICADO_EM', '08/09/2026' );
 	define( 'AQUAMETRIA_C5_ARTIGO', 'quantos-watts-de-aquecedor-para-aquario' );
@@ -242,6 +261,235 @@ function aquametria_c5_comercial_texto( $e ) {
 		return number_format_i18n( $e['comercial'], 0 ) . ' W';
 	}
 	return 'acima dos ' . number_format_i18n( $linha[ count( $linha ) - 1 ], 0 ) . ' W da linha, mais de um aparelho';
+}
+}
+
+/* ---------------------------------------------------------------------------
+ * 1d. O aquecedor do banco que atende cada linha da tabela
+ *
+ * Pedido do Raphael em 09/09/2026: a tabela pré-renderizada precisa dizer, em
+ * cada faixa, QUAL aparelho atende — senão ela responde ao leitor e não responde
+ * ao comprador, e a pessoa só descobre que existe recomendação depois de
+ * preencher o formulário inteiro e rolar até o fim.
+ *
+ * O critério é o MESMO do script (função escolher()): potência dentro da faixa,
+ * com teto no degrau comercial quando existe, e ordem pela distância até o topo
+ * da faixa, que é onde a convenção editorial manda mirar. Comissão não ordena
+ * nada (regra V16 do esquema do banco).
+ *
+ * DUAS BARREIRAS DE SEGURANÇA DO SCRIPT NÃO CABEM AQUI, e isso não é descuido:
+ * a tabela não sabe a voltagem da tomada de quem lê nem a temperatura-alvo, que
+ * são exatamente os dois cortes que o formulário aplica (regra V18). Aquecedor
+ * ligado na voltagem errada queima, então a célula publica a voltagem que a
+ * ficha declara — e diz quando ela não está confirmada — e o texto abaixo da
+ * tabela avisa que a lista definitiva sai depois do cálculo.
+ * ------------------------------------------------------------------------- */
+
+if ( ! function_exists( 'aquametria_c5_produtos_exemplo' ) ) {
+function aquametria_c5_produtos_exemplo( $e ) {
+	$teto_corte = $e['comercial'] ? $e['comercial'] : $e['teto'];
+	$dentro     = array();
+
+	foreach ( aquametria_c5_catalogo() as $p ) {
+		if ( $p['potencia_w'] < $e['piso'] || $p['potencia_w'] > $teto_corte ) {
+			continue;
+		}
+		$dentro[] = $p;
+	}
+
+	$alvo = $e['teto'];
+
+	usort(
+		$dentro,
+		function ( $a, $b ) use ( $alvo ) {
+			$da = abs( $a['potencia_w'] - $alvo );
+			$db = abs( $b['potencia_w'] - $alvo );
+			if ( abs( $da - $db ) < 0.001 ) {
+				return strcmp( $a['id'], $b['id'] );
+			}
+			return ( $da < $db ) ? -1 : 1;
+		}
+	);
+
+	return $dentro;
+}
+}
+
+if ( ! function_exists( 'aquametria_c5_produto_exemplo' ) ) {
+function aquametria_c5_produto_exemplo( $e ) {
+	$lista = aquametria_c5_produtos_exemplo( $e );
+	return $lista ? $lista[0] : null;
+}
+}
+
+/* O primeiro da MESMA ordem que já tem link de loja hoje. Existe porque o modelo
+   que atende melhor costuma ser um que o banco ainda não conseguiu link, e aí a
+   pessoa fica sem saber onde comprar nenhum. A ordem não muda por isso: quem
+   atende melhor continua em primeiro, e o comprável sai embaixo e rotulado. */
+if ( ! function_exists( 'aquametria_c5_produto_com_link' ) ) {
+function aquametria_c5_produto_com_link( $e ) {
+	foreach ( aquametria_c5_produtos_exemplo( $e ) as $p ) {
+		if ( $p['link'] ) {
+			return $p;
+		}
+	}
+	return null;
+}
+}
+
+/* Espelho em PHP do dataBr() do script, feito por partes de propósito: converter
+   com strtotime traria o fuso do servidor para dentro de uma data que é só um
+   rótulo de coleta, e um dia a mais aqui viraria contradição entre a tabela
+   servida e o cartão que o script pinta logo abaixo dela. */
+if ( ! function_exists( 'aquametria_c5_data_br' ) ) {
+function aquametria_c5_data_br( $iso ) {
+	if ( ! $iso || ! preg_match( '/^(\d{4})-(\d{2})-(\d{2})$/', $iso, $m ) ) {
+		return (string) $iso;
+	}
+	return $m[3] . '/' . $m[2] . '/' . $m[1];
+}
+}
+
+/* O vocabulário de fonte_status vira frase: "ficha do transcrita-varejo" não é
+   português, e esta é a frase que um modelo de linguagem recorta e leva. */
+if ( ! function_exists( 'aquametria_c5_origem_texto' ) ) {
+function aquametria_c5_origem_texto( $status ) {
+	if ( 'fabricante-via-busca' === $status ) {
+		return 'ficha do fabricante';
+	}
+	if ( 'transcrita-varejo' === $status ) {
+		return 'ficha transcrita de varejo especializado';
+	}
+	return 'ficha de origem ' . $status;
+}
+}
+
+/* Só o NOME de quem publicou a ficha, do começo de fonte_ref: o resto do campo é
+   descrição longa e vem do banco sem acento, porque é chave de dado e não texto
+   de tela. */
+if ( ! function_exists( 'aquametria_c5_fonte_nome' ) ) {
+function aquametria_c5_fonte_nome( $ref ) {
+	$corte = strlen( $ref );
+
+	foreach ( array( ',', ' (' ) as $marca ) {
+		$pos = strpos( $ref, $marca );
+		if ( false !== $pos && $pos < $corte ) {
+			$corte = $pos;
+		}
+	}
+
+	$nome = trim( substr( $ref, 0, $corte ) );
+	return '' === $nome ? $ref : $nome;
+}
+}
+
+/* A voltagem em texto. Ela é o campo que mais falta no banco (nove aquecedores
+   do lote de 09/09/2026 estão com voltagem null, e nenhuma fonte de varejo
+   confirma versão por versão), e é o campo que queima aparelho quando está
+   errado — então a falta aparece escrita, nunca como 110 chutado. */
+if ( ! function_exists( 'aquametria_c5_voltagem_texto' ) ) {
+function aquametria_c5_voltagem_texto( $p ) {
+	if ( empty( $p['voltagem'] ) ) {
+		return 'voltagem não confirmada pelas fontes';
+	}
+	return implode( ' ou ', $p['voltagem'] ) . ' V';
+}
+}
+
+/* A frase do aparelho: modelo, a especificação QUE FEZ ELE ENTRAR, a voltagem e
+   a procedência, tudo na mesma frase — o formato que sobrevive a ser recortado
+   por um modelo de linguagem e que um comprador consegue ler de uma vez. */
+if ( ! function_exists( 'aquametria_c5_produto_frase' ) ) {
+function aquametria_c5_produto_frase( $p, $volume ) {
+	return $p['marca'] . ' ' . $p['modelo'] . ' — ' . number_format_i18n( $p['potencia_w'], 0 ) . ' W, '
+		. aquametria_c5_voltagem_texto( $p ) . ', para os ' . number_format_i18n( $volume, 0 ) . ' litros, segundo '
+		. aquametria_c5_origem_texto( $p['fonte_status'] ) . ' (fonte: ' . aquametria_c5_fonte_nome( $p['fonte_ref'] )
+		. '), conferida em ' . aquametria_c5_data_br( $p['verificado_em'] );
+}
+}
+
+/* O aquecedor entra pela POTÊNCIA, e o volume que a ficha declara é outro número
+   — às vezes menor que o do exemplo. O cartão que o script pinta já diz isso; a
+   tabela servida e o FAQ precisam dizer também, senão a mesma página afirma duas
+   coisas diferentes conforme o leitor execute ou não JavaScript. */
+if ( ! function_exists( 'aquametria_c5_volume_ressalva' ) ) {
+function aquametria_c5_volume_ressalva( $p, $volume ) {
+	if ( null === $p['volume_max_L'] || $p['volume_max_L'] >= $volume ) {
+		return '';
+	}
+
+	return 'A ficha declara esse modelo para até ' . number_format_i18n( $p['volume_max_L'], 0 )
+		. ' litros, abaixo dos ' . number_format_i18n( $volume, 0 )
+		. ' deste exemplo: ele entra pela potência, e a declaração de volume não cobre esse caso.';
+}
+}
+
+if ( ! function_exists( 'aquametria_c5_produto_celula_html' ) ) {
+function aquametria_c5_produto_celula_html( $e ) {
+	$p = aquametria_c5_produto_exemplo( $e );
+
+	/* Bloco vazio nunca sai mudo: silêncio na tela parece defeito, e o leitor
+	   não tem como saber se faltou aparelho ou se quebrou a página. */
+	if ( null === $p ) {
+		return '<td><span class="aqm-c5-sem">Nenhum aquecedor do banco fica entre '
+			. esc_html( aquametria_c5_watts( $e['piso'] ) ) . ' e '
+			. esc_html( aquametria_c5_watts( $e['comercial'] ? $e['comercial'] : $e['teto'] ) )
+			. ' W. Assim que houver um com ficha completa, ele aparece aqui.</span></td>';
+	}
+
+	$nome = $p['marca'] . ' ' . $p['modelo'];
+
+	$h = '<td>';
+
+	/* Acima de 300 L a faixa passa do maior degrau da linha de referência, e a
+	   resposta da própria página é MAIS DE UM APARELHO. Indicar um modelo só
+	   nessa linha sem dizer isso contradiria a coluna ao lado — e um aquecedor
+	   subdimensionado trabalha ininterrupto, que é o pior modo de falha. */
+	if ( ! $e['comercial'] ) {
+		$h .= '<span class="aqm-c5-sem">A faixa passa do maior degrau da linha de referência: aqui a resposta é mais de um aparelho, e o modelo abaixo é um deles.</span>';
+	}
+
+	if ( $p['link'] ) {
+		$h .= '<a class="aqm-c5-prod" href="' . esc_url( $p['link'] ) . '" target="_blank" rel="sponsored noopener">'
+			. esc_html( $nome ) . '</a>';
+	} else {
+		$h .= '<span class="aqm-c5-prod">' . esc_html( $nome ) . '</span>';
+	}
+
+	$h .= '<span class="aqm-c5-wl">' . esc_html( number_format_i18n( $p['potencia_w'], 0 ) ) . ' W — '
+		. esc_html( aquametria_c5_voltagem_texto( $p ) ) . '</span>';
+
+	$ressalva = aquametria_c5_volume_ressalva( $p, $e['volume'] );
+
+	if ( '' !== $ressalva ) {
+		$h .= '<span class="aqm-c5-sem">' . esc_html( $ressalva ) . '</span>';
+	}
+
+	if ( $p['link'] ) {
+		$h .= '<span class="aqm-c5-wl">link patrocinado</span>';
+		$h .= '</td>';
+		return $h;
+	}
+
+	$h .= '<span class="aqm-c5-wl">ainda sem link de loja</span>';
+
+	$c = aquametria_c5_produto_com_link( $e );
+
+	if ( null === $c ) {
+		$h .= '<span class="aqm-c5-sem">Nenhum aquecedor dessa faixa tem link de loja no banco hoje.</span>';
+		$h .= '</td>';
+		return $h;
+	}
+
+	$h .= '<span class="aqm-c5-sem">Com link hoje, na mesma faixa: <a class="aqm-c5-prod" href="'
+		. esc_url( $c['link'] ) . '" target="_blank" rel="sponsored noopener">' . esc_html( $c['marca'] . ' ' . $c['modelo'] )
+		. '</a> — ' . esc_html( number_format_i18n( $c['potencia_w'], 0 ) ) . ' W, '
+		. esc_html( aquametria_c5_voltagem_texto( $c ) ) . '. Link patrocinado. '
+		. esc_html( aquametria_c5_volume_ressalva( $c, $e['volume'] ) ) . '</span>';
+
+	$h .= '</td>';
+
+	return $h;
 }
 }
 
@@ -721,6 +969,10 @@ max-width:52rem;font-family:var(--c5-texto);color:var(--c5-tinta);}
 .aqm-c5-direta .aqm-c5-destaque strong{font-family:var(--c5-display);}
 .aqm-c5-exemplos .aqm-c5-fontes td{font-size:.84rem;}
 .aqm-c5-exemplos .aqm-c5-fontes td:first-child{font-weight:600;color:var(--c5-tinta);}
+.aqm-c5-exemplos .aqm-c5-fontes{min-width:52rem;}
+.aqm-c5-prod{display:block;font-weight:600;color:var(--c5-tinta);font-size:.86rem;line-height:1.35;}
+a.aqm-c5-prod{color:var(--c5-lamina);text-decoration:underline;}
+.aqm-c5-sem{display:block;color:var(--c5-legenda);font-size:.78rem;line-height:1.45;}
 .aqm-c5-num{font-family:var(--c5-mono);font-variant-numeric:tabular-nums;white-space:nowrap;}
 .aqm-c5-wl{display:block;color:var(--c5-legenda);font-family:var(--c5-texto);font-size:.76rem;}
 .aqm-c5-oculto{display:none;}
@@ -1546,7 +1798,8 @@ function aquametria_c5_exemplos_html() {
 
 	$h .= '<div class="aqm-c5-rolagem"><table class="aqm-c5-fontes">';
 	$h .= '<tr><th>Volume real</th><th>Até ' . esc_html( number_format_i18n( AQUAMETRIA_C5_DELTA_COBERTO, 0 ) ) . ' °C de diferença</th><th>Na prateleira</th>';
-	$h .= '<th>Acima de ' . esc_html( number_format_i18n( AQUAMETRIA_C5_DELTA_COBERTO, 0 ) ) . ' °C</th><th>Na prateleira</th></tr>';
+	$h .= '<th>Acima de ' . esc_html( number_format_i18n( AQUAMETRIA_C5_DELTA_COBERTO, 0 ) ) . ' °C</th><th>Na prateleira</th>';
+	$h .= '<th>Aquecedor do banco que atende</th></tr>';
 
 	foreach ( aquametria_c5_volumes_exemplo() as $v ) {
 		$e   = aquametria_c5_exemplo( $v, true, false );
@@ -1563,6 +1816,8 @@ function aquametria_c5_exemplos_html() {
 		$h .= '<span class="aqm-c5-wl">' . esc_html( number_format_i18n( $fra['wl_piso'], 1 ) ) . ' a ' . esc_html( number_format_i18n( $fra['wl_teto'], 1 ) ) . ' W/L, e é piso</span></td>';
 		$h .= '<td><span class="aqm-c5-num">' . esc_html( aquametria_c5_comercial_texto( $fra ) ) . '</span></td>';
 
+		$h .= aquametria_c5_produto_celula_html( $e );
+
 		$h .= '</tr>';
 	}
 
@@ -1577,6 +1832,19 @@ function aquametria_c5_exemplos_html() {
 	$h .= 'Aquário destampado perde mais calor, principalmente por evaporação, e esta página NÃO corrige o número por isso: a constante que quantificaria a perda está pendente, sem fonte. ';
 	$h .= 'A partir de 300 litros a faixa passa do maior degrau da linha de referência (300 W), e a resposta honesta é mais de um aparelho — o que também é o mais seguro, por modo de falha do termostato. ';
 	$h .= 'Nenhum número desta tabela foi digitado à mão: todos saem das mesmas regras que a calculadora usa, calculados no servidor a cada carregamento.</p>';
+
+	$divulgacao = aquametria_c5_url( AQUAMETRIA_C5_PAGINA_AFILIADOS );
+
+	$h .= '<p class="aqm-c5-aviso-afiliado"><strong>Sobre a última coluna.</strong> ';
+	$h .= 'Ela mostra o aquecedor do banco técnico da Aquametria cuja potência cai mais perto do topo da faixa daquela linha, no cenário da coluna da esquerda — ';
+	$h .= 'é o mesmo critério que a calculadora acima aplica, e a comissão não entra nele: modelo sem link de loja aparece do mesmo jeito. ';
+	$h .= 'Quando esse modelo ainda não tem link no banco, aparece embaixo, rotulada, a opção da MESMA faixa que já tem — o primeiro da mesma ordem, não o de maior comissão. ';
+	$h .= '<strong>Leia a voltagem antes de comprar.</strong> A tabela não sabe duas coisas que o formulário pergunta e que decidem segurança: a voltagem da sua tomada e a temperatura que você quer manter. ';
+	$h .= 'Aquecedor ligado na voltagem errada queima, e por isso a célula publica a voltagem que a ficha declara — e diz quando ela não está confirmada — em vez de supor 110 ou 220. ';
+	$h .= 'A lista definitiva, já com esses dois cortes aplicados, sai depois do cálculo. ';
+	$h .= 'Alguns desses nomes levam a lojas por link de afiliado, marcado como patrocinado: se você comprar por ele, a Aquametria pode receber comissão, sem custo a mais para você. ';
+	$h .= 'Não publicamos preço aqui, porque preço muda toda semana e número velho na tela é pior que nenhum. ';
+	$h .= '<a href="' . esc_url( $divulgacao ) . '">Como a Aquametria ganha dinheiro</a>.</p>';
 
 	$h .= '</div>';
 	return $h;
@@ -1595,6 +1863,24 @@ function aquametria_c5_exemplos_html() {
  * número, na tabela de exemplos servida acima — FAQPage que promete o que a
  * página não mostra é lixo, e seria lixo detectável.
  * ------------------------------------------------------------------------- */
+
+/* A frase de "onde comprar" da resposta do FAQ, quando quem atende melhor ainda
+   não tem link. Fica separada porque só existe nesse caso, e escrevê-la dentro
+   do array do FAQ deixaria o array ilegível. */
+if ( ! function_exists( 'aquametria_c5_faq_com_link' ) ) {
+function aquametria_c5_faq_com_link( $e, $volume ) {
+	$c = aquametria_c5_produto_com_link( $e );
+
+	if ( null === $c ) {
+		return 'Nenhum aquecedor dessa faixa tem link de loja no banco da Aquametria hoje. ';
+	}
+
+	$ressalva = aquametria_c5_volume_ressalva( $c, $volume );
+
+	return 'Esse modelo ainda não tem link de loja no banco; na mesma faixa, o primeiro que tem é o '
+		. aquametria_c5_produto_frase( $c, $volume ) . '. ' . ( '' === $ressalva ? '' : $ressalva . ' ' );
+}
+}
 
 if ( ! function_exists( 'aquametria_c5_jsonld_dados' ) ) {
 function aquametria_c5_jsonld_dados() {
@@ -1637,6 +1923,7 @@ function aquametria_c5_jsonld_dados() {
 			'Caminho inverso: o aquecedor que você já tem serve para quantos litros',
 			'Barreira de voltagem e de faixa de ajuste antes de sugerir qualquer aparelho',
 			'Tabela pré-calculada para 30, 60, 100, 150, 200 e 300 litros, nos dois cenários de frio',
+			'Aquecedor do banco indicado para cada um desses seis volumes, já no HTML servido',
 		),
 		'publisher'  => $editora,
 		'isBasedOn'  => 'Levantamento de fontes brasileiras da Aquametria, 04/09/2026, e fichas de fabricante coletadas em 07/09/2026',
@@ -1663,6 +1950,36 @@ function aquametria_c5_jsonld_dados() {
 					. 'Se o cômodo esfriar mais que isso, nenhuma fonte cobre o caso: sobram as regras genéricas, que dariam '
 					. aquametria_c5_watts( $fra['piso'] ) . ' a ' . aquametria_c5_watts( $fra['teto'] ) . ' W, e essa faixa é um piso que pode ser insuficiente. '
 					. 'O que decide o número não é o volume, é quanto o cômodo esfria na noite mais fria do ano.',
+			),
+		);
+	}
+
+	/* Pergunta de COMPRA, uma por volume. Cada resposta abaixo existe, com o
+	   mesmo modelo e a mesma potência, na última coluna da tabela servida. */
+	foreach ( aquametria_c5_volumes_exemplo() as $v ) {
+		$e = aquametria_c5_exemplo( $v, true, false );
+		$p = aquametria_c5_produto_exemplo( $e );
+
+		if ( null === $p ) {
+			continue;
+		}
+
+		$perguntas[] = array(
+			'@type' => 'Question',
+			'name'  => 'Qual aquecedor comprar para um aquário de ' . number_format_i18n( $v, 0 ) . ' litros?',
+			'acceptedAnswer' => array(
+				'@type' => 'Answer',
+				'text'  => 'Para um aquário de ' . number_format_i18n( $v, 0 ) . ' litros de água real, num cômodo que não fica mais de '
+					. number_format_i18n( AQUAMETRIA_C5_DELTA_COBERTO, 0 ) . ' °C abaixo da temperatura da água, a faixa é de '
+					. aquametria_c5_watts( $e['piso'] ) . ' a ' . aquametria_c5_watts( $e['teto'] ) . ' W e o aquecedor do banco técnico da Aquametria '
+					. 'que cai mais perto do topo dela é o ' . aquametria_c5_produto_frase( $p, $v ) . '. '
+					. ( $e['comercial'] ? '' : 'Atenção: nesse volume a faixa passa do maior degrau da linha de referência (300 W), '
+						. 'então a resposta é mais de um aparelho, e esse modelo é um deles. ' )
+					. 'O critério é a potência declarada, nunca a comissão: modelo sem link de loja aparece na lista do mesmo jeito. '
+					. aquametria_c5_volume_ressalva( $p, $v ) . ( aquametria_c5_volume_ressalva( $p, $v ) ? ' ' : '' )
+					. ( $p['link'] ? '' : aquametria_c5_faq_com_link( $e, $v ) )
+					. 'Antes de comprar, confirme dois números que esta indicação não conhece: a voltagem da sua tomada, porque aquecedor ligado na voltagem errada queima, '
+					. 'e se a faixa de ajuste do termostato alcança a temperatura que você quer manter.',
 			),
 		);
 	}

@@ -74,7 +74,15 @@ for (let i = 0; i < nlinks; i++) {
   const href = await links.nth(i).getAttribute('href');
   ok(`link ${i+1} rel/target/https`, rel === 'sponsored noopener' && tgt === '_blank' && href.startsWith('https://'), `${rel} | ${tgt}`);
 }
-ok('aviso de comissao visivel', await page.locator('.aqm-c5-aviso-afiliado').isVisible());
+// Desde 09/09/2026 ha DOIS avisos de comissao na pagina, e de proposito: um no
+// bloco de resultado que o script pinta, outro junto da tabela pre-renderizada,
+// que e a unica recomendacao de compra que a pagina serve sem JavaScript. O
+// locator precisa dizer de qual esta falando, senao o teste quebra por
+// ambiguidade em vez de por defeito.
+ok('aviso de comissao visivel no bloco de resultado',
+  await page.locator('#aqm-c5-produtos .aqm-c5-aviso-afiliado').isVisible());
+ok('aviso de comissao visivel junto da tabela pre-renderizada',
+  await page.locator('.aqm-c5-exemplos .aqm-c5-aviso-afiliado').isVisible());
 ok('aviso de voltagem em todo cartao com link', await page.locator('.aqm-c5-voltaviso').count() === nlinks);
 
 console.log('\n3. seguranca: voltagem 220 V filtra a lista');
@@ -188,7 +196,20 @@ const larg = await p2.evaluate(() => ({ doc: document.documentElement.scrollWidt
 ok('sem rolagem horizontal', larg.doc <= larg.win + 1, JSON.stringify(larg));
 
 console.log('\n15. console limpo');
-ok('zero erro de console', erros.length === 0, erros.join(' | '));
+// O que este caso existe para pegar e ERRO DE SCRIPT — foi assim que as cinco
+// calculadoras apareceram quebradas em 08/09/2026. Falha de REDE nao e isso, e
+// na nuvem ela e garantida: o egresso do container barra fonts.googleapis.com e
+// fonts.gstatic.com, que a casca carrega de verdade e que carregam no navegador
+// do Raphael. Contar isso como defeito faria o teste reprovar sempre e treinaria
+// a proxima sessao a ignorar o resultado dele — que e o pior estrago possivel
+// num teste. Entao a falha de rede sai separada, contada e nomeada.
+const rede = erros.filter(e => /Failed to load resource|ERR_(CONNECTION|NAME|INTERNET|BLOCKED)/.test(e));
+const script = erros.filter(e => !rede.includes(e));
+ok('zero erro de script no console', script.length === 0, script.join(' | '));
+if (rede.length) {
+  console.log('  nota  ' + rede.length + ' falha(s) de rede, esperadas na nuvem (fontes do Google): '
+    + 'confira no navegador do Raphael, onde o egresso nao e bloqueado.');
+}
 
 await browser.close();
 console.log(`\n=== ${falhas === 0 ? 'TODOS OS CASOS PASSARAM' : falhas + ' FALHA(S)'} ===`);

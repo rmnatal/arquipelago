@@ -310,6 +310,23 @@ def valida_produto(esquema, entidade, produto, vistos):
                 erro("V19", pid, "fonte sustentando 'imagem': imagem e dado comercial e nao "
                                  "entra em fontes[]")
 
+        # V21 - a imagem NAO conferida diz por que, e continua valendo.
+        # Escrito em 09/09/2026 depois de uma sessao quase anular 21 URLs boas
+        # porque o egresso da nuvem barra o CDN da Shopee: nao conseguir BUSCAR
+        # um arquivo nao e evidencia de que a URL esteja errada, e apagar dado
+        # bom por falta de meio de conferencia e a pior troca possivel. O lugar
+        # certo da falta e este campo, e quem confere e a Sentinela, no Chrome.
+        if img.get("verificado_em") is None:
+            if not preenchido(img.get("motivo_sem_verificacao")):
+                erro("V21", pid, "imagem sem verificado_em e sem motivo_sem_verificacao: "
+                                 "quem nao conferiu a foto precisa dizer por que, em vez de "
+                                 "anular a imagem")
+        else:
+            try:
+                datetime.strptime(img.get("verificado_em"), "%Y-%m-%d")
+            except (ValueError, TypeError):
+                erro("V21", pid, "imagem com verificado_em fora de AAAA-MM-DD")
+
     # V20 - aviso: tem link e nao tem foto. O cartao sai com placa tipografica.
     if (afil or {}).get("plataforma") and img is None:
         aviso("V20", pid, "tem link de afiliado e nao tem imagem: o cartao sai com a placa "

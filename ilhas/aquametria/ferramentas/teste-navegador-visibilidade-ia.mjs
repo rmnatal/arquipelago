@@ -110,6 +110,47 @@ for (const caso of CASOS) {
 
     conferir(texto.includes(caso.ancora),
       'o numero da tabela bate com o que a calculadora devolve para 100 L', caso.ancora);
+
+    // -------------------------------- a coluna de produto (bloco 4c, 09/09/2026)
+    // Pedido do Raphael: a tabela pre-renderizada tem de dizer QUAL produto
+    // atende cada faixa, senao ela responde ao leitor e nao responde ao
+    // comprador. Com o script desligado, essa coluna e a UNICA recomendacao de
+    // compra que a pagina serve — se ela sumir, ninguem percebe pela tela.
+    const ultimaColuna = await tabela.$$eval('tr td:last-child',
+      ns => ns.map(n => n.innerText.trim()));
+    conferir(ultimaColuna.length === 6, 'a coluna de produto tem uma celula por volume',
+      ultimaColuna.length + ' celulas');
+
+    const mudas = ultimaColuna.filter(t => t.length < 20);
+    conferir(mudas.length === 0,
+      'nenhuma celula de produto sai muda: ou nomeia um modelo ou escreve por que esta vazia',
+      mudas.length ? mudas.length + ' celula(s) mudas' : ultimaColuna.length + ' com texto');
+
+    // Link de afiliado dentro da tabela obedece as mesmas regras do cartao.
+    const links = await tabela.$$eval('a[href]', ns => ns.map(n => ({
+      href: n.getAttribute('href'),
+      rel: n.getAttribute('rel') || '',
+      alvo: n.getAttribute('target') || '',
+      texto: n.innerText.trim(),
+    })));
+    const errados = links.filter(l => !/\bsponsored\b/.test(l.rel)
+      || !/\bnoopener\b/.test(l.rel) || l.alvo !== '_blank');
+    conferir(errados.length === 0,
+      'todo link da tabela e sponsored, noopener e abre em aba nova',
+      errados.length ? errados.map(l => l.texto + ' [rel=' + l.rel + ']').join('; ')
+        : links.length + ' link(s)');
+    conferir(links.every(l => l.texto.length > 0),
+      'nenhum link da tabela e um alvo sem texto (leitor de tela e teclado)');
+
+    // O aviso de comissao tem de estar visivel JUNTO da tabela, nao so no
+    // bloco de resultado que o script pinta depois.
+    const aviso = await pagina.$('.' + caso.prefixo + '-exemplos .' + caso.prefixo + '-aviso-afiliado');
+    conferir(!!aviso, 'a tabela carrega o aviso de publicidade dela');
+    if (aviso) {
+      const t = await aviso.innerText();
+      conferir(/comiss/i.test(t), 'o aviso da tabela diz a palavra comissao');
+      conferir(/pre[cç]o/i.test(t), 'o aviso da tabela explica por que nao publica preco');
+    }
   }
 
   // ------------------------------------- resposta antes da explicacao

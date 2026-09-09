@@ -3,7 +3,7 @@
   "descricao": "Modelo normalizado do banco de produtos da Aquametria: entidades filtro, aquecedor, iluminacao e midia, mais a entidade cotacao (preco). Define campo a campo o tipo, a unidade, a obrigatoriedade, o vocabulario controlado e a ORIGEM esperada do dado. Nenhum numero entra no banco sem uma entrada correspondente em fontes[]. Este arquivo e o contrato que dados/produtos-*.json cumprem e que ferramentas/validar-produtos.py verifica.",
   "gerado_em": "2026-09-07",
   "bloco": 3,
-  "versao_esquema": 5,
+  "versao_esquema": 6,
   "depende_de": [
     "dados/especificacao-calculadoras.md",
     "dados/constantes-calculadoras.json"
@@ -252,6 +252,16 @@
           "tipo": "data ISO"
         },
         {
+          "campo": "verificado_em",
+          "tipo": "data ISO|null",
+          "observacao": "Data em que alguem ABRIU a URL e viu a imagem carregar. null enquanto ninguem conferiu. A nuvem NAO consegue conferir: o egresso do container barra down-bs-br.img.susercontent.com, como barra todo dominio de loja. Isso NAO invalida a URL, que foi colhida do painel de afiliados da Shopee no navegador do Raphael — invalida so a nossa capacidade de conferir daqui. Quem confere e a Sentinela Tecnica, que roda no Chrome. NUNCA anule o campo imagem por nao conseguir buscar o arquivo: jogar fora dado bom por falta de meio de conferencia e pior que registrar a falta de conferencia."
+        },
+        {
+          "campo": "motivo_sem_verificacao",
+          "tipo": "string|null",
+          "observacao": "Por que verificado_em esta null."
+        },
+        {
           "campo": "alt",
           "tipo": "string",
           "observacao": "Descricao real do que aparece na foto, nao repeticao do nome. E acessibilidade e e leitura de IA ao mesmo tempo, e e o que sobra quando a imagem nao carrega."
@@ -265,9 +275,10 @@
       "regras_de_tela": [
         "loading='lazy' em toda imagem de cartao.",
         "Sem largura e altura medidas, o cartao reserva o espaco por CSS (aspect-ratio 1/1 com object-fit contain). Isso nao salta o layout qualquer que seja a proporcao real do arquivo, e e o que permite publicar a foto sem inventar dimensao.",
-        "Imagem nunca ordena o resultado. A ordem e por adequacao tecnica, e um produto com foto nao passa na frente de um produto sem foto que atende melhor."
+        "Imagem nunca ordena o resultado. A ordem e por adequacao tecnica, e um produto com foto nao passa na frente de um produto sem foto que atende melhor.",
+        "Imagem com verificado_em null entra na tela do mesmo jeito: o alt e obrigatorio e e o que sobra se o arquivo nao carregar. Esperar conferencia para publicar seria trocar o certo pelo bonito, que e a regra oposta a deste campo."
       ],
-      "historico": "Nasceu como placeholder em 07/09/2026 prevendo licenca e credito de foto de loja. Em 09/09/2026 o campo foi definido de verdade para o bloco da vitrine, com a foto do proprio anuncio de afiliado, que e o uso que o programa de afiliados permite."
+      "historico": "Nasceu como placeholder em 07/09/2026 prevendo licenca e credito de foto de loja. Em 09/09/2026 o campo foi definido de verdade para o bloco da vitrine, com a foto do proprio anuncio de afiliado, que e o uso que o programa de afiliados permite. Em 09/09/2026, na mesma noite, ganhou verificado_em e motivo_sem_verificacao: a sessao da nuvem nao alcanca o CDN da Shopee e precisava de um lugar para dizer isso SEM anular a URL."
     }
   ],
   "fonte": {
