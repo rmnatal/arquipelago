@@ -58,7 +58,14 @@ ok('diz que a faixa e 10x larga', (await txt('#aqm-c12-faixa-criterio')).include
 const linhasBio = await page.locator('#aqm-c12-ancoras-corpo tr').count();
 ok('4 dosagens declaradas na tabela', linhasBio === 4, `veio ${linhasBio}`);
 const linhasTot = await page.locator('#aqm-c12-totais-corpo tr').count();
-ok('4 filtros na tabela de midia total', linhasTot === 4, `veio ${linhasTot}`);
+// A tabela publica TODO filtro do banco que declara volume util de midia, entao ela
+// cresce a cada coleta: fixar o numero fazia o teste reprovar a cada filtro novo (foi o
+// que aconteceu em 09/09/2026, quando o SunSun HW-603B virou o quinto). O que o teste
+// precisa garantir e que a tabela existe, nao murchou e nao repete linha.
+const nomesTot = await page.locator('#aqm-c12-totais-corpo tr').allInnerTexts();
+ok('pelo menos 4 filtros na tabela de midia total', linhasTot >= 4, `veio ${linhasTot}`);
+ok('nenhuma linha repetida na tabela', new Set(nomesTot).size === nomesTot.length,
+   `${nomesTot.length} linha(s)`);
 ok('sem filtro, a tela pede o filtro', await page.locator('#aqm-c12-cesto-sem').isVisible());
 ok('bloco do cesto escondido', await page.locator('#aqm-c12-cesto').isHidden());
 

@@ -2,7 +2,7 @@
   "id": "produtos-filtro",
   "entidade": "filtro",
   "esquema": "dados/esquema-produtos.json",
-  "descricao": "Semente do banco de filtros. Cinco registros que existem para TESTAR o modelo contra a realidade do mercado brasileiro, nao para cobrir o mercado. A coleta em escala e bloco proprio.",
+  "descricao": "Banco de filtros. Comecou como semente de cinco registros para TESTAR o modelo contra a realidade do mercado brasileiro; desde 09/09/2026 esta em expansao (bloco 4b), com foco em cobrir toda faixa de volume com pelo menos uma opcao sugerivel.",
   "gerado_em": "2026-09-07",
   "bloco": 3,
   "publicar": false,
@@ -108,7 +108,7 @@
       "vazao_nominal_lh": 1400,
       "vazao_real_lh": null,
       "potencia_w": 35,
-      "coluna_maxima_m": null,
+      "coluna_maxima_m": 2.0,
       "volume_cesto_L": null,
       "volume_filtragem_L": null,
       "midia_inclusa": [
@@ -117,7 +117,7 @@
         "carvao ativado"
       ],
       "uv_w": 9,
-      "mangueira_mm": null,
+      "mangueira_mm": 16,
       "volume_atendido_declarado_L": {
         "min": null,
         "max": 350
@@ -154,12 +154,24 @@
             "midia_inclusa"
           ],
           "observacao": "Confira a embalagem. Coluna maxima e volume de cesto nao sao publicados por nenhuma das fontes vistas."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "PetzLifeWorld e Aqua Nature (varejo especializado, India) publicam a ficha tecnica completa da mesma referencia HW-303B: 35 W, 1400 L/h, altura maxima de recalque 2,0 m, UV de 9 W, mangueira de 16 mm interna e 22 mm externa, 258 x 258 x 430 mm, 5,0 kg",
+          "url": "https://www.petzlifeworld.in/products/sunsun-hw-303b-aquarium-canister-filter",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "coluna_maxima_m",
+            "mangueira_mm"
+          ],
+          "observacao": "A altura de recalque nao e publicada por nenhuma das lojas brasileiras vistas em 07/09 nem em 09/09/2026; sai do varejo estrangeiro, que transcreve a etiqueta do fabricante. E o campo que faltava para o HW-303B poder ser sugerido pela C3."
         }
       ],
       "conflitos": [],
-      "verificado_em": "2026-09-07",
-      "status_registro": "parcial",
-      "observacao": "Sem coluna_maxima_m nao entra na sugestao da C3: e justamente o campo que decide se o canister vence a altura do movel. Nenhuma das fontes vistas publica. 1400 L/h para 350 L = 4,0 renovacoes/h."
+      "verificado_em": "2026-09-09",
+      "status_registro": "completo",
+      "observacao": "Em 09/09/2026 ganhou coluna_maxima_m = 2,0 m e mangueira de 16 mm, colhidos no varejo especializado estrangeiro, e passou a ser sugerivel pela C3 — era o filtro de maior vazao do banco e estava barrado por um campo so. Saiu de 'parcial' para 'completo': todos os obrigatorios de filtro estao preenchidos com fonte. O volume util de midia (volume_filtragem_L) continua sem fonte nenhuma, e por isso o filtro nao entra na C12 — campo opcional na ficha, requisito daquela calculadora. 1400 L/h para 350 L = 4,0 renovacoes/h."
     },
     {
       "id": "atman-at-3338",
@@ -435,7 +447,520 @@
       "status_registro": "completo",
       "observacao": "Hang-on. NAO tem altura maxima de recalque: o filtro fica pendurado na borda e bombeia contra a propria carcaca, entao coluna_maxima_m nao se aplica (campo coluna_maxima_nao_se_aplica). Em 08/09/2026 saiu de 'revalidar' para 'completo': a eficiencia de 167 L/h por W, que o validador apontava como implausivel, e a declaracao do proprio fabricante e coerente com um hang-on trabalhando a coluna quase zero - o limite de 120 L/h por W foi calibrado para canister, e a regra V10 passou a valer so para canister e sump. Em 08/09/2026 ganhou volume_filtragem_L = 1,2 L (coleta da C12): 1,2 L de midia para os 200 L que o fabricante declara atender da 6,0 mL de midia por litro de agua - metade dos 12 mL/L do cesto do Eheim classic 250. Dois fabricantes, o mesmo problema, o dobro de midia.",
       "coluna_maxima_nao_se_aplica": true
+    },
+    {
+      "id": "atman-hf-0400",
+      "entidade": "filtro",
+      "marca": "Atman",
+      "linha": "HF",
+      "modelo": "HF-0400",
+      "variante": null,
+      "nomes_alternativos": [
+        "Atman HF-400",
+        "Filtro externo Atman HF 400",
+        "Atman Hang On HF-0400"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "110",
+        "220"
+      ],
+      "tipo": "hang-on",
+      "vazao_nominal_lh": 440,
+      "vazao_real_lh": null,
+      "potencia_w": 6.0,
+      "coluna_maxima_m": null,
+      "volume_cesto_L": null,
+      "volume_filtragem_L": null,
+      "midia_inclusa": [
+        "espuma",
+        "carvao ativado"
+      ],
+      "uv_w": null,
+      "mangueira_mm": null,
+      "volume_atendido_declarado_L": {
+        "min": null,
+        "max": 90
+      },
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "produto novo no banco em 09/09/2026, entrou pela expansao do catalogo (bloco 4b). O link de afiliado e gerado pela Sentinela Estrategica no painel da Shopee; enquanto nao houver, pela regra V16 o produto continua sendo sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
+        "verificado_em": "2026-09-09"
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Aquaricamp (varejo BR especializado), ficha do Atman HF-0400: vazao 440 L/h, 6,0 W, aquarios de ate 90 L",
+          "url": "https://www.aquaricamp.com.br/atman-filtro-externo-hang-on-hf-0400-440l-h.html",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "vazao_nominal_lh",
+            "potencia_w",
+            "volume_atendido_declarado_L",
+            "tipo",
+            "midia_inclusa"
+          ],
+          "observacao": "Pagina do fabricante nao lida direto: o egresso da nuvem bloqueia WebFetch, entao a ficha vem do varejo especializado."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Pet Sonaga (varejo BR) publica o mesmo modelo nas duas tomadas: HF-0400 110 V e HF-0400 220 V, ambos com 450 L/h no titulo",
+          "url": "https://www.petsonaga.com.br/aquario/acessorios/aquario/filtro-externo-atman-hf-0400-400-450lh-220v",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "voltagem",
+            "disponibilidade_br"
+          ],
+          "observacao": "A fonte sustenta que EXISTE versao 110 V e versao 220 V do mesmo modelo, nao que um anuncio especifico seja de uma delas. O cartao obriga a conferir a voltagem no anuncio."
+        }
+      ],
+      "conflitos": [
+        {
+          "campo": "vazao_nominal_lh",
+          "valores": [
+            {
+              "valor": 440,
+              "referencia": "Aquaricamp",
+              "url": "https://www.aquaricamp.com.br/atman-filtro-externo-hang-on-hf-0400-440l-h.html",
+              "origem": "varejo"
+            },
+            {
+              "valor": 450,
+              "referencia": "Pet Sonaga, Atlantida Aquarios e Pro-Aquarista",
+              "url": "https://atlantidaaquarios.com.br/loja1/filtro-externo-hf-400-450-l-h-atman.html",
+              "origem": "varejo"
+            }
+          ],
+          "razao": "2,3 % de diferenca (440 contra 450 L/h) — provavel arredondamento comercial do mesmo numero.",
+          "tratamento": "publicar-os-dois",
+          "valor_conservador": null,
+          "derivacao": null
+        }
+      ],
+      "verificado_em": "2026-09-09",
+      "status_registro": "conflito",
+      "observacao": "Hang-on: nao tem altura maxima de recalque, bombeia contra a propria carcaca (coluna_maxima_nao_se_aplica). 440 L/h para os 90 L declarados da 4,9 renovacoes/h, dentro da faixa de bolso brasileira de 5 a 10 x/h e muito acima das 1,8 x/h que a Eheim declara no classic 250. E a opcao de entrada do banco para a faixa de 30 a 90 L, que ate 09/09/2026 nao tinha filtro nenhum sugerivel.",
+      "coluna_maxima_nao_se_aplica": true
+    },
+    {
+      "id": "atman-hf-0600",
+      "entidade": "filtro",
+      "marca": "Atman",
+      "linha": "HF",
+      "modelo": "HF-0600",
+      "variante": null,
+      "nomes_alternativos": [
+        "Atman HF-600",
+        "Filtro externo Atman HF 600",
+        "Atman Hang On HF-0600"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "110",
+        "220"
+      ],
+      "tipo": "hang-on",
+      "vazao_nominal_lh": 650,
+      "vazao_real_lh": null,
+      "potencia_w": 8.0,
+      "coluna_maxima_m": null,
+      "volume_cesto_L": null,
+      "volume_filtragem_L": null,
+      "midia_inclusa": [
+        "espuma",
+        "carvao ativado"
+      ],
+      "uv_w": null,
+      "mangueira_mm": null,
+      "volume_atendido_declarado_L": {
+        "min": null,
+        "max": 150
+      },
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "produto novo no banco em 09/09/2026, entrou pela expansao do catalogo (bloco 4b). O link de afiliado e gerado pela Sentinela Estrategica no painel da Shopee; enquanto nao houver, pela regra V16 o produto continua sendo sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
+        "verificado_em": "2026-09-09"
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Aquaricamp (varejo BR especializado), ficha do Atman HF-0600: 650 L/h, 8 W, aquarios de ate 150 L",
+          "url": "https://www.aquaricamp.com.br/filtro-atman-hang-on-650l-h-60hz-4404.html",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "vazao_nominal_lh",
+            "potencia_w",
+            "volume_atendido_declarado_L",
+            "tipo",
+            "midia_inclusa"
+          ]
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Pet Sonaga (varejo BR) publica HF-0600 110 V e HF-0600 220 V, os dois com 650 L/h",
+          "url": "https://www.petsonaga.com.br/aquario/acessorios/aquario/filtro-externo-atman-hf-0600-0-600-vazao-650-lh-110v",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "voltagem",
+            "disponibilidade_br"
+          ],
+          "observacao": "Sustenta a existencia das duas tomadas, nao a de um anuncio especifico."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "completo",
+      "observacao": "Hang-on (coluna_maxima_nao_se_aplica). 650 L/h para 150 L declarados da 4,3 renovacoes/h. Cobre a faixa de 100 a 150 L, que so tinha canister ate 09/09/2026.",
+      "coluna_maxima_nao_se_aplica": true
+    },
+    {
+      "id": "atman-hf-0800",
+      "entidade": "filtro",
+      "marca": "Atman",
+      "linha": "HF",
+      "modelo": "HF-0800",
+      "variante": null,
+      "nomes_alternativos": [
+        "Atman HF-800",
+        "Filtro externo Atman HF 800",
+        "Atman Hang On HF-0800"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "110",
+        "220"
+      ],
+      "tipo": "hang-on",
+      "vazao_nominal_lh": 900,
+      "vazao_real_lh": null,
+      "potencia_w": 8.3,
+      "coluna_maxima_m": null,
+      "volume_cesto_L": null,
+      "volume_filtragem_L": null,
+      "midia_inclusa": [
+        "espuma",
+        "carvao ativado"
+      ],
+      "uv_w": null,
+      "mangueira_mm": null,
+      "volume_atendido_declarado_L": {
+        "min": null,
+        "max": 250
+      },
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "produto novo no banco em 09/09/2026, entrou pela expansao do catalogo (bloco 4b). O link de afiliado e gerado pela Sentinela Estrategica no painel da Shopee; enquanto nao houver, pela regra V16 o produto continua sendo sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
+        "verificado_em": "2026-09-09"
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Pet Sonaga (varejo BR), ficha do Atman HF-0800: 900 L/h, 8,3 W, 110 V — a unica fonte vista que publica a potencia com uma casa decimal",
+          "url": "https://www.petsonaga.com.br/aquario/bomba/aquario/filtro-externo-atman-hf-0800-900lh-8-3w-110v",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "vazao_nominal_lh",
+            "potencia_w",
+            "tipo",
+            "midia_inclusa"
+          ]
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Pro-Aquarista (varejo BR especializado) publica o HF-800 900 L/h nas duas tomadas (110 V e 220 V) e o volume atendido de ate 250 L",
+          "url": "https://www.proaquarista.com.br/produto/atman-hang-on-filter-hf-800-900l-h-110v.html",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "voltagem",
+            "volume_atendido_declarado_L",
+            "disponibilidade_br"
+          ]
+        }
+      ],
+      "conflitos": [
+        {
+          "campo": "vazao_nominal_lh",
+          "valores": [
+            {
+              "valor": 900,
+              "referencia": "Pro-Aquarista e Pet Sonaga",
+              "url": "https://www.proaquarista.com.br/produto/atman-hang-on-filter-hf-800-900l-h-110v.html",
+              "origem": "varejo"
+            },
+            {
+              "valor": 750,
+              "referencia": "Atlantida Aquarios, que anuncia o mesmo HF-800 com 750 L/h",
+              "url": "https://atlantidaaquarios.com.br/loja1/filtro-externo-hf-800-750-l-h-atman.html",
+              "origem": "varejo"
+            }
+          ],
+          "razao": "20 % de diferenca (900 contra 750 L/h). Grande demais para arredondamento: pode ser revisao de serie ou erro de transcricao de uma das lojas.",
+          "tratamento": "publicar-os-dois",
+          "valor_conservador": null,
+          "derivacao": null
+        }
+      ],
+      "verificado_em": "2026-09-09",
+      "status_registro": "conflito",
+      "observacao": "Hang-on (coluna_maxima_nao_se_aplica). Com 900 L/h para 250 L sao 3,6 renovacoes/h; com os 750 L/h da fonte divergente, 3,0 x/h. A tela precisa dizer que a vazao do HF-800 nao e consenso entre as lojas brasileiras.",
+      "coluna_maxima_nao_se_aplica": true
+    },
+    {
+      "id": "atman-at-3336",
+      "entidade": "filtro",
+      "marca": "Atman",
+      "linha": "CF",
+      "modelo": "AT-3336",
+      "variante": "CF-800",
+      "nomes_alternativos": [
+        "Atman CF-800",
+        "Canister Atman 800 L/h",
+        "Atman AT3336"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "110",
+        "220"
+      ],
+      "tipo": "canister",
+      "vazao_nominal_lh": 800,
+      "vazao_real_lh": null,
+      "potencia_w": 20,
+      "coluna_maxima_m": 1.8,
+      "volume_cesto_L": null,
+      "volume_filtragem_L": null,
+      "midia_inclusa": [
+        "ceramica",
+        "espuma",
+        "carvao ativado"
+      ],
+      "uv_w": null,
+      "mangueira_mm": null,
+      "volume_atendido_declarado_L": {
+        "min": 180,
+        "max": 250
+      },
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "produto novo no banco em 09/09/2026, entrou pela expansao do catalogo (bloco 4b). O link de afiliado e gerado pela Sentinela Estrategica no painel da Shopee; enquanto nao houver, pela regra V16 o produto continua sendo sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
+        "verificado_em": "2026-09-09"
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Aquaricamp e Atlantida Aquarios (varejo BR especializado), ficha do canister Atman AT-3336: 800 L/h, 20 W, 1,8 m de coluna, aquarios de 180 a 250 L, 3 cestas",
+          "url": "https://www.aquaricamp.com.br/atman-filtro-canister-at-3336-vaz-o-800-l-h.html",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "vazao_nominal_lh",
+            "potencia_w",
+            "coluna_maxima_m",
+            "volume_atendido_declarado_L",
+            "tipo",
+            "midia_inclusa"
+          ],
+          "observacao": "Mesma familia do AT-3338 ja no banco, que declara os mesmos 1,8 m de coluna."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "O modelo e anunciado no BR nas duas tomadas: Magazine Luiza (AT-3336 110 V) e Pet Patao (AT-3336 220 V)",
+          "url": "https://www.magazineluiza.com.br/filtro-canister-atman-at3336-800l-h-5-0-110v/p/hh6kd2f1da/pe/flaq/",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "voltagem",
+            "disponibilidade_br"
+          ],
+          "observacao": "Sustenta a existencia das duas tomadas, nao a de um anuncio especifico."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "completo",
+      "observacao": "Irmao menor do AT-3338 (CF-1200) que ja estava no banco. 800 L/h para os 250 L do topo declarado da 3,2 renovacoes/h. Volume util de midia nao publicado por nenhuma das fontes vistas — por isso nao entra na sugestao da C12, so na da C3 e da C7."
+    },
+    {
+      "id": "sunsun-hw-603b",
+      "entidade": "filtro",
+      "marca": "SunSun",
+      "linha": "HW",
+      "modelo": "HW-603B",
+      "variante": null,
+      "nomes_alternativos": [
+        "Mini canister SunSun 603B",
+        "SunSun HW603B",
+        "Filtro externo mini canister Sunsun HW-603B"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "110",
+        "220"
+      ],
+      "tipo": "canister",
+      "vazao_nominal_lh": 400,
+      "vazao_real_lh": null,
+      "potencia_w": 6,
+      "coluna_maxima_m": 0.85,
+      "volume_cesto_L": 2.3,
+      "volume_filtragem_L": 2.3,
+      "midia_inclusa": [
+        "espuma",
+        "manta"
+      ],
+      "uv_w": null,
+      "mangueira_mm": null,
+      "volume_atendido_declarado_L": {
+        "min": null,
+        "max": 80
+      },
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "produto novo no banco em 09/09/2026, entrou pela expansao do catalogo (bloco 4b). O link de afiliado e gerado pela Sentinela Estrategica no painel da Shopee; enquanto nao houver, pela regra V16 o produto continua sendo sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
+        "verificado_em": "2026-09-09"
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Pro-Aquarista (varejo BR especializado), ficha do SunSun HW-603B: 400 L/h, 2,3 L de camara de midia, 110 V",
+          "url": "https://www.proaquarista.com.br/produto/sunsun-canister-hw-603b-23l-400lh-110v.html",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "vazao_nominal_lh",
+            "volume_cesto_L",
+            "volume_filtragem_L",
+            "tipo",
+            "midia_inclusa",
+            "volume_atendido_declarado_L"
+          ]
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Loja Artigos de Aquarismo (varejo BR) publica o mesmo HW-603B com 400 L/h e 6 W",
+          "url": "https://www.loja.artigosdeaquarismo.com.br/MLB-1281667598-filtro-externo-sunsun-hw-603b-mini-canister-400lh-6w-_JM",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "potencia_w"
+          ]
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Aqua Zones (varejo especializado, India) publica a ficha completa da mesma referencia: 6 W, altura maxima de recalque 0,85 m, 400 L/h, 220 V 50 Hz",
+          "url": "https://www.aquazones.in/sunsun-hw-603b-external-filter/",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "coluna_maxima_m",
+            "voltagem"
+          ],
+          "observacao": "A altura de recalque so aparece no varejo estrangeiro: nenhuma das lojas brasileiras vistas publica esse numero. A voltagem entra como 110 e 220 porque o BR vende a versao 110 V (Pro-Aquarista) e o exterior publica a de 220 V — a tela obriga a conferir no anuncio."
+        }
+      ],
+      "conflitos": [
+        {
+          "campo": "volume_atendido_declarado_L",
+          "valores": [
+            {
+              "valor": {
+                "min": null,
+                "max": 80
+              },
+              "referencia": "Varejo BR (Pro-Aquarista e outros) anuncia o HW-603B como mini canister para aquarios de ate 80 L",
+              "url": "https://www.proaquarista.com.br/produto/sunsun-canister-hw-603b-23l-400lh-110v.html",
+              "origem": "varejo"
+            },
+            {
+              "valor": {
+                "min": null,
+                "max": 120
+              },
+              "referencia": "Aqua Zones (India) declara ate 120 L para a mesma referencia",
+              "url": "https://www.aquazones.in/sunsun-hw-603b-external-filter/",
+              "origem": "varejo"
+            }
+          ],
+          "razao": "50 % de diferenca (ate 80 L contra ate 120 L) para o mesmo aparelho, com a mesma vazao declarada. Nenhuma das duas fontes publica limite inferior, entao nao ha intervalo fechado para intersectar: o campo fica com a declaracao brasileira, que e a mais conservadora, e a divergencia sai atribuida na tela.",
+          "tratamento": "publicar-os-dois",
+          "valor_conservador": null,
+          "derivacao": null
+        }
+      ],
+      "verificado_em": "2026-09-09",
+      "status_registro": "conflito",
+      "observacao": "Primeiro canister de verdade do banco para aquario pequeno: 2,3 L de camara de midia para os 80 L declarados dao 28,8 mL de midia por litro de agua, contra os 12 mL/L do cesto do Eheim classic 250 e os 6,0 mL/L do Seachem Tidal 55. E o item que faltava para a faixa de 30 a 80 L tanto na C3 quanto na C12. O campo de volume atendido carrega os 80 L do varejo BR, que e a declaracao mais conservadora das duas; a de 120 L do varejo estrangeiro sai atribuida ao lado. Coluna maxima de 0,85 m: nao vence movel alto, e isso precisa aparecer na tela."
+    },
+    {
+      "id": "sunsun-hw-302",
+      "entidade": "filtro",
+      "marca": "SunSun",
+      "linha": "HW",
+      "modelo": "HW-302",
+      "variante": null,
+      "nomes_alternativos": [
+        "SunSun HW302",
+        "Canister Sunsun HW-302"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": null,
+      "tipo": "canister",
+      "vazao_nominal_lh": 1000,
+      "vazao_real_lh": null,
+      "potencia_w": 18,
+      "coluna_maxima_m": null,
+      "volume_cesto_L": null,
+      "volume_filtragem_L": null,
+      "midia_inclusa": [
+        "ceramica",
+        "espuma",
+        "carvao ativado"
+      ],
+      "uv_w": null,
+      "mangueira_mm": null,
+      "volume_atendido_declarado_L": {
+        "min": null,
+        "max": 250
+      },
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "produto novo no banco em 09/09/2026, entrou pela expansao do catalogo (bloco 4b). O link de afiliado e gerado pela Sentinela Estrategica no painel da Shopee; enquanto nao houver, pela regra V16 o produto continua sendo sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
+        "verificado_em": "2026-09-09"
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Varejo internacional (Amazon.com e Aqua Club) publica a ficha do HW-302: 264 a 265 GPH (1000 L/h), 18 W, 3 cestas de midia",
+          "url": "https://www.amazon.com/HW-302-3-Stage-External-Canister-Aquarium/dp/B00CXDRDRA",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "vazao_nominal_lh",
+            "potencia_w",
+            "volume_atendido_declarado_L",
+            "tipo",
+            "midia_inclusa"
+          ],
+          "observacao": "264 GPH americanos convertem para 999 L/h, coerente com os 1000 L/h que o varejo europeu publica para a mesma referencia."
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "parcial",
+      "observacao": "Registro incompleto de proposito. Faltam voltagem e altura maxima de recalque, e nenhuma das fontes vistas publica os dois — por isso NAO e sugerido pela C3 (a regra exige voltagem e coluna). Entra no banco porque serve a C7 pelo consumo e porque o modelo e comum no mercado BR: quando a voltagem for fechada com fonte, vira sugerivel sem coleta nova. Nunca chutar 110 nem 220."
     }
   ],
-  "atualizado_em": "2026-09-08"
+  "atualizado_em": "2026-09-09"
 }

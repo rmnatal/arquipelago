@@ -4,8 +4,8 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 14,
-  "atualizado_em": "2026-09-08",
+  "revisao": 15,
+  "atualizado_em": "2026-09-09",
   "estado": "fundacao",
   "desembarque": {
     "aprovado": true,
@@ -63,7 +63,7 @@
       "escopo": "front-end",
       "ativo": true,
       "publicar": true,
-      "sha256": "699eb5788b70d6c6e9a4021aed057cc7002b4b808b3cac72aa88b9f40b765b37",
+      "sha256": "beccf665eaa1dd3e3aebabf0c660ae365a9c5c110b2fba0d3f8682496e95a700",
       "descricao": "C3, a segunda calculadora do lote e a PRIMEIRA com bloco de produto. Registra o shortcode [aquametria_calculadora_vazao]: le o volume real que a C1 guardou em localStorage (aquametria.aquario), devolve a faixa de vazao em L/h com o criterio e a fonte de cada extremo (piso de 1,76 x/h do fabricante contra teto de 10 x/h da regra de bolso BR, ate 5,7 vezes de divergencia), o volume minimo do sump quando marcado, o caminho inverso (filtro de X L/h cobre quantos litros) e o veredito para o filtro que a pessoa ja tem. Bloco de produto: filtros do catalogo embutido cuja vazao cai dentro da faixa, ordenados por proximidade do meio dela, com o turnover que cada um entrega NAQUELE aquario, ficha com fonte e data, link sponsored/noopener/_blank quando existe e aviso de comissao obrigatorio. Sem produto que atenda, o bloco nao aparece e a tela diz por que. NAO aplica fator de perda de carga (constante pendente) nem publica turnover marinho (sem fonte). Todo o calculo e JavaScript no navegador. Anuncia-se no hub pelo filtro aquametria_calculadoras. O catalogo entre CATALOGO-INICIO e CATALOGO-FIM e gerado por ferramentas/gerar-catalogo-filtros.py — nao editar a mao. v1.0.1 (08/09/2026): passou a linkar a C5, que entrou no ar e divide o mesmo volume real. v1.1.0 (08/09/2026), CORRECAO GRAVE: o JS e o CSS sairam de dentro do retorno do shortcode e passaram para wp_head (estilo) e wp_footer (comportamento). Dentro do retorno do shortcode eles ainda atravessavam os filtros de texto do conteudo, que trocam & por &#038;, e o primeiro && do script matava o JavaScript inteiro com SyntaxError: o formulario nao calculava e o bloco de produto nunca aparecia. Nenhuma linha de calculo mudou."
     },
     {
@@ -73,7 +73,7 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "82e9c2799a7d07c2af9f0a190e495831f76b2805cf2525df1c4b5a117061e5b4",
+      "sha256": "aaf2b6630d82755a99b8981086cdea5956039240a5da2319ee4c5b4bf256d513",
       "descricao": "v1.0.0 (08/09/2026). Registra o shortcode [aquametria_calculadora_aquecedor] e se anuncia no hub pelo filtro aquametria_calculadoras. Pergunta a MINIMA DO COMODO onde o aquario fica, que e a entrada que nenhuma fonte brasileira pede, e calcula a faixa de potencia com o nome do autor em cada extremo: separa as regras aplicaveis das nao aplicaveis e mostra as duas listas. Com delta acima de 10 C diz com essas palavras que nenhuma fonte cobre o caso e entrega a faixa generica como piso. Com delta zero ou negativo nao devolve numero nenhum. Traz o degrau da linha comercial, o confronto com o volume declarado na caixa (o achado do bloco), o bloco de produto com DUAS barreiras de seguranca antes da adequacao (voltagem da tomada e faixa de ajuste alcancar o alvo, regra V18) e o caminho inverso. Le e grava o estado compartilhado por mescla. v1.1.0 (08/09/2026), CORRECAO GRAVE: o JS e o CSS sairam de dentro do retorno do shortcode e passaram para wp_head (estilo) e wp_footer (comportamento). Dentro do retorno do shortcode eles ainda atravessavam os filtros de texto do conteudo, que trocam & por &#038;, e o primeiro && do script matava o JavaScript inteiro com SyntaxError: o formulario nao calculava e o bloco de produto nunca aparecia. Nenhuma linha de calculo mudou."
     },
     {
@@ -83,7 +83,7 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "175249267b796f42e9754fcc35d0b8a9b4a5765ff13bb184ddd37cd103fc36ca",
+      "sha256": "76a52a0074c49e06d190506e4dda4826a8ab2366febbc21171fe1f6cd998e58c",
       "descricao": "v1.0.0 (08/09/2026). Registra o shortcode [aquametria_calculadora_midia] e se anuncia no hub pelo filtro aquametria_calculadoras. Ataca o VACUO DE CONTEUDO N. 1 do Bloco 1: quanta midia biologica um aquario precisa, em mL por litro de agua. Publica QUATRO dosagens declaradas por fabricante (Seachem 1,25 e 2,64; JBL 5,00; Ocean Tech 12,50 mL/L), que discordam por dez vezes, sem escolher nenhuma; e, numa segunda tabela separada, a midia TOTAL por litro que os fabricantes de FILTRO declaram (volume de filtragem dividido por volume atendido), incluindo as duas leituras das fichas ambiguas do Atman. Entrega o numero que ninguem publica: quanto do cesto do filtro escolhido cada dosagem ocuparia, e avisa quando a camada biologica sozinha estoura. Publica a ordem das camadas e SE RECUSA a publicar a proporcao entre elas, o ranking por area de superficie e a conversao de grama em mililitro no carvao, dizendo por que em cada caso. Traz calendario de trocas com datas calculadas, TPA, gatilhos de nitrato, o aviso de nunca lavar toda a midia biologica de uma vez explicado como mecanismo, o bloco de produto com a quantidade calculada pela dosagem de CADA fabricante, e o caminho inverso. Le e grava o estado compartilhado por mescla. As duas copias do banco (midias e filtros) sao geradas por ferramentas/gerar-catalogo-midias.py. v1.1.0 (08/09/2026), CORRECAO GRAVE: o JS e o CSS sairam de dentro do retorno do shortcode e passaram para wp_head (estilo) e wp_footer (comportamento). Dentro do retorno do shortcode eles ainda atravessavam os filtros de texto do conteudo, que trocam & por &#038;, e o primeiro && do script matava o JavaScript inteiro com SyntaxError: o formulario nao calculava e o bloco de produto nunca aparecia. Nenhuma linha de calculo mudou."
     },
     {
@@ -330,7 +330,7 @@
       "verificado_em": "2026-09-08",
       "registros": 5,
       "publicar": false,
-      "sha256": "60888409bf748f556cede1649fb5dd1c6c9901f2b86ef3b2aa02443087bd4451",
+      "sha256": "37f0216fee64ec84a7eed33bde9b77f55b42aac0df3acdd4f0f36feaa6ee2fc8",
       "descricao": "Semente de filtros: Eheim classic 250 (2213), SunSun HW-303B, Atman AT-3338, Atman AT-3338S e Seachem Tidal 55. Turnover implicito declarado pelos proprios fabricantes vai de 1,76 a 10,0 renovacoes/h. Em 08/09/2026 os dois filtros com link de afiliado sairam do barrado: o Eheim 2213 ganhou voltagem 110 V (varejo BR) e o Seachem Tidal 55 ganhou as duas voltagens, teve a coluna maxima declarada como nao aplicavel (hang-on) e saiu de 'revalidar' para 'completo'. A C3 sugere 4 dos 5 filtros; o SunSun HW-303B segue barrado por coluna maxima."
     },
     {
@@ -342,7 +342,7 @@
       "verificado_em": "2026-09-08",
       "registros": 9,
       "publicar": false,
-      "sha256": "4c727634cf00afa4eba882955a8626fe40dea0a3d26b1d7bf678fd93d7ebbbd7",
+      "sha256": "e19c5db19cb553b95bbb0882a986b07738a331cf04fe548c756a3d9d1ec84a3d",
       "descricao": "Banco de aquecedores, ampliado em 08/09/2026 de 4 para 9 registros para alimentar a C5: linha Eheim Jager (50, 100, 150 e 200 W) e linha Roxin HT-1300/Q3 (25, 50, 100, 200 e 300 W). A coleta desta data resolveu o campo que barrava o banco inteiro — voltagem, agora ['110','220'] nas duas linhas com fonte de varejo BR — e tratou a faixa de ajuste da linha Roxin, em conflito varejo-contra-varejo, pela intersecao conservadora de 22 a 32 C (regra V17). Tres conflitos ficam publicados em vez de escondidos: o volume do Jager 200 W (fabricante 30-400 L contra varejo 300-400 L), o do Jager 150 W (125-150 L contra 200-300 L, os dois varejo) e a faixa de ajuste da linha Roxin. Resultado: 9 de 9 aptos a serem sugeridos pela C5, 3 com link de afiliado."
     },
     {
@@ -461,7 +461,7 @@
       "id": "teste-navegador-c5",
       "arquivo": "ferramentas/teste-navegador-c5.mjs",
       "publicar": false,
-      "sha256": "29dad117c512a08a54bee5b44a259d5d11f4b736564a7f060627c366060b3d9e",
+      "sha256": "853f327e30e3fba22571d74481a5564b120b39a2d24a74b045b74e713f312094",
       "descricao": "Teste de navegador da C5 em Chromium de verdade (Playwright): 15 cenarios, entre eles os atributos do link de afiliado (rel='sponsored noopener', target='_blank', https), o aviso de comissao visivel, as duas barreiras de seguranca, o delta acima de 10 C, o delta zero, o caso sem produto que atenda, a mescla do estado compartilhado com C1 e C3, o permalink e o celular de 390 px sem rolagem horizontal."
     },
     {
@@ -482,7 +482,7 @@
       "id": "teste-navegador-c12",
       "arquivo": "ferramentas/teste-navegador-c12.mjs",
       "publicar": false,
-      "sha256": "9dac987ed9af95f1bd37042cf0d9ab1e95b7ec0a252ecd4b75511f4bc2136533",
+      "sha256": "a3678504b5e42907949fa61a05c32ffd4a2c7bf4b7070395f0228647713b8adb",
       "descricao": "Teste de navegador da C12 em Chromium de verdade (Playwright): 19 cenarios, entre eles a faixa das quatro dosagens, as duas tabelas de ancoras, o teto fisico do cesto (inclusive o caso que estoura), as duas leituras da ficha ambigua do Atman, o calendario de trocas com datas calculadas, o aviso obrigatorio sobre lavar midia biologica, os atributos do link de afiliado, a recusa de converter grama em mililitro, a mescla do estado compartilhado com C1/C3/C5 e o celular de 390 px sem rolagem horizontal. Nao vai para o WordPress."
     },
     {

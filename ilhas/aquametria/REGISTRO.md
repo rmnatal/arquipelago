@@ -1949,3 +1949,133 @@ aguenta", e a carga de projeto da NBR 6120 entra rotulada como
 
 Sem ferramenta de memória nesta sessão: `/areas/projeto-aquametria.md` NÃO foi
 atualizado; esta entrada e o `ESTADO.md` são o registro.
+
+## 2026-09-09 (1ª execução do dia) — BLOCO 4b, leva 1: o banco saiu de 26 para 36 produtos e a C3 dobrou de catálogo
+
+Primeira execução da fila reordenada em 08/09: **o banco tem prioridade sobre calculadora
+nova**, porque é ele que limita o tamanho legítimo do site e é ele que faz o bloco de produto
+aparecer. Esta execução entregou a primeira leva da expansão.
+
+### O que o diagnóstico da fila dizia e o que era verdade
+
+A fila descrevia o banco com "15 produtos e 9 dos 13 equipamentos elétricos sem VOLTAGEM", e a
+C5 com "0 de 4 sugeríveis". **Medido no `main` no começo desta execução: 26 produtos, e a
+voltagem já estava fechada em todos menos um** (`chihiros-wrgb-ii-pro-60`). A C5 já sugeria 9
+aquecedores, 3 deles com link. O item 4b(a) estava, na prática, concluído pelas execuções de
+07 e 08/09 — o texto da fila é que ficou velho. Então esta execução foi direto para o 4b(b),
+ampliar o catálogo, e para os campos que ainda barravam sugestão.
+
+### Entregue
+
+**Dez produtos novos, todos com ficha completa e fonte nomeada com data:**
+
+| id | o que é | por que entrou |
+|---|---|---|
+| `atman-hf-0400` | hang-on, 440 L/h, 6,0 W, até 90 L | primeira opção do banco para 30 a 90 L |
+| `atman-hf-0600` | hang-on, 650 L/h, 8 W, até 150 L | faixa de 100 a 150 L, que só tinha canister |
+| `atman-hf-0800` | hang-on, 900 L/h, 8,3 W, até 250 L | alternativa barata ao canister de 250 L |
+| `atman-at-3336` | canister CF-800, 800 L/h, 20 W, 1,8 m, 180 a 250 L | irmão menor do AT-3338 que já estava no banco |
+| `sunsun-hw-603b` | mini canister, 400 L/h, 6 W, 2,3 L de mídia, até 80 L, coluna 0,85 m | **o item que faltava**: primeiro canister de verdade para aquário pequeno, e o primeiro filtro pequeno com volume útil de mídia — entra na C3 e na C12 |
+| `sunsun-hw-302` | canister, 1000 L/h, 18 W, até 250 L | registro `parcial` de propósito: sem voltagem e sem coluna, NÃO é sugerido |
+| `atman-at-100` | 100 W, quartzo, 20 a 34 °C, 25 cm, até 100 L | linha AT inteira faltava no banco |
+| `atman-at-150` | 150 W, 27 cm, até 150 L | " |
+| `atman-at-200` | 200 W, 30 cm (conflito: 32 cm), até 200 L | " |
+| `atman-at-300` | 300 W, 37 cm, até 300 L | " |
+
+**Um campo fechado que destravou um filtro inteiro:** o `sunsun-hw-303b` (1400 L/h, o de maior
+vazão do banco) estava barrado da C3 desde 07/09 por não ter altura máxima de recalque. Nenhuma
+loja brasileira publica esse número; o varejo especializado estrangeiro (PetzLifeWorld e Aqua
+Nature) transcreve a etiqueta: **2,0 m de coluna e mangueira de 16 mm**. Com isso ele saiu de
+`parcial` para `completo` e passou a ser sugerível.
+
+**O que a expansão mudou, medido:**
+
+- filtros: 5 → 11 registros; **catálogo embutido da C3: 5 → 10 filtros**
+- aquecedores: 9 → 13 registros; **catálogo embutido da C5: 9 → 13**
+- catálogo de filtros da C12 (os que declaram volume útil de mídia): 4 → 5
+- banco inteiro: 26 → 36 produtos, 0 erro no validador, 1 aviso já conhecido (V11, eheim-jager-200w)
+
+### O achado que mais importa para a Sentinela Estratégica
+
+**Ampliar o catálogo REDUZIU, no curto prazo, o número de links de afiliado na tela.** Medido em
+Chromium, no caso de 100 L comunitário, a C3 antes mostrava 3 cartões com 2 links (Eheim classic
+250 e Seachem Tidal 55); agora mostra 5 cartões com 1 link, porque os produtos novos — sem link
+ainda — se encaixam melhor tecnicamente e passam à frente do Tidal 55. Isso é a regra do projeto
+funcionando exatamente como escrita (**ordem por adequação técnica, JAMAIS por comissão**), e é
+também a prova de que a geração de link virou o gargalo da receita: **10 produtos entraram
+esperando `afiliado.url`**, e quem gera é a Sentinela Estratégica, no painel da Shopee, até 10
+por semana. Se ela gerar exatamente estes dez, cada faixa de volume passa a ter cartão com botão.
+
+Prioridade sugerida para a próxima geração de links, por quanto tráfego a faixa recebe:
+`atman-hf-0400`, `atman-hf-0600`, `sunsun-hw-603b`, `atman-at-100`, `atman-at-150`,
+`atman-at-200`, `atman-hf-0800`, `atman-at-3336`, `atman-at-300`, `sunsun-hw-303b`.
+
+### Dois testes que estavam errados, e o erro é instrutivo
+
+O `teste-navegador-c5.mjs` afirmava `3 produtos na lista` e o `teste-navegador-c12.mjs`
+afirmava `4 filtros na tabela`. **Números cravados que reprovavam a cada produto novo** — quer
+dizer, testes que penalizavam o trabalho que a fila manda fazer. Os dois passaram a conferir o
+que a regra realmente diz: a C5 exige **de 3 a 5 cartões** (a regra do bloco de produto) e a
+C12 exige que a tabela **não murche e não repita linha** (ela publica todo filtro do banco que
+declare volume útil de mídia, então cresce por desenho).
+
+### Procedência: o que dá para sustentar e o que não dá
+
+Toda ficha nova entrou como `transcrita-varejo`, com loja nomeada, URL e data. **Nenhum manual
+de fabricante foi lido direto: o egresso da nuvem bloqueia `WebFetch` em todos os domínios
+tentados** (aquametria.com.br, petzlifeworld.in), e só a busca funciona. Isso está escrito em
+cada `fontes[]`, campo a campo, e a reconfirmação no manual fica registrada como coleta aberta.
+
+Três coisas foram deliberadamente NÃO preenchidas, por falta de fonte:
+- **voltagem do `sunsun-hw-302`** — nenhuma fonte vista publica. Fica `null`, e o filtro não é
+  sugerido. Nunca chutar 110 nem 220: aparelho na tomada errada queima.
+- **voltagem do `chihiros-wrgb-ii-pro-60`** — continua aberta; a busca não achou a fonte de
+  alimentação declarada, e a C15 segue publicando essa luminária na lista de barradas com o motivo.
+- **`volume_filtragem_L` dos hang-on e do AT-3336** — nenhuma fonte publica o volume útil do
+  cesto, então eles servem à C3 e à C7, e não à C12.
+
+Faixa de temperatura da linha Atman AT (20 a 34 °C): a escala aparece repetida modelo a modelo
+nas fichas de varejo (AT-100, AT-150 e AT-300 conferidos), e está registrada como boilerplate de
+lojista, não como manual — a reconfirmar.
+
+### Verificação (o que foi realmente rodado)
+
+`php -l` nos 8 snippets e nas 5 ferramentas PHP: 0 erros · `proteger-funcoes.php` nos 8
+snippets: saída idêntica ao arquivo, nenhuma função de nível superior desprotegida ·
+`conferir-entidades.mjs`: 0 falhas, zero entidade numérica no fonte, `node --check` passa nos 5
+blocos de script, script depois do conteúdo nas 5 · `validar-produtos.py`: **36 produtos, 0
+erros**, 1 aviso conhecido · `teste-navegador-cinco.mjs` em Chromium de verdade: **as cinco
+calculam** — C1 118 L · C3 180 a 1.000 L/h com 5 cartões · C5 100 a 150 W com 5 cartões · C12
+125 mL a 1,25 L · C15 2.000 a 4.000 lúmens sem bloco de produto, de propósito; todo link com
+`rel="sponsored noopener"`, `target="_blank"` e aviso de comissão · `teste-navegador-c5.mjs` e
+`teste-navegador-c12.mjs`: 1 falha cada, e é a mesma de sempre — Google Fonts barrada pelo proxy
+do container (`ERR_CONNECTION_RESET`), não defeito da calculadora · `teste-escape-shortcode.php`,
+`teste-conversor-markdown.php` (17 casos), `teste-atualizador-sync.php` (9 cenários),
+`teste-apelidos.php` (59 afirmações) e `conferir-slugs.py` (9 slugs): 0 falhas · sha256 do
+manifest recalculado de todos os arquivos finais commitados.
+
+Manifest na **revisão 15**.
+
+### Desembarque — e o que NÃO foi conferido
+
+`WebFetch` em `https://aquametria.com.br/wp-json/aquametria/v1/status` devolveu
+`EGRESS_BLOCKED` de novo, exatamente como em 07 e 08/09. **Então o Sync não foi acionado por
+esta sessão e nada foi medido no ar.** O site se aplica sozinho pelo WP-Cron (Sync a cada 30
+min); para acionar na hora:
+`https://aquametria.com.br/?aquametria_sync=kgbErDOIVAFWUtUzutHGrKevVgmWGVjz&forcar=1`.
+
+Os três snippets que mudaram (C3, C5, C12) carregam só o catálogo embutido novo — nenhuma linha
+de lógica foi tocada, e é por isso que os testes de navegador continuam sendo a evidência
+relevante.
+
+**Próximo passo desbloqueado: 4b, leva 2** — continuar a expansão rumo aos 60 itens, com três
+alvos claros nesta ordem: (a) **iniciar o banco de espécies, item 4b(c)**, que é o que destrava o
+eixo aberto "quantos litros para X peixes" e não depende de link de afiliado nenhum; (b) fechar
+`fluxo_lm` do `sunsun-ade-400c` e do `wfish-wf-h600-wrgb` e a voltagem do Chihiros, os três
+únicos itens que hoje barram a C15 — é a calculadora publicada com o catálogo mais fraco; (c)
+mais filtros e aquecedores de marcas ainda ausentes (Ocean Tech, Hopar, Boyu, Sarlo Better),
+com atenção às faixas de 200 a 400 L. Depois da leva 2 vem o **4c, o retrofit de visibilidade em
+IA** nas cinco calculadoras publicadas.
+
+Sem ferramenta de memória nesta sessão: `/areas/projeto-aquametria.md` NÃO foi atualizado; esta
+entrada e o `ESTADO.md` são o registro.

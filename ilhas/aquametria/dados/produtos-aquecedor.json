@@ -4,7 +4,7 @@
   "esquema": "dados/esquema-produtos.json",
   "descricao": "Banco de aquecedores. Duas linhas: a importada de referencia (Eheim Jager/Thermocontrol) e a popular brasileira (Roxin HT-1300/Q3). Ampliado em 08/09/2026 para alimentar a C5 — nove registros de 25 a 300 W, com a voltagem coletada (era o campo que barrava a sugestao) e a faixa de ajuste da linha Roxin tratada pela intersecao conservadora da regra V17.",
   "gerado_em": "2026-09-07",
-  "atualizado_em": "2026-09-08",
+  "atualizado_em": "2026-09-09",
   "bloco": 3,
   "publicar": false,
   "produtos": [
@@ -912,6 +912,360 @@
       "verificado_em": "2026-09-08",
       "status_registro": "conflito",
       "observacao": "Fecha a serie da linha popular brasileira: 25 W para 20-35 L, 50 W para 40-60 L, 100 W para 50-150 L, 200 W para ate 200 L, 300 W para 250-350 L. Nenhuma faixa encosta na seguinte de forma continua e a razao W/L varia de 0,67 a 1,25 dentro da mesma linha."
+    },
+    {
+      "id": "atman-at-100",
+      "entidade": "aquecedor",
+      "marca": "Atman",
+      "linha": "AT",
+      "modelo": "AT-100",
+      "variante": "100 W",
+      "nomes_alternativos": [
+        "Atman AT100",
+        "Termostato Atman 100 W",
+        "Aquecedor com termostato Atman 100w AT-100"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "110",
+        "220"
+      ],
+      "potencia_w": 100,
+      "tipo": "quartzo",
+      "termostato": "interno-analogico",
+      "faixa_ajuste_C": {
+        "min": 20,
+        "max": 34
+      },
+      "precisao_C": null,
+      "comprimento_cm": 25.0,
+      "submersivel": true,
+      "protecao_funcionamento_a_seco": null,
+      "volume_atendido_declarado_L": {
+        "min": null,
+        "max": 100
+      },
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "produto novo no banco em 09/09/2026, entrou pela expansao do catalogo (bloco 4b). O link de afiliado e gerado pela Sentinela Estrategica no painel da Shopee; enquanto nao houver, pela regra V16 o produto continua sendo sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
+        "verificado_em": "2026-09-09"
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Aqua SN e Aquarius Hobby (varejo BR especializado) publicam a mesma ficha descritiva da linha Atman AT de termostato eletronico submerso: corpo de quartzo, ajuste do aquarista em escala de 20 a 34 C, par de ventosas, uso em agua doce e salgada",
+          "url": "https://www.aquasn.com.br/atman-termostato-eletronico-submerso-100wts-codigo-at-100-220v",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "tipo",
+            "termostato",
+            "faixa_ajuste_C",
+            "submersivel"
+          ],
+          "observacao": "Texto de varejo, nao manual do fabricante: o egresso da nuvem bloqueia WebFetch e a pagina da Atman nao foi lida direto. A escala de 20 a 34 C aparece repetida modelo a modelo (AT-100, AT-150 e AT-300 conferidos em 09/09/2026), e e a mesma boilerplate que o lojista publica para a linha inteira. Reconfirmar no manual quando houver alcance."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "O varejo BR anuncia a linha AT nas duas tomadas: World Fish e FishPet vendem a versao 110 V e a Aqua SN vende a de 220 V do mesmo codigo",
+          "url": "https://worldfish.com.br/produtos/termostato-atman-at100w-100w-110v/",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "voltagem",
+            "disponibilidade_br"
+          ],
+          "observacao": "A fonte sustenta que EXISTE versao 110 V e versao 220 V do mesmo modelo, nao que um anuncio especifico seja de uma delas. Aquecedor na tomada errada queima: o cartao obriga a conferir a voltagem no anuncio."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Aqua SN e Aquarius Hobby (varejo BR), ficha do AT-100: 100 W, aquarios de ate 100 L, 25 cm de comprimento",
+          "url": "https://www.aquasn.com.br/atman-termostato-eletronico-submerso-100wts-codigo-at-100-220v",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "potencia_w",
+            "volume_atendido_declarado_L",
+            "comprimento_cm"
+          ]
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "completo",
+      "observacao": "1,0 W por litro no teto declarado. E exatamente a regra de bolso brasileira de 1 W/L, que a propria ficha do lojista repete — e que a C5 nao aceita como dimensionamento, porque nao pergunta o delta termico da casa. A tela precisa dizer que o fabricante declara o teto, nao a potencia necessaria."
+    },
+    {
+      "id": "atman-at-150",
+      "entidade": "aquecedor",
+      "marca": "Atman",
+      "linha": "AT",
+      "modelo": "AT-150",
+      "variante": "150 W",
+      "nomes_alternativos": [
+        "Atman AT150",
+        "Termostato Atman 150 W",
+        "Aquecedor com termostato Atman 150w AT-150"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "110",
+        "220"
+      ],
+      "potencia_w": 150,
+      "tipo": "quartzo",
+      "termostato": "interno-analogico",
+      "faixa_ajuste_C": {
+        "min": 20,
+        "max": 34
+      },
+      "precisao_C": null,
+      "comprimento_cm": 27.0,
+      "submersivel": true,
+      "protecao_funcionamento_a_seco": null,
+      "volume_atendido_declarado_L": {
+        "min": null,
+        "max": 150
+      },
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "produto novo no banco em 09/09/2026, entrou pela expansao do catalogo (bloco 4b). O link de afiliado e gerado pela Sentinela Estrategica no painel da Shopee; enquanto nao houver, pela regra V16 o produto continua sendo sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
+        "verificado_em": "2026-09-09"
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Aqua SN e Aquarius Hobby (varejo BR especializado) publicam a mesma ficha descritiva da linha Atman AT de termostato eletronico submerso: corpo de quartzo, ajuste do aquarista em escala de 20 a 34 C, par de ventosas, uso em agua doce e salgada",
+          "url": "https://www.aquasn.com.br/atman-termostato-eletronico-submerso-100wts-codigo-at-100-220v",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "tipo",
+            "termostato",
+            "faixa_ajuste_C",
+            "submersivel"
+          ],
+          "observacao": "Texto de varejo, nao manual do fabricante: o egresso da nuvem bloqueia WebFetch e a pagina da Atman nao foi lida direto. A escala de 20 a 34 C aparece repetida modelo a modelo (AT-100, AT-150 e AT-300 conferidos em 09/09/2026), e e a mesma boilerplate que o lojista publica para a linha inteira. Reconfirmar no manual quando houver alcance."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "O varejo BR anuncia a linha AT nas duas tomadas: World Fish e FishPet vendem a versao 110 V e a Aqua SN vende a de 220 V do mesmo codigo",
+          "url": "https://worldfish.com.br/produtos/termostato-atman-at100w-100w-110v/",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "voltagem",
+            "disponibilidade_br"
+          ],
+          "observacao": "A fonte sustenta que EXISTE versao 110 V e versao 220 V do mesmo modelo, nao que um anuncio especifico seja de uma delas. Aquecedor na tomada errada queima: o cartao obriga a conferir a voltagem no anuncio."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Aquarius Hobby e Aqua SN (varejo BR), ficha do AT-150: 150 W, aquarios de ate 150 L, 27 cm",
+          "url": "https://aquariushobby.commercesuite.com.br/agua-doce/controle-de-temperatura/termostatos-e-aquecedores/aquecedor-com-termostato-atman-150w-at-150",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "potencia_w",
+            "volume_atendido_declarado_L",
+            "comprimento_cm"
+          ]
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "completo",
+      "observacao": "1,0 W por litro no teto declarado, como o resto da linha. A mesma ficha recomenda 1,5 W/L em regiao fria sem dizer qual delta termico isso cobre — e o vacuo que a C5 existe para preencher."
+    },
+    {
+      "id": "atman-at-200",
+      "entidade": "aquecedor",
+      "marca": "Atman",
+      "linha": "AT",
+      "modelo": "AT-200",
+      "variante": "200 W",
+      "nomes_alternativos": [
+        "Atman AT200",
+        "Termostato Atman 200 W",
+        "Aquecedor com termostato Atman 200w AT-200"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "110",
+        "220"
+      ],
+      "potencia_w": 200,
+      "tipo": "quartzo",
+      "termostato": "interno-analogico",
+      "faixa_ajuste_C": {
+        "min": 20,
+        "max": 34
+      },
+      "precisao_C": null,
+      "comprimento_cm": 30.0,
+      "submersivel": true,
+      "protecao_funcionamento_a_seco": null,
+      "volume_atendido_declarado_L": {
+        "min": null,
+        "max": 200
+      },
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "produto novo no banco em 09/09/2026, entrou pela expansao do catalogo (bloco 4b). O link de afiliado e gerado pela Sentinela Estrategica no painel da Shopee; enquanto nao houver, pela regra V16 o produto continua sendo sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
+        "verificado_em": "2026-09-09"
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Aqua SN e Aquarius Hobby (varejo BR especializado) publicam a mesma ficha descritiva da linha Atman AT de termostato eletronico submerso: corpo de quartzo, ajuste do aquarista em escala de 20 a 34 C, par de ventosas, uso em agua doce e salgada",
+          "url": "https://www.aquasn.com.br/atman-termostato-eletronico-submerso-100wts-codigo-at-100-220v",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "tipo",
+            "termostato",
+            "faixa_ajuste_C",
+            "submersivel"
+          ],
+          "observacao": "Texto de varejo, nao manual do fabricante: o egresso da nuvem bloqueia WebFetch e a pagina da Atman nao foi lida direto. A escala de 20 a 34 C aparece repetida modelo a modelo (AT-100, AT-150 e AT-300 conferidos em 09/09/2026), e e a mesma boilerplate que o lojista publica para a linha inteira. Reconfirmar no manual quando houver alcance."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "O varejo BR anuncia a linha AT nas duas tomadas: World Fish e FishPet vendem a versao 110 V e a Aqua SN vende a de 220 V do mesmo codigo",
+          "url": "https://worldfish.com.br/produtos/termostato-atman-at100w-100w-110v/",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "voltagem",
+            "disponibilidade_br"
+          ],
+          "observacao": "A fonte sustenta que EXISTE versao 110 V e versao 220 V do mesmo modelo, nao que um anuncio especifico seja de uma delas. Aquecedor na tomada errada queima: o cartao obriga a conferir a voltagem no anuncio."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Pro-Aquarista (varejo BR especializado), ficha do AT-200: 200 W, 30 cm, aquarios de ate 200 L",
+          "url": "https://www.proaquarista.com.br/atman-termostato-at-200-200w",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "potencia_w",
+            "volume_atendido_declarado_L",
+            "comprimento_cm"
+          ]
+        }
+      ],
+      "conflitos": [
+        {
+          "campo": "comprimento_cm",
+          "valores": [
+            {
+              "valor": 30.0,
+              "referencia": "Pro-Aquarista",
+              "url": "https://www.proaquarista.com.br/atman-termostato-at-200-200w",
+              "origem": "varejo"
+            },
+            {
+              "valor": 32.0,
+              "referencia": "FishPet, que anuncia o AT-200 200 W como 32 cm",
+              "url": "https://www.fishpet.com.br/peixes/termometros-termostatos/termostato-atman-at-200-200w-32cm-110v",
+              "origem": "varejo"
+            }
+          ],
+          "razao": "2 cm de diferenca (6,7 %) no comprimento do tubo.",
+          "tratamento": "publicar-os-dois",
+          "valor_conservador": null,
+          "derivacao": null
+        }
+      ],
+      "verificado_em": "2026-09-09",
+      "status_registro": "conflito",
+      "observacao": "1,0 W por litro no teto declarado. O comprimento diverge entre duas lojas brasileiras (30 contra 32 cm) e isso importa de verdade: e o numero que decide se o aquecedor deita dentro de um aquario baixo."
+    },
+    {
+      "id": "atman-at-300",
+      "entidade": "aquecedor",
+      "marca": "Atman",
+      "linha": "AT",
+      "modelo": "AT-300",
+      "variante": "300 W",
+      "nomes_alternativos": [
+        "Atman AT300",
+        "Termostato Atman 300 W",
+        "Aquecedor com termostato Atman 300w AT-300"
+      ],
+      "gtin": null,
+      "disponibilidade_br": "vendido",
+      "voltagem": [
+        "110",
+        "220"
+      ],
+      "potencia_w": 300,
+      "tipo": "quartzo",
+      "termostato": "interno-analogico",
+      "faixa_ajuste_C": {
+        "min": 20,
+        "max": 34
+      },
+      "precisao_C": null,
+      "comprimento_cm": 37.0,
+      "submersivel": true,
+      "protecao_funcionamento_a_seco": null,
+      "volume_atendido_declarado_L": {
+        "min": null,
+        "max": 300
+      },
+      "afiliado": {
+        "plataforma": null,
+        "motivo": "produto novo no banco em 09/09/2026, entrou pela expansao do catalogo (bloco 4b). O link de afiliado e gerado pela Sentinela Estrategica no painel da Shopee; enquanto nao houver, pela regra V16 o produto continua sendo sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
+        "verificado_em": "2026-09-09"
+      },
+      "fontes": [
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Aqua SN e Aquarius Hobby (varejo BR especializado) publicam a mesma ficha descritiva da linha Atman AT de termostato eletronico submerso: corpo de quartzo, ajuste do aquarista em escala de 20 a 34 C, par de ventosas, uso em agua doce e salgada",
+          "url": "https://www.aquasn.com.br/atman-termostato-eletronico-submerso-100wts-codigo-at-100-220v",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "tipo",
+            "termostato",
+            "faixa_ajuste_C",
+            "submersivel"
+          ],
+          "observacao": "Texto de varejo, nao manual do fabricante: o egresso da nuvem bloqueia WebFetch e a pagina da Atman nao foi lida direto. A escala de 20 a 34 C aparece repetida modelo a modelo (AT-100, AT-150 e AT-300 conferidos em 09/09/2026), e e a mesma boilerplate que o lojista publica para a linha inteira. Reconfirmar no manual quando houver alcance."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "O varejo BR anuncia a linha AT nas duas tomadas: World Fish e FishPet vendem a versao 110 V e a Aqua SN vende a de 220 V do mesmo codigo",
+          "url": "https://worldfish.com.br/produtos/termostato-atman-at100w-100w-110v/",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "voltagem",
+            "disponibilidade_br"
+          ],
+          "observacao": "A fonte sustenta que EXISTE versao 110 V e versao 220 V do mesmo modelo, nao que um anuncio especifico seja de uma delas. Aquecedor na tomada errada queima: o cartao obriga a conferir a voltagem no anuncio."
+        },
+        {
+          "origem": "varejo",
+          "status": "transcrita-varejo",
+          "referencia": "Pro-Aquarista (varejo BR especializado), ficha do AT-300: 300 W, 37 cm de comprimento por 2,3 cm de diametro, aquarios de ate 300 L, escala de 20 a 34 C, vendido em 110 V e em 220 V",
+          "url": "https://www.proaquarista.com.br/produto/atman-termostato-at-300-300w-110v.html",
+          "verificado_em": "2026-09-09",
+          "campos": [
+            "potencia_w",
+            "volume_atendido_declarado_L",
+            "comprimento_cm"
+          ]
+        }
+      ],
+      "conflitos": [],
+      "verificado_em": "2026-09-09",
+      "status_registro": "completo",
+      "observacao": "1,0 W por litro no teto declarado. Com 37 cm e o mais longo da linha: em aquario de 40 cm de altura util ele so entra deitado, e a tela precisa avisar."
     }
   ]
 }

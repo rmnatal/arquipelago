@@ -57,7 +57,11 @@ ok('faixa 110 a 165 W', (await txt('#aqm-c5-faixa-valor')).replace(/\s+/g,' ').i
 ok('delta 6,0 C', (await txt('#aqm-c5-delta')).includes('6,0'), (await txt('#aqm-c5-delta')).replace(/\n/g,' | '));
 ok('comercial 200 W', (await txt('#aqm-c5-comercial')).includes('200 W'));
 const prods = await page.locator('#aqm-c5-produtos-lista .aqm-c5-produto').count();
-ok('3 produtos na lista', prods === 3, `veio ${prods}`);
+// A regra do projeto e de 3 a 5 produtos no bloco, ordenados por adequacao tecnica.
+// Ate 08/09/2026 o banco so tinha aquecedor para tres cartoes nesse caso; com a expansao
+// do catalogo (09/09) sao cinco. Fixar o numero em 3 fazia o teste reprovar a cada produto
+// novo, entao ele passou a conferir a FAIXA que a regra manda.
+ok('de 3 a 5 produtos na lista', prods >= 3 && prods <= 5, `veio ${prods}`);
 ok('bloco de produto visivel', await page.locator('#aqm-c5-produtos').isVisible());
 
 console.log('\n2. atributos do link de afiliado (exigencia do projeto)');
