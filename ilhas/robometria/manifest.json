@@ -4,7 +4,7 @@
   "nicho": "robo aspirador — compatibilidade de pecas e consumiveis, e dimensionamento de succao e autonomia",
   "dominio": "https://robometria.com.br",
   "versao_manifest": 1,
-  "revisao": 1,
+  "revisao": 2,
   "atualizado_em": "2026-09-09",
   "estado": "nascendo",
   "desembarque": {
@@ -26,6 +26,30 @@
       "publicar": false,
       "sha256": "7157ac0094994ee5a7eb3441bbca8585247ef02ff64e749b71b262181097fcca",
       "descricao": "Levantamento de buscas parametricas do nicho robo aspirador, separado nos eixos compatibilidade (filtro, escova lateral, mop, bateria) e dimensionamento (Pa, cobertura em m2, autonomia por carga, pelo de pet), com procedencia por consulta e lista inicial de modelos/codigos de peca citados para o Bloco 3."
+    },
+    {
+      "id": "especificacao-calculadoras",
+      "arquivo": "dados/especificacao-calculadoras.md",
+      "formato": "md",
+      "entidade": "esquema",
+      "fonte": "Bloco 2 da Fundacao: especificacao das duas ferramentas ancora a partir do corpus do Bloco 1, com coleta de confirmacao por busca web restrita ao dominio em 09/09/2026 (Multilaser, Electrolux, Xiaomi Brasil, Positivo Casa Inteligente, Canaltech, Mundo Conectado)",
+      "verificado_em": "2026-09-09",
+      "registros": 2,
+      "publicar": false,
+      "sha256": "a0abc171cd4cce46508278eee3c70dc09d905d2cfa447fb56554c99a62ac2bb7",
+      "descricao": "Especificacao das ferramentas R1 (localizador de peca compativel por modelo) e R2 (dimensionador de succao e autonomia por area, piso e pelo): entradas, saidas, os tres selos de certeza da compatibilidade, a regra de divergencia pelo conjunto mais estreito, a formula propria de ciclos e tempo real ate terminar, a classificacao de SERP de cada consulta-alvo (secao 14.9) e a lista de campos que o Bloco 3 tem que entregar."
+    },
+    {
+      "id": "constantes",
+      "arquivo": "dados/constantes.json",
+      "formato": "json",
+      "entidade": "constante",
+      "fonte": "Paginas oficiais de fabricante (Multilaser/Multi, Electrolux, Xiaomi Brasil, Positivo Casa Inteligente), manual do usuario Electrolux ERB10/ERB11/ERB20, e veiculos editoriais brasileiros (Canaltech, Mundo Conectado, Guia de Compras Brasil) para as recomendacoes de faixa de Pa, que NAO sao especificacao de fabricante",
+      "verificado_em": "2026-09-09",
+      "registros": 21,
+      "publicar": false,
+      "sha256": "9ef574b7b36ad9ca0a73a0d795af42b2534fdba824b9da4c4066bd026326d4bb",
+      "descricao": "21 constantes das ferramentas R1 e R2, cada uma com classe de fonte (fabricante x recomendacao editorial), URL, canal de coleta e data. Inclui 4 itens marcados nao_publicavel por atribuicao incerta, 1 excluido do banco por nao ser peca de robo, e a taxa de cobertura m2/min com status pendente e PROIBIDA em formula publicada por existir um unico par (minutos, m2) declarado."
     }
   ],
   "ferramentas": [],
