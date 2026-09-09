@@ -5,6 +5,7 @@ prioridade: 2
 ultima_execucao: 2026-09-09T20:05Z
 executando_desde: null
 bloco_atual: "T3 — leva de fechamento de faixa (concluida)"
+ultima_ronda: 2026-09-09T19:40Z
 bloqueada_por: null
 ---
 

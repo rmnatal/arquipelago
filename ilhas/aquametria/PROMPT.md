@@ -29,6 +29,15 @@ A Aquametria só conta como completa quando estiver **entrando tráfego orgânic
 
 Isso não afrouxa nenhuma regra do `ARQUIPELAGO.md`. Publicar rápido e errado é a maneira mais eficiente de não ser indexado.
 
+## DESPACHO DA SENTINELA — 2026-09-09 (1ª leitura semanal)
+
+**Isto tem prioridade sobre a fila.** Aplique antes de qualquer bloco, verifique pela seção 8, registre no `REGISTRO.md` como "despacho da Sentinela de 09/09 — item N cumprido", e apague daqui o item cumprido no mesmo commit.
+
+1. **`/category/uncategorized/` responde 200 e está no sitemap.** Tirar do sitemap e pôr `noindex`. Mover os 3 artigos para uma categoria de verdade (já era o T2 — o dado de hoje confirma que é urgente). Pronto quando: `wp-sitemap.xml` não lista mais a URL e ela serve `<meta name="robots" content="noindex">`.
+2. **NENHUMA PÁGINA NOVA ATÉ 16/09.** Decisão da rampa: a leva de 08/09 (6 páginas) não indexou nenhuma e as 7 indexadas não registraram impressão. Isso inclui a leva 2 da malha. Trabalhe vitrine (4e), banco, schema, links de afiliado — nada que crie URL nova. Pronto quando: a leitura de 16/09 reavaliar.
+3. **Aquametria e Robometria NÃO se interligam.** Público sem sobreposição; link de rodapé entre nichos estranhos é sinal que o Google desconta. Não crie link entre as ilhas. Não é tarefa, é proibição — apague este item só quando a regra estiver no `ARQUIPELAGO.md`.
+4. **20 dos 29 produtos sem link não existem na Shopee** (Eheim, Atman canister, Chihiros, JBL). Como a ordem é por adequação técnica, melhorar o banco reduz links na tela. **Não mude a ordem.** O desbloqueio é segundo programa de afiliado, e isso é decisão do Raphael. Reporte em todo bloco quantos itens esperam link E quantos desses não têm loja possível hoje.
+
 ## FILA DE BLOCOS — reordenada em 09/09/2026 pela meta de tráfego
 
 **MODO MUTIRÃO, ligado em 09/09/2026 a pedido do Raphael:** ele quer a ilha fechada o quanto antes e tirou a regra de um bloco por execução PARA ESTA ILHA. Entregue quantos blocos couberem na sessão, em sequência, na ordem da fila — **verificando cada um pela seção 8 do `ARQUIPELAGO.md` antes de começar o próximo**, e respeitando integralmente a seção 13. O que **não** entra no mutirão: publicar a malha em massa. A malha continua saindo em leva de 5 a 10 páginas com medição no meio, porque é justamente o que protege a indexação — e indexação é a meta desta ilha.
