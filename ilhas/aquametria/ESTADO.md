@@ -3,7 +3,7 @@ ilha: aquametria
 estado: viva
 prioridade: 2
 ultima_execucao: 2026-09-09T21:55Z
-executando_desde: null
+executando_desde: 2026-09-09T23:17Z
 bloco_atual: "despacho 1 e 3 + T2 (SEO tecnico) e T7 par C15 — no main, revisao 29; falta o Sync"
 ultima_ronda: 2026-09-09T19:40Z
 bloqueada_por: null
