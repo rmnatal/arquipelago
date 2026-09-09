@@ -106,6 +106,7 @@ Decisão do Raphael, 08/09/2026: ser recomendado pelas IAs vale tanto quanto ran
 - Links de afiliado: `rel="sponsored"` + `target="_blank" rel="noopener"`; aviso visível de comissão na página; preço nunca cravado como atual (ou sem preço, ou com data da coleta). O link de afiliado nunca substitui a URL de origem do dado técnico.
 - **PROIBIDO em toda ilha:** contagem regressiva, escassez inventada, selo de "mais vendido", avaliação que a ilha não mediu. A confiança é o único ativo que separa o Arquipélago das fazendas de conteúdo.
 - **Sub_id** para rastrear venda: Sub_id 1 = nome da ilha, Sub_id 2 = código da ferramenta de origem.
+- **O CANO DE LINKS DE AFILIADO ENCHE EM PARALELO, SEMPRE — não espere o tráfego chegar.** A geração de link é feita pela Sentinela estratégica, no navegador do Raphael, e tem teto de calendário (algumas dezenas por semana, no máximo). Isso NÃO consome execução da Fundação: são recursos diferentes, então nunca competem por fila. Um produto que entra no banco hoje sem link só vira receita semanas depois, quando alguém finalmente gerar o link — e quando o tráfego chegar, o catálogo precisa estar pronto, não sendo montado às pressas. Portanto: produto novo entra no banco com o campo `afiliado.url` presente e vazio, a ilha reporta em todo bloco **quantos itens estão esperando link**, e esse número é trabalho pendente de verdade, não estatística.
 - **NUNCA crie conta** em plataforma nenhuma, nunca compre nada, nunca toque em meio de pagamento, nunca altere configuração de conta do Raphael.
 
 ---
@@ -123,6 +124,7 @@ Decisão do Raphael, 08/09/2026: ser recomendado pelas IAs vale tanto quanto ran
 
 ## 9. Malha de páginas — limitada por dado, não por calendário
 
+- **ORDEM DAS LEVAS — por intenção de compra, não por facilidade de gerar página.** Tráfego e tráfego não são a mesma coisa. "Quantos litros para 10 neons" traz um curioso; "qual aquecedor para 100 L em 220 V" traz alguém com o cartão na mão. Os dois indexam, os dois contam como tráfego orgânico, mas um está a um clique do dinheiro e o outro está a meses. Como a malha sai em levas pequenas por causa da rampa, **a ordem das levas decide qual tráfego chega primeiro** — então a primeira leva de cada camada é sempre a dos clusters cuja resposta termina num produto do banco. Isso não afrouxa o portão nem a rampa: só escolhe, entre as páginas que já passariam, quais nascem antes.
 - **Portão inegociável:** pelo menos 3 itens de banco reais **e** um número calculado próprio por página. Cauda longa vazia em domínio novo causa desindexação em bloco.
 - **Rampa guiada por indexação:** primeira leva de 5 a 10 páginas; se indexou, dobre; se ficou em "descoberta e não indexada", **não** aumente.
 - **Regra da malha:** toda página entra em pelo menos 2 listagens e aponta para 3 irmãs; link de mão dupla; nenhuma página órfã.
