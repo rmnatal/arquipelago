@@ -8,8 +8,9 @@ Uso:
     <ilha>  slug da ilha (aquametria, robometria...). A propriedade é
             sempre a de domínio: sc-domain:<ilha>.com.br
 
-Credencial: variável de ambiente GOOGLE_SA_JSON com o CONTEÚDO do JSON da
-conta de serviço (ou GOOGLE_SA_FILE com o caminho). Nunca no repositório.
+Credencial: variável de ambiente GOOGLE_SA_B64 (o JSON da conta de serviço em base64,
+uma linha só — é o que a caixa de variáveis do ambiente aceita); alternativas GOOGLE_SA_JSON
+(conteúdo cru) ou GOOGLE_SA_FILE (caminho). Nunca no repositório.
 
 Saída (markdown pronto para colar nas séries da ilha):
     1) linha para dados/indexacao.md  (URLs no sitemap × URLs indexadas)
@@ -33,14 +34,20 @@ API = "https://searchconsole.googleapis.com"
 
 
 def credenciais():
-    raw = os.environ.get("GOOGLE_SA_JSON")
+    """Aceita, nesta ordem: GOOGLE_SA_B64 (JSON em base64, uma linha — o formato que a caixa
+    de variáveis do ambiente aceita), GOOGLE_SA_JSON (conteúdo cru) ou GOOGLE_SA_FILE (caminho)."""
+    import base64
+    b64 = os.environ.get("GOOGLE_SA_B64", "").strip().strip("'\"")
+    raw = os.environ.get("GOOGLE_SA_JSON", "").strip().strip("'\"")
     path = os.environ.get("GOOGLE_SA_FILE")
+    if b64:
+        raw = base64.b64decode(b64).decode("utf-8-sig")
     if raw:
         info = json.loads(raw)
         return service_account.Credentials.from_service_account_info(info, scopes=SCOPE)
     if path:
         return service_account.Credentials.from_service_account_file(path, scopes=SCOPE)
-    sys.exit("Sem credencial: defina GOOGLE_SA_JSON (conteúdo) ou GOOGLE_SA_FILE (caminho).")
+    sys.exit("Sem credencial: defina GOOGLE_SA_B64 (base64), GOOGLE_SA_JSON (conteúdo) ou GOOGLE_SA_FILE (caminho).")
 
 
 def banda(pos, impressoes):
