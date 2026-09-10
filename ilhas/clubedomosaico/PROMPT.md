@@ -10,7 +10,7 @@ Esta é a **terceira ilha** e a primeira que **não veio da Bússola**: é um pr
 
 Consequências para a Fundação:
 - **Existe uma artesã real.** É a única ilha com uma pessoa por trás. A página Sobre pode ter nome, ateliê e assinatura nas peças **só depois que o Raphael confirmar** (pendente em 10/09/2026). Até lá, "o ateliê".
-- **Produto próprio não é afiliado.** Página de peça leva `Product` + `Offer` com preço real, disponibilidade ("pronta entrega" ou "sob encomenda, N dias") e botão **Comprar** que abre WhatsApp com mensagem pronta ou link de pagamento. Nunca `rel="sponsored"` em link de peça própria. Nunca inventar peça, preço, medida ou foto: **o catálogo vem de `dados/pecas.json`, preenchido a partir do material que o Raphael entregar** (fotos, medidas, peso, técnica, preço, prazo). Sem esse material, a Loja fica com as páginas de coleção prontas e vazias de peça, e o `ESTADO.md` diz isso.
+- **Produto próprio não é afiliado.** Página de peça leva `Product` + `Offer` com preço real, disponibilidade ("pronta entrega" ou "sob encomenda, N dias") e botão **Comprar** que abre WhatsApp com mensagem pronta ou link de pagamento. Nunca `rel="sponsored"` em link de peça própria. Nunca inventar peça, preço, medida ou foto: **o catálogo é cadastrado pela própria artesã no painel `/atelie/`** (ver DESPACHO abaixo). Sem peça cadastrada, a Loja fica com as páginas de coleção prontas e com estado vazio honesto, e o `ESTADO.md` diz isso.
 - **O logo é fornecido pelo Raphael** e vai para `identidade/logo/` desta pasta. **Não reconstruir, não redesenhar, não vetorizar por conta própria.** Enquanto o arquivo não existir na pasta, a casca usa só o wordmark tipográfico ("clube do mosaico" em minúsculas) e o favicon fica pendente — registrar no `ESTADO.md` como `bloqueada_por: logo`. Quando o arquivo chegar, a casca passa a usar o arquivo exato, sem alteração.
 
 ## Identidade
@@ -78,7 +78,7 @@ A mãe do Raphael cadastra as peças **ela mesma**, com login e senha próprios,
 - **F1 Calculadora de pastilhas e rejunte** — entrada: forma da peça (cilindro/vaso, placa, esfera, tampo redondo), medidas, tamanho da pastilha (1×1, 2×2, 2,5×2,5 cm, tessela irregular), junta; saída: área, quantidade com sobra, gramas de rejunte e de cola, tabela pré-renderizada com 12 peças típicas.
 - **F2 Seletor de cola e rejunte** — entrada: base (cerâmica, vidro, MDF, cimento, plástico, parede), material da pastilha, ambiente (interno/externo/molhado); saída: tipo de adesivo (PVA, silicone, PU, argamassa ACII/ACIII, epóxi), rejunte compatível, cura. Constante só com fonte de fabricante (Quartzolit, Tekbond, Loctite, Cascola) e data. Sem fonte, `pendente` e fora de fórmula publicada.
 
-**3. MODELO DO BANCO.** Três entidades, todas com `imagem` desde já: **MATERIAL** (categoria, tipo, medida, material, embalagem, `afiliado.programa`/`afiliado.url` vazios até a Sentinela preencher) · **PEÇA** (`dados/pecas.json`: nome, técnica, base, medidas, peso, cores, preço, disponibilidade, prazo, fotos — só do que o Raphael entregar) · **TÉCNICA** (bizantino, direto, indireto, opus).
+**3. MODELO DO BANCO.** Três entidades, todas com `imagem` desde já: **MATERIAL** (categoria, tipo, medida, material, embalagem, `afiliado.programa`/`afiliado.url` vazios até a Sentinela preencher) · **PEÇA** (CPT `peca` no WordPress, cadastrada pela artesã no painel `/atelie/`: nome, técnica, base, medidas, peso, cores, preço, disponibilidade, prazo, fotos — nunca inventada) · **TÉCNICA** (bizantino, direto, indireto, opus).
 
 **3b. CASCA DO SITE** — só depois que o WordPress existir. Seção 6 do contrato com a paleta acima. Páginas: início, loja, materiais, como-fazer, sobre, contato, divulgação de afiliados. Logo: ver regra no topo. Cabeçalho e rodapé pretos, miolo branco.
 
@@ -92,7 +92,7 @@ A mãe do Raphael cadastra as peças **ela mesma**, com login e senha próprios,
 
 **5b. MALHA**, em levas de 5 a 10 guiadas por indexação. Página só nasce com 3 itens de banco reais e um número calculado (seção 9).
 
-**6. FEED DE PRODUTO** para Google Merchant Center (listagens gratuitas) a partir de `dados/pecas.json` — snippet que serve `/feed-produtos.xml`. Só quando houver peça real.
+**6. FEED DE PRODUTO** para Google Merchant Center (listagens gratuitas) a partir do CPT `peca` — snippet que serve `/feed-produtos.xml`. Só quando houver peça publicada.
 
 **7. LISTA DE PROSPECÇÃO DO WIDGET** (F1 incorporável): escolas e ateliês de mosaico, blogs de artesanato, lojas de material sem conteúdo. `publicar: false`.
 
