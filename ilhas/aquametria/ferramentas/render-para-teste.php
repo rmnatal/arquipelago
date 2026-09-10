@@ -61,7 +61,12 @@ function wp_kses_post($t){ return $t; }
 function wp_strip_all_tags($t){ return strip_tags($t); }
 function is_admin(){ return false; } function did_action($h){ return 0; }
 function is_singular($t=''){ return true; }
-function get_post($p=null){ return (object) array('ID'=>1,'post_content'=>$GLOBALS['__conteudo_pagina'],'post_status'=>'publish','post_name'=>'pagina-de-teste'); }
+/* O slug da pagina de teste. Fica em global porque o snippet dos artigos NAO se
+   reconhece por shortcode (artigo nao tem formulario): ele se reconhece pelo
+   post_name, e sem poder trocar esse valor nao havia como renderizar um artigo
+   aqui. Quem nao mexe no global continua vendo 'pagina-de-teste'. */
+function aquametria_teste_slug(){ return isset($GLOBALS['__slug_pagina']) ? $GLOBALS['__slug_pagina'] : 'pagina-de-teste'; }
+function get_post($p=null){ return (object) array('ID'=>1,'post_content'=>$GLOBALS['__conteudo_pagina'],'post_status'=>'publish','post_name'=>aquametria_teste_slug()); }
 /* Paginas que 'existem' no site de teste: mapa slug => true em __paginas.
    Vazio por padrao, entao quem nao mexe nele continua vendo o que via. */
 function get_posts($a=array()){
@@ -74,7 +79,7 @@ function get_permalink($p=null){
 	if (is_object($p) && isset($p->post_name)) { return 'https://aquametria.com.br/'.$p->post_name.'/'; }
 	return 'https://aquametria.com.br/pagina-de-teste/';
 }
-function get_post_field($c,$p){ return 'pagina-de-teste'; }
+function get_post_field($c,$p){ return aquametria_teste_slug(); }
 function has_shortcode($conteudo,$tag){ return false !== strpos((string)$conteudo, '['.$tag); }
 function get_page_by_path($p,$saida=null,$tipo=null){ return null; }
 function date_i18n($f){ return date($f); }

@@ -4,7 +4,7 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 32,
+  "revisao": 33,
   "atualizado_em": "2026-09-10",
   "estado": "fundacao",
   "desembarque": {
@@ -110,6 +110,17 @@
       "sha256": "518738391c511266dd355541fd4b2e35e46c6105a77daeb23b4dab9a205df356",
       "descricao": "v1.2.0 (09/09/2026): a C15 deixa de ser um formulario vazio para quem nao executa JavaScript. Tres pecas da secao 5 do ARQUIPELAGO.md que faltavam nesta pagina e ja existiam na C5: (a) RESPOSTA ANTES DA EXPLICACAO, em frase autossuficiente com o numero, a unidade, a condicao e a data, escrita para sobreviver a ser citada fora de contexto; (b) TABELA DE EXEMPLOS PRE-RENDERIZADA no HTML servido — seis aquarios de 30 a 120 cm resolvidos no PHP com as MESMAS regras do script (o lm() e o litros() sao espelhados funcao a funcao, senao a tabela contradiria a calculadora logo acima dela), nos tres niveis de exigencia, com a luminaria do banco que atende o nivel medio; tres das seis linhas dizem que NENHUMA luminaria atende, com o motivo, porque bloco vazio e portao e nao defeito, e silencio parece defeito; (c) JSON-LD no wp_head (NUNCA dentro do retorno do shortcode, que atravessa os filtros do the_content) com WebApplication e FAQPage de 15 perguntas, cada resposta carregando o mesmo numero que a tabela servida mostra. A escolha do produto na tabela repete a peneira do escolher() do script na ordem da secao 7: cobertura declarada pelo fabricante primeiro, fluxo dentro da faixa depois, comissao nunca. Duas classes CSS novas (aqm-c15-exemplos, aqm-c15-aviso-tabela) porque reusar as antigas quebrava os localizadores do teste de navegador — defeito pego pelo proprio teste. Verificado: 78 afirmacoes em Chromium real, console limpo; JSON-LD analisado e valido; zero entidade &#038; dentro de <script>. Anterior — v1.1.1: catalogo de iluminacao e barrados. 09/09/2026, sem mudanca de calculo nem de texto: o bloco de resposta direta ganhou a classe aqm-c15-direta ao lado da aqm-c15-citar, e o painel de exemplos ganhou a aqm-c15-bloco-exemplos. Sao localizadores, nao estilo. Motivo: a C15 tinha as tres pecas da secao 5 desde a v1.2.0 e mesmo assim ficava FORA do teste que as mede, porque o bloco de resposta direta usava a MESMA classe da caixa de citacao do resultado (duas coisas diferentes com o mesmo nome) e o painel nao tinha onde o teste pendurar o localizador. Peca entregue sem teste e peca que a proxima sessao quebra sem ninguem notar.",
       "versao": "1.2.0"
+    },
+    {
+      "id": "aquametria-artigos",
+      "nome": "Aquametria Artigos — visibilidade em IA",
+      "arquivo": "snippets/aquametria-artigos.php",
+      "escopo": "front-end",
+      "ativo": true,
+      "versao": "1.0.0",
+      "publicar": true,
+      "sha256": "19dcad0fbe7622f622415391e14be2342a5e6654a12314b32a03f262881df0a0",
+      "descricao": "Fecha o T7 (secao 5 do ARQUIPELAGO.md) nas tres paginas que sobravam do retrofit de visibilidade em IA: os artigos-ancora da C5, da C12 e da C15. Da a cada um (a) a resposta ANTES da explicacao, pelo shortcode [aquametria_artigo_resposta] no topo do Markdown, em frase autossuficiente com numero, criterio, fonte pelo nome e data, e (b) JSON-LD com Article e FAQPage no wp_head — nunca dentro do retorno do shortcode, porque o retorno atravessa os filtros do the_content, que trocam cada E-comercial pela entidade numerica dele e quebrariam o JSON tanto quanto quebraram o JavaScript das cinco calculadoras em 08/09/2026. Tres coisas NAO se copiam do molde das calculadoras, e sao a razao de o snippet existir separado: artigo nao tem shortcode de ferramenta, entao a pagina se reconhece pelo SLUG e nao por has_shortcode(); artigo nao e WebApplication, e o no e Article com citation datada; e tabela pre-renderizada NAO se inventa — os tres artigos ja serviam tabela propria em Markdown (a linha comercial Eheim Jager, as quatro dosagens de midia, as tres reguas de lm/L), e acrescentar uma nossa por cima seria decoracao, que e pior que nenhuma. Todo numero que sai daqui existe no corpo do artigo servido na mesma pagina, e e isso que ferramentas/teste-navegador-artigos.mjs mede com o JavaScript desligado."
     }
   ],
   "conteudo": [
@@ -204,7 +215,7 @@
       ],
       "verificado_em": "2026-09-08",
       "publicar": true,
-      "sha256": "db7ada66141bcc21ab8967237c04e4c1ce3f210f7a339544f550ccf73fe37e47",
+      "sha256": "c64fc19a8858c0afe6fa1d63f89747c195a717be5823eeafe3cf41dbb6491718",
       "descricao": "Artigo-ancora pareado com a C5. Mostra de onde o '1 W por litro' realmente veio: a linha Eheim Jager inteira da 1,00 W/L no teto de seis modelos seguidos — a regra nao derivou de fisica, derivou da prateleira. Depois mostra onde a regua quebra (o 200 W a 0,50 W/L, o 30-400 L de treze vezes, o mesmo 150 W declarado para 125-150 L e para 200-300 L, e a serie Roxin que nao fecha), o caso Belem contra Curitiba com cinco vezes mais delta para a mesma resposta, o que as quatro fontes BR dizem e nao dizem, a formula P = U . A . deltaT que ainda nao podemos publicar e por que, e seis recomendacoes praticas. Linka a C5, a C1, a C3 e a metodologia."
     },
     {
@@ -242,7 +253,7 @@
       ],
       "verificado_em": "2026-09-08",
       "publicar": true,
-      "sha256": "4c900e6021930033784153ffd8bf5c625be9b0315521e29095fa369d2f0f64f6",
+      "sha256": "22c04486341df36f038739ae16f974df0a6a69f9b4dbaf5faa6e34e5e6fa74a5",
       "descricao": "Artigo-ancora pareado com a C12. O eixo e o PARADOXO DA AREA: area declarada vezes dosagem declarada da a area entregue por litro de agua, e ela vai de 0,88 a 18,8 m2 entre tres marcas - 21 vezes -, com a marca que declara MAIS area pedindo DEZ VEZES mais midia, ou seja, a relacao inversa da esperada. Depois mostra a Seachem discordando de si mesma como marca de midia e como marca de filtro, as fichas ambiguas do Atman, o caso do carvao (a regra BR manda trocar de 4 a 10 vezes mais que o fabricante do carvao) e a critica de fundo: todas as dosagens sao por litro de AGUA quando o trabalho depende da amonia, ou seja, da carga de peixes, que nenhuma declaracao pergunta. Fecha com seis recomendacoes praticas e as tres coletas que faltam. Linka a C12, a C1, a C3, a C5 e a metodologia."
     },
     {
@@ -283,7 +294,7 @@
       ],
       "verificado_em": "2026-09-08",
       "publicar": true,
-      "sha256": "7117b6b5f67e97cd7f9268d80720193a461000be31d0c9ca2b73e59a4f3d0de8",
+      "sha256": "bd758a40a8d024f006653d6c835b7ff705796dc2986da3a54fb221c8b4bd1c9d",
       "descricao": "Artigo-ancora pareado com a C15. O eixo e a UNIDADE ERRADA: o lumen e ponderado pela sensibilidade do olho humano, que pesa o verde e desconta azul e vermelho — exatamente as duas faixas em que a clorofila trabalha —, de modo que a regua de lm/L penaliza justamente a luminaria projetada para planta; os dois registros do banco (89,6 contra 106 lm/W) sao apresentados como indicio, nao prova. Depois mostra onde a trilha do PPFD termina (o proprio fabricante nao publica teste de PAR), o que o varejo brasileiro declara no lugar (centimetros: 2 de 6 registros sem lumen, 1 sem voltagem, 6 de 6 com centimetro), a armadilha do nome que nao e o tamanho da peca, onde as tres fontes CONCORDAM, por que mais horas nao compensam menos lumens, a cegueira da regua para profundidade, seis recomendacoes praticas e as tres coletas que faltam. Linka a C15, a C1, a C12, a C3 e a metodologia."
     }
   ],
@@ -515,7 +526,7 @@
       "id": "render-para-teste",
       "arquivo": "ferramentas/render-para-teste.php",
       "publicar": false,
-      "sha256": "d8a0e512a5624aeb4bc8822452f4ad8f631f4b90e453e170355f22125f3bdc16",
+      "sha256": "c6d3d82ef3c446a49ecbea08efb138126cdd678b75a58b0e7d7fc7b31db66945",
       "descricao": "Renderiza qualquer shortcode de calculadora numa pagina HTML solta, com funcoes falsas do WordPress, para o teste de navegador rodar sem subir WordPress nenhum. Carrega todos os snippets menos o Sync, entao tambem serve de teste de convivencia entre as calculadoras."
     },
     {
@@ -643,6 +654,20 @@
       "publicar": false,
       "sha256": "50995c24ba669e01c2bfbd53377727ab4e00bf71d4b61ab2f8dc8dec1e62f715",
       "descricao": "Teste de navegador que poe a tabela pre-renderizada da C1 contra a propria C1 em Chromium de verdade (Playwright), com JavaScript LIGADO: le as seis linhas do HTML servido, extrai da coluna do aquario as medidas e a espessura que geraram cada linha, digita essas entradas no formulario e compara os tres volumes e a lamina. Nao guarda numero esperado nenhum — entradas e valores esperados saem da propria pagina —, entao mudar medidas de exemplo, borda livre ou arredondamento nao reprova nada: o que ele afirma e a promessa de que a tabela servida nao contradiz a calculadora, nunca o estado do catalogo. Confere tambem que todo volume citado na resposta direta do topo existe na tabela ja conferida, por token e nunca por substring, e que o console fica sem erro de pagina. Nao vai para o WordPress."
+    },
+    {
+      "id": "render-artigo-para-teste",
+      "arquivo": "ferramentas/render-artigo-para-teste.php",
+      "publicar": false,
+      "sha256": "cd22e4daf2e7ed4e60c0419f0f9ec4a936c6c5c48b70df1e4a75bfaea856b100",
+      "descricao": "Monta um artigo de conteudo/ numa pagina HTML solta, do jeito que o site a monta: o Markdown passa pelo conversor do PROPRIO Sync, os shortcodes do corpo sao executados, o retorno recebe o mesmo escape de E-comercial que os filtros do the_content aplicam, e o wp_head/wp_footer entram por cima. Existe separado do render-para-teste.php por dois motivos: pagina de calculadora e um shortcode so, artigo e um arquivo inteiro que precisa do conversor; e o snippet dos artigos se reconhece pelo SLUG, entao a pagina de teste precisa dizer qual slug ela e (o global __slug_pagina, definido antes de carregar os snippets). Nao vai para o WordPress."
+    },
+    {
+      "id": "teste-navegador-artigos",
+      "arquivo": "ferramentas/teste-navegador-artigos.mjs",
+      "publicar": false,
+      "sha256": "f367ddfbde2a087fd509e8d7f5f1786106cbea6073b862e02f5c37564820f9d7",
+      "descricao": "Teste de navegador dos tres artigos-ancora em Chromium de verdade (Playwright) com o JavaScript DESLIGADO, que e o que um crawler de IA recebe. 36 afirmacoes por artigo, 108 no total. Confere o no Article (headline dentro do limite do schema, titulo completo em alternativeHeadline, description, idioma, datePublished, dateModified, autor, publisher, a consulta que a pagina mira e citation com data em toda fonte), o FAQPage (no minimo seis perguntas, nenhuma resposta curta demais para ser citada, toda resposta com numero), o bloco de resposta direta (corpo, data, fonte nomeada dentro da frase, links de verdade e a posicao ANTES do primeiro titulo de secao), a tabela que o artigo ja tinha servida no HTML, e o portao de entidade numerica contado SO dentro dos blocos de script. As duas afirmacoes que valem o arquivo sao de coerencia entre as duas metades da mesma pagina: todo numero da resposta direta existe no corpo do artigo, e toda resposta do FAQPage carrega ao menos um numero que o corpo sustenta. Nenhum numero esperado fica gravado aqui dentro — afirma a promessa, nunca o estado —, entao corrigir um numero do artigo com fonte melhor nao reprova nada desde que o topo e o FAQ mudem junto, que e exatamente o defeito que ele existe para pegar. Controle negativo conferido: sem JSON-LD e sem o bloco do topo sao 15 falhas, e um numero sem lastro na resposta direta e reprovado pelo valor. Nao vai para o WordPress."
     }
   ]
 }

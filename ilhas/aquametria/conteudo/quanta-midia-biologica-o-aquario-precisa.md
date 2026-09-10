@@ -21,6 +21,8 @@ verificado_em: 2026-09-08
 publicar: true
 ---
 
+[aquametria_artigo_resposta]
+
 Existe uma pergunta que quase todo aquarista brasileiro faz uma vez e nunca recebe respondida: **quanta** mídia biológica o meu aquário precisa?
 
 A resposta que circula é sempre qualitativa. Encha o cesto. Quanto mais melhor. Cerâmica embaixo, perlon em cima. São conselhos razoáveis e nenhum deles é um número — o que é curioso, porque a mídia se compra por litro, o cesto tem um volume finito, e a diferença entre comprar um litro e comprar quatro é dinheiro real.

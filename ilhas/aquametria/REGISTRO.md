@@ -4105,3 +4105,146 @@ essa medição exige o painel do Mercado Livre aberto, e isso é da Sentinela es
    JSON-LD valem, mas tabela pré-renderizada só entra se o artigo tiver número próprio para pôr nela.
    Tabela decorativa é pior que nenhuma.
 3. **T3 (catálogo) segue barrado da nuvem** enquanto o egresso bloquear sites de fabricante.
+
+---
+
+## 2026-09-10, 13h20Z — T7 leva 4: os 3 artigos-âncora fecham o retrofit de visibilidade em IA
+
+**Bloco:** T7, o resto que sobrava depois da leva 3. Manifest **revisão 33**.
+**Ilha reservada às 13h20Z**, depois de a Robometria ter sido levada por uma execução paralela na
+mesma corrida de push — o mecanismo de reserva da seção 1 do contrato funcionou exatamente como
+descrito: push recusado, `fetch` e `rebase`, e a escolha caiu na ilha seguinte sem atropelo nenhum.
+
+### O que entrou no ar (no `main`, não no site — ver o fim desta entrada)
+
+- **`snippets/aquametria-artigos.php` v1.0.0**, snippet novo, `publicar: true`, escopo front-end.
+- Uma linha `[aquametria_artigo_resposta]` no topo de cada um dos três artigos de `conteudo/`:
+  `quantos-watts-de-aquecedor-para-aquario.md`, `quanta-midia-biologica-o-aquario-precisa.md` e
+  `quantos-lumens-por-litro-aquario-plantado.md`. Nenhuma linha de texto dos artigos foi reescrita.
+- **`ferramentas/teste-navegador-artigos.mjs`** e **`ferramentas/render-artigo-para-teste.php`**,
+  arquivos novos, `publicar: false`.
+- Uma linha em `ferramentas/render-para-teste.php`: o slug da página de teste virou global.
+
+Com isso o retrofit da seção 5 do `ARQUIPELAGO.md` cobre **8 de 8 páginas** de ferramenta e artigo.
+A Sentinela Técnica mediu JSON-LD **zero em 13 de 13** páginas em 09/09; hoje as oito que têm
+conteúdo próprio servem JSON-LD, resposta antes da explicação e tabela de números no HTML servido.
+
+### Três decisões de projeto, e a razão de cada uma
+
+**1. Artigo se reconhece pelo SLUG, calculadora pelo shortcode.** Não dá para descobrir a página de
+um artigo por `has_shortcode()`: artigo não tem formulário. O snippet lê o `post_name` e compara com
+o registro dos três slugs — os mesmos do front matter e do manifest. Amarrar o JSON-LD à presença do
+shortcode da resposta direta seria pior: a página perderia o schema no dia em que alguém tirasse o
+bloco do topo. Vale para toda ilha: **página de conteúdo se identifica pelo endereço; página de
+ferramenta, pelo shortcode que ela carrega.**
+
+**2. TABELA PRÉ-RENDERIZADA NÃO SE INVENTA — e este bloco recusou inventar três.** O `PROMPT.md`
+já avisava, e o material confirmou: os três artigos JÁ serviam tabela própria no HTML servido, escrita
+em Markdown e convertida pelo Sync — a linha comercial Eheim Jäger com o 1,00 W/L em seis degraus, as
+quatro dosagens de mídia com a área que cada uma entrega por litro de água, e as três réguas de lm/L
+lado a lado. Acrescentar uma tabela nossa por cima seria decoração, e o portão da seção 5 é **servir
+resposta citável**, não servir uma tabela. O que o teste passou a exigir é que a tabela que o artigo
+já tinha continue no HTML, com cabeçalho e pelo menos três linhas, e com número em toda ela.
+
+**3. A resposta direta de artigo não é a de calculadora.** A da calculadora resolve um caso de
+exemplo. A do artigo tem de entregar a **tese com número**, porque é ela que vai ser citada fora de
+contexto por um modelo que leu só aquele bloco. As três, em três parágrafos cada, com fonte nomeada e
+data dentro da frase:
+
+- **C5:** não existe um watts-por-litro que valha para o Brasil inteiro; a única fonte do
+  levantamento de 04/09/2026 que declara condição (ReefFlow) sustenta 1,0 a 1,5 W/L para até 10 °C, o
+  que dá 100 a 150 W num aquário de 100 L; e o "1 W por litro" veio da prateleira, porque a linha
+  Eheim Jäger nomeia cada aparelho pelo volume que dá exatamente 1,00 W/L em seis degraus seguidos.
+- **C12:** as quatro dosagens declaradas vão de 1,25 a 12,50 mL/L — dez vezes —, a área entregue por
+  litro de água vai de 0,88 a 18,8 m² (vinte e uma vezes) e na direção **contrária** ao argumento de
+  venda, e nenhuma das quatro pergunta quantos peixes há no aquário.
+- **C15:** "baixa" é 10, 15 ou 20 lm/L conforme a fonte, o que num aquário de 100 L é a diferença
+  entre 1.000 e 2.000 lúmens; e a régua é frágil por definição, porque o lúmen desconta o azul e o
+  vermelho profundos, que são as faixas da clorofila.
+
+### O teste novo, e as duas afirmações que valem o arquivo
+
+`ferramentas/teste-navegador-artigos.mjs` — **108 afirmações, JavaScript DESLIGADO**, que é o que um
+crawler de IA recebe. Confere o nó `Article` (headline dentro do limite do schema, título completo em
+`alternativeHeadline`, description, idioma, datas, autor, publisher, a consulta que a página mira e
+`citation` com data em toda fonte), o `FAQPage` (oito perguntas por artigo, nenhuma resposta curta
+demais para ser citada, toda resposta com número), o bloco do topo (corpo, data, fonte nomeada dentro
+da frase, links de verdade e a posição **antes** do primeiro título de seção), a tabela que o artigo
+já tinha, e o portão de entidade numérica contado **só dentro dos blocos de script**.
+
+Mas o que faz o arquivo valer são duas afirmações de **coerência entre as duas metades da mesma
+página**: *todo número da resposta direta existe no corpo do artigo* e *toda resposta do FAQPage
+carrega ao menos um número que o corpo sustenta*. **Nenhum número esperado fica gravado no teste.**
+Corrigir um dado com fonte melhor não reprova nada — desde que o topo e o FAQ mudem junto, que é
+exatamente o defeito que ele existe para pegar. É o desenho do `teste-navegador-c1-tabela.mjs`
+aplicado a texto em vez de formulário, e a terceira aplicação da regra que esta ilha já pagou caro
+para escrever: **afirme a promessa, nunca o estado.**
+
+Um detalhe de implementação que vale para quem copiar isto em outra ilha: o corpus dos artigos
+escreve milhar com espaço fino ("6 630 lm") e o registro do snippet escreve com ponto ("6.630"). São
+o mesmo número, e sem normalizar isso o teste reprovaria por **tipografia**, que é ruído. Datas saem
+da comparação antes da extração, porque procedência não precisa (nem deve) aparecer no corpo.
+
+### Controle negativo conferido, nos dois sentidos — e um defeito real pego antes do commit
+
+- A página **como estava antes deste bloco** (sem JSON-LD e sem o bloco do topo) dá **15 falhas**.
+- Trocar **um único número** da resposta direta por um que o artigo não sustenta é reprovado pelo
+  valor: `FALHA todo numero da resposta direta existe no corpo do artigo — sem lastro: 1,7`.
+- E o teste pegou um defeito de verdade antes do commit: a resposta do FAQ da C12 sobre troca parcial
+  de mídia não carregava número nenhum. A saída certa não foi afrouxar a regra — foi amarrar a
+  resposta às quatro dosagens que a própria página publica.
+
+### Verificação da seção 8, item a item
+
+- `php -l` nos 10 snippets e nos dois PHP de bancada: sem erro.
+- `conferir-protecao-funcoes.py`: **158 funções em 10 snippets**, todas dentro de `function_exists` —
+  as 11 do arquivo novo incluídas.
+- `conferir-entidades.mjs`: **0 falhas**. Fonte limpo nos 10 snippets, e nas 5 calculadoras
+  `jsonld_ok=1`, `entidade_038_no_documento=0`, script depois do conteúdo.
+- `teste-conversor-markdown.php`: **17 casos, 0 falha** — o corpo dos três artigos continua começando
+  por texto, sem resíduo de front matter, com a linha do shortcode saindo fora do `<p>`.
+- `conferir-slugs.py`: 9 slugs concordando entre `conteudo/`, manifest e snippets; nenhum link
+  publicado apontando para página inexistente.
+- `teste-navegador-artigos.mjs`: **108 afirmações, 0 falha**, mais os dois controles negativos.
+- **Regressão:** `teste-navegador-visibilidade-ia.mjs` rodado de novo nas 5 calculadoras — tudo
+  passou. O snippet novo registra um `wp_head` global, e era isso que precisava ser provado inócuo
+  fora das três páginas de artigo.
+- `validar-produtos.py`: 78 produtos, 39 cotações, **0 erro** (9 avisos conhecidos).
+  `validar-especies.py`: 36 espécies, 0 erro, 1 aviso conhecido (o E15 do guppy).
+- `atualizar-manifest.py`: 7 itens com sha novo, **revisão 33**.
+
+### NÃO CONCLUÍDO — o site continua fora de alcance, e agora são VINTE E DUAS revisões paradas
+
+`aquametria.com.br/wp-json/aquametria/v1/status` devolveu **EGRESS_BLOCKED** nesta execução também,
+testado com `?v=` novo para furar o cache duplo. **O Sync não foi acionado e a revisão aplicada não
+foi conferida**, então nada deste bloco pode ser dado por "no ar" — só por "no `main`".
+
+**Repositório na revisão 33; a última medição do site, em 08/09 às 13h03, dizia 11.**
+
+O gesto que destrava continua sendo o mesmo, de trinta segundos, no Chrome do Raphael: abrir a URL do
+Sync com `&forcar=1` e, uns cinco minutos depois, conferir que o `/status` diz **revisão 33**. Depois
+disso, a medição do item 1 do despacho: `wp-sitemap.xml` sem `/category/uncategorized/`, e essa URL
+servindo `noindex`.
+
+### Produtos esperando link de afiliado: 39 de 78
+
+Sem mudança — nenhum produto entrou nesta execução e este bloco não tocou em catálogo. Por marca: 10
+Chihiros, 10 Atman, 4 Eheim, 3 Ocean Tech, 3 SunSun, 2 Hopar, 2 Seachem, 1 cada de Ista, WFish, Roxin
+e JBL, e 1 sem marca. Continua valendo o registrado em 09/09: o número "20 sem loja possível" está
+**VENCIDO** e não deve ser repetido, porque foi medido quando a Shopee era o único programa. Refazer
+essa medição exige o painel do Mercado Livre aberto, e isso é da Sentinela estratégica.
+
+### Próximo passo desbloqueado
+
+1. **T1 — medir a indexação no Search Console.** Continua sendo o primeiro da fila e continua
+   dependendo do Chrome do Raphael. É ele que autoriza ou barra a T4, e a leitura de 16/09 depende
+   dele para dizer por que a leva de 08/09 não indexou.
+2. **T8 — a vitrine, começando pela C3.** É o primeiro bloco de construção que não cria URL nova,
+   então ele respeita o item 2 do despacho da Sentinela (nenhuma página nova até 16/09) e é o que
+   sobra de maior na fila agora que o T7 fechou. A C3 é a que tem mais itens com foto e link.
+3. **A `Organization` com `sameAs` na home, que mora na casca**, é o resíduo do item 3 da seção 5 do
+   contrato e NÃO foi feita aqui de propósito: a Aquametria não tem perfil externo nenhum (o Raphael
+   não aparece em ilha nenhuma, por decisão de projeto), então `sameAs` sairia vazio ou inventado.
+   Quando o widget em lojas (T6) der o primeiro perfil externo real, aí ela nasce com lastro. Fica
+   registrado para a próxima execução não achar que foi esquecimento.
+4. **T3 (catálogo) segue barrado da nuvem** enquanto o egresso bloquear sites de fabricante.

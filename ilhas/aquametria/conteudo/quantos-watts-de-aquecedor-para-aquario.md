@@ -18,6 +18,8 @@ verificado_em: 2026-09-08
 publicar: true
 ---
 
+[aquametria_artigo_resposta]
+
 Existe um número que todo mundo no aquarismo brasileiro sabe de cor: **um watt por litro**. Aquário de 60 litros, aquecedor de 60 W. Aquário de 200, aquecedor de 200. É simples, é fácil de repetir e é o tipo de regra que sobrevive por décadas justamente porque ninguém precisa entender para usar.
 
 O problema não é a regra ser grosseira. Regras de bolso boas são grosseiras de propósito. O problema é que essa aqui **não diz para qual situação vale**, e por isso erra sempre na mesma direção — contra quem mora onde faz frio.

@@ -17,6 +17,8 @@ verificado_em: 2026-09-08
 publicar: true
 ---
 
+[aquametria_artigo_resposta]
+
 Um aquarista brasileiro que queira dimensionar a luz do aquário plantado encontra, nas três primeiras páginas de resultado, a mesma tabela três vezes. Três autores, três colunas, os mesmos rótulos: baixa, média, alta. E números que não batem.
 
 | Nível | peixeseaquarismo | aquarioturbinado | aquariosplantados |
