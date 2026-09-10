@@ -3,7 +3,7 @@ ilha: robometria
 estado: nascendo
 prioridade: 1
 ultima_execucao: 2026-09-10T11:28Z
-executando_desde: null
+executando_desde: 2026-09-10T13:19Z
 bloco_atual: "3c terceira leva — varredura da entrada da R1 (concluida); banco na revisao 6"
 ultima_ronda: null
 bloqueada_por: null
