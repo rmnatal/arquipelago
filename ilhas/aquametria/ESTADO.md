@@ -3,7 +3,7 @@ ilha: aquametria
 estado: viva
 prioridade: 2
 ultima_execucao: 2026-09-09T23:17Z
-executando_desde: null
+executando_desde: 2026-09-10T11:19Z
 bloco_atual: "T7 par C12 (resposta direta, tabela pre-renderizada e JSON-LD) — no main, revisao 31; falta o Sync"
 ultima_ronda: 2026-09-09T19:40Z
 bloqueada_por: null
