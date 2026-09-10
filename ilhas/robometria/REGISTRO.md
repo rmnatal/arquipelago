@@ -960,6 +960,18 @@ Medicao num Chromium de verdade a 360, 390, 782 e 1200 px: **rolagem horizontal
 da pagina 0 px em todas**, com as tabelas de 5 colunas rolando dentro do proprio
 envoltorio e a vitrine com `scroll-snap` em CSS puro.
 
+**NO AR, e conferido no ar (secao 4).** Sync acionado por esta execucao as
+**21h36Z**: `revisao 11`, 5 itens aplicados, `robometria-a1` criado como snippet
+**#8**, casca (#6) e R1 (#7) atualizados. O `/status` responde **revisao 11**.
+Medido na pagina publicada: **HTTP 200**, **zero `&#038;` dentro dos blocos
+`<script>`**, JSON-LD **Article + FAQPage** decodificando, canonica propria,
+**4 links externos e nenhum sem `nofollow` e `noopener`**, e o bloco de compra
+antes da primeira prova de procedencia. A malha conferida no ar: a **home** e o
+**hub** listam o artigo, a **R1 aponta de volta**, o apelido
+`/filtro-hepa-universal/` devolve **301** para o endereco canonico, e o
+`wp-sitemap-posts-page-1.xml` passou a listar **7** paginas, com o artigo entre
+elas.
+
 **16 pecas do banco esperando link de afiliado** (44 itens contando modelos, que
 e como o `validar-banco.py` conta) — trabalho da Sentinela estrategica, no
 navegador do Raphael, nao da Fundacao.

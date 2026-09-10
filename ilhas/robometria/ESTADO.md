@@ -4,7 +4,7 @@ estado: nascendo
 prioridade: 1
 ultima_execucao: 2026-09-10T21:15Z
 executando_desde: null
-bloco_atual: "bloco 5 ENTREGUE: o ARTIGO-ANCORA da R1 esta no ar (/filtro-universal-de-robo-aspirador/, snippet robometria-a1 v1.0.0, manifest revisao 11). A tese e medida, nao escrita: das 16 pecas com compatibilidade declarada NENHUMA atravessa marca, a maior lista do banco nomeia 5 codigos de modelo, e na Electrolux as 6 pecas formam 6 conjuntos de modelos DIFERENTES. O numero nao esta digitado no HTML — a frase de abertura, a description do JSON-LD e a resposta do FAQPage tem duas formas escolhidas pela contagem, e foi provando isso numa copia do banco que apareceu o defeito de a pagina se corrigir na tela e o JSON-LD nao. A malha da secao 9 fechou: duas listagens (home e hub), tres irmas, e a R1 (v1.1.1) apontando de volta. A folha e as funcoes da porta de compra sairam da R1 para a casca (v1.0.2), que agora tambem tem catalogo de artigos. Verificacao: teste-a1 53, teste-casca 64, teste-r1 90, validar-banco, e Chromium com 0 px de rolagem horizontal em 360/390/782/1200. 16 pecas esperando link de afiliado. Proximo: 3c alvo (a), pecas com codigo da Xiaomi e da WAP, se a rede alcancar o fabricante; se nao, a R2"
+bloco_atual: "bloco 5 ENTREGUE: o ARTIGO-ANCORA da R1 esta no ar (/filtro-universal-de-robo-aspirador/, snippet robometria-a1 v1.0.0, manifest revisao 11). A tese e medida, nao escrita: das 16 pecas com compatibilidade declarada NENHUMA atravessa marca, a maior lista do banco nomeia 5 codigos de modelo, e na Electrolux as 6 pecas formam 6 conjuntos de modelos DIFERENTES. O numero nao esta digitado no HTML — a frase de abertura, a description do JSON-LD e a resposta do FAQPage tem duas formas escolhidas pela contagem, e foi provando isso numa copia do banco que apareceu o defeito de a pagina se corrigir na tela e o JSON-LD nao. A malha da secao 9 fechou: duas listagens (home e hub), tres irmas, e a R1 (v1.1.1) apontando de volta. A folha e as funcoes da porta de compra sairam da R1 para a casca (v1.0.2), que agora tambem tem catalogo de artigos. Verificacao: teste-a1 53, teste-casca 64, teste-r1 90, validar-banco, e Chromium com 0 px de rolagem horizontal em 360/390/782/1200. NO AR as 21h36Z, revisao 11 conferida no /status, pagina em 200, apelido em 301 e sitemap com 7 paginas. 16 pecas esperando link de afiliado. Proximo: 3c alvo (a), pecas com codigo da Xiaomi e da WAP, se a rede alcancar o fabricante; se nao, a R2"
 ultima_ronda: null
 bloqueada_por: null
 ---
@@ -60,8 +60,12 @@ Sem credenciais neste arquivo.
   `teste-a1.php` APROVADO em 53 medições — entre elas a recontagem da tese em
   PHP, direto do banco, sem olhar para o gerador em Python —, mais
   `teste-casca.php` (64), `teste-r1.php` (90), `validar-banco.py` e um Chromium
-  de verdade com 0 px de rolagem horizontal a 360, 390, 782 e 1200. **16 peças
-  esperando link de afiliado.**
+  de verdade com 0 px de rolagem horizontal a 360, 390, 782 e 1200. **NO AR desde
+  10/09/2026, 21h36Z** — revisão 11 confirmada no `/status`, snippet #8 criado, a
+  página em 200 com JSON-LD Article + FAQPage, zero `&#038;` dentro dos
+  `<script>`, 4 links externos e nenhum sem `nofollow`, o apelido
+  `/filtro-hepa-universal/` em 301 para o canônico e o sitemap de páginas agora
+  com 7 endereços. **16 peças esperando link de afiliado.**
 
 - 10/09/2026 — **Despacho da Sentinela, item 0: a procedência deixou de ser a
   única porta de compra.** A R1 tinha nascido com um único link clicável por
