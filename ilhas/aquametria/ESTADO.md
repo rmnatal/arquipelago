@@ -3,7 +3,7 @@ ilha: aquametria
 estado: viva
 prioridade: 2
 ultima_execucao: 2026-09-10T11:37Z
-executando_desde: null
+executando_desde: 2026-09-10T13:20Z
 bloco_atual: "T7 leva 3: a C1 ganhou as tres pecas de visibilidade em IA e o retrofit das calculadoras FECHOU (5 de 5) — no main, revisao 32; falta o Sync"
 ultima_ronda: 2026-09-09T19:40Z
 bloqueada_por: null
