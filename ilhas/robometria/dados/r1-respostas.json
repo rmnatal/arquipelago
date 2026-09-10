@@ -1,0 +1,2256 @@
+{
+  "id": "r1-respostas",
+  "ilha": "robometria",
+  "entidade": "medicao",
+  "gerado_por": "ferramentas/gerar-r1.py",
+  "banco_gerado_em": "2026-09-09",
+  "o_que_e": "Combustivel da ferramenta R1 no site: para cada modelo publicavel, os FATOS de cada peca que o fabricante declarou compativel — codigo, publicador, conjunto declarado, endereco e data. Sem prosa: a frase que o visitante le e montada pelo snippet, em portugues acentuado, e conferida contra a implementacao de referencia por ferramentas/teste-r1.php.",
+  "marcas": [
+    {
+      "id": "electrolux",
+      "nome": "Electrolux"
+    },
+    {
+      "id": "multi",
+      "nome": "Multi (ex-Multilaser)"
+    },
+    {
+      "id": "positivo",
+      "nome": "Positivo Casa Inteligente"
+    },
+    {
+      "id": "wap",
+      "nome": "WAP"
+    },
+    {
+      "id": "xiaomi",
+      "nome": "Xiaomi"
+    }
+  ],
+  "rotulos_de_origem": {
+    "manual-fabricante": {
+      "rotulo": "manual do fabricante",
+      "ressalva": null,
+      "nivel": 2
+    },
+    "fabricante-via-busca": {
+      "rotulo": "página do fabricante",
+      "ressalva": "a confirmar no manual",
+      "nivel": 3
+    },
+    "varejo-oficial-da-marca": {
+      "rotulo": "loja oficial da marca",
+      "ressalva": "confira a embalagem",
+      "nivel": 4
+    }
+  },
+  "ancora": "electrolux-erb60",
+  "tipos": [
+    "filtro",
+    "escova lateral",
+    "escova principal",
+    "mop",
+    "bateria"
+  ],
+  "tipos_sem_nenhuma_peca_no_banco": [
+    "reservatorio"
+  ],
+  "modelos": [
+    {
+      "id": "electrolux-erb10",
+      "marca": "electrolux",
+      "codigo": "ERB10",
+      "linha": null,
+      "responde": true,
+      "so_kit": false
+    },
+    {
+      "id": "electrolux-erb11",
+      "marca": "electrolux",
+      "codigo": "ERB11",
+      "linha": null,
+      "responde": true,
+      "so_kit": false
+    },
+    {
+      "id": "electrolux-erb20",
+      "marca": "electrolux",
+      "codigo": "ERB20",
+      "linha": null,
+      "responde": true,
+      "so_kit": false
+    },
+    {
+      "id": "electrolux-erb30",
+      "marca": "electrolux",
+      "codigo": "ERB30",
+      "linha": "Home-E Power Experience",
+      "responde": false,
+      "so_kit": true
+    },
+    {
+      "id": "electrolux-erb44",
+      "marca": "electrolux",
+      "codigo": "ERB44",
+      "linha": null,
+      "responde": true,
+      "so_kit": false
+    },
+    {
+      "id": "electrolux-erb60",
+      "marca": "electrolux",
+      "codigo": "ERB60",
+      "linha": "Experience Mapeamento",
+      "responde": true,
+      "so_kit": false
+    },
+    {
+      "id": "electrolux-erb61",
+      "marca": "electrolux",
+      "codigo": "ERB61",
+      "linha": "Experience Mapeamento",
+      "responde": true,
+      "so_kit": false
+    },
+    {
+      "id": "electrolux-erb62",
+      "marca": "electrolux",
+      "codigo": "ERB62",
+      "linha": "Experience Mapeamento",
+      "responde": true,
+      "so_kit": false
+    },
+    {
+      "id": "electrolux-erb80",
+      "marca": "electrolux",
+      "codigo": "ERB80",
+      "linha": "Experience Mapeamento",
+      "responde": true,
+      "so_kit": false
+    },
+    {
+      "id": "multi-ho041",
+      "marca": "multi",
+      "codigo": "HO041",
+      "linha": "Mars",
+      "responde": true,
+      "so_kit": false
+    },
+    {
+      "id": "multi-ho243",
+      "marca": "multi",
+      "codigo": "HO243",
+      "linha": "Acqua Solution / Hydra",
+      "responde": false,
+      "so_kit": false
+    },
+    {
+      "id": "multi-ho400",
+      "marca": "multi",
+      "codigo": "HO400",
+      "linha": "Mars",
+      "responde": true,
+      "so_kit": false
+    },
+    {
+      "id": "multi-ho407",
+      "marca": "multi",
+      "codigo": "HO407",
+      "linha": "Duster",
+      "responde": true,
+      "so_kit": false
+    },
+    {
+      "id": "multi-ho411",
+      "marca": "multi",
+      "codigo": "HO411",
+      "linha": "Midnight",
+      "responde": false,
+      "so_kit": false
+    },
+    {
+      "id": "multi-ob010",
+      "marca": "multi",
+      "codigo": "OB010",
+      "linha": "ObaDuster (Obabox)",
+      "responde": true,
+      "so_kit": false
+    },
+    {
+      "id": "positivo-pra2000",
+      "marca": "positivo",
+      "codigo": "PRA2000",
+      "linha": "Smart Robo Aspirador",
+      "responde": true,
+      "so_kit": false
+    },
+    {
+      "id": "positivo-pra500",
+      "marca": "positivo",
+      "codigo": "PRA500",
+      "linha": "Smart Robo Aspirador",
+      "responde": false,
+      "so_kit": false
+    },
+    {
+      "id": "positivo-pra800",
+      "marca": "positivo",
+      "codigo": "PRA800",
+      "linha": null,
+      "responde": true,
+      "so_kit": false
+    },
+    {
+      "id": "wap-w1000",
+      "marca": "wap",
+      "codigo": "W1000",
+      "linha": null,
+      "responde": false,
+      "so_kit": false
+    },
+    {
+      "id": "wap-w310",
+      "marca": "wap",
+      "codigo": "W310",
+      "linha": null,
+      "responde": false,
+      "so_kit": false
+    },
+    {
+      "id": "wap-w400",
+      "marca": "wap",
+      "codigo": "W400",
+      "linha": null,
+      "responde": false,
+      "so_kit": false
+    },
+    {
+      "id": "xiaomi-e10",
+      "marca": "xiaomi",
+      "codigo": "E10",
+      "linha": null,
+      "responde": false,
+      "so_kit": false
+    },
+    {
+      "id": "xiaomi-h40",
+      "marca": "xiaomi",
+      "codigo": "H40",
+      "linha": null,
+      "responde": false,
+      "so_kit": false
+    },
+    {
+      "id": "xiaomi-mop-2",
+      "marca": "xiaomi",
+      "codigo": "Mop 2",
+      "linha": null,
+      "responde": false,
+      "so_kit": false
+    },
+    {
+      "id": "xiaomi-s10",
+      "marca": "xiaomi",
+      "codigo": "S10",
+      "linha": null,
+      "responde": false,
+      "so_kit": false
+    },
+    {
+      "id": "xiaomi-s20",
+      "marca": "xiaomi",
+      "codigo": "S20",
+      "linha": null,
+      "responde": true,
+      "so_kit": false
+    },
+    {
+      "id": "xiaomi-s40",
+      "marca": "xiaomi",
+      "codigo": "S40",
+      "linha": null,
+      "responde": false,
+      "so_kit": false
+    },
+    {
+      "id": "xiaomi-s40c",
+      "marca": "xiaomi",
+      "codigo": "S40C",
+      "linha": null,
+      "responde": false,
+      "so_kit": false
+    }
+  ],
+  "respostas": {
+    "electrolux-erb10": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "filtro",
+          "peca": "electrolux-kpcel01",
+          "codigo": "KPCEL01",
+          "nome_na_fonte": "Kit Performance para Robos Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
+          "tipo_da_peca": "kit",
+          "dentro_de_kit": true,
+          "existe_avulso": false,
+          "publicador": "Electrolux (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.electrolux.com.br/kit-performance-para-robos-aspiradores-erb10-erb11-e-erb20---electrolux/p",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "ERB10",
+            "ERB11",
+            "ERB20"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": {
+            "valor": 6,
+            "unidade": "meses"
+          },
+          "tem_imagem": false,
+          "esperando_link": true
+        },
+        {
+          "tipo": "escova lateral",
+          "peca": "electrolux-kpcel01",
+          "codigo": "KPCEL01",
+          "nome_na_fonte": "Kit Performance para Robos Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
+          "tipo_da_peca": "kit",
+          "dentro_de_kit": true,
+          "existe_avulso": false,
+          "publicador": "Electrolux (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.electrolux.com.br/kit-performance-para-robos-aspiradores-erb10-erb11-e-erb20---electrolux/p",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "ERB10",
+            "ERB11",
+            "ERB20"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": {
+            "valor": 6,
+            "unidade": "meses"
+          },
+          "tem_imagem": false,
+          "esperando_link": true
+        },
+        {
+          "tipo": "mop",
+          "peca": "electrolux-kpcel01",
+          "codigo": "KPCEL01",
+          "nome_na_fonte": "Kit Performance para Robos Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
+          "tipo_da_peca": "kit",
+          "dentro_de_kit": true,
+          "existe_avulso": false,
+          "publicador": "Electrolux (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.electrolux.com.br/kit-performance-para-robos-aspiradores-erb10-erb11-e-erb20---electrolux/p",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "ERB10",
+            "ERB11",
+            "ERB20"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": {
+            "valor": 6,
+            "unidade": "meses"
+          },
+          "tem_imagem": false,
+          "esperando_link": true
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": []
+    },
+    "electrolux-erb11": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "filtro",
+          "peca": "electrolux-kpcel01",
+          "codigo": "KPCEL01",
+          "nome_na_fonte": "Kit Performance para Robos Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
+          "tipo_da_peca": "kit",
+          "dentro_de_kit": true,
+          "existe_avulso": false,
+          "publicador": "Electrolux (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.electrolux.com.br/kit-performance-para-robos-aspiradores-erb10-erb11-e-erb20---electrolux/p",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "ERB10",
+            "ERB11",
+            "ERB20"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": {
+            "valor": 6,
+            "unidade": "meses"
+          },
+          "tem_imagem": false,
+          "esperando_link": true
+        },
+        {
+          "tipo": "escova lateral",
+          "peca": "electrolux-kpcel01",
+          "codigo": "KPCEL01",
+          "nome_na_fonte": "Kit Performance para Robos Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
+          "tipo_da_peca": "kit",
+          "dentro_de_kit": true,
+          "existe_avulso": false,
+          "publicador": "Electrolux (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.electrolux.com.br/kit-performance-para-robos-aspiradores-erb10-erb11-e-erb20---electrolux/p",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "ERB10",
+            "ERB11",
+            "ERB20"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": {
+            "valor": 6,
+            "unidade": "meses"
+          },
+          "tem_imagem": false,
+          "esperando_link": true
+        },
+        {
+          "tipo": "mop",
+          "peca": "electrolux-kpcel01",
+          "codigo": "KPCEL01",
+          "nome_na_fonte": "Kit Performance para Robos Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
+          "tipo_da_peca": "kit",
+          "dentro_de_kit": true,
+          "existe_avulso": false,
+          "publicador": "Electrolux (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.electrolux.com.br/kit-performance-para-robos-aspiradores-erb10-erb11-e-erb20---electrolux/p",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "ERB10",
+            "ERB11",
+            "ERB20"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": {
+            "valor": 6,
+            "unidade": "meses"
+          },
+          "tem_imagem": false,
+          "esperando_link": true
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": []
+    },
+    "electrolux-erb20": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "filtro",
+          "peca": "electrolux-kpcel01",
+          "codigo": "KPCEL01",
+          "nome_na_fonte": "Kit Performance para Robos Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
+          "tipo_da_peca": "kit",
+          "dentro_de_kit": true,
+          "existe_avulso": false,
+          "publicador": "Electrolux (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.electrolux.com.br/kit-performance-para-robos-aspiradores-erb10-erb11-e-erb20---electrolux/p",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "ERB10",
+            "ERB11",
+            "ERB20"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": {
+            "valor": 6,
+            "unidade": "meses"
+          },
+          "tem_imagem": false,
+          "esperando_link": true
+        },
+        {
+          "tipo": "escova lateral",
+          "peca": "electrolux-kpcel01",
+          "codigo": "KPCEL01",
+          "nome_na_fonte": "Kit Performance para Robos Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
+          "tipo_da_peca": "kit",
+          "dentro_de_kit": true,
+          "existe_avulso": false,
+          "publicador": "Electrolux (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.electrolux.com.br/kit-performance-para-robos-aspiradores-erb10-erb11-e-erb20---electrolux/p",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "ERB10",
+            "ERB11",
+            "ERB20"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": {
+            "valor": 6,
+            "unidade": "meses"
+          },
+          "tem_imagem": false,
+          "esperando_link": true
+        },
+        {
+          "tipo": "mop",
+          "peca": "electrolux-kpcel01",
+          "codigo": "KPCEL01",
+          "nome_na_fonte": "Kit Performance para Robos Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
+          "tipo_da_peca": "kit",
+          "dentro_de_kit": true,
+          "existe_avulso": false,
+          "publicador": "Electrolux (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.electrolux.com.br/kit-performance-para-robos-aspiradores-erb10-erb11-e-erb20---electrolux/p",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "ERB10",
+            "ERB11",
+            "ERB20"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": {
+            "valor": 6,
+            "unidade": "meses"
+          },
+          "tem_imagem": false,
+          "esperando_link": true
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": []
+    },
+    "electrolux-erb30": {
+      "aviso_de_variante": null,
+      "fabricante": [],
+      "terceiro": [],
+      "kits_sem_composicao": [
+        {
+          "peca": "electrolux-kit-performance-erb30",
+          "codigo": null,
+          "nome_na_fonte": "Kit Performance para Robo Aspirador ERB30 - Electrolux",
+          "publicador": "Electrolux (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "url": "https://loja.electrolux.com.br/kit-performance-para-robo-aspirador-erb30---electrolux/p",
+          "verificado_em": "2026-09-09",
+          "esperando_link": true
+        }
+      ]
+    },
+    "electrolux-erb44": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "filtro",
+          "peca": "electrolux-filtro-hepa-espuma-erb44-erb60-erb61-erb62",
+          "codigo": null,
+          "nome_na_fonte": "Filtro HEPA com Espuma Electrolux para Robos Aspiradores ERB44, ERB60, ERB61 e ERB62",
+          "tipo_da_peca": "filtro",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Electrolux (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.electrolux.com.br/filtro-hepa-com-espuma-electrolux-para-robos-aspiradores-erb44--erb60--erb61-e-erb62/p",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "ERB44",
+            "ERB60",
+            "ERB61",
+            "ERB62"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": [
+        {
+          "peca": "electrolux-kit-performance-erb44",
+          "codigo": null,
+          "nome_na_fonte": "Kit Performance Electrolux para Robo Aspirador ERB44",
+          "publicador": "Electrolux (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robo-aspirador-erb44/p",
+          "verificado_em": "2026-09-09",
+          "esperando_link": true
+        }
+      ]
+    },
+    "electrolux-erb60": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "filtro",
+          "peca": "electrolux-filtro-hepa-espuma-erb44-erb60-erb61-erb62",
+          "codigo": null,
+          "nome_na_fonte": "Filtro HEPA com Espuma Electrolux para Robos Aspiradores ERB44, ERB60, ERB61 e ERB62",
+          "tipo_da_peca": "filtro",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Electrolux (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.electrolux.com.br/filtro-hepa-com-espuma-electrolux-para-robos-aspiradores-erb44--erb60--erb61-e-erb62/p",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "ERB44",
+            "ERB60",
+            "ERB61",
+            "ERB62"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true
+        },
+        {
+          "tipo": "filtro",
+          "peca": "electrolux-kit-performance-erb60-erb61-erb62",
+          "codigo": null,
+          "nome_na_fonte": "Kit Performance Electrolux para Robos Aspiradores ERB60, ERB61 e ERB62",
+          "tipo_da_peca": "kit",
+          "dentro_de_kit": true,
+          "existe_avulso": true,
+          "publicador": "Electrolux (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robos-aspiradores-erb60--erb61-e-erb62/p",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "ERB60",
+            "ERB61",
+            "ERB62"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true
+        },
+        {
+          "tipo": "escova lateral",
+          "peca": "electrolux-kit-performance-erb60-erb61-erb62",
+          "codigo": null,
+          "nome_na_fonte": "Kit Performance Electrolux para Robos Aspiradores ERB60, ERB61 e ERB62",
+          "tipo_da_peca": "kit",
+          "dentro_de_kit": true,
+          "existe_avulso": false,
+          "publicador": "Electrolux (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robos-aspiradores-erb60--erb61-e-erb62/p",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "ERB60",
+            "ERB61",
+            "ERB62"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true
+        },
+        {
+          "tipo": "mop",
+          "peca": "electrolux-kit-performance-erb60-erb61-erb62",
+          "codigo": null,
+          "nome_na_fonte": "Kit Performance Electrolux para Robos Aspiradores ERB60, ERB61 e ERB62",
+          "tipo_da_peca": "kit",
+          "dentro_de_kit": true,
+          "existe_avulso": false,
+          "publicador": "Electrolux (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robos-aspiradores-erb60--erb61-e-erb62/p",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "ERB60",
+            "ERB61",
+            "ERB62"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true
+        },
+        {
+          "tipo": "escova principal",
+          "peca": "electrolux-escova-rotativa-central-erb60-erb61-erb62-erb80",
+          "codigo": null,
+          "nome_na_fonte": "Escova Rotativa Central Electrolux para Robos Aspiradores ERB60, ERB61, ERB62 e ERB80",
+          "tipo_da_peca": "escova principal",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Electrolux (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.electrolux.com.br/escova-rotativa-central-electrolux-para-robos-aspiradores-erb60--erb61--erb62-e-erb80/p",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "ERB60",
+            "ERB61",
+            "ERB62",
+            "ERB80"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": []
+    },
+    "electrolux-erb61": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "filtro",
+          "peca": "electrolux-filtro-hepa-espuma-erb44-erb60-erb61-erb62",
+          "codigo": null,
+          "nome_na_fonte": "Filtro HEPA com Espuma Electrolux para Robos Aspiradores ERB44, ERB60, ERB61 e ERB62",
+          "tipo_da_peca": "filtro",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Electrolux (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.electrolux.com.br/filtro-hepa-com-espuma-electrolux-para-robos-aspiradores-erb44--erb60--erb61-e-erb62/p",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "ERB44",
+            "ERB60",
+            "ERB61",
+            "ERB62"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true
+        },
+        {
+          "tipo": "filtro",
+          "peca": "electrolux-kit-performance-erb60-erb61-erb62",
+          "codigo": null,
+          "nome_na_fonte": "Kit Performance Electrolux para Robos Aspiradores ERB60, ERB61 e ERB62",
+          "tipo_da_peca": "kit",
+          "dentro_de_kit": true,
+          "existe_avulso": true,
+          "publicador": "Electrolux (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robos-aspiradores-erb60--erb61-e-erb62/p",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "ERB60",
+            "ERB61",
+            "ERB62"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true
+        },
+        {
+          "tipo": "escova lateral",
+          "peca": "electrolux-kit-performance-erb60-erb61-erb62",
+          "codigo": null,
+          "nome_na_fonte": "Kit Performance Electrolux para Robos Aspiradores ERB60, ERB61 e ERB62",
+          "tipo_da_peca": "kit",
+          "dentro_de_kit": true,
+          "existe_avulso": false,
+          "publicador": "Electrolux (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robos-aspiradores-erb60--erb61-e-erb62/p",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "ERB60",
+            "ERB61",
+            "ERB62"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true
+        },
+        {
+          "tipo": "mop",
+          "peca": "electrolux-kit-performance-erb60-erb61-erb62",
+          "codigo": null,
+          "nome_na_fonte": "Kit Performance Electrolux para Robos Aspiradores ERB60, ERB61 e ERB62",
+          "tipo_da_peca": "kit",
+          "dentro_de_kit": true,
+          "existe_avulso": false,
+          "publicador": "Electrolux (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robos-aspiradores-erb60--erb61-e-erb62/p",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "ERB60",
+            "ERB61",
+            "ERB62"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true
+        },
+        {
+          "tipo": "escova principal",
+          "peca": "electrolux-escova-rotativa-central-erb60-erb61-erb62-erb80",
+          "codigo": null,
+          "nome_na_fonte": "Escova Rotativa Central Electrolux para Robos Aspiradores ERB60, ERB61, ERB62 e ERB80",
+          "tipo_da_peca": "escova principal",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Electrolux (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.electrolux.com.br/escova-rotativa-central-electrolux-para-robos-aspiradores-erb60--erb61--erb62-e-erb80/p",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "ERB60",
+            "ERB61",
+            "ERB62",
+            "ERB80"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": []
+    },
+    "electrolux-erb62": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "filtro",
+          "peca": "electrolux-filtro-hepa-espuma-erb44-erb60-erb61-erb62",
+          "codigo": null,
+          "nome_na_fonte": "Filtro HEPA com Espuma Electrolux para Robos Aspiradores ERB44, ERB60, ERB61 e ERB62",
+          "tipo_da_peca": "filtro",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Electrolux (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.electrolux.com.br/filtro-hepa-com-espuma-electrolux-para-robos-aspiradores-erb44--erb60--erb61-e-erb62/p",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "ERB44",
+            "ERB60",
+            "ERB61",
+            "ERB62"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true
+        },
+        {
+          "tipo": "filtro",
+          "peca": "electrolux-kit-performance-erb60-erb61-erb62",
+          "codigo": null,
+          "nome_na_fonte": "Kit Performance Electrolux para Robos Aspiradores ERB60, ERB61 e ERB62",
+          "tipo_da_peca": "kit",
+          "dentro_de_kit": true,
+          "existe_avulso": true,
+          "publicador": "Electrolux (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robos-aspiradores-erb60--erb61-e-erb62/p",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "ERB60",
+            "ERB61",
+            "ERB62"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true
+        },
+        {
+          "tipo": "escova lateral",
+          "peca": "electrolux-kit-performance-erb60-erb61-erb62",
+          "codigo": null,
+          "nome_na_fonte": "Kit Performance Electrolux para Robos Aspiradores ERB60, ERB61 e ERB62",
+          "tipo_da_peca": "kit",
+          "dentro_de_kit": true,
+          "existe_avulso": false,
+          "publicador": "Electrolux (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robos-aspiradores-erb60--erb61-e-erb62/p",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "ERB60",
+            "ERB61",
+            "ERB62"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true
+        },
+        {
+          "tipo": "mop",
+          "peca": "electrolux-kit-performance-erb60-erb61-erb62",
+          "codigo": null,
+          "nome_na_fonte": "Kit Performance Electrolux para Robos Aspiradores ERB60, ERB61 e ERB62",
+          "tipo_da_peca": "kit",
+          "dentro_de_kit": true,
+          "existe_avulso": false,
+          "publicador": "Electrolux (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robos-aspiradores-erb60--erb61-e-erb62/p",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "ERB60",
+            "ERB61",
+            "ERB62"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true
+        },
+        {
+          "tipo": "escova principal",
+          "peca": "electrolux-escova-rotativa-central-erb60-erb61-erb62-erb80",
+          "codigo": null,
+          "nome_na_fonte": "Escova Rotativa Central Electrolux para Robos Aspiradores ERB60, ERB61, ERB62 e ERB80",
+          "tipo_da_peca": "escova principal",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Electrolux (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.electrolux.com.br/escova-rotativa-central-electrolux-para-robos-aspiradores-erb60--erb61--erb62-e-erb80/p",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "ERB60",
+            "ERB61",
+            "ERB62",
+            "ERB80"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": []
+    },
+    "electrolux-erb80": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "escova principal",
+          "peca": "electrolux-escova-rotativa-central-erb60-erb61-erb62-erb80",
+          "codigo": null,
+          "nome_na_fonte": "Escova Rotativa Central Electrolux para Robos Aspiradores ERB60, ERB61, ERB62 e ERB80",
+          "tipo_da_peca": "escova principal",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Electrolux (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.electrolux.com.br/escova-rotativa-central-electrolux-para-robos-aspiradores-erb60--erb61--erb62-e-erb80/p",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "ERB60",
+            "ERB61",
+            "ERB62",
+            "ERB80"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": []
+    },
+    "multi-ho041": {
+      "aviso_de_variante": {
+        "rotulos": [
+          "A",
+          "B"
+        ],
+        "o_que_muda": [
+          "bateria — o fabricante vende a peca PR10127 identificada como 'Versao A'",
+          "bateria — o fabricante vende a peca PR8116 identificada como 'Mars HO041 versao B'"
+        ]
+      },
+      "fabricante": [
+        {
+          "tipo": "escova lateral",
+          "peca": "multi-pr10124",
+          "codigo": "PR10124",
+          "nome_na_fonte": "Escova Lateral para Aspirador Robo Mars, Moon e Duster",
+          "tipo_da_peca": "escova lateral",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Multi (multilaser.com.br)",
+          "origem": "fabricante-via-busca",
+          "nivel_da_fonte": 3,
+          "url": "https://www.multilaser.com.br/escova-lateral-para-aspirador-robo-ho041-e-ob010/p",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "HO041",
+            "HO400",
+            "HO401",
+            "HO407",
+            "OB010"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true
+        },
+        {
+          "tipo": "filtro",
+          "peca": "multi-pr10205",
+          "codigo": "PR10205",
+          "nome_na_fonte": "Filtro para Aspirador Robo Mars, Moon e Duster",
+          "tipo_da_peca": "filtro",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Multi (multilaser.com.br, canal varejo)",
+          "origem": "fabricante-via-busca",
+          "nivel_da_fonte": 3,
+          "url": "https://www.multilaser.com.br/filtro-para-aspirador-robo-mars-moon-duster-pr10205/p",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "HO041"
+          ],
+          "divergencia": true,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true
+        },
+        {
+          "tipo": "bateria",
+          "peca": "multi-pr10127",
+          "codigo": "PR10127",
+          "nome_na_fonte": "Bateria p/ Aspirador Robo Ho041 Versao A",
+          "tipo_da_peca": "bateria",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Multi (multilaser.com.br)",
+          "origem": "fabricante-via-busca",
+          "nivel_da_fonte": 3,
+          "url": "https://www.multilaser.com.br/bateria-p-aspirador-robo-ho041-versao-a-pr10127/p",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "HO041"
+          ],
+          "divergencia": false,
+          "variante_do_par": "A",
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true
+        },
+        {
+          "tipo": "bateria",
+          "peca": "multi-pr8116",
+          "codigo": "PR8116",
+          "nome_na_fonte": "Bateria Para Aspirador Robo Mars, Moon e Duster Multi",
+          "tipo_da_peca": "bateria",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Multi (multilaserempresas.com.br)",
+          "origem": "fabricante-via-busca",
+          "nivel_da_fonte": 3,
+          "url": "https://www.multilaserempresas.com.br/produto/eletroportateis-para-sua-casa/lar/aspiradores/bateria-para-aspirador-robo-mars-ho041-versao-b--pr8116/PR8116/",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "HO041"
+          ],
+          "divergencia": true,
+          "variante_do_par": "B",
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": []
+    },
+    "multi-ho243": {
+      "aviso_de_variante": null,
+      "fabricante": [],
+      "terceiro": [],
+      "kits_sem_composicao": []
+    },
+    "multi-ho400": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "escova lateral",
+          "peca": "multi-pr10124",
+          "codigo": "PR10124",
+          "nome_na_fonte": "Escova Lateral para Aspirador Robo Mars, Moon e Duster",
+          "tipo_da_peca": "escova lateral",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Multi (multilaser.com.br)",
+          "origem": "fabricante-via-busca",
+          "nivel_da_fonte": 3,
+          "url": "https://www.multilaser.com.br/escova-lateral-para-aspirador-robo-ho041-e-ob010/p",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "HO041",
+            "HO400",
+            "HO401",
+            "HO407",
+            "OB010"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": []
+    },
+    "multi-ho407": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "escova lateral",
+          "peca": "multi-pr10124",
+          "codigo": "PR10124",
+          "nome_na_fonte": "Escova Lateral para Aspirador Robo Mars, Moon e Duster",
+          "tipo_da_peca": "escova lateral",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Multi (multilaser.com.br)",
+          "origem": "fabricante-via-busca",
+          "nivel_da_fonte": 3,
+          "url": "https://www.multilaser.com.br/escova-lateral-para-aspirador-robo-ho041-e-ob010/p",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "HO041",
+            "HO400",
+            "HO401",
+            "HO407",
+            "OB010"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": []
+    },
+    "multi-ho411": {
+      "aviso_de_variante": null,
+      "fabricante": [],
+      "terceiro": [],
+      "kits_sem_composicao": []
+    },
+    "multi-ob010": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "escova lateral",
+          "peca": "multi-pr10124",
+          "codigo": "PR10124",
+          "nome_na_fonte": "Escova Lateral para Aspirador Robo Mars, Moon e Duster",
+          "tipo_da_peca": "escova lateral",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Multi (multilaser.com.br)",
+          "origem": "fabricante-via-busca",
+          "nivel_da_fonte": 3,
+          "url": "https://www.multilaser.com.br/escova-lateral-para-aspirador-robo-ho041-e-ob010/p",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "HO041",
+            "HO400",
+            "HO401",
+            "HO407",
+            "OB010"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true
+        },
+        {
+          "tipo": "filtro",
+          "peca": "multi-pr10343",
+          "codigo": "PR10343",
+          "nome_na_fonte": "Filtro para Aspirador Robo OB010",
+          "tipo_da_peca": "filtro",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Multi (multilaser.com.br)",
+          "origem": "fabricante-via-busca",
+          "nivel_da_fonte": 3,
+          "url": "https://www.multilaser.com.br/filtro-para-aspirador-robo-ob010-pr10343/p",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "OB010"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true
+        },
+        {
+          "tipo": "mop",
+          "peca": "multi-pr10342",
+          "codigo": "PR10342",
+          "nome_na_fonte": "Pano para Aspirador Robo p/ OB010",
+          "tipo_da_peca": "mop",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Multi (multilaser.com.br)",
+          "origem": "fabricante-via-busca",
+          "nivel_da_fonte": 3,
+          "url": "https://www.multilaser.com.br/pano-para-aspirador-robo-ob010/p",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "OB010"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": []
+    },
+    "positivo-pra2000": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "escova lateral",
+          "peca": "positivo-11206518",
+          "codigo": "11206518",
+          "nome_na_fonte": "Escova Lateral para Smart Robo Aspirador PRA800/PRA2000 Positivo Casa Inteligente",
+          "tipo_da_peca": "escova lateral",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Positivo Casa Inteligente (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.meupositivo.com.br/escova-lateral-para-smart-robo-aspirador-laser-pra800-e-autolimpante-pra2000-11206518/p",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "PRA800",
+            "PRA2000"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true
+        },
+        {
+          "tipo": "escova principal",
+          "peca": "positivo-11206519",
+          "codigo": "11206519",
+          "nome_na_fonte": "Escova Central para Smart Robo Aspirador Laser PRA800 e Autolimpante PRA2000",
+          "tipo_da_peca": "escova principal",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Positivo Casa Inteligente (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://www.positivocasainteligente.com.br/escova-central-para-smart-robo-aspirador-laser-pra800-e-autolimpante-pra2000-11206519/p",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "PRA800",
+            "PRA2000"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true
+        },
+        {
+          "tipo": "mop",
+          "peca": "positivo-11206540",
+          "codigo": "11206540",
+          "nome_na_fonte": "Mop para Smart Robo Aspirador Laser PRA800/PRA2000 Positivo Casa Inteligente",
+          "tipo_da_peca": "mop",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Positivo Casa Inteligente (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.meupositivo.com.br/mop-para-smart-robo-aspirador-laser-pra800-e-autolimpante-pra2000-11206540/p",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "PRA800",
+            "PRA2000"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": []
+    },
+    "positivo-pra500": {
+      "aviso_de_variante": null,
+      "fabricante": [],
+      "terceiro": [],
+      "kits_sem_composicao": []
+    },
+    "positivo-pra800": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "escova lateral",
+          "peca": "positivo-11206518",
+          "codigo": "11206518",
+          "nome_na_fonte": "Escova Lateral para Smart Robo Aspirador PRA800/PRA2000 Positivo Casa Inteligente",
+          "tipo_da_peca": "escova lateral",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Positivo Casa Inteligente (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.meupositivo.com.br/escova-lateral-para-smart-robo-aspirador-laser-pra800-e-autolimpante-pra2000-11206518/p",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "PRA800",
+            "PRA2000"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true
+        },
+        {
+          "tipo": "escova principal",
+          "peca": "positivo-11206519",
+          "codigo": "11206519",
+          "nome_na_fonte": "Escova Central para Smart Robo Aspirador Laser PRA800 e Autolimpante PRA2000",
+          "tipo_da_peca": "escova principal",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Positivo Casa Inteligente (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://www.positivocasainteligente.com.br/escova-central-para-smart-robo-aspirador-laser-pra800-e-autolimpante-pra2000-11206519/p",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "PRA800",
+            "PRA2000"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true
+        },
+        {
+          "tipo": "mop",
+          "peca": "positivo-11206540",
+          "codigo": "11206540",
+          "nome_na_fonte": "Mop para Smart Robo Aspirador Laser PRA800/PRA2000 Positivo Casa Inteligente",
+          "tipo_da_peca": "mop",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Positivo Casa Inteligente (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.meupositivo.com.br/mop-para-smart-robo-aspirador-laser-pra800-e-autolimpante-pra2000-11206540/p",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "PRA800",
+            "PRA2000"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": []
+    },
+    "wap-w1000": {
+      "aviso_de_variante": null,
+      "fabricante": [],
+      "terceiro": [],
+      "kits_sem_composicao": []
+    },
+    "wap-w310": {
+      "aviso_de_variante": null,
+      "fabricante": [],
+      "terceiro": [],
+      "kits_sem_composicao": []
+    },
+    "wap-w400": {
+      "aviso_de_variante": null,
+      "fabricante": [],
+      "terceiro": [],
+      "kits_sem_composicao": []
+    },
+    "xiaomi-e10": {
+      "aviso_de_variante": null,
+      "fabricante": [],
+      "terceiro": [],
+      "kits_sem_composicao": []
+    },
+    "xiaomi-h40": {
+      "aviso_de_variante": null,
+      "fabricante": [],
+      "terceiro": [],
+      "kits_sem_composicao": []
+    },
+    "xiaomi-mop-2": {
+      "aviso_de_variante": null,
+      "fabricante": [],
+      "terceiro": [],
+      "kits_sem_composicao": []
+    },
+    "xiaomi-s10": {
+      "aviso_de_variante": null,
+      "fabricante": [],
+      "terceiro": [],
+      "kits_sem_composicao": []
+    },
+    "xiaomi-s20": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "filtro",
+          "peca": "xiaomi-s20-acessorios",
+          "codigo": null,
+          "nome_na_fonte": "Xiaomi Robot Vacuum S20 Accessories",
+          "tipo_da_peca": "kit",
+          "dentro_de_kit": true,
+          "existe_avulso": false,
+          "publicador": "Xiaomi Global",
+          "origem": "fabricante-via-busca",
+          "nivel_da_fonte": 3,
+          "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s20-accessories/",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "Xiaomi Robot Vacuum S20"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true
+        },
+        {
+          "tipo": "escova lateral",
+          "peca": "xiaomi-s20-acessorios",
+          "codigo": null,
+          "nome_na_fonte": "Xiaomi Robot Vacuum S20 Accessories",
+          "tipo_da_peca": "kit",
+          "dentro_de_kit": true,
+          "existe_avulso": false,
+          "publicador": "Xiaomi Global",
+          "origem": "fabricante-via-busca",
+          "nivel_da_fonte": 3,
+          "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s20-accessories/",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "Xiaomi Robot Vacuum S20"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true
+        },
+        {
+          "tipo": "escova principal",
+          "peca": "xiaomi-s20-acessorios",
+          "codigo": null,
+          "nome_na_fonte": "Xiaomi Robot Vacuum S20 Accessories",
+          "tipo_da_peca": "kit",
+          "dentro_de_kit": true,
+          "existe_avulso": false,
+          "publicador": "Xiaomi Global",
+          "origem": "fabricante-via-busca",
+          "nivel_da_fonte": 3,
+          "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s20-accessories/",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "Xiaomi Robot Vacuum S20"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true
+        },
+        {
+          "tipo": "mop",
+          "peca": "xiaomi-s20-acessorios",
+          "codigo": null,
+          "nome_na_fonte": "Xiaomi Robot Vacuum S20 Accessories",
+          "tipo_da_peca": "kit",
+          "dentro_de_kit": true,
+          "existe_avulso": false,
+          "publicador": "Xiaomi Global",
+          "origem": "fabricante-via-busca",
+          "nivel_da_fonte": 3,
+          "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s20-accessories/",
+          "verificado_em": "2026-09-09",
+          "declarados": [
+            "Xiaomi Robot Vacuum S20"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": []
+    },
+    "xiaomi-s40": {
+      "aviso_de_variante": null,
+      "fabricante": [],
+      "terceiro": [],
+      "kits_sem_composicao": []
+    },
+    "xiaomi-s40c": {
+      "aviso_de_variante": null,
+      "fabricante": [],
+      "terceiro": [],
+      "kits_sem_composicao": []
+    }
+  },
+  "divergencias": {
+    "multi-pr10205": [
+      {
+        "canal": "multilaser.com.br (varejo)",
+        "conjunto": [
+          "HO041"
+        ],
+        "titulo_na_fonte": "Filtro para Aspirador Robo Mars, Moon e Duster - PR10205",
+        "url": "https://www.multilaser.com.br/filtro-para-aspirador-robo-mars-moon-duster-pr10205/p",
+        "verificado_em": "2026-09-09"
+      },
+      {
+        "canal": "multilaserempresas.com.br",
+        "conjunto": [
+          "HO041",
+          "OB010"
+        ],
+        "titulo_na_fonte": "Filtro para Aspirador Robo (HO041 e OB010) - PR10205",
+        "url": "https://www.multilaserempresas.com.br/produto/eletroportateis-para-sua-casa/lar/aspiradores/filtro-para-aspirador-robo-ho041-e-ob010--pr10205/PR10205/",
+        "verificado_em": "2026-09-09"
+      }
+    ],
+    "multi-pr8116": [
+      {
+        "canal": "multilaserempresas.com.br — titulo da pagina",
+        "conjunto": [
+          "Mars",
+          "Moon",
+          "Duster"
+        ],
+        "titulo_na_fonte": "Bateria Para Aspirador Robo Mars, Moon e Duster Multi - PR8116",
+        "url": "https://www.multilaserempresas.com.br/produto/eletroportateis-para-sua-casa/lar/aspiradores/bateria-para-aspirador-robo-mars-ho041-versao-b--pr8116/PR8116/",
+        "verificado_em": "2026-09-09"
+      },
+      {
+        "canal": "multilaserempresas.com.br — endereco da MESMA pagina",
+        "conjunto": [
+          "HO041 versao B"
+        ],
+        "titulo_na_fonte": "bateria-para-aspirador-robo-mars-ho041-versao-b--pr8116",
+        "url": "https://www.multilaserempresas.com.br/produto/eletroportateis-para-sua-casa/lar/aspiradores/bateria-para-aspirador-robo-mars-ho041-versao-b--pr8116/PR8116/",
+        "verificado_em": "2026-09-09"
+      }
+    ]
+  },
+  "exemplos": [
+    {
+      "modelo": "electrolux-erb60",
+      "modelo_rotulo": "Electrolux ERB60",
+      "tipo": "filtro",
+      "peca": "electrolux-filtro-hepa-espuma-erb44-erb60-erb61-erb62",
+      "codigo": null,
+      "nome_na_fonte": "Filtro HEPA com Espuma Electrolux para Robos Aspiradores ERB44, ERB60, ERB61 e ERB62",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/filtro-hepa-com-espuma-electrolux-para-robos-aspiradores-erb44--erb60--erb61-e-erb62/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "electrolux-erb60",
+      "modelo_rotulo": "Electrolux ERB60",
+      "tipo": "filtro",
+      "peca": "electrolux-kit-performance-erb60-erb61-erb62",
+      "codigo": null,
+      "nome_na_fonte": "Kit Performance Electrolux para Robos Aspiradores ERB60, ERB61 e ERB62",
+      "dentro_de_kit": true,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robos-aspiradores-erb60--erb61-e-erb62/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "electrolux-erb60",
+      "modelo_rotulo": "Electrolux ERB60",
+      "tipo": "escova lateral",
+      "peca": "electrolux-kit-performance-erb60-erb61-erb62",
+      "codigo": null,
+      "nome_na_fonte": "Kit Performance Electrolux para Robos Aspiradores ERB60, ERB61 e ERB62",
+      "dentro_de_kit": true,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robos-aspiradores-erb60--erb61-e-erb62/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "electrolux-erb60",
+      "modelo_rotulo": "Electrolux ERB60",
+      "tipo": "mop",
+      "peca": "electrolux-kit-performance-erb60-erb61-erb62",
+      "codigo": null,
+      "nome_na_fonte": "Kit Performance Electrolux para Robos Aspiradores ERB60, ERB61 e ERB62",
+      "dentro_de_kit": true,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robos-aspiradores-erb60--erb61-e-erb62/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "electrolux-erb60",
+      "modelo_rotulo": "Electrolux ERB60",
+      "tipo": "escova principal",
+      "peca": "electrolux-escova-rotativa-central-erb60-erb61-erb62-erb80",
+      "codigo": null,
+      "nome_na_fonte": "Escova Rotativa Central Electrolux para Robos Aspiradores ERB60, ERB61, ERB62 e ERB80",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/escova-rotativa-central-electrolux-para-robos-aspiradores-erb60--erb61--erb62-e-erb80/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "xiaomi-s20",
+      "modelo_rotulo": "Xiaomi S20",
+      "tipo": "filtro",
+      "peca": "xiaomi-s20-acessorios",
+      "codigo": null,
+      "nome_na_fonte": "Xiaomi Robot Vacuum S20 Accessories",
+      "dentro_de_kit": true,
+      "divergencia": false,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s20-accessories/",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "xiaomi-s20",
+      "modelo_rotulo": "Xiaomi S20",
+      "tipo": "escova lateral",
+      "peca": "xiaomi-s20-acessorios",
+      "codigo": null,
+      "nome_na_fonte": "Xiaomi Robot Vacuum S20 Accessories",
+      "dentro_de_kit": true,
+      "divergencia": false,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s20-accessories/",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "xiaomi-s20",
+      "modelo_rotulo": "Xiaomi S20",
+      "tipo": "escova principal",
+      "peca": "xiaomi-s20-acessorios",
+      "codigo": null,
+      "nome_na_fonte": "Xiaomi Robot Vacuum S20 Accessories",
+      "dentro_de_kit": true,
+      "divergencia": false,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s20-accessories/",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "xiaomi-s20",
+      "modelo_rotulo": "Xiaomi S20",
+      "tipo": "mop",
+      "peca": "xiaomi-s20-acessorios",
+      "codigo": null,
+      "nome_na_fonte": "Xiaomi Robot Vacuum S20 Accessories",
+      "dentro_de_kit": true,
+      "divergencia": false,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s20-accessories/",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "multi-ho041",
+      "modelo_rotulo": "Multi (ex-Multilaser) HO041",
+      "tipo": "escova lateral",
+      "peca": "multi-pr10124",
+      "codigo": "PR10124",
+      "nome_na_fonte": "Escova Lateral para Aspirador Robo Mars, Moon e Duster",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.multilaser.com.br/escova-lateral-para-aspirador-robo-ho041-e-ob010/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "multi-ho041",
+      "modelo_rotulo": "Multi (ex-Multilaser) HO041",
+      "tipo": "filtro",
+      "peca": "multi-pr10205",
+      "codigo": "PR10205",
+      "nome_na_fonte": "Filtro para Aspirador Robo Mars, Moon e Duster",
+      "dentro_de_kit": false,
+      "divergencia": true,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.multilaser.com.br/filtro-para-aspirador-robo-mars-moon-duster-pr10205/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "multi-ho041",
+      "modelo_rotulo": "Multi (ex-Multilaser) HO041",
+      "tipo": "bateria",
+      "peca": "multi-pr10127",
+      "codigo": "PR10127",
+      "nome_na_fonte": "Bateria p/ Aspirador Robo Ho041 Versao A",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.multilaser.com.br/bateria-p-aspirador-robo-ho041-versao-a-pr10127/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "multi-ho041",
+      "modelo_rotulo": "Multi (ex-Multilaser) HO041",
+      "tipo": "bateria",
+      "peca": "multi-pr8116",
+      "codigo": "PR8116",
+      "nome_na_fonte": "Bateria Para Aspirador Robo Mars, Moon e Duster Multi",
+      "dentro_de_kit": false,
+      "divergencia": true,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.multilaserempresas.com.br/produto/eletroportateis-para-sua-casa/lar/aspiradores/bateria-para-aspirador-robo-mars-ho041-versao-b--pr8116/PR8116/",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "positivo-pra2000",
+      "modelo_rotulo": "Positivo Casa Inteligente PRA2000",
+      "tipo": "escova lateral",
+      "peca": "positivo-11206518",
+      "codigo": "11206518",
+      "nome_na_fonte": "Escova Lateral para Smart Robo Aspirador PRA800/PRA2000 Positivo Casa Inteligente",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.meupositivo.com.br/escova-lateral-para-smart-robo-aspirador-laser-pra800-e-autolimpante-pra2000-11206518/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "positivo-pra2000",
+      "modelo_rotulo": "Positivo Casa Inteligente PRA2000",
+      "tipo": "escova principal",
+      "peca": "positivo-11206519",
+      "codigo": "11206519",
+      "nome_na_fonte": "Escova Central para Smart Robo Aspirador Laser PRA800 e Autolimpante PRA2000",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://www.positivocasainteligente.com.br/escova-central-para-smart-robo-aspirador-laser-pra800-e-autolimpante-pra2000-11206519/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "positivo-pra2000",
+      "modelo_rotulo": "Positivo Casa Inteligente PRA2000",
+      "tipo": "mop",
+      "peca": "positivo-11206540",
+      "codigo": "11206540",
+      "nome_na_fonte": "Mop para Smart Robo Aspirador Laser PRA800/PRA2000 Positivo Casa Inteligente",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.meupositivo.com.br/mop-para-smart-robo-aspirador-laser-pra800-e-autolimpante-pra2000-11206540/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "electrolux-erb61",
+      "modelo_rotulo": "Electrolux ERB61",
+      "tipo": "filtro",
+      "peca": "electrolux-filtro-hepa-espuma-erb44-erb60-erb61-erb62",
+      "codigo": null,
+      "nome_na_fonte": "Filtro HEPA com Espuma Electrolux para Robos Aspiradores ERB44, ERB60, ERB61 e ERB62",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/filtro-hepa-com-espuma-electrolux-para-robos-aspiradores-erb44--erb60--erb61-e-erb62/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "electrolux-erb61",
+      "modelo_rotulo": "Electrolux ERB61",
+      "tipo": "filtro",
+      "peca": "electrolux-kit-performance-erb60-erb61-erb62",
+      "codigo": null,
+      "nome_na_fonte": "Kit Performance Electrolux para Robos Aspiradores ERB60, ERB61 e ERB62",
+      "dentro_de_kit": true,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robos-aspiradores-erb60--erb61-e-erb62/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "electrolux-erb61",
+      "modelo_rotulo": "Electrolux ERB61",
+      "tipo": "escova lateral",
+      "peca": "electrolux-kit-performance-erb60-erb61-erb62",
+      "codigo": null,
+      "nome_na_fonte": "Kit Performance Electrolux para Robos Aspiradores ERB60, ERB61 e ERB62",
+      "dentro_de_kit": true,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robos-aspiradores-erb60--erb61-e-erb62/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "electrolux-erb61",
+      "modelo_rotulo": "Electrolux ERB61",
+      "tipo": "mop",
+      "peca": "electrolux-kit-performance-erb60-erb61-erb62",
+      "codigo": null,
+      "nome_na_fonte": "Kit Performance Electrolux para Robos Aspiradores ERB60, ERB61 e ERB62",
+      "dentro_de_kit": true,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robos-aspiradores-erb60--erb61-e-erb62/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "electrolux-erb61",
+      "modelo_rotulo": "Electrolux ERB61",
+      "tipo": "escova principal",
+      "peca": "electrolux-escova-rotativa-central-erb60-erb61-erb62-erb80",
+      "codigo": null,
+      "nome_na_fonte": "Escova Rotativa Central Electrolux para Robos Aspiradores ERB60, ERB61, ERB62 e ERB80",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/escova-rotativa-central-electrolux-para-robos-aspiradores-erb60--erb61--erb62-e-erb80/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "multi-ob010",
+      "modelo_rotulo": "Multi (ex-Multilaser) OB010",
+      "tipo": "escova lateral",
+      "peca": "multi-pr10124",
+      "codigo": "PR10124",
+      "nome_na_fonte": "Escova Lateral para Aspirador Robo Mars, Moon e Duster",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.multilaser.com.br/escova-lateral-para-aspirador-robo-ho041-e-ob010/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "multi-ob010",
+      "modelo_rotulo": "Multi (ex-Multilaser) OB010",
+      "tipo": "filtro",
+      "peca": "multi-pr10343",
+      "codigo": "PR10343",
+      "nome_na_fonte": "Filtro para Aspirador Robo OB010",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.multilaser.com.br/filtro-para-aspirador-robo-ob010-pr10343/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "multi-ob010",
+      "modelo_rotulo": "Multi (ex-Multilaser) OB010",
+      "tipo": "mop",
+      "peca": "multi-pr10342",
+      "codigo": "PR10342",
+      "nome_na_fonte": "Pano para Aspirador Robo p/ OB010",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.multilaser.com.br/pano-para-aspirador-robo-ob010/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "positivo-pra800",
+      "modelo_rotulo": "Positivo Casa Inteligente PRA800",
+      "tipo": "escova lateral",
+      "peca": "positivo-11206518",
+      "codigo": "11206518",
+      "nome_na_fonte": "Escova Lateral para Smart Robo Aspirador PRA800/PRA2000 Positivo Casa Inteligente",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.meupositivo.com.br/escova-lateral-para-smart-robo-aspirador-laser-pra800-e-autolimpante-pra2000-11206518/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "positivo-pra800",
+      "modelo_rotulo": "Positivo Casa Inteligente PRA800",
+      "tipo": "escova principal",
+      "peca": "positivo-11206519",
+      "codigo": "11206519",
+      "nome_na_fonte": "Escova Central para Smart Robo Aspirador Laser PRA800 e Autolimpante PRA2000",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://www.positivocasainteligente.com.br/escova-central-para-smart-robo-aspirador-laser-pra800-e-autolimpante-pra2000-11206519/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "positivo-pra800",
+      "modelo_rotulo": "Positivo Casa Inteligente PRA800",
+      "tipo": "mop",
+      "peca": "positivo-11206540",
+      "codigo": "11206540",
+      "nome_na_fonte": "Mop para Smart Robo Aspirador Laser PRA800/PRA2000 Positivo Casa Inteligente",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.meupositivo.com.br/mop-para-smart-robo-aspirador-laser-pra800-e-autolimpante-pra2000-11206540/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "electrolux-erb62",
+      "modelo_rotulo": "Electrolux ERB62",
+      "tipo": "filtro",
+      "peca": "electrolux-filtro-hepa-espuma-erb44-erb60-erb61-erb62",
+      "codigo": null,
+      "nome_na_fonte": "Filtro HEPA com Espuma Electrolux para Robos Aspiradores ERB44, ERB60, ERB61 e ERB62",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/filtro-hepa-com-espuma-electrolux-para-robos-aspiradores-erb44--erb60--erb61-e-erb62/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "electrolux-erb62",
+      "modelo_rotulo": "Electrolux ERB62",
+      "tipo": "filtro",
+      "peca": "electrolux-kit-performance-erb60-erb61-erb62",
+      "codigo": null,
+      "nome_na_fonte": "Kit Performance Electrolux para Robos Aspiradores ERB60, ERB61 e ERB62",
+      "dentro_de_kit": true,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robos-aspiradores-erb60--erb61-e-erb62/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "electrolux-erb62",
+      "modelo_rotulo": "Electrolux ERB62",
+      "tipo": "escova lateral",
+      "peca": "electrolux-kit-performance-erb60-erb61-erb62",
+      "codigo": null,
+      "nome_na_fonte": "Kit Performance Electrolux para Robos Aspiradores ERB60, ERB61 e ERB62",
+      "dentro_de_kit": true,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robos-aspiradores-erb60--erb61-e-erb62/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "electrolux-erb62",
+      "modelo_rotulo": "Electrolux ERB62",
+      "tipo": "mop",
+      "peca": "electrolux-kit-performance-erb60-erb61-erb62",
+      "codigo": null,
+      "nome_na_fonte": "Kit Performance Electrolux para Robos Aspiradores ERB60, ERB61 e ERB62",
+      "dentro_de_kit": true,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robos-aspiradores-erb60--erb61-e-erb62/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "electrolux-erb62",
+      "modelo_rotulo": "Electrolux ERB62",
+      "tipo": "escova principal",
+      "peca": "electrolux-escova-rotativa-central-erb60-erb61-erb62-erb80",
+      "codigo": null,
+      "nome_na_fonte": "Escova Rotativa Central Electrolux para Robos Aspiradores ERB60, ERB61, ERB62 e ERB80",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/escova-rotativa-central-electrolux-para-robos-aspiradores-erb60--erb61--erb62-e-erb80/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "multi-ho400",
+      "modelo_rotulo": "Multi (ex-Multilaser) HO400",
+      "tipo": "escova lateral",
+      "peca": "multi-pr10124",
+      "codigo": "PR10124",
+      "nome_na_fonte": "Escova Lateral para Aspirador Robo Mars, Moon e Duster",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.multilaser.com.br/escova-lateral-para-aspirador-robo-ho041-e-ob010/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "electrolux-erb10",
+      "modelo_rotulo": "Electrolux ERB10",
+      "tipo": "filtro",
+      "peca": "electrolux-kpcel01",
+      "codigo": "KPCEL01",
+      "nome_na_fonte": "Kit Performance para Robos Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
+      "dentro_de_kit": true,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/kit-performance-para-robos-aspiradores-erb10-erb11-e-erb20---electrolux/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "electrolux-erb10",
+      "modelo_rotulo": "Electrolux ERB10",
+      "tipo": "escova lateral",
+      "peca": "electrolux-kpcel01",
+      "codigo": "KPCEL01",
+      "nome_na_fonte": "Kit Performance para Robos Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
+      "dentro_de_kit": true,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/kit-performance-para-robos-aspiradores-erb10-erb11-e-erb20---electrolux/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "electrolux-erb10",
+      "modelo_rotulo": "Electrolux ERB10",
+      "tipo": "mop",
+      "peca": "electrolux-kpcel01",
+      "codigo": "KPCEL01",
+      "nome_na_fonte": "Kit Performance para Robos Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
+      "dentro_de_kit": true,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/kit-performance-para-robos-aspiradores-erb10-erb11-e-erb20---electrolux/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "multi-ho407",
+      "modelo_rotulo": "Multi (ex-Multilaser) HO407",
+      "tipo": "escova lateral",
+      "peca": "multi-pr10124",
+      "codigo": "PR10124",
+      "nome_na_fonte": "Escova Lateral para Aspirador Robo Mars, Moon e Duster",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.multilaser.com.br/escova-lateral-para-aspirador-robo-ho041-e-ob010/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "electrolux-erb11",
+      "modelo_rotulo": "Electrolux ERB11",
+      "tipo": "filtro",
+      "peca": "electrolux-kpcel01",
+      "codigo": "KPCEL01",
+      "nome_na_fonte": "Kit Performance para Robos Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
+      "dentro_de_kit": true,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/kit-performance-para-robos-aspiradores-erb10-erb11-e-erb20---electrolux/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "electrolux-erb11",
+      "modelo_rotulo": "Electrolux ERB11",
+      "tipo": "escova lateral",
+      "peca": "electrolux-kpcel01",
+      "codigo": "KPCEL01",
+      "nome_na_fonte": "Kit Performance para Robos Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
+      "dentro_de_kit": true,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/kit-performance-para-robos-aspiradores-erb10-erb11-e-erb20---electrolux/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "electrolux-erb11",
+      "modelo_rotulo": "Electrolux ERB11",
+      "tipo": "mop",
+      "peca": "electrolux-kpcel01",
+      "codigo": "KPCEL01",
+      "nome_na_fonte": "Kit Performance para Robos Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
+      "dentro_de_kit": true,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/kit-performance-para-robos-aspiradores-erb10-erb11-e-erb20---electrolux/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "electrolux-erb20",
+      "modelo_rotulo": "Electrolux ERB20",
+      "tipo": "filtro",
+      "peca": "electrolux-kpcel01",
+      "codigo": "KPCEL01",
+      "nome_na_fonte": "Kit Performance para Robos Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
+      "dentro_de_kit": true,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/kit-performance-para-robos-aspiradores-erb10-erb11-e-erb20---electrolux/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "electrolux-erb20",
+      "modelo_rotulo": "Electrolux ERB20",
+      "tipo": "escova lateral",
+      "peca": "electrolux-kpcel01",
+      "codigo": "KPCEL01",
+      "nome_na_fonte": "Kit Performance para Robos Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
+      "dentro_de_kit": true,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/kit-performance-para-robos-aspiradores-erb10-erb11-e-erb20---electrolux/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "electrolux-erb20",
+      "modelo_rotulo": "Electrolux ERB20",
+      "tipo": "mop",
+      "peca": "electrolux-kpcel01",
+      "codigo": "KPCEL01",
+      "nome_na_fonte": "Kit Performance para Robos Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
+      "dentro_de_kit": true,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/kit-performance-para-robos-aspiradores-erb10-erb11-e-erb20---electrolux/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "electrolux-erb44",
+      "modelo_rotulo": "Electrolux ERB44",
+      "tipo": "filtro",
+      "peca": "electrolux-filtro-hepa-espuma-erb44-erb60-erb61-erb62",
+      "codigo": null,
+      "nome_na_fonte": "Filtro HEPA com Espuma Electrolux para Robos Aspiradores ERB44, ERB60, ERB61 e ERB62",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/filtro-hepa-com-espuma-electrolux-para-robos-aspiradores-erb44--erb60--erb61-e-erb62/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "electrolux-erb80",
+      "modelo_rotulo": "Electrolux ERB80",
+      "tipo": "escova principal",
+      "peca": "electrolux-escova-rotativa-central-erb60-erb61-erb62-erb80",
+      "codigo": null,
+      "nome_na_fonte": "Escova Rotativa Central Electrolux para Robos Aspiradores ERB60, ERB61, ERB62 e ERB80",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/escova-rotativa-central-electrolux-para-robos-aspiradores-erb60--erb61--erb62-e-erb80/p",
+      "verificado_em": "2026-09-09"
+    }
+  ],
+  "entrada_vazia": [
+    "multi-ho243",
+    "multi-ho411",
+    "positivo-pra500",
+    "wap-w1000",
+    "wap-w310",
+    "wap-w400",
+    "xiaomi-e10",
+    "xiaomi-h40",
+    "xiaomi-mop-2",
+    "xiaomi-s10",
+    "xiaomi-s40",
+    "xiaomi-s40c"
+  ],
+  "resumo": {
+    "modelos_publicaveis": 28,
+    "modelos_que_respondem": 15,
+    "modelos_com_entrada_vazia": 12,
+    "celulas": 168,
+    "celulas_sem_resposta": 116,
+    "pares_declarados": 33,
+    "pecas_publicaveis": 16,
+    "marcas": 5,
+    "as_duas_ferramentas": 3
+  }
+}

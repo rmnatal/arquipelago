@@ -156,11 +156,21 @@ def identificar_peca(peca):
     return ('"%s"' % peca["nome_na_fonte"], True)
 
 
-def frase_declarada(peca, par, modelo, dentro_do_kit=None):
+def frase_declarada(peca, par, modelo, dentro_do_kit=None, existe_avulso=False):
     """A frase que vai para a tela, com procedencia DENTRO dela (secao 5 do contrato).
 
     Nunca parafraseia: cita o publicador, o codigo (ou o titulo, quando o fabricante
     nao publica codigo), o conjunto que o fabricante declarou e a data da verificacao.
+
+    `existe_avulso` conserta uma CONTRADICAO que so apareceu quando a resposta foi
+    lida como um leitor le, e nao conferida por regra objetiva. A frase do kit
+    dizia "a Electrolux nao vende o filtro avulso para este modelo" no mesmo
+    resultado em que a frase anterior dizia "a Electrolux declara o filtro
+    [HEPA com espuma] compativel com o ERB60" — o filtro avulso existe, e a
+    pagina o mostrava e o negava na mesma tela. "Nao vende avulso" e uma
+    afirmacao sobre o CATALOGO INTEIRO daquele modelo, entao ela so pode ser
+    escrita quando nenhuma peca avulsa daquele tipo responde por ele. Quando
+    existe avulso, o kit e um caminho A MAIS, e a frase diz isso.
     """
     fonte = peca["fontes"][par["fonte"]]
     publicador = fonte.get("publicador") or marcas[peca["marca"]]["nome"]
@@ -170,7 +180,16 @@ def frase_declarada(peca, par, modelo, dentro_do_kit=None):
     identificacao, sem_codigo = identificar_peca(peca)
     data = formatar_data(fonte.get("verificado_em"))
 
-    if dentro_do_kit:
+    if dentro_do_kit and existe_avulso:
+        artigo, _avulso = GENERO_DO_TIPO.get(dentro_do_kit, ("o", "avulso"))
+        pronome = "ele" if artigo == "o" else "ela"
+        frase = (
+            "%s tambem vem dentro do kit %s, que a %s declara compativel com %s "
+            "(%s, verificado em %s)."
+            % (pronome.capitalize(), identificacao, publicador, lista,
+               fonte.get("origem"), data)
+        )
+    elif dentro_do_kit:
         artigo, avulso = GENERO_DO_TIPO.get(dentro_do_kit, ("o", "avulso"))
         pronome = "ele" if artigo == "o" else "ela"
         frase = (
@@ -225,10 +244,15 @@ def aviso_de_variante(modelo):
     o_que_muda = "; ".join(
         str(v.get("o_que_muda")) for v in variantes if v.get("o_que_muda")
     )
+    # Dois pontos, e nao ponto final, antes do que o fabricante escreveu: o
+    # texto do banco comeca em minuscula ("bateria — o fabricante vende..."), e
+    # depois de ponto final ele saia como frase comecando em minuscula. O ponto
+    # que faltava antes de "Confira" tambem entra aqui. Defeito de leitura, nao
+    # de regra — apareceu lendo o aviso como um leitor le, nao conferindo campo.
     return (
         "Este modelo tem mais de uma versao de hardware conhecida (%s), e a peca "
-        "certa depende da sua. %s Confira a etiqueta do aparelho antes de comprar."
-        % (rotulos, o_que_muda)
+        "certa depende da sua: %s. Confira a etiqueta do aparelho antes de comprar."
+        % (rotulos, o_que_muda.rstrip("."))
     )
 
 
@@ -245,6 +269,19 @@ def responder_r1(modelo_id, tipo=None):
     do_fabricante = []
     de_terceiro = []
     caixas_fechadas = []
+
+    # Quais tipos este modelo tem resolvidos por peca AVULSA (nao-kit). Precisa
+    # ser sabido ANTES de escrever qualquer frase, porque "a marca nao vende o
+    # filtro avulso" e uma afirmacao sobre o catalogo inteiro do modelo — e uma
+    # frase que so o resultado inteiro pode sustentar nao pode ser escrita
+    # olhando uma peca de cada vez.
+    tipos_com_avulso = set()
+    for peca in pecas:
+        if peca["status"] != "publicavel" or peca["tipo"] == "kit":
+            continue
+        if not pares_do_modelo(peca, modelo_id):
+            continue
+        tipos_com_avulso.add(peca["tipo"])
 
     for peca in pecas:
         if peca["status"] != "publicavel":
@@ -283,6 +320,7 @@ def responder_r1(modelo_id, tipo=None):
 
         for par in pares:
             for t in atendidos:
+                existe_avulso = (peca["tipo"] == "kit" and t in tipos_com_avulso)
                 item = {
                     "tipo_respondido": t,
                     "peca": peca["id"],
@@ -290,6 +328,7 @@ def responder_r1(modelo_id, tipo=None):
                     "motivo_sem_codigo": peca.get("motivo_sem_codigo"),
                     "nome_na_fonte": peca["nome_na_fonte"],
                     "dentro_de_kit": peca["tipo"] == "kit",
+                    "existe_avulso": existe_avulso,
                     "selo": par["selo"],
                     "divergencia_registrada": bool(peca.get("divergencias")),
                     "vida_util_declarada": peca.get("vida_util_declarada", {}).get("valor"),
@@ -297,6 +336,7 @@ def responder_r1(modelo_id, tipo=None):
                     "frase": frase_declarada(
                         peca, par, modelo,
                         dentro_do_kit=t if peca["tipo"] == "kit" else None,
+                        existe_avulso=existe_avulso,
                     ),
                 }
                 if par["selo"] == "declarada_fabricante":
@@ -443,29 +483,24 @@ def varrer():
 
 
 # ---------------------------------------- TABELA DE EXEMPLOS PRE-RENDERIZADA (1.7)
-def tabela_de_exemplos(v):
-    """Gera as linhas da tabela obrigatoria da secao 5 do contrato.
+def ordem_dos_exemplos(v):
+    """A ORDEM da tabela de exemplos, em (linha_do_modelo, item de resposta).
 
-    Ela nao e enfeite: sem ela a R1 mostra a um modelo de linguagem um formulario
-    vazio. Gerar em vez de digitar a mao garante que cada linha existe no banco, com
-    o codigo, o selo e a data que o banco tem — e que ela nunca fica velha em
-    silencio quando o banco muda.
+    Separada da montagem da linha porque a ordem e uma decisao editorial — nunca
+    alfabetica, sempre alternando marcas — e ela vale para toda forma que a
+    tabela tome: o markdown do repositorio e os campos que o Bloco 4 serve em
+    HTML. Duas ordens seriam duas tabelas, e duas tabelas divergem em silencio.
 
-    Entra TUDO que a R1 responde hoje, nao uma amostra: o minimo de 8 linhas da
-    secao 1.7 e piso, e cada par declarado a mais e uma consulta a mais que a pagina
-    responde no HTML servido.
-
-    Ordem: primeiro os modelos que cobrem mais tipos (linha que mostra a ferramenta
-    fazendo o que promete), e sempre com marcas diferentes antes de repetir marca,
-    porque a promessa desta ilha e comparacao CROSS-MARCA — se a ordem fosse
-    alfabetica, as nove primeiras linhas seriam todas Electrolux.
+    Ordem: primeiro os modelos que cobrem mais tipos (linha que mostra a
+    ferramenta fazendo o que promete), e sempre com marcas diferentes antes de
+    repetir marca, porque a promessa desta ilha e comparacao CROSS-MARCA — se a
+    ordem fosse alfabetica, as nove primeiras linhas seriam todas Electrolux.
     """
-    linhas = []
     ordenados = sorted(
         [l for l in v["por_modelo"] if l["resultado"] == "responde"],
         key=lambda l: (-len(l["tipos_cobertos"]), l["marca"], l["codigo_fabricante"]),
     )
-    marcas_usadas = []
+
     fila = []
     restante = list(ordenados)
     while restante:
@@ -478,25 +513,45 @@ def tabela_de_exemplos(v):
             fila.append(l)
             restante.remove(l)
 
+    pares = []
     for l in fila:
-        r = responder_r1(l["modelo"])
-        for item in r["declarada_fabricante"]:
-            fonte_peca = next(p for p in pecas if p["id"] == item["peca"])
-            par = pares_do_modelo(fonte_peca, l["modelo"])[0]
-            fonte = fonte_peca["fontes"][par["fonte"]]
-            selo = item["selo"]
-            if item["divergencia_registrada"]:
-                selo += " (divergencia registrada)"
-            if item["dentro_de_kit"]:
-                selo += " — dentro de kit"
-            linhas.append({
-                "modelo": "%s %s" % (marcas[l["marca"]]["nome"], l["codigo_fabricante"]),
-                "peca": item["tipo_respondido"],
-                "codigo": item["codigo"] or "o fabricante nao publica codigo",
-                "selo": selo,
-                "fonte": "%s · %s" % (fonte.get("origem"),
-                                      formatar_data(fonte.get("verificado_em"))),
-            })
+        for item in responder_r1(l["modelo"])["declarada_fabricante"]:
+            pares.append((l, item))
+    return pares
+
+
+def tabela_de_exemplos(v):
+    """Gera as linhas da tabela obrigatoria da secao 5 do contrato.
+
+    Ela nao e enfeite: sem ela a R1 mostra a um modelo de linguagem um formulario
+    vazio. Gerar em vez de digitar a mao garante que cada linha existe no banco, com
+    o codigo, o selo e a data que o banco tem — e que ela nunca fica velha em
+    silencio quando o banco muda.
+
+    Entra TUDO que a R1 responde hoje, nao uma amostra: o minimo de 8 linhas da
+    secao 1.7 e piso, e cada par declarado a mais e uma consulta a mais que a pagina
+    responde no HTML servido.
+
+    A ordem vem de ordem_dos_exemplos(), que e a mesma que o Bloco 4 serve em HTML.
+    """
+    linhas = []
+    for l, item in ordem_dos_exemplos(v):
+        fonte_peca = next(p for p in pecas if p["id"] == item["peca"])
+        par = pares_do_modelo(fonte_peca, l["modelo"])[0]
+        fonte = fonte_peca["fontes"][par["fonte"]]
+        selo = item["selo"]
+        if item["divergencia_registrada"]:
+            selo += " (divergencia registrada)"
+        if item["dentro_de_kit"]:
+            selo += " — dentro de kit"
+        linhas.append({
+            "modelo": "%s %s" % (marcas[l["marca"]]["nome"], l["codigo_fabricante"]),
+            "peca": item["tipo_respondido"],
+            "codigo": item["codigo"] or "o fabricante nao publica codigo",
+            "selo": selo,
+            "fonte": "%s · %s" % (fonte.get("origem"),
+                                  formatar_data(fonte.get("verificado_em"))),
+        })
     return linhas
 
 

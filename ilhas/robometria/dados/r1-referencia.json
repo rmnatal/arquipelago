@@ -1,0 +1,623 @@
+{
+  "id": "r1-referencia",
+  "ilha": "robometria",
+  "entidade": "medicao",
+  "gerado_por": "ferramentas/gerar-r1.py",
+  "o_que_e": "GABARITO da R1: a resposta de cada modelo ja em frase, escrita pela implementacao de referencia ferramentas/cobertura-r1.py. Nao vai para o site (publicar=false). Existe para ferramentas/teste-r1.php provar, frase a frase e ignorando acento, que o PHP do snippet diz a MESMA coisa que a referencia — que e o que a especificacao exige.",
+  "respostas": {
+    "electrolux-erb10": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "filtro",
+          "peca": "electrolux-kpcel01",
+          "frase": "A Electrolux (loja oficial) nao vende o filtro avulso para este modelo: ele vem dentro do kit KPCEL01, que o fabricante declara compativel com ERB10, ERB11 e ERB20 (varejo-oficial-da-marca, verificado em 09/09/2026)."
+        },
+        {
+          "tipo": "escova lateral",
+          "peca": "electrolux-kpcel01",
+          "frase": "A Electrolux (loja oficial) nao vende a escova lateral avulsa para este modelo: ela vem dentro do kit KPCEL01, que o fabricante declara compativel com ERB10, ERB11 e ERB20 (varejo-oficial-da-marca, verificado em 09/09/2026)."
+        },
+        {
+          "tipo": "mop",
+          "peca": "electrolux-kpcel01",
+          "frase": "A Electrolux (loja oficial) nao vende o mop avulso para este modelo: ele vem dentro do kit KPCEL01, que o fabricante declara compativel com ERB10, ERB11 e ERB20 (varejo-oficial-da-marca, verificado em 09/09/2026)."
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": [],
+      "recusa_por_tipo": {
+        "filtro": "Nao localizamos declaracao do fabricante de filtro para este modelo; nao vamos supor.",
+        "escova lateral": "Nao localizamos declaracao do fabricante de escova lateral para este modelo; nao vamos supor.",
+        "escova principal": "Nao localizamos declaracao do fabricante de escova principal para este modelo; nao vamos supor.",
+        "mop": "Nao localizamos declaracao do fabricante de mop para este modelo; nao vamos supor.",
+        "bateria": "Nao localizamos declaracao do fabricante de bateria para este modelo; nao vamos supor."
+      }
+    },
+    "electrolux-erb11": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "filtro",
+          "peca": "electrolux-kpcel01",
+          "frase": "A Electrolux (loja oficial) nao vende o filtro avulso para este modelo: ele vem dentro do kit KPCEL01, que o fabricante declara compativel com ERB10, ERB11 e ERB20 (varejo-oficial-da-marca, verificado em 09/09/2026)."
+        },
+        {
+          "tipo": "escova lateral",
+          "peca": "electrolux-kpcel01",
+          "frase": "A Electrolux (loja oficial) nao vende a escova lateral avulsa para este modelo: ela vem dentro do kit KPCEL01, que o fabricante declara compativel com ERB10, ERB11 e ERB20 (varejo-oficial-da-marca, verificado em 09/09/2026)."
+        },
+        {
+          "tipo": "mop",
+          "peca": "electrolux-kpcel01",
+          "frase": "A Electrolux (loja oficial) nao vende o mop avulso para este modelo: ele vem dentro do kit KPCEL01, que o fabricante declara compativel com ERB10, ERB11 e ERB20 (varejo-oficial-da-marca, verificado em 09/09/2026)."
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": [],
+      "recusa_por_tipo": {
+        "filtro": "Nao localizamos declaracao do fabricante de filtro para este modelo; nao vamos supor.",
+        "escova lateral": "Nao localizamos declaracao do fabricante de escova lateral para este modelo; nao vamos supor.",
+        "escova principal": "Nao localizamos declaracao do fabricante de escova principal para este modelo; nao vamos supor.",
+        "mop": "Nao localizamos declaracao do fabricante de mop para este modelo; nao vamos supor.",
+        "bateria": "Nao localizamos declaracao do fabricante de bateria para este modelo; nao vamos supor."
+      }
+    },
+    "electrolux-erb20": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "filtro",
+          "peca": "electrolux-kpcel01",
+          "frase": "A Electrolux (loja oficial) nao vende o filtro avulso para este modelo: ele vem dentro do kit KPCEL01, que o fabricante declara compativel com ERB10, ERB11 e ERB20 (varejo-oficial-da-marca, verificado em 09/09/2026)."
+        },
+        {
+          "tipo": "escova lateral",
+          "peca": "electrolux-kpcel01",
+          "frase": "A Electrolux (loja oficial) nao vende a escova lateral avulsa para este modelo: ela vem dentro do kit KPCEL01, que o fabricante declara compativel com ERB10, ERB11 e ERB20 (varejo-oficial-da-marca, verificado em 09/09/2026)."
+        },
+        {
+          "tipo": "mop",
+          "peca": "electrolux-kpcel01",
+          "frase": "A Electrolux (loja oficial) nao vende o mop avulso para este modelo: ele vem dentro do kit KPCEL01, que o fabricante declara compativel com ERB10, ERB11 e ERB20 (varejo-oficial-da-marca, verificado em 09/09/2026)."
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": [],
+      "recusa_por_tipo": {
+        "filtro": "Nao localizamos declaracao do fabricante de filtro para este modelo; nao vamos supor.",
+        "escova lateral": "Nao localizamos declaracao do fabricante de escova lateral para este modelo; nao vamos supor.",
+        "escova principal": "Nao localizamos declaracao do fabricante de escova principal para este modelo; nao vamos supor.",
+        "mop": "Nao localizamos declaracao do fabricante de mop para este modelo; nao vamos supor.",
+        "bateria": "Nao localizamos declaracao do fabricante de bateria para este modelo; nao vamos supor."
+      }
+    },
+    "electrolux-erb30": {
+      "aviso_de_variante": null,
+      "fabricante": [],
+      "terceiro": [],
+      "kits_sem_composicao": [
+        {
+          "peca": "electrolux-kit-performance-erb30",
+          "frase": "A Electrolux (loja oficial) declara o Kit Performance para Robo Aspirador ERB30 - Electrolux compativel com este modelo (varejo-oficial-da-marca, verificado em 09/09/2026), mas nao transcrevemos ainda a lista do que vem dentro — entao nao afirmamos qual peca o kit cobre."
+        }
+      ],
+      "recusa_por_tipo": {
+        "filtro": "Nao localizamos declaracao do fabricante de filtro para este modelo; nao vamos supor.",
+        "escova lateral": "Nao localizamos declaracao do fabricante de escova lateral para este modelo; nao vamos supor.",
+        "escova principal": "Nao localizamos declaracao do fabricante de escova principal para este modelo; nao vamos supor.",
+        "mop": "Nao localizamos declaracao do fabricante de mop para este modelo; nao vamos supor.",
+        "bateria": "Nao localizamos declaracao do fabricante de bateria para este modelo; nao vamos supor."
+      }
+    },
+    "electrolux-erb44": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "filtro",
+          "peca": "electrolux-filtro-hepa-espuma-erb44-erb60-erb61-erb62",
+          "frase": "A Electrolux (loja oficial) declara o filtro \"Filtro HEPA com Espuma Electrolux para Robos Aspiradores ERB44, ERB60, ERB61 e ERB62\" compativel com ERB44, ERB60, ERB61 e ERB62 (varejo-oficial-da-marca, verificado em 09/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": [
+        {
+          "peca": "electrolux-kit-performance-erb44",
+          "frase": "A Electrolux (loja oficial) declara o Kit Performance Electrolux para Robo Aspirador ERB44 compativel com este modelo (varejo-oficial-da-marca, verificado em 09/09/2026), mas nao transcrevemos ainda a lista do que vem dentro — entao nao afirmamos qual peca o kit cobre."
+        }
+      ],
+      "recusa_por_tipo": {
+        "filtro": "Nao localizamos declaracao do fabricante de filtro para este modelo; nao vamos supor.",
+        "escova lateral": "Nao localizamos declaracao do fabricante de escova lateral para este modelo; nao vamos supor.",
+        "escova principal": "Nao localizamos declaracao do fabricante de escova principal para este modelo; nao vamos supor.",
+        "mop": "Nao localizamos declaracao do fabricante de mop para este modelo; nao vamos supor.",
+        "bateria": "Nao localizamos declaracao do fabricante de bateria para este modelo; nao vamos supor."
+      }
+    },
+    "electrolux-erb60": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "filtro",
+          "peca": "electrolux-filtro-hepa-espuma-erb44-erb60-erb61-erb62",
+          "frase": "A Electrolux (loja oficial) declara o filtro \"Filtro HEPA com Espuma Electrolux para Robos Aspiradores ERB44, ERB60, ERB61 e ERB62\" compativel com ERB44, ERB60, ERB61 e ERB62 (varejo-oficial-da-marca, verificado em 09/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        },
+        {
+          "tipo": "filtro",
+          "peca": "electrolux-kit-performance-erb60-erb61-erb62",
+          "frase": "Ele tambem vem dentro do kit \"Kit Performance Electrolux para Robos Aspiradores ERB60, ERB61 e ERB62\", que a Electrolux (loja oficial) declara compativel com ERB60, ERB61 e ERB62 (varejo-oficial-da-marca, verificado em 09/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        },
+        {
+          "tipo": "escova lateral",
+          "peca": "electrolux-kit-performance-erb60-erb61-erb62",
+          "frase": "A Electrolux (loja oficial) nao vende a escova lateral avulsa para este modelo: ela vem dentro do kit \"Kit Performance Electrolux para Robos Aspiradores ERB60, ERB61 e ERB62\", que o fabricante declara compativel com ERB60, ERB61 e ERB62 (varejo-oficial-da-marca, verificado em 09/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        },
+        {
+          "tipo": "mop",
+          "peca": "electrolux-kit-performance-erb60-erb61-erb62",
+          "frase": "A Electrolux (loja oficial) nao vende o mop avulso para este modelo: ele vem dentro do kit \"Kit Performance Electrolux para Robos Aspiradores ERB60, ERB61 e ERB62\", que o fabricante declara compativel com ERB60, ERB61 e ERB62 (varejo-oficial-da-marca, verificado em 09/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        },
+        {
+          "tipo": "escova principal",
+          "peca": "electrolux-escova-rotativa-central-erb60-erb61-erb62-erb80",
+          "frase": "A Electrolux (loja oficial) declara a escova principal \"Escova Rotativa Central Electrolux para Robos Aspiradores ERB60, ERB61, ERB62 e ERB80\" compativel com ERB60, ERB61, ERB62 e ERB80 (varejo-oficial-da-marca, verificado em 09/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": [],
+      "recusa_por_tipo": {
+        "filtro": "Nao localizamos declaracao do fabricante de filtro para este modelo; nao vamos supor.",
+        "escova lateral": "Nao localizamos declaracao do fabricante de escova lateral para este modelo; nao vamos supor.",
+        "escova principal": "Nao localizamos declaracao do fabricante de escova principal para este modelo; nao vamos supor.",
+        "mop": "Nao localizamos declaracao do fabricante de mop para este modelo; nao vamos supor.",
+        "bateria": "Nao localizamos declaracao do fabricante de bateria para este modelo; nao vamos supor."
+      }
+    },
+    "electrolux-erb61": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "filtro",
+          "peca": "electrolux-filtro-hepa-espuma-erb44-erb60-erb61-erb62",
+          "frase": "A Electrolux (loja oficial) declara o filtro \"Filtro HEPA com Espuma Electrolux para Robos Aspiradores ERB44, ERB60, ERB61 e ERB62\" compativel com ERB44, ERB60, ERB61 e ERB62 (varejo-oficial-da-marca, verificado em 09/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        },
+        {
+          "tipo": "filtro",
+          "peca": "electrolux-kit-performance-erb60-erb61-erb62",
+          "frase": "Ele tambem vem dentro do kit \"Kit Performance Electrolux para Robos Aspiradores ERB60, ERB61 e ERB62\", que a Electrolux (loja oficial) declara compativel com ERB60, ERB61 e ERB62 (varejo-oficial-da-marca, verificado em 09/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        },
+        {
+          "tipo": "escova lateral",
+          "peca": "electrolux-kit-performance-erb60-erb61-erb62",
+          "frase": "A Electrolux (loja oficial) nao vende a escova lateral avulsa para este modelo: ela vem dentro do kit \"Kit Performance Electrolux para Robos Aspiradores ERB60, ERB61 e ERB62\", que o fabricante declara compativel com ERB60, ERB61 e ERB62 (varejo-oficial-da-marca, verificado em 09/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        },
+        {
+          "tipo": "mop",
+          "peca": "electrolux-kit-performance-erb60-erb61-erb62",
+          "frase": "A Electrolux (loja oficial) nao vende o mop avulso para este modelo: ele vem dentro do kit \"Kit Performance Electrolux para Robos Aspiradores ERB60, ERB61 e ERB62\", que o fabricante declara compativel com ERB60, ERB61 e ERB62 (varejo-oficial-da-marca, verificado em 09/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        },
+        {
+          "tipo": "escova principal",
+          "peca": "electrolux-escova-rotativa-central-erb60-erb61-erb62-erb80",
+          "frase": "A Electrolux (loja oficial) declara a escova principal \"Escova Rotativa Central Electrolux para Robos Aspiradores ERB60, ERB61, ERB62 e ERB80\" compativel com ERB60, ERB61, ERB62 e ERB80 (varejo-oficial-da-marca, verificado em 09/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": [],
+      "recusa_por_tipo": {
+        "filtro": "Nao localizamos declaracao do fabricante de filtro para este modelo; nao vamos supor.",
+        "escova lateral": "Nao localizamos declaracao do fabricante de escova lateral para este modelo; nao vamos supor.",
+        "escova principal": "Nao localizamos declaracao do fabricante de escova principal para este modelo; nao vamos supor.",
+        "mop": "Nao localizamos declaracao do fabricante de mop para este modelo; nao vamos supor.",
+        "bateria": "Nao localizamos declaracao do fabricante de bateria para este modelo; nao vamos supor."
+      }
+    },
+    "electrolux-erb62": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "filtro",
+          "peca": "electrolux-filtro-hepa-espuma-erb44-erb60-erb61-erb62",
+          "frase": "A Electrolux (loja oficial) declara o filtro \"Filtro HEPA com Espuma Electrolux para Robos Aspiradores ERB44, ERB60, ERB61 e ERB62\" compativel com ERB44, ERB60, ERB61 e ERB62 (varejo-oficial-da-marca, verificado em 09/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        },
+        {
+          "tipo": "filtro",
+          "peca": "electrolux-kit-performance-erb60-erb61-erb62",
+          "frase": "Ele tambem vem dentro do kit \"Kit Performance Electrolux para Robos Aspiradores ERB60, ERB61 e ERB62\", que a Electrolux (loja oficial) declara compativel com ERB60, ERB61 e ERB62 (varejo-oficial-da-marca, verificado em 09/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        },
+        {
+          "tipo": "escova lateral",
+          "peca": "electrolux-kit-performance-erb60-erb61-erb62",
+          "frase": "A Electrolux (loja oficial) nao vende a escova lateral avulsa para este modelo: ela vem dentro do kit \"Kit Performance Electrolux para Robos Aspiradores ERB60, ERB61 e ERB62\", que o fabricante declara compativel com ERB60, ERB61 e ERB62 (varejo-oficial-da-marca, verificado em 09/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        },
+        {
+          "tipo": "mop",
+          "peca": "electrolux-kit-performance-erb60-erb61-erb62",
+          "frase": "A Electrolux (loja oficial) nao vende o mop avulso para este modelo: ele vem dentro do kit \"Kit Performance Electrolux para Robos Aspiradores ERB60, ERB61 e ERB62\", que o fabricante declara compativel com ERB60, ERB61 e ERB62 (varejo-oficial-da-marca, verificado em 09/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        },
+        {
+          "tipo": "escova principal",
+          "peca": "electrolux-escova-rotativa-central-erb60-erb61-erb62-erb80",
+          "frase": "A Electrolux (loja oficial) declara a escova principal \"Escova Rotativa Central Electrolux para Robos Aspiradores ERB60, ERB61, ERB62 e ERB80\" compativel com ERB60, ERB61, ERB62 e ERB80 (varejo-oficial-da-marca, verificado em 09/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": [],
+      "recusa_por_tipo": {
+        "filtro": "Nao localizamos declaracao do fabricante de filtro para este modelo; nao vamos supor.",
+        "escova lateral": "Nao localizamos declaracao do fabricante de escova lateral para este modelo; nao vamos supor.",
+        "escova principal": "Nao localizamos declaracao do fabricante de escova principal para este modelo; nao vamos supor.",
+        "mop": "Nao localizamos declaracao do fabricante de mop para este modelo; nao vamos supor.",
+        "bateria": "Nao localizamos declaracao do fabricante de bateria para este modelo; nao vamos supor."
+      }
+    },
+    "electrolux-erb80": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "escova principal",
+          "peca": "electrolux-escova-rotativa-central-erb60-erb61-erb62-erb80",
+          "frase": "A Electrolux (loja oficial) declara a escova principal \"Escova Rotativa Central Electrolux para Robos Aspiradores ERB60, ERB61, ERB62 e ERB80\" compativel com ERB60, ERB61, ERB62 e ERB80 (varejo-oficial-da-marca, verificado em 09/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": [],
+      "recusa_por_tipo": {
+        "filtro": "Nao localizamos declaracao do fabricante de filtro para este modelo; nao vamos supor.",
+        "escova lateral": "Nao localizamos declaracao do fabricante de escova lateral para este modelo; nao vamos supor.",
+        "escova principal": "Nao localizamos declaracao do fabricante de escova principal para este modelo; nao vamos supor.",
+        "mop": "Nao localizamos declaracao do fabricante de mop para este modelo; nao vamos supor.",
+        "bateria": "Nao localizamos declaracao do fabricante de bateria para este modelo; nao vamos supor."
+      }
+    },
+    "multi-ho041": {
+      "aviso_de_variante": "Este modelo tem mais de uma versao de hardware conhecida (A e B), e a peca certa depende da sua: bateria — o fabricante vende a peca PR10127 identificada como 'Versao A'; bateria — o fabricante vende a peca PR8116 identificada como 'Mars HO041 versao B'. Confira a etiqueta do aparelho antes de comprar.",
+      "fabricante": [
+        {
+          "tipo": "escova lateral",
+          "peca": "multi-pr10124",
+          "frase": "A Multi (multilaser.com.br) declara a escova lateral PR10124 compativel com HO041, HO400, HO401, HO407 e OB010 (fabricante-via-busca, verificado em 09/09/2026)."
+        },
+        {
+          "tipo": "filtro",
+          "peca": "multi-pr10205",
+          "frase": "A Multi (multilaser.com.br, canal varejo) declara o filtro PR10205 compativel com HO041 (fabricante-via-busca, verificado em 09/09/2026). Dois canais do fabricante discordam sobre o alcance desta peca: vale o conjunto MAIS ESTREITO, e as duas declaracoes estao publicadas com as suas datas."
+        },
+        {
+          "tipo": "bateria",
+          "peca": "multi-pr10127",
+          "frase": "A Multi (multilaser.com.br) declara a bateria PR10127 compativel com HO041 (fabricante-via-busca, verificado em 09/09/2026). Vale para a versao A deste modelo."
+        },
+        {
+          "tipo": "bateria",
+          "peca": "multi-pr8116",
+          "frase": "A Multi (multilaserempresas.com.br) declara a bateria PR8116 compativel com HO041 (fabricante-via-busca, verificado em 09/09/2026). Dois canais do fabricante discordam sobre o alcance desta peca: vale o conjunto MAIS ESTREITO, e as duas declaracoes estao publicadas com as suas datas. Vale para a versao B deste modelo."
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": [],
+      "recusa_por_tipo": {
+        "filtro": "Nao localizamos declaracao do fabricante de filtro para este modelo; nao vamos supor.",
+        "escova lateral": "Nao localizamos declaracao do fabricante de escova lateral para este modelo; nao vamos supor.",
+        "escova principal": "Nao localizamos declaracao do fabricante de escova principal para este modelo; nao vamos supor.",
+        "mop": "Nao localizamos declaracao do fabricante de mop para este modelo; nao vamos supor.",
+        "bateria": "Nao localizamos declaracao do fabricante de bateria para este modelo; nao vamos supor."
+      }
+    },
+    "multi-ho243": {
+      "aviso_de_variante": null,
+      "fabricante": [],
+      "terceiro": [],
+      "kits_sem_composicao": [],
+      "recusa_por_tipo": {
+        "filtro": "Nao localizamos declaracao do fabricante de filtro para este modelo; nao vamos supor.",
+        "escova lateral": "Nao localizamos declaracao do fabricante de escova lateral para este modelo; nao vamos supor.",
+        "escova principal": "Nao localizamos declaracao do fabricante de escova principal para este modelo; nao vamos supor.",
+        "mop": "Nao localizamos declaracao do fabricante de mop para este modelo; nao vamos supor.",
+        "bateria": "Nao localizamos declaracao do fabricante de bateria para este modelo; nao vamos supor."
+      }
+    },
+    "multi-ho400": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "escova lateral",
+          "peca": "multi-pr10124",
+          "frase": "A Multi (multilaser.com.br) declara a escova lateral PR10124 compativel com HO041, HO400, HO401, HO407 e OB010 (fabricante-via-busca, verificado em 09/09/2026)."
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": [],
+      "recusa_por_tipo": {
+        "filtro": "Nao localizamos declaracao do fabricante de filtro para este modelo; nao vamos supor.",
+        "escova lateral": "Nao localizamos declaracao do fabricante de escova lateral para este modelo; nao vamos supor.",
+        "escova principal": "Nao localizamos declaracao do fabricante de escova principal para este modelo; nao vamos supor.",
+        "mop": "Nao localizamos declaracao do fabricante de mop para este modelo; nao vamos supor.",
+        "bateria": "Nao localizamos declaracao do fabricante de bateria para este modelo; nao vamos supor."
+      }
+    },
+    "multi-ho407": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "escova lateral",
+          "peca": "multi-pr10124",
+          "frase": "A Multi (multilaser.com.br) declara a escova lateral PR10124 compativel com HO041, HO400, HO401, HO407 e OB010 (fabricante-via-busca, verificado em 09/09/2026)."
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": [],
+      "recusa_por_tipo": {
+        "filtro": "Nao localizamos declaracao do fabricante de filtro para este modelo; nao vamos supor.",
+        "escova lateral": "Nao localizamos declaracao do fabricante de escova lateral para este modelo; nao vamos supor.",
+        "escova principal": "Nao localizamos declaracao do fabricante de escova principal para este modelo; nao vamos supor.",
+        "mop": "Nao localizamos declaracao do fabricante de mop para este modelo; nao vamos supor.",
+        "bateria": "Nao localizamos declaracao do fabricante de bateria para este modelo; nao vamos supor."
+      }
+    },
+    "multi-ho411": {
+      "aviso_de_variante": null,
+      "fabricante": [],
+      "terceiro": [],
+      "kits_sem_composicao": [],
+      "recusa_por_tipo": {
+        "filtro": "Nao localizamos declaracao do fabricante de filtro para este modelo; nao vamos supor.",
+        "escova lateral": "Nao localizamos declaracao do fabricante de escova lateral para este modelo; nao vamos supor.",
+        "escova principal": "Nao localizamos declaracao do fabricante de escova principal para este modelo; nao vamos supor.",
+        "mop": "Nao localizamos declaracao do fabricante de mop para este modelo; nao vamos supor.",
+        "bateria": "Nao localizamos declaracao do fabricante de bateria para este modelo; nao vamos supor."
+      }
+    },
+    "multi-ob010": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "escova lateral",
+          "peca": "multi-pr10124",
+          "frase": "A Multi (multilaser.com.br) declara a escova lateral PR10124 compativel com HO041, HO400, HO401, HO407 e OB010 (fabricante-via-busca, verificado em 09/09/2026)."
+        },
+        {
+          "tipo": "filtro",
+          "peca": "multi-pr10343",
+          "frase": "A Multi (multilaser.com.br) declara o filtro PR10343 compativel com OB010 (fabricante-via-busca, verificado em 09/09/2026)."
+        },
+        {
+          "tipo": "mop",
+          "peca": "multi-pr10342",
+          "frase": "A Multi (multilaser.com.br) declara o mop PR10342 compativel com OB010 (fabricante-via-busca, verificado em 09/09/2026)."
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": [],
+      "recusa_por_tipo": {
+        "filtro": "Nao localizamos declaracao do fabricante de filtro para este modelo; nao vamos supor.",
+        "escova lateral": "Nao localizamos declaracao do fabricante de escova lateral para este modelo; nao vamos supor.",
+        "escova principal": "Nao localizamos declaracao do fabricante de escova principal para este modelo; nao vamos supor.",
+        "mop": "Nao localizamos declaracao do fabricante de mop para este modelo; nao vamos supor.",
+        "bateria": "Nao localizamos declaracao do fabricante de bateria para este modelo; nao vamos supor."
+      }
+    },
+    "positivo-pra2000": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "escova lateral",
+          "peca": "positivo-11206518",
+          "frase": "A Positivo Casa Inteligente (loja oficial) declara a escova lateral 11206518 compativel com PRA800 e PRA2000 (varejo-oficial-da-marca, verificado em 09/09/2026)."
+        },
+        {
+          "tipo": "escova principal",
+          "peca": "positivo-11206519",
+          "frase": "A Positivo Casa Inteligente (loja oficial) declara a escova principal 11206519 compativel com PRA800 e PRA2000 (varejo-oficial-da-marca, verificado em 09/09/2026)."
+        },
+        {
+          "tipo": "mop",
+          "peca": "positivo-11206540",
+          "frase": "A Positivo Casa Inteligente (loja oficial) declara o mop 11206540 compativel com PRA800 e PRA2000 (varejo-oficial-da-marca, verificado em 09/09/2026)."
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": [],
+      "recusa_por_tipo": {
+        "filtro": "Nao localizamos declaracao do fabricante de filtro para este modelo; nao vamos supor.",
+        "escova lateral": "Nao localizamos declaracao do fabricante de escova lateral para este modelo; nao vamos supor.",
+        "escova principal": "Nao localizamos declaracao do fabricante de escova principal para este modelo; nao vamos supor.",
+        "mop": "Nao localizamos declaracao do fabricante de mop para este modelo; nao vamos supor.",
+        "bateria": "Nao localizamos declaracao do fabricante de bateria para este modelo; nao vamos supor."
+      }
+    },
+    "positivo-pra500": {
+      "aviso_de_variante": null,
+      "fabricante": [],
+      "terceiro": [],
+      "kits_sem_composicao": [],
+      "recusa_por_tipo": {
+        "filtro": "Nao localizamos declaracao do fabricante de filtro para este modelo; nao vamos supor.",
+        "escova lateral": "Nao localizamos declaracao do fabricante de escova lateral para este modelo; nao vamos supor.",
+        "escova principal": "Nao localizamos declaracao do fabricante de escova principal para este modelo; nao vamos supor.",
+        "mop": "Nao localizamos declaracao do fabricante de mop para este modelo; nao vamos supor.",
+        "bateria": "Nao localizamos declaracao do fabricante de bateria para este modelo; nao vamos supor."
+      }
+    },
+    "positivo-pra800": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "escova lateral",
+          "peca": "positivo-11206518",
+          "frase": "A Positivo Casa Inteligente (loja oficial) declara a escova lateral 11206518 compativel com PRA800 e PRA2000 (varejo-oficial-da-marca, verificado em 09/09/2026)."
+        },
+        {
+          "tipo": "escova principal",
+          "peca": "positivo-11206519",
+          "frase": "A Positivo Casa Inteligente (loja oficial) declara a escova principal 11206519 compativel com PRA800 e PRA2000 (varejo-oficial-da-marca, verificado em 09/09/2026)."
+        },
+        {
+          "tipo": "mop",
+          "peca": "positivo-11206540",
+          "frase": "A Positivo Casa Inteligente (loja oficial) declara o mop 11206540 compativel com PRA800 e PRA2000 (varejo-oficial-da-marca, verificado em 09/09/2026)."
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": [],
+      "recusa_por_tipo": {
+        "filtro": "Nao localizamos declaracao do fabricante de filtro para este modelo; nao vamos supor.",
+        "escova lateral": "Nao localizamos declaracao do fabricante de escova lateral para este modelo; nao vamos supor.",
+        "escova principal": "Nao localizamos declaracao do fabricante de escova principal para este modelo; nao vamos supor.",
+        "mop": "Nao localizamos declaracao do fabricante de mop para este modelo; nao vamos supor.",
+        "bateria": "Nao localizamos declaracao do fabricante de bateria para este modelo; nao vamos supor."
+      }
+    },
+    "wap-w1000": {
+      "aviso_de_variante": null,
+      "fabricante": [],
+      "terceiro": [],
+      "kits_sem_composicao": [],
+      "recusa_por_tipo": {
+        "filtro": "Nao localizamos declaracao do fabricante de filtro para este modelo; nao vamos supor.",
+        "escova lateral": "Nao localizamos declaracao do fabricante de escova lateral para este modelo; nao vamos supor.",
+        "escova principal": "Nao localizamos declaracao do fabricante de escova principal para este modelo; nao vamos supor.",
+        "mop": "Nao localizamos declaracao do fabricante de mop para este modelo; nao vamos supor.",
+        "bateria": "Nao localizamos declaracao do fabricante de bateria para este modelo; nao vamos supor."
+      }
+    },
+    "wap-w310": {
+      "aviso_de_variante": null,
+      "fabricante": [],
+      "terceiro": [],
+      "kits_sem_composicao": [],
+      "recusa_por_tipo": {
+        "filtro": "Nao localizamos declaracao do fabricante de filtro para este modelo; nao vamos supor.",
+        "escova lateral": "Nao localizamos declaracao do fabricante de escova lateral para este modelo; nao vamos supor.",
+        "escova principal": "Nao localizamos declaracao do fabricante de escova principal para este modelo; nao vamos supor.",
+        "mop": "Nao localizamos declaracao do fabricante de mop para este modelo; nao vamos supor.",
+        "bateria": "Nao localizamos declaracao do fabricante de bateria para este modelo; nao vamos supor."
+      }
+    },
+    "wap-w400": {
+      "aviso_de_variante": null,
+      "fabricante": [],
+      "terceiro": [],
+      "kits_sem_composicao": [],
+      "recusa_por_tipo": {
+        "filtro": "Nao localizamos declaracao do fabricante de filtro para este modelo; nao vamos supor.",
+        "escova lateral": "Nao localizamos declaracao do fabricante de escova lateral para este modelo; nao vamos supor.",
+        "escova principal": "Nao localizamos declaracao do fabricante de escova principal para este modelo; nao vamos supor.",
+        "mop": "Nao localizamos declaracao do fabricante de mop para este modelo; nao vamos supor.",
+        "bateria": "Nao localizamos declaracao do fabricante de bateria para este modelo; nao vamos supor."
+      }
+    },
+    "xiaomi-e10": {
+      "aviso_de_variante": null,
+      "fabricante": [],
+      "terceiro": [],
+      "kits_sem_composicao": [],
+      "recusa_por_tipo": {
+        "filtro": "Nao localizamos declaracao do fabricante de filtro para este modelo; nao vamos supor.",
+        "escova lateral": "Nao localizamos declaracao do fabricante de escova lateral para este modelo; nao vamos supor.",
+        "escova principal": "Nao localizamos declaracao do fabricante de escova principal para este modelo; nao vamos supor.",
+        "mop": "Nao localizamos declaracao do fabricante de mop para este modelo; nao vamos supor.",
+        "bateria": "Nao localizamos declaracao do fabricante de bateria para este modelo; nao vamos supor."
+      }
+    },
+    "xiaomi-h40": {
+      "aviso_de_variante": null,
+      "fabricante": [],
+      "terceiro": [],
+      "kits_sem_composicao": [],
+      "recusa_por_tipo": {
+        "filtro": "Nao localizamos declaracao do fabricante de filtro para este modelo; nao vamos supor.",
+        "escova lateral": "Nao localizamos declaracao do fabricante de escova lateral para este modelo; nao vamos supor.",
+        "escova principal": "Nao localizamos declaracao do fabricante de escova principal para este modelo; nao vamos supor.",
+        "mop": "Nao localizamos declaracao do fabricante de mop para este modelo; nao vamos supor.",
+        "bateria": "Nao localizamos declaracao do fabricante de bateria para este modelo; nao vamos supor."
+      }
+    },
+    "xiaomi-mop-2": {
+      "aviso_de_variante": null,
+      "fabricante": [],
+      "terceiro": [],
+      "kits_sem_composicao": [],
+      "recusa_por_tipo": {
+        "filtro": "Nao localizamos declaracao do fabricante de filtro para este modelo; nao vamos supor.",
+        "escova lateral": "Nao localizamos declaracao do fabricante de escova lateral para este modelo; nao vamos supor.",
+        "escova principal": "Nao localizamos declaracao do fabricante de escova principal para este modelo; nao vamos supor.",
+        "mop": "Nao localizamos declaracao do fabricante de mop para este modelo; nao vamos supor.",
+        "bateria": "Nao localizamos declaracao do fabricante de bateria para este modelo; nao vamos supor."
+      }
+    },
+    "xiaomi-s10": {
+      "aviso_de_variante": null,
+      "fabricante": [],
+      "terceiro": [],
+      "kits_sem_composicao": [],
+      "recusa_por_tipo": {
+        "filtro": "Nao localizamos declaracao do fabricante de filtro para este modelo; nao vamos supor.",
+        "escova lateral": "Nao localizamos declaracao do fabricante de escova lateral para este modelo; nao vamos supor.",
+        "escova principal": "Nao localizamos declaracao do fabricante de escova principal para este modelo; nao vamos supor.",
+        "mop": "Nao localizamos declaracao do fabricante de mop para este modelo; nao vamos supor.",
+        "bateria": "Nao localizamos declaracao do fabricante de bateria para este modelo; nao vamos supor."
+      }
+    },
+    "xiaomi-s20": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "filtro",
+          "peca": "xiaomi-s20-acessorios",
+          "frase": "A Xiaomi Global nao vende o filtro avulso para este modelo: ele vem dentro do kit \"Xiaomi Robot Vacuum S20 Accessories\", que o fabricante declara compativel com Xiaomi Robot Vacuum S20 (fabricante-via-busca, verificado em 09/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        },
+        {
+          "tipo": "escova lateral",
+          "peca": "xiaomi-s20-acessorios",
+          "frase": "A Xiaomi Global nao vende a escova lateral avulsa para este modelo: ela vem dentro do kit \"Xiaomi Robot Vacuum S20 Accessories\", que o fabricante declara compativel com Xiaomi Robot Vacuum S20 (fabricante-via-busca, verificado em 09/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        },
+        {
+          "tipo": "escova principal",
+          "peca": "xiaomi-s20-acessorios",
+          "frase": "A Xiaomi Global nao vende a escova principal avulsa para este modelo: ela vem dentro do kit \"Xiaomi Robot Vacuum S20 Accessories\", que o fabricante declara compativel com Xiaomi Robot Vacuum S20 (fabricante-via-busca, verificado em 09/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        },
+        {
+          "tipo": "mop",
+          "peca": "xiaomi-s20-acessorios",
+          "frase": "A Xiaomi Global nao vende o mop avulso para este modelo: ele vem dentro do kit \"Xiaomi Robot Vacuum S20 Accessories\", que o fabricante declara compativel com Xiaomi Robot Vacuum S20 (fabricante-via-busca, verificado em 09/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": [],
+      "recusa_por_tipo": {
+        "filtro": "Nao localizamos declaracao do fabricante de filtro para este modelo; nao vamos supor.",
+        "escova lateral": "Nao localizamos declaracao do fabricante de escova lateral para este modelo; nao vamos supor.",
+        "escova principal": "Nao localizamos declaracao do fabricante de escova principal para este modelo; nao vamos supor.",
+        "mop": "Nao localizamos declaracao do fabricante de mop para este modelo; nao vamos supor.",
+        "bateria": "Nao localizamos declaracao do fabricante de bateria para este modelo; nao vamos supor."
+      }
+    },
+    "xiaomi-s40": {
+      "aviso_de_variante": null,
+      "fabricante": [],
+      "terceiro": [],
+      "kits_sem_composicao": [],
+      "recusa_por_tipo": {
+        "filtro": "Nao localizamos declaracao do fabricante de filtro para este modelo; nao vamos supor.",
+        "escova lateral": "Nao localizamos declaracao do fabricante de escova lateral para este modelo; nao vamos supor.",
+        "escova principal": "Nao localizamos declaracao do fabricante de escova principal para este modelo; nao vamos supor.",
+        "mop": "Nao localizamos declaracao do fabricante de mop para este modelo; nao vamos supor.",
+        "bateria": "Nao localizamos declaracao do fabricante de bateria para este modelo; nao vamos supor."
+      }
+    },
+    "xiaomi-s40c": {
+      "aviso_de_variante": null,
+      "fabricante": [],
+      "terceiro": [],
+      "kits_sem_composicao": [],
+      "recusa_por_tipo": {
+        "filtro": "Nao localizamos declaracao do fabricante de filtro para este modelo; nao vamos supor.",
+        "escova lateral": "Nao localizamos declaracao do fabricante de escova lateral para este modelo; nao vamos supor.",
+        "escova principal": "Nao localizamos declaracao do fabricante de escova principal para este modelo; nao vamos supor.",
+        "mop": "Nao localizamos declaracao do fabricante de mop para este modelo; nao vamos supor.",
+        "bateria": "Nao localizamos declaracao do fabricante de bateria para este modelo; nao vamos supor."
+      }
+    }
+  }
+}
