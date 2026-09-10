@@ -1,19 +1,27 @@
-=== teste Search Console (2ª) Thu Sep 10 15:03:19 UTC 2026 ===
-GOOGLE_SA_B64 presente: sim
+=== teste Search Console (3ª) Thu Sep 10 15:21:32 UTC 2026 ===
 --- aquametria
 
 ## aquametria — leitura Search Console 2026-09-10 (janela 2026-09-02→2026-09-08)
 
 ### linha para dados/indexacao.md
-| 2026-09-10 | n/d | n/d | n/d | 0 | 0 |
+| 2026-09-10 | 13 | 7 | 54% | 0 | 0 |
 
 ### linhas para dados/posicoes.md
 | consulta | página | posição hoje | impressões | cliques | banda |
+
+### URLs não indexadas (URL Inspection)
+- /2026/09/08/quanta-midia-biologica-o-aquario-precisa/ — Discovered - currently not indexed
+- /2026/09/08/quantos-lumens-por-litro-aquario-plantado/ — Discovered - currently not indexed
+- /2026/09/08/quantos-watts-de-aquecedor-para-aquario/ — Discovered - currently not indexed
+- /calculadora-de-iluminacao/ — Discovered - currently not indexed
+- /calculadora-de-midia-filtrante/ — Discovered - currently not indexed
+- /calculadora-de-potencia-do-aquecedor/ — Discovered - currently not indexed
 --- robometria
 ## robometria — leitura Search Console 2026-09-10 (janela 2026-09-02→2026-09-08)
 
 ### linha para dados/indexacao.md
 | 2026-09-10 | n/d | n/d | n/d | 0 | 0 |
+(sitemap não lido: https://robometria.com.br/sitemap.xml -> HTTP 404)
 
 ### linhas para dados/posicoes.md
 | consulta | página | posição hoje | impressões | cliques | banda |

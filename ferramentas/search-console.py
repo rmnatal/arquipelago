@@ -80,26 +80,33 @@ def banda(pos, impressoes):
 
 
 def urls_do_sitemap(dominio):
-    """Lê o sitemap do site (precisa de rede para o domínio; se bloqueado, devolve [])."""
-    urls = []
+    """Lê o sitemap do site com o mesmo cliente HTTP que fala com a API (requests, que respeita
+    o proxy e a CA do ambiente). Devolve (urls, erro) — erro é texto quando nada foi lido."""
+    import requests
+    urls, erro = [], ""
     for candidato in (f"https://{dominio}/wp-sitemap.xml", f"https://{dominio}/sitemap.xml"):
         try:
-            xml = urllib.request.urlopen(candidato, timeout=20).read().decode()
-        except Exception:
+            r = requests.get(candidato, timeout=30, headers={"User-Agent": "arquipelago-sentinela"})
+            if r.status_code != 200:
+                erro = f"{candidato} -> HTTP {r.status_code}"
+                continue
+            xml = r.text
+        except Exception as e:
+            erro = f"{candidato} -> {type(e).__name__}: {e}"
             continue
         subs = re.findall(r"<loc>([^<]+)</loc>", xml)
         for s in subs:
             if s.endswith(".xml"):
                 try:
-                    x2 = urllib.request.urlopen(s, timeout=20).read().decode()
+                    x2 = requests.get(s, timeout=30, headers={"User-Agent": "arquipelago-sentinela"}).text
                     urls += re.findall(r"<loc>([^<]+)</loc>", x2)
-                except Exception:
-                    pass
+                except Exception as e:
+                    erro = f"{s} -> {type(e).__name__}: {e}"
             else:
                 urls.append(s)
         if urls:
             break
-    return sorted(set(urls))
+    return sorted(set(urls)), erro
 
 
 def main():
@@ -133,7 +140,7 @@ def main():
     cliques_total = sum(int(x["clicks"]) for x in linhas)
 
     # 2) indexação: URL Inspection por URL do sitemap (cota 2000/dia — ok para ilhas pequenas)
-    urls = urls_do_sitemap(dominio)
+    urls, erro_sitemap = urls_do_sitemap(dominio)
     indexadas, detalhes = 0, []
     for u in urls:
         ins = sess.post(f"{API}/v1/urlInspection/index:inspect",
@@ -148,7 +155,7 @@ def main():
         print(json.dumps({"ilha": ilha, "propriedade": prop, "periodo": [ini.isoformat(), fim.isoformat()],
                           "urls_sitemap": len(urls), "indexadas": indexadas,
                           "impressoes": impressoes_total, "cliques": cliques_total,
-                          "posicoes": linhas, "inspecao": detalhes}, ensure_ascii=False, indent=1))
+                          "posicoes": linhas, "inspecao": detalhes, "erro_sitemap": erro_sitemap}, ensure_ascii=False, indent=1))
         return
 
     pct = f"{100*indexadas/len(urls):.0f}%" if urls else "n/d"
@@ -156,6 +163,8 @@ def main():
     print()
     print("### linha para dados/indexacao.md")
     print(f"| {hoje.isoformat()} | {len(urls) or 'n/d'} | {indexadas if urls else 'n/d'} | {pct} | {impressoes_total} | {cliques_total} |")
+    if not urls:
+        print(f"(sitemap não lido: {erro_sitemap or 'vazio'})")
     print()
     print("### linhas para dados/posicoes.md")
     print("| consulta | página | posição hoje | impressões | cliques | banda |")
