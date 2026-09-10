@@ -4248,3 +4248,139 @@ essa medição exige o painel do Mercado Livre aberto, e isso é da Sentinela es
    Quando o widget em lojas (T6) der o primeiro perfil externo real, aí ela nasce com lastro. Fica
    registrado para a próxima execução não achar que foi esquecimento.
 4. **T3 (catálogo) segue barrado da nuvem** enquanto o egresso bloquear sites de fabricante.
+
+---
+
+## EXECUÇÃO DE 10/09/2026, 17h15Z — o despacho da Sentinela de 10/09 fechou nos três itens de código
+
+Manifest **revisão 35**, conferida no `/status` do site. Três itens do despacho numa execução, cada um
+verificado no ar antes do seguinte começar, como o modo mutirão pede.
+
+### Item 1 — as 13 URLs do sitemap passaram a servir `<meta name="description">`
+
+Era o defeito mais caro da ilha: o `<head>` trazia 6 elementos `<meta>` e nenhum deles era a
+description, em nenhuma das 13 URLs, e também não havia uma única tag `og:`. Sem description quem
+escreve o resumo do resultado é o Google, recortando um pedaço qualquer do corpo — e numa página de
+calculadora o pedaço costuma ser o rótulo de um campo de formulário.
+
+O snippet `aquametria-seo-tecnico` subiu para **1.1.0** e imprime `description`, `og:title`,
+`og:description`, `og:type`, `og:locale`, `og:site_name`, `og:url` e `twitter:card`.
+
+**A decisão que vale para toda ilha: o texto não mora no snippet.** Ele mora onde a página mora — no
+front matter de cada arquivo de `conteudo/`, no campo `meta_descricao` que já existia e que nada lia,
+e, para as quatro páginas da casca (que nascem do snippet e não têm arquivo em `conteudo/`), em
+`dados/metas-seo.json`. Duas fontes porque são dois tipos de página, mas **nenhuma página aparece nas
+duas**. Quem junta e escreve o mapa entre os marcadores `METAS-INICIO` e `METAS-FIM` é
+`ferramentas/gerar-metas-descricao.py`, o mesmo desenho do favicon: texto mantido em dois lugares
+diverge em silêncio.
+
+O gerador **recusa gravar** — e não grava nada — se algum texto sair de 120 a 160 caracteres, se dois
+forem iguais (description repetida devolve ao Google o sinal de duplicata, que é pior do que não ter),
+se um slug do sitemap ficar sem descrição, ou se aparecer descrição para slug que não está na lista
+das 13. Com `--conferir` ele não grava: só reprova se o snippet estiver desatualizado, e por isso pode
+rodar como portão antes do commit.
+
+**Página fora do mapa não ganha descrição inventada** — o snippet simplesmente não imprime nada.
+Description errada escrita por nós seria pior que o recorte automático do Google, porque pareceria
+intencional.
+
+**Sem `og:image`, de propósito.** A ilha não tem imagem de compartilhamento: o favicon é um SVG de
+32 px embutido como data URI, e `og:image` exige URL absoluta de arquivo real. Declarar uma imagem que
+não existe faz o cartão quebrar em vez de não aparecer. Ela entra quando a vitrine do T8 der à ilha a
+primeira imagem própria hospedada.
+
+Medido no ar depois do Sync, nas 13 URLs: **13 de 13 em HTTP 200, exatamente uma description em cada,
+6 tags `og:` em cada, texto diferente em todas.**
+
+### Item 3 — os três links internos que respondiam 301
+
+O despacho dizia "o link está dentro do snippet das calculadoras". Estava, mas a causa não era o HTML
+delas: **`aquametria_casca_url_se_existir()` só procurava em `post_type` `page`, e os três
+artigos-âncora são `post`.** As duas vias da função falhavam, quem chamava caía no último recurso —
+`home_url('/<slug>/')` —, e esse endereço existe e responde **301** para `/2026/09/08/<slug>/`.
+
+Consertar no HTML de cada calculadora teria fechado os três casos e deixado o quarto artigo nascer com
+o mesmo defeito. A casca subiu para **1.3.1** com uma terceira via, que busca por `post_name` em
+`post_type` `post` e devolve o permalink real. Os três links escritos no próprio Markdown foram para a
+URL canônica na mesma passada.
+
+**O `conferir-slugs.py` aprendeu a diferença entre página e artigo** e agora reprova nos dois sentidos:
+artigo linkado sem o prefixo de data, e página linkada com ele. Ele aceita **qualquer** data bem
+formada em vez de cravar `2026/09/08`, senão reprovaria sozinho no dia em que nascesse o quarto artigo.
+O portão foi conferido com teste negativo — os três casos pegos, inclusive o de uma linha só carregando
+os dois defeitos ao mesmo tempo, que a primeira versão deixava passar.
+
+Medido no ar: os **16 endereços internos** servidos pelas 13 páginas respondem **200, nenhum 301**.
+
+### Item 2 — a C5 parou de se contradizer no bloco de produto
+
+O despacho ofereceu dois caminhos e não escolheu, porque elegibilidade é da Fundação. **A escolha foi:
+a elegibilidade está certa e não muda.**
+
+Aquecedor não se vende em 160 W. O teto da lista é, de propósito, o degrau comercial que cobre o topo
+da faixa — e a própria página anuncia isso duas telas acima ("na prateleira, isso vira um aquecedor de
+200 W"). O que mentia era o **rótulo**: um título dizendo "Aquecedores que atendem essa potência" sobre
+um aparelho que a linha ao lado declara fora da faixa é contradição na cara do leitor.
+
+A C5 subiu para **1.4.0**, e tudo o que mudou é rótulo. A lista se parte em dois grupos com cabeçalho e
+frase próprios — "Dentro da faixa calculada — 110 a 160 W" e "O degrau comercial acima — 200 W", este
+dizendo por que ele está ali e o que a sobra de potência significa num aparelho com termostato. O cartão
+sem link de loja parou de dizer "aparece aqui porque atende ao seu número" quando o aparelho é o degrau
+acima. O cartão do degrau acima diz "acima dos" em vez de "contra os", porque o desacordo já foi
+explicado no título do grupo e repetir "contra" faria a página parecer estar se desdizendo.
+
+**E o lado que quase escapou: a tabela pré-renderizada.** É ela que um modelo de linguagem lê sem
+JavaScript, e é dela que sai a citação fora de contexto. A tabela escolhe o modelo mais próximo do topo
+da faixa, e em **2 das 6 linhas** (30 L e 60 L) o mais próximo é justamente o degrau comercial acima.
+A célula agora diz isso, e o cabeçalho da coluna deixou de prometer "que atende".
+
+**A ordem não mudou, e nenhuma fórmula, constante ou faixa foi tocada.** Continua sendo a distância até
+o topo da faixa dentro de cada grupo, e quem cabe na faixa vem antes. Comissão não ordena nada (V16).
+
+### O que ficou como portão, e não como conserto
+
+Três consertos, três portões — porque conserto sem portão volta:
+
+- `ferramentas/gerar-metas-descricao.py --conferir` reprova se o snippet estiver fora de dia com as
+  descrições, ou se alguma sair da faixa de caracteres.
+- `ferramentas/conferir-slugs.py` reprova artigo linkado sem data e página linkada com data.
+- O **caso 15b** do `teste-navegador-c5.mjs` reproduz a entrada exata do despacho (108 L, mínima 16 °C,
+  alvo 26 °C, 220 V, tampado) e lê a **ordem do DOM**: nenhum cartão acima do teto pode estar sob
+  cabeçalho que diz "atendem", todo cartão acima tem que estar sob o do degrau comercial, quem cabe na
+  faixa vem antes, e o cartão acima não repete as frases de quem cabe.
+
+### Verificação
+
+`php -l` nos 10 snippets; proteção de funções ok nos 10; `teste-seo-tecnico` com **177 afirmações**
+(eram 28) e zero falha, incluindo o HTML que sai impresso no `<head>`; `teste-apelidos` 59/0;
+`teste-conversor-markdown` 17/0; `teste-atualizador-sync` 9/0; `conferir-entidades` zero falha nas
+cinco calculadoras; `teste-navegador-casca` inteiro em Chromium; `teste-navegador-c5` com os 15 casos
+antigos mais o 15b, console limpo; `teste-navegador-visibilidade-ia` nas cinco calculadoras com o
+JavaScript **desligado**, tudo passou; validadores de produto (78 produtos, 0 erro) e de espécie (36
+espécies, 0 erro). No ar, depois do Sync: revisão 35 no `/status`, 13 de 13 URLs em 200, zero `&#038;`
+dentro de `<script>`, corpo nunca começando por metadado YAML.
+
+**A ronda seguinte é quem aprova.** Quem constrói não aprova o próprio conserto — foi por confundir
+isso que cinco calculadoras ficaram horas quebradas no ar em 08/09.
+
+### Produtos esperando link de afiliado: 39 de 78
+
+Sem mudança: nenhum produto entrou nesta execução e nenhum dos três blocos tocou em catálogo. Desses
+39, **7 estão sem anúncio achado na plataforma** (o campo `motivo` diz "sem anúncio" ou que a busca não
+encontrou) e **32 só aguardam a Sentinela estratégica gerar o link** — para esses a loja existe. Esta é
+a leitura que substitui o número "20 sem loja possível", **VENCIDO** desde 09/09 porque foi medido
+quando a Shopee era o único programa; refazer a medição de verdade exige o painel do Mercado Livre
+aberto, e isso continua sendo da Sentinela estratégica.
+
+### Próximo passo desbloqueado
+
+1. **T8 — a vitrine, começando pela C3.** Agora é o maior bloco de construção que sobrou e não cria URL
+   nova, então respeita o item 5 do despacho (nenhuma página nova até 16/09). A C3 é a que tem mais
+   itens com foto e link.
+2. **T1 — medir a indexação no Search Console.** Continua dependendo do Chrome do Raphael ou da
+   credencial da conta de serviço no ambiente. É ele que autoriza ou barra a T4, e a leitura de 16/09
+   depende dele para dizer por que a leva de 08/09 não indexou.
+3. **A `Organization` com `sameAs` na home** segue pendente de propósito, pelo mesmo motivo de sempre:
+   a Aquametria não tem perfil externo nenhum, então `sameAs` sairia vazio ou inventado. Nasce quando o
+   T6 der o primeiro perfil externo real.
+4. **T3 (catálogo) segue barrado da nuvem** enquanto o egresso bloquear sites de fabricante.
