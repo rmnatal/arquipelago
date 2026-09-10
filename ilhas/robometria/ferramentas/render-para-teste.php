@@ -149,7 +149,31 @@ if (isset($argv[1]) && basename(__FILE__) === basename($argv[0])) {
 	$alvo = isset($argv[2]) ? $argv[2] : 'robometria_home';
 	/* Num render solto as paginas do menu existem, para o cabecalho sair com os
 	   <a href> de verdade que o teste do menu precisa conferir. */
-	$GLOBALS['__paginas'] = array('ferramentas'=>true,'metodologia'=>true,'sobre'=>true,'divulgacao-de-afiliados'=>true);
+	$GLOBALS['__paginas'] = array(
+		'ferramentas'=>true,'metodologia'=>true,'sobre'=>true,'divulgacao-de-afiliados'=>true,
+		'qual-peca-serve-no-meu-robo-aspirador'=>true,'filtro-universal-de-robo-aspirador'=>true,
+		'quantos-pa-o-robo-aspirador-precisa'=>true,
+	);
 	robometria_teste_carregar($argv[1]);
+
+	/* ESTAMOS NA PAGINA DA FERRAMENTA QUE ESTA SENDO RENDERIZADA.
+	 *
+	 * Sem isto o render solto saia PELA METADE, e em silencio: cada snippet de
+	 * pagina pergunta "estou na minha pagina?" antes de imprimir no wp_head e no
+	 * wp_footer, aqui nao existe is_page(), a resposta era nao, e o HTML vinha
+	 * sem a folha da ferramenta, sem o JSON-LD, sem a barra do celular e sem o
+	 * script do rodape. O shortcode, esse, era chamado direto e aparecia — entao
+	 * a pagina PARECIA inteira.
+	 *
+	 * Ficou medido em 10/09/2026, no Bloco 4: a medicao de rolagem horizontal da
+	 * R2 num Chromium a 360 px deu zero porque a folha que ela mede nao tinha
+	 * sido servida. Medir o layout de uma pagina sem o CSS dela e pior do que nao
+	 * medir — da um numero verde e a sensacao de ter conferido.
+	 *
+	 * O nome do filtro sai do proprio alvo (robometria_r2 -> robometria_r2_na_pagina),
+	 * entao ferramenta nova nao precisa lembrar de vir aqui.
+	 */
+	add_filter($alvo . '_na_pagina', function () { return true; });
+
 	echo robometria_teste_pagina($alvo);
 }

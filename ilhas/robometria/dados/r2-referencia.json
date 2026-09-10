@@ -1,0 +1,2647 @@
+{
+  "id": "r2-referencia",
+  "ilha": "robometria",
+  "entidade": "medicao",
+  "gerado_por": "ferramentas/gerar-r2.py",
+  "o_que_e": "GABARITO da R2: a GRADE de respostas ja em frase, escrita pela implementacao de referencia ferramentas/cobertura-r2.py. Nao vai para o site (publicar=false). Existe para ferramentas/teste-r2.php provar, caso a caso e ignorando acento, que o PHP do snippet diz a MESMA coisa que a referencia — nas 9 situacoes inteiras e na metragem varrida de 10 em 10 m2 contra cada modelo de referencia.",
+  "areas_de_cartao": [
+    10,
+    200,
+    400
+  ],
+  "situacoes": {
+    "liso|nao": {
+      "frase": "Para piso liso sem animal que solta pelo, as fontes brasileiras divergem: o Mundo Conectado recomenda 3.000 Pa e o Mundo Conectado trata ate 1.500 Pa ja basta como o piso do consenso (verificado em 09/09/2026). Esta pagina trabalha com o MAIOR limiar citado, porque errar para baixo custa a compra inteira.",
+      "frase_do_teto": "Acima de 6.000 Pa, o Mundo Conectado escreve que o resultado ja fica proximo do limite pratico percebido — dai para cima, mais succao deixa de comprar melhora que alguem note (verificado em 09/09/2026).",
+      "frase_vazia": null,
+      "no_limiar": []
+    },
+    "liso|curto": {
+      "frase": "Para piso liso com animal de pelo curto, as fontes brasileiras divergem: a Canaltech recomenda acima de 4.000 Pa e o Mundo Conectado trata 3.000 Pa como o piso do consenso (verificado em 09/09/2026). Esta pagina trabalha com o MAIOR limiar citado, porque errar para baixo custa a compra inteira.",
+      "frase_do_teto": "Acima de 6.000 Pa, o Mundo Conectado escreve que o resultado ja fica proximo do limite pratico percebido — dai para cima, mais succao deixa de comprar melhora que alguem note (verificado em 09/09/2026).",
+      "frase_vazia": null,
+      "no_limiar": [
+        {
+          "modelo": "xiaomi-e10",
+          "frase": "Xiaomi E10 declara exatamente 4.000 Pa, e a Canaltech escreve \"acima de 4.000 Pa\". Fica nesta secao separada porque estar no numero nao e estar acima dele."
+        },
+        {
+          "modelo": "xiaomi-s10",
+          "frase": "Xiaomi S10 declara exatamente 4.000 Pa, e a Canaltech escreve \"acima de 4.000 Pa\". Fica nesta secao separada porque estar no numero nao e estar acima dele."
+        }
+      ]
+    },
+    "liso|longo": {
+      "frase": "Para piso liso com animal de pelo longo, as fontes brasileiras divergem: a Canaltech recomenda acima de 4.000 Pa e o Mundo Conectado trata 3.000 Pa como o piso do consenso (verificado em 09/09/2026). Esta pagina trabalha com o MAIOR limiar citado, porque errar para baixo custa a compra inteira.",
+      "frase_do_teto": "Acima de 6.000 Pa, o Mundo Conectado escreve que o resultado ja fica proximo do limite pratico percebido — dai para cima, mais succao deixa de comprar melhora que alguem note (verificado em 09/09/2026).",
+      "frase_vazia": null,
+      "no_limiar": [
+        {
+          "modelo": "xiaomi-e10",
+          "frase": "Xiaomi E10 declara exatamente 4.000 Pa, e a Canaltech escreve \"acima de 4.000 Pa\". Fica nesta secao separada porque estar no numero nao e estar acima dele."
+        },
+        {
+          "modelo": "xiaomi-s10",
+          "frase": "Xiaomi S10 declara exatamente 4.000 Pa, e a Canaltech escreve \"acima de 4.000 Pa\". Fica nesta secao separada porque estar no numero nao e estar acima dele."
+        }
+      ]
+    },
+    "tapete-fino|nao": {
+      "frase": "Para tapete fino sem animal que solta pelo, nenhuma das fontes brasileiras deste banco nomeia a situacao. As duas vizinhas que elas nomeiam sao 3.000 Pa (o Mundo Conectado) e acima de 4.000 Pa (a Canaltech), e esta pagina resolve para a de cima — errar para baixo aqui faz comprar um robo que nao da conta, e a compra inteira se perde.",
+      "frase_do_teto": "Acima de 6.000 Pa, o Mundo Conectado escreve que o resultado ja fica proximo do limite pratico percebido — dai para cima, mais succao deixa de comprar melhora que alguem note (verificado em 09/09/2026).",
+      "frase_vazia": null,
+      "no_limiar": [
+        {
+          "modelo": "xiaomi-e10",
+          "frase": "Xiaomi E10 declara exatamente 4.000 Pa, e a Canaltech escreve \"acima de 4.000 Pa\". Fica nesta secao separada porque estar no numero nao e estar acima dele."
+        },
+        {
+          "modelo": "xiaomi-s10",
+          "frase": "Xiaomi S10 declara exatamente 4.000 Pa, e a Canaltech escreve \"acima de 4.000 Pa\". Fica nesta secao separada porque estar no numero nao e estar acima dele."
+        }
+      ]
+    },
+    "tapete-fino|curto": {
+      "frase": "Para tapete fino com animal de pelo curto, as fontes brasileiras divergem: a Canaltech recomenda acima de 4.000 Pa e o Mundo Conectado trata 3.000 Pa como o piso do consenso (verificado em 09/09/2026). Esta pagina trabalha com o MAIOR limiar citado, porque errar para baixo custa a compra inteira.",
+      "frase_do_teto": "Acima de 6.000 Pa, o Mundo Conectado escreve que o resultado ja fica proximo do limite pratico percebido — dai para cima, mais succao deixa de comprar melhora que alguem note (verificado em 09/09/2026).",
+      "frase_vazia": null,
+      "no_limiar": [
+        {
+          "modelo": "xiaomi-e10",
+          "frase": "Xiaomi E10 declara exatamente 4.000 Pa, e a Canaltech escreve \"acima de 4.000 Pa\". Fica nesta secao separada porque estar no numero nao e estar acima dele."
+        },
+        {
+          "modelo": "xiaomi-s10",
+          "frase": "Xiaomi S10 declara exatamente 4.000 Pa, e a Canaltech escreve \"acima de 4.000 Pa\". Fica nesta secao separada porque estar no numero nao e estar acima dele."
+        }
+      ]
+    },
+    "tapete-fino|longo": {
+      "frase": "Para tapete fino com animal de pelo longo, as fontes brasileiras divergem: a Canaltech recomenda acima de 4.000 Pa e o Mundo Conectado trata 3.000 Pa como o piso do consenso (verificado em 09/09/2026). Esta pagina trabalha com o MAIOR limiar citado, porque errar para baixo custa a compra inteira.",
+      "frase_do_teto": "Acima de 6.000 Pa, o Mundo Conectado escreve que o resultado ja fica proximo do limite pratico percebido — dai para cima, mais succao deixa de comprar melhora que alguem note (verificado em 09/09/2026).",
+      "frase_vazia": null,
+      "no_limiar": [
+        {
+          "modelo": "xiaomi-e10",
+          "frase": "Xiaomi E10 declara exatamente 4.000 Pa, e a Canaltech escreve \"acima de 4.000 Pa\". Fica nesta secao separada porque estar no numero nao e estar acima dele."
+        },
+        {
+          "modelo": "xiaomi-s10",
+          "frase": "Xiaomi S10 declara exatamente 4.000 Pa, e a Canaltech escreve \"acima de 4.000 Pa\". Fica nesta secao separada porque estar no numero nao e estar acima dele."
+        }
+      ]
+    },
+    "carpete|nao": {
+      "frase": "Para carpete sem animal que solta pelo, a unica recomendacao brasileira deste banco e a de a Canaltech: acima de 4.000 Pa (verificado em 09/09/2026).",
+      "frase_do_teto": null,
+      "frase_vazia": null,
+      "no_limiar": [
+        {
+          "modelo": "xiaomi-e10",
+          "frase": "Xiaomi E10 declara exatamente 4.000 Pa, e a Canaltech escreve \"acima de 4.000 Pa\". Fica nesta secao separada porque estar no numero nao e estar acima dele."
+        },
+        {
+          "modelo": "xiaomi-s10",
+          "frase": "Xiaomi S10 declara exatamente 4.000 Pa, e a Canaltech escreve \"acima de 4.000 Pa\". Fica nesta secao separada porque estar no numero nao e estar acima dele."
+        }
+      ]
+    },
+    "carpete|curto": {
+      "frase": "Para carpete com animal de pelo curto, as fontes brasileiras divergem: a Canaltech recomenda acima de 4.000 Pa e o Mundo Conectado trata 3.000 Pa como o piso do consenso (verificado em 09/09/2026). Esta pagina trabalha com o MAIOR limiar citado, porque errar para baixo custa a compra inteira.",
+      "frase_do_teto": null,
+      "frase_vazia": null,
+      "no_limiar": [
+        {
+          "modelo": "xiaomi-e10",
+          "frase": "Xiaomi E10 declara exatamente 4.000 Pa, e a Canaltech escreve \"acima de 4.000 Pa\". Fica nesta secao separada porque estar no numero nao e estar acima dele."
+        },
+        {
+          "modelo": "xiaomi-s10",
+          "frase": "Xiaomi S10 declara exatamente 4.000 Pa, e a Canaltech escreve \"acima de 4.000 Pa\". Fica nesta secao separada porque estar no numero nao e estar acima dele."
+        }
+      ]
+    },
+    "carpete|longo": {
+      "frase": "Para carpete com animal de pelo longo, as fontes brasileiras divergem: a Canaltech recomenda acima de 4.000 Pa e o Mundo Conectado trata 3.000 Pa como o piso do consenso (verificado em 09/09/2026). Esta pagina trabalha com o MAIOR limiar citado, porque errar para baixo custa a compra inteira.",
+      "frase_do_teto": null,
+      "frase_vazia": null,
+      "no_limiar": [
+        {
+          "modelo": "xiaomi-e10",
+          "frase": "Xiaomi E10 declara exatamente 4.000 Pa, e a Canaltech escreve \"acima de 4.000 Pa\". Fica nesta secao separada porque estar no numero nao e estar acima dele."
+        },
+        {
+          "modelo": "xiaomi-s10",
+          "frase": "Xiaomi S10 declara exatamente 4.000 Pa, e a Canaltech escreve \"acima de 4.000 Pa\". Fica nesta secao separada porque estar no numero nao e estar acima dele."
+        }
+      ]
+    }
+  },
+  "cartoes": {
+    "liso|nao@10": [
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 3.000 Pa que o Mundo Conectado recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40c",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 3.000 Pa que o Mundo Conectado recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-e10",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi E10: 4.000 Pa declarados pelo fabricante, acima do limiar de 3.000 Pa que o Mundo Conectado recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s10",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S10: 4.000 Pa declarados pelo fabricante, acima do limiar de 3.000 Pa que o Mundo Conectado recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-h40",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Xiaomi H40: 10.000 Pa declarados pelo fabricante, acima do limiar de 3.000 Pa que o Mundo Conectado recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 3.000 Pa que o Mundo Conectado recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      }
+    ],
+    "liso|nao@200": [
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 3.000 Pa que o Mundo Conectado recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40c",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 3.000 Pa que o Mundo Conectado recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-e10",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi E10: 4.000 Pa declarados pelo fabricante, acima do limiar de 3.000 Pa que o Mundo Conectado recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s10",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S10: 4.000 Pa declarados pelo fabricante, acima do limiar de 3.000 Pa que o Mundo Conectado recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-h40",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Xiaomi H40: 10.000 Pa declarados pelo fabricante, acima do limiar de 3.000 Pa que o Mundo Conectado recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 3.000 Pa que o Mundo Conectado recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      }
+    ],
+    "liso|nao@400": [
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 3.000 Pa que o Mundo Conectado recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40c",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 3.000 Pa que o Mundo Conectado recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-e10",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi E10: 4.000 Pa declarados pelo fabricante, acima do limiar de 3.000 Pa que o Mundo Conectado recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s10",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S10: 4.000 Pa declarados pelo fabricante, acima do limiar de 3.000 Pa que o Mundo Conectado recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-h40",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Xiaomi H40: 10.000 Pa declarados pelo fabricante, acima do limiar de 3.000 Pa que o Mundo Conectado recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 3.000 Pa que o Mundo Conectado recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      }
+    ],
+    "liso|curto@10": [
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40c",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-h40",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Xiaomi H40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      }
+    ],
+    "liso|curto@200": [
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40c",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-h40",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Xiaomi H40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      }
+    ],
+    "liso|curto@400": [
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40c",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-h40",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Xiaomi H40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      }
+    ],
+    "liso|longo@10": [
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40c",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-h40",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Xiaomi H40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      }
+    ],
+    "liso|longo@200": [
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40c",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-h40",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Xiaomi H40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      }
+    ],
+    "liso|longo@400": [
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40c",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-h40",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Xiaomi H40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      }
+    ],
+    "tapete-fino|nao@10": [
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40c",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-h40",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Xiaomi H40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      }
+    ],
+    "tapete-fino|nao@200": [
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40c",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-h40",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Xiaomi H40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      }
+    ],
+    "tapete-fino|nao@400": [
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40c",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-h40",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Xiaomi H40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      }
+    ],
+    "tapete-fino|curto@10": [
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40c",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-h40",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Xiaomi H40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      }
+    ],
+    "tapete-fino|curto@200": [
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40c",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-h40",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Xiaomi H40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      }
+    ],
+    "tapete-fino|curto@400": [
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40c",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-h40",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Xiaomi H40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      }
+    ],
+    "tapete-fino|longo@10": [
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40c",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-h40",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Xiaomi H40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      }
+    ],
+    "tapete-fino|longo@200": [
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40c",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-h40",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Xiaomi H40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      }
+    ],
+    "tapete-fino|longo@400": [
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40c",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-h40",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Xiaomi H40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40",
+        "ressalvas": [
+          "cobertura_nao_declarada",
+          "acima_do_teto_de_utilidade"
+        ],
+        "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: esta acima dos 6.000 Pa em que o Mundo Conectado ve o limite pratico percebido; o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      }
+    ],
+    "carpete|nao@10": [
+      {
+        "modelo": "xiaomi-h40",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi H40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40c",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      }
+    ],
+    "carpete|nao@200": [
+      {
+        "modelo": "xiaomi-h40",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi H40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40c",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      }
+    ],
+    "carpete|nao@400": [
+      {
+        "modelo": "xiaomi-h40",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi H40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40c",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      }
+    ],
+    "carpete|curto@10": [
+      {
+        "modelo": "xiaomi-h40",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi H40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40c",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      }
+    ],
+    "carpete|curto@200": [
+      {
+        "modelo": "xiaomi-h40",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi H40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40c",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      }
+    ],
+    "carpete|curto@400": [
+      {
+        "modelo": "xiaomi-h40",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi H40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40c",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      }
+    ],
+    "carpete|longo@10": [
+      {
+        "modelo": "xiaomi-h40",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi H40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40c",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      }
+    ],
+    "carpete|longo@200": [
+      {
+        "modelo": "xiaomi-h40",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi H40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40c",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      }
+    ],
+    "carpete|longo@400": [
+      {
+        "modelo": "xiaomi-h40",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi H40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S40: 10.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s20",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S20: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      },
+      {
+        "modelo": "xiaomi-s40c",
+        "ressalvas": [
+          "cobertura_nao_declarada"
+        ],
+        "frase": "Xiaomi S40C: 5.000 Pa declarados pelo fabricante, acima do limiar de 4.000 Pa que a Canaltech recomenda para a sua situacao. Ressalva: o fabricante nao declara area coberta por carga para este modelo, entao nao da para dizer se ele termina a sua metragem numa carga."
+      }
+    ]
+  },
+  "ciclos": {
+    "electrolux-erb60@10": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB60, que o fabricante declara cobrir ate 166 m2 por carga, faz 10 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb60@20": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB60, que o fabricante declara cobrir ate 166 m2 por carga, faz 20 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb60@30": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB60, que o fabricante declara cobrir ate 166 m2 por carga, faz 30 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb60@40": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB60, que o fabricante declara cobrir ate 166 m2 por carga, faz 40 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb60@50": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB60, que o fabricante declara cobrir ate 166 m2 por carga, faz 50 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb60@60": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB60, que o fabricante declara cobrir ate 166 m2 por carga, faz 60 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb60@70": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB60, que o fabricante declara cobrir ate 166 m2 por carga, faz 70 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb60@80": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB60, que o fabricante declara cobrir ate 166 m2 por carga, faz 80 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb60@90": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB60, que o fabricante declara cobrir ate 166 m2 por carga, faz 90 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb60@100": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB60, que o fabricante declara cobrir ate 166 m2 por carga, faz 100 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb60@110": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB60, que o fabricante declara cobrir ate 166 m2 por carga, faz 110 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb60@120": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB60, que o fabricante declara cobrir ate 166 m2 por carga, faz 120 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb60@130": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB60, que o fabricante declara cobrir ate 166 m2 por carga, faz 130 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb60@140": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB60, que o fabricante declara cobrir ate 166 m2 por carga, faz 140 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb60@150": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB60, que o fabricante declara cobrir ate 166 m2 por carga, faz 150 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb60@160": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB60, que o fabricante declara cobrir ate 166 m2 por carga, faz 160 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb60@165": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB60, que o fabricante declara cobrir ate 166 m2 por carga, faz 165 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb60@166": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB60, que o fabricante declara cobrir ate 166 m2 por carga, faz 166 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb60@167": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB60 cobre ate 166 m2 por carga, entao 167 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb60@170": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB60 cobre ate 166 m2 por carga, entao 170 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb60@180": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB60 cobre ate 166 m2 por carga, entao 180 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb60@190": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB60 cobre ate 166 m2 por carga, entao 190 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb60@200": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB60 cobre ate 166 m2 por carga, entao 200 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb60@210": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB60 cobre ate 166 m2 por carga, entao 210 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb60@220": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB60 cobre ate 166 m2 por carga, entao 220 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb60@230": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB60 cobre ate 166 m2 por carga, entao 230 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb60@240": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB60 cobre ate 166 m2 por carga, entao 240 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb60@250": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB60 cobre ate 166 m2 por carga, entao 250 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb60@260": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB60 cobre ate 166 m2 por carga, entao 260 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb60@270": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB60 cobre ate 166 m2 por carga, entao 270 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb60@280": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB60 cobre ate 166 m2 por carga, entao 280 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb60@290": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB60 cobre ate 166 m2 por carga, entao 290 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb60@300": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB60 cobre ate 166 m2 por carga, entao 300 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb60@310": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB60 cobre ate 166 m2 por carga, entao 310 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb60@320": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB60 cobre ate 166 m2 por carga, entao 320 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb60@330": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB60 cobre ate 166 m2 por carga, entao 330 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb60@331": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB60 cobre ate 166 m2 por carga, entao 331 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb60@332": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB60 cobre ate 166 m2 por carga, entao 332 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb60@333": {
+      "ciclos": 3,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 300,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB60 cobre ate 166 m2 por carga, entao 333 m2 exigem 3 ciclos: 300 minutos de limpeza somados, mais 2 recargas. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb60@340": {
+      "ciclos": 3,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 300,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB60 cobre ate 166 m2 por carga, entao 340 m2 exigem 3 ciclos: 300 minutos de limpeza somados, mais 2 recargas. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb60@350": {
+      "ciclos": 3,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 300,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB60 cobre ate 166 m2 por carga, entao 350 m2 exigem 3 ciclos: 300 minutos de limpeza somados, mais 2 recargas. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb60@360": {
+      "ciclos": 3,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 300,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB60 cobre ate 166 m2 por carga, entao 360 m2 exigem 3 ciclos: 300 minutos de limpeza somados, mais 2 recargas. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb60@370": {
+      "ciclos": 3,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 300,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB60 cobre ate 166 m2 por carga, entao 370 m2 exigem 3 ciclos: 300 minutos de limpeza somados, mais 2 recargas. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb60@380": {
+      "ciclos": 3,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 300,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB60 cobre ate 166 m2 por carga, entao 380 m2 exigem 3 ciclos: 300 minutos de limpeza somados, mais 2 recargas. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb60@390": {
+      "ciclos": 3,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 300,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB60 cobre ate 166 m2 por carga, entao 390 m2 exigem 3 ciclos: 300 minutos de limpeza somados, mais 2 recargas. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb60@400": {
+      "ciclos": 3,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 300,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB60 cobre ate 166 m2 por carga, entao 400 m2 exigem 3 ciclos: 300 minutos de limpeza somados, mais 2 recargas. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb61@10": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB61, que o fabricante declara cobrir ate 166 m2 por carga, faz 10 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb61@20": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB61, que o fabricante declara cobrir ate 166 m2 por carga, faz 20 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb61@30": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB61, que o fabricante declara cobrir ate 166 m2 por carga, faz 30 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb61@40": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB61, que o fabricante declara cobrir ate 166 m2 por carga, faz 40 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb61@50": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB61, que o fabricante declara cobrir ate 166 m2 por carga, faz 50 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb61@60": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB61, que o fabricante declara cobrir ate 166 m2 por carga, faz 60 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb61@70": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB61, que o fabricante declara cobrir ate 166 m2 por carga, faz 70 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb61@80": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB61, que o fabricante declara cobrir ate 166 m2 por carga, faz 80 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb61@90": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB61, que o fabricante declara cobrir ate 166 m2 por carga, faz 90 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb61@100": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB61, que o fabricante declara cobrir ate 166 m2 por carga, faz 100 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb61@110": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB61, que o fabricante declara cobrir ate 166 m2 por carga, faz 110 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb61@120": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB61, que o fabricante declara cobrir ate 166 m2 por carga, faz 120 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb61@130": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB61, que o fabricante declara cobrir ate 166 m2 por carga, faz 130 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb61@140": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB61, que o fabricante declara cobrir ate 166 m2 por carga, faz 140 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb61@150": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB61, que o fabricante declara cobrir ate 166 m2 por carga, faz 150 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb61@160": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB61, que o fabricante declara cobrir ate 166 m2 por carga, faz 160 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb61@165": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB61, que o fabricante declara cobrir ate 166 m2 por carga, faz 165 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb61@166": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB61, que o fabricante declara cobrir ate 166 m2 por carga, faz 166 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb61@167": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB61 cobre ate 166 m2 por carga, entao 167 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb61@170": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB61 cobre ate 166 m2 por carga, entao 170 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb61@180": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB61 cobre ate 166 m2 por carga, entao 180 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb61@190": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB61 cobre ate 166 m2 por carga, entao 190 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb61@200": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB61 cobre ate 166 m2 por carga, entao 200 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb61@210": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB61 cobre ate 166 m2 por carga, entao 210 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb61@220": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB61 cobre ate 166 m2 por carga, entao 220 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb61@230": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB61 cobre ate 166 m2 por carga, entao 230 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb61@240": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB61 cobre ate 166 m2 por carga, entao 240 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb61@250": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB61 cobre ate 166 m2 por carga, entao 250 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb61@260": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB61 cobre ate 166 m2 por carga, entao 260 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb61@270": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB61 cobre ate 166 m2 por carga, entao 270 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb61@280": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB61 cobre ate 166 m2 por carga, entao 280 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb61@290": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB61 cobre ate 166 m2 por carga, entao 290 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb61@300": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB61 cobre ate 166 m2 por carga, entao 300 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb61@310": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB61 cobre ate 166 m2 por carga, entao 310 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb61@320": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB61 cobre ate 166 m2 por carga, entao 320 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb61@330": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB61 cobre ate 166 m2 por carga, entao 330 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb61@331": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB61 cobre ate 166 m2 por carga, entao 331 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb61@332": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB61 cobre ate 166 m2 por carga, entao 332 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb61@333": {
+      "ciclos": 3,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 300,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB61 cobre ate 166 m2 por carga, entao 333 m2 exigem 3 ciclos: 300 minutos de limpeza somados, mais 2 recargas. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb61@340": {
+      "ciclos": 3,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 300,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB61 cobre ate 166 m2 por carga, entao 340 m2 exigem 3 ciclos: 300 minutos de limpeza somados, mais 2 recargas. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb61@350": {
+      "ciclos": 3,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 300,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB61 cobre ate 166 m2 por carga, entao 350 m2 exigem 3 ciclos: 300 minutos de limpeza somados, mais 2 recargas. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb61@360": {
+      "ciclos": 3,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 300,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB61 cobre ate 166 m2 por carga, entao 360 m2 exigem 3 ciclos: 300 minutos de limpeza somados, mais 2 recargas. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb61@370": {
+      "ciclos": 3,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 300,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB61 cobre ate 166 m2 por carga, entao 370 m2 exigem 3 ciclos: 300 minutos de limpeza somados, mais 2 recargas. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb61@380": {
+      "ciclos": 3,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 300,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB61 cobre ate 166 m2 por carga, entao 380 m2 exigem 3 ciclos: 300 minutos de limpeza somados, mais 2 recargas. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb61@390": {
+      "ciclos": 3,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 300,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB61 cobre ate 166 m2 por carga, entao 390 m2 exigem 3 ciclos: 300 minutos de limpeza somados, mais 2 recargas. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb61@400": {
+      "ciclos": 3,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 300,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB61 cobre ate 166 m2 por carga, entao 400 m2 exigem 3 ciclos: 300 minutos de limpeza somados, mais 2 recargas. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb62@10": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB62, que o fabricante declara cobrir ate 166 m2 por carga, faz 10 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb62@20": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB62, que o fabricante declara cobrir ate 166 m2 por carga, faz 20 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb62@30": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB62, que o fabricante declara cobrir ate 166 m2 por carga, faz 30 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb62@40": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB62, que o fabricante declara cobrir ate 166 m2 por carga, faz 40 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb62@50": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB62, que o fabricante declara cobrir ate 166 m2 por carga, faz 50 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb62@60": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB62, que o fabricante declara cobrir ate 166 m2 por carga, faz 60 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb62@70": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB62, que o fabricante declara cobrir ate 166 m2 por carga, faz 70 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb62@80": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB62, que o fabricante declara cobrir ate 166 m2 por carga, faz 80 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb62@90": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB62, que o fabricante declara cobrir ate 166 m2 por carga, faz 90 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb62@100": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB62, que o fabricante declara cobrir ate 166 m2 por carga, faz 100 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb62@110": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB62, que o fabricante declara cobrir ate 166 m2 por carga, faz 110 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb62@120": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB62, que o fabricante declara cobrir ate 166 m2 por carga, faz 120 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb62@130": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB62, que o fabricante declara cobrir ate 166 m2 por carga, faz 130 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb62@140": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB62, que o fabricante declara cobrir ate 166 m2 por carga, faz 140 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb62@150": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB62, que o fabricante declara cobrir ate 166 m2 por carga, faz 150 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb62@160": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB62, que o fabricante declara cobrir ate 166 m2 por carga, faz 160 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb62@165": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB62, que o fabricante declara cobrir ate 166 m2 por carga, faz 165 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb62@166": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB62, que o fabricante declara cobrir ate 166 m2 por carga, faz 166 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb62@167": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB62 cobre ate 166 m2 por carga, entao 167 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb62@170": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB62 cobre ate 166 m2 por carga, entao 170 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb62@180": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB62 cobre ate 166 m2 por carga, entao 180 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb62@190": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB62 cobre ate 166 m2 por carga, entao 190 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb62@200": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB62 cobre ate 166 m2 por carga, entao 200 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb62@210": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB62 cobre ate 166 m2 por carga, entao 210 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb62@220": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB62 cobre ate 166 m2 por carga, entao 220 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb62@230": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB62 cobre ate 166 m2 por carga, entao 230 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb62@240": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB62 cobre ate 166 m2 por carga, entao 240 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb62@250": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB62 cobre ate 166 m2 por carga, entao 250 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb62@260": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB62 cobre ate 166 m2 por carga, entao 260 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb62@270": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB62 cobre ate 166 m2 por carga, entao 270 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb62@280": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB62 cobre ate 166 m2 por carga, entao 280 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb62@290": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB62 cobre ate 166 m2 por carga, entao 290 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb62@300": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB62 cobre ate 166 m2 por carga, entao 300 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb62@310": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB62 cobre ate 166 m2 por carga, entao 310 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb62@320": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB62 cobre ate 166 m2 por carga, entao 320 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb62@330": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB62 cobre ate 166 m2 por carga, entao 330 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb62@331": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB62 cobre ate 166 m2 por carga, entao 331 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb62@332": {
+      "ciclos": 2,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 200,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB62 cobre ate 166 m2 por carga, entao 332 m2 exigem 2 ciclos: 200 minutos de limpeza somados, mais 1 recarga. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb62@333": {
+      "ciclos": 3,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 300,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB62 cobre ate 166 m2 por carga, entao 333 m2 exigem 3 ciclos: 300 minutos de limpeza somados, mais 2 recargas. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb62@340": {
+      "ciclos": 3,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 300,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB62 cobre ate 166 m2 por carga, entao 340 m2 exigem 3 ciclos: 300 minutos de limpeza somados, mais 2 recargas. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb62@350": {
+      "ciclos": 3,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 300,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB62 cobre ate 166 m2 por carga, entao 350 m2 exigem 3 ciclos: 300 minutos de limpeza somados, mais 2 recargas. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb62@360": {
+      "ciclos": 3,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 300,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB62 cobre ate 166 m2 por carga, entao 360 m2 exigem 3 ciclos: 300 minutos de limpeza somados, mais 2 recargas. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb62@370": {
+      "ciclos": 3,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 300,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB62 cobre ate 166 m2 por carga, entao 370 m2 exigem 3 ciclos: 300 minutos de limpeza somados, mais 2 recargas. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb62@380": {
+      "ciclos": 3,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 300,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB62 cobre ate 166 m2 por carga, entao 380 m2 exigem 3 ciclos: 300 minutos de limpeza somados, mais 2 recargas. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb62@390": {
+      "ciclos": 3,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 300,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB62 cobre ate 166 m2 por carga, entao 390 m2 exigem 3 ciclos: 300 minutos de limpeza somados, mais 2 recargas. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb62@400": {
+      "ciclos": 3,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 300,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB62 cobre ate 166 m2 por carga, entao 400 m2 exigem 3 ciclos: 300 minutos de limpeza somados, mais 2 recargas. O fabricante declara que este modelo retoma de onde parou, mas NAO declara quanto tempo a recarga leva — por isso publicamos os ciclos e nao o tempo total."
+    },
+    "electrolux-erb80@10": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB80, que o fabricante declara cobrir ate 166 m2 por carga, faz 10 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb80@20": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB80, que o fabricante declara cobrir ate 166 m2 por carga, faz 20 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb80@30": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB80, que o fabricante declara cobrir ate 166 m2 por carga, faz 30 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb80@40": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB80, que o fabricante declara cobrir ate 166 m2 por carga, faz 40 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb80@50": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB80, que o fabricante declara cobrir ate 166 m2 por carga, faz 50 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb80@60": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB80, que o fabricante declara cobrir ate 166 m2 por carga, faz 60 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb80@70": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB80, que o fabricante declara cobrir ate 166 m2 por carga, faz 70 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb80@80": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB80, que o fabricante declara cobrir ate 166 m2 por carga, faz 80 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb80@90": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB80, que o fabricante declara cobrir ate 166 m2 por carga, faz 90 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb80@100": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB80, que o fabricante declara cobrir ate 166 m2 por carga, faz 100 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb80@110": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB80, que o fabricante declara cobrir ate 166 m2 por carga, faz 110 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb80@120": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB80, que o fabricante declara cobrir ate 166 m2 por carga, faz 120 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb80@130": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB80, que o fabricante declara cobrir ate 166 m2 por carga, faz 130 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb80@140": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB80, que o fabricante declara cobrir ate 166 m2 por carga, faz 140 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb80@150": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB80, que o fabricante declara cobrir ate 166 m2 por carga, faz 150 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb80@160": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB80, que o fabricante declara cobrir ate 166 m2 por carga, faz 160 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb80@165": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB80, que o fabricante declara cobrir ate 166 m2 por carga, faz 165 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb80@166": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 100,
+      "tempo_total_min": 100,
+      "frase": "Um Electrolux ERB80, que o fabricante declara cobrir ate 166 m2 por carga, faz 166 m2 em um ciclo so — 100 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb80@167": {
+      "ciclos": 2,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB80 cobre ate 166 m2 por carga, e 167 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb80@170": {
+      "ciclos": 2,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB80 cobre ate 166 m2 por carga, e 170 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb80@180": {
+      "ciclos": 2,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB80 cobre ate 166 m2 por carga, e 180 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb80@190": {
+      "ciclos": 2,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB80 cobre ate 166 m2 por carga, e 190 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb80@200": {
+      "ciclos": 2,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB80 cobre ate 166 m2 por carga, e 200 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb80@210": {
+      "ciclos": 2,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB80 cobre ate 166 m2 por carga, e 210 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb80@220": {
+      "ciclos": 2,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB80 cobre ate 166 m2 por carga, e 220 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb80@230": {
+      "ciclos": 2,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB80 cobre ate 166 m2 por carga, e 230 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb80@240": {
+      "ciclos": 2,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB80 cobre ate 166 m2 por carga, e 240 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb80@250": {
+      "ciclos": 2,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB80 cobre ate 166 m2 por carga, e 250 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb80@260": {
+      "ciclos": 2,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB80 cobre ate 166 m2 por carga, e 260 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb80@270": {
+      "ciclos": 2,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB80 cobre ate 166 m2 por carga, e 270 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb80@280": {
+      "ciclos": 2,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB80 cobre ate 166 m2 por carga, e 280 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb80@290": {
+      "ciclos": 2,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB80 cobre ate 166 m2 por carga, e 290 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb80@300": {
+      "ciclos": 2,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB80 cobre ate 166 m2 por carga, e 300 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb80@310": {
+      "ciclos": 2,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB80 cobre ate 166 m2 por carga, e 310 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb80@320": {
+      "ciclos": 2,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB80 cobre ate 166 m2 por carga, e 320 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb80@330": {
+      "ciclos": 2,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB80 cobre ate 166 m2 por carga, e 330 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb80@331": {
+      "ciclos": 2,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB80 cobre ate 166 m2 por carga, e 331 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb80@332": {
+      "ciclos": 2,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB80 cobre ate 166 m2 por carga, e 332 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb80@333": {
+      "ciclos": 3,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB80 cobre ate 166 m2 por carga, e 333 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb80@340": {
+      "ciclos": 3,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB80 cobre ate 166 m2 por carga, e 340 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb80@350": {
+      "ciclos": 3,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB80 cobre ate 166 m2 por carga, e 350 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb80@360": {
+      "ciclos": 3,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB80 cobre ate 166 m2 por carga, e 360 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb80@370": {
+      "ciclos": 3,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB80 cobre ate 166 m2 por carga, e 370 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb80@380": {
+      "ciclos": 3,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB80 cobre ate 166 m2 por carga, e 380 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb80@390": {
+      "ciclos": 3,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB80 cobre ate 166 m2 por carga, e 390 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb80@400": {
+      "ciclos": 3,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB80 cobre ate 166 m2 por carga, e 400 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb44@10": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 120,
+      "tempo_total_min": 120,
+      "frase": "Um Electrolux ERB44, que o fabricante declara cobrir ate 162 m2 por carga, faz 10 m2 em um ciclo so — 120 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb44@20": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 120,
+      "tempo_total_min": 120,
+      "frase": "Um Electrolux ERB44, que o fabricante declara cobrir ate 162 m2 por carga, faz 20 m2 em um ciclo so — 120 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb44@30": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 120,
+      "tempo_total_min": 120,
+      "frase": "Um Electrolux ERB44, que o fabricante declara cobrir ate 162 m2 por carga, faz 30 m2 em um ciclo so — 120 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb44@40": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 120,
+      "tempo_total_min": 120,
+      "frase": "Um Electrolux ERB44, que o fabricante declara cobrir ate 162 m2 por carga, faz 40 m2 em um ciclo so — 120 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb44@50": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 120,
+      "tempo_total_min": 120,
+      "frase": "Um Electrolux ERB44, que o fabricante declara cobrir ate 162 m2 por carga, faz 50 m2 em um ciclo so — 120 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb44@60": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 120,
+      "tempo_total_min": 120,
+      "frase": "Um Electrolux ERB44, que o fabricante declara cobrir ate 162 m2 por carga, faz 60 m2 em um ciclo so — 120 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb44@70": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 120,
+      "tempo_total_min": 120,
+      "frase": "Um Electrolux ERB44, que o fabricante declara cobrir ate 162 m2 por carga, faz 70 m2 em um ciclo so — 120 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb44@80": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 120,
+      "tempo_total_min": 120,
+      "frase": "Um Electrolux ERB44, que o fabricante declara cobrir ate 162 m2 por carga, faz 80 m2 em um ciclo so — 120 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb44@90": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 120,
+      "tempo_total_min": 120,
+      "frase": "Um Electrolux ERB44, que o fabricante declara cobrir ate 162 m2 por carga, faz 90 m2 em um ciclo so — 120 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb44@100": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 120,
+      "tempo_total_min": 120,
+      "frase": "Um Electrolux ERB44, que o fabricante declara cobrir ate 162 m2 por carga, faz 100 m2 em um ciclo so — 120 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb44@110": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 120,
+      "tempo_total_min": 120,
+      "frase": "Um Electrolux ERB44, que o fabricante declara cobrir ate 162 m2 por carga, faz 110 m2 em um ciclo so — 120 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb44@120": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 120,
+      "tempo_total_min": 120,
+      "frase": "Um Electrolux ERB44, que o fabricante declara cobrir ate 162 m2 por carga, faz 120 m2 em um ciclo so — 120 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb44@130": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 120,
+      "tempo_total_min": 120,
+      "frase": "Um Electrolux ERB44, que o fabricante declara cobrir ate 162 m2 por carga, faz 130 m2 em um ciclo so — 120 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb44@140": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 120,
+      "tempo_total_min": 120,
+      "frase": "Um Electrolux ERB44, que o fabricante declara cobrir ate 162 m2 por carga, faz 140 m2 em um ciclo so — 120 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb44@150": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 120,
+      "tempo_total_min": 120,
+      "frase": "Um Electrolux ERB44, que o fabricante declara cobrir ate 162 m2 por carga, faz 150 m2 em um ciclo so — 120 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb44@160": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 120,
+      "tempo_total_min": 120,
+      "frase": "Um Electrolux ERB44, que o fabricante declara cobrir ate 162 m2 por carga, faz 160 m2 em um ciclo so — 120 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb44@161": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 120,
+      "tempo_total_min": 120,
+      "frase": "Um Electrolux ERB44, que o fabricante declara cobrir ate 162 m2 por carga, faz 161 m2 em um ciclo so — 120 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb44@162": {
+      "ciclos": 1,
+      "multiciclo_valido": true,
+      "tempo_de_limpeza_min": 120,
+      "tempo_total_min": 120,
+      "frase": "Um Electrolux ERB44, que o fabricante declara cobrir ate 162 m2 por carga, faz 162 m2 em um ciclo so — 120 minutos de limpeza, dentro da autonomia declarada."
+    },
+    "electrolux-erb44@163": {
+      "ciclos": 2,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB44 cobre ate 162 m2 por carga, e 163 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb44@170": {
+      "ciclos": 2,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB44 cobre ate 162 m2 por carga, e 170 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb44@180": {
+      "ciclos": 2,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB44 cobre ate 162 m2 por carga, e 180 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb44@190": {
+      "ciclos": 2,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB44 cobre ate 162 m2 por carga, e 190 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb44@200": {
+      "ciclos": 2,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB44 cobre ate 162 m2 por carga, e 200 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb44@210": {
+      "ciclos": 2,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB44 cobre ate 162 m2 por carga, e 210 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb44@220": {
+      "ciclos": 2,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB44 cobre ate 162 m2 por carga, e 220 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb44@230": {
+      "ciclos": 2,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB44 cobre ate 162 m2 por carga, e 230 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb44@240": {
+      "ciclos": 2,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB44 cobre ate 162 m2 por carga, e 240 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb44@250": {
+      "ciclos": 2,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB44 cobre ate 162 m2 por carga, e 250 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb44@260": {
+      "ciclos": 2,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB44 cobre ate 162 m2 por carga, e 260 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb44@270": {
+      "ciclos": 2,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB44 cobre ate 162 m2 por carga, e 270 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb44@280": {
+      "ciclos": 2,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB44 cobre ate 162 m2 por carga, e 280 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb44@290": {
+      "ciclos": 2,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB44 cobre ate 162 m2 por carga, e 290 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb44@300": {
+      "ciclos": 2,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB44 cobre ate 162 m2 por carga, e 300 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb44@310": {
+      "ciclos": 2,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB44 cobre ate 162 m2 por carga, e 310 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb44@320": {
+      "ciclos": 2,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB44 cobre ate 162 m2 por carga, e 320 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb44@323": {
+      "ciclos": 2,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB44 cobre ate 162 m2 por carga, e 323 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb44@324": {
+      "ciclos": 2,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB44 cobre ate 162 m2 por carga, e 324 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb44@325": {
+      "ciclos": 3,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB44 cobre ate 162 m2 por carga, e 325 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb44@330": {
+      "ciclos": 3,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB44 cobre ate 162 m2 por carga, e 330 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb44@340": {
+      "ciclos": 3,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB44 cobre ate 162 m2 por carga, e 340 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb44@350": {
+      "ciclos": 3,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB44 cobre ate 162 m2 por carga, e 350 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb44@360": {
+      "ciclos": 3,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB44 cobre ate 162 m2 por carga, e 360 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb44@370": {
+      "ciclos": 3,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB44 cobre ate 162 m2 por carga, e 370 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb44@380": {
+      "ciclos": 3,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB44 cobre ate 162 m2 por carga, e 380 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb44@390": {
+      "ciclos": 3,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB44 cobre ate 162 m2 por carga, e 390 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    },
+    "electrolux-erb44@400": {
+      "ciclos": 3,
+      "multiciclo_valido": false,
+      "tempo_de_limpeza_min": null,
+      "tempo_total_min": null,
+      "frase": "Um Electrolux ERB44 cobre ate 162 m2 por carga, e 400 m2 passam disso. O fabricante nao declara se este modelo retoma de onde parou depois de recarregar — sem esse dado a conta de mais de um ciclo nao se sustenta, e esta pagina nao a publica."
+    }
+  },
+  "contexto": {
+    "conversao": "Esta ferramenta nao converte minutos em metros quadrados. Das 5 marcas publicaveis do banco, 4 nao declaram area coberta por carga em canal nenhum (Multi (ex-Multilaser), Positivo Casa Inteligente, WAP, Xiaomi) — declaram minutos, e algumas nem isso. Entre os pares declarados a taxa vai de 1,35 a 1,66 m2 por minuto — 23% de diferenca dentro do MESMO fabricante. Uma taxa geral de m2 por minuto nao existe publicada, e inventa-la seria dar ao leitor um numero que nenhum fabricante sustenta.",
+    "funil": "17 dos 28 modelos publicaveis do banco nao entram em lista nenhuma desta ferramenta: Electrolux, Multi (ex-Multilaser) nao declaram succao em pascal em modelo nenhum; WAP declara em parte da linha e cala no resto. Sao, em boa parte, exatamente os modelos que a outra ferramenta desta ilha responde melhor — quem publica codigo de peca costuma nao publicar pascal, e vice-versa.",
+    "classe_de_fonte": "Os limiares de Pa desta pagina NAO sao especificacao de fabricante: sao recomendacao publicada por veiculo brasileiro, e cada uma sai com o nome de quem a recomenda. O Pa de cada robo, esse sim, e declarado pelo fabricante."
+  }
+}

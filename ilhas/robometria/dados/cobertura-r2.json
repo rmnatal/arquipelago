@@ -1,0 +1,429 @@
+{
+  "id": "cobertura-r2",
+  "ilha": "robometria",
+  "entidade": "medicao",
+  "gerado_por": "ferramentas/cobertura-r2.py",
+  "banco_gerado_em": "2026-09-09",
+  "o_que_e": "Varredura da entrada da R2 de ponta a ponta, exigida pela secao 14.3 do ARQUIPELAGO.md: as 9 situacoes de piso x pelo, e a metragem de 10 a 400 m2 contra cada modelo de referencia. O criterio nao e numero redondo de itens — e que nenhuma situacao que a ferramenta consegue produzir saia com menos de 3 elegiveis.",
+  "nota_sobre_a_medicao_anterior": "cobertura_de_faixa_r2, dentro de dados/modelos-robo.json, mediu a mesma faixa em 09/09/2026 e chegou a numeros MAIORES nas situacoes de pet. A diferenca nao e erro de nenhum dos dois: aquela varredura tratou o limiar da Canaltech como >=, e esta trata como >, porque a fonte escreve 'acima de 4.000 Pa' e um modelo de exatamente 4.000 Pa nao esta acima de 4.000. Os modelos que ficam no valor exato nao somem — vao para um grupo proprio, rotulado. Esta varredura passa a ser a que a ferramenta consulta.",
+  "medido_em": "2026-09-09",
+  "entrada": {
+    "area_m2": {
+      "minimo": 10,
+      "maximo": 400,
+      "passo_da_varredura": 10
+    },
+    "tipo_de_piso": [
+      "liso",
+      "tapete fino",
+      "carpete"
+    ],
+    "pelo_de_pet": [
+      "nao",
+      "curto",
+      "longo"
+    ],
+    "metragens_do_corpus": [
+      {
+        "m2": 60,
+        "onde": "apartamento 60-80 m2, minimo aceitavel 90 minutos de autonomia (forum)"
+      },
+      {
+        "m2": 80,
+        "onde": "robo aspirador para 80 m2 apartamento pequeno (busca web direta)"
+      },
+      {
+        "m2": 100,
+        "onde": "faixa 'intermediario 100-150 m2' (Mundo Conectado)"
+      },
+      {
+        "m2": 150,
+        "onde": "faixa 'premium 150-200+ m2' (Mundo Conectado)"
+      },
+      {
+        "m2": 200,
+        "onde": "robo aspirador que passa pano em casa de 200 m2 (Canaltech)"
+      }
+    ]
+  },
+  "ancora": {
+    "situacao": {
+      "piso": "liso",
+      "pelo": "curto"
+    },
+    "area_m2": 200,
+    "modelo_de_referencia": "electrolux-erb60"
+  },
+  "regras_de_limiar": [
+    {
+      "constante": "pa-piso-liso-sujeira-leve",
+      "papel": "limiar",
+      "comparacao": "suficiente",
+      "pisos": [
+        "liso"
+      ],
+      "pelos": [
+        "nao"
+      ],
+      "palavras_da_fonte": "piso liso, sujeira leve"
+    },
+    {
+      "constante": "pa-apartamento-piso-liso",
+      "papel": "limiar",
+      "comparacao": "recomendado",
+      "pisos": [
+        "liso"
+      ],
+      "pelos": [
+        "nao"
+      ],
+      "palavras_da_fonte": "apartamento com piso liso e pouca circulacao"
+    },
+    {
+      "constante": "pa-apartamento-pequeno-sem-pet",
+      "papel": "limiar",
+      "comparacao": "recomendado",
+      "pisos": [
+        "liso"
+      ],
+      "pelos": [
+        "nao"
+      ],
+      "palavras_da_fonte": "apartamento pequeno sem animais, uso do dia a dia"
+    },
+    {
+      "constante": "pa-limiar-pet-canaltech",
+      "papel": "limiar",
+      "comparacao": "acima_de",
+      "pisos": [
+        "liso",
+        "tapete fino",
+        "carpete"
+      ],
+      "pelos": [
+        "curto",
+        "longo"
+      ],
+      "palavras_da_fonte": "ideal para pelo de pet e carpete"
+    },
+    {
+      "constante": "pa-limiar-pet-mundoconectado",
+      "papel": "limiar",
+      "comparacao": "recomendado",
+      "pisos": [
+        "liso",
+        "tapete fino",
+        "carpete"
+      ],
+      "pelos": [
+        "curto",
+        "longo"
+      ],
+      "palavras_da_fonte": "casa com pet: consenso acima de 3.000 Pa, faixa confortavel entre 4.000 e 6.000 Pa"
+    },
+    {
+      "constante": "pa-limite-pratico-percebido",
+      "papel": "teto",
+      "comparacao": "acima_de",
+      "pisos": [
+        "liso",
+        "tapete fino"
+      ],
+      "pelos": [
+        "nao",
+        "curto",
+        "longo"
+      ],
+      "palavras_da_fonte": "piso liso com tapete pontual: acima disto o resultado fica proximo do limite pratico percebido"
+    }
+  ],
+  "situacoes_sem_fonte_direta": [
+    {
+      "piso": "tapete fino",
+      "pelo": "nao"
+    }
+  ],
+  "faixas": [
+    {
+      "piso": "liso",
+      "pelo": "nao",
+      "por_ponte": false,
+      "limiar_seguro": 3000,
+      "comparacao": "recomendado",
+      "publicador_seguro": "Mundo Conectado",
+      "limiar_minimo": 1500,
+      "publicador_minimo": "Mundo Conectado",
+      "elegiveis": 6,
+      "no_limiar": 0,
+      "marcas": [
+        "Xiaomi"
+      ],
+      "portao_3_itens": "OK",
+      "concentracao_de_marca": "ATENCAO: 6 de 6 elegiveis sao da mesma marca (Xiaomi)"
+    },
+    {
+      "piso": "liso",
+      "pelo": "curto",
+      "por_ponte": false,
+      "limiar_seguro": 4000,
+      "comparacao": "acima_de",
+      "publicador_seguro": "Canaltech",
+      "limiar_minimo": 3000,
+      "publicador_minimo": "Mundo Conectado",
+      "elegiveis": 4,
+      "no_limiar": 2,
+      "marcas": [
+        "Xiaomi"
+      ],
+      "portao_3_itens": "OK",
+      "concentracao_de_marca": "ATENCAO: 4 de 4 elegiveis sao da mesma marca (Xiaomi)"
+    },
+    {
+      "piso": "liso",
+      "pelo": "longo",
+      "por_ponte": false,
+      "limiar_seguro": 4000,
+      "comparacao": "acima_de",
+      "publicador_seguro": "Canaltech",
+      "limiar_minimo": 3000,
+      "publicador_minimo": "Mundo Conectado",
+      "elegiveis": 4,
+      "no_limiar": 2,
+      "marcas": [
+        "Xiaomi"
+      ],
+      "portao_3_itens": "OK",
+      "concentracao_de_marca": "ATENCAO: 4 de 4 elegiveis sao da mesma marca (Xiaomi)"
+    },
+    {
+      "piso": "tapete fino",
+      "pelo": "nao",
+      "por_ponte": true,
+      "limiar_seguro": 4000,
+      "comparacao": "acima_de",
+      "publicador_seguro": "Canaltech",
+      "limiar_minimo": 3000,
+      "publicador_minimo": "Mundo Conectado",
+      "elegiveis": 4,
+      "no_limiar": 2,
+      "marcas": [
+        "Xiaomi"
+      ],
+      "portao_3_itens": "OK",
+      "concentracao_de_marca": "ATENCAO: 4 de 4 elegiveis sao da mesma marca (Xiaomi)"
+    },
+    {
+      "piso": "tapete fino",
+      "pelo": "curto",
+      "por_ponte": false,
+      "limiar_seguro": 4000,
+      "comparacao": "acima_de",
+      "publicador_seguro": "Canaltech",
+      "limiar_minimo": 3000,
+      "publicador_minimo": "Mundo Conectado",
+      "elegiveis": 4,
+      "no_limiar": 2,
+      "marcas": [
+        "Xiaomi"
+      ],
+      "portao_3_itens": "OK",
+      "concentracao_de_marca": "ATENCAO: 4 de 4 elegiveis sao da mesma marca (Xiaomi)"
+    },
+    {
+      "piso": "tapete fino",
+      "pelo": "longo",
+      "por_ponte": false,
+      "limiar_seguro": 4000,
+      "comparacao": "acima_de",
+      "publicador_seguro": "Canaltech",
+      "limiar_minimo": 3000,
+      "publicador_minimo": "Mundo Conectado",
+      "elegiveis": 4,
+      "no_limiar": 2,
+      "marcas": [
+        "Xiaomi"
+      ],
+      "portao_3_itens": "OK",
+      "concentracao_de_marca": "ATENCAO: 4 de 4 elegiveis sao da mesma marca (Xiaomi)"
+    },
+    {
+      "piso": "carpete",
+      "pelo": "nao",
+      "por_ponte": false,
+      "limiar_seguro": 4000,
+      "comparacao": "acima_de",
+      "publicador_seguro": "Canaltech",
+      "limiar_minimo": 4000,
+      "publicador_minimo": "Canaltech",
+      "elegiveis": 4,
+      "no_limiar": 2,
+      "marcas": [
+        "Xiaomi"
+      ],
+      "portao_3_itens": "OK",
+      "concentracao_de_marca": "ATENCAO: 4 de 4 elegiveis sao da mesma marca (Xiaomi)"
+    },
+    {
+      "piso": "carpete",
+      "pelo": "curto",
+      "por_ponte": false,
+      "limiar_seguro": 4000,
+      "comparacao": "acima_de",
+      "publicador_seguro": "Canaltech",
+      "limiar_minimo": 3000,
+      "publicador_minimo": "Mundo Conectado",
+      "elegiveis": 4,
+      "no_limiar": 2,
+      "marcas": [
+        "Xiaomi"
+      ],
+      "portao_3_itens": "OK",
+      "concentracao_de_marca": "ATENCAO: 4 de 4 elegiveis sao da mesma marca (Xiaomi)"
+    },
+    {
+      "piso": "carpete",
+      "pelo": "longo",
+      "por_ponte": false,
+      "limiar_seguro": 4000,
+      "comparacao": "acima_de",
+      "publicador_seguro": "Canaltech",
+      "limiar_minimo": 3000,
+      "publicador_minimo": "Mundo Conectado",
+      "elegiveis": 4,
+      "no_limiar": 2,
+      "marcas": [
+        "Xiaomi"
+      ],
+      "portao_3_itens": "OK",
+      "concentracao_de_marca": "ATENCAO: 4 de 4 elegiveis sao da mesma marca (Xiaomi)"
+    }
+  ],
+  "referencias": [
+    {
+      "modelo": "electrolux-erb60",
+      "rotulo": "Electrolux ERB60",
+      "cobertura_m2": 166,
+      "autonomia_min": 100,
+      "recarga_min": null,
+      "retoma_apos_recarga": true,
+      "publica_multiciclo": true,
+      "ciclos_em_400_m2": 3,
+      "saltos_de_ciclo": [
+        {
+          "em_m2": 167,
+          "ciclos": 2
+        },
+        {
+          "em_m2": 333,
+          "ciclos": 3
+        }
+      ]
+    },
+    {
+      "modelo": "electrolux-erb61",
+      "rotulo": "Electrolux ERB61",
+      "cobertura_m2": 166,
+      "autonomia_min": 100,
+      "recarga_min": null,
+      "retoma_apos_recarga": true,
+      "publica_multiciclo": true,
+      "ciclos_em_400_m2": 3,
+      "saltos_de_ciclo": [
+        {
+          "em_m2": 167,
+          "ciclos": 2
+        },
+        {
+          "em_m2": 333,
+          "ciclos": 3
+        }
+      ]
+    },
+    {
+      "modelo": "electrolux-erb62",
+      "rotulo": "Electrolux ERB62",
+      "cobertura_m2": 166,
+      "autonomia_min": 100,
+      "recarga_min": null,
+      "retoma_apos_recarga": true,
+      "publica_multiciclo": true,
+      "ciclos_em_400_m2": 3,
+      "saltos_de_ciclo": [
+        {
+          "em_m2": 167,
+          "ciclos": 2
+        },
+        {
+          "em_m2": 333,
+          "ciclos": 3
+        }
+      ]
+    },
+    {
+      "modelo": "electrolux-erb80",
+      "rotulo": "Electrolux ERB80",
+      "cobertura_m2": 166,
+      "autonomia_min": 100,
+      "recarga_min": null,
+      "retoma_apos_recarga": null,
+      "publica_multiciclo": false,
+      "ciclos_em_400_m2": 3,
+      "saltos_de_ciclo": [
+        {
+          "em_m2": 167,
+          "ciclos": 2
+        },
+        {
+          "em_m2": 333,
+          "ciclos": 3
+        }
+      ]
+    },
+    {
+      "modelo": "electrolux-erb44",
+      "rotulo": "Electrolux ERB44",
+      "cobertura_m2": 162,
+      "autonomia_min": 120,
+      "recarga_min": null,
+      "retoma_apos_recarga": null,
+      "publica_multiciclo": false,
+      "ciclos_em_400_m2": 3,
+      "saltos_de_ciclo": [
+        {
+          "em_m2": 163,
+          "ciclos": 2
+        },
+        {
+          "em_m2": 325,
+          "ciclos": 3
+        }
+      ]
+    }
+  ],
+  "tempo_total": {
+    "modelos_com_cobertura_declarada": [
+      "electrolux-erb44",
+      "electrolux-erb60",
+      "electrolux-erb61",
+      "electrolux-erb62",
+      "electrolux-erb80"
+    ],
+    "modelos_com_recarga_declarada": [
+      "xiaomi-s20",
+      "positivo-pra2000"
+    ],
+    "modelos_com_os_tres_numeros": [],
+    "leitura": "TEMPO REAL ATE TERMINAR = ciclos x autonomia + (ciclos-1) x recarga precisa de TRES numeros declarados, e nenhum modelo do banco tem os tres. Quem declara cobertura por carga (Electrolux) nao declara recarga; quem declara recarga (Xiaomi S20, Positivo PRA2000) nao declara cobertura. A R2 publica os ciclos e o tempo de limpeza somado, e diz que o total depende de um numero que o fabricante nao publica. Coletar recarga_min_declarada dos modelos Electrolux que ja declaram cobertura e o trabalho de MENOR custo e MAIOR retorno que esta varredura encontrou."
+  },
+  "contagem": {
+    "modelos_publicaveis": 28,
+    "com_pa_declarado": 11,
+    "sem_pa_declarado": 17,
+    "modelos_de_referencia": 5,
+    "situacoes": 9,
+    "situacoes_com_fonte_direta": 8,
+    "situacoes_por_ponte": 1,
+    "situacoes_no_portao": 9,
+    "modelos_esperando_link": 28
+  }
+}
