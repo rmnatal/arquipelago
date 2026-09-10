@@ -3,7 +3,7 @@ ilha: aquametria
 estado: viva
 prioridade: 2
 ultima_execucao: 2026-09-10T17:15Z
-executando_desde: null
+executando_desde: 2026-09-10T19:17Z
 bloco_atual: "DESPACHO DE 10/09 CUMPRIDO INTEIRO nos tres itens de codigo (1, 2 e 3), revisao 35 conferida no /status: as 13 URLs servem meta description e tags og:, nenhum link interno responde 301, e o bloco de produto da C5 parou de se contradizer. Restam no despacho so os itens 4 (registro de receita) e 5 (congelamento de pagina nova ate 16/09). Proximo: T8, a vitrine da C3"
 ultima_ronda: 2026-09-10T14:55Z
 bloqueada_por: null
