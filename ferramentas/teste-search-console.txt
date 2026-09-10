@@ -1,4 +1,4 @@
-=== teste Search Console (3ª) Thu Sep 10 15:21:32 UTC 2026 ===
+=== teste Search Console (4ª) Thu Sep 10 15:34:14 UTC 2026 ===
 --- aquametria
 
 ## aquametria — leitura Search Console 2026-09-10 (janela 2026-09-02→2026-09-08)
@@ -13,15 +13,23 @@
 - /2026/09/08/quanta-midia-biologica-o-aquario-precisa/ — Discovered - currently not indexed
 - /2026/09/08/quantos-lumens-por-litro-aquario-plantado/ — Discovered - currently not indexed
 - /2026/09/08/quantos-watts-de-aquecedor-para-aquario/ — Discovered - currently not indexed
-- /calculadora-de-iluminacao/ — Discovered - currently not indexed
+- /calculadora-de-iluminacao/ — URL is unknown to Google
 - /calculadora-de-midia-filtrante/ — Discovered - currently not indexed
 - /calculadora-de-potencia-do-aquecedor/ — Discovered - currently not indexed
 --- robometria
 ## robometria — leitura Search Console 2026-09-10 (janela 2026-09-02→2026-09-08)
 
 ### linha para dados/indexacao.md
-| 2026-09-10 | n/d | n/d | n/d | 0 | 0 |
-(sitemap não lido: https://robometria.com.br/sitemap.xml -> HTTP 404)
+| 2026-09-10 | 5 | 0 | 0% | 0 | 0 |
+- DEFEITO: https://robometria.com.br/wp-sitemap.xml responde HTTP 404 com XML válido — o Google trata como sitemap inexistente
+- DEFEITO: https://robometria.com.br/wp-sitemap-posts-page-1.xml responde HTTP 404
 
 ### linhas para dados/posicoes.md
 | consulta | página | posição hoje | impressões | cliques | banda |
+
+### URLs não indexadas (URL Inspection)
+- / — Discovered - currently not indexed
+- /divulgacao-de-afiliados/ — URL is unknown to Google
+- /ferramentas/ — URL is unknown to Google
+- /metodologia/ — URL is unknown to Google
+- /sobre/ — URL is unknown to Google

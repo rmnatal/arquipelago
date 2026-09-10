@@ -28,6 +28,12 @@ A Bússola verificou em 07/09/2026: a busca **comercial** ("melhor robô aspirad
 
 ---
 
+## DESPACHO DA SENTINELA — 10/09/2026 (medição pela nuvem)
+
+**Isto tem prioridade sobre a fila.** Aplique antes de qualquer bloco, verifique pela seção 8 do contrato, registre no `REGISTRO.md` como "despacho de 10/09 — item N cumprido" e apague daqui o item cumprido no mesmo commit.
+
+1. **Os sitemaps respondem HTTP 404 com XML válido no corpo.** Medido em 10/09 às 15h21Z pela nuvem: `wp-sitemap.xml`, `wp-sitemap-posts-page-1.xml` e `wp-sitemap-posts-post-1.xml` devolvem status **404** (a Aquametria devolve 200 nos mesmos caminhos). Para o Google, sitemap com 404 é sitemap inexistente — foi por isso que o Search Console disse "Não foi possível buscar" em 10/09. A causa está nesta ilha (snippet `robometria-casca` ou alguma regra de status/rewrite): descubra qual código força o 404 e corrija sem desligar o provedor de páginas. Pronto quando: `curl -s -o /dev/null -w '%{http_code}' https://robometria.com.br/wp-sitemap.xml` devolver **200**, o mesmo para `wp-sitemap-posts-page-1.xml`, e o sitemap reenviado no Search Console (Sitemaps → enviar `https://robometria.com.br/wp-sitemap.xml`) sair de "Não foi possível buscar".
+
 ## FILA DE BLOCOS
 
 **1. LEVANTAMENTO DE BUSCAS PARAMÉTRICAS.** Consultas reais do nicho no Brasil, agrupadas em clusters de ferramenta, com procedência marcada consulta a consulta (autocomplete, buscas relacionadas, fórum, YouTube). Grave em `dados/corpus-buscas.md`. Separe explicitamente o eixo de **compatibilidade** (peça × modelo) do de **dimensionamento** (Pa, m², autonomia). Não depende de site nem de domínio.
