@@ -2,9 +2,9 @@
 ilha: robometria
 estado: nascendo
 prioridade: 1
-ultima_execucao: 2026-09-10T11:28Z
-executando_desde: 2026-09-10T13:19Z
-bloco_atual: "3c terceira leva — varredura da entrada da R1 (concluida); banco na revisao 6"
+ultima_execucao: 2026-09-10T13:19Z
+executando_desde: null
+bloco_atual: "3b CASCA DO SITE entregue no repositorio (revisao 7, snippet publicar=true) — falta o Sync da Sentinela para ela estar NO AR"
 ultima_ronda: null
 bloqueada_por: null
 ---
@@ -39,6 +39,21 @@ Espelho legível do estado do projeto. **Nunca guarde credencial aqui.**
 Sem credenciais neste arquivo.
 
 ## O que já foi entregue
+
+- 10/09/2026 — **Bloco 3b: a CASCA DO SITE existe.** `snippets/robometria-casca.php`
+  v1.0.0 (`publicar: true`, `ativo: true`), o primeiro item desta ilha que vai ao ar.
+  Identidade aplicada sobre o tema: paleta grafite/varredura/piso, Archivo + IBM Plex
+  Sans + IBM Plex Mono com `tabular-nums` em todo número, logotipo em SVG do **encaixe**
+  (anel aberto + peça de lingueta), wordmark ROBO 700 colado a METRIA 400, menu sanfona
+  com `aria-expanded`/`aria-controls` e os três links sempre no HTML servido, favicon
+  próprio no lugar do ícone do WordPress, JSON-LD Organization + WebSite em toda página,
+  e as cinco páginas (início, ferramentas, metodologia, sobre e divulgação de afiliados)
+  com o conteúdo em shortcode do próprio snippet. Vieram junto três ferramentas de
+  bancada: `gerar-favicon.php`, `render-para-teste.php` e `teste-casca.php`. Manifest na
+  revisão 7. **Verificação: `teste-casca.php` APROVADO em 59 medições**, mais `php -l` e
+  a conferência do menu num Chromium de verdade (botão aparece a 390 px, abre, o
+  `aria-expanded` vira `true`, Escape fecha, zero rolagem horizontal a 360 px).
+  **Ainda NÃO está no ar**: o Sync é acionado pela Sentinela, no navegador do Raphael.
 
 - 10/09/2026 — **Bloco 3c, terceira leva: a entrada da R1 foi varrida pela primeira
   vez, e a varredura reordenou a fila.** `ferramentas/cobertura-r1.py` (implementação
@@ -265,8 +280,13 @@ Nada que pare a fila. Os blocos 1, 2 e 3 eram de pesquisa e modelagem e estão
 entregues; **`bloqueada_por` continua `null`** e continua sendo erro marcar
 bloqueio por causa de infraestrutura.
 
-O bloco **3b, casca do site, é o primeiro que depende do WordPress**: ele só
-começa quando houver Sync, e o Sync só nasce no wp-admin.
+O bloco **3b, casca do site, está ENTREGUE no repositório** (revisão 7). O que
+falta nele não é trabalho da Fundação: é o **Sync**, que a Sentinela aciona no
+navegador do Raphael. Enquanto isso não acontecer, o site continua com o tema
+padrão e com "Hello world" e "Sample page" no sitemap, e **o bloco não conta como
+no ar** — a seção 4 do contrato vale a partir de agora nesta ilha, porque este é
+o primeiro item com `publicar: true`. A conferência que fecha o 3b é a da seção
+4: acionar o Sync e ver o `/status` responder **revisão 7**.
 
 **O trabalho desbloqueado continua sendo 3c, e o alvo mudou de novo — desta vez
 porque a varredura da R1 mostrou que a fila estava na ordem errada.** O primeiro
@@ -278,8 +298,12 @@ Xiaomi acima de 3.000 Pa, medidas em `cobertura_de_faixa_r2`. Ele não deixou de
 ser trabalho de verdade; caiu para segundo porque rende numa ferramenta só,
 enquanto o novo primeiro rende nas duas.
 
-**NESTA EXECUÇÃO NÃO DEU PARA COLHER NADA, e isso foi medido, não suposto.** Em
-10/09/2026, 11h17Z, a busca web devolveu `unavailable` em três consultas
+**A execução das 13h19Z de 10/09/2026 não tentou colher: ela fez o 3b**, que não
+depende de rede nem de coleta. A leitura acima, escrita na execução das 11h17Z,
+continua valendo para a próxima execução que for colher.
+
+**NA EXECUÇÃO DAS 11h17Z NÃO DEU PARA COLHER NADA, e isso foi medido, não
+suposto.** Em 10/09/2026, 11h17Z, a busca web devolveu `unavailable` em três consultas
 seguidas, e o `WebFetch` devolveu `EGRESS_BLOCKED` em `www.wap.ind.br`,
 `www.positivocasainteligente.com.br` e `global.roborock.com`. Isso **não** é
 `bloqueada_por`: é uma execução em que a coleta não estava disponível, e a
@@ -288,13 +312,14 @@ tem — em vez de deixar a execução passar em branco ou, pior, escrever númer
 memória. A coleta segue sendo o primeiro item da fila na próxima execução em que
 a rede responder.
 
-Nada desta pasta está publicado, e isso é esperado: os **nove** itens do manifest
-estão com `publicar: false` porque são pesquisa e medição, e o Sync ainda não
-existe. A seção 4 do contrato (o site fica para trás em silêncio) passa a valer
-nesta ilha no dia em que o snippet entrar. Itens esperando link de afiliado:
+O manifest tem **dez** itens: os nove de dados e medição continuam com
+`publicar: false` porque são pesquisa, e o décimo — a casca — é o **primeiro
+`publicar: true` desta ilha**. Enquanto o Sync não rodar, nada disso está no ar, e
+a distância entre o repositório (revisão 7) e o site (revisão 6) é exatamente o
+buraco que a seção 4 do contrato descreve. Itens esperando link de afiliado:
 **44** (28 modelos e 16 peças) — o campo `afiliado.url` já nasce presente e vazio
-em todos. **Continua em 44:** esta leva não acrescentou item ao banco, porque não
-houve coleta. É trabalho pendente de verdade, não
+em todos. **Continua em 44:** nem a leva de medição nem a casca acrescentaram item
+ao banco. É trabalho pendente de verdade, não
 estatística: pela seção 7 do contrato, quem gera link é a Sentinela estratégica,
 no navegador do Raphael, com teto de calendário — o cano enche em paralelo e não
 compete com a fila da Fundação.

@@ -4,15 +4,27 @@
   "nicho": "robo aspirador — compatibilidade de pecas e consumiveis, e dimensionamento de succao e autonomia",
   "dominio": "https://robometria.com.br",
   "versao_manifest": 1,
-  "revisao": 6,
+  "revisao": 7,
   "atualizado_em": "2026-09-10",
   "estado": "nascendo",
   "desembarque": {
     "aprovado": true,
     "decidido_em": "2026-09-09",
-    "observacao": "Desembarque automatico por forca da secao 10 do ARQUIPELAGO.md, que vale para toda ilha: ferramenta, pagina-ancora, artigo, pagina de entidade e snippet vao ao ar com publicar=true sem consulta. Continua exigindo aprovacao humana (publicar=false) apenas conteudo programatico em escala. Enquanto o WordPress desta ilha nao existir, nada e aplicado: o Sync ainda nao foi escrito."
+    "observacao": "Desembarque automatico por forca da secao 10 do ARQUIPELAGO.md, que vale para toda ilha: ferramenta, pagina-ancora, artigo, pagina de entidade e snippet vao ao ar com publicar=true sem consulta. Continua exigindo aprovacao humana (publicar=false) apenas conteudo programatico em escala. O Sync existe desde 10/09/2026 e a casca e o PRIMEIRO item desta ilha com publicar=true — quem aciona o Sync e a Sentinela, no navegador do Raphael, e so o /status prova que a revisao 7 esta no ar."
   },
-  "snippets": [],
+  "snippets": [
+    {
+      "id": "robometria-casca",
+      "nome": "Robometria Casca — identidade e estrutura do site",
+      "arquivo": "snippets/robometria-casca.php",
+      "escopo": "global",
+      "ativo": true,
+      "publicar": true,
+      "sha256": "4c76c61f562ff5f9b71f757182328998e91ec50ac3a50b4d2c7e90dbb1de6930",
+      "descricao": "Bloco 3b. Casca do site: carrega Archivo/IBM Plex Sans/IBM Plex Mono e injeta a paleta da Robometria (grafite, varredura, piso, alerta ambar) sobre o tema ativo; troca core/site-title e core/site-logo pelo logotipo em SVG — anel aberto com o corte de 50 graus e a peca de lingueta encaixando nele, que e o simbolo do ENCAIXE e nunca um robo desenhado — com o wordmark ROBO em 700 colado a METRIA em 400; troca core/navigation pelo menu Ferramentas/Metodologia/Sobre, que abaixo de 782 px vira sanfona atras de um <button> com aria-expanded e aria-controls, fechando no Escape (devolvendo o foco ao botao), no clique fora e ao alargar a janela — e os tres links continuam SEMPRE no HTML servido dentro de <nav>, porque quem esconde a lista e um seletor que depende de atributo posto pelo JavaScript do rodape: sem JavaScript o menu nao some, e e essa a versao que o crawler de IA recebe. Cria as paginas inicio, ferramentas, metodologia, sobre e divulgacao-de-afiliados (conteudo em shortcode do proprio snippet) e fixa inicio como pagina inicial; manda Hello world! e Sample Page para a LIXEIRA, que nesta ilha nao e acabamento — sao esses dois itens que o sitemap submetido ao Search Console lista hoje, e sitemap e curadoria, nao inventario (secao 14.1). SUBSTITUI a template part footer do tema pelo rodape da Robometria, com rede de seguranca em wp_footer e no CSS para nao ficarem dois rodapes empilhados. O icone do site deixa de ser o do WordPress (remove_action do wp_site_icon): SVG na aba, PNG de 32 px como alternativa e PNG de 180 px para o iOS, os tres como data URI dentro do snippet, gerados por ferramentas/gerar-favicon.php entre os marcadores FAVICON-INICIO e FAVICON-FIM — nada sobe para a biblioteca de midia. Publica JSON-LD Organization + WebSite em toda pagina (secao 5.3), SEM sameAs: a ilha nao tem perfil externo, e perfil inventado seria a fabricacao que ela existe para nao cometer. Os numeros da tela (marcas, modelos, pares peca x modelo, cobertura da R1) saem do banco commitado e sao conferidos contra ele por ferramentas/teste-casca.php, entao nao envelhecem em silencio. Idempotente: rodar duas vezes nao duplica pagina, nao repete lixeira e nao reescreve pagina editada a mao.",
+      "versao": "1.0.0"
+    }
+  ],
   "conteudo": [],
   "dados": [
     {
@@ -134,6 +146,21 @@
       "id": "cobertura-r1",
       "arquivo": "ferramentas/cobertura-r1.py",
       "descricao": "Implementacao de REFERENCIA da R1 e varredura da entrada dela de ponta a ponta. Roda sem rede e sem dependencia: 'python3 ferramentas/cobertura-r1.py' imprime o relatorio, '--gravar' escreve dados/cobertura-r1.json e dados/tabela-exemplos-r1.md. Implementa num lugar so as regras que ate agora existiam apenas em prosa na especificacao: os tres selos da secao 1.3, o conjunto MAIS ESTREITO da secao 1.4, o aviso de variante de hardware, a recusa explicita do selo nao_declarada, e o kit que responde por uma peca que o fabricante nao vende avulsa. Existe para que o Bloco 4 nao escreva essas regras pela primeira vez direto em PHP, dentro de um snippet que so da para testar com o site no ar: a saida do PHP tem que BATER com a daqui. Ja rendeu: rodar a regra contra o banco de verdade pegou duas frases que iriam quebradas para a tela — 'vem dentro do sem codigo publicado', quando o fabricante nao publica codigo de peca, e 'nao vende escova lateral avulso', sem concordancia de genero. Ferramenta de bancada: NUNCA e publicada no site."
+    },
+    {
+      "id": "gerar-favicon",
+      "arquivo": "ferramentas/gerar-favicon.php",
+      "descricao": "Gera o icone do site a partir da MESMA geometria do logotipo (anel aberto de raio 15 com corte de 50 graus a direita, e a peca de lingueta entrando no corte) e grava as tres constantes dentro de snippets/robometria-casca.php, entre os marcadores FAVICON-INICIO e FAVICON-FIM. Existe porque desenho mantido em dois lugares diverge em silencio, e porque o apple-touch-icon PRECISA ser PNG (o iOS nao aceita SVG nesse rel) e a regra do projeto proibe subir arquivo para a biblioteca de midia — entao o PNG viaja como data URI base64. O SVG da aba tem canto arredondado; o PNG do iOS nao tem, porque o iOS aplica a propria mascara e canto arredondado por baixo dela vira borda dupla. Ferramenta de bancada: NUNCA e publicada no site."
+    },
+    {
+      "id": "render-para-teste",
+      "arquivo": "ferramentas/render-para-teste.php",
+      "descricao": "Monta uma pagina do site fora do WordPress, com um punhado de funcoes falsas do WP, para poder MEDIR o HTML servido sem depender do site no ar — a nuvem nao alcanca robometria.com.br e quem aciona o Sync e a Sentinela. Imita de proposito as tres coisas que fazem o teste valer: add_action com prioridade e wp_head/wp_footer de verdade (se um <script> voltar para dentro do retorno de um shortcode, quebra aqui e nao no navegador do Raphael); o escape de '&' que os filtros do the_content aplicam ao retorno do shortcode, que foi o que matou cinco calculadoras da Aquametria em 08/09/2026; e remove_action casando gancho, funcao e prioridade, sem o que nao daria para provar que o icone do WordPress saiu do wp_head. Ferramenta de bancada: NUNCA e publicada no site."
+    },
+    {
+      "id": "teste-casca",
+      "arquivo": "ferramentas/teste-casca.php",
+      "descricao": "A secao 8 do ARQUIPELAGO.md executada onde da para executa-la nesta ilha: 59 verificacoes medidas, sem site e sem rede, saindo com codigo 1 na primeira falha. Confere, entre outras: nenhum <script>/<style> dentro do retorno dos cinco shortcodes; ZERO &#038; dentro dos blocos <script> (contando so os blocos, nunca a pagina inteira, que e o teste ERRADO); o botao do menu com aria-expanded e um aria-controls cujo id existe mesmo, e os tres links como <a href> reais dentro de <nav>; o icone do WordPress removido e o proprio servido; JSON-LD que decodifica e traz Organization + WebSite em toda pagina, e nenhum sameAs inventado; corpo que nao comeca por metadado YAML; um unico rodape; nenhuma cor fora da paleta da ilha e nenhum gradiente no CSS; a varredura ausente do corpo, porque e cor de sinal de um uso por tela; toda funcao de nivel superior dentro de function_exists; nenhum apelido apontando para slug inexistente; e — o que impede o instantaneo de envelhecer em silencio — cada numero da tela conferido contra o banco commitado. Ja rendeu: pegou o nome da superglobal de servidor escrito DENTRO de um comentario do snippet, que o ModSecurity desta hospedagem casa do mesmo jeito e faria a gravacao falhar em silencio. Ferramenta de bancada: NUNCA e publicada no site."
     }
   ],
   "esquema": {

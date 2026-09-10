@@ -530,3 +530,116 @@ S40C, H40, E10, Mop 2) e da WAP (W400, W1000, W310)**, na primeira execucao em q
 responder. Antes de colher, rodar `python3 ferramentas/cobertura-r1.py` e
 `ferramentas/validar-banco.py`: as duas varreduras sao o que separa "acrescentei um item"
 de "tirei uma entrada do vazio".
+
+---
+
+## 2026-09-10, 13h19Z — Bloco 3b: a CASCA DO SITE existe, e o site deixou de ser WordPress padrao
+
+**Ilha reservada** pela regra da secao 1 do `ARQUIPELAGO.md`: a Robometria tinha o
+`ultima_execucao` mais antigo (11h28Z contra 11h37Z da Aquametria), a reserva foi commitada
+sozinha e o push passou de primeira. Nenhuma outra execucao disputou.
+
+**O que foi entregue: `snippets/robometria-casca.php` v1.0.0, `publicar: true`.** E o
+PRIMEIRO item desta ilha marcado para ir ao ar — ate hoje o manifest inteiro era pesquisa
+com `publicar: false`. Manifest na **revisao 7**.
+
+A casca faz oito coisas, e cada uma responde a uma regra do contrato, nao a gosto:
+
+1. **Identidade sobre o tema ativo** — paleta grafite `#16191D` / varredura `#CC3311` /
+   piso `#F2F1EF`, Archivo nos titulos, IBM Plex Sans no texto e IBM Plex Mono com
+   `tabular-nums` em **todo** numero, unidade e codigo de peca. Texto corrido nunca em
+   Mono, e por isso a citacao em bloco desta ilha ficou no tipo de texto — ao contrario da
+   casca da Aquametria, onde ela e monoespacada. Copiar aquela regra teria posto texto
+   corrido em Mono nesta ilha.
+2. **O logotipo e o ENCAIXE, nao o robo** — anel aberto de raio 15 com corte de 50 graus a
+   direita e a peca de lingueta entrando no corte, em SVG inline. Wordmark ROBO em 700
+   colado a METRIA em 400.
+3. **Menu hamburgueres pela regra da secao 6** — `<button>` com `aria-expanded` e
+   `aria-controls`, e os tres links SEMPRE no HTML servido dentro de `<nav>`. Quem esconde
+   a lista no celular e um seletor que depende de um atributo posto pelo JavaScript do
+   rodape: sem JavaScript o menu nao some, e e essa a versao que o crawler de IA le.
+4. **Favicon proprio no lugar do icone do WordPress** (`remove_action` do `wp_site_icon`),
+   como data URI: SVG na aba, PNG de 32 px como alternativa e PNG de 180 px para o iOS.
+   Nada sobe para a biblioteca de midia. O desenho e GERADO por
+   `ferramentas/gerar-favicon.php` a partir da mesma geometria do logotipo, entre os
+   marcadores `FAVICON-INICIO` e `FAVICON-FIM` — desenho mantido em dois lugares diverge
+   em silencio.
+5. **Cinco paginas** com o conteudo em shortcode do proprio snippet: inicio, ferramentas,
+   metodologia, sobre e **divulgacao-de-afiliados**. A quinta nasceu junto de proposito:
+   pela secao 7 do contrato o aviso de comissao precisa estar publicado ANTES do primeiro
+   link, nao depois — e hoje ela diz, com essas palavras, que ainda nao ha nenhum link de
+   afiliado no ar.
+6. **"Hello world" e "Sample page" para a LIXEIRA.** Nesta ilha isso nao e acabamento:
+   sao esses dois itens que o sitemap submetido ao Search Console em 10/09/2026 lista, e
+   sitemap e curadoria, nao inventario (secao 14.1). Pagina de amostra gasta orcamento de
+   rastreamento de dominio novo ensinando ao robo que aqui se publica coisa que nao vale
+   voltar para buscar.
+7. **JSON-LD Organization + WebSite em toda pagina** (secao 5.3), **sem `sameAs`**. A ilha
+   nao tem perfil externo nenhum, e `sameAs` apontando para perfil inventado seria
+   exatamente a fabricacao que esta ilha existe para nao cometer. Ele entra no dia em que
+   houver perfil de verdade — e o teste reprova se aparecer antes disso.
+8. **Rodape proprio no lugar da template part do tema**, com rede de seguranca em
+   `wp_footer` e no CSS, para nao ficarem dois rodapes empilhados.
+
+**A pagina de metodologia publica a nossa propria cobertura, inclusive a parte
+desconfortavel.** Ela diz que a ferramenta de pecas responde em **15 dos 28** modelos e sai
+vazia em **12**; que **116 das 168** combinacoes modelo x tipo de peca nao tem declaracao
+localizada; e que a ilha **nao tem nenhuma fonte de nivel 1 nem de nivel 2** — esta inteira
+apoiada nos niveis 3 e 4. Nenhum desses numeros e enfeite de transparencia: sao a medicao
+da terceira leva do 3c, servidos em HTML, e um comparador que nunca diz "nao sei" esta
+inventando em algum lugar. **Nenhum numero da tela foi digitado**: todos saem do banco
+commitado, e o teste reprova se divergirem dele.
+
+**VERIFICACAO — o que foi medido, e o que NAO da para medir daqui.**
+
+Feito: `php -l` nos tres arquivos PHP; **`ferramentas/teste-casca.php` APROVADO em 59
+medicoes**; e a conferencia do menu num Chromium de verdade (a 390 px o botao aparece, a
+lista comeca escondida, o clique abre e o `aria-expanded` vira `true`, Escape fecha; a
+360 px a rolagem horizontal e de 0 px; nenhum erro de console vindo do nosso codigo).
+
+O `teste-casca.php` existe porque a nuvem **nao alcanca** robometria.com.br — a
+alternativa a ele seria marcar `publicar: true` por fe. Ele mede, entre outras coisas:
+nenhum `<script>`/`<style>` dentro do retorno dos cinco shortcodes; **zero `&#038;` dentro
+dos blocos `<script>`**, contando so os blocos e nunca a pagina inteira, que e o teste
+ERRADO; `aria-controls` apontando para um id que existe mesmo; o icone do WordPress
+removido; JSON-LD que decodifica; nenhuma cor fora da paleta e nenhum gradiente no CSS; a
+varredura ausente do corpo, porque e cor de sinal de um uso por tela; e cada numero da
+tela conferido contra o banco.
+
+**Ele ja rendeu na primeira rodada, e o defeito era invisivel:** o snippet trazia o nome da
+superglobal de servidor escrito DENTRO de um comentario que explicava por que nao se deve
+usa-la. O ModSecurity desta hospedagem casa a string do mesmo jeito, comentario ou nao, e a
+gravacao do snippet teria falhado **em silencio** no wp-admin. O comentario foi reescrito.
+
+**NAO da para medir daqui, e por isso o bloco NAO esta no ar:** o Sync e acionado pela
+Sentinela, no navegador do Raphael (secao 4 do contrato). Enquanto ele nao rodar, o
+repositorio esta na revisao 7 e o site na 6 — que e exatamente o buraco que a secao 4
+descreve. **"Aplicado com sucesso" no log do Sync tambem nao seria evidencia**: o que fecha
+o 3b e o `/status` responder revisao 7.
+
+**O que este bloco deliberadamente NAO fez.**
+
+- **Nao escreveu ferramenta.** O Bloco 4 (a R1) e outra execucao. A casca entrega o hub com
+  os dois cartoes em "Em construcao", e o cartao so vira link quando a pagina existir
+  publicada de verdade — a trava que a Aquametria so ganhou depois de publicar um 404 em
+  08/09/2026.
+- **Nao inventou `sameAs`, nem perfil, nem numero.** Onde nao havia dado, a pagina diz o
+  que falta.
+- **Nao coletou.** Nao era o bloco.
+
+**Itens esperando link de afiliado: 44** (28 modelos e 16 pecas) — continua em 44, porque a
+casca nao acrescenta item ao banco.
+
+**Proximo passo desbloqueado, em duas frentes que nao competem:**
+
+1. **Para a Sentinela, no navegador:** acionar o Sync
+   (`https://robometria.com.br/?robometria_sync=<token>&forcar=1`) e conferir no
+   `/wp-json/robometria/v1/status` que a revisao aplicada e **7**. So entao a casca esta no
+   ar, e so entao o sitemap para de listar "Hello world".
+2. **Para a Fundacao, na proxima execucao:** o **Bloco 4 — a ferramenta R1**, agora que a
+   casca existe para recebe-la; a implementacao de referencia `ferramentas/cobertura-r1.py`
+   ja tem as regras e a saida do PHP tem que BATER com a dela. Alternativa, se a rede
+   responder: o **3c alvo (a)** — pecas com codigo da Xiaomi (S10, S40, S40C, H40, E10,
+   Mop 2) e da WAP (W400, W1000, W310), que e o unico lado coletavel da emenda entre as
+   duas ferramentas. **Atencao ao que a varredura ja avisou:** a pagina-ancora da R1 NAO
+   pode ser a do PRA500, porque a R1 sai vazia nele.

@@ -36,7 +36,26 @@ A Bússola verificou em 07/09/2026: a busca **comercial** ("melhor robô aspirad
 
 **3. MODELO DO BANCO.** Entidades: **MODELO DE ROBÔ** (marca, linha, Pa, autonomia em minutos, tipo de navegação, voltagem, base de autoesvaziamento sim/não) · **PEÇA** (tipo, código do fabricante, modelos compatíveis, vida útil declarada) · **MARCA**. O campo `imagem` entra desde já (seção 6 do `ARQUIPELAGO.md`) — a Aquametria descobriu tarde que o banco não tinha e travou a vitrine.
 
-**3b. CASCA DO SITE** — só depois que o WordPress existir. Snippet de identidade e estrutura: fontes, CSS da paleta, logo SVG inline, menu hambúrguer, favicon próprio, páginas início/ferramentas/metodologia/sobre, rodapé. Tudo conforme a seção 6 do `ARQUIPELAGO.md`, com a paleta e o símbolo desta ilha.
+**3b. CASCA DO SITE — ENTREGUE em 10/09/2026** (`snippets/robometria-casca.php` v1.0.0,
+manifest na revisão 7). Identidade sobre o tema ativo, logo SVG do encaixe, menu hambúrguer
+acessível, favicon próprio, JSON-LD Organization + WebSite, e **cinco** páginas — início,
+ferramentas, metodologia, sobre e divulgação de afiliados (esta última nasceu junto porque
+o aviso de comissão precisa estar publicado antes do primeiro link, não depois).
+
+**O que falta no 3b não é da Fundação: é o Sync.** Enquanto a Sentinela não acionar
+`?robometria_sync=<token>&forcar=1` e o `/status` não responder **revisão 7**, a casca não
+está no ar e o sitemap continua listando "Hello world". Pela seção 4 do contrato, o bloco
+só conta como entregue quando o site confirma a revisão.
+
+**Antes de mexer na casca, rode `php ferramentas/teste-casca.php .`** — 59 medições, sem
+site e sem rede, e é a única verificação da seção 8 que esta ilha consegue executar sozinha
+(a nuvem não alcança robometria.com.br). Ele confere o que a seção 8 pede e mais a
+identidade: paleta fechada, nenhum gradiente, a varredura ausente do corpo porque é cor de
+sinal, e **cada número da tela conferido contra o banco commitado** — quem expandir o banco
+e não atualizar o instantâneo da casca vê o teste reprovar em vez de o site publicar número
+que o repositório não sustenta. Na primeira rodada ele já pegou o nome da superglobal de
+servidor escrito dentro de um *comentário*, que o ModSecurity casa do mesmo jeito e faria a
+gravação falhar em silêncio no wp-admin.
 
 **3c. EXPANDIR O BANCO — não depende de site.** O modelo já existe e o
 `ferramentas/validar-banco.py` já reprova o que estiver fora do contrato; o que falta é
@@ -111,4 +130,5 @@ da varredura: tipo sem nenhuma peça no banco fica fora do formulário.
 ## Específico desta ilha
 - **Compatibilidade de peça é o produto desta ilha.** Uma informação errada aqui destrói a confiança inteira. Toda afirmação de compatibilidade carrega fonte do fabricante e data na própria frase.
 - Amazon paga 8% em Eletrodomésticos, mas a conta **não** deve ser aberta até haver tráfego: a regra das 3 vendas em 180 dias começa no cadastro. A Shopee já está aberta e serve todas as ilhas.
-- **WordPress no ar desde 10/09/2026.** Os blocos 1, 2 e 3 estão feitos; o próximo é o **3b (casca do site)** — a identidade desta ilha (paleta, Archivo/Plex, anel + peça) já foi aprovada pelo Raphael, então a casca não espera nada. O WordPress nasceu com o tema padrão e o conteúdo de amostra ("Hello world", "Sample page"): a casca substitui isso; até lá o sitemap lista amostra, e isso é esperado.
+- **WordPress no ar desde 10/09/2026**, e a **casca entregue no repositório** no mesmo dia (revisão 7). Os blocos 1, 2, 3 e 3b estão feitos. O próximo é o **Bloco 4 — a ferramenta R1**, que agora tem casca para receber; se a rede responder, o **3c alvo (a)** (peça com código da Xiaomi e da WAP) disputa a vez, porque é o único lado coletável da emenda entre as duas ferramentas.
+- **A casca só substitui o conteúdo de amostra quando o Sync rodar.** Até lá o sitemap lista "Hello world" e "Sample page", e isso deixou de ser esperado: passou a ser dívida com prazo, porque o Search Console já está lendo o sitemap desta ilha.
