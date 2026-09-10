@@ -208,7 +208,13 @@ for (const caso of CASOS) {
     if (aviso) {
       const t = await aviso.innerText();
       conferir(/comiss/i.test(t), 'o aviso da tabela diz a palavra comissao');
-      conferir(/pre[cç]o/i.test(t), 'o aviso da tabela explica por que nao publica preco');
+      // Ate 10/09/2026 esta linha se chamava "explica por que nao publica preco".
+      // Deixou de ser verdade quando a vitrine da C3 passou a publicar cotacao
+      // com data: o que o contrato proibe e preco CRAVADO COMO ATUAL, nao preco
+      // datado. O que a afirmacao sempre mediu, e continua medindo, e que o
+      // aviso DIZ ALGUMA COISA sobre preco em vez de ficar mudo — e o nome dela
+      // agora diz isso, porque nome de teste treina a proxima sessao.
+      conferir(/pre[cç]o/i.test(t), 'o aviso da tabela nao fica mudo sobre preco');
     }
   }
 

@@ -15,6 +15,23 @@ Quem entra no catalogo: exatamente quem o validador considera apto a ser sugerid
 pela c3-vazao-filtro (minimo_para_sugerir do esquema) e nao esta em rascunho nem
 em revalidar. Link de afiliado NAO decide quem entra (regra V16): produto apto
 sem link sai no cartao, so que sem botao de loja.
+
+DESDE 10/09/2026 (bloco T8, a vitrine) o item embutido leva mais dois campos:
+
+  imagem — {url, alt, largura, altura, verificado_em}. So sai quando o registro
+    tem URL E texto alternativo: a secao 6 do ARQUIPELAGO.md exige alt
+    descritivo, e imagem sem alt na vitrine e defeito de acessibilidade que
+    ninguem ve passar. Por isso o gerador RECUSA gravar quando acha url sem alt,
+    em vez de emitir o cartao mudo. largura e altura viajam como estao no banco,
+    inclusive null: a Aquametria nao grava dimensao que nao mediu, e o cartao
+    reserva o espaco por aspect-ratio no CSS.
+
+  preco — {min, max, loja, coletado_em, cotacoes}, lido de
+    dados/produtos-cotacoes.json. NUNCA e preco atual: e cotacao com data, que e
+    o que a secao 7 do contrato permite publicar. Cotacao com disponivel=false
+    fica de fora. E o campo comissao_percentual NAO viaja para o snippet, por
+    regra: comissao nao aparece na tela e nao ordena nada — o gerador confere
+    isso antes de gravar e para se achar qualquer chave de comissao no item.
 """
 import collections
 import io
@@ -25,6 +42,7 @@ import sys
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ESQUEMA = os.path.join(RAIZ, "dados", "esquema-produtos.json")
 FILTROS = os.path.join(RAIZ, "dados", "produtos-filtro.json")
+COTACOES = os.path.join(RAIZ, "dados", "produtos-cotacoes.json")
 ALVO = os.path.join(RAIZ, "snippets", "aquametria-calculadora-vazao.php")
 
 INICIO = "\t/* CATALOGO-INICIO — gerado por ferramentas/gerar-catalogo-filtros.py */"
@@ -73,6 +91,69 @@ def fonte_principal(produto):
     return sorted(candidatas, key=peso)[0]
 
 
+def imagem_do(produto, problemas):
+    """A imagem do cartao da vitrine, ou None. Url sem alt PARA o gerador."""
+    im = produto.get("imagem") or {}
+    url = im.get("url")
+    if not url:
+        return None
+    if not (im.get("alt") or "").strip():
+        problemas.append(
+            "%s tem imagem.url e nao tem imagem.alt — a vitrine nao publica "
+            "imagem sem texto alternativo (secao 6 do ARQUIPELAGO.md)" % produto["id"]
+        )
+        return None
+
+    saida = collections.OrderedDict()
+    saida["url"] = url
+    saida["alt"] = im.get("alt")
+    saida["largura"] = im.get("largura")
+    saida["altura"] = im.get("altura")
+    saida["verificado_em"] = im.get("verificado_em")
+    return saida
+
+
+def preco_do(produto, cotacoes_por_produto):
+    """Faixa de cotacao com data. NUNCA preco atual, e nunca comissao."""
+    cotacoes = [c for c in cotacoes_por_produto.get(produto["id"], [])
+                if c.get("disponivel") is not False and c.get("preco_brl") is not None]
+    if not cotacoes:
+        return None
+
+    precos = [float(c["preco_brl"]) for c in cotacoes]
+    datas = sorted(c.get("cotado_em") for c in cotacoes if c.get("cotado_em"))
+    lojas = sorted(set(c.get("loja") for c in cotacoes if c.get("loja")))
+
+    saida = collections.OrderedDict()
+    saida["min"] = min(precos)
+    saida["max"] = max(precos)
+    saida["loja"] = lojas[0] if len(lojas) == 1 else None
+    # A data que a tela mostra e a MAIS ANTIGA da faixa: e a que diz ha quanto
+    # tempo o numero pode ter envelhecido. Mostrar a mais nova faria a faixa
+    # parecer mais fresca do que e.
+    saida["coletado_em"] = datas[0] if datas else None
+    saida["cotacoes"] = len(cotacoes)
+    return saida
+
+
+def sem_comissao(item):
+    """Comissao nunca viaja para o snippet: nao aparece na tela e nao ordena."""
+    achados = []
+
+    def varrer(valor, caminho):
+        if isinstance(valor, dict):
+            for k, v in valor.items():
+                if "comiss" in k.lower():
+                    achados.append(caminho + "." + k)
+                varrer(v, caminho + "." + k)
+        elif isinstance(valor, list):
+            for i, v in enumerate(valor):
+                varrer(v, "%s[%d]" % (caminho, i))
+
+    varrer(item, item.get("id", "?"))
+    return achados
+
+
 def php_valor(v, nivel):
     tab = "\t" * nivel
     if v is None:
@@ -104,6 +185,11 @@ def main():
     banco = carregar(FILTROS)
     requisitos = esquema["entidades"]["filtro"]["minimo_para_sugerir"]["c3-vazao-filtro"]
 
+    cotacoes_por_produto = collections.defaultdict(list)
+    for c in carregar(COTACOES)["cotacoes"]:
+        cotacoes_por_produto[c["produto_id"]].append(c)
+
+    problemas = []
     catalogo = []
     fora = []
     for p in banco["produtos"]:
@@ -139,8 +225,21 @@ def main():
         item["link"] = afiliado.get("url")
         item["anuncio"] = afiliado.get("anuncio_shopee")
         item["loja"] = afiliado.get("plataforma")
+        item["imagem"] = imagem_do(p, problemas)
+        item["preco"] = preco_do(p, cotacoes_por_produto)
         item["observacao"] = p.get("observacao")
+
+        vazadas = sem_comissao(item)
+        if vazadas:
+            problemas.append("comissao vazando para o snippet em: " + ", ".join(vazadas))
+
         catalogo.append(item)
+
+    if problemas:
+        print("ERRO: nada foi gravado. %d problema(s):" % len(problemas))
+        for t in problemas:
+            print("  " + t)
+        return 1
 
     catalogo.sort(key=lambda i: i["vazao_lh"])
 
@@ -167,9 +266,21 @@ def main():
 
     print("catalogo da C3: %d filtro(s) embutido(s)" % len(catalogo))
     for item in catalogo:
-        print("  %-28s %5s L/h  %-9s link: %s"
+        preco = item["preco"]
+        print("  %-28s %5s L/h  %-9s link: %-3s foto: %-3s cotacao: %s"
               % (item["id"], item["vazao_lh"], item["tipo"],
-                 "sim" if item["link"] else "nao"))
+                 "sim" if item["link"] else "nao",
+                 "sim" if item["imagem"] else "nao",
+                 ("R$ %.2f (%s)" % (preco["min"], preco["coletado_em"])) if preco else "nao"))
+
+    com_link = [i for i in catalogo if i["link"]]
+    print("vitrine: %d de %d com link de loja, %d com foto, %d com cotacao datada"
+          % (len(com_link), len(catalogo),
+             len([i for i in catalogo if i["imagem"]]),
+             len([i for i in catalogo if i["preco"]])))
+    esperando = [i["id"] for i in catalogo if not i["link"]]
+    if esperando:
+        print("esperando link de afiliado (%d): %s" % (len(esperando), ", ".join(esperando)))
     if fora:
         print("fora do catalogo:")
         for pid, motivo in fora:

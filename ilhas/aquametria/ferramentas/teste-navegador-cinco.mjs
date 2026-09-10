@@ -65,7 +65,15 @@ for (const caso of CASOS) {
   // ERR_CONNECTION_RESET é a Google Fonts barrada pelo proxy do container, não
   // defeito da calculadora: só erro de JavaScript conta aqui.
   page.on('pageerror', e => erros.push('pageerror: ' + e.message));
-  page.on('console', m => { if (m.type() === 'error' && !/ERR_(CONNECTION|NAME|INTERNET)/.test(m.text())) erros.push(m.text()); });
+  // O filtro derruba SO falha de rede, nunca falha de script. ERR_TUNNEL entrou
+  // em 10/09/2026, com a vitrine da C3: os cartoes carregam foto do CDN da
+  // Shopee, e o egresso desta nuvem responde ERR_TUNNEL_CONNECTION_FAILED em
+  // todo dominio de loja. No Chrome do Raphael as mesmas URLs carregam. Quem
+  // confere que a URL da foto e a do banco e o teste-navegador-c3-vitrine, por
+  // dado; quem confere que a imagem ABRE e a Sentinela Tecnica, no navegador
+  // dela. Manter este erro aqui faria o teste reprovar todo dia por um motivo
+  // que nao e defeito — e teste que reprova sempre e teste que ninguem le.
+  page.on('console', m => { if (m.type() === 'error' && !/ERR_(CONNECTION|NAME|INTERNET|TUNNEL|PROXY)/.test(m.text())) erros.push(m.text()); });
 
   await page.goto('file://' + DIR + '/' + caso.arquivo);
   await page.evaluate(() => { try { localStorage.clear(); } catch (e) {} });

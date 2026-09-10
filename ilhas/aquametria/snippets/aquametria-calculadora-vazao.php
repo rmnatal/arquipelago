@@ -1,5 +1,33 @@
 /**
  * Aquametria Calculadora de Vazão do Filtro — C3
+ * Versão: 1.5.0 (10/09/2026) — BLOCO T8, a VITRINE. A primeira do Arquipélago,
+ *   e a C3 é a primeira porque é a que tem mais itens com foto e link. O que
+ *   muda, em uma frase: até aqui a página vendia por ficha técnica, e ficha é o
+ *   que convence depois que a pessoa decidiu comparar. Agora existe, antes da
+ *   ficha, um carrossel de cartões com foto, marca, modelo, a especificação que
+ *   fez o produto entrar ("1.000 L/h — atende os 190 L do seu aquário"), a
+ *   cotação com a data da coleta e o botão da loja. Cinco acréscimos:
+ *   (a) VITRINE PINTADA, dentro do resultado e ANTES da ficha e da procedência,
+ *   como manda o contrato 7 depois da cicatriz da Robometria de 10/09/2026;
+ *   (b) VITRINE SERVIDA no HTML para o caso de referência de 100 L, pelo mesmo
+ *   motivo da tabela de exemplos: quem lê esta página por máquina não executa
+ *   JavaScript, e vitrine que só nasce no clique é vitrine que só o comprador
+ *   que já chegou vê;
+ *   (c) PREÇO, e datado. Até a 1.4.0 a página dizia três vezes que não publicava
+ *   preço. A razão era boa e resolvia o problema errado: o proibido pelo
+ *   contrato é preço CRAVADO COMO ATUAL, e cotação com data é o que a seção 6
+ *   pede da vitrine. As três frases foram reescritas na mesma versão — página
+ *   que mostra preço e diz que não publica preço se contradiz, e contradição na
+ *   cara do leitor foi o defeito da C5 corrigido nesta mesma semana;
+ *   (d) LINHA DE PROMESSA no topo e, no celular, barra fixa no rodapé enquanto
+ *   o resultado está fora da tela, com rolagem até ele no envio do formulário —
+ *   e só no envio explícito, nunca na pintura automática de quem chegou por
+ *   link;
+ *   (e) o gerador do catálogo passou a carregar imagem e cotação, e RECUSA
+ *   gravar imagem sem texto alternativo.
+ *   Nenhuma fórmula, constante, faixa ou regra de elegibilidade mudou, e a ordem
+ *   da lista é exatamente a mesma: a vitrine desenha a mesma sequência de
+ *   r.produtos, sem reordenar nada.
  * Versão: 1.3.0 (09/09/2026) — BLOCO 4c, fechamento: a tabela pré-renderizada
  *   passou a dizer QUAL produto atende cada faixa. Antes ela respondia ao leitor
  *   e não respondia ao comprador: a pessoa só descobria que existe recomendação
@@ -91,8 +119,10 @@
  * elegibilidade dupla (vazão na faixa E volume declarado cobrindo o visitante,
  * regra V22), depois adequação técnica. Link de afiliado não filtra ninguém e só
  * desempata entre itens tecnicamente equivalentes. Produto sem link aparece
- * igual, só que sem botão de loja. Preço não entra: snippet é estático e preço
- * envelhece na tela.
+ * igual, só que sem botão de loja. Preço entra desde a 1.5.0, e entra sempre
+ * como COTAÇÃO COM DATA (de dados/produtos-cotacoes.json), nunca como preço
+ * atual: o snippet é estático e o número envelhece na tela — dizer quando ele
+ * foi lido é o que o torna honesto.
  *
  * Regras herdadas (fase 4b): sem "<?php" no topo (o Code Snippets põe); toda
  * função de nível superior dentro de function_exists; não usa superglobal de
@@ -104,7 +134,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_C3_VERSAO' ) ) {
-	define( 'AQUAMETRIA_C3_VERSAO', '1.4.0' );
+	define( 'AQUAMETRIA_C3_VERSAO', '1.5.0' );
 	define( 'AQUAMETRIA_C3_SLUG', 'calculadora-de-vazao-do-filtro' );
 	define( 'AQUAMETRIA_C3_VERIFICADO_EM', '09/09/2026' );
 	/* Constante 'eheim-classic-250-2213' (dados/constantes-calculadoras.json):
@@ -174,6 +204,8 @@ function aquametria_c3_catalogo() {
 			'link' => null,
 			'anuncio' => null,
 			'loja' => null,
+			'imagem' => null,
+			'preco' => null,
 			'observacao' => 'Primeiro canister de verdade do banco para aquario pequeno: 2,3 L de camara de midia para os 80 L declarados dao 28,8 mL de midia por litro de agua, contra os 12 mL/L do cesto do Eheim classic 250 e os 6,0 mL/L do Seachem Tidal 55. E o item que faltava para a faixa de 30 a 80 L tanto na C3 quanto na C12. O campo de volume atendido carrega os 80 L do varejo BR, que e a declaracao mais conservadora das duas; a de 120 L do varejo estrangeiro sai atribuida ao lado. Coluna maxima de 0,85 m: nao vence movel alto, e isso precisa aparecer na tela.',
 		),
 		array(
@@ -197,6 +229,20 @@ function aquametria_c3_catalogo() {
 			'link' => 'https://s.shopee.com.br/6fh6u1wYls',
 			'anuncio' => 'Filtro Canister Classic 250 440lh Eheim - 2213',
 			'loja' => 'shopee',
+			'imagem' => array(
+				'url' => 'https://down-bs-br.img.susercontent.com/br-11134207-7r98o-m8eusegtvu9dea.webp',
+				'alt' => 'Filtro canister Eheim classic 250 (2213) verde-escuro, corpo cilíndrico com cabeçote e torneiras duplas de mangueira',
+				'largura' => null,
+				'altura' => null,
+				'verificado_em' => null,
+			),
+			'preco' => array(
+				'min' => 1600.0,
+				'max' => 1600.0,
+				'loja' => 'Shopee',
+				'coletado_em' => '2026-09-07',
+				'cotacoes' => 1,
+			),
 			'observacao' => 'O registro que ancora a C3: 440 L/h para 250 L da 1,8 renovacoes/h, de 3 a 6 vezes ABAIXO das 5 a 10 x/h que as fontes brasileiras repetem. Voltagem 110 V confirmada em varejo BR em 08/09/2026, o que libera a sugestao da C3. ATENCAO: o anuncio de afiliado nao declara voltagem, e por isso o cartao de produto obriga o aviso de conferir a voltagem antes de comprar.',
 		),
 		array(
@@ -220,6 +266,8 @@ function aquametria_c3_catalogo() {
 			'link' => null,
 			'anuncio' => null,
 			'loja' => null,
+			'imagem' => null,
+			'preco' => null,
 			'observacao' => 'Hang-on: nao tem altura maxima de recalque, bombeia contra a propria carcaca (coluna_maxima_nao_se_aplica). 440 L/h para os 90 L declarados da 4,9 renovacoes/h, dentro da faixa de bolso brasileira de 5 a 10 x/h e muito acima das 1,8 x/h que a Eheim declara no classic 250. E a opcao de entrada do banco para a faixa de 30 a 90 L, que ate 09/09/2026 nao tinha filtro nenhum sugerivel.',
 		),
 		array(
@@ -243,6 +291,8 @@ function aquametria_c3_catalogo() {
 			'link' => null,
 			'anuncio' => null,
 			'loja' => null,
+			'imagem' => null,
+			'preco' => null,
 			'observacao' => 'Hang-on (coluna_maxima_nao_se_aplica). 650 L/h para 150 L declarados da 4,3 renovacoes/h. Cobre a faixa de 100 a 150 L, que so tinha canister ate 09/09/2026.',
 		),
 		array(
@@ -266,6 +316,8 @@ function aquametria_c3_catalogo() {
 			'link' => null,
 			'anuncio' => null,
 			'loja' => null,
+			'imagem' => null,
+			'preco' => null,
 			'observacao' => 'Irmao menor do AT-3338 (CF-1200) que ja estava no banco. 800 L/h para os 250 L do topo declarado da 3,2 renovacoes/h. Volume util de midia nao publicado por nenhuma das fontes vistas — por isso nao entra na sugestao da C12, so na da C3 e da C7.',
 		),
 		array(
@@ -289,6 +341,8 @@ function aquametria_c3_catalogo() {
 			'link' => null,
 			'anuncio' => null,
 			'loja' => null,
+			'imagem' => null,
+			'preco' => null,
 			'observacao' => 'Hang-on (coluna_maxima_nao_se_aplica). Com 900 L/h para 250 L sao 3,6 renovacoes/h; com os 750 L/h da fonte divergente, 3,0 x/h. A tela precisa dizer que a vazao do HF-800 nao e consenso entre as lojas brasileiras.',
 		),
 		array(
@@ -312,6 +366,20 @@ function aquametria_c3_catalogo() {
 			'link' => 'https://s.shopee.com.br/1LfaYURnHi',
 			'anuncio' => 'Filtro externo (Hang-on) - Tidal 55 - Seachem',
 			'loja' => 'shopee',
+			'imagem' => array(
+				'url' => 'https://down-bs-br.img.susercontent.com/sg-11134201-8259a-mfv658qccpho62.webp',
+				'alt' => 'Filtro externo hang-on Seachem Tidal 55 preto, caixa retangular com bomba interna e cesto de mídia visível pela tampa',
+				'largura' => null,
+				'altura' => null,
+				'verificado_em' => null,
+			),
+			'preco' => array(
+				'min' => 1041.0,
+				'max' => 1041.0,
+				'loja' => 'Shopee',
+				'coletado_em' => '2026-09-07',
+				'cotacoes' => 1,
+			),
 			'observacao' => 'Hang-on. NAO tem altura maxima de recalque: o filtro fica pendurado na borda e bombeia contra a propria carcaca, entao coluna_maxima_m nao se aplica (campo coluna_maxima_nao_se_aplica). Em 08/09/2026 saiu de \'revalidar\' para \'completo\': a eficiencia de 167 L/h por W, que o validador apontava como implausivel, e a declaracao do proprio fabricante e coerente com um hang-on trabalhando a coluna quase zero - o limite de 120 L/h por W foi calibrado para canister, e a regra V10 passou a valer so para canister e sump. Em 08/09/2026 ganhou volume_filtragem_L = 1,2 L (coleta da C12): 1,2 L de midia para os 200 L que o fabricante declara atender da 6,0 mL de midia por litro de agua - metade dos 12 mL/L do cesto do Eheim classic 250. Dois fabricantes, o mesmo problema, o dobro de midia.',
 		),
 		array(
@@ -335,6 +403,20 @@ function aquametria_c3_catalogo() {
 			'link' => 'https://s.shopee.com.br/gPwXrF9Pl',
 			'anuncio' => 'Filtro Canister HW-702-B Sunsun 1000 l/h 220 V',
 			'loja' => 'shopee',
+			'imagem' => array(
+				'url' => 'https://down-bs-br.img.susercontent.com/sg-11134201-825af-mgfepyprq7m0f6.webp',
+				'alt' => 'Filtro canister SunSun HW-702B, corpo cilíndrico branco e azul com cabeçote escuro e módulo UV, mangueiras e conexões ao lado',
+				'largura' => null,
+				'altura' => null,
+				'verificado_em' => null,
+			),
+			'preco' => array(
+				'min' => 699.0,
+				'max' => 699.0,
+				'loja' => 'Shopee',
+				'coletado_em' => '2026-09-09',
+				'cotacoes' => 1,
+			),
 			'observacao' => 'Fecha os cinco campos do minimo_para_sugerir da C3 COM link e foto, e por isso e sugerido; fica \'parcial\' porque potencia_w, que e obrigatorio da entidade e alimenta a C7, continua null. Na faixa de 150 a 200 L e o primeiro canister do banco com link E foto: 1000 L/h declarados para ate 200 L dao 5,0 renovacoes por hora no teto do volume, exatamente o piso da regra de bolso brasileira. O UV de 9 W entra no consumo total da C7 e nao no dimensionamento da C3. A potencia da bomba ficou null porque a unica ficha que a publica (Wiltec) diz 24 W no titulo e 15 W na descricao — numero que briga consigo mesmo nao vai para a tela, e somar 15 W de bomba com 9 W de UV para chegar aos 24 W seria derivacao nossa, nao declaracao de fabricante.',
 		),
 		array(
@@ -358,6 +440,20 @@ function aquametria_c3_catalogo() {
 			'link' => 'https://s.shopee.com.br/9AOUfYKdQv',
 			'anuncio' => 'Filtro Canister Eheim Classic 600 (2217) 1000 l/h 20 W 220 V',
 			'loja' => 'shopee',
+			'imagem' => array(
+				'url' => 'https://down-bs-br.img.susercontent.com/sg-11134201-7rd58-m7bniamcy29b62.webp',
+				'alt' => 'Filtro canister Eheim classic 600 (2217) em 220 V, corpo cilíndrico verde-escuro com cabeçote e torneiras duplas de mangueira',
+				'largura' => null,
+				'altura' => null,
+				'verificado_em' => null,
+			),
+			'preco' => array(
+				'min' => 2700.76,
+				'max' => 2700.76,
+				'loja' => 'Shopee',
+				'coletado_em' => '2026-09-09',
+				'cotacoes' => 1,
+			),
 			'observacao' => 'O contraponto de cima da C3, e o primeiro registro do banco que fecha os cinco campos do minimo_para_sugerir com link E foto na faixa acima de 200 L: 1000 L/h declarados para ate 600 L dao 1,7 renovacoes por hora no teto do volume — o mesmo dimensionamento conservador do classic 250 (2213), tres a seis vezes abaixo da regra de bolso brasileira, e por isso ele aparece com folga em aquarios de 100 a 300 L. Coluna de 2,25 m: vence movel alto, que e onde os canister baratos do banco (0,85 a 1,4 m) caem fora. Registro separado por voltagem de proposito: e chave de compatibilidade e cada anuncio vende uma versao so.',
 		),
 		array(
@@ -381,6 +477,20 @@ function aquametria_c3_catalogo() {
 			'link' => 'https://s.shopee.com.br/6Akt6313pJ',
 			'anuncio' => 'Filtro Canister Eheim Classic 600 (2217) 1000 l/h 20 W 127 V',
 			'loja' => 'shopee',
+			'imagem' => array(
+				'url' => 'https://down-bs-br.img.susercontent.com/sg-11134201-7rdvk-m192mqgywnem2a.webp',
+				'alt' => 'Filtro canister Eheim classic 600 (2217) em 127 V, corpo cilíndrico verde-escuro com cabeçote e torneiras duplas de mangueira',
+				'largura' => null,
+				'altura' => null,
+				'verificado_em' => null,
+			),
+			'preco' => array(
+				'min' => 2700.76,
+				'max' => 2700.76,
+				'loja' => 'Shopee',
+				'coletado_em' => '2026-09-09',
+				'cotacoes' => 1,
+			),
 			'observacao' => 'O contraponto de cima da C3, e o primeiro registro do banco que fecha os cinco campos do minimo_para_sugerir com link E foto na faixa acima de 200 L: 1000 L/h declarados para ate 600 L dao 1,7 renovacoes por hora no teto do volume — o mesmo dimensionamento conservador do classic 250 (2213), tres a seis vezes abaixo da regra de bolso brasileira, e por isso ele aparece com folga em aquarios de 100 a 300 L. Coluna de 2,25 m: vence movel alto, que e onde os canister baratos do banco (0,85 a 1,4 m) caem fora. Registro separado por voltagem de proposito: e chave de compatibilidade e cada anuncio vende uma versao so.',
 		),
 		array(
@@ -404,6 +514,8 @@ function aquametria_c3_catalogo() {
 			'link' => null,
 			'anuncio' => null,
 			'loja' => null,
+			'imagem' => null,
+			'preco' => null,
 			'observacao' => '1200 L/h para ate 450 L = 2,7 renovacoes/h declaradas pela propria ficha. Primeiro registro da semente com todos os campos obrigatorios da entidade preenchidos. Em 08/09/2026 a coleta da C12 trouxe o volume de midia, e trouxe junto uma ambiguidade que a C12 publica em vez de esconder: 1,6 L no conjunto ou 1,6 L por cesto (4,8 L). Pelos 450 L que a ficha declara atender, isso e a diferenca entre 3,6 e 10,7 mL de midia por litro de agua.',
 		),
 		array(
@@ -427,6 +539,8 @@ function aquametria_c3_catalogo() {
 			'link' => null,
 			'anuncio' => null,
 			'loja' => null,
+			'imagem' => null,
+			'preco' => null,
 			'observacao' => 'Em 09/09/2026 ganhou coluna_maxima_m = 2,0 m e mangueira de 16 mm, colhidos no varejo especializado estrangeiro, e passou a ser sugerivel pela C3 — era o filtro de maior vazao do banco e estava barrado por um campo so. Saiu de \'parcial\' para \'completo\': todos os obrigatorios de filtro estao preenchidos com fonte. O volume util de midia (volume_filtragem_L) continua sem fonte nenhuma, e por isso o filtro nao entra na C12 — campo opcional na ficha, requisito daquela calculadora. 1400 L/h para 350 L = 4,0 renovacoes/h.',
 		),
 		array(
@@ -450,6 +564,8 @@ function aquametria_c3_catalogo() {
 			'link' => null,
 			'anuncio' => null,
 			'loja' => null,
+			'imagem' => null,
+			'preco' => null,
 			'observacao' => 'O caso que justificou o campo variante: uma letra a mais no modelo muda vazao (1200 para 1500 L/h), potencia (35 para 18 W), coluna (1,8 para 1,5 m) e volume atendido (ate 450 para 150 a 400 L). Sao dois produtos, nunca um. Turnover implicito de 3,8 (no teto) a 10,0 (no piso) renovacoes/h. Em 08/09/2026 ganhou volume_filtragem_L pela coleta da C12. Aqui a ficha se contradiz sozinha: as dimensoes que ela mesma publica nao comportam a capacidade que ela mesma declara por cesto.',
 		),
 	);
@@ -914,6 +1030,244 @@ function aquametria_c3_produto_celula_html( $e ) {
 }
 }
 
+/* ---------------------------------------------------------------------------
+ * 2e. A VITRINE — bloco T8, 10/09/2026
+ *
+ * O que muda em relação à lista que já existia: a lista é ficha técnica, e ficha
+ * técnica é o que convence depois que a pessoa decidiu comparar. A vitrine é o
+ * que convence antes — foto, nome, a especificação que fez o produto entrar,
+ * a cotação com data e o botão da loja, tudo em um cartão que cabe no polegar.
+ * Ela vem ANTES da ficha e antes da procedência (contrato 7, cicatriz da
+ * Robometria de 10/09/2026): a prova de onde veio o número fica, mas ela existe
+ * para ser conferida, não para ser o único clique de compra da página.
+ *
+ * Três decisões que valem para a próxima ilha que montar vitrine:
+ *
+ *   1. PREÇO PASSA A SAIR, e sai DATADO. Até a 1.4.0 esta página dizia, três
+ *      vezes, que não publicava preço. A razão era boa — preço muda toda semana
+ *      e número velho na tela é pior que nenhum — mas ela resolvia o problema
+ *      errado: o proibido pelo contrato (seção 7) é preço CRAVADO COMO ATUAL.
+ *      Cotação com a data ao lado é permitida, e é o que a seção 6 pede da
+ *      vitrine. As três frases foram reescritas na mesma versão: página que
+ *      mostra preço e diz que não publica preço se contradiz, e contradição na
+ *      cara do leitor foi o defeito da C5 corrigido nesta mesma semana.
+ *
+ *   2. CARTÃO SEM LINK NÃO É LINK. O contrato manda que os cartões sejam âncoras
+ *      de verdade e não div com onclick. Produto sem link de loja não tem para
+ *      onde apontar, então ele sai como <div>, com o lugar do botão reservado e
+ *      escrito "link de loja em breve" — que é exatamente o que o contrato 7
+ *      manda a ferramenta fazer enquanto afiliado.url estiver vazio.
+ *
+ *   3. LARGURA E ALTURA NÃO SE INVENTAM. O banco não mediu as imagens (o egresso
+ *      da nuvem barra o CDN da Shopee) e a Aquametria não grava dimensão que não
+ *      mediu. Em vez de chutar um par de números para satisfazer a letra da
+ *      regra, o cartão reserva o espaço com aspect-ratio 1/1 e object-fit
+ *      contain: o layout não salta qualquer que seja a proporção real, que é a
+ *      coisa que a regra existe para garantir. Quando o banco trouxer medida,
+ *      os atributos saem sozinhos — o código já os imprime quando existem.
+ *
+ * Não há Product/Offer no JSON-LD desta página, e é de propósito: Offer.price
+ * afirma preço ATUAL, e o que temos é cotação de uma data. Declarar schema de
+ * oferta com número velho seria mentir em formato de máquina, que é pior do que
+ * mentir em texto, porque ninguém revisa.
+ * ------------------------------------------------------------------------- */
+
+/* A cotação vira frase: valor (ou faixa), loja e a data da coleta. Nunca "de
+   R$ X por R$ Y", nunca "a partir de" — os dois sugerem promoção e a Aquametria
+   não sabe se há promoção. */
+if ( ! function_exists( 'aquametria_c3_preco_texto' ) ) {
+function aquametria_c3_preco_texto( $p ) {
+	if ( empty( $p['preco'] ) || null === $p['preco']['min'] ) {
+		return '';
+	}
+
+	$pr    = $p['preco'];
+	$valor = 'R$ ' . number_format_i18n( $pr['min'], 2 );
+
+	if ( $pr['max'] > $pr['min'] ) {
+		$valor = 'R$ ' . number_format_i18n( $pr['min'], 2 ) . ' a R$ ' . number_format_i18n( $pr['max'], 2 );
+	}
+
+	$onde = $pr['loja'] ? ' na ' . $pr['loja'] : '';
+
+	return $valor . $onde . ', cotado em ' . aquametria_c3_data_br( $pr['coletado_em'] );
+}
+}
+
+/* A especificação que fez o produto entrar, na forma que o contrato pede:
+   "440 L/h — atende os 190 L do seu aquário". É a mesma frase que o cartão da
+   ficha desenvolve em três linhas, condensada no tamanho de um cartão de
+   vitrine. O rótulo do volume muda entre a vitrine servida (um exemplo) e a
+   pintada pelo script (o aquário de quem está lendo). */
+if ( ! function_exists( 'aquametria_c3_espec_frase' ) ) {
+function aquametria_c3_espec_frase( $p, $volume, $de_quem ) {
+	return aquametria_c3_lh( $p['vazao_lh'] ) . ' L/h — atende os '
+		. number_format_i18n( $volume, 0 ) . ' L ' . $de_quem;
+}
+}
+
+/* O cartão da vitrine tem uma linha só para a marca, então a linha do modelo NÃO
+   repete a marca — "Atman / Atman HF-0600" é a cara de um cartão gerado por
+   máquina que ninguém leu. A voltagem continua junto do modelo pelo motivo de
+   sempre: ela identifica o registro quando o banco separa por voltagem, e sem
+   ela a vitrine mostra dois cartões de nome idêntico. */
+if ( ! function_exists( 'aquametria_c3_modelo_curto' ) ) {
+function aquametria_c3_modelo_curto( $p ) {
+	$modelo = $p['modelo'];
+
+	if ( is_array( $p['voltagem'] ) && 1 === count( $p['voltagem'] ) ) {
+		$modelo .= ' (' . $p['voltagem'][0] . ' V)';
+	}
+
+	return $modelo;
+}
+}
+
+/* Um cartão. O MESMO HTML que o script monta em vitrineCartao(): duas marcações
+   diferentes para o mesmo cartão dariam dois CSS e, mais cedo do que se pensa,
+   duas aparências. */
+if ( ! function_exists( 'aquametria_c3_vitrine_cartao_html' ) ) {
+function aquametria_c3_vitrine_cartao_html( $p, $volume, $de_quem ) {
+	$preco = aquametria_c3_preco_texto( $p );
+
+	$h = '<li class="aqm-c3-vt-item">';
+
+	if ( $p['link'] ) {
+		$h .= '<a class="aqm-c3-vt-cartao" href="' . esc_url( $p['link'] ) . '" target="_blank" rel="sponsored noopener">';
+	} else {
+		$h .= '<div class="aqm-c3-vt-cartao aqm-c3-vt-sem-link">';
+	}
+
+	if ( ! empty( $p['imagem'] ) && ! empty( $p['imagem']['url'] ) ) {
+		$img = '<img src="' . esc_url( $p['imagem']['url'] ) . '" alt="' . esc_attr( $p['imagem']['alt'] ) . '"';
+		if ( ! empty( $p['imagem']['largura'] ) && ! empty( $p['imagem']['altura'] ) ) {
+			$img .= ' width="' . esc_attr( $p['imagem']['largura'] ) . '" height="' . esc_attr( $p['imagem']['altura'] ) . '"';
+		}
+		$img .= ' loading="lazy" decoding="async">';
+		$h   .= '<span class="aqm-c3-vt-foto">' . $img . '</span>';
+	} else {
+		/* Espaço reservado neutro. Produto sem foto NÃO some da vitrine: perder a
+		   recomendação técnica certa por falta de imagem é trocar o certo pelo
+		   bonito (seção 6 do ARQUIPELAGO.md). */
+		$h .= '<span class="aqm-c3-vt-foto aqm-c3-vt-foto-vazia" aria-hidden="true">';
+		$h .= '<span class="aqm-c3-vt-sigla">' . esc_html( $p['marca'] ) . '</span></span>';
+	}
+
+	$h .= '<span class="aqm-c3-vt-marca">' . esc_html( $p['marca'] ) . '</span>';
+	$h .= '<span class="aqm-c3-vt-modelo">' . esc_html( aquametria_c3_modelo_curto( $p ) ) . '</span>';
+	$h .= '<span class="aqm-c3-vt-espec">' . esc_html( aquametria_c3_espec_frase( $p, $volume, $de_quem ) ) . '</span>';
+
+	if ( '' !== $preco ) {
+		$h .= '<span class="aqm-c3-vt-preco">' . esc_html( $preco ) . '</span>';
+	} else {
+		$h .= '<span class="aqm-c3-vt-preco aqm-c3-vt-sem-preco">sem cotação coletada</span>';
+	}
+
+	if ( $p['link'] ) {
+		$h .= '<span class="aqm-c3-vt-botao">Ver na ' . esc_html( 'shopee' === $p['loja'] ? 'Shopee' : $p['loja'] ) . '</span>';
+		$h .= '<span class="aqm-c3-vt-selo">link patrocinado</span>';
+		$h .= '</a>';
+	} else {
+		$h .= '<span class="aqm-c3-vt-espera">link de loja em breve</span>';
+		$h .= '<span class="aqm-c3-vt-selo">entrou pela ficha técnica, não pelo link</span>';
+		$h .= '</div>';
+	}
+
+	$h .= '</li>';
+
+	return $h;
+}
+}
+
+/* A vitrine SERVIDA no HTML, para o caso de referência de 100 litros. A pintada
+   pelo script mostra o aquário de quem está lendo; esta existe porque um modelo
+   de linguagem e um crawler não executam JavaScript, e vitrine que só nasce no
+   clique é vitrine que só o comprador que já chegou vê. Mesmo motivo da tabela
+   de exemplos, mesma regra da seção 5 do contrato. */
+if ( ! function_exists( 'aquametria_c3_vitrine_servida_html' ) ) {
+function aquametria_c3_vitrine_servida_html() {
+	$volume = 100;
+	$e      = aquametria_c3_exemplo( $volume );
+	$lista  = aquametria_c3_produtos_exemplo( $e['piso'], $e['com_teto'], $volume );
+
+	$divulgacao = function_exists( 'aquametria_casca_url_pagina' )
+		? aquametria_casca_url_pagina( AQUAMETRIA_C3_PAGINA_AFILIADOS )
+		: home_url( '/' . AQUAMETRIA_C3_PAGINA_AFILIADOS . '/' );
+
+	$h  = '<div class="aqm-c3-painel aqm-c3-vitrine-servida">';
+	$h .= '<h3>Os filtros que atendem um aquário de ' . esc_html( number_format_i18n( $volume, 0 ) ) . ' litros</h3>';
+
+	if ( ! $lista ) {
+		$h .= '<p class="aqm-c3-sub">Nenhum filtro do banco da Aquametria passa hoje nas duas condições deste exemplo — '
+			. esc_html( aquametria_c3_lh( $e['piso'] ) ) . ' a ' . esc_html( aquametria_c3_lh( $e['com_teto'] ) )
+			. ' L/h de vazão declarada E volume do fabricante cobrindo ' . esc_html( number_format_i18n( $volume, 0 ) )
+			. ' litros. O banco tem ' . esc_html( count( aquametria_c3_catalogo() ) ) . ' filtros com ficha completa e cresce a cada coleta. '
+			. 'Preferimos não mostrar produto nenhum a mostrar um que não atende ao número.</p>';
+		$h .= '</div>';
+		return $h;
+	}
+
+	$com_link = 0;
+	foreach ( $lista as $p ) {
+		if ( $p['link'] ) {
+			$com_link++;
+		}
+	}
+
+	$h .= '<p class="aqm-c3-sub">Um aquário comunitário de ' . esc_html( number_format_i18n( $volume, 0 ) )
+		. ' litros de água real pede de ' . esc_html( aquametria_c3_lh( $e['piso'] ) ) . ' a '
+		. esc_html( aquametria_c3_lh( $e['com_teto'] ) ) . ' L/h, e estes são os '
+		. esc_html( number_format_i18n( count( $lista ), 0 ) ) . ' filtros do banco da Aquametria que entregam essa vazão '
+		. 'E têm, do fabricante, declaração de volume que cobre ' . esc_html( number_format_i18n( $volume, 0 ) ) . ' litros. '
+		. 'A ordem é por proximidade do meio da faixa; entre modelos tecnicamente equivalentes, quem tem link de loja aparece antes. '
+		. 'Troque o número no formulário acima para ver a lista do seu aquário.</p>';
+
+	$h .= '<ul class="aqm-c3-vt-trilho">';
+	foreach ( $lista as $p ) {
+		$h .= aquametria_c3_vitrine_cartao_html( $p, $volume, 'deste exemplo' );
+	}
+	$h .= '</ul>';
+
+	$h .= '<p class="aqm-c3-criterio">' . esc_html( $com_link ) . ' de ' . esc_html( count( $lista ) )
+		. ' têm link de loja hoje; os outros aparecem do mesmo jeito, com o lugar do botão reservado — '
+		. 'quem entra é decidido pela ficha técnica, e nunca por ter ou não link.</p>';
+
+	$h .= '<p class="aqm-c3-aviso-afiliado"><strong>Sobre o preço e o botão.</strong> '
+		. 'O valor de cada cartão <strong>não é preço de hoje</strong>: é a cotação que a Aquametria leu naquele anúncio na data escrita ao lado, '
+		. 'e preço de aquarismo muda toda semana. Confira no anúncio antes de comprar. '
+		. 'Os botões levam a lojas por link de afiliado, marcado como patrocinado: se você comprar por eles, a Aquametria pode receber comissão, sem custo a mais para você. '
+		. 'A ficha técnica de cada filtro vem do fabricante ou do varejo especializado, com o endereço e a data — o anúncio da loja nunca é a nossa fonte. '
+		. '<a href="' . esc_url( $divulgacao ) . '">Como a Aquametria ganha dinheiro</a>.</p>';
+
+	$h .= '</div>';
+
+	return $h;
+}
+}
+
+/* A linha de promessa, antes do formulário: o que a pessoa recebe se preencher.
+   Curta, sem exclamação, sem tom de anúncio (seção 6 do ARQUIPELAGO.md). */
+if ( ! function_exists( 'aquametria_c3_promessa_html' ) ) {
+function aquametria_c3_promessa_html() {
+	return '<p class="aqm-c3-promessa">Calcule a vazão do seu aquário e veja quais filtros atendem, '
+		. 'com a faixa e a fonte de cada um.</p>';
+}
+}
+
+/* A barra do celular. Ela só existe enquanto o resultado está fora da tela, e
+   só em tela estreita — o CSS a esconde acima de 600 px, e o script só liga a
+   classe depois de um cálculo. Fora do <form> de propósito: position:fixed
+   dentro de um painel com rolagem própria briga com o painel. */
+if ( ! function_exists( 'aquametria_c3_barra_html' ) ) {
+function aquametria_c3_barra_html() {
+	$h  = '<div class="aqm-c3-barra" id="aqm-c3-barra" aria-hidden="true">';
+	$h .= '<span class="aqm-c3-barra-texto" id="aqm-c3-barra-texto"></span>';
+	$h .= '<button type="button" class="aqm-c3-barra-botao" id="aqm-c3-barra-ir">Ver o resultado</button>';
+	$h .= '</div>';
+	return $h;
+}
+}
+
 if ( ! function_exists( 'aquametria_c3_css' ) ) {
 function aquametria_c3_css() {
 	return <<<'CSS'
@@ -1004,9 +1358,35 @@ a.aqm-c3-prod{color:var(--c3-lamina);text-decoration:underline;}
 .aqm-c3-num{font-family:var(--c3-mono);font-variant-numeric:tabular-nums;white-space:nowrap;}
 .aqm-c3-xh{display:block;color:var(--c3-legenda);font-family:var(--c3-texto);font-size:.76rem;}
 .aqm-c3-oculto{display:none;}
+.aqm-c3-promessa{font-family:var(--c3-display);font-size:1.02rem;line-height:1.5;color:var(--c3-tinta);border-left:3px solid var(--c3-lamina);padding:.15rem 0 .15rem .8rem;margin:0 0 1.1rem;}
+.aqm-c3-vitrine{margin:1rem 0 0;}
+.aqm-c3-vitrine h4{font-family:var(--c3-display);font-size:.95rem;margin:0 0 .15rem;}
+.aqm-c3-vt-trilho{display:flex;gap:.8rem;margin:.7rem 0 0;padding:.15rem .15rem .9rem;list-style:none;overflow-x:auto;-webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory;scroll-padding-left:.15rem;}
+.aqm-c3-vt-item{flex:0 0 13.5rem;margin:0;scroll-snap-align:start;}
+.aqm-c3-vt-cartao{display:flex;flex-direction:column;gap:.28rem;height:100%;background:var(--c3-superficie);border:1px solid var(--c3-traco);border-radius:3px;padding:.7rem .75rem .8rem;text-decoration:none;color:var(--c3-tinta);}
+a.aqm-c3-vt-cartao:hover{border-color:var(--c3-lamina);color:var(--c3-tinta);}
+a.aqm-c3-vt-cartao:focus-visible{outline:2px solid var(--c3-lamina);outline-offset:1px;}
+.aqm-c3-vt-foto{display:flex;align-items:center;justify-content:center;aspect-ratio:1/1;width:100%;max-width:100%;background:var(--c3-papel);border:1px solid var(--c3-traco);border-radius:2px;overflow:hidden;margin:0 0 .35rem;}
+.aqm-c3-vt-foto img{display:block;width:100%;height:100%;max-width:100%;object-fit:contain;}
+.aqm-c3-vt-foto-vazia .aqm-c3-vt-sigla{font-family:var(--c3-display);font-size:1rem;font-weight:700;color:var(--c3-legenda);letter-spacing:.02em;text-align:center;padding:0 .4rem;}
+.aqm-c3-vt-marca{font-family:var(--c3-mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--c3-legenda);}
+.aqm-c3-vt-modelo{font-family:var(--c3-display);font-size:.92rem;font-weight:700;line-height:1.25;}
+.aqm-c3-vt-espec{font-family:var(--c3-mono);font-size:.76rem;line-height:1.4;color:var(--c3-lamina);font-variant-numeric:tabular-nums;}
+.aqm-c3-vt-preco{font-family:var(--c3-mono);font-size:.8rem;font-variant-numeric:tabular-nums;color:var(--c3-tinta);}
+.aqm-c3-vt-preco.aqm-c3-vt-sem-preco{font-family:var(--c3-texto);font-size:.76rem;color:var(--c3-legenda);font-style:italic;}
+.aqm-c3-vt-botao{margin-top:auto;text-align:center;font-family:var(--c3-texto);font-weight:600;font-size:.85rem;padding:.42rem .7rem;border-radius:2px;background:var(--c3-lamina);color:var(--c3-superficie);}
+.aqm-c3-vt-espera{margin-top:auto;text-align:center;font-family:var(--c3-texto);font-weight:600;font-size:.82rem;padding:.42rem .7rem;border-radius:2px;background:var(--c3-papel);border:1px dashed var(--c3-traco);color:var(--c3-legenda);}
+.aqm-c3-vt-selo{font-family:var(--c3-mono);font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;color:var(--c3-legenda);text-align:center;margin-top:.25rem;}
+.aqm-c3-vitrine-servida .aqm-c3-criterio{margin-top:.5rem;}
+.aqm-c3-barra{position:fixed;left:0;right:0;bottom:0;z-index:40;display:none;align-items:center;gap:.7rem;background:var(--c3-superficie);border-top:1px solid var(--c3-traco);padding:.55rem .85rem;}
+.aqm-c3-barra-texto{flex:1 1 auto;font-family:var(--c3-mono);font-size:.8rem;line-height:1.3;color:var(--c3-tinta);font-variant-numeric:tabular-nums;}
+.aqm-c3-barra-botao{flex:0 0 auto;}
 @media (max-width:600px){.aqm-c3-valor{font-size:1.6rem;}
 .aqm-c3-produto{grid-template-columns:1fr;}
+.aqm-c3-vt-item{flex-basis:11.5rem;}
+.aqm-c3-barra.aqm-c3-barra-ver{display:flex;}
 .aqm-c3-placa{min-height:0;flex-direction:row;gap:.5rem;align-items:baseline;justify-content:flex-start;}}
+@media (prefers-reduced-motion:reduce){.aqm-c3-vt-trilho{scroll-behavior:auto;}}
 CSS;
 }
 }
@@ -1209,6 +1589,8 @@ function aquametria_c3_js() {
 				ul.appendChild(li);
 			});
 			alvo.classList.add('aqm-c3-oculto');
+			barraLigada = false;
+			mostrarBarra(false);
 			return;
 		}
 
@@ -1275,6 +1657,7 @@ function aquametria_c3_js() {
 
 		guardar(r);
 		atualizarEndereco(r.entradas);
+		armarBarra(r);
 	}
 
 	function cartao(rotulo, valor, criterio) {
@@ -1325,6 +1708,9 @@ function aquametria_c3_js() {
 			+ litros(r.entradas.volume) + ' L que você informou. Quem não declara volume nenhum entra também, e o cartão diz isso. '
 			+ 'A ordem é por proximidade do meio da faixa; entre modelos tecnicamente equivalentes (mesmo décimo da faixa), '
 			+ 'quem tem link de loja aparece antes. Comissão não é comparada em lugar nenhum, e produto sem link de loja aparece do mesmo jeito.';
+
+		/* A vitrine vem ANTES da ficha e antes da procedência: contrato 7. */
+		pintarVitrine(r);
 
 		r.produtos.forEach(function (p) {
 			lista.appendChild(produtoHtml(p, r));
@@ -1429,6 +1815,186 @@ function aquametria_c3_js() {
 		li.appendChild(placa);
 		li.appendChild(corpo);
 		return li;
+	}
+
+	/* ------------------------------------------------------------- vitrine */
+
+	/* Espelho de aquametria_c3_preco_texto(). Cotação com data, nunca preço
+	   atual: é o que a seção 7 do contrato permite publicar. */
+	function precoTexto(p) {
+		if (!p.preco || p.preco.min === null || p.preco.min === undefined) { return ''; }
+		var valor = 'R$ ' + fmt(p.preco.min, 2);
+		if (p.preco.max > p.preco.min) { valor += ' a R$ ' + fmt(p.preco.max, 2); }
+		return valor + (p.preco.loja ? ' na ' + p.preco.loja : '')
+			+ ', cotado em ' + dataBr(p.preco.coletado_em);
+	}
+
+	/* Espelho de aquametria_c3_modelo_curto(): o cartão já tem linha de marca, e
+	   repeti-la no modelo é a cara de cartão gerado por máquina que ninguém leu. */
+	function modeloCurto(p) {
+		var modelo = p.modelo;
+		if (p.voltagem && p.voltagem.length === 1) { modelo += ' (' + p.voltagem[0] + ' V)'; }
+		return modelo;
+	}
+
+	/* Espelho de aquametria_c3_espec_frase(): a especificação que fez o produto
+	   entrar, no tamanho de um cartão. */
+	function especFrase(p, V) {
+		return lh(p.vazao_lh) + ' L/h — atende os ' + litros(V) + ' L do seu aquário';
+	}
+
+	/* Espelho de aquametria_c3_vitrine_cartao_html(). Mesma marcação, mesmo CSS —
+	   duas marcações para o mesmo cartão viram duas aparências. */
+	function vitrineCartao(p, V) {
+		var li = document.createElement('li');
+		li.className = 'aqm-c3-vt-item';
+
+		var cartao;
+		if (p.link) {
+			cartao = document.createElement('a');
+			cartao.className = 'aqm-c3-vt-cartao';
+			cartao.href = p.link;
+			cartao.target = '_blank';
+			cartao.rel = 'sponsored noopener';
+		} else {
+			/* Sem link não existe destino, e cartão sem destino não é âncora. O
+			   que o contrato proíbe é div com onclick fingindo ser link. */
+			cartao = document.createElement('div');
+			cartao.className = 'aqm-c3-vt-cartao aqm-c3-vt-sem-link';
+		}
+
+		var foto = document.createElement('span');
+		if (p.imagem && p.imagem.url) {
+			foto.className = 'aqm-c3-vt-foto';
+			var img = document.createElement('img');
+			img.src = p.imagem.url;
+			img.alt = p.imagem.alt || '';
+			if (p.imagem.largura && p.imagem.altura) {
+				img.width = p.imagem.largura;
+				img.height = p.imagem.altura;
+			}
+			img.loading = 'lazy';
+			img.decoding = 'async';
+			foto.appendChild(img);
+		} else {
+			/* Produto sem foto NÃO some da vitrine: espaço reservado neutro. */
+			foto.className = 'aqm-c3-vt-foto aqm-c3-vt-foto-vazia';
+			foto.setAttribute('aria-hidden', 'true');
+			var sigla = document.createElement('span');
+			sigla.className = 'aqm-c3-vt-sigla';
+			sigla.textContent = p.marca;
+			foto.appendChild(sigla);
+		}
+		cartao.appendChild(foto);
+
+		cartao.appendChild(linha('aqm-c3-vt-marca', p.marca));
+		cartao.appendChild(linha('aqm-c3-vt-modelo', modeloCurto(p)));
+		cartao.appendChild(linha('aqm-c3-vt-espec', especFrase(p, V)));
+
+		var preco = precoTexto(p);
+		cartao.appendChild(preco
+			? linha('aqm-c3-vt-preco', preco)
+			: linha('aqm-c3-vt-preco aqm-c3-vt-sem-preco', 'sem cotação coletada'));
+
+		if (p.link) {
+			cartao.appendChild(linha('aqm-c3-vt-botao', 'Ver na ' + (p.loja === 'shopee' ? 'Shopee' : p.loja)));
+			cartao.appendChild(linha('aqm-c3-vt-selo', 'link patrocinado'));
+		} else {
+			cartao.appendChild(linha('aqm-c3-vt-espera', 'link de loja em breve'));
+			cartao.appendChild(linha('aqm-c3-vt-selo', 'entrou pela ficha técnica, não pelo link'));
+		}
+
+		li.appendChild(cartao);
+		return li;
+	}
+
+	function linha(classe, texto) {
+		var s = document.createElement('span');
+		s.className = classe;
+		s.textContent = texto;
+		return s;
+	}
+
+	function pintarVitrine(r) {
+		var bloco = el('aqm-c3-vitrine');
+		var trilho = el('aqm-c3-vitrine-trilho');
+		trilho.innerHTML = '';
+
+		if (!r.produtos.length) {
+			bloco.classList.add('aqm-c3-oculto');
+			return;
+		}
+
+		bloco.classList.remove('aqm-c3-oculto');
+
+		var comLink = 0;
+		r.produtos.forEach(function (p) {
+			if (p.link) { comLink += 1; }
+			trilho.appendChild(vitrineCartao(p, r.entradas.volume));
+		});
+
+		el('aqm-c3-vitrine-nota').textContent = comLink + ' de ' + r.produtos.length
+			+ ' têm link de loja hoje; os outros aparecem do mesmo jeito, com o lugar do botão reservado — '
+			+ 'quem entra é decidido pela ficha técnica, e nunca por ter ou não link.';
+	}
+
+	/* ------------------------------------------------- rolagem e barra fixa */
+
+	/* Rola até o resultado, e SÓ quando ele não está à vista. Rolar uma página
+	   em que a resposta já está na tela é tirar o leitor do lugar em que ele
+	   está — o que a regra pede é não deixar ninguém calculando no escuro. */
+	function irParaResultado() {
+		var alvo = el('aqm-c3-saida');
+		if (!alvo || alvo.classList.contains('aqm-c3-oculto')) { return; }
+
+		var caixa = alvo.getBoundingClientRect();
+		var altura = window.innerHeight || document.documentElement.clientHeight;
+		if (caixa.top >= 0 && caixa.top < altura * 0.5) { return; }
+
+		var suave = true;
+		try {
+			suave = !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+		} catch (erro) { suave = true; }
+
+		try {
+			alvo.scrollIntoView({ behavior: suave ? 'smooth' : 'auto', block: 'start' });
+		} catch (erro) {
+			alvo.scrollIntoView();
+		}
+	}
+
+	/* A barra do rodapé no celular: existe enquanto o resultado está fora da
+	   tela, e some quando ele entra. Quem decide se ela cabe é o CSS (só abaixo
+	   de 600 px); aqui só se liga e desliga a classe. */
+	var barraLigada = false;
+	var observador = null;
+
+	function armarBarra(r) {
+		var barra = el('aqm-c3-barra');
+		if (!barra) { return; }
+
+		el('aqm-c3-barra-texto').textContent = lh(r.piso) + ' a ' + lh(r.teto) + ' L/h para '
+			+ litros(r.entradas.volume) + ' L';
+		barraLigada = true;
+
+		if (observador || typeof window.IntersectionObserver !== 'function') {
+			if (!observador) { mostrarBarra(true); }
+			return;
+		}
+
+		observador = new window.IntersectionObserver(function (entradas) {
+			entradas.forEach(function (entrada) {
+				mostrarBarra(barraLigada && !entrada.isIntersecting);
+			});
+		}, { threshold: 0 });
+		observador.observe(el('aqm-c3-saida'));
+	}
+
+	function mostrarBarra(ver) {
+		var barra = el('aqm-c3-barra');
+		if (!barra) { return; }
+		barra.classList.toggle('aqm-c3-barra-ver', !!ver);
+		barra.setAttribute('aria-hidden', ver ? 'false' : 'true');
 	}
 
 	/* A frase de volume declarado, em um lugar só, porque ela é o que separa um
@@ -1585,13 +2151,29 @@ function aquametria_c3_js() {
 	el('aqm-c3-form').addEventListener('submit', function (ev) {
 		ev.preventDefault();
 		pintar(calcular(campos()));
+		/* Só no envio explícito. A pintura automática de quem chegou por link ou
+		   com o aquário guardado NÃO rola a página: sequestrar a rolagem de quem
+		   acabou de abrir a página é o oposto de ajudar. */
+		irParaResultado();
 	});
 
 	el('aqm-c3-limpar').addEventListener('click', function () {
 		el('aqm-c3-form').reset();
 		el('aqm-c3-saida').classList.add('aqm-c3-oculto');
 		el('aqm-c3-erros').innerHTML = '';
+		barraLigada = false;
+		mostrarBarra(false);
 		try { window.history.replaceState(null, '', window.location.pathname); } catch (erro) { /* segue */ }
+	});
+
+	el('aqm-c3-barra-ir').addEventListener('click', function () {
+		var alvo = el('aqm-c3-saida');
+		if (!alvo || alvo.classList.contains('aqm-c3-oculto')) { return; }
+		try {
+			alvo.scrollIntoView({ block: 'start' });
+		} catch (erro) {
+			alvo.scrollIntoView();
+		}
 	});
 
 	el('aqm-c3-copiar').addEventListener('click', function () {
@@ -1741,7 +2323,7 @@ function aquametria_c3_exemplos_html() {
 	$h .= 'A tabela não sabe duas coisas que o formulário pergunta: o tipo de filtro que você quer e a altura entre a bomba e a superfície da água. ';
 	$h .= 'Por isso ela indica um só modelo por faixa, e a lista completa, já filtrada pelo seu caso, sai depois do cálculo. ';
 	$h .= 'Alguns desses nomes levam a lojas por link de afiliado, marcado como patrocinado: se você comprar por ele, a Aquametria pode receber comissão, sem custo a mais para você. ';
-	$h .= 'Não publicamos preço aqui, porque preço muda toda semana e número velho na tela é pior que nenhum. ';
+	$h .= 'Esta tabela não traz preço: quem traz é a vitrine acima, e sempre como cotação com a data da coleta ao lado, nunca como preço de hoje. ';
 	$h .= '<a href="' . esc_url( $divulgacao ) . '">Como a Aquametria ganha dinheiro</a>.</p>';
 
 	$h .= '</div>';
@@ -2054,6 +2636,19 @@ function aquametria_c3_produtos_html() {
 	$h  = '<div class="aqm-c3-produtos aqm-c3-painel aqm-c3-oculto" id="aqm-c3-produtos">';
 	$h .= '<h3>Filtros que atendem essa faixa</h3>';
 	$h .= '<p class="aqm-c3-sub" id="aqm-c3-produtos-sub"></p>';
+
+	/* A vitrine vem ANTES da ficha e da procedência (contrato 7): a prova de
+	   onde veio o número fica, mas ela existe para ser conferida — não para ser
+	   o único clique de compra da página. */
+	$h .= '<div class="aqm-c3-vitrine aqm-c3-oculto" id="aqm-c3-vitrine">';
+	$h .= '<h4>Onde comprar cada um</h4>';
+	$h .= '<p class="aqm-c3-criterio">Mesma ordem da lista completa abaixo: elegibilidade técnica primeiro, '
+		. 'adequação depois e o link de loja só como desempate entre equivalentes. '
+		. 'O valor de cada cartão é cotação com data, não preço de hoje.</p>';
+	$h .= '<ul class="aqm-c3-vt-trilho" id="aqm-c3-vitrine-trilho"></ul>';
+	$h .= '<p class="aqm-c3-criterio" id="aqm-c3-vitrine-nota"></p>';
+	$h .= '</div>';
+
 	$h .= '<ul class="aqm-c3-lista" id="aqm-c3-produtos-lista"></ul>';
 	$h .= '<p class="aqm-c3-aviso-afiliado"><strong>Aviso de publicidade.</strong> ';
 	$h .= 'Alguns dos botões acima levam a lojas por links de afiliado: se você comprar por eles, a Aquametria pode receber uma comissão, sem custo nenhum a mais para você. ';
@@ -2061,7 +2656,8 @@ function aquametria_c3_produtos_html() {
 	$h .= 'Na ordem, o link tem um papel só: desempatar entre modelos tecnicamente equivalentes, isto é, que caem no mesmo décimo da faixa. ';
 	$h .= 'Taxa de comissão não é comparada em lugar nenhum, e modelo pior nunca sobe por pagar mais. ';
 	$h .= 'A ficha técnica de cada filtro vem do fabricante ou do varejo especializado, com o endereço e a data ao lado; o anúncio da loja nunca é a nossa fonte. ';
-	$h .= 'Também não publicamos preço nesta página: preço muda toda semana e um número velho na tela seria pior que nenhum. ';
+	$h .= 'O valor que aparece nos cartões da vitrine <strong>não é preço de hoje</strong>: é a cotação que a Aquametria leu naquele anúncio na data escrita ao lado. ';
+	$h .= 'Preço de aquarismo muda toda semana — confira no anúncio antes de comprar, e trate o nosso número como ordem de grandeza, não como promessa. ';
 	$h .= '<a href="' . esc_url( $divulgacao ) . '">Como a Aquametria ganha dinheiro</a>.</p>';
 	$h .= '</div>';
 	$h .= '<p class="aqm-c3-nota aqm-c3-oculto" id="aqm-c3-produtos-nada"></p>';
@@ -2251,13 +2847,16 @@ function aquametria_c3_shortcode() {
 	add_action( 'wp_footer', 'aquametria_c3_rodape', 20 );
 
 	$h  = '<div class="aqm-c3">';
+	$h .= aquametria_c3_promessa_html();
 	$h .= aquametria_c3_resposta_direta_html();
 	$h .= aquametria_c3_form_html();
 	$h .= aquametria_c3_resposta_html();
+	$h .= aquametria_c3_vitrine_servida_html();
 	$h .= aquametria_c3_exemplos_html();
 	$h .= aquametria_c3_tenho_html();
 	$h .= aquametria_c3_fontes_html();
 	$h .= aquametria_c3_adiante_html();
+	$h .= aquametria_c3_barra_html();
 	$h .= '</div>';
 
 	return $h;
