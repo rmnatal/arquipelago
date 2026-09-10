@@ -3,7 +3,7 @@ ilha: clubedomosaico
 estado: nascendo
 prioridade: 2
 ultima_execucao: null
-executando_desde: null
+executando_desde: 2026-09-10T15:15Z
 bloco_atual: "1"
 ultima_ronda: null
 bloqueada_por: null
