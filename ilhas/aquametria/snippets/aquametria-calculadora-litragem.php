@@ -1,5 +1,12 @@
 /**
  * Aquametria Calculadora de Litragem — C1
+ * Versão: 1.2.0 (10/09/2026) — VISIBILIDADE EM IA (seção 5 do ARQUIPELAGO.md), as três peças de
+ *   uma vez: resposta antes da explicação, tabela de exemplos pré-renderizada com seis aquários
+ *   de 30 a 120 cm de frente, e JSON-LD (WebApplication + FAQPage) no wp_head. Era a última
+ *   calculadora da ilha sem as três, e a única com jsonld_ok=0 no conferir-entidades.mjs.
+ *   Nenhuma linha de cálculo mudou: tudo que a tabela servida imprime é ESPELHO em PHP das
+ *   mesmas funções do script (fmt, litros, e as regras de calcular()), porque tabela que
+ *   arredonda diferente da calculadora logo acima dela faz a página se contradizer sozinha.
  * Versão: 1.1.0 (08/09/2026) — CORREÇÃO GRAVE: o JS e o CSS saíram de dentro do retorno do
  *   shortcode e passaram a ser impressos no wp_head (estilo) e no wp_footer (comportamento).
  *   Dentro do retorno do shortcode eles ainda atravessavam os filtros de texto do conteúdo,
@@ -44,9 +51,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_C1_VERSAO' ) ) {
-	define( 'AQUAMETRIA_C1_VERSAO', '1.0.4' );
+	define( 'AQUAMETRIA_C1_VERSAO', '1.2.0' );
 	define( 'AQUAMETRIA_C1_SLUG', 'calculadora-de-litragem' );
 	define( 'AQUAMETRIA_C1_VERIFICADO_EM', '07/09/2026' );
+	define( 'AQUAMETRIA_C1_PAGINA_AFILIADOS', 'divulgacao-de-afiliados' );
 	/* Constante 'borda-livre-padrao' (dados/constantes-calculadoras.json):
 	   3 cm, status convencao-editorial. NÃO é dado técnico — é valor inicial
 	   do campo, e a tela diz isso ao lado dele. */
@@ -131,6 +139,16 @@ max-width:52rem;font-family:var(--c1-texto);color:var(--c1-tinta);}
 .aqm-c1-adiante ul{margin:.5rem 0 0;padding-left:1.1rem;}
 .aqm-c1-adiante li{margin:0 0 .4rem;font-size:.94rem;}
 .aqm-c1-oculto{display:none;}
+.aqm-c1-exemplos{width:100%;min-width:46rem;font-size:.86rem;border-collapse:collapse;margin:.4rem 0 0;}
+.aqm-c1-exemplos th,.aqm-c1-exemplos td{border:1px solid var(--c1-traco);padding:.45rem .6rem;text-align:left;vertical-align:top;}
+.aqm-c1-exemplos th{background:var(--c1-papel);font-family:var(--c1-display);font-size:.8rem;}
+.aqm-c1-exemplos .aqm-c1-num{display:block;font-family:var(--c1-mono);font-variant-numeric:tabular-nums;font-size:.92rem;font-weight:600;color:var(--c1-tinta);line-height:1.25;}
+.aqm-c1-exemplos .aqm-c1-un{display:block;font-size:.76rem;color:var(--c1-legenda);line-height:1.35;margin-top:.15rem;}
+.aqm-c1-direta{background:var(--c1-papel);border:1px dashed var(--c1-traco);border-radius:3px;padding:.85rem 1rem;font-size:.9rem;line-height:1.55;margin:0 0 1.2rem;}
+.aqm-c1-direta p{margin:0 0 .6rem;}
+.aqm-c1-direta p:last-child{margin-bottom:0;}
+.aqm-c1-aviso-tabela{background:var(--c1-papel);border:1px solid var(--c1-traco);border-left:3px solid var(--c1-alerta);border-radius:2px;padding:.8rem 1rem;font-size:.86rem;line-height:1.5;color:var(--c1-legenda);margin:1rem 0 0;}
+.aqm-c1-aviso-tabela strong{color:var(--c1-tinta);}
 @media (max-width:600px){.aqm-c1-valor{font-size:1.6rem;}}
 CSS;
 }
@@ -676,6 +694,388 @@ function aquametria_c1_adiante_html() {
 }
 
 /* ---------------------------------------------------------------------------
+ * 4b. VISIBILIDADE EM IA (seção 5 do ARQUIPELAGO.md) — as três peças
+ *
+ * Uma calculadora que só calcula em JavaScript mostra a um modelo de linguagem
+ * um formulário VAZIO, nunca um número. As três peças que resolvem isso são a
+ * resposta antes da explicação, a tabela de exemplos já resolvida no HTML
+ * servido e o JSON-LD — e nenhuma delas pode contradizer a calculadora logo
+ * acima dela. Por isso tudo aqui é ESPELHO em PHP das mesmas funções do script,
+ * função a função, e o teste de navegador compara a tabela servida com o que a
+ * calculadora devolve para a mesma entrada.
+ *
+ * O EIXO DESTA TABELA É O CENTÍMETRO, e não o litro como na C3, na C5 e na C12.
+ * Não é gosto: aqui o litro é a SAÍDA. Quem procura esta página digita as
+ * medidas que tem na fita métrica ("quantos litros tem um aquário de 60 × 30 ×
+ * 35"), nunca o volume — se soubesse o volume, não precisaria da calculadora.
+ * Uma tabela indexada por litro responderia à pergunta que a pessoa ainda não
+ * consegue fazer. A escada de comprimento é a mesma da C15 (30, 45, 60, 80, 90
+ * e 120 cm), de propósito: é a escada em que a luminária é vendida, e repetir a
+ * mesma faixa deixa as duas páginas comparáveis entre si.
+ * ------------------------------------------------------------------------- */
+
+if ( ! function_exists( 'aquametria_c1_url' ) ) {
+function aquametria_c1_url( $slug ) {
+	return function_exists( 'aquametria_casca_url_pagina' )
+		? aquametria_casca_url_pagina( $slug )
+		: home_url( '/' . $slug . '/' );
+}
+}
+
+/* Espelho em PHP do fmt() do script. */
+if ( ! function_exists( 'aquametria_c1_fmt' ) ) {
+function aquametria_c1_fmt( $n, $casas ) {
+	if ( null === $n || ! is_numeric( $n ) ) {
+		return '—';
+	}
+	return number_format_i18n( $n, $casas );
+}
+}
+
+/* Espelho em PHP do litros() do script: inteiro a partir de 100 L, uma casa
+   abaixo disso. Se este arredondamento divergir do JavaScript, a tabela servida
+   passa a afirmar um número e a calculadora outro na mesma página. */
+if ( ! function_exists( 'aquametria_c1_litros' ) ) {
+function aquametria_c1_litros( $n ) {
+	if ( null === $n || ! is_numeric( $n ) ) {
+		return '—';
+	}
+	return ( $n >= 100 ) ? aquametria_c1_fmt( round( $n ), 0 ) : aquametria_c1_fmt( round( $n * 10 ) / 10, 1 );
+}
+}
+
+/* Os seis aquários da tabela servida.
+ *
+ * ATENÇÃO ao que estas linhas são e ao que NÃO são: são as ENTRADAS de um
+ * exemplo — medidas de fita métrica e espessura de vidro digitadas no
+ * formulário —, exatamente como os volumes de 30 a 300 L são entradas nas
+ * tabelas da C3 e da C5. Não são um catálogo de modelos de fabricante e não são
+ * recomendação de espessura: a Aquametria não dimensiona vidro, e a tabela diz
+ * isso na nota logo abaixo dela. A saída, essa sim, é dado próprio: sai da
+ * geometria, que é definição e não constante de terceiro.
+ */
+if ( ! function_exists( 'aquametria_c1_casos_exemplo' ) ) {
+function aquametria_c1_casos_exemplo() {
+	return array(
+		array( 'c' => 30,  'l' => 25, 'a' => 30, 'e' => 4 ),
+		array( 'c' => 45,  'l' => 30, 'a' => 30, 'e' => 5 ),
+		array( 'c' => 60,  'l' => 30, 'a' => 35, 'e' => 6 ),
+		array( 'c' => 80,  'l' => 40, 'a' => 40, 'e' => 8 ),
+		array( 'c' => 90,  'l' => 45, 'a' => 45, 'e' => 8 ),
+		array( 'c' => 120, 'l' => 50, 'a' => 50, 'e' => 10 ),
+	);
+}
+}
+
+/* Resolve um caso com as MESMAS regras do calcular() do script, no ramo em que
+   a tabela o coloca: medidas externas, lâmina em branco (ou seja, o valor
+   inicial de altura interna menos a borda livre), sem substrato e sem rochas.
+   Qualquer divergência daqui para lá é a página se contradizendo. */
+if ( ! function_exists( 'aquametria_c1_exemplo' ) ) {
+function aquametria_c1_exemplo( $caso ) {
+	$e_cm = $caso['e'] / 10;
+
+	$c_int = $caso['c'] - 2 * $e_cm;
+	$l_int = $caso['l'] - 2 * $e_cm;
+	$a_int = $caso['a'] - $e_cm;
+
+	$bruto   = $caso['c'] * $caso['l'] * $caso['a'] / 1000;
+	$interno = $c_int * $l_int * $a_int / 1000;
+
+	$lamina = max( 0, $a_int - AQUAMETRIA_C1_BORDA_LIVRE_CM );
+	$real   = $c_int * $l_int * $lamina / 1000;
+
+	return array(
+		'c'         => $caso['c'],
+		'l'         => $caso['l'],
+		'a'         => $caso['a'],
+		'e'         => $caso['e'],
+		'c_int'     => $c_int,
+		'l_int'     => $l_int,
+		'a_int'     => $a_int,
+		'bruto'     => $bruto,
+		'interno'   => $interno,
+		'lamina_cm' => $lamina,
+		'real'      => $real,
+		/* A porcentagem sai dos valores CRUS, nunca da subtração dos números já
+		   arredondados da tela — senão a coluna passaria a discordar de si mesma
+		   por causa da própria formatação. */
+		'perda_pct' => ( $bruto > 0 ) ? ( $bruto - $real ) / $bruto * 100 : null,
+	);
+}
+}
+
+/* ---- A resposta antes da explicação (seção 5, item 2 do ARQUIPELAGO.md) ---
+   Frase autossuficiente: precisa sobreviver a ser citada fora de contexto, por
+   um modelo de linguagem que leu só este parágrafo. Por isso repete as medidas,
+   os três números, a unidade e a data em vez de dizer "veja acima". */
+if ( ! function_exists( 'aquametria_c1_resposta_direta_html' ) ) {
+function aquametria_c1_resposta_direta_html() {
+	$casos = aquametria_c1_casos_exemplo();
+	$e80   = aquametria_c1_exemplo( $casos[3] ); /* 80 × 40 × 40, vidro de 8 mm */
+	$e120  = aquametria_c1_exemplo( $casos[5] );
+
+	$h  = '<div class="aqm-c1-direta">';
+
+	$h .= '<p><strong>A resposta curta.</strong> Um aquário não tem um volume: tem três, e eles não são o mesmo número. ';
+	$h .= 'Um aquário de ' . esc_html( aquametria_c1_fmt( $e80['c'], 0 ) ) . ' × ' . esc_html( aquametria_c1_fmt( $e80['l'], 0 ) )
+		. ' × ' . esc_html( aquametria_c1_fmt( $e80['a'], 0 ) ) . ' cm medidos por fora, com vidro de '
+		. esc_html( aquametria_c1_fmt( $e80['e'], 0 ) ) . ' mm, tem <strong>' . esc_html( aquametria_c1_litros( $e80['bruto'] ) )
+		. ' L brutos</strong> — que é o número da etiqueta —, <strong>' . esc_html( aquametria_c1_litros( $e80['interno'] ) )
+		. ' L internos</strong> depois de descontar o vidro, e <strong>' . esc_html( aquametria_c1_litros( $e80['real'] ) )
+		. ' L de água de verdade</strong> com a lâmina em ' . esc_html( aquametria_c1_fmt( $e80['lamina_cm'], 1 ) ) . ' cm. ';
+	$h .= 'São ' . esc_html( aquametria_c1_fmt( round( $e80['perda_pct'] ), 0 ) ) . ' % a menos que a etiqueta. ';
+	$h .= 'Verificado em ' . esc_html( AQUAMETRIA_C1_VERIFICADO_EM ) . '.</p>';
+
+	$h .= '<p><strong>É o terceiro número que dimensiona o equipamento.</strong> ';
+	$h .= 'Filtro, aquecedor, mídia biológica e iluminação são escolhidos pela água que existe, não pela que caberia se o aquário fosse uma caixa vazia sem vidro e cheia até a borda. ';
+	$h .= 'Dimensionar pelo número da loja é dimensionar por um aquário que não existe — e o erro cresce com a espessura do vidro e com a borda livre: ';
+	$h .= 'de ' . esc_html( aquametria_c1_fmt( round( $e120['perda_pct'] ), 0 ) ) . ' % num aquário de '
+		. esc_html( aquametria_c1_fmt( $e120['c'], 0 ) ) . ' cm de frente a '
+		. esc_html( aquametria_c1_fmt( round( aquametria_c1_exemplo( $casos[0] )['perda_pct'] ), 0 ) ) . ' % num nano de '
+		. esc_html( aquametria_c1_fmt( $casos[0]['c'], 0 ) ) . ' cm, onde o vidro pesa mais em proporção.</p>';
+
+	$h .= '<p><strong>De onde vem cada conta, sem constante emprestada.</strong> ';
+	$h .= 'O volume bruto é comprimento × largura × altura ÷ 1000: geometria, a definição de litro em centímetros cúbicos, e não uma constante de terceiro que precise de fonte. ';
+	$h .= 'O desconto do vidro também é geometria da caixa colada — duas espessuras no comprimento, duas na largura, uma na base; o vidro da tampa não entra porque a água não chega nele. ';
+	$h .= 'A única escolha editorial da página é a borda livre de ' . esc_html( AQUAMETRIA_C1_BORDA_LIVRE_CM ) . ' cm, que é o valor inicial do campo da lâmina, está rotulada como convenção da Aquametria e é para você ajustar: ';
+	$h .= 'num aquário de 40 cm de altura, a diferença entre 2 e 5 cm de borda livre chega a 7 % do volume.</p>';
+
+	$h .= '<p><strong>E o que esta conta não desconta: o substrato.</strong> ';
+	$h .= 'Descontar substrato exige a porosidade do leito — quanta água fica entre os grãos —, e nenhuma fonte brasileira do levantamento publica esse número; ';
+	$h .= 'as duas que publicam densidade discordam em 100 % entre si — uma diz de 1 a 2 kg por litro, a outra trata 1 kg como um litro. ';
+	$h .= 'Constante pendente é proibida dentro de fórmula publicada aqui, então a página não desconta e declara a consequência: ';
+	$h .= 'o volume real acima está <strong>superestimado</strong>. Para filtro, aquecedor e mídia esse erro é seguro, porque pede equipamento maior; para lotação e dosagem ele é inseguro, e é por isso que a calculadora de lotação trata este número pelo pior caso.</p>';
+
+	$h .= '</div>';
+	return $h;
+}
+}
+
+/* ---- A tabela de exemplos servida (seção 5, item 1) ---------------------- */
+if ( ! function_exists( 'aquametria_c1_exemplos_html' ) ) {
+function aquametria_c1_exemplos_html() {
+	/* A classe -bloco-exemplos marca o BLOCO (painel inteiro); a -exemplos marca a
+	   TABELA. São duas coisas, e separá-las é o que permite ao
+	   teste-navegador-visibilidade-ia.mjs achar a tabela, o aviso e a última
+	   coluna sem depender de qual calculadora está sendo medida. Nenhuma delas
+	   reaproveita .aqm-c1-fontes, que é o localizador da tabela de constantes —
+	   duas tabelas com a mesma classe quebram o teste, e isso já custou duas
+	   rodadas na C15. */
+	$h  = '<div class="aqm-c1-painel aqm-c1-bloco-exemplos">';
+	$h .= '<h3>Seis aquários já resolvidos, do nano ao de sala</h3>';
+	$h .= '<p class="aqm-c1-sub">É a mesma conta do formulário acima, aplicada a seis conjuntos de medidas, com a lâmina no valor inicial e sem substrato nem rochas. ';
+	$h .= 'Estes números estão prontos no HTML desta página — não é preciso preencher nada, e quem lê sem executar JavaScript vê os mesmos valores que a calculadora devolve.</p>';
+
+	$h .= '<div class="aqm-c1-rolagem"><table class="aqm-c1-exemplos">';
+	$h .= '<tr><th>Aquário</th><th>Volume bruto</th><th>Volume interno</th>';
+	$h .= '<th>Volume real de referência</th><th>O que muda ao usar o número certo</th></tr>';
+
+	foreach ( aquametria_c1_casos_exemplo() as $caso ) {
+		$e = aquametria_c1_exemplo( $caso );
+
+		$medidas = aquametria_c1_fmt( $e['c'], 0 ) . ' × ' . aquametria_c1_fmt( $e['l'], 0 ) . ' × ' . aquametria_c1_fmt( $e['a'], 0 );
+
+		$h .= '<tr>';
+
+		$h .= '<td><span class="aqm-c1-num">' . esc_html( aquametria_c1_fmt( $e['c'], 0 ) ) . ' cm</span>';
+		$h .= '<span class="aqm-c1-un">' . esc_html( $medidas ) . ' cm por fora, vidro de '
+			. esc_html( aquametria_c1_fmt( $e['e'], 0 ) ) . ' mm</span></td>';
+
+		$h .= '<td><span class="aqm-c1-num">' . esc_html( aquametria_c1_litros( $e['bruto'] ) ) . ' L</span>';
+		$h .= '<span class="aqm-c1-un">' . esc_html( $medidas ) . ' ÷ 1000 — é o que a loja anuncia</span></td>';
+
+		$h .= '<td><span class="aqm-c1-num">' . esc_html( aquametria_c1_litros( $e['interno'] ) ) . ' L</span>';
+		$h .= '<span class="aqm-c1-un">por dentro: ' . esc_html( aquametria_c1_fmt( $e['c_int'], 1 ) ) . ' × '
+			. esc_html( aquametria_c1_fmt( $e['l_int'], 1 ) ) . ' × ' . esc_html( aquametria_c1_fmt( $e['a_int'], 1 ) )
+			. ' cm, já sem o vidro</span></td>';
+
+		$h .= '<td><span class="aqm-c1-num">' . esc_html( aquametria_c1_litros( $e['real'] ) ) . ' L</span>';
+		$h .= '<span class="aqm-c1-un">lâmina de ' . esc_html( aquametria_c1_fmt( $e['lamina_cm'], 1 ) )
+			. ' cm, que é a altura interna menos a borda livre de ' . esc_html( AQUAMETRIA_C1_BORDA_LIVRE_CM )
+			. ' cm — substrato não descontado</span></td>';
+
+		$h .= '<td><span class="aqm-c1-num">' . esc_html( aquametria_c1_fmt( round( $e['perda_pct'] ), 0 ) ) . ' % a menos</span>';
+		$h .= '<span class="aqm-c1-un">é este volume real, e não os ' . esc_html( aquametria_c1_litros( $e['bruto'] ) )
+			. ' L da etiqueta, que a vazão do filtro, a potência do aquecedor, a mídia biológica e a iluminação leem — '
+			. 'dimensionar pelo bruto compra equipamento para uma água que não está lá</span></td>';
+
+		$h .= '</tr>';
+	}
+
+	$h .= '</table></div>';
+
+	$h .= '<p class="aqm-c1-criterio" style="margin-top:.8rem">Como ler a tabela. ';
+	$h .= 'A primeira coluna é o comprimento da frente, que é como o aquário e a luminária são vendidos — as medidas completas e a espessura vêm logo abaixo dele, e são as <strong>entradas</strong> do exemplo, não um catálogo de modelos: ';
+	$h .= 'a Aquametria não dimensiona vidro e esta página não diz qual espessura o seu aquário deveria ter. ';
+	$h .= 'A segunda coluna é o número da etiqueta. A terceira desconta o vidro. A quarta é a água que existe, e é a única que dimensiona equipamento. ';
+	$h .= 'A quinta é a distância entre a primeira e a quarta, que é justamente o motivo de esta página existir. ';
+	$h .= 'Nenhum valor foi digitado à mão: todos saem das mesmas regras que a calculadora usa, calculados no servidor a cada carregamento.</p>';
+
+	$divulgacao = aquametria_c1_url( AQUAMETRIA_C1_PAGINA_AFILIADOS );
+
+	/* Classe própria (-aviso-tabela), e não a do aviso de publicidade do bloco de
+	   produto: o teste de navegador localiza o aviso da tabela em modo estrito, e
+	   duas ocorrências da mesma classe quebram o localizador. */
+	$h .= '<p class="aqm-c1-aviso-tabela"><strong>Sobre a última coluna, e sobre o que esta tabela não faz.</strong> ';
+	$h .= 'Nenhuma linha aqui leva a loja nenhuma, e isso não é esquecimento: litragem é geometria, e geometria não escolhe produto. ';
+	$h .= 'Quem escolhe filtro, aquecedor, mídia ou luminária são as calculadoras que leem este volume, e é lá que o bloco de produto nasce — dentro da resposta, como consequência do cálculo, com a especificação que fez cada produto entrar. ';
+	$h .= 'Por isso esta página não tem link de afiliado e não gera comissão nenhuma. Onde eles existem na Aquametria, saem marcados como patrocinados, com o aviso ao lado. ';
+	$h .= 'Preço não entra nem aqui nem lá: preço muda toda semana e número velho na tela é pior que nenhum, então o que publicamos é a especificação e a data em que ela foi conferida. ';
+	$h .= '<a href="' . esc_url( $divulgacao ) . '">Como a Aquametria ganha dinheiro</a>.</p>';
+
+	$h .= '</div>';
+	return $h;
+}
+}
+
+/* ---- JSON-LD (seção 5, item 3) ------------------------------------------
+ * Sai no wp_head, e por isso NUNCA dentro do retorno do shortcode: o retorno
+ * atravessa os filtros do the_content, que trocariam cada "&" pela entidade
+ * numérica e quebrariam o JSON tanto quanto quebraram o JavaScript em 08/09.
+ *
+ * Cada resposta do FAQ existe, com o mesmo número, na tabela servida acima —
+ * FAQPage que promete o que a página não mostra é lixo, e seria lixo detectável.
+ * ---------------------------------------------------------------------- */
+if ( ! function_exists( 'aquametria_c1_jsonld_dados' ) ) {
+function aquametria_c1_jsonld_dados() {
+	$url = aquametria_c1_url( AQUAMETRIA_C1_SLUG );
+
+	$editora = array(
+		'@type' => 'Organization',
+		'name'  => 'Aquametria',
+		'url'   => home_url( '/' ),
+	);
+
+	$app = array(
+		'@type'                  => 'WebApplication',
+		'@id'                    => $url . '#calculadora',
+		'name'                   => 'Calculadora de litragem de aquário',
+		'alternateName'          => 'Aquametria C1 — quantos litros tem o seu aquário',
+		'url'                    => $url,
+		'inLanguage'             => 'pt-BR',
+		'applicationCategory'    => 'UtilitiesApplication',
+		'applicationSubCategory' => 'Calculadora de dimensionamento de aquário',
+		'operatingSystem'        => 'Qualquer navegador com JavaScript',
+		'browserRequirements'    => 'Requer JavaScript. O cálculo roda no navegador e nenhum dado é enviado a servidor.',
+		'isAccessibleForFree'    => true,
+		'offers'                 => array(
+			'@type'         => 'Offer',
+			'price'         => '0',
+			'priceCurrency' => 'BRL',
+		),
+		'softwareVersion' => AQUAMETRIA_C1_VERSAO,
+		'description'     => 'Converte as medidas do aquário em centímetros nos três volumes que não são o mesmo número: o bruto que a loja anuncia, '
+			. 'o interno depois de descontar a espessura do vidro e o volume real de água, que é a lâmina sobre a área interna menos rochas e decoração. '
+			. 'É o volume real que dimensiona filtro, aquecedor, mídia e iluminação, e ele fica guardado no navegador do visitante para as outras calculadoras da Aquametria lerem.',
+		'featureList' => array(
+			'Volume bruto, interno e real de referência separados, cada um com o critério que o define',
+			'Desconto do vidro pela geometria da caixa colada: duas espessuras nas laterais, uma na base',
+			'Lâmina d\'água com valor inicial declarado como convenção editorial, não como dado de fabricante',
+			'Recusa explícita de descontar substrato, com a consequência do erro declarada na tela',
+			'Caminho inverso: o volume desejado e duas medidas devolvem a terceira',
+			'Resultado guardado no próprio navegador e reaproveitado pelas outras calculadoras, sem conta e sem envio a servidor',
+			'Link permanente da resposta, para conferir ou compartilhar o mesmo cálculo',
+			'Tabela pré-calculada para seis aquários de 30 a 120 cm de frente, já no HTML servido',
+		),
+		'publisher'        => $editora,
+		'isBasedOn'        => 'Geometria (definição de litro em centímetro cúbico), mais a convenção editorial de borda livre da Aquametria, declarada como tal em '
+			. AQUAMETRIA_C1_VERIFICADO_EM,
+		'mainEntityOfPage' => $url,
+	);
+
+	$perguntas = array();
+
+	foreach ( aquametria_c1_casos_exemplo() as $caso ) {
+		$e = aquametria_c1_exemplo( $caso );
+
+		$medidas = aquametria_c1_fmt( $e['c'], 0 ) . ' × ' . aquametria_c1_fmt( $e['l'], 0 ) . ' × ' . aquametria_c1_fmt( $e['a'], 0 );
+
+		$texto = 'Tem três volumes diferentes, e nenhum deles é o outro. O volume bruto é ' . aquametria_c1_litros( $e['bruto'] )
+			. ' L (' . $medidas . ' ÷ 1000), que é o número anunciado pela loja. '
+			. 'Com vidro de ' . aquametria_c1_fmt( $e['e'], 0 ) . ' mm, o volume interno cai para ' . aquametria_c1_litros( $e['interno'] )
+			. ' L, porque cada parede lateral entra duas vezes no comprimento e na largura e a base entra uma vez na altura. '
+			. 'E a água de verdade são ' . aquametria_c1_litros( $e['real'] ) . ' L, com a lâmina em '
+			. aquametria_c1_fmt( $e['lamina_cm'], 1 ) . ' cm — a altura interna menos ' . AQUAMETRIA_C1_BORDA_LIVRE_CM
+			. ' cm de borda livre, que é convenção editorial da Aquametria e não dado de fabricante. '
+			. 'Ou seja, ' . aquametria_c1_fmt( round( $e['perda_pct'] ), 0 ) . ' % a menos que a etiqueta. '
+			. 'É o volume real que dimensiona filtro, aquecedor, mídia e iluminação. O substrato não está descontado, então esse número está superestimado. '
+			. 'Verificado em ' . AQUAMETRIA_C1_VERIFICADO_EM . '.';
+
+		$perguntas[] = array(
+			'@type'          => 'Question',
+			'name'           => 'Quantos litros tem um aquário de ' . $medidas . ' cm?',
+			'acceptedAnswer' => array( '@type' => 'Answer', 'text' => $texto ),
+		);
+	}
+
+	$perguntas[] = array(
+		'@type'          => 'Question',
+		'name'           => 'O volume que a loja anuncia é a água que cabe no aquário?',
+		'acceptedAnswer' => array(
+			'@type' => 'Answer',
+			'text'  => 'Não, e a diferença não é pequena: nos seis aquários calculados nesta página ela vai de 13 % a 17 % do volume anunciado. '
+				. 'O número da loja é o volume bruto, comprimento × largura × altura por fora, dividido por 1000 — uma caixa maciça, sem vidro e cheia até a borda. '
+				. 'A água real é menor por dois motivos somados: o vidro ocupa espaço (duas espessuras no comprimento, duas na largura, uma na base) e a lâmina d\'água para antes da borda. '
+				. 'Num aquário de 80 × 40 × 40 cm com vidro de 8 mm, os 128 L da etiqueta viram 118 L internos e 109 L de água com a lâmina em 36,2 cm. '
+				. 'Rochas e substrato ainda tiram mais. Dimensionar filtro ou aquecedor pelo número da etiqueta é dimensionar por um aquário que não existe.',
+		),
+	);
+
+	$perguntas[] = array(
+		'@type'          => 'Question',
+		'name'           => 'Como descontar a espessura do vidro do volume do aquário?',
+		'acceptedAnswer' => array(
+			'@type' => 'Answer',
+			'text'  => 'Pela geometria da caixa colada, não por um percentual de segurança. Cada parede lateral entra DUAS vezes no comprimento e duas vezes na largura, '
+				. 'e a base entra UMA vez na altura; o vidro da tampa não conta, porque a água não chega nele. '
+				. 'Com vidro de 8 mm (0,8 cm), um aquário de 80 × 40 × 40 cm por fora tem 78,4 × 38,4 × 39,2 cm por dentro, ou seja, 118 L internos contra 128 L brutos: quase 10 L só de vidro. '
+				. 'Sem a espessura informada esse número não existe, e a Aquametria devolve "sem número" em vez de chutar uma espessura provável — '
+				. 'chutar 6 ou 10 mm mudaria o resultado em vários litros sem que o visitante soubesse que houve chute.',
+		),
+	);
+
+	$perguntas[] = array(
+		'@type'          => 'Question',
+		'name'           => 'Por que a calculadora não desconta o substrato do volume?',
+		'acceptedAnswer' => array(
+			'@type' => 'Answer',
+			'text'  => 'Porque o desconto correto depende da porosidade do leito — quanta água fica entre os grãos —, e nenhuma fonte brasileira do levantamento publica esse número. '
+				. 'As duas que publicam densidade de substrato discordam em 100 % entre si: uma diz de 1 a 2 kg por litro, a outra trata 1 kg como 1 litro. '
+				. 'Divergência desse tamanho não vira média na Aquametria, e constante com status pendente é proibida dentro de fórmula publicada. '
+				. 'A consequência é declarada em vez de escondida: o volume real fica superestimado. '
+				. 'Para filtro, aquecedor e mídia esse erro é seguro, porque leva a equipamento maior; para lotação e dosagem ele é inseguro, '
+				. 'e por isso a calculadora de lotação usa o pior caso e a de dosagem não entrou no lote inicial. '
+				. 'A medição própria já está desenhada: recipiente graduado, substrato seco até uma marca, água até cobrir os grãos, três repetições por tipo de grão.',
+		),
+	);
+
+	$faq = array(
+		'@type'      => 'FAQPage',
+		'@id'        => $url . '#faq',
+		'inLanguage' => 'pt-BR',
+		'url'        => $url,
+		'mainEntity' => $perguntas,
+	);
+
+	return array(
+		'@context' => 'https://schema.org',
+		'@graph'   => array( $app, $faq ),
+	);
+}
+}
+
+if ( ! function_exists( 'aquametria_c1_imprimir_jsonld' ) ) {
+function aquametria_c1_imprimir_jsonld() {
+	$json = wp_json_encode( aquametria_c1_jsonld_dados(), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE );
+	if ( ! $json ) {
+		return;
+	}
+	echo '<script type="application/ld+json" id="aquametria-c1-jsonld">' . "\n" . $json . "\n" . '</script>' . "\n";
+}
+}
+
+/* ---------------------------------------------------------------------------
  * 5. Entrega do estilo e do comportamento — FORA do retorno do shortcode
  *
  * REGRA PERMANENTE DO PROJETO, escrita com sangue em 08/09/2026: JS e CSS de
@@ -730,6 +1130,7 @@ function aquametria_c1_cabeca() {
 		return;
 	}
 	aquametria_c1_imprimir_estilo();
+	aquametria_c1_imprimir_jsonld();
 }
 }
 add_action( 'wp_head', 'aquametria_c1_cabeca', 20 );
@@ -763,8 +1164,10 @@ function aquametria_c1_shortcode() {
 	add_action( 'wp_footer', 'aquametria_c1_rodape', 20 );
 
 	$h  = '<div class="aqm-c1">';
+	$h .= aquametria_c1_resposta_direta_html();
 	$h .= aquametria_c1_form_html();
 	$h .= aquametria_c1_resposta_html();
+	$h .= aquametria_c1_exemplos_html();
 	$h .= aquametria_c1_inverso_html();
 	$h .= aquametria_c1_fontes_html();
 	$h .= aquametria_c1_adiante_html();

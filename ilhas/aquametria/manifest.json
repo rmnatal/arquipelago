@@ -4,7 +4,7 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 31,
+  "revisao": 32,
   "atualizado_em": "2026-09-10",
   "estado": "fundacao",
   "desembarque": {
@@ -64,8 +64,8 @@
       "escopo": "front-end",
       "ativo": true,
       "publicar": true,
-      "sha256": "e88c387aa48bc45a1658826c195d2b3db14d4277362b6b56e1834202b081afd1",
-      "descricao": "C1, o nucleo do lote. Registra o shortcode [aquametria_calculadora_litragem]: formulario de medidas, os tres volumes (bruto, interno e real de referencia) com o criterio de cada um, caminho inverso (litros para medida), quadro de fontes e permalink citavel. Todo o calculo e JavaScript no navegador, porque o site esta atras de cache de pagina. Grava o estado compartilhado em localStorage, chave aquametria.aquario, que as proximas calculadoras leem. NAO desconta substrato: as constantes estao pendentes e a tela declara a superestimativa e a direcao do erro. Anuncia-se no hub pelo filtro aquametria_calculadoras da casca, entao a casca nao precisa ser editada nem ter a versao bumpada. v1.0.1 (08/09/2026): o painel 'o que este resultado alimenta' agora LINKA a C3, que entrou no ar — o link de ida da C1 para a C3, de mao dupla com o que a C3 devolve. v1.0.2 (08/09/2026): guardar() passou a MESCLAR o estado compartilhado em vez de substitui-lo — voltar a C1 para corrigir uma medida zerava a vazao que a C3 tinha calculado e o clima que a C5 tinha perguntado. A secao final passou a linkar a C5, que entrou no ar. v1.1.0 (08/09/2026), CORRECAO GRAVE: o JS e o CSS sairam de dentro do retorno do shortcode e passaram para wp_head (estilo) e wp_footer (comportamento). Dentro do retorno do shortcode eles ainda atravessavam os filtros de texto do conteudo, que trocam & por &#038;, e o primeiro && do script matava o JavaScript inteiro com SyntaxError: o formulario nao calculava e o bloco de produto nunca aparecia. Nenhuma linha de calculo mudou."
+      "sha256": "ef9764317dd379a71fde0e0996968cf08e4d417eeb5c5fac3c648a10810bce17",
+      "descricao": "C1, o nucleo do lote. Registra o shortcode [aquametria_calculadora_litragem]: formulario de medidas, os tres volumes (bruto, interno e real de referencia) com o criterio de cada um, caminho inverso (litros para medida), quadro de fontes e permalink citavel. Todo o calculo e JavaScript no navegador, porque o site esta atras de cache de pagina. Grava o estado compartilhado em localStorage, chave aquametria.aquario, que as proximas calculadoras leem. NAO desconta substrato: as constantes estao pendentes e a tela declara a superestimativa e a direcao do erro. Anuncia-se no hub pelo filtro aquametria_calculadoras da casca, entao a casca nao precisa ser editada nem ter a versao bumpada. v1.0.1 (08/09/2026): o painel 'o que este resultado alimenta' agora LINKA a C3, que entrou no ar — o link de ida da C1 para a C3, de mao dupla com o que a C3 devolve. v1.0.2 (08/09/2026): guardar() passou a MESCLAR o estado compartilhado em vez de substitui-lo — voltar a C1 para corrigir uma medida zerava a vazao que a C3 tinha calculado e o clima que a C5 tinha perguntado. A secao final passou a linkar a C5, que entrou no ar. v1.1.0 (08/09/2026), CORRECAO GRAVE: o JS e o CSS sairam de dentro do retorno do shortcode e passaram para wp_head (estilo) e wp_footer (comportamento). Dentro do retorno do shortcode eles ainda atravessavam os filtros de texto do conteudo, que trocam & por &#038;, e o primeiro && do script matava o JavaScript inteiro com SyntaxError: o formulario nao calculava e o bloco de produto nunca aparecia. Nenhuma linha de calculo mudou. v1.2.0 (10/09/2026): VISIBILIDADE EM IA, as tres pecas de uma vez (secao 5 do ARQUIPELAGO.md). Era a ultima calculadora da ilha sem elas e a unica com jsonld_ok=0 no conferir-entidades.mjs. Entraram a resposta antes da explicacao no topo (os tres volumes de um aquario concreto, com a data de verificacao na frase), a tabela de exemplos pre-renderizada com seis aquarios de 30 a 120 cm de frente e o JSON-LD (WebApplication + FAQPage de nove perguntas) no wp_head. O eixo da tabela e o CENTIMETRO e nao o litro como na C3, na C5 e na C12, porque aqui o litro e a SAIDA: quem abre esta pagina tem a fita metrica na mao e nao sabe o volume, entao tabela indexada por litro responderia a pergunta que a pessoa ainda nao consegue fazer. A escada de comprimento e a mesma da C15, que e como a luminaria e vendida. As medidas e a espessura de cada linha sao ENTRADAS do exemplo, nao catalogo de fabricante nem recomendacao de vidro, e a nota da tabela diz isso. A tabela nao tem link de loja e explica por que: litragem e geometria e geometria nao escolhe produto — o bloco de produto nasce nas calculadoras que leem este volume. Nenhuma linha de calculo mudou: tudo que a tabela imprime e espelho em PHP das mesmas funcoes do script, e o teste-navegador-c1-tabela.mjs poe as duas frente a frente."
     },
     {
       "id": "aquametria-calculadora-vazao",
@@ -127,7 +127,7 @@
       ],
       "verificado_em": "2026-09-08",
       "publicar": true,
-      "sha256": "849307c2a45439d8cde675b4cf1c6030472ba623bb41ba232fe6655da0631a07",
+      "sha256": "d9a6e688b433ca6261ff642bee192cc5578572fb59b1983fc73c4bf584faaa57",
       "descricao": "Pagina da C1: abertura, o shortcode da calculadora e a explicacao metodologica — os tres volumes e para que serve cada um, a borda livre como convencao declarada, por que o substrato nao e descontado (conflito de 100 % na densidade, porosidade sem fonte) com a tabela de direcao do erro, o protocolo de medicao que libera o desconto, o caminho inverso e os links internos para o hub e a metodologia. Em 08/09/2026 a secao final passou a LINKAR a calculadora de vazao do filtro, que entrou no ar."
     },
     {
@@ -607,7 +607,7 @@
       "arquivo": "ferramentas/teste-navegador-visibilidade-ia.mjs",
       "publicar": false,
       "descricao": "Mede num Chromium de verdade, e com o JAVASCRIPT DESLIGADO, o que a Sentinela Tecnica mediu a mao em 09/09/2026 e encontrou zero em 13 de 13 paginas: se a pagina de ferramenta serve algo citavel por um modelo de linguagem. Confere, por calculadora, que existe JSON-LD e que ele faz parse; que ha um no WebApplication com applicationCategory, featureList, isAccessibleForFree e publisher; que ha um FAQPage com pelo menos seis perguntas, toda resposta com texto, com numero e longa o bastante para ser citada; que a tabela de exemplos esta no HTML SERVIDO e cobre 30, 60, 100, 150, 200 e 300 L; que o numero da tabela para 100 L bate com o que a calculadora devolve para 100 L; que o bloco de resposta direta vem ANTES do formulario, com numero e data; e que, sem JavaScript, o container de resultado continua oculto — numero de resultado sem entrada seria pior que formulario vazio. Desligar o JavaScript e o coracao do teste: e o que um crawler de IA recebe, e a unica prova honesta de que o numero esta no HTML e nao foi desenhado depois. Nao vai para o WordPress. 09/09/2026: passou a conferir tambem a COLUNA DE PRODUTO da tabela pre-renderizada — uma celula por volume, nenhuma muda, todo link sponsored + noopener + aba nova e com texto (teclado e leitor de tela), e o aviso de comissao presente junto da tabela. Com o script desligado essa coluna e a unica recomendacao de compra que a pagina serve, entao se ela sumir ninguem percebe pela tela. 09/09/2026: passou de 2 para 4 calculadoras medidas (entraram C12 e C15) e deixou de cravar o eixo da tabela em litro. O eixo e propriedade da CALCULADORA, nao do teste: C3, C5 e C12 respondem por volume de agua e a C15 responde por comprimento do vidro, porque cobertura de luminaria e declarada pelo fabricante em centimetros. Exigir litro para todas reprovaria a C15 por estar certa, que e exatamente o modo como um teste treina a proxima sessao a ignora-lo. A casa decimal tambem virou opcional no degrau, porque a C12 imprime '30,0 L' com o mesmo litros() que a calculadora usa - exigir '30 L' cravado reprovaria a tabela por ser FIEL ao script. E os localizadores do bloco de exemplos e do aviso passaram a aceitar as duas convencoes de marcacao que a ilha criou em execucoes diferentes (-bloco-exemplos ou -exemplos; -aviso-tabela ou -aviso-afiliado), em vez de reescrever pagina no ar so para uniformizar nome de classe. Sobe de 46 para 124 afirmacoes.",
-      "sha256": "c16b84fd834ae829cc5ee2249219aec7406e95ceaaa1f9a6519022c03474b5f8"
+      "sha256": "61b8f74473a6d05e25b0f2bbdf722b9ab70c4e42341b0af90441f6ac0be617c5"
     },
     {
       "id": "conferir-protecao-funcoes",
@@ -636,6 +636,13 @@
       "publicar": false,
       "sha256": "92a9a1b14968ae9cd70a7b65f85cfc2c3e3c0a2c0c9bd7a1270b3d5a080ae5f7",
       "descricao": "Exercita o snippet de SEO tecnico sem WordPress: confere que arquivo por data, autor, tag, categoria nao curada, anexo, busca e 404 saem do indice; que pagina, artigo e home NAO saem (noindex sobrando numa calculadora seria defeito pior que o consertado); e que o provedor de autores sai sempre do sitemap enquanto o de taxonomias volta assim que houver categoria curada."
+    },
+    {
+      "id": "teste-navegador-c1-tabela",
+      "arquivo": "ferramentas/teste-navegador-c1-tabela.mjs",
+      "publicar": false,
+      "sha256": "50995c24ba669e01c2bfbd53377727ab4e00bf71d4b61ab2f8dc8dec1e62f715",
+      "descricao": "Teste de navegador que poe a tabela pre-renderizada da C1 contra a propria C1 em Chromium de verdade (Playwright), com JavaScript LIGADO: le as seis linhas do HTML servido, extrai da coluna do aquario as medidas e a espessura que geraram cada linha, digita essas entradas no formulario e compara os tres volumes e a lamina. Nao guarda numero esperado nenhum — entradas e valores esperados saem da propria pagina —, entao mudar medidas de exemplo, borda livre ou arredondamento nao reprova nada: o que ele afirma e a promessa de que a tabela servida nao contradiz a calculadora, nunca o estado do catalogo. Confere tambem que todo volume citado na resposta direta do topo existe na tabela ja conferida, por token e nunca por substring, e que o console fica sem erro de pagina. Nao vai para o WordPress."
     }
   ]
 }

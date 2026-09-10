@@ -3986,3 +3986,122 @@ do Mercado Livre aberto, e isso é da Sentinela estratégica.
    exemplos prontos (C15 e C12) e com o teste de visibilidade já preparado para receber o caso novo:
    basta acrescentar a C1 em `CASOS`, com o eixo e a âncora dela.
 3. **T3 (catálogo) segue barrado da nuvem** enquanto o egresso bloquear sites de fabricante.
+
+---
+
+## 2026-09-10, 11h19Z–11h40Z — T7, leva 3: a C1 fecha o retrofit de visibilidade em IA
+
+Ilha reservada às 11h19Z pelo commit de reserva, como manda a seção 1 do `ARQUIPELAGO.md`. A
+Robometria estava reservada havia um minuto por outra execução e caiu fora pela regra dos 40 minutos;
+sobrou a Aquametria, que também era a de `ultima_execucao` mais antiga entre as elegíveis.
+
+Bloco escolhido: **T7, leva 3 — a C1**. O T1 continua sendo o primeiro da fila e continua dependendo
+do Chrome do Raphael, então o que estava desbloqueado era este.
+
+### O que a C1 ganhou
+
+Snippet `aquametria-calculadora-litragem.php` na **v1.2.0**, manifest na **revisão 32**. As três peças
+da seção 5, de uma vez: **resposta antes da explicação** no topo (2.126 caracteres, com os três
+volumes de um aquário concreto e a data de verificação dentro da frase), **tabela pré-renderizada**
+com seis aquários e **JSON-LD** (`WebApplication` + `FAQPage` de nove perguntas) no `wp_head`, nunca
+dentro do retorno do shortcode. **Nenhuma linha de cálculo mudou**: tudo que a tabela imprime é
+espelho em PHP do `fmt()`, do `litros()` e do ramo de `calcular()` que ela representa.
+
+Com isso o `conferir-entidades.mjs` deixa de ter alguma calculadora em `jsonld_ok=0`: são **5 de 5**.
+
+### A decisão que este bloco tomou, e que não estava no molde
+
+O molde da C15 e da C12 respondia como montar as peças, não **em que eixo** a tabela é indexada. A C3,
+a C5 e a C12 indexam por litro; a C15 por centímetro, porque luminária é vendida por centímetro. A
+tentação era cravar litro na C1, que é *a calculadora de litros*.
+
+Seria errado, e por um motivo que vale para toda ilha: **na C1 o litro é a SAÍDA.** Quem abre esta
+página tem a fita métrica na mão e não sabe o volume — se soubesse, não precisaria da calculadora.
+Uma tabela indexada por litro responderia à pergunta que a pessoa ainda não consegue fazer. O eixo
+ficou o comprimento da frente, na mesma escada da C15 (30, 45, 60, 80, 90 e 120 cm), que é como o
+aquário e a luminária são vendidos. **Regra que sai daqui: o eixo da tabela pertence à pergunta, não
+ao formato da ferramenta.**
+
+Segunda decisão, esta sobre produto: **a tabela da C1 não tem link de loja, e diz por quê.** Litragem
+é geometria, e geometria não escolhe produto — quem escolhe filtro, aquecedor, mídia e luminária são
+as calculadoras que leem este volume, e é lá que o bloco de produto nasce dentro da resposta, como
+consequência do cálculo. A seção 7 do contrato manda dizer ao visitante por que o bloco está vazio, e
+o aviso da tabela faz isso em vez de deixar silêncio, que parece defeito.
+
+Terceira: as medidas e a espessura de cada linha são **ENTRADAS do exemplo**, exatamente como os
+volumes de 30 a 300 L são entradas nas tabelas da C3 e da C5 — não são catálogo de fabricante e não
+são recomendação de vidro. A nota da tabela declara isso com todas as letras, porque a Aquametria não
+dimensiona vidro e uma coluna de espessura sem essa frase seria lida como conselho.
+
+### Verificação (seção 8), com número medido
+
+- `php -l` limpo; `conferir-protecao-funcoes.py` ok — toda função de nível superior dentro de
+  `function_exists`.
+- `conferir-entidades.mjs`: **0 falhas**, C1 agora com `jsonld_ok=1`, `entidade_038_no_documento=0`,
+  script depois do conteúdo. (O `numéricas_no_documento=1` da C1 é o `&#039;` de "lâmina d'água" no
+  rótulo do campo, fora de `<script>` — já era assim antes e é legítimo.)
+- `teste-navegador-visibilidade-ia.mjs` com a C1 acrescentada em `CASOS`: **155 afirmações, 0 falha,
+  JavaScript DESLIGADO** nas cinco calculadoras.
+- `teste-navegador-cinco.mjs`: **56 afirmações, 0 falha**, as cinco calculando em Chromium real, 7
+  links de afiliado bem marcados no conjunto.
+- `teste-escape-shortcode.php` e `conferir-slugs.py`: ok.
+
+### O teste novo, e por que ele foi escrito assim
+
+`ferramentas/teste-navegador-c1-tabela.mjs` — **28 afirmações, JavaScript LIGADO**. Ele põe a tabela
+servida contra a própria calculadora: lê as seis linhas do HTML, extrai da coluna do aquário as
+medidas e a espessura que geraram cada linha, digita essas entradas no formulário e compara os três
+volumes e a lâmina. Deu igual nas seis linhas (22,5/20,9/18,8 · 40,5/37,6/33,8 · 63,0/58,3/53,2 ·
+128/118/109 · 182/170/158 · 300/278/261), console sem erro de página.
+
+Ele **não guarda número esperado nenhum**, de propósito. Quatro asserções venceram sozinhas em duas
+execuções seguidas nesta ilha, todas do mesmo tipo, e a regra que ficou escrita foi: *afirme a
+promessa, nunca o estado*. A promessa aqui é "a tabela servida não contradiz a calculadora" — mudar
+as medidas de exemplo, a borda livre ou o arredondamento não reprova nada, e é assim que ele
+sobrevive à próxima execução.
+
+Uma asserção nasceu passando por engano e foi consertada antes do commit: a que confere se todo
+volume citado na resposta direta existe na tabela usava `includes()`, e `"1 L"` é substring de
+`"261 L"`. Passou a comparar por token. Com a comparação certa, a frase que citava a divergência de
+densidade do substrato como "1 kg ≈ 1 L" ficou sem lastro na tabela — e a saída certa não era
+afrouxar o teste, foi escrever "1 kg como um litro" por extenso, que é um número de fonte externa e
+não um volume que esta página calcula. Três volumes citados, três com lastro.
+
+### Uma contradição da própria página, corrigida no caminho
+
+A abertura de `conteudo/calculadora-de-litragem.md` afirmava que a diferença entre a etiqueta e a água
+real "passa de 15 %". Com o aquário que ela mesma cita (80 × 40 × 40 cm, vidro de 8 mm, lâmina no
+valor inicial), a conta dá **14,9 %** — 128 L na etiqueta contra 109 L de água. Não passava de 15 %:
+chegava a 15 %. A frase agora dá os dois números e o percentual exato. É defeito pequeno e é
+exatamente o tipo que a tabela pré-renderizada expõe, porque põe o número ao lado da afirmação.
+
+### NÃO CONCLUÍDO — o site continua fora de alcance, e agora são VINTE E UMA revisões paradas
+
+`aquametria.com.br/wp-json/aquametria/v1/status` devolveu **EGRESS_BLOCKED** nesta execução também,
+testado com `?v=` novo para furar o cache. **O Sync não foi acionado e a revisão aplicada não foi
+conferida**, então nada deste bloco pode ser dado por "no ar" — só por "no `main`".
+
+**Repositório na revisão 32; a última medição do site, em 08/09 às 13h03, dizia 11.**
+
+O que destrava continua sendo o mesmo gesto de trinta segundos no Chrome do Raphael: abrir a URL do
+Sync com `&forcar=1` e, uns cinco minutos depois, conferir que o `/status` diz **revisão 32**. Depois
+disso, a medição do item 1 do despacho: `wp-sitemap.xml` sem `/category/uncategorized/`, e essa URL
+servindo `noindex`.
+
+### Produtos esperando link de afiliado: 39 de 78
+
+Sem mudança — nenhum produto entrou nesta execução, e este bloco não mexeu em catálogo. Por marca: 10
+Chihiros, 10 Atman, 4 Eheim, 3 Ocean Tech, 3 SunSun, 2 Hopar, 2 Seachem, 1 cada de Ista, WFish,
+Roxin, JBL e um sem marca. Continua valendo o registrado em 09/09: o número "20 sem loja possível"
+está VENCIDO e não deve ser repetido, porque foi medido quando a Shopee era o único programa. Refazer
+essa medição exige o painel do Mercado Livre aberto, e isso é da Sentinela estratégica.
+
+### Próximo passo desbloqueado
+
+1. **T1 — medir a indexação no Search Console.** Continua sendo o primeiro da fila e continua
+   dependendo do Chrome do Raphael. É ele que autoriza ou barra a T4.
+2. **T7, o que sobrou: os 3 artigos.** Com as cinco calculadoras fechadas, é o único resto do
+   retrofit. Atenção ao que NÃO se copia do molde: artigo não tem formulário, então resposta direta e
+   JSON-LD valem, mas tabela pré-renderizada só entra se o artigo tiver número próprio para pôr nela.
+   Tabela decorativa é pior que nenhuma.
+3. **T3 (catálogo) segue barrado da nuvem** enquanto o egresso bloquear sites de fabricante.

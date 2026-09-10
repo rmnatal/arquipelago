@@ -37,6 +37,21 @@ const EIXO_CM     = { unidade: 'cm', valores: ['30', '45', '60', '80', '90', '12
 
 const CASOS = [
   {
+    // A C1 fecha o retrofit: era a ultima calculadora da ilha sem as tres pecas
+    // e a unica com jsonld_ok=0. O eixo dela e o CENTIMETRO, e nao o litro, pela
+    // razao mais simples possivel: aqui o litro e a SAIDA. Quem abre esta pagina
+    // tem a fita metrica na mao e nao sabe o volume — se soubesse, nao precisaria
+    // da calculadora. Uma tabela indexada por litro responderia a pergunta que a
+    // pessoa ainda nao consegue fazer.
+    codigo: 'C1', arquivo: 'c1.html', prefixo: 'aqm-c1', eixo: EIXO_CM,
+    // O que a calculadora devolve como volume real para 80 x 40 x 40 cm com
+    // vidro de 8 mm e a lamina no valor inicial: 128 L brutos, 118 L internos,
+    // 109 L de agua. Se a tabela servida nao disser 109 L, uma das duas esta
+    // mentindo na mesma pagina.
+    ancora: '109 L',
+    nomeApp: /litragem|litros/i,
+  },
+  {
     codigo: 'C3', arquivo: 'c3.html', prefixo: 'aqm-c3', eixo: EIXO_LITROS,
     // O numero que a calculadora devolve para 100 L comunitario. Se a tabela
     // pre-renderizada nao disser a mesma coisa, uma das duas esta mentindo.

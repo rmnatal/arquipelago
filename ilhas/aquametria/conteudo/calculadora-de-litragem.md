@@ -14,7 +14,7 @@ verificado_em: 2026-09-08
 publicar: true
 ---
 
-Um aquário de 80 × 40 × 40 cm é vendido como "aquário de 128 litros". Ele nunca tem 128 litros de água. O vidro ocupa espaço, a lâmina d'água para antes da borda, e o substrato e as rochas tomam mais um pedaço. A diferença entre o número da etiqueta e a água que realmente está lá dentro passa de 15 % — e é esse número menor que define o filtro, o aquecedor, a mídia e quantos peixes cabem.
+Um aquário de 80 × 40 × 40 cm é vendido como "aquário de 128 litros". Ele nunca tem 128 litros de água. O vidro ocupa espaço, a lâmina d'água para antes da borda, e o substrato e as rochas tomam mais um pedaço. Com vidro de 8 mm e a lâmina no valor inicial, sobram **109 litros** — 15 % a menos que a etiqueta —, e é esse número menor que define o filtro, o aquecedor, a mídia e quantos peixes cabem.
 
 Esta calculadora devolve os três volumes separados, e diz de onde cada um vem.
 

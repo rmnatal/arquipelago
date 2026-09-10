@@ -2,9 +2,9 @@
 ilha: aquametria
 estado: viva
 prioridade: 2
-ultima_execucao: 2026-09-09T23:17Z
-executando_desde: 2026-09-10T11:19Z
-bloco_atual: "T7 par C12 (resposta direta, tabela pre-renderizada e JSON-LD) — no main, revisao 31; falta o Sync"
+ultima_execucao: 2026-09-10T11:37Z
+executando_desde: null
+bloco_atual: "T7 leva 3: a C1 ganhou as tres pecas de visibilidade em IA e o retrofit das calculadoras FECHOU (5 de 5) — no main, revisao 32; falta o Sync"
 ultima_ronda: 2026-09-09T19:40Z
 bloqueada_por: null
 ---
@@ -185,6 +185,7 @@ Credenciais NÃO ficam neste arquivo (repositório pode virar público). A Appli
 
 - SUPERADO (era o próximo em 09/09 de manhã): **BLOCO 4b, leva 2**, nesta ordem — (a) **iniciar o banco de espécies (4b(c))**, que destrava o eixo aberto "quantos litros para X peixes" e não depende de link de afiliado nenhum; (b) fechar `fluxo_lm` do `sunsun-ade-400c` e do `wfish-wf-h600-wrgb` e a voltagem do Chihiros — são os três únicos itens que barram a C15, hoje a calculadora publicada com o catálogo mais fraco; (c) mais filtros e aquecedores de marcas ausentes (Ocean Tech, Hopar, Boyu, Sarlo Better), com atenção às faixas de 200 a 400 L. Meta do bloco: pelo menos 60 itens, cada faixa de volume com opção. Depois vem o **4c — retrofit de visibilidade em IA** nas cinco calculadoras publicadas (tabela de exemplos pré-renderizada, resposta antes da explicação, JSON-LD, procedência na frase). Só depois do 4b e do 4c voltam as calculadoras que faltam: **C2 peso e carga no piso**, C7 consumo e C8 lotação. As travessas da C2 continuam registradas e valem quando ela chegar: não publica espessura de vidro nem veredito de "a laje aguenta" (falta tensão admissível e coeficiente de segurança citáveis, e o veredito é de engenheiro), e a carga de projeto da NBR 6120 entra rotulada como `norma-via-secundaria`, com essas palavras na tela.
 
+- **T7 FECHADO NAS CALCULADORAS (10/09/2026): a C1 recebeu as três peças de visibilidade em IA e o retrofit foi de 4 para 5 de 5.** Snippet `aquametria-calculadora-litragem.php` v1.2.0, manifest revisão 32. Entraram a resposta antes da explicação, a tabela pré-renderizada de seis aquários e o JSON-LD (WebApplication + FAQPage de nove perguntas) no `wp_head`. Nenhuma linha de cálculo mudou. **A decisão de projeto que vale para a próxima ilha: o eixo da tabela pré-renderizada pertence à pergunta, não ao formato.** A C3, a C5 e a C12 indexam por litro; a C15 por centímetro de luminária; e a C1 por centímetro de aquário, porque nela **o litro é a saída** — quem abre a página tem a fita métrica na mão e não sabe o volume, então uma tabela indexada por litro responderia à pergunta que a pessoa ainda não consegue fazer. Também vale o precedente do bloco sem produto: litragem é geometria e geometria não escolhe produto, então a tabela não tem link de loja e **diz por quê** em vez de ficar em silêncio (seção 7 do contrato). Ainda falta o T7 dos 3 artigos.
 - Depois do Bloco 4: Bloco 5 (lista de prospecção do widget) — a única alavanca de link do projeto.
 - Entregas vão como arquivos em ilhas/aquametria/ (dados/, conteudo/, snippets/, ferramentas/) + item no manifest.json (publicar=false até o desembarque). Antes de commitar mudança no banco de produtos, rodar `python3 ferramentas/validar-produtos.py` na pasta da ilha.
 - Regra de entrega fixada pelo Raphael em 07/09/2026: o bloco só conta como entregue quando está no `main`. Push direto em `main` funciona neste repositório (foi assim que o Bloco 2 entrou).
