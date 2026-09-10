@@ -1,5 +1,27 @@
 /**
  * Aquametria Calculadora de Potência do Aquecedor — C5
+ * Versão: 1.4.0 (10/09/2026) — o bloco de produto para de se contradizer.
+ *   Item 2 do despacho da Sentinela de 10/09/2026: com 108 L, mínima do cômodo
+ *   de 16 °C e alvo de 26 °C, a página publicava a faixa de 110 a 160 W e listava
+ *   o Atman AT-200 e o Eheim Jäger 200 W sob o título "Aquecedores que atendem
+ *   essa potência" — enquanto o texto do próprio cartão dizia que aquele aparelho
+ *   entrega 1,85 W/L "contra" os 1,00 a 1,50 que a diferença pede. A Sentinela não
+ *   escolhe qual dos dois lados está errado, e a escolha desta versão é: a
+ *   ELEGIBILIDADE ESTÁ CERTA e não muda. Aquecedor não se vende em 160 W; o teto
+ *   da lista é de propósito o degrau comercial que cobre o topo da faixa, coisa
+ *   que a página anuncia duas telas acima ("na prateleira, isso vira um aquecedor
+ *   de 200 W"). O que mentia era o RÓTULO. Então: (a) o h3 do bloco deixa de
+ *   afirmar "atendem essa potência" sobre a lista inteira; (b) a lista se parte em
+ *   dois grupos com cabeçalho e frase próprios — "Dentro da faixa calculada" e "O
+ *   degrau comercial acima — N W", este último dizendo por que ele está ali e o
+ *   que a sobra de potência significa num aparelho com termostato; (c) a frase do
+ *   cartão sem link de loja para de dizer "aparece aqui porque atende ao seu
+ *   número" quando o aparelho é o degrau acima; (d) a tabela pré-renderizada — o
+ *   lado que o modelo de linguagem lê sem JavaScript — avisa na célula quando o
+ *   aparelho escolhido é o degrau acima do topo. A ORDEM NÃO MUDA em nada:
+ *   continua sendo a distância até o topo da faixa dentro de cada grupo, e quem
+ *   cabe na faixa continua vindo antes. Comissão não ordena nada (regra V16).
+ *   Nenhuma fórmula, constante ou faixa mudou.
  * Versão: 1.3.0 (09/09/2026) — BLOCO 4c, fechamento: a tabela pré-renderizada
  *   passou a dizer QUAL aparelho atende cada faixa. Antes ela respondia ao
  *   leitor e não respondia ao comprador: a pessoa só descobria que existe
@@ -92,7 +114,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_C5_VERSAO' ) ) {
-	define( 'AQUAMETRIA_C5_VERSAO', '1.3.1' );
+	define( 'AQUAMETRIA_C5_VERSAO', '1.4.0' );
 	define( 'AQUAMETRIA_C5_SLUG', 'calculadora-de-potencia-do-aquecedor' );
 	define( 'AQUAMETRIA_C5_VERIFICADO_EM', '08/09/2026' );
 	define( 'AQUAMETRIA_C5_ARTIGO', 'quantos-watts-de-aquecedor-para-aquario' );
@@ -447,6 +469,17 @@ function aquametria_c5_produto_celula_html( $e ) {
 	   subdimensionado trabalha ininterrupto, que é o pior modo de falha. */
 	if ( ! $e['comercial'] ) {
 		$h .= '<span class="aqm-c5-sem">A faixa passa do maior degrau da linha de referência: aqui a resposta é mais de um aparelho, e o modelo abaixo é um deles.</span>';
+	}
+
+	/* A tabela escolhe o modelo mais próximo do TOPO da faixa, e às vezes o mais
+	   próximo é o degrau comercial ACIMA dela — não há aquecedor de 160 W na
+	   prateleira. Quando isso acontece, a célula diz. Sem esta linha, a tabela
+	   servida no HTML (que é o que um modelo de linguagem lê, e que ele cita fora
+	   de contexto) afirmaria que o aparelho atende a faixa quando ele a excede.
+	   Item 2 do despacho da Sentinela de 10/09/2026, pelo lado sem JavaScript. */
+	if ( $p['potencia_w'] > $e['teto'] ) {
+		$h .= '<span class="aqm-c5-sem">Este é o degrau comercial acima da faixa: o topo dela é '
+			. esc_html( aquametria_c5_watts( $e['teto'] ) ) . ' W e a prateleira não tem esse número.</span>';
 	}
 
 	if ( $p['link'] ) {
@@ -1045,6 +1078,13 @@ max-width:52rem;font-family:var(--c5-texto);color:var(--c5-tinta);}
 .aqm-c5-placa .aqm-c5-numero{font-family:var(--c5-mono);font-size:1.15rem;font-weight:600;color:var(--c5-lamina);line-height:1.1;}
 .aqm-c5-placa .aqm-c5-un{font-family:var(--c5-mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--c5-legenda);}
 .aqm-c5-produto h4{font-family:var(--c5-display);font-size:1rem;margin:0 0 .35rem;}
+.aqm-c5-grupo{margin:.4rem 0 0;padding:0 0 0 .8rem;border-left:2px solid var(--c5-lamina);}
+.aqm-c5-grupo h4{font-family:var(--c5-display);font-size:.95rem;margin:0 0 .25rem;}
+.aqm-c5-grupo p{font-size:.85rem;line-height:1.5;color:var(--c5-legenda);margin:0;}
+/* O degrau comercial acima da faixa fica na mesma lista, sem tom de alerta: ele
+   não é um erro, é a prateleira. O que o separa é a linha de 1px do grupo — sem
+   gradiente e sem sombra colorida, como manda a seção 6 do ARQUIPELAGO.md. */
+.aqm-c5-produto-acima{border-style:dashed;}
 .aqm-c5-porque{font-size:.88rem;line-height:1.5;margin:0 0 .5rem;}
 .aqm-c5-porque strong{font-family:var(--c5-mono);font-size:.86rem;}
 .aqm-c5-ficha{list-style:none;margin:0 0 .6rem;padding:0;font-size:.82rem;color:var(--c5-legenda);line-height:1.5;}
@@ -1526,8 +1566,52 @@ function aquametria_c5_js() {
 			+ ' V e têm termostato capaz de chegar aos ' + graus(r.alvo.valor) + ' °C que você quer. '
 			+ 'A ordem é pela proximidade do topo da faixa. Nada aqui é ordenado por comissão, e modelo sem link de loja aparece do mesmo jeito.';
 
+		/* DOIS GRUPOS, e o segundo tem título e frase próprios.
+		   Item 2 do despacho da Sentinela de 10/09/2026: com 108 L a faixa
+		   publicada era 110 a 160 W e o grupo intitulado "Aquecedores que atendem
+		   essa potência" trazia o Atman AT-200 e o Eheim Jäger 200 W, cujos
+		   próprios cartões diziam "entrega 1,85 W por litro, contra os 1,00 a 1,50
+		   que a sua diferença pede". A elegibilidade estava CERTA — aquecedor não
+		   se vende em 160 W, e o teto da lista é de propósito o degrau comercial
+		   que cobre o topo da faixa, coisa que a própria página anuncia duas telas
+		   acima ("na prateleira, isso vira um aquecedor de 200 W"). Errado estava o
+		   RÓTULO: um título dizendo "atendem essa potência" sobre um aparelho que a
+		   linha ao lado declara fora da faixa é contradição na cara do leitor, e
+		   contradição custa a confiança que separa a Aquametria de uma fazenda de
+		   conteúdo. Então a lista se parte: primeiro quem cabe dentro da faixa
+		   calculada, depois o degrau comercial acima, com o nome dele e a razão de
+		   estar ali. A ordem DENTRO de cada grupo não muda — continua sendo a
+		   distância até o topo da faixa, e comissão não ordena nada. */
+		var dentro = [];
+		var acima  = [];
 		r.produtos.forEach(function (p) {
-			lista.appendChild(produtoHtml(p, r));
+			(p.potencia_w > r.teto ? acima : dentro).push(p);
+		});
+
+		if (dentro.length && acima.length) {
+			lista.appendChild(grupoHtml('Dentro da faixa calculada — ' + watts(r.piso) + ' a ' + watts(r.teto) + ' W',
+				'Cada um destes entrega, no seu volume, um número de watts por litro que cai dentro da faixa que as fontes sustentam.'));
+		}
+		dentro.forEach(function (p) {
+			lista.appendChild(produtoHtml(p, r, false));
+		});
+
+		if (acima.length) {
+			lista.appendChild(grupoHtml(
+				dentro.length
+					? 'O degrau comercial acima — ' + fmt(r.comercial, 0) + ' W'
+					: 'Só o degrau comercial acima — ' + fmt(r.comercial, 0) + ' W',
+				'Aquecedor não se vende em qualquer potência. O topo da sua faixa é ' + watts(r.teto)
+					+ ' W e a prateleira não tem esse número: o degrau seguinte da linha de referência é o de '
+					+ fmt(r.comercial, 0) + ' W, e é por isso que ele aparece aqui. '
+					+ (dentro.length
+						? 'Ele entrega MAIS watts por litro do que a faixa pede, e por isso vem depois dos que cabem dentro dela — '
+						: 'Ele entrega mais watts por litro do que a faixa pede, e é o único caminho na prateleira para o seu número — ')
+					+ 'sobra de potência num aquecedor com termostato significa que ele fica menos tempo ligado, '
+					+ 'não que a água fique mais quente; o que a sobra cobra é o preço e o tamanho do aparelho.'));
+		}
+		acima.forEach(function (p) {
+			lista.appendChild(produtoHtml(p, r, true));
 		});
 
 		if (r.barrados.length) {
@@ -1538,12 +1622,27 @@ function aquametria_c5_js() {
 		}
 	}
 
-	function produtoHtml(p, r) {
+	/* Cabeçalho de grupo dentro da lista. É <li> porque a lista é <ul>: pendurar
+	   um <h4> solto entre <li> seria HTML inválido, e leitor de tela pula o que
+	   não está na estrutura da lista. */
+	function grupoHtml(titulo, explicacao) {
+		var li = document.createElement('li');
+		li.className = 'aqm-c5-grupo';
+		var h = document.createElement('h4');
+		h.textContent = titulo;
+		var p = document.createElement('p');
+		p.textContent = explicacao;
+		li.appendChild(h);
+		li.appendChild(p);
+		return li;
+	}
+
+	function produtoHtml(p, r, acimaDaFaixa) {
 		var V = r.entradas.volume;
 		var wl = p.potencia_w / V;
 
 		var li = document.createElement('li');
-		li.className = 'aqm-c5-produto';
+		li.className = 'aqm-c5-produto' + (acimaDaFaixa ? ' aqm-c5-produto-acima' : '');
 
 		var placa = document.createElement('div');
 		placa.className = 'aqm-c5-placa';
@@ -1560,7 +1659,12 @@ function aquametria_c5_js() {
 		var porque = document.createElement('p');
 		porque.className = 'aqm-c5-porque';
 		porque.innerHTML = 'No seu aquário de ' + litros(V) + ' L, este aquecedor entrega <strong>'
-			+ fmt(Math.round(wl * 100) / 100, 2) + ' W por litro</strong>, contra os '
+			+ fmt(Math.round(wl * 100) / 100, 2) + ' W por litro</strong>, '
+			/* "contra" anuncia desacordo, e é a palavra certa quando o número
+			   está dentro da faixa e o leitor está comparando. No degrau comercial
+			   acima o desacordo é esperado e já foi explicado no título do grupo:
+			   repetir "contra" ali faria a página parecer estar se desdizendo. */
+			+ (acimaDaFaixa ? 'acima dos ' : 'contra os ')
 			+ fmt(r.wl_piso, 2) + ' a ' + fmt(r.wl_teto, 2) + ' W/L que a sua diferença de '
 			+ graus(r.delta) + ' °C pede. '
 			+ (p.volume_max_L
@@ -1618,7 +1722,14 @@ function aquametria_c5_js() {
 		} else {
 			var sem = document.createElement('p');
 			sem.className = 'aqm-c5-semloja';
-			sem.textContent = 'Ainda não temos link de loja para este modelo. Ele aparece aqui porque atende ao seu número, e é só isso que decide a lista.';
+			/* A frase de sempre dizia "ele aparece aqui porque atende ao seu
+			   número". Verdade para quem cabe na faixa; mentira para o degrau
+			   comercial acima, que aparece justamente porque a prateleira não tem
+			   o número da faixa. Uma frase só para os dois casos era a metade
+			   errada da contradição do item 2 do despacho de 10/09/2026. */
+			sem.textContent = acimaDaFaixa
+				? 'Ainda não temos link de loja para este modelo. Ele aparece aqui porque é o degrau comercial que cobre o topo da sua faixa, e nada além disso decide a lista.'
+				: 'Ainda não temos link de loja para este modelo. Ele aparece aqui porque atende ao seu número, e é só isso que decide a lista.';
 			corpo.appendChild(sem);
 		}
 
@@ -1903,7 +2014,11 @@ function aquametria_c5_exemplos_html() {
 	$h .= '<div class="aqm-c5-rolagem"><table class="aqm-c5-fontes">';
 	$h .= '<tr><th>Volume real</th><th>Até ' . esc_html( number_format_i18n( AQUAMETRIA_C5_DELTA_COBERTO, 0 ) ) . ' °C de diferença</th><th>Na prateleira</th>';
 	$h .= '<th>Acima de ' . esc_html( number_format_i18n( AQUAMETRIA_C5_DELTA_COBERTO, 0 ) ) . ' °C</th><th>Na prateleira</th>';
-	$h .= '<th>Aquecedor do banco que atende</th></tr>';
+	/* "que atende" prometia mais do que a coluna entrega: em duas das seis linhas
+	   o modelo escolhido é o degrau comercial ACIMA do topo da faixa, porque a
+	   prateleira não vende o número exato. A própria célula diz isso agora; o
+	   cabeçalho para de dizer o contrário. Item 2 do despacho de 10/09/2026. */
+	$h .= '<th>Aquecedor do banco para essa faixa</th></tr>';
 
 	foreach ( aquametria_c5_volumes_exemplo() as $v ) {
 		$e   = aquametria_c5_exemplo( $v, true, false );
@@ -2273,7 +2388,11 @@ function aquametria_c5_produtos_html() {
 	$divulgacao = aquametria_c5_url( AQUAMETRIA_C5_PAGINA_AFILIADOS );
 
 	$h  = '<div class="aqm-c5-produtos aqm-c5-painel aqm-c5-oculto" id="aqm-c5-produtos">';
-	$h .= '<h3>Aquecedores que atendem essa potência</h3>';
+	/* O título não afirma mais "atendem essa potência" sobre a lista inteira: ela
+	   tem dois grupos, e o segundo é o degrau comercial acima da faixa, que atende
+	   a prateleira e não o número (item 2 do despacho da Sentinela de 10/09/2026).
+	   Quem afirma passou a ser o cabeçalho de cada grupo, que sabe do que fala. */
+	$h .= '<h3>Aquecedores para a potência que você precisa</h3>';
 	$h .= '<p class="aqm-c5-sub" id="aqm-c5-produtos-sub"></p>';
 	$h .= '<ul class="aqm-c5-lista" id="aqm-c5-produtos-lista"></ul>';
 	$h .= '<p class="aqm-c5-aviso-afiliado"><strong>Aviso de publicidade.</strong> ';

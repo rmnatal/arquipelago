@@ -201,6 +201,68 @@ await p2.waitForTimeout(150);
 const larg = await p2.evaluate(() => ({ doc: document.documentElement.scrollWidth, win: window.innerWidth }));
 ok('sem rolagem horizontal', larg.doc <= larg.win + 1, JSON.stringify(larg));
 
+console.log('\n15b. o caso do despacho de 10/09 — 108 L, minima 16, alvo 26, 220 V, tampado');
+// A Sentinela mediu esta entrada exata e leu, no grupo intitulado "Aquecedores que
+// atendem essa potencia", cartoes de 200 W cujo proprio texto dizia que entregam
+// 1,85 W/L "contra" os 1,00 a 1,50 da faixa. A elegibilidade estava certa (nao ha
+// aquecedor de 160 W na prateleira); o rotulo e que mentia. Este caso existe para
+// o rotulo nunca mais poder mentir: nenhum cartao do grupo de dentro pode passar
+// do teto da faixa, e todo cartao acima do teto tem que estar sob um cabecalho que
+// diz que ele e o degrau comercial.
+await preencher('108', '16', { alvo: '26', voltagem: '220', tampado: 'sim' });
+const faixa108 = (await txt('#aqm-c5-faixa-valor')).replace(/\s+/g, ' ');
+ok('faixa 110 a 160 W', faixa108.includes('110 a 160'), faixa108);
+ok('degrau comercial 200 W', (await txt('#aqm-c5-comercial')).includes('200 W'));
+
+// Cada cartao, na ordem da tela, com a potencia da placa e o cabecalho de grupo
+// que o precede. Ler a ORDEM DO DOM e o ponto: e assim que o leitor le.
+const itens108 = await page.evaluate(() => {
+  const saida = [];
+  let grupo = null;
+  document.querySelectorAll('#aqm-c5-produtos-lista > li').forEach(li => {
+    if (li.classList.contains('aqm-c5-grupo')) { grupo = li.querySelector('h4').textContent; return; }
+    if (!li.classList.contains('aqm-c5-produto')) return;
+    saida.push({
+      nome: li.querySelector('h4').textContent,
+      w: parseInt(li.querySelector('.aqm-c5-numero').textContent.replace(/\D/g, ''), 10),
+      grupo,
+      acima: li.classList.contains('aqm-c5-produto-acima'),
+      texto: li.textContent
+    });
+  });
+  return saida;
+});
+ok('a lista tem produto', itens108.length > 0, `${itens108.length} cartao(oes)`);
+const foraDaFaixa = itens108.filter(i => i.w > 160);
+ok('ha um grupo "dentro da faixa" nomeado',
+  itens108.some(i => i.w <= 160 && /Dentro da faixa calculada/.test(i.grupo || '')),
+  (itens108[0] || {}).grupo || 'sem grupo');
+ok('todo cartao acima de 160 W esta sob o cabecalho do degrau comercial',
+  foraDaFaixa.every(i => /degrau comercial acima/i.test(i.grupo || '')),
+  foraDaFaixa.map(i => `${i.w}W: ${i.grupo}`).join(' | ') || 'nenhum acima');
+ok('nenhum cartao acima da faixa esta em grupo que diz "atendem"',
+  !foraDaFaixa.some(i => /atendem/i.test(i.grupo || '')),
+  foraDaFaixa.map(i => i.grupo).join(' | ') || 'nenhum acima');
+ok('quem cabe na faixa vem ANTES do degrau acima',
+  itens108.findIndex(i => i.w > 160) === -1
+    || itens108.findIndex(i => i.w > 160) > itens108.findLastIndex(i => i.w <= 160),
+  itens108.map(i => i.w).join(', '));
+ok('o cartao acima da faixa nao diz "atende ao seu numero"',
+  !foraDaFaixa.some(i => /atende ao seu n/i.test(i.texto)),
+  foraDaFaixa.map(i => i.nome).join(' | ') || 'nenhum acima');
+ok('o cartao acima da faixa diz "acima dos", nao "contra os"',
+  foraDaFaixa.every(i => !/contra os/.test(i.texto)),
+  foraDaFaixa.map(i => i.nome).join(' | ') || 'nenhum acima');
+ok('o cartao dentro da faixa continua dizendo "contra os"',
+  itens108.filter(i => i.w <= 160).every(i => /contra os/.test(i.texto)),
+  'a comparacao com a faixa nao pode sumir de quem esta dentro dela');
+ok('o titulo do bloco nao afirma "atendem essa potencia"',
+  !/atendem essa pot/i.test(await txt('#aqm-c5-produtos h3')),
+  await txt('#aqm-c5-produtos h3'));
+ok('a ordem nao mudou: ainda e a distancia ate o topo da faixa dentro do grupo',
+  itens108.filter(i => i.w <= 160).every((i, n, a) => n === 0 || Math.abs(a[n-1].w - 160) <= Math.abs(i.w - 160)),
+  itens108.filter(i => i.w <= 160).map(i => i.w).join(', '));
+
 console.log('\n15. console limpo');
 // O que este caso existe para pegar e ERRO DE SCRIPT — foi assim que as cinco
 // calculadoras apareceram quebradas em 08/09/2026. Falha de REDE nao e isso, e
