@@ -124,6 +124,13 @@ python3 ferramentas/gerar-catalogo-midias.py        # C12 (midias E filtros)
 python3 ferramentas/gerar-catalogo-iluminacao.py    # C15 (aptas E barradas)
 ```
 
+Os geradores da C3 e da C5 imprimem no fim a linha `vitrine: N de M com link de
+loja, K com foto`. **Essa e a medida certa de quanto uma calculadora tem para
+mostrar numa vitrine**, e nao a contagem no banco: o banco tem registros que o
+`minimo_para_sugerir` barra, e em 10/09/2026 a C5 mostrou por que isso importa —
+11 dos 27 aquecedores do banco tem foto, e so 2 dos 18 do catalogo, porque 9 dos
+com foto sao justamente os barrados. Conte depois do portao, nunca antes.
+
 O gerador da C15 tambem escreve DOIS blocos, mas por outro motivo: o das
 luminarias APTAS e o das BARRADAS com o motivo de cada uma, porque a C15 publica
 essa lista na tela — quem nao pode ser sugerido, e por que, e o conteudo daquela
