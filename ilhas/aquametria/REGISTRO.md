@@ -4650,7 +4650,23 @@ No navegador, um teste de cada vez: **`teste-navegador-c5-vitrine.mjs`, o portã
 afirmações** — as duas metades da página, a servida com o JavaScript **desligado** e a pintada com ele
 ligado; **`teste-navegador-c5.mjs` (15 cenários, entre eles o 15b do despacho de 10/09) passou inteiro**;
 `teste-navegador-visibilidade-ia.mjs` **155 afirmações, zero falha**, nas cinco calculadoras com o
-JavaScript desligado.
+JavaScript desligado; `teste-navegador-cinco.mjs` **56 afirmações, "tudo passou"** nas cinco.
+
+### No ar, medido depois do Sync
+
+**Revisão 38 no `/status`**, igual à do manifest, aplicada às 21h40Z — 18 itens aplicados, 14 aguardando
+desembarque. O Sync precisou de **duas chamadas**: a primeira, às 21h36Z, ainda leu a revisão 37 do
+`raw.githubusercontent`, cujo edge servia uma cópia de 260 s (`max-age=300`). Não é defeito, é o cache
+duplo da seção 4 do contrato — e fica registrado que **a espera é do lado do raw, não do WordPress**:
+o `curl` daqui já via a 38 enquanto o servidor da HostGator ainda via a 37.
+
+A página `https://aquametria.com.br/calculadora-de-potencia-do-aquecedor/` responde **HTTP 200**;
+**`softwareVersion` 1.5.0** no JSON-LD; **zero `&#038;` dentro de `<script>`** (12 blocos; as 4
+ocorrências da página inteira são da casca do tema, e contar na página inteira é teste errado); o corpo
+começa pelo título e pela linha de promessa, não por metadado YAML; o script vem do rodapé; a tabela de
+exemplos e a **vitrine servida** aparecem no HTML servido, com **5 cartões**, 1 âncora
+`sponsored noopener` em aba nova, 1 imagem com `alt` e `loading="lazy"`, **4 espaços reservados neutros**
+e 1 cotação datada. A frase "não publicamos preço" **não existe mais** nesta página.
 
 ### Produtos esperando link de afiliado: 39 de 78 no banco, 13 de 18 no catálogo da C5
 

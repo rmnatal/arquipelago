@@ -2,9 +2,9 @@
 ilha: aquametria
 estado: viva
 prioridade: 2
-ultima_execucao: 2026-09-10T19:17Z
-executando_desde: 2026-09-10T21:17Z
-bloco_atual: "T8 ENTREGUE na C3: a primeira VITRINE do Arquipelago esta no ar (C3 v1.5.0). Carrossel scroll-snap em CSS puro, ANTES da ficha e da procedencia (contrato 7), com foto, marca, modelo, a especificacao que fez o produto entrar, cotacao COM DATA e botao de loja; mais uma vitrine SERVIDA no HTML para o caso de 100 L, que e o que um crawler de IA recebe. Preco passou a sair, sempre datado, e as tres frases do snippet mais duas paginas de conteudo que diziam 'nao publicamos preco' foram reescritas na mesma semana — a contradicao foi achada medindo a pagina NO AR, nao o repositorio. Portao novo: teste-navegador-c3-vitrine.mjs, 38 afirmacoes, com a ordem da vitrine obrigada a ser identica a da lista tecnica. Do despacho de 10/09 restam so os itens 4 (registro de receita: o topo da lista segue sem link, a ordem nao muda) e 5 (nenhuma pagina nova ate 16/09). Proximo: T8 na C5, que e a proxima com mais itens com foto e link"
+ultima_execucao: 2026-09-10T21:41Z
+executando_desde: null
+bloco_atual: "T8 ENTREGUE na C5: a segunda VITRINE do Arquipelago esta no ar (C5 v1.5.0, revisao 38 conferida no /status). Carrossel scroll-snap em CSS puro, ANTES da ficha e da procedencia (contrato 7), mais uma vitrine SERVIDA no HTML para o aquario de referencia de 100 L. O que a C5 tem e a C3 nao tinha: a lista dela e partida em dois grupos, e como um trilho de scroll-snap nao comporta cabecalho de grupo, a distincao viaja na frase do cartao ('dentro dos 110 a 160 W que os 108 L pedem' contra 'degrau comercial acima dos 160 W do topo') e a sequencia e calculada UMA vez em pintarProdutos() e passada para pintarVitrine(). Preco passou a sair datado e as duas frases do snippet mais a pagina de divulgacao que diziam 'nao publicamos preco' foram reescritas na mesma versao. Vieram junto tres dividas da secao 6: promessa, barra fixa do celular e rolagem ate o resultado. Portao novo: teste-navegador-c5-vitrine.mjs, 44 afirmacoes. MEDIDO E CORRIGE O PROMPT: a vitrine da C5 tem foto em 2 dos 18 do catalogo, nao 11 de 14 — aquele numero era do BANCO, e 9 dos 11 com foto nao passam no minimo_para_sugerir; conte foto e link DEPOIS do portao. 5 dos 18 aquecedores do catalogo tem link, 13 esperam. Do despacho de 10/09 restam so os itens 4 (registro de receita) e 5 (nenhuma pagina nova ate 16/09). Proximo: T8 na C15, depois na C12"
 ultima_ronda: 2026-09-10T14:55Z
 bloqueada_por: null
 ---
