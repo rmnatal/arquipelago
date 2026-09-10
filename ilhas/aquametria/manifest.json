@@ -4,7 +4,7 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 36,
+  "revisao": 37,
   "atualizado_em": "2026-09-10",
   "estado": "fundacao",
   "desembarque": {
@@ -159,7 +159,7 @@
       ],
       "verificado_em": "2026-09-08",
       "publicar": true,
-      "sha256": "87eec00d9bc143972beef5652320972c8ca511062d2993690016577e278a3f86",
+      "sha256": "d8a968b50b7180d12fbe9b8f33d727ca0e18bc51e9758f103f6d146b09a636b4",
       "descricao": "Pagina da C3: a abertura poe o achado de frente (o fabricante dimensiona 1,76 x/h, a web BR pede 5 a 10), o shortcode da calculadora, por que a resposta e faixa e nao numero, o que a calculadora NAO faz (fator de perda de carga e turnover marinho, com o motivo), o protocolo do balde no lugar do fator, a coluna maxima como criterio de corte, as tres regras do bloco de produto (ordem tecnica, comissao nao ordena, ficha com fonte e data) e os links internos de mao dupla para a C1, o hub, a metodologia e a divulgacao de afiliados."
     },
     {
@@ -175,7 +175,7 @@
       ],
       "verificado_em": "2026-09-08",
       "publicar": true,
-      "sha256": "0728ce1337577e853ed66f4d25cf1e5763d26766a335673ce08460443b86aa2d",
+      "sha256": "052146c46d34a50cd120a071442014c69f9407e9f51f70ce57ee804442bc6bfc",
       "descricao": "Pagina institucional exigida pelo primeiro bloco de produto (C3) e pela autorregulamentacao publicitaria brasileira: declara o link de afiliado, transcreve a regra V16 na integra, explica que quem entra na lista e a ordem sao decididos so por adequacao tecnica, que produto sem link aparece igual e que sem produto adequado nao aparece nada, mostra a escada de fontes na tela, diz por que preco nao e publicado em pagina de calculadora e admite o tamanho atual do programa. Linkada do rodape do site (casca 1.0.3) e do bloco de produto da C3."
     },
     {

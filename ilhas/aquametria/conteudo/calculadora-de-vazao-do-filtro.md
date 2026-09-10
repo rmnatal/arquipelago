@@ -64,7 +64,7 @@ Três regras que valem sempre:
 2. **Comissão não ordena nada.** Modelo sem link de loja aparece do mesmo jeito, na mesma ordem que a adequação técnica manda. Isso está escrito como regra no esquema do nosso banco de dados, não é promessa de página.
 3. **A ficha vem do fabricante ou do varejo especializado, com data.** O anúncio da loja nunca é a fonte técnica. Cada cartão traz o endereço da fonte, a data em que foi conferida e o nível dela — "fabricante via busca" quer dizer que a página do fabricante não foi lida direto e que o dado precisa de reconferência no manual.
 
-Não publicamos preço nesta página. Preço muda toda semana e um número velho na tela seria pior que nenhum; quem quiser saber, o botão leva à loja. Quando um botão for link de afiliado, ele está marcado como patrocinado e o aviso de comissão está no próprio bloco — os detalhes estão em [como a Aquametria ganha dinheiro](https://aquametria.com.br/divulgacao-de-afiliados/).
+**O preço que aparece nos cartões não é preço de hoje: é a cotação que lemos naquele anúncio, com a data ao lado.** Preço de aquarismo muda toda semana, e um número cravado como atual numa página que fica meses no ar envelheceria em dias — por isso ele sai datado ou não sai. Trate o nosso valor como ordem de grandeza e confira no anúncio antes de comprar. Quando um botão for link de afiliado, ele está marcado como patrocinado e o aviso de comissão está no próprio bloco — os detalhes estão em [como a Aquametria ganha dinheiro](https://aquametria.com.br/divulgacao-de-afiliados/).
 
 O banco hoje é pequeno de propósito: são poucos filtros com ficha completa, porque completar uma ficha exige achar fonte para cada campo. Ele cresce a cada coleta, e a lista da sua faixa cresce junto.
 
