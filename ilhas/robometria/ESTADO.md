@@ -3,7 +3,7 @@ ilha: robometria
 estado: nascendo
 prioridade: 1
 ultima_execucao: 2026-09-10T21:15Z
-executando_desde: null
+executando_desde: 2026-09-10T23:18Z
 bloco_atual: "bloco 5 ENTREGUE: o ARTIGO-ANCORA da R1 esta no ar (/filtro-universal-de-robo-aspirador/, snippet robometria-a1 v1.0.0, manifest revisao 11). A tese e medida, nao escrita: das 16 pecas com compatibilidade declarada NENHUMA atravessa marca, a maior lista do banco nomeia 5 codigos de modelo, e na Electrolux as 6 pecas formam 6 conjuntos de modelos DIFERENTES. O numero nao esta digitado no HTML — a frase de abertura, a description do JSON-LD e a resposta do FAQPage tem duas formas escolhidas pela contagem, e foi provando isso numa copia do banco que apareceu o defeito de a pagina se corrigir na tela e o JSON-LD nao. A malha da secao 9 fechou: duas listagens (home e hub), tres irmas, e a R1 (v1.1.1) apontando de volta. A folha e as funcoes da porta de compra sairam da R1 para a casca (v1.0.2), que agora tambem tem catalogo de artigos. Verificacao: teste-a1 53, teste-casca 64, teste-r1 90, validar-banco, e Chromium com 0 px de rolagem horizontal em 360/390/782/1200. NO AR as 21h36Z, revisao 11 conferida no /status, pagina em 200, apelido em 301 e sitemap com 7 paginas. 16 pecas esperando link de afiliado. Proximo: 3c alvo (a), pecas com codigo da Xiaomi e da WAP, se a rede alcancar o fabricante; se nao, a R2"
 ultima_ronda: null
 bloqueada_por: null
