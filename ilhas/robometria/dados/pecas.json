@@ -16,6 +16,31 @@
   },
   "lista_de_compras": [
     {
+      "codigo": "codigos de peca do Xiaomi (S10, S40, S40C, H40, E10, Mop 2) e da WAP (W400, W1000, W310)",
+      "marca": "xiaomi, wap",
+      "por_que": "URGENCIA NUMERO 1 DA R1, e ela so apareceu no cruzamento das duas varreduras. Sao os 8 modelos que a R2 JA recomenda (tem pa_declarado) e para os quais a R1 sai VAZIA. A ilha ganha a visita pela R2, quem compra volta meses depois procurando o filtro daquele robo — a consulta de maior intencao de compra do nicho — e recebe 'nao localizamos declaracao'. O funil esta partido nessa emenda. Este e tambem o unico alvo que fecha a emenda pelo lado COLETAVEL: a lacuna simetrica (Pa da Electrolux e da Multi) ja foi medida como inexistente no mercado brasileiro, entao insistir nela e trabalho sem fim"
+    },
+    {
+      "codigo": "peca declarada para o PRA500",
+      "marca": "positivo",
+      "por_que": "o PRA500 e a consulta-alvo escrita na secao 1.1 da especificacao e a varredura confirma que a R1 sai VAZIA nele: as tres pecas da Positivo no banco declaram PRA800 e PRA2000 e nao o citam. Pelo conjunto mais estreito, 'nao encontramos peca declarada' e a resposta CERTA hoje — e por isso a pagina-ancora da R1 nao pode ser a do PRA500 enquanto isso nao mudar, sob pena de a ilha estrear a ferramenta com uma recusa"
+    },
+    {
+      "codigo": "composicao dos kits ERB44 e ERB30",
+      "marca": "electrolux",
+      "por_que": "os dois registros estao no banco com a composicao em aberto; a R1 pode dizer QUE serve e ainda nao O QUE vem dentro. Medido na varredura: sao 11 celulas modelo x tipo em estado kit_sem_composicao, e o ERB30 e o unico modelo do banco cuja unica resposta e um kit de caixa fechada"
+    },
+    {
+      "codigo": "pecas da Multi para HO243 e HO411",
+      "marca": "multi",
+      "por_que": "dois modelos publicaveis do banco em que NENHUMA das duas ferramentas responde — nem peca declarada, nem Pa. Entrada dupla vazia"
+    },
+    {
+      "codigo": "qualquer peca do tipo reservatorio, de qualquer marca",
+      "marca": "qualquer",
+      "por_que": "e o unico tipo do vocabulario com ZERO pecas no banco inteiro. Enquanto estiver assim, ele fica FORA do seletor da R1 (secao 1.2 da especificacao): oferecer uma escolha que sempre devolve recusa contraria a promessa antes do formulario da secao 6 do ARQUIPELAGO.md"
+    },
+    {
       "codigo": "KPCEL02",
       "marca": "electrolux",
       "por_que": "codigo confirmado no canal de parceiros ('KPCEL02 KIT PERFORMANCE ROBO', 41047453) e compatibilidade NAO confirmada. Nao entrou no banco de proposito: peca sem par declarado nao vira registro nesta ilha"
@@ -24,26 +49,6 @@
       "codigo": "CRCEL01",
       "marca": "electrolux",
       "por_que": "Controle Remoto para Aspirador Robo, com codigo publicado. Nao entrou porque controle remoto nao e consumivel e nao ha tipo para ele no vocabulario — decidir se vira tipo novo antes de gravar"
-    },
-    {
-      "codigo": "composicao dos kits ERB44 e ERB30",
-      "marca": "electrolux",
-      "por_que": "os dois registros estao no banco com a composicao em aberto; a R1 pode dizer QUE serve e ainda nao O QUE vem dentro"
-    },
-    {
-      "codigo": "peca declarada para o PRA500",
-      "marca": "positivo",
-      "por_que": "URGENTE PARA A R1: o PRA500 e a consulta-alvo da especificacao e as tres pecas da Positivo declaram PRA800/PRA2000 sem cita-lo. Hoje a resposta honesta e 'nao encontramos', e ela precisa ser confirmada no canal oficial"
-    },
-    {
-      "codigo": "codigos de peca do Xiaomi S20",
-      "marca": "xiaomi",
-      "por_que": "o guia do usuario em PDF traria o codigo por item; esta atras do egresso"
-    },
-    {
-      "codigo": "pecas da Multi para HO243, HO407, HO411",
-      "marca": "multi",
-      "por_que": "tres modelos no banco sem nenhuma peca declarada"
     }
   ],
   "registros": [
@@ -1276,5 +1281,6 @@
       "observacao": "FECHA A OUTRA METADE DA LACUNA (c). A compatibilidade ficou so no S20, de proposito: o S20+ tem FAQ propria (KA-378764) e nao esta no banco, e estender por semelhanca de nome e exatamente o erro caro desta ilha. Os intervalos de troca por tipo estao escritos em vida_util_declarada.motivo_do_null e sao dado publicavel — a frase da pagina cita a FAQ do fabricante com a data.",
       "verificado_em": "2026-09-09"
     }
-  ]
+  ],
+  "ordem_da_lista_de_compras": "Reordenada pela varredura da entrada da R1 (dados/cobertura-r1.json, ferramentas/cobertura-r1.py), nao por impressao. O criterio e o da secao 14.3 do ARQUIPELAGO.md aplicado a R1: vale mais a peca que tira um MODELO do vazio do que a peca que acrescenta um par a um modelo que ja respondia. Medido: a R1 responde em 15 dos 28 modelos publicaveis e sai vazia em 12, e apenas 3 dos 28 sao atendidos pelas DUAS ferramentas da ilha."
 }

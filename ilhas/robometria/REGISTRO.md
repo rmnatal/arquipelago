@@ -431,3 +431,102 @@ uma vez; depois os manuais em PDF da WAP, que sao a porta de entrada do nivel 2;
 pecas da Xiaomi e da WAP com codigo, que a R1 precisa. A lacuna de m2 saiu da fila de
 coleta de proposito: ela e fato de mercado, nao trabalho pendente. O bloco 3b (casca)
 continua sendo o primeiro que depende do WordPress, que depende do certificado.
+
+## 2026-09-10 — Bloco 3c, terceira leva: a entrada da R1 foi varrida, e a varredura reordenou a fila
+
+**O que foi entregue** (manifest na revisao 6):
+
+- `ferramentas/cobertura-r1.py` — implementacao de REFERENCIA da R1 e varredura da
+  entrada dela de ponta a ponta. Roda sem rede e sem site: `python3
+  ferramentas/cobertura-r1.py` imprime o relatorio, `--gravar` escreve os dois arquivos
+  abaixo. Implementa num lugar so as regras que ate agora existiam apenas em prosa na
+  especificacao: os tres selos da secao 1.3, o conjunto MAIS ESTREITO da secao 1.4, o
+  aviso de variante de hardware, a recusa explicita do selo `nao_declarada` e o kit que
+  responde por uma peca que o fabricante nao vende avulsa.
+- `dados/cobertura-r1.json` — a medicao. 28 modelos publicaveis x 6 tipos consultaveis =
+  168 celulas, em tres estados: `declarada` (41), `kit_sem_composicao` (11) e `vazia`
+  (116).
+- `dados/tabela-exemplos-r1.md` — a tabela de exemplos pre-renderizada da secao 5 do
+  contrato, **gerada**: 45 linhas contra um minimo de 8, cada uma com o codigo, o selo e a
+  data que o banco tem.
+- `dados/pecas.json` — `lista_de_compras` reordenada pela medicao, com o criterio escrito
+  em `ordem_da_lista_de_compras`. Nenhum registro de peca foi tocado.
+- `dados/especificacao-calculadoras.md` — secao 1.2 (o seletor de tipo passa a ser gerado
+  da varredura) e secao 1.7 (a tabela e gerada, nao digitada).
+- `PROMPT.md` — fila do 3c reordenada, com o motivo medido de cada posicao.
+
+**O ACHADO, e ele so aparece cruzando as duas varreduras.** A R1 responde em 15 dos 28
+modelos publicaveis e sai VAZIA em 12. Cruzando com a R2 (que responde quando o modelo tem
+`pa_declarado`): apenas **3 dos 28** modelos sao atendidos pelas DUAS ferramentas. A R2
+atende 8 que a R1 nao atende (Xiaomi, WAP e o PRA500); a R1 atende 12 que a R2 nao atende
+(Electrolux e Multi). A causa e a mesma nos dois sentidos e e de mercado: **Electrolux e
+Multi publicam peca com compatibilidade declarada e nao publicam Pa; Xiaomi e WAP publicam
+Pa e nao publicam peca com codigo.**
+
+**Por que isso custa dinheiro:** a ilha ganha a visita pela R2 ("quantos Pa para pelo de
+cachorro"), que na faixa alta so consegue recomendar Xiaomi. Quem compra volta meses depois
+procurando o filtro daquele robo — a consulta de maior intencao de compra do nicho, e a
+razao de a R1 existir — e recebe "nao localizamos declaracao do fabricante". As duas
+ferramentas nao se entregam a visita uma para a outra. **O funil esta partido na emenda**, e
+nenhuma das duas medicoes isoladas mostrava a emenda.
+
+**O que a medicao mudou de posicao:** "pecas da Xiaomi e da WAP com codigo" estava em
+ULTIMO lugar entre os alvos de coleta e passou a PRIMEIRO. Dois motivos medidos: e o unico
+lado da emenda que da para colher (o lado simetrico — Pa da Electrolux e da Multi — ja foi
+medido como inexistente no mercado brasileiro), e sao exatamente os 8 modelos que a R2 ja
+recomenda, entao o retorno chega na visita que a ilha ja sabe atrair.
+
+**O que a implementacao de referencia pegou antes de ir para a tela.** Rodar as regras da
+especificacao contra o banco de verdade produziu duas frases quebradas: "ele vem dentro do
+**sem codigo publicado**", quando o fabricante nao publica codigo de peca, e "nao vende
+**escova lateral avulso**", sem concordancia de genero. As duas teriam nascido dentro do PHP
+do Bloco 4, num snippet que so da para testar com o site no ar. Escrever a regra onde ela
+pode ser conferida saiu mais barato do que escreve-la onde ela nao pode — e e por isso que a
+saida do PHP da R1 tera que BATER com a saida deste arquivo.
+
+**Duas decisoes que esta leva fixa:**
+
+1. **O seletor de tipo de peca da R1 e gerado da varredura, nunca digitado.** O tipo
+   `reservatorio` tem ZERO pecas no banco inteiro; oferece-lo e oferecer uma escolha que
+   sempre devolve recusa, contra a promessa antes do formulario (secao 6 do contrato). Ele
+   volta ao seletor no dia em que a primeira peca dele entrar.
+2. **A pagina-ancora da R1 NAO pode ser a do PRA500** enquanto nao houver peca declarada
+   para ele. O PRA500 e literalmente a consulta-alvo da secao 1.1 da especificacao, e a R1
+   sai vazia nele: as tres pecas da Positivo no banco declaram PRA800 e PRA2000 e nao o
+   citam. Pelo conjunto mais estreito a recusa e a resposta CERTA — mas estrear a
+   ferramenta com um "nao sabemos" na propria consulta-alvo seria escolha errada de pagina.
+
+**O que esta leva deliberadamente NAO fez, e por que.**
+
+- **Nao coletou nada, e isso foi medido.** A busca web devolveu `unavailable` em tres
+  consultas seguidas e o `WebFetch` devolveu `EGRESS_BLOCKED` em `www.wap.ind.br`,
+  `www.positivocasainteligente.com.br` e `global.roborock.com`. Nenhum dado tecnico novo
+  entrou no banco e nenhum numero desta leva vem de fora do repositorio. Isso NAO e
+  `bloqueada_por` (que e para dependencia humana): e uma execucao em que a coleta nao
+  estava disponivel, e a resposta certa foi medir o que o banco ja tem em vez de deixar a
+  execucao passar em branco ou escrever numero de memoria.
+- **Nao aplicou o portao de 3 itens da secao 9 a R1.** Na R2 a faixa produz uma lista de
+  produtos concorrentes e tres e o minimo honesto; na R1 a resposta certa costuma ser UMA
+  peca, a que o fabricante declarou, e exigir tres levaria a ilha a inventar concorrente
+  onde o fabricante tem uma peca so. O criterio da R1 e binario e mais duro: a celula
+  responde ou nao responde.
+- **Nao escreveu snippet PHP.** O bloco 3b e o 4 dependem do WordPress, que depende do
+  certificado, que continua pendente.
+
+**Verificacao feita:** `python3 ferramentas/validar-banco.py` APROVADO depois das mudancas
+(5 marcas, 33 modelos, 18 pecas, 33 pares, os mesmos 2 avisos conhecidos de variante de
+hardware). Os numeros da varredura foram conferidos na mao em seis modelos — `multi-ho041`,
+`electrolux-erb10`, `electrolux-erb44`, `electrolux-erb30`, `positivo-pra500` e
+`xiaomi-s20` — lendo resposta por resposta. As frases publicadas foram lidas uma a uma, e
+foi assim que os dois defeitos de texto apareceram. Os `sha256` do manifest foram
+recalculados a partir dos arquivos no disco: so os dois arquivos alterados mudaram de
+hash, o que confirma que nenhum registro do banco foi tocado.
+
+**Itens esperando link de afiliado: 44** (28 modelos e 16 pecas) — continua em 44, porque
+esta leva nao acrescentou item ao banco.
+
+**Proximo passo desbloqueado: bloco 3c, alvo (a) — pecas com codigo da Xiaomi (S10, S40,
+S40C, H40, E10, Mop 2) e da WAP (W400, W1000, W310)**, na primeira execucao em que a rede
+responder. Antes de colher, rodar `python3 ferramentas/cobertura-r1.py` e
+`ferramentas/validar-banco.py`: as duas varreduras sao o que separa "acrescentei um item"
+de "tirei uma entrada do vazio".

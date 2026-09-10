@@ -4,8 +4,8 @@
   "nicho": "robo aspirador — compatibilidade de pecas e consumiveis, e dimensionamento de succao e autonomia",
   "dominio": "https://robometria.com.br",
   "versao_manifest": 1,
-  "revisao": 5,
-  "atualizado_em": "2026-09-09",
+  "revisao": 6,
+  "atualizado_em": "2026-09-10",
   "estado": "nascendo",
   "desembarque": {
     "aprovado": true,
@@ -36,7 +36,7 @@
       "verificado_em": "2026-09-09",
       "registros": 2,
       "publicar": false,
-      "sha256": "a0abc171cd4cce46508278eee3c70dc09d905d2cfa447fb56554c99a62ac2bb7",
+      "sha256": "b8c6b91a024fda51c443638c3ea2c6b3407a7a73035f912e6eaaaa9f861358ed",
       "descricao": "Especificacao das ferramentas R1 (localizador de peca compativel por modelo) e R2 (dimensionador de succao e autonomia por area, piso e pelo): entradas, saidas, os tres selos de certeza da compatibilidade, a regra de divergencia pelo conjunto mais estreito, a formula propria de ciclos e tempo real ate terminar, a classificacao de SERP de cada consulta-alvo (secao 14.9) e a lista de campos que o Bloco 3 tem que entregar."
     },
     {
@@ -96,8 +96,32 @@
       "verificado_em": "2026-09-09",
       "registros": 18,
       "publicar": false,
-      "sha256": "0135efb313b7a01c257a9e8d6f83b987e163aca1fae137017e2667766cdb6650",
+      "sha256": "99aa1d436f993ee4fc70c048d042ab2718733c76248c583f3e76c3d4887e6bc1",
       "descricao": "18 pecas com 33 pares peca x modelo, TODOS declarados pelo fabricante e nenhum inferido. O Bloco 3c acrescentou 10: o Kit Performance KPCEL01 (que finalmente da dono a vida util de 6 meses do manual da Electrolux), o filtro HEPA com espuma do ERB44/60/61/62, o kit do ERB60/61/62, a escova rotativa central do ERB60/61/62/80, os kits do ERB44 e do ERB30, as tres pecas da Positivo para PRA800/PRA2000 e os acessorios do Xiaomi S20. Duas divergencias seguem resolvidas pelo conjunto mais estreito, com as duas declaracoes publicadas."
+    },
+    {
+      "id": "cobertura-r1",
+      "arquivo": "dados/cobertura-r1.json",
+      "formato": "json",
+      "entidade": "medicao",
+      "fonte": "Terceira leva do Bloco 3c da Fundacao (10/09/2026): medicao propria sobre o banco ja commitado, gerada por ferramentas/cobertura-r1.py. Nao houve coleta nesta execucao — a busca web devolveu 'unavailable' e o egresso HTTP devolveu EGRESS_BLOCKED em wap.ind.br, positivocasainteligente.com.br e roborock.com, entao nenhum dado tecnico novo entrou no banco. Nenhum numero deste arquivo vem de fora do repositorio.",
+      "verificado_em": "2026-09-10",
+      "registros": 28,
+      "publicar": false,
+      "sha256": "eb78a279ec9906001bb502a1afff68ae364909581b8a4eb542017864907fd94f",
+      "descricao": "Varredura da entrada da R1 de ponta a ponta (secao 14.3 do ARQUIPELAGO.md), o equivalente para a R1 do que cobertura_de_faixa_r2 e para a R2. Mede as 168 celulas (28 modelos publicaveis x 6 tipos consultaveis) em tres estados: declarada, kit_sem_composicao e vazia. Resultado: a R1 responde em 15 dos 28 modelos e sai VAZIA em 12; 116 das 168 celulas nao tem o que responder; o tipo 'reservatorio' tem zero pecas no banco inteiro. O achado que so aparece no cruzamento com a R2: apenas 3 dos 28 modelos sao atendidos pelas DUAS ferramentas — Electrolux e Multi publicam peca e nao publicam Pa, Xiaomi e WAP publicam Pa e nao publicam peca com codigo. A cobertura das duas ferramentas da ilha e quase disjunta, e isso parte o funil na emenda entre elas."
+    },
+    {
+      "id": "tabela-exemplos-r1",
+      "arquivo": "dados/tabela-exemplos-r1.md",
+      "formato": "md",
+      "entidade": "medicao",
+      "fonte": "Terceira leva do Bloco 3c da Fundacao (10/09/2026): medicao propria sobre o banco ja commitado, gerada por ferramentas/cobertura-r1.py. Nao houve coleta nesta execucao — a busca web devolveu 'unavailable' e o egresso HTTP devolveu EGRESS_BLOCKED em wap.ind.br, positivocasainteligente.com.br e roborock.com, entao nenhum dado tecnico novo entrou no banco. Nenhum numero deste arquivo vem de fora do repositorio.",
+      "verificado_em": "2026-09-10",
+      "registros": 45,
+      "publicar": false,
+      "sha256": "718c1856ffcae2c603227eb01105d9bc77ba8e5770f4298ab64b75bde4e0d355",
+      "descricao": "Tabela de exemplos pre-renderizada da R1, exigida pela secao 5 do ARQUIPELAGO.md e pela secao 1.7 da especificacao — 45 linhas, contra um minimo de 8. GERADA por ferramentas/cobertura-r1.py --gravar e nunca editada a mao: cada linha carrega o codigo, o selo e a data que o banco tem, entao ela nao pode discordar do banco em silencio. A ordem alterna marcas de proposito, porque em ordem alfabetica as nove primeiras linhas seriam todas Electrolux e a promessa desta ilha e comparacao cross-marca. publicar=false porque ela nao e pagina: e a fonte que o snippet da R1 serve em HTML quando o Bloco 4 for escrito."
     }
   ],
   "ferramentas": [
@@ -105,6 +129,11 @@
       "id": "validar-banco",
       "arquivo": "ferramentas/validar-banco.py",
       "descricao": "Verifica se marcas.json, modelos-robo.json e pecas.json cumprem esquema-banco.json. Roda sem rede e sem dependencia (python3 ferramentas/validar-banco.py) e sai com codigo 1 quando qualquer invariante e violada: id duplicado, numero sem fonte, null sem motivo, registro publicavel com categoria que nao e robo, divergencia sem resolucao escrita, peca apontando para modelo inexistente ou excluido, e contagem de cabecalho que nao bate com o arquivo. O Bloco 3c acrescentou cinco invariantes da versao 2 do esquema: kit sem composicao, kit dentro de kit, tipo de composicao fora do vocabulario, item de composicao sem tipo e sem descricao, composicao em peca que nao e kit, e codigo_fabricante null sem motivo_sem_codigo. As cinco foram testadas quebrando o banco de proposito numa copia e conferindo que reprovam. Ferramenta de bancada: NUNCA e publicada no site. A segunda leva do Bloco 3c acrescentou tres invariantes da versao 3: modelo sem divergencias[], modelo com divergencias e sem resolucao escrita, e item de divergencia que nao nomeia um campo existente ou nao traz a transcricao do fabricante; mais a conferencia das contagens do cabecalho de modelos-robo.json (publicavel, com_pa_declarado, com_par_minutos_m2_declarado, marcas_que_declaram_pa e esperando_link_de_afiliado), para que nenhuma execucao futura acredite num numero de cobertura que o arquivo nao sustenta. Todas foram testadas quebrando o banco de proposito numa copia e conferindo que reprovam."
+    },
+    {
+      "id": "cobertura-r1",
+      "arquivo": "ferramentas/cobertura-r1.py",
+      "descricao": "Implementacao de REFERENCIA da R1 e varredura da entrada dela de ponta a ponta. Roda sem rede e sem dependencia: 'python3 ferramentas/cobertura-r1.py' imprime o relatorio, '--gravar' escreve dados/cobertura-r1.json e dados/tabela-exemplos-r1.md. Implementa num lugar so as regras que ate agora existiam apenas em prosa na especificacao: os tres selos da secao 1.3, o conjunto MAIS ESTREITO da secao 1.4, o aviso de variante de hardware, a recusa explicita do selo nao_declarada, e o kit que responde por uma peca que o fabricante nao vende avulsa. Existe para que o Bloco 4 nao escreva essas regras pela primeira vez direto em PHP, dentro de um snippet que so da para testar com o site no ar: a saida do PHP tem que BATER com a daqui. Ja rendeu: rodar a regra contra o banco de verdade pegou duas frases que iriam quebradas para a tela — 'vem dentro do sem codigo publicado', quando o fabricante nao publica codigo de peca, e 'nao vende escova lateral avulso', sem concordancia de genero. Ferramenta de bancada: NUNCA e publicada no site."
     }
   ],
   "esquema": {

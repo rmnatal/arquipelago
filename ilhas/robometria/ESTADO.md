@@ -2,9 +2,9 @@
 ilha: robometria
 estado: nascendo
 prioridade: 1
-ultima_execucao: 2026-09-09T23:16Z
-executando_desde: 2026-09-10T11:17Z
-bloco_atual: "3c segunda leva — pa_declarado fora da Electrolux (concluida); banco na revisao 5"
+ultima_execucao: 2026-09-10T11:28Z
+executando_desde: null
+bloco_atual: "3c terceira leva — varredura da entrada da R1 (concluida); banco na revisao 6"
 ultima_ronda: null
 bloqueada_por: null
 ---
@@ -48,6 +48,15 @@ Sem credenciais neste arquivo.
 
 ## O que já foi entregue
 
+- 10/09/2026 — **Bloco 3c, terceira leva: a entrada da R1 foi varrida pela primeira
+  vez, e a varredura reordenou a fila.** `ferramentas/cobertura-r1.py` (implementação
+  de referência da R1 + varredura), `dados/cobertura-r1.json` (a medição) e
+  `dados/tabela-exemplos-r1.md` (45 linhas, geradas). Manifest na revisão 6. **Não
+  houve coleta nesta execução**: a busca web devolveu "unavailable" e o egresso HTTP
+  devolveu `EGRESS_BLOCKED` em `wap.ind.br`, `positivocasainteligente.com.br` e
+  `roborock.com`. Nenhum dado técnico novo entrou no banco, e nenhum número desta leva
+  vem de fora do repositório.
+
 - 09/09/2026 — pasta da ilha criada dentro da reorganização do Arquipélago em
   uma única Fundação que escolhe a ilha de cada execução (seção 1 do contrato).
 - 09/09/2026 — **Bloco 1**: `dados/corpus-buscas.md`, levantamento de buscas
@@ -81,6 +90,50 @@ Sem credenciais neste arquivo.
   fabricante e nenhum inferido**), mais `ferramentas/validar-banco.py`, que roda
   sem rede e reprova o banco quando alguma invariante do esquema é violada.
   Manifest na revisão 3.
+
+### O que a TERCEIRA LEVA do 3c descobriu — e é o achado mais caro da ilha até aqui
+
+1. **A R1, que é o produto desta ilha, sai VAZIA em 12 dos 28 modelos publicáveis.**
+   Ninguém sabia porque ninguém tinha varrido: o cabeçalho anunciava "33 pares
+   declarados", e par novo num modelo que já respondia não tira modelo nenhum do vazio.
+   Das 168 células (modelo × tipo consultável), **116 não têm o que responder**.
+   Contar item e varrer faixa são coisas diferentes, e a seção 14.3 do contrato pede a
+   segunda.
+2. **AS DUAS FERRAMENTAS DA ILHA TÊM COBERTURA QUASE DISJUNTA — só 3 dos 28 modelos
+   são atendidos pelas duas.** A R2 atende 8 modelos em que a R1 é vazia (Xiaomi, WAP,
+   e o PRA500); a R1 atende 12 em que a R2 é vazia (Electrolux e Multi). A causa é a
+   mesma nos dois sentidos, e é de mercado: **Electrolux e Multi publicam peça com
+   compatibilidade declarada e não publicam Pa; Xiaomi e WAP publicam Pa e não publicam
+   peça com código.**
+3. **Consequência que custa dinheiro: o funil está partido na emenda.** A ilha ganha a
+   visita pela R2 ("quantos Pa para pelo de cachorro"), que na faixa alta só consegue
+   recomendar Xiaomi. Quem compra volta meses depois procurando o filtro daquele robô —
+   a consulta de maior intenção de compra do nicho, e a razão de a R1 existir — e recebe
+   "não localizamos declaração do fabricante". As duas ferramentas não se entregam a
+   visita uma para a outra, e nenhuma das duas medições isoladas mostrava isso.
+4. **Por isso "peças da Xiaomi e da WAP com código" saiu do ÚLTIMO para o PRIMEIRO
+   lugar** entre os alvos de coleta. Dois motivos medidos: é o único lado da emenda que
+   dá para colher (o lado simétrico, Pa da Electrolux e da Multi, já foi medido como
+   inexistente no mercado brasileiro), e são exatamente os modelos que a R2 já
+   recomenda — o retorno chega na visita que a ilha já sabe atrair.
+5. **A implementação de referência pegou dois defeitos de frase antes de eles irem para
+   a tela.** Rodar as regras da especificação contra o banco de verdade produziu "ele
+   vem dentro do **sem codigo publicado**" (quando o fabricante não publica código de
+   peça) e "não vende **escova lateral avulso**" (sem concordância de gênero). As duas
+   teriam nascido dentro do PHP do Bloco 4, num snippet que só dá para testar com o site
+   no ar. **Escrever a regra onde ela pode ser conferida é mais barato do que escrevê-la
+   onde ela não pode.**
+6. **Decisão de interface obrigada pela medição:** o tipo `reservatório` tem **zero**
+   peças no banco inteiro e sai do seletor da R1. Oferecer uma escolha que sempre
+   devolve recusa contraria a promessa antes do formulário (seção 6 do contrato). O
+   seletor passa a ser gerado da varredura, não digitado — e o tipo volta no dia em que
+   a primeira peça dele entrar.
+7. **A consulta-alvo escrita na especificação responde com recusa.** O PRA500 é
+   literalmente o exemplo da seção 1.1, e a R1 sai vazia nele: as três peças da Positivo
+   no banco declaram PRA800 e PRA2000 e não o citam. Pelo conjunto mais estreito, a
+   recusa é a resposta **certa** — mas isso significa que **a página-âncora da R1 não
+   pode ser a do PRA500** enquanto não houver peça declarada, sob pena de a ilha estrear
+   a ferramenta com um "não sabemos".
 
 ### O que a SEGUNDA LEVA do 3c descobriu, e muda a estratégia inteira
 
@@ -223,22 +276,33 @@ bloqueio por causa de infraestrutura.
 O bloco **3b, casca do site, é o primeiro que depende do WordPress**: ele só
 começa quando houver Sync, e o Sync só nasce no wp-admin.
 
-**O trabalho desbloqueado continua sendo 3c, mas o alvo mudou de novo — e desta
-vez porque a lacuna anterior fechou.** A R2 não sai mais vazia: `pa_declarado`
-está em **11 de 28** modelos publicáveis, em 3 marcas, de 1.400 a 10.000 Pa. O
-que sobrou está medido em `cobertura_de_faixa_r2` e é de outra natureza: acima de
-**6.000 Pa** só há 2 elegíveis (o portão pede 3), e **toda faixa acima de 3.000
-Pa é 100% Xiaomi**. Faixa descoberta continua sendo a única urgência de catálogo
-(seção 14.3) — e agora a concentração de marca anda junto dela, porque uma ilha
-que promete comparação cross-marca não entrega isso com um catálogo de uma marca
-só na faixa que mais vende.
+**O trabalho desbloqueado continua sendo 3c, e o alvo mudou de novo — desta vez
+porque a varredura da R1 mostrou que a fila estava na ordem errada.** O primeiro
+alvo passou a ser **peça com código da Xiaomi e da WAP**, que estava em último
+lugar: são os 8 modelos que a R2 já recomenda e em que a R1 sai vazia, e é o
+único lado da emenda entre as duas ferramentas que dá para colher. O segundo é o
+que era o primeiro — faixa descoberta acima de 6.000 Pa e a concentração 100%
+Xiaomi acima de 3.000 Pa, medidas em `cobertura_de_faixa_r2`. Ele não deixou de
+ser trabalho de verdade; caiu para segundo porque rende numa ferramenta só,
+enquanto o novo primeiro rende nas duas.
 
-Nada desta pasta está publicado, e isso é esperado: os sete itens do manifest
-estão com `publicar: false` porque são pesquisa, e o Sync ainda não existe. A
-seção 4 do contrato (o site fica para trás em silêncio) passa a valer nesta ilha
-no dia em que o snippet entrar. Itens esperando link de afiliado: **44** (28
-modelos e 16 peças) — o campo `afiliado.url` já nasce presente e vazio em todos.
-Subiu de 35 para 44 nesta leva, e isso é trabalho pendente de verdade, não
+**NESTA EXECUÇÃO NÃO DEU PARA COLHER NADA, e isso foi medido, não suposto.** Em
+10/09/2026, 11h17Z, a busca web devolveu `unavailable` em três consultas
+seguidas, e o `WebFetch` devolveu `EGRESS_BLOCKED` em `www.wap.ind.br`,
+`www.positivocasainteligente.com.br` e `global.roborock.com`. Isso **não** é
+`bloqueada_por`: é uma execução em que a coleta não estava disponível, e a
+resposta certa foi trabalhar o que não depende de rede — medir o que o banco já
+tem — em vez de deixar a execução passar em branco ou, pior, escrever número de
+memória. A coleta segue sendo o primeiro item da fila na próxima execução em que
+a rede responder.
+
+Nada desta pasta está publicado, e isso é esperado: os **nove** itens do manifest
+estão com `publicar: false` porque são pesquisa e medição, e o Sync ainda não
+existe. A seção 4 do contrato (o site fica para trás em silêncio) passa a valer
+nesta ilha no dia em que o snippet entrar. Itens esperando link de afiliado:
+**44** (28 modelos e 16 peças) — o campo `afiliado.url` já nasce presente e vazio
+em todos. **Continua em 44:** esta leva não acrescentou item ao banco, porque não
+houve coleta. É trabalho pendente de verdade, não
 estatística: pela seção 7 do contrato, quem gera link é a Sentinela estratégica,
 no navegador do Raphael, com teto de calendário — o cano enche em paralelo e não
 compete com a fila da Fundação.

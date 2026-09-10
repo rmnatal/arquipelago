@@ -73,7 +73,20 @@ coisas que nenhum dos concorrentes acima tem. Intenção de compra: alta e imedi
 |---|---|---|---|
 | `marca` | seleção | sim | lista fechada, vinda do banco do Bloco 3 |
 | `modelo` | seleção dependente | sim | códigos do fabricante (HO041, PRA500, S20…), nunca texto livre |
-| `tipo_de_peca` | seleção | não | filtro · escova lateral · escova principal · mop · bateria · reservatório. Vazio = mostra todas |
+| `tipo_de_peca` | seleção | não | filtro · escova lateral · escova principal · mop · bateria. Vazio = mostra todas |
+
+**O seletor de tipo só oferece o que o banco consegue responder** — decisão da terceira
+leva do Bloco 3c, obrigada pela varredura da entrada (`dados/cobertura-r1.json`). Medido:
+`reservatório` está no vocabulário do esquema e tem **zero** peças no banco inteiro, então
+oferecê-lo é oferecer uma escolha que sempre devolve recusa. Isso contraria a promessa
+antes do formulário (seção 6 do `ARQUIPELAGO.md`) e ensina o visitante que a ferramenta
+não sabe responder. O tipo volta ao seletor no dia em que a primeira peça dele entrar no
+banco — a regra é do banco, não da lista escrita aqui: **o seletor é gerado da varredura,
+nunca digitado à mão.**
+
+`bateria` fica, e com ressalva medida: ela responde em **1** modelo só (o HO041). Fica
+porque é o único tipo em que a variante de hardware muda a peça — é lá que a R1 dá a
+resposta que nenhum anúncio dá — e porque a recusa dela é informativa, não vazia.
 
 **Texto livre é proibido na entrada de modelo.** O corpus (cluster A2) já mostrou o
 sintoma: anúncio "escova lateral V3 V5 A4 A6" sem marca no título. Campo livre faria a
@@ -142,7 +155,15 @@ banco recebe os dois. Nenhum dado técnico foi herdado do nome errado.
 ### 1.7 Tabela de exemplos pré-renderizada (obrigatória, seção 5)
 
 Servida em HTML, sem depender de JavaScript, cobrindo as marcas de maior recorrência no
-corpus. Mínimo de 8 linhas na primeira publicação, no formato:
+corpus. Mínimo de 8 linhas na primeira publicação.
+
+**A tabela é GERADA, não digitada** — decisão da terceira leva do Bloco 3c. O arquivo
+`dados/tabela-exemplos-r1.md` sai de `ferramentas/cobertura-r1.py --gravar` e hoje tem
+**45 linhas**, todas com o código, o selo e a data que o banco tem. Tabela digitada à mão
+discorda do banco em silêncio no dia em que o banco muda, e é exatamente esse silêncio que
+a seção 5 do `ARQUIPELAGO.md` existe para impedir. A ordem alterna marcas de propósito: em
+ordem alfabética as nove primeiras linhas seriam todas Electrolux, e a promessa desta ilha
+é comparação **cross-marca**. O Bloco 4 serve essas linhas em HTML; o formato é:
 
 | Modelo | Peça | Código do fabricante | Selo | Fonte / data |
 |---|---|---|---|---|

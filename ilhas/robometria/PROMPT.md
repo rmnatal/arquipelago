@@ -38,33 +38,60 @@ descartou meta redonda): é faixa descoberta. Produto novo entra com `afiliado.u
 presente e vazio, e a execução reporta quantos itens esperam link.
 
 A primeira leva do 3c (09/09/2026) fechou as lacunas (c) e (d) da ordem original. A
-**segunda leva (09/09/2026, 23h16Z) fechou a lacuna (a)**: `pa_declarado` saiu de 2 para
-**11 modelos publicáveis**, em 3 marcas, cobrindo de 1.400 a 10.000 Pa — a R2 deixa de
-sair com lista vazia. **A ordem que resta, da maior para a menor:**
+**segunda leva (09/09/2026, 23h16Z) fechou a lacuna do `pa_declarado`**: de 2 para **11
+modelos publicáveis**, em 3 marcas, de 1.400 a 10.000 Pa — a R2 deixou de sair vazia.
 
-(a) **FAIXA DESCOBERTA E CONCENTRAÇÃO DE MARCA — a urgência agora, e ela só apareceu
-porque a varredura foi feita.** A medição está em `cobertura_de_faixa_r2`, dentro de
-`dados/modelos-robo.json`. Duas coisas: acima de **6.000 Pa** só existem 2 elegíveis (o
-portão da seção 9 pede 3), e **toda faixa acima de 3.000 Pa é 100% Xiaomi** — inclusive a
-faixa de pet, que é a que vende. Uma ilha que se vende como comparador **cross-marca** não
-pode ter a faixa mais cara ocupada por uma marca só. Não se conserta afrouxando
-elegibilidade: conserta-se achando Pa de **outra marca** nessa faixa.
-(b) **MANUAIS EM PDF DA WAP — a melhor porta de entrada para o NÍVEL 2 da escada de
+A **terceira leva (10/09/2026, 11h17Z) varreu a entrada da R1**, que nunca tinha sido
+varrida, e o resultado **reordenou esta lista**. A medição está em
+`dados/cobertura-r1.json` e se refaz sozinha com
+`python3 ferramentas/cobertura-r1.py --gravar`. **A ordem que vale agora, da maior para a
+menor:**
+
+(a) **PEÇAS COM CÓDIGO DA XIAOMI E DA WAP — a urgência número 1, e ela só apareceu no
+cruzamento das duas varreduras.** Esta linha estava em ÚLTIMO lugar até 10/09/2026.
+Medido: das 28 entradas publicáveis, só **3** são atendidas pelas DUAS ferramentas da
+ilha. A R2 atende 8 modelos (Xiaomi, WAP, PRA500) em que a R1 sai **vazia**; a R1 atende
+12 (Electrolux, Multi) em que a R2 sai vazia. **O funil está partido na emenda:** a ilha
+ganha a visita pela R2 ("quantos Pa para pelo de cachorro"), a pessoa compra, volta meses
+depois procurando o filtro daquele robô — que é a consulta de maior intenção de compra do
+nicho e a razão de a R1 existir — e recebe "não localizamos declaração do fabricante".
+Este é também o único lado **coletável** da emenda: o lado simétrico (Pa da Electrolux e
+da Multi) já foi medido como inexistente no mercado brasileiro.
+(b) **FAIXA DESCOBERTA E CONCENTRAÇÃO DE MARCA na R2.** Medição em
+`cobertura_de_faixa_r2`, dentro de `dados/modelos-robo.json`: acima de **6.000 Pa** só
+existem 2 elegíveis (o portão da seção 9 pede 3), e **toda faixa acima de 3.000 Pa é 100%
+Xiaomi** — inclusive a de pet, que é a que vende. Não se conserta afrouxando
+elegibilidade: conserta-se achando Pa de **outra marca** nessa faixa. Continua sendo
+trabalho de verdade; caiu para segundo porque (a) rende nas duas ferramentas de uma vez e
+(b) só rende numa.
+(c) **MANUAIS EM PDF DA WAP — a melhor porta de entrada para o NÍVEL 2 da escada de
 fontes.** A WAP publica um manual por modelo em `mais.conteudo.wap.ind.br`, com revisão e
 data no nome do arquivo. Hoje o domínio devolve `EGRESS_BLOCKED`; no dia em que abrir,
-esses PDFs sobem o banco inteiro da marca de nível 3 para nível 2 de uma vez e trazem o Pa
-dos modelos que a loja declara só como "três modos de sucção". Toda a ilha está em nível 3
+esses PDFs sobem o banco inteiro da marca de nível 3 para nível 2 de uma vez, trazem o Pa
+dos modelos que a loja declara só como "três modos de sucção" **e**, pela varredura da
+R1, são a chance de tirar W400, W1000 e W310 do vazio duplo. Toda a ilha está em nível 3
 ou 4 — nenhuma fonte de nível 2 ainda.
-(c) **pares (minutos, m²): a lacuna mudou de natureza e NÃO é mais coleta.** Ficou medido
+(d) **pares (minutos, m²): a lacuna mudou de natureza e NÃO é mais coleta.** Ficou medido
 que Xiaomi, WAP, Multi e Positivo **não declaram m² em canal nenhum** — só a Electrolux
 declara. Não adianta procurar mais: o número não está publicado. A
 `taxa-cobertura-m2-por-min` continua `pendente` e **proibida em fórmula**, e a recusa
 virou conteúdo: a R2 mostra os minutos, diz que o fabricante não declara área e explica
 por que não chuta.
-(d) **peças da Xiaomi e da WAP com código**, que a R1 precisa e que a busca restrita ainda
-não devolveu.
+
+**ANTES de colher qualquer coisa para o 3c, rode `python3 ferramentas/cobertura-r1.py` e
+`ferramentas/validar-banco.py`.** As duas varreduras são o que separa "acrescentei um
+item" de "tirei uma entrada do vazio" — e foi contando itens, em vez de varrer, que a
+lacuna da R1 ficou escondida atrás de "33 pares declarados".
 
 **4. FERRAMENTAS**, uma por execução, já nascendo com JSON-LD, tabela de exemplos pré-renderizada, resposta antes da explicação e procedência na frase. **Não deixe retrofit para depois** — foi o que custou dias na Aquametria.
+
+**A R1 já tem implementação de referência**: `ferramentas/cobertura-r1.py`. Ela roda contra
+o banco de verdade, sem rede e sem site, e devolve a resposta frase a frase — os três
+selos, o conjunto mais estreito, o aviso de variante de hardware, a recusa explícita e o
+kit que responde por uma peça que o fabricante não vende avulsa. **A saída do snippet PHP
+tem que bater com a dela**, e a tabela de exemplos da seção 5 sai de
+`dados/tabela-exemplos-r1.md`, gerada, nunca digitada. O seletor de tipo de peça é gerado
+da varredura: tipo sem nenhuma peça no banco fica fora do formulário.
 
 **4e. VITRINE DE PRODUTO** dentro do resultado, desde a primeira ferramenta. O cartão diz a especificação que fez o produto entrar: "filtro HEPA H13 — compatível com o seu E10".
 
