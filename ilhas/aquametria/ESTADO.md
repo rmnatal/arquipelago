@@ -3,7 +3,7 @@ ilha: aquametria
 estado: viva
 prioridade: 2
 ultima_execucao: 2026-09-10T19:17Z
-executando_desde: null
+executando_desde: 2026-09-10T21:17Z
 bloco_atual: "T8 ENTREGUE na C3: a primeira VITRINE do Arquipelago esta no ar (C3 v1.5.0). Carrossel scroll-snap em CSS puro, ANTES da ficha e da procedencia (contrato 7), com foto, marca, modelo, a especificacao que fez o produto entrar, cotacao COM DATA e botao de loja; mais uma vitrine SERVIDA no HTML para o caso de 100 L, que e o que um crawler de IA recebe. Preco passou a sair, sempre datado, e as tres frases do snippet mais duas paginas de conteudo que diziam 'nao publicamos preco' foram reescritas na mesma semana — a contradicao foi achada medindo a pagina NO AR, nao o repositorio. Portao novo: teste-navegador-c3-vitrine.mjs, 38 afirmacoes, com a ordem da vitrine obrigada a ser identica a da lista tecnica. Do despacho de 10/09 restam so os itens 4 (registro de receita: o topo da lista segue sem link, a ordem nao muda) e 5 (nenhuma pagina nova ate 16/09). Proximo: T8 na C5, que e a proxima com mais itens com foto e link"
 ultima_ronda: 2026-09-10T14:55Z
 bloqueada_por: null
