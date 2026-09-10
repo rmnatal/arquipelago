@@ -1,8 +1,21 @@
 /**
  * Robometria R1 — Qual peça serve no meu robô aspirador
- * Versão: 1.0.0 (10/09/2026) — Bloco 4 da fila, com a vitrine do Bloco 4e junto,
- * porque a seção 6 do ARQUIPELAGO.md manda a vitrine nascer na PRIMEIRA
- * ferramenta e não como acabamento depois.
+ * Versão: 1.1.0 (10/09/2026) — despacho da Sentinela de 10/09, item 0: a
+ * procedência deixa de ser a única porta de compra. Versão 1.0.0 (10/09/2026):
+ * Bloco 4 da fila, com a vitrine do Bloco 4e junto, porque a seção 6 do
+ * ARQUIPELAGO.md manda a vitrine nascer na PRIMEIRA ferramenta e não como
+ * acabamento depois.
+ *
+ * O QUE A 1.1.0 CORRIGE, e é uma cicatriz do arquipélago inteiro (seção 7 do
+ * ARQUIPELAGO.md): a versão 1.0.0 publicou 45 pares peça × modelo em que o
+ * ÚNICO link clicável de cada peça levava para a loja do FABRICANTE. A página
+ * ficou impecável de procedência e perfeita para a Electrolux — quem decidia
+ * comprar clicava no único link que existia, e a ilha não ganhava nada. Agora:
+ * (1) o bloco de compra, com link de afiliado, vem ANTES da prova de
+ * procedência, na mesma resposta; (2) o link de procedência é discreto, com o
+ * texto "fonte" e rel="nofollow noopener", nunca um botão; (3) o bloco de
+ * compra existe mesmo com `afiliado.url` vazio — reserva o lugar, diz "link de
+ * loja em breve" e a página publica quantas peças esperam link.
  *
  * A ferramenta de compatibilidade desta ilha: dado um modelo de robô, ela diz
  * qual filtro, escova, mop ou bateria o FABRICANTE declarou — com o código, o
@@ -60,7 +73,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_R1_VERSAO' ) ) {
-	define( 'ROBOMETRIA_R1_VERSAO', '1.0.0' );
+	define( 'ROBOMETRIA_R1_VERSAO', '1.1.0' );
 	define( 'ROBOMETRIA_R1_SLUG', 'qual-peca-serve-no-meu-robo-aspirador' );
 	define( 'ROBOMETRIA_R1_TITULO', 'Qual peça serve no meu robô aspirador' );
 	define( 'ROBOMETRIA_R1_DADOS', 'robometria_dados_r1-respostas' );
@@ -254,6 +267,77 @@ function robometria_r1_origem( $origem ) {
 }
 }
 
+/**
+ * O LINK DE PROCEDÊNCIA — discreto por regra, e nunca um botão.
+ *
+ * Cicatriz de 10/09/2026 (seção 7 do ARQUIPELAGO.md): a R1 publicou 45 pares
+ * peça × modelo em que o ÚNICO link clicável era o da loja do fabricante. Quem
+ * queria comprar clicava na procedência, porque não havia outra porta — e a
+ * ilha mandava a venda para a Electrolux de graça.
+ *
+ * A procedência FICA: é ela que dá à página o direito de afirmar compatibilidade
+ * e é o que o Google e um modelo de linguagem conferem. O que muda é o peso: ela
+ * existe para ser CONFERIDA, não para ser clicada. Por isso o texto é "fonte",
+ * o `rel` leva `nofollow` — a ilha não passa autoridade para a loja do
+ * fabricante — e nenhuma regra de CSS a transforma em botão.
+ */
+if ( ! function_exists( 'robometria_r1_fonte_link' ) ) {
+function robometria_r1_fonte_link( $url ) {
+	if ( empty( $url ) ) {
+		return '';
+	}
+	return '<a class="rbm-fonte" href="' . esc_url( $url )
+		. '" target="_blank" rel="nofollow noopener">fonte</a>';
+}
+}
+
+/**
+ * O rótulo do botão de compra.
+ *
+ * Nomeia a loja para quem vai clicar: link de compra que não diz para onde leva
+ * é pedido de confiança, e confiança é o único ativo desta ilha. Programa que o
+ * banco ainda não declarou sai como "loja parceira" — nunca inventando o nome
+ * de um marketplace que ninguém conferiu.
+ */
+if ( ! function_exists( 'robometria_r1_rotulo_da_loja' ) ) {
+function robometria_r1_rotulo_da_loja( $programa ) {
+	$nomes = array(
+		'shopee'       => 'na Shopee',
+		'mercadolivre' => 'no Mercado Livre',
+		'amazon'       => 'na Amazon',
+	);
+	return isset( $nomes[ $programa ] ) ? $nomes[ $programa ] : 'na loja parceira';
+}
+}
+
+/**
+ * A PORTA DE COMPRA de uma peça — presente mesmo quando o link ainda não existe.
+ *
+ * O lugar é RESERVADO em vez de escondido, e a diferença não é cosmética: bloco
+ * que só nasce quando o link chega faz a ferramenta voltar, sozinha, ao defeito
+ * de ter a procedência como única porta clicável durante todas as semanas em que
+ * o cano de links está enchendo (seção 7). Reservado, o visitante vê que a
+ * compra é assunto da página, e a ilha vê o buraco todo dia.
+ */
+if ( ! function_exists( 'robometria_r1_porta_de_compra' ) ) {
+function robometria_r1_porta_de_compra( $item ) {
+	$a   = isset( $item['afiliado'] ) ? $item['afiliado'] : array();
+	$url = isset( $a['url'] ) ? $a['url'] : '';
+
+	if ( '' === $url ) {
+		return '<span class="rbm-sem-loja">Link de loja em breve</span>';
+	}
+
+	/* rel="sponsored" é a declaração que o Google pede para link pago, e vem
+	   junto de nofollow e noopener (seção 7 do contrato). */
+	return '<a class="rbm-comprar" href="' . esc_url( $url ) . '" target="_blank"'
+		. ' rel="sponsored nofollow noopener">'
+		. esc_html( 'Ver ' . robometria_r1_rotulo_da_loja(
+			isset( $a['programa'] ) ? $a['programa'] : null ) )
+		. '</a>';
+}
+}
+
 /* ---------------------------------------------------------------------------
  * 3. As frases
  *
@@ -428,21 +512,29 @@ function robometria_r1_itens( $lista, $tipo ) {
 }
 
 /**
- * A VITRINE (Bloco 4e, seção 6 do ARQUIPELAGO.md).
+ * A VITRINE, que desde 10/09/2026 é o BLOCO DE COMPRA (seções 6 e 7).
  *
  * Carrossel de cartões dentro do resultado, com scroll-snap em CSS puro, sem
  * biblioteca. Cada cartão diz a especificação que fez a peça entrar — que aqui
  * é a própria declaração do fabricante — e é um link de verdade, nunca um
  * <div> com onclick.
  *
- * Duas honestidades que a seção 6 e a seção 7 obrigam, e que hoje valem para
+ * A MUDANÇA DO DESPACHO: o cartão tinha um único link, e ele ia para a loja do
+ * fabricante. Agora a ordem dentro do cartão é a da seção 7 — primeiro a porta
+ * de compra (afiliado, ou o lugar reservado enquanto o link não existe), depois
+ * a procedência, discreta, com o texto "fonte" e `nofollow`. Comprar e conferir
+ * são duas ações diferentes, e a página parou de misturá-las num link só.
+ *
+ * Três honestidades que a seção 6 e a seção 7 obrigam, e que hoje valem para
  * TODOS os itens desta ilha:
  *   - peça sem imagem NÃO some: aparece com espaço reservado neutro e o código
  *     em destaque. Perder a peça certa por falta de foto é trocar o certo pelo
  *     bonito;
- *   - peça sem link de loja diz que não tem link, em vez de fingir um botão. O
- *     link do cartão vai para o ENDEREÇO DA DECLARAÇÃO, que é o que a página
- *     tem de mais valioso para oferecer hoje.
+ *   - peça sem link de loja mantém o lugar do bloco de compra e diz "link de
+ *     loja em breve", em vez de sumir com o bloco — sumir devolveria a
+ *     procedência ao papel de única porta clicável;
+ *   - o número de peças esperando link sai NA TELA, porque é trabalho pendente
+ *     de verdade e não estatística interna.
  */
 if ( ! function_exists( 'robometria_r1_vitrine' ) ) {
 function robometria_r1_vitrine( $itens, $modelo ) {
@@ -463,7 +555,47 @@ function robometria_r1_vitrine( $itens, $modelo ) {
 		$por_peca[ $i['peca'] ]['tipos'][] = $i['tipo'];
 	}
 
-	$html  = '<div class="rbm-secao"><h3>As peças, uma a uma</h3>';
+	/* Quantas destas peças ainda não têm link de loja. Contado no que está na
+	   tela agora, não no banco inteiro: a frase fala do que o visitante está
+	   vendo. */
+	$sem_link = 0;
+	foreach ( $por_peca as $i ) {
+		if ( empty( $i['afiliado']['url'] ) ) {
+			$sem_link++;
+		}
+	}
+	$total_pecas = count( $por_peca );
+
+	$html  = '<div class="rbm-secao rbm-compra"><h3>Onde comprar estas peças</h3>';
+
+	/* AVISO DE COMISSÃO VISÍVEL NA PÁGINA (seção 7), e no bloco de compra — não
+	   só no rodapé. Quem vê o botão precisa ver o aviso sem rolar. */
+	$html .= '<p class="rbm-aviso-comissao">Os botões de compra abaixo são links de afiliado: se você comprar por eles, a Robometria pode receber comissão, sem custo a mais para você. Isso não muda a ordem da lista — ela é decidida pela declaração do fabricante, e só ela. '
+		. ( function_exists( 'robometria_casca_link_html' )
+			? robometria_casca_link_html( 'divulgacao-de-afiliados', 'Como isto funciona' )
+			: 'Veja a página de divulgação de afiliados' ) . '.</p>';
+
+	if ( $sem_link > 0 ) {
+		/* Três moldes, porque "3 destas 3 peças" é o tipo de frase que só nasce
+		   de contador solto e denuncia texto montado por máquina. */
+		if ( $sem_link === $total_pecas ) {
+			$quantas = sprintf(
+				1 === $total_pecas
+					? 'Esta peça ainda não tem link de loja'
+					: 'Nenhuma destas %d peças tem link de loja ainda',
+				$total_pecas
+			);
+		} elseif ( 1 === $sem_link ) {
+			$quantas = sprintf( 'Uma destas %d peças ainda não tem link de loja', $total_pecas );
+		} else {
+			$quantas = sprintf( '%d destas %d peças ainda não têm link de loja', $sem_link, $total_pecas );
+		}
+
+		$html .= '<p class="rbm-nota">' . esc_html( $quantas )
+			. esc_html( ', e o cartão diz isso em vez de fazer o bloco sumir. Enquanto o link não existe, o endereço da declaração do fabricante continua aqui — embaixo de cada cartão, como "fonte", para você conferir.' )
+			. '</p>';
+	}
+
 	$html .= '<ul class="rbm-vitrine">';
 
 	foreach ( $por_peca as $i ) {
@@ -506,19 +638,17 @@ function robometria_r1_vitrine( $itens, $modelo ) {
 			$html .= '<span class="rbm-tag">' . esc_html( $ressalva ) . '</span>';
 		}
 
-		$html .= '<span class="rbm-vitrine-acao">';
-		if ( ! empty( $i['url'] ) ) {
-			/* O rótulo da origem entra depois do travessão, e não regido por
-			   preposição: "no loja oficial da marca" é erro de concordância que
-			   nasceria de colar rótulo em preposição fixa. */
-			$html .= '<a href="' . esc_url( $i['url'] ) . '" target="_blank" rel="noopener">'
-				. esc_html( 'Ver a declaração — ' . $rotulo_origem ) . '</a>';
-		}
-		$html .= '</span>';
+		/* PRIMEIRO A PORTA DE COMPRA. A ordem destes dois <span> é a regra da
+		   seção 7 escrita em código: inverter os dois é reabrir o defeito. */
+		$html .= '<span class="rbm-vitrine-acao">' . robometria_r1_porta_de_compra( $i ) . '</span>';
 
-		if ( ! empty( $i['esperando_link'] ) ) {
-			$html .= '<span class="rbm-vitrine-sem-loja">Ainda sem link de loja para esta peça.</span>';
-		}
+		/* DEPOIS A PROCEDÊNCIA, discreta. O rótulo da origem entra depois do
+		   travessão, e não regido por preposição: "no loja oficial da marca" é
+		   erro de concordância que nasceria de colar rótulo em preposição fixa. */
+		$html .= '<span class="rbm-vitrine-fonte">'
+			. esc_html( 'Como sabemos — ' . $rotulo_origem )
+			. ( empty( $i['url'] ) ? '' : ' · ' . robometria_r1_fonte_link( $i['url'] ) )
+			. '</span>';
 
 		$html .= '</li>';
 	}
@@ -556,9 +686,10 @@ function robometria_r1_divergencias( $itens ) {
 		$html .= '<div class="rbm-tabela"><table class="rbm-quadro"><thead><tr><th>Canal</th><th>Modelos que ele declara</th><th>Verificado em</th></tr></thead><tbody>';
 		foreach ( $mapa[ $i['peca'] ] as $dv ) {
 			$html .= '<tr>';
-			$html .= '<td>' . ( empty( $dv['url'] )
-				? esc_html( $dv['canal'] )
-				: '<a href="' . esc_url( $dv['url'] ) . '" target="_blank" rel="noopener">' . esc_html( $dv['canal'] ) . '</a>' ) . '</td>';
+			/* O nome do canal é o DADO da linha e sai como texto; o endereço vai
+			   junto como "fonte", discreto e com nofollow (seção 7). */
+			$html .= '<td>' . esc_html( $dv['canal'] )
+				. ( empty( $dv['url'] ) ? '' : ' ' . robometria_r1_fonte_link( $dv['url'] ) ) . '</td>';
 			$html .= '<td>' . esc_html( robometria_r1_lista( $dv['conjunto'] ) ) . '</td>';
 			$html .= '<td class="rbm-n">' . esc_html( robometria_r1_data( $dv['verificado_em'] ) ) . '</td>';
 			$html .= '</tr>';
@@ -660,6 +791,9 @@ function robometria_r1_resposta( $modelo_id, $tipo, $e_ancora = false ) {
 		$html .= '</ul>';
 		if ( ! $fabricante ) {
 			$html .= '<p>Isso não quer dizer que não exista peça: quer dizer que o fabricante não publicou, em canal que a gente tenha localizado, qual peça serve neste modelo. Anúncio de marketplace afirmando compatibilidade não conta como declaração, e é por isso que ele não aparece aqui.</p>';
+			/* Seção 7: sem item que atenda, o bloco não lista — mas DIGA por quê.
+			   Silêncio no lugar do bloco de compra parece defeito de página. */
+			$html .= '<p><strong>E é por isso que esta resposta não tem bloco de compra.</strong> Nós ganhamos comissão quando alguém compra por um link nosso, e é exatamente por isso que ele não pode aparecer aqui: vender uma peça que o fabricante não declarou para o seu robô seria transformar em receita justamente o que a página não sabe.</p>';
 		}
 		$html .= '</div>';
 	}
@@ -776,9 +910,8 @@ function robometria_r1_tabela_exemplos() {
 			? '<span class="rbm-sem-link">o fabricante não publica código</span>'
 			: '<span class="rbm-codigo-peca">' . esc_html( $l['codigo'] ) . '</span>' )
 			. ( $l['divergencia'] ? ' <span class="rbm-tag">divergência registrada</span>' : '' ) . '</td>';
-		$html .= '<td>' . ( empty( $l['url'] )
-			? esc_html( $rotulo_origem )
-			: '<a href="' . esc_url( $l['url'] ) . '" target="_blank" rel="noopener">' . esc_html( $rotulo_origem ) . '</a>' ) . '</td>';
+		$html .= '<td>' . esc_html( $rotulo_origem )
+			. ( empty( $l['url'] ) ? '' : ' ' . robometria_r1_fonte_link( $l['url'] ) ) . '</td>';
 		$html .= '<td class="rbm-n">' . esc_html( robometria_r1_data( $l['verificado_em'] ) ) . '</td>';
 		$html .= '</tr>';
 	}
@@ -1048,8 +1181,19 @@ add_action( 'wp_head', function () {
 .rbm-vitrine-nome{font-size:.86rem;color:var(--rbm-legenda);line-height:1.45;}
 .rbm-vitrine-porque{font-size:.88rem;line-height:1.45;}
 .rbm-vitrine-vida{font-size:.84rem;color:var(--rbm-legenda);}
-.rbm-vitrine-sem-loja{font-size:.8rem;color:var(--rbm-legenda);}
-.rbm-vitrine-acao{margin-top:auto;padding-top:.3rem;font-size:.88rem;}
+.rbm-vitrine-acao{margin-top:auto;padding-top:.6rem;font-size:.88rem;}
+/* A PORTA DE COMPRA e a PROCEDENCIA, com pesos deliberadamente diferentes
+   (secao 7): o botao de compra tem area de toque de botao; a fonte e texto
+   pequeno, sem caixa e sem preenchimento, porque ela existe para ser conferida
+   e nao para ser clicada. Trocar estes dois pesos e reabrir o defeito de
+   10/09/2026, quando a unica porta clicavel da pagina levava para a loja do
+   fabricante. */
+.rbm-comprar{display:block;text-align:center;padding:.6rem .9rem;border:1px solid var(--rbm-tinta);border-radius:2px;background:var(--rbm-tinta);color:var(--rbm-piso);font-family:var(--rbm-texto);font-weight:600;font-size:.9rem;text-decoration:none;}
+.rbm-comprar:hover,.rbm-comprar:focus-visible{background:var(--rbm-superficie);color:var(--rbm-tinta);}
+.rbm-sem-loja{display:block;text-align:center;padding:.6rem .9rem;border:1px dashed var(--rbm-traco);border-radius:2px;color:var(--rbm-legenda);font-size:.84rem;}
+.rbm-vitrine-fonte{font-size:.78rem;color:var(--rbm-legenda);line-height:1.4;}
+.rbm-fonte{font-size:.78rem;color:var(--rbm-legenda);text-decoration:underline;}
+.rbm-aviso-comissao{font-size:.86rem;color:var(--rbm-legenda);line-height:1.5;margin:.2rem 0 0;}
 .rbm-codigo-peca{font-size:.9rem;letter-spacing:.03em;}
 /* Barra fixa do celular: so aparece quando o resultado esta fora da tela, e so
    quando ha JavaScript para saber disso (o atributo vem do rodape). */

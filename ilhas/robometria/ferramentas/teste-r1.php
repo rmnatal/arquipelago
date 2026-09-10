@@ -289,8 +289,9 @@ if ( ! $tem_terceiro ) {
 	rbm_ok( true, 'nenhum par com selo declarada_terceiro no banco hoje', 'nada a ordenar' );
 }
 
-/* Nao ha item com link de afiliado nesta ilha ainda, e a pagina precisa dizer
-   isso em vez de fingir um botao de compra (secao 7). */
+/* Nao ha item com link de afiliado nesta ilha ainda, e a pagina precisa RESERVAR
+   o lugar do bloco de compra dizendo isso — nunca fingir um botao, e nunca
+   esconder o bloco (secao 7, despacho de 10/09). */
 $esperando = 0;
 foreach ( $dados['respostas'] as $r ) {
 	foreach ( $r['fabricante'] as $i ) {
@@ -298,8 +299,8 @@ foreach ( $dados['respostas'] as $r ) {
 	}
 }
 $h_ancora = rbm_r1_pagina( $ancora, null );
-rbm_ok( $esperando > 0 && false !== strpos( $h_ancora, 'rbm-vitrine-sem-loja' ),
-	'peca sem link de loja diz que nao tem link, em vez de mostrar botao' );
+rbm_ok( $esperando > 0 && false !== strpos( $h_ancora, 'rbm-sem-loja' ),
+	'peca sem link de loja reserva o lugar do bloco, em vez de fingir um botao' );
 
 /* ---------------------------------------------------------------------------
  * 7. A vitrine (Bloco 4e, secao 6).
@@ -311,7 +312,9 @@ preg_match( '#<ul class="rbm-vitrine">(.*?)</ul>#is', $h_ancora, $mv );
 $vitrine = isset( $mv[1] ) ? $mv[1] : '';
 rbm_ok( '' !== $vitrine, 'a vitrine aparece dentro do resultado' );
 rbm_ok( 0 === substr_count( $vitrine, 'onclick' ), 'nenhum cartao com onclick — sao <a href> de verdade' );
-rbm_ok( substr_count( $vitrine, '<a href="http' ) > 0, 'os cartoes levam ao endereco da declaracao', substr_count( $vitrine, '<a href="http' ) . ' link(s)' );
+rbm_ok( substr_count( $vitrine, 'class="rbm-fonte"' ) > 0,
+	'cada cartao leva ao endereco da declaracao, como fonte discreta',
+	substr_count( $vitrine, 'class="rbm-fonte"' ) . ' link(s)' );
 
 $pecas_distintas = array();
 foreach ( $dados['respostas'][ $ancora ]['fabricante'] as $i ) {
@@ -493,6 +496,168 @@ rbm_ok( empty( $desprotegidas ), 'toda funcao de nivel superior dentro de functi
    molde perdeu os acentos em algum lugar do caminho. */
 rbm_ok( false !== strpos( $corpo, 'compatível' ) || false !== strpos( $corpo, 'não localizamos' ),
 	'o texto da tela sai acentuado, e nao no ASCII do banco' );
+
+/* ---------------------------------------------------------------------------
+ * 13. A PORTA DE COMPRA VEM ANTES DA PROCEDENCIA.
+ *
+ * Despacho da Sentinela de 10/09/2026, item 0, e regra da secao 7 do contrato
+ * desde o mesmo dia. A versao 1.0.0 desta ferramenta publicou 45 pares em que o
+ * unico link clicavel de cada peca ia para a loja do FABRICANTE: procedencia
+ * impecavel, receita zero. Estas medicoes existem para essa inversao nao voltar
+ * em silencio numa edicao futura do snippet.
+ * ------------------------------------------------------------------------- */
+
+echo "\n13. Porta de compra x procedencia (secao 7, despacho de 10/09)\n";
+
+/** Todo <a> da pagina com href absoluto, ja separado por dominio. */
+function rbm_links_externos( $html ) {
+	preg_match_all( '#<a\b([^>]*)href="(https?://[^"]+)"([^>]*)>#i', $html, $m, PREG_SET_ORDER );
+	$fora = array();
+	foreach ( $m as $a ) {
+		if ( false !== strpos( $a[2], 'robometria.com.br' ) ) {
+			continue;
+		}
+		$fora[] = array( 'url' => $a[2], 'atributos' => $a[1] . $a[3] );
+	}
+	return $fora;
+}
+
+$externos = rbm_links_externos( $h_ancora );
+rbm_ok( count( $externos ) > 0, 'a pagina serve links para fora (procedencia)',
+	count( $externos ) . ' link(s)' );
+
+$sem_nofollow = array();
+foreach ( $externos as $a ) {
+	if ( ! preg_match( '/rel="[^"]*nofollow/i', $a['atributos'] ) ) {
+		$sem_nofollow[] = $a['url'];
+	}
+}
+rbm_ok( empty( $sem_nofollow ),
+	'todo link para loja ou pagina de fabricante leva rel="nofollow"',
+	empty( $sem_nofollow ) ? count( $externos ) . ' conferidos' : implode( ' ', $sem_nofollow ) );
+
+$sem_noopener = array();
+foreach ( $externos as $a ) {
+	if ( ! preg_match( '/rel="[^"]*noopener/i', $a['atributos'] ) ) {
+		$sem_noopener[] = $a['url'];
+	}
+}
+rbm_ok( empty( $sem_noopener ), 'e todo link para fora leva noopener',
+	empty( $sem_noopener ) ? count( $externos ) . ' conferidos' : implode( ' ', $sem_noopener ) );
+
+/* O texto do link de procedencia e "fonte", e nada alem: rotulo comprido em
+   destaque e o que fazia dele a porta de compra da pagina. */
+preg_match_all( '#<a class="rbm-fonte"[^>]*>(.*?)</a>#is', $h_ancora, $mf );
+$textos = array_unique( $mf[1] );
+rbm_ok( array( 'fonte' ) === array_values( $textos ),
+	'o link de procedencia tem o texto "fonte", e nunca um rotulo de botao',
+	implode( '|', $textos ) );
+
+/* E ele nao pode ser um botao — nem por classe, nem por CSS. */
+rbm_ok( false === strpos( $h_ancora, 'class="rbm-fonte rbm-comprar' )
+	&& false === strpos( $h_ancora, 'class="rbm-comprar rbm-fonte' ),
+	'a fonte nunca acumula a classe do botao de compra' );
+preg_match( '/\.rbm-fonte\{([^}]*)\}/', $css, $mcss );
+$regra_fonte = isset( $mcss[1] ) ? $mcss[1] : '';
+rbm_ok( '' !== $regra_fonte && false === strpos( $regra_fonte, 'background' )
+	&& false === strpos( $regra_fonte, 'padding' ),
+	'no CSS, a fonte nao ganha fundo nem preenchimento de botao', $regra_fonte );
+
+/* A ORDEM, que e o coracao do despacho: dentro da resposta, o bloco de compra
+   aparece ANTES de qualquer link de procedencia. */
+$pos_compra = strpos( $h_ancora, 'rbm-compra' );
+$pos_fonte  = strpos( $h_ancora, 'rbm-fonte' );
+rbm_ok( false !== $pos_compra && false !== $pos_fonte && $pos_compra < $pos_fonte,
+	'o bloco de compra vem ANTES da primeira prova de procedencia',
+	$pos_compra . ' < ' . $pos_fonte );
+
+/* Dentro de CADA cartao, a mesma ordem. */
+preg_match_all( '#<li class="rbm-vitrine-item">(.*?)</li>#is', $h_ancora, $mc );
+$cartoes_fora_de_ordem = 0;
+foreach ( $mc[1] as $cartao ) {
+	$pc = strpos( $cartao, 'rbm-vitrine-acao' );
+	$pf = strpos( $cartao, 'rbm-vitrine-fonte' );
+	if ( false === $pc || false === $pf || $pc > $pf ) {
+		$cartoes_fora_de_ordem++;
+	}
+}
+rbm_ok( count( $mc[1] ) > 0 && 0 === $cartoes_fora_de_ordem,
+	'em cada cartao, a acao de compra vem antes da fonte',
+	count( $mc[1] ) . ' cartoes, ' . $cartoes_fora_de_ordem . ' fora de ordem' );
+
+/* O AVISO DE COMISSAO esta no proprio bloco de compra, e nao so no rodape. */
+preg_match( '#<div class="rbm-secao rbm-compra">(.*?)<ul class="rbm-vitrine">#is', $h_ancora, $mb );
+$cabeca_compra = isset( $mb[1] ) ? $mb[1] : '';
+rbm_ok( false !== strpos( $cabeca_compra, 'comissão' ),
+	'o aviso de comissao esta dentro do bloco de compra (secao 7)' );
+
+/* QUANTAS PECAS ESPERAM LINK — o numero na tela e o numero do banco. */
+$pecas_no_ancora   = array();
+foreach ( $dados['respostas'][ $ancora ]['fabricante'] as $i ) {
+	$pecas_no_ancora[ $i['peca'] ] = empty( $i['afiliado']['url'] );
+}
+$esperando_ancora = count( array_filter( $pecas_no_ancora ) );
+/* Contado DENTRO da vitrine: a folha de estilo tambem cita a classe, e medir
+   na pagina inteira daria um a mais sem que nada estivesse errado. */
+rbm_ok( substr_count( $vitrine, 'rbm-sem-loja' ) === $esperando_ancora,
+	'um lugar reservado por peca sem link, nem a mais nem a menos',
+	substr_count( $vitrine, 'rbm-sem-loja' ) . ' de ' . $esperando_ancora );
+rbm_ok( $esperando_ancora === 0 || false !== strpos( $cabeca_compra, (string) $esperando_ancora ),
+	'a pagina publica quantas pecas estao esperando link de loja',
+	$esperando_ancora . ' esperando' );
+
+$esperando_banco = 0;
+foreach ( $pecas_b['registros'] as $p ) {
+	if ( 'publicavel' === $p['status'] && empty( $p['afiliado']['url'] ) ) { $esperando_banco++; }
+}
+rbm_ok( $dados['resumo']['pecas_esperando_link'] <= $esperando_banco,
+	'o resumo nao conta mais pecas esperando link do que o banco tem',
+	$dados['resumo']['pecas_esperando_link'] . ' de ' . $esperando_banco );
+
+/* COM LINK DE AFILIADO: o botao aparece, com sponsored, e a fonte CONTINUA
+   embaixo. O banco desta ilha ainda nao tem nenhum link — e e justamente o
+   caminho que o despacho existe para garantir, entao ele e medido na FUNCAO que
+   monta o cartao, com um item sintetico. (Pela pagina nao daria: os dados ficam
+   em cache estatico dentro do processo, de proposito.) */
+$item_com_link = $dados['respostas'][ $ancora ]['fabricante'][0];
+$item_com_link['afiliado'] = array(
+	'url'      => 'https://shopee.com.br/exemplo-de-teste',
+	'programa' => 'shopee',
+);
+$item_com_link['esperando_link'] = false;
+$modelo_do_ancora = null;
+foreach ( $dados['modelos'] as $m ) {
+	if ( $m['id'] === $ancora ) { $modelo_do_ancora = $m; }
+}
+$vitrine_com_link = robometria_r1_vitrine( array( $item_com_link ), $modelo_do_ancora );
+
+rbm_ok( false !== strpos( $vitrine_com_link, 'class="rbm-comprar"' ),
+	'com afiliado.url preenchido, o botao de compra aparece' );
+rbm_ok( 1 === preg_match( '#<a class="rbm-comprar"[^>]*rel="sponsored nofollow noopener"#i', $vitrine_com_link ),
+	'o link de afiliado sai com rel="sponsored nofollow noopener" (secao 7)' );
+rbm_ok( false !== strpos( $vitrine_com_link, 'Ver na Shopee' ),
+	'o botao nomeia a loja para quem vai clicar' );
+rbm_ok( false === strpos( $vitrine_com_link, 'rbm-sem-loja' ),
+	'com link, o lugar reservado da vez ao botao' );
+$pos_botao    = strpos( $vitrine_com_link, 'rbm-comprar' );
+$pos_fonte_cl = strpos( $vitrine_com_link, 'rbm-vitrine-fonte' );
+rbm_ok( false !== $pos_botao && false !== $pos_fonte_cl && $pos_botao < $pos_fonte_cl,
+	'mesmo com link, a compra vem antes da procedencia — e a procedencia fica' );
+
+$sem_nofollow_cl = 0;
+foreach ( rbm_links_externos( $vitrine_com_link ) as $a ) {
+	if ( ! preg_match( '/rel="[^"]*nofollow/i', $a['atributos'] ) ) { $sem_nofollow_cl++; }
+}
+rbm_ok( 0 === $sem_nofollow_cl, 'nenhum link para fora sem nofollow, nem o de afiliado',
+	count( rbm_links_externos( $vitrine_com_link ) ) . ' conferidos' );
+
+/* SEM NADA A RECOMENDAR: o bloco nao lista — e a pagina DIZ por que (secao 7).
+   Silencio no lugar do bloco de compra parece defeito de pagina. */
+$h_vazio = rbm_r1_pagina( $dados['entrada_vazia'][0], null );
+rbm_ok( false === strpos( $h_vazio, 'class="rbm-secao rbm-compra"' ),
+	'modelo sem declaracao de fabricante nao ganha bloco de compra' );
+rbm_ok( false !== strpos( $h_vazio, 'não tem bloco de compra' ),
+	'e a pagina explica por que o bloco nao esta ali' );
 
 /* ---------------------------------------------------------------------------
  * Fecho

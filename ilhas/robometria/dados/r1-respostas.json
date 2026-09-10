@@ -310,7 +310,13 @@
             "unidade": "meses"
           },
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         },
         {
           "tipo": "escova lateral",
@@ -337,7 +343,13 @@
             "unidade": "meses"
           },
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         },
         {
           "tipo": "mop",
@@ -364,7 +376,13 @@
             "unidade": "meses"
           },
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         }
       ],
       "terceiro": [],
@@ -398,7 +416,13 @@
             "unidade": "meses"
           },
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         },
         {
           "tipo": "escova lateral",
@@ -425,7 +449,13 @@
             "unidade": "meses"
           },
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         },
         {
           "tipo": "mop",
@@ -452,7 +482,13 @@
             "unidade": "meses"
           },
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         }
       ],
       "terceiro": [],
@@ -486,7 +522,13 @@
             "unidade": "meses"
           },
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         },
         {
           "tipo": "escova lateral",
@@ -513,7 +555,13 @@
             "unidade": "meses"
           },
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         },
         {
           "tipo": "mop",
@@ -540,7 +588,13 @@
             "unidade": "meses"
           },
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         }
       ],
       "terceiro": [],
@@ -559,7 +613,13 @@
           "origem": "varejo-oficial-da-marca",
           "url": "https://loja.electrolux.com.br/kit-performance-para-robo-aspirador-erb30---electrolux/p",
           "verificado_em": "2026-09-09",
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         }
       ]
     },
@@ -589,7 +649,13 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         }
       ],
       "terceiro": [],
@@ -602,7 +668,13 @@
           "origem": "varejo-oficial-da-marca",
           "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robo-aspirador-erb44/p",
           "verificado_em": "2026-09-09",
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         }
       ]
     },
@@ -632,7 +704,13 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         },
         {
           "tipo": "filtro",
@@ -656,7 +734,13 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         },
         {
           "tipo": "escova lateral",
@@ -680,7 +764,13 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         },
         {
           "tipo": "mop",
@@ -704,7 +794,13 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         },
         {
           "tipo": "escova principal",
@@ -729,7 +825,13 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         }
       ],
       "terceiro": [],
@@ -761,7 +863,13 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         },
         {
           "tipo": "filtro",
@@ -785,7 +893,13 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         },
         {
           "tipo": "escova lateral",
@@ -809,7 +923,13 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         },
         {
           "tipo": "mop",
@@ -833,7 +953,13 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         },
         {
           "tipo": "escova principal",
@@ -858,7 +984,13 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         }
       ],
       "terceiro": [],
@@ -890,7 +1022,13 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         },
         {
           "tipo": "filtro",
@@ -914,7 +1052,13 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         },
         {
           "tipo": "escova lateral",
@@ -938,7 +1082,13 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         },
         {
           "tipo": "mop",
@@ -962,7 +1112,13 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         },
         {
           "tipo": "escova principal",
@@ -987,7 +1143,13 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         }
       ],
       "terceiro": [],
@@ -1019,7 +1181,13 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         }
       ],
       "terceiro": [],
@@ -1061,7 +1229,13 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         },
         {
           "tipo": "filtro",
@@ -1083,7 +1257,13 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         },
         {
           "tipo": "bateria",
@@ -1105,7 +1285,13 @@
           "variante_do_par": "A",
           "vida_util": null,
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         },
         {
           "tipo": "bateria",
@@ -1127,7 +1313,13 @@
           "variante_do_par": "B",
           "vida_util": null,
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         }
       ],
       "terceiro": [],
@@ -1166,7 +1358,13 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         }
       ],
       "terceiro": [],
@@ -1199,7 +1397,13 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         }
       ],
       "terceiro": [],
@@ -1238,7 +1442,13 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         },
         {
           "tipo": "filtro",
@@ -1260,7 +1470,13 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         },
         {
           "tipo": "mop",
@@ -1282,7 +1498,13 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         }
       ],
       "terceiro": [],
@@ -1312,7 +1534,13 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         },
         {
           "tipo": "escova principal",
@@ -1335,7 +1563,13 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         },
         {
           "tipo": "mop",
@@ -1358,7 +1592,13 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         }
       ],
       "terceiro": [],
@@ -1394,7 +1634,13 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         },
         {
           "tipo": "escova principal",
@@ -1417,7 +1663,13 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         },
         {
           "tipo": "mop",
@@ -1440,7 +1692,13 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         }
       ],
       "terceiro": [],
@@ -1511,7 +1769,13 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         },
         {
           "tipo": "escova lateral",
@@ -1533,7 +1797,13 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         },
         {
           "tipo": "escova principal",
@@ -1555,7 +1825,13 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         },
         {
           "tipo": "mop",
@@ -1577,7 +1853,13 @@
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
-          "esperando_link": true
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         }
       ],
       "terceiro": [],
@@ -2251,6 +2533,9 @@
     "pares_declarados": 33,
     "pecas_publicaveis": 16,
     "marcas": 5,
-    "as_duas_ferramentas": 3
+    "as_duas_ferramentas": 3,
+    "pecas_recomendadas": 14,
+    "pecas_esperando_link": 14,
+    "pecas_com_link": 0
   }
 }

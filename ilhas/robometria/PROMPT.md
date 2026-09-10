@@ -32,7 +32,8 @@ A Bússola verificou em 07/09/2026: a busca **comercial** ("melhor robô aspirad
 
 **Isto tem prioridade sobre a fila.** Aplique antes de qualquer bloco, verifique pela seção 8 do contrato, registre no `REGISTRO.md` como "despacho de 10/09 — item N cumprido" e apague daqui o item cumprido no mesmo commit.
 
-0. **A ferramenta de compatibilidade manda o visitante comprar na loja do fabricante.** Medido em 10/09 na URL `/qual-peca-serve-no-meu-robo-aspirador/?modelo=electrolux-erb30&peca=filtro`: 12 links externos, todos para loja.electrolux.com.br, meupositivo, multilaser e mi.com — e zero link de afiliado, zero bloco de compra. Aplique a regra nova da seção 7 do contrato ("PROCEDÊNCIA NUNCA É A ÚNICA PORTA DE COMPRA"): bloco de compra com afiliado antes da tabela de procedência, mesmo com `afiliado.url` vazio ("link de loja em breve"); links de procedência com texto "fonte" e `rel="nofollow noopener"`, sem botão. Pronto quando: a página serve o bloco de compra acima da tabela, todos os links para loja de fabricante têm `rel="nofollow"`, e o relatório do bloco diz quantas peças esperam link de afiliado.
+**O item 0 saiu daqui em 10/09/2026, cumprido** (a procedência era a única porta de compra da R1; virou a quinta decisão de desenho do bloco 4, abaixo). **Restou só a metade humana do item 1**, e ela não é da Fundação.
+
 1. ~~**Os sitemaps respondem HTTP 404 com XML válido no corpo.**~~ **METADE DE CÓDIGO CUMPRIDA em 10/09/2026, 15h49Z** (casca 1.0.1, manifest revisão 9). A causa era a própria casca mandar "Hello world!" para a lixeira: sem nenhum post publicado, a consulta principal das rotas `index.php?sitemap=…` volta vazia e o `handle_404()` do núcleo carimba 404 antes de o XML sair. Consertado pelo filtro `pre_handle_404`, que só age em requisição de sitemap. **Medido no ar:** `wp-sitemap.xml` e `wp-sitemap-posts-page-1.xml` devolvem **200**, `/pagina-que-nao-existe-mesmo/` continua **404** (o conserto não vazou), e `wp-sitemap-posts-post-1.xml` segue 404 porque esta ilha não tem post nenhum — de propósito, e ele não está no índice.
    **FALTA A METADE HUMANA, e ela não é da Fundação:** reenviar o sitemap no Search Console (Sitemaps → enviar `https://robometria.com.br/wp-sitemap.xml`) para ele sair de "Não foi possível buscar". Exige o navegador do Raphael ou credencial de conta de serviço que este ambiente ainda não tem. **Enquanto isso não acontecer, nenhuma leva de malha (bloco 5b) nasce** — a rampa da seção 14 é inexecutável sem medição.
 
@@ -119,10 +120,10 @@ lacuna da R1 ficou escondida atrás de "33 pares declarados".
 
 **4. FERRAMENTAS**, uma por execução, já nascendo com JSON-LD, tabela de exemplos pré-renderizada, resposta antes da explicação e procedência na frase. **Não deixe retrofit para depois** — foi o que custou dias na Aquametria.
 
-**4 e 4e — A R1 ESTÁ NO AR desde 10/09/2026, 15h49Z** (`snippets/robometria-r1.php`
-v1.0.0, manifest revisão 9, `/status` conferido). Endereço:
+**4 e 4e — A R1 ESTÁ NO AR desde 10/09/2026** (`snippets/robometria-r1.php`,
+hoje **v1.1.0**, manifest revisão 10, `/status` conferido). Endereço:
 `https://robometria.com.br/qual-peca-serve-no-meu-robo-aspirador/`. **A próxima
-ferramenta é a R2**, e ela nasce com as mesmas quatro decisões, que deixaram de ser
+ferramenta é a R2**, e ela nasce com as mesmas **cinco** decisões, que deixaram de ser
 opinião e viraram o jeito desta ilha:
 
 1. **A resposta é servida pelo SERVIDOR.** Formulário GET para a própria página, resposta
@@ -140,6 +141,17 @@ opinião e viraram o jeito desta ilha:
 4. **Consulta não vira URL indexável:** `?modelo=…` sai com `noindex,follow` e canônica
    para a página limpa (seção 14.1). Domínio novo não tem orçamento de rastreamento para
    centenas de combinações.
+5. **A PORTA DE COMPRA VEM ANTES DA PROVA DE PROCEDÊNCIA, e existe antes do link**
+   (v1.1.0, 10/09/2026 — item 0 do despacho, hoje cumprido). A R1 estreou com um único
+   link clicável por peça, e ele ia para a loja do fabricante: a página ficou impecável
+   de procedência e perfeita para a Electrolux. Agora o bloco "Onde comprar estas peças"
+   vem antes, com o aviso de comissão dentro dele; a procedência é link de texto "fonte"
+   com `rel="nofollow noopener"`, nunca um botão e sem fundo no CSS; e o bloco **nasce
+   mesmo sem link**, reservando o lugar com "Link de loja em breve" — esconder o bloco
+   enquanto o cano de links enche devolveria a procedência ao papel de única porta
+   clicável, que é exatamente o defeito. Quando não há o que recomendar, o bloco não
+   lista **e a página diz por quê**. `teste-r1.php` mede os cinco pontos (seção 13 dele),
+   e a R2 nasce com isso, não com retrofit.
 
 **E o achado que só apareceu LENDO a resposta como um leitor lê:** a página se
 contradizia na mesma tela, dizendo "a Electrolux declara o filtro X compatível com o
@@ -161,7 +173,7 @@ exige. Não depende de rede.
 ## Específico desta ilha
 - **Compatibilidade de peça é o produto desta ilha.** Uma informação errada aqui destrói a confiança inteira. Toda afirmação de compatibilidade carrega fonte do fabricante e data na própria frase.
 - Amazon paga 8% em Eletrodomésticos, mas a conta **não** deve ser aberta até haver tráfego: a regra das 3 vendas em 180 dias começa no cadastro. A Shopee já está aberta e serve todas as ilhas.
-- **WordPress, casca e a primeira ferramenta estão no ar desde 10/09/2026** (manifest revisão 9). Os blocos 1, 2, 3, 3b, 4 e 4e estão feitos. **O próximo é o Bloco 5 — o artigo-âncora da R1**; se a rede alcançar o fabricante, o **3c alvo (a)** (peça com código da Xiaomi e da WAP) disputa a vez, porque é o único lado coletável da emenda entre as duas ferramentas.
-- **Antes de mexer em qualquer snippet, rode os dois testes de bancada:** `php ferramentas/teste-casca.php .` (64 medições) e `php ferramentas/teste-r1.php .` (70). Eles são a única verificação da seção 8 que roda sem depender do site, e o segundo compara as 188 frases publicadas contra a implementação de referência.
+- **WordPress, casca e a primeira ferramenta estão no ar desde 10/09/2026** (manifest revisão 10). Os blocos 1, 2, 3, 3b, 4 e 4e estão feitos. **O próximo é o Bloco 5 — o artigo-âncora da R1**; se a rede alcançar o fabricante, o **3c alvo (a)** (peça com código da Xiaomi e da WAP) disputa a vez, porque é o único lado coletável da emenda entre as duas ferramentas.
+- **Antes de mexer em qualquer snippet, rode os dois testes de bancada:** `php ferramentas/teste-casca.php .` (64 medições) e `php ferramentas/teste-r1.php .` (90). Eles são a única verificação da seção 8 que roda sem depender do site, e o segundo compara as 188 frases publicadas contra a implementação de referência.
 - **O BANCO ESTÁ EM ASCII, E AGORA ISSO APARECE NA TELA.** Enquanto o banco só alimentava medição, acento faltando em `nome_na_fonte`, `publicador` e `o_que_muda` não custava nada; com a R1 no ar, esse texto é citado dentro da resposta publicada ("Aspirador Robo", "identificada como 'Versao A'"). O que a ilha escreve sai acentuado; o que ela cita sai como o banco tem — e o banco tem errado. É trabalho de dados, e o lugar barato de fazê-lo é junto da próxima leva de coleta, quando esses registros já forem ser tocados.
 - **UMA FONTE ESTÁ NO NÍVEL 2 E A ESCADA DIZ QUE O NÍVEL 2 NÃO EXISTE.** `pecas.json/electrolux-kpcel01/f-manual` declara `nivel: 2`, e a escada da página de metodologia define nível 2 como "manual, lâmina ou página oficial **LIDA direto**" e publica "temos hoje: —". Aquele manual veio por busca restrita a `manuals.plus`, um terceiro, sem leitura direta. Uma das duas afirmações está errada. **A R1 não publica número de nível de fonte** de propósito, para a contradição não ir para a tela antes de alguém decidir — e a decisão é de regra: *manual do fabricante hospedado por terceiro, colhido por busca, é nível 2 ou não?*

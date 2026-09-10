@@ -151,6 +151,29 @@ def fato_do_item(item, modelo_id):
         ),
         "tem_imagem": bool(imagem.get("url")),
         "esperando_link": not (peca.get("afiliado", {}) or {}).get("url"),
+        # O BLOCO DE COMPRA VIAJA COMO FATO, e nao como decisao do PHP (secao 7
+        # do ARQUIPELAGO.md, cicatriz de 10/09/2026). Enquanto a url for vazia,
+        # a pagina RESERVA o lugar em vez de esconder o bloco: esconder faria a
+        # unica porta de compra voltar a ser o link de procedencia, que e o
+        # defeito que o despacho manda corrigir.
+        "afiliado": afiliado_do(peca),
+    }
+
+
+def afiliado_do(peca):
+    """A oferta de uma peca, na forma que a tela precisa.
+
+    `programa` sai junto porque o rotulo do botao nomeia a loja para quem clica
+    ("Ver na Shopee") — link de compra que nao diz para onde leva e pedido de
+    confianca, nao oferta. Sem url, os dois campos saem vazios e a tela escreve
+    "link de loja em breve".
+    """
+    a = peca.get("afiliado") or {}
+    return {
+        "url": a.get("url") or "",
+        "programa": a.get("plataforma") or None,
+        "sub_id_1": a.get("sub_id_1") or "robometria",
+        "sub_id_2": a.get("sub_id_2") or "R1",
     }
 
 
@@ -167,6 +190,7 @@ def fato_do_kit_fechado(kit, modelo_id):
         "url": fonte.get("url"),
         "verificado_em": fonte.get("verificado_em"),
         "esperando_link": not (peca.get("afiliado", {}) or {}).get("url"),
+        "afiliado": afiliado_do(peca),
     }
 
 
@@ -339,6 +363,23 @@ def montar():
         )[0]
 
     marcas_usadas = sorted({m["marca"] for m in modelos})
+
+    # QUANTAS PECAS ESPERAM LINK DE LOJA — contadas por PECA, nunca por item de
+    # resposta. A mesma peca responde por varios modelos, e somar itens daria um
+    # numero maior que o banco inteiro ("45 esperando link" com 16 pecas), o que
+    # a pagina publicaria como se fosse tamanho de catalogo. Este numero e
+    # trabalho pendente de verdade (secao 7 do contrato) e a pagina o diz em voz
+    # alta, em vez de deixar cada cartao sussurrar a falta.
+    pecas_citadas_na_tela = {
+        i["peca"]
+        for x in respostas.values()
+        for i in x["fabricante"]
+    }
+    pecas_sem_link = {
+        pid for pid in pecas_citadas_na_tela
+        if not (next(p for p in ref.pecas if p["id"] == pid).get("afiliado") or {}).get("url")
+    }
+
     resumo = {
         "modelos_publicaveis": len(publicaveis),
         "modelos_que_respondem": sum(1 for m in modelos if m["responde"]),
@@ -349,6 +390,9 @@ def montar():
         "pecas_publicaveis": sum(1 for p in ref.pecas if p["status"] == "publicavel"),
         "marcas": len(marcas_usadas),
         "as_duas_ferramentas": len(varredura["cruzamento"]["as_duas_respondem"]),
+        "pecas_recomendadas": len(pecas_citadas_na_tela),
+        "pecas_esperando_link": len(pecas_sem_link),
+        "pecas_com_link": len(pecas_citadas_na_tela) - len(pecas_sem_link),
     }
 
     return {
@@ -418,6 +462,9 @@ def main():
         for i in x["fabricante"] + x["terceiro"] if i["esperando_link"]
     )
     print("  destes, esperando link de loja .. %d" % esperando)
+    print("  pecas recomendadas na tela ...... %d" % r["pecas_recomendadas"])
+    print("  destas, esperando link de loja .. %d  <- trabalho pendente (secao 7)"
+          % r["pecas_esperando_link"])
     print("")
 
     if "--gravar" not in sys.argv:
