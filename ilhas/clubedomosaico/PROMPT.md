@@ -39,6 +39,21 @@ Medido em 10/09/2026 (Planejador de palavras-chave, conta do Raphael, faixas; SE
 
 ---
 
+## DESPACHO DA SESSÃO DE CONVERSA — 10/09/2026 — ÁREA DE CADASTRO DE PEÇAS (requisito do Raphael, "não pode esquecer disso")
+A mãe do Raphael vai cadastrar as peças **ela mesma**, com login e senha próprios. Portanto o catálogo da Loja **NÃO vive no repositório**: `dados/pecas.json` é descartado. Ele vive no WordPress, e o bloco 4d passa a ser:
+
+**4d. LOJA — snippet "Clube do Mosaico Loja — cadastro de peças"** (Code Snippets, um snippet, `publicar: true` quando o WordPress existir, depois da casca 3b):
+- **Custom post type `peca`** (rótulo "Peças", ícone de loja, `has_archive` em `/loja/`, `rewrite` `/loja/<slug>/`, com título, editor para a descrição, imagem destacada e **galeria** (meta `_cdm_galeria`, lista de IDs de anexo, escolhida pela biblioteca de mídia com o seletor nativo `wp.media`, arrastar para ordenar). Suporte a `excerpt` para a frase curta do cartão.
+- **Meta box "Ficha da peça"**, campos: preço (R$, decimal), disponibilidade (`pronta_entrega` | `sob_encomenda`) e prazo em dias, medidas (altura × largura × profundidade, cm), peso (g), base (cerâmica, vidro, MDF, cimento, outro), técnica (taxonomia), cores (texto curto), quantidade disponível. Tudo salvo com nonce e sanitização.
+- **Taxonomias**: `colecao` (uso: centro de mesa, presente, jardim, parede, joia…) e `tecnica` (bizantino, direto, indireto, opus…). Termos iniciais criados pelo snippet, editáveis por ela.
+- **Papel `artesa`** (rótulo "Artesã"): capabilities só de `peca` (criar, editar, publicar, excluir as próprias), `upload_files`, e nada mais — sem plugins, temas, usuários ou snippets. Ao entrar, o wp-admin dela mostra só Peças e Mídia (remover os outros menus por `admin_menu` para esse papel; barra de admin no front desligada). Tela de edição simples, com os campos em português claro e um texto de ajuda de 3 linhas no topo ("Título → foto principal → galeria → preço → publicar").
+- **Usuário da artesã criado pelo snippet** na primeira execução, se não existir: login `artesa` (ou o nome que o Raphael passar), e-mail do Raphael (raphaeh9@gmail.com) até ela ter um, papel `artesa`. **A senha NUNCA é escrita no repositório nem em log**: o snippet gera uma senha aleatória descartada e dispara o fluxo nativo de redefinição (`retrieve_password`), então o link para criar a senha chega ao e-mail cadastrado. Registrar no `ESTADO.md` que o e-mail foi enviado. O Raphael repassa o acesso; ela troca a senha em Perfil.
+- **Página pública da peça** (`single-peca`, renderizada pelo snippet com `template_include` ou filtro de conteúdo, sem tema custom): carrossel das fotos com `scroll-snap`, miniaturas clicáveis, zoom no toque; coluna com título, preço em destaque (cor de sinal), disponibilidade e prazo, ficha técnica em tabela (medidas, peso, base, técnica, cores), descrição, botão **Comprar** (abre WhatsApp com "Olá, quero a peça <título> (<url>)"; número do WhatsApp em uma option `cdm_whatsapp` que o Raphael preenche em Configurações → Loja), bloco "como esta peça é feita" linkando o tutorial da técnica (Escola) e "materiais usados" linkando o Guia. **JSON-LD `Product` + `Offer`** com preço real, `availability` (InStock/PreOrder), `image` = galeria, `brand` = Clube do Mosaico. Sem `rel="sponsored"`: é produto próprio. Padrão de interface da seção 6 (sem contagem regressiva, sem selo inventado); cara de e-commerce, miolo branco, coral só no preço e no botão.
+- **Arquivo e coleções** (`/loja/`, `/loja/colecao/<termo>/`): grade de cartões (foto principal, título, preço, etiqueta de disponibilidade), filtro por coleção e técnica, ordenação por recente. Estado vazio honesto quando não há peça.
+- **Página inicial** passa a ter uma faixa "Peças do ateliê" com as 4–8 últimas peças publicadas (query do CPT), quando houver.
+- **Feed do Merchant Center (bloco 6)** e o **sitemap** passam a ler do CPT `peca`, não de JSON.
+- Verificação obrigatória antes de `publicar: true`: `php -l`; cadastrar uma peça de TESTE pelo formulário (título "TESTE — apagar", com 3 imagens), abrir a página pública, conferir carrossel, JSON-LD válido, botão do WhatsApp, e **apagar a peça de teste**; conferir que o usuário `artesa` NÃO vê Plugins, Snippets, Usuários nem Configurações.
+
 ## FILA DE BLOCOS
 
 **Leia a seção 14 do `ARQUIPELAGO.md` antes de montar a fila: tudo existe para indexar e chegar à primeira página.** A ordem abaixo já aplica a regra de intenção de compra (seção 9): fichas de material e peças antes de tutorial genérico.
@@ -57,7 +72,7 @@ Medido em 10/09/2026 (Planejador de palavras-chave, conta do Raphael, faixas; SE
 
 **4c. FICHAS DE CATEGORIA DE MATERIAL** — /materiais/pastilhas, /alicates, /colas, /rejuntes, /bases, /acabamento: comparativo, "qual escolher para quê", vitrine. É a primeira leva que vai ao índice junto com F1 e F2.
 
-**4d. LOJA** — coleções por uso (/loja/centro-de-mesa, /loja/presentes, /loja/jardim) e por técnica; páginas de peça a partir de `dados/pecas.json`. `bloqueada_por: fotos e fichas das peças` enquanto o arquivo estiver vazio.
+**4d. LOJA** — ver DESPACHO de 10/09 acima: cadastro de peças é área da artesã no WordPress (snippet de CPT `peca`), não `dados/pecas.json`. Coleções por uso (/loja/centro-de-mesa, /loja/presentes, /loja/jardim) e por técnica listam as peças publicadas. Antes de existir peça cadastrada, as coleções ficam com estado vazio honesto ("em breve"), nunca com peça inventada.
 
 **5. TUTORIAIS-ÂNCORA**, 12: vaso, cachepot, tampo de mesa, quadro, espelho, mandala, filtro de barro, parede, número de casa, colar, bizantino, iniciante. Cada um com lista de materiais (Guia) e "prefere pronto?" (Loja). Marcar `revisao_tecnica: pendente` até a mãe do Raphael revisar.
 

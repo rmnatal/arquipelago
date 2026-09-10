@@ -26,5 +26,5 @@ Espelho legível do estado do projeto. **Nunca guarde credencial aqui.**
 - 10/09/2026 — Pesquisa de palavras-chave e SERP (na memória `/areas/projeto-clube-do-mosaico.md`) e estratégia aprovada em conversa (artifact "Clube do Mosaico").
 
 ## O que está travando
-- Loja: fotos e fichas das peças (a mãe do Raphael). Não bloqueia os blocos 1–3.
+- Loja: depende da mãe do Raphael cadastrar peças na área da artesã (bloco 4d, snippet de CPT). O login é criado pelo snippet e entregue ao Raphael. Não bloqueia os blocos 1–3.
 - Logo: arquivo a receber do Raphael. Bloqueia só o favicon e o logo da casca.
