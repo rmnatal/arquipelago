@@ -4,7 +4,7 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 33,
+  "revisao": 34,
   "atualizado_em": "2026-09-10",
   "estado": "fundacao",
   "desembarque": {
@@ -42,9 +42,9 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "528433bff6f31722050c57ada9774cb570318b53719f4a069055ae4cd4a0a4ac",
-      "descricao": "Casca do site: carrega Chivo/IBM Plex Sans/IBM Plex Mono e injeta a paleta da Aquametria sobre o tema ativo; troca core/site-title e core/site-logo pelo logotipo em SVG (recipiente graduado) com o wordmark; troca core/navigation pelo menu Calculadoras/Metodologia/Sobre; cria as paginas inicio, calculadoras, metodologia e sobre (conteudo em shortcode do proprio snippet) e fixa inicio como pagina inicial; manda Hello world! e Sample Page para a lixeira; SUBSTITUI a template part footer do tema pelo rodape da Aquametria (tagline e nota de fontes), com rede de seguranca em wp_footer e CSS, para nao ficarem dois rodapes empilhados; e some com a tagline padrao do WordPress. Idempotente. v1.0.3 (08/09/2026): o rodape passou a linkar a pagina de divulgacao de afiliados, exigida pela C3, e o CSS ganhou estilo para citacao em bloco e para o bloco de tabela que rola. Nenhuma pagina nova nasce orfa: o link do rodape e a entrada da divulgacao. v1.1.0 (08/09/2026): o endereco de cada pagina passa a ser resolvido pelo id do repositorio (_aquametria_id) e nao por slug adivinhado, e o card do hub so vira link se a pagina existir publicada — sem pagina, fica o selo Em construcao. Corrige o defeito 2 de 08/09/2026, em que o hub publicava /calculadora-de-aquecedor/ para a C5, cuja pagina e /calculadora-de-potencia-do-aquecedor/, e o clique dava 404. v1.3.0 (09/09/2026): casca no celular e icone proprio. O menu vira sanfona abaixo de 782 px, atras de um botao com aria-expanded e aria-controls, que fecha no Escape (devolvendo o foco ao botao), no clique fora e ao alargar a janela; os tres links continuam SEMPRE no HTML servido dentro de <nav>, e quem esconde a lista e um seletor que depende de um atributo posto pelo JavaScript do rodape — sem JavaScript o menu nao some, volta a ser a fileira de links de sempre, que e o que o crawler de IA recebe. E o icone do site deixa de ser o do WordPress (remove_action do wp_site_icon) e passa a ser o recipiente graduado da marca: SVG na aba, PNG de 32 px como alternativa e PNG de 180 px para o iOS, os tres como data URI dentro do snippet, sem nada subir para a biblioteca de midia. O desenho e gerado por ferramentas/gerar-favicon.php entre os marcadores FAVICON-INICIO e FAVICON-FIM.",
-      "versao": "1.3.0"
+      "sha256": "2ed1d2e379751f27ad1a84dc4ba28e680d8a90250dea449f055f09a218799ce5",
+      "descricao": "Casca do site: carrega Chivo/IBM Plex Sans/IBM Plex Mono e injeta a paleta da Aquametria sobre o tema ativo; troca core/site-title e core/site-logo pelo logotipo em SVG (recipiente graduado) com o wordmark; troca core/navigation pelo menu Calculadoras/Metodologia/Sobre; cria as paginas inicio, calculadoras, metodologia e sobre (conteudo em shortcode do proprio snippet) e fixa inicio como pagina inicial; manda Hello world! e Sample Page para a lixeira; SUBSTITUI a template part footer do tema pelo rodape da Aquametria (tagline e nota de fontes), com rede de seguranca em wp_footer e CSS, para nao ficarem dois rodapes empilhados; e some com a tagline padrao do WordPress. Idempotente. v1.0.3 (08/09/2026): o rodape passou a linkar a pagina de divulgacao de afiliados, exigida pela C3, e o CSS ganhou estilo para citacao em bloco e para o bloco de tabela que rola. Nenhuma pagina nova nasce orfa: o link do rodape e a entrada da divulgacao. v1.1.0 (08/09/2026): o endereco de cada pagina passa a ser resolvido pelo id do repositorio (_aquametria_id) e nao por slug adivinhado, e o card do hub so vira link se a pagina existir publicada — sem pagina, fica o selo Em construcao. Corrige o defeito 2 de 08/09/2026, em que o hub publicava /calculadora-de-aquecedor/ para a C5, cuja pagina e /calculadora-de-potencia-do-aquecedor/, e o clique dava 404. v1.3.0 (09/09/2026): casca no celular e icone proprio. O menu vira sanfona abaixo de 782 px, atras de um botao com aria-expanded e aria-controls, que fecha no Escape (devolvendo o foco ao botao), no clique fora e ao alargar a janela; os tres links continuam SEMPRE no HTML servido dentro de <nav>, e quem esconde a lista e um seletor que depende de um atributo posto pelo JavaScript do rodape — sem JavaScript o menu nao some, volta a ser a fileira de links de sempre, que e o que o crawler de IA recebe. E o icone do site deixa de ser o do WordPress (remove_action do wp_site_icon) e passa a ser o recipiente graduado da marca: SVG na aba, PNG de 32 px como alternativa e PNG de 180 px para o iOS, os tres como data URI dentro do snippet, sem nada subir para a biblioteca de midia. O desenho e gerado por ferramentas/gerar-favicon.php entre os marcadores FAVICON-INICIO e FAVICON-FIM. v1.3.1 (10/09/2026): link para artigo-ancora deixa de dar salto de 301. aquametria_casca_url_se_existir() so procurava em post_type page, e os tres artigos-ancora sao post; as duas vias falhavam e quem chamava caia no ultimo recurso, home_url(/slug/), que responde 301 para /2026/09/08/slug/. Item 3 do despacho da Sentinela de 10/09/2026. Agora existe uma terceira via, que busca por post_name em post_type post e devolve o permalink real — entao o proximo artigo nasce com link canonico sem ninguem lembrar disto.",
+      "versao": "1.3.1"
     },
     {
       "id": "aquametria-seo-tecnico",
@@ -52,10 +52,10 @@
       "arquivo": "snippets/aquametria-seo-tecnico.php",
       "escopo": "global",
       "ativo": true,
-      "versao": "1.0.0",
+      "versao": "1.1.0",
       "publicar": true,
-      "sha256": "879a7f5de067446788ec29c700aa6782d6dc4913b5f2ef90b03d05a90892d966",
-      "descricao": "Conserta o item 1 do despacho da Sentinela de 09/09/2026: /category/uncategorized/ respondia 200 e estava no wp-sitemap.xml, gastando o orcamento de rastreamento de um dominio novo com um artefato do CMS enquanto a leva de 6 paginas de 08/09 nao indexava. A causa de raiz e o Sync, que grava artigo sem atribuir categoria e por isso deixa tudo cair na padrao; este snippet conserta pelo lado que se auto-corrige, sem mexer no Sync (que so chega ao site pelo atualizador). Faz cinco coisas: (a) cria a categoria de verdade \"Metodos\" (slug metodos), move para ela todo post que estiver na categoria padrao e passa a categoria padrao a ser ela, para o problema nao voltar pela porta que o criou; (b) tira do wp-sitemap.xml o provedor de autores sempre, e o de taxonomias enquanto nenhuma categoria estiver curada — sitemap e curadoria, nao inventario (secao 14.1 do ARQUIPELAGO.md); (c) manda noindex,follow para arquivo por data, autor, tag, categoria nao curada (a sem categoria inclusive), anexo, busca e 404, pelo filtro wp_robots do proprio nucleo, para nao sair meta robots repetida; (d) desliga a pagina de anexo pelo interruptor do nucleo (wp_attachment_pages_enabled); (e) nao toca em pagina, artigo nem home. A categoria Metodos nasce FORA do sitemap e com noindex de proposito: o item 2 do mesmo despacho congelou pagina nova ate 16/09 e a secao 14.4 exige texto proprio na listagem — quando ela tiver esse texto, basta acrescentar o slug em aquametria_seo_categorias_no_sitemap(). A decisao de indexar mora numa funcao pura (aquametria_seo_deve_noindex), exercitada por ferramentas/teste-seo-tecnico.php em 28 afirmacoes sem subir WordPress."
+      "sha256": "90bc2cfa144298c68c5d965a5c74f9dc73b1cfa75b47d1984c59f87c5baf06f7",
+      "descricao": "Conserta o item 1 do despacho da Sentinela de 09/09/2026: /category/uncategorized/ respondia 200 e estava no wp-sitemap.xml, gastando o orcamento de rastreamento de um dominio novo com um artefato do CMS enquanto a leva de 6 paginas de 08/09 nao indexava. A causa de raiz e o Sync, que grava artigo sem atribuir categoria e por isso deixa tudo cair na padrao; este snippet conserta pelo lado que se auto-corrige, sem mexer no Sync (que so chega ao site pelo atualizador). Faz cinco coisas: (a) cria a categoria de verdade \"Metodos\" (slug metodos), move para ela todo post que estiver na categoria padrao e passa a categoria padrao a ser ela, para o problema nao voltar pela porta que o criou; (b) tira do wp-sitemap.xml o provedor de autores sempre, e o de taxonomias enquanto nenhuma categoria estiver curada — sitemap e curadoria, nao inventario (secao 14.1 do ARQUIPELAGO.md); (c) manda noindex,follow para arquivo por data, autor, tag, categoria nao curada (a sem categoria inclusive), anexo, busca e 404, pelo filtro wp_robots do proprio nucleo, para nao sair meta robots repetida; (d) desliga a pagina de anexo pelo interruptor do nucleo (wp_attachment_pages_enabled); (e) nao toca em pagina, artigo nem home. A categoria Metodos nasce FORA do sitemap e com noindex de proposito: o item 2 do mesmo despacho congelou pagina nova ate 16/09 e a secao 14.4 exige texto proprio na listagem — quando ela tiver esse texto, basta acrescentar o slug em aquametria_seo_categorias_no_sitemap(). A decisao de indexar mora numa funcao pura (aquametria_seo_deve_noindex), exercitada por ferramentas/teste-seo-tecnico.php em 28 afirmacoes sem subir WordPress. v1.1.0 (10/09/2026): meta description e cartao de compartilhamento nas 13 URLs do sitemap. Item 1 do despacho da Sentinela de 10/09/2026: nenhuma pagina servia <meta name=description> e nenhuma tinha tag og:. O snippet passa a imprimir description, og:title, og:description, og:type, og:locale, og:site_name, og:url e twitter:card, a partir de um mapa GERADO por ferramentas/gerar-metas-descricao.py entre os marcadores METAS-INICIO e METAS-FIM — o texto mora no front matter de cada pagina de conteudo/ e, para as quatro paginas da casca, em dados/metas-seo.json. Slug fora do mapa nao imprime nada: description inventada seria pior que o recorte do Google. Sem og:image de proposito, ate a ilha ter imagem propria hospedada."
     },
     {
       "id": "aquametria-calculadora-litragem",
@@ -138,7 +138,7 @@
       ],
       "verificado_em": "2026-09-08",
       "publicar": true,
-      "sha256": "d9a6e688b433ca6261ff642bee192cc5578572fb59b1983fc73c4bf584faaa57",
+      "sha256": "827245c2b379b8b0102566db62d723f4bd1435182044155049bd416c557ef6f6",
       "descricao": "Pagina da C1: abertura, o shortcode da calculadora e a explicacao metodologica — os tres volumes e para que serve cada um, a borda livre como convencao declarada, por que o substrato nao e descontado (conflito de 100 % na densidade, porosidade sem fonte) com a tabela de direcao do erro, o protocolo de medicao que libera o desconto, o caminho inverso e os links internos para o hub e a metodologia. Em 08/09/2026 a secao final passou a LINKAR a calculadora de vazao do filtro, que entrou no ar."
     },
     {
@@ -159,7 +159,7 @@
       ],
       "verificado_em": "2026-09-08",
       "publicar": true,
-      "sha256": "72dec6a55b61c1c84e0270f176ee78cbad4888a8e8357d62565cb231ab2b3c2e",
+      "sha256": "87eec00d9bc143972beef5652320972c8ca511062d2993690016577e278a3f86",
       "descricao": "Pagina da C3: a abertura poe o achado de frente (o fabricante dimensiona 1,76 x/h, a web BR pede 5 a 10), o shortcode da calculadora, por que a resposta e faixa e nao numero, o que a calculadora NAO faz (fator de perda de carga e turnover marinho, com o motivo), o protocolo do balde no lugar do fator, a coluna maxima como criterio de corte, as tres regras do bloco de produto (ordem tecnica, comissao nao ordena, ficha com fonte e data) e os links internos de mao dupla para a C1, o hub, a metodologia e a divulgacao de afiliados."
     },
     {
@@ -175,7 +175,7 @@
       ],
       "verificado_em": "2026-09-08",
       "publicar": true,
-      "sha256": "16537bcf33ac91ff5c7a7caedb8aa53b95fdc1179846d96d05fc98a3220fc694",
+      "sha256": "0728ce1337577e853ed66f4d25cf1e5763d26766a335673ce08460443b86aa2d",
       "descricao": "Pagina institucional exigida pelo primeiro bloco de produto (C3) e pela autorregulamentacao publicitaria brasileira: declara o link de afiliado, transcreve a regra V16 na integra, explica que quem entra na lista e a ordem sao decididos so por adequacao tecnica, que produto sem link aparece igual e que sem produto adequado nao aparece nada, mostra a escada de fontes na tela, diz por que preco nao e publicado em pagina de calculadora e admite o tamanho atual do programa. Linkada do rodape do site (casca 1.0.3) e do bloco de produto da C3."
     },
     {
@@ -197,7 +197,7 @@
       ],
       "verificado_em": "2026-09-08",
       "publicar": true,
-      "sha256": "fa5cbb9efacfb9a19380968eeb81f52ee2bb6f8e22cd78380a076ede6249abab",
+      "sha256": "7dbe05ffb18cb85c3043f391e850e05f28aab97df98c330a7917e2e5838e9303",
       "descricao": "Pagina da C5: a abertura poe a pergunta que falta (1 W/L para aquecer de quanto para quanto), o shortcode da calculadora, o que ela faz de diferente, a tabela das quatro constantes com a condicao que cada autor declarou, por que a caixa do aquecedor nao dimensiona (a linha Eheim inteira em 1,00 W/L e o 200 W saindo da serie), o que a calculadora NAO faz e por que (via fisica bloqueada pela u-vidro-aquario, tampa sem constante, minima por cidade pendente, e a recusa de extrapolar acima de 10 C), o que e criterio editorial declarado, as duas barreiras de seguranca do bloco de produto e a explicacao da faixa conservadora (regra V17). Linka C1, C3, o artigo-ancora pareado, metodologia e divulgacao."
     },
     {
@@ -215,7 +215,7 @@
       ],
       "verificado_em": "2026-09-08",
       "publicar": true,
-      "sha256": "c64fc19a8858c0afe6fa1d63f89747c195a717be5823eeafe3cf41dbb6491718",
+      "sha256": "020d3bd0919d4cee7c188c9e05aafb99d0c789f1fe3de2fb8a813af7539422ef",
       "descricao": "Artigo-ancora pareado com a C5. Mostra de onde o '1 W por litro' realmente veio: a linha Eheim Jager inteira da 1,00 W/L no teto de seis modelos seguidos — a regra nao derivou de fisica, derivou da prateleira. Depois mostra onde a regua quebra (o 200 W a 0,50 W/L, o 30-400 L de treze vezes, o mesmo 150 W declarado para 125-150 L e para 200-300 L, e a serie Roxin que nao fecha), o caso Belem contra Curitiba com cinco vezes mais delta para a mesma resposta, o que as quatro fontes BR dizem e nao dizem, a formula P = U . A . deltaT que ainda nao podemos publicar e por que, e seis recomendacoes praticas. Linka a C5, a C1, a C3 e a metodologia."
     },
     {
@@ -235,7 +235,7 @@
       ],
       "verificado_em": "2026-09-08",
       "publicar": true,
-      "sha256": "acfdb902e0df5b419902d38ea8643a4560fd70c8640b2494b65a1199cf195b62",
+      "sha256": "feff5fc4cd402047917039bb9213d18030d402a733d06b05fecd3c0afb381cde",
       "descricao": "Pagina-ancora da C12, com o shortcode no corpo. Traz as duas tabelas de ancoras com atribuicao, explica o teto fisico do cesto, destrincha as fichas ambiguas do Atman (a mesma frase lida ao contrario em dois modelos irmaos, com a geometria apoiando leituras opostas), lista o que a calculadora se recusa a fazer e por que, e publica o aviso de nunca lavar toda a midia biologica de uma vez como mecanismo explicado. Linka a C1, a C3, a C5, o hub, a metodologia, a divulgacao de afiliados e o artigo pareado."
     },
     {
@@ -253,7 +253,7 @@
       ],
       "verificado_em": "2026-09-08",
       "publicar": true,
-      "sha256": "22c04486341df36f038739ae16f974df0a6a69f9b4dbaf5faa6e34e5e6fa74a5",
+      "sha256": "dbff1045de0b643fa34281fb0baf62d608132834174bb565d11eba6f1d055254",
       "descricao": "Artigo-ancora pareado com a C12. O eixo e o PARADOXO DA AREA: area declarada vezes dosagem declarada da a area entregue por litro de agua, e ela vai de 0,88 a 18,8 m2 entre tres marcas - 21 vezes -, com a marca que declara MAIS area pedindo DEZ VEZES mais midia, ou seja, a relacao inversa da esperada. Depois mostra a Seachem discordando de si mesma como marca de midia e como marca de filtro, as fichas ambiguas do Atman, o caso do carvao (a regra BR manda trocar de 4 a 10 vezes mais que o fabricante do carvao) e a critica de fundo: todas as dosagens sao por litro de AGUA quando o trabalho depende da amonia, ou seja, da carga de peixes, que nenhuma declaracao pergunta. Fecha com seis recomendacoes praticas e as tres coletas que faltam. Linka a C12, a C1, a C3, a C5 e a metodologia."
     },
     {
@@ -274,7 +274,7 @@
       ],
       "verificado_em": "2026-09-08",
       "publicar": true,
-      "sha256": "ea9b2ff16ec45cf658a8733330ad71dcbd3add606b1476f2e5d2c2465331df96",
+      "sha256": "7cace4392a2ffbc71f83b3902a329fe4f78ee1036d7dd4ff2316958c24cc5b39",
       "descricao": "Pagina-ancora da C15, com o shortcode no corpo. Poe a divergencia na abertura (o mesmo rotulo com o dobro do numero em tres fontes), publica a tabela das tres leituras, explica as tres coisas que a calculadora faz de diferente (divergencia sem media, cobertura de comprimento conferida, custo da luz acesa) e as quatro que ela se recusa a fazer, com o motivo de cada uma: PPFD, conversao de peca em cobertura (com a tabela de 5 produtos que mostra a razao variando de 1,15 a 1,59 vez), numero para marinho e preco. Traz as tres regras do bloco de produto e o caso que mostra o custo delas — a luminaria mais cara do banco tem link e nao e sugerida. Fecha com fotoperiodo que nao compensa lumen, a sobreposicao do CO2 e a cegueira da regua para profundidade. Linka C1, C3, C5, C12, o artigo pareado, metodologia e divulgacao."
     },
     {
@@ -294,7 +294,7 @@
       ],
       "verificado_em": "2026-09-08",
       "publicar": true,
-      "sha256": "bd758a40a8d024f006653d6c835b7ff705796dc2986da3a54fb221c8b4bd1c9d",
+      "sha256": "fe00cc458edc6fe5ee6706782f0b239e735348426cfbe4cd6a6bd556f01570d6",
       "descricao": "Artigo-ancora pareado com a C15. O eixo e a UNIDADE ERRADA: o lumen e ponderado pela sensibilidade do olho humano, que pesa o verde e desconta azul e vermelho — exatamente as duas faixas em que a clorofila trabalha —, de modo que a regua de lm/L penaliza justamente a luminaria projetada para planta; os dois registros do banco (89,6 contra 106 lm/W) sao apresentados como indicio, nao prova. Depois mostra onde a trilha do PPFD termina (o proprio fabricante nao publica teste de PAR), o que o varejo brasileiro declara no lugar (centimetros: 2 de 6 registros sem lumen, 1 sem voltagem, 6 de 6 com centimetro), a armadilha do nome que nao e o tamanho da peca, onde as tres fontes CONCORDAM, por que mais horas nao compensam menos lumens, a cegueira da regua para profundidade, seis recomendacoes praticas e as tres coletas que faltam. Linka a C15, a C1, a C12, a C3 e a metodologia."
     }
   ],
@@ -450,6 +450,14 @@
       "publicar": false,
       "sha256": "a9dad3f0fec253f07b939fd0e3ff309a35e318b045c9dda00c21f90ac0a3a266",
       "descricao": "Serie historica da cobertura de faixa das calculadoras, medida por ferramentas/varrer-cobertura.mjs num Chromium de verdade, ponto a ponto. E o instrumento do criterio da secao 14.3 do ARQUIPELAGO.md (nenhuma faixa produzivel com menos de 3 produtos elegiveis), que substituiu a meta de '60 produtos'. Nao vai para o site: e a lista de compras do banco."
+    },
+    {
+      "id": "metas-seo",
+      "arquivo": "dados/metas-seo.json",
+      "formato": "json",
+      "publicar": false,
+      "sha256": "1020c7f6903f4861b5f21801f819cdf13e75860dbde0527aa830f1340e836ab3",
+      "descricao": "Meta description das QUATRO paginas da casca (inicio, calculadoras, metodologia, sobre), que nascem do snippet e nao tem arquivo em conteudo/. As nove paginas vindas de conteudo/*.md tem a delas no proprio front matter, campo meta_descricao, e nao se repetem aqui: uma pagina, um lugar. Nasce do despacho da Sentinela de 10/09/2026, item 1 — nenhuma das 13 URLs do sitemap servia meta description. Nao vai para o site por si: quem leva o texto ao ar e o mapa gerado dentro de aquametria-seo-tecnico.php."
     }
   ],
   "esquema": {
@@ -526,7 +534,7 @@
       "id": "render-para-teste",
       "arquivo": "ferramentas/render-para-teste.php",
       "publicar": false,
-      "sha256": "c6d3d82ef3c446a49ecbea08efb138126cdd678b75a58b0e7d7fc7b31db66945",
+      "sha256": "8c44e3450ade9b46acd33bb14de27678a0beeb94462b3340a263e605a2a8d433",
       "descricao": "Renderiza qualquer shortcode de calculadora numa pagina HTML solta, com funcoes falsas do WordPress, para o teste de navegador rodar sem subir WordPress nenhum. Carrega todos os snippets menos o Sync, entao tambem serve de teste de convivencia entre as calculadoras."
     },
     {
@@ -645,7 +653,7 @@
       "id": "teste-seo-tecnico",
       "arquivo": "ferramentas/teste-seo-tecnico.php",
       "publicar": false,
-      "sha256": "92a9a1b14968ae9cd70a7b65f85cfc2c3e3c0a2c0c9bd7a1270b3d5a080ae5f7",
+      "sha256": "6d2faa134db26b200d6d0a6b2cb2eb47f642d24d9a90b1611a39632076800344",
       "descricao": "Exercita o snippet de SEO tecnico sem WordPress: confere que arquivo por data, autor, tag, categoria nao curada, anexo, busca e 404 saem do indice; que pagina, artigo e home NAO saem (noindex sobrando numa calculadora seria defeito pior que o consertado); e que o provedor de autores sai sempre do sitemap enquanto o de taxonomias volta assim que houver categoria curada."
     },
     {
@@ -668,6 +676,20 @@
       "publicar": false,
       "sha256": "f367ddfbde2a087fd509e8d7f5f1786106cbea6073b862e02f5c37564820f9d7",
       "descricao": "Teste de navegador dos tres artigos-ancora em Chromium de verdade (Playwright) com o JavaScript DESLIGADO, que e o que um crawler de IA recebe. 36 afirmacoes por artigo, 108 no total. Confere o no Article (headline dentro do limite do schema, titulo completo em alternativeHeadline, description, idioma, datePublished, dateModified, autor, publisher, a consulta que a pagina mira e citation com data em toda fonte), o FAQPage (no minimo seis perguntas, nenhuma resposta curta demais para ser citada, toda resposta com numero), o bloco de resposta direta (corpo, data, fonte nomeada dentro da frase, links de verdade e a posicao ANTES do primeiro titulo de secao), a tabela que o artigo ja tinha servida no HTML, e o portao de entidade numerica contado SO dentro dos blocos de script. As duas afirmacoes que valem o arquivo sao de coerencia entre as duas metades da mesma pagina: todo numero da resposta direta existe no corpo do artigo, e toda resposta do FAQPage carrega ao menos um numero que o corpo sustenta. Nenhum numero esperado fica gravado aqui dentro — afirma a promessa, nunca o estado —, entao corrigir um numero do artigo com fonte melhor nao reprova nada desde que o topo e o FAQ mudem junto, que e exatamente o defeito que ele existe para pegar. Controle negativo conferido: sem JSON-LD e sem o bloco do topo sao 15 falhas, e um numero sem lastro na resposta direta e reprovado pelo valor. Nao vai para o WordPress."
+    },
+    {
+      "id": "gerar-metas-descricao",
+      "arquivo": "ferramentas/gerar-metas-descricao.py",
+      "publicar": false,
+      "sha256": "29645ad6759606eccd29498ebdfda5acc783ab8a77fe646fee0141a59aecaf04",
+      "descricao": "Escreve o mapa de meta description dentro de snippets/aquametria-seo-tecnico.php, entre os marcadores METAS-INICIO e METAS-FIM, juntando o front matter das paginas de conteudo/ com dados/metas-seo.json. RECUSA gerar (e nao grava nada) se algum texto sair de 120 a 160 caracteres, se dois textos forem iguais, se um slug do sitemap ficar sem descricao ou se aparecer descricao para slug que nao esta na lista das 13 URLs. Com --conferir nao grava: so reprova se o snippet estiver desatualizado, para o portao poder rodar antes do commit."
+    },
+    {
+      "id": "conferir-slugs",
+      "arquivo": "ferramentas/conferir-slugs.py",
+      "publicar": false,
+      "sha256": "dff1899e67e26ee214319403e666188872a5ce8b2081990b7638546f560f2f5c",
+      "descricao": "Confere que todo endereco publicado existe E que e o canonico daquele conteudo, em quatro lugares que precisam concordar: front matter de conteudo/, manifest, constante AQUAMETRIA_C*_SLUG de cada snippet e todo link de raiz escrito em snippet ou conteudo. Nasceu do defeito 2 de 08/09/2026 (o hub publicava /calculadora-de-aquecedor/, que dava 404). Desde 10/09/2026 tambem separa pagina de artigo: artigo e 'post' e mora em /AAAA/MM/DD/<slug>/, entao linka-lo pela raiz nao da 404, da 301 — item 3 do despacho da Sentinela de 10/09. Reprova nos dois sentidos: artigo linkado sem data e pagina linkada com data. Aceita qualquer data bem formada, para nao reprovar sozinho quando nascer o quarto artigo."
     }
   ]
 }

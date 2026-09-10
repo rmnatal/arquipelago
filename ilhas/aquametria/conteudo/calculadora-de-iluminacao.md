@@ -3,7 +3,7 @@ id: calculadora-de-iluminacao
 tipo: pagina
 titulo: "Calculadora de iluminação e fotoperíodo: quantos lúmens o seu aquário pede"
 slug: calculadora-de-iluminacao
-meta_descricao: "Quantos lúmens o seu aquário precisa, pelas três leituras brasileiras que chamam a mesma faixa pelo mesmo nome com o dobro do número — mais o fotoperíodo por regime, a faixa de Kelvin, o aviso de CO2 e o consumo em kWh por mês."
+meta_descricao: "Quantos lúmens o seu aquário plantado precisa? A faixa pelas três leituras brasileiras que discordam, mais fotoperíodo, Kelvin e consumo por mês."
 cluster: C15
 calculadora: c15-iluminacao
 fontes:
@@ -94,7 +94,7 @@ A calculadora avisa quando a sua lâmina passa de 45 cm, que é o limite a parti
 
 ## Continue por aqui
 
-- [Quantos lúmens por litro o aquário plantado precisa](https://aquametria.com.br/quantos-lumens-por-litro-aquario-plantado/) — o artigo pareado com esta calculadora: de onde saiu a regra, por que o lúmen é a unidade errada para planta e o que o varejo brasileiro não declara.
+- [Quantos lúmens por litro o aquário plantado precisa](https://aquametria.com.br/2026/09/08/quantos-lumens-por-litro-aquario-plantado/) — o artigo pareado com esta calculadora: de onde saiu a regra, por que o lúmen é a unidade errada para planta e o que o varejo brasileiro não declara.
 - [Calculadora de litragem](https://aquametria.com.br/calculadora-de-litragem/) — o volume real, o comprimento e a lâmina que esta página usa saem de lá.
 - [Calculadora de vazão do filtro](https://aquametria.com.br/calculadora-de-vazao-do-filtro/) — o mesmo aquário visto pela filtragem; plantado pede corrente mais lenta.
 - [Calculadora de potência do aquecedor](https://aquametria.com.br/calculadora-de-potencia-do-aquecedor/) — o aparelho que mais pesa na conta de luz, e o único que pergunta quanto frio faz no seu cômodo.

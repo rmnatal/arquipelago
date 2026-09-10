@@ -3,7 +3,7 @@ id: divulgacao-de-afiliados
 tipo: pagina
 titulo: "Como a Aquametria ganha dinheiro"
 slug: divulgacao-de-afiliados
-meta_descricao: "A Aquametria usa links de afiliado nas calculadoras e pode receber comissão por compras feitas neles. O que isso muda na escolha dos produtos: nada. Aqui está o critério inteiro, por escrito."
+meta_descricao: "A Aquametria recebe comissão por alguns links de loja. O que isso muda na ordem dos produtos recomendados: nada. O critério inteiro, por escrito."
 cluster: institucional
 fontes:
   - "regra V16 do esquema do banco de produtos (dados/esquema-produtos.json): link de afiliado não entra em critério de sugestão"

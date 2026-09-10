@@ -1,5 +1,14 @@
 /**
  * Aquametria Casca — identidade e estrutura do site
+ * Versão: 1.3.1 (10/09/2026) — link para artigo-âncora deixa de dar salto de 301.
+ * aquametria_casca_url_se_existir() só procurava em post_type 'page', e os três
+ * artigos-âncora são 'post'. As duas vias falhavam, quem chamava caía no último
+ * recurso (home_url('/<slug>/')) e publicava um endereço que responde 301 para
+ * /2026/09/08/<slug>/. Item 3 do despacho da Sentinela de 10/09/2026: as três
+ * calculadoras pareadas linkavam o artigo por um salto, e salto é orçamento de
+ * rastreamento gasto à toa em domínio novo. Agora existe uma terceira via, que
+ * busca o artigo por post_name em post_type 'post' e devolve o permalink real —
+ * então o próximo artigo nasce com link canônico sem ninguém lembrar disto.
  * Versão: 1.3.0 (09/09/2026) — casca no celular e ícone próprio. Duas coisas que
  * a Sentinela Técnica pega abrindo o site no telefone: (a) o menu passa a ser um
  * botão sanfona abaixo de 782 px, com aria-expanded/aria-controls, Escape e clique
@@ -52,7 +61,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'AQUAMETRIA_CASCA_VERSAO', '1.3.0' );
+	define( 'AQUAMETRIA_CASCA_VERSAO', '1.3.1' );
 	define( 'AQUAMETRIA_CASCA_TAGLINE', 'Calculadoras e dados técnicos para dimensionar o seu aquário' );
 }
 
@@ -148,7 +157,7 @@ function aquametria_casca_url_se_existir( $slug ) {
 	}
 
 	$achados = get_posts( array(
-		'post_type'   => 'page',
+		'post_type'   => array( 'page', 'post' ),
 		'post_status' => 'publish',
 		'meta_key'    => '_aquametria_id',
 		'meta_value'  => $slug,
@@ -161,6 +170,30 @@ function aquametria_casca_url_se_existir( $slug ) {
 	$pagina = get_page_by_path( $slug, OBJECT, 'page' );
 	if ( $pagina && 'publish' === $pagina->post_status ) {
 		return get_permalink( $pagina );
+	}
+
+	/* Terceira via: o artigo-âncora, que é `post` e não `page`.
+	 *
+	 * Sem ela, as duas vias acima falhavam para os três artigos e quem chamasse
+	 * aquametria_casca_url_pagina() caía no último recurso, que monta
+	 * home_url('/<slug>/') — endereço que EXISTE e responde 301 para
+	 * /2026/09/08/<slug>/, porque artigo tem permalink com data. Era o item 3 do
+	 * despacho da Sentinela de 10/09/2026: cada calculadora linkava o artigo
+	 * pareado por um salto de redirecionamento, e salto é orçamento de rastreamento
+	 * gasto à toa — o recurso escasso de domínio novo (seção 14.1 do
+	 * ARQUIPELAGO.md). Consertar aqui, e não no HTML de cada calculadora, é o que
+	 * faz o próximo artigo nascer com link canônico sem ninguém lembrar disto.
+	 *
+	 * `name` em vez de get_page_by_path: para tipo não hierárquico o "caminho" é o
+	 * post_name puro, e ser explícito evita depender desse detalhe. */
+	$artigos = get_posts( array(
+		'post_type'   => 'post',
+		'post_status' => 'publish',
+		'name'        => $slug,
+		'numberposts' => 1,
+	) );
+	if ( $artigos ) {
+		return get_permalink( $artigos[0] );
 	}
 
 	return '';

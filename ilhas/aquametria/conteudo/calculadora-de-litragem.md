@@ -3,7 +3,7 @@ id: calculadora-de-litragem
 tipo: pagina
 titulo: "Calculadora de litragem: quantos litros tem o seu aquário"
 slug: calculadora-de-litragem
-meta_descricao: "Medidas em centímetros para litros, com os três volumes que importam: o bruto que a loja anuncia, o interno depois do vidro e o volume real de água. Com a fonte de cada número."
+meta_descricao: "Quantos litros tem o seu aquário? Informe as medidas em centímetros e receba os três volumes: o bruto da etiqueta, o interno e a água real."
 cluster: C1
 calculadora: c1-litragem
 fontes:

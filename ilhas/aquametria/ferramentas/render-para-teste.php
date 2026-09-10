@@ -61,6 +61,12 @@ function wp_kses_post($t){ return $t; }
 function wp_strip_all_tags($t){ return strip_tags($t); }
 function is_admin(){ return false; } function did_action($h){ return 0; }
 function is_singular($t=''){ return true; }
+/* A pagina inicial e uma pagina como as outras; o que muda e a URL. Fica em
+   global (falso por padrao) porque o snippet de SEO resolve a home pela opcao
+   page_on_front, nao pelo objeto da consulta — e quem nao mexe no global
+   continua renderizando uma pagina interna, como antes. */
+function is_front_page(){ return ! empty($GLOBALS['__pagina_inicial']); }
+function get_queried_object(){ return get_post(); }
 /* O slug da pagina de teste. Fica em global porque o snippet dos artigos NAO se
    reconhece por shortcode (artigo nao tem formulario): ele se reconhece pelo
    post_name, e sem poder trocar esse valor nao havia como renderizar um artigo
@@ -71,7 +77,10 @@ function get_post($p=null){ return (object) array('ID'=>1,'post_content'=>$GLOBA
    Vazio por padrao, entao quem nao mexe nele continua vendo o que via. */
 function get_posts($a=array()){
 	$mapa = isset($GLOBALS['__paginas']) ? $GLOBALS['__paginas'] : array();
-	$chave = isset($a['meta_value']) ? $a['meta_value'] : '';
+	/* Duas buscas atendidas pelo mesmo mapa: por _aquametria_id (meta_value) e
+	   por post_name ('name'), que e a via do artigo-ancora — ele e 'post', nao
+	   'page', e sem esta linha o teste nunca exercitaria a terceira via da casca. */
+	$chave = isset($a['meta_value']) ? $a['meta_value'] : (isset($a['name']) ? $a['name'] : '');
 	if ('' !== $chave && isset($mapa[$chave])) { return array((object) array('ID'=>1,'post_name'=>$chave)); }
 	return array();
 }

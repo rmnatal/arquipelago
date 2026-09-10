@@ -3,7 +3,7 @@ id: quanta-midia-biologica-o-aquario-precisa
 tipo: artigo
 titulo: "Quanta mídia biológica o aquário precisa: quatro fabricantes, dez vezes de diferença"
 slug: quanta-midia-biologica-o-aquario-precisa
-meta_descricao: "Seachem pede 1,25 mL de mídia por litro de água. Ocean Tech pede 12,5. É o mesmo trabalho, e a diferença é de dez vezes. Fomos atrás das declarações originais para entender de onde vem cada número — e o que nenhuma delas pergunta."
+meta_descricao: "Seachem pede 1,25 mL de mídia por litro; Ocean Tech pede 12,5. Dez vezes de diferença para o mesmo trabalho — fomos às declarações originais."
 cluster: C12
 calculadora: c12-midia-filtrante
 fontes:

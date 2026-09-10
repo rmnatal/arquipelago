@@ -3,7 +3,7 @@ id: calculadora-de-vazao-do-filtro
 tipo: pagina
 titulo: "Calculadora de vazão do filtro: quantos L/h o seu aquário pede"
 slug: calculadora-de-vazao-do-filtro
-meta_descricao: "A vazão de filtro que o seu aquário pede, em faixa, com a fonte de cada extremo — do 1,76 x/h que o fabricante dimensiona ao 10 x/h que a web brasileira repete. Com os filtros que atendem o seu número."
+meta_descricao: "Qual a vazão de filtro para o seu aquário, em L/h? A faixa vai de 1,76 a 10 renovações por hora, e cada extremo aparece com a fonte dele."
 cluster: C3
 calculadora: c3-vazao-filtro
 fontes:

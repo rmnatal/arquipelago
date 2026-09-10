@@ -3,7 +3,7 @@ id: calculadora-de-potencia-do-aquecedor
 tipo: pagina
 titulo: "Calculadora de potência do aquecedor: quantos watts, pelo frio que faz aí"
 slug: calculadora-de-potencia-do-aquecedor
-meta_descricao: "A potência de aquecedor que o seu aquário pede, calculada a partir da mínima do cômodo onde ele fica — não do genérico 1 W por litro. Faixa com a fonte de cada extremo e os aquecedores que atendem, filtrados pela sua voltagem."
+meta_descricao: "Quantos watts de aquecedor o seu aquário pede? A conta parte da mínima do seu cômodo, não do genérico 1 W por litro, e filtra pela sua voltagem."
 cluster: C5
 calculadora: c5-aquecedor-delta
 fontes:
@@ -126,6 +126,6 @@ A calculadora também responde à pergunta que a maioria das pessoas realmente t
 
 - **[Calculadora de litragem (C1)](https://aquametria.com.br/calculadora-de-litragem/)** — de onde vem o volume real de água que esta página usa. Aquecedor se dimensiona sobre a água que existe, não sobre o número da etiqueta do aquário.
 - **[Vazão do filtro (C3)](https://aquametria.com.br/calculadora-de-vazao-do-filtro/)** — o outro aparelho que o mesmo volume dimensiona, e a mesma história de fontes que discordam.
-- **[Quantos watts de aquecedor o seu aquário precisa](https://aquametria.com.br/quantos-watts-de-aquecedor-para-aquario/)** — o texto longo: de onde veio o "1 W por litro", por que ele erra sempre para o mesmo lado e o que muda quando se pergunta o frio.
+- **[Quantos watts de aquecedor o seu aquário precisa](https://aquametria.com.br/2026/09/08/quantos-watts-de-aquecedor-para-aquario/)** — o texto longo: de onde veio o "1 W por litro", por que ele erra sempre para o mesmo lado e o que muda quando se pergunta o frio.
 - **[Como a Aquametria calcula](https://aquametria.com.br/metodologia/)** — a escada de fontes, o que é constante e o que é convenção declarada.
 - **[Como a Aquametria ganha dinheiro](https://aquametria.com.br/divulgacao-de-afiliados/)** — link de afiliado, o que ele muda (nada na ordem) e o que não publicamos.

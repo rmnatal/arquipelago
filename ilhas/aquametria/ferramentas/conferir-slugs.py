@@ -48,6 +48,30 @@ def slugs_do_conteudo():
     return achados
 
 
+def tipos_do_conteudo():
+    """slug -> 'pagina' ou 'artigo'.
+
+    Importa porque os dois moram em endereços de formato diferente: página fica
+    na raiz (/calculadora-de-litragem/) e artigo é `post`, com o prefixo de data
+    da estrutura de permalink (/2026/09/08/quantos-watts-.../). Publicar um
+    artigo pelo endereço de página NÃO dá 404 — dá 301, que é pior de achar: a
+    página abre, ninguém reclama, e cada visita do robô gasta dois acessos do
+    orçamento de rastreamento em vez de um. Foi o item 3 do despacho da Sentinela
+    de 10/09/2026, e é para ele não voltar que a conferência abaixo existe.
+    """
+    tipos = {}
+    pasta = os.path.join(RAIZ, 'conteudo')
+    for nome in sorted(os.listdir(pasta)):
+        if not nome.endswith('.md') or nome == 'README.md':
+            continue
+        texto = ler('conteudo/' + nome)
+        slug = re.search(r'^slug:\s*(\S+)\s*$', texto, re.M)
+        tipo = re.search(r'^tipo:\s*(\S+)\s*$', texto, re.M)
+        if slug:
+            tipos[slug.group(1)] = tipo.group(1) if tipo else 'pagina'
+    return tipos
+
+
 def main():
     falhas = []
     conteudo = slugs_do_conteudo()
@@ -99,7 +123,18 @@ def main():
                           % (do_hub[codigo], codigo, slug))
 
     # 4. todo link absoluto de raiz escrito em snippet ou conteudo
+    #
+    # Duas perguntas, não uma: o endereço existe, E ele é o CANÔNICO daquele
+    # conteúdo. Um artigo linkado sem o prefixo de data existe e responde — com
+    # 301 para a URL com data. Ver tipos_do_conteudo().
+    tipos = tipos_do_conteudo()
+    artigos = {s for s, t in tipos.items() if t == 'artigo'}
     conhecidos = set(conteudo) | DA_CASCA | set(CONHECIDOS_AUSENTES)
+    # O prefixo de data não é escolha do repositório: quem o forma é a data de
+    # publicação no WordPress. Por isso a conferência aceita QUALQUER data bem
+    # formada e cobra só a presença dela — cravar 2026/09/08 aqui faria este
+    # portão reprovar sozinho no dia em que nascesse o quarto artigo.
+    com_data = re.compile(r'(?:https://aquametria\.com\.br|href="|\]\()/\d{4}/\d{2}/\d{2}/([a-z0-9][a-z0-9-]{3,})/')
     for sub in ('snippets', 'conteudo'):
         pasta = os.path.join(RAIZ, sub)
         for nome in sorted(os.listdir(pasta)):
@@ -109,13 +144,38 @@ def main():
             for linha_n, linha in enumerate(texto.splitlines(), 1):
                 if linha.lstrip().startswith('*') or linha.lstrip().startswith('//'):
                     continue  # comentário: pode citar o endereço errado de propósito
-                # So endereco DESTE site: URL absoluta de aquametria.com.br, href de
+
+                # 4a. endereço com prefixo de data: só artigo pode usá-lo.
+                datados = com_data.findall(linha)
+                for slug in datados:
+                    if slug in artigos:
+                        continue
+                    if slug in conhecidos:
+                        falhas.append('%s/%s:%d linka a página /%s/ com prefixo de data, '
+                                      'e página não tem data no endereço'
+                                      % (sub, nome, linha_n, slug))
+                    else:
+                        falhas.append('%s/%s:%d publica /AAAA/MM/DD/%s/ e nenhum artigo tem esse slug'
+                                      % (sub, nome, linha_n, slug))
+                # O endereço com data já foi julgado acima, e o casamento de 4b
+                # veria o "2026" dele como slug. Ele sai da linha, mas a LINHA
+                # continua sendo conferida: uma linha que carrega um link datado
+                # e um link cru do mesmo artigo é exatamente o caso que um
+                # `continue` aqui deixaria passar.
+                linha = com_data.sub('', linha)
+
+                # 4b. So endereco DESTE site: URL absoluta de aquametria.com.br, href de
                 # raiz ou link de Markdown de raiz. O caminho de URL de fabricante
                 # e de loja nao e pagina nossa e nao entra na conferencia.
                 achados = (re.findall(r'https://aquametria\.com\.br/([a-z0-9][a-z0-9-]{3,})/', linha)
                            + re.findall(r'href="/([a-z0-9][a-z0-9-]{3,})/', linha)
                            + re.findall(r'\]\(/([a-z0-9][a-z0-9-]{3,})/', linha))
                 for slug in achados:
+                    if slug in artigos:
+                        falhas.append('%s/%s:%d linka o artigo /%s/ sem o prefixo de data — '
+                                      'esse endereço responde 301 para a URL com data'
+                                      % (sub, nome, linha_n, slug))
+                        continue
                     if slug in conhecidos:
                         continue
                     if slug in ('wp-json', 'wp-content', 'wp-admin', 'feed'):

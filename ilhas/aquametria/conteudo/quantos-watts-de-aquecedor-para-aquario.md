@@ -3,7 +3,7 @@ id: quantos-watts-de-aquecedor-para-aquario
 tipo: artigo
 titulo: "Quantos watts de aquecedor o seu aquário precisa (e por que \"1 W por litro\" erra sempre para o mesmo lado)"
 slug: quantos-watts-de-aquecedor-para-aquario
-meta_descricao: "O 1 W por litro não veio de um cálculo: veio da prateleira. Este texto mostra de onde a regra saiu, em que casos ela funciona por acidente, onde ela falha, e o que muda quando a conta pergunta o frio do seu cômodo."
+meta_descricao: "O 1 W por litro não veio de um cálculo, veio da prateleira. De onde a regra saiu, quando ela acerta por acidente e o que muda ao medir o cômodo."
 cluster: C5
 artigo_ancora_de: c5-aquecedor-delta
 fontes:

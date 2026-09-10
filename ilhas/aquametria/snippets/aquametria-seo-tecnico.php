@@ -1,6 +1,36 @@
 /**
- * Aquametria SEO Técnico — sitemap curado e diretiva de robôs
- * Versão: 1.0.0 (09/09/2026)
+ * Aquametria SEO Técnico — sitemap curado, diretiva de robôs e meta description
+ * Versão: 1.1.0 (10/09/2026)
+ *
+ * v1.1.0 (10/09/2026) — despacho da Sentinela de 10/09, item 1: NENHUMA das 13
+ * URLs do sitemap servia `<meta name="description">`, e nenhuma página tinha uma
+ * única tag `og:`. O `<head>` trazia 6 elementos `<meta>` e nenhum deles era a
+ * description. Isso é caro por dois motivos somados: a meta description é metade
+ * da alavanca de CTR da seção 12.1 do ARQUIPELAGO.md (a outra metade é o título),
+ * e sem ela quem escreve o resumo do resultado é o Google, recortando um pedaço
+ * qualquer do corpo — numa página de calculadora, o pedaço costuma ser o rótulo
+ * de um campo de formulário. A meta desta ilha é tráfego, e tráfego passa por
+ * clique.
+ *
+ * A DESCRIÇÃO NÃO É ESCRITA AQUI. O mapa entre os marcadores METAS-INICIO e
+ * METAS-FIM é gerado por `ferramentas/gerar-metas-descricao.py`, que lê o campo
+ * `meta_descricao` do front matter de cada página de `conteudo/` e o
+ * `dados/metas-seo.json` das quatro páginas da casca, e RECUSA gerar se algum
+ * texto sair de 120 a 160 caracteres, se dois forem iguais, ou se algum slug do
+ * sitemap ficar sem descrição. É o mesmo desenho do favicon (seção 2b da casca):
+ * texto mantido em dois lugares diverge em silêncio.
+ *
+ * PÁGINA FORA DO MAPA NÃO GANHA DESCRIÇÃO INVENTADA. Se um slug não estiver no
+ * mapa, o snippet não imprime nada e deixa o `<head>` como estava. Description
+ * gerada por recorte automático do corpo é exatamente o que este bloco existe
+ * para substituir, e um texto errado escrito por nós seria pior do que o recorte
+ * do Google, porque pareceria intencional.
+ *
+ * SEM `og:image`, DE PROPÓSITO. A ilha não tem imagem de compartilhamento — o
+ * favicon é um SVG de 32 px embutido como data URI, e `og:image` exige URL
+ * absoluta de arquivo real. Declarar uma imagem que não existe faria o cartão
+ * quebrar no lugar de não aparecer. Ela entra quando a vitrine do T8 der à ilha
+ * a primeira imagem própria hospedada.
  *
  * Nasce do despacho da Sentinela de 09/09/2026, item 1: `/category/uncategorized/`
  * respondia 200 e estava no `wp-sitemap.xml`. Duas coisas erradas ao mesmo tempo,
@@ -56,9 +86,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_SEO_VERSAO' ) ) {
-	define( 'AQUAMETRIA_SEO_VERSAO', '1.0.0' );
+	define( 'AQUAMETRIA_SEO_VERSAO', '1.1.0' );
 	define( 'AQUAMETRIA_SEO_CATEGORIA_SLUG', 'metodos' );
 	define( 'AQUAMETRIA_SEO_CATEGORIA_NOME', 'Métodos' );
+	define( 'AQUAMETRIA_SEO_NOME_DO_SITE', 'Aquametria' );
 }
 
 /* ---------------------------------------------------------------------------
@@ -166,6 +197,183 @@ function aquametria_seo_robots( $robots ) {
 		unset( $robots['max-image-preview'], $robots['max-snippet'], $robots['max-video-preview'] );
 	}
 	return $robots;
+}
+}
+
+/* ---------------------------------------------------------------------------
+ * 3b. Meta description e cartão de compartilhamento
+ *
+ * O mapa abaixo é gerado — ver o cabeçalho. Depois dele vêm três funções: a que
+ * descobre o slug da URL servida, a função PURA que monta a lista de tags, e o
+ * gancho que imprime. A separação existe pelo mesmo motivo da seção 2:
+ * `ferramentas/teste-seo-tecnico.php` exercita a montagem sem subir WordPress
+ * nenhum, e verificação que não roda não protege ninguém.
+ * ------------------------------------------------------------------------ */
+
+/* METAS-INICIO — gerado por ferramentas/gerar-metas-descricao.py, nao edite a mao */
+if ( ! function_exists( 'aquametria_seo_metas_por_slug' ) ) {
+function aquametria_seo_metas_por_slug() {
+	return array(
+		'inicio' => array(
+			'titulo'    => 'Início',
+			'descricao' => 'Calculadoras de aquário que mostram a conta: litragem, vazão do filtro, watts do aquecedor, mídia filtrante e lúmens, com a fonte de cada número.',
+		),
+		'calculadoras' => array(
+			'titulo'    => 'Calculadoras',
+			'descricao' => 'As cinco calculadoras da Aquametria em uma página: litragem, vazão do filtro, potência do aquecedor, mídia filtrante e iluminação, com as fontes.',
+		),
+		'metodologia' => array(
+			'titulo'    => 'Metodologia',
+			'descricao' => 'Como a Aquametria aceita ou recusa uma constante: fonte do fabricante, data de verificação e faixa quando as fontes discordam. Nunca a média.',
+		),
+		'sobre' => array(
+			'titulo'    => 'Sobre',
+			'descricao' => 'Quem publica a Aquametria e por quê: um site de aquarismo que mostra a conta, cita o manual do fabricante e recusa número sem fonte declarada.',
+		),
+		'calculadora-de-litragem' => array(
+			'titulo'    => 'Calculadora de litragem: quantos litros tem o seu aquário',
+			'descricao' => 'Quantos litros tem o seu aquário? Informe as medidas em centímetros e receba os três volumes: o bruto da etiqueta, o interno e a água real.',
+		),
+		'calculadora-de-vazao-do-filtro' => array(
+			'titulo'    => 'Calculadora de vazão do filtro: quantos L/h o seu aquário pede',
+			'descricao' => 'Qual a vazão de filtro para o seu aquário, em L/h? A faixa vai de 1,76 a 10 renovações por hora, e cada extremo aparece com a fonte dele.',
+		),
+		'calculadora-de-potencia-do-aquecedor' => array(
+			'titulo'    => 'Calculadora de potência do aquecedor: quantos watts, pelo frio que faz aí',
+			'descricao' => 'Quantos watts de aquecedor o seu aquário pede? A conta parte da mínima do seu cômodo, não do genérico 1 W por litro, e filtra pela sua voltagem.',
+		),
+		'calculadora-de-midia-filtrante' => array(
+			'titulo'    => 'Calculadora de mídia filtrante: quantos mililitros o seu aquário pede',
+			'descricao' => 'Quanta mídia filtrante o seu aquário pede, em mililitros? Quatro fabricantes declaram dosagens que variam dez vezes; aqui estão as quatro.',
+		),
+		'calculadora-de-iluminacao' => array(
+			'titulo'    => 'Calculadora de iluminação e fotoperíodo: quantos lúmens o seu aquário pede',
+			'descricao' => 'Quantos lúmens o seu aquário plantado precisa? A faixa pelas três leituras brasileiras que discordam, mais fotoperíodo, Kelvin e consumo por mês.',
+		),
+		'divulgacao-de-afiliados' => array(
+			'titulo'    => 'Como a Aquametria ganha dinheiro',
+			'descricao' => 'A Aquametria recebe comissão por alguns links de loja. O que isso muda na ordem dos produtos recomendados: nada. O critério inteiro, por escrito.',
+		),
+		'quantos-watts-de-aquecedor-para-aquario' => array(
+			'titulo'    => 'Quantos watts de aquecedor o seu aquário precisa (e por que "1 W por litro" erra sempre para o mesmo lado)',
+			'descricao' => 'O 1 W por litro não veio de um cálculo, veio da prateleira. De onde a regra saiu, quando ela acerta por acidente e o que muda ao medir o cômodo.',
+		),
+		'quanta-midia-biologica-o-aquario-precisa' => array(
+			'titulo'    => 'Quanta mídia biológica o aquário precisa: quatro fabricantes, dez vezes de diferença',
+			'descricao' => 'Seachem pede 1,25 mL de mídia por litro; Ocean Tech pede 12,5. Dez vezes de diferença para o mesmo trabalho — fomos às declarações originais.',
+		),
+		'quantos-lumens-por-litro-aquario-plantado' => array(
+			'titulo'    => 'Quantos lúmens por litro o aquário plantado precisa (e por que o lúmen é a unidade errada para medir luz de planta)',
+			'descricao' => 'Três fontes brasileiras chamam a mesma faixa de lúmens por litro com o dobro do número. De onde vem a regra e por que o lúmen é a unidade errada.',
+		),
+	);
+}
+}
+/* METAS-FIM */
+
+/* Qual página está sendo servida, em uma palavra: o `post_name`. Serve para
+   página e para artigo com o mesmo código, e é o que o mapa usa como chave — a
+   URL do artigo carrega o prefixo de data, que não é dele e mudaria junto com a
+   estrutura de permalink. A home é resolvida pela opção `page_on_front` antes de
+   qualquer outra pergunta: ela é uma página como as outras, mas a URL dela é a
+   raiz, e `get_queried_object()` na raiz depende de o tema não ter mexido na
+   consulta principal. */
+if ( ! function_exists( 'aquametria_seo_slug_atual' ) ) {
+function aquametria_seo_slug_atual() {
+	if ( is_front_page() ) {
+		$id = (int) get_option( 'page_on_front' );
+		if ( $id ) {
+			$nome = get_post_field( 'post_name', $id );
+			return is_string( $nome ) ? $nome : '';
+		}
+		return '';
+	}
+	if ( ! is_singular() ) {
+		return '';
+	}
+	$obj = get_queried_object();
+	return ( $obj && isset( $obj->post_name ) ) ? (string) $obj->post_name : '';
+}
+}
+
+/* Função pura: recebe o que já foi resolvido e devolve a lista de tags como
+   pares nome/valor, sem escapar nada. Quem escapa é o gancho, uma vez, no ponto
+   em que o valor vira HTML — misturar as duas coisas é como nasce escape duplo.
+   Slug fora do mapa devolve lista vazia, e o `<head>` fica como estava. */
+if ( ! function_exists( 'aquametria_seo_tags_da_pagina' ) ) {
+function aquametria_seo_tags_da_pagina( $slug, $metas, $url, $nome_do_site ) {
+	$slug  = (string) $slug;
+	$metas = (array) $metas;
+	if ( '' === $slug || ! isset( $metas[ $slug ] ) ) {
+		return array();
+	}
+	$item      = (array) $metas[ $slug ];
+	$descricao = isset( $item['descricao'] ) ? trim( (string) $item['descricao'] ) : '';
+	$titulo    = isset( $item['titulo'] ) ? trim( (string) $item['titulo'] ) : '';
+	if ( '' === $descricao ) {
+		return array();
+	}
+
+	$tags = array(
+		array( 'tipo' => 'name', 'chave' => 'description', 'valor' => $descricao ),
+		array( 'tipo' => 'property', 'chave' => 'og:description', 'valor' => $descricao ),
+		array( 'tipo' => 'property', 'chave' => 'og:type', 'valor' => 'website' ),
+		array( 'tipo' => 'property', 'chave' => 'og:locale', 'valor' => 'pt_BR' ),
+		array( 'tipo' => 'name', 'chave' => 'twitter:card', 'valor' => 'summary' ),
+	);
+	if ( '' !== $titulo ) {
+		array_splice( $tags, 2, 0, array(
+			array( 'tipo' => 'property', 'chave' => 'og:title', 'valor' => $titulo ),
+		) );
+	}
+	if ( '' !== trim( (string) $nome_do_site ) ) {
+		$tags[] = array( 'tipo' => 'property', 'chave' => 'og:site_name', 'valor' => trim( (string) $nome_do_site ) );
+	}
+	/* A URL vai por último e só se existir: `og:url` com endereço errado é pior
+	   do que `og:url` ausente, porque manda o compartilhamento para outro lugar. */
+	if ( '' !== trim( (string) $url ) ) {
+		$tags[] = array( 'tipo' => 'property', 'chave' => 'og:url', 'valor' => trim( (string) $url ), 'url' => true );
+	}
+	return $tags;
+}
+}
+
+/* Prioridade 3: depois do ícone da casca (5 é a dela) não importa para o robô,
+   mas o `<head>` fica legível para quem abre o código-fonte, e a description
+   perto do topo é o que se espera de encontrar. */
+add_action( 'wp_head', 'aquametria_seo_imprimir_metas', 3 );
+if ( ! function_exists( 'aquametria_seo_imprimir_metas' ) ) {
+function aquametria_seo_imprimir_metas() {
+	if ( is_admin() || ! function_exists( 'aquametria_seo_metas_por_slug' ) ) {
+		return;
+	}
+	$slug = aquametria_seo_slug_atual();
+	if ( '' === $slug ) {
+		return;
+	}
+
+	$url = '';
+	if ( is_front_page() ) {
+		$url = home_url( '/' );
+	} else {
+		$obj = get_queried_object();
+		if ( $obj && isset( $obj->ID ) ) {
+			$permalink = get_permalink( (int) $obj->ID );
+			$url       = is_string( $permalink ) ? $permalink : '';
+		}
+	}
+
+	$tags = aquametria_seo_tags_da_pagina(
+		$slug,
+		aquametria_seo_metas_por_slug(),
+		$url,
+		AQUAMETRIA_SEO_NOME_DO_SITE
+	);
+	foreach ( $tags as $tag ) {
+		$valor = empty( $tag['url'] ) ? esc_attr( $tag['valor'] ) : esc_url( $tag['valor'] );
+		echo '<meta ' . ( 'property' === $tag['tipo'] ? 'property' : 'name' ) . '="'
+			. esc_attr( $tag['chave'] ) . '" content="' . $valor . '">' . "\n";
+	}
 }
 }
 

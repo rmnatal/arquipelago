@@ -3,7 +3,7 @@ id: quantos-lumens-por-litro-aquario-plantado
 tipo: artigo
 titulo: "Quantos lúmens por litro o aquário plantado precisa (e por que o lúmen é a unidade errada para medir luz de planta)"
 slug: quantos-lumens-por-litro-aquario-plantado
-meta_descricao: "Três fontes brasileiras chamam a mesma faixa de iluminação pelo mesmo nome com o dobro do número. Fomos atrás de onde vem a regra de lúmens por litro, por que ela penaliza justamente a luminária feita para planta e por que ninguém no Brasil publica a medida certa."
+meta_descricao: "Três fontes brasileiras chamam a mesma faixa de lúmens por litro com o dobro do número. De onde vem a regra e por que o lúmen é a unidade errada."
 cluster: C15
 calculadora: c15-iluminacao
 fontes:

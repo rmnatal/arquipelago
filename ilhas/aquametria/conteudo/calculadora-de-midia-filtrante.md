@@ -3,7 +3,7 @@ id: calculadora-de-midia-filtrante
 tipo: pagina
 titulo: "Calculadora de mídia filtrante: quantos mililitros o seu aquário pede"
 slug: calculadora-de-midia-filtrante
-meta_descricao: "Quanta mídia biológica o seu aquário precisa, em mililitros, pelas dosagens que quatro fabricantes declaram — e que discordam por dez vezes. Mais o teto físico do seu filtro, a ordem das camadas e o calendário de trocas."
+meta_descricao: "Quanta mídia filtrante o seu aquário pede, em mililitros? Quatro fabricantes declaram dosagens que variam dez vezes; aqui estão as quatro."
 cluster: C12
 calculadora: c12-midia-filtrante
 fontes:
@@ -109,7 +109,7 @@ E as constantes de manutenção — carvão, perlon, cerâmica, ordem das camada
 
 ## Continue por aqui
 
-- [Quanta mídia biológica o aquário realmente precisa](https://aquametria.com.br/quanta-midia-biologica-o-aquario-precisa/) — o artigo que destrincha por que os quatro fabricantes discordam por dez vezes, e o que muda quando se segue cada um.
+- [Quanta mídia biológica o aquário realmente precisa](https://aquametria.com.br/2026/09/08/quanta-midia-biologica-o-aquario-precisa/) — o artigo que destrincha por que os quatro fabricantes discordam por dez vezes, e o que muda quando se segue cada um.
 - [Calculadora de litragem](https://aquametria.com.br/calculadora-de-litragem/) — o volume real de água, que é a entrada de tudo aqui.
 - [Calculadora de vazão do filtro](https://aquametria.com.br/calculadora-de-vazao-do-filtro/) — a água precisa passar, e precisa passar por alguma coisa: vazão e mídia são as duas metades da mesma decisão.
 - [Calculadora de potência do aquecedor](https://aquametria.com.br/calculadora-de-potencia-do-aquecedor/) — a colônia nitrificante também depende de temperatura.
