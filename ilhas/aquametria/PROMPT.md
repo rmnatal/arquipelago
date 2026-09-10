@@ -100,11 +100,17 @@ Em domínio novo sem link nenhum apontando para ele, backlink não é luxo: é o
 - **Cuidado que custou duas rodadas de teste na C15 e uma na C12:** não reaproveite classe CSS que o teste de navegador usa como localizador (`.aqm-c1-fontes`, `.aqm-c1-aviso-afiliado` e irmãs). Tabela nova e nota nova pedem classe nova, com o estilo herdado pela lista de seletores. Use as convenções que já existem: `-direta` para a resposta do topo, `-bloco-exemplos` para o painel, `-exemplos` para a tabela e `-aviso-tabela` para a nota dela.
 - **Rode UM teste de navegador de cada vez.** Cada `page.goto()` espera as fontes do Google, que o egresso barra até o timeout de 30 s por navegação; três testes em paralelo disputam a máquina e todos rastejam. Medido em 09/09/2026.
 
-**T8. VITRINE DE PRODUTO** (era o bloco 4e) — layout aprovado pelo Raphael em 09/09, continua na fila, mas é bloco de **conversão**, não de tráfego: entra depois do T4. Regras gerais na seção 6 do `ARQUIPELAGO.md`; o específico desta ilha:
+**T8. VITRINE DE PRODUTO** (era o bloco 4e) — **FEITA NA C3 em 10/09/2026 (v1.5.0, revisões 36 e 37). Falta nas outras.** Regras gerais na seção 6 do `ARQUIPELAGO.md`; o específico desta ilha:
+- **Ordem do que falta: C5, C15, C12.** A C5 vem primeiro porque é a próxima com mais itens que têm foto **e** link (11 dos 14 aquecedores com link têm foto). Na C1 provavelmente não nasce: litragem é geometria, e geometria não escolhe produto — o mesmo precedente que já vale para a tabela dela.
+- **Copie o desenho da C3, não reinvente.** Uma função de cartão em PHP e o espelho dela em JavaScript, com a MESMA marcação: duas marcações para o mesmo cartão viram dois CSS e, mais cedo do que se pensa, duas aparências. Duas vitrines por página — a pintada, dentro do resultado, e a **servida** no HTML para um caso de referência, porque crawler de IA não executa JavaScript.
+- **A vitrine vem ANTES da ficha e da procedência** (contrato 7). E ela **nunca reordena nada**: desenha a mesma sequência que a lista técnica, e é isso que o teste da C3 mede como afirmação central.
+- **Preço sai, e sai datado.** As frases de "não publicamos preço" daquela calculadora se reescrevem na MESMA versão em que a vitrine entra — página que mostra preço e diz que não publica preço se contradiz. Confira também as páginas de `conteudo/`: na C3 a contradição estava lá, e só apareceu ao ler a página no ar.
+- **Acentue o `alt` das imagens daquele banco antes de gerar o catálogo.** `alt` é texto de tela: leitor de tela lê, crawler lê. O gerador de filtros já recusa gravar imagem sem `alt` — copie esse portão para os outros geradores.
 - Preencher `imagem` para os itens que já têm `afiliado.url`, usando a foto do próprio anúncio da Shopee. Se a nuvem não alcançar o CDN da Shopee, **guarde a URL com `verificado_em: null`** e deixe a Sentinela confirmar no navegador — não anule o campo.
 - O cartão diz a especificação que fez o produto entrar: "440 L/h — atende os 190 L do seu aquário".
-- Linha de promessa no topo: "calcule a vazão do seu aquário e veja quais filtros atendem, com a faixa e a fonte de cada um". Curto, sem exclamação, sem tom de anúncio.
+- Linha de promessa no topo, curta, sem exclamação, sem tom de anúncio.
 - A tabela de exemplos do T7 já resolve metade disso: inclua nela a coluna do produto que atende cada faixa.
+- **Largura e altura não se inventam:** o banco não mediu as imagens e a ilha não grava dimensão que não mediu. `aspect-ratio: 1/1` com `object-fit: contain` cumpre o que a regra existe para garantir, que é o layout não saltar. Quando o banco trouxer medida, o código já imprime os atributos.
 
 ## Link interno obrigatório
 Toda calculadora linka as outras que consomem o mesmo estado, a metodologia, o artigo pareado e as páginas de entidade. Nenhuma página órfã — página órfã não é rastreada.

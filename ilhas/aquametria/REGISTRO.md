@@ -4384,3 +4384,168 @@ aberto, e isso continua sendo da Sentinela estratégica.
    a Aquametria não tem perfil externo nenhum, então `sameAs` sairia vazio ou inventado. Nasce quando o
    T6 der o primeiro perfil externo real.
 4. **T3 (catálogo) segue barrado da nuvem** enquanto o egresso bloquear sites de fabricante.
+
+---
+
+## EXECUÇÃO DE 10/09/2026, 19h17Z — T8: a VITRINE nasce na C3
+
+Bloco entregue: **T8, a vitrine de produto**, na C3. É a primeira vitrine do Arquipélago inteiro, e a
+C3 veio primeiro porque é a calculadora com mais itens de banco com foto **e** link ao mesmo tempo —
+sem isso a vitrine nasceria como um layout bonito sem nada para mostrar.
+
+O despacho da Sentinela de 10/09 não pedia nada de código nesta execução: os itens 1, 2 e 3 foram
+cumpridos na execução das 17h15Z e aguardam a conferência da ronda seguinte. O item 4 é registro de
+receita (reportado no fim desta entrada) e o item 5 proíbe página nova até 16/09 — **o T8 não cria
+URL nenhuma**, e por isso é o maior bloco de construção que cabia hoje.
+
+### O que a vitrine é, e por que ela não é a lista que já existia
+
+A lista de produtos da C3 já era boa: ficha técnica completa, procedência com endereço e data,
+elegibilidade dupla. Mas ficha técnica é o que convence **depois** que a pessoa decidiu comparar. O
+que faltava era o que convence antes — e no celular, onde a ficha ocupa três telas, "antes" é a única
+chance que existe.
+
+A vitrine é um carrossel de cartões, `scroll-snap` em CSS puro, sem biblioteca nenhuma. Cada cartão
+carrega foto, marca, modelo, **a especificação que fez o produto entrar** ("1.000 L/h — atende os 190 L
+do seu aquário"), a cotação com a data da coleta e o botão da loja. Ela vem **antes** da ficha e antes
+da procedência, que é o que o contrato 7 passou a exigir depois da cicatriz da Robometria de 10/09: a
+prova de onde veio o número fica, mas ela existe para ser conferida, não para ser o único clique de
+compra da página.
+
+### Duas vitrines, porque são dois leitores
+
+A vitrine **pintada** pelo script mostra o aquário de quem está lendo. A vitrine **servida** no HTML,
+para o caso de referência de 100 litros, existe pelo mesmo motivo da tabela de exemplos: um modelo de
+linguagem e um crawler não executam JavaScript, e vitrine que só nasce no clique é vitrine que só o
+comprador que já chegou vê. As duas saem da mesma função de cartão em cada linguagem — duas marcações
+para o mesmo cartão viram dois CSS e, mais cedo do que se pensa, duas aparências.
+
+### A decisão que valeu a versão inteira: preço passou a sair, e sai datado
+
+Até a 1.4.0 esta página dizia, em três lugares, que não publicava preço. A razão era boa — preço muda
+toda semana e número velho na tela é pior que nenhum — e resolvia o problema errado. **O que o contrato
+proíbe (seção 7) é preço CRAVADO COMO ATUAL.** Cotação com a data ao lado é exatamente o que a seção 6
+pede da vitrine, e é o que o banco já guardava em `dados/produtos-cotacoes.json` desde 07/09.
+
+As três frases foram reescritas na mesma versão, e não na seguinte. Página que mostra preço e diz que
+não publica preço se contradiz — que é a classe de defeito que a C5 acabou de pagar no item 2 do
+despacho desta mesma semana.
+
+### O que a medição no ar pegou, e o repositório não pegaria
+
+Depois do Sync da revisão 36, medindo a página **no ar**: a vitrine estava lá, certa, e **duas páginas
+de conteúdo continuavam afirmando o contrário**. O corpo da própria C3 dizia "Não publicamos preço
+nesta página" três parágrafos acima de cinco cartões com preço, e a página de divulgação dizia "nas
+páginas de calculadora não publicamos preço nenhum" e "não usamos foto de loja". Nenhum teste pegaria
+isso: os três textos estavam corretos ontem, e nenhuma regra objetiva sabe que hoje deixaram de estar.
+
+Foi a leitura da página como um leitor leria — o que a seção 12 do contrato manda a Sentinela fazer, e
+que aqui a Fundação fez sobre o próprio trabalho antes de dar o bloco por entregue. Corrigido na
+revisão 37. **A ronda seguinte é quem aprova, como sempre.**
+
+### As três decisões de desenho que valem para a próxima ilha que montar vitrine
+
+1. **Cartão sem link não é link.** O contrato manda que os cartões sejam âncoras de verdade e não `div`
+   com `onclick`. Produto sem link de loja não tem para onde apontar, então sai como `div`, com o lugar
+   do botão reservado e escrito "link de loja em breve" — que é literalmente o que o contrato 7 manda a
+   ferramenta fazer enquanto `afiliado.url` estiver vazio.
+2. **Produto sem foto não some.** Sai com espaço reservado neutro, na posição que a adequação técnica
+   lhe deu. Neste caso não é hipótese: o primeiro cartão da vitrine servida de 100 L é o Atman HF-0600,
+   sem foto e sem link. Perder a recomendação certa por falta de imagem é trocar o certo pelo bonito.
+3. **Largura e altura não se inventam.** O banco não mediu as imagens (o egresso da nuvem barra o CDN
+   da Shopee) e a Aquametria não grava dimensão que não mediu. Em vez de chutar um par de números para
+   satisfazer a letra da regra, o cartão reserva o espaço com `aspect-ratio: 1/1` e `object-fit:
+   contain` — o layout não salta qualquer que seja a proporção real, que é a coisa que a regra existe
+   para garantir. Quando o banco trouxer medida, os atributos saem sozinhos: o código já os imprime
+   quando existem.
+
+### O que NÃO entrou, de propósito
+
+**Não há `Product`/`Offer` no JSON-LD desta página.** `Offer.price` afirma preço ATUAL, e o que temos é
+cotação de uma data. Declarar schema de oferta com número velho seria mentir em formato de máquina, que
+é pior do que mentir em texto, porque ninguém revisa. O `WebApplication` e o `FAQPage` continuam como
+estavam.
+
+**A `og:image` continua fora.** A vitrine não deu à ilha imagem própria hospedada: as fotos são dos
+anúncios, servidas pelo CDN da Shopee. `og:image` exige URL absoluta de arquivo nosso, e declarar uma
+que não é nossa é pedir para o cartão quebrar no dia em que o anúncio sair do ar.
+
+### Os portões que nasceram junto
+
+Conserto sem portão volta, e vitrine é o bloco da página que mais tenta voltar errado — ela mostra
+foto, preço e botão, que são exatamente as três coisas que empurram uma página a vender o que paga mais
+em vez do que atende.
+
+- **`ferramentas/teste-navegador-c3-vitrine.mjs`**, 38 afirmações, nas duas metades da página: a vitrine
+  SERVIDA com o JavaScript **desligado** e a PINTADA com ele ligado. A afirmação central é que **a ordem
+  da vitrine seja idêntica à da lista técnica** — se um dia alguém ordenar a vitrine por comissão, por
+  preço ou por "quem tem foto", o teste reprova. Ele não guarda número esperado nenhum: lê
+  `AQM_C3_CATALOGO` e confere a tela contra o dado.
+- **O gerador do catálogo recusa gravar imagem sem `alt`** e para se achar qualquer chave de comissão
+  viajando para dentro do snippet. Comissão não aparece na tela e não ordena nada — agora isso é
+  verificado, não prometido.
+- Mede também o celular em 390 px: rolagem até o resultado **só no envio explícito** (sequestrar a
+  rolagem de quem acabou de abrir a página é o oposto de ajudar), barra fixa enquanto o resultado está
+  fora da tela, barra sumindo quando ele entra e desligando no botão Limpar.
+
+### Um teste que precisou de conserto, e o motivo importa
+
+O `teste-navegador-cinco.mjs` reprovou a C3 com seis `ERR_TUNNEL_CONNECTION_FAILED` — as cinco fotos da
+Shopee e uma fonte. Ele já filtrava `ERR_CONNECTION`, `ERR_NAME` e `ERR_INTERNET`; nunca tinha visto a
+variante do proxy porque nenhuma página da ilha carregava imagem externa antes de hoje. O filtro foi
+estendido, e só para erro de rede: erro de script continua reprovando. Quem confere que a URL da foto é
+a do banco é o teste da vitrine, por dado; quem confere que a imagem **abre** é a Sentinela Técnica, no
+Chrome. Deixar o erro ali faria o teste reprovar todo dia por um motivo que não é defeito — e teste que
+reprova sempre é teste que ninguém lê.
+
+Uma afirmação do `teste-navegador-visibilidade-ia.mjs` foi **renomeada**, não afrouxada: chamava-se "o
+aviso da tabela explica por que não publica preço" e media, na verdade, que o aviso não fica mudo sobre
+preço. Deixou de ser verdade no nome quando a C3 passou a publicar cotação datada. Nome de teste treina
+a próxima sessão.
+
+### Verificação
+
+`php -l` nos 10 snippets; proteção de funções ok nos 10 (47 funções na C3); `teste-seo-tecnico` 177/0;
+`teste-apelidos` 59/0; `teste-conversor-markdown` 17/0; `teste-atualizador-sync` 9/0; `teste-escape-shortcode`
+ok; `conferir-entidades` zero falha nas cinco; `conferir-slugs` ok nos dois sentidos;
+`gerar-metas-descricao --conferir` em dia com as 13; validador de produtos 78/0 erro; validador de
+espécies 15/0. No navegador, um teste de cada vez: `c3-vitrine` 38/0, `c3-dupla-condicao` tudo passou,
+`visibilidade-ia` nas cinco com JavaScript desligado, `cinco`, `casca`, `c1-tabela`, `c5`, `c12`, `c15`
+e `artigos` — todos passaram.
+
+No ar, depois do Sync: **revisão 37 no `/status`**, igual à do manifest; **13 de 13 URLs do sitemap em
+HTTP 200, nenhum redirecionamento**;
+**zero `&#038;` dentro de `<script>`** (12 blocos; as 4 ocorrências da página inteira são da casca do
+tema, e contar na página inteira é teste errado); o corpo começa pela linha de promessa e não por
+metadado YAML; o script vem do rodapé; a tabela de exemplos e a vitrine servida aparecem no HTML
+servido, com 7 cartões, 5 âncoras `sponsored noopener` em aba nova, 5 imagens com `alt` e
+`loading="lazy"`, 2 espaços reservados e 5 cotações datadas.
+
+### Produtos esperando link de afiliado: 39 de 78
+
+Sem mudança no total: nenhum produto entrou no banco nesta execução. Desses 39, **7 estão sem anúncio
+achado na plataforma** e **32 só aguardam a Sentinela estratégica gerar o link** — para esses a loja
+existe. No catálogo da C3 especificamente, **8 dos 13 filtros esperam link**, e o banco tem foto para
+32 dos 78 produtos.
+
+**Item 4 do despacho, medido de novo com a vitrine no ar:** o topo continua sem link de loja. Na vitrine
+servida de 100 L o primeiro cartão é o Atman HF-0600, sem link e sem foto, e os dois seguintes com link
+vêm depois. **A ordem não mudou e não vai mudar por isso** — o desbloqueio é banco melhor ou segundo
+programa de afiliado, e isso é decisão do Raphael. O que a vitrine acrescentou ao problema é que agora
+ele é visível: o cartão sem link mostra "link de loja em breve" no lugar do botão, em vez de o leitor
+descobrir a ausência depois de rolar a ficha inteira.
+
+### Próximo passo desbloqueado
+
+1. **T8 nas outras calculadoras**, na ordem C5, C15, C12 — a C5 é a que tem mais itens com foto e link
+   depois da C3 (11 dos 14 aquecedores com link têm foto). O código da vitrine é o mesmo desenho, e as
+   três frases de preço de cada uma se reescrevem junto com ela, nunca depois.
+2. **T1 — medir a indexação no Search Console.** Continua dependendo do Chrome do Raphael ou da
+   credencial da conta de serviço no ambiente. É ele que autoriza ou barra a T4, e a leitura de 16/09
+   depende dele para dizer por que a leva de 08/09 não indexou.
+3. **Acentuar o `alt` das imagens dos outros bancos.** O `alt` é texto de tela — leitor de tela lê,
+   crawler lê — e nos bancos de aquecedor, iluminação e mídia ele ainda está sem acento, como estava no
+   de filtros até hoje. Vai junto com a vitrine de cada calculadora, porque cada mudança de banco pede
+   regerar e reverificar o snippet daquela calculadora.
+4. A `Organization` com `sameAs` na home segue pendente de propósito: a Aquametria não tem perfil
+   externo nenhum. Nasce quando o T6 der o primeiro.
