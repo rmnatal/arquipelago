@@ -3,7 +3,7 @@ ilha: clubedomosaico
 estado: nascendo
 prioridade: 2
 ultima_execucao: 2026-09-10T15:21Z
-executando_desde: null
+executando_desde: 2026-09-10T19:16Z
 bloco_atual: "1 ENTREGUE (corpus de buscas, revisao 1 do manifest, nada publicavel) — proximo: bloco 2, especificacao das duas ferramentas + constantes de fabricante"
 ultima_ronda: null
 bloqueada_por: null
