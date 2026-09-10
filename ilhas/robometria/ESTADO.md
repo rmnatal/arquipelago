@@ -3,7 +3,7 @@ ilha: robometria
 estado: nascendo
 prioridade: 1
 ultima_execucao: 2026-09-10T15:16Z
-executando_desde: null
+executando_desde: 2026-09-10T17:17Z
 bloco_atual: "4 + 4e A FERRAMENTA R1 ESTA NO AR (manifest revisao 9 conferida no /status) + despacho de 10/09 item 1: sitemaps voltaram a 200 — proximo: 5, o artigo-ancora da R1"
 ultima_ronda: null
 bloqueada_por: null
