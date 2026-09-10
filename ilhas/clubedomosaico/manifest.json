@@ -4,7 +4,7 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 1,
+  "revisao": 2,
   "atualizado_em": "2026-09-10",
   "estado": "nascendo",
   "desembarque": {
@@ -26,6 +26,32 @@
       "publicar": false,
       "sha256": "5580e5fa9084b4c06da3bb26e8e2088936b9cffbb65ca60f1b4de243f14db695",
       "descricao": "Corpus de buscas do mosaico artesanal BR nos tres motores da ilha (materiais/ferramentas, pecas prontas, aprender), com a SERP classificada por consulta em aberta/tomada/armadilha pela regra da secao 14.9. Tres achados medidos decidem a ordem da fila: a SERP de rejunte responde a pergunta de OBRA (0,2-0,4 kg/m2 com azulejo grande) e portanto esta errada para peca de artesanato com pastilha de 1x1 cm, o que faz da F1 numero proprio sem concorrente; a regra de cola x base circula em blog sem fabricante, codigo nem data, o que abre a F2 mas proibe usar a SERP como fonte dela; e 'mosaico bizantino', de faixa 1k-100k, tem a primeira pagina em portugues ocupada por resultado em espanhol. Tomadas: 'curso de mosaico' (escolas reais, a ilha nao disputa), 'presente artesanal' (Elo7) e 'vaso centro de mesa' (Leroy)."
+    },
+    {
+      "id": "constantes",
+      "arquivo": "dados/constantes.json",
+      "formato": "json",
+      "entidade": "constante",
+      "fonte": "Bloco 2 da Fundacao. Coleta em 10/09/2026 restrita ao dominio de cada fabricante (quartzolit.weber, tekbond.com.br, cascola.com.br, henkel.com.br), por busca web da nuvem — o ambiente das rotinas bloqueia curl e WebFetch para dominio de fabricante (EGRESS_BLOCKED), entao os PDFs de boletim tecnico nao foram abertos linha a linha e cada item declara isso em fonte_tipo e conferir_no_pdf. Nenhuma constante veio de blog, loja ou agregador: o bloco 1 tinha medido que a regra cola x base circula na SERP sem fabricante, codigo nem data, e a fila proibiu usar a SERP como fonte da F2.",
+      "verificado_em": "2026-09-10",
+      "registros": 17,
+      "publicar": false,
+      "sha256": "99c6c5cb7130fc0428bb15312226c74ced0b51fa79cc95c3ca4de7f45dca1e39",
+      "descricao": "11 constantes de fabricante e 6 pendencias nomeadas para as calculadoras F1 e F2. A mais valiosa e a lista de restricoes da ficha BRSA004 do Silicone Acetico Construcao Tekbond (revisada em 10/2025), que proibe o produto em espelho, concreto, cimento, tijolo, calcario, superficie alcalina, pintada ou porosa, acrilico, aquario, metal corrosivel e imersao continua — e que torna a elegibilidade da F2 mecanica em vez de opinativa, porque sao exatamente os casos em que o mosaico artesanal brasileiro usa silicone acetico por indicacao de blog. Traz tambem a formula de consumo de rejunte publicada pela propria Quartzolit (((A+B)xExLxCR)/(AxB), CR 1,75 no exemplo do fabricante), a faixa de junta de 2 a 10 mm e o procedimento do rejunte ceramicas, a cimentcola AC-II pela NBR 14.081, o silicone neutro Tekbond como saida declarada para espelho e alcalino, o PVA Cascorez para MDF interno e o Loctite Durepoxi (com ressalva: a fonte e press release, nao ficha tecnica). Declara a direcao de divergencia da ilha pela assimetria de custo: conjunto MAIS ESTREITO na compatibilidade da F2, arredondamento para o MAIOR na quantidade da F1.",
+      "pendencias": 6,
+      "pendencias_que_bloqueiam_publicacao": ["cimentcola-consumo-e-tempo-em-aberto", "silicone-rendimento-por-area"]
+    },
+    {
+      "id": "especificacao-calculadoras",
+      "arquivo": "dados/especificacao-calculadoras.md",
+      "formato": "md",
+      "entidade": "esquema",
+      "fonte": "Bloco 2 da Fundacao. Derivado de dados/constantes.json (coletado na mesma execucao) e de dados/corpus-buscas.md (bloco 1). As 12 linhas da tabela pre-renderizada da F1 e as referencias de consumo foram calculadas nesta execucao com as formulas do proprio arquivo; a matriz da F2 sai linha a linha das restricoes declaradas pelos fabricantes.",
+      "verificado_em": "2026-09-10",
+      "registros": 25,
+      "publicar": false,
+      "sha256": "1189ad6f0fc3e21ed046acc7d2215e0c947f267b1557b07b1c87a05edb58fa7a",
+      "descricao": "Contrato de construcao das duas ferramentas, para o bloco 4 nao precisar decidir nada de novo. F2 (seletor de cola e rejunte) primeiro, com matriz de 13 casos base x ambiente em que cada eliminacao cita a restricao declarada pelo fabricante, e com duas faixas declaradas DESCOBERTAS em vez de preenchidas no chute (peca em contato permanente com agua e base de plastico). F1 (calculadora de pastilhas e rejunte) depois, com as formulas de area por forma, a contagem de pastilhas pelo passo da malha, a formula de rejunte da Quartzolit e a tabela pre-renderizada de 12 pecas tipicas ja calculada. O numero que abre a F1: pastilha de 1x1 cm com junta de 2 mm consome 2,80 kg/m2 de rejunte, sete a catorze vezes os 0,2-0,4 kg/m2 que a primeira pagina do Google publica, porque a SERP inteira calcula com azulejo de obra. Traz ainda a espessura da pastilha como ENTRADA e nao constante (nenhum fabricante a padroniza), a conversao entre as tres unidades de venda de pastilha, o bloco de compra obrigatorio antes da procedencia pela cicatriz da Robometria, e a lista de verificacao da secao 8 aplicada as duas."
     }
   ],
   "ferramentas": [],

@@ -2,9 +2,9 @@
 ilha: clubedomosaico
 estado: nascendo
 prioridade: 2
-ultima_execucao: 2026-09-10T15:21Z
-executando_desde: 2026-09-10T19:16Z
-bloco_atual: "1 ENTREGUE (corpus de buscas, revisao 1 do manifest, nada publicavel) — proximo: bloco 2, especificacao das duas ferramentas + constantes de fabricante"
+ultima_execucao: 2026-09-10T19:30Z
+executando_desde: null
+bloco_atual: "2 ENTREGUE (especificacao das duas ferramentas + 11 constantes de fabricante com 6 pendencias nomeadas, revisao 2 do manifest, nada publicavel) — proximo: bloco 3, modelo do banco (MATERIAL, PECA, TECNICA), que a especificacao ja deixou com os campos nomeados"
 ultima_ronda: null
 bloqueada_por: null
 ---
@@ -24,6 +24,11 @@ Espelho legível do estado do projeto. **Nunca guarde credencial aqui.**
 
 ## O que já foi entregue
 - 10/09/2026 — Pesquisa de palavras-chave e SERP (na memória `/areas/projeto-clube-do-mosaico.md`) e estratégia aprovada em conversa (artifact "Clube do Mosaico").
+- 10/09/2026 — **Bloco 2: especificação das duas ferramentas** em
+  `dados/especificacao-calculadoras.md` e **constantes de fabricante** em
+  `dados/constantes.json` (manifest na revisão 2, `publicar: false`, sem Sync). 11 constantes
+  coletadas direto do domínio de cada fabricante e 6 pendências nomeadas com o documento
+  exato que fecha cada uma. A F2 (cola e rejunte) vem antes da F1, como o bloco 1 mandou.
 - 10/09/2026 — **Bloco 1: corpus de buscas** em `dados/corpus-buscas.md` (manifest na revisão 1, `publicar: false`). Três clusters com a SERP classificada consulta a consulta em aberta/tomada/armadilha, coletada por busca web da nuvem. Ordem da fila definida por intenção × chance de primeira página: colas/F2 antes de rejuntes/F1, alicates antes de pastilhas, `/tecnicas/bizantino` como única cabeça de volume alto com chance real. Confirmadas como TOMADAS e fora da fila: `curso de mosaico` (escolas reais — a ilha não vende curso), `presente artesanal` (Elo7) e `vaso centro de mesa` (Leroy).
 
 ## O que a coleta do bloco 1 já provou, e que muda o desenho das ferramentas
@@ -31,9 +36,48 @@ Espelho legível do estado do projeto. **Nunca guarde credencial aqui.**
 - **A regra cola × base circula sem procedência.** Madeira → cola branca, vidro → silicone, alvenaria → argamassa aparece em blog (FazFácil, Vila do Artesão) sem fabricante, sem código, sem data e sem separar interno/externo/molhado. Abre a F2 e ao mesmo tempo **proíbe** usar a SERP como fonte dela: o bloco 2 coleta de Quartzolit, Tekbond, Loctite e Cascola.
 - **As lojas vendem pastilha em três unidades diferentes** — 100 peças (Shopee), 100 gramas (Bazar Horizonte), placa 30×30 com 225 (Boutique dos Azulejos). Converter peça ↔ grama ↔ placa é número próprio da ilha e não existe na SERP.
 
+## O que o bloco 2 provou, e que decide como as ferramentas nascem
+- **A ficha do próprio fabricante do silicone acético desmonta a prática corrente do
+  mosaico brasileiro.** A ficha BRSA004 do Silicone Acético Construção Tekbond (revisada em
+  10/2025) lista **espelho, concreto, cimento, tijolo, calcário, superfície alcalina,
+  superfície pintada ou porosa, acrílico, aquário, metal corrosível e imersão contínua**
+  entre as superfícies em que o produto não deve ser usado. Vaso de cimento, caco de espelho
+  e peça de área molhada são exatamente o que o blog manda colar com silicone acético. Isso
+  torna a elegibilidade da F2 **mecânica**: basta uma restrição bater com a entrada para o
+  produto sair dos recomendados, com a frase do fabricante e a data na tela.
+- **O par acético/neutro é do mesmo fabricante**, então a F2 diz "não use A, use B" sem sair
+  de uma fonte só: o Silicone Neutro Tekbond é declarado para espelho, concreto, alvenaria e
+  pedra, que são justamente as restrições do acético.
+- **O número que abre a F1 existe e é grande.** Aplicando a fórmula publicada pela própria
+  Quartzolit ao tamanho real da pastilha de artesanato, pastilha de 1×1 cm com 4 mm de
+  espessura e junta de 2 mm consome **2,80 kg/m²** de rejunte — sete a catorze vezes os
+  0,2–0,4 kg/m² que a primeira página do Google publica, porque a SERP inteira calcula com
+  azulejo de obra. O bloco 1 tinha suspeitado; o bloco 2 mediu.
+- **A placa 30×30 com 225 pastilhas não é pastilha de 1×1 cm.** O passo é 30/√225 = 2,00 cm,
+  ou seja, pastilha nominal de 2 cm. É o erro que a artesã comete ao comparar preço entre
+  loja que vende por peça e loja que vende por placa.
+- **A espessura da pastilha não é constante de fabricante** — nenhum fabricante de pastilha
+  de artesanato padroniza — então virou campo de entrada com aviso, e cada linha da tabela
+  de exemplos declara a espessura que usou.
+
 ## O que está travando
 - Loja: depende da mãe do Raphael cadastrar peças na área da artesã (bloco 4d, snippet de CPT). O login é criado pelo snippet e entregue ao Raphael. Não bloqueia os blocos 1–3.
 - Logo: arquivo a receber do Raphael. Bloqueia só o favicon e o logo da casca.
 - CPC por consulta: o Planejador está na conta do Raphael, no navegador. Ficou declarado como ausente no corpus, nunca estimado. Coluna a preencher na primeira leitura semanal com o painel aberto.
 - SERP de `colar de mosaico` e `mandala de mosaico`: não verificadas nesta execução, e estão escritas assim no corpus.
+- **Coluna de gramas de cola da F1**: falta o consumo em kg/m² da cimentcola AC-II/AC-III e o
+  rendimento do silicone por área (o fabricante declara por cordão). São as duas únicas
+  pendências que bloqueiam publicação, e bloqueiam só essa coluna — a F1 sai sem ela dizendo
+  por quê. As outras quatro pendências (CR por tipo de rejunte, secagem do Cascorez, ficha do
+  Tekbond Espelho Fix, rejunte epóxi) são coleta, não bloqueio.
+- **Duas faixas descobertas da F2, declaradas em vez de chutadas**: peça em contato
+  permanente com água e base de plástico. A página vai dizer que não publica recomendação
+  nesses dois casos.
+- **A nuvem não abre PDF de fabricante.** `curl` e `WebFetch` para quartzolit.weber e
+  tekbond.com.br voltaram `EGRESS_BLOCKED`/`connect_rejected`: a rede das rotinas libera os
+  domínios das ilhas, `*.googleapis.com` e `github.com`, e nada mais. A coleta do bloco 2 foi
+  feita por busca web restrita ao domínio de cada fabricante, e cada constante declara isso
+  em `fonte_tipo`, com `conferir_no_pdf` marcando as que merecem segunda leitura. Se o
+  Raphael quiser fechar essa lacuna, é acrescentar quartzolit.weber, tekbond.com.br,
+  cascola.com.br e henkel.com.br à rede Personalizada do ambiente das rotinas.
 - DNS/WordPress/Search Console seguem como no registro de 10/09. Nada disso trava os blocos 2 e 3, que não dependem de site.

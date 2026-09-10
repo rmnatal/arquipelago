@@ -1,0 +1,328 @@
+{
+  "ilha": "clubedomosaico",
+  "arquivo": "Constantes tecnicas de fabricante que as calculadoras F1 e F2 podem usar",
+  "bloco": "2",
+  "coletado_em": "2026-09-10",
+  "versao": 1,
+  "metodo_de_coleta": {
+    "como": "Busca web da nuvem restrita ao dominio do proprio fabricante (quartzolit.weber, tekbond.com.br, cascola.com.br, henkel.com.br). O que esta aqui e o que a pagina ou a ficha tecnica do fabricante declara.",
+    "limite_desta_execucao": "O ambiente das rotinas so libera os dominios das ilhas, *.googleapis.com e github.com. curl e WebFetch para dominio de fabricante voltaram EGRESS_BLOCKED / connect_rejected, entao os PDFs de boletim tecnico NAO foram abertos linha a linha: cada constante abaixo veio do texto da pagina do fabricante lido pela ferramenta de busca. Isso e declarado item a item em `fonte_tipo`. Constante lida assim vale como constante de fabricante, mas a coluna `conferir_no_pdf` marca as que merecem uma segunda leitura quando o dominio do fabricante for liberado ou quando o Raphael abrir o PDF no navegador.",
+    "o_que_nao_entrou": "Nada de blog, loja, agregador ou calculadora de terceiro. O bloco 1 ja tinha medido que a regra cola x base circula em blog sem fabricante, sem codigo e sem data — e por isso a fila proibiu usar a SERP como fonte da F2."
+  },
+  "regra_de_divergencia": {
+    "principio": "Secao 10 do ARQUIPELAGO.md: quando as fontes divergem, quem decide a direcao e a assimetria de custo, nunca a media.",
+    "erro_caro_da_F2": "Recomendar adesivo que o fabricante desaconselha faz a peca descolar meses depois, na casa de quem comprou. Entao a F2 resolve para o conjunto MAIS ESTREITO: basta UMA restricao declarada pelo fabricante para o produto sair da lista de recomendados daquele caso.",
+    "erro_caro_da_F1": "Faltar material no meio da peca e pior do que sobrar: lote novo de pastilha e de rejunte muda de cor, e a peca fica remendada. Entao a F1 resolve para o MAIOR: arredonda quantidade para cima e publica a sobra embutida como numero explicito, nunca escondida."
+  },
+  "constantes": [
+    {
+      "id": "rejunte-formula-consumo",
+      "usada_por": ["F1"],
+      "tipo": "formula",
+      "descricao": "Consumo de rejunte por metro quadrado em funcao do tamanho da peca, da espessura e da largura da junta.",
+      "formula": "consumo_kg_m2 = ((A + B) * E * L * CR) / (A * B)",
+      "variaveis": {
+        "A": "largura da peca, em mm",
+        "B": "comprimento da peca, em mm",
+        "E": "espessura da peca, em mm",
+        "L": "largura da junta, em mm",
+        "CR": "coeficiente de consumo do rejunte"
+      },
+      "unidade": "kg/m2",
+      "exemplo_do_proprio_fabricante": "(200 + 200) x 8 x 10 x 1,75 / (200 x 200) = 1,4 kg/m2",
+      "CR_declarado_no_exemplo": 1.75,
+      "fabricante": "Quartzolit (Saint-Gobain Weber)",
+      "fonte_url": "https://www.quartzolit.weber/ajuda-e-dicas-para-construir/tudo-sobre-os-tipos-de-rejuntes-e-suas-funcoes/dicas-importantes-sobre-rejuntes",
+      "fonte_tipo": "pagina de ajuda do fabricante, lida por busca no dominio dele",
+      "coletado_em": "2026-09-10",
+      "status": "verificado",
+      "conferir_no_pdf": false,
+      "observacao": "Todas as medidas na MESMA unidade. A ilha usa CR = 1,75 porque e o valor que o proprio fabricante usa no exemplo publicado. Uma tabela de CR por tipo de rejunte NAO foi obtida — ver pendencia `rejunte-CR-por-tipo`. Enquanto ela nao existir, a F1 publica um CR so, com a frase dizendo de onde ele veio."
+    },
+    {
+      "id": "rejunte-ceramicas-quartzolit-junta",
+      "usada_por": ["F1", "F2"],
+      "tipo": "faixa",
+      "produto": "rejunte ceramicas quartzolit",
+      "campo": "largura de junta admitida",
+      "valor_min_mm": 2,
+      "valor_max_mm": 10,
+      "fabricante": "Quartzolit (Saint-Gobain Weber)",
+      "fonte_url": "https://www.quartzolit.weber/argamassas-e-rejuntes-quartzolit/rejuntes-quartzolit/rejunte-ceramicas-quartzolit",
+      "fonte_tipo": "pagina de produto do fabricante + boletim tecnico 2018-08",
+      "coletado_em": "2026-09-10",
+      "status": "verificado",
+      "conferir_no_pdf": true,
+      "observacao": "Indicado para ceramicas e pedras naturais, uso residencial, comercial e industrial, em piso e parede. E o limite que faz a F1 recusar junta declarada fora de 2 a 10 mm em vez de calcular assim mesmo."
+    },
+    {
+      "id": "rejunte-ceramicas-quartzolit-aplicacao",
+      "usada_por": ["F1", "F2"],
+      "tipo": "procedimento",
+      "produto": "rejunte ceramicas quartzolit",
+      "itens": [
+        "Misturar com a agua indicada na embalagem ate consistencia pastosa e firme e deixar em REPOUSO por 15 minutos antes de usar.",
+        "Junta de ate 3 mm deve ser molhada com agua limpa antes da aplicacao; em dia de sol ou vento forte, molhar TODAS as juntas.",
+        "Liberacao para contato com area molhada: 24 horas.",
+        "Em area externa, proteger o rejunte recem-aplicado do sol, do vento e da chuva por 24 horas."
+      ],
+      "fabricante": "Quartzolit (Saint-Gobain Weber)",
+      "fonte_url": "https://www.quartzolit.weber/argamassas-e-rejuntes-quartzolit/rejuntes-quartzolit/rejunte-ceramicas-quartzolit",
+      "fonte_tipo": "pagina de produto do fabricante + boletim tecnico 2018-08",
+      "coletado_em": "2026-09-10",
+      "status": "verificado",
+      "conferir_no_pdf": true,
+      "observacao": "A regra dos 3 mm importa MUITO no mosaico artesanal: a junta tipica de pastilha de 1x1 cm e de 2 a 3 mm, ou seja, quase toda peca da ilha cai na faixa que o fabricante manda molhar antes. Nenhuma pagina da SERP de rejunte diz isso, porque toda ela fala de obra com junta larga."
+    },
+    {
+      "id": "cimentcola-externo-acii-quartzolit",
+      "usada_por": ["F2"],
+      "tipo": "produto",
+      "produto": "argamassa cimentcola externo ACII quartzolit",
+      "classificacao": "AC-II conforme NBR 14.081",
+      "declaracoes": [
+        "Cimentcola de secagem rapida para assentamento ceramico em area interna e externa, tipo AC-II segundo a NBR 14.081.",
+        "Para ceramicas e placas de pedra natural de ate 120 x 120 cm em area interna e 100 x 100 cm em area externa.",
+        "Pode ser aplicada em camada grossa, com ate 3 cm de espessura de argamassa.",
+        "Embalagem: saco de papel ou plastico de 15 kg ou 20 kg.",
+        "Em piscina, encher com agua somente 7 dias depois."
+      ],
+      "fabricante": "Quartzolit (Saint-Gobain Weber)",
+      "fonte_url": "https://www.quartzolit.weber/argamassas-e-rejuntes-quartzolit/argamassas-para-ceramicas-externas-quartzolit/argamassa-cimentcola-externo-acii-quartzolit",
+      "fonte_tipo": "pagina de produto do fabricante, lida por busca no dominio dele",
+      "coletado_em": "2026-09-10",
+      "status": "verificado",
+      "conferir_no_pdf": true,
+      "observacao": "E a familia de adesivo que a F2 indica para base de cimento/concreto e para peca externa exposta — justamente os casos em que o silicone acetico esta proibido pelo proprio fabricante do silicone. O consumo em kg/m2 e o tempo em aberto NAO foram obtidos: ver pendencias."
+    },
+    {
+      "id": "tekbond-silicone-acetico-restricoes",
+      "usada_por": ["F2"],
+      "tipo": "restricao",
+      "produto": "Silicone Acetico Construcao Tekbond",
+      "codigo": "BRSA004",
+      "ficha_revisada_em": "10/2025",
+      "nao_usar_em": [
+        "espelhos",
+        "vidro laminado",
+        "metal corrosivel",
+        "superficies pintadas",
+        "superficies porosas",
+        "superficies alcalinas",
+        "concreto",
+        "cimento",
+        "tijolo",
+        "calcario",
+        "zinco",
+        "chapa galvanizada",
+        "aquarios",
+        "acrilico"
+      ],
+      "nao_recomendado_em": ["polietileno", "polipropileno", "policarbonato"],
+      "nao_indicado_para": [
+        "fachada de vidro",
+        "colagem estrutural que exija resistencia",
+        "contato com alimento",
+        "imersao continua em meio liquido",
+        "ambiente completamente fechado"
+      ],
+      "nao_aceita": "pintura sobre o produto curado",
+      "fabricante": "Tekbond",
+      "fonte_url": "https://www.tekbond.com.br/sites/Tekbond.com.br/files/media/downloadable/2025-10/Silicone_Acetico_Construcao-BRSA004-ficha_tecnica_01.pdf",
+      "fonte_tipo": "ficha tecnica do fabricante, lida por busca no dominio dele",
+      "coletado_em": "2026-09-10",
+      "status": "verificado",
+      "conferir_no_pdf": true,
+      "observacao": "ESTA E A CONSTANTE MAIS VALIOSA DO BLOCO. E a lista de restricoes que torna a elegibilidade da F2 mecanica em vez de opinativa: base de cimento, base de concreto, espelho e peca que fica submersa eliminam o silicone acetico por declaracao do proprio fabricante — e o mosaico artesanal brasileiro usa silicone acetico exatamente nesses casos, porque o blog manda. Regra de elegibilidade da secao 7 do contrato: basta UMA condicao falhar para o produto sair dos recomendados."
+    },
+    {
+      "id": "tekbond-silicone-acetico-indicacoes",
+      "usada_por": ["F2"],
+      "tipo": "produto",
+      "produto": "Silicone Acetico Tekbond",
+      "indicado_para": [
+        "vedacao de esquadria de aluminio com vidro",
+        "vidro nao laminado",
+        "aluminio comum e anodizado",
+        "granito",
+        "ceramica",
+        "azulejo"
+      ],
+      "propriedades": {
+        "aparencia": "pasta translucida com odor caracteristico de acido acetico",
+        "densidade_25C_g_ml": "0,93 a 1,05",
+        "formacao_de_pelicula_min": "5 a 15",
+        "cura_23C_55UR_apos_24h_mm": ">= 3",
+        "temperatura_de_aplicacao_C": "+5 a 35",
+        "temperatura_de_trabalho_C": "-50 a 150",
+        "alongamento_a_ruptura": ">= 800%",
+        "dureza_shore_A": 25
+      },
+      "preparo": "Limpar a superficie com alcool ou acetona; superficie seca e firme. Cortar a ponta do cartucho e o bico a 45 graus.",
+      "fabricante": "Tekbond",
+      "fonte_url": "https://www.tekbond.com.br/produtos/sela-e-veda/silicones/silicone-acetico",
+      "fonte_tipo": "pagina de produto + ficha tecnica do fabricante, lidas por busca no dominio dele",
+      "coletado_em": "2026-09-10",
+      "status": "verificado",
+      "conferir_no_pdf": true,
+      "observacao": "A cura de >= 3 mm por 24 h e o numero que a F2 usa para dizer quanto tempo a peca precisa descansar antes do rejunte, e nao 'deixe secar', que e o que a SERP diz."
+    },
+    {
+      "id": "tekbond-silicone-neutro-substratos",
+      "usada_por": ["F2"],
+      "tipo": "produto",
+      "produto": "Silicone Neutro Tekbond",
+      "veda": [
+        "ceramica",
+        "madeira",
+        "metais",
+        "vidro comum e temperado",
+        "laminados",
+        "vidro aramado",
+        "espelhos",
+        "concreto",
+        "alvenaria",
+        "pedras",
+        "certos tipos de plastico"
+      ],
+      "resistencias": [
+        "agentes acidos",
+        "metais corrosiveis",
+        "variacao de temperatura",
+        "chuva",
+        "raios UV"
+      ],
+      "fabricante": "Tekbond",
+      "fonte_url": "https://www.tekbond.com.br/produtos/sela-e-veda/silicones/silicone-neutro",
+      "fonte_tipo": "pagina de produto do fabricante + ficha tecnica de 09/2020",
+      "coletado_em": "2026-09-10",
+      "status": "verificado",
+      "conferir_no_pdf": true,
+      "observacao": "E a saida declarada pelo mesmo fabricante para os casos em que o acetico esta proibido: espelho, concreto, alvenaria e pedra. Par acetico/neutro do MESMO fabricante e o que permite a F2 responder 'nao use A, use B' sem sair de uma fonte so."
+    },
+    {
+      "id": "cascorez-extra-substratos",
+      "usada_por": ["F2"],
+      "tipo": "produto",
+      "produto": "CASCOLA Cascorez Cola Branca PVA Extra / Extraforte",
+      "fabricante": "Cascola (Henkel)",
+      "indicado_para": [
+        "madeira de alta, media e baixa densidade",
+        "MDF",
+        "compensado",
+        "couro",
+        "tela",
+        "gesso",
+        "laminados plasticos (Formica, Formiplac, Perstop)",
+        "poliestireno expandido",
+        "outros materiais porosos",
+        "papel, papelao, tecido e cortica",
+        "encadernacao",
+        "molduras, rodapes e revestimentos decorativos em ambientes internos"
+      ],
+      "preparo": "Superficies limpas, firmes, niveladas e secas; lixar quando necessario para deixar aspero. Aplicacao com pincel ou rolo.",
+      "fonte_url": "https://www.cascola.com.br/products-diy/central-pdp.html/cascola-cascorez-cola-branca-pva-extraforte/SAP_0201FTC20WQ5.html",
+      "fonte_tipo": "pagina de produto do fabricante, lida por busca no dominio dele",
+      "coletado_em": "2026-09-10",
+      "status": "verificado",
+      "conferir_no_pdf": true,
+      "observacao": "ATENCAO AO QUE NAO ESTA ESCRITO: o fabricante lista usos porosos e INTERNOS e nao declara resistencia a agua nem uso externo. A F2 nao transforma esse silencio em proibicao inventada — ela diz literalmente 'o fabricante nao declara uso externo nem resistencia a agua para este produto', e por isso o PVA nao entra como recomendado em peca externa ou molhada. Ausencia de declaracao e motivo suficiente para nao recomendar, e e diferente de uma proibicao declarada."
+    },
+    {
+      "id": "loctite-durepoxi-substratos",
+      "usada_por": ["F2"],
+      "tipo": "produto",
+      "produto": "Loctite Durepoxi",
+      "fabricante": "Henkel",
+      "declaracoes": [
+        "Indicado para reparo em vidro, madeira, metal, porcelana, borracha, pedra e alguns tipos de plastico.",
+        "Tambem citado para couro, aluminio, ferro, cobre, prata, ouro, latao, marmore, porcelana e fibras naturais.",
+        "Adere mesmo exposto a condicao submersa; seca debaixo d'agua.",
+        "Versao extraforte seca em 10 minutos."
+      ],
+      "fonte_url": "https://www.henkel.com.br/imprensa-midia/press-releases-e-kits/2018-09-11-familia-loctite-durepoxi-possibilita-diferentes-reparos-e-aplicacoes-875598",
+      "fonte_tipo": "material de imprensa do fabricante — NAO e ficha tecnica",
+      "coletado_em": "2026-09-10",
+      "status": "verificado_com_ressalva",
+      "conferir_no_pdf": true,
+      "observacao": "A fonte e press release do proprio fabricante, nao boletim tecnico. Por isso o epoxi entra na F2 como opcao de peca submersa e de colagem pontual, mas a frase publicada diz 'segundo material do proprio fabricante (2018)' e nao 'segundo a ficha tecnica'. Trocar pela ficha assim que ela for aberta."
+    },
+    {
+      "id": "geometria-pastilhas-por-m2",
+      "usada_por": ["F1"],
+      "tipo": "formula",
+      "descricao": "Quantas pastilhas quadradas cabem em um metro quadrado, contando a junta.",
+      "formula": "pastilhas_por_m2 = 1 / ((lado_mm + junta_mm) / 1000)^2",
+      "fonte_tipo": "geometria — calculo proprio da ilha, nao e dado de fabricante",
+      "status": "verificado",
+      "exemplos_conferidos_em_2026-09-10": {
+        "1x1 cm, junta 2 mm": 6944,
+        "2x2 cm, junta 3 mm": 1890,
+        "2,5x2,5 cm, junta 3 mm": 1276,
+        "1x1 cm, junta 1 mm": 8264
+      },
+      "observacao": "Nao e constante de fabricante e nao precisa ser: e o passo da malha ao quadrado. Fica aqui declarado como calculo proprio para que a pagina nunca cite fabricante para um numero que a ilha mesma produziu."
+    },
+    {
+      "id": "conversao-unidades-de-venda-de-pastilha",
+      "usada_por": ["F1"],
+      "tipo": "formula",
+      "descricao": "Converter entre as tres unidades em que a pastilha e vendida no Brasil (peca avulsa, placa e grama), achado do bloco 1.",
+      "regras": [
+        "PLACA -> PASSO: em placa quadrada de lado L cm com N pastilhas, o passo de fabrica e L / raiz(N). Placa 30x30 com 225 pastilhas tem passo de 2,00 cm, ou seja, pastilha nominal de 2 cm com junta de fabrica ja embutida — NAO e pastilha de 1x1 cm.",
+        "PLACA -> AREA: a placa cobre a area bruta dela (30x30 cm = 900 cm2 = 0,09 m2), desde que a artesa mantenha o passo de fabrica. Recortando a placa e reespacando com junta propria, vale a conta por peca.",
+        "PECA -> AREA: area_coberta = N * (lado_cm + junta_cm)^2. Com junta de 2 mm, 100 pastilhas de 1x1 cm cobrem 144 cm2; com junta de 3 mm, 100 pastilhas de 2x2 cm cobrem 529 cm2.",
+        "GRAMA -> PECA: exige o peso unitario da pastilha, que muda com material e espessura e que NENHUM fabricante declara de forma geral. Nao ha formula: o peso por peca e coletado SKU a SKU para o banco MATERIAL do bloco 3."
+      ],
+      "fonte_tipo": "geometria + achado de mercado do bloco 1 (dados/corpus-buscas.md)",
+      "status": "verificado_com_pendencia",
+      "observacao": "A conversao peca <-> placa e peca <-> area e propria da ilha e nao existe na SERP. A conversao grama <-> peca fica PENDENTE por SKU e por isso nao entra em formula publicada: a F1 so mostra gramas quando o item do banco tiver peso declarado pela loja, com data."
+    }
+  ],
+  "pendentes": [
+    {
+      "id": "rejunte-CR-por-tipo",
+      "o_que_falta": "Tabela do coeficiente CR por tipo de rejunte (cimenticio, flexivel, acrilico, epoxi) declarada pelo fabricante.",
+      "onde_buscar": "Boletins tecnicos da Quartzolit: rejunte ceramicas (2018-08), rejunte porcelanatos e ceramicas (2024-02), rejunte acrilico (2023-04), rejunte epoxi (2018-01).",
+      "por_que_importa": "Sem ela a F1 publica um CR unico (1,75, o do exemplo do fabricante). Com ela, a F1 passa a acertar por tipo de rejunte.",
+      "bloqueia_publicacao": false
+    },
+    {
+      "id": "cimentcola-consumo-e-tempo-em-aberto",
+      "o_que_falta": "Consumo em kg/m2, tempo em aberto e tempo de pega da cimentcola AC-II e AC-III.",
+      "onde_buscar": "Boletim Tecnico cimentcola externo ACII 2024 (quartzolit.weber, arquivo 2024-09) e BT cimentcola flexivel ACIII (2021-07).",
+      "por_que_importa": "A F1 so publica gramas de ADESIVO quando este numero existir. Ate la a F1 entrega pastilhas e rejunte, e diz na tela por que a coluna de cola esta vazia.",
+      "bloqueia_publicacao": true,
+      "bloqueia_o_que": "coluna 'gramas de cola' da F1"
+    },
+    {
+      "id": "silicone-rendimento-por-area",
+      "o_que_falta": "Rendimento do silicone declarado por area colada (o fabricante declara por cordao: metros de cordao de X mm por cartucho).",
+      "onde_buscar": "Ficha tecnica Tekbond BRSA004 e equivalentes.",
+      "por_que_importa": "Mesma coisa: sem rendimento por area, a F1 nao converte area da peca em gramas de silicone. Converter na base do palpite seria exatamente o que a secao 10 do contrato proibe.",
+      "bloqueia_publicacao": true,
+      "bloqueia_o_que": "coluna 'gramas de cola' da F1"
+    },
+    {
+      "id": "cascorez-tempo-de-secagem",
+      "o_que_falta": "Tempo de secagem e de prensagem do Cascorez Extra e do Cascorez Artesanato.",
+      "onde_buscar": "cascola.com.br, pagina do produto e ficha tecnica.",
+      "por_que_importa": "A F2 hoje indica o PVA para MDF interno sem dizer quanto tempo esperar. Numero pequeno, mas e o tipo de coisa que a SERP nunca da.",
+      "bloqueia_publicacao": false
+    },
+    {
+      "id": "tekbond-espelho-fix",
+      "o_que_falta": "Ficha tecnica do Tekbond Espelho Fix (adesivo especifico para espelho).",
+      "onde_buscar": "tekbond.com.br/index.php/produtos/espelho-fix/espelho-fix",
+      "por_que_importa": "Mosaico com caco de espelho e um dos tutoriais-ancora da fila (bloco 5). Existindo produto dedicado do mesmo fabricante, ele passa a ser a primeira opcao do caso 'espelho', na frente do silicone neutro.",
+      "bloqueia_publicacao": false
+    },
+    {
+      "id": "rejunte-epoxi-para-peca-molhada",
+      "o_que_falta": "Dados do rejunte epoxi Quartzolit: largura de junta, consumo, liberacao para area molhada e imersao.",
+      "onde_buscar": "Boletim Tecnico rejunte epoxi quartzolit (2018-01).",
+      "por_que_importa": "E o caminho tecnico para peca que fica em contato permanente com agua (fonte, bebedouro, vaso auto-irrigavel). Sem ele a F2 responde 'nao publico recomendacao para peca submersa' — que e resposta honesta, mas e uma faixa descoberta.",
+      "bloqueia_publicacao": false
+    }
+  ]
+}
