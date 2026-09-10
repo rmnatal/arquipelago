@@ -3925,17 +3925,48 @@ paralelo é PIOR, não melhor: três Chromiums disputam a mesma máquina e todos
 cada vez.** Isso não é defeito de código e não reprova nada — mas é a diferença entre uma execução
 que verifica e uma que desiste de verificar, e é assim que verificação morre.
 
+### A quarta asserção vencida, achada rodando o teste que a seção 8 exige
+
+`teste-navegador-cinco.mjs` reprovou a C15 em **"bloco de produto oculto, como manda a regra do
+banco — apareceu"**. Não era regressão desta execução: o diff inteiro da C15 aqui são DUAS classes CSS
+acrescentadas a `div`, e classe não faz bloco de produto aparecer. O caso trazia `semProduto: true`
+com este comentário escrito pelo próprio autor: *"Vira semProduto:false no dia em que o banco tiver
+luminária apta."* **Esse dia foi 09/09**, na leva de catálogo que deu voltagem à Chihiros WRGB II Pro
+60 e levou a C15 de 3 para 9 aptas. Ninguém voltou ao teste.
+
+Em vez de virar o booleano — que apodrece de novo no próximo movimento de catálogo — a afirmação
+deixou de dizer QUAL dos dois estados a página deve ter. **Os dois são legítimos, e quem decide qual é
+hoje é o catálogo, não o teste.** Passou a afirmar a PROMESSA de cada estado: bloco visível tem de
+estar bem formado (todo link que existir com `sponsored`, `noopener` e aba nova, mais aviso de
+comissão); bloco oculto tem de dizer por que não sugere e não pode vazar link.
+
+E como `every()` sobre lista vazia passa por vácuo, entrou uma afirmação de CONJUNTO: **nenhuma
+calculadora é obrigada a ter link** — a ordem é por adequação técnica e catálogo maior chega a
+*reduzir* links na tela, então exigir link por página seria pedir que o banco não melhorasse — mas as
+cinco juntas não podem ficar sem nenhum, porque aí não é catálogo, é encanamento quebrado. Deu **7
+links bem marcados**, e a C15 agora serve bloco de produto com 1 link: a lacuna fechou de verdade.
+
+Manifest **revisão 31**. `teste-navegador-cinco.mjs`: **56 afirmações, 0 falha, as cinco calculando
+em Chromium real** — que é o mínimo que a seção 8 exige quando a sessão não alcança o site.
+`teste-navegador-c15.mjs` rodado de novo depois das duas classes novas: **78 afirmações, tudo passou,
+console limpo.**
+
+**Quatro asserções vencidas em duas execuções seguidas, todas do mesmo tipo.** Vale escrever a regra
+de uma vez: *afirmação que descreve o ESTADO do catálogo — quantos itens, qual buraco está aberto,
+qual produto está barrado — vence sozinha e reprova o trabalho da fila. Afirme a promessa, nunca o
+estado.*
+
 ### NÃO CONCLUÍDO — o site continua fora de alcance, e agora são DEZENOVE revisões paradas
 
 `aquametria.com.br` devolveu **EGRESS_BLOCKED** de novo, testado em `/wp-json/aquametria/v1/status`.
 **O Sync não foi acionado e a revisão aplicada não foi conferida**, então nada desta execução pode
 ser dado por "no ar" — só por "no `main`".
 
-**Repositório na revisão 30; a última medição do site, em 08/09 às 13h03, dizia 11.**
+**Repositório na revisão 31; a última medição do site, em 08/09 às 13h03, dizia 11.**
 
 **O que destrava tudo continua sendo um gesto de trinta segundos no Chrome do Raphael:** abrir a URL
 do Sync com `&forcar=1` e, uns cinco minutos depois, conferir que `/wp-json/aquametria/v1/status` diz
-**revisão 30**. Depois disso, a medição do item 1 do despacho: `wp-sitemap.xml` sem
+**revisão 31**. Depois disso, a medição do item 1 do despacho: `wp-sitemap.xml` sem
 `/category/uncategorized/`, e essa URL servindo `noindex`.
 
 ### Produtos esperando link de afiliado: 39 de 78

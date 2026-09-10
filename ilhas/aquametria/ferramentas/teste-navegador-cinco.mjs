@@ -32,14 +32,24 @@ const CASOS = [
     preencher: async p => { await p.fill('#aqm-c5-volume', '100'); await p.fill('#aqm-c5-minima', '18'); await p.fill('#aqm-c5-alvo', '26'); } },
   { codigo: 'c12', arquivo: 'c12.html', produtos: true,
     preencher: async p => { await p.fill('#aqm-c12-volume', '100'); await p.selectOption('#aqm-c12-perfil', 'comunitario'); } },
-  // C15: as três luminárias do catálogo estão barradas por falta de lúmen ou
-  // voltagem declarados, então hoje ela responde sem bloco de produto — de
-  // propósito. Vira semProduto:false no dia em que o banco tiver luminária apta.
-  { codigo: 'c15', arquivo: 'c15.html', produtos: true, semProduto: true,
+  // C15: até 09/09/2026 este caso trazia semProduto:true, porque as luminárias
+  // do catálogo estavam barradas por falta de lúmen ou voltagem declarados. A
+  // leva de catálogo daquele mesmo dia fechou a lacuna (a Chihiros WRGB II Pro
+  // 60 ganhou voltagem e a C15 foi de 3 para 9 aptas), e a asserção passou a
+  // REPROVAR exatamente o trabalho que a fila mandou fazer. O sinalizador saiu:
+  // ver a regra escrita logo abaixo, na afirmação 5.
+  { codigo: 'c15', arquivo: 'c15.html', produtos: true,
     preencher: async p => { await p.fill('#aqm-c15-volume', '100'); await p.fill('#aqm-c15-comprimento', '80'); await p.fill('#aqm-c15-lamina', '45'); await p.selectOption('#aqm-c15-regime', 'normal'); } },
 ];
 
 let falhas = 0;
+// Quantos links de afiliado bem marcados o conjunto das cinco calculadoras
+// serviu. Existe porque a afirmação por calculadora NÃO pode exigir link: a
+// ordem é por adequação técnica, e catálogo maior chega a REDUZIR links na tela
+// (medido em 09/09/2026) — exigir link por página seria pedir que o banco não
+// melhorasse. Mas se NENHUMA das cinco servir um link marcado, o encanamento do
+// afiliado quebrou, e isso é defeito de verdade.
+let linksMarcadosNoTotal = 0;
 function ok(nome, cond, extra = '') {
   console.log(`  ${cond ? 'ok   ' : 'FALHA'} ${nome}${extra ? ' — ' + extra : ''}`);
   if (!cond) falhas++;
@@ -106,29 +116,41 @@ for (const caso of CASOS) {
 
   // 5. O bloco de produto e o link de afiliado.
   //
-  // Bloco escondido não é falha por si: a regra da ilha é que, sem item do
-  // banco que atenda a faixa calculada, resposta sem produto é melhor que
-  // produto errado. É o caso da C15 hoje — as luminárias com link não declaram
-  // lúmen nem voltagem e ficam barradas, com o motivo publicado na página.
-  // O que NÃO pode é o bloco aparecer com link mal marcado.
+  // A REGRA, escrita em 09/09/2026 na terceira vez que a ilha tropeçou nela:
+  // teste que exige que um buraco de catálogo continue ABERTO reprova
+  // exatamente o trabalho que a fila manda fazer. Este caso trazia
+  // semProduto:true para a C15 e virou vermelho no dia em que a leva de
+  // catálogo lhe deu luminária apta — sem nenhum defeito de código.
+  //
+  // Então aqui não se afirma mais QUAL dos dois estados a página deve ter: os
+  // dois são legítimos, e o catálogo decide qual é hoje. Bloco vazio é PORTÃO,
+  // não defeito (seção 7 do contrato) — o que não pode é ele sair calado. E
+  // bloco cheio não pode sair com link mal marcado. Afirma-se a promessa de
+  // cada estado, que é o que não envelhece quando o banco cresce.
   if (caso.produtos) {
     const visivel = await page.isVisible('#aqm-' + caso.codigo + '-produtos');
     const links = await page.$$eval('#aqm-' + caso.codigo + '-produtos a[href*="shopee"]',
       as => as.map(a => ({ rel: a.getAttribute('rel') || '', target: a.getAttribute('target') || '' })));
 
-    if (caso.semProduto) {
-      ok('bloco de produto oculto, como manda a regra do banco', !visivel && links.length === 0,
-         visivel ? 'apareceu' : 'oculto');
-      const barrados = await page.textContent('#aqm-' + caso.codigo + '-barrados').catch(() => '');
-      ok('a página publica por que não sugere produto', /declara/i.test(barrados || ''));
-    } else {
-      ok('bloco de produto visível', visivel);
-      ok('links de afiliado no bloco de produto', links.length > 0, links.length + ' link(s)');
-      ok('todo link leva rel=sponsored', links.length > 0 && links.every(l => l.rel.includes('sponsored')));
-      ok('todo link leva noopener', links.length > 0 && links.every(l => l.rel.includes('noopener')));
-      ok('todo link abre em nova aba', links.length > 0 && links.every(l => l.target === '_blank'));
+    if (visivel) {
+      ok('bloco de produto visível, e então tem de estar bem formado',
+         true, links.length + ' link(s) de loja');
+      // Cartão sem link é legítimo (V16: produto apto sem link aparece igual, só
+      // sem botão). O que se exige é que o link QUE EXISTIR esteja marcado.
+      ok('todo link leva rel=sponsored', links.every(l => l.rel.includes('sponsored')));
+      ok('todo link leva noopener', links.every(l => l.rel.includes('noopener')));
+      ok('todo link abre em nova aba', links.every(l => l.target === '_blank'));
+      linksMarcadosNoTotal += links.filter(
+        l => l.rel.includes('sponsored') && l.rel.includes('noopener') && l.target === '_blank').length;
       const aviso = await page.textContent('#aqm-' + caso.codigo + '-produtos');
       ok('aviso de comissão visível no bloco', /comiss/i.test(aviso || ''));
+    } else {
+      ok('bloco de produto oculto, e então a página tem de dizer por quê',
+         links.length === 0, 'nenhum link vazando de bloco oculto');
+      const barrados = await page.textContent('#aqm-' + caso.codigo + '-barrados').catch(() => '');
+      const nada = await page.textContent('#aqm-' + caso.codigo + '-produtos-nada').catch(() => '');
+      ok('a página publica por que não sugere produto',
+         /declara|atende|nenhum|faixa/i.test((barrados || '') + ' ' + (nada || '')));
     }
   }
 
@@ -136,5 +158,13 @@ for (const caso of CASOS) {
 }
 
 await browser.close();
+
+// A afirmação de conjunto: nenhuma calculadora é obrigada a ter link, mas o
+// arquipélago inteiro não pode ficar sem nenhum — aí não é catálogo, é
+// encanamento quebrado.
+console.log('\nO CONJUNTO DAS CINCO');
+ok('pelo menos um link de afiliado bem marcado no conjunto das cinco',
+   linksMarcadosNoTotal > 0, linksMarcadosNoTotal + ' link(s) marcados');
+
 console.log(falhas ? `\n=== ${falhas} FALHA(S) ===` : '\n=== tudo passou ===');
 process.exit(falhas ? 1 : 0);

@@ -4,7 +4,7 @@ estado: viva
 prioridade: 2
 ultima_execucao: 2026-09-09T23:17Z
 executando_desde: null
-bloco_atual: "T7 par C12 (resposta direta, tabela pre-renderizada e JSON-LD) — no main, revisao 30; falta o Sync"
+bloco_atual: "T7 par C12 (resposta direta, tabela pre-renderizada e JSON-LD) — no main, revisao 31; falta o Sync"
 ultima_ronda: 2026-09-09T19:40Z
 bloqueada_por: null
 ---
@@ -433,7 +433,7 @@ Chrome do Raphael.
 
 # T7 PAR C12 (09/09/2026, execução das 23h17Z) — a quarta calculadora ganhou as três peças da seção 5
 
-Manifest **revisão 30**, C12 na **1.2.0**. Bloco escolhido por ser o primeiro da fila que não depende
+Manifest **revisão 31**, C12 na **1.2.0**. Bloco escolhido por ser o primeiro da fila que não depende
 do egresso. A ilha foi sorteada pela seção 1 do contrato — e a **primeira tentativa, na Robometria,
 teve o push da reserva RECUSADO** porque outra execução commitou a reserva dela 13 segundos antes.
 Rebase, volta ao passo 2, Aquametria. A reserva por commit fez exatamente o que promete.
@@ -472,14 +472,21 @@ Rebase, volta ao passo 2, Aquametria. A reserva por commit fez exatamente o que 
 - **Custo de bancada medido, e vale para a próxima sessão:** os testes de navegador levam dezenas de
   minutos na nuvem porque cada `page.goto()` espera as fontes do Google até o timeout de 30 s, por
   navegação. **Rodar três em paralelo é pior que em série** — três Chromiums disputam a máquina.
+- **A quarta asserção vencida em duas execuções, e todas do mesmo tipo.** O
+  `teste-navegador-cinco.mjs` exigia que a C15 saísse SEM bloco de produto — buraco que a leva de
+  catálogo do próprio 09/09 fechou. Deixou de afirmar qual estado a página deve ter (os dois são
+  legítimos; quem decide é o catálogo) e passou a afirmar a promessa de cada um, mais uma afirmação
+  de conjunto: nenhuma calculadora é obrigada a ter link, mas as cinco juntas não podem ficar sem
+  nenhum. **Regra escrita de uma vez: afirmação que descreve o ESTADO do catálogo vence sozinha e
+  reprova o trabalho da fila — afirme a promessa, nunca o estado.**
 - Verificação: `php -l` com controle negativo, `conferir-protecao-funcoes.py` com controle negativo
   (9 snippets, 34 funções na C12), **124 afirmações com o JavaScript desligado (0 falha)**,
-  **84 cenários da C12 em Chromium real com console limpo**, `conferir-entidades.mjs` 0 falha com a
+  **84 cenários da C12 e 78 da C15 em Chromium real com console limpo**, **56 afirmações das cinco calculadoras calculando**, `conferir-entidades.mjs` 0 falha com a
   C12 passando a `jsonld_ok=1`, JSON-LD analisado como JSON e conferido contra a tabela servida
   número a número, validadores de produto e de espécie sem erro novo, manifest sem sha vencido.
 
 **NÃO CONFIRMADO NO AR:** o egresso continua bloqueando `aquametria.com.br`. Repositório na revisão
-**30**, site medido pela última vez na **11** — dezenove revisões paradas. Quem aciona o Sync é a
+**31**, site medido pela última vez na **11** — dezenove revisões paradas. Quem aciona o Sync é a
 Sentinela Técnica no Chrome do Raphael.
 
 **Próximo passo: T1** (Search Console, depende do Chrome) e **T7 leva 3 — a C1**, que é a última

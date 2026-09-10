@@ -4,8 +4,8 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 30,
-  "atualizado_em": "2026-09-09",
+  "revisao": 31,
+  "atualizado_em": "2026-09-10",
   "estado": "fundacao",
   "desembarque": {
     "aprovado": true,
@@ -571,8 +571,8 @@
       "id": "teste-navegador-cinco",
       "arquivo": "ferramentas/teste-navegador-cinco.mjs",
       "publicar": false,
-      "sha256": "ce6e364e211fe0233c3c3d536a2d7d6aadbf7aca49a303285920ff8f604bb993",
-      "descricao": "Executa o calculo das CINCO calculadoras num Chromium de verdade (Playwright) e confere na tela o que so um humano conferia: script sem SyntaxError, contêiner de resposta nascendo oculto no HTML servido e ficando visivel depois de calcular, numero na tela, ausencia de submit nativo (a pagina nao recarrega) e o bloco de produto com link de afiliado marcado sponsored/noopener/_blank mais o aviso de comissao. A C15 entra como semProduto: hoje ela responde sem bloco de produto de proposito, porque as luminarias do catalogo nao declaram lumen nem voltagem, e a pagina publica esse motivo."
+      "sha256": "a836cdfb6afcb7d07d3f644f6b54edfa926d7e2f050b2c6f02c9420c19d628ba",
+      "descricao": "Executa o calculo das CINCO calculadoras num Chromium de verdade (Playwright) e confere na tela o que so um humano conferia: script sem SyntaxError, contêiner de resposta nascendo oculto no HTML servido e ficando visivel depois de calcular, numero na tela, ausencia de submit nativo (a pagina nao recarrega) e o bloco de produto com link de afiliado marcado sponsored/noopener/_blank mais o aviso de comissao. A C15 entra como semProduto: hoje ela responde sem bloco de produto de proposito, porque as luminarias do catalogo nao declaram lumen nem voltagem, e a pagina publica esse motivo. 09/09/2026, asserção vencida consertada: o caso da C15 trazia semProduto:true porque as luminárias do catálogo estavam barradas por falta de lumen ou voltagem declarados. A leva de catalogo do mesmo dia fechou a lacuna (a Chihiros WRGB II Pro 60 ganhou voltagem, a C15 foi de 3 para 9 aptas) e a afirmacao passou a REPROVAR exatamente o trabalho que a fila mandou fazer, sem nenhum defeito de codigo. O teste deixou de afirmar QUAL dos dois estados a pagina deve ter - os dois sao legitimos e o catalogo decide qual e hoje - e passou a afirmar a PROMESSA de cada estado: bloco visivel tem de estar bem formado (todo link que existir com sponsored, noopener e aba nova, mais aviso de comissao), bloco oculto tem de dizer por que nao sugere e nao pode vazar link. Nao se exige link por calculadora, porque a ordem e por adequacao tecnica e catalogo maior chega a REDUZIR links na tela; exige-se, no conjunto das cinco, pelo menos um link bem marcado - sem isso nao e catalogo, e encanamento quebrado."
     },
     {
       "id": "conferir-entidades",
