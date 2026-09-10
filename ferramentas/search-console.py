@@ -16,18 +16,35 @@ Saída (markdown pronto para colar nas séries da ilha):
     1) linha para dados/indexacao.md  (URLs no sitemap × URLs indexadas)
     2) linhas para dados/posicoes.md  (consulta, página, posição, impressões, cliques, banda)
 
-Dependência: google-auth (instala sozinho se faltar).
+Dependência: google-auth — instalado num venv próprio (~/.venv-search-console) na 1ª execução.
 """
 import json, os, sys, datetime as dt, subprocess, urllib.request, urllib.parse, re
+
+def _bootstrap_venv():
+    """O Python do ambiente das rotinas tem o pacote `cryptography` do sistema quebrado
+    (`_cffi_backend` ausente, pyo3 PanicException). Em vez de depender dele, o script cria
+    um venv próprio uma vez (~/.venv-search-console), instala google-auth lá e se re-executa."""
+    if os.environ.get("SC_VENV") == "1":
+        sys.exit("google-auth não importa nem dentro do venv próprio — ambiente Python inutilizável.")
+    venv = os.path.expanduser("~/.venv-search-console")
+    py = os.path.join(venv, "bin", "python3")
+    if not os.path.exists(py):
+        subprocess.check_call([sys.executable, "-m", "venv", venv])
+        env = {k: v for k, v in os.environ.items() if k != "PYTHONPATH"}
+        for tentativa in range(3):
+            if subprocess.call([py, "-m", "pip", "install", "-q", "google-auth", "requests"], env=env) == 0:
+                break
+        else:
+            sys.exit("pip não conseguiu instalar google-auth no venv (3 tentativas).")
+    os.environ["SC_VENV"] = "1"
+    os.execv(py, [py] + sys.argv)
+
 
 try:
     from google.oauth2 import service_account
     from google.auth.transport.requests import AuthorizedSession
-except ImportError:
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "-q",
-                           "--break-system-packages", "google-auth", "requests"])
-    from google.oauth2 import service_account
-    from google.auth.transport.requests import AuthorizedSession
+except BaseException:          # BaseException de propósito: o pyo3 lança PanicException
+    _bootstrap_venv()
 
 SCOPE = ["https://www.googleapis.com/auth/webmasters.readonly"]
 API = "https://searchconsole.googleapis.com"

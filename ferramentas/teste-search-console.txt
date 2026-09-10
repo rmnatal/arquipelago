@@ -1,58 +1,19 @@
-=== teste Search Console Thu Sep 10 14:47:19 UTC 2026 ===
-GOOGLE_SA_B64 presente: sim, 3156 caracteres
-decodificado: 2366 bytes
+=== teste Search Console (2ª) Thu Sep 10 15:03:19 UTC 2026 ===
+GOOGLE_SA_B64 presente: sim
 --- aquametria
-WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
-Traceback (most recent call last):
-  File "/home/user/arquipelago/ferramentas/search-console.py", line 24, in <module>
-    from google.oauth2 import service_account
-ModuleNotFoundError: No module named 'google'
 
-During handling of the above exception, another exception occurred:
+## aquametria — leitura Search Console 2026-09-10 (janela 2026-09-02→2026-09-08)
 
-ModuleNotFoundError: No module named '_cffi_backend'
-thread '<unnamed>' panicked at /usr/share/cargo/registry/pyo3-0.20.2/src/err/mod.rs:788:5:
-Python API call failed
-stack backtrace:
-note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.
-Traceback (most recent call last):
-  File "/home/user/arquipelago/ferramentas/search-console.py", line 24, in <module>
-    from google.oauth2 import service_account
-ModuleNotFoundError: No module named 'google'
+### linha para dados/indexacao.md
+| 2026-09-10 | n/d | n/d | n/d | 0 | 0 |
 
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/user/arquipelago/ferramentas/search-console.py", line 29, in <module>
-    from google.oauth2 import service_account
-  File "/usr/local/lib/python3.11/dist-packages/google/oauth2/service_account.py", line 81, in <module>
-    from google.auth import _service_account_info
-  File "/usr/local/lib/python3.11/dist-packages/google/auth/_service_account_info.py", line 20, in <module>
-    from google.auth import crypt
-  File "/usr/local/lib/python3.11/dist-packages/google/auth/crypt/__init__.py", line 41, in <module>
-    from google.auth.crypt import es
-  File "/usr/local/lib/python3.11/dist-packages/google/auth/crypt/es.py", line 21, in <module>
-    import cryptography.exceptions
-  File "/usr/lib/python3/dist-packages/cryptography/exceptions.py", line 9, in <module>
-    from cryptography.hazmat.bindings._rust import exceptions as rust_exceptions
-pyo3_runtime.PanicException: Python API call failed
+### linhas para dados/posicoes.md
+| consulta | página | posição hoje | impressões | cliques | banda |
 --- robometria
-ModuleNotFoundError: No module named '_cffi_backend'
-thread '<unnamed>' panicked at /usr/share/cargo/registry/pyo3-0.20.2/src/err/mod.rs:788:5:
-Python API call failed
-stack backtrace:
-note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.
-Traceback (most recent call last):
-  File "/home/user/arquipelago/ferramentas/search-console.py", line 24, in <module>
-    from google.oauth2 import service_account
-  File "/usr/local/lib/python3.11/dist-packages/google/oauth2/service_account.py", line 81, in <module>
-    from google.auth import _service_account_info
-  File "/usr/local/lib/python3.11/dist-packages/google/auth/_service_account_info.py", line 20, in <module>
-    from google.auth import crypt
-  File "/usr/local/lib/python3.11/dist-packages/google/auth/crypt/__init__.py", line 41, in <module>
-    from google.auth.crypt import es
-  File "/usr/local/lib/python3.11/dist-packages/google/auth/crypt/es.py", line 21, in <module>
-    import cryptography.exceptions
-  File "/usr/lib/python3/dist-packages/cryptography/exceptions.py", line 9, in <module>
-    from cryptography.hazmat.bindings._rust import exceptions as rust_exceptions
-pyo3_runtime.PanicException: Python API call failed
+## robometria — leitura Search Console 2026-09-10 (janela 2026-09-02→2026-09-08)
+
+### linha para dados/indexacao.md
+| 2026-09-10 | n/d | n/d | n/d | 0 | 0 |
+
+### linhas para dados/posicoes.md
+| consulta | página | posição hoje | impressões | cliques | banda |
