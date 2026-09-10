@@ -4,7 +4,7 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 2,
+  "revisao": 3,
   "atualizado_em": "2026-09-10",
   "estado": "nascendo",
   "desembarque": {
@@ -39,7 +39,10 @@
       "sha256": "99c6c5cb7130fc0428bb15312226c74ced0b51fa79cc95c3ca4de7f45dca1e39",
       "descricao": "11 constantes de fabricante e 6 pendencias nomeadas para as calculadoras F1 e F2. A mais valiosa e a lista de restricoes da ficha BRSA004 do Silicone Acetico Construcao Tekbond (revisada em 10/2025), que proibe o produto em espelho, concreto, cimento, tijolo, calcario, superficie alcalina, pintada ou porosa, acrilico, aquario, metal corrosivel e imersao continua — e que torna a elegibilidade da F2 mecanica em vez de opinativa, porque sao exatamente os casos em que o mosaico artesanal brasileiro usa silicone acetico por indicacao de blog. Traz tambem a formula de consumo de rejunte publicada pela propria Quartzolit (((A+B)xExLxCR)/(AxB), CR 1,75 no exemplo do fabricante), a faixa de junta de 2 a 10 mm e o procedimento do rejunte ceramicas, a cimentcola AC-II pela NBR 14.081, o silicone neutro Tekbond como saida declarada para espelho e alcalino, o PVA Cascorez para MDF interno e o Loctite Durepoxi (com ressalva: a fonte e press release, nao ficha tecnica). Declara a direcao de divergencia da ilha pela assimetria de custo: conjunto MAIS ESTREITO na compatibilidade da F2, arredondamento para o MAIOR na quantidade da F1.",
       "pendencias": 6,
-      "pendencias_que_bloqueiam_publicacao": ["cimentcola-consumo-e-tempo-em-aberto", "silicone-rendimento-por-area"]
+      "pendencias_que_bloqueiam_publicacao": [
+        "cimentcola-consumo-e-tempo-em-aberto",
+        "silicone-rendimento-por-area"
+      ]
     },
     {
       "id": "especificacao-calculadoras",
@@ -50,11 +53,44 @@
       "verificado_em": "2026-09-10",
       "registros": 25,
       "publicar": false,
-      "sha256": "1189ad6f0fc3e21ed046acc7d2215e0c947f267b1557b07b1c87a05edb58fa7a",
-      "descricao": "Contrato de construcao das duas ferramentas, para o bloco 4 nao precisar decidir nada de novo. F2 (seletor de cola e rejunte) primeiro, com matriz de 13 casos base x ambiente em que cada eliminacao cita a restricao declarada pelo fabricante, e com duas faixas declaradas DESCOBERTAS em vez de preenchidas no chute (peca em contato permanente com agua e base de plastico). F1 (calculadora de pastilhas e rejunte) depois, com as formulas de area por forma, a contagem de pastilhas pelo passo da malha, a formula de rejunte da Quartzolit e a tabela pre-renderizada de 12 pecas tipicas ja calculada. O numero que abre a F1: pastilha de 1x1 cm com junta de 2 mm consome 2,80 kg/m2 de rejunte, sete a catorze vezes os 0,2-0,4 kg/m2 que a primeira pagina do Google publica, porque a SERP inteira calcula com azulejo de obra. Traz ainda a espessura da pastilha como ENTRADA e nao constante (nenhum fabricante a padroniza), a conversao entre as tres unidades de venda de pastilha, o bloco de compra obrigatorio antes da procedencia pela cicatriz da Robometria, e a lista de verificacao da secao 8 aplicada as duas."
+      "sha256": "87f91ce9f2b2376d97482ec014f41a553642addce158037f41d65d66171a7cbc",
+      "descricao": "Contrato de construcao das duas ferramentas, para o bloco 4 nao precisar decidir nada de novo. F2 (seletor de cola e rejunte) primeiro, com matriz de 13 casos base x ambiente em que cada eliminacao cita a restricao declarada pelo fabricante, e com duas faixas declaradas DESCOBERTAS em vez de preenchidas no chute (peca em contato permanente com agua e base de plastico). F1 (calculadora de pastilhas e rejunte) depois, com as formulas de area por forma, a contagem de pastilhas pelo passo da malha, a formula de rejunte da Quartzolit e a tabela pre-renderizada de 12 pecas tipicas ja calculada. O numero que abre a F1: pastilha de 1x1 cm com junta de 2 mm consome 2,80 kg/m2 de rejunte, sete a catorze vezes os 0,2-0,4 kg/m2 que a primeira pagina do Google publica, porque a SERP inteira calcula com azulejo de obra. Traz ainda a espessura da pastilha como ENTRADA e nao constante (nenhum fabricante a padroniza), a conversao entre as tres unidades de venda de pastilha, o bloco de compra obrigatorio antes da procedencia pela cicatriz da Robometria, e a lista de verificacao da secao 8 aplicada as duas. ATUALIZADO NO BLOCO 3: a matriz da secao 1.3 foi superada pela matriz recomputada em dados/esquema-banco.json, e o arquivo diz isso no topo da secao — o bloco 4 obedece ao esquema, e esta secao fica como registro do raciocinio original."
+    },
+    {
+      "id": "esquema-banco",
+      "arquivo": "dados/esquema-banco.json",
+      "formato": "json",
+      "entidade": "esquema",
+      "fonte": "Bloco 3 da Fundacao. Modelo derivado de dados/constantes.json e dados/especificacao-calculadoras.md (bloco 2) e de dados/corpus-buscas.md (bloco 1). Nenhuma coleta nova: a estrutura sai do que ja estava colhido, e a matriz da F2 e recomputada das declaracoes, nao redigitada.",
+      "verificado_em": "2026-09-10",
+      "registros": 4,
+      "publicar": false,
+      "sha256": "862f84b64ed9005ab00dc2c97335e470c1c44d63b63d025e51e93be77e50ed33",
+      "descricao": "Modelo do banco: entidades MATERIAL, PECA (CPT no WordPress, nunca arquivo), TECNICA e a serie temporal COTACAO, campo a campo, com vocabulario controlado, escada de fontes de 7 niveis e o mapa que traduz o termo LITERAL do fabricante para a base e o ambiente da ilha. O que este esquema tem de proprio: o campo que decide a recomendacao e NEGATIVO (a lista de restricoes da ficha BRSA004), existem TRES estados de declaracao e nao dois (silencio nao e proibicao), e cinco regras de elegibilidade executaveis recomputam as 18 celulas da matriz da F2 a partir das declaracoes — quatro delas divergindo da matriz que o bloco 2 tinha escrito a mao."
+    },
+    {
+      "id": "materiais-colas",
+      "arquivo": "dados/materiais-colas.json",
+      "formato": "json",
+      "entidade": "material",
+      "fonte": "Bloco 3 da Fundacao. Transposicao campo a campo de dados/constantes.json (coletado no bloco 2 em 10/09/2026, por busca restrita ao dominio de cada fabricante), com a mesma fonte, o mesmo tipo de documento e a mesma data por item. NENHUM dado novo foi coletado: o que este arquivo acrescenta e estrutura.",
+      "verificado_em": "2026-09-10",
+      "registros": 5,
+      "publicar": false,
+      "sha256": "0df9a40da7343f2a96675aaf4c9b0bc8506fed008fc6781afa6f37b9d62a090d",
+      "descricao": "A categoria COLA do banco MATERIAL: Silicone Acetico Construcao Tekbond (BRSA004), Silicone Neutro Tekbond, Cascorez PVA, Cimentcola Externo AC-II Quartzolit e Loctite Durepoxi. Cada um com as listas literais do fabricante separadas por peso (indicado, proibido, nao recomendado, delimita ambiente, resiste a ambiente), fonte com nivel na escada e data, afiliado.url presente e vazio e imagem null. 5 itens esperando link de afiliado e 5 sem imagem. Duas pendencias nomeadas, sendo a principal a falta de declaracao de SUBSTRATO da cimentcola AC-II, que a impede de ser recomendacao primaria.",
+      "pendencias": 2,
+      "pendencias_que_bloqueiam_publicacao": []
     }
   ],
-  "ferramentas": [],
+  "ferramentas": [
+    {
+      "id": "validar-banco",
+      "arquivo": "ferramentas/validar-banco.py",
+      "sha256": "ac3f1f6001ea405f26303b3ecf6a82092329926701070ee686eb61909db27f3a",
+      "descricao": "Verifica o banco contra dados/esquema-banco.json sem rede e sem dependencia: campos obrigatorios, vocabularios, fonte por campo tecnico, nivel de fonte, afiliado presente mesmo vazio, contagem declarada no cabecalho e passo de fabrica das pastilhas. O principal: RECOMPUTA as 18 celulas da matriz da F2 pelas cinco regras de elegibilidade e falha se o banco e a pagina se separarem. E a implementacao de referencia que o snippet PHP do bloco 4 tem que repetir. NUNCA e publicada no site."
+    }
+  ],
   "esquema": {
     "snippets": {
       "id": "identificador estavel, kebab-case, nunca numerado",

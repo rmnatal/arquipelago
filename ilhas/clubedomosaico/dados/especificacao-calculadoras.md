@@ -77,6 +77,19 @@ Isso é possível porque a ficha do Silicone Acético Construção Tekbond (BRSA
 superfície pintada ou porosa, acrílico, aquário, metal corrosível e imersão contínua
 eliminam o silicone acético por declaração do próprio fabricante.**
 
+> **A matriz abaixo foi SUPERADA pelo bloco 3 — quem o bloco 4 obedece é
+> `dados/esquema-banco.json → matriz_esperada_da_F2`.** Esta aqui foi escrita à mão lendo as
+> fichas; aquela é recomputada das declarações estruturadas de `dados/materiais-colas.json`
+> pelas cinco regras de elegibilidade, e `ferramentas/validar-banco.py` a confere célula a
+> célula. Onde as duas divergem, cada célula de lá diz por quê — em resumo: (a) cerâmica e
+> vidro em ambiente comum são **empate** entre acético e neutro, e a página lista os dois em
+> vez de fingir preferência; (b) em sol e chuva o acético não fica "em segundo lugar", fica
+> **fora**, porque ambiente crítico exige declaração explícita; (c) MDF molhado e externo
+> **têm** resposta — o silicone neutro declara madeira, chuva e UV; (d) a cimentcola AC-II
+> **não** é recomendação primária em base nenhuma enquanto não houver declaração de
+> substrato: o que a coleta obteve nomeia a peça assentada, não sobre o que ela é aplicada.
+> Esta seção fica no arquivo como registro do raciocínio original.
+
 Matriz publicada (cada linha vira uma linha da tabela pré-renderizada):
 
 | base | ambiente | recomendado | por que, na frase | eliminado, e por quê |

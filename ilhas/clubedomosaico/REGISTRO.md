@@ -106,3 +106,62 @@ proximo passo desbloqueado.
   cola (com a lista de restricoes declaradas por produto), rejunte (com faixa de junta) e
   pastilha (com lado, espessura e unidade de venda). Nao depende de site. Depois dele, o
   bloco 4 fica dependendo so do WordPress existir.
+
+10/09/2026 23:16Z — BLOCO 3 ENTREGUE: modelo do banco + categoria COLA + verificador
+
+- `dados/esquema-banco.json` (modelo das entidades MATERIAL, PECA, TECNICA e da serie
+  temporal COTACAO), `dados/materiais-colas.json` (5 registros da categoria cola) e
+  `ferramentas/validar-banco.py`. Manifest na revisao 3; tudo com `publicar: false`, entao
+  **nao houve Sync nesta execucao** — a secao 4 do contrato so exige Sync em bloco que mexe
+  em conteudo publicavel, e a ilha ainda nao tem WordPress.
+  sha256 esquema: `862f84b64ed9005ab00dc2c97335e470c1c44d63b63d025e51e93be77e50ed33`
+  sha256 colas:   `0df9a40da7343f2a96675aaf4c9b0bc8506fed008fc6781afa6f37b9d62a090d`
+  sha256 validador: `ac3f1f6001ea405f26303b3ecf6a82092329926701070ee686eb61909db27f3a`
+- **NENHUM dado novo foi coletado, e isso e proposital.** Os 5 registros de cola sao a
+  transposicao campo a campo do que o bloco 2 ja tinha colhido em `dados/constantes.json`,
+  com a mesma fonte, o mesmo tipo de documento e a mesma data. O que o bloco acrescenta e
+  ESTRUTURA: a lista literal do fabricante virou campo COM PESO — indicado, proibido, nao
+  recomendado, delimita ambiente, resiste a ambiente — e por isso a matriz da F2 passou a ser
+  RECOMPUTADA em vez de lida.
+- **O verificador nao e enfeite.** Ele recomputou as 18 celulas base x ambiente pelas cinco
+  regras de elegibilidade e bateu com a tabela publicada no esquema. Tres mutacoes provaram
+  que ele falha quando deve: apagar `espelhos` da lista de restricoes da ficha BRSA004
+  (2 erros, o acetico deixa de ser eliminado no espelho), promover o press release do
+  Durepoxi de nivel 4 para 3 (20 erros, ele invade os recomendados de 8 celulas) e criar
+  `dados/pecas.json` (1 erro: PECA nao vive no repositorio).
+- **QUATRO ACHADOS que corrigem a matriz que o bloco 2 tinha escrito a mao**, e por isso a
+  secao 1.3 da especificacao ganhou uma nota dizendo que quem manda agora e o esquema:
+  (1) **a cimentcola AC-II nao tem declaracao de SUBSTRATO** — a especificacao a recomendava
+  para base de cimento citando que ela e declarada para "area interna e externa", que e
+  AMBIENTE; as unicas superficies nomeadas na coleta ("ceramicas e placas de pedra natural de
+  ate 120 x 120 cm") sao a PECA ASSENTADA. Ela sai dos recomendados de todas as celulas, e
+  quem responde base de cimento e o silicone neutro, que declara concreto e alvenaria com
+  todas as letras;
+  (2) **ceramica e vidro em ambiente comum sao EMPATE** entre acetico e neutro — o mesmo
+  fabricante declara ceramica para os dois e nenhum declara o ambiente —, entao a pagina
+  lista os dois em vez de fingir uma preferencia que a fonte nao sustenta;
+  (3) **em sol e chuva o acetico nao fica "em segundo lugar", fica FORA**: ambiente de
+  exposicao continuada exige declaracao explicita, e so o neutro declara chuva e raios UV;
+  (4) **MDF molhado e externo TEM resposta** — o neutro declara madeira entre os substratos
+  que veda —, ao contrario do "a ilha nao recomenda" da especificacao, que so tinha olhado
+  PVA e acetico. O PVA sai desses ambientes por DELIMITACAO do proprio fabricante
+  ("ambientes internos"), nunca por proibicao inventada.
+- **O que o esquema tem de proprio desta ilha**, e que nao foi copiado de Aquametria nem de
+  Robometria: o campo que decide a recomendacao e NEGATIVO (a lista de restricoes vale mais
+  que a de indicacoes); existem TRES estados de declaracao e nao dois, porque silencio nao e
+  proibicao e foi o Cascorez que obrigou isso; a escada de fontes tem um nivel 4 criado para
+  material de imprensa, que e o que mantem a peca submersa como faixa DESCOBERTA mesmo com o
+  Durepoxi declarando secar debaixo d'agua; e PECA e a unica entidade do Arquipelago que NAO
+  e arquivo do repositorio — o validador falha de proposito se alguem criar `dados/pecas.json`.
+- **Uma correcao de entrada para o bloco 4:** a secao 1.2 da especificacao tem so "vidro",
+  mas a matriz distingue vidro comum de vidro LAMINADO — e a distincao decide o produto
+  (o acetico e proibido no laminado). O formulario precisa da pergunta, escrita em portugues
+  de gente: "o vidro tem uma pelicula entre duas camadas?".
+- 5 itens esperando link de afiliado e 5 sem imagem — os cinco da categoria cola. Geracao de
+  link e da Sentinela estrategica, no navegador, e nunca da Fundacao.
+- Nao houve memoria disponivel nesta execucao (`/areas` nao existe no ambiente), como nos
+  blocos 1 e 2. O estado vive no `ESTADO.md` desta pasta.
+- Proximo passo desbloqueado: **as categorias REJUNTE e PASTILHA do banco**, que nao dependem
+  de site e que o esquema ja deixou com os campos nomeados (rejunte com faixa de junta;
+  pastilha com lado anunciado, passo de fabrica, espessura e unidade de venda). O bloco 3b
+  (casca) e o bloco 4 (ferramentas) continuam dependendo so de o WordPress existir.
