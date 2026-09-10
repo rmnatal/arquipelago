@@ -211,6 +211,42 @@ foreach ( $esperado as $chave => $valor ) {
  * 9. Higiene de snippet (secao 8 e fase 4b do playbook).
  * ------------------------------------------------------------------------- */
 
+/* ---------------------------------------------------------------------------
+ * 8b. O sitemap nao pode responder 404 (despacho da Sentinela de 10/09/2026).
+ *
+ * Esta ilha nao tem nenhum post publicado — a casca manda "Hello world!" para a
+ * lixeira —, entao a consulta principal das rotas de sitemap volta vazia e o
+ * handle_404() do nucleo carimba 404 antes de o XML sair. O filtro
+ * pre_handle_404 desliga esse carimbo SO na requisicao de sitemap. O teste
+ * exercita o retorno do filtro, que e a decisao inteira, e confirma que ele nao
+ * transborda para requisicao comum: um filtro que dissesse "nunca 404" faria a
+ * ilha responder 200 em endereco que nao existe, e ai o Google indexaria vazio.
+ * ------------------------------------------------------------------------- */
+
+echo "\n8b. Sitemap nao responde 404 (despacho da Sentinela, 10/09/2026)\n";
+
+class RbmConsultaFalsa {
+	private $vars;
+	public function __construct( $vars ) { $this->vars = $vars; }
+	public function get( $chave ) { return isset( $this->vars[ $chave ] ) ? $this->vars[ $chave ] : ''; }
+}
+
+$de_sitemap  = new RbmConsultaFalsa( array( 'sitemap' => 'index' ) );
+$de_pagina   = new RbmConsultaFalsa( array( 'sitemap' => 'posts', 'sitemap-subtype' => 'page', 'paged' => 1 ) );
+$requisicao  = new RbmConsultaFalsa( array( 'pagename' => 'metodologia' ) );
+$inexistente = new RbmConsultaFalsa( array( 'name' => 'pagina-que-nao-existe' ) );
+
+rbm_ok( true === apply_filters( 'pre_handle_404', false, $de_sitemap ),
+	'o indice do sitemap deixa de ser 404' );
+rbm_ok( true === apply_filters( 'pre_handle_404', false, $de_pagina ),
+	'o sitemap de paginas deixa de ser 404' );
+rbm_ok( false === apply_filters( 'pre_handle_404', false, $requisicao ),
+	'pagina comum NAO e afetada pelo filtro' );
+rbm_ok( false === apply_filters( 'pre_handle_404', false, $inexistente ),
+	'endereco inexistente continua podendo 404 — 200 no vazio seria pior' );
+rbm_ok( false === apply_filters( 'pre_handle_404', false, null ),
+	'filtro sobrevive a consulta ausente sem explodir' );
+
 echo "\n9. Higiene do snippet (secao 8, fase 4b)\n";
 $fonte = file_get_contents( $raiz . '/snippets/robometria-casca.php' );
 rbm_ok( 0 === strpos( $fonte, '/**' ), 'o snippet comeca com /** e sem <?php no topo' );

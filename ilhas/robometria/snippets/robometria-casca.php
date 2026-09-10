@@ -1,6 +1,9 @@
 /**
  * Robometria Casca — identidade e estrutura do site
- * Versão: 1.0.0 (10/09/2026) — primeira casca da ilha, Bloco 3b. Derivada da casca
+ * Versão: 1.0.1 (10/09/2026) — despacho da Sentinela: o sitemap servia o XML
+ * certo com status 404, porque esta ilha não tem nenhum post publicado e a
+ * consulta principal das rotas de sitemap voltava vazia (seção 5b abaixo).
+ * Versão 1.0.0 (10/09/2026) — primeira casca da ilha, Bloco 3b. Derivada da casca
  * da Aquametria 1.3.0 por substituição de identidade, não por cópia cega: a paleta,
  * a tipografia, o símbolo, o menu e as páginas são da Robometria, e o que sobrou
  * igual sobrou porque já era regra do Arquipélago (seção 6 do ARQUIPELAGO.md) —
@@ -43,7 +46,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_CASCA_VERSAO' ) ) {
-	define( 'ROBOMETRIA_CASCA_VERSAO', '1.0.0' );
+	define( 'ROBOMETRIA_CASCA_VERSAO', '1.0.1' );
 	define( 'ROBOMETRIA_CASCA_TAGLINE', 'Qual peça o fabricante declarou para o seu robô aspirador — com código, endereço e data' );
 }
 
@@ -1059,6 +1062,40 @@ function robometria_casca_fixar_home( $ids, &$relato ) {
  * rastreamento de domínio novo ensinando ao robô que aqui se publica coisa que
  * não vale voltar para buscar.
  */
+/* ---------------------------------------------------------------------------
+ * 5b. O SITEMAP NÃO PODE RESPONDER 404 — despacho da Sentinela de 10/09/2026
+ *
+ * Medido: wp-sitemap.xml servia o XML certo, com as seis páginas dentro, e um
+ * status HTTP 404. Para o Google, sitemap com 404 é sitemap inexistente — foi
+ * por isso que o Search Console respondeu "Não foi possível buscar", e é por
+ * isso que a rampa da seção 14 desta ilha estava parada num defeito de status.
+ *
+ * A CAUSA, e ela nasce aqui mesmo, na função logo abaixo: esta ilha tem ZERO
+ * posts publicados, porque a casca manda "Hello world!" para a lixeira. As
+ * rotas de sitemap do WordPress passam pela consulta principal
+ * (index.php?sitemap=…), a consulta volta sem nenhum post, e o handle_404() do
+ * núcleo carimba 404 ANTES de o renderizador de sitemap imprimir o XML. Daí o
+ * sintoma esquisito de corpo válido com status errado. A Aquametria devolve 200
+ * nos mesmos caminhos pelo motivo simétrico: ela tem posts.
+ *
+ * Não é defeito do núcleo nem da hospedagem: é a consequência de um site que
+ * publica só páginas. Por isso o conserto fica ao lado da causa, e não desliga
+ * nada — o filtro pre_handle_404 existe no núcleo exatamente para isto, e só
+ * age em requisição que JÁ é de sitemap. Toda outra URL continua podendo 404,
+ * inclusive as de post, que nesta ilha não existem de propósito.
+ * ------------------------------------------------------------------------- */
+
+if ( ! function_exists( 'robometria_casca_sitemap_nao_e_404' ) ) {
+function robometria_casca_sitemap_nao_e_404( $curto_circuito, $consulta ) {
+	if ( is_object( $consulta ) && method_exists( $consulta, 'get' ) && $consulta->get( 'sitemap' ) ) {
+		return true;
+	}
+	return $curto_circuito;
+}
+}
+
+add_filter( 'pre_handle_404', 'robometria_casca_sitemap_nao_e_404', 10, 2 );
+
 if ( ! function_exists( 'robometria_casca_limpar_padrao' ) ) {
 function robometria_casca_limpar_padrao( &$relato ) {
 	if ( 'feito' === get_option( 'robometria_casca_limpeza' ) ) {
