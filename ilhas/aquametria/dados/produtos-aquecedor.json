@@ -4,7 +4,7 @@
   "esquema": "dados/esquema-produtos.json",
   "descricao": "Banco de aquecedores. Duas linhas: a importada de referencia (Eheim Jager/Thermocontrol) e a popular brasileira (Roxin HT-1300/Q3). Ampliado em 08/09/2026 para alimentar a C5 — nove registros de 25 a 300 W, com a voltagem coletada (era o campo que barrava a sugestao) e a faixa de ajuste da linha Roxin tratada pela intersecao conservadora da regra V17. Em 09/09/2026 o banco saiu de 13 para 23 registros com o lote colhido no painel Shopee Afiliados: 7 Maxxi, 1 RS-50, 1 Ocean Tech Warmer X-5 150 W e 1 Sicce Scuba Contactless 150 W, todos com link e imagem, e o Roxin Q3 50 W (que ja era apto) ganhou link. O lote mostra onde esta o gargalo: dos 10 novos, so o Warmer X-5 tem os quatro campos que a C5 exige — e e ele que fecha a janela de 110 a 150 W que estava vazia. Os 7 Maxxi e o RS-50 entram com potencia de varejo e NADA mais; o Sicce tem a melhor ficha do lote e para em um campo so, a voltagem. Em 09/09/2026, leva de FECHAMENTO DE FAIXA: o banco passou de 23 para 27 registros e ganhou o primeiro aparelho acima de 300 W. A varredura de cobertura (ferramentas/varrer-cobertura.mjs) tinha medido a C5 VAZIA de 310 a 400 L nas quatro combinacoes de delta e tomada, porque o banco parava em 300 W. Entraram Hopar J-226 400 W e 500 W (marca nova no banco, escolhida por ser a unica do levantamento com degrau de 400 W) e Ocean Tech Warmer X-5 250 W e 500 W. Nenhum dos quatro tem link de afiliado ainda.",
   "gerado_em": "2026-09-07",
-  "atualizado_em": "2026-09-09",
+  "atualizado_em": "2026-09-10",
   "bloco": 3,
   "publicar": false,
   "produtos": [
@@ -227,7 +227,7 @@
         "coletado_em": "2026-09-09",
         "verificado_em": null,
         "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
-        "alt": "Termostato com aquecedor Maxxi M-050 de 50 W, tubo submersivel com dial de ajuste no topo",
+        "alt": "Termostato com aquecedor Maxxi M-050 de 50 W, tubo submersível com dial de ajuste no topo",
         "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
       },
       "afiliado": {
@@ -297,7 +297,7 @@
         "coletado_em": "2026-09-09",
         "verificado_em": null,
         "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
-        "alt": "Termostato com aquecedor Roxin Q3 de 50 W, tubo de quartzo submersivel com dial de ajuste de temperatura no topo",
+        "alt": "Termostato com aquecedor Roxin Q3 de 50 W, tubo de quartzo submersível com dial de ajuste de temperatura no topo",
         "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
       },
       "afiliado": {
@@ -409,7 +409,7 @@
         "coletado_em": "2026-09-09",
         "verificado_em": null,
         "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
-        "alt": "Termostato aquecedor RS-50 de 50 W, tubo de vidro submersivel com anel de ajuste de temperatura",
+        "alt": "Termostato aquecedor RS-50 de 50 W, tubo de vidro submersível com anel de ajuste de temperatura",
         "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
       },
       "afiliado": {
@@ -643,7 +643,7 @@
         "coletado_em": "2026-09-09",
         "verificado_em": null,
         "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
-        "alt": "Termostato com aquecedor Maxxi M-100 de 100 W, tubo submersivel com dial de ajuste no topo",
+        "alt": "Termostato com aquecedor Maxxi M-100 de 100 W, tubo submersível com dial de ajuste no topo",
         "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
       },
       "afiliado": {
@@ -1011,7 +1011,7 @@
         "coletado_em": "2026-09-09",
         "verificado_em": null,
         "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
-        "alt": "Termostato com aquecedor Maxxi M-150 de 150 W, tubo submersivel com dial de ajuste no topo",
+        "alt": "Termostato com aquecedor Maxxi M-150 de 150 W, tubo submersível com dial de ajuste no topo",
         "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
       },
       "afiliado": {
@@ -1085,7 +1085,7 @@
         "coletado_em": "2026-09-09",
         "verificado_em": null,
         "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
-        "alt": "Termostato aquecedor Ocean Tech Warmer X-5 de 150 W, tubo de quartzo submersivel com escala de temperatura e dial de ajuste no topo",
+        "alt": "Termostato aquecedor Ocean Tech Warmer X-5 de 150 W, tubo de quartzo submersível com escala de temperatura e dial de ajuste no topo",
         "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
       },
       "afiliado": {
@@ -1212,7 +1212,7 @@
         "coletado_em": "2026-09-09",
         "verificado_em": null,
         "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
-        "alt": "Aquecedor Sicce Scuba Contactless de 150 W, corpo de vidro preto sem dial, ajustado por aproximacao do celular (NFC)",
+        "alt": "Aquecedor Sicce Scuba Contactless de 150 W, corpo de vidro preto sem dial, ajustado por aproximação do celular (NFC)",
         "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
       },
       "afiliado": {
@@ -1503,7 +1503,7 @@
         "coletado_em": "2026-09-09",
         "verificado_em": null,
         "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
-        "alt": "Termostato com aquecedor Maxxi M-200 de 200 W, tubo submersivel com dial de ajuste no topo",
+        "alt": "Termostato com aquecedor Maxxi M-200 de 200 W, tubo submersível com dial de ajuste no topo",
         "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
       },
       "afiliado": {
@@ -1567,7 +1567,7 @@
         "coletado_em": "2026-09-09",
         "verificado_em": null,
         "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
-        "alt": "Termostato com aquecedor Maxxi M-200 de 200 W, tubo submersivel com dial de ajuste no topo",
+        "alt": "Termostato com aquecedor Maxxi M-200 de 200 W, tubo submersível com dial de ajuste no topo",
         "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
       },
       "afiliado": {
@@ -1897,7 +1897,7 @@
         "coletado_em": "2026-09-09",
         "verificado_em": null,
         "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
-        "alt": "Termostato com aquecedor Maxxi M-300 de 300 W, tubo submersivel com dial de ajuste no topo",
+        "alt": "Termostato com aquecedor Maxxi M-300 de 300 W, tubo submersível com dial de ajuste no topo",
         "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
       },
       "afiliado": {
@@ -1961,7 +1961,7 @@
         "coletado_em": "2026-09-09",
         "verificado_em": null,
         "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
-        "alt": "Termostato com aquecedor Maxxi M-300 de 300 W, tubo submersivel com dial de ajuste no topo",
+        "alt": "Termostato com aquecedor Maxxi M-300 de 300 W, tubo submersível com dial de ajuste no topo",
         "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
       },
       "afiliado": {

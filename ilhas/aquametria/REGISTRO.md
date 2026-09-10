@@ -4549,3 +4549,134 @@ descobrir a ausência depois de rolar a ficha inteira.
    regerar e reverificar o snippet daquela calculadora.
 4. A `Organization` com `sameAs` na home segue pendente de propósito: a Aquametria não tem perfil
    externo nenhum. Nasce quando o T6 der o primeiro.
+
+---
+
+## EXECUÇÃO DE 10/09/2026, 21h17Z — T8: a VITRINE chega à C5, e a regra de reserva de ilha funcionou pela primeira vez
+
+### A execução começou perdendo uma corrida, e isso é notícia boa
+
+Pela seção 1 do `ARQUIPELAGO.md`, a ilha desta execução seria a **Robometria**: `ultima_execucao` mais
+antiga (17h17Z) e `prioridade: 1`. A reserva foi escrita, commitada e o push foi **recusado** — outra
+execução tinha reservado a mesma ilha às 21h15Z, um minuto antes. O procedimento da regra 5 foi seguido
+à risca: `reset --hard` no commit da reserva, releitura dos cabeçalhos, e a ilha passou a ser a
+**Aquametria** (19h17Z, a mais antiga das que sobraram). **É a primeira vez que a reserva por commit
+impediu duas execuções de trabalhar na mesma ilha**, e ela impediu do jeito mais barato possível: quem
+perde a corrida do push não conserta nada, só escolhe outra ilha. Fica registrado que o mecanismo é
+real, e não teoria.
+
+### O que foi entregue: C5 v1.5.0, manifest revisão 38
+
+A **vitrine de produto nasce na calculadora de potência do aquecedor** — a segunda do Arquipélago,
+depois da C3. Carrossel de cartões em `scroll-snap` de CSS puro, sem biblioteca, com foto, marca,
+modelo, a especificação que fez o produto entrar, a cotação **com a data da coleta** e o botão de loja.
+Vem **antes** da ficha técnica e da procedência (contrato 7). Duas vitrines por página: a pintada,
+dentro do resultado, e uma **servida no HTML** para o aquário de referência de 100 L, que é o que um
+crawler de IA recebe.
+
+Vieram junto, na mesma versão, três coisas que a seção 6 do contrato pedia e esta página não tinha:
+a **linha de promessa** antes do formulário, a **barra fixa do celular** enquanto o resultado está fora
+da tela, e a **rolagem até o resultado** ao calcular — o mesmo desenho da C3, portado com o
+`IntersectionObserver` e o `prefers-reduced-motion` incluídos.
+
+### O que a C5 tem e a C3 não tinha, e é a lição desta execução
+
+**A lista da C5 é partida em dois grupos** desde a 1.4.0 — "Dentro da faixa calculada" e "O degrau
+comercial acima" —, e um cartão de vitrine não comporta cabeçalho de grupo: enfiar um `<h4>` dentro de
+um trilho horizontal quebraria o `scroll-snap`. Copiar a C3 de olhos fechados teria produzido cartões
+bonitos dizendo "atende os 108 L do seu aquário" sobre um aparelho que a linha ao lado declara **fora**
+da faixa — ou seja, teria **reencenado em foto e botão de loja** exatamente a contradição que o item 2
+do despacho da Sentinela mandou consertar nesta mesma semana.
+
+A saída foi pôr a distinção na frase do próprio cartão: quem cabe diz *"150 W — dentro dos 110 a 160 W
+que os 108 L pedem"*; o degrau acima diz *"200 W — degrau comercial acima dos 160 W do topo"*. E a
+**sequência é calculada uma vez só** em `pintarProdutos()` e passada para `pintarVitrine()`, em vez de
+recalculada dos dois lados: recalcular a mesma ordem em dois lugares é combinar de divergir depois, e
+aqui divergir significa um cartão com foto e botão aparecendo antes de quem a ficha técnica pôs na
+frente. O portão novo mede isto por afirmação própria — o **grupo** de cada cartão tem de ser o mesmo
+que a lista técnica deu a ele.
+
+### O número que o PROMPT.md tinha errado, e por quê
+
+O `PROMPT.md` justificava a C5 como a próxima da fila porque "11 dos 14 aquecedores com link têm foto".
+O número está certo e a conclusão estava errada: ele foi medido no **banco**, e a vitrine desenha o
+**catálogo**. Dos 27 aquecedores do banco, só **18** passam no `minimo_para_sugerir` — e **9 dos 11 que
+têm foto são justamente os que ficam de fora**, por não declararem volume atendido, faixa de ajuste ou
+voltagem. Medido depois de regerar: **a vitrine da C5 tem foto em 2 dos 18**, contra 5 de 13 na C3.
+
+Isso não mudou nada na entrega — produto sem foto **não some** da vitrine, sai com o espaço reservado
+neutro, porque perder a recomendação técnica certa por falta de imagem é trocar o certo pelo bonito —,
+mas muda como se escolhe a próxima calculadora. A regra foi escrita no `PROMPT.md`: **conte foto e link
+depois do portão de elegibilidade, nunca antes**, e a medida certa é a linha "vitrine: N de M com link,
+K com foto" que os geradores agora imprimem.
+
+### Preço passa a sair, e as frases que diziam o contrário foram reescritas junto
+
+Até a 1.4.0 esta página dizia, em dois lugares, que não publicava preço. A razão era boa — preço muda
+toda semana — mas resolvia o problema errado: o que a seção 7 proíbe é preço **cravado como atual**, e
+cotação com a data ao lado é o que a seção 6 pede da vitrine. As duas frases foram reescritas **na mesma
+versão** em que a vitrine entrou, mais a `conteudo/divulgacao-de-afiliados.md`, que ainda dizia que só a
+calculadora de vazão mostrava cotação. Página que mostra preço e diz que não publica preço se
+contradiz, e contradição na cara do leitor é o defeito que a 1.4.0 acabou de consertar.
+
+A C12 e a C15 continuam dizendo que não publicam preço, e ali a frase **é verdadeira** — elas ainda não
+têm vitrine. Cada uma se reescreve na versão em que a vitrine chegar, nunca depois.
+
+### O gerador do catálogo e o banco
+
+`ferramentas/gerar-catalogo-aquecedores.py` ganhou os dois campos que o gerador dos filtros já tinha, com
+os mesmos portões: `imagem` **recusa gravar** URL sem `alt` (imagem sem texto alternativo na vitrine é
+defeito de acessibilidade que ninguém vê passar), `preco` sai de `dados/produtos-cotacoes.json` sempre
+como faixa com a data **mais antiga** da coleta, e o gerador **para** se achar qualquer chave de
+comissão viajando para dentro do snippet. `largura` e `altura` viajam como estão no banco, inclusive
+`null`: a Aquametria não grava dimensão que não mediu, e o cartão reserva o espaço com `aspect-ratio`.
+
+Os **11 `alt`** do banco de aquecedores foram acentuados (`submersível`, `aproximação`), como já tinham
+sido os do banco de filtros. Faltam os de iluminação e de mídia, e vão junto com a vitrine de cada uma.
+
+Não há `Product`/`Offer` no JSON-LD desta página, e é de propósito: `Offer.price` afirma preço **atual**,
+e o que temos é cotação de uma data. Declarar schema de oferta com número velho seria mentir em formato
+de máquina, que é pior do que mentir em texto, porque ninguém revisa.
+
+### Verificação
+
+`php -l` nos 10 snippets; proteção de funções ok nos 10 (**47 funções** na C5); `conferir-entidades`
+zero falha, com `entidade_038_no_documento=0` nas cinco; `conferir-slugs` ok nos dois sentidos;
+`gerar-metas-descricao --conferir` em dia com as 13; `teste-seo-tecnico` 177/0; `teste-apelidos` 59/0;
+`teste-conversor-markdown` 17/0; `teste-atualizador-sync` 9/0; `teste-escape-shortcode` ok; validador de
+produtos 78 produtos, 0 erro.
+
+No navegador, um teste de cada vez: **`teste-navegador-c5-vitrine.mjs`, o portão novo, APROVADO em 44
+afirmações** — as duas metades da página, a servida com o JavaScript **desligado** e a pintada com ele
+ligado; **`teste-navegador-c5.mjs` (15 cenários, entre eles o 15b do despacho de 10/09) passou inteiro**;
+`teste-navegador-visibilidade-ia.mjs` **155 afirmações, zero falha**, nas cinco calculadoras com o
+JavaScript desligado.
+
+### Produtos esperando link de afiliado: 39 de 78 no banco, 13 de 18 no catálogo da C5
+
+Sem mudança no total do banco: nenhum produto entrou nesta execução. **No catálogo que a C5 publica, 5
+dos 18 aquecedores têm link** e 13 esperam — trabalho da Sentinela estratégica, não da Fundação. Desses
+13, todos têm loja possível: são modelos vendidos no varejo brasileiro, só sem link gerado. **Três dos
+que já têm link não têm foto** (Roxin HT-1300/Q3 de 100, 200 e 300 W): são os avisos V20 do validador, e
+a URL da foto só sai do painel da Shopee, no navegador do Raphael.
+
+**Item 4 do despacho, medido de novo com a vitrine da C5 no ar:** na entrada do próprio despacho (108 L,
+mínima 16 °C, alvo 26 °C) a lista sai com 5 aparelhos e **só o terceiro tem link** — Atman AT-150 e
+Eheim Jäger 150 W vêm antes, os dois sem link, e o Ocean Tech Warmer X-5 150 W é o único com botão de
+loja e com foto. **A ordem não mudou e não vai mudar por isso.** O que a vitrine acrescentou é que a
+ausência agora é visível no lugar mais caro da página: o primeiro cartão mostra "link de loja em breve"
+onde estaria o botão, em vez de o leitor descobrir a falta depois de rolar a ficha inteira.
+
+### Próximo passo desbloqueado
+
+1. **T8 na C15, depois na C12.** Antes de escolher, rode o gerador daquele banco e leia a linha
+   "vitrine: N de M com link, K com foto" — a lição desta execução é que essa conta só vale **depois**
+   do portão de elegibilidade. As frases de preço daquela calculadora se reescrevem na MESMA versão da
+   vitrine, e o `alt` daquele banco se acentua **antes** de regerar o catálogo.
+2. **T1 — medir a indexação no Search Console.** Continua dependendo do Chrome do Raphael ou da
+   credencial da conta de serviço no ambiente. É ele que autoriza ou barra a T4, e a leitura de 16/09
+   depende dele para dizer por que a leva de 08/09 não indexou.
+3. **Item 5 do despacho continua de pé:** nenhuma página nova até 16/09. Esta execução não criou URL
+   nenhuma — a vitrine e a barra do celular moram dentro de páginas que já existiam.
+4. A `Organization` com `sameAs` na home segue pendente de propósito: a Aquametria não tem perfil
+   externo nenhum. Nasce quando o T6 der o primeiro.

@@ -1,5 +1,28 @@
 /**
  * Aquametria Calculadora de Potência do Aquecedor — C5
+ * Versão: 1.5.0 (10/09/2026) — BLOCO T8: a VITRINE de produto nasce na C5, a
+ *   segunda do Arquipélago depois da C3. Carrossel de cartões em scroll-snap de
+ *   CSS puro, sem biblioteca, com foto, marca, modelo, a especificação que fez o
+ *   produto entrar, a cotação COM A DATA e o botão de loja — e ele vem ANTES da
+ *   ficha técnica e da procedência (contrato 7). Duas vitrines por página: a
+ *   pintada, dentro do resultado, e uma SERVIDA no HTML para o aquário de
+ *   referência de 100 L, porque um crawler de IA não executa JavaScript e
+ *   vitrine que só nasce no clique é vitrine que só o comprador que já chegou vê.
+ *   O QUE A C5 TEM E A C3 NÃO TINHA: a lista aqui é partida em dois grupos desde
+ *   a 1.4.0, e cartão de vitrine não comporta cabeçalho de grupo. Então a
+ *   distinção viaja na frase do próprio cartão — "dentro dos 110 a 160 W que os
+ *   108 L pedem" contra "degrau comercial acima dos 160 W do topo" —, e a
+ *   sequência que a vitrine desenha é a MESMA que a lista técnica desenha,
+ *   calculada uma vez só e passada adiante. A ORDEM NÃO MUDA: a vitrine nunca
+ *   reordena por foto, por preço ou por comissão.
+ *   PREÇO PASSA A SAIR, sempre datado, e as duas frases que diziam "não
+ *   publicamos preço" foram reescritas nesta MESMA versão — página que mostra
+ *   preço e diz que não publica preço se contradiz, e contradição na cara do
+ *   leitor foi o defeito consertado na 1.4.0.
+ *   Vieram junto duas dívidas da seção 6 do contrato que esta página ainda tinha:
+ *   a linha de promessa antes do formulário e a barra fixa do celular enquanto o
+ *   resultado está fora da tela, com rolagem até o resultado ao calcular.
+ *   Nenhuma fórmula, constante ou faixa mudou, e a elegibilidade é a mesma.
  * Versão: 1.4.0 (10/09/2026) — o bloco de produto para de se contradizer.
  *   Item 2 do despacho da Sentinela de 10/09/2026: com 108 L, mínima do cômodo
  *   de 16 °C e alvo de 26 °C, a página publicava a faixa de 110 a 160 W e listava
@@ -102,7 +125,9 @@
  * adequação técnica; link de afiliado não ordena nem filtra (regra V16). Duas
  * barreiras de segurança vêm antes de tudo: a voltagem da tomada (aquecedor na
  * voltagem errada queima) e a faixa de ajuste alcançar a temperatura-alvo
- * (regra V18). Preço não entra: snippet é estático e preço envelhece na tela.
+ * (regra V18). Preço entra desde a 1.5.0, e entra sempre como COTAÇÃO COM A DATA
+ * da coleta ao lado — nunca como preço de hoje, que é o que a seção 7 do contrato
+ * proíbe. Quem publica preço é a vitrine; a tabela de exemplos não.
  *
  * Regras herdadas (fase 4b): sem "<?php" no topo (o Code Snippets põe); toda
  * função de nível superior dentro de function_exists; não usa superglobal de
@@ -114,7 +139,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_C5_VERSAO' ) ) {
-	define( 'AQUAMETRIA_C5_VERSAO', '1.4.0' );
+	define( 'AQUAMETRIA_C5_VERSAO', '1.5.0' );
 	define( 'AQUAMETRIA_C5_SLUG', 'calculadora-de-potencia-do-aquecedor' );
 	define( 'AQUAMETRIA_C5_VERIFICADO_EM', '08/09/2026' );
 	define( 'AQUAMETRIA_C5_ARTIGO', 'quantos-watts-de-aquecedor-para-aquario' );
@@ -527,6 +552,274 @@ function aquametria_c5_produto_celula_html( $e ) {
 }
 
 /* ---------------------------------------------------------------------------
+ * 1e. A VITRINE — bloco T8, 10/09/2026
+ *
+ * Copiada do desenho da C3, e não reinventada: uma função de cartão em PHP e o
+ * espelho dela em JavaScript, com a MESMA marcação, porque duas marcações para o
+ * mesmo cartão viram dois CSS e, mais cedo do que se pensa, duas aparências.
+ * Duas vitrines por página — a pintada, dentro do resultado, e a SERVIDA no HTML
+ * para o aquário de referência, porque crawler de IA não executa JavaScript.
+ * A vitrine vem ANTES da ficha e da procedência (contrato 7), e NUNCA reordena:
+ * desenha a mesma sequência que a lista técnica.
+ *
+ * O QUE É DIFERENTE AQUI, e é a razão de este arquivo não poder copiar a C3 de
+ * olhos fechados: a lista da C5 tem DOIS GRUPOS desde a 1.4.0 — quem cabe dentro
+ * da faixa calculada e o degrau comercial acima dela. Um cartão de vitrine é
+ * pequeno demais para carregar cabeçalho de grupo, e enfiar cabeçalho dentro de
+ * um trilho horizontal quebraria o scroll-snap. Então a distinção viaja no
+ * próprio cartão, na frase da especificação: quem cabe na faixa diz "dentro dos
+ * 110 a 160 W que os 108 L pedem", e o degrau acima diz "degrau comercial acima
+ * dos 160 W do topo". Repetir no cartão bonito a frase "atende ao seu número"
+ * para um aparelho que a linha ao lado declara fora da faixa seria reencenar,
+ * em foto e botão de loja, exatamente a contradição que o item 2 do despacho da
+ * Sentinela mandou consertar nesta mesma semana.
+ *
+ * PREÇO PASSA A SAIR, e sai DATADO. Até a 1.4.0 esta página dizia, duas vezes,
+ * que não publicava preço. A razão era boa — preço muda toda semana — mas
+ * resolvia o problema errado: o proibido pela seção 7 do contrato é preço
+ * CRAVADO COMO ATUAL. Cotação com a data ao lado é permitida, e é o que a seção
+ * 6 pede da vitrine. As duas frases foram reescritas nesta mesma versão: página
+ * que mostra preço e diz que não publica preço se contradiz.
+ *
+ * Não há Product/Offer no JSON-LD desta página, e é de propósito: Offer.price
+ * afirma preço ATUAL, e o que temos é cotação de uma data. Declarar schema de
+ * oferta com número velho seria mentir em formato de máquina, que é pior do que
+ * mentir em texto, porque ninguém revisa.
+ * ------------------------------------------------------------------------- */
+
+/* Espelho em PHP do litros() do script. Existe por um motivo só: o script
+   escreve "60,0" abaixo de 100 L e "100" acima, e a vitrine servida precisa
+   dizer a mesma coisa que a pintada quando um dia o aquário de referência for
+   menor que 100 L. Repetir number_format_i18n aqui seria combinar de divergir. */
+if ( ! function_exists( 'aquametria_c5_litros' ) ) {
+function aquametria_c5_litros( $n ) {
+	if ( null === $n ) {
+		return '—';
+	}
+	return ( $n >= 100 )
+		? number_format_i18n( round( $n ), 0 )
+		: number_format_i18n( round( $n * 10 ) / 10, 1 );
+}
+}
+
+/* A cotação vira frase: valor (ou faixa), loja e a data da coleta. Nunca "de
+   R$ X por R$ Y", nunca "a partir de" — os dois sugerem promoção e a Aquametria
+   não sabe se há promoção. */
+if ( ! function_exists( 'aquametria_c5_preco_texto' ) ) {
+function aquametria_c5_preco_texto( $p ) {
+	if ( empty( $p['preco'] ) || null === $p['preco']['min'] ) {
+		return '';
+	}
+
+	$pr    = $p['preco'];
+	$valor = 'R$ ' . number_format_i18n( $pr['min'], 2 );
+
+	if ( $pr['max'] > $pr['min'] ) {
+		$valor = 'R$ ' . number_format_i18n( $pr['min'], 2 ) . ' a R$ ' . number_format_i18n( $pr['max'], 2 );
+	}
+
+	$onde = $pr['loja'] ? ' na ' . $pr['loja'] : '';
+
+	return $valor . $onde . ', cotado em ' . aquametria_c5_data_br( $pr['coletado_em'] );
+}
+}
+
+/* O cartão tem uma linha só para a marca, então a linha do modelo NÃO repete a
+   marca. A voltagem entra quando o banco separou o registro por voltagem, senão
+   a vitrine mostra dois cartões de nome idêntico. */
+if ( ! function_exists( 'aquametria_c5_modelo_curto' ) ) {
+function aquametria_c5_modelo_curto( $p ) {
+	$modelo = $p['modelo'];
+
+	if ( is_array( $p['voltagem'] ) && 1 === count( $p['voltagem'] ) ) {
+		$modelo .= ' (' . $p['voltagem'][0] . ' V)';
+	}
+
+	return $modelo;
+}
+}
+
+/* A especificação QUE FEZ O PRODUTO ENTRAR, no tamanho de um cartão — e ela
+   muda conforme o grupo, que é o ponto inteiro desta função. */
+if ( ! function_exists( 'aquametria_c5_vt_espec_frase' ) ) {
+function aquametria_c5_vt_espec_frase( $p, $e, $acima ) {
+	$w = number_format_i18n( $p['potencia_w'], 0 ) . ' W — ';
+
+	if ( $acima ) {
+		return $w . 'degrau comercial acima dos ' . aquametria_c5_watts( $e['teto'] ) . ' W do topo';
+	}
+
+	return $w . 'dentro dos ' . aquametria_c5_watts( $e['piso'] ) . ' a ' . aquametria_c5_watts( $e['teto'] )
+		. ' W que os ' . aquametria_c5_litros( $e['volume'] ) . ' L pedem';
+}
+}
+
+/* A ressalva de volume declarado, encurtada para caber no cartão. A frase longa
+   continua na ficha logo abaixo; o que não pode acontecer é o cartão bonito
+   omitir o que a ficha diz — quem só olha a vitrine merece o mesmo aviso. */
+if ( ! function_exists( 'aquametria_c5_vt_ressalva_curta' ) ) {
+function aquametria_c5_vt_ressalva_curta( $p, $volume ) {
+	if ( null === $p['volume_max_L'] || $p['volume_max_L'] >= $volume ) {
+		return '';
+	}
+
+	return 'a ficha declara até ' . aquametria_c5_litros( $p['volume_max_L'] ) . ' L';
+}
+}
+
+/* Um cartão. O MESMO HTML que o script monta em vitrineCartao(). */
+if ( ! function_exists( 'aquametria_c5_vitrine_cartao_html' ) ) {
+function aquametria_c5_vitrine_cartao_html( $p, $e, $acima ) {
+	$preco    = aquametria_c5_preco_texto( $p );
+	$ressalva = aquametria_c5_vt_ressalva_curta( $p, $e['volume'] );
+
+	$h = '<li class="aqm-c5-vt-item">';
+
+	if ( $p['link'] ) {
+		$h .= '<a class="aqm-c5-vt-cartao" href="' . esc_url( $p['link'] ) . '" target="_blank" rel="sponsored noopener">';
+	} else {
+		/* Sem link não existe destino, e cartão sem destino não é âncora. O que o
+		   contrato proíbe é div com onclick fingindo ser link. */
+		$h .= '<div class="aqm-c5-vt-cartao aqm-c5-vt-sem-link">';
+	}
+
+	if ( ! empty( $p['imagem'] ) && ! empty( $p['imagem']['url'] ) ) {
+		$img = '<img src="' . esc_url( $p['imagem']['url'] ) . '" alt="' . esc_attr( $p['imagem']['alt'] ) . '"';
+		if ( ! empty( $p['imagem']['largura'] ) && ! empty( $p['imagem']['altura'] ) ) {
+			$img .= ' width="' . esc_attr( $p['imagem']['largura'] ) . '" height="' . esc_attr( $p['imagem']['altura'] ) . '"';
+		}
+		$img .= ' loading="lazy" decoding="async">';
+		$h   .= '<span class="aqm-c5-vt-foto">' . $img . '</span>';
+	} else {
+		/* Espaço reservado neutro. Produto sem foto NÃO some da vitrine: perder a
+		   recomendação técnica certa por falta de imagem é trocar o certo pelo
+		   bonito (seção 6 do ARQUIPELAGO.md). Nesta calculadora isso é a regra e
+		   não a exceção — 16 dos 18 aquecedores do catálogo não têm foto. */
+		$h .= '<span class="aqm-c5-vt-foto aqm-c5-vt-foto-vazia" aria-hidden="true">';
+		$h .= '<span class="aqm-c5-vt-sigla">' . esc_html( $p['marca'] ) . '</span></span>';
+	}
+
+	$h .= '<span class="aqm-c5-vt-marca">' . esc_html( $p['marca'] ) . '</span>';
+	$h .= '<span class="aqm-c5-vt-modelo">' . esc_html( aquametria_c5_modelo_curto( $p ) ) . '</span>';
+	$h .= '<span class="aqm-c5-vt-espec">' . esc_html( aquametria_c5_vt_espec_frase( $p, $e, $acima ) ) . '</span>';
+
+	if ( '' !== $ressalva ) {
+		$h .= '<span class="aqm-c5-vt-ressalva">' . esc_html( $ressalva ) . '</span>';
+	}
+
+	if ( '' !== $preco ) {
+		$h .= '<span class="aqm-c5-vt-preco">' . esc_html( $preco ) . '</span>';
+	} else {
+		$h .= '<span class="aqm-c5-vt-preco aqm-c5-vt-sem-preco">sem cotação coletada</span>';
+	}
+
+	if ( $p['link'] ) {
+		$h .= '<span class="aqm-c5-vt-botao">Ver na ' . esc_html( 'shopee' === $p['loja'] ? 'Shopee' : $p['loja'] ) . '</span>';
+		$h .= '<span class="aqm-c5-vt-selo">link patrocinado</span>';
+		$h .= '</a>';
+	} else {
+		$h .= '<span class="aqm-c5-vt-espera">link de loja em breve</span>';
+		$h .= '<span class="aqm-c5-vt-selo">entrou pela ficha técnica, não pelo link</span>';
+		$h .= '</div>';
+	}
+
+	$h .= '</li>';
+
+	return $h;
+}
+}
+
+/* A vitrine SERVIDA no HTML, para o aquário de referência de 100 litros. A
+   pintada mostra o aquário de quem está lendo; esta existe porque um modelo de
+   linguagem e um crawler não executam JavaScript, e vitrine que só nasce no
+   clique é vitrine que só o comprador que já chegou vê.
+
+   Ela para em 5 cartões porque a seção 7 do contrato manda de três a cinco
+   produtos, e porque o script pinta no máximo cinco: uma vitrine servida mais
+   longa que a pintada faria as duas metades da mesma página discordarem. */
+if ( ! function_exists( 'aquametria_c5_vitrine_servida_html' ) ) {
+function aquametria_c5_vitrine_servida_html() {
+	$volume = 100;
+	$e      = aquametria_c5_exemplo( $volume );
+	$lista  = array_slice( aquametria_c5_produtos_exemplo( $e ), 0, 5 );
+
+	$divulgacao = aquametria_c5_url( AQUAMETRIA_C5_PAGINA_AFILIADOS );
+
+	$h  = '<div class="aqm-c5-painel aqm-c5-vitrine-servida">';
+	$h .= '<h3>Os aquecedores para um aquário de ' . esc_html( aquametria_c5_litros( $volume ) ) . ' litros</h3>';
+
+	if ( ! $lista ) {
+		$h .= '<p class="aqm-c5-sub">Nenhum aquecedor do banco da Aquametria fica hoje entre '
+			. esc_html( aquametria_c5_watts( $e['piso'] ) ) . ' e '
+			. esc_html( aquametria_c5_watts( $e['comercial'] ? $e['comercial'] : $e['teto'] ) )
+			. ' W. O banco tem ' . esc_html( count( aquametria_c5_catalogo() ) ) . ' aquecedores com ficha completa e cresce a cada coleta. '
+			. 'Preferimos não mostrar produto nenhum a mostrar um que não atende ao número.</p>';
+		$h .= '</div>';
+		return $h;
+	}
+
+	$com_link = 0;
+	foreach ( $lista as $p ) {
+		if ( $p['link'] ) {
+			$com_link++;
+		}
+	}
+
+	$h .= '<p class="aqm-c5-sub">Um aquário de ' . esc_html( aquametria_c5_litros( $volume ) )
+		. ' litros num cômodo que cai até ' . esc_html( AQUAMETRIA_C5_DELTA_COBERTO ) . ' °C abaixo da água pede de '
+		. esc_html( aquametria_c5_watts( $e['piso'] ) ) . ' a ' . esc_html( aquametria_c5_watts( $e['teto'] ) )
+		. ' W, e estes são os aquecedores do banco da Aquametria cuja potência cai nessa faixa. '
+		. 'A ordem é pela proximidade do topo dela; nada aqui é ordenado por comissão, e modelo sem link de loja aparece do mesmo jeito. '
+		. 'Esta lista de exemplo não aplica as duas barreiras de segurança do formulário — a voltagem da sua tomada e a faixa de ajuste alcançar a sua temperatura-alvo —, '
+		. 'porque um exemplo não sabe nenhuma das duas. Preencha o formulário acima para ver a lista do seu caso.</p>';
+
+	$h .= '<ul class="aqm-c5-vt-trilho">';
+	foreach ( $lista as $p ) {
+		$h .= aquametria_c5_vitrine_cartao_html( $p, $e, $p['potencia_w'] > $e['teto'] );
+	}
+	$h .= '</ul>';
+
+	$h .= '<p class="aqm-c5-criterio">' . esc_html( $com_link ) . ' de ' . esc_html( count( $lista ) )
+		. ' têm link de loja hoje; os outros aparecem do mesmo jeito, com o lugar do botão reservado — '
+		. 'quem entra é decidido pela ficha técnica, e nunca por ter ou não link.</p>';
+
+	$h .= '<p class="aqm-c5-aviso-afiliado"><strong>Sobre o preço e o botão.</strong> '
+		. 'O valor de cada cartão <strong>não é preço de hoje</strong>: é a cotação que a Aquametria leu naquele anúncio na data escrita ao lado, '
+		. 'e preço de aquarismo muda toda semana. Confira no anúncio antes de comprar. '
+		. 'Os botões levam a lojas por link de afiliado, marcado como patrocinado: se você comprar por eles, a Aquametria pode receber comissão, sem custo a mais para você. '
+		. 'A ficha técnica de cada aquecedor vem do fabricante ou do varejo especializado, com o endereço e a data — o anúncio da loja nunca é a nossa fonte. '
+		. '<a href="' . esc_url( $divulgacao ) . '">Como a Aquametria ganha dinheiro</a>.</p>';
+
+	$h .= '</div>';
+
+	return $h;
+}
+}
+
+/* A linha de promessa, antes do formulário: o que a pessoa recebe se preencher.
+   Curta, sem exclamação, sem tom de anúncio (seção 6 do ARQUIPELAGO.md). */
+if ( ! function_exists( 'aquametria_c5_promessa_html' ) ) {
+function aquametria_c5_promessa_html() {
+	return '<p class="aqm-c5-promessa">Calcule a potência do aquecedor pelo frio que faz no seu cômodo '
+		. 'e veja quais aparelhos atendem, com a faixa de ajuste e a fonte de cada um.</p>';
+}
+}
+
+/* A barra do celular. Ela só existe enquanto o resultado está fora da tela, e só
+   em tela estreita — o CSS a esconde acima de 600 px, e o script só liga a
+   classe depois de um cálculo. Fora do <form> de propósito: position:fixed
+   dentro de um painel com rolagem própria briga com o painel. */
+if ( ! function_exists( 'aquametria_c5_barra_html' ) ) {
+function aquametria_c5_barra_html() {
+	$h  = '<div class="aqm-c5-barra" id="aqm-c5-barra" aria-hidden="true">';
+	$h .= '<span class="aqm-c5-barra-texto" id="aqm-c5-barra-texto"></span>';
+	$h .= '<button type="button" class="aqm-c5-barra-botao" id="aqm-c5-barra-ir">Ver o resultado</button>';
+	$h .= '</div>';
+	return $h;
+}
+}
+
+/* ---------------------------------------------------------------------------
  * 2. Catálogo de aquecedores
  *
  * NÃO EDITE À MÃO o trecho entre os marcadores. Ele é a cópia, dentro do
@@ -570,6 +863,8 @@ function aquametria_c5_catalogo() {
 			'voltagem_anuncio' => null,
 			'loja' => null,
 			'conflito_volume' => null,
+			'imagem' => null,
+			'preco' => null,
 		),
 		array(
 			'id' => 'eheim-jager-50w',
@@ -596,6 +891,8 @@ function aquametria_c5_catalogo() {
 			'voltagem_anuncio' => null,
 			'loja' => null,
 			'conflito_volume' => null,
+			'imagem' => null,
+			'preco' => null,
 		),
 		array(
 			'id' => 'roxin-ht-1300-q3-50w',
@@ -622,6 +919,20 @@ function aquametria_c5_catalogo() {
 			'voltagem_anuncio' => '220',
 			'loja' => 'shopee',
 			'conflito_volume' => null,
+			'imagem' => array(
+				'url' => 'https://down-bs-br.img.susercontent.com/br-11134207-7r98o-lvyuqrs817sla5.webp',
+				'alt' => 'Termostato com aquecedor Roxin Q3 de 50 W, tubo de quartzo submersível com dial de ajuste de temperatura no topo',
+				'largura' => null,
+				'altura' => null,
+				'verificado_em' => null,
+			),
+			'preco' => array(
+				'min' => 66.23,
+				'max' => 66.23,
+				'loja' => 'Shopee',
+				'coletado_em' => '2026-09-09',
+				'cotacoes' => 1,
+			),
 		),
 		array(
 			'id' => 'atman-at-100',
@@ -648,6 +959,8 @@ function aquametria_c5_catalogo() {
 			'voltagem_anuncio' => null,
 			'loja' => null,
 			'conflito_volume' => null,
+			'imagem' => null,
+			'preco' => null,
 		),
 		array(
 			'id' => 'eheim-jager-100w',
@@ -674,6 +987,8 @@ function aquametria_c5_catalogo() {
 			'voltagem_anuncio' => null,
 			'loja' => null,
 			'conflito_volume' => null,
+			'imagem' => null,
+			'preco' => null,
 		),
 		array(
 			'id' => 'roxin-ht-1300-q3-100w',
@@ -700,6 +1015,14 @@ function aquametria_c5_catalogo() {
 			'voltagem_anuncio' => '127',
 			'loja' => 'shopee',
 			'conflito_volume' => null,
+			'imagem' => null,
+			'preco' => array(
+				'min' => 78.9,
+				'max' => 78.9,
+				'loja' => 'Shopee',
+				'coletado_em' => '2026-09-07',
+				'cotacoes' => 1,
+			),
 		),
 		array(
 			'id' => 'atman-at-150',
@@ -726,6 +1049,8 @@ function aquametria_c5_catalogo() {
 			'voltagem_anuncio' => null,
 			'loja' => null,
 			'conflito_volume' => null,
+			'imagem' => null,
+			'preco' => null,
 		),
 		array(
 			'id' => 'eheim-jager-150w',
@@ -752,6 +1077,8 @@ function aquametria_c5_catalogo() {
 			'voltagem_anuncio' => null,
 			'loja' => null,
 			'conflito_volume' => 'de 125 a 150 L segundo tabela da linha Jager no varejo europeu/americano (Aquaeden, Top Corals); de 200 a 300 L segundo Agrosete (varejo BR), ficha do Eheim 150 W 220 V',
+			'imagem' => null,
+			'preco' => null,
 		),
 		array(
 			'id' => 'oceantech-warmer-x-5-150w',
@@ -778,6 +1105,20 @@ function aquametria_c5_catalogo() {
 			'voltagem_anuncio' => '220',
 			'loja' => 'shopee',
 			'conflito_volume' => 'ate 150 L segundo titulos de varejo BR (Pet Patao Shop; Aquariando Pet): \'para aquarios ate 150 litros\'; ate 130 L segundo ficha de varejo BR lida por resultado de busca, sem pagina atribuida: \'indicado para aquarios de ate 130 litros\'; ate 100 L segundo ficha de varejo BR lida por resultado de busca, sem pagina atribuida: \'indicado para aquario ate 100 litros\'',
+			'imagem' => array(
+				'url' => 'https://down-bs-br.img.susercontent.com/2bb44a02215e58113eb2e28a852f5552.webp',
+				'alt' => 'Termostato aquecedor Ocean Tech Warmer X-5 de 150 W, tubo de quartzo submersível com escala de temperatura e dial de ajuste no topo',
+				'largura' => null,
+				'altura' => null,
+				'verificado_em' => null,
+			),
+			'preco' => array(
+				'min' => 159.9,
+				'max' => 159.9,
+				'loja' => 'Shopee',
+				'coletado_em' => '2026-09-09',
+				'cotacoes' => 1,
+			),
 		),
 		array(
 			'id' => 'atman-at-200',
@@ -804,6 +1145,8 @@ function aquametria_c5_catalogo() {
 			'voltagem_anuncio' => null,
 			'loja' => null,
 			'conflito_volume' => null,
+			'imagem' => null,
+			'preco' => null,
 		),
 		array(
 			'id' => 'eheim-jager-200w',
@@ -830,6 +1173,8 @@ function aquametria_c5_catalogo() {
 			'voltagem_anuncio' => null,
 			'loja' => null,
 			'conflito_volume' => 'de 30 a 400 L segundo catalogo do proprio fabricante (Eheim), linha Jager; de 300 a 400 L segundo varejo BR e tabela de varejo da linha (Pata Mania, Aquaeden, Top Corals)',
+			'imagem' => null,
+			'preco' => null,
 		),
 		array(
 			'id' => 'roxin-ht-1300-q3-200w',
@@ -856,6 +1201,14 @@ function aquametria_c5_catalogo() {
 			'voltagem_anuncio' => '110',
 			'loja' => 'shopee',
 			'conflito_volume' => null,
+			'imagem' => null,
+			'preco' => array(
+				'min' => 74.99,
+				'max' => 74.99,
+				'loja' => 'Shopee',
+				'coletado_em' => '2026-09-07',
+				'cotacoes' => 1,
+			),
 		),
 		array(
 			'id' => 'oceantech-warmer-x-5-250w',
@@ -882,6 +1235,8 @@ function aquametria_c5_catalogo() {
 			'voltagem_anuncio' => null,
 			'loja' => null,
 			'conflito_volume' => null,
+			'imagem' => null,
+			'preco' => null,
 		),
 		array(
 			'id' => 'atman-at-300',
@@ -908,6 +1263,8 @@ function aquametria_c5_catalogo() {
 			'voltagem_anuncio' => null,
 			'loja' => null,
 			'conflito_volume' => null,
+			'imagem' => null,
+			'preco' => null,
 		),
 		array(
 			'id' => 'roxin-ht-1300-q3-300w',
@@ -934,6 +1291,14 @@ function aquametria_c5_catalogo() {
 			'voltagem_anuncio' => '220',
 			'loja' => 'shopee',
 			'conflito_volume' => null,
+			'imagem' => null,
+			'preco' => array(
+				'min' => 85.5,
+				'max' => 85.5,
+				'loja' => 'Shopee',
+				'coletado_em' => '2026-09-07',
+				'cotacoes' => 1,
+			),
 		),
 		array(
 			'id' => 'hopar-j-226-400w',
@@ -960,6 +1325,8 @@ function aquametria_c5_catalogo() {
 			'voltagem_anuncio' => null,
 			'loja' => null,
 			'conflito_volume' => 'ate 500 L segundo Rei dos Aquarios e Royal Pets (varejo BR especializado): \'para aquarios de ate 500 litros\'; ate 400 L segundo titulo de anuncio de marketplace: \'Termostato Aquecedor 400W para Aquarios ate 400 L Hopar J-226\'',
+			'imagem' => null,
+			'preco' => null,
 		),
 		array(
 			'id' => 'hopar-j-226-500w',
@@ -986,6 +1353,8 @@ function aquametria_c5_catalogo() {
 			'voltagem_anuncio' => null,
 			'loja' => null,
 			'conflito_volume' => null,
+			'imagem' => null,
+			'preco' => null,
 		),
 		array(
 			'id' => 'oceantech-warmer-x-5-500w',
@@ -1012,6 +1381,8 @@ function aquametria_c5_catalogo() {
 			'voltagem_anuncio' => null,
 			'loja' => null,
 			'conflito_volume' => 'ate 500 L segundo Rilcomercial e Dinho\'s Reef (varejo BR): \'aquecedor termostato Ocean Tech 500w aquarios 500 litros\'; de 350 a 600 L segundo Mega Aquarios (varejo BR): \'adequado para aquarios de 350 a 600 litros\', com termometro externo adesivo e ventosas na embalagem; de 500 a 1000 L segundo Aquarista Amador (varejo BR): litragem recomendada de 600 L no quadro de especificacoes e \'adequado para aquarios de 500 a 1000 litros\' no texto da MESMA pagina',
+			'imagem' => null,
+			'preco' => null,
 		),
 	);
 	/* CATALOGO-FIM */
@@ -1120,9 +1491,36 @@ a.aqm-c5-prod{color:var(--c5-lamina);text-decoration:underline;}
 .aqm-c5-num{font-family:var(--c5-mono);font-variant-numeric:tabular-nums;white-space:nowrap;}
 .aqm-c5-wl{display:block;color:var(--c5-legenda);font-family:var(--c5-texto);font-size:.76rem;}
 .aqm-c5-oculto{display:none;}
+.aqm-c5-promessa{font-family:var(--c5-display);font-size:1.02rem;line-height:1.5;color:var(--c5-tinta);border-left:3px solid var(--c5-lamina);padding:.15rem 0 .15rem .8rem;margin:0 0 1.1rem;}
+.aqm-c5-vitrine{margin:1rem 0 0;}
+.aqm-c5-vitrine h4{font-family:var(--c5-display);font-size:.95rem;margin:0 0 .15rem;}
+.aqm-c5-vt-trilho{display:flex;gap:.8rem;margin:.7rem 0 0;padding:.15rem .15rem .9rem;list-style:none;overflow-x:auto;-webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory;scroll-padding-left:.15rem;}
+.aqm-c5-vt-item{flex:0 0 13.5rem;margin:0;scroll-snap-align:start;}
+.aqm-c5-vt-cartao{display:flex;flex-direction:column;gap:.28rem;height:100%;background:var(--c5-superficie);border:1px solid var(--c5-traco);border-radius:3px;padding:.7rem .75rem .8rem;text-decoration:none;color:var(--c5-tinta);}
+a.aqm-c5-vt-cartao:hover{border-color:var(--c5-lamina);color:var(--c5-tinta);}
+a.aqm-c5-vt-cartao:focus-visible{outline:2px solid var(--c5-lamina);outline-offset:1px;}
+.aqm-c5-vt-foto{display:flex;align-items:center;justify-content:center;aspect-ratio:1/1;width:100%;max-width:100%;background:var(--c5-papel);border:1px solid var(--c5-traco);border-radius:2px;overflow:hidden;margin:0 0 .35rem;}
+.aqm-c5-vt-foto img{display:block;width:100%;height:100%;max-width:100%;object-fit:contain;}
+.aqm-c5-vt-foto-vazia .aqm-c5-vt-sigla{font-family:var(--c5-display);font-size:1rem;font-weight:700;color:var(--c5-legenda);letter-spacing:.02em;text-align:center;padding:0 .4rem;}
+.aqm-c5-vt-marca{font-family:var(--c5-mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--c5-legenda);}
+.aqm-c5-vt-modelo{font-family:var(--c5-display);font-size:.92rem;font-weight:700;line-height:1.25;}
+.aqm-c5-vt-espec{font-family:var(--c5-mono);font-size:.76rem;line-height:1.4;color:var(--c5-lamina);font-variant-numeric:tabular-nums;}
+.aqm-c5-vt-ressalva{font-family:var(--c5-texto);font-size:.74rem;line-height:1.35;color:var(--c5-alerta);}
+.aqm-c5-vt-preco{font-family:var(--c5-mono);font-size:.8rem;font-variant-numeric:tabular-nums;color:var(--c5-tinta);}
+.aqm-c5-vt-preco.aqm-c5-vt-sem-preco{font-family:var(--c5-texto);font-size:.76rem;color:var(--c5-legenda);font-style:italic;}
+.aqm-c5-vt-botao{margin-top:auto;text-align:center;font-family:var(--c5-texto);font-weight:600;font-size:.85rem;padding:.42rem .7rem;border-radius:2px;background:var(--c5-lamina);color:var(--c5-superficie);}
+.aqm-c5-vt-espera{margin-top:auto;text-align:center;font-family:var(--c5-texto);font-weight:600;font-size:.82rem;padding:.42rem .7rem;border-radius:2px;background:var(--c5-papel);border:1px dashed var(--c5-traco);color:var(--c5-legenda);}
+.aqm-c5-vt-selo{font-family:var(--c5-mono);font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;color:var(--c5-legenda);text-align:center;margin-top:.25rem;}
+.aqm-c5-vitrine-servida .aqm-c5-criterio{margin-top:.5rem;}
+.aqm-c5-barra{position:fixed;left:0;right:0;bottom:0;z-index:40;display:none;align-items:center;gap:.7rem;background:var(--c5-superficie);border-top:1px solid var(--c5-traco);padding:.55rem .85rem;}
+.aqm-c5-barra-texto{flex:1 1 auto;font-family:var(--c5-mono);font-size:.8rem;line-height:1.3;color:var(--c5-tinta);font-variant-numeric:tabular-nums;}
+.aqm-c5-barra-botao{flex:0 0 auto;}
 @media (max-width:600px){.aqm-c5-valor{font-size:1.6rem;}
 .aqm-c5-produto{grid-template-columns:1fr;}
+.aqm-c5-vt-item{flex-basis:11.5rem;}
+.aqm-c5-barra.aqm-c5-barra-ver{display:flex;}
 .aqm-c5-placa{min-height:0;flex-direction:row;gap:.5rem;align-items:baseline;justify-content:flex-start;}}
+@media (prefers-reduced-motion:reduce){.aqm-c5-vt-trilho{scroll-behavior:auto;}}
 CSS;
 }
 }
@@ -1430,6 +1828,11 @@ function aquametria_c5_js() {
 				+ 'então a diferença de temperatura é zero ou negativa e não existe potência a calcular: nenhuma regra do nosso levantamento dimensiona aquecedor para esse caso. '
 				+ 'O que um aquecedor ainda faz aí é segurar a oscilação do dia para a noite, e isso não é conta de watts — é termostato. '
 				+ 'Se a sua dúvida é o contrário, ou seja, como impedir que a água passe do alvo no verão, esse é outro problema (resfriamento) e nós ainda não publicamos número sobre ele.';
+			/* Sem faixa calculada não há o que a barra do celular prometa: ela
+			   ficaria oferecendo "ver o resultado" para uma resposta que é um
+			   parágrafo de texto já visível. */
+			barraLigada = false;
+			mostrarBarra(false);
 			guardar(r);
 			atualizarEndereco(r.entradas);
 			return;
@@ -1515,6 +1918,7 @@ function aquametria_c5_js() {
 			+ 'o que na linha comercial vira ' + (r.comercial ? fmt(r.comercial, 0) + ' W' : 'mais de um aparelho')
 			+ '. Calculado pela Aquametria, ' + AQM_C5_DATA + '.';
 
+		armarBarra(r);
 		guardar(r);
 		atualizarEndereco(r.entradas);
 	}
@@ -1545,6 +1949,7 @@ function aquametria_c5_js() {
 
 		if (!r.produtos.length) {
 			bloco.classList.add('aqm-c5-oculto');
+			el('aqm-c5-vitrine').classList.add('aqm-c5-oculto');
 			nada.classList.remove('aqm-c5-oculto');
 			nada.textContent = 'Nenhum aquecedor do nosso banco entrega entre ' + watts(r.piso) + ' e '
 				+ (r.comercial ? fmt(r.comercial, 0) : watts(r.teto)) + ' W em tomada de ' + r.entradas.voltagem
@@ -1587,6 +1992,17 @@ function aquametria_c5_js() {
 		r.produtos.forEach(function (p) {
 			(p.potencia_w > r.teto ? acima : dentro).push(p);
 		});
+
+		/* A sequência que a lista técnica vai desenhar, em uma variável só, para
+		   a vitrine copiá-la em vez de recalculá-la. Recalcular a mesma ordem em
+		   dois lugares é combinar de divergir depois — e aqui divergir significa
+		   um cartão com foto e botão de loja aparecendo antes de quem a ficha
+		   técnica pôs na frente, que é a definição de fazenda de conteúdo. */
+		var sequencia = dentro.map(function (p) { return { p: p, acima: false }; })
+			.concat(acima.map(function (p) { return { p: p, acima: true }; }));
+
+		/* A vitrine vem ANTES da ficha e antes da procedência: contrato 7. */
+		pintarVitrine(r, sequencia);
 
 		if (dentro.length && acima.length) {
 			lista.appendChild(grupoHtml('Dentro da faixa calculada — ' + watts(r.piso) + ' a ' + watts(r.teto) + ' W',
@@ -1738,6 +2154,206 @@ function aquametria_c5_js() {
 		return li;
 	}
 
+	/* ------------------------------------------------------------- vitrine */
+
+	/* Espelho de aquametria_c5_preco_texto(). Cotação com data, nunca preço
+	   atual: é o que a seção 7 do contrato permite publicar. */
+	function precoTexto(p) {
+		if (!p.preco || p.preco.min === null || p.preco.min === undefined) { return ''; }
+		var valor = 'R$ ' + fmt(p.preco.min, 2);
+		if (p.preco.max > p.preco.min) { valor += ' a R$ ' + fmt(p.preco.max, 2); }
+		return valor + (p.preco.loja ? ' na ' + p.preco.loja : '')
+			+ ', cotado em ' + dataBr(p.preco.coletado_em);
+	}
+
+	/* Espelho de aquametria_c5_modelo_curto(): o cartão já tem linha de marca, e
+	   repeti-la no modelo é a cara de cartão gerado por máquina que ninguém leu. */
+	function modeloCurto(p) {
+		var modelo = p.modelo;
+		if (p.voltagem && p.voltagem.length === 1) { modelo += ' (' + p.voltagem[0] + ' V)'; }
+		return modelo;
+	}
+
+	/* Espelho de aquametria_c5_vt_espec_frase(). A frase MUDA conforme o grupo:
+	   dizer "dentro da faixa" sobre o degrau comercial acima seria repetir, em
+	   foto e botão de loja, a contradição consertada na 1.4.0. */
+	function especFrase(p, r, acimaDaFaixa) {
+		var w = fmt(p.potencia_w, 0) + ' W — ';
+		if (acimaDaFaixa) {
+			return w + 'degrau comercial acima dos ' + watts(r.teto) + ' W do topo';
+		}
+		return w + 'dentro dos ' + watts(r.piso) + ' a ' + watts(r.teto) + ' W que os '
+			+ litros(r.entradas.volume) + ' L pedem';
+	}
+
+	/* Espelho de aquametria_c5_vt_ressalva_curta(). */
+	function ressalvaCurta(p, V) {
+		if (p.volume_max_L === null || p.volume_max_L === undefined || p.volume_max_L >= V) { return ''; }
+		return 'a ficha declara até ' + litros(p.volume_max_L) + ' L';
+	}
+
+	/* Espelho de aquametria_c5_vitrine_cartao_html(). Mesma marcação, mesmo CSS —
+	   duas marcações para o mesmo cartão viram duas aparências. */
+	function vitrineCartao(p, r, acimaDaFaixa) {
+		var li = document.createElement('li');
+		li.className = 'aqm-c5-vt-item';
+
+		var cartao;
+		if (p.link) {
+			cartao = document.createElement('a');
+			cartao.className = 'aqm-c5-vt-cartao';
+			cartao.href = p.link;
+			cartao.target = '_blank';
+			cartao.rel = 'sponsored noopener';
+		} else {
+			/* Sem link não existe destino, e cartão sem destino não é âncora. O
+			   que o contrato proíbe é div com onclick fingindo ser link. */
+			cartao = document.createElement('div');
+			cartao.className = 'aqm-c5-vt-cartao aqm-c5-vt-sem-link';
+		}
+
+		var foto = document.createElement('span');
+		if (p.imagem && p.imagem.url) {
+			foto.className = 'aqm-c5-vt-foto';
+			var img = document.createElement('img');
+			img.src = p.imagem.url;
+			img.alt = p.imagem.alt || '';
+			if (p.imagem.largura && p.imagem.altura) {
+				img.width = p.imagem.largura;
+				img.height = p.imagem.altura;
+			}
+			img.loading = 'lazy';
+			img.decoding = 'async';
+			foto.appendChild(img);
+		} else {
+			/* Produto sem foto NÃO some da vitrine: espaço reservado neutro. */
+			foto.className = 'aqm-c5-vt-foto aqm-c5-vt-foto-vazia';
+			foto.setAttribute('aria-hidden', 'true');
+			var sigla = document.createElement('span');
+			sigla.className = 'aqm-c5-vt-sigla';
+			sigla.textContent = p.marca;
+			foto.appendChild(sigla);
+		}
+		cartao.appendChild(foto);
+
+		cartao.appendChild(linha('aqm-c5-vt-marca', p.marca));
+		cartao.appendChild(linha('aqm-c5-vt-modelo', modeloCurto(p)));
+		cartao.appendChild(linha('aqm-c5-vt-espec', especFrase(p, r, acimaDaFaixa)));
+
+		var ressalva = ressalvaCurta(p, r.entradas.volume);
+		if (ressalva) { cartao.appendChild(linha('aqm-c5-vt-ressalva', ressalva)); }
+
+		var preco = precoTexto(p);
+		cartao.appendChild(preco
+			? linha('aqm-c5-vt-preco', preco)
+			: linha('aqm-c5-vt-preco aqm-c5-vt-sem-preco', 'sem cotação coletada'));
+
+		if (p.link) {
+			cartao.appendChild(linha('aqm-c5-vt-botao', 'Ver na ' + (p.loja === 'shopee' ? 'Shopee' : p.loja)));
+			cartao.appendChild(linha('aqm-c5-vt-selo', 'link patrocinado'));
+		} else {
+			cartao.appendChild(linha('aqm-c5-vt-espera', 'link de loja em breve'));
+			cartao.appendChild(linha('aqm-c5-vt-selo', 'entrou pela ficha técnica, não pelo link'));
+		}
+
+		li.appendChild(cartao);
+		return li;
+	}
+
+	function linha(classe, texto) {
+		var s = document.createElement('span');
+		s.className = classe;
+		s.textContent = texto;
+		return s;
+	}
+
+	/* A vitrine NUNCA reordena. Ela recebe a MESMA sequência que a lista técnica
+	   desenha — primeiro quem cabe na faixa, depois o degrau comercial acima —,
+	   e não a ordem crua de r.produtos, que mistura os dois: um aparelho de 200 W
+	   pode estar mais perto do topo de 162 W do que um de 100 W, e é por isso que
+	   a lista técnica separa os grupos em vez de confiar na distância sozinha. */
+	function pintarVitrine(r, sequencia) {
+		var bloco = el('aqm-c5-vitrine');
+		var trilho = el('aqm-c5-vitrine-trilho');
+		trilho.innerHTML = '';
+
+		if (!sequencia.length) {
+			bloco.classList.add('aqm-c5-oculto');
+			return;
+		}
+
+		bloco.classList.remove('aqm-c5-oculto');
+
+		var comLink = 0;
+		sequencia.forEach(function (par) {
+			if (par.p.link) { comLink += 1; }
+			trilho.appendChild(vitrineCartao(par.p, r, par.acima));
+		});
+
+		el('aqm-c5-vitrine-nota').textContent = comLink + ' de ' + sequencia.length
+			+ ' têm link de loja hoje; os outros aparecem do mesmo jeito, com o lugar do botão reservado — '
+			+ 'quem entra é decidido pela ficha técnica, e nunca por ter ou não link.';
+	}
+
+	/* ------------------------------------------------- rolagem e barra fixa */
+
+	/* Rola até o resultado, e SÓ quando ele não está à vista. Rolar uma página em
+	   que a resposta já está na tela é tirar o leitor do lugar em que ele está —
+	   o que a regra pede é não deixar ninguém calculando no escuro. */
+	function irParaResultado() {
+		var alvo = el('aqm-c5-saida');
+		if (!alvo || alvo.classList.contains('aqm-c5-oculto')) { return; }
+
+		var caixa = alvo.getBoundingClientRect();
+		var altura = window.innerHeight || document.documentElement.clientHeight;
+		if (caixa.top >= 0 && caixa.top < altura * 0.5) { return; }
+
+		var suave = true;
+		try {
+			suave = !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+		} catch (erro) { suave = true; }
+
+		try {
+			alvo.scrollIntoView({ behavior: suave ? 'smooth' : 'auto', block: 'start' });
+		} catch (erro) {
+			alvo.scrollIntoView();
+		}
+	}
+
+	/* A barra do rodapé no celular: existe enquanto o resultado está fora da
+	   tela, e some quando ele entra. Quem decide se ela cabe é o CSS (só abaixo
+	   de 600 px); aqui só se liga e desliga a classe. */
+	var barraLigada = false;
+	var observador = null;
+
+	function armarBarra(r) {
+		var barra = el('aqm-c5-barra');
+		if (!barra) { return; }
+
+		el('aqm-c5-barra-texto').textContent = watts(r.piso) + ' a ' + watts(r.teto) + ' W para '
+			+ litros(r.entradas.volume) + ' L';
+		barraLigada = true;
+
+		if (observador || typeof window.IntersectionObserver !== 'function') {
+			if (!observador) { mostrarBarra(true); }
+			return;
+		}
+
+		observador = new window.IntersectionObserver(function (entradas) {
+			entradas.forEach(function (entrada) {
+				mostrarBarra(barraLigada && !entrada.isIntersecting);
+			});
+		}, { threshold: 0 });
+		observador.observe(el('aqm-c5-saida'));
+	}
+
+	function mostrarBarra(ver) {
+		var barra = el('aqm-c5-barra');
+		if (!barra) { return; }
+		barra.classList.toggle('aqm-c5-barra-ver', !!ver);
+		barra.setAttribute('aria-hidden', ver ? 'false' : 'true');
+	}
+
 	function esc(t) {
 		return String(t === null || t === undefined ? '' : t)
 			.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -1879,6 +2495,10 @@ function aquametria_c5_js() {
 	el('aqm-c5-form').addEventListener('submit', function (ev) {
 		ev.preventDefault();
 		pintar(calcular(campos()));
+		/* Só no envio explícito. A pintura automática de quem chegou por link ou
+		   com o aquário guardado NÃO rola a página: sequestrar a rolagem de quem
+		   acabou de abrir a página é o oposto de ajudar. */
+		irParaResultado();
 	});
 
 	el('aqm-c5-especie').addEventListener('change', mostrarEspecie);
@@ -1887,8 +2507,20 @@ function aquametria_c5_js() {
 		el('aqm-c5-form').reset();
 		el('aqm-c5-saida').classList.add('aqm-c5-oculto');
 		el('aqm-c5-erros').innerHTML = '';
+		barraLigada = false;
+		mostrarBarra(false);
 		mostrarEspecie();
 		try { window.history.replaceState(null, '', window.location.pathname); } catch (erro) { /* segue */ }
+	});
+
+	el('aqm-c5-barra-ir').addEventListener('click', function () {
+		var alvo = el('aqm-c5-saida');
+		if (!alvo || alvo.classList.contains('aqm-c5-oculto')) { return; }
+		try {
+			alvo.scrollIntoView({ block: 'start' });
+		} catch (erro) {
+			alvo.scrollIntoView();
+		}
 	});
 
 	el('aqm-c5-copiar').addEventListener('click', function () {
@@ -2062,7 +2694,7 @@ function aquametria_c5_exemplos_html() {
 	$h .= 'Aquecedor ligado na voltagem errada queima, e por isso a célula publica a voltagem que a ficha declara — e diz quando ela não está confirmada — em vez de supor 110 ou 220. ';
 	$h .= 'A lista definitiva, já com esses dois cortes aplicados, sai depois do cálculo. ';
 	$h .= 'Alguns desses nomes levam a lojas por link de afiliado, marcado como patrocinado: se você comprar por ele, a Aquametria pode receber comissão, sem custo a mais para você. ';
-	$h .= 'Não publicamos preço aqui, porque preço muda toda semana e número velho na tela é pior que nenhum. ';
+	$h .= 'Esta tabela não traz preço: quem traz é a vitrine acima, e sempre como cotação com a data da coleta ao lado, nunca como preço de hoje. ';
 	$h .= '<a href="' . esc_url( $divulgacao ) . '">Como a Aquametria ganha dinheiro</a>.</p>';
 
 	$h .= '</div>';
@@ -2394,13 +3026,28 @@ function aquametria_c5_produtos_html() {
 	   Quem afirma passou a ser o cabeçalho de cada grupo, que sabe do que fala. */
 	$h .= '<h3>Aquecedores para a potência que você precisa</h3>';
 	$h .= '<p class="aqm-c5-sub" id="aqm-c5-produtos-sub"></p>';
+
+	/* A vitrine vem ANTES da ficha e da procedência (contrato 7): a prova de
+	   onde veio o número fica, mas ela existe para ser conferida — não para ser
+	   o único clique de compra da página. */
+	$h .= '<div class="aqm-c5-vitrine aqm-c5-oculto" id="aqm-c5-vitrine">';
+	$h .= '<h4>Onde comprar cada um</h4>';
+	$h .= '<p class="aqm-c5-criterio">Mesma ordem da lista completa abaixo: primeiro quem cabe na faixa calculada, '
+		. 'depois o degrau comercial acima dela, e dentro de cada grupo a potência mais próxima do topo. '
+		. 'O cartão de cada aparelho diz por qual dos dois motivos ele está aqui. '
+		. 'O valor é cotação com data, não preço de hoje.</p>';
+	$h .= '<ul class="aqm-c5-vt-trilho" id="aqm-c5-vitrine-trilho"></ul>';
+	$h .= '<p class="aqm-c5-criterio" id="aqm-c5-vitrine-nota"></p>';
+	$h .= '</div>';
+
 	$h .= '<ul class="aqm-c5-lista" id="aqm-c5-produtos-lista"></ul>';
 	$h .= '<p class="aqm-c5-aviso-afiliado"><strong>Aviso de publicidade.</strong> ';
 	$h .= 'Alguns dos botões acima levam a lojas por links de afiliado: se você comprar por eles, a Aquametria pode receber uma comissão, sem custo nenhum a mais para você. ';
 	$h .= 'Isso não muda quem aparece na lista nem em que ordem — a ordem é pela potência mais próxima do topo da faixa que o seu caso pede, e modelo sem link aparece do mesmo jeito. ';
 	$h .= 'Antes da adequação, duas barreiras de segurança: só entra quem existe na voltagem da sua tomada e cujo termostato alcança a sua temperatura-alvo. ';
 	$h .= 'A ficha técnica de cada aquecedor vem do fabricante ou do varejo especializado, com o endereço e a data ao lado; o anúncio da loja nunca é a nossa fonte. ';
-	$h .= 'Também não publicamos preço nesta página: preço muda toda semana e um número velho na tela seria pior que nenhum. ';
+	$h .= 'O valor que aparece nos cartões da vitrine <strong>não é preço de hoje</strong>: é a cotação que a Aquametria leu naquele anúncio na data escrita ao lado. ';
+	$h .= 'Preço de aquarismo muda toda semana — confira no anúncio antes de comprar, e trate o nosso número como ordem de grandeza, não como promessa. ';
 	$h .= '<a href="' . esc_url( $divulgacao ) . '">Como a Aquametria ganha dinheiro</a>.</p>';
 	$h .= '</div>';
 	$h .= '<p class="aqm-c5-nota aqm-c5-oculto" id="aqm-c5-produtos-nada"></p>';
@@ -2598,13 +3245,16 @@ function aquametria_c5_shortcode() {
 	add_action( 'wp_footer', 'aquametria_c5_rodape', 20 );
 
 	$h  = '<div class="aqm-c5">';
+	$h .= aquametria_c5_promessa_html();
 	$h .= aquametria_c5_resposta_direta_html();
 	$h .= aquametria_c5_form_html();
 	$h .= aquametria_c5_resposta_html();
+	$h .= aquametria_c5_vitrine_servida_html();
 	$h .= aquametria_c5_exemplos_html();
 	$h .= aquametria_c5_tenho_html();
 	$h .= aquametria_c5_fontes_html();
 	$h .= aquametria_c5_adiante_html();
+	$h .= aquametria_c5_barra_html();
 	$h .= '</div>';
 
 	return $h;

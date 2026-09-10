@@ -4,7 +4,7 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 37,
+  "revisao": 38,
   "atualizado_em": "2026-09-10",
   "estado": "fundacao",
   "desembarque": {
@@ -85,9 +85,9 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "f2cc0d3eb3e22f9fcbf0939c924421f3edb4bdcaebea877560719299a6fda46f",
+      "sha256": "8b1d4af50bec16a7b2d4e2247e4362136c242b5ebddddaf03b0dd4a8917325ce",
       "descricao": "v1.0.0 (08/09/2026). Registra o shortcode [aquametria_calculadora_aquecedor] e se anuncia no hub pelo filtro aquametria_calculadoras. Pergunta a MINIMA DO COMODO onde o aquario fica, que e a entrada que nenhuma fonte brasileira pede, e calcula a faixa de potencia com o nome do autor em cada extremo: separa as regras aplicaveis das nao aplicaveis e mostra as duas listas. Com delta acima de 10 C diz com essas palavras que nenhuma fonte cobre o caso e entrega a faixa generica como piso. Com delta zero ou negativo nao devolve numero nenhum. Traz o degrau da linha comercial, o confronto com o volume declarado na caixa (o achado do bloco), o bloco de produto com DUAS barreiras de seguranca antes da adequacao (voltagem da tomada e faixa de ajuste alcancar o alvo, regra V18) e o caminho inverso. Le e grava o estado compartilhado por mescla. v1.1.0 (08/09/2026), CORRECAO GRAVE: o JS e o CSS sairam de dentro do retorno do shortcode e passaram para wp_head (estilo) e wp_footer (comportamento). Dentro do retorno do shortcode eles ainda atravessavam os filtros de texto do conteudo, que trocam & por &#038;, e o primeiro && do script matava o JavaScript inteiro com SyntaxError: o formulario nao calculava e o bloco de produto nunca aparecia. Nenhuma linha de calculo mudou. v1.2.0 (09/09/2026), BLOCO 4c — visibilidade em IA: a pagina passou a servir RESPOSTA no HTML, e nao so formulario. (a) bloco de resposta direta ANTES do formulario, dizendo o numero, o criterio e que a pergunta que decide a conta e quanto o comodo esfria, com fonte e data na propria frase; (b) tabela de seis aquarios ja resolvidos (30, 60, 100, 150, 200 e 300 L) nos DOIS cenarios de diferenca de temperatura — ate 10 graus, onde vale a ReefFlow, e acima disso, onde so sobram as regras sem condicao declarada e a faixa vira piso —, com o degrau da linha comercial de cada caso, pre-renderizada pelo PHP; (c) JSON-LD no wp_head com WebApplication e FAQPage de 8 perguntas. Conserto junto: as regras de W/L e a linha comercial moravam so dentro do JavaScript e agora nascem no PHP (aquametria_c5_regras e aquametria_c5_linha_comercial), entregues ao script como AQM_C5_REGRAS e AQM_C5_LINHA. Nenhuma formula mudou. Conferido em Chromium com JavaScript DESLIGADO por ferramentas/teste-navegador-visibilidade-ia.mjs. v1.3.0 (09/09/2026), BLOCO 4c FECHAMENTO — a tabela pre-renderizada passou a dizer QUAL aparelho atende cada faixa, pelo mesmo motivo e no mesmo formato da C3. Cada linha traz o aquecedor do banco cuja potencia cai mais perto do topo da faixa, com a VOLTAGEM que a ficha declara — ou a frase dizendo que ela nao esta confirmada, porque voltagem errada queima aparelho e aqui nao se chuta 110 nem 220 —, procedencia e data na mesma frase, e link de loja quando existe (sponsored, noopener, aba nova), com aviso de comissao proprio. Quem atende melhor sem link cede a linha de baixo, rotulada, ao primeiro da MESMA ordem que tem link; a ordem nao muda por comissao (V16). As DUAS barreiras de seguranca do formulario (voltagem da tomada e faixa de ajuste alcancar o alvo, V18) nao cabem na tabela, que nao conhece nenhum dos dois, e o texto abaixo dela diz isso com essas palavras. A linha de 300 L avisa que a faixa passa do maior degrau da linha de referencia e que ali a resposta e mais de um aparelho. O FAQPage foi de 8 para 14 perguntas, com seis de COMPRA. Espelhos novos em PHP do que o script ja fazia: escolher() virou aquametria_c5_produtos_exemplo, dataBr() virou aquametria_c5_data_br. Nenhuma formula mudou. v1.4.0 (10/09/2026): o bloco de produto para de se contradizer. Item 2 do despacho da Sentinela de 10/09/2026 — com 108 L, minima de 16 C e alvo de 26 C a pagina publicava a faixa de 110 a 160 W e listava o Atman AT-200 e o Eheim Jager 200 W sob o titulo 'Aquecedores que atendem essa potencia', enquanto o proprio cartao dizia que eles entregam 1,85 W/L contra os 1,00 a 1,50 que a diferenca pede. A escolha desta versao: a ELEGIBILIDADE ESTA CERTA e nao muda (aquecedor nao se vende em 160 W, e o teto da lista e de proposito o degrau comercial que cobre o topo da faixa, coisa que a pagina anuncia duas telas acima). O que mentia era o rotulo. Entao: o h3 deixa de afirmar 'atendem essa potencia'; a lista se parte em dois grupos com cabecalho e frase proprios ('Dentro da faixa calculada' e 'O degrau comercial acima — N W'); a frase do cartao sem link para de dizer 'aparece aqui porque atende ao seu numero' quando o aparelho e o degrau acima; e a tabela pre-renderizada, que e o que o modelo de linguagem le sem JavaScript, avisa na celula quando o modelo escolhido passa do topo (acontece em 2 das 6 linhas) e perde o cabecalho 'que atende'. A ORDEM nao muda: distancia ate o topo da faixa dentro de cada grupo, e quem cabe na faixa vem antes. Nenhuma formula, constante ou faixa mudou.",
-      "versao": "1.4.0"
+      "versao": "1.5.0"
     },
     {
       "id": "aquametria-calculadora-midia",
@@ -175,7 +175,7 @@
       ],
       "verificado_em": "2026-09-08",
       "publicar": true,
-      "sha256": "052146c46d34a50cd120a071442014c69f9407e9f51f70ce57ee804442bc6bfc",
+      "sha256": "46196886bcdb4903208d47d7190a3e0b9aa66b8d7c5ffcc4fe41d0e4edb804e7",
       "descricao": "Pagina institucional exigida pelo primeiro bloco de produto (C3) e pela autorregulamentacao publicitaria brasileira: declara o link de afiliado, transcreve a regra V16 na integra, explica que quem entra na lista e a ordem sao decididos so por adequacao tecnica, que produto sem link aparece igual e que sem produto adequado nao aparece nada, mostra a escada de fontes na tela, diz por que preco nao e publicado em pagina de calculadora e admite o tamanho atual do programa. Linkada do rodape do site (casca 1.0.3) e do bloco de produto da C3."
     },
     {
@@ -368,7 +368,7 @@
       "verificado_em": "2026-09-09",
       "registros": 23,
       "publicar": false,
-      "sha256": "f3de099b246f7a8a1f84d74b85674a368f8d807c6ed9d7ac7790ddeb44496125",
+      "sha256": "ac7ed7a7c4e3a724a028afc11d32fd4d4a6a88948cd6d6116dcef309bc8d2a5e",
       "descricao": "Banco de aquecedores, ampliado em 08/09/2026 de 4 para 9 registros para alimentar a C5: linha Eheim Jager (50, 100, 150 e 200 W) e linha Roxin HT-1300/Q3 (25, 50, 100, 200 e 300 W). A coleta desta data resolveu o campo que barrava o banco inteiro — voltagem, agora ['110','220'] nas duas linhas com fonte de varejo BR — e tratou a faixa de ajuste da linha Roxin, em conflito varejo-contra-varejo, pela intersecao conservadora de 22 a 32 C (regra V17). Tres conflitos ficam publicados em vez de escondidos: o volume do Jager 200 W (fabricante 30-400 L contra varejo 300-400 L), o do Jager 150 W (125-150 L contra 200-300 L, os dois varejo) e a faixa de ajuste da linha Roxin. Resultado: 9 de 9 aptos a serem sugeridos pela C5, 3 com link de afiliado. Em 09/09/2026 entraram 10 registros com link e imagem (7 Maxxi, RS-50, Ocean Tech Warmer X-5 150 W e Sicce Scuba Contactless 150 W) e o Roxin Q3 50 W ganhou link. O Warmer X-5 e o registro que fecha a janela de 110 a 150 W."
     },
     {
@@ -520,7 +520,7 @@
       "id": "gerar-catalogo-aquecedores",
       "arquivo": "ferramentas/gerar-catalogo-aquecedores.py",
       "publicar": false,
-      "sha256": "d2846cceaacd076cdd2c3180358b7e1726ed8b07b28de52f6355a8458e2b07ad",
+      "sha256": "8373844128f0022cb65f583169e573b47fe9c4c932725813a356fec8b71fdb8d",
       "descricao": "Gera o catalogo de aquecedores que a C5 embute no snippet, a partir de dados/produtos-aquecedor.json e do minimo_para_sugerir do esquema. O site nao le o repositorio em tempo de execucao, entao o banco viaja dentro do PHP; este script e o que impede as duas copias de divergirem. Carrega a faixa conservadora do conflito (V17) quando o campo faixa_ajuste_C ficou null, e marca o item para a tela poder dizer de onde veio a faixa."
     },
     {
@@ -697,6 +697,13 @@
       "publicar": false,
       "sha256": "dff1899e67e26ee214319403e666188872a5ce8b2081990b7638546f560f2f5c",
       "descricao": "Confere que todo endereco publicado existe E que e o canonico daquele conteudo, em quatro lugares que precisam concordar: front matter de conteudo/, manifest, constante AQUAMETRIA_C*_SLUG de cada snippet e todo link de raiz escrito em snippet ou conteudo. Nasceu do defeito 2 de 08/09/2026 (o hub publicava /calculadora-de-aquecedor/, que dava 404). Desde 10/09/2026 tambem separa pagina de artigo: artigo e 'post' e mora em /AAAA/MM/DD/<slug>/, entao linka-lo pela raiz nao da 404, da 301 — item 3 do despacho da Sentinela de 10/09. Reprova nos dois sentidos: artigo linkado sem data e pagina linkada com data. Aceita qualquer data bem formada, para nao reprovar sozinho quando nascer o quarto artigo."
+    },
+    {
+      "id": "teste-navegador-c5-vitrine",
+      "arquivo": "ferramentas/teste-navegador-c5-vitrine.mjs",
+      "publicar": false,
+      "sha256": "d2e4ba12e968f1af91aa0b6493255b941da7451095855625829ffe272b946534",
+      "descricao": "Portao da vitrine da C5 (bloco T8, 10/09/2026). Copia o desenho do teste da C3 e acrescenta o que so a C5 tem: a lista dela e partida em dois grupos — quem cabe na faixa calculada e o degrau comercial acima —, e um cartao de vitrine nao comporta cabecalho de grupo, entao a distincao viaja na frase do cartao. A afirmacao central continua sendo a mesma da C3 (a ordem da vitrine e identica a da lista tecnica), e a afirmacao nova e que o GRUPO de cada cartao e o mesmo que a lista tecnica deu a ele: um cartao do degrau acima dizendo \"dentro dos ... W\" seria a contradicao do item 2 do despacho de 10/09 reencenada em foto e botao de loja. Mede as duas metades da pagina, a vitrine SERVIDA com o JavaScript desligado e a PINTADA com ele ligado, mais a promessa, a barra fixa do celular e a rolagem ate o resultado. Nao guarda numero esperado nenhum: le AQM_C5_CATALOGO e a faixa que a propria pagina publicou."
     }
   ]
 }

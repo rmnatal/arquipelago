@@ -45,7 +45,7 @@ Campo sem fonte fica vazio, e vazio é melhor que inventado. Um produto com camp
 
 Preço não é campo de produto na Aquametria: é série temporal separada, com loja e data de leitura, e **nunca entra em critério técnico de sugestão**.
 
-**Onde houver preço, ele vem com a data da coleta ao lado — nunca cravado como preço de hoje.** Desde 10/09/2026 a vitrine da calculadora de vazão do filtro mostra a cotação que lemos no anúncio, com o dia em que a lemos; as outras calculadoras ainda não mostram preço nenhum, e vão passar a mostrar do mesmo jeito, datado, à medida que a vitrine chegar a cada uma.
+**Onde houver preço, ele vem com a data da coleta ao lado — nunca cravado como preço de hoje.** Desde 10/09/2026 as vitrines da calculadora de vazão do filtro e da calculadora de potência do aquecedor mostram a cotação que lemos no anúncio, com o dia em que a lemos; as outras calculadoras ainda não mostram preço nenhum, e vão passar a mostrar do mesmo jeito, datado, à medida que a vitrine chegar a cada uma.
 
 O motivo de a data ser inegociável é prático: uma calculadora é código que fica no ar por meses, e um preço apresentado como atual envelheceria em dias. Um número velho passando por atual é pior que nenhum — um número velho que diz quando foi lido é informação honesta. Confira no anúncio antes de comprar: o valor da loja é o que vale.
 
