@@ -3,7 +3,7 @@ ilha: clubedomosaico
 estado: nascendo
 prioridade: 2
 ultima_execucao: 2026-09-10T19:30Z
-executando_desde: null
+executando_desde: 2026-09-10T23:16Z
 bloco_atual: "2 ENTREGUE (especificacao das duas ferramentas + 11 constantes de fabricante com 6 pendencias nomeadas, revisao 2 do manifest, nada publicavel) — proximo: bloco 3, modelo do banco (MATERIAL, PECA, TECNICA), que a especificacao ja deixou com os campos nomeados"
 ultima_ronda: null
 bloqueada_por: null
