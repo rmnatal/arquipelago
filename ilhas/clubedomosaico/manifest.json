@@ -1,0 +1,60 @@
+{
+  "ilha": "clubedomosaico",
+  "nome": "Clube do Mosaico",
+  "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
+  "dominio": "https://clubedomosaico.com.br",
+  "versao_manifest": 1,
+  "revisao": 0,
+  "atualizado_em": "2026-09-10",
+  "estado": "nascendo",
+  "desembarque": {
+    "aprovado": true,
+    "decidido_em": "2026-09-10",
+    "observacao": "Desembarque automatico por forca da secao 10 do ARQUIPELAGO.md, que vale para toda ilha: ferramenta, pagina-ancora, artigo, pagina de entidade e snippet vao ao ar com publicar=true sem consulta. Continua exigindo aprovacao humana (publicar=false) apenas conteudo programatico em escala."
+  },
+  "snippets": [],
+  "conteudo": [],
+  "dados": [],
+  "ferramentas": [],
+  "esquema": {
+    "snippets": {
+      "id": "identificador estavel, kebab-case, nunca numerado",
+      "nome": "nome descritivo do snippet no Code Snippets",
+      "arquivo": "caminho relativo a esta pasta, em snippets/",
+      "escopo": "global | front-end | admin",
+      "ativo": "true se deve ficar ativo no site",
+      "publicar": "true para o Sync aplicar no site",
+      "sha256": "hash do arquivo, conferido pelo Sync apos gravar",
+      "descricao": "o que o snippet faz",
+      "versao": "versao declarada no cabecalho do arquivo. Obrigatoria no item do Sync: e o que o snippet atualizador compara com a versao que esta rodando no site"
+    },
+    "conteudo": {
+      "id": "identificador estavel, kebab-case",
+      "tipo": "artigo | pagina | pagina-programatica | widget",
+      "titulo": "titulo publicado",
+      "slug": "slug da URL",
+      "arquivo": "caminho relativo a esta pasta, em conteudo/",
+      "cluster": "cluster do corpus de buscas a que pertence",
+      "fontes": "lista de fontes tecnicas citadas no texto",
+      "verificado_em": "data da ultima conferencia dos dados",
+      "publicar": "true para o Sync aplicar no site. Ferramenta, pagina-ancora e artigo saem com true; pagina-programatica em escala continua false"
+    },
+    "dados": {
+      "id": "identificador estavel, kebab-case",
+      "arquivo": "caminho relativo a esta pasta, em dados/",
+      "formato": "json | csv | md",
+      "entidade": "material | peca | tecnica | constante | cotacao | esquema",
+      "fonte": "de onde vem cada campo (pagina oficial do fabricante, ficha entregue pelo ateliê, etc.)",
+      "verificado_em": "data da ultima conferencia",
+      "registros": "quantidade de linhas",
+      "publicar": "false ate o dado virar pagina publicada",
+      "sha256": "hash do arquivo, conferido pelo Sync apos gravar",
+      "descricao": "o que o arquivo contem"
+    },
+    "ferramentas": {
+      "id": "identificador estavel, kebab-case",
+      "arquivo": "caminho relativo a esta pasta, em ferramentas/",
+      "descricao": "o que a ferramenta faz e quando roda. Ferramenta NUNCA e publicada no site."
+    }
+  }
+}
