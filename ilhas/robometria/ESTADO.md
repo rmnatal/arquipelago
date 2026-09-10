@@ -2,9 +2,9 @@
 ilha: robometria
 estado: nascendo
 prioridade: 1
-ultima_execucao: 2026-09-10T13:19Z
-executando_desde: 2026-09-10T15:16Z
-bloco_atual: "3b CASCA DO SITE no ar (revisao 7 confirmada no /status em 10/09 14h11Z) — proximo: 3c"
+ultima_execucao: 2026-09-10T15:16Z
+executando_desde: null
+bloco_atual: "4 + 4e A FERRAMENTA R1 ESTA NO AR (manifest revisao 9 conferida no /status) + despacho de 10/09 item 1: sitemaps voltaram a 200 — proximo: 5, o artigo-ancora da R1"
 ultima_ronda: null
 bloqueada_por: null
 ---
@@ -32,13 +32,38 @@ Espelho legível do estado do projeto. **Nunca guarde credencial aqui.**
 - **ARMADILHA:** testar TLS pela nuvem não vale — o proxy de saída intercepta e apresenta certificado próprio. Certificado só se confere no navegador.
 - **Plugins (10/09/2026):** Code Snippets, Site Kit by Google, Converter for Media e Limit Login Attempts Reloaded instalados e ATIVOS. Akismet e Hello Dolly estão desativados (a exclusão foi barrada pelo classificador de segurança; fica para o Raphael, é cosmético). Site Kit ainda **não conectado** à conta Google — exige autorização OAuth do Raphael; não é bloqueio, porque a propriedade de domínio no Search Console já existe.
 - **Snippet de Sync: "Robometria Sync" v1.1.5, snippet #5 do Code Snippets, ATIVO desde 10/09/2026** — fonte em `snippets/robometria-sync.php` (sha256 `b4fa6b84…`), token gerado pelo próprio WordPress. **Primeiro sync executado às 13:09 UTC: revisão 6 lida, 0 aplicados, 9 aguardando desembarque** — correto, porque os 9 itens do manifest são pesquisa com `publicar: false`. Endpoints no `PROMPT.md`.
-- **Search Console: propriedade de domínio `sc-domain:robometria.com.br` criada e VERIFICADA em 09/09/2026** (TXT `google-site-verification=xvI914rD2M69UhAao_MF2csPC3XAKKSUmol9JU-xxwg` gravado no Editor de Zona DNS; passo 4b da seção 11). Sitemap `wp-sitemap.xml` submetido em 10/09/2026 (primeira leitura do Google deu "não foi possível buscar", normal em domínio recém-certificado — o arquivo serve 200 com 4 sub-sitemaps; o Google refaz sozinho). `dados/indexacao.md` aberto com a linha zero.
+- **Search Console: propriedade de domínio `sc-domain:robometria.com.br` criada e VERIFICADA em 09/09/2026** (TXT `google-site-verification=xvI914rD2M69UhAao_MF2csPC3XAKKSUmol9JU-xxwg` gravado no Editor de Zona DNS; passo 4b da seção 11). Sitemap `wp-sitemap.xml` submetido em 10/09/2026. **O "não foi possível buscar" do Google NÃO era normalidade de domínio novo, como se supôs aqui: era defeito.** Os sitemaps serviam XML válido com status HTTP **404**, e sitemap com 404 é sitemap inexistente. Consertado em 10/09 às 15h49Z (casca 1.0.1) — hoje `wp-sitemap.xml` devolve **200**. **Falta reenviar o sitemap no Search Console**, e isso exige o navegador do Raphael. `dados/indexacao.md` aberto com a linha zero.
 - **Identidade visual:** aprovada pelo Raphael em 09/09/2026. Paleta, tipografia
   e a geometria do símbolo estão no `PROMPT.md` desta pasta.
 
 Sem credenciais neste arquivo.
 
 ## O que já foi entregue
+
+- 10/09/2026 — **Blocos 4 e 4e: A FERRAMENTA R1 EXISTE, e é a primeira ferramenta
+  desta ilha.** `snippets/robometria-r1.php` v1.0.0, mais `ferramentas/gerar-r1.py`,
+  `ferramentas/teste-r1.php`, `dados/r1-respostas.json` (o combustível, o primeiro
+  item de **dados** desta ilha com `publicar: true`) e `dados/r1-referencia.json`
+  (o gabarito, `publicar: false`). Manifest na **revisão 8**, e **NO AR**: o Sync
+  foi acionado por esta execução e o `/status` respondeu a revisão aplicada. A
+  página é `https://robometria.com.br/qual-peca-serve-no-meu-robo-aspirador/`.
+  **Verificação: `teste-r1.php` APROVADO em 70 medições**, entre elas a comparação
+  das **188 frases** publicadas contra a implementação de referência; mais `php -l`,
+  `teste-casca.php` (64) e `validar-banco.py`, e a medição num Chromium de verdade
+  (rolagem horizontal 0 px a 360, 390, 782 e 1200; botão do menu aparece até 782 e
+  some a 1200; `aria-expanded` false → true → false no clique e no Escape; barra
+  fixa do celular só enquanto o resultado está fora da tela; console limpo).
+  **No ar:** a página devolve 200, serve as 45 linhas da tabela, a resposta-âncora,
+  o formulário GET, JSON-LD WebApplication + FAQPage e **zero `&#038;` dentro dos
+  blocos `<script>`**; uma consulta real sai com `noindex,follow` e canônica.
+
+- 10/09/2026 — **Despacho da Sentinela, item 1: os sitemaps voltaram a 200.**
+  Serviam XML válido com status 404, porque esta ilha não tem post nenhum e o
+  `handle_404()` do WordPress carimbava a resposta antes de o XML sair. Consertado
+  na casca (v1.0.1, manifest revisão 9) pelo filtro `pre_handle_404`, que só age em
+  requisição de sitemap. Medido no ar: `wp-sitemap.xml` e
+  `wp-sitemap-posts-page-1.xml` em **200**, endereço inexistente ainda em **404**.
+  **Falta a metade humana:** reenviar o sitemap no Search Console.
 
 - 10/09/2026 — **Bloco 3b: a CASCA DO SITE existe.** `snippets/robometria-casca.php`
   v1.0.0 (`publicar: true`, `ativo: true`), o primeiro item desta ilha que vai ao ar.
@@ -53,7 +78,7 @@ Sem credenciais neste arquivo.
   revisão 7. **Verificação: `teste-casca.php` APROVADO em 59 medições**, mais `php -l` e
   a conferência do menu num Chromium de verdade (botão aparece a 390 px, abre, o
   `aria-expanded` vira `true`, Escape fecha, zero rolagem horizontal a 360 px).
-  **Ainda NÃO está no ar**: o Sync é acionado pela Sentinela, no navegador do Raphael.
+  **NO AR desde 10/09/2026, 14h11Z** — revisão 7 confirmada no `/status`.
 
 - 10/09/2026 — **Bloco 3c, terceira leva: a entrada da R1 foi varrida pela primeira
   vez, e a varredura reordenou a fila.** `ferramentas/cobertura-r1.py` (implementação
@@ -276,31 +301,60 @@ Sem credenciais neste arquivo.
 
 ## O que está travando
 
-Nada que pare a fila. Os blocos 1, 2 e 3 eram de pesquisa e modelagem e estão
-entregues; **`bloqueada_por` continua `null`** e continua sendo erro marcar
-bloqueio por causa de infraestrutura.
+Nada que pare a fila. **`bloqueada_por` continua `null`**, e continua sendo erro
+marcar bloqueio por causa de infraestrutura.
 
-O bloco **3b, casca do site, está ENTREGUE no repositório** (revisão 7). O que
-falta nele não é trabalho da Fundação: é o **Sync**, que a Sentinela aciona no
-navegador do Raphael. Enquanto isso não acontecer, o site continua com o tema
-padrão e com "Hello world" e "Sample page" no sitemap, e **o bloco não conta como
-no ar** — a seção 4 do contrato vale a partir de agora nesta ilha, porque este é
-o primeiro item com `publicar: true`. A conferência que fecha o 3b é a da seção
-4: acionar o Sync e ver o `/status` responder **revisão 7**.
+Os blocos 1, 2, 3, 3b, 4 e 4e estão entregues **e no ar**: o `/status` responde a
+revisão do manifest, a casca serve as cinco páginas e a ferramenta R1 responde em
+`https://robometria.com.br/qual-peca-serve-no-meu-robo-aspirador/`.
 
-**O trabalho desbloqueado continua sendo 3c, e o alvo mudou de novo — desta vez
-porque a varredura da R1 mostrou que a fila estava na ordem errada.** O primeiro
-alvo passou a ser **peça com código da Xiaomi e da WAP**, que estava em último
-lugar: são os 8 modelos que a R2 já recomenda e em que a R1 sai vazia, e é o
-único lado da emenda entre as duas ferramentas que dá para colher. O segundo é o
-que era o primeiro — faixa descoberta acima de 6.000 Pa e a concentração 100%
-Xiaomi acima de 3.000 Pa, medidas em `cobertura_de_faixa_r2`. Ele não deixou de
-ser trabalho de verdade; caiu para segundo porque rende numa ferramenta só,
-enquanto o novo primeiro rende nas duas.
+**Uma metade humana em aberto, e ela não é bloqueio da fila:** o item 1 do
+despacho da Sentinela de 10/09 pede, além do conserto do status 404 (feito nesta
+execução), **reenviar o sitemap no Search Console** para ele sair de "Não foi
+possível buscar". Isso é propriedade da conta do Raphael e exige o navegador dele
+ou uma credencial de conta de serviço que este ambiente ainda não tem. Todo o
+resto do item foi cumprido e medido.
 
-**A execução das 13h19Z de 10/09/2026 não tentou colher: ela fez o 3b**, que não
-depende de rede nem de coleta. A leitura acima, escrita na execução das 11h17Z,
-continua valendo para a próxima execução que for colher.
+**O trabalho desbloqueado, em ordem:**
+
+1. **Bloco 5 — o artigo-âncora pareado com a R1.** A fila manda o artigo nascer
+   junto da ferramenta, e ele é o que dá à R1 uma segunda listagem e as irmãs
+   que a regra da malha exige. Não depende de rede nem de coleta.
+2. **Bloco 3c, alvo (a): peça com código da Xiaomi e da WAP** — os 8 modelos que
+   a R2 já recomenda e em que a R1 sai vazia, e o único lado coletável da emenda
+   entre as duas ferramentas. **Depende de a rede alcançar o fabricante**, e
+   nesta execução ela não alcançou: `www.wap.ind.br`,
+   `mais.conteudo.wap.ind.br`, `www.mi.com` e `www.xiaomi.com.br` não
+   responderam. Isso não é `bloqueada_por` — é uma execução em que a coleta não
+   estava disponível.
+3. **Bloco 3c, alvo (b):** faixa descoberta acima de 6.000 Pa e a concentração
+   100% Xiaomi acima de 3.000 Pa, medidas em `cobertura_de_faixa_r2`. Rende numa
+   ferramenta só, por isso vem depois.
+
+**Nenhuma leva de malha (bloco 5b) antes de o Search Console voltar a buscar o
+sitemap.** A rampa da seção 14 é inexecutável sem medição, e publicar página no
+escuro é exatamente o que desindexa domínio novo.
+
+### Dois achados desta execução que valem para a próxima
+
+1. **O BANCO ESTÁ EM ASCII, E AGORA ELE APARECE NA TELA.** Enquanto o banco só
+   alimentava medição, os acentos faltando em `nome_na_fonte`, `publicador` e
+   `o_que_muda` não custavam nada. Com a R1 no ar, esse texto é citado dentro da
+   resposta publicada: a tela mostra "Aspirador Robo" e "identificada como
+   'Versao A'". O que a ilha escreve sai acentuado; o que ela cita sai como o
+   banco tem — e o banco tem errado, porque a transcrição perdeu os acentos da
+   fonte. É trabalho de dados, não de snippet, e vale a pena fazer junto da
+   próxima leva de coleta, quando esses registros já forem ser tocados.
+2. **UMA FONTE DO BANCO ESTÁ NO NÍVEL 2 E A ESCADA DIZ QUE O NÍVEL 2 NÃO
+   EXISTE.** `pecas.json/electrolux-kpcel01/f-manual` declara `nivel: 2`, mas a
+   escada da página de metodologia define o nível 2 como "manual, lâmina ou
+   página oficial **LIDA direto**" e publica "temos hoje: —". Aquele manual foi
+   colhido por busca restrita a `manuals.plus`, um terceiro, sem leitura direta.
+   Uma das duas afirmações está errada, e **a R1 não publica número de nível de
+   fonte** justamente para não levar a contradição para a tela antes de alguém
+   decidir. A decisão é de regra, não de digitação: *manual do fabricante
+   hospedado por terceiro, colhido por busca, é nível 2 ou não?* Escrever a
+   resposta na escada e acertar o banco é bloco de dados para a Fundação.
 
 **NA EXECUÇÃO DAS 11h17Z NÃO DEU PARA COLHER NADA, e isso foi medido, não
 suposto.** Em 10/09/2026, 11h17Z, a busca web devolveu `unavailable` em três consultas

@@ -643,3 +643,157 @@ casca nao acrescenta item ao banco.
    Mop 2) e da WAP (W400, W1000, W310), que e o unico lado coletavel da emenda entre as
    duas ferramentas. **Atencao ao que a varredura ja avisou:** a pagina-ancora da R1 NAO
    pode ser a do PRA500, porque a R1 sai vazia nele.
+
+## 2026-09-10 (15h16Z) — Blocos 4 e 4e: A FERRAMENTA R1 EXISTE, e esta no ar
+
+**A primeira ferramenta desta ilha.** `snippets/robometria-r1.php` v1.0.0 mais
+`ferramentas/gerar-r1.py`, `ferramentas/teste-r1.php`, `dados/r1-respostas.json`
+(o combustivel, `publicar: true`) e `dados/r1-referencia.json` (o gabarito,
+`publicar: false`). Manifest na revisao 8, e depois na 9 pelo despacho da
+Sentinela que chegou no meio desta execucao.
+
+**O que ela responde.** Dado um dos 28 modelos publicaveis do banco, ela diz
+qual filtro, escova lateral, escova principal, mop ou bateria o FABRICANTE
+declarou compativel — com o codigo, o conjunto de modelos que ele citou, o
+endereco da declaracao e a data. Onde nao ha declaracao, recusa com todas as
+letras: "nao localizamos declaracao do fabricante de X para este modelo; nao
+vamos supor." Sao 45 pares peca x modelo respondidos e 12 modelos em que ela sai
+vazia, e os 12 estao publicados na propria pagina, com os nomes.
+
+**A DECISAO QUE MAIS IMPORTA: a resposta e servida pelo SERVIDOR.** O formulario
+e um GET para a propria pagina e quem monta a resposta e o PHP. Sem JavaScript a
+ferramenta funciona por completo. Isso e a secao 5 do contrato levada a serio em
+vez de contornada: calculadora que so calcula no navegador mostra a um modelo de
+linguagem um formulario vazio, nunca um numero. Aqui, sem clique nenhum, ja saem
+no HTML servido a resposta inteira do modelo-ancora, as 45 linhas da tabela
+pre-renderizada e a lista dos modelos sem resposta.
+
+**O modelo-ancora e escolhido por REGRA, nunca a dedo** (mais tipos cobertos,
+depois mais itens, depois ordem alfabetica; hoje da `electrolux-erb60`). Duas
+consequencias: a ancora acompanha o banco sozinha quando a coleta melhorar outro
+modelo, e a regra impede sozinha o erro que a varredura da terceira leva do 3c
+tinha registrado — o PRA500 e a consulta-alvo escrita na especificacao e a R1
+sai VAZIA nele, entao estrear a ferramenta com ele seria estrear com um "nao
+sabemos".
+
+**AS REGRAS NAO FORAM REESCRITAS EM PHP, E ISSO E MEDIDO.**
+`ferramentas/gerar-r1.py` importa a implementacao de referencia
+(`cobertura-r1.py`) e deriva dela os FATOS que o site consome; o snippet escreve
+a frase, em portugues acentuado, porque o banco desta ilha e ASCII e texto de
+tela sai acentuado. `ferramentas/teste-r1.php` compara **as 188 frases** das
+duas implementacoes, modelo a modelo, ignorando acento e aplicando dos dois
+lados a mesma tabela de rotulos de origem. As duas nao batem por sorte: batem
+por construcao, e o teste reprova se alguem mexer no molde de um lado so.
+
+**LER A RESPOSTA COMO UM LEITOR LE PEGOU DOIS DEFEITOS QUE REGRA OBJETIVA NAO
+PEGA** — e os dois foram consertados na REFERENCIA, que e a fonte, e nao no PHP:
+
+1. **A pagina se contradizia na mesma tela.** Para o ERB60 ela dizia "a
+   Electrolux declara o filtro [HEPA com espuma] compativel com o ERB60" e, na
+   frase seguinte, "a Electrolux **nao vende o filtro avulso** para este
+   modelo". As duas frases eram verdadeiras isoladamente e falsas juntas: "nao
+   vende avulso" e uma afirmacao sobre o CATALOGO INTEIRO daquele modelo, entao
+   so pode ser escrita quando nenhuma peca avulsa daquele tipo responde por ele.
+   Onde existe a avulsa, o kit passou a ser um caminho A MAIS: "ele tambem vem
+   dentro do kit ...". Este e exatamente o defeito de julgamento que a secao 12
+   do contrato descreve — verificacao por regra objetiva pega encanamento, e
+   contradicao so aparece lendo o resultado como um leitor leria.
+2. **O aviso de variante de hardware colava duas frases sem pontuacao**, e a
+   segunda comecava em minuscula porque era texto do banco. Virou dois pontos,
+   com o ponto final que faltava antes de "Confira a etiqueta".
+
+**A vitrine (Bloco 4e) nasceu junto**, como a secao 6 manda. Carrossel com
+`scroll-snap` em CSS puro, sem biblioteca; UM cartao por peca e nao por par, que
+foi decisao de leitura (o Kit Performance responde filtro, mop e escova lateral
+do mesmo modelo, e tres cartoes identicos seriam tres vezes o mesmo conselho);
+peca sem imagem NAO some, entra com espaco reservado neutro; e peca sem link de
+loja **diz que nao tem link** em vez de mostrar botao fingido. O link do cartao
+leva ao endereco da declaracao, que e o que esta pagina tem de mais valioso hoje.
+
+**Consulta nao vira URL indexavel.** Endereco com `?modelo=` sai com
+`noindex,follow` e canonica para a pagina limpa. Sao 196 combinacoes de modelo x
+tipo, e cada URL fraca gasta orcamento de rastreamento que uma pagina boa
+precisaria (secao 14.1). O que merece indexar — a ancora e a tabela inteira —
+esta na pagina limpa, e o teste confere que a pagina limpa NAO leva noindex.
+
+**VERIFICACAO — o que foi medido.**
+
+De bancada, sem site: `php -l` nos dois snippets; **`teste-r1.php` APROVADO em 70
+medicoes** (entre elas as 188 frases contra a referencia, zero `<script>` e
+`<style>` no retorno do shortcode em cinco estados da pagina, zero `&#038;`
+dentro dos blocos `<script>`, o seletor sem o tipo que o banco nao responde,
+declaracao de terceiro nunca antes da do fabricante, JSON-LD que decodifica com
+toda resposta do FAQPage conferida contra o que a pagina serve, e os numeros da
+tela contra o banco commitado); `teste-casca.php` APROVADO em 64;
+`validar-banco.py` aprovado.
+
+Num Chromium de verdade: rolagem horizontal **0 px a 360, 390, 782 e 1200**,
+botao do menu visivel ate 782 e ausente a 1200, `aria-expanded` false -> true no
+clique e -> false no Escape, barra fixa do celular so enquanto o resultado esta
+fora da tela, console limpo. **A primeira medicao acusou 39 px de rolagem
+horizontal a 360 px** — o item de flex do formulario recebia `min-width:auto` e
+a largura intrinseca do `<select>` (o maior rotulo de optgroup) mandava. Sem a
+medicao no navegador, isso teria ido para o ar.
+
+No ar, depois do Sync acionado por esta execucao: `/status` responde **revisao
+8**, a pagina `qual-peca-serve-no-meu-robo-aspirador` devolve **200**, serve as
+45 linhas da tabela, a resposta-ancora inteira, o formulario GET, JSON-LD
+WebApplication + FAQPage, favicon proprio e **zero `&#038;` dentro dos blocos
+`<script>`** (a pagina inteira tem 4, e contar ali seria o teste ERRADO). Uma
+consulta real (`?modelo=multi-ho041&peca=bateria`) devolve as duas baterias com
+o aviso de variante e sai com `noindex,follow` e canonica para a pagina limpa.
+
+**Itens esperando link de afiliado: 44** (28 modelos e 16 pecas) — continua em
+44, porque este bloco nao acrescentou item ao banco. Dos 45 itens de resposta que
+a R1 serve hoje, os 45 esperam link.
+
+## 2026-09-10 (15h16Z) — Despacho da Sentinela, item 1 cumprido: o sitemap deixa de responder 404
+
+O despacho chegou ao `main` as 15h36Z, no meio desta execucao. Pela secao 12.2 do
+contrato ele tem prioridade sobre a fila, e defeito no ar custa mais que bloco
+atrasado — entao foi atacado na mesma execucao, depois de o bloco 4 estar no ar.
+
+**O sintoma era esquisito e por isso instrutivo:** `wp-sitemap.xml` e
+`wp-sitemap-posts-page-1.xml` serviam XML **valido**, com as seis paginas
+dentro, e status HTTP **404**. Para o Google, sitemap com 404 e sitemap
+inexistente — era isso que estava por tras do "Nao foi possivel buscar" no
+Search Console, e era isso que travava a rampa de indexacao, que e a prioridade
+maxima desta ilha.
+
+**A causa nasce na propria casca, e nao no nucleo nem na hospedagem.** Como a
+casca manda "Hello world!" para a lixeira — de proposito, porque sitemap e
+curadoria e nao inventario (secao 14.1) —, esta ilha fica com **ZERO posts
+publicados**. As rotas de sitemap do WordPress passam pela consulta principal
+(`index.php?sitemap=...`), a consulta volta sem nenhum post, e o `handle_404()`
+do nucleo carimba 404 ANTES de o renderizador de sitemap imprimir o XML. A
+Aquametria devolve 200 nos mesmos caminhos pelo motivo simetrico: ela tem posts.
+
+**O conserto fica ao lado da causa e nao desliga nada:** o filtro
+`pre_handle_404`, que existe no proprio nucleo para isto, e que age SO em
+requisicao que ja e de sitemap. Endereco inexistente continua podendo 404 —
+um filtro que dissesse "nunca 404" faria a ilha responder 200 no vazio, e isso
+seria pior do que o defeito. Casca na versao 1.0.1, manifest na revisao 9.
+
+O `teste-casca.php` passou a medir os cinco casos do filtro (indice de sitemap,
+sitemap de paginas, pagina comum, endereco inexistente e consulta ausente).
+
+**O que fecha o item 1 e o curl no ar**, e esta registrado abaixo, na secao de
+verificacao desta execucao. **O que NAO da para fazer daqui: reenviar o sitemap
+no Search Console.** Isso e propriedade da conta do Raphael e exige o navegador
+dele ou credencial de conta de servico que este ambiente ainda nao tem — fica
+como a metade humana do item 1.
+
+**MEDIDO NO AR depois do Sync da revisão 9 (10/09/2026, 15h49Z):**
+`wp-sitemap.xml` → **200** (antes 404), `wp-sitemap-posts-page-1.xml` → **200**
+(antes 404), `/pagina-que-nao-existe-mesmo/` → **404** (o conserto não vazou
+para endereço comum, que era o risco), `/status` → **revisão 9**.
+`wp-sitemap-posts-post-1.xml` segue 404, e está certo: esta ilha não tem post
+nenhum, e ele não aparece no índice.
+
+**Próximo passo desbloqueado: Bloco 5 — o artigo-âncora pareado com a R1.** Ele
+é o que dá à ferramenta a segunda listagem e as três irmãs que a regra da malha
+exige, e não depende de rede. Depois dele, o **3c alvo (a)** (peça com código da
+Xiaomi e da WAP), na primeira execução em que a rede alcançar o fabricante —
+nesta ela não alcançou: `www.wap.ind.br`, `mais.conteudo.wap.ind.br`,
+`www.mi.com` e `www.xiaomi.com.br` não responderam. **Nenhuma leva de malha
+(5b)** antes de o Search Console voltar a buscar o sitemap.
