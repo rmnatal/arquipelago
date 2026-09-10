@@ -3,7 +3,7 @@ ilha: aquametria
 estado: viva
 prioridade: 2
 ultima_execucao: 2026-09-10T13:20Z
-executando_desde: null
+executando_desde: 2026-09-10T17:15Z
 bloco_atual: "T7 leva 4: os 3 artigos-ancora ganharam resposta direta e JSON-LD — o T7 FECHOU nas 8 paginas de ferramenta e artigo; no main, revisao 33; falta o Sync"
 ultima_ronda: 2026-09-10T14:55Z
 bloqueada_por: null
