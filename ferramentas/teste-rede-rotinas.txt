@@ -56,3 +56,8 @@ code=401 exit_ok
     }
   ],
   "
+=== 3º teste Thu Sep 10 14:09:17 UTC 2026 — ambiente vm ===
+https://aquametria.com.br/wp-json/aquametria/v1/status -> 200
+https://robometria.com.br/wp-json/robometria/v1/status -> 200
+https://searchconsole.googleapis.com/webmasters/v3/sites -> 401
+https://raw.githubusercontent.com/rmnatal/arquipelago/main/ARQUIPELAGO.md -> 200
