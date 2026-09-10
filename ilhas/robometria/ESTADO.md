@@ -3,7 +3,7 @@ ilha: robometria
 estado: nascendo
 prioridade: 1
 ultima_execucao: 2026-09-10T17:17Z
-executando_desde: null
+executando_desde: 2026-09-10T21:15Z
 bloco_atual: "despacho de 10/09 item 0 CUMPRIDO: a procedencia deixou de ser a unica porta de compra (R1 v1.1.0, revisao 10 conferida no /status, 48 links externos com nofollow) — 14 pecas esperando link de afiliado; proximo: 5, o artigo-ancora da R1"
 ultima_ronda: null
 bloqueada_por: null
