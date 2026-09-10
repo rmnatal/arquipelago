@@ -797,3 +797,90 @@ Xiaomi e da WAP), na primeira execução em que a rede alcançar o fabricante �
 nesta ela não alcançou: `www.wap.ind.br`, `mais.conteudo.wap.ind.br`,
 `www.mi.com` e `www.xiaomi.com.br` não responderam. **Nenhuma leva de malha
 (5b)** antes de o Search Console voltar a buscar o sitemap.
+
+## 2026-09-10 (17h17Z) — Despacho da Sentinela, item 0 cumprido: a procedencia deixa de ser a unica porta de compra
+
+**O defeito, medido pela Sentinela na vespera do conserto:** na URL
+`/qual-peca-serve-no-meu-robo-aspirador/?modelo=electrolux-erb30&peca=filtro`, 12
+links externos, todos para loja do fabricante (loja.electrolux.com.br,
+meupositivo, multilaser, mi.com), e **zero link de afiliado, zero bloco de
+compra**. A R1 tinha nascido impecavel de procedencia — cada afirmacao com
+publicador, endereco e data — e, exatamente por isso, com uma unica porta
+clicavel por peca: a loja de quem fabrica. Quem decidia comprar clicava nela,
+porque nao havia outra. A ilha mandava a venda de graca para a Electrolux.
+
+Esta e a cicatriz que virou a regra "PROCEDENCIA NUNCA E A UNICA PORTA DE
+COMPRA" na secao 7 do `ARQUIPELAGO.md`, e vale para toda ilha. O que esta
+execucao fez foi cumpri-la na ferramenta que a produziu.
+
+### O que mudou (R1 v1.1.0, manifest revisao 10)
+
+1. **O bloco de compra vem ANTES da prova de procedencia**, na mesma resposta. A
+   vitrine virou o bloco "Onde comprar estas pecas", e o aviso de comissao esta
+   DENTRO dele — quem ve o botao ve o aviso sem rolar, e nao so no rodape.
+2. **A procedencia fica, e fica discreta.** Ela e o que da a esta ilha o direito
+   de afirmar compatibilidade, entao nao sai da pagina; o que muda e o peso.
+   Texto "fonte", `rel="nofollow noopener"`, nunca um botao — e o CSS nao lhe da
+   fundo nem preenchimento, medido no proprio teste, porque o desenho e que
+   fazia dela a porta de compra, nao so o texto.
+3. **O bloco existe mesmo sem link de afiliado.** Reserva o lugar, escreve "Link
+   de loja em breve" e a pagina publica quantas pecas estao esperando. Esconder
+   o bloco ate o link chegar devolveria a procedencia ao papel de unica porta
+   clicavel durante todas as semanas em que o cano de links esta enchendo — que
+   e o defeito de novo, so que com data marcada para voltar.
+4. **Link de afiliado sai com `rel="sponsored nofollow noopener"`** e nomeia a
+   loja para quem vai clicar. Nenhum existe ainda no banco desta ilha; o caminho
+   e medido com item sintetico, na funcao que monta o cartao.
+5. **Modelo sem declaracao de fabricante nao ganha bloco de compra — e a pagina
+   DIZ por que:** "nos ganhamos comissao quando alguem compra por um link nosso,
+   e e exatamente por isso que ele nao pode aparecer aqui". Silencio no lugar do
+   bloco parece defeito de pagina; a recusa explicada e conteudo.
+
+O campo `afiliado` passou a viajar como FATO em `dados/r1-respostas.json`
+(`ferramentas/gerar-r1.py`), e nao como decisao do PHP — mesmo desenho das
+outras regras da R1: quem decide mora onde da para conferir sem site.
+
+### O KIT QUE FICOU DE FORA, de proposito
+
+Na consulta do despacho (ERB30 + filtro) a resposta cita um Kit Performance que
+a Electrolux **declara** compativel com aquele modelo, e ainda assim a pagina nao
+oferece porta de compra para ele. Nao e esquecimento: a lista do que vem dentro
+do kit nao foi transcrita, entao a pagina nao sabe se ele contem filtro. Vender
+o kit debaixo da pergunta "qual filtro serve no meu robo" seria recomendar em
+primeiro lugar um produto que a propria pagina diz nao saber se serve — o defeito
+GRAVE da secao 7, com a agravante de ser o defeito que rende comissao.
+**A destravar por DADO, nao por regra:** transcrever a composicao dos kits na
+proxima leva do 3c abre a porta de compra sozinha, sem afrouxar nada.
+
+### Verificacao (secao 8 do contrato)
+
+- `php -l` limpo; `teste-r1.php` **APROVADO em 90 medicoes** (eram 70), sendo a
+  secao 13 inteira nova e so sobre este item: 48 links externos conferidos um a
+  um com `nofollow` e `noopener`, o texto do link de fonte sendo sempre "fonte"
+  e nada alem, a ordem compra -> fonte na pagina E dentro de cada um dos 3
+  cartoes, o CSS da fonte sem fundo nem preenchimento, o caminho com
+  `afiliado.url` preenchido saindo com `sponsored`, e o modelo de entrada vazia
+  sem bloco e com a frase que explica. As **188 frases** continuam batendo com a
+  implementacao de referencia.
+- `teste-casca.php` APROVADO em 64; `validar-banco.py` APROVADO.
+- **NO AR e medido pela nuvem, revisao 10 confirmada no `/status`** (Sync
+  acionado as 17h25Z pela propria Fundacao): pagina limpa **HTTP 200**, **zero
+  `&#038;` dentro dos blocos `<script>`**, **48 links externos e ZERO sem
+  `nofollow`**, o bloco de compra servido antes da primeira fonte, "Link de loja
+  em breve" nos 3 cartoes e o aviso de comissao no HTML servido. **Na URL exata
+  do despacho** (`?modelo=electrolux-erb30&peca=filtro`): HTTP 200, 45 links
+  externos, **zero sem `nofollow`**, `noindex,follow` mantido, nenhum bloco de
+  compra e a explicacao de por que ele nao esta ali.
+
+### O numero que e trabalho pendente
+
+**14 pecas recomendadas na tela, 14 esperando link de afiliado** (o banco tem 16
+publicaveis, 16 sem link). Gerar link e da Sentinela estrategica, no navegador do
+Raphael, com teto de calendario — nao consome execucao da Fundacao e nao compete
+por esta fila. Enquanto nao houver nenhum, cada cartao da ferramenta reserva o
+lugar em vez de fingir um botao.
+
+**Proximo passo desbloqueado: Bloco 5 — o artigo-ancora pareado com a R1**, que
+da a ela a segunda listagem e as tres irmas da regra da malha, e nao depende de
+rede. Nenhuma leva de malha (5b) antes de o Search Console voltar a buscar o
+sitemap — metade humana do item 1 do despacho, ainda aberta.

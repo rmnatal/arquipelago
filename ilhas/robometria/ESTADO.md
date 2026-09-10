@@ -2,9 +2,9 @@
 ilha: robometria
 estado: nascendo
 prioridade: 1
-ultima_execucao: 2026-09-10T15:16Z
-executando_desde: 2026-09-10T17:17Z
-bloco_atual: "4 + 4e A FERRAMENTA R1 ESTA NO AR (manifest revisao 9 conferida no /status) + despacho de 10/09 item 1: sitemaps voltaram a 200 — proximo: 5, o artigo-ancora da R1"
+ultima_execucao: 2026-09-10T17:17Z
+executando_desde: null
+bloco_atual: "despacho de 10/09 item 0 CUMPRIDO: a procedencia deixou de ser a unica porta de compra (R1 v1.1.0, revisao 10 conferida no /status, 48 links externos com nofollow) — 14 pecas esperando link de afiliado; proximo: 5, o artigo-ancora da R1"
 ultima_ronda: null
 bloqueada_por: null
 ---
@@ -39,6 +39,23 @@ Espelho legível do estado do projeto. **Nunca guarde credencial aqui.**
 Sem credenciais neste arquivo.
 
 ## O que já foi entregue
+
+- 10/09/2026 — **Despacho da Sentinela, item 0: a procedência deixou de ser a
+  única porta de compra.** A R1 tinha nascido com um único link clicável por
+  peça, e ele ia para a loja do FABRICANTE: 12 links externos na consulta que a
+  Sentinela mediu, nenhum de afiliado. Pela seção 7 do contrato, a R1 v1.1.0
+  (manifest revisão 10) serve o bloco "Onde comprar estas peças" ANTES da prova
+  de procedência, com o aviso de comissão dentro dele; a procedência virou link
+  de texto "fonte" com `rel="nofollow noopener"`, sem fundo e sem preenchimento
+  no CSS; o bloco existe mesmo com `afiliado.url` vazio, reservando o lugar com
+  "Link de loja em breve"; e modelo sem declaração de fabricante não ganha bloco
+  de compra — a página diz por quê. **Verificação: `teste-r1.php` APROVADO em 90
+  medições** (eram 70; a seção 13 é nova e só sobre este item), mais
+  `teste-casca.php` (64) e `validar-banco.py`. **NO AR:** Sync acionado às
+  17h25Z, `/status` em **revisão 10**, página em 200, **48 links externos e zero
+  sem `nofollow`**, bloco de compra antes da primeira fonte, zero `&#038;` dentro
+  dos `<script>`. **14 peças recomendadas na tela, 14 esperando link de
+  afiliado** — trabalho da Sentinela estratégica, não da Fundação.
 
 - 10/09/2026 — **Blocos 4 e 4e: A FERRAMENTA R1 EXISTE, e é a primeira ferramenta
   desta ilha.** `snippets/robometria-r1.php` v1.0.0, mais `ferramentas/gerar-r1.py`,

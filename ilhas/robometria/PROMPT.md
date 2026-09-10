@@ -176,4 +176,13 @@ exige. Não depende de rede.
 - **WordPress, casca e a primeira ferramenta estão no ar desde 10/09/2026** (manifest revisão 10). Os blocos 1, 2, 3, 3b, 4 e 4e estão feitos. **O próximo é o Bloco 5 — o artigo-âncora da R1**; se a rede alcançar o fabricante, o **3c alvo (a)** (peça com código da Xiaomi e da WAP) disputa a vez, porque é o único lado coletável da emenda entre as duas ferramentas.
 - **Antes de mexer em qualquer snippet, rode os dois testes de bancada:** `php ferramentas/teste-casca.php .` (64 medições) e `php ferramentas/teste-r1.php .` (90). Eles são a única verificação da seção 8 que roda sem depender do site, e o segundo compara as 188 frases publicadas contra a implementação de referência.
 - **O BANCO ESTÁ EM ASCII, E AGORA ISSO APARECE NA TELA.** Enquanto o banco só alimentava medição, acento faltando em `nome_na_fonte`, `publicador` e `o_que_muda` não custava nada; com a R1 no ar, esse texto é citado dentro da resposta publicada ("Aspirador Robo", "identificada como 'Versao A'"). O que a ilha escreve sai acentuado; o que ela cita sai como o banco tem — e o banco tem errado. É trabalho de dados, e o lugar barato de fazê-lo é junto da próxima leva de coleta, quando esses registros já forem ser tocados.
+- **O KIT DECLARADO NÃO TEM PORTA DE COMPRA, E ISSO SE DESTRAVA POR DADO.** Na
+  consulta ERB30 + filtro, a Electrolux declara um Kit Performance compatível com
+  o modelo e a página não oferece compra dele: a composição do kit não foi
+  transcrita, então a página não sabe se ele contém filtro, e vender kit debaixo
+  de "qual filtro serve no meu robô" seria recomendar em primeiro lugar um
+  produto que a própria página diz não saber se serve (seção 7). **Não afrouxe a
+  regra: transcreva a composição dos kits na próxima leva do 3c** — o dado abre
+  a porta de compra sozinho, e hoje são os kits que concentram o que a Electrolux
+  declara para os modelos mais novos.
 - **UMA FONTE ESTÁ NO NÍVEL 2 E A ESCADA DIZ QUE O NÍVEL 2 NÃO EXISTE.** `pecas.json/electrolux-kpcel01/f-manual` declara `nivel: 2`, e a escada da página de metodologia define nível 2 como "manual, lâmina ou página oficial **LIDA direto**" e publica "temos hoje: —". Aquele manual veio por busca restrita a `manuals.plus`, um terceiro, sem leitura direta. Uma das duas afirmações está errada. **A R1 não publica número de nível de fonte** de propósito, para a contradição não ir para a tela antes de alguém decidir — e a decisão é de regra: *manual do fabricante hospedado por terceiro, colhido por busca, é nível 2 ou não?*
