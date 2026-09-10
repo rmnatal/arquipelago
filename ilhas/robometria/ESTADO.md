@@ -4,7 +4,7 @@ estado: nascendo
 prioridade: 1
 ultima_execucao: 2026-09-10T13:19Z
 executando_desde: null
-bloco_atual: "3b CASCA DO SITE entregue no repositorio (revisao 7, snippet publicar=true) — falta o Sync da Sentinela para ela estar NO AR"
+bloco_atual: "3b CASCA DO SITE no ar (revisao 7 confirmada no /status em 10/09 14h11Z) — proximo: 3c"
 ultima_ronda: null
 bloqueada_por: null
 ---

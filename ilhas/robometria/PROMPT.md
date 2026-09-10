@@ -21,7 +21,7 @@ A Bússola verificou em 07/09/2026: a busca **comercial** ("melhor robô aspirad
 - Status: `https://robometria.com.br/wp-json/robometria/v1/status`
 - O Sync se pula a si mesmo por desenho: correção nele chega pelo snippet atualizador (a copiar da Aquametria quando for preciso).
 - Search Console: propriedade de domínio `sc-domain:robometria.com.br`, verificada. Sitemap `https://robometria.com.br/wp-sitemap.xml` enviado em 10/09/2026.
-- **Quem aciona o Sync é a Sentinela, no navegador** — a nuvem não alcança o site (seção 4 do contrato). Commit sem Sync não está no ar.
+- **Quem aciona o Sync é a própria Fundação, por `curl`, ao fim de cada bloco publicável** (seção 4 do contrato; a nuvem alcança o site desde 10/09/2026). Commit sem Sync não está no ar.
 
 ## Memória a carregar
 `/areas/projeto-robometria.md`, `/areas/fabrica-de-sites.md`, `/areas/playbook-nascimento-projeto.md` (fase 4b), `/areas/arquipelago-bussola.md` (rodada 003, que aprovou este nicho), `/topics/dev-conventions.md`. Sem memória, **não pare**: o estado está em `ESTADO.md`, `REGISTRO.md` e `README.md` desta pasta.
@@ -42,10 +42,10 @@ acessível, favicon próprio, JSON-LD Organization + WebSite, e **cinco** págin
 ferramentas, metodologia, sobre e divulgação de afiliados (esta última nasceu junto porque
 o aviso de comissão precisa estar publicado antes do primeiro link, não depois).
 
-**O que falta no 3b não é da Fundação: é o Sync.** Enquanto a Sentinela não acionar
-`?robometria_sync=<token>&forcar=1` e o `/status` não responder **revisão 7**, a casca não
-está no ar e o sitemap continua listando "Hello world". Pela seção 4 do contrato, o bloco
-só conta como entregue quando o site confirma a revisão.
+**3b ENTREGUE E NO AR em 10/09/2026, 14h11 UTC.** Sync acionado pela nuvem: `/status` responde
+**revisão 7**, snippet `robometria-casca` aplicado (#6), a home serve o título da ilha, o sitemap
+de páginas lista início, ferramentas, metodologia, sobre e divulgação-de-afiliados, e o sitemap
+de posts está vazio ("Hello world" saiu). Próximo bloco da fila é o 3c.
 
 **Antes de mexer na casca, rode `php ferramentas/teste-casca.php .`** — 59 medições, sem
 site e sem rede, e é a única verificação da seção 8 que esta ilha consegue executar sozinha
