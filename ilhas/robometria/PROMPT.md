@@ -161,10 +161,30 @@ resultado inteiro sustenta não pode ser escrita olhando uma peça de cada vez. 
 frases da mesma família** ("nenhum modelo atende a sua metragem"): escreva-as depois de
 montar o resultado inteiro, não durante.
 
-**5. ARTIGOS-ÂNCORA** pareados com cada ferramenta, na mesma execução. **O da R1 está em
-aberto e é o próximo bloco desta ilha** — a ferramenta nasceu sem ele porque o bloco 4 já
-era grande, e é ele que dá à R1 a segunda listagem e as três irmãs que a regra da malha
-exige. Não depende de rede.
+**5. ARTIGOS-ÂNCORA** pareados com cada ferramenta, na mesma execução.
+
+**O DA R1 ESTÁ NO AR desde 10/09/2026** (`snippets/robometria-a1.php` v1.0.0, manifest
+revisão 11): `https://robometria.com.br/filtro-universal-de-robo-aspirador/`. Ele fechou a
+malha da R1 nos dois sentidos — duas listagens (home e hub), três irmãs, e a R1 v1.1.1
+apontando de volta. **O artigo da R2 nasce junto com a R2, na mesma execução**, e herda as
+três decisões que este bloco fixou:
+
+1. **A tese do artigo é derivada, nunca digitada.** `ferramentas/gerar-a1.py` deriva os
+   números do banco para `dados/a1-fatos.json`, e a frase de abertura tem DUAS formas,
+   escolhidas pela contagem. Um artigo cuja tese é um número e que traz esse número dentro
+   do HTML passa a mentir em silêncio no dia em que o banco cresce — e "em silêncio" é o
+   ponto: ninguém relê artigo publicado.
+2. **A DESCRIÇÃO DO JSON-LD E A RESPOSTA DO FAQPage SÃO PARTE DA TESE, não embrulho.** O
+   defeito só apareceu ao plantar uma peça multimarca numa cópia do banco: a página visível
+   se corrigia e o JSON-LD continuava afirmando o que deixara de valer. Numa ilha cuja seção
+   5 diz que ser recomendado pela IA vale tanto quanto ranquear, **contradizer-se no canal
+   que a IA lê é pior do que na tela**. Todo artigo novo deriva os três lugares juntos.
+3. **O artigo não repete a ferramenta.** Sem formulário: a consulta é da ferramenta, e duas
+   páginas respondendo a mesma coisa competem entre si no índice (seção 14.4).
+
+**A PROVA DE QUE UMA TRAVA REPROVA É PARTE DO BLOCO.** As travas novas do `teste-a1.php`
+foram medidas quebrando o banco de propósito numa cópia — números adulterados nos fatos e
+uma peça multimarca plantada. Trava que nunca foi vista reprovando é trava não medida.
 
 **5b. MALHA DE PÁGINAS.** Camadas: (1) ficha de peça; (2) ficha de modelo de robô; (3) página de parâmetro ("robô para 80 m²", "robô acima de 4.000 Pa"); (4) cruzamentos (modelo × peça, marca × tipo de peça, parâmetro × modelo).
 
@@ -173,8 +193,10 @@ exige. Não depende de rede.
 ## Específico desta ilha
 - **Compatibilidade de peça é o produto desta ilha.** Uma informação errada aqui destrói a confiança inteira. Toda afirmação de compatibilidade carrega fonte do fabricante e data na própria frase.
 - Amazon paga 8% em Eletrodomésticos, mas a conta **não** deve ser aberta até haver tráfego: a regra das 3 vendas em 180 dias começa no cadastro. A Shopee já está aberta e serve todas as ilhas.
-- **WordPress, casca e a primeira ferramenta estão no ar desde 10/09/2026** (manifest revisão 10). Os blocos 1, 2, 3, 3b, 4 e 4e estão feitos. **O próximo é o Bloco 5 — o artigo-âncora da R1**; se a rede alcançar o fabricante, o **3c alvo (a)** (peça com código da Xiaomi e da WAP) disputa a vez, porque é o único lado coletável da emenda entre as duas ferramentas.
-- **Antes de mexer em qualquer snippet, rode os dois testes de bancada:** `php ferramentas/teste-casca.php .` (64 medições) e `php ferramentas/teste-r1.php .` (90). Eles são a única verificação da seção 8 que roda sem depender do site, e o segundo compara as 188 frases publicadas contra a implementação de referência.
+- **WordPress, casca, a primeira ferramenta e o primeiro artigo estão no ar desde 10/09/2026** (manifest revisão 11). Os blocos 1, 2, 3, 3b, 4, 4e e 5 estão feitos. **O próximo é o 3c alvo (a)** — peça com código da Xiaomi e da WAP, o único lado coletável da emenda entre as duas ferramentas —, **se a rede alcançar o fabricante**; se não alcançar, o próximo é a **R2**, que já tem as cinco decisões de desenho fixadas pela R1 e ainda não tem implementação de referência.
+- **Antes de mexer em qualquer snippet, rode os TRÊS testes de bancada:** `php ferramentas/teste-casca.php .` (64 medições), `php ferramentas/teste-r1.php .` (90) e `php ferramentas/teste-a1.php .` (53). Eles são a única verificação da seção 8 que roda sem depender do site. O segundo compara as 188 frases publicadas contra a implementação de referência; o terceiro **recalcula a tese do artigo em PHP, direto do banco, sem olhar para o que o gerador em Python escreveu** — duas contas independentes que batem são medição, uma conta sozinha é o que o autor achou.
+- **A PORTA DE COMPRA TEM UM DONO SÓ, e ele é a casca.** `robometria_casca_porta_de_compra`, `robometria_casca_rotulo_da_loja`, `robometria_casca_fonte_link` e `robometria_casca_css_vitrine` valem para toda página desta ilha que recomenda item; a R1 delega para elas. Página nova que recomenda produto **chama estas funções**, nunca escreve as suas. Os pesos visuais do botão de compra e do link de procedência são regra do Arquipélago (seção 7), não estilo local: com uma cópia por página, bastaria alguém ajustar uma delas para a ilha voltar — numa página só, e sem ninguém notar — ao defeito de 10/09/2026.
+- **Página nova entra no catálogo da casca pelo FILTRO dela**, `robometria_ferramentas` para ferramenta e `robometria_artigos` para artigo. A casca nunca ganha uma cópia da página dentro; é assim que a home e o hub listam qualquer coisa nova sem serem editados de novo, e é o que garante as duas listagens que a seção 9 exige.
 - **O BANCO ESTÁ EM ASCII, E AGORA ISSO APARECE NA TELA.** Enquanto o banco só alimentava medição, acento faltando em `nome_na_fonte`, `publicador` e `o_que_muda` não custava nada; com a R1 no ar, esse texto é citado dentro da resposta publicada ("Aspirador Robo", "identificada como 'Versao A'"). O que a ilha escreve sai acentuado; o que ela cita sai como o banco tem — e o banco tem errado. É trabalho de dados, e o lugar barato de fazê-lo é junto da próxima leva de coleta, quando esses registros já forem ser tocados.
 - **O KIT DECLARADO NÃO TEM PORTA DE COMPRA, E ISSO SE DESTRAVA POR DADO.** Na
   consulta ERB30 + filtro, a Electrolux declara um Kit Performance compatível com

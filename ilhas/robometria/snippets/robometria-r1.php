@@ -1,5 +1,9 @@
 /**
  * Robometria R1 — Qual peça serve no meu robô aspirador
+ * Versão: 1.1.1 (10/09/2026) — Bloco 5: a ferramenta ganha o link de volta para
+ * o artigo-âncora (mão dupla, seção 9 do ARQUIPELAGO.md) e devolve à casca a
+ * folha da porta de compra, que agora tem um dono só e vale para toda página que
+ * recomenda item. Nenhuma frase de resposta mudou.
  * Versão: 1.1.0 (10/09/2026) — despacho da Sentinela de 10/09, item 0: a
  * procedência deixa de ser a única porta de compra. Versão 1.0.0 (10/09/2026):
  * Bloco 4 da fila, com a vitrine do Bloco 4e junto, porque a seção 6 do
@@ -73,7 +77,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_R1_VERSAO' ) ) {
-	define( 'ROBOMETRIA_R1_VERSAO', '1.1.0' );
+	define( 'ROBOMETRIA_R1_VERSAO', '1.1.1' );
 	define( 'ROBOMETRIA_R1_SLUG', 'qual-peca-serve-no-meu-robo-aspirador' );
 	define( 'ROBOMETRIA_R1_TITULO', 'Qual peça serve no meu robô aspirador' );
 	define( 'ROBOMETRIA_R1_DADOS', 'robometria_dados_r1-respostas' );
@@ -286,6 +290,11 @@ function robometria_r1_fonte_link( $url ) {
 	if ( empty( $url ) ) {
 		return '';
 	}
+	/* A regra mora na casca desde 10/09/2026 (secao 1c dela); aqui fica so o
+	   nome que esta ferramenta ja usava, para nada a montante mudar. */
+	if ( function_exists( 'robometria_casca_fonte_link' ) ) {
+		return robometria_casca_fonte_link( $url );
+	}
 	return '<a class="rbm-fonte" href="' . esc_url( $url )
 		. '" target="_blank" rel="nofollow noopener">fonte</a>';
 }
@@ -301,6 +310,9 @@ function robometria_r1_fonte_link( $url ) {
  */
 if ( ! function_exists( 'robometria_r1_rotulo_da_loja' ) ) {
 function robometria_r1_rotulo_da_loja( $programa ) {
+	if ( function_exists( 'robometria_casca_rotulo_da_loja' ) ) {
+		return robometria_casca_rotulo_da_loja( $programa );
+	}
 	$nomes = array(
 		'shopee'       => 'na Shopee',
 		'mercadolivre' => 'no Mercado Livre',
@@ -321,6 +333,10 @@ function robometria_r1_rotulo_da_loja( $programa ) {
  */
 if ( ! function_exists( 'robometria_r1_porta_de_compra' ) ) {
 function robometria_r1_porta_de_compra( $item ) {
+	if ( function_exists( 'robometria_casca_porta_de_compra' ) ) {
+		return robometria_casca_porta_de_compra( $item );
+	}
+
 	$a   = isset( $item['afiliado'] ) ? $item['afiliado'] : array();
 	$url = isset( $a['url'] ) ? $a['url'] : '';
 
@@ -1026,6 +1042,20 @@ add_shortcode( 'robometria_r1', function () {
 			: 'a ferramenta de sucção e autonomia' )
 		. ' — a peça de reposição de um modelo é o que decide se ele continua limpando daqui a um ano.</p>';
 
+	/* LINK DE MÃO DUPLA com o artigo-âncora (seção 9): o artigo aponta para esta
+	   ferramenta e esta ferramenta aponta de volta. Sem os dois sentidos, a
+	   página que recebe o link vira um beco, e a regra da malha do Arquipélago
+	   pede mão dupla justamente porque é ela que faz as duas serem lidas como um
+	   assunto só. Quem chega aqui por "qual filtro serve" já sabe o que quer; o
+	   artigo é para quem chegou perguntando se existe peça universal. */
+	$html .= '<div class="rbm-leia-tambem">';
+	$html .= '<h2>Leia também</h2>';
+	$html .= '<p>' . ( function_exists( 'robometria_casca_link_html' )
+		? robometria_casca_link_html( 'filtro-universal-de-robo-aspirador', 'Por que não existe filtro universal de robô aspirador' )
+		: 'Por que não existe filtro universal de robô aspirador' )
+		. ' — o que o catálogo dos fabricantes mostra quando se conta quantos modelos cada peça declara.</p>';
+	$html .= '</div>';
+
 	$html .= '</div>';
 
 	return $html;
@@ -1171,30 +1201,9 @@ add_action( 'wp_head', function () {
 .rbm-legenda-bloco{font-family:var(--rbm-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--rbm-legenda);margin:0 0 .5rem;}
 .rbm-frase{margin:0 0 .8rem;}
 .rbm-terceiro{border-left:3px solid var(--rbm-alerta);padding-left:1rem;}
-/* Vitrine: carrossel com scroll-snap em CSS puro, sem biblioteca. Os cartoes
-   sao <a> de verdade dentro do <li>, nunca div com onclick. */
-.rbm-vitrine{display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;list-style:none;margin:1rem 0 0;padding:0 0 .6rem;}
-.rbm-vitrine-item{scroll-snap-align:start;flex:0 0 17rem;max-width:100%;background:var(--rbm-superficie);border:1px solid var(--rbm-traco);border-radius:3px;padding:1rem;display:flex;flex-direction:column;gap:.4rem;margin:0;}
-.rbm-vitrine-foto{display:flex;aspect-ratio:4/3;max-width:100%;background:var(--rbm-piso);border:1px solid var(--rbm-traco);border-radius:2px;align-items:center;justify-content:center;}
-.rbm-vitrine-vazia{display:block;width:2.4rem;height:2.4rem;border:2px solid var(--rbm-traco);border-radius:50%;border-right-color:transparent;}
-.rbm-vitrine-tipo{font-family:var(--rbm-display);font-weight:600;font-size:1rem;}
-.rbm-vitrine-nome{font-size:.86rem;color:var(--rbm-legenda);line-height:1.45;}
-.rbm-vitrine-porque{font-size:.88rem;line-height:1.45;}
-.rbm-vitrine-vida{font-size:.84rem;color:var(--rbm-legenda);}
-.rbm-vitrine-acao{margin-top:auto;padding-top:.6rem;font-size:.88rem;}
-/* A PORTA DE COMPRA e a PROCEDENCIA, com pesos deliberadamente diferentes
-   (secao 7): o botao de compra tem area de toque de botao; a fonte e texto
-   pequeno, sem caixa e sem preenchimento, porque ela existe para ser conferida
-   e nao para ser clicada. Trocar estes dois pesos e reabrir o defeito de
-   10/09/2026, quando a unica porta clicavel da pagina levava para a loja do
-   fabricante. */
-.rbm-comprar{display:block;text-align:center;padding:.6rem .9rem;border:1px solid var(--rbm-tinta);border-radius:2px;background:var(--rbm-tinta);color:var(--rbm-piso);font-family:var(--rbm-texto);font-weight:600;font-size:.9rem;text-decoration:none;}
-.rbm-comprar:hover,.rbm-comprar:focus-visible{background:var(--rbm-superficie);color:var(--rbm-tinta);}
-.rbm-sem-loja{display:block;text-align:center;padding:.6rem .9rem;border:1px dashed var(--rbm-traco);border-radius:2px;color:var(--rbm-legenda);font-size:.84rem;}
-.rbm-vitrine-fonte{font-size:.78rem;color:var(--rbm-legenda);line-height:1.4;}
-.rbm-fonte{font-size:.78rem;color:var(--rbm-legenda);text-decoration:underline;}
-.rbm-aviso-comissao{font-size:.86rem;color:var(--rbm-legenda);line-height:1.5;margin:.2rem 0 0;}
 .rbm-codigo-peca{font-size:.9rem;letter-spacing:.03em;}
+.rbm-leia-tambem{margin:2.4rem 0 0;padding-top:1.4rem;border-top:1px solid var(--rbm-traco);}
+.rbm-leia-tambem h2{margin:0 0 .5rem;font-size:1.15rem;}
 /* Barra fixa do celular: so aparece quando o resultado esta fora da tela, e so
    quando ha JavaScript para saber disso (o atributo vem do rodape). */
 .rbm-barra{display:none;}
@@ -1205,6 +1214,13 @@ body[data-rbm-r1-barra="1"] .rbm-barra{display:block;position:fixed;left:0;right
 body[data-rbm-r1-barra="1"] .rbm-barra a{color:var(--rbm-piso);font-weight:600;}
 }
 CSS;
+
+	/* A folha da porta de compra tem UM dono, na casca (secao 1c dela). Aqui
+	   ela e so concatenada — se um dia esta pagina precisar de peso diferente
+	   no botao de compra, a regra muda na casca e muda para todas. */
+	if ( function_exists( 'robometria_casca_css_vitrine' ) ) {
+		$css = robometria_casca_css_vitrine() . "\n" . $css;
+	}
 
 	echo '<style id="robometria-r1">' . $css . '</style>' . "\n";
 }, 21 );

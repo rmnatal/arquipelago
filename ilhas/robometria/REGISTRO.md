@@ -884,3 +884,88 @@ lugar em vez de fingir um botao.
 da a ela a segunda listagem e as tres irmas da regra da malha, e nao depende de
 rede. Nenhuma leva de malha (5b) antes de o Search Console voltar a buscar o
 sitemap — metade humana do item 1 do despacho, ainda aberta.
+
+## 2026-09-10 21h15Z — Bloco 5: o ARTIGO-ANCORA da R1 existe, e a malha da ilha fechou
+
+Entregue: `snippets/robometria-a1.php` v1.0.0 — a pagina **"Por que nao existe
+filtro universal de robo aspirador"**, em
+`/filtro-universal-de-robo-aspirador/` —, mais `ferramentas/gerar-a1.py`,
+`dados/a1-fatos.json` (o combustivel, `publicar: true`) e
+`ferramentas/teste-a1.php` (53 medicoes). A casca subiu para **1.0.2** e a R1
+para **1.1.1**. Manifest na **revisao 11**.
+
+**Por que este assunto, e nao um guia de compra.** O corpus desta ilha (cluster
+A1) registrou uma consulta de sinal invertido: "filtro hepa universal robo
+aspirador". Quem digita isso esta prestes a comprar a peca errada, e a unica
+pagina do nicho que hoje avisa contra ela avisa *sem dado* — "os encaixes sao
+diferentes", sem contar nada. A Robometria tem o catalogo dos fabricantes
+transcrito, entao aqui a mesma frase virou medicao. E a medicao e mais dura do
+que o aviso generico:
+
+- das **16** pecas com compatibilidade declarada, **nenhuma** e declarada para
+  modelos de mais de uma marca;
+- a lista mais longa do banco inteiro nomeia **5** codigos de modelo (a escova
+  lateral Multi PR10124), e para dentro de uma marca so;
+- **e nao se herda nem dentro da marca**: as 6 pecas da Electrolux formam **6
+  conjuntos de modelos diferentes** — nenhuma repete a lista de outra. Esse e o
+  achado que o artigo tem e o aviso generico nao tem, e e o que pega quem compra
+  por semelhanca dentro do proprio catalogo.
+
+**A TESE NAO ESTA DIGITADA NO HTML, e essa foi a decisao de desenho do bloco.**
+Um artigo cuja tese e um numero nao pode ter esse numero dentro do texto: no dia
+em que o banco crescer e uma peca atravessar marca, a pagina passaria a mentir em
+silencio. Entao a frase de abertura, a `description` do JSON-LD e a resposta do
+FAQPage tem **duas formas**, escolhidas pela contagem — foi medido numa copia do
+banco com uma peca multimarca plantada de proposito, e as tres mudaram juntas.
+
+**E o defeito que so apareceu por causa dessa prova:** na primeira versao a
+pagina visivel ja se corrigia e o **JSON-LD continuava afirmando o que deixou de
+valer**. Numa ilha cuja seccao 5 diz que ser recomendado pela IA vale tanto
+quanto ranquear, contradizer-se justamente no canal que a IA le e pior do que se
+contradizer na tela. Corrigido antes do desembarque, nos dois lados.
+
+**A malha da secao 9 fechou nos dois sentidos.** A casca ganhou um **catalogo de
+artigos**, alimentado por filtro como o de ferramentas, e o artigo aparece na
+**home** e no **hub de ferramentas** (as duas listagens). Ele aponta para tres
+irmas — a R1, a metodologia e a divulgacao de afiliados — e a **R1 aponta de
+volta**, na secao "Leia tambem": sem os dois sentidos, o artigo-ancora seria um
+beco. Cinco apelidos 301 novos levam as formulacoes reais da busca
+("filtro-hepa-universal", "peca-universal-robo-aspirador") ao endereco canonico.
+
+**Secao 7 desde o nascimento, sem retrofit.** O bloco de compra com 4 itens de
+banco reais vem ANTES da prova de procedencia, o aviso de comissao esta dentro
+dele, os 4 reservam o lugar com "link de loja em breve", e a procedencia e link
+de texto "fonte" com `rel="nofollow noopener"`. O Kit Performance ERB44 e o ERB30
+**ficaram de fora da vitrine de proposito**: a composicao deles nao foi
+transcrita, e oferecer a compra de um produto cuja composicao a propria pagina
+diz nao conhecer e exatamente o defeito da secao 7. O teste reprova se um deles
+voltar.
+
+**A folha da porta de compra passou a ter um dono so.** As regras do botao de
+compra, do lugar reservado e do link discreto de procedencia sairam da R1 e
+foram para a casca (`robometria_casca_css_vitrine`,
+`robometria_casca_porta_de_compra`, `robometria_casca_rotulo_da_loja`,
+`robometria_casca_fonte_link`), e a R1 delega. Com uma copia por pagina,
+bastaria alguem ajustar uma delas para a ilha voltar — numa pagina so, e sem
+ninguem notar — ao defeito de 10/09/2026.
+
+**Verificacao (secao 8).** `php -l` nos tres snippets; `teste-a1.php` **APROVADO
+em 53 medicoes**, entre elas a **recontagem da tese em PHP, direto do banco, sem
+olhar para o que o gerador em Python escreveu**; `teste-casca.php` APROVADO em 64
+e `teste-r1.php` APROVADO em 90 (nenhuma frase de resposta da R1 mudou);
+`validar-banco.py` APROVADO. As travas novas foram testadas quebrando o banco de
+proposito numa copia, para provar que reprovam: numeros adulterados nos fatos
+reprovaram 3 medicoes, e a peca multimarca plantada reprovou a trava da tese.
+Medicao num Chromium de verdade a 360, 390, 782 e 1200 px: **rolagem horizontal
+da pagina 0 px em todas**, com as tabelas de 5 colunas rolando dentro do proprio
+envoltorio e a vitrine com `scroll-snap` em CSS puro.
+
+**16 pecas do banco esperando link de afiliado** (44 itens contando modelos, que
+e como o `validar-banco.py` conta) — trabalho da Sentinela estrategica, no
+navegador do Raphael, nao da Fundacao.
+
+- **Proximo passo: Bloco 3c, alvo (a)** — pecas com codigo da Xiaomi e da WAP, o
+  unico lado coletavel da emenda partida entre a R1 e a R2, **se a rede alcancar
+  o fabricante**. Se nao alcancar, o proximo e a **R2**, que ja tem as cinco
+  decisoes de desenho definidas pela R1 e ainda nao tem implementacao de
+  referencia.

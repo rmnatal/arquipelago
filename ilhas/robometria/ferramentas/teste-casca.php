@@ -261,10 +261,13 @@ foreach ( $mf[1] as $nome ) {
 }
 rbm_ok( empty( $desprotegidas ), 'toda funcao de nivel superior dentro de function_exists', empty( $desprotegidas ) ? count( $mf[1] ) . ' funcoes' : implode( ' ', $desprotegidas ) );
 
-/* Apelido tem que apontar para pagina que a casca cria ou para ferramenta do
-   catalogo: apelido apontando para slug inexistente e 404 trocado por 404. */
+/* Apelido tem que apontar para pagina que a casca cria, para ferramenta do
+   catalogo ou para ARTIGO do catalogo: apelido apontando para slug inexistente e
+   404 trocado por 404. O catalogo de artigos entrou aqui junto com o Bloco 5 —
+   sem ele, o primeiro artigo com apelido reprovaria por existir. */
 $destinos = array_keys( robometria_casca_definicao_paginas() );
 foreach ( robometria_casca_ferramentas() as $f ) { $destinos[] = $f['slug']; }
+foreach ( robometria_casca_artigos() as $a ) { $destinos[] = $a['slug']; }
 $orfaos = array();
 foreach ( robometria_casca_apelidos() as $apelido => $destino ) {
 	if ( ! in_array( $destino, $destinos, true ) ) { $orfaos[] = $apelido . '→' . $destino; }

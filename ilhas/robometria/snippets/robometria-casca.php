@@ -1,5 +1,12 @@
 /**
  * Robometria Casca — identidade e estrutura do site
+ * Versão: 1.0.2 (10/09/2026) — Bloco 5: a casca passa a ter um catálogo de
+ * ARTIGOS, do mesmo jeito que já tinha o de ferramentas, e a listá-los na home e
+ * no hub. Sem isso o artigo-âncora da R1 nasceria órfão, e a seção 9 do
+ * ARQUIPELAGO.md exige que toda página entre em pelo menos duas listagens. Veio
+ * junto a folha compartilhada da PORTA DE COMPRA (seção 1c): as regras do botão
+ * de compra, do lugar reservado sem link e do link discreto de procedência
+ * passam a ter um dono só, em vez de uma cópia por página que recomenda produto.
  * Versão: 1.0.1 (10/09/2026) — despacho da Sentinela: o sitemap servia o XML
  * certo com status 404, porque esta ilha não tem nenhum post publicado e a
  * consulta principal das rotas de sitemap voltava vazia (seção 5b abaixo).
@@ -46,7 +53,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_CASCA_VERSAO' ) ) {
-	define( 'ROBOMETRIA_CASCA_VERSAO', '1.0.1' );
+	define( 'ROBOMETRIA_CASCA_VERSAO', '1.0.2' );
 	define( 'ROBOMETRIA_CASCA_TAGLINE', 'Qual peça o fabricante declarou para o seu robô aspirador — com código, endereço e data' );
 }
 
@@ -79,6 +86,33 @@ function robometria_casca_ferramentas() {
 	);
 
 	$lista = apply_filters( 'robometria_ferramentas', $lista );
+
+	return is_array( $lista ) ? $lista : array();
+}
+}
+
+/* ---------------------------------------------------------------------------
+ * 1b. Catálogo de ARTIGOS
+ *
+ * Existe pelo mesmo motivo que o de ferramentas, e a lista nasce VAZIA de
+ * propósito: cada artigo se registra pelo filtro dentro do próprio snippet dele,
+ * então a casca nunca precisa saber quantos artigos a ilha tem.
+ *
+ * Por que a casca ganha isto no Bloco 5: a seção 9 do ARQUIPELAGO.md exige que
+ * toda página entre em pelo menos DUAS listagens e aponte para três irmãs. Um
+ * artigo-âncora que só fosse alcançável pelo link da ferramenta que ele apoia
+ * seria uma página órfã com um link, e a malha da ilha começaria torta na
+ * primeira peça. Com o catálogo aqui, cada artigo novo aparece na home e no hub
+ * sem que nenhuma delas seja editada de novo.
+ *
+ * Campo 'ferramenta': o código da ferramenta que o artigo apoia, para a listagem
+ * poder dizer ao leitor que os dois são o par informativo e a resposta calculada
+ * do mesmo assunto.
+ * ------------------------------------------------------------------------- */
+
+if ( ! function_exists( 'robometria_casca_artigos' ) ) {
+function robometria_casca_artigos() {
+	$lista = apply_filters( 'robometria_artigos', array() );
 
 	return is_array( $lista ) ? $lista : array();
 }
@@ -173,6 +207,14 @@ function robometria_casca_apelidos() {
 		'robo-aspirador-para-quantos-m2'          => 'quantos-pa-o-robo-aspirador-precisa',
 		'autonomia-robo-aspirador'                => 'quantos-pa-o-robo-aspirador-precisa',
 		/* páginas da casca */
+		/* A1 — o artigo-âncora da R1. "Filtro universal" é como a busca escreve;
+		   o endereço canônico é o do artigo. */
+		'filtro-universal'                        => 'filtro-universal-de-robo-aspirador',
+		'filtro-hepa-universal'                   => 'filtro-universal-de-robo-aspirador',
+		'filtro-universal-robo-aspirador'         => 'filtro-universal-de-robo-aspirador',
+		'peca-universal-robo-aspirador'           => 'filtro-universal-de-robo-aspirador',
+		'escova-universal-robo-aspirador'         => 'filtro-universal-de-robo-aspirador',
+
 		'calculadoras'                            => 'ferramentas',
 		'metodo'                                  => 'metodologia',
 		'afiliados'                               => 'divulgacao-de-afiliados',
@@ -559,6 +601,14 @@ body header .wp-block-group,body .wp-block-template-part header{background:var(-
 .rbm-acao a{font-weight:600;text-decoration:none;border-bottom:2px solid var(--rbm-tinta);}
 .rbm-sem-link{color:var(--rbm-legenda);}
 .rbm-rodape .rbm-sem-link{color:var(--rbm-traco);}
+/* Listagem de artigos: lista de leitura, nao cartao. O cartao e a forma de quem
+   oferece uma acao ("abrir ferramenta"); artigo se oferece pelo titulo. */
+.rbm-artigos{list-style:none;margin:1.4rem 0 0;padding:0;display:flex;flex-direction:column;gap:1.1rem;}
+.rbm-artigo{margin:0;padding:0 0 1.1rem;border-bottom:1px solid var(--rbm-traco);}
+.rbm-artigo:last-child{border-bottom:0;padding-bottom:0;}
+.rbm-artigo h3{font-family:var(--rbm-display);font-size:1.08rem;margin:0 0 .3rem;line-height:1.3;}
+.rbm-artigo p{margin:0;color:var(--rbm-legenda);font-size:.93rem;line-height:1.5;}
+.rbm-artigo-par{font-family:var(--rbm-mono);font-size:.76rem;letter-spacing:.03em;margin-top:.35rem;}
 /* Ressalva tecnica em ambar. Nunca vermelho: vermelho e a marca. */
 .rbm-tag{display:inline-block;font-family:var(--rbm-mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--rbm-alerta);border:1px solid var(--rbm-alerta);border-radius:2px;padding:.15rem .4rem;}
 .rbm-nota{border-left:3px solid var(--rbm-tinta);background:var(--rbm-superficie);padding:.85rem 1rem;color:var(--rbm-legenda);font-size:.95rem;margin:1.2rem 0 0;}
@@ -718,6 +768,138 @@ function robometria_casca_cards_html() {
  * pesquisa, não página — e uma página que promete número não pode ficar em branco
  * esperando. No dia em que o banco virar dado publicado, a via viva assume sozinha.
  */
+/**
+ * A listagem de artigos, para a home e para o hub.
+ *
+ * Sai '' quando não há artigo publicado — listagem vazia com título em cima é
+ * promessa não cumprida, e quem chama só imprime a seção se receber HTML.
+ */
+if ( ! function_exists( 'robometria_casca_artigos_html' ) ) {
+function robometria_casca_artigos_html() {
+	$itens = array();
+	foreach ( robometria_casca_artigos() as $a ) {
+		/* Mesma trava dos cartões de ferramenta: sem página publicada, nenhum
+		   link é impresso. Link de listagem para página inexistente é 404 no ar. */
+		$url = robometria_casca_url_se_existir( isset( $a['slug'] ) ? $a['slug'] : '' );
+		if ( '' === $url ) {
+			continue;
+		}
+		$itens[] = '<li class="rbm-artigo">'
+			. '<h3><a href="' . esc_url( $url ) . '">' . esc_html( $a['titulo'] ) . '</a></h3>'
+			. '<p>' . esc_html( $a['resumo'] ) . '</p>'
+			. ( isset( $a['ferramenta'] ) && '' !== $a['ferramenta']
+				? '<p class="rbm-artigo-par">Faz par com a ferramenta '
+					. esc_html( $a['ferramenta'] ) . '.</p>'
+				: '' )
+			. '</li>';
+	}
+
+	if ( ! $itens ) {
+		return '';
+	}
+
+	return '<ul class="rbm-artigos">' . implode( '', $itens ) . '</ul>';
+}
+}
+
+/**
+ * A folha da PORTA DE COMPRA, compartilhada por toda página que recomenda item.
+ *
+ * Fica na casca, e não numa cópia por página, porque os pesos visuais destas
+ * duas coisas são regra do Arquipélago (seção 7), não estilo local: o botão de
+ * compra tem área de toque de botão, e a procedência é texto pequeno, sem caixa
+ * e sem preenchimento, porque ela existe para ser conferida e não para ser
+ * clicada. Com uma cópia por página, bastaria alguém ajustar uma delas para a
+ * ilha voltar, numa página só e sem ninguém notar, ao defeito de 10/09/2026 —
+ * quando o único link clicável levava para a loja do fabricante.
+ *
+ * Não vai no wp_head global: quem serve vitrine chama esta função dentro da
+ * própria folha, e página sem vitrine não carrega regra que não usa.
+ */
+if ( ! function_exists( 'robometria_casca_css_vitrine' ) ) {
+function robometria_casca_css_vitrine() {
+	return <<<'CSS'
+.rbm-vitrine{display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;list-style:none;margin:1rem 0 0;padding:0 0 .6rem;}
+.rbm-vitrine-item{scroll-snap-align:start;flex:0 0 17rem;max-width:100%;background:var(--rbm-superficie);border:1px solid var(--rbm-traco);border-radius:3px;padding:1rem;display:flex;flex-direction:column;gap:.4rem;margin:0;}
+.rbm-vitrine-foto{display:flex;aspect-ratio:4/3;max-width:100%;background:var(--rbm-piso);border:1px solid var(--rbm-traco);border-radius:2px;align-items:center;justify-content:center;}
+.rbm-vitrine-vazia{display:block;width:2.4rem;height:2.4rem;border:2px solid var(--rbm-traco);border-radius:50%;border-right-color:transparent;}
+.rbm-vitrine-tipo{font-family:var(--rbm-display);font-weight:600;font-size:1rem;}
+.rbm-vitrine-nome{font-size:.86rem;color:var(--rbm-legenda);line-height:1.45;}
+.rbm-vitrine-porque{font-size:.88rem;line-height:1.45;}
+.rbm-vitrine-vida{font-size:.84rem;color:var(--rbm-legenda);}
+.rbm-vitrine-acao{margin-top:auto;padding-top:.6rem;font-size:.88rem;}
+.rbm-comprar{display:block;text-align:center;padding:.6rem .9rem;border:1px solid var(--rbm-tinta);border-radius:2px;background:var(--rbm-tinta);color:var(--rbm-piso);font-family:var(--rbm-texto);font-weight:600;font-size:.9rem;text-decoration:none;}
+.rbm-comprar:hover,.rbm-comprar:focus-visible{background:var(--rbm-superficie);color:var(--rbm-tinta);}
+.rbm-sem-loja{display:block;text-align:center;padding:.6rem .9rem;border:1px dashed var(--rbm-traco);border-radius:2px;color:var(--rbm-legenda);font-size:.84rem;}
+.rbm-vitrine-fonte{font-size:.78rem;color:var(--rbm-legenda);line-height:1.4;}
+.rbm-fonte{font-size:.78rem;color:var(--rbm-legenda);text-decoration:underline;}
+.rbm-aviso-comissao{font-size:.86rem;color:var(--rbm-legenda);line-height:1.5;margin:.2rem 0 0;}
+CSS;
+}
+}
+
+/**
+ * O rótulo do botão de compra: nomeia a loja para quem vai clicar.
+ *
+ * Programa que o banco ainda não declarou sai como "loja parceira" — nunca
+ * inventando o nome de um marketplace que ninguém conferiu.
+ */
+if ( ! function_exists( 'robometria_casca_rotulo_da_loja' ) ) {
+function robometria_casca_rotulo_da_loja( $programa ) {
+	$nomes = array(
+		'shopee'       => 'na Shopee',
+		'mercadolivre' => 'no Mercado Livre',
+		'amazon'       => 'na Amazon',
+	);
+	return isset( $nomes[ $programa ] ) ? $nomes[ $programa ] : 'na loja parceira';
+}
+}
+
+/**
+ * A PORTA DE COMPRA de um item — presente mesmo quando o link ainda não existe.
+ *
+ * O lugar é RESERVADO em vez de escondido, e a diferença não é cosmética: bloco
+ * que só nasce quando o link chega faz a página voltar, sozinha, ao defeito de
+ * ter a procedência como única porta clicável durante todas as semanas em que o
+ * cano de links está enchendo (seção 7 do ARQUIPELAGO.md).
+ *
+ * Mora na casca desde 10/09/2026 porque deixou de ser detalhe de uma ferramenta:
+ * a partir do artigo-âncora, mais de uma página desta ilha recomenda item, e o
+ * lugar de uma regra do Arquipélago é um lugar só.
+ */
+if ( ! function_exists( 'robometria_casca_porta_de_compra' ) ) {
+function robometria_casca_porta_de_compra( $item ) {
+	$a   = isset( $item['afiliado'] ) ? $item['afiliado'] : array();
+	$url = isset( $a['url'] ) ? $a['url'] : '';
+
+	if ( '' === $url ) {
+		return '<span class="rbm-sem-loja">Link de loja em breve</span>';
+	}
+
+	/* rel="sponsored" é a declaração que o Google pede para link pago, e vem
+	   junto de nofollow e noopener (seção 7 do contrato). */
+	return '<a class="rbm-comprar" href="' . esc_url( $url ) . '" target="_blank"'
+		. ' rel="sponsored nofollow noopener">'
+		. esc_html( 'Ver ' . robometria_casca_rotulo_da_loja(
+			isset( $a['programa'] ) ? $a['programa'] : null ) )
+		. '</a>';
+}
+}
+
+/**
+ * O link de procedência, discreto por regra: texto "fonte", nunca um botão, e
+ * sempre nofollow — ele existe para ser conferido, não para ser clicado.
+ */
+if ( ! function_exists( 'robometria_casca_fonte_link' ) ) {
+function robometria_casca_fonte_link( $url ) {
+	if ( empty( $url ) ) {
+		return '';
+	}
+	return '<a class="rbm-fonte" href="' . esc_url( $url )
+		. '" target="_blank" rel="nofollow noopener">fonte</a>';
+}
+}
+
 if ( ! function_exists( 'robometria_casca_numeros' ) ) {
 function robometria_casca_numeros() {
 	$n = array(
@@ -795,6 +977,15 @@ add_shortcode( 'robometria_home', function () {
 	$html .= robometria_casca_cards_html();
 	$html .= '</div>';
 
+	$artigos = robometria_casca_artigos_html();
+	if ( '' !== $artigos ) {
+		$html .= '<div class="rbm-secao">';
+		$html .= '<h2>Leitura</h2>';
+		$html .= '<p>Cada ferramenta tem ao lado um texto que explica, com o banco na mão, por que a resposta dela é aquela.</p>';
+		$html .= $artigos;
+		$html .= '</div>';
+	}
+
 	$html .= '<div class="rbm-secao">';
 	$html .= '<h2>Onde a Robometria ainda não sabe responder</h2>';
 	$html .= '<p>Varremos a entrada da ferramenta de peças de ponta a ponta em ' . esc_html( robometria_casca_data_br( $n['medido_em'] ) ) . ': ela responde alguma coisa em ' . robometria_casca_num( $n['r1_responde'] ) . ' dos ' . robometria_casca_num( $n['modelos_publicaveis'] ) . ' modelos do banco e sai vazia em ' . robometria_casca_num( $n['r1_vazia'] ) . '. Das ' . robometria_casca_num( $n['celulas'] ) . ' combinações de modelo e tipo de peça, ' . robometria_casca_num( $n['celulas_sem_resposta'] ) . ' não têm declaração de fabricante que a gente tenha localizado.</p>';
@@ -823,6 +1014,15 @@ add_shortcode( 'robometria_ferramentas', function () {
 	$html .= '<h2>Por que as duas ainda não cobrem os mesmos robôs</h2>';
 	$html .= '<p>Só ' . robometria_casca_num( $n['as_duas'] ) . ' dos ' . robometria_casca_num( $n['modelos_publicaveis'] ) . ' modelos do banco são atendidos pelas duas ferramentas ao mesmo tempo, e a causa é do mercado, não da ilha: Electrolux e Multi publicam peça com compatibilidade declarada e <strong>não publicam sucção em pascal</strong>; Xiaomi e WAP publicam pascal e <strong>não publicam código de peça</strong>. Enquanto for assim, um robô costuma ter resposta numa ferramenta e recusa na outra, e a tela diz qual é o caso.</p>';
 	$html .= '</div>';
+
+	$artigos = robometria_casca_artigos_html();
+	if ( '' !== $artigos ) {
+		$html .= '<div class="rbm-secao">';
+		$html .= '<h2>O texto que acompanha cada ferramenta</h2>';
+		$html .= '<p>A ferramenta responde o seu caso; o texto ao lado mostra o que o banco inteiro diz sobre o assunto, com o número medido e a fonte de cada declaração.</p>';
+		$html .= $artigos;
+		$html .= '</div>';
+	}
 
 	$html .= '<p class="rbm-nota"><strong>Em construção não é enfeite.</strong> Uma ferramenta só entra no ar com a fonte de cada declaração conferida, com a tabela de exemplos servida no próprio HTML e com a recusa escrita para os casos em que o fabricante não declarou nada. Preferimos uma ferramenta que se recusa a responder a duas que chutam.</p>';
 	$html .= '</div>';
