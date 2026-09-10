@@ -3956,7 +3956,7 @@ de uma vez: *afirmação que descreve o ESTADO do catálogo — quantos itens, q
 qual produto está barrado — vence sozinha e reprova o trabalho da fila. Afirme a promessa, nunca o
 estado.*
 
-### NÃO CONCLUÍDO — o site continua fora de alcance, e agora são DEZENOVE revisões paradas
+### NÃO CONCLUÍDO — o site continua fora de alcance, e agora são VINTE revisões paradas
 
 `aquametria.com.br` devolveu **EGRESS_BLOCKED** de novo, testado em `/wp-json/aquametria/v1/status`.
 **O Sync não foi acionado e a revisão aplicada não foi conferida**, então nada desta execução pode

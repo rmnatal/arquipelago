@@ -486,7 +486,7 @@ Rebase, volta ao passo 2, Aquametria. A reserva por commit fez exatamente o que 
   número a número, validadores de produto e de espécie sem erro novo, manifest sem sha vencido.
 
 **NÃO CONFIRMADO NO AR:** o egresso continua bloqueando `aquametria.com.br`. Repositório na revisão
-**31**, site medido pela última vez na **11** — dezenove revisões paradas. Quem aciona o Sync é a
+**31**, site medido pela última vez na **11** — vinte revisões paradas. Quem aciona o Sync é a
 Sentinela Técnica no Chrome do Raphael.
 
 **Próximo passo: T1** (Search Console, depende do Chrome) e **T7 leva 3 — a C1**, que é a última
