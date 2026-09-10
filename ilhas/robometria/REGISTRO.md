@@ -981,3 +981,102 @@ navegador do Raphael, nao da Fundacao.
   o fabricante**. Se nao alcancar, o proximo e a **R2**, que ja tem as cinco
   decisoes de desenho definidas pela R1 e ainda nao tem implementacao de
   referencia.
+
+## 2026-09-10 (23h18Z) — Bloco 4: a R2 no ar, e a conta que ninguem publica
+
+- **NO AR** em `https://robometria.com.br/quantos-pa-o-robo-aspirador-precisa/`
+  (`snippets/robometria-r2.php` v1.0.0, manifest **revisao 12** conferida no
+  `/status`, snippet #9 criado). Sitemap com 8 paginas, apelidos em 301, home e
+  hub listando a ferramenta como publicada, e a **mao dupla fechada**: a R1
+  passou a servir `<a href>` de verdade para a R2, e a R2 aponta de volta para a
+  R1 e para o artigo-ancora.
+- A ilha reservada por commit as 23h18Z, depois de a **clubedomosaico** ter sido
+  levada por outra execucao no push das 23h16Z. Perder a corrida do push e o
+  desenho da secao 1 do contrato funcionando, nao um erro.
+- **A rede continua sem alcancar os fabricantes** (`mi.com.br`, `wap.ind.br`,
+  `mais.conteudo.wap.ind.br`, `xiaomi.com.br` deram `000`, so os dominios das
+  ilhas respondem). Por isso o alvo (a) do 3c — pecas com codigo da Xiaomi e da
+  WAP — nao pode ser colhido, e a fila caiu para a R2, como o PROMPT.md previa.
+  **Nenhum dado tecnico novo entrou no banco nesta execucao.**
+
+### O ACHADO, e ele muda o que a ilha vai colher
+
+A especificacao define **TEMPO REAL ATE TERMINAR = ciclos x autonomia +
+(ciclos - 1) x recarga**. A varredura mediu que a formula precisa de TRES
+numeros declarados pelo fabricante e que **nenhum dos 28 modelos publicaveis tem
+os tres**: quem declara cobertura por carga (Electrolux, 5 modelos) nao declara
+recarga; quem declara recarga (Xiaomi S20, Positivo PRA2000) nao declara
+cobertura. A pagina publica os **ciclos** e o tempo de limpeza somado, e diz com
+todas as letras que o total depende de um numero que ninguem publica.
+
+Isso vira **lista de compras**: coletar `recarga_min_declarada` dos Electrolux
+que ja declaram cobertura e o item de menor custo e maior retorno que esta
+varredura encontrou — um campo por modelo destrava a frase que e a razao de a
+ferramenta existir.
+
+### O que a R2 se recusa a fazer, e por que isso e o produto
+
+- **Nao converte minuto em metro quadrado.** Das 5 marcas publicaveis, 4 nao
+  declaram area coberta em canal nenhum, e entre os dois pares declarados — os
+  dois da MESMA marca — a taxa varia 23%. A recusa, dita com procedencia, e a
+  frase que um modelo de linguagem cita.
+- **Nao publica conta de mais de um ciclo** quando o fabricante nao declara se o
+  modelo retoma de onde parou. ERB44 e ERB80 caem nesse caso e a pagina diz.
+- **Nao pergunta voltagem**, porque nenhum modelo publicavel declara voltagem —
+  a mesma regra que tirou "reservatorio" do seletor da R1.
+- **"Acima de 4.000 Pa" e exclusivo.** Xiaomi S10 e E10 declaram exatamente
+  4.000 e vao para secao propria, rotulada, abaixo: estar no numero nao e estar
+  acima dele, e por-los em primeiro lugar seria recomendar em primeiro lugar
+  quem a fonte citada nao cobre.
+- **Uma situacao (tapete fino sem animal) nao e nomeada por fonte nenhuma.** A
+  pagina publica as duas vizinhas com nome e data e resolve para a de cima,
+  dizendo que esta estendendo — errar para baixo ali custa a compra inteira.
+
+### TRES DEFEITOS DE MEDICAO, achados quebrando o codigo de proposito
+
+A trava que nunca foi vista reprovando e trava nao medida. As seis travas novas
+foram testadas numa copia; tres delas passaram na primeira tentativa e o motivo
+era sempre o mesmo — o teste media a si mesmo:
+
+1. **A regua da elegibilidade era uma funcao do proprio snippet**, e o teste a
+   chamava para conferir a lista que o snippet publica. Trocar `>` por `>=` fazia
+   as duas metades errarem juntas e o teste passar, com um modelo que a fonte
+   citada nao cobre em primeiro lugar. A funcao **saiu do snippet** (era codigo
+   morto que parecia a regra) e a comparacao passou a ser escrita no teste, lida
+   do operador que a fonte declara.
+2. **A grade de 10 em 10 m2 nunca pisava num multiplo exato da cobertura.** 162 e
+   166 m2 nao tem multiplo terminado em zero, entao trocar `ceil` por `floor + 1`
+   nao mudava resposta nenhuma: a grade so cobria o lado facil. Agora ela leva os
+   multiplos e os vizinhos, e a trava reprova exatamente em 166 e 332 m2.
+3. **A conferencia do FAQPage procurava a resposta no HTML inteiro** — e a
+   achava dentro do proprio bloco de JSON-LD, passando sempre, inclusive com
+   resposta inventada. Corrigida para procurar no corpo, ela **reprovou de
+   verdade**: a marcacao publicava a resposta das 9 situacoes e a pagina servia
+   so a da ancora. A correcao nao foi podar o FAQPage — foi **servir as nove**,
+   cada uma com a frase inteira em HTML.
+
+E o **render de bancada saia pela metade, em silencio**: sem `is_page()`, todo
+snippet de pagina respondia "nao estou na minha pagina" e o HTML vinha sem folha,
+sem JSON-LD e sem rodape, enquanto o shortcode aparecia — entao a pagina PARECIA
+inteira. A primeira medicao de rolagem horizontal da R2 deu zero por falta do CSS
+que ela deveria medir. `render-para-teste.php` passou a ligar o filtro
+`<alvo>_na_pagina` sozinho, e a medicao foi refeita.
+
+### Verificacao
+
+- `teste-r2.php`: **86 medicoes**, zero falhas. Percorre a grade inteira — 9
+  situacoes frase a frase, **114 cartoes** com ordem e ressalvas, **200 casos**
+  de metragem contra cada modelo de referencia, bordas incluidas.
+- `teste-casca.php` 64, `teste-r1.php` 90, `teste-a1.php` 53, `validar-banco.py`
+  aprovado. A R1 e a casca **nao mudaram** nesta revisao — a R2 entra no catalogo
+  pelo filtro da casca, que e exatamente o que o filtro existe para permitir.
+- Chromium em 360/390/782/1200 px: **0 px de rolagem horizontal** nas quatro
+  paginas, agora com as folhas servidas.
+- No ar: HTTP 200, **zero `&#038;` dentro de `<script>`** (4 na pagina inteira,
+  todas da casca do tema), corpo comecando por texto, script vindo do rodape, as
+  63 linhas da tabela no HTML servido, `noindex,follow` + canonica na consulta e
+  a pagina limpa sem `noindex`.
+- **11 modelos esperando link de loja** (todos os que aparecem na tela).
+
+- **Proximo passo: o artigo-ancora da R2**, na mesma execucao, como o bloco 5 do
+  `PROMPT.md` manda — com a tese derivada, nunca digitada.
