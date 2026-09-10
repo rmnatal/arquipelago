@@ -4,7 +4,7 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 0,
+  "revisao": 1,
   "atualizado_em": "2026-09-10",
   "estado": "nascendo",
   "desembarque": {
@@ -14,7 +14,20 @@
   },
   "snippets": [],
   "conteudo": [],
-  "dados": [],
+  "dados": [
+    {
+      "id": "corpus-buscas",
+      "arquivo": "dados/corpus-buscas.md",
+      "formato": "md",
+      "entidade": "constante",
+      "fonte": "Bloco 1 da Fundacao. Duas coletas distintas e declaradas separadamente no arquivo: (a) faixa de volume do Planejador de palavras-chave na conta do Raphael, coletada em 10/09/2026 e recebida pelo PROMPT.md da ilha, nao refeita nesta execucao; (b) SERP coletada nesta execucao por busca web da nuvem em 10/09/2026, com os ocupantes do top 10 nomeados consulta a consulta. CPC nao foi coletado e esta declarado como ausente, nao estimado.",
+      "verificado_em": "2026-09-10",
+      "registros": 30,
+      "publicar": false,
+      "sha256": "5580e5fa9084b4c06da3bb26e8e2088936b9cffbb65ca60f1b4de243f14db695",
+      "descricao": "Corpus de buscas do mosaico artesanal BR nos tres motores da ilha (materiais/ferramentas, pecas prontas, aprender), com a SERP classificada por consulta em aberta/tomada/armadilha pela regra da secao 14.9. Tres achados medidos decidem a ordem da fila: a SERP de rejunte responde a pergunta de OBRA (0,2-0,4 kg/m2 com azulejo grande) e portanto esta errada para peca de artesanato com pastilha de 1x1 cm, o que faz da F1 numero proprio sem concorrente; a regra de cola x base circula em blog sem fabricante, codigo nem data, o que abre a F2 mas proibe usar a SERP como fonte dela; e 'mosaico bizantino', de faixa 1k-100k, tem a primeira pagina em portugues ocupada por resultado em espanhol. Tomadas: 'curso de mosaico' (escolas reais, a ilha nao disputa), 'presente artesanal' (Elo7) e 'vaso centro de mesa' (Leroy)."
+    }
+  ],
   "ferramentas": [],
   "esquema": {
     "snippets": {
