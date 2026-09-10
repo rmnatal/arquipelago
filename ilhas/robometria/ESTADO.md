@@ -28,19 +28,11 @@ Espelho legível do estado do projeto. **Nunca guarde credencial aqui.**
   administrador não é `admin`. Credenciais foram por e-mail ao Raphael e não
   entram neste arquivo. **Medido no navegador do Raphael pela sessão de
   conversa** — a Fundação estava certa em não escrever isto sem medir.
-- **SSL: PENDENTE.** O AutoSSL da HostGator ainda não emitiu certificado; o
-  navegador recusa a conexão. O cPanel desta conta não expõe a aba de status
-  do AutoSSL, então não há como forçar — ele roda sozinho, tipicamente em
-  algumas horas. Enquanto isso o wp-admin não abre (o site nasceu em https),
-  e isso trava **só** os passos de navegador: plugins, snippet de Sync,
-  Search Console. Há uma checagem automática a cada 40 min que retoma a
-  seção 11 do passo 6 em diante assim que o certificado sair.
-- **ARMADILHA:** testar TLS pela nuvem não vale — o proxy de saída intercepta
-  e apresenta certificado próprio, então a nuvem diz "SSL OK" enquanto o
-  Chrome mostra erro. Certificado só se confere no navegador.
-- **Snippet de Sync:** ainda não existe. Depende do wp-admin, que depende do
-  certificado.
-- **Search Console: propriedade de domínio `sc-domain:robometria.com.br` criada e VERIFICADA em 09/09/2026** (TXT `google-site-verification=xvI914rD2M69UhAao_MF2csPC3XAKKSUmol9JU-xxwg` gravado no Editor de Zona DNS; passo 4b da seção 11). Falta só submeter o sitemap, o que depende do wp-admin, que depende do certificado. `dados/indexacao.md` nasce com a primeira medição, que vai ser zero.
+- **SSL: EMITIDO** durante a madrugada de 10/09/2026 (Let's Encrypt via AutoSSL, ~14 h depois da instalação — dentro das 24 h oficiais). O site abre em https com o título certo.
+- **ARMADILHA:** testar TLS pela nuvem não vale — o proxy de saída intercepta e apresenta certificado próprio. Certificado só se confere no navegador.
+- **Plugins (10/09/2026):** Code Snippets, Site Kit by Google, Converter for Media e Limit Login Attempts Reloaded instalados e ATIVOS. Akismet e Hello Dolly estão desativados (a exclusão foi barrada pelo classificador de segurança; fica para o Raphael, é cosmético). Site Kit ainda **não conectado** à conta Google — exige autorização OAuth do Raphael; não é bloqueio, porque a propriedade de domínio no Search Console já existe.
+- **Snippet de Sync: "Robometria Sync" v1.1.5, snippet #5 do Code Snippets, ATIVO desde 10/09/2026** — fonte em `snippets/robometria-sync.php` (sha256 `b4fa6b84…`), token gerado pelo próprio WordPress. **Primeiro sync executado às 13:09 UTC: revisão 6 lida, 0 aplicados, 9 aguardando desembarque** — correto, porque os 9 itens do manifest são pesquisa com `publicar: false`. Endpoints no `PROMPT.md`.
+- **Search Console: propriedade de domínio `sc-domain:robometria.com.br` criada e VERIFICADA em 09/09/2026** (TXT `google-site-verification=xvI914rD2M69UhAao_MF2csPC3XAKKSUmol9JU-xxwg` gravado no Editor de Zona DNS; passo 4b da seção 11). Sitemap `wp-sitemap.xml` submetido em 10/09/2026 (primeira leitura do Google deu "não foi possível buscar", normal em domínio recém-certificado — o arquivo serve 200 com 4 sub-sitemaps; o Google refaz sozinho). `dados/indexacao.md` aberto com a linha zero.
 - **Identidade visual:** aprovada pelo Raphael em 09/09/2026. Paleta, tipografia
   e a geometria do símbolo estão no `PROMPT.md` desta pasta.
 

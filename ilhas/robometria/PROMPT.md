@@ -16,6 +16,13 @@ A Bússola verificou em 07/09/2026: a busca **comercial** ("melhor robô aspirad
 
 **Nunca ataque de frente a família "melhor robô aspirador 2026."** Ataque "qual filtro serve no meu robô X", "escova lateral compatível com Y", "quantos Pa preciso para pelo de cachorro", "qual robô para 80 m²".
 
+## Endpoints desta ilha
+- Sync: `https://robometria.com.br/?robometria_sync=lho9XAzCjAjHdXGHUEOQUMq1faJBN0vx&forcar=1`
+- Status: `https://robometria.com.br/wp-json/robometria/v1/status`
+- O Sync se pula a si mesmo por desenho: correção nele chega pelo snippet atualizador (a copiar da Aquametria quando for preciso).
+- Search Console: propriedade de domínio `sc-domain:robometria.com.br`, verificada. Sitemap `https://robometria.com.br/wp-sitemap.xml` enviado em 10/09/2026.
+- **Quem aciona o Sync é a Sentinela, no navegador** — a nuvem não alcança o site (seção 4 do contrato). Commit sem Sync não está no ar.
+
 ## Memória a carregar
 `/areas/projeto-robometria.md`, `/areas/fabrica-de-sites.md`, `/areas/playbook-nascimento-projeto.md` (fase 4b), `/areas/arquipelago-bussola.md` (rodada 003, que aprovou este nicho), `/topics/dev-conventions.md`. Sem memória, **não pare**: o estado está em `ESTADO.md`, `REGISTRO.md` e `README.md` desta pasta.
 
@@ -104,4 +111,4 @@ da varredura: tipo sem nenhuma peça no banco fica fora do formulário.
 ## Específico desta ilha
 - **Compatibilidade de peça é o produto desta ilha.** Uma informação errada aqui destrói a confiança inteira. Toda afirmação de compatibilidade carrega fonte do fabricante e data na própria frase.
 - Amazon paga 8% em Eletrodomésticos, mas a conta **não** deve ser aberta até haver tráfego: a regra das 3 vendas em 180 dias começa no cadastro. A Shopee já está aberta e serve todas as ilhas.
-- **Enquanto não houver WordPress**, trabalhe os blocos 1, 2 e 3, que são de pesquisa e modelagem. Não fique bloqueada esperando infraestrutura — e não marque `bloqueada_por` por causa disso.
+- **WordPress no ar desde 10/09/2026.** Os blocos 1, 2 e 3 estão feitos; o próximo é o **3b (casca do site)** — a identidade desta ilha (paleta, Archivo/Plex, anel + peça) já foi aprovada pelo Raphael, então a casca não espera nada. O WordPress nasceu com o tema padrão e o conteúdo de amostra ("Hello world", "Sample page"): a casca substitui isso; até lá o sitemap lista amostra, e isso é esperado.
