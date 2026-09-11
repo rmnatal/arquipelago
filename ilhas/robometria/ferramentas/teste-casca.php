@@ -208,24 +208,69 @@ $marcas  = json_decode( file_get_contents( $raiz . '/dados/marcas.json' ), true 
 $cob     = json_decode( file_get_contents( $raiz . '/dados/cobertura-r1.json' ), true );
 $n       = robometria_casca_numeros();
 
+/* A REGUA E ESCRITA AQUI, NOS REGISTROS — nunca lida do cabecalho `contagem`.
+ *
+ * Ate 11/09/2026 este bloco comparava o numero da tela com `contagem.publicavel`
+ * e irmaos, que sao campos escritos no proprio arquivo de banco e conferidos por
+ * validar-banco.py. Quer dizer: as duas metades da comparacao vinham da mesma
+ * regua, e trocar a regra faria as duas errarem juntas — a familia de defeito que
+ * a secao 8 do contrato descreve. Agora o teste conta nos registros.
+ *
+ * E AI APARECEU UM NUMERO QUE NINGUEM PROCURAVA: o par peca x modelo. O
+ * cabecalho conta 33 (toda compatibilidade declarada por peca publicavel) e a
+ * tela passou a dizer 32, porque o par que sobra aponta para `multi-ho401`, que
+ * e `nao_publicavel` — a R1 nunca o oferece, entao ele nao cobre nada. Numa
+ * tabela chamada "o que medimos sobre a nossa propria cobertura", o numero certo
+ * e o que a ilha CONSEGUE servir. Os dois numeros continuam existindo e medem
+ * coisas diferentes: o do arquivo conta o que o banco guarda, o da tela conta o
+ * que o site responde. */
+$pub_modelos = array();
+foreach ( $modelos['registros'] as $r ) {
+	if ( 'publicavel' === $r['status'] ) { $pub_modelos[ $r['id'] ] = $r; }
+}
+$pub_pecas = array();
+foreach ( $pecas['registros'] as $r ) {
+	if ( 'publicavel' === $r['status'] ) { $pub_pecas[ $r['id'] ] = $r; }
+}
+$pares_servidos = 0;
+foreach ( $pub_pecas as $p ) {
+	foreach ( (array) $p['compatibilidade'] as $c ) {
+		if ( 'declarada_fabricante' === $c['selo'] && isset( $pub_modelos[ $c['modelo'] ] ) ) {
+			$pares_servidos++;
+		}
+	}
+}
+$marcas_vistas = array();
+$sem_link      = 0;
+foreach ( array_merge( array_values( $pub_modelos ), array_values( $pub_pecas ) ) as $r ) {
+	$marcas_vistas[ $r['marca'] ] = true;
+	if ( empty( $r['afiliado']['url'] ) ) { $sem_link++; }
+}
+$itens = count( $pub_modelos ) + count( $pub_pecas );
+
 $esperado = array(
-	'marcas'               => count( $marcas['registros'] ),
-	'modelos_publicaveis'  => (int) $modelos['contagem']['publicavel'],
-	'pecas_publicaveis'    => (int) $pecas['contagem']['publicavel'],
-	'pares_declarados'     => (int) $pecas['contagem']['pares_peca_x_modelo_declarados'],
-	'esperando_link'       => (int) $modelos['contagem']['esperando_link_de_afiliado'] + (int) $pecas['contagem']['esperando_link_de_afiliado'],
+	'marcas'               => count( $marcas_vistas ),
+	'modelos_publicaveis'  => count( $pub_modelos ),
+	'pecas_publicaveis'    => count( $pub_pecas ),
+	'pares_declarados'     => $pares_servidos,
+	'esperando_link'       => $sem_link,
 	'r1_responde'          => (int) $cob['resumo']['modelos_que_respondem'],
 	'r1_vazia'             => (int) $cob['resumo']['modelos_com_entrada_vazia'],
 	'celulas'              => (int) $cob['resumo']['celulas_total'],
 	'celulas_sem_resposta' => (int) $cob['resumo']['celulas']['vazia'],
 	'as_duas'              => count( $cob['cruzamento_com_a_r2']['as_duas_respondem'] ),
 	/* A pagina de divulgacao de afiliados afirma estes dois ao visitante, e a
-	   conta deles e feita AQUI, do banco, nao lida da casca: se as duas metades
-	   usassem a mesma regua, errariam juntas (secao 8 do contrato). */
-	'itens_publicaveis'    => (int) $modelos['contagem']['publicavel'] + (int) $pecas['contagem']['publicavel'],
-	'com_link'             => ( (int) $modelos['contagem']['publicavel'] + (int) $pecas['contagem']['publicavel'] )
-		- ( (int) $modelos['contagem']['esperando_link_de_afiliado'] + (int) $pecas['contagem']['esperando_link_de_afiliado'] ),
+	   conta deles e feita AQUI, do banco, nao lida da casca. */
+	'itens_publicaveis'    => $itens,
+	'com_link'             => $itens - $sem_link,
 );
+
+/* A conferencia so vale se a medicao chegou: sem ela a casca devolve array()
+   vazio de proposito, e comparar vazio com vazio passaria calado. */
+rbm_ok( robometria_casca_tem_numeros(), 'a medicao da ilha chegou as options (casca-fatos)' );
+rbm_ok( count( $marcas['registros'] ) === count( $marcas_vistas ),
+	'toda marca do arquivo aparece em registro publicavel',
+	count( $marcas['registros'] ) . ' no arquivo / ' . count( $marcas_vistas ) . ' em uso' );
 
 foreach ( $esperado as $chave => $valor ) {
 	rbm_ok( (int) $n[ $chave ] === $valor, "numero '$chave' bate com o banco", 'tela ' . $n[ $chave ] . ' / banco ' . $valor );

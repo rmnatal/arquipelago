@@ -1146,6 +1146,16 @@ add_shortcode( 'robometria_r2', function () {
 		? robometria_casca_link_html( 'filtro-universal-de-robo-aspirador', 'Por que não existe filtro universal de robô aspirador' )
 		: 'Por que não existe filtro universal de robô aspirador' )
 		. ' — o que o catálogo dos fabricantes mostra quando se conta quantos modelos cada peça declara.</p>';
+	/* O GUIA DESTA FERRAMENTA, que faltava (16.4d, achado na varredura de links do
+	   bloco da árvore, 11/09/2026). Esta página linkava o guia da OUTRA ferramenta
+	   e não o seu — o par existia de um lado só, e ninguém via, porque um link
+	   para guia havia. A conta de ciclos daqui sai de minutos declarados, e é
+	   exatamente esse o assunto do texto abaixo. O portão de `teste-arvore.php`
+	   deriva o par do catálogo de artigos e cobra os dois sentidos. */
+	$html .= '<p>' . ( function_exists( 'robometria_casca_link_html' )
+		? robometria_casca_link_html( 'quantos-m2-o-robo-aspirador-limpa-por-carga', 'Quantos m² um robô aspirador limpa por carga' )
+		: 'Quantos m² um robô aspirador limpa por carga' )
+		. ' — de onde vem o número de metros quadrados que os anúncios publicam, e por que a conta aqui de cima sai em minutos e em ciclos.</p>';
 	$html .= '</div>';
 
 	$html .= '</div>';

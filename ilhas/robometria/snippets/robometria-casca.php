@@ -1,5 +1,8 @@
 /**
  * Robometria Casca — identidade e estrutura do site
+ * Versão: 1.3.0 (11/09/2026) — A ÁRVORE DA SEÇÃO 16 (trilha, BreadcrumbList e
+ *   cluster de "Veja também"), e os onze números que a ilha publica sobre si
+ *   mesma saindo do snippet para dados/casca-fatos.json. Ver as seções 3f e 3g.
  * Versão: 1.2.0 (11/09/2026) — A ILHA GANHA VOZ (seção 15 do ARQUIPELAGO.md e
  * VOZ.md desta pasta) E CABEÇA DE PÁGINA (despacho da Sentinela de 11/09, itens
  * 1 e 2). Quatro mudanças, e nenhuma é enfeite:
@@ -77,7 +80,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_CASCA_VERSAO' ) ) {
-	define( 'ROBOMETRIA_CASCA_VERSAO', '1.2.0' );
+	define( 'ROBOMETRIA_CASCA_VERSAO', '1.3.0' );
 	define( 'ROBOMETRIA_CASCA_TAGLINE', 'Qual peça o fabricante declarou para o seu robô aspirador — com código, endereço e data' );
 }
 
@@ -876,6 +879,25 @@ body:has(.rbm-rodape) .wp-site-blocks > footer.wp-block-template-part:not(:has(.
 .rbm-nav-caixa[data-rbm-menu] .rbm-nav a,.rbm-nav-caixa[data-rbm-menu] .rbm-nav .rbm-sem-link{display:block;padding:.65rem 1.05rem;font-size:1rem;border-bottom:0;}
 .rbm-nav-caixa[data-rbm-menu] .rbm-nav a:hover{background:var(--rbm-piso);color:var(--rbm-varredura);}
 }
+/* A TRILHA (secao 16.3) e o CLUSTER (16.4). A trilha ROLA na horizontal dentro
+   da propria caixa quando nao cabe — e o unico jeito de uma trilha longa nao
+   empurrar a pagina inteira para o lado num celular de 360 px. O degrau de
+   categoria ainda nao publicada sai em texto de legenda, e nunca sublinhado:
+   sublinhado promete clique. */
+.rbm-trilha{font-family:var(--rbm-texto);font-size:.82rem;line-height:1.5;margin:0 0 1.1rem;max-width:100%;overflow-x:auto;}
+.rbm-trilha ol{display:flex;flex-wrap:nowrap;align-items:center;gap:.3rem;list-style:none;margin:0;padding:0;}
+.rbm-trilha li{display:flex;align-items:center;gap:.3rem;white-space:nowrap;}
+.rbm-trilha li+li::before{content:"\203A";color:var(--rbm-traco);}
+.rbm-trilha a{color:var(--rbm-legenda);text-decoration:none;border-bottom:1px solid var(--rbm-traco);}
+.rbm-trilha a:hover{color:var(--rbm-varredura);border-bottom-color:var(--rbm-varredura);}
+.rbm-trilha [aria-current="page"]{color:var(--rbm-tinta);font-weight:500;}
+.rbm-trilha-espera{color:var(--rbm-legenda);}
+.rbm-veja{margin:2.6rem 0 0;padding:1.2rem 0 0;border-top:1px solid var(--rbm-traco);max-width:52rem;}
+.rbm-veja h2{font-family:var(--rbm-display);font-size:1.1rem;margin:0 0 .6rem;}
+.rbm-veja-mae{margin:0 0 .7rem;color:var(--rbm-legenda);font-size:.95rem;}
+.rbm-veja ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.5rem;}
+.rbm-veja li{margin:0;}
+.rbm-veja a{font-weight:500;}
 CSS;
 
 	echo '<style id="robometria-casca">' . $css . '</style>' . "\n";
@@ -1124,55 +1146,79 @@ function robometria_casca_fonte_link( $url ) {
 }
 }
 
+/**
+ * OS NÚMEROS QUE A ILHA PUBLICA SOBRE SI MESMA — todos derivados, nenhum digitado.
+ *
+ * Até a casca 1.2.0 os onze moravam aqui dentro, escritos à mão, com um caminho
+ * "derivado" que NUNCA rodava: ele lia a option `robometria_dados_cobertura-r1`,
+ * e `cobertura-r1` tem `publicar: false` no manifest — a option não existe no
+ * site. Ou seja: no ar, cada número sempre veio do valor digitado, e o trecho que
+ * parecia corrigi-lo era decoração. Ficavam certos porque alguém os copiou à mão
+ * no dia certo, e um deles já tinha deixado de estar: a linha "pares peça ×
+ * modelo, todos declarados" dizia 33 e o banco de hoje tem 32 pelo critério que a
+ * própria frase anuncia — o par que sobrava aponta para um modelo excluído do
+ * banco, que o site nunca serve.
+ *
+ * Agora eles viajam dentro de `casca-fatos.json`, que é publicável, derivado por
+ * `ferramentas/gerar-casca-fatos.py` a partir do banco commitado, com a régua de
+ * cada um escrita no próprio arquivo (`reguas_da_medicao`).
+ *
+ * SEM O ARQUIVO, A PÁGINA NÃO INVENTA NÚMERO: devolve array() e quem chama diz
+ * que a medição está fora do ar. Valor de reserva aqui seria exatamente o número
+ * digitado que este bloco veio tirar — só que invisível, porque ninguém releria.
+ */
 if ( ! function_exists( 'robometria_casca_numeros' ) ) {
 function robometria_casca_numeros() {
-	$n = array(
-		'medido_em'            => '2026-09-10',
-		'marcas'               => 5,
-		'modelos_publicaveis'  => 28,
-		'pecas_publicaveis'    => 16,
-		'pares_declarados'     => 33,
-		'r1_responde'          => 15,
-		'r1_vazia'             => 12,
-		'celulas'              => 168,
-		'celulas_sem_resposta' => 116,
-		'as_duas'              => 3,
-		'esperando_link'       => 44,
-	);
-
-	/* A data NÃO vem do arquivo de cobertura: o gerado_em dele é herdado do banco
-	   (a data em que as peças foram colhidas), não a data da varredura. Publicar
-	   um pelo outro seria dar ao leitor uma data que não é a do número. */
-	$cob = get_option( 'robometria_dados_cobertura-r1' );
-	if ( is_array( $cob ) && isset( $cob['resumo'] ) && is_array( $cob['resumo'] ) ) {
-		$r = $cob['resumo'];
-		foreach ( array(
-			'modelos_publicaveis' => 'modelos_publicaveis',
-			'r1_responde'         => 'modelos_que_respondem',
-			'r1_vazia'            => 'modelos_com_entrada_vazia',
-			'celulas'             => 'celulas_total',
-		) as $destino => $origem ) {
-			if ( isset( $r[ $origem ] ) ) {
-				$n[ $destino ] = (int) $r[ $origem ];
-			}
-		}
-		if ( isset( $r['celulas']['vazia'] ) ) {
-			$n['celulas_sem_resposta'] = (int) $r['celulas']['vazia'];
-		}
+	$fatos = get_option( 'robometria_dados_casca-fatos' );
+	if ( ! is_array( $fatos ) || empty( $fatos['medicao'] ) || ! is_array( $fatos['medicao'] ) ) {
+		return apply_filters( 'robometria_numeros', array() );
 	}
 
-	/* DERIVADO, nunca digitado, e depois da leitura acima para não derivar de um
-	   número velho: quantos itens do banco JÁ têm link de loja. A página de
-	   divulgação de afiliados afirma isso ao visitante, e afirmação da página
-	   sobre o próprio banco se conta (seção 8 do ARQUIPELAGO.md). Dizia, à mão,
-	   "ainda não há nenhum link de afiliado no ar" — frase que era verdade no dia
-	   em que foi escrita e que ninguém releria no dia em que deixasse de ser. Os
-	   dois lados da subtração são conferidos contra o banco commitado pela
-	   bancada, então a frase muda sozinha quando o primeiro link entrar. */
-	$n['itens_publicaveis'] = $n['modelos_publicaveis'] + $n['pecas_publicaveis'];
-	$n['com_link']          = max( 0, $n['itens_publicaveis'] - $n['esperando_link'] );
+	$n = array();
+	foreach ( $fatos['medicao'] as $chave => $valor ) {
+		$n[ $chave ] = is_int( $valor ) ? (int) $valor : $valor;
+	}
+
+	/* Quantos itens do banco JÁ têm link de loja. A página de divulgação de
+	   afiliados afirma isso ao visitante, e afirmação da página sobre o próprio
+	   banco se conta (seção 8 do ARQUIPELAGO.md). Dizia, à mão, "ainda não há
+	   nenhum link de afiliado no ar" — frase que era verdade no dia em que foi
+	   escrita e que ninguém releria no dia em que deixasse de ser. */
+	if ( isset( $n['itens_publicaveis'], $n['esperando_link'] ) ) {
+		$n['com_link'] = max( 0, (int) $n['itens_publicaveis'] - (int) $n['esperando_link'] );
+	}
 
 	return apply_filters( 'robometria_numeros', $n );
+}
+}
+
+/**
+ * A frase que ocupa o lugar do número quando a medição não chegou ao site.
+ *
+ * Ela existe para a página continuar verdadeira sem o banco: "estamos sem o
+ * número" é uma afirmação honesta; um número de reserva seria uma mentira com
+ * cara de medição, e ninguém a releria para descobrir.
+ */
+if ( ! function_exists( 'robometria_casca_sem_medicao_html' ) ) {
+function robometria_casca_sem_medicao_html() {
+	return '<p class="rbm-nota"><strong>A medição não chegou ao site agora.</strong> '
+		. 'Esta parte da página conta itens do nosso banco, e preferimos deixar o espaço vazio '
+		. 'a publicar um número que não foi contado hoje. Ela volta na próxima atualização.</p>';
+}
+}
+
+/** A medição chegou ao site? Quem escreve frase com número pergunta isto antes. */
+if ( ! function_exists( 'robometria_casca_tem_numeros' ) ) {
+function robometria_casca_tem_numeros() {
+	$n = robometria_casca_numeros();
+	foreach ( array( 'medido_em', 'marcas', 'modelos_publicaveis', 'pecas_publicaveis',
+		'pares_declarados', 'r1_responde', 'r1_vazia', 'celulas', 'celulas_sem_resposta',
+		'as_duas', 'esperando_link', 'itens_publicaveis', 'com_link' ) as $chave ) {
+		if ( ! isset( $n[ $chave ] ) ) {
+			return false;
+		}
+	}
+	return true;
 }
 }
 
@@ -1239,6 +1285,506 @@ function robometria_casca_atalhos_html() {
 	return $html;
 }
 }
+
+/* ---------------------------------------------------------------------------
+ * 3f. A ÁRVORE — trilha, BreadcrumbList e cluster de "Veja também"
+ *
+ * Seção 16 do ARQUIPELAGO.md, e o item que o despacho do Raphael de 11/09/2026
+ * deixou de pé depois do bloco da voz. O mapa de quem é mãe de quem está escrito
+ * em ARVORE.md; aqui ele vira código, e `ferramentas/teste-arvore.php` confere
+ * que as duas metades dizem a mesma coisa — documento e código mantidos à mão em
+ * dois lugares divergem em silêncio (seção 8 do contrato).
+ *
+ * CINCO DECISÕES, e nenhuma é enfeite:
+ *
+ *   1. NADA AQUI CRIA URL. As dezoito páginas de nível 1 e 2 da árvore esperam o
+ *      sitemap ser reenviado no Search Console (metade humana do despacho da
+ *      Sentinela de 10/09): sem medição não há rampa, e sem rampa página nova é
+ *      página no escuro. Trilha e cluster cabem antes porque só usam endereço
+ *      que já existe.
+ *   2. A MÃE DE TRANSIÇÃO DAS DUAS FERRAMENTAS É `/ferramentas/`, QUE EXISTE.
+ *      O destino delas é `/pecas/` e `/succao/`, e a alternativa seria publicar
+ *      hoje um degrau em texto apontando para o vazio. Mãe com endereço de
+ *      verdade dá ao leitor um lugar para onde subir e ao schema um item a mais;
+ *      é estado de transição declarado no ARVORE.md, não desenho. `/ferramentas/`
+ *      é retirada com 301 no dia em que as duas seções nascerem — é a única
+ *      página desta ilha com prazo de validade.
+ *   3. O DEGRAU SEM ENDEREÇO SAI EM TEXTO E NÃO ENTRA NO JSON-LD. Um ListItem
+ *      intermediário sem `item` invalida o BreadcrumbList inteiro para o Google,
+ *      e lista inválida é lista ignorada — o schema "mais completo" publicaria
+ *      MENOS com cara de publicar mais. A trilha na tela continua mostrando a
+ *      seção e a categoria, que é o que diz ao leitor onde ele está.
+ *   4. AS IRMÃS SÃO DERIVADAS, NUNCA DIGITADAS. Lista de irmã escrita à mão
+ *      envelhece no dia da próxima ferramenta — é a cicatriz do número de tela
+ *      digitado (seção 8). Elas saem do mesmo registro que alimenta o hub e a
+ *      prateleira de artigos, com afinidade declarada: mesma categoria primeiro.
+ *   5. A FRASE DE MÃE SÓ SAI COM MÃE PUBLICADA, e o número dela é CONTADO. As
+ *      duas ferramentas a têm; os dois guias não, porque `/guias/` não existe —
+ *      e o portão cobra a ausência dela, para ninguém fechar isso com um
+ *      endereço inventado.
+ * ------------------------------------------------------------------------- */
+
+/* NÍVEL 1. O slug é o do ARVORE.md; o rótulo é o nome que a pessoa usa. */
+if ( ! function_exists( 'robometria_casca_secoes' ) ) {
+function robometria_casca_secoes() {
+	return array(
+		'pecas'   => 'Peças',
+		'succao'  => 'Sucção',
+		'modelos' => 'Modelos',
+		'guias'   => 'Guias',
+	);
+}
+}
+
+/* NÍVEL 2: slug => array( seção, rótulo ). */
+if ( ! function_exists( 'robometria_casca_categorias' ) ) {
+function robometria_casca_categorias() {
+	return array(
+		'filtros'               => array( 'pecas',   'Filtros' ),
+		'escovas-laterais'      => array( 'pecas',   'Escovas laterais' ),
+		'escovas-principais'    => array( 'pecas',   'Escovas principais' ),
+		'mops'                  => array( 'pecas',   'Mops' ),
+		'baterias'              => array( 'pecas',   'Baterias' ),
+		'pisos-e-pelo'          => array( 'succao',  'Pisos e pelo' ),
+		'metragem-e-autonomia'  => array( 'succao',  'Metragem e autonomia' ),
+		'electrolux'            => array( 'modelos', 'Electrolux' ),
+		'multi'                 => array( 'modelos', 'Multi' ),
+		'positivo'              => array( 'modelos', 'Positivo' ),
+		'xiaomi'                => array( 'modelos', 'Xiaomi' ),
+		'wap'                   => array( 'modelos', 'WAP' ),
+		'guias-pecas'           => array( 'guias',   'Peças' ),
+		'guias-succao'          => array( 'guias',   'Sucção' ),
+	);
+}
+}
+
+/* AS PÁGINAS QUE FICAM NA RAIZ, fora da árvore (ARVORE.md seção 2). Só os slugs:
+   o rótulo do degrau é o TÍTULO da página, lido da definição dela. Rótulo próprio
+   aqui seria um segundo nome para a mesma página, e o degrau atual de uma trilha
+   que não diz o que o H1 diz manda o leitor conferir se ele está onde pensa. */
+if ( ! function_exists( 'robometria_casca_paginas_de_raiz' ) ) {
+function robometria_casca_paginas_de_raiz() {
+	return array( 'metodologia', 'sobre', 'divulgacao-de-afiliados' );
+}
+}
+
+/* O título publicado de uma página da casca — o mesmo que vira o H1. */
+if ( ! function_exists( 'robometria_casca_titulo_da_pagina' ) ) {
+function robometria_casca_titulo_da_pagina( $slug ) {
+	$def = robometria_casca_definicao_paginas();
+	return isset( $def[ $slug ]['titulo'] ) ? $def[ $slug ]['titulo'] : '';
+}
+}
+
+/* A MÃE DE TRANSIÇÃO das ferramentas, e o destino de cada uma quando a seção
+   nascer. Mora aqui, e não no snippet da ferramenta, porque é decisão de ÁRVORE:
+   quem decide onde a página mora é o mapa do site, não quem escreve o cálculo. */
+if ( ! function_exists( 'robometria_casca_mae_das_ferramentas' ) ) {
+function robometria_casca_mae_das_ferramentas() {
+	return 'ferramentas';
+}
+}
+
+/* A categoria de nível 2 de cada artigo, pelo slug dele (ARVORE.md seção 3).
+   Artigo sem categoria declarada aqui não recebe degrau de categoria — e o
+   portão reprova, em vez de inventar uma. */
+if ( ! function_exists( 'robometria_casca_categoria_do_artigo' ) ) {
+function robometria_casca_categoria_do_artigo() {
+	return apply_filters( 'robometria_categoria_do_artigo', array(
+		'filtro-universal-de-robo-aspirador'          => 'guias-pecas',
+		'quantos-m2-o-robo-aspirador-limpa-por-carga' => 'guias-succao',
+	) );
+}
+}
+
+/**
+ * Onde esta página mora. Devolve:
+ *   papel  => 'raiz' | 'secao' | 'filha'
+ *   nivel1 => array( slug, rotulo ) — '' quando não há
+ *   nivel2 => array( slug, rotulo ) — array() quando não há
+ *   rotulo => o texto do degrau atual (o título, não o nome interno)
+ *   irmas  => array( array('slug','rotulo'), ... ), já escolhidas
+ * Devolve array() para a home e para página desconhecida — e quem chama não
+ * publica trilha nenhuma, que é melhor do que publicar trilha inventada.
+ */
+if ( ! function_exists( 'robometria_casca_lugar' ) ) {
+function robometria_casca_lugar( $slug ) {
+	$slug = sanitize_title( (string) $slug );
+	if ( '' === $slug || 'inicio' === $slug ) {
+		return array();
+	}
+
+	if ( in_array( $slug, robometria_casca_paginas_de_raiz(), true ) ) {
+		return array(
+			'papel'  => 'raiz',
+			'nivel1' => array( '', '' ),
+			'nivel2' => array(),
+			'rotulo' => robometria_casca_titulo_da_pagina( $slug ),
+			'irmas'  => array(),
+		);
+	}
+
+	/* O hub: mãe de transição das ferramentas, e por isso um degrau só. */
+	if ( robometria_casca_mae_das_ferramentas() === $slug ) {
+		return array(
+			'papel'  => 'secao',
+			'nivel1' => array( '', '' ),
+			'nivel2' => array(),
+			'rotulo' => robometria_casca_titulo_da_pagina( $slug ),
+			'irmas'  => array(),
+		);
+	}
+
+	$categorias = robometria_casca_categorias();
+
+	foreach ( robometria_casca_ferramentas() as $f ) {
+		if ( empty( $f['slug'] ) || $f['slug'] !== $slug ) {
+			continue;
+		}
+		$mae = robometria_casca_mae_das_ferramentas();
+		return array(
+			'papel'  => 'filha',
+			'nivel1' => array( $mae, 'Ferramentas' ),
+			'nivel2' => array(),
+			'rotulo' => isset( $f['titulo'] ) ? $f['titulo'] : $slug,
+			'irmas'  => robometria_casca_irmas( $slug ),
+		);
+	}
+
+	$cat_artigo = robometria_casca_categoria_do_artigo();
+	foreach ( robometria_casca_artigos() as $a ) {
+		if ( empty( $a['slug'] ) || $a['slug'] !== $slug ) {
+			continue;
+		}
+		$c2 = isset( $cat_artigo[ $slug ], $categorias[ $cat_artigo[ $slug ] ] )
+			? array( $cat_artigo[ $slug ], $categorias[ $cat_artigo[ $slug ] ][1] )
+			: array();
+		return array(
+			'papel'  => 'filha',
+			'nivel1' => array( 'guias', 'Guias' ),
+			'nivel2' => $c2,
+			'rotulo' => isset( $a['titulo'] ) ? $a['titulo'] : $slug,
+			'irmas'  => robometria_casca_irmas( $slug ),
+		);
+	}
+
+	return array();
+}
+}
+
+/**
+ * As irmãs de uma página: MESMA MÃE, no ar, ordenadas por afinidade — primeiro
+ * as da mesma categoria de nível 2, depois as demais na ordem do registro. No
+ * máximo quatro, como manda o 16.4(c).
+ *
+ * Página que não existe publicada não entra: irmã é link, e link morto não é
+ * cluster. Ferramenta anunciada como 'em-construcao' também não — o hub já a
+ * esconde, e irmã que o hub esconde seria a única porta para uma página que a
+ * ilha decidiu não oferecer ainda.
+ */
+if ( ! function_exists( 'robometria_casca_irmas' ) ) {
+function robometria_casca_irmas( $slug ) {
+	$slug = sanitize_title( (string) $slug );
+
+	$sou_ferramenta = false;
+	foreach ( robometria_casca_ferramentas() as $f ) {
+		if ( ! empty( $f['slug'] ) && $f['slug'] === $slug ) {
+			$sou_ferramenta = true;
+			break;
+		}
+	}
+
+	if ( $sou_ferramenta ) {
+		$irmas = array();
+		foreach ( robometria_casca_ferramentas() as $f ) {
+			if ( empty( $f['slug'] ) || $f['slug'] === $slug ) {
+				continue;
+			}
+			if ( ! isset( $f['estado'] ) || 'publicada' !== $f['estado'] ) {
+				continue;
+			}
+			if ( '' === robometria_casca_url_se_existir( $f['slug'] ) ) {
+				continue;
+			}
+			$irmas[] = array( 'slug' => $f['slug'], 'rotulo' => $f['titulo'] );
+		}
+		return array_slice( $irmas, 0, 4 );
+	}
+
+	$artigos    = robometria_casca_artigos();
+	$cat_artigo = robometria_casca_categoria_do_artigo();
+	$sou_artigo = false;
+	foreach ( $artigos as $a ) {
+		if ( ! empty( $a['slug'] ) && $a['slug'] === $slug ) {
+			$sou_artigo = true;
+			break;
+		}
+	}
+	if ( ! $sou_artigo ) {
+		return array();
+	}
+
+	$minha = isset( $cat_artigo[ $slug ] ) ? $cat_artigo[ $slug ] : '';
+	$perto = array();
+	$longe = array();
+	foreach ( $artigos as $a ) {
+		if ( empty( $a['slug'] ) || $a['slug'] === $slug ) {
+			continue;
+		}
+		if ( '' === robometria_casca_url_se_existir( $a['slug'] ) ) {
+			continue;
+		}
+		$item = array( 'slug' => $a['slug'], 'rotulo' => $a['titulo'] );
+		if ( '' !== $minha && isset( $cat_artigo[ $a['slug'] ] ) && $cat_artigo[ $a['slug'] ] === $minha ) {
+			$perto[] = $item;
+		} else {
+			$longe[] = $item;
+		}
+	}
+
+	return array_slice( array_merge( $perto, $longe ), 0, 4 );
+}
+}
+
+/* Quantas ferramentas estão REALMENTE abertas ao visitante: anunciadas como
+   publicadas E com página existindo. É este o número que a frase de mãe diz, e
+   ele é contado — nunca digitado (seção 8 do contrato). */
+if ( ! function_exists( 'robometria_casca_conta_ferramentas_no_ar' ) ) {
+function robometria_casca_conta_ferramentas_no_ar() {
+	$n = 0;
+	foreach ( robometria_casca_ferramentas() as $f ) {
+		if ( empty( $f['slug'] ) || ! isset( $f['estado'] ) || 'publicada' !== $f['estado'] ) {
+			continue;
+		}
+		if ( '' !== robometria_casca_url_se_existir( $f['slug'] ) ) {
+			$n++;
+		}
+	}
+	return $n;
+}
+}
+
+/**
+ * Os degraus da trilha, do topo até a página atual. Cada degrau:
+ *   array( 'rotulo' => ..., 'url' => '' quando a página ainda não existe )
+ * O último é sempre a página atual e nunca leva URL — é onde a pessoa já está.
+ */
+if ( ! function_exists( 'robometria_casca_degraus' ) ) {
+function robometria_casca_degraus( $slug ) {
+	$lugar = robometria_casca_lugar( $slug );
+	if ( ! $lugar ) {
+		return array();
+	}
+
+	$degraus = array( array( 'rotulo' => 'Início', 'url' => home_url( '/' ) ) );
+
+	if ( 'filha' === $lugar['papel'] ) {
+		list( $n1_slug, $n1_rotulo ) = $lugar['nivel1'];
+		if ( '' !== $n1_slug ) {
+			$degraus[] = array(
+				'rotulo' => $n1_rotulo,
+				'url'    => robometria_casca_url_se_existir( $n1_slug ),
+			);
+		}
+		if ( ! empty( $lugar['nivel2'] ) ) {
+			$degraus[] = array(
+				'rotulo' => $lugar['nivel2'][1],
+				'url'    => robometria_casca_url_se_existir( $lugar['nivel2'][0] ),
+			);
+		}
+	}
+
+	$degraus[] = array( 'rotulo' => $lugar['rotulo'], 'url' => '' );
+
+	return $degraus;
+}
+}
+
+/* A trilha visível. <nav> com <ol>, porque é navegação e é ordenada; o degrau
+   sem URL sai como texto e o atual leva aria-current. */
+if ( ! function_exists( 'robometria_casca_trilha_html' ) ) {
+function robometria_casca_trilha_html( $slug ) {
+	$degraus = robometria_casca_degraus( $slug );
+	if ( count( $degraus ) < 2 ) {
+		return '';
+	}
+
+	$ultimo = count( $degraus ) - 1;
+	$html   = '<nav class="rbm-trilha" aria-label="Você está em"><ol>';
+	foreach ( $degraus as $i => $d ) {
+		$html .= '<li>';
+		if ( $i === $ultimo ) {
+			$html .= '<span aria-current="page">' . esc_html( $d['rotulo'] ) . '</span>';
+		} elseif ( '' !== $d['url'] ) {
+			$html .= '<a href="' . esc_url( $d['url'] ) . '">' . esc_html( $d['rotulo'] ) . '</a>';
+		} else {
+			/* Seção ou categoria ainda não publicada: texto, nunca link morto. */
+			$html .= '<span class="rbm-trilha-espera">' . esc_html( $d['rotulo'] ) . '</span>';
+		}
+		$html .= '</li>';
+	}
+	$html .= '</ol></nav>';
+
+	return $html;
+}
+}
+
+/* O BreadcrumbList. Leva os degraus COM URL mais a página atual, e nada mais —
+   ver decisão 3 no topo desta seção. */
+if ( ! function_exists( 'robometria_casca_trilha_jsonld' ) ) {
+function robometria_casca_trilha_jsonld( $slug ) {
+	$degraus = robometria_casca_degraus( $slug );
+	if ( count( $degraus ) < 2 ) {
+		return array();
+	}
+
+	$atual = array_pop( $degraus );
+	$itens = array();
+	$pos   = 0;
+
+	foreach ( $degraus as $d ) {
+		if ( '' === $d['url'] ) {
+			continue;
+		}
+		$pos++;
+		$itens[] = array(
+			'@type'    => 'ListItem',
+			'position' => $pos,
+			'name'     => $d['rotulo'],
+			'item'     => $d['url'],
+		);
+	}
+
+	$url_atual = robometria_casca_url_se_existir( $slug );
+	$pos++;
+	$ultimo = array(
+		'@type'    => 'ListItem',
+		'position' => $pos,
+		'name'     => $atual['rotulo'],
+	);
+	if ( '' !== $url_atual ) {
+		$ultimo['item'] = $url_atual;
+	}
+	$itens[] = $ultimo;
+
+	if ( count( $itens ) < 2 ) {
+		return array();
+	}
+
+	return array(
+		'@context'        => 'https://schema.org',
+		'@type'           => 'BreadcrumbList',
+		'itemListElement' => $itens,
+	);
+}
+}
+
+/* O cluster: a frase que linka a mãe (16.4b) e as irmãs (16.4c). */
+if ( ! function_exists( 'robometria_casca_veja_tambem_html' ) ) {
+function robometria_casca_veja_tambem_html( $slug ) {
+	$lugar = robometria_casca_lugar( $slug );
+	if ( ! $lugar || 'filha' !== $lugar['papel'] || empty( $lugar['irmas'] ) ) {
+		return '';
+	}
+
+	$html = '<nav class="rbm-veja" aria-label="Veja também"><h2>Veja também</h2>';
+
+	/* A frase da mãe, só quando a mãe existe. O número é contado. */
+	list( $n1_slug, $n1_rotulo ) = $lugar['nivel1'];
+	$url_mae = ( '' !== $n1_slug ) ? robometria_casca_url_se_existir( $n1_slug ) : '';
+	if ( '' !== $url_mae && robometria_casca_mae_das_ferramentas() === $n1_slug ) {
+		$quantas = robometria_casca_conta_ferramentas_no_ar();
+		$html   .= '<p class="rbm-veja-mae">Esta é uma das <a href="' . esc_url( $url_mae ) . '">'
+			. esc_html( number_format_i18n( $quantas ) ) . ' ferramentas que já estão no ar</a> aqui na Robometria.</p>';
+	}
+
+	$html .= '<ul>';
+	foreach ( $lugar['irmas'] as $irma ) {
+		$url = robometria_casca_url_se_existir( $irma['slug'] );
+		if ( '' === $url ) {
+			continue;
+		}
+		$html .= '<li><a href="' . esc_url( $url ) . '">' . esc_html( $irma['rotulo'] ) . '</a></li>';
+	}
+	$html .= '</ul></nav>';
+
+	return $html;
+}
+}
+
+/* ---------------------------------------------------------------------------
+ * 3g. Onde a trilha e o cluster entram na página
+ *
+ * A trilha entra no lugar do bloco core/post-title, ANTES do H1 — é o "abaixo do
+ * header" do 16.3. Se o tema não renderizar esse bloco, ela cai na rede de
+ * segurança do the_content, no mesmo padrão que o rodapé já usa desde a 1.0.0:
+ * publicar em um lugar só e torcer para o bloco existir seria o defeito do
+ * rodapé duplicado, ao contrário.
+ *
+ * O cluster entra no FIM do the_content, com prioridade 20 — depois dos filtros
+ * de texto, então o que ele acrescenta nunca atravessa o escape que transforma
+ * "&" em entidade. Ele não tem script hoje; o lugar certo é o lugar certo mesmo
+ * quando o defeito ainda não está ali.
+ * ------------------------------------------------------------------------- */
+
+if ( ! function_exists( 'robometria_casca_trilha_impressa' ) ) {
+function robometria_casca_trilha_impressa( $marcar = false ) {
+	static $impressa = false;
+	if ( $marcar ) {
+		$impressa = true;
+	}
+	return $impressa;
+}
+}
+
+add_filter( 'render_block', function ( $conteudo, $bloco ) {
+	if ( is_admin() || ( defined( 'REST_REQUEST' ) && REST_REQUEST ) ) {
+		return $conteudo;
+	}
+	$nome = isset( $bloco['blockName'] ) ? $bloco['blockName'] : '';
+	if ( 'core/post-title' !== $nome || robometria_casca_trilha_impressa() ) {
+		return $conteudo;
+	}
+	$trilha = robometria_casca_trilha_html( robometria_casca_slug_atual() );
+	if ( '' === $trilha ) {
+		return $conteudo;
+	}
+	robometria_casca_trilha_impressa( true );
+
+	return $trilha . $conteudo;
+}, 10, 2 );
+
+/* Rede de segurança: sem bloco core/post-title na página, a trilha sai no topo
+   do conteúdo. Prioridade 9 para ficar acima de tudo que o conteúdo traz. */
+add_filter( 'the_content', function ( $html ) {
+	if ( is_admin() || ! is_singular() || robometria_casca_trilha_impressa() ) {
+		return $html;
+	}
+	$trilha = robometria_casca_trilha_html( robometria_casca_slug_atual() );
+	if ( '' === $trilha ) {
+		return $html;
+	}
+	robometria_casca_trilha_impressa( true );
+
+	return $trilha . $html;
+}, 9 );
+
+add_filter( 'the_content', function ( $html ) {
+	if ( is_admin() || ! is_singular() ) {
+		return $html;
+	}
+
+	return $html . robometria_casca_veja_tambem_html( robometria_casca_slug_atual() );
+}, 20 );
+
+add_action( 'wp_head', function () {
+	$dados = robometria_casca_trilha_jsonld( robometria_casca_slug_atual() );
+	if ( ! $dados ) {
+		return;
+	}
+	echo '<script type="application/ld+json" id="robometria-trilha-jsonld">'
+		. wp_json_encode( $dados ) . '</script>' . "\n";
+}, 22 );
 
 /**
  * A HOME É A FERRAMENTA (molde FERRAMENTA do VOZ.md, 11/09/2026).
@@ -1322,7 +1868,12 @@ add_shortcode( 'robometria_ferramentas', function () {
 
 	$html .= '<div class="rbm-secao">';
 	$html .= '<h2>Por que as duas ainda não cobrem os mesmos robôs</h2>';
-	$html .= '<p>Só ' . robometria_casca_num( $n['as_duas'] ) . ' dos ' . robometria_casca_num( $n['modelos_publicaveis'] ) . ' modelos do banco são atendidos pelas duas ferramentas ao mesmo tempo, e a causa é do mercado, não da ilha: Electrolux e Multi publicam peça com compatibilidade declarada e <strong>não publicam sucção em pascal</strong>; Xiaomi e WAP publicam pascal e <strong>não publicam código de peça</strong>. Enquanto for assim, um robô costuma ter resposta numa ferramenta e recusa na outra, e a tela diz qual é o caso.</p>';
+	if ( robometria_casca_tem_numeros() ) {
+		$html .= '<p>Só ' . robometria_casca_num( $n['as_duas'] ) . ' dos ' . robometria_casca_num( $n['modelos_publicaveis'] ) . ' modelos do banco são atendidos pelas duas ferramentas ao mesmo tempo, e a causa é do mercado, não da ilha: Electrolux e Multi publicam peça com compatibilidade declarada e <strong>não publicam sucção em pascal</strong>; Xiaomi e WAP publicam pascal e <strong>não publicam código de peça</strong>. Enquanto for assim, um robô costuma ter resposta numa ferramenta e recusa na outra, e a tela diz qual é o caso.</p>';
+	} else {
+		$html .= '<p>A causa é do mercado, não da ilha: Electrolux e Multi publicam peça com compatibilidade declarada e <strong>não publicam sucção em pascal</strong>; Xiaomi e WAP publicam pascal e <strong>não publicam código de peça</strong>. Enquanto for assim, um robô costuma ter resposta numa ferramenta e recusa na outra, e a tela diz qual é o caso.</p>';
+		$html .= robometria_casca_sem_medicao_html();
+	}
 	$html .= '</div>';
 
 	$artigos = robometria_casca_artigos_html();
@@ -1476,16 +2027,27 @@ add_shortcode( 'robometria_metodologia', function () {
 	$html .= '<strong>Manual do fabricante guardado por terceiro não conta como manual lido:</strong> uma origem tem três elos — quem escreveu, quem guarda e como nós lemos —, e o nível é o do elo mais fraco. Em 11/09/2026 quatro fontes desta ilha desceram de nível por essa regra.</p></div>';
 
 	$html .= '<div class="rbm-secao"><h2>4. O que medimos sobre a nossa própria cobertura</h2>';
-	$html .= '<p>Contar itens do banco não diz se a ferramenta responde. Por isso a entrada é varrida de ponta a ponta, e o resultado é publicado mesmo quando é desconfortável (medição de ' . esc_html( robometria_casca_data_br( $n['medido_em'] ) ) . '):</p>';
-	$html .= '<div class="rbm-tabela"><table class="rbm-quadro"><tbody>';
-	$html .= '<tr><td>Marcas no banco</td><td class="rbm-n">' . esc_html( number_format_i18n( $n['marcas'] ) ) . '</td></tr>';
-	$html .= '<tr><td>Modelos de robô publicáveis</td><td class="rbm-n">' . esc_html( number_format_i18n( $n['modelos_publicaveis'] ) ) . '</td></tr>';
-	$html .= '<tr><td>Peças publicáveis</td><td class="rbm-n">' . esc_html( number_format_i18n( $n['pecas_publicaveis'] ) ) . '</td></tr>';
-	$html .= '<tr><td>Pares peça × modelo, todos declarados</td><td class="rbm-n">' . esc_html( number_format_i18n( $n['pares_declarados'] ) ) . '</td></tr>';
-	$html .= '<tr><td>Modelos em que a ferramenta de peças responde</td><td class="rbm-n">' . esc_html( number_format_i18n( $n['r1_responde'] ) ) . '</td></tr>';
-	$html .= '<tr><td>Modelos em que ela sai vazia</td><td class="rbm-n">' . esc_html( number_format_i18n( $n['r1_vazia'] ) ) . '</td></tr>';
-	$html .= '<tr><td>Combinações modelo × tipo de peça sem declaração localizada</td><td class="rbm-n">' . esc_html( number_format_i18n( $n['celulas_sem_resposta'] ) ) . ' de ' . esc_html( number_format_i18n( $n['celulas'] ) ) . '</td></tr>';
-	$html .= '</tbody></table></div>';
+	if ( robometria_casca_tem_numeros() ) {
+		$html .= '<p>Contar itens do banco não diz se a ferramenta responde. Por isso a entrada é varrida de ponta a ponta, e o resultado é publicado mesmo quando é desconfortável (medição de ' . esc_html( robometria_casca_data_br( $n['medido_em'] ) ) . '):</p>';
+		$html .= '<div class="rbm-tabela"><table class="rbm-quadro"><tbody>';
+		$html .= '<tr><td>Marcas no banco</td><td class="rbm-n">' . esc_html( number_format_i18n( $n['marcas'] ) ) . '</td></tr>';
+		$html .= '<tr><td>Modelos de robô publicáveis</td><td class="rbm-n">' . esc_html( number_format_i18n( $n['modelos_publicaveis'] ) ) . '</td></tr>';
+		$html .= '<tr><td>Peças publicáveis</td><td class="rbm-n">' . esc_html( number_format_i18n( $n['pecas_publicaveis'] ) ) . '</td></tr>';
+		$html .= '<tr><td>Pares peça × modelo, todos declarados</td><td class="rbm-n">' . esc_html( number_format_i18n( $n['pares_declarados'] ) ) . '</td></tr>';
+		$html .= '<tr><td>Modelos em que a ferramenta de peças responde</td><td class="rbm-n">' . esc_html( number_format_i18n( $n['r1_responde'] ) ) . '</td></tr>';
+		$html .= '<tr><td>Modelos em que ela sai vazia</td><td class="rbm-n">' . esc_html( number_format_i18n( $n['r1_vazia'] ) ) . '</td></tr>';
+		$html .= '<tr><td>Combinações modelo × tipo de peça sem declaração localizada</td><td class="rbm-n">' . esc_html( number_format_i18n( $n['celulas_sem_resposta'] ) ) . ' de ' . esc_html( number_format_i18n( $n['celulas'] ) ) . '</td></tr>';
+		$html .= '</tbody></table></div>';
+		/* A RÉGUA DO PAR, NA PRÓPRIA FRASE. O número da linha "pares" caiu de 33
+		   para 32 em 11/09/2026, quando ele deixou de ser digitado: o par que
+		   sobrava aponta para um modelo excluído do banco, e o site nunca o serve.
+		   Dizer aqui o que conta como par é o que impede o próximo leitor — e a
+		   próxima Sentinela — de achar que a contagem encolheu por descuido. */
+		$html .= '<p class="rbm-nota">Um par só é contado quando as duas pontas estão publicadas: a peça e o modelo. Peça que declara compatibilidade com um modelo que a gente não publica não vira número aqui, porque não vira resposta em tela nenhuma.</p>';
+	} else {
+		$html .= '<p>Contar itens do banco não diz se a ferramenta responde. Por isso a entrada é varrida de ponta a ponta, e o resultado é publicado mesmo quando é desconfortável.</p>';
+		$html .= robometria_casca_sem_medicao_html();
+	}
 	$html .= '<p>Um efeito dessa varredura já mudou a interface: o tipo "reservatório" não tem <strong>nenhuma</strong> peça declarada no banco inteiro, então ele sai do seletor da ferramenta. Oferecer uma escolha que sempre devolve recusa é prometer o que não se entrega; o tipo volta no dia em que a primeira peça dele entrar.</p></div>';
 
 	$html .= '<div class="rbm-secao"><h2>5. O que a Robometria não publica, e por quê</h2>';
@@ -1517,7 +2079,10 @@ add_shortcode( 'robometria_sobre', function () {
 
 	$html .= '<div class="rbm-secao"><h2>Como é feita</h2>';
 	$html .= '<p>Sem pessoa em cena: sem rosto, sem vídeo, sem canal, sem presença em fórum. O que sustenta uma resposta aqui é o método e a procedência do dado, e os dois ficam abertos para conferência em cada página. Ferramentas e conteúdo são versionados em repositório público antes de chegarem ao site, e o banco tem um verificador que reprova registro sem fonte, sem data ou com divergência não resolvida — o que está no ar passou por ele.</p>';
-	$html .= '<p>Estado de hoje, sem arredondar para cima: ' . robometria_casca_num( $n['marcas'] ) . ' marcas, ' . robometria_casca_num( $n['modelos_publicaveis'] ) . ' modelos de robô e ' . robometria_casca_num( $n['pares_declarados'] ) . ' pares peça × modelo declarados pelo fabricante. Nenhum par inferido.</p></div>';
+	$html .= robometria_casca_tem_numeros()
+		? '<p>Estado de hoje, sem arredondar para cima: ' . robometria_casca_num( $n['marcas'] ) . ' marcas, ' . robometria_casca_num( $n['modelos_publicaveis'] ) . ' modelos de robô e ' . robometria_casca_num( $n['pares_declarados'] ) . ' pares peça × modelo declarados pelo fabricante. Nenhum par inferido.</p>'
+		: robometria_casca_sem_medicao_html();
+	$html .= '</div>';
 
 	/* BLOCO DE RECUSA, marcado no markup pelo mesmo motivo do da divulgação de
 	   afiliados: a frase legítima que recusa a escassez inventada usa as MESMAS
@@ -1576,13 +2141,17 @@ add_shortcode( 'robometria_afiliados', function () {
 
 	/* A frase abaixo é CONTADA no banco, não digitada — ver robometria_casca_numeros(). */
 	$n = robometria_casca_numeros();
-	$html .= '<p class="rbm-nota"><strong>Estado de hoje:</strong> ';
-	if ( $n['com_link'] < 1 ) {
-		$html .= 'nenhum dos ' . robometria_casca_num( $n['itens_publicaveis'] ) . ' itens do banco tem link de loja ainda — os ' . robometria_casca_num( $n['esperando_link'] ) . ' estão esperando. ';
+	if ( ! robometria_casca_tem_numeros() ) {
+		$html .= robometria_casca_sem_medicao_html();
 	} else {
-		$html .= robometria_casca_num( $n['com_link'] ) . ' dos ' . robometria_casca_num( $n['itens_publicaveis'] ) . ' itens do banco já têm link de loja, e ' . robometria_casca_num( $n['esperando_link'] ) . ' ainda esperam. ';
+		$html .= '<p class="rbm-nota"><strong>Estado de hoje:</strong> ';
+		if ( $n['com_link'] < 1 ) {
+			$html .= 'nenhum dos ' . robometria_casca_num( $n['itens_publicaveis'] ) . ' itens do banco tem link de loja ainda — os ' . robometria_casca_num( $n['esperando_link'] ) . ' estão esperando. ';
+		} else {
+			$html .= robometria_casca_num( $n['com_link'] ) . ' dos ' . robometria_casca_num( $n['itens_publicaveis'] ) . ' itens do banco já têm link de loja, e ' . robometria_casca_num( $n['esperando_link'] ) . ' ainda esperam. ';
+		}
+		$html .= 'Esta página existe desde o primeiro dia porque a divulgação precisa estar publicada <em>antes</em> do primeiro link, não depois.</p>';
 	}
-	$html .= 'Esta página existe desde o primeiro dia porque a divulgação precisa estar publicada <em>antes</em> do primeiro link, não depois.</p>';
 	$html .= '</div>';
 
 	return $html;

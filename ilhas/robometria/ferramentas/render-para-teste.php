@@ -28,9 +28,20 @@ define('ABSPATH', '/tmp/wp/'); define('OBJECT','OBJECT'); define('ARRAY_A','ARRA
 $GLOBALS['__filtros']=array(); $GLOBALS['__shortcodes']=array(); $GLOBALS['__acoes']=array();
 $GLOBALS['__conteudo_pagina']='';
 
-function add_filter($h,$f,$p=10,$a=1){ $GLOBALS['__filtros'][$h][]=$f; }
+/* FILTRO COM PRIORIDADE, como o WordPress.
+ *
+ * Ate a casca 1.2.0 a prioridade era ACEITA E JOGADA FORA aqui, e os filtros
+ * rodavam na ordem em que foram registrados. Nao doia porque so havia um filtro
+ * por gancho. A arvore da secao 16 acabou com isso: no the_content a trilha e
+ * rede de seguranca na prioridade 9, o escape do conteudo vem no meio e o
+ * "Veja tambem" entra na 20 — tres ordens diferentes de acordo com quem foi
+ * carregado primeiro, e so uma delas e a do site. Bancada que roda na ordem
+ * errada mede uma pagina que o site nunca serve. */
+function add_filter($h,$f,$p=10,$a=1){ $GLOBALS['__filtros'][$h][]=array($p,count($GLOBALS['__filtros'][$h]??[]),$f); }
 function apply_filters($h,$v){ $extra=array_slice(func_get_args(),2);
-	foreach(($GLOBALS['__filtros'][$h]??[]) as $f){ $v=call_user_func_array($f, array_merge(array($v),$extra)); } return $v; }
+	$lista = $GLOBALS['__filtros'][$h] ?? array();
+	usort($lista, function($a,$b){ return $a[0]===$b[0] ? $a[1]-$b[1] : $a[0]-$b[0]; });
+	foreach($lista as $item){ $v=call_user_func_array($item[2], array_merge(array($v),$extra)); } return $v; }
 function add_action($h,$f,$p=10,$a=1){ $GLOBALS['__acoes'][$h][]=array($p,count($GLOBALS['__acoes'][$h]??[]),$f); }
 function do_action($h){
 	$lista = $GLOBALS['__acoes'][$h] ?? array();
@@ -170,6 +181,55 @@ function robometria_teste_slug_do_alvo($alvo) {
 	return isset($mapa[$alvo]) ? $mapa[$alvo] : '';
 }
 
+/**
+ * TODAS as paginas publicadas da ilha, no formato do mapa __paginas (slug=>true)
+ * que get_posts() consulta para dizer se uma pagina existe.
+ *
+ * Derivada: as cinco da casca vem da definicao dela, as quatro de ferramenta e
+ * artigo das constantes de slug. A home fica de fora de proposito — o endereco
+ * dela e home_url('/'), nao /inicio/.
+ * So pode ser chamada DEPOIS de robometria_teste_carregar().
+ */
+function robometria_teste_paginas_do_site() {
+	$mapa = array();
+	foreach (array_keys(robometria_casca_definicao_paginas()) as $slug) {
+		if ('inicio' === $slug) { continue; }
+		$mapa[$slug] = true;
+	}
+	foreach (array('R1','R2','A1','A2') as $codigo) {
+		$constante = 'ROBOMETRIA_' . $codigo . '_SLUG';
+		if (defined($constante)) { $mapa[constant($constante)] = true; }
+	}
+	return $mapa;
+}
+
+/**
+ * O H1 da pagina que o shortcode ocupa — o mesmo texto que o WordPress serve no
+ * bloco core/post-title.
+ *
+ * Sai da MESMA definicao que o Sync grava no post_title: as cinco paginas da
+ * casca de robometria_casca_definicao_paginas(), e as quatro de ferramenta e
+ * artigo das constantes de titulo dos snippets. Nada digitado duas vezes, entao
+ * titulo renomeado num snippet chega na bancada sozinho — e um titulo que a
+ * bancada nao conhece sai vazio, que e o caso que o teste cobra.
+ */
+function robometria_teste_titulo_do_alvo($alvo) {
+	$slug = robometria_teste_slug_do_alvo($alvo);
+	if ('' === $slug) { return ''; }
+
+	$casca = robometria_casca_definicao_paginas();
+	if (isset($casca[$slug]['titulo'])) { return $casca[$slug]['titulo']; }
+
+	foreach (array('R1','R2','A1','A2') as $codigo) {
+		$c_slug   = 'ROBOMETRIA_' . $codigo . '_SLUG';
+		$c_titulo = 'ROBOMETRIA_' . $codigo . '_TITULO';
+		if (defined($c_slug) && defined($c_titulo) && constant($c_slug) === $slug) {
+			return constant($c_titulo);
+		}
+	}
+	return '';
+}
+
 function robometria_teste_carregar_options($raiz) {
 	$manifest = json_decode(file_get_contents($raiz . '/manifest.json'), true);
 	foreach ((isset($manifest['dados']) ? $manifest['dados'] : array()) as $item) {
@@ -194,10 +254,41 @@ function robometria_teste_pagina($tag, $titulo = 'Robometria — teste', $slug =
 	/* O retorno CRU do shortcode fica guardado: e sobre ele que o teste afirma
 	   que nao ha <script> nem <style>. */
 	$GLOBALS['__retorno_shortcode'] = call_user_func($GLOBALS['__shortcodes'][$tag]);
-	$corpo = robometria_teste_escapar_conteudo( $GLOBALS['__retorno_shortcode'] );
+
+	/* O CAMINHO DO CONTEUDO, NA ORDEM DO SITE (casca 1.3.0).
+	 *
+	 * No WordPress o que o shortcode devolve atravessa os filtros de the_content:
+	 * os de texto escapam o "&" pelo meio, e o que entra DEPOIS deles nao e
+	 * escapado. A arvore da secao 16 pendura duas coisas nesse gancho — a rede de
+	 * seguranca da trilha na prioridade 9 e o "Veja tambem" na 20 —, entao a
+	 * bancada roda o gancho de verdade em vez de so escapar a string. O escape
+	 * entra como filtro na prioridade 10, que e onde o WordPress o aplica, e
+	 * assim quem chega antes e depois dele sente o que sentiria no ar. */
+	if (!isset($GLOBALS['__escape_registrado'])) {
+		add_filter('the_content', 'robometria_teste_escapar_conteudo', 10);
+		$GLOBALS['__escape_registrado'] = true;
+	}
 
 	$marca     = apply_filters('render_block', '<!-- bloco do tema -->', array('blockName'=>'core/site-title'));
 	$cabecalho = apply_filters('render_block', '<!-- bloco do tema -->', array('blockName'=>'core/navigation'));
+
+	/* O TITULO DA PAGINA E O H1, e ele vem do bloco core/post-title do tema — que
+	 * e exatamente onde a trilha da secao 16.3 se pendura, "abaixo do header".
+	 * Ate a casca 1.2.0 a bancada nao montava esse bloco: media uma pagina sem H1
+	 * nenhum, e trilha que nasce entre o cabecalho e o H1 seria invisivel para
+	 * ela. E a cicatriz do render que serve menos que o site, pela quarta vez
+	 * nesta ilha.
+	 *
+	 * ELE VEM ANTES DO the_content, como no tema de blocos, e a ordem nao e
+	 * detalhe: os blocos do template renderizam em ordem de documento, e
+	 * post-title vem antes de post-content. Montado depois, a rede de seguranca
+	 * da trilha (prioridade 9 do the_content) dispara primeiro e a bancada mede o
+	 * caminho reserva achando que mediu o principal. */
+	$bloco_titulo = apply_filters('render_block',
+		'<h1 class="wp-block-post-title">' . htmlspecialchars(robometria_teste_titulo_do_alvo($tag), ENT_QUOTES) . '</h1>',
+		array('blockName'=>'core/post-title'));
+
+	$corpo = apply_filters('the_content', $GLOBALS['__retorno_shortcode']);
 
 	ob_start(); do_action('wp_head');   $cabeca = ob_get_clean();
 	ob_start(); do_action('wp_footer'); $rodape = ob_get_clean();
@@ -207,23 +298,24 @@ function robometria_teste_pagina($tag, $titulo = 'Robometria — teste', $slug =
 		. htmlspecialchars($titulo, ENT_QUOTES) . "</title>\n" . $cabeca . "</head>\n<body>\n"
 		. "<header class=\"rbm-cabecalho-teste\" style=\"display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 1.2rem;background:#FFFFFF;\">\n"
 		. $marca . "\n" . $cabecalho . "\n</header>\n"
-		. "<main style=\"padding:1.2rem;\">" . $corpo . "</main>\n"
+		. "<main style=\"padding:1.2rem;\">" . $bloco_titulo . $corpo . "</main>\n"
 		. $rodape . "</body>\n</html>\n";
 }
 
 if (isset($argv[1]) && basename(__FILE__) === basename($argv[0])) {
 	$alvo = isset($argv[2]) ? $argv[2] : 'robometria_home';
-	/* Num render solto as paginas do menu existem, para o cabecalho sair com os
-	   <a href> de verdade que o teste do menu precisa conferir. */
-	$GLOBALS['__paginas'] = array(
-		'ferramentas'=>true,'metodologia'=>true,'sobre'=>true,'divulgacao-de-afiliados'=>true,
-		'qual-peca-serve-no-meu-robo-aspirador'=>true,'filtro-universal-de-robo-aspirador'=>true,
-		'quantos-pa-o-robo-aspirador-precisa'=>true,
-	);
 	/* O que o Sync gravou nas options (ver robometria_teste_carregar_options). */
 	robometria_teste_carregar_options($argv[1]);
 
 	robometria_teste_carregar($argv[1]);
+
+	/* AS PAGINAS QUE EXISTEM NO SITE DE TESTE, DERIVADAS.
+	   Num render solto todas as paginas publicadas da ilha existem, para o
+	   cabecalho, o rodape e a trilha sairem com os <a href> de verdade. A lista
+	   sai dos proprios snippets — digitada aqui, ela envelheceria calada: ate a
+	   casca 1.2.0 faltava nela a pagina do artigo A2, entao um render solto dele
+	   media a ilha com uma pagina a menos do que ela tem. */
+	$GLOBALS['__paginas'] = robometria_teste_paginas_do_site();
 
 	/* ESTAMOS NA PAGINA DA FERRAMENTA QUE ESTA SENDO RENDERIZADA.
 	 *

@@ -55,5 +55,32 @@
       "fontes_no_banco": 7,
       "existe_hoje": true
     }
-  ]
+  ],
+  "medicao": {
+    "marcas": 5,
+    "modelos_publicaveis": 28,
+    "pecas_publicaveis": 16,
+    "pares_declarados": 32,
+    "itens_publicaveis": 44,
+    "esperando_link": 44,
+    "r1_responde": 15,
+    "r1_vazia": 12,
+    "celulas": 168,
+    "celulas_sem_resposta": 116,
+    "as_duas": 3,
+    "medido_em": "2026-09-11"
+  },
+  "reguas_da_medicao": {
+    "marcas": "marcas distintas em registro publicavel de modelo ou peca",
+    "modelos_publicaveis": "registros de dados/modelos-robo.json com status publicavel",
+    "pecas_publicaveis": "registros de dados/pecas.json com status publicavel",
+    "pares_declarados": "par (peca publicavel, modelo publicavel) com selo declarada_fabricante. As duas pontas publicaveis: par que aponta para modelo excluido do banco nao chega a tela nenhuma",
+    "esperando_link": "registro publicavel, modelo ou peca, com afiliado.url vazio",
+    "r1_responde": "cobertura-r1.json, modelos_que_respondem",
+    "r1_vazia": "cobertura-r1.json, modelos_com_entrada_vazia",
+    "celulas": "cobertura-r1.json, celulas_total (modelo x tipo de peca)",
+    "celulas_sem_resposta": "cobertura-r1.json, celulas.vazia",
+    "as_duas": "cobertura-r1.json, cruzamento_com_a_r2.contagem.as_duas",
+    "medido_em": "a data desta varredura, nunca a data em que o banco foi colhido"
+  }
 }
