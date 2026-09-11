@@ -4696,3 +4696,135 @@ onde estaria o botão, em vez de o leitor descobrir a falta depois de rolar a fi
    nenhuma — a vitrine e a barra do celular moram dentro de páginas que já existiam.
 4. A `Organization` com `sameAs` na home segue pendente de propósito: a Aquametria não tem perfil
    externo nenhum. Nasce quando o T6 der o primeiro.
+
+## 2026-09-11 11h16Z — Bloco T8 na C15: a terceira vitrine do Arquipélago, e um defeito de rótulo que só apareceu lendo a página
+
+**O bloco.** A vitrine de produto chegou à calculadora de iluminação (C15 v1.3.0,
+manifest na revisão 39). Mesmo desenho da C3 e da C5, copiado e não reinventado:
+uma função de cartão em PHP (`aquametria_c15_vitrine_cartao_html`) e o espelho
+dela em JavaScript (`vitrineCartao`), com a MESMA marcação; duas vitrines por
+página — a pintada dentro do resultado e a **servida** no HTML, porque crawler de
+IA não executa JavaScript; e a vitrine **antes** da ficha e da procedência
+(contrato 7). A sequência é calculada UMA vez em `pintarProdutos()` e passada
+para `pintarVitrine()`: calculador de ordem duplicado é combinar de divergir
+depois.
+
+**O ACHADO, e é o que vale mais que a vitrine.** Lendo o resultado como um leitor
+leria — que é o único jeito de pegar este tipo de coisa — a C15 se contradizia no
+cartão da lista técnica, no ar desde a 1.2.0. O nível de **alta exigência tem a
+faixa ABERTA por cima**: a fonte aquarioturbinado publica "acima de 40 lm/L" e
+não diz até onde, então o filtro aceita qualquer fluxo acima do piso. Só que a
+frase do cartão dizia, para TODO mundo que passasse, "fica dentro da faixa de 40
+a 60 lm/L que este nível pede" — e num aquário de 60 cm com 57,6 L a Chihiros
+WRGB-II Pro 60 entrega **115,1 lm/L**. Afirmar que 115 está dentro de 40 a 60 é a
+contradição do item 2 do despacho da Sentinela de 10/09 em outra roupa.
+
+**A elegibilidade NÃO mudou e a ordem NÃO mudou** — a mesma escolha que a C5 fez
+em 10/09, e pelo mesmo motivo: a régua estava certa, o rótulo é que mentia. A
+lista passou a ter dois grupos, "dentro do intervalo que as três fontes publicam"
+e "acima do teto da leitura mais alta, na parte da faixa que a fonte deixou
+aberta", cada um com a frase que diz a verdade sobre ele, e quem cai no segundo
+**mostra o lm/L que realmente entrega**. O grupo também foi para o DOM
+(`aqm-c15-produto-acima`), que é por onde o portão confere se o cartão da vitrine
+diz o mesmo grupo que a lista técnica. A distinção viaja na frase do cartão
+porque trilho de `scroll-snap` não comporta cabeçalho de grupo — lição da C5,
+copiada.
+
+**Preço passou a sair, e sai datado.** As duas frases do snippet que diziam "não
+publicamos preço" foram reescritas na MESMA versão, mais a página
+`conteudo/calculadora-de-iluminacao.md` e o parágrafo da
+`conteudo/divulgacao-de-afiliados.md`: página que mostra preço e diz que não
+publica preço se contradiz. O que a seção 7 proíbe é preço **cravado como atual**;
+cotação com data ao lado é o que ela permite. Continua sem `Product`/`Offer` no
+JSON-LD, de propósito: `Offer.price` afirma preço de hoje, e o que temos é
+cotação de uma data — mentir em formato de máquina é pior, porque ninguém revisa.
+
+**Vieram junto as três dívidas da seção 6** que a C5 pagou em 10/09: linha de
+promessa antes do formulário, barra fixa do celular enquanto o resultado está
+fora da tela, e rolagem até o resultado ao calcular.
+
+**A ESCOLHA DO AQUÁRIO DE REFERÊNCIA VIROU CONTEÚDO, porque calar o motivo seria
+colher cereja.** A vitrine servida usa um aquário de 90 × 45 × 45 cm (170 L) em
+alta exigência, e o parágrafo abaixo dos cartões diz por quê: varrendo os seis
+aquários da tabela nos três níveis, **este é o único caso em que três luminárias
+do banco cobrem o vidro E caem dentro do intervalo publicado**. Nos níveis baixo
+e médio a lista sai vazia em quase todos os tamanhos — não porque a conta erre,
+mas porque o catálogo brasileiro de luminária com lúmen declarado é curto
+justamente na faixa de 10 a 40 lm/L. Isso é **faixa descoberta medida** (seção
+14.3) e é a lista de compras do banco de iluminação, não estatística. Medido
+célula a célula (seis aquários × três níveis = 18 células): **9 das 18 têm algum
+produto**, e **1 única** tem três ou mais DENTRO do intervalo publicado — a de
+90 cm em alta exigência, que é por isso a referência da vitrine servida. Das
+outras oito não vazias, quatro só têm itens acima do teto da leitura mais alta,
+e três têm um produto só. **Nenhuma célula de nível baixo tem produto abaixo de
+120 cm.**
+
+**O gerador ganhou o portão dos outros dois** (`gerar-catalogo-iluminacao.py`):
+`imagem` só viaja com URL **e** `alt` — url sem alt PARA o gerador —, `preco` vem
+de `produtos-cotacoes.json` como faixa com a data mais antiga, e qualquer chave
+de comissão no item barra a gravação. Os 10 `alt` do banco de iluminação foram
+**acentuados** (a dívida que o PROMPT registrava; falta agora só o de mídia).
+
+**MEDIDO, e corrige de novo o mesmo erro de leitura que a C5 ensinou:** a vitrine
+da C15 tem **4 de 15 com link, 2 com foto, 4 com cotação datada**. O banco de
+iluminação tem 10 registros com foto — mas 8 deles são as Soma, que não declaram
+lúmen e por isso nem chegam ao catálogo. Conte foto e link **depois** do portão
+de elegibilidade; a linha "vitrine: N de M" no fim do gerador existe para isso.
+**11 das 15 luminárias do catálogo esperam link de afiliado.**
+
+**Receita (item 4 do despacho de 10/09, que é registro e não pedido de mudança de
+ordem).** No caso do teste (60 cm, alta exigência) os três primeiros da lista não
+têm link e o quarto tem; na vitrine servida (90 cm, alta) o primeiro não tem e o
+segundo tem. O topo continua sendo o espaço mais caro da página. Nenhum dos 11
+sem link é "sem loja possível hoje" por impedimento conhecido — todos são Chihiros
+e similares vendidos no Brasil; o que falta é a geração do link, que tem teto de
+calendário e é da Sentinela estratégica.
+
+**Verificação (seção 8), toda ela antes de dar o bloco por entregue:**
+- `php -l` limpo nos 11 snippets; `conferir-protecao-funcoes.py` ok (41 funções
+  da C15, todas dentro de `function_exists`); `conferir-slugs.py` ok.
+- `validar-produtos.py`: 78 produtos, 39 cotações, **0 erro**, 9 avisos (todos
+  V20/V14/V11 já conhecidos).
+- `teste-navegador-c15-vitrine.mjs`, **novo, 55 afirmações, tudo passou**.
+- `teste-navegador-c15.mjs`: **78 afirmações, tudo passou**.
+- `teste-navegador-visibilidade-ia.mjs`: **155 afirmações**, tudo passou.
+- `teste-navegador-cinco.mjs`: **56 afirmações**, tudo passou.
+- Zero `&#038;` DENTRO de `<script>` (medido nos blocos `<script>`, não na página
+  inteira); `&amp;` `&lt;` `&gt;` `&quot;` uma vez cada, que é o `esc()` da própria
+  calculadora.
+- 0 px de rolagem horizontal a 390 px, com a página medida em **155 KB** — a
+  asserção de tamanho entrou no teste justamente por causa da cicatriz da
+  Robometria: render de bancada que serve metade mede 0 px por não ter o que
+  estourar.
+
+**TRÊS TESTES NEGATIVOS, porque teste que mede a si mesmo é teste verde que não
+mede nada:** (1) o rótulo voltando a dizer "dentro dos" para todo mundo — três
+portões reprovaram, e a saída mostrou literalmente "6.630 lm — 115,1 lm/L, dentro
+dos 40 a 60 lm/L", que é o defeito que estava no ar; (2) a vitrine reordenando
+para pôr quem tem link na frente — o portão central reprovou; (3) o produto sem
+foto sumindo da vitrine servida — reprovou por sobrar menos de três cartões.
+Mais um no gerador: apagar o `alt` da A901 fez o script recusar gravar.
+
+**Um caso de teste errado foi corrigido no caminho, e a correção é informação:**
+a primeira versão do portão de lista vazia usava "60 cm no nível médio". Reprovou
+com razão — ali a lista fica sem ninguém DENTRO da faixa, mas ainda tem os
+**reguláveis**, que são modelos acima do teto com dimmer declarado. Lista vazia de
+verdade é outra coisa, e o caso passou a ser um aquário de 115 cm, que nenhuma
+luminária do banco declara cobrir.
+
+**Uma trava de teste foi afrouxada, e só depois de medir:** `ERR_TUNNEL` e
+`ERR_PROXY` entraram na lista de erros de rede que o `teste-navegador-c15.mjs`
+ignora, ao lado de `ERR_CONNECTION`/`NAME`/`INTERNET` que já estavam lá desde
+08/09. Motivo medido: as ÚNICAS duas requisições que falham nesta página são a
+folha do Google Fonts (que vem da casca) e a foto da A901 no CDN da Shopee (que a
+vitrine servida pede) — as duas de domínio externo, as duas fora do alcance da
+nuvem, as duas vivas no navegador do Raphael. `pageerror` continua reprovando
+sempre, e nenhum outro tipo de erro é filtrado.
+
+**Próximo passo desbloqueado:** T8 na C12 (mídia filtrante), que é a última da
+fila de vitrines — na C1 provavelmente não nasce, porque litragem é geometria e
+geometria não escolhe produto. Antes dela, acentuar os `alt` do banco de mídia e
+copiar para `gerar-catalogo-midias.py` o mesmo portão de `alt`/`preco`/comissão
+que os outros três geradores já têm. E fica anotado para o T3: a **faixa
+descoberta de 10 a 40 lm/L** do banco de iluminação é a lista de compras de
+catálogo mais urgente desta entidade, medida célula a célula neste bloco.

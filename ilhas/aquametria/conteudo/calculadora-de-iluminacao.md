@@ -60,7 +60,7 @@ O teto declarado vai de 1,15 a 1,59 vez o comprimento da peça — uma peça de 
 
 **Não publica número para aquário marinho nem para coral.** O levantamento não trouxe PAR nem lm/L de recife com fonte brasileira, e aqui não se extrapola água doce para coral.
 
-**Não publica preço.** Preço muda toda semana; um número velho na tela seria pior que nenhum.
+**Não publica preço de hoje.** Desde 11/09/2026 a vitrine mostra a **cotação** que lemos no anúncio, com a data em que a lemos ao lado — que é outra coisa. Preço muda toda semana, e um número velho passando por atual seria pior que nenhum; um número velho que diz quando foi lido é informação honesta. Confira no anúncio antes de comprar: o valor da loja é o que vale.
 
 ## Como a lista de luminárias é montada
 

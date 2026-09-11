@@ -4,8 +4,8 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 38,
-  "atualizado_em": "2026-09-10",
+  "revisao": 39,
+  "atualizado_em": "2026-09-11",
   "estado": "fundacao",
   "desembarque": {
     "aprovado": true,
@@ -107,9 +107,9 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "518738391c511266dd355541fd4b2e35e46c6105a77daeb23b4dab9a205df356",
-      "descricao": "v1.2.0 (09/09/2026): a C15 deixa de ser um formulario vazio para quem nao executa JavaScript. Tres pecas da secao 5 do ARQUIPELAGO.md que faltavam nesta pagina e ja existiam na C5: (a) RESPOSTA ANTES DA EXPLICACAO, em frase autossuficiente com o numero, a unidade, a condicao e a data, escrita para sobreviver a ser citada fora de contexto; (b) TABELA DE EXEMPLOS PRE-RENDERIZADA no HTML servido — seis aquarios de 30 a 120 cm resolvidos no PHP com as MESMAS regras do script (o lm() e o litros() sao espelhados funcao a funcao, senao a tabela contradiria a calculadora logo acima dela), nos tres niveis de exigencia, com a luminaria do banco que atende o nivel medio; tres das seis linhas dizem que NENHUMA luminaria atende, com o motivo, porque bloco vazio e portao e nao defeito, e silencio parece defeito; (c) JSON-LD no wp_head (NUNCA dentro do retorno do shortcode, que atravessa os filtros do the_content) com WebApplication e FAQPage de 15 perguntas, cada resposta carregando o mesmo numero que a tabela servida mostra. A escolha do produto na tabela repete a peneira do escolher() do script na ordem da secao 7: cobertura declarada pelo fabricante primeiro, fluxo dentro da faixa depois, comissao nunca. Duas classes CSS novas (aqm-c15-exemplos, aqm-c15-aviso-tabela) porque reusar as antigas quebrava os localizadores do teste de navegador — defeito pego pelo proprio teste. Verificado: 78 afirmacoes em Chromium real, console limpo; JSON-LD analisado e valido; zero entidade &#038; dentro de <script>. Anterior — v1.1.1: catalogo de iluminacao e barrados. 09/09/2026, sem mudanca de calculo nem de texto: o bloco de resposta direta ganhou a classe aqm-c15-direta ao lado da aqm-c15-citar, e o painel de exemplos ganhou a aqm-c15-bloco-exemplos. Sao localizadores, nao estilo. Motivo: a C15 tinha as tres pecas da secao 5 desde a v1.2.0 e mesmo assim ficava FORA do teste que as mede, porque o bloco de resposta direta usava a MESMA classe da caixa de citacao do resultado (duas coisas diferentes com o mesmo nome) e o painel nao tinha onde o teste pendurar o localizador. Peca entregue sem teste e peca que a proxima sessao quebra sem ninguem notar.",
-      "versao": "1.2.0"
+      "sha256": "2f74d7ed0f72ad3c4a2d948baa3ac2d243754d0995acf4207fc4ea5670a59cec",
+      "descricao": "v1.3.0 (11/09/2026) — BLOCO T8: a VITRINE de produto chega a C15, a terceira do Arquipelago depois da C3 e da C5 e com o mesmo desenho: uma funcao de cartao em PHP e o espelho dela em JavaScript com a MESMA marcacao, duas vitrines por pagina (a pintada dentro do resultado e a SERVIDA no HTML, porque crawler de IA nao executa JavaScript) e a vitrine ANTES da ficha e da procedencia (contrato 7). A sequencia e calculada UMA vez em pintarProdutos() e passada para pintarVitrine(): calculador de ordem duplicado e combinar de divergir depois. E UM DEFEITO DE ROTULO CORRIGIDO NO CAMINHO, achado lendo a pagina como um leitor leria: o nivel de alta exigencia tem faixa ABERTA por cima (a fonte aquarioturbinado publica 'acima de 40 lm/L' e nao diz ate onde), e por isso o filtro aceita qualquer fluxo acima do piso — so que o cartao dizia 'fica dentro da faixa de 40 a 60 lm/L' para TODO mundo, inclusive para a Chihiros WRGB-II Pro 60, que num aquario de 60 cm entrega 115,1 lm/L. A ELEGIBILIDADE NAO MUDOU e a ORDEM NAO MUDOU: a lista passou a ter dois grupos, 'dentro do intervalo que as tres fontes publicam' e 'acima do teto da leitura mais alta, na parte da faixa que a fonte deixou aberta', e quem cai no segundo mostra o lm/L que realmente entrega. A distincao viaja na frase do cartao, porque trilho de scroll-snap nao comporta cabecalho de grupo. PRECO passou a sair DATADO e as duas frases que diziam 'nao publicamos preco' foram reescritas na mesma versao. Vieram junto as tres dividas da secao 6: promessa antes do formulario, barra fixa do celular e rolagem ate o resultado. A vitrine servida usa um aquario de 90x45x45 cm em alta exigencia e DIZ por que: e o unico dos seis casos da tabela, nos tres niveis, em que tres luminarias do banco cobrem o vidro e caem dentro do intervalo publicado — a lacuna do catalogo brasileiro de 10 a 40 lm/L virou conteudo em vez de silencio. MEDIDO: vitrine de 4 de 15 com link, 2 com foto, 4 com cotacao datada — foto e link contados DEPOIS do portao de elegibilidade, porque das 10 luminarias com foto no banco 8 sao Soma que nem chegam ao catalogo por nao declararem lumen. Verificacao: teste-navegador-c15-vitrine.mjs (55 afirmacoes, novo), teste-navegador-c15.mjs (78), visibilidade-ia (155), cinco (56); tres testes negativos — rotulo mentindo, vitrine reordenando por link e produto sem foto sumindo — fizeram os portoes reprovarem como deviam. Zero &#038; dentro de <script>.",
+      "versao": "1.3.0"
     },
     {
       "id": "aquametria-artigos",
@@ -175,7 +175,7 @@
       ],
       "verificado_em": "2026-09-08",
       "publicar": true,
-      "sha256": "46196886bcdb4903208d47d7190a3e0b9aa66b8d7c5ffcc4fe41d0e4edb804e7",
+      "sha256": "5174c4568f2927deccfcd51a8b9ded4a8d4bb931036bbc96418d79b314a68ee2",
       "descricao": "Pagina institucional exigida pelo primeiro bloco de produto (C3) e pela autorregulamentacao publicitaria brasileira: declara o link de afiliado, transcreve a regra V16 na integra, explica que quem entra na lista e a ordem sao decididos so por adequacao tecnica, que produto sem link aparece igual e que sem produto adequado nao aparece nada, mostra a escada de fontes na tela, diz por que preco nao e publicado em pagina de calculadora e admite o tamanho atual do programa. Linkada do rodape do site (casca 1.0.3) e do bloco de produto da C3."
     },
     {
@@ -274,7 +274,7 @@
       ],
       "verificado_em": "2026-09-08",
       "publicar": true,
-      "sha256": "7cace4392a2ffbc71f83b3902a329fe4f78ee1036d7dd4ff2316958c24cc5b39",
+      "sha256": "2d3cde3a20e31a00b8c987cc2426bbe34ea058c5dae011ee895e1cd3e3b2ccb0",
       "descricao": "Pagina-ancora da C15, com o shortcode no corpo. Poe a divergencia na abertura (o mesmo rotulo com o dobro do numero em tres fontes), publica a tabela das tres leituras, explica as tres coisas que a calculadora faz de diferente (divergencia sem media, cobertura de comprimento conferida, custo da luz acesa) e as quatro que ela se recusa a fazer, com o motivo de cada uma: PPFD, conversao de peca em cobertura (com a tabela de 5 produtos que mostra a razao variando de 1,15 a 1,59 vez), numero para marinho e preco. Traz as tres regras do bloco de produto e o caso que mostra o custo delas — a luminaria mais cara do banco tem link e nao e sugerida. Fecha com fotoperiodo que nao compensa lumen, a sobreposicao do CO2 e a cegueira da regua para profundidade. Linka C1, C3, C5, C12, o artigo pareado, metodologia e divulgacao."
     },
     {
@@ -380,7 +380,7 @@
       "verificado_em": "2026-09-09",
       "registros": 20,
       "publicar": false,
-      "sha256": "f942b1712af8250633073974e22ec2326479205b9991449fd06e60510a275ea6",
+      "sha256": "c8cad5b237a59ee045b69e41d69307b8415932b1d95182b1d03265096e4421d1",
       "descricao": "Banco de iluminacao, ampliado em 08/09/2026 pela coleta que abriu a C15: Ista IL-401 60 e o LED 60 cm dos Aquarios do Rio ganharam voltagem (bivolt) e cobertura declarada e sairam do barrado; entrou a WFish WF-H600 WRGB, terceiro caso do padrao 'peca menor que o nome'; e ficou registrado o conflito nome-contra-ficha do IL-401, vendida como 60 cm e medindo 56. Resultado: 6 registros, 3 aptos a serem sugeridos pela C15 (1 com link) e 3 barrados — dois por nao declararem lumen e um, o mais caro do banco, por nao declarar voltagem mesmo tendo link de afiliado. A lacuna estrutural continua sendo o conteudo: o varejo brasileiro vende luminaria por centimetro de peca e omite o lumen. Em 09/09/2026 entraram 10 registros com link e imagem (Soma WRGB S-200 a S-1200 e Chihiros A901 e A451M): as 8 Soma ficaram 'parcial' por falta de lumen publicado e as 2 Chihiros sao as primeiras luminarias sugeriveis com link depois da Ista."
     },
     {
@@ -555,14 +555,14 @@
       "id": "gerar-catalogo-iluminacao",
       "arquivo": "ferramentas/gerar-catalogo-iluminacao.py",
       "publicar": false,
-      "sha256": "87789ac0a56ef16bd737a602c7ac430cbcab2c21d2cda88fe1be84fc21319a7f",
+      "sha256": "9b8328abb93bc54e3c48e9705a85620c750175222595e3cf0e4717a6ba90078b",
       "descricao": "Gera os DOIS blocos que a C15 embute no snippet a partir de dados/produtos-iluminacao.json: o catalogo das luminarias aptas (CATALOGO-INICIO/FIM) e a lista dos BARRADOS com o motivo de cada um (BARRADOS-INICIO/FIM), que a tela publica. Aplica o minimo_para_sugerir da c15-iluminacao, que desde 08/09/2026 exige comprimento_aquario_cm DECLARADO. Manda a ESTRUTURA do conflito de comprimento, nunca o texto: o banco e escrito sem acento e a tela sai acentuada, entao a frase e escrita no JavaScript do snippet. Rodar SEMPRE depois de mexer no banco de iluminacao. Nao vai para o WordPress."
     },
     {
       "id": "teste-navegador-c15",
       "arquivo": "ferramentas/teste-navegador-c15.mjs",
       "publicar": false,
-      "sha256": "82ec8b953c683451c8a15700d21b4a5aba05f36aea7191fc1fbc0be468e5a76f",
+      "sha256": "1da3f36beb7883ffe3baf6b77cf2751deb68ffbe00358f14a0791fd3bd8d905e",
       "descricao": "Teste de navegador da C15 em Chromium de verdade (Playwright): 21 cenarios e mais de 60 verificacoes, entre elas a faixa nos tres niveis, a tabela das tres leituras com a divergencia de 2x, a faixa aberta do nivel alto, o aviso de luz alta sem CO2, a sobreposicao dos limites de CO2, os quatro regimes de fotoperiodo, o aviso de lamina funda, a cobertura de comprimento como barreira do bloco de produto, a lista publicada dos barrados, os atributos do link de afiliado, o painel de consumo em kWh e em reais, o caminho inverso, a mescla do estado compartilhado com C1/C3/C5, o permalink e o celular de 390 px sem rolagem horizontal. Nao vai para o WordPress."
     },
     {
@@ -704,6 +704,13 @@
       "publicar": false,
       "sha256": "d2e4ba12e968f1af91aa0b6493255b941da7451095855625829ffe272b946534",
       "descricao": "Portao da vitrine da C5 (bloco T8, 10/09/2026). Copia o desenho do teste da C3 e acrescenta o que so a C5 tem: a lista dela e partida em dois grupos — quem cabe na faixa calculada e o degrau comercial acima —, e um cartao de vitrine nao comporta cabecalho de grupo, entao a distincao viaja na frase do cartao. A afirmacao central continua sendo a mesma da C3 (a ordem da vitrine e identica a da lista tecnica), e a afirmacao nova e que o GRUPO de cada cartao e o mesmo que a lista tecnica deu a ele: um cartao do degrau acima dizendo \"dentro dos ... W\" seria a contradicao do item 2 do despacho de 10/09 reencenada em foto e botao de loja. Mede as duas metades da pagina, a vitrine SERVIDA com o JavaScript desligado e a PINTADA com ele ligado, mais a promessa, a barra fixa do celular e a rolagem ate o resultado. Nao guarda numero esperado nenhum: le AQM_C5_CATALOGO e a faixa que a propria pagina publicou."
+    },
+    {
+      "id": "teste-navegador-c15-vitrine",
+      "arquivo": "ferramentas/teste-navegador-c15-vitrine.mjs",
+      "publicar": false,
+      "sha256": "4b2a3b0d21435c10c70e156bfb5fc0f81d88589bcb04b937b5c651b3fb7bf4dd",
+      "descricao": "Portao da vitrine da C15 (bloco T8, 11/09/2026). Copia o desenho do teste da C5 e troca o que o grupo significa aqui: o nivel de alta exigencia tem a faixa ABERTA por cima, porque a fonte aquarioturbinado publica 'acima de 40 lm/L' e nao diz ate onde. Entao os dois grupos sao 'dentro do intervalo que as tres fontes publicam' e 'acima do teto da leitura mais alta' — e ate a v1.2.0 o cartao dizia 'dentro da faixa de 40 a 60 lm/L' inclusive para uma luminaria de 115,1 lm/L. O caso do teste (60 cm, 57,6 L, alta exigencia) reproduz exatamente essa lista, com um item dentro e tres acima. Afirmacao central, igual a da C3 e a da C5: a ordem da vitrine e identica a da lista tecnica, cartao por cartao. Mede as duas metades da pagina — a vitrine SERVIDA com JavaScript DESLIGADO (o que um crawler de IA recebe) e a PINTADA com ele ligado (o que o comprador ve) — e nao guarda numero esperado nenhum: le o AQM_C15_CATALOGO que o snippet embute e tira a regua da faixa do TEXTO que a propria pagina publicou. Confere ainda que nenhum produto some por falta de foto ou link, que todo preco sai como cotacao com data, que o alt das imagens sai acentuado, que a vitrine vem antes da procedencia, que a lista vazia DIZ por que esta vazia, e a barra fixa e a rolagem do celular. 55 afirmacoes. Tres testes negativos feitos em 11/09/2026 — rotulo mentindo, vitrine reordenando por quem tem link e produto sem foto sumindo — fizeram os portoes reprovarem como deviam."
     }
   ]
 }

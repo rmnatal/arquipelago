@@ -35,8 +35,17 @@ const erros = [];
 // casca pede a folha do Google Fonts, que o egresso do container barra: sem este
 // filtro o teste fica vermelho por causa da rede, e nao do codigo. Mesmo filtro que
 // teste-navegador-cinco.mjs ja usava desde 08/09/2026 — aqui ele estava faltando.
+//
+// 11/09/2026: ERR_TUNNEL entrou na lista pelo mesmo motivo e depois de MEDIDO.
+// O egresso do container passou a responder pelo proxy, e o que antes saia como
+// ERR_CONNECTION_* agora sai como ERR_TUNNEL_CONNECTION_FAILED. Medido nesta
+// pagina: as UNICAS duas requisicoes que falham sao a folha do Google Fonts, que
+// vem da casca, e a foto da Chihiros A901 no CDN da Shopee, que a vitrine
+// servida pede — as duas de dominio externo, as duas fora do alcance da nuvem, e
+// as duas vivas no navegador do Raphael. Nenhum outro tipo de erro e filtrado:
+// pageerror continua reprovando sempre.
 page.on('console', m => {
-  if (m.type() === 'error' && !/ERR_(CONNECTION|NAME|INTERNET)/.test(m.text())) erros.push(m.text());
+  if (m.type() === 'error' && !/ERR_(CONNECTION|NAME|INTERNET|TUNNEL|PROXY)/.test(m.text())) erros.push(m.text());
 });
 page.on('pageerror', e => erros.push('pageerror: ' + e.message));
 

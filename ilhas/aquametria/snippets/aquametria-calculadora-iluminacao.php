@@ -1,5 +1,41 @@
 /**
  * Aquametria Calculadora de Iluminação e Fotoperíodo — C15
+ * Versão: 1.3.0 (11/09/2026) — BLOCO T8: a VITRINE de produto chega à C15, a terceira
+ *   do Arquipélago depois da C3 e da C5, com o mesmo desenho — uma função de cartão em
+ *   PHP e o espelho dela em JavaScript, duas vitrines por página (a pintada dentro do
+ *   resultado e a SERVIDA no HTML, porque crawler de IA não executa JavaScript), e a
+ *   vitrine ANTES da ficha e da procedência (contrato 7).
+ *
+ *   E UM DEFEITO DE RÓTULO CORRIGIDO NO CAMINHO, achado lendo a página como um leitor
+ *   leria — que é o único jeito de achar este tipo de coisa. O nível "alta exigência" é
+ *   uma faixa ABERTA: a fonte aquarioturbinado publica "acima de 40 lm/L" sem dizer até
+ *   onde, e por isso o filtro aceita qualquer fluxo acima do piso. Só que o cartão da
+ *   lista dizia, para TODO mundo que passasse, "fica dentro da faixa de 40 a 60 lm/L que
+ *   este nível pede" — e num aquário de 60 cm a Chihiros WRGB-II Pro 60 entrega 115 lm/L.
+ *   Afirmar que 115 está dentro de 40 a 60 é a mesma contradição que a Sentinela mandou
+ *   consertar na C5 em 10/09/2026, em outra roupa. A ELEGIBILIDADE NÃO MUDOU e a ORDEM
+ *   NÃO MUDOU — o que mudou foi o rótulo: a lista passou a ter dois grupos, "dentro do
+ *   intervalo que as três fontes publicam" e "acima do teto da leitura mais alta, na
+ *   parte da faixa que a fonte deixou aberta", cada um com a frase que diz a verdade
+ *   sobre ele. Quem cai no segundo grupo mostra o lm/L que realmente entrega.
+ *
+ *   A distinção de grupo viaja no PRÓPRIO cartão da vitrine, na frase da especificação,
+ *   porque um trilho de scroll-snap não comporta cabeçalho de grupo — é a lição que a C5
+ *   deixou escrita. E a sequência é calculada UMA vez e passada adiante: calculador de
+ *   ordem duplicado é combinar de divergir depois.
+ *
+ *   PREÇO PASSA A SAIR, E SAI DATADO. Até a 1.2.0 esta página dizia duas vezes que não
+ *   publicava preço. A razão era boa — preço muda toda semana — mas resolvia o problema
+ *   errado: o que a seção 7 do contrato proíbe é preço CRAVADO COMO ATUAL. Cotação com a
+ *   data ao lado é permitida, e é o que a seção 6 pede da vitrine. As duas frases foram
+ *   reescritas nesta mesma versão, e a página de conteúdo também: página que mostra preço
+ *   e diz que não publica preço se contradiz.
+ *
+ *   Vieram junto as três dívidas da seção 6 que a C5 pagou em 10/09: a linha de promessa
+ *   antes do formulário, a barra fixa do celular enquanto o resultado está fora da tela,
+ *   e a rolagem até o resultado ao calcular.
+ * Versão: 1.2.0 (09/09/2026) — a resposta direta, a tabela de seis aquários servida no
+ *   HTML e o JSON-LD (bloco T7).
  * Versão: 1.1.1 (09/09/2026) — só o catálogo embutido mudou: entraram quatro Chihiros
  *   A-Series (A301, A361, A601, A801), as únicas do banco que declaram fluxo luminoso em
  *   toda a escada de tamanhos. Nenhuma linha de cálculo foi tocada; o bloco entre
@@ -38,8 +74,14 @@
  *   registros do banco que declaram os dois números, o teto declarado vai de
  *   1,15 a 1,59 vez o comprimento da peça: não há razão constante a extrair.
  *   Constante 'cobertura-luminaria-declarada', convenção editorial declarada.
- * - Não publica preço nem tarifa de energia. O consumo sai em kWh por mês, que
- *   é física; o custo em reais só aparece se a pessoa digitar a própria tarifa.
+ * - Não publica preço de HOJE, e não publica tarifa de energia. O que a vitrine
+ *   mostra desde a 1.3.0 é cotação com a data em que foi lida, que é outra
+ *   coisa e é o que a seção 7 do contrato permite. O consumo sai em kWh por
+ *   mês, que é física; o custo em reais só aparece se a pessoa digitar a
+ *   própria tarifa.
+ * - Não declara Product nem Offer no JSON-LD, e é de propósito: Offer.price
+ *   afirma preço ATUAL, e o que temos é cotação de uma data. Mentir em formato
+ *   de máquina é pior que mentir em texto, porque ninguém revisa.
  *
  * Bloco de produto: as luminárias vêm do catálogo embutido mais abaixo, gerado
  * por ferramentas/gerar-catalogo-iluminacao.py a partir de
@@ -58,7 +100,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_C15_VERSAO' ) ) {
-	define( 'AQUAMETRIA_C15_VERSAO', '1.2.0' );
+	define( 'AQUAMETRIA_C15_VERSAO', '1.3.0' );
 	define( 'AQUAMETRIA_C15_SLUG', 'calculadora-de-iluminacao' );
 	define( 'AQUAMETRIA_C15_VERIFICADO_EM', '08/09/2026' );
 	define( 'AQUAMETRIA_C15_PAGINA_AFILIADOS', 'divulgacao-de-afiliados' );
@@ -72,6 +114,20 @@ if ( ! defined( 'AQUAMETRIA_C15_VERSAO' ) ) {
 	/* Convencao editorial declarada da Aquametria, a mesma da C1: aquario cheio
 	   ate a borda nao existe, e a agua real desconta 3 cm da altura do vidro. */
 	define( 'AQUAMETRIA_C15_BORDA_LIVRE_CM', 3 );
+	/* O aquário de referência da VITRINE SERVIDA, e ele NÃO foi escolhido por ser
+	   bonito: é o único caso, entre os seis da tabela e os três níveis, em que o
+	   banco entrega três luminárias que cobrem o vidro E caem dentro do intervalo
+	   que as três fontes publicam. Medido em 11/09/2026, célula a célula: das 18
+	   células (seis aquários × três níveis), 9 têm algum produto e SÓ ESTA tem
+	   três ou mais dentro do intervalo. Nos níveis baixo e médio a lista sai
+	   vazia em 8 dos 12 casos, e nos 4 que sobram há uma luminária só. Isso é
+	   medição do catálogo brasileiro, e a própria vitrine servida publica o
+	   número em vez de esconder. Escolher o caso e
+	   calar o motivo seria colher cereja; escolher e dizer por quê é medição. */
+	define( 'AQUAMETRIA_C15_VITRINE_CM', 90 );
+	define( 'AQUAMETRIA_C15_VITRINE_LARGURA_CM', 45 );
+	define( 'AQUAMETRIA_C15_VITRINE_ALTURA_CM', 45 );
+	define( 'AQUAMETRIA_C15_VITRINE_NIVEL', 'alta' );
 }
 
 /* ---------------------------------------------------------------------------
@@ -140,6 +196,14 @@ function aquametria_c15_catalogo() {
 			'loja' => 'shopee',
 			'conflito' => null,
 			'observacao' => 'Variante de 45 cm da mesma familia do registro ista-il-401-60, e o unico dos dois com anuncio na Shopee. O varejo brasileiro escreve o 45 cm ora \'I-401\' ora \'IL-400\' (a Pro-Aquarista chama o 45 cm de IL-400 e o 60 cm de IL-401): a equivalencia NAO foi confirmada no fabricante e por isso \'IL-400\' nao entrou em nomes_alternativos. 107 lm/W, coerente com o 60 cm da mesma linha.',
+			'imagem' => null,
+			'preco' => array(
+				'min' => 398.0,
+				'max' => 398.0,
+				'loja' => 'Shopee',
+				'coletado_em' => '2026-09-07',
+				'cotacoes' => 1,
+			),
 		),
 		array(
 			'id' => 'aquarios-do-rio-led-60cm',
@@ -166,6 +230,8 @@ function aquametria_c15_catalogo() {
 			'loja' => null,
 			'conflito' => null,
 			'observacao' => 'Produto sem marca declarada (importado revendido com nome da loja) — situacao comum no Brasil e o motivo de marca aceitar null com o id derivado da loja. Sem marca, casar cotacoes entre lojas fica impossivel: e o pior caso do banco. 100 lm/W. Segue \'parcial\' por causa da marca ausente, e nao por falta de numero: e apto a ser sugerido pela C15. Em 08/09/2026 saiu do barrado: a segunda leitura da ficha trouxe voltagem (bivolt), cobertura declarada de 55 a 75 cm e timer, e com isso passou a ser o registro de MAIOR cobertura declarada do banco de iluminacao — uma peca de 60 cm que a propria loja diz cobrir ate 75 cm de aquario.',
+			'imagem' => null,
+			'preco' => null,
 		),
 		array(
 			'id' => 'chihiros-a-series-a301',
@@ -192,6 +258,8 @@ function aquametria_c15_catalogo() {
 			'loja' => null,
 			'conflito' => null,
 			'observacao' => 'Entrou em 09/09/2026 no bloco T3(a2), e o motivo de entrar e cobertura, nao marca: a linha A-Series e a unica do catalogo que DECLARA fluxo luminoso em toda a escada de tamanhos, e fluxo e o campo que barra a C15. As oito luminarias Soma, que cobririam de 20 a 130 cm e ja tem link de afiliado, continuam barradas porque nem a marca nem nove lojas brasileiras publicam lumen - e estimar lumen a partir do watt seria inventar numero. SEM LINK DE AFILIADO: quem gera o link e a Sentinela Estrategica. O espectro e branco de 8.000 K, sem RGB: a C15 dimensiona por lm/L e o cartao tem de dizer que esta peca nao tem a renderizacao de cor que a linha WRGB entrega. O fabricante declara UM comprimento de aquario (30 cm), nao uma faixa - a mesma leitura que ja valia para a A451M e a A901. Fica \'parcial\' por UM campo: disponibilidade_br. A ficha tecnica veio do fabricante, mas nenhuma loja brasileira foi conferida para este tamanho em 09/09/2026 - e disponibilidade no Brasil so o varejo brasileiro sustenta (nivel 4 ou 5 da escada). A C15 continua podendo sugerir: o campo que falta nao esta no minimo_para_sugerir dela.',
+			'imagem' => null,
+			'preco' => null,
 		),
 		array(
 			'id' => 'chihiros-a-series-a361',
@@ -218,6 +286,8 @@ function aquametria_c15_catalogo() {
 			'loja' => null,
 			'conflito' => null,
 			'observacao' => 'Entrou em 09/09/2026 no bloco T3(a2), e o motivo de entrar e cobertura, nao marca: a linha A-Series e a unica do catalogo que DECLARA fluxo luminoso em toda a escada de tamanhos, e fluxo e o campo que barra a C15. As oito luminarias Soma, que cobririam de 20 a 130 cm e ja tem link de afiliado, continuam barradas porque nem a marca nem nove lojas brasileiras publicam lumen - e estimar lumen a partir do watt seria inventar numero. SEM LINK DE AFILIADO: quem gera o link e a Sentinela Estrategica. O espectro e branco de 8.000 K, sem RGB: a C15 dimensiona por lm/L e o cartao tem de dizer que esta peca nao tem a renderizacao de cor que a linha WRGB entrega. O fabricante declara UM comprimento de aquario (36 cm), nao uma faixa - a mesma leitura que ja valia para a A451M e a A901. Fica \'parcial\' por UM campo: disponibilidade_br. A ficha tecnica veio do fabricante, mas nenhuma loja brasileira foi conferida para este tamanho em 09/09/2026 - e disponibilidade no Brasil so o varejo brasileiro sustenta (nivel 4 ou 5 da escada). A C15 continua podendo sugerir: o campo que falta nao esta no minimo_para_sugerir dela.',
+			'imagem' => null,
+			'preco' => null,
 		),
 		array(
 			'id' => 'chihiros-a-series-a451m',
@@ -244,6 +314,20 @@ function aquametria_c15_catalogo() {
 			'loja' => 'shopee',
 			'conflito' => null,
 			'observacao' => 'Luminaria MARINHA: 50 dos 99 LEDs sao azuis. 3.500 lm com 27 W da 130 lm/W. A C15 dimensiona planta por lm/L e esta peca nao foi feita para planta — quando ela sair no resultado, o cartao tem de dizer que o espectro e de aquario marinho. O fabricante declara UM comprimento (45 cm), nao uma faixa.',
+			'imagem' => array(
+				'url' => 'https://down-bs-br.img.susercontent.com/sg-11134201-22110-t3qqfgb4fnjvc8.webp',
+				'alt' => 'Luminária LED Chihiros Marine A-Series A451M de 45 cm, barra de alumínio com LEDs brancos e azuis para aquário marinho',
+				'largura' => null,
+				'altura' => null,
+				'verificado_em' => null,
+			),
+			'preco' => array(
+				'min' => 463.0,
+				'max' => 463.0,
+				'loja' => 'Shopee',
+				'coletado_em' => '2026-09-09',
+				'cotacoes' => 1,
+			),
 		),
 		array(
 			'id' => 'chihiros-wrgb-ii-slim-90',
@@ -270,6 +354,8 @@ function aquametria_c15_catalogo() {
 			'loja' => null,
 			'conflito' => null,
 			'observacao' => 'Fica \'parcial\' por UM campo: nenhuma das fichas conferidas publica o comprimento da PECA da Slim 90 — a irma de 120 cm publica 1184 x 128 x 15 mm e esta nao publica nada. E ausencia de fonte, nao de importancia: o comprimento da peca nao entra no criterio da C15 (que dimensiona por lumen e por cobertura declarada), entao o registro continua sendo sugerido normalmente. disponibilidade_br ficou \'desconhecido\' porque nenhuma das lojas brasileiras conferidas em 09/09/2026 anuncia a versao Slim, so a WRGB II e a WRGB II Pro. O registro entra porque a C15 dimensiona por lumen e cobertura, nao por loja, e porque a Slim e o contraponto util da familia: mesma cobertura de 90 a 110 cm com 3.600 lm contra os 9.250 lm da Pro — 2,6 vezes menos luz no mesmo aquario, o que separa exigencia baixa de exigencia alta melhor do que qualquer regra de bolso.',
+			'imagem' => null,
+			'preco' => null,
 		),
 		array(
 			'id' => 'ista-il-401-60',
@@ -306,6 +392,8 @@ function aquametria_c15_catalogo() {
 				) ),
 			),
 			'observacao' => 'Unico registro da semente com lumen declarado alto (3717 lm) e agora com voltagem: em 08/09/2026 saiu do barrado e virou o registro mais forte do banco de iluminacao — 106 lm/W, cobertura declarada de 56 a 66 cm. Continua SEM link de afiliado: o anuncio disponivel na Shopee e o da variante de 45 cm (registro ista-i-401-45), com 7,6 W e 810 lm. Traz o conflito nome-contra-ficha: vendida como \'60 cm\', a peca mede 56 cm.',
+			'imagem' => null,
+			'preco' => null,
 		),
 		array(
 			'id' => 'chihiros-wrgb-ii-slim-120',
@@ -332,6 +420,8 @@ function aquametria_c15_catalogo() {
 			'loja' => null,
 			'conflito' => null,
 			'observacao' => 'Mesma razao da Slim 90 para o disponibilidade_br. A peca mede 118,4 cm e a cobertura declarada e de 120 a 140 cm: e mais um caso do padrao que a ilha ja registrou tres vezes — o numero do nome nao e o tamanho da peca, e a peca nao e a cobertura. Aqui o proprio fabricante declara os dois numeros e eles nao coincidem, o que e justamente a prova de que converter um no outro seria inventar faixa. Sobre o status: \'desconhecido\' e um valor do vocabulario, nao um campo vazio, entao o registro e COMPLETO e a C15 pode sugeri-lo. A incerteza fica onde ela existe de verdade, que e dentro do campo de disponibilidade, e a tela diz que nao confirmamos loja brasileira para este modelo.',
+			'imagem' => null,
+			'preco' => null,
 		),
 		array(
 			'id' => 'chihiros-a-series-a601',
@@ -358,6 +448,8 @@ function aquametria_c15_catalogo() {
 			'loja' => null,
 			'conflito' => null,
 			'observacao' => 'Entrou em 09/09/2026 no bloco T3(a2), e o motivo de entrar e cobertura, nao marca: a linha A-Series e a unica do catalogo que DECLARA fluxo luminoso em toda a escada de tamanhos, e fluxo e o campo que barra a C15. As oito luminarias Soma, que cobririam de 20 a 130 cm e ja tem link de afiliado, continuam barradas porque nem a marca nem nove lojas brasileiras publicam lumen - e estimar lumen a partir do watt seria inventar numero. SEM LINK DE AFILIADO: quem gera o link e a Sentinela Estrategica. O espectro e branco de 8.000 K, sem RGB: a C15 dimensiona por lm/L e o cartao tem de dizer que esta peca nao tem a renderizacao de cor que a linha WRGB entrega. O fabricante declara UM comprimento de aquario (60 cm), nao uma faixa - a mesma leitura que ja valia para a A451M e a A901. Fica \'parcial\' por UM campo: disponibilidade_br. A ficha tecnica veio do fabricante, mas nenhuma loja brasileira foi conferida para este tamanho em 09/09/2026 - e disponibilidade no Brasil so o varejo brasileiro sustenta (nivel 4 ou 5 da escada). A C15 continua podendo sugerir: o campo que falta nao esta no minimo_para_sugerir dela.',
+			'imagem' => null,
+			'preco' => null,
 		),
 		array(
 			'id' => 'chihiros-wrgb-ii-pro-60',
@@ -384,6 +476,14 @@ function aquametria_c15_catalogo() {
 			'loja' => 'shopee',
 			'conflito' => null,
 			'observacao' => 'Substitui o registro aquario-projetado-x1-fr-60w (removido em 07/09/2026: produto sem marca, sem comprimento declarado e sem anuncio real). E o unico registro do banco que declara comprimento de aquario E lumen — mas a voltagem nao e declarada em nenhuma das fontes, e voltagem e requisito para a C15 SUGERIR: enquanto nao houver, ele entra como ficha e nao como sugestao. 89,6 lm/W. O PAR ~50-60 citado pelo varejo vem \'no substrato\', sem distancia em cm: sem distancia o PPFD e inutil e o validador o rejeita (V5), entao nao foi gravado. DESTRAVADA EM 09/09/2026, na leva de fechamento de faixa: a voltagem apareceu quando a familia WRGB II inteira entrou no banco. A AquaBetta, varejo BR especializado, declara BIVOLT no titulo de dois membros diferentes da linha (WRGB2 Pro 90 cm e WRGB 2 Series 45 cm), e a ficha da serie descreve a alimentacao como entrada de 100 a 240 V por fonte externa de 12 V. Nao e inferencia de voltagem, que a ilha proibe: e declaracao de varejo sobre a linha, e a familia inteira acende pela mesma fonte externa. Consequencia direta: esta e a PRIMEIRA luminaria com link de afiliado que sai de barrada para sugerida sem ter mudado nada nela — o que faltava era um campo colhido para outro produto.',
+			'imagem' => null,
+			'preco' => array(
+				'min' => 3079.88,
+				'max' => 3079.88,
+				'loja' => 'Shopee',
+				'coletado_em' => '2026-09-07',
+				'cotacoes' => 1,
+			),
 		),
 		array(
 			'id' => 'chihiros-a-series-a801',
@@ -410,6 +510,8 @@ function aquametria_c15_catalogo() {
 			'loja' => null,
 			'conflito' => null,
 			'observacao' => 'Entrou em 09/09/2026 no bloco T3(a2), e o motivo de entrar e cobertura, nao marca: a linha A-Series e a unica do catalogo que DECLARA fluxo luminoso em toda a escada de tamanhos, e fluxo e o campo que barra a C15. As oito luminarias Soma, que cobririam de 20 a 130 cm e ja tem link de afiliado, continuam barradas porque nem a marca nem nove lojas brasileiras publicam lumen - e estimar lumen a partir do watt seria inventar numero. SEM LINK DE AFILIADO: quem gera o link e a Sentinela Estrategica. O espectro e branco de 8.000 K, sem RGB: a C15 dimensiona por lm/L e o cartao tem de dizer que esta peca nao tem a renderizacao de cor que a linha WRGB entrega. O fabricante declara UM comprimento de aquario (80 cm), nao uma faixa - a mesma leitura que ja valia para a A451M e a A901. Fica \'parcial\' por UM campo: disponibilidade_br. A ficha tecnica veio do fabricante, mas nenhuma loja brasileira foi conferida para este tamanho em 09/09/2026 - e disponibilidade no Brasil so o varejo brasileiro sustenta (nivel 4 ou 5 da escada). A C15 continua podendo sugerir: o campo que falta nao esta no minimo_para_sugerir dela.',
+			'imagem' => null,
+			'preco' => null,
 		),
 		array(
 			'id' => 'chihiros-a-series-a901',
@@ -436,6 +538,20 @@ function aquametria_c15_catalogo() {
 			'loja' => 'shopee',
 			'conflito' => null,
 			'observacao' => '8.200 lm com 55 W da 149 lm/W, a maior eficacia do banco — numero de varejo, nao de fabricante. Atencao a geracao: a Serie A II 901, outra versao da mesma marca, e publicada com 7.200 lm pelo varejo europeu (Aquasabi); sao produtos diferentes e a ficha aqui e da A901 da A-Series. O fabricante declara UM comprimento (90 cm), nao uma faixa, entao a C15 so sugere esta luminaria para aquario de 90 cm: transformar peca de 90 cm em cobertura mais larga seria inventar faixa.',
+			'imagem' => array(
+				'url' => 'https://down-bs-br.img.susercontent.com/sg-11134201-7rd3v-lvuh440s5u5jc3.webp',
+				'alt' => 'Luminária LED Chihiros A-Series A901, barra de alumínio anodizado de 90 cm com LEDs brancos de espectro completo acesos',
+				'largura' => null,
+				'altura' => null,
+				'verificado_em' => null,
+			),
+			'preco' => array(
+				'min' => 768.6,
+				'max' => 768.6,
+				'loja' => 'Shopee',
+				'coletado_em' => '2026-09-09',
+				'cotacoes' => 1,
+			),
 		),
 		array(
 			'id' => 'chihiros-wrgb-ii-90',
@@ -462,6 +578,8 @@ function aquametria_c15_catalogo() {
 			'loja' => null,
 			'conflito' => null,
 			'observacao' => 'Entrou pela mesma razao da Pro 90: cobre a FAIXA de 90 a 110 cm, que estava vazia. O conflito de fluxo dentro de uma unica pagina de loja e o segundo achado do bloco e vale como conteudo: quando o proprio varejo especializado nao consegue manter dois numeros iguais na mesma pagina, a regra de bolso de \'lumens por litro\' que a web brasileira repete esta sendo aplicada sobre um dado que ninguem confere.',
+			'imagem' => null,
+			'preco' => null,
 		),
 		array(
 			'id' => 'chihiros-wrgb-ii-pro-90',
@@ -488,6 +606,8 @@ function aquametria_c15_catalogo() {
 			'loja' => null,
 			'conflito' => null,
 			'observacao' => 'PRIMEIRA luminaria do banco que cobre uma FAIXA acima de 80 cm em vez de um comprimento unico, e por isso e a que mais move a cobertura da C15: as duas Chihiros A-Series que ja existiam ali declaram 80 cm e 90 cm cravados, entao 95, 100, 105 e 110 cm saiam sem nenhuma opcao. 9.250 lm com 110 W da 84,1 lm/W, abaixo da Ista branca de 106 lm/W — que e exatamente o indicio do artigo da C15: o lumen e ponderado pela visao humana e desconta o azul e o vermelho, as duas faixas da clorofila, entao a luminaria feita para planta tende a marcar MENOS lumen que a calha branca de mesmo consumo.',
+			'imagem' => null,
+			'preco' => null,
 		),
 		array(
 			'id' => 'chihiros-wrgb-ii-120',
@@ -514,6 +634,8 @@ function aquametria_c15_catalogo() {
 			'loja' => null,
 			'conflito' => null,
 			'observacao' => 'O registro e completo; disponibilidade_br fica \'desconhecido\': das lojas brasileiras conferidas em 09/09/2026, so a Fazenda Submersa anuncia um modelo de 120 cm da familia, e o dela e o PRO. Este registro fecha o degrau de 120 cm que a varredura mediu VAZIO em toda a escala de exigencia. Sobre o status: \'desconhecido\' e um valor do vocabulario, nao um campo vazio, entao o registro e COMPLETO e a C15 pode sugeri-lo. A incerteza fica onde ela existe de verdade, que e dentro do campo de disponibilidade, e a tela diz que nao confirmamos loja brasileira para este modelo.',
+			'imagem' => null,
+			'preco' => null,
 		),
 	);
 	/* CATALOGO-FIM */
@@ -660,8 +782,8 @@ max-width:52rem;font-family:var(--c15-texto);color:var(--c15-tinta);}
 .aqm-c15-loja{display:inline-block;font-family:var(--c15-texto);font-weight:600;font-size:.88rem;padding:.45rem .9rem;border-radius:2px;background:var(--c15-lamina);color:var(--c15-superficie);text-decoration:none;}
 .aqm-c15-loja:hover{filter:brightness(1.08);color:var(--c15-superficie);}
 .aqm-c15-semloja{font-size:.82rem;color:var(--c15-legenda);font-style:italic;}
-.aqm-c15-aviso-afiliado,.aqm-c15-aviso-tabela{background:var(--c15-papel);border:1px solid var(--c15-traco);border-left:3px solid var(--c15-alerta);border-radius:2px;padding:.8rem 1rem;font-size:.86rem;line-height:1.5;color:var(--c15-legenda);margin:1rem 0 0;}
-.aqm-c15-aviso-afiliado strong,.aqm-c15-aviso-tabela strong{color:var(--c15-tinta);}
+.aqm-c15-aviso-afiliado,.aqm-c15-aviso-tabela,.aqm-c15-aviso-vitrine{background:var(--c15-papel);border:1px solid var(--c15-traco);border-left:3px solid var(--c15-alerta);border-radius:2px;padding:.8rem 1rem;font-size:.86rem;line-height:1.5;color:var(--c15-legenda);margin:1rem 0 0;}
+.aqm-c15-aviso-afiliado strong,.aqm-c15-aviso-tabela strong,.aqm-c15-aviso-vitrine strong{color:var(--c15-tinta);}
 .aqm-c15-citar{background:var(--c15-papel);border:1px dashed var(--c15-traco);border-radius:3px;padding:.85rem 1rem;font-size:.9rem;line-height:1.5;margin:0 0 1rem;}
 .aqm-c15-citar p{margin:0 0 .6rem;}
 .aqm-c15-rolagem{overflow-x:auto;-webkit-overflow-scrolling:touch;}
@@ -681,9 +803,37 @@ max-width:52rem;font-family:var(--c15-texto);color:var(--c15-tinta);}
 .aqm-c15-adiante ul{margin:.5rem 0 0;padding-left:1.1rem;}
 .aqm-c15-adiante li{margin:0 0 .4rem;font-size:.94rem;line-height:1.5;}
 .aqm-c15-oculto{display:none;}
+.aqm-c15-promessa{font-family:var(--c15-display);font-size:1.02rem;line-height:1.5;color:var(--c15-tinta);border-left:3px solid var(--c15-lamina);padding:.15rem 0 .15rem .8rem;margin:0 0 1.1rem;}
+.aqm-c15-vitrine{margin:1rem 0 0;}
+.aqm-c15-vitrine h4{font-family:var(--c15-display);font-size:.95rem;margin:0 0 .15rem;}
+.aqm-c15-vt-trilho{display:flex;gap:.8rem;margin:.7rem 0 0;padding:.15rem .15rem .9rem;list-style:none;overflow-x:auto;-webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory;scroll-padding-left:.15rem;}
+.aqm-c15-vt-item{flex:0 0 13.5rem;margin:0;scroll-snap-align:start;}
+.aqm-c15-vt-cartao{display:flex;flex-direction:column;gap:.28rem;height:100%;background:var(--c15-superficie);border:1px solid var(--c15-traco);border-radius:3px;padding:.7rem .75rem .8rem;text-decoration:none;color:var(--c15-tinta);}
+a.aqm-c15-vt-cartao:hover{border-color:var(--c15-lamina);color:var(--c15-tinta);}
+a.aqm-c15-vt-cartao:focus-visible{outline:2px solid var(--c15-lamina);outline-offset:1px;}
+.aqm-c15-vt-foto{display:flex;align-items:center;justify-content:center;aspect-ratio:1/1;width:100%;max-width:100%;background:var(--c15-papel);border:1px solid var(--c15-traco);border-radius:2px;overflow:hidden;margin:0 0 .35rem;}
+.aqm-c15-vt-foto img{display:block;width:100%;height:100%;max-width:100%;object-fit:contain;}
+.aqm-c15-vt-foto-vazia .aqm-c15-vt-sigla{font-family:var(--c15-display);font-size:1rem;font-weight:700;color:var(--c15-legenda);letter-spacing:.02em;text-align:center;padding:0 .4rem;}
+.aqm-c15-vt-marca{font-family:var(--c15-mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--c15-legenda);}
+.aqm-c15-vt-modelo{font-family:var(--c15-display);font-size:.92rem;font-weight:700;line-height:1.25;}
+.aqm-c15-vt-espec{font-family:var(--c15-mono);font-size:.76rem;line-height:1.4;color:var(--c15-lamina);font-variant-numeric:tabular-nums;}
+.aqm-c15-vt-cobertura{font-family:var(--c15-texto);font-size:.75rem;line-height:1.35;color:var(--c15-legenda);}
+.aqm-c15-vt-ressalva{font-family:var(--c15-texto);font-size:.74rem;line-height:1.35;color:var(--c15-alerta);}
+.aqm-c15-vt-preco{font-family:var(--c15-mono);font-size:.8rem;font-variant-numeric:tabular-nums;color:var(--c15-tinta);}
+.aqm-c15-vt-preco.aqm-c15-vt-sem-preco{font-family:var(--c15-texto);font-size:.76rem;color:var(--c15-legenda);font-style:italic;}
+.aqm-c15-vt-botao{margin-top:auto;text-align:center;font-family:var(--c15-texto);font-weight:600;font-size:.85rem;padding:.42rem .7rem;border-radius:2px;background:var(--c15-lamina);color:var(--c15-superficie);}
+.aqm-c15-vt-espera{margin-top:auto;text-align:center;font-family:var(--c15-texto);font-weight:600;font-size:.82rem;padding:.42rem .7rem;border-radius:2px;background:var(--c15-papel);border:1px dashed var(--c15-traco);color:var(--c15-legenda);}
+.aqm-c15-vt-selo{font-family:var(--c15-mono);font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;color:var(--c15-legenda);text-align:center;margin-top:.25rem;}
+.aqm-c15-vitrine-servida .aqm-c15-criterio{margin-top:.5rem;}
+.aqm-c15-barra{position:fixed;left:0;right:0;bottom:0;z-index:40;display:none;align-items:center;gap:.7rem;background:var(--c15-superficie);border-top:1px solid var(--c15-traco);padding:.55rem .85rem;}
+.aqm-c15-barra-texto{flex:1 1 auto;font-family:var(--c15-mono);font-size:.8rem;line-height:1.3;color:var(--c15-tinta);font-variant-numeric:tabular-nums;}
+.aqm-c15-barra-botao{flex:0 0 auto;}
 @media (max-width:600px){.aqm-c15-valor{font-size:1.6rem;}
 .aqm-c15-produto{grid-template-columns:1fr;}
+.aqm-c15-vt-item{flex-basis:11.5rem;}
+.aqm-c15-barra.aqm-c15-barra-ver{display:flex;}
 .aqm-c15-placa{min-height:0;flex-direction:row;gap:.5rem;align-items:baseline;justify-content:flex-start;}}
+@media (prefers-reduced-motion:reduce){.aqm-c15-vt-trilho{scroll-behavior:auto;}}
 CSS;
 }
 }
@@ -991,6 +1141,9 @@ function aquametria_c15_js() {
 				ul.appendChild(li);
 			});
 			alvo.classList.add('aqm-c15-oculto');
+			/* Sem faixa calculada não há o que a barra do celular prometa. */
+			barraLigada = false;
+			mostrarBarra(false);
 			return;
 		}
 
@@ -1059,6 +1212,7 @@ function aquametria_c15_js() {
 
 		guardar(r);
 		atualizarEndereco(r.entradas);
+		armarBarra(r);
 	}
 
 	function cartao(rotulo, valor, criterio) {
@@ -1140,6 +1294,27 @@ function aquametria_c15_js() {
 
 	/* ------------------------------------------------------------- produtos */
 
+	/* A SEQUÊNCIA, calculada UMA vez e passada para a lista técnica e para a
+	   vitrine. Calculador de ordem duplicado é combinar de divergir depois — foi
+	   a lição que a C5 deixou escrita em 10/09/2026.
+
+	   Cada entrada diz a que GRUPO o item pertence, e é isso que impede o cartão
+	   de mentir: 'acima' é quem passa do teto da leitura mais alta, o que só
+	   acontece no nível de alta exigência, cuja faixa a fonte deixou aberta por
+	   cima. 'regulavel' é quem passa do teto num nível FECHADO e só está aqui
+	   porque declara dimmer, app ou controlador. São dois motivos diferentes de
+	   estar acima, e a frase de cada um diz qual é o dele. */
+	function sequenciaDe(r) {
+		var seq = [];
+		(r.produtos || []).forEach(function (p) {
+			seq.push({ p: p, acima: p.fluxo_lm > r.max, regulavel: false });
+		});
+		(r.regulaveis || []).forEach(function (p) {
+			seq.push({ p: p, acima: true, regulavel: true });
+		});
+		return seq;
+	}
+
 	function pintarProdutos(r) {
 		var bloco = el('aqm-c15-produtos');
 		var lista = el('aqm-c15-produtos-lista');
@@ -1148,6 +1323,7 @@ function aquametria_c15_js() {
 
 		if (!r.produtos.length && !(r.regulaveis || []).length) {
 			bloco.classList.add('aqm-c15-oculto');
+			el('aqm-c15-vitrine').classList.add('aqm-c15-oculto');
 			nada.classList.remove('aqm-c15-oculto');
 			nada.textContent = r.entradas.comprimento === null
 				? 'A lista de luminárias só aparece com o comprimento do aquário preenchido: sem ele não dá para conferir se a peça cobre o seu vidro, '
@@ -1164,16 +1340,26 @@ function aquametria_c15_js() {
 
 		nada.classList.add('aqm-c15-oculto');
 		bloco.classList.remove('aqm-c15-oculto');
+
+		var sequencia = sequenciaDe(r);
+		var acimaDoTeto = sequencia.filter(function (i) { return i.acima; }).length;
+
 		el('aqm-c15-produtos-sub').textContent =
-			'São as luminárias do nosso banco cujo fluxo declarado cai dentro da faixa que o seu aquário pede — ' + lm(r.min) + ' a '
-			+ lm(r.max) + ' lm — e cujo fabricante ou lojista declara cobrir um aquário de ' + fmt(r.entradas.comprimento, 0) + ' cm. '
+			'São as luminárias do nosso banco que entregam o fluxo que o seu aquário pede a partir de ' + lm(r.min) + ' lm'
+			+ (r.aberto
+				? ' — este nível tem piso publicado e nenhuma das três fontes declara teto, então a faixa é aberta por cima'
+				: ', até ' + lm(r.max) + ' lm')
+			+ ', e cujo fabricante ou lojista declara cobrir um aquário de ' + fmt(r.entradas.comprimento, 0) + ' cm. '
+			+ (acimaDoTeto
+				? acimaDoTeto + ' delas ficam acima dos ' + fmt(r.nivel.consolidado[1], 0) + ' lm/L da leitura mais alta, e o cartão de cada uma diz isso. '
+				: '')
 			+ 'A ordem é por proximidade do meio da faixa. Nada aqui é ordenado por comissão, e modelo sem link de loja aparece do mesmo jeito.';
 
-		r.produtos.forEach(function (p) {
-			lista.appendChild(produtoHtml(p, r, false));
-		});
-		(r.regulaveis || []).forEach(function (p) {
-			lista.appendChild(produtoHtml(p, r, true));
+		/* A vitrine vem ANTES da ficha e da procedência: contrato 7. */
+		pintarVitrine(r, sequencia);
+
+		sequencia.forEach(function (item) {
+			lista.appendChild(produtoHtml(item.p, r, item.acima, item.regulavel));
 		});
 
 		if (r.fora_da_lista && r.fora_da_lista.length) {
@@ -1204,12 +1390,23 @@ function aquametria_c15_js() {
 		});
 	}
 
-	function produtoHtml(p, r, acimaComRegulagem) {
+	/* acima = passou do teto da leitura mais alta. viaRegulagem = passou do teto
+	   de um nível FECHADO e só entrou porque declara dimmer, app ou controlador.
+	   As duas coisas são "estar acima" por motivos diferentes, e até a 1.2.0 a
+	   frase tratava só a segunda: quem passava do teto de um nível ABERTO (alta
+	   exigência) recebia a frase "fica dentro da faixa de 40 a 60 lm/L", mesmo
+	   entregando 115 lm/L. Era falso, e ninguém tinha medido porque a regra de
+	   elegibilidade — essa sim — estava certa. */
+	function produtoHtml(p, r, acima, viaRegulagem) {
 		var V = r.entradas.volume;
 		var lmL = p.fluxo_lm / V;
 
 		var li = document.createElement('li');
-		li.className = 'aqm-c15-produto';
+		/* O grupo fica no DOM, e não só na frase: é por esta classe que o portão
+		   confere se o cartão da vitrine diz o mesmo grupo que a lista técnica. */
+		li.className = 'aqm-c15-produto'
+			+ (acima ? ' aqm-c15-produto-acima' : '')
+			+ (viaRegulagem ? ' aqm-c15-produto-regulavel' : '');
 
 		var placa = document.createElement('div');
 		placa.className = 'aqm-c15-placa';
@@ -1227,12 +1424,19 @@ function aquametria_c15_js() {
 		porque.className = 'aqm-c15-porque';
 		porque.innerHTML = 'No seu aquário de ' + litros(V) + ' L, esta luminária entrega <strong>'
 			+ fmt(Math.round(lmL * 10) / 10, 1) + ' lm/L</strong>, que fica '
-			+ (acimaComRegulagem
+			+ (viaRegulagem
 				? 'ACIMA da faixa de ' + fmt(r.nivel.consolidado[0], 0) + ' a ' + fmt(r.nivel.consolidado[1], 0)
 					+ ' lm/L do nível escolhido. Ela está aqui porque tem regulagem de intensidade (' + esc(p.regulagem)
 					+ '): dá para trabalhar abaixo do máximo. Sem regulagem, um modelo acima da faixa não teria como ser recomendado.'
-				: 'dentro da faixa de ' + fmt(r.nivel.consolidado[0], 0) + ' a ' + fmt(r.nivel.consolidado[1], 0)
-					+ ' lm/L que este nível pede.')
+				: acima
+					? 'ACIMA dos ' + fmt(r.nivel.consolidado[1], 0) + ' lm/L da leitura mais alta deste nível. '
+						+ 'Ela não está fora da faixa porque esta faixa não tem lado de fora por cima: a fonte aquarioturbinado publica '
+						+ '"acima de ' + fmt(r.nivel.consolidado[0], 0) + ' lm/L" sem dizer até onde, e inventar um teto para fechar a faixa seria inventar constante. '
+						+ (p.regulagem
+							? 'Com a regulagem declarada (' + esc(p.regulagem) + ') dá para trabalhar abaixo do máximo.'
+							: 'Ela não declara regulagem de intensidade, então é este número que ela entrega.')
+					: 'dentro da faixa de ' + fmt(r.nivel.consolidado[0], 0) + ' a ' + fmt(r.nivel.consolidado[1], 0)
+						+ ' lm/L que este nível pede.')
 			+ ' A cobertura declarada é de '
 			+ cobertura(p)
 			+ ' de aquário, e o seu tem ' + fmt(r.entradas.comprimento, 0) + ' cm.';
@@ -1287,6 +1491,187 @@ function aquametria_c15_js() {
 		li.appendChild(placa);
 		li.appendChild(corpo);
 		return li;
+	}
+
+	/* ------------------------------------------------------------- vitrine */
+
+	/* Espelhos em JavaScript das funções PHP de mesmo nome. Elas existem aos
+	   pares de propósito: o cartão SERVIDO e o cartão PINTADO precisam dizer a
+	   mesma frase, e a única maneira de garantir isso sem servidor é escrever a
+	   mesma regra dos dois lados e medir as duas com o mesmo teste. */
+
+	function precoTexto(p) {
+		if (!p.preco || p.preco.min === null) { return ''; }
+
+		var pr = p.preco;
+		var valor = 'R$ ' + fmt(pr.min, 2);
+		if (pr.max > pr.min) { valor = 'R$ ' + fmt(pr.min, 2) + ' a R$ ' + fmt(pr.max, 2); }
+
+		return valor + (pr.loja ? ' na ' + pr.loja : '') + ', cotado em ' + dataBr(pr.coletado_em);
+	}
+
+	function vtEspecFrase(p, r, acima) {
+		var lmL = fmt(Math.round((p.fluxo_lm / r.entradas.volume) * 10) / 10, 1);
+		var cabeca = lm(p.fluxo_lm) + ' lm — ' + lmL + ' lm/L, ';
+
+		if (acima) {
+			return cabeca + 'acima dos ' + fmt(r.nivel.consolidado[1], 0)
+				+ ' lm/L da leitura mais alta, na parte da faixa que a fonte deixou aberta';
+		}
+		return cabeca + 'dentro dos ' + fmt(r.nivel.consolidado[0], 0) + ' a '
+			+ fmt(r.nivel.consolidado[1], 0) + ' lm/L que este nível pede';
+	}
+
+	function vtCoberturaFrase(p, comprimento) {
+		return 'cobre ' + cobertura(p) + ' de aquário — o seu tem ' + fmt(comprimento, 0) + ' cm';
+	}
+
+	function vtRessalvaCurta(p, acima) {
+		if (!acima || p.regulagem) { return ''; }
+		return 'sem regulagem declarada: não dá para baixar a intensidade';
+	}
+
+	/* Espelho de aquametria_c15_vitrine_cartao_html(). Mesma marcação, mesmo CSS
+	   — duas marcações para o mesmo cartão viram duas aparências. */
+	function vitrineCartao(p, r, acima) {
+		var preco = precoTexto(p);
+		var ressalva = vtRessalvaCurta(p, acima);
+
+		var li = document.createElement('li');
+		li.className = 'aqm-c15-vt-item';
+
+		var cartao;
+		if (p.link) {
+			cartao = document.createElement('a');
+			cartao.className = 'aqm-c15-vt-cartao';
+			cartao.href = p.link;
+			cartao.target = '_blank';
+			cartao.rel = 'sponsored noopener';
+		} else {
+			/* Sem link não existe destino, e cartão sem destino não é âncora. */
+			cartao = document.createElement('div');
+			cartao.className = 'aqm-c15-vt-cartao aqm-c15-vt-sem-link';
+		}
+
+		var partes = '';
+		if (p.imagem && p.imagem.url) {
+			partes += '<span class="aqm-c15-vt-foto"><img src="' + esc(p.imagem.url) + '" alt="' + esc(p.imagem.alt) + '"'
+				+ (p.imagem.largura && p.imagem.altura
+					? ' width="' + esc(p.imagem.largura) + '" height="' + esc(p.imagem.altura) + '"'
+					: '')
+				+ ' loading="lazy" decoding="async"></span>';
+		} else {
+			/* Produto sem foto NÃO some da vitrine: espaço reservado neutro. */
+			partes += '<span class="aqm-c15-vt-foto aqm-c15-vt-foto-vazia" aria-hidden="true">'
+				+ '<span class="aqm-c15-vt-sigla">' + esc(p.marca || 'sem marca') + '</span></span>';
+		}
+
+		partes += '<span class="aqm-c15-vt-marca">' + esc(p.marca || 'sem marca declarada') + '</span>';
+		partes += '<span class="aqm-c15-vt-modelo">' + esc(p.modelo) + '</span>';
+		partes += '<span class="aqm-c15-vt-espec">' + esc(vtEspecFrase(p, r, acima)) + '</span>';
+		partes += '<span class="aqm-c15-vt-cobertura">' + esc(vtCoberturaFrase(p, r.entradas.comprimento)) + '</span>';
+
+		if (ressalva) { partes += '<span class="aqm-c15-vt-ressalva">' + esc(ressalva) + '</span>'; }
+
+		partes += preco
+			? '<span class="aqm-c15-vt-preco">' + esc(preco) + '</span>'
+			: '<span class="aqm-c15-vt-preco aqm-c15-vt-sem-preco">sem cotação coletada</span>';
+
+		if (p.link) {
+			partes += '<span class="aqm-c15-vt-botao">Ver na ' + esc(p.loja === 'shopee' ? 'Shopee' : p.loja) + '</span>';
+			partes += '<span class="aqm-c15-vt-selo">link patrocinado</span>';
+		} else {
+			partes += '<span class="aqm-c15-vt-espera">link de loja em breve</span>';
+			partes += '<span class="aqm-c15-vt-selo">entrou pela ficha técnica, não pelo link</span>';
+		}
+
+		cartao.innerHTML = partes;
+		li.appendChild(cartao);
+		return li;
+	}
+
+	/* A vitrine NUNCA reordena. Ela recebe a MESMA sequência que a lista técnica
+	   recebe, já calculada — e é essa afirmação que o teste de navegador mede. */
+	function pintarVitrine(r, sequencia) {
+		var bloco = el('aqm-c15-vitrine');
+		var trilho = el('aqm-c15-vitrine-trilho');
+		if (!bloco || !trilho) { return; }
+
+		trilho.innerHTML = '';
+		if (!sequencia.length) {
+			bloco.classList.add('aqm-c15-oculto');
+			return;
+		}
+		bloco.classList.remove('aqm-c15-oculto');
+
+		var comLink = 0;
+		sequencia.forEach(function (item) {
+			if (item.p.link) { comLink++; }
+			trilho.appendChild(vitrineCartao(item.p, r, item.acima));
+		});
+
+		el('aqm-c15-vitrine-nota').textContent = comLink + ' de ' + sequencia.length
+			+ ' têm link de loja hoje; os outros aparecem do mesmo jeito, com o lugar do botão reservado — '
+			+ 'quem entra é decidido pela ficha técnica, e nunca por ter ou não link.';
+	}
+
+	/* ------------------------------------------------- rolagem e barra fixa */
+
+	/* Rola até o resultado, e SÓ quando ele não está à vista. Rolar uma página em
+	   que a resposta já está na tela é tirar o leitor do lugar em que ele está —
+	   o que a regra pede é não deixar ninguém calculando no escuro. */
+	function irParaResultado() {
+		var alvo = el('aqm-c15-saida');
+		if (!alvo || alvo.classList.contains('aqm-c15-oculto')) { return; }
+
+		var caixa = alvo.getBoundingClientRect();
+		var altura = window.innerHeight || document.documentElement.clientHeight;
+		if (caixa.top >= 0 && caixa.top < altura * 0.5) { return; }
+
+		var suave = true;
+		try {
+			suave = !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+		} catch (erro) { suave = true; }
+
+		try {
+			alvo.scrollIntoView({ behavior: suave ? 'smooth' : 'auto', block: 'start' });
+		} catch (erro) {
+			alvo.scrollIntoView();
+		}
+	}
+
+	/* A barra do rodapé no celular: existe enquanto o resultado está fora da
+	   tela, e some quando ele entra. Quem decide se ela cabe é o CSS (só abaixo
+	   de 600 px); aqui só se liga e desliga a classe. */
+	var barraLigada = false;
+	var observador = null;
+
+	function armarBarra(r) {
+		var barra = el('aqm-c15-barra');
+		if (!barra) { return; }
+
+		el('aqm-c15-barra-texto').textContent = (r.aberto ? 'a partir de ' + lm(r.min) : lm(r.min) + ' a ' + lm(r.max))
+			+ ' lm para ' + litros(r.entradas.volume) + ' L';
+		barraLigada = true;
+
+		if (observador || typeof window.IntersectionObserver !== 'function') {
+			if (!observador) { mostrarBarra(true); }
+			return;
+		}
+
+		observador = new window.IntersectionObserver(function (entradas) {
+			entradas.forEach(function (entrada) {
+				mostrarBarra(barraLigada && !entrada.isIntersecting);
+			});
+		}, { threshold: 0 });
+		observador.observe(el('aqm-c15-saida'));
+	}
+
+	function mostrarBarra(ver) {
+		var barra = el('aqm-c15-barra');
+		if (!barra) { return; }
+		barra.classList.toggle('aqm-c15-barra-ver', !!ver);
+		barra.setAttribute('aria-hidden', ver ? 'false' : 'true');
 	}
 
 	/* ------------------------------------------------------------- consumo */
@@ -1446,12 +1831,20 @@ function aquametria_c15_js() {
 	el('aqm-c15-form').addEventListener('submit', function (ev) {
 		ev.preventDefault();
 		pintar(calcular(campos()));
+		/* Rolar até o resultado é o que fecha a promessa do topo: quem calcula no
+		   celular não pode ficar olhando o formulário enquanto a resposta nasce
+		   fora da tela (seção 6 do ARQUIPELAGO.md). */
+		irParaResultado();
 	});
+
+	el('aqm-c15-barra-ir').addEventListener('click', irParaResultado);
 
 	el('aqm-c15-limpar').addEventListener('click', function () {
 		el('aqm-c15-form').reset();
 		el('aqm-c15-saida').classList.add('aqm-c15-oculto');
 		el('aqm-c15-erros').innerHTML = '';
+		barraLigada = false;
+		mostrarBarra(false);
 		try { window.history.replaceState(null, '', window.location.pathname); } catch (erro) { /* segue */ }
 	});
 
@@ -1662,15 +2055,33 @@ function aquametria_c15_produtos_html() {
 	$divulgacao = aquametria_c15_url( AQUAMETRIA_C15_PAGINA_AFILIADOS );
 
 	$h  = '<div class="aqm-c15-produtos aqm-c15-painel aqm-c15-oculto" id="aqm-c15-produtos">';
-	$h .= '<h3>Luminárias que entregam essa faixa no seu comprimento</h3>';
+	/* O título não afirma mais que a lista inteira "entrega essa faixa": desde a
+	   1.3.0 ela tem dois grupos, e o de baixo é o que fica acima do teto da
+	   leitura mais alta, na parte aberta da faixa. Quem afirma é a frase de cada
+	   cartão, que sabe do que fala. */
+	$h .= '<h3>Luminárias do nosso banco para o seu aquário</h3>';
 	$h .= '<p class="aqm-c15-sub" id="aqm-c15-produtos-sub"></p>';
+
+	/* A vitrine vem ANTES da ficha e da procedência (contrato 7): a prova de onde
+	   veio o número fica, mas ela existe para ser conferida — não para ser o
+	   único clique de compra da página. */
+	$h .= '<div class="aqm-c15-vitrine aqm-c15-oculto" id="aqm-c15-vitrine">';
+	$h .= '<h4>Onde comprar cada uma</h4>';
+	$h .= '<p class="aqm-c15-criterio">Mesma ordem da lista completa abaixo: a proximidade do meio da faixa que o seu aquário pede. '
+		. 'O cartão de cada luminária diz quantos lm/L ela entrega no seu volume e que comprimento de aquário o fabricante declara cobrir. '
+		. 'O valor é cotação com data, não preço de hoje.</p>';
+	$h .= '<ul class="aqm-c15-vt-trilho" id="aqm-c15-vitrine-trilho"></ul>';
+	$h .= '<p class="aqm-c15-criterio" id="aqm-c15-vitrine-nota"></p>';
+	$h .= '</div>';
+
 	$h .= '<ul class="aqm-c15-lista" id="aqm-c15-produtos-lista"></ul>';
 	$h .= '<p class="aqm-c15-aviso-afiliado"><strong>Aviso de publicidade.</strong> ';
 	$h .= 'Alguns dos botões acima levam a lojas por links de afiliado: se você comprar por eles, a Aquametria pode receber uma comissão, sem custo nenhum a mais para você. ';
 	$h .= 'Isso não muda quem aparece na lista nem em que ordem — a ordem é pelo fluxo mais próximo do meio da faixa que o seu aquário pede, e modelo sem link aparece do mesmo jeito. ';
 	$h .= 'A luminária mais cara do nosso banco, aliás, tem link e não é sugerida, porque ninguém declara a voltagem dela. ';
 	$h .= 'A ficha técnica de cada peça vem do fabricante ou do varejo especializado, com o endereço e a data ao lado; o anúncio da loja nunca é a nossa fonte. ';
-	$h .= 'Também não publicamos preço nesta página: preço muda toda semana e um número velho na tela seria pior que nenhum. ';
+	$h .= 'O valor que aparece nos cartões da vitrine <strong>não é preço de hoje</strong>: é a cotação que lemos naquele anúncio na data escrita ao lado. ';
+	$h .= 'Preço de aquarismo muda toda semana — confira no anúncio antes de comprar, e trate o nosso número como ordem de grandeza, não como promessa. ';
 	$h .= '<a href="' . esc_url( $divulgacao ) . '">Como a Aquametria ganha dinheiro</a>.</p>';
 	$h .= '</div>';
 	$h .= '<p class="aqm-c15-nota aqm-c15-oculto" id="aqm-c15-produtos-nada"></p>';
@@ -1896,12 +2307,18 @@ function aquametria_c15_exemplo( $volume, $comprimento, $nivel_id ) {
 	$nivel  = isset( $niveis[ $nivel_id ] ) ? $niveis[ $nivel_id ] : $niveis['media'];
 
 	$r = array(
-		'nivel_id' => $nivel_id,
-		'rotulo'   => $nivel['rotulo'],
-		'aberto'   => $nivel['aberto'],
-		'min'      => $volume * $nivel['consolidado'][0],
-		'max'      => $volume * $nivel['consolidado'][1],
-		'lm_l'     => $nivel['consolidado'],
+		'nivel_id'    => $nivel_id,
+		'rotulo'      => $nivel['rotulo'],
+		'aberto'      => $nivel['aberto'],
+		'min'         => $volume * $nivel['consolidado'][0],
+		'max'         => $volume * $nivel['consolidado'][1],
+		'lm_l'        => $nivel['consolidado'],
+		/* As duas entradas viajam junto com o resultado desde a 1.3.0: o cartão da
+		   vitrine precisa dizer o lm/L que a peça entrega NAQUELE aquário e se ela
+		   cobre AQUELE vidro, e recalcular o volume dentro do cartão seria
+		   combinar de divergir com quem calculou a faixa. */
+		'volume'      => $volume,
+		'comprimento' => $comprimento,
 	);
 
 	/* Mesma peneira do escolher() do script: primeiro a cobertura declarada pelo
@@ -1945,6 +2362,303 @@ function aquametria_c15_exemplo( $volume, $comprimento, $nivel_id ) {
 if ( ! function_exists( 'aquametria_c15_produto_nome' ) ) {
 function aquametria_c15_produto_nome( $p ) {
 	return trim( ( $p['marca'] ? $p['marca'] . ' ' : '' ) . $p['modelo'] );
+}
+}
+
+/* ---------------------------------------------------------------------------
+ * 5d. A VITRINE — bloco T8, 11/09/2026
+ *
+ * Copiada do desenho da C3 e da C5, e não reinventada: uma função de cartão em
+ * PHP e o espelho dela em JavaScript, com a MESMA marcação, porque duas
+ * marcações para o mesmo cartão viram dois CSS e, mais cedo do que se pensa,
+ * duas aparências. Duas vitrines por página — a pintada, dentro do resultado, e
+ * a SERVIDA no HTML para um aquário de referência, porque crawler de IA não
+ * executa JavaScript e vitrine que só nasce no clique é vitrine que só o
+ * comprador que já chegou vê.
+ *
+ * A vitrine vem ANTES da ficha e da procedência (contrato 7) e NUNCA reordena:
+ * desenha a MESMA sequência que a lista técnica, calculada uma vez só e passada
+ * adiante.
+ *
+ * O QUE É DIFERENTE AQUI, e é a razão de este arquivo não poder copiar a C5 de
+ * olhos fechados: o grupo de cima e o de baixo desta calculadora não são "cabe
+ * na faixa" e "degrau comercial acima". São "dentro do intervalo que as três
+ * fontes publicam" e "acima do teto da leitura mais alta, na parte da faixa que
+ * a fonte deixou ABERTA" — o nível de alta exigência tem piso de 40 lm/L e
+ * nenhuma das três fontes declara teto. Uma luminária de 115 lm/L não está fora
+ * da faixa (a faixa não tem lado de fora por cima), mas dizer que ela está
+ * "dentro de 40 a 60 lm/L" é falso, e era o que a 1.2.0 dizia. O cartão do
+ * segundo grupo mostra o lm/L que ele realmente entrega.
+ * ------------------------------------------------------------------------- */
+
+/* Espelho em PHP do dataBr() do script. */
+if ( ! function_exists( 'aquametria_c15_data_br' ) ) {
+function aquametria_c15_data_br( $iso ) {
+	if ( ! $iso || ! preg_match( '/^(\d{4})-(\d{2})-(\d{2})$/', $iso, $m ) ) {
+		return (string) $iso;
+	}
+	return $m[3] . '/' . $m[2] . '/' . $m[1];
+}
+}
+
+/* lm/L com uma casa, do jeito que o cartão e a ficha escrevem. */
+if ( ! function_exists( 'aquametria_c15_lm_por_litro' ) ) {
+function aquametria_c15_lm_por_litro( $fluxo, $volume ) {
+	if ( ! $volume ) {
+		return '—';
+	}
+	return number_format_i18n( round( ( $fluxo / $volume ) * 10 ) / 10, 1 );
+}
+}
+
+/* A cotação vira frase: valor (ou faixa), loja e a data da coleta. Nunca "de
+   R$ X por R$ Y", nunca "a partir de" — os dois sugerem promoção, e a Aquametria
+   não sabe se há promoção. */
+if ( ! function_exists( 'aquametria_c15_preco_texto' ) ) {
+function aquametria_c15_preco_texto( $p ) {
+	if ( empty( $p['preco'] ) || null === $p['preco']['min'] ) {
+		return '';
+	}
+
+	$pr    = $p['preco'];
+	$valor = 'R$ ' . number_format_i18n( $pr['min'], 2 );
+
+	if ( $pr['max'] > $pr['min'] ) {
+		$valor = 'R$ ' . number_format_i18n( $pr['min'], 2 ) . ' a R$ ' . number_format_i18n( $pr['max'], 2 );
+	}
+
+	$onde = $pr['loja'] ? ' na ' . $pr['loja'] : '';
+
+	return $valor . $onde . ', cotado em ' . aquametria_c15_data_br( $pr['coletado_em'] );
+}
+}
+
+/* O cartão tem uma linha só para a marca, então a linha do modelo NÃO repete a
+   marca. Luminária sem marca declarada existe no banco (importado revendido com
+   o nome da loja) e o cartão diz isso na linha da marca, não na do modelo. */
+if ( ! function_exists( 'aquametria_c15_modelo_curto' ) ) {
+function aquametria_c15_modelo_curto( $p ) {
+	return $p['modelo'];
+}
+}
+
+/* A cobertura declarada, encurtada para caber no cartão. É a SEGUNDA condição
+   que fez o produto entrar, e por isso ela aparece no cartão e não só na ficha:
+   quem só olha a vitrine merece saber que a peça cobre o vidro dele. */
+if ( ! function_exists( 'aquametria_c15_vt_cobertura_frase' ) ) {
+function aquametria_c15_vt_cobertura_frase( $p, $comprimento ) {
+	if ( null === $p['aquario_min_cm'] ) {
+		$faixa = 'até ' . number_format_i18n( $p['aquario_max_cm'], 0 ) . ' cm';
+	} elseif ( null === $p['aquario_max_cm'] ) {
+		$faixa = 'a partir de ' . number_format_i18n( $p['aquario_min_cm'], 0 ) . ' cm';
+	} elseif ( $p['aquario_min_cm'] === $p['aquario_max_cm'] ) {
+		$faixa = 'exatamente ' . number_format_i18n( $p['aquario_min_cm'], 0 ) . ' cm';
+	} else {
+		$faixa = number_format_i18n( $p['aquario_min_cm'], 0 ) . ' a ' . number_format_i18n( $p['aquario_max_cm'], 0 ) . ' cm';
+	}
+
+	return 'cobre ' . $faixa . ' de aquário — o seu tem ' . number_format_i18n( $comprimento, 0 ) . ' cm';
+}
+}
+
+/* A especificação QUE FEZ O PRODUTO ENTRAR, no tamanho de um cartão — e ela
+   muda conforme o grupo, que é o ponto inteiro desta função. */
+if ( ! function_exists( 'aquametria_c15_vt_espec_frase' ) ) {
+function aquametria_c15_vt_espec_frase( $p, $e, $acima ) {
+	$lm  = aquametria_c15_lm( $p['fluxo_lm'] ) . ' lm — ';
+	$lml = aquametria_c15_lm_por_litro( $p['fluxo_lm'], $e['volume'] ) . ' lm/L, ';
+
+	if ( $acima ) {
+		return $lm . $lml . 'acima dos ' . number_format_i18n( $e['lm_l'][1], 0 )
+			. ' lm/L da leitura mais alta, na parte da faixa que a fonte deixou aberta';
+	}
+
+	return $lm . $lml . 'dentro dos ' . number_format_i18n( $e['lm_l'][0], 0 ) . ' a '
+		. number_format_i18n( $e['lm_l'][1], 0 ) . ' lm/L que este nível pede';
+}
+}
+
+/* A ressalva curta. A frase longa continua na ficha logo abaixo; o que não pode
+   acontecer é o cartão bonito omitir o que a ficha diz. Aqui ela existe para um
+   caso só, e é o caso caro: peça acima do teto publicado E sem regulagem
+   declarada não tem como ser baixada até o nível escolhido. */
+if ( ! function_exists( 'aquametria_c15_vt_ressalva_curta' ) ) {
+function aquametria_c15_vt_ressalva_curta( $p, $acima ) {
+	if ( ! $acima || $p['regulagem'] ) {
+		return '';
+	}
+	return 'sem regulagem declarada: não dá para baixar a intensidade';
+}
+}
+
+/* Um cartão. O MESMO HTML que o script monta em vitrineCartao(). */
+if ( ! function_exists( 'aquametria_c15_vitrine_cartao_html' ) ) {
+function aquametria_c15_vitrine_cartao_html( $p, $e, $acima ) {
+	$preco    = aquametria_c15_preco_texto( $p );
+	$ressalva = aquametria_c15_vt_ressalva_curta( $p, $acima );
+
+	$h = '<li class="aqm-c15-vt-item">';
+
+	if ( $p['link'] ) {
+		$h .= '<a class="aqm-c15-vt-cartao" href="' . esc_url( $p['link'] ) . '" target="_blank" rel="sponsored noopener">';
+	} else {
+		/* Sem link não existe destino, e cartão sem destino não é âncora. O que o
+		   contrato proíbe é div com onclick fingindo ser link. */
+		$h .= '<div class="aqm-c15-vt-cartao aqm-c15-vt-sem-link">';
+	}
+
+	if ( ! empty( $p['imagem'] ) && ! empty( $p['imagem']['url'] ) ) {
+		$img = '<img src="' . esc_url( $p['imagem']['url'] ) . '" alt="' . esc_attr( $p['imagem']['alt'] ) . '"';
+		if ( ! empty( $p['imagem']['largura'] ) && ! empty( $p['imagem']['altura'] ) ) {
+			$img .= ' width="' . esc_attr( $p['imagem']['largura'] ) . '" height="' . esc_attr( $p['imagem']['altura'] ) . '"';
+		}
+		$img .= ' loading="lazy" decoding="async">';
+		$h   .= '<span class="aqm-c15-vt-foto">' . $img . '</span>';
+	} else {
+		/* Espaço reservado neutro. Produto sem foto NÃO some da vitrine: perder a
+		   recomendação técnica certa por falta de imagem é trocar o certo pelo
+		   bonito (seção 6 do ARQUIPELAGO.md). Nesta calculadora isso é a regra e
+		   não a exceção — 13 das 15 luminárias do catálogo não têm foto, e as 8
+		   que têm foto e não entram são justamente as que não declaram lúmen. */
+		$h .= '<span class="aqm-c15-vt-foto aqm-c15-vt-foto-vazia" aria-hidden="true">';
+		$h .= '<span class="aqm-c15-vt-sigla">' . esc_html( $p['marca'] ? $p['marca'] : 'sem marca' ) . '</span></span>';
+	}
+
+	$h .= '<span class="aqm-c15-vt-marca">' . esc_html( $p['marca'] ? $p['marca'] : 'sem marca declarada' ) . '</span>';
+	$h .= '<span class="aqm-c15-vt-modelo">' . esc_html( aquametria_c15_modelo_curto( $p ) ) . '</span>';
+	$h .= '<span class="aqm-c15-vt-espec">' . esc_html( aquametria_c15_vt_espec_frase( $p, $e, $acima ) ) . '</span>';
+	$h .= '<span class="aqm-c15-vt-cobertura">' . esc_html( aquametria_c15_vt_cobertura_frase( $p, $e['comprimento'] ) ) . '</span>';
+
+	if ( '' !== $ressalva ) {
+		$h .= '<span class="aqm-c15-vt-ressalva">' . esc_html( $ressalva ) . '</span>';
+	}
+
+	if ( '' !== $preco ) {
+		$h .= '<span class="aqm-c15-vt-preco">' . esc_html( $preco ) . '</span>';
+	} else {
+		$h .= '<span class="aqm-c15-vt-preco aqm-c15-vt-sem-preco">sem cotação coletada</span>';
+	}
+
+	if ( $p['link'] ) {
+		$h .= '<span class="aqm-c15-vt-botao">Ver na ' . esc_html( 'shopee' === $p['loja'] ? 'Shopee' : $p['loja'] ) . '</span>';
+		$h .= '<span class="aqm-c15-vt-selo">link patrocinado</span>';
+		$h .= '</a>';
+	} else {
+		$h .= '<span class="aqm-c15-vt-espera">link de loja em breve</span>';
+		$h .= '<span class="aqm-c15-vt-selo">entrou pela ficha técnica, não pelo link</span>';
+		$h .= '</div>';
+	}
+
+	$h .= '</li>';
+
+	return $h;
+}
+}
+
+/* A vitrine SERVIDA no HTML, para o aquário de referência.
+ *
+ * Ela para em 5 cartões porque a seção 7 do contrato manda de três a cinco
+ * produtos, e porque o script pinta no máximo cinco: uma vitrine servida mais
+ * longa que a pintada faria as duas metades da mesma página discordarem.
+ *
+ * O aquário de referência é o de 90 × 45 × 45 cm em alta exigência, e a escolha
+ * é medição, não gosto: é o único dos seis casos da tabela, nos três níveis, em
+ * que três luminárias do banco cobrem o vidro E caem dentro do intervalo que as
+ * três fontes publicam. O parágrafo abaixo dos cartões diz isso com todas as
+ * letras — escolher o caso e calar o motivo seria colher cereja. */
+if ( ! function_exists( 'aquametria_c15_vitrine_servida_html' ) ) {
+function aquametria_c15_vitrine_servida_html() {
+	$c      = AQUAMETRIA_C15_VITRINE_CM;
+	$lamina = AQUAMETRIA_C15_VITRINE_ALTURA_CM - AQUAMETRIA_C15_BORDA_LIVRE_CM;
+	$volume = ( $c * AQUAMETRIA_C15_VITRINE_LARGURA_CM * $lamina ) / 1000;
+	$e      = aquametria_c15_exemplo( $volume, $c, AQUAMETRIA_C15_VITRINE_NIVEL );
+	$lista  = array_slice( $e['produtos'], 0, 5 );
+
+	$divulgacao = aquametria_c15_url( AQUAMETRIA_C15_PAGINA_AFILIADOS );
+
+	$h  = '<div class="aqm-c15-painel aqm-c15-vitrine-servida">';
+	$h .= '<h3>As luminárias para um aquário plantado de ' . esc_html( number_format_i18n( $c, 0 ) ) . ' cm</h3>';
+
+	if ( ! $lista ) {
+		$h .= '<p class="aqm-c15-sub">Nenhuma luminária do banco da Aquametria entrega hoje entre '
+			. esc_html( aquametria_c15_lm( $e['min'] ) ) . ' e ' . esc_html( aquametria_c15_lm( $e['max'] ) )
+			. ' lm com cobertura declarada para um aquário de ' . esc_html( number_format_i18n( $c, 0 ) ) . ' cm. '
+			. 'O banco tem ' . esc_html( count( aquametria_c15_catalogo() ) ) . ' luminárias com ficha completa e cresce a cada coleta. '
+			. 'Preferimos não mostrar produto nenhum a mostrar um que não atende ao número.</p>';
+		$h .= '</div>';
+		return $h;
+	}
+
+	$com_link = 0;
+	foreach ( $lista as $p ) {
+		if ( $p['link'] ) {
+			$com_link++;
+		}
+	}
+
+	$h .= '<p class="aqm-c15-sub">Um aquário de ' . esc_html( number_format_i18n( $c, 0 ) ) . ' × '
+		. esc_html( number_format_i18n( AQUAMETRIA_C15_VITRINE_LARGURA_CM, 0 ) ) . ' × '
+		. esc_html( number_format_i18n( AQUAMETRIA_C15_VITRINE_ALTURA_CM, 0 ) ) . ' cm tem '
+		. esc_html( aquametria_c15_litros( $volume ) ) . ' litros de água real, descontada a borda livre de '
+		. esc_html( AQUAMETRIA_C15_BORDA_LIVRE_CM ) . ' cm. Para plantas de ' . esc_html( $e['rotulo'] )
+		. ' isso pede a partir de ' . esc_html( aquametria_c15_lm( $e['min'] ) ) . ' lm, e estas são as luminárias do banco da Aquametria '
+		. 'que entregam esse fluxo E cujo fabricante declara cobrir um vidro de ' . esc_html( number_format_i18n( $c, 0 ) ) . ' cm. '
+		. 'A ordem é pela proximidade do meio da faixa; nada aqui é ordenado por comissão, e modelo sem link de loja aparece do mesmo jeito. '
+		. 'Preencha o formulário acima para ver a lista do seu aquário.</p>';
+
+	$h .= '<ul class="aqm-c15-vt-trilho">';
+	foreach ( $lista as $p ) {
+		$h .= aquametria_c15_vitrine_cartao_html( $p, $e, $p['fluxo_lm'] > $e['max'] );
+	}
+	$h .= '</ul>';
+
+	$h .= '<p class="aqm-c15-criterio">' . esc_html( $com_link ) . ' de ' . esc_html( count( $lista ) )
+		. ' têm link de loja hoje; os outros aparecem do mesmo jeito, com o lugar do botão reservado — '
+		. 'quem entra é decidido pela ficha técnica, e nunca por ter ou não link.</p>';
+
+	/* Por que ESTE aquário e ESTE nível, dito na própria página. O motivo é uma
+	   lacuna medida do catálogo brasileiro, e é conteúdo — a mesma razão pela
+	   qual a lista de barrados é publicada em vez de escondida. */
+	$h .= '<p class="aqm-c15-criterio">Por que o exemplo é um aquário grande e de alta exigência, e não um de 60 cm: '
+		. 'varremos os seis aquários da tabela acima nos três níveis, e este é o único caso em que três luminárias do nosso banco '
+		. 'cobrem o vidro e caem dentro da faixa. Nos níveis baixo e médio, que é o que a maior parte dos aquários pede, '
+		. 'a lista sai vazia em 8 dos 12 casos, e nos 4 que sobram há uma única luminária — '
+		. 'não porque a conta erre, mas porque o catálogo brasileiro de luminária com lúmen declarado é curto justamente na faixa de 10 a 40 lm/L. '
+		. 'Isso é medição nossa, e está publicado aqui do mesmo jeito que a lista das luminárias que o banco tem e não pode sugerir.</p>';
+
+	$h .= '<p class="aqm-c15-aviso-vitrine"><strong>Sobre o preço e o botão.</strong> '
+		. 'O valor de cada cartão <strong>não é preço de hoje</strong>: é a cotação que a Aquametria leu naquele anúncio na data escrita ao lado, '
+		. 'e preço de aquarismo muda toda semana. Confira no anúncio antes de comprar. '
+		. 'Os botões levam a lojas por link de afiliado, marcado como patrocinado: se você comprar por eles, a Aquametria pode receber comissão, sem custo a mais para você. '
+		. 'A ficha técnica de cada luminária vem do fabricante ou do varejo especializado, com o endereço e a data — o anúncio da loja nunca é a nossa fonte. '
+		. '<a href="' . esc_url( $divulgacao ) . '">Como a Aquametria ganha dinheiro</a>.</p>';
+
+	$h .= '</div>';
+
+	return $h;
+}
+}
+
+/* A linha de promessa, antes do formulário: o que a pessoa recebe se preencher.
+   Curta, sem exclamação, sem tom de anúncio (seção 6 do ARQUIPELAGO.md). */
+if ( ! function_exists( 'aquametria_c15_promessa_html' ) ) {
+function aquametria_c15_promessa_html() {
+	return '<p class="aqm-c15-promessa">Descubra quantos lúmens o seu aquário pede, pelas três leituras brasileiras lado a lado, '
+		. 'e veja quais luminárias entregam esse número cobrindo o seu vidro.</p>';
+}
+}
+
+/* A barra do celular. Ela só existe enquanto o resultado está fora da tela, e só
+   em tela estreita — o CSS a esconde acima de 600 px, e o script só liga a
+   classe depois de um cálculo. Fora do <form> de propósito: position:fixed
+   dentro de um painel com rolagem própria briga com o painel. */
+if ( ! function_exists( 'aquametria_c15_barra_html' ) ) {
+function aquametria_c15_barra_html() {
+	$h  = '<div class="aqm-c15-barra" id="aqm-c15-barra" aria-hidden="true">';
+	$h .= '<span class="aqm-c15-barra-texto" id="aqm-c15-barra-texto"></span>';
+	$h .= '<button type="button" class="aqm-c15-barra-botao" id="aqm-c15-barra-ir">Ver o resultado</button>';
+	$h .= '</div>';
+	return $h;
 }
 }
 
@@ -2072,7 +2786,7 @@ function aquametria_c15_exemplos_html() {
 	$h .= 'Os dois cortes nessa ordem, e a comissão não entra em nenhum deles: peça que não cobre o vidro não aparece nem em último lugar, e modelo sem link de loja aparece do mesmo jeito — a coluna diz quando é o caso. ';
 	$h .= 'Onde a célula diz que nada atende, é faixa vazia do catálogo brasileiro medida por nós, não erro da conta. ';
 	$h .= 'Alguns desses nomes levam a lojas por link de afiliado, marcado como patrocinado: se você comprar por ele, a Aquametria pode receber comissão, sem custo a mais para você. ';
-	$h .= 'Não publicamos preço aqui, porque preço muda toda semana e número velho na tela é pior que nenhum. ';
+	$h .= 'Esta tabela não traz preço: quem traz é a vitrine, e sempre como cotação com a data da coleta ao lado, nunca como preço de hoje. ';
 	$h .= '<a href="' . esc_url( $divulgacao ) . '">Como a Aquametria ganha dinheiro</a>.</p>';
 
 	$h .= '</div>';
@@ -2339,14 +3053,17 @@ function aquametria_c15_shortcode() {
 	add_action( 'wp_footer', 'aquametria_c15_rodape', 20 );
 
 	$h  = '<div class="aqm-c15">';
+	$h .= aquametria_c15_promessa_html();
 	$h .= aquametria_c15_resposta_direta_html();
 	$h .= aquametria_c15_form_html();
 	$h .= aquametria_c15_resposta_html();
+	$h .= aquametria_c15_vitrine_servida_html();
 	$h .= aquametria_c15_exemplos_html();
 	$h .= aquametria_c15_consumo_html();
 	$h .= aquametria_c15_inverso_html();
 	$h .= aquametria_c15_fontes_html();
 	$h .= aquametria_c15_adiante_html();
+	$h .= aquametria_c15_barra_html();
 	$h .= '</div>';
 
 	return $h;
