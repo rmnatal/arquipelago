@@ -21,6 +21,7 @@ Espelho legível do estado do projeto. **Nunca guarde credencial aqui.**
 - WordPress: instalado em 10/09/2026 14h51 BRT via Softaculous (7.1 pt-BR, instalação limpa, admin não é "admin"); SSL emitido na madrugada de 11/09; plugins da lista curta ativos em 11/09.
 - Snippet de Sync: "Clube do Mosaico Sync" v1.1.5, snippet #5, ATIVO desde 11/09/2026; primeiro sync leu a revisão 3 (0 aplicados, 5 aguardando desembarque). Endpoints no PROMPT.md.
 - Logo: logo completo e favicon subidos pelo Raphael na biblioteca de mídia em 11/09/2026 (URLs no PROMPT.md); lótus transparente e favicons em identidade/logo/.
+- E-mail da artesã (usuário `artesa` e notificações de lead): mina196@hotmail.com
 
 ## O que já foi entregue
 - 10/09/2026 — Pesquisa de palavras-chave e SERP (na memória `/areas/projeto-clube-do-mosaico.md`) e estratégia aprovada em conversa (artifact "Clube do Mosaico").
@@ -113,3 +114,6 @@ Espelho legível do estado do projeto. **Nunca guarde credencial aqui.**
   Raphael quiser fechar essa lacuna, é acrescentar quartzolit.weber, tekbond.com.br,
   cascola.com.br e henkel.com.br à rede Personalizada do ambiente das rotinas.
 - DNS/WordPress/Search Console seguem como no registro de 10/09. Nada disso trava os blocos 2 e 3, que não dependem de site.
+
+## Pendências do Raphael (não travam)
+- Nome, foto e perfis de redes sociais da artesã para o Sobre — decidido em 11/09/2026 que ela aparece.

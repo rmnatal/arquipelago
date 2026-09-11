@@ -165,3 +165,5 @@ proximo passo desbloqueado.
   de site e que o esquema ja deixou com os campos nomeados (rejunte com faixa de junta;
   pastilha com lado anunciado, passo de fabrica, espessura e unidade de venda). O bloco 3b
   (casca) e o bloco 4 (ferramentas) continuam dependendo so de o WordPress existir.
+
+11/09/2026 — sessão de conversa: decisões do Raphael gravadas — artesã aparece com nome/foto/redes; botão Verificar disponibilidade + leads por e-mail; acesso do painel vai direto para a artesã.
