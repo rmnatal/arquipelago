@@ -4828,3 +4828,24 @@ copiar para `gerar-catalogo-midias.py` o mesmo portão de `alt`/`preco`/comissã
 que os outros três geradores já têm. E fica anotado para o T3: a **faixa
 descoberta de 10 a 40 lm/L** do banco de iluminação é a lista de compras de
 catálogo mais urgente desta entidade, medida célula a célula neste bloco.
+
+**NO AR E CONFERIDO (seção 4 do `ARQUIPELAGO.md`), 11/09/2026 12h21Z.** A nuvem
+alcançou o domínio: `curl` no Sync devolveu **revisão 39, 18 aplicados, 14
+aguardando desembarque**, e o `/status` confirma `revisao: 39`, **igual à do
+manifest**. Medido na URL no ar (`/calculadora-de-iluminacao/?v=1226`, com
+quebra-cache):
+- **HTTP 200**, 216 KB servidos.
+- **Zero `&#038;` DENTRO dos 12 blocos `<script>`** — e 4 na página inteira, que
+  é justamente por que contar na página inteira é o teste errado. `&amp;` `&lt;`
+  `&gt;` `&quot;` uma vez cada dentro do script: é o `esc()` da calculadora.
+- O corpo começa por texto ("Pular para o conteúdo… Calculadora de iluminação e
+  fotoperíodo: quantos lúmens o seu aquário pede"), **nunca por metadado YAML**.
+- O script vem do **rodapé**, depois de todo o conteúdo do shortcode.
+- A **tabela de exemplos** e a **vitrine servida com 3 cartões** aparecem no HTML
+  servido; a vitrine servida vem **antes** do quadro de fontes e a pintada vem
+  **antes** da lista técnica (contrato 7).
+- Rodapé diz **versão 1.3.0**; `<meta name="description">` presente; JSON-LD
+  presente; **zero ocorrência de "não publicamos preço"** e **1 cotação datada**.
+- Os três cartões servidos dizem, cada um, o lm/L que entregam: 49,4 / 48,2 /
+  54,4 lm/L, os três dentro dos 40 a 60 publicados — que é o que o grupo de cima
+  significa agora.
