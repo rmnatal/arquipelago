@@ -1,5 +1,31 @@
 /**
  * Clube do Mosaico Casca — identidade e estrutura do site
+ * Versão 1.4.0 (11/09/2026) — DESPACHO DO RAPHAEL (2): O LOGO DELE, INTEIRO, NO
+ * CABEÇALHO. "Cadê o logo que eu exigi e subi e mandei até a URL?" e "o nome já
+ * está embutido no logo, você não precisa escrever". O cabeçalho passa a servir
+ * `logo-clube-do-mosaico.png` em <img> de 52 px de altura, com link para a home
+ * e sem UMA LETRA ao lado — o wordmark está dentro do arquivo.
+ *
+ * A AFIRMAÇÃO QUE SUSTENTAVA A VERSÃO ANTERIOR ESTAVA ERRADA, e ela está escrita
+ * três vezes neste arquivo desde 1.2.0: "o arquivo entregue tem fundo preto". Não
+ * tem. O Raphael abriu a biblioteca de mídia e mostrou: o PNG de 1536×1024 é
+ * TRANSPARENTE. O que aconteceu no ar em 1.1.0 foi outra coisa, e a diferença
+ * importa porque uma das duas leituras leva a redesenhar o logo e a outra não: o
+ * cabeçalho era PRETO e o wordmark do logo é vinho (#69030C), então ele sumia no
+ * fundo — defeito de onde o logo foi posto, nunca do arquivo. O cabeçalho claro
+ * de 1.2.0 já tinha consertado a causa; faltou devolver o logo ao lugar dele.
+ *
+ * O CUSTO DE UM LOGO DE 1,26 MB NUM ESPAÇO DE 78 PX, e o que esta versão faz com
+ * ele: o arquivo do Raphael é o original de 1536×1024 e a marca ocupa 78×52 px na
+ * tela. Servi-lo cru seria 1,26 MB baixados em toda página de um domínio recém-
+ * nascido, e a régua de rastreamento é a primeira coisa que o Google mede num
+ * domínio assim (seção 14.1). Não se redesenha nada e não se gera nada — o
+ * PROMPT.md proíbe, e com razão: o `src` continua sendo a URL exata que ele
+ * mandou, e o `srcset` oferece ao navegador as reduções que o PRÓPRIO WordPress
+ * gerou do upload dele (-300x200 com 42 KB, -768x512 com 175 KB). Mesma imagem,
+ * mesmo recorte, mesma origem; quem escolhe é o navegador, e quem não entende
+ * `srcset` baixa o original e vê a mesma coisa.
+ *
  * Versão 1.3.0 (11/09/2026) — A ÁRVORE DA SEÇÃO 16: trilha visível em toda
  * página menos a home, `BreadcrumbList` em JSON-LD e o cluster "Veja também"
  * ligando os três motores da ilha. O mapa mora em `ARVORE.md` e o teste cobra
@@ -25,20 +51,13 @@
  * Versão 1.2.0 (11/09/2026) — DESPACHO DO RAPHAEL: cabeçalho claro, a marca
  * legível, a home deixando de ser manifesto e o Guia falando com quem vai fazer
  * a peça. O Raphael viu a casca no ar e reprovou: "muito ruim o fundo preto no
- * header, o logo sumiu, queria algo mais clean". O logo sumia porque o arquivo
- * entregue tem fundo preto e wordmark vinho — sobre preto ele desaparece de
- * verdade, e nenhuma dose de CSS conserta isso. Cabeçalho branco com linha de
- * 1 px, menu em texto escuro, e a marca como wordmark legível.
- *
- * O QUE ESTE BLOCO DESCOBRIU E NÃO ESTAVA PROCURANDO: o símbolo que o despacho
- * manda usar no cabeçalho claro, identidade/logo/lotus-512.png, é um PNG
- * TRUNCADO — o IDAT dele declara 11.638 bytes e o arquivo só tem 8.770, com um
- * IEND colado no fim. Não é imagem incompleta, é fluxo corrompido desde o
- * primeiro bloco: nem 1 pixel sai dele. Publicá-lo teria trocado o logo sumido
- * por um ícone de imagem quebrada, que é pior. A lótus entra no dia em que
- * chegar um arquivo válido (ferramentas/gerar-marca.php embute e RECUSA arquivo
- * inválido); até lá o cabeçalho é o wordmark em texto, que é a outra metade do
- * par que o próprio despacho pediu.
+ * header, o logo sumiu, queria algo mais clean". Esta versão acertou a metade
+ * grande — o cabeçalho branco com linha de 1 px e o menu em texto escuro — e
+ * errou o diagnóstico do logo sumido, pondo a culpa no arquivo em vez do fundo
+ * em que ele foi posto. 1.4.0 desfaz a metade errada. A lótus solta de
+ * identidade/logo/lotus-512.png continua TRUNCADA no repositório (o IDAT declara
+ * 11.638 bytes num arquivo com 8.770) e segue sem uso no cabeçalho — o que vai
+ * ali é o logo completo, que existe e abre.
  *
  * Versão 1.1.0 (11/09/2026) — Bloco 3c: o Guia passou a CONTAR o banco por categoria
  * em vez de trazer um zero digitado. O cartão de Rejuntes dizia "0 no banco" no mesmo
@@ -100,7 +119,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'CDM_CASCA_VERSAO' ) ) {
-	define( 'CDM_CASCA_VERSAO', '1.3.0' );
+	define( 'CDM_CASCA_VERSAO', '1.4.0' );
 	/* O nome do site e a linha que o WordPress serve no <title> da home. A
 	   Aquametria descobriu em 11/09/2026 que a tagline nunca tocada desde o
 	   nascimento da ilha continuava sendo a linha mais lida do site — a do
@@ -110,10 +129,21 @@ if ( ! defined( 'CDM_CASCA_VERSAO' ) ) {
 	/* Os dois arquivos que o Raphael subiu na biblioteca de mídia em 11/09/2026.
 	   São os únicos endereços de imagem que esta casca conhece, e não se
 	   substituem por desenho feito aqui (regra escrita no PROMPT.md da ilha).
-	   O logo completo tem FUNDO PRETO e por isso saiu do cabeçalho em 1.2.0: ele
-	   continua sendo o logotipo da entidade no JSON-LD, onde o consumidor é o
-	   Google e não o olho de quem entra no site. */
+	   O logo completo é TRANSPARENTE (conferido por ele na biblioteca de mídia) e
+	   serve os dois consumidores: o olho de quem entra, no cabeçalho, e o Google,
+	   como `logo` do Organization no JSON-LD. A única coisa que ele não aceita é
+	   fundo escuro, porque o wordmark dentro do arquivo é vinho. */
 	define( 'CDM_CASCA_LOGO_URL', 'https://clubedomosaico.com.br/wp-content/uploads/2026/09/logo-clube-do-mosaico.png' );
+	/* As reduções que o WordPress gerou do upload DELE. Não são arquivo novo nem
+	   imagem tratada: é o mesmo PNG, mesmo recorte, servido menor para um espaço
+	   de 78 px. Se um dia sumirem, o `src` acima continua de pé sozinho. */
+	define( 'CDM_CASCA_LOGO_300', 'https://clubedomosaico.com.br/wp-content/uploads/2026/09/logo-clube-do-mosaico-300x200.png' );
+	define( 'CDM_CASCA_LOGO_768', 'https://clubedomosaico.com.br/wp-content/uploads/2026/09/logo-clube-do-mosaico-768x512.png' );
+	/* O logo é 1536×1024, então 3:2. No cabeçalho ele sai com 52 px de altura, que
+	   é o número do despacho, e 78 px de largura — declarados no <img> para a
+	   linha do cabeçalho não pular quando a imagem chegar. */
+	define( 'CDM_CASCA_LOGO_ALTURA', 52 );
+	define( 'CDM_CASCA_LOGO_LARGURA', 78 );
 	define( 'CDM_CASCA_FAVICON_URL', 'https://clubedomosaico.com.br/wp-content/uploads/2026/09/clube-do-mosaico-favicon.png' );
 }
 
@@ -403,25 +433,24 @@ add_action( 'template_redirect', 'cdm_casca_redirecionar_apelido' );
 /* ---------------------------------------------------------------------------
  * 2. Marca, menu e rodapé
  *
- * A MARCA, e por que ela mudou em 1.2.0. Até 1.1.0 o cabeçalho servia o arquivo
- * completo que o Raphael entregou — lótus mais wordmark, vinho sobre PRETO —, e
- * por isso o cabeçalho inteiro era preto: era a única cor em que aquele arquivo
- * aparecia. Ele viu no ar e reprovou os dois de uma vez ("fundo preto no header,
- * o logo sumiu"). Num cabeçalho claro aquele arquivo não entra: o fundo preto
- * dele vira um retângulo escuro em cima de branco.
+ * A MARCA É O ARQUIVO DELE, INTEIRO (1.4.0). Até 1.1.0 o cabeçalho servia esse
+ * mesmo arquivo, e o cabeçalho inteiro era PRETO — foi assim que o wordmark
+ * vinho de dentro do logo sumiu, e o Raphael reprovou os dois de uma vez ("fundo
+ * preto no header, o logo sumiu"). A 1.2.0 leu o sintoma ao contrário: culpou o
+ * ARQUIVO, escreveu três vezes neste snippet que ele tinha fundo preto e trocou
+ * o logo por um wordmark em texto. O arquivo é transparente — quem estava errado
+ * era o fundo em que ele foi posto, e isso a 1.2.0 já tinha consertado.
  *
- * O par que o despacho pediu é lótus transparente + wordmark em texto. Metade
- * dele não existe: identidade/logo/lotus-512.png está TRUNCADO no repositório
- * (IDAT de 11.638 bytes num arquivo com 8.770, IEND colado no fim) e não
- * descomprime um único pixel. Então esta versão serve a metade que existe — o
- * wordmark em texto, na tipografia da identidade — e deixa o lugar da lótus
- * pronto: basta CDM_CASCA_MARCA_LOTUS deixar de ser vazia para ela entrar ao
- * lado, sem tocar em mais nada. Ícone quebrado no lugar do logo sumido não é
- * conserto.
+ * Então agora: o logo completo, 52 px de altura, link para a home, e NENHUM
+ * texto ao lado. O nome está desenhado dentro da imagem — escrevê-lo de novo
+ * seria a marca em dobro na tela e anunciada duas vezes por leitor de tela. Por
+ * isso o `alt` carrega o nome e não existe <span> nenhum aqui: quem não vê a
+ * imagem ouve "Clube do Mosaico" uma vez, que é exatamente o que a imagem diz.
  *
- * O wordmark sai em minúsculas COMO TEXTO, não como text-transform: quem lê com
- * leitor de tela ouve o nome do jeito que ele é escrito, e a caixa baixa é a do
- * logotipo original, não um efeito de CSS.
+ * A lótus solta (identidade/logo/lotus-512.png) NÃO entra no cabeçalho, e agora
+ * não é por estar truncada: o lugar dela é ícone pequeno, onde o logo completo
+ * não cabe. A constante embutida continua existindo para esses lugares e não tem
+ * mais caminho para dentro da marca.
  * ------------------------------------------------------------------------- */
 
 /* MARCA-INICIO — gerado por ferramentas/gerar-marca.php, nao edite a mao */
@@ -438,16 +467,21 @@ function cdm_casca_marca_html() {
 	}
 	$ja_impressa = true;
 
-	$html = '<a class="cdm-marca" href="' . esc_url( home_url( '/' ) ) . '" rel="home">';
+	/* O `srcset` oferece as reduções que o PRÓPRIO WordPress gerou do upload dele,
+	   e o `sizes` diz a largura real na tela: o navegador baixa 42 KB no lugar de
+	   1,26 MB e desenha exatamente o mesmo logo. O `src` continua sendo a URL que
+	   o despacho mandou usar, então quem ignorar o srcset vê a mesma imagem. */
+	$srcset = esc_url( CDM_CASCA_LOGO_300 ) . ' 300w, '
+		. esc_url( CDM_CASCA_LOGO_768 ) . ' 768w, '
+		. esc_url( CDM_CASCA_LOGO_URL ) . ' 1536w';
 
-	if ( defined( 'CDM_CASCA_MARCA_LOTUS' ) && '' !== CDM_CASCA_MARCA_LOTUS ) {
-		/* A lótus é decoração ao lado do nome escrito: alt vazio, senão o leitor
-		   de tela anuncia a marca duas vezes na mesma linha. */
-		$html .= '<img src="' . esc_attr( 'data:image/png;base64,' . CDM_CASCA_MARCA_LOTUS ) . '"'
-			. ' alt="" class="cdm-marca-lotus" width="80" height="80" decoding="async">';
-	}
-
-	$html .= '<span class="cdm-marca-nome">clube do mosaico</span>';
+	$html  = '<a class="cdm-marca" href="' . esc_url( home_url( '/' ) ) . '" rel="home">';
+	$html .= '<img class="cdm-marca-logo" src="' . esc_url( CDM_CASCA_LOGO_URL ) . '"'
+		. ' srcset="' . esc_attr( $srcset ) . '"'
+		. ' sizes="' . (int) CDM_CASCA_LOGO_LARGURA . 'px"'
+		. ' alt="' . esc_attr( CDM_CASCA_NOME_SITE ) . '"'
+		. ' width="' . (int) CDM_CASCA_LOGO_LARGURA . '" height="' . (int) CDM_CASCA_LOGO_ALTURA . '"'
+		. ' decoding="async" fetchpriority="high">';
 	$html .= '</a>';
 
 	return $html;
@@ -701,13 +735,15 @@ body table th{background:var(--cdm-papel);font-family:var(--cdm-display);font-we
    quem vende peca abre a pagina com a peca, nunca com uma faixa escura. O que
    separa o cabecalho do miolo e a linha de 1 px da secao 6 do contrato, e nao
    uma sombra. Sem a regra do tema abaixo, o tema serviria a propria cor. */
-.wp-site-blocks > header.wp-block-template-part,body header.wp-block-template-part,body header.wp-block-group,body .wp-block-template-part header{background:var(--cdm-papel);border-bottom:1px solid var(--cdm-traco);box-shadow:none;min-height:4.5rem;}
+.wp-site-blocks > header.wp-block-template-part,body header.wp-block-template-part,body header.wp-block-group,body .wp-block-template-part header{background:var(--cdm-papel);border-bottom:1px solid var(--cdm-traco);box-shadow:none;min-height:5.25rem;}
 body header.wp-block-template-part a,body header.wp-block-group a{color:var(--cdm-tinta);}
-.cdm-marca{display:inline-flex;align-items:center;gap:.55rem;text-decoration:none;color:var(--cdm-vinho);min-height:2.6rem;}
-.cdm-marca:hover{text-decoration:none;color:var(--cdm-vinho);}
-.cdm-marca-lotus{display:block;height:2.5rem;width:auto;}
-/* O nome e o wordmark: minusculas de verdade, na fonte da identidade. */
-.cdm-marca-nome{font-family:var(--cdm-display);font-weight:600;font-size:1.3rem;letter-spacing:-0.01em;line-height:1;color:var(--cdm-vinho);}
+/* A MARCA E O LOGO DELE, 52 px de altura (despacho de 11/09), numa barra de
+   84 px para ele respirar. A altura sai em px e nao em rem de proposito: rem
+   segue o tamanho de fonte do leitor, e um logotipo que cresce junto com o texto
+   desalinha a barra inteira. Largura auto preserva o 3:2 do arquivo. */
+.cdm-marca{display:inline-flex;align-items:center;text-decoration:none;min-height:52px;}
+.cdm-marca:hover{text-decoration:none;}
+.cdm-marca-logo{display:block;height:52px;width:auto;max-width:100%;}
 .cdm-nav ul{display:flex;flex-wrap:wrap;gap:1.4rem;list-style:none;margin:0;padding:0;}
 .cdm-nav li{margin:0;}
 .cdm-nav a,.cdm-nav .cdm-sem-link{font-family:var(--cdm-texto);font-weight:500;font-size:.95rem;color:var(--cdm-tinta);text-decoration:none;padding-bottom:.15rem;border-bottom:1px solid transparent;}
@@ -807,8 +843,9 @@ body header.wp-block-template-part a,body header.wp-block-group a{color:var(--cd
 body:has(.cdm-rodape) .wp-site-blocks > footer.wp-block-template-part:not(:has(.cdm-rodape)){display:none;}
 @media (max-width:600px){
 .cdm-linha-mestra{font-size:1.15rem;}
-.cdm-marca-lotus{height:2.1rem;}
-.cdm-marca-nome{font-size:1.1rem;}
+/* No telefone pequeno o logo desce para 44 px: com 52 px ele e o botao do menu
+   somam mais que a largura util a 360 px, e o cabecalho quebra em duas linhas. */
+.cdm-marca,.cdm-marca-logo{height:44px;min-height:44px;}
 }
 /* Menu sanfona. 782 px e a largura em que o proprio WordPress considera que a
    tela virou celular; seguir a mesma quebra evita cabecalho meio empilhado.

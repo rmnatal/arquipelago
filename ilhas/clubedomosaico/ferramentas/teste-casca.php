@@ -218,39 +218,105 @@ foreach ( $paginas as $tag ) {
 }
 
 /* ---------------------------------------------------------------------------
- * 7. A MARCA E O ARQUIVO ENTREGUE, e nao um desenho feito aqui.
+ * 7. A MARCA E O ARQUIVO ENTREGUE, INTEIRO, e nao um desenho feito aqui.
  *
  * E a regra propria desta ilha: o PROMPT.md proibe reconstruir, redesenhar ou
  * vetorizar o logo, e proibe escrever "clube do mosaico" em texto ao lado dele,
  * porque o arquivo ja traz o wordmark. As duas primeiras ilhas desenham o
  * simbolo em SVG; aqui isso seria defeito.
+ *
+ * A REGUA E DESTE ARQUIVO, nao do snippet (secao 8: quem confere escreve a
+ * propria regua). A URL, a altura e a largura abaixo estao escritas LITERAIS,
+ * copiadas do despacho do Raphael de 11/09 e da biblioteca de midia dele — se
+ * alguem trocar a constante do snippet por outra imagem, as duas metades nao
+ * erram juntas, porque a deste lado nao veio de la.
  * ------------------------------------------------------------------------- */
+
+/* Do despacho: "o cabecalho usa .../logo-clube-do-mosaico.png direto, em <img>,
+   alt Clube do Mosaico, link para /. Nenhum texto ao lado. Altura 52 px." */
+$logo_oficial = 'https://clubedomosaico.com.br/wp-content/uploads/2026/09/logo-clube-do-mosaico.png';
+$logo_altura  = 52;
+$logo_largura = 78; /* 1536x1024 e 3:2, entao 52 px de altura dao 78 de largura. */
 
 echo "\n7. Marca entregue, paleta e rodape\n";
 preg_match( '#<a class="cdm-marca".*?</a>#is', $home, $mm );
 $marca = isset( $mm[0] ) ? $mm[0] : '';
 cdm_ok( '' !== $marca, 'a marca sai no HTML servido' );
 cdm_ok( false === stripos( $marca, '<svg' ), 'nenhum logo desenhado em SVG (o PROMPT.md proibe redesenhar)' );
-/* O ARQUIVO DE FUNDO PRETO NAO ENTRA NO CABECALHO CLARO. Ele continua sendo o
-   logotipo da entidade no JSON-LD, onde quem le e o Google; aqui, sobre branco,
-   ele e um retangulo escuro — foi a metade visivel da reprovacao do Raphael. */
-cdm_ok( false === strpos( $marca, CDM_CASCA_LOGO_URL ),
-	'o logo de fundo preto NAO e servido no cabecalho claro' );
-/* O nome e legivel sem imagem nenhuma: e texto, nao alt de figura. */
+
+/* O DESPACHO DE 11/09 (2), medido: o arquivo DELE, inteiro, no cabecalho. Ate
+   1.3.0 esta mesma secao afirmava o contrario — que o logo nao podia entrar por
+   ter fundo preto. O arquivo e transparente; o que sumia o wordmark vinho era o
+   cabecalho PRETO de 1.1.0, e isso a 1.2.0 ja tinha consertado. */
+preg_match( '#<img[^>]*class="cdm-marca-logo"[^>]*>#i', $marca, $mi );
+$img = isset( $mi[0] ) ? $mi[0] : '';
+cdm_ok( '' !== $img, 'o cabecalho serve o logo do Raphael em <img>' );
+cdm_ok( false !== strpos( $img, 'src="' . $logo_oficial . '"' ),
+	'o src e EXATAMENTE o arquivo que ele subiu na biblioteca de midia' );
+cdm_ok( false !== strpos( $marca, 'href="https://clubedomosaico.com.br/"' ),
+	'o logo e link para a home' );
+
+/* "O nome ja esta embutido no logo, voce nao precisa escrever." Zero caractere
+   de texto dentro da marca — nao "pouco texto", nenhum. */
 $marca_so_texto = trim( html_entity_decode( strip_tags( $marca ), ENT_QUOTES, 'UTF-8' ) );
-cdm_ok( 'clube do mosaico' === mb_strtolower( $marca_so_texto, 'UTF-8' ),
-	'o wordmark e TEXTO no cabecalho, e so ele', '"' . $marca_so_texto . '"' );
-/* A lotus so sai quando existe arquivo valido embutido: sem isso, um <img> com
-   src vazio seria icone quebrado no lugar do logo sumido — trocar um defeito
-   visivel por outro. Os dois lados sao medidos. */
-$tem_lotus = ( defined( 'CDM_CASCA_MARCA_LOTUS' ) && '' !== CDM_CASCA_MARCA_LOTUS );
-cdm_ok( $tem_lotus === ( false !== strpos( $marca, 'cdm-marca-lotus' ) ),
-	'a lotus aparece no cabecalho se, e so se, ha arquivo embutido',
-	$tem_lotus ? 'embutida' : 'ausente (lotus-512.png truncado no repositorio)' );
-if ( $tem_lotus ) {
-	cdm_ok( false !== strpos( $marca, 'alt=""' ),
-		'a lotus e decoracao ao lado do nome escrito (alt vazio, sem marca em dobro)' );
+cdm_ok( '' === $marca_so_texto,
+	'NENHUM texto ao lado do logo: o nome esta dentro da imagem',
+	'' === $marca_so_texto ? 'vazio' : '"' . $marca_so_texto . '"' );
+/* Sem texto na tela, quem nao ve a imagem depende do alt — e ele diz o nome uma
+   vez so, nunca duas (seria a marca em dobro no leitor de tela). */
+preg_match( '#alt="([^"]*)"#i', $img, $ma );
+cdm_ok( isset( $ma[1] ) && 'Clube do Mosaico' === $ma[1],
+	'o alt carrega o nome da marca para quem nao ve a imagem',
+	isset( $ma[1] ) ? '"' . $ma[1] . '"' : 'sem alt' );
+cdm_ok( 1 === substr_count( $marca, 'alt=' ), 'uma imagem so na marca, um alt so' );
+
+/* Largura e altura declaradas: sem elas a linha do cabecalho pula quando a
+   imagem chega, e a proporcao errada distorce o logotipo de outra pessoa. */
+preg_match( '#width="(\d+)"#', $img, $mw );
+preg_match( '#height="(\d+)"#', $img, $mh2 );
+$w = isset( $mw[1] ) ? (int) $mw[1] : 0;
+$h = isset( $mh2[1] ) ? (int) $mh2[1] : 0;
+cdm_ok( $logo_largura === $w && $logo_altura === $h,
+	'width e height declarados, na proporcao 3:2 do arquivo', $w . 'x' . $h );
+
+/* O SRCSET NAO E PORTA DOS FUNDOS PARA OUTRA IMAGEM. Ele existe para nao baixar
+   1,26 MB num espaco de 78 px, e so pode oferecer reducoes que o proprio
+   WordPress gerou DESTE upload: mesmo nome de arquivo, so com o sufixo de
+   tamanho. Qualquer outro endereco aqui seria logo trocado sem ninguem ver. */
+$base_logo = preg_replace( '/\.png$/', '', $logo_oficial );
+preg_match( '#srcset="([^"]*)"#i', $img, $ms2 );
+$candidatos = isset( $ms2[1] ) ? preg_split( '/\s*,\s*/', trim( $ms2[1] ) ) : array();
+$intrusos   = array();
+foreach ( $candidatos as $c ) {
+	$url = trim( explode( ' ', trim( $c ) )[0] );
+	if ( '' === $url ) {
+		continue;
+	}
+	if ( 1 !== preg_match( '#^' . preg_quote( $base_logo, '#' ) . '(-\d+x\d+)?\.png$#', $url ) ) {
+		$intrusos[] = $url;
+	}
 }
+cdm_ok( empty( $intrusos ), 'todo candidato do srcset e o MESMO arquivo, so menor',
+	empty( $intrusos ) ? count( $candidatos ) . ' candidato(s)' : implode( ' ', $intrusos ) );
+cdm_ok( false !== strpos( $img, 'sizes="' . $logo_largura . 'px"' ),
+	'o sizes diz a largura real na tela, senao o navegador escolhe pelo pior caso' );
+
+/* A lotus solta nao volta ao cabecalho por caminho nenhum: o lugar dela e icone
+   pequeno. Se ela aparecer aqui de novo, e marca em dobro ao lado do wordmark
+   que ja esta desenhado dentro do logo. */
+cdm_ok( false === strpos( $marca, 'cdm-marca-lotus' ) && false === strpos( $marca, 'data:image/png;base64,' ),
+	'a lotus solta NAO entra no cabecalho (o logo completo ja a contem)' );
+
+/* E EM TODAS AS NOVE, uma vez por pagina. A afirmacao "o logo esta no
+   cabecalho" medida so na home aprovaria um logo que aparece na home e some no
+   resto — e o `static` de cdm_casca_marca_html() e exatamente o mecanismo que
+   faria isso numa bancada de um processo so (por isso o render acima e um
+   processo por pagina). */
+foreach ( $paginas as $tag ) {
+	$n = substr_count( $html_por_pagina[ $tag ], 'class="cdm-marca-logo"' );
+	cdm_ok( 1 === $n, "[$tag] o logo sai no cabecalho, uma vez", "achados: $n" );
+}
+
 cdm_ok( 1 === substr_count( $home, 'class="cdm-rodape"' ), 'exatamente um rodape na pagina', substr_count( $home, 'class="cdm-rodape"' ) . ' achado(s)' );
 
 /* O coral e COR DE SINAL: no maximo um botao principal por tela. */
@@ -283,6 +349,27 @@ cdm_ok( false === strpos( $css, '.cdm-nav a{color:var(--cdm-papel)' ) && false =
 	'nenhum texto de menu branco sobrou do cabecalho preto' );
 cdm_ok( false !== strpos( $css, '.cdm-rodape{background:var(--cdm-noite)' ), 'rodape no preto da ilha' );
 cdm_ok( false !== strpos( $css, 'html body{background-color:var(--cdm-papel)' ), 'miolo branco' );
+
+/* O TAMANHO DO LOGO NA TELA, medido no CSS servido (o navegador confere o
+   resultado; aqui se confere a regra). Os dois numeros sao do despacho: 52 px de
+   imagem numa barra de ~84 px para ela respirar. */
+cdm_ok( preg_match( '#\.cdm-marca-logo\{[^{}]*height:' . $logo_altura . 'px#', $css ) === 1,
+	'o logo sai com ' . $logo_altura . ' px de altura (despacho de 11/09)' );
+cdm_ok( preg_match( '#\.cdm-marca-logo\{[^{}]*width:auto#', $css ) === 1,
+	'largura auto: a proporcao do logotipo dele nao se distorce' );
+if ( preg_match( '#header[^{}]*\{[^{}]*min-height:([\d.]+)rem#', $css, $mb ) ) {
+	$barra = (float) $mb[1] * 16;
+	cdm_ok( $barra >= $logo_altura + 24,
+		'a barra do cabecalho tem folga em volta do logo', round( $barra ) . ' px para um logo de ' . $logo_altura );
+} else {
+	cdm_ok( false, 'a barra do cabecalho declara altura minima' );
+}
+/* O LOGO NUNCA SOBRE FUNDO ESCURO — e a unica coisa que este arquivo nao
+   aceita, porque o wordmark dentro dele e vinho (#69030C) e some no preto. Foi
+   isso, e nao o arquivo, que sumiu com o logo em 1.1.0. A regra se mede na
+   regra do cabecalho, que e onde o logo vive. */
+cdm_ok( preg_match( '#header[^{}]*\{[^{}]*background:var\(--cdm-noite\)#', $css ) !== 1,
+	'nenhuma regra devolve fundo escuro ao cabecalho onde o logo vive' );
 
 /* ---------------------------------------------------------------------------
  * 8. A LOJA NOS DOIS ESTADOS — a borda da grade (secao 8, regra 2).

@@ -60,16 +60,30 @@ for (const arquivo of arquivos) {
 		cssBytes: (document.getElementById('cdm-casca')?.textContent || '').length,
 		rodape: document.querySelectorAll('.cdm-rodape').length,
 		marcaTexto: (document.querySelector('.cdm-marca')?.textContent || '').trim(),
-		marcaImg: document.querySelectorAll('.cdm-marca img').length,
+		marcaImg: document.querySelectorAll('.cdm-marca img.cdm-marca-logo').length,
+		/* A caixa que o logo OCUPA, desenhada pelo motor de layout. E o numero que
+		   separa "a regra de 52 px esta escrita no CSS" de "o logo tem 52 px na
+		   tela" — e ele so existe porque width/height estao declarados no <img>:
+		   sem eles a caixa seria 0 ate a imagem chegar da rede, que e o pulo de
+		   linha que o visitante ve. */
+		marcaAltura: Math.round(document.querySelector('.cdm-marca-logo')?.getBoundingClientRect().height || 0),
+		marcaLargura: Math.round(document.querySelector('.cdm-marca-logo')?.getBoundingClientRect().width || 0),
 		fundoCabecalho: getComputedStyle(document.querySelector('header')).backgroundColor,
 		corDoMenu: getComputedStyle(document.querySelector('.cdm-nav a') || document.body).color,
 		nav: document.querySelectorAll('.cdm-nav a, .cdm-nav .cdm-sem-link').length,
 		corpo: (document.querySelector('main')?.textContent || '').trim().length,
 	}));
 	ok(
-		retrato.folha && retrato.cssBytes > 4000 && 1 === retrato.rodape && 'clube do mosaico' === retrato.marcaTexto && 4 === retrato.nav && retrato.corpo > 1200,
-		`[${arquivo}] folha, marca legivel, 4 itens de menu, 1 rodape e corpo cheio`,
-		`css ${retrato.cssBytes}B · marca "${retrato.marcaTexto}" · nav ${retrato.nav} · corpo ${retrato.corpo} caracteres`
+		retrato.folha && retrato.cssBytes > 4000 && 1 === retrato.rodape && 1 === retrato.marcaImg && '' === retrato.marcaTexto && 4 === retrato.nav && retrato.corpo > 1200,
+		`[${arquivo}] folha, logo sem texto ao lado, 4 itens de menu, 1 rodape e corpo cheio`,
+		`css ${retrato.cssBytes}B · logo ${retrato.marcaImg} · texto na marca "${retrato.marcaTexto}" · nav ${retrato.nav} · corpo ${retrato.corpo} caracteres`
+	);
+	/* 52 px de altura e 78 de largura sao os numeros do despacho e a proporcao 3:2
+	   do arquivo dele. A 1200 px de largura a regra do celular nao vale. */
+	ok(
+		52 === retrato.marcaAltura && 78 === retrato.marcaLargura,
+		`[${arquivo}] o logo ocupa 78x52 px na tela, nao so no CSS`,
+		`${retrato.marcaLargura}x${retrato.marcaAltura} px`
 	);
 	/* O CABECALHO CLARO, MEDIDO PELO NAVEGADOR e nao pelo texto do CSS: e a
 	   diferenca entre "a regra esta escrita" e "a cor que sai na tela". O
@@ -173,13 +187,18 @@ const contraste = await pagina.evaluate(() => {
 		   passa a ser o do proprio cabecalho, medido, e nao uma cor escrita aqui —
 		   senao esta conta continuaria conferindo contra um preto que saiu da tela. */
 		menu: razao(getComputedStyle(link).color, getComputedStyle(document.querySelector('header')).backgroundColor),
-		marca: razao(getComputedStyle(document.querySelector('.cdm-marca-nome')).color, getComputedStyle(document.querySelector('header')).backgroundColor),
+		/* A marca deixou de ser texto em 1.4.0 — e o logo dele. Contraste de
+		   texto nao se aplica a uma imagem, mas a condicao que o arquivo IMPOE
+		   sim: o wordmark desenhado dentro dele e vinho #69030C, entao o fundo
+		   atras do logo tem que ser claro. Foi um fundo escuro, e nao o arquivo,
+		   que sumiu com o logo em 1.1.0. Mede-se o fundo, que e o que muda. */
+		fundoDaMarca: razao('rgb(105, 3, 12)', getComputedStyle(document.querySelector('header')).backgroundColor),
 		rodape: razao(getComputedStyle(rodape).color, 'rgb(0, 0, 0)'),
 		corpo: razao(getComputedStyle(corpo).color, 'rgb(255, 255, 255)'),
 	};
 });
 ok(contraste.menu >= 4.5, 'link do menu sobre o cabecalho claro', contraste.menu.toFixed(2) + ':1');
-ok(contraste.marca >= 4.5, 'o wordmark sobre o cabecalho claro', contraste.marca.toFixed(2) + ':1');
+ok(contraste.fundoDaMarca >= 4.5, 'o vinho do wordmark DENTRO do logo sobre o fundo do cabecalho', contraste.fundoDaMarca.toFixed(2) + ':1');
 ok(contraste.rodape >= 4.5, 'texto do rodape sobre o preto', contraste.rodape.toFixed(2) + ':1');
 ok(contraste.corpo >= 4.5, 'texto do corpo sobre o branco', contraste.corpo.toFixed(2) + ':1');
 

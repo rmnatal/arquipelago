@@ -77,11 +77,66 @@ def m_menu_branco_esquecido(raiz):
            ".cdm-nav a,.cdm-nav .cdm-sem-link{font-family:var(--cdm-texto);font-weight:500;font-size:.95rem;color:var(--cdm-papel)")
 
 
-def m_logo_de_fundo_preto_volta(raiz):
-    """O arquivo com fundo preto volta ao cabecalho claro — retangulo escuro."""
+def m_logo_sai_e_volta_o_wordmark_em_texto(raiz):
+    """O estado de 1.2.0, que o despacho de 11/09 (2) reprovou pelo nome: o
+    cabecalho escreve "clube do mosaico" em texto e o logo dele fica de fora.
+
+    Esta mutacao SUBSTITUI a antiga "logo de fundo preto volta ao cabecalho
+    claro", que media o mundo ao contrario — la o defeito era o logo entrar,
+    aqui e ele sair. Mutacao que edita a regra antiga vira inerte quando a regra
+    muda de lado (secao 8 do contrato), e inerte e verde sem medir nada."""
+    texto = ler(raiz, CASCA)
+    inicio = texto.index("\t$html .= '<img class=\"cdm-marca-logo\"")
+    fim = texto.index("\t$html .= '</a>';", inicio)
+    gravar(raiz, CASCA,
+           texto[:inicio]
+           + "\t$html .= '<span class=\"cdm-marca-nome\">clube do mosaico</span>';\n"
+           + texto[fim:])
+
+
+def m_nome_escrito_ao_lado_do_logo(raiz):
+    """"O nome ja esta embutido no logo, voce nao precisa escrever" — e alguem
+    escreve mesmo assim. Marca em dobro na tela, e anunciada duas vezes por
+    leitor de tela. E a mutacao mais provavel de todas, porque parece zelo."""
     trocar(raiz, CASCA,
-           "$html .= '<span class=\"cdm-marca-nome\">clube do mosaico</span>';",
-           "$html .= '<img src=\"' . esc_url( CDM_CASCA_LOGO_URL ) . '\" alt=\"Clube do Mosaico\">';")
+           "\t$html .= '</a>';\n\n\treturn $html;",
+           "\t$html .= '<span class=\"cdm-marca-nome\">clube do mosaico</span>';\n"
+           "\t$html .= '</a>';\n\n\treturn $html;")
+
+
+def m_logo_sem_medida_declarada(raiz):
+    """width/height saem do <img>. Nada muda depois que a imagem chega — e antes
+    dela chegar a caixa e zero, e a linha do cabecalho pula na cara de quem
+    entrou. Mutacao silenciosa: a pagina pronta fica identica."""
+    trocar(raiz, CASCA,
+           "\t\t. ' width=\"' . (int) CDM_CASCA_LOGO_LARGURA . '\" height=\"' . (int) CDM_CASCA_LOGO_ALTURA . '\"'\n",
+           "")
+
+
+def m_srcset_leva_outra_imagem(raiz):
+    """A porta dos fundos desta versao: o srcset existe para servir o MESMO
+    arquivo menor, e e por ele que uma imagem completamente outra entraria no
+    lugar do logo sem ninguem ver — o `src` continuaria certo no codigo."""
+    trocar(raiz, CASCA,
+           "\t$srcset = esc_url( CDM_CASCA_LOGO_300 ) . ' 300w, '",
+           "\t$srcset = esc_url( CDM_CASCA_FAVICON_URL ) . ' 300w, '")
+
+
+def m_logo_encolhe_na_tela(raiz):
+    """Os 52 px do despacho viram 28: o logo continua la, legivel no HTML, e na
+    tela vira um selinho. So numero medido pega isto."""
+    trocar(raiz, CASCA,
+           ".cdm-marca-logo{display:block;height:52px;",
+           ".cdm-marca-logo{display:block;height:28px;")
+
+
+def m_alt_do_logo_fica_vazio(raiz):
+    """Sem texto ao lado, o alt e a UNICA forma de a marca chegar a quem nao ve a
+    imagem. Vazio, o cabecalho fica mudo para leitor de tela e para quem le sem
+    imagens — e a pagina continua perfeita no olho."""
+    trocar(raiz, CASCA,
+           "\t\t. ' alt=\"' . esc_attr( CDM_CASCA_NOME_SITE ) . '\"'",
+           "\t\t. ' alt=\"\"'")
 
 
 def m_home_volta_a_ser_inicio(raiz):
@@ -221,7 +276,12 @@ MUTACOES = [
     ("cabecalho volta ao preto", m_cabecalho_volta_ao_preto),
     ("cabecalho separa por sombra em vez de linha", m_cabecalho_separa_por_sombra),
     ("fundo trocado e texto do menu esquecido no branco", m_menu_branco_esquecido),
-    ("logo de fundo preto volta ao cabecalho claro", m_logo_de_fundo_preto_volta),
+    ("o logo sai e volta o wordmark em texto (o estado de 1.2.0)", m_logo_sai_e_volta_o_wordmark_em_texto),
+    ("o nome escrito ao lado do logo que ja o contem", m_nome_escrito_ao_lado_do_logo),
+    ("logo sem width/height: a caixa e zero ate a imagem chegar", m_logo_sem_medida_declarada),
+    ("PORTA DOS FUNDOS: o srcset leva outra imagem", m_srcset_leva_outra_imagem),
+    ("o logo encolhe de 52 para 28 px so no CSS", m_logo_encolhe_na_tela),
+    ("o alt do logo fica vazio e o cabecalho emudece", m_alt_do_logo_fica_vazio),
     ("a home volta a se chamar Inicio", m_home_volta_a_ser_inicio),
     ("o titulo para de sincronizar (o defeito por tras do Inicio)", m_titulo_para_de_sincronizar),
     ("ficha tecnica de volta ao primeiro paragrafo da home", m_ficha_tecnica_na_home),
