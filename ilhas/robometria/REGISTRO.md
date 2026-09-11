@@ -1502,3 +1502,27 @@ um bloco com nome de recusa.
   pagina, publicar breadcrumb e "Veja tambem". Junto com ela, derivar para
   `casca-fatos.json` os cinco numeros da secao 4 da metodologia, fechando a ultima
   afirmacao digitada daquela pagina.
+
+### NO AR — conferido em 11/09/2026, 15h47Z
+
+Sync acionado por `curl` as 15h43Z. `/status` responde **revisao 15**, igual a do
+`manifest.json`, com `snippets/robometria-casca: ok (snippet #6 atualizado)`.
+"Aplicado com sucesso" no log nao e evidencia de nada (secao 8), entao as nove
+URLs foram medidas no ar, com quebra de cache:
+
+- **9 de 9 em HTTP 200**, e **9 de 9 com `<meta name="description">`** — de 116 a
+  136 caracteres, todas diferentes, com `og:type`, `og:title`, `og:description`,
+  `og:url` e `og:site_name` presentes em todas. Era `null` nas nove ontem.
+- **Zero `&#038;` dentro de `<script>`** nas nove, contado so dentro dos blocos.
+- **O H1 da raiz** e `Robô aspirador: qual peça serve no seu, e quanta sucção
+  precisa`. O corpo comeca por esse texto, nao por metadado.
+- **A home serve a ferramenta:** `<form class="rbm-form">` no HTML, com 5
+  `<optgroup>` (as 5 marcas), 28 `<option>` de modelo e 5 atalhos
+  `rel="nofollow"` — os mesmos 5 tipos que o banco declara.
+- **O menu no ar:** Peças → `/qual-peca-serve-no-meu-robo-aspirador/`, Sucção →
+  `/quantos-pa-o-robo-aspirador-precisa/`, Como conferimos → `/metodologia/`,
+  os tres como `<a href>` reais dentro de `<nav>`.
+- **`/divulgacao-de-afiliados/`** serve o bloco de recusa marcado, com 4 itens
+  abrindo com negacao, e a frase contada: "nenhum dos 44 itens do banco tem link
+  de loja ainda". Tamanho da pagina no ar: 85 KB (era fina no corpo, nao no HTML).
+- Tamanhos no ar, de 84 a 122 KB, coerentes com paginas inteiras.
