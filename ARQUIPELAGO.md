@@ -398,3 +398,23 @@ Decisão do Raphael em 11/09/2026: toda ilha nasce com hierarquia visível na UR
 16.7 **Entre ilhas não há link** (decisão de 09/09/2026): cada ilha é um silo próprio; a autoridade cresce dentro do domínio.
 
 16.8 **Transição das ilhas vivas.** Aquametria, Robometria e Clube do Mosaico: no bloco de reescrita da home e do header (seção 15.5), a Fundação também (i) define a árvore da ilha em `ilhas/<ilha>/ARVORE.md` (níveis 1 e 2 com slugs, e a lista das páginas existentes com o pai de cada uma); (ii) muda o pai e o slug das páginas existentes SOMENTE se ainda não estiverem posicionadas (seção 12.1: página com impressão registrada não troca URL — recebe breadcrumb e links no lugar onde está, e o pai passa a apontar para ela); (iii) publica breadcrumb e blocos "Veja também" em tudo; (iv) toda URL que mudar recebe 301 da antiga e o sitemap é reenviado.
+
+## 17. PAUTA DAS ILHAS — os guias são o terceiro nível da malha, não um blog (11/09/2026)
+
+Decisão do Raphael em 11/09/2026: as ilhas passam a ter artigos escritos pela fábrica, com descoberta automática de tema, para ranquear e fortalecer os clusters (seção 16). Não é um blog em feed: é o nível `/guias/` (ou `/como-fazer/`, conforme o `VOZ.md`) da árvore, e cada artigo nasce com mãe, consulta-alvo e destino comercial dentro do site.
+
+17.1 **Quem faz o quê.** A rotina **Pauta das ilhas** (terças, no computador do Raphael, como as Sentinelas) descobre e ranqueia temas e grava `ilhas/<ilha>/pauta.md` pelas mãos. A **Fundação** escreve os artigos na nuvem, dentro da rampa (seção 9: leva de 5 a 10, medir, só dobrar se indexou E apareceu). A **Sentinela** verifica tom (15.4), cluster (16.4) e posição (12.1) como em qualquer página.
+
+17.2 **Portão de tema — os quatro têm que passar:** (a) consulta paramétrica ou de "como fazer" que uma pessoa digita, com as palavras dela; (b) SERP aberta pela régua da seção 14 (fórum, vídeo, blog velho, resposta sem número = entra; fazenda + marketplace + fabricante forte no top 10 = "quando houver autoridade"); (c) destino comercial: o artigo empurra uma ferramenta ou um produto do banco da mesma categoria — tema sem destino não entra, por mais volume que tenha; (d) mãe definida na árvore da ilha. Tema que passa nos quatro ganha nota = intenção de compra × abertura da SERP; a pauta é ordenada por essa nota.
+
+17.3 **Formato de `ilhas/<ilha>/pauta.md`** (a rotina substitui o arquivo inteiro a cada semana; temas já escritos saem; temas recusados pela Fundação ficam em "recusados" com o motivo):
+- cabeçalho: `data`, `ilha`, `fontes consultadas` (autocomplete, "as pessoas também perguntam", buscas relacionadas, Trends, corpus da ilha)
+- tabela de até 10 temas: `#` · `consulta-alvo` · `variações` (2–4) · `mãe` (URL de nível 2) · `destino` (ferramenta ou produto) · `top 10 hoje` (quem ocupa, em 1 linha) · `nota` · `ângulo` (a resposta em uma frase, na voz da ilha)
+- `recusados`: consulta e motivo (SERP fechada / sem destino / já coberto por página X)
+Na Aquametria a descoberta parte do corpus do bloco 1 (`aquametria-corpus-buscas`, 480 consultas em 15 clusters): a rotina confirma SERP e destino, não redescobre.
+
+17.4 **O artigo.** Na voz do `VOZ.md`; título = a consulta ou a resposta dela; a resposta com número na primeira dobra; a prova (fonte, data) na camada de prova (15.2); link para o destino comercial no corpo com o bloco de compra da seção 7 quando for produto; breadcrumb, link para a mãe e "Veja também" com 2–4 irmãs (16.4); JSON-LD `Article` + `BreadcrumbList` (+ `FAQPage` só se houver perguntas reais respondidas). Tamanho: o que a resposta pede — 400 palavras que respondem valem mais que 1.500 que enrolam. Sem data no slug; `dateModified` atualizado quando o dado mudar.
+
+17.5 **Ritmo.** Entra na fila da ilha DEPOIS da reescrita de home/header (15.5) e da árvore (16.8), e a leva de guias respeita a rampa e a ordem por cluster (16.6): os guias de uma categoria saem juntos, apontando para a mesma mãe e a mesma ferramenta. A ilha reporta em todo bloco quantos temas da pauta estão escritos, na fila e recusados.
+
+17.6 **O que a Pauta nunca faz:** não escreve o artigo (é da Fundação), não inventa volume ("faixa" ou "não medido" é resposta válida), não pauta tema YMYL, não pauta notícia ou tendência sem destino comercial, não repete consulta que já tem página na ilha (nesse caso registra "já coberto" e, se a página estiver mal posicionada, despacha para a Sentinela).

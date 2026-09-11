@@ -34,6 +34,8 @@ Seção 15 nova no `ARQUIPELAGO.md` e `VOZ.md` novo nesta pasta. Primeiro bloco 
 
 ATUALIZAÇÃO 11/09: junto com a reescrita da home e do header, aplicar a seção 16 do contrato (árvore de três níveis, breadcrumb com BreadcrumbList, cluster de interlinkagem mãe↔filhas↔irmãs, categoria só com ≥3 filhas): escrever `ARVORE.md` desta ilha, dar pai a toda página existente, publicar breadcrumb e "Veja também" — sem trocar URL de página que já tem impressão (seção 12.1); 301 para toda URL que mudar e sitemap reenviado.
 
+ATUALIZAÇÃO 11/09 (Pauta): quando existir `pauta.md` nesta pasta (seção 17 do contrato), os guias entram na fila depois desta reescrita e da árvore, em levas por cluster; registrar no fecho de cada bloco quantos temas estão escritos / na fila / recusados.
+
 ## DESPACHO DA SENTINELA — 10/09/2026 (medição pela nuvem)
 
 **Isto tem prioridade sobre a fila.** Aplique antes de qualquer bloco, verifique pela seção 8 do contrato, registre no `REGISTRO.md` como "despacho de 10/09 — item N cumprido" e apague daqui o item cumprido no mesmo commit.
