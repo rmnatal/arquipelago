@@ -8,6 +8,8 @@ Vocabulário: cada site de nicho é uma **ilha**, o conjunto é o **arquipélago
 
 ## 1. COMO A FUNDAÇÃO ESCOLHE A ILHA DE CADA EXECUÇÃO
 
+> ANTES de aplicar a rotação desta seção, leia a seção 18: ilha com despacho aberto tem prioridade sobre a ilha mais atrasada.
+
 Existe **uma** Fundação para o arquipélago inteiro, não uma por ilha. A cada execução:
 
 1. `git fetch origin main` e trabalhe do estado real do `main`. Confira se existe branch `claude/*` ou PR aberto de execução anterior; se houver, mergeie antes de qualquer coisa.
@@ -418,3 +420,17 @@ Na Aquametria a descoberta parte do corpus do bloco 1 (`aquametria-corpus-buscas
 17.5 **Ritmo.** Entra na fila da ilha DEPOIS da reescrita de home/header (15.5) e da árvore (16.8), e a leva de guias respeita a rampa e a ordem por cluster (16.6): os guias de uma categoria saem juntos, apontando para a mesma mãe e a mesma ferramenta. A ilha reporta em todo bloco quantos temas da pauta estão escritos, na fila e recusados.
 
 17.6 **O que a Pauta nunca faz:** não escreve o artigo (é da Fundação), não inventa volume ("faixa" ou "não medido" é resposta válida), não pauta tema YMYL, não pauta notícia ou tendência sem destino comercial, não repete consulta que já tem página na ilha (nesse caso registra "já coberto" e, se a página estiver mal posicionada, despacha para a Sentinela).
+
+## 18. CORREÇÃO FURA A FILA E SAI INTEIRA (11/09/2026)
+
+Decisão do Raphael em 11/09/2026, depois de uma correção de cabeçalho esperar três execuções: "está demorando muito essas passadas pras correções do site". A fábrica constrói rápido e conserta devagar — e é o contrário que ele precisa, porque defeito no ar custa mais caro que bloco não construído.
+
+18.1 **Prioridade de ilha (substitui a rotação da seção 1 quando houver conflito).** Ao escolher a ilha da execução, a ordem é: (1ª) ilha com **DESPACHO aberto** no topo do `PROMPT.md` — despacho do Raphael antes de despacho da Sentinela; entre dois despachos do Raphael, o mais antigo; (2ª) ilha com defeito aberto registrado pela ronda; (3ª) a rotação normal da seção 1 (a de `ultima_execucao` mais antiga). A reserva por commit continua igual: quem perde a corrida escolhe a próxima da ordem.
+
+18.2 **Despacho sai INTEIRO, não um item por execução.** Um despacho pode ter vários itens; a execução resolve **todos os itens do despacho** e só então fecha — não vale pegar um item e deixar o resto para a próxima passada. Correção não é bloco de construção e não consome a vez de um: se sobrar fôlego na execução depois de fechar o despacho, ela segue para o próximo bloco da fila normalmente.
+
+18.3 **Teto de honestidade.** Se um item do despacho for grande demais para caber na execução, a execução resolve os que couber, **reescreve o despacho deixando SÓ os itens que faltam** (com o motivo em uma linha) e fecha. Despacho pela metade sem essa reescrita é proibido: o próximo trabalhador não tem como saber o que já foi feito.
+
+18.4 **O despacho morre quando é verificado, não quando é escrito.** Só apague o despacho do `PROMPT.md` depois de abrir a URL no ar e conferir o critério de pronto que ele mesmo declara. Se a verificação falhar, o despacho fica, com a linha "tentativa em <data>: <o que falhou>".
+
+18.5 **Verificação antes de construção, sempre.** Na dúvida entre fechar um despacho e começar um bloco novo, fecha o despacho. Ilha com defeito no ar não recebe página nova.
