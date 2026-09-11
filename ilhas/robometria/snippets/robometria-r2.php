@@ -1,5 +1,9 @@
 /**
  * Robometria R2 — Quantos Pa e quanto tempo o seu robô precisa
+ * Versão: 1.0.1 (11/09/2026) — devolve à casca a folha do FORMULÁRIO, junto com a
+ * R1. As regras estavam nas duas folhas e já divergiam: só esta estilizava
+ * input[type=number]. A da casca é a união, então esta página não muda de
+ * aparência. Nenhum número e nenhuma frase mudaram.
  * Versão: 1.0.0 (10/09/2026) — Bloco 4 da fila para a segunda ferramenta da
  * ilha, nascendo com as CINCO decisões de desenho que a R1 fixou em 10/09/2026
  * (PROMPT.md da ilha), e não com retrofit depois.
@@ -77,7 +81,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_R2_VERSAO' ) ) {
-	define( 'ROBOMETRIA_R2_VERSAO', '1.0.0' );
+	define( 'ROBOMETRIA_R2_VERSAO', '1.0.1' );
 	define( 'ROBOMETRIA_R2_SLUG', 'quantos-pa-o-robo-aspirador-precisa' );
 	define( 'ROBOMETRIA_R2_TITULO', 'Quantos Pa e quanto tempo o seu robô precisa' );
 	define( 'ROBOMETRIA_R2_DADOS', 'robometria_dados_r2-respostas' );
@@ -1286,20 +1290,12 @@ add_action( 'wp_head', function () {
 		return;
 	}
 
+	/* A PROMESSA E O FORMULARIO NAO MORAM MAIS AQUI (casca 1.2.0, 11/09/2026).
+	   Mesma razao da R1: as regras estavam nas duas folhas e ja divergiam — so
+	   esta estilizava input[type=number] —, e a home passou a servir formulario
+	   tambem. Quem manda nelas agora e robometria-casca.php, em toda pagina, e a
+	   versao de la e a UNIAO das duas, entao esta pagina nao muda de aparencia. */
 	$css = <<<'CSS'
-.rbm-promessa{color:var(--rbm-legenda);margin:0 0 .9rem;font-size:.95rem;}
-.rbm-form{display:flex;flex-wrap:wrap;gap:.9rem 1.1rem;align-items:flex-end;background:var(--rbm-superficie);border:1px solid var(--rbm-traco);border-radius:3px;padding:1.1rem 1.2rem;margin:0;}
-/* min-width:0 nao e detalhe: sem ele o item de flex recebe min-width:auto e a
-   largura INTRINSECA do <select> manda — e a largura intrinseca aqui e o rotulo
-   mais longo do seletor de referencia ("Electrolux ERB60 — 166 m2 por carga").
-   Com min-width:0 e o campo em width:100%, a rolagem horizontal volta a zero. */
-.rbm-form-campo{display:flex;flex-direction:column;gap:.3rem;margin:0;flex:1 1 15rem;min-width:0;}
-.rbm-form-campo label{font-family:var(--rbm-texto);font-weight:600;font-size:.88rem;}
-.rbm-form select,.rbm-form input[type=number]{font-family:var(--rbm-texto);font-size:1rem;padding:.55rem .6rem;border:1px solid var(--rbm-traco);border-radius:2px;background:var(--rbm-superficie);color:var(--rbm-tinta);width:100%;max-width:100%;}
-.rbm-form input[type=number]{font-family:var(--rbm-mono);font-variant-numeric:tabular-nums;}
-.rbm-form select:focus-visible,.rbm-form input:focus-visible{outline:2px solid var(--rbm-varredura);outline-offset:2px;}
-.rbm-form-acao{margin:0;flex:0 0 auto;}
-.rbm-form button{padding:.62rem 1.1rem;font-size:.95rem;cursor:pointer;}
 .rbm-resposta{margin:2.4rem 0 0;padding-top:1.6rem;border-top:1px solid var(--rbm-traco);}
 .rbm-resposta h2{margin:0 0 .8rem;font-size:1.3rem;}
 .rbm-resposta h3{margin:0 0 .6rem;font-size:1.08rem;}
@@ -1317,8 +1313,6 @@ add_action( 'wp_head', function () {
    quando ha JavaScript para saber disso (o atributo vem do rodape). */
 .rbm-barra{display:none;}
 @media (max-width:782px){
-.rbm-form-campo{flex:1 1 100%;}
-.rbm-form-acao,.rbm-form button{width:100%;}
 body[data-rbm-r2-barra="1"] .rbm-barra{display:block;position:fixed;left:0;right:0;bottom:0;z-index:70;background:var(--rbm-tinta);color:var(--rbm-piso);padding:.7rem 1rem;text-align:center;font-family:var(--rbm-texto);font-size:.92rem;box-shadow:0 -6px 20px rgba(22,25,29,.18);}
 body[data-rbm-r2-barra="1"] .rbm-barra a{color:var(--rbm-piso);font-weight:600;}
 }

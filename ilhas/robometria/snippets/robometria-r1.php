@@ -1,5 +1,11 @@
 /**
  * Robometria R1 — Qual peça serve no meu robô aspirador
+ * Versão: 1.1.2 (11/09/2026) — devolve à casca a folha do FORMULÁRIO, pelo mesmo
+ * motivo por que já tinha devolvido a da porta de compra: as regras .rbm-promessa
+ * e .rbm-form* estavam idênticas aqui e na R2, e a home passou a servir o mesmo
+ * formulário. Três cópias divergem em silêncio; uma não. Nenhuma regra mudou de
+ * valor — a versão da casca é a união das duas — e nenhuma frase de resposta
+ * mudou.
  * Versão: 1.1.1 (10/09/2026) — Bloco 5: a ferramenta ganha o link de volta para
  * o artigo-âncora (mão dupla, seção 9 do ARQUIPELAGO.md) e devolve à casca a
  * folha da porta de compra, que agora tem um dono só e vale para toda página que
@@ -77,7 +83,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_R1_VERSAO' ) ) {
-	define( 'ROBOMETRIA_R1_VERSAO', '1.1.1' );
+	define( 'ROBOMETRIA_R1_VERSAO', '1.1.2' );
 	define( 'ROBOMETRIA_R1_SLUG', 'qual-peca-serve-no-meu-robo-aspirador' );
 	define( 'ROBOMETRIA_R1_TITULO', 'Qual peça serve no meu robô aspirador' );
 	define( 'ROBOMETRIA_R1_DADOS', 'robometria_dados_r1-respostas' );
@@ -1182,20 +1188,12 @@ add_action( 'wp_head', function () {
 		return;
 	}
 
+	/* A PROMESSA E O FORMULARIO NAO MORAM MAIS AQUI (casca 1.2.0, 11/09/2026).
+	   As regras .rbm-promessa e .rbm-form* estavam duplicadas aqui e na R2, e a
+	   home passou a servir o MESMO formulario — seriam tres copias. Quem manda
+	   nelas agora e robometria-casca.php, em toda pagina da ilha, como ja
+	   acontece com a folha da porta de compra. Abaixo fica so o que e da R1. */
 	$css = <<<'CSS'
-.rbm-promessa{color:var(--rbm-legenda);margin:0 0 .9rem;font-size:.95rem;}
-.rbm-form{display:flex;flex-wrap:wrap;gap:.9rem 1.1rem;align-items:flex-end;background:var(--rbm-superficie);border:1px solid var(--rbm-traco);border-radius:3px;padding:1.1rem 1.2rem;margin:0;}
-/* min-width:0 nao e detalhe: sem ele o item de flex recebe min-width:auto e a
-   largura INTRINSECA do <select> manda — e a largura intrinseca aqui e o maior
-   rotulo de optgroup ("Multi (ex-Multilaser)"). Medido num Chromium a 360 px:
-   39 px de rolagem horizontal na pagina inteira, que a seccao 6 do contrato nao
-   admite. Com min-width:0 e o select em width:100%, a medida volta a zero. */
-.rbm-form-campo{display:flex;flex-direction:column;gap:.3rem;margin:0;flex:1 1 15rem;min-width:0;}
-.rbm-form-campo label{font-family:var(--rbm-texto);font-weight:600;font-size:.88rem;}
-.rbm-form select{font-family:var(--rbm-texto);font-size:1rem;padding:.55rem .6rem;border:1px solid var(--rbm-traco);border-radius:2px;background:var(--rbm-superficie);color:var(--rbm-tinta);width:100%;max-width:100%;}
-.rbm-form select:focus-visible{outline:2px solid var(--rbm-varredura);outline-offset:2px;}
-.rbm-form-acao{margin:0;flex:0 0 auto;}
-.rbm-form button{padding:.62rem 1.1rem;font-size:.95rem;cursor:pointer;}
 .rbm-resposta{margin:2.4rem 0 0;padding-top:1.6rem;border-top:1px solid var(--rbm-traco);}
 .rbm-resposta h2{margin:0 0 .8rem;font-size:1.3rem;}
 .rbm-legenda-bloco{font-family:var(--rbm-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--rbm-legenda);margin:0 0 .5rem;}
@@ -1208,8 +1206,6 @@ add_action( 'wp_head', function () {
    quando ha JavaScript para saber disso (o atributo vem do rodape). */
 .rbm-barra{display:none;}
 @media (max-width:782px){
-.rbm-form-campo{flex:1 1 100%;}
-.rbm-form-acao,.rbm-form button{width:100%;}
 body[data-rbm-r1-barra="1"] .rbm-barra{display:block;position:fixed;left:0;right:0;bottom:0;z-index:70;background:var(--rbm-tinta);color:var(--rbm-piso);padding:.7rem 1rem;text-align:center;font-family:var(--rbm-texto);font-size:.92rem;box-shadow:0 -6px 20px rgba(22,25,29,.18);}
 body[data-rbm-r1-barra="1"] .rbm-barra a{color:var(--rbm-piso);font-weight:600;}
 }

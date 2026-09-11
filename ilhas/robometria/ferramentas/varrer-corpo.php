@@ -102,14 +102,14 @@ function robometria_estados_de_pagina( $r1, $r2, $cob_r2 ) {
 	foreach ( array( 'home', 'ferramentas', 'metodologia', 'sobre', 'afiliados', 'a1', 'a2' ) as $tag ) {
 		$estados[ 'pagina:' . $tag ] = function () use ( $tag ) {
 			robometria_teste_rebobinar();
-			return robometria_teste_pagina( 'robometria_' . $tag );
+			return robometria_teste_pagina( 'robometria_' . $tag, 'Robometria — teste', robometria_teste_slug_do_alvo( 'robometria_' . $tag ) );
 		};
 	}
 
 	$r1_pagina = function ( $modelo, $peca ) {
 		$GLOBALS['__entrada_r1'] = array( 'modelo' => $modelo, 'peca' => $peca );
 		robometria_teste_rebobinar();
-		return robometria_teste_pagina( 'robometria_r1' );
+		return robometria_teste_pagina( 'robometria_r1', 'Robometria — teste', robometria_teste_slug_do_alvo( 'robometria_r1' ) );
 	};
 	$estados['r1:sem consulta'] = function () use ( $r1_pagina ) { return $r1_pagina( null, null ); };
 	foreach ( $r1['modelos'] as $m ) {
@@ -125,7 +125,7 @@ function robometria_estados_de_pagina( $r1, $r2, $cob_r2 ) {
 	$r2_pagina = function ( $area, $piso, $pelo, $ref ) {
 		$GLOBALS['__entrada_r2'] = array( 'area' => $area, 'piso' => $piso, 'pelo' => $pelo, 'referencia' => $ref );
 		robometria_teste_rebobinar();
-		return robometria_teste_pagina( 'robometria_r2' );
+		return robometria_teste_pagina( 'robometria_r2', 'Robometria — teste', robometria_teste_slug_do_alvo( 'robometria_r2' ) );
 	};
 	$estados['r2:sem consulta'] = function () use ( $r2_pagina ) { return $r2_pagina( null, null, null, null ); };
 

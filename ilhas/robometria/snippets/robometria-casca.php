@@ -1,5 +1,29 @@
 /**
  * Robometria Casca — identidade e estrutura do site
+ * Versão: 1.2.0 (11/09/2026) — A ILHA GANHA VOZ (seção 15 do ARQUIPELAGO.md e
+ * VOZ.md desta pasta) E CABEÇA DE PÁGINA (despacho da Sentinela de 11/09, itens
+ * 1 e 2). Quatro mudanças, e nenhuma é enfeite:
+ *   (1) <meta name="description"> por página, mais og:title/description/url/type.
+ *       Nenhuma das nove páginas publicadas tinha description: a Sentinela mediu
+ *       `document.querySelector('meta[name=description]')` devolvendo null nas
+ *       nove. Sem plugin de SEO (decisão de projeto) ninguém mais imprime essa
+ *       tag, e a seção 12.1 chama a faixa de posição 4 a 10 de "trabalho de CTR
+ *       (título, meta, schema)" — sem description não existe o que ajustar, e o
+ *       Google inventa o trecho do resultado.
+ *   (2) O H1 da raiz era a palavra "Início". É o H1 da página que disputa a
+ *       marca, e ele não nomeava o que a ilha faz.
+ *   (3) A home passa a ser A FERRAMENTA (molde FERRAMENTA do VOZ.md): o seletor
+ *       de marca e modelo em cima, atalhos por tipo de peça, e o número, a fonte
+ *       e a data indo para a camada de prova (seção 15.2) — a confissão de
+ *       cobertura, que era manifesto na home, mora agora na metodologia, que é a
+ *       página cujo produto é o rigor. A home CHAMA o formulário da R1; ela não
+ *       tem uma cópia dele.
+ *   (4) A FOLHA DO FORMULÁRIO GANHA UM DONO SÓ, como a porta de compra já tem.
+ *       As regras .rbm-promessa e .rbm-form* estavam duplicadas na R1 e na R2, e
+ *       já tinham começado a divergir (só a R2 estilizava input[type=number]).
+ *       Com a home servindo o mesmo formulário seriam TRÊS cópias — e cópia em
+ *       três lugares diverge em silêncio. A casca serve a folha em toda página; a
+ *       R1 e a R2 ficam só com o que é delas.
  * Versão: 1.0.2 (10/09/2026) — Bloco 5: a casca passa a ter um catálogo de
  * ARTIGOS, do mesmo jeito que já tinha o de ferramentas, e a listá-los na home e
  * no hub. Sem isso o artigo-âncora da R1 nasceria órfão, e a seção 9 do
@@ -53,7 +77,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_CASCA_VERSAO' ) ) {
-	define( 'ROBOMETRIA_CASCA_VERSAO', '1.1.0' );
+	define( 'ROBOMETRIA_CASCA_VERSAO', '1.2.0' );
 	define( 'ROBOMETRIA_CASCA_TAGLINE', 'Qual peça o fabricante declarou para o seu robô aspirador — com código, endereço e data' );
 }
 
@@ -350,10 +374,27 @@ function robometria_casca_nav_html() {
 	$quantos++;
 	$id = 'rbm-nav-lista' . ( $quantos > 1 ? '-' . $quantos : '' );
 
+	/* OS RÓTULOS SÃO AS PALAVRAS DA PESSOA, e os destinos são as páginas onde ela
+	   resolve o problema (molde FERRAMENTA do VOZ.md, 11/09/2026). Até aqui o
+	   menu era Ferramentas · Metodologia · Sobre: três substantivos de dentro da
+	   fábrica, nenhum deles o que alguém com o robô aberto em cima da mesa
+	   digitaria. "Peças" e "Sucção" levam direto às duas ferramentas; "Como
+	   conferimos" é a metodologia dita pelo técnico, e não pelo manual.
+
+	   O menu NÃO vira Peças · Modelos · Guias, que é o que o VOZ.md descreve:
+	   esses três são níveis da árvore da seção 16 do contrato e ainda não
+	   existem como página. Rótulo apontando para página inexistente sai como
+	   <span> por desenho (robometria_casca_link_html), e um menu de três spans
+	   seria pior do que o menu técnico que ele substitui. Eles entram no bloco da
+	   árvore, junto com o breadcrumb.
+
+	   /ferramentas/ e /sobre/ saíram do menu e continuam linkados no rodapé, com
+	   o hub também linkado do corpo da home: nenhuma página do sitemap fica com
+	   menos de dois links internos (seção 16.4-f). */
 	$itens = array(
-		'ferramentas' => 'Ferramentas',
-		'metodologia' => 'Metodologia',
-		'sobre'       => 'Sobre',
+		'qual-peca-serve-no-meu-robo-aspirador' => 'Peças',
+		'quantos-pa-o-robo-aspirador-precisa'   => 'Sucção',
+		'metodologia'                           => 'Como conferimos',
 	);
 
 	$html  = '<div class="rbm-nav-caixa">';
@@ -393,7 +434,12 @@ function robometria_casca_rodape_html() {
 	$html  = '<footer class="rbm-rodape"><div class="rbm-rodape-interno">';
 	$html .= '<p class="rbm-tagline">' . esc_html( ROBOMETRIA_CASCA_TAGLINE ) . '</p>';
 	$html .= '<p>Compatibilidade aqui não se deduz: cada par peça × modelo carrega quem declarou, onde declarou e em que data foi verificado. Quando dois canais do mesmo fabricante discordam, a Robometria publica as duas declarações e vale o conjunto mais estreito — errar para o lado largo faz alguém comprar peça que não encaixa. Onde o fabricante não declara, a página diz isso com todas as letras.</p>';
-	$html .= '<p>' . robometria_casca_link_html( 'metodologia', 'Metodologia' )
+	/* 'ferramentas' entrou aqui quando o menu do topo passou a apontar direto para
+	   as duas ferramentas (v1.2.0): o hub perdeu o link do menu e ficaria com um
+	   só, o do corpo da home. Seção 16.4-f: nenhuma URL do sitemap com menos de
+	   dois links internos. */
+	$html .= '<p>' . robometria_casca_link_html( 'ferramentas', 'Ferramentas' )
+		. ' · ' . robometria_casca_link_html( 'metodologia', 'Metodologia' )
 		. ' · ' . robometria_casca_link_html( 'divulgacao-de-afiliados', 'Divulgação de afiliados' )
 		. ' · ' . robometria_casca_link_html( 'sobre', 'Sobre' )
 		. ' · Robometria ' . esc_html( date_i18n( 'Y' ) ) . '</p>';
@@ -477,6 +523,152 @@ add_action( 'wp_head', function () {
 	echo '<link rel="apple-touch-icon" sizes="180x180" href="' . esc_attr( 'data:image/png;base64,' . ROBOMETRIA_CASCA_ICONE_PNG_180 ) . '">' . "\n";
 	echo '<meta name="theme-color" content="#16191D">' . "\n";
 }, 5 );
+
+/* ---------------------------------------------------------------------------
+ * 2b-bis. CABEÇA DE PÁGINA — description e Open Graph (despacho da Sentinela,
+ * 11/09/2026, item 1)
+ *
+ * Nenhuma das nove páginas publicadas tinha <meta name="description">. Esta ilha
+ * não tem plugin de SEO por decisão de projeto, então ninguém imprimia essa tag:
+ * a única "descrição" que existia ia para dentro do JSON-LD do Organization e
+ * nunca virava meta. O Google, sem ela, escreve o trecho do resultado sozinho a
+ * partir de um pedaço qualquer da página — e a seção 12.1 do contrato, que manda
+ * trabalhar CTR na faixa de posição 4 a 10, fica sem alavanca nenhuma.
+ *
+ * TRÊS DECISÕES, e a terceira é a que importa:
+ *
+ *   1. O texto diz O QUE A PÁGINA RESPONDE, não o que ela é — e na voz do
+ *      VOZ.md, porque description é texto que a pessoa lê no resultado da busca,
+ *      não metadado interno. Verbo na frente, segunda pessoa, palavras dela.
+ *   2. og:title existe separado do <title>: o <title> carrega o nome da marca
+ *      (é a aba do navegador), e o og:title é a frase que vai para o cartão
+ *      compartilhado, onde o nome da marca já aparece embaixo.
+ *   3. NENHUMA DESCRIÇÃO CARREGA NÚMERO, e isso é regra, não estilo. Descrição
+ *      é texto digitado que ninguém relê, e a cicatriz de 11/09/2026 (seção 8 do
+ *      contrato, o cartão que dizia "0" depois de a categoria ganhar cinco
+ *      produtos) é exatamente sobre número digitado numa metade que não fala com
+ *      o banco. Aqui é pior que num cartão: o banco cresce, a descrição
+ *      continua no ar mentindo, e ela nem aparece na tela para alguém
+ *      estranhar. Número mora na camada de prova (seção 15.2): tabela,
+ *      resultado, JSON-LD. O teste de bancada reprova dígito aqui dentro.
+ *
+ * O mapa passa pelo filtro 'robometria_cabecas' para página nova poder trazer a
+ * dela de dentro do próprio snippet, como já acontece com ferramenta e artigo.
+ * O portão que impede alguém de esquecer está na bancada, cobrando as DUAS
+ * direções: página conhecida sem cabeça reprova, e cabeça sem página também.
+ * ------------------------------------------------------------------------- */
+
+if ( ! function_exists( 'robometria_casca_cabecas' ) ) {
+function robometria_casca_cabecas() {
+	$mapa = array(
+		'inicio' => array(
+			'tipo'      => 'website',
+			'titulo'    => 'Robô aspirador: qual peça serve no seu, e quanta sucção precisa',
+			'descricao' => 'Diga a marca e o modelo do seu robô aspirador e veja qual filtro, escova, mop ou bateria o fabricante declarou para ele.',
+		),
+		'ferramentas' => array(
+			'tipo'      => 'website',
+			'titulo'    => 'As duas ferramentas da Robometria',
+			'descricao' => 'Uma diz qual peça serve no seu robô aspirador. A outra diz quanta sucção e quanto tempo a metragem da sua casa pede.',
+		),
+		'metodologia' => array(
+			'tipo'      => 'website',
+			'titulo'    => 'Como a gente decide o que publicar',
+			'descricao' => 'De onde vem cada dado daqui, quando ele vale como "serve", e o que a Robometria ainda não sabe responder sobre o seu robô.',
+		),
+		'sobre' => array(
+			'tipo'      => 'website',
+			'titulo'    => 'Quem publica a Robometria',
+			'descricao' => 'Quem faz a Robometria, por que ela só afirma o que o fabricante declarou, e como avisar quando uma peça daqui não encaixou.',
+		),
+		'divulgacao-de-afiliados' => array(
+			'tipo'      => 'website',
+			'titulo'    => 'Como a Robometria ganha dinheiro',
+			'descricao' => 'Ganhamos comissão quando você compra pelos nossos links, e isso nunca muda a ordem da lista. Veja como a recomendação é montada.',
+		),
+		'qual-peca-serve-no-meu-robo-aspirador' => array(
+			'tipo'      => 'website',
+			'titulo'    => 'Qual peça serve no meu robô aspirador',
+			'descricao' => 'Escolha a marca e o modelo e veja o filtro, a escova, o mop e a bateria que o fabricante declarou para o seu robô, com código e data.',
+		),
+		'quantos-pa-o-robo-aspirador-precisa' => array(
+			'tipo'      => 'website',
+			'titulo'    => 'Quantos Pa o seu robô aspirador precisa',
+			'descricao' => 'Quanta sucção o seu robô precisa para piso liso, tapete ou pelo de cachorro, e quantos ciclos a metragem da sua casa exige.',
+		),
+		'filtro-universal-de-robo-aspirador' => array(
+			'tipo'      => 'article',
+			'titulo'    => 'Existe filtro universal de robô aspirador?',
+			'descricao' => 'Conferimos peça por peça quantas servem em mais de uma marca, e o que fazer quando o filtro barato do anúncio promete servir em tudo.',
+		),
+		'quantos-m2-o-robo-aspirador-limpa-por-carga' => array(
+			'tipo'      => 'article',
+			'titulo'    => 'Quantos m² um robô aspirador limpa por carga',
+			'descricao' => 'De onde vem o número de metros quadrados por carga que os sites publicam, quais marcas declaram, e o que fazer quando a sua não declara.',
+		),
+	);
+
+	$mapa = apply_filters( 'robometria_cabecas', $mapa );
+
+	return is_array( $mapa ) ? $mapa : array();
+}
+}
+
+/**
+ * O slug canônico da página que está sendo servida, ou '' quando não é uma
+ * página da ilha.
+ *
+ * A identidade canônica é o meta _robometria_id, que o Sync grava e que
+ * sobrevive ao WordPress ter acrescentado "-2" ao slug por conflito. O
+ * post_name é a segunda via, para as páginas que não vieram do Sync.
+ */
+if ( ! function_exists( 'robometria_casca_slug_atual' ) ) {
+function robometria_casca_slug_atual() {
+	if ( is_front_page() ) {
+		return 'inicio';
+	}
+
+	$id = (int) get_queried_object_id();
+	if ( $id < 1 ) {
+		return '';
+	}
+
+	$marcado = (string) get_post_meta( $id, '_robometria_id', true );
+	if ( '' !== $marcado ) {
+		return $marcado;
+	}
+
+	$nome = get_post_field( 'post_name', $id );
+
+	return is_string( $nome ) ? $nome : '';
+}
+}
+
+add_action( 'wp_head', function () {
+	$slug   = robometria_casca_slug_atual();
+	$cabeca = robometria_casca_cabecas();
+
+	/* Página que a casca não conhece sai SEM description. Inventar uma frase
+	   genérica para caber em qualquer página seria publicar a mesma descrição em
+	   endereços diferentes, que é o defeito que a tag existe para não ter. */
+	if ( '' === $slug || ! isset( $cabeca[ $slug ] ) ) {
+		return;
+	}
+
+	$c   = $cabeca[ $slug ];
+	$url = ( 'inicio' === $slug ) ? home_url( '/' ) : robometria_casca_url_se_existir( $slug );
+	if ( '' === $url ) {
+		$url = home_url( '/' . $slug . '/' );
+	}
+
+	echo '<meta name="description" content="' . esc_attr( $c['descricao'] ) . '">' . "\n";
+	echo '<meta property="og:type" content="' . esc_attr( $c['tipo'] ) . '">' . "\n";
+	echo '<meta property="og:title" content="' . esc_attr( $c['titulo'] ) . '">' . "\n";
+	echo '<meta property="og:description" content="' . esc_attr( $c['descricao'] ) . '">' . "\n";
+	echo '<meta property="og:url" content="' . esc_url( $url ) . '">' . "\n";
+	echo '<meta property="og:site_name" content="Robometria">' . "\n";
+	echo '<meta property="og:locale" content="pt_BR">' . "\n";
+}, 4 );
 
 /* ---------------------------------------------------------------------------
  * 2c. JSON-LD de entidade (seção 5.3 e 5.6 do ARQUIPELAGO.md)
@@ -636,6 +828,36 @@ body header .wp-block-group,body .wp-block-template-part header{background:var(-
    credito do tema e a template part de rodape que nao seja a nossa. */
 .wp-site-blocks > footer.wp-block-template-part .wp-block-group:has(a[href*="wordpress.org"]){display:none;}
 body:has(.rbm-rodape) .wp-site-blocks > footer.wp-block-template-part:not(:has(.rbm-rodape)){display:none;}
+/* FORMULARIO DE FERRAMENTA — dono unico, como a porta de compra (v1.2.0).
+   Estas regras moravam duplicadas na folha da R1 e na da R2, e ja tinham
+   comecado a divergir: so a R2 estilizava input[type=number]. Com a home
+   servindo o mesmo formulario, seriam TRES copias — e o dia em que alguem
+   ajustar uma delas a ilha passa a ter dois formularios diferentes sem que
+   ninguem note. A versao daqui e a UNIAO das duas, entao nenhuma pagina muda de
+   aparencia; a R1 e a R2 ficam so com o que e delas.
+
+   min-width:0 nao e detalhe: sem ele o item de flex recebe min-width:auto e a
+   largura INTRINSECA do <select> manda — e a intrinseca aqui e o rotulo mais
+   longo do seletor ("Multi (ex-Multilaser)" na R1, "Electrolux ERB60 — 166 m2
+   por carga" na R2). Medido num Chromium a 360 px antes da correcao: 39 px de
+   rolagem horizontal, que a secao 6 do contrato nao admite. */
+.rbm-promessa{color:var(--rbm-legenda);margin:0 0 .9rem;font-size:.95rem;}
+.rbm-form{display:flex;flex-wrap:wrap;gap:.9rem 1.1rem;align-items:flex-end;background:var(--rbm-superficie);border:1px solid var(--rbm-traco);border-radius:3px;padding:1.1rem 1.2rem;margin:0;}
+.rbm-form-campo{display:flex;flex-direction:column;gap:.3rem;margin:0;flex:1 1 15rem;min-width:0;}
+.rbm-form-campo label{font-family:var(--rbm-texto);font-weight:600;font-size:.88rem;}
+.rbm-form select,.rbm-form input[type=number]{font-family:var(--rbm-texto);font-size:1rem;padding:.55rem .6rem;border:1px solid var(--rbm-traco);border-radius:2px;background:var(--rbm-superficie);color:var(--rbm-tinta);width:100%;max-width:100%;}
+.rbm-form input[type=number]{font-family:var(--rbm-mono);font-variant-numeric:tabular-nums;}
+.rbm-form select:focus-visible,.rbm-form input:focus-visible{outline:2px solid var(--rbm-varredura);outline-offset:2px;}
+.rbm-form-acao{margin:0;flex:0 0 auto;}
+.rbm-form button{padding:.62rem 1.1rem;font-size:.95rem;cursor:pointer;}
+/* Atalhos por tipo de peca, logo abaixo do seletor da home. Sao links de
+   verdade, nao botoes de JavaScript: quem le sem executar script (o crawler de
+   IA, regra de primeira classe na secao 5) chega na mesma pagina. */
+.rbm-atalhos{margin:.9rem 0 0;font-size:.92rem;color:var(--rbm-legenda);}
+.rbm-atalhos ul{list-style:none;margin:.4rem 0 0;padding:0;display:flex;flex-wrap:wrap;gap:.5rem .6rem;}
+.rbm-atalhos li{margin:0;}
+.rbm-atalhos a{display:inline-block;padding:.32rem .7rem;border:1px solid var(--rbm-traco);border-radius:2px;background:var(--rbm-superficie);text-decoration:none;border-bottom:1px solid var(--rbm-traco);}
+.rbm-atalhos a:hover{color:var(--rbm-varredura);border-color:var(--rbm-legenda);}
 @media (max-width:600px){
 .rbm-linha-mestra{font-size:1.15rem;}
 .rbm-wordmark{font-size:1.2rem;}
@@ -645,6 +867,8 @@ body:has(.rbm-rodape) .wp-site-blocks > footer.wp-block-template-part:not(:has(.
    Tudo aqui depende de [data-rbm-menu]: sem JavaScript nada disso vale e o menu
    continua sendo a fileira de links, visivel. */
 @media (max-width:782px){
+.rbm-form-campo{flex:1 1 100%;}
+.rbm-form-acao,.rbm-form button{width:100%;}
 .rbm-nav-caixa[data-rbm-menu] .rbm-nav-botao{display:inline-flex;}
 .rbm-nav-caixa[data-rbm-menu] .rbm-nav{display:none;position:absolute;right:0;top:calc(100% + .55rem);z-index:60;min-width:13rem;background:var(--rbm-superficie);border:1px solid var(--rbm-traco);border-radius:3px;box-shadow:0 12px 32px rgba(22,25,29,.16);padding:.35rem 0;}
 .rbm-nav-caixa[data-rbm-menu][data-rbm-aberto="1"] .rbm-nav{display:block;}
@@ -937,6 +1161,17 @@ function robometria_casca_numeros() {
 		}
 	}
 
+	/* DERIVADO, nunca digitado, e depois da leitura acima para não derivar de um
+	   número velho: quantos itens do banco JÁ têm link de loja. A página de
+	   divulgação de afiliados afirma isso ao visitante, e afirmação da página
+	   sobre o próprio banco se conta (seção 8 do ARQUIPELAGO.md). Dizia, à mão,
+	   "ainda não há nenhum link de afiliado no ar" — frase que era verdade no dia
+	   em que foi escrita e que ninguém releria no dia em que deixasse de ser. Os
+	   dois lados da subtração são conferidos contra o banco commitado pela
+	   bancada, então a frase muda sozinha quando o primeiro link entrar. */
+	$n['itens_publicaveis'] = $n['modelos_publicaveis'] + $n['pecas_publicaveis'];
+	$n['com_link']          = max( 0, $n['itens_publicaveis'] - $n['esperando_link'] );
+
 	return apply_filters( 'robometria_numeros', $n );
 }
 }
@@ -959,43 +1194,118 @@ function robometria_casca_num( $valor ) {
 }
 }
 
-add_shortcode( 'robometria_home', function () {
-	$n = robometria_casca_numeros();
+/**
+ * Os atalhos por tipo de peça, logo abaixo do seletor da home.
+ *
+ * SÃO DERIVADOS, nunca digitados. O VOZ.md pede "as três dúvidas mais comuns
+ * (filtro, escova, bateria) como atalhos", e digitar esses três aqui seria
+ * repetir a cicatriz de 11/09/2026 da seção 8 do contrato — o cartão que dizia
+ * "0" porque o número era digitado numa metade que não falava com o banco. A
+ * lista sai de robometria_r1_dados()['tipos'], que é a mesma lista que preenche
+ * o seletor: tipo sem nenhuma peça no banco não aparece em lugar nenhum, e tipo
+ * novo aparece nos dois sem ninguém vir aqui.
+ *
+ * rel="nofollow": o destino é uma consulta (?peca=…), e consulta desta ilha sai
+ * com noindex,follow e canônica para a página limpa (decisão 4 da R1). O atalho
+ * existe para a pessoa, não para o rastreador, e domínio novo não tem orçamento
+ * de rastreamento para gastar em variação de formulário (seção 14.1).
+ */
+if ( ! function_exists( 'robometria_casca_atalhos_html' ) ) {
+function robometria_casca_atalhos_html() {
+	if ( ! function_exists( 'robometria_r1_dados' ) || ! function_exists( 'robometria_r1_nome_do_tipo' ) ) {
+		return '';
+	}
 
+	$d = robometria_r1_dados();
+	if ( empty( $d['tipos'] ) ) {
+		return '';
+	}
+
+	$base = function_exists( 'robometria_r1_url_da_pagina' )
+		? robometria_r1_url_da_pagina()
+		: robometria_casca_url_se_existir( 'qual-peca-serve-no-meu-robo-aspirador' );
+	if ( '' === $base ) {
+		return '';
+	}
+
+	$html = '<div class="rbm-atalhos"><p>Já sabe qual peça é?</p><ul>';
+	foreach ( (array) $d['tipos'] as $tipo ) {
+		$rotulo = robometria_r1_maiuscula( robometria_r1_nome_do_tipo( $tipo ) );
+		$html  .= '<li><a rel="nofollow" href="' . esc_url( $base . '?peca=' . rawurlencode( $tipo ) ) . '">'
+			. esc_html( $rotulo ) . '</a></li>';
+	}
+	$html .= '</ul></div>';
+
+	return $html;
+}
+}
+
+/**
+ * A HOME É A FERRAMENTA (molde FERRAMENTA do VOZ.md, 11/09/2026).
+ *
+ * O que ela era até aqui: um manifesto. Primeira frase em terceira pessoa ("A
+ * Robometria diz…"), três parágrafos sobre o método antes de qualquer campo, e
+ * uma seção inteira de confissão numérica — quantos pares no banco, quantas
+ * combinações sem resposta, em que data foi varrido. Tudo verdade, e tudo no
+ * lugar errado: a seção 15.2 do contrato diz que número, código, fabricante e
+ * data moram na CAMADA DE PROVA (tabela, resultado, JSON-LD, metodologia), e
+ * que a home nunca é manifesto. Quem chega aqui está com o robô aberto em cima
+ * da mesa e quer saber se a peça do anúncio serve.
+ *
+ * Então: promessa numa linha, o seletor de marca e modelo, atalhos por tipo de
+ * peça, e só depois o apoio. A confissão de cobertura não foi apagada — ela
+ * continua inteira na metodologia, que é a página cujo único produto é o rigor,
+ * e a home aponta para lá com uma frase que qualquer pessoa entende.
+ *
+ * O FORMULÁRIO É O DA R1, CHAMADO, não copiado. Cópia de formulário é a mesma
+ * armadilha da folha de estilo que este bloco acabou de desfazer: duas metades
+ * que ninguém obriga a concordar. Se o banco não tiver chegado às options, a
+ * home NÃO desenha um formulário vazio — diz que o seletor está fora do ar e
+ * manda para a página da ferramenta, porque ferramenta que devolve vazio
+ * parecendo funcionar é pior do que uma que avisa.
+ */
+add_shortcode( 'robometria_home', function () {
 	$html  = '<div class="rbm-bloco">';
 	$html .= '<div class="rbm-abertura">';
-	/* Resposta antes da explicação (seção 5.2): a primeira frase é
-	   autossuficiente e sobrevive a ser citada fora de contexto. */
-	$html .= '<p class="rbm-linha-mestra">A Robometria diz qual filtro, escova, mop ou bateria o <strong>fabricante</strong> declarou para o seu robô aspirador — com o código da peça, o endereço da declaração e a data em que ela foi verificada.</p>';
-	$html .= '<p>Hoje são ' . robometria_casca_num( $n['pares_declarados'] ) . ' pares peça × modelo no banco, em ' . robometria_casca_num( $n['marcas'] ) . ' marcas, <strong>todos declarados pelo fabricante e nenhum inferido</strong>. Quando dois canais do mesmo fabricante discordam sobre quais modelos uma peça atende, a Robometria publica as duas declarações e vale o conjunto mais estreito.</p>';
-	$html .= '<p>Não completamos lista por analogia. Um modelo estar na lista de compatibilidade de uma peça não o coloca na lista da peça seguinte — e isso não é cautela nossa, é o que o catálogo dos fabricantes mostra.</p>';
+	$html .= '<p class="rbm-promessa">Diga a marca e o modelo. A gente mostra o que o fabricante declarou que serve no seu robô — filtro, escova, mop ou bateria — e o que ele não declarou.</p>';
+
+	$tem_banco = function_exists( 'robometria_r1_dados' ) && function_exists( 'robometria_r1_formulario' );
+	if ( $tem_banco ) {
+		$d         = robometria_r1_dados();
+		$tem_banco = ! empty( $d['modelos'] );
+	}
+
+	if ( $tem_banco ) {
+		$html .= robometria_r1_formulario();
+		$html .= robometria_casca_atalhos_html();
+	} else {
+		$html .= '<p class="rbm-nota"><strong>O seletor está fora do ar neste momento.</strong> '
+			. robometria_casca_link_html( 'qual-peca-serve-no-meu-robo-aspirador', 'Abrir a página de peças' )
+			. '</p>';
+	}
 	$html .= '</div>';
 
 	$html .= '<div class="rbm-secao">';
-	$html .= '<h2>Ferramentas</h2>';
-	$html .= '<p>Duas ferramentas, especificadas ponta a ponta, entrando no ar uma por vez.</p>';
+	$html .= '<h2>As duas perguntas que a gente responde</h2>';
+	$html .= '<p>Uma é sobre a peça que você já tem na mão. A outra é sobre o robô que você ainda vai escolher.</p>';
 	$html .= robometria_casca_cards_html();
+	$html .= '<p>' . robometria_casca_link_html( 'ferramentas', 'Ver as duas lado a lado' ) . '</p>';
 	$html .= '</div>';
 
 	$artigos = robometria_casca_artigos_html();
 	if ( '' !== $artigos ) {
 		$html .= '<div class="rbm-secao">';
-		$html .= '<h2>Leitura</h2>';
-		$html .= '<p>Cada ferramenta tem ao lado um texto que explica, com o banco na mão, por que a resposta dela é aquela.</p>';
+		$html .= '<h2>Para ler com calma</h2>';
+		$html .= '<p>Quando a resposta curta não basta, estes textos mostram de onde ela saiu.</p>';
 		$html .= $artigos;
 		$html .= '</div>';
 	}
 
 	$html .= '<div class="rbm-secao">';
-	$html .= '<h2>Onde a Robometria ainda não sabe responder</h2>';
-	$html .= '<p>Varremos a entrada da ferramenta de peças de ponta a ponta em ' . esc_html( robometria_casca_data_br( $n['medido_em'] ) ) . ': ela responde alguma coisa em ' . robometria_casca_num( $n['r1_responde'] ) . ' dos ' . robometria_casca_num( $n['modelos_publicaveis'] ) . ' modelos do banco e sai vazia em ' . robometria_casca_num( $n['r1_vazia'] ) . '. Das ' . robometria_casca_num( $n['celulas'] ) . ' combinações de modelo e tipo de peça, ' . robometria_casca_num( $n['celulas_sem_resposta'] ) . ' não têm declaração de fabricante que a gente tenha localizado.</p>';
-	$html .= '<p class="rbm-nota"><strong>Publicar esse número é parte do método.</strong> Um comparador que nunca diz "não sei" está inventando em algum lugar. A varredura roda de novo a cada leva de coleta, e é ela — não a impressão de quem colhe — que decide o que a ilha vai procurar em seguida.</p>';
-	$html .= '</div>';
-
-	$html .= '<div class="rbm-secao">';
-	$html .= '<h2>Como decidimos o que publicar</h2>';
-	$html .= '<p>Toda especificação carrega o nível da fonte que a sustenta: manual lido direto vale mais que página oficial colhida por busca, que vale mais que loja da marca, que vale mais que anúncio de marketplace. Anúncio de marketplace nunca sustenta a palavra "serve".</p>';
-	$html .= '<p>' . robometria_casca_link_html( 'metodologia', 'Ler a metodologia completa' ) . '</p>';
+	$html .= '<h2>Quando a gente não sabe</h2>';
+	$html .= '<p>Tem robô que a gente ainda não consegue responder: o fabricante nunca publicou a lista de peças dele. Quando for o caso do seu, a página diz isso com todas as letras — não chuta um código parecido só para ter o que mostrar.</p>';
+	$html .= '<p>O mesmo vale para a palavra "serve". Ela só aparece aqui quando o fabricante escreveu que serve, em algum lugar que dá para conferir. Anúncio de marketplace dizendo "compatível com todos" não conta.</p>';
+	$html .= '<p>' . robometria_casca_link_html( 'metodologia', 'Ver como a gente confere, e onde ainda não chegamos' ) . '</p>';
 	$html .= '</div>';
 	$html .= '</div>';
 
@@ -1209,8 +1519,13 @@ add_shortcode( 'robometria_sobre', function () {
 	$html .= '<p>Sem pessoa em cena: sem rosto, sem vídeo, sem canal, sem presença em fórum. O que sustenta uma resposta aqui é o método e a procedência do dado, e os dois ficam abertos para conferência em cada página. Ferramentas e conteúdo são versionados em repositório público antes de chegarem ao site, e o banco tem um verificador que reprova registro sem fonte, sem data ou com divergência não resolvida — o que está no ar passou por ele.</p>';
 	$html .= '<p>Estado de hoje, sem arredondar para cima: ' . robometria_casca_num( $n['marcas'] ) . ' marcas, ' . robometria_casca_num( $n['modelos_publicaveis'] ) . ' modelos de robô e ' . robometria_casca_num( $n['pares_declarados'] ) . ' pares peça × modelo declarados pelo fabricante. Nenhum par inferido.</p></div>';
 
+	/* BLOCO DE RECUSA, marcado no markup pelo mesmo motivo do da divulgação de
+	   afiliados: a frase legítima que recusa a escassez inventada usa as MESMAS
+	   palavras que a seção 7 do contrato proíbe, e quem decide qual é qual é a
+	   estrutura, nunca a vizinhança (cicatriz do Clube do Mosaico, 11/09/2026).
+	   Todo item daqui abre negando, e a bancada conta um a um. */
 	$html .= '<div class="rbm-secao"><h2>O que a Robometria não faz</h2>';
-	$html .= '<ul class="rbm-lista">';
+	$html .= '<ul class="rbm-lista rbm-recusa">';
 	$html .= '<li>Não vende peça nem intermedia venda, e não tem estoque.</li>';
 	$html .= '<li>Não aceita link pago, publieditorial nem posição paga em lista.</li>';
 	$html .= '<li>Não usa preço nem comissão como critério técnico. A ordem de uma lista é: primeiro quem passa em <em>todas</em> as condições declaradas pelo fabricante, depois quem é tecnicamente mais adequado, e só como desempate entre equivalentes quem tem link de loja.</li>';
@@ -1238,7 +1553,36 @@ add_shortcode( 'robometria_afiliados', function () {
 	$html .= '<div class="rbm-secao"><h2>Preço</h2>';
 	$html .= '<p>Nenhum preço aqui é apresentado como o preço de agora. Ou a página não traz preço, ou traz a faixa com a data em que ela foi coletada. Preço muda mais rápido do que qualquer página estática consegue acompanhar, e fingir o contrário seria enganar.</p></div>';
 
-	$html .= '<p class="rbm-nota"><strong>Estado de hoje:</strong> ainda não há nenhum link de afiliado no ar nesta ilha. Esta página existe desde o primeiro dia porque a divulgação precisa estar publicada <em>antes</em> do primeiro link, não depois.</p>';
+	$html .= '<div class="rbm-secao"><h2>O que quer dizer "link de loja em breve"</h2>';
+	$html .= '<p>Quando uma peça aparece no resultado sem botão de compra, o lugar dele fica reservado com esse aviso. Não é descuido: é o estado real daquele item. A peça entrou no banco porque o fabricante declarou que ela serve no seu robô, e é isso que a página promete responder — o link de loja vem depois, um a um, e leva tempo.</p>';
+	$html .= '<p>Esconder o bloco enquanto o link não existe seria pior. A página ficaria com um único endereço clicável, o da declaração do fabricante, e mandaria você comprar na loja da própria marca — onde a Robometria não ganha nada e você não compara preço com ninguém.</p>';
+	$html .= '</div>';
+
+	$html .= '<div class="rbm-secao"><h2>Por que dois programas, e não um</h2>';
+	$html .= '<p>Cada marketplace vende as marcas que vende. Peça de reposição de robô aspirador de marca de loja especializada costuma não existir num deles e existir no outro, e ficar com um só significaria deixar de fora justamente a peça certa. Quando o mesmo item está nos dois, o link sai para a Shopee; o Mercado Livre entra onde a Shopee não tem. Isso não é escolha por comissão — a taxa de um programa nunca é comparada com a do outro para decidir nada.</p>';
+	$html .= '</div>';
+
+	/* BLOCO DE RECUSA, marcado no markup e não deduzido pela vizinhança das
+	   palavras (cicatriz do Clube do Mosaico, 11/09/2026, seção 8 do contrato).
+	   Toda frase daqui ABRE negando: é o que separa a recusa legítima de uma
+	   promessa escondida dentro de um bloco com nome de recusa. */
+	$html .= '<div class="rbm-secao"><h2>O que você nunca vai ver aqui</h2>';
+	$html .= '<ul class="rbm-lista rbm-recusa">';
+	$html .= '<li>Não publicamos relógio de contagem regressiva nem "últimas unidades".</li>';
+	$html .= '<li>Não publicamos selo de "mais vendido": a Robometria não mede venda de ninguém.</li>';
+	$html .= '<li>Não publicamos nota nem estrela de avaliação que a gente não tenha medido.</li>';
+	$html .= '<li>Não compramos pelos nossos próprios links, e ninguém da casa compra.</li>';
+	$html .= '</ul></div>';
+
+	/* A frase abaixo é CONTADA no banco, não digitada — ver robometria_casca_numeros(). */
+	$n = robometria_casca_numeros();
+	$html .= '<p class="rbm-nota"><strong>Estado de hoje:</strong> ';
+	if ( $n['com_link'] < 1 ) {
+		$html .= 'nenhum dos ' . robometria_casca_num( $n['itens_publicaveis'] ) . ' itens do banco tem link de loja ainda — os ' . robometria_casca_num( $n['esperando_link'] ) . ' estão esperando. ';
+	} else {
+		$html .= robometria_casca_num( $n['com_link'] ) . ' dos ' . robometria_casca_num( $n['itens_publicaveis'] ) . ' itens do banco já têm link de loja, e ' . robometria_casca_num( $n['esperando_link'] ) . ' ainda esperam. ';
+	}
+	$html .= 'Esta página existe desde o primeiro dia porque a divulgação precisa estar publicada <em>antes</em> do primeiro link, não depois.</p>';
 	$html .= '</div>';
 
 	return $html;
@@ -1248,10 +1592,24 @@ add_shortcode( 'robometria_afiliados', function () {
  * 5. Estrutura do site: páginas, página inicial e limpeza do tema padrão
  * ------------------------------------------------------------------------- */
 
+/**
+ * O TÍTULO DE UMA PÁGINA É O H1 DELA, e o da raiz era a palavra "Início"
+ * (despacho da Sentinela, 11/09/2026, item 2).
+ *
+ * Medido em 11/09 às 14h40Z na home no ar: `[...document.querySelectorAll('h1')]`
+ * devolvia `["Início"]`. É o H1 da página que disputa a marca, e ele não nomeava
+ * nem o assunto da ilha nem nada que alguém digite. "Início" é o nome do LUGAR
+ * na estrutura do WordPress, não o nome do que a página responde.
+ *
+ * As outras quatro continuam com o título que tinham: a seção 15.5 do contrato
+ * manda reescrever home e header primeiro, e cada página existente depois, ao
+ * passar pela ronda. Trocar tudo de uma vez seria mexer em texto de página
+ * posicionada sem a Sentinela ter olhado (seção 12.1).
+ */
 if ( ! function_exists( 'robometria_casca_definicao_paginas' ) ) {
 function robometria_casca_definicao_paginas() {
 	return array(
-		'inicio'                  => array( 'titulo' => 'Início', 'conteudo' => '[robometria_home]' ),
+		'inicio'                  => array( 'titulo' => 'Robô aspirador: qual peça serve no seu, e quanta sucção precisa', 'conteudo' => '[robometria_home]' ),
 		'ferramentas'             => array( 'titulo' => 'Ferramentas', 'conteudo' => '[robometria_ferramentas]' ),
 		'metodologia'             => array( 'titulo' => 'Metodologia', 'conteudo' => '[robometria_metodologia]' ),
 		'sobre'                   => array( 'titulo' => 'Sobre', 'conteudo' => '[robometria_sobre]' ),
@@ -1301,6 +1659,17 @@ function robometria_casca_garantir_paginas( &$relato ) {
 		if ( $nossa && false === strpos( (string) $pagina->post_content, $def['conteudo'] ) ) {
 			wp_update_post( array( 'ID' => $pid, 'post_content' => $def['conteudo'] ) );
 			$relato[] = 'página ' . $slug . ': shortcode reposto (#' . $pid . ')';
+		}
+
+		/* O TÍTULO TAMBÉM É NOSSO, e até a v1.2.0 não era sincronizado: a página
+		   nascia com o título da definição e ficava com ele para sempre. Foi por
+		   isso que o H1 da raiz continuou sendo "Início" depois de a casca já ter
+		   mudado três vezes. Só mexemos em página com a nossa marca, e o
+		   post_name NÃO é tocado — a URL da página não muda com o título, que é o
+		   que a seção 12.1 do contrato protege. */
+		if ( $nossa && (string) $pagina->post_title !== (string) $def['titulo'] ) {
+			wp_update_post( array( 'ID' => $pid, 'post_title' => $def['titulo'] ) );
+			$relato[] = 'página ' . $slug . ': título atualizado (#' . $pid . ')';
 		}
 	}
 

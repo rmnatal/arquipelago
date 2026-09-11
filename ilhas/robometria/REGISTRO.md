@@ -1349,3 +1349,156 @@ que este bloco abriu.
 
 - **Próximo passo: derivar os cinco números da seção 4 da metodologia**, fechando
   a última afirmação digitada daquela página. Depois dela, o 3c — se a rede abrir.
+
+## 2026-09-11 — A ilha ganha VOZ e CABECA DE PAGINA (casca 1.2.0, revisao 15)
+
+Bloco do despacho do Raphael de 11/09 (secao 15 do `ARQUIPELAGO.md` e `VOZ.md`
+desta pasta) somado aos **itens 1 e 2 do despacho da Sentinela de 11/09**, que
+moram no mesmo arquivo e na mesma cabeca de pagina. Fazer os dois separados
+custaria duas versoes da casca e dois Syncs para mexer nas mesmas linhas.
+
+### 1. Nenhuma das nove paginas tinha description — item 1 do despacho
+
+A Sentinela mediu no navegador, as 14h40Z:
+`document.querySelector('meta[name=description]')` devolvia `null` nas nove URLs
+do sitemap, e nao havia `og:title`, `og:description` nem `og:url` em nenhuma.
+**A causa e de desenho, nao de esquecimento:** a casca montava o JSON-LD do
+`Organization` com um campo `description`, e aquela string ia so para o JSON-LD.
+Como esta ilha nao tem plugin de SEO por decisao de projeto, ninguem mais
+imprimia a tag. A consequencia de negocio esta na secao 12.1 do contrato, que
+chama a faixa de posicao 4 a 10 de "trabalho de CTR (titulo, meta, schema)" — sem
+description nao existe o que ajustar, e o Google escreve o trecho do resultado
+sozinho.
+
+Agora `robometria_casca_cabecas()` traz um mapa slug -> `{titulo, descricao,
+tipo}` para as nove paginas, passado pelo filtro `robometria_cabecas` para pagina
+nova poder trazer a dela de dentro do proprio snippet. O `wp_head` imprime
+`description` mais `og:type`, `og:title`, `og:description`, `og:url`,
+`og:site_name` e `og:locale`.
+
+**A DECISAO QUE MAIS VAI DURAR: nenhuma description carrega numero.** Description
+e texto digitado que ninguem rele, e ela nem aparece na tela para alguem
+estranhar — e a cicatriz de 11/09/2026 (secao 8 do contrato, o cartao do Clube do
+Mosaico que dizia "0" depois de a categoria ganhar cinco produtos) e exatamente
+sobre numero digitado numa metade que nao fala com o banco. Aqui seria pior:
+mentira no resultado da busca, invisivel de dentro do site. Numero mora na camada
+de prova (secao 15.2). **A bancada reprova digito dentro de cabeca.**
+
+**E o negativo importa tanto quanto:** pagina que a casca nao conhece sai SEM
+description nenhuma. A saida tentadora — uma frase generica de reserva — publicaria
+o MESMO texto em endereco diferente, que e o defeito que a tag existe para nao ter.
+
+### 2. O H1 da raiz era a palavra "Inicio" — item 2 do despacho
+
+Medido na mesma ronda: `[...document.querySelectorAll('h1')]` devolvia
+`["Início"]` na home. E o H1 da pagina que disputa a marca, e "Inicio" e o nome do
+LUGAR na estrutura do WordPress, nao o nome do que a pagina responde. Passou a ser
+**"Robo aspirador: qual peca serve no seu, e quanta succao precisa"** — os dois
+eixos da ilha, nas palavras da pessoa, e diferente do titulo das duas ferramentas
+para as tres nao competirem no indice (secao 14.4).
+
+**O defeito por tras do defeito:** `garantir_paginas()` nunca sincronizou titulo.
+A pagina nascia com o titulo da definicao e ficava com ele para sempre — foi por
+isso que "Inicio" sobreviveu a tres versoes da casca. Agora o titulo e
+sincronizado para as paginas marcadas como nossas, e **o `post_name` nao e
+tocado**: nenhuma URL muda, que e o que a secao 12.1 protege.
+
+### 3. A home era um manifesto; virou a ferramenta
+
+Primeira frase em terceira pessoa ("A Robometria diz..."), tres paragrafos de
+metodo antes de qualquer campo, e uma secao inteira de confissao numerica. Tudo
+verdade, e tudo no lugar errado: quem chega aqui esta com o robo aberto em cima da
+mesa. Pelo molde FERRAMENTA do `VOZ.md`, agora e promessa numa linha, o seletor de
+marca e modelo, atalhos por tipo de peca, e so depois o apoio.
+
+- **O formulario e o da R1, CHAMADO, nao copiado.** Copia de formulario e a mesma
+  armadilha da folha de estilo que este bloco desfez. Sem banco nas options a home
+  nao desenha formulario vazio: diz que o seletor esta fora do ar e manda para a
+  pagina da ferramenta.
+- **Os atalhos sao DERIVADOS** de `r1-respostas['tipos']`, a mesma lista que
+  preenche o seletor. O `VOZ.md` pede "filtro, escova e bateria"; digitar esses
+  tres seria repetir a cicatriz do cartao que dizia zero. A bancada conta: banco 5,
+  tela 5. Eles saem com `rel="nofollow"` porque o destino e uma consulta, e
+  consulta desta ilha ja sai com `noindex,follow` (decisao 4 da R1).
+- **A confissao de cobertura nao foi apagada** — foi para a metodologia, que e a
+  pagina cujo unico produto e o rigor, e a home aponta para la com uma frase que
+  qualquer pessoa entende.
+- **O menu virou Pecas / Succao / Como conferimos**, apontando para as duas
+  ferramentas e para a metodologia. NAO virou "Pecas / Modelos / Guias", que e o
+  que o `VOZ.md` descreve: esses tres sao niveis da arvore da secao 16 e ainda nao
+  existem como pagina, e rotulo sem pagina sai como `<span>` — um menu de tres
+  spans seria pior que o menu tecnico que ele substitui.
+- `/ferramentas/` e `/sobre/` sairam do menu e ganharam link no rodape, com o hub
+  tambem linkado do corpo da home: nenhuma URL do sitemap com menos de dois links
+  internos (secao 16.4-f).
+
+### 4. A folha do formulario ganhou um dono so
+
+`.rbm-promessa` e `.rbm-form*` estavam duplicadas na R1 e na R2 **e ja divergiam**
+— so a R2 estilizava `input[type=number]`. Com a home servindo o mesmo formulario
+seriam TRES copias de uma regra de layout, e basta alguem ajustar uma delas para a
+ilha passar a ter dois formularios diferentes sem ninguem notar. E o mesmo desenho
+da porta de compra, que a R1 devolveu a casca em 10/09. A versao da casca e a
+UNIAO das duas, entao nenhuma pagina muda de aparencia. A bancada conta: a folha
+existe em UM arquivo so.
+
+### 5. O QUE A TRAVA NOVA ACHOU SEM PROCURAR — duas paginas, as duas ja no ar
+
+A trava de **pagina fina** (secao 8 do contrato, cicatriz do Clube do Mosaico)
+entrou porque a home tinha acabado de perder uma secao, e foi ela que reprovou
+**`/divulgacao-de-afiliados/` com 1.325 caracteres de corpo** — uma pagina magra
+no sitemap de um dominio recem-nascido, gastando orcamento de rastreamento. Nao
+era defeito de render: a pagina era magra mesmo. Ganhou conteudo real da propria
+ilha (o que quer dizer "link de loja em breve", por que dois programas e nao um, e
+o bloco de recusa), e foi de 1.325 para 2.767.
+
+E dentro dela caiu **um segundo numero digitado**: a frase "ainda nao ha nenhum
+link de afiliado no ar nesta ilha" era verdade no dia em que foi escrita e ninguem
+releria no dia em que deixasse de ser. Passou a ser contada — `com_link` derivado
+de `itens_publicaveis - esperando_link`, com os dois lados conferidos contra o
+banco commitado pela bancada, e a frase tem duas formas escolhidas pela contagem.
+
+**E a trava de escassez achou a terceira:** a lista "O que a Robometria nao faz",
+na pagina Sobre, usa as MESMAS palavras que a secao 7 do contrato proibe. Ela e
+legitima — e o lugar onde a recusa deve estar escrita —, entao pelo desenho do
+Clube do Mosaico ela foi **marcada no markup** (`rbm-recusa`), e o teste retira os
+blocos marcados e proibe o termo em todo o resto. Os blocos sao poucos, contados, e
+**todo item tem que ABRIR negando**, senao bastaria enfiar uma promessa dentro de
+um bloco com nome de recusa.
+
+### Verificacao
+
+- `teste-casca` **133** medicoes (eram 64), `teste-r1` **90**, `teste-a1` **53**,
+  `teste-r2` **86**, `teste-a2` **62**, `teste-acentuacao` **16** — zero falhas.
+  `validar-banco` aprovado, `php -l` limpo nos tres snippets tocados.
+- **QUINZE MUTACOES deliberadas** em `ferramentas/mutacoes-cabeca-e-voz.py`, cada
+  uma numa copia da arvore inteira, exigindo que a bancada saia com codigo 1.
+  **DUAS PASSARAM na primeira rodada, e as duas viraram conserto:**
+  1. A regua de escassez listava `mais vendido` e **deixou passar** a mutacao que
+     escreveu *"a peça mais vendida da categoria"* no corpo. Genero e numero em
+     portugues sao o buraco por onde a frase proibida entra inteira. A regua passou
+     a usar RADICAL (`mais vendid`), e a mutacao reprova.
+  2. A mutacao de pagina fina era fraca: cortava 409 caracteres de uma pagina com
+     522 de folga. Mutacao que nao muda o resultado nao mede nada — reforcada, e
+     agora derruba o corpo de 2.022 para 1.243.
+  Na segunda rodada, **15 de 15 reprovadas**.
+- A bancada da casca passou a **carregar as options do manifest**, como o Sync as
+  grava. Sem isso a home serviria o aviso de "seletor fora do ar", que e uma pagina
+  VALIDA — seria a terceira vez que esta ilha mede uma pagina pela metade sem ver
+  (secao 8 do contrato).
+- 44 itens esperando link de afiliado — nao mudou, este bloco nao tocou em catalogo.
+
+### O que NAO entrou, de proposito
+
+- **A arvore da secao 16** (niveis de URL, breadcrumb com `BreadcrumbList`, cluster
+  "Veja tambem", 301 do que mudar) e um bloco proprio e e o proximo. Ela precisa da
+  decisao de pai e slug de cada pagina existente, e a secao 12.1 nao deixa trocar
+  URL de pagina posicionada sem olhar a medicao — que depende do Search Console.
+- **O defeito latente de `robometria_casca_numeros()`** (le a option de
+  `cobertura-r1`, que tem `publicar: false`) continua latente. A home deixou de
+  depender dele, mas a metodologia ainda serve aqueles cinco numeros digitados.
+
+- **Proximo passo: a ARVORE da secao 16** — escrever `ARVORE.md`, dar pai a toda
+  pagina, publicar breadcrumb e "Veja tambem". Junto com ela, derivar para
+  `casca-fatos.json` os cinco numeros da secao 4 da metodologia, fechando a ultima
+  afirmacao digitada daquela pagina.

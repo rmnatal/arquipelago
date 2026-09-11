@@ -39,12 +39,30 @@ function rbm_scripts( $html ) {
 	return implode( "\n", $m[1] );
 }
 
+/* AS PAGINAS QUE EXISTEM NO SITE DE TESTE.
+ *
+ * As quatro de ferramenta e artigo entraram aqui na casca 1.2.0: o menu passou a
+ * apontar direto para as duas ferramentas, e link do menu para pagina que a
+ * bancada nao conhece sairia como <span> — o teste do menu mediria tres spans e
+ * chamaria de aprovado o cabecalho que no ar tem tres links. */
 $GLOBALS['__paginas'] = array(
-	'ferramentas'             => true,
-	'metodologia'             => true,
-	'sobre'                   => true,
-	'divulgacao-de-afiliados' => true,
+	'ferramentas'                                 => true,
+	'metodologia'                                 => true,
+	'sobre'                                       => true,
+	'divulgacao-de-afiliados'                     => true,
+	'qual-peca-serve-no-meu-robo-aspirador'       => true,
+	'quantos-pa-o-robo-aspirador-precisa'         => true,
+	'filtro-universal-de-robo-aspirador'          => true,
+	'quantos-m2-o-robo-aspirador-limpa-por-carga' => true,
 );
+
+/* O BANCO, COMO O SYNC O ENTREGA AO SITE.
+ *
+ * Entrou junto com a casca 1.2.0, e nao e detalhe: a home passou a servir o
+ * formulario da R1, e sem as options ela serve o aviso de "seletor fora do ar",
+ * que e uma pagina VALIDA. Seria a terceira vez que esta ilha mede uma pagina
+ * pela metade sem ver (secao 8 do ARQUIPELAGO.md). */
+robometria_teste_carregar_options( $raiz );
 
 robometria_teste_carregar( $raiz );
 
@@ -61,7 +79,7 @@ echo "1. JS e CSS fora do retorno do shortcode (secao 8)\n";
 $html_por_pagina = array();
 foreach ( $paginas as $tag ) {
 	robometria_teste_rebobinar();
-	$html_por_pagina[ $tag ] = robometria_teste_pagina( $tag );
+	$html_por_pagina[ $tag ] = robometria_teste_pagina( $tag, 'Robometria — teste', robometria_teste_slug_do_alvo( $tag ) );
 	$cru = $GLOBALS['__retorno_shortcode'];
 	rbm_ok( false === stripos( $cru, '<script' ), "[$tag] sem <script> no retorno do shortcode" );
 	rbm_ok( false === stripos( $cru, '<style' ), "[$tag] sem <style> no retorno do shortcode" );
@@ -201,6 +219,12 @@ $esperado = array(
 	'celulas'              => (int) $cob['resumo']['celulas_total'],
 	'celulas_sem_resposta' => (int) $cob['resumo']['celulas']['vazia'],
 	'as_duas'              => count( $cob['cruzamento_com_a_r2']['as_duas_respondem'] ),
+	/* A pagina de divulgacao de afiliados afirma estes dois ao visitante, e a
+	   conta deles e feita AQUI, do banco, nao lida da casca: se as duas metades
+	   usassem a mesma regua, errariam juntas (secao 8 do contrato). */
+	'itens_publicaveis'    => (int) $modelos['contagem']['publicavel'] + (int) $pecas['contagem']['publicavel'],
+	'com_link'             => ( (int) $modelos['contagem']['publicavel'] + (int) $pecas['contagem']['publicavel'] )
+		- ( (int) $modelos['contagem']['esperando_link_de_afiliado'] + (int) $pecas['contagem']['esperando_link_de_afiliado'] ),
 );
 
 foreach ( $esperado as $chave => $valor ) {
@@ -274,6 +298,244 @@ foreach ( robometria_casca_apelidos() as $apelido => $destino ) {
 	if ( in_array( $apelido, $destinos, true ) ) { $orfaos[] = $apelido . ' (apelido igual a slug real)'; }
 }
 rbm_ok( empty( $orfaos ), 'todo apelido aponta para pagina ou ferramenta conhecida', empty( $orfaos ) ? count( robometria_casca_apelidos() ) . ' apelidos' : implode( ', ', $orfaos ) );
+
+/* A FOLHA DO FORMULARIO TEM UM DONO SO (casca 1.2.0).
+ *
+ * Ela estava copiada na R1 e na R2, ja divergindo, e a home passou a servir o
+ * mesmo formulario. Contar aqui e o que impede a copia de voltar: uma regra de
+ * layout que vive em tres arquivos e ajustada num deles um dia, e a ilha passa a
+ * ter dois formularios diferentes sem que ninguem note. Mesmo desenho da porta
+ * de compra, que a R1 ja devolveu a casca em 10/09/2026. */
+$donos = array();
+foreach ( glob( $raiz . '/snippets/*.php' ) as $arquivo ) {
+	$corpo = file_get_contents( $arquivo );
+	if ( false !== strpos( $corpo, '.rbm-form{' ) || false !== strpos( $corpo, '.rbm-form-campo{' ) ) {
+		$donos[] = basename( $arquivo );
+	}
+}
+rbm_ok( array( 'robometria-casca.php' ) === $donos, 'a folha do formulario existe em UM arquivo so, a casca', implode( ' ', $donos ) );
+
+/* ---------------------------------------------------------------------------
+ * 10. CABECA DE PAGINA — description e Open Graph (despacho da Sentinela de
+ *     11/09/2026, item 1).
+ *
+ * A Sentinela mediu no ar: document.querySelector('meta[name=description]')
+ * devolvia null nas NOVE paginas do sitemap, e nao havia og: nenhum. Este bloco
+ * e o portao que impede a tag de sumir de novo, e ele cobra as DUAS DIRECOES —
+ * pagina conhecida sem cabeca reprova, e cabeca sobrando tambem. Cobrar so um
+ * lado e o defeito de 11/09 no Clube do Mosaico: o teste media a unica categoria
+ * que existia quando ele foi escrito.
+ *
+ * A REGUA E DESTE ARQUIVO, nao do snippet: os limites de tamanho, a proibicao de
+ * digito e a lista de termos proibidos estao escritos aqui, e nao lidos de
+ * nenhuma funcao da casca. Chamar a regua de quem produziu o dado e o defeito
+ * que a secao 8 do contrato descreve — as duas metades erram juntas e o teste
+ * passa.
+ * ------------------------------------------------------------------------- */
+
+echo "\n10. Cabeca de pagina: description e Open Graph (secao 12.1)\n";
+
+$cabecas = robometria_casca_cabecas();
+
+/* As duas direcoes. O lado esquerdo e TUDO que a ilha publica como pagina:
+   as cinco da casca, as ferramentas do catalogo e os artigos do catalogo. */
+$publicadas = array_keys( robometria_casca_definicao_paginas() );
+foreach ( robometria_casca_ferramentas() as $f ) { $publicadas[] = $f['slug']; }
+foreach ( robometria_casca_artigos() as $a )     { $publicadas[] = $a['slug']; }
+$publicadas = array_values( array_unique( $publicadas ) );
+
+$sem_cabeca = array_values( array_diff( $publicadas, array_keys( $cabecas ) ) );
+$sem_pagina = array_values( array_diff( array_keys( $cabecas ), $publicadas ) );
+rbm_ok( empty( $sem_cabeca ), 'toda pagina publicada tem cabeca declarada', empty( $sem_cabeca ) ? count( $publicadas ) . ' paginas' : implode( ' ', $sem_cabeca ) );
+rbm_ok( empty( $sem_pagina ), 'nenhuma cabeca sobrando, sem pagina correspondente', empty( $sem_pagina ) ? 'ok' : implode( ' ', $sem_pagina ) );
+
+/* Tamanho: abaixo de 110 o Google completa com texto da pagina, acima de 160 ele
+   corta no meio da frase. Os dois casos devolvem ao visitante um trecho que
+   ninguem escreveu. */
+$curtas = array();
+$longas = array();
+foreach ( $cabecas as $slug => $c ) {
+	$n = mb_strlen( $c['descricao'], 'UTF-8' );
+	if ( $n < 110 ) { $curtas[] = $slug . '(' . $n . ')'; }
+	if ( $n > 160 ) { $longas[] = $slug . '(' . $n . ')'; }
+}
+rbm_ok( empty( $curtas ), 'nenhuma description com menos de 110 caracteres', empty( $curtas ) ? 'ok' : implode( ' ', $curtas ) );
+rbm_ok( empty( $longas ), 'nenhuma description com mais de 160 caracteres', empty( $longas ) ? 'ok' : implode( ' ', $longas ) );
+
+/* Texto repetido em endereco diferente e o defeito que a tag existe para nao
+   ter: o Google escolhe uma das paginas e descarta a outra. */
+$textos = array();
+$titulos = array();
+foreach ( $cabecas as $c ) { $textos[] = $c['descricao']; $titulos[] = $c['titulo']; }
+rbm_ok( count( array_unique( $textos ) ) === count( $textos ), 'as descriptions sao todas diferentes entre si', count( array_unique( $textos ) ) . ' de ' . count( $textos ) );
+rbm_ok( count( array_unique( $titulos ) ) === count( $titulos ), 'os og:title sao todos diferentes entre si', count( array_unique( $titulos ) ) . ' de ' . count( $titulos ) );
+
+/* NENHUM DIGITO. Description e texto digitado que ninguem relê: um numero aqui
+   dentro passa a mentir em silencio no dia em que o banco crescer, e nem na tela
+   ele aparece para alguem estranhar. Numero mora na camada de prova (secao 15.2
+   do contrato): tabela, resultado, JSON-LD. */
+$com_numero = array();
+foreach ( $cabecas as $slug => $c ) {
+	if ( preg_match( '/\d/u', $c['descricao'] . ' ' . $c['titulo'] ) ) { $com_numero[] = $slug; }
+}
+rbm_ok( empty( $com_numero ), 'nenhuma cabeca carrega numero (numero mora na camada de prova)', empty( $com_numero ) ? 'ok' : implode( ' ', $com_numero ) );
+
+/* E o que sai no HTML servido, que e a unica coisa que a Sentinela consegue
+   medir no ar. Cada pagina da casca renderizada com o slug dela. */
+foreach ( $paginas as $tag ) {
+	$slug = robometria_teste_slug_do_alvo( $tag );
+	$html = $html_por_pagina[ $tag ];
+	$c    = isset( $cabecas[ $slug ] ) ? $cabecas[ $slug ] : null;
+
+	$n_desc = substr_count( $html, '<meta name="description"' );
+	rbm_ok( 1 === $n_desc, "[$slug] exatamente uma <meta name=description>", "achadas: $n_desc" );
+
+	$esperada = ( null === $c ) ? '' : htmlspecialchars( $c['descricao'], ENT_QUOTES );
+	rbm_ok( '' !== $esperada && false !== strpos( $html, '<meta name="description" content="' . $esperada . '">' ),
+		"[$slug] o texto servido e o da cabeca declarada" );
+
+	foreach ( array( 'og:type', 'og:title', 'og:description', 'og:url', 'og:site_name' ) as $prop ) {
+		rbm_ok( false !== strpos( $html, '<meta property="' . $prop . '"' ), "[$slug] $prop presente" );
+	}
+}
+
+/* O NEGATIVO: pagina que a casca NAO conhece nao ganha description nenhuma.
+   Sem esta medicao, um mapa vazio passaria em tudo acima menos nisto — e a
+   alternativa tentadora (uma frase generica de reserva) publicaria a MESMA
+   description em endereco diferente, que e exatamente o defeito. */
+robometria_teste_rebobinar();
+$html_desconhecida = robometria_teste_pagina( 'robometria_home', 'Robometria — teste', 'pagina-que-a-casca-nao-conhece' );
+rbm_ok( 0 === substr_count( $html_desconhecida, '<meta name="description"' ), 'pagina desconhecida NAO ganha description generica' );
+rbm_ok( 0 === substr_count( $html_desconhecida, '<meta property="og:' ), 'pagina desconhecida NAO ganha Open Graph' );
+robometria_teste_rebobinar();
+
+/* ---------------------------------------------------------------------------
+ * 11. A VOZ DA ILHA (secao 15 do ARQUIPELAGO.md e VOZ.md desta pasta).
+ *
+ * A regra e de LUGAR, nao de vizinhanca: titulo e primeiro paragrafo falam com a
+ * pessoa, e o vocabulario de dentro da fabrica mora na camada de prova. Por isso
+ * o teste procura os termos SO nesses dois lugares, declarados por estrutura (o
+ * titulo da definicao de paginas; o primeiro <p> dentro de <main>) — e nunca
+ * pela pagina inteira, que e o erro de contar &#038; fora do <script>.
+ * ------------------------------------------------------------------------- */
+
+echo "\n11. A voz da home e do header (secao 15, VOZ.md)\n";
+
+/* Regua deste arquivo, lida do VOZ.md pelas maos de quem escreveu o teste. */
+$proibidas = array( 'compatibilidade paramétrica', 'especificação', 'matriz', 'procedência', 'base de dados', 'verificável' );
+
+$def_inicio = robometria_casca_definicao_paginas();
+$titulo_h1  = $def_inicio['inicio']['titulo'];
+
+rbm_ok( 'Início' !== $titulo_h1, 'o titulo da raiz nao e mais a palavra "Inicio"', $titulo_h1 );
+rbm_ok( false !== mb_stripos( $titulo_h1, 'robô aspirador', 0, 'UTF-8' ), 'o titulo da raiz nomeia o assunto da ilha' );
+
+$achadas = array();
+foreach ( $proibidas as $termo ) {
+	if ( false !== mb_stripos( $titulo_h1, $termo, 0, 'UTF-8' ) ) { $achadas[] = $termo; }
+}
+rbm_ok( empty( $achadas ), 'nenhum termo proibido no titulo da raiz', empty( $achadas ) ? 'ok' : implode( ' ', $achadas ) );
+
+preg_match( '#<main[^>]*>(.*?)</main>#is', $html_por_pagina['robometria_home'], $mm );
+$corpo_da_home = isset( $mm[1] ) ? $mm[1] : '';
+preg_match( '#<p\b[^>]*>(.*?)</p>#is', $corpo_da_home, $mp );
+$primeiro_p = isset( $mp[1] ) ? trim( strip_tags( $mp[1] ) ) : '';
+
+rbm_ok( '' !== $primeiro_p, 'a home tem um primeiro paragrafo', mb_substr( $primeiro_p, 0, 48, 'UTF-8' ) . '…' );
+$achadas = array();
+foreach ( $proibidas as $termo ) {
+	if ( false !== mb_stripos( $primeiro_p, $termo, 0, 'UTF-8' ) ) { $achadas[] = $termo; }
+}
+rbm_ok( empty( $achadas ), 'nenhum termo proibido no primeiro paragrafo da home', empty( $achadas ) ? 'ok' : implode( ' ', $achadas ) );
+
+/* A HOME E A FERRAMENTA (molde FERRAMENTA do VOZ.md): o seletor esta servido no
+   HTML, nao atras de um clique nem de um script. Sem esta medicao, a home podia
+   voltar a ser manifesto sem nenhum teste reclamar. */
+rbm_ok( false !== strpos( $corpo_da_home, '<form class="rbm-form"' ), 'o seletor de marca e modelo esta SERVIDO na home' );
+rbm_ok( false !== strpos( $corpo_da_home, 'id="rbm-modelo"' ), 'o campo do modelo existe na home' );
+rbm_ok( false !== strpos( $corpo_da_home, 'class="rbm-atalhos"' ), 'os atalhos por tipo de peca estao na home' );
+
+/* OS ATALHOS SAO DERIVADOS DO BANCO, nunca digitados — mesma regra do numero de
+   tela (secao 8). Contados aqui contra a lista de tipos que o proprio banco
+   commitado declara, lida deste arquivo e nao da casca. */
+$r1_banco = json_decode( file_get_contents( $raiz . '/dados/r1-respostas.json' ), true );
+$n_tipos  = count( $r1_banco['tipos'] );
+preg_match( '#<div class="rbm-atalhos">(.*?)</div>#is', $corpo_da_home, $ma );
+$n_atalhos = isset( $ma[1] ) ? preg_match_all( '#<li><a\b#i', $ma[1] ) : 0;
+rbm_ok( $n_tipos === $n_atalhos, 'um atalho por tipo de peca do banco, contado', "banco $n_tipos / tela $n_atalhos" );
+
+/* O menu do topo: os tres rotulos sao as palavras da pessoa. */
+$nav_home = '';
+if ( preg_match( '#<nav class="rbm-nav"[^>]*>(.*?)</nav>#is', $html_por_pagina['robometria_home'], $mn2 ) ) { $nav_home = $mn2[1]; }
+rbm_ok( false !== strpos( $nav_home, '>Peças</a>' ), 'o menu leva a "Peças", com a palavra da pessoa' );
+rbm_ok( false !== strpos( $nav_home, '>Sucção</a>' ), 'o menu leva a "Sucção", com a palavra da pessoa' );
+rbm_ok( false === strpos( $nav_home, '>Ferramentas</a>' ), 'o menu nao usa mais o substantivo de dentro da fabrica' );
+
+/* ---------------------------------------------------------------------------
+ * 12. PAGINA FINA (secao 8 do ARQUIPELAGO.md, cicatriz do Clube do Mosaico de
+ *     11/09/2026).
+ *
+ * Entra aqui porque a home v1.2.0 PERDEU uma secao inteira — a confissao
+ * numerica foi para a metodologia, que e onde a camada de prova mora. Encolher
+ * pagina e trabalho legitimo; encolher abaixo do que entra no indice de dominio
+ * novo, nao. Esta medicao e o que separa os dois.
+ * ------------------------------------------------------------------------- */
+
+/* O BLOCO DE RECUSA DA PAGINA DE AFILIADOS — declarado no markup e contado um a
+ * um (cicatriz do Clube do Mosaico, 11/09/2026, secao 8 do contrato). A seccao 7
+ * proibe escassez inventada e selo de "mais vendido", e a frase legitima que
+ * RECUSA esses termos usa exatamente as mesmas palavras. Quem decide e a
+ * estrutura: a pagina marca o bloco com a classe, e todo item dele tem que ABRIR
+ * negando — senao bastaria enfiar uma promessa la dentro para ela ficar imune. */
+echo "\n11b. Blocos de recusa (secao 7 e 8)\n";
+$blocos_recusa = 0;
+$itens_recusa  = 0;
+$sem_negacao   = array();
+foreach ( $paginas as $tag ) {
+	preg_match_all( '#<ul class="[^"]*\brbm-recusa\b[^"]*">(.*?)</ul>#is', $html_por_pagina[ $tag ], $mr );
+	foreach ( $mr[1] as $recusa ) {
+		$blocos_recusa++;
+		preg_match_all( '#<li>(.*?)</li>#is', $recusa, $mi );
+		foreach ( $mi[1] as $item ) {
+			$itens_recusa++;
+			$texto = trim( html_entity_decode( strip_tags( $item ), ENT_QUOTES | ENT_HTML5, 'UTF-8' ) );
+			if ( 0 !== mb_stripos( $texto, 'não ', 0, 'UTF-8' ) && 0 !== mb_stripos( $texto, 'nunca ', 0, 'UTF-8' ) ) {
+				$sem_negacao[] = $tag . ': ' . mb_substr( $texto, 0, 32, 'UTF-8' );
+			}
+		}
+	}
+}
+rbm_ok( $blocos_recusa >= 2, 'os blocos de recusa estao marcados no markup', $blocos_recusa . ' bloco(s)' );
+rbm_ok( $itens_recusa >= 6, 'os itens de recusa sao poucos e contados', $itens_recusa . ' itens' );
+rbm_ok( $blocos_recusa <= 4, 'e sao POUCOS blocos — marcacao nao pode virar porta dos fundos', $blocos_recusa . ' bloco(s)' );
+rbm_ok( empty( $sem_negacao ), 'todo item de bloco de recusa ABRE negando', empty( $sem_negacao ) ? 'ok' : implode( ' | ', $sem_negacao ) );
+
+/* E fora do bloco marcado, o termo proibido nao aparece em pagina nenhuma. */
+$vazamentos = array();
+foreach ( $paginas as $tag ) {
+	$sem_recusa = preg_replace( '#<ul class="[^"]*\brbm-recusa\b[^"]*">.*?</ul>#is', ' ', $html_por_pagina[ $tag ] );
+	preg_match( '#<main[^>]*>(.*?)</main>#is', $sem_recusa, $mv );
+	$corpo_sem = isset( $mv[1] ) ? $mv[1] : '';
+	/* OS TERMOS SAO RADICAIS, nao palavras inteiras, e isso foi MEDIDO: a primeira
+	   versao desta regua listava "mais vendido" e deixou passar a mutacao que
+	   escreveu "a peça mais vendida da categoria" no corpo da pagina de
+	   afiliados. Genero e numero em portugues sao exatamente o buraco por onde a
+	   frase proibida entra inteira. */
+	foreach ( array( 'mais vendid', 'última unidade', 'últimas unidade', 'última peça', 'últimas peça', 'por tempo limitado', 'restam apenas' ) as $termo ) {
+		if ( false !== mb_stripos( $corpo_sem, $termo, 0, 'UTF-8' ) ) { $vazamentos[] = $tag . ':' . $termo; }
+	}
+}
+rbm_ok( empty( $vazamentos ), 'nenhuma escassez inventada fora do bloco de recusa', empty( $vazamentos ) ? 'ok' : implode( ' ', $vazamentos ) );
+
+echo "\n12. Nenhuma pagina fina (secao 8)\n";
+foreach ( $paginas as $tag ) {
+	preg_match( '#<main[^>]*>(.*?)</main>#is', $html_por_pagina[ $tag ], $mc );
+	$texto = isset( $mc[1] ) ? $mc[1] : '';
+	$texto = html_entity_decode( preg_replace( '#<[^>]+>#s', ' ', $texto ), ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+	$texto = trim( preg_replace( '/\s+/u', ' ', $texto ) );
+	$n     = mb_strlen( $texto, 'UTF-8' );
+	rbm_ok( $n >= 1500, "[$tag] corpo com 1.500 caracteres ou mais", $n . ' caracteres' );
+}
 
 echo "\n";
 if ( $falhas ) {

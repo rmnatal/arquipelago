@@ -28,13 +28,31 @@ A Bússola verificou em 07/09/2026: a busca **comercial** ("melhor robô aspirad
 
 ---
 
-## DESPACHO DO RAPHAEL — 11/09/2026 — a ilha ganha voz (prioridade máxima, antes de qualquer bloco novo)
+## DESPACHO DO RAPHAEL — 11/09/2026 — a ilha ganha voz
 
-Seção 15 nova no `ARQUIPELAGO.md` e `VOZ.md` novo nesta pasta. Primeiro bloco a partir de agora: **reescrever a home e o header de Robometria pelo molde FERRAMENTA e pela voz do `VOZ.md`** — título e primeiro parágrafo de cada página da home na linguagem da pessoa; número, fonte e data para a camada de prova (tabela, "como sabemos", JSON-LD). Não trocar URL, não mexer em estrutura de ferramenta que já funciona, não tocar em página posicionada além do texto (seção 12.1). Depois disso, cada página existente é reescrita na voz ao passar pela ronda. Critério de pronto: abrir a home e nenhum termo da lista "Proibidas" do `VOZ.md` aparecer em título ou primeiro parágrafo; registrar a revisão no ESTADO.md e acionar o Sync.
+~~**Reescrever a home e o header pelo molde FERRAMENTA e pela voz do `VOZ.md`.**~~
+**CUMPRIDO em 11/09/2026** — casca 1.2.0, manifest na revisão 15. A home virou a
+ferramenta (promessa numa linha, o seletor da R1 chamado e servido no HTML,
+atalhos por tipo de peça derivados do banco), a confissão numérica foi para a
+metodologia (seção 15.2: número mora na camada de prova), o H1 da raiz deixou de
+ser "Início" e o menu virou Peças · Sucção · Como conferimos. Nenhuma URL mudou.
+Critério de pronto conferido na bancada, não de olho: `teste-casca.php` mede o
+título da raiz e o primeiro parágrafo da home contra a lista de proibidas do
+`VOZ.md`, por estrutura e nunca na página inteira.
 
-ATUALIZAÇÃO 11/09: junto com a reescrita da home e do header, aplicar a seção 16 do contrato (árvore de três níveis, breadcrumb com BreadcrumbList, cluster de interlinkagem mãe↔filhas↔irmãs, categoria só com ≥3 filhas): escrever `ARVORE.md` desta ilha, dar pai a toda página existente, publicar breadcrumb e "Veja também" — sem trocar URL de página que já tem impressão (seção 12.1); 301 para toda URL que mudar e sitemap reenviado.
+**O QUE FALTA DESTE DESPACHO — é o próximo bloco, e é a seção 16 do contrato:**
+árvore de três níveis, breadcrumb com `BreadcrumbList`, cluster de interlinkagem
+mãe↔filhas↔irmãs, categoria só com ≥3 filhas. Escrever `ARVORE.md` desta ilha,
+dar pai a toda página existente, publicar breadcrumb e "Veja também" — **sem
+trocar URL de página que já tem impressão** (seção 12.1); 301 para toda URL que
+mudar e sitemap reenviado. Duas coisas a decidir nele, e as duas já foram
+levantadas: o menu só vira Peças · Modelos · Guias quando esses três existirem
+como página de nível 1 (hoje sairiam como `<span>`), e `/metodologia/`,
+`/sobre/`, `/ferramentas/` e `/divulgacao-de-afiliados/` precisam de veredito
+sobre ficar na raiz (a 16.1 admite home, sobre, contato, divulgação e
+privacidade na raiz — as outras duas não estão nessa lista).
 
-ATUALIZAÇÃO 11/09 (Pauta): quando existir `pauta.md` nesta pasta (seção 17 do contrato), os guias entram na fila depois desta reescrita e da árvore, em levas por cluster; registrar no fecho de cada bloco quantos temas estão escritos / na fila / recusados.
+ATUALIZAÇÃO 11/09 (Pauta): quando existir `pauta.md` nesta pasta (seção 17 do contrato), os guias entram na fila depois da árvore, em levas por cluster; registrar no fecho de cada bloco quantos temas estão escritos / na fila / recusados.
 
 ## DESPACHO DA SENTINELA — 11/09/2026 (ronda diária, medida no navegador do Raphael)
 
@@ -44,9 +62,15 @@ ATUALIZAÇÃO 11/09 (Pauta): quando existir `pauta.md` nesta pasta (seção 17 d
 
 **Nenhuma correção foi feita pela Sentinela nesta ronda.** Os dois defeitos achados moram em código de snippet PHP, e a regra 3 da seção 12 manda parar e despachar.
 
-1. **NENHUMA das 9 páginas publicadas tem `<meta name="description">`.** Medido em 11/09/2026 às 14h40Z, no navegador, nas 9 URLs do `wp-sitemap.xml` (`/`, `/ferramentas/`, `/metodologia/`, `/sobre/`, `/divulgacao-de-afiliados/`, `/qual-peca-serve-no-meu-robo-aspirador/`, `/filtro-universal-de-robo-aspirador/`, `/quantos-pa-o-robo-aspirador-precisa/`, `/quantos-m2-o-robo-aspirador-limpa-por-carga/`): `document.querySelector('meta[name=description]')` devolve `null` nas nove, e as ÚNICAS metas servidas são `charset`, `viewport`, `robots`, `theme-color` e os dois `generator`. Também não há `og:title`, `og:description` nem `og:url` em nenhuma delas. **Diagnóstico, feito no código commitado:** `snippets/robometria-casca.php` imprime `<meta name="theme-color">` (perto da linha 478) e monta o JSON-LD `Organization + WebSite` com um campo `description` (perto da linha 496) — mas essa string vai só para o JSON-LD, nunca para uma tag `<meta>`; e `grep -l 'meta name="description"' snippets/*.php` não devolve arquivo nenhum. Como esta ilha não tem plugin de SEO por decisão de projeto, ninguém mais imprime essa tag. **Consequência de negócio:** a seção 12.1 chama a faixa de posição 4 a 10 de "trabalho de CTR (título, meta, schema)" — sem description, não existe o que ajustar, e o Google inventa o trecho do resultado. **Conserto:** na casca, na mesma função que já imprime `theme-color`, imprimir também `<meta name="description">` por página, com o texto vindo de um mapa slug → descrição, e junto `og:title`, `og:description`, `og:url` e `og:type`. O texto de cada ferramenta deve dizer o que ela responde, não o que ela é. **Pronto quando:** nas 9 URLs do sitemap, `<meta name="description">` existir, com 110 a 160 caracteres, texto DIFERENTE em cada uma das nove, e `og:title`/`og:description`/`og:url` presentes; conferido com o site no ar, não em bancada.
+**OS ITENS 1 E 2 FORAM CUMPRIDOS em 11/09/2026** (casca 1.2.0, manifest revisão 15
+— ver `REGISTRO.md`). O texto deles saiu daqui; o que a ronda MEDIU E APROVOU
+continua abaixo, como linha de base para a próxima. Um achado dos dois vale ser
+lembrado: a trava de página fina que entrou junto reprovou
+`/divulgacao-de-afiliados/` com 1.325 caracteres de corpo — defeito que já estava
+no ar e que nenhuma ronda tinha procurado.
 
-2. **O `<h1>` da raiz é a palavra "Início".** Medido na mesma ronda: em `https://robometria.com.br/`, `[...document.querySelectorAll('h1')].map(h=>h.textContent)` devolve `["Início"]`. É o H1 da página que disputa a marca, e ele não nomeia o que a ilha faz. **Não abra bloco novo para isto:** o DESPACHO DO RAPHAEL de 11/09 já manda reescrever a home e o header pelo molde FERRAMENTA e pela voz do `VOZ.md` — leve o H1 junto nessa reescrita. **Pronto quando:** o H1 da raiz nomear o assunto da ilha (compatibilidade de peça e dimensionamento de robô aspirador) em vez de "Início", e nenhum termo da lista "Proibidas" do `VOZ.md` aparecer nele.
+<!-- item 1 (meta description e Open Graph nas 9 páginas) cumprido em 11/09/2026 -->
+<!-- item 2 (H1 da raiz era "Início") cumprido em 11/09/2026 -->
 
 **O QUE A RONDA MEDIU E APROVOU em 11/09/2026 — não refaça, e use como linha de base:**
 - `/wp-json/robometria/v1/status` devolve **revisão 14**, igual à do `manifest.json`. As 9 URLs do sitemap devolvem 200 e abrem; nenhuma página órfã; todo link interno vivo.
