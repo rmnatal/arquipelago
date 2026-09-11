@@ -120,20 +120,30 @@ if ( file_exists( $arquivo_md ) ) {
 	   shortcodes do corpo executados, e o escape de "&" por cima. */
 	$md = file_get_contents( $arquivo_md );
 
-	/* O titulo NAO sai daqui em estado bruto: o front matter e YAML, e escalar
-	   entre aspas duplas em YAML escapa a aspa interna com barra invertida. O
-	   que o site serve vem do `titulo` do manifest.json, que ja esta
-	   desescapado — entao a bancada que lesse `\"` mediria uma string que o ar
-	   nao tem. Foi exatamente o que aconteceu: o H1 do artigo do aquecedor saia
-	   aqui como `\&quot;1 W por litro\&quot;` e no ar como `&#8220;1 W por
-	   litro&#8221;`, sem erro nenhum aparecer. Medir o que nao existe e a
-	   cicatriz da secao 8; aqui ela custaria um portao de voz calibrado numa
-	   string fantasma. */
+	/* O TITULO VEM DO MANIFEST, nao do front matter, e essa escolha custou um
+	   desembarque inteiro para ser feita.
+
+	   Quem grava o post_title no ar e o Sync, e o Sync le `titulo` do
+	   manifest.json — o front matter do .md ele nem abre. Enquanto esta bancada
+	   lia o .md, as duas metades liam fontes DIFERENTES para o mesmo dado, e o
+	   dia em que os nove titulos foram reescritos o manifest ficou para tras:
+	   293 afirmacoes verdes aqui, o Sync respondendo "18 aplicado(s)", o corpo
+	   das nove paginas trocado no ar — e o H1 e o <title> das nove continuando
+	   os de antes. Nenhum portao podia ver, porque todos renderizavam por aqui.
+
+	   Agora a bancada le a MESMA fonte que o site: manifest desatualizado
+	   aparece na primeira medicao, em vez de aparecer depois do desembarque.
+	   Quem reespelha o front matter no manifest e ferramentas/atualizar-manifest.py,
+	   e conferir-slugs.py cobra que os dois digam a mesma coisa. */
 	$titulo = 'Aquametria';
-	if ( preg_match( '/^titulo:\s*"(.*)"\s*$/m', $md, $m ) ) {
-		$titulo = str_replace( array( '\\"', '\\\\' ), array( '"', '\\' ), $m[1] );
-	} elseif ( preg_match( '/^titulo:\s*(.+?)\s*$/m', $md, $m ) ) {
-		$titulo = $m[1];
+	$manifesto = json_decode( (string) @file_get_contents( $raiz . '/manifest.json' ), true );
+	if ( is_array( $manifesto ) && isset( $manifesto['conteudo'] ) ) {
+		foreach ( $manifesto['conteudo'] as $entrada ) {
+			if ( isset( $entrada['slug'], $entrada['titulo'] ) && $entrada['slug'] === $alvo ) {
+				$titulo = $entrada['titulo'];
+				break;
+			}
+		}
 	}
 
 	$html = aquametria_sync_md( $md );

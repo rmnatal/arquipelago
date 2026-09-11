@@ -48,6 +48,32 @@ def slugs_do_conteudo():
     return achados
 
 
+def titulos_do_conteudo():
+    """slug -> titulo declarado no front matter, ja desescapado.
+
+    O `titulo` do manifest e o que o Sync grava em post_title; o front matter e
+    o que a pessoa edita. Se os dois divergirem, o site publica o titulo VELHO e
+    nenhum teste que renderize do repositorio pode ver — foi o que aconteceu em
+    11/09/2026, quando os nove titulos foram reescritos, a bancada ficou verde e
+    o ar continuou com os de antes por um desembarque inteiro."""
+    achados = {}
+    pasta = os.path.join(RAIZ, 'conteudo')
+    for nome in sorted(os.listdir(pasta)):
+        if not nome.endswith('.md') or nome == 'README.md':
+            continue
+        texto = ler('conteudo/' + nome)
+        slug = re.search(r'^slug:\s*(\S+)\s*$', texto, re.M)
+        tit = re.search(r'^titulo:\s*"(.*)"\s*$', texto, re.M)
+        if not tit:
+            tit = re.search(r'^titulo:\s*(.+?)\s*$', texto, re.M)
+            valor = tit.group(1) if tit else None
+        else:
+            valor = tit.group(1).replace('\\"', '"').replace('\\\\', '\\')
+        if slug and valor:
+            achados[slug.group(1)] = valor
+    return achados
+
+
 def tipos_do_conteudo():
     """slug -> 'pagina' ou 'artigo'.
 
@@ -88,6 +114,22 @@ def main():
     for slug, arquivo in do_manifest.items():
         if slug not in conteudo:
             falhas.append('manifest publica o slug "%s" (%s) que nenhum front matter declara' % (slug, arquivo))
+
+    # 1b. front matter x manifest, no TITULO
+    titulos = titulos_do_conteudo()
+    do_manifest_titulo = {}
+    for item in manifesto.get('conteudo', []):
+        if item.get('slug'):
+            do_manifest_titulo[item['slug']] = item.get('titulo')
+    for slug, titulo in titulos.items():
+        no_manifest = do_manifest_titulo.get(slug)
+        if no_manifest is None:
+            continue
+        if no_manifest != titulo:
+            falhas.append(
+                'o titulo de "%s" diverge: front matter diz %r e o manifest diz %r. '
+                'Quem publica e o manifest — rode ferramentas/atualizar-manifest.py.'
+                % (slug, titulo, no_manifest))
 
     # 2. constantes de slug dos snippets
     pasta = os.path.join(RAIZ, 'snippets')
@@ -189,6 +231,7 @@ def main():
         print('\n%d divergência(s) de endereço.' % len(set(falhas)))
         return 1
     print('  ok    %d slugs de conteudo/, manifest e snippets concordam' % len(conteudo))
+    print('  ok    %d titulos de conteudo/ e do manifest concordam' % len(titulos))
     print('  ok    nenhum link publicado aponta para página inexistente')
     return 0
 

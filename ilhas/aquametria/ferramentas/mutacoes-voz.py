@@ -19,6 +19,7 @@ Cada mutacao roda num repositorio COPIADO, entao o repositorio de verdade nunca
 e tocado.
 """
 
+import json
 import re
 import shutil
 import subprocess
@@ -30,10 +31,7 @@ RAIZ = Path(__file__).resolve().parent.parent
 CASCA = 'snippets/aquametria-casca.php'
 ARTIGOS = 'snippets/aquametria-artigos.php'
 C5_SNIPPET = 'snippets/aquametria-calculadora-aquecedor.php'
-C1_MD = 'conteudo/calculadora-de-litragem.md'
 C12_MD = 'conteudo/calculadora-de-midia-filtrante.md'
-C15_MD = 'conteudo/calculadora-de-iluminacao.md'
-C5_ARTIGO_MD = 'conteudo/quantos-watts-de-aquecedor-para-aquario.md'
 AFILIADOS_MD = 'conteudo/divulgacao-de-afiliados.md'
 
 
@@ -58,6 +56,27 @@ def regex(arquivo, padrao, novo):
         if n == 0:
             raise SystemExit(f'ALVO SUMIU (regex) em {arquivo}: {padrao[:70]!r}')
         p.write_text(s2, encoding='utf-8')
+    return aplicar
+
+
+def titulo_no_manifest(slug, novo):
+    """Muta o titulo no manifest.json, que e a fonte que publica.
+
+    Mutar o front matter do .md NAO serve mais desde 11/09/2026: a bancada
+    passou a ler o titulo do manifest, porque e de la que o Sync o tira. Uma
+    mutacao no .md ficaria INERTE — verde de novo, e sem medir nada. Foi
+    exatamente o que aconteceu na primeira rodada depois da mudanca, e esta
+    funcao existe para a lista nao voltar a mentir."""
+    def aplicar(base):
+        caminho = base / 'manifest.json'
+        m = json.loads(caminho.read_text(encoding='utf-8'))
+        for item in m.get('conteudo', []):
+            if item.get('slug') == slug:
+                item['titulo'] = novo
+                break
+        else:
+            raise SystemExit(f'ALVO SUMIU: nenhum item de conteudo com slug {slug!r} no manifest')
+        caminho.write_text(json.dumps(m, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     return aplicar
 
 
@@ -145,15 +164,13 @@ MUTACOES = [
     # ------------------------------------------------------------------
     (
         'um titulo de calculadora volta a comecar por "Calculadora de"',
-        troca(C1_MD,
-              'titulo: "Quantos litros tem o seu aquário?"',
-              'titulo: "Calculadora de litragem: quantos litros tem o seu aquário"'),
+        titulo_no_manifest('calculadora-de-litragem',
+                           'Calculadora de litragem: quantos litros tem o seu aquário'),
     ),
     (
         'o <title> de uma pagina de conteudo passa dos 65 caracteres',
-        troca(C15_MD,
-              'titulo: "Quanta luz o seu aquário precisa?"',
-              'titulo: "Quantos lúmens e quantas horas de luz o seu aquário plantado pede"'),
+        titulo_no_manifest('calculadora-de-iluminacao',
+                           'Quantos lúmens e quantas horas de luz o seu aquário plantado pede'),
     ),
     (
         'o degrau da trilha volta a divergir do H1 logo abaixo dele',
@@ -176,9 +193,8 @@ MUTACOES = [
     (
         'duas paginas da ilha passam a disputar a mesma busca com o mesmo H1',
         ambas(
-            troca(C5_ARTIGO_MD,
-                  'titulo: "Por que o 1 W por litro erra para o mesmo lado"',
-                  'titulo: "Quantos watts de aquecedor você precisa?"'),
+            titulo_no_manifest('quantos-watts-de-aquecedor-para-aquario',
+                               'Quantos watts de aquecedor você precisa?'),
             # a manchete vai junto, senao quem reprovaria seria a regra do degrau
             # da trilha e esta mutacao nao teria medido a canibalizacao.
             troca(ARTIGOS,

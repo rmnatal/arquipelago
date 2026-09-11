@@ -4,7 +4,7 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 46,
+  "revisao": 48,
   "atualizado_em": "2026-09-11",
   "estado": "fundacao",
   "desembarque": {
@@ -127,7 +127,7 @@
     {
       "id": "calculadora-de-litragem",
       "tipo": "pagina",
-      "titulo": "Calculadora de litragem: quantos litros tem o seu aquário",
+      "titulo": "Quantos litros tem o seu aquário?",
       "slug": "calculadora-de-litragem",
       "arquivo": "conteudo/calculadora-de-litragem.md",
       "cluster": "C1",
@@ -144,7 +144,7 @@
     {
       "id": "calculadora-de-vazao-do-filtro",
       "tipo": "pagina",
-      "titulo": "Calculadora de vazão do filtro: quantos L/h o seu aquário pede",
+      "titulo": "Qual filtro dá conta do seu aquário?",
       "slug": "calculadora-de-vazao-do-filtro",
       "arquivo": "conteudo/calculadora-de-vazao-do-filtro.md",
       "cluster": "C3",
@@ -181,7 +181,7 @@
     {
       "id": "calculadora-de-potencia-do-aquecedor",
       "tipo": "pagina",
-      "titulo": "Calculadora de potência do aquecedor: quantos watts, pelo frio que faz aí",
+      "titulo": "Quantos watts de aquecedor você precisa?",
       "slug": "calculadora-de-potencia-do-aquecedor",
       "arquivo": "conteudo/calculadora-de-potencia-do-aquecedor.md",
       "cluster": "C5",
@@ -203,7 +203,7 @@
     {
       "id": "quantos-watts-de-aquecedor-para-aquario",
       "tipo": "artigo",
-      "titulo": "Quantos watts de aquecedor o seu aquário precisa (e por que \"1 W por litro\" erra sempre para o mesmo lado)",
+      "titulo": "Por que o 1 W por litro erra para o mesmo lado",
       "slug": "quantos-watts-de-aquecedor-para-aquario",
       "arquivo": "conteudo/quantos-watts-de-aquecedor-para-aquario.md",
       "cluster": "C5",
@@ -221,7 +221,7 @@
     {
       "id": "calculadora-de-midia-filtrante",
       "tipo": "pagina",
-      "titulo": "Calculadora de mídia filtrante: quantos mililitros o seu aquário pede",
+      "titulo": "Quanta mídia biológica cabe no seu filtro?",
       "slug": "calculadora-de-midia-filtrante",
       "arquivo": "conteudo/calculadora-de-midia-filtrante.md",
       "cluster": "C12",
@@ -241,7 +241,7 @@
     {
       "id": "quanta-midia-biologica-o-aquario-precisa",
       "tipo": "artigo",
-      "titulo": "Quanta mídia biológica o aquário precisa: quatro fabricantes, dez vezes de diferença",
+      "titulo": "Cada marca pede uma dose diferente de mídia",
       "slug": "quanta-midia-biologica-o-aquario-precisa",
       "arquivo": "conteudo/quanta-midia-biologica-o-aquario-precisa.md",
       "cluster": "C12",
@@ -259,7 +259,7 @@
     {
       "id": "calculadora-de-iluminacao",
       "tipo": "pagina",
-      "titulo": "Calculadora de iluminação e fotoperíodo: quantos lúmens o seu aquário pede",
+      "titulo": "Quanta luz o seu aquário precisa?",
       "slug": "calculadora-de-iluminacao",
       "arquivo": "conteudo/calculadora-de-iluminacao.md",
       "cluster": "C15",
@@ -280,7 +280,7 @@
     {
       "id": "quantos-lumens-por-litro-aquario-plantado",
       "tipo": "artigo",
-      "titulo": "Quantos lúmens por litro o aquário plantado precisa (e por que o lúmen é a unidade errada para medir luz de planta)",
+      "titulo": "Quantos lúmens por litro o aquário plantado precisa",
       "slug": "quantos-lumens-por-litro-aquario-plantado",
       "arquivo": "conteudo/quantos-lumens-por-litro-aquario-plantado.md",
       "cluster": "C15",
@@ -653,7 +653,7 @@
       "id": "atualizar-manifest",
       "arquivo": "ferramentas/atualizar-manifest.py",
       "publicar": false,
-      "sha256": "a8905786ce28408e928d54dccea860066576ca357152a7e74e318c03672aba03",
+      "sha256": "32b35b9ef2dcc1bb8a275f7df2dde1d76c2f29c58f5b9df273f39f90748dd4cc",
       "descricao": "Recalcula o sha256 de todo item do manifest e sobe a revisao quando algum mudou. Nasceu em 09/09/2026 de um defeito medido, nao de uma ideia: ao rodar pela primeira vez ele achou QUATRO itens com sha vencido no manifest (render-para-teste.php, teste-navegador-c5.mjs, -c12.mjs e -c15.mjs), todos alterados em execucoes anteriores sem que ninguem atualizasse o registro. Nos quatro casos e ferramenta de bancada com publicar=false, entao o site nao quebrou — mas o mesmo esquecimento num item publicavel faz o Sync recusar o arquivo no ar e a revisao do site ficar para tras em silencio, que e o defeito da secao 4 do ARQUIPELAGO.md. Ele tambem lista o que esta na pasta e fora do manifest, e nunca inventa item."
     },
     {
@@ -695,7 +695,7 @@
       "id": "conferir-slugs",
       "arquivo": "ferramentas/conferir-slugs.py",
       "publicar": false,
-      "sha256": "dff1899e67e26ee214319403e666188872a5ce8b2081990b7638546f560f2f5c",
+      "sha256": "ace3b5e0ebc59267c4fd338722572fe2de34124da7b3aa7815c2330ffce3f36d",
       "descricao": "Confere que todo endereco publicado existe E que e o canonico daquele conteudo, em quatro lugares que precisam concordar: front matter de conteudo/, manifest, constante AQUAMETRIA_C*_SLUG de cada snippet e todo link de raiz escrito em snippet ou conteudo. Nasceu do defeito 2 de 08/09/2026 (o hub publicava /calculadora-de-aquecedor/, que dava 404). Desde 10/09/2026 tambem separa pagina de artigo: artigo e 'post' e mora em /AAAA/MM/DD/<slug>/, entao linka-lo pela raiz nao da 404, da 301 — item 3 do despacho da Sentinela de 10/09. Reprova nos dois sentidos: artigo linkado sem data e pagina linkada com data. Aceita qualquer data bem formada, para nao reprovar sozinho quando nascer o quarto artigo."
     },
     {
