@@ -1526,3 +1526,162 @@ URLs foram medidas no ar, com quebra de cache:
   abrindo com negacao, e a frase contada: "nenhum dos 44 itens do banco tem link
   de loja ainda". Tamanho da pagina no ar: 85 KB (era fina no corpo, nao no HTML).
 - Tamanhos no ar, de 84 a 122 KB, coerentes com paginas inteiras.
+
+## 2026-09-11, 19h18Z — Bloco da ARVORE: a secao 16 nas nove paginas, sem criar uma URL
+
+Fecha o item que o despacho do Raphael de 11/09 deixou de pe depois do bloco da
+voz. Casca **1.3.0**, R2 **1.0.2**, manifest na **revisao 16**.
+
+**1. A ARVORE VIRA DOCUMENTO ANTES DE VIRAR CODIGO.** Nasceu `ARVORE.md` com os
+tres niveis (16.1), as quatro secoes de nivel 1 — `/pecas/`, `/succao/`,
+`/modelos/`, `/guias/` —, as quatorze categorias de nivel 2 e o lugar de cada uma
+das nove paginas de hoje. `ferramentas/teste-arvore.php` **le esse arquivo** e
+cobra que documento e codigo digam a mesma coisa, nas duas direcoes: categoria no
+codigo que o documento nao tem reprova, e vice-versa. Dois lugares mantidos a mao
+divergem em silencio, e o documento e o que a proxima execucao vai ler.
+
+**2. AS DUAS DECISOES QUE O DESPACHO MANDOU TOMAR, TOMADAS.**
+- **`/metodologia/` fica na raiz.** A lista da 16.1 nomeia uma familia — a pagina
+  institucional, que fala da casa e nao do assunto — e a metodologia e dela.
+  Pô-la dentro de uma secao de topico a faria filha de um assunto que ela nao tem.
+  A Aquametria resolveu igual no mesmo dia; duas ilhas resolvendo diferente o
+  mesmo caso seria a fabrica decidindo por gosto.
+- **`/ferramentas/` fica, e e a unica pagina desta ilha com prazo de validade.**
+  Ela e hoje a **mae de transicao** das duas ferramentas: da a elas um degrau com
+  endereco de verdade, em vez de um degrau em texto apontando para o vazio. No dia
+  em que `/pecas/` e `/succao/` nascerem ela passa a servir a mesma listagem que
+  elas — duas URLs com o mesmo conteudo, que a 14.4 proibe — e sai com 301 para a
+  home, que nesta ilha ja e a ferramenta. Nao neste bloco: retirar a mae antes de
+  a substituta existir deixaria as duas ferramentas sem trilha.
+- **O menu NAO virou Peças · Modelos · Guias** (o que o `VOZ.md` descreve): esses
+  sao niveis que ainda nao existem como pagina, e sairiam como `<span>`. O
+  `ARVORE.md` secao 5 escreve o que o menu vira quando elas nascerem.
+
+**3. O QUE FOI AO AR.** Trilha nas oito paginas que nao sao a home (a home nao
+tem, 16.3), sempre entre o cabecalho e o H1; `BreadcrumbList` em JSON-LD; blocos
+"Veja tambem" nas quatro paginas de conteudo, com as irmas **derivadas** do mesmo
+registro que alimenta o hub; e a frase que linka a mae com a contagem **contada**.
+**Nenhuma URL nova** — e era essa a condicao para caber agora, porque esta ilha
+nao publica leva de malha enquanto o sitemap nao for reenviado no Search Console
+(metade humana do despacho da Sentinela de 10/09).
+
+**O degrau sem endereco sai em TEXTO e fica FORA do schema.** Num guia a trilha
+mostra quatro degraus na tela (Início › Guias › Peças › o titulo) e o
+`BreadcrumbList` publica dois. Nao e esquecimento: `ListItem` do meio sem `item`
+invalida a lista inteira para o Google, e lista invalida e lista ignorada — o
+schema "mais completo" publicaria MENOS com cara de publicar mais.
+
+**Cada mae tem duas filhas, entao cada filha tem UMA irma, e a 16.4(c) pede de 2 a
+4.** Estado de transicao declarado no `ARVORE.md`, nao desenho: o minimo de duas
+chega no dia da terceira filha.
+
+**4. O DEFEITO QUE A VARREDURA DE LINKS ACHOU SEM PROCURAR.** Medindo qual pagina
+cita qual **no corpo**, a ferramenta de succao linkava o guia do filtro universal
+e **nao linkava o guia dela**, o de metros quadrados por carga — que e justamente
+o texto que explica de onde vem o numero de area que ela usa. O par da 16.4(d)
+estava aberto de um lado so, e ninguem via, porque um link para guia havia e
+nenhum teste perguntava se era o guia CERTO. Agora o portao deriva o par do campo
+`ferramenta` do catalogo de artigos e cobra os dois sentidos.
+
+**5. OS ONZE NUMEROS DA ILHA SAIRAM DO SNIPPET — e o defeito latente disparou na
+leitura.** `robometria_casca_numeros()` tinha os onze digitados e um caminho
+"derivado" que lia `get_option('robometria_dados_cobertura-r1')`. **`cobertura-r1`
+tem `publicar: false` no manifest: a option nunca existiu no site.** Quer dizer
+que, no ar, todo numero da secao 4 da metodologia, da `/sobre/` e da
+`/divulgacao-de-afiliados/` sempre veio do valor digitado, e o trecho que parecia
+corrigi-lo era decoracao. Estavam certos porque alguem os copiou a mao no dia
+certo — e um ja tinha deixado de estar.
+
+**"Pares peca × modelo, todos declarados" dizia 33 e o banco serve 32.** O par que
+sobrava aponta para `multi-ho401`, que e `nao_publicavel` (nome comercial nao
+confirmado): a ferramenta nunca o oferece, entao ele nao cobre nada. Numa tabela
+chamada "o que medimos sobre a nossa propria cobertura", o numero certo e o que a
+ilha CONSEGUE servir. **Os dois numeros continuam existindo e medem coisas
+diferentes** — o cabecalho de `pecas.json` conta o que o banco guarda, a tela
+conta o que o site responde —, e a pagina agora diz a regua em voz alta: "um par
+so e contado quando as duas pontas estao publicadas".
+
+Os onze passaram a viajar em `dados/casca-fatos.json`, que e publicavel, derivado
+por `gerar-casca-fatos.py`, com a **regua de cada um escrita no proprio arquivo**
+(`reguas_da_medicao`). O gerador **RECUSA** gravar quando `cobertura-r1.json` nao
+bate com o banco de hoje, para a ilha nunca publicar medicao de ontem com data de
+hoje. E **sem o arquivo a pagina nao inventa numero**: diz que a medicao nao
+chegou. Valor de reserva seria o numero digitado que este bloco veio tirar, so que
+invisivel.
+
+**O TESTE QUE COMPARAVA DUAS COPIAS DA MESMA REGUA.** A secao 8 do
+`teste-casca.php` conferia o numero da tela contra `contagem.publicavel` e irmaos
+— campos escritos no proprio arquivo de banco. As duas metades da comparacao
+vinham da mesma regua, e trocar a regra as faria errar juntas. Agora o teste conta
+nos registros, e foi assim que o 33 apareceu.
+
+**6. A BANCADA VOLTOU A SERVIR O QUE O SITE SERVE.** Tres consertos no
+`render-para-teste.php`, e os tres sao a mesma cicatriz: (a) ela **nao montava o
+bloco `core/post-title`**, entao media paginas sem H1 nenhum — e a trilha nasce
+justamente entre o cabecalho e o H1; (b) ela **nao rodava os filtros do
+`the_content`**, so escapava a string, entao o "Veja tambem" (prioridade 20) e a
+rede de seguranca da trilha (prioridade 9) seriam invisiveis; (c) `add_filter`
+**aceitava a prioridade e a jogava fora**, rodando na ordem de registro — com tres
+filtros no mesmo gancho, so uma das ordens possiveis e a do site. Achado de
+tabela: montado o bloco de titulo DEPOIS do conteudo, a rede de seguranca disparava
+primeiro e a bancada media o caminho reserva achando que media o principal.
+
+**7. VERIFICACAO.** `teste-arvore.php` 213 afirmacoes (um processo `php` por
+pagina, porque a trava `static` da trilha faz a segunda pagina do mesmo processo
+sair sem ela); `teste-casca` 135, `r1` 90, `a1` 53, `r2` 86, `a2` 62, acentuacao
+16; `validar-banco` aprovado; `php -l` limpo nos 6 snippets e nas 9 ferramentas
+PHP. **18 mutacoes deliberadas em `ferramentas/mutacoes-arvore.py`, 18 reprovadas**
+— e **TRES passaram na primeira rodada, as tres por serem INERTES**: tirar a
+guarda da home nao punha trilha nela (a home nao esta em catalogo nenhum), mexer
+no `url_mae` nao fazia a frase sair nos guias (a segunda condicao segurava), e
+cortar 345 caracteres de uma pagina com 526 de folga nao a deixa fina. As tres
+foram reescritas ate morder. Chromium em 360/390/781/782/783/1200 nas nove
+paginas: **258 medicoes, 0 px de rolagem horizontal**, trilha sempre dentro da
+tela e acima do H1, console sem mensagem.
+
+**8. O TETO DE QUATRO IRMAS SO E MEDIDO PORQUE A BANCADA FABRICA A BORDA.** Com
+duas ferramentas no ar, nenhuma pagina chega a ter cinco irmas candidatas: trocar
+o teto de 4 por 40 nao mudaria uma linha do que o site serve, e o portao ficaria
+verde nas duas versoes. O teste monta um catalogo de seis filhas para o teto ter o
+que cortar — e a mutacao correspondente reprova por causa disso, so.
+
+**9. O CATALOGO NAO FOI TOCADO: 44 itens publicaveis, 44 esperando link de
+afiliado**, nenhum com loja possivel hoje. Temas da pauta (secao 17): a `pauta.md`
+ainda nao existe nesta pasta — 0 escritos, 0 na fila, 0 recusados.
+
+**ACHADO REGISTRADO, fora do escopo:** `/sobre/` e a unica das nove paginas que
+nenhum CORPO de outra cita — ela vive do menu e do rodape, que estao em todas,
+entao nao e orfa pelo 16.4(f), mas e a unica sem citacao editorial. A Aquametria
+tem exatamente o mesmo achado no mesmo dia, o que sugere que e do molde da casca e
+nao da ilha. E assunto de pauta (secao 17).
+
+### NO AR — conferido em 11/09/2026, 19h47Z
+
+Sync acionado por `curl` as 19h45Z. `/status` responde **revisao 16**, igual a do
+`manifest.json`. As nove URLs foram medidas no ar, com quebra de cache:
+
+- **9 de 9 em HTTP 200**, de 86 a 126 KB.
+- **94 afirmacoes medidas no HTML servido, todas passando.** Uma "falha" da
+  primeira rodada era da regua, nao da pagina: procurar `rbm-veja` no HTML
+  INTEIRO acha a regra de CSS na home. Medido de novo por `<nav class="rbm-veja"`,
+  a home tem zero — e a licao e a mesma da secao 8 do contrato, que este bloco
+  passou o dia aplicando em outro lugar.
+- **Trilha:** uma por pagina nas oito, sempre antes do H1, nenhum degrau apontando
+  para pagina inexistente, e o degrau atual igual ao H1 servido nas oito.
+- **`BreadcrumbList`:** posicoes 1..N sem buraco, todo `ListItem` com endereco,
+  e os itens sao exatamente os degraus linkados mais o atual — 3 nas ferramentas,
+  2 nos guias e nas paginas de raiz, nenhum na home.
+- **Cluster:** "Veja tambem" so nas quatro filhas, uma irma cada, todas paginas que
+  existem; a frase da mae so nas duas ferramentas, dizendo **2** — contado.
+- **Zero `&#038;` dentro de `<script>`** nas nove.
+- **Os numeros no ar:** 5 marcas, 28 modelos, 16 pecas, **32 pares**, 15 que
+  respondem, 12 vazios, 116 de 168 combinacoes, medicao de **11/09/2026**; a
+  `/sobre/` diz os mesmos 5/28/32 e a `/divulgacao-de-afiliados/` diz "nenhum dos
+  44 itens tem link de loja ainda". A R2 serve o link do guia dela.
+
+- **Proximo passo: a `pauta.md` da secao 17 nao existe nesta pasta, e ela e quem
+  destrava os guias.** Enquanto isso, o proximo bloco sem URL nova e a **reescrita
+  na voz das paginas restantes** (a 15.5 manda reescrever cada pagina existente ao
+  passar pela ronda; home e header ja foram). Tudo que cria URL — as quatro secoes,
+  as quatorze categorias, a troca de pai e slug — espera o **reenvio do sitemap no
+  Search Console**, que e do Raphael.

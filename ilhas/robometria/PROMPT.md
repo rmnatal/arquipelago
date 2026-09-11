@@ -40,17 +40,36 @@ Critério de pronto conferido na bancada, não de olho: `teste-casca.php` mede o
 título da raiz e o primeiro parágrafo da home contra a lista de proibidas do
 `VOZ.md`, por estrutura e nunca na página inteira.
 
-**O QUE FALTA DESTE DESPACHO — é o próximo bloco, e é a seção 16 do contrato:**
-árvore de três níveis, breadcrumb com `BreadcrumbList`, cluster de interlinkagem
-mãe↔filhas↔irmãs, categoria só com ≥3 filhas. Escrever `ARVORE.md` desta ilha,
-dar pai a toda página existente, publicar breadcrumb e "Veja também" — **sem
-trocar URL de página que já tem impressão** (seção 12.1); 301 para toda URL que
-mudar e sitemap reenviado. Duas coisas a decidir nele, e as duas já foram
-levantadas: o menu só vira Peças · Modelos · Guias quando esses três existirem
-como página de nível 1 (hoje sairiam como `<span>`), e `/metodologia/`,
-`/sobre/`, `/ferramentas/` e `/divulgacao-de-afiliados/` precisam de veredito
-sobre ficar na raiz (a 16.1 admite home, sobre, contato, divulgação e
-privacidade na raiz — as outras duas não estão nessa lista).
+**A árvore da seção 16 está CUMPRIDA em 11/09/2026** — casca 1.3.0, manifest na
+revisão 16, `/status` conferido e as nove URLs abertas no ar às 19h47Z. Nasceu o
+`ARVORE.md` desta ilha (quatro seções de nível 1, quatorze categorias de nível 2,
+o lugar de cada página de hoje); trilha nas oito páginas que não são a home (16.3),
+`BreadcrumbList` levando só os degraus com endereço de verdade, e blocos "Veja
+também" com as irmãs derivadas mais a frase que linka a mãe com a contagem
+contada. **Nenhuma URL nova**, que era a condição para caber agora. Critério de
+pronto medido, não de olho: `ferramentas/teste-arvore.php` (213 afirmações, régua
+própria, um processo `php` por página, e ele LÊ o `ARVORE.md` para cobrar que
+documento e código digam a mesma coisa), 18 mutações deliberadas em
+`ferramentas/mutacoes-arvore.py` — 18 reprovadas — e 258 medições em Chromium.
+
+**As duas decisões que este despacho mandou tomar, tomadas** (o porquê está na
+seção 2 do `ARVORE.md`): `/metodologia/` **fica na raiz**, porque a lista da 16.1
+nomeia a família da página institucional e ela é dessa família; `/ferramentas/`
+**fica hoje como mãe de transição** das duas ferramentas e sai com 301 para a home
+no dia em que `/pecas/` e `/succao/` nascerem, porque aí ela passaria a servir a
+mesma listagem que elas. O menu continua Peças · Sucção · Como conferimos: os três
+rótulos do `VOZ.md` só entram quando as seções existirem como página.
+
+**O que continua de pé desta seção, e trava até o Search Console:**
+- **as quatro páginas de nível 1 e as quatorze de nível 2**, e a troca de pai e
+  slug das existentes (com 301 para toda URL que mudar). São dezoito URLs novas, e
+  esta ilha não publica leva de malha enquanto o sitemap não for reenviado — é a
+  metade humana do despacho da Sentinela de 10/09, logo abaixo, e é do Raphael.
+  Quando destravar, o nível 1 e o nível 2 da trilha e do `BreadcrumbList` viram
+  link sozinhos: quem resolve o endereço é `robometria_casca_url_se_existir()`.
+- **a frase de mãe dos dois guias** (16.4b), que só nasce junto com `/guias/`: hoje
+  ela apontaria para página inexistente, e o portão cobra a ausência dela
+  justamente para ninguém fechar isso com um endereço inventado.
 
 ATUALIZAÇÃO 11/09 (Pauta): quando existir `pauta.md` nesta pasta (seção 17 do contrato), os guias entram na fila depois da árvore, em levas por cluster; registrar no fecho de cada bloco quantos temas estão escritos / na fila / recusados.
 
