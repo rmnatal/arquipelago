@@ -2,9 +2,9 @@
 ilha: clubedomosaico
 estado: nascendo
 prioridade: 2
-ultima_execucao: 2026-09-11T13:47Z
-executando_desde: 2026-09-11T17:16Z
-bloco_atual: "3c ENTREGUE: a categoria REJUNTE do banco, e tres defeitos que ela revelou. dados/materiais-rejuntes.json com 5 rejuntes Quartzolit (ceramicas, porcelanatos e ceramicas 2024, acrilico, epoxi e piscinas), coletados por busca restrita ao dominio do fabricante — WebFetch para quartzolit.weber devolveu EGRESS_BLOCKED, medido e nao presumido, entao tudo e nivel 2 ou 3 com conferir_no_pdf. Manifest na revisao 5. O QUE A CATEGORIA DESCOBRIU SOBRE O PROPRIO BANCO: REJUNTE NAO E COLA. Na cola a lista do fabricante nomeia a BASE; no rejunte a mesma lista nomeia a TESSELA e o AMBIENTE, porque rejunte nao toca a base — e a variavel que decide passa a ser a LARGURA DA JUNTA. DEFEITO 1, latente e medido: computar_celula() varria TODOS os materiais sem olhar categoria, e o primeiro rejunte gravado fez as 18 celulas da F2 falharem de uma vez, acusando os cinco rejuntes como 'eliminados por silencio' — frase sem sentido para quem nunca foi candidato a colar nada. O conserto tentador (colar os 5 ids nas 18 celulas) deixaria a matriz verde dizendo besteira; o certo foi declarar categoria_considerada=cola e conferir isso em codigo. DEFEITO 2, JA NO AR desde 11/09 e achado por acidente: o cartao Rejuntes do Guia tinha 'no_banco => 0' cravado a mao, e a categoria acabara de ganhar cinco produtos — numero FALSO servido na tela. O teste nao viu porque so media a categoria cola, a unica que existia quando ele foi escrito. Casca 1.1.0 passa a CONTAR o banco por categoria e o teste passa a cobrar as seis. DEFEITO 3, de metodo, apanhado no ato: uma busca com o numero 1,55 escrito DENTRO da consulta devolveu 1,55 — a resposta ecoou o termo plantado. Descartado. O CR por tipo continua pendente, e isso virou limite declarado: a coluna de rejunte da F1 vale so para rejunte CIMENTICIO, porque o acrilico e pronto uso em pote de 1 kg e o epoxi e bicomponente, e o 1,75 vem de um exemplo de po. ACHADO DE MAIOR VALOR, e o que ele NAO resolve: o rejunte piscinas quartzolit e o unico material do banco inteiro cujo fabricante nomeia 'pastilhas de porcelana e de vidro' em uso submerso — e mesmo assim NAO e recomendado em celula nenhuma, porque a faixa de junta dele nao foi obtida e o que ele declara e agua TRATADA quimicamente, que e piscina e nao a agua parada de um vaso de jardim. A peca submersa segue sem cola declarada (so o Durepoxi, nivel 4), entao a faixa continua descoberta: meia resposta escrita como meia resposta. VERIFICACAO: validar-banco com 18 celulas de cola + 9 de rejunte + 5 perfis conferidos contra o que esta escrito A MAO no esquema; teste-casca 137 (eram 127); 33 medicoes em Chromium, 0 px de rolagem em 360/390/781/782/783/1200 nas oito paginas; php -l limpo. DOZE MUTACOES deliberadas em ferramentas/mutacoes-rejunte.py, doze reprovadas — a que mais vale e a que edita as DUAS metades juntas (tira a declaracao do banco e ajusta o perfil esperado), porque so a MATRIZ a viu, que e a prova de que a conferencia de perfil nao basta sozinha. Mais duas mutacoes na casca, as duas reprovadas. 10 itens esperando link e 10 sem imagem (os 5 de cola e os 5 de rejunte). NAO ESTA NO AR, segunda execucao seguida: o gateway da rede responde 403 ao CONNECT para clubedomosaico.com.br, enquanto aquametria.com.br e robometria.com.br devolvem 200 — o dominio da ilha 3 nunca entrou na lista Personalizada do ambiente. Agora sao DUAS revisoes presas (4 e 5). E de uma linha para o Raphael resolver. Proximo: bloco 4 — a ferramenta F2, que agora tem as duas metades no banco e ganhou entrada nova (largura da junta em mm). Alternativa sem rede nenhuma: categorias PASTILHA e ALICATE"
+ultima_execucao: 2026-09-11T17:55Z
+executando_desde: null
+bloco_atual: "DESPACHO DO RAPHAEL DE 11/09 CUMPRIDO E CONFERIDO NO AR (casca 1.2.0, manifest revisao 6, /status com revisao 6). A reclamacao dele era UMA coisa e nao duas: o logo sumia porque o arquivo entregue tem fundo PRETO, e o cabecalho era preto porque era a unica cor em que aquele arquivo aparecia. Agora o cabecalho e papel com linha de 1 px, menu em texto escuro peso 500 com passagem em coral, e a marca e o wordmark clube do mosaico em TEXTO na tipografia da identidade — medido no navegador, nao no CSS: rgb(255,255,255) de fundo e rgb(31,23,21) no menu nas nove paginas, 17,62:1 de contraste no menu e 12,97:1 no wordmark. A PALETA NAO GANHOU COR NOVA: os hexadecimais sugeridos no despacho sao vizinhos de um a quatro passos dos tokens aprovados em 10/09, e um segundo coral a quatro unidades do primeiro e defeito, nao identidade; fica registrado para o Raphael discordar se quiser. O QUE FALTA DO DESPACHO, e e dele: a LOTUS. identidade/logo/lotus-512.png esta TRUNCADO no repositorio — o IDAT declara 11.638 bytes num arquivo de 8.770, com IEND colado no fim, e o zlib recusa o PRIMEIRO bloco, entao nao sai um unico pixel. Servi-lo teria trocado o logo sumido por um icone quebrado. ferramentas/gerar-marca.php nasceu para embuti-la e RECUSA arquivo que nao abre (confere chunk a chunk, cobra alfa e cantos transparentes). Basta ele commitar o PNG bom e rodar a ferramenta. A HOME deixou de ser manifesto: abre por Mosaico feito a mao, uma peca por vez, e perdeu os tres paragrafos de metodo — DOIS deles estavam LITERALMENTE na lista de Proibidas do VOZ.md, porque a lista foi escrita para proibir aquele texto. Vitrine com estado vazio honesto, bloco Vai fazer o seu?, artesa fechando a pagina. A home tambem deixou de se chamar Inicio, e o defeito POR TRAS valia mais: garantir_paginas() nunca sincronizava titulo, entao a pagina nascia com um titulo e ficava com ele para sempre. Agora sincroniza sem tocar em post_name, e a casca passou a gravar blogname e blogdescription como ja gravava page_on_front — o <title> da home no resultado de busca agora e Clube do Mosaico – Mosaico feito a mao, uma peca por vez (licao da Aquametria aplicada antes de doer). O GUIA perdeu sete secoes de bastidor, que mudaram para /materiais/como-sabemos/ — PRIMEIRA PAGINA DE NIVEL 2 desta ilha (secao 16), com mae declarada, noindex e fora do sitemap, 4.340 caracteres de corpo. SAIU DO AR o defeito Hoje 10 dos 5 itens esperam link: os dois numeros estavam certos sozinhos e a frase que os juntou era impossivel — por isso nenhum teste viu, cada metade era conferida separada. O denominador virou itens_no_banco, somado das categorias. A BANCADA ESTAVA MEDINDO OITO DAS NOVE PAGINAS PELA METADE e ninguem sabia: o static legitimo de cdm_casca_rodape_impresso() faz o rodape sair na primeira pagina e sumir nas oito seguintes, sem erro nenhum. Terceira vez que o Arquipelago paga por isso; o teste passou a rodar UM PROCESSO POR PAGINA, como o contrato ja mandava. VERIFICACAO: 198 afirmacoes na bancada (eram 137), 54 medicoes em Chromium com 0 px de rolagem em 360/390/781/782/783/1200, php -l limpo, validar-banco aprovado. 19 mutacoes deliberadas em mutacoes-voz-e-cabeca.py, 19 reprovadas — DUAS passaram na primeira rodada e viraram trava nova: o titulo que para de sincronizar (a bancada monta o H1 pela definicao, entao nunca poderia ver) e o noindex na pagina errada (conferir a declaracao contra ela mesma e o teste que mede a si mesmo). As duas portas dos fundos do portao de voz reprovam: embrulhar a pagina inteira como camada de prova, e declarar uma SEGUNDA pagina de prova. NO AR as 17h55Z: 9 de 9 URLs em 200 (a nova inclusive), zero &#038; dentro de <script> nas nove, um rodape por pagina, H1 da home na voz, nenhuma das tres frases proibidas no corpo dela, o Guia dizendo 10 itens de fabricante, /materiais/como-sabemos/ servindo noindex e FORA do wp-sitemap-posts-page-1.xml enquanto /materiais/ continua dentro. A REDE ALCANCA ESTA ILHA: o bloqueio 403 registrado nas duas execucoes anteriores nao se repetiu. O primeiro curl desta execucao devolveu 000 e O MESMO COMANDO, minutos depois, devolveu 200 — era intermitencia, nao bloqueio, e as duas revisoes presas (4 e 5) desembarcaram junto com a 6. Licao: bloqueio que nao e reconferido a cada execucao vira permanente sozinho. 10 dos 10 itens do banco esperam link de afiliado e 10 estao sem imagem; este bloco nao tocou catalogo. Proximo: a ARVORE da secao 16 inteira — ARVORE.md, mae para toda pagina existente, breadcrumb com BreadcrumbList e blocos Veja tambem. /materiais/como-sabemos/ ja nasceu dentro dela e serve de primeiro caso. Depois, o bloco 4 (a ferramenta F2)"
 ultima_ronda: null
 bloqueada_por: null
 ---
@@ -131,23 +131,29 @@ Espelho legível do estado do projeto. **Nunca guarde credencial aqui.**
   a página diz exatamente o que já existe e o que falta.
 
 ## O que está travando
-- **A ILHA INTEIRA NÃO ESTÁ NO AR, e agora são DUAS revisões presas.** O código está no `main`
-  com `publicar: true` desde a revisão 4, e a 5 entrou hoje. O Sync não pôde ser acionado em
-  **nenhuma** das duas execuções: o gateway da rede deste ambiente responde **403 ao CONNECT**
-  para `clubedomosaico.com.br` (medido às 11h19Z e de novo às 13h46Z de 11/09/2026, com o
-  `connect_rejected` registrado no `$HTTPS_PROXY/__agentproxy/status`). A seção 4 do contrato
-  manda testar antes de presumir bloqueio; foi testado quatro vezes.
-  **A medição que aponta a causa:** na mesma execução, `aquametria.com.br` e `robometria.com.br`
-  responderam **200**. Não é a nuvem que não alcança site nenhum — é o domínio da ilha 3 que
-  **nunca entrou na lista Personalizada** do ambiente das rotinas, que foi montada quando só
-  existiam duas ilhas. Não é falha de código nem coisa que a Fundação possa contornar.
-  **O conserto é de um minuto e é do Raphael:** claude.ai/code → seletor de ambiente → engrenagem
-  → acrescentar `clubedomosaico.com.br` à rede Personalizada dos ambientes "Arquipélago —
-  Fundação" e "Arquipélago — Mãos no repositório". Depois disso, qualquer execução aciona o Sync e
-  confere no `/status` que a revisão aplicada é a **5**. Enquanto isso o site serve o tema padrão
-  do WordPress, e **todo bloco publicável desta ilha nasce já atrasado**.
-  Isto NÃO está em `bloqueada_por` de propósito: a ilha tem trabalho de sobra que não depende do
-  site (banco, especificação, ferramentas de bancada), e marcá-la bloqueada a tiraria da fila.
+- ~~**A ILHA INTEIRA NÃO ESTÁ NO AR, e agora são DUAS revisões presas.**~~ **RESOLVIDO em
+  11/09/2026 17h50Z, e o diagnóstico anterior estava errado.** A ilha ESTÁ no ar: o Sync foi
+  acionado por `curl` desta execução, as revisões 4, 5 e 6 desembarcaram, e o `/status` devolve
+  **revisão 6**, igual à do manifest. As nove URLs respondem 200.
+  **O que aconteceu, porque isto vale mais que o conserto:** o primeiro `curl` desta execução à
+  home devolveu `000`, exatamente como nas duas execuções anteriores — e **o mesmo comando,
+  repetido minutos depois, devolveu 200**, assim como o Sync, o `/status`, as nove páginas e o
+  sitemap. Era intermitência do túnel, não bloqueio de rede: `clubedomosaico.com.br` está, sim,
+  na lista Personalizada do ambiente. Duas execuções anteriores leram um `000`, escreveram
+  "403 ao CONNECT" e nunca reconferiram — e o bloqueio virou permanente sozinho, prendendo duas
+  revisões desta ilha por dois dias.
+  **A regra que fica:** bloqueio herdado se testa de novo a cada execução, e uma falha de rede
+  só vira bloqueio depois de repetir. A seção 4 do contrato manda testar antes de presumir; falta
+  a outra metade, que é testar de novo antes de continuar presumindo.
+- **A LÓTUS DO CABEÇALHO — pendência do Raphael, não da Fundação.**
+  `identidade/logo/lotus-512.png` está **truncado** no repositório: o chunk `IDAT` declara 11.638
+  bytes num arquivo que tem 8.770, com um `IEND` colado no fim, e o `zlib` recusa o primeiro
+  bloco — não sai um único pixel dele. Foi medido ao ir cumprir o item 2 do despacho, que mandava
+  usar exatamente esse arquivo. O cabeçalho está no ar com o wordmark em texto, que é a outra
+  metade do par que o despacho pediu, e o lugar da lótus está pronto na casca.
+  **Conserto:** ele commitar a lótus em PNG transparente (≥ 512 px no menor lado) no mesmo caminho
+  e rodar `php ferramentas/gerar-marca.php .`, que embute e confere. A ferramenta recusa arquivo
+  que não abre, sem canal alfa ou com canto opaco. Não trava nada: a ilha está no ar sem ela.
 - **Caixa `contato@clubedomosaico.com.br` não existe ainda.** O adendo 3 do `PROMPT.md` pede que ela
   seja criada no cPanel (ou que o SPF/DKIM do domínio seja garantido) para o e-mail de lead do bloco
   4d chegar ao Hotmail da artesã. Não é trabalho da Fundação: exige o painel da hospedagem. Por isso
@@ -181,6 +187,8 @@ Espelho legível do estado do projeto. **Nunca guarde credencial aqui.**
   A casca já publica o Sobre com o bloco dela pronto: escreve "uma artesã", sem nome de fantasia e sem
   foto genérica, e o teste reprova se alguém inventar um nome. Chegando à pasta `identidade/artesa/`,
   entram também o `sameAs` do JSON-LD, que hoje está deliberadamente ausente.
-- **Domínio da ilha na rede Personalizada do ambiente das rotinas.** Enquanto `clubedomosaico.com.br`
-  não estiver na lista, nenhuma execução da Fundação consegue acionar o Sync nem conferir o `/status`,
-  e todo bloco publicável desta ilha vai ficar commitado sem ir ao ar. Foi o que aconteceu no 3b.
+- ~~**Domínio da ilha na rede Personalizada do ambiente das rotinas.**~~ **Não era isso.** A rede
+  alcança a ilha; o que houve foi intermitência lida como bloqueio em duas execuções seguidas —
+  ver "O que está travando". Nada a fazer, e nada a pedir ao Raphael por aqui.
+- **A lótus do cabeçalho**, em PNG transparente de pelo menos 512 px: o arquivo que está no
+  repositório não abre. Ver "O que está travando" e `identidade/logo/LEIA-ME.md`.

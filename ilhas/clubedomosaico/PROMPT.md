@@ -11,7 +11,7 @@ Esta é a **terceira ilha** e a primeira que **não veio da Bússola**: é um pr
 Consequências para a Fundação:
 - **Existe uma artesã real.** É a única ilha com uma pessoa por trás. **Confirmado pelo Raphael em 11/09/2026: a artesã aparece com nome e foto no Sobre e na assinatura das peças, com links para as redes sociais dela.** Nome, foto e perfis ainda não foram entregues — enquanto não chegarem à pasta `identidade/artesa/`, a página Sobre usa 'a artesã' e deixa o bloco de foto/redes pronto e vazio, registrado no `ESTADO.md` como pendência dele (não bloqueia).
 - **Produto próprio não é afiliado.** Página de peça leva `Product` + `Offer` com preço real, disponibilidade ("pronta entrega" ou "sob encomenda, N dias") e botão **Comprar** que abre WhatsApp com mensagem pronta ou link de pagamento. Nunca `rel="sponsored"` em link de peça própria. Nunca inventar peça, preço, medida ou foto: **o catálogo é cadastrado pela própria artesã no painel `/atelie/`** (ver DESPACHO abaixo). Sem peça cadastrada, a Loja fica com as páginas de coleção prontas e com estado vazio honesto, e o `ESTADO.md` diz isso.
-- **O logo é fornecido pelo Raphael** e vai para `identidade/logo/` desta pasta. **Não reconstruir, não redesenhar, não vetorizar por conta própria.** O símbolo (`identidade/logo/lotus-512.png`) e os favicons já estão na pasta desde 11/09/2026 — ver `identidade/logo/LEIA-ME.md`. A casca usa a lótus no cabeçalho sobre preto com o nome "clube do mosaico" em texto ao lado, e embute os favicons. Nenhum bloqueio por logo.
+- **O logo é fornecido pelo Raphael** e vai para `identidade/logo/` desta pasta. **Não reconstruir, não redesenhar, não vetorizar por conta própria.** Desde a casca 1.2.0 (11/09/2026) o cabeçalho é CLARO e serve o wordmark "clube do mosaico" em TEXTO, na tipografia da identidade — o arquivo completo tem fundo preto e sobre branco vira um retângulo escuro, e a lótus que entraria ao lado está com o arquivo truncado no repositório. Estado, pendência e como embutir a lótus quando ela chegar: `identidade/logo/LEIA-ME.md`. Nenhum bloqueio por logo.
 
 ## Identidade
 - Nicho: mosaico artesanal no Brasil — o eixo paramétrico é **"o que comprar para fazer a peça X"** (qual cola/rejunte para qual base e ambiente; quantas pastilhas/rejunte para qual área) e **"qual peça pronta para qual uso"** (centro de mesa, presente, jardim).
@@ -38,7 +38,7 @@ Medido em 10/09/2026 (Planejador de palavras-chave, conta do Raphael, faixas; SE
 - Plugins ativos (11/09/2026): Code Snippets, Site Kit by Google (não conectado — exige OAuth do Raphael; não é bloqueio), Converter for Media, Limit Login Attempts Reloaded. Akismet e Hello Dolly inativos.
 - WordPress: admin `mosaico_gestor` (credencial nunca vai para o repositório).
 - **LOGO OFICIAL (arquivos que o Raphael subiu na biblioteca de mídia em 11/09/2026 — usar EXATAMENTE estes, sem redesenhar):**
-  - Logo principal (lótus + wordmark "clube do mosaico", sobre preto): `https://clubedomosaico.com.br/wp-content/uploads/2026/09/logo-clube-do-mosaico.png` — é o que vai no cabeçalho, sobre o preto do topo. Ele contém o nome escrito; NÃO escrever "clube do mosaico" em texto ao lado dele.
+  - Logo principal (lótus + wordmark "clube do mosaico", sobre **preto**): `https://clubedomosaico.com.br/wp-content/uploads/2026/09/logo-clube-do-mosaico.png` — **saiu do cabeçalho em 11/09/2026**, quando o Raphael reprovou o topo preto: sobre fundo claro este arquivo é um retângulo escuro. Ele continua sendo o `logo` do `Organization` no JSON-LD, onde quem lê é o Google. Quando chegar uma versão para fundo claro, ela substitui o wordmark em texto do cabeçalho.
   - Favicon (lótus sobre quadrado branco): `https://clubedomosaico.com.br/wp-content/uploads/2026/09/clube-do-mosaico-favicon.png` — fonte para os ícones; a casca pode servir os PNGs de `identidade/logo/` (favicon-512/180/32, gerados dessa mesma lótus) como data URI, ou apontar `<link rel="icon">` para esta URL. `identidade/logo/lotus-512.png` (lótus transparente) serve para os lugares pequenos onde o logo completo não cabe.
 
 ## Memória a carregar
@@ -46,20 +46,53 @@ Medido em 10/09/2026 (Planejador de palavras-chave, conta do Raphael, faixas; SE
 
 ---
 
-## DESPACHO DO RAPHAEL — 11/09/2026 — cabeçalho da casca (prioridade máxima, antes de qualquer bloco novo)
+## DESPACHO DO RAPHAEL — 11/09/2026 — cabeçalho da casca: CUMPRIDO, menos a lótus
 
-O Raphael viu a casca do bloco 3b no ar e reprovou o cabeçalho: "muito ruim o fundo preto no header, o logo sumiu, queria algo mais clean". O arquivo `logo-clube-do-mosaico.png` tem fundo preto e wordmark vinho — sobre header preto ele desaparece. Corrigir na próxima execução, antes de qualquer outro bloco desta ilha:
+**Cumprido e conferido no ar em 11/09/2026 17h55Z** — casca 1.2.0, manifest na
+revisão 6, `/status` com revisão 6. Os itens 1, 3 e 4 saíram inteiros e o item 2
+saiu pela metade, pelo motivo abaixo. Ver `REGISTRO.md` para o que foi medido.
 
-1. **Header claro e limpo.** Fundo branco (#FFFFFF) ou papel (#FBF7F4), altura ~72 px, borda inferior de 1 px em #EEE8E4, sem sombra pesada. Menu à direita em texto preto (#111), peso 500, sem caixa alta, com hover em coral (#E8483A). Fixo no topo (sticky) é opcional; se ficar, com fundo sólido.
-2. **Logo visível.** NÃO usar `logo-clube-do-mosaico.png` (fundo preto) sobre fundo claro. Usar o símbolo transparente `identidade/logo/lotus-512.png` (já no repositório; subir ao WordPress pela mídia se ainda não estiver) com ~40 px de altura, e o wordmark **"clube do mosaico"** em texto ao lado, na fonte da identidade (Outfit ou a que a casca já carrega), cor vinho #69030C ou preto, minúsculas como no logo original. Quando o Raphael mandar o logo em versão para fundo claro, ele substitui esse par — deixar isso registrado no LEIA-ME da identidade.
-3. **A home não pode exibir o título "Início".** A página inicial não mostra H1 "Início"; o H1 da home é a frase de posicionamento ("O Clube do Mosaico faz duas coisas…") ou o nome do site. Conferir também que as demais páginas da casca não mostram o título da página do WordPress duplicado.
-4. **Aparência geral "clean, cara de e-commerce"** (pedido dele desde 10/09): fundo branco/papel nas páginas, muito respiro, tipografia sem excesso de negrito no corpo. O preto da identidade vira cor de TEXTO e de detalhe (rodapé pode ser escuro), não de bloco grande no topo.
+- **1. Header claro e limpo — feito.** Papel `#FFFFFF`, linha de 1 px em
+  `#E9DCD7`, sem sombra, menu em `#1F1715` peso 500 com passagem em coral.
+  Medido no navegador: `rgb(255, 255, 255)` de fundo nas nove páginas. A paleta
+  não ganhou cor nova: os hexadecimais sugeridos no despacho (`#FBF7F4`,
+  `#EEE8E4`, `#111`, `#E8483A`) são vizinhos de um a quatro passos dos tokens
+  aprovados em 10/09, e um segundo coral a quatro unidades do primeiro é
+  defeito, não identidade. **Se o Raphael quiser exatamente aqueles valores, é
+  uma linha** — está registrado para ele poder discordar.
+- **3. A home não exibe "Início" — feito.** O H1 da home é "Mosaico feito à mão,
+  uma peça por vez", que é também o título da página, a tagline do site e a
+  segunda metade do `<title>` no resultado de busca. O defeito por trás era o
+  título nunca sincronizar; agora sincroniza, sem tocar em `post_name`.
+- **4. Aparência clean, cara de e-commerce — feito** na medida em que este bloco
+  alcança: miolo branco com respiro, título em peso 600 e abertura em 500 em vez
+  de 700 em tudo, rodapé segue escuro. O que ainda não é e-commerce de verdade é
+  a **vitrine**, que depende do CPT `peca` do bloco 4d — sem peça cadastrada, a
+  home mostra estado vazio honesto.
 
-Critério de pronto: abrir https://clubedomosaico.com.br/ e ver header claro com lótus + wordmark legíveis, menu preto, sem "Início" como título; registrar a revisão aplicada no ESTADO.md e acionar o Sync por curl como manda a seção 4 do contrato.
+### O QUE FALTA DESTE DESPACHO — uma coisa só, e ela é do Raphael
 
-ATUALIZAÇÃO 11/09 (mesmo dia): este despacho passa a ser executado como a **reescrita da home e do header pela seção 15 do contrato e pelo `VOZ.md` desta ilha** (molde LOJA) — uma tacada só, não duas. A home deixa de ser manifesto: foto de peça, "Mosaico feito à mão, uma peça por vez", peças em destaque, bloco "Vai fazer o seu? A gente ajuda a escolher o material", artesã no rodapé. O texto atual da home ("faz duas coisas…", ficha da Tekbond) sai da home; o que for prova vai para o "como sabemos" da página de materiais correspondente.
+- **2. A lótus no cabeçalho.** O wordmark "clube do mosaico" em texto já está no
+  ar e legível (12,97:1 de contraste). **A lótus não entrou porque
+  `identidade/logo/lotus-512.png` está TRUNCADO no repositório**: o chunk `IDAT`
+  declara 11.638 bytes num arquivo que tem 8.770, com um `IEND` colado no fim, e
+  o `zlib` recusa o primeiro bloco — não sai um único pixel. Servi-lo teria
+  trocado o logo sumido por um ícone de imagem quebrada.
+  **Pronto quando:** o Raphael commitar a lótus em PNG transparente (≥ 512 px no
+  menor lado) em `identidade/logo/lotus-512.png`; então
+  `php ferramentas/gerar-marca.php .` embute e a lótus aparece ao lado do
+  wordmark sem mexer em mais nada. A ferramenta **recusa** arquivo que não abre,
+  sem canal alfa ou com canto opaco — não force. Conferir depois abrindo a home
+  e vendo a lótus ao lado do nome.
+  *Tentativa em 11/09/2026: a lótus não pôde ser embutida — arquivo truncado, ver
+  `identidade/logo/LEIA-ME.md`.*
 
-ATUALIZAÇÃO 11/09 (2): a página `/materiais/` é reescrita junto com a home, pela mesma regra: só o que interessa a quem vai fazer uma peça (as seis categorias como cartões com uma frase cada, na voz do VOZ.md). Tudo o que é bastidor da fábrica — "origem tem nível", a tabela de sete níveis de fonte, "a confissão que essa tabela obriga", "como decidimos quando as fontes discordam", contagens de banco — sai da página e vai, resumido em três linhas, para um "Como sabemos" no rodapé da seção Materiais (uma página só, `/materiais/como-sabemos/`, noindex até ter conteúdo próprio). O achado do silicone acético × neutro fica, porque é útil para quem faz — mas reescrito na voz ("se a sua peça é de espelho ou cimento, o silicone acético não serve; o neutro serve — é do mesmo fabricante"). BUG a corrigir na mesma passada: o texto "Hoje 10 dos 5 itens esperam link" — a contagem de itens sem link não pode exceder o total; conferir a origem dos dois números. A árvore de URLs do VOZ.md (seção "Árvore do site") vale para toda página nova a partir de agora.
+**A reescrita da home e da `/materiais/` pela seção 15 (as duas ATUALIZAÇÕES de
+11/09) saiu junto e está cumprida.** A home deixou de ser manifesto; o bastidor
+do Guia mudou para `/materiais/como-sabemos/` (nível 2, `noindex`, fora do
+sitemap); o bug "10 dos 5 itens esperam link" saiu do ar. O que **não** entrou:
+o `ARVORE.md` e o breadcrumb da seção 16 — é o próximo bloco, e
+`/materiais/como-sabemos/` já é o primeiro caso dele.
 
 ATUALIZAÇÃO 11/09 (Pauta): quando existir `pauta.md` nesta pasta (seção 17 do contrato), os guias entram na fila depois desta reescrita e da árvore, em levas por cluster; registrar no fecho de cada bloco quantos temas estão escritos / na fila / recusados.
 

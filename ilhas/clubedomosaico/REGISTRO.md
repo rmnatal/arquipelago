@@ -361,3 +361,133 @@ que ela revelou (commitado e verificado; a ilha continua NAO estando no ar)
   **ALICATE** — mas atencao, a PASTILHA e de outra natureza, porque os campos que ela exige (passo
   de fabrica, espessura, peso unitario, unidade de venda) nao existem em boletim de fabricante e
   sim em anuncio de loja, nivel 5 e 6 da escada, e nenhum desses dominios foi testado ainda.
+
+11/09/2026 17:55Z — DESPACHO DO RAPHAEL CUMPRIDO E CONFERIDO NO AR: cabeçalho claro, a voz da ilha, e a home que deixou de ser manifesto (casca 1.2.0, manifest na revisão 6, `/status` conferido)
+
+- **A reclamação era uma coisa só, não duas.** *"Muito ruim o fundo preto no
+  header, o logo sumiu, queria algo mais clean."* O logo sumia porque o arquivo
+  entregue tem **fundo preto** com wordmark vinho — e o cabeçalho era preto
+  porque era a única cor em que aquele arquivo aparecia. Trocar só o fundo
+  faria o logo virar um retângulo escuro em cima do branco; trocar só o logo
+  deixaria o bloco preto que ele reprovou. Os dois saem juntos ou nenhum sai.
+- **O cabeçalho:** papel `#FFFFFF` com linha de 1 px em `#E9DCD7` (a linha da
+  seção 6 do contrato, no lugar de sombra), menu em `#1F1715` peso 500 com
+  passagem em coral, painel do menu sanfona também claro, `theme-color` branco.
+  Medido **no navegador**, não no texto do CSS: `rgb(255, 255, 255)` de fundo e
+  `rgb(31, 23, 21)` no menu, nas nove páginas. A paleta **não** ganhou cor nova:
+  o despacho sugeria `#FBF7F4`, `#EEE8E4`, `#111` e `#E8483A`, e os quatro são
+  vizinhos de um a quatro passos dos tokens já aprovados em 10/09. Um segundo
+  coral a quatro unidades do primeiro é defeito, não identidade — então valeram
+  papel, traço, tinta e coral da ilha. Se o Raphael quiser exatamente aqueles
+  hexadecimais, é uma linha.
+- **A marca virou o wordmark "clube do mosaico" em TEXTO**, na tipografia da
+  identidade (Outfit 600, vinho, minúsculas de verdade e não `text-transform`,
+  para quem usa leitor de tela ouvir o nome como ele é escrito). Contraste
+  medido no navegador: 17,62:1 do menu e 12,97:1 do wordmark sobre o cabeçalho.
+- **O ACHADO QUE NÃO ESTAVA SENDO PROCURADO, e que muda o desenho:**
+  `identidade/logo/lotus-512.png` — o símbolo transparente que o despacho manda
+  usar no cabeçalho claro — está **TRUNCADO no repositório**. O chunk `IDAT`
+  declara 11.638 bytes num arquivo que tem 8.770, com um `IEND` colado no fim.
+  Não é imagem cortada pela metade: tentei recuperar o pedaço que existisse e o
+  `zlib` recusa o **primeiro** bloco ("invalid code lengths set"), então não sai
+  um único pixel. Publicá-lo teria trocado o logo sumido por um ícone de imagem
+  quebrada, que é pior porque parece descuido em vez de obra em andamento. A
+  metade que existe do par foi ao ar; a lótus fica pendente com o Raphael.
+  `ferramentas/gerar-marca.php` nasceu para embuti-la e **recusa** arquivo que
+  não abre — confere chunk a chunk, cobra canal alfa e cantos transparentes, e
+  sai com código 1 sem tocar no snippet. Rodada hoje: recusou, com o número de
+  bytes que faltam na mensagem.
+- **A HOME (molde LOJA do `VOZ.md`, seção 15 do contrato).** Abria com três
+  parágrafos de método, e o terceiro era a ficha técnica de um silicone com
+  código de documento e lista de superfícies proibidas. **Duas dessas frases
+  estão literalmente na lista de "Proibidas" do `VOZ.md`** — não é coincidência:
+  a lista foi escrita para proibir aquele texto. Agora a home abre por "Mosaico
+  feito à mão, uma peça por vez", segue com a vitrine (estado vazio honesto,
+  reescrito curto), o bloco "Vai fazer o seu? A gente ajuda a escolher o
+  material" e a artesã fechando a página. O número e a fonte **não sumiram do
+  site**: mudaram de lugar.
+- **A home deixou de se chamar "Início"** — e o defeito por trás disso é que
+  valia mais: `garantir_paginas()` nunca sincronizava título, então a página
+  nascia com o título da definição e ficava com ele para sempre. Era assim que
+  "Início" sobrevivia às versões da casca. Agora sincroniza, **sem tocar em
+  `post_name`** (seção 12.1: URL publicada não se move). De quebra, a casca
+  passou a gravar `blogname` e `blogdescription` como já gravava
+  `page_on_front`: o `<title>` da home no resultado de busca agora diz "Clube do
+  Mosaico – Mosaico feito à mão, uma peça por vez", que é a mesma frase da
+  página e do rodapé. É a lição da Aquametria de 11/09 aplicada antes de doer.
+- **O GUIA perdeu sete seções de bastidor**, que não foram jogadas fora: mudaram
+  para **`/materiais/como-sabemos/`**, primeira página de nível 2 desta ilha
+  (seção 16), com mãe declarada, `noindex` e fora do sitemap. Ela ficou com
+  4.340 caracteres de corpo — não é página fina. No Guia ficaram as seis
+  prateleiras, com os resumos reescritos na voz, e o único achado que muda a mão
+  de quem faz: silicone acético não serve em espelho nem em cimento, e o neutro
+  do mesmo fabricante serve.
+- **"Hoje 10 dos 5 itens esperam link" SAIU DO AR.** Os dois números estavam
+  certos sozinhos — 10 itens esperando link no banco inteiro, 5 adesivos na
+  categoria cola — e a frase que os juntou era impossível. Foi exatamente por
+  isso que nenhum teste viu: cada metade era conferida separada. O denominador
+  passou a ser `itens_no_banco`, somado das categorias, e a página de
+  divulgação parou de **afirmar por escrito** que não há link nenhum: agora é a
+  subtração entre o que existe e o que espera.
+
+**VERIFICAÇÃO — 198 afirmações na bancada (eram 137), 54 medições em Chromium, 19 mutações, e a conferência no ar.**
+
+- **A bancada estava medindo oito das nove páginas pela metade, e ninguém
+  sabia.** A trava nova de "página inteira" reprovou de primeira: o rodapé saía
+  só na primeira página. A causa é um `static` legítimo em
+  `cdm_casca_rodape_impresso()` (e outro em `cdm_casca_marca_html()`), que
+  existe para o rodapé não sair duas vezes na MESMA página — no site um processo
+  é uma requisição e ele está certo. Numa varredura de nove páginas em
+  sequência, ele faz o rodapé aparecer na primeira e sumir nas oito seguintes,
+  **sem erro nenhum**. É a terceira vez que o Arquipélago paga por isso, e a
+  regra do contrato já estava escrita: varredura de muitos estados roda **um
+  processo por estado**. O teste passou a fazer isso. E a conferência de "página
+  inteira" deixou de ser um número redondo de bytes (que eu não consigo calibrar
+  sem o site no ar, e número redondo não é critério) e virou a lista do que uma
+  página desta ilha obrigatoriamente carrega: folha, JSON-LD, menu, comando do
+  menu, favicon, rodapé e H1.
+- **19 mutações deliberadas em `ferramentas/mutacoes-voz-e-cabeca.py`, 19
+  reprovadas — mas DUAS passaram na primeira rodada**, e são o resultado do
+  teste:
+  1. *"o título para de sincronizar"* passou porque a bancada monta o H1 a
+     partir da **definição**, e a definição está certa. O defeito mora no outro
+     lado, no caminho que atualiza a página que já existe — e medir o H1 servido
+     nunca poderia vê-lo. Trava nova: o teste simula o site real de hoje (as
+     páginas existem, com os títulos velhos) e afirma sobre o que a casca **manda
+     gravar**, inclusive que nenhuma gravação toca `post_name` e que página que
+     não é da casca não tem o título reescrito.
+  2. *"noindex na página errada"* passou porque o teste conferia que a etiqueta
+     sai nas páginas **declaradas** — o que é verdade mesmo quando alguém declara
+     a página errada. Conferir a declaração contra ela mesma é a mesma forma do
+     teste que mede a si mesmo. Régua nova, vinda de fora: só a página de camada
+     de prova pode sair do índice, e nenhuma página do menu pode.
+- **As duas mutações que mais valem são as portas dos fundos do portão de voz**,
+  e as duas reprovam: embrulhar o Guia inteiro na classe que declara camada de
+  prova, e declarar uma **segunda** página como página de prova. Sem contar os
+  blocos, medir onde eles começam e exigir que a página de prova seja uma só, o
+  portão se desligaria com uma linha e nenhuma palavra mudaria na tela — que é
+  exatamente a porta que a Aquametria achou ao tentar quebrar o próprio portão.
+- **NO AR às 17h55Z:** `/status` com revisão 6, igual à do manifest. 9 de 9 URLs
+  em 200, a nova inclusive. Zero `&#038;` dentro de `<script>` nas nove
+  (contado só dentro dos blocos de script). Um rodapé por página. O `H1` da home
+  é a frase da voz e nenhuma das três frases proibidas aparece no corpo dela. O
+  Guia diz "10 itens de fabricante" e não diz "10 dos 5". `/materiais/como-sabemos/`
+  serve `noindex` e **está fora** do `wp-sitemap-posts-page-1.xml`, enquanto
+  `/materiais/` continua dentro — as duas direções medidas.
+- **A REDE ALCANÇA ESTA ILHA, e o bloqueio anterior era diagnóstico não
+  reconferido.** O `ESTADO.md` dizia "403 ao CONNECT para clubedomosaico.com.br,
+  segunda execução seguida" e duas revisões presas. Nesta execução o primeiro
+  `curl` à home devolveu `000` — e **o mesmo comando, repetido minutos depois,
+  devolveu 200**, assim como o Sync, o `/status`, as nove páginas e o sitemap. A
+  falha era intermitente, não bloqueio. A lição fica escrita: bloqueio que não é
+  reconferido a cada execução vira permanente sozinho, e prendeu duas revisões
+  desta ilha por duas execuções.
+
+**10 dos 10 itens do banco ainda esperam link de afiliado; 10 sem imagem.** Este
+bloco não tocou catálogo.
+
+**Próximo passo:** a árvore da seção 16 inteira — `ARVORE.md` da ilha, mãe para
+toda página existente, breadcrumb com `BreadcrumbList` e blocos "Veja também"
+(16.4). `/materiais/como-sabemos/` já nasceu dentro dela e serve de primeiro
+caso. Nenhuma categoria de nível 2 do Guia tem as 3 filhas que a 16.5 exige,
+então nenhuma nasce agora. Depois disso, o bloco 4 (a ferramenta F2).
