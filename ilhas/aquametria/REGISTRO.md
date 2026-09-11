@@ -4906,3 +4906,95 @@ Quatro seções de nível 1 (`/calculadoras/`, `/peixes/`, `/equipamentos/`, `/g
 - As páginas de `conteudo/` ainda falam na voz antiga: elas são reescritas ao passar pela ronda, como manda a 15.5.
 
 **Próximo passo desbloqueado:** breadcrumb com `BreadcrumbList` e blocos "Veja também" (16.4) em toda página que já existe. Nenhum dos dois cria URL, então os dois cabem antes de 16/09. O breadcrumb nasce com o nível 2 em texto, sem link, porque a categoria ainda não existe — estado de transição declarado no `ARVORE.md`, não desenho.
+
+## 2026-09-11, 17h38Z — A arvore da secao 16 chega as treze paginas no ar
+
+**Entregue:** `snippets/aquametria-casca.php` v1.5.0, manifest na revisao 43,
+`/status` respondendo 43 e as treze URLs abertas e medidas no ar as 17h37Z.
+Fecha o que o despacho do Raphael de 11/09 deixou de pe depois do bloco da voz
+— e fecha **sem criar uma URL**, que era a condicao para caber antes da leitura
+de 16/09.
+
+- **A TRILHA, em doze das treze.** A home nao tem, como manda o 16.3. O nivel 2
+  sai em TEXTO enquanto a categoria nao existe: e o estado de transicao que o
+  `ARVORE.md` ja declarava, e nao ha nada a lembrar no dia em que ela nascer,
+  porque quem resolve o endereco de todo degrau e `url_se_existir()`.
+- **O BREADCRUMBLIST PUBLICA MENOS QUE A TELA, DE PROPOSITO.** Numa calculadora
+  a trilha na tela mostra quatro degraus e o schema publica tres, sem a
+  categoria. Nao e esquecimento e foi a decisao mais dificil do bloco: um
+  `ListItem` do meio sem `item` invalida a lista inteira para o Google, e lista
+  invalida e lista ignorada — o schema "mais completo" publicaria **menos** com
+  cara de publicar mais. A mutacao 4 e exatamente essa porta dos fundos, e o
+  portao amarra os itens do schema aos degraus LINKADOS da tela, para a relacao
+  nao poder derivar em silencio.
+- **AS IRMAS SAO DERIVADAS, NUNCA DIGITADAS.** De 2 a 4 por pagina (16.4c),
+  tiradas do mesmo registro que alimenta o hub, com afinidade declarada: mesma
+  categoria primeiro, ordem do mapa depois. Lista escrita a mao envelheceria no
+  dia em que a proxima calculadora entrasse no ar — e a frase que linka a mae
+  (16.4b) traz a contagem **contada**, conferida contra os cartoes com link do
+  hub, nunca perguntada ao snippet.
+- **O GUIA AINDA NAO TEM FRASE DE MAE, e o portao cobra a AUSENCIA dela.**
+  `/guias/` nao existe; frase apontando para la seria link morto. Cobrar a
+  ausencia e o que impede a proxima execucao de "consertar" isso com um
+  endereco inventado — a mutacao 14 e essa tentacao, e ela reprova.
+
+**A BANCADA MEDIA METADE DA PAGINA.** Nasceu `ferramentas/render-pagina-completa.php`
+porque dos tres renderizadores que havia, um montava so as quatro paginas da
+casca e os outros dois montavam corpo **sem cabecalho e sem H1** — e a trilha
+nasce justamente entre o cabecalho e o H1. Medir a arvore em qualquer um dos
+tres seria afirmar sobre o que nao existe, que e a cicatriz que a Robometria
+pagou tres vezes. Uma pagina por processo, como as outras bancadas desta ilha.
+
+**O QUE AS MUTACOES ACHARAM — e uma delas era buraco de verdade no portao.**
+Com cinco calculadoras no ar, **nenhuma pagina chega a ter cinco irmas
+candidatas**: trocar o teto de 4 por 5 no snippet nao mudava uma virgula do que
+o site serve, e o portao ficava verde nas duas versoes. A faixa "de 2 a 4"
+estava sendo conferida contra um mundo que nunca passa de 4 — grade que nao
+pisa na borda, so que desta vez a borda nao existia no mundo. A saida foi a
+bancada **fabricar** a borda: o modo `todas` do renderizador poe C2, C7 e C8 no
+ar, a pagina passa a ter sete candidatas e ai o teto tem o que cortar. E a
+unica afirmacao do portao que mede um mundo que nao e o de hoje, e esta
+declarada como tal.
+Outras tres mutacoes passaram por serem **inertes**, nao por o portao ser cego:
+tirar a trava do `render_block` nao duplica nada porque o bloco so renderiza uma
+vez na requisicao, e tirar `is_front_page()` nao poe trilha na home porque o
+slug da home nao esta na arvore. As tres foram reescritas ate morder de
+verdade. **14 de 14 reprovadas** na rodada final.
+
+**UM LIMITE DECLARADO, porque fingir que nao existe seria pior:** se alguem
+mudar a categoria de uma calculadora no snippet **e** no `ARVORE.md` na mesma
+passada, este portao nao ve — nao ha terceira fonte no repositorio que diga de
+que categoria uma calculadora e. Categoria e decisao editorial. As mutacoes 1 e
+2 cobrem o caso de UMA das metades mudar, que e o que acontece por descuido.
+
+**VERIFICACAO (secao 8):** `teste-arvore.mjs` 288 afirmacoes com regua propria,
+lendo o `ARVORE.md` para cobrar que documento e codigo digam a mesma coisa;
+14 de 14 mutacoes reprovadas; 224 medicoes em Chromium nas treze paginas em
+360/390/781/782/783/1200 px, **0 px de rolagem horizontal** e console limpo;
+`teste-voz`, `teste-seo-tecnico` (177), `conferir-slugs` e
+`conferir-protecao-funcoes` sem falha; `php -l` limpo nos 10 snippets.
+**No ar as 17h37Z:** 13 de 13 em HTTP 200, 175 afirmacoes medidas no HTML
+servido — zero `&#038;` dentro de `<script>` nas treze, trilha sempre antes do
+H1 e uma so por pagina, nenhum degrau apontando para pagina inexistente,
+`BreadcrumbList` valido nas doze.
+
+**ACHADO REGISTRADO, fora do escopo deste bloco.** A medicao de orfa nasceu
+errada e o erro valeu a pena: a primeira versao contava so os links do `<main>`
+e reprovou `/sobre/` com zero. O defeito era da **regua**, nao da pagina —
+`/sobre/` esta no menu e no rodape das treze, entao o robo acha, que e o que o
+16.4(f) existe para garantir. Mas contar a pagina inteira sozinho nao mede nada,
+porque o menu faz tres paginas passarem sempre. Viraram duas afirmacoes com
+nomes diferentes: o 16.4(f) literal, no HTML servido, para as treze; e a
+promessa do cluster, no CORPO, para as oito paginas da arvore. O que fica
+registrado e que **`/sobre/` e a unica das treze que nenhum corpo cita** — nao e
+defeito desta entrega, e assunto de pauta (secao 17).
+
+**39 dos 78 produtos esperam link de afiliado** (nao mudou: este bloco nao tocou
+em catalogo). Nao houve memoria disponivel nesta execucao (`/areas` nao existe
+no ambiente); o estado vive no `ESTADO.md` desta pasta.
+
+**Proximo passo desbloqueado:** `pauta.md` (secao 17) ainda nao existe nesta
+pasta, entao o proximo bloco que nao cria URL e a **reescrita na voz das paginas
+de `conteudo/`**, que o despacho da voz deixou marcada como pendente ("as de
+conteudo/ ainda nao foram"). Tudo que cria URL — as oito paginas de nivel 1 e 2,
+a troca de pai e de slug, a leva de malha — espera a leitura de 16/09.

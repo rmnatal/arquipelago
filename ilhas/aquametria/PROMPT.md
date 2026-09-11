@@ -33,9 +33,11 @@ Isso não afrouxa nenhuma regra do `ARQUIPELAGO.md`. Publicar rápido e errado �
 
 **A reescrita da home e do header está CUMPRIDA** na execução das 15h16Z de 11/09/2026 (casca 1.4.0, revisão 40). O critério de pronto que o despacho pediu virou portão medido: `ferramentas/teste-voz.mjs` mede as quatro páginas da casca, uma por processo, e reprova termo proibido em título ou primeiro parágrafo. Dez mutações deliberadas em `ferramentas/mutacoes-voz.py`, dez reprovadas — inclusive a porta dos fundos, que é embrulhar a página inteira na classe que declara camada de prova.
 
-**O que continua de pé desta seção**, e é o próximo bloco: a seção 16 do contrato. O `ARVORE.md` desta ilha (item i do 16.8) foi escrito no mesmo bloco e diz onde cada página mora. Falta:
-- **breadcrumb com `BreadcrumbList`** em toda página que já existe, e os blocos **"Veja também"** do cluster (16.4). Nenhum dos dois cria URL, então os dois cabem antes de 16/09. O breadcrumb nasce com o nível 2 **em texto, sem link**, porque a categoria ainda não existe — estado de transição declarado no `ARVORE.md`, não desenho.
-- **as oito páginas de nível 1 e 2** e a troca de pai/slug das existentes: travadas até a leitura de 16/09 por duas regras independentes (item 5 do despacho da Sentinela, e o T2 deste arquivo). O `ARVORE.md` seção 6 explica as duas.
+**A árvore chegou às treze páginas — CUMPRIDO em 11/09/2026**, casca 1.5.0, manifest na revisão 43, `/status` conferido e as treze URLs abertas no ar. Breadcrumb com `BreadcrumbList` em doze delas (a home não tem, 16.3) e blocos "Veja também" nas oito páginas da árvore, com 2 a 4 irmãs derivadas e a frase que linka a mãe com a contagem contada. **Nenhuma URL nova**, que era a condição para isto caber antes de 16/09. Critério de pronto medido, não de olho: `ferramentas/teste-arvore.mjs` (288 afirmações, régua própria, e ele LÊ o `ARVORE.md` para cobrar que documento e código digam a mesma coisa), 14 mutações deliberadas em `ferramentas/mutacoes-arvore.py` — 14 reprovadas —, e 224 medições em Chromium nas treze páginas.
+
+**O que continua de pé desta seção**, e trava até 16/09:
+- **as oito páginas de nível 1 e 2** e a troca de pai/slug das existentes: travadas até a leitura de 16/09 por duas regras independentes (item 5 do despacho da Sentinela, e o T2 deste arquivo). O `ARVORE.md` seção 6 explica as duas. Quando destravar, o nível 2 da trilha e o do `BreadcrumbList` viram link sozinhos — quem resolve o endereço é `aquametria_casca_url_se_existir()`, então não há nada a lembrar.
+- **a frase de mãe dos três guias** (16.4b), que só nasce junto com `/guias/`: hoje ela apontaria para página inexistente, e o portão cobra a ausência dela justamente para ninguém fechar isso com um endereço inventado.
 
 Cada página existente continua sendo reescrita na voz ao passar pela ronda — as de `conteudo/` ainda não foram.
 
