@@ -1,5 +1,24 @@
 /**
  * Aquametria Casca — identidade e estrutura do site
+ * Versão: 1.5.0 (11/09/2026) — a ÁRVORE chega às treze páginas que já existem.
+ * Seção 16 do ARQUIPELAGO.md e o que o despacho do Raphael de 11/09 deixou de
+ * pé depois do bloco da voz. Três coisas entram, e NENHUMA cria URL nova — as
+ * oito páginas de nível 1 e 2 seguem travadas até a leitura de 16/09 (item 5 do
+ * despacho da Sentinela de 10/09 e seção 6 do ARVORE.md):
+ *   (a) trilha visível em toda página menos a home (16.3), com o nível 2 em
+ *       TEXTO enquanto a categoria não nasce — estado de transição declarado no
+ *       ARVORE.md, e que vira link sozinho no dia em que a página existir;
+ *   (b) `BreadcrumbList` em JSON-LD, levando só os degraus que têm endereço de
+ *       verdade: ListItem intermediário sem `item` invalida a lista inteira, e
+ *       breadcrumb inválido é breadcrumb ignorado;
+ *   (c) bloco "Veja também" (16.4c) com 2 a 4 irmãs da mesma mãe, DERIVADAS do
+ *       mesmo registro que alimenta o hub — irmã digitada à mão envelheceria no
+ *       dia em que a próxima calculadora entrasse no ar —, mais a frase que
+ *       linka a mãe no corpo (16.4b) com a contagem contada, nunca digitada.
+ * O mapa de quem é mãe de quem está no ARVORE.md, e
+ * `ferramentas/teste-arvore.mjs` confere que o documento e o código dizem a
+ * mesma coisa: duas metades mantidas à mão divergem em silêncio, que é a
+ * cicatriz da seção 8 do contrato.
  * Versão: 1.4.1 (11/09/2026) — duas coisas que só apareceram ao MEDIR a página
  * pronta, e as duas já estavam no ar antes desta execução:
  *   (a) o <title> da home vinha da tagline do WordPress, que nunca foi tocada
@@ -121,6 +140,7 @@ function aquametria_casca_calculadoras() {
 	$lista = array(
 		array(
 			'codigo'  => 'C1',
+			'categoria' => 'aquario',
 			'titulo'  => 'Quantos litros tem o seu aquário?',
 			'slug'    => 'calculadora-de-litragem',
 			'resumo'  => 'Mede comprimento, largura e altura em centímetros e sai o volume da etiqueta, o que cabe de verdade e a água que você vai tratar. O aquário fica guardado no seu navegador, então as outras contas já vêm preenchidas.',
@@ -128,6 +148,7 @@ function aquametria_casca_calculadoras() {
 		),
 		array(
 			'codigo'  => 'C3',
+			'categoria' => 'filtragem',
 			'titulo'  => 'Qual filtro dá conta do seu aquário?',
 			'slug'    => 'calculadora-de-vazao-do-filtro',
 			'resumo'  => 'A vazão em litros por hora que o seu aquário pede. A faixa é larga porque os próprios fabricantes declaram de 1,8 a 10 renovações por hora para o mesmo aquário — e a tela mostra quem disse cada extremo.',
@@ -135,6 +156,7 @@ function aquametria_casca_calculadoras() {
 		),
 		array(
 			'codigo'  => 'C5',
+			'categoria' => 'aquecimento-e-luz',
 			'titulo'  => 'Quantos watts de aquecedor você precisa?',
 			'slug'    => 'calculadora-de-potencia-do-aquecedor',
 			'resumo'  => 'A conta parte do frio que faz no seu cômodo, não do velho 1 W por litro. E filtra pela sua voltagem, para não chegar em casa um aquecedor de 110 V numa tomada de 220 V.',
@@ -142,6 +164,7 @@ function aquametria_casca_calculadoras() {
 		),
 		array(
 			'codigo'  => 'C12',
+			'categoria' => 'filtragem',
 			'titulo'  => 'Quanta mídia biológica cabe no seu filtro?',
 			'slug'    => 'calculadora-de-midia-filtrante',
 			'resumo'  => 'Quantos mililitros de mídia o seu aquário pede, pelas quatro dosagens que os fabricantes declaram — e que discordam dez vezes entre si. Com o teto do cesto do seu filtro junto, para você não comprar mídia que não entra.',
@@ -149,6 +172,7 @@ function aquametria_casca_calculadoras() {
 		),
 		array(
 			'codigo'  => 'C15',
+			'categoria' => 'aquecimento-e-luz',
 			'titulo'  => 'Quanta luz o seu aquário precisa?',
 			'slug'    => 'calculadora-de-iluminacao',
 			'resumo'  => 'Os lúmens para o seu aquário e quantas horas deixar aceso. As três leituras brasileiras chamam a mesma coisa pelo mesmo nome com números diferentes, e aqui elas aparecem lado a lado.',
@@ -156,6 +180,7 @@ function aquametria_casca_calculadoras() {
 		),
 		array(
 			'codigo'  => 'C2',
+			'categoria' => 'aquario',
 			'titulo'  => 'O móvel aguenta o seu aquário cheio?',
 			'slug'    => 'calculadora-de-peso-e-carga',
 			'resumo'  => 'O peso total e a carga por metro quadrado, ao lado da carga de projeto da NBR 6120. A gente dá o número; quem autoriza é engenheiro, nunca uma calculadora.',
@@ -163,6 +188,7 @@ function aquametria_casca_calculadoras() {
 		),
 		array(
 			'codigo'  => 'C7',
+			'categoria' => 'aquecimento-e-luz',
 			'titulo'  => 'Quanto o seu aquário gasta de luz por mês?',
 			'slug'    => 'calculadora-de-consumo-de-energia',
 			'resumo'  => 'Filtro, aquecedor e luz somados, com o tempo que cada um fica ligado de verdade — multiplicar a potência do aquecedor por 24 horas erra a conta para cima, e erra feio.',
@@ -170,6 +196,7 @@ function aquametria_casca_calculadoras() {
 		),
 		array(
 			'codigo'  => 'C8',
+			'categoria' => 'peixes',
 			'titulo'  => 'Quantos peixes cabem no seu aquário?',
 			'slug'    => 'calculadora-de-lotacao',
 			'resumo'  => 'Três critérios de lotação lado a lado, com o nome de quem publicou cada um, e o aquário mínimo por espécie quando existe fonte que diga.',
@@ -720,6 +747,27 @@ body header .wp-block-group,body .wp-block-template-part header{background:var(-
 .aqm-quadro{width:100%;margin:1rem 0 0;font-size:.93rem;}
 .aqm-quadro td:first-child{font-family:var(--aqm-mono);font-size:.85rem;white-space:nowrap;}
 .aqm-quadro td:last-child{text-align:right;font-family:var(--aqm-mono);}
+/* A trilha (seção 16.3 do ARQUIPELAGO.md). Ela ROLA na horizontal dentro da
+   própria caixa quando não cabe — é o único jeito de uma trilha longa não
+   empurrar a largura da página no celular, e a página inteira nunca rola. */
+.aqm-trilha{font-family:var(--aqm-texto);font-size:.82rem;line-height:1.5;margin:0 0 1.1rem;max-width:100%;overflow-x:auto;}
+.aqm-trilha ol{display:flex;flex-wrap:nowrap;align-items:center;gap:.3rem;list-style:none;margin:0;padding:0;}
+.aqm-trilha li{display:flex;align-items:center;gap:.3rem;white-space:nowrap;}
+.aqm-trilha li+li::before{content:"\203A";color:var(--aqm-traco);}
+.aqm-trilha a{color:var(--aqm-legenda);text-decoration:none;border-bottom:1px solid var(--aqm-traco);}
+.aqm-trilha a:hover{color:var(--aqm-lamina);border-bottom-color:var(--aqm-lamina);}
+.aqm-trilha [aria-current="page"]{color:var(--aqm-tinta);font-weight:500;}
+/* Degrau de categoria que ainda não virou página: texto, e a tela diz isso sem
+   promessa — o cartão "em breve" é da mãe, não da trilha. */
+.aqm-trilha-espera{color:var(--aqm-legenda);}
+/* O cluster do 16.4. */
+.aqm-veja{font-family:var(--aqm-texto);border-top:1px solid var(--aqm-traco);margin:2.6rem 0 0;padding:1.4rem 0 0;}
+.aqm-veja h2{font-family:var(--aqm-display);font-size:1.05rem;margin:0 0 .55rem;color:var(--aqm-tinta);}
+.aqm-veja .aqm-veja-mae{margin:0 0 .7rem;color:var(--aqm-legenda);font-size:.93rem;line-height:1.55;}
+.aqm-veja ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.45rem;}
+.aqm-veja li{margin:0;}
+.aqm-veja a{color:var(--aqm-tinta);text-decoration:none;border-bottom:2px solid var(--aqm-lamina);font-weight:500;}
+.aqm-veja a:hover{color:var(--aqm-lamina);}
 .aqm-rodape{background:var(--aqm-tinta);color:var(--aqm-papel);padding:2.4rem 1.5rem;margin-top:3.5rem;font-family:var(--aqm-texto);}
 .aqm-rodape-interno{max-width:52rem;margin:0 auto;display:flex;flex-direction:column;gap:.7rem;}
 .aqm-rodape .aqm-tagline{font-family:var(--aqm-display);font-weight:700;font-size:1.1rem;color:var(--aqm-superficie);margin:0;}
@@ -866,6 +914,479 @@ function aquametria_casca_conta_publicadas() {
 	return $n;
 }
 }
+
+/* ---------------------------------------------------------------------------
+ * 3d. A ÁRVORE — breadcrumb, BreadcrumbList e cluster de "Veja também"
+ *
+ * Seção 16 do ARQUIPELAGO.md, e item do despacho do Raphael de 11/09/2026 que
+ * o bloco da voz deixou de pé. O mapa de quem é mãe de quem está escrito em
+ * ARVORE.md; aqui ele vira código, e `ferramentas/teste-arvore.mjs` confere que
+ * as duas metades dizem a mesma coisa — porque documento e código mantidos à
+ * mão em dois lugares divergem em silêncio (seção 8 do contrato).
+ *
+ * CINCO DECISÕES, e nenhuma é enfeite:
+ *
+ *   1. NADA AQUI CRIA URL. As oito páginas de nível 1 e 2 da árvore estão
+ *      travadas até a leitura de 16/09 (item 5 do despacho da Sentinela de
+ *      10/09, e seção 6 do ARVORE.md). Breadcrumb e cluster cabem antes porque
+ *      só usam endereço que já existe.
+ *   2. O NÍVEL 2 SAI EM TEXTO, SEM LINK, porque a categoria ainda não nasceu.
+ *      É estado de transição declarado no ARVORE.md, não desenho: no dia em que
+ *      a categoria existir, `aquametria_casca_url_se_existir()` a encontra e ela
+ *      vira link sozinha, sem ninguém lembrar disto.
+ *   3. O JSON-LD NÃO CARREGA O DEGRAU SEM ENDEREÇO. Um ListItem intermediário
+ *      sem `item` deixa o BreadcrumbList inteiro inválido, e breadcrumb inválido
+ *      é breadcrumb ignorado — o schema publicaria menos do que publica hoje.
+ *      Então o schema leva só os degraus que têm URL de verdade, e o teste cobra
+ *      exatamente essa relação: os itens do JSON-LD são os degraus LINKADOS da
+ *      trilha visível, mais a página atual. A trilha na tela continua mostrando
+ *      a categoria, que é o que diz ao leitor onde ele está.
+ *   4. AS IRMÃS SÃO DERIVADAS, NUNCA DIGITADAS. Lista de irmãs escrita à mão
+ *      envelhece no dia em que uma calculadora entra no ar — é a cicatriz do
+ *      número de tela digitado (seção 8). Aqui elas saem do mesmo registro que
+ *      alimenta o hub: mesma mãe, mesma categoria primeiro, ordem do mapa
+ *      depois. Afinidade declarada, não sorteio.
+ *   5. A MÃE SÓ É CITADA NO CORPO QUANDO EXISTE. O 16.4(b) manda a filha linkar
+ *      a mãe no breadcrumb E numa frase do corpo; frase apontando para página
+ *      que não existe seria link morto, então a frase só sai com mãe publicada —
+ *      e o teste cobra a frase justamente onde a mãe existe.
+ * ------------------------------------------------------------------------- */
+
+/* Os rótulos de nível 2. O slug é o do ARVORE.md; o rótulo é o nome que a
+   pessoa usa, como manda o VOZ.md. */
+if ( ! function_exists( 'aquametria_casca_categorias' ) ) {
+function aquametria_casca_categorias() {
+	return array(
+		'aquario'           => 'Aquário',
+		'filtragem'         => 'Filtragem',
+		'aquecimento-e-luz' => 'Aquecimento e luz',
+		'peixes'            => 'Peixes',
+	);
+}
+}
+
+/* A categoria de nível 2 de cada guia, pelo slug do artigo (ARVORE.md seção 5).
+   Mora aqui, e não no snippet dos artigos, porque é decisão de ÁRVORE — quem
+   decide onde a página mora é o mapa do site, não quem escreve o texto. */
+if ( ! function_exists( 'aquametria_casca_categorias_guia' ) ) {
+function aquametria_casca_categorias_guia() {
+	return array(
+		'quantos-watts-de-aquecedor-para-aquario'   => array( 'aquecimento', 'Aquecimento' ),
+		'quanta-midia-biologica-o-aquario-precisa'  => array( 'filtragem',   'Filtragem' ),
+		'quantos-lumens-por-litro-aquario-plantado' => array( 'iluminacao',  'Iluminação' ),
+	);
+}
+}
+
+/**
+ * Onde esta página mora. Devolve:
+ *   nivel1      => array(slug, rotulo)  — a seção; slug '' quando ela não existe
+ *   nivel2      => array(slug, rotulo)  — a categoria; array() quando não há
+ *   rotulo      => o texto do degrau atual (a consulta-alvo, não o nome interno)
+ *   irmas       => slugs das irmãs, já escolhidas
+ *   fora        => true para as páginas que o ARVORE.md deixa fora da árvore
+ * Devolve array() para a home e para página desconhecida — e quem chama não
+ * publica trilha nenhuma, que é melhor que publicar trilha inventada.
+ */
+if ( ! function_exists( 'aquametria_casca_lugar' ) ) {
+function aquametria_casca_lugar( $slug ) {
+	$slug = sanitize_title( (string) $slug );
+	if ( '' === $slug ) {
+		return array();
+	}
+
+	$categorias = aquametria_casca_categorias();
+
+	/* As páginas que o ARVORE.md mantém na raiz, fora da árvore. */
+	$raiz = array(
+		'calculadoras'            => 'Calculadoras',
+		'metodologia'             => 'Como a gente calcula',
+		'sobre'                   => 'Sobre',
+		'divulgacao-de-afiliados' => 'Divulgação de afiliados',
+	);
+	if ( isset( $raiz[ $slug ] ) ) {
+		return array(
+			'nivel1' => array( '', '' ),
+			'nivel2' => array(),
+			'rotulo' => $raiz[ $slug ],
+			'irmas'  => array(),
+			'fora'   => true,
+		);
+	}
+
+	/* Calculadora: mãe é /calculadoras/, categoria é a do registro do hub. */
+	foreach ( aquametria_casca_calculadoras() as $c ) {
+		if ( ! isset( $c['slug'] ) || $c['slug'] !== $slug ) {
+			continue;
+		}
+		$cat = isset( $c['categoria'] ) ? $c['categoria'] : '';
+		return array(
+			'nivel1' => array( 'calculadoras', 'Calculadoras' ),
+			'nivel2' => isset( $categorias[ $cat ] ) ? array( $cat, $categorias[ $cat ] ) : array(),
+			'rotulo' => isset( $c['titulo'] ) ? $c['titulo'] : $slug,
+			'irmas'  => aquametria_casca_irmas( $slug ),
+			'fora'   => false,
+		);
+	}
+
+	/* Guia: mãe é /guias/, que ainda não existe como página. */
+	$guias_cat = aquametria_casca_categorias_guia();
+	foreach ( aquametria_casca_guias() as $g ) {
+		if ( $g['slug'] !== $slug ) {
+			continue;
+		}
+		$c2 = isset( $guias_cat[ $slug ] ) ? $guias_cat[ $slug ] : array();
+		return array(
+			'nivel1' => array( 'guias', 'Guias' ),
+			'nivel2' => $c2 ? array( $c2[0], $c2[1] ) : array(),
+			'rotulo' => $g['manchete'],
+			'irmas'  => aquametria_casca_irmas( $slug ),
+			'fora'   => false,
+		);
+	}
+
+	return array();
+}
+}
+
+/**
+ * As irmãs de uma página: MESMA MÃE, no ar, ordenadas por afinidade — primeiro
+ * as da mesma categoria de nível 2, depois as demais na ordem do registro. No
+ * máximo quatro, como manda o 16.4(c).
+ *
+ * Derivada do mesmo registro que alimenta o hub e a prateleira de guias, então
+ * calculadora que entra no ar vira irmã de todo mundo sozinha. Página que não
+ * existe publicada não entra: irmã é link, e link morto não é cluster.
+ */
+if ( ! function_exists( 'aquametria_casca_irmas' ) ) {
+function aquametria_casca_irmas( $slug ) {
+	$slug  = sanitize_title( (string) $slug );
+	$irmas = array();
+
+	/* Calculadoras: mesma mãe /calculadoras/. */
+	$eu = null;
+	$lista = aquametria_casca_calculadoras();
+	foreach ( $lista as $c ) {
+		if ( isset( $c['slug'] ) && $c['slug'] === $slug ) {
+			$eu = $c;
+			break;
+		}
+	}
+	if ( null !== $eu ) {
+		$minha = isset( $eu['categoria'] ) ? $eu['categoria'] : '';
+		$perto = array();
+		$longe = array();
+		foreach ( $lista as $c ) {
+			if ( empty( $c['slug'] ) || $c['slug'] === $slug ) {
+				continue;
+			}
+			if ( ! isset( $c['estado'] ) || 'publicada' !== $c['estado'] ) {
+				continue;
+			}
+			if ( '' === aquametria_casca_url_se_existir( $c['slug'] ) ) {
+				continue;
+			}
+			$item = array( 'slug' => $c['slug'], 'rotulo' => $c['titulo'] );
+			if ( '' !== $minha && isset( $c['categoria'] ) && $c['categoria'] === $minha ) {
+				$perto[] = $item;
+			} else {
+				$longe[] = $item;
+			}
+		}
+		$irmas = array_merge( $perto, $longe );
+		return array_slice( $irmas, 0, 4 );
+	}
+
+	/* Guias: mesma mãe /guias/. */
+	$guias = aquametria_casca_guias();
+	$sou_guia = false;
+	foreach ( $guias as $g ) {
+		if ( $g['slug'] === $slug ) {
+			$sou_guia = true;
+			break;
+		}
+	}
+	if ( ! $sou_guia ) {
+		return array();
+	}
+	$cat_guia = aquametria_casca_categorias_guia();
+	$minha    = isset( $cat_guia[ $slug ] ) ? $cat_guia[ $slug ][0] : '';
+	$perto    = array();
+	$longe    = array();
+	foreach ( $guias as $g ) {
+		if ( $g['slug'] === $slug ) {
+			continue;
+		}
+		if ( '' === aquametria_casca_url_se_existir( $g['slug'] ) ) {
+			continue;
+		}
+		$item = array( 'slug' => $g['slug'], 'rotulo' => $g['manchete'] );
+		if ( '' !== $minha && isset( $cat_guia[ $g['slug'] ] ) && $cat_guia[ $g['slug'] ][0] === $minha ) {
+			$perto[] = $item;
+		} else {
+			$longe[] = $item;
+		}
+	}
+	return array_slice( array_merge( $perto, $longe ), 0, 4 );
+}
+}
+
+/* Quantas calculadoras estão REALMENTE abertas ao visitante: anunciadas como
+   publicadas E com página existindo. É este o número que a frase do cluster
+   diz, e ele é contado — nunca digitado (seção 8 do contrato). */
+if ( ! function_exists( 'aquametria_casca_conta_no_ar' ) ) {
+function aquametria_casca_conta_no_ar() {
+	$n = 0;
+	foreach ( aquametria_casca_calculadoras() as $c ) {
+		if ( ! isset( $c['estado'] ) || 'publicada' !== $c['estado'] || empty( $c['slug'] ) ) {
+			continue;
+		}
+		if ( '' !== aquametria_casca_url_se_existir( $c['slug'] ) ) {
+			$n++;
+		}
+	}
+	return $n;
+}
+}
+
+/**
+ * Os degraus da trilha, do topo até a página atual. Cada degrau:
+ *   array( 'rotulo' => ..., 'url' => '' quando a página ainda não existe )
+ * O último degrau é sempre a página atual e nunca leva URL — é onde a pessoa
+ * já está.
+ */
+if ( ! function_exists( 'aquametria_casca_degraus' ) ) {
+function aquametria_casca_degraus( $slug ) {
+	$lugar = aquametria_casca_lugar( $slug );
+	if ( ! $lugar ) {
+		return array();
+	}
+
+	$degraus = array( array( 'rotulo' => 'Início', 'url' => home_url( '/' ) ) );
+
+	if ( empty( $lugar['fora'] ) ) {
+		list( $n1_slug, $n1_rotulo ) = $lugar['nivel1'];
+		if ( '' !== $n1_slug ) {
+			$degraus[] = array(
+				'rotulo' => $n1_rotulo,
+				'url'    => aquametria_casca_url_se_existir( $n1_slug ),
+			);
+		}
+		if ( ! empty( $lugar['nivel2'] ) ) {
+			$degraus[] = array(
+				'rotulo' => $lugar['nivel2'][1],
+				'url'    => aquametria_casca_url_se_existir( $lugar['nivel2'][0] ),
+			);
+		}
+	}
+
+	$degraus[] = array( 'rotulo' => $lugar['rotulo'], 'url' => '' );
+
+	return $degraus;
+}
+}
+
+/* A trilha visível. `<nav>` com `<ol>`, porque é navegação e é ordenada; o
+   degrau sem URL sai como texto e o atual leva aria-current. */
+if ( ! function_exists( 'aquametria_casca_trilha_html' ) ) {
+function aquametria_casca_trilha_html( $slug ) {
+	$degraus = aquametria_casca_degraus( $slug );
+	if ( count( $degraus ) < 2 ) {
+		return '';
+	}
+
+	$ultimo = count( $degraus ) - 1;
+	$html   = '<nav class="aqm-trilha" aria-label="Você está em"><ol>';
+	foreach ( $degraus as $i => $d ) {
+		$html .= '<li>';
+		if ( $i === $ultimo ) {
+			$html .= '<span aria-current="page">' . esc_html( $d['rotulo'] ) . '</span>';
+		} elseif ( '' !== $d['url'] ) {
+			$html .= '<a href="' . esc_url( $d['url'] ) . '">' . esc_html( $d['rotulo'] ) . '</a>';
+		} else {
+			/* Categoria ainda não publicada: texto, nunca link morto. */
+			$html .= '<span class="aqm-trilha-espera">' . esc_html( $d['rotulo'] ) . '</span>';
+		}
+		$html .= '</li>';
+	}
+	$html .= '</ol></nav>';
+
+	return $html;
+}
+}
+
+/* O BreadcrumbList. Leva os degraus COM URL mais a página atual, e nada mais —
+   ver decisão 3 no topo desta seção. */
+if ( ! function_exists( 'aquametria_casca_trilha_jsonld' ) ) {
+function aquametria_casca_trilha_jsonld( $slug ) {
+	$degraus = aquametria_casca_degraus( $slug );
+	if ( count( $degraus ) < 2 ) {
+		return array();
+	}
+
+	$atual = array_pop( $degraus );
+	$itens = array();
+	$pos   = 0;
+
+	foreach ( $degraus as $d ) {
+		if ( '' === $d['url'] ) {
+			continue;
+		}
+		$pos++;
+		$itens[] = array(
+			'@type'    => 'ListItem',
+			'position' => $pos,
+			'name'     => $d['rotulo'],
+			'item'     => $d['url'],
+		);
+	}
+
+	$url_atual = aquametria_casca_url_se_existir( $slug );
+	$pos++;
+	$ultimo = array(
+		'@type'    => 'ListItem',
+		'position' => $pos,
+		'name'     => $atual['rotulo'],
+	);
+	if ( '' !== $url_atual ) {
+		$ultimo['item'] = $url_atual;
+	}
+	$itens[] = $ultimo;
+
+	if ( count( $itens ) < 2 ) {
+		return array();
+	}
+
+	return array(
+		'@context'        => 'https://schema.org',
+		'@type'           => 'BreadcrumbList',
+		'itemListElement' => $itens,
+	);
+}
+}
+
+/* O cluster: a frase que linka a mãe (16.4b) e as irmãs (16.4c). */
+if ( ! function_exists( 'aquametria_casca_veja_tambem_html' ) ) {
+function aquametria_casca_veja_tambem_html( $slug ) {
+	$lugar = aquametria_casca_lugar( $slug );
+	if ( ! $lugar || ! empty( $lugar['fora'] ) || empty( $lugar['irmas'] ) ) {
+		return '';
+	}
+
+	$html = '<nav class="aqm-veja" aria-label="Veja também"><h2>Veja também</h2>';
+
+	/* A frase da mãe, só quando a mãe existe. O número é contado. */
+	list( $n1_slug, $n1_rotulo ) = $lugar['nivel1'];
+	$url_mae = ( '' !== $n1_slug ) ? aquametria_casca_url_se_existir( $n1_slug ) : '';
+	if ( '' !== $url_mae && 'calculadoras' === $n1_slug ) {
+		$quantas = aquametria_casca_conta_no_ar();
+		$html   .= '<p class="aqm-veja-mae">Esta é uma das <a href="' . esc_url( $url_mae ) . '">'
+			. esc_html( $quantas ) . ' contas que já estão no ar</a> aqui na Aquametria.</p>';
+	}
+
+	$html .= '<ul>';
+	foreach ( $lugar['irmas'] as $irma ) {
+		$url = aquametria_casca_url_se_existir( $irma['slug'] );
+		if ( '' === $url ) {
+			continue;
+		}
+		$html .= '<li><a href="' . esc_url( $url ) . '">' . esc_html( $irma['rotulo'] ) . '</a></li>';
+	}
+	$html .= '</ul></nav>';
+
+	return $html;
+}
+}
+
+/* ---------------------------------------------------------------------------
+ * 3e. Onde a trilha e o cluster entram na página
+ *
+ * A trilha entra no lugar do bloco core/post-title, ANTES do H1 — é o "abaixo
+ * do header" do 16.3. Se o tema não renderizar esse bloco (template diferente,
+ * outro tema), ela cai na rede de segurança do the_content, no mesmo padrão que
+ * o rodapé já usa desde a 1.0.0. Publicar trilha em um lugar só e torcer para o
+ * bloco existir seria repetir o defeito do rodapé duplicado, ao contrário.
+ *
+ * O cluster entra no FIM do the_content, com prioridade 20: depois do
+ * do_shortcode, então o que ele acrescenta nunca atravessa os filtros de texto
+ * que transformam "&" em entidade. Ele não tem script — mas o lugar certo é o
+ * lugar certo mesmo quando o defeito não está ali hoje.
+ * ------------------------------------------------------------------------- */
+
+if ( ! function_exists( 'aquametria_casca_slug_atual' ) ) {
+function aquametria_casca_slug_atual() {
+	if ( is_front_page() || ! is_singular() ) {
+		return '';
+	}
+	$post = get_post();
+	if ( ! $post || empty( $post->post_name ) ) {
+		return '';
+	}
+	return $post->post_name;
+}
+}
+
+if ( ! function_exists( 'aquametria_casca_trilha_impressa' ) ) {
+function aquametria_casca_trilha_impressa( $marcar = false ) {
+	static $impressa = false;
+	if ( $marcar ) {
+		$impressa = true;
+	}
+	return $impressa;
+}
+}
+
+add_filter( 'render_block', function ( $conteudo, $bloco ) {
+	if ( is_admin() || ( defined( 'REST_REQUEST' ) && REST_REQUEST ) ) {
+		return $conteudo;
+	}
+	$nome = isset( $bloco['blockName'] ) ? $bloco['blockName'] : '';
+	if ( 'core/post-title' !== $nome ) {
+		return $conteudo;
+	}
+	if ( aquametria_casca_trilha_impressa() ) {
+		return $conteudo;
+	}
+	$trilha = aquametria_casca_trilha_html( aquametria_casca_slug_atual() );
+	if ( '' === $trilha ) {
+		return $conteudo;
+	}
+	aquametria_casca_trilha_impressa( true );
+
+	return $trilha . $conteudo;
+}, 10, 2 );
+
+/* Rede de segurança: sem bloco core/post-title na página, a trilha sai no topo
+   do conteúdo. Prioridade 9 para ficar acima de tudo que o conteúdo traz. */
+add_filter( 'the_content', function ( $html ) {
+	if ( is_admin() || ! is_singular() || aquametria_casca_trilha_impressa() ) {
+		return $html;
+	}
+	$trilha = aquametria_casca_trilha_html( aquametria_casca_slug_atual() );
+	if ( '' === $trilha ) {
+		return $html;
+	}
+	aquametria_casca_trilha_impressa( true );
+
+	return $trilha . $html;
+}, 9 );
+
+add_filter( 'the_content', function ( $html ) {
+	if ( is_admin() || ! is_singular() ) {
+		return $html;
+	}
+
+	return $html . aquametria_casca_veja_tambem_html( aquametria_casca_slug_atual() );
+}, 20 );
+
+add_action( 'wp_head', function () {
+	$dados = aquametria_casca_trilha_jsonld( aquametria_casca_slug_atual() );
+	if ( ! $dados ) {
+		return;
+	}
+	echo '<script type="application/ld+json" id="aquametria-trilha-jsonld">' . "\n"
+		. wp_json_encode( $dados ) . "\n" . '</script>' . "\n";
+}, 22 );
 
 /**
  * A home, no molde GUIA do VOZ.md: a pergunta mais frequente em cima, as

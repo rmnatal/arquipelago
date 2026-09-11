@@ -75,7 +75,15 @@ Filha de nível 3 = a ficha da espécie, com o número que ninguém mais dá: qu
 
 As cinco calculadoras no ar **não têm impressão registrada**, então a seção 12.1 ainda permite mover o slug delas — mas as duas travas acima valem do mesmo jeito, e a decisão fica para depois de 16/09.
 
-**O que dá para fazer antes de 16/09, e é o próximo bloco:** breadcrumb com `BreadcrumbList` em toda página que já existe, e os blocos "Veja também" do cluster (16.4). Nenhum dos dois cria URL. O breadcrumb nasce com o nível 2 **em texto, sem link**, porque a categoria ainda não existe — e vira link no bloco que publicar as categorias. Isso é estado de transição declarado, não desenho.
+**O que dava para fazer antes de 16/09 está FEITO** (casca 1.5.0, 11/09/2026): breadcrumb com `BreadcrumbList` e os blocos "Veja também" do cluster (16.4) nas treze páginas no ar. Nenhum dos dois criou URL. O breadcrumb nasceu com o nível 2 **em texto, sem link**, porque a categoria ainda não existe — e vira link sozinho no dia em que a página existir, porque quem resolve o endereço é `aquametria_casca_url_se_existir()`. Estado de transição declarado, não desenho.
+
+**Três coisas desse bloco que quem vier depois precisa saber:**
+
+1. **O JSON-LD não carrega o degrau sem endereço.** A trilha na tela mostra quatro degraus numa calculadora (Início › Calculadoras › Aquecimento e luz › a página); o `BreadcrumbList` publica três, sem a categoria. Não é esquecimento: `ListItem` do meio sem `item` invalida a lista inteira para o Google, e lista inválida é lista ignorada — o schema publicaria menos com cara de publicar mais. Quando a categoria nascer, ela entra nos dois lados de uma vez, sem ninguém lembrar disto. `ferramentas/teste-arvore.mjs` cobra exatamente essa relação.
+2. **As irmãs são derivadas, e a mãe de transição é `/calculadoras/`.** Enquanto o nível 2 não existe, irmã de uma calculadora é qualquer outra calculadora no ar, com as da mesma categoria vindo primeiro. Quando as categorias nascerem, a regra de irmã passa a ser "mesma mãe de nível 2" e as listas encolhem — é o desenho do 16.4(c), e a mudança é de uma linha.
+3. **O guia ainda não tem frase de mãe no corpo.** O 16.4(b) pede breadcrumb E frase; `/guias/` não existe, e frase apontando para página inexistente seria link morto. Os três guias saem com a trilha e com as irmãs, sem a frase — e o portão cobra a AUSÊNCIA dela, para ninguém "consertar" isso com um endereço inventado. A frase nasce junto com `/guias/`.
+
+**E um achado que ficou de fora de propósito:** `/sobre/` é a única das treze páginas que nenhum CORPO de outra página cita — ela vive do menu e do rodapé, que estão em todas, então não é órfã pelo 16.4(f). Mas é a única sem citação editorial, e isso é assunto de pauta (seção 17), não de casca.
 
 ---
 
