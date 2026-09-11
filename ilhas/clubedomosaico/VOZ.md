@@ -31,3 +31,12 @@ Foto grande de peça; uma frase ("Mosaico feito à mão, uma peça por vez"); as
 
 ## Molde de casca: LOJA
 Header claro (branco ou papel #FBF7F4, borda de 1 px #EEE8E4, ~72 px), lótus transparente `identidade/logo/lotus-512.png` a ~40 px + wordmark "clube do mosaico" em texto (Outfit, vinho #69030C ou preto, minúsculas). NÃO usar `logo-clube-do-mosaico.png` (fundo preto) sobre fundo claro — quando o Raphael mandar versão para fundo claro, ela substitui o par. Menu em texto preto (#111), peso 500, hover coral #E8483A. Produto primeiro; ferramentas e guias são apoio da loja, não o contrário. Preto é cor de texto e de detalhe (rodapé pode ser escuro), nunca bloco grande no topo.
+
+## Árvore do site (hierarquia obrigatória — pedido do Raphael em 11/09/2026)
+Toda página vive numa árvore de três níveis, e a URL mostra a árvore. Exemplo: `/materiais/` → `/materiais/colas-e-adesivos/` → `/materiais/colas-e-adesivos/cola-para-vaso-de-ceramica/`.
+- Nível 1: as seções (`/loja/`, `/materiais/`, `/como-fazer/`).
+- Nível 2: a categoria, com o nome que a pessoa usa (`colas-e-adesivos`, `rejuntes`, `pastilhas`, `alicates-e-corte`, `bases`, `acabamento`; na loja: `vasos`, `colares`, `quadros`; em como-fazer: por tipo de peça).
+- Nível 3: a pergunta ou a peça, na URL com as palavras que a pessoa digita (`cola-para-vaso-de-ceramica`, `quantas-pastilhas-para-um-vaso`, `mosaico-em-vaso-de-barro`).
+- Breadcrumb visível no topo de toda página abaixo do header e no JSON-LD (BreadcrumbList); cada nível linka para cima e lista as filhas para baixo.
+- Categoria não nasce vazia: a página de nível 2 só é publicada quando tem pelo menos 3 filhas com dado; até lá o cartão em `/materiais/` não é link e diz "em breve", sem contagem de banco.
+- A malha da seção 9 do contrato nasce dentro dessa árvore — nunca página solta na raiz.
