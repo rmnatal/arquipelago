@@ -2,9 +2,9 @@
 ilha: robometria
 estado: nascendo
 prioridade: 1
-ultima_execucao: 2026-09-10T21:15Z
-executando_desde: 2026-09-10T23:18Z
-bloco_atual: "bloco 5 ENTREGUE: o ARTIGO-ANCORA da R1 esta no ar (/filtro-universal-de-robo-aspirador/, snippet robometria-a1 v1.0.0, manifest revisao 11). A tese e medida, nao escrita: das 16 pecas com compatibilidade declarada NENHUMA atravessa marca, a maior lista do banco nomeia 5 codigos de modelo, e na Electrolux as 6 pecas formam 6 conjuntos de modelos DIFERENTES. O numero nao esta digitado no HTML — a frase de abertura, a description do JSON-LD e a resposta do FAQPage tem duas formas escolhidas pela contagem, e foi provando isso numa copia do banco que apareceu o defeito de a pagina se corrigir na tela e o JSON-LD nao. A malha da secao 9 fechou: duas listagens (home e hub), tres irmas, e a R1 (v1.1.1) apontando de volta. A folha e as funcoes da porta de compra sairam da R1 para a casca (v1.0.2), que agora tambem tem catalogo de artigos. Verificacao: teste-a1 53, teste-casca 64, teste-r1 90, validar-banco, e Chromium com 0 px de rolagem horizontal em 360/390/782/1200. NO AR as 21h36Z, revisao 11 conferida no /status, pagina em 200, apelido em 301 e sitemap com 7 paginas. 16 pecas esperando link de afiliado. Proximo: 3c alvo (a), pecas com codigo da Xiaomi e da WAP, se a rede alcancar o fabricante; se nao, a R2"
+ultima_execucao: 2026-09-11T00:12Z
+executando_desde: null
+bloco_atual: "BLOCOS 4 e 5 DA R2 ENTREGUES, em mutirao, e cada um passou pela verificacao da secao 8 ANTES de o seguinte comecar. A R2 esta no ar (/quantos-pa-o-robo-aspirador-precisa/, revisao 12) e o artigo-ancora dela tambem (/quantos-m2-o-robo-aspirador-limpa-por-carga/, revisao 13, conferida no /status). Sitemap com 9 paginas; a malha fechou nos dois sentidos. O ACHADO que muda a coleta: a formula do tempo real precisa de TRES numeros declarados (cobertura, autonomia, recarga) e NENHUM dos 28 modelos publicaveis tem os tres — os 5 da Electrolux declaram cobertura e calam a recarga; o S20 e o PRA2000 declaram recarga e calam a cobertura. Coletar a recarga desses 5 e o item de menor custo e maior retorno da fila, e entrou no 3c como alvo (e). A R2 tambem se recusa, por medicao: nao converte minuto em m2 (4 das 5 marcas nao declaram area; entre os 2 pares declarados a taxa varia 23% dentro da MESMA marca), nao publica multiciclo sem retomada declarada, nao pergunta voltagem (nenhum modelo declara), e trata 'acima de 4.000 Pa' como exclusivo — S10 e E10 vao para secao rotulada, porque estar no numero nao e estar acima dele. TRES LACUNAS DE MEDICAO foram achadas quebrando o codigo de proposito, e viraram regra do Arquipelago (secao 8): a regua da elegibilidade morava no snippet e o teste a chamava para conferir o dado do snippet; a grade de 10 em 10 m2 nunca pisava num multiplo exato da cobertura; e a busca do FAQPage achava o texto dentro do proprio JSON-LD. Junto, o render de bancada saia pela metade DUAS vezes — sem filtro de pagina e sem as options do Sync — e media 26 KB do que no ar tem 62 KB. Tudo remedido: 0 px de rolagem em 360/390/782/1200 nas cinco paginas. Defeito no ar corrigido: o FAQPage do A1 publicava portugues sem acento. Verificacao: teste-r2 86, teste-a2 62, teste-r1 90, teste-a1 53, teste-casca 64, validar-banco aprovado. 11 modelos esperando link na R2, 5 na vitrine do A2. NENHUMA coleta: a rede devolve 000 para todo dominio de fabricante. Proximo: o bloco de dados que NAO depende de rede — acentuar o que o banco CITA e aparece na tela, e decidir a regra do nivel 2 da escada de fontes"
 ultima_ronda: null
 bloqueada_por: null
 ---
@@ -12,6 +12,28 @@ bloqueada_por: null
 # Estado da ilha Robometria
 
 Espelho legível do estado do projeto. **Nunca guarde credencial aqui.**
+
+## 11/09/2026 — Blocos 4 e 5 da R2: as duas ferramentas e os dois artigos no ar
+
+- **A R2** (`/quantos-pa-o-robo-aspirador-precisa/`, revisão 12) e o **artigo-âncora
+  dela** (`/quantos-m2-o-robo-aspirador-limpa-por-carga/`, revisão 13). Mutirão da
+  seção 13 do contrato: cada bloco passou pela verificação da seção 8 inteira e foi
+  registrado antes de o seguinte começar. Sitemap com 9 páginas.
+- **A ilha ficou completa nos dois eixos.** Compatibilidade: R1 + A1. Dimensionamento:
+  R2 + A2. A malha fecha nos dois sentidos, e nenhuma página é órfã.
+- **O achado que muda a coleta:** a fórmula do tempo real precisa de cobertura,
+  autonomia **e** recarga, e nenhum dos 28 modelos publicáveis tem os três. Coletar a
+  recarga dos 5 Electrolux que já declaram cobertura é o item de menor custo e maior
+  retorno da fila — entrou no 3c como alvo (e).
+- **Nenhuma coleta nesta execução:** a rede devolve `000` para todo domínio de
+  fabricante. Só os domínios das ilhas respondem.
+- **Defeito no ar corrigido:** o FAQPage do A1 publicava português sem acento, dentro
+  do JSON-LD — o canal que a seção 5 do contrato diz valer tanto quanto ranquear.
+- **Três lacunas de medição** foram achadas quebrando o código de propósito e viraram
+  regra do Arquipélago (seção 8 do `ARQUIPELAGO.md`): teste que chama a régua de quem
+  produziu o dado, grade que não pisa na borda, e busca de texto no HTML inteiro em vez
+  de no corpo. Junto delas, o render de bancada saía pela metade — duas vezes, por dois
+  motivos diferentes — e media 26 KB do que no ar tem 62 KB.
 
 ## Infraestrutura
 

@@ -982,6 +982,100 @@ navegador do Raphael, nao da Fundacao.
   decisoes de desenho definidas pela R1 e ainda nao tem implementacao de
   referencia.
 
+## 2026-09-11 (00h07Z) — Bloco 5: o ARTIGO-ANCORA da R2, e o acento que faltava no A1
+
+- **NO AR** em `https://robometria.com.br/quantos-m2-o-robo-aspirador-limpa-por-carga/`
+  (`snippets/robometria-a2.php` v1.0.0, manifest **revisao 13** conferida no
+  `/status`, snippet #10 criado). Sitemap com **9 paginas**, home e hub listando
+  os DOIS artigos, e a malha da secao 9 fechada: o A2 aponta para a R2, para a R1
+  e para o A1, e as tres apontam de volta.
+- Segundo bloco da mesma execucao (mutirao da secao 13 do contrato): a R2 passou
+  pela verificacao da secao 8 inteira e foi registrada **antes** de este comecar.
+- Nenhuma coleta: a rede continua sem alcancar fabricante nenhum. Todo numero do
+  artigo sai do banco ja commitado.
+
+### A tese, e por que ela nao esta digitada
+
+O artigo nao repete a ferramenta (decisao 3 do bloco 5): a R2 calcula a casa da
+pessoa, este texto conta o CATALOGO e responde a pergunta anterior — **de onde
+vem o numero de m2 que os sites publicam.** Tres afirmacoes, as tres derivadas:
+
+1. **Uma marca so declara area por carga** — a Electrolux, em 5 dos 28 modelos.
+   As outras 4 nao publicam o numero em canal nenhum.
+2. **A conta de tempo precisa de tres numeros e nenhum modelo tem os tres.** 5
+   declaram a area, 2 declaram a recarga, e os dois conjuntos nao se encontram.
+3. **Os pares declarados discordam entre si:** 1,35 a 1,66 m2 por minuto, 23% de
+   diferenca dentro da MESMA marca.
+
+Cada uma tem mais de um molde, escolhido pela contagem. E **a prova de que sao
+derivadas roda dentro do teste, toda vez**: `teste-a2.php` planta SEIS bancos
+adulterados num subprocesso, um por molde, e exige que o texto troque de forma E
+que os numeros de hoje sumam da tela. Ler a pagina de hoje so prova que ela esta
+certa hoje; a decisao 1 do bloco 5 e sobre amanha, quando o banco crescer e
+ninguem reler o artigo.
+
+### O DEFEITO QUE ESTAVA NO AR DESDE 21h36Z DE ONTEM
+
+O A1 publicava as tres respostas do FAQPage em **ASCII** — "Nao. Nas 16 pecas de
+reposicao..." — porque elas vinham do arquivo de fatos escritas como o banco
+escreve. O banco desta ilha e ASCII porque ele **cita** fontes; o que a ilha
+**escreve** sai em portugues de verdade (fase 4b do playbook). E o canal em que o
+defeito aparecia e justamente o que a secao 5 do `ARQUIPELAGO.md` diz valer tanto
+quanto ranquear.
+
+Achado ao escrever o A2, que nasceu com a trava que mede isso. Corrigido em
+`gerar-a1.py`, **sem tocar no snippet**: o A1 ja montava o FAQPage dos fatos, e
+era o texto dos fatos que estava errado. Conferido no ar: o JSON-LD do A1 agora
+sai acentuado.
+
+### O RENDER DE BANCADA ESTAVA MEDINDO OUTRA PAGINA — a segunda vez nesta execucao
+
+Alem de nao ligar o filtro de pagina (corrigido na revisao 12), o
+`render-para-teste.php` nao carregava nas options o que o Sync carrega. Resultado:
+toda pagina caia no aviso de "estamos sem o banco no momento" — e o aviso e uma
+pagina **valida**, com folha, cabecalho e rodape, entao o engano nao aparecia. As
+paginas renderizadas pularam de 26 KB para 62 KB quando o carregamento entrou.
+
+**A medicao de rolagem horizontal foi refeita do zero, nas paginas de verdade:
+0 px em 360/390/782/1200 nas CINCO paginas.** As tres lacunas de medicao desta
+execucao tem a mesma forma — um teste verde que nao media o que dizia medir — e
+as tres so apareceram porque alguem quebrou o codigo de proposito para ver a
+trava reprovar.
+
+### Uma trava apertada demais
+
+`teste-a1.php` exigia que o catalogo de artigos tivesse **exatamente um** item, e
+reprovou no dia em que a ilha ganhou o segundo. "Este artigo se registrou" nao e
+a mesma afirmacao que "este e o unico artigo", e a segunda nunca foi sobre o A1.
+
+### Verificacao
+
+- `teste-a2.php` **62 medicoes**, `teste-r2.php` 86, `teste-r1.php` 90,
+  `teste-a1.php` 53, `teste-casca.php` 64, `validar-banco.py` aprovado.
+- No ar: HTTP 200, zero `&#038;` dentro de `<script>`, corpo comecando por texto,
+  JSON-LD valido com `Article` + `FAQPage` acentuados, e as tres respostas do
+  FAQPage com todos os numeros escritos tambem no corpo da pagina.
+- `cobertura_de_faixa_r2`, dentro de `modelos-robo.json`, passou a apontar para
+  `dados/cobertura-r2.json` e a explicar as duas diferencas de leitura — duas
+  medicoes da mesma coisa sem ponteiro entre elas divergem em silencio.
+- **5 modelos esperando link de loja** na vitrine deste artigo (os mesmos que
+  declaram area por carga).
+
+### O que ficou bloqueado, e o que NAO esta
+
+**Toda coleta esta bloqueada pela rede**: `mi.com.br`, `wap.ind.br`,
+`mais.conteudo.wap.ind.br` e `xiaomi.com.br` devolvem `000`, e so os dominios das
+ilhas respondem. Isso trava os quatro alvos do 3c e o bloco 6.
+
+**O que nao depende de rede e esta esperando:** acentuar o que o banco CITA e que
+hoje aparece na tela (`nome_na_fonte`, `publicador`, `o_que_muda` saem em ASCII
+dentro da resposta da R1) e resolver a contradicao do nivel 2 da escada de fontes
+— as duas ja estao escritas no `PROMPT.md` da ilha e as duas sao trabalho de
+repositorio.
+
+- **Proximo passo: o bloco de dados que nao depende de rede** — o acento do que a
+  ilha cita, e a decisao de regra sobre o nivel 2.
+
 ## 2026-09-10 (23h18Z) — Bloco 4: a R2 no ar, e a conta que ninguem publica
 
 - **NO AR** em `https://robometria.com.br/quantos-pa-o-robo-aspirador-precisa/`

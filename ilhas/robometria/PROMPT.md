@@ -113,6 +113,25 @@ declara. Não adianta procurar mais: o número não está publicado. A
 virou conteúdo: a R2 mostra os minutos, diz que o fabricante não declara área e explica
 por que não chuta.
 
+(e) **A RECARGA DOS MODELOS QUE JÁ DECLARAM COBERTURA — o item de MENOR custo e
+MAIOR retorno que a varredura da R2 encontrou, e ele não existia nesta lista até
+11/09/2026.** Medido: a fórmula do tempo real da especificação precisa de TRÊS
+números declarados — cobertura por carga, autonomia e recarga — e **nenhum dos 28
+modelos publicáveis tem os três**. Os 5 da Electrolux declaram cobertura e
+autonomia e calam a recarga; o Xiaomi S20 e o Positivo PRA2000 declaram recarga e
+calam a cobertura. **Um campo, em cinco modelos de uma marca só, destrava a frase
+que é a razão de a R2 existir** — "a sua casa fica pronta em X minutos" — e ela
+hoje sai pela metade, dizendo que o total depende de um número que ninguém
+publica. Não é lacuna de mercado como a dos m²: a recarga é dado de manual, e a
+Electrolux publica manual.
+
+**TODA a coleta acima depende de rede que hoje NÃO existe.** Medido em
+11/09/2026: `mi.com.br`, `xiaomi.com.br`, `wap.ind.br` e
+`mais.conteudo.wap.ind.br` devolvem `000` — só os domínios das ilhas respondem.
+**Antes de escolher um alvo do 3c, teste a rede com `curl`.** Se ela continuar
+fechada, o 3c inteiro está bloqueado e a fila cai para o trabalho de repositório
+listado em "Específico desta ilha", que não depende de rede nenhuma.
+
 **ANTES de colher qualquer coisa para o 3c, rode `python3 ferramentas/cobertura-r1.py` e
 `ferramentas/validar-banco.py`.** As duas varreduras são o que separa "acrescentei um
 item" de "tirei uma entrada do vazio" — e foi contando itens, em vez de varrer, que a
@@ -120,11 +139,12 @@ lacuna da R1 ficou escondida atrás de "33 pares declarados".
 
 **4. FERRAMENTAS**, uma por execução, já nascendo com JSON-LD, tabela de exemplos pré-renderizada, resposta antes da explicação e procedência na frase. **Não deixe retrofit para depois** — foi o que custou dias na Aquametria.
 
-**4 e 4e — A R1 ESTÁ NO AR desde 10/09/2026** (`snippets/robometria-r1.php`,
-hoje **v1.1.0**, manifest revisão 10, `/status` conferido). Endereço:
-`https://robometria.com.br/qual-peca-serve-no-meu-robo-aspirador/`. **A próxima
-ferramenta é a R2**, e ela nasce com as mesmas **cinco** decisões, que deixaram de ser
-opinião e viraram o jeito desta ilha:
+**4 e 4e — AS DUAS FERRAMENTAS ESTÃO NO AR.** A R1 desde 10/09/2026
+(`snippets/robometria-r1.php`, v1.1.1) e a **R2 desde 11/09/2026**
+(`snippets/robometria-r2.php` v1.0.0, manifest revisão 12, `/status` conferido),
+em `https://robometria.com.br/quantos-pa-o-robo-aspirador-precisa/`. As cinco
+decisões abaixo deixaram de ser opinião e viraram o jeito desta ilha — **ferramenta
+nova nasce com elas, nunca com retrofit depois:**
 
 1. **A resposta é servida pelo SERVIDOR.** Formulário GET para a própria página, resposta
    montada em PHP. Sem JavaScript a ferramenta funciona por completo, e cada consulta tem
@@ -153,6 +173,25 @@ opinião e viraram o jeito desta ilha:
    lista **e a página diz por quê**. `teste-r1.php` mede os cinco pontos (seção 13 dele),
    e a R2 nasce com isso, não com retrofit.
 
+**O QUE A R2 ACRESCENTOU À DECISÃO 2, e vale para toda ferramenta de entrada
+contínua.** A entrada da R1 é uma lista fechada, então o gerador pré-calcula toda
+resposta possível e o snippet vira um escritor de frases. A da R2 tem metragem
+contínua de 10 a 400 m², e por isso o PHP **precisa** fazer aritmética. A regra
+continua na referência e viaja como fato; a aritmética declarada o PHP faz, e a
+prova de que faz igual é uma **GRADE** que o teste percorre inteira — 9 situações,
+114 cartões, 200 casos de metragem. E a grade tem que incluir as **bordas**: a de
+10 em 10 m² não pegava trocar `ceil` por `floor + 1`, porque 162 e 166 m² não têm
+múltiplo terminado em zero. Grade que não cobre a borda é amostra com nome de grade.
+
+**A RÉGUA DE UMA REGRA NÃO PODE MORAR NO SNIPPET SE QUEM A CONFERE É O TESTE.** A
+R2 nasceu com uma função `atende( $pa, $limiar )` que respeitava o operador da
+fonte, nunca era chamada na montagem da página, e só o teste chamava — para
+conferir a lista que o snippet publica. Trocar o `>` por `>=` fazia as duas metades
+errarem juntas e o teste passar, com um modelo que a fonte citada não cobre em
+primeiro lugar numa lista de recomendação. A função saiu do snippet e a comparação
+passou a ser escrita no teste, lida do operador que a fonte declara. **Função morta
+num snippet publicado não é neutra: ela parece a regra, e um dia alguém a usa.**
+
 **E o achado que só apareceu LENDO a resposta como um leitor lê:** a página se
 contradizia na mesma tela, dizendo "a Electrolux declara o filtro X compatível com o
 ERB60" e, na frase seguinte, "a Electrolux não vende o filtro avulso para este modelo".
@@ -162,6 +201,25 @@ frases da mesma família** ("nenhum modelo atende a sua metragem"): escreva-as d
 montar o resultado inteiro, não durante.
 
 **5. ARTIGOS-ÂNCORA** pareados com cada ferramenta, na mesma execução.
+
+**OS DOIS ESTÃO NO AR.** O da R2 desde 11/09/2026
+(`snippets/robometria-a2.php` v1.0.0, manifest revisão 13):
+`https://robometria.com.br/quantos-m2-o-robo-aspirador-limpa-por-carga/`. Ele não
+repete a ferramenta — a R2 calcula a casa da pessoa, o artigo conta o catálogo e
+responde a pergunta anterior, de onde vem o número de m² que os sites publicam.
+
+**A PROVA DE QUE A TESE É DERIVADA PASSOU A RODAR DENTRO DO TESTE, toda vez.** No
+A1 as mutações foram feitas uma vez, à mão, por quem escreveu. No A2
+(`teste-a2.php`) elas são parte do arquivo: seis bancos adulterados num
+subprocesso, um por molde, exigindo que o texto troque de forma **e** que os
+números de hoje sumam da tela. Ler a página de hoje só prova que ela está certa
+hoje — e a decisão 1 abaixo é sobre amanhã. **Artigo novo nasce assim.**
+
+**E o A1 publicava o FAQPage em ASCII.** "Nao. Nas 16 pecas de reposicao..." dentro
+do JSON-LD, que é justamente o canal que a seção 5 do `ARQUIPELAGO.md` diz valer
+tanto quanto ranquear. Corrigido em 11/09/2026 no `gerar-a1.py`, sem tocar no
+snippet. **O banco é ASCII porque ele CITA fontes; o que a ilha ESCREVE sai
+acentuado — e isso vale também para o que ela escreve dentro de marcação.**
 
 **O DA R1 ESTÁ NO AR desde 10/09/2026** (`snippets/robometria-a1.php` v1.0.0, manifest
 revisão 11): `https://robometria.com.br/filtro-universal-de-robo-aspirador/`. Ele fechou a
@@ -193,8 +251,11 @@ uma peça multimarca plantada. Trava que nunca foi vista reprovando é trava nã
 ## Específico desta ilha
 - **Compatibilidade de peça é o produto desta ilha.** Uma informação errada aqui destrói a confiança inteira. Toda afirmação de compatibilidade carrega fonte do fabricante e data na própria frase.
 - Amazon paga 8% em Eletrodomésticos, mas a conta **não** deve ser aberta até haver tráfego: a regra das 3 vendas em 180 dias começa no cadastro. A Shopee já está aberta e serve todas as ilhas.
-- **WordPress, casca, a primeira ferramenta e o primeiro artigo estão no ar desde 10/09/2026** (manifest revisão 11). Os blocos 1, 2, 3, 3b, 4, 4e e 5 estão feitos. **O próximo é o 3c alvo (a)** — peça com código da Xiaomi e da WAP, o único lado coletável da emenda entre as duas ferramentas —, **se a rede alcançar o fabricante**; se não alcançar, o próximo é a **R2**, que já tem as cinco decisões de desenho fixadas pela R1 e ainda não tem implementação de referência.
-- **Antes de mexer em qualquer snippet, rode os TRÊS testes de bancada:** `php ferramentas/teste-casca.php .` (64 medições), `php ferramentas/teste-r1.php .` (90) e `php ferramentas/teste-a1.php .` (53). Eles são a única verificação da seção 8 que roda sem depender do site. O segundo compara as 188 frases publicadas contra a implementação de referência; o terceiro **recalcula a tese do artigo em PHP, direto do banco, sem olhar para o que o gerador em Python escreveu** — duas contas independentes que batem são medição, uma conta sozinha é o que o autor achou.
+- **WordPress, casca, AS DUAS ferramentas e OS DOIS artigos estão no ar desde 11/09/2026** (manifest revisão 13, 9 páginas no sitemap). Os blocos 1, 2, 3, 3b, 4, 4e e 5 estão feitos para os dois eixos da ilha.
+- **O PRÓXIMO PASSO, e ele NÃO depende de rede:** o bloco de dados que fecha as duas dívidas escritas aqui embaixo — acentuar o que o banco CITA e que hoje aparece na tela, e decidir a regra do nível 2 da escada de fontes. As duas são trabalho de repositório, e as duas já estão medidas e nomeadas.
+  **Só depois disso, e só se a rede abrir**, vem o 3c: teste com `curl` antes de escolher o alvo, e leia a ordem atualizada na fila (o item (e), a recarga dos modelos que já declaram cobertura, entrou em 11/09/2026 como o de menor custo e maior retorno).
+  **A leva de malha (5b) continua travada** pela metade humana do despacho: o sitemap precisa ser reenviado no Search Console, e isso exige o navegador do Raphael.
+- **Antes de mexer em qualquer snippet, rode os CINCO testes de bancada:** `php ferramentas/teste-casca.php .` (64 medições), `php ferramentas/teste-r1.php .` (90), `php ferramentas/teste-a1.php .` (53), `php ferramentas/teste-r2.php .` (86) e `php ferramentas/teste-a2.php .` (62). Eles são a única verificação da seção 8 que roda sem depender do site. O segundo compara as 188 frases publicadas contra a implementação de referência; o terceiro **recalcula a tese do artigo em PHP, direto do banco, sem olhar para o que o gerador em Python escreveu** — duas contas independentes que batem são medição, uma conta sozinha é o que o autor achou.
 - **A PORTA DE COMPRA TEM UM DONO SÓ, e ele é a casca.** `robometria_casca_porta_de_compra`, `robometria_casca_rotulo_da_loja`, `robometria_casca_fonte_link` e `robometria_casca_css_vitrine` valem para toda página desta ilha que recomenda item; a R1 delega para elas. Página nova que recomenda produto **chama estas funções**, nunca escreve as suas. Os pesos visuais do botão de compra e do link de procedência são regra do Arquipélago (seção 7), não estilo local: com uma cópia por página, bastaria alguém ajustar uma delas para a ilha voltar — numa página só, e sem ninguém notar — ao defeito de 10/09/2026.
 - **Página nova entra no catálogo da casca pelo FILTRO dela**, `robometria_ferramentas` para ferramenta e `robometria_artigos` para artigo. A casca nunca ganha uma cópia da página dentro; é assim que a home e o hub listam qualquer coisa nova sem serem editados de novo, e é o que garante as duas listagens que a seção 9 exige.
 - **O BANCO ESTÁ EM ASCII, E AGORA ISSO APARECE NA TELA.** Enquanto o banco só alimentava medição, acento faltando em `nome_na_fonte`, `publicador` e `o_que_muda` não custava nada; com a R1 no ar, esse texto é citado dentro da resposta publicada ("Aspirador Robo", "identificada como 'Versao A'"). O que a ilha escreve sai acentuado; o que ela cita sai como o banco tem — e o banco tem errado. É trabalho de dados, e o lugar barato de fazê-lo é junto da próxima leva de coleta, quando esses registros já forem ser tocados.
