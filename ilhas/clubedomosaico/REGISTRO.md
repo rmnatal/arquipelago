@@ -494,7 +494,7 @@ então nenhuma nasce agora. Depois disso, o bloco 4 (a ferramenta F2).
 
 ---
 
-## 11/09/2026 19h2xZ — A ÁRVORE DA SEÇÃO 16, e nenhuma URL se moveu
+## 11/09/2026 19h40Z — A ÁRVORE DA SEÇÃO 16, e nenhuma URL se moveu
 
 Casca **1.3.0**, manifest na **revisão 7**. Bloco nomeado como próximo passo pela
 execução das 17h55Z e pelo despacho do Raphael de 11/09, cuja última linha dizia
@@ -585,3 +585,35 @@ um processo por página; `php -l` limpo nos dois snippets; `validar-banco.py`
 aprovado; `mutacoes-arvore.py` 19 de 19 reprovadas; `mutacoes-voz-e-cabeca.py`
 19 de 19 e `mutacoes-rejunte.py` 12 de 12 continuam reprovando (nada deste bloco
 afrouxou trava anterior).
+
+**NO AR às 19h40Z:** Sync acionado por `curl`, `/status` com **revisão 7**, igual
+à do manifest. **9 de 9 URLs em 200** e **117 afirmações medidas no HTML
+SERVIDO**, sem uma falha:
+
+- zero `&#038;` dentro de `<script>` nas nove (contado só dentro dos blocos de
+  script, 7 na home e 8 nas outras);
+- trilha em 8 de 9, sempre **antes do H1** e **uma só por página**; a home não
+  tem, e também não publica `BreadcrumbList`;
+- nenhum degrau aponta para página inexistente; a trilha de
+  `/materiais/como-sabemos/` tem os três degraus e o do meio **linka** a mãe;
+- `BreadcrumbList` nas oito, todo `ListItem` com `item`, posições de 1 a n sem
+  buraco, e a relação que importa conferida uma a uma: **os itens do schema são
+  os degraus linkados da trilha mais a página atual**;
+- "Veja também" em 3 de 9 — exatamente as três seções, com 2 irmãs cada, nenhuma
+  irmã morta e nenhuma página se listando como irmã de si mesma;
+- os **6 cartões** de categoria do Guia servem "Em breve", **sem um dígito** e
+  **sem serem link** (16.5), enquanto a camada de prova continua publicando 5
+  colas e 5 rejuntes contados do banco;
+- o `wp-sitemap-posts-page-1.xml` continua com as mesmas 8 URLs, e
+  `/materiais/como-sabemos/` continua fora dele.
+
+**10 dos 10 itens do banco ainda esperam link de afiliado; 10 sem imagem.** Este
+bloco não tocou catálogo. Da pauta da seção 17: **nenhum tema escrito, nenhum na
+fila, nenhum recusado** — `pauta.md` ainda não existe nesta pasta.
+
+**Próximo passo:** o **bloco 4 — a ferramenta F2** ("qual cola e qual rejunte
+para a sua peça"), que é a primeira página de nível 3 desta ilha e o primeiro
+caso real do degrau de trilha sem página, já coberto pela borda fabricada na
+bancada. Ela nasce com o bloco de compra da seção 7 junto, mesmo com
+`afiliado.url` vazio, e com a mãe `/materiais/` declarada no `ARVORE.md`. Só
+depois dela uma categoria de nível 2 chega perto das 3 filhas que a 16.5 exige.

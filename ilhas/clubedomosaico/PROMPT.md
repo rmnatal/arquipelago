@@ -90,9 +90,19 @@ saiu pela metade, pelo motivo abaixo. Ver `REGISTRO.md` para o que foi medido.
 **A reescrita da home e da `/materiais/` pela seção 15 (as duas ATUALIZAÇÕES de
 11/09) saiu junto e está cumprida.** A home deixou de ser manifesto; o bastidor
 do Guia mudou para `/materiais/como-sabemos/` (nível 2, `noindex`, fora do
-sitemap); o bug "10 dos 5 itens esperam link" saiu do ar. O que **não** entrou:
-o `ARVORE.md` e o breadcrumb da seção 16 — é o próximo bloco, e
-`/materiais/como-sabemos/` já é o primeiro caso dele.
+sitemap); o bug "10 dos 5 itens esperam link" saiu do ar.
+
+**A ÁRVORE DA SEÇÃO 16 TAMBÉM ESTÁ CUMPRIDA — 11/09/2026, 19h40Z**, casca 1.3.0,
+manifest na revisão 7, `/status` conferido e as nove URLs abertas no ar.
+`ARVORE.md` escrito, trilha em oito das nove páginas (a home não tem, 16.3),
+`BreadcrumbList` nas mesmas oito e o cluster "Veja também" ligando os três
+motores. **Nenhuma URL mudou e nenhuma precisou mudar** — esta ilha já nascera
+com a árvore certa na estrutura; o que faltava era ela ficar visível. Por isso
+não há 301 nenhum e o sitemap continua com as mesmas oito URLs. Critério de
+pronto medido, não de olho: `teste-casca.php` com 327 afirmações (ele LÊ o
+`ARVORE.md` para cobrar que documento e código digam a mesma coisa),
+`ferramentas/mutacoes-arvore.py` com 19 de 19 mutações reprovadas, e 117
+afirmações medidas no HTML servido.
 
 ATUALIZAÇÃO 11/09 (Pauta): quando existir `pauta.md` nesta pasta (seção 17 do contrato), os guias entram na fila depois desta reescrita e da árvore, em levas por cluster; registrar no fecho de cada bloco quantos temas estão escritos / na fila / recusados.
 
