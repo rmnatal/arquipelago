@@ -48,10 +48,12 @@ Sem quarto nível. Fora da árvore ficam só a home, `/sobre/`, `/contato/`, `/d
 
 **As duas ferramentas (bloco 4)** são nível 3 e a mãe delas é `/materiais/` **direto**, dois níveis em vez de três — estado de transição declarado, não desenho, como o `/calculadoras/` da Aquametria. A categoria definitiva de cada uma se decide no bloco que as publica, e nem antes nem por este arquivo:
 
-| ferramenta | slug de hoje | mãe de hoje | candidata a nível 2 |
-|---|---|---|---|
-| F2 — qual cola e qual rejunte | `qual-cola-usar-no-mosaico` | `/materiais/` | `colas-e-adesivos` |
-| F1 — quantas pastilhas e quanto rejunte | `quantas-pastilhas-para-mosaico` | `/materiais/` | `pastilhas` ou `rejuntes` — a F1 atravessa as duas, e é por isso que a escolha espera o bloco que a publica |
+| ferramenta | slug | mãe | existe hoje | candidata a nível 2 |
+|---|---|---|---|---|
+| F2 — qual cola usar no mosaico, e qual rejunte | `/materiais/qual-cola-usar-no-mosaico/` | `/materiais/` | **sim**, desde 11/09/2026 | `colas-e-adesivos` |
+| F1 — quantas pastilhas e quanto rejunte | `quantas-pastilhas-para-mosaico` | `/materiais/` | não | `pastilhas` ou `rejuntes` — a F1 atravessa as duas, e é por isso que a escolha espera o bloco que a publica |
+
+**A F2 nasceu em `/materiais/` e não em `/materiais/colas-e-adesivos/`, e a escolha é do bloco que a publicou.** A categoria definitiva dela só pode nascer com três filhas de dado real (16.5), e hoje ela teria uma. Pôr a ferramenta debaixo de uma categoria que ainda não existe criaria um degrau de trilha sem endereço — e, pior, obrigaria a mover a URL no dia em que a categoria nascesse, o que a 12.1 proíbe para página com impressão registrada. A regra que fica para as próximas: **a mãe de hoje é a mãe que já tem endereço**, e a mudança de pai, quando vier, será uma decisão com 301 e sitemap reenviado, tomada olhando a posição da página.
 
 ## 3. `/loja/` — as peças
 
@@ -80,6 +82,7 @@ Nível 3 = o tutorial, com a lista de materiais ligada ao Guia e o "prefere pron
 | `/materiais/` | 1 | home | Início › Materiais |
 | `/como-fazer/` | 1 | home | Início › Como fazer |
 | `/materiais/como-sabemos/` | 2 | `/materiais/` | Início › Materiais › Como sabemos |
+| `/materiais/qual-cola-usar-no-mosaico/` | 3 | `/materiais/` | Início › Materiais › Qual cola usar no mosaico, e qual rejunte |
 | `/sobre/` | raiz | — | Início › Sobre |
 | `/contato/` | raiz | — | Início › Contato |
 | `/divulgacao-de-afiliados/` | raiz | — | Início › Divulgação de afiliados |
@@ -91,7 +94,7 @@ Nível 3 = o tutorial, com a lista de materiais ligada ao Guia e o "prefere pron
 
 ## 6. O cluster, e as duas coisas que ele NÃO faz
 
-**16.4(a) — a mãe lista as filhas.** `/materiais/` lista as seis categorias (cartão "em breve" enquanto a página não existe) e cita `/materiais/como-sabemos/` no corpo. `/loja/` e `/como-fazer/` ainda não têm filha para listar, e listagem que promete o que não existe é pior que listagem curta.
+**16.4(a) — a mãe lista as filhas.** `/materiais/` lista as seis categorias (cartão "em breve" enquanto a página não existe), **lista as duas ferramentas** desde a casca 1.5.0 e cita `/materiais/como-sabemos/` no corpo. A listagem das ferramentas entrou no bloco 4, e a falta dela era invisível enquanto nenhuma existia: no dia em que a primeira nasceu, ela viraria página órfã pela 16.4(f), que cobra dois links internos e um deles da mãe. `/loja/` e `/como-fazer/` ainda não têm filha para listar, e listagem que promete o que não existe é pior que listagem curta.
 
 **16.4(b) — a filha linka a mãe no breadcrumb e numa frase do corpo.** Vale para nível 2 e 3, cuja mãe é uma página de conteúdo. Para o nível 1 a mãe é a home, que já é link em toda página pela marca do cabeçalho e pelo primeiro degrau da trilha — cobrar uma frase no corpo apontando para a home seria cobrar ruído.
 
@@ -114,5 +117,7 @@ Hoje isso não corta nada nesta ilha, porque os três degraus de nível 1 existe
 ## 8. O que este bloco NÃO fez, de propósito
 
 - **Não criou nenhuma URL.** As dez páginas de nível 2 desta árvore (seis do Guia, mais as da Loja e da Escola) esperam a 16.5, que é portão de dado e não de calendário.
+
+> **ATUALIZAÇÃO DO BLOCO 4 — 11/09/2026.** Nasceu a primeira URL de nível 3 da ilha, `/materiais/qual-cola-usar-no-mosaico/`, e ela é a única. As dez páginas de nível 2 continuam esperando a 16.5. A F2 tem **uma** irmã no ar (`/materiais/como-sabemos/`), então ela **não** publica bloco "Veja também" — é a regra da seção 6 deste arquivo funcionando pela primeira vez num caso real, e a frase que linka a mãe (16.4b) sai no corpo da ferramenta, onde o cluster não chega. O primeiro **degrau de trilha sem página**, que a bancada fabricou em 11/09 para ter o que medir, continua sem caso real: os três degraus da trilha da F2 — Início, Materiais e ela mesma — têm endereço.
 - **Não mexeu no sitemap.** Nenhuma página mudou de endereço, então não há nada a reenviar além do que já está enviado.
 - **Não escolheu a categoria definitiva das duas ferramentas.** Quem publica a página escolhe o endereço dela; este arquivo registra as candidatas para a escolha não nascer do zero.

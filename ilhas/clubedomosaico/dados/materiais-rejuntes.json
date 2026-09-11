@@ -47,12 +47,12 @@
       "tipo": "cimenticio",
       "marca": "Quartzolit",
       "fabricante": "Saint-Gobain Weber",
-      "nome_comercial": "rejunte ceramicas quartzolit",
+      "nome_comercial": "Rejunte Cerâmicas Quartzolit",
       "codigo_fabricante": null,
       "motivo_sem_codigo": "O boletim tecnico se identifica pelo titulo e pela data do arquivo (2018-08), sem codigo impresso do tipo BRSA004.",
       "declaracoes": {
         "indicado_para": [
-          "ceramicas",
+          "cerâmicas",
           "pedras",
           "uso residencial, comercial e industrial",
           "pisos e paredes"
@@ -62,8 +62,8 @@
         "nao_indicado_para": [],
         "ambientes_declarados": [],
         "resistencias_declaradas": [
-          "liberacao para contato com area molhada em 24 horas",
-          "em area externa, proteger do sol, do vento e da chuva por 24 horas"
+          "liberação para contato com área molhada em 24 horas",
+          "em área externa, proteger do sol, do vento e da chuva por 24 horas"
         ]
       },
       "propriedades": {
@@ -118,21 +118,21 @@
       "fontes": {
         "bt-rejunte-ceramicas-2018-08": {
           "url": "https://www.quartzolit.weber/files/br/2018-08/rejunte_ceramicas_quartzolit.pdf",
-          "tipo": "boletim tecnico do fabricante (arquivo 2018-08), lido por busca no dominio dele; PDF nao aberto",
+          "tipo": "boletim técnico do fabricante (arquivo 2018-08), lido por busca no domínio dele; PDF não aberto",
           "nivel": 2,
           "coletado_em": "2026-09-11",
           "conferir_no_pdf": true
         },
         "pagina-produto-rejunte-ceramicas": {
           "url": "https://www.quartzolit.weber/argamassas-e-rejuntes-quartzolit/rejuntes-quartzolit/rejunte-ceramicas-quartzolit",
-          "tipo": "pagina de produto do fabricante",
+          "tipo": "página de produto do fabricante",
           "nivel": 3,
           "coletado_em": "2026-09-10",
           "conferir_no_pdf": true
         },
         "pagina-dicas-rejuntes": {
           "url": "https://www.quartzolit.weber/ajuda-e-dicas-para-construir/tudo-sobre-os-tipos-de-rejuntes-e-suas-funcoes/dicas-importantes-sobre-rejuntes",
-          "tipo": "pagina de ajuda do fabricante, onde a formula de consumo e o exemplo com CR 1,75 sao publicados",
+          "tipo": "página de ajuda do fabricante, onde a fórmula de consumo e o exemplo com CR 1,75 são publicados",
           "nivel": 3,
           "coletado_em": "2026-09-10",
           "conferir_no_pdf": false
@@ -160,13 +160,13 @@
       "tipo": "cimenticio",
       "marca": "Quartzolit",
       "fabricante": "Saint-Gobain Weber",
-      "nome_comercial": "rejunte porcelanatos e ceramicas quartzolit",
+      "nome_comercial": "Rejunte Porcelanatos e Cerâmicas Quartzolit",
       "codigo_fabricante": null,
       "motivo_sem_codigo": "Boletim identificado pelo nome do arquivo e pelo ano (BT 2024), sem codigo impresso.",
       "declaracoes": {
         "indicado_para": [
           "porcelanatos",
-          "ceramicas",
+          "cerâmicas",
           "uso residencial, comercial e industrial",
           "pisos e paredes"
         ],
@@ -175,7 +175,7 @@
         "nao_indicado_para": [],
         "ambientes_declarados": [],
         "resistencias_declaradas": [
-          "liberacao para contato com area molhada em 24 horas",
+          "liberação para contato com área molhada em 24 horas",
           "tecnologia Protect contra fungos e algas"
         ]
       },
@@ -235,14 +235,14 @@
       "fontes": {
         "bt-rejunte-porcelanatos-2024": {
           "url": "https://www.quartzolit.weber/files/br/2024-02/05._BoletimTcnico_RejuntePorcelanatoseCeramicas_2024.pdf",
-          "tipo": "boletim tecnico do fabricante (arquivo 2024-02), lido por busca no dominio dele; PDF nao aberto",
+          "tipo": "boletim técnico do fabricante (arquivo 2024-02), lido por busca no domínio dele; PDF não aberto",
           "nivel": 2,
           "coletado_em": "2026-09-11",
           "conferir_no_pdf": true
         },
         "pagina-produto-rejunte-porcelanatos": {
           "url": "https://www.quartzolit.weber/argamassas-e-rejuntes-quartzolit/rejuntes-quartzolit/rejunte-porcelanatos-e-ceramicas-quartzolit",
-          "tipo": "pagina de produto do fabricante",
+          "tipo": "página de produto do fabricante",
           "nivel": 3,
           "coletado_em": "2026-09-11",
           "conferir_no_pdf": true
@@ -276,26 +276,26 @@
       "tipo": "acrilico",
       "marca": "Quartzolit",
       "fabricante": "Saint-Gobain Weber",
-      "nome_comercial": "rejunte acrilico quartzolit",
+      "nome_comercial": "Rejunte Acrílico Quartzolit",
       "codigo_fabricante": null,
       "motivo_sem_codigo": "Boletim identificado pelo titulo e pela data do arquivo (2023-04), sem codigo impresso.",
       "declaracoes": {
         "indicado_para": [
-          "ceramicas",
+          "cerâmicas",
           "porcelanatos",
           "revestimentos especiais",
           "pisos e paredes",
           "uso residencial e comercial",
-          "sobreposicao de rejunte antigo, cimenticio, acrilico e epoxi"
+          "sobreposição de rejunte antigo, cimentício, acrílico e epóxi"
         ],
         "nao_usar_em": [],
         "nao_recomendado_em": [],
         "nao_indicado_para": [],
         "ambientes_declarados": [
-          "areas internas e externas"
+          "áreas internas e externas"
         ],
         "resistencias_declaradas": [
-          "tecnologia antimofo, recomendado para areas molhadas"
+          "tecnologia antimofo, recomendado para áreas molhadas"
         ]
       },
       "propriedades": {
@@ -357,14 +357,14 @@
       "fontes": {
         "bt-rejunte-acrilico-2023-04": {
           "url": "https://www.quartzolit.weber/files/br/2023-04/rejunte_acrilico_quartzolit%20(1).pdf",
-          "tipo": "boletim tecnico do fabricante (arquivo 2023-04), lido por busca no dominio dele; PDF nao aberto",
+          "tipo": "boletim técnico do fabricante (arquivo 2023-04), lido por busca no domínio dele; PDF não aberto",
           "nivel": 2,
           "coletado_em": "2026-09-11",
           "conferir_no_pdf": true
         },
         "pagina-produto-rejunte-acrilico": {
           "url": "https://www.quartzolit.weber/argamassas-e-rejuntes-quartzolit/rejuntes-quartzolit/rejunte-acrilico-quartzolit",
-          "tipo": "pagina de produto do fabricante",
+          "tipo": "página de produto do fabricante",
           "nivel": 3,
           "coletado_em": "2026-09-11",
           "conferir_no_pdf": true
@@ -387,7 +387,7 @@
       "tipo": "epoxi",
       "marca": "Quartzolit",
       "fabricante": "Saint-Gobain Weber",
-      "nome_comercial": "rejunte epoxi quartzolit",
+      "nome_comercial": "Rejunte Epóxi Quartzolit",
       "codigo_fabricante": null,
       "motivo_sem_codigo": "Boletim identificado pelo titulo e pela data do arquivo (2018-01), sem codigo impresso.",
       "declaracoes": {
@@ -401,8 +401,8 @@
         "ambientes_declarados": [],
         "resistencias_declaradas": [
           "piscinas",
-          "liberacao para contato com agua em piscinas e areas molhadas em 7 dias",
-          "impermeavel, antimofo e resistente a manchas"
+          "liberação para contato com água em piscinas e áreas molhadas em 7 dias",
+          "impermeável, antimofo e resistente a manchas"
         ]
       },
       "propriedades": {
@@ -451,14 +451,14 @@
       "fontes": {
         "bt-rejunte-epoxi-2018-01": {
           "url": "https://www.quartzolit.weber/files/br/2018-01/rejunte_epxi_quartzolit.pdf",
-          "tipo": "boletim tecnico do fabricante (arquivo 2018-01), lido por busca no dominio dele; PDF nao aberto",
+          "tipo": "boletim técnico do fabricante (arquivo 2018-01), lido por busca no domínio dele; PDF não aberto",
           "nivel": 2,
           "coletado_em": "2026-09-11",
           "conferir_no_pdf": true
         },
         "blog-fabricante-rejunte-epoxi": {
           "url": "https://www.quartzolit.weber/blog/rejuntes/rejunte-epoxi-por-que-quando-e-como-usar",
-          "tipo": "materia do blog do proprio fabricante — e onde aparece a mencao a PASTILHAS entre os revestimentos, que o boletim nao trouxe",
+          "tipo": "matéria do blog do próprio fabricante — é onde aparece a menção a PASTILHAS entre os revestimentos, que o boletim não trouxe",
           "nivel": 4,
           "coletado_em": "2026-09-11",
           "conferir_no_pdf": false
@@ -483,22 +483,22 @@
       "tipo": "cimenticio",
       "marca": "Quartzolit",
       "fabricante": "Saint-Gobain Weber",
-      "nome_comercial": "rejunte piscinas quartzolit",
+      "nome_comercial": "Rejunte Piscinas Quartzolit",
       "codigo_fabricante": null,
       "motivo_sem_codigo": "So a pagina de produto foi obtida; o boletim tecnico correspondente nao apareceu na busca desta execucao.",
       "declaracoes": {
         "indicado_para": [
-          "ceramicas",
+          "cerâmicas",
           "pastilhas de porcelana e de vidro",
-          "piscinas e areas submersas"
+          "piscinas e áreas submersas"
         ],
         "nao_usar_em": [],
         "nao_recomendado_em": [],
         "nao_indicado_para": [],
         "ambientes_declarados": [],
         "resistencias_declaradas": [
-          "uso submerso em agua tratada quimicamente",
-          "piscinas aquecidas de ate 40 graus Celsius",
+          "uso submerso em água tratada quimicamente",
+          "piscinas aquecidas de até 40 graus Celsius",
           "biocida e algicida contra fungos e algas"
         ]
       },
@@ -546,7 +546,7 @@
       "fontes": {
         "pagina-produto-rejunte-piscinas": {
           "url": "https://www.quartzolit.weber/argamassas-e-rejuntes-quartzolit/rejuntes-quartzolit/rejunte-piscinas-quartzolit",
-          "tipo": "pagina de produto do fabricante",
+          "tipo": "página de produto do fabricante",
           "nivel": 3,
           "coletado_em": "2026-09-11",
           "conferir_no_pdf": true

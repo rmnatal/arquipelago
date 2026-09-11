@@ -4,7 +4,7 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 8,
+  "revisao": 9,
   "atualizado_em": "2026-09-11",
   "estado": "nascendo",
   "desembarque": {
@@ -21,8 +21,19 @@
       "ativo": true,
       "publicar": true,
       "versao": "1.4.0",
-      "sha256": "52a1840284da2f5fc2f78024ce8b153fb1e6b046c517446ec2525e65b57c4ddc",
+      "sha256": "bb3bb19a30e02196686b7f1f22450067a8db307e398a7a984af52e15df8ec0a1",
       "descricao": "O LOGO DO RAPHAEL, INTEIRO, NO CABECALHO (casca 1.4.0, despacho dele de 11/09). O cabecalho passa a servir logo-clube-do-mosaico.png em <img> de 52 px de altura, com link para a home e SEM UMA LETRA ao lado — o wordmark esta desenhado dentro do arquivo, e escreve-lo de novo e a marca em dobro na tela e anunciada duas vezes por leitor de tela. A AFIRMACAO QUE SUSTENTAVA A VERSAO ANTERIOR ESTAVA ERRADA e estava escrita tres vezes no snippet desde 1.2.0: 'o arquivo entregue tem fundo preto'. Nao tem — o PNG de 1536x1024 e transparente, conferido por ele na biblioteca de midia. O que sumiu com o logo em 1.1.0 foi o cabecalho PRETO contra o wordmark vinho (#69030C) de dentro do arquivo: defeito de onde o logo foi posto, nunca do arquivo, e a 1.2.0 ja tinha consertado a causa ao clarear o cabecalho — faltou devolver o logo ao lugar dele. O CUSTO DE 1,26 MB NUM ESPACO DE 78 PX: nao se redesenha nem se gera nada (o PROMPT.md proibe), o src continua sendo a URL exata que ele mandou, e o srcset oferece as reducoes que o PROPRIO WordPress gerou do upload dele (-300x200 com 42 KB, -768x512 com 175 KB), com sizes=78px. Mesma imagem, mesmo recorte, mesma origem; quem ignorar o srcset baixa o original e ve a mesma coisa. A barra sobe de 72 para 84 px e cai para 44 px de logo abaixo de 600 px, onde 52 mais o botao do menu nao cabem em 360. NENHUMA URL MUDOU e o sitemap nao muda."
+    },
+    {
+      "id": "f2",
+      "nome": "Clube do Mosaico F2 — qual cola e qual rejunte",
+      "arquivo": "snippets/clubedomosaico-f2.php",
+      "escopo": "global",
+      "ativo": true,
+      "publicar": true,
+      "versao": "1.0.0",
+      "sha256": "16a371b57aa4fdc39750726b840ec169707ba403cc84a387d3506915a8839622",
+      "descricao": "BLOCO 4 — a primeira ferramenta da ilha e a primeira pagina de nivel 3 dela, em /materiais/qual-cola-usar-no-mosaico/. Responde 'qual cola usar no mosaico' pela declaracao do proprio fabricante, com a superficie, o lugar onde a peca vai ficar e a largura da junta. A RESPOSTA E SERVIDA PELO SERVIDOR: o formulario e um GET para a propria pagina e o PHP monta a resposta, entao nao existe uma linha de decisao em JavaScript — todo estado da entrada e HTML servido de verdade (secao 5: ferramenta que calcula no navegador mostra a um modelo de linguagem um formulario vazio), e nao ha regua duplicada entre PHP e JS para as duas se separarem. O preco disso e URL com parametro, pago na mesma linha: estado com parametro sai com noindex, follow e canonical para o endereco limpo, e quem entra no indice e a pagina-ancora, uma so. A ELEGIBILIDADE E RECOMPUTADA das declaracoes de dados/materiais-colas.json e dados/materiais-rejuntes.json pelas cinco regras da cola e pelas quatro do rejunte escritas em dados/esquema-banco.json — as mesmas que ferramentas/validar-banco.py implementa em Python, separado, e que ferramentas/teste-f2.php confere contra as matrizes escritas A MAO no bloco 3. A categoria e parte da pergunta: a regua da cola decide sobre BASE, a do rejunte sobre LARGURA DE JUNTA, e rejunte nao toca a base. O bloco de compra vem ANTES da prova de procedencia em todo cartao (cicatriz da Robometria de 10/09/2026) e nasce mesmo com os dez itens sem link, reservando o lugar e dizendo 'link de loja em breve'. Duas faixas ficam DECLARADAS como descobertas em vez de preenchidas no chute: base de plastico e peca em contato permanente com agua."
     }
   ],
   "conteudo": [],
@@ -76,7 +87,7 @@
       "fonte": "Bloco 3 da Fundacao. Modelo derivado de dados/constantes.json e dados/especificacao-calculadoras.md (bloco 2) e de dados/corpus-buscas.md (bloco 1). Nenhuma coleta nova: a estrutura sai do que ja estava colhido, e a matriz da F2 e recomputada das declaracoes, nao redigitada.",
       "verificado_em": "2026-09-11",
       "registros": 4,
-      "publicar": false,
+      "publicar": true,
       "sha256": "635e2ce7ab67f058bae7de2505a72e7207d800c1d327776a9ac285ff2eed0c08",
       "descricao": "Modelo do banco: entidades MATERIAL, PECA (CPT no WordPress, nunca arquivo), TECNICA e a serie temporal COTACAO, campo a campo, com vocabulario controlado, escada de fontes de 7 niveis e o mapa que traduz o termo LITERAL do fabricante para a base e o ambiente da ilha. O que este esquema tem de proprio: o campo que decide a recomendacao e NEGATIVO (a lista de restricoes da ficha BRSA004), existem TRES estados de declaracao e nao dois (silencio nao e proibicao), e cinco regras de elegibilidade executaveis recomputam as 18 celulas da matriz da F2 a partir das declaracoes — quatro delas divergindo da matriz que o bloco 2 tinha escrito a mao. ATUALIZADO NO BLOCO 3c (versao_esquema 2): o esquema passou a ter DUAS reguas, porque as duas categorias nao respondem a mesma pergunta. A matriz_esperada_da_F2 declara agora que so olha categoria == cola, e o validador confere isso — ate aqui a regra existia so na cabeca de quem escreveu, e o primeiro rejunte gravado fez as 18 celulas falharem de uma vez acusando os cinco rejuntes como 'eliminados por silencio', frase sem sentido para um produto que nunca foi candidato a colar nada. Ao lado dela nasceram mapa_de_termos_do_rejunte (que traduz para ambiente e TESSELA, nunca para base), regras_de_elegibilidade_do_rejunte (a junta manda e precisa das duas pontas; ambiente critico do rejunte tem TRES ambientes e nao dois, porque o rejunte e a superficie exposta e a cola fica escondida atras da tessela), perfis_esperados_do_rejunte e matriz_esperada_do_rejunte, cuja grade pisa de proposito em 1, 2, 4, 5 e 10 mm — as bordas declaradas — e em 6 e 11, logo depois da ultima."
     },
@@ -86,10 +97,10 @@
       "formato": "json",
       "entidade": "material",
       "fonte": "Bloco 3 da Fundacao. Transposicao campo a campo de dados/constantes.json (coletado no bloco 2 em 10/09/2026, por busca restrita ao dominio de cada fabricante), com a mesma fonte, o mesmo tipo de documento e a mesma data por item. NENHUM dado novo foi coletado: o que este arquivo acrescenta e estrutura.",
-      "verificado_em": "2026-09-10",
+      "verificado_em": "2026-09-11",
       "registros": 5,
-      "publicar": false,
-      "sha256": "0df9a40da7343f2a96675aaf4c9b0bc8506fed008fc6781afa6f37b9d62a090d",
+      "publicar": true,
+      "sha256": "f79a8ef331cdf7fbea7f1c700e725fe0df86ee109e9ef0f8c47d49564cb850c0",
       "descricao": "A categoria COLA do banco MATERIAL: Silicone Acetico Construcao Tekbond (BRSA004), Silicone Neutro Tekbond, Cascorez PVA, Cimentcola Externo AC-II Quartzolit e Loctite Durepoxi. Cada um com as listas literais do fabricante separadas por peso (indicado, proibido, nao recomendado, delimita ambiente, resiste a ambiente), fonte com nivel na escada e data, afiliado.url presente e vazio e imagem null. 5 itens esperando link de afiliado e 5 sem imagem. Duas pendencias nomeadas, sendo a principal a falta de declaracao de SUBSTRATO da cimentcola AC-II, que a impede de ser recomendacao primaria.",
       "pendencias": 2,
       "pendencias_que_bloqueiam_publicacao": []
@@ -102,8 +113,8 @@
       "fonte": "Bloco 3c da Fundacao. Coleta em 11/09/2026 por busca restrita ao dominio quartzolit.weber, como nos blocos 2 e 3. WebFetch para www.quartzolit.weber devolveu EGRESS_BLOCKED nesta execucao — medido, nao presumido —, entao nenhum PDF foi aberto linha a linha e todo campo tecnico e nivel 2 ou 3 da escada, com conferir_no_pdf: true. Nenhuma fonte de blog, loja ou agregador sustenta campo decisivo: a unica fonte de nivel 4 do arquivo e a materia do proprio fabricante que menciona pastilhas, e ela entra so como mencao com ressalva.",
       "verificado_em": "2026-09-11",
       "registros": 5,
-      "publicar": false,
-      "sha256": "7fb0b947e84a069109bc3d53e4d6c38999dca084223fcc7d15cbcdcc4898786b",
+      "publicar": true,
+      "sha256": "9b3e683f812d014908f83e4be0520717e794857da3043b04430e24aa6dff11c5",
       "descricao": "A categoria REJUNTE do banco MATERIAL: cinco rejuntes Quartzolit (ceramicas, porcelanatos e ceramicas 2024, acrilico, epoxi e piscinas) com faixa de junta, prazo de liberacao e ambiente declarado campo a campo. Sem ela a F2 — que se chama 'seletor de cola E REJUNTE' — respondia metade do que promete, com a metade do rejunte cravada na prosa do snippet em vez de recomputada da declaracao. O arquivo descobriu uma coisa sobre o proprio banco: REJUNTE NAO E COLA. Na cola, a lista do fabricante nomeia a BASE sobre a qual se cola; no rejunte, a mesma lista nomeia a TESSELA que sera rejuntada, porque rejunte nao toca a base — e a variavel que decide passa a ser a LARGURA DA JUNTA. Achado de maior valor: o rejunte piscinas quartzolit e o unico material do banco inteiro cujo fabricante nomeia 'pastilhas de porcelana e de vidro' em uso submerso, e mesmo assim ele NAO e recomendado em celula nenhuma, porque a faixa de junta dele nao foi obtida e o que ele declara e agua tratada quimicamente, que e piscina e nao a agua parada de um vaso de jardim."
     }
   ],

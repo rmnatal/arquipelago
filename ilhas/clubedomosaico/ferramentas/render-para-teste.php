@@ -139,6 +139,14 @@ function get_option($k,$d=false){ return isset($GLOBALS['__options'][$k]) ? $GLO
 function update_option($k,$v,$auto=null){ $GLOBALS['__options'][$k]=$v; return true; }
 function trailingslashit($s){ return rtrim($s,'/').'/'; } function untrailingslashit($s){ return rtrim($s,'/'); }
 function add_query_arg($a=array()){ return '/'; } function __($t,$d=null){ return $t; }
+/* A F2 e servida pelo SERVIDOR e le a escolha da pessoa em $_GET, entao a
+   bancada precisa saber varrer a entrada inteira — 45 combinacoes de base x
+   ambiente e 50 de junta x ambiente, cada uma um estado de pagina de verdade.
+   Sem isto so daria para medir o caso-ancora, que e o defeito que a Robometria
+   pagou em 11/09/2026: "o corpo" de uma ferramenta de entrada variavel e o
+   corpo de TODAS as respostas dela, nunca o da pagina sem consulta. */
+function sanitize_key($k){ return preg_replace('/[^a-z0-9_\-]/','', strtolower((string) $k)); }
+function wp_unslash($v){ return is_string($v) ? stripslashes($v) : $v; }
 
 /**
  * O escape que os filtros de texto do conteudo do WordPress aplicam ao que o
@@ -150,6 +158,23 @@ function cdm_teste_escapar_conteudo($html) {
 }
 
 add_action('wp_head','wp_site_icon',99);
+
+/* O CANONICAL DO NUCLEO, que o site serve e a bancada nao servia.
+ *
+ * `rel_canonical()` esta ligado por padrao no WordPress e esta ilha nao tem
+ * plugin de SEO que o remova, entao toda pagina singular do site ja sai com um
+ * canonical apontando para o permalink limpo. Sem isto aqui, um snippet que
+ * imprimisse o SEU proprio canonical passaria no teste e serviria DOIS no ar —
+ * e a bancada nao teria como ver. E a mesma familia da cicatriz da Aquametria
+ * de 11/09/2026: a bancada e o site lendo fontes diferentes para o mesmo campo.
+ */
+function rel_canonical(){
+	$caminho = isset($GLOBALS['__caminho_atual']) ? $GLOBALS['__caminho_atual'] : '';
+	if (!empty($GLOBALS['__e_home'])) { echo '<link rel="canonical" href="'.esc_url(home_url('/')).'">'."\n"; return; }
+	if ('' === $caminho) { return; }
+	echo '<link rel="canonical" href="'.esc_url(home_url('/'.$caminho.'/')).'">'."\n";
+}
+add_action('wp_head','rel_canonical',10);
 
 function cdm_teste_carregar($raiz) {
 	foreach (glob($raiz.'/snippets/*.php') as $arquivo) {
@@ -268,6 +293,8 @@ function cdm_teste_paginas_no_ar($modo = 'hoje') {
 	$hoje = array(
 		'loja'=>true,'materiais'=>true,'materiais/como-sabemos'=>true,'como-fazer'=>true,
 		'sobre'=>true,'contato'=>true,'divulgacao-de-afiliados'=>true,'privacidade'=>true,
+		/* A F2, nivel 3 com mae /materiais/, desde o bloco 4. */
+		'materiais/qual-cola-usar-no-mosaico'=>true,
 	);
 	if ('todas' !== $modo) { return $hoje; }
 	foreach (cdm_casca_categorias_do_guia() as $c) {
@@ -279,6 +306,9 @@ function cdm_teste_paginas_no_ar($modo = 'hoje') {
 if (isset($argv[1]) && basename(__FILE__) === basename($argv[0])) {
 	$alvo = isset($argv[2]) ? $argv[2] : 'cdm_home';
 	$modo = isset($argv[3]) ? $argv[3] : 'hoje';
+	/* O quarto argumento e a consulta, no formato de query string:
+	   'base=espelho&onde=externo_exposto&junta=3'. Vazio = pagina-ancora. */
+	if (isset($argv[4]) && '' !== $argv[4]) { parse_str($argv[4], $_GET); }
 	cdm_teste_carregar_options($argv[1]);
 	cdm_teste_carregar($argv[1]);
 	/* Depois de carregar a casca, porque o modo 'todas' le o registro dela. */

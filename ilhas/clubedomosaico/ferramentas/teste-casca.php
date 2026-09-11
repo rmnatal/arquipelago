@@ -71,6 +71,7 @@ $GLOBALS['__paginas'] = array(
 	'contato'                 => true,
 	'divulgacao-de-afiliados' => true,
 	'privacidade'             => true,
+	'materiais/qual-cola-usar-no-mosaico' => true,
 );
 
 cdm_teste_carregar_options( $raiz );
@@ -79,6 +80,12 @@ cdm_teste_carregar( $raiz );
 $paginas = array(
 	'cdm_home', 'cdm_loja', 'cdm_materiais', 'cdm_como_sabemos', 'cdm_como_fazer',
 	'cdm_sobre', 'cdm_contato', 'cdm_afiliados', 'cdm_privacidade',
+	/* A F2 entra na lista da casca de proposito: sao trinta e tantos portoes
+	   (voz, prova, escassez, trilha, arvore, pagina fina, entidade dentro de
+	   <script>) que ja existem e que a pagina nova tem que passar tambem. O que
+	   e SO dela — as reguas de elegibilidade e a varredura da entrada inteira —
+	   mora em ferramentas/teste-f2.php, separado. */
+	'cdm_f2',
 );
 
 echo "Clube do Mosaico — verificacao da casca " . CDM_CASCA_VERSAO . "\n\n";
@@ -1357,7 +1364,13 @@ echo "\n22. Trilha visivel no corpo (16.3)\n";
 /* tag do shortcode -> caminho da pagina, pela definicao da casca. */
 $tag_para_caminho = array();
 foreach ( cdm_casca_definicao_paginas() as $caminho => $def ) {
-	if ( preg_match( '#^\[([a-z_]+)\]$#', (string) $def['conteudo'], $mt ) ) {
+	/* O DIGITO FAZIA FALTA: com `[a-z_]+` o shortcode `[cdm_f2]` nao casava, e a
+	   pagina da primeira ferramenta da ilha entrava nesta tabela como caminho
+	   VAZIO — a trilha dela, o BreadcrumbList dela e o cluster dela passavam a
+	   ser medidos contra o nada, e duas das tres afirmacoes reprovavam sem que a
+	   pagina tivesse defeito nenhum. Regua estreita demais nao e regua frouxa: e
+	   regua que mede outra coisa. */
+	if ( preg_match( '#^\[([a-z0-9_]+)\]$#', (string) $def['conteudo'], $mt ) ) {
 		$tag_para_caminho[ $mt[1] ] = $caminho;
 	}
 }
@@ -1552,7 +1565,12 @@ cdm_ok( false !== strpos( $bloco_todas, 'href="https://clubedomosaico.com.br/mat
 echo "\n25. Cartao de categoria em breve, sem contagem (16.5)\n";
 foreach ( array( 'cdm_home', 'cdm_materiais' ) as $tag ) {
 	$corpo = cdm_corpo( $html_por_pagina[ $tag ] );
-	preg_match_all( '#<span class="cdm-acao">(.*?)</span></li>#s', $corpo, $ma );
+	/* SO OS CARTOES DE CATEGORIA. A 16.5 fala de categoria do Guia, e desde a
+	   casca 1.5.0 a mesma pagina tambem serve cartoes de FERRAMENTA, que viram
+	   link legitimamente quando a ferramenta existe. Medir os dois juntos fazia
+	   a trava acusar o cartao certo. */
+	preg_match( '#<ul class="cdm-cards cdm-cards-guia">(.*?)</ul>#s', $corpo, $mg );
+	preg_match_all( '#<span class="cdm-acao">(.*?)</span></li>#s', isset( $mg[1] ) ? $mg[1] : '', $ma );
 	$com_numero = array();
 	$viraram_link = 0;
 	foreach ( $ma[1] as $acao ) {

@@ -1,5 +1,19 @@
 /**
  * Clube do Mosaico Casca — identidade e estrutura do site
+ * Versão 1.5.0 (11/09/2026) — bloco 4: a casca abre a porta para a primeira
+ * ferramenta da ilha, e faz isso com DUAS mudanças pequenas e nenhuma a mais.
+ *
+ *   (a) `cdm_casca_definicao_paginas()` passou a ter o filtro `cdm_paginas`.
+ *       Era o único registro da casca sem filtro — ferramenta e tutorial já se
+ *       registravam sozinhos para o cartão e para a trilha, mas a PÁGINA deles
+ *       ainda teria que ser escrita aqui dentro. Casca editada a cada bloco de
+ *       ferramenta é casca que sai do ar por defeito de ferramenta.
+ *   (b) `/materiais/` passou a LISTAR AS FERRAMENTAS (16.4a). Ela é a mãe das
+ *       duas pela seção 2 do ARVORE.md e não as listava — enquanto nenhuma
+ *       existia isso não aparecia, e no dia em que a primeira nasce a falta
+ *       vira página órfã, porque a 16.4(f) cobra dois links internos para toda
+ *       URL do sitemap, um deles da mãe.
+ *
  * Versão 1.4.0 (11/09/2026) — DESPACHO DO RAPHAEL (2): O LOGO DELE, INTEIRO, NO
  * CABEÇALHO. "Cadê o logo que eu exigi e subi e mandei até a URL?" e "o nome já
  * está embutido no logo, você não precisa escrever". O cabeçalho passa a servir
@@ -119,7 +133,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'CDM_CASCA_VERSAO' ) ) {
-	define( 'CDM_CASCA_VERSAO', '1.4.0' );
+	define( 'CDM_CASCA_VERSAO', '1.5.0' );
 	/* O nome do site e a linha que o WordPress serve no <title> da home. A
 	   Aquametria descobriu em 11/09/2026 que a tagline nunca tocada desde o
 	   nascimento da ilha continuava sendo a linha mais lida do site — a do
@@ -1049,7 +1063,12 @@ function cdm_casca_num( $valor ) {
 
 if ( ! function_exists( 'cdm_casca_cards_ferramentas_html' ) ) {
 function cdm_casca_cards_ferramentas_html() {
-	$html = '<ul class="cdm-cards">';
+	/* A classe separa as duas listagens, e nao e enfeite: o portao da 16.5 —
+	   "cartao de categoria nao vira link enquanto a categoria nao existir" — media
+	   TODO cartao do corpo, e no dia em que a primeira ferramenta virou link ele
+	   reprovou a home e o Guia por um cartao que esta certo. Regua que nao sabe
+	   sobre o que decide acusa a coisa errada (secao 8 do contrato). */
+	$html = '<ul class="cdm-cards cdm-cards-ferramentas">';
 	foreach ( cdm_casca_ferramentas() as $f ) {
 		$publicada = ( isset( $f['estado'] ) && 'publicada' === $f['estado'] );
 		$html     .= '<li class="cdm-card">';
@@ -1084,7 +1103,7 @@ if ( ! function_exists( 'cdm_casca_cards_guia_html' ) ) {
  * uma promessa de um trabalho feito.
  */
 function cdm_casca_cards_guia_html() {
-	$html = '<ul class="cdm-cards">';
+	$html = '<ul class="cdm-cards cdm-cards-guia">';
 	foreach ( cdm_casca_categorias_do_guia() as $c ) {
 		$html .= '<li class="cdm-card">';
 		$html .= '<span class="cdm-codigo">' . esc_html( $c['codigo'] ) . '</span>';
@@ -1685,6 +1704,25 @@ add_shortcode( 'cdm_materiais', function () {
 	$html .= '<p>É por isso que uma lista de materiais copiada do vaso de outra pessoa não serve para o seu.</p>';
 	$html .= '</div>';
 
+	/* 1.5.0 — A MÃE LISTA AS FILHAS (16.4a), e até aqui ela não listava.
+	   /materiais/ é a mãe das duas ferramentas pela seção 2 do ARVORE.md, e
+	   enquanto nenhuma delas existia isso não aparecia. No dia em que a primeira
+	   nasce, a falta vira página órfã: a 16.4(f) cobra dois links internos para
+	   toda URL do sitemap, um deles da mãe. O cartão continua honesto — só vira
+	   link quando a página existe de verdade.
+
+	   E ELA VEM ANTES DAS SEIS PRATELEIRAS, de propósito: as seis são cartão
+	   "em breve" e nenhuma abre (16.5). Deixá-las no topo punha seis cartões
+	   mortos na frente do único caminho vivo da página — e o caminho vivo é
+	   justamente o que termina numa recomendação de compra, que é a ordem que a
+	   seção 9 do contrato manda. Quando as categorias nascerem, a ordem se
+	   discute de novo. */
+	$html .= '<div class="cdm-secao">';
+	$html .= '<h2>Duas perguntas que a gente responde por você</h2>';
+	$html .= '<p>Não precisa ler tudo: escolha a sua peça e a resposta sai pronta, com o motivo e com o que não usar.</p>';
+	$html .= cdm_casca_cards_ferramentas_html();
+	$html .= '</div>';
+
 	$html .= '<div class="cdm-secao">';
 	$html .= '<h2>As seis prateleiras</h2>';
 	$html .= cdm_casca_cards_guia_html();
@@ -1992,7 +2030,7 @@ if ( ! function_exists( 'cdm_casca_definicao_paginas' ) ) {
  * seção 16 do contrato. Só 'noindex' fica fora do sitemap.
  */
 function cdm_casca_definicao_paginas() {
-	return array(
+	$paginas = array(
 		'inicio'                  => array( 'titulo' => 'Mosaico feito à mão, uma peça por vez', 'conteudo' => '[cdm_home]' ),
 		'loja'                    => array( 'titulo' => 'Loja', 'conteudo' => '[cdm_loja]' ),
 		'materiais'               => array( 'titulo' => 'Materiais', 'conteudo' => '[cdm_materiais]' ),
@@ -2008,6 +2046,21 @@ function cdm_casca_definicao_paginas() {
 		'divulgacao-de-afiliados' => array( 'titulo' => 'Divulgação de afiliados', 'conteudo' => '[cdm_afiliados]' ),
 		'privacidade'             => array( 'titulo' => 'Privacidade', 'conteudo' => '[cdm_privacidade]' ),
 	);
+
+	/* 1.5.0 — A PÁGINA DE FERRAMENTA SE REGISTRA SOZINHA, pelo mesmo desenho de
+	   `cdm_ferramentas` e `cdm_tutoriais`: o snippet da ferramenta mora no
+	   próprio arquivo, chega pelo Sync no próprio item do manifest, e acrescenta
+	   aqui a página dela. Sem este filtro, toda ferramenta nova obrigaria a
+	   editar a casca — e casca editada por bloco de ferramenta é casca que sai
+	   do ar por defeito de ferramenta.
+
+	   A ORDEM IMPORTA e ela é garantida aqui: as páginas da casca vêm primeiro,
+	   e `cdm_casca_garantir_paginas()` adia a filha cuja mãe ainda não existe.
+	   Uma filha registrada pelo filtro entra sempre DEPOIS da mãe dela, que é da
+	   casca. Quem registrar filha de filha tem que cuidar da própria ordem. */
+	$paginas = apply_filters( 'cdm_paginas', $paginas );
+
+	return is_array( $paginas ) ? $paginas : array();
 }
 }
 

@@ -31,7 +31,6 @@
       "bloqueia_publicacao": false
     }
   ],
-
   "materiais": [
     {
       "id": "tekbond-silicone-acetico-construcao",
@@ -39,86 +38,156 @@
       "tipo": "silicone_acetico",
       "marca": "Tekbond",
       "fabricante": "Tekbond",
-      "nome_comercial": "Silicone Acetico Construcao",
+      "nome_comercial": "Silicone Acético Construção",
       "codigo_fabricante": "BRSA004",
       "motivo_sem_codigo": null,
       "declaracoes": {
         "indicado_para": [
-          "vedacao de esquadria de aluminio com vidro",
-          "vidro nao laminado",
-          "aluminio comum e anodizado",
+          "vedação de esquadria de alumínio com vidro",
+          "vidro não laminado",
+          "alumínio comum e anodizado",
           "granito",
-          "ceramica",
+          "cerâmica",
           "azulejo"
         ],
         "nao_usar_em": [
           "espelhos",
           "vidro laminado",
-          "metal corrosivel",
-          "superficies pintadas",
-          "superficies porosas",
-          "superficies alcalinas",
+          "metal corrosível",
+          "superfícies pintadas",
+          "superfícies porosas",
+          "superfícies alcalinas",
           "concreto",
           "cimento",
           "tijolo",
-          "calcario",
+          "calcário",
           "zinco",
           "chapa galvanizada",
-          "aquarios",
-          "acrilico"
+          "aquários",
+          "acrílico"
         ],
-        "nao_recomendado_em": ["polietileno", "polipropileno", "policarbonato"],
+        "nao_recomendado_em": [
+          "polietileno",
+          "polipropileno",
+          "policarbonato"
+        ],
         "nao_indicado_para": [
           "fachada de vidro",
-          "colagem estrutural que exija resistencia",
+          "colagem estrutural que exija resistência",
           "contato com alimento",
-          "imersao continua em meio liquido",
+          "imersão contínua em meio líquido",
           "ambiente completamente fechado"
         ],
         "ambientes_declarados": [],
         "resistencias_declaradas": []
       },
       "propriedades": {
-        "cura_apos_24h": {"valor": 3, "unidade": "mm", "comparador": ">=", "fonte_id": "ficha-brsa004", "declarado_como": "cura de no minimo 3 mm em 24 h a 23 graus C e 55% de umidade relativa"},
-        "formacao_de_pelicula": {"valor": [5, 15], "unidade": "min", "fonte_id": "pagina-produto-acetico", "declarado_como": "5 a 15 minutos"},
-        "temperatura_de_aplicacao": {"valor": [5, 35], "unidade": "C", "fonte_id": "pagina-produto-acetico", "declarado_como": "+5 a 35 graus C"},
-        "temperatura_de_trabalho": {"valor": [-50, 150], "unidade": "C", "fonte_id": "pagina-produto-acetico", "declarado_como": "-50 a 150 graus C"},
-        "alongamento_a_ruptura": {"valor": 800, "unidade": "%", "comparador": ">=", "fonte_id": "pagina-produto-acetico", "declarado_como": "maior ou igual a 800%"},
-        "dureza_shore_A": {"valor": 25, "unidade": "Shore A", "fonte_id": "pagina-produto-acetico", "declarado_como": "25"},
-        "rendimento_por_area": {"valor": null, "unidade": "kg/m2", "fonte_id": null, "motivo": "O fabricante declara rendimento por CORDAO (metros de cordao de X mm por cartucho), nao por area colada. Converter isso em gramas por metro quadrado seria palpite — e por isso a coluna de cola da F1 nasce vazia com essa frase na tela."}
+        "cura_apos_24h": {
+          "valor": 3,
+          "unidade": "mm",
+          "comparador": ">=",
+          "fonte_id": "ficha-brsa004",
+          "declarado_como": "cura de no minimo 3 mm em 24 h a 23 graus C e 55% de umidade relativa"
+        },
+        "formacao_de_pelicula": {
+          "valor": [
+            5,
+            15
+          ],
+          "unidade": "min",
+          "fonte_id": "pagina-produto-acetico",
+          "declarado_como": "5 a 15 minutos"
+        },
+        "temperatura_de_aplicacao": {
+          "valor": [
+            5,
+            35
+          ],
+          "unidade": "C",
+          "fonte_id": "pagina-produto-acetico",
+          "declarado_como": "+5 a 35 graus C"
+        },
+        "temperatura_de_trabalho": {
+          "valor": [
+            -50,
+            150
+          ],
+          "unidade": "C",
+          "fonte_id": "pagina-produto-acetico",
+          "declarado_como": "-50 a 150 graus C"
+        },
+        "alongamento_a_ruptura": {
+          "valor": 800,
+          "unidade": "%",
+          "comparador": ">=",
+          "fonte_id": "pagina-produto-acetico",
+          "declarado_como": "maior ou igual a 800%"
+        },
+        "dureza_shore_A": {
+          "valor": 25,
+          "unidade": "Shore A",
+          "fonte_id": "pagina-produto-acetico",
+          "declarado_como": "25"
+        },
+        "rendimento_por_area": {
+          "valor": null,
+          "unidade": "kg/m2",
+          "fonte_id": null,
+          "motivo": "O fabricante declara rendimento por CORDAO (metros de cordao de X mm por cartucho), nao por area colada. Converter isso em gramas por metro quadrado seria palpite — e por isso a coluna de cola da F1 nasce vazia com essa frase na tela."
+        }
       },
       "preparo": "Limpar a superficie com alcool ou acetona; superficie seca e firme. Cortar a ponta do cartucho e o bico a 45 graus.",
       "geometria": null,
       "venda": [
-        {"unidade": "cartucho", "quantidade": null, "embalagem_declarada": null, "loja": null, "fonte_id": "pagina-produto-acetico", "coletado_em": "2026-09-10", "observacao": "Formato de cartucho confirmado pelo preparo declarado (cortar a ponta do cartucho). Volume e peso da embalagem NAO foram coletados."}
+        {
+          "unidade": "cartucho",
+          "quantidade": null,
+          "embalagem_declarada": null,
+          "loja": null,
+          "fonte_id": "pagina-produto-acetico",
+          "coletado_em": "2026-09-10",
+          "observacao": "Formato de cartucho confirmado pelo preparo declarado (cortar a ponta do cartucho). Volume e peso da embalagem NAO foram coletados."
+        }
       ],
-      "afiliado": {"programa": null, "url": "", "sub_id_1": "clubedomosaico", "sub_id_2": "F2", "etiqueta_ml": "clubedomosaico-F2", "gerado_em": null},
+      "afiliado": {
+        "programa": null,
+        "url": "",
+        "sub_id_1": "clubedomosaico",
+        "sub_id_2": "F2",
+        "etiqueta_ml": "clubedomosaico-F2",
+        "gerado_em": null
+      },
       "imagem": null,
       "fontes": {
         "ficha-brsa004": {
           "url": "https://www.tekbond.com.br/sites/Tekbond.com.br/files/media/downloadable/2025-10/Silicone_Acetico_Construcao-BRSA004-ficha_tecnica_01.pdf",
-          "tipo": "ficha tecnica BRSA004 do fabricante, revisada em 10/2025",
+          "tipo": "ficha técnica BRSA004 do fabricante, revisada em 10/2025",
           "nivel": 2,
           "coletado_em": "2026-09-10",
           "conferir_no_pdf": true
         },
         "pagina-produto-acetico": {
           "url": "https://www.tekbond.com.br/produtos/sela-e-veda/silicones/silicone-acetico",
-          "tipo": "pagina de produto do fabricante",
+          "tipo": "página de produto do fabricante",
           "nivel": 3,
           "coletado_em": "2026-09-10",
           "conferir_no_pdf": true
         }
       },
-      "constantes_relacionadas": ["tekbond-silicone-acetico-restricoes", "tekbond-silicone-acetico-indicacoes"],
+      "constantes_relacionadas": [
+        "tekbond-silicone-acetico-restricoes",
+        "tekbond-silicone-acetico-indicacoes"
+      ],
       "divergencias": [],
       "resolucao": null,
       "status": "ativo",
       "motivo_do_descarte": null,
-      "usada_por": ["F2", "G-COLAS"],
+      "usada_por": [
+        "F2",
+        "G-COLAS"
+      ],
       "observacao": "O registro mais importante do banco, e o unico cuja lista NEGATIVA vale mais que a positiva. Duas declaracoes do mesmo fabricante colidem em METAL — indicado para aluminio anodizado, proibido em metal corrosivel, zinco e chapa galvanizada — e a regra 1 do esquema resolve pela proibicao: quem monta mosaico nao sabe dizer se a chapa dela e galvanizada. Colisao parecida em pedra: granito indicado, calcario e superficie alcalina proibidos."
     },
-
     {
       "id": "tekbond-silicone-neutro",
       "categoria": "cola",
@@ -130,7 +199,7 @@
       "motivo_sem_codigo": "A coleta do bloco 2 chegou pela pagina de produto e por ficha tecnica de 09/2020 sem numero de documento visivel na busca. O codigo existe e fica pendente de leitura direta.",
       "declaracoes": {
         "indicado_para": [
-          "ceramica",
+          "cerâmica",
           "madeira",
           "metais",
           "vidro comum e temperado",
@@ -140,16 +209,16 @@
           "concreto",
           "alvenaria",
           "pedras",
-          "certos tipos de plastico"
+          "certos tipos de plástico"
         ],
         "nao_usar_em": [],
         "nao_recomendado_em": [],
         "nao_indicado_para": [],
         "ambientes_declarados": [],
         "resistencias_declaradas": [
-          "agentes acidos",
-          "metais corrosiveis",
-          "variacao de temperatura",
+          "agentes ácidos",
+          "metais corrosíveis",
+          "variação de temperatura",
           "chuva",
           "raios UV"
         ]
@@ -158,26 +227,37 @@
       "preparo": null,
       "geometria": null,
       "venda": [],
-      "afiliado": {"programa": null, "url": "", "sub_id_1": "clubedomosaico", "sub_id_2": "F2", "etiqueta_ml": "clubedomosaico-F2", "gerado_em": null},
+      "afiliado": {
+        "programa": null,
+        "url": "",
+        "sub_id_1": "clubedomosaico",
+        "sub_id_2": "F2",
+        "etiqueta_ml": "clubedomosaico-F2",
+        "gerado_em": null
+      },
       "imagem": null,
       "fontes": {
         "pagina-produto-neutro": {
           "url": "https://www.tekbond.com.br/produtos/sela-e-veda/silicones/silicone-neutro",
-          "tipo": "pagina de produto do fabricante + ficha tecnica de 09/2020",
+          "tipo": "página de produto do fabricante + ficha técnica de 09/2020",
           "nivel": 3,
           "coletado_em": "2026-09-10",
           "conferir_no_pdf": true
         }
       },
-      "constantes_relacionadas": ["tekbond-silicone-neutro-substratos"],
+      "constantes_relacionadas": [
+        "tekbond-silicone-neutro-substratos"
+      ],
       "divergencias": [],
       "resolucao": null,
       "status": "ativo",
       "motivo_do_descarte": null,
-      "usada_por": ["F2", "G-COLAS"],
+      "usada_por": [
+        "F2",
+        "G-COLAS"
+      ],
       "observacao": "E a saida declarada pelo MESMO fabricante para quase tudo que o acetico proibe — espelho, vidro laminado, concreto, alvenaria, pedra, metal. Par acetico/neutro de uma fonte so e o que permite a F2 dizer 'nao use A, use B' sem trocar de fabricante no meio da frase. As resistencias declaradas (chuva e raios UV) sao o que o faz passar na regra 4 em area externa exposta, onde o silencio do acetico o tira da lista."
     },
-
     {
       "id": "cascola-cascorez-extra",
       "categoria": "cola",
@@ -189,51 +269,69 @@
       "motivo_sem_codigo": "A pagina de produto identifica por SKU interno do site (SAP_0201FTC20WQ5), que nao e codigo de ficha tecnica.",
       "declaracoes": {
         "indicado_para": [
-          "madeira de alta, media e baixa densidade",
+          "madeira de alta, média e baixa densidade",
           "MDF",
           "compensado",
           "couro",
           "tela",
           "gesso",
-          "laminados plasticos (Formica, Formiplac, Perstop)",
+          "laminados plásticos (Formica, Formiplac, Perstop)",
           "poliestireno expandido",
           "outros materiais porosos",
-          "papel, papelao, tecido e cortica",
-          "encadernacao",
-          "molduras, rodapes e revestimentos decorativos em ambientes internos"
+          "papel, papelão, tecido e cortiça",
+          "encadernação",
+          "molduras, rodapés e revestimentos decorativos em ambientes internos"
         ],
         "nao_usar_em": [],
         "nao_recomendado_em": [],
         "nao_indicado_para": [],
-        "ambientes_declarados": ["ambientes internos"],
+        "ambientes_declarados": [
+          "ambientes internos"
+        ],
         "resistencias_declaradas": []
       },
       "propriedades": {
-        "tempo_de_secagem": {"valor": null, "unidade": "h", "fonte_id": null, "motivo": "Nao coletado. Esta em pendentes de dados/constantes.json como `cascorez-tempo-de-secagem` — a F2 hoje indica o PVA para MDF interno sem dizer quanto tempo esperar."}
+        "tempo_de_secagem": {
+          "valor": null,
+          "unidade": "h",
+          "fonte_id": null,
+          "motivo": "Nao coletado. Esta em pendentes de dados/constantes.json como `cascorez-tempo-de-secagem` — a F2 hoje indica o PVA para MDF interno sem dizer quanto tempo esperar."
+        }
       },
       "preparo": "Superficies limpas, firmes, niveladas e secas; lixar quando necessario para deixar aspero. Aplicacao com pincel ou rolo.",
       "geometria": null,
       "venda": [],
-      "afiliado": {"programa": null, "url": "", "sub_id_1": "clubedomosaico", "sub_id_2": "F2", "etiqueta_ml": "clubedomosaico-F2", "gerado_em": null},
+      "afiliado": {
+        "programa": null,
+        "url": "",
+        "sub_id_1": "clubedomosaico",
+        "sub_id_2": "F2",
+        "etiqueta_ml": "clubedomosaico-F2",
+        "gerado_em": null
+      },
       "imagem": null,
       "fontes": {
         "pagina-produto-cascorez": {
           "url": "https://www.cascola.com.br/products-diy/central-pdp.html/cascola-cascorez-cola-branca-pva-extraforte/SAP_0201FTC20WQ5.html",
-          "tipo": "pagina de produto do fabricante",
+          "tipo": "página de produto do fabricante",
           "nivel": 3,
           "coletado_em": "2026-09-10",
           "conferir_no_pdf": true
         }
       },
-      "constantes_relacionadas": ["cascorez-extra-substratos"],
+      "constantes_relacionadas": [
+        "cascorez-extra-substratos"
+      ],
       "divergencias": [],
       "resolucao": null,
       "status": "ativo",
       "motivo_do_descarte": null,
-      "usada_por": ["F2", "G-COLAS"],
+      "usada_por": [
+        "F2",
+        "G-COLAS"
+      ],
       "observacao": "O caso que obrigou os tres estados do esquema. O fabricante nao proibe area molhada nem externa: ele simplesmente DELIMITA o uso a 'revestimentos decorativos em ambientes internos' e nao declara resistencia a agua. A ilha nao transforma esse silencio em proibicao inventada — a regra 3 tira o produto dos ambientes que ele nao declara, e a tela diz literalmente 'o fabricante nao declara uso externo nem resistencia a agua para este produto'."
     },
-
     {
       "id": "quartzolit-cimentcola-externo-acii",
       "categoria": "cola",
@@ -245,48 +343,100 @@
       "motivo_sem_codigo": "Identificada pela classificacao normativa (AC-II conforme NBR 14.081) e pelo nome comercial; o Boletim Tecnico 2024-09 nao foi aberto.",
       "declaracoes": {
         "indicado_para": [
-          "assentamento ceramico em area interna e externa",
-          "ceramicas e placas de pedra natural de ate 120 x 120 cm em area interna e 100 x 100 cm em area externa"
+          "assentamento cerâmico em área interna e externa",
+          "cerâmicas e placas de pedra natural de até 120 x 120 cm em área interna e 100 x 100 cm em área externa"
         ],
         "nao_usar_em": [],
         "nao_recomendado_em": [],
         "nao_indicado_para": [],
-        "ambientes_declarados": ["area interna e externa"],
+        "ambientes_declarados": [
+          "área interna e externa"
+        ],
         "resistencias_declaradas": []
       },
       "propriedades": {
-        "classificacao": {"valor": "AC-II", "unidade": null, "fonte_id": "pagina-produto-cimentcola", "declarado_como": "cimentcola de secagem rapida para assentamento ceramico em area interna e externa, tipo AC-II segundo a NBR 14.081"},
-        "espessura_maxima_de_camada": {"valor": 3, "unidade": "cm", "fonte_id": "pagina-produto-cimentcola", "declarado_como": "pode ser aplicada em camada grossa, com ate 3 cm de espessura de argamassa"},
-        "liberacao_para_agua_em_piscina": {"valor": 7, "unidade": "dias", "fonte_id": "pagina-produto-cimentcola", "declarado_como": "em piscina, encher com agua somente 7 dias depois"},
-        "consumo_por_area": {"valor": null, "unidade": "kg/m2", "fonte_id": null, "motivo": "Nao coletado — pendencia `cimentcola-consumo-e-tempo-em-aberto` de dados/constantes.json. Segura a coluna de gramas de cola da F1."},
-        "tempo_em_aberto": {"valor": null, "unidade": "min", "fonte_id": null, "motivo": "Mesma pendencia."}
+        "classificacao": {
+          "valor": "AC-II",
+          "unidade": null,
+          "fonte_id": "pagina-produto-cimentcola",
+          "declarado_como": "cimentcola de secagem rapida para assentamento ceramico em area interna e externa, tipo AC-II segundo a NBR 14.081"
+        },
+        "espessura_maxima_de_camada": {
+          "valor": 3,
+          "unidade": "cm",
+          "fonte_id": "pagina-produto-cimentcola",
+          "declarado_como": "pode ser aplicada em camada grossa, com ate 3 cm de espessura de argamassa"
+        },
+        "liberacao_para_agua_em_piscina": {
+          "valor": 7,
+          "unidade": "dias",
+          "fonte_id": "pagina-produto-cimentcola",
+          "declarado_como": "em piscina, encher com agua somente 7 dias depois"
+        },
+        "consumo_por_area": {
+          "valor": null,
+          "unidade": "kg/m2",
+          "fonte_id": null,
+          "motivo": "Nao coletado — pendencia `cimentcola-consumo-e-tempo-em-aberto` de dados/constantes.json. Segura a coluna de gramas de cola da F1."
+        },
+        "tempo_em_aberto": {
+          "valor": null,
+          "unidade": "min",
+          "fonte_id": null,
+          "motivo": "Mesma pendencia."
+        }
       },
       "preparo": null,
       "geometria": null,
       "venda": [
-        {"unidade": "saco", "quantidade": 15, "embalagem_declarada": "saco de papel ou plastico de 15 kg", "loja": null, "fonte_id": "pagina-produto-cimentcola", "coletado_em": "2026-09-10"},
-        {"unidade": "saco", "quantidade": 20, "embalagem_declarada": "saco de papel ou plastico de 20 kg", "loja": null, "fonte_id": "pagina-produto-cimentcola", "coletado_em": "2026-09-10"}
+        {
+          "unidade": "saco",
+          "quantidade": 15,
+          "embalagem_declarada": "saco de papel ou plastico de 15 kg",
+          "loja": null,
+          "fonte_id": "pagina-produto-cimentcola",
+          "coletado_em": "2026-09-10"
+        },
+        {
+          "unidade": "saco",
+          "quantidade": 20,
+          "embalagem_declarada": "saco de papel ou plastico de 20 kg",
+          "loja": null,
+          "fonte_id": "pagina-produto-cimentcola",
+          "coletado_em": "2026-09-10"
+        }
       ],
-      "afiliado": {"programa": null, "url": "", "sub_id_1": "clubedomosaico", "sub_id_2": "F2", "etiqueta_ml": "clubedomosaico-F2", "gerado_em": null},
+      "afiliado": {
+        "programa": null,
+        "url": "",
+        "sub_id_1": "clubedomosaico",
+        "sub_id_2": "F2",
+        "etiqueta_ml": "clubedomosaico-F2",
+        "gerado_em": null
+      },
       "imagem": null,
       "fontes": {
         "pagina-produto-cimentcola": {
           "url": "https://www.quartzolit.weber/argamassas-e-rejuntes-quartzolit/argamassas-para-ceramicas-externas-quartzolit/argamassa-cimentcola-externo-acii-quartzolit",
-          "tipo": "pagina de produto do fabricante",
+          "tipo": "página de produto do fabricante",
           "nivel": 3,
           "coletado_em": "2026-09-10",
           "conferir_no_pdf": true
         }
       },
-      "constantes_relacionadas": ["cimentcola-externo-acii-quartzolit"],
+      "constantes_relacionadas": [
+        "cimentcola-externo-acii-quartzolit"
+      ],
       "divergencias": [],
       "resolucao": null,
       "status": "ativo",
       "motivo_do_descarte": null,
-      "usada_por": ["F2", "G-COLAS"],
+      "usada_por": [
+        "F2",
+        "G-COLAS"
+      ],
       "observacao": "Registro com uma lacuna nomeada, e por isso ele nao aparece como recomendado em nenhuma celula da matriz: NENHUMA das duas declaracoes coletadas nomeia o SUBSTRATO. As duas nomeiam a peca que se assenta (ceramica, placa de pedra) e o ambiente (interna e externa). Ver a pendencia `cimentcola-substrato-declarado`. A embalagem de 15 e 20 kg tambem diz algo a esta ilha: e formato de obra para uma peca de artesanato de 900 cm2 — quando o substrato for confirmado, a ficha do Guia precisa dizer isso ao visitante, porque comprar 15 kg para um vaso e o tipo de conselho que destroi confianca."
     },
-
     {
       "id": "loctite-durepoxi",
       "categoria": "cola",
@@ -304,46 +454,64 @@
           "porcelana",
           "borracha",
           "pedra",
-          "alguns tipos de plastico",
+          "alguns tipos de plástico",
           "couro",
-          "aluminio",
+          "alumínio",
           "ferro",
           "cobre",
           "prata",
           "ouro",
-          "latao",
-          "marmore",
+          "latão",
+          "mármore",
           "fibras naturais"
         ],
         "nao_usar_em": [],
         "nao_recomendado_em": [],
         "nao_indicado_para": [],
         "ambientes_declarados": [],
-        "resistencias_declaradas": ["condicao submersa"]
+        "resistencias_declaradas": [
+          "condição submersa"
+        ]
       },
       "propriedades": {
-        "secagem_versao_extraforte": {"valor": 10, "unidade": "min", "fonte_id": "press-release-durepoxi", "declarado_como": "versao extraforte seca em 10 minutos"}
+        "secagem_versao_extraforte": {
+          "valor": 10,
+          "unidade": "min",
+          "fonte_id": "press-release-durepoxi",
+          "declarado_como": "versao extraforte seca em 10 minutos"
+        }
       },
       "preparo": null,
       "geometria": null,
       "venda": [],
-      "afiliado": {"programa": null, "url": "", "sub_id_1": "clubedomosaico", "sub_id_2": "F2", "etiqueta_ml": "clubedomosaico-F2", "gerado_em": null},
+      "afiliado": {
+        "programa": null,
+        "url": "",
+        "sub_id_1": "clubedomosaico",
+        "sub_id_2": "F2",
+        "etiqueta_ml": "clubedomosaico-F2",
+        "gerado_em": null
+      },
       "imagem": null,
       "fontes": {
         "press-release-durepoxi": {
           "url": "https://www.henkel.com.br/imprensa-midia/press-releases-e-kits/2018-09-11-familia-loctite-durepoxi-possibilita-diferentes-reparos-e-aplicacoes-875598",
-          "tipo": "material de imprensa do fabricante (2018) — NAO e ficha tecnica",
+          "tipo": "material de imprensa do fabricante (2018) — NÃO é ficha técnica",
           "nivel": 4,
           "coletado_em": "2026-09-10",
           "conferir_no_pdf": true
         }
       },
-      "constantes_relacionadas": ["loctite-durepoxi-substratos"],
+      "constantes_relacionadas": [
+        "loctite-durepoxi-substratos"
+      ],
       "divergencias": [],
       "resolucao": null,
       "status": "ativo",
       "motivo_do_descarte": null,
-      "usada_por": ["F2"],
+      "usada_por": [
+        "F2"
+      ],
       "observacao": "O registro que criou o nivel 4 da escada de fontes. Ele e o unico do banco que declara aderir em condicao submersa — exatamente a faixa descoberta da F2 — e mesmo assim NAO vira recomendacao, porque a unica declaracao vem de press release de 2018. Aparece so como mencao com ressalva, com a frase 'segundo material do proprio fabricante (2018)'. Troca-se pela ficha tecnica assim que ela for aberta, e ai a faixa deixa de ser descoberta."
     }
   ]
