@@ -1428,7 +1428,7 @@ function aquametria_c12_form_html() {
 	$h .= '<ul class="aqm-c12-avisos" id="aqm-c12-erros"></ul>';
 	$h .= '<p class="aqm-c12-criterio aqm-c12-oculto" id="aqm-c12-semvolume" style="margin-top:.9rem">';
 	$h .= 'Não sabe o volume real? Ele não é o número da etiqueta: o vidro, a borda livre, o substrato e as rochas tiram uma parte, e a mídia é dimensionada sobre a água que existe. ';
-	$h .= 'A <a href="' . esc_url( $c1 ) . '">calculadora de litragem</a> devolve esse número a partir das medidas em centímetros e o guarda para esta página usar.</p>';
+	$h .= 'A <a href="' . esc_url( $c1 ) . '">quantos litros tem o seu aquário</a> devolve esse número a partir das medidas em centímetros e o guarda para esta página usar.</p>';
 	$h .= '</form>';
 
 	return $h;
@@ -1668,7 +1668,7 @@ function aquametria_c12_adiante_html() {
 	$h .= '<h3>O que conversa com esta página</h3>';
 	$h .= '<ul>';
 	$h .= '<li><a href="' . esc_url( $artigo ) . '"><strong>Quanta mídia biológica o aquário realmente precisa</strong></a> — o texto que mostra de onde vêm as dosagens, por que elas discordam por dez vezes e o que muda quando se segue cada uma.</li>';
-	$h .= '<li><a href="' . esc_url( $c1 ) . '"><strong>Calculadora de litragem (C1)</strong></a> — é de onde vem o volume real que esta página usa. Se o número acima veio preenchido, veio de lá.</li>';
+	$h .= '<li><a href="' . esc_url( $c1 ) . '"><strong>Quantos litros tem o seu aquário</strong></a> — é de onde vem o volume real que esta página usa. Se o número acima veio preenchido, veio de lá.</li>';
 	$h .= '<li><a href="' . esc_url( $c3 ) . '"><strong>Vazão do filtro (C3)</strong></a> — o filtro que você escolheu aqui é o mesmo que vira renovações por hora lá. Vazão e mídia são as duas metades da mesma decisão: a água precisa passar, e precisa passar por alguma coisa.</li>';
 	$h .= '<li><a href="' . esc_url( $c5 ) . '"><strong>Potência do aquecedor (C5)</strong></a> — usa o mesmo volume de água. A colônia nitrificante também depende de temperatura: aquário frio cicla mais devagar.</li>';
 	$h .= '<li><a href="' . esc_url( $c15 ) . '"><strong>Iluminação e fotoperíodo (C15)</strong></a> — luz forte com CO2 acelera o crescimento das plantas e a carga do filtro junto: mais matéria orgânica para a mídia processar. É a mesma decisão vista pelo outro lado.</li>';

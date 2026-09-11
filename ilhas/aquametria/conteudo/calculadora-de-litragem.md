@@ -1,7 +1,7 @@
 ---
 id: calculadora-de-litragem
 tipo: pagina
-titulo: "Calculadora de litragem: quantos litros tem o seu aquário"
+titulo: "Quantos litros tem o seu aquário?"
 slug: calculadora-de-litragem
 meta_descricao: "Quantos litros tem o seu aquário? Informe as medidas em centímetros e receba os três volumes: o bruto da etiqueta, o interno e a água real."
 cluster: C1
@@ -14,9 +14,9 @@ verificado_em: 2026-09-08
 publicar: true
 ---
 
-Um aquário de 80 × 40 × 40 cm é vendido como "aquário de 128 litros". Ele nunca tem 128 litros de água. O vidro ocupa espaço, a lâmina d'água para antes da borda, e o substrato e as rochas tomam mais um pedaço. Com vidro de 8 mm e a lâmina no valor inicial, sobram **109 litros** — 15 % a menos que a etiqueta —, e é esse número menor que define o filtro, o aquecedor, a mídia e quantos peixes cabem.
+O seu aquário tem menos água do que diz a etiqueta. Um 80 × 40 × 40 é anunciado como aquário de 128 litros e, com vidro de 8 mm e a lâmina três dedos abaixo da borda, guarda **109** — quinze por cento a menos. É esse número menor que manda no filtro, no aquecedor, na mídia e em quantos peixes cabem.
 
-Esta calculadora devolve os três volumes separados, e diz de onde cada um vem.
+Informe as suas medidas aí embaixo: a conta sai nos três volumes, separados, e diz de onde cada um vem.
 
 [aquametria_calculadora_litragem]
 
@@ -70,7 +70,7 @@ Quem já sabe quantos litros quer costuma estar escolhendo o móvel ou o espaço
 
 ## Onde este resultado é usado
 
-O volume real fica guardado no navegador e alimenta as próximas calculadoras. A primeira delas já está no ar: a [calculadora de vazão do filtro](https://aquametria.com.br/calculadora-de-vazao-do-filtro/) pega o volume real desta página e devolve a faixa de L/h que o seu aquário pede — do 1,76 renovações por hora que o fabricante do filtro dimensiona ao 10 x/h que a web brasileira repete. As outras entram no ar uma por vez: potência do aquecedor por delta térmico, mídia filtrante, consumo elétrico e lotação. A lista completa, com o estado de cada uma, está em [todas as calculadoras](https://aquametria.com.br/calculadoras/).
+O volume real fica guardado no navegador e alimenta as próximas calculadoras. A primeira delas já está no ar: a [qual filtro dá conta do seu aquário](https://aquametria.com.br/calculadora-de-vazao-do-filtro/) pega o volume real desta página e devolve a faixa de L/h que o seu aquário pede — do 1,76 renovações por hora que o fabricante do filtro dimensiona ao 10 x/h que a web brasileira repete. As outras entram no ar uma por vez: potência do aquecedor por delta térmico, mídia filtrante, consumo elétrico e lotação. A lista completa, com o estado de cada uma, está em [todas as calculadoras](https://aquametria.com.br/calculadoras/).
 
 Antes de usar qualquer número desta página em uma compra, vale ler [como a Aquametria calcula](https://aquametria.com.br/metodologia/): toda constante tem fonte nomeada, endereço e data, e o que não tem fonte aceitável fica de fora da fórmula, com o motivo escrito.
 

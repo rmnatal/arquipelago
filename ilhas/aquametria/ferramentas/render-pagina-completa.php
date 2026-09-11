@@ -120,8 +120,19 @@ if ( file_exists( $arquivo_md ) ) {
 	   shortcodes do corpo executados, e o escape de "&" por cima. */
 	$md = file_get_contents( $arquivo_md );
 
+	/* O titulo NAO sai daqui em estado bruto: o front matter e YAML, e escalar
+	   entre aspas duplas em YAML escapa a aspa interna com barra invertida. O
+	   que o site serve vem do `titulo` do manifest.json, que ja esta
+	   desescapado — entao a bancada que lesse `\"` mediria uma string que o ar
+	   nao tem. Foi exatamente o que aconteceu: o H1 do artigo do aquecedor saia
+	   aqui como `\&quot;1 W por litro\&quot;` e no ar como `&#8220;1 W por
+	   litro&#8221;`, sem erro nenhum aparecer. Medir o que nao existe e a
+	   cicatriz da secao 8; aqui ela custaria um portao de voz calibrado numa
+	   string fantasma. */
 	$titulo = 'Aquametria';
-	if ( preg_match( '/^titulo:\s*"?(.+?)"?\s*$/m', $md, $m ) ) {
+	if ( preg_match( '/^titulo:\s*"(.*)"\s*$/m', $md, $m ) ) {
+		$titulo = str_replace( array( '\\"', '\\\\' ), array( '"', '\\' ), $m[1] );
+	} elseif ( preg_match( '/^titulo:\s*(.+?)\s*$/m', $md, $m ) ) {
 		$titulo = $m[1];
 	}
 

@@ -1,5 +1,9 @@
 /**
  * Aquametria Casca — identidade e estrutura do site
+ * Versão: 1.5.1 (11/09/2026) — o degrau da trilha da página de afiliados passa a
+ * dizer o mesmo que o H1 logo abaixo dele. O rodapé continua com o nome
+ * reconhecível de aviso de comissão; só a trilha responde pelo nome da página.
+ *
  * Versão: 1.5.0 (11/09/2026) — a ÁRVORE chega às treze páginas que já existem.
  * Seção 16 do ARQUIPELAGO.md e o que o despacho do Raphael de 11/09 deixou de
  * pé depois do bloco da voz. Três coisas entram, e NENHUMA cria URL nova — as
@@ -1002,7 +1006,12 @@ function aquametria_casca_lugar( $slug ) {
 		'calculadoras'            => 'Calculadoras',
 		'metodologia'             => 'Como a gente calcula',
 		'sobre'                   => 'Sobre',
-		'divulgacao-de-afiliados' => 'Divulgação de afiliados',
+		/* O degrau da trilha diz o mesmo que o H1 logo abaixo dele. O rodapé
+		   continua dizendo "Divulgação de afiliados" (linha 563) porque ali o
+		   nome precisa ser o reconhecível como aviso de comissão — são duas
+		   superfícies com trabalhos diferentes, e só a trilha responde pelo
+		   nome da página. */
+		'divulgacao-de-afiliados' => 'Como a Aquametria ganha dinheiro',
 	);
 	if ( isset( $raiz[ $slug ] ) ) {
 		return array(

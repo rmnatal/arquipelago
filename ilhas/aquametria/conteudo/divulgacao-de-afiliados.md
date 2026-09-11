@@ -12,9 +12,9 @@ verificado_em: 2026-09-08
 publicar: true
 ---
 
-A Aquametria não vende equipamento, não intermedia venda e não aceita link pago, publieditorial nem posição paga em ranking. O que ela faz é **link de afiliado**: alguns botões que levam a lojas carregam um código nosso, e se você comprar por eles a loja nos paga uma comissão. O preço para você é exatamente o mesmo.
+Alguns botões de loja daqui carregam um código nosso: se você comprar por eles, a loja paga uma comissão à Aquametria e **o seu preço continua exatamente o mesmo**. A gente não vende equipamento, não intermedia venda e não aceita link pago, publieditorial nem posição paga em ranking.
 
-Esta página existe porque esse tipo de link precisa ser declarado — é exigência das próprias plataformas de afiliados e da autorregulamentação publicitária brasileira, e é o mínimo que se deve a quem está lendo. Mas ela existe principalmente para dizer a coisa mais importante: **o que a comissão muda na escolha dos produtos, e a resposta é nada.**
+Esta página existe porque link assim precisa ser declarado — é exigência das plataformas de afiliados e da autorregulamentação publicitária brasileira, e é o mínimo que se deve a quem está lendo. Mas ela existe principalmente para responder a pergunta que importa: **o que a comissão muda na escolha dos produtos. A resposta é nada, e abaixo está por quê.**
 
 ## A regra, na íntegra
 
@@ -29,7 +29,7 @@ Na prática, quando uma calculadora mostra produtos:
 - **Produto sem link nenhum aparece igual.** Se o modelo mais adequado ao seu caso é um que não nos paga nada, ele aparece — e a página diz, no próprio cartão, que não temos link para ele.
 - **Se nada atende, não aparece nada.** Preferimos entregar resposta sem produto a empurrar um equipamento que não fecha a conta. A calculadora diz quantos filtros o banco tem e por que nenhum deles serviu.
 
-## De onde vem a ficha técnica de cada produto
+## De onde vem o número que aparece no cartão
 
 Não do anúncio da loja. Cada campo do nosso banco — vazão, potência, coluna máxima, volume atendido, voltagem — aponta para a fonte que o sustenta, com endereço e data de verificação, e o nível dessa fonte aparece na tela:
 

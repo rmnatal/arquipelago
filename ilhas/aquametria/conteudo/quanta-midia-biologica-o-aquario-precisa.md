@@ -1,7 +1,7 @@
 ---
 id: quanta-midia-biologica-o-aquario-precisa
 tipo: artigo
-titulo: "Quanta mídia biológica o aquário precisa: quatro fabricantes, dez vezes de diferença"
+titulo: "Cada marca pede uma dose diferente de mídia"
 slug: quanta-midia-biologica-o-aquario-precisa
 meta_descricao: "Seachem pede 1,25 mL de mídia por litro; Ocean Tech pede 12,5. Dez vezes de diferença para o mesmo trabalho — fomos às declarações originais."
 cluster: C12
@@ -29,7 +29,7 @@ A resposta que circula é sempre qualitativa. Encha o cesto. Quanto mais melhor.
 
 Fomos atrás das declarações originais dos fabricantes. Elas existem. E elas discordam de um jeito que, uma vez visto, é difícil de esquecer.
 
-Se você quer o número do seu aquário antes da explicação, ele está na [calculadora de mídia filtrante](https://aquametria.com.br/calculadora-de-midia-filtrante/), que faz a conta com as quatro dosagens de uma vez e mostra quanto de cada uma cabe no seu filtro. Este texto é sobre o porquê.
+Se você quer o número do seu aquário antes da explicação, ele está na [quanta mídia biológica cabe no seu filtro](https://aquametria.com.br/calculadora-de-midia-filtrante/), que faz a conta com as quatro dosagens de uma vez e mostra quanto de cada uma cabe no seu filtro. Este texto é sobre o porquê.
 
 ## Quatro declarações, um fator de dez
 
@@ -129,4 +129,4 @@ Enquanto isso, a [calculadora](https://aquametria.com.br/calculadora-de-midia-fi
 
 ---
 
-**Também da Aquametria:** a [calculadora de litragem](https://aquametria.com.br/calculadora-de-litragem/) devolve o volume real de água que todas as contas acima usam; a [calculadora de vazão do filtro](https://aquametria.com.br/calculadora-de-vazao-do-filtro/) mostra por que os fabricantes declaram de 1,8 a 10 renovações por hora para o mesmo aquário; e a [calculadora de potência do aquecedor](https://aquametria.com.br/calculadora-de-potencia-do-aquecedor/) pergunta o que o "1 W por litro" nunca perguntou. O método está em [como a Aquametria calcula](https://aquametria.com.br/metodologia/).
+**Também da Aquametria:** a [quantos litros tem o seu aquário](https://aquametria.com.br/calculadora-de-litragem/) devolve o volume real de água que todas as contas acima usam; a [qual filtro dá conta do seu aquário](https://aquametria.com.br/calculadora-de-vazao-do-filtro/) mostra por que os fabricantes declaram de 1,8 a 10 renovações por hora para o mesmo aquário; e a [quantos watts de aquecedor você precisa](https://aquametria.com.br/calculadora-de-potencia-do-aquecedor/) pergunta o que o "1 W por litro" nunca perguntou. O método está em [como a Aquametria calcula](https://aquametria.com.br/metodologia/).

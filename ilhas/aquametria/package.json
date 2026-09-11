@@ -1,0 +1,8 @@
+{
+  "name": "aquametria-bancada",
+  "private": true,
+  "description": "Dependência da bancada da ilha. Os testes de navegador (teste-navegador-*.mjs, 224 medições na árvore) importam 'playwright'; sem este arquivo cada execução descobre a dependência pelo erro. O Chromium NÃO se baixa aqui: ele já vem no ambiente, em /opt/pw-browsers, e é por isso que AQM_CHROME aponta para lá.",
+  "dependencies": {
+    "playwright": "^1.63.0"
+  }
+}

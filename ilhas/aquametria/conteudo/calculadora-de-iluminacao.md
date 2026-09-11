@@ -1,7 +1,7 @@
 ---
 id: calculadora-de-iluminacao
 tipo: pagina
-titulo: "Calculadora de iluminação e fotoperíodo: quantos lúmens o seu aquário pede"
+titulo: "Quanta luz o seu aquário precisa?"
 slug: calculadora-de-iluminacao
 meta_descricao: "Quantos lúmens o seu aquário plantado precisa? A faixa pelas três leituras brasileiras que discordam, mais fotoperíodo, Kelvin e consumo por mês."
 cluster: C15
@@ -18,9 +18,9 @@ verificado_em: 2026-09-08
 publicar: true
 ---
 
-Procure "quantos lúmens para aquário plantado" e você vai encontrar a mesma tabela em três lugares diferentes, com três números diferentes, todos sob o mesmo rótulo. **Iluminação baixa** é 20 lm/L para uma fonte brasileira, 10 a 20 lm/L para outra e 15 lm/L para a terceira. A diferença entre o menor e o maior piso é de **duas vezes** — e nenhuma das três cita as outras duas, nem explica de onde tirou o próprio número.
+Quanta luz o seu aquário plantado pede depende de quão exigentes são as suas plantas — e, num aquário de 100 litros, **iluminação baixa** pode querer dizer 1.000 lúmens ou 2.000, conforme a régua que você abrir. As três que circulam no aquarismo brasileiro chamam a mesma faixa pelo mesmo nome com o dobro do número.
 
-Esta calculadora não escolhe uma delas. Ela mostra as três, com o nome de quem publicou cada uma, e converte todas para os litros do seu aquário.
+Esta página não escolhe uma delas. Mostra as três nos litros do seu aquário, lado a lado, e diz quantas horas deixar aceso.
 
 [aquametria_calculadora_iluminacao]
 
@@ -95,9 +95,9 @@ A calculadora avisa quando a sua lâmina passa de 45 cm, que é o limite a parti
 ## Continue por aqui
 
 - [Quantos lúmens por litro o aquário plantado precisa](https://aquametria.com.br/2026/09/08/quantos-lumens-por-litro-aquario-plantado/) — o artigo pareado com esta calculadora: de onde saiu a regra, por que o lúmen é a unidade errada para planta e o que o varejo brasileiro não declara.
-- [Calculadora de litragem](https://aquametria.com.br/calculadora-de-litragem/) — o volume real, o comprimento e a lâmina que esta página usa saem de lá.
-- [Calculadora de vazão do filtro](https://aquametria.com.br/calculadora-de-vazao-do-filtro/) — o mesmo aquário visto pela filtragem; plantado pede corrente mais lenta.
-- [Calculadora de potência do aquecedor](https://aquametria.com.br/calculadora-de-potencia-do-aquecedor/) — o aparelho que mais pesa na conta de luz, e o único que pergunta quanto frio faz no seu cômodo.
-- [Calculadora de mídia filtrante](https://aquametria.com.br/calculadora-de-midia-filtrante/) — luz forte com CO2 acelera o crescimento das plantas e a carga do filtro junto.
+- [Quantos litros tem o seu aquário](https://aquametria.com.br/calculadora-de-litragem/) — o volume real, o comprimento e a lâmina que esta página usa saem de lá.
+- [Qual filtro dá conta do seu aquário](https://aquametria.com.br/calculadora-de-vazao-do-filtro/) — o mesmo aquário visto pela filtragem; plantado pede corrente mais lenta.
+- [Quantos watts de aquecedor você precisa](https://aquametria.com.br/calculadora-de-potencia-do-aquecedor/) — o aparelho que mais pesa na conta de luz, e o único que pergunta quanto frio faz no seu cômodo.
+- [Quanta mídia biológica cabe no seu filtro](https://aquametria.com.br/calculadora-de-midia-filtrante/) — luz forte com CO2 acelera o crescimento das plantas e a carga do filtro junto.
 - [Como a Aquametria calcula](https://aquametria.com.br/metodologia/) — por que uma faixa com três fontes que discordam vale mais que um número redondo sem origem.
 - [Como a Aquametria ganha dinheiro](https://aquametria.com.br/divulgacao-de-afiliados/) — o que é link de afiliado e o que ele não muda.

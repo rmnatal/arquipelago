@@ -29,6 +29,12 @@ from pathlib import Path
 RAIZ = Path(__file__).resolve().parent.parent
 CASCA = 'snippets/aquametria-casca.php'
 ARTIGOS = 'snippets/aquametria-artigos.php'
+C5_SNIPPET = 'snippets/aquametria-calculadora-aquecedor.php'
+C1_MD = 'conteudo/calculadora-de-litragem.md'
+C12_MD = 'conteudo/calculadora-de-midia-filtrante.md'
+C15_MD = 'conteudo/calculadora-de-iluminacao.md'
+C5_ARTIGO_MD = 'conteudo/quantos-watts-de-aquecedor-para-aquario.md'
+AFILIADOS_MD = 'conteudo/divulgacao-de-afiliados.md'
 
 
 def troca(arquivo, velho, novo, vezes=1):
@@ -52,6 +58,14 @@ def regex(arquivo, padrao, novo):
         if n == 0:
             raise SystemExit(f'ALVO SUMIU (regex) em {arquivo}: {padrao[:70]!r}')
         p.write_text(s2, encoding='utf-8')
+    return aplicar
+
+
+def ambas(*aplicadores):
+    """Uma mutacao que precisa de mais de uma edicao para NAO ser inerte."""
+    def aplicar(base):
+        for a in aplicadores:
+            a(base)
     return aplicar
 
 
@@ -121,6 +135,74 @@ MUTACOES = [
         troca(ARTIGOS,
               "add_filter( 'aquametria_guias', 'aquametria_artigos_registrar_guias' );",
               "/* mutacao: sem anuncio */"),
+    ),
+
+    # ------------------------------------------------------------------
+    # As nove paginas de conteudo/, que o portao passou a medir em
+    # 11/09/2026. Cada uma destas e um defeito que ESTAVA NO AR ate hoje —
+    # nao um defeito imaginado. Por isso elas importam: se alguma passar,
+    # o portao novo nao protege contra o defeito que ele nasceu para pegar.
+    # ------------------------------------------------------------------
+    (
+        'um titulo de calculadora volta a comecar por "Calculadora de"',
+        troca(C1_MD,
+              'titulo: "Quantos litros tem o seu aquário?"',
+              'titulo: "Calculadora de litragem: quantos litros tem o seu aquário"'),
+    ),
+    (
+        'o <title> de uma pagina de conteudo passa dos 65 caracteres',
+        troca(C15_MD,
+              'titulo: "Quanta luz o seu aquário precisa?"',
+              'titulo: "Quantos lúmens e quantas horas de luz o seu aquário plantado pede"'),
+    ),
+    (
+        'o degrau da trilha volta a divergir do H1 logo abaixo dele',
+        troca(CASCA,
+              "'titulo'  => 'Quanta mídia biológica cabe no seu filtro?',",
+              "'titulo'  => 'Mídia filtrante',"),
+    ),
+    (
+        'a procedencia volta para o primeiro paragrafo de um artigo',
+        troca(ARTIGOS,
+              "'texto'  => 'Não existe um número de watts por litro que sirva para o Brasil inteiro:",
+              "'texto'  => 'Segundo a ReefFlow, lida em 04/09/2026, não existe um número de watts por litro que sirva para o Brasil inteiro:"),
+    ),
+    (
+        'a PORTA DOS FUNDOS de conteudo/: a propria resposta se declara prova',
+        troca(ARTIGOS,
+              "				array(\n					'rotulo' => 'A resposta curta.',",
+              "				array(\n					'prova'  => true,\n					'rotulo' => 'A resposta curta.',"),
+    ),
+    (
+        'duas paginas da ilha passam a disputar a mesma busca com o mesmo H1',
+        ambas(
+            troca(C5_ARTIGO_MD,
+                  'titulo: "Por que o 1 W por litro erra para o mesmo lado"',
+                  'titulo: "Quantos watts de aquecedor você precisa?"'),
+            # a manchete vai junto, senao quem reprovaria seria a regra do degrau
+            # da trilha e esta mutacao nao teria medido a canibalizacao.
+            troca(ARTIGOS,
+                  "'manchete'  => 'Por que o 1 W por litro erra para o mesmo lado',",
+                  "'manchete'  => 'Quantos watts de aquecedor você precisa?',"),
+        ),
+    ),
+    (
+        'uma ancora interna volta a se chamar pelo nome interno da ferramenta',
+        troca(C5_SNIPPET,
+              "'\"><strong>Quantos litros tem o seu aquário</strong></a>",
+              "'\"><strong>Calculadora de litragem (C1)</strong></a>"),
+    ),
+    (
+        'um h2 volta a chamar o leitor para dentro da ficha tecnica',
+        troca(AFILIADOS_MD,
+              '## De onde vem o número que aparece no cartão',
+              '## De onde vem a ficha técnica de cada produto'),
+    ),
+    (
+        'o primeiro paragrafo para de falar com a pessoa e passa a falar da internet',
+        troca(C12_MD,
+              'Num aquário de 100 litros, a mídia biológica que o seu filtro pede vai de **125 mililitros a 1,25 litro** — dez vezes de diferença, conforme a marca que você abrir. Não é erro de leitura: as dosagens que existem discordam nessa ordem de grandeza, e ninguém as coloca lado a lado.',
+              'Pergunte na internet brasileira quanta mídia biológica um aquário de 100 litros precisa e não virá um número. Virão conselhos: encha o cesto, quanto mais melhor, cerâmica embaixo e perlon em cima. Todos verdadeiros, nenhum quantificado.'),
     ),
 ]
 

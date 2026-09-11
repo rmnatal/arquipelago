@@ -1,7 +1,7 @@
 ---
 id: calculadora-de-vazao-do-filtro
 tipo: pagina
-titulo: "Calculadora de vazão do filtro: quantos L/h o seu aquário pede"
+titulo: "Qual filtro dá conta do seu aquário?"
 slug: calculadora-de-vazao-do-filtro
 meta_descricao: "Qual a vazão de filtro para o seu aquário, em L/h? A faixa vai de 1,76 a 10 renovações por hora, e cada extremo aparece com a fonte dele."
 cluster: C3
@@ -18,9 +18,9 @@ verificado_em: 2026-09-08
 publicar: true
 ---
 
-Pergunte na internet brasileira qual filtro serve para um aquário de 100 litros e a resposta virá pronta: "de 5 a 10 vezes o volume por hora", ou seja, de 500 a 1000 L/h. Vá agora ao site da Eheim e olhe o classic 250, o velho 2213: **440 litros por hora, declarados pelo fabricante para aquários de até 250 litros**. São 1,76 renovações por hora.
+Filtro para o seu aquário é uma faixa larga, não um número redondo: quem faz o filtro monta a conta por menos de duas renovações de água por hora, e a regra de bolso que circula no aquarismo brasileiro pede dez. Quase seis vezes de diferença, para o mesmo aquário.
 
-Uma das duas afirmações está muito errada, ou as duas medem coisas diferentes. Nenhuma fonte brasileira do nosso levantamento confronta as duas — todas repetem uma delas como se a outra não existisse. Esta calculadora existe para publicar a divergência inteira, com a atribuição de cada extremo.
+Aqui a faixa sai inteira, com o nome de quem defende cada ponta — porque a escolha entre comprar folga ou não é sua, e ela não se faz no escuro.
 
 [aquametria_calculadora_vazao]
 
@@ -70,7 +70,7 @@ O banco hoje é pequeno de propósito: são poucos filtros com ficha completa, p
 
 ## De onde vem o volume que esta página usa
 
-Do seu navegador, se você já usou a [calculadora de litragem](https://aquametria.com.br/calculadora-de-litragem/). É ela que transforma as medidas em centímetros nos três volumes que importam e guarda o volume real — sem conta, sem login, sem envio para servidor nenhum.
+Do seu navegador, se você já usou a [quantos litros tem o seu aquário](https://aquametria.com.br/calculadora-de-litragem/). É ela que transforma as medidas em centímetros nos três volumes que importam e guarda o volume real — sem conta, sem login, sem envio para servidor nenhum.
 
 Vale insistir num ponto: o volume que dimensiona filtro é a **água que está lá dentro**, não o número da etiqueta. Um "aquário de 128 litros" costuma ter menos de 110 litros de água depois do vidro, da borda livre e das rochas. Usar o número da loja aqui infla a vazão pedida em mais de 15 %.
 

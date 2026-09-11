@@ -1,7 +1,7 @@
 ---
 id: quantos-watts-de-aquecedor-para-aquario
 tipo: artigo
-titulo: "Quantos watts de aquecedor o seu aquário precisa (e por que \"1 W por litro\" erra sempre para o mesmo lado)"
+titulo: "Por que o 1 W por litro erra para o mesmo lado"
 slug: quantos-watts-de-aquecedor-para-aquario
 meta_descricao: "O 1 W por litro não veio de um cálculo, veio da prateleira. De onde a regra saiu, quando ela acerta por acidente e o que muda ao medir o cômodo."
 cluster: C5
@@ -24,7 +24,7 @@ Existe um número que todo mundo no aquarismo brasileiro sabe de cor: **um watt 
 
 O problema não é a regra ser grosseira. Regras de bolso boas são grosseiras de propósito. O problema é que essa aqui **não diz para qual situação vale**, e por isso erra sempre na mesma direção — contra quem mora onde faz frio.
 
-Se você quer ir direto ao número do seu caso, a **[calculadora de potência do aquecedor](https://aquametria.com.br/calculadora-de-potencia-do-aquecedor/)** faz a conta perguntando a mínima do cômodo onde o aquário fica. Este texto é o porquê.
+Se você quer ir direto ao número do seu caso, a **[quantos watts de aquecedor você precisa](https://aquametria.com.br/calculadora-de-potencia-do-aquecedor/)** faz a conta perguntando a mínima do cômodo onde o aquário fica. Este texto é o porquê.
 
 ## De onde saiu o "1 W por litro"
 
@@ -123,7 +123,7 @@ Enquanto ela não sai, a calculadora faz a coisa intermediária e honesta: usa a
 Se você quer o número, [a calculadora faz a conta](https://aquametria.com.br/calculadora-de-potencia-do-aquecedor/) e ainda filtra os aquecedores pela voltagem da sua tomada e pela temperatura que o termostato alcança. Se você quer só o resumo do raciocínio:
 
 1. **Meça o frio, não a cidade.** Deixe um termômetro no cômodo onde o aquário fica e olhe de manhã, na semana mais fria. Esse número vale mais que qualquer normal climatológica.
-2. **Calcule sobre a água real**, não sobre o rótulo do aquário. Vidro, borda livre e rochas tiram uma parte — a [calculadora de litragem](https://aquametria.com.br/calculadora-de-litragem/) devolve esse número.
+2. **Calcule sobre a água real**, não sobre o rótulo do aquário. Vidro, borda livre e rochas tiram uma parte — a [quantos litros tem o seu aquário](https://aquametria.com.br/calculadora-de-litragem/) devolve esse número.
 3. **Na dúvida entre dois degraus, suba.** As consequências não são simétricas: sobrando, o termostato liga menos; faltando, a temperatura cai.
 4. **Acima de 150 W, considere dois aquecedores de metade da potência.** O argumento é modo de falha, não economia — travado ligado, um aparelho menor faz menos estrago; travado desligado, o outro segura alguma coisa. Isso é raciocínio nosso, não regra publicada por ninguém, e está declarado como tal.
 5. **Confira a voltagem antes de comprar.** A mesma potência é vendida em 110 V e em 220 V, e o anúncio nem sempre deixa claro qual. Aquecedor na voltagem errada queima ou esquenta demais.
@@ -131,7 +131,7 @@ Se você quer o número, [a calculadora faz a conta](https://aquametria.com.br/c
 
 ## O que conversa com este texto
 
-- **[Calculadora de potência do aquecedor (C5)](https://aquametria.com.br/calculadora-de-potencia-do-aquecedor/)** — o número do seu caso, com a faixa atribuída fonte por fonte e os aquecedores que atendem.
-- **[Calculadora de litragem (C1)](https://aquametria.com.br/calculadora-de-litragem/)** — o volume real de água, que é sobre o que se dimensiona.
+- **[Quantos watts de aquecedor você precisa](https://aquametria.com.br/calculadora-de-potencia-do-aquecedor/)** — o número do seu caso, com a faixa atribuída fonte por fonte e os aquecedores que atendem.
+- **[Quantos litros tem o seu aquário](https://aquametria.com.br/calculadora-de-litragem/)** — o volume real de água, que é sobre o que se dimensiona.
 - **[Vazão do filtro (C3)](https://aquametria.com.br/calculadora-de-vazao-do-filtro/)** — a mesma história, no outro equipamento: fabricante e web brasileira divergindo em até 5,7 vezes.
 - **[Como a Aquametria calcula](https://aquametria.com.br/metodologia/)** — a escada de fontes e a diferença entre constante com origem e convenção declarada.

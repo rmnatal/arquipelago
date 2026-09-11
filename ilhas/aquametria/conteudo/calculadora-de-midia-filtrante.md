@@ -1,7 +1,7 @@
 ---
 id: calculadora-de-midia-filtrante
 tipo: pagina
-titulo: "Calculadora de mídia filtrante: quantos mililitros o seu aquário pede"
+titulo: "Quanta mídia biológica cabe no seu filtro?"
 slug: calculadora-de-midia-filtrante
 meta_descricao: "Quanta mídia filtrante o seu aquário pede, em mililitros? Quatro fabricantes declaram dosagens que variam dez vezes; aqui estão as quatro."
 cluster: C12
@@ -25,11 +25,9 @@ verificado_em: 2026-09-08
 publicar: true
 ---
 
-Pergunte na internet brasileira quanta mídia biológica um aquário de 100 litros precisa e você não vai receber um número. Vai receber conselhos: "encha o cesto", "quanto mais melhor", "cerâmica embaixo, perlon em cima". Todos verdadeiros, nenhum quantificado.
+Num aquário de 100 litros, a mídia biológica que o seu filtro pede vai de **125 mililitros a 1,25 litro** — dez vezes de diferença, conforme a marca que você abrir. Não é erro de leitura: as dosagens que existem discordam nessa ordem de grandeza, e ninguém as coloca lado a lado.
 
-O nosso levantamento de 480 consultas classificou esse assunto como o **vácuo de conteúdo número 1** do aquarismo brasileiro: catorze buscas mensais recorrentes sobre quantidade e troca de mídia, e nenhuma fonte nacional publicando mililitros de mídia por litro de água.
-
-Os fabricantes publicam. O problema é outro — eles discordam **por dez vezes**, e ninguém coloca as declarações lado a lado.
+Aqui elas ficam lado a lado, convertidas para os litros do seu aquário, com o teto do cesto do seu filtro junto — para você não comprar mídia que não cabe.
 
 [aquametria_calculadora_midia]
 
@@ -110,8 +108,8 @@ E as constantes de manutenção — carvão, perlon, cerâmica, ordem das camada
 ## Continue por aqui
 
 - [Quanta mídia biológica o aquário realmente precisa](https://aquametria.com.br/2026/09/08/quanta-midia-biologica-o-aquario-precisa/) — o artigo que destrincha por que os quatro fabricantes discordam por dez vezes, e o que muda quando se segue cada um.
-- [Calculadora de litragem](https://aquametria.com.br/calculadora-de-litragem/) — o volume real de água, que é a entrada de tudo aqui.
-- [Calculadora de vazão do filtro](https://aquametria.com.br/calculadora-de-vazao-do-filtro/) — a água precisa passar, e precisa passar por alguma coisa: vazão e mídia são as duas metades da mesma decisão.
-- [Calculadora de potência do aquecedor](https://aquametria.com.br/calculadora-de-potencia-do-aquecedor/) — a colônia nitrificante também depende de temperatura.
+- [Quantos litros tem o seu aquário](https://aquametria.com.br/calculadora-de-litragem/) — o volume real de água, que é a entrada de tudo aqui.
+- [Qual filtro dá conta do seu aquário](https://aquametria.com.br/calculadora-de-vazao-do-filtro/) — a água precisa passar, e precisa passar por alguma coisa: vazão e mídia são as duas metades da mesma decisão.
+- [Quantos watts de aquecedor você precisa](https://aquametria.com.br/calculadora-de-potencia-do-aquecedor/) — a colônia nitrificante também depende de temperatura.
 - [Como a Aquametria calcula](https://aquametria.com.br/metodologia/) — por que uma faixa com fontes que discordam vale mais que um número redondo sem origem.
 - [Como a Aquametria ganha dinheiro](https://aquametria.com.br/divulgacao-de-afiliados/) — o que é link de afiliado e o que ele não muda.

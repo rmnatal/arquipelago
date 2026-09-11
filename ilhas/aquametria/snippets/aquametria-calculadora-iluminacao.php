@@ -1996,7 +1996,7 @@ function aquametria_c15_form_html() {
 	$h .= '<ul class="aqm-c15-avisos" id="aqm-c15-erros"></ul>';
 	$h .= '<p class="aqm-c15-criterio aqm-c15-oculto" id="aqm-c15-semvolume" style="margin-top:.9rem">';
 	$h .= 'Não sabe o volume real? Ele não é o número da etiqueta: o vidro, a borda livre e o substrato tiram uma parte. ';
-	$h .= 'A <a href="' . esc_url( $c1 ) . '">calculadora de litragem</a> devolve esse número a partir das medidas em centímetros e o guarda para esta página usar.</p>';
+	$h .= 'A <a href="' . esc_url( $c1 ) . '">quantos litros tem o seu aquário</a> devolve esse número a partir das medidas em centímetros e o guarda para esta página usar.</p>';
 	$h .= '</form>';
 
 	return $h;
@@ -2204,7 +2204,7 @@ function aquametria_c15_adiante_html() {
 	$h .= '<h3>O que conversa com esta página</h3>';
 	$h .= '<ul>';
 	$h .= '<li><a href="' . esc_url( $artigo ) . '"><strong>Quantos lúmens por litro o aquário plantado precisa</strong></a> — o artigo pareado com esta calculadora: de onde saiu a regra de lm/L, por que as três fontes brasileiras discordam por duas vezes sobre o mesmo rótulo e onde a régua quebra.</li>';
-	$h .= '<li><a href="' . esc_url( $c1 ) . '"><strong>Calculadora de litragem (C1)</strong></a> — é de onde vêm o volume real, o comprimento e a lâmina que esta página usa. Se os campos vieram preenchidos, vieram de lá.</li>';
+	$h .= '<li><a href="' . esc_url( $c1 ) . '"><strong>Quantos litros tem o seu aquário</strong></a> — é de onde vêm o volume real, o comprimento e a lâmina que esta página usa. Se os campos vieram preenchidos, vieram de lá.</li>';
 	$h .= '<li><a href="' . esc_url( $c3 ) . '"><strong>Vazão do filtro (C3)</strong></a> — o mesmo volume, do outro lado do aquário. Aquário plantado pede corrente mais lenta, e a faixa de lá muda por causa disso.</li>';
 	$h .= '<li><a href="' . esc_url( $c5 ) . '"><strong>Potência do aquecedor (C5)</strong></a> — o aparelho que mais pesa na conta de luz, e o único que pergunta quanto frio faz no seu cômodo. Luminária potente também aquece a água: em aquário pequeno e tampado, isso conta.</li>';
 	$h .= '<li><a href="' . esc_url( $c12 ) . '"><strong>Mídia filtrante (C12)</strong></a> — luz forte com CO2 acelera o crescimento das plantas e a carga do filtro junto. É a mesma decisão vista pela filtragem.</li>';

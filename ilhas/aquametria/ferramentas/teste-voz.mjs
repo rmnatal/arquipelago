@@ -275,5 +275,162 @@ console.log('\nHEADER');
   ok('o corpo não começa por metadado YAML', !texto(corpo).startsWith('---'));
 }
 
+/* ======================================================================
+ * AS NOVE PÁGINAS DE conteudo/ — a metade da ilha que este portão não media
+ *
+ * Até 11/09/2026 este arquivo olhava só as quatro páginas da casca, e o
+ * despacho da voz registrava "as de conteudo/ ainda não foram" como pendência
+ * escrita à mão. Pendência escrita à mão não é portão: as cinco calculadoras
+ * seguiram no ar com H1 começando por "Calculadora de", que é a única forma de
+ * título que o VOZ.md proíbe pelo nome, e oito dos nove <title> passavam de 65
+ * caracteres — nada disso precisava de olho humano para ser visto, precisava de
+ * alguém medindo.
+ *
+ * DUAS COISAS QUE MUDAM EM RELAÇÃO À RÉGUA DA CASCA, e as duas de propósito:
+ *
+ *   1. O RENDERIZADOR É OUTRO. Página de conteudo/ só sai inteira pelo
+ *      render-pagina-completa.php — os outros três montam metade. Medir a voz
+ *      no renderizador errado seria medir um H1 que o site não serve.
+ *   2. NÃO SE COBRA "termo proibido no corpo inteiro". A casca são quatro
+ *      páginas curtas de interface; estas nove são, em boa parte, a própria
+ *      camada de prova — explicação, tabela de fonte, "como sabemos". A 15.2
+ *      nomeia o que fica na voz: TÍTULO, PRIMEIRO PARÁGRAFO, rótulos e
+ *      chamadas. É isso que se mede aqui, mais os H2, que são chamadas.
+ *
+ * E UMA TERCEIRA, que é a régua que faltava: PROCEDÊNCIA NÃO ABRE PÁGINA. O
+ * primeiro parágrafo não pode nomear fabricante nem carregar data de leitura —
+ * era exatamente assim que os três artigos abriam ("Coletadas em 08/09/2026 e
+ * atribuídas ao próprio fabricante: Seachem Matrix, ..."), sem nenhum termo da
+ * lista de proibidas aparecer. Lista de palavra não pega isso; só pega quem
+ * mede a NATUREZA do que está escrito ali.
+ * ==================================================================== */
+
+const CONTEUDO = [
+  'calculadora-de-litragem',
+  'calculadora-de-vazao-do-filtro',
+  'calculadora-de-potencia-do-aquecedor',
+  'calculadora-de-midia-filtrante',
+  'calculadora-de-iluminacao',
+  'divulgacao-de-afiliados',
+  'quantos-watts-de-aquecedor-para-aquario',
+  'quanta-midia-biologica-o-aquario-precisa',
+  'quantos-lumens-por-litro-aquario-plantado',
+];
+
+/* Fabricantes e fontes citadas pela ilha. Escrita À MÃO aqui, como a lista de
+   proibidos: se viesse de dados/produtos-*.json, apagar a marca do banco
+   apagaria a régua junto e o teste continuaria verde. */
+const MARCAS = [
+  'eheim', 'seachem', 'jbl', 'ocean tech', 'atman', 'chihiros', 'ista',
+  'sunsun', 'sicce', 'hopar', 'roxin', 'soma', 'maxxi', 'wfish', 'aquaverso',
+  'reefflow', 'casa da ada', 'ehow', 'peixeseaquarismo', 'aquarioturbinado',
+  'aquariosplantados', 'my-best', 'aquarismo paulista', 'aquaonline',
+];
+const DATA_DE_LEITURA = /\b\d{2}\/\d{2}\/\d{4}\b/;
+
+const TITULO_MAXIMO = 65;   // o que o Google mostra antes de cortar
+
+function renderCompleta(slug) {
+  return execFileSync('php', [RAIZ + '/ferramentas/render-pagina-completa.php', RAIZ, slug], {
+    encoding: 'utf8', maxBuffer: 64 * 1024 * 1024,
+  });
+}
+
+/* O último degrau da trilha: o nome que a casca dá à página. */
+function degrauAtual(corpo) {
+  const m = corpo.match(/<span aria-current="page">([\s\S]*?)<\/span>/);
+  return m ? texto(m[1]) : '';
+}
+
+console.log('\n\nPORTÃO DA VOZ — ' + CONTEUDO.length + ' páginas de conteudo/, um processo cada');
+
+const h1Vistos = new Map();
+
+for (const slug of CONTEUDO) {
+  console.log(`\n/${slug}/`);
+  const html  = renderCompleta(slug);
+  const corpo = corpoDe(html);
+  ok('o corpo foi encontrado', corpo.length > 0);
+
+  const { voz, blocos } = separarProva(corpo);
+  const h1  = h1De(corpo);
+  const p1  = primeiroParagrafo(corpo);
+  const aba = texto((html.match(/<title>([\s\S]*?)<\/title>/) || [, ''])[1]);
+  const h2s = [...corpo.matchAll(/<h2\b[^>]*>([\s\S]*?)<\/h2>/g)].map((m) => texto(m[1]));
+
+  /* --- o título, nas duas superfícies --- */
+  ok('tem H1', h1.length > 0, h1);
+  ok('H1 sem termo proibido', acharProibidos(h1).length === 0, acharProibidos(h1).join(', '));
+  ok('H1 não começa com "Calculadora de"', !COMECO_PROIBIDO.test(semAcento(h1)), h1);
+  ok('<title> sem termo proibido', acharProibidos(aba).length === 0, acharProibidos(aba).join(', '));
+  ok(`<title> com no máximo ${TITULO_MAXIMO} caracteres`, aba.length <= TITULO_MAXIMO, `${aba.length} — ${aba}`);
+  ok('o <title> começa pelo H1', aba.startsWith(h1), `${aba} vs ${h1}`);
+
+  /* UM NOME POR PÁGINA. O degrau da trilha e o H1 ficam a uma linha um do
+     outro na tela, e até 11/09/2026 diziam coisas diferentes em 8 das 9 — a
+     trilha dizia "Quantos litros tem o seu aquário?" e o H1, logo abaixo,
+     "Calculadora de litragem: quantos litros tem o seu aquário". Dois nomes
+     para a mesma página é o defeito; a régua é a igualdade. */
+  const degrau = degrauAtual(corpo);
+  ok('a trilha nomeia a página', degrau.length > 0, degrau);
+  ok('o degrau da trilha é igual ao H1', degrau === h1, `trilha "${degrau}" vs H1 "${h1}"`);
+
+  /* Duas páginas com o mesmo H1 competem entre si na mesma busca. */
+  const chave = semAcento(h1);
+  ok('nenhuma outra página desta ilha tem este H1',
+    !h1Vistos.has(chave), h1Vistos.has(chave) ? 'igual ao de /' + h1Vistos.get(chave) + '/' : '');
+  h1Vistos.set(chave, slug);
+
+  /* --- o primeiro parágrafo: a camada de voz --- */
+  ok('tem primeiro parágrafo', p1.length > 0);
+  ok('primeiro parágrafo sem termo proibido', acharProibidos(p1).length === 0, acharProibidos(p1).join(', '));
+
+  const marcasNoP1 = MARCAS.filter((m) => semAcento(p1).includes(m));
+  ok('o primeiro parágrafo não nomeia fabricante nem fonte',
+    marcasNoP1.length === 0, marcasNoP1.join(', '));
+  ok('o primeiro parágrafo não carrega data de leitura',
+    !DATA_DE_LEITURA.test(p1), (p1.match(DATA_DE_LEITURA) || [''])[0]);
+
+  /* O VOZ.md manda falar em SEGUNDA PESSOA ("o seu aquário"). Cinco das nove
+     páginas abriam falando da internet em vez de falar com quem entrou
+     ("Pergunte na internet brasileira quanta mídia biológica um aquário de 100
+     litros precisa..."), e nenhuma régua de palavra proibida pega isso.
+     O LIMITE DESTA RÉGUA ESTÁ DECLARADO: ela pega o abridor que fala do mundo
+     em terceira pessoa, não pega um manifesto que diga "você" logo na primeira
+     linha — o antigo abridor da página de iluminação dizia, e passaria. Quem
+     julga manifesto é a ronda (15.4); esta linha é o piso mecânico. */
+  ok('o primeiro parágrafo fala com a pessoa, na segunda pessoa',
+    /\b(voce|seu|sua|seus|suas)\b/.test(semAcento(p1)), p1.slice(0, 70));
+
+  /* --- as chamadas --- */
+  ok('nenhum h2 tem termo proibido',
+    h2s.every((t) => acharProibidos(t).length === 0),
+    h2s.filter((t) => acharProibidos(t).length).join(' | '));
+  ok('nenhum h2 começa com "Calculadora de"',
+    h2s.every((t) => !COMECO_PROIBIDO.test(semAcento(t))),
+    h2s.filter((t) => COMECO_PROIBIDO.test(semAcento(t))).join(' | '));
+
+  /* --- a declaração de prova não vira porta dos fundos --- */
+  ok(`no máximo ${MAX_PROVA} blocos de prova declarados`, blocos.length <= MAX_PROVA, `achei ${blocos.length}`);
+  ok('nenhum bloco de prova contém o H1', !blocos.some((b) => /<h1\b/.test(b.html)));
+  ok('nenhum bloco de prova contém o primeiro parágrafo',
+    p1.length === 0 || !blocos.some((b) => texto(b.html).startsWith(p1.slice(0, 40))));
+
+  /* --- o texto de âncora é a consulta da página de destino, não o nome
+         interno do produto (16.4a) --- */
+  const ancoras = [...voz.matchAll(/<a href="https?:\/\/aquametria\.com\.br\/[^"]*"[^>]*>([\s\S]*?)<\/a>/g)]
+    .map((m) => texto(m[1])).filter((t) => t.length > 0);
+  const ancorasRuins = ancoras.filter((t) => COMECO_PROIBIDO.test(semAcento(t)));
+  ok('nenhum link interno tem âncora começando por "Calculadora de"',
+    ancorasRuins.length === 0, ancorasRuins.join(' | '));
+
+  ok(`corpo com pelo menos ${CORPO_MINIMO} caracteres`, texto(corpo).length >= CORPO_MINIMO, `${texto(corpo).length}`);
+
+  /* Regras permanentes do projeto, nestas páginas também. */
+  const scripts = html.match(/<script[\s\S]*?<\/script>/g) || [];
+  ok('zero &#038; dentro de <script>', (scripts.join('').match(/&#038;/g) || []).length === 0);
+  ok('o corpo não começa por metadado YAML', !texto(corpo).startsWith('---'));
+}
+
 console.log(falhas === 0 ? '\nTUDO OK' : `\n${falhas} FALHA(S)`);
 process.exit(falhas === 0 ? 0 : 1);

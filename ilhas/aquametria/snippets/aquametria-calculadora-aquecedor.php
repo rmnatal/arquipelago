@@ -2964,7 +2964,7 @@ function aquametria_c5_form_html() {
 	$h .= '<ul class="aqm-c5-avisos" id="aqm-c5-erros"></ul>';
 	$h .= '<p class="aqm-c5-criterio aqm-c5-oculto" id="aqm-c5-semvolume" style="margin-top:.9rem">';
 	$h .= 'Não sabe o volume real? Ele não é o número da etiqueta: o vidro, a borda livre e as rochas tiram uma parte, e a potência do aquecedor é calculada sobre a água que existe. ';
-	$h .= 'A <a href="' . esc_url( $c1 ) . '">calculadora de litragem</a> devolve esse número a partir das medidas em centímetros e o guarda para esta página usar.</p>';
+	$h .= 'A <a href="' . esc_url( $c1 ) . '">quantos litros tem o seu aquário</a> devolve esse número a partir das medidas em centímetros e o guarda para esta página usar.</p>';
 	$h .= '</form>';
 
 	return $h;
@@ -3138,7 +3138,7 @@ function aquametria_c5_adiante_html() {
 	$h .= '<h3>O que conversa com esta página</h3>';
 	$h .= '<ul>';
 	$h .= '<li><a href="' . esc_url( $artigo ) . '"><strong>Quantos watts de aquecedor o seu aquário precisa</strong></a> — o texto que explica por que o "1 W por litro" não erra por acaso, e de onde ele veio.</li>';
-	$h .= '<li><a href="' . esc_url( $c1 ) . '"><strong>Calculadora de litragem (C1)</strong></a> — é de onde vem o volume real que esta página usa. Se o número acima veio preenchido, veio de lá.</li>';
+	$h .= '<li><a href="' . esc_url( $c1 ) . '"><strong>Quantos litros tem o seu aquário</strong></a> — é de onde vem o volume real que esta página usa. Se o número acima veio preenchido, veio de lá.</li>';
 	$h .= '<li><a href="' . esc_url( $c3 ) . '"><strong>Vazão do filtro (C3)</strong></a> — usa o mesmo volume. O filtro fica ligado 24 horas por dia; o aquecedor, não. Quanto tempo cada um fica ligado é o que a C7 vai calcular.</li>';
 	$h .= '<li><a href="' . esc_url( $c12 ) . '"><strong>Mídia filtrante (C12)</strong></a> — quanta mídia biológica o mesmo volume de água pede, pelas quatro dosagens que os fabricantes declaram. A colônia nitrificante também depende de temperatura: aquário frio cicla mais devagar, e é este aquecedor que decide isso.</li>';
 	$h .= '<li><a href="' . esc_url( $c15 ) . '"><strong>Iluminação e fotoperíodo (C15)</strong></a> — o outro aparelho que consome energia no aquário, e o único que você pode desligar por 16 horas por dia. Luminária potente também aquece a água: em aquário pequeno e tampado, isso conta contra o trabalho deste aquecedor.</li>';

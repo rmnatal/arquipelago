@@ -1,7 +1,7 @@
 ---
 id: quantos-lumens-por-litro-aquario-plantado
 tipo: artigo
-titulo: "Quantos lúmens por litro o aquário plantado precisa (e por que o lúmen é a unidade errada para medir luz de planta)"
+titulo: "Quantos lúmens por litro o aquário plantado precisa"
 slug: quantos-lumens-por-litro-aquario-plantado
 meta_descricao: "Três fontes brasileiras chamam a mesma faixa de lúmens por litro com o dobro do número. De onde vem a regra e por que o lúmen é a unidade errada."
 cluster: C15
@@ -29,7 +29,7 @@ Um aquarista brasileiro que queira dimensionar a luz do aquário plantado encont
 
 Para um aquário de 100 litros, "iluminação baixa" significa 1 000 lúmens numa fonte e 2 000 na outra. É o dobro, para a mesma palavra. Nenhuma das três diz de onde tirou o número, nenhuma cita as outras duas, e nenhuma menciona a diferença.
 
-Se você só quer o número no seu volume, com as três leituras lado a lado e a lista de luminárias que atendem, ele está na [calculadora de iluminação e fotoperíodo](https://aquametria.com.br/calculadora-de-iluminacao/). Este texto é sobre o que está por trás dele: de onde essa régua veio, por que ela é estruturalmente frágil e o que o varejo brasileiro deixa de declarar.
+Se você só quer o número no seu volume, com as três leituras lado a lado e a lista de luminárias que atendem, ele está na [quanta luz o seu aquário precisa](https://aquametria.com.br/calculadora-de-iluminacao/). Este texto é sobre o que está por trás dele: de onde essa régua veio, por que ela é estruturalmente frágil e o que o varejo brasileiro deixa de declarar.
 
 ## O lúmen é uma unidade de olho humano
 
@@ -130,8 +130,8 @@ Três coisas, e a primeira delas é a que fecharia a pergunta:
 
 ## Continue por aqui
 
-- [Calculadora de iluminação e fotoperíodo](https://aquametria.com.br/calculadora-de-iluminacao/) — o número no seu volume, com as três leituras lado a lado e as luminárias que atendem à faixa no seu comprimento.
-- [Calculadora de litragem](https://aquametria.com.br/calculadora-de-litragem/) — o volume real de água, que é a entrada de tudo aqui.
-- [Calculadora de mídia filtrante](https://aquametria.com.br/calculadora-de-midia-filtrante/) — luz forte e CO2 aceleram o crescimento das plantas e a carga do filtro junto.
-- [Calculadora de vazão do filtro](https://aquametria.com.br/calculadora-de-vazao-do-filtro/) — aquário plantado pede corrente mais lenta, e a faixa de lá muda por causa disso.
+- [Quanta luz o seu aquário precisa](https://aquametria.com.br/calculadora-de-iluminacao/) — o número no seu volume, com as três leituras lado a lado e as luminárias que atendem à faixa no seu comprimento.
+- [Quantos litros tem o seu aquário](https://aquametria.com.br/calculadora-de-litragem/) — o volume real de água, que é a entrada de tudo aqui.
+- [Quanta mídia biológica cabe no seu filtro](https://aquametria.com.br/calculadora-de-midia-filtrante/) — luz forte e CO2 aceleram o crescimento das plantas e a carga do filtro junto.
+- [Qual filtro dá conta do seu aquário](https://aquametria.com.br/calculadora-de-vazao-do-filtro/) — aquário plantado pede corrente mais lenta, e a faixa de lá muda por causa disso.
 - [Como a Aquametria calcula](https://aquametria.com.br/metodologia/) — por que publicamos a divergência entre fontes em vez da média delas.

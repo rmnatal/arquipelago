@@ -2582,7 +2582,7 @@ function aquametria_c3_form_html() {
 	$h .= '<ul class="aqm-c3-avisos" id="aqm-c3-erros"></ul>';
 	$h .= '<p class="aqm-c3-criterio aqm-c3-oculto" id="aqm-c3-semvolume" style="margin-top:.9rem">';
 	$h .= 'Não sabe o volume real? Ele não é o número da etiqueta: o vidro, a borda livre e as rochas tiram uma parte. ';
-	$h .= 'A <a href="' . esc_url( $c1 ) . '">calculadora de litragem</a> devolve esse número a partir das medidas em centímetros e o guarda para esta página usar.</p>';
+	$h .= 'A <a href="' . esc_url( $c1 ) . '">quantos litros tem o seu aquário</a> devolve esse número a partir das medidas em centímetros e o guarda para esta página usar.</p>';
 	$h .= '</form>';
 
 	return $h;
@@ -2741,7 +2741,7 @@ function aquametria_c3_adiante_html() {
 	$h  = '<div class="aqm-c3-painel aqm-c3-adiante">';
 	$h .= '<h3>O que conversa com esta página</h3>';
 	$h .= '<ul>';
-	$h .= '<li><a href="' . esc_url( $c1 ) . '"><strong>Calculadora de litragem (C1)</strong></a> — é de onde vem o volume real que esta página usa. Se o número acima veio preenchido, veio de lá.</li>';
+	$h .= '<li><a href="' . esc_url( $c1 ) . '"><strong>Quantos litros tem o seu aquário</strong></a> — é de onde vem o volume real que esta página usa. Se o número acima veio preenchido, veio de lá.</li>';
 	$h .= '<li><a href="' . esc_url( $c5 ) . '"><strong>Potência do aquecedor (C5)</strong></a> — o outro aparelho que o seu volume dimensiona, e o único que pergunta quanto frio faz no seu cômodo. Usa o mesmo volume real desta página.</li>';
 	$h .= '<li><a href="' . esc_url( $c12 ) . '"><strong>Mídia filtrante (C12)</strong></a> — quantos mililitros de mídia biológica o seu filtro precisa carregar, e se isso cabe no cesto dele. Usa o mesmo volume e o mesmo modelo de filtro que você escolheu aqui. A água precisa passar, e precisa passar por alguma coisa: vazão e mídia são as duas metades da mesma decisão.</li>';
 	$h .= '<li><a href="' . esc_url( $c15 ) . '"><strong>Iluminação e fotoperíodo (C15)</strong></a> — o mesmo volume, do outro lado do aquário. Se o seu é plantado, a faixa de vazão desta página já é mais lenta por causa disso: planta quer corrente suave, e luz forte com CO2 pede que o gás não escape na superfície agitada.</li>';

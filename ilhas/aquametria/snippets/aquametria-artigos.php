@@ -1,5 +1,13 @@
 /**
  * Aquametria Artigos — visibilidade em IA
+ * Versão: 1.2.0 (11/09/2026) — A VOZ CHEGA AOS TRÊS ARTIGOS. A caixa da resposta
+ * direta passa a ter duas camadas: o primeiro parágrafo responde à pessoa na
+ * língua dela, e a procedência (fabricante, fonte, data de leitura) desce um
+ * parágrafo e é marcada com `aqm-prova`. A seção 5 continua inteira — quem cita
+ * a caixa leva a fonte junto —, e a 15.2 passa a valer, que proíbe fabricante e
+ * data de leitura no primeiro parágrafo. Os três títulos longos com parênteses
+ * viraram o mesmo texto da manchete: um nome por página, em toda superfície.
+ *
  * Versão: 1.1.0 (11/09/2026) — os três artigos passam a se anunciar na
  * prateleira de guias da home, pelo filtro 'aquametria_guias' da casca. Nada do
  * que já estava aqui mudou: é uma função de anúncio, no molde do hub de
@@ -49,7 +57,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_ARTIGOS_VERSAO' ) ) {
-	define( 'AQUAMETRIA_ARTIGOS_VERSAO', '1.1.0' );
+	define( 'AQUAMETRIA_ARTIGOS_VERSAO', '1.2.0' );
 }
 
 /* Data de verificação declarada no front matter dos três artigos. Está aqui
@@ -89,8 +97,8 @@ function aquametria_artigos_registro() {
 		/* ------------------------------------------------------ C5 · aquecedor */
 		'quantos-watts-de-aquecedor-para-aquario' => array(
 			'codigo'    => 'C5',
-			'manchete'  => 'Quantos watts de aquecedor o aquário precisa',
-			'titulo'    => 'Quantos watts de aquecedor o seu aquário precisa (e por que "1 W por litro" erra sempre para o mesmo lado)',
+			'manchete'  => 'Por que o 1 W por litro erra para o mesmo lado',
+			'titulo'    => 'Por que o 1 W por litro erra para o mesmo lado',
 			'consulta'  => 'quantos watts de aquecedor para aquário',
 			'resumo'    => 'A regra de 1 W por litro não veio de um cálculo: veio da prateleira. '
 				. 'A única fonte brasileira que declara a condição em que o número vale sustenta de 1,0 a 1,5 W por litro para até 10 °C de diferença entre a água e o cômodo.',
@@ -110,10 +118,15 @@ function aquametria_artigos_registro() {
 			'resposta' => array(
 				array(
 					'rotulo' => 'A resposta curta.',
-					'texto'  => 'Não existe um número de watts por litro que valha para o Brasil inteiro: o que dimensiona o aquecedor é a diferença entre a temperatura que você quer manter na água e a mínima do cômodo onde o aquário fica, não o volume sozinho. '
-						. 'Das quatro afirmações que o levantamento de fontes brasileiras da Aquametria encontrou em ' . $corpus . ', uma só declara a condição em que vale: a ReefFlow publica de 1,0 a 1,5 W por litro para até 10 °C de diferença. '
-						. 'Nessa condição, um aquário de 100 litros de água real pede de 100 a 150 W. '
-						. 'Acima de 10 °C nenhuma fonte do levantamento cobre o caso, e essa faixa passa a ser piso, não resposta.',
+					'texto'  => 'Não existe um número de watts por litro que sirva para o Brasil inteiro: o que manda no aquecedor é quantos graus ele tem de vencer entre a água que você quer e o frio do cômodo, não o volume sozinho. '
+						. 'Com até 10 °C de diferença, um aquário de 100 litros de água real pede de 100 a 150 W. '
+						. 'Passando disso, essa faixa vira piso e não resposta — quem mora onde o inverno morde de verdade precisa de mais.',
+				),
+				array(
+					'prova'  => true,
+					'rotulo' => 'De onde sai esse número.',
+					'texto'  => 'Das quatro afirmações que o levantamento de fontes brasileiras da Aquametria encontrou em ' . $corpus . ', uma só declara a condição em que vale: a ReefFlow publica de 1,0 a 1,5 W por litro para até 10 °C de diferença. '
+						. 'Acima de 10 °C nenhuma fonte do levantamento cobre o caso.',
 				),
 				array(
 					'rotulo' => 'De onde veio o “1 W por litro”, e por que ele erra sempre para o mesmo lado.',
@@ -183,8 +196,8 @@ function aquametria_artigos_registro() {
 		/* ---------------------------------------------------------- C12 · mídia */
 		'quanta-midia-biologica-o-aquario-precisa' => array(
 			'codigo'    => 'C12',
-			'manchete'  => 'Quanta mídia biológica o aquário precisa',
-			'titulo'    => 'Quanta mídia biológica o aquário precisa: quatro fabricantes, dez vezes de diferença',
+			'manchete'  => 'Cada marca pede uma dose diferente de mídia',
+			'titulo'    => 'Cada marca pede uma dose diferente de mídia',
 			'consulta'  => 'quanta mídia biológica para aquário',
 			'resumo'    => 'Seachem pede 1,25 mL de mídia por litro de água; Ocean Tech pede 12,50. '
 				. 'As quatro dosagens declaradas por fabricante, com a área que cada uma entrega por litro de água e o que nenhuma delas pergunta.',
@@ -204,9 +217,14 @@ function aquametria_artigos_registro() {
 			'resposta' => array(
 				array(
 					'rotulo' => 'A resposta curta.',
-					'texto'  => 'Os quatro fabricantes que publicam dosagem de mídia biológica não concordam nem na ordem de grandeza. '
-						. 'Coletadas em ' . $col . ' e atribuídas ao próprio fabricante: Seachem Matrix, 1,25 mL por litro de água, e 2,64 mL por litro numa segunda leitura da mesma marca; JBL MicroMec, 5,00; Ocean Tech Bio Glass, 12,50. '
-						. 'Num aquário de 100 litros isso é a diferença entre comprar 125 mL de mídia e comprar 1,25 litro. Dez vezes, para o mesmo trabalho.',
+					'texto'  => 'As marcas que publicam quanta mídia biológica usar não concordam nem na ordem de grandeza. '
+						. 'No seu aquário de 100 litros, seguir uma ou outra é a diferença entre você comprar 125 mL de mídia e comprar 1,25 litro — dez vezes, para o mesmo trabalho. '
+						. 'Nenhuma delas está errada sozinha; o que não existe é um número único para copiar.',
+				),
+				array(
+					'prova'  => true,
+					'rotulo' => 'As quatro dosagens, com o nome de quem publicou.',
+					'texto'  => 'Coletadas em ' . $col . ' e atribuídas ao próprio fabricante: Seachem Matrix, 1,25 mL por litro de água, e 2,64 mL por litro numa segunda leitura da mesma marca; JBL MicroMec, 5,00; Ocean Tech Bio Glass, 12,50.',
 				),
 				array(
 					'rotulo' => 'O argumento de venda do setor não explica a diferença — ele a contradiz.',
@@ -272,7 +290,7 @@ function aquametria_artigos_registro() {
 		'quantos-lumens-por-litro-aquario-plantado' => array(
 			'codigo'    => 'C15',
 			'manchete'  => 'Quantos lúmens por litro o aquário plantado precisa',
-			'titulo'    => 'Quantos lúmens por litro o aquário plantado precisa (e por que o lúmen é a unidade errada para medir luz de planta)',
+			'titulo'    => 'Quantos lúmens por litro o aquário plantado precisa',
 			'consulta'  => 'quantos lúmens por litro aquário plantado',
 			'resumo'    => 'Três fontes brasileiras chamam a mesma faixa de iluminação pelo mesmo nome com o dobro do número. '
 				. 'De onde vem a régua de lúmens por litro, por que ela penaliza a luminária feita para planta e onde a trilha do PPFD termina.',
@@ -290,10 +308,14 @@ function aquametria_artigos_registro() {
 			'resposta' => array(
 				array(
 					'rotulo' => 'A resposta curta.',
-					'texto'  => 'As três fontes brasileiras que publicam a régua de lúmens por litro chamam a mesma faixa pelo mesmo nome com o dobro do número. '
-						. 'No levantamento da Aquametria de ' . $corpus . ', “baixa” é 20 lm/L na peixeseaquarismo, 10 a 20 lm/L na aquarioturbinado e 15 lm/L na aquariosplantados; “alta” é 60, acima de 40, e 60. '
-						. 'Num aquário plantado de 100 litros, portanto, iluminação baixa vai de 1.000 a 2.000 lúmens conforme a fonte que você abrir — e é essa dúvida que separa duas luminárias de preço bem diferente. '
-						. 'As três concordam na ordem e na ordem de grandeza, entre 10 e 60 lm/L; discordam nas fronteiras, que é exatamente onde quem vai comprar precisa de precisão.',
+					'texto'  => 'As réguas de lúmens por litro que circulam no aquarismo brasileiro chamam a mesma faixa pelo mesmo nome com o dobro do número. '
+						. 'Num aquário plantado de 100 litros, iluminação baixa vai de 1.000 a 2.000 lúmens conforme a régua que você abrir — e é essa dúvida que separa duas luminárias de preço bem diferente. '
+						. 'Elas concordam na ordem de grandeza, entre 10 e 60 lm/L; discordam nas fronteiras, que é justo onde quem vai comprar precisa de precisão.',
+				),
+				array(
+					'prova'  => true,
+					'rotulo' => 'As três réguas, com o nome de quem publicou.',
+					'texto'  => 'No levantamento da Aquametria de ' . $corpus . ', “baixa” é 20 lm/L na peixeseaquarismo, 10 a 20 lm/L na aquarioturbinado e 15 lm/L na aquariosplantados; “alta” é 60, acima de 40, e 60.',
 				),
 				array(
 					'rotulo' => 'A régua é frágil por definição, não por descuido de quem a publica.',
@@ -486,11 +508,20 @@ function aquametria_artigos_resposta_html( $slug ) {
 	$h  = '<div class="aqm-art-direta">';
 	$h .= '<span class="aqm-art-selo">Resposta direta</span>';
 
+	/* A CAIXA TEM DUAS CAMADAS, e é isso que deixa a seção 5 e a 15.2 valerem
+	   juntas na mesma caixa. A seção 5 exige que este bloco sobreviva a ser
+	   citado fora de contexto — com número, critério, fonte pelo nome e data. A
+	   15.2 proíbe fabricante, fonte e data de leitura no PRIMEIRO parágrafo, que
+	   é a camada de voz. Então o primeiro parágrafo responde à pessoa na língua
+	   dela, e a procedência vem logo abaixo, DENTRO da mesma caixa, marcada com
+	   `aqm-prova`: quem cita a caixa continua levando a fonte junto, e quem
+	   chega pela busca lê primeiro a resposta. */
 	foreach ( $a['resposta'] as $p ) {
-		$h .= '<p><strong>' . esc_html( $p['rotulo'] ) . '</strong> ' . esc_html( $p['texto'] ) . '</p>';
+		$classe = ! empty( $p['prova'] ) ? ' class="aqm-prova"' : '';
+		$h .= '<p' . $classe . '><strong>' . esc_html( $p['rotulo'] ) . '</strong> ' . esc_html( $p['texto'] ) . '</p>';
 	}
 
-	$h .= '<p class="aqm-art-consulta">Verificado em ' . esc_html( AQUAMETRIA_ARTIGOS_VERIFICADO_EM )
+	$h .= '<p class="aqm-art-consulta aqm-prova">Verificado em ' . esc_html( AQUAMETRIA_ARTIGOS_VERIFICADO_EM )
 		. '. O número do seu caso sai da <a href="' . esc_url( aquametria_artigos_url( $a['ferramenta']['slug'] ) ) . '">'
 		. esc_html( $a['ferramenta']['rotulo'] ) . '</a>; o critério de fonte está em '
 		. '<a href="' . esc_url( home_url( '/metodologia/' ) ) . '">como a Aquametria calcula</a>.</p>';
