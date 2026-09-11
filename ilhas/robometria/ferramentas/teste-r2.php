@@ -769,6 +769,217 @@ foreach ( array( 'entrada invalida', 'fora da faixa' ) as $nome ) {
 rbm_ok( false !== strpos( $html_por_estado['entrada invalida'], 'Exemplo servido nesta' ),
 	'entrada invalida cai na ancora e a pagina diz que aquilo e um exemplo' );
 
+/* ---------------------------------------------------------------------------
+ * 16. A PROCEDENCIA DO Pa DENTRO DO CARTAO (secoes 5.4, 7 e 10 do contrato).
+ *
+ * O Pa e o unico numero que decide esta recomendacao, e ate a R2 1.1.0 o cartao
+ * o publicava sem endereco, sem data e sem o degrau da escada — com a atribuicao
+ * "declarados pelo fabricante" DIGITADA no molde da frase. A trava abaixo mede a
+ * correcao, e ela e escrita com TRES cuidados que esta ilha ja pagou para
+ * aprender:
+ *
+ * (a) REGUA PROPRIA. Ela le dados/esquema-banco.json e dados/modelos-robo.json
+ *     direto, e nunca robometria_r2_modelo() nem o dados[] que o snippet
+ *     consome: os dois vem de r2-respostas.json, que e escrito pelo mesmo
+ *     gerador que preenche a procedencia. Conferir o cartao contra ele seria
+ *     comparar o arquivo com ele mesmo — o teste que mede a si proprio.
+ *
+ * (b) NO CORPO, nao no HTML inteiro. A afirmacao e sobre o que o cartao diz, e
+ *     a pagina tem JSON-LD e rodape onde as mesmas palavras aparecem de forma
+ *     legitima. Cada <li> da vitrine e recortado e as afirmacoes valem la
+ *     dentro.
+ *
+ * (c) A ENTRADA INTEIRA. As 9 situacoes, nao o caso-ancora: a lista de
+ *     elegiveis muda com piso e pelo, e um degrau de fonte diferente entraria
+ *     por uma situacao que a ancora nao visita.
+ * ------------------------------------------------------------------------- */
+
+echo "\n16. A procedencia do Pa dentro do cartao (secoes 5.4, 7 e 10)\n";
+
+/* A REGUA, lida das fontes primarias do repositorio. */
+$esquema_b = json_decode( file_get_contents( $raiz . '/dados/esquema-banco.json' ), true );
+
+$degrau_por_origem = array();
+foreach ( $esquema_b['escada_de_fontes']['niveis'] as $n ) {
+	$degrau_por_origem[ $n['origem'] ] = $n;
+}
+
+/** A data como o leitor le. Escrita aqui de proposito: quem confere nao chama a
+ *  funcao de quem produziu o texto (cicatriz de 10 e 11/09/2026). */
+function rbm_data_br( $iso ) {
+	$p = explode( '-', (string) $iso );
+	return count( $p ) === 3 ? $p[2] . '/' . $p[1] . '/' . $p[0] : '';
+}
+
+/** O modelo do BANCO pelo id, com as fontes dele. */
+function rbm_banco_modelo( $modelos_b, $id ) {
+	foreach ( $modelos_b['registros'] as $r ) {
+		if ( $r['id'] === $id ) {
+			return $r;
+		}
+	}
+	return null;
+}
+
+/** Os <li> da vitrine, recortados do corpo. */
+function rbm_cartoes_da_vitrine( $corpo ) {
+	preg_match_all( '#<li class="rbm-vitrine-item">(.*?)</li>#s', $corpo, $m );
+	return $m[1];
+}
+
+$erros_proc     = array();
+$cartoes_medidos = 0;
+$com_ressalva    = 0;
+$origens_na_tela = array();
+
+foreach ( array_keys( $dados['classificacao'] ) as $chave ) {
+	list( $piso, $pelo ) = rbm_r2_partes( $chave );
+	rbm_r2_pagina( $dados['ancora']['area'], $piso, $pelo, null );
+	$corpo_sit = $GLOBALS['__retorno_shortcode'];
+
+	$ids     = $dados['classificacao'][ $chave ]['elegiveis'];
+	$cartoes = rbm_cartoes_da_vitrine( $corpo_sit );
+
+	if ( count( $cartoes ) !== count( $ids ) ) {
+		$erros_proc[] = $chave . ': ' . count( $cartoes ) . ' cartao(oes) para '
+			. count( $ids ) . ' elegivel(eis)';
+		continue;
+	}
+
+	foreach ( $ids as $pos => $id ) {
+		$cartao = $cartoes[ $pos ];
+		$reg    = rbm_banco_modelo( $modelos_b, $id );
+		if ( ! $reg ) {
+			$erros_proc[] = $chave . '/' . $id . ': fora do banco';
+			continue;
+		}
+
+		$fid    = $reg['pa_declarado']['fonte'];
+		$fonte  = $reg['fontes'][ $fid ];
+		$origem = $fonte['origem'];
+		$origens_na_tela[ $origem ] = true;
+
+		if ( ! isset( $degrau_por_origem[ $origem ] ) ) {
+			$erros_proc[] = $chave . '/' . $id . ': origem ' . $origem . ' fora da escada';
+			continue;
+		}
+		$na_tela = $degrau_por_origem[ $origem ]['na_tela'];
+
+		/* 1. O rotulo do degrau e a data, na linha de procedencia do cartao. */
+		$linha = 'Como sabemos — ' . $na_tela['rotulo'] . ', verificado em '
+			. rbm_data_br( $fonte['verificado_em'] );
+		if ( false === strpos( $cartao, esc_html( $linha ) ) ) {
+			$erros_proc[] = $chave . '/' . $id . ': sem a linha de procedencia';
+			continue;
+		}
+
+		/* 2. O endereco da fonte, clicavel e discreto — nunca com cara de botao. */
+		if ( false === strpos( $cartao, 'href="' . esc_url( $fonte['url'] ) . '"' ) ) {
+			$erros_proc[] = $chave . '/' . $id . ': sem o endereco da fonte';
+			continue;
+		}
+		if ( ! preg_match( '#<a class="rbm-fonte"[^>]*rel="nofollow noopener"#', $cartao ) ) {
+			$erros_proc[] = $chave . '/' . $id . ': o link de fonte nao e discreto';
+			continue;
+		}
+
+		/* 3. A ATRIBUICAO DENTRO DA FRASE vem do degrau, nao do molde. E a
+		      metade que impede uma loja que so transcreveu de herdar, calada, a
+		      autoridade de quem fabricou. */
+		if ( false === strpos( $cartao, esc_html( 'Pa declarados ' . $na_tela['quem_declara'] ) ) ) {
+			$erros_proc[] = $chave . '/' . $id . ': atribuicao fora do degrau';
+			continue;
+		}
+
+		/* 4. A ressalva do degrau, quando a escada obriga uma. */
+		if ( null === $na_tela['ressalva'] ) {
+			if ( preg_match( '#<span class="rbm-tag">#', $cartao ) ) {
+				$erros_proc[] = $chave . '/' . $id . ': ressalva num degrau que nao tem';
+				continue;
+			}
+		} else {
+			if ( false === strpos( $cartao, '<span class="rbm-tag">' . esc_html( $na_tela['ressalva'] ) . '</span>' ) ) {
+				$erros_proc[] = $chave . '/' . $id . ': sem a ressalva "' . $na_tela['ressalva'] . '"';
+				continue;
+			}
+			$com_ressalva++;
+		}
+
+		/* 5. A ORDEM, dentro do cartao: ressalva, porta de compra, procedencia.
+		      E a secao 7 escrita em codigo — inverter os dois ultimos devolve ao
+		      link de fonte o papel de unica porta clicavel. */
+		$p_acao  = strpos( $cartao, 'class="rbm-vitrine-acao"' );
+		$p_fonte = strpos( $cartao, 'class="rbm-vitrine-fonte"' );
+		$p_tag   = strpos( $cartao, 'class="rbm-tag"' );
+		if ( false === $p_acao || false === $p_fonte || $p_acao > $p_fonte ) {
+			$erros_proc[] = $chave . '/' . $id . ': procedencia antes da porta de compra';
+			continue;
+		}
+		if ( false !== $p_tag && $p_tag > $p_acao ) {
+			$erros_proc[] = $chave . '/' . $id . ': ressalva depois do botao';
+			continue;
+		}
+
+		$cartoes_medidos++;
+	}
+}
+
+rbm_ok( empty( $erros_proc ),
+	'todo cartao diz de onde veio o Pa, com o degrau que o banco declara',
+	empty( $erros_proc )
+		? $cartoes_medidos . ' cartoes em ' . count( $dados['classificacao'] ) . ' situacoes, '
+			. $com_ressalva . ' com ressalva de degrau'
+		: implode( ' | ', array_slice( $erros_proc, 0, 6 ) ) );
+
+/* AS DUAS DIRECOES, como manda a cicatriz do numero de tela digitado: toda
+   origem que chega a tela tem degrau declarado, E todo degrau da escada declara
+   como aparece na tela — senao degrau novo nasce mudo e so se descobre no ar. */
+$sem_degrau = array();
+foreach ( array_keys( $origens_na_tela ) as $o ) {
+	if ( ! isset( $degrau_por_origem[ $o ]['na_tela'] ) ) {
+		$sem_degrau[] = $o;
+	}
+}
+rbm_ok( empty( $sem_degrau ), 'toda origem que chega a tela tem degrau declarado na escada',
+	empty( $sem_degrau ) ? implode( ', ', array_keys( $origens_na_tela ) ) : implode( ' ', $sem_degrau ) );
+
+$degraus_mudos = array();
+foreach ( $esquema_b['escada_de_fontes']['niveis'] as $n ) {
+	$t = isset( $n['na_tela'] ) ? $n['na_tela'] : null;
+	if ( ! is_array( $t ) || empty( $t['rotulo'] ) || empty( $t['quem_declara'] )
+		|| ! array_key_exists( 'ressalva', $t ) ) {
+		$degraus_mudos[] = $n['nivel'];
+		continue;
+	}
+	/* A ressalva e nula exatamente nos dois degraus em que nada fica por
+	   confirmar. Do 3 para baixo ela e obrigatoria: e ela que carrega o elo
+	   fraco ate o lugar onde o leitor decide se compra. */
+	$deve_ser_nula = ( $n['nivel'] <= 2 );
+	if ( $deve_ser_nula !== ( null === $t['ressalva'] ) ) {
+		$degraus_mudos[] = $n['nivel'];
+	}
+}
+rbm_ok( empty( $degraus_mudos ), 'todo degrau da escada declara como aparece na tela',
+	empty( $degraus_mudos )
+		? count( $esquema_b['escada_de_fontes']['niveis'] ) . ' degraus'
+		: 'degrau(s) ' . implode( ', ', $degraus_mudos ) );
+
+/* E o snippet nao guarda uma copia da escada: a tabela que ele consome viaja no
+   arquivo de dados, e ela tem que ser a do esquema. Duas copias da mesma escada
+   e o defeito que esta correcao existe para apagar. */
+$copia_ok = true;
+foreach ( $esquema_b['escada_de_fontes']['niveis'] as $n ) {
+	$t = $dados['rotulos_de_origem'][ $n['origem'] ];
+	if ( $t['rotulo'] !== $n['na_tela']['rotulo']
+		|| $t['ressalva'] !== $n['na_tela']['ressalva']
+		|| $t['quem_declara'] !== $n['na_tela']['quem_declara']
+		|| $t['nivel'] !== $n['nivel'] ) {
+		$copia_ok = false;
+	}
+}
+rbm_ok( $copia_ok, 'a tabela que viaja para o site e a escada do esquema, degrau a degrau',
+	count( $dados['rotulos_de_origem'] ) . ' degraus no arquivo de dados' );
+
 /* ------------------------------------------------------------------ RESUMO */
 
 echo "\n";

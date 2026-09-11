@@ -28,20 +28,47 @@
     }
   ],
   "rotulos_de_origem": {
+    "medicao-propria": {
+      "rotulo": "medição da Robometria",
+      "ressalva": null,
+      "quem_declara": "pela Robometria",
+      "nivel": 1
+    },
     "manual-fabricante": {
       "rotulo": "manual do fabricante",
       "ressalva": null,
+      "quem_declara": "pelo fabricante",
       "nivel": 2
     },
     "fabricante-via-busca": {
       "rotulo": "página do fabricante",
       "ressalva": "a confirmar no manual",
+      "quem_declara": "pelo fabricante",
       "nivel": 3
     },
     "varejo-oficial-da-marca": {
       "rotulo": "loja oficial da marca",
       "ressalva": "confira a embalagem",
+      "quem_declara": "pela loja oficial da marca",
       "nivel": 4
+    },
+    "varejo-especializado": {
+      "rotulo": "varejista especializado",
+      "ressalva": "confira a embalagem",
+      "quem_declara": "por varejista especializado",
+      "nivel": 5
+    },
+    "marketplace-anuncio": {
+      "rotulo": "anúncio de marketplace",
+      "ressalva": "anúncio não é especificação",
+      "quem_declara": "em anúncio de marketplace",
+      "nivel": 6
+    },
+    "editorial": {
+      "rotulo": "publicação editorial",
+      "ressalva": "é recomendação publicada, não especificação",
+      "quem_declara": "por veículo editorial",
+      "nivel": 7
     }
   },
   "ancora": "electrolux-erb60",

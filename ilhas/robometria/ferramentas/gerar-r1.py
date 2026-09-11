@@ -72,29 +72,41 @@ def sem_acento(txt):
 # frase em portugues, e a ressalva nao e enfeite: e o degrau da escada dito com
 # todas as letras, no lugar onde o leitor decide se compra.
 #
-# Fica AQUI, e viaja dentro do arquivo de dados, por dois motivos. Primeiro,
-# para o snippet nao carregar prosa propria sobre procedencia — se um dia a
-# escada mudar, muda num lugar so. Segundo, para ferramentas/teste-r1.php poder
-# aplicar a mesma troca sobre a frase da referencia antes de comparar: sem uma
-# tabela declarada, a comparacao entre o PHP e a referencia viraria "parece
-# igual", que nao e medicao.
-ROTULOS_DE_ORIGEM = {
-    "manual-fabricante": {
-        "rotulo": "manual do fabricante",
-        "ressalva": None,
-        "nivel": 2,
-    },
-    "fabricante-via-busca": {
-        "rotulo": "página do fabricante",
-        "ressalva": "a confirmar no manual",
-        "nivel": 3,
-    },
-    "varejo-oficial-da-marca": {
-        "rotulo": "loja oficial da marca",
-        "ressalva": "confira a embalagem",
-        "nivel": 4,
-    },
-}
+# Viaja dentro do arquivo de dados por dois motivos. Primeiro, para o snippet
+# nao carregar prosa propria sobre procedencia — se um dia a escada mudar, muda
+# num lugar so. Segundo, para ferramentas/teste-r1.php poder aplicar a mesma
+# troca sobre a frase da referencia antes de comparar: sem uma tabela declarada,
+# a comparacao entre o PHP e a referencia viraria "parece igual", que nao e
+# medicao.
+#
+# ATE 11/09/2026 ESTA TABELA ERA DIGITADA AQUI, e a escada de fontes descrevia
+# os mesmos rotulos em prosa dentro de dados/esquema-banco.json ("Vai para a
+# tela com 'a confirmar no manual'"). Duas copias do mesmo fato, cada uma certa
+# no seu lugar e nenhuma capaz de corrigir a outra — a forma exata do defeito
+# dos dois mapas de nome que a casca 1.2.0 pagou, e da coluna "Temos hoje"
+# digitada na metodologia. Agora ela e DERIVADA do degrau que ja declara o
+# nivel, e a R2 le do mesmo lugar.
+def _rotulos_de_origem():
+    tabela = {}
+    for n in ref.esquema["escada_de_fontes"]["niveis"]:
+        t = n.get("na_tela")
+        if not isinstance(t, dict):
+            sys.stderr.write(
+                "ERRO: o degrau %d (%s) da escada de fontes nao declara na_tela. "
+                "Sem rotulo declarado, a tela imprimiria o apelido de campo cru "
+                "no meio de uma frase publicada.\n" % (n["nivel"], n["origem"])
+            )
+            sys.exit(1)
+        tabela[n["origem"]] = {
+            "rotulo": t["rotulo"],
+            "ressalva": t["ressalva"],
+            "quem_declara": t["quem_declara"],
+            "nivel": n["nivel"],
+        }
+    return tabela
+
+
+ROTULOS_DE_ORIGEM = _rotulos_de_origem()
 
 
 # --------------------------------------------------------------- OS FATOS

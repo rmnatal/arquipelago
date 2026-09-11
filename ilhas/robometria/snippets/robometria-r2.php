@@ -1,5 +1,11 @@
 /**
  * Robometria R2 — Quantos Pa o seu robô aspirador precisa
+ * Versão: 1.2.0 (11/09/2026) — a procedência do Pa chega ao cartão. O número que
+ * decide esta recomendação passa a dizer de onde veio, com a ressalva do degrau
+ * da escada de fontes e o link "fonte" depois do botão de compra; e a atribuição
+ * dentro da frase ("declarados pelo fabricante") deixou de ser digitada no molde
+ * e passou a ser lida do degrau, para uma loja que apenas transcreve nunca
+ * herdar, calada, a autoridade de quem fabricou.
  * Versão: 1.1.0 (11/09/2026) — o nome virou a consulta que a pessoa digita, que é
  * a que está no endereço; a abertura fala com quem entrou e a ressalva sobre os
  * limiares editoriais desce para a camada de prova; o catálogo recebe o título
@@ -85,7 +91,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_R2_VERSAO' ) ) {
-	define( 'ROBOMETRIA_R2_VERSAO', '1.1.0' );
+	define( 'ROBOMETRIA_R2_VERSAO', '1.2.0' );
 	define( 'ROBOMETRIA_R2_SLUG', 'quantos-pa-o-robo-aspirador-precisa' );
 	/* O NOME DA PÁGINA É A CONSULTA QUE A PESSOA DIGITA (seção 14.5), e ela está
 	   literalmente no endereço: "quantos pa o robô aspirador precisa". O nome
@@ -117,6 +123,25 @@ function robometria_r2_dados() {
 	if ( ! is_array( $d ) || empty( $d['situacoes'] ) || empty( $d['modelos'] ) ) {
 		$cache = array();
 		return $cache;
+	}
+
+	/* O BANCO TEM QUE TER A FORMA QUE ESTA VERSÃO LÊ, e a janela em que isso
+	   falha é real: o Sync aplica cada item do manifest separadamente, então
+	   existem minutos em que este snippet já está na 1.2.0 e a option ainda traz
+	   o arquivo de dados anterior, sem `procedencia` em cada modelo. Sem esta
+	   conferência a página serviria aviso de PHP no ar. Com ela, cai no estado
+	   degradado que a ilha já desenhou — que diz a verdade ("estamos sem o
+	   banco"), e que o portão da bancada reprova, então ele não passa
+	   despercebido se durar. */
+	if ( empty( $d['rotulos_de_origem'] ) ) {
+		$cache = array();
+		return $cache;
+	}
+	foreach ( (array) $d['modelos'] as $m ) {
+		if ( null !== $m['pa'] && empty( $m['procedencia'] ) ) {
+			$cache = array();
+			return $cache;
+		}
 	}
 
 	$cache = $d;
@@ -408,9 +433,16 @@ if ( ! function_exists( 'robometria_r2_frase_cartao' ) ) {
 function robometria_r2_frase_cartao( $m, $s, $ressalvas ) {
 	$seguro = $s['limiar_seguro'];
 
+	/* A ATRIBUIÇÃO VEM DO DEGRAU DA ESCADA, e este arquivo não a escreve. Até
+	   11/09/2026 o molde trazia "declarados pelo fabricante" digitado, e isso
+	   era verdade só porque as onze fontes de Pa do banco são todas página do
+	   fabricante colhida por busca. No dia em que um Pa entrasse por loja
+	   oficial, a frase emprestaria a autoridade do fabricante a quem apenas
+	   transcreveu — em silêncio, que é como este tipo de defeito chega ao ar. */
 	$base = sprintf(
-		'%s: %s Pa declarados pelo fabricante, %s do limiar de %s Pa que %s recomenda para a sua situação.',
+		'%s: %s Pa declarados %s, %s do limiar de %s Pa que %s recomenda para a sua situação.',
 		$m['rotulo'], robometria_r2_n( $m['pa'] ),
+		$m['procedencia']['quem_declara'],
 		( $m['pa'] > $seguro['valor'] ) ? 'acima' : 'no mínimo',
 		robometria_r2_n( $seguro['valor'] ), robometria_r2_com_artigo( $seguro )
 	);
@@ -749,10 +781,36 @@ function robometria_r2_vitrine( $itens, $s ) {
 				. esc_html( robometria_r2_n( $m['autonomia_min'] ) ) . '</span> min.</span>';
 		}
 
+		$p = $m['procedencia'];
+
+		/* A RESSALVA DO DEGRAU, antes do botão: ela é o elo mais fraco dito com
+		   todas as letras, e o lugar dela é onde o leitor decide se compra. Quem
+		   escolhe a palavra é a escada de fontes do banco, não este arquivo. */
+		if ( ! empty( $p['ressalva'] ) ) {
+			$html .= '<span class="rbm-tag">' . esc_html( $p['ressalva'] ) . '</span>';
+		}
+
+		/* PRIMEIRO A PORTA DE COMPRA. A ordem destes dois <span> é a regra da
+		   seção 7 do ARQUIPELAGO.md escrita em código: inverter os dois é
+		   devolver ao link de procedência o papel de única porta clicável, que é
+		   a cicatriz de 10/09/2026. */
 		$html .= '<span class="rbm-vitrine-acao">'
 			. ( function_exists( 'robometria_casca_porta_de_compra' )
 				? robometria_casca_porta_de_compra( $m )
 				: '<span class="rbm-sem-loja">Link de loja em breve</span>' )
+			. '</span>';
+
+		/* DEPOIS A PROCEDÊNCIA, discreta. O Pa é o único número que decide esta
+		   recomendação e até 11/09/2026 o cartão não dizia de onde ele vinha: o
+		   endereço e a data existiam no banco e paravam antes da tela. O rótulo
+		   entra depois do travessão, e não regido por preposição — "no loja
+		   oficial da marca" é o erro de concordância que nasce de colar rótulo em
+		   preposição fixa (cicatriz da R1). */
+		$html .= '<span class="rbm-vitrine-fonte">'
+			. esc_html( 'Como sabemos — ' . $p['rotulo'] . ', verificado em '
+				. robometria_r2_data( $p['verificado_em'] ) )
+			. ( empty( $p['url'] ) ? '' : ' · ' . ( function_exists( 'robometria_casca_fonte_link' )
+				? robometria_casca_fonte_link( $p['url'] ) : '' ) )
 			. '</span>';
 
 		$html .= '</li>';

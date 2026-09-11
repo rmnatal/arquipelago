@@ -89,6 +89,11 @@ def fato_do_modelo(m):
         "retoma_apos_recarga": ref.valor(m.get("retoma_apos_recarga")),
         "fonte": (m.get("pa_declarado") or {}).get("fonte")
                  if isinstance(m.get("pa_declarado"), dict) else None,
+        # A PROCEDENCIA DO NUMERO QUE DECIDE viaja como fato, com o degrau da
+        # escada ja resolvido em rotulo, ressalva e atribuicao. O snippet nao
+        # sabe o que e uma escada de fontes: ele escreve a frase acentuada com
+        # as pecas que chegam. Ver cobertura-r2.procedencia_do_pa().
+        "procedencia": ref.procedencia_do_pa(m),
         "tem_imagem": bool(imagem.get("url")),
         "esperando_link": not a.get("url"),
         # A PORTA DE COMPRA VIAJA COMO FATO (secao 7 do ARQUIPELAGO.md, cicatriz
@@ -334,6 +339,9 @@ def montar():
         },
         "situacoes": situacoes,
         "classificacao": classificacao,
+        # A escada inteira, e nao so o degrau dos modelos de hoje: e ela que o
+        # teste le como regua e e dela que sai a linha de procedencia do cartao.
+        "rotulos_de_origem": ref.ROTULOS_DE_ORIGEM,
         "modelos": modelos,
         "modelos_de_referencia": [m["id"] for m in refs],
         "exemplos": exemplos,

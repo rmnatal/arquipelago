@@ -775,6 +775,50 @@
       "sem_pa_declarado": 17
     }
   },
+  "rotulos_de_origem": {
+    "medicao-propria": {
+      "rotulo": "medição da Robometria",
+      "ressalva": null,
+      "quem_declara": "pela Robometria",
+      "nivel": 1
+    },
+    "manual-fabricante": {
+      "rotulo": "manual do fabricante",
+      "ressalva": null,
+      "quem_declara": "pelo fabricante",
+      "nivel": 2
+    },
+    "fabricante-via-busca": {
+      "rotulo": "página do fabricante",
+      "ressalva": "a confirmar no manual",
+      "quem_declara": "pelo fabricante",
+      "nivel": 3
+    },
+    "varejo-oficial-da-marca": {
+      "rotulo": "loja oficial da marca",
+      "ressalva": "confira a embalagem",
+      "quem_declara": "pela loja oficial da marca",
+      "nivel": 4
+    },
+    "varejo-especializado": {
+      "rotulo": "varejista especializado",
+      "ressalva": "confira a embalagem",
+      "quem_declara": "por varejista especializado",
+      "nivel": 5
+    },
+    "marketplace-anuncio": {
+      "rotulo": "anúncio de marketplace",
+      "ressalva": "anúncio não é especificação",
+      "quem_declara": "em anúncio de marketplace",
+      "nivel": 6
+    },
+    "editorial": {
+      "rotulo": "publicação editorial",
+      "ressalva": "é recomendação publicada, não especificação",
+      "quem_declara": "por veículo editorial",
+      "nivel": 7
+    }
+  },
   "modelos": [
     {
       "id": "electrolux-erb44",
@@ -788,6 +832,7 @@
       "recarga_min": null,
       "retoma_apos_recarga": null,
       "fonte": null,
+      "procedencia": null,
       "tem_imagem": false,
       "esperando_link": true,
       "afiliado": {
@@ -809,6 +854,7 @@
       "recarga_min": null,
       "retoma_apos_recarga": true,
       "fonte": null,
+      "procedencia": null,
       "tem_imagem": false,
       "esperando_link": true,
       "afiliado": {
@@ -830,6 +876,7 @@
       "recarga_min": null,
       "retoma_apos_recarga": true,
       "fonte": null,
+      "procedencia": null,
       "tem_imagem": false,
       "esperando_link": true,
       "afiliado": {
@@ -851,6 +898,7 @@
       "recarga_min": null,
       "retoma_apos_recarga": true,
       "fonte": null,
+      "procedencia": null,
       "tem_imagem": false,
       "esperando_link": true,
       "afiliado": {
@@ -872,6 +920,7 @@
       "recarga_min": null,
       "retoma_apos_recarga": null,
       "fonte": null,
+      "procedencia": null,
       "tem_imagem": false,
       "esperando_link": true,
       "afiliado": {
@@ -893,6 +942,17 @@
       "recarga_min": null,
       "retoma_apos_recarga": null,
       "fonte": "f-specs",
+      "procedencia": {
+        "fonte": "f-specs",
+        "origem": "fabricante-via-busca",
+        "nivel": 3,
+        "rotulo": "página do fabricante",
+        "ressalva": "a confirmar no manual",
+        "quem_declara": "pelo fabricante",
+        "publicador": "Xiaomi Brasil",
+        "url": "https://www.mi.com/br/product/xiaomi-robot-vacuum-e10/specs/",
+        "verificado_em": "2026-09-09"
+      },
       "tem_imagem": false,
       "esperando_link": true,
       "afiliado": {
@@ -914,6 +974,17 @@
       "recarga_min": null,
       "retoma_apos_recarga": null,
       "fonte": "f-specs",
+      "procedencia": {
+        "fonte": "f-specs",
+        "origem": "fabricante-via-busca",
+        "nivel": 3,
+        "rotulo": "página do fabricante",
+        "ressalva": "a confirmar no manual",
+        "quem_declara": "pelo fabricante",
+        "publicador": "Xiaomi Brasil",
+        "url": "https://www.mi.com/br/product/xiaomi-robot-vacuum-h40/specs/",
+        "verificado_em": "2026-09-09"
+      },
       "tem_imagem": false,
       "esperando_link": true,
       "afiliado": {
@@ -935,6 +1006,17 @@
       "recarga_min": null,
       "retoma_apos_recarga": null,
       "fonte": "f-specs",
+      "procedencia": {
+        "fonte": "f-specs",
+        "origem": "fabricante-via-busca",
+        "nivel": 3,
+        "rotulo": "página do fabricante",
+        "ressalva": "a confirmar no manual",
+        "quem_declara": "pelo fabricante",
+        "publicador": "Xiaomi Brasil",
+        "url": "https://www.mi.com/br/product/xiaomi-robot-vacuum-s10/specs/",
+        "verificado_em": "2026-09-09"
+      },
       "tem_imagem": false,
       "esperando_link": true,
       "afiliado": {
@@ -956,6 +1038,17 @@
       "recarga_min": 220,
       "retoma_apos_recarga": null,
       "fonte": "f-specs",
+      "procedencia": {
+        "fonte": "f-specs",
+        "origem": "fabricante-via-busca",
+        "nivel": 3,
+        "rotulo": "página do fabricante",
+        "ressalva": "a confirmar no manual",
+        "quem_declara": "pelo fabricante",
+        "publicador": "Xiaomi Brasil",
+        "url": "https://www.mi.com/br/product/xiaomi-robot-vacuum-s20/specs/",
+        "verificado_em": "2026-09-09"
+      },
       "tem_imagem": false,
       "esperando_link": true,
       "afiliado": {
@@ -977,6 +1070,17 @@
       "recarga_min": null,
       "retoma_apos_recarga": null,
       "fonte": "f-specs",
+      "procedencia": {
+        "fonte": "f-specs",
+        "origem": "fabricante-via-busca",
+        "nivel": 3,
+        "rotulo": "página do fabricante",
+        "ressalva": "a confirmar no manual",
+        "quem_declara": "pelo fabricante",
+        "publicador": "Xiaomi Brasil",
+        "url": "https://www.mi.com/br/product/xiaomi-robot-vacuum-s40/specs/",
+        "verificado_em": "2026-09-09"
+      },
       "tem_imagem": false,
       "esperando_link": true,
       "afiliado": {
@@ -998,6 +1102,17 @@
       "recarga_min": null,
       "retoma_apos_recarga": null,
       "fonte": "f-specs",
+      "procedencia": {
+        "fonte": "f-specs",
+        "origem": "fabricante-via-busca",
+        "nivel": 3,
+        "rotulo": "página do fabricante",
+        "ressalva": "a confirmar no manual",
+        "quem_declara": "pelo fabricante",
+        "publicador": "Xiaomi Brasil",
+        "url": "https://www.mi.com/br/product/xiaomi-robot-vacuum-s40c/specs/",
+        "verificado_em": "2026-09-09"
+      },
       "tem_imagem": false,
       "esperando_link": true,
       "afiliado": {

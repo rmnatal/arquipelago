@@ -37,12 +37,22 @@
       {
         "nivel": 1,
         "origem": "medicao-propria",
+        "na_tela": {
+          "rotulo": "medição da Robometria",
+          "ressalva": null,
+          "quem_declara": "pela Robometria"
+        },
         "o_que_pode_sustentar": "desempenho real (sucao medida, autonomia medida, area coberta medida). E a unica origem que poderia publicar desempenho.",
         "existe_hoje": false
       },
       {
         "nivel": 2,
         "origem": "manual-fabricante",
+        "na_tela": {
+          "rotulo": "manual do fabricante",
+          "ressalva": null,
+          "quem_declara": "pelo fabricante"
+        },
         "o_que_pode_sustentar": "qualquer campo tecnico declarado, e vida util de peca. Exige manual, lamina ou pagina oficial LIDA direto NO ENDERECO DO FABRICANTE. Documento do fabricante guardado por terceiro, ou colhido por busca sem leitura, NAO e nivel 2 — e nivel 3.",
         "existe_hoje": false,
         "observacao": "Bloqueado hoje: o egresso desta nuvem barra multilaser.com.br, suporte.multilaser.com.br, lamina.multilaser.com.br, arquivos.multilaser.com.br, mi.com, wap.ind.br, mais.conteudo.wap.ind.br e manuals.plus (remedido em 11/09/2026: 000). A releitura na fonte primaria continua sendo coleta em aberto — e trabalho a fazer, nao dependencia humana. Em 11/09/2026 as quatro fontes que se declaravam nivel 2 desceram para 3 pela regra do elo mais fraco, e a ilha voltou a nao ter nivel 2 nenhum."
@@ -50,6 +60,11 @@
       {
         "nivel": 3,
         "origem": "fabricante-via-busca",
+        "na_tela": {
+          "rotulo": "página do fabricante",
+          "ressalva": "a confirmar no manual",
+          "quem_declara": "pelo fabricante"
+        },
         "o_que_pode_sustentar": "campo tecnico e categoria atribuidos ao fabricante, colhidos por busca e NAO lidos na fonte primaria — tanto faz se a pagina fica no dominio do fabricante ou se e um documento dele guardado por terceiro. Vai para a tela com 'a confirmar no manual'.",
         "existe_hoje": true,
         "observacao": "E o nivel de quase tudo que este banco tem hoje. A Aquametria ja registrou um caso de busca restrita devolver numero errado com atribuicao certa — por isso cada campo carrega canal_de_coleta. Desde 11/09/2026 este degrau tambem recebe o manual de fabricante em custodia de terceiro: o texto e do fabricante, a guarda e a leitura nao sao."
@@ -57,18 +72,33 @@
       {
         "nivel": 4,
         "origem": "varejo-oficial-da-marca",
+        "na_tela": {
+          "rotulo": "loja oficial da marca",
+          "ressalva": "confira a embalagem",
+          "quem_declara": "pela loja oficial da marca"
+        },
         "o_que_pode_sustentar": "campo tecnico transcrito pela loja oficial da propria marca no Brasil. Vai para a tela com 'confira a embalagem'.",
         "existe_hoje": true
       },
       {
         "nivel": 5,
         "origem": "varejo-especializado",
+        "na_tela": {
+          "rotulo": "varejista especializado",
+          "ressalva": "confira a embalagem",
+          "quem_declara": "por varejista especializado"
+        },
         "o_que_pode_sustentar": "campo tecnico transcrito por varejista ou assistencia especializada.",
         "existe_hoje": false
       },
       {
         "nivel": 6,
         "origem": "marketplace-anuncio",
+        "na_tela": {
+          "rotulo": "anúncio de marketplace",
+          "ressalva": "anúncio não é especificação",
+          "quem_declara": "em anúncio de marketplace"
+        },
         "o_que_pode_sustentar": "APENAS a existencia do item e o selo declarada_terceiro. NUNCA sustenta especificacao de aparelho nem compatibilidade escrita como 'serve'.",
         "existe_hoje": true,
         "observacao": "E o que ocupa a primeira pagina da consulta-alvo da R1 hoje: copy de anuncio, sem fonte e sem data. E exatamente o que esta ilha existe para substituir."
@@ -76,6 +106,11 @@
       {
         "nivel": 7,
         "origem": "editorial",
+        "na_tela": {
+          "rotulo": "publicação editorial",
+          "ressalva": "é recomendação publicada, não especificação",
+          "quem_declara": "por veículo editorial"
+        },
         "o_que_pode_sustentar": "recomendacao de faixa (quanto Pa uma casa precisa), sempre rotulada como opiniao publicada e sempre com o nome de quem publica. NUNCA sustenta especificacao de aparelho nem vida util contra o manual.",
         "existe_hoje": true
       }
@@ -104,6 +139,16 @@
       },
       "por_que_fabricante_e_3_e_nao_2": "Toda constante de tipo 'fabricante' deste banco foi colhida por busca restrita ao dominio, sem leitura direta — o proprio canal_de_coleta de cada uma diz isso. Pela regra do elo mais fraco, busca sem leitura e nivel 3.",
       "so_conta_o_publicavel": "A contagem e de registro e constante com status publicavel. A coluna fala do que a ilha publica, nao do que ela guarda."
+    },
+    "o_degrau_chega_a_TELA_pelo_na_tela": {
+      "escrito_em": "2026-09-11",
+      "por_que": "A escada dizia o degrau em prosa ('Vai para a tela com \"a confirmar no manual\"') e quem imprimia o degrau na tela era uma tabela DIGITADA dentro de ferramentas/gerar-r1.py. Duas copias do mesmo fato, cada uma certa no seu lugar e nenhuma capaz de corrigir a outra — a mesma forma do defeito dos dois mapas de nome da casca 1.2.0 e da coluna 'Temos hoje' digitada na metodologia. Agora o rotulo, a ressalva e a atribuicao moram AQUI, no mesmo degrau que declara o nivel, e os geradores das duas ferramentas leem deste arquivo.",
+      "os_tres_campos": {
+        "rotulo": "como o degrau e NOMEADO na linha de procedencia do cartao ('Como sabemos — pagina do fabricante').",
+        "ressalva": "o degrau dito com todas as letras, no lugar onde o leitor decide se compra. Null so nos niveis 1 e 2, os unicos em que nada fica por confirmar; do 3 para baixo e obrigatoria.",
+        "quem_declara": "a atribuicao usada DENTRO da frase do cartao, depois de 'declarados'. Ela existe porque o nivel e o elo mais fraco e a AUTORIA e outro elo: nivel 3 continua sendo 'pelo fabricante' (a autoria e dele) e leva a ressalva; nivel 4 e 'pela loja oficial da marca', porque quem transcreveu foi a loja. Escrever 'pelo fabricante' para os dois seria emprestar a autoridade do fabricante a quem so transcreveu."
+      },
+      "quem_cobra": "ferramentas/validar-banco.py (todo degrau declara os tres campos, e a ressalva e nula exatamente nos niveis 1 e 2) e ferramentas/teste-r2.php, que le ESTE arquivo como regua propria e confere o que o cartao serve."
     }
   },
   "vocabularios": {

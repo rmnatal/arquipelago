@@ -257,6 +257,81 @@ def rotulo_do_modelo(m):
     return "%s %s" % (marcas[m["marca"]]["nome"], m["codigo_fabricante"])
 
 
+# ---------------------------------------------- A PROCEDENCIA DO NUMERO QUE DECIDE
+#
+# O Pa e o unico numero que decide a recomendacao da R2, e ate 11/09/2026 o
+# cartao o publicava com a atribuicao "declarados pelo fabricante" DIGITADA no
+# molde da frase — sem endereco, sem data, sem degrau da escada. Tres coisas
+# erradas de uma vez: (1) a secao 5.4 do ARQUIPELAGO.md pede a procedencia na
+# propria frase, com data, e e ela que um modelo de linguagem cita; (2) "pelo
+# fabricante" e uma afirmacao sobre a AUTORIA da fonte, e ela e verdadeira hoje
+# so porque as onze fontes de Pa do banco sao todas fabricante-via-busca — no dia
+# em que um Pa entrar por loja oficial ou por anuncio, o molde emprestaria a
+# autoridade do fabricante a quem apenas transcreveu, calado; (3) a ressalva que
+# a escada obriga para o degrau 3 ("a confirmar no manual") nunca chegava a
+# tela, embora a R1 a publique desde o primeiro dia no mesmo tipo de cartao.
+#
+# A regra e a mesma que a ilha ja aplicou ao numero da tela: nasce contada, nunca
+# digitada. Aqui, nasce LIDA do degrau que o proprio registro declara.
+ROTULOS_DE_ORIGEM = {}
+for _n in esquema["escada_de_fontes"]["niveis"]:
+    _t = _n.get("na_tela")
+    if not isinstance(_t, dict):
+        sys.stderr.write(
+            "ERRO: o degrau %d (%s) da escada de fontes nao declara na_tela.\n"
+            % (_n["nivel"], _n["origem"])
+        )
+        sys.exit(1)
+    ROTULOS_DE_ORIGEM[_n["origem"]] = {
+        "rotulo": _t["rotulo"],
+        "ressalva": _t["ressalva"],
+        "quem_declara": _t["quem_declara"],
+        "nivel": _n["nivel"],
+    }
+
+
+def procedencia_do_pa(m):
+    """De onde veio o Pa deste modelo, no vocabulario da tela.
+
+    Devolve None quando o modelo nao declara Pa — e o caso dos cinco Electrolux,
+    que so aparecem como modelo de referencia dos ciclos e nunca em cartao.
+    """
+    campo = m.get("pa_declarado")
+    if not isinstance(campo, dict) or campo.get("valor") is None:
+        return None
+
+    fid = campo.get("fonte")
+    fonte = (m.get("fontes") or {}).get(fid)
+    if not fonte:
+        sys.stderr.write(
+            "ERRO: o modelo %r declara Pa pela fonte %r, que nao existe em "
+            "fontes{}. Numero publicado sem procedencia e exatamente o que esta "
+            "ilha existe para nao fazer.\n" % (m["id"], fid)
+        )
+        sys.exit(1)
+
+    origem = fonte.get("origem")
+    if origem not in ROTULOS_DE_ORIGEM:
+        sys.stderr.write(
+            "ERRO: o modelo %r cita a origem %r, que nao tem na_tela na escada "
+            "de fontes.\n" % (m["id"], origem)
+        )
+        sys.exit(1)
+
+    t = ROTULOS_DE_ORIGEM[origem]
+    return {
+        "fonte": fid,
+        "origem": origem,
+        "nivel": t["nivel"],
+        "rotulo": t["rotulo"],
+        "ressalva": t["ressalva"],
+        "quem_declara": t["quem_declara"],
+        "publicador": fonte.get("publicador"),
+        "url": fonte.get("url"),
+        "verificado_em": fonte.get("verificado_em"),
+    }
+
+
 # ------------------------------------------------- A REGRA DA R2, EM UM LUGAR SO
 def regra_vale(regra, piso, pelo):
     if piso in regra["pisos"] and pelo in regra["pelos"]:
@@ -831,10 +906,14 @@ def frase_do_cartao(m, sit, ressalvas):
     """
     pa = valor(m.get("pa_declarado"))
     seguro = sit["limiar_seguro"]
+    # A ATRIBUICAO E LIDA DO DEGRAU, nunca digitada no molde: "pelo fabricante"
+    # e verdade para fabricante-via-busca (a autoria e dele) e mentira para uma
+    # loja que apenas transcreveu. Ver procedencia_do_pa().
+    p = procedencia_do_pa(m)
     base = (
-        "%s: %s Pa declarados pelo fabricante, %s do limiar de %s Pa que %s "
+        "%s: %s Pa declarados %s, %s do limiar de %s Pa que %s "
         "recomenda para a sua situacao."
-        % (rotulo_do_modelo(m), numero_br(pa),
+        % (rotulo_do_modelo(m), numero_br(pa), p["quem_declara"],
            "acima" if pa > seguro["valor"] else "no minimo",
            numero_br(seguro["valor"]), com_artigo(seguro["publicador"]))
     )

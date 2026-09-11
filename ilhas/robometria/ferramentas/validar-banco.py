@@ -60,6 +60,53 @@ CHAVES_AFILIADO = {"url", "plataforma", "coletado_em", "sub_id_1", "sub_id_2"}
 
 ORIGEM_DO_NIVEL = {n["nivel"]: n["origem"] for n in esquema["escada_de_fontes"]["niveis"]}
 
+# O degrau que chega a TELA. Ver escada_de_fontes.o_degrau_chega_a_TELA_pelo_na_tela.
+NA_TELA = {n["origem"]: n.get("na_tela") for n in esquema["escada_de_fontes"]["niveis"]}
+NIVEL_DA_ORIGEM = {n["origem"]: n["nivel"] for n in esquema["escada_de_fontes"]["niveis"]}
+
+# Os dois degraus em que nada fica por confirmar: medicao propria e manual lido
+# direto na fonte primaria. Do 3 para baixo a ressalva e obrigatoria, porque e
+# ela que carrega a fraqueza do elo — e o cartao a imprime no lugar onde o
+# leitor decide se compra.
+NIVEIS_SEM_RESSALVA = {1, 2}
+CHAVES_NA_TELA = {"rotulo", "ressalva", "quem_declara"}
+
+
+def checar_escada_na_tela():
+    """Todo degrau declara como ele APARECE na tela — os geradores leem daqui.
+
+    Ate 11/09/2026 o rotulo e a ressalva de cada degrau moravam DIGITADOS dentro
+    de ferramentas/gerar-r1.py, enquanto a escada os descrevia em prosa neste
+    esquema. Duas copias do mesmo fato, nenhuma capaz de corrigir a outra: e a
+    forma exata do defeito dos dois mapas de nome da casca 1.2.0. Agora a copia
+    e uma so, e esta trava existe para que degrau novo nao nasca mudo — origem
+    sem rotulo faria a tela imprimir o apelido de campo cru
+    ('fabricante-via-busca') no meio de uma frase publicada.
+    """
+    for n in esquema["escada_de_fontes"]["niveis"]:
+        onde = "esquema-banco/escada_de_fontes/nivel %d" % n["nivel"]
+        t = n.get("na_tela")
+        if not isinstance(t, dict):
+            erro("%s: sem na_tela. Degrau que nao declara como aparece na tela "
+                 "publica o apelido de campo cru para o leitor" % onde)
+            continue
+        if set(t) != CHAVES_NA_TELA:
+            erro("%s: na_tela tem as chaves %s e o contrato pede %s"
+                 % (onde, sorted(t), sorted(CHAVES_NA_TELA)))
+            continue
+        for campo in ("rotulo", "quem_declara"):
+            if not isinstance(t[campo], str) or not t[campo].strip():
+                erro("%s: na_tela.%s vazio" % (onde, campo))
+        sem_ressalva = n["nivel"] in NIVEIS_SEM_RESSALVA
+        if sem_ressalva and t["ressalva"] is not None:
+            erro("%s: nivel %d nao deveria ter ressalva — nada fica por "
+                 "confirmar acima do degrau 3" % (onde, n["nivel"]))
+        if not sem_ressalva and not (isinstance(t["ressalva"], str) and t["ressalva"].strip()):
+            erro("%s: nivel %d sem ressalva na tela. Do degrau 3 para baixo a "
+                 "ressalva e o elo fraco dito com todas as letras, e ela e o "
+                 "que impede a pagina de publicar um rigor que a ilha nao tem"
+                 % (onde, n["nivel"]))
+
 # Degraus que exigem ter LIDO o documento na fonte primaria. Ver
 # escada_de_fontes.o_nivel_e_o_elo_mais_fraco no esquema.
 NIVEIS_QUE_EXIGEM_LEITURA_DIRETA = {1, 2}
@@ -99,6 +146,13 @@ def checar_fontes(reg, arquivo):
             erro("%s: sem titulo_na_fonte — a frase publicada nao tem o que citar" % onde)
         if not f.get("canal_de_coleta"):
             erro("%s: sem canal_de_coleta" % onde)
+        # Origem citada pelo banco tem que saber se apresentar na tela. A trava
+        # de cima cobre a escada; esta cobre o caminho inverso, que e por onde o
+        # defeito entraria de verdade: um registro citando uma origem que a
+        # escada nao tem.
+        if f.get("origem") not in NA_TELA:
+            erro("%s: origem %r nao existe na escada_de_fontes, entao nao tem "
+                 "rotulo de tela" % (onde, f.get("origem")))
 
 
 def checar_campo_de_valor(reg, campo, arquivo):
@@ -331,6 +385,8 @@ esperando = ([r["id"] for r in modelos["registros"]
               if r["status"] == "publicavel" and not r["afiliado"]["url"]] +
              [p["id"] for p in pecas["registros"]
               if p["status"] == "publicavel" and not p["afiliado"]["url"]])
+
+checar_escada_na_tela()
 
 # ------------------------------------------------------------------ SAIDA
 print("Robometria — verificacao do banco (esquema versao %s)" % esquema["versao_esquema"])

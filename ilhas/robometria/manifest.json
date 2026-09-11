@@ -4,13 +4,13 @@
   "nicho": "robo aspirador — compatibilidade de pecas e consumiveis, e dimensionamento de succao e autonomia",
   "dominio": "https://robometria.com.br",
   "versao_manifest": 1,
-  "revisao": 17,
+  "revisao": 18,
   "atualizado_em": "2026-09-11",
   "estado": "nascendo",
   "desembarque": {
     "aprovado": true,
     "decidido_em": "2026-09-11",
-    "observacao": "Desembarque automatico por forca da secao 10 do ARQUIPELAGO.md. A revisao 17 leva UM NOME POR PAGINA nas nove: seis delas se chamavam de dois jeitos ao mesmo tempo (o H1 dizia 'Sobre' e o og:title da mesma pagina dizia 'Quem publica a Robometria'), porque havia dois mapas de nome digitados, cada um certo no seu lugar e nenhum capaz de corrigir o outro. Agora ha uma fonte so, e as cinco superficies em que o nome aparece — H1, <title>, og:title, degrau da trilha e rotulo do cartao — derivam dela. Leva tambem o <title>, que ate hoje o repositorio nao escrevia: a home servia 'Robometria – Compatibilidade de pecas e dimensionamento de robo aspirador', 73 caracteres de um campo do wp-admin. E leva a voz as aberturas das oito paginas que nao sao a home (secao 15.5), com a procedencia descendo um paragrafo para a camada de prova (secao 15.2). Nenhuma URL muda. QUEM ACIONA O SYNC E A PROPRIA FUNDACAO, por curl, ao fim do bloco; so o /status prova que a revisao esta no ar."
+    "observacao": "Desembarque automatico por forca da secao 10 do ARQUIPELAGO.md. A revisao 18 leva A PROCEDENCIA DO Pa para dentro do cartao da R2 (snippet 1.2.0). O Pa e o unico numero que decide aquela recomendacao e ele era publicado sem endereco, sem data e sem o degrau da escada de fontes — a R1 faz isso desde o primeiro dia no mesmo tipo de cartao, e a R2 nao fazia. Agora cada cartao traz a ressalva do degrau ('a confirmar no manual'), a porta de compra, e so depois dela a linha 'Como sabemos — pagina do fabricante, verificado em 09/09/2026' com o link discreto: a ordem e a secao 7 escrita em codigo. E a atribuicao dentro da frase deixou de ser digitada no molde: 'declarados pelo fabricante' era verdade so porque as onze fontes de Pa do banco sao do mesmo degrau, e no dia em que um Pa entrasse por loja oficial a pagina emprestaria, calada, a autoridade do fabricante a quem apenas transcreveu. Junto vai o arquivo de dados com a escada inteira e a procedencia por modelo, e o esquema do banco, onde o rotulo e a ressalva de cada degrau passaram a morar — antes eles eram uma tabela digitada dentro de um gerador, com a escada descrevendo os mesmos textos em prosa noutro arquivo. Nenhuma URL muda e nenhum numero muda. QUEM ACIONA O SYNC E A PROPRIA FUNDACAO, por curl, ao fim do bloco; so o /status prova que a revisao esta no ar."
   },
   "snippets": [
     {
@@ -53,8 +53,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "fe0d8f79198369732b943804bcc9122514d1590fcd682071be8c893fc85c79df",
-      "versao": "1.1.0",
+      "sha256": "74815082a7da99ec246c30648755e867eeb913d5864a0cbf23d19caa41af8e62",
+      "versao": "1.2.0",
       "descricao": "A R2 NA 1.1.0 — o nome virou a consulta que a pessoa digita, e ela esta no proprio endereco: 'Quantos Pa o seu robo aspirador precisa'. O nome anterior prometia duas coisas no mesmo folego e nao batia com o og:title, que dizia outra; a segunda metade (o tempo) continua inteira na promessa acima do formulario e na resposta. A abertura passou a falar com quem entrou e a ressalva de que os limiares de Pa sao recomendacao editorial desceu para a camada de prova. Como na R1: o catalogo recebe o titulo da constante, e garantir_pagina() reespelha o post_title."
     },
     {
@@ -116,7 +116,7 @@
       "verificado_em": "2026-09-09",
       "registros": 4,
       "publicar": false,
-      "sha256": "0fcac7075eae6c8568a5f78b34ab999faa16d62f0a26c1f4fe5f875d7d7c0617",
+      "sha256": "f3523f949b772e7832f7f98ff28c274beee3c99edb7bafc488a88be39f32efb1",
       "descricao": "Contrato do banco da Robometria, versao 3 do esquema (elevada na segunda leva do Bloco 3c). A versao 3 acrescenta divergencias[] e resolucao tambem em MODELO_ROBO — ate entao so PECA divergia, e o PRA500 declara 1600 Pa na ficha e 2000 Pa no texto de venda da MESMA pagina — e escreve a regra da FAIXA DECLARADA: faixa e tolerancia resolvem para o lado em que errar doi menos, nunca para o meio, com a faixa inteira preservada em declarado_como. Pa e autonomia resolvem para baixo; tempo de recarga resolve para cima."
     },
     {
@@ -188,7 +188,7 @@
       "verificado_em": "2026-09-10",
       "registros": 28,
       "publicar": true,
-      "sha256": "6830f7511dd5104bebc329510b0bd4a0a5a84bf31633bfa94e606f2a1b1586eb",
+      "sha256": "94f0d0daae7667ec9f52baf96cff3dd491b86cb952a1751cf2d086840a4b0d82",
       "descricao": "O COMBUSTIVEL DA FERRAMENTA R1 NO SITE, e o primeiro item de dados desta ilha com publicar=true: o Sync o grava na option robometria_dados_r1-respostas e o snippet robometria-r1.php monta a pagina a partir dele. Para cada um dos 28 modelos publicaveis, os FATOS de cada peca que o fabricante declarou compativel — tipo respondido, codigo, publicador, conjunto declarado, endereco, data, se vem dentro de kit, se existe a peca avulsa, se ha divergencia registrada e se ainda espera link de afiliado. Traz tambem o seletor gerado da varredura (os 5 tipos que o banco consegue responder, sem 'reservatorio', que tem zero pecas), o modelo-ancora escolhido por regra, as 45 linhas da tabela de exemplos na ordem cross-marca da referencia, as duas divergencias com as duas declaracoes e as duas datas, a lista dos 12 modelos de entrada vazia e a tabela de rotulos da escada de fontes. SEM PROSA de proposito: a frase que o visitante le e montada pelo snippet, em portugues acentuado, e conferida contra a referencia por ferramentas/teste-r1.php."
     },
     {
@@ -246,7 +246,7 @@
       "verificado_em": "2026-09-10",
       "registros": 9,
       "publicar": true,
-      "sha256": "9a33b73982e9eddec8648e963ab1f5a2bb82a73bac86f1cf56948fd01e2b1152"
+      "sha256": "131f8cf4765ec3e9e172f3bb355b8086d6cfe3970f3150df294710628c1d298a"
     },
     {
       "id": "r2-referencia",
@@ -390,6 +390,41 @@
       "id": "mutacoes-cabeca-e-voz",
       "arquivo": "ferramentas/mutacoes-cabeca-e-voz.py",
       "descricao": "A PROVA DE QUE AS TRAVAS DA CASCA 1.2.0 REPROVAM. Quinze mutacoes deliberadas, cada uma numa copia da arvore inteira num diretorio temporario, exigindo que teste-casca.php saia com codigo diferente de zero: a tag de description sumindo do wp_head, duas paginas com a mesma description, um numero dentro de uma description, uma description acima de 160 caracteres, uma pagina publicada sem cabeca, uma cabeca sobrando sem pagina, o H1 da raiz voltando a ser 'Inicio', termo de dentro da fabrica no primeiro paragrafo da home, a home perdendo o seletor, os atalhos deixando de ser contados, escassez inventada fora do bloco de recusa, uma promessa escondida dentro do bloco de recusa, uma pagina voltando a ser fina, description generica de reserva para pagina desconhecida, e a folha do formulario voltando a ser copiada na R1. DUAS PASSARAM NA PRIMEIRA RODADA e as duas viraram conserto: a regua de escassez listava 'mais vendido' e deixou passar 'a peca mais vendida da categoria' — genero e numero em portugues sao o buraco por onde a frase proibida entra inteira, e a regua passou a usar radical; e a mutacao de pagina fina era fraca demais, cortando 409 caracteres de uma pagina que tinha 522 de folga. Toda substituicao e obrigada a acertar um alvo UNICO: mutacao que nao encontra o alvo edita nada e o teste passa, e teste verde por mutacao que nao aconteceu e a mesma ilusao que este arquivo existe para desfazer."
+    },
+    {
+      "id": "teste-arvore",
+      "arquivo": "ferramentas/teste-arvore.php",
+      "descricao": "Portao da arvore e do cluster (secao 16 do ARQUIPELAGO.md): trilha, BreadcrumbList e 'Veja tambem' nas nove paginas, um processo por pagina, lendo o ARVORE.md para cobrar que documento e codigo digam a mesma coisa. Bancada: nunca e publicada."
+    },
+    {
+      "id": "mutacoes-arvore",
+      "arquivo": "ferramentas/mutacoes-arvore.py",
+      "descricao": "Quebra de proposito a arvore da casca e exige que teste-arvore.php e teste-casca.php reprovem. Bancada: nunca e publicada."
+    },
+    {
+      "id": "teste-navegador-arvore",
+      "arquivo": "ferramentas/teste-navegador-arvore.mjs",
+      "descricao": "Medicao em Chromium das nove paginas em seis larguras: rolagem horizontal e a trilha visivel. Bancada: nunca e publicada."
+    },
+    {
+      "id": "teste-voz",
+      "arquivo": "ferramentas/teste-voz.php",
+      "descricao": "Portao da voz (secao 15) e do nome unico da pagina: H1, <title>, og:title, degrau da trilha e rotulo do cartao derivando da mesma fonte, palavras proibidas lidas do VOZ.md, um processo por pagina. Bancada: nunca e publicada."
+    },
+    {
+      "id": "mutacoes-procedencia",
+      "arquivo": "ferramentas/mutacoes-procedencia.py",
+      "descricao": "Quebra de proposito a procedencia do Pa no cartao da R2 (linha de fonte, ordem, ressalva do degrau, atribuicao digitada, escada mutilada) e exige que teste-r2.php reprove as onze. Bancada: nunca e publicada."
+    },
+    {
+      "id": "conferir-no-ar",
+      "arquivo": "ferramentas/conferir-no-ar.py",
+      "descricao": "Mede no HTML SERVIDO, depois do desembarque, o que a bancada so consegue medir no repositorio: as nove URLs em 200, o nome unico em cada superficie e zero entidade dentro de <script>. Os enderecos e os nomes estao escritos literalmente dentro dele, para as duas metades nao errarem juntas. Bancada: nunca e publicada."
+    },
+    {
+      "id": "atualizar-manifest",
+      "arquivo": "ferramentas/atualizar-manifest.py",
+      "descricao": "Recalcula o sha256 de todo item que o esquema do manifest declara com sha, reespelha a versao de cada snippet a partir da CONSTANTE dele, imprime cada troca que faz e sobe a revisao. Bancada: nunca e publicada."
     }
   ],
   "esquema": {
