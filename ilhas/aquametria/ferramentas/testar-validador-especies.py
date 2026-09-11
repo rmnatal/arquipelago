@@ -113,6 +113,28 @@ def c_e15(b):
     r["fontes"][1]["url"] = "https://fishbase.org/summary/12188"
 
 
+def c_e16_numero(b):
+    # o campo passa a dizer um numero que a fonte citada nao diz
+    pega(b, "tanichthys-albonubes")["cardume_minimo"] = 12
+
+
+def c_e16_intervalo(b):
+    # um lado do intervalo mexido: a regra tem de olhar min e max separados
+    pega(b, "hyphessobrycon-amandae")["temperatura_C"]["max"] = 29
+
+
+def c_e16_base(b):
+    # e dentro do objeto de base tambem, que e onde mora a largura
+    pega(b, "hyphessobrycon-amandae")["base_minima_cm"]["largura"] = 35
+
+
+def c_e16_extenso(b):
+    # a fonte da coridora-panda escreve "pelo menos SEIS", por extenso. Trocar o campo
+    # para 7 tem de reprovar — e o 6 continuar passando e o que prova que a leitura
+    # por extenso e real, e nao um buraco que aprova qualquer numero.
+    pega(b, "corydoras-panda")["cardume_minimo"] = 7
+
+
 TESTES = [
     ("E1", "id que nao corresponde ao nome cientifico", c_e1, "erro"),
     ("E2", "campo obrigatorio faltando sem status parcial", c_e2, "erro"),
@@ -129,6 +151,10 @@ TESTES = [
     ("E13", "tolerancia termica disfarcada de recomendacao", c_e13, "erro"),
     ("E14", "status completo com um corpo de fonte so", c_e14, "erro"),
     ("E15", "duas urls do mesmo corpo passando por duas fontes", c_e15, "aviso"),
+    ("E16", "campo com numero que a fonte citada nao diz", c_e16_numero, "erro"),
+    ("E16", "um lado do intervalo fora do texto da fonte", c_e16_intervalo, "erro"),
+    ("E16", "largura da base fora do texto da fonte", c_e16_base, "erro"),
+    ("E16", "numero por extenso na fonte, campo trocado", c_e16_extenso, "erro"),
 ]
 
 

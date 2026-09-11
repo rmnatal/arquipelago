@@ -4,7 +4,7 @@
 
 Uso (a partir de ilhas/aquametria/):  python3 ferramentas/validar-especies.py [arquivo]
 
-As regras E1 a E15 estao descritas em dados/esquema-especies.json. Este arquivo e a
+As regras E1 a E16 estao descritas em dados/esquema-especies.json. Este arquivo e a
 versao executavel delas, pelo mesmo motivo do validador de produtos: regra que nao
 roda vira decoracao. Imprime tambem quem passa no minimo_para_sugerir de cada
 consumidor, que e a resposta pratica para "esta especie ja pode virar pagina?".
@@ -86,6 +86,45 @@ def corpos_de(registro):
     return {corpo_da_fonte(f.get("url")) for f in registro.get("fontes", []) if f.get("url")}
 
 
+# Numero por extenso conta como numero (regra E16). A fonte costuma escrever
+# "grupo de pelo menos SEIS", e cobrar algarismo ali reprovaria transcricao fiel.
+# As referencias do banco sao ASCII sem acento, por isso "tres" e nao "tres".
+POR_EXTENSO = {
+    "um": 1, "uma": 1, "dois": 2, "duas": 2, "tres": 3, "quatro": 4, "cinco": 5,
+    "seis": 6, "sete": 7, "oito": 8, "nove": 9, "dez": 10, "onze": 11, "doze": 12,
+    "treze": 13, "quatorze": 14, "catorze": 14, "quinze": 15, "dezesseis": 16,
+    "dezessete": 17, "dezoito": 18, "dezenove": 19, "vinte": 20,
+}
+NUMERO_NO_TEXTO = re.compile(r"\d+(?:[.,]\d+)?")
+PALAVRA_NO_TEXTO = re.compile(r"[a-z]+")
+
+
+def numeros_no_texto(texto):
+    """Todo numero que a fonte escreveu, em algarismo ou por extenso."""
+    achados = set()
+    for bruto in NUMERO_NO_TEXTO.findall(texto or ""):
+        try:
+            achados.add(round(float(bruto.replace(",", ".")), 4))
+        except ValueError:
+            pass
+    for palavra in PALAVRA_NO_TEXTO.findall((texto or "").lower()):
+        if palavra in POR_EXTENSO:
+            achados.add(float(POR_EXTENSO[palavra]))
+    return achados
+
+
+def valores_numericos(campo, valor):
+    """Os numeros que um campo publica: ele mesmo, ou cada lado do intervalo/base."""
+    if isinstance(valor, bool) or valor is None:
+        return []
+    if isinstance(valor, (int, float)):
+        return [(campo, valor)]
+    if isinstance(valor, dict):
+        return [("%s.%s" % (campo, chave), v) for chave, v in valor.items()
+                if isinstance(v, (int, float)) and not isinstance(v, bool)]
+    return []
+
+
 def main():
     esquema = json.load(open(ESQUEMA, encoding="utf-8"))
     campos_esq = {c["campo"]: c for c in esquema["campos"]}
@@ -136,6 +175,7 @@ def main():
 
         # E4 - fontes bem formadas, e o indice campo -> origens
         sustentado = {}
+        referencias_por_campo = {}
         for f in r.get("fontes", []):
             ref = f.get("referencia", "<sem referencia>")[:40]
             if f.get("origem") not in origens:
@@ -148,6 +188,7 @@ def main():
                 erro("E4", rid, "fonte '%s' sem verificado_em" % ref)
             for campo in f.get("campos", []):
                 sustentado.setdefault(campo, []).append(f.get("origem"))
+                referencias_por_campo.setdefault(campo, []).append(f.get("referencia") or "")
 
         # E3 - todo campo preenchido tem fonte
         for campo, spec in campos_esq.items():
@@ -187,6 +228,21 @@ def main():
                     erro("E8", rid, "%s com min maior que max" % campo)
                 elif v["min"] == v["max"]:
                     aviso("E8", rid, "%s com min igual a max" % campo)
+
+        # E16 - o numero do campo tem de estar no texto da fonte que declara o campo.
+        # Campo e referencia sao duas escritas independentes do mesmo fato: a maquina usa
+        # uma, o leitor le a outra. Quando divergem, alguem transcreveu, digitou ou editou
+        # um lado so — e e o unico jeito de pegar isso sem abrir a pagina da fonte.
+        for campo, textos in referencias_por_campo.items():
+            if campo in isentos:
+                continue
+            numeros_da_fonte = set()
+            for t in textos:
+                numeros_da_fonte |= numeros_no_texto(t)
+            for rotulo, valor in valores_numericos(campo, r.get(campo)):
+                if round(float(valor), 4) not in numeros_da_fonte:
+                    erro("E16", rid, "%s = %s nao aparece no texto de nenhuma fonte que declara "
+                                     "'%s'" % (rotulo, valor, campo))
 
         # E9 / E10 - conflitos
         confs = r.get("conflitos") or []

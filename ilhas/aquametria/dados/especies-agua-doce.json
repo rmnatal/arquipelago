@@ -2,11 +2,11 @@
  "id": "especies-agua-doce",
  "entidade": "especie",
  "esquema": "dados/esquema-especies.json",
- "descricao": "Banco de especies de agua doce da Aquametria. Leva 1 (bloco 4b(c), 09/09/2026): 12 especies. Leva 2 (bloco 4b leva 3, 09/09/2026): mais 13 especies. Leva 3 (T3(a), 09/09/2026): mais 11 especies, fechando 36 registros de 2,0 cm (tetra ember) a 48,0 cm (kinguio), com frente minima declarada de 45 a 180 cm. Existe para destravar o eixo aberto 'quantos litros para X peixes', que a Bussola verificou livre na SERP, com dado atribuido em vez da regra de bolso de 1 cm por litro. Nenhum registro tem link de afiliado: especie nao e produto.",
+ "descricao": "Banco de especies de agua doce da Aquametria. Leva 1 (bloco 4b(c), 09/09/2026): 12 especies. Leva 2 (bloco 4b leva 3, 09/09/2026): mais 13 especies. Leva 3 (T3(a), 09/09/2026): mais 11 especies, fechando 36 registros de 2,0 cm (tetra ember) a 48,0 cm (kinguio), com frente minima declarada de 45 a 180 cm. Existe para destravar o eixo aberto 'quantos litros para X peixes', que a Bussola verificou livre na SERP, com dado atribuido em vez da regra de bolso de 1 cm por litro. Nenhum registro tem link de afiliado: especie nao e produto. Leva 4 (T3d, 11/09/2026): nenhuma especie nova; a leva foi de PROFUNDIDADE, fechando os campos que barravam registros ja existentes no portao de pagina e na C8.",
  "gerado_em": "2026-09-09",
- "bloco": "4b(c) leva 1 + 4b leva 3 + T3(a) leva 3",
+ "bloco": "4b(c) leva 1 + 4b leva 3 + T3(a) leva 3 + T3d leva 4 (profundidade)",
  "publicar": false,
- "nota_de_procedencia": "Nenhuma pagina foi lida direto: em 09/09/2026 o egresso da nuvem devolveu EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org. Todo numero deste arquivo foi colhido por busca RESTRITA ao dominio da fonte (niveis 3 e 5 da escada), o que garante a atribuicao mas nao substitui a leitura. Reconferir na ficha quando o egresso abrir e uma coleta em aberto.",
+ "nota_de_procedencia": "Nenhuma pagina foi lida direto: em 09/09/2026 o egresso da nuvem devolveu EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, e em 11/09/2026 isso foi RECONFERIDO nos quatro, por curl e por WebFetch, com o site da propria ilha respondendo 200 na mesma passada - ou seja, e politica de rede, nao a intermitencia de tunel da secao 20 do contrato. Todo numero deste arquivo foi colhido por busca RESTRITA ao dominio da fonte (niveis 3 e 5 da escada), o que garante a atribuicao mas nao substitui a leitura. Reconferir na ficha quando o egresso abrir e uma coleta em aberto.",
  "campos_deliberadamente_vazios": [
   "dificuldade: julgamento editorial, nao fonte. Fica null nos 36 registros em vez de virar opiniao com cara de dado.",
   "disponibilidade_br: exige fonte de varejo brasileiro, que nenhuma das tres levas colheu.",
@@ -33,7 +33,7 @@
    "porte_sexo": "nao-sexado",
    "expectativa_vida_anos": null,
    "temperatura_C": {
-    "min": 24,
+    "min": 20,
     "max": 28
    },
    "temperatura_e_tolerancia": false,
@@ -45,17 +45,17 @@
     "min": null,
     "max": null
    },
-   "cardume_minimo": null,
-   "comprimento_minimo_aquario_cm": null,
+   "cardume_minimo": 8,
+   "comprimento_minimo_aquario_cm": 45,
    "base_minima_cm": {
-    "comprimento": null,
-    "largura": null
+    "comprimento": 45,
+    "largura": 30
    },
    "altura_minima_cm": null,
    "volume_minimo_declarado_L": null,
    "nivel_natacao": null,
-   "comportamento": null,
-   "convivencia": null,
+   "comportamento": "pacifico",
+   "convivencia": "cardume",
    "alimentacao": null,
    "dificuldade": null,
    "exige_aquario_maduro": null,
@@ -76,12 +76,59 @@
       "temperatura_C"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
+    },
+    {
+     "origem": "compendio-via-busca",
+     "status": "compendio-via-busca",
+     "referencia": "Seriously Fish - ficha da especie: aquario com base de no minimo 45 x 30 cm (18 x 12 pol) ou equivalente; temperatura de 20 a 28 C, com a agua de pH levemente acido a neutro e a temperatura na ponta ALTA da faixa; gregaria e formando cardume por natureza, com a compra minima recomendada de 8 a 10 exemplares, porque em numero menor fica arisca; muito pacifica, nao compete com companheiros agitados ou bem maiores.",
+     "url": "https://www.seriouslyfish.com/species/hyphessobrycon-amandae",
+     "verificado_em": "2026-09-11",
+     "campos": [
+      "temperatura_C",
+      "comprimento_minimo_aquario_cm",
+      "base_minima_cm",
+      "cardume_minimo",
+      "convivencia",
+      "comportamento"
+     ],
+     "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 11/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED, reconfirmado nesta data pelo curl e pelo WebFetch. A confirmar na ficha."
     }
    ],
-   "conflitos": [],
-   "verificado_em": "2026-09-09",
-   "status_registro": "parcial",
-   "observacao": "Faltam comprimento_minimo_aquario_cm e convivencia, os dois obrigatorios: a busca restrita a FishBase em 09/09/2026 declarou explicitamente que a ficha desta especie NAO traz secao de aquario, e ofereceu o numero das congeneres do genero, que foi recusado. pH e dureza tambem nao vieram. Fica no banco porque a menor especie ja registrada aqui (2,0 cm) e o contraponto util ao oscar de 45,7 cm, mas nao passa no portao de pagina."
+   "conflitos": [
+    {
+     "campo": "temperatura_C",
+     "valores": [
+      {
+       "valor": {
+        "min": 24,
+        "max": 28
+       },
+       "referencia": "FishBase, busca restrita ao dominio em 09/09/2026: tropical, 24 a 28 C",
+       "url": "https://fishbase.se/summary/12376",
+       "origem": "base-cientifica-via-busca"
+      },
+      {
+       "valor": {
+        "min": 20,
+        "max": 28
+       },
+       "referencia": "Seriously Fish, busca restrita ao dominio em 11/09/2026: 20 a 28 C, com a recomendacao de manter na ponta alta da faixa",
+       "url": "https://www.seriouslyfish.com/species/hyphessobrycon-amandae",
+       "origem": "compendio-via-busca"
+      }
+     ],
+     "razao": "Temperatura e campo de MANUTENCAO, e a tabela dominio_por_campo poe o compendio acima da base cientifica justamente nesses campos: a FishBase descreve a agua onde o peixe vive, o compendio descreve a agua em que ele e mantido. As duas faixas nao se contradizem - 24 a 28 cabe dentro de 20 a 28 -, e o piso mais baixo e uma permissao do compendio, nao uma recomendacao: a mesma frase manda ficar na ponta alta. Quem dimensiona aquecedor pelo piso de 20 C encomenda mais potencia, que e o lado seguro do erro.",
+     "tratamento": "nivel-mais-alto-vence",
+     "valor_conservador": {
+      "min": 20,
+      "max": 28
+     },
+     "derivacao": null
+    }
+   ],
+   "verificado_em": "2026-09-11",
+   "status_registro": "conflito",
+   "observacao": "Em 11/09/2026 o registro deixou de ser o buraco do banco: a busca restrita ao Seriously Fish devolveu, atribuidos a ESTA especie pelo nome, a base minima (45 x 30 cm), a faixa de manutencao, o cardume minimo e o temperamento - os tres campos que faltavam e que o barravam no portao de pagina e na C8. E o segundo corpo de fonte, entao o E14 tambem fecha. CARDUME: a fonte publica uma FAIXA de compra ('minimo de 8 a 10 exemplares') e o banco grava o piso, 8, pelo mesmo tratamento que o neon ja recebia com o 'grupos de 5 ou mais' da FishBase - a faixa inteira esta na referencia e e ela que a ficha publica. A menor especie do banco (2,0 cm) agora e tambem a que declara a menor frente (45 cm), o que faz dela o piso util do eixo 'quantos litros para X peixes'. Continua sem pH e sem dureza: nenhuma das duas fontes declarou numero, so 'levemente acido a neutro', e adjetivo nao vira intervalo."
   },
   {
    "id": "danio-margaritatus",
@@ -148,7 +195,7 @@
    "conflitos": [],
    "verificado_em": "2026-09-09",
    "status_registro": "parcial",
-   "observacao": "TEMPERATURA RECUSADA de proposito: os 22 a 24 C que a busca devolveu sao a temperatura do HABITAT medida no campo, e a fonte diz isso com essas palavras - nao e faixa de manutencao em aquario, que e o que o campo temperatura_C significa neste banco. Publicar habitat como recomendacao seria trocar uma medida por outra. Faltam tambem comprimento_minimo_aquario_cm, convivencia, pH e dureza: a ficha nao traz secao de aquario na busca restrita ao dominio."
+   "observacao": "TEMPERATURA RECUSADA de proposito: os 22 a 24 C que a busca devolveu sao a temperatura do HABITAT medida no campo, e a fonte diz isso com essas palavras - nao e faixa de manutencao em aquario, que e o que o campo temperatura_C significa neste banco. Publicar habitat como recomendacao seria trocar uma medida por outra. Faltam tambem comprimento_minimo_aquario_cm, convivencia, pH e dureza: a ficha nao traz secao de aquario na busca restrita ao dominio. COLETA DE 11/09/2026, sem resultado util e registrada para a proxima nao repetir: a busca restrita ao Seriously Fish devolveu a ficha (publicada la sob Celestichthys margaritatus, sinonimo acrescentado nesta data) e NENHUM numero desta especie - ofereceu a base de 80 x 30 cm e a temperatura de 16 a 26 C de congeneres do genero, mais um 'compre 20 ou mais' sem dono claro, e as tres foram recusadas. O registro segue parcial com a mesma falta de 09/09."
   },
   {
    "id": "paracheirodon-innesi",
@@ -949,7 +996,7 @@
    "porte_sexo": "nao-sexado",
    "expectativa_vida_anos": null,
    "temperatura_C": {
-    "min": 18,
+    "min": 14,
     "max": 22
    },
    "temperatura_e_tolerancia": false,
@@ -961,7 +1008,7 @@
     "min": 5,
     "max": 19
    },
-   "cardume_minimo": 5,
+   "cardume_minimo": 10,
    "comprimento_minimo_aquario_cm": 60,
    "base_minima_cm": {
     "comprimento": null,
@@ -970,7 +1017,7 @@
    "altura_minima_cm": null,
    "volume_minimo_declarado_L": null,
    "nivel_natacao": null,
-   "comportamento": null,
+   "comportamento": "pacifico",
    "convivencia": "cardume",
    "alimentacao": null,
    "dificuldade": null,
@@ -997,12 +1044,78 @@
       "convivencia"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
+    },
+    {
+     "origem": "compendio-via-busca",
+     "status": "compendio-via-busca",
+     "referencia": "Seriously Fish - ficha da especie: manter a 14 a 22 C (57 a 72 F); peixe de cardume por natureza, o ideal e comprar um grupo de 10 ou mais exemplares, porque assim os individuos ficam menos nervosos, o conjunto fica mais natural e os machos mostram a melhor cor disputando as femeas; muito pacifico e residente ideal de aquario comunitario bem mantido, desde que a exigencia de temperatura seja respeitada; micropredador que come pequenos insetos, vermes, crustaceos e zooplancton.",
+     "url": "https://www.seriouslyfish.com/species/tanichthys-albonubes",
+     "verificado_em": "2026-09-11",
+     "campos": [
+      "temperatura_C",
+      "cardume_minimo",
+      "convivencia",
+      "comportamento"
+     ],
+     "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 11/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED, reconfirmado nesta data pelo curl e pelo WebFetch. A confirmar na ficha."
     }
    ],
-   "conflitos": [],
-   "verificado_em": "2026-09-09",
-   "status_registro": "parcial",
-   "observacao": "Registro se apoia em UM corpo de fonte so (FishBase): a busca restrita ao Seriously Fish em 09/09/2026 devolveu a ficha da especie sem nenhum numero dela, e ofereceu a base de uma congenere do Vietna, que foi recusada. Os 18 a 22 C sao faixa de MANUTENCAO, nao de tolerancia: a mesma fonte declara que o peixe sobrevive a 5 C, e sobreviver nao e o mesmo que ser mantido. E a segunda especie do banco que dispensa aquecedor em boa parte do Brasil."
+   "conflitos": [
+    {
+     "campo": "temperatura_C",
+     "valores": [
+      {
+       "valor": {
+        "min": 18,
+        "max": 22
+       },
+       "referencia": "FishBase, busca restrita ao dominio em 09/09/2026: 18 a 22 C, sobrevivendo a agua de ate 5 C",
+       "url": "https://www.fishbase.se/summary/Tanichthys-albonubes",
+       "origem": "base-cientifica-via-busca"
+      },
+      {
+       "valor": {
+        "min": 14,
+        "max": 22
+       },
+       "referencia": "Seriously Fish, busca restrita ao dominio em 11/09/2026: manter a 14 a 22 C",
+       "url": "https://www.seriouslyfish.com/species/tanichthys-albonubes",
+       "origem": "compendio-via-busca"
+      }
+     ],
+     "razao": "Campo de manutencao: o compendio manda, pela tabela dominio_por_campo. O teto e o mesmo nas duas fontes e so o piso desce, de 18 para 14 C. Nao muda o que esta especie ja significava para a ilha - ela e a segunda que dispensa aquecedor em boa parte do Brasil -, mas muda o lado oposto da conta: com teto de 22 C, o risco desta especie no verao brasileiro e de agua QUENTE demais, e nenhuma calculadora da ilha dimensiona resfriamento hoje.",
+     "tratamento": "nivel-mais-alto-vence",
+     "valor_conservador": {
+      "min": 14,
+      "max": 22
+     },
+     "derivacao": null
+    },
+    {
+     "campo": "cardume_minimo",
+     "valores": [
+      {
+       "valor": 5,
+       "referencia": "FishBase, busca restrita ao dominio em 09/09/2026: secao de aquario, manter em grupos de 5 ou mais individuos",
+       "url": "https://www.fishbase.se/summary/Tanichthys-albonubes",
+       "origem": "base-cientifica-via-busca"
+      },
+      {
+       "valor": 10,
+       "referencia": "Seriously Fish, busca restrita ao dominio em 11/09/2026: o ideal e um grupo de 10 ou mais exemplares",
+       "url": "https://www.seriouslyfish.com/species/tanichthys-albonubes",
+       "origem": "compendio-via-busca"
+      }
+     ],
+     "razao": "As duas regras do esquema apontam para o mesmo lado aqui, o que e raro: o compendio manda em campo de manutencao, E o conservador de campo de bem-estar e o MAIOR. O banco publica 10. O numero importa porque ele multiplica a frente por individuo: com 60 cm declarados, 5 peixes dao 12 cm de frente por individuo e 10 peixes dao 6 cm - a mesma especie, o dobro de densidade, dependendo de qual fonte a pagina citar. Publicar as duas e o unico jeito honesto.",
+     "tratamento": "nivel-mais-alto-vence",
+     "valor_conservador": 10,
+     "derivacao": null
+    }
+   ],
+   "verificado_em": "2026-09-11",
+   "status_registro": "conflito",
+   "observacao": "O segundo corpo de fonte chegou em 11/09/2026 e o registro saiu do 'uma leitura so nao se confere a si mesma': o Seriously Fish confirmou o cardume e a natureza pacifica, e divergiu da FishBase no piso da temperatura e no tamanho do cardume - as duas divergencias estao em conflitos, publicadas. Os 14 a 22 C sao faixa de MANUTENCAO, nao de tolerancia: a FishBase declara que o peixe sobrevive a 5 C, e sobreviver nao e ser mantido. A BASE MINIMA CONTINUA NULL, e pelo mesmo motivo de 09/09: a busca de 11/09 tornou a oferecer a base de uma congenere (o T. sp. 'Vietnam', 45 x 30 cm) no lugar da desta especie, e ela foi recusada pela segunda vez. Duas coletas independentes caindo na mesma armadilha e o que sustenta a regra de congenere escrita no esquema nesta data."
   },
   {
    "id": "mikrogeophagus-ramirezi",
@@ -1288,7 +1401,7 @@
    "conflitos": [],
    "verificado_em": "2026-09-09",
    "status_registro": "parcial",
-   "observacao": "Registro sustentado por UMA fonte so, e isso e um achado, nao um descuido: a busca restrita ao Seriously Fish em 09/09/2026 nao encontrou ficha propria de P. reticulata no compendio, so das especies irmas (P. wingei, P. sphenops, P. velifera, P. latipinna). O peixe mais vendido do Brasil e um dos poucos sem ficha no compendio de referencia. Por isso comportamento fica null e o registro fica parcial: entra como conteudo, nao e sugerido pela C8 ate ter a segunda fonte. Faixa de pH declarada de 7,0 a 8,0 e agua dura, o contrario do cardinal — e o par que mostra por que 'peixe comunitario' nao e uma categoria util."
+   "observacao": "Registro sustentado por UMA fonte so, e isso e um achado, nao um descuido: a busca restrita ao Seriously Fish em 09/09/2026 nao encontrou ficha propria de P. reticulata no compendio, so das especies irmas (P. wingei, P. sphenops, P. velifera, P. latipinna). O peixe mais vendido do Brasil e um dos poucos sem ficha no compendio de referencia. Por isso comportamento fica null e o registro fica parcial: entra como conteudo, nao e sugerido pela C8 ate ter a segunda fonte. Faixa de pH declarada de 7,0 a 8,0 e agua dura, o contrario do cardinal — e o par que mostra por que 'peixe comunitario' nao e uma categoria util. RECONFERIDO em 11/09/2026 por uma coleta independente, que chegou a mesma parede: a busca restrita ao seriouslyfish.com tornou a nao devolver ficha de especie do guppy - devolveu a do P. wingei, a do P. sphenops e discussao de FORUM do proprio site. Forum nao e compendio: a escada pede compendio de aquarismo COM BIBLIOGRAFIA, e linha de forum nao sustenta campo nenhum aqui. O aviso E15 deste registro fica de pe de proposito, e a saida dele nao e mais busca: e a leitura direta da ficha quando o egresso abrir, ou um segundo corpo que nao seja o Seriously Fish."
   },
   {
    "id": "trigonostigma-heteromorpha",
@@ -1666,12 +1779,23 @@
       "convivencia"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 09/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve EGRESS_BLOCKED para fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, reconfirmado nesta data. A confirmar na ficha."
+    },
+    {
+     "origem": "compendio-via-busca",
+     "status": "compendio-via-busca",
+     "referencia": "Seriously Fish - ficha da especie: como os demais Nannostomus, o N. beckfordi deve ser mantido em grupo; e bastante comum no comercio aquarista e uma excelente escolha para quem esta comecando, por ser menos exigente que a maioria das congeneres.",
+     "url": "https://www.seriouslyfish.com/species/nannostomus-beckfordi/",
+     "verificado_em": "2026-09-11",
+     "campos": [
+      "convivencia"
+     ],
+     "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 11/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED, reconfirmado nesta data pelo curl e pelo WebFetch. A confirmar na ficha."
     }
    ],
    "conflitos": [],
-   "verificado_em": "2026-09-09",
-   "status_registro": "parcial",
-   "observacao": "Registro se apoia em UM corpo de fonte so (FishBase): a busca restrita ao Seriously Fish em 09/09/2026 nao devolveu a base desta especie, so a das congeneres do genero (60 a 90 cm conforme a especie), que foi recusada. Especie amazonica de nome brasileiro consolidado, entra no banco porque e das poucas de porte medio com exigencia declarada de aquario pequeno."
+   "verificado_em": "2026-09-11",
+   "status_registro": "completo",
+   "observacao": "O segundo corpo de fonte chegou em 11/09/2026 e o E14 fechou. E preciso dizer com precisao O QUE ele confere: o Seriously Fish sustenta a CONVIVENCIA em grupo, nomeando a especie, e nada mais - nenhum numero desta ficha foi corroborado por um segundo corpo, e os numeros que o registro publica (porte, temperatura, pH, dureza, cardume, frente minima) continuam apoiados so na FishBase. A base minima segue null: a busca de 11/09 tornou a devolver a base das congeneres do genero no lugar da desta especie, como em 09/09, e ela foi recusada de novo. 'Menos exigente que a maioria das congeneres' NAO virou o campo dificuldade: o banco deixa esse campo vazio nos 36 registros de proposito, porque e julgamento editorial."
   },
   {
    "id": "corydoras-paleatus",
@@ -2573,7 +2697,7 @@
    ],
    "verificado_em": "2026-09-09",
    "status_registro": "parcial",
-   "observacao": "Falta comprimento_minimo_aquario_cm: a ficha do compendio tem a secao de dimensoes, mas nenhuma das buscas restritas de 09/09/2026 devolveu o numero, e frente de aquario nao se estima. Sem ele o registro nao passa no portao de pagina de especie nem alimenta a C8. Fica no banco porque a exigencia de agua DURA E ALCALINA (pH 7,5 a 8,2, dH ate 30) ja e conteudo publicavel sozinho: e o oposto do cardinal e do rodostomo, e explica por que 'peixe comunitario' nao e categoria util."
+   "observacao": "Falta comprimento_minimo_aquario_cm: a ficha do compendio tem a secao de dimensoes, mas nenhuma das buscas restritas de 09/09/2026 devolveu o numero, e frente de aquario nao se estima. Sem ele o registro nao passa no portao de pagina de especie nem alimenta a C8. Fica no banco porque a exigencia de agua DURA E ALCALINA (pH 7,5 a 8,2, dH ate 30) ja e conteudo publicavel sozinho: e o oposto do cardinal e do rodostomo, e explica por que 'peixe comunitario' nao e categoria util. RECONFERIDO em 11/09/2026: a busca restrita de hoje tornou a nao devolver a frente minima, e agora sabe-se por que - o proprio compendio publica a ficha desta especie INCOMPLETA, com a secao de dimensoes vazia, e o resumo da busca disse isso com todas as letras. Nao e limite da busca, e buraco da fonte; procurar de novo pelo mesmo caminho nao vai achar. A mesma coleta confirmou o porte: macho 8 cm, femea 12 cm, o que ratifica o porte_sexo 'femea' ja gravado e explica por que a ilha dimensiona pela femea - e ela que carrega a carga e a que o comercio vende. E confirmou a exigencia de agua dura e alcalina, que ja estava no pH 7,5 a 8,2."
   },
   {
    "id": "trichopodus-leerii",
@@ -3008,7 +3132,7 @@
    ],
    "verificado_em": "2026-09-09",
    "status_registro": "parcial",
-   "observacao": "Falta convivencia: nenhuma das fontes declara cardume, grupo, casal ou harem para a especie — o compendio fala em territorialidade entre machos, que e outra coisa, e inventar o arranjo social e exatamente o que a fazenda de conteudo faz. Sem convivencia o registro nao alimenta a C8. Entra no banco assim mesmo porque e o unico gurami grande do lote (15 cm SL, 100 cm de frente) e porque a frase do compendio sobre 'peixe comunitario que nem sempre e' e conteudo de pagina por si so."
+   "observacao": "Falta convivencia: nenhuma das fontes declara cardume, grupo, casal ou harem para a especie — o compendio fala em territorialidade entre machos, que e outra coisa, e inventar o arranjo social e exatamente o que a fazenda de conteudo faz. Sem convivencia o registro nao alimenta a C8. Entra no banco assim mesmo porque e o unico gurami grande do lote (15 cm SL, 100 cm de frente) e porque a frase do compendio sobre 'peixe comunitario que nem sempre e' e conteudo de pagina por si so. RECONFERIDO em 11/09/2026 por coleta independente, com a mesma recusa e um detalhe a mais que vale guardar: a busca ofereceu um arranjo de 'um macho para 2 ou 3 femeas', e ele foi recusado porque a propria fonte o apresenta como arranjo de REPRODUCAO, nao de manutencao. Harem de desova nao e convivencia de aquario comunitario, e essa e a distincao que faria a diferenca entre publicar um numero de lotacao certo e um errado."
   },
   {
    "id": "xiphophorus-hellerii",
@@ -3478,10 +3602,10 @@
    "conflitos": [],
    "verificado_em": "2026-09-09",
    "status_registro": "parcial",
-   "observacao": "PORTE RECUSADO, e este e o motivo escrito: a busca restrita a FishBase devolveu 13,7 cm TL em DUAS formulacoes independentes em 09/09/2026, numero que nao descreve o gurami mel que o comercio brasileiro vende a 4 a 5 cm e que a propria ficha contradiz ao recomendar aquario minimo de 60 cm. Numero implausivel nao entra so porque veio atribuido - porte_adulto_cm fica null ate a ficha ser lida direto. Sem porte o registro nao passa no portao de pagina nem na C8, e e exatamente isso que ele deve fazer."
+   "observacao": "PORTE RECUSADO, e este e o motivo escrito: a busca restrita a FishBase devolveu 13,7 cm TL em DUAS formulacoes independentes em 09/09/2026, numero que nao descreve o gurami mel que o comercio brasileiro vende a 4 a 5 cm e que a propria ficha contradiz ao recomendar aquario minimo de 60 cm. Numero implausivel nao entra so porque veio atribuido - porte_adulto_cm fica null ate a ficha ser lida direto. TERCEIRA REPRODUCAO em 11/09/2026, por uma execucao que nao sabia desta nota e chegou a mesma recusa pelo mesmo caminho: o mesmo 13,7 cm TL voltou em duas formulacoes de busca, e o que o derruba de novo e a contradicao interna da propria fonte - a FishBase que declara 13,7 cm declara, na mesma ficha, aquario minimo de 60 cm, enquanto para o T. leerii, de 12,0 cm, a mesma base declara 120 cm. Reproduzir nao e conferir. Sem porte o registro nao passa no portao de pagina nem na C8, e e exatamente isso que ele deve fazer."
   }
  ],
- "atualizado_em": "2026-09-09",
+ "atualizado_em": "2026-09-11",
  "nota_taxonomia": "Colhido em 09/09/2026, a taxonomia das fichas esta em revisao e o banco publica o que a fonte publicou, sem uniformizar: os Paracheirodon, o Gymnocorymbus ternetzi e o Hemigrammus erythrozonus vieram como Acestrorhamphidae (tetras americanos), enquanto o Hyphessobrycon eques e o Hemigrammus rhodostomus vieram como Characidae na mesma base e no mesmo dia. Tres registros ja aparecem na fonte sob genero novo — Corydoras aeneus como Osteogaster aenea, Corydoras panda como Hoplisoma panda e Hemigrammus rhodostomus como Petitella rhodostoma. O id do banco segue o nome com que o comercio brasileiro vende, e o nome novo entra em sinonimos_cientificos: e assim que a busca do leitor casa com a ficha. Consequencia pratica: este banco envelhece por revisao taxonomica, nao por preco, e por isso o prazo de revalidacao dele e de 365 dias e nao dos 180 do banco de produtos.",
  "especies_recusadas": [
   {

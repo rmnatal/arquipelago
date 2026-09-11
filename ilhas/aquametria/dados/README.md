@@ -37,7 +37,7 @@ ninguem — em 09/09/2026 havia quatro assim, todos esquecidos a mao.
 
 `especies-agua-doce.json` guarda a entidade `especie`, com contrato proprio em
 `esquema-especies.json` e validador proprio em
-`ferramentas/validar-especies.py` (regras E1 a E14). Rode-o antes de todo
+`ferramentas/validar-especies.py` (regras E1 a E16). Rode-o antes de todo
 commit que toque o arquivo:
 
 ```
@@ -59,3 +59,24 @@ Tres diferencas que valem a leitura antes de mexer:
 - **Litro nao se grava.** A fonte declara frente e base em centimetros; o
   litro e derivado pela calculadora com a altura que a pessoa informar. Litro
   gravado a mao e defeito, e a regra E7 detecta.
+
+Duas regras nasceram em 11/09/2026, da leva 4, e as duas existem por causa do
+CANAL de coleta, nao do banco. Enquanto o egresso barrar `fishbase.se`,
+`fishbase.org` e `seriouslyfish.com`, todo numero entra por resumo de busca
+restrita ao dominio — e resumo de busca tem dois vicios medidos:
+
+- **A congenere.** Quando a ficha da especie alvo nao publica o campo, o resumo
+  oferece o numero da especie IRMA do mesmo genero sem avisar que trocou de
+  ficha. Aconteceu com o `Tanichthys albonubes` (veio a base do *T.* sp.
+  'Vietnam'), com o `Nannostomus beckfordi` e com o `Danio margaritatus`, nas
+  duas datas de coleta. **Numero sem o nome da especie do lado e recusa, nao
+  dado**, e o registro grava no `observacao` qual numero foi oferecido e
+  recusado — e o que impede a proxima coleta de cair na mesma oferta.
+- **Reproduzir nao e conferir.** O porte de 13,7 cm TL do gurami mel voltou
+  identico em tres formulacoes de busca, em duas datas, e continua recusado.
+  Quem o derruba e a contradicao interna da fonte, nao a contagem de repeticoes.
+
+A regra **E16** e a parte executavel disso: todo numero de campo tem de aparecer
+no texto de alguma fonte que declara aquele campo, em algarismo ou por extenso.
+Campo e `referencia` sao duas escritas independentes do mesmo fato — quando
+divergem, alguem transcreveu, digitou ou editou um lado so.

@@ -1,9 +1,9 @@
 {
   "id": "esquema-especies",
-  "descricao": "Contrato formal do banco de especies de agua doce da Aquametria: campos, tipos, unidades, vocabulario controlado, origem esperada por campo e as regras de validacao E1 a E15 que ferramentas/validar-especies.py executa. E o irmao de esquema-produtos.json para a entidade especie, e existe para destravar o eixo aberto 'quantos litros para X peixes' com dado real por tras, nunca com regra de bolso.",
+  "descricao": "Contrato formal do banco de especies de agua doce da Aquametria: campos, tipos, unidades, vocabulario controlado, origem esperada por campo e as regras de validacao E1 a E16 que ferramentas/validar-especies.py executa. E o irmao de esquema-produtos.json para a entidade especie, e existe para destravar o eixo aberto 'quantos litros para X peixes' com dado real por tras, nunca com regra de bolso.",
   "gerado_em": "2026-09-09",
-  "bloco": "4b(c) leva 1; revisado na leva 3 (E15 e a emenda do E10)",
-  "versao_esquema": 2,
+  "bloco": "4b(c) leva 1; revisado na leva 3 (E15 e a emenda do E10); revisado na leva 4 (T3d, 11/09/2026): regra da congenere e E16",
+  "versao_esquema": 3,
   "depende_de": [
     "dados/esquema-produtos.json",
     "dados/especificacao-calculadoras.md"
@@ -70,7 +70,8 @@
       }
     ],
     "regra_de_atribuicao_por_busca": "Um numero so entra pelos niveis 3 e 5 quando a busca foi RESTRITA ao dominio da fonte (allowed_domains) ou quando o resumo da busca atribui o numero a fonte pelo nome. Numero que aparece em resumo de busca aberta, sem dono, nao entra no banco. Isso e o que separa colher de inventar.",
-    "regra_de_espelho": "fishbase.se e fishbase.org sao a MESMA FishBase, e url diferente nao e fonte diferente quando as duas leem o mesmo corpo de conhecimento. Toda contagem de 'duas fontes' colapsa espelhos antes de contar (regra E15). Sem isso, acrescentar o espelho a um registro de fonte unica o faria passar por conferido sem ninguem ter conferido nada — foi o que quase aconteceu com o guppy na leva 3, quando a coleta de familia trouxe a mesma ficha pelo outro dominio."
+    "regra_de_espelho": "fishbase.se e fishbase.org sao a MESMA FishBase, e url diferente nao e fonte diferente quando as duas leem o mesmo corpo de conhecimento. Toda contagem de 'duas fontes' colapsa espelhos antes de contar (regra E15). Sem isso, acrescentar o espelho a um registro de fonte unica o faria passar por conferido sem ninguem ter conferido nada — foi o que quase aconteceu com o guppy na leva 3, quando a coleta de familia trouxe a mesma ficha pelo outro dominio.",
+    "regra_da_congenere": "A CONGENERE E A ARMADILHA DESTE CANAL, medida em 09/09 e remedida em 11/09/2026. Quando a ficha da especie alvo nao publica um campo, o resumo da busca oferece, com ar de resposta, o numero da especie IRMA do mesmo genero - e o oferece sem dizer que trocou de ficha. Foi assim que a base do T. sp. 'Vietnam' quase virou a do T. albonubes, a das congeneres de Nannostomus quase virou a do N. beckfordi, e a de duas Celestichthys quase virou a do danio celestial. REGRA: um numero so entra quando o resumo o atribui a ESPECIE pelo nome. 'Especies relacionadas do genero', 'para referencia' e 'com base em congeneres' sao recusa, nao dado. Na duvida o campo fica null e a observacao do registro diz que numero foi oferecido e recusado - e isso que impede a proxima coleta de cair na mesma oferta. E o inverso tambem vale: REPRODUZIR NAO E CONFERIR. O porte de 13,7 cm TL do gurami mel voltou identico em tres formulacoes de busca, em duas datas, e continua recusado, porque quem o derruba e a contradicao interna da fonte (a mesma ficha que declara 13,7 cm declara aquario minimo de 60 cm, enquanto para um congenere de 12,0 cm declara 120 cm), nao a contagem de quantas vezes o numero apareceu."
   },
   "dominio_por_campo": {
     "descricao": "Qual escada manda em qual campo. Existe porque FishBase e Seriously Fish nao competem: uma e melhor em biologia, a outra em manutencao. Sem esta tabela, 'nivel mais alto vence' daria a FishBase a ultima palavra sobre tamanho de aquario, que nao e o assunto dela.",
@@ -494,6 +495,10 @@
     {
       "id": "E15",
       "regra": "Espelho nao confere espelho. Antes de contar fontes distintas, o validador colapsa os dominios que leem o mesmo corpo (fishbase.se e fishbase.org viram 'fishbase'). Registro com duas urls e um corpo so sai com aviso e nao conta como conferido, nem no E14 nem no minimo_para_sugerir."
+    },
+    {
+      "id": "E16",
+      "regra": "Todo valor NUMERICO de campo tem de aparecer no texto de pelo menos uma das fontes que declaram aquele campo, em algarismo ou por extenso. O campo e o numero que a maquina usa; a referencia e a transcricao do que a fonte disse. Sao duas escritas independentes do mesmo fato, e quando divergem alguem transcreveu errado, digitou errado ou editou um lado so. E a mesma familia de defeito que a Robometria achou ao comparar duas copias da mesma regua, so que aqui as duas copias sao mesmo independentes - por isso a comparacao vale. Vale para intervalo (min e max contam separados) e para objeto de base (comprimento e largura). Erro, nao aviso."
     }
   ],
   "o_que_nao_entra": [

@@ -5116,3 +5116,114 @@ leitura de 16/09** (item 5 do despacho da Sentinela e o T2 deste arquivo), e a
 banco de espécies (T3d), que destrava "quantos litros para X peixes"; o catálogo
 de iluminação por faixa (T3a); e a vitrine nas calculadoras que ainda não a têm.
 O T3d é o de maior valor porque é o eixo que a Bússola verificou aberto.
+
+## 2026-09-11 (21h) — T3d leva 4: o banco de especies ganhou PROFUNDIDADE, e o canal de coleta ganhou duas regras
+
+Bloco escolhido pela rotacao da secao 1 (a ilha estava com a `ultima_execucao`
+mais antiga das tres; nenhuma tinha despacho com item acionavel em aberto — os
+que restam na Aquametria e na Robometria sao os travados ate 16/09 e a metade
+humana do Search Console). Reserva por commit feita as 21h18Z e aceita no
+primeiro push.
+
+**Nenhuma especie nova, e isso foi a decisao.** O banco tinha 36 registros e 12
+deles eram barrados no portao de pagina de especie por campo faltando, nao por
+falta de peixe. Acrescentar o 37o registro nao destrava nada; fechar campo
+destrava. Resultado medido pelo proprio validador: **pagina de especie de 24
+para 27 aptos, C8 de 28 para 29**, com 0 erro.
+
+**O que foi colhido (busca RESTRITA ao dominio, niveis 3 e 5 da escada):**
+
+- **Tetra ember** (`hyphessobrycon-amandae`), que era o pior registro do banco:
+  o Seriously Fish devolveu, atribuidos a ESTA especie pelo nome, a base minima
+  (45 x 30 cm), a faixa de manutencao (20 a 28 C), o cardume (8 a 10) e o
+  temperamento. Os tres campos que faltavam fecharam, e com o compendio entrando
+  como segundo corpo o E14 fechou junto. O menor peixe do banco (2,0 cm) passou a
+  ser tambem o de menor frente declarada (45 cm) — o piso util do eixo "quantos
+  litros para X peixes".
+- **Peixe-neve** (`tanichthys-albonubes`): segundo corpo de fonte, e duas
+  divergencias publicadas em `conflitos[]` em vez de escondidas. A temperatura de
+  manutencao desceu de 18–22 para 14–22 C e o cardume subiu de 5 para 10. O
+  cardume importa mais do que parece: com 60 cm de frente declarada, 5 peixes dao
+  12 cm por individuo e 10 dao 6 cm — a mesma especie com o dobro de densidade,
+  dependendo de qual fonte a pagina citar.
+- **Peixe-lapis** (`nannostomus-beckfordi`): segundo corpo, registro completo. O
+  `observacao` diz com precisao o que o segundo corpo confere (a convivencia, e
+  so ela) e o que ele NAO confere — nenhum numero desta ficha foi corroborado
+  por um segundo corpo, e isso ficou escrito.
+
+**AS DUAS REGRAS NOVAS, e elas sao do canal, nao do banco.** Enquanto o egresso
+barrar as fontes (reconferido hoje nos quatro dominios, por `curl` e por
+`WebFetch`, com o site da propria ilha respondendo 200 na mesma passada — e
+politica de rede, nao a intermitencia de tunel da secao 20), todo numero entra
+por resumo de busca. E resumo de busca tem dois vicios, os dois medidos hoje:
+
+1. **A CONGENERE.** Quando a ficha da especie alvo nao publica o campo, o resumo
+   oferece o numero da especie IRMA do mesmo genero **sem avisar que trocou de
+   ficha**. Aconteceu tres vezes numa unica execucao: a base de 80 x 30 cm de uma
+   *Celestichthys* oferecida como a do danio celestial, a base do *T.* sp.
+   'Vietnam' oferecida como a do peixe-neve (segunda vez — a coleta de 09/09 caiu
+   na mesma oferta), e a base das congeneres de *Nannostomus* oferecida como a do
+   peixe-lapis. **Numero sem o nome da especie do lado e recusa, nao dado**, e
+   agora cada registro grava qual numero foi oferecido e recusado, para a proxima
+   coleta nao repetir a busca perdida.
+2. **REPRODUZIR NAO E CONFERIR.** O porte de 13,7 cm TL do gurami mel voltou
+   identico em duas formulacoes de busca hoje — e a recusa de 09/09 estava certa.
+   Cheguei a ela por conta propria, sem ter lido a nota, e pelo mesmo caminho: o
+   que derruba o numero e a **contradicao interna da fonte**, que declara 13,7 cm
+   e, na mesma ficha, aquario minimo de 60 cm, enquanto para o *T. leerii*, de
+   12,0 cm, a mesma base declara 120 cm. Tres reproducoes em duas datas nao
+   compram uma conferencia.
+
+**E16, a guarda executavel.** `esquema-especies.json` foi para a versao 3 e o
+validador ganhou a regra: **todo numero de campo tem de aparecer no texto de
+alguma fonte que declara aquele campo**, em algarismo ou por extenso. O campo e o
+numero que a maquina usa; a `referencia` e a transcricao do que a fonte disse —
+sao duas escritas independentes do mesmo fato, e quando divergem alguem
+transcreveu, digitou ou editou um lado so. E a mesma familia de defeito que a
+Robometria achou comparando duas copias da mesma regua, com uma diferenca que faz
+a comparacao valer: **aqui as duas copias sao mesmo independentes.**
+
+**A REGRA QUE FOI DESCARTADA, e o motivo importa mais que a que ficou.** A
+primeira ideia foi cobrar coerencia entre porte e frente minima: peixe maior,
+frente maior. Medi antes de escrever e o banco tem **87 dessas "inversoes", quase
+todas legitimas** — o betta de 6,5 cm pede 45 cm porque e sedentario, o
+paulistinha de 3,8 cm pede 90 cm porque nada muito. Quem manda na frente e a
+natacao, nao o comprimento. A regra teria enchido o portao de ruido e ensinado a
+ignora-lo.
+
+**E o E16 nasceu VERDE, entao teve de provar que morde.** Quatro corrupcoes
+deliberadas novas em `testar-validador-especies.py`: numero trocado, um lado do
+intervalo trocado, a largura da base trocada, e — a que prova que a leitura por
+extenso e real e nao um buraco que aprova qualquer coisa — o cardume da
+coridora-panda de 6 para 7, onde a fonte escreve "pelo menos SEIS" por extenso.
+**19 testes negativos, 19 reprovando.**
+
+**VERIFICACAO:** `validar-especies.py` 36 especies, 0 erro, 1 aviso (o E15 do
+guppy, que fica de pe de proposito — ver abaixo); `testar-validador-especies.py`
+19 de 19; `validar-produtos.py` e `conferir-slugs.py` sem falha; os tres JSON
+reparseados. **Nada foi ao ar e nao havia o que ir:** os quatro arquivos tocados
+sao `publicar: false`. O manifest subiu para a **revisao 50** e o Sync foi
+acionado depois do push para o `/status` nao ficar atrasado em relacao a ele.
+
+**TRES COLETAS RECONFERIRAM 09/09 E DERAM O MESMO RESULTADO** — a verificacao
+separada no TEMPO, que e o que a secao 19.4(c) do contrato pede: o guppy nao tem
+ficha propria no compendio (so forum, e forum nao e compendio com bibliografia,
+entao o aviso E15 dele nao sai por busca — sai por leitura direta ou por um
+terceiro corpo); a ficha do molly no compendio esta publicada INCOMPLETA, com a
+secao de dimensoes vazia, o que explica por que a frente minima nao vem e avisa
+que procurar de novo pelo mesmo caminho nao adianta; e o gurami de tres pintas
+recebeu a oferta de um arranjo "um macho para 2 ou 3 femeas" que foi recusada
+porque a propria fonte o apresenta como arranjo de REPRODUCAO, nao de manutencao.
+Harem de desova nao e convivencia de aquario comunitario.
+
+**Receita:** 39 dos 78 produtos seguem esperando link de afiliado; este bloco nao
+tocou catalogo. **Pauta (secao 17):** `pauta.md` ainda nao existe — 0 escritos, 0
+na fila, 0 recusados.
+
+Proximo passo desbloqueado: com 27 especies aptas a pagina e 29 alimentando a
+C8, o eixo "quantos litros para X peixes" tem banco suficiente — mas **tudo que
+cria URL continua travado ate a leitura de 16/09** (item 5 do despacho da
+Sentinela e o T2 deste arquivo). O proximo bloco sem URL nova e a **vitrine da
+C12** (T8), a unica calculadora que ainda nao a tem; antes de escrever uma linha
+dela, procurar na C12 a faixa que nao tem um dos dois lados, que foi o que a C15
+ensinou. Depois, o catalogo de iluminacao por faixa (T3a).

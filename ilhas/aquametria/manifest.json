@@ -4,7 +4,7 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 48,
+  "revisao": 50,
   "atualizado_em": "2026-09-11",
   "estado": "fundacao",
   "desembarque": {
@@ -425,11 +425,11 @@
       "formato": "json",
       "entidade": "especie",
       "fonte": "contrato proprio da ilha; herda a forma de dados/esquema-produtos.json",
-      "verificado_em": "2026-09-09",
+      "verificado_em": "2026-09-11",
       "registros": 0,
       "publicar": false,
-      "sha256": "deab5277b4d83e9876d47bef5c844323e1100958f43905130e06b43fa45aa983",
-      "descricao": "Contrato formal do banco de especies (versao 2): campos, unidades, vocabulario controlado, a escada de 6 niveis de fonte para especie (nao existe fabricante de peixe: existem base cientifica e compendio de aquarismo), a tabela dominio_por_campo — que diz qual escada manda em qual campo, porque FishBase e melhor em biologia e o compendio e melhor em manutencao — e as regras E1 a E15. Tres decisoes valem para sempre: em conflito de campo de BEM-ESTAR o conservador e o MAIOR (o oposto do banco de produtos), volume minimo em litro nunca se grava porque e derivado da base com a altura do usuario, e espelho nao confere espelho (fishbase.se e fishbase.org sao uma fonte so, regra E15)."
+      "sha256": "8855811f2abb49af8262c6f3c2436de30e37e5a95ef453e56b218a8ac7a0b621",
+      "descricao": "Contrato formal do banco de especies (versao 3): campos, unidades, vocabulario controlado, a escada de 6 niveis de fonte para especie (nao existe fabricante de peixe: existem base cientifica e compendio de aquarismo), a tabela dominio_por_campo — que diz qual escada manda em qual campo, porque FishBase e melhor em biologia e o compendio e melhor em manutencao — e as regras E1 a E16. Tres decisoes valem para sempre: em conflito de campo de BEM-ESTAR o conservador e o MAIOR (o oposto do banco de produtos), volume minimo em litro nunca se grava porque e derivado da base com a altura do usuario, e espelho nao confere espelho (fishbase.se e fishbase.org sao uma fonte so, regra E15). A versao 3 acrescentou as duas regras que este canal de coleta cobrou: a REGRA DA CONGENERE (o resumo de busca oferece o numero da especie irma quando a ficha da alvo nao publica o campo, e numero sem o nome da especie do lado e recusa, nao dado; reproduzir tambem nao e conferir) e o E16, que cobra que todo numero de campo apareca no texto da fonte citada."
     },
     {
       "id": "especies-agua-doce",
@@ -437,11 +437,11 @@
       "formato": "json",
       "entidade": "especie",
       "fonte": "ver fontes[] de cada registro: FishBase (base-cientifica-via-busca) e Seriously Fish (compendio-via-busca), os dois colhidos por busca restrita ao dominio porque o egresso bloqueia leitura direta",
-      "verificado_em": "2026-09-09",
+      "verificado_em": "2026-09-11",
       "registros": 36,
       "publicar": false,
-      "sha256": "b3a1306a9bd0973d324d6558ff85e5bc0b6c8ae62106bed3fe330cffafdf031d",
-      "descricao": "Banco de especies: 36 peixes do varejo brasileiro, de 2,0 cm (tetra ember) a 48,0 cm (kinguio), com porte, faixa termica, pH, dureza, cardume minimo, frente e base minimas de aquario, familia e convivencia, cada campo atribuido a uma fonte com url e data. Frentes minimas declaradas de 45 a 180 cm, em dez degraus — e a malha de pagina de volume sem repetir numero. 24 dos 36 passam no portao de pagina de especie; os 12 barrados dizem no proprio registro qual campo falta e por que nao foi estimado, e um deles (gurami mel) tem o porte RECUSADO por implausibilidade, com o motivo escrito. Existe para destravar o eixo aberto 'quantos litros para X peixes' com dado em vez da regra de bolso de 1 cm por litro."
+      "sha256": "f87937ec4492a514a271911c0cf7ef6f51a1dc94df4fb77981ac9c11f8f83dfc",
+      "descricao": "Banco de especies: 36 peixes do varejo brasileiro, de 2,0 cm (tetra ember) a 48,0 cm (kinguio), com porte, faixa termica, pH, dureza, cardume minimo, frente e base minimas de aquario, familia e convivencia, cada campo atribuido a uma fonte com url e data. Frentes minimas declaradas de 45 a 180 cm, em dez degraus — e a malha de pagina de volume sem repetir numero. 27 dos 36 passam no portao de pagina de especie e 29 alimentam a C8; os 9 barrados dizem no proprio registro qual campo falta e por que nao foi estimado, e um deles (gurami mel) tem o porte RECUSADO por implausibilidade, com o motivo escrito. A leva 4 (11/09/2026) nao acrescentou especie: foi de profundidade, fechando campos que barravam registros ja existentes, e o tetra ember passou a ser ao mesmo tempo o menor peixe e a menor frente declarada do banco (45 cm), o piso util do eixo. Existe para destravar o eixo aberto 'quantos litros para X peixes' com dado em vez da regra de bolso de 1 cm por litro."
     },
     {
       "id": "cobertura-de-faixa",
@@ -611,15 +611,15 @@
       "id": "validar-especies",
       "arquivo": "ferramentas/validar-especies.py",
       "publicar": false,
-      "descricao": "Valida o banco de especies contra dados/esquema-especies.json (regras E1 a E15) e imprime quem ja passa no minimo_para_sugerir de cada consumidor (pagina de especie, C8 lotacao, C5 aquecedor), mais a faixa de porte e as frentes minimas cobertas. Aceita um caminho no argv, o que permite roda-lo contra bancos de teste. Rodar antes de todo commit que toque dados/especies-*.json. Ferramenta do repositorio: nao vai para o WordPress.",
-      "sha256": "b52b16ba520e646aafe2b1407247e9afcf0f5d8edaa520bb9e1cd56a8e9e655f"
+      "descricao": "Valida o banco de especies contra dados/esquema-especies.json (regras E1 a E16) e imprime quem ja passa no minimo_para_sugerir de cada consumidor (pagina de especie, C8 lotacao, C5 aquecedor), mais a faixa de porte e as frentes minimas cobertas. Aceita um caminho no argv, o que permite roda-lo contra bancos de teste. Rodar antes de todo commit que toque dados/especies-*.json. Ferramenta do repositorio: nao vai para o WordPress.",
+      "sha256": "7207815a41c59e7db2fe9cf36a0f29906e2843154d436c692b8bddd395ac8e79"
     },
     {
       "id": "testar-validador-especies",
       "arquivo": "ferramentas/testar-validador-especies.py",
       "publicar": false,
-      "descricao": "Testes NEGATIVOS do validador de especies: corrompe uma copia do banco de proposito, uma corrupcao por regra E1 a E15, e exige que a regra certa reprove com o codigo certo. Existe porque validar-especies.py so prova que o banco de hoje passa — nao prova que a regra pega o defeito que promete pegar, e regra escrita errada aprova tudo em silencio. O banco real nunca e tocado (copias em diretorio temporario) e o teste confere isso no fim. Rodar junto com o validador. Ferramenta do repositorio: nao vai para o WordPress.",
-      "sha256": "284246a460b6645089acf6d31eb907de5013020e43ee7f45085bbd84da2af67b"
+      "descricao": "Testes NEGATIVOS do validador de especies: corrompe uma copia do banco de proposito, uma corrupcao por regra E1 a E15 e quatro para a E16, e exige que a regra certa reprove com o codigo certo. Existe porque validar-especies.py so prova que o banco de hoje passa — nao prova que a regra pega o defeito que promete pegar, e regra escrita errada aprova tudo em silencio. O banco real nunca e tocado (copias em diretorio temporario) e o teste confere isso no fim. Rodar junto com o validador. Ferramenta do repositorio: nao vai para o WordPress.",
+      "sha256": "f7817ebdf416970941f847e7dc6c31ee05b2ac2d9a0b39b4866737caa5eec972"
     },
     {
       "id": "teste-navegador-visibilidade-ia",
