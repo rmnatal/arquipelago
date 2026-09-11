@@ -617,3 +617,112 @@ caso real do degrau de trilha sem página, já coberto pela borda fabricada na
 bancada. Ela nasce com o bloco de compra da seção 7 junto, mesmo com
 `afiliado.url` vazio, e com a mãe `/materiais/` declarada no `ARVORE.md`. Só
 depois dela uma categoria de nível 2 chega perto das 3 filhas que a 16.5 exige.
+
+---
+
+## 11/09/2026, 20h35Z — O LOGO DELE, INTEIRO, NO CABEÇALHO (despacho do Raphael de 11/09 (2), cumprido inteiro)
+
+**Casca 1.4.0, manifest na revisão 8, `/status` com revisão 8.** Despacho de
+prioridade máxima, e a seção 18.2 manda ele sair inteiro: os **cinco itens**
+saíram nesta execução, não um por passada.
+
+**O que o cabeçalho serve agora:** `logo-clube-do-mosaico.png` em `<img>` de
+52 px de altura, com link para a home e **nenhuma letra ao lado**. O nome está
+desenhado dentro da imagem; escrevê-lo de novo seria a marca em dobro na tela e
+anunciada duas vezes por leitor de tela. Por isso não existe `<span>` nenhum ali
+e quem carrega o nome para quem não vê a imagem é o `alt`. A barra do cabeçalho
+subiu de 72 para 84 px, e abaixo de 600 px o logo desce para 44 px — com 52, ele
+e o botão do menu não cabem na mesma linha a 360 px.
+
+### A afirmação que sustentava a versão anterior estava errada
+
+Estava escrita em **três lugares do snippet e um do `VOZ.md`** desde 1.2.0: *"o
+arquivo entregue tem fundo preto"*. **Não tem** — é transparente, e o Raphael
+conferiu na biblioteca de mídia. O logo sumiu em 1.1.0 porque o **cabeçalho** era
+preto e o wordmark dentro do arquivo é vinho `#69030C`: defeito de **onde o logo
+foi posto**, nunca do arquivo. A 1.2.0 consertou a causa — clareou o cabeçalho —
+e, pela leitura errada do sintoma, tirou junto o logo, que era a parte certa.
+
+Fica escrito porque a forma se repete: **sintoma não é causa, e um diagnóstico
+escrito com ar de fato se propaga por versões**. É o mesmo desenho do `000` lido
+como bloqueio de rede na semana passada, que prendeu duas revisões desta ilha por
+dois dias até alguém repetir o comando.
+
+### 1,26 MB num espaço de 78 px — e por que isso não é "processar o logo"
+
+O arquivo dele é o original de 1536×1024 e a marca ocupa 78×52 px na tela.
+Servi-lo cru seria 1,26 MB em toda página de um domínio recém-nascido, e
+orçamento de rastreamento é a primeira coisa que o Google mede num domínio assim.
+**Não se redesenha nem se gera nada** — o `PROMPT.md` proíbe, e tem razão: o
+`src` continua sendo a URL exata que o despacho mandou usar, e o `srcset` oferece
+as reduções que o **próprio WordPress** gerou do upload dele (`-300x200` com
+41 KB, `-768x512` com 175 KB), com `sizes="78px"`. Mesma imagem, mesmo recorte,
+mesma origem; quem ignorar o `srcset` baixa o original e vê a mesma coisa. Medido
+no navegador: a escolhida foi a de 41 KB.
+
+### As mutações, que é onde o teste vira teste
+
+Seis novas, e a antiga **"logo de fundo preto volta ao cabeçalho claro" foi
+aposentada**: ela media o mundo ao contrário — lá o defeito era o logo *entrar*,
+aqui é ele *sair*. Mutação que edita a regra antiga vira **inerte** quando a
+regra muda de lado, e inerte é verde sem medir nada.
+
+**Duas passaram na primeira rodada, pelo mesmo motivo de sempre:** não acharam o
+alvo, porque as linhas do `<img>` foram escritas na mutação sem as duas
+tabulações que o arquivo tem. Mutação que não consegue ser escrita é verde que
+não mediu nada. Reescritas, as duas morderam: `0x0` de medida declarada e `alt`
+vazio.
+
+**A que mais vale da leva é a porta dos fundos do `srcset`:** o `src` fica certo
+no código e outra imagem entra no lugar do logo por um atributo que ninguém lê. O
+portão passou a cobrar que **todo candidato seja o mesmo arquivo com sufixo de
+tamanho**.
+
+### Verificação
+
+Bancada: `teste-casca.php` de **327 para 347 afirmações**, um processo por página
+— o `static` de `cdm_casca_marca_html()` é exatamente o mecanismo que faria o logo
+sair na home e sumir nas outras oito numa bancada de um processo só, e agora há
+uma afirmação por página cobrando isso. `mutacoes-voz-e-cabeca.py` de 19 para
+**24 mutações, 24 reprovadas**; `mutacoes-arvore.py` 19/19 e `mutacoes-rejunte.py`
+12/12 seguem reprovando; `validar-banco.py` aprovado; `php -l` limpo. **63
+medições em Chromium** nas nove páginas em 360/390/781/782/783/1200 com 0 px de
+rolagem, incluindo a caixa de **78×52 px desenhada pelo motor de layout** — que é
+a diferença entre "a regra de 52 px está escrita no CSS" e "o logo tem 52 px na
+tela".
+
+**No ar, às 20h35Z: 9 de 9 URLs em 200 e 102 afirmações medidas no HTML
+SERVIDO**, nenhuma falha, por `ferramentas/conferir-no-ar.py`, que nasceu nesta
+execução. Ele tem **régua própria**: a URL do logo e a medida 78×52 estão
+literais dentro dele, copiadas do despacho, não lidas da constante da casca —
+senão as duas metades errariam juntas. Mediu, em cada uma das nove: o `src` é o
+arquivo dele, zero texto dentro da marca, `alt` com o nome, medida declarada, o
+logo uma vez só, o wordmark em texto de 1.2.0 fora da página, zero `&#038;`
+dentro de `<script>`, a folha servida mandando 52 px e o cabeçalho ainda claro.
+As três URLs da imagem respondem PNG.
+
+**O critério de pronto que ele escreveu era de olho, e foi conferido de olho:** a
+home **servida** foi desenhada em Chromium com os bytes reais da imagem, e o logo
+foi ampliado pixel a pixel. A lótus e o nome "clube do mosaico" embaixo, nítidos
+sobre o branco, sem texto duplicado ao lado.
+
+### Duas coisas registradas para ele poder discordar
+
+1. **A 52 px o wordmark dentro do logo fica com ~8 px por linha.** Lê-se como
+   logotipo, mas é pequeno — o arquivo é um lockup empilhado e 52 px é o número
+   do próprio despacho. Os dois caminhos (subir para ~64 px, ou uma versão
+   horizontal do lockup) são escolha dele, não da Fundação.
+2. **Os hexadecimais sugeridos no despacho continuam fora**, como em 11/09:
+   `#FBF7F4`, `#EEE8E4`, `#111` e `#E8483A` são vizinhos de um a quatro passos
+   dos tokens que ele aprovou em 10/09. Um segundo branco a quatro unidades do
+   primeiro é defeito, não identidade. Se ele quiser exatamente aqueles valores,
+   é uma linha.
+
+**10 dos 10 itens do banco seguem esperando link de afiliado; 10 sem imagem.**
+Este bloco não tocou catálogo. Da pauta da seção 17: **nenhum tema escrito,
+nenhum na fila, nenhum recusado** — `pauta.md` ainda não existe nesta pasta.
+
+**Próximo passo:** o **bloco 4 — a ferramenta F2**, primeira página de nível 3
+desta ilha e o primeiro caso real do degrau de trilha sem página, já coberto pela
+borda fabricada na bancada. Nasce com o bloco de compra da seção 7 junto, mesmo
+com `afiliado.url` vazio, e com a mãe `/materiais/` declarada no `ARVORE.md`.

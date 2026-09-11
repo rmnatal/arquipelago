@@ -46,21 +46,31 @@ Medido em 10/09/2026 (Planejador de palavras-chave, conta do Raphael, faixas; SE
 
 ---
 
-## DESPACHO DO RAPHAEL — 11/09/2026 (2) — O LOGO DELE, INTEIRO, NO CABEÇALHO (prioridade máxima)
+## O LOGO DELE NO CABEÇALHO — CUMPRIDO E CONFERIDO NO AR EM 11/09/2026, 20h35Z
 
-Ele reclamou, com razão: "cadê o logo que eu exigi e subi e mandei até a URL?" e "o nome já está embutido no logo, você não precisa escrever". O cabeçalho atual mostra só o wordmark em TEXTO. Errado.
+Era o despacho do Raphael de 11/09 (2), de prioridade máxima. **Casca 1.4.0,
+manifest na revisão 8, `/status` com revisão 8.** Os cinco itens saíram inteiros:
+o cabeçalho serve `logo-clube-do-mosaico.png` em `<img>` de 52 px com link para a
+home e **nenhuma letra ao lado**, a barra subiu para 84 px, a lótus solta ficou só
+para lugar pequeno, e o `VOZ.md` foi corrigido no molde de casca LOJA.
 
-**CORREÇÃO DE UM ERRO MEU, 20h15Z:** eu tinha escrito aqui que o arquivo dele tinha fundo preto e mandei gerar uma versão transparente por GD. **Isso está errado e foi cancelado.** Ele conferiu na biblioteca de mídia e mostrou: `logo-clube-do-mosaico.png` (1536×1024, 1 MB) **já tem fundo transparente**. Não existe nada a processar, nada a gerar, nada a converter.
+**O critério de pronto que ele escreveu, conferido abrindo a home:** a lótus com o
+nome "clube do mosaico" embaixo, sobre fundo branco, sem texto duplicado ao lado.
+E medido nas nove URLs por `ferramentas/conferir-no-ar.py` — 102 afirmações no
+HTML servido, nenhuma falha.
 
-**O que fazer, simples assim:**
-
-1. O cabeçalho usa `https://clubedomosaico.com.br/wp-content/uploads/2026/09/logo-clube-do-mosaico.png` direto, em `<img>`, `alt="Clube do Mosaico"`, link para `/`. **Nenhum texto ao lado** — o nome está dentro do logo.
-2. Altura da imagem 52 px; a barra do cabeçalho sobe para ~84 px para o logo respirar. Fundo claro (branco ou papel #FBF7F4), borda inferior 1 px #EEE8E4, menu à direita em preto, como já está.
-3. **Nunca usar o logo sobre fundo escuro:** o wordmark é vinho (#69030C) e desaparece em preto — foi exatamente isso que aconteceu no cabeçalho anterior, e não tem a ver com fundo do arquivo.
-4. `lotus-512.png` continua servindo só como símbolo solto (favicon, avatar, ícone quadrado). **No cabeçalho vai o logo completo dele, sempre.**
-5. Corrija o `VOZ.md` desta ilha, na seção "Molde de casca: LOJA", onde hoje manda usar `lotus-512.png` + wordmark em texto: trocar por "logo completo do Raphael (`logo-clube-do-mosaico.png`, já transparente), sem texto ao lado".
-
-**Critério de pronto:** abrir https://clubedomosaico.com.br/ e ver a lótus com o nome "clube do mosaico" embaixo, nítidos sobre o fundo claro, sem texto duplicado ao lado. Registrar a revisão no ESTADO.md e acionar o Sync.
+**Duas decisões que ficam registradas para ele poder discordar:**
+- **Os hexadecimais do despacho não entraram, como em 11/09:** `#FBF7F4` e
+  `#EEE8E4` são vizinhos de um a quatro passos de `papel #FFFFFF` e `traço
+  #E9DCD7`, que são os tokens aprovados por ele em 10/09 e os que o portão de
+  paleta cobra. Um segundo branco a quatro unidades do primeiro é defeito, não
+  identidade. Se ele quiser exatamente aqueles valores, é uma linha.
+- **A 52 px o wordmark dentro do logo fica com ~8 px por linha.** É legível como
+  logotipo e foi conferido ampliado pixel a pixel, mas é pequeno para ler. O
+  arquivo é um lockup empilhado (lótus em cima, nome embaixo em duas linhas), e
+  52 px de altura total é o número do próprio despacho. Se ele quiser mais
+  presença há dois caminhos, e nenhum é da Fundação decidir sozinha: subir para
+  ~64 px, ou mandar uma versão horizontal do lockup.
 
 ---
 
@@ -88,22 +98,16 @@ saiu pela metade, pelo motivo abaixo. Ver `REGISTRO.md` para o que foi medido.
   a **vitrine**, que depende do CPT `peca` do bloco 4d — sem peça cadastrada, a
   home mostra estado vazio honesto.
 
-### O QUE FALTA DESTE DESPACHO — uma coisa só, e ela é do Raphael
+### O ITEM 2 DESTE DESPACHO FOI FECHADO POR CIMA, e não cumprido como estava escrito
 
-- **2. A lótus no cabeçalho.** O wordmark "clube do mosaico" em texto já está no
-  ar e legível (12,97:1 de contraste). **A lótus não entrou porque
-  `identidade/logo/lotus-512.png` está TRUNCADO no repositório**: o chunk `IDAT`
-  declara 11.638 bytes num arquivo que tem 8.770, com um `IEND` colado no fim, e
-  o `zlib` recusa o primeiro bloco — não sai um único pixel. Servi-lo teria
-  trocado o logo sumido por um ícone de imagem quebrada.
-  **Pronto quando:** o Raphael commitar a lótus em PNG transparente (≥ 512 px no
-  menor lado) em `identidade/logo/lotus-512.png`; então
-  `php ferramentas/gerar-marca.php .` embute e a lótus aparece ao lado do
-  wordmark sem mexer em mais nada. A ferramenta **recusa** arquivo que não abre,
-  sem canal alfa ou com canto opaco — não force. Conferir depois abrindo a home
-  e vendo a lótus ao lado do nome.
-  *Tentativa em 11/09/2026: a lótus não pôde ser embutida — arquivo truncado, ver
-  `identidade/logo/LEIA-ME.md`.*
+- **2. A lótus no cabeçalho.** Este item pedia a lótus SOLTA ao lado do wordmark
+  em texto, e não é mais o que o cabeçalho tem que servir: o despacho de 11/09 (2)
+  mandou o **logo completo, sem texto ao lado**, e o logo já contém a lótus e o
+  nome. Cumprido em 20h35Z na casca 1.4.0. **A lótus solta continua truncada** no
+  repositório (o `IDAT` declara 11.638 bytes num arquivo com 8.770), e isso deixou
+  de bloquear qualquer coisa: o lugar dela é ícone pequeno, não o cabeçalho. Quando
+  chegar um arquivo válido, `php ferramentas/gerar-marca.php .` embute — a
+  ferramenta **recusa** arquivo que não abre, sem canal alfa ou com canto opaco.
 
 **A reescrita da home e da `/materiais/` pela seção 15 (as duas ATUALIZAÇÕES de
 11/09) saiu junto e está cumprida.** A home deixou de ser manifesto; o bastidor

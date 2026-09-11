@@ -2,9 +2,9 @@
 ilha: clubedomosaico
 estado: nascendo
 prioridade: 2
-ultima_execucao: 2026-09-11T19:45Z
-executando_desde: 2026-09-11T20:18Z
-bloco_atual: "A ARVORE DA SECAO 16 NO AR, E NENHUMA URL SE MOVEU (casca 1.3.0, manifest revisao 7, /status com revisao 7). ESTA ILHA NASCEU COM A ARVORE CERTA E NAO SABIA: as tres secoes ja eram nivel 1, a unica pagina de nivel 2 ja nascera com mae em 1.2.0, e as quatro da raiz sao exatamente as que a 16.1 admite ali — entao este bloco nao tem um 301 sequer e o sitemap continua com as mesmas 8 URLs. O que faltava era a arvore ficar VISIVEL: trilha em 8 das 9 paginas (a home nao tem, 16.3), BreadcrumbList nas mesmas 8, e o bloco Veja tambem ligando os tres motores — LOJA, GUIA e ESCOLA, que e a razao de esta ilha ter tres motores num dominio so. Nas outras duas ilhas o nivel 1 ainda e pagina inexistente e a trilha sai com degrau em texto; aqui os tres degraus de topo sao link de verdade desde o primeiro dia. DUAS COISAS ERRADAS ACHADAS SEM PROCURAR: (1) o registro do Guia e o VOZ.md discordavam nos slugs de duas categorias desde que a casca nasceu — 'materiais/colas' x 'colas-e-adesivos' e 'materiais/alicates' x 'alicates-e-corte' — e nada cobrava os dois juntos; a divergencia so apareceria no dia em que a pagina nascesse, quando ja seria URL publicada, que nao se move. O dia de acertar e o dia ANTES de a pagina existir, e agora ha trava: todo slug de categoria tem que ser um nome escrito no VOZ.md. (2) o cartao da categoria que ainda nao abre publicava '5 no banco, ficha em construcao' — numero certo e contado, e a 16.5 proibe contagem de banco justamente nesse cartao, porque e promessa com numero num link que nao existe. O numero continua na camada de prova, contado. O SCHEMA PUBLICA MENOS DO QUE A TRILHA MOSTRA, de proposito: ListItem do meio sem `item` invalida a lista inteira para o Google, e lista invalida e lista ignorada — o schema 'mais completo' publicaria MENOS com cara de publicar mais. Hoje isso nao corta nada aqui, e a via existe para o dia da primeira ficha de material. A BANCADA MEDIA FORA DE ORDEM e a propria trava pegou: o render rodava the_content ANTES do bloco de titulo, o cinto de seguranca de prioridade 9 disparava e a trilha caia dentro do corpo — oito paginas reprovadas por um defeito que so existia na bancada. Quarta vez que o Arquipelago paga por render que serve diferente do site; desta vez a conta veio em minutos porque a trava mede a POSICAO da trilha, nao a presenca. AS DUAS MUTACOES QUE PASSARAM VALIAM MAIS QUE AS DEZESSETE QUE REPROVARAM, e nenhuma passou por trava fraca: as duas eram INERTES. Nenhuma pagina desta ilha tem degrau de trilha sem pagina, e nenhuma tem EXATAMENTE UMA irma no ar (tem zero ou duas) — trocar o <span> por <a> ou baixar o piso de 2 para 1 nao mudava um byte do que o site serve. E a grade que nao pisa na borda, com a borda faltando no MUNDO e nao no teste. A bancada passou a FABRICAR as duas bordas pelo filtro cdm_arvore, que e o mesmo por onde uma pagina nova entrara no mapa de verdade, e as duas situacoes fabricadas sao as duas que esta ilha vai ter: a ficha nascendo antes da categoria dela, e uma categoria com uma irma so. VERIFICACAO: teste-casca 327 afirmacoes (eram 198), um processo por pagina; 19 de 19 mutacoes de mutacoes-arvore.py reprovadas; mutacoes-voz-e-cabeca 19 de 19 e mutacoes-rejunte 12 de 12 continuam reprovando; php -l limpo, validar-banco aprovado; 54 medicoes em Chromium nas nove paginas em 360/390/781/782/783/1200 com 0 px de rolagem. NO AR as 19h40Z: 9 de 9 em 200, 117 afirmacoes medidas no HTML SERVIDO sem uma falha — zero &#038; dentro de <script> nas nove, trilha sempre antes do H1 e uma so por pagina, nenhum degrau para pagina inexistente, todo ListItem com `item`, os 6 cartoes servindo 'Em breve' sem um digito e sem serem link, e o sitemap com as mesmas 8 URLs. 10 dos 10 itens do banco esperam link de afiliado e 10 estao sem imagem; este bloco nao tocou catalogo. Pauta da secao 17: nenhum tema escrito, na fila ou recusado — pauta.md ainda nao existe nesta pasta. Proximo: o bloco 4, a ferramenta F2, que e a primeira pagina de nivel 3 desta ilha e o primeiro caso real do degrau de trilha sem pagina. Ela nasce com o bloco de compra da secao 7 junto, mesmo com afiliado.url vazio, e com a mae /materiais/ declarada no ARVORE.md"
+ultima_execucao: 2026-09-11T20:40Z
+executando_desde: null
+bloco_atual: "O LOGO DO RAPHAEL, INTEIRO, NO CABECALHO DAS NOVE PAGINAS (casca 1.4.0, manifest revisao 8, /status com revisao 8 as 20h35Z). Fecha o despacho dele de 11/09 (2), de prioridade maxima, INTEIRO: os cinco itens sairam na mesma execucao (secao 18.2). O cabecalho serve logo-clube-do-mosaico.png em <img> de 52 px, link para a home, e NENHUMA LETRA ao lado — o wordmark esta desenhado dentro do arquivo, e escreve-lo de novo e a marca em dobro na tela e anunciada duas vezes por leitor de tela; por isso o alt carrega o nome e nao existe <span> nenhum ali. A AFIRMACAO QUE SUSTENTAVA A VERSAO ANTERIOR ESTAVA ERRADA, e estava escrita em TRES lugares do snippet e um do VOZ.md desde 1.2.0: 'o arquivo entregue tem fundo preto'. Nao tem — e transparente, conferido por ele na biblioteca de midia. O logo sumiu em 1.1.0 porque o CABECALHO era preto e o wordmark de dentro do arquivo e vinho #69030C: defeito de onde o logo foi posto, nunca do arquivo. A 1.2.0 consertou a causa (clareou o cabecalho) e, pela leitura errada do sintoma, tirou junto o logo, que era a parte certa. Sintoma nao e causa, e diagnostico escrito com ar de fato se propaga por versoes — mesma forma do 000 lido como bloqueio de rede na semana passada. O CUSTO DE 1,26 MB NUM ESPACO DE 78 PX: nao se redesenha nem se gera nada (o PROMPT.md proibe e tem razao), o src continua sendo a URL exata do despacho, e o srcset oferece as reducoes que o PROPRIO WordPress gerou do upload dele (-300x200 com 41 KB, -768x512 com 175 KB) com sizes=78px. Mesma imagem, mesmo recorte, mesma origem; o navegador baixou a de 41 KB, medido. A barra subiu de 72 para 84 px e o logo cai para 44 px abaixo de 600 px, onde 52 mais o botao do menu nao cabem em 360. AS DUAS MUTACOES QUE PASSARAM NA PRIMEIRA RODADA ERAM INERTES PELO MESMO MOTIVO DE SEMPRE: nao acharam o alvo, porque escrevi as linhas do <img> sem as duas tabulacoes que o arquivo tem — mutacao que nao consegue ser escrita e verde sem medir nada. Reescritas, as duas morderam (0x0 de medida declarada, alt vazio). A MUTACAO QUE MAIS VALE DESTA LEVA e a porta dos fundos do srcset: o src fica certo no codigo e outra imagem entra no lugar do logo por um atributo que ninguem le. O portao cobra que todo candidato seja o MESMO arquivo com sufixo de tamanho. VERIFICACAO: teste-casca de 327 para 347 afirmacoes, um processo por pagina (o static de cdm_casca_marca_html e exatamente o mecanismo que faria o logo sair na home e sumir nas outras oito); mutacoes-voz-e-cabeca de 19 para 24 e 24 reprovadas; mutacoes-arvore 19/19 e mutacoes-rejunte 12/12 seguem reprovando; validar-banco aprovado; php -l limpo; 63 medicoes em Chromium nas nove paginas em 360/390/781/782/783/1200 com 0 px de rolagem, incluindo a caixa de 78x52 desenhada pelo motor de layout. NO AR as 20h35Z: 9 de 9 em 200 e 102 afirmacoes medidas no HTML SERVIDO por ferramentas/conferir-no-ar.py, que nasceu nesta execucao e tem regua propria (a URL e a medida estao literais nele, copiadas do despacho, nao lidas da constante da casca). O criterio de pronto que ele escreveu foi conferido de olho tambem: a home servida foi desenhada em Chromium com os bytes reais da imagem e o logo foi ampliado pixel a pixel — lotus e o nome 'clube do mosaico' embaixo, sobre branco, sem texto duplicado ao lado. UMA COISA A REGISTRAR PARA ELE: a 52 px o wordmark fica com ~8 px por linha; le-se como logotipo mas e pequeno, e os dois caminhos (64 px, ou uma versao horizontal do lockup) sao escolha dele, nao da Fundacao. Os hexadecimais sugeridos no despacho seguem fora, como em 11/09: sao vizinhos de 1 a 4 passos dos tokens aprovados em 10/09, e um segundo branco a quatro unidades do primeiro e defeito, nao identidade. 10 dos 10 itens do banco esperam link de afiliado e 10 estao sem imagem; este bloco nao tocou catalogo. Pauta da secao 17: pauta.md ainda nao existe nesta pasta — 0 escritos, 0 na fila, 0 recusados. Proximo: o bloco 4, a ferramenta F2, primeira pagina de nivel 3 desta ilha e o primeiro caso real do degrau de trilha sem pagina. Ela nasce com o bloco de compra da secao 7 junto, mesmo com afiliado.url vazio, e com a mae /materiais/ declarada no ARVORE.md."
 ultima_ronda: null
 bloqueada_por: null
 ---
@@ -20,12 +20,20 @@ Espelho legível do estado do projeto. **Nunca guarde credencial aqui.**
 - Search Console: propriedade `sc-domain:clubedomosaico.com.br` criada; TXT `google-site-verification=KWnwrQz3FOTs0Bln_y9EpjPhjJrWKwzpT2fi68L-2uA` gravado na zona (serial 2026091004). Verificação falhou na primeira tentativa porque o Google ainda via o DNS do registro.br — repetir depois da propagação.
 - WordPress: instalado em 10/09/2026 14h51 BRT via Softaculous (7.1 pt-BR, instalação limpa, admin não é "admin"); SSL emitido na madrugada de 11/09; plugins da lista curta ativos em 11/09.
 - Snippet de Sync: "Clube do Mosaico Sync" v1.1.5, snippet #5, ATIVO desde 11/09/2026; primeiro sync leu a revisão 3 (0 aplicados, 5 aguardando desembarque). Endpoints no PROMPT.md.
-- Logo: logo completo e favicon subidos pelo Raphael na biblioteca de mídia em 11/09/2026 (URLs no PROMPT.md); lótus transparente e favicons em identidade/logo/.
+- Logo: logo completo e favicon subidos pelo Raphael na biblioteca de mídia em 11/09/2026 (URLs no PROMPT.md). **O logo completo é o do cabeçalho, transparente, a 52 px e sem texto ao lado, desde 11/09 20h35Z.** Em `identidade/logo/` ficam os favicons e a lótus solta (esta, truncada, só faria falta em ícone pequeno).
 - E-mail da artesã (usuário `artesa` e notificações de lead): mina196@hotmail.com
-- Casca: snippet "Clube do Mosaico Casca" v1.0.0, `publicar: true` no manifest (revisão 4). **Commitada e verificada
-  em bancada, ainda NÃO aplicada no site** — ver "O que está travando".
+- Casca: snippet "Clube do Mosaico Casca" **v1.4.0**, `publicar: true` no manifest (revisão 8),
+  snippet #6 no Code Snippets. **No ar e conferido nas nove URLs em 11/09/2026 20h35Z.**
 
 ## O que já foi entregue
+- 11/09/2026 20h35Z — **O LOGO DELE, INTEIRO, NO CABEÇALHO** (casca 1.4.0, manifest na revisão 8,
+  `/status` conferido). Fecha o despacho do Raphael de 11/09 (2) inteiro, os cinco itens na mesma
+  execução: `<img>` do logo completo a 52 px com link para a home e **sem texto ao lado**, barra de
+  84 px, lótus solta fora do cabeçalho, `VOZ.md` corrigido no molde de casca LOJA. O `srcset` serve
+  as reduções que o próprio WordPress gerou do upload dele (41 KB no lugar de 1,26 MB num espaço de
+  78 px) e o `src` continua sendo a URL exata do despacho. Veio junto
+  `ferramentas/conferir-no-ar.py`, que mede o HTML **servido** com régua própria (102 afirmações,
+  nenhuma falha), e seis mutações novas no `mutacoes-voz-e-cabeca.py` — 24 de 24 reprovadas.
 - 11/09/2026 19h40Z — **A ÁRVORE DA SEÇÃO 16** (casca 1.3.0, manifest na revisão 7,
   `/status` conferido). `ARVORE.md` com os três níveis e o lugar das nove páginas;
   trilha visível em oito delas (a home não tem, 16.3); `BreadcrumbList` nas mesmas
@@ -161,15 +169,22 @@ Espelho legível do estado do projeto. **Nunca guarde credencial aqui.**
   **A regra que fica:** bloqueio herdado se testa de novo a cada execução, e uma falha de rede
   só vira bloqueio depois de repetir. A seção 4 do contrato manda testar antes de presumir; falta
   a outra metade, que é testar de novo antes de continuar presumindo.
-- **A LÓTUS DO CABEÇALHO — pendência do Raphael, não da Fundação.**
-  `identidade/logo/lotus-512.png` está **truncado** no repositório: o chunk `IDAT` declara 11.638
-  bytes num arquivo que tem 8.770, com um `IEND` colado no fim, e o `zlib` recusa o primeiro
-  bloco — não sai um único pixel dele. Foi medido ao ir cumprir o item 2 do despacho, que mandava
-  usar exatamente esse arquivo. O cabeçalho está no ar com o wordmark em texto, que é a outra
-  metade do par que o despacho pediu, e o lugar da lótus está pronto na casca.
-  **Conserto:** ele commitar a lótus em PNG transparente (≥ 512 px no menor lado) no mesmo caminho
-  e rodar `php ferramentas/gerar-marca.php .`, que embute e confere. A ferramenta recusa arquivo
-  que não abre, sem canal alfa ou com canto opaco. Não trava nada: a ilha está no ar sem ela.
+- ~~**A LÓTUS DO CABEÇALHO**~~ — **deixou de ser pendência em 11/09/2026, 20h35Z.** O cabeçalho
+  serve o **logo completo** do Raphael, que já contém a lótus e o nome, e o despacho de 11/09 (2)
+  proíbe texto ao lado dele. A lótus SOLTA continua truncada no repositório
+  (`identidade/logo/lotus-512.png`: o `IDAT` declara 11.638 bytes num arquivo com 8.770, `IEND`
+  colado no fim, e o `zlib` recusa o primeiro bloco), e isso agora não bloqueia nada — o lugar dela
+  é ícone pequeno, não o cabeçalho. Quando chegar um PNG transparente de ≥ 512 px no mesmo caminho,
+  `php ferramentas/gerar-marca.php .` embute e confere; a ferramenta recusa arquivo que não abre,
+  sem canal alfa ou com canto opaco.
+- **O DIAGNÓSTICO DE 1.2.0 ESTAVA ERRADO, e é a cicatriz que esta execução deixa escrita.** Três
+  lugares do snippet e um do `VOZ.md` afirmavam que o arquivo do Raphael "tem fundo preto". Não
+  tem: é transparente, e ele conferiu na biblioteca de mídia. O logo sumiu em 1.1.0 porque o
+  **cabeçalho** era preto e o wordmark dentro do arquivo é vinho `#69030C` — defeito de onde o
+  logo foi posto, nunca do arquivo. A 1.2.0 consertou a causa (clareou o cabeçalho) e, pela
+  leitura errada do sintoma, tirou também o logo, que era a parte certa. **Sintoma não é causa, e
+  um diagnóstico escrito com ar de fato se propaga por versões** — a mesma forma do `000` lido
+  como bloqueio de rede na semana passada.
 - **Caixa `contato@clubedomosaico.com.br` não existe ainda.** O adendo 3 do `PROMPT.md` pede que ela
   seja criada no cPanel (ou que o SPF/DKIM do domínio seja garantido) para o e-mail de lead do bloco
   4d chegar ao Hotmail da artesã. Não é trabalho da Fundação: exige o painel da hospedagem. Por isso
@@ -206,5 +221,15 @@ Espelho legível do estado do projeto. **Nunca guarde credencial aqui.**
 - ~~**Domínio da ilha na rede Personalizada do ambiente das rotinas.**~~ **Não era isso.** A rede
   alcança a ilha; o que houve foi intermitência lida como bloqueio em duas execuções seguidas —
   ver "O que está travando". Nada a fazer, e nada a pedir ao Raphael por aqui.
-- **A lótus do cabeçalho**, em PNG transparente de pelo menos 512 px: o arquivo que está no
-  repositório não abre. Ver "O que está travando" e `identidade/logo/LEIA-ME.md`.
+- ~~**A lótus do cabeçalho**~~ — **não é mais pendência**: o cabeçalho leva o logo completo dele
+  desde 20h35Z de 11/09. A lótus solta segue truncada no repositório e só faria falta em ícone
+  pequeno; ver "O que está travando" e `identidade/logo/LEIA-ME.md`.
+- **O tamanho do logo no cabeçalho, se ele quiser opinar.** A 52 px de altura (o número do
+  despacho dele) o wordmark dentro do arquivo fica com ~8 px por linha: lê-se como logotipo, mas é
+  pequeno. Caminhos, e a escolha é dele: subir para ~64 px, ou mandar uma versão horizontal do
+  lockup (lótus ao lado do nome em vez de acima). Não trava nada.
+- **Os hexadecimais do cabeçalho.** O despacho sugeriu `#FBF7F4`, `#EEE8E4`, `#111` e `#E8483A`;
+  a casca serve os tokens aprovados por ele em 10/09 (`papel #FFFFFF`, `traço #E9DCD7`,
+  `tinta #1F1715`, `coral #FC483B`), que são vizinhos de um a quatro passos. Um segundo branco a
+  quatro unidades do primeiro é defeito, não identidade — mas se ele quiser exatamente aqueles
+  valores, é uma linha. Registrado em 11/09 e de novo em 20h35Z.
