@@ -4,7 +4,7 @@
   "nicho": "robo aspirador — compatibilidade de pecas e consumiveis, e dimensionamento de succao e autonomia",
   "dominio": "https://robometria.com.br",
   "versao_manifest": 1,
-  "revisao": 13,
+  "revisao": 14,
   "atualizado_em": "2026-09-11",
   "estado": "nascendo",
   "desembarque": {
@@ -20,8 +20,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "71b49a4dd00dc3f75045aa9e049667d2a215e6278d095cf04fa8400b93bcf782",
-      "descricao": "A CASCA NA 1.0.2 (Bloco 5): ganhou um CATALOGO DE ARTIGOS, igual ao de ferramentas e tambem alimentado por filtro, com as duas listagens que a secao 9 do ARQUIPELAGO.md exige — a home e o hub de ferramentas. Sem isso o primeiro artigo-ancora da ilha nasceria orfao. Veio junto a folha compartilhada da PORTA DE COMPRA (robometria_casca_css_vitrine, robometria_casca_porta_de_compra, robometria_casca_rotulo_da_loja e robometria_casca_fonte_link): os pesos visuais do botao de compra e do link de procedencia sao regra do Arquipelago, nao estilo local, e com uma copia por pagina bastaria alguem ajustar uma delas para a ilha voltar, numa pagina so e sem ninguem notar, ao defeito de 10/09/2026. A R1 passou a delegar para estas funcoes. Bloco 3b. Casca do site: carrega Archivo/IBM Plex Sans/IBM Plex Mono e injeta a paleta da Robometria (grafite, varredura, piso, alerta ambar) sobre o tema ativo; troca core/site-title e core/site-logo pelo logotipo em SVG — anel aberto com o corte de 50 graus e a peca de lingueta encaixando nele, que e o simbolo do ENCAIXE e nunca um robo desenhado — com o wordmark ROBO em 700 colado a METRIA em 400; troca core/navigation pelo menu Ferramentas/Metodologia/Sobre, que abaixo de 782 px vira sanfona atras de um <button> com aria-expanded e aria-controls, fechando no Escape (devolvendo o foco ao botao), no clique fora e ao alargar a janela — e os tres links continuam SEMPRE no HTML servido dentro de <nav>, porque quem esconde a lista e um seletor que depende de atributo posto pelo JavaScript do rodape: sem JavaScript o menu nao some, e e essa a versao que o crawler de IA recebe. Cria as paginas inicio, ferramentas, metodologia, sobre e divulgacao-de-afiliados (conteudo em shortcode do proprio snippet) e fixa inicio como pagina inicial; manda Hello world! e Sample Page para a LIXEIRA, que nesta ilha nao e acabamento — sao esses dois itens que o sitemap submetido ao Search Console lista hoje, e sitemap e curadoria, nao inventario (secao 14.1). SUBSTITUI a template part footer do tema pelo rodape da Robometria, com rede de seguranca em wp_footer e no CSS para nao ficarem dois rodapes empilhados. O icone do site deixa de ser o do WordPress (remove_action do wp_site_icon): SVG na aba, PNG de 32 px como alternativa e PNG de 180 px para o iOS, os tres como data URI dentro do snippet, gerados por ferramentas/gerar-favicon.php entre os marcadores FAVICON-INICIO e FAVICON-FIM — nada sobe para a biblioteca de midia. Publica JSON-LD Organization + WebSite em toda pagina (secao 5.3), SEM sameAs: a ilha nao tem perfil externo, e perfil inventado seria a fabricacao que ela existe para nao cometer. Os numeros da tela (marcas, modelos, pares peca x modelo, cobertura da R1) saem do banco commitado e sao conferidos contra ele por ferramentas/teste-casca.php, entao nao envelhecem em silencio. Idempotente: rodar duas vezes nao duplica pagina, nao repete lixeira e nao reescreve pagina editada a mao. REVISAO 9 (despacho da Sentinela de 10/09/2026): o sitemap servia o XML certo com status HTTP 404 — para o Google, sitemap com 404 e sitemap inexistente, e era isso que travava a rampa de indexacao desta ilha. A causa nasce nesta propria casca: como ela manda 'Hello world!' para a lixeira, a ilha fica com ZERO posts, a consulta principal das rotas index.php?sitemap=... volta vazia e o handle_404() do nucleo carimba 404 antes de o renderizador imprimir o XML (a Aquametria devolve 200 nos mesmos caminhos pelo motivo simetrico: ela tem posts). O conserto usa o filtro pre_handle_404 do proprio nucleo e so age em requisicao que JA e de sitemap: endereco inexistente continua podendo 404, porque responder 200 no vazio seria pior do que o defeito.",
+      "sha256": "a1af146a39f370193febec4a8f4e6ade216edc3aa2d23c8827967218f048fdff",
+      "descricao": "A CASCA NA 1.1.0 (bloco de dados de 11/09/2026): a coluna 'Temos hoje' da ESCADA DE FONTES, na pagina de metodologia, deixou de ser digitada e passou a ser CONTADA no banco, via dados/casca-fatos.json. Ate esta revisao ela dizia que a ilha nao tinha nenhuma fonte de nivel 2 enquanto QUATRO fontes do banco se declaravam nivel 2 — as duas metades nunca se falavam, entao nenhuma podia corrigir a outra. E o mesmo defeito que o bloco 5 nomeou no artigo-ancora: numero que e a afirmacao da pagina nao pode estar digitado no HTML, porque passa a mentir em silencio no dia em que o banco muda. A recontagem tambem derrubou um segundo numero que ninguem tinha percebido: o nivel 6 (anuncio de marketplace) aparecia como 'sim' e a ilha nao tem UMA fonte de marketplace. A confissao abaixo da tabela tambem virou derivada, nomeando os degraus vazios e os que sustentam o banco a partir da mesma contagem. Os textos dos degraus 2 e 3 foram reescritos pela decisao da escada: manual do fabricante guardado por terceiro NAO e nivel 2, porque o nivel e o do elo mais fraco da cadeia autoria-custodia-leitura. Continua valendo tudo da 1.0.2: catalogos de ferramentas e de artigos por filtro, menu sanfona acessivel, favicon proprio, JSON-LD Organization + WebSite, a folha compartilhada da PORTA DE COMPRA e o conserto do sitemap 404.",
       "versao": "1.0.2"
     },
     {
@@ -116,7 +116,7 @@
       "verificado_em": "2026-09-09",
       "registros": 4,
       "publicar": false,
-      "sha256": "36640e4a33d5ca3fd3cdb6941ae4587c28d48f7c059d8d8aeb0f842806a53cb9",
+      "sha256": "0fcac7075eae6c8568a5f78b34ab999faa16d62f0a26c1f4fe5f875d7d7c0617",
       "descricao": "Contrato do banco da Robometria, versao 3 do esquema (elevada na segunda leva do Bloco 3c). A versao 3 acrescenta divergencias[] e resolucao tambem em MODELO_ROBO — ate entao so PECA divergia, e o PRA500 declara 1600 Pa na ficha e 2000 Pa no texto de venda da MESMA pagina — e escreve a regra da FAIXA DECLARADA: faixa e tolerancia resolvem para o lado em que errar doi menos, nunca para o meio, com a faixa inteira preservada em declarado_como. Pa e autonomia resolvem para baixo; tempo de recarga resolve para cima."
     },
     {
@@ -140,7 +140,7 @@
       "verificado_em": "2026-09-09",
       "registros": 33,
       "publicar": false,
-      "sha256": "6f446e6e7cef5004b19c48917d24ea50a134057a101287e4046604607954420b",
+      "sha256": "5c6d2f66ff8e9f7b592d0519b871cdd16506d01c3ae85e94df9a47e09a3abb80",
       "descricao": "33 modelos: 28 publicaveis, 1 nao publicavel (HO401, categoria a confirmar) e 4 excluidos por NAO serem robo. A segunda leva do Bloco 3c acrescentou seis Xiaomi (S10, E10, S40, S40C, H40 e Mop 2) e tres WAP (W400, W1000, W310), e preencheu a ficha de PRA500 e PRA2000. O campo pa_declarado saiu de 2 para 11 modelos publicaveis, em 3 marcas, cobrindo de 1.400 a 10.000 Pa — a R2 deixa de sair com lista vazia. Traz a varredura cobertura_de_faixa_r2 exigida pela secao 14.3: cinco das seis faixas passam no portao de 3 itens, acima de 6.000 Pa a faixa esta DESCOBERTA, e toda faixa acima de 3.000 Pa e 100% Xiaomi."
     },
     {
@@ -152,7 +152,7 @@
       "verificado_em": "2026-09-09",
       "registros": 18,
       "publicar": false,
-      "sha256": "99aa1d436f993ee4fc70c048d042ab2718733c76248c583f3e76c3d4887e6bc1",
+      "sha256": "d11c176cd6b71ba041dac56df47164fb3f5a6c04f564b24f6e6cbc9b8d8c3b26",
       "descricao": "18 pecas com 33 pares peca x modelo, TODOS declarados pelo fabricante e nenhum inferido. O Bloco 3c acrescentou 10: o Kit Performance KPCEL01 (que finalmente da dono a vida util de 6 meses do manual da Electrolux), o filtro HEPA com espuma do ERB44/60/61/62, o kit do ERB60/61/62, a escova rotativa central do ERB60/61/62/80, os kits do ERB44 e do ERB30, as tres pecas da Positivo para PRA800/PRA2000 e os acessorios do Xiaomi S20. Duas divergencias seguem resolvidas pelo conjunto mais estreito, com as duas declaracoes publicadas."
     },
     {
@@ -188,7 +188,7 @@
       "verificado_em": "2026-09-10",
       "registros": 28,
       "publicar": true,
-      "sha256": "fbb8ddd1b323fdcea234a031941bda4bfa883fb3cbc519f3399746f410c60dc9",
+      "sha256": "6830f7511dd5104bebc329510b0bd4a0a5a84bf31633bfa94e606f2a1b1586eb",
       "descricao": "O COMBUSTIVEL DA FERRAMENTA R1 NO SITE, e o primeiro item de dados desta ilha com publicar=true: o Sync o grava na option robometria_dados_r1-respostas e o snippet robometria-r1.php monta a pagina a partir dele. Para cada um dos 28 modelos publicaveis, os FATOS de cada peca que o fabricante declarou compativel — tipo respondido, codigo, publicador, conjunto declarado, endereco, data, se vem dentro de kit, se existe a peca avulsa, se ha divergencia registrada e se ainda espera link de afiliado. Traz tambem o seletor gerado da varredura (os 5 tipos que o banco consegue responder, sem 'reservatorio', que tem zero pecas), o modelo-ancora escolhido por regra, as 45 linhas da tabela de exemplos na ordem cross-marca da referencia, as duas divergencias com as duas declaracoes e as duas datas, a lista dos 12 modelos de entrada vazia e a tabela de rotulos da escada de fontes. SEM PROSA de proposito: a frase que o visitante le e montada pelo snippet, em portugues acentuado, e conferida contra a referencia por ferramentas/teste-r1.php."
     },
     {
@@ -200,7 +200,7 @@
       "verificado_em": "2026-09-10",
       "registros": 28,
       "publicar": false,
-      "sha256": "5b0314d89bdb816f7eb359b2d82351f7cfdd6d0b4cbe3401fff4578fcc516d7d",
+      "sha256": "34c891c1e238480e5bed329ac34b0bd1e7e0ea82aa7505288478e1b1e129ceab",
       "descricao": "GABARITO da R1: a resposta de cada modelo ja em frase, escrita pela implementacao de REFERENCIA. Nunca vai para o site (publicar=false) — existe para ferramentas/teste-r1.php provar, frase a frase e ignorando acento, que o PHP do snippet diz a MESMA coisa que a referencia, que e o que a especificacao exige. Sao 188 frases comparadas a cada rodada do teste: se alguem mexer no molde de um lado so, o teste reprova em vez de o site publicar duas versoes da mesma afirmacao."
     },
     {
@@ -212,7 +212,7 @@
       "verificado_em": "2026-09-10",
       "registros": 16,
       "publicar": true,
-      "sha256": "00efc6079402b2edf6cd81fbe1d88830caff8e213b5d1e7cc62c839f74f86e88",
+      "sha256": "3692f6efffeb11762a4c2d8d1edf6e06fa3ee8036ac0e71047237a83a979b108",
       "descricao": "O COMBUSTIVEL DO ARTIGO-ANCORA A1: o Sync o grava na option robometria_dados_a1-fatos e o snippet robometria-a1.php escreve as frases a partir dele. Tres medicoes separadas de proposito. (1) ALCANCE: quantos codigos de modelo cada uma das 16 pecas publicaveis tem declarados, com os codigos como a fonte os escreve. (2) TRAVESSIA DE MARCA: quantas pecas sao declaradas para modelos de mais de uma marca — hoje zero, e e essa a tese do artigo. (3) DISPERSAO DENTRO DA MARCA: quantos conjuntos DISTINTOS de modelos as pecas de cada fabricante formam; quando o numero iguala o de pecas, nenhuma repete a lista de outra. Traz ainda a cobertura por tipo vinda da varredura da R1, a vitrine de 4 itens (ordenada por alcance declarado, com kit de composicao nao transcrita FORA, porque oferecer a compra de um produto cuja composicao a pagina diz nao saber e o defeito da secao 7) e as tres perguntas do FAQPage, derivadas dos mesmos numeros."
     },
     {
@@ -269,6 +269,28 @@
       "registros": 5,
       "publicar": true,
       "sha256": "6f1662df6e2041459a8b93e4428e3099b4ac6374777a840fe2c30938a5c6c637"
+    },
+    {
+      "id": "casca-fatos",
+      "arquivo": "dados/casca-fatos.json",
+      "formato": "json",
+      "entidade": "medicao",
+      "fonte": "Bloco de dados da Fundacao (11/09/2026): derivado por ferramentas/gerar-casca-fatos.py de pecas.json, modelos-robo.json e constantes.json. E a coluna 'Temos hoje' da escada de fontes na pagina de metodologia — afirmacao da pagina sobre o proprio banco, que ate esta data estava DIGITADA no snippet e o contradizia.",
+      "publicar": true,
+      "verificado_em": "2026-09-11",
+      "registros": 7,
+      "descricao": "A COLUNA 'TEMOS HOJE' DA ESCADA DE FONTES, contada em vez de digitada. O Sync a grava na option robometria_dados_casca-fatos e a pagina de metodologia le dali quantas fontes de cada degrau a ilha realmente tem. Medicao de 11/09/2026: nivel 3 com 47, nivel 4 com 18, nivel 7 com 7, e os degraus 1, 2, 5 e 6 VAZIOS. Dois desses zeros corrigem a tela: o nivel 2 aparecia como vazio no snippet enquanto quatro fontes do banco se declaravam nivel 2, e o nivel 6 aparecia como 'sim' sem que a ilha tivesse UMA fonte de marketplace — o banco nao tem nenhum selo declarada_terceiro."
+    },
+    {
+      "id": "acentuacao-restaurada",
+      "arquivo": "dados/acentuacao-restaurada.json",
+      "formato": "json",
+      "entidade": "medicao",
+      "fonte": "Bloco de dados da Fundacao (11/09/2026): saida de ferramentas/acentuar-banco.py. Nenhuma coleta; nenhum numero vem de fora do repositorio.",
+      "verificado_em": "2026-09-11",
+      "registros": 121,
+      "publicar": false,
+      "descricao": "LIVRO-RAZAO da restauracao de acentos: as 121 strings do banco que a ilha PUBLICA e que estavam em ASCII, com arquivo, registro, campo, antes e depois. Serve para duas coisas. (1) PROVA que a operacao mexeu so em diacritico: reduzida a sem-diacritico, a coluna 'depois' e byte a byte igual a coluna 'antes', e ferramentas/teste-acentuacao.php confere isso linha a linha com uma regua propria. (2) E a LISTA DE CONFERENCIA de quem reler os manuais quando a rede abrir, porque diacritico restaurado pela ilha nao e diacritico lido na fonte — se alguma fonte de fato escrever sem acento, a linha correspondente volta atras e vira excecao declarada. Nao e publicado: e conferencia de bancada, o site nao precisa dele."
     }
   ],
   "ferramentas": [
@@ -341,6 +363,26 @@
       "id": "teste-a2",
       "arquivo": "ferramentas/teste-a2.php",
       "descricao": "Verificacao MEDIDA do A2 sem site e sem rede: 62 medicoes. A secao que justifica o arquivo PLANTA SEIS BANCOS ADULTERADOS num subprocesso, um por molde, e exige que o texto troque de forma E que os numeros de hoje sumam da tela — porque ler a pagina de hoje so prova que ela esta certa hoje, e a decisao 1 do bloco 5 e sobre amanha. Mede tambem que as respostas do FAQPage saem acentuadas e que todo numero que elas afirmam esta escrito no CORPO da pagina, nao so dentro do proprio JSON-LD."
+    },
+    {
+      "id": "varrer-corpo",
+      "arquivo": "ferramentas/varrer-corpo.php",
+      "descricao": "Varre o CORPO VISIVEL de TODO estado de pagina que a ilha consegue servir — as 9 paginas fixas, a R1 em cada modelo publicavel e em cada tipo de peca, a R2 nas 9 situacoes e nas bordas da metragem: 72 estados. Existe porque medir uma pagina so nao e medir a pagina toda: 'Aspirador Robo' e 'Versao A' so aparecem quando alguem escolhe um modelo da Multi, e ficaram invisiveis para uma medicao que renderizava as nove paginas e se dava por satisfeita. Devolve TEXTO, nao HTML (sem <script>, sem <style>, sem marcacao, entidades desfeitas), porque a secao 8 do ARQUIPELAGO.md manda medir afirmacao sobre a tela no CORPO. Com --com-excecao=<classe> ele retira os blocos que a PAGINA declara como excecao e imprime cada um, contado, para quem afirma poder confiar um a um. Roda UM PROCESSO POR ESTADO: montar os 72 no mesmo processo fazia o cabecalho aparecer so no primeiro, porque robometria_casca_marca_html() guarda um static para a marca nao sair duas vezes na mesma pagina — e a varredura media meia pagina com cara de pagina inteira. Ferramenta de bancada: NUNCA e publicada no site."
+    },
+    {
+      "id": "acentuar-banco",
+      "arquivo": "ferramentas/acentuar-banco.py",
+      "descricao": "Restaura os acentos dos campos do banco que vao para a TELA (nome_na_fonte, titulo_na_fonte, publicador, linha, nome, nome_comercial, o_que_muda, canal, conjunto_declarado). A operacao e deliberadamente pequena e PROVAVEL: so diacritico. Toda mudanca passa pela trava sem_acento(depois) == antes e o programa se recusa a gravar se alguma falhar, o que torna impossivel, por construcao, trocar palavra, codigo de peca, numero ou modelo. A borda das palavras inclui o hifen de proposito, para nao acentuar pedaco de URL citada. Cada mudanca vai para dados/acentuacao-restaurada.json, que e a lista de conferencia de quem reler os manuais quando a rede abrir — porque diacritico RESTAURADO nao e diacritico LIDO na fonte. Palavra ambigua (o 'e' que pode ser 'é') fica fora do mapa. Ferramenta de bancada: NUNCA e publicada no site."
+    },
+    {
+      "id": "gerar-casca-fatos",
+      "arquivo": "ferramentas/gerar-casca-fatos.py",
+      "descricao": "Deriva dados/casca-fatos.json: a coluna 'Temos hoje' da escada de fontes, que a pagina de metodologia publica. Existe porque ate 11/09/2026 essa coluna estava DIGITADA no snippet e contradizia o banco — dizia que a ilha nao tinha nenhuma fonte de nivel 2 enquanto quatro fontes se declaravam nivel 2, e as duas metades nunca se falavam. Conta so registro publicavel, e conta TRES arquivos: pecas.json, modelos-robo.json e constantes.json. A primeira versao lia so os dois primeiros e declarava, com ar de medicao, que a ilha nao tinha fonte editorial — quando tem sete, usadas pela R2 em toda resposta de Pa; trocar um numero digitado errado por um numero medido errado e pior, porque este parece conferido. A ponte tipo-de-constante para nivel mora no esquema, nao aqui. Recusa-se a gerar se alguma fonte declarar nivel e origem que nao batem com a escada. Ferramenta de bancada: NUNCA e publicada no site."
+    },
+    {
+      "id": "teste-acentuacao",
+      "arquivo": "ferramentas/teste-acentuacao.php",
+      "descricao": "16 medicoes que impedem a volta do portugues sem acento no que a ilha SERVE, e a coerencia da escada de fontes. Le o corpo dos 72 estados por ferramentas/varrer-corpo.php e reprova qualquer palavra da propria regua — escrita NO TESTE, a mao, sem importar a do corretor, porque regua compartilhada faz as duas metades errarem juntas. A excecao do wordmark (ROBO+METRIA colados, onde ROBO e a assinatura e nao a palavra) e declarada no markup pela classe rbm-wordmark, retirada pelo varredor e CONFERIDA uma a uma: exige um bloco por estado e que cada bloco seja exatamente a assinatura. Confere ainda o livro-razao da restauracao (todo 'depois', reduzido a sem-diacritico, e identico ao 'antes', e todo 'depois' esta no banco de hoje) e RECONTA a escada direto do banco, sem olhar para o que o gerador escreveu. Seis mutacoes deliberadas em 11/09/2026, e as seis reprovaram: devolver 'Robo' ao banco, marcar um paragrafo comum como wordmark para calar o teste, adulterar o livro-razao, repor uma fonte no nivel 2 sem declarar leitura, repor com leitura declarada (a confissao da pagina passa a mentir) e tirar a classe do wordmark — esta ultima faz 'ROBO' ser pego 72 vezes, que e a prova de que a excecao e carregada e nao decorativa. Ferramenta de bancada: NUNCA e publicada no site."
     }
   ],
   "esquema": {

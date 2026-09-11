@@ -43,16 +43,16 @@
       {
         "nivel": 2,
         "origem": "manual-fabricante",
-        "o_que_pode_sustentar": "qualquer campo tecnico declarado, e vida util de peca. Exige manual, lamina ou pagina oficial LIDA direto.",
+        "o_que_pode_sustentar": "qualquer campo tecnico declarado, e vida util de peca. Exige manual, lamina ou pagina oficial LIDA direto NO ENDERECO DO FABRICANTE. Documento do fabricante guardado por terceiro, ou colhido por busca sem leitura, NAO e nivel 2 — e nivel 3.",
         "existe_hoje": false,
-        "observacao": "Bloqueado hoje: o egresso desta nuvem barra multilaser.com.br, suporte.multilaser.com.br, lamina.multilaser.com.br, arquivos.multilaser.com.br, mi.com e manuals.plus (medido em 09/09/2026). A releitura na fonte primaria continua sendo coleta em aberto — e trabalho a fazer, nao dependencia humana."
+        "observacao": "Bloqueado hoje: o egresso desta nuvem barra multilaser.com.br, suporte.multilaser.com.br, lamina.multilaser.com.br, arquivos.multilaser.com.br, mi.com, wap.ind.br, mais.conteudo.wap.ind.br e manuals.plus (remedido em 11/09/2026: 000). A releitura na fonte primaria continua sendo coleta em aberto — e trabalho a fazer, nao dependencia humana. Em 11/09/2026 as quatro fontes que se declaravam nivel 2 desceram para 3 pela regra do elo mais fraco, e a ilha voltou a nao ter nivel 2 nenhum."
       },
       {
         "nivel": 3,
         "origem": "fabricante-via-busca",
-        "o_que_pode_sustentar": "campo tecnico e categoria atribuidos ao fabricante, colhidos por busca restrita ao dominio do fabricante, sem leitura da pagina. Vai para a tela com 'a confirmar no manual'.",
+        "o_que_pode_sustentar": "campo tecnico e categoria atribuidos ao fabricante, colhidos por busca e NAO lidos na fonte primaria — tanto faz se a pagina fica no dominio do fabricante ou se e um documento dele guardado por terceiro. Vai para a tela com 'a confirmar no manual'.",
         "existe_hoje": true,
-        "observacao": "E o nivel de quase tudo que este banco tem hoje. A Aquametria ja registrou um caso de busca restrita devolver numero errado com atribuicao certa — por isso cada campo carrega canal_de_coleta."
+        "observacao": "E o nivel de quase tudo que este banco tem hoje. A Aquametria ja registrou um caso de busca restrita devolver numero errado com atribuicao certa — por isso cada campo carrega canal_de_coleta. Desde 11/09/2026 este degrau tambem recebe o manual de fabricante em custodia de terceiro: o texto e do fabricante, a guarda e a leitura nao sao."
       },
       {
         "nivel": 4,
@@ -79,7 +79,32 @@
         "o_que_pode_sustentar": "recomendacao de faixa (quanto Pa uma casa precisa), sempre rotulada como opiniao publicada e sempre com o nome de quem publica. NUNCA sustenta especificacao de aparelho nem vida util contra o manual.",
         "existe_hoje": true
       }
-    ]
+    ],
+    "o_nivel_e_o_elo_mais_fraco": {
+      "decidido_em": "2026-09-11",
+      "a_pergunta": "Manual do fabricante hospedado por terceiro, colhido por busca, e nivel 2?",
+      "resposta": "NAO. E nivel 3.",
+      "por_que": "Uma origem tem tres elos — QUEM ESCREVEU o documento, QUEM O GUARDA e COMO NOS O LEMOS —, e o nivel e o do elo MAIS FRACO, nunca o do mais forte. O manual do ERB10/ERB11/ERB20 e escrito pela Electrolux (elo forte), mas esta guardado por manuals.plus (terceiro, que pode ter arquivado uma revisao velha ou alterado o texto sem que ninguem note) e chegou aqui por busca, sem leitura direta: o WebFetch devolveu EGRESS_BLOCKED. Dois dos tres elos sao fracos.",
+      "a_assimetria_de_custo_que_decide": "Pela secao 10 do ARQUIPELAGO.md, quem decide a direcao e o lado em que errar dói menos. Errar para BAIXO custa uma frase mais fraca na tela ('a confirmar no manual'). Errar para CIMA custa a pagina de metodologia declarar um rigor que a ilha nao tem — e a metodologia e justamente a pagina cujo unico produto e o rigor. Numa ilha que existe para substituir copy de anuncio por procedencia, inflar o proprio nivel de fonte e o defeito mais caro possivel.",
+      "o_que_destrava_o_nivel_2": "Ler o documento na fonte primaria, no endereco do fabricante. No dia em que a rede abrir (item (c) do bloco 3c do PROMPT.md), a releitura sobe o campo de 3 para 2 sem que nada mais mude: e por isso que a fonte guarda url, canal_de_coleta e verificado_em separados.",
+      "medido_em_11_09_2026": "As QUATRO unicas fontes de nivel 2 que o banco tinha eram a MESMA entrada de manuals.plus, e nenhuma outra fonte do banco fica em dominio de fabricante sem ser nivel 3. Ou seja: a contradicao nao era um registro solto — nivel 2, neste banco, era inteiro custodia de terceiro."
+    },
+    "onde_moram_as_fontes": {
+      "escrito_em": "2026-09-11",
+      "por_que": "A escada vale para TODA origem da ilha, e elas nao moram todas no mesmo arquivo: pecas.json e modelos-robo.json guardam fontes{} com nivel explicito; constantes.json guarda recomendacao de faixa e especificacao com um campo 'tipo', sem nivel. Quem contar so os dois primeiros conclui que a ilha nao tem fonte editorial — e tem seis, usadas pela R2 em toda resposta. Medicao que le metade das origens e pior que o numero digitado que ela substitui.",
+      "arquivos_com_fontes_de_nivel_explicito": [
+        "dados/pecas.json",
+        "dados/modelos-robo.json"
+      ],
+      "tipo_de_constante_para_nivel": {
+        "recomendacao_editorial": 7,
+        "fabricante": 3,
+        "derivada": null,
+        "pendente": null
+      },
+      "por_que_fabricante_e_3_e_nao_2": "Toda constante de tipo 'fabricante' deste banco foi colhida por busca restrita ao dominio, sem leitura direta — o proprio canal_de_coleta de cada uma diz isso. Pela regra do elo mais fraco, busca sem leitura e nivel 3.",
+      "so_conta_o_publicavel": "A contagem e de registro e constante com status publicavel. A coluna fala do que a ilha publica, nao do que ela guarda."
+    }
   },
   "vocabularios": {
     "categoria": [

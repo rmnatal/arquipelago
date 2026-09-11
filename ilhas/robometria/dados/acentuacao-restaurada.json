@@ -1,0 +1,1240 @@
+{
+ "id": "acentuacao-restaurada",
+ "ilha": "robometria",
+ "entidade": "medicao",
+ "gerado_por": "ferramentas/acentuar-banco.py",
+ "gerado_em": "2026-09-11",
+ "o_que_e": "Livro-razao da restauracao de acentos dos campos do banco que vao para a tela. Cada linha e uma string que a ilha PUBLICA e que estava em ASCII. A mudanca e so de diacritico, e isso e verificavel sem confiar em ninguem: reduzida a ASCII, a coluna \"depois\" e byte a byte igual a coluna \"antes\".",
+ "o_que_ele_nao_prova": "Que a fonte primaria escreve assim. O acento foi RESTAURADO pela ilha, nao LIDO no fabricante — a rede desta nuvem nao alcanca fabricante nenhum. Esta lista e a conferencia de quem reler os manuais quando a rede abrir (item (c) do bloco 3c do PROMPT.md): se alguma fonte de fato escrever sem acento, a linha correspondente volta atras e vira excecao declarada.",
+ "campos_de_tela": [
+  "nome_na_fonte",
+  "titulo_na_fonte",
+  "publicador",
+  "linha",
+  "nome",
+  "nome_comercial",
+  "o_que_muda",
+  "canal",
+  "conjunto_declarado"
+ ],
+ "total": 121,
+ "pares_distintos": [
+  {
+   "antes": "ASPIRADOR ROBO HYDRA BIVOLT VARRE, ASPIRA E PASSA PANO, COM RESERVATORIO DE AGUA, BASE CARREGADORA, SISTEMA ANTI-QUEDA, AUTONOMIA DE 90 MINUTOS",
+   "depois": "ASPIRADOR ROBÔ HYDRA BIVOLT VARRE, ASPIRA E PASSA PANO, COM RESERVATÓRIO DE ÁGUA, BASE CARREGADORA, SISTEMA ANTI-QUEDA, AUTONOMIA DE 90 MINUTOS"
+  },
+  {
+   "antes": "ASPIRADOR ROBO MARS BIVOLT VARRE, ASPIRA E PASSA PANO, SISTEMA ANTI-QUEDA, AUTONOMIA DE 2 HORAS, 3 FUNCOES PRE-PROGRAMADAS, IDEAL PARA PETS",
+   "depois": "ASPIRADOR ROBÔ MARS BIVOLT VARRE, ASPIRA E PASSA PANO, SISTEMA ANTI-QUEDA, AUTONOMIA DE 2 HORAS, 3 FUNÇÕES PRE-PROGRAMADAS, IDEAL PARA PETS"
+  },
+  {
+   "antes": "Aspirador Robo 3 Em 1 Varre, Aspira E Passa Pano Obaduster Obabox - OB010",
+   "depois": "Aspirador Robô 3 Em 1 Varre, Aspira E Passa Pano Obaduster Obabox - OB010"
+  },
+  {
+   "antes": "Aspirador Robo 3 em 1 Varre, Aspira e Passa Pano Duster Multi - HO407OUT [Reembalado]",
+   "depois": "Aspirador Robô 3 em 1 Varre, Aspira e Passa Pano Duster Multi - HO407OUT [Reembalado]"
+  },
+  {
+   "antes": "Aspirador Robo Duster 3 em 1",
+   "depois": "Aspirador Robô Duster 3 em 1"
+  },
+  {
+   "antes": "Aspirador Robo Hydra (Acqua Solution)",
+   "depois": "Aspirador Robô Hydra (Acqua Solution)"
+  },
+  {
+   "antes": "Aspirador Robo Midnight",
+   "depois": "Aspirador Robô Midnight"
+  },
+  {
+   "antes": "Aspirador Robo ObaDuster 3 em 1",
+   "depois": "Aspirador Robô ObaDuster 3 em 1"
+  },
+  {
+   "antes": "Aspirador de Po 2 em 1 HO03",
+   "depois": "Aspirador de Pó 2 em 1 HO03"
+  },
+  {
+   "antes": "Aspirador de Po 2 em 1 HO04",
+   "depois": "Aspirador de Pó 2 em 1 HO04"
+  },
+  {
+   "antes": "Aspirador de Po Robo Mars (Multi Home)",
+   "depois": "Aspirador de Pó Robô Mars (Multi Home)"
+  },
+  {
+   "antes": "Aspirador de Po Robo Mars 3 em 1 (varre, aspira e passa pano)",
+   "depois": "Aspirador de Pó Robô Mars 3 em 1 (varre, aspira e passa pano)"
+  },
+  {
+   "antes": "Aspirador de Po Robo Mars Varre + Aspira + Passa Pano Bivolt com 30W e Bateria Recarregavel, Vermelho/Preto Multi - HO041",
+   "depois": "Aspirador de Pó Robô Mars Varre + Aspira + Passa Pano Bivolt com 30W e Bateria Recarregável, Vermelho/Preto Multi - HO041"
+  },
+  {
+   "antes": "Aspirador de Po Robo Mars Varre, Aspira e Passa Pano Bivolt e Bateria Recarregavel Multi Home - HO400",
+   "depois": "Aspirador de Pó Robô Mars Varre, Aspira e Passa Pano Bivolt e Bateria Recarregável Multi Home - HO400"
+  },
+  {
+   "antes": "Aspirador de Po Vertical e de Mao 2 em 1 (127 V, 1000 W)",
+   "depois": "Aspirador de Pó Vertical e de Mão 2 em 1 (127 V, 1000 W)"
+  },
+  {
+   "antes": "Aspirador de Po Vertical e de Mao 2 em 1 (220 V, 700 W)",
+   "depois": "Aspirador de Pó Vertical e de Mão 2 em 1 (220 V, 700 W)"
+  },
+  {
+   "antes": "Aspirador de Po Vertical e de Mao 2 em 1 com Coletor de Po Permanente 1000w-127v Multi - HO011",
+   "depois": "Aspirador de Pó Vertical e de Mão 2 em 1 com Coletor de Pó Permanente 1000w-127v Multi - HO011"
+  },
+  {
+   "antes": "Aspirador de Po Vertical e de Mao Multilaser 220V 700W Branco/Laranja - HO012",
+   "depois": "Aspirador de Pó Vertical e de Mão Multilaser 220V 700W Branco/Laranja - HO012"
+  },
+  {
+   "antes": "Aspirador robo (nome comercial nao confirmado)",
+   "depois": "Aspirador robô (nome comercial não confirmado)"
+  },
+  {
+   "antes": "Bateria Para Aspirador Robo Mars, Moon e Duster Multi",
+   "depois": "Bateria Para Aspirador Robô Mars, Moon e Duster Multi"
+  },
+  {
+   "antes": "Bateria Para Aspirador Robo Mars, Moon e Duster Multi - PR8116",
+   "depois": "Bateria Para Aspirador Robô Mars, Moon e Duster Multi - PR8116"
+  },
+  {
+   "antes": "Bateria Para Aspirador Robo Mars, Moon e Duster Multi - PR8116 (endereco da propria pagina: 'bateria-para-aspirador-robo-mars-ho041-versao-b--pr8116')",
+   "depois": "Bateria Para Aspirador Robô Mars, Moon e Duster Multi - PR8116 (endereço da própria página: 'bateria-para-aspirador-robo-mars-ho041-versao-b--pr8116')"
+  },
+  {
+   "antes": "Bateria p/ Aspirador Robo Ho041 Versao A",
+   "depois": "Bateria p/ Aspirador Robô Ho041 Versão A"
+  },
+  {
+   "antes": "Bateria p/ Aspirador Robo Ho041 Versao A - PR10127",
+   "depois": "Bateria p/ Aspirador Robô Ho041 Versão A - PR10127"
+  },
+  {
+   "antes": "Escova Central para Smart Robo Aspirador Laser PRA800 e Autolimpante PRA2000",
+   "depois": "Escova Central para Smart Robô Aspirador Laser PRA800 e Autolimpante PRA2000"
+  },
+  {
+   "antes": "Escova Lateral para Aspirador Robo Mars, Moon e Duster",
+   "depois": "Escova Lateral para Aspirador Robô Mars, Moon e Duster"
+  },
+  {
+   "antes": "Escova Lateral para Aspirador Robo Mars, Moon e Duster - PR10124",
+   "depois": "Escova Lateral para Aspirador Robô Mars, Moon e Duster - PR10124"
+  },
+  {
+   "antes": "Escova Lateral para Aspirador Robo Mars, Moon e Duster - PR10124 (endereco da propria pagina: 'escova-lateral-para-aspirador-robo-ho041-e-ob010')",
+   "depois": "Escova Lateral para Aspirador Robô Mars, Moon e Duster - PR10124 (endereço da própria página: 'escova-lateral-para-aspirador-robo-ho041-e-ob010')"
+  },
+  {
+   "antes": "Escova Lateral para Smart Robo Aspirador PRA800/PRA2000 Positivo Casa Inteligente",
+   "depois": "Escova Lateral para Smart Robô Aspirador PRA800/PRA2000 Positivo Casa Inteligente"
+  },
+  {
+   "antes": "Escova Rotativa Central Electrolux para Robos Aspiradores ERB60, ERB61, ERB62 e ERB80",
+   "depois": "Escova Rotativa Central Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80"
+  },
+  {
+   "antes": "Filtro HEPA com Espuma Electrolux para Robos Aspiradores ERB44, ERB60, ERB61 e ERB62",
+   "depois": "Filtro HEPA com Espuma Electrolux para Robôs Aspiradores ERB44, ERB60, ERB61 e ERB62"
+  },
+  {
+   "antes": "Filtro HEPA para Aspirador de Po HO03 HO04 Multilaser - PR550",
+   "depois": "Filtro HEPA para Aspirador de Pó HO03 HO04 Multilaser - PR550"
+  },
+  {
+   "antes": "Filtro HEPA para Aspirador de Po HO03/HO04",
+   "depois": "Filtro HEPA para Aspirador de Pó HO03/HO04"
+  },
+  {
+   "antes": "Filtro Removivel e Lavavel - PR684",
+   "depois": "Filtro Removível e Lavável - PR684"
+  },
+  {
+   "antes": "Filtro Removivel e Lavavel Compativel com o Aspirador de Po HO011/HO012 - PR684",
+   "depois": "Filtro Removível e Lavável Compatível com o Aspirador de Pó HO011/HO012 - PR684"
+  },
+  {
+   "antes": "Filtro para Aspirador Robo (HO041 e OB010) - PR10205",
+   "depois": "Filtro para Aspirador Robô (HO041 e OB010) - PR10205"
+  },
+  {
+   "antes": "Filtro para Aspirador Robo Mars, Moon e Duster",
+   "depois": "Filtro para Aspirador Robô Mars, Moon e Duster"
+  },
+  {
+   "antes": "Filtro para Aspirador Robo Mars, Moon e Duster - PR10205",
+   "depois": "Filtro para Aspirador Robô Mars, Moon e Duster - PR10205"
+  },
+  {
+   "antes": "Filtro para Aspirador Robo OB010",
+   "depois": "Filtro para Aspirador Robô OB010"
+  },
+  {
+   "antes": "Filtro para Aspirador Robo OB010 - PR10343",
+   "depois": "Filtro para Aspirador Robô OB010 - PR10343"
+  },
+  {
+   "antes": "HO041 versao B",
+   "depois": "HO041 versão B"
+  },
+  {
+   "antes": "KPCEL01 KIT PERFORMANCE ROBO",
+   "depois": "KPCEL01 KIT PERFORMANCE ROBÔ"
+  },
+  {
+   "antes": "Kit Performance Electrolux para Robo Aspirador ERB44",
+   "depois": "Kit Performance Electrolux para Robô Aspirador ERB44"
+  },
+  {
+   "antes": "Kit Performance Electrolux para Robos Aspiradores ERB60, ERB61 e ERB62",
+   "depois": "Kit Performance Electrolux para Robôs Aspiradores ERB60, ERB61 e ERB62"
+  },
+  {
+   "antes": "Kit Performance para Robo Aspirador ERB30 - Electrolux",
+   "depois": "Kit Performance para Robô Aspirador ERB30 - Electrolux"
+  },
+  {
+   "antes": "Kit Performance para Robos Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
+   "depois": "Kit Performance para Robôs Aspiradores ERB10, ERB11 e ERB20 - Electrolux"
+  },
+  {
+   "antes": "MANUAL DE INSTRUCOES WAP ROBOT W400 FW009293 REV00MAI23",
+   "depois": "MANUAL DE INSTRUÇÕES WAP ROBOT W400 FW009293 REV00MAI23"
+  },
+  {
+   "antes": "Manual do usuario do aspirador robo Electrolux ERB10/ERB11/ERB20",
+   "depois": "Manual do usuário do aspirador robô Electrolux ERB10/ERB11/ERB20"
+  },
+  {
+   "antes": "Mop para Smart Robo Aspirador Laser PRA800/PRA2000 Positivo Casa Inteligente",
+   "depois": "Mop para Smart Robô Aspirador Laser PRA800/PRA2000 Positivo Casa Inteligente"
+  },
+  {
+   "antes": "Multi (lamina.multilaser.com.br)",
+   "depois": "Multi (lâmina.multilaser.com.br)"
+  },
+  {
+   "antes": "Pano para Aspirador Robo p/ OB010",
+   "depois": "Pano para Aspirador Robô p/ OB010"
+  },
+  {
+   "antes": "Pano para Aspirador Robo p/ OB010 - PR10342",
+   "depois": "Pano para Aspirador Robô p/ OB010 - PR10342"
+  },
+  {
+   "antes": "Robo Aspirador Electrolux 4 em 1 Wi-Fi Experience",
+   "depois": "Robô Aspirador Electrolux 4 em 1 Wi-Fi Experience"
+  },
+  {
+   "antes": "Robo Aspirador Electrolux 4 em 1 Wi-Fi Experience ate 1h40 Mapeamento Branco (ERB62)",
+   "depois": "Robô Aspirador Electrolux 4 em 1 Wi-Fi Experience até 1h40 Mapeamento Branco (ERB62)"
+  },
+  {
+   "antes": "Robo Aspirador Electrolux 4 em 1 Wi-Fi Experience ate 1h40 Mapeamento Cinza (ERB61)",
+   "depois": "Robô Aspirador Electrolux 4 em 1 Wi-Fi Experience até 1h40 Mapeamento Cinza (ERB61)"
+  },
+  {
+   "antes": "Robo Aspirador Electrolux 4 em 1 Wi-Fi Experience ate 1h40 Mapeamento Preto (ERB60)",
+   "depois": "Robô Aspirador Electrolux 4 em 1 Wi-Fi Experience até 1h40 Mapeamento Preto (ERB60)"
+  },
+  {
+   "antes": "Robo Aspirador Electrolux 4 em 1 Wi-Fi Experience ate 1h40 Mapeamento e Base Autolimpante (ERB80)",
+   "depois": "Robô Aspirador Electrolux 4 em 1 Wi-Fi Experience até 1h40 Mapeamento e Base Autolimpante (ERB80)"
+  },
+  {
+   "antes": "Robo Aspirador Electrolux 4 em 1 Wi-Fi Experience ate 2h (ERB44)",
+   "depois": "Robô Aspirador Electrolux 4 em 1 Wi-Fi Experience até 2h (ERB44)"
+  },
+  {
+   "antes": "Robo Aspirador Electrolux ERB10",
+   "depois": "Robô Aspirador Electrolux ERB10"
+  },
+  {
+   "antes": "Robo Aspirador Electrolux ERB11",
+   "depois": "Robô Aspirador Electrolux ERB11"
+  },
+  {
+   "antes": "Robo Aspirador Electrolux ERB20",
+   "depois": "Robô Aspirador Electrolux ERB20"
+  },
+  {
+   "antes": "Robo Aspirador WAP Robot W310",
+   "depois": "Robô Aspirador WAP Robot W310"
+  },
+  {
+   "antes": "Robo Aspirador WAP Robot W310 | Limpeza Automatica — Lojas WAP",
+   "depois": "Robô Aspirador WAP Robot W310 | Limpeza Automática — Lojas WAP"
+  },
+  {
+   "antes": "Robo Aspirador de Po Electrolux Home-E Power Experience com Autonomous Technology",
+   "depois": "Robô Aspirador de Pó Electrolux Home-E Power Experience com Autonomous Technology"
+  },
+  {
+   "antes": "Robo Aspirador de Po Electrolux Home-E Power Experience com Autonomous Technology (ERB30)",
+   "depois": "Robô Aspirador de Pó Electrolux Home-E Power Experience com Autonomous Technology (ERB30)"
+  },
+  {
+   "antes": "Robo Aspirador de Po Electrolux Home-e Speed Experience Com Autonomous Technology ERB10",
+   "depois": "Robô Aspirador de Pó Electrolux Home-e Speed Experience Com Autonomous Technology ERB10"
+  },
+  {
+   "antes": "Robo Aspirador de Po Electrolux Home-e Speed Experience Com Autonomous Technology ERB11",
+   "depois": "Robô Aspirador de Pó Electrolux Home-e Speed Experience Com Autonomous Technology ERB11"
+  },
+  {
+   "antes": "Robo Aspirador de Po WAP Robot W1000",
+   "depois": "Robô Aspirador de Pó WAP Robot W1000"
+  },
+  {
+   "antes": "Robo Aspirador de Po WAP Robot W1000 — Lojas WAP",
+   "depois": "Robô Aspirador de Pó WAP Robot W1000 — Lojas WAP"
+  },
+  {
+   "antes": "Robo Aspirador de Po WAP Robot W400",
+   "depois": "Robô Aspirador de Pó WAP Robot W400"
+  },
+  {
+   "antes": "Robo Aspirador de Po WAP Robot W400 — Lojas WAP",
+   "depois": "Robô Aspirador de Pó WAP Robot W400 — Lojas WAP"
+  },
+  {
+   "antes": "Smart Robo Aspirador",
+   "depois": "Smart Robô Aspirador"
+  },
+  {
+   "antes": "Smart Robo Aspirador Wi-Fi Autolimpante PRA2000 Positivo Casa Inteligente",
+   "depois": "Smart Robô Aspirador Wi-Fi Autolimpante PRA2000 Positivo Casa Inteligente"
+  },
+  {
+   "antes": "Smart Robo Aspirador Wi-Fi Autolimpante PRA2000 | Positivo Casa Inteligente",
+   "depois": "Smart Robô Aspirador Wi-Fi Autolimpante PRA2000 | Positivo Casa Inteligente"
+  },
+  {
+   "antes": "Smart Robo Aspirador Wi-Fi Laser (mapeamento)",
+   "depois": "Smart Robô Aspirador Wi-Fi Laser (mapeamento)"
+  },
+  {
+   "antes": "Smart Robo Aspirador Wi-Fi Mapeamento PRA800",
+   "depois": "Smart Robô Aspirador Wi-Fi Mapeamento PRA800"
+  },
+  {
+   "antes": "Smart Robo Aspirador Wi-Fi+ PRA 500 | Exclusivo Loja Positivo Casa Inteligente",
+   "depois": "Smart Robô Aspirador Wi-Fi+ PRA 500 | Exclusivo Loja Positivo Casa Inteligente"
+  },
+  {
+   "antes": "Smart Robo Aspirador Wi-Fi+ PRA500 Positivo Casa Inteligente",
+   "depois": "Smart Robô Aspirador Wi-Fi+ PRA500 Positivo Casa Inteligente"
+  },
+  {
+   "antes": "Smart Robo Aspirador Wi-Fi+ PRA500 Positivo Casa Inteligente - Varre, Aspira, Passa Pano e Retorna base - App/Alexa",
+   "depois": "Smart Robô Aspirador Wi-Fi+ PRA500 Positivo Casa Inteligente - Varre, Aspira, Passa Pano e Retorna base - App/Alexa"
+  },
+  {
+   "antes": "Xiaomi Robot Vacuum E10 Especificacoes — Xiaomi Brasil",
+   "depois": "Xiaomi Robot Vacuum E10 Especificações — Xiaomi Brasil"
+  },
+  {
+   "antes": "Xiaomi Robot Vacuum H40 Especificacoes, Funcionalidades | Xiaomi Brasil",
+   "depois": "Xiaomi Robot Vacuum H40 Especificações, Funcionalidades | Xiaomi Brasil"
+  },
+  {
+   "antes": "Xiaomi Robot Vacuum S10 Especificacoes — Xiaomi Brasil",
+   "depois": "Xiaomi Robot Vacuum S10 Especificações — Xiaomi Brasil"
+  },
+  {
+   "antes": "Xiaomi Robot Vacuum S20 — pagina oficial de especificacoes",
+   "depois": "Xiaomi Robot Vacuum S20 — página oficial de especificações"
+  },
+  {
+   "antes": "Xiaomi Robot Vacuum S40 — Todas as especificacoes e funcionalidades | Xiaomi Brasil",
+   "depois": "Xiaomi Robot Vacuum S40 — Todas as especificações e funcionalidades | Xiaomi Brasil"
+  },
+  {
+   "antes": "Xiaomi Robot Vacuum S40c — Todas as especificacoes e funcionalidades | Xiaomi Brasil",
+   "depois": "Xiaomi Robot Vacuum S40c — Todas as especificações e funcionalidades | Xiaomi Brasil"
+  },
+  {
+   "antes": "bateria — o fabricante vende a peca PR10127 identificada como 'Versao A'",
+   "depois": "bateria — o fabricante vende a peça PR10127 identificada como 'Versão A'"
+  },
+  {
+   "antes": "bateria — o fabricante vende a peca PR8116 identificada como 'Mars HO041 versao B'",
+   "depois": "bateria — o fabricante vende a peça PR8116 identificada como 'Mars HO041 versão B'"
+  },
+  {
+   "antes": "mi.com/br — pagina de especificacoes do mesmo produto",
+   "depois": "mi.com/br — página de especificações do mesmo produto"
+  },
+  {
+   "antes": "mi.com/br — pagina do produto",
+   "depois": "mi.com/br — página do produto"
+  },
+  {
+   "antes": "multilaserempresas.com.br — endereco da MESMA pagina",
+   "depois": "multilaserempresas.com.br — endereço da MESMA página"
+  },
+  {
+   "antes": "multilaserempresas.com.br — titulo da pagina",
+   "depois": "multilaserempresas.com.br — título da página"
+  },
+  {
+   "antes": "positivocasainteligente.com.br — pagina do proprio produto",
+   "depois": "positivocasainteligente.com.br — página do próprio produto"
+  }
+ ],
+ "mudancas": [
+  {
+   "arquivo": "dados/pecas.json",
+   "registro": "multi-pr10124",
+   "caminho": "multi-pr10124.nome_na_fonte",
+   "antes": "Escova Lateral para Aspirador Robo Mars, Moon e Duster",
+   "depois": "Escova Lateral para Aspirador Robô Mars, Moon e Duster"
+  },
+  {
+   "arquivo": "dados/pecas.json",
+   "registro": "multi-pr10124",
+   "caminho": "multi-pr10124.fontes.f-peca.titulo_na_fonte",
+   "antes": "Escova Lateral para Aspirador Robo Mars, Moon e Duster - PR10124 (endereco da propria pagina: 'escova-lateral-para-aspirador-robo-ho041-e-ob010')",
+   "depois": "Escova Lateral para Aspirador Robô Mars, Moon e Duster - PR10124 (endereço da própria página: 'escova-lateral-para-aspirador-robo-ho041-e-ob010')"
+  },
+  {
+   "arquivo": "dados/pecas.json",
+   "registro": "multi-pr10205",
+   "caminho": "multi-pr10205.nome_na_fonte",
+   "antes": "Filtro para Aspirador Robo Mars, Moon e Duster",
+   "depois": "Filtro para Aspirador Robô Mars, Moon e Duster"
+  },
+  {
+   "arquivo": "dados/pecas.json",
+   "registro": "multi-pr10205",
+   "caminho": "multi-pr10205.divergencias[0].titulo_na_fonte",
+   "antes": "Filtro para Aspirador Robo Mars, Moon e Duster - PR10205",
+   "depois": "Filtro para Aspirador Robô Mars, Moon e Duster - PR10205"
+  },
+  {
+   "arquivo": "dados/pecas.json",
+   "registro": "multi-pr10205",
+   "caminho": "multi-pr10205.divergencias[1].titulo_na_fonte",
+   "antes": "Filtro para Aspirador Robo (HO041 e OB010) - PR10205",
+   "depois": "Filtro para Aspirador Robô (HO041 e OB010) - PR10205"
+  },
+  {
+   "arquivo": "dados/pecas.json",
+   "registro": "multi-pr10205",
+   "caminho": "multi-pr10205.fontes.f-varejo.titulo_na_fonte",
+   "antes": "Filtro para Aspirador Robo Mars, Moon e Duster - PR10205",
+   "depois": "Filtro para Aspirador Robô Mars, Moon e Duster - PR10205"
+  },
+  {
+   "arquivo": "dados/pecas.json",
+   "registro": "multi-pr10205",
+   "caminho": "multi-pr10205.fontes.f-empresas.titulo_na_fonte",
+   "antes": "Filtro para Aspirador Robo (HO041 e OB010) - PR10205",
+   "depois": "Filtro para Aspirador Robô (HO041 e OB010) - PR10205"
+  },
+  {
+   "arquivo": "dados/pecas.json",
+   "registro": "multi-pr10343",
+   "caminho": "multi-pr10343.nome_na_fonte",
+   "antes": "Filtro para Aspirador Robo OB010",
+   "depois": "Filtro para Aspirador Robô OB010"
+  },
+  {
+   "arquivo": "dados/pecas.json",
+   "registro": "multi-pr10343",
+   "caminho": "multi-pr10343.fontes.f-peca.titulo_na_fonte",
+   "antes": "Filtro para Aspirador Robo OB010 - PR10343",
+   "depois": "Filtro para Aspirador Robô OB010 - PR10343"
+  },
+  {
+   "arquivo": "dados/pecas.json",
+   "registro": "multi-pr10342",
+   "caminho": "multi-pr10342.nome_na_fonte",
+   "antes": "Pano para Aspirador Robo p/ OB010",
+   "depois": "Pano para Aspirador Robô p/ OB010"
+  },
+  {
+   "arquivo": "dados/pecas.json",
+   "registro": "multi-pr10342",
+   "caminho": "multi-pr10342.fontes.f-peca.titulo_na_fonte",
+   "antes": "Pano para Aspirador Robo p/ OB010 - PR10342",
+   "depois": "Pano para Aspirador Robô p/ OB010 - PR10342"
+  },
+  {
+   "arquivo": "dados/pecas.json",
+   "registro": "multi-pr10127",
+   "caminho": "multi-pr10127.nome_na_fonte",
+   "antes": "Bateria p/ Aspirador Robo Ho041 Versao A",
+   "depois": "Bateria p/ Aspirador Robô Ho041 Versão A"
+  },
+  {
+   "arquivo": "dados/pecas.json",
+   "registro": "multi-pr10127",
+   "caminho": "multi-pr10127.fontes.f-peca.titulo_na_fonte",
+   "antes": "Bateria p/ Aspirador Robo Ho041 Versao A - PR10127",
+   "depois": "Bateria p/ Aspirador Robô Ho041 Versão A - PR10127"
+  },
+  {
+   "arquivo": "dados/pecas.json",
+   "registro": "multi-pr8116",
+   "caminho": "multi-pr8116.nome_na_fonte",
+   "antes": "Bateria Para Aspirador Robo Mars, Moon e Duster Multi",
+   "depois": "Bateria Para Aspirador Robô Mars, Moon e Duster Multi"
+  },
+  {
+   "arquivo": "dados/pecas.json",
+   "registro": "multi-pr8116",
+   "caminho": "multi-pr8116.divergencias[0].canal",
+   "antes": "multilaserempresas.com.br — titulo da pagina",
+   "depois": "multilaserempresas.com.br — título da página"
+  },
+  {
+   "arquivo": "dados/pecas.json",
+   "registro": "multi-pr8116",
+   "caminho": "multi-pr8116.divergencias[0].titulo_na_fonte",
+   "antes": "Bateria Para Aspirador Robo Mars, Moon e Duster Multi - PR8116",
+   "depois": "Bateria Para Aspirador Robô Mars, Moon e Duster Multi - PR8116"
+  },
+  {
+   "arquivo": "dados/pecas.json",
+   "registro": "multi-pr8116",
+   "caminho": "multi-pr8116.divergencias[1].canal",
+   "antes": "multilaserempresas.com.br — endereco da MESMA pagina",
+   "depois": "multilaserempresas.com.br — endereço da MESMA página"
+  },
+  {
+   "arquivo": "dados/pecas.json",
+   "registro": "multi-pr8116",
+   "caminho": "multi-pr8116.divergencias[1].conjunto_declarado[0]",
+   "antes": "HO041 versao B",
+   "depois": "HO041 versão B"
+  },
+  {
+   "arquivo": "dados/pecas.json",
+   "registro": "multi-pr8116",
+   "caminho": "multi-pr8116.fontes.f-peca.titulo_na_fonte",
+   "antes": "Bateria Para Aspirador Robo Mars, Moon e Duster Multi - PR8116",
+   "depois": "Bateria Para Aspirador Robô Mars, Moon e Duster Multi - PR8116"
+  },
+  {
+   "arquivo": "dados/pecas.json",
+   "registro": "multi-pr684",
+   "caminho": "multi-pr684.nome_na_fonte",
+   "antes": "Filtro Removivel e Lavavel - PR684",
+   "depois": "Filtro Removível e Lavável - PR684"
+  },
+  {
+   "arquivo": "dados/pecas.json",
+   "registro": "multi-pr684",
+   "caminho": "multi-pr684.fontes.f-peca.titulo_na_fonte",
+   "antes": "Filtro Removivel e Lavavel Compativel com o Aspirador de Po HO011/HO012 - PR684",
+   "depois": "Filtro Removível e Lavável Compatível com o Aspirador de Pó HO011/HO012 - PR684"
+  },
+  {
+   "arquivo": "dados/pecas.json",
+   "registro": "multi-pr550",
+   "caminho": "multi-pr550.nome_na_fonte",
+   "antes": "Filtro HEPA para Aspirador de Po HO03/HO04",
+   "depois": "Filtro HEPA para Aspirador de Pó HO03/HO04"
+  },
+  {
+   "arquivo": "dados/pecas.json",
+   "registro": "multi-pr550",
+   "caminho": "multi-pr550.fontes.f-peca.titulo_na_fonte",
+   "antes": "Filtro HEPA para Aspirador de Po HO03 HO04 Multilaser - PR550",
+   "depois": "Filtro HEPA para Aspirador de Pó HO03 HO04 Multilaser - PR550"
+  },
+  {
+   "arquivo": "dados/pecas.json",
+   "registro": "electrolux-kpcel01",
+   "caminho": "electrolux-kpcel01.nome_na_fonte",
+   "antes": "Kit Performance para Robos Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
+   "depois": "Kit Performance para Robôs Aspiradores ERB10, ERB11 e ERB20 - Electrolux"
+  },
+  {
+   "arquivo": "dados/pecas.json",
+   "registro": "electrolux-kpcel01",
+   "caminho": "electrolux-kpcel01.fontes.f-peca.titulo_na_fonte",
+   "antes": "Kit Performance para Robos Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
+   "depois": "Kit Performance para Robôs Aspiradores ERB10, ERB11 e ERB20 - Electrolux"
+  },
+  {
+   "arquivo": "dados/pecas.json",
+   "registro": "electrolux-kpcel01",
+   "caminho": "electrolux-kpcel01.fontes.f-codigo.titulo_na_fonte",
+   "antes": "KPCEL01 KIT PERFORMANCE ROBO",
+   "depois": "KPCEL01 KIT PERFORMANCE ROBÔ"
+  },
+  {
+   "arquivo": "dados/pecas.json",
+   "registro": "electrolux-kpcel01",
+   "caminho": "electrolux-kpcel01.fontes.f-manual.titulo_na_fonte",
+   "antes": "Manual do usuario do aspirador robo Electrolux ERB10/ERB11/ERB20",
+   "depois": "Manual do usuário do aspirador robô Electrolux ERB10/ERB11/ERB20"
+  },
+  {
+   "arquivo": "dados/pecas.json",
+   "registro": "electrolux-filtro-hepa-espuma-erb44-erb60-erb61-erb62",
+   "caminho": "electrolux-filtro-hepa-espuma-erb44-erb60-erb61-erb62.nome_na_fonte",
+   "antes": "Filtro HEPA com Espuma Electrolux para Robos Aspiradores ERB44, ERB60, ERB61 e ERB62",
+   "depois": "Filtro HEPA com Espuma Electrolux para Robôs Aspiradores ERB44, ERB60, ERB61 e ERB62"
+  },
+  {
+   "arquivo": "dados/pecas.json",
+   "registro": "electrolux-filtro-hepa-espuma-erb44-erb60-erb61-erb62",
+   "caminho": "electrolux-filtro-hepa-espuma-erb44-erb60-erb61-erb62.fontes.f-peca.titulo_na_fonte",
+   "antes": "Filtro HEPA com Espuma Electrolux para Robos Aspiradores ERB44, ERB60, ERB61 e ERB62",
+   "depois": "Filtro HEPA com Espuma Electrolux para Robôs Aspiradores ERB44, ERB60, ERB61 e ERB62"
+  },
+  {
+   "arquivo": "dados/pecas.json",
+   "registro": "electrolux-kit-performance-erb60-erb61-erb62",
+   "caminho": "electrolux-kit-performance-erb60-erb61-erb62.nome_na_fonte",
+   "antes": "Kit Performance Electrolux para Robos Aspiradores ERB60, ERB61 e ERB62",
+   "depois": "Kit Performance Electrolux para Robôs Aspiradores ERB60, ERB61 e ERB62"
+  },
+  {
+   "arquivo": "dados/pecas.json",
+   "registro": "electrolux-kit-performance-erb60-erb61-erb62",
+   "caminho": "electrolux-kit-performance-erb60-erb61-erb62.fontes.f-peca.titulo_na_fonte",
+   "antes": "Kit Performance Electrolux para Robos Aspiradores ERB60, ERB61 e ERB62",
+   "depois": "Kit Performance Electrolux para Robôs Aspiradores ERB60, ERB61 e ERB62"
+  },
+  {
+   "arquivo": "dados/pecas.json",
+   "registro": "electrolux-escova-rotativa-central-erb60-erb61-erb62-erb80",
+   "caminho": "electrolux-escova-rotativa-central-erb60-erb61-erb62-erb80.nome_na_fonte",
+   "antes": "Escova Rotativa Central Electrolux para Robos Aspiradores ERB60, ERB61, ERB62 e ERB80",
+   "depois": "Escova Rotativa Central Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80"
+  },
+  {
+   "arquivo": "dados/pecas.json",
+   "registro": "electrolux-escova-rotativa-central-erb60-erb61-erb62-erb80",
+   "caminho": "electrolux-escova-rotativa-central-erb60-erb61-erb62-erb80.fontes.f-peca.titulo_na_fonte",
+   "antes": "Escova Rotativa Central Electrolux para Robos Aspiradores ERB60, ERB61, ERB62 e ERB80",
+   "depois": "Escova Rotativa Central Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80"
+  },
+  {
+   "arquivo": "dados/pecas.json",
+   "registro": "electrolux-kit-performance-erb44",
+   "caminho": "electrolux-kit-performance-erb44.nome_na_fonte",
+   "antes": "Kit Performance Electrolux para Robo Aspirador ERB44",
+   "depois": "Kit Performance Electrolux para Robô Aspirador ERB44"
+  },
+  {
+   "arquivo": "dados/pecas.json",
+   "registro": "electrolux-kit-performance-erb44",
+   "caminho": "electrolux-kit-performance-erb44.fontes.f-peca.titulo_na_fonte",
+   "antes": "Kit Performance Electrolux para Robo Aspirador ERB44",
+   "depois": "Kit Performance Electrolux para Robô Aspirador ERB44"
+  },
+  {
+   "arquivo": "dados/pecas.json",
+   "registro": "electrolux-kit-performance-erb30",
+   "caminho": "electrolux-kit-performance-erb30.nome_na_fonte",
+   "antes": "Kit Performance para Robo Aspirador ERB30 - Electrolux",
+   "depois": "Kit Performance para Robô Aspirador ERB30 - Electrolux"
+  },
+  {
+   "arquivo": "dados/pecas.json",
+   "registro": "electrolux-kit-performance-erb30",
+   "caminho": "electrolux-kit-performance-erb30.fontes.f-peca.titulo_na_fonte",
+   "antes": "Kit Performance para Robo Aspirador ERB30 - Electrolux",
+   "depois": "Kit Performance para Robô Aspirador ERB30 - Electrolux"
+  },
+  {
+   "arquivo": "dados/pecas.json",
+   "registro": "positivo-11206518",
+   "caminho": "positivo-11206518.nome_na_fonte",
+   "antes": "Escova Lateral para Smart Robo Aspirador PRA800/PRA2000 Positivo Casa Inteligente",
+   "depois": "Escova Lateral para Smart Robô Aspirador PRA800/PRA2000 Positivo Casa Inteligente"
+  },
+  {
+   "arquivo": "dados/pecas.json",
+   "registro": "positivo-11206518",
+   "caminho": "positivo-11206518.fontes.f-peca.titulo_na_fonte",
+   "antes": "Escova Lateral para Smart Robo Aspirador PRA800/PRA2000 Positivo Casa Inteligente",
+   "depois": "Escova Lateral para Smart Robô Aspirador PRA800/PRA2000 Positivo Casa Inteligente"
+  },
+  {
+   "arquivo": "dados/pecas.json",
+   "registro": "positivo-11206519",
+   "caminho": "positivo-11206519.nome_na_fonte",
+   "antes": "Escova Central para Smart Robo Aspirador Laser PRA800 e Autolimpante PRA2000",
+   "depois": "Escova Central para Smart Robô Aspirador Laser PRA800 e Autolimpante PRA2000"
+  },
+  {
+   "arquivo": "dados/pecas.json",
+   "registro": "positivo-11206519",
+   "caminho": "positivo-11206519.fontes.f-peca.titulo_na_fonte",
+   "antes": "Escova Central para Smart Robo Aspirador Laser PRA800 e Autolimpante PRA2000",
+   "depois": "Escova Central para Smart Robô Aspirador Laser PRA800 e Autolimpante PRA2000"
+  },
+  {
+   "arquivo": "dados/pecas.json",
+   "registro": "positivo-11206540",
+   "caminho": "positivo-11206540.nome_na_fonte",
+   "antes": "Mop para Smart Robo Aspirador Laser PRA800/PRA2000 Positivo Casa Inteligente",
+   "depois": "Mop para Smart Robô Aspirador Laser PRA800/PRA2000 Positivo Casa Inteligente"
+  },
+  {
+   "arquivo": "dados/pecas.json",
+   "registro": "positivo-11206540",
+   "caminho": "positivo-11206540.fontes.f-peca.titulo_na_fonte",
+   "antes": "Mop para Smart Robo Aspirador Laser PRA800/PRA2000 Positivo Casa Inteligente",
+   "depois": "Mop para Smart Robô Aspirador Laser PRA800/PRA2000 Positivo Casa Inteligente"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "multi-ho041",
+   "caminho": "multi-ho041.nome_comercial",
+   "antes": "Aspirador de Po Robo Mars 3 em 1 (varre, aspira e passa pano)",
+   "depois": "Aspirador de Pó Robô Mars 3 em 1 (varre, aspira e passa pano)"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "multi-ho041",
+   "caminho": "multi-ho041.variantes_de_hardware[0].o_que_muda",
+   "antes": "bateria — o fabricante vende a peca PR10127 identificada como 'Versao A'",
+   "depois": "bateria — o fabricante vende a peça PR10127 identificada como 'Versão A'"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "multi-ho041",
+   "caminho": "multi-ho041.variantes_de_hardware[1].o_que_muda",
+   "antes": "bateria — o fabricante vende a peca PR8116 identificada como 'Mars HO041 versao B'",
+   "depois": "bateria — o fabricante vende a peça PR8116 identificada como 'Mars HO041 versão B'"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "multi-ho041",
+   "caminho": "multi-ho041.fontes.f-empresas.titulo_na_fonte",
+   "antes": "Aspirador de Po Robo Mars Varre + Aspira + Passa Pano Bivolt com 30W e Bateria Recarregavel, Vermelho/Preto Multi - HO041",
+   "depois": "Aspirador de Pó Robô Mars Varre + Aspira + Passa Pano Bivolt com 30W e Bateria Recarregável, Vermelho/Preto Multi - HO041"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "multi-ho041",
+   "caminho": "multi-ho041.fontes.f-suporte.titulo_na_fonte",
+   "antes": "ASPIRADOR ROBO MARS BIVOLT VARRE, ASPIRA E PASSA PANO, SISTEMA ANTI-QUEDA, AUTONOMIA DE 2 HORAS, 3 FUNCOES PRE-PROGRAMADAS, IDEAL PARA PETS",
+   "depois": "ASPIRADOR ROBÔ MARS BIVOLT VARRE, ASPIRA E PASSA PANO, SISTEMA ANTI-QUEDA, AUTONOMIA DE 2 HORAS, 3 FUNÇÕES PRE-PROGRAMADAS, IDEAL PARA PETS"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "multi-ho041",
+   "caminho": "multi-ho041.fontes.f-bateria-a.titulo_na_fonte",
+   "antes": "Bateria p/ Aspirador Robo Ho041 Versao A - PR10127",
+   "depois": "Bateria p/ Aspirador Robô Ho041 Versão A - PR10127"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "multi-ho041",
+   "caminho": "multi-ho041.fontes.f-bateria-b.titulo_na_fonte",
+   "antes": "Bateria Para Aspirador Robo Mars, Moon e Duster Multi - PR8116 (endereco da propria pagina: 'bateria-para-aspirador-robo-mars-ho041-versao-b--pr8116')",
+   "depois": "Bateria Para Aspirador Robô Mars, Moon e Duster Multi - PR8116 (endereço da própria página: 'bateria-para-aspirador-robo-mars-ho041-versao-b--pr8116')"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "multi-ho400",
+   "caminho": "multi-ho400.nome_comercial",
+   "antes": "Aspirador de Po Robo Mars (Multi Home)",
+   "depois": "Aspirador de Pó Robô Mars (Multi Home)"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "multi-ho400",
+   "caminho": "multi-ho400.fontes.f-empresas.titulo_na_fonte",
+   "antes": "Aspirador de Po Robo Mars Varre, Aspira e Passa Pano Bivolt e Bateria Recarregavel Multi Home - HO400",
+   "depois": "Aspirador de Pó Robô Mars Varre, Aspira e Passa Pano Bivolt e Bateria Recarregável Multi Home - HO400"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "multi-ho407",
+   "caminho": "multi-ho407.nome_comercial",
+   "antes": "Aspirador Robo Duster 3 em 1",
+   "depois": "Aspirador Robô Duster 3 em 1"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "multi-ho407",
+   "caminho": "multi-ho407.fontes.f-duster.titulo_na_fonte",
+   "antes": "Aspirador Robo 3 em 1 Varre, Aspira e Passa Pano Duster Multi - HO407OUT [Reembalado]",
+   "depois": "Aspirador Robô 3 em 1 Varre, Aspira e Passa Pano Duster Multi - HO407OUT [Reembalado]"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "multi-ho401",
+   "caminho": "multi-ho401.nome_comercial",
+   "antes": "Aspirador robo (nome comercial nao confirmado)",
+   "depois": "Aspirador robô (nome comercial não confirmado)"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "multi-ho401",
+   "caminho": "multi-ho401.fontes.f-peca.titulo_na_fonte",
+   "antes": "Escova Lateral para Aspirador Robo Mars, Moon e Duster - PR10124",
+   "depois": "Escova Lateral para Aspirador Robô Mars, Moon e Duster - PR10124"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "multi-ob010",
+   "caminho": "multi-ob010.nome_comercial",
+   "antes": "Aspirador Robo ObaDuster 3 em 1",
+   "depois": "Aspirador Robô ObaDuster 3 em 1"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "multi-ob010",
+   "caminho": "multi-ob010.fontes.f-obaduster.titulo_na_fonte",
+   "antes": "Aspirador Robo 3 Em 1 Varre, Aspira E Passa Pano Obaduster Obabox - OB010",
+   "depois": "Aspirador Robô 3 Em 1 Varre, Aspira E Passa Pano Obaduster Obabox - OB010"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "multi-ho243",
+   "caminho": "multi-ho243.nome_comercial",
+   "antes": "Aspirador Robo Hydra (Acqua Solution)",
+   "depois": "Aspirador Robô Hydra (Acqua Solution)"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "multi-ho243",
+   "caminho": "multi-ho243.fontes.f-suporte.titulo_na_fonte",
+   "antes": "ASPIRADOR ROBO HYDRA BIVOLT VARRE, ASPIRA E PASSA PANO, COM RESERVATORIO DE AGUA, BASE CARREGADORA, SISTEMA ANTI-QUEDA, AUTONOMIA DE 90 MINUTOS",
+   "depois": "ASPIRADOR ROBÔ HYDRA BIVOLT VARRE, ASPIRA E PASSA PANO, COM RESERVATÓRIO DE ÁGUA, BASE CARREGADORA, SISTEMA ANTI-QUEDA, AUTONOMIA DE 90 MINUTOS"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "multi-ho411",
+   "caminho": "multi-ho411.nome_comercial",
+   "antes": "Aspirador Robo Midnight",
+   "depois": "Aspirador Robô Midnight"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "multi-ho411",
+   "caminho": "multi-ho411.fontes.f-lamina.publicador",
+   "antes": "Multi (lamina.multilaser.com.br)",
+   "depois": "Multi (lâmina.multilaser.com.br)"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "multi-ho411",
+   "caminho": "multi-ho411.fontes.f-lamina.titulo_na_fonte",
+   "antes": "Aspirador Robo Midnight",
+   "depois": "Aspirador Robô Midnight"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "electrolux-erb44",
+   "caminho": "electrolux-erb44.nome_comercial",
+   "antes": "Robo Aspirador Electrolux 4 em 1 Wi-Fi Experience",
+   "depois": "Robô Aspirador Electrolux 4 em 1 Wi-Fi Experience"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "electrolux-erb44",
+   "caminho": "electrolux-erb44.fontes.f-loja.titulo_na_fonte",
+   "antes": "Robo Aspirador Electrolux 4 em 1 Wi-Fi Experience ate 2h (ERB44)",
+   "depois": "Robô Aspirador Electrolux 4 em 1 Wi-Fi Experience até 2h (ERB44)"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "electrolux-erb10",
+   "caminho": "electrolux-erb10.nome_comercial",
+   "antes": "Robo Aspirador Electrolux ERB10",
+   "depois": "Robô Aspirador Electrolux ERB10"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "electrolux-erb10",
+   "caminho": "electrolux-erb10.fontes.f-manual.titulo_na_fonte",
+   "antes": "Manual do usuario do aspirador robo Electrolux ERB10/ERB11/ERB20",
+   "depois": "Manual do usuário do aspirador robô Electrolux ERB10/ERB11/ERB20"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "electrolux-erb10",
+   "caminho": "electrolux-erb10.fontes.f-loja.titulo_na_fonte",
+   "antes": "Robo Aspirador de Po Electrolux Home-e Speed Experience Com Autonomous Technology ERB10",
+   "depois": "Robô Aspirador de Pó Electrolux Home-e Speed Experience Com Autonomous Technology ERB10"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "electrolux-erb11",
+   "caminho": "electrolux-erb11.nome_comercial",
+   "antes": "Robo Aspirador Electrolux ERB11",
+   "depois": "Robô Aspirador Electrolux ERB11"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "electrolux-erb11",
+   "caminho": "electrolux-erb11.fontes.f-manual.titulo_na_fonte",
+   "antes": "Manual do usuario do aspirador robo Electrolux ERB10/ERB11/ERB20",
+   "depois": "Manual do usuário do aspirador robô Electrolux ERB10/ERB11/ERB20"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "electrolux-erb11",
+   "caminho": "electrolux-erb11.fontes.f-loja.titulo_na_fonte",
+   "antes": "Robo Aspirador de Po Electrolux Home-e Speed Experience Com Autonomous Technology ERB11",
+   "depois": "Robô Aspirador de Pó Electrolux Home-e Speed Experience Com Autonomous Technology ERB11"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "electrolux-erb20",
+   "caminho": "electrolux-erb20.nome_comercial",
+   "antes": "Robo Aspirador Electrolux ERB20",
+   "depois": "Robô Aspirador Electrolux ERB20"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "electrolux-erb20",
+   "caminho": "electrolux-erb20.fontes.f-manual.titulo_na_fonte",
+   "antes": "Manual do usuario do aspirador robo Electrolux ERB10/ERB11/ERB20",
+   "depois": "Manual do usuário do aspirador robô Electrolux ERB10/ERB11/ERB20"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "xiaomi-s20",
+   "caminho": "xiaomi-s20.fontes.f-specs.titulo_na_fonte",
+   "antes": "Xiaomi Robot Vacuum S20 — pagina oficial de especificacoes",
+   "depois": "Xiaomi Robot Vacuum S20 — página oficial de especificações"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "positivo-pra800",
+   "caminho": "positivo-pra800.nome_comercial",
+   "antes": "Smart Robo Aspirador Wi-Fi Laser (mapeamento)",
+   "depois": "Smart Robô Aspirador Wi-Fi Laser (mapeamento)"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "positivo-pra800",
+   "caminho": "positivo-pra800.fontes.f-oficial.titulo_na_fonte",
+   "antes": "Smart Robo Aspirador Wi-Fi Mapeamento PRA800",
+   "depois": "Smart Robô Aspirador Wi-Fi Mapeamento PRA800"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "multi-ho011",
+   "caminho": "multi-ho011.nome_comercial",
+   "antes": "Aspirador de Po Vertical e de Mao 2 em 1 (127 V, 1000 W)",
+   "depois": "Aspirador de Pó Vertical e de Mão 2 em 1 (127 V, 1000 W)"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "multi-ho011",
+   "caminho": "multi-ho011.fontes.f-produto.titulo_na_fonte",
+   "antes": "Aspirador de Po Vertical e de Mao 2 em 1 com Coletor de Po Permanente 1000w-127v Multi - HO011",
+   "depois": "Aspirador de Pó Vertical e de Mão 2 em 1 com Coletor de Pó Permanente 1000w-127v Multi - HO011"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "multi-ho012",
+   "caminho": "multi-ho012.nome_comercial",
+   "antes": "Aspirador de Po Vertical e de Mao 2 em 1 (220 V, 700 W)",
+   "depois": "Aspirador de Pó Vertical e de Mão 2 em 1 (220 V, 700 W)"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "multi-ho012",
+   "caminho": "multi-ho012.fontes.f-produto.titulo_na_fonte",
+   "antes": "Aspirador de Po Vertical e de Mao Multilaser 220V 700W Branco/Laranja - HO012",
+   "depois": "Aspirador de Pó Vertical e de Mão Multilaser 220V 700W Branco/Laranja - HO012"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "multi-ho03",
+   "caminho": "multi-ho03.nome_comercial",
+   "antes": "Aspirador de Po 2 em 1 HO03",
+   "depois": "Aspirador de Pó 2 em 1 HO03"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "multi-ho03",
+   "caminho": "multi-ho03.fontes.f-peca.titulo_na_fonte",
+   "antes": "Filtro HEPA para Aspirador de Po HO03 HO04 Multilaser - PR550",
+   "depois": "Filtro HEPA para Aspirador de Pó HO03 HO04 Multilaser - PR550"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "multi-ho04",
+   "caminho": "multi-ho04.nome_comercial",
+   "antes": "Aspirador de Po 2 em 1 HO04",
+   "depois": "Aspirador de Pó 2 em 1 HO04"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "multi-ho04",
+   "caminho": "multi-ho04.fontes.f-peca.titulo_na_fonte",
+   "antes": "Filtro HEPA para Aspirador de Po HO03 HO04 Multilaser - PR550",
+   "depois": "Filtro HEPA para Aspirador de Pó HO03 HO04 Multilaser - PR550"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "electrolux-erb60",
+   "caminho": "electrolux-erb60.nome_comercial",
+   "antes": "Robo Aspirador Electrolux 4 em 1 Wi-Fi Experience",
+   "depois": "Robô Aspirador Electrolux 4 em 1 Wi-Fi Experience"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "electrolux-erb60",
+   "caminho": "electrolux-erb60.fontes.f-loja.titulo_na_fonte",
+   "antes": "Robo Aspirador Electrolux 4 em 1 Wi-Fi Experience ate 1h40 Mapeamento Preto (ERB60)",
+   "depois": "Robô Aspirador Electrolux 4 em 1 Wi-Fi Experience até 1h40 Mapeamento Preto (ERB60)"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "electrolux-erb61",
+   "caminho": "electrolux-erb61.nome_comercial",
+   "antes": "Robo Aspirador Electrolux 4 em 1 Wi-Fi Experience",
+   "depois": "Robô Aspirador Electrolux 4 em 1 Wi-Fi Experience"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "electrolux-erb61",
+   "caminho": "electrolux-erb61.fontes.f-loja.titulo_na_fonte",
+   "antes": "Robo Aspirador Electrolux 4 em 1 Wi-Fi Experience ate 1h40 Mapeamento Cinza (ERB61)",
+   "depois": "Robô Aspirador Electrolux 4 em 1 Wi-Fi Experience até 1h40 Mapeamento Cinza (ERB61)"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "electrolux-erb62",
+   "caminho": "electrolux-erb62.nome_comercial",
+   "antes": "Robo Aspirador Electrolux 4 em 1 Wi-Fi Experience",
+   "depois": "Robô Aspirador Electrolux 4 em 1 Wi-Fi Experience"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "electrolux-erb62",
+   "caminho": "electrolux-erb62.fontes.f-loja.titulo_na_fonte",
+   "antes": "Robo Aspirador Electrolux 4 em 1 Wi-Fi Experience ate 1h40 Mapeamento Branco (ERB62)",
+   "depois": "Robô Aspirador Electrolux 4 em 1 Wi-Fi Experience até 1h40 Mapeamento Branco (ERB62)"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "electrolux-erb80",
+   "caminho": "electrolux-erb80.nome_comercial",
+   "antes": "Robo Aspirador Electrolux 4 em 1 Wi-Fi Experience",
+   "depois": "Robô Aspirador Electrolux 4 em 1 Wi-Fi Experience"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "electrolux-erb80",
+   "caminho": "electrolux-erb80.fontes.f-loja.titulo_na_fonte",
+   "antes": "Robo Aspirador Electrolux 4 em 1 Wi-Fi Experience ate 1h40 Mapeamento e Base Autolimpante (ERB80)",
+   "depois": "Robô Aspirador Electrolux 4 em 1 Wi-Fi Experience até 1h40 Mapeamento e Base Autolimpante (ERB80)"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "electrolux-erb30",
+   "caminho": "electrolux-erb30.nome_comercial",
+   "antes": "Robo Aspirador de Po Electrolux Home-E Power Experience com Autonomous Technology",
+   "depois": "Robô Aspirador de Pó Electrolux Home-E Power Experience com Autonomous Technology"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "electrolux-erb30",
+   "caminho": "electrolux-erb30.fontes.f-loja.titulo_na_fonte",
+   "antes": "Robo Aspirador de Po Electrolux Home-E Power Experience com Autonomous Technology (ERB30)",
+   "depois": "Robô Aspirador de Pó Electrolux Home-E Power Experience com Autonomous Technology (ERB30)"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "positivo-pra2000",
+   "caminho": "positivo-pra2000.linha",
+   "antes": "Smart Robo Aspirador",
+   "depois": "Smart Robô Aspirador"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "positivo-pra2000",
+   "caminho": "positivo-pra2000.nome_comercial",
+   "antes": "Smart Robo Aspirador Wi-Fi Autolimpante PRA2000 Positivo Casa Inteligente",
+   "depois": "Smart Robô Aspirador Wi-Fi Autolimpante PRA2000 Positivo Casa Inteligente"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "positivo-pra2000",
+   "caminho": "positivo-pra2000.fontes.f-oficial.titulo_na_fonte",
+   "antes": "Smart Robo Aspirador Wi-Fi Autolimpante PRA2000 Positivo Casa Inteligente",
+   "depois": "Smart Robô Aspirador Wi-Fi Autolimpante PRA2000 Positivo Casa Inteligente"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "positivo-pra2000",
+   "caminho": "positivo-pra2000.fontes.f-ficha.titulo_na_fonte",
+   "antes": "Smart Robo Aspirador Wi-Fi Autolimpante PRA2000 | Positivo Casa Inteligente",
+   "depois": "Smart Robô Aspirador Wi-Fi Autolimpante PRA2000 | Positivo Casa Inteligente"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "positivo-pra500",
+   "caminho": "positivo-pra500.linha",
+   "antes": "Smart Robo Aspirador",
+   "depois": "Smart Robô Aspirador"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "positivo-pra500",
+   "caminho": "positivo-pra500.nome_comercial",
+   "antes": "Smart Robo Aspirador Wi-Fi+ PRA500 Positivo Casa Inteligente",
+   "depois": "Smart Robô Aspirador Wi-Fi+ PRA500 Positivo Casa Inteligente"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "positivo-pra500",
+   "caminho": "positivo-pra500.divergencias[0].canal",
+   "antes": "positivocasainteligente.com.br — pagina do proprio produto",
+   "depois": "positivocasainteligente.com.br — página do próprio produto"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "positivo-pra500",
+   "caminho": "positivo-pra500.divergencias[0].titulo_na_fonte",
+   "antes": "Smart Robo Aspirador Wi-Fi+ PRA 500 | Exclusivo Loja Positivo Casa Inteligente",
+   "depois": "Smart Robô Aspirador Wi-Fi+ PRA 500 | Exclusivo Loja Positivo Casa Inteligente"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "positivo-pra500",
+   "caminho": "positivo-pra500.divergencias[1].titulo_na_fonte",
+   "antes": "Smart Robo Aspirador Wi-Fi+ PRA 500 | Exclusivo Loja Positivo Casa Inteligente",
+   "depois": "Smart Robô Aspirador Wi-Fi+ PRA 500 | Exclusivo Loja Positivo Casa Inteligente"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "positivo-pra500",
+   "caminho": "positivo-pra500.divergencias[2].titulo_na_fonte",
+   "antes": "Smart Robo Aspirador Wi-Fi+ PRA500 Positivo Casa Inteligente",
+   "depois": "Smart Robô Aspirador Wi-Fi+ PRA500 Positivo Casa Inteligente"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "positivo-pra500",
+   "caminho": "positivo-pra500.fontes.f-oficial.titulo_na_fonte",
+   "antes": "Smart Robo Aspirador Wi-Fi+ PRA500 Positivo Casa Inteligente - Varre, Aspira, Passa Pano e Retorna base - App/Alexa",
+   "depois": "Smart Robô Aspirador Wi-Fi+ PRA500 Positivo Casa Inteligente - Varre, Aspira, Passa Pano e Retorna base - App/Alexa"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "positivo-pra500",
+   "caminho": "positivo-pra500.fontes.f-marca.titulo_na_fonte",
+   "antes": "Smart Robo Aspirador Wi-Fi+ PRA 500 | Exclusivo Loja Positivo Casa Inteligente",
+   "depois": "Smart Robô Aspirador Wi-Fi+ PRA 500 | Exclusivo Loja Positivo Casa Inteligente"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "xiaomi-s10",
+   "caminho": "xiaomi-s10.fontes.f-specs.titulo_na_fonte",
+   "antes": "Xiaomi Robot Vacuum S10 Especificacoes — Xiaomi Brasil",
+   "depois": "Xiaomi Robot Vacuum S10 Especificações — Xiaomi Brasil"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "xiaomi-e10",
+   "caminho": "xiaomi-e10.fontes.f-specs.titulo_na_fonte",
+   "antes": "Xiaomi Robot Vacuum E10 Especificacoes — Xiaomi Brasil",
+   "depois": "Xiaomi Robot Vacuum E10 Especificações — Xiaomi Brasil"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "xiaomi-s40",
+   "caminho": "xiaomi-s40.fontes.f-specs.titulo_na_fonte",
+   "antes": "Xiaomi Robot Vacuum S40 — Todas as especificacoes e funcionalidades | Xiaomi Brasil",
+   "depois": "Xiaomi Robot Vacuum S40 — Todas as especificações e funcionalidades | Xiaomi Brasil"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "xiaomi-s40c",
+   "caminho": "xiaomi-s40c.fontes.f-specs.titulo_na_fonte",
+   "antes": "Xiaomi Robot Vacuum S40c — Todas as especificacoes e funcionalidades | Xiaomi Brasil",
+   "depois": "Xiaomi Robot Vacuum S40c — Todas as especificações e funcionalidades | Xiaomi Brasil"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "xiaomi-h40",
+   "caminho": "xiaomi-h40.divergencias[0].canal",
+   "antes": "mi.com/br — pagina do produto",
+   "depois": "mi.com/br — página do produto"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "xiaomi-h40",
+   "caminho": "xiaomi-h40.divergencias[1].canal",
+   "antes": "mi.com/br — pagina de especificacoes do mesmo produto",
+   "depois": "mi.com/br — página de especificações do mesmo produto"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "xiaomi-h40",
+   "caminho": "xiaomi-h40.divergencias[1].titulo_na_fonte",
+   "antes": "Xiaomi Robot Vacuum H40 Especificacoes, Funcionalidades | Xiaomi Brasil",
+   "depois": "Xiaomi Robot Vacuum H40 Especificações, Funcionalidades | Xiaomi Brasil"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "xiaomi-h40",
+   "caminho": "xiaomi-h40.fontes.f-specs.titulo_na_fonte",
+   "antes": "Xiaomi Robot Vacuum H40 Especificacoes, Funcionalidades | Xiaomi Brasil",
+   "depois": "Xiaomi Robot Vacuum H40 Especificações, Funcionalidades | Xiaomi Brasil"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "wap-w400",
+   "caminho": "wap-w400.nome_comercial",
+   "antes": "Robo Aspirador de Po WAP Robot W400",
+   "depois": "Robô Aspirador de Pó WAP Robot W400"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "wap-w400",
+   "caminho": "wap-w400.fontes.f-loja.titulo_na_fonte",
+   "antes": "Robo Aspirador de Po WAP Robot W400 — Lojas WAP",
+   "depois": "Robô Aspirador de Pó WAP Robot W400 — Lojas WAP"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "wap-w400",
+   "caminho": "wap-w400.fontes.f-manual.titulo_na_fonte",
+   "antes": "MANUAL DE INSTRUCOES WAP ROBOT W400 FW009293 REV00MAI23",
+   "depois": "MANUAL DE INSTRUÇÕES WAP ROBOT W400 FW009293 REV00MAI23"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "wap-w1000",
+   "caminho": "wap-w1000.nome_comercial",
+   "antes": "Robo Aspirador de Po WAP Robot W1000",
+   "depois": "Robô Aspirador de Pó WAP Robot W1000"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "wap-w1000",
+   "caminho": "wap-w1000.fontes.f-loja.titulo_na_fonte",
+   "antes": "Robo Aspirador de Po WAP Robot W1000 — Lojas WAP",
+   "depois": "Robô Aspirador de Pó WAP Robot W1000 — Lojas WAP"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "wap-w310",
+   "caminho": "wap-w310.nome_comercial",
+   "antes": "Robo Aspirador WAP Robot W310",
+   "depois": "Robô Aspirador WAP Robot W310"
+  },
+  {
+   "arquivo": "dados/modelos-robo.json",
+   "registro": "wap-w310",
+   "caminho": "wap-w310.fontes.f-loja.titulo_na_fonte",
+   "antes": "Robo Aspirador WAP Robot W310 | Limpeza Automatica — Lojas WAP",
+   "depois": "Robô Aspirador WAP Robot W310 | Limpeza Automática — Lojas WAP"
+  }
+ ]
+}

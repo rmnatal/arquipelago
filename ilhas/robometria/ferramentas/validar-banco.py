@@ -58,12 +58,41 @@ CHAVES_IMAGEM = {"url", "largura", "altura", "fonte", "coletado_em", "alt"}
 CHAVES_AFILIADO = {"url", "plataforma", "coletado_em", "sub_id_1", "sub_id_2"}
 
 
+ORIGEM_DO_NIVEL = {n["nivel"]: n["origem"] for n in esquema["escada_de_fontes"]["niveis"]}
+
+# Degraus que exigem ter LIDO o documento na fonte primaria. Ver
+# escada_de_fontes.o_nivel_e_o_elo_mais_fraco no esquema.
+NIVEIS_QUE_EXIGEM_LEITURA_DIRETA = {1, 2}
+LEITURA_DIRETA = "direta-na-fonte-primaria"
+
+
 def checar_fontes(reg, arquivo):
-    """Toda fonte declarada tem nivel valido e data."""
+    """Toda fonte declarada tem nivel valido, origem coerente e data."""
     for fid, f in reg.get("fontes", {}).items():
         onde = "%s/%s/fontes/%s" % (arquivo, reg["id"], fid)
         if f.get("nivel") not in NIVEIS:
             erro("%s: nivel %r fora da escada_de_fontes" % (onde, f.get("nivel")))
+        # O buraco por onde a contradicao de 11/09/2026 entrou: o nivel era
+        # conferido e a ORIGEM nao, entao um manual de fabricante guardado por
+        # terceiro podia se declarar nivel 2 com origem 'manual-fabricante' e
+        # nada reprovava — enquanto a pagina de metodologia publicava "nivel 2:
+        # temos hoje —". As duas metades nunca se encontravam.
+        elif f.get("origem") != ORIGEM_DO_NIVEL[f["nivel"]]:
+            erro("%s: nivel %d declara origem %r, e a escada diz %r. Nivel e origem sao "
+                 "o mesmo degrau escrito duas vezes; divergir e contradizer a pagina de "
+                 "metodologia, que le a escada"
+                 % (onde, f["nivel"], f.get("origem"), ORIGEM_DO_NIVEL[f["nivel"]]))
+        # A REGRA DO ELO MAIS FRACO, mecanica. Uma origem tem tres elos — quem
+        # escreveu, quem guarda e como nos lemos — e o nivel e o do mais fraco.
+        # Os dois degraus de cima exigem leitura na fonte primaria, e a unica
+        # forma de provar isso e DECLARAR: silencio nunca promove. Adivinhar
+        # pelo texto do canal_de_coleta seria a mesma heuristica por vizinhanca
+        # que a secao 8 do ARQUIPELAGO.md proibe.
+        if f.get("nivel") in NIVEIS_QUE_EXIGEM_LEITURA_DIRETA and f.get("leitura") != LEITURA_DIRETA:
+            erro("%s: nivel %d sem declarar leitura=%r. Documento colhido por busca, ou "
+                 "guardado por terceiro, e nivel 3 — errar para cima faz a ilha publicar "
+                 "um rigor que ela nao tem, e a metodologia e a pagina cujo unico produto "
+                 "e o rigor" % (onde, f["nivel"], LEITURA_DIRETA))
         if not f.get("verificado_em"):
             erro("%s: sem verificado_em" % onde)
         if not f.get("titulo_na_fonte"):

@@ -53,7 +53,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_CASCA_VERSAO' ) ) {
-	define( 'ROBOMETRIA_CASCA_VERSAO', '1.0.2' );
+	define( 'ROBOMETRIA_CASCA_VERSAO', '1.1.0' );
 	define( 'ROBOMETRIA_CASCA_TAGLINE', 'Qual peça o fabricante declarou para o seu robô aspirador — com código, endereço e data' );
 }
 
@@ -1035,17 +1035,70 @@ add_shortcode( 'robometria_ferramentas', function () {
  * publicado primeiro, instantâneo do esquema depois. O campo "hoje" não é
  * decoração — é a confissão de que a ilha inteira está apoiada nos níveis 3 e 4.
  */
+/**
+ * Quantas fontes de cada nível o banco publicado realmente tem.
+ *
+ * Isto é DERIVADO, e a razão é uma contradição que ficou meses no ar sem que
+ * ninguém percebesse: a tabela abaixo dizia "temos hoje: —" no nível 2 porque
+ * alguém digitou `false` ali, enquanto quatro fontes do banco se declaravam
+ * nível 2. As duas metades não se falavam, então nenhuma podia corrigir a
+ * outra. É o mesmo defeito da tese do artigo-âncora (bloco 5): número que é a
+ * afirmação da página não pode estar digitado no HTML, porque passa a mentir
+ * em silêncio no dia em que o banco muda — e "em silêncio" é o ponto.
+ *
+ * Agora a coluna conta o banco. Se alguém acrescentar uma fonte de nível 2, a
+ * confissão da página se desfaz sozinha, sem ninguém lembrar de reescrevê-la.
+ */
+if ( ! function_exists( 'robometria_casca_niveis_no_banco' ) ) {
+function robometria_casca_niveis_no_banco() {
+	$contagem = array();
+	foreach ( range( 1, 7 ) as $nivel ) {
+		$contagem[ $nivel ] = 0;
+	}
+
+	/* O banco cru NÃO viaja para o site (`pecas.json` e `modelos-robo.json` têm
+	   publicar=false, e são 245 KB). Quem viaja é a contagem já derivada por
+	   ferramentas/gerar-casca-fatos.py, do mesmo jeito que a tese do artigo-âncora
+	   viaja em a1-fatos.json. E ela conta TRÊS arquivos, não dois: as seis fontes
+	   editoriais que a R2 cita moram em constantes.json, e uma contagem que as
+	   ignorasse publicaria "não temos editorial" com cara de medição. */
+	$fatos = get_option( 'robometria_dados_casca-fatos' );
+	if ( is_array( $fatos ) && ! empty( $fatos['niveis'] ) ) {
+		foreach ( $fatos['niveis'] as $degrau ) {
+			if ( isset( $degrau['nivel'], $degrau['fontes_no_banco'] )
+				&& isset( $contagem[ (int) $degrau['nivel'] ] ) ) {
+				$contagem[ (int) $degrau['nivel'] ] = (int) $degrau['fontes_no_banco'];
+			}
+		}
+	}
+
+	return apply_filters( 'robometria_niveis_no_banco', $contagem );
+}
+}
+
 if ( ! function_exists( 'robometria_casca_escada_de_fontes' ) ) {
 function robometria_casca_escada_de_fontes() {
+	$no_banco = robometria_casca_niveis_no_banco();
 	$escada = array(
 		array( 'nivel' => 1, 'origem' => 'medição própria', 'sustenta' => 'Desempenho real: sucção medida, autonomia medida, área coberta medida. É a única origem que poderia publicar desempenho.', 'existe' => false ),
-		array( 'nivel' => 2, 'origem' => 'manual do fabricante', 'sustenta' => 'Qualquer campo técnico declarado, e vida útil de peça. Exige manual, lâmina ou página oficial LIDA direto.', 'existe' => false ),
-		array( 'nivel' => 3, 'origem' => 'fabricante por busca', 'sustenta' => 'Campo técnico atribuído ao fabricante, colhido por busca restrita ao domínio dele, sem a leitura da página. Vai para a tela com "a confirmar no manual".', 'existe' => true ),
+		array( 'nivel' => 2, 'origem' => 'manual do fabricante', 'sustenta' => 'Qualquer campo técnico declarado, e vida útil de peça. Exige manual, lâmina ou página oficial lida direto NO ENDEREÇO DO FABRICANTE. Documento dele guardado por terceiro não conta.', 'existe' => false ),
+		array( 'nivel' => 3, 'origem' => 'fabricante por busca', 'sustenta' => 'Campo técnico atribuído ao fabricante e colhido por busca, sem leitura na fonte primária — tanto faz se a página é do domínio dele ou se é um documento dele guardado por terceiro. Vai para a tela com "a confirmar no manual".', 'existe' => true ),
 		array( 'nivel' => 4, 'origem' => 'varejo oficial da marca', 'sustenta' => 'Campo técnico transcrito pela loja oficial da própria marca no Brasil. Vai para a tela com "confira a embalagem".', 'existe' => true ),
 		array( 'nivel' => 5, 'origem' => 'varejo especializado', 'sustenta' => 'Campo técnico transcrito por varejista ou assistência especializada.', 'existe' => false ),
 		array( 'nivel' => 6, 'origem' => 'anúncio de marketplace', 'sustenta' => 'APENAS a existência do item, e sempre rotulado como declaração de terceiro. Nunca sustenta especificação nem a palavra "serve".', 'existe' => true ),
 		array( 'nivel' => 7, 'origem' => 'editorial', 'sustenta' => 'Recomendação de faixa (quanto pascal uma casa precisa), sempre com o nome de quem publica. Nunca sustenta especificação de aparelho.', 'existe' => true ),
 	);
+
+	/* A coluna "temos hoje" é CONTADA no banco, nunca digitada aqui. O campo
+	   'existe' de cada degrau acima é só o valor de partida para quando o Sync
+	   ainda não carregou o banco nas options. */
+	foreach ( $escada as $i => $degrau ) {
+		$n = isset( $no_banco[ $degrau['nivel'] ] ) ? (int) $no_banco[ $degrau['nivel'] ] : 0;
+		if ( array_sum( $no_banco ) > 0 ) {
+			$escada[ $i ]['existe'] = $n > 0;
+		}
+		$escada[ $i ]['fontes_no_banco'] = $n;
+	}
 
 	return apply_filters( 'robometria_escada_de_fontes', $escada );
 }
@@ -1084,11 +1137,33 @@ add_shortcode( 'robometria_metodologia', function () {
 		$html .= '<td class="rbm-n">' . esc_html( $degrau['nivel'] ) . '</td>';
 		$html .= '<td>' . esc_html( $degrau['origem'] ) . '</td>';
 		$html .= '<td>' . esc_html( $degrau['sustenta'] ) . '</td>';
-		$html .= '<td>' . ( $degrau['existe'] ? 'sim' : '—' ) . '</td>';
+		$html .= '<td>' . ( $degrau['existe']
+			? esc_html( number_format_i18n( $degrau['fontes_no_banco'] ) . ' no banco' )
+			: '—' ) . '</td>';
 		$html .= '</tr>';
 	}
 	$html .= '</tbody></table></div>';
-	$html .= '<p class="rbm-nota"><strong>A confissão que essa tabela obriga:</strong> a Robometria não tem nenhuma fonte de nível 1 nem de nível 2 ainda. O banco inteiro está apoiado nos níveis 3 e 4 — página do fabricante colhida por busca e loja oficial da marca — e é por isso que cada campo carrega o canal por onde foi colhido. Ler os manuais em PDF direto é o próximo degrau, e ele está na fila.</p></div>';
+
+	/* A confissão também é contada, não digitada: ela nomeia os degraus vazios
+	   e os que sustentam o banco lendo a mesma tabela que o leitor acabou de
+	   ver. Escrita à mão, ela dizia "nenhuma fonte de nível 2" enquanto quatro
+	   fontes do banco se declaravam nível 2 — e ninguém tinha como perceber. */
+	$vazios     = array();
+	$sustentam  = array();
+	foreach ( robometria_casca_escada_de_fontes() as $degrau ) {
+		if ( $degrau['existe'] ) {
+			$sustentam[] = $degrau['nivel'] . ' (' . $degrau['origem'] . ')';
+		} elseif ( $degrau['nivel'] <= 2 ) {
+			$vazios[] = 'nível ' . $degrau['nivel'];
+		}
+	}
+	$html .= '<p class="rbm-nota"><strong>A confissão que essa tabela obriga:</strong> ';
+	$html .= $vazios
+		? 'a Robometria não tem nenhuma fonte de ' . esc_html( implode( ' nem de ', $vazios ) ) . ' ainda. '
+		: 'a Robometria já tem fonte de medição própria ou de manual lido direto. ';
+	$html .= 'O banco está apoiado em ' . esc_html( implode( ', ', $sustentam ) ) . ' — e é por isso que cada campo carrega o canal por onde foi colhido. ';
+	$html .= 'Ler os manuais em PDF direto, no endereço do fabricante, é o próximo degrau, e ele está na fila. ';
+	$html .= '<strong>Manual do fabricante guardado por terceiro não conta como manual lido:</strong> uma origem tem três elos — quem escreveu, quem guarda e como nós lemos —, e o nível é o do elo mais fraco. Em 11/09/2026 quatro fontes desta ilha desceram de nível por essa regra.</p></div>';
 
 	$html .= '<div class="rbm-secao"><h2>4. O que medimos sobre a nossa própria cobertura</h2>';
 	$html .= '<p>Contar itens do banco não diz se a ferramenta responde. Por isso a entrada é varrida de ponta a ponta, e o resultado é publicado mesmo quando é desconfortável (medição de ' . esc_html( robometria_casca_data_br( $n['medido_em'] ) ) . '):</p>';

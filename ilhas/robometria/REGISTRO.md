@@ -1174,3 +1174,178 @@ que ela deveria medir. `render-para-teste.php` passou a ligar o filtro
 
 - **Proximo passo: o artigo-ancora da R2**, na mesma execucao, como o bloco 5 do
   `PROMPT.md` manda — com a tese derivada, nunca digitada.
+
+---
+
+## 11/09/2026, 13h17Z — BLOCO DE DADOS: as duas dívidas nomeadas, fechadas
+
+Nenhuma coleta. A rede foi testada antes de escolher o alvo, como o `PROMPT.md`
+manda: `robometria.com.br` devolve **200**, `mi.com.br` e
+`mais.conteudo.wap.ind.br` devolvem **000**. O 3c segue bloqueado, e a fila caiu
+para o trabalho de repositório — que era o que estava escrito.
+
+### 1. O banco parou de servir português errado
+
+Com a R1 e a R2 no ar, o texto do banco é CITADO dentro da resposta publicada, e
+a mesma frase saía metade certa e metade errada:
+
+> "... e a **peça** certa depende da sua: bateria — o fabricante vende a **peca**
+> PR10127 identificada como '**Versao** A'"
+
+"peça" foi escrita pela ilha; "peca" e "Versao" vieram do banco. **121 strings
+restauradas** nos nove campos que a varredura mediu chegando à tela.
+
+**A restauração é PROVADA, não prometida.** Reduzido a sem-diacrítico, o banco de
+hoje é byte a byte o de ontem — conferido nos três arquivos inteiros, e depois
+linha a linha por `teste-acentuacao.php`, com uma régua escrita no teste. É isso
+que torna impossível, por construção, que a operação tenha trocado uma palavra,
+um código de peça, um número ou um modelo.
+
+**E ela NÃO é releitura, o que é a parte honesta:** o acento foi reposto pela
+ilha, não lido no fabricante — a rede não alcança fabricante nenhum. Por isso
+existe `dados/acentuacao-restaurada.json`: não é log, é a **lista de conferência**
+de quem reler os manuais quando a rede abrir. Se alguma fonte de fato escrever
+sem acento, a linha volta atrás e vira exceção declarada.
+
+Duas decisões de escopo, as duas para não adivinhar:
+- **Monossílabo ambíguo ficou fora do mapa.** O "e" que deveria ser "é" exigiria
+  entender a frase, e corretor que interpreta frase inventa.
+- **A borda das palavras inclui o hífen.** Dentro do banco há endereço de página
+  citado inteiro (`bateria-para-aspirador-robo-mars-ho041-versao-b--pr8116`), e
+  acentuar um pedaço de URL destruiria justamente a evidência que a citação
+  existe para dar. A prosa ao redor foi acentuada; o slug ficou intacto.
+
+**A primeira versão da trava reprovou 15 mudanças CERTAS**, e o defeito era dela:
+ela reduzia a string a ASCII, e o travessão "—" já estava no banco antes — era
+apagado junto com os acentos. Régua errada reprova trabalho certo com a mesma
+cara com que aprova trabalho errado.
+
+### 2. A regra do nível 2, decidida: NÃO é nível 2
+
+*Manual do fabricante hospedado por terceiro, colhido por busca, é nível 2?*
+**Não. É nível 3.**
+
+**A regra:** uma origem tem três elos — quem escreveu, quem guarda, como lemos —
+e **o nível é o do elo mais fraco**. O manual do ERB10/11/20 é da Electrolux (elo
+forte), mas está guardado por `manuals.plus` e chegou por busca, sem leitura.
+Dois dos três elos são fracos.
+
+**A direção saiu da assimetria de custo, não do gosto.** Errar para baixo custa
+uma frase mais fraca ("a confirmar no manual"). Errar para cima faz a página de
+metodologia declarar um rigor que a ilha não tem — e metodologia é a página cujo
+único produto é o rigor.
+
+**A medição decidiu sozinha, e foi ela que mostrou o tamanho da coisa:** as
+QUATRO únicas fontes de nível 2 do banco inteiro eram a mesma entrada de
+`manuals.plus`. Nível 2, neste banco, era **inteiro** custódia de terceiro. Três
+das quatro nem eram usadas por campo nenhum.
+
+### 3. O que a correção da escada descobriu, e ninguém procurava
+
+A coluna "Temos hoje" era **digitada** dentro do snippet. Ao trocá-la por uma
+contagem do banco, dois números caíram:
+
+- **nível 2** dizia "—" enquanto quatro fontes se declaravam nível 2 — a
+  contradição que abriu este bloco;
+- **nível 6 (anúncio de marketplace)** dizia "sim" e a ilha **não tem uma fonte
+  de marketplace**: zero selo `declarada_terceiro`, zero fonte de nível 6. Esse
+  ninguém tinha percebido.
+
+É o mesmo defeito que o bloco 5 nomeou no artigo-âncora: número que é a afirmação
+da página não pode estar digitado no HTML, porque passa a mentir em silêncio no
+dia em que o banco muda — e "em silêncio" é o ponto.
+
+**E a primeira versão do gerador quase trocou um erro por um pior.** Ela contava
+`pecas.json` e `modelos-robo.json` e declarava, com ar de medição, que a ilha não
+tinha fonte editorial — quando tem sete, em `constantes.json`, citadas pela R2 em
+TODA resposta de Pa. Medição que lê metade das origens é pior que o número
+digitado que ela substitui, porque esta parece conferida. A ponte
+tipo-de-constante → nível foi declarada no esquema, não escondida na ferramenta.
+
+### 4. O render de bancada saía pela metade OUTRA VEZ, e só uma varredura grande viu
+
+`ferramentas/varrer-corpo.php` monta os **72 estados** que a ilha consegue servir
+— as 9 páginas fixas, a R1 em cada modelo publicável e em cada tipo de peça, a R2
+nas 9 situações e nas bordas da metragem. Ele existe porque **renderizar uma
+página só não é medir a página toda**: "Aspirador Robo" e "Versao A" só aparecem
+quando alguém escolhe um modelo da Multi, e ficaram invisíveis para uma medição
+que renderizava as nove páginas e se dava por satisfeita.
+
+Montando os 72 no mesmo processo, **o cabeçalho apareceu no primeiro e sumiu nos
+71 seguintes**. A causa é legítima e está no lugar certo:
+`robometria_casca_marca_html()` guarda um `static $ja_impressa` para a marca não
+sair duas vezes na mesma página, e no site um processo é uma requisição. Num
+varredor, esse static vira contaminação entre estados. **Um processo por estado**
+devolveu 45 KB de corpo que sumiam em silêncio — e mata junto qualquer outro
+estado acumulado.
+
+É a terceira vez que esta ilha paga por bancada que serve menos do que o site.
+
+### 5. As travas novas, e a prova de que reprovam
+
+`ferramentas/teste-acentuacao.php`, 16 medições, lendo o CORPO dos 72 estados.
+Três cuidados, cada um uma cicatriz do Arquipélago:
+
+1. **A régua é escrita no teste**, à mão, sem importar a do corretor. Régua
+   compartilhada faz as duas metades errarem juntas — foi assim que a régua da
+   elegibilidade da R2 morou no snippet e o teste a chamou para conferir o
+   snippet.
+2. **A afirmação se mede no CORPO**, não no HTML completo.
+3. **A exceção se declara no markup e vem CONTADA.** O wordmark da ilha é
+   "ROBO"+"METRIA" colados, e ROBO ali é a assinatura, não a palavra. A página
+   marca o bloco com `rbm-wordmark`, o teste o retira e exige **um por estado** e
+   que cada um seja exatamente a assinatura. Perdoar por vizinhança foi o que
+   deixou passar "Peça mais vendido, últimas unidades!" no Clube do Mosaico.
+
+**SEIS MUTAÇÕES deliberadas, e as seis reprovaram:**
+
+| mutação | o que reprovou |
+|---|---|
+| devolver "Robo" a um `nome_na_fonte` da tela | 4 ocorrências no corpo |
+| marcar um parágrafo comum como `rbm-wordmark` | 73 blocos em 72 estados, e o bloco não é a assinatura |
+| adulterar o livro-razão (trocar "Escova" por "Escovinha") | não é só acento, e não está no banco |
+| repor uma fonte no nível 2 sem declarar leitura | 3 medições, entre elas a confissão da página |
+| repor no nível 2 COM leitura declarada | a confissão da página passa a mentir |
+| tirar a classe `rbm-wordmark` | 0 exceções, e "ROBO" pego **72 vezes** |
+
+A última é a que importa mais: ela prova que a exceção é **carregada**, não
+decorativa — sem a declaração no markup, o teste realmente vê aquela palavra.
+
+A primeira tentativa da terceira mutação **passou**, e era mutação vazia:
+`mudancas[0]` não continha o texto que eu tentei trocar. Mutação que não muda
+nada não mede nada.
+
+Em `validar-banco.py`, duas invariantes novas, as duas testadas quebrando o banco:
+- **`origem` tem que bater com a `origem` que a escada dá àquele `nivel`.** Era
+  por aqui que o defeito entrava: só o `nivel` era conferido, então um manual em
+  custódia de terceiro podia se declarar nível 2 com origem `manual-fabricante` e
+  nada reprovava.
+- **Nível 1 ou 2 exige `leitura: "direta-na-fonte-primaria"` declarado.**
+  Silêncio nunca promove; adivinhar pelo texto do `canal_de_coleta` seria a
+  heurística por vizinhança que a seção 8 proíbe.
+
+### Verificação
+
+- `teste-casca` **64**, `teste-r1` **90**, `teste-a1` **53**, `teste-r2` **86**,
+  `teste-a2` **62**, `teste-acentuacao` **16** — zero falhas. `validar-banco`
+  aprovado.
+- Chromium em 360/390/782/1200 px, nas nove páginas: **0 px de rolagem
+  horizontal** nas 36 medições. Corpo de 1.886 a 18.505 caracteres — nenhuma
+  página fina.
+- Os três bancos: reduzidos a sem-diacrítico, **idênticos** aos de antes.
+- 44 itens esperando link de afiliado (16 peças + 28 modelos) — não mudou, este
+  bloco não tocou em catálogo.
+
+### Achado que fica na fila, da MESMA família, não corrigido
+
+`robometria_casca_numeros()` lê `get_option('robometria_dados_cobertura-r1')`,
+mas **`cobertura-r1` tem `publicar: false`**. No site no ar aquele `get_option`
+nunca devolve nada, e a seção 4 da metodologia serve os números DIGITADOS no
+snippet, com a data digitada junto. Hoje eles por acaso batem com a medição
+(28 / 15 / 12 / 168 / 116, conferido nesta execução): o defeito está **latente,
+não disparado** — e foi exatamente assim que a escada ficou meses errada. O
+conserto barato é derivar esses cinco números para `casca-fatos.json`, pelo cano
+que este bloco abriu.
+
+- **Próximo passo: derivar os cinco números da seção 4 da metodologia**, fechando
+  a última afirmação digitada daquela página. Depois dela, o 3c — se a rede abrir.

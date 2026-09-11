@@ -1,0 +1,59 @@
+{
+  "id": "casca-fatos",
+  "ilha": "robometria",
+  "entidade": "medicao",
+  "gerado_por": "ferramentas/gerar-casca-fatos.py",
+  "gerado_em": "2026-09-11",
+  "o_que_e": "Fatos que a casca publica sobre o proprio banco. Hoje: a coluna \"Temos hoje\" da escada de fontes, na pagina de metodologia. Contagem so de registro publicavel.",
+  "por_que_derivado": "Ate 11/09/2026 a coluna estava digitada dentro do snippet e contradizia o banco: ela dizia que a ilha nao tinha nenhuma fonte de nivel 2 enquanto quatro fontes se declaravam nivel 2. Afirmacao da pagina sobre o banco se conta no banco.",
+  "onde_foi_contado": [
+    "dados/pecas.json",
+    "dados/modelos-robo.json",
+    "dados/constantes.json"
+  ],
+  "total_de_fontes": 72,
+  "niveis": [
+    {
+      "nivel": 1,
+      "origem": "medicao-propria",
+      "fontes_no_banco": 0,
+      "existe_hoje": false
+    },
+    {
+      "nivel": 2,
+      "origem": "manual-fabricante",
+      "fontes_no_banco": 0,
+      "existe_hoje": false
+    },
+    {
+      "nivel": 3,
+      "origem": "fabricante-via-busca",
+      "fontes_no_banco": 47,
+      "existe_hoje": true
+    },
+    {
+      "nivel": 4,
+      "origem": "varejo-oficial-da-marca",
+      "fontes_no_banco": 18,
+      "existe_hoje": true
+    },
+    {
+      "nivel": 5,
+      "origem": "varejo-especializado",
+      "fontes_no_banco": 0,
+      "existe_hoje": false
+    },
+    {
+      "nivel": 6,
+      "origem": "marketplace-anuncio",
+      "fontes_no_banco": 0,
+      "existe_hoje": false
+    },
+    {
+      "nivel": 7,
+      "origem": "editorial",
+      "fontes_no_banco": 7,
+      "existe_hoje": true
+    }
+  ]
+}

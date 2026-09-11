@@ -21,7 +21,7 @@
     "publicador": "Multi (ex-Multilaser)",
     "identificacao": "PR10124",
     "sem_codigo_publicado": false,
-    "nome_na_fonte": "Escova Lateral para Aspirador Robo Mars, Moon e Duster",
+    "nome_na_fonte": "Escova Lateral para Aspirador Robô Mars, Moon e Duster",
     "codigos_declarados": 5,
     "codigos_na_fonte": [
       "HO041",
@@ -44,7 +44,7 @@
       "publicador": "Multi (ex-Multilaser)",
       "identificacao": "PR10124",
       "sem_codigo_publicado": false,
-      "nome_na_fonte": "Escova Lateral para Aspirador Robo Mars, Moon e Duster",
+      "nome_na_fonte": "Escova Lateral para Aspirador Robô Mars, Moon e Duster",
       "codigos_declarados": 5,
       "codigos_na_fonte": [
         "HO041",
@@ -64,9 +64,9 @@
       "tipo": "escova principal",
       "marca": "electrolux",
       "publicador": "Electrolux",
-      "identificacao": "\"Escova Rotativa Central Electrolux para Robos Aspiradores ERB60, ERB61, ERB62 e ERB80\"",
+      "identificacao": "\"Escova Rotativa Central Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80\"",
       "sem_codigo_publicado": true,
-      "nome_na_fonte": "Escova Rotativa Central Electrolux para Robos Aspiradores ERB60, ERB61, ERB62 e ERB80",
+      "nome_na_fonte": "Escova Rotativa Central Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80",
       "codigos_declarados": 4,
       "codigos_na_fonte": [
         "ERB60",
@@ -85,9 +85,9 @@
       "tipo": "filtro",
       "marca": "electrolux",
       "publicador": "Electrolux",
-      "identificacao": "\"Filtro HEPA com Espuma Electrolux para Robos Aspiradores ERB44, ERB60, ERB61 e ERB62\"",
+      "identificacao": "\"Filtro HEPA com Espuma Electrolux para Robôs Aspiradores ERB44, ERB60, ERB61 e ERB62\"",
       "sem_codigo_publicado": true,
-      "nome_na_fonte": "Filtro HEPA com Espuma Electrolux para Robos Aspiradores ERB44, ERB60, ERB61 e ERB62",
+      "nome_na_fonte": "Filtro HEPA com Espuma Electrolux para Robôs Aspiradores ERB44, ERB60, ERB61 e ERB62",
       "codigos_declarados": 4,
       "codigos_na_fonte": [
         "ERB44",
@@ -106,9 +106,9 @@
       "tipo": "kit",
       "marca": "electrolux",
       "publicador": "Electrolux",
-      "identificacao": "\"Kit Performance Electrolux para Robos Aspiradores ERB60, ERB61 e ERB62\"",
+      "identificacao": "\"Kit Performance Electrolux para Robôs Aspiradores ERB60, ERB61 e ERB62\"",
       "sem_codigo_publicado": true,
-      "nome_na_fonte": "Kit Performance Electrolux para Robos Aspiradores ERB60, ERB61 e ERB62",
+      "nome_na_fonte": "Kit Performance Electrolux para Robôs Aspiradores ERB60, ERB61 e ERB62",
       "codigos_declarados": 3,
       "codigos_na_fonte": [
         "ERB60",
@@ -128,7 +128,7 @@
       "publicador": "Electrolux",
       "identificacao": "KPCEL01",
       "sem_codigo_publicado": false,
-      "nome_na_fonte": "Kit Performance para Robos Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
+      "nome_na_fonte": "Kit Performance para Robôs Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
       "codigos_declarados": 3,
       "codigos_na_fonte": [
         "ERB10",
@@ -148,7 +148,7 @@
       "publicador": "Positivo Casa Inteligente",
       "identificacao": "11206518",
       "sem_codigo_publicado": false,
-      "nome_na_fonte": "Escova Lateral para Smart Robo Aspirador PRA800/PRA2000 Positivo Casa Inteligente",
+      "nome_na_fonte": "Escova Lateral para Smart Robô Aspirador PRA800/PRA2000 Positivo Casa Inteligente",
       "codigos_declarados": 2,
       "codigos_na_fonte": [
         "PRA800",
@@ -167,7 +167,7 @@
       "publicador": "Positivo Casa Inteligente",
       "identificacao": "11206519",
       "sem_codigo_publicado": false,
-      "nome_na_fonte": "Escova Central para Smart Robo Aspirador Laser PRA800 e Autolimpante PRA2000",
+      "nome_na_fonte": "Escova Central para Smart Robô Aspirador Laser PRA800 e Autolimpante PRA2000",
       "codigos_declarados": 2,
       "codigos_na_fonte": [
         "PRA800",
@@ -186,7 +186,7 @@
       "publicador": "Positivo Casa Inteligente",
       "identificacao": "11206540",
       "sem_codigo_publicado": false,
-      "nome_na_fonte": "Mop para Smart Robo Aspirador Laser PRA800/PRA2000 Positivo Casa Inteligente",
+      "nome_na_fonte": "Mop para Smart Robô Aspirador Laser PRA800/PRA2000 Positivo Casa Inteligente",
       "codigos_declarados": 2,
       "codigos_na_fonte": [
         "PRA800",
@@ -203,9 +203,9 @@
       "tipo": "kit",
       "marca": "electrolux",
       "publicador": "Electrolux",
-      "identificacao": "\"Kit Performance para Robo Aspirador ERB30 - Electrolux\"",
+      "identificacao": "\"Kit Performance para Robô Aspirador ERB30 - Electrolux\"",
       "sem_codigo_publicado": true,
-      "nome_na_fonte": "Kit Performance para Robo Aspirador ERB30 - Electrolux",
+      "nome_na_fonte": "Kit Performance para Robô Aspirador ERB30 - Electrolux",
       "codigos_declarados": 1,
       "codigos_na_fonte": [
         "ERB30"
@@ -221,9 +221,9 @@
       "tipo": "kit",
       "marca": "electrolux",
       "publicador": "Electrolux",
-      "identificacao": "\"Kit Performance Electrolux para Robo Aspirador ERB44\"",
+      "identificacao": "\"Kit Performance Electrolux para Robô Aspirador ERB44\"",
       "sem_codigo_publicado": true,
-      "nome_na_fonte": "Kit Performance Electrolux para Robo Aspirador ERB44",
+      "nome_na_fonte": "Kit Performance Electrolux para Robô Aspirador ERB44",
       "codigos_declarados": 1,
       "codigos_na_fonte": [
         "ERB44"
@@ -241,7 +241,7 @@
       "publicador": "Multi (ex-Multilaser)",
       "identificacao": "PR10127",
       "sem_codigo_publicado": false,
-      "nome_na_fonte": "Bateria p/ Aspirador Robo Ho041 Versao A",
+      "nome_na_fonte": "Bateria p/ Aspirador Robô Ho041 Versão A",
       "codigos_declarados": 1,
       "codigos_na_fonte": [
         "HO041"
@@ -259,7 +259,7 @@
       "publicador": "Multi (ex-Multilaser)",
       "identificacao": "PR10205",
       "sem_codigo_publicado": false,
-      "nome_na_fonte": "Filtro para Aspirador Robo Mars, Moon e Duster",
+      "nome_na_fonte": "Filtro para Aspirador Robô Mars, Moon e Duster",
       "codigos_declarados": 1,
       "codigos_na_fonte": [
         "HO041"
@@ -277,7 +277,7 @@
       "publicador": "Multi (ex-Multilaser)",
       "identificacao": "PR10342",
       "sem_codigo_publicado": false,
-      "nome_na_fonte": "Pano para Aspirador Robo p/ OB010",
+      "nome_na_fonte": "Pano para Aspirador Robô p/ OB010",
       "codigos_declarados": 1,
       "codigos_na_fonte": [
         "OB010"
@@ -295,7 +295,7 @@
       "publicador": "Multi (ex-Multilaser)",
       "identificacao": "PR10343",
       "sem_codigo_publicado": false,
-      "nome_na_fonte": "Filtro para Aspirador Robo OB010",
+      "nome_na_fonte": "Filtro para Aspirador Robô OB010",
       "codigos_declarados": 1,
       "codigos_na_fonte": [
         "OB010"
@@ -313,7 +313,7 @@
       "publicador": "Multi (ex-Multilaser)",
       "identificacao": "PR8116",
       "sem_codigo_publicado": false,
-      "nome_na_fonte": "Bateria Para Aspirador Robo Mars, Moon e Duster Multi",
+      "nome_na_fonte": "Bateria Para Aspirador Robô Mars, Moon e Duster Multi",
       "codigos_declarados": 1,
       "codigos_na_fonte": [
         "HO041"
@@ -419,7 +419,7 @@
       "publicador": "Multi (ex-Multilaser)",
       "identificacao": "PR10124",
       "sem_codigo_publicado": false,
-      "nome_na_fonte": "Escova Lateral para Aspirador Robo Mars, Moon e Duster",
+      "nome_na_fonte": "Escova Lateral para Aspirador Robô Mars, Moon e Duster",
       "codigos_na_fonte": [
         "HO041",
         "HO400",
@@ -454,9 +454,9 @@
       "tipo": "escova principal",
       "nome_do_tipo": "escova principal",
       "publicador": "Electrolux",
-      "identificacao": "\"Escova Rotativa Central Electrolux para Robos Aspiradores ERB60, ERB61, ERB62 e ERB80\"",
+      "identificacao": "\"Escova Rotativa Central Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80\"",
       "sem_codigo_publicado": true,
-      "nome_na_fonte": "Escova Rotativa Central Electrolux para Robos Aspiradores ERB60, ERB61, ERB62 e ERB80",
+      "nome_na_fonte": "Escova Rotativa Central Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80",
       "codigos_na_fonte": [
         "ERB60",
         "ERB61",
@@ -490,9 +490,9 @@
       "tipo": "filtro",
       "nome_do_tipo": "filtro",
       "publicador": "Electrolux",
-      "identificacao": "\"Filtro HEPA com Espuma Electrolux para Robos Aspiradores ERB44, ERB60, ERB61 e ERB62\"",
+      "identificacao": "\"Filtro HEPA com Espuma Electrolux para Robôs Aspiradores ERB44, ERB60, ERB61 e ERB62\"",
       "sem_codigo_publicado": true,
-      "nome_na_fonte": "Filtro HEPA com Espuma Electrolux para Robos Aspiradores ERB44, ERB60, ERB61 e ERB62",
+      "nome_na_fonte": "Filtro HEPA com Espuma Electrolux para Robôs Aspiradores ERB44, ERB60, ERB61 e ERB62",
       "codigos_na_fonte": [
         "ERB44",
         "ERB60",
@@ -526,9 +526,9 @@
       "tipo": "kit",
       "nome_do_tipo": "kit",
       "publicador": "Electrolux",
-      "identificacao": "\"Kit Performance Electrolux para Robos Aspiradores ERB60, ERB61 e ERB62\"",
+      "identificacao": "\"Kit Performance Electrolux para Robôs Aspiradores ERB60, ERB61 e ERB62\"",
       "sem_codigo_publicado": true,
-      "nome_na_fonte": "Kit Performance Electrolux para Robos Aspiradores ERB60, ERB61 e ERB62",
+      "nome_na_fonte": "Kit Performance Electrolux para Robôs Aspiradores ERB60, ERB61 e ERB62",
       "codigos_na_fonte": [
         "ERB60",
         "ERB61",

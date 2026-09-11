@@ -57,7 +57,7 @@
       "marca": "multi",
       "codigo_fabricante": "PR10124",
       "tipo": "escova lateral",
-      "nome_na_fonte": "Escova Lateral para Aspirador Robo Mars, Moon e Duster",
+      "nome_na_fonte": "Escova Lateral para Aspirador Robô Mars, Moon e Duster",
       "compatibilidade": [
         {
           "modelo": "multi-ho041",
@@ -122,7 +122,7 @@
           "nivel": 3,
           "origem": "fabricante-via-busca",
           "publicador": "Multi (multilaser.com.br)",
-          "titulo_na_fonte": "Escova Lateral para Aspirador Robo Mars, Moon e Duster - PR10124 (endereco da propria pagina: 'escova-lateral-para-aspirador-robo-ho041-e-ob010')",
+          "titulo_na_fonte": "Escova Lateral para Aspirador Robô Mars, Moon e Duster - PR10124 (endereço da própria página: 'escova-lateral-para-aspirador-robo-ho041-e-ob010')",
           "url": "https://www.multilaser.com.br/escova-lateral-para-aspirador-robo-ho041-e-ob010/p",
           "canal_de_coleta": "busca web restrita aos dominios multilaser.com.br e multilaserempresas.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
           "verificado_em": "2026-09-09"
@@ -137,7 +137,7 @@
       "marca": "multi",
       "codigo_fabricante": "PR10205",
       "tipo": "filtro",
-      "nome_na_fonte": "Filtro para Aspirador Robo Mars, Moon e Duster",
+      "nome_na_fonte": "Filtro para Aspirador Robô Mars, Moon e Duster",
       "compatibilidade": [
         {
           "modelo": "multi-ho041",
@@ -153,7 +153,7 @@
           "conjunto_declarado": [
             "HO041"
           ],
-          "titulo_na_fonte": "Filtro para Aspirador Robo Mars, Moon e Duster - PR10205",
+          "titulo_na_fonte": "Filtro para Aspirador Robô Mars, Moon e Duster - PR10205",
           "url": "https://www.multilaser.com.br/filtro-para-aspirador-robo-mars-moon-duster-pr10205/p",
           "verificado_em": "2026-09-09"
         },
@@ -163,7 +163,7 @@
             "HO041",
             "OB010"
           ],
-          "titulo_na_fonte": "Filtro para Aspirador Robo (HO041 e OB010) - PR10205",
+          "titulo_na_fonte": "Filtro para Aspirador Robô (HO041 e OB010) - PR10205",
           "url": "https://www.multilaserempresas.com.br/produto/eletroportateis-para-sua-casa/lar/aspiradores/filtro-para-aspirador-robo-ho041-e-ob010--pr10205/PR10205/",
           "verificado_em": "2026-09-09"
         }
@@ -195,7 +195,7 @@
           "nivel": 3,
           "origem": "fabricante-via-busca",
           "publicador": "Multi (multilaser.com.br, canal varejo)",
-          "titulo_na_fonte": "Filtro para Aspirador Robo Mars, Moon e Duster - PR10205",
+          "titulo_na_fonte": "Filtro para Aspirador Robô Mars, Moon e Duster - PR10205",
           "url": "https://www.multilaser.com.br/filtro-para-aspirador-robo-mars-moon-duster-pr10205/p",
           "canal_de_coleta": "busca web restrita aos dominios multilaser.com.br e multilaserempresas.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
           "verificado_em": "2026-09-09"
@@ -204,7 +204,7 @@
           "nivel": 3,
           "origem": "fabricante-via-busca",
           "publicador": "Multi (multilaserempresas.com.br)",
-          "titulo_na_fonte": "Filtro para Aspirador Robo (HO041 e OB010) - PR10205",
+          "titulo_na_fonte": "Filtro para Aspirador Robô (HO041 e OB010) - PR10205",
           "url": "https://www.multilaserempresas.com.br/produto/eletroportateis-para-sua-casa/lar/aspiradores/filtro-para-aspirador-robo-ho041-e-ob010--pr10205/PR10205/",
           "canal_de_coleta": "busca web restrita aos dominios multilaser.com.br e multilaserempresas.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
           "verificado_em": "2026-09-09"
@@ -218,7 +218,7 @@
       "marca": "multi",
       "codigo_fabricante": "PR10343",
       "tipo": "filtro",
-      "nome_na_fonte": "Filtro para Aspirador Robo OB010",
+      "nome_na_fonte": "Filtro para Aspirador Robô OB010",
       "compatibilidade": [
         {
           "modelo": "multi-ob010",
@@ -255,7 +255,7 @@
           "nivel": 3,
           "origem": "fabricante-via-busca",
           "publicador": "Multi (multilaser.com.br)",
-          "titulo_na_fonte": "Filtro para Aspirador Robo OB010 - PR10343",
+          "titulo_na_fonte": "Filtro para Aspirador Robô OB010 - PR10343",
           "url": "https://www.multilaser.com.br/filtro-para-aspirador-robo-ob010-pr10343/p",
           "canal_de_coleta": "busca web restrita aos dominios multilaser.com.br e multilaserempresas.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
           "verificado_em": "2026-09-09"
@@ -270,7 +270,7 @@
       "marca": "multi",
       "codigo_fabricante": "PR10342",
       "tipo": "mop",
-      "nome_na_fonte": "Pano para Aspirador Robo p/ OB010",
+      "nome_na_fonte": "Pano para Aspirador Robô p/ OB010",
       "compatibilidade": [
         {
           "modelo": "multi-ob010",
@@ -307,7 +307,7 @@
           "nivel": 3,
           "origem": "fabricante-via-busca",
           "publicador": "Multi (multilaser.com.br)",
-          "titulo_na_fonte": "Pano para Aspirador Robo p/ OB010 - PR10342",
+          "titulo_na_fonte": "Pano para Aspirador Robô p/ OB010 - PR10342",
           "url": "https://www.multilaser.com.br/pano-para-aspirador-robo-ob010/p",
           "canal_de_coleta": "busca web restrita aos dominios multilaser.com.br e multilaserempresas.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
           "verificado_em": "2026-09-09"
@@ -322,7 +322,7 @@
       "marca": "multi",
       "codigo_fabricante": "PR10127",
       "tipo": "bateria",
-      "nome_na_fonte": "Bateria p/ Aspirador Robo Ho041 Versao A",
+      "nome_na_fonte": "Bateria p/ Aspirador Robô Ho041 Versão A",
       "compatibilidade": [
         {
           "modelo": "multi-ho041",
@@ -359,7 +359,7 @@
           "nivel": 3,
           "origem": "fabricante-via-busca",
           "publicador": "Multi (multilaser.com.br)",
-          "titulo_na_fonte": "Bateria p/ Aspirador Robo Ho041 Versao A - PR10127",
+          "titulo_na_fonte": "Bateria p/ Aspirador Robô Ho041 Versão A - PR10127",
           "url": "https://www.multilaser.com.br/bateria-p-aspirador-robo-ho041-versao-a-pr10127/p",
           "canal_de_coleta": "busca web restrita aos dominios multilaser.com.br e multilaserempresas.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
           "verificado_em": "2026-09-09"
@@ -374,7 +374,7 @@
       "marca": "multi",
       "codigo_fabricante": "PR8116",
       "tipo": "bateria",
-      "nome_na_fonte": "Bateria Para Aspirador Robo Mars, Moon e Duster Multi",
+      "nome_na_fonte": "Bateria Para Aspirador Robô Mars, Moon e Duster Multi",
       "compatibilidade": [
         {
           "modelo": "multi-ho041",
@@ -386,20 +386,20 @@
       ],
       "divergencias": [
         {
-          "canal": "multilaserempresas.com.br — titulo da pagina",
+          "canal": "multilaserempresas.com.br — título da página",
           "conjunto_declarado": [
             "Mars",
             "Moon",
             "Duster"
           ],
-          "titulo_na_fonte": "Bateria Para Aspirador Robo Mars, Moon e Duster Multi - PR8116",
+          "titulo_na_fonte": "Bateria Para Aspirador Robô Mars, Moon e Duster Multi - PR8116",
           "url": "https://www.multilaserempresas.com.br/produto/eletroportateis-para-sua-casa/lar/aspiradores/bateria-para-aspirador-robo-mars-ho041-versao-b--pr8116/PR8116/",
           "verificado_em": "2026-09-09"
         },
         {
-          "canal": "multilaserempresas.com.br — endereco da MESMA pagina",
+          "canal": "multilaserempresas.com.br — endereço da MESMA página",
           "conjunto_declarado": [
-            "HO041 versao B"
+            "HO041 versão B"
           ],
           "titulo_na_fonte": "bateria-para-aspirador-robo-mars-ho041-versao-b--pr8116",
           "url": "https://www.multilaserempresas.com.br/produto/eletroportateis-para-sua-casa/lar/aspiradores/bateria-para-aspirador-robo-mars-ho041-versao-b--pr8116/PR8116/",
@@ -433,7 +433,7 @@
           "nivel": 3,
           "origem": "fabricante-via-busca",
           "publicador": "Multi (multilaserempresas.com.br)",
-          "titulo_na_fonte": "Bateria Para Aspirador Robo Mars, Moon e Duster Multi - PR8116",
+          "titulo_na_fonte": "Bateria Para Aspirador Robô Mars, Moon e Duster Multi - PR8116",
           "url": "https://www.multilaserempresas.com.br/produto/eletroportateis-para-sua-casa/lar/aspiradores/bateria-para-aspirador-robo-mars-ho041-versao-b--pr8116/PR8116/",
           "canal_de_coleta": "busca web restrita aos dominios multilaser.com.br e multilaserempresas.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
           "verificado_em": "2026-09-09"
@@ -448,7 +448,7 @@
       "marca": "multi",
       "codigo_fabricante": "PR684",
       "tipo": "filtro",
-      "nome_na_fonte": "Filtro Removivel e Lavavel - PR684",
+      "nome_na_fonte": "Filtro Removível e Lavável - PR684",
       "compatibilidade": [
         {
           "modelo": "multi-ho011",
@@ -492,7 +492,7 @@
           "nivel": 3,
           "origem": "fabricante-via-busca",
           "publicador": "Multi (multilaser.com.br)",
-          "titulo_na_fonte": "Filtro Removivel e Lavavel Compativel com o Aspirador de Po HO011/HO012 - PR684",
+          "titulo_na_fonte": "Filtro Removível e Lavável Compatível com o Aspirador de Pó HO011/HO012 - PR684",
           "url": "https://www.multilaser.com.br/filtro-do-ho011-ho012-pr684/p",
           "canal_de_coleta": "busca web restrita aos dominios multilaser.com.br e multilaserempresas.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
           "verificado_em": "2026-09-09"
@@ -507,7 +507,7 @@
       "marca": "multi",
       "codigo_fabricante": "PR550",
       "tipo": "filtro",
-      "nome_na_fonte": "Filtro HEPA para Aspirador de Po HO03/HO04",
+      "nome_na_fonte": "Filtro HEPA para Aspirador de Pó HO03/HO04",
       "compatibilidade": [
         {
           "modelo": "multi-ho03",
@@ -551,7 +551,7 @@
           "nivel": 3,
           "origem": "fabricante-via-busca",
           "publicador": "Multi (multilaser.com.br)",
-          "titulo_na_fonte": "Filtro HEPA para Aspirador de Po HO03 HO04 Multilaser - PR550",
+          "titulo_na_fonte": "Filtro HEPA para Aspirador de Pó HO03 HO04 Multilaser - PR550",
           "url": "https://www.multilaser.com.br/filtro-hepa-para-aspirador-de-po-ho03-ho04-multilaser---pr550/p",
           "canal_de_coleta": "busca web restrita aos dominios multilaser.com.br e multilaserempresas.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
           "verificado_em": "2026-09-09"
@@ -566,7 +566,7 @@
       "marca": "electrolux",
       "codigo_fabricante": "KPCEL01",
       "tipo": "kit",
-      "nome_na_fonte": "Kit Performance para Robos Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
+      "nome_na_fonte": "Kit Performance para Robôs Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
       "composicao": [
         {
           "tipo": "filtro",
@@ -635,7 +635,7 @@
           "nivel": 4,
           "origem": "varejo-oficial-da-marca",
           "publicador": "Electrolux (loja oficial)",
-          "titulo_na_fonte": "Kit Performance para Robos Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
+          "titulo_na_fonte": "Kit Performance para Robôs Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
           "url": "https://loja.electrolux.com.br/kit-performance-para-robos-aspiradores-erb10-erb11-e-erb20---electrolux/p",
           "canal_de_coleta": "busca web restrita aos dominios electrolux.com.br, loja.electrolux.com.br e compraparceiros.electrolux.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
           "verificado_em": "2026-09-09"
@@ -644,19 +644,22 @@
           "nivel": 4,
           "origem": "varejo-oficial-da-marca",
           "publicador": "Electrolux Parceiros",
-          "titulo_na_fonte": "KPCEL01 KIT PERFORMANCE ROBO",
+          "titulo_na_fonte": "KPCEL01 KIT PERFORMANCE ROBÔ",
           "url": "https://compraparceiros.electrolux.com.br/kpcel01-kit-performance-robo-41047452/p",
           "canal_de_coleta": "busca web restrita aos dominios electrolux.com.br, loja.electrolux.com.br e compraparceiros.electrolux.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
           "verificado_em": "2026-09-09"
         },
         "f-manual": {
-          "nivel": 2,
-          "origem": "manual-fabricante",
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
           "publicador": "Electrolux (manual hospedado por terceiro em manuals.plus)",
-          "titulo_na_fonte": "Manual do usuario do aspirador robo Electrolux ERB10/ERB11/ERB20",
+          "titulo_na_fonte": "Manual do usuário do aspirador robô Electrolux ERB10/ERB11/ERB20",
           "url": "https://manuals.plus/m/a7d2cf5766298ebb7449842933ed52fe8a527804e53e3684a681bae94bdf7a78",
           "canal_de_coleta": "busca web restrita ao dominio manuals.plus (WebFetch direto devolveu EGRESS_BLOCKED)",
-          "verificado_em": "2026-09-09"
+          "verificado_em": "2026-09-09",
+          "custodia": "terceiro",
+          "rebaixada_em": "2026-09-11",
+          "por_que_nao_e_nivel_2": "O documento e o manual da Electrolux, mas esta guardado por manuals.plus e chegou aqui por busca, sem leitura na fonte primaria (WebFetch: EGRESS_BLOCKED). Pela regra do elo mais fraco (escada_de_fontes em dados/esquema-banco.json, decidida em 11/09/2026), o nivel e o do elo mais fraco da cadeia autoria-custodia-leitura. Ler o mesmo manual no endereco da Electrolux sobe este campo para 2 sem mudar mais nada."
         }
       },
       "status": "publicavel",
@@ -669,7 +672,7 @@
       "codigo_fabricante": null,
       "motivo_sem_codigo": "a Electrolux nao publica codigo de peca nesta pagina — identifica o item pelo titulo e pela lista de modelos. O codigo KPCEL01/KPCEL02 so aparece no canal de parceiros, e nem toda peca tem um la",
       "tipo": "filtro",
-      "nome_na_fonte": "Filtro HEPA com Espuma Electrolux para Robos Aspiradores ERB44, ERB60, ERB61 e ERB62",
+      "nome_na_fonte": "Filtro HEPA com Espuma Electrolux para Robôs Aspiradores ERB44, ERB60, ERB61 e ERB62",
       "compatibilidade": [
         {
           "modelo": "electrolux-erb44",
@@ -727,7 +730,7 @@
           "nivel": 4,
           "origem": "varejo-oficial-da-marca",
           "publicador": "Electrolux (loja oficial)",
-          "titulo_na_fonte": "Filtro HEPA com Espuma Electrolux para Robos Aspiradores ERB44, ERB60, ERB61 e ERB62",
+          "titulo_na_fonte": "Filtro HEPA com Espuma Electrolux para Robôs Aspiradores ERB44, ERB60, ERB61 e ERB62",
           "url": "https://loja.electrolux.com.br/filtro-hepa-com-espuma-electrolux-para-robos-aspiradores-erb44--erb60--erb61-e-erb62/p",
           "canal_de_coleta": "busca web restrita aos dominios electrolux.com.br, loja.electrolux.com.br e compraparceiros.electrolux.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
           "verificado_em": "2026-09-09"
@@ -743,7 +746,7 @@
       "codigo_fabricante": null,
       "motivo_sem_codigo": "a Electrolux nao publica codigo de peca nesta pagina — identifica o item pelo titulo e pela lista de modelos. O codigo KPCEL01/KPCEL02 so aparece no canal de parceiros, e nem toda peca tem um la",
       "tipo": "kit",
-      "nome_na_fonte": "Kit Performance Electrolux para Robos Aspiradores ERB60, ERB61 e ERB62",
+      "nome_na_fonte": "Kit Performance Electrolux para Robôs Aspiradores ERB60, ERB61 e ERB62",
       "composicao": [
         {
           "tipo": "filtro",
@@ -811,7 +814,7 @@
           "nivel": 4,
           "origem": "varejo-oficial-da-marca",
           "publicador": "Electrolux (loja oficial)",
-          "titulo_na_fonte": "Kit Performance Electrolux para Robos Aspiradores ERB60, ERB61 e ERB62",
+          "titulo_na_fonte": "Kit Performance Electrolux para Robôs Aspiradores ERB60, ERB61 e ERB62",
           "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robos-aspiradores-erb60--erb61-e-erb62/p",
           "canal_de_coleta": "busca web restrita aos dominios electrolux.com.br, loja.electrolux.com.br e compraparceiros.electrolux.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
           "verificado_em": "2026-09-09"
@@ -827,7 +830,7 @@
       "codigo_fabricante": null,
       "motivo_sem_codigo": "a Electrolux nao publica codigo de peca nesta pagina — identifica o item pelo titulo e pela lista de modelos. O codigo KPCEL01/KPCEL02 so aparece no canal de parceiros, e nem toda peca tem um la",
       "tipo": "escova principal",
-      "nome_na_fonte": "Escova Rotativa Central Electrolux para Robos Aspiradores ERB60, ERB61, ERB62 e ERB80",
+      "nome_na_fonte": "Escova Rotativa Central Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80",
       "compatibilidade": [
         {
           "modelo": "electrolux-erb60",
@@ -885,7 +888,7 @@
           "nivel": 4,
           "origem": "varejo-oficial-da-marca",
           "publicador": "Electrolux (loja oficial)",
-          "titulo_na_fonte": "Escova Rotativa Central Electrolux para Robos Aspiradores ERB60, ERB61, ERB62 e ERB80",
+          "titulo_na_fonte": "Escova Rotativa Central Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80",
           "url": "https://loja.electrolux.com.br/escova-rotativa-central-electrolux-para-robos-aspiradores-erb60--erb61--erb62-e-erb80/p",
           "canal_de_coleta": "busca web restrita aos dominios electrolux.com.br, loja.electrolux.com.br e compraparceiros.electrolux.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
           "verificado_em": "2026-09-09"
@@ -901,7 +904,7 @@
       "codigo_fabricante": null,
       "motivo_sem_codigo": "a Electrolux nao publica codigo de peca nesta pagina — identifica o item pelo titulo e pela lista de modelos. O codigo KPCEL01/KPCEL02 so aparece no canal de parceiros, e nem toda peca tem um la",
       "tipo": "kit",
-      "nome_na_fonte": "Kit Performance Electrolux para Robo Aspirador ERB44",
+      "nome_na_fonte": "Kit Performance Electrolux para Robô Aspirador ERB44",
       "composicao": [
         {
           "tipo": null,
@@ -945,7 +948,7 @@
           "nivel": 4,
           "origem": "varejo-oficial-da-marca",
           "publicador": "Electrolux (loja oficial)",
-          "titulo_na_fonte": "Kit Performance Electrolux para Robo Aspirador ERB44",
+          "titulo_na_fonte": "Kit Performance Electrolux para Robô Aspirador ERB44",
           "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robo-aspirador-erb44/p",
           "canal_de_coleta": "busca web restrita aos dominios electrolux.com.br, loja.electrolux.com.br e compraparceiros.electrolux.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
           "verificado_em": "2026-09-09"
@@ -961,7 +964,7 @@
       "codigo_fabricante": null,
       "motivo_sem_codigo": "a Electrolux nao publica codigo de peca nesta pagina — identifica o item pelo titulo e pela lista de modelos. O codigo KPCEL01/KPCEL02 so aparece no canal de parceiros, e nem toda peca tem um la",
       "tipo": "kit",
-      "nome_na_fonte": "Kit Performance para Robo Aspirador ERB30 - Electrolux",
+      "nome_na_fonte": "Kit Performance para Robô Aspirador ERB30 - Electrolux",
       "composicao": [
         {
           "tipo": null,
@@ -1005,7 +1008,7 @@
           "nivel": 4,
           "origem": "varejo-oficial-da-marca",
           "publicador": "Electrolux (loja oficial)",
-          "titulo_na_fonte": "Kit Performance para Robo Aspirador ERB30 - Electrolux",
+          "titulo_na_fonte": "Kit Performance para Robô Aspirador ERB30 - Electrolux",
           "url": "https://loja.electrolux.com.br/kit-performance-para-robo-aspirador-erb30---electrolux/p",
           "canal_de_coleta": "busca web restrita aos dominios electrolux.com.br, loja.electrolux.com.br e compraparceiros.electrolux.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
           "verificado_em": "2026-09-09"
@@ -1020,7 +1023,7 @@
       "marca": "positivo",
       "codigo_fabricante": "11206518",
       "tipo": "escova lateral",
-      "nome_na_fonte": "Escova Lateral para Smart Robo Aspirador PRA800/PRA2000 Positivo Casa Inteligente",
+      "nome_na_fonte": "Escova Lateral para Smart Robô Aspirador PRA800/PRA2000 Positivo Casa Inteligente",
       "compatibilidade": [
         {
           "modelo": "positivo-pra800",
@@ -1064,7 +1067,7 @@
           "nivel": 4,
           "origem": "varejo-oficial-da-marca",
           "publicador": "Positivo Casa Inteligente (loja oficial)",
-          "titulo_na_fonte": "Escova Lateral para Smart Robo Aspirador PRA800/PRA2000 Positivo Casa Inteligente",
+          "titulo_na_fonte": "Escova Lateral para Smart Robô Aspirador PRA800/PRA2000 Positivo Casa Inteligente",
           "url": "https://loja.meupositivo.com.br/escova-lateral-para-smart-robo-aspirador-laser-pra800-e-autolimpante-pra2000-11206518/p",
           "canal_de_coleta": "busca web restrita aos dominios positivocasainteligente.com.br e meupositivo.com.br",
           "verificado_em": "2026-09-09"
@@ -1079,7 +1082,7 @@
       "marca": "positivo",
       "codigo_fabricante": "11206519",
       "tipo": "escova principal",
-      "nome_na_fonte": "Escova Central para Smart Robo Aspirador Laser PRA800 e Autolimpante PRA2000",
+      "nome_na_fonte": "Escova Central para Smart Robô Aspirador Laser PRA800 e Autolimpante PRA2000",
       "compatibilidade": [
         {
           "modelo": "positivo-pra800",
@@ -1123,7 +1126,7 @@
           "nivel": 4,
           "origem": "varejo-oficial-da-marca",
           "publicador": "Positivo Casa Inteligente (loja oficial)",
-          "titulo_na_fonte": "Escova Central para Smart Robo Aspirador Laser PRA800 e Autolimpante PRA2000",
+          "titulo_na_fonte": "Escova Central para Smart Robô Aspirador Laser PRA800 e Autolimpante PRA2000",
           "url": "https://www.positivocasainteligente.com.br/escova-central-para-smart-robo-aspirador-laser-pra800-e-autolimpante-pra2000-11206519/p",
           "canal_de_coleta": "busca web restrita aos dominios positivocasainteligente.com.br e meupositivo.com.br",
           "verificado_em": "2026-09-09"
@@ -1138,7 +1141,7 @@
       "marca": "positivo",
       "codigo_fabricante": "11206540",
       "tipo": "mop",
-      "nome_na_fonte": "Mop para Smart Robo Aspirador Laser PRA800/PRA2000 Positivo Casa Inteligente",
+      "nome_na_fonte": "Mop para Smart Robô Aspirador Laser PRA800/PRA2000 Positivo Casa Inteligente",
       "compatibilidade": [
         {
           "modelo": "positivo-pra800",
@@ -1182,7 +1185,7 @@
           "nivel": 4,
           "origem": "varejo-oficial-da-marca",
           "publicador": "Positivo Casa Inteligente (loja oficial)",
-          "titulo_na_fonte": "Mop para Smart Robo Aspirador Laser PRA800/PRA2000 Positivo Casa Inteligente",
+          "titulo_na_fonte": "Mop para Smart Robô Aspirador Laser PRA800/PRA2000 Positivo Casa Inteligente",
           "url": "https://loja.meupositivo.com.br/mop-para-smart-robo-aspirador-laser-pra800-e-autolimpante-pra2000-11206540/p",
           "canal_de_coleta": "busca web restrita aos dominios positivocasainteligente.com.br e meupositivo.com.br",
           "verificado_em": "2026-09-09"

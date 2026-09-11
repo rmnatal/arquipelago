@@ -155,17 +155,17 @@
       "marca": "multi",
       "linha": "Mars",
       "codigo_fabricante": "HO041",
-      "nome_comercial": "Aspirador de Po Robo Mars 3 em 1 (varre, aspira e passa pano)",
+      "nome_comercial": "Aspirador de Pó Robô Mars 3 em 1 (varre, aspira e passa pano)",
       "categoria": "robo",
       "variantes_de_hardware": [
         {
           "rotulo": "A",
-          "o_que_muda": "bateria — o fabricante vende a peca PR10127 identificada como 'Versao A'",
+          "o_que_muda": "bateria — o fabricante vende a peça PR10127 identificada como 'Versão A'",
           "fonte": "f-bateria-a"
         },
         {
           "rotulo": "B",
-          "o_que_muda": "bateria — o fabricante vende a peca PR8116 identificada como 'Mars HO041 versao B'",
+          "o_que_muda": "bateria — o fabricante vende a peça PR8116 identificada como 'Mars HO041 versão B'",
           "fonte": "f-bateria-b"
         }
       ],
@@ -248,7 +248,7 @@
           "nivel": 3,
           "origem": "fabricante-via-busca",
           "publicador": "Multi (multilaserempresas.com.br)",
-          "titulo_na_fonte": "Aspirador de Po Robo Mars Varre + Aspira + Passa Pano Bivolt com 30W e Bateria Recarregavel, Vermelho/Preto Multi - HO041",
+          "titulo_na_fonte": "Aspirador de Pó Robô Mars Varre + Aspira + Passa Pano Bivolt com 30W e Bateria Recarregável, Vermelho/Preto Multi - HO041",
           "url": "https://www.multilaserempresas.com.br/produto/eletroportateis-para-sua-casa/lar/aspiradores/aspirador-de-po-robo-mars-varre-+-aspira-+-passa-pano-bivolt-com-30w-e-bateria-recarregavel--vermelhopreto-multi--ho041/HO041/",
           "canal_de_coleta": "busca web restrita aos dominios multilaser.com.br, multilaserempresas.com.br e suporte.multilaser.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
           "verificado_em": "2026-09-09"
@@ -257,7 +257,7 @@
           "nivel": 3,
           "origem": "fabricante-via-busca",
           "publicador": "Multi (suporte.multilaser.com.br)",
-          "titulo_na_fonte": "ASPIRADOR ROBO MARS BIVOLT VARRE, ASPIRA E PASSA PANO, SISTEMA ANTI-QUEDA, AUTONOMIA DE 2 HORAS, 3 FUNCOES PRE-PROGRAMADAS, IDEAL PARA PETS",
+          "titulo_na_fonte": "ASPIRADOR ROBÔ MARS BIVOLT VARRE, ASPIRA E PASSA PANO, SISTEMA ANTI-QUEDA, AUTONOMIA DE 2 HORAS, 3 FUNÇÕES PRE-PROGRAMADAS, IDEAL PARA PETS",
           "url": "https://suporte.multilaser.com.br/produtos/aspirador-robo-mars-bivolt-ho041/duvidas-frequentes",
           "canal_de_coleta": "busca web restrita aos dominios multilaser.com.br, multilaserempresas.com.br e suporte.multilaser.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
           "verificado_em": "2026-09-09"
@@ -266,7 +266,7 @@
           "nivel": 3,
           "origem": "fabricante-via-busca",
           "publicador": "Multi (multilaser.com.br)",
-          "titulo_na_fonte": "Bateria p/ Aspirador Robo Ho041 Versao A - PR10127",
+          "titulo_na_fonte": "Bateria p/ Aspirador Robô Ho041 Versão A - PR10127",
           "url": "https://www.multilaser.com.br/bateria-p-aspirador-robo-ho041-versao-a-pr10127/p",
           "canal_de_coleta": "busca web restrita aos dominios multilaser.com.br, multilaserempresas.com.br e suporte.multilaser.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
           "verificado_em": "2026-09-09"
@@ -275,7 +275,7 @@
           "nivel": 3,
           "origem": "fabricante-via-busca",
           "publicador": "Multi (multilaserempresas.com.br)",
-          "titulo_na_fonte": "Bateria Para Aspirador Robo Mars, Moon e Duster Multi - PR8116 (endereco da propria pagina: 'bateria-para-aspirador-robo-mars-ho041-versao-b--pr8116')",
+          "titulo_na_fonte": "Bateria Para Aspirador Robô Mars, Moon e Duster Multi - PR8116 (endereço da própria página: 'bateria-para-aspirador-robo-mars-ho041-versao-b--pr8116')",
           "url": "https://www.multilaserempresas.com.br/produto/eletroportateis-para-sua-casa/lar/aspiradores/bateria-para-aspirador-robo-mars-ho041-versao-b--pr8116/PR8116/",
           "canal_de_coleta": "busca web restrita aos dominios multilaser.com.br, multilaserempresas.com.br e suporte.multilaser.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
           "verificado_em": "2026-09-09"
@@ -290,7 +290,7 @@
       "marca": "multi",
       "linha": "Mars",
       "codigo_fabricante": "HO400",
-      "nome_comercial": "Aspirador de Po Robo Mars (Multi Home)",
+      "nome_comercial": "Aspirador de Pó Robô Mars (Multi Home)",
       "categoria": "robo",
       "variantes_de_hardware": [],
       "pa_declarado": {
@@ -365,7 +365,7 @@
           "nivel": 3,
           "origem": "fabricante-via-busca",
           "publicador": "Multi (multilaserempresas.com.br)",
-          "titulo_na_fonte": "Aspirador de Po Robo Mars Varre, Aspira e Passa Pano Bivolt e Bateria Recarregavel Multi Home - HO400",
+          "titulo_na_fonte": "Aspirador de Pó Robô Mars Varre, Aspira e Passa Pano Bivolt e Bateria Recarregável Multi Home - HO400",
           "url": "https://www.multilaserempresas.com.br/produto/eletroportateis-para-sua-casa/lar/aspiradores/aspirador-de-po-robo-mars-varre--aspira-e-passa-pano-bivolt-e-bateria-recarregavel-multi-home--ho400/HO400/",
           "canal_de_coleta": "busca web restrita aos dominios multilaser.com.br, multilaserempresas.com.br e suporte.multilaser.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
           "verificado_em": "2026-09-09"
@@ -379,7 +379,7 @@
       "marca": "multi",
       "linha": "Duster",
       "codigo_fabricante": "HO407",
-      "nome_comercial": "Aspirador Robo Duster 3 em 1",
+      "nome_comercial": "Aspirador Robô Duster 3 em 1",
       "categoria": "robo",
       "variantes_de_hardware": [],
       "pa_declarado": {
@@ -452,7 +452,7 @@
           "nivel": 3,
           "origem": "fabricante-via-busca",
           "publicador": "Multi (multilaser.com.br)",
-          "titulo_na_fonte": "Aspirador Robo 3 em 1 Varre, Aspira e Passa Pano Duster Multi - HO407OUT [Reembalado]",
+          "titulo_na_fonte": "Aspirador Robô 3 em 1 Varre, Aspira e Passa Pano Duster Multi - HO407OUT [Reembalado]",
           "url": "https://www.multilaser.com.br/aspirador-robo-3-em-1-varre-aspira-e-passa-pano-duster-multi-ho407out/p",
           "canal_de_coleta": "busca web restrita aos dominios multilaser.com.br, multilaserempresas.com.br e suporte.multilaser.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
           "verificado_em": "2026-09-09"
@@ -467,7 +467,7 @@
       "marca": "multi",
       "linha": "Moon (a confirmar)",
       "codigo_fabricante": "HO401",
-      "nome_comercial": "Aspirador robo (nome comercial nao confirmado)",
+      "nome_comercial": "Aspirador robô (nome comercial não confirmado)",
       "categoria": "a_confirmar",
       "variantes_de_hardware": [],
       "pa_declarado": {
@@ -540,7 +540,7 @@
           "nivel": 3,
           "origem": "fabricante-via-busca",
           "publicador": "Multi (multilaser.com.br)",
-          "titulo_na_fonte": "Escova Lateral para Aspirador Robo Mars, Moon e Duster - PR10124",
+          "titulo_na_fonte": "Escova Lateral para Aspirador Robô Mars, Moon e Duster - PR10124",
           "url": "https://www.multilaser.com.br/escova-lateral-para-aspirador-robo-ho041-e-ob010/p",
           "canal_de_coleta": "busca web restrita aos dominios multilaser.com.br, multilaserempresas.com.br e suporte.multilaser.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
           "verificado_em": "2026-09-09"
@@ -556,7 +556,7 @@
       "marca": "multi",
       "linha": "ObaDuster (Obabox)",
       "codigo_fabricante": "OB010",
-      "nome_comercial": "Aspirador Robo ObaDuster 3 em 1",
+      "nome_comercial": "Aspirador Robô ObaDuster 3 em 1",
       "categoria": "robo",
       "variantes_de_hardware": [],
       "pa_declarado": {
@@ -630,7 +630,7 @@
           "nivel": 3,
           "origem": "fabricante-via-busca",
           "publicador": "Multi (multilaserempresas.com.br e multilaser.com.br)",
-          "titulo_na_fonte": "Aspirador Robo 3 Em 1 Varre, Aspira E Passa Pano Obaduster Obabox - OB010",
+          "titulo_na_fonte": "Aspirador Robô 3 Em 1 Varre, Aspira E Passa Pano Obaduster Obabox - OB010",
           "url": "https://www.multilaserempresas.com.br/produto/eletroportateis-para-sua-casa/lar/aspiradores/aspirador-robo-3-em-1-varre--aspira-e-passa-pano-obaduster-obabox--ob010/OB010/",
           "canal_de_coleta": "busca web restrita aos dominios multilaser.com.br, multilaserempresas.com.br e suporte.multilaser.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
           "verificado_em": "2026-09-09"
@@ -645,7 +645,7 @@
       "marca": "multi",
       "linha": "Acqua Solution / Hydra",
       "codigo_fabricante": "HO243",
-      "nome_comercial": "Aspirador Robo Hydra (Acqua Solution)",
+      "nome_comercial": "Aspirador Robô Hydra (Acqua Solution)",
       "categoria": "robo",
       "variantes_de_hardware": [],
       "pa_declarado": {
@@ -723,7 +723,7 @@
           "nivel": 3,
           "origem": "fabricante-via-busca",
           "publicador": "Multi (suporte.multilaser.com.br)",
-          "titulo_na_fonte": "ASPIRADOR ROBO HYDRA BIVOLT VARRE, ASPIRA E PASSA PANO, COM RESERVATORIO DE AGUA, BASE CARREGADORA, SISTEMA ANTI-QUEDA, AUTONOMIA DE 90 MINUTOS",
+          "titulo_na_fonte": "ASPIRADOR ROBÔ HYDRA BIVOLT VARRE, ASPIRA E PASSA PANO, COM RESERVATÓRIO DE ÁGUA, BASE CARREGADORA, SISTEMA ANTI-QUEDA, AUTONOMIA DE 90 MINUTOS",
           "url": "https://suporte.multilaser.com.br/produtos/aspirador-robo-acqua-solution-ho243/duvidas-frequentes",
           "canal_de_coleta": "busca web restrita aos dominios multilaser.com.br, multilaserempresas.com.br e suporte.multilaser.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
           "verificado_em": "2026-09-09"
@@ -738,7 +738,7 @@
       "marca": "multi",
       "linha": "Midnight",
       "codigo_fabricante": "HO411",
-      "nome_comercial": "Aspirador Robo Midnight",
+      "nome_comercial": "Aspirador Robô Midnight",
       "categoria": "robo",
       "variantes_de_hardware": [],
       "pa_declarado": {
@@ -810,8 +810,8 @@
         "f-lamina": {
           "nivel": 3,
           "origem": "fabricante-via-busca",
-          "publicador": "Multi (lamina.multilaser.com.br)",
-          "titulo_na_fonte": "Aspirador Robo Midnight",
+          "publicador": "Multi (lâmina.multilaser.com.br)",
+          "titulo_na_fonte": "Aspirador Robô Midnight",
           "url": "https://lamina.multilaser.com.br/ho411.pdf",
           "canal_de_coleta": "busca web restrita aos dominios multilaser.com.br, multilaserempresas.com.br e suporte.multilaser.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao); a lamina oficial em PDF existe e devolveu EGRESS_BLOCKED na leitura direta",
           "verificado_em": "2026-09-09"
@@ -826,7 +826,7 @@
       "marca": "electrolux",
       "linha": null,
       "codigo_fabricante": "ERB44",
-      "nome_comercial": "Robo Aspirador Electrolux 4 em 1 Wi-Fi Experience",
+      "nome_comercial": "Robô Aspirador Electrolux 4 em 1 Wi-Fi Experience",
       "categoria": "robo",
       "variantes_de_hardware": [],
       "pa_declarado": {
@@ -908,7 +908,7 @@
           "nivel": 4,
           "origem": "varejo-oficial-da-marca",
           "publicador": "Electrolux (loja oficial)",
-          "titulo_na_fonte": "Robo Aspirador Electrolux 4 em 1 Wi-Fi Experience ate 2h (ERB44)",
+          "titulo_na_fonte": "Robô Aspirador Electrolux 4 em 1 Wi-Fi Experience até 2h (ERB44)",
           "url": "https://loja.electrolux.com.br/robo-aspirador-electrolux-4-em-1-wi-fi-experience-ate-2h-azul--erb44-/p",
           "canal_de_coleta": "busca web (coleta do Bloco 2, reaproveitada aqui com a mesma data)",
           "verificado_em": "2026-09-09"
@@ -923,7 +923,7 @@
       "marca": "electrolux",
       "linha": null,
       "codigo_fabricante": "ERB10",
-      "nome_comercial": "Robo Aspirador Electrolux ERB10",
+      "nome_comercial": "Robô Aspirador Electrolux ERB10",
       "categoria": "robo",
       "variantes_de_hardware": [],
       "pa_declarado": {
@@ -996,19 +996,22 @@
       },
       "fontes": {
         "f-manual": {
-          "nivel": 2,
-          "origem": "manual-fabricante",
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
           "publicador": "Electrolux (manual hospedado por terceiro em manuals.plus)",
-          "titulo_na_fonte": "Manual do usuario do aspirador robo Electrolux ERB10/ERB11/ERB20",
+          "titulo_na_fonte": "Manual do usuário do aspirador robô Electrolux ERB10/ERB11/ERB20",
           "url": "https://manuals.plus/m/a7d2cf5766298ebb7449842933ed52fe8a527804e53e3684a681bae94bdf7a78",
           "canal_de_coleta": "busca web restrita ao dominio manuals.plus (WebFetch direto devolveu EGRESS_BLOCKED)",
-          "verificado_em": "2026-09-09"
+          "verificado_em": "2026-09-09",
+          "custodia": "terceiro",
+          "rebaixada_em": "2026-09-11",
+          "por_que_nao_e_nivel_2": "O documento e o manual da Electrolux, mas esta guardado por manuals.plus e chegou aqui por busca, sem leitura na fonte primaria (WebFetch: EGRESS_BLOCKED). Pela regra do elo mais fraco (escada_de_fontes em dados/esquema-banco.json, decidida em 11/09/2026), o nivel e o do elo mais fraco da cadeia autoria-custodia-leitura. Ler o mesmo manual no endereco da Electrolux sobe este campo para 2 sem mudar mais nada."
         },
         "f-loja": {
           "nivel": 4,
           "origem": "varejo-oficial-da-marca",
           "publicador": "Electrolux (loja oficial)",
-          "titulo_na_fonte": "Robo Aspirador de Po Electrolux Home-e Speed Experience Com Autonomous Technology ERB10",
+          "titulo_na_fonte": "Robô Aspirador de Pó Electrolux Home-e Speed Experience Com Autonomous Technology ERB10",
           "url": "https://loja.electrolux.com.br/robo-apirador-de-po-electrolux-home-e-speed-experience-com-autonomous-technology-erb10/p",
           "canal_de_coleta": "busca web restrita aos dominios electrolux.com.br, loja.electrolux.com.br e compraparceiros.electrolux.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
           "verificado_em": "2026-09-09"
@@ -1023,7 +1026,7 @@
       "marca": "electrolux",
       "linha": null,
       "codigo_fabricante": "ERB11",
-      "nome_comercial": "Robo Aspirador Electrolux ERB11",
+      "nome_comercial": "Robô Aspirador Electrolux ERB11",
       "categoria": "robo",
       "variantes_de_hardware": [],
       "pa_declarado": {
@@ -1096,19 +1099,22 @@
       },
       "fontes": {
         "f-manual": {
-          "nivel": 2,
-          "origem": "manual-fabricante",
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
           "publicador": "Electrolux (manual hospedado por terceiro em manuals.plus)",
-          "titulo_na_fonte": "Manual do usuario do aspirador robo Electrolux ERB10/ERB11/ERB20",
+          "titulo_na_fonte": "Manual do usuário do aspirador robô Electrolux ERB10/ERB11/ERB20",
           "url": "https://manuals.plus/m/a7d2cf5766298ebb7449842933ed52fe8a527804e53e3684a681bae94bdf7a78",
           "canal_de_coleta": "busca web restrita ao dominio manuals.plus (WebFetch direto devolveu EGRESS_BLOCKED)",
-          "verificado_em": "2026-09-09"
+          "verificado_em": "2026-09-09",
+          "custodia": "terceiro",
+          "rebaixada_em": "2026-09-11",
+          "por_que_nao_e_nivel_2": "O documento e o manual da Electrolux, mas esta guardado por manuals.plus e chegou aqui por busca, sem leitura na fonte primaria (WebFetch: EGRESS_BLOCKED). Pela regra do elo mais fraco (escada_de_fontes em dados/esquema-banco.json, decidida em 11/09/2026), o nivel e o do elo mais fraco da cadeia autoria-custodia-leitura. Ler o mesmo manual no endereco da Electrolux sobe este campo para 2 sem mudar mais nada."
         },
         "f-loja": {
           "nivel": 4,
           "origem": "varejo-oficial-da-marca",
           "publicador": "Electrolux (loja oficial)",
-          "titulo_na_fonte": "Robo Aspirador de Po Electrolux Home-e Speed Experience Com Autonomous Technology ERB11",
+          "titulo_na_fonte": "Robô Aspirador de Pó Electrolux Home-e Speed Experience Com Autonomous Technology ERB11",
           "url": "https://loja.electrolux.com.br/robo-apirador-de-po-electrolux-home-e-speed-experience-com-autonomous-technology-erb11/p",
           "canal_de_coleta": "busca web restrita aos dominios electrolux.com.br, loja.electrolux.com.br e compraparceiros.electrolux.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
           "verificado_em": "2026-09-09"
@@ -1123,7 +1129,7 @@
       "marca": "electrolux",
       "linha": null,
       "codigo_fabricante": "ERB20",
-      "nome_comercial": "Robo Aspirador Electrolux ERB20",
+      "nome_comercial": "Robô Aspirador Electrolux ERB20",
       "categoria": "robo",
       "variantes_de_hardware": [],
       "pa_declarado": {
@@ -1194,13 +1200,16 @@
       },
       "fontes": {
         "f-manual": {
-          "nivel": 2,
-          "origem": "manual-fabricante",
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
           "publicador": "Electrolux (manual hospedado por terceiro em manuals.plus)",
-          "titulo_na_fonte": "Manual do usuario do aspirador robo Electrolux ERB10/ERB11/ERB20",
+          "titulo_na_fonte": "Manual do usuário do aspirador robô Electrolux ERB10/ERB11/ERB20",
           "url": "https://manuals.plus/m/a7d2cf5766298ebb7449842933ed52fe8a527804e53e3684a681bae94bdf7a78",
           "canal_de_coleta": "busca web restrita ao dominio manuals.plus (WebFetch direto devolveu EGRESS_BLOCKED)",
-          "verificado_em": "2026-09-09"
+          "verificado_em": "2026-09-09",
+          "custodia": "terceiro",
+          "rebaixada_em": "2026-09-11",
+          "por_que_nao_e_nivel_2": "O documento e o manual da Electrolux, mas esta guardado por manuals.plus e chegou aqui por busca, sem leitura na fonte primaria (WebFetch: EGRESS_BLOCKED). Pela regra do elo mais fraco (escada_de_fontes em dados/esquema-banco.json, decidida em 11/09/2026), o nivel e o do elo mais fraco da cadeia autoria-custodia-leitura. Ler o mesmo manual no endereco da Electrolux sobe este campo para 2 sem mudar mais nada."
         }
       },
       "status": "publicavel",
@@ -1294,7 +1303,7 @@
           "nivel": 3,
           "origem": "fabricante-via-busca",
           "publicador": "Xiaomi Brasil",
-          "titulo_na_fonte": "Xiaomi Robot Vacuum S20 — pagina oficial de especificacoes",
+          "titulo_na_fonte": "Xiaomi Robot Vacuum S20 — página oficial de especificações",
           "url": "https://www.mi.com/br/product/xiaomi-robot-vacuum-s20/specs/",
           "canal_de_coleta": "busca web (coleta do Bloco 2; WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
           "verificado_em": "2026-09-09"
@@ -1309,7 +1318,7 @@
       "marca": "positivo",
       "linha": null,
       "codigo_fabricante": "PRA800",
-      "nome_comercial": "Smart Robo Aspirador Wi-Fi Laser (mapeamento)",
+      "nome_comercial": "Smart Robô Aspirador Wi-Fi Laser (mapeamento)",
       "categoria": "robo",
       "variantes_de_hardware": [],
       "pa_declarado": {
@@ -1391,7 +1400,7 @@
           "nivel": 3,
           "origem": "fabricante-via-busca",
           "publicador": "Positivo Casa Inteligente",
-          "titulo_na_fonte": "Smart Robo Aspirador Wi-Fi Mapeamento PRA800",
+          "titulo_na_fonte": "Smart Robô Aspirador Wi-Fi Mapeamento PRA800",
           "url": "https://www.positivocasainteligente.com.br/smart-robo-aspirador-wifi-mapeamento-pra800",
           "canal_de_coleta": "busca web (coleta do Bloco 2)",
           "verificado_em": "2026-09-09"
@@ -1406,7 +1415,7 @@
       "marca": "multi",
       "linha": null,
       "codigo_fabricante": "HO011",
-      "nome_comercial": "Aspirador de Po Vertical e de Mao 2 em 1 (127 V, 1000 W)",
+      "nome_comercial": "Aspirador de Pó Vertical e de Mão 2 em 1 (127 V, 1000 W)",
       "categoria": "aspirador_comum",
       "variantes_de_hardware": [],
       "pa_declarado": {
@@ -1483,7 +1492,7 @@
           "nivel": 3,
           "origem": "fabricante-via-busca",
           "publicador": "Multi (multilaser.com.br)",
-          "titulo_na_fonte": "Aspirador de Po Vertical e de Mao 2 em 1 com Coletor de Po Permanente 1000w-127v Multi - HO011",
+          "titulo_na_fonte": "Aspirador de Pó Vertical e de Mão 2 em 1 com Coletor de Pó Permanente 1000w-127v Multi - HO011",
           "url": "https://www.multilaser.com.br/aspirador-de-p-vertical-e-de-mao-2-em-1-c-coletor-de-po-permanente-multi-ho011/p",
           "canal_de_coleta": "busca web restrita aos dominios multilaser.com.br, multilaserempresas.com.br e suporte.multilaser.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
           "verificado_em": "2026-09-09"
@@ -1498,7 +1507,7 @@
       "marca": "multi",
       "linha": null,
       "codigo_fabricante": "HO012",
-      "nome_comercial": "Aspirador de Po Vertical e de Mao 2 em 1 (220 V, 700 W)",
+      "nome_comercial": "Aspirador de Pó Vertical e de Mão 2 em 1 (220 V, 700 W)",
       "categoria": "aspirador_comum",
       "variantes_de_hardware": [],
       "pa_declarado": {
@@ -1575,7 +1584,7 @@
           "nivel": 3,
           "origem": "fabricante-via-busca",
           "publicador": "Multi (multilaser.com.br)",
-          "titulo_na_fonte": "Aspirador de Po Vertical e de Mao Multilaser 220V 700W Branco/Laranja - HO012",
+          "titulo_na_fonte": "Aspirador de Pó Vertical e de Mão Multilaser 220V 700W Branco/Laranja - HO012",
           "url": "https://www.multilaser.com.br/aspirador-de-po-vertical-2-em-1-700w-multilaser-220v-ho012/p",
           "canal_de_coleta": "busca web restrita aos dominios multilaser.com.br, multilaserempresas.com.br e suporte.multilaser.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
           "verificado_em": "2026-09-09"
@@ -1590,7 +1599,7 @@
       "marca": "multi",
       "linha": null,
       "codigo_fabricante": "HO03",
-      "nome_comercial": "Aspirador de Po 2 em 1 HO03",
+      "nome_comercial": "Aspirador de Pó 2 em 1 HO03",
       "categoria": "aspirador_comum",
       "variantes_de_hardware": [],
       "pa_declarado": {
@@ -1663,7 +1672,7 @@
           "nivel": 3,
           "origem": "fabricante-via-busca",
           "publicador": "Multi (multilaser.com.br)",
-          "titulo_na_fonte": "Filtro HEPA para Aspirador de Po HO03 HO04 Multilaser - PR550",
+          "titulo_na_fonte": "Filtro HEPA para Aspirador de Pó HO03 HO04 Multilaser - PR550",
           "url": "https://www.multilaser.com.br/filtro-hepa-para-aspirador-de-po-ho03-ho04-multilaser---pr550/p",
           "canal_de_coleta": "busca web restrita ao dominio multilaser.com.br (coleta do Bloco 2)",
           "verificado_em": "2026-09-09"
@@ -1678,7 +1687,7 @@
       "marca": "multi",
       "linha": null,
       "codigo_fabricante": "HO04",
-      "nome_comercial": "Aspirador de Po 2 em 1 HO04",
+      "nome_comercial": "Aspirador de Pó 2 em 1 HO04",
       "categoria": "aspirador_comum",
       "variantes_de_hardware": [],
       "pa_declarado": {
@@ -1751,7 +1760,7 @@
           "nivel": 3,
           "origem": "fabricante-via-busca",
           "publicador": "Multi (multilaser.com.br)",
-          "titulo_na_fonte": "Filtro HEPA para Aspirador de Po HO03 HO04 Multilaser - PR550",
+          "titulo_na_fonte": "Filtro HEPA para Aspirador de Pó HO03 HO04 Multilaser - PR550",
           "url": "https://www.multilaser.com.br/filtro-hepa-para-aspirador-de-po-ho03-ho04-multilaser---pr550/p",
           "canal_de_coleta": "busca web restrita ao dominio multilaser.com.br (coleta do Bloco 2)",
           "verificado_em": "2026-09-09"
@@ -1766,7 +1775,7 @@
       "marca": "electrolux",
       "linha": "Experience Mapeamento",
       "codigo_fabricante": "ERB60",
-      "nome_comercial": "Robo Aspirador Electrolux 4 em 1 Wi-Fi Experience",
+      "nome_comercial": "Robô Aspirador Electrolux 4 em 1 Wi-Fi Experience",
       "categoria": "robo",
       "variantes_de_hardware": [],
       "pa_declarado": {
@@ -1852,7 +1861,7 @@
           "nivel": 4,
           "origem": "varejo-oficial-da-marca",
           "publicador": "Electrolux (loja oficial)",
-          "titulo_na_fonte": "Robo Aspirador Electrolux 4 em 1 Wi-Fi Experience ate 1h40 Mapeamento Preto (ERB60)",
+          "titulo_na_fonte": "Robô Aspirador Electrolux 4 em 1 Wi-Fi Experience até 1h40 Mapeamento Preto (ERB60)",
           "url": "https://loja.electrolux.com.br/robo-aspirador-electrolux-4-em-1-wi-fi-experience-ate-1h40-mapeamento-preto--erb60-/p",
           "canal_de_coleta": "busca web restrita aos dominios electrolux.com.br, loja.electrolux.com.br e compraparceiros.electrolux.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
           "verificado_em": "2026-09-09"
@@ -1867,7 +1876,7 @@
       "marca": "electrolux",
       "linha": "Experience Mapeamento",
       "codigo_fabricante": "ERB61",
-      "nome_comercial": "Robo Aspirador Electrolux 4 em 1 Wi-Fi Experience",
+      "nome_comercial": "Robô Aspirador Electrolux 4 em 1 Wi-Fi Experience",
       "categoria": "robo",
       "variantes_de_hardware": [],
       "pa_declarado": {
@@ -1953,7 +1962,7 @@
           "nivel": 4,
           "origem": "varejo-oficial-da-marca",
           "publicador": "Electrolux (loja oficial)",
-          "titulo_na_fonte": "Robo Aspirador Electrolux 4 em 1 Wi-Fi Experience ate 1h40 Mapeamento Cinza (ERB61)",
+          "titulo_na_fonte": "Robô Aspirador Electrolux 4 em 1 Wi-Fi Experience até 1h40 Mapeamento Cinza (ERB61)",
           "url": "https://loja.electrolux.com.br/robo-aspirador-electrolux-4-em-1-wi-fi-experience-ate-1h40-mapeamento-cinza--erb61-/p",
           "canal_de_coleta": "busca web restrita aos dominios electrolux.com.br, loja.electrolux.com.br e compraparceiros.electrolux.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
           "verificado_em": "2026-09-09"
@@ -1968,7 +1977,7 @@
       "marca": "electrolux",
       "linha": "Experience Mapeamento",
       "codigo_fabricante": "ERB62",
-      "nome_comercial": "Robo Aspirador Electrolux 4 em 1 Wi-Fi Experience",
+      "nome_comercial": "Robô Aspirador Electrolux 4 em 1 Wi-Fi Experience",
       "categoria": "robo",
       "variantes_de_hardware": [],
       "pa_declarado": {
@@ -2054,7 +2063,7 @@
           "nivel": 4,
           "origem": "varejo-oficial-da-marca",
           "publicador": "Electrolux (loja oficial)",
-          "titulo_na_fonte": "Robo Aspirador Electrolux 4 em 1 Wi-Fi Experience ate 1h40 Mapeamento Branco (ERB62)",
+          "titulo_na_fonte": "Robô Aspirador Electrolux 4 em 1 Wi-Fi Experience até 1h40 Mapeamento Branco (ERB62)",
           "url": "https://loja.electrolux.com.br/robo-aspirador-electrolux-4-em-1-wi-fi-experience-ate-1h40-mapeamento-branco--erb62-/p",
           "canal_de_coleta": "busca web restrita aos dominios electrolux.com.br, loja.electrolux.com.br e compraparceiros.electrolux.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
           "verificado_em": "2026-09-09"
@@ -2069,7 +2078,7 @@
       "marca": "electrolux",
       "linha": "Experience Mapeamento",
       "codigo_fabricante": "ERB80",
-      "nome_comercial": "Robo Aspirador Electrolux 4 em 1 Wi-Fi Experience",
+      "nome_comercial": "Robô Aspirador Electrolux 4 em 1 Wi-Fi Experience",
       "categoria": "robo",
       "variantes_de_hardware": [],
       "pa_declarado": {
@@ -2155,7 +2164,7 @@
           "nivel": 4,
           "origem": "varejo-oficial-da-marca",
           "publicador": "Electrolux (loja oficial)",
-          "titulo_na_fonte": "Robo Aspirador Electrolux 4 em 1 Wi-Fi Experience ate 1h40 Mapeamento e Base Autolimpante (ERB80)",
+          "titulo_na_fonte": "Robô Aspirador Electrolux 4 em 1 Wi-Fi Experience até 1h40 Mapeamento e Base Autolimpante (ERB80)",
           "url": "https://loja.electrolux.com.br/robo-aspirador-electrolux-4-em-1-wi-fi-experience-ate-1h40-mapeamento-e-base-autolimpante--erb80-/p",
           "canal_de_coleta": "busca web restrita aos dominios electrolux.com.br, loja.electrolux.com.br e compraparceiros.electrolux.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
           "verificado_em": "2026-09-09"
@@ -2170,7 +2179,7 @@
       "marca": "electrolux",
       "linha": "Home-E Power Experience",
       "codigo_fabricante": "ERB30",
-      "nome_comercial": "Robo Aspirador de Po Electrolux Home-E Power Experience com Autonomous Technology",
+      "nome_comercial": "Robô Aspirador de Pó Electrolux Home-E Power Experience com Autonomous Technology",
       "categoria": "robo",
       "variantes_de_hardware": [],
       "pa_declarado": {
@@ -2252,7 +2261,7 @@
           "nivel": 4,
           "origem": "varejo-oficial-da-marca",
           "publicador": "Electrolux (loja oficial)",
-          "titulo_na_fonte": "Robo Aspirador de Po Electrolux Home-E Power Experience com Autonomous Technology (ERB30)",
+          "titulo_na_fonte": "Robô Aspirador de Pó Electrolux Home-E Power Experience com Autonomous Technology (ERB30)",
           "url": "https://loja.electrolux.com.br/robo-apirador-de-po-electrolux-home-e-power-experience-com-autonomous-technology--erb30-/p",
           "canal_de_coleta": "busca web restrita aos dominios electrolux.com.br, loja.electrolux.com.br e compraparceiros.electrolux.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
           "verificado_em": "2026-09-09"
@@ -2265,9 +2274,9 @@
     {
       "id": "positivo-pra2000",
       "marca": "positivo",
-      "linha": "Smart Robo Aspirador",
+      "linha": "Smart Robô Aspirador",
       "codigo_fabricante": "PRA2000",
-      "nome_comercial": "Smart Robo Aspirador Wi-Fi Autolimpante PRA2000 Positivo Casa Inteligente",
+      "nome_comercial": "Smart Robô Aspirador Wi-Fi Autolimpante PRA2000 Positivo Casa Inteligente",
       "categoria": "robo",
       "variantes_de_hardware": [],
       "pa_declarado": {
@@ -2357,7 +2366,7 @@
           "nivel": 3,
           "origem": "fabricante-via-busca",
           "publicador": "Positivo Casa Inteligente",
-          "titulo_na_fonte": "Smart Robo Aspirador Wi-Fi Autolimpante PRA2000 Positivo Casa Inteligente",
+          "titulo_na_fonte": "Smart Robô Aspirador Wi-Fi Autolimpante PRA2000 Positivo Casa Inteligente",
           "url": "https://www.positivocasainteligente.com.br/smart-robo-aspirador-wifi-autolimpante-pra2000-positivo-casa-inteligente-11206197/p",
           "canal_de_coleta": "busca web restrita aos dominios positivocasainteligente.com.br e meupositivo.com.br",
           "verificado_em": "2026-09-09"
@@ -2366,7 +2375,7 @@
           "nivel": 3,
           "origem": "fabricante-via-busca",
           "publicador": "Positivo Casa Inteligente",
-          "titulo_na_fonte": "Smart Robo Aspirador Wi-Fi Autolimpante PRA2000 | Positivo Casa Inteligente",
+          "titulo_na_fonte": "Smart Robô Aspirador Wi-Fi Autolimpante PRA2000 | Positivo Casa Inteligente",
           "url": "https://www.positivocasainteligente.com.br/smart-robo-aspirador-wifi-autolimpante-pra2000",
           "canal_de_coleta": "busca web restrita aos dominios positivocasainteligente.com.br e loja.meupositivo.com.br; static.positivocasainteligente.com.br, onde fica o guia rapido em PDF, devolveu EGRESS_BLOCKED em 09/09/2026",
           "verificado_em": "2026-09-09"
@@ -2379,9 +2388,9 @@
     {
       "id": "positivo-pra500",
       "marca": "positivo",
-      "linha": "Smart Robo Aspirador",
+      "linha": "Smart Robô Aspirador",
       "codigo_fabricante": "PRA500",
-      "nome_comercial": "Smart Robo Aspirador Wi-Fi+ PRA500 Positivo Casa Inteligente",
+      "nome_comercial": "Smart Robô Aspirador Wi-Fi+ PRA500 Positivo Casa Inteligente",
       "categoria": "robo",
       "variantes_de_hardware": [],
       "pa_declarado": {
@@ -2450,9 +2459,9 @@
       "divergencias": [
         {
           "campo": "pa_declarado",
-          "canal": "positivocasainteligente.com.br — pagina do proprio produto",
+          "canal": "positivocasainteligente.com.br — página do próprio produto",
           "valor_declarado": 1600,
-          "titulo_na_fonte": "Smart Robo Aspirador Wi-Fi+ PRA 500 | Exclusivo Loja Positivo Casa Inteligente",
+          "titulo_na_fonte": "Smart Robô Aspirador Wi-Fi+ PRA 500 | Exclusivo Loja Positivo Casa Inteligente",
           "transcricao": "1600 Pa de poder de succao",
           "url": "https://www.positivocasainteligente.com.br/exclusivo-smart-robo-aspirador-wi-fi-plus/p",
           "verificado_em": "2026-09-09"
@@ -2461,7 +2470,7 @@
           "campo": "pa_declarado",
           "canal": "positivocasainteligente.com.br — texto descritivo do MESMO canal",
           "valor_declarado": 2000,
-          "titulo_na_fonte": "Smart Robo Aspirador Wi-Fi+ PRA 500 | Exclusivo Loja Positivo Casa Inteligente",
+          "titulo_na_fonte": "Smart Robô Aspirador Wi-Fi+ PRA 500 | Exclusivo Loja Positivo Casa Inteligente",
           "transcricao": "poder de succao de 2000Pa e tanque de agua, perfeito para pisos, tapetes, carpetes e laminados",
           "url": "https://www.positivocasainteligente.com.br/exclusivo-smart-robo-aspirador-wi-fi-plus/p",
           "verificado_em": "2026-09-09"
@@ -2470,7 +2479,7 @@
           "campo": "pa_declarado",
           "canal": "loja.meupositivo.com.br — a outra loja oficial da marca",
           "valor_declarado": null,
-          "titulo_na_fonte": "Smart Robo Aspirador Wi-Fi+ PRA500 Positivo Casa Inteligente",
+          "titulo_na_fonte": "Smart Robô Aspirador Wi-Fi+ PRA500 Positivo Casa Inteligente",
           "transcricao": "a ficha tecnica deste canal traz tanque, bateria e sensores e NAO traz Pa nenhum",
           "url": "https://loja.meupositivo.com.br/smart-robo-aspirador-wi-fi-plus/p",
           "verificado_em": "2026-09-09"
@@ -2497,7 +2506,7 @@
           "nivel": 3,
           "origem": "fabricante-via-busca",
           "publicador": "Positivo Casa Inteligente",
-          "titulo_na_fonte": "Smart Robo Aspirador Wi-Fi+ PRA500 Positivo Casa Inteligente - Varre, Aspira, Passa Pano e Retorna base - App/Alexa",
+          "titulo_na_fonte": "Smart Robô Aspirador Wi-Fi+ PRA500 Positivo Casa Inteligente - Varre, Aspira, Passa Pano e Retorna base - App/Alexa",
           "url": "https://loja.meupositivo.com.br/smart-robo-aspirador-wi-fi-plus/p",
           "canal_de_coleta": "busca web restrita aos dominios positivocasainteligente.com.br e meupositivo.com.br",
           "verificado_em": "2026-09-09"
@@ -2506,7 +2515,7 @@
           "nivel": 3,
           "origem": "fabricante-via-busca",
           "publicador": "Positivo Casa Inteligente",
-          "titulo_na_fonte": "Smart Robo Aspirador Wi-Fi+ PRA 500 | Exclusivo Loja Positivo Casa Inteligente",
+          "titulo_na_fonte": "Smart Robô Aspirador Wi-Fi+ PRA 500 | Exclusivo Loja Positivo Casa Inteligente",
           "url": "https://www.positivocasainteligente.com.br/exclusivo-smart-robo-aspirador-wi-fi-plus/p",
           "canal_de_coleta": "busca web restrita aos dominios positivocasainteligente.com.br e loja.meupositivo.com.br; static.positivocasainteligente.com.br, onde fica o guia rapido em PDF, devolveu EGRESS_BLOCKED em 09/09/2026",
           "verificado_em": "2026-09-09"
@@ -2600,7 +2609,7 @@
           "nivel": 3,
           "origem": "fabricante-via-busca",
           "publicador": "Xiaomi Brasil",
-          "titulo_na_fonte": "Xiaomi Robot Vacuum S10 Especificacoes — Xiaomi Brasil",
+          "titulo_na_fonte": "Xiaomi Robot Vacuum S10 Especificações — Xiaomi Brasil",
           "url": "https://www.mi.com/br/product/xiaomi-robot-vacuum-s10/specs/",
           "canal_de_coleta": "busca web restrita ao dominio mi.com; a leitura direta da pagina de especificacoes devolveu EGRESS_BLOCKED em 09/09/2026",
           "verificado_em": "2026-09-09"
@@ -2695,7 +2704,7 @@
           "nivel": 3,
           "origem": "fabricante-via-busca",
           "publicador": "Xiaomi Brasil",
-          "titulo_na_fonte": "Xiaomi Robot Vacuum E10 Especificacoes — Xiaomi Brasil",
+          "titulo_na_fonte": "Xiaomi Robot Vacuum E10 Especificações — Xiaomi Brasil",
           "url": "https://www.mi.com/br/product/xiaomi-robot-vacuum-e10/specs/",
           "canal_de_coleta": "busca web restrita ao dominio mi.com; a leitura direta da pagina de especificacoes devolveu EGRESS_BLOCKED em 09/09/2026",
           "verificado_em": "2026-09-09"
@@ -2790,7 +2799,7 @@
           "nivel": 3,
           "origem": "fabricante-via-busca",
           "publicador": "Xiaomi Brasil",
-          "titulo_na_fonte": "Xiaomi Robot Vacuum S40 — Todas as especificacoes e funcionalidades | Xiaomi Brasil",
+          "titulo_na_fonte": "Xiaomi Robot Vacuum S40 — Todas as especificações e funcionalidades | Xiaomi Brasil",
           "url": "https://www.mi.com/br/product/xiaomi-robot-vacuum-s40/specs/",
           "canal_de_coleta": "busca web restrita ao dominio mi.com; a leitura direta da pagina de especificacoes devolveu EGRESS_BLOCKED em 09/09/2026",
           "verificado_em": "2026-09-09"
@@ -2881,7 +2890,7 @@
           "nivel": 3,
           "origem": "fabricante-via-busca",
           "publicador": "Xiaomi Brasil",
-          "titulo_na_fonte": "Xiaomi Robot Vacuum S40c — Todas as especificacoes e funcionalidades | Xiaomi Brasil",
+          "titulo_na_fonte": "Xiaomi Robot Vacuum S40c — Todas as especificações e funcionalidades | Xiaomi Brasil",
           "url": "https://www.mi.com/br/product/xiaomi-robot-vacuum-s40c/specs/",
           "canal_de_coleta": "busca web restrita ao dominio mi.com; a leitura direta da pagina de especificacoes devolveu EGRESS_BLOCKED em 09/09/2026",
           "verificado_em": "2026-09-09"
@@ -2957,7 +2966,7 @@
       "divergencias": [
         {
           "campo": "autonomia_min_declarada",
-          "canal": "mi.com/br — pagina do produto",
+          "canal": "mi.com/br — página do produto",
           "valor_declarado": 180,
           "titulo_na_fonte": "Xiaomi Robot Vacuum H40 — Xiaomi Brasil",
           "transcricao": "pode aspirar e passar pano por ate 180 minutos com carga total no modo padrao",
@@ -2966,9 +2975,9 @@
         },
         {
           "campo": "autonomia_min_declarada",
-          "canal": "mi.com/br — pagina de especificacoes do mesmo produto",
+          "canal": "mi.com/br — página de especificações do mesmo produto",
           "valor_declarado": 180,
-          "titulo_na_fonte": "Xiaomi Robot Vacuum H40 Especificacoes, Funcionalidades | Xiaomi Brasil",
+          "titulo_na_fonte": "Xiaomi Robot Vacuum H40 Especificações, Funcionalidades | Xiaomi Brasil",
           "transcricao": "pode aspirar e passar pano por >=180 minutos no modo padrao em uma unica execucao",
           "url": "https://www.mi.com/br/product/xiaomi-robot-vacuum-h40/specs/",
           "verificado_em": "2026-09-09"
@@ -2996,7 +3005,7 @@
           "nivel": 3,
           "origem": "fabricante-via-busca",
           "publicador": "Xiaomi Brasil",
-          "titulo_na_fonte": "Xiaomi Robot Vacuum H40 Especificacoes, Funcionalidades | Xiaomi Brasil",
+          "titulo_na_fonte": "Xiaomi Robot Vacuum H40 Especificações, Funcionalidades | Xiaomi Brasil",
           "url": "https://www.mi.com/br/product/xiaomi-robot-vacuum-h40/specs/",
           "canal_de_coleta": "busca web restrita ao dominio mi.com; a leitura direta da pagina de especificacoes devolveu EGRESS_BLOCKED em 09/09/2026",
           "verificado_em": "2026-09-09"
@@ -3104,7 +3113,7 @@
       "marca": "wap",
       "linha": null,
       "codigo_fabricante": "W400",
-      "nome_comercial": "Robo Aspirador de Po WAP Robot W400",
+      "nome_comercial": "Robô Aspirador de Pó WAP Robot W400",
       "categoria": "robo",
       "variantes_de_hardware": [],
       "pa_declarado": {
@@ -3182,7 +3191,7 @@
           "nivel": 3,
           "origem": "fabricante-via-busca",
           "publicador": "WAP",
-          "titulo_na_fonte": "Robo Aspirador de Po WAP Robot W400 — Lojas WAP",
+          "titulo_na_fonte": "Robô Aspirador de Pó WAP Robot W400 — Lojas WAP",
           "url": "https://loja.wap.ind.br/robo-aspirador-de-po-wap-robot-w400/p",
           "canal_de_coleta": "busca web restrita ao dominio wap.ind.br; loja.wap.ind.br e mais.conteudo.wap.ind.br (onde ficam os manuais em PDF) devolveram EGRESS_BLOCKED na leitura direta em 09/09/2026",
           "verificado_em": "2026-09-09"
@@ -3191,7 +3200,7 @@
           "nivel": 3,
           "origem": "fabricante-via-busca",
           "publicador": "WAP",
-          "titulo_na_fonte": "MANUAL DE INSTRUCOES WAP ROBOT W400 FW009293 REV00MAI23",
+          "titulo_na_fonte": "MANUAL DE INSTRUÇÕES WAP ROBOT W400 FW009293 REV00MAI23",
           "url": "https://mais.conteudo.wap.ind.br/wap/produtos/aspirador/robo/aspirador_robo_w400_fw009251/arquivos/manual/manual_aspirador_robo_w400.pdf",
           "canal_de_coleta": "manual oficial LOCALIZADO por busca restrita ao dominio e NAO LIDO: o egresso barrou o PDF (EGRESS_BLOCKED em 09/09/2026). Fica registrado como o alvo da releitura de nivel 2",
           "verificado_em": "2026-09-09"
@@ -3206,7 +3215,7 @@
       "marca": "wap",
       "linha": null,
       "codigo_fabricante": "W1000",
-      "nome_comercial": "Robo Aspirador de Po WAP Robot W1000",
+      "nome_comercial": "Robô Aspirador de Pó WAP Robot W1000",
       "categoria": "robo",
       "variantes_de_hardware": [],
       "pa_declarado": {
@@ -3285,7 +3294,7 @@
           "nivel": 3,
           "origem": "fabricante-via-busca",
           "publicador": "WAP",
-          "titulo_na_fonte": "Robo Aspirador de Po WAP Robot W1000 — Lojas WAP",
+          "titulo_na_fonte": "Robô Aspirador de Pó WAP Robot W1000 — Lojas WAP",
           "url": "https://loja.wap.ind.br/robo-aspirador-de-po-wap-robot-w1000/p",
           "canal_de_coleta": "busca web restrita ao dominio wap.ind.br; loja.wap.ind.br e mais.conteudo.wap.ind.br (onde ficam os manuais em PDF) devolveram EGRESS_BLOCKED na leitura direta em 09/09/2026",
           "verificado_em": "2026-09-09"
@@ -3300,7 +3309,7 @@
       "marca": "wap",
       "linha": null,
       "codigo_fabricante": "W310",
-      "nome_comercial": "Robo Aspirador WAP Robot W310",
+      "nome_comercial": "Robô Aspirador WAP Robot W310",
       "categoria": "robo",
       "variantes_de_hardware": [],
       "pa_declarado": {
@@ -3379,7 +3388,7 @@
           "nivel": 3,
           "origem": "fabricante-via-busca",
           "publicador": "WAP",
-          "titulo_na_fonte": "Robo Aspirador WAP Robot W310 | Limpeza Automatica — Lojas WAP",
+          "titulo_na_fonte": "Robô Aspirador WAP Robot W310 | Limpeza Automática — Lojas WAP",
           "url": "https://loja.wap.ind.br/robot-w310-1/p",
           "canal_de_coleta": "busca web restrita ao dominio wap.ind.br; loja.wap.ind.br e mais.conteudo.wap.ind.br (onde ficam os manuais em PDF) devolveram EGRESS_BLOCKED na leitura direta em 09/09/2026",
           "verificado_em": "2026-09-09"
