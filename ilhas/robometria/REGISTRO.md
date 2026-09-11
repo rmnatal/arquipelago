@@ -1685,3 +1685,117 @@ Sync acionado por `curl` as 19h45Z. `/status` responde **revisao 16**, igual a d
   passar pela ronda; home e header ja foram). Tudo que cria URL — as quatro secoes,
   as quatorze categorias, a troca de pai e slug — espera o **reenvio do sitemap no
   Search Console**, que e do Raphael.
+
+## 11/09/2026, 21h48Z — UM NOME POR PAGINA NAS NOVE, e a bancada que media tres delas pela metade (casca 1.4.0, R1 1.2.0, R2 1.1.0, A1 1.1.0, A2 1.1.0, manifest revisao 17)
+
+Bloco da voz da secao 15.5 — a reescrita das paginas restantes, que era o proximo
+passo sem URL nova. Ele cresceu porque a medicao achou duas familias de defeito
+antes de chegar ao texto, e as duas sao a mesma coisa: **metades que nao se falam.**
+
+**SEIS DAS NOVE PAGINAS TINHAM DOIS NOMES.** O `og:title` publicava "Quem publica
+a Robometria" e o H1 da mesma pagina dizia "Sobre"; o artigo do filtro universal
+se chamava "Por que nao existe filtro universal de robo aspirador" no H1 e
+"Existe filtro universal de robo aspirador?" no cartao compartilhado; a R2 tinha
+um nome no H1 e outro na cabeca. Ninguem errou: a casca 1.2.0 criou um mapa de
+cabecas com `titulo` proprio, ao lado do titulo da definicao da pagina, e os dois
+eram certos no seu lugar. Nenhum podia corrigir o outro — a mesma forma da coluna
+"Temos hoje" digitada ao lado de um banco que ja dizia outra coisa.
+**Conserto:** `robometria_casca_nome_da_pagina()` e a fonte unica (definicao da
+casca para as cinco dela, catalogo da propria ferramenta ou artigo para as
+quatro, que agora recebe o titulo da constante do snippet que CRIA a pagina). O
+H1, o `<title>`, o `og:title`, o degrau da trilha e o rotulo do cartao derivam
+dela. O mapa das cabecas perdeu o campo `titulo`.
+
+**O `<title>` ERA A UNICA SUPERFICIE QUE O REPOSITORIO NAO ESCREVIA.** Medido na
+home no ar: `Robometria – Compatibilidade de pecas e dimensionamento de robo
+aspirador`, 73 caracteres, vindos do campo de descricao curta do wp-admin. Um
+terceiro nome para a pagina mais importante da ilha, em vocabulario de dentro da
+fabrica, num campo que nenhum arquivo daqui escreve e nenhuma bancada podia ver —
+porque a bancada servia um `<title>` digitado ("Robometria — teste") em todas as
+paginas. Agora a casca assume `document_title_parts`, a bancada monta o titulo
+pelo mesmo caminho do nucleo, e o teto de 65 caracteres e cobrado no NOME (52),
+antes de publicar.
+
+**A BANCADA MEDIA TRES PAGINAS PELA METADE, e a causa e a quarta repeticao da
+mesma cicatriz.** `ferramentas/varrer-corpo.php` — o varredor que existe
+justamente para medir a entrada inteira, 72 estados, um processo por estado —
+nunca chamou `robometria_teste_carregar_options()`. Entao `pagina:a1` devolvia
+**1.118 caracteres** de corpo (a pagina real tem 7.2 mil), `pagina:a2` 1.107, e
+`pagina:metodologia` servia o aviso de que a medicao nao chegou, ou seja, os onze
+numeros que a ilha publica sobre si mesma NUNCA foram varridos. Os tres eram
+paginas **validas**: cabecalho, rodape, folha, trilha e um aviso honesto de tres
+linhas. Por isso passou em silencio, e por isso o `teste-acentuacao` — o unico que
+varre a entrada inteira — nunca leu o corpo dos dois artigos.
+**Conserto em tres partes, e a do meio e a que fecha a familia:** (1) o varredor
+carrega as options como o Sync; (2) o aviso de "estamos sem o banco" ganhou **dono
+unico** na casca e a marca `rbm-sem-banco` no markup, que nao muda nada na tela e
+existe so para a bancada conseguir dizer "isto nao e a pagina"; (3) dois portoes
+reprovam o estado degradado (`teste-voz.php` e `teste-acentuacao.php`). Depois
+disso, os dois renderizadores de bancada passaram a medir a mesma pagina com 34
+caracteres de diferenca — constante, e explicada.
+
+**O TITULO DO A1 AFIRMAVA UMA TESE QUE O BANCO PODE INVERTER.** A tese do artigo e
+uma contagem; por isso a frase de abertura, a `description` do JSON-LD e a
+resposta do FAQPage tem DUAS formas, escolhidas pela contagem do dia. O titulo
+tinha uma so, digitada — e ia junto para o `headline` do JSON-LD, que e o canal
+que a secao 5 do contrato diz valer tanto quanto ranquear. Virou a pergunta, que
+sobrevive as duas formas e e o que a pessoa digita. A regra ficou estrutural no
+`teste-a1.php`: titulo de artigo de tese derivada termina em "?", e pergunta nao
+afirma.
+
+**O QUE SO APARECEU AO RENOMEAR: os quatro snippets de pagina nunca reespelhavam
+o `post_title`.** So a casca aprendeu isso, na 1.2.0. Renomear a R2 no repositorio
+teria trocado o `og:title`, o cartao e a trilha (derivados) e deixado o H1 e o
+`<title>` DO AR com o nome antigo — duas fontes para o mesmo campo, e a bancada
+lendo a que esta certa. E exatamente a cicatriz da Aquametria do mesmo dia.
+Corrigido nos quatro, com a versao de cada um bumpada para o `garantir_pagina`
+rodar. De quebra, o `manifest` dizia que a R2 estava na 1.0.2 e a constante dizia
+1.0.1: duas copias do mesmo numero, uma envelhecida sozinha — agora conferidas.
+
+**A VOZ, que era o pedido original.** As quatro paginas da casca perderam o nome
+de gaveta ("Sobre", "Ferramentas", "Metodologia", "Divulgacao de afiliados") e
+ficaram com o nome que a cabeca da propria pagina ja publicava na voz desde a
+1.2.0 — nada inventado, uma divergencia desfeita para o lado que ja estava
+escrito. As aberturas das oito paginas deixaram de comecar nomeando a si mesmas e
+passaram a falar com quem entrou; a procedencia (nome de fabricante, codigo,
+data) desceu um paragrafo, para a camada de prova `rbm-prova`, dentro da mesma
+caixa — quem cita a abertura continua levando a prova junto. No A2 isso tirou
+"Electrolux" da primeira linha sem tirar o numero, que e a resposta.
+
+**O PORTAO NOVO:** `ferramentas/teste-voz.php`, 155 afirmacoes, um processo por
+pagina, regua propria, lista de proibidas lida do `VOZ.md`, regua de procedencia
+lida do banco (5 publicadores e 32 codigos). Ele cobra as cinco superficies do
+nome, o teto do `<title>`, o nome de gaveta (lista fechada, casada no nome
+inteiro), a abertura que nao fala de si, a segunda pessoa, a procedencia fora da
+abertura, o estado degradado e o piso de 1.500 caracteres de corpo. A excecao por
+classe vem com a contrapartida que a impede de ser porta dos fundos: **a
+linha-mestra nunca pode ser bloco de prova**, e os blocos marcados sao contados e
+impressos um a um.
+
+**VERIFICACAO:** teste-voz 155, teste-casca 149 (era 135), teste-arvore 213,
+teste-r1 90, teste-a1 55, teste-r2 86, teste-a2 63, teste-acentuacao 17,
+validar-banco aprovado, `php -l` limpo nos seis snippets. **29 mutacoes
+deliberadas, 29 reprovadas** — e uma delas so mordeu depois de reescrita: a
+mutacao antiga do H1 da raiz ficou **inerte** no instante em que o titulo da home
+mudou, porque o alvo dela deixou de existir. Mutacao que nao encontra o alvo edita
+nada e o teste passa. `mutacoes-arvore.py` segue 18/18. 258 medicoes em Chromium
+nas nove paginas em 360/390/781/782/783/1200, 0 px de rolagem.
+**NO AR as 21h48Z:** Sync acionado por curl (revisao 17, 10 aplicados), `/status`
+com revisao 17 igual a do manifest, e `ferramentas/conferir-no-ar.py` — que nasceu
+nesta execucao com os nove enderecos e os nove nomes **escritos literalmente
+dentro dele**, copiados da decisao e nao lidos do codigo — mediu **65 afirmacoes
+no HTML servido, 0 falha**: as nove em 200, `<title>` = nome + marca em todas e
+dentro do teto (o maior tem 63), `og:title` = H1 = nome nas nove, nenhuma servindo
+o estado degradado, zero `&#038;` dentro de `<script>`.
+
+- **44 itens esperando link de afiliado** (nao mudou; este bloco nao tocou
+  catalogo), nenhum com loja possivel hoje.
+- **Pauta da secao 17:** `pauta.md` ainda nao existe nesta pasta — 0 escritos, 0 na
+  fila, 0 recusados.
+- **Proximo passo:** a 15.5 esta fechada nesta ilha e o nome tem fonte unica. Sem
+  criar URL, o que sobra e a **vitrine de produto dentro do resultado da R2** (a R1
+  ja tem o bloco de compra desde 10/09; a R2 recomenda modelo e nao tem) e a
+  **transcricao da composicao dos kits**, que abre porta de compra por dado em vez
+  de afrouxar regra. Tudo que cria URL — as quatro secoes, as quatorze categorias,
+  a troca de pai e slug — continua esperando o **reenvio do sitemap no Search
+  Console**, que e do Raphael.
