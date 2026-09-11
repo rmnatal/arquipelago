@@ -188,6 +188,9 @@ O que a ilha nova REAPROVEITA, para o custo ficar honesto: o mesmo repositório 
 
 ## 12. A SENTINELA — o que ela verifica em toda ilha
 
+> A regra "a Sentinela nunca conserta" foi revogada em 11/09/2026: leia a seção 19 antes de decidir entre consertar e despachar.
+
+
 A Sentinela cuida da ilha viva. Ela **nunca conserta código**: emite veredito e despacha o defeito para a Fundação. Quem constrói não pode ser quem aprova — foi por confundir isso que cinco calculadoras da Aquametria ficaram horas quebradas no ar em 08/09/2026 enquanto a Fundação relatava sucesso.
 
 São duas, separadas por **ritmo**, não por assunto. Não as junte: quando o tempo aperta numa execução que faz as duas coisas, é sempre a metade estratégica que cai, porque a técnica é concreta e termina.
@@ -434,3 +437,22 @@ Decisão do Raphael em 11/09/2026, depois de uma correção de cabeçalho espera
 18.4 **O despacho morre quando é verificado, não quando é escrito.** Só apague o despacho do `PROMPT.md` depois de abrir a URL no ar e conferir o critério de pronto que ele mesmo declara. Se a verificação falhar, o despacho fica, com a linha "tentativa em <data>: <o que falhou>".
 
 18.5 **Verificação antes de construção, sempre.** Na dúvida entre fechar um despacho e começar um bloco novo, fecha o despacho. Ilha com defeito no ar não recebe página nova.
+
+## 19. A SENTINELA CONSERTA O MECÂNICO NA MESMA PASSADA (11/09/2026)
+
+Pergunta do Raphael em 11/09/2026: "por que que ela pega o erro e ela mesma não conserta? Tem que ficar esperando a burocracia de mandar pro despachante?". Ele está certo para uma parte dos defeitos e a regra muda aqui. O que NÃO muda é o motivo pelo qual a Sentinela existe: a Fundação reportou sucesso três vezes seguidas com as calculadoras quebradas porque conferia o próprio encanamento. **Quem constrói não aprova o que construiu.** A separação passa a ser pela NATUREZA DO DEFEITO, não pelo cargo.
+
+19.1 **A Sentinela CONSERTA na mesma passada, sem despacho** (lista fechada — na dúvida, é despacho): texto de título, meta description, primeiro parágrafo ou rótulo, inclusive palavra da lista "Proibidas" do `VOZ.md`; acento, erro de digitação, número que não bate com a fonte já citada na própria página; link interno quebrado ou faltando; breadcrumb ausente; item de "Veja também" faltando; `noindex` indevido; `alt` de imagem; sitemap não enviado ou não acionado; Sync não disparado; `dateModified` desatualizado. São defeitos cujo critério de pronto é objetivo e foi definido ANTES do conserto, por quem achou o defeito.
+
+19.2 **A Sentinela NÃO conserta, despacha** (também lista fechada, e ela vale mais que a de cima): qualquer código de snippet ou lógica de ferramenta; fórmula, faixa ou dado técnico do banco; estrutura de URL, pai ou molde de casca; qualquer coisa que exija ESCOLHER entre duas opções defensáveis; qualquer página que já tenha impressão registrada e cuja correção mude URL (seção 12.1); e tudo o que ela não souber consertar em uma tentativa. Sintoma não é causa: quem vê o sintoma costuma errar a causa, e é por isso que conserto de projeto continua sendo da Fundação.
+
+19.3 **Como ela conserta.** O site é gerado do repositório: conserto que não passa pelo repositório é desfeito no Sync seguinte. Então ela escreve o arquivo corrigido **pelas mãos** (`trig_01Jg2qeDDsWDJdU9khHVswqd`, o mesmo canal do despacho), aciona o Sync da ilha por curl, **reabre a URL e confere** o critério de pronto. Só então registra. Nunca conserta pelo wp-admin.
+
+19.4 **As três travas que substituem a espera pela Fundação.**
+(a) **Conferir depois de consertar, sempre** — reabrir a URL, no ar, e checar o critério objetivo. Falhou, vira despacho com a linha "tentei consertar em <data>, falhou: <o quê>".
+(b) **Segunda vez vira despacho** — se o MESMO defeito voltar na mesma página, a Sentinela para de consertar e despacha. Defeito que volta não é defeito, é sintoma de causa que ela não enxerga.
+(c) **A ronda seguinte reconfere o que a anterior consertou** — a verificação independente continua existindo; ela passou a ser separada no TEMPO, não em pessoa. Todo conserto entra em `dados/consertos.md` da ilha (data, URL, o que mudou, quem conferiu) e a ronda seguinte abre essa lista antes de qualquer outra coisa.
+
+19.5 **Teto por passada:** no máximo 5 consertos por ronda e por ilha. Passou de 5, os demais viram um despacho único — volume alto de defeito mecânico é problema da casca, não de página, e isso é da Fundação.
+
+19.6 **A Fundação não reverte conserto de Sentinela** sem registrar o motivo no `REGISTRO.md` da ilha. Se ela achar que o conserto está errado, escreve por quê — duas camadas discordando no silêncio é como defeito volta a ficar horas no ar.
