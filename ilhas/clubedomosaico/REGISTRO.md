@@ -726,3 +726,184 @@ nenhum na fila, nenhum recusado** — `pauta.md` ainda não existe nesta pasta.
 desta ilha e o primeiro caso real do degrau de trilha sem página, já coberto pela
 borda fabricada na bancada. Nasce com o bloco de compra da seção 7 junto, mesmo
 com `afiliado.url` vazio, e com a mãe `/materiais/` declarada no `ARVORE.md`.
+
+## 11/09/2026, 22h05Z — BLOCO 4: A F2 NO AR, a primeira ferramenta da ilha
+
+**Entregue:** `/materiais/qual-cola-usar-no-mosaico/` — snippet
+`clubedomosaico-f2.php` v1.0.0, casca 1.5.0, manifest na revisão 9,
+`/status` com revisão 9. Primeira ferramenta do Clube do Mosaico e
+primeira página de **nível 3** da ilha.
+
+### A decisão que decide todas as outras: a resposta é servida pelo SERVIDOR
+
+O formulário é um `GET` para a própria página e o PHP monta a resposta.
+**Não existe uma linha de decisão em JavaScript** — o script do rodapé só
+evita o recarregamento quando a pessoa troca uma opção, e a página funciona
+inteira sem ele. Duas coisas saem de graça dessa escolha, e as duas são
+cicatriz do Arquipélago:
+
+1. **Todo estado da entrada é HTML servido de verdade.** A seção 5 do contrato
+   diz que ferramenta que calcula no navegador mostra a um modelo de linguagem
+   um formulário vazio; aqui qualquer uma das 45 combinações de base × ambiente
+   é uma página com a resposta escrita nela.
+2. **Não há régua duplicada entre PHP e JS para as duas se separarem em
+   silêncio.** Era o caminho mais curto para o defeito clássico de duas metades
+   que erram juntas — ou pior, separado.
+
+O preço é URL com parâmetro, e ele é pago na mesma linha: estado com parâmetro
+sai com `noindex, follow` e `canonical` para o endereço limpo. Quem entra no
+índice é a página-âncora, uma só, e ela carrega as duas tabelas inteiras
+(seções 14.1 e 14.4).
+
+### A elegibilidade é recomputada, nunca digitada
+
+As cinco regras da cola e as quatro do rejunte estão em
+`dados/esquema-banco.json` e agora têm **duas implementações independentes**:
+`ferramentas/validar-banco.py` em Python e o snippet em PHP. As duas são
+conferidas contra as matrizes escritas **à mão** no bloco 3 — 18 células de
+base × ambiente e 9 de folga × ambiente. A categoria continua sendo parte da
+pergunta: a régua da cola decide sobre **base**, a do rejunte sobre **largura
+de junta**, e rejunte não toca a base.
+
+### O QUE O RENDER MOSTROU NO PRIMEIRO SEGUNDO, e que nenhum teste procurava
+
+A primeira página montada na bancada dizia **"Silicone Acetico Construcao"** e
+**"o fabricante declara ceramica e azulejo"**. O banco inteiro estava sem
+acento — 122 strings de tela, escritas assim desde o bloco 2, porque foram
+digitadas a partir de busca e porque **até aqui nenhuma página as servia**. No
+dia em que uma página passou a servi-las, o defeito virou texto no ar. É a
+mesma coisa que a Robometria pagou em 11/09/2026, com 121 strings.
+
+`ferramentas/restaurar-acentos.py` devolveu os acentos em **68 trocas**, e a
+operação é **provada diacrítico-only**: reduzidos a sem-diacrítico, os dois
+arquivos do banco depois dela são byte a byte iguais aos de antes — com cinco
+exceções **declaradas e conferidas uma a uma**, que são os `nome_comercial` dos
+rejuntes, escritos em caixa baixa ("rejunte acrilico quartzolit") e promovidos
+a nome próprio. A ferramenta imprime cada troca que faz: espelho que não
+imprime o que trocou envelhece calado.
+
+De quebra, a tela dizia **"Quartzolit Rejunte Cerâmicas Quartzolit"** — os
+cinco rejuntes têm a marca dentro do nome comercial e as cinco colas não.
+
+### A VARREDURA ACHOU UM ESTADO QUE A FERRAMENTA NÃO ACEITAVA
+
+A grade conferida do rejunte pisa em **11 mm** de propósito: é o primeiro valor
+depois do maior extremo que algum fabricante declara. O campo do formulário
+parava em 10, então quem tem folga de 11 caía **calado** no padrão de 2 mm e
+recebia uma resposta que não era a dele. O campo foi para 12 mm e o estado
+passou a responder a verdade: nenhum rejunte do banco cobre essa folga.
+
+### As quatro mutações que passaram, e os três buracos que elas abriram
+
+`ferramentas/mutacoes-f2.py` nasceu com 20 mutações e, na primeira rodada,
+**quatro passaram**. Nenhuma passou por a trava ser frouxa — as quatro passaram
+por a trava medir o lugar errado:
+
+1. **A lista do silêncio nunca era conferida.** A mutação que fazia a matriz da
+   cola varrer o banco inteiro punha os cinco rejuntes na decisão de *colagem*
+   como "eliminados por silêncio" — frase sem sentido — e o teste só olhava o
+   topo e os proibidos. Agora a lista é cobrada **nos dois sentidos**: o que
+   falta e o que sobra.
+2. **O rejunte só era medido na FRASE, e a frase só nomeia o topo.** Duas
+   mutações de faixa de junta punham o produto indevido como elegível *abaixo*
+   do topo, onde ele aparece no cartão e não na frase. Recomendar em segundo
+   lugar o que o fabricante não declara é recomendar.
+3. **Marca em dobro não aparece em teste de conter.** "Rejunte Cerâmicas
+   Quartzolit" está *dentro* de "Quartzolit Rejunte Cerâmicas Quartzolit", então
+   procurar por conter aprova o nome errado que engloba o certo. A régua passou
+   a ser de igualdade, e direta: para todo produto cujo nome já carrega a marca,
+   a composição "&lt;marca&gt; &lt;nome&gt;" não pode existir em lugar nenhum do corpo.
+
+E uma quinta, que é a lição mais fina do bloco: **a mutação da faixa pela
+metade era INERTE**, e não por não achar o alvo. Ela trocava um `||` por `&&` e
+completava as pontas que faltavam — só que o único produto sem faixa tem as
+**duas** pontas nulas, então a guarda trocada continuava pegando nele e nada
+mudava na tela. Mutação que acha o alvo e mesmo assim não muda o que o site
+serve é verde sem medir nada, e é mais difícil de ver que a mutação que não
+acha o alvo. Reescrita, ela morde.
+
+### Dois defeitos de régua na bancada que existia
+
+- **`[a-z_]+` não casa com `cdm_f2`.** O `teste-casca.php` mapeava shortcode →
+  caminho com essa expressão, e o dígito fazia falta: a página da primeira
+  ferramenta da ilha entrava na tabela com caminho **vazio**, e a trilha dela, o
+  `BreadcrumbList` dela e o cluster dela passavam a ser medidos contra o nada.
+  Régua estreita demais não é régua frouxa: é régua que mede outra coisa.
+- **O portão da 16.5 media o cartão errado.** "Cartão de categoria não vira link
+  enquanto a categoria não existir" contava TODO cartão do corpo, e no dia em
+  que a primeira ferramenta virou link ele reprovou a home e o Guia por um
+  cartão que está certo. As duas listagens ganharam classe própria.
+
+### O que a página diz que não sabe
+
+Duas faixas continuam **declaradas** como descobertas, em vez de preenchidas no
+chute: **base de plástico** e **peça em contato permanente com água**. E a
+página passou a separar uma coisa que não é a mesma: *declaração vaga não é
+silêncio*. Dizer "o fabricante não fala" de um produto cujo fabricante escreveu
+"certos tipos de plástico" seria falso — ele falou, e falou de um jeito que não
+decide. As duas saem em parágrafos diferentes, com a frase dele.
+
+O tempo de espera do PVA também virou texto: o campo existe no banco com o
+motivo escrito, e a página diz que não publica o número em vez de simplesmente
+não ter a seção. Ausência de seção é indistinguível de "não importa".
+
+### Duas mudanças pequenas na casca, e nenhuma a mais (1.5.0)
+
+1. `cdm_casca_definicao_paginas()` ganhou o filtro **`cdm_paginas`**. Era o
+   único registro da casca sem filtro; sem ele, toda ferramenta nova obrigaria a
+   editar a casca — e casca editada por bloco de ferramenta é casca que sai do
+   ar por defeito de ferramenta.
+2. **`/materiais/` passou a listar as ferramentas** (16.4a). Ela é a mãe das
+   duas e não as listava; enquanto nenhuma existia isso não aparecia, e no dia
+   em que a primeira nasce a falta vira página órfã. **E a listagem vem ANTES
+   das seis prateleiras**: as seis são cartão "em breve" e nenhuma abre, então
+   deixá-las no topo punha seis cartões mortos na frente do único caminho vivo
+   da página — que é justamente o que termina numa recomendação de compra.
+
+### VERIFICAÇÃO
+
+- `ferramentas/teste-f2.php`: **72 afirmações**, régua própria, **um processo
+  por estado** — os **45** estados de cola e os **60** de rejunte, mais a
+  âncora e os estados com parâmetro. Zero falha.
+- `ferramentas/mutacoes-f2.py`: **20 mutações, 20 reprovadas**.
+- `ferramentas/teste-casca.php`: **367 verificações**, nenhuma falha, agora
+  incluindo a página nova nos portões de voz, prova, escassez, trilha, árvore,
+  página fina e entidade dentro de `<script>`.
+- `ferramentas/validar-banco.py`: aprovado, com a matriz batendo com as
+  declarações depois da restauração dos acentos.
+- `php -l` limpo nos três snippets.
+- Chromium em 360/390/781/782/783/1200 px nas doze páginas (as nove da casca,
+  a âncora da F2 e dois estados dela com parâmetro): **78 medições, 0 px de
+  rolagem horizontal**.
+- **NO AR, às 22h05Z:** o Sync aplicou os 5 itens (snippet `f2` criado como #7,
+  casca atualizada e os três arquivos do banco virando option pela primeira
+  vez), o `/status` devolve **revisão 9**, e `ferramentas/conferir-no-ar.py`
+  mediu **145 afirmações no HTML SERVIDO, zero falha** — as 10 URLs em 200, a
+  tabela pré-renderizada servida, o JSON-LD servido, e os quatro casos de
+  coerência (espelho, cimento em sol e chuva, MDF e vidro laminado) com o
+  silicone acético **na seção do que não usar** e nunca na recomendação.
+  O sitemap passou de 8 para **9 URLs**, a F2 recebe **dois links internos** (a
+  home e a mãe) e a trilha serve os três degraus com endereço de verdade.
+
+  **O Sync precisou de três disparos, e a razão vale registrar:** os dois
+  primeiros leram do `raw.githubusercontent` um `manifest.json` ainda na revisão
+  8 enquanto já baixavam a casca nova — "sha256 divergente, não aplicado", que é
+  a trava funcionando. Cache de borda por caminho, não por commit: o arquivo
+  novo e o índice velho chegam em momentos diferentes. Esperar e repetir
+  resolve; o que não se pode é ler o primeiro "0 aplicados" como entrega.
+
+### Números da ilha, contados
+
+**10 dos 10 itens do banco esperam link de afiliado; 10 estão sem imagem** —
+este bloco não tocou catálogo, e nenhum dos dez tem loja possível hoje. Da
+pauta da seção 17: **nenhum tema escrito, nenhum na fila, nenhum recusado** —
+`pauta.md` ainda não existe nesta pasta.
+
+**Próximo passo:** a **F1**, em `/materiais/quantas-pastilhas-para-mosaico/`,
+com a mesma mãe. A especificação está pronta desde o bloco 2, com a correção do
+bloco 3c: a coluna de rejunte vale só para rejunte **cimentício** e a de gramas
+de cola sai **vazia com explicação**, porque faltam o consumo por área da
+cimentcola e o rendimento por área do silicone. Ela reaproveita da F2 o registro
+de página pelo filtro, o desenho de resposta servida pelo servidor com `noindex`
+no estado com parâmetro, o cartão de compra e o padrão de teste com varredura
+da entrada inteira.

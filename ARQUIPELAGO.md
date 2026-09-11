@@ -77,6 +77,8 @@ Portanto, ao terminar todo bloco que mexeu em conteúdo publicável: acione o Sy
 
 **CACHE DUPLO:** o `raw.githubusercontent` guarda ~5 min e o WebFetch guarda 15 min por URL. Sempre acrescente `?v=<hora e minuto>` na URL ao verificar, ou você conclui erradamente que nada mudou.
 
+**O CACHE É POR CAMINHO, NÃO POR COMMIT — e o primeiro "0 aplicado(s)" não é resposta (Clube do Mosaico, 11/09/2026).** O Sync baixa o `manifest.json` e cada arquivo que ele indexa em requisições separadas, e elas saem do cache em momentos diferentes: nos dois primeiros disparos deste bloco o Sync leu um manifest ainda na revisão anterior **enquanto já baixava o snippet novo**, e recusou aplicar com "sha256 divergente". A trava funcionou — o desembarque parcial é exatamente o que ela existe para impedir —, mas o log fica com cara de defeito e não é. Três coisas seguem disso, e valem para toda ilha: (1) **o `?v=` que o Sync já acrescenta não garante nada**, porque quem serve a borda pode ignorá-lo, e o servidor da hospedagem sai por um nó diferente do da nuvem — conferir o `raw` daqui e ver o arquivo novo **não prova** que o site vai ver; (2) **"sha256 divergente" logo depois de um push é cache, não corrupção**: espere alguns minutos e dispare de novo, em vez de mexer no manifest; (3) **só o `/status` com a revisão do manifest é entrega** — ler o primeiro "0 aplicado(s)" como pronto é a forma disfarçada do "commit sem Sync" que a seção 20 existe para impedir. Repita o disparo até a revisão bater, e escreva no relatório quantos disparos foram precisos.
+
 ---
 
 ## 5. Visibilidade em IA — regra de primeira classe
