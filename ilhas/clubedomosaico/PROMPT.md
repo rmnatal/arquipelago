@@ -46,6 +46,17 @@ Medido em 10/09/2026 (Planejador de palavras-chave, conta do Raphael, faixas; SE
 
 ---
 
+## DESPACHO DO RAPHAEL — 11/09/2026 — cabeçalho da casca (prioridade máxima, antes de qualquer bloco novo)
+
+O Raphael viu a casca do bloco 3b no ar e reprovou o cabeçalho: "muito ruim o fundo preto no header, o logo sumiu, queria algo mais clean". O arquivo `logo-clube-do-mosaico.png` tem fundo preto e wordmark vinho — sobre header preto ele desaparece. Corrigir na próxima execução, antes de qualquer outro bloco desta ilha:
+
+1. **Header claro e limpo.** Fundo branco (#FFFFFF) ou papel (#FBF7F4), altura ~72 px, borda inferior de 1 px em #EEE8E4, sem sombra pesada. Menu à direita em texto preto (#111), peso 500, sem caixa alta, com hover em coral (#E8483A). Fixo no topo (sticky) é opcional; se ficar, com fundo sólido.
+2. **Logo visível.** NÃO usar `logo-clube-do-mosaico.png` (fundo preto) sobre fundo claro. Usar o símbolo transparente `identidade/logo/lotus-512.png` (já no repositório; subir ao WordPress pela mídia se ainda não estiver) com ~40 px de altura, e o wordmark **"clube do mosaico"** em texto ao lado, na fonte da identidade (Outfit ou a que a casca já carrega), cor vinho #69030C ou preto, minúsculas como no logo original. Quando o Raphael mandar o logo em versão para fundo claro, ele substitui esse par — deixar isso registrado no LEIA-ME da identidade.
+3. **A home não pode exibir o título "Início".** A página inicial não mostra H1 "Início"; o H1 da home é a frase de posicionamento ("O Clube do Mosaico faz duas coisas…") ou o nome do site. Conferir também que as demais páginas da casca não mostram o título da página do WordPress duplicado.
+4. **Aparência geral "clean, cara de e-commerce"** (pedido dele desde 10/09): fundo branco/papel nas páginas, muito respiro, tipografia sem excesso de negrito no corpo. O preto da identidade vira cor de TEXTO e de detalhe (rodapé pode ser escuro), não de bloco grande no topo.
+
+Critério de pronto: abrir https://clubedomosaico.com.br/ e ver header claro com lótus + wordmark legíveis, menu preto, sem "Início" como título; registrar a revisão aplicada no ESTADO.md e acionar o Sync por curl como manda a seção 4 do contrato.
+
 ## DESPACHO DA SESSÃO DE CONVERSA — 10/09/2026 — PAINEL DA ARTESÃ (requisito do Raphael, "não pode esquecer disso"; v2 substitui a v1)
 A mãe do Raphael cadastra as peças **ela mesma**, com login e senha próprios, **numa área do site fora do wp-admin**. Palavras dele: "eu não quero que ela entre numa área wp-admin… um ambiente de cadastro de produto muito mais amigável… ela não é administradora, tem acesso somente a cadastro de produto". Portanto:
 - O catálogo da Loja **NÃO vive no repositório**: `dados/pecas.json` é descartado. Vive no WordPress como CPT `peca`.
