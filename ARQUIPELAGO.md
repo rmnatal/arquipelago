@@ -378,3 +378,23 @@ Os três compartilham a infraestrutura (seções 4, 7, 8, 9, 14), não a aparên
 15.4 **A ronda da Sentinela (seção 12) verifica tom**: em cada página visitada, "isso fala como o público do `VOZ.md` ou como um manual?". Título ou primeiro parágrafo com termo da lista de proibidas, ou home em forma de manifesto, é defeito e vira despacho como qualquer outro.
 
 15.5 **Transição das ilhas vivas.** Aquametria, Robometria e Clube do Mosaico ganham `VOZ.md` em 11/09/2026. Para cada uma, o primeiro bloco após esta data é a **reescrita da home e do header pelo molde e pela voz**, antes de qualquer bloco novo de fila; em seguida, cada página existente é reescrita na voz ao passar pela ronda, sem trocar URL, sem mexer no que já está posicionado (seção 12.1) além do texto.
+
+## 16. ÁRVORE, BREADCRUMB E CLUSTER — a malha é um silo de tópico, em toda ilha (11/09/2026)
+
+Decisão do Raphael em 11/09/2026: toda ilha nasce com hierarquia visível na URL, breadcrumb e interlinkagem em cluster, porque isso fortalece o SEO (a autoridade de uma página forte escorre para as novas do mesmo assunto) — não é estética. A malha da seção 9 passa a ser construída DENTRO desta árvore. Vale para as três ilhas vivas e para toda ilha futura; o `VOZ.md` de cada ilha só escolhe os nomes dos níveis.
+
+16.1 **Três níveis, e a URL mostra os três.** Nível 1 = seção (`/materiais/`, `/pecas/`, `/calculadoras/`, `/guias/` — o que a ilha tiver). Nível 2 = categoria, com o nome que a pessoa usa (`/materiais/colas-e-adesivos/`). Nível 3 = a pergunta ou o produto, com as palavras que a pessoa digita (`/materiais/colas-e-adesivos/cola-para-vaso-de-ceramica/`). Sem quarto nível; sem página solta na raiz além de home, sobre, contato, divulgação de afiliados e privacidade.
+
+16.2 **Como isso vive no WordPress.** Páginas de nível 1 e 2 são páginas-mãe (page parent) OU termo de taxonomia hierárquica própria da ilha (ex.: `material_categoria`), a critério do molde — nunca a categoria padrão de post nem tag. Ferramentas e artigos de nível 3 têm o pai definido no cadastro; o slug é gerado da consulta-alvo. Toda página nova nasce com pai; página sem pai é defeito e não publica (trava na seção 8).
+
+16.3 **Breadcrumb em toda página** abaixo do header: `Início › Materiais › Colas e adesivos › Cola para vaso de cerâmica`, cada nível linkado exceto o atual; e `BreadcrumbList` no JSON-LD com as mesmas URLs. Na home não há breadcrumb.
+
+16.4 **Cluster de interlinkagem, obrigatório e bidirecional.** (a) A página-mãe (nível 1 ou 2) lista TODAS as filhas com o texto-âncora igual à consulta-alvo da filha, nunca "clique aqui" nem "saiba mais". (b) Toda filha linka a mãe no breadcrumb E numa frase do corpo. (c) Toda filha linka de 2 a 4 irmãs (mesma mãe) em bloco "Veja também" com âncora na consulta delas — escolhidas por afinidade, não aleatórias. (d) Ferramenta linka o guia que a explica e o guia linka a ferramenta, no corpo. (e) Produto do banco linka a ferramenta que o recomenda e a ferramenta linka o produto pelo bloco de compra (seção 7). (f) Nenhuma página órfã: toda URL do sitemap tem pelo menos 2 links internos apontando para ela, um deles da mãe. A Sentinela conta isso na ronda.
+
+16.5 **Categoria só nasce com filhas.** Página de nível 2 é publicada quando tem pelo menos 3 filhas com dado real (portão da seção 13); até lá o cartão na mãe não é link e diz "em breve", sem contagem de banco. Categoria vazia indexada é página fina que derruba o resto.
+
+16.6 **Ordem das levas (seção 9) dentro da árvore:** primeiro a mãe e suas 3 primeiras filhas de maior intenção de compra, depois as irmãs, depois a próxima categoria. Nunca uma filha de cada categoria espalhada — cluster ralo não passa autoridade.
+
+16.7 **Entre ilhas não há link** (decisão de 09/09/2026): cada ilha é um silo próprio; a autoridade cresce dentro do domínio.
+
+16.8 **Transição das ilhas vivas.** Aquametria, Robometria e Clube do Mosaico: no bloco de reescrita da home e do header (seção 15.5), a Fundação também (i) define a árvore da ilha em `ilhas/<ilha>/ARVORE.md` (níveis 1 e 2 com slugs, e a lista das páginas existentes com o pai de cada uma); (ii) muda o pai e o slug das páginas existentes SOMENTE se ainda não estiverem posicionadas (seção 12.1: página com impressão registrada não troca URL — recebe breadcrumb e links no lugar onde está, e o pai passa a apontar para ela); (iii) publica breadcrumb e blocos "Veja também" em tudo; (iv) toda URL que mudar recebe 301 da antiga e o sitemap é reenviado.

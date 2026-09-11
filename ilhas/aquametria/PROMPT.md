@@ -33,6 +33,8 @@ Isso não afrouxa nenhuma regra do `ARQUIPELAGO.md`. Publicar rápido e errado �
 
 Seção 15 nova no `ARQUIPELAGO.md` e `VOZ.md` novo nesta pasta. Primeiro bloco a partir de agora: **reescrever a home e o header de Aquametria pelo molde GUIA e pela voz do `VOZ.md`** — título e primeiro parágrafo de cada página da home na linguagem da pessoa; número, fonte e data para a camada de prova (tabela, "como sabemos", JSON-LD). Não trocar URL, não mexer em estrutura de ferramenta que já funciona, não tocar em página posicionada além do texto (seção 12.1). Depois disso, cada página existente é reescrita na voz ao passar pela ronda. Critério de pronto: abrir a home e nenhum termo da lista "Proibidas" do `VOZ.md` aparecer em título ou primeiro parágrafo; registrar a revisão no ESTADO.md e acionar o Sync.
 
+ATUALIZAÇÃO 11/09: junto com a reescrita da home e do header, aplicar a seção 16 do contrato (árvore de três níveis, breadcrumb com BreadcrumbList, cluster de interlinkagem mãe↔filhas↔irmãs, categoria só com ≥3 filhas): escrever `ARVORE.md` desta ilha, dar pai a toda página existente, publicar breadcrumb e "Veja também" — sem trocar URL de página que já tem impressão (seção 12.1); 301 para toda URL que mudar e sitemap reenviado.
+
 ## DESPACHO DA SENTINELA — 2026-09-10 (ronda diária, medida no Chrome do Raphael)
 
 **Isto tem prioridade sobre a fila.** Aplique antes de qualquer bloco, verifique pela seção 8, registre no `REGISTRO.md` como "despacho da Sentinela de 10/09 — item N cumprido", e apague daqui o item cumprido no mesmo commit.
