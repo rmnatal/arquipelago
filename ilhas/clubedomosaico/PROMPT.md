@@ -46,6 +46,27 @@ Medido em 10/09/2026 (Planejador de palavras-chave, conta do Raphael, faixas; SE
 
 ---
 
+## DESPACHO DO RAPHAEL — 11/09/2026 (2) — O LOGO DELE, INTEIRO, NO CABEÇALHO (prioridade máxima)
+
+Ele reclamou, com razão: "cadê o logo que eu exigi e subi e mandei até a URL?" e "o nome já está embutido no logo, você não precisa escrever". O cabeçalho atual mostra só o wordmark em TEXTO. Errado. O cabeçalho usa **o arquivo dele, inteiro (lótus + nome), e NADA de texto ao lado**.
+
+**Por que não foi direto:** `https://clubedomosaico.com.br/wp-content/uploads/2026/09/logo-clube-do-mosaico.png` (1536×1024) tem **fundo preto chapado**. Em cabeçalho claro vira um retângulo preto; no cabeçalho preto anterior o wordmark vinho sumia. A solução NÃO é redesenhar nem reescrever o nome: é **gerar, uma vez, uma versão do arquivo DELE com fundo transparente** e usar essa.
+
+### O que fazer, nesta execução
+
+1. **Rotina PHP de uma vez só, no snippet da casca** (GD já está no servidor). Lê `wp-content/uploads/2026/09/logo-clube-do-mosaico.png`, gera `wp-content/uploads/2026/09/logo-clube-do-mosaico-claro.png` e registra o caminho numa option (`cdm_logo_claro`) para não refazer a cada carregamento. Algoritmo — **já testado por mim no navegador, o resultado ficou limpo, use exatamente este**:
+   - para cada pixel: `m = max(r,g,b)`; `a = (m - 10) / 30`, limitado entre 0 e 1; alpha final = `alpha_original * a`. Ou seja: preto puro do fundo some, o brilho vira degradê suave, e a cor de cada pixel **não é alterada** (o vinho do nome continua vinho).
+   - depois **corta as bordas transparentes** (na imagem original a área útil é x 203→1330, y 71→979).
+   - salvar PNG com alpha (`imagesavealpha(true)`, `imagealphablending(false)`).
+   - reduzir para 400 px de altura ao salvar (largura proporcional, ~496) — é o suficiente para telas retina.
+2. **Cabeçalho:** `<img>` com esse arquivo, altura 52 px, `alt="Clube do Mosaico"`, link para `/`. **Sem nenhum texto ao lado** — o nome está no próprio logo. O cabeçalho claro (branco/papel, borda 1px #EEE8E4) fica como está; a altura do header sobe para ~84 px para o logo respirar. Menu à direita como está.
+3. **Fallback honesto:** se a geração falhar (GD ausente, arquivo não encontrado), NÃO caia para texto. Use o arquivo original dele e deixe registrado no `REGISTRO.md` que o fundo preto não pôde ser removido — e despache para mim.
+4. O `VOZ.md` desta ilha (seção "Molde de casca: LOJA") diz hoje para usar `lotus-512.png` + wordmark em texto. **Corrija essa passagem** para o que está aqui: logo dele inteiro, sem texto.
+
+**Critério de pronto:** abrir https://clubedomosaico.com.br/ e ver a lótus com o nome "clube do mosaico" embaixo, nítidos, sobre o fundo claro, sem retângulo preto e sem texto duplicado ao lado. Registrar a revisão no ESTADO.md e acionar o Sync.
+
+---
+
 ## DESPACHO DO RAPHAEL — 11/09/2026 — cabeçalho da casca: CUMPRIDO, menos a lótus
 
 **Cumprido e conferido no ar em 11/09/2026 17h55Z** — casca 1.2.0, manifest na
