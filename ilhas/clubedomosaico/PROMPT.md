@@ -57,6 +57,8 @@ O Raphael viu a casca do bloco 3b no ar e reprovou o cabeçalho: "muito ruim o f
 
 Critério de pronto: abrir https://clubedomosaico.com.br/ e ver header claro com lótus + wordmark legíveis, menu preto, sem "Início" como título; registrar a revisão aplicada no ESTADO.md e acionar o Sync por curl como manda a seção 4 do contrato.
 
+ATUALIZAÇÃO 11/09 (mesmo dia): este despacho passa a ser executado como a **reescrita da home e do header pela seção 15 do contrato e pelo `VOZ.md` desta ilha** (molde LOJA) — uma tacada só, não duas. A home deixa de ser manifesto: foto de peça, "Mosaico feito à mão, uma peça por vez", peças em destaque, bloco "Vai fazer o seu? A gente ajuda a escolher o material", artesã no rodapé. O texto atual da home ("faz duas coisas…", ficha da Tekbond) sai da home; o que for prova vai para o "como sabemos" da página de materiais correspondente.
+
 ## DESPACHO DA SESSÃO DE CONVERSA — 10/09/2026 — PAINEL DA ARTESÃ (requisito do Raphael, "não pode esquecer disso"; v2 substitui a v1)
 A mãe do Raphael cadastra as peças **ela mesma**, com login e senha próprios, **numa área do site fora do wp-admin**. Palavras dele: "eu não quero que ela entre numa área wp-admin… um ambiente de cadastro de produto muito mais amigável… ela não é administradora, tem acesso somente a cadastro de produto". Portanto:
 - O catálogo da Loja **NÃO vive no repositório**: `dados/pecas.json` é descartado. Vive no WordPress como CPT `peca`.

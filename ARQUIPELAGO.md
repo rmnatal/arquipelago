@@ -360,3 +360,21 @@ Indexar é o começo, não o fim: página indexada na posição 40 vale zero. Po
 - Fórum, vídeo, blog de loja velho, ou resposta genérica que não dá número → **é alvo.** É onde a resposta paramétrica com fonte e data ganha, e é exatamente o buraco que a Bússola procura ao aprovar um nicho.
 **A prioridade é o cruzamento de duas coisas, nunca de uma só:** intenção de compra × chance real de primeira página. Volume alto sem chance é página desperdiçada; chance alta sem intenção é visita que não vira dinheiro. Consulta sem nenhuma das duas não entra na fila, por mais fácil que seja de escrever.
 **Meça posição, não só indexação.** Em `dados/indexacao.md`, cada página registra a consulta-alvo e a posição média dela.
+
+## 15. CADA ILHA TEM UMA VOZ — rigor no dado, nunca no tom (11/09/2026)
+
+Decisão do Raphael em 11/09/2026: as ilhas estavam todas com a mesma cara e a mesma linguagem técnica, "explicando as calculadoras em parte científica". O rigor de número, fonte e data (seções 7 e 14) é a tese de SEO e de visibilidade em IA e FICA. Mas ele vira **camada de prova**, nunca a voz da página.
+
+15.1 **`ilhas/<ilha>/VOZ.md` é obrigatório** e a Fundação o lê antes de escrever qualquer título, parágrafo, rótulo de botão ou texto de menu. Ele diz quem entra, em que momento, quem fala, como fala, frases com a cara da ilha e frases proibidas, o que vai na home e qual molde de casca a ilha usa. A Bússola entrega o `VOZ.md` no dossiê (item g). Ilha sem `VOZ.md` não recebe bloco novo até ele existir.
+
+15.2 **Regra de camadas.** Título, primeiro parágrafo, rótulos e chamadas falam com a pessoa na voz do `VOZ.md`, com as palavras que ela digitaria. Número, código de peça, nome de fabricante, data de leitura e link "fonte" moram na camada de prova: tabela da ferramenta, bloco "como sabemos" no fim da página, JSON-LD. Nunca no título, nunca no primeiro parágrafo, nunca como manifesto na home. O que a seção 14 exige para ranquear (resposta antes da explicação, número na primeira linha do resultado) continua — a diferença é a linguagem em que o número aparece.
+
+15.3 **Três moldes de casca**, escolhidos pelo `VOZ.md`:
+- **LOJA** (ex.: Clube do Mosaico): produto primeiro, foto grande, ferramentas e guias como apoio.
+- **FERRAMENTA** (ex.: Robometria): a ferramenta principal é a home; resultado e bloco de compra acima de tudo.
+- **GUIA** (ex.: Aquametria): a pergunta mais frequente em cima, calculadoras como cartões na linguagem da pessoa, guias embaixo.
+Os três compartilham a infraestrutura (seções 4, 7, 8, 9, 14), não a aparência: header claro por padrão, paleta e tipografia da identidade da ilha, e o layout do molde. Duas ilhas com o mesmo molde ainda precisam parecer sites diferentes.
+
+15.4 **A ronda da Sentinela (seção 12) verifica tom**: em cada página visitada, "isso fala como o público do `VOZ.md` ou como um manual?". Título ou primeiro parágrafo com termo da lista de proibidas, ou home em forma de manifesto, é defeito e vira despacho como qualquer outro.
+
+15.5 **Transição das ilhas vivas.** Aquametria, Robometria e Clube do Mosaico ganham `VOZ.md` em 11/09/2026. Para cada uma, o primeiro bloco após esta data é a **reescrita da home e do header pelo molde e pela voz**, antes de qualquer bloco novo de fila; em seguida, cada página existente é reescrita na voz ao passar pela ronda, sem trocar URL, sem mexer no que já está posicionado (seção 12.1) além do texto.

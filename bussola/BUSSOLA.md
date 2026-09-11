@@ -72,7 +72,7 @@ nicho aprovado que fechou tem que ser desmarcado antes de alguém pagar domínio
   (no máximo 3 famílias, uma monoespaçada para número e unidade) e o conceito do símbolo, que nasce do GESTO TÉCNICO do
   nicho (medir, encaixar, dimensionar), nunca de animal, produto ou mascote; se a skill `design` estiver disponível,
   o canvas com os quatro artboards (logo, paleta, tipografia, aplicações) e o link no dossiê; (f) o plano da ilha: as 3
-  primeiras ferramentas, o que vai no banco, o que a casca precisa ter. A Fundação lê o dossiê no dia em que a ilha nasce.
+  primeiras ferramentas, o que vai no banco, o que a casca precisa ter; (g) o `VOZ.md` da ilha, pronto, no formato dos três existentes (`ilhas/*/VOZ.md`): quem entra, momento, quem fala, como fala, frases com a nossa cara × proibidas, home e molde de casca (seção 15 do `ARQUIPELAGO.md`). A Fundação lê o dossiê no dia em que a ilha nasce.
 - Quando o Raphael aprova, a ilha nasce pela seção 11 do `ARQUIPELAGO.md` (ele paga o domínio; o resto é da fábrica),
   com casca + 1 ferramenta + sitemap no ar em até 48h — é isso que liga o relógio do Google. O crescimento vem na rampa.
 
