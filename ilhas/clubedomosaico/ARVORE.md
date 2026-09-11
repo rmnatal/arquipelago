@@ -51,7 +51,9 @@ Sem quarto nível. Fora da árvore ficam só a home, `/sobre/`, `/contato/`, `/d
 | ferramenta | slug | mãe | existe hoje | candidata a nível 2 |
 |---|---|---|---|---|
 | F2 — qual cola usar no mosaico, e qual rejunte | `/materiais/qual-cola-usar-no-mosaico/` | `/materiais/` | **sim**, desde 11/09/2026 | `colas-e-adesivos` |
-| F1 — quantas pastilhas e quanto rejunte | `quantas-pastilhas-para-mosaico` | `/materiais/` | não | `pastilhas` ou `rejuntes` — a F1 atravessa as duas, e é por isso que a escolha espera o bloco que a publica |
+| F1 — Quantas pastilhas e quanto rejunte comprar | `/materiais/quantas-pastilhas-para-mosaico/` | `/materiais/` | **sim**, desde 11/09/2026 | `pastilhas` ou `rejuntes` — a F1 atravessa as duas, e a escolha continua esperando: ver a nota abaixo |
+
+**A F1 nasceu no mesmo lugar, e pelo mesmo motivo, com uma razão a mais.** Ela atravessa duas categorias — quem pergunta "quantas pastilhas" está no assunto pastilha, e a resposta que ela dá junto é de rejunte. Pendurá-la em `pastilhas` esconderia metade do que ela responde, e pendurá-la em `rejuntes` esconderia a outra. A mãe de hoje é a que já tem endereço, e a decisão de categoria continua adiada — de propósito, e agora com o caso concreto registrado: **a categoria certa para a F1 é a que a medição disser**, quando houver impressão para medir.
 
 **A F2 nasceu em `/materiais/` e não em `/materiais/colas-e-adesivos/`, e a escolha é do bloco que a publicou.** A categoria definitiva dela só pode nascer com três filhas de dado real (16.5), e hoje ela teria uma. Pôr a ferramenta debaixo de uma categoria que ainda não existe criaria um degrau de trilha sem endereço — e, pior, obrigaria a mover a URL no dia em que a categoria nascesse, o que a 12.1 proíbe para página com impressão registrada. A regra que fica para as próximas: **a mãe de hoje é a mãe que já tem endereço**, e a mudança de pai, quando vier, será uma decisão com 301 e sitemap reenviado, tomada olhando a posição da página.
 
@@ -83,6 +85,7 @@ Nível 3 = o tutorial, com a lista de materiais ligada ao Guia e o "prefere pron
 | `/como-fazer/` | 1 | home | Início › Como fazer |
 | `/materiais/como-sabemos/` | 2 | `/materiais/` | Início › Materiais › Como sabemos |
 | `/materiais/qual-cola-usar-no-mosaico/` | 3 | `/materiais/` | Início › Materiais › Qual cola usar no mosaico, e qual rejunte |
+| `/materiais/quantas-pastilhas-para-mosaico/` | 3 | `/materiais/` | Início › Materiais › Quantas pastilhas e quanto rejunte comprar |
 | `/sobre/` | raiz | — | Início › Sobre |
 | `/contato/` | raiz | — | Início › Contato |
 | `/divulgacao-de-afiliados/` | raiz | — | Início › Divulgação de afiliados |
@@ -118,6 +121,8 @@ Hoje isso não corta nada nesta ilha, porque os três degraus de nível 1 existe
 
 - **Não criou nenhuma URL.** As dez páginas de nível 2 desta árvore (seis do Guia, mais as da Loja e da Escola) esperam a 16.5, que é portão de dado e não de calendário.
 
+> **ATUALIZAÇÃO DO BLOCO 4, SEGUNDA PARTE — 11/09/2026, a F1.** Nasceu a segunda URL de nível 3, `/materiais/quantas-pastilhas-para-mosaico/`, e com ela **o cluster da seção 6 mudou de estado sozinho**: `/materiais/` passou a ter três filhas no ar (a camada de prova e as duas ferramentas), então cada uma delas tem agora **duas irmãs** e as três passam a publicar o bloco "Veja também" — inclusive a F2 e a `/materiais/como-sabemos/`, que até ontem não podiam. Ninguém editou nada para isso acontecer: as irmãs são derivadas do mapa, e o portão mede as duas direções. É a regra da seção 6 deste arquivo funcionando no sentido inverso pela primeira vez — antes ela proibia o bloco, agora ela o exige. As dez páginas de nível 2 continuam esperando a 16.5: Rejuntes e Pastilhas ganharam uma filha cada com a F1, e uma filha não é três.
+>
 > **ATUALIZAÇÃO DO BLOCO 4 — 11/09/2026.** Nasceu a primeira URL de nível 3 da ilha, `/materiais/qual-cola-usar-no-mosaico/`, e ela é a única. As dez páginas de nível 2 continuam esperando a 16.5. A F2 tem **uma** irmã no ar (`/materiais/como-sabemos/`), então ela **não** publica bloco "Veja também" — é a regra da seção 6 deste arquivo funcionando pela primeira vez num caso real, e a frase que linka a mãe (16.4b) sai no corpo da ferramenta, onde o cluster não chega. O primeiro **degrau de trilha sem página**, que a bancada fabricou em 11/09 para ter o que medir, continua sem caso real: os três degraus da trilha da F2 — Início, Materiais e ela mesma — têm endereço.
 - **Não mexeu no sitemap.** Nenhuma página mudou de endereço, então não há nada a reenviar além do que já está enviado.
 - **Não escolheu a categoria definitiva das duas ferramentas.** Quem publica a página escolhe o endereço dela; este arquivo registra as candidatas para a escolha não nascer do zero.

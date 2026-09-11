@@ -4,7 +4,7 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 9,
+  "revisao": 10,
   "atualizado_em": "2026-09-11",
   "estado": "nascendo",
   "desembarque": {
@@ -20,9 +20,9 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.4.0",
+      "versao": "1.5.0",
       "sha256": "bb3bb19a30e02196686b7f1f22450067a8db307e398a7a984af52e15df8ec0a1",
-      "descricao": "O LOGO DO RAPHAEL, INTEIRO, NO CABECALHO (casca 1.4.0, despacho dele de 11/09). O cabecalho passa a servir logo-clube-do-mosaico.png em <img> de 52 px de altura, com link para a home e SEM UMA LETRA ao lado — o wordmark esta desenhado dentro do arquivo, e escreve-lo de novo e a marca em dobro na tela e anunciada duas vezes por leitor de tela. A AFIRMACAO QUE SUSTENTAVA A VERSAO ANTERIOR ESTAVA ERRADA e estava escrita tres vezes no snippet desde 1.2.0: 'o arquivo entregue tem fundo preto'. Nao tem — o PNG de 1536x1024 e transparente, conferido por ele na biblioteca de midia. O que sumiu com o logo em 1.1.0 foi o cabecalho PRETO contra o wordmark vinho (#69030C) de dentro do arquivo: defeito de onde o logo foi posto, nunca do arquivo, e a 1.2.0 ja tinha consertado a causa ao clarear o cabecalho — faltou devolver o logo ao lugar dele. O CUSTO DE 1,26 MB NUM ESPACO DE 78 PX: nao se redesenha nem se gera nada (o PROMPT.md proibe), o src continua sendo a URL exata que ele mandou, e o srcset oferece as reducoes que o PROPRIO WordPress gerou do upload dele (-300x200 com 42 KB, -768x512 com 175 KB), com sizes=78px. Mesma imagem, mesmo recorte, mesma origem; quem ignorar o srcset baixa o original e ve a mesma coisa. A barra sobe de 72 para 84 px e cai para 44 px de logo abaixo de 600 px, onde 52 mais o botao do menu nao cabem em 360. NENHUMA URL MUDOU e o sitemap nao muda."
+      "descricao": "CASCA 1.5.0 — a versao do campo foi corrigida no bloco da F1, em 11/09/2026, e o defeito vale ser lido antes da descricao: este campo dizia 1.4.0 enquanto o arquivo definia CDM_CASCA_VERSAO '1.5.0'. O sha estava certo, entao o Sync aplicou os bytes certos e o site nunca esteve errado — o que envelheceu foi a ETIQUETA, que e por onde qualquer relatorio le o que esta no ar. O bloco que subiu a casca reespelhou sha e descricao e esqueceu a versao, porque nenhum portao lia essa metade; agora ferramentas/atualizar-manifest.py compara os dois e recusa gravar quando eles se separam. O QUE A 1.5.0 TROUXE, e continua valendo: o filtro cdm_paginas, que faz a pagina de ferramenta se registrar sozinha (sem ele toda ferramenta nova obrigaria a editar a casca, e casca editada por bloco de ferramenta e casca que sai do ar por defeito de ferramenta), e /materiais/ passando a LISTAR AS FERRAMENTAS antes das seis prateleiras, porque as seis sao cartao 'em breve' e nenhuma abre. Antes disso, a 1.4.0 tinha posto o logo do Raphael inteiro no cabecalho, em <img> de 52 px com link para a home e sem uma letra ao lado."
     },
     {
       "id": "f2",
@@ -34,6 +34,17 @@
       "versao": "1.0.0",
       "sha256": "16a371b57aa4fdc39750726b840ec169707ba403cc84a387d3506915a8839622",
       "descricao": "BLOCO 4 — a primeira ferramenta da ilha e a primeira pagina de nivel 3 dela, em /materiais/qual-cola-usar-no-mosaico/. Responde 'qual cola usar no mosaico' pela declaracao do proprio fabricante, com a superficie, o lugar onde a peca vai ficar e a largura da junta. A RESPOSTA E SERVIDA PELO SERVIDOR: o formulario e um GET para a propria pagina e o PHP monta a resposta, entao nao existe uma linha de decisao em JavaScript — todo estado da entrada e HTML servido de verdade (secao 5: ferramenta que calcula no navegador mostra a um modelo de linguagem um formulario vazio), e nao ha regua duplicada entre PHP e JS para as duas se separarem. O preco disso e URL com parametro, pago na mesma linha: estado com parametro sai com noindex, follow e canonical para o endereco limpo, e quem entra no indice e a pagina-ancora, uma so. A ELEGIBILIDADE E RECOMPUTADA das declaracoes de dados/materiais-colas.json e dados/materiais-rejuntes.json pelas cinco regras da cola e pelas quatro do rejunte escritas em dados/esquema-banco.json — as mesmas que ferramentas/validar-banco.py implementa em Python, separado, e que ferramentas/teste-f2.php confere contra as matrizes escritas A MAO no bloco 3. A categoria e parte da pergunta: a regua da cola decide sobre BASE, a do rejunte sobre LARGURA DE JUNTA, e rejunte nao toca a base. O bloco de compra vem ANTES da prova de procedencia em todo cartao (cicatriz da Robometria de 10/09/2026) e nasce mesmo com os dez itens sem link, reservando o lugar e dizendo 'link de loja em breve'. Duas faixas ficam DECLARADAS como descobertas em vez de preenchidas no chute: base de plastico e peca em contato permanente com agua."
+    },
+    {
+      "id": "f1",
+      "nome": "Clube do Mosaico F1 — quantas pastilhas e quanto rejunte",
+      "arquivo": "snippets/clubedomosaico-f1.php",
+      "escopo": "global",
+      "ativo": true,
+      "publicar": true,
+      "versao": "1.0.0",
+      "sha256": "e7cf644c244c092f7ee9b6af42a7979037bb36fbdc89ecc39235ce383dd7b710",
+      "descricao": "BLOCO 4, SEGUNDA FERRAMENTA — /materiais/quantas-pastilhas-para-mosaico/. Responde 'quantas pastilhas e quanto rejunte' com a conta da pastilha de artesanato, e nao com a do azulejo de obra: o bloco 1 mediu que a primeira pagina inteira de 'rejunte para mosaico' responde a pergunta da OBRA (0,2 a 0,4 kg/m2, calculado com azulejo grande), e a mesma formula do fabricante aplicada a pastilha de 1x1 cm com junta de 2 mm da 2,8 kg/m2 — quatro vezes o do azulejo de 10 cm e duas vezes o do piso de 20. A pagina nao disputa aquelas; ela responde outra pergunta. COMO NA F2, A CONTA E DO SERVIDOR: o formulario e um GET para a propria pagina, nao ha uma linha de decisao em JavaScript, e o estado com parametro sai com noindex, follow. A GEOMETRIA E NOSSA E O CONSUMO E DO FABRICANTE: area por forma (cilindro, cone pela GERATRIZ e nunca pela altura, placa, disco, esfera e moldura com vao) e contagem pelo passo (lado + folga, arredondada sempre para CIMA, porque lote novo de pastilha muda de cor) sao aritmetica desta ilha e nao dependem de banco nenhum; ja os gramas saem da formula publicada pela Quartzolit com o coeficiente LIDO do registro do rejunte ceramicas — e quando ele nao chega, a pagina continua respondendo area e pastilhas e diz que nao publica os gramas. A CORRECAO DO BLOCO 3c ESTA NA TELA: o 1,75 vem de um exemplo de rejunte cimenticio EM PO, entao a ferramenta RECUSA calcular para acrilico (pronto uso em pote) e epoxi (bicomponente) e nomeia o que falta; e recusa tambem se o banco trouxer dois coeficientes diferentes, porque escolher um dos dois calado e a mesma invencao com outra roupa. A REGUA DO REJUNTE TEM DONO: quem decide qual produto cabe na folga e no lugar e cdm_f2_celula_rejunte(), chamada daqui em vez de reescrita — a F1 so filtra pelo tipo que a pessoa escolheu. A coluna de gramas de COLA nasce vazia com o motivo escrito (o fabricante do silicone declara rendimento por cordao, nao por area), e a pastilha, que ainda nao tem banco, tem o cartao de compra reservado dizendo que esta vazio."
     }
   ],
   "conteudo": [],
@@ -116,6 +127,18 @@
       "publicar": true,
       "sha256": "9b3e683f812d014908f83e4be0520717e794857da3043b04430e24aa6dff11c5",
       "descricao": "A categoria REJUNTE do banco MATERIAL: cinco rejuntes Quartzolit (ceramicas, porcelanatos e ceramicas 2024, acrilico, epoxi e piscinas) com faixa de junta, prazo de liberacao e ambiente declarado campo a campo. Sem ela a F2 — que se chama 'seletor de cola E REJUNTE' — respondia metade do que promete, com a metade do rejunte cravada na prosa do snippet em vez de recomputada da declaracao. O arquivo descobriu uma coisa sobre o proprio banco: REJUNTE NAO E COLA. Na cola, a lista do fabricante nomeia a BASE sobre a qual se cola; no rejunte, a mesma lista nomeia a TESSELA que sera rejuntada, porque rejunte nao toca a base — e a variavel que decide passa a ser a LARGURA DA JUNTA. Achado de maior valor: o rejunte piscinas quartzolit e o unico material do banco inteiro cujo fabricante nomeia 'pastilhas de porcelana e de vidro' em uso submerso, e mesmo assim ele NAO e recomendado em celula nenhuma, porque a faixa de junta dele nao foi obtida e o que ele declara e agua tratada quimicamente, que e piscina e nao a agua parada de um vaso de jardim."
+    },
+    {
+      "id": "pecas-tipicas",
+      "arquivo": "dados/pecas-tipicas.json",
+      "formato": "json",
+      "entidade": "constante",
+      "fonte": "Bloco 4 da Fundacao (F1). As entradas das doze pecas sao escolha da ilha; os resultados esperados foram calculados A MAO a partir das formulas da secao 2.3 do dados/especificacao-calculadoras.md, com o CR 1,75 que sai do registro quartzolit-rejunte-ceramicas do banco de rejuntes.",
+      "verificado_em": "2026-09-11",
+      "registros": 12,
+      "publicar": false,
+      "sha256": "5ebe20dfbce0daec1bed22d71b74191bbf490e54d233446fe1339c676b8132d8",
+      "descricao": "A regua da tabela pre-renderizada da F1, e ela e de BANCADA, nao de site: publicar=false de proposito. O site nao precisa deste arquivo, porque a tabela das doze pecas sai da mesma funcao que responde ao formulario — publica-lo criaria uma segunda fonte do mesmo numero dentro do site, que e exatamente o defeito que ele existe para pegar. ferramentas/teste-f1.php le os esperados daqui, recalcula cada um com a propria implementacao e compara com o que a pagina SERVE: tres escritas independentes do mesmo numero, a mao, a bancada e o snippet. Cada linha carrega a conta escrita por extenso, para um humano poder refazer com calculadora. E o arquivo diz tambem o que NAO cobre — caquinho irregular, sobra diferente de 10%, rejunte que nao e cimenticio e medida que nao fecha sao varridos em estados proprios pela bancada, porque tabela nao e grade."
     }
   ],
   "ferramentas": [

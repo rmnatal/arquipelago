@@ -6,7 +6,7 @@
 
 Existe porque "aplicado com sucesso" no log do Sync nao e evidencia de nada
 (secao 8 do ARQUIPELAGO.md) e porque commit sem verificacao no ar nao e entrega
-(secoes 4 e 18.4). A bancada mede o HTML que a bancada monta; isto abre as nove
+(secoes 4 e 18.4). A bancada mede o HTML que a bancada monta; isto abre as onze
 URLs com curl e afirma sobre o HTML SERVIDO.
 
 A regua e deste arquivo, nao do snippet: a URL do logo e a medida 78x52 estao
@@ -23,7 +23,7 @@ BASE = "https://clubedomosaico.com.br"
 LOGO = "https://clubedomosaico.com.br/wp-content/uploads/2026/09/logo-clube-do-mosaico.png"
 PAGS = ["/", "/loja/", "/materiais/", "/materiais/como-sabemos/", "/como-fazer/",
         "/sobre/", "/contato/", "/divulgacao-de-afiliados/", "/privacidade/",
-        "/materiais/qual-cola-usar-no-mosaico/"]
+        "/materiais/qual-cola-usar-no-mosaico/", "/materiais/quantas-pastilhas-para-mosaico/"]
 
 # A F2, medida no ar com regua propria: os pares abaixo sao (consulta, o que a
 # pagina TEM que dizer) e estao escritos LITERAIS aqui, lidos da ficha do
@@ -54,7 +54,7 @@ def buscar(url):
     partes = r.stdout.rsplit("\n", 1)
     return partes[0], partes[1] if len(partes) > 1 else "000"
 
-print("NO AR — o logo do Raphael no cabecalho das nove paginas\n")
+print("NO AR — o logo do Raphael no cabecalho das onze paginas\n")
 for p in PAGS:
     html, codigo = buscar(BASE + p)
     ok("200" == codigo, f"[{p}] HTTP 200", codigo)
@@ -115,6 +115,65 @@ for consulta, tem_que_recomendar, nao_pode_recomendar in F2_CASOS:
     fora = re.search(r'<div class="cdm-f2-secao cdm-f2-fora">(.*?)</div>', html_c, re.S)
     ok(fora is not None and nao_pode_recomendar in fora.group(1),
        f"[F2 {consulta}] o proibido aparece na secao do que nao usar")
+
+# A F1, medida no ar com regua ARITMETICA escrita aqui. Os pares sao (consulta,
+# area em cm2, pastilhas, gramas) e foram calculados A MAO no bloco da F1 — sao
+# as mesmas contas que dados/pecas-tipicas.json guarda por extenso. Nenhum deles
+# e lido do snippet nem do banco: se a formula mudar de um lado so, as duas
+# metades nao erram juntas.
+F1 = "/materiais/quantas-pastilhas-para-mosaico/"
+F1_CASOS = [
+    ("forma=cilindro&d=15&h=20&pastilha=p10&junta=2&sobra=10&esp=4&rejunte=cimenticio", "942", "720", "264"),
+    ("forma=disco&d=60&pastilha=p20&junta=3&sobra=10&esp=4&rejunte=cimenticio", "2.827", "588", "594"),
+    ("forma=esfera&d=20&pastilha=p10&junta=2&sobra=10&esp=4&rejunte=cimenticio", "1.257", "960", "352"),
+    ("forma=moldura&l=40&a=60&vl=30&va=50&pastilha=p20&junta=3&sobra=10&esp=4&rejunte=cimenticio", "900", "188", "189"),
+]
+
+print("\nA F1 no ar — a conta que a pagina serve e a conta que a gente fez na mao:")
+html_f1, codigo_f1 = buscar(BASE + F1)
+ok("200" == codigo_f1, "[F1] a pagina-ancora responde 200", codigo_f1)
+corpo_f1 = re.search(r"<main.*?</main>", html_f1, re.S)
+corpo_f1 = corpo_f1.group(0) if corpo_f1 else html_f1
+texto_f1 = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", corpo_f1))
+ok(len(texto_f1) > 4000, "[F1] o corpo tem tamanho de pagina", len(texto_f1))
+ok(corpo_f1.count('<table class="cdm-f1-tabela">') == 3,
+   "[F1] as tres tabelas pre-renderizadas estao no HTML servido",
+   corpo_f1.count('<table class="cdm-f1-tabela">'))
+ok('rel="canonical" href="' + BASE + F1 + '"' in html_f1, "[F1] canonical aponta para a ancora")
+ok('name="robots"' not in html_f1, "[F1] a ancora nao sai com noindex")
+ok('"@type":"WebApplication"' in html_f1.replace(" ", ""), "[F1] JSON-LD WebApplication servido")
+ok('"@type":"FAQPage"' in html_f1.replace(" ", ""), "[F1] JSON-LD FAQPage servido")
+ok("Link de loja em breve" in corpo_f1, "[F1] o bloco de compra reserva o lugar do link")
+ok("Ainda não temos as pastilhas no nosso banco" in texto_f1,
+   "[F1] a pastilha sem banco aparece declarada, nao escondida")
+# A TRILHA E O CLUSTER, que so existem porque a pagina tem mae e agora tem irmas
+ok('Veja também' in corpo_f1, "[F1] o bloco Veja tambem saiu (duas irmas no ar)")
+ok(BASE + "/materiais/qual-cola-usar-no-mosaico/" in corpo_f1,
+   "[F1] a pagina linka a irma (a F2)")
+
+for consulta, area, pastilhas, gramas in F1_CASOS:
+    html_c, codigo_c = buscar(BASE + F1 + "?" + consulta)
+    ok("200" == codigo_c, f"[F1 {consulta[:28]}] responde 200", codigo_c)
+    ok('content="noindex, follow"' in html_c, f"[F1 {consulta[:28]}] estado com parametro sai com noindex")
+    # SO o bloco de resposta: a tabela das doze pecas traz outros numeros, e
+    # procurar na pagina inteira acharia qualquer um deles. Mesmo erro de contar
+    # &#038; na pagina toda.
+    bloco = re.search(r'<div class="cdm-f1-resposta"[^>]*>(.*?)</div>\s*<div', html_c, re.S)
+    bloco = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", bloco.group(1))) if bloco else ""
+    ok(bloco != "", f"[F1 {consulta[:28]}] a resposta sai no HTML servido")
+    ok(area + " cm²" in bloco, f"[F1 {consulta[:28]}] area {area} cm2")
+    ok(pastilhas + " pastilhas" in bloco, f"[F1 {consulta[:28]}] {pastilhas} pastilhas")
+    ok(gramas + " g" in bloco, f"[F1 {consulta[:28]}] {gramas} g de rejunte")
+
+# A RECUSA DO BLOCO 3c, medida no ar: rejunte que nao e po nao ganha numero.
+html_e, codigo_e = buscar(BASE + F1 + "?forma=cilindro&d=15&h=20&pastilha=p10&junta=2&sobra=10&esp=4&rejunte=epoxi")
+bloco_e = re.search(r'<div class="cdm-f1-resposta"[^>]*>(.*?)</div>\s*<div', html_e, re.S)
+bloco_e = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", bloco_e.group(1))) if bloco_e else ""
+ok("200" == codigo_e, "[F1 epoxi] responde 200", codigo_e)
+ok(re.search(r"\d[\d\.,]* g\b", bloco_e) is None,
+   "[F1 epoxi] NENHUM numero de rejunte na resposta (correcao do bloco 3c)", bloco_e[-90:])
+ok("não calcula" in re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", html_e)),
+   "[F1 epoxi] a pagina diz POR QUE nao calcula")
 
 print("\nA imagem, no ar:")
 for rot, url in [("original (src)", LOGO),

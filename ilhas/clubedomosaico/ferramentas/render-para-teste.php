@@ -293,8 +293,9 @@ function cdm_teste_paginas_no_ar($modo = 'hoje') {
 	$hoje = array(
 		'loja'=>true,'materiais'=>true,'materiais/como-sabemos'=>true,'como-fazer'=>true,
 		'sobre'=>true,'contato'=>true,'divulgacao-de-afiliados'=>true,'privacidade'=>true,
-		/* A F2, nivel 3 com mae /materiais/, desde o bloco 4. */
+		/* As duas ferramentas, nivel 3 com mae /materiais/, desde o bloco 4. */
 		'materiais/qual-cola-usar-no-mosaico'=>true,
+		'materiais/quantas-pastilhas-para-mosaico'=>true,
 	);
 	if ('todas' !== $modo) { return $hoje; }
 	foreach (cdm_casca_categorias_do_guia() as $c) {

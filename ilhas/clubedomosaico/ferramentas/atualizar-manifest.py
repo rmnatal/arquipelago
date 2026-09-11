@@ -25,6 +25,7 @@ campo derivado dele e o sha.
 
 import hashlib
 import json
+import re
 import os
 import sys
 
@@ -64,6 +65,33 @@ def main():
 
     if faltando:
         print("\n  ARQUIVO NO MANIFEST QUE NAO EXISTE NO DISCO: " + ", ".join(faltando))
+        return 1
+
+    # A VERSAO DO MANIFEST x A CONSTANTE DENTRO DO SNIPPET.
+    #
+    # Achado do bloco da F1, em 11/09/2026: o manifest dizia casca 1.4.0 e o
+    # arquivo definia CDM_CASCA_VERSAO '1.5.0'. O sha estava certo, entao o
+    # Sync aplicou os bytes certos e o site ficou correto — o que envelheceu foi
+    # a ETIQUETA, que e por onde qualquer um (e qualquer relatorio) le o que esta
+    # no ar. O bloco anterior subiu a casca e reespelhou sha e descricao, e
+    # esqueceu a versao, porque NENHUM portao lia essa metade. E a mesma familia
+    # da cicatriz que este arquivo ja carrega no cabecalho: espelho que nao
+    # confere um campo deixa aquele campo apodrecer calado.
+    divergem = []
+    for item in manifest.get("snippets", []):
+        arquivo = os.path.join(raiz, item["arquivo"])
+        with open(arquivo, encoding="utf-8") as fh:
+            fonte = fh.read()
+        achado = re.search(r"define\(\s*'CDM_[A-Z0-9_]*VERSAO'\s*,\s*'([^']+)'", fonte)
+        if not achado:
+            divergem.append("%s: o snippet nao define constante de versao" % item["id"])
+            continue
+        if achado.group(1) != item.get("versao"):
+            divergem.append("%s: manifest %s, snippet %s" % (item["id"], item.get("versao"), achado.group(1)))
+    if divergem:
+        print("\n  VERSAO DO MANIFEST DIFERENTE DA CONSTANTE DO SNIPPET:")
+        for linha in divergem:
+            print("    " + linha)
         return 1
 
     # E o outro sentido: arquivo publicavel no disco que o manifest nao conhece

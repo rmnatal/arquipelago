@@ -1,0 +1,145 @@
+{
+  "id": "pecas-tipicas",
+  "ilha": "clubedomosaico",
+  "bloco": "4 — F1",
+  "gerado_em": "2026-09-11",
+  "o_que_este_arquivo_e": "As doze pecas tipicas da tabela pre-renderizada da F1, com o resultado ESPERADO de cada uma escrito A MAO a partir das formulas da secao 2.3 do dados/especificacao-calculadoras.md. Ele existe para a bancada ter uma regua que nao veio do snippet: ferramentas/teste-f1.php le este arquivo e compara com os numeros que a pagina SERVE. O snippet nunca le este arquivo — ele guarda so as ENTRADAS, e calcula. Duas escritas independentes do mesmo fato; quando divergirem, alguem errou de um lado so, e o teste diz qual linha.",
+  "por_que_nao_e_publicado": "publicar=false no manifest. Isto e bancada, nao conteudo: o site nao precisa dele para servir a tabela, porque a tabela sai da mesma funcao que responde ao formulario. Publica-lo criaria uma segunda fonte do mesmo numero dentro do site, que e exatamente o defeito que ele existe para pegar.",
+  "as_formulas": {
+    "area_cilindro": "pi x D x H (so a lateral; o fundo nao se reveste)",
+    "area_conico": "pi x (D1+D2)/2 x raiz( ((D1-D2)/2)^2 + H^2 ) — a GERATRIZ, nunca a altura",
+    "area_placa": "L x A",
+    "area_disco": "pi x D^2 / 4",
+    "area_esfera": "pi x D^2",
+    "area_moldura": "L x A - l x a",
+    "pastilhas": "area_m2 x ( 1000000 / (lado_mm + junta_mm)^2 ) x (1 + sobra), SEMPRE arredondado para cima",
+    "rejunte_kg_m2": "((A + B) x E x L x CR) / (A x B), com A=B=lado_mm, E=espessura_mm, L=junta_mm, CR=1,75",
+    "rejunte_g": "rejunte_kg_m2 x area_m2 x 1000, SEM sobra — o saco nao muda de cor entre lotes"
+  },
+  "sobra_de_todas_as_linhas": 10,
+  "CR_usado": 1.75,
+  "de_onde_vem_o_CR": "Do registro quartzolit-rejunte-ceramicas em dados/materiais-rejuntes.json, fonte pagina-dicas-rejuntes, lida em 10/09/2026. O exemplo publicado pelo fabricante junto da formula — (200+200) x 8 x 10 x 1,75 / (200x200) = 1,4 kg/m2 — e de rejunte cimenticio EM PO, e e por isso que estas doze linhas sao todas de rejunte cimenticio.",
+  "pecas": [
+    {
+      "nome": "Vaso cilíndrico de 15 cm de diâmetro por 20 de altura",
+      "forma": "cilindro",
+      "medidas": { "d": 15, "h": 20 },
+      "lado_mm": 10,
+      "junta_mm": 2,
+      "espessura_mm": 4,
+      "esperado": { "area_cm2": 942, "pastilhas": 720, "rejunte_g": 264, "consumo_kg_m2": 2.8 },
+      "conta_a_mao": "pi x 15 x 20 = 942,48 cm2. Passo 12 mm -> 6.944,44 por m2. 0,094248 x 6.944,44 = 654,5 x 1,10 = 719,96 -> 720. 2,8 x 0,094248 x 1000 = 263,9 -> 264 g."
+    },
+    {
+      "nome": "Cachepô cônico de 18 para 12 cm, 15 de altura",
+      "forma": "conico",
+      "medidas": { "d": 18, "d2": 12, "h": 15 },
+      "lado_mm": 10,
+      "junta_mm": 2,
+      "espessura_mm": 4,
+      "esperado": { "area_cm2": 721, "pastilhas": 551, "rejunte_g": 202, "consumo_kg_m2": 2.8 },
+      "conta_a_mao": "geratriz = raiz(3^2 + 15^2) = 15,297. pi x 15 x 15,297 = 720,9 cm2. 0,07209 x 6.944,44 = 500,6 x 1,10 = 550,7 -> 551. 2,8 x 0,07209 x 1000 = 201,9 -> 202 g."
+    },
+    {
+      "nome": "Tampo redondo de 60 cm",
+      "forma": "disco",
+      "medidas": { "d": 60 },
+      "lado_mm": 20,
+      "junta_mm": 3,
+      "espessura_mm": 4,
+      "esperado": { "area_cm2": 2827, "pastilhas": 588, "rejunte_g": 594, "consumo_kg_m2": 2.1 },
+      "conta_a_mao": "pi x 3600/4 = 2.827,4 cm2. Passo 23 mm -> 1.890,36 por m2. 0,28274 x 1.890,36 = 534,5 x 1,10 = 587,9 -> 588. 2,1 x 0,28274 x 1000 = 593,8 -> 594 g."
+    },
+    {
+      "nome": "Quadro ou placa de 30 × 40 cm",
+      "forma": "placa",
+      "medidas": { "l": 30, "a": 40 },
+      "lado_mm": 10,
+      "junta_mm": 2,
+      "espessura_mm": 4,
+      "esperado": { "area_cm2": 1200, "pastilhas": 917, "rejunte_g": 336, "consumo_kg_m2": 2.8 },
+      "conta_a_mao": "30 x 40 = 1.200 cm2. 0,12 x 6.944,44 = 833,3 x 1,10 = 916,7 -> 917. 2,8 x 0,12 x 1000 = 336 g."
+    },
+    {
+      "nome": "Moldura de espelho 40 × 60, vão de 30 × 50",
+      "forma": "moldura",
+      "medidas": { "l": 40, "a": 60, "vl": 30, "va": 50 },
+      "lado_mm": 20,
+      "junta_mm": 3,
+      "espessura_mm": 4,
+      "esperado": { "area_cm2": 900, "pastilhas": 188, "rejunte_g": 189, "consumo_kg_m2": 2.1 },
+      "conta_a_mao": "2.400 - 1.500 = 900 cm2. 0,09 x 1.890,36 = 170,1 x 1,10 = 187,1 -> 188. 2,1 x 0,09 x 1000 = 189 g."
+    },
+    {
+      "nome": "Esfera decorativa de 20 cm",
+      "forma": "esfera",
+      "medidas": { "d": 20 },
+      "lado_mm": 10,
+      "junta_mm": 2,
+      "espessura_mm": 4,
+      "esperado": { "area_cm2": 1257, "pastilhas": 960, "rejunte_g": 352, "consumo_kg_m2": 2.8 },
+      "conta_a_mao": "pi x 400 = 1.256,64 cm2. 0,125664 x 6.944,44 = 872,7 x 1,10 = 959,9 -> 960. 2,8 x 0,125664 x 1000 = 351,9 -> 352 g."
+    },
+    {
+      "nome": "Mandala em disco de 40 cm",
+      "forma": "disco",
+      "medidas": { "d": 40 },
+      "lado_mm": 25,
+      "junta_mm": 4,
+      "espessura_mm": 5,
+      "esperado": { "area_cm2": 1257, "pastilhas": 165, "rejunte_g": 352, "consumo_kg_m2": 2.8 },
+      "conta_a_mao": "pi x 1600/4 = 1.256,64 cm2. Passo 29 mm -> 1.189,06 por m2. 0,125664 x 1.189,06 = 149,4 x 1,10 = 164,4 -> 165. CR com lado 25, E 5 e L 4: (50 x 5 x 4 x 1,75)/625 = 2,8 kg/m2 -> 351,9 -> 352 g."
+    },
+    {
+      "nome": "Filtro de barro de 30 cm de diâmetro por 40 de altura",
+      "forma": "cilindro",
+      "medidas": { "d": 30, "h": 40 },
+      "lado_mm": 20,
+      "junta_mm": 3,
+      "espessura_mm": 4,
+      "esperado": { "area_cm2": 3770, "pastilhas": 784, "rejunte_g": 792, "consumo_kg_m2": 2.1 },
+      "conta_a_mao": "pi x 30 x 40 = 3.769,9 cm2. 0,37699 x 1.890,36 = 712,6 x 1,10 = 783,9 -> 784. 2,1 x 0,37699 x 1000 = 791,7 -> 792 g."
+    },
+    {
+      "nome": "Placa de número de casa, 20 × 30 cm",
+      "forma": "placa",
+      "medidas": { "l": 20, "a": 30 },
+      "lado_mm": 10,
+      "junta_mm": 2,
+      "espessura_mm": 4,
+      "esperado": { "area_cm2": 600, "pastilhas": 459, "rejunte_g": 168, "consumo_kg_m2": 2.8 },
+      "conta_a_mao": "600 cm2. 0,06 x 6.944,44 = 416,7 x 1,10 = 458,3 -> 459. 2,8 x 0,06 x 1000 = 168 g."
+    },
+    {
+      "nome": "Bandeja de 25 × 35 cm",
+      "forma": "placa",
+      "medidas": { "l": 25, "a": 35 },
+      "lado_mm": 10,
+      "junta_mm": 2,
+      "espessura_mm": 4,
+      "esperado": { "area_cm2": 875, "pastilhas": 669, "rejunte_g": 245, "consumo_kg_m2": 2.8 },
+      "conta_a_mao": "875 cm2. 0,0875 x 6.944,44 = 607,6 x 1,10 = 668,4 -> 669. 2,8 x 0,0875 x 1000 = 245 g."
+    },
+    {
+      "nome": "Vaso grande de 25 cm de diâmetro por 35 de altura",
+      "forma": "cilindro",
+      "medidas": { "d": 25, "h": 35 },
+      "lado_mm": 25,
+      "junta_mm": 3,
+      "espessura_mm": 5,
+      "esperado": { "area_cm2": 2749, "pastilhas": 386, "rejunte_g": 577, "consumo_kg_m2": 2.1 },
+      "conta_a_mao": "pi x 25 x 35 = 2.748,9 cm2. Passo 28 mm -> 1.275,51 por m2. 0,27489 x 1.275,51 = 350,6 x 1,10 = 385,7 -> 386. (50 x 5 x 3 x 1,75)/625 = 2,1 -> 577,3 -> 577 g."
+    },
+    {
+      "nome": "Pingente de colar, 5 × 5 cm",
+      "forma": "placa",
+      "medidas": { "l": 5, "a": 5 },
+      "lado_mm": 10,
+      "junta_mm": 1,
+      "espessura_mm": 4,
+      "esperado": { "area_cm2": 25, "pastilhas": 23, "rejunte_g": 3.5, "consumo_kg_m2": 1.4 },
+      "conta_a_mao": "25 cm2. Passo 11 mm -> 8.264,46 por m2. 0,0025 x 8.264,46 = 20,66 x 1,10 = 22,7 -> 23. (20 x 4 x 1 x 1,75)/100 = 1,4 -> 3,5 g. E a unica linha abaixo de 10 g: e ela que obriga a tela a servir uma casa decimal, porque 3,5 arredondado para 4 e 14% de erro numa peca de 25 cm2."
+    }
+  ],
+  "a_borda_que_esta_tabela_NAO_cobre": "Nenhuma destas doze linhas usa caquinho irregular, sobra diferente de 10%, rejunte que nao seja cimenticio ou medida que nao fecha (vao maior que a moldura). Essas quatro bordas sao varridas por ferramentas/teste-f1.php em estados proprios — tabela nao e grade, e uma tabela bonita que so anda pelo meio da faixa aprova exatamente o que ninguem olha."
+}

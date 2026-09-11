@@ -72,6 +72,7 @@ $GLOBALS['__paginas'] = array(
 	'divulgacao-de-afiliados' => true,
 	'privacidade'             => true,
 	'materiais/qual-cola-usar-no-mosaico' => true,
+	'materiais/quantas-pastilhas-para-mosaico' => true,
 );
 
 cdm_teste_carregar_options( $raiz );
@@ -80,12 +81,13 @@ cdm_teste_carregar( $raiz );
 $paginas = array(
 	'cdm_home', 'cdm_loja', 'cdm_materiais', 'cdm_como_sabemos', 'cdm_como_fazer',
 	'cdm_sobre', 'cdm_contato', 'cdm_afiliados', 'cdm_privacidade',
-	/* A F2 entra na lista da casca de proposito: sao trinta e tantos portoes
-	   (voz, prova, escassez, trilha, arvore, pagina fina, entidade dentro de
-	   <script>) que ja existem e que a pagina nova tem que passar tambem. O que
-	   e SO dela — as reguas de elegibilidade e a varredura da entrada inteira —
-	   mora em ferramentas/teste-f2.php, separado. */
-	'cdm_f2',
+	/* AS DUAS FERRAMENTAS entram na lista da casca de proposito: sao trinta e
+	   tantos portoes (voz, prova, escassez, trilha, arvore, pagina fina,
+	   entidade dentro de <script>) que ja existem e que toda pagina nova tem
+	   que passar tambem. O que e SO de cada uma — a regua de elegibilidade da
+	   F2, a aritmetica da F1 e a varredura da entrada inteira das duas — mora
+	   em ferramentas/teste-f2.php e ferramentas/teste-f1.php, separados. */
+	'cdm_f2', 'cdm_f1',
 );
 
 echo "Clube do Mosaico — verificacao da casca " . CDM_CASCA_VERSAO . "\n\n";
