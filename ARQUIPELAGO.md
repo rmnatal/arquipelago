@@ -145,6 +145,7 @@ Decisão do Raphael, 08/09/2026: ser recomendado pelas IAs vale tanto quanto ran
 ---
 
 ## 9. Malha de páginas — limitada por dado, não por calendário
+> A rampa desta seção só passa a ler o sinal de impressão depois do PISO da seção 21. Antes do piso, zero impressão não trava leva nenhuma.
 
 - **ORDEM DAS LEVAS — por intenção de compra, não por facilidade de gerar página.** Tráfego e tráfego não são a mesma coisa. "Quantos litros para 10 neons" traz um curioso; "qual aquecedor para 100 L em 220 V" traz alguém com o cartão na mão. Os dois indexam, os dois contam como tráfego orgânico, mas um está a um clique do dinheiro e o outro está a meses. Como a malha sai em levas pequenas por causa da rampa, **a ordem das levas decide qual tráfego chega primeiro** — então a primeira leva de cada camada é sempre a dos clusters cuja resposta termina num produto do banco. Isso não afrouxa o portão nem a rampa: só escolhe, entre as páginas que já passariam, quais nascem antes.
 - **Portão inegociável:** pelo menos 3 itens de banco reais **e** um número calculado próprio por página. Cauda longa vazia em domínio novo causa desindexação em bloco.
@@ -471,3 +472,19 @@ Escrito em 11/09/2026 depois de três execuções seguidas travadas em silêncio
 20.2 **Conferência barata que a Fundação faz antes de trabalhar numa ilha:** um `curl -s -o /dev/null -w '%{http_code}' https://<ilha>.com.br/` no começo da execução. **Se der 000 ou 403 de proxy, repita — e repita o Sync e o `/status` também — antes de chamar de bloqueio** (seção 4: falha de rede só vira bloqueio depois de repetir). Uma falha isolada é o túnel; três seguidas, em endereços diferentes, é rede. Confirmado o bloqueio, registre no `ESTADO.md` o campo `rede: bloqueada em <data>`, escreva no relatório e não construa às cegas — mas **bloqueio herdado do `ESTADO.md` é retestado antes de ser respeitado**, nunca lido como fato. Commit sem Sync e sem verificação no ar não é entrega (seções 8 e 18.4).
 
 20.3 **A mesma armadilha vale para toda fonte nova** que uma ilha precise alcançar (domínio de fabricante, API, marketplace): quem escreve a regra que exige a fonte é quem confere se a fonte está liberada.
+
+## 21. O PISO DA RAMPA — antes de 40 páginas e 21 dias, zero impressão não é sinal (11/09/2026)
+
+Decisão do Raphael em 11/09/2026, depois de eu apontar o risco: a Aquametria tinha 8 dias de vida, 13 URLs, 7 indexadas e **zero impressões**. A regra da rampa (seção 9) diz para só dobrar a leva se a anterior **indexou E apareceu**. Lida ao pé da letra num site de uma semana, essa regra congela a ilha em 13 páginas esperando um sinal que só existiria com mais páginas e mais tempo. É uma regra boa para site maduro e ruim para site recém-nascido.
+
+21.1 **O piso.** Uma ilha está ABAIXO DO PISO enquanto não tiver, ao mesmo tempo, **40 URLs publicadas** e **21 dias desde a primeira URL indexada**. Abaixo do piso, "zero impressão" **não é informação** e **nunca** trava, adia ou reduz leva nenhuma: a Fundação publica levas seguidas de 5 a 10 URLs, no ritmo normal da fila, sem esperar medição.
+
+21.2 **Acima do piso, a seção 9 volta inteira**: mede, e só dobra a leva se a anterior indexou e apareceu. Aí sim "indexou e não apareceu" significa palavra-chave errada, e publicar mais do mesmo piora.
+
+21.3 **O piso afrouxa a LEITURA DO SINAL, nunca a qualidade.** Continuam valendo, abaixo e acima do piso, sem exceção: o portão de dado da seção 13 (3 itens reais + 1 número por página), a classificação da SERP antes de criar a página (seção 14), a verificação da URL no ar com número medido (seção 8), a voz (15), a árvore e o cluster (16). Página ruim não entra mais rápido por causa do piso — o piso só decide QUANDO parar de publicar para medir.
+
+21.4 **Teto para não virar fazenda:** no máximo 10 URLs por leva e **no máximo 3 levas por semana por ilha**. Domínio novo que despeja centenas de páginas numa semana é padrão de fazenda e o Google trata como tal. O piso é para sair de 13 páginas, não para chegar a 400.
+
+21.5 **O que acontece AO ATINGIR o piso.** Se, com 40 URLs e 21 dias, a ilha continuar com **zero impressões**, isso passa a ser sinal forte e a resposta NÃO é publicar mais. A leitura semanal (seção 12) abre um diagnóstico com três hipóteses, nesta ordem, e escreve qual delas o dado sustenta: (a) **indexação** — as URLs estão no índice? (URL Inspection); (b) **consulta** — as páginas miram consultas que alguém digita, ou só variações que ninguém busca? (c) **SERP** — a classificação da seção 14 estava errada e o top 10 é mais fechado do que se mediu. Enquanto o diagnóstico não sair, a ilha não recebe leva nova de malha; ferramenta e guia continuam.
+
+21.6 **Registrar o piso.** O cabeçalho do `ESTADO.md` de cada ilha ganha `piso: abaixo|atingido` e `primeira_indexacao: <data ou null>`, preenchidos pela leitura semanal. A Fundação lê esse campo antes de decidir o tamanho da leva — não recalcula de cabeça.
