@@ -5202,8 +5202,9 @@ coridora-panda de 6 para 7, onde a fonte escreve "pelo menos SEIS" por extenso.
 guppy, que fica de pe de proposito — ver abaixo); `testar-validador-especies.py`
 19 de 19; `validar-produtos.py` e `conferir-slugs.py` sem falha; os tres JSON
 reparseados. **Nada foi ao ar e nao havia o que ir:** os quatro arquivos tocados
-sao `publicar: false`. O manifest subiu para a **revisao 50** e o Sync foi
-acionado depois do push para o `/status` nao ficar atrasado em relacao a ele.
+sao `publicar: false`. O manifest subiu para a **revisao 50** e o `/status` foi conferido no ar batendo
+em 50, com 18 aplicados e 0 falha — ver a nota de processo abaixo, porque o
+caminho ate la quase virou um diagnostico errado.
 
 **TRES COLETAS RECONFERIRAM 09/09 E DERAM O MESMO RESULTADO** — a verificacao
 separada no TEMPO, que e o que a secao 19.4(c) do contrato pede: o guppy nao tem
@@ -5215,6 +5216,26 @@ que procurar de novo pelo mesmo caminho nao adianta; e o gurami de tres pintas
 recebeu a oferta de um arranjo "um macho para 2 ou 3 femeas" que foi recusada
 porque a propria fonte o apresenta como arranjo de REPRODUCAO, nao de manutencao.
 Harem de desova nao e convivencia de aquario comunitario.
+
+**NOTA DE PROCESSO — O `/status` ATRASA ~5 MINUTOS DEPOIS DO PUSH, E ISSO NAO E
+DEFEITO.** Medido nesta execucao porque quase virou diagnostico errado. Depois do
+push com o manifest na revisao 50, o Sync foi acionado e respondeu 200 dizendo
+**revisao 48** — a anterior. Tres acionamentos seguidos disseram 48; o quarto,
+`21:34:33Z`, disse 50, e o `/status` passou a bater com o manifest (18 aplicados,
+0 falha). A causa esta no proprio snippet: `AQUAMETRIA_SYNC_BASE` aponta para
+`raw.githubusercontent.com/.../main/`, e o `wp_remote_get` manda
+`Cache-Control: no-cache` — que instrui o servidor de origem, **nao o CDN do
+raw**, que serve a versao anterior por alguns minutos. O `no-cache` no codigo da
+a impressao de que isso ja esta resolvido, e nao esta.
+
+**Como ler isso na proxima vez:** Sync respondendo 200 com a revisao ANTERIOR,
+logo depois de um push, e cache de CDN — espere e reacione, nao reescreva nada.
+E a mesma forma do `000` lido como bloqueio de rede na semana passada (secao 20
+do contrato) e do fundo preto do logo do Clube do Mosaico: **sintoma lido como
+causa, e o diagnostico errado se propaga porque a execucao seguinte le o
+`ESTADO.md` da anterior como fato.** O jeito de nao cair nisso e o que foi feito
+aqui: reacionar o Sync em intervalo e olhar a serie, em vez de concluir na
+primeira leitura.
 
 **Receita:** 39 dos 78 produtos seguem esperando link de afiliado; este bloco nao
 tocou catalogo. **Pauta (secao 17):** `pauta.md` ainda nao existe — 0 escritos, 0
