@@ -247,6 +247,48 @@ function robometria_teste_carregar_options($raiz) {
  * Uma diferenca que importa: o cabecalho NAO passa pelo escape de "&", porque no
  * tema de blocos ele nao esta dentro do the_content. O conteudo, esse sim, passa.
  */
+/**
+ * O <title> DO DOCUMENTO, montado como o nucleo monta.
+ *
+ * Existe desde 11/09/2026 e a razao e a cicatriz da Aquametria do mesmo dia: a
+ * bancada tem que ler a MESMA fonte que o site para cada campo publicado. Ate
+ * aqui a bancada servia um <title> digitado ("Robometria — teste") em todas as
+ * paginas, entao a unica superficie de nome que nenhum teste podia ver era
+ * justamente a que aparece no resultado do Google. Foi por isso que a home ficou
+ * no ar com "Robometria – Compatibilidade de pecas e dimensionamento de robo
+ * aspirador", 73 caracteres vindos de um campo do wp-admin, sem nenhum portao
+ * reclamar.
+ *
+ * A imitacao e a do wp_get_document_title() do nucleo, e so dela: aplica
+ * `document_title_parts`, junta as partes com o separador de
+ * `document_title_separator` e devolve. Se a casca parar de pendurar o filtro,
+ * a bancada volta a montar o titulo do WordPress cru — que e o que aconteceria
+ * no ar, e e o que a mutacao correspondente prova.
+ */
+function robometria_teste_titulo_do_documento() {
+	$slug   = isset($GLOBALS['__slug_atual']) ? $GLOBALS['__slug_atual'] : '';
+	$partes = ('inicio' === $slug)
+		? array('title' => 'Robometria', 'tagline' => 'Compatibilidade de peças e dimensionamento de robô aspirador')
+		: array('title' => robometria_teste_titulo_do_alvo_por_slug($slug), 'site' => 'Robometria');
+
+	$partes = apply_filters('document_title_parts', $partes);
+	$sep    = apply_filters('document_title_separator', '-');
+
+	$partes = array_filter((array) $partes, 'strlen');
+
+	return implode(' ' . $sep . ' ', $partes);
+}
+
+/** O post_title da pagina de um slug — a mesma via de robometria_teste_titulo_do_alvo. */
+function robometria_teste_titulo_do_alvo_por_slug($slug) {
+	foreach (array('robometria_home','robometria_ferramentas','robometria_metodologia',
+		'robometria_sobre','robometria_afiliados','robometria_r1','robometria_r2',
+		'robometria_a1','robometria_a2') as $alvo) {
+		if (robometria_teste_slug_do_alvo($alvo) === $slug) { return robometria_teste_titulo_do_alvo($alvo); }
+	}
+	return '';
+}
+
 function robometria_teste_pagina($tag, $titulo = 'Robometria — teste', $slug = null) {
 	if (null !== $slug) { $GLOBALS['__slug_atual'] = $slug; }
 	$GLOBALS['__conteudo_pagina'] = '[' . $tag . ']';
@@ -292,6 +334,10 @@ function robometria_teste_pagina($tag, $titulo = 'Robometria — teste', $slug =
 
 	ob_start(); do_action('wp_head');   $cabeca = ob_get_clean();
 	ob_start(); do_action('wp_footer'); $rodape = ob_get_clean();
+
+	/* Titulo nulo = monte o de verdade. Os testes antigos passam o deles e nada
+	   muda para eles; quem afirma sobre o <title> pede o do documento. */
+	if (null === $titulo) { $titulo = robometria_teste_titulo_do_documento(); }
 
 	return "<!doctype html>\n<html lang=\"pt-BR\">\n<head>\n<meta charset=\"utf-8\">\n"
 		. "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>"

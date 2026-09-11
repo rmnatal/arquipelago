@@ -1,5 +1,9 @@
 /**
  * Robometria A2 — Quantos m² um robô aspirador limpa por carga
+ * Versão: 1.1.0 (11/09/2026) — a tese fala com quem entrou e o nome da marca saiu
+ * da abertura para a camada de prova (seção 15.2), derivado como tudo aqui. As
+ * mutações do próprio teste passaram a medir o parágrafo certo: uma delas estava
+ * aprovando porque a frase procurada existia em outra seção do artigo.
  * Versão: 1.0.0 (10/09/2026) — Bloco 5 da fila, pareado com a R2 e nascido na
  * MESMA execução que ela, como o PROMPT.md desta ilha manda.
  *
@@ -56,7 +60,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_A2_VERSAO' ) ) {
-	define( 'ROBOMETRIA_A2_VERSAO', '1.0.0' );
+	define( 'ROBOMETRIA_A2_VERSAO', '1.1.0' );
 	define( 'ROBOMETRIA_A2_SLUG', 'quantos-m2-o-robo-aspirador-limpa-por-carga' );
 	define( 'ROBOMETRIA_A2_TITULO', 'Quantos m² um robô aspirador limpa por carga' );
 	define( 'ROBOMETRIA_A2_DADOS', 'robometria_dados_a2-fatos' );
@@ -124,35 +128,69 @@ function robometria_a2_lista( $itens ) {
  * ------------------------------------------------------------------------- */
 
 if ( ! function_exists( 'robometria_a2_tese_da_area' ) ) {
+/**
+ * A TESE, e ela agora fala com quem entrou — sem nomear marca na abertura.
+ *
+ * A forma antiga começava "Uma marca só declara… e os 5 são da Electrolux". O
+ * número é a resposta e fica; o NOME DA MARCA é procedência, e a seção 15.2 do
+ * ARQUIPELAGO.md manda procedência morar na camada de prova, nunca no primeiro
+ * parágrafo. Ele desceu um parágrafo, para robometria_a2_quem_declara(), dentro
+ * da mesma caixa — quem cita a abertura continua levando a prova junto.
+ * Tudo continua derivado: nenhum número e nenhum nome de marca digitado aqui.
+ */
 function robometria_a2_tese_da_area() {
 	$d = robometria_a2_dados();
 	$r = $d['resumo'];
 
 	if ( 0 === (int) $r['com_cobertura'] ) {
 		return sprintf(
-			'Nenhum dos %s modelos de robô aspirador deste banco tem área por carga declarada pelo fabricante. Todo número de m² que circula sobre eles foi calculado por terceiros a partir dos minutos de autonomia.',
+			'A área que o seu robô cobre numa carga não vem de quem o fabricou: nenhum dos %s modelos deste banco tem esse número declarado. Todo m² que circula sobre eles foi calculado por terceiros a partir dos minutos de autonomia.',
 			robometria_a2_n( $r['modelos_publicaveis'] )
 		);
 	}
 
 	if ( 1 === count( (array) $d['marcas_que_declaram'] ) ) {
 		return sprintf(
-			'Uma marca só declara. Dos %s modelos de robô aspirador deste banco, %s trazem área coberta por carga declarada pelo fabricante — e os %s são da %s. As outras %s marcas não publicam esse número em canal nenhum: declaram minutos, e algumas nem isso.',
+			'A área que o seu robô cobre numa carga quase nunca vem de quem o fabricou: dos %s modelos deste banco, só %s trazem esse número declarado, e os %s são de uma marca só. As outras %s não publicam isso em canal nenhum — declaram minutos, e algumas nem isso.',
 			robometria_a2_n( $r['modelos_publicaveis'] ),
 			robometria_a2_n( $r['com_cobertura'] ),
 			robometria_a2_n( $r['com_cobertura'] ),
-			$d['marcas_que_declaram'][0],
 			robometria_a2_n( count( (array) $d['marcas_que_nao_declaram'] ) )
 		);
 	}
 
 	return sprintf(
-		'Poucas marcas declaram. Dos %s modelos de robô aspirador deste banco, %s trazem área coberta por carga declarada pelo fabricante, em %s marcas (%s). As outras %s não publicam esse número em canal nenhum.',
+		'A área que o seu robô cobre numa carga quase nunca vem de quem o fabricou: dos %s modelos deste banco, %s trazem esse número declarado, em %s marcas. As outras %s não publicam isso em canal nenhum.',
 		robometria_a2_n( $r['modelos_publicaveis'] ),
 		robometria_a2_n( $r['com_cobertura'] ),
 		robometria_a2_n( count( (array) $d['marcas_que_declaram'] ) ),
-		robometria_a2_lista( $d['marcas_que_declaram'] ),
 		robometria_a2_n( count( (array) $d['marcas_que_nao_declaram'] ) )
+	);
+}
+}
+
+/** QUEM declara, nomeado — a camada de prova da tese acima. Derivada igual. */
+if ( ! function_exists( 'robometria_a2_quem_declara' ) ) {
+function robometria_a2_quem_declara() {
+	$d = robometria_a2_dados();
+
+	$declaram     = (array) $d['marcas_que_declaram'];
+	$nao_declaram = (array) $d['marcas_que_nao_declaram'];
+
+	if ( ! $declaram ) {
+		return sprintf(
+			'Nenhuma das %s marcas deste banco publica área por carga: %s. Todas declaram minutos, e algumas nem isso.',
+			robometria_a2_n( count( $nao_declaram ) ),
+			robometria_a2_lista( $nao_declaram )
+		);
+	}
+
+	return sprintf(
+		'Quem declara %s: %s. %s não publica esse número: %s.',
+		1 === count( $declaram ) ? 'é uma marca' : 'são ' . robometria_a2_n( count( $declaram ) ) . ' marcas',
+		robometria_a2_lista( $declaram ),
+		1 === count( $nao_declaram ) ? 'A outra marca do banco' : 'As outras ' . robometria_a2_n( count( $nao_declaram ) ) . ' marcas do banco',
+		robometria_a2_lista( $nao_declaram )
 	);
 }
 }
@@ -374,8 +412,10 @@ add_shortcode( 'robometria_a2', function () {
 	$d = robometria_a2_dados();
 
 	if ( empty( $d['resumo'] ) ) {
-		return '<div class="rbm-bloco"><p class="rbm-linha-mestra">Este artigo está sem o banco de modelos no momento.</p>'
-			. '<p class="rbm-nota">A tese deste texto é uma contagem do banco publicado a partir do repositório da Robometria. Sem o banco, preferimos avisar a servir um texto cujos números não podem ser conferidos.</p></div>';
+		return robometria_casca_sem_banco_html(
+			'Este artigo está sem o banco de modelos no momento.',
+			'A tese deste texto é uma contagem do banco publicado a partir do repositório da Robometria. Sem o banco, preferimos avisar a servir um texto cujos números não podem ser conferidos.'
+		);
 	}
 
 	$r = $d['resumo'];
@@ -386,6 +426,7 @@ add_shortcode( 'robometria_a2', function () {
 	   em frase autossuficiente que sobrevive a ser citada fora de contexto. */
 	$html .= '<div class="rbm-abertura">';
 	$html .= '<p class="rbm-linha-mestra">' . esc_html( robometria_a2_tese_da_area() ) . '</p>';
+	$html .= '<p class="rbm-prova">' . esc_html( robometria_a2_quem_declara() ) . '</p>';
 	$html .= '<p>' . esc_html( robometria_a2_tese_do_tempo() ) . '</p>';
 	$html .= '<p>' . esc_html( robometria_a2_tese_da_dispersao() ) . '</p>';
 	$html .= '</div>';
@@ -585,7 +626,8 @@ add_filter( 'robometria_artigos', function ( $lista ) {
 		'codigo'     => 'A2',
 		'titulo'     => ROBOMETRIA_A2_TITULO,
 		'slug'       => ROBOMETRIA_A2_SLUG,
-		'ferramenta' => 'Quantos Pa e quanto tempo o seu robô precisa',
+		/* Slug, não nome — ver a nota igual no A1. */
+		'ferramenta' => ROBOMETRIA_R2_SLUG,
 		'resumo'     => 'O número de m² que os sites publicam quase nunca é do fabricante. A contagem do catálogo mostra quantas marcas declaram área por carga, quantos modelos têm os três números que a conta de tempo exige, e o quanto as taxas implícitas divergem entre si.',
 	);
 	return $lista;
@@ -625,6 +667,20 @@ function robometria_a2_garantir_pagina() {
 		if ( '1' === get_post_meta( $pid, '_robometria_casca', true )
 			&& false === strpos( (string) $pagina->post_content, $conteudo ) ) {
 			wp_update_post( array( 'ID' => $pid, 'post_content' => $conteudo ) );
+		}
+
+		/* O TÍTULO TAMBÉM É NOSSO — e esta linha faltava nos quatro snippets de
+		   página desta ilha. A casca aprendeu isso na 1.2.0 (o H1 da raiz ficou
+		   "Início" depois de a casca já ter mudado três vezes); ferramenta e
+		   artigo, não. A página nascia com o título da constante e ficava com
+		   ele para sempre: renomear aqui mudaria o og:title, o cartão e a
+		   trilha — que são derivados — e deixaria o H1 e o <title> do ar com o
+		   nome antigo, que é a divergência que este bloco existe para desfazer,
+		   agora em duas fontes que nenhuma bancada compara. O post_name NÃO é
+		   tocado: a URL não muda com o nome (seção 12.1 do contrato). */
+		if ( '1' === get_post_meta( $pid, '_robometria_casca', true )
+			&& (string) $pagina->post_title !== (string) ROBOMETRIA_A2_TITULO ) {
+			wp_update_post( array( 'ID' => $pid, 'post_title' => ROBOMETRIA_A2_TITULO ) );
 		}
 	}
 

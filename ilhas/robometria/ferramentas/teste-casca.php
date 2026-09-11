@@ -410,10 +410,18 @@ rbm_ok( empty( $longas ), 'nenhuma description com mais de 160 caracteres', empt
 /* Texto repetido em endereco diferente e o defeito que a tag existe para nao
    ter: o Google escolhe uma das paginas e descarta a outra. */
 $textos = array();
-$titulos = array();
-foreach ( $cabecas as $c ) { $textos[] = $c['descricao']; $titulos[] = $c['titulo']; }
+foreach ( $cabecas as $c ) { $textos[] = $c['descricao']; }
 rbm_ok( count( array_unique( $textos ) ) === count( $textos ), 'as descriptions sao todas diferentes entre si', count( array_unique( $textos ) ) . ' de ' . count( $textos ) );
-rbm_ok( count( array_unique( $titulos ) ) === count( $titulos ), 'os og:title sao todos diferentes entre si', count( array_unique( $titulos ) ) . ' de ' . count( $titulos ) );
+
+/* O NOME DA PAGINA SAIU DAQUI e passou a ser um so (casca 1.4.0): o mapa das
+   cabecas nao carrega mais titulo, porque um segundo nome digitado ao lado do
+   primeiro foi exatamente como seis das nove paginas ficaram com dois nomes.
+   Quem cobra o nome agora e ferramentas/teste-voz.php, nas cinco superficies em
+   que ele aparece. Aqui fica so a unicidade, que e da mesma familia da
+   description repetida: duas paginas com o mesmo nome disputam uma a outra. */
+$nomes = array_values( robometria_casca_nomes_das_paginas() );
+rbm_ok( count( array_unique( $nomes ) ) === count( $nomes ), 'os nomes de pagina sao todos diferentes entre si', count( array_unique( $nomes ) ) . ' de ' . count( $nomes ) );
+rbm_ok( count( $nomes ) === count( $cabecas ), 'toda pagina nomeada tem cabeca, e toda cabeca tem pagina nomeada', count( $nomes ) . ' nomes / ' . count( $cabecas ) . ' cabecas' );
 
 /* NENHUM DIGITO. Description e texto digitado que ninguem relê: um numero aqui
    dentro passa a mentir em silencio no dia em que o banco crescer, e nem na tela
@@ -580,6 +588,68 @@ foreach ( $paginas as $tag ) {
 	$texto = trim( preg_replace( '/\s+/u', ' ', $texto ) );
 	$n     = mb_strlen( $texto, 'UTF-8' );
 	rbm_ok( $n >= 1500, "[$tag] corpo com 1.500 caracteres ou mais", $n . ' caracteres' );
+}
+
+echo "\n13. O estado degradado sai MARCADO no markup (secao 8)\n";
+/* Toda pagina desta ilha tem um segundo estado valido: "estamos sem o banco".
+   Ele tem cabecalho, rodape e prosa, e por isso e invisivel para quem mede o
+   corpo — foi assim que tres estados foram varridos pela metade em 11/09/2026.
+   A marca existe so para a bancada conseguir dizer "isto nao e a pagina", entao
+   a ausencia dela e defeito, mesmo sem nada na tela mudar. */
+$aviso = robometria_casca_sem_banco_html( 'chamada de teste', 'explicacao de teste' );
+rbm_ok( (bool) preg_match( '#class="[^"]*\brbm-sem-banco\b#', $aviso ),
+	'o aviso de "sem banco" carrega a classe que a bancada le' );
+rbm_ok( (bool) preg_match( '#class="[^"]*\brbm-sem-banco\b#', robometria_casca_sem_medicao_html() ),
+	'o aviso de "medicao nao chegou" carrega a mesma classe' );
+/* A CLASSE TEM UM DONO SO, e a cobranca e por ARQUIVO, nao por contagem: o
+   numero de mencoes dentro da casca muda com um comentario, e teste que reprova
+   por comentario ensina a ignora-lo. O que importa e que nenhum outro snippet
+   escreva a marca por conta propria — cada copia seria um lugar a mais de onde
+   ela pode sumir sozinha, que e a historia da porta de compra da secao 7. */
+$com_copia = array();
+foreach ( glob( $raiz . '/snippets/*.php' ) as $arq_snip ) {
+	if ( basename( $arq_snip ) === 'robometria-casca.php' ) { continue; }
+	if ( false !== strpos( file_get_contents( $arq_snip ), 'rbm-sem-banco' ) ) { $com_copia[] = basename( $arq_snip ); }
+}
+rbm_ok( empty( $com_copia ), 'nenhum outro snippet escreve a marca por conta propria', empty( $com_copia ) ? 'so a casca' : implode( ' ', $com_copia ) );
+
+echo "\n14. Quem cria pagina sincroniza o TITULO dela (secao 8: duas fontes para o mesmo campo)\n";
+/* A bancada nao alcanca o WordPress, entao esta se confere no codigo — e e
+   melhor do que nao conferir. O caso real: a casca aprendeu na 1.2.0 a
+   reespelhar o post_title quando a definicao muda, e os quatro snippets de
+   pagina NAO. A pagina nascia com o titulo da constante e ficava com ele para
+   sempre; renomear no repositorio trocava o og:title, o cartao e a trilha (que
+   sao derivados) e deixava o H1 e o <title> DO AR com o nome antigo — duas
+   fontes para o mesmo campo, que e a cicatriz da Aquametria de 11/09/2026, e
+   nenhuma bancada podia ver, porque a bancada le a constante. */
+foreach ( glob( $raiz . '/snippets/*.php' ) as $arq_snip ) {
+	$nome_arq = basename( $arq_snip );
+	$fonte_s  = file_get_contents( $arq_snip );
+	/* A cobranca e de quem tem NOME PROPRIO de pagina: as cinco paginas da casca
+	   (definicao_paginas) e as quatro que vem de uma constante _TITULO. O Sync
+	   fica de fora de proposito e nao por descuido — ele grava titulo de item do
+	   manifest, e ja o reespelha a cada aplicacao, porque monta um array so para
+	   inserir e atualizar. */
+	$tem_nome_proprio = ( false !== strpos( $fonte_s, "_TITULO'" ) )
+		|| ( false !== strpos( $fonte_s, 'robometria_casca_definicao_paginas' ) );
+	if ( ! $tem_nome_proprio || false === strpos( $fonte_s, 'wp_insert_post' ) ) { continue; }
+	$sincroniza = preg_match( "#wp_update_post\(\s*array\(\s*'ID'\s*=>\s*\\\$pid,\s*'post_title'#", $fonte_s );
+	rbm_ok( (bool) $sincroniza, "[$nome_arq] reespelha o post_title quando o nome muda" );
+}
+
+echo "\n15. A versao do manifest e a do snippet dizem a mesma coisa\n";
+/* Achado em 11/09/2026 ao fechar a revisao 17: o manifest dizia que a R2 estava
+   na 1.0.2 e a constante do snippet dizia 1.0.1. Ninguem tinha errado nada
+   visivel — sao duas copias do mesmo numero, e uma envelheceu sozinha. E o
+   mesmo defeito do nome da pagina em dois mapas, numa escala menor e igualmente
+   calada: quem le o manifest para saber o que esta no ar le um numero que o
+   codigo nao sustenta. */
+$manifest = json_decode( file_get_contents( $raiz . '/manifest.json' ), true );
+foreach ( (array) $manifest['snippets'] as $item ) {
+	$fonte_s = file_get_contents( $raiz . '/' . $item['arquivo'] );
+	if ( ! preg_match( "#define\(\s*'ROBOMETRIA_[A-Z0-9]+_VERSAO',\s*'([^']+)'#", $fonte_s, $mv2 ) ) { continue; }
+	rbm_ok( $mv2[1] === $item['versao'], "[{$item['id']}] a versao do manifest e a da constante",
+		'manifest ' . $item['versao'] . ' / snippet ' . $mv2[1] );
 }
 
 echo "\n";

@@ -436,16 +436,18 @@ echo "\n8. O par ferramenta x guia (16.4d), nos dois sentidos\n";
    ele apoia. O par tem que aparecer no CORPO das duas paginas. Ate 11/09/2026 a
    ferramenta de succao linkava o guia da OUTRA e nao o seu, e nenhum teste
    perguntava se o guia era o CERTO. */
-$titulo_da_ferramenta = array();
+/* O par se declara por SLUG desde 11/09/2026: nome de pagina e texto que muda, e
+   quando ele era a chave do par o vinculo se desfazia calado a cada renomeacao. */
+$ferramenta_por_slug = array();
 foreach ( robometria_casca_ferramentas() as $f ) {
-	if ( ! empty( $f['slug'] ) ) { $titulo_da_ferramenta[ $f['titulo'] ] = $f['slug']; }
+	if ( ! empty( $f['slug'] ) ) { $ferramenta_por_slug[ $f['slug'] ] = $f['slug']; }
 }
 $corpo_por_slug = array();
 foreach ( $alvos as $alvo ) { $corpo_por_slug[ $slug_do_alvo[ $alvo ] ] = arv_corpo( $html[ $alvo ] ); }
 
 foreach ( robometria_casca_artigos() as $a ) {
-	$par = isset( $titulo_da_ferramenta[ $a['ferramenta'] ] ) ? $titulo_da_ferramenta[ $a['ferramenta'] ] : '';
-	arv_ok( '' !== $par, "artigo {$a['codigo']}: o campo 'ferramenta' nomeia uma ferramenta do catalogo", $a['ferramenta'] );
+	$par = isset( $ferramenta_por_slug[ $a['ferramenta'] ] ) ? $ferramenta_por_slug[ $a['ferramenta'] ] : '';
+	arv_ok( '' !== $par, "artigo {$a['codigo']}: o campo 'ferramenta' aponta uma ferramenta do catalogo", $a['ferramenta'] );
 	if ( '' === $par ) { continue; }
 	$url_artigo    = 'https://robometria.com.br/' . $a['slug'] . '/';
 	$url_ferramenta = 'https://robometria.com.br/' . $par . '/';

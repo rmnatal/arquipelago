@@ -140,6 +140,7 @@ rbm_ok( 0 === $codigo, 'a varredura de corpo roda sem erro', 'codigo ' . $codigo
 
 $estados = array();
 $excecoes_por_estado = array();
+$degradados = array();
 $atual = null;
 foreach ( $saida as $linha ) {
 	if ( preg_match( '/^=== (.+) ===$/', $linha, $m ) ) {
@@ -150,6 +151,10 @@ foreach ( $saida as $linha ) {
 	}
 	if ( preg_match( '/^--- excecao (\S+): (.*)$/', $linha, $m ) ) {
 		$excecoes_por_estado[ $atual ][] = array( 'classe' => $m[1], 'texto' => $m[2] );
+		continue;
+	}
+	if ( '!!! sem-banco' === trim( $linha ) ) {
+		$degradados[] = $atual;
 		continue;
 	}
 	if ( null !== $atual ) {
@@ -167,6 +172,19 @@ rbm_ok( $com_r1 >= 28, 'a R1 e medida em pelo menos 28 estados — um por modelo
 $bytes = array_sum( array_map( 'strlen', $estados ) );
 rbm_ok( $bytes > 400000, 'o corpo somado tem tamanho de pagina inteira, nao de meia pagina',
 	number_format( $bytes ) . ' bytes' );
+
+/* NENHUM ESTADO PODE SER O DEGRADADO, e esta linha custou dois dias.
+ *
+ * Toda pagina desta ilha tem um segundo estado valido — "estamos sem o banco" —
+ * com cabecalho, rodape, folha e prosa. Ate 11/09/2026 o varredor nao carregava
+ * as options que o Sync grava, entao `pagina:a1` media 1.118 caracteres, a2
+ * media 1.107 e a metodologia servia o aviso de que a medicao nao chegou: as
+ * tres eram paginas inteiras e honestas, e nenhuma era a pagina. O tamanho
+ * somado acima nao pegava isso, porque tres estados em 72 nao movem a soma.
+ * A casca marca esses blocos com `rbm-sem-banco`, o varredor declara na linha do
+ * estado, e aqui isso reprova. */
+rbm_ok( empty( $degradados ), 'nenhum estado varrido esta no estado degradado (sem banco)',
+	empty( $degradados ) ? 'ok' : implode( ' ', array_slice( $degradados, 0, 6 ) ) );
 
 /* ---------------------------------------------------------------------------
  * 2. A excecao declarada no markup: contada e conferida uma a uma.

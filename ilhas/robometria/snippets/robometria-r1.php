@@ -1,5 +1,9 @@
 /**
  * Robometria R1 — Qual peça serve no meu robô aspirador
+ * Versão: 1.2.0 (11/09/2026) — a abertura fala com quem entrou e a procedência
+ * desce um parágrafo, para a camada de prova; o catálogo da casca recebe o
+ * título desta constante; e garantir_pagina() passou a reespelhar o post_title
+ * quando o nome muda — sem isso, o nome do ar envelhecia calado.
  * Versão: 1.1.2 (11/09/2026) — devolve à casca a folha do FORMULÁRIO, pelo mesmo
  * motivo por que já tinha devolvido a da porta de compra: as regras .rbm-promessa
  * e .rbm-form* estavam idênticas aqui e na R2, e a home passou a servir o mesmo
@@ -83,7 +87,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_R1_VERSAO' ) ) {
-	define( 'ROBOMETRIA_R1_VERSAO', '1.1.2' );
+	define( 'ROBOMETRIA_R1_VERSAO', '1.2.0' );
 	define( 'ROBOMETRIA_R1_SLUG', 'qual-peca-serve-no-meu-robo-aspirador' );
 	define( 'ROBOMETRIA_R1_TITULO', 'Qual peça serve no meu robô aspirador' );
 	define( 'ROBOMETRIA_R1_DADOS', 'robometria_dados_r1-respostas' );
@@ -987,8 +991,10 @@ add_shortcode( 'robometria_r1', function () {
 	if ( empty( $d['modelos'] ) ) {
 		/* Sem banco a ferramenta não existe — e dizer isso é melhor do que
 		   servir um formulário que devolve vazio para tudo. */
-		return '<div class="rbm-bloco"><p class="rbm-linha-mestra">Esta ferramenta está sem o banco de peças no momento.</p>'
-			. '<p class="rbm-nota">O banco é publicado a partir do repositório da Robometria. Enquanto ele não chegar, preferimos avisar a mostrar um formulário que responderia vazio para qualquer modelo.</p></div>';
+		return robometria_casca_sem_banco_html(
+			'Esta ferramenta está sem o banco de peças no momento.',
+			'O banco é publicado a partir do repositório da Robometria. Enquanto ele não chegar, preferimos avisar a mostrar um formulário que responderia vazio para qualquer modelo.'
+		);
 	}
 
 	$e       = robometria_r1_entrada();
@@ -1001,8 +1007,8 @@ add_shortcode( 'robometria_r1', function () {
 	/* RESPOSTA ANTES DA EXPLICAÇÃO (seção 5.2): frase autossuficiente, com
 	   número e data, que sobrevive a ser citada fora de contexto. */
 	$html .= '<div class="rbm-abertura">';
-	$html .= '<p class="rbm-linha-mestra">Esta ferramenta responde qual filtro, escova lateral, escova principal, mop ou bateria o <strong>fabricante</strong> declarou para o seu robô aspirador — e só escreve que uma peça serve quando existe declaração do fabricante, com o código, o endereço e a data.</p>';
-	$html .= '<p>Hoje são <span class="rbm-num">' . esc_html( number_format_i18n( isset( $r['pares_declarados'] ) ? $r['pares_declarados'] : 0 ) )
+	$html .= '<p class="rbm-linha-mestra">Diga a marca e o modelo do seu robô e veja o filtro, a escova, o mop e a bateria que encaixam nele — e quais ninguém confirmou que encaixam.</p>';
+	$html .= '<p class="rbm-prova">Aqui só está escrito que uma peça serve quando o fabricante declarou que serve, com o código, o endereço da declaração e a data. Hoje são <span class="rbm-num">' . esc_html( number_format_i18n( isset( $r['pares_declarados'] ) ? $r['pares_declarados'] : 0 ) )
 		. '</span> pares peça × modelo declarados, em <span class="rbm-num">' . esc_html( number_format_i18n( isset( $r['marcas'] ) ? $r['marcas'] : 0 ) )
 		. '</span> marcas, cobrindo <span class="rbm-num">' . esc_html( number_format_i18n( isset( $r['modelos_que_respondem'] ) ? $r['modelos_que_respondem'] : 0 ) )
 		. '</span> dos <span class="rbm-num">' . esc_html( number_format_i18n( isset( $r['modelos_publicaveis'] ) ? $r['modelos_publicaveis'] : 0 ) )
@@ -1314,6 +1320,11 @@ add_filter( 'robometria_ferramentas', function ( $lista ) {
 		if ( isset( $f['codigo'] ) && 'R1' === $f['codigo'] ) {
 			$lista[ $i ]['estado'] = 'publicada';
 			$lista[ $i ]['slug']   = ROBOMETRIA_R1_SLUG;
+			/* O NOME DA PÁGINA TEM UM DONO SÓ, e é quem a cria no WordPress.
+			   A semente do catálogo na casca serve à ferramenta que ainda não
+			   tem snippet; assim que ele existe, quem grava o post_title passa
+			   a ser também quem nomeia o cartão, a trilha e o og:title. */
+			$lista[ $i ]['titulo'] = ROBOMETRIA_R1_TITULO;
 		}
 	}
 	return $lista;
@@ -1355,6 +1366,20 @@ function robometria_r1_garantir_pagina() {
 		if ( '1' === get_post_meta( $pid, '_robometria_casca', true )
 			&& false === strpos( (string) $pagina->post_content, $conteudo ) ) {
 			wp_update_post( array( 'ID' => $pid, 'post_content' => $conteudo ) );
+		}
+
+		/* O TÍTULO TAMBÉM É NOSSO — e esta linha faltava nos quatro snippets de
+		   página desta ilha. A casca aprendeu isso na 1.2.0 (o H1 da raiz ficou
+		   "Início" depois de a casca já ter mudado três vezes); ferramenta e
+		   artigo, não. A página nascia com o título da constante e ficava com
+		   ele para sempre: renomear aqui mudaria o og:title, o cartão e a
+		   trilha — que são derivados — e deixaria o H1 e o <title> do ar com o
+		   nome antigo, que é a divergência que este bloco existe para desfazer,
+		   agora em duas fontes que nenhuma bancada compara. O post_name NÃO é
+		   tocado: a URL não muda com o nome (seção 12.1 do contrato). */
+		if ( '1' === get_post_meta( $pid, '_robometria_casca', true )
+			&& (string) $pagina->post_title !== (string) ROBOMETRIA_R1_TITULO ) {
+			wp_update_post( array( 'ID' => $pid, 'post_title' => ROBOMETRIA_R1_TITULO ) );
 		}
 	}
 

@@ -496,6 +496,24 @@ rbm_ok( 0 !== strncmp( ltrim( $retorno ), '---', 3 ),
 /* ---------------------------------------------------------------------------
  * 10. Higiene do snippet (secao 8, fase 4b do playbook).
  * ------------------------------------------------------------------------- */
+echo "\n9b. O nome do artigo nao afirma a tese (secao 8: numero de tela nasce contado)\n";
+/* A tese deste artigo e uma contagem do banco, e por isso a frase de abertura, a
+   description do JSON-LD e a resposta do FAQPage tem DUAS formas, escolhidas
+   pela contagem do dia. O titulo tinha UMA, digitada — "Por que nao existe
+   filtro universal" — e no dia em que uma peca do banco atravessasse marca ele
+   seria a unica metade da pagina a continuar afirmando o que deixou de valer,
+   inclusive dentro do headline do JSON-LD. A regra estrutural que substitui a
+   interpretacao da frase: titulo de artigo de tese derivada e PERGUNTA, e
+   pergunta nao afirma nenhuma das duas formas. */
+rbm_ok( '?' === mb_substr( ROBOMETRIA_A1_TITULO, -1 ),
+	'o nome do artigo e uma pergunta, e sobrevive as duas formas da tese', ROBOMETRIA_A1_TITULO );
+$headline = '';
+foreach ( (array) $ld['@graph'] as $no ) {
+	if ( isset( $no['@type'], $no['headline'] ) && 'Article' === $no['@type'] ) { $headline = $no['headline']; }
+}
+rbm_ok( ROBOMETRIA_A1_TITULO === $headline,
+	'o headline do JSON-LD e o mesmo nome, sem segunda copia', $headline );
+
 echo "\n10. Higiene do snippet (secao 8, fase 4b)\n";
 
 $fonte = file_get_contents( $raiz . '/snippets/robometria-a1.php' );

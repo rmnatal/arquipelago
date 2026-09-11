@@ -1,5 +1,15 @@
 /**
  * Robometria Casca — identidade e estrutura do site
+ * Versão: 1.4.0 (11/09/2026) — UM NOME POR PÁGINA, e o <title> que o repositório
+ *   não escrevia. Seis das nove páginas se chamavam de dois jeitos ao mesmo
+ *   tempo, porque havia dois mapas de nome digitados; agora há uma fonte só
+ *   (robometria_casca_nome_da_pagina) e o H1, o <title>, o og:title, o degrau da
+ *   trilha e o rótulo do cartão derivam dela. A casca também assumiu o <title>,
+ *   que na home vinha do campo de descrição curta do wp-admin com 73 caracteres
+ *   em vocabulário de dentro da fábrica. As quatro páginas da casca perderam o
+ *   nome de gaveta, as aberturas foram para a voz do VOZ.md e a procedência
+ *   desceu para a camada de prova (classe rbm-prova, seção 15.2). O aviso de
+ *   "estamos sem o banco" ganhou dono único e a marca rbm-sem-banco.
  * Versão: 1.3.0 (11/09/2026) — A ÁRVORE DA SEÇÃO 16 (trilha, BreadcrumbList e
  *   cluster de "Veja também"), e os onze números que a ilha publica sobre si
  *   mesma saindo do snippet para dados/casca-fatos.json. Ver as seções 3f e 3g.
@@ -80,7 +90,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_CASCA_VERSAO' ) ) {
-	define( 'ROBOMETRIA_CASCA_VERSAO', '1.3.0' );
+	define( 'ROBOMETRIA_CASCA_VERSAO', '1.4.0' );
 	define( 'ROBOMETRIA_CASCA_TAGLINE', 'Qual peça o fabricante declarou para o seu robô aspirador — com código, endereço e data' );
 }
 
@@ -105,7 +115,7 @@ function robometria_casca_ferramentas() {
 		),
 		array(
 			'codigo' => 'R2',
-			'titulo' => 'Quantos Pa e quanto tempo o seu robô precisa',
+			'titulo' => 'Quantos Pa o seu robô aspirador precisa',
 			'slug'   => 'quantos-pa-o-robo-aspirador-precisa',
 			'resumo' => 'Sucção em pascal por tipo de piso e por pelo de animal, e quantos ciclos a sua metragem exige a partir dos minutos que o fabricante declara. As faixas de Pa são recomendação editorial e saem com o nome de quem recomenda.',
 			'estado' => 'em-construcao',
@@ -132,9 +142,11 @@ function robometria_casca_ferramentas() {
  * primeira peça. Com o catálogo aqui, cada artigo novo aparece na home e no hub
  * sem que nenhuma delas seja editada de novo.
  *
- * Campo 'ferramenta': o código da ferramenta que o artigo apoia, para a listagem
+ * Campo 'ferramenta': o SLUG da ferramenta que o artigo apoia, para a listagem
  * poder dizer ao leitor que os dois são o par informativo e a resposta calculada
- * do mesmo assunto.
+ * do mesmo assunto. O nome que aparece na frase é resolvido a partir do slug —
+ * o campo já foi um título digitado, e isso fazia o par se desfazer em silêncio
+ * no dia em que a ferramenta trocasse de nome.
  * ------------------------------------------------------------------------- */
 
 if ( ! function_exists( 'robometria_casca_artigos' ) ) {
@@ -543,9 +555,14 @@ add_action( 'wp_head', function () {
  *   1. O texto diz O QUE A PÁGINA RESPONDE, não o que ela é — e na voz do
  *      VOZ.md, porque description é texto que a pessoa lê no resultado da busca,
  *      não metadado interno. Verbo na frente, segunda pessoa, palavras dela.
- *   2. og:title existe separado do <title>: o <title> carrega o nome da marca
- *      (é a aba do navegador), e o og:title é a frase que vai para o cartão
- *      compartilhado, onde o nome da marca já aparece embaixo.
+ *   2. ~~og:title existe separado do <title>.~~ **REVOGADO em 11/09/2026**, e a
+ *      decisão errada custou seis páginas com dois nomes. A ideia era boa no
+ *      papel (o <title> leva a marca, o cartão não precisa), mas o que ela
+ *      produziu foi um segundo mapa de nomes digitado ao lado do primeiro:
+ *      "Sobre" no H1 e "Quem publica a Robometria" no cartão, "Por que não
+ *      existe filtro universal" no H1 e "Existe filtro universal?" no cartão.
+ *      Agora o og:title é o NOME da página (robometria_casca_nome_da_pagina) e
+ *      a marca entra no <title>, que a casca também passou a escrever.
  *   3. NENHUMA DESCRIÇÃO CARREGA NÚMERO, e isso é regra, não estilo. Descrição
  *      é texto digitado que ninguém relê, e a cicatriz de 11/09/2026 (seção 8 do
  *      contrato, o cartão que dizia "0" depois de a categoria ganhar cinco
@@ -566,47 +583,38 @@ function robometria_casca_cabecas() {
 	$mapa = array(
 		'inicio' => array(
 			'tipo'      => 'website',
-			'titulo'    => 'Robô aspirador: qual peça serve no seu, e quanta sucção precisa',
 			'descricao' => 'Diga a marca e o modelo do seu robô aspirador e veja qual filtro, escova, mop ou bateria o fabricante declarou para ele.',
 		),
 		'ferramentas' => array(
 			'tipo'      => 'website',
-			'titulo'    => 'As duas ferramentas da Robometria',
 			'descricao' => 'Uma diz qual peça serve no seu robô aspirador. A outra diz quanta sucção e quanto tempo a metragem da sua casa pede.',
 		),
 		'metodologia' => array(
 			'tipo'      => 'website',
-			'titulo'    => 'Como a gente decide o que publicar',
 			'descricao' => 'De onde vem cada dado daqui, quando ele vale como "serve", e o que a Robometria ainda não sabe responder sobre o seu robô.',
 		),
 		'sobre' => array(
 			'tipo'      => 'website',
-			'titulo'    => 'Quem publica a Robometria',
 			'descricao' => 'Quem faz a Robometria, por que ela só afirma o que o fabricante declarou, e como avisar quando uma peça daqui não encaixou.',
 		),
 		'divulgacao-de-afiliados' => array(
 			'tipo'      => 'website',
-			'titulo'    => 'Como a Robometria ganha dinheiro',
 			'descricao' => 'Ganhamos comissão quando você compra pelos nossos links, e isso nunca muda a ordem da lista. Veja como a recomendação é montada.',
 		),
 		'qual-peca-serve-no-meu-robo-aspirador' => array(
 			'tipo'      => 'website',
-			'titulo'    => 'Qual peça serve no meu robô aspirador',
 			'descricao' => 'Escolha a marca e o modelo e veja o filtro, a escova, o mop e a bateria que o fabricante declarou para o seu robô, com código e data.',
 		),
 		'quantos-pa-o-robo-aspirador-precisa' => array(
 			'tipo'      => 'website',
-			'titulo'    => 'Quantos Pa o seu robô aspirador precisa',
 			'descricao' => 'Quanta sucção o seu robô precisa para piso liso, tapete ou pelo de cachorro, e quantos ciclos a metragem da sua casa exige.',
 		),
 		'filtro-universal-de-robo-aspirador' => array(
 			'tipo'      => 'article',
-			'titulo'    => 'Existe filtro universal de robô aspirador?',
 			'descricao' => 'Conferimos peça por peça quantas servem em mais de uma marca, e o que fazer quando o filtro barato do anúncio promete servir em tudo.',
 		),
 		'quantos-m2-o-robo-aspirador-limpa-por-carga' => array(
 			'tipo'      => 'article',
-			'titulo'    => 'Quantos m² um robô aspirador limpa por carga',
 			'descricao' => 'De onde vem o número de metros quadrados por carga que os sites publicam, quais marcas declaram, e o que fazer quando a sua não declara.',
 		),
 	);
@@ -666,7 +674,12 @@ add_action( 'wp_head', function () {
 
 	echo '<meta name="description" content="' . esc_attr( $c['descricao'] ) . '">' . "\n";
 	echo '<meta property="og:type" content="' . esc_attr( $c['tipo'] ) . '">' . "\n";
-	echo '<meta property="og:title" content="' . esc_attr( $c['titulo'] ) . '">' . "\n";
+	/* O og:title É o nome da página, derivado, e não uma segunda frase digitada
+	   ao lado da primeira. Era assim que as seis divergências de nome entravam:
+	   o mapa das cabeças trazia um título só dele, ninguém comparava os dois, e
+	   a página passava a se chamar de dois jeitos em superfícies que aparecem
+	   uma ao lado da outra no resultado da busca. */
+	echo '<meta property="og:title" content="' . esc_attr( robometria_casca_nome_da_pagina( $slug ) ) . '">' . "\n";
 	echo '<meta property="og:description" content="' . esc_attr( $c['descricao'] ) . '">' . "\n";
 	echo '<meta property="og:url" content="' . esc_url( $url ) . '">' . "\n";
 	echo '<meta property="og:site_name" content="Robometria">' . "\n";
@@ -806,6 +819,7 @@ body header .wp-block-group,body .wp-block-template-part header{background:var(-
 .rbm-artigo-par{font-family:var(--rbm-mono);font-size:.76rem;letter-spacing:.03em;margin-top:.35rem;}
 /* Ressalva tecnica em ambar. Nunca vermelho: vermelho e a marca. */
 .rbm-tag{display:inline-block;font-family:var(--rbm-mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--rbm-alerta);border:1px solid var(--rbm-alerta);border-radius:2px;padding:.15rem .4rem;}
+.rbm-prova{color:var(--rbm-legenda);font-size:.97rem;}
 .rbm-nota{border-left:3px solid var(--rbm-tinta);background:var(--rbm-superficie);padding:.85rem 1rem;color:var(--rbm-legenda);font-size:.95rem;margin:1.2rem 0 0;}
 .rbm-nota strong{color:var(--rbm-tinta);}
 .rbm-lista{margin:.6rem 0 0;padding-left:1.1rem;}
@@ -1033,9 +1047,9 @@ function robometria_casca_artigos_html() {
 		$itens[] = '<li class="rbm-artigo">'
 			. '<h3><a href="' . esc_url( $url ) . '">' . esc_html( $a['titulo'] ) . '</a></h3>'
 			. '<p>' . esc_html( $a['resumo'] ) . '</p>'
-			. ( isset( $a['ferramenta'] ) && '' !== $a['ferramenta']
+			. ( isset( $a['ferramenta'] ) && '' !== robometria_casca_nome_da_pagina( $a['ferramenta'] )
 				? '<p class="rbm-artigo-par">Faz par com a ferramenta '
-					. esc_html( $a['ferramenta'] ) . '.</p>'
+					. esc_html( robometria_casca_nome_da_pagina( $a['ferramenta'] ) ) . '.</p>'
 				: '' )
 			. '</li>';
 	}
@@ -1199,9 +1213,36 @@ function robometria_casca_numeros() {
  * número" é uma afirmação honesta; um número de reserva seria uma mentira com
  * cara de medição, e ninguém a releria para descobrir.
  */
+/**
+ * O ESTADO DEGRADADO TEM UMA MARCA SÓ, e ela é para quem mede, não para quem lê.
+ *
+ * Cinco lugares desta ilha servem uma página válida quando o banco não chegou —
+ * as duas ferramentas, os dois artigos e o trecho de números da metodologia. A
+ * frase é honesta e a página é inteira: cabeçalho, rodapé, folha e trilha. Foi
+ * exatamente por isso que o varredor de corpo passou dois dias medindo três
+ * desses estados como se fossem a página real (11/09/2026), sem erro nenhum.
+ *
+ * A classe `rbm-sem-banco` não muda nada na tela. Ela existe para a bancada
+ * conseguir dizer "isto aqui não é a página" — `ferramentas/varrer-corpo.php`
+ * imprime `!!! sem-banco` no estado que a carrega, e os portões cobram a
+ * ausência. Marca no markup, como manda a seção 8 do `ARQUIPELAGO.md` para toda
+ * afirmação sobre o que a página diz: quem decide é a estrutura, nunca a
+ * vizinhança das palavras.
+ *
+ * Fica na casca pelo mesmo motivo da porta de compra: uma cópia por snippet e
+ * bastaria alguém esquecer a classe numa delas para a trava voltar a não ver.
+ */
+if ( ! function_exists( 'robometria_casca_sem_banco_html' ) ) {
+function robometria_casca_sem_banco_html( $chamada, $explicacao ) {
+	return '<div class="rbm-bloco rbm-sem-banco">'
+		. '<p class="rbm-linha-mestra">' . $chamada . '</p>'
+		. '<p class="rbm-nota">' . $explicacao . '</p></div>';
+}
+}
+
 if ( ! function_exists( 'robometria_casca_sem_medicao_html' ) ) {
 function robometria_casca_sem_medicao_html() {
-	return '<p class="rbm-nota"><strong>A medição não chegou ao site agora.</strong> '
+	return '<p class="rbm-nota rbm-sem-banco"><strong>A medição não chegou ao site agora.</strong> '
 		. 'Esta parte da página conta itens do nosso banco, e preferimos deixar o espaço vazio '
 		. 'a publicar um número que não foi contado hoje. Ela volta na próxima atualização.</p>';
 }
@@ -1376,6 +1417,137 @@ function robometria_casca_titulo_da_pagina( $slug ) {
 }
 }
 
+/**
+ * UM NOME POR PÁGINA, e este é o lugar onde ele mora.
+ *
+ * Uma página desta ilha aparece com nome em cinco superfícies: o H1 (que é o
+ * post_title), a aba do navegador e o resultado do Google (o <title>), o cartão
+ * compartilhado (og:title), o degrau atual da trilha e o rótulo do cartão que a
+ * lista. Em 11/09/2026 mediu-se que SEIS das nove páginas tinham dois nomes: a
+ * cabeça publicava "Quem publica a Robometria" enquanto o H1 dizia "Sobre", e o
+ * artigo do filtro universal se chamava de dois jeitos diferentes a uma dobra de
+ * distância. Ninguém errou: eram dois mapas digitados, cada um certo no seu
+ * lugar, e nenhum deles podia corrigir o outro.
+ *
+ * A saída é a mesma da Aquametria no mesmo dia e a mesma que esta ilha já usou
+ * para os números da tela: uma fonte, e as outras derivadas dela. Quem é dono do
+ * nome é quem é dono da página — a definição da casca para as cinco dela, e o
+ * catálogo da própria ferramenta ou do próprio artigo para as outras quatro, que
+ * é para onde o snippet leva a constante de título com que ele cria a página no
+ * WordPress. Nada aqui é digitado duas vezes; página nova chega com nome sozinha.
+ *
+ * Devolve '' para slug que a ilha não publica — e quem chama nunca inventa um.
+ */
+if ( ! function_exists( 'robometria_casca_nome_da_pagina' ) ) {
+function robometria_casca_nome_da_pagina( $slug ) {
+	$slug = (string) $slug;
+
+	$nome = robometria_casca_titulo_da_pagina( $slug );
+	if ( '' !== $nome ) {
+		return $nome;
+	}
+
+	foreach ( array( robometria_casca_ferramentas(), robometria_casca_artigos() ) as $catalogo ) {
+		foreach ( (array) $catalogo as $item ) {
+			if ( isset( $item['slug'], $item['titulo'] ) && $slug === $item['slug'] ) {
+				return (string) $item['titulo'];
+			}
+		}
+	}
+
+	return '';
+}
+}
+
+/**
+ * TODA página publicada da ilha, slug => nome. É sobre esta lista que o portão
+ * da voz afirma, e é ela que impede a cobrança de valer só para as páginas que
+ * existiam no dia em que o teste foi escrito (a cicatriz do cartão que dizia
+ * zero, seção 8 do `ARQUIPELAGO.md`).
+ */
+if ( ! function_exists( 'robometria_casca_nomes_das_paginas' ) ) {
+function robometria_casca_nomes_das_paginas() {
+	$nomes = array();
+
+	foreach ( robometria_casca_definicao_paginas() as $slug => $def ) {
+		$nomes[ $slug ] = $def['titulo'];
+	}
+	foreach ( array( robometria_casca_ferramentas(), robometria_casca_artigos() ) as $catalogo ) {
+		foreach ( (array) $catalogo as $item ) {
+			if ( isset( $item['slug'], $item['titulo'] ) ) {
+				$nomes[ $item['slug'] ] = (string) $item['titulo'];
+			}
+		}
+	}
+
+	return $nomes;
+}
+}
+
+/**
+ * O QUE VAI NA ABA E NO RESULTADO DO GOOGLE — e até hoje o repositório não
+ * escrevia esta linha.
+ *
+ * O WordPress monta o <title> sozinho: nas páginas internas é o post_title mais
+ * o nome do site, e na HOME é o nome do site mais a descrição curta gravada no
+ * wp-admin. Medido em 11/09/2026 na home no ar: "Robometria – Compatibilidade de
+ * peças e dimensionamento de robô aspirador", 73 caracteres, escrito em
+ * vocabulário de dentro da fábrica e num campo que não existe em arquivo nenhum
+ * deste repositório. Era o terceiro nome da página mais importante da ilha, e o
+ * único que nenhuma bancada podia ver, porque a fonte dele não é nossa.
+ *
+ * Aqui o repositório assume o campo: o <title> passa a ser o nome canônico da
+ * página mais a marca, nas nove, home inclusive. Página que a ilha não conhece
+ * continua com o que o WordPress faz — inventar título para endereço que não é
+ * nosso seria pior do que não ter.
+ *
+ * O teto de 65 caracteres não é estética: acima disso o Google corta o título no
+ * meio e mostra um pedaço que ninguém escreveu. Por isso o nome cabe em 52 (65
+ * menos " – Robometria") e o portão da bancada cobra isso ANTES de publicar, e
+ * não depois de alguém ver a reticência no resultado da busca.
+ */
+if ( ! defined( 'ROBOMETRIA_MARCA' ) ) {
+	define( 'ROBOMETRIA_MARCA', 'Robometria' );
+}
+if ( ! defined( 'ROBOMETRIA_TITULO_SEPARADOR' ) ) {
+	define( 'ROBOMETRIA_TITULO_SEPARADOR', ' – ' );
+}
+if ( ! defined( 'ROBOMETRIA_TITULO_TETO' ) ) {
+	define( 'ROBOMETRIA_TITULO_TETO', 65 );
+}
+
+if ( ! function_exists( 'robometria_casca_titulo_do_documento' ) ) {
+function robometria_casca_titulo_do_documento( $slug ) {
+	$nome = robometria_casca_nome_da_pagina( $slug );
+	if ( '' === $nome ) {
+		return '';
+	}
+
+	return $nome . ROBOMETRIA_TITULO_SEPARADOR . ROBOMETRIA_MARCA;
+}
+}
+
+add_filter( 'document_title_parts', function ( $partes ) {
+	$slug   = robometria_casca_slug_atual();
+	$titulo = robometria_casca_titulo_do_documento( $slug );
+	if ( '' === $titulo ) {
+		return $partes;
+	}
+
+	/* Duas partes, e só duas: o nome da página e a marca. O núcleo as junta com
+	   o separador logo abaixo, e o resultado é exatamente a string que
+	   robometria_casca_titulo_do_documento() devolve — que é a que a bancada
+	   mede. Na home isso troca as partes que o WordPress usaria (nome do site
+	   mais a descrição curta do wp-admin), que é o campo que não mora aqui. */
+	unset( $partes );
+
+	return array( 'title' => robometria_casca_nome_da_pagina( $slug ), 'site' => ROBOMETRIA_MARCA );
+}, 10 );
+
+add_filter( 'document_title_separator', function ( $sep ) {
+	return trim( ROBOMETRIA_TITULO_SEPARADOR );
+}, 10 );
+
 /* A MÃE DE TRANSIÇÃO das ferramentas, e o destino de cada uma quando a seção
    nascer. Mora aqui, e não no snippet da ferramenta, porque é decisão de ÁRVORE:
    quem decide onde a página mora é o mapa do site, não quem escreve o cálculo. */
@@ -1444,7 +1616,10 @@ function robometria_casca_lugar( $slug ) {
 		$mae = robometria_casca_mae_das_ferramentas();
 		return array(
 			'papel'  => 'filha',
-			'nivel1' => array( $mae, 'Ferramentas' ),
+			/* O rótulo da mãe é o NOME dela, lido da fonte única. Estava digitado
+			   aqui — e a trilha de uma filha dizia "Ferramentas" enquanto a
+			   página mãe, a um clique de distância, se chamava outra coisa. */
+			'nivel1' => array( $mae, robometria_casca_nome_da_pagina( $mae ) ),
 			'nivel2' => array(),
 			'rotulo' => isset( $f['titulo'] ) ? $f['titulo'] : $slug,
 			'irmas'  => robometria_casca_irmas( $slug ),
@@ -1862,7 +2037,7 @@ add_shortcode( 'robometria_ferramentas', function () {
 	$n = robometria_casca_numeros();
 
 	$html  = '<div class="rbm-bloco">';
-	$html .= '<p class="rbm-linha-mestra">Duas ferramentas: uma responde qual peça serve, a outra responde quanta sucção e quanto tempo a sua casa pede.</p>';
+	$html .= '<p class="rbm-linha-mestra">Duas perguntas, duas respostas: que peça encaixa no seu robô, e quanta sucção ele precisa para a sua casa.</p>';
 	$html .= '<p>Elas são diferentes de propósito. A de peças tem resposta binária — o fabricante declarou aquele código para aquele modelo, ou não declarou. A de sucção devolve <strong>faixa</strong>, porque quem publica limiar de pascal para casa com pet é veículo editorial, não fabricante, e os veículos discordam entre si.</p>';
 	$html .= robometria_casca_cards_html();
 
@@ -1969,8 +2144,8 @@ add_shortcode( 'robometria_metodologia', function () {
 	$n = robometria_casca_numeros();
 
 	$html  = '<div class="rbm-bloco">';
-	$html .= '<p class="rbm-linha-mestra">A Robometria não escreve que uma peça "serve" sem uma declaração do fabricante com endereço e data — e quando não tem, diz que não tem.</p>';
-	$html .= '<p>A primeira página de busca para "qual filtro serve no robô X" hoje é, quase inteira, título de anúncio: quem afirma a compatibilidade é o vendedor da peça, sem fonte e sem data. Este site existe para ocupar exatamente esse vazio, e o método abaixo é o que torna isso verificável em vez de prometido.</p>';
+	$html .= '<p class="rbm-linha-mestra">Só está escrito aqui que uma peça serve quando quem fabricou o seu robô disse que serve. Quando ninguém disse, você lê "não localizamos" — e nunca um palpite.</p>';
+	$html .= '<p class="rbm-prova">A régua inteira é essa: declaração do fabricante com endereço e data, transcrita e conferível na própria página. A primeira página de busca para "qual filtro serve no robô X" hoje é, quase inteira, título de anúncio — quem afirma a compatibilidade é o vendedor da peça, sem fonte e sem data. Este site existe para ocupar exatamente esse vazio, e o método abaixo é o que torna isso verificável em vez de prometido.</p>';
 
 	$html .= '<div class="rbm-secao"><h2>1. Compatibilidade se declara, não se deduz — e cada afirmação tem selo</h2>';
 	$html .= '<p>Todo par peça × modelo sai da ferramenta com um de três selos, e o selo aparece na frase, não numa legenda de rodapé:</p>';
@@ -2071,8 +2246,8 @@ add_shortcode( 'robometria_sobre', function () {
 	$n = robometria_casca_numeros();
 
 	$html  = '<div class="rbm-bloco">';
-	$html .= '<p class="rbm-linha-mestra">A Robometria é um banco de compatibilidade de peças de robô aspirador, não um site de "melhores do ano".</p>';
-	$html .= '<p>Publicamos duas coisas: qual peça o fabricante declarou para qual modelo, e quanta sucção e quanto tempo a sua casa pede. Com uma regra única — todo número cita a fonte e leva a data em que foi verificado.</p>';
+	$html .= '<p class="rbm-linha-mestra">Duas perguntas sobre o seu robô, e só elas: que peça encaixa nele, e quanta sucção ele precisa.</p>';
+	$html .= '<p class="rbm-prova">Publicamos qual peça o fabricante declarou para qual modelo, e quanta sucção e quanto tempo a sua casa pede — com uma regra única: todo número cita a fonte e leva a data em que foi verificado. Aqui não tem "melhores do ano".</p>';
 
 	$html .= '<div class="rbm-secao"><h2>Por que existe</h2>';
 	$html .= '<p>A busca comercial do nicho ("melhor robô aspirador") está tomada por listas de compra, e nós não disputamos essa. A busca que ninguém responde direito é a de quem <strong>já tem</strong> o robô: qual filtro serve, qual escova lateral encaixa, qual bateria é a certa. Hoje quem responde isso é o título do anúncio de quem vende a peça. Não existe comparador entre marcas com fonte e data — e é esse buraco que este site ocupa.</p></div>';
@@ -2105,7 +2280,7 @@ add_shortcode( 'robometria_sobre', function () {
 
 add_shortcode( 'robometria_afiliados', function () {
 	$html  = '<div class="rbm-bloco">';
-	$html .= '<p class="rbm-linha-mestra">Quando houver link de loja nesta página, ele será link de afiliado — e estará marcado como tal.</p>';
+	$html .= '<p class="rbm-linha-mestra">Quando houver link de loja aqui, ele será link de afiliado: se você comprar por ele, a gente recebe uma comissão da loja, sem custo nenhum para você.</p>';
 	$html .= '<p>Isso significa que, se você comprar por ele, a Robometria pode receber uma comissão da loja, sem custo adicional para você. Os programas usados são os de afiliados da Shopee e do Mercado Livre.</p>';
 
 	$html .= '<div class="rbm-secao"><h2>O que a comissão nunca muda</h2>';
@@ -2178,11 +2353,24 @@ add_shortcode( 'robometria_afiliados', function () {
 if ( ! function_exists( 'robometria_casca_definicao_paginas' ) ) {
 function robometria_casca_definicao_paginas() {
 	return array(
-		'inicio'                  => array( 'titulo' => 'Robô aspirador: qual peça serve no seu, e quanta sucção precisa', 'conteudo' => '[robometria_home]' ),
-		'ferramentas'             => array( 'titulo' => 'Ferramentas', 'conteudo' => '[robometria_ferramentas]' ),
-		'metodologia'             => array( 'titulo' => 'Metodologia', 'conteudo' => '[robometria_metodologia]' ),
-		'sobre'                   => array( 'titulo' => 'Sobre', 'conteudo' => '[robometria_sobre]' ),
-		'divulgacao-de-afiliados' => array( 'titulo' => 'Divulgação de afiliados', 'conteudo' => '[robometria_afiliados]' ),
+		/* OS NOMES, e por que estes.
+		 *
+		 * Quatro destas cinco páginas se chamavam pelo nome da gaveta —
+		 * "Ferramentas", "Metodologia", "Sobre", "Divulgação de afiliados" —
+		 * enquanto a cabeça da MESMA página já publicava, desde a 1.2.0, o nome
+		 * na voz do VOZ.md. Não é rebatismo: é a divergência sendo desfeita para
+		 * o lado que já estava escrito, e o nome da gaveta some porque a seção
+		 * 14.5 do contrato pede o que a pessoa digita, não o nome interno.
+		 *
+		 * A home encurtou de 63 para 50 caracteres e nada da promessa se perdeu:
+		 * as duas metades continuam lá. O motivo é o teto do <title> — 63 mais
+		 * " – Robometria" dá 76, e o Google corta em ~65 mostrando um pedaço que
+		 * ninguém escreveu. */
+		'inicio'                  => array( 'titulo' => 'Seu robô aspirador: qual peça serve, quanta sucção', 'conteudo' => '[robometria_home]' ),
+		'ferramentas'             => array( 'titulo' => 'As duas ferramentas', 'conteudo' => '[robometria_ferramentas]' ),
+		'metodologia'             => array( 'titulo' => 'Como a gente decide o que publicar', 'conteudo' => '[robometria_metodologia]' ),
+		'sobre'                   => array( 'titulo' => 'Quem publica este site', 'conteudo' => '[robometria_sobre]' ),
+		'divulgacao-de-afiliados' => array( 'titulo' => 'Como este site ganha dinheiro', 'conteudo' => '[robometria_afiliados]' ),
 	);
 }
 }

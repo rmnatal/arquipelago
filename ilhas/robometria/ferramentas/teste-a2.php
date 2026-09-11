@@ -251,6 +251,10 @@ echo "\n4. A tese muda quando o banco muda (decisao 1 do bloco 5)\n";
 
 /** Roda o artigo num SUBPROCESSO com o banco adulterado e devolve o texto. */
 function rbm_a2_com_banco( $raiz, $mutacao ) {
+	return rbm_texto( rbm_a2_html_com_banco( $raiz, $mutacao ) );
+}
+
+function rbm_a2_html_com_banco( $raiz, $mutacao ) {
 	$tmp = tempnam( sys_get_temp_dir(), 'a2' );
 	file_put_contents( $tmp, json_encode( $mutacao ) );
 
@@ -271,7 +275,32 @@ PHP;
 
 	@unlink( $tmp );
 	@unlink( $arq );
-	return rbm_texto( (string) $saida );
+	return (string) $saida;
+}
+
+/**
+ * O PARAGRAFO, e nao a pagina inteira — as duas camadas da abertura, separadas.
+ *
+ * Medir a tese na pagina toda deixou passar, em 11/09/2026, uma mutacao que
+ * mudou a tese de forma: a frase procurada continuava existindo em OUTRA secao
+ * do artigo, e o teste aprovou sem olhar para a abertura. E o mesmo erro de
+ * contar `&#038;` na pagina inteira em vez de dentro do <script>, e a mesma
+ * resposta: quem afirma sobre a abertura le a ABERTURA.
+ *
+ * `qual`: 'mestra' devolve a linha-mestra; 'prova' devolve os blocos marcados
+ * como camada de prova, concatenados.
+ */
+function rbm_a2_paragrafo( $raiz, $mutacao, $qual ) {
+	$html = rbm_a2_html_com_banco( $raiz, $mutacao );
+	if ( 'mestra' === $qual ) {
+		return preg_match( '#<p class="rbm-linha-mestra">(.*?)</p>#is', $html, $m )
+			? rbm_texto( $m[1] ) : '';
+	}
+	$juntos = '';
+	if ( preg_match_all( '#<p[^>]*class="[^"]*\brbm-prova\b[^"]*"[^>]*>(.*?)</p>#is', $html, $m ) ) {
+		$juntos = implode( ' ', $m[1] );
+	}
+	return rbm_texto( $juntos );
 }
 
 /* A mutacao 0 nao muda nada: se o subprocesso nao reproduzir a pagina de hoje,
@@ -286,8 +315,9 @@ $m['resumo']['com_cobertura'] = 0;
 $m['marcas_que_declaram']     = array();
 $m['vitrine']                 = array();
 $t = rbm_a2_com_banco( $raiz, $m );
-rbm_ok( false !== stripos( $t, 'Nenhum dos' ) && false !== stripos( $t, 'tem área por carga declarada' ),
-	'[A] com zero declaracoes, a tese troca de molde' );
+$mestra = rbm_a2_paragrafo( $raiz, $m, 'mestra' );
+rbm_ok( false !== stripos( $mestra, 'nenhum dos' ) && false !== stripos( $mestra, 'tem esse número declarado' ),
+	'[A] com zero declaracoes, a tese troca de molde', mb_substr( $mestra, 0, 60 ) );
 rbm_ok( false !== stripos( $t, 'não há o que listar' ),
 	'[A] sem item elegivel o bloco de compra nao lista, e diz por que (secao 7)' );
 
@@ -295,9 +325,13 @@ rbm_ok( false !== stripos( $t, 'não há o que listar' ),
 $m = $fatos;
 $m['marcas_que_declaram']     = array( 'Electrolux', 'Marca Plantada' );
 $m['resumo']['com_cobertura'] = 9;
-$t = rbm_a2_com_banco( $raiz, $m );
-rbm_ok( false !== stripos( $t, 'Poucas marcas declaram' ) && false !== stripos( $t, 'Marca Plantada' ),
-	'[B] com duas marcas, a tese troca de molde e nomeia as duas' );
+$t      = rbm_a2_com_banco( $raiz, $m );
+$mestra = rbm_a2_paragrafo( $raiz, $m, 'mestra' );
+$prova  = rbm_a2_paragrafo( $raiz, $m, 'prova' );
+rbm_ok( false !== stripos( $mestra, 'em 2 marcas' ) && false === stripos( $mestra, 'Marca Plantada' ),
+	'[B] com duas marcas, a tese troca de molde e NAO nomeia marca na abertura', mb_substr( $mestra, 0, 60 ) );
+rbm_ok( false !== stripos( $prova, 'Marca Plantada' ) && false !== stripos( $prova, 'Electrolux' ),
+	'[B] quem declara e nomeado na camada de prova, um paragrafo abaixo', mb_substr( $prova, 0, 60 ) );
 rbm_ok( false === strpos( $t, 'Uma marca só declara' ),
 	'[B] o molde de marca unica sai de cena' );
 

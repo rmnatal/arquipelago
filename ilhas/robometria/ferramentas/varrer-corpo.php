@@ -54,6 +54,23 @@ $GLOBALS['__paginas'] = array(
 $GLOBALS['__entrada_r1'] = array( 'modelo' => null, 'peca' => null );
 $GLOBALS['__entrada_r2'] = array( 'area' => null, 'piso' => null, 'pelo' => null, 'referencia' => null );
 
+/* O QUE O SYNC GRAVOU NAS OPTIONS, gravado aqui tambem — e esta linha faltava.
+ *
+ * Medido em 11/09/2026, 21h30Z: sem ela, `pagina:a1` devolvia 1.118 caracteres
+ * de corpo e `pagina:a2` 1.107, quando a pagina real tem dezenas de milhares; e
+ * `pagina:metodologia` servia o aviso de que a medicao nao chegou, ou seja, os
+ * onze numeros que a ilha publica sobre si mesma NUNCA foram varridos. Os tres
+ * estados eram paginas VALIDAS — cabecalho, rodape, folha, trilha e um aviso
+ * honesto de tres linhas —, e por isso a falta passou em silencio por dois dias
+ * dentro do varredor que existe justamente para medir a entrada inteira.
+ *
+ * E a mesma cicatriz que a ilha ja pagou duas vezes (render sem is_page(),
+ * render sem as options), aparecendo pela terceira vez num arquivo novo: quem
+ * escreve bancada copia o boot pela metade porque a metade que falta nao da
+ * erro. Quem impede a quarta e a trava, nao a lembranca — ver o marcador
+ * `!!! sem-banco` logo abaixo. */
+robometria_teste_carregar_options( $raiz );
+
 robometria_teste_carregar( $raiz );
 
 add_filter( 'robometria_r1_dados',     function ( $d ) use ( $r1 ) { return $r1; } );
@@ -200,7 +217,22 @@ if ( null !== $um_so ) {
 		exit( 2 );
 	}
 	$removidos = array();
-	$corpo = robometria_corpo_visivel( call_user_func( $estados[ $um_so ] ), $classes, $removidos );
+	$html      = call_user_func( $estados[ $um_so ] );
+
+	/* O MARCADOR DO ESTADO DEGRADADO, e ele sai ANTES de a marcacao virar texto.
+	 *
+	 * Toda pagina desta ilha tem um segundo estado valido: "estamos sem o banco".
+	 * Ele e honesto na tela e invisivel para quem mede o corpo, porque tem
+	 * cabecalho, rodape e prosa como qualquer outra pagina — foi assim que tres
+	 * estados foram varridos pela metade sem nenhum teste reclamar. A classe
+	 * `rbm-sem-banco` tem um dono so na casca (robometria_casca_sem_banco_html)
+	 * e some junto com a marcacao, entao quem varre a declara aqui, na linha do
+	 * estado, e quem afirma sobre a varredura cobra a ausencia dela. */
+	if ( preg_match( '#class="[^"]*\brbm-sem-banco\b#', $html ) ) {
+		echo "!!! sem-banco\n";
+	}
+
+	$corpo = robometria_corpo_visivel( $html, $classes, $removidos );
 	foreach ( $removidos as $bloco ) {
 		echo '--- excecao ' . $bloco['classe'] . ': ' . $bloco['texto'] . "\n";
 	}

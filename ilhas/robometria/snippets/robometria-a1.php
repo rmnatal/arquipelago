@@ -1,5 +1,9 @@
 /**
- * Robometria A1 — Por que não existe filtro universal de robô aspirador
+ * Robometria A1 — Existe filtro universal de robô aspirador?
+ * Versão: 1.1.0 (11/09/2026) — o título deixou de afirmar a tese. A tese tem duas
+ * formas escolhidas pela contagem do banco; o título tinha uma só, digitada, e ia
+ * junto para o headline do JSON-LD. Virou pergunta, que sobrevive às duas. O par
+ * com a ferramenta passou a ser por slug, e o post_title é reespelhado.
  * Versão: 1.0.0 (10/09/2026) — Bloco 5 da fila: o artigo-âncora da R1.
  *
  * A R1 nasceu sem ele porque o Bloco 4 já era grande, e sem ele a ferramenta
@@ -53,9 +57,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_A1_VERSAO' ) ) {
-	define( 'ROBOMETRIA_A1_VERSAO', '1.0.0' );
+	define( 'ROBOMETRIA_A1_VERSAO', '1.1.0' );
 	define( 'ROBOMETRIA_A1_SLUG', 'filtro-universal-de-robo-aspirador' );
-	define( 'ROBOMETRIA_A1_TITULO', 'Por que não existe filtro universal de robô aspirador' );
+	/* O TÍTULO DEIXOU DE AFIRMAR A TESE, e este é o terceiro lugar da mesma
+	   família. A tese deste artigo é uma contagem do banco, e por isso a frase de
+	   abertura, a description do JSON-LD e a resposta do FAQPage têm DUAS formas,
+	   escolhidas pela contagem do dia. O título não tinha: ele afirmava a forma
+	   de hoje ("Por que não existe"), digitada, e no dia em que uma peça do banco
+	   atravessar marca ele seria a única metade da página a continuar dizendo o
+	   que deixou de valer — e ainda por cima dentro do headline do JSON-LD, que é
+	   o canal que a seção 5 do contrato diz valer tanto quanto ranquear.
+	   A pergunta sobrevive às duas formas, e é também o que a pessoa digita. */
+	define( 'ROBOMETRIA_A1_TITULO', 'Existe filtro universal de robô aspirador?' );
 	define( 'ROBOMETRIA_A1_DADOS', 'robometria_dados_a1-fatos' );
 }
 
@@ -408,8 +421,10 @@ add_shortcode( 'robometria_a1', function () {
 	$f = robometria_a1_fatos();
 
 	if ( empty( $f['resumo'] ) ) {
-		return '<div class="rbm-bloco"><p class="rbm-linha-mestra">Este texto está sem a medição do banco no momento.</p>'
-			. '<p class="rbm-nota">A tese deste artigo é um número, e o número é publicado a partir do repositório da Robometria. Enquanto ele não chegar, preferimos avisar a servir o texto sem o dado que o sustenta.</p></div>';
+		return robometria_casca_sem_banco_html(
+			'Este texto está sem a medição do banco no momento.',
+			'A tese deste artigo é um número, e o número é publicado a partir do repositório da Robometria. Enquanto ele não chegar, preferimos avisar a servir o texto sem o dado que o sustenta.'
+		);
 	}
 
 	$r     = $f['resumo'];
@@ -427,12 +442,12 @@ add_shortcode( 'robometria_a1', function () {
 	   na primeira linha em vez de repetir uma afirmação que deixou de valer — e
 	   ferramentas/teste-a1.php confere que os dois lados continuam batendo. */
 	if ( 0 === $atravessam ) {
-		$html .= '<p class="rbm-linha-mestra">Não existe filtro universal de robô aspirador, e escova, mop e bateria também não: nas '
+		$html .= '<p class="rbm-linha-mestra">Não existe filtro universal que sirva no seu robô aspirador, e escova, mop e bateria também não: nas '
 			. robometria_a1_num( $r['pecas_publicaveis'] )
 			. ' peças de reposição com compatibilidade declarada pelo fabricante que a Robometria transcreveu, <strong>nenhuma é declarada para modelos de mais de uma marca</strong>, e a lista mais longa do banco nomeia apenas '
 			. robometria_a1_num( $maior['codigos_declarados'] ) . ' códigos de modelo — todos do mesmo fabricante.</p>';
 	} else {
-		$html .= '<p class="rbm-linha-mestra">Peça universal de robô aspirador quase não existe: de '
+		$html .= '<p class="rbm-linha-mestra">Peça universal que sirva no seu robô aspirador quase não existe: de '
 			. robometria_a1_num( $r['pecas_publicaveis'] )
 			. ' peças de reposição com compatibilidade declarada pelo fabricante que a Robometria transcreveu, apenas '
 			. robometria_a1_num( $atravessam )
@@ -680,7 +695,13 @@ add_filter( 'robometria_artigos', function ( $lista ) {
 		'codigo'     => 'A1',
 		'titulo'     => ROBOMETRIA_A1_TITULO,
 		'slug'       => ROBOMETRIA_A1_SLUG,
-		'ferramenta' => 'Qual peça serve no meu robô aspirador',
+		/* O PAR É POR ENDEREÇO, NÃO POR NOME. Até 11/09/2026 este campo trazia o
+		   título da ferramenta digitado, e o cartão o imprimia: uma quarta cópia
+		   do nome de uma página, que o portão da árvore pegou no dia em que a R2
+		   foi renomeada — o par simplesmente deixou de existir. Com o slug, o par
+		   sobrevive a qualquer troca de nome, e quem escreve a frase do cartão lê
+		   o nome da fonte única. */
+		'ferramenta' => ROBOMETRIA_R1_SLUG,
 		'resumo'     => 'Peça anunciada como universal não tem declaração de compatibilidade com o seu modelo. A contagem do catálogo dos fabricantes mostra o tamanho real do alcance de cada peça — e por que ele não atravessa marca nem se herda de uma peça para a seguinte.',
 	);
 	return $lista;
@@ -722,6 +743,20 @@ function robometria_a1_garantir_pagina() {
 		if ( '1' === get_post_meta( $pid, '_robometria_casca', true )
 			&& false === strpos( (string) $pagina->post_content, $conteudo ) ) {
 			wp_update_post( array( 'ID' => $pid, 'post_content' => $conteudo ) );
+		}
+
+		/* O TÍTULO TAMBÉM É NOSSO — e esta linha faltava nos quatro snippets de
+		   página desta ilha. A casca aprendeu isso na 1.2.0 (o H1 da raiz ficou
+		   "Início" depois de a casca já ter mudado três vezes); ferramenta e
+		   artigo, não. A página nascia com o título da constante e ficava com
+		   ele para sempre: renomear aqui mudaria o og:title, o cartão e a
+		   trilha — que são derivados — e deixaria o H1 e o <title> do ar com o
+		   nome antigo, que é a divergência que este bloco existe para desfazer,
+		   agora em duas fontes que nenhuma bancada compara. O post_name NÃO é
+		   tocado: a URL não muda com o nome (seção 12.1 do contrato). */
+		if ( '1' === get_post_meta( $pid, '_robometria_casca', true )
+			&& (string) $pagina->post_title !== (string) ROBOMETRIA_A1_TITULO ) {
+			wp_update_post( array( 'ID' => $pid, 'post_title' => ROBOMETRIA_A1_TITULO ) );
 		}
 	}
 

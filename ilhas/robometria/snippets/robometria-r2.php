@@ -1,5 +1,9 @@
 /**
- * Robometria R2 — Quantos Pa e quanto tempo o seu robô precisa
+ * Robometria R2 — Quantos Pa o seu robô aspirador precisa
+ * Versão: 1.1.0 (11/09/2026) — o nome virou a consulta que a pessoa digita, que é
+ * a que está no endereço; a abertura fala com quem entrou e a ressalva sobre os
+ * limiares editoriais desce para a camada de prova; o catálogo recebe o título
+ * desta constante e garantir_pagina() reespelha o post_title.
  * Versão: 1.0.1 (11/09/2026) — devolve à casca a folha do FORMULÁRIO, junto com a
  * R1. As regras estavam nas duas folhas e já divergiam: só esta estilizava
  * input[type=number]. A da casca é a união, então esta página não muda de
@@ -81,9 +85,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_R2_VERSAO' ) ) {
-	define( 'ROBOMETRIA_R2_VERSAO', '1.0.1' );
+	define( 'ROBOMETRIA_R2_VERSAO', '1.1.0' );
 	define( 'ROBOMETRIA_R2_SLUG', 'quantos-pa-o-robo-aspirador-precisa' );
-	define( 'ROBOMETRIA_R2_TITULO', 'Quantos Pa e quanto tempo o seu robô precisa' );
+	/* O NOME DA PÁGINA É A CONSULTA QUE A PESSOA DIGITA (seção 14.5), e ela está
+	   literalmente no endereço: "quantos pa o robô aspirador precisa". O nome
+	   antigo prometia duas coisas no mesmo fôlego e ficava com 44 caracteres; a
+	   segunda metade (o tempo) continua inteira na promessa acima do formulário e
+	   na resposta, que é onde ela é usada. */
+	define( 'ROBOMETRIA_R2_TITULO', 'Quantos Pa o seu robô aspirador precisa' );
 	define( 'ROBOMETRIA_R2_DADOS', 'robometria_dados_r2-respostas' );
 }
 
@@ -1079,8 +1088,10 @@ add_shortcode( 'robometria_r2', function () {
 	$d = robometria_r2_dados();
 
 	if ( empty( $d['situacoes'] ) ) {
-		return '<div class="rbm-bloco"><p class="rbm-linha-mestra">Esta ferramenta está sem o banco de modelos no momento.</p>'
-			. '<p class="rbm-nota">O banco é publicado a partir do repositório da Robometria. Enquanto ele não chegar, preferimos avisar a mostrar um formulário que responderia vazio para qualquer casa.</p></div>';
+		return robometria_casca_sem_banco_html(
+			'Esta ferramenta está sem o banco de modelos no momento.',
+			'O banco é publicado a partir do repositório da Robometria. Enquanto ele não chegar, preferimos avisar a mostrar um formulário que responderia vazio para qualquer casa.'
+		);
 	}
 
 	$c = robometria_r2_consulta();
@@ -1090,8 +1101,8 @@ add_shortcode( 'robometria_r2', function () {
 
 	/* RESPOSTA ANTES DA EXPLICAÇÃO. */
 	$html .= '<div class="rbm-abertura">';
-	$html .= '<p class="rbm-linha-mestra">Esta ferramenta diz quantos <strong>pascal</strong> as fontes brasileiras recomendam para a sua casa — com o nome de quem recomenda cada número, porque elas discordam — e quantos <strong>ciclos</strong> a sua metragem exige de um robô cuja cobertura por carga o fabricante declara.</p>';
-	$html .= '<p>' . esc_html( robometria_r2_frase_classe_de_fonte() ) . '</p>';
+	$html .= '<p class="rbm-linha-mestra">Diga o tamanho da sua casa, o piso e se tem bicho: você vê quanta <strong>sucção</strong> procurar e quantas <strong>cargas</strong> o seu robô gasta para terminar.</p>';
+	$html .= '<p class="rbm-prova">Os números de pascal saem com o nome de quem os recomenda, porque as fontes brasileiras discordam entre si; os ciclos saem da cobertura por carga que o fabricante do robô declara. ' . esc_html( robometria_r2_frase_classe_de_fonte() ) . '</p>';
 	$html .= '</div>';
 
 	/* PROMESSA ANTES DO FORMULÁRIO (seção 6). */
@@ -1413,6 +1424,8 @@ add_filter( 'robometria_ferramentas', function ( $lista ) {
 		if ( isset( $f['codigo'] ) && 'R2' === $f['codigo'] ) {
 			$lista[ $i ]['estado'] = 'publicada';
 			$lista[ $i ]['slug']   = ROBOMETRIA_R2_SLUG;
+			/* Ver a nota igual na R1: o nome da página vem de quem a cria. */
+			$lista[ $i ]['titulo'] = ROBOMETRIA_R2_TITULO;
 		}
 	}
 	return $lista;
@@ -1454,6 +1467,20 @@ function robometria_r2_garantir_pagina() {
 		if ( '1' === get_post_meta( $pid, '_robometria_casca', true )
 			&& false === strpos( (string) $pagina->post_content, $conteudo ) ) {
 			wp_update_post( array( 'ID' => $pid, 'post_content' => $conteudo ) );
+		}
+
+		/* O TÍTULO TAMBÉM É NOSSO — e esta linha faltava nos quatro snippets de
+		   página desta ilha. A casca aprendeu isso na 1.2.0 (o H1 da raiz ficou
+		   "Início" depois de a casca já ter mudado três vezes); ferramenta e
+		   artigo, não. A página nascia com o título da constante e ficava com
+		   ele para sempre: renomear aqui mudaria o og:title, o cartão e a
+		   trilha — que são derivados — e deixaria o H1 e o <title> do ar com o
+		   nome antigo, que é a divergência que este bloco existe para desfazer,
+		   agora em duas fontes que nenhuma bancada compara. O post_name NÃO é
+		   tocado: a URL não muda com o nome (seção 12.1 do contrato). */
+		if ( '1' === get_post_meta( $pid, '_robometria_casca', true )
+			&& (string) $pagina->post_title !== (string) ROBOMETRIA_R2_TITULO ) {
+			wp_update_post( array( 'ID' => $pid, 'post_title' => ROBOMETRIA_R2_TITULO ) );
 		}
 	}
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Quebra de proposito a casca 1.2.0 e exige que teste-casca.php REPROVE.
+"""Quebra de proposito a casca e as bancadas, e exige que o portao REPROVE.
 
     python3 ferramentas/mutacoes-cabeca-e-voz.py
 
@@ -28,6 +28,10 @@ import tempfile
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CASCA = 'snippets/robometria-casca.php'
 TESTE = 'ferramentas/teste-casca.php'
+VOZ = 'ferramentas/teste-voz.php'
+ARVORE = 'ferramentas/teste-arvore.php'
+ACENTO = 'ferramentas/teste-acentuacao.php'
+A1 = 'ferramentas/teste-a1.php'
 
 
 def trocas(arquivo, pares):
@@ -104,7 +108,7 @@ MUTACOES = [
         'o H1 da raiz volta a ser "Inicio"',
         'e o H1 da pagina que disputa a marca, e ele nao nomeava o que a ilha faz',
         troca(CASCA,
-              "'inicio'                  => array( 'titulo' => 'Robô aspirador: qual peça serve no seu, e quanta sucção precisa', 'conteudo' => '[robometria_home]' ),",
+              "'inicio'                  => array( 'titulo' => 'Seu robô aspirador: qual peça serve, quanta sucção', 'conteudo' => '[robometria_home]' ),",
               "'inicio'                  => array( 'titulo' => 'Início', 'conteudo' => '[robometria_home]' ),"),
     ),
     (
@@ -166,16 +170,135 @@ MUTACOES = [
               "\t$css = <<<'CSS'\n.rbm-resposta{margin:2.4rem 0 0;",
               "\t$css = <<<'CSS'\n.rbm-form{display:flex;}\n.rbm-form-campo{flex:1 1 15rem;}\n.rbm-resposta{margin:2.4rem 0 0;"),
     ),
+
+    # -----------------------------------------------------------------------
+    # A LEVA DE 11/09/2026 — um nome por pagina, e a bancada que media tres
+    # paginas pela metade. Cada uma destas mutacoes reproduz um defeito REAL
+    # que estava no repositorio ou no ar nesta manha.
+    # -----------------------------------------------------------------------
+    (
+        'a bancada volta a varrer sem as options do Sync',
+        'foi assim que pagina:a1 mediu 1.118 caracteres e a metodologia serviu o aviso de "sem medicao" — tres estados varridos pela metade, sem erro nenhum',
+        troca('ferramentas/varrer-corpo.php',
+              "robometria_teste_carregar_options( $raiz );\n\nrobometria_teste_carregar( $raiz );",
+              "robometria_teste_carregar( $raiz );"),
+        ACENTO,
+    ),
+    (
+        'o aviso de estado degradado perde a marca no markup',
+        'sem a classe, o estado "estamos sem o banco" volta a ser uma pagina inteira e honesta que nenhuma bancada consegue distinguir da pagina de verdade',
+        troca(CASCA,
+              "return '<div class=\"rbm-bloco rbm-sem-banco\">'",
+              "return '<div class=\"rbm-bloco\">'"),
+    ),
+    (
+        'o <title> volta a ser o que o WordPress monta',
+        'e o que estava no ar: "Robometria – Compatibilidade de pecas e dimensionamento de robo aspirador", 73 caracteres de um campo do wp-admin que nenhum arquivo deste repositorio escreve',
+        troca(CASCA,
+              "add_filter( 'document_title_parts', function ( $partes ) {",
+              "add_filter( 'document_title_parts_MUTADO', function ( $partes ) {"),
+        VOZ,
+    ),
+    (
+        'o og:title volta a ser uma frase digitada',
+        'era exatamente a forma do defeito: um segundo nome ao lado do primeiro, cada um certo no seu lugar, nenhum capaz de corrigir o outro',
+        troca(CASCA,
+              "echo '<meta property=\"og:title\" content=\"' . esc_attr( robometria_casca_nome_da_pagina( $slug ) ) . '\">' . \"\\n\";",
+              "echo '<meta property=\"og:title\" content=\"Quem publica a Robometria\">' . \"\\n\";"),
+        VOZ,
+    ),
+    (
+        'uma pagina volta a se chamar pelo nome da gaveta',
+        '"Sobre" e o nome da pasta, nao a pergunta que a pessoa digita (secao 14.5) — e com UMA fonte de nome a divergencia some, entao quem pega isto e a regra de voz sobre o nome, nunca a de coerencia',
+        troca(CASCA,
+              "'sobre'                   => array( 'titulo' => 'Quem publica este site',",
+              "'sobre'                   => array( 'titulo' => 'Sobre',"),
+        VOZ,
+    ),
+    (
+        'um nome estoura o teto do <title>',
+        'acima de 65 o Google corta no meio e mostra um pedaco que ninguem escreveu — e o teto e do NOME, medido antes de publicar',
+        troca(CASCA,
+              "'metodologia'             => array( 'titulo' => 'Como a gente decide o que publicar',",
+              "'metodologia'             => array( 'titulo' => 'Como a gente decide o que publicar, o que recusa e por que motivo',"),
+        VOZ,
+    ),
+    (
+        'a abertura volta a comecar falando da propria pagina',
+        '"Esta ferramenta responde..." e a forma que o VOZ.md proibe pelo nome; quem entrou quer falar do proprio robo',
+        troca('snippets/robometria-r1.php',
+              "<p class=\"rbm-linha-mestra\">Diga a marca e o modelo do seu robô",
+              "<p class=\"rbm-linha-mestra\">Esta ferramenta responde o que serve no seu robô"),
+        VOZ,
+    ),
+    (
+        'procedencia volta a abrir a pagina',
+        'nome de fabricante no primeiro paragrafo e o que a secao 15.2 manda morar na camada de prova — foi como os tres artigos da Aquametria abriam',
+        troca(CASCA,
+              "$html .= '<p class=\"rbm-linha-mestra\">Duas perguntas sobre o seu robô, e só elas:",
+              "$html .= '<p class=\"rbm-linha-mestra\">Transcrevemos o catálogo da Electrolux para o seu robô, e só isso:"),
+        VOZ,
+    ),
+    (
+        'a linha-mestra se declara camada de prova',
+        'a porta dos fundos da excecao por classe: bastaria marcar a abertura como prova para ela sair de toda medicao',
+        troca(CASCA,
+              "$html .= '<p class=\"rbm-linha-mestra\">Duas perguntas sobre o seu robô, e só elas:",
+              "$html .= '<p class=\"rbm-linha-mestra rbm-prova\">Duas perguntas sobre o seu robô, e só elas:"),
+        VOZ,
+    ),
+    (
+        'a abertura para de falar com quem entrou',
+        'pagina que abre falando da internet em vez de falar com a pessoa foi o que a Aquametria achou em cinco paginas no mesmo dia',
+        troca(CASCA,
+              "$html .= '<p class=\"rbm-linha-mestra\">Duas perguntas sobre o seu robô, e só elas: que peça encaixa nele, e quanta sucção ele precisa.</p>';",
+              "$html .= '<p class=\"rbm-linha-mestra\">Duas perguntas, e só elas: que peça encaixa no robô, e quanta sucção ele precisa.</p>';"),
+        VOZ,
+    ),
+    (
+        'o rotulo da mae volta a ser digitado na trilha',
+        'a filha dizia "Ferramentas" na trilha enquanto a mae, a um clique, se chamava outra coisa',
+        troca(CASCA,
+              "'nivel1' => array( $mae, robometria_casca_nome_da_pagina( $mae ) ),",
+              "'nivel1' => array( $mae, 'Ferramentas' ),"),
+        ARVORE,
+    ),
+    (
+        'o par artigo x ferramenta volta a ser por nome',
+        'foi o portao da arvore que pegou isto quando a R2 trocou de nome: o par simplesmente deixou de existir, calado',
+        troca('snippets/robometria-a2.php',
+              "'ferramenta' => ROBOMETRIA_R2_SLUG,",
+              "'ferramenta' => 'Quantos Pa e quanto tempo o seu robô precisa',"),
+        ARVORE,
+    ),
+    (
+        'a ferramenta para de reespelhar o titulo da propria pagina',
+        'era o estado real ate agora: renomear no repositorio trocava o og:title, o cartao e a trilha, e deixava o H1 e o <title> do ar com o nome antigo — duas fontes para o mesmo campo, e a bancada le a que esta certa',
+        troca('snippets/robometria-r2.php',
+              "\t\t\twp_update_post( array( 'ID' => $pid, 'post_title' => ROBOMETRIA_R2_TITULO ) );",
+              "\t\t\t/* mutacao: o titulo do ar envelhece calado */"),
+    ),
+    (
+        'o titulo do A1 volta a afirmar a tese',
+        'a tese tem duas formas escolhidas pela contagem do banco; o titulo tinha uma so, digitada, e ia junto para o headline do JSON-LD',
+        troca('snippets/robometria-a1.php',
+              "define( 'ROBOMETRIA_A1_TITULO', 'Existe filtro universal de robô aspirador?' );",
+              "define( 'ROBOMETRIA_A1_TITULO', 'Por que não existe filtro universal de robô aspirador' );"),
+        A1,
+    ),
 ]
+
 
 
 def main():
     reprovadas = 0
     passaram = []
 
-    print('Mutacoes deliberadas na casca 1.2.0 — cada uma TEM que reprovar\n')
+    print('Mutacoes deliberadas — cada uma TEM que reprovar, no portao que a nomeia\n')
 
-    for nome, porque, aplicar in MUTACOES:
+    for entrada in MUTACOES:
+        nome, porque, aplicar = entrada[0], entrada[1], entrada[2]
+        teste = entrada[3] if len(entrada) > 3 else TESTE
         with tempfile.TemporaryDirectory() as tmp:
             base = os.path.join(tmp, 'ilha')
             shutil.copytree(RAIZ, base)
@@ -187,7 +310,7 @@ def main():
                 continue
 
             saida = subprocess.run(
-                ['php', os.path.join(base, TESTE), base],
+                ['php', os.path.join(base, teste), base],
                 capture_output=True, text=True)
 
             if saida.returncode == 0:
