@@ -1799,3 +1799,116 @@ o estado degradado, zero `&#038;` dentro de `<script>`.
   de afrouxar regra. Tudo que cria URL — as quatro secoes, as quatorze categorias,
   a troca de pai e slug — continua esperando o **reenvio do sitemap no Search
   Console**, que e do Raphael.
+
+---
+
+## 2026-09-11, 23h37Z — A PROCEDÊNCIA DO Pa CHEGA AO CARTÃO DA R2 (snippet 1.2.0, manifest revisão 18, `/status` conferido)
+
+**O bloco começou pelo passo errado, e isso é o primeiro registro.** O `ESTADO.md`
+da execução anterior mandava construir "a vitrine de produto dentro do resultado da
+R2 — a R1 já tem o bloco de compra, a R2 recomenda modelo e não tem". A vitrine
+**existia**: nasceu junto com a R2 em 11/09, `robometria_r2_vitrine()` é chamada na
+resposta e o HTML servido trazia cinco cartões com botão reservado. O próximo passo
+tinha sido escrito de memória e não medido. Foi ao abrir a página no ar, antes de
+escrever uma linha, que isso apareceu — e foi lendo o cartão **como um leitor lê**
+que apareceu o defeito de verdade, que ninguém tinha nomeado.
+
+**O QUE O CARTÃO NÃO DIZIA.** O Pa é o único número que decide aquela recomendação,
+e o cartão o publicava assim: "Xiaomi S20: 5.000 Pa declarados pelo fabricante".
+Sem endereço, sem data, sem o degrau da escada de fontes. A R1 faz isso desde o
+primeiro dia, no mesmo tipo de cartão, com "Como sabemos — página do fabricante ·
+fonte". A R2, não. Numa ilha cuja seção 5.4 do contrato pede a procedência **dentro
+da própria frase, com data**, e cujo produto inteiro é a afirmação técnica com
+origem, o número que decide a compra era o único sem origem na tela.
+
+**E A ATRIBUIÇÃO ERA DIGITADA.** "declarados pelo fabricante" estava no molde da
+frase, nos dois lados (referência e snippet). Hoje é verdade — as onze fontes de Pa
+do banco são todas `fabricante-via-busca` —, e é exatamente por isso que passava:
+**a frase estava certa por coincidência do banco, não por construção.** No dia em
+que um Pa entrasse por loja oficial da marca (degrau 4, que já existe na escada e já
+tem fonte no banco para outros campos), a página emprestaria, calada, a autoridade
+do fabricante a quem apenas transcreveu. É a mesma família do número de tela
+digitado que a casca pagou em 11/09: nasce contado, nunca digitado — aqui, nasce
+**lido do degrau**.
+
+**O ROTULO E A RESSALVA DE CADA DEGRAU MUDARAM DE CASA, e essa é a metade estrutural
+do bloco.** Eles eram uma tabela DIGITADA dentro de `ferramentas/gerar-r1.py`
+(`ROTULOS_DE_ORIGEM`), enquanto a `escada_de_fontes` do `esquema-banco.json`
+descrevia os mesmos textos em prosa ("Vai para a tela com 'a confirmar no manual'").
+Duas cópias do mesmo fato, cada uma certa no seu lugar e **nenhuma capaz de corrigir
+a outra** — a forma exata do defeito dos dois mapas de nome que a casca 1.2.0 pagou,
+e da coluna "Temos hoje" digitada na metodologia. Agora cada degrau declara
+`na_tela: {rotulo, ressalva, quem_declara}` ao lado do `nivel` que ele já declarava,
+e os geradores das duas ferramentas leem de lá. O `r1-respostas.json` foi regerado e
+**nenhum valor existente mudou**: a tabela só ganhou campos — que é a prova de que a
+derivação reproduz o que estava digitado, e não de que alguém trocou o texto.
+
+**O QUE MUDOU NA TELA.** Cada cartão da R2 passou a trazer, nesta ordem: a ressalva
+do degrau (`a confirmar no manual`), a porta de compra, e **só depois dela** a linha
+"Como sabemos — página do fabricante, verificado em 09/09/2026 · fonte", com o link
+`nofollow noopener` na classe discreta da casca. A ordem é a seção 7 escrita em
+código: inverter os dois devolve ao link de procedência o papel de única porta
+clicável, que é a cicatriz de 10/09/2026.
+
+**A JANELA DO SYNC ESTÁ COBERTA, e ela é real.** O Sync aplica item a item, então
+existem minutos com o snippet na 1.2.0 e a option ainda no arquivo de dados
+anterior, sem `procedencia`. Sem conferência, isso seria aviso de PHP no ar. Agora
+`robometria_r2_dados()` recusa o banco de forma antiga e a página cai no estado
+degradado que a ilha já desenhou — que diz a verdade e que o portão da voz reprova,
+então não passa despercebido se durar. Medido quebrando o arquivo de dados de
+propósito: `teste-voz.php` acusa `rbm-sem-banco servido`.
+
+**VERIFICAÇÃO.** `teste-r2.php` de 86 para **90 medições**, com a seção 16 nova.
+Três cuidados nela, e os três já custaram caro nesta ilha: **régua própria** (ela lê
+`esquema-banco.json` e `modelos-robo.json` direto, nunca `robometria_r2_modelo()`
+nem o `r2-respostas.json`, que é escrito pelo mesmo gerador que preenche a
+procedência — conferir contra ele seria comparar o arquivo com ele mesmo); **medição
+no corpo**, recortando cada `<li>` da vitrine, nunca na página inteira; e **a entrada
+inteira**, as 9 situações, **38 cartões**, não o caso-âncora.
+`mutacoes-procedencia.py`: **11 mutações deliberadas, 11 reprovadas**. A que importa
+quase saiu inerte: "a atribuição volta a ser digitada" não muda um byte enquanto o
+banco tiver um degrau só, então ela precisa produzir o mundo em que o defeito
+aparece — um Pa entrando por loja oficial — **e** regerar o arquivo de dados; sem
+esse terceiro passo ela reprovava pelo motivo errado (divergência banco × dados) e a
+trava da atribuição continuava não medida. `validar-banco.py` ganhou a trava do
+`na_tela` (todo degrau declara os três campos; ressalva nula exatamente nos níveis 1
+e 2, porque silêncio nunca promove), medida quebrando a escada de propósito e
+reprovando as duas. `teste-casca` 149, `r1` 90, `a1` 55, `a2` 63, `acentuacao` 17,
+`arvore` 213, `voz` 155; `php -l` limpo nos cinco snippets.
+
+**A ILHA GANHOU `ferramentas/atualizar-manifest.py`**, que ela não tinha: o sha e a
+versão eram escritos à mão, e foi assim que o manifest ficou dizendo R2 1.0.2 com a
+constante do próprio snippet em 1.0.1. A versão passou a ter fonte única — a
+constante — e o manifest é espelho. **Ele espelha só o que a chave `esquema` do
+próprio manifest declara:** a primeira versão gravou `sha256` nas 20 ferramentas de
+bancada, campo que aquela seção do contrato não tem, e ainda faria a revisão subir
+por mudança que nunca vai ao site. E **imprime cada troca que faz**, que é a metade
+que faltou na Aquametria em 11/09. Sete ferramentas de bancada que estavam fora do
+manifest entraram nele.
+
+**NO AR às 23h36Z, em UM disparo do Sync:** `/status` com revisão 18 igual à do
+manifest, 10 aplicados. `conferir-no-ar.py` mediu **72 afirmações no HTML servido,
+0 falha** — as nove URLs em 200, nome único nas cinco superfícies, nenhuma no estado
+degradado, zero `&#038;` dentro de `<script>`, e o bloco novo: nos 4 cartões da
+âncora, a linha de procedência com a data, a ressalva do degrau, a atribuição do
+degrau, a porta de compra antes da fonte e o link discreto com `nofollow`. Os três
+textos esperados estão escritos **literalmente** dentro do arquivo, como os nomes das
+páginas.
+
+- **44 itens esperando link de afiliado** (não mudou; este bloco não tocou catálogo),
+  nenhum com loja possível hoje. Na R2, 11 de 11 modelos na tela esperam link.
+- **Pauta da seção 17:** `pauta.md` ainda não existe nesta pasta — 0 escritos, 0 na
+  fila, 0 recusados.
+- **Próximo passo, e desta vez medido no ar antes de ser escrito:** o **A2**
+  (`/quantos-m2-o-robo-aspirador-limpa-por-carga/`) serve **5 cartões de vitrine com
+  ZERO procedência** — "O fabricante declara 166 m² por carga" sem endereço, sem
+  data, sem degrau e sem link. É o mesmo defeito que este bloco fechou na R2, na
+  página irmã dela, e agora a casca já tem as peças. Depois dele, a seção "Exatamente
+  no limiar" da própria R2, que nomeia modelos e Pa e também não cita origem. A
+  **transcrição da composição dos kits** e o **3c** seguem parados por rede: medido
+  nesta execução, `electrolux.com.br`, `mi.com.br`, `wap.ind.br`,
+  `mais.conteudo.wap.ind.br` e `positivotecnologia.com.br` devolvem `000` por
+  política do egresso, repetido duas vezes, com o domínio da ilha respondendo 200 na
+  mesma passada — é política de rede, não a intermitência de túnel da seção 20. Tudo
+  que cria URL continua esperando o **reenvio do sitemap no Search Console**, que é
+  do Raphael.

@@ -346,7 +346,27 @@ uma peça multimarca plantada. Trava que nunca foi vista reprovando é trava nã
 - **UM NOME POR PÁGINA, e ele tem uma fonte só — 11/09/2026, casca 1.4.0, revisão 17, conferida no ar.** `robometria_casca_nome_da_pagina()` resolve as nove páginas; o H1 (post_title), o `<title>`, o `og:title`, o degrau da trilha e o rótulo do cartão **derivam** dela. Seis das nove tinham dois nomes ao mesmo tempo, porque o mapa das cabeças trazia um `titulo` digitado ao lado do da definição da página. **Página nova não precisa lembrar de nada**: nomeia-se num lugar só, e o portão `ferramentas/teste-voz.php` cobra as cinco superfícies.
   **O `<title>` agora é escrito por este repositório** (`document_title_parts` na casca). Antes a home servia o nome do site mais a descrição curta do wp-admin — 73 caracteres, vocabulário de dentro da fábrica, num campo que nenhum arquivo daqui escreve. **O teto é 65 caracteres, cobrado no NOME (52), na bancada, antes de publicar.**
 - **TODA PÁGINA DESTA ILHA TEM UM SEGUNDO ESTADO VÁLIDO, e ele é invisível para quem mede o corpo.** Quando o banco não chega, as duas ferramentas, os dois artigos e o trecho de números da metodologia servem "estamos sem o banco" — página inteira, com cabeçalho, rodapé e prosa honesta. `ferramentas/varrer-corpo.php` passou dois dias medindo TRÊS desses estados como se fossem a página (a1 com 1.118 caracteres, a2 com 1.107, a metodologia sem os números), porque não carregava as options que o Sync grava. Agora: dono único do aviso (`robometria_casca_sem_banco_html`), marca `rbm-sem-banco` no markup, `!!! sem-banco` na linha do estado varrido, e **dois portões reprovando** (`teste-voz.php` e `teste-acentuacao.php`). **Bancada nova copia o boot inteiro — options E snippets —, ou mede a metade que não dá erro.**
-- **O PRÓXIMO PASSO, e ele NÃO depende de rede:** a reescrita na voz chegou às nove páginas (15.5) e o nome ficou com uma fonte só. O que sobra de repositório, sem criar URL, é a **vitrine de produto dentro do resultado da R2** (seção 6 do contrato: a R1 já tem o bloco de compra, a R2 recomenda modelo e ainda não tem), e a **transcrição da composição dos kits** (item logo abaixo), que abre porta de compra por dado.
+- ~~**O PRÓXIMO PASSO é a vitrine de produto dentro do resultado da R2.**~~ **ERA
+  FALSO, e o registro fica: a vitrine existia desde 11/09**, nasceu junto com a R2 e
+  `robometria_r2_vitrine()` já era chamada na resposta. O passo tinha sido escrito de
+  memória e nunca medido, e quem o leu como fato quase construiu de novo o que já
+  estava no ar. **Antes de começar um bloco, abra a URL** — custa dois minutos e é a
+  mesma regra que a seção 20.2 do contrato aplica a bloqueio de rede: estado herdado
+  de execução anterior se reconfere, nunca se lê como fato.
+  **O que o cartão realmente não tinha era PROCEDÊNCIA, e isso foi fechado em
+  11/09/2026** (R2 1.2.0, revisão 18): o Pa é o único número que decide a
+  recomendação e saía sem endereço, sem data e sem o degrau da escada. Ver o
+  `REGISTRO.md`.
+- **O PRÓXIMO PASSO, medido no ar em 23h37Z de 11/09/2026 e não lembrado:** o **A2**
+  (`/quantos-m2-o-robo-aspirador-limpa-por-carga/`) serve **5 cartões de vitrine com
+  ZERO procedência** — "O fabricante declara 166 m² por carga", sem endereço, sem
+  data, sem degrau e sem link. É o mesmo defeito que a R2 acabou de fechar, na página
+  irmã dela, e a casca já tem todas as peças (`na_tela` na escada de fontes,
+  `robometria_casca_fonte_link`, e o padrão de teste da seção 16 do `teste-r2.php`
+  para copiar). Depois dele, a seção **"Exatamente no limiar"** da própria R2, que
+  nomeia modelos e Pa e também não cita origem. Nenhum dos dois cria URL nem depende
+  de rede. Só então, e só se a rede abrir, a **transcrição da composição dos kits**
+  (item logo abaixo) e o 3c.
   **Só depois disso, e só se a rede abrir**, vem o 3c: teste com `curl` antes de escolher o alvo, e leia a ordem atualizada na fila (o item (e), a recarga dos modelos que já declaram cobertura, é o de menor custo e maior retorno).
   **A leva de malha (5b) continua travada** pela metade humana do despacho: o sitemap precisa ser reenviado no Search Console, e isso exige o navegador do Raphael.
 - **Antes de mexer em qualquer snippet, rode os OITO testes de bancada:** `php ferramentas/teste-casca.php .` (149 verificações), `php ferramentas/teste-r1.php .` (90), `php ferramentas/teste-a1.php .` (55), `php ferramentas/teste-r2.php .` (86), `php ferramentas/teste-a2.php .` (63), `php ferramentas/teste-acentuacao.php .` (17), `php ferramentas/teste-arvore.php .` (213) e `php ferramentas/teste-voz.php .` (155). Depois do desembarque, `python3 ferramentas/conferir-no-ar.py` mede as nove URLs no ar com régua própria — os endereços e os nomes estão escritos literalmente dentro dele, e não lidos do código, para as duas metades não errarem juntas. Eles são a única verificação da seção 8 que roda sem depender do site. **O sexto é o único que varre a ENTRADA INTEIRA** — 72 estados, um processo por estado, via `ferramentas/varrer-corpo.php`: os outros medem o caso-âncora, e foi por isso que "Aspirador Robo" e "Versao A" ficaram invisíveis para cinco testes verdes. O segundo compara as 188 frases publicadas contra a implementação de referência; o terceiro **recalcula a tese do artigo em PHP, direto do banco, sem olhar para o que o gerador em Python escreveu** — duas contas independentes que batem são medição, uma conta sozinha é o que o autor achou.
