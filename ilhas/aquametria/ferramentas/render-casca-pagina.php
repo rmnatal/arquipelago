@@ -83,7 +83,15 @@ $marca     = apply_filters( 'render_block', '<!-- bloco do tema -->', array( 'bl
 ob_start(); do_action( 'wp_head' );   $cabeca = ob_get_clean();
 ob_start(); do_action( 'wp_footer' ); $rodape = ob_get_clean();
 
-$titulo_aba = $def['titulo'] . ' – Aquametria';
+/* O <title> montado como o NUCLEO do WordPress monta, e nao como desse jeito
+   ficasse bonito: na home e "<nome do site> – <blogdescription>"; na pagina
+   interna e "<titulo da pagina> – <nome do site>". Medir aqui um titulo com
+   outra forma seria bancada servindo o que o site nao serve — e foi assim que a
+   tagline antiga ("Calculadoras e dados tecnicos para dimensionar o seu
+   aquario") ficou no titulo da home sem nenhum teste ver, ate 11/09/2026. */
+$titulo_aba = ( 'inicio' === $alvo )
+	? 'Aquametria – ' . AQUAMETRIA_CASCA_TAGLINE_CURTA
+	: $def['titulo'] . ' – Aquametria';
 
 echo "<!doctype html>\n<html lang=\"pt-BR\">\n<head>\n<meta charset=\"utf-8\">\n"
 	. "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n"

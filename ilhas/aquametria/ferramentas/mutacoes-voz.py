@@ -111,6 +111,12 @@ MUTACOES = [
               "add_shortcode( 'aquametria_sobre', function () {\n\treturn '<div class=\"aqm-bloco\"><p class=\"aqm-linha-mestra\">A gente faz as contas do seu aquário.</p></div>';\n\t$html  = '<div class=\"aqm-bloco\">';"),
     ),
     (
+        'a tagline do WordPress volta a ser a descricao interna do produto',
+        troca(CASCA,
+              "define( 'AQUAMETRIA_CASCA_TAGLINE_CURTA', 'as contas do seu aquário' );",
+              "define( 'AQUAMETRIA_CASCA_TAGLINE_CURTA', 'Calculadoras e dados técnicos para dimensionar o seu aquário conforme a ficha técnica' );"),
+    ),
+    (
         'a prateleira de guias some porque ninguem mais se anuncia',
         troca(ARTIGOS,
               "add_filter( 'aquametria_guias', 'aquametria_artigos_registrar_guias' );",

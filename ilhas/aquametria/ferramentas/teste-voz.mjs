@@ -153,6 +153,14 @@ for (const slug of PAGINAS) {
   const p1 = primeiroParagrafo(corpo);
   const corpoTexto = texto(corpo);
 
+  /* O <title> e o H1 sao duas superficies diferentes e as duas sao "titulo". O
+     <title> da home vinha da tagline do WordPress, e ficou anos na voz antiga
+     sem nenhum teste olhar — porque o teste olhava so o corpo. */
+  const aba = texto((html.match(/<title>([\s\S]*?)<\/title>/) || [, ''])[1]);
+  ok('tem <title>', aba.length > 0, aba);
+  ok('<title> sem termo proibido', acharProibidos(aba).length === 0, acharProibidos(aba).join(', '));
+  ok('<title> com no máximo 65 caracteres', aba.length <= 65, `${aba.length}`);
+
   ok('tem H1', h1.length > 0, h1);
   ok('H1 sem termo proibido', acharProibidos(h1).length === 0, acharProibidos(h1).join(', '));
   ok('H1 não começa com "Calculadora de"', !COMECO_PROIBIDO.test(semAcento(h1)));

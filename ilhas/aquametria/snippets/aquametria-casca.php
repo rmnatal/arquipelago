@@ -1,5 +1,16 @@
 /**
  * Aquametria Casca — identidade e estrutura do site
+ * Versão: 1.4.1 (11/09/2026) — duas coisas que só apareceram ao MEDIR a página
+ * pronta, e as duas já estavam no ar antes desta execução:
+ *   (a) o <title> da home vinha da tagline do WordPress, que nunca foi tocada
+ *       desde o nascimento da ilha — a linha mais lida da página, no resultado
+ *       de busca, na voz antiga. Agora a casca grava a opção blogdescription,
+ *       como já grava page_on_front, e o título da home vira
+ *       "Aquametria – as contas do seu aquário";
+ *   (b) a tabela de constantes da /metodologia/ rolava 67 px na horizontal a
+ *       360 px. O conversor de Markdown do Sync embrulha toda tabela vinda de
+ *       conteudo/ num bloco que rola; esta é impressa direto pelo shortcode e
+ *       por isso nunca passou por lá.
  * Versão: 1.4.0 (11/09/2026) — a home e o header passam a falar como o VOZ.md.
  * Despacho do Raphael de 11/09/2026 (seção 15 do ARQUIPELAGO.md): o rigor de
  * número, fonte e data continua inteiro, mas vira CAMADA DE PROVA — some do
@@ -85,11 +96,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'AQUAMETRIA_CASCA_VERSAO', '1.4.0' );
+	define( 'AQUAMETRIA_CASCA_VERSAO', '1.4.1' );
 	/* A tagline é a primeira frase que um visitante lê no rodapé de toda página.
 	   Até a 1.3.1 ela era a descrição interna do produto ("Calculadoras e dados
 	   técnicos para dimensionar o seu aquário"); agora fala com quem chegou. */
 	define( 'AQUAMETRIA_CASCA_TAGLINE', 'A conta do seu aquário, feita antes de você comprar errado' );
+	/* A CURTA é outra coisa, e por isso é outra constante: ela vai para a opção
+	   blogdescription do WordPress, e o núcleo monta com ela o <title> da HOME —
+	   "Aquametria – as contas do seu aquário". Esse título é a linha que a pessoa
+	   lê no resultado de busca, e o que estava lá até 11/09/2026 era a descrição
+	   interna do produto ("Calculadoras e dados técnicos para dimensionar o seu
+	   aquário"), escrita quando a ilha nasceu e nunca mais tocada. A do rodapé
+	   pode ser longa porque quem chegou lá já está na página; a do título não,
+	   porque o Google corta perto de 60 caracteres. */
+	define( 'AQUAMETRIA_CASCA_TAGLINE_CURTA', 'as contas do seu aquário' );
 }
 
 /* ---------------------------------------------------------------------------
@@ -1158,6 +1178,22 @@ function aquametria_casca_fixar_home( $ids, &$relato ) {
 }
 }
 
+/**
+ * A tagline do WordPress, que é o que o núcleo põe no <title> da home.
+ *
+ * Fica junto de fixar_home() porque é da mesma família: opção do site que a
+ * casca é dona. Idempotente — só grava quando o valor é diferente.
+ */
+if ( ! function_exists( 'aquametria_casca_fixar_tagline' ) ) {
+function aquametria_casca_fixar_tagline( &$relato ) {
+	$atual = (string) get_option( 'blogdescription' );
+	if ( AQUAMETRIA_CASCA_TAGLINE_CURTA !== $atual ) {
+		update_option( 'blogdescription', AQUAMETRIA_CASCA_TAGLINE_CURTA );
+		$relato[] = 'blogdescription: ' . AQUAMETRIA_CASCA_TAGLINE_CURTA;
+	}
+}
+}
+
 if ( ! function_exists( 'aquametria_casca_limpar_padrao' ) ) {
 function aquametria_casca_limpar_padrao( &$relato ) {
 	if ( 'feito' === get_option( 'aquametria_casca_limpeza' ) ) {
@@ -1206,6 +1242,7 @@ function aquametria_casca_montar( $forcar = false ) {
 	$relato = array();
 	$ids    = aquametria_casca_garantir_paginas( $relato );
 	aquametria_casca_fixar_home( $ids, $relato );
+	aquametria_casca_fixar_tagline( $relato );
 	aquametria_casca_limpar_padrao( $relato );
 
 	update_option( 'aquametria_casca_paginas', $ids, false );

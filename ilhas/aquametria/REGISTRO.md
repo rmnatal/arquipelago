@@ -4850,7 +4850,7 @@ quebra-cache):
   54,4 lm/L, os três dentro dos 40 a 60 publicados — que é o que o grupo de cima
   significa agora.
 
-## 2026-09-11, 15h16Z — A VOZ CHEGA À HOME E AO HEADER (casca 1.4.0, revisão 41)
+## 2026-09-11, 15h16Z — A VOZ CHEGA À HOME E AO HEADER (casca 1.4.1, revisão 42)
 
 **Bloco:** despacho do Raphael de 11/09/2026, seção 15 do `ARQUIPELAGO.md` — prioridade máxima, antes de qualquer bloco da fila. Junto veio o item (i) do 16.8: o `ARVORE.md` da ilha.
 
@@ -4871,6 +4871,8 @@ quebra-cache):
 
 ### O que a medição achou sem procurar
 
+**O `<title>` da home vinha da tagline do WordPress, e nunca ninguém a tinha tocado.** A linha que a pessoa lê no resultado de busca — a mais lida da página inteira — ainda dizia *"Aquametria – Calculadoras e dados técnicos para dimensionar o seu aquário"*, escrita quando a ilha nasceu. Nenhum portão do projeto olhava para ela: o `teste-voz.mjs` da primeira versão media o corpo, e o `<title>` não é corpo. A casca passa a gravar a opção `blogdescription`, na mesma família de `page_on_front`, e a bancada passou a montar o `<title>` **como o núcleo do WordPress monta** — `<nome do site> – <blogdescription>` na home, `<título da página> – <nome do site>` na interna. Bancada que compõe o título de outro jeito é bancada que serve o que o site não serve.
+
 **A tabela de constantes da `/metodologia/` rolava na horizontal no celular, e está no ar assim desde que a página existe.** 67 px a 360 px, 37 px a 390 px. A causa é discreta e vale para toda ilha: o conversor de Markdown do Sync embrulha **toda** tabela vinda de `conteudo/` num bloco que rola, mas esta tabela é impressa direto pelo shortcode e por isso nunca passou por lá. Nenhum teste do projeto media largura nas páginas da casca — o `teste-navegador-casca.mjs` monta o cabeçalho com um corpo falso, de propósito, porque o que ele mede é o menu. **Não foi este bloco que quebrou; foi este bloco que passou a medir.** Consertado na mesma versão, e o gate reprovou antes e passou depois — que é o teste negativo desta trava, observado ao vivo.
 
 **A C15 seria a única a ficar com o texto antigo.** Ela é a única calculadora que sobrescreve o resumo do cartão pelo filtro `aquametria_calculadoras`. Quem lesse só a casca veria os oito cartões reescritos e nunca saberia que um deles é descartado no ar. Achado pela varredura, não pela leitura do código. (C15 v1.3.1, e nada além desse texto mudou nela.)
@@ -4879,9 +4881,9 @@ quebra-cache):
 
 | portão | afirmações | resultado |
 |---|---|---|
-| `teste-voz.mjs` (novo) | 74 | 0 falha |
+| `teste-voz.mjs` (novo) | 86 | 0 falha |
 | `teste-navegador-casca-paginas.mjs` (novo) | 28 | 0 falha, **0 px de rolagem nas 24 medições** |
-| `mutacoes-voz.py` (novo) | 10 mutações | **10 reprovadas** |
+| `mutacoes-voz.py` (novo) | 11 mutações | **11 reprovadas** |
 | `teste-navegador-casca.mjs` | 43 | 0 falha |
 | `teste-navegador-cinco.mjs` | 56 | 0 falha |
 | `teste-navegador-visibilidade-ia.mjs` | 155 | 0 falha |
