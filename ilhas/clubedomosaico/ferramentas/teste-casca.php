@@ -101,12 +101,16 @@ echo "1. JS e CSS fora do retorno do shortcode (secao 8)\n";
  * nenhum. Foi exatamente assim que a Robometria mediu 915 KB do que no ar tem
  * 960 KB, em 11/09/2026. Custa segundos; medir a metade errada custa um bloco.
  */
-function cdm_render_em_processo_proprio( $raiz, $tag ) {
+function cdm_render_em_processo_proprio_modo( $raiz, $tag, $modo = 'hoje' ) {
 	$saida = array();
 	$codigo = 0;
 	exec( escapeshellcmd( PHP_BINARY ) . ' ' . escapeshellarg( __DIR__ . '/render-para-teste.php' )
-		. ' ' . escapeshellarg( $raiz ) . ' ' . escapeshellarg( $tag ) . ' 2>/dev/null', $saida, $codigo );
+		. ' ' . escapeshellarg( $raiz ) . ' ' . escapeshellarg( $tag ) . ' ' . escapeshellarg( $modo ) . ' 2>/dev/null', $saida, $codigo );
 	return 0 === $codigo ? implode( "\n", $saida ) : '';
+}
+
+function cdm_render_em_processo_proprio( $raiz, $tag ) {
+	return cdm_render_em_processo_proprio_modo( $raiz, $tag, 'hoje' );
 }
 
 $html_por_pagina = array();
@@ -1110,6 +1114,529 @@ $indexaveis = array_diff( array_keys( $definicoes ), cdm_casca_paginas_noindex()
 cdm_ok( count( $indexaveis ) === count( $definicoes ) - 1,
 	'exatamente uma pagina da ilha esta fora do indice',
 	count( $indexaveis ) . ' de ' . count( $definicoes ) . ' indexaveis' );
+
+/* ---------------------------------------------------------------------------
+ * 21. A ARVORE DA SECAO 16 — trilha, BreadcrumbList e cluster
+ *
+ * A regua e propria em todas as afirmacoes abaixo (secao 8, regra 1): o esperado
+ * sai do ARVORE.md e do VOZ.md, que sao documento, e o medido sai do HTML
+ * servido pelo render em processo proprio. Nenhuma afirmacao pergunta a casca o
+ * que ela deveria dizer — se codigo e documento se separarem, os dois lados nao
+ * erram juntos.
+ *
+ * E tudo que e sobre texto visivel e medido no CORPO, nunca no HTML completo: a
+ * trilha nasce entre o cabecalho e o H1, e afirmar sobre ela lendo a pagina
+ * inteira acharia tambem as regras de CSS que carregam o mesmo nome de classe.
+ * ------------------------------------------------------------------------- */
+
+echo "\n21. A arvore: documento x codigo (secao 16 e 16.8)\n";
+
+$arvore_md = (string) @file_get_contents( $raiz . '/ARVORE.md' );
+cdm_ok( '' !== $arvore_md, 'ARVORE.md existe (item i do 16.8)', strlen( $arvore_md ) . ' bytes' );
+
+/* (a) A TABELA DE ONDE MORA CADA PAGINA, lida do documento. */
+$doc_arvore = array();
+foreach ( explode( "\n", $arvore_md ) as $linha ) {
+	if ( ! preg_match( '#^\|\s*`(/[^`]*)`\s*\|\s*([^|]+?)\s*\|\s*([^|]+?)\s*\|#u', $linha, $m ) ) {
+		continue;
+	}
+	$caminho = trim( $m[1], '/' );
+	$nivel   = trim( $m[2] );
+	$mae     = trim( $m[3] );
+	if ( '' === $caminho ) {
+		continue; // a home, que por 16.3 nao tem trilha e nao entra no mapa
+	}
+	if ( 'raiz' === $nivel ) {
+		$nivel_n = 0;
+	} elseif ( ctype_digit( $nivel ) ) {
+		$nivel_n = (int) $nivel;
+	} else {
+		continue; // linha de outra tabela
+	}
+	if ( 'home' === $mae || '—' === $mae ) {
+		$mae_c = '';
+	} elseif ( preg_match( '#`(/[^`]*)`#u', $mae, $mm ) ) {
+		$mae_c = trim( $mm[1], '/' );
+	} else {
+		continue;
+	}
+	$doc_arvore[ $caminho ] = array( 'nivel' => $nivel_n, 'mae' => $mae_c );
+}
+cdm_ok( count( $doc_arvore ) >= 8, 'ARVORE.md declara onde mora cada pagina que existe hoje',
+	count( $doc_arvore ) . ' linhas lidas do documento' );
+
+$mapa_codigo = cdm_casca_arvore();
+$divergem    = array();
+foreach ( $doc_arvore as $caminho => $esperado_linha ) {
+	if ( ! isset( $mapa_codigo[ $caminho ] ) ) {
+		$divergem[] = $caminho . ' (no documento e nao no codigo)';
+		continue;
+	}
+	if ( (int) $mapa_codigo[ $caminho ]['nivel'] !== (int) $esperado_linha['nivel'] ) {
+		$divergem[] = $caminho . ' (nivel ' . $mapa_codigo[ $caminho ]['nivel'] . ' no codigo, ' . $esperado_linha['nivel'] . ' no documento)';
+	}
+	if ( (string) $mapa_codigo[ $caminho ]['mae'] !== (string) $esperado_linha['mae'] ) {
+		$divergem[] = $caminho . ' (mae "' . $mapa_codigo[ $caminho ]['mae'] . '" no codigo, "' . $esperado_linha['mae'] . '" no documento)';
+	}
+}
+cdm_ok( empty( $divergem ), 'nivel e mae de cada pagina batem entre ARVORE.md e a casca',
+	empty( $divergem ) ? count( $doc_arvore ) . ' paginas conferidas' : implode( ' | ', $divergem ) );
+
+/* E o outro sentido: pagina que a ilha PUBLICA e que o mapa nao conhece nao tem
+   trilha, e pagina sem trilha e pagina sem lugar na arvore. A home e a unica
+   excecao, e ela e nomeada. */
+$sem_lugar = array();
+foreach ( array_keys( cdm_casca_definicao_paginas() ) as $caminho ) {
+	if ( 'inicio' === $caminho ) {
+		continue;
+	}
+	if ( ! isset( $mapa_codigo[ $caminho ] ) ) {
+		$sem_lugar[] = $caminho;
+	}
+}
+cdm_ok( empty( $sem_lugar ), 'toda pagina publicada tem lugar na arvore (so a home fica fora)',
+	empty( $sem_lugar ) ? count( cdm_casca_definicao_paginas() ) . ' paginas' : implode( ', ', $sem_lugar ) );
+
+/* (b) OS SLUGS DE NIVEL 2 SAO OS DO VOZ.md. Era exatamente por aqui que a
+   divergencia entrava: o registro do Guia dizia 'materiais/colas' e o VOZ.md
+   dizia 'colas-e-adesivos', e nada no repositorio cobrava os dois juntos. */
+$voz = (string) @file_get_contents( $raiz . '/VOZ.md' );
+$voz_n2 = array();
+if ( preg_match( '#^- \*\*?Nível 2\*\*?:.*$#mu', $voz, $mv ) || preg_match( '#^- Nível 2:.*$#mu', $voz, $mv ) ) {
+	$antes_do_ponto_e_virgula = explode( ';', $mv[0] );
+	preg_match_all( '#`([a-z0-9\-]+)`#u', $antes_do_ponto_e_virgula[0], $mt );
+	$voz_n2 = $mt[1];
+}
+cdm_ok( count( $voz_n2 ) >= 6, 'o VOZ.md nomeia as categorias de nivel 2 do Guia',
+	implode( ', ', $voz_n2 ) );
+$fora_da_voz = array();
+foreach ( cdm_casca_categorias_do_guia() as $c ) {
+	$ultimo = cdm_casca_slug_final( $c['slug'] );
+	if ( ! in_array( $ultimo, $voz_n2, true ) ) {
+		$fora_da_voz[] = $c['slug'];
+	}
+}
+cdm_ok( empty( $fora_da_voz ), 'todo slug de categoria do Guia e um nome escrito no VOZ.md',
+	empty( $fora_da_voz ) ? count( cdm_casca_categorias_do_guia() ) . ' categorias' : implode( ', ', $fora_da_voz ) );
+
+/* (c) O CAMINHO SE REMONTA SEM ADIVINHAR: nenhum ultimo nivel se repete na
+   definicao de paginas. E a premissa de cdm_casca_slug_atual(), e premissa que
+   ninguem confere e premissa que um dia deixa de valer. */
+$ultimos = array();
+foreach ( array_keys( cdm_casca_definicao_paginas() ) as $caminho ) {
+	$ultimos[] = cdm_casca_slug_final( $caminho );
+}
+cdm_ok( count( $ultimos ) === count( array_unique( $ultimos ) ),
+	'nenhum ultimo nivel de slug se repete (premissa do caminho remontado)',
+	count( array_unique( $ultimos ) ) . ' de ' . count( $ultimos ) . ' distintos' );
+
+/* (d) NENHUMA MAE EM CIRCULO, e nenhuma mae que nao existe no mapa. */
+$maes_quebradas = array();
+foreach ( $mapa_codigo as $caminho => $def ) {
+	if ( '' !== $def['mae'] && ! isset( $mapa_codigo[ $def['mae'] ] ) ) {
+		$maes_quebradas[] = $caminho . ' (mae ' . $def['mae'] . ' nao esta no mapa)';
+		continue;
+	}
+	/* Sobe a pe, com a regua deste teste e nao com a da casca. */
+	$visitados = array( $caminho => true );
+	$passo     = $def['mae'];
+	$giros     = 0;
+	while ( '' !== $passo ) {
+		if ( isset( $visitados[ $passo ] ) ) {
+			$maes_quebradas[] = $caminho . ' (circulo em ' . $passo . ')';
+			break;
+		}
+		$visitados[ $passo ] = true;
+		$passo = isset( $mapa_codigo[ $passo ] ) ? $mapa_codigo[ $passo ]['mae'] : '';
+		if ( ++$giros > 6 ) {
+			$maes_quebradas[] = $caminho . ' (mais de 6 niveis acima)';
+			break;
+		}
+	}
+	/* 16.1: sem quarto nivel. */
+	if ( (int) $def['nivel'] > 3 ) {
+		$maes_quebradas[] = $caminho . ' (nivel ' . $def['nivel'] . ', e a 16.1 para no 3)';
+	}
+}
+cdm_ok( empty( $maes_quebradas ), 'nenhuma mae em circulo, ausente, nem quarto nivel',
+	empty( $maes_quebradas ) ? count( $mapa_codigo ) . ' entradas no mapa' : implode( ' | ', $maes_quebradas ) );
+
+/* ---------------------------------------------------------------------------
+ * 22. A TRILHA NO HTML SERVIDO (16.3)
+ * ------------------------------------------------------------------------- */
+
+echo "\n22. Trilha visivel no corpo (16.3)\n";
+
+/* tag do shortcode -> caminho da pagina, pela definicao da casca. */
+$tag_para_caminho = array();
+foreach ( cdm_casca_definicao_paginas() as $caminho => $def ) {
+	if ( preg_match( '#^\[([a-z_]+)\]$#', (string) $def['conteudo'], $mt ) ) {
+		$tag_para_caminho[ $mt[1] ] = $caminho;
+	}
+}
+
+/* As URLs que EXISTEM na bancada, recontadas aqui — regua propria. */
+$urls_no_ar = array( 'https://clubedomosaico.com.br/' => 'inicio' );
+foreach ( array_keys( cdm_teste_paginas_no_ar( 'hoje' ) ) as $caminho ) {
+	$urls_no_ar[ 'https://clubedomosaico.com.br/' . $caminho . '/' ] = $caminho;
+}
+
+$problemas_trilha = array();
+foreach ( $paginas as $tag ) {
+	$caminho = isset( $tag_para_caminho[ $tag ] ) ? $tag_para_caminho[ $tag ] : '';
+	$html    = $html_por_pagina[ $tag ];
+	$corpo   = cdm_corpo( $html );
+	$quantas = substr_count( $corpo, '<nav class="cdm-trilha"' );
+
+	if ( 'inicio' === $caminho ) {
+		cdm_ok( 0 === $quantas, "[$tag] a home NAO tem trilha (16.3)", "achadas: $quantas" );
+		cdm_ok( false === strpos( $html, 'id="cdm-trilha-jsonld"' ), "[$tag] a home nao publica BreadcrumbList" );
+		continue;
+	}
+
+	cdm_ok( 1 === $quantas, "[$tag] exatamente uma trilha no corpo", "achadas: $quantas" );
+
+	$pos_trilha = strpos( $corpo, '<nav class="cdm-trilha"' );
+	$pos_h1     = strpos( $corpo, '<h1' );
+	cdm_ok( false !== $pos_trilha && false !== $pos_h1 && $pos_trilha < $pos_h1,
+		"[$tag] a trilha vem ANTES do H1 (abaixo do cabecalho, 16.3)" );
+
+	preg_match( '#<nav class="cdm-trilha".*?</nav>#s', $corpo, $mtr );
+	$trilha = isset( $mtr[0] ) ? $mtr[0] : '';
+
+	/* O ultimo degrau e a pagina atual, marcada, e com o rotulo do mapa. */
+	$rotulo = isset( $mapa_codigo[ $caminho ] ) ? $mapa_codigo[ $caminho ]['rotulo'] : '';
+	cdm_ok( '' !== $rotulo && false !== strpos( $trilha, '<span aria-current="page">' . htmlspecialchars( $rotulo, ENT_QUOTES ) . '</span>' ),
+		"[$tag] o degrau atual e a propria pagina, com aria-current", $rotulo );
+
+	/* O primeiro degrau e sempre a home. */
+	cdm_ok( false !== strpos( $trilha, '<a href="https://clubedomosaico.com.br/">Início</a>' ),
+		"[$tag] o primeiro degrau linka a home" );
+
+	/* NENHUM degrau aponta para pagina que nao existe. */
+	preg_match_all( '#<a href="([^"]+)"#', $trilha, $ml );
+	foreach ( $ml[1] as $url ) {
+		if ( ! isset( $urls_no_ar[ $url ] ) ) {
+			$problemas_trilha[] = $tag . ': degrau para ' . $url . ', que nao existe';
+		}
+	}
+
+	/* Tantos degraus quanto o mapa manda: home + ancestrais + a propria. */
+	$acima = 0;
+	$passo = $mapa_codigo[ $caminho ]['mae'];
+	while ( '' !== $passo && isset( $mapa_codigo[ $passo ] ) && $acima < 6 ) {
+		$acima++;
+		$passo = $mapa_codigo[ $passo ]['mae'];
+	}
+	$degraus_medidos = substr_count( $trilha, '<li>' );
+	cdm_ok( $degraus_medidos === $acima + 2, "[$tag] a trilha tem os degraus que o mapa manda",
+		$degraus_medidos . ' na tela / ' . ( $acima + 2 ) . ' pelo mapa' );
+}
+cdm_ok( empty( $problemas_trilha ), 'nenhum degrau de trilha aponta para pagina inexistente',
+	empty( $problemas_trilha ) ? 'nenhum' : implode( ' | ', $problemas_trilha ) );
+
+/* ---------------------------------------------------------------------------
+ * 23. O BreadcrumbList PUBLICA MENOS DO QUE A TRILHA MOSTRA, de proposito
+ *
+ * Um ListItem do meio sem `item` invalida a lista inteira para o Google, e lista
+ * invalida e lista ignorada. Entao o schema leva so os degraus COM endereco mais
+ * a pagina atual — e e essa relacao, e nao "o schema existe", que o teste cobra.
+ * ------------------------------------------------------------------------- */
+
+echo "\n23. BreadcrumbList (16.3)\n";
+foreach ( $paginas as $tag ) {
+	$caminho = isset( $tag_para_caminho[ $tag ] ) ? $tag_para_caminho[ $tag ] : '';
+	if ( 'inicio' === $caminho ) {
+		continue;
+	}
+	$html = $html_por_pagina[ $tag ];
+	preg_match( '#<script type="application/ld\+json" id="cdm-trilha-jsonld">(.*?)</script>#s', $html, $mj );
+	$dados = isset( $mj[1] ) ? json_decode( $mj[1], true ) : null;
+
+	$ok_tipo = is_array( $dados ) && isset( $dados['@type'] ) && 'BreadcrumbList' === $dados['@type']
+		&& isset( $dados['itemListElement'] ) && is_array( $dados['itemListElement'] );
+	cdm_ok( $ok_tipo, "[$tag] BreadcrumbList valido no wp_head" );
+	if ( ! $ok_tipo ) {
+		continue;
+	}
+	$itens = $dados['itemListElement'];
+
+	/* TODO item tem endereco — e isso que mantem a lista valida. */
+	$sem_item = 0;
+	$posicoes = array();
+	foreach ( $itens as $i ) {
+		if ( empty( $i['item'] ) ) {
+			$sem_item++;
+		}
+		$posicoes[] = (int) $i['position'];
+	}
+	cdm_ok( 0 === $sem_item, "[$tag] nenhum ListItem sem `item`", "sem item: $sem_item" );
+	cdm_ok( $posicoes === range( 1, count( $itens ) ), "[$tag] as posicoes vao de 1 a n sem buraco",
+		implode( ',', $posicoes ) );
+
+	/* A RELACAO: os itens sao os degraus LINKADOS da trilha, mais a pagina atual. */
+	$corpo = cdm_corpo( $html );
+	preg_match( '#<nav class="cdm-trilha".*?</nav>#s', $corpo, $mtr );
+	$linkados = preg_match_all( '#<a href="[^"]+"#', isset( $mtr[0] ) ? $mtr[0] : '' );
+	cdm_ok( count( $itens ) === $linkados + 1,
+		"[$tag] o schema leva os degraus com endereco mais a pagina atual",
+		count( $itens ) . ' itens / ' . $linkados . ' degraus linkados + 1' );
+
+	/* O ultimo item e a propria pagina. */
+	$ultimo = end( $itens );
+	cdm_ok( isset( $ultimo['item'] ) && $ultimo['item'] === 'https://clubedomosaico.com.br/' . $caminho . '/',
+		"[$tag] o ultimo item do schema e a propria URL", isset( $ultimo['item'] ) ? $ultimo['item'] : '—' );
+}
+
+/* ---------------------------------------------------------------------------
+ * 24. O CLUSTER "VEJA TAMBEM" — as duas direcoes, e a borda FABRICADA
+ *
+ * Com tres secoes, nenhuma pagina chega a ter cinco irmas candidatas: trocar o
+ * teto de 4 do 16.4(c) por 5 nao mudaria uma linha do que o site serve, e o
+ * portao ficaria verde nas duas versoes. Grade que nao pisa na borda e amostra
+ * com nome de grade. Por isso a bancada FABRICA a borda no modo `todas`, que poe
+ * as seis categorias do Guia no ar.
+ * ------------------------------------------------------------------------- */
+
+echo "\n24. Cluster Veja tambem (16.4c), nas duas direcoes\n";
+foreach ( $paginas as $tag ) {
+	$caminho = isset( $tag_para_caminho[ $tag ] ) ? $tag_para_caminho[ $tag ] : '';
+	$corpo   = cdm_corpo( $html_por_pagina[ $tag ] );
+	$tem     = substr_count( $corpo, '<nav class="cdm-veja"' );
+
+	/* Quantas irmas EXISTEM, recontadas aqui a partir do mapa e da lista de
+	   paginas no ar — nunca perguntando a cdm_casca_irmas(). */
+	$esperadas = 0;
+	if ( '' !== $caminho && isset( $mapa_codigo[ $caminho ] ) && 0 !== (int) $mapa_codigo[ $caminho ]['nivel'] ) {
+		$no_ar = cdm_teste_paginas_no_ar( 'hoje' );
+		foreach ( $mapa_codigo as $outro => $def ) {
+			if ( $outro === $caminho || 0 === (int) $def['nivel'] ) {
+				continue;
+			}
+			if ( $def['mae'] === $mapa_codigo[ $caminho ]['mae'] && ! empty( $no_ar[ $outro ] ) ) {
+				$esperadas++;
+			}
+		}
+	}
+	$deve = $esperadas >= 2 ? 1 : 0;
+	cdm_ok( $tem === $deve, "[$tag] bloco Veja tambem so onde ha 2+ irmas no ar",
+		"bloco: $tem / irmas no ar: $esperadas" );
+
+	if ( 1 === $tem ) {
+		preg_match( '#<nav class="cdm-veja".*?</nav>#s', $corpo, $mv );
+		$bloco = isset( $mv[0] ) ? $mv[0] : '';
+		$itens = preg_match_all( '#<li><a href="([^"]+)"#', $bloco, $mi );
+		cdm_ok( $itens >= 2 && $itens <= 4, "[$tag] de 2 a 4 irmas listadas (16.4c)", "achadas: $itens" );
+		$mortos = array();
+		foreach ( $mi[1] as $url ) {
+			if ( ! isset( $urls_no_ar[ $url ] ) ) {
+				$mortos[] = $url;
+			}
+		}
+		cdm_ok( empty( $mortos ), "[$tag] nenhuma irma aponta para pagina inexistente",
+			empty( $mortos ) ? 'nenhuma' : implode( ', ', $mortos ) );
+		cdm_ok( false === strpos( $bloco, '>' . htmlspecialchars( $mapa_codigo[ $caminho ]['rotulo'], ENT_QUOTES ) . '<' ),
+			"[$tag] a pagina nao se lista como irma de si mesma" );
+	}
+}
+
+/* A BORDA FABRICADA: com as seis categorias no ar, /materiais/como-sabemos/
+   passa a ter seis irmas candidatas e o teto de 4 tem o que cortar. */
+$corpo_todas = cdm_corpo( cdm_render_em_processo_proprio_modo( $raiz, 'cdm_como_sabemos', 'todas' ) );
+preg_match( '#<nav class="cdm-veja".*?</nav>#s', $corpo_todas, $mvt );
+$bloco_todas = isset( $mvt[0] ) ? $mvt[0] : '';
+$irmas_todas = preg_match_all( '#<li><a href="#', $bloco_todas );
+cdm_ok( 6 === count( cdm_casca_categorias_do_guia() ), 'a borda fabricada tem 6 categorias candidatas',
+	count( cdm_casca_categorias_do_guia() ) . ' categorias' );
+cdm_ok( 4 === $irmas_todas, 'na borda, o teto de 4 do 16.4(c) CORTA (6 candidatas viram 4)',
+	'listadas: ' . $irmas_todas );
+/* E com a mae publicada, a frase da mae (16.4b) aparece e linka a mae. */
+cdm_ok( false !== strpos( $bloco_todas, 'href="https://clubedomosaico.com.br/materiais/"' ),
+	'a frase do cluster linka a mae (16.4b)' );
+
+/* ---------------------------------------------------------------------------
+ * 25. 16.5 — CARTAO DE CATEGORIA QUE NAO ABRE NAO CARREGA CONTAGEM DE BANCO
+ *
+ * Medido por ESTRUTURA, nunca por vizinhanca de palavra: o teste extrai os
+ * `cdm-tag` do cartao e proibe digito DENTRO deles. Procurar "5" no corpo do
+ * Guia acharia o 5 legitimo da camada de prova, que e onde o numero deve estar.
+ * ------------------------------------------------------------------------- */
+
+echo "\n25. Cartao de categoria em breve, sem contagem (16.5)\n";
+foreach ( array( 'cdm_home', 'cdm_materiais' ) as $tag ) {
+	$corpo = cdm_corpo( $html_por_pagina[ $tag ] );
+	preg_match_all( '#<span class="cdm-acao">(.*?)</span></li>#s', $corpo, $ma );
+	$com_numero = array();
+	$viraram_link = 0;
+	foreach ( $ma[1] as $acao ) {
+		if ( false !== strpos( $acao, '<a href=' ) ) {
+			$viraram_link++;
+			continue;
+		}
+		if ( preg_match( '#<span class="cdm-tag">(.*?)</span>#s', $acao, $mtg ) && preg_match( '#\d#', $mtg[1] ) ) {
+			$com_numero[] = trim( $mtg[1] );
+		}
+	}
+	cdm_ok( empty( $com_numero ), "[$tag] nenhum cartao 'em breve' publica contagem de banco",
+		empty( $com_numero ) ? count( $ma[1] ) . ' cartoes' : implode( ' | ', $com_numero ) );
+	cdm_ok( 0 === $viraram_link, "[$tag] nenhum cartao de categoria e link hoje (16.5)", "links: $viraram_link" );
+}
+/* E o numero NAO sumiu do site: ele continua na camada de prova, contado. */
+$corpo_guia = cdm_corpo( $html_por_pagina['cdm_materiais'] );
+preg_match( '#<div class="cdm-prova">.*?</div>#s', $corpo_guia, $mp );
+$prova = isset( $mp[0] ) ? $mp[0] : '';
+cdm_ok( false !== strpos( $prova, '>' . $esperado['materiais_cola'] . '<' )
+	&& false !== strpos( $prova, '>' . $esperado['materiais_rejunte'] . '<' ),
+	'a contagem por categoria continua publicada na camada de prova, contada do banco',
+	$esperado['materiais_cola'] . ' colas / ' . $esperado['materiais_rejunte'] . ' rejuntes' );
+
+/* ---------------------------------------------------------------------------
+ * 26. 16.4(f) — NENHUMA PAGINA ORFA
+ *
+ * Cada URL que a ilha publica precisa de pelo menos DOIS links internos vindos de
+ * OUTRAS paginas. Conta-se sobre a pagina inteira de proposito: menu e rodape sao
+ * links internos de verdade, e e deles que vive metade das paginas da raiz.
+ * ------------------------------------------------------------------------- */
+
+echo "\n26. Nenhuma pagina orfa (16.4f)\n";
+$apontam = array();
+foreach ( $paginas as $tag ) {
+	$origem = isset( $tag_para_caminho[ $tag ] ) ? $tag_para_caminho[ $tag ] : '';
+	preg_match_all( '#href="(https://clubedomosaico\.com\.br/[^"]*)"#', $html_por_pagina[ $tag ], $mh );
+	foreach ( array_unique( $mh[1] ) as $url ) {
+		if ( ! isset( $urls_no_ar[ $url ] ) ) {
+			continue;
+		}
+		$destino = $urls_no_ar[ $url ];
+		if ( $destino === $origem ) {
+			continue; // link para si mesma nao tira ninguem de orfa
+		}
+		$apontam[ $destino ] = isset( $apontam[ $destino ] ) ? $apontam[ $destino ] + 1 : 1;
+	}
+}
+/* A regra e sobre URL DO SITEMAP, e a pagina de camada de prova esta fora dele
+   por declaracao (16.5 e 14.1). Ela e excluida pela DECLARACAO, nunca pelo nome —
+   e a linha seguinte cobra que ela ainda assim seja citada, para "fora do
+   sitemap" nao virar porta dos fundos para publicar pagina que ninguem linka. */
+$fora_do_sitemap = cdm_casca_paginas_noindex();
+$orfas = array();
+foreach ( array_keys( cdm_teste_paginas_no_ar( 'hoje' ) ) as $caminho ) {
+	if ( in_array( $caminho, $fora_do_sitemap, true ) ) {
+		continue;
+	}
+	$n_links = isset( $apontam[ $caminho ] ) ? $apontam[ $caminho ] : 0;
+	if ( $n_links < 2 ) {
+		$orfas[] = $caminho . ' (' . $n_links . ')';
+	}
+}
+$prova_sem_citacao = array();
+foreach ( $fora_do_sitemap as $caminho ) {
+	if ( ( isset( $apontam[ $caminho ] ) ? $apontam[ $caminho ] : 0 ) < 1 ) {
+		$prova_sem_citacao[] = $caminho;
+	}
+}
+cdm_ok( empty( $prova_sem_citacao ), 'a pagina fora do sitemap continua citada por outra pagina',
+	empty( $prova_sem_citacao ) ? implode( ', ', $fora_do_sitemap ) : implode( ', ', $prova_sem_citacao ) );
+cdm_ok( empty( $orfas ), 'toda pagina do sitemap recebe 2+ links internos de outras paginas',
+	empty( $orfas ) ? implode( ', ', array_map( function ( $k, $v ) { return $k . ':' . $v; }, array_keys( $apontam ), $apontam ) ) : implode( ' | ', $orfas ) );
+
+/* ---------------------------------------------------------------------------
+ * 27. AS DUAS BORDAS QUE O MUNDO AINDA NAO TEM
+ *
+ * Escrita depois de as mutacoes 'degrau de trilha vira link morto' e 'cluster
+ * publicado com uma irma so' PASSAREM na primeira rodada. Nenhuma das duas
+ * passou por a trava ser fraca: as duas passaram por serem INERTES. Hoje esta
+ * ilha nao tem uma unica pagina cujo degrau do meio esteja sem endereco (as tres
+ * secoes de nivel 1 existem), nem uma unica pagina com exatamente UMA irma no ar
+ * (elas tem zero ou duas). Mutacao que nao muda nada do que o site serve nao
+ * mede nada — e teste verde nos dois lados dela e o sintoma.
+ *
+ * A saida e a mesma do modo `todas` do render: a bancada FABRICA a borda. Aqui
+ * ela e fabricada pelo filtro `cdm_arvore`, que e o mesmo por onde uma pagina
+ * nova entrara no mapa de verdade, e as duas situacoes fabricadas sao as duas
+ * que esta ilha VAI ter: a primeira ficha de material nascendo antes da
+ * categoria dela, e uma categoria com uma irma so.
+ * ------------------------------------------------------------------------- */
+
+echo "\n27. As bordas fabricadas: degrau sem endereco e irma unica\n";
+
+$GLOBALS['__arvore_fabricada'] = array();
+add_filter( 'cdm_arvore', function ( $mapa ) {
+	return $GLOBALS['__arvore_fabricada'] ? $GLOBALS['__arvore_fabricada'] : $mapa;
+} );
+
+/* BORDA 1 — a ficha nasce antes da categoria dela. E o estado normal das outras
+   duas ilhas e sera o desta no dia da primeira ficha: /materiais/ existe,
+   /materiais/rejuntes/ ainda nao, e a ficha embaixo dos dois ja existe. */
+$GLOBALS['__arvore_fabricada'] = array(
+	'materiais'                                       => array( 'nivel' => 1, 'mae' => '', 'rotulo' => 'Materiais' ),
+	'materiais/rejuntes'                              => array( 'nivel' => 2, 'mae' => 'materiais', 'rotulo' => 'Rejuntes' ),
+	'materiais/rejuntes/quanto-rejunte-para-um-vaso'  => array( 'nivel' => 3, 'mae' => 'materiais/rejuntes', 'rotulo' => 'Quanto rejunte para um vaso' ),
+);
+$alvo    = 'materiais/rejuntes/quanto-rejunte-para-um-vaso';
+$trilha_b = cdm_casca_trilha_html( $alvo );
+$schema_b = cdm_casca_trilha_jsonld( $alvo );
+
+cdm_ok( 4 === substr_count( $trilha_b, '<li>' ), 'borda 1: a trilha na tela mostra os quatro degraus',
+	substr_count( $trilha_b, '<li>' ) . ' degraus' );
+cdm_ok( 1 === substr_count( $trilha_b, '<span class="cdm-trilha-espera">Rejuntes</span>' ),
+	'borda 1: o degrau sem pagina sai em TEXTO, nunca como link' );
+preg_match_all( '#<a href="([^"]+)"#', $trilha_b, $mb );
+$fora_do_ar = array();
+foreach ( $mb[1] as $url ) {
+	if ( ! isset( $urls_no_ar[ $url ] ) ) {
+		$fora_do_ar[] = $url;
+	}
+}
+cdm_ok( empty( $fora_do_ar ), 'borda 1: nenhum <a> da trilha aponta para pagina que nao existe',
+	empty( $fora_do_ar ) ? implode( ', ', $mb[1] ) : implode( ' | ', $fora_do_ar ) );
+
+/* E o schema publica MENOS do que a trilha mostra, de proposito: o degrau sem
+   endereco fica de fora, porque ListItem do meio sem `item` invalida a lista
+   inteira — e lista invalida e lista ignorada. */
+$nomes_schema = array();
+$meio_sem_item = 0;
+foreach ( $schema_b['itemListElement'] as $i => $item ) {
+	$nomes_schema[] = $item['name'];
+	if ( $i < count( $schema_b['itemListElement'] ) - 1 && empty( $item['item'] ) ) {
+		$meio_sem_item++;
+	}
+}
+cdm_ok( 0 === $meio_sem_item, 'borda 1: nenhum ListItem do MEIO fica sem `item`', "sem item: $meio_sem_item" );
+cdm_ok( ! in_array( 'Rejuntes', $nomes_schema, true ),
+	'borda 1: o degrau sem endereco NAO entra no BreadcrumbList', implode( ' > ', $nomes_schema ) );
+cdm_ok( in_array( 'Materiais', $nomes_schema, true ) && in_array( 'Quanto rejunte para um vaso', $nomes_schema, true ),
+	'borda 1: os degraus com endereco e a pagina atual entram', implode( ' > ', $nomes_schema ) );
+$posicoes_b = array();
+foreach ( $schema_b['itemListElement'] as $item ) {
+	$posicoes_b[] = (int) $item['position'];
+}
+cdm_ok( $posicoes_b === range( 1, count( $posicoes_b ) ),
+	'borda 1: pular um degrau nao abre buraco na numeracao', implode( ',', $posicoes_b ) );
+
+/* BORDA 2 — EXATAMENTE UMA IRMA NO AR. Bloco com um item so nao e cluster: o
+   16.4(c) pede de 2 a 4, e listar a unica irma seria publicar meio bloco com
+   cara de bloco inteiro. */
+$GLOBALS['__arvore_fabricada'] = array(
+	'loja'      => array( 'nivel' => 1, 'mae' => '', 'rotulo' => 'Loja' ),
+	'materiais' => array( 'nivel' => 1, 'mae' => '', 'rotulo' => 'Materiais' ),
+);
+cdm_ok( 1 === count( cdm_casca_irmas( 'loja' ) ), 'borda 2: a situacao fabricada tem exatamente uma irma no ar',
+	count( cdm_casca_irmas( 'loja' ) ) . ' irma' );
+cdm_ok( '' === cdm_casca_veja_tambem_html( 'loja' ),
+	'borda 2: com uma irma so, o bloco Veja tambem NAO sai (16.4c pede 2 a 4)' );
+
+/* E com duas ele sai — o outro lado da mesma borda, para "nao sai nunca" nao
+   passar por trava. */
+$GLOBALS['__arvore_fabricada'] = array(
+	'loja'       => array( 'nivel' => 1, 'mae' => '', 'rotulo' => 'Loja' ),
+	'materiais'  => array( 'nivel' => 1, 'mae' => '', 'rotulo' => 'Materiais' ),
+	'como-fazer' => array( 'nivel' => 1, 'mae' => '', 'rotulo' => 'Como fazer' ),
+);
+cdm_ok( '' !== cdm_casca_veja_tambem_html( 'loja' ),
+	'borda 2: com duas irmas o bloco sai (o outro lado da borda)' );
+
+$GLOBALS['__arvore_fabricada'] = array();
 
 echo "\n";
 if ( $falhas ) {

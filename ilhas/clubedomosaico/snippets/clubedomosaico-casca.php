@@ -1,5 +1,27 @@
 /**
  * Clube do Mosaico Casca — identidade e estrutura do site
+ * Versão 1.3.0 (11/09/2026) — A ÁRVORE DA SEÇÃO 16: trilha visível em toda
+ * página menos a home, `BreadcrumbList` em JSON-LD e o cluster "Veja também"
+ * ligando os três motores da ilha. O mapa mora em `ARVORE.md` e o teste cobra
+ * que documento e código digam a mesma coisa.
+ *
+ * NENHUMA URL MUDOU, e nenhuma precisou mudar: as três seções já eram nível 1,
+ * a única página de nível 2 já nascera com mãe em 1.2.0, e as quatro da raiz são
+ * as que a 16.1 admite ali. A árvore desta ilha estava certa na estrutura e
+ * faltava ficar VISÍVEL — que é o que a 16.3 e a 16.4 pedem. Por isso este bloco
+ * não tem 301 nenhum e o sitemap não muda.
+ *
+ * DUAS COISAS QUE ESTAVAM ERRADAS E NÃO ESTAVAM SENDO PROCURADAS:
+ *   (a) o registro do Guia e o `VOZ.md` discordavam nos slugs de duas
+ *       categorias (`materiais/colas` × `colas-e-adesivos`, `materiais/alicates`
+ *       × `alicates-e-corte`) desde que a casca nasceu. O dia de acertar é o dia
+ *       ANTES de a página existir;
+ *   (b) o cartão de categoria que ainda não abre trazia "5 no banco, ficha em
+ *       construção". O número era certo e contado — e a 16.5 proíbe contagem de
+ *       banco justamente nesse cartão, porque é promessa com número num link que
+ *       não existe. O número continua na camada de prova, onde quem quer
+ *       conferir confere.
+ *
  * Versão 1.2.0 (11/09/2026) — DESPACHO DO RAPHAEL: cabeçalho claro, a marca
  * legível, a home deixando de ser manifesto e o Guia falando com quem vai fazer
  * a peça. O Raphael viu a casca no ar e reprovou: "muito ruim o fundo preto no
@@ -78,7 +100,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'CDM_CASCA_VERSAO' ) ) {
-	define( 'CDM_CASCA_VERSAO', '1.2.0' );
+	define( 'CDM_CASCA_VERSAO', '1.3.0' );
 	/* O nome do site e a linha que o WordPress serve no <title> da home. A
 	   Aquametria descobriu em 11/09/2026 que a tagline nunca tocada desde o
 	   nascimento da ilha continuava sendo a linha mais lida do site — a do
@@ -160,7 +182,7 @@ function cdm_casca_categorias_do_guia() {
 		array(
 			'codigo'   => 'G-COLAS',
 			'titulo'   => 'Colas e adesivos',
-			'slug'     => 'materiais/colas',
+			'slug'     => 'materiais/colas-e-adesivos',
 			'resumo'   => 'Cola branca, silicone, cimentcola, epóxi: qual delas segura a sua peça — e em qual base o próprio fabricante manda não usar.',
 			'no_banco' => $n['materiais_cola'],
 		),
@@ -181,7 +203,7 @@ function cdm_casca_categorias_do_guia() {
 		array(
 			'codigo'   => 'G-ALICATES',
 			'titulo'   => 'Alicates e corte',
-			'slug'     => 'materiais/alicates',
+			'slug'     => 'materiais/alicates-e-corte',
 			'resumo'   => 'Torquês de roda, alicate de corte e cortador: o que cada um corta sem estilhaçar, e qual deles estraga a peça.',
 			'no_banco' => 0,
 		),
@@ -752,6 +774,25 @@ body header.wp-block-template-part a,body header.wp-block-group a{color:var(--cd
 .cdm-quadro{width:100%;margin:1rem 0 0;font-size:.93rem;}
 .cdm-quadro td:first-child,.cdm-quadro th:first-child{white-space:nowrap;}
 .cdm-quadro .cdm-n{text-align:right;font-family:var(--cdm-mono);font-variant-numeric:tabular-nums;white-space:nowrap;}
+/* A TRILHA (16.3). Ela ROLA na horizontal dentro da propria caixa quando nao
+   cabe — e o unico jeito de uma trilha longa nao empurrar a pagina inteira e
+   fazer o corpo rolar de lado no celular. */
+.cdm-trilha{font-family:var(--cdm-texto);font-size:.82rem;line-height:1.5;margin:0 0 1.1rem;max-width:100%;overflow-x:auto;}
+.cdm-trilha ol{display:flex;flex-wrap:nowrap;align-items:center;gap:.3rem;list-style:none;margin:0;padding:0;}
+.cdm-trilha li{display:flex;align-items:center;gap:.3rem;white-space:nowrap;}
+.cdm-trilha li+li::before{content:"\203A";color:var(--cdm-traco);}
+.cdm-trilha a{color:var(--cdm-legenda);text-decoration:none;border-bottom:1px solid var(--cdm-traco);}
+.cdm-trilha a:hover{color:var(--cdm-coral);border-bottom-color:var(--cdm-coral);}
+.cdm-trilha [aria-current="page"]{color:var(--cdm-tinta);font-weight:500;}
+/* Degrau de categoria que ainda nao nasceu: texto, nunca link morto, e sem cara
+   de promessa — o cartao "em breve" e da mae, nao da trilha. */
+.cdm-trilha-espera{color:var(--cdm-legenda);}
+.cdm-veja{margin:2.4rem 0 0;padding:1.2rem 0 0;border-top:1px solid var(--cdm-traco);}
+.cdm-veja h2{margin:0 0 .5rem;font-size:1.05rem;}
+.cdm-veja .cdm-veja-mae{margin:0 0 .6rem;color:var(--cdm-legenda);font-size:.95rem;}
+.cdm-veja ul{display:flex;flex-wrap:wrap;gap:.5rem .9rem;list-style:none;margin:0;padding:0;}
+.cdm-veja li{margin:0;}
+.cdm-veja a{font-family:var(--cdm-texto);font-weight:500;}
 .cdm-rodape{background:var(--cdm-noite);color:var(--cdm-papel);padding:2.4rem 1.5rem;margin-top:3.5rem;font-family:var(--cdm-texto);}
 .cdm-rodape-interno{max-width:52rem;margin:0 auto;display:flex;flex-direction:column;gap:.7rem;}
 .cdm-rodape .cdm-tagline{font-family:var(--cdm-display);font-weight:600;font-size:1.1rem;color:var(--cdm-papel);margin:0;}
@@ -1016,10 +1057,17 @@ function cdm_casca_cards_guia_html() {
 		$url = cdm_casca_url_se_existir( $c['slug'] );
 		if ( '' !== $url ) {
 			$html .= '<a href="' . esc_url( $url ) . '">Abrir a ficha</a>';
-		} elseif ( (int) $c['no_banco'] > 0 ) {
-			$html .= '<span class="cdm-tag">' . esc_html( $c['no_banco'] . ' no banco, ficha em construção' ) . '</span>';
 		} else {
-			$html .= '<span class="cdm-tag">Sem dado ainda</span>';
+			/* 16.5, ao pé da letra: enquanto a categoria não existe, o cartão não
+			   é link e diz "em breve" SEM contagem de banco. Até 1.2.0 ele dizia
+			   "5 no banco, ficha em construção" — número certo, contado do
+			   arquivo, e ainda assim promessa com número colada num cartão que
+			   não abre. O número não sumiu do site: ele mora na camada de prova
+			   do Guia e na página Como sabemos (15.2), que é onde quem quer
+			   conferir vai conferir. O campo `no_banco` continua existindo e
+			   continua sendo cobrado contra o arquivo pelo teste — o que mudou é
+			   que ele deixou de ir para a TELA deste cartão. */
+			$html .= '<span class="cdm-tag">Em breve</span>';
 		}
 		$html .= '</span></li>';
 	}
@@ -1095,6 +1143,380 @@ function cdm_casca_vitrine_de_pecas_html( $quantas = 8 ) {
 	return $html;
 }
 }
+
+/* ---------------------------------------------------------------------------
+ * 3d. A ÁRVORE — trilha, BreadcrumbList e cluster "Veja também"
+ *
+ * Seção 16 do ARQUIPELAGO.md. O mapa de quem é mãe de quem está escrito em
+ * ARVORE.md; aqui ele vira código, e `ferramentas/teste-casca.php` confere que
+ * as duas metades dizem a mesma coisa — documento e código mantidos à mão em
+ * dois lugares divergem em silêncio (seção 8).
+ *
+ * QUATRO DECISÕES, e nenhuma é enfeite:
+ *
+ *   1. NADA AQUI CRIA URL. As dez páginas de nível 2 da árvore esperam a 16.5,
+ *      que é portão de dado. Trilha e cluster cabem antes porque só usam
+ *      endereço que já existe.
+ *   2. O DEGRAU SEM PÁGINA SAI EM TEXTO, nunca como link morto. Nesta ilha os
+ *      três degraus de nível 1 já existem, então hoje nenhum sai em texto — a
+ *      via existe para o dia em que uma categoria aparecer na trilha antes de
+ *      ter página, que é o estado normal das outras duas ilhas.
+ *   3. O JSON-LD NÃO CARREGA DEGRAU SEM ENDEREÇO. Um ListItem intermediário sem
+ *      `item` invalida o BreadcrumbList inteiro, e lista inválida é lista
+ *      ignorada: o schema "mais completo" publicaria MENOS com cara de publicar
+ *      mais.
+ *   4. AS IRMÃS SÃO DERIVADAS, NUNCA DIGITADAS. Lista escrita à mão envelhece no
+ *      dia da próxima página — é a cicatriz do número de tela digitado (seção
+ *      8). Elas saem do mesmo mapa que a trilha usa, e página que não existe
+ *      publicada não entra: irmã é link, e link morto não é cluster.
+ * ------------------------------------------------------------------------- */
+
+if ( ! function_exists( 'cdm_casca_arvore' ) ) {
+/**
+ * O mapa da árvore, e a ÚNICA fonte dele nesta casca.
+ *
+ *   'nivel'  => 1 | 2 | 3, ou 0 para as páginas que a 16.1 admite na raiz
+ *   'mae'    => o caminho da mãe, '' quando a mãe é a home
+ *   'rotulo' => o degrau na tela, no vocabulário do VOZ.md
+ *
+ * A home não está aqui de propósito: 16.3 diz que ela não tem trilha, e
+ * declará-la seria abrir a porta para uma trilha "Início › Início".
+ */
+function cdm_casca_arvore() {
+	$mapa = array(
+		/* Nível 1 — os três motores da ilha, e os três já são página. */
+		'loja'                    => array( 'nivel' => 1, 'mae' => '', 'rotulo' => 'Loja' ),
+		'materiais'               => array( 'nivel' => 1, 'mae' => '', 'rotulo' => 'Materiais' ),
+		'como-fazer'              => array( 'nivel' => 1, 'mae' => '', 'rotulo' => 'Como fazer' ),
+
+		/* Nível 2 — a única no ar é a camada de prova; as outras esperam a 16.5. */
+		'materiais/como-sabemos'  => array( 'nivel' => 2, 'mae' => 'materiais', 'rotulo' => 'Como sabemos' ),
+
+		/* Fora da árvore, na raiz, exatamente a lista que a 16.1 admite. */
+		'sobre'                   => array( 'nivel' => 0, 'mae' => '', 'rotulo' => 'Sobre' ),
+		'contato'                 => array( 'nivel' => 0, 'mae' => '', 'rotulo' => 'Contato' ),
+		'divulgacao-de-afiliados' => array( 'nivel' => 0, 'mae' => '', 'rotulo' => 'Divulgação de afiliados' ),
+		'privacidade'             => array( 'nivel' => 0, 'mae' => '', 'rotulo' => 'Privacidade' ),
+	);
+
+	/* As categorias do Guia entram pelo MESMO registro que desenha os cartões,
+	   nunca por uma segunda lista: categoria que nascer lá aparece aqui sozinha,
+	   e é assim que o mapa não envelhece. */
+	foreach ( cdm_casca_categorias_do_guia() as $c ) {
+		if ( empty( $c['slug'] ) || isset( $mapa[ $c['slug'] ] ) ) {
+			continue;
+		}
+		$mapa[ $c['slug'] ] = array( 'nivel' => 2, 'mae' => 'materiais', 'rotulo' => $c['titulo'] );
+	}
+
+	/* As ferramentas, nível 3 com mãe /materiais/ direto — dois níveis em vez de
+	   três, estado de transição declarado na seção 2 do ARVORE.md. Nenhuma tem
+	   página hoje; isto existe para a trilha já nascer certa no dia do bloco 4. */
+	foreach ( cdm_casca_ferramentas() as $f ) {
+		if ( empty( $f['slug'] ) || isset( $mapa[ $f['slug'] ] ) ) {
+			continue;
+		}
+		$mapa[ $f['slug'] ] = array( 'nivel' => 3, 'mae' => 'materiais', 'rotulo' => $f['titulo'] );
+	}
+
+	/* Os tutoriais se registram pelo filtro do snippet de cada um, como na
+	   listagem da Escola. Mãe /como-fazer/ enquanto não houver categoria. */
+	foreach ( cdm_casca_tutoriais() as $t ) {
+		if ( empty( $t['slug'] ) || isset( $mapa[ $t['slug'] ] ) ) {
+			continue;
+		}
+		$mapa[ $t['slug'] ] = array( 'nivel' => 3, 'mae' => 'como-fazer', 'rotulo' => $t['titulo'] );
+	}
+
+	return apply_filters( 'cdm_arvore', $mapa );
+}
+}
+
+if ( ! function_exists( 'cdm_casca_slug_atual' ) ) {
+/**
+ * O CAMINHO da página que está sendo servida — 'materiais/como-sabemos', não
+ * 'como-sabemos'. Devolve '' na home e em tudo que não for página singular, e
+ * quem chama não publica trilha nenhuma, que é melhor que trilha inventada.
+ *
+ * O WordPress guarda só o último nível em post_name; o caminho se remonta pela
+ * definição de páginas, que é o mesmo lugar de onde a página nasceu. O teste
+ * cobra que nenhum último nível se repita nessa definição — sem isso o caminho
+ * seria adivinhação.
+ */
+function cdm_casca_slug_atual() {
+	if ( function_exists( 'is_front_page' ) && is_front_page() ) {
+		return '';
+	}
+	if ( ! function_exists( 'is_singular' ) || ! is_singular() ) {
+		return '';
+	}
+	$post = function_exists( 'get_post' ) ? get_post() : null;
+	if ( ! $post || empty( $post->post_name ) ) {
+		return '';
+	}
+	$nome = (string) $post->post_name;
+
+	foreach ( cdm_casca_definicao_paginas() as $caminho => $def ) {
+		if ( cdm_casca_slug_final( $caminho ) === $nome ) {
+			return $caminho;
+		}
+	}
+
+	return $nome;
+}
+}
+
+if ( ! function_exists( 'cdm_casca_degraus' ) ) {
+/**
+ * Os degraus da trilha, do topo até a página atual. Cada degrau:
+ *   array( 'rotulo' => ..., 'url' => '' quando a página ainda não existe )
+ * O último é sempre a página atual e nunca leva URL — é onde a pessoa já está.
+ */
+function cdm_casca_degraus( $slug ) {
+	$mapa = cdm_casca_arvore();
+	$slug = trim( (string) $slug, '/' );
+	if ( '' === $slug || ! isset( $mapa[ $slug ] ) ) {
+		return array();
+	}
+
+	/* Sobe pela mãe até a raiz. O limite existe para um 'mae' escrito em
+	   círculo por engano não travar a página inteira; o teste cobra que ele
+	   nunca seja alcançado. */
+	$acima = array();
+	$passo = $mapa[ $slug ]['mae'];
+	$giros = 0;
+	while ( '' !== $passo && isset( $mapa[ $passo ] ) && $giros < 8 ) {
+		array_unshift( $acima, $passo );
+		$passo = $mapa[ $passo ]['mae'];
+		$giros++;
+	}
+
+	$degraus = array( array( 'rotulo' => 'Início', 'url' => home_url( '/' ) ) );
+	foreach ( $acima as $caminho ) {
+		$degraus[] = array(
+			'rotulo' => $mapa[ $caminho ]['rotulo'],
+			'url'    => cdm_casca_url_se_existir( $caminho ),
+		);
+	}
+	$degraus[] = array( 'rotulo' => $mapa[ $slug ]['rotulo'], 'url' => '' );
+
+	return $degraus;
+}
+}
+
+if ( ! function_exists( 'cdm_casca_trilha_html' ) ) {
+/* `<nav>` com `<ol>`, porque é navegação e é ordenada. Degrau sem página sai
+   como texto; o atual leva aria-current. */
+function cdm_casca_trilha_html( $slug ) {
+	$degraus = cdm_casca_degraus( $slug );
+	if ( count( $degraus ) < 2 ) {
+		return '';
+	}
+
+	$ultimo = count( $degraus ) - 1;
+	$html   = '<nav class="cdm-trilha" aria-label="Você está em"><ol>';
+	foreach ( $degraus as $i => $d ) {
+		$html .= '<li>';
+		if ( $i === $ultimo ) {
+			$html .= '<span aria-current="page">' . esc_html( $d['rotulo'] ) . '</span>';
+		} elseif ( '' !== $d['url'] ) {
+			$html .= '<a href="' . esc_url( $d['url'] ) . '">' . esc_html( $d['rotulo'] ) . '</a>';
+		} else {
+			$html .= '<span class="cdm-trilha-espera">' . esc_html( $d['rotulo'] ) . '</span>';
+		}
+		$html .= '</li>';
+	}
+	$html .= '</ol></nav>';
+
+	return $html;
+}
+}
+
+if ( ! function_exists( 'cdm_casca_trilha_jsonld' ) ) {
+/* O BreadcrumbList: os degraus COM endereço, mais a página atual. Ver decisão 3
+   no topo desta seção. */
+function cdm_casca_trilha_jsonld( $slug ) {
+	$degraus = cdm_casca_degraus( $slug );
+	if ( count( $degraus ) < 2 ) {
+		return array();
+	}
+
+	$atual = array_pop( $degraus );
+	$itens = array();
+	$pos   = 0;
+
+	foreach ( $degraus as $d ) {
+		if ( '' === $d['url'] ) {
+			continue;
+		}
+		$pos++;
+		$itens[] = array(
+			'@type'    => 'ListItem',
+			'position' => $pos,
+			'name'     => $d['rotulo'],
+			'item'     => $d['url'],
+		);
+	}
+
+	$pos++;
+	$ultimo    = array( '@type' => 'ListItem', 'position' => $pos, 'name' => $atual['rotulo'] );
+	$url_atual = cdm_casca_url_se_existir( $slug );
+	if ( '' !== $url_atual ) {
+		$ultimo['item'] = $url_atual;
+	}
+	$itens[] = $ultimo;
+
+	if ( count( $itens ) < 2 ) {
+		return array();
+	}
+
+	return array(
+		'@context'        => 'https://schema.org',
+		'@type'           => 'BreadcrumbList',
+		'itemListElement' => $itens,
+	);
+}
+}
+
+if ( ! function_exists( 'cdm_casca_irmas' ) ) {
+/**
+ * As irmãs de uma página: MESMA MÃE, no ar, no máximo quatro (16.4c).
+ *
+ * Derivadas do mapa, nunca digitadas. A ordem é a do mapa, que é a ordem em que
+ * a ilha apresenta os motores — Loja na frente, porque é o caminho que termina
+ * em compra (seção 9).
+ */
+function cdm_casca_irmas( $slug ) {
+	$mapa = cdm_casca_arvore();
+	$slug = trim( (string) $slug, '/' );
+	if ( '' === $slug || ! isset( $mapa[ $slug ] ) ) {
+		return array();
+	}
+	/* Página da raiz não tem irmã: ela não está na árvore, está ao lado dela. */
+	if ( 0 === (int) $mapa[ $slug ]['nivel'] ) {
+		return array();
+	}
+
+	$minha = $mapa[ $slug ]['mae'];
+	$irmas = array();
+	foreach ( $mapa as $caminho => $def ) {
+		if ( $caminho === $slug || $def['mae'] !== $minha || 0 === (int) $def['nivel'] ) {
+			continue;
+		}
+		$url = cdm_casca_url_se_existir( $caminho );
+		if ( '' === $url ) {
+			continue;
+		}
+		$irmas[] = array( 'slug' => $caminho, 'rotulo' => $def['rotulo'], 'url' => $url );
+	}
+
+	return array_slice( $irmas, 0, 4 );
+}
+}
+
+if ( ! function_exists( 'cdm_casca_veja_tambem_html' ) ) {
+/**
+ * O cluster: a frase que linka a mãe (16.4b) e as irmãs (16.4c).
+ *
+ * Sai '' com menos de duas irmãs no ar. É a mesma regra da listagem de
+ * tutoriais: bloco com um item só não é cluster, é enfeite — e inventar a
+ * segunda irmã seria publicar link morto.
+ */
+function cdm_casca_veja_tambem_html( $slug ) {
+	$irmas = cdm_casca_irmas( $slug );
+	if ( count( $irmas ) < 2 ) {
+		return '';
+	}
+
+	$mapa = cdm_casca_arvore();
+	$html = '<nav class="cdm-veja" aria-label="Veja também"><h2>Veja também</h2>';
+
+	/* A frase da mãe só existe quando a mãe é página de conteúdo. No nível 1 a
+	   mãe é a home, que já é link pela marca e pelo primeiro degrau da trilha —
+	   uma frase apontando para ela seria ruído (ARVORE.md, seção 6). */
+	$mae     = $mapa[ $slug ]['mae'];
+	$url_mae = ( '' !== $mae ) ? cdm_casca_url_se_existir( $mae ) : '';
+	if ( '' !== $url_mae && isset( $mapa[ $mae ] ) ) {
+		$html .= '<p class="cdm-veja-mae">Esta página faz parte de <a href="' . esc_url( $url_mae ) . '">'
+			. esc_html( $mapa[ $mae ]['rotulo'] ) . '</a>.</p>';
+	} else {
+		$html .= '<p class="cdm-veja-mae">Os outros dois lados do Clube do Mosaico:</p>';
+	}
+
+	$html .= '<ul>';
+	foreach ( $irmas as $irma ) {
+		$html .= '<li><a href="' . esc_url( $irma['url'] ) . '">' . esc_html( $irma['rotulo'] ) . '</a></li>';
+	}
+	$html .= '</ul></nav>';
+
+	return $html;
+}
+}
+
+if ( ! function_exists( 'cdm_casca_trilha_impressa' ) ) {
+/* Uma trilha por página. O `static` vale numa requisição, que é uma página —
+   e é por isso que a bancada roda UM PROCESSO POR PÁGINA (seção 8). */
+function cdm_casca_trilha_impressa( $marcar = false ) {
+	static $impressa = false;
+	if ( $marcar ) {
+		$impressa = true;
+	}
+	return $impressa;
+}
+}
+
+/* A trilha entra no lugar do bloco core/post-title, ANTES do H1 — é o "abaixo
+   do header" da 16.3 num tema de blocos. */
+add_filter( 'render_block', function ( $conteudo, $bloco ) {
+	if ( is_admin() || ( defined( 'REST_REQUEST' ) && REST_REQUEST ) ) {
+		return $conteudo;
+	}
+	if ( 'core/post-title' !== ( isset( $bloco['blockName'] ) ? $bloco['blockName'] : '' ) ) {
+		return $conteudo;
+	}
+	if ( cdm_casca_trilha_impressa() ) {
+		return $conteudo;
+	}
+	$trilha = cdm_casca_trilha_html( cdm_casca_slug_atual() );
+	if ( '' === $trilha ) {
+		return $conteudo;
+	}
+	cdm_casca_trilha_impressa( true );
+
+	return $trilha . $conteudo;
+}, 10, 2 );
+
+/* Cinto de segurança: sem bloco core/post-title na página, a trilha sai no topo
+   do conteúdo. Prioridade 9 para ficar acima do que o conteúdo trouxer. */
+add_filter( 'the_content', function ( $html ) {
+	if ( is_admin() || ! is_singular() || cdm_casca_trilha_impressa() ) {
+		return $html;
+	}
+	$trilha = cdm_casca_trilha_html( cdm_casca_slug_atual() );
+	if ( '' === $trilha ) {
+		return $html;
+	}
+	cdm_casca_trilha_impressa( true );
+
+	return $trilha . $html;
+}, 9 );
+
+add_filter( 'the_content', function ( $html ) {
+	if ( is_admin() || ! is_singular() ) {
+		return $html;
+	}
+
+	return $html . cdm_casca_veja_tambem_html( cdm_casca_slug_atual() );
+}, 20 );
+
+add_action( 'wp_head', function () {
+	$dados = cdm_casca_trilha_jsonld( cdm_casca_slug_atual() );
+	if ( ! $dados ) {
+		return;
+	}
+	echo '<script type="application/ld+json" id="cdm-trilha-jsonld">'
+		. wp_json_encode( $dados ) . '</script>' . "\n";
+}, 7 );
 
 /**
  * A HOME, pelo molde LOJA do VOZ.md (seção 15.3 do contrato).

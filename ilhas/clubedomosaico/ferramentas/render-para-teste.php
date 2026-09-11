@@ -76,6 +76,17 @@ function is_admin(){ return false; } function did_action($h){ return 0; }
 function get_queried_object_id(){ return isset($GLOBALS['__id_atual']) ? (int) $GLOBALS['__id_atual'] : 0; }
 function is_404(){ return false; }
 function is_singular($t=''){ return true; }
+/* QUAL PAGINA ESTA SENDO SERVIDA. Sem isto a trilha da secao 16 nao teria como
+   existir na bancada: ela se monta a partir do caminho da pagina atual, e o
+   render montava toda pagina sem dizer qual era. O post_name e o ULTIMO nivel,
+   como no WordPress — o caminho inteiro quem remonta e a casca. */
+function get_post($p=null){
+	$caminho = isset($GLOBALS['__caminho_atual']) ? $GLOBALS['__caminho_atual'] : '';
+	if ('' === $caminho) { return null; }
+	$partes = explode('/', trim($caminho,'/'));
+	return (object) array('ID'=>1,'post_name'=>end($partes),'post_status'=>'publish');
+}
+function is_front_page(){ return !empty($GLOBALS['__e_home']); }
 /* A LOJA NAO TEM CPT ATE O BLOCO 4d. Devolver false aqui e o estado real do
    site hoje, e e o que faz o teste medir o ESTADO VAZIO HONESTO — que e
    justamente a parte da Loja que existe nesta versao. Quem for testar a Loja
@@ -178,30 +189,57 @@ function cdm_teste_carregar_options($raiz) {
  * Uma diferenca que importa: o cabecalho NAO passa pelo escape de "&", porque no
  * tema de blocos ele nao esta dentro do the_content. O conteudo, esse sim, passa.
  */
-function cdm_teste_titulo_da_pagina($tag) {
+/** O caminho da pagina que o shortcode $tag serve — 'materiais/como-sabemos'. */
+function cdm_teste_caminho_da_pagina($tag) {
 	if (!function_exists('cdm_casca_definicao_paginas')) { return ''; }
 	foreach (cdm_casca_definicao_paginas() as $slug => $def) {
-		if (isset($def['conteudo']) && $def['conteudo'] === '[' . $tag . ']') { return $def['titulo']; }
+		if (isset($def['conteudo']) && $def['conteudo'] === '[' . $tag . ']') { return $slug; }
 	}
 	return '';
+}
+
+function cdm_teste_titulo_da_pagina($tag) {
+	$caminho = cdm_teste_caminho_da_pagina($tag);
+	$defs = function_exists('cdm_casca_definicao_paginas') ? cdm_casca_definicao_paginas() : array();
+	return isset($defs[$caminho]['titulo']) ? $defs[$caminho]['titulo'] : '';
 }
 
 function cdm_teste_pagina($tag, $titulo = 'Clube do Mosaico — teste') {
 	$GLOBALS['__conteudo_pagina'] = '[' . $tag . ']';
 
+	/* QUEM E ESTA PAGINA. A casca le isto por get_post()/is_front_page() para
+	   montar a trilha; sem declarar, a bancada mediria toda pagina como se fosse
+	   uma so — e a trilha, que e por pagina, sairia igual nas nove. */
+	$GLOBALS['__caminho_atual'] = cdm_teste_caminho_da_pagina($tag);
+	$GLOBALS['__e_home']        = ('inicio' === $GLOBALS['__caminho_atual']);
+
 	/* O retorno CRU do shortcode fica guardado: e sobre ele que o teste afirma
 	   que nao ha <script> nem <style>. */
 	$GLOBALS['__retorno_shortcode'] = call_user_func($GLOBALS['__shortcodes'][$tag]);
-	$corpo = cdm_teste_escapar_conteudo( $GLOBALS['__retorno_shortcode'] );
+	$corpo_cru = cdm_teste_escapar_conteudo( $GLOBALS['__retorno_shortcode'] );
 
 	$marca     = apply_filters('render_block', '<!-- bloco do tema -->', array('blockName'=>'core/site-title'));
 	$cabecalho = apply_filters('render_block', '<!-- bloco do tema -->', array('blockName'=>'core/navigation'));
 
-	/* O H1 que o tema de blocos imprime a partir do titulo da pagina. */
+	/* A ORDEM AQUI E A DO TEMA DE BLOCOS, e ela decide onde a trilha sai.
+	   No site o bloco core/post-title renderiza ANTES do bloco de conteudo, e e
+	   por isso que a trilha (que entra no filtro daquele bloco) nasce acima do
+	   H1. A primeira versao desta bancada rodava the_content primeiro, o cinto
+	   de seguranca de prioridade 9 disparava, a trilha ia para dentro do corpo —
+	   e a medicao reprovou oito paginas por um defeito que so existia aqui.
+	   Render de bancada tem que servir o que o site serve (secao 8). */
 	$titulo_da_pagina = cdm_teste_titulo_da_pagina($tag);
 	$h1 = '' !== $titulo_da_pagina
-		? '<h1 class="wp-block-post-title">' . htmlspecialchars($titulo_da_pagina, ENT_QUOTES) . "</h1>\n"
+		? '<h1 class="wp-block-post-title">' . htmlspecialchars($titulo_da_pagina, ENT_QUOTES) . '</h1>'
 		: '';
+	$h1 = '' !== $h1
+		? apply_filters('render_block', $h1, array('blockName'=>'core/post-title')) . "\n"
+		: '';
+
+	/* So depois do post-title: e nele que o "Veja tambem" entra (prioridade 20)
+	   e que a trilha de contingencia entraria (prioridade 9) se o bloco de
+	   titulo nao existisse na pagina. */
+	$corpo = apply_filters('the_content', $corpo_cru);
 
 	ob_start(); do_action('wp_head');   $cabeca = ob_get_clean();
 	ob_start(); do_action('wp_footer'); $rodape = ob_get_clean();
@@ -215,16 +253,36 @@ function cdm_teste_pagina($tag, $titulo = 'Clube do Mosaico — teste') {
 		. $rodape . "</body>\n</html>\n";
 }
 
-if (isset($argv[1]) && basename(__FILE__) === basename($argv[0])) {
-	$alvo = isset($argv[2]) ? $argv[2] : 'cdm_home';
-	/* Num render solto as paginas do menu existem, para o cabecalho sair com os
-	   <a href> de verdade que o teste do menu precisa conferir. */
-	$GLOBALS['__paginas'] = array(
+/**
+ * AS PAGINAS QUE "EXISTEM" no site de teste.
+ *
+ *   'hoje'  — exatamente as nove que estao no ar em 11/09/2026.
+ *   'todas' — as nove MAIS as seis categorias do Guia, para FABRICAR A BORDA que
+ *             o mundo ainda nao tem: com tres secoes, nenhuma pagina chega a ter
+ *             cinco irmas candidatas, entao trocar o teto de 4 do 16.4(c) por 5
+ *             nao mudaria nada do que o site serve e o portao ficaria verde nas
+ *             duas versoes. Grade que nao pisa na borda e amostra com nome de
+ *             grade (secao 8 do ARQUIPELAGO.md).
+ */
+function cdm_teste_paginas_no_ar($modo = 'hoje') {
+	$hoje = array(
 		'loja'=>true,'materiais'=>true,'materiais/como-sabemos'=>true,'como-fazer'=>true,
 		'sobre'=>true,'contato'=>true,'divulgacao-de-afiliados'=>true,'privacidade'=>true,
 	);
+	if ('todas' !== $modo) { return $hoje; }
+	foreach (cdm_casca_categorias_do_guia() as $c) {
+		if (!empty($c['slug'])) { $hoje[$c['slug']] = true; }
+	}
+	return $hoje;
+}
+
+if (isset($argv[1]) && basename(__FILE__) === basename($argv[0])) {
+	$alvo = isset($argv[2]) ? $argv[2] : 'cdm_home';
+	$modo = isset($argv[3]) ? $argv[3] : 'hoje';
 	cdm_teste_carregar_options($argv[1]);
 	cdm_teste_carregar($argv[1]);
+	/* Depois de carregar a casca, porque o modo 'todas' le o registro dela. */
+	$GLOBALS['__paginas'] = cdm_teste_paginas_no_ar($modo);
 
 	echo cdm_teste_pagina($alvo);
 }

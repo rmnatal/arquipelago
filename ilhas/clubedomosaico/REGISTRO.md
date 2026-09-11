@@ -491,3 +491,97 @@ toda página existente, breadcrumb com `BreadcrumbList` e blocos "Veja também"
 (16.4). `/materiais/como-sabemos/` já nasceu dentro dela e serve de primeiro
 caso. Nenhuma categoria de nível 2 do Guia tem as 3 filhas que a 16.5 exige,
 então nenhuma nasce agora. Depois disso, o bloco 4 (a ferramenta F2).
+
+---
+
+## 11/09/2026 19h2xZ — A ÁRVORE DA SEÇÃO 16, e nenhuma URL se moveu
+
+Casca **1.3.0**, manifest na **revisão 7**. Bloco nomeado como próximo passo pela
+execução das 17h55Z e pelo despacho do Raphael de 11/09, cuja última linha dizia
+que a árvore era o bloco seguinte.
+
+**O que foi entregue**
+
+- **`ARVORE.md`** (item i do 16.8): os três níveis com slug, onde mora cada uma
+  das nove páginas que existem, o que está travado e por quê. É o mapa que os
+  blocos seguintes seguem — e o teste lê este arquivo para cobrar que documento e
+  código digam a mesma coisa, porque duas metades mantidas à mão em lugares
+  diferentes divergem em silêncio.
+- **Trilha (16.3)** em oito das nove páginas; a home não tem, que é o que a regra
+  manda. Ela nasce entre o cabeçalho e o H1, pelo filtro do bloco
+  `core/post-title`, com cinto de segurança no `the_content` para o caso de a
+  página não ter aquele bloco.
+- **`BreadcrumbList`** em JSON-LD nas mesmas oito.
+- **Cluster "Veja também" (16.4c)** nas três seções de nível 1, cada uma listando
+  as outras duas: é o ciclo LOJA → GUIA → ESCOLA, que é a razão de esta ilha ter
+  três motores num domínio só.
+
+**ESTA ILHA NASCEU COM A ÁRVORE CERTA E NÃO SABIA.** Nenhuma página mudou de
+endereço neste bloco, e nenhuma precisou: as três seções já eram nível 1, a única
+página de nível 2 já nascera com mãe em 1.2.0, e as quatro da raiz são exatamente
+as que a 16.1 admite ali. Por isso **não há um 301 sequer e o sitemap não muda** —
+o que faltava era a árvore ficar **visível** (trilha, schema, cluster), que é o
+que a 16.3 e a 16.4 pedem. Nas outras duas ilhas o nível 1 ainda é página
+inexistente e a trilha sai com degrau em texto; aqui os três degraus de topo são
+link de verdade desde o primeiro dia.
+
+**AS DUAS COISAS ERRADAS QUE ESTE BLOCO ACHOU SEM PROCURAR**
+
+1. **O registro do Guia e o `VOZ.md` discordavam nos slugs de duas categorias**
+   desde que a casca nasceu: o código dizia `materiais/colas` e `materiais/alicates`,
+   o `VOZ.md` dizia `colas-e-adesivos` e `alicates-e-corte`. Nada no repositório
+   cobrava os dois juntos, e a divergência só apareceria no dia em que a página
+   nascesse — quando já seria URL publicada, que não se move. **O dia de acertar
+   é o dia ANTES de a página existir.** Corrigido para o nome do `VOZ.md`, que é
+   quem manda no nome do nível (seção 15.1), e agora há trava: todo slug de
+   categoria do Guia tem que ser um nome escrito no `VOZ.md`.
+2. **O cartão da categoria que ainda não abre publicava contagem de banco** —
+   "5 no banco, ficha em construção". O número era certo e era contado do arquivo;
+   o problema é outro, e a 16.5 o nomeia: cartão que não é link diz "em breve",
+   **sem contagem**. É promessa com número colada num lugar que não se pode
+   visitar. O número não sumiu do site: continua na camada de prova do Guia e na
+   página Como sabemos (15.2), contado, que é onde quem quer conferir confere.
+   O campo `no_banco` continua existindo e continua sendo cobrado contra o
+   arquivo — o que mudou foi ele deixar de ir para a TELA daquele cartão.
+
+**O SCHEMA PUBLICA MENOS DO QUE A TRILHA MOSTRA, de propósito.** Um `ListItem`
+intermediário sem `item` invalida o `BreadcrumbList` inteiro para o Google, e
+lista inválida é lista ignorada — então o schema "mais completo", que levaria
+também o degrau sem página, publicaria MENOS com cara de publicar mais. Hoje isso
+não corta nada nesta ilha, porque os três degraus de nível 1 existem: a via foi
+escrita para o dia em que a primeira ficha de material nascer antes da categoria
+dela, que é o estado normal das outras duas ilhas.
+
+**A BANCADA ESTAVA MEDINDO FORA DE ORDEM, e a própria trava pegou.** A primeira
+versão do render rodava `the_content` **antes** do bloco de título. No site a
+ordem é a inversa — o `core/post-title` renderiza primeiro —, e por isso a trilha
+nasce acima do H1. Na bancada invertida o cinto de segurança de prioridade 9
+disparava, a trilha caía dentro do corpo, e **oito páginas foram reprovadas por
+um defeito que só existia na bancada**. Quarta vez que o Arquipélago paga por
+render que serve diferente do site; desta vez a conta veio em minutos porque a
+trava media a POSIÇÃO da trilha, não a presença dela.
+
+**AS DUAS MUTAÇÕES QUE PASSARAM, E POR QUE ELAS VALIAM MAIS QUE AS DEZESSETE QUE
+REPROVARAM.** `ferramentas/mutacoes-arvore.py` quebra a árvore de propósito, uma
+mutação por vez. Na primeira rodada, 17 de 19 reprovaram — e as duas que passaram
+não passaram por a trava ser fraca: passaram por serem **inertes**.
+
+- *"degrau de trilha vira link morto"* trocava o `<span>` do degrau sem página por
+  um `<a>`. Só que **nenhuma página desta ilha tem degrau sem página hoje**, então
+  o ramo nunca é executado e o site servido é byte a byte o mesmo.
+- *"cluster publicado com uma irmã só"* baixava o piso de 2 para 1 irmã. Só que
+  nenhuma página desta ilha tem **exatamente uma** irmã no ar — elas têm zero ou
+  duas.
+
+É a cicatriz da grade que não pisa na borda, com a borda faltando no **mundo** e
+não no teste. A saída foi a mesma do modo `todas` do render: **a bancada fabrica
+a borda**, aqui pelo filtro `cdm_arvore`, que é o mesmo por onde uma página nova
+entrará no mapa de verdade. As duas situações fabricadas são as duas que esta
+ilha vai ter — a ficha nascendo antes da categoria, e uma categoria com uma irmã
+só. Com elas, as 19 de 19 reprovam.
+
+**VERIFICAÇÃO em bancada:** `teste-casca.php` com **327 afirmações** (eram 198),
+um processo por página; `php -l` limpo nos dois snippets; `validar-banco.py`
+aprovado; `mutacoes-arvore.py` 19 de 19 reprovadas; `mutacoes-voz-e-cabeca.py`
+19 de 19 e `mutacoes-rejunte.py` 12 de 12 continuam reprovando (nada deste bloco
+afrouxou trava anterior).
