@@ -4998,3 +4998,121 @@ pasta, entao o proximo bloco que nao cria URL e a **reescrita na voz das paginas
 de `conteudo/`**, que o despacho da voz deixou marcada como pendente ("as de
 conteudo/ ainda nao foram"). Tudo que cria URL — as oito paginas de nivel 1 e 2,
 a troca de pai e de slug, a leva de malha — espera a leitura de 16/09.
+
+## 2026-09-11, 19h44Z — A VOZ CHEGA ÀS NOVE PÁGINAS DE conteudo/, e o título publicado vinha de outro lugar
+
+**Bloco entregue:** casca 1.5.1, artigos 1.2.0, manifest na revisão 48, `/status`
+conferido, as treze URLs abertas no ar. Nenhuma URL mudou — a condição da leitura
+de 16/09 continua respeitada.
+
+### O que o despacho da voz tinha deixado escrito à mão
+
+"Cada página existente continua sendo reescrita na voz ao passar pela ronda — as
+de `conteudo/` ainda não foram." Pendência escrita à mão não é portão, e foi
+assim que **as cinco calculadoras seguiram no ar com o H1 começando por
+"Calculadora de"** — a única forma de título que o `VOZ.md` proíbe pelo nome — e
+**oito dos nove `<title>` passando de 65 caracteres** (120, 128, 97…). Nada disso
+precisava de olho humano; precisava de alguém medindo.
+
+### UM NOME POR PÁGINA
+
+O degrau da trilha e o H1 ficam a uma linha um do outro na tela e, em 8 das 9
+páginas, diziam nomes diferentes: a trilha dizia "Quantos litros tem o seu
+aquário?" e o H1, logo abaixo, "Calculadora de litragem: quantos litros tem o seu
+aquário". A casca **já tinha** a voz certa nos rótulos desde 11/09; o que nunca
+foi tocado foi o `titulo` das páginas. Então os nove títulos passaram a ser o
+rótulo que a casca já publicava — nada foi inventado, uma divergência foi
+removida — e existe agora uma afirmação que cobra a igualdade.
+
+Nos três guias os títulos longos com parêntese sumiram e a manchete virou o nome
+único. Eles foram escolhidos para **não canibalizar a ferramenta do mesmo
+assunto**: o guia do aquecedor é "Por que o 1 W por litro erra para o mesmo lado"
+e a ferramenta é "Quantos watts de aquecedor você precisa?" — a ferramenta
+responde a pergunta, o guia responde o porquê. Era escolher entre duas opções
+defensáveis, e a Fundação escolheu: perde-se a cabeça da consulta no `<title>` do
+guia, que continua no slug, nos H2 e na `meta_descricao`.
+
+### PROCEDÊNCIA NÃO ABRE PÁGINA
+
+Os três artigos abriam por fabricante e data de coleta — "Coletadas em 08/09/2026
+e atribuídas ao próprio fabricante: Seachem Matrix, 1,25 mL por litro…" — **sem um
+único termo da lista de proibidas aparecer**. Lista de palavra não pega isso.
+
+A caixa da resposta direta passou a ter duas camadas: o primeiro parágrafo
+responde à pessoa na língua dela, e a procedência desce um parágrafo, **dentro da
+mesma caixa**, marcada com `aqm-prova`. A seção 5 continua inteira — quem cita a
+caixa leva a fonte junto — e a 15.2 passa a valer. Cinco páginas abriam falando da
+internet em vez de falar com quem entrou ("Pergunte na internet brasileira
+quantos watts…"); agora abrem pela resposta, em segunda pessoa.
+
+### O DEFEITO QUE SÓ O AR MOSTROU, e era a família inteira
+
+Depois do primeiro desembarque, **168 afirmações medidas no ar acharam o que 293
+afirmações verdes na bancada não podiam ver**: o corpo das nove páginas trocou e
+**os nove títulos não**.
+
+Duas fontes para o mesmo dado. Quem grava `post_title` é o Sync, e o Sync lê
+`titulo` do `manifest.json`; o front matter do `.md` ele nem abre. A bancada
+inteira renderizava do `.md`. E `atualizar-manifest.py` só recalculava `sha256` —
+`titulo` **nunca** foi reespelhado desde que o arquivo existe. Resultado: bancada
+verde, Sync respondendo "18 aplicado(s)", e o H1 e o `<title>` das nove
+continuando os de antes.
+
+Três consertos, e o do meio é o que fecha a família e não só este caso:
+1. `atualizar-manifest.py` relê o título do front matter e o reespelha, imprimindo
+   cada troca (8 nesta passada). O front matter manda.
+2. **`render-pagina-completa.php` passou a ler o título do MANIFEST.** A bancada
+   agora lê a mesma fonte que o site: manifest atrasado aparece na primeira
+   medição, não depois do desembarque.
+3. `conferir-slugs.py` cobra manifest == front matter e nomeia a ferramenta a
+   rodar. Provado mordendo: com o título velho de volta no manifest, reprova.
+
+De quebra, `render-pagina-completa.php` servia `\&quot;` num H1 que no ar sai com
+aspas curvas — o front matter é YAML e a aspa interna vem escapada. Calibrar o
+portão da voz nessa string seria medir o que não existe.
+
+### A LISTA DE MUTAÇÕES MENTIU POR UMA RODADA, pelo mesmo motivo
+
+Três mutações editavam o título no `.md` e ficaram **inertes** no instante em que
+a bancada mudou de fonte: 18 de 20, verdes sem medir nada. Agora mutam o
+manifest, que é a fonte que publica, e as três reprovam pela regra que existem
+para medir. Antes disso, outras duas já haviam passado por serem inertes — mutar
+o `titulo` do snippet dos artigos não move o H1 (ele vem do front matter), e
+trocar meia frase deixava "você" no resto do parágrafo. **Mutação que não morde
+não prova nada, e o jeito de descobrir é ela ficar verde.**
+
+### VERIFICAÇÃO
+
+- `teste-voz.mjs`: de **4 para 13 páginas** e de **86 para 293 afirmações**. As
+  nove de `conteudo/` montadas pelo `render-pagina-completa.php`, um processo por
+  página. Régua nova: procedência não abre página (fabricante e data de leitura
+  fora do primeiro parágrafo), degrau da trilha igual ao H1, H1 único na ilha,
+  `<title>` ≤ 65, âncora interna pela consulta do destino, segunda pessoa no
+  primeiro parágrafo — **com o limite desta última declarado no próprio teste**:
+  ela não pega manifesto que diga "você" na primeira linha. Quem julga manifesto
+  é a ronda (15.4).
+- `mutacoes-voz.py`: de 11 para **20 mutações, 20 reprovadas**.
+- `teste-arvore.mjs`, `teste-seo-tecnico.php` (177), `conferir-slugs.py`,
+  `conferir-protecao-funcoes.py` (10 snippets) e `validar-produtos.py` (78
+  produtos, 0 erro) sem falha. `php -l` limpo nos 10 snippets.
+- Chromium: **224 medições** nas treze páginas em 360/390/781/782/783/1200 com 0
+  px de rolagem, mais os três artigos no `teste-navegador-artigos.mjs`.
+- **NO AR, às 19h44Z:** 13 de 13 em HTTP 200, **160 afirmações medidas no HTML
+  servido, 0 falha** — nove H1 novos, nove `<title>` dentro de 65, trilha e H1
+  iguais nas nove, nenhum fabricante e nenhuma data no primeiro parágrafo, zero
+  `&#038;` dentro de `<script>`.
+- 39 dos 78 produtos esperam link de afiliado (**não mudou**; este bloco não tocou
+  em catálogo). Pauta da seção 17: `pauta.md` ainda não existe nesta pasta — 0
+  temas escritos, 0 na fila, 0 recusados.
+- `package.json` entrou na pasta declarando a dependência da bancada
+  (`playwright`), que esta execução descobriu pelo erro. O Chromium não se baixa:
+  já vem em `/opt/pw-browsers`.
+
+### Próximo passo desbloqueado
+
+A voz fechou em toda página que existe. **Tudo que cria URL continua travado até a
+leitura de 16/09** (item 5 do despacho da Sentinela e o T2 deste arquivo), e a
+`pauta.md` da seção 17 ainda não existe nesta pasta. Sobram, sem criar URL: o
+banco de espécies (T3d), que destrava "quantos litros para X peixes"; o catálogo
+de iluminação por faixa (T3a); e a vitrine nas calculadoras que ainda não a têm.
+O T3d é o de maior valor porque é o eixo que a Bússola verificou aberto.
