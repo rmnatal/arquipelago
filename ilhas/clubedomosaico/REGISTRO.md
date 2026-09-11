@@ -167,3 +167,83 @@ proximo passo desbloqueado.
   (casca) e o bloco 4 (ferramentas) continuam dependendo so de o WordPress existir.
 
 11/09/2026 — sessão de conversa: decisões do Raphael gravadas — artesã aparece com nome/foto/redes; botão Verificar disponibilidade + leads por e-mail; acesso do painel vai direto para a artesã.
+
+11/09/2026 11:49Z — BLOCO 3b ENTREGUE: a casca da ilha (commitada e verificada; NAO esta no ar)
+
+- `snippets/clubedomosaico-casca.php` v1.0.0, manifest na revisao 4 com `publicar: true` e
+  `ativo: true`. Oito paginas criadas e mantidas por shortcode: inicio, loja, materiais,
+  como-fazer, sobre, contato, divulgacao-de-afiliados e privacidade. Cabecalho e rodape pretos
+  com o miolo branco, menu sanfona com aria-expanded/aria-controls, favicon proprio no lugar do
+  icone do WordPress, JSON-LD Organization + WebSite em toda pagina, apelidos com 301 e a trava
+  do sitemap 404.
+  sha256 casca: `9b678bcffd00fc75261a6769d64777c2b6d1be1e3fb56e02398bd9d627753001`
+- Ferramentas de bancada que nasceram junto, nenhuma publicada no site:
+  `ferramentas/gerar-favicon.php`, `ferramentas/render-para-teste.php`,
+  `ferramentas/teste-casca.php` e `ferramentas/teste-navegador-casca.mjs`.
+
+- **O QUE ESTA CASCA TEM DE PROPRIO**, e que nao foi copiado de Aquametria nem de Robometria:
+  (1) **a marca e uma imagem ENTREGUE, nao um desenho do snippet.** As duas primeiras ilhas
+  desenham o simbolo em SVG dentro do codigo; aqui o logo foi feito por gente e o `PROMPT.md`
+  proibe redesenhar, vetorizar ou escrever o nome ao lado do arquivo, que ja traz o wordmark. O
+  teste reprova se aparecer um `<svg>` de logotipo ou se o nome for repetido em texto dentro do
+  bloco da marca.
+  (2) **tres motores, tres catalogos.** Loja, Guia e Escola nao cabem num catalogo de
+  "ferramentas": a casca tem `cdm_casca_ferramentas()`, `cdm_casca_categorias_do_guia()` e
+  `cdm_casca_tutoriais()`, e o cartao de categoria do Guia diz **quantos itens ela tem no banco**
+  em vez de um "em breve" generico — e esse numero que separa promessa de trabalho feito.
+  (3) **a Loja tem estado vazio honesto, e ele e testado nos DOIS estados.** O catalogo de pecas
+  vive no CPT que a artesa alimenta (bloco 4d) e nunca no repositorio, entao hoje a Loja mostra
+  "em breve, e sem peca de mentira ate la". O teste simula o CPT com duas pecas e exige que a
+  vitrine apareca e o estado vazio suma — sem isso, uma vitrine que nunca mostra peca nenhuma
+  passaria despercebida.
+  (4) A casca nasce com a **trava do sitemap 404** que a Robometria so descobriu depois de
+  publicar: ilha sem post publicado faz o `wp-sitemap.xml` sair com o XML certo e status 404.
+
+- **VERIFICACAO** (secao 8): `php -l` limpo; `teste-casca.php` com **127 afirmacoes** e
+  `teste-navegador-casca.mjs` com **33 medicoes** num Chromium de verdade — rolagem horizontal
+  **0 px** em 360/390/781/782/783/1200 px nas oito paginas, o botao do menu aparecendo e sumindo
+  na borda exata dos 782 px, contraste 21:1 no cabecalho e no rodape e 17,6:1 no corpo (formula da
+  WCAG escrita dentro do proprio teste), e a **mesma pagina com o JavaScript DESLIGADO** servindo
+  os quatro links do menu visiveis e o corpo inteiro, que e o que o crawler de IA recebe.
+
+- **QUINZE MUTACOES DELIBERADAS, e o que elas custaram.** Treze reprovaram de primeira. **Duas
+  passaram**, as duas na mesma trava — a de escassez inventada —, e reescreve-la duas vezes foi o
+  trabalho mais util do bloco:
+  1. A 1a versao procurava o termo no corpo inteiro com excecao para algumas negacoes escritas a
+     mao. Reprovou a pagina Sobre, que diz com todas as letras que **nao** publica selo de mais
+     vendido. Regua que reprova a frase certa.
+  2. A 2a versao separava o corpo em frases e perdoava a frase com qualquer negacao. A mutacao
+     "a ficha tecnica do silicone acetico mais vendido do Brasil lista ... entre as superficies em
+     que o produto **nao** deve ser usado" **passou**: o "nao" da frase negava outra coisa.
+     Perdoar por presenca de palavra e adivinhar.
+  3. A 3a versao, que ficou: a pagina **declara no markup** qual bloco e recusa
+     (`class="cdm-nao-fazemos"`), o teste retira esses blocos e proibe o termo em todo o resto. E
+     para a declaracao nao virar porta dos fundos, exige que **todo bloco marcado ABRA negando** —
+     porque a mutacao seguinte enfiou "Peca mais vendido, ultimas unidades!" dentro do bloco de
+     recusa e passou enquanto a regra so pedia negacao em algum lugar dele.
+- **A 2a versao, antes de ser reprovada, achou um defeito de verdade escrito pela propria
+  Fundacao**: a home chamava o produto de "o silicone acetico **mais vendido** para construcao" —
+  numero de venda que esta ilha nunca mediu e nao pode afirmar (secao 7). Corrigido para o nome do
+  produto. E a trava de "a pagina medida tem tamanho de pagina" reprovou duas paginas finas demais
+  para o indice de um dominio novo (como-fazer com 971 e contato com 1194 caracteres de corpo); as
+  duas ganharam conteudo real, tirado do banco e nao de enchimento, e hoje tem 2.716 e 1.813.
+
+- **O DESEMBARQUE NAO ACONTECEU, e isso nao e detalhe.** `curl` para
+  `https://clubedomosaico.com.br/...` devolveu **000**, e o `$HTTPS_PROXY/__agentproxy/status`
+  registrou `connect_rejected: gateway answered 403 to CONNECT` para
+  `clubedomosaico.com.br:443` as 11h19Z. A secao 4 do contrato manda testar antes de presumir
+  bloqueio — foi testado, duas vezes, e falhou. Entao **a casca esta no `main` e nao esta no ar**:
+  o site continua servindo o tema padrao do WordPress. O item fica aberto e e de uma linha: acionar
+  o Sync da ilha e conferir no `/status` que a revisao aplicada e a **4**. Quem tiver o dominio na
+  rede Personalizada do ambiente faz isso em um minuto. "Aplicado com sucesso" nao foi dito aqui
+  porque nao foi medido.
+
+- 5 itens do banco esperando link de afiliado e 5 sem imagem — os mesmos cinco da categoria cola,
+  inalterados: este bloco nao coletou dado nenhum, e nao devia.
+- Nao houve memoria disponivel nesta execucao (`/areas` nao existe no ambiente), como nos blocos
+  1, 2 e 3. O estado vive no `ESTADO.md` desta pasta.
+- Proximo passo desbloqueado: **bloco 4 — a ferramenta F2** (seletor de cola e rejunte), que o
+  esquema do bloco 3 ja deixou especificado com as 18 celulas recomputadas e as regras de
+  elegibilidade executaveis. Ela agora tem casca para viver dentro, catalogo que a lista e pagina
+  de divulgacao de afiliados ja publicada, que era o que faltava. Alternativa que nao depende de
+  nada: as categorias REJUNTE e PASTILHA do banco.

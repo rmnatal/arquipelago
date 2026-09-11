@@ -4,15 +4,27 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 3,
-  "atualizado_em": "2026-09-10",
+  "revisao": 4,
+  "atualizado_em": "2026-09-11",
   "estado": "nascendo",
   "desembarque": {
     "aprovado": true,
     "decidido_em": "2026-09-10",
     "observacao": "Desembarque automatico por forca da secao 10 do ARQUIPELAGO.md, que vale para toda ilha: ferramenta, pagina-ancora, artigo, pagina de entidade e snippet vao ao ar com publicar=true sem consulta. Continua exigindo aprovacao humana (publicar=false) apenas conteudo programatico em escala."
   },
-  "snippets": [],
+  "snippets": [
+    {
+      "id": "casca",
+      "nome": "Clube do Mosaico Casca",
+      "arquivo": "snippets/clubedomosaico-casca.php",
+      "escopo": "global",
+      "ativo": true,
+      "publicar": true,
+      "versao": "1.0.0",
+      "sha256": "9b678bcffd00fc75261a6769d64777c2b6d1be1e3fb56e02398bd9d627753001",
+      "descricao": "Bloco 3b: a casca da ilha. Da cara de Clube do Mosaico ao tema ativo sozinha, sem construtor de pagina e sem plugin de tema — paleta e tipografia da ilha no wp_head, cabecalho e rodape PRETOS com o miolo branco (o logo vive sobre preto puro), menu sanfona com aria-expanded e aria-controls cujos links sao <a href> de verdade no HTML servido, favicon proprio no lugar do icone do WordPress, JSON-LD Organization + WebSite em toda pagina, e as oito paginas da ilha criadas e mantidas por shortcode: inicio, loja, materiais, como-fazer, sobre, contato, divulgacao-de-afiliados e privacidade. O que esta casca tem de proprio, e que nao foi copiado das duas primeiras ilhas: a marca e uma IMAGEM ENTREGUE e nao um SVG desenhado no snippet (o PROMPT.md proibe redesenhar o logo, e o teste reprova se aparecer um <svg> de logotipo ou se o nome for escrito em texto ao lado do arquivo, que ja traz o wordmark); a ilha tem TRES motores em vez de um, entao ha tres catalogos — ferramentas, categorias do Guia e tutoriais — e nao um so; e a Loja tem ESTADO VAZIO HONESTO, porque o catalogo de pecas vive no CPT que a artesa alimenta (bloco 4d) e nunca no repositorio. Traz de nascenca a trava do sitemap 404 que a Robometria so descobriu depois de publicar: ilha sem post publicado faz o wp-sitemap.xml sair com status 404, e o filtro pre_handle_404 corrige isso so na requisicao de sitemap."
+    }
+  ],
   "conteudo": [],
   "dados": [
     {
@@ -89,6 +101,30 @@
       "arquivo": "ferramentas/validar-banco.py",
       "sha256": "ac3f1f6001ea405f26303b3ecf6a82092329926701070ee686eb61909db27f3a",
       "descricao": "Verifica o banco contra dados/esquema-banco.json sem rede e sem dependencia: campos obrigatorios, vocabularios, fonte por campo tecnico, nivel de fonte, afiliado presente mesmo vazio, contagem declarada no cabecalho e passo de fabrica das pastilhas. O principal: RECOMPUTA as 18 celulas da matriz da F2 pelas cinco regras de elegibilidade e falha se o banco e a pagina se separarem. E a implementacao de referencia que o snippet PHP do bloco 4 tem que repetir. NUNCA e publicada no site."
+    },
+    {
+      "id": "gerar-favicon",
+      "arquivo": "ferramentas/gerar-favicon.php",
+      "sha256": "f35b5c897a33be98d58ef2a9fbad44d10f69a1da0671f2e8773a968d1e74f363",
+      "descricao": "Le identidade/logo/favicon-32.png e grava o base64 dele dentro do snippet da casca, entre os marcadores FAVICON-INICIO/FIM. Diferente da ferramenta homonima da Robometria, que DESENHA o icone: aqui o simbolo e arte entregue e o PROMPT.md proibe redesenhar. Confere que o arquivo e mesmo um PNG de 32x32 antes de embutir. NUNCA e publicada no site."
+    },
+    {
+      "id": "render-para-teste",
+      "arquivo": "ferramentas/render-para-teste.php",
+      "sha256": "8bce042cc987fe7941895b1ab33f7c0cf4822eeb9cc4fcf891a8f91a225609ae",
+      "descricao": "Monta uma pagina do site fora do WordPress para poder medir o HTML servido sem depender do site no ar — necessario porque o gateway da rede das rotinas respondeu 403 ao CONNECT para clubedomosaico.com.br em 11/09/2026. Imita de verdade os ganchos wp_head/wp_footer com prioridade, o escape de '&' que os filtros do the_content aplicam ao retorno do shortcode, e o remove_action casando gancho + funcao + prioridade. Carrega nas options o que o Sync carrega, pela cicatriz da bancada pela metade (secao 8). NUNCA e publicada no site."
+    },
+    {
+      "id": "teste-casca",
+      "arquivo": "ferramentas/teste-casca.php",
+      "sha256": "c95b86054553b4b5a43d77adfc5b54381a814db2da749a8ddd850923d4788418",
+      "descricao": "127 afirmacoes medidas sobre a casca, sem site e sem rede: script fora do retorno do shortcode, zero &#038; DENTRO de <script>, menu acessivel, favicon proprio conferido contra o PNG commitado, JSON-LD, marca entregue e nao redesenhada, paleta fechada, Loja nos DOIS estados (com e sem peca cadastrada), zero link para pagina inexistente, os numeros da tela contra o banco, a escada de fontes contra o esquema, o filtro de sitemap e a higiene da fase 4b. As reguas sao proprias: nenhum esperado e perguntado a casca. Quinze mutacoes deliberadas reprovaram, e DUAS delas reescreveram o teste — a regra de escassez inventada so passou a medir alguma coisa na terceira versao, quando deixou de adivinhar negacao por palavra e passou a exigir que a pagina DECLARE no markup qual bloco e recusa. NUNCA e publicada no site."
+    },
+    {
+      "id": "teste-navegador-casca",
+      "arquivo": "ferramentas/teste-navegador-casca.mjs",
+      "sha256": "fdb3e79f210a7c8a642c17c61b80ad2bde6729459ea6f644b2cc3ad0fe134bb9",
+      "descricao": "33 medicoes da casca num Chromium de verdade, que e onde aparece o que o HTML vira depois de o CSS ser aplicado: rolagem horizontal zero em 360/390/781/782/783/1200 px nas oito paginas, o botao do menu aparecendo e sumindo na borda exata dos 782 px, abrir/fechar com aria-expanded honesto e Escape devolvendo o foco, area de toque do botao, contraste calculado pela formula da WCAG escrita dentro do proprio teste (21:1 no cabecalho e no rodape, 17,6:1 no corpo) e — o caso que justifica o desenho todo — a MESMA pagina com o JavaScript DESLIGADO, que e o que o crawler de IA recebe, exigindo os quatro links do menu visiveis e o corpo inteiro. A trava 0 confere antes de tudo que a pagina medida tem TAMANHO DE PAGINA. NUNCA e publicada no site."
     }
   ],
   "esquema": {

@@ -2,9 +2,9 @@
 ilha: clubedomosaico
 estado: nascendo
 prioridade: 2
-ultima_execucao: 2026-09-10T23:16Z
-executando_desde: 2026-09-11T11:18Z
-bloco_atual: "3 ENTREGUE: o modelo do banco (MATERIAL, PECA, TECNICA, COTACAO) em dados/esquema-banco.json, a categoria COLA com 5 registros reais em dados/materiais-colas.json e o verificador ferramentas/validar-banco.py. Manifest na revisao 3, tudo com publicar=false, sem Sync. NENHUM dado novo foi coletado: os 5 registros sao a transposicao campo a campo do bloco 2, com a mesma fonte e a mesma data. O que o bloco acrescenta e estrutura executavel — a lista literal do fabricante virou campo COM PESO (indicado, proibido, nao recomendado, delimita ambiente, resiste a ambiente), e por isso as 18 celulas da matriz da F2 sao RECOMPUTADAS das declaracoes em vez de lidas. O validador recomputou as 18 e bateu; tres testes negativos (apagar a proibicao de espelho da BRSA004, promover o press release do Durepoxi a nivel 3, criar dados/pecas.json) fizeram-no falhar como devia. QUATRO ACHADOS que corrigem a matriz escrita a mao no bloco 2: (1) a cimentcola AC-II NAO tem declaracao de substrato — o que a coleta obteve nomeia a peca assentada, entao ela sai dos recomendados e quem responde base de cimento e o silicone neutro; (2) ceramica e vidro em ambiente comum sao EMPATE entre acetico e neutro, e a pagina lista os dois em vez de fingir preferencia; (3) em sol e chuva o acetico nao fica em segundo, fica FORA, porque ambiente critico exige declaracao explicita; (4) MDF molhado e externo TEM resposta (neutro declara madeira, chuva e UV), ao contrario do que a especificacao dizia. 5 itens esperando link de afiliado, 5 sem imagem. Proximo: bloco 3b (casca) depende do WordPress; sem ele, a categoria REJUNTE ou PASTILHA do banco, que nao depende de site"
+ultima_execucao: 2026-09-11T11:49Z
+executando_desde: null
+bloco_atual: "3b ENTREGUE: a CASCA da ilha. snippets/clubedomosaico-casca.php v1.0.0 no manifest com publicar=true (revisao 4), mais quatro ferramentas de bancada. Oito paginas criadas e mantidas por shortcode — inicio, loja, materiais, como-fazer, sobre, contato, divulgacao-de-afiliados e privacidade —, cabecalho e rodape pretos com o miolo branco, menu sanfona acessivel, favicon proprio e JSON-LD Organization + WebSite. O QUE ESTA CASCA TEM DE PROPRIO: a marca e a IMAGEM entregue pelo Raphael, nao um SVG desenhado no snippet, e o teste reprova se aparecer logotipo em <svg> ou se o nome for escrito ao lado do arquivo (que ja traz o wordmark); a ilha tem TRES motores, entao ha tres catalogos (ferramentas, categorias do Guia, tutoriais); e a Loja tem ESTADO VAZIO HONESTO, medido nos DOIS estados, porque o catalogo vive no CPT da artesa (4d) e nunca no repositorio. Trouxe de nascenca a trava do sitemap 404 que a Robometria so achou depois de publicar. VERIFICACAO: 127 afirmacoes no teste-casca.php e 33 medicoes em Chromium (rolagem 0 px em 360/390/781/782/783/1200 nas oito paginas, contraste 21:1 no cabecalho e 17,6:1 no corpo, e a MESMA pagina com JavaScript desligado servindo os 4 links do menu e o corpo inteiro). QUINZE MUTACOES deliberadas: treze reprovaram de primeira e DUAS passaram, as duas na mesma trava — a de escassez inventada, que so virou medicao na terceira versao, quando deixou de adivinhar negacao por palavra e passou a exigir que a pagina DECLARE no markup qual bloco e recusa. Antes disso ela ja tinha achado um defeito escrito pela propria Fundacao: a home chamava o produto de 'o silicone acetico mais vendido', numero de venda que a ilha nunca mediu. A trava de tamanho de pagina tambem reprovou duas paginas finas demais (como-fazer com 971 e contato com 1194 caracteres) e as duas ganharam conteudo real do banco antes de passar. NAO ESTA NO AR: o gateway da rede deste ambiente respondeu 403 ao CONNECT para clubedomosaico.com.br, entao o Sync nao pode ser acionado desta execucao — o commit esta no main e o desembarque fica aberto para a proxima execucao ou para a Sentinela. Proximo: bloco 4 (ferramenta F2, o seletor de cola e rejunte), que o esquema do bloco 3 ja deixou especificado"
 ultima_ronda: null
 bloqueada_por: null
 ---
@@ -22,8 +22,17 @@ Espelho legível do estado do projeto. **Nunca guarde credencial aqui.**
 - Snippet de Sync: "Clube do Mosaico Sync" v1.1.5, snippet #5, ATIVO desde 11/09/2026; primeiro sync leu a revisão 3 (0 aplicados, 5 aguardando desembarque). Endpoints no PROMPT.md.
 - Logo: logo completo e favicon subidos pelo Raphael na biblioteca de mídia em 11/09/2026 (URLs no PROMPT.md); lótus transparente e favicons em identidade/logo/.
 - E-mail da artesã (usuário `artesa` e notificações de lead): mina196@hotmail.com
+- Casca: snippet "Clube do Mosaico Casca" v1.0.0, `publicar: true` no manifest (revisão 4). **Commitada e verificada
+  em bancada, ainda NÃO aplicada no site** — ver "O que está travando".
 
 ## O que já foi entregue
+- 11/09/2026 — **Bloco 3b: a casca da ilha**, em `snippets/clubedomosaico-casca.php` v1.0.0
+  (manifest na revisão 4, `publicar: true`, `ativo: true`). Oito páginas por shortcode: início,
+  loja, materiais, como-fazer, sobre, contato, divulgação de afiliados e privacidade. Cabeçalho e
+  rodapé pretos com miolo branco, menu sanfona acessível, favicon próprio embutido a partir do PNG
+  entregue, JSON-LD Organization + WebSite. Vieram junto quatro ferramentas de bancada:
+  `gerar-favicon.php`, `render-para-teste.php`, `teste-casca.php` (127 afirmações) e
+  `teste-navegador-casca.mjs` (33 medições em Chromium).
 - 10/09/2026 — Pesquisa de palavras-chave e SERP (na memória `/areas/projeto-clube-do-mosaico.md`) e estratégia aprovada em conversa (artifact "Clube do Mosaico").
 - 10/09/2026 — **Bloco 3: modelo do banco** em `dados/esquema-banco.json`, a categoria
   COLA em `dados/materiais-colas.json` (5 registros) e o verificador
@@ -92,6 +101,18 @@ Espelho legível do estado do projeto. **Nunca guarde credencial aqui.**
   galvanizada.
 
 ## O que está travando
+- **A CASCA NÃO ESTÁ NO AR.** O código está no `main` com `publicar: true`, mas o Sync não pôde ser
+  acionado desta execução: o gateway da rede deste ambiente respondeu **403 ao CONNECT** para
+  `clubedomosaico.com.br` (medido às 11h19Z de 11/09/2026, e conferido no
+  `$HTTPS_PROXY/__agentproxy/status`, que registrou o `connect_rejected`). A seção 4 do contrato
+  manda testar antes de presumir bloqueio; foi testado. Fica aberto: basta uma execução cujo
+  ambiente tenha o domínio na rede Personalizada rodar o Sync da ilha e conferir no `/status` que a
+  revisão aplicada é a **4**. Enquanto isso, o site continua servindo o tema padrão do WordPress.
+- **Caixa `contato@clubedomosaico.com.br` não existe ainda.** O adendo 3 do `PROMPT.md` pede que ela
+  seja criada no cPanel (ou que o SPF/DKIM do domínio seja garantido) para o e-mail de lead do bloco
+  4d chegar ao Hotmail da artesã. Não é trabalho da Fundação: exige o painel da hospedagem. Por isso
+  a página `/contato/` publicada **não** anuncia endereço de e-mail — diz que o canal está sendo
+  configurado, em vez de publicar um endereço que devolveria a mensagem.
 - **Substrato da cimentcola AC-II** (achado do bloco 3): sem ele, a base de cimento fica
   respondida só pelo silicone neutro. Está no Boletim Técnico 2024-09 da Quartzolit, que a
   nuvem não abre. Não bloqueia publicação.
@@ -117,3 +138,9 @@ Espelho legível do estado do projeto. **Nunca guarde credencial aqui.**
 
 ## Pendências do Raphael (não travam)
 - Nome, foto e perfis de redes sociais da artesã para o Sobre — decidido em 11/09/2026 que ela aparece.
+  A casca já publica o Sobre com o bloco dela pronto: escreve "uma artesã", sem nome de fantasia e sem
+  foto genérica, e o teste reprova se alguém inventar um nome. Chegando à pasta `identidade/artesa/`,
+  entram também o `sameAs` do JSON-LD, que hoje está deliberadamente ausente.
+- **Domínio da ilha na rede Personalizada do ambiente das rotinas.** Enquanto `clubedomosaico.com.br`
+  não estiver na lista, nenhuma execução da Fundação consegue acionar o Sync nem conferir o `/status`,
+  e todo bloco publicável desta ilha vai ficar commitado sem ir ao ar. Foi o que aconteceu no 3b.
