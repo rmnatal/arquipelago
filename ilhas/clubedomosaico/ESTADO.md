@@ -20,7 +20,7 @@ Espelho legível do estado do projeto. **Nunca guarde credencial aqui.**
 - Search Console: propriedade `sc-domain:clubedomosaico.com.br` criada; TXT `google-site-verification=KWnwrQz3FOTs0Bln_y9EpjPhjJrWKwzpT2fi68L-2uA` gravado na zona (serial 2026091004). Verificação falhou na primeira tentativa porque o Google ainda via o DNS do registro.br — repetir depois da propagação.
 - WordPress: pendente (depende do DNS resolver).
 - Snippet de Sync: `snippets/clubedomosaico-sync.php` pronto no repositório; instalação no site pendente.
-- Logo: **pendente — o Raphael vai entregar o arquivo exato.** Até lá a casca usa só o wordmark tipográfico.
+- Logo: símbolo (lótus) e favicons entregues em 11/09/2026 em `identidade/logo/`; wordmark nítido ainda pendente (casca usa texto).
 
 ## O que já foi entregue
 - 10/09/2026 — Pesquisa de palavras-chave e SERP (na memória `/areas/projeto-clube-do-mosaico.md`) e estratégia aprovada em conversa (artifact "Clube do Mosaico").
@@ -95,7 +95,6 @@ Espelho legível do estado do projeto. **Nunca guarde credencial aqui.**
   respondida só pelo silicone neutro. Está no Boletim Técnico 2024-09 da Quartzolit, que a
   nuvem não abre. Não bloqueia publicação.
 - Loja: depende da mãe do Raphael cadastrar peças na área da artesã (bloco 4d, snippet de CPT). O login é criado pelo snippet e entregue ao Raphael. Não bloqueia os blocos 1–3.
-- Logo: arquivo a receber do Raphael. Bloqueia só o favicon e o logo da casca.
 - CPC por consulta: o Planejador está na conta do Raphael, no navegador. Ficou declarado como ausente no corpus, nunca estimado. Coluna a preencher na primeira leitura semanal com o painel aberto.
 - SERP de `colar de mosaico` e `mandala de mosaico`: não verificadas nesta execução, e estão escritas assim no corpus.
 - **Coluna de gramas de cola da F1**: falta o consumo em kg/m² da cimentcola AC-II/AC-III e o
