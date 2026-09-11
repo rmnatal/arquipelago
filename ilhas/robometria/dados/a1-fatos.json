@@ -563,16 +563,16 @@
   ],
   "perguntas": [
     {
-      "pergunta": "Existe filtro universal para robo aspirador?",
-      "resposta": "Nao. Nas 16 pecas de reposicao com compatibilidade declarada pelo fabricante que a Robometria conferiu, nenhuma e declarada para modelos de mais de uma marca, e a lista mais longa do banco nomeia 5 codigos de modelo, todos da mesma marca."
+      "pergunta": "Existe filtro universal para robô aspirador?",
+      "resposta": "Não. Nas 16 peças de reposição com compatibilidade declarada pelo fabricante que a Robometria conferiu, nenhuma é declarada para modelos de mais de uma marca, e a lista mais longa do banco nomeia 5 códigos de modelo, todos da mesma marca."
     },
     {
-      "pergunta": "Uma peca que serve num modelo da marca serve nos outros modelos dela?",
-      "resposta": "Nem sempre, e o proprio catalogo dos fabricantes mostra isso: as 6 pecas da Electrolux no banco formam 6 conjuntos de modelos diferentes. Compatibilidade e declarada por codigo de peca, uma a uma, e nao se herda de uma peca para a seguinte."
+      "pergunta": "Uma peça que serve num modelo da marca serve nos outros modelos dela?",
+      "resposta": "Nem sempre, e o próprio catálogo dos fabricantes mostra isso: as 6 peças da Electrolux no banco formam 6 conjuntos de modelos diferentes. Compatibilidade é declarada por código de peça, uma a uma, e não se herda de uma peça para a seguinte."
     },
     {
-      "pergunta": "Como descobrir o codigo da peca certa para o meu robo aspirador?",
-      "resposta": "Procurando o modelo na lista de compatibilidade publicada pelo proprio fabricante. A Robometria reune essas listas: sao 33 pares peca x modelo em 5 marcas, todos declarados pelo fabricante e nenhum inferido, cada um com o endereco da declaracao e a data em que ela foi verificada."
+      "pergunta": "Como descobrir o código da peça certa para o meu robô aspirador?",
+      "resposta": "Procurando o modelo na lista de compatibilidade publicada pelo próprio fabricante. A Robometria reúne essas listas: são 33 pares peça × modelo em 5 marcas, todos declarados pelo fabricante e nenhum inferido, cada um com o endereço da declaração e a data em que ela foi verificada."
     }
   ]
 }

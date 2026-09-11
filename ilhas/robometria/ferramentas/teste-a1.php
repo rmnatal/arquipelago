@@ -390,9 +390,19 @@ rbm_ok( false !== strpos( $hub, '/filtro-universal-de-robo-aspirador/' ),
 	'listagem 2: o hub de ferramentas lista o artigo' );
 
 /* O artigo se registrou no catalogo da casca — e nao foi a casca que ganhou uma
-   copia dele dentro. */
+   copia dele dentro.
+   A medida NAO e "o catalogo tem exatamente um artigo": ela era, e reprovou no
+   dia em que a ilha ganhou o segundo (A2, em 10/09/2026). Exigir o tamanho do
+   catalogo confundia "este artigo se registrou" com "este e o unico artigo" — e
+   a segunda afirmacao nao e sobre o A1. O que importa aqui e que o A1 esteja no
+   catalogo tendo entrado pelo FILTRO, e que a casca continue sem uma copia dele
+   escrita dentro (medido logo abaixo, na fonte da casca). */
 $catalogo = robometria_casca_artigos();
-rbm_ok( 1 === count( $catalogo ) && 'A1' === $catalogo[0]['codigo'],
+$tem_a1 = false;
+foreach ( $catalogo as $a ) {
+	if ( 'A1' === $a['codigo'] ) { $tem_a1 = true; }
+}
+rbm_ok( $tem_a1,
 	'o artigo se registra pelo filtro, e a casca nao carrega copia dele',
 	count( $catalogo ) . ' artigo(s) no catalogo' );
 

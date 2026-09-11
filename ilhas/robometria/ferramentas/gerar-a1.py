@@ -238,6 +238,15 @@ def perguntas(fatos):
     Cada uma e uma formulacao real do corpus (dados/corpus-buscas.md, cluster
     A1), e cada resposta e uma frase que a propria pagina serve. Pergunta em
     JSON-LD que a pagina nao responde e marcacao que promete o que nao entrega.
+
+    O TEXTO DAQUI SAI ACENTUADO, e isso foi corrigido em 10/09/2026, no bloco 4.
+    A primeira versao escreveu as respostas em ASCII, como o resto deste arquivo,
+    e elas vao INTEIRAS para o FAQPage do snippet — entao o site publicou "Nao.
+    Nas 16 pecas de reposicao..." dentro do JSON-LD. O banco desta ilha e ASCII
+    porque ele CITA fontes; o que a ilha ESCREVE sai em portugues de verdade
+    (fase 4b do playbook), e o canal em que o defeito apareceu e justamente o que
+    a secao 5 do ARQUIPELAGO.md diz valer tanto quanto ranquear. Achado ao
+    escrever o A2, que nasceu ja com a trava que mede isso (teste-a2.php).
     """
     r = fatos["resumo"]
     maior = fatos["maior_alcance"]
@@ -249,32 +258,32 @@ def perguntas(fatos):
     # justamente ela que um modelo de linguagem le como resposta (secao 5).
     if r["pecas_que_atravessam_marca"] == 0:
         resposta_universal = (
-            "Nao. Nas %d pecas de reposicao com compatibilidade declarada pelo "
-            "fabricante que a Robometria conferiu, nenhuma e declarada para "
+            "Não. Nas %d peças de reposição com compatibilidade declarada pelo "
+            "fabricante que a Robometria conferiu, nenhuma é declarada para "
             "modelos de mais de uma marca, e a lista mais longa do banco nomeia "
-            "%d codigos de modelo, todos da mesma marca."
+            "%d códigos de modelo, todos da mesma marca."
             % (r["pecas_publicaveis"], maior["codigos_declarados"])
         )
     else:
         resposta_universal = (
-            "Quase nao. Das %d pecas de reposicao com compatibilidade declarada "
-            "pelo fabricante que a Robometria conferiu, apenas %d e declarada "
+            "Quase não. Das %d peças de reposição com compatibilidade declarada "
+            "pelo fabricante que a Robometria conferiu, apenas %d é declarada "
             "para modelos de mais de uma marca, e a lista mais longa do banco "
-            "nomeia %d codigos de modelo."
+            "nomeia %d códigos de modelo."
             % (r["pecas_publicaveis"], r["pecas_que_atravessam_marca"],
                maior["codigos_declarados"])
         )
     lista.append({
-        "pergunta": "Existe filtro universal para robo aspirador?",
+        "pergunta": "Existe filtro universal para robô aspirador?",
         "resposta": resposta_universal,
     })
     lista.append({
-        "pergunta": "Uma peca que serve num modelo da marca serve nos outros modelos dela?",
+        "pergunta": "Uma peça que serve num modelo da marca serve nos outros modelos dela?",
         "resposta": (
-            "Nem sempre, e o proprio catalogo dos fabricantes mostra isso: as %d "
-            "pecas da %s no banco formam %d conjuntos de modelos diferentes. "
-            "Compatibilidade e declarada por codigo de peca, uma a uma, e nao se "
-            "herda de uma peca para a seguinte."
+            "Nem sempre, e o próprio catálogo dos fabricantes mostra isso: as %d "
+            "peças da %s no banco formam %d conjuntos de modelos diferentes. "
+            "Compatibilidade é declarada por código de peça, uma a uma, e não se "
+            "herda de uma peça para a seguinte."
             % (
                 fatos["dispersao"][0]["pecas"],
                 fatos["dispersao"][0]["publicador"],
@@ -283,12 +292,12 @@ def perguntas(fatos):
         ),
     })
     lista.append({
-        "pergunta": "Como descobrir o codigo da peca certa para o meu robo aspirador?",
+        "pergunta": "Como descobrir o código da peça certa para o meu robô aspirador?",
         "resposta": (
             "Procurando o modelo na lista de compatibilidade publicada pelo "
-            "proprio fabricante. A Robometria reune essas listas: sao %d pares "
-            "peca x modelo em %d marcas, todos declarados pelo fabricante e "
-            "nenhum inferido, cada um com o endereco da declaracao e a data em "
+            "próprio fabricante. A Robometria reúne essas listas: são %d pares "
+            "peça × modelo em %d marcas, todos declarados pelo fabricante e "
+            "nenhum inferido, cada um com o endereço da declaração e a data em "
             "que ela foi verificada."
             % (r["pares_declarados"], r["marcas"])
         ),

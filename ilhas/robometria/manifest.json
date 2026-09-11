@@ -4,13 +4,13 @@
   "nicho": "robo aspirador — compatibilidade de pecas e consumiveis, e dimensionamento de succao e autonomia",
   "dominio": "https://robometria.com.br",
   "versao_manifest": 1,
-  "revisao": 12,
-  "atualizado_em": "2026-09-10",
+  "revisao": 13,
+  "atualizado_em": "2026-09-11",
   "estado": "nascendo",
   "desembarque": {
     "aprovado": true,
-    "decidido_em": "2026-09-10",
-    "observacao": "Desembarque automatico por forca da secao 10 do ARQUIPELAGO.md, que vale para toda ilha: ferramenta, pagina-ancora, artigo, pagina de entidade e snippet vao ao ar com publicar=true sem consulta. Continua exigindo aprovacao humana (publicar=false) apenas conteudo programatico em escala. QUEM ACIONA O SYNC E A PROPRIA FUNDACAO, por curl, ao fim de cada bloco publicavel — a nuvem alcanca o site desde 10/09/2026 (secao 4 do contrato); so o /status prova que uma revisao esta no ar. A revisao 12 leva o Bloco 4 da SEGUNDA ferramenta: o snippet novo robometria-r2 (a pagina 'Quantos Pa e quanto tempo o seu robo precisa'), o combustivel dados/r2-respostas.json, e a R2 entrando no catalogo da casca como publicada pelo filtro dela — a casca NAO mudou nesta revisao, e e por isso que ela nao precisou mudar."
+    "decidido_em": "2026-09-11",
+    "observacao": "Desembarque automatico por forca da secao 10 do ARQUIPELAGO.md: ferramenta, pagina-ancora, artigo, pagina de entidade e snippet vao ao ar com publicar=true sem consulta. Continua exigindo aprovacao humana (publicar=false) apenas conteudo programatico em escala. QUEM ACIONA O SYNC E A PROPRIA FUNDACAO, por curl, ao fim de cada bloco publicavel (secao 4 do contrato); so o /status prova que uma revisao esta no ar. A revisao 12 levou a R2; a revisao 13 leva o ARTIGO-ANCORA dela, o snippet novo robometria-a2 com o combustivel dados/a2-fatos.json, e a correcao do a1-fatos, cujo FAQPage publicava portugues sem acento."
   },
   "snippets": [
     {
@@ -56,6 +56,17 @@
       "sha256": "553a7aa185e5b5a880eaadd996d713b6beeab62c3cb33fbda40dcb68044b5e33",
       "versao": "1.0.0",
       "descricao": "A SEGUNDA FERRAMENTA da ilha, Bloco 4 da fila, nascendo com as cinco decisoes de desenho que a R1 fixou em 10/09/2026 e nao com retrofit depois: resposta servida pelo SERVIDOR (formulario GET, sem JavaScript a ferramenta responde inteira), a regra morando na implementacao de referencia (ferramentas/cobertura-r2.py) e nao reescrita aqui, caso-ancora escolhido por REGRA e servido sem clique nenhum, consulta com noindex e canonica para a pagina limpa, e a porta de compra ANTES da prova de procedencia, existindo mesmo com afiliado.url vazio. Dada a metragem livre de piso, o tipo de piso e o pelo do animal, ela devolve o limiar de pascal que as fontes brasileiras recomendam para aquela situacao — com o nome de quem recomenda cada numero, porque elas discordam — e quantos ciclos a metragem exige de um modelo cuja cobertura por carga o fabricante declara. O QUE ELA SE RECUSA A FAZER e parte do produto: nao converte minutos em metros quadrados (4 das 5 marcas publicaveis nao declaram area em canal nenhum, e entre os dois pares declarados a taxa varia 23% dentro da MESMA marca), e nao publica conta de mais de um ciclo quando o fabricante nao declara se o modelo retoma de onde parou. ACHADO DESTA EXECUCAO, medido pela varredura: o TEMPO REAL ATE TERMINAR da especificacao precisa de tres numeros declarados — cobertura, autonomia e recarga — e NENHUM dos 28 modelos publicaveis tem os tres; quem declara cobertura nao declara recarga e vice-versa. A pagina publica os ciclos e o tempo de limpeza somado, e diz que o total depende de um numero que ninguem publica. Serve as 9 situacoes de piso x animal com a resposta INTEIRA em HTML, mais 63 linhas de tabela pre-renderizada, WebApplication e FAQPage cujas respostas sao literalmente as frases da pagina."
+    },
+    {
+      "id": "robometria-a2",
+      "nome": "Robometria A2 — Quantos m2 um robo aspirador limpa por carga",
+      "arquivo": "snippets/robometria-a2.php",
+      "escopo": "global",
+      "ativo": true,
+      "publicar": true,
+      "sha256": "c1726758f63d9f1423c1f65db535c29a6ea8196eb4b835cf080b204f2240c741",
+      "versao": "1.0.0",
+      "descricao": "O ARTIGO-ANCORA da R2, nascido na MESMA execucao que ela, como o bloco 5 do PROMPT.md manda. Ele nao repete a ferramenta: a R2 calcula a casa da pessoa, este texto conta o CATALOGO e responde a pergunta anterior — de onde vem o numero de m2 que os sites publicam. Tres teses, as tres derivadas do banco e nenhuma digitada, cada uma com mais de uma forma escolhida pela contagem: (1) quantas marcas declaram area por carga (hoje uma so, a Electrolux, em 5 de 28 modelos); (2) os tres numeros que a conta de tempo exige e quantos modelos tem os tres (hoje nenhum: 5 declaram area, 2 declaram recarga, e os conjuntos nao se encontram); (3) a dispersao entre os pares declarados (1,35 a 1,66 m2/min, 23% dentro da MESMA marca). A vitrine lista os modelos cujo fabricante publica o numero e diz, com todas as letras, que NAO e um ranking de limpeza. A SERP desta consulta nao foi verificada nesta execucao e a pagina registra isso por escrito (secao 14.9), herdando a classificacao de 09/09/2026: a cabeca da familia esta tomada por veiculo grande e nao e disputada. O FAQPage sai ACENTUADO — o A1 publicava ASCII no mesmo canal, e isso foi corrigido nesta revisao."
     }
   ],
   "conteudo": [],
@@ -197,11 +208,11 @@
       "arquivo": "dados/a1-fatos.json",
       "formato": "json",
       "entidade": "medicao",
-      "fonte": "Bloco 5 da Fundacao (10/09/2026): derivado por ferramentas/gerar-a1.py do banco ja commitado, importando ferramentas/cobertura-r1.py para a varredura por tipo nao ser uma contagem paralela a da R1. Nao houve coleta nesta execucao; nenhum numero deste arquivo vem de fora do repositorio.",
+      "fonte": "Bloco 5 da Fundacao (10/09/2026): derivado por ferramentas/gerar-a1.py do banco ja commitado, importando ferramentas/cobertura-r1.py para a varredura por tipo nao ser uma contagem paralela a da R1. Nao houve coleta nesta execucao; nenhum numero deste arquivo vem de fora do repositorio. CORRIGIDO em 10/09/2026, na execucao das 23h18Z: as tres respostas do FAQPage saiam em ASCII e iam INTEIRAS para o JSON-LD do snippet, entao o site publicava 'Nao. Nas 16 pecas de reposicao...' justamente no canal que a secao 5 do ARQUIPELAGO.md diz valer tanto quanto ranquear. O banco desta ilha e ASCII porque ele CITA fontes; o que a ilha ESCREVE sai acentuado (fase 4b do playbook). Achado ao escrever o A2, que nasceu com a trava que mede isso.",
       "verificado_em": "2026-09-10",
       "registros": 16,
       "publicar": true,
-      "sha256": "6b9ffba695c55848f503ec9d2434b7a2b25f75a97f4f04a47923f9f6d91f4b2f",
+      "sha256": "00efc6079402b2edf6cd81fbe1d88830caff8e213b5d1e7cc62c839f74f86e88",
       "descricao": "O COMBUSTIVEL DO ARTIGO-ANCORA A1: o Sync o grava na option robometria_dados_a1-fatos e o snippet robometria-a1.php escreve as frases a partir dele. Tres medicoes separadas de proposito. (1) ALCANCE: quantos codigos de modelo cada uma das 16 pecas publicaveis tem declarados, com os codigos como a fonte os escreve. (2) TRAVESSIA DE MARCA: quantas pecas sao declaradas para modelos de mais de uma marca — hoje zero, e e essa a tese do artigo. (3) DISPERSAO DENTRO DA MARCA: quantos conjuntos DISTINTOS de modelos as pecas de cada fabricante formam; quando o numero iguala o de pecas, nenhuma repete a lista de outra. Traz ainda a cobertura por tipo vinda da varredura da R1, a vitrine de 4 itens (ordenada por alcance declarado, com kit de composicao nao transcrita FORA, porque oferecer a compra de um produto cuja composicao a pagina diz nao saber e o defeito da secao 7) e as tres perguntas do FAQPage, derivadas dos mesmos numeros."
     },
     {
@@ -247,6 +258,17 @@
       "registros": 9,
       "publicar": false,
       "sha256": "99c5d9c2620b3ba148cc88f46d0518f1f1b66e6ecfad9757259f7dd94bfd217f"
+    },
+    {
+      "id": "a2-fatos",
+      "arquivo": "dados/a2-fatos.json",
+      "formato": "json",
+      "entidade": "medicao",
+      "fonte": "Bloco 5 da Fundacao (10/09/2026, execucao das 23h18Z): derivado por ferramentas/gerar-a2.py do banco ja commitado, lendo o banco pela mesma implementacao de referencia que a R2 usa (ferramentas/cobertura-r2.py) para as duas paginas nunca publicarem contagens diferentes da mesma coisa. Nao houve coleta nesta execucao; nenhum numero deste arquivo vem de fora do repositorio. O campo `serp` registra que a SERP da consulta-alvo NAO foi verificada nesta execucao.",
+      "verificado_em": "2026-09-10",
+      "registros": 5,
+      "publicar": true,
+      "sha256": "6f1662df6e2041459a8b93e4428e3099b4ac6374777a840fe2c30938a5c6c637"
     }
   ],
   "ferramentas": [
@@ -309,6 +331,16 @@
       "id": "teste-r2",
       "arquivo": "ferramentas/teste-r2.php",
       "descricao": "Verificacao MEDIDA da R2 sem site e sem rede: 86 medicoes. Percorre a GRADE inteira do gabarito — as 9 situacoes frase a frase, 114 cartoes de recomendacao com ordem e ressalvas, e a metragem varrida contra cada modelo de referencia, bordas incluidas — e mais a elegibilidade, o JSON-LD contra o que a tela diz, a porta de compra antes da procedencia, a malha e a higiene do snippet. As travas foram PROVADAS reprovando, quebrando o codigo de proposito numa copia, e duas delas so viraram medicao por causa disso: a regua da elegibilidade saiu do snippet (o teste conferia o dado com a regua de quem produziu o dado) e a busca das respostas do FAQPage passou a ser no corpo da pagina (no HTML inteiro ela achava o texto dentro do proprio JSON-LD e passava sempre)."
+    },
+    {
+      "id": "gerar-a2",
+      "arquivo": "ferramentas/gerar-a2.py",
+      "descricao": "Deriva dados/a2-fatos.json do banco commitado. A tese de um artigo que e um NUMERO nao pode estar digitada no HTML, porque no dia em que o banco crescer o texto passa a mentir em silencio — e ninguem rele artigo publicado. O texto publicavel que sai daqui (perguntas e respostas do FAQPage) sai ACENTUADO, diferente do que o A1 fez."
+    },
+    {
+      "id": "teste-a2",
+      "arquivo": "ferramentas/teste-a2.php",
+      "descricao": "Verificacao MEDIDA do A2 sem site e sem rede: 62 medicoes. A secao que justifica o arquivo PLANTA SEIS BANCOS ADULTERADOS num subprocesso, um por molde, e exige que o texto troque de forma E que os numeros de hoje sumam da tela — porque ler a pagina de hoje so prova que ela esta certa hoje, e a decisao 1 do bloco 5 e sobre amanha. Mede tambem que as respostas do FAQPage saem acentuadas e que todo numero que elas afirmam esta escrito no CORPO da pagina, nao so dentro do proprio JSON-LD."
     }
   ],
   "esquema": {

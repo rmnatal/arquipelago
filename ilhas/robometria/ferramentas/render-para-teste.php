@@ -154,6 +154,28 @@ if (isset($argv[1]) && basename(__FILE__) === basename($argv[0])) {
 		'qual-peca-serve-no-meu-robo-aspirador'=>true,'filtro-universal-de-robo-aspirador'=>true,
 		'quantos-pa-o-robo-aspirador-precisa'=>true,
 	);
+	/* O QUE O SYNC GRAVOU NAS OPTIONS, gravado aqui tambem.
+	 *
+	 * Todo item de `dados` com publicar=true vira a option
+	 * robometria_dados_<id> no site (secao 29 do snippet de Sync). Num render
+	 * solto essas options nao existiam, entao cada pagina caia no aviso de
+	 * "estamos sem o banco no momento" — e caia em SILENCIO, porque o aviso e
+	 * uma pagina valida, com folha, cabecalho e rodape.
+	 *
+	 * Ficou medido em 11/09/2026, no bloco 5: a medicao de rolagem horizontal do
+	 * artigo A2 a 360 px deu zero porque o que estava sendo medido era o aviso,
+	 * de tres linhas, e nao o artigo. Junto com o filtro de pagina abaixo, este
+	 * carregamento e o que faz o render solto reproduzir o que o site serve — que
+	 * e a unica coisa que torna a medicao uma medicao.
+	 */
+	$manifest = json_decode(file_get_contents($argv[1] . '/manifest.json'), true);
+	foreach ((isset($manifest['dados']) ? $manifest['dados'] : array()) as $item) {
+		if (empty($item['publicar'])) { continue; }
+		$corpo = @file_get_contents($argv[1] . '/' . $item['arquivo']);
+		if (false === $corpo) { continue; }
+		$GLOBALS['__options']['robometria_dados_' . $item['id']] = json_decode($corpo, true);
+	}
+
 	robometria_teste_carregar($argv[1]);
 
 	/* ESTAMOS NA PAGINA DA FERRAMENTA QUE ESTA SENDO RENDERIZADA.

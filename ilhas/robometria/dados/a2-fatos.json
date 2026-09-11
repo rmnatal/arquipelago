@@ -1,0 +1,194 @@
+{
+  "id": "a2-fatos",
+  "ilha": "robometria",
+  "artigo": "A2",
+  "gerado_em": "2026-09-09",
+  "nota": "Fatos do artigo-ancora A2, derivados do banco commitado por ferramentas/gerar-a2.py, lendo o banco pela mesma implementacao de referencia que a R2 usa. Nenhum numero aqui e digitado: se o banco crescer e a tese do artigo deixar de valer, e este arquivo que muda, e ferramentas/teste-a2.php reprova a pagina antes de ela ir ao ar dizendo o que o banco nao sustenta.",
+  "serp": {
+    "verificada_nesta_execucao": false,
+    "por_que": "O egresso HTTP desta nuvem alcanca apenas os dominios das ilhas, e esta execucao nao teve busca web. A secao 14.9 do ARQUIPELAGO.md manda escrever 'nao verifiquei' em vez de inventar diagnostico de SERP, e e o que este campo faz.",
+    "classificacao_herdada": "Secao 2.1 de dados/especificacao-calculadoras.md, de 09/09/2026: a familia de consultas de m2 e autonomia foi classificada como alvo PARCIAL — a cabeca ('o que e Pa', 'quantos m2 um robo limpa') esta tomada por veiculo grande (Canaltech, Mundo Conectado, aprouter) e a Robometria NAO a disputa; a cauda com a casa da pessoa dentro, e a pergunta de PROCEDENCIA do numero, e onde a resposta com fonte e data ganha. Este artigo mira a segunda.",
+    "consulta_alvo": "de onde vem o numero de m2 que os sites publicam sobre robo aspirador",
+    "por_que_chega_as_dez_primeiras": "Nenhuma das paginas que ocupam a cabeca desta familia publica a contagem de quantos fabricantes declaram area por carga, nem a dispersao entre os pares declarados. Elas publicam o numero; esta publica de onde ele vem, com o catalogo contado e datado."
+  },
+  "resumo": {
+    "modelos_publicaveis": 28,
+    "marcas": 5,
+    "com_cobertura": 5,
+    "sem_cobertura": 23,
+    "com_autonomia": 21,
+    "com_recarga": 2,
+    "com_os_tres": 0,
+    "pares_declarados": 5,
+    "modelos_esperando_link": 5
+  },
+  "marcas_que_declaram": [
+    "Electrolux"
+  ],
+  "marcas_que_nao_declaram": [
+    "Multi (ex-Multilaser)",
+    "Positivo Casa Inteligente",
+    "WAP",
+    "Xiaomi"
+  ],
+  "com_recarga_ids": [
+    {
+      "modelo": "xiaomi-s20",
+      "rotulo": "Xiaomi S20",
+      "recarga_min": 220
+    },
+    {
+      "modelo": "positivo-pra2000",
+      "rotulo": "Positivo Casa Inteligente PRA2000",
+      "recarga_min": 360
+    }
+  ],
+  "pares": [
+    {
+      "modelo": "electrolux-erb44",
+      "rotulo": "Electrolux ERB44",
+      "marca": "Electrolux",
+      "cobertura_m2": 162,
+      "autonomia_min": 120,
+      "taxa": 1.35
+    },
+    {
+      "modelo": "electrolux-erb60",
+      "rotulo": "Electrolux ERB60",
+      "marca": "Electrolux",
+      "cobertura_m2": 166,
+      "autonomia_min": 100,
+      "taxa": 1.66
+    },
+    {
+      "modelo": "electrolux-erb61",
+      "rotulo": "Electrolux ERB61",
+      "marca": "Electrolux",
+      "cobertura_m2": 166,
+      "autonomia_min": 100,
+      "taxa": 1.66
+    },
+    {
+      "modelo": "electrolux-erb62",
+      "rotulo": "Electrolux ERB62",
+      "marca": "Electrolux",
+      "cobertura_m2": 166,
+      "autonomia_min": 100,
+      "taxa": 1.66
+    },
+    {
+      "modelo": "electrolux-erb80",
+      "rotulo": "Electrolux ERB80",
+      "marca": "Electrolux",
+      "cobertura_m2": 166,
+      "autonomia_min": 100,
+      "taxa": 1.66
+    }
+  ],
+  "dispersao": {
+    "taxa_minima": 1.35,
+    "taxa_maxima": 1.66,
+    "pct": 23,
+    "taxas_distintas": 2,
+    "marcas": [
+      "Electrolux"
+    ],
+    "mesma_marca": true
+  },
+  "vitrine": [
+    {
+      "modelo": "electrolux-erb60",
+      "rotulo": "Electrolux ERB60",
+      "cobertura_m2": 166,
+      "autonomia_min": 100,
+      "recarga_min": null,
+      "retoma_apos_recarga": true,
+      "tem_imagem": false,
+      "esperando_link": true,
+      "afiliado": {
+        "url": "",
+        "programa": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R2"
+      }
+    },
+    {
+      "modelo": "electrolux-erb61",
+      "rotulo": "Electrolux ERB61",
+      "cobertura_m2": 166,
+      "autonomia_min": 100,
+      "recarga_min": null,
+      "retoma_apos_recarga": true,
+      "tem_imagem": false,
+      "esperando_link": true,
+      "afiliado": {
+        "url": "",
+        "programa": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R2"
+      }
+    },
+    {
+      "modelo": "electrolux-erb62",
+      "rotulo": "Electrolux ERB62",
+      "cobertura_m2": 166,
+      "autonomia_min": 100,
+      "recarga_min": null,
+      "retoma_apos_recarga": true,
+      "tem_imagem": false,
+      "esperando_link": true,
+      "afiliado": {
+        "url": "",
+        "programa": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R2"
+      }
+    },
+    {
+      "modelo": "electrolux-erb80",
+      "rotulo": "Electrolux ERB80",
+      "cobertura_m2": 166,
+      "autonomia_min": 100,
+      "recarga_min": null,
+      "retoma_apos_recarga": null,
+      "tem_imagem": false,
+      "esperando_link": true,
+      "afiliado": {
+        "url": "",
+        "programa": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R2"
+      }
+    },
+    {
+      "modelo": "electrolux-erb44",
+      "rotulo": "Electrolux ERB44",
+      "cobertura_m2": 162,
+      "autonomia_min": 120,
+      "recarga_min": null,
+      "retoma_apos_recarga": null,
+      "tem_imagem": false,
+      "esperando_link": true,
+      "afiliado": {
+        "url": "",
+        "programa": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "R2"
+      }
+    }
+  ],
+  "perguntas": [
+    {
+      "pergunta": "Quantos m² um robô aspirador limpa por carga?",
+      "resposta": "Depende do fabricante dizer, e quase nenhum diz. Dos 28 modelos que a Robometria conferiu, 5 declaram área coberta por carga, e todos são de uma marca só (Electrolux) — as outras 4 não publicam o número em canal nenhum. Quando um site promete metragem para um robô dessas marcas, esse número foi calculado por alguém, não declarado pelo fabricante."
+    },
+    {
+      "pergunta": "Quanto tempo um robô aspirador leva para limpar a casa inteira?",
+      "resposta": "Não dá para saber com dado publicado, e essa é a resposta honesta. A conta precisa de três números declarados pelo fabricante — área por carga, autonomia e tempo de recarga — e nenhum dos 28 modelos que a Robometria conferiu tem os três: 5 declaram a área, 2 declaram a recarga, e os conjuntos não se sobrepõem em modelo nenhum."
+    },
+    {
+      "pergunta": "Dá para calcular a área que um robô limpa a partir dos minutos de autonomia?",
+      "resposta": "Não. Os 5 pares (minutos, m²) declarados que a Robometria tem são todos da mesma marca, e mesmo assim a taxa implícita vai de 1,35 a 1,66 m² por minuto — 23% de diferença dentro do MESMO fabricante. Se o fabricante não é consistente consigo mesmo, uma taxa geral de mercado não existe."
+    }
+  ]
+}
