@@ -238,7 +238,7 @@ afirmar( false === strpos( $html, 'og:image' ), 'nenhuma og:image impressa' );
 
 /* A home é resolvida pela opção page_on_front, não pelo objeto da consulta. */
 $html = aqm_head( array( 'front' => true, 'obj' => null ) );
-afirmar( false !== strpos( $html, 'Calculadoras de aquário que mostram a conta' ), 'a home imprime a description dela' );
+afirmar( false !== strpos( $html, 'Quantos litros tem o seu aquário?' ), 'a home imprime a description dela' );
 afirmar( false !== strpos( $html, '<meta property="og:url" content="https://aquametria.com.br/">' ),
 	'na home, og:url é a raiz' );
 

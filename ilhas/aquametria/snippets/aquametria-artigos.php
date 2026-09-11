@@ -1,5 +1,9 @@
 /**
  * Aquametria Artigos — visibilidade em IA
+ * Versão: 1.1.0 (11/09/2026) — os três artigos passam a se anunciar na
+ * prateleira de guias da home, pelo filtro 'aquametria_guias' da casca. Nada do
+ * que já estava aqui mudou: é uma função de anúncio, no molde do hub de
+ * calculadoras, para a home listar guia sem guardar cópia de título nenhum.
  *
  * Fecha o T7 (seção 5 do ARQUIPELAGO.md) nas três páginas que sobraram do
  * retrofit: os artigos-âncora. As cinco calculadoras já tinham as três peças
@@ -45,7 +49,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_ARTIGOS_VERSAO' ) ) {
-	define( 'AQUAMETRIA_ARTIGOS_VERSAO', '1.0.0' );
+	define( 'AQUAMETRIA_ARTIGOS_VERSAO', '1.1.0' );
 }
 
 /* Data de verificação declarada no front matter dos três artigos. Está aqui
@@ -356,6 +360,36 @@ function aquametria_artigos_registro() {
 	);
 }
 }
+
+/* ---------------------------------------------------------------------------
+ * 1b. Anúncio na prateleira de guias da casca
+ *
+ * A casca pergunta pelo filtro 'aquametria_guias' e quem responde é este
+ * arquivo, que é quem sabe quais artigos existem. Vale a mesma razão do hub de
+ * calculadoras: a home precisa mostrar os guias sem guardar cópia dos títulos —
+ * cópia envelhece em silêncio, e o dia em que nasce o quarto artigo é
+ * justamente o dia em que ninguém lembra de ir atualizar a home.
+ *
+ * A manchete (curta) vai para o cartão; o título longo continua sendo o H1 e o
+ * headline do JSON-LD do artigo.
+ * ------------------------------------------------------------------------- */
+
+if ( ! function_exists( 'aquametria_artigos_registrar_guias' ) ) {
+function aquametria_artigos_registrar_guias( $lista ) {
+	if ( ! is_array( $lista ) ) {
+		$lista = array();
+	}
+	foreach ( aquametria_artigos_registro() as $slug => $a ) {
+		$lista[] = array(
+			'slug'     => $slug,
+			'manchete' => isset( $a['manchete'] ) ? $a['manchete'] : $a['titulo'],
+			'resumo'   => isset( $a['resumo'] ) ? $a['resumo'] : '',
+		);
+	}
+	return $lista;
+}
+}
+add_filter( 'aquametria_guias', 'aquametria_artigos_registrar_guias' );
 
 /* ---------------------------------------------------------------------------
  * 2. Que artigo é esta página

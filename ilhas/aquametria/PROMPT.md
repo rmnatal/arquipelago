@@ -29,11 +29,15 @@ A Aquametria só conta como completa quando estiver **entrando tráfego orgânic
 
 Isso não afrouxa nenhuma regra do `ARQUIPELAGO.md`. Publicar rápido e errado é a maneira mais eficiente de não ser indexado.
 
-## DESPACHO DO RAPHAEL — 11/09/2026 — a ilha ganha voz (prioridade máxima, antes de qualquer bloco novo)
+## DESPACHO DO RAPHAEL — 11/09/2026 — a ilha ganha voz
 
-Seção 15 nova no `ARQUIPELAGO.md` e `VOZ.md` novo nesta pasta. Primeiro bloco a partir de agora: **reescrever a home e o header de Aquametria pelo molde GUIA e pela voz do `VOZ.md`** — título e primeiro parágrafo de cada página da home na linguagem da pessoa; número, fonte e data para a camada de prova (tabela, "como sabemos", JSON-LD). Não trocar URL, não mexer em estrutura de ferramenta que já funciona, não tocar em página posicionada além do texto (seção 12.1). Depois disso, cada página existente é reescrita na voz ao passar pela ronda. Critério de pronto: abrir a home e nenhum termo da lista "Proibidas" do `VOZ.md` aparecer em título ou primeiro parágrafo; registrar a revisão no ESTADO.md e acionar o Sync.
+**A reescrita da home e do header está CUMPRIDA** na execução das 15h16Z de 11/09/2026 (casca 1.4.0, revisão 40). O critério de pronto que o despacho pediu virou portão medido: `ferramentas/teste-voz.mjs` mede as quatro páginas da casca, uma por processo, e reprova termo proibido em título ou primeiro parágrafo. Dez mutações deliberadas em `ferramentas/mutacoes-voz.py`, dez reprovadas — inclusive a porta dos fundos, que é embrulhar a página inteira na classe que declara camada de prova.
 
-ATUALIZAÇÃO 11/09: junto com a reescrita da home e do header, aplicar a seção 16 do contrato (árvore de três níveis, breadcrumb com BreadcrumbList, cluster de interlinkagem mãe↔filhas↔irmãs, categoria só com ≥3 filhas): escrever `ARVORE.md` desta ilha, dar pai a toda página existente, publicar breadcrumb e "Veja também" — sem trocar URL de página que já tem impressão (seção 12.1); 301 para toda URL que mudar e sitemap reenviado.
+**O que continua de pé desta seção**, e é o próximo bloco: a seção 16 do contrato. O `ARVORE.md` desta ilha (item i do 16.8) foi escrito no mesmo bloco e diz onde cada página mora. Falta:
+- **breadcrumb com `BreadcrumbList`** em toda página que já existe, e os blocos **"Veja também"** do cluster (16.4). Nenhum dos dois cria URL, então os dois cabem antes de 16/09. O breadcrumb nasce com o nível 2 **em texto, sem link**, porque a categoria ainda não existe — estado de transição declarado no `ARVORE.md`, não desenho.
+- **as oito páginas de nível 1 e 2** e a troca de pai/slug das existentes: travadas até a leitura de 16/09 por duas regras independentes (item 5 do despacho da Sentinela, e o T2 deste arquivo). O `ARVORE.md` seção 6 explica as duas.
+
+Cada página existente continua sendo reescrita na voz ao passar pela ronda — as de `conteudo/` ainda não foram.
 
 ATUALIZAÇÃO 11/09 (Pauta): quando existir `pauta.md` nesta pasta (seção 17 do contrato), os guias entram na fila depois desta reescrita e da árvore, em levas por cluster; registrar no fecho de cada bloco quantos temas estão escritos / na fila / recusados.
 

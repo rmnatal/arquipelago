@@ -1,5 +1,29 @@
 /**
  * Aquametria Casca — identidade e estrutura do site
+ * Versão: 1.4.0 (11/09/2026) — a home e o header passam a falar como o VOZ.md.
+ * Despacho do Raphael de 11/09/2026 (seção 15 do ARQUIPELAGO.md): o rigor de
+ * número, fonte e data continua inteiro, mas vira CAMADA DE PROVA — some do
+ * título e do primeiro parágrafo, onde quem fala é o amigo aquarista do
+ * VOZ.md. O que mudou, e por quê:
+ *   (a) a home abre pela pergunta mais frequente da ilha ("Quantos litros tem o
+ *       seu aquário?", com as três medidas) em vez do manifesto institucional;
+ *   (b) o cartão de cada calculadora vira a PERGUNTA que a pessoa digita —
+ *       "Quantos watts de aquecedor você precisa?" no lugar de "Potência do
+ *       aquecedor por delta térmico". O código e o slug não mudaram: a URL de
+ *       toda página segue onde estava (seção 12.1 do contrato);
+ *   (c) a home ganha a prateleira de GUIAS, alimentada pelo filtro
+ *       'aquametria_guias' — quem responde é o snippet dos artigos, então guia
+ *       novo aparece aqui sozinho e a contagem nunca é digitada;
+ *   (d) o menu diz "Como a gente calcula" no lugar de "Metodologia", e o título
+ *       das páginas da casca passa a ser sincronizado (só nas que são nossas);
+ *   (e) o que é prova — fonte, data, divergência entre fontes — desce para o fim
+ *       da página, dentro de um bloco marcado com a classe `aqm-prova`. A marca
+ *       existe para o portão poder separar voz de prova pela ESTRUTURA e não
+ *       pela vizinhança da palavra (seção 8 do contrato).
+ * O menu "Calculadoras · Produtos · Guias" que o VOZ.md descreve fica pela
+ * metade de propósito: /produtos/ e /guias/ são páginas que ainda não existem, e
+ * o item 5 do despacho da Sentinela congela página nova até 16/09. Elas entram
+ * no menu no bloco da árvore (ARVORE.md), depois da leitura daquela data.
  * Versão: 1.3.1 (10/09/2026) — link para artigo-âncora deixa de dar salto de 301.
  * aquametria_casca_url_se_existir() só procurava em post_type 'page', e os três
  * artigos-âncora são 'post'. As duas vias falhavam, quem chamava caía no último
@@ -61,8 +85,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'AQUAMETRIA_CASCA_VERSAO', '1.3.1' );
-	define( 'AQUAMETRIA_CASCA_TAGLINE', 'Calculadoras e dados técnicos para dimensionar o seu aquário' );
+	define( 'AQUAMETRIA_CASCA_VERSAO', '1.4.0' );
+	/* A tagline é a primeira frase que um visitante lê no rodapé de toda página.
+	   Até a 1.3.1 ela era a descrição interna do produto ("Calculadoras e dados
+	   técnicos para dimensionar o seu aquário"); agora fala com quem chegou. */
+	define( 'AQUAMETRIA_CASCA_TAGLINE', 'A conta do seu aquário, feita antes de você comprar errado' );
 }
 
 /* ---------------------------------------------------------------------------
@@ -74,58 +101,58 @@ function aquametria_casca_calculadoras() {
 	$lista = array(
 		array(
 			'codigo'  => 'C1',
-			'titulo'  => 'Litragem e volume útil',
+			'titulo'  => 'Quantos litros tem o seu aquário?',
 			'slug'    => 'calculadora-de-litragem',
-			'resumo'  => 'Medidas em centímetros para litros — volume bruto, lâmina d\'água e volume útil. É o núcleo: o resultado fica guardado no navegador e alimenta as outras calculadoras.',
+			'resumo'  => 'Mede comprimento, largura e altura em centímetros e sai o volume da etiqueta, o que cabe de verdade e a água que você vai tratar. O aquário fica guardado no seu navegador, então as outras contas já vêm preenchidas.',
 			'estado'  => 'em-construcao',
 		),
 		array(
 			'codigo'  => 'C3',
-			'titulo'  => 'Vazão do filtro e turnover',
+			'titulo'  => 'Qual filtro dá conta do seu aquário?',
 			'slug'    => 'calculadora-de-vazao-do-filtro',
-			'resumo'  => 'Quantas renovações por hora o seu filtro entrega — e por que os fabricantes declaram de 1,8 a 10 x/h para o mesmo aquário, contra as 5 a 10 x/h repetidas na web brasileira.',
+			'resumo'  => 'A vazão em litros por hora que o seu aquário pede. A faixa é larga porque os próprios fabricantes declaram de 1,8 a 10 renovações por hora para o mesmo aquário — e a tela mostra quem disse cada extremo.',
 			'estado'  => 'em-construcao',
 		),
 		array(
 			'codigo'  => 'C5',
-			'titulo'  => 'Potência do aquecedor por delta térmico',
+			'titulo'  => 'Quantos watts de aquecedor você precisa?',
 			'slug'    => 'calculadora-de-potencia-do-aquecedor',
-			'resumo'  => 'Watts a partir da mínima do seu ambiente e da temperatura alvo, não do velho "1 W por litro". A via física fica retida até haver coeficiente térmico com fonte.',
+			'resumo'  => 'A conta parte do frio que faz no seu cômodo, não do velho 1 W por litro. E filtra pela sua voltagem, para não chegar em casa um aquecedor de 110 V numa tomada de 220 V.',
 			'estado'  => 'em-construcao',
 		),
 		array(
 			'codigo'  => 'C12',
-			'titulo'  => 'Mídia filtrante: volume, ordem e troca',
+			'titulo'  => 'Quanta mídia biológica cabe no seu filtro?',
 			'slug'    => 'calculadora-de-midia-filtrante',
-			'resumo'  => 'Mililitros de mídia biológica por litro de água, pelas quatro dosagens que os fabricantes declaram — e que discordam por dez vezes entre si. Número que nenhuma fonte brasileira publica, com o teto físico do cesto do seu filtro junto.',
+			'resumo'  => 'Quantos mililitros de mídia o seu aquário pede, pelas quatro dosagens que os fabricantes declaram — e que discordam dez vezes entre si. Com o teto do cesto do seu filtro junto, para você não comprar mídia que não entra.',
 			'estado'  => 'em-construcao',
 		),
 		array(
 			'codigo'  => 'C15',
-			'titulo'  => 'Iluminação e fotoperíodo',
+			'titulo'  => 'Quanta luz o seu aquário precisa?',
 			'slug'    => 'calculadora-de-iluminacao',
-			'resumo'  => 'Lúmens por litro nas três faixas que as fontes brasileiras chamam pelo mesmo nome com números diferentes, mais o fotoperíodo por tipo de aquário.',
+			'resumo'  => 'Os lúmens para o seu aquário e quantas horas deixar aceso. As três leituras brasileiras chamam a mesma coisa pelo mesmo nome com números diferentes, e aqui elas aparecem lado a lado.',
 			'estado'  => 'em-construcao',
 		),
 		array(
 			'codigo'  => 'C2',
-			'titulo'  => 'Peso do aquário cheio e carga no piso',
+			'titulo'  => 'O móvel aguenta o seu aquário cheio?',
 			'slug'    => 'calculadora-de-peso-e-carga',
-			'resumo'  => 'Peso total e carga por metro quadrado, comparados com a carga de projeto da NBR 6120. Damos o número; a autorização é de engenheiro, nunca nossa.',
+			'resumo'  => 'O peso total e a carga por metro quadrado, ao lado da carga de projeto da NBR 6120. A gente dá o número; quem autoriza é engenheiro, nunca uma calculadora.',
 			'estado'  => 'em-construcao',
 		),
 		array(
 			'codigo'  => 'C7',
-			'titulo'  => 'Consumo elétrico e custo mensal',
+			'titulo'  => 'Quanto o seu aquário gasta de luz por mês?',
 			'slug'    => 'calculadora-de-consumo-de-energia',
-			'resumo'  => 'Custo por mês do filtro, do aquecedor e da luz, com ciclo de trabalho — porque multiplicar a potência do aquecedor por 24 horas erra a conta para cima.',
+			'resumo'  => 'Filtro, aquecedor e luz somados, com o tempo que cada um fica ligado de verdade — multiplicar a potência do aquecedor por 24 horas erra a conta para cima, e erra feio.',
 			'estado'  => 'em-construcao',
 		),
 		array(
 			'codigo'  => 'C8',
-			'titulo'  => 'Lotação e aquário mínimo',
+			'titulo'  => 'Quantos peixes cabem no seu aquário?',
 			'slug'    => 'calculadora-de-lotacao',
-			'resumo'  => 'Três critérios de lotação publicados lado a lado, com a atribuição de cada um, e o aquário mínimo por espécie quando a fonte existe.',
+			'resumo'  => 'Três critérios de lotação lado a lado, com o nome de quem publicou cada um, e o aquário mínimo por espécie quando existe fonte que diga.',
 			'estado'  => 'em-construcao',
 		),
 	);
@@ -133,6 +160,42 @@ function aquametria_casca_calculadoras() {
 	$lista = apply_filters( 'aquametria_calculadoras', $lista );
 
 	return is_array( $lista ) ? $lista : array();
+}
+}
+
+/**
+ * Os guias da ilha, para a prateleira do fim da home (molde GUIA do VOZ.md).
+ *
+ * A casca NÃO guarda a lista: ela pergunta pelo filtro e quem responde é o
+ * snippet que publica os artigos. É a mesma escolha do hub de calculadoras, e
+ * pelo mesmo motivo — guia novo aparece na home sozinho, e a frase que diz
+ * quantos guias existem é CONTADA, nunca digitada. Número de tela digitado à
+ * mão foi o defeito que a Robometria e o Clube do Mosaico pagaram em 11/09/2026
+ * (seção 8 do ARQUIPELAGO.md): era verdade no dia em que foi escrito e virou
+ * mentira em silêncio no dia em que o banco cresceu.
+ *
+ * Cada entrada: slug (o post_name do artigo), manchete e resumo.
+ */
+if ( ! function_exists( 'aquametria_casca_guias' ) ) {
+function aquametria_casca_guias() {
+	$lista = apply_filters( 'aquametria_guias', array() );
+	if ( ! is_array( $lista ) ) {
+		return array();
+	}
+
+	$limpa = array();
+	foreach ( $lista as $g ) {
+		if ( ! is_array( $g ) || empty( $g['slug'] ) || empty( $g['manchete'] ) ) {
+			continue;
+		}
+		$limpa[] = array(
+			'slug'     => (string) $g['slug'],
+			'manchete' => (string) $g['manchete'],
+			'resumo'   => isset( $g['resumo'] ) ? (string) $g['resumo'] : '',
+		);
+	}
+
+	return $limpa;
 }
 }
 
@@ -403,9 +466,12 @@ function aquametria_casca_nav_html() {
 	$quantos++;
 	$id = 'aqm-nav-lista' . ( $quantos > 1 ? '-' . $quantos : '' );
 
+	/* Rótulo de menu é texto de tela, então fala a língua do VOZ.md: "Metodologia"
+	   é como a fábrica chama a página, não como a pessoa pediria para ver o
+	   critério. O slug — e portanto a URL — não muda (seção 12.1 do contrato). */
 	$itens = array(
 		'calculadoras' => 'Calculadoras',
-		'metodologia'  => 'Metodologia',
+		'metodologia'  => 'Como a gente calcula',
 		'sobre'        => 'Sobre',
 	);
 
@@ -445,8 +511,8 @@ function aquametria_casca_rodape_html() {
 
 	$html  = '<footer class="aqm-rodape"><div class="aqm-rodape-interno">';
 	$html .= '<p class="aqm-tagline">' . esc_html( AQUAMETRIA_CASCA_TAGLINE ) . '</p>';
-	$html .= '<p>Todo número publicado aqui cita a fonte — manual de fabricante, norma técnica ou fonte brasileira nomeada — e leva a data em que foi verificado. Quando as fontes discordam, a Aquametria publica a divergência com a atribuição de cada extremo, nunca a média. Onde não há fonte aceitável, a página diz por que não publica número.</p>';
-	$html .= '<p>' . aquametria_casca_link_html( 'metodologia', 'Metodologia' )
+	$html .= '<p class="aqm-prova">Todo número publicado aqui cita a fonte — manual de fabricante, norma técnica ou fonte brasileira nomeada — e leva a data em que foi verificado. Quando as fontes discordam, a Aquametria publica a divergência com a atribuição de cada extremo, nunca a média. Onde não há fonte aceitável, a página diz por que não publica número.</p>';
+	$html .= '<p>' . aquametria_casca_link_html( 'metodologia', 'Como a gente calcula' )
 		. ' · ' . aquametria_casca_link_html( 'divulgacao-de-afiliados', 'Divulgação de afiliados' )
 		. ' · ' . aquametria_casca_link_html( 'sobre', 'Sobre' )
 		. ' · Aquametria ' . esc_html( date_i18n( 'Y' ) ) . '</p>';
@@ -600,6 +666,21 @@ body header .wp-block-group,body .wp-block-template-part header{background:var(-
 .aqm-card h3{font-family:var(--aqm-display);font-size:1.05rem;margin:0;line-height:1.25;}
 .aqm-card p{margin:0;color:var(--aqm-legenda);font-size:.93rem;line-height:1.5;}
 .aqm-codigo{font-family:var(--aqm-mono);font-size:.72rem;letter-spacing:.1em;color:var(--aqm-legenda);}
+/* A pergunta que abre a home e o botao dela. Sem gradiente e sem sombra
+   colorida (secao 6 do ARQUIPELAGO.md): quem separa e a linha de 1px. */
+.aqm-pergunta{border-bottom:1px solid var(--aqm-traco);padding-bottom:1.4rem;}
+.aqm-acao-grande{margin:1.1rem 0 0;}
+.aqm-acao-grande a{display:inline-block;background:var(--aqm-lamina);color:var(--aqm-superficie);font-family:var(--aqm-texto);font-weight:600;text-decoration:none;border:1px solid var(--aqm-lamina);border-radius:2px;padding:.7rem 1.15rem;}
+.aqm-acao-grande a:hover{background:var(--aqm-tinta);border-color:var(--aqm-tinta);}
+.aqm-acao-grande a:focus-visible{outline:2px solid var(--aqm-tinta);outline-offset:3px;}
+/* Prateleira de guias: lista de verdade, um link por titulo. */
+.aqm-guias{margin:1.2rem 0 0;padding:0;list-style:none;display:grid;gap:1.1rem;}
+.aqm-guia{margin:0;padding:0 0 1.1rem;border-bottom:1px solid var(--aqm-traco);}
+.aqm-guia:last-child{border-bottom:0;padding-bottom:0;}
+.aqm-guia h3{font-family:var(--aqm-display);font-size:1.05rem;margin:0 0 .35rem;line-height:1.3;}
+.aqm-guia h3 a{color:var(--aqm-tinta);text-decoration:none;border-bottom:2px solid var(--aqm-lamina);}
+.aqm-guia h3 a:hover{color:var(--aqm-lamina);}
+.aqm-guia p{margin:0;color:var(--aqm-legenda);font-size:.93rem;line-height:1.55;}
 .aqm-acao{margin-top:auto;padding-top:.3rem;}
 .aqm-acao a{font-weight:600;text-decoration:none;border-bottom:2px solid var(--aqm-lamina);}
 .aqm-sem-link{color:var(--aqm-legenda);}
@@ -766,32 +847,73 @@ function aquametria_casca_conta_publicadas() {
 }
 }
 
+/**
+ * A home, no molde GUIA do VOZ.md: a pergunta mais frequente em cima, as
+ * calculadoras como cartões na linguagem da pessoa, os guias embaixo — e a
+ * prova no fim, dentro de `aqm-prova`.
+ *
+ * Sem manifesto, que era como ela abria até a 1.3.1 ("A Aquametria dimensiona
+ * aquário com número que tem fonte"). A frase não era falsa; ela só falava da
+ * fábrica para a fábrica, e quem chega aqui chegou com uma fita métrica na mão.
+ */
 add_shortcode( 'aquametria_home', function () {
 	$total      = count( aquametria_casca_calculadoras() );
 	$publicadas = aquametria_casca_conta_publicadas();
+	$guias      = aquametria_casca_guias();
 
 	$html  = '<div class="aqm-bloco">';
-	$html .= '<div class="aqm-abertura">';
-	$html .= '<p class="aqm-linha-mestra">A Aquametria dimensiona aquário com número que tem fonte: litragem, vazão de filtro, potência de aquecedor, mídia filtrante e iluminação.</p>';
-	$html .= '<p>Cada resposta sai como <strong>faixa</strong>, com o critério e a fonte de cada extremo — nunca um número seco. Quando as fontes brasileiras discordam entre si, a discordância vai para a tela com a atribuição de cada lado.</p>';
-	$html .= '<p>Onde não existe fonte aceitável, a página diz por que não publica número. É isso, e só isso, que separa uma calculadora de um chute com botão.</p>';
+
+	/* 1. A pergunta mais frequente da ilha, com as três medidas. */
+	$html .= '<div class="aqm-abertura aqm-pergunta">';
+	$html .= '<p class="aqm-linha-mestra">Quantos litros tem o seu aquário?</p>';
+	$html .= '<p>Pega a fita métrica e anota comprimento, largura e altura em centímetros. A gente devolve os três números que importam: o litro da etiqueta, o que cabe de verdade e a água que você vai tratar — e eles não são iguais.</p>';
+	$url_c1 = aquametria_casca_url_se_existir( 'calculadora-de-litragem' );
+	if ( '' !== $url_c1 ) {
+		$html .= '<p class="aqm-acao-grande"><a href="' . esc_url( $url_c1 ) . '">Fazer a conta dos litros</a></p>';
+	}
 	$html .= '</div>';
 
+	/* 2. As outras contas. O "N de M" é contado, nunca digitado. */
 	$html .= '<div class="aqm-secao">';
-	$html .= '<h2>Calculadoras</h2>';
+	$html .= '<h2>E as outras contas do aquário</h2>';
 	if ( 0 === $publicadas ) {
-		$html .= '<p>As oito calculadoras do lote inicial já estão especificadas, com fórmula, faixas de saída e a fonte de cada constante. Elas entram no ar uma por vez, na ordem abaixo.</p>';
+		$html .= '<p>As contas abaixo estão prontas no papel e entram no ar uma por vez.</p>';
 	} else {
-		$html .= '<p>' . esc_html( $publicadas ) . ' de ' . esc_html( $total ) . ' calculadoras do lote inicial já estão no ar. As demais entram uma por vez, na ordem abaixo.</p>';
+		$html .= '<p>' . esc_html( $publicadas ) . ' de ' . esc_html( $total ) . ' já estão no ar. As outras entram uma por vez — cada uma só sai quando dá para mostrar de onde veio cada número.</p>';
 	}
 	$html .= aquametria_casca_cards_html();
 	$html .= '</div>';
 
-	$html .= '<div class="aqm-secao">';
-	$html .= '<h2>Como a Aquametria calcula</h2>';
-	$html .= '<p>Toda constante usada em uma fórmula tem fonte nomeada, endereço e data de verificação, e carrega um status que diz o quanto ela é firme. Constante sem fonte aceitável é proibida em fórmula publicada — fica registrada como pendente e a página explica a ausência.</p>';
-	$html .= '<p>' . aquametria_casca_link_html( 'metodologia', 'Ler a metodologia completa' ) . '</p>';
+	/* 3. Os guias, quando existem. Quem responde é o snippet dos artigos. */
+	if ( ! empty( $guias ) ) {
+		$html .= '<div class="aqm-secao">';
+		$html .= '<h2>Para entender antes de comprar</h2>';
+		$html .= '<p>Quando a conta não basta e você quer saber por que o número é aquele.</p>';
+		$html .= '<ul class="aqm-guias">';
+		foreach ( $guias as $g ) {
+			$url = aquametria_casca_url_se_existir( $g['slug'] );
+			$html .= '<li class="aqm-guia">';
+			if ( '' !== $url ) {
+				$html .= '<h3><a href="' . esc_url( $url ) . '">' . esc_html( $g['manchete'] ) . '</a></h3>';
+			} else {
+				$html .= '<h3>' . esc_html( $g['manchete'] ) . '</h3>';
+			}
+			if ( '' !== $g['resumo'] ) {
+				$html .= '<p>' . esc_html( $g['resumo'] ) . '</p>';
+			}
+			$html .= '</li>';
+		}
+		$html .= '</ul>';
+		$html .= '</div>';
+	}
+
+	/* 4. A camada de prova. */
+	$html .= '<div class="aqm-secao aqm-prova">';
+	$html .= '<h2>Como a gente sabe</h2>';
+	$html .= '<p>Todo número daqui tem fonte com nome e data: manual do fabricante, norma técnica ou levantamento brasileiro identificado. Quando duas fontes discordam — e no aquarismo brasileiro elas discordam bastante —, as duas aparecem na tela com o nome de quem disse o quê. A gente não tira média, e onde não achamos fonte que preste a página diz isso em vez de chutar.</p>';
+	$html .= '<p>' . aquametria_casca_link_html( 'metodologia', 'Ver o critério inteiro' ) . '</p>';
 	$html .= '</div>';
+
 	$html .= '</div>';
 
 	return $html;
@@ -799,10 +921,10 @@ add_shortcode( 'aquametria_home', function () {
 
 add_shortcode( 'aquametria_calculadoras', function () {
 	$html  = '<div class="aqm-bloco">';
-	$html .= '<p class="aqm-linha-mestra">Oito calculadoras de dimensionamento, publicadas uma por vez.</p>';
-	$html .= '<p>A ordem não é aleatória: a calculadora de litragem é o núcleo. O aquário que você descreve nela fica guardado no seu próprio navegador e é reaproveitado pelas outras, para você não redigitar medidas a cada conta. Nada é enviado para servidor nenhum: sem conta, sem login, sem coleta.</p>';
+	$html .= '<p class="aqm-linha-mestra">As contas do seu aquário, em um lugar só.</p>';
+	$html .= '<p>Comece pelos litros: o aquário que você mede ali fica guardado no seu próprio navegador e as outras contas já vêm preenchidas, sem você redigitar medida nenhuma. Nada sai do seu aparelho — sem conta, sem login, sem cadastro.</p>';
 	$html .= aquametria_casca_cards_html();
-	$html .= '<p class="aqm-nota"><strong>Em construção não é enfeite.</strong> Uma calculadora só entra no ar com a fonte de cada constante conferida e com a divergência entre fontes exposta na tela. Preferimos uma calculadora impecável a duas medianas.</p>';
+	$html .= '<p class="aqm-nota aqm-prova"><strong>Em construção não é enfeite.</strong> Uma calculadora só entra no ar com a fonte de cada constante conferida e com a divergência entre fontes exposta na tela. Preferimos uma calculadora impecável a duas medianas.</p>';
 	$html .= '</div>';
 
 	return $html;
@@ -854,8 +976,16 @@ add_shortcode( 'aquametria_metodologia', function () {
 	$q = aquametria_casca_quadro_constantes();
 
 	$html  = '<div class="aqm-bloco">';
-	$html .= '<p class="aqm-linha-mestra">A Aquametria não publica número sem fonte, e não esconde quando as fontes discordam.</p>';
-	$html .= '<p>Aquarismo brasileiro é um campo em que a mesma pergunta recebe três respostas diferentes, todas escritas com a mesma segurança. A metodologia abaixo existe para você conseguir julgar o número em vez de acreditar nele.</p>';
+	$html .= '<p class="aqm-linha-mestra">De onde sai cada número que a gente te dá.</p>';
+	$html .= '<p>No aquarismo brasileiro a mesma pergunta recebe três respostas diferentes, todas escritas com a mesma segurança. O que está abaixo existe para você conseguir julgar o número em vez de ter que acreditar nele.</p>';
+
+	/* Daqui para baixo é camada de prova (seção 15.2 do ARQUIPELAGO.md), e a
+	   página DIZ isso no markup em vez de deixar o portão adivinhar pela
+	   vizinhança das palavras — foi assim que o Clube do Mosaico resolveu a
+	   mesma classe de problema em 11/09/2026. A marca é uma só, envolve tudo o
+	   que vem depois da abertura, e nunca cobre o título nem o primeiro
+	   parágrafo: a voz fica fora dela por construção. */
+	$html .= '<div class="aqm-prova">';
 
 	$html .= '<div class="aqm-secao"><h2>1. Toda resposta é uma faixa, com critério e fonte em cada extremo</h2>';
 	$html .= '<p>Nenhuma calculadora devolve um número seco. A resposta traz o piso, o teto, o critério que define cada um e a fonte que sustenta esse critério. Quando o piso vem de um fabricante e o teto de uma convenção brasileira, isso fica escrito na tela: são coisas de peso diferente.</p></div>';
@@ -865,12 +995,20 @@ add_shortcode( 'aquametria_metodologia', function () {
 
 	$html .= '<div class="aqm-secao"><h2>3. Toda constante tem status</h2>';
 	$html .= '<p>Cada número usado numa fórmula está registrado com fonte, endereço, data de verificação e um status que diz o quanto ele é firme. São ' . esc_html( $q['total'] ) . ' constantes registradas até aqui, incluindo as que foram recusadas.</p>';
+	/* O quadro entra dentro de um bloco que rola, como TODA tabela desta ilha —
+	   é o mesmo `aqm-tabela` que o conversor de Markdown do Sync põe em volta
+	   das tabelas que vêm de conteudo/. Esta aqui é impressa direto pelo
+	   shortcode e por isso nunca tinha ganhado o embrulho: media 67 px de
+	   rolagem horizontal a 360 px e 37 px a 390 px, no ar, desde que a página
+	   existe. Não foi a 1.4.0 que quebrou; foi a 1.4.0 que passou a medir. */
+	$html .= '<div class="aqm-tabela" style="overflow-x:auto">';
 	$html .= '<table class="aqm-quadro"><tr><th>Status</th><th>O que significa</th><th>Hoje</th></tr>';
 	foreach ( $q['vocabulario'] as $status => $descricao ) {
 		$n     = isset( $q['contagem'][ $status ] ) ? $q['contagem'][ $status ] : 0;
 		$html .= '<tr><td>' . esc_html( $status ) . '</td><td>' . esc_html( $descricao ) . '</td><td>' . esc_html( $n ) . '</td></tr>';
 	}
 	$html .= '</table>';
+	$html .= '</div>';
 	$html .= '<p class="aqm-nota"><strong>Constante com status pendente é proibida em fórmula publicada.</strong> Ela fica no registro para que a ausência seja auditável, e para que qualquer pessoa saiba exatamente o que falta para o número existir.</p></div>';
 
 	$html .= '<div class="aqm-secao"><h2>4. O que a Aquametria não publica, e por quê</h2>';
@@ -889,20 +1027,21 @@ add_shortcode( 'aquametria_metodologia', function () {
 	$html .= '<p>No banco de produtos a procedência é por campo, não por ficha: cada dado de um filtro, aquecedor, luminária ou mídia aponta para a fonte que o sustenta, com endereço e data. Campo sem fonte fica vazio, e vazio é melhor que inventado. Preço é série temporal separada, com loja e data de leitura, e nunca entra em critério técnico de sugestão.</p>';
 	$html .= '<p>Quando aparece fonte melhor, a constante é substituída e a data de verificação da página muda junto. Correção não é vergonha: é o que a data serve para permitir.</p></div>';
 	$html .= '</div>';
+	$html .= '</div>';
 
 	return $html;
 } );
 
 add_shortcode( 'aquametria_sobre', function () {
 	$html  = '<div class="aqm-bloco">';
-	$html .= '<p class="aqm-linha-mestra">A Aquametria é um instrumento de medida para aquarismo, não um blog de opinião.</p>';
-	$html .= '<p>Publicamos calculadoras de dimensionamento e um banco de dados técnico de equipamentos, com uma regra única: todo número cita a fonte e leva a data em que foi verificado.</p>';
+	$html .= '<p class="aqm-linha-mestra">A gente faz as contas do seu aquário e mostra de onde elas vieram.</p>';
+	$html .= '<p>Aqui você acha as calculadoras e um banco de equipamentos com as medidas de cada um, montado com uma regra só: todo número diz de onde saiu e em que dia isso foi conferido.</p>';
 
 	$html .= '<div class="aqm-secao"><h2>Por que existe</h2>';
 	$html .= '<p>Ao levantar o que o aquarismo brasileiro publica, encontramos perguntas frequentes que ninguém responde com número de fonte: quanta mídia biológica cabe por litro de aquário, que potência de aquecedor a sua diferença de temperatura real exige, e qual a dureza da água da torneira na sua cidade. O que existe é regra de bolso repetida de site em site, sem origem. A Aquametria começa por esses vazios.</p></div>';
 
 	$html .= '<div class="aqm-secao"><h2>Como é feita</h2>';
-	$html .= '<p>Sem pessoa em cena: sem rosto, sem vídeo, sem canal, sem presença em fórum. O que sustenta uma resposta aqui é a metodologia e a procedência do dado, e as duas ficam abertas para conferência em cada página. Calculadora e conteúdo são versionados em repositório público antes de chegarem ao site — o que está no ar tem histórico.</p></div>';
+	$html .= '<p>Sem pessoa em cena: sem rosto, sem vídeo, sem canal, sem presença em fórum. O que sustenta uma resposta aqui é a conta e o lugar de onde o número saiu, e os dois ficam à vista na própria página, para você conferir se quiser. Calculadora e texto são guardados num repositório público antes de chegar ao site — o que está no ar tem histórico.</p></div>';
 
 	$html .= '<div class="aqm-secao"><h2>O que a Aquametria não faz</h2>';
 	$html .= '<ul class="aqm-lista">';
@@ -924,10 +1063,14 @@ add_shortcode( 'aquametria_sobre', function () {
 
 if ( ! function_exists( 'aquametria_casca_definicao_paginas' ) ) {
 function aquametria_casca_definicao_paginas() {
+	/* O título é o H1 que o tema imprime e o <title> que o buscador lê. Desde a
+	   1.4.0 ele também fala a língua do VOZ.md — "Início" e "Metodologia" eram
+	   nomes de menu de painel, não o que a pessoa procura. O SLUG não muda em
+	   nenhum dos quatro: URL de página publicada não se mexe (seção 12.1). */
 	return array(
-		'inicio'       => array( 'titulo' => 'Início', 'conteudo' => '[aquametria_home]' ),
+		'inicio'       => array( 'titulo' => 'As contas do seu aquário', 'conteudo' => '[aquametria_home]' ),
 		'calculadoras' => array( 'titulo' => 'Calculadoras', 'conteudo' => '[aquametria_calculadoras]' ),
-		'metodologia'  => array( 'titulo' => 'Metodologia', 'conteudo' => '[aquametria_metodologia]' ),
+		'metodologia'  => array( 'titulo' => 'Como a gente calcula', 'conteudo' => '[aquametria_metodologia]' ),
 		'sobre'        => array( 'titulo' => 'Sobre', 'conteudo' => '[aquametria_sobre]' ),
 	);
 }
@@ -974,6 +1117,20 @@ function aquametria_casca_garantir_paginas( &$relato ) {
 		if ( $nossa && false === strpos( (string) $pagina->post_content, $def['conteudo'] ) ) {
 			wp_update_post( array( 'ID' => $pid, 'post_content' => $def['conteudo'] ) );
 			$relato[] = 'página ' . $slug . ': shortcode reposto (#' . $pid . ')';
+		}
+
+		/* O título segue a definição — só nas páginas que são NOSSAS, pela mesma
+		   regra do corpo: página que alguém editou à mão não é reescrita.
+		   Existe desde a 1.4.0 porque o título é onde a voz da ilha aparece
+		   primeiro (VOZ.md), e até aqui ele era gravado uma vez, no dia em que
+		   a página nasceu, e nunca mais.
+		   O post_name NÃO entra nesta chamada de propósito: o WordPress só gera
+		   slug a partir do título quando post_name está vazio, e o destas quatro
+		   está preenchido desde a criação. Trocar título aqui não move URL — e
+		   mover URL de página publicada é proibido (seção 12.1 do contrato). */
+		if ( $nossa && $def['titulo'] !== $pagina->post_title ) {
+			wp_update_post( array( 'ID' => $pid, 'post_title' => $def['titulo'] ) );
+			$relato[] = 'página ' . $slug . ': título atualizado (#' . $pid . ')';
 		}
 	}
 

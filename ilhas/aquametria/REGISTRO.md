@@ -4849,3 +4849,58 @@ quebra-cache):
 - Os três cartões servidos dizem, cada um, o lm/L que entregam: 49,4 / 48,2 /
   54,4 lm/L, os três dentro dos 40 a 60 publicados — que é o que o grupo de cima
   significa agora.
+
+## 2026-09-11, 15h16Z — A VOZ CHEGA À HOME E AO HEADER (casca 1.4.0, revisão 41)
+
+**Bloco:** despacho do Raphael de 11/09/2026, seção 15 do `ARQUIPELAGO.md` — prioridade máxima, antes de qualquer bloco da fila. Junto veio o item (i) do 16.8: o `ARVORE.md` da ilha.
+
+### O que mudou na tela
+
+- **A home parou de abrir pelo manifesto.** Até a 1.3.1 a primeira linha era *"A Aquametria dimensiona aquário com número que tem fonte"*. A frase não era falsa; ela falava da fábrica para a fábrica. Agora a home abre pela pergunta mais frequente da ilha — *"Quantos litros tem o seu aquário?"* — com as três medidas nomeadas, porque quem chega aqui chegou com uma fita métrica na mão.
+- **Os oito cartões viraram a pergunta que a pessoa digita.** "Potência do aquecedor por delta térmico" virou "Quantos watts de aquecedor você precisa?"; "Vazão do filtro e turnover" virou "Qual filtro dá conta do seu aquário?". **Nenhum código, slug ou URL mudou** — a seção 12.1 proíbe mover endereço de página publicada, e este bloco não moveu nenhum.
+- **Nasceu a prateleira de guias**, no fim da home, no molde GUIA do `VOZ.md`.
+- **O menu diz "Como a gente calcula"** no lugar de "Metodologia", e o título das quatro páginas da casca passou a ser sincronizado — só nas que carregam `_aquametria_casca`, e sem tocar em `post_name`.
+
+### As três decisões de desenho que valem para as outras ilhas
+
+**1. A prateleira de guias não guarda cópia de título nenhum.** A casca pergunta pelo filtro `aquametria_guias` e quem responde é o snippet dos artigos. Guia novo aparece na home sozinho. É a mesma escolha do hub de calculadoras, e existe pela cicatriz de 11/09: o número digitado que era verdade no dia em que foi escrito e virou mentira em silêncio no dia em que o banco cresceu. A frase "5 de 8 já estão no ar" é contada, e o portão conta de novo e compara.
+
+**2. A camada de prova se declara no MARKUP, não se adivinha pela vizinhança.** "Procedência" é palavra proibida na voz e obrigatória na prova, e as duas são a mesma palavra. A saída não é heurística melhor: a página marca a prova com a classe `aqm-prova`, o portão **retira** esses blocos e proíbe o termo em todo o resto. Para a declaração não virar porta dos fundos, os blocos marcados são contados (no máximo dois por página), nenhum pode conter o H1 ou o primeiro parágrafo, e nenhum pode abrir a página. É a lição do Clube do Mosaico aplicada antes de doer aqui.
+
+**3. A régua do portão mora no portão.** `teste-voz.mjs` escreve a própria lista de termos proibidos, à mão, a partir do `VOZ.md`. Ela não é importada de um JSON que o snippet também leia — se as duas metades lessem a mesma lista, apagar um termo dela faria as duas errarem juntas e o teste continuaria verde. E toda afirmação sobre o que a página diz é medida **no corpo**, entre `<main>` e `</main>`: no HTML inteiro o termo apareceria dentro do próprio JSON-LD.
+
+### O que a medição achou sem procurar
+
+**A tabela de constantes da `/metodologia/` rolava na horizontal no celular, e está no ar assim desde que a página existe.** 67 px a 360 px, 37 px a 390 px. A causa é discreta e vale para toda ilha: o conversor de Markdown do Sync embrulha **toda** tabela vinda de `conteudo/` num bloco que rola, mas esta tabela é impressa direto pelo shortcode e por isso nunca passou por lá. Nenhum teste do projeto media largura nas páginas da casca — o `teste-navegador-casca.mjs` monta o cabeçalho com um corpo falso, de propósito, porque o que ele mede é o menu. **Não foi este bloco que quebrou; foi este bloco que passou a medir.** Consertado na mesma versão, e o gate reprovou antes e passou depois — que é o teste negativo desta trava, observado ao vivo.
+
+**A C15 seria a única a ficar com o texto antigo.** Ela é a única calculadora que sobrescreve o resumo do cartão pelo filtro `aquametria_calculadoras`. Quem lesse só a casca veria os oito cartões reescritos e nunca saberia que um deles é descartado no ar. Achado pela varredura, não pela leitura do código. (C15 v1.3.1, e nada além desse texto mudou nela.)
+
+### Verificação — seção 8 inteira
+
+| portão | afirmações | resultado |
+|---|---|---|
+| `teste-voz.mjs` (novo) | 74 | 0 falha |
+| `teste-navegador-casca-paginas.mjs` (novo) | 28 | 0 falha, **0 px de rolagem nas 24 medições** |
+| `mutacoes-voz.py` (novo) | 10 mutações | **10 reprovadas** |
+| `teste-navegador-casca.mjs` | 43 | 0 falha |
+| `teste-navegador-cinco.mjs` | 56 | 0 falha |
+| `teste-navegador-visibilidade-ia.mjs` | 155 | 0 falha |
+| `teste-navegador-artigos.mjs` | 108 | 0 falha |
+| `teste-seo-tecnico.php` | 177 | 0 falha |
+| `conferir-slugs.py` · `validar-produtos.py` · `conferir-protecao-funcoes.py` | — | 0 erro |
+
+`php -l` limpo nos dez snippets. Corpo medido: home 3.760 caracteres, `/calculadoras/` 2.495, `/metodologia/` 4.249, `/sobre/` 1.616 — as quatro acima do piso de ~1.500 da seção 8.
+
+**A mutação que mais vale é a número 3**, a porta dos fundos: embrulhar a home inteira na classe que declara camada de prova. Ela não escreve nada de errado na tela — só desliga a regra. Se passasse, a marca `aqm-prova` valeria zero.
+
+### O `ARVORE.md`
+
+Quatro seções de nível 1 (`/calculadoras/`, `/peixes/`, `/equipamentos/`, `/guias/`), as categorias de nível 2 com o nome que a pessoa usa, e o pai de cada página existente. **Nenhuma categoria tem hoje as 3 filhas com dado real que a 16.5 exige**, então nenhuma nasce agora — e duas travas independentes de calendário (item 5 do despacho da Sentinela e o T2 deste `PROMPT.md`) seguram qualquer URL nova até a leitura de 16/09. O arquivo diz isso por escrito, com a ordem das levas para quando destravar.
+
+### Receita e pendências
+
+- **39 dos 78 produtos esperam link de afiliado.** Quem gera é a Sentinela estratégica, no navegador do Raphael.
+- Item 4 do despacho de 10/09 (o topo da lista sem link de loja) e item 5 (nenhuma página nova até 16/09) continuam de pé, e este bloco não criou nenhuma URL.
+- As páginas de `conteudo/` ainda falam na voz antiga: elas são reescritas ao passar pela ronda, como manda a 15.5.
+
+**Próximo passo desbloqueado:** breadcrumb com `BreadcrumbList` e blocos "Veja também" (16.4) em toda página que já existe. Nenhum dos dois cria URL, então os dois cabem antes de 16/09. O breadcrumb nasce com o nível 2 em texto, sem link, porque a categoria ainda não existe — estado de transição declarado no `ARVORE.md`, não desenho.

@@ -1,5 +1,10 @@
 /**
  * Aquametria Calculadora de Iluminação e Fotoperíodo — C15
+ * Versão: 1.3.1 (11/09/2026) — o resumo do cartão dela no hub passa a falar na
+ * voz do VOZ.md, como os outros sete. Esta é a única calculadora que sobrescreve
+ * o resumo do catálogo da casca pelo filtro 'aquametria_calculadoras', então era a
+ * única que continuaria com o texto antigo depois da casca 1.4.0 — e ninguém
+ * lendo só a casca perceberia. Nada além desse texto mudou.
  * Versão: 1.3.0 (11/09/2026) — BLOCO T8: a VITRINE de produto chega à C15, a terceira
  *   do Arquipélago depois da C3 e da C5, com o mesmo desenho — uma função de cartão em
  *   PHP e o espelho dela em JavaScript, duas vitrines por página (a pintada dentro do
@@ -100,7 +105,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_C15_VERSAO' ) ) {
-	define( 'AQUAMETRIA_C15_VERSAO', '1.3.0' );
+	define( 'AQUAMETRIA_C15_VERSAO', '1.3.1' );
 	define( 'AQUAMETRIA_C15_SLUG', 'calculadora-de-iluminacao' );
 	define( 'AQUAMETRIA_C15_VERIFICADO_EM', '08/09/2026' );
 	define( 'AQUAMETRIA_C15_PAGINA_AFILIADOS', 'divulgacao-de-afiliados' );
@@ -143,8 +148,13 @@ function aquametria_c15_registrar_no_hub( $lista ) {
 		if ( isset( $c['codigo'] ) && 'C15' === $c['codigo'] ) {
 			$lista[ $i ]['estado'] = 'publicada';
 			$lista[ $i ]['slug']   = AQUAMETRIA_C15_SLUG;
-			$lista[ $i ]['resumo'] = 'Lúmens por litro nas três leituras brasileiras que chamam a mesma faixa pelo mesmo nome com o dobro do número, '
-				. 'mais o fotoperíodo por regime, a faixa de Kelvin, o aviso de CO2 e o consumo em kWh por mês do fotoperíodo escolhido.';
+			/* O resumo é sobrescrito aqui porque esta calculadora entrega mais do
+			   que o catálogo da casca prometia. Desde 11/09/2026 ele fala na voz
+			   do VOZ.md, como o resto dos cartões — o texto anterior listava as
+			   saídas pelo nome interno delas ("fotoperíodo por regime", "faixa de
+			   Kelvin"), que é vocabulário de quem constrói, não de quem compra. */
+			$lista[ $i ]['resumo'] = 'Os lúmens para o seu aquário e quantas horas deixar aceso. '
+				. 'As três leituras brasileiras chamam a mesma faixa pelo mesmo nome com o dobro do número, e aqui elas aparecem lado a lado — com a cor da luz, o aviso de CO2 e quanto vai pesar na conta de luz por mês.';
 		}
 	}
 	return $lista;

@@ -215,16 +215,16 @@ if ( ! function_exists( 'aquametria_seo_metas_por_slug' ) ) {
 function aquametria_seo_metas_por_slug() {
 	return array(
 		'inicio' => array(
-			'titulo'    => 'Início',
-			'descricao' => 'Calculadoras de aquário que mostram a conta: litragem, vazão do filtro, watts do aquecedor, mídia filtrante e lúmens, com a fonte de cada número.',
+			'titulo'    => 'As contas do seu aquário',
+			'descricao' => 'Quantos litros tem o seu aquário? E quantos watts de aquecedor, qual filtro, quanta luz? As contas do seu aquário, com a fonte de cada número.',
 		),
 		'calculadoras' => array(
 			'titulo'    => 'Calculadoras',
-			'descricao' => 'As cinco calculadoras da Aquametria em uma página: litragem, vazão do filtro, potência do aquecedor, mídia filtrante e iluminação, com as fontes.',
+			'descricao' => 'As contas do seu aquário em um lugar só: litros, vazão do filtro, watts do aquecedor, mídia filtrante e luz — cada uma com a fonte do número.',
 		),
 		'metodologia' => array(
-			'titulo'    => 'Metodologia',
-			'descricao' => 'Como a Aquametria aceita ou recusa uma constante: fonte do fabricante, data de verificação e faixa quando as fontes discordam. Nunca a média.',
+			'titulo'    => 'Como a gente calcula',
+			'descricao' => 'De onde sai cada número da Aquametria: o manual do fabricante, a data em que foi conferido e a faixa inteira quando as fontes discordam.',
 		),
 		'sobre' => array(
 			'titulo'    => 'Sobre',
