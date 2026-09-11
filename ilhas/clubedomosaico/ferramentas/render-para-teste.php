@@ -21,9 +21,14 @@
  *      matou cinco calculadoras da Aquametria em 08/09/2026.
  *   3. remove_action casa gancho, funcao e prioridade, como o WordPress. Sem
  *      isso nao daria para provar que o icone do WordPress saiu do wp_head.
- *   4. O CABECALHO SAI PRETO, como no site. A casca desta ilha pinta o cabecalho
- *      pelo CSS do tema; a bancada repete a mesma cor para que uma medicao de
+ *   4. O CABECALHO SAI CLARO, como no site depois da casca 1.2.0, com a linha de
+ *      1 px embaixo. A bancada repete a cor do site para que uma medicao de
  *      contraste ou de layout aqui valha alguma coisa.
+ *   5. O TITULO DA PAGINA SAI COMO H1, que e o que o tema de blocos faz. Sem
+ *      isto, "a home nao exibe o titulo Inicio" seria uma afirmacao que a
+ *      bancada nao consegue medir — e foi exatamente essa a reclamacao do
+ *      Raphael em 11/09/2026. O H1 vem da definicao de paginas da propria
+ *      casca, casada pelo shortcode, nunca de um segundo mapa escrito aqui.
  *
  * A CICATRIZ QUE ESTE ARQUIVO HERDA (secao 8, medida na Robometria em
  * 11/09/2026): render de bancada que serve METADE da pagina da um numero verde
@@ -68,6 +73,7 @@ function number_format_i18n($n,$d=0){ return number_format($n,$d,',','.'); }
 function sanitize_title($t){ return strtolower(preg_replace('/[^a-z0-9]+/i','-',$t)); }
 function wp_kses_post($t){ return $t; }
 function is_admin(){ return false; } function did_action($h){ return 0; }
+function get_queried_object_id(){ return isset($GLOBALS['__id_atual']) ? (int) $GLOBALS['__id_atual'] : 0; }
 function is_404(){ return false; }
 function is_singular($t=''){ return true; }
 /* A LOJA NAO TEM CPT ATE O BLOCO 4d. Devolver false aqui e o estado real do
@@ -94,14 +100,22 @@ function get_permalink($p=null){
 	if (is_object($p) && isset($p->post_name)) { return 'https://clubedomosaico.com.br/'.$p->post_name.'/'; }
 	return 'https://clubedomosaico.com.br/pagina-de-teste/';
 }
-function get_page_by_path($p,$saida=null,$tipo=null){ return null; }
+/* Paginas que JA EXISTEM no site de teste, como objeto: mapa slug => stdClass em
+   __paginas_objeto. Vazio por padrao (site novo). E o que permite medir o
+   caminho de ATUALIZACAO de cdm_casca_garantir_paginas(), que e onde mora o
+   defeito do titulo que nunca sincroniza — e que o render sozinho nao ve,
+   porque ele monta o H1 a partir da definicao e nao do banco do WordPress. */
+function get_page_by_path($p,$saida=null,$tipo=null){
+	$mapa = isset($GLOBALS['__paginas_objeto']) ? $GLOBALS['__paginas_objeto'] : array();
+	return isset($mapa[$p]) ? $mapa[$p] : null;
+}
 function get_post_meta($id,$chave,$unico=false){
 	$mapa = isset($GLOBALS['__meta'][$id]) ? $GLOBALS['__meta'][$id] : array();
 	return isset($mapa[$chave]) ? $mapa[$chave] : '';
 }
 function update_post_meta($id,$chave,$valor){ return true; }
-function wp_insert_post($a,$erro=false){ return 0; }
-function wp_update_post($a){ return 0; }
+function wp_insert_post($a,$erro=false){ $GLOBALS['__inserts'][] = $a; return count($GLOBALS['__inserts']); }
+function wp_update_post($a){ $GLOBALS['__updates'][] = $a; return isset($a['ID']) ? (int) $a['ID'] : 0; }
 function wp_trash_post($id){ return true; }
 function is_wp_error($v){ return false; }
 function flush_rewrite_rules($dura=true){}
@@ -164,6 +178,14 @@ function cdm_teste_carregar_options($raiz) {
  * Uma diferenca que importa: o cabecalho NAO passa pelo escape de "&", porque no
  * tema de blocos ele nao esta dentro do the_content. O conteudo, esse sim, passa.
  */
+function cdm_teste_titulo_da_pagina($tag) {
+	if (!function_exists('cdm_casca_definicao_paginas')) { return ''; }
+	foreach (cdm_casca_definicao_paginas() as $slug => $def) {
+		if (isset($def['conteudo']) && $def['conteudo'] === '[' . $tag . ']') { return $def['titulo']; }
+	}
+	return '';
+}
+
 function cdm_teste_pagina($tag, $titulo = 'Clube do Mosaico — teste') {
 	$GLOBALS['__conteudo_pagina'] = '[' . $tag . ']';
 
@@ -175,15 +197,21 @@ function cdm_teste_pagina($tag, $titulo = 'Clube do Mosaico — teste') {
 	$marca     = apply_filters('render_block', '<!-- bloco do tema -->', array('blockName'=>'core/site-title'));
 	$cabecalho = apply_filters('render_block', '<!-- bloco do tema -->', array('blockName'=>'core/navigation'));
 
+	/* O H1 que o tema de blocos imprime a partir do titulo da pagina. */
+	$titulo_da_pagina = cdm_teste_titulo_da_pagina($tag);
+	$h1 = '' !== $titulo_da_pagina
+		? '<h1 class="wp-block-post-title">' . htmlspecialchars($titulo_da_pagina, ENT_QUOTES) . "</h1>\n"
+		: '';
+
 	ob_start(); do_action('wp_head');   $cabeca = ob_get_clean();
 	ob_start(); do_action('wp_footer'); $rodape = ob_get_clean();
 
 	return "<!doctype html>\n<html lang=\"pt-BR\">\n<head>\n<meta charset=\"utf-8\">\n"
 		. "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>"
 		. htmlspecialchars($titulo, ENT_QUOTES) . "</title>\n" . $cabeca . "</head>\n<body>\n"
-		. "<header class=\"wp-block-template-part\" style=\"display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 1.2rem;background:#000000;\">\n"
+		. "<header class=\"wp-block-template-part\" style=\"display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 1.2rem;background:#FFFFFF;border-bottom:1px solid #E9DCD7;\">\n"
 		. $marca . "\n" . $cabecalho . "\n</header>\n"
-		. "<main style=\"padding:1.2rem;\">" . $corpo . "</main>\n"
+		. "<main style=\"padding:1.2rem;\">" . $h1 . $corpo . "</main>\n"
 		. $rodape . "</body>\n</html>\n";
 }
 
@@ -192,8 +220,8 @@ if (isset($argv[1]) && basename(__FILE__) === basename($argv[0])) {
 	/* Num render solto as paginas do menu existem, para o cabecalho sair com os
 	   <a href> de verdade que o teste do menu precisa conferir. */
 	$GLOBALS['__paginas'] = array(
-		'loja'=>true,'materiais'=>true,'como-fazer'=>true,'sobre'=>true,
-		'contato'=>true,'divulgacao-de-afiliados'=>true,'privacidade'=>true,
+		'loja'=>true,'materiais'=>true,'materiais/como-sabemos'=>true,'como-fazer'=>true,
+		'sobre'=>true,'contato'=>true,'divulgacao-de-afiliados'=>true,'privacidade'=>true,
 	);
 	cdm_teste_carregar_options($argv[1]);
 	cdm_teste_carregar($argv[1]);

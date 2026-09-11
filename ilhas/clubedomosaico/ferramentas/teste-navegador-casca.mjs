@@ -59,14 +59,30 @@ for (const arquivo of arquivos) {
 		folha: !!document.getElementById('cdm-casca'),
 		cssBytes: (document.getElementById('cdm-casca')?.textContent || '').length,
 		rodape: document.querySelectorAll('.cdm-rodape').length,
-		marca: document.querySelectorAll('.cdm-marca img').length,
+		marcaTexto: (document.querySelector('.cdm-marca')?.textContent || '').trim(),
+		marcaImg: document.querySelectorAll('.cdm-marca img').length,
+		fundoCabecalho: getComputedStyle(document.querySelector('header')).backgroundColor,
+		corDoMenu: getComputedStyle(document.querySelector('.cdm-nav a') || document.body).color,
 		nav: document.querySelectorAll('.cdm-nav a, .cdm-nav .cdm-sem-link').length,
 		corpo: (document.querySelector('main')?.textContent || '').trim().length,
 	}));
 	ok(
-		retrato.folha && retrato.cssBytes > 4000 && 1 === retrato.rodape && 1 === retrato.marca && 4 === retrato.nav && retrato.corpo > 1200,
-		`[${arquivo}] folha, marca, 4 itens de menu, 1 rodape e corpo cheio`,
-		`css ${retrato.cssBytes}B · nav ${retrato.nav} · corpo ${retrato.corpo} caracteres`
+		retrato.folha && retrato.cssBytes > 4000 && 1 === retrato.rodape && 'clube do mosaico' === retrato.marcaTexto && 4 === retrato.nav && retrato.corpo > 1200,
+		`[${arquivo}] folha, marca legivel, 4 itens de menu, 1 rodape e corpo cheio`,
+		`css ${retrato.cssBytes}B · marca "${retrato.marcaTexto}" · nav ${retrato.nav} · corpo ${retrato.corpo} caracteres`
+	);
+	/* O CABECALHO CLARO, MEDIDO PELO NAVEGADOR e nao pelo texto do CSS: e a
+	   diferenca entre "a regra esta escrita" e "a cor que sai na tela". O
+	   Raphael reprovou a cor que saiu na tela. */
+	ok(
+		'rgb(255, 255, 255)' === retrato.fundoCabecalho,
+		`[${arquivo}] o cabecalho e claro de verdade no navegador`,
+		retrato.fundoCabecalho
+	);
+	ok(
+		'rgb(31, 23, 21)' === retrato.corDoMenu,
+		`[${arquivo}] o menu sai em texto escuro sobre o cabecalho claro`,
+		retrato.corDoMenu
 	);
 }
 
@@ -153,12 +169,17 @@ const contraste = await pagina.evaluate(() => {
 	const rodape = document.querySelector('.cdm-rodape p');
 	const corpo = document.querySelector('main p');
 	return {
-		menu: razao(getComputedStyle(link).color, 'rgb(0, 0, 0)'),
+		/* O cabecalho ficou CLARO em 1.2.0: o fundo contra o qual o menu e lido
+		   passa a ser o do proprio cabecalho, medido, e nao uma cor escrita aqui —
+		   senao esta conta continuaria conferindo contra um preto que saiu da tela. */
+		menu: razao(getComputedStyle(link).color, getComputedStyle(document.querySelector('header')).backgroundColor),
+		marca: razao(getComputedStyle(document.querySelector('.cdm-marca-nome')).color, getComputedStyle(document.querySelector('header')).backgroundColor),
 		rodape: razao(getComputedStyle(rodape).color, 'rgb(0, 0, 0)'),
 		corpo: razao(getComputedStyle(corpo).color, 'rgb(255, 255, 255)'),
 	};
 });
-ok(contraste.menu >= 4.5, 'link do menu sobre o preto do cabecalho', contraste.menu.toFixed(2) + ':1');
+ok(contraste.menu >= 4.5, 'link do menu sobre o cabecalho claro', contraste.menu.toFixed(2) + ':1');
+ok(contraste.marca >= 4.5, 'o wordmark sobre o cabecalho claro', contraste.marca.toFixed(2) + ':1');
 ok(contraste.rodape >= 4.5, 'texto do rodape sobre o preto', contraste.rodape.toFixed(2) + ':1');
 ok(contraste.corpo >= 4.5, 'texto do corpo sobre o branco', contraste.corpo.toFixed(2) + ':1');
 

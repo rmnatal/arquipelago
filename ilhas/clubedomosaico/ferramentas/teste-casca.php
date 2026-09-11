@@ -64,6 +64,7 @@ function cdm_corpo( $html ) {
 
 $GLOBALS['__paginas'] = array(
 	'loja'                    => true,
+	'materiais/como-sabemos'  => true,
 	'materiais'               => true,
 	'como-fazer'              => true,
 	'sobre'                   => true,
@@ -76,7 +77,7 @@ cdm_teste_carregar_options( $raiz );
 cdm_teste_carregar( $raiz );
 
 $paginas = array(
-	'cdm_home', 'cdm_loja', 'cdm_materiais', 'cdm_como_fazer',
+	'cdm_home', 'cdm_loja', 'cdm_materiais', 'cdm_como_sabemos', 'cdm_como_fazer',
 	'cdm_sobre', 'cdm_contato', 'cdm_afiliados', 'cdm_privacidade',
 );
 
@@ -88,13 +89,36 @@ echo "Clube do Mosaico — verificacao da casca " . CDM_CASCA_VERSAO . "\n\n";
  * ------------------------------------------------------------------------- */
 
 echo "1. JS e CSS fora do retorno do shortcode (secao 8)\n";
+
+/**
+ * UM PROCESSO POR PAGINA, e isto nao e zelo: e a terceira cicatriz da mesma
+ * familia no Arquipelago. A casca tem um `static` legitimo em
+ * cdm_casca_rodape_impresso() e outro em cdm_casca_marca_html(), que existem
+ * para o rodape e o logotipo nao sairem duas vezes na MESMA pagina. No site um
+ * processo e uma requisicao e eles estao certos. Numa bancada que monta nove
+ * paginas em sequencia, eles fazem o rodape aparecer na primeira e sumir nas
+ * oito seguintes — e a medicao mede oito paginas sem rodape sem acusar erro
+ * nenhum. Foi exatamente assim que a Robometria mediu 915 KB do que no ar tem
+ * 960 KB, em 11/09/2026. Custa segundos; medir a metade errada custa um bloco.
+ */
+function cdm_render_em_processo_proprio( $raiz, $tag ) {
+	$saida = array();
+	$codigo = 0;
+	exec( escapeshellcmd( PHP_BINARY ) . ' ' . escapeshellarg( __DIR__ . '/render-para-teste.php' )
+		. ' ' . escapeshellarg( $raiz ) . ' ' . escapeshellarg( $tag ) . ' 2>/dev/null', $saida, $codigo );
+	return 0 === $codigo ? implode( "\n", $saida ) : '';
+}
+
 $html_por_pagina = array();
 foreach ( $paginas as $tag ) {
 	cdm_teste_rebobinar();
-	$html_por_pagina[ $tag ] = cdm_teste_pagina( $tag );
+	cdm_teste_pagina( $tag );
+	$html_por_pagina[ $tag ] = cdm_render_em_processo_proprio( $raiz, $tag );
 	$cru = $GLOBALS['__retorno_shortcode'];
 	cdm_ok( false === stripos( $cru, '<script' ), "[$tag] sem <script> no retorno do shortcode" );
 	cdm_ok( false === stripos( $cru, '<style' ), "[$tag] sem <style> no retorno do shortcode" );
+	cdm_ok( '' !== $html_por_pagina[ $tag ], "[$tag] o render em processo proprio devolveu pagina",
+		strlen( $html_por_pagina[ $tag ] ) . ' bytes' );
 }
 
 /* ---------------------------------------------------------------------------
@@ -144,7 +168,7 @@ echo "\n4. Favicon proprio (secao 6)\n";
 cdm_ok( false === strpos( $home, 'icone-do-wordpress.png' ), 'o icone padrao do WordPress FOI removido do wp_head' );
 cdm_ok( false !== strpos( $home, 'rel="icon" type="image/png" sizes="32x32"' ), 'icone PNG proprio no wp_head' );
 cdm_ok( false !== strpos( $home, 'rel="apple-touch-icon"' ), 'apple-touch-icon declarado' );
-cdm_ok( false !== strpos( $home, '<meta name="theme-color" content="#000000">' ), 'theme-color no preto do cabecalho' );
+cdm_ok( false !== strpos( $home, '<meta name="theme-color" content="#FFFFFF">' ), 'theme-color acompanha o cabecalho claro' );
 
 $png_commitado = @file_get_contents( $raiz . '/identidade/logo/favicon-32.png' );
 cdm_ok( false !== $png_commitado && "\x89PNG\r\n\x1a\n" === substr( $png_commitado, 0, 8 ),
@@ -202,14 +226,27 @@ echo "\n7. Marca entregue, paleta e rodape\n";
 preg_match( '#<a class="cdm-marca".*?</a>#is', $home, $mm );
 $marca = isset( $mm[0] ) ? $mm[0] : '';
 cdm_ok( '' !== $marca, 'a marca sai no HTML servido' );
-cdm_ok( false !== strpos( $marca, CDM_CASCA_LOGO_URL ), 'a marca usa o arquivo oficial da biblioteca de midia' );
-cdm_ok( false !== strpos( $marca, 'alt="Clube do Mosaico"' ), 'o logo tem alt com o nome (quem nao ve a imagem le o nome)' );
 cdm_ok( false === stripos( $marca, '<svg' ), 'nenhum logo desenhado em SVG (o PROMPT.md proibe redesenhar)' );
-/* O wordmark nao se repete em texto: fora do atributo alt, o nome nao aparece
-   dentro do bloco da marca. */
-$marca_sem_alt = preg_replace( '#alt="[^"]*"#', '', $marca );
-cdm_ok( false === stripos( $marca_sem_alt, 'clube do mosaico' ),
-	'o nome nao e escrito em texto ao lado do logo (o arquivo ja tem o wordmark)' );
+/* O ARQUIVO DE FUNDO PRETO NAO ENTRA NO CABECALHO CLARO. Ele continua sendo o
+   logotipo da entidade no JSON-LD, onde quem le e o Google; aqui, sobre branco,
+   ele e um retangulo escuro — foi a metade visivel da reprovacao do Raphael. */
+cdm_ok( false === strpos( $marca, CDM_CASCA_LOGO_URL ),
+	'o logo de fundo preto NAO e servido no cabecalho claro' );
+/* O nome e legivel sem imagem nenhuma: e texto, nao alt de figura. */
+$marca_so_texto = trim( html_entity_decode( strip_tags( $marca ), ENT_QUOTES, 'UTF-8' ) );
+cdm_ok( 'clube do mosaico' === mb_strtolower( $marca_so_texto, 'UTF-8' ),
+	'o wordmark e TEXTO no cabecalho, e so ele', '"' . $marca_so_texto . '"' );
+/* A lotus so sai quando existe arquivo valido embutido: sem isso, um <img> com
+   src vazio seria icone quebrado no lugar do logo sumido — trocar um defeito
+   visivel por outro. Os dois lados sao medidos. */
+$tem_lotus = ( defined( 'CDM_CASCA_MARCA_LOTUS' ) && '' !== CDM_CASCA_MARCA_LOTUS );
+cdm_ok( $tem_lotus === ( false !== strpos( $marca, 'cdm-marca-lotus' ) ),
+	'a lotus aparece no cabecalho se, e so se, ha arquivo embutido',
+	$tem_lotus ? 'embutida' : 'ausente (lotus-512.png truncado no repositorio)' );
+if ( $tem_lotus ) {
+	cdm_ok( false !== strpos( $marca, 'alt=""' ),
+		'a lotus e decoracao ao lado do nome escrito (alt vazio, sem marca em dobro)' );
+}
 cdm_ok( 1 === substr_count( $home, 'class="cdm-rodape"' ), 'exatamente um rodape na pagina', substr_count( $home, 'class="cdm-rodape"' ) . ' achado(s)' );
 
 /* O coral e COR DE SINAL: no maximo um botao principal por tela. */
@@ -228,7 +265,18 @@ $paleta = array( '#000000', '#FC483B', '#FA7665', '#69030C', '#8A0F18', '#FFFFFF
 preg_match_all( '/#[0-9A-Fa-f]{6}\b/', $css, $mh );
 $fora = array_values( array_unique( array_diff( array_map( 'strtoupper', $mh[0] ), $paleta ) ) );
 cdm_ok( empty( $fora ), 'nenhuma cor fora da paleta da ilha no CSS', empty( $fora ) ? count( $mh[0] ) . ' usos' : implode( ' ', $fora ) );
-/* Cabecalho e rodape pretos, miolo branco: a regra visual desta ilha. */
+/* Cabecalho CLARO, rodape preto, miolo branco: a regra visual desta ilha depois
+   do despacho de 11/09. O cabecalho e medido pelas tres coisas que o Raphael
+   reprovou de uma vez: a cor do fundo, a linha que separa em vez da sombra, e a
+   cor do texto do menu. */
+cdm_ok( preg_match( '#header[^{}]*\{[^{}]*background:var\(--cdm-papel\)#', $css ) === 1,
+	'cabecalho no papel da ilha, nao no preto' );
+cdm_ok( preg_match( '#header[^{}]*\{[^{}]*border-bottom:1px solid var\(--cdm-traco\)#', $css ) === 1,
+	'o cabecalho separa por linha de 1 px (secao 6), nao por sombra' );
+cdm_ok( false !== strpos( $css, '.cdm-nav a,.cdm-nav .cdm-sem-link{font-family:var(--cdm-texto);font-weight:500;font-size:.95rem;color:var(--cdm-tinta)' ),
+	'menu em texto escuro e peso 500 (despacho de 11/09)' );
+cdm_ok( false === strpos( $css, '.cdm-nav a{color:var(--cdm-papel)' ) && false === strpos( $css, 'color:var(--cdm-papel);text-decoration:none;padding-bottom' ),
+	'nenhum texto de menu branco sobrou do cabecalho preto' );
 cdm_ok( false !== strpos( $css, '.cdm-rodape{background:var(--cdm-noite)' ), 'rodape no preto da ilha' );
 cdm_ok( false !== strpos( $css, 'html body{background-color:var(--cdm-papel)' ), 'miolo branco' );
 
@@ -248,7 +296,7 @@ cdm_ok( false !== strpos( $corpo_loja, 'cdm-vazio' ), 'sem CPT: a Loja mostra o 
 cdm_ok( false === strpos( $corpo_loja, 'cdm-preco' ), 'sem CPT: nenhum preco na tela' );
 cdm_ok( false === strpos( $corpo_loja, 'cdm-cards' ), 'sem CPT: nenhuma grade de peca inventada' );
 $corpo_home_vazio = cdm_corpo( $home );
-cdm_ok( false !== strpos( $corpo_home_vazio, 'A vitrine ainda não abriu' ), 'sem CPT: a home diz que a vitrine nao abriu' );
+cdm_ok( false !== strpos( $corpo_home_vazio, 'A vitrine abre em breve' ), 'sem CPT: a home diz que a vitrine nao abriu' );
 
 /* Agora a borda: o CPT existe e ha duas pecas publicadas. */
 $GLOBALS['__tipos'] = array( 'peca' => true );
@@ -271,7 +319,7 @@ cdm_ok( false === strpos( $corpo_com_peca, 'cdm-vazio' ), 'com CPT: o estado vaz
 cdm_teste_rebobinar();
 $home_com_peca = cdm_corpo( cdm_teste_pagina( 'cdm_home' ) );
 cdm_ok( false !== strpos( $home_com_peca, 'Vaso de mosaico azul' ), 'com CPT: a home mostra as ultimas pecas' );
-cdm_ok( false === strpos( $home_com_peca, 'A vitrine ainda não abriu' ), 'com CPT: a home deixa de dizer que a vitrine nao abriu' );
+cdm_ok( false === strpos( $home_com_peca, 'A vitrine abre em breve' ), 'com CPT: a home deixa de dizer que a vitrine nao abriu' );
 
 /* Volta ao estado real do site de hoje. */
 $GLOBALS['__tipos'] = array();
@@ -408,10 +456,14 @@ cdm_ok( empty( $orfaos ), 'nenhum arquivo de banco fica sem cartao no Guia',
 /* Os numeros tem que APARECER na tela, e no corpo — nao basta a funcao devolver
    certo. Medido dentro de <main> (secao 8, regra 3). */
 $corpo_materiais = cdm_corpo( $html_por_pagina['cdm_materiais'] );
-cdm_ok( false !== strpos( $corpo_materiais, '>' . $esperado['celulas_matriz'] . '<' ),
-	'a pagina de materiais publica o total de combinacoes mapeadas' );
-cdm_ok( false !== strpos( $corpo_materiais, '>' . $esperado['celulas_sem_saida'] . '<' ),
-	'a pagina de materiais publica quantas combinacoes ficam SEM resposta' );
+/* Os numeros do banco mudaram de pagina em 1.2.0 (a camada de prova saiu do
+   Guia e foi para /materiais/como-sabemos/), entao e nessa pagina que eles sao
+   cobrados agora. Medido no CORPO, como manda a regra 3. */
+$corpo_como_sabemos = cdm_corpo( $html_por_pagina['cdm_como_sabemos'] );
+cdm_ok( false !== strpos( $corpo_como_sabemos, '>' . $esperado['celulas_matriz'] . '<' ),
+	'a pagina Como sabemos publica o total de combinacoes mapeadas' );
+cdm_ok( false !== strpos( $corpo_como_sabemos, '>' . $esperado['celulas_sem_saida'] . '<' ),
+	'a pagina Como sabemos publica quantas combinacoes ficam SEM resposta' );
 
 /* ---------------------------------------------------------------------------
  * 11. A ESCADA DE FONTES DA TELA E A DO ESQUEMA.
@@ -595,6 +647,469 @@ cdm_ok( false === stripos( $corpo_loja, 'sponsored' ), 'nenhum rel=sponsored na 
 $corpo_sobre = cdm_corpo( $html_por_pagina['cdm_sobre'] );
 cdm_ok( false !== stripos( $corpo_sobre, 'uma artesã' ), 'o Sobre fala da artesa sem inventar nome' );
 cdm_ok( false === stripos( $corpo_sobre, 'raphael' ), 'o Raphael nao aparece em ilha nenhuma (secao 10)' );
+
+/* ---------------------------------------------------------------------------
+ * 13. O PORTAO DE VOZ (secao 15 do contrato e VOZ.md desta ilha)
+ *
+ * Quem le esta ilha esta escolhendo presente num domingo a tarde ou tem um vaso
+ * de barro na mao. O rigor de numero, fonte e data FICA — ele e a tese de SEO e
+ * de visibilidade em IA —, mas vira camada de PROVA e sai do titulo e do
+ * primeiro paragrafo.
+ *
+ * A REGUA E ESTRUTURAL, NUNCA POR VIZINHANCA. Foi esta ilha que pagou a licao
+ * em 11/09/2026: uma regua que perdoava o termo proibido quando havia uma
+ * negacao por perto APROVOU "a ficha tecnica do silicone acetico mais vendido
+ * do Brasil lista ... entre as superficies em que o produto NAO deve ser usado".
+ * Entao aqui: a pagina MARCA a camada de prova no markup (class cdm-prova), o
+ * teste RETIRA esses blocos e cobra o resto — e conta os blocos, porque
+ * embrulhar a pagina inteira na marca seria a porta dos fundos obvia.
+ * ------------------------------------------------------------------------- */
+
+echo "\n13. Voz da ilha (VOZ.md, secao 15 do contrato)\n";
+
+$voz = (string) @file_get_contents( $raiz . '/VOZ.md' );
+cdm_ok( '' !== $voz, 'VOZ.md existe e foi lido', strlen( $voz ) . ' bytes' );
+
+/* A lista e escrita AQUI, e depois conferida contra o VOZ.md: se alguem mexer
+   na lista de la sem mexer aqui, esta afirmacao cai. O snippet nao conhece
+   nenhuma das duas — nao ha como as duas metades errarem juntas. */
+$proibidas_na_voz = array( 'tessela', 'substrato', 'aderência', 'especificação', 'parâmetro', 'ficha técnica' );
+$fora_do_voz      = array();
+foreach ( $proibidas_na_voz as $termo ) {
+	if ( false === mb_stripos( $voz, $termo ) ) {
+		$fora_do_voz[] = $termo;
+	}
+}
+cdm_ok( empty( $fora_do_voz ), 'cada termo da regua esta mesmo escrito no VOZ.md',
+	empty( $fora_do_voz ) ? count( $proibidas_na_voz ) . ' termos' : implode( ', ', $fora_do_voz ) );
+
+/** Texto visivel, com as tags fora e as entidades resolvidas. */
+function cdm_texto( $html ) {
+	return trim( preg_replace( '/\s+/u', ' ', html_entity_decode( strip_tags( $html ), ENT_QUOTES, 'UTF-8' ) ) );
+}
+
+/** O corpo SEM os blocos declarados como camada de prova. */
+function cdm_sem_prova( $corpo ) {
+	return preg_replace( '#<div class="cdm-prova">.*?</div>\s*$#is', '', preg_replace( '#<div class="cdm-prova">.*?</div>#is', '', $corpo ) );
+}
+
+/* Qual pagina e a unica declarada como camada de prova, e ela e uma so. */
+$paginas_de_prova = array();
+foreach ( cdm_casca_definicao_paginas() as $slug => $def ) {
+	if ( isset( $def['camada'] ) && 'prova' === $def['camada'] ) {
+		$paginas_de_prova[ $def['conteudo'] ] = $slug;
+	}
+}
+cdm_ok( 1 === count( $paginas_de_prova ), 'existe UMA unica pagina de camada de prova, e ela e declarada',
+	implode( ', ', $paginas_de_prova ) );
+foreach ( $paginas_de_prova as $slug_prova ) {
+	cdm_ok( in_array( $slug_prova, cdm_casca_paginas_noindex(), true ),
+		'a pagina de prova esta fora do indice', $slug_prova );
+}
+
+$voz_ruim   = array();
+$prova_ruim = array();
+foreach ( $paginas as $tag ) {
+	$corpo = cdm_corpo( $html_por_pagina[ $tag ] );
+	$e_prova = isset( $paginas_de_prova[ '[' . $tag . ']' ] );
+
+	/* O H1 e o primeiro paragrafo: e onde a pessoa decide se esta no lugar
+	   certo, e e exatamente onde o termo de manual nao pode estar. */
+	preg_match( '#<h1[^>]*>(.*?)</h1>#is', $corpo, $mh1 );
+	preg_match( '#<p[^>]*>(.*?)</p>#is', $corpo, $mp1 );
+	$cabeca = cdm_texto( ( isset( $mh1[1] ) ? $mh1[1] : '' ) . ' ' . ( isset( $mp1[1] ) ? $mp1[1] : '' ) );
+
+	foreach ( $proibidas_na_voz as $termo ) {
+		if ( false !== mb_stripos( $cabeca, $termo ) ) {
+			$voz_ruim[] = $tag . ': "' . $termo . '" no titulo ou no primeiro paragrafo';
+		}
+	}
+
+	/* Fora da pagina de prova, a linguagem de prova so vale dentro de um bloco
+	   marcado como prova. */
+	if ( ! $e_prova ) {
+		$sem_prova = cdm_texto( cdm_sem_prova( $corpo ) );
+		foreach ( array( 'ficha técnica', 'revisada em', 'nível de fonte' ) as $termo ) {
+			if ( false !== mb_stripos( $sem_prova, $termo ) ) {
+				$voz_ruim[] = $tag . ': "' . $termo . '" fora de um bloco de prova';
+			}
+		}
+	}
+
+	/* AS TRES TRAVAS DA PORTA DOS FUNDOS. Sem elas, declarar a pagina inteira
+	   como camada de prova desligaria o portao de voz sem mudar uma palavra. */
+	preg_match_all( '#<div class="cdm-prova">#i', $corpo, $mb );
+	$quantos_prova = count( $mb[0] );
+	if ( $quantos_prova > 2 ) {
+		$prova_ruim[] = $tag . ": $quantos_prova blocos de prova (maximo 2)";
+	}
+	if ( $quantos_prova ) {
+		$posicao = mb_stripos( $corpo, '<div class="cdm-prova">' );
+		$fim_do_primeiro_paragrafo = mb_stripos( $corpo, '</p>' );
+		if ( false !== $posicao && false !== $fim_do_primeiro_paragrafo && $posicao < $fim_do_primeiro_paragrafo ) {
+			$prova_ruim[] = $tag . ': a camada de prova comeca antes do primeiro paragrafo';
+		}
+		$tamanho_prova = 0;
+		preg_match_all( '#<div class="cdm-prova">.*?</div>#is', $corpo, $mp );
+		foreach ( $mp[0] as $bloco ) {
+			$tamanho_prova += mb_strlen( cdm_texto( $bloco ) );
+		}
+		$tamanho_total = max( 1, mb_strlen( cdm_texto( $corpo ) ) );
+		if ( $tamanho_prova / $tamanho_total > 0.5 ) {
+			$prova_ruim[] = $tag . sprintf( ': a prova ocupa %d%% do corpo', (int) round( 100 * $tamanho_prova / $tamanho_total ) );
+		}
+	}
+}
+cdm_ok( empty( $voz_ruim ), 'nenhum termo de manual na voz da pagina',
+	empty( $voz_ruim ) ? count( $paginas ) . ' paginas' : implode( ' | ', $voz_ruim ) );
+cdm_ok( empty( $prova_ruim ), 'a camada de prova e um rodape do texto, nunca o texto inteiro',
+	empty( $prova_ruim ) ? 'limpo' : implode( ' | ', $prova_ruim ) );
+
+/* As DUAS frases que o VOZ.md proibe pelo nome, e que estavam na home ate a
+   casca 1.1.0. Medido no corpo inteiro: elas nao valem nem dentro da prova. */
+$corpo_home_agora = cdm_texto( cdm_corpo( $html_por_pagina['cdm_home'] ) );
+foreach ( array( 'faz duas coisas', 'responde com fonte de fabricante', 'Silicone Acético Construção da Tekbond' ) as $frase ) {
+	cdm_ok( false === mb_stripos( $corpo_home_agora, $frase ), 'a home nao traz a frase proibida "' . $frase . '"' );
+}
+
+/* O TITULO DA HOME. O tema imprime o titulo da pagina como H1, e por isso a
+   home exibia a palavra "Inicio" — a reclamacao do Raphael em 11/09/2026. */
+$definicoes = cdm_casca_definicao_paginas();
+cdm_ok( 'Início' !== $definicoes['inicio']['titulo'], 'a home nao se chama "Início"', $definicoes['inicio']['titulo'] );
+preg_match( '#<h1[^>]*>(.*?)</h1>#is', cdm_corpo( $html_por_pagina['cdm_home'] ), $mh );
+cdm_ok( isset( $mh[1] ) && 'Início' !== cdm_texto( $mh[1] ), 'o H1 servido na home nao e "Início"',
+	isset( $mh[1] ) ? '"' . cdm_texto( $mh[1] ) . '"' : 'sem H1' );
+cdm_ok( isset( $mh[1] ) && cdm_texto( $mh[1] ) === $definicoes['inicio']['titulo'],
+	'o H1 servido e o titulo da definicao (o titulo se sincroniza)' );
+cdm_ok( CDM_CASCA_TAGLINE === $definicoes['inicio']['titulo'],
+	'a home, o <title> do site e o rodape dizem a MESMA frase', CDM_CASCA_TAGLINE );
+
+/* ---------------------------------------------------------------------------
+ * 14. PAGINA FINA NAO ENTRA NO INDICE DE DOMINIO NOVO (secao 8)
+ *
+ * Achado desta ilha em 11/09/2026: duas paginas da casca tinham menos de 1.200
+ * caracteres de corpo e iam para o sitemap de um dominio recem-nascido gastar
+ * orcamento de rastreamento. A trava mede o corpo de TODA pagina.
+ * ------------------------------------------------------------------------- */
+
+echo "\n14. Nenhuma pagina fina (secao 8 e 14.1)\n";
+$finas = array();
+foreach ( $paginas as $tag ) {
+	$quantos = mb_strlen( cdm_texto( cdm_corpo( $html_por_pagina[ $tag ] ) ) );
+	if ( $quantos < 1500 ) {
+		$finas[] = "$tag ($quantos)";
+	}
+}
+cdm_ok( empty( $finas ), 'toda pagina tem corpo de pagina de verdade (>= 1.500 caracteres)',
+	empty( $finas ) ? count( $paginas ) . ' paginas medidas' : implode( ', ', $finas ) );
+
+/* E A PAGINA MEDIDA TEM QUE ESTAR INTEIRA. Bancada que serve metade da pagina
+   da um numero verde e a sensacao de ter conferido — a Robometria pagou isso
+   tres vezes. A conferencia NAO e um numero redondo de bytes (esse eu nao
+   consigo calibrar sem o site no ar, e numero redondo nao e criterio): e a
+   lista do que uma pagina inteira desta ilha obrigatoriamente carrega. Se um
+   dia o render parar de rodar um gancho, alguma destas some e a conta cai. */
+$pedacos = array(
+	'folha da casca'   => '<style id="cdm-casca">',
+	'JSON-LD'          => 'application/ld+json',
+	'favicon proprio'  => 'rel="icon" type="image/png"',
+	'menu no HTML'     => 'class="cdm-nav"',
+	'comando do menu'  => 'id="cdm-casca-menu"',
+	'rodape da ilha'   => 'class="cdm-rodape"',
+	'titulo como H1'   => '<h1 class="wp-block-post-title">',
+);
+$incompletas = array();
+foreach ( $paginas as $tag ) {
+	foreach ( $pedacos as $nome => $agulha ) {
+		if ( false === strpos( $html_por_pagina[ $tag ], $agulha ) ) {
+			$incompletas[] = "$tag sem $nome";
+		}
+	}
+}
+cdm_ok( empty( $incompletas ), 'a pagina medida esta inteira (folha, JSON-LD, menu, rodape e H1)',
+	empty( $incompletas ) ? count( $paginas ) * count( $pedacos ) . ' presencas' : implode( ' | ', $incompletas ) );
+
+/* ---------------------------------------------------------------------------
+ * 15. NUMERO DE TELA NASCE CONTADO (secao 8)
+ *
+ * "Hoje 10 dos 5 itens esperam link" esteve no ar nesta ilha. Os dois numeros
+ * estavam certos sozinhos — 10 itens esperando link no banco inteiro, 5 colas na
+ * categoria cola — e a frase que os juntou era impossivel. Nenhum teste viu,
+ * porque cada metade era conferida separada.
+ * ------------------------------------------------------------------------- */
+
+echo "\n15. Denominador de frase sobre o proprio banco (secao 8)\n";
+$total_no_banco = 0;
+foreach ( $banco_por_categoria as $banco ) {
+	$total_no_banco += count( $banco['materiais'] );
+}
+cdm_ok( (int) $n['itens_no_banco'] === $total_no_banco, "numero 'itens_no_banco' e a soma das categorias",
+	'tela ' . $n['itens_no_banco'] . ' / banco ' . $total_no_banco );
+cdm_ok( (int) $n['esperando_link'] <= (int) $n['itens_no_banco'],
+	'quem espera link nunca e mais do que o que existe',
+	$n['esperando_link'] . ' de ' . $n['itens_no_banco'] );
+cdm_ok( (int) $n['itens_no_banco'] >= (int) $n['materiais_cola'],
+	'o total da ilha nunca e menor que uma categoria dela' );
+
+/* E a frase tem que sair na tela com o denominador certo, no CORPO. */
+$prova_materiais = '';
+if ( preg_match( '#<div class="cdm-prova">(.*?)</div>#is', cdm_corpo( $html_por_pagina['cdm_materiais'] ), $mpv ) ) {
+	$prova_materiais = cdm_texto( $mpv[1] );
+}
+cdm_ok( '' !== $prova_materiais, 'o Guia tem a camada de prova no rodape do texto' );
+cdm_ok( false !== mb_strpos( $prova_materiais, $n['itens_no_banco'] . ' itens de fabricante' ),
+	'a frase do Guia conta o banco inteiro, nao uma categoria',
+	mb_substr( $prova_materiais, 0, 0 ) . $n['itens_no_banco'] . ' itens' );
+$corpo_afiliados_texto = cdm_texto( cdm_corpo( $html_por_pagina['cdm_afiliados'] ) );
+cdm_ok( false === mb_stripos( $corpo_afiliados_texto, 'não há nenhum link de afiliado' ),
+	'a divulgacao nao afirma por escrito o que pode contar' );
+
+/* A escada de fontes tem que CHEGAR A TELA, e nao so estar certa na funcao. */
+$corpo_prova = cdm_texto( cdm_corpo( $html_por_pagina['cdm_como_sabemos'] ) );
+$degraus_fora = array();
+foreach ( cdm_casca_escada_de_fontes() as $degrau ) {
+	if ( false === mb_stripos( $corpo_prova, $degrau['origem'] ) ) {
+		$degraus_fora[] = $degrau['nivel'];
+	}
+}
+cdm_ok( empty( $degraus_fora ), 'os sete degraus da escada aparecem no corpo da pagina de prova',
+	empty( $degraus_fora ) ? '7 degraus' : 'faltam ' . implode( ', ', $degraus_fora ) );
+
+/* ---------------------------------------------------------------------------
+ * 16. NOINDEX E SITEMAP — medidos nos DOIS sentidos
+ *
+ * `noindex` indevido tira do indice uma pagina que rankeia, e e defeito que
+ * ninguem ve olhando a tela. Entao o teste cobra as duas direcoes: a pagina
+ * declarada sai, e toda outra fica.
+ * ------------------------------------------------------------------------- */
+
+echo "\n16. Noindex declarado e sitemap como curadoria (secao 14.1)\n";
+$ids_falsos = array();
+$i_falso    = 100;
+foreach ( cdm_casca_definicao_paginas() as $slug => $def ) {
+	$ids_falsos[ $slug ] = $i_falso++;
+}
+$GLOBALS['__options']['cdm_casca_paginas'] = $ids_falsos;
+
+$errados = array();
+foreach ( $ids_falsos as $slug => $id ) {
+	$deve_sair = in_array( $slug, cdm_casca_paginas_noindex(), true );
+	$saiu      = ( '' !== cdm_casca_robots_html( $id ) );
+	if ( $deve_sair !== $saiu ) {
+		$errados[] = $slug;
+	}
+}
+cdm_ok( empty( $errados ), 'a etiqueta noindex sai exatamente nas paginas declaradas',
+	empty( $errados ) ? count( $ids_falsos ) . ' paginas' : implode( ', ', $errados ) );
+cdm_ok( '' === cdm_casca_robots_html( 0 ), 'sem pagina identificada, nenhuma etiqueta e impressa' );
+cdm_ok( '' === cdm_casca_robots_html( 999 ), 'pagina de fora da casca nao recebe noindex' );
+
+$args = cdm_casca_sitemap_sem_noindex( array(), 'page' );
+$fora_do_sitemap = isset( $args['post__not_in'] ) ? $args['post__not_in'] : array();
+cdm_ok( count( $fora_do_sitemap ) === count( cdm_casca_paginas_noindex() ),
+	'o sitemap exclui exatamente as paginas noindex', count( $fora_do_sitemap ) . ' excluidas' );
+foreach ( cdm_casca_paginas_noindex() as $slug ) {
+	cdm_ok( in_array( $ids_falsos[ $slug ], $fora_do_sitemap, true ), "'$slug' fica fora do sitemap" );
+}
+$args_post = cdm_casca_sitemap_sem_noindex( array(), 'post' );
+cdm_ok( ! isset( $args_post['post__not_in'] ), 'o filtro nao mexe no sitemap de posts' );
+$args_ja = cdm_casca_sitemap_sem_noindex( array( 'post__not_in' => array( 7 ) ), 'page' );
+cdm_ok( in_array( 7, $args_ja['post__not_in'], true ), 'o filtro preserva exclusao de quem veio antes' );
+unset( $GLOBALS['__options']['cdm_casca_paginas'] );
+
+/* ---------------------------------------------------------------------------
+ * 17. A ARVORE COMECOU (secao 16 do contrato)
+ *
+ * A primeira pagina de nivel 2 desta ilha. A trava aqui e pequena de proposito:
+ * pagina com mae tem que ter a mae criada ANTES dela, senao ela nasce solta na
+ * raiz — e pagina sem pai e defeito que nao publica.
+ * ------------------------------------------------------------------------- */
+
+echo "\n17. Pagina com mae (secao 16.2)\n";
+$ordem  = array_keys( cdm_casca_definicao_paginas() );
+$sem_mae = array();
+foreach ( cdm_casca_definicao_paginas() as $slug => $def ) {
+	if ( empty( $def['pai'] ) ) {
+		if ( false !== strpos( $slug, '/' ) ) {
+			$sem_mae[] = $slug . ' (tem nivel na URL e nao declara mae)';
+		}
+		continue;
+	}
+	if ( ! isset( $definicoes[ $def['pai'] ] ) ) {
+		$sem_mae[] = $slug . ' (mae ' . $def['pai'] . ' nao existe)';
+		continue;
+	}
+	if ( array_search( $def['pai'], $ordem, true ) > array_search( $slug, $ordem, true ) ) {
+		$sem_mae[] = $slug . ' (a mae vem depois dela na definicao)';
+	}
+	if ( 0 !== strpos( $slug, $def['pai'] . '/' ) ) {
+		$sem_mae[] = $slug . ' (a URL nao mostra a mae)';
+	}
+}
+cdm_ok( empty( $sem_mae ), 'toda pagina de nivel 2 declara a mae, e a mae vem antes',
+	empty( $sem_mae ) ? 'ok' : implode( ' | ', $sem_mae ) );
+cdm_ok( 'como-sabemos' === cdm_casca_slug_final( 'materiais/como-sabemos' ), 'o slug gravado e o ultimo nivel do caminho' );
+cdm_ok( 'materiais' === cdm_casca_slug_final( 'materiais' ), 'caminho de um nivel so continua sendo ele mesmo' );
+
+/* ---------------------------------------------------------------------------
+ * 18. AS IMAGENS DA IDENTIDADE ABREM
+ *
+ * Trava nascida de um achado desta execucao: identidade/logo/lotus-512.png esta
+ * TRUNCADO no repositorio (IDAT de 11.638 bytes num arquivo de 8.770) e nao
+ * decodifica um unico pixel. O despacho mandava servi-lo no cabecalho claro.
+ * A regra que fica: imagem que a casca SERVE tem que abrir, conferida chunk a
+ * chunk — "o arquivo existe e tem bytes" nao e medicao de imagem.
+ * ------------------------------------------------------------------------- */
+
+echo "\n18. Imagem servida pela casca abre de verdade\n";
+
+/** '' quando o PNG esta inteiro; o motivo quando nao esta. */
+function cdm_png_quebrado( $bruto ) {
+	if ( "\x89PNG\r\n\x1a\n" !== substr( (string) $bruto, 0, 8 ) ) {
+		return 'nao comeca com a assinatura de PNG';
+	}
+	$i = 8;
+	$t = strlen( $bruto );
+	while ( $i + 8 <= $t ) {
+		$tamanho = unpack( 'N', substr( $bruto, $i, 4 ) )[1];
+		$tipo    = substr( $bruto, $i + 4, 4 );
+		$fim     = $i + 12 + $tamanho;
+		if ( $fim > $t ) {
+			return sprintf( 'chunk %s declara %d bytes e faltam %d (truncado)', $tipo, $tamanho, $fim - $t );
+		}
+		if ( crc32( $tipo . substr( $bruto, $i + 8, $tamanho ) ) !== unpack( 'N', substr( $bruto, $i + 8 + $tamanho, 4 ) )[1] ) {
+			return sprintf( 'chunk %s com CRC errado', $tipo );
+		}
+		if ( 'IEND' === $tipo ) {
+			return '';
+		}
+		$i = $fim;
+	}
+	return 'acabou sem IEND';
+}
+
+/* Os PNG que a casca SERVE sao os que viajam embutidos no snippet. */
+$embutidos = array( 'favicon 32' => CDM_CASCA_ICONE_PNG_32 );
+if ( defined( 'CDM_CASCA_MARCA_LOTUS' ) && '' !== CDM_CASCA_MARCA_LOTUS ) {
+	$embutidos['lotus do cabecalho'] = CDM_CASCA_MARCA_LOTUS;
+}
+foreach ( $embutidos as $nome => $base64 ) {
+	$motivo = cdm_png_quebrado( base64_decode( $base64 ) );
+	cdm_ok( '' === $motivo, "o PNG embutido ($nome) abre chunk a chunk", '' === $motivo ? strlen( base64_decode( $base64 ) ) . ' bytes' : $motivo );
+}
+/* Teste negativo: a regua reprova mesmo. Sem isto ela poderia estar aprovando
+   tudo por engano — inclusive o arquivo que motivou a trava. */
+cdm_ok( '' !== cdm_png_quebrado( substr( base64_decode( CDM_CASCA_ICONE_PNG_32 ), 0, 200 ) ),
+	'a regua de PNG reprova um arquivo cortado (teste negativo)' );
+cdm_ok( '' !== cdm_png_quebrado( (string) @file_get_contents( $raiz . '/identidade/logo/lotus-512.png' ) ),
+	'a regua reconhece o lotus-512.png truncado como quebrado',
+	cdm_png_quebrado( (string) @file_get_contents( $raiz . '/identidade/logo/lotus-512.png' ) ) );
+
+/* ---------------------------------------------------------------------------
+ * 19. O TITULO SE SINCRONIZA NA PAGINA QUE JA EXISTE
+ *
+ * Esta e a trava que o proprio mutante achou faltando: medir o H1 servido na
+ * bancada nunca poderia ver este defeito, porque a bancada monta o H1 a partir
+ * da DEFINICAO — e a definicao esta certa. O defeito mora no outro lado, no
+ * caminho que atualiza a pagina que ja existe no WordPress: sem ele, a pagina
+ * nasce com um titulo e fica com ele para sempre, e foi assim que a palavra
+ * "Inicio" sobreviveu a duas versoes da casca no ar.
+ *
+ * Entao aqui o teste simula o site REAL de hoje — as paginas existem, com os
+ * titulos velhos — e afirma sobre o que a casca MANDA gravar.
+ * ------------------------------------------------------------------------- */
+
+echo "\n19. O titulo da pagina que ja existe se sincroniza (secao 8)\n";
+
+$GLOBALS['__paginas_objeto'] = array();
+$GLOBALS['__meta']           = array();
+$id_falso                    = 200;
+foreach ( cdm_casca_definicao_paginas() as $slug => $def ) {
+	$id_falso++;
+	$GLOBALS['__paginas_objeto'][ $slug ] = (object) array(
+		'ID'           => $id_falso,
+		'post_title'   => 'inicio' === $slug ? 'Início' : $def['titulo'],
+		'post_name'    => cdm_casca_slug_final( $slug ),
+		'post_status'  => 'publish',
+		'post_content' => $def['conteudo'],
+		'post_parent'  => 0,
+	);
+	$GLOBALS['__meta'][ $id_falso ] = array( '_cdm_casca' => '1' );
+}
+$GLOBALS['__updates'] = array();
+$relato_teste         = array();
+cdm_casca_garantir_paginas( $relato_teste );
+
+$mandou_titulo = array();
+$mandou_slug   = false;
+foreach ( $GLOBALS['__updates'] as $u ) {
+	if ( isset( $u['post_title'] ) ) {
+		$mandou_titulo[ (int) $u['ID'] ] = $u['post_title'];
+	}
+	if ( isset( $u['post_name'] ) ) {
+		$mandou_slug = true;
+	}
+}
+$id_da_home = $GLOBALS['__paginas_objeto']['inicio']->ID;
+cdm_ok( isset( $mandou_titulo[ $id_da_home ] ) && $definicoes['inicio']['titulo'] === $mandou_titulo[ $id_da_home ],
+	'a home que ja existe com o titulo velho recebe o titulo novo',
+	isset( $mandou_titulo[ $id_da_home ] ) ? '"' . $mandou_titulo[ $id_da_home ] . '"' : 'nenhuma gravacao' );
+cdm_ok( 1 === count( $mandou_titulo ), 'so o titulo que estava diferente e regravado',
+	count( $mandou_titulo ) . ' gravacao(oes)' );
+/* URL DE PAGINA PUBLICADA NAO SE MOVE (secao 12.1). Sincronizar titulo e uma
+   coisa; mexer no endereco e outra, e esta e proibida. */
+cdm_ok( false === $mandou_slug, 'nenhuma gravacao toca o post_name (URL publicada nao se move)' );
+
+/* A BORDA: pagina que NAO e nossa nao tem o titulo reescrito. Alguem pode ter
+   criado uma pagina com o mesmo slug antes da ilha existir — o dominio teve
+   vida anterior —, e a casca nao e dona dela. */
+$GLOBALS['__meta'][ $id_da_home ] = array();
+$GLOBALS['__updates']             = array();
+$relato_teste                     = array();
+cdm_casca_garantir_paginas( $relato_teste );
+$tocou_alheia = false;
+foreach ( $GLOBALS['__updates'] as $u ) {
+	if ( (int) $u['ID'] === $id_da_home && isset( $u['post_title'] ) ) {
+		$tocou_alheia = true;
+	}
+}
+cdm_ok( ! $tocou_alheia, 'pagina que nao e da casca nao tem o titulo reescrito' );
+
+$GLOBALS['__paginas_objeto'] = array();
+$GLOBALS['__meta']           = array();
+$GLOBALS['__updates']        = array();
+
+/* ---------------------------------------------------------------------------
+ * 20. NOINDEX SO ONDE ELE PODE ESTAR
+ *
+ * A segunda trava que o mutante achou faltando. O teste da secao 16 conferia que
+ * a etiqueta sai nas paginas DECLARADAS — o que e verdade mesmo quando alguem
+ * declara a pagina errada. Conferir a declaracao contra ela mesma e a mesma
+ * forma do teste que mede a si mesmo: a regua tem que vir de fora.
+ *
+ * A regua de fora: so a pagina de camada de prova pode sair do indice. A home e
+ * toda pagina do menu sao o motivo de a ilha existir; `noindex` nelas e defeito
+ * caro e invisivel — na tela nao muda nada.
+ * ------------------------------------------------------------------------- */
+
+echo "\n20. Noindex so na pagina de bastidor (secao 14.1)\n";
+$menu_da_ilha = array( 'inicio', 'loja', 'materiais', 'como-fazer', 'sobre' );
+$fora_indevido = array();
+foreach ( cdm_casca_paginas_noindex() as $slug ) {
+	$def = $definicoes[ $slug ];
+	if ( ! isset( $def['camada'] ) || 'prova' !== $def['camada'] ) {
+		$fora_indevido[] = $slug . ' (nao e camada de prova)';
+	}
+	if ( in_array( $slug, $menu_da_ilha, true ) ) {
+		$fora_indevido[] = $slug . ' (esta no menu da ilha)';
+	}
+}
+cdm_ok( empty( $fora_indevido ), 'so a pagina de camada de prova sai do indice',
+	empty( $fora_indevido ) ? implode( ', ', cdm_casca_paginas_noindex() ) : implode( ' | ', $fora_indevido ) );
+$indexaveis = array_diff( array_keys( $definicoes ), cdm_casca_paginas_noindex() );
+cdm_ok( count( $indexaveis ) === count( $definicoes ) - 1,
+	'exatamente uma pagina da ilha esta fora do indice',
+	count( $indexaveis ) . ' de ' . count( $definicoes ) . ' indexaveis' );
 
 echo "\n";
 if ( $falhas ) {

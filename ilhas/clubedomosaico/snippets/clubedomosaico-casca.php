@@ -1,5 +1,23 @@
 /**
  * Clube do Mosaico Casca — identidade e estrutura do site
+ * Versão 1.2.0 (11/09/2026) — DESPACHO DO RAPHAEL: cabeçalho claro, a marca
+ * legível, a home deixando de ser manifesto e o Guia falando com quem vai fazer
+ * a peça. O Raphael viu a casca no ar e reprovou: "muito ruim o fundo preto no
+ * header, o logo sumiu, queria algo mais clean". O logo sumia porque o arquivo
+ * entregue tem fundo preto e wordmark vinho — sobre preto ele desaparece de
+ * verdade, e nenhuma dose de CSS conserta isso. Cabeçalho branco com linha de
+ * 1 px, menu em texto escuro, e a marca como wordmark legível.
+ *
+ * O QUE ESTE BLOCO DESCOBRIU E NÃO ESTAVA PROCURANDO: o símbolo que o despacho
+ * manda usar no cabeçalho claro, identidade/logo/lotus-512.png, é um PNG
+ * TRUNCADO — o IDAT dele declara 11.638 bytes e o arquivo só tem 8.770, com um
+ * IEND colado no fim. Não é imagem incompleta, é fluxo corrompido desde o
+ * primeiro bloco: nem 1 pixel sai dele. Publicá-lo teria trocado o logo sumido
+ * por um ícone de imagem quebrada, que é pior. A lótus entra no dia em que
+ * chegar um arquivo válido (ferramentas/gerar-marca.php embute e RECUSA arquivo
+ * inválido); até lá o cabeçalho é o wordmark em texto, que é a outra metade do
+ * par que o próprio despacho pediu.
+ *
  * Versão 1.1.0 (11/09/2026) — Bloco 3c: o Guia passou a CONTAR o banco por categoria
  * em vez de trazer um zero digitado. O cartão de Rejuntes dizia "0 no banco" no mesmo
  * dia em que a categoria ganhou cinco produtos — número falso na tela, e o teste não viu
@@ -25,9 +43,10 @@
  *      mídia; o PROMPT.md da ilha proíbe redesenhar, vetorizar ou escrever o nome
  *      em texto ao lado dele (o arquivo já contém o wordmark). Então a marca sai
  *      em <img>, e o alt carrega o nome para quem não vê a imagem.
- *   3. CABEÇALHO E RODAPÉ PRETOS, MIOLO BRANCO. O logo vive sobre preto puro. O
- *      corpo é branco com cara de e-commerce, porque esta ilha VENDE peça, e o
- *      coral é cor de sinal: um uso por tela, no botão principal e no preço.
+ *   3. CABEÇALHO CLARO, RODAPÉ PRETO, MIOLO BRANCO (1.2.0). O preto da identidade
+ *      é cor de TEXTO e de detalhe, não bloco grande no topo: quem vende peça
+ *      abre a página com a peça, não com uma faixa escura. O coral continua
+ *      sendo cor de sinal: um uso por tela, no botão principal e no preço.
  *   4. ESTADO VAZIO HONESTO NA LOJA. Não existe peça cadastrada — o catálogo é
  *      cadastrado pela própria artesã no painel /atelie/ (bloco 4d) e nunca vive
  *      no repositório. Página de coleção sem peça diz "em breve" com todas as
@@ -59,11 +78,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'CDM_CASCA_VERSAO' ) ) {
-	define( 'CDM_CASCA_VERSAO', '1.1.0' );
-	define( 'CDM_CASCA_TAGLINE', 'Mosaico artesanal: a peça pronta, o material certo para fazer a sua, e a declaração do fabricante por trás de cada recomendação' );
+	define( 'CDM_CASCA_VERSAO', '1.2.0' );
+	/* O nome do site e a linha que o WordPress serve no <title> da home. A
+	   Aquametria descobriu em 11/09/2026 que a tagline nunca tocada desde o
+	   nascimento da ilha continuava sendo a linha mais lida do site — a do
+	   resultado de busca. Esta casca grava as duas, como grava page_on_front. */
+	define( 'CDM_CASCA_NOME_SITE', 'Clube do Mosaico' );
+	define( 'CDM_CASCA_TAGLINE', 'Mosaico feito à mão, uma peça por vez' );
 	/* Os dois arquivos que o Raphael subiu na biblioteca de mídia em 11/09/2026.
 	   São os únicos endereços de imagem que esta casca conhece, e não se
-	   substituem por desenho feito aqui (regra escrita no PROMPT.md da ilha). */
+	   substituem por desenho feito aqui (regra escrita no PROMPT.md da ilha).
+	   O logo completo tem FUNDO PRETO e por isso saiu do cabeçalho em 1.2.0: ele
+	   continua sendo o logotipo da entidade no JSON-LD, onde o consumidor é o
+	   Google e não o olho de quem entra no site. */
 	define( 'CDM_CASCA_LOGO_URL', 'https://clubedomosaico.com.br/wp-content/uploads/2026/09/logo-clube-do-mosaico.png' );
 	define( 'CDM_CASCA_FAVICON_URL', 'https://clubedomosaico.com.br/wp-content/uploads/2026/09/clube-do-mosaico-favicon.png' );
 }
@@ -96,14 +123,14 @@ function cdm_casca_ferramentas() {
 			'codigo' => 'F2',
 			'titulo' => 'Qual cola e qual rejunte para a sua peça',
 			'slug'   => 'qual-cola-usar-no-mosaico',
-			'resumo' => 'Você diz a base (cerâmica, vidro, espelho, MDF, cimento, metal) e o ambiente (seco, molhado, sol e chuva), e a resposta sai com a frase do fabricante que sustenta cada escolha e a data em que ela foi verificada. Onde o fabricante proíbe, a página diz que proíbe.',
+			'resumo' => 'Você diz sobre o que vai colar — cerâmica, vidro, espelho, MDF, cimento, metal — e onde a peça vai ficar: dentro de casa, na área molhada, no sol e na chuva. Sai a cola, o rejunte e o motivo. Quando o fabricante proíbe aquela base, a gente avisa em vez de sugerir assim mesmo.',
 			'estado' => 'em-construcao',
 		),
 		array(
 			'codigo' => 'F1',
 			'titulo' => 'Quantas pastilhas e quanto rejunte a sua peça precisa',
 			'slug'   => 'quantas-pastilhas-para-mosaico',
-			'resumo' => 'Forma da peça, medidas, tamanho da pastilha e junta; devolve área, quantidade com sobra e gramas de rejunte. Usa a fórmula publicada pela própria Quartzolit aplicada ao tamanho real da pastilha de artesanato, que não é o do azulejo de obra.',
+			'resumo' => 'A forma da peça, as medidas, o tamanho da pastilha e a folga entre elas. Sai quantas pastilhas comprar, já com sobra, e quanto rejunte levar — pela conta da pastilha pequena, não a do azulejo de obra.',
 			'estado' => 'em-construcao',
 		),
 	);
@@ -134,42 +161,42 @@ function cdm_casca_categorias_do_guia() {
 			'codigo'   => 'G-COLAS',
 			'titulo'   => 'Colas e adesivos',
 			'slug'     => 'materiais/colas',
-			'resumo'   => 'Silicone acético, silicone neutro, PVA, cimentcola e epóxi, com a lista literal de onde cada fabricante manda usar e — o que quase ninguém publica — onde ele manda NÃO usar.',
+			'resumo'   => 'Cola branca, silicone, cimentcola, epóxi: qual delas segura a sua peça — e em qual base o próprio fabricante manda não usar.',
 			'no_banco' => $n['materiais_cola'],
 		),
 		array(
 			'codigo'   => 'G-REJUNTES',
 			'titulo'   => 'Rejuntes',
 			'slug'     => 'materiais/rejuntes',
-			'resumo'   => 'Faixa de junta, consumo por metro quadrado e cura. O consumo publicado na primeira página do Google é o de obra, com azulejo grande, e erra por sete a catorze vezes na pastilha de artesanato.',
+			'resumo'   => 'Qual rejunte vai entre os caquinhos, e quanto dele a sua peça come de verdade. A conta que circula por aí é de azulejo de obra, e erra feio na pastilha pequena.',
 			'no_banco' => $n['materiais_rejunte'],
 		),
 		array(
 			'codigo'   => 'G-PASTILHAS',
 			'titulo'   => 'Pastilhas e tesselas',
 			'slug'     => 'materiais/pastilhas',
-			'resumo'   => 'Vidro, cerâmica, cristal e tessela irregular, com o passo de fábrica de cada placa e a conversão entre as três unidades de venda: peça, grama e placa 30 × 30.',
+			'resumo'   => 'Vidro, cerâmica, cristal e caquinho irregular: como cada uma é vendida (por peça, por grama ou na placa) e quanto rende.',
 			'no_banco' => 0,
 		),
 		array(
 			'codigo'   => 'G-ALICATES',
 			'titulo'   => 'Alicates e corte',
 			'slug'     => 'materiais/alicates',
-			'resumo'   => 'Torquês de roda, alicate de corte e cortador manual: o que cada um corta de verdade, e o que estraga a peça quando se usa o errado.',
+			'resumo'   => 'Torquês de roda, alicate de corte e cortador: o que cada um corta sem estilhaçar, e qual deles estraga a peça.',
 			'no_banco' => 0,
 		),
 		array(
 			'codigo'   => 'G-BASES',
 			'titulo'   => 'Bases',
 			'slug'     => 'materiais/bases',
-			'resumo'   => 'Vaso de cerâmica, vidro, MDF, cimento, cachepô e tampo: cada base muda a cola, e é por isso que ela é a primeira pergunta da ferramenta.',
+			'resumo'   => 'Vaso de cerâmica, vidro, MDF, cimento, cachepô e tampo. A base muda a cola — é a primeira pergunta de todas.',
 			'no_banco' => 0,
 		),
 		array(
 			'codigo'   => 'G-ACABAMENTO',
 			'titulo'   => 'Acabamento',
 			'slug'     => 'materiais/acabamento',
-			'resumo'   => 'Verniz, impermeabilizante e limpeza depois do rejunte — a etapa que decide se a peça sobrevive ao sol, à chuva e à pia.',
+			'resumo'   => 'Verniz, impermeabilizante e como limpar depois do rejunte. É a etapa que decide se a peça aguenta sol, chuva e pia.',
 			'no_banco' => 0,
 		),
 	);
@@ -354,17 +381,32 @@ add_action( 'template_redirect', 'cdm_casca_redirecionar_apelido' );
 /* ---------------------------------------------------------------------------
  * 2. Marca, menu e rodapé
  *
- * A marca é o arquivo que o Raphael entregou, servido da biblioteca de mídia.
- * Não há SVG desenhado aqui e não há texto ao lado: o arquivo já traz o
- * wordmark "clube do mosaico", e escrever o nome de novo ao lado dele seria
- * repetir a marca duas vezes na mesma linha.
+ * A MARCA, e por que ela mudou em 1.2.0. Até 1.1.0 o cabeçalho servia o arquivo
+ * completo que o Raphael entregou — lótus mais wordmark, vinho sobre PRETO —, e
+ * por isso o cabeçalho inteiro era preto: era a única cor em que aquele arquivo
+ * aparecia. Ele viu no ar e reprovou os dois de uma vez ("fundo preto no header,
+ * o logo sumiu"). Num cabeçalho claro aquele arquivo não entra: o fundo preto
+ * dele vira um retângulo escuro em cima de branco.
  *
- * A altura sai fixa no CSS (e não em atributo width/height) porque a dimensão
- * intrínseca do arquivo mora na biblioteca de mídia do site, não no
- * repositório: a rede das rotinas não alcança o domínio desta ilha para medir.
- * Fixar a ALTURA no cabeçalho é o que impede o salto vertical de layout, que é
- * o que incomoda o leitor; a largura acomoda sozinha dentro do flex.
+ * O par que o despacho pediu é lótus transparente + wordmark em texto. Metade
+ * dele não existe: identidade/logo/lotus-512.png está TRUNCADO no repositório
+ * (IDAT de 11.638 bytes num arquivo com 8.770, IEND colado no fim) e não
+ * descomprime um único pixel. Então esta versão serve a metade que existe — o
+ * wordmark em texto, na tipografia da identidade — e deixa o lugar da lótus
+ * pronto: basta CDM_CASCA_MARCA_LOTUS deixar de ser vazia para ela entrar ao
+ * lado, sem tocar em mais nada. Ícone quebrado no lugar do logo sumido não é
+ * conserto.
+ *
+ * O wordmark sai em minúsculas COMO TEXTO, não como text-transform: quem lê com
+ * leitor de tela ouve o nome do jeito que ele é escrito, e a caixa baixa é a do
+ * logotipo original, não um efeito de CSS.
  * ------------------------------------------------------------------------- */
+
+/* MARCA-INICIO — gerado por ferramentas/gerar-marca.php, nao edite a mao */
+if ( ! defined( 'CDM_CASCA_MARCA_LOTUS' ) ) {
+	define( 'CDM_CASCA_MARCA_LOTUS', '' );
+}
+/* MARCA-FIM */
 
 if ( ! function_exists( 'cdm_casca_marca_html' ) ) {
 function cdm_casca_marca_html() {
@@ -374,10 +416,19 @@ function cdm_casca_marca_html() {
 	}
 	$ja_impressa = true;
 
-	return '<a class="cdm-marca" href="' . esc_url( home_url( '/' ) ) . '" rel="home">'
-		. '<img src="' . esc_url( CDM_CASCA_LOGO_URL ) . '" alt="Clube do Mosaico"'
-		. ' class="cdm-marca-img" decoding="async">'
-		. '</a>';
+	$html = '<a class="cdm-marca" href="' . esc_url( home_url( '/' ) ) . '" rel="home">';
+
+	if ( defined( 'CDM_CASCA_MARCA_LOTUS' ) && '' !== CDM_CASCA_MARCA_LOTUS ) {
+		/* A lótus é decoração ao lado do nome escrito: alt vazio, senão o leitor
+		   de tela anuncia a marca duas vezes na mesma linha. */
+		$html .= '<img src="' . esc_attr( 'data:image/png;base64,' . CDM_CASCA_MARCA_LOTUS ) . '"'
+			. ' alt="" class="cdm-marca-lotus" width="80" height="80" decoding="async">';
+	}
+
+	$html .= '<span class="cdm-marca-nome">clube do mosaico</span>';
+	$html .= '</a>';
+
+	return $html;
 }
 }
 
@@ -530,8 +581,8 @@ add_action( 'wp_head', function () {
 	// máscara de canto — por isso aqui vai o arquivo grande, quadrado, da lótus
 	// sobre branco, que é exatamente o que o Raphael entregou.
 	echo '<link rel="apple-touch-icon" sizes="180x180" href="' . esc_url( CDM_CASCA_FAVICON_URL ) . '">' . "\n";
-	// A barra do navegador no celular acompanha o cabeçalho: preto puro.
-	echo '<meta name="theme-color" content="#000000">' . "\n";
+	// A barra do navegador no celular acompanha o cabeçalho, e ele ficou claro.
+	echo '<meta name="theme-color" content="#FFFFFF">' . "\n";
 }, 5 );
 
 /* ---------------------------------------------------------------------------
@@ -613,7 +664,10 @@ body{
 }
 html body{background-color:var(--cdm-papel);color:var(--cdm-tinta);font-family:var(--cdm-texto);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;}
 body h1,body h2,body h3,body h4,body h5,body h6{font-family:var(--cdm-display);color:var(--cdm-tinta);line-height:1.2;letter-spacing:-0.01em;}
-body h1{font-weight:700;}
+/* "Clean, cara de e-commerce" (despacho de 11/09): o corpo nao carrega negrito
+   de mais. Peso 600 no titulo e 500 na linha de abertura ja separam hierarquia
+   num miolo branco; 700 em tudo e o que fazia a pagina parecer manual. */
+body h1{font-weight:600;}
 body a{color:var(--cdm-rubi);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;}
 body a:hover{color:var(--cdm-coral);}
 body code,body kbd,body samp,body pre,body .cdm-num,body .cdm-medida{font-family:var(--cdm-mono);font-variant-numeric:tabular-nums;}
@@ -621,31 +675,49 @@ body hr,body .wp-block-separator{border-color:var(--cdm-traco);color:var(--cdm-t
 body table{border-collapse:collapse;}
 body table th,body table td{border:1px solid var(--cdm-traco);padding:.5rem .7rem;text-align:left;}
 body table th{background:var(--cdm-papel);font-family:var(--cdm-display);font-weight:600;}
-/* CABECALHO E RODAPE PRETOS: o logo vive sobre preto puro, e o miolo continua
-   branco. Sem isto o tema serviria o cabecalho no branco padrao dele e a lotus
-   apareceria sobre fundo errado. */
-.wp-site-blocks > header.wp-block-template-part,body header.wp-block-template-part,body header.wp-block-group,body .wp-block-template-part header{background:var(--cdm-noite);}
-body header.wp-block-template-part a,body header.wp-block-group a{color:var(--cdm-papel);}
-.cdm-marca{display:inline-flex;align-items:center;text-decoration:none;color:var(--cdm-papel);min-height:2.6rem;}
-.cdm-marca:hover{text-decoration:none;}
-.cdm-marca-img{display:block;height:2.6rem;width:auto;max-width:min(15rem,60vw);}
+/* CABECALHO CLARO E RODAPE PRETO (1.2.0). O preto e cor de TEXTO e de detalhe:
+   quem vende peca abre a pagina com a peca, nunca com uma faixa escura. O que
+   separa o cabecalho do miolo e a linha de 1 px da secao 6 do contrato, e nao
+   uma sombra. Sem a regra do tema abaixo, o tema serviria a propria cor. */
+.wp-site-blocks > header.wp-block-template-part,body header.wp-block-template-part,body header.wp-block-group,body .wp-block-template-part header{background:var(--cdm-papel);border-bottom:1px solid var(--cdm-traco);box-shadow:none;min-height:4.5rem;}
+body header.wp-block-template-part a,body header.wp-block-group a{color:var(--cdm-tinta);}
+.cdm-marca{display:inline-flex;align-items:center;gap:.55rem;text-decoration:none;color:var(--cdm-vinho);min-height:2.6rem;}
+.cdm-marca:hover{text-decoration:none;color:var(--cdm-vinho);}
+.cdm-marca-lotus{display:block;height:2.5rem;width:auto;}
+/* O nome e o wordmark: minusculas de verdade, na fonte da identidade. */
+.cdm-marca-nome{font-family:var(--cdm-display);font-weight:600;font-size:1.3rem;letter-spacing:-0.01em;line-height:1;color:var(--cdm-vinho);}
 .cdm-nav ul{display:flex;flex-wrap:wrap;gap:1.4rem;list-style:none;margin:0;padding:0;}
 .cdm-nav li{margin:0;}
-.cdm-nav a,.cdm-nav .cdm-sem-link{font-family:var(--cdm-texto);font-weight:600;font-size:.95rem;color:var(--cdm-papel);text-decoration:none;padding-bottom:.15rem;border-bottom:1px solid transparent;}
-.cdm-nav a:hover{color:var(--cdm-salmao);border-bottom-color:var(--cdm-salmao);}
+.cdm-nav a,.cdm-nav .cdm-sem-link{font-family:var(--cdm-texto);font-weight:500;font-size:.95rem;color:var(--cdm-tinta);text-decoration:none;padding-bottom:.15rem;border-bottom:1px solid transparent;}
+.cdm-nav a:hover{color:var(--cdm-coral);border-bottom-color:var(--cdm-coral);}
 .cdm-nav .cdm-sem-link{color:var(--cdm-legenda);}
 .cdm-nav-caixa{position:relative;}
 /* O botao do menu so aparece no celular, e so quando ha JavaScript para ele
    comandar (o atributo data-cdm-menu e posto pelo script do rodape). */
-.cdm-nav-botao{display:none;align-items:center;gap:.55rem;background:transparent;color:var(--cdm-papel);border:1px solid var(--cdm-legenda);border-radius:2px;padding:.5rem .75rem;font-family:var(--cdm-texto);font-weight:600;font-size:.92rem;line-height:1;cursor:pointer;}
-.cdm-nav-botao:hover{border-color:var(--cdm-salmao);color:var(--cdm-salmao);}
+.cdm-nav-botao{display:none;align-items:center;gap:.55rem;background:transparent;color:var(--cdm-tinta);border:1px solid var(--cdm-traco);border-radius:2px;padding:.5rem .75rem;font-family:var(--cdm-texto);font-weight:500;font-size:.92rem;line-height:1;cursor:pointer;}
+.cdm-nav-botao:hover{border-color:var(--cdm-coral);color:var(--cdm-coral);}
 .cdm-nav-tracos{position:relative;display:block;width:1.05rem;height:2px;background:currentColor;border-radius:2px;}
 .cdm-nav-tracos::before,.cdm-nav-tracos::after{content:"";position:absolute;left:0;width:100%;height:2px;background:currentColor;border-radius:2px;}
 .cdm-nav-tracos::before{top:-.36rem;}
 .cdm-nav-tracos::after{top:.36rem;}
 .cdm-nav-botao:focus-visible,.cdm-nav a:focus-visible,.cdm-marca:focus-visible,body a:focus-visible{outline:2px solid var(--cdm-coral);outline-offset:3px;}
 .cdm-bloco{max-width:52rem;}
-.cdm-linha-mestra{font-family:var(--cdm-display);font-size:1.35rem;line-height:1.35;font-weight:600;margin:0 0 .8rem;}
+.cdm-linha-mestra{font-family:var(--cdm-display);font-size:1.35rem;line-height:1.35;font-weight:500;margin:0 0 .8rem;}
+/* A CAMADA DE PROVA (secao 15.2 do contrato). Fonte, data, codigo de documento e
+   contagem de banco moram AQUI, nunca no titulo nem no primeiro paragrafo. A
+   classe nao e enfeite: e por ela que o portao de voz separa voz de prova pela
+   ESTRUTURA, e nao pela vizinhanca da palavra — que e a cicatriz desta ilha de
+   11/09/2026, quando uma regua por vizinhanca aprovou "a ficha tecnica do
+   silicone acetico mais vendido do Brasil". */
+.cdm-prova{margin:2rem 0 0;padding:1rem 0 0;border-top:1px solid var(--cdm-traco);color:var(--cdm-legenda);font-size:.9rem;line-height:1.55;}
+.cdm-prova h2,.cdm-prova h3{font-size:1rem;margin:0 0 .4rem;color:var(--cdm-legenda);font-weight:600;}
+.cdm-prova p{margin:0 0 .5rem;}
+.cdm-prova p:last-child{margin-bottom:0;}
+/* Quem faz as pecas, no rodape da home (VOZ.md). */
+.cdm-artesa{margin:2.4rem 0 0;padding:1.3rem 1.4rem;border:1px solid var(--cdm-traco);border-radius:3px;}
+.cdm-artesa h2{margin:0 0 .5rem;font-size:1.15rem;}
+.cdm-artesa p{margin:0 0 .5rem;}
+.cdm-artesa p:last-child{margin-bottom:0;}
 .cdm-abertura p{margin:0 0 .7rem;}
 .cdm-secao{margin:2.4rem 0 0;}
 .cdm-secao h2{margin:0 0 .6rem;font-size:1.3rem;}
@@ -694,7 +766,8 @@ body header.wp-block-template-part a,body header.wp-block-group a{color:var(--cd
 body:has(.cdm-rodape) .wp-site-blocks > footer.wp-block-template-part:not(:has(.cdm-rodape)){display:none;}
 @media (max-width:600px){
 .cdm-linha-mestra{font-size:1.15rem;}
-.cdm-marca-img{height:2.2rem;}
+.cdm-marca-lotus{height:2.1rem;}
+.cdm-marca-nome{font-size:1.1rem;}
 }
 /* Menu sanfona. 782 px e a largura em que o proprio WordPress considera que a
    tela virou celular; seguir a mesma quebra evita cabecalho meio empilhado.
@@ -702,11 +775,11 @@ body:has(.cdm-rodape) .wp-site-blocks > footer.wp-block-template-part:not(:has(.
    continua sendo a fileira de links, visivel. */
 @media (max-width:782px){
 .cdm-nav-caixa[data-cdm-menu] .cdm-nav-botao{display:inline-flex;}
-.cdm-nav-caixa[data-cdm-menu] .cdm-nav{display:none;position:absolute;right:0;top:calc(100% + .55rem);z-index:60;min-width:13rem;background:var(--cdm-noite);border:1px solid var(--cdm-legenda);border-radius:3px;box-shadow:0 12px 32px rgba(31,23,21,.28);padding:.35rem 0;}
+.cdm-nav-caixa[data-cdm-menu] .cdm-nav{display:none;position:absolute;right:0;top:calc(100% + .55rem);z-index:60;min-width:13rem;background:var(--cdm-papel);border:1px solid var(--cdm-traco);border-radius:3px;box-shadow:0 12px 32px rgba(31,23,21,.12);padding:.35rem 0;}
 .cdm-nav-caixa[data-cdm-menu][data-cdm-aberto="1"] .cdm-nav{display:block;}
 .cdm-nav-caixa[data-cdm-menu] .cdm-nav ul,.cdm-nav-caixa[data-cdm-menu] .cdm-nav li{display:block;}
 .cdm-nav-caixa[data-cdm-menu] .cdm-nav a,.cdm-nav-caixa[data-cdm-menu] .cdm-nav .cdm-sem-link{display:block;padding:.65rem 1.05rem;font-size:1rem;border-bottom:0;}
-.cdm-nav-caixa[data-cdm-menu] .cdm-nav a:hover{color:var(--cdm-salmao);}
+.cdm-nav-caixa[data-cdm-menu] .cdm-nav a:hover{color:var(--cdm-coral);}
 }
 CSS;
 
@@ -850,6 +923,17 @@ function cdm_casca_numeros() {
 	if ( $lidos === count( $bancos ) ) {
 		$n['esperando_link'] = $link_vivo;
 		$n['sem_imagem']     = $img_viva;
+	}
+
+	/* O TOTAL DE ITENS DA ILHA, SOMADO — nunca digitado, e nunca confundido com o
+	   total de UMA categoria. Foi exatamente essa confusão que pôs no ar a frase
+	   "hoje 10 dos 5 itens esperam link": os dois números estavam certos sozinhos
+	   (10 itens esperando link no banco inteiro, 5 adesivos na categoria cola) e a
+	   frase que os juntou era impossível. Denominador de frase sobre a ilha é a
+	   soma das categorias; o de frase sobre uma categoria é aquela categoria. */
+	$n['itens_no_banco'] = 0;
+	foreach ( $bancos as $chave ) {
+		$n['itens_no_banco'] += (int) $n[ $chave ];
 	}
 
 	/* A Loja conta peça de verdade, nunca estimativa: enquanto o CPT do bloco 4d
@@ -1012,42 +1096,54 @@ function cdm_casca_vitrine_de_pecas_html( $quantas = 8 ) {
 }
 }
 
+/**
+ * A HOME, pelo molde LOJA do VOZ.md (seção 15.3 do contrato).
+ *
+ * O que saiu daqui em 1.2.0, e por quê: a home abria com um manifesto de três
+ * parágrafos sobre o método da ilha, e o terceiro era a ficha técnica de um
+ * silicone, com o código do documento e a lista de superfícies proibidas. As
+ * duas primeiras frases estão LITERALMENTE na lista de "Proibidas" do VOZ.md —
+ * não é coincidência: foi o texto que ela foi escrita para proibir. Quem chega
+ * aqui está escolhendo presente num domingo à tarde ou tem um vaso de barro na
+ * mão, e nenhum dos dois veio ler o método.
+ *
+ * O número e a fonte não sumiram do site: mudaram de lugar. Eles moram na
+ * camada de prova (seção 15.2) das páginas do Guia, onde quem quiser conferir
+ * vai conferir. Uma home é uma vitrine, não a página de metodologia.
+ */
 add_shortcode( 'cdm_home', function () {
-	$n = cdm_casca_numeros();
-
 	$html  = '<div class="cdm-bloco">';
 	$html .= '<div class="cdm-abertura">';
-	/* Resposta antes da explicação (seção 5.2): a primeira frase é
-	   autossuficiente e sobrevive a ser citada fora de contexto. */
-	$html .= '<p class="cdm-linha-mestra">O Clube do Mosaico faz duas coisas: vende peças de mosaico feitas à mão, uma a uma, e responde com fonte de fabricante qual material serve para a peça que <strong>você</strong> quer fazer.</p>';
-	$html .= '<p>A segunda parte existe porque a primeira página de busca não responde. "Madeira, cola branca; vidro, silicone; alvenaria, argamassa" circula em blog de artesanato há mais de dez anos sem nome de fabricante, sem código de ficha técnica, sem data e sem separar peça de dentro de casa de peça que vai tomar sol e chuva. Aqui cada recomendação carrega a frase do fabricante que a sustenta.</p>';
-	$html .= '<p>E o que o fabricante declara nem sempre é o que o blog repete. A ficha técnica do Silicone Acético Construção da Tekbond lista <strong>espelho, concreto, cimento, tijolo, superfície pintada, superfície porosa e imersão contínua</strong> entre as superfícies em que o produto não deve ser usado — que é quase a lista do que o mosaico brasileiro cola com ele.</p>';
+	$html .= '<p class="cdm-linha-mestra">Mosaico feito à mão, uma peça por vez.</p>';
+	$html .= '<p>Vaso, cachepô, quadro, espelho, colar: cada peça é cortada e assentada uma de cada vez, aqui no ateliê. Como nenhuma é feita em série, quando uma sai não existe outra igual.</p>';
+	$html .= '<p>E se você quer fazer a sua, a gente ajuda a escolher o material certo para a peça que você tem na mão.</p>';
 	$html .= '</div>';
 
 	$html .= '<div class="cdm-secao">';
 	$html .= '<h2>Peças do ateliê</h2>';
 	$vitrine = cdm_casca_vitrine_de_pecas_html( 8 );
 	if ( '' !== $vitrine ) {
-		$html .= '<p>Cada peça é única: feita à mão, uma de cada vez, e fotografada como ela é.</p>';
+		$html .= '<p>Cada peça é feita uma a uma. Se gostou, avisa a gente — a disponibilidade muda rápido.</p>';
 		$html .= $vitrine;
 	} else {
 		$html .= '<div class="cdm-vazio">';
-		$html .= '<h3>A vitrine ainda não abriu</h3>';
-		$html .= '<p>As peças são feitas à mão por uma artesã, uma de cada vez, e cada uma é fotografada e cadastrada por ela antes de aparecer aqui. Nenhuma peça de exemplo vai ocupar este espaço enquanto isso não acontecer — uma foto bonita de algo que você não pode comprar seria só uma vitrine falsa.</p>';
-		$html .= '<p>Enquanto isso, o ' . cdm_casca_link_html( 'materiais', 'Guia de materiais' ) . ' já está de pé, com o banco técnico que sustenta as recomendações.</p>';
+		$html .= '<h3>A vitrine abre em breve</h3>';
+		$html .= '<p>A artesã fotografa e cadastra cada peça ela mesma, e a primeira ainda não subiu. Não vamos pôr foto de catálogo aqui só para o espaço não ficar vazio: o que aparecer nesta página vai ser uma peça de verdade, que dá para levar para casa.</p>';
+		$html .= '<p>Veio fazer a sua? O caminho é por aqui: ' . cdm_casca_link_html( 'materiais', 'escolher o material' ) . '.</p>';
 		$html .= '</div>';
 	}
 	$html .= '</div>';
 
 	$html .= '<div class="cdm-secao">';
-	$html .= '<h2>Guia de materiais</h2>';
-	$html .= '<p>Seis categorias: cola, rejunte, pastilha, alicate, base e acabamento. A de colas já tem banco — ' . cdm_casca_num( $n['materiais_cola'] ) . ' produtos de fabricante com a lista literal de onde cada um é indicado e, o que é raro de encontrar publicado, onde ele é <strong>proibido</strong> pelo próprio fabricante.</p>';
+	$html .= '<h2>Vai fazer o seu? A gente ajuda a escolher o material</h2>';
+	$html .= '<p>Vaso de barro? Vai de cola branca por dentro de casa. Se ele for pra varanda, é outra cola — a gente te mostra qual, e por quê.</p>';
+	$html .= '<p>São seis prateleiras, e em todas a pergunta é a mesma: sobre o que você vai colar, e onde a peça vai ficar.</p>';
 	$html .= cdm_casca_cards_guia_html();
 	$html .= '</div>';
 
 	$html .= '<div class="cdm-secao">';
-	$html .= '<h2>Duas calculadoras, em construção</h2>';
-	$html .= '<p>Uma escolhe o adesivo pela base e pelo ambiente; a outra diz quantas pastilhas e quanto rejunte a peça consome. As duas estão especificadas ponta a ponta e entram no ar uma por vez, com a fonte de cada número conferida.</p>';
+	$html .= '<h2>Duas contas que a gente está deixando prontas</h2>';
+	$html .= '<p>Uma diz qual cola e qual rejunte servem na sua base; a outra, quantas pastilhas e quanto rejunte a sua peça vai consumir — para você não voltar à loja no meio do trabalho.</p>';
 	$html .= cdm_casca_cards_ferramentas_html();
 	$html .= '</div>';
 
@@ -1055,15 +1151,17 @@ add_shortcode( 'cdm_home', function () {
 	if ( '' !== $tutoriais ) {
 		$html .= '<div class="cdm-secao">';
 		$html .= '<h2>Como fazer</h2>';
-		$html .= '<p>Cada passo a passo termina com a lista de materiais ligada ao Guia — e, para quem prefere a peça pronta, o caminho para a Loja.</p>';
+		$html .= '<p>Cada passo a passo termina com a lista do que comprar — e, para quem prefere a peça pronta, o caminho da Loja.</p>';
 		$html .= $tutoriais;
 		$html .= '</div>';
 	}
 
-	$html .= '<div class="cdm-secao">';
-	$html .= '<h2>O número que abriu esta ilha</h2>';
-	$html .= '<p>Aplicando a fórmula de consumo publicada pela própria Quartzolit ao tamanho real da pastilha de artesanato — <span class="cdm-medida">1 × 1 cm</span>, <span class="cdm-medida">4 mm</span> de espessura, junta de <span class="cdm-medida">2 mm</span> — dá <span class="cdm-medida">2,80 kg/m²</span> de rejunte. A primeira página do Google publica de <span class="cdm-medida">0,2</span> a <span class="cdm-medida">0,4 kg/m²</span>, porque toda ela calcula com azulejo de obra, que é sete a catorze vezes maior. Quem compra rejunte por aquele número compra pouco demais.</p>';
-	$html .= '<p class="cdm-nota"><strong>Por que isso importa mais do que parece:</strong> é o mesmo erro de escala que faz uma peça descolar. Material de obra e material de artesanato são vendidos lado a lado, e as instruções da embalagem foram escritas para a obra.</p>';
+	/* A artesã fecha a home (VOZ.md). Nome, foto e redes entram no dia em que ela
+	   autorizar: o bloco nasce pronto e sem inventar nenhum dos três. */
+	$html .= '<div class="cdm-artesa">';
+	$html .= '<h2>Quem faz</h2>';
+	$html .= '<p>Uma artesã, à mão, uma peça de cada vez. É ela quem corta, assenta, rejunta, fotografa e cadastra cada peça aqui — não tem ninguém no meio.</p>';
+	$html .= '<p>O nome, o rosto e as redes dela entram nesta página assim que ela autorizar. Até lá fica escrito assim, sem foto de banco de imagens e sem nome de fantasia.</p>';
 	$html .= '</div>';
 	$html .= '</div>';
 
@@ -1104,41 +1202,104 @@ add_shortcode( 'cdm_loja', function () {
 	return $html;
 } );
 
+/**
+ * O GUIA DE MATERIAIS, reescrito em 1.2.0 pela regra das camadas (seção 15.2).
+ *
+ * A página tinha nove seções e sete delas eram bastidor de fábrica: a escada de
+ * sete níveis de fonte, a confissão que ela obriga, como resolvemos divergência
+ * entre fabricantes, a tabela de contagens do banco. Tudo verdade, tudo
+ * importante — e nada disso é o que alguém com um vaso de barro na mão veio ler.
+ *
+ * Esse material não foi jogado fora: mudou para /materiais/como-sabemos/, que é
+ * a página cujo produto É o rigor, com `noindex` até ter texto próprio e fora do
+ * sitemap. Aqui ficam as seis prateleiras e o único achado que muda a mão de
+ * quem faz: silicone acético não serve em espelho nem em cimento, e o neutro do
+ * mesmo fabricante serve.
+ */
 add_shortcode( 'cdm_materiais', function () {
 	$n = cdm_casca_numeros();
 
 	$html  = '<div class="cdm-bloco">';
-	$html .= '<p class="cdm-linha-mestra">Qual cola, qual rejunte e quantas pastilhas a sua peça precisa — com a frase do fabricante que sustenta cada resposta e a data em que ela foi verificada.</p>';
-	$html .= '<p>Este guia não repete o que circula em blog. A regra "madeira, cola branca; vidro, silicone; alvenaria, argamassa" está em toda parte sem nome de fabricante, sem código de documento, sem data e — o mais grave — sem separar peça de ambiente seco de peça que vai para a área molhada ou para o sol e a chuva. Aqui cada declaração tem origem, e origem tem nível.</p>';
+	$html .= '<div class="cdm-abertura">';
+	$html .= '<p class="cdm-linha-mestra">Antes do primeiro caco, duas perguntas: sobre o que você vai colar, e onde a peça vai ficar.</p>';
+	$html .= '<p>As duas juntas decidem a cola e o rejunte. A mesma peça feita para a sala e para o jardim leva material diferente — e a que foi feita para dentro não sobrevive lá fora.</p>';
+	$html .= '<p>É por isso que uma lista de materiais copiada do vaso de outra pessoa não serve para o seu.</p>';
+	$html .= '</div>';
 
 	$html .= '<div class="cdm-secao">';
-	$html .= '<h2>As seis categorias</h2>';
+	$html .= '<h2>As seis prateleiras</h2>';
 	$html .= cdm_casca_cards_guia_html();
 	$html .= '</div>';
 
 	$html .= '<div class="cdm-secao">';
+	$html .= '<h2>O que quase todo mundo erra</h2>';
+	$html .= '<p>Se a sua peça é de espelho, de cimento ou de vidro laminado, o <strong>silicone acético</strong> não serve — e é justamente o que a maioria dos tutoriais manda usar. O <strong>silicone neutro</strong> serve, e é do mesmo fabricante: não precisa trocar de marca, precisa pegar o tubo certo na prateleira.</p>';
+	$html .= '<p>O acético continua ótimo para o que ele foi feito. O problema é o caquinho de espelho e o vaso de cimento, que são metade do mosaico brasileiro.</p>';
+	$html .= '</div>';
+
+	$html .= '<div class="cdm-secao">';
+	$html .= '<h2>Onde ficam os links de compra</h2>';
+	$html .= '<p>Quando houver link de loja para um material, ele aparece <em>antes</em> da parte que mostra de onde veio a informação — e essa parte continua ali, pequena, para quem quiser conferir. Como isso funciona está em ' . cdm_casca_link_html( 'divulgacao-de-afiliados', 'Divulgação de afiliados' ) . '.</p>';
+	$html .= '</div>';
+
+	/* A CAMADA DE PROVA desta página: três linhas e o caminho para a página que
+	   guarda o método inteiro. O denominador é o banco INTEIRO, não a categoria
+	   cola — a frase "hoje 10 dos 5 itens esperam link" esteve no ar porque os
+	   dois números certos foram postos na mesma frase errada. */
+	$html .= '<div class="cdm-prova">';
+	$html .= '<h2>Como sabemos</h2>';
+	$html .= '<p>Nenhuma recomendação daqui veio de blog: cada uma sai do que o fabricante publica sobre o próprio produto, com o documento e a data em que foi lido. Quando ele não fala de uma superfície, a página escreve que não fala — silêncio não vira "pode".</p>';
+	$html .= '<p>Hoje o banco tem ' . cdm_casca_num( $n['itens_no_banco'] ) . ' itens de fabricante, sendo ' . cdm_casca_num( $n['materiais_cola'] ) . ' colas e ' . cdm_casca_num( $n['materiais_rejunte'] ) . ' rejuntes, e ' . cdm_casca_num( $n['esperando_link'] ) . ' deles ainda esperam link de loja.</p>';
+	$html .= '<p>O método inteiro — de onde vem cada declaração, o que fazemos quando duas fontes discordam e o que ainda não conferimos — está em ' . cdm_casca_link_html( 'materiais/como-sabemos', 'Como sabemos' ) . '.</p>';
+	$html .= '</div>';
+	$html .= '</div>';
+
+	return $html;
+} );
+
+/**
+ * /materiais/como-sabemos/ — a página cujo produto é o rigor.
+ *
+ * Recebeu em 1.2.0 tudo o que era bastidor no Guia. Nasce com `noindex` e fora
+ * do sitemap por decisão do despacho: ela existe para ser conferida por quem
+ * quer conferir, não para disputar busca. Fina ela não é — a trava de página
+ * fina da seção 8 mede o corpo dela como mede o das outras.
+ */
+add_shortcode( 'cdm_como_sabemos', function () {
+	$n = cdm_casca_numeros();
+
+	$html  = '<div class="cdm-bloco">';
+	$html .= '<div class="cdm-abertura">';
+	$html .= '<p class="cdm-linha-mestra">Toda recomendação desta casa aponta para um documento do fabricante, com data. Esta página mostra como isso é feito — e o que ainda não conferimos.</p>';
+	$html .= '<p>Ela existe para ser conferida. Se você achar aqui uma recomendação que contradiz o que o fabricante publica, ela vale mais que a nossa e entra no lugar.</p>';
+	$html .= '</div>';
+
+	$html .= '<div class="cdm-secao">';
 	$html .= '<h2>O que o banco já sustenta, em número</h2>';
-	$html .= '<p>Medido em ' . esc_html( cdm_casca_data_br( $n['medido_em'] ) ) . ', sobre os ' . cdm_casca_num( $n['materiais_cola'] ) . ' adesivos já cadastrados:</p>';
+	$html .= '<p>Medido em ' . esc_html( cdm_casca_data_br( $n['medido_em'] ) ) . ':</p>';
 	$html .= '<div class="cdm-tabela"><table class="cdm-quadro"><tbody>';
-	$html .= '<tr><td>Adesivos de fabricante no banco</td><td class="cdm-n">' . esc_html( number_format_i18n( $n['materiais_cola'] ) ) . '</td></tr>';
+	$html .= '<tr><td>Itens de fabricante no banco</td><td class="cdm-n">' . esc_html( number_format_i18n( $n['itens_no_banco'] ) ) . '</td></tr>';
+	$html .= '<tr><td>Adesivos</td><td class="cdm-n">' . esc_html( number_format_i18n( $n['materiais_cola'] ) ) . '</td></tr>';
+	$html .= '<tr><td>Rejuntes</td><td class="cdm-n">' . esc_html( number_format_i18n( $n['materiais_rejunte'] ) ) . '</td></tr>';
 	$html .= '<tr><td>Bases cobertas (cerâmica, vidro, laminado, espelho, MDF, cimento, alvenaria, metal, plástico)</td><td class="cdm-n">' . esc_html( number_format_i18n( $n['bases'] ) ) . '</td></tr>';
 	$html .= '<tr><td>Ambientes cobertos (seco, molhado, externo abrigado, sol e chuva, imersão)</td><td class="cdm-n">' . esc_html( number_format_i18n( $n['ambientes'] ) ) . '</td></tr>';
 	$html .= '<tr><td>Combinações base × ambiente mapeadas</td><td class="cdm-n">' . esc_html( number_format_i18n( $n['celulas_matriz'] ) ) . '</td></tr>';
 	$html .= '<tr><td>Combinações em que há recomendação com fonte</td><td class="cdm-n">' . esc_html( number_format_i18n( $n['celulas_com_saida'] ) ) . '</td></tr>';
 	$html .= '<tr><td>Combinações que ficam <strong>sem resposta</strong>, e a página diz por quê</td><td class="cdm-n">' . esc_html( number_format_i18n( $n['celulas_sem_saida'] ) ) . '</td></tr>';
+	$html .= '<tr><td>Itens esperando link de loja</td><td class="cdm-n">' . esc_html( number_format_i18n( $n['esperando_link'] ) ) . '</td></tr>';
 	$html .= '</tbody></table></div>';
 	$html .= '<p class="cdm-nota"><strong>Publicar as duas que ficam sem resposta é parte do método.</strong> São peça de plástico e peça em contato permanente com água: nenhum dos fabricantes do banco declara substrato plástico, e a única menção que existe a colar debaixo d\'água está em material de imprensa, não em ficha técnica. Um guia que nunca diz "não sei" está inventando em algum lugar.</p>';
 	$html .= '</div>';
 
 	$html .= '<div class="cdm-secao">';
-	$html .= '<h2>O achado que muda o que quase todo mundo faz</h2>';
+	$html .= '<h2>O achado do silicone, com o documento na mão</h2>';
 	$html .= '<p>A ficha técnica BRSA004 do Silicone Acético Construção da Tekbond, revisada em 10/2025, lista entre as superfícies em que o produto <strong>não</strong> deve ser usado:</p>';
 	$html .= '<div class="cdm-citacao"><p>espelhos, vidro laminado, metal corrosível, superfícies pintadas, superfícies porosas, superfícies alcalinas, concreto, cimento, tijolo, calcário, acrílico, aquário e imersão contínua.</p></div>';
 	$html .= '<p>Caco de espelho, vaso de cimento e peça de área molhada são exatamente o que o mosaico artesanal brasileiro cola com silicone acético, por indicação de blog. E a saída vem do mesmo fabricante: o Silicone Neutro da Tekbond é declarado para espelho, concreto, alvenaria e pedra — justamente as restrições do acético. Não é preciso trocar de marca para acertar; é preciso ler a ficha certa.</p>';
 	$html .= '</div>';
 
 	$html .= '<div class="cdm-secao">';
-	$html .= '<h2>Como decidimos quando as fontes discordam</h2>';
+	$html .= '<h2>Quando as fontes discordam</h2>';
 	$html .= '<p>Duas fontes boas discordando é rotina. A saída proibida é a média, porque ela esconde justamente o desacordo que faz a informação valer. Publicamos as duas declarações com as duas datas e resolvemos para o lado em que <strong>errar dói menos</strong> — e aqui esse lado é sempre o conjunto <strong>mais estreito</strong>: errar para o lado largo faz alguém colar uma peça que vai descolar.</p>';
 	$html .= '<p>Um exemplo do próprio banco: a mesma ficha indica alumínio anodizado e proíbe metal corrosível, zinco e chapa galvanizada. Vence a proibição, porque quem monta mosaico em casa não sabe dizer se a chapa dela é galvanizada.</p>';
 	$html .= '<p>E silêncio não é permissão. Quando o fabricante simplesmente não fala de uma superfície, isso não vira "pode" nem vira "não pode": vira uma terceira coisa, escrita na tela como não declarada. É por isso que ' . cdm_casca_num( $n['celulas_sem_saida'] ) . ' das ' . cdm_casca_num( $n['celulas_matriz'] ) . ' combinações ficam em aberto em vez de receberem um palpite.</p>';
@@ -1161,8 +1322,8 @@ add_shortcode( 'cdm_materiais', function () {
 	$html .= '</div>';
 
 	$html .= '<div class="cdm-secao">';
-	$html .= '<h2>Onde ficam os links de compra</h2>';
-	$html .= '<p>Quando houver link de loja para um material, ele vai aparecer <em>antes</em> da prova de procedência, e a procedência continua ali, como texto pequeno, para ser conferida. Hoje ' . cdm_casca_num( $n['esperando_link'] ) . ' dos ' . cdm_casca_num( $n['materiais_cola'] ) . ' itens esperam link, e a página reserva o lugar em vez de escondê-lo. Como isso funciona está em ' . cdm_casca_link_html( 'divulgacao-de-afiliados', 'Divulgação de afiliados' ) . '.</p>';
+	$html .= '<h2>Voltar para o Guia</h2>';
+	$html .= '<p>Se você veio parar aqui procurando qual cola usar, a resposta está em ' . cdm_casca_link_html( 'materiais', 'Materiais' ) . ' — esta página é o bastidor dela.</p>';
 	$html .= '</div>';
 	$html .= '</div>';
 
@@ -1283,7 +1444,7 @@ add_shortcode( 'cdm_contato', function () {
 	$html .= '</ul></div>';
 
 	$html .= '<div class="cdm-secao"><h2>Correção no guia técnico</h2>';
-	$html .= '<p>Se você encontrou aqui uma recomendação que contradiz a ficha técnica do fabricante, isso é um defeito nosso e queremos saber. A regra é a mesma da página ' . cdm_casca_link_html( 'sobre', 'Sobre' ) . ': declaração de fabricante vale mais que o que está publicado aqui, e entra assim que for conferida.</p>';
+	$html .= '<p>Achou aqui uma recomendação que o próprio fabricante contradiz? Isso é defeito nosso, e a gente quer saber. A regra é a mesma da página ' . cdm_casca_link_html( 'sobre', 'Sobre' ) . ': o que o fabricante publica vale mais que o que está escrito aqui, e entra no lugar assim que for conferido.</p>';
 	$html .= '<p class="cdm-nota"><strong>O canal de e-mail ainda está sendo configurado.</strong> Preferimos deixar isto escrito a publicar um endereço que ainda não recebe — mensagem que se perde é pior que canal ausente. Até ele existir, o contato sobre peça acontece pelo botão da própria peça.</p></div>';
 	$html .= '</div>';
 
@@ -1314,7 +1475,12 @@ add_shortcode( 'cdm_afiliados', function () {
 	$html .= '<div class="cdm-secao"><h2>Preço</h2>';
 	$html .= '<p>Nenhum preço de material aqui é apresentado como o preço de agora. Ou a página não traz preço, ou traz a faixa com a data em que ela foi coletada. Preço muda mais rápido do que qualquer página estática consegue acompanhar, e fingir o contrário seria enganar. O preço das peças do ateliê é outra coisa: esse é o preço real, definido por quem faz.</p></div>';
 
-	$html .= '<p class="cdm-nota"><strong>Estado de hoje:</strong> não há nenhum link de afiliado no ar neste site. ' . cdm_casca_num( $n['esperando_link'] ) . ' materiais do banco estão com o lugar do link reservado e vazio. Esta página existe desde o primeiro dia porque a divulgação precisa estar publicada <em>antes</em> do primeiro link, não depois.</p>';
+	/* A frase "não há nenhum link no ar" era digitada, e frase digitada sobre o
+	   próprio banco passa a mentir em silêncio no dia em que o banco muda. Agora
+	   ela é a SUBTRAÇÃO entre o que existe e o que espera link: no dia em que o
+	   primeiro link entrar, esta página muda sozinha. */
+	$com_link = (int) $n['itens_no_banco'] - (int) $n['esperando_link'];
+	$html    .= '<p class="cdm-nota"><strong>Estado de hoje:</strong> dos ' . cdm_casca_num( $n['itens_no_banco'] ) . ' materiais do banco, ' . cdm_casca_num( $com_link ) . ' têm link de loja e ' . cdm_casca_num( $n['esperando_link'] ) . ' estão com o lugar do link reservado e vazio. Esta página existe desde o primeiro dia porque a divulgação precisa estar publicada <em>antes</em> do primeiro link, não depois.</p>';
 	$html .= '</div>';
 
 	return $html;
@@ -1354,17 +1520,43 @@ add_shortcode( 'cdm_privacidade', function () {
  * ------------------------------------------------------------------------- */
 
 if ( ! function_exists( 'cdm_casca_definicao_paginas' ) ) {
+/**
+ * As páginas da ilha, por slug.
+ *
+ * O TÍTULO DA HOME NÃO É "INÍCIO" (1.2.0). O tema imprime o título da página
+ * como H1, e a home nascia com "Início" porque foi assim que a definição a
+ * criou — o Raphael viu isso no ar e reprovou. A palavra Início não diz nada a
+ * ninguém e ocupa a linha mais visível da página mais visitada. Agora a home
+ * abre com a frase do VOZ.md, que é a mesma que o rodapé e o <title> usam.
+ *
+ * 'pai' é o slug da página-mãe, e é ele que faz a URL mostrar a árvore da
+ * seção 16 do contrato. Só 'noindex' fica fora do sitemap.
+ */
 function cdm_casca_definicao_paginas() {
 	return array(
-		'inicio'                  => array( 'titulo' => 'Início', 'conteudo' => '[cdm_home]' ),
+		'inicio'                  => array( 'titulo' => 'Mosaico feito à mão, uma peça por vez', 'conteudo' => '[cdm_home]' ),
 		'loja'                    => array( 'titulo' => 'Loja', 'conteudo' => '[cdm_loja]' ),
 		'materiais'               => array( 'titulo' => 'Materiais', 'conteudo' => '[cdm_materiais]' ),
+		/* 'camada' => 'prova' é a ÚNICA página em que a linguagem de prova pode
+		   ocupar o texto inteiro (seção 15.2). É declarada aqui, é uma só, e o
+		   teste conta: sem essa contagem, bastaria declarar a home como prova
+		   para o portão de voz parar de valer — que é a porta dos fundos que a
+		   Aquametria achou em 11/09/2026 ao tentar quebrar o próprio portão. */
+		'materiais/como-sabemos'  => array( 'titulo' => 'Como sabemos', 'conteudo' => '[cdm_como_sabemos]', 'pai' => 'materiais', 'noindex' => true, 'camada' => 'prova' ),
 		'como-fazer'              => array( 'titulo' => 'Como fazer', 'conteudo' => '[cdm_como_fazer]' ),
 		'sobre'                   => array( 'titulo' => 'Sobre', 'conteudo' => '[cdm_sobre]' ),
 		'contato'                 => array( 'titulo' => 'Contato', 'conteudo' => '[cdm_contato]' ),
 		'divulgacao-de-afiliados' => array( 'titulo' => 'Divulgação de afiliados', 'conteudo' => '[cdm_afiliados]' ),
 		'privacidade'             => array( 'titulo' => 'Privacidade', 'conteudo' => '[cdm_privacidade]' ),
 	);
+}
+}
+
+if ( ! function_exists( 'cdm_casca_slug_final' ) ) {
+/** O último nível do caminho: 'materiais/como-sabemos' vira 'como-sabemos'. */
+function cdm_casca_slug_final( $caminho ) {
+	$partes = explode( '/', trim( (string) $caminho, '/' ) );
+	return end( $partes );
 }
 }
 
@@ -1375,12 +1567,23 @@ function cdm_casca_garantir_paginas( &$relato ) {
 
 	foreach ( cdm_casca_definicao_paginas() as $slug => $def ) {
 		$pagina = get_page_by_path( $slug, OBJECT, 'page' );
+		/* O pai precisa existir antes da filha, e a ordem da definição garante
+		   isso; se não existir, a filha não nasce solta na raiz — ela espera. */
+		$pai = 0;
+		if ( ! empty( $def['pai'] ) ) {
+			if ( empty( $ids[ $def['pai'] ] ) ) {
+				$relato[] = 'página ' . $slug . ': adiada, a mãe ' . $def['pai'] . ' ainda não existe';
+				continue;
+			}
+			$pai = (int) $ids[ $def['pai'] ];
+		}
 
 		if ( ! $pagina ) {
 			$pid = wp_insert_post( array(
 				'post_type'      => 'page',
 				'post_title'     => $def['titulo'],
-				'post_name'      => $slug,
+				'post_name'      => cdm_casca_slug_final( $slug ),
+				'post_parent'    => $pai,
 				'post_content'   => $def['conteudo'],
 				'post_status'    => 'publish',
 				'comment_status' => 'closed',
@@ -1405,6 +1608,19 @@ function cdm_casca_garantir_paginas( &$relato ) {
 			wp_update_post( array( 'ID' => $pid, 'post_status' => 'publish' ) );
 			$relato[] = 'página ' . $slug . ': republicada (#' . $pid . ')';
 		}
+		/* O TÍTULO SE SINCRONIZA, o post_name NÃO. Sem esta linha a página nasce
+		   com o título da definição e fica com ele para sempre: foi assim que
+		   "Início" sobreviveu a duas versões da casca no ar, e foi assim que a
+		   Robometria descobriu o mesmo defeito em 11/09/2026. Mexer no post_name
+		   seria outra coisa — URL de página publicada não se move (seção 12.1). */
+		if ( $nossa && trim( (string) $pagina->post_title ) !== $def['titulo'] ) {
+			wp_update_post( array( 'ID' => $pid, 'post_title' => $def['titulo'] ) );
+			$relato[] = 'página ' . $slug . ': título sincronizado (#' . $pid . ')';
+		}
+		if ( $nossa && (int) $pagina->post_parent !== $pai ) {
+			wp_update_post( array( 'ID' => $pid, 'post_parent' => $pai ) );
+			$relato[] = 'página ' . $slug . ': mãe ajustada (#' . $pid . ')';
+		}
 		// Só reescrevemos o corpo de página que é nossa e que perdeu o shortcode.
 		if ( $nossa && false === strpos( (string) $pagina->post_content, $def['conteudo'] ) ) {
 			wp_update_post( array( 'ID' => $pid, 'post_content' => $def['conteudo'] ) );
@@ -1417,6 +1633,99 @@ function cdm_casca_garantir_paginas( &$relato ) {
 	}
 
 	return $ids;
+}
+}
+
+if ( ! function_exists( 'cdm_casca_paginas_noindex' ) ) {
+/** Os slugs que a ilha declara fora do índice, tirados da própria definição. */
+function cdm_casca_paginas_noindex() {
+	$fora = array();
+	foreach ( cdm_casca_definicao_paginas() as $slug => $def ) {
+		if ( ! empty( $def['noindex'] ) ) {
+			$fora[] = $slug;
+		}
+	}
+	return $fora;
+}
+}
+
+if ( ! function_exists( 'cdm_casca_robots_html' ) ) {
+/**
+ * A etiqueta de robô da página atual, ou '' quando ela é indexável.
+ *
+ * Devolve texto em vez de imprimir para o teste poder medir os DOIS lados — a
+ * página que sai do índice e a que continua nele. Trava que sai de graça e
+ * paga sozinha: `noindex` indevido tira do ar uma página que rankeia, e é
+ * justamente o tipo de defeito que ninguém vê olhando a tela.
+ */
+function cdm_casca_robots_html( $id_atual ) {
+	$ids = get_option( 'cdm_casca_paginas' );
+	if ( ! is_array( $ids ) || ! $id_atual ) {
+		return '';
+	}
+	foreach ( cdm_casca_paginas_noindex() as $slug ) {
+		if ( isset( $ids[ $slug ] ) && (int) $ids[ $slug ] === (int) $id_atual ) {
+			return '<meta name="robots" content="noindex, follow">' . "\n";
+		}
+	}
+	return '';
+}
+}
+
+if ( ! function_exists( 'cdm_casca_sitemap_sem_noindex' ) ) {
+/**
+ * Tira do sitemap o que a ilha declarou fora do índice.
+ *
+ * Sitemap é curadoria, não inventário (seção 14.1): página com `noindex` dentro
+ * dele é um pedido de rastreamento para algo que a própria ilha não quer no
+ * índice, e domínio novo tem orçamento de rastreamento minúsculo.
+ */
+function cdm_casca_sitemap_sem_noindex( $args, $tipo = 'page' ) {
+	if ( 'page' !== $tipo ) {
+		return $args;
+	}
+	$ids  = get_option( 'cdm_casca_paginas' );
+	$fora = array();
+	if ( is_array( $ids ) ) {
+		foreach ( cdm_casca_paginas_noindex() as $slug ) {
+			if ( ! empty( $ids[ $slug ] ) ) {
+				$fora[] = (int) $ids[ $slug ];
+			}
+		}
+	}
+	if ( $fora ) {
+		$ja                   = isset( $args['post__not_in'] ) && is_array( $args['post__not_in'] ) ? $args['post__not_in'] : array();
+		$args['post__not_in'] = array_values( array_unique( array_merge( $ja, $fora ) ) );
+	}
+	return $args;
+}
+}
+
+add_filter( 'wp_sitemaps_posts_query_args', 'cdm_casca_sitemap_sem_noindex', 10, 2 );
+
+add_action( 'wp_head', function () {
+	$id = function_exists( 'get_queried_object_id' ) ? get_queried_object_id() : 0;
+	echo cdm_casca_robots_html( $id ); // markup fixo, sem dado de fora
+}, 4 );
+
+if ( ! function_exists( 'cdm_casca_fixar_identidade_do_site' ) ) {
+/**
+ * Nome e descrição do site, gravados como page_on_front já era.
+ *
+ * A Aquametria descobriu isto em 11/09/2026 MEDINDO a página pronta: o <title>
+ * da home vem do par nome + descrição do WordPress, e a descrição dela nunca
+ * tinha sido tocada desde a instalação. A linha mais lida do site — a do
+ * resultado de busca — ainda era a frase que o instalador escreveu.
+ */
+function cdm_casca_fixar_identidade_do_site( &$relato ) {
+	if ( get_option( 'blogname' ) !== CDM_CASCA_NOME_SITE ) {
+		update_option( 'blogname', CDM_CASCA_NOME_SITE );
+		$relato[] = 'blogname: ' . CDM_CASCA_NOME_SITE;
+	}
+	if ( get_option( 'blogdescription' ) !== CDM_CASCA_TAGLINE ) {
+		update_option( 'blogdescription', CDM_CASCA_TAGLINE );
+		$relato[] = 'blogdescription: ' . CDM_CASCA_TAGLINE;
+	}
 }
 }
 
@@ -1526,6 +1835,7 @@ function cdm_casca_montar( $forcar = false ) {
 	$relato = array();
 	$ids    = cdm_casca_garantir_paginas( $relato );
 	cdm_casca_fixar_home( $ids, $relato );
+	cdm_casca_fixar_identidade_do_site( $relato );
 	cdm_casca_limpar_padrao( $relato );
 
 	update_option( 'cdm_casca_paginas', $ids, false );
