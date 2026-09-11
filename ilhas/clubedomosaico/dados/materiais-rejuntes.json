@@ -1,0 +1,567 @@
+{
+  "id": "materiais-rejuntes",
+  "ilha": "clubedomosaico",
+  "categoria": "rejunte",
+  "bloco": "3c",
+  "gerado_em": "2026-09-11",
+  "esquema": "dados/esquema-banco.json",
+  "o_que_este_arquivo_e": "A categoria REJUNTE do banco MATERIAL. Sem ela a F2 respondia so metade do que o proprio nome dela promete — 'seletor de cola E REJUNTE' com zero rejuntes no banco significa que a metade do rejunte sairia cravada na prosa do snippet em vez de recomputada da declaracao, que e exatamente o que o esquema do bloco 3 existe para impedir.",
+  "metodo_de_coleta": "Busca restrita ao dominio quartzolit.weber, como nos blocos 2 e 3. Os PDFs dos boletins NAO foram abertos linha a linha: WebFetch para www.quartzolit.weber devolveu EGRESS_BLOCKED nesta execucao (medido, nao presumido), igual ao bloco 2. Por isso todo campo tecnico daqui e nivel 2 ou 3 da escada e carrega conferir_no_pdf: true.",
+  "o_que_este_arquivo_descobriu_sobre_o_proprio_banco": "REJUNTE NAO E COLA, E O ESQUEMA DO BLOCO 3 SO TINHA OLHADO COLA. Na cola, a lista do fabricante nomeia a BASE — a superficie sobre a qual se cola. No rejunte, a mesma lista nomeia a TESSELA e o AMBIENTE: 'ceramicas, pastilhas de porcelana e de vidro' e o que vai ser rejuntado, nunca o vaso de cimento embaixo. Um rejunte no vocabulario de base nao quer dizer nada, porque rejunte nao toca a base. Por isso este bloco criou um mapa de termos e um conjunto de regras proprios para rejunte, em vez de enfiar os cinco registros na matriz da F2 — ver `regras_de_elegibilidade_do_rejunte` e `matriz_esperada_do_rejunte` no esquema.",
+  "afiliado": {
+    "itens_esperando_link": 5,
+    "observacao": "Os cinco. A geracao de link e da Sentinela estrategica, no navegador do Raphael, e nunca da Fundacao — o campo `afiliado.url` nasce presente e vazio para a pagina reservar o lugar e mostrar 'link de loja em breve' (secao 7 do ARQUIPELAGO.md). Codigos de origem: Sub_id 2 = F1 na calculadora, F2 na ferramenta de selecao e G-REJUNTES na ficha do Guia; etiqueta do Mercado Livre = clubedomosaico-F1, clubedomosaico-F2 e clubedomosaico-G-REJUNTES."
+  },
+  "imagens": {
+    "itens_sem_imagem": 5,
+    "observacao": "Nenhuma foto coletada: a nuvem das rotinas nao alcanca o dominio dos fabricantes. Material sem imagem NAO some da vitrine — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+  },
+  "pendencias_desta_categoria": [
+    {
+      "id": "rejunte-CR-por-tipo",
+      "estado": "CONTINUA ABERTA, e este bloco estreitou o que ela significa",
+      "o_que_falta": "O coeficiente CR da formula de consumo para rejunte acrilico e para rejunte epoxi.",
+      "o_que_este_bloco_apurou": "O unico CR que a ilha tem (1,75) sai do EXEMPLO publicado pelo fabricante junto da formula, e esse exemplo e de rejunte cimenticio em po. Dos cinco produtos deste arquivo, dois nao sao po: o acrilico e monocomponente pronto uso, vendido em pote de 1 kg, e o epoxi e bicomponente fracionado em duas partes. Aplicar a eles o CR de um po e supor que a formula vale sem checar o estado fisico do produto.",
+      "consequencia_ja_aplicada": "A coluna de rejunte da F1 passa a declarar na tela que vale para rejunte CIMENTICIO. Ver `dados/especificacao-calculadoras.md`, secao 2.3.",
+      "onde_buscar": "Boletins tecnicos rejunte acrilico quartzolit (arquivo 2023-04) e rejunte epoxi quartzolit (arquivo 2018-01), campo de consumo/rendimento.",
+      "por_que_nao_fechou": "Os PDFs nao abrem desta nuvem, e as buscas de texto devolveram so a formula generica da pagina de dicas, sem CR por tipo."
+    },
+    {
+      "id": "rejunte-piscinas-faixa-de-junta",
+      "o_que_falta": "A faixa de largura de junta admitida pelo rejunte piscinas quartzolit (min e max em mm).",
+      "o_que_este_bloco_apurou": "A unica mencao de junta obtida e de PROCEDIMENTO — 'juntas com ate 3 mm devem ser molhadas com agua limpa antes da aplicacao' —, que diz o que fazer numa junta estreita, nao qual e a faixa admitida. Gravar 3 mm como maximo seria inverter o sentido da frase.",
+      "consequencia_ja_aplicada": "junta_min_mm e junta_max_mm ficam null com motivo, e a regra 1 do rejunte deixa o produto FORA dos recomendados por junta em toda a grade — ele so aparece pela via do ambiente, com a frase dizendo que a faixa nao foi obtida.",
+      "onde_buscar": "Pagina de produto rejunte piscinas quartzolit e o boletim tecnico correspondente."
+    },
+    {
+      "id": "rejunte-peso-e-unidade-de-venda",
+      "o_que_falta": "Embalagem e unidade de venda dos quatro rejuntes que nao sao o acrilico (o do acrilico veio: pote de 1 kg).",
+      "por_que_importa": "Sem embalagem a F1 calcula gramas e nao consegue dizer QUANTOS pacotes comprar, que e a pergunta que a pessoa realmente tem na loja.",
+      "onde_buscar": "Pagina de produto de cada rejunte; na falta dela, varejo oficial (nivel 5)."
+    }
+  ],
+  "materiais": [
+    {
+      "id": "quartzolit-rejunte-ceramicas",
+      "categoria": "rejunte",
+      "tipo": "cimenticio",
+      "marca": "Quartzolit",
+      "fabricante": "Saint-Gobain Weber",
+      "nome_comercial": "rejunte ceramicas quartzolit",
+      "codigo_fabricante": null,
+      "motivo_sem_codigo": "O boletim tecnico se identifica pelo titulo e pela data do arquivo (2018-08), sem codigo impresso do tipo BRSA004.",
+      "declaracoes": {
+        "indicado_para": [
+          "ceramicas",
+          "pedras",
+          "uso residencial, comercial e industrial",
+          "pisos e paredes"
+        ],
+        "nao_usar_em": [],
+        "nao_recomendado_em": [],
+        "nao_indicado_para": [],
+        "ambientes_declarados": [],
+        "resistencias_declaradas": [
+          "liberacao para contato com area molhada em 24 horas",
+          "em area externa, proteger do sol, do vento e da chuva por 24 horas"
+        ]
+      },
+      "propriedades": {
+        "junta_min_mm": {
+          "valor": 2,
+          "unidade": "mm",
+          "fonte_id": "bt-rejunte-ceramicas-2018-08",
+          "declarado_como": "juntas de assentamento de 2 a 10 mm"
+        },
+        "junta_max_mm": {
+          "valor": 10,
+          "unidade": "mm",
+          "fonte_id": "bt-rejunte-ceramicas-2018-08",
+          "declarado_como": "juntas de assentamento de 2 a 10 mm"
+        },
+        "CR": {
+          "valor": 1.75,
+          "unidade": "adimensional",
+          "fonte_id": "pagina-dicas-rejuntes",
+          "declarado_como": "(200 + 200) x 8 x 10 x 1,75 / (200 x 200) = 1,4 kg/m2 — o exemplo do proprio fabricante, feito com rejunte cimenticio em po"
+        },
+        "liberacao_area_molhada_h": {
+          "valor": 24,
+          "unidade": "h",
+          "fonte_id": "pagina-produto-rejunte-ceramicas",
+          "declarado_como": "liberacao para contato com area molhada: 24 horas"
+        },
+        "liberacao_imersao_dias": {
+          "valor": null,
+          "unidade": "dia",
+          "motivo": "O fabricante nao declara imersao para este produto. Silencio nao e permissao: pela regra 2 do rejunte ele fica fora de contato_permanente_agua."
+        },
+        "classificacao_normativa": {
+          "valor": "tipo II",
+          "unidade": "NBR 14.992",
+          "fonte_id": "bt-rejunte-ceramicas-2018-08",
+          "declarado_como": "rejunte cimenticio colorido, tipo II conforme a NBR 14.992"
+        }
+      },
+      "preparo": "Misturar com a agua indicada na embalagem ate consistencia pastosa e firme e deixar em REPOUSO por 15 minutos antes de usar. Junta de ate 3 mm deve ser molhada com agua limpa antes da aplicacao; em dia de sol ou vento forte, molhar TODAS as juntas.",
+      "geometria": null,
+      "venda": [],
+      "afiliado": {
+        "programa": null,
+        "url": "",
+        "sub_id_1": "clubedomosaico",
+        "sub_id_2": "F1",
+        "etiqueta_ml": "clubedomosaico-F1",
+        "gerado_em": null
+      },
+      "imagem": null,
+      "fontes": {
+        "bt-rejunte-ceramicas-2018-08": {
+          "url": "https://www.quartzolit.weber/files/br/2018-08/rejunte_ceramicas_quartzolit.pdf",
+          "tipo": "boletim tecnico do fabricante (arquivo 2018-08), lido por busca no dominio dele; PDF nao aberto",
+          "nivel": 2,
+          "coletado_em": "2026-09-11",
+          "conferir_no_pdf": true
+        },
+        "pagina-produto-rejunte-ceramicas": {
+          "url": "https://www.quartzolit.weber/argamassas-e-rejuntes-quartzolit/rejuntes-quartzolit/rejunte-ceramicas-quartzolit",
+          "tipo": "pagina de produto do fabricante",
+          "nivel": 3,
+          "coletado_em": "2026-09-10",
+          "conferir_no_pdf": true
+        },
+        "pagina-dicas-rejuntes": {
+          "url": "https://www.quartzolit.weber/ajuda-e-dicas-para-construir/tudo-sobre-os-tipos-de-rejuntes-e-suas-funcoes/dicas-importantes-sobre-rejuntes",
+          "tipo": "pagina de ajuda do fabricante, onde a formula de consumo e o exemplo com CR 1,75 sao publicados",
+          "nivel": 3,
+          "coletado_em": "2026-09-10",
+          "conferir_no_pdf": false
+        }
+      },
+      "constantes_relacionadas": [
+        "rejunte-formula-consumo",
+        "rejunte-ceramicas-quartzolit-junta",
+        "rejunte-ceramicas-quartzolit-aplicacao"
+      ],
+      "divergencias": [],
+      "resolucao": null,
+      "status": "ativo",
+      "motivo_do_descarte": null,
+      "usada_por": [
+        "F1",
+        "F2",
+        "G-REJUNTES"
+      ],
+      "observacao": "E o rejunte que a especificacao do bloco 2 ja usava como referencia, agora no banco com a declaracao separada campo a campo. A regra dos 3 mm e o detalhe que nenhuma pagina da SERP publica, porque toda ela fala de obra com junta larga: a junta tipica da pastilha de 1x1 cm do artesanato e de 2 a 3 mm, ou seja, quase toda peca desta ilha cai na faixa que o fabricante manda molhar antes de rejuntar."
+    },
+    {
+      "id": "quartzolit-rejunte-porcelanatos-e-ceramicas",
+      "categoria": "rejunte",
+      "tipo": "cimenticio",
+      "marca": "Quartzolit",
+      "fabricante": "Saint-Gobain Weber",
+      "nome_comercial": "rejunte porcelanatos e ceramicas quartzolit",
+      "codigo_fabricante": null,
+      "motivo_sem_codigo": "Boletim identificado pelo nome do arquivo e pelo ano (BT 2024), sem codigo impresso.",
+      "declaracoes": {
+        "indicado_para": [
+          "porcelanatos",
+          "ceramicas",
+          "uso residencial, comercial e industrial",
+          "pisos e paredes"
+        ],
+        "nao_usar_em": [],
+        "nao_recomendado_em": [],
+        "nao_indicado_para": [],
+        "ambientes_declarados": [],
+        "resistencias_declaradas": [
+          "liberacao para contato com area molhada em 24 horas",
+          "tecnologia Protect contra fungos e algas"
+        ]
+      },
+      "propriedades": {
+        "junta_min_mm": {
+          "valor": 2,
+          "unidade": "mm",
+          "fonte_id": "bt-rejunte-porcelanatos-2024",
+          "declarado_como": "juntas de assentamento de 2 ate 10 mm"
+        },
+        "junta_max_mm": {
+          "valor": 10,
+          "unidade": "mm",
+          "fonte_id": "bt-rejunte-porcelanatos-2024",
+          "declarado_como": "juntas de assentamento de 2 ate 10 mm"
+        },
+        "CR": {
+          "valor": null,
+          "unidade": "adimensional",
+          "motivo": "Nao publicado no que foi obtido deste boletim. A F1 usa o CR 1,75 do exemplo do fabricante, que e de rejunte cimenticio em po como este — mas o numero esta gravado no registro do rejunte ceramicas, de onde ele veio, e nao copiado para ca como se fosse declaracao propria deste produto."
+        },
+        "liberacao_area_molhada_h": {
+          "valor": 24,
+          "unidade": "h",
+          "fonte_id": "bt-rejunte-porcelanatos-2024",
+          "declarado_como": "liberacao para contato com areas molhadas: 24 horas"
+        },
+        "liberacao_imersao_dias": {
+          "valor": null,
+          "unidade": "dia",
+          "motivo": "Nao declarado. Fica fora de contato_permanente_agua pela regra 2 do rejunte."
+        },
+        "classificacao_normativa": {
+          "valor": "tipo II",
+          "unidade": "NBR 14.992",
+          "fonte_id": "bt-rejunte-porcelanatos-2024",
+          "declarado_como": "rejunte cimenticio colorido para porcelanatos e ceramicas, acabamento superfino, tipo II conforme a NBR 14.992"
+        },
+        "densidade_aparente_g_cm3": {
+          "valor": null,
+          "unidade": "g/cm3",
+          "motivo": "O boletim publica uma FAIXA (1,1 a 1,5 g/cm3), nao um valor unico. A ilha nao escolhe um ponto dentro da faixa do fabricante para poder gravar um numero: a faixa inteira esta em declarado_como da classificacao, e nenhuma formula publicada usa este campo."
+        }
+      },
+      "preparo": "Nao coletado nesta execucao.",
+      "geometria": null,
+      "venda": [],
+      "afiliado": {
+        "programa": null,
+        "url": "",
+        "sub_id_1": "clubedomosaico",
+        "sub_id_2": "F1",
+        "etiqueta_ml": "clubedomosaico-F1",
+        "gerado_em": null
+      },
+      "imagem": null,
+      "fontes": {
+        "bt-rejunte-porcelanatos-2024": {
+          "url": "https://www.quartzolit.weber/files/br/2024-02/05._BoletimTcnico_RejuntePorcelanatoseCeramicas_2024.pdf",
+          "tipo": "boletim tecnico do fabricante (arquivo 2024-02), lido por busca no dominio dele; PDF nao aberto",
+          "nivel": 2,
+          "coletado_em": "2026-09-11",
+          "conferir_no_pdf": true
+        },
+        "pagina-produto-rejunte-porcelanatos": {
+          "url": "https://www.quartzolit.weber/argamassas-e-rejuntes-quartzolit/rejuntes-quartzolit/rejunte-porcelanatos-e-ceramicas-quartzolit",
+          "tipo": "pagina de produto do fabricante",
+          "nivel": 3,
+          "coletado_em": "2026-09-11",
+          "conferir_no_pdf": true
+        }
+      },
+      "constantes_relacionadas": [
+        "rejunte-formula-consumo"
+      ],
+      "divergencias": [
+        {
+          "campo": "junta_min_mm",
+          "declaracao_a": "2 mm, no boletim tecnico de 2024 deste produto, lido por busca dirigida a ele (2026-09-11).",
+          "declaracao_b": "1 mm, numa leitura de busca ampla sobre rejuntes de porcelanato do mesmo fabricante, que nao identificou de qual produto falava (2026-09-11).",
+          "nivel_a": 2,
+          "nivel_b": 2
+        }
+      ],
+      "resolucao": "Vale 2 mm, a faixa MAIS ESTREITA. O erro caro aqui e o de baixo: dizer que o rejunte serve numa junta de 1 mm quando o fabricante pede 2 manda a pessoa espremer produto numa junta que ele nao preenche, e a peca falha no ponto mais fino. A declaracao B nem sequer nomeia o produto de que fala — mas a regra da secao 10 do contrato manda registrar as duas e resolver pelo lado em que errar doi menos, nao descartar a que incomoda.",
+      "status": "ativo",
+      "motivo_do_descarte": null,
+      "usada_por": [
+        "F1",
+        "F2",
+        "G-REJUNTES"
+      ],
+      "observacao": "Acabamento superfino, que e o que interessa a peca de artesanato: junta de 2 a 3 mm entre pastilhas pequenas fica visivel de perto, ao contrario do piso que se olha de pe."
+    },
+    {
+      "id": "quartzolit-rejunte-acrilico",
+      "categoria": "rejunte",
+      "tipo": "acrilico",
+      "marca": "Quartzolit",
+      "fabricante": "Saint-Gobain Weber",
+      "nome_comercial": "rejunte acrilico quartzolit",
+      "codigo_fabricante": null,
+      "motivo_sem_codigo": "Boletim identificado pelo titulo e pela data do arquivo (2023-04), sem codigo impresso.",
+      "declaracoes": {
+        "indicado_para": [
+          "ceramicas",
+          "porcelanatos",
+          "revestimentos especiais",
+          "pisos e paredes",
+          "uso residencial e comercial",
+          "sobreposicao de rejunte antigo, cimenticio, acrilico e epoxi"
+        ],
+        "nao_usar_em": [],
+        "nao_recomendado_em": [],
+        "nao_indicado_para": [],
+        "ambientes_declarados": [
+          "areas internas e externas"
+        ],
+        "resistencias_declaradas": [
+          "tecnologia antimofo, recomendado para areas molhadas"
+        ]
+      },
+      "propriedades": {
+        "junta_min_mm": {
+          "valor": 1,
+          "unidade": "mm",
+          "fonte_id": "bt-rejunte-acrilico-2023-04",
+          "declarado_como": "juntas de assentamento de 1 a 4 mm"
+        },
+        "junta_max_mm": {
+          "valor": 4,
+          "unidade": "mm",
+          "fonte_id": "bt-rejunte-acrilico-2023-04",
+          "declarado_como": "juntas de assentamento de 1 a 4 mm"
+        },
+        "CR": {
+          "valor": null,
+          "unidade": "adimensional",
+          "motivo": "NAO obtido, e nao se copia o 1,75 do cimenticio para ca: este produto e monocomponente PRONTO USO, vendido em pote de 1 kg, e a formula com CR foi publicada com um exemplo de po. Ver a pendencia rejunte-CR-por-tipo."
+        },
+        "liberacao_area_molhada_h": {
+          "valor": null,
+          "unidade": "h",
+          "motivo": "Nao obtido. O fabricante declara que o produto e recomendado para areas molhadas, mas o prazo de liberacao nao apareceu na coleta."
+        },
+        "liberacao_imersao_dias": {
+          "valor": null,
+          "unidade": "dia",
+          "motivo": "Nao declarado. Fica fora de contato_permanente_agua pela regra 2 do rejunte."
+        },
+        "validade_meses": {
+          "valor": 18,
+          "unidade": "mes",
+          "fonte_id": "pagina-produto-rejunte-acrilico",
+          "declarado_como": "validade de 18 meses a contar da data de fabricacao impressa na embalagem"
+        }
+      },
+      "preparo": "Pronto uso: nao leva agua nem mistura.",
+      "geometria": null,
+      "venda": [
+        {
+          "unidade": "quilo",
+          "quantidade": 1,
+          "embalagem_declarada": "pote de 1 kg",
+          "loja": null,
+          "fonte_id": "pagina-produto-rejunte-acrilico",
+          "coletado_em": "2026-09-11"
+        }
+      ],
+      "afiliado": {
+        "programa": null,
+        "url": "",
+        "sub_id_1": "clubedomosaico",
+        "sub_id_2": "F2",
+        "etiqueta_ml": "clubedomosaico-F2",
+        "gerado_em": null
+      },
+      "imagem": null,
+      "fontes": {
+        "bt-rejunte-acrilico-2023-04": {
+          "url": "https://www.quartzolit.weber/files/br/2023-04/rejunte_acrilico_quartzolit%20(1).pdf",
+          "tipo": "boletim tecnico do fabricante (arquivo 2023-04), lido por busca no dominio dele; PDF nao aberto",
+          "nivel": 2,
+          "coletado_em": "2026-09-11",
+          "conferir_no_pdf": true
+        },
+        "pagina-produto-rejunte-acrilico": {
+          "url": "https://www.quartzolit.weber/argamassas-e-rejuntes-quartzolit/rejuntes-quartzolit/rejunte-acrilico-quartzolit",
+          "tipo": "pagina de produto do fabricante",
+          "nivel": 3,
+          "coletado_em": "2026-09-11",
+          "conferir_no_pdf": true
+        }
+      },
+      "constantes_relacionadas": [],
+      "divergencias": [],
+      "resolucao": null,
+      "status": "ativo",
+      "motivo_do_descarte": null,
+      "usada_por": [
+        "F2",
+        "G-REJUNTES"
+      ],
+      "observacao": "E o unico dos cinco que a artesa consegue usar sem balanca nem masseira: pronto uso, pote de 1 kg, junta de 1 a 4 mm — que e a faixa inteira do mosaico artesanal. Em compensacao e o que a F1 NAO consegue calcular, porque o CR dele nao foi publicado no que se obteve. As duas coisas vao para a tela juntas: e o mais facil de usar e o que a ilha ainda nao sabe dosar por metro quadrado."
+    },
+    {
+      "id": "quartzolit-rejunte-epoxi",
+      "categoria": "rejunte",
+      "tipo": "epoxi",
+      "marca": "Quartzolit",
+      "fabricante": "Saint-Gobain Weber",
+      "nome_comercial": "rejunte epoxi quartzolit",
+      "codigo_fabricante": null,
+      "motivo_sem_codigo": "Boletim identificado pelo titulo e pela data do arquivo (2018-01), sem codigo impresso.",
+      "declaracoes": {
+        "indicado_para": [
+          "uso residencial, comercial e industrial",
+          "paredes, pisos e piscinas"
+        ],
+        "nao_usar_em": [],
+        "nao_recomendado_em": [],
+        "nao_indicado_para": [],
+        "ambientes_declarados": [],
+        "resistencias_declaradas": [
+          "piscinas",
+          "liberacao para contato com agua em piscinas e areas molhadas em 7 dias",
+          "impermeavel, antimofo e resistente a manchas"
+        ]
+      },
+      "propriedades": {
+        "junta_min_mm": {
+          "valor": 1,
+          "unidade": "mm",
+          "fonte_id": "bt-rejunte-epoxi-2018-01",
+          "declarado_como": "juntas de assentamento de 1 a 5 mm"
+        },
+        "junta_max_mm": {
+          "valor": 5,
+          "unidade": "mm",
+          "fonte_id": "bt-rejunte-epoxi-2018-01",
+          "declarado_como": "juntas de assentamento de 1 a 5 mm"
+        },
+        "CR": {
+          "valor": null,
+          "unidade": "adimensional",
+          "motivo": "NAO obtido. Uma busca desta execucao devolveu '1,55', mas o numero 1,55 tinha sido escrito DENTRO da consulta — a resposta ecoou o termo plantado e por isso foi descartada; uma segunda busca, com pergunta limpa, generalizou o 1,75 do cimenticio sem citar documento do epoxi. Nenhuma das duas e declaracao do fabricante sobre este produto. Ver a pendencia rejunte-CR-por-tipo."
+        },
+        "liberacao_area_molhada_h": {
+          "valor": 168,
+          "unidade": "h",
+          "fonte_id": "bt-rejunte-epoxi-2018-01",
+          "declarado_como": "liberacao para contato com agua em piscinas e areas molhadas: 7 dias"
+        },
+        "liberacao_imersao_dias": {
+          "valor": 7,
+          "unidade": "dia",
+          "fonte_id": "bt-rejunte-epoxi-2018-01",
+          "declarado_como": "liberacao para contato com agua em piscinas e areas molhadas: 7 dias"
+        }
+      },
+      "preparo": "Bicomponente, fornecido ja fracionado em duas partes para misturar.",
+      "geometria": null,
+      "venda": [],
+      "afiliado": {
+        "programa": null,
+        "url": "",
+        "sub_id_1": "clubedomosaico",
+        "sub_id_2": "F2",
+        "etiqueta_ml": "clubedomosaico-F2",
+        "gerado_em": null
+      },
+      "imagem": null,
+      "fontes": {
+        "bt-rejunte-epoxi-2018-01": {
+          "url": "https://www.quartzolit.weber/files/br/2018-01/rejunte_epxi_quartzolit.pdf",
+          "tipo": "boletim tecnico do fabricante (arquivo 2018-01), lido por busca no dominio dele; PDF nao aberto",
+          "nivel": 2,
+          "coletado_em": "2026-09-11",
+          "conferir_no_pdf": true
+        },
+        "blog-fabricante-rejunte-epoxi": {
+          "url": "https://www.quartzolit.weber/blog/rejuntes/rejunte-epoxi-por-que-quando-e-como-usar",
+          "tipo": "materia do blog do proprio fabricante — e onde aparece a mencao a PASTILHAS entre os revestimentos, que o boletim nao trouxe",
+          "nivel": 4,
+          "coletado_em": "2026-09-11",
+          "conferir_no_pdf": false
+        }
+      },
+      "constantes_relacionadas": [
+        "rejunte-epoxi-para-peca-molhada"
+      ],
+      "divergencias": [],
+      "resolucao": null,
+      "status": "ativo",
+      "motivo_do_descarte": null,
+      "usada_por": [
+        "F2",
+        "G-REJUNTES"
+      ],
+      "observacao": "A mencao a 'pastilhas' entre os revestimentos que ele rejunta esta no BLOG do fabricante, nivel 4 — pela regra 5 da escada ela nao sustenta recomendacao primaria e entra so como mencao com ressalva, citando que e materia do proprio fabricante. O que sustenta este produto sao a faixa de junta e o prazo de liberacao, que vieram do boletim (nivel 2)."
+    },
+    {
+      "id": "quartzolit-rejunte-piscinas",
+      "categoria": "rejunte",
+      "tipo": "cimenticio",
+      "marca": "Quartzolit",
+      "fabricante": "Saint-Gobain Weber",
+      "nome_comercial": "rejunte piscinas quartzolit",
+      "codigo_fabricante": null,
+      "motivo_sem_codigo": "So a pagina de produto foi obtida; o boletim tecnico correspondente nao apareceu na busca desta execucao.",
+      "declaracoes": {
+        "indicado_para": [
+          "ceramicas",
+          "pastilhas de porcelana e de vidro",
+          "piscinas e areas submersas"
+        ],
+        "nao_usar_em": [],
+        "nao_recomendado_em": [],
+        "nao_indicado_para": [],
+        "ambientes_declarados": [],
+        "resistencias_declaradas": [
+          "uso submerso em agua tratada quimicamente",
+          "piscinas aquecidas de ate 40 graus Celsius",
+          "biocida e algicida contra fungos e algas"
+        ]
+      },
+      "propriedades": {
+        "junta_min_mm": {
+          "valor": null,
+          "unidade": "mm",
+          "motivo": "NAO obtida. A unica mencao de junta e de procedimento — 'juntas com ate 3 mm devem ser molhadas com agua limpa antes da aplicacao' —, que diz o que fazer numa junta estreita e nao qual e a faixa admitida. Gravar 3 mm como maximo inverteria a frase do fabricante."
+        },
+        "junta_max_mm": {
+          "valor": null,
+          "unidade": "mm",
+          "motivo": "Mesmo motivo do campo acima."
+        },
+        "CR": {
+          "valor": null,
+          "unidade": "adimensional",
+          "motivo": "Nao obtido; a pagina remete a calculadora da embalagem."
+        },
+        "liberacao_imersao_dias": {
+          "valor": 4,
+          "unidade": "dia",
+          "fonte_id": "pagina-produto-rejunte-piscinas",
+          "declarado_como": "esperar pelo menos 4 dias apos o rejuntamento para encher a piscina com agua"
+        },
+        "temperatura_maxima_agua_C": {
+          "valor": 40,
+          "unidade": "C",
+          "fonte_id": "pagina-produto-rejunte-piscinas",
+          "declarado_como": "pode ser usado em piscinas aquecidas de ate 40 graus Celsius"
+        }
+      },
+      "preparo": "Juntas com ate 3 mm de largura devem ser molhadas com agua limpa antes da aplicacao.",
+      "geometria": null,
+      "venda": [],
+      "afiliado": {
+        "programa": null,
+        "url": "",
+        "sub_id_1": "clubedomosaico",
+        "sub_id_2": "F2",
+        "etiqueta_ml": "clubedomosaico-F2",
+        "gerado_em": null
+      },
+      "imagem": null,
+      "fontes": {
+        "pagina-produto-rejunte-piscinas": {
+          "url": "https://www.quartzolit.weber/argamassas-e-rejuntes-quartzolit/rejuntes-quartzolit/rejunte-piscinas-quartzolit",
+          "tipo": "pagina de produto do fabricante",
+          "nivel": 3,
+          "coletado_em": "2026-09-11",
+          "conferir_no_pdf": true
+        }
+      },
+      "constantes_relacionadas": [],
+      "divergencias": [],
+      "resolucao": null,
+      "status": "ativo",
+      "motivo_do_descarte": null,
+      "usada_por": [
+        "F2",
+        "G-REJUNTES"
+      ],
+      "observacao": "O REGISTRO MAIS IMPORTANTE DESTE BLOCO, e o que ele NAO resolve. E o primeiro material do banco cujo fabricante nomeia a tessela do mosaico — 'pastilhas de porcelana e de vidro' — no ambiente mais critico do vocabulario, submerso. Mas ele nao fecha a faixa descoberta de peca em contato permanente com agua, por duas razoes que a pagina tem que dizer com todas as letras: (1) e REJUNTE, nao cola — a peca submersa continua sem adesivo declarado, porque a unica declaracao de colagem submersa que a ilha tem e o press release do Durepoxi, nivel 4; e (2) o que o fabricante declara e 'agua tratada quimicamente', que e piscina, e NAO a agua parada de uma fonte ou de um vaso de jardim. Meia resposta declarada e meia resposta e; virar 'pode usar em peca de agua' seria esticar a frase do fabricante ate o ponto em que ela deixa de ser dele."
+    }
+  ]
+}

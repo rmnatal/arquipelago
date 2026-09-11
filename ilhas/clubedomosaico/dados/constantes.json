@@ -17,7 +17,9 @@
   "constantes": [
     {
       "id": "rejunte-formula-consumo",
-      "usada_por": ["F1"],
+      "usada_por": [
+        "F1"
+      ],
       "tipo": "formula",
       "descricao": "Consumo de rejunte por metro quadrado em funcao do tamanho da peca, da espessura e da largura da junta.",
       "formula": "consumo_kg_m2 = ((A + B) * E * L * CR) / (A * B)",
@@ -41,7 +43,10 @@
     },
     {
       "id": "rejunte-ceramicas-quartzolit-junta",
-      "usada_por": ["F1", "F2"],
+      "usada_por": [
+        "F1",
+        "F2"
+      ],
       "tipo": "faixa",
       "produto": "rejunte ceramicas quartzolit",
       "campo": "largura de junta admitida",
@@ -57,7 +62,10 @@
     },
     {
       "id": "rejunte-ceramicas-quartzolit-aplicacao",
-      "usada_por": ["F1", "F2"],
+      "usada_por": [
+        "F1",
+        "F2"
+      ],
       "tipo": "procedimento",
       "produto": "rejunte ceramicas quartzolit",
       "itens": [
@@ -76,7 +84,9 @@
     },
     {
       "id": "cimentcola-externo-acii-quartzolit",
-      "usada_por": ["F2"],
+      "usada_por": [
+        "F2"
+      ],
       "tipo": "produto",
       "produto": "argamassa cimentcola externo ACII quartzolit",
       "classificacao": "AC-II conforme NBR 14.081",
@@ -97,7 +107,9 @@
     },
     {
       "id": "tekbond-silicone-acetico-restricoes",
-      "usada_por": ["F2"],
+      "usada_por": [
+        "F2"
+      ],
       "tipo": "restricao",
       "produto": "Silicone Acetico Construcao Tekbond",
       "codigo": "BRSA004",
@@ -118,7 +130,11 @@
         "aquarios",
         "acrilico"
       ],
-      "nao_recomendado_em": ["polietileno", "polipropileno", "policarbonato"],
+      "nao_recomendado_em": [
+        "polietileno",
+        "polipropileno",
+        "policarbonato"
+      ],
       "nao_indicado_para": [
         "fachada de vidro",
         "colagem estrutural que exija resistencia",
@@ -137,7 +153,9 @@
     },
     {
       "id": "tekbond-silicone-acetico-indicacoes",
-      "usada_por": ["F2"],
+      "usada_por": [
+        "F2"
+      ],
       "tipo": "produto",
       "produto": "Silicone Acetico Tekbond",
       "indicado_para": [
@@ -169,7 +187,9 @@
     },
     {
       "id": "tekbond-silicone-neutro-substratos",
-      "usada_por": ["F2"],
+      "usada_por": [
+        "F2"
+      ],
       "tipo": "produto",
       "produto": "Silicone Neutro Tekbond",
       "veda": [
@@ -202,7 +222,9 @@
     },
     {
       "id": "cascorez-extra-substratos",
-      "usada_por": ["F2"],
+      "usada_por": [
+        "F2"
+      ],
       "tipo": "produto",
       "produto": "CASCOLA Cascorez Cola Branca PVA Extra / Extraforte",
       "fabricante": "Cascola (Henkel)",
@@ -230,7 +252,9 @@
     },
     {
       "id": "loctite-durepoxi-substratos",
-      "usada_por": ["F2"],
+      "usada_por": [
+        "F2"
+      ],
       "tipo": "produto",
       "produto": "Loctite Durepoxi",
       "fabricante": "Henkel",
@@ -249,7 +273,9 @@
     },
     {
       "id": "geometria-pastilhas-por-m2",
-      "usada_por": ["F1"],
+      "usada_por": [
+        "F1"
+      ],
       "tipo": "formula",
       "descricao": "Quantas pastilhas quadradas cabem em um metro quadrado, contando a junta.",
       "formula": "pastilhas_por_m2 = 1 / ((lado_mm + junta_mm) / 1000)^2",
@@ -265,7 +291,9 @@
     },
     {
       "id": "conversao-unidades-de-venda-de-pastilha",
-      "usada_por": ["F1"],
+      "usada_por": [
+        "F1"
+      ],
       "tipo": "formula",
       "descricao": "Converter entre as tres unidades em que a pastilha e vendida no Brasil (peca avulsa, placa e grama), achado do bloco 1.",
       "regras": [
@@ -285,7 +313,12 @@
       "o_que_falta": "Tabela do coeficiente CR por tipo de rejunte (cimenticio, flexivel, acrilico, epoxi) declarada pelo fabricante.",
       "onde_buscar": "Boletins tecnicos da Quartzolit: rejunte ceramicas (2018-08), rejunte porcelanatos e ceramicas (2024-02), rejunte acrilico (2023-04), rejunte epoxi (2018-01).",
       "por_que_importa": "Sem ela a F1 publica um CR unico (1,75, o do exemplo do fabricante). Com ela, a F1 passa a acertar por tipo de rejunte.",
-      "bloqueia_publicacao": false
+      "bloqueia_publicacao": false,
+      "estado_em_2026-09-11": "CONTINUA ABERTA, e o bloco 3c estreitou o que ela custa. Dos cinco rejuntes agora no banco, dois NAO sao po: o acrilico e monocomponente pronto uso em pote de 1 kg e o epoxi e bicomponente fracionado. O CR 1,75 que a ilha tem vem do EXEMPLO do fabricante, e esse exemplo e de cimenticio em po. Enquanto a tabela por tipo nao existir, a coluna de rejunte da F1 vale so para CIMENTICIO e a tela diz isso — ver dados/especificacao-calculadoras.md, secao 2.3.",
+      "tentativas_de_fechar": [
+        "Busca com o numero 1,55 escrito DENTRO da consulta: a resposta devolveu 1,55 e foi DESCARTADA, porque ecoou o termo plantado. Pergunta que carrega a resposta nao mede nada.",
+        "Busca com pergunta limpa ('qual o coeficiente de rendimento do rejunte epoxi'): generalizou o 1,75 do cimenticio sem citar documento do epoxi, e inventou uma justificativa para o numero. Tambem descartada."
+      ]
     },
     {
       "id": "cimentcola-consumo-e-tempo-em-aberto",
@@ -322,7 +355,15 @@
       "o_que_falta": "Dados do rejunte epoxi Quartzolit: largura de junta, consumo, liberacao para area molhada e imersao.",
       "onde_buscar": "Boletim Tecnico rejunte epoxi quartzolit (2018-01).",
       "por_que_importa": "E o caminho tecnico para peca que fica em contato permanente com agua (fonte, bebedouro, vaso auto-irrigavel). Sem ele a F2 responde 'nao publico recomendacao para peca submersa' — que e resposta honesta, mas e uma faixa descoberta.",
-      "bloqueia_publicacao": false
+      "bloqueia_publicacao": false,
+      "estado_em_2026-09-11": "PARCIALMENTE FECHADA pelo bloco 3c, e a parte que falta e a que decide. OBTIDO do boletim (arquivo 2018-01, nivel 2): junta de 1 a 5 mm e liberacao para contato com agua em piscinas e areas molhadas em 7 dias — a junta tipica do mosaico, de 2 a 3 mm, cabe. FALTA: o consumo/CR, e sobretudo a COLA, que e outro produto — peca submersa precisa das duas coisas e a unica declaracao de colagem submersa da ilha continua sendo o press release do Durepoxi, nivel 4. ACHADO DE TABELA: existe um rejunte piscinas quartzolit que declara 'pastilhas de porcelana e de vidro' e uso submerso, a unica declaracao do banco que nomeia a tessela do mosaico — mas a faixa de junta dele nao foi obtida, e o que ele declara e agua TRATADA quimicamente, que e piscina e nao a agua parada de uma fonte de jardim."
+    },
+    {
+      "id": "rejunte-piscinas-faixa-de-junta",
+      "o_que_falta": "Faixa de largura de junta (min e max, em mm) do rejunte piscinas quartzolit.",
+      "por_que_importa": "E o unico produto do banco inteiro cujo fabricante nomeia pastilha de VIDRO em uso submerso. Sem a faixa de junta ele fica fora de toda a grade da matriz do rejunte pela regra 1 — ou seja, a ilha tem a declaracao mais valiosa do banco e nao pode usa-la.",
+      "onde_buscar": "Pagina de produto rejunte piscinas quartzolit e o boletim tecnico correspondente, que nao apareceu na busca de 11/09/2026.",
+      "o_que_NAO_serve": "A frase 'juntas com ate 3 mm devem ser molhadas com agua limpa antes da aplicacao' e PROCEDIMENTO, nao faixa. Ler 3 mm como maximo inverte o sentido dela."
     }
   ]
 }

@@ -2,9 +2,9 @@
 ilha: clubedomosaico
 estado: nascendo
 prioridade: 2
-ultima_execucao: 2026-09-11T11:49Z
-executando_desde: 2026-09-11T13:19Z
-bloco_atual: "3b ENTREGUE: a CASCA da ilha. snippets/clubedomosaico-casca.php v1.0.0 no manifest com publicar=true (revisao 4), mais quatro ferramentas de bancada. Oito paginas criadas e mantidas por shortcode — inicio, loja, materiais, como-fazer, sobre, contato, divulgacao-de-afiliados e privacidade —, cabecalho e rodape pretos com o miolo branco, menu sanfona acessivel, favicon proprio e JSON-LD Organization + WebSite. O QUE ESTA CASCA TEM DE PROPRIO: a marca e a IMAGEM entregue pelo Raphael, nao um SVG desenhado no snippet, e o teste reprova se aparecer logotipo em <svg> ou se o nome for escrito ao lado do arquivo (que ja traz o wordmark); a ilha tem TRES motores, entao ha tres catalogos (ferramentas, categorias do Guia, tutoriais); e a Loja tem ESTADO VAZIO HONESTO, medido nos DOIS estados, porque o catalogo vive no CPT da artesa (4d) e nunca no repositorio. Trouxe de nascenca a trava do sitemap 404 que a Robometria so achou depois de publicar. VERIFICACAO: 127 afirmacoes no teste-casca.php e 33 medicoes em Chromium (rolagem 0 px em 360/390/781/782/783/1200 nas oito paginas, contraste 21:1 no cabecalho e 17,6:1 no corpo, e a MESMA pagina com JavaScript desligado servindo os 4 links do menu e o corpo inteiro). QUINZE MUTACOES deliberadas: treze reprovaram de primeira e DUAS passaram, as duas na mesma trava — a de escassez inventada, que so virou medicao na terceira versao, quando deixou de adivinhar negacao por palavra e passou a exigir que a pagina DECLARE no markup qual bloco e recusa. Antes disso ela ja tinha achado um defeito escrito pela propria Fundacao: a home chamava o produto de 'o silicone acetico mais vendido', numero de venda que a ilha nunca mediu. A trava de tamanho de pagina tambem reprovou duas paginas finas demais (como-fazer com 971 e contato com 1194 caracteres) e as duas ganharam conteudo real do banco antes de passar. NAO ESTA NO AR: o gateway da rede deste ambiente respondeu 403 ao CONNECT para clubedomosaico.com.br, entao o Sync nao pode ser acionado desta execucao — o commit esta no main e o desembarque fica aberto para a proxima execucao ou para a Sentinela. Proximo: bloco 4 (ferramenta F2, o seletor de cola e rejunte), que o esquema do bloco 3 ja deixou especificado"
+ultima_execucao: 2026-09-11T13:47Z
+executando_desde: null
+bloco_atual: "3c ENTREGUE: a categoria REJUNTE do banco, e tres defeitos que ela revelou. dados/materiais-rejuntes.json com 5 rejuntes Quartzolit (ceramicas, porcelanatos e ceramicas 2024, acrilico, epoxi e piscinas), coletados por busca restrita ao dominio do fabricante — WebFetch para quartzolit.weber devolveu EGRESS_BLOCKED, medido e nao presumido, entao tudo e nivel 2 ou 3 com conferir_no_pdf. Manifest na revisao 5. O QUE A CATEGORIA DESCOBRIU SOBRE O PROPRIO BANCO: REJUNTE NAO E COLA. Na cola a lista do fabricante nomeia a BASE; no rejunte a mesma lista nomeia a TESSELA e o AMBIENTE, porque rejunte nao toca a base — e a variavel que decide passa a ser a LARGURA DA JUNTA. DEFEITO 1, latente e medido: computar_celula() varria TODOS os materiais sem olhar categoria, e o primeiro rejunte gravado fez as 18 celulas da F2 falharem de uma vez, acusando os cinco rejuntes como 'eliminados por silencio' — frase sem sentido para quem nunca foi candidato a colar nada. O conserto tentador (colar os 5 ids nas 18 celulas) deixaria a matriz verde dizendo besteira; o certo foi declarar categoria_considerada=cola e conferir isso em codigo. DEFEITO 2, JA NO AR desde 11/09 e achado por acidente: o cartao Rejuntes do Guia tinha 'no_banco => 0' cravado a mao, e a categoria acabara de ganhar cinco produtos — numero FALSO servido na tela. O teste nao viu porque so media a categoria cola, a unica que existia quando ele foi escrito. Casca 1.1.0 passa a CONTAR o banco por categoria e o teste passa a cobrar as seis. DEFEITO 3, de metodo, apanhado no ato: uma busca com o numero 1,55 escrito DENTRO da consulta devolveu 1,55 — a resposta ecoou o termo plantado. Descartado. O CR por tipo continua pendente, e isso virou limite declarado: a coluna de rejunte da F1 vale so para rejunte CIMENTICIO, porque o acrilico e pronto uso em pote de 1 kg e o epoxi e bicomponente, e o 1,75 vem de um exemplo de po. ACHADO DE MAIOR VALOR, e o que ele NAO resolve: o rejunte piscinas quartzolit e o unico material do banco inteiro cujo fabricante nomeia 'pastilhas de porcelana e de vidro' em uso submerso — e mesmo assim NAO e recomendado em celula nenhuma, porque a faixa de junta dele nao foi obtida e o que ele declara e agua TRATADA quimicamente, que e piscina e nao a agua parada de um vaso de jardim. A peca submersa segue sem cola declarada (so o Durepoxi, nivel 4), entao a faixa continua descoberta: meia resposta escrita como meia resposta. VERIFICACAO: validar-banco com 18 celulas de cola + 9 de rejunte + 5 perfis conferidos contra o que esta escrito A MAO no esquema; teste-casca 137 (eram 127); 33 medicoes em Chromium, 0 px de rolagem em 360/390/781/782/783/1200 nas oito paginas; php -l limpo. DOZE MUTACOES deliberadas em ferramentas/mutacoes-rejunte.py, doze reprovadas — a que mais vale e a que edita as DUAS metades juntas (tira a declaracao do banco e ajusta o perfil esperado), porque so a MATRIZ a viu, que e a prova de que a conferencia de perfil nao basta sozinha. Mais duas mutacoes na casca, as duas reprovadas. 10 itens esperando link e 10 sem imagem (os 5 de cola e os 5 de rejunte). NAO ESTA NO AR, segunda execucao seguida: o gateway da rede responde 403 ao CONNECT para clubedomosaico.com.br, enquanto aquametria.com.br e robometria.com.br devolvem 200 — o dominio da ilha 3 nunca entrou na lista Personalizada do ambiente. Agora sao DUAS revisoes presas (4 e 5). E de uma linha para o Raphael resolver. Proximo: bloco 4 — a ferramenta F2, que agora tem as duas metades no banco e ganhou entrada nova (largura da junta em mm). Alternativa sem rede nenhuma: categorias PASTILHA e ALICATE"
 ultima_ronda: null
 bloqueada_por: null
 ---
@@ -100,14 +100,54 @@ Espelho legível do estado do projeto. **Nunca guarde credencial aqui.**
   galvanizada. Vence a proibição: quem monta mosaico não sabe dizer se a chapa dela é
   galvanizada.
 
+## O que o bloco 3c provou, ao encher a categoria REJUNTE
+
+- **Rejunte não é cola, e o esquema só tinha olhado cola.** Na cola, a lista do fabricante nomeia
+  a **base** — a superfície sobre a qual se cola. No rejunte, a mesma lista nomeia a **tessela** e o
+  **ambiente**: "cerâmicas, pastilhas de porcelana e de vidro" é o que vai ser rejuntado, nunca o
+  vaso de cimento embaixo. Rejunte não toca a base. Por isso a categoria ganhou mapa de termos,
+  regras e matriz próprios, e a variável que decide passou a ser a **largura da junta**.
+- **O defeito latente que isso revelou, medido:** `computar_celula()` varria todos os materiais do
+  banco sem olhar categoria. As 18 células da F2 passavam porque o banco só tinha cola; o primeiro
+  rejunte gravado fez as 18 falharem de uma vez, cada uma acusando os cinco rejuntes como
+  "eliminados por silêncio". O conserto tentador — colar os cinco ids nas 18 células — deixaria a
+  matriz verde dizendo uma bobagem.
+- **Um número falso que já estava NO AR:** o cartão "Rejuntes" do Guia trazia `no_banco => 0`
+  digitado à mão, e a categoria acabara de ganhar cinco produtos. O `teste-casca` não viu porque
+  conferia só a categoria cola — a única que existia quando ele foi escrito. A casca 1.1.0 passa a
+  contar o banco por categoria, e o teste passa a cobrar as seis, nos dois sentidos: categoria sem
+  arquivo mapeado reprova, e arquivo de banco sem cartão no Guia também.
+- **Uma busca que se respondeu sozinha, apanhada no ato.** Uma consulta com o número `1,55` escrito
+  dentro dela devolveu `1,55` como se fosse declaração do fabricante. Foi descartada: pergunta que
+  carrega a resposta não mede nada. O CR por tipo de rejunte continua pendente — e isso virou
+  limite declarado da F1, não "seria bom ter": a coluna de rejunte vale só para rejunte
+  **cimentício**, porque o acrílico é pronto uso em pote de 1 kg e o epóxi é bicomponente, e o
+  1,75 sai de um exemplo de pó.
+- **O achado mais valioso é também o que não fecha.** O *rejunte piscinas quartzolit* é o único
+  material do banco inteiro cujo fabricante nomeia **pastilha de vidro** em uso submerso — e mesmo
+  assim não é recomendado em célula nenhuma: a faixa de junta dele não foi obtida, e o que ele
+  declara é **água tratada quimicamente**, que é piscina, não a água parada de um vaso de jardim.
+  A peça submersa segue sem cola declarada (só o Durepoxi, nível 4). A faixa continua descoberta, e
+  a página diz exatamente o que já existe e o que falta.
+
 ## O que está travando
-- **A CASCA NÃO ESTÁ NO AR.** O código está no `main` com `publicar: true`, mas o Sync não pôde ser
-  acionado desta execução: o gateway da rede deste ambiente respondeu **403 ao CONNECT** para
-  `clubedomosaico.com.br` (medido às 11h19Z de 11/09/2026, e conferido no
-  `$HTTPS_PROXY/__agentproxy/status`, que registrou o `connect_rejected`). A seção 4 do contrato
-  manda testar antes de presumir bloqueio; foi testado. Fica aberto: basta uma execução cujo
-  ambiente tenha o domínio na rede Personalizada rodar o Sync da ilha e conferir no `/status` que a
-  revisão aplicada é a **4**. Enquanto isso, o site continua servindo o tema padrão do WordPress.
+- **A ILHA INTEIRA NÃO ESTÁ NO AR, e agora são DUAS revisões presas.** O código está no `main`
+  com `publicar: true` desde a revisão 4, e a 5 entrou hoje. O Sync não pôde ser acionado em
+  **nenhuma** das duas execuções: o gateway da rede deste ambiente responde **403 ao CONNECT**
+  para `clubedomosaico.com.br` (medido às 11h19Z e de novo às 13h46Z de 11/09/2026, com o
+  `connect_rejected` registrado no `$HTTPS_PROXY/__agentproxy/status`). A seção 4 do contrato
+  manda testar antes de presumir bloqueio; foi testado quatro vezes.
+  **A medição que aponta a causa:** na mesma execução, `aquametria.com.br` e `robometria.com.br`
+  responderam **200**. Não é a nuvem que não alcança site nenhum — é o domínio da ilha 3 que
+  **nunca entrou na lista Personalizada** do ambiente das rotinas, que foi montada quando só
+  existiam duas ilhas. Não é falha de código nem coisa que a Fundação possa contornar.
+  **O conserto é de um minuto e é do Raphael:** claude.ai/code → seletor de ambiente → engrenagem
+  → acrescentar `clubedomosaico.com.br` à rede Personalizada dos ambientes "Arquipélago —
+  Fundação" e "Arquipélago — Mãos no repositório". Depois disso, qualquer execução aciona o Sync e
+  confere no `/status` que a revisão aplicada é a **5**. Enquanto isso o site serve o tema padrão
+  do WordPress, e **todo bloco publicável desta ilha nasce já atrasado**.
+  Isto NÃO está em `bloqueada_por` de propósito: a ilha tem trabalho de sobra que não depende do
+  site (banco, especificação, ferramentas de bancada), e marcá-la bloqueada a tiraria da fila.
 - **Caixa `contato@clubedomosaico.com.br` não existe ainda.** O adendo 3 do `PROMPT.md` pede que ela
   seja criada no cPanel (ou que o SPF/DKIM do domínio seja garantido) para o e-mail de lead do bloco
   4d chegar ao Hotmail da artesã. Não é trabalho da Fundação: exige o painel da hospedagem. Por isso

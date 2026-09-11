@@ -4,7 +4,7 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 4,
+  "revisao": 5,
   "atualizado_em": "2026-09-11",
   "estado": "nascendo",
   "desembarque": {
@@ -20,9 +20,9 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.0.0",
-      "sha256": "9b678bcffd00fc75261a6769d64777c2b6d1be1e3fb56e02398bd9d627753001",
-      "descricao": "Bloco 3b: a casca da ilha. Da cara de Clube do Mosaico ao tema ativo sozinha, sem construtor de pagina e sem plugin de tema — paleta e tipografia da ilha no wp_head, cabecalho e rodape PRETOS com o miolo branco (o logo vive sobre preto puro), menu sanfona com aria-expanded e aria-controls cujos links sao <a href> de verdade no HTML servido, favicon proprio no lugar do icone do WordPress, JSON-LD Organization + WebSite em toda pagina, e as oito paginas da ilha criadas e mantidas por shortcode: inicio, loja, materiais, como-fazer, sobre, contato, divulgacao-de-afiliados e privacidade. O que esta casca tem de proprio, e que nao foi copiado das duas primeiras ilhas: a marca e uma IMAGEM ENTREGUE e nao um SVG desenhado no snippet (o PROMPT.md proibe redesenhar o logo, e o teste reprova se aparecer um <svg> de logotipo ou se o nome for escrito em texto ao lado do arquivo, que ja traz o wordmark); a ilha tem TRES motores em vez de um, entao ha tres catalogos — ferramentas, categorias do Guia e tutoriais — e nao um so; e a Loja tem ESTADO VAZIO HONESTO, porque o catalogo de pecas vive no CPT que a artesa alimenta (bloco 4d) e nunca no repositorio. Traz de nascenca a trava do sitemap 404 que a Robometria so descobriu depois de publicar: ilha sem post publicado faz o wp-sitemap.xml sair com status 404, e o filtro pre_handle_404 corrige isso so na requisicao de sitemap."
+      "versao": "1.1.0",
+      "sha256": "6aae3b60001d6ef4255919ef6c6431b965484ee0990566641d2847b5d1b0e0d8",
+      "descricao": "Bloco 3b: a casca da ilha. Da cara de Clube do Mosaico ao tema ativo sozinha, sem construtor de pagina e sem plugin de tema — paleta e tipografia da ilha no wp_head, cabecalho e rodape PRETOS com o miolo branco (o logo vive sobre preto puro), menu sanfona com aria-expanded e aria-controls cujos links sao <a href> de verdade no HTML servido, favicon proprio no lugar do icone do WordPress, JSON-LD Organization + WebSite em toda pagina, e as oito paginas da ilha criadas e mantidas por shortcode: inicio, loja, materiais, como-fazer, sobre, contato, divulgacao-de-afiliados e privacidade. O que esta casca tem de proprio, e que nao foi copiado das duas primeiras ilhas: a marca e uma IMAGEM ENTREGUE e nao um SVG desenhado no snippet (o PROMPT.md proibe redesenhar o logo, e o teste reprova se aparecer um <svg> de logotipo ou se o nome for escrito em texto ao lado do arquivo, que ja traz o wordmark); a ilha tem TRES motores em vez de um, entao ha tres catalogos — ferramentas, categorias do Guia e tutoriais — e nao um so; e a Loja tem ESTADO VAZIO HONESTO, porque o catalogo de pecas vive no CPT que a artesa alimenta (bloco 4d) e nunca no repositorio. Traz de nascenca a trava do sitemap 404 que a Robometria so descobriu depois de publicar: ilha sem post publicado faz o wp-sitemap.xml sair com status 404, e o filtro pre_handle_404 corrige isso so na requisicao de sitemap. BLOCO 3c (v1.1.0): o Guia passou a CONTAR o banco por categoria em vez de trazer um zero digitado. O cartao de Rejuntes dizia '0 no banco' no mesmo dia em que a categoria ganhou cinco produtos — numero FALSO servido na tela — e o teste nao viu porque so media a categoria cola, a unica que existia quando ele foi escrito. Agora cdm_casca_numeros() varre uma lista de bancos por categoria, e os totais de 'esperando link' e 'sem imagem' da ilha so assumem a via viva do Sync quando TODOS os bancos chegaram: somar metade das categorias daria um total menor e com cara de verdadeiro."
     }
   ],
   "conteudo": [],
@@ -45,10 +45,10 @@
       "formato": "json",
       "entidade": "constante",
       "fonte": "Bloco 2 da Fundacao. Coleta em 10/09/2026 restrita ao dominio de cada fabricante (quartzolit.weber, tekbond.com.br, cascola.com.br, henkel.com.br), por busca web da nuvem — o ambiente das rotinas bloqueia curl e WebFetch para dominio de fabricante (EGRESS_BLOCKED), entao os PDFs de boletim tecnico nao foram abertos linha a linha e cada item declara isso em fonte_tipo e conferir_no_pdf. Nenhuma constante veio de blog, loja ou agregador: o bloco 1 tinha medido que a regra cola x base circula na SERP sem fabricante, codigo nem data, e a fila proibiu usar a SERP como fonte da F2.",
-      "verificado_em": "2026-09-10",
+      "verificado_em": "2026-09-11",
       "registros": 17,
       "publicar": false,
-      "sha256": "99c6c5cb7130fc0428bb15312226c74ced0b51fa79cc95c3ca4de7f45dca1e39",
+      "sha256": "e88bef4a836a601ab693d31ffefa290f9a770a960c76e5df26610a81414f64bd",
       "descricao": "11 constantes de fabricante e 6 pendencias nomeadas para as calculadoras F1 e F2. A mais valiosa e a lista de restricoes da ficha BRSA004 do Silicone Acetico Construcao Tekbond (revisada em 10/2025), que proibe o produto em espelho, concreto, cimento, tijolo, calcario, superficie alcalina, pintada ou porosa, acrilico, aquario, metal corrosivel e imersao continua — e que torna a elegibilidade da F2 mecanica em vez de opinativa, porque sao exatamente os casos em que o mosaico artesanal brasileiro usa silicone acetico por indicacao de blog. Traz tambem a formula de consumo de rejunte publicada pela propria Quartzolit (((A+B)xExLxCR)/(AxB), CR 1,75 no exemplo do fabricante), a faixa de junta de 2 a 10 mm e o procedimento do rejunte ceramicas, a cimentcola AC-II pela NBR 14.081, o silicone neutro Tekbond como saida declarada para espelho e alcalino, o PVA Cascorez para MDF interno e o Loctite Durepoxi (com ressalva: a fonte e press release, nao ficha tecnica). Declara a direcao de divergencia da ilha pela assimetria de custo: conjunto MAIS ESTREITO na compatibilidade da F2, arredondamento para o MAIOR na quantidade da F1.",
       "pendencias": 6,
       "pendencias_que_bloqueiam_publicacao": [
@@ -62,10 +62,10 @@
       "formato": "md",
       "entidade": "esquema",
       "fonte": "Bloco 2 da Fundacao. Derivado de dados/constantes.json (coletado na mesma execucao) e de dados/corpus-buscas.md (bloco 1). As 12 linhas da tabela pre-renderizada da F1 e as referencias de consumo foram calculadas nesta execucao com as formulas do proprio arquivo; a matriz da F2 sai linha a linha das restricoes declaradas pelos fabricantes.",
-      "verificado_em": "2026-09-10",
+      "verificado_em": "2026-09-11",
       "registros": 25,
       "publicar": false,
-      "sha256": "87f91ce9f2b2376d97482ec014f41a553642addce158037f41d65d66171a7cbc",
+      "sha256": "159b8e34a8ca406156ecbec0974059593bc5871036cdcfff65b9a496ca20cf90",
       "descricao": "Contrato de construcao das duas ferramentas, para o bloco 4 nao precisar decidir nada de novo. F2 (seletor de cola e rejunte) primeiro, com matriz de 13 casos base x ambiente em que cada eliminacao cita a restricao declarada pelo fabricante, e com duas faixas declaradas DESCOBERTAS em vez de preenchidas no chute (peca em contato permanente com agua e base de plastico). F1 (calculadora de pastilhas e rejunte) depois, com as formulas de area por forma, a contagem de pastilhas pelo passo da malha, a formula de rejunte da Quartzolit e a tabela pre-renderizada de 12 pecas tipicas ja calculada. O numero que abre a F1: pastilha de 1x1 cm com junta de 2 mm consome 2,80 kg/m2 de rejunte, sete a catorze vezes os 0,2-0,4 kg/m2 que a primeira pagina do Google publica, porque a SERP inteira calcula com azulejo de obra. Traz ainda a espessura da pastilha como ENTRADA e nao constante (nenhum fabricante a padroniza), a conversao entre as tres unidades de venda de pastilha, o bloco de compra obrigatorio antes da procedencia pela cicatriz da Robometria, e a lista de verificacao da secao 8 aplicada as duas. ATUALIZADO NO BLOCO 3: a matriz da secao 1.3 foi superada pela matriz recomputada em dados/esquema-banco.json, e o arquivo diz isso no topo da secao — o bloco 4 obedece ao esquema, e esta secao fica como registro do raciocinio original."
     },
     {
@@ -74,11 +74,11 @@
       "formato": "json",
       "entidade": "esquema",
       "fonte": "Bloco 3 da Fundacao. Modelo derivado de dados/constantes.json e dados/especificacao-calculadoras.md (bloco 2) e de dados/corpus-buscas.md (bloco 1). Nenhuma coleta nova: a estrutura sai do que ja estava colhido, e a matriz da F2 e recomputada das declaracoes, nao redigitada.",
-      "verificado_em": "2026-09-10",
+      "verificado_em": "2026-09-11",
       "registros": 4,
       "publicar": false,
-      "sha256": "862f84b64ed9005ab00dc2c97335e470c1c44d63b63d025e51e93be77e50ed33",
-      "descricao": "Modelo do banco: entidades MATERIAL, PECA (CPT no WordPress, nunca arquivo), TECNICA e a serie temporal COTACAO, campo a campo, com vocabulario controlado, escada de fontes de 7 niveis e o mapa que traduz o termo LITERAL do fabricante para a base e o ambiente da ilha. O que este esquema tem de proprio: o campo que decide a recomendacao e NEGATIVO (a lista de restricoes da ficha BRSA004), existem TRES estados de declaracao e nao dois (silencio nao e proibicao), e cinco regras de elegibilidade executaveis recomputam as 18 celulas da matriz da F2 a partir das declaracoes — quatro delas divergindo da matriz que o bloco 2 tinha escrito a mao."
+      "sha256": "635e2ce7ab67f058bae7de2505a72e7207d800c1d327776a9ac285ff2eed0c08",
+      "descricao": "Modelo do banco: entidades MATERIAL, PECA (CPT no WordPress, nunca arquivo), TECNICA e a serie temporal COTACAO, campo a campo, com vocabulario controlado, escada de fontes de 7 niveis e o mapa que traduz o termo LITERAL do fabricante para a base e o ambiente da ilha. O que este esquema tem de proprio: o campo que decide a recomendacao e NEGATIVO (a lista de restricoes da ficha BRSA004), existem TRES estados de declaracao e nao dois (silencio nao e proibicao), e cinco regras de elegibilidade executaveis recomputam as 18 celulas da matriz da F2 a partir das declaracoes — quatro delas divergindo da matriz que o bloco 2 tinha escrito a mao. ATUALIZADO NO BLOCO 3c (versao_esquema 2): o esquema passou a ter DUAS reguas, porque as duas categorias nao respondem a mesma pergunta. A matriz_esperada_da_F2 declara agora que so olha categoria == cola, e o validador confere isso — ate aqui a regra existia so na cabeca de quem escreveu, e o primeiro rejunte gravado fez as 18 celulas falharem de uma vez acusando os cinco rejuntes como 'eliminados por silencio', frase sem sentido para um produto que nunca foi candidato a colar nada. Ao lado dela nasceram mapa_de_termos_do_rejunte (que traduz para ambiente e TESSELA, nunca para base), regras_de_elegibilidade_do_rejunte (a junta manda e precisa das duas pontas; ambiente critico do rejunte tem TRES ambientes e nao dois, porque o rejunte e a superficie exposta e a cola fica escondida atras da tessela), perfis_esperados_do_rejunte e matriz_esperada_do_rejunte, cuja grade pisa de proposito em 1, 2, 4, 5 e 10 mm — as bordas declaradas — e em 6 e 11, logo depois da ultima."
     },
     {
       "id": "materiais-colas",
@@ -93,14 +93,26 @@
       "descricao": "A categoria COLA do banco MATERIAL: Silicone Acetico Construcao Tekbond (BRSA004), Silicone Neutro Tekbond, Cascorez PVA, Cimentcola Externo AC-II Quartzolit e Loctite Durepoxi. Cada um com as listas literais do fabricante separadas por peso (indicado, proibido, nao recomendado, delimita ambiente, resiste a ambiente), fonte com nivel na escada e data, afiliado.url presente e vazio e imagem null. 5 itens esperando link de afiliado e 5 sem imagem. Duas pendencias nomeadas, sendo a principal a falta de declaracao de SUBSTRATO da cimentcola AC-II, que a impede de ser recomendacao primaria.",
       "pendencias": 2,
       "pendencias_que_bloqueiam_publicacao": []
+    },
+    {
+      "id": "materiais-rejuntes",
+      "arquivo": "dados/materiais-rejuntes.json",
+      "formato": "json",
+      "entidade": "material",
+      "fonte": "Bloco 3c da Fundacao. Coleta em 11/09/2026 por busca restrita ao dominio quartzolit.weber, como nos blocos 2 e 3. WebFetch para www.quartzolit.weber devolveu EGRESS_BLOCKED nesta execucao — medido, nao presumido —, entao nenhum PDF foi aberto linha a linha e todo campo tecnico e nivel 2 ou 3 da escada, com conferir_no_pdf: true. Nenhuma fonte de blog, loja ou agregador sustenta campo decisivo: a unica fonte de nivel 4 do arquivo e a materia do proprio fabricante que menciona pastilhas, e ela entra so como mencao com ressalva.",
+      "verificado_em": "2026-09-11",
+      "registros": 5,
+      "publicar": false,
+      "sha256": "7fb0b947e84a069109bc3d53e4d6c38999dca084223fcc7d15cbcdcc4898786b",
+      "descricao": "A categoria REJUNTE do banco MATERIAL: cinco rejuntes Quartzolit (ceramicas, porcelanatos e ceramicas 2024, acrilico, epoxi e piscinas) com faixa de junta, prazo de liberacao e ambiente declarado campo a campo. Sem ela a F2 — que se chama 'seletor de cola E REJUNTE' — respondia metade do que promete, com a metade do rejunte cravada na prosa do snippet em vez de recomputada da declaracao. O arquivo descobriu uma coisa sobre o proprio banco: REJUNTE NAO E COLA. Na cola, a lista do fabricante nomeia a BASE sobre a qual se cola; no rejunte, a mesma lista nomeia a TESSELA que sera rejuntada, porque rejunte nao toca a base — e a variavel que decide passa a ser a LARGURA DA JUNTA. Achado de maior valor: o rejunte piscinas quartzolit e o unico material do banco inteiro cujo fabricante nomeia 'pastilhas de porcelana e de vidro' em uso submerso, e mesmo assim ele NAO e recomendado em celula nenhuma, porque a faixa de junta dele nao foi obtida e o que ele declara e agua tratada quimicamente, que e piscina e nao a agua parada de um vaso de jardim."
     }
   ],
   "ferramentas": [
     {
       "id": "validar-banco",
       "arquivo": "ferramentas/validar-banco.py",
-      "sha256": "ac3f1f6001ea405f26303b3ecf6a82092329926701070ee686eb61909db27f3a",
-      "descricao": "Verifica o banco contra dados/esquema-banco.json sem rede e sem dependencia: campos obrigatorios, vocabularios, fonte por campo tecnico, nivel de fonte, afiliado presente mesmo vazio, contagem declarada no cabecalho e passo de fabrica das pastilhas. O principal: RECOMPUTA as 18 celulas da matriz da F2 pelas cinco regras de elegibilidade e falha se o banco e a pagina se separarem. E a implementacao de referencia que o snippet PHP do bloco 4 tem que repetir. NUNCA e publicada no site."
+      "sha256": "d9648f1369677a00ad327729b180e62dd4155a8d7b7d8c02a509a8766fcc26c5",
+      "descricao": "Verifica o banco contra dados/esquema-banco.json sem rede e sem dependencia: campos obrigatorios, vocabularios, fonte por campo tecnico, nivel de fonte, afiliado presente mesmo vazio, contagem declarada no cabecalho e passo de fabrica das pastilhas. O principal: RECOMPUTA as 18 celulas da matriz da F2 pelas cinco regras de elegibilidade e falha se o banco e a pagina se separarem. E a implementacao de referencia que o snippet PHP do bloco 4 tem que repetir. NUNCA e publicada no site. BLOCO 3c: ganhou a regua propria do REJUNTE, escrita sem reaproveitar perfil() nem avaliar() da cola — nao por cerimonia, mas porque as declaracoes nomeiam coisas diferentes nas duas categorias. Confere os cinco perfis e as nove celulas junta x ambiente contra o que esta escrito A MAO no esquema, exige que a grade pise em toda borda declarada e em pelo menos um valor acima da maior delas, reprova faixa de junta pela metade ou invertida, cobra perfil escrito para todo rejunte do banco, e guarda a regressao do defeito que o bloco corrigiu: rejunte que aparecer em qualquer lista da matriz da F2 e erro."
     },
     {
       "id": "gerar-favicon",
@@ -117,14 +129,20 @@
     {
       "id": "teste-casca",
       "arquivo": "ferramentas/teste-casca.php",
-      "sha256": "c95b86054553b4b5a43d77adfc5b54381a814db2da749a8ddd850923d4788418",
-      "descricao": "127 afirmacoes medidas sobre a casca, sem site e sem rede: script fora do retorno do shortcode, zero &#038; DENTRO de <script>, menu acessivel, favicon proprio conferido contra o PNG commitado, JSON-LD, marca entregue e nao redesenhada, paleta fechada, Loja nos DOIS estados (com e sem peca cadastrada), zero link para pagina inexistente, os numeros da tela contra o banco, a escada de fontes contra o esquema, o filtro de sitemap e a higiene da fase 4b. As reguas sao proprias: nenhum esperado e perguntado a casca. Quinze mutacoes deliberadas reprovaram, e DUAS delas reescreveram o teste — a regra de escassez inventada so passou a medir alguma coisa na terceira versao, quando deixou de adivinhar negacao por palavra e passou a exigir que a pagina DECLARE no markup qual bloco e recusa. NUNCA e publicada no site."
+      "sha256": "1cc8359bf6d96141ed4d8312bbc0b734029b3ef7daaeaddc9f598d188ae57db2",
+      "descricao": "127 afirmacoes medidas sobre a casca, sem site e sem rede: script fora do retorno do shortcode, zero &#038; DENTRO de <script>, menu acessivel, favicon proprio conferido contra o PNG commitado, JSON-LD, marca entregue e nao redesenhada, paleta fechada, Loja nos DOIS estados (com e sem peca cadastrada), zero link para pagina inexistente, os numeros da tela contra o banco, a escada de fontes contra o esquema, o filtro de sitemap e a higiene da fase 4b. As reguas sao proprias: nenhum esperado e perguntado a casca. Quinze mutacoes deliberadas reprovaram, e DUAS delas reescreveram o teste — a regra de escassez inventada so passou a medir alguma coisa na terceira versao, quando deixou de adivinhar negacao por palavra e passou a exigir que a pagina DECLARE no markup qual bloco e recusa. NUNCA e publicada no site. BLOCO 3c: 137 afirmacoes. As dez novas fecham o buraco por onde passou o zero digitado do cartao de Rejuntes — agora TODA categoria do Guia e conferida contra o arquivo de banco dela (nao so a cola), os totais de 'esperando link' e 'sem imagem' sao somados sobre dados/materiais-*.json inteiro porque o numero da secao 7 e da ilha e nao de uma categoria, e duas travas novas cobram as duas listas juntas: categoria do Guia sem arquivo mapeado reprova, e arquivo de banco sem cartao no Guia tambem — dado colhido que a tela nunca mostra e trabalho jogado fora."
     },
     {
       "id": "teste-navegador-casca",
       "arquivo": "ferramentas/teste-navegador-casca.mjs",
       "sha256": "fdb3e79f210a7c8a642c17c61b80ad2bde6729459ea6f644b2cc3ad0fe134bb9",
       "descricao": "33 medicoes da casca num Chromium de verdade, que e onde aparece o que o HTML vira depois de o CSS ser aplicado: rolagem horizontal zero em 360/390/781/782/783/1200 px nas oito paginas, o botao do menu aparecendo e sumindo na borda exata dos 782 px, abrir/fechar com aria-expanded honesto e Escape devolvendo o foco, area de toque do botao, contraste calculado pela formula da WCAG escrita dentro do proprio teste (21:1 no cabecalho e no rodape, 17,6:1 no corpo) e — o caso que justifica o desenho todo — a MESMA pagina com o JavaScript DESLIGADO, que e o que o crawler de IA recebe, exigindo os quatro links do menu visiveis e o corpo inteiro. A trava 0 confere antes de tudo que a pagina medida tem TAMANHO DE PAGINA. NUNCA e publicada no site."
+    },
+    {
+      "id": "mutacoes-rejunte",
+      "arquivo": "ferramentas/mutacoes-rejunte.py",
+      "sha256": "c67181f8adccfff17c56e5d8073103df32498a4627c8391a6abab859cd71494e",
+      "descricao": "Quebra o banco de rejunte de proposito, uma mutacao por vez numa COPIA da pasta da ilha, e exige que validar-banco.py reprove cada uma. DOZE mutacoes, doze reprovadas. A que mais vale e a ultima: ela tira a declaracao de piscina do epoxi E ajusta o perfil esperado no esquema junto, que e como um editor de verdade mexeria nas duas metades — as duas passam a errar juntas e a conferencia de perfil deixa de ver. Quem viu foi a MATRIZ, que continuava esperando o epoxi no topo da celula de 3 mm submersa. E a prova de que a matriz nao e enfeite da conferencia de perfil, e a resposta local a cicatriz da secao 8 do contrato: teste que chama a regua de quem produziu o dado erra junto com ele. NUNCA e publicada no site."
     }
   ],
   "esquema": {

@@ -309,6 +309,24 @@ $colas   = json_decode( file_get_contents( $raiz . '/dados/materiais-colas.json'
 $esquema = json_decode( file_get_contents( $raiz . '/dados/esquema-banco.json' ), true );
 $celulas = $esquema['matriz_esperada_da_F2']['celulas'];
 
+/* BLOCO 3c: os totais de 'esperando link' e 'sem imagem' sao da ILHA, nao da categoria
+   cola — e a secao 7 do contrato manda reportar o numero da ilha em todo bloco. Ate aqui
+   este teste lia so materiais-colas.json, e era por isso que ele nao viu o cartao de
+   Rejuntes dizendo "0 no banco" no dia em que a categoria ganhou cinco produtos: ele
+   media a unica categoria que existia quando foi escrito. Agora varre dados/ inteiro. */
+$arquivos_de_banco = glob( $raiz . '/dados/materiais-*.json' );
+sort( $arquivos_de_banco );
+$banco_por_categoria = array();
+$total_esperando_link = 0;
+$total_sem_imagem     = 0;
+foreach ( $arquivos_de_banco as $arquivo ) {
+	$b = json_decode( file_get_contents( $arquivo ), true );
+	$banco_por_categoria[ basename( $arquivo, '.json' ) ] = $b;
+	$total_esperando_link += (int) $b['afiliado']['itens_esperando_link'];
+	$total_sem_imagem     += (int) $b['imagens']['itens_sem_imagem'];
+}
+$rejuntes = isset( $banco_por_categoria['materiais-rejuntes'] ) ? $banco_por_categoria['materiais-rejuntes'] : null;
+
 $bases_no_esquema     = array();
 $ambientes_no_esquema = array();
 $com_saida            = 0;
@@ -327,9 +345,11 @@ $ambientes_vocab = $esquema['vocabularios']['ambiente'];
 
 $esperado = array(
 	'materiais_cola'     => count( $colas['materiais'] ),
-	'esperando_link'     => (int) $colas['afiliado']['itens_esperando_link'],
-	'sem_imagem'         => (int) $colas['imagens']['itens_sem_imagem'],
+	'materiais_rejunte'  => $rejuntes ? count( $rejuntes['materiais'] ) : 0,
+	'esperando_link'     => $total_esperando_link,
+	'sem_imagem'         => $total_sem_imagem,
 	'celulas_matriz'     => count( $celulas ),
+	'celulas_rejunte'    => count( $esquema['matriz_esperada_do_rejunte']['celulas'] ),
 	'celulas_com_saida'  => $com_saida,
 	'celulas_sem_saida'  => count( $celulas ) - $com_saida,
 	'bases'              => count( $bases_vocab ),
@@ -343,6 +363,47 @@ foreach ( $esperado as $chave => $valor ) {
 }
 cdm_ok( count( cdm_casca_categorias_do_guia() ) === (int) $esperado['categorias_do_guia'],
 	'o Guia lista as seis categorias', count( cdm_casca_categorias_do_guia() ) . ' cartoes' );
+
+/* A TRAVA QUE FALTAVA, e que custou um numero falso na tela: TODA categoria do Guia que
+   ja tem arquivo de banco tem que mostrar a contagem do arquivo. Antes, so a cola era
+   conferida, e as outras cinco podiam ficar com o zero que alguem digitou — foi o que
+   aconteceu com Rejuntes. A regua e escrita aqui: o esperado sai do nome do arquivo em
+   dados/, nunca da lista de dentro da casca. */
+$mapa_codigo_arquivo = array(
+	'G-COLAS'     => 'materiais-colas',
+	'G-REJUNTES'  => 'materiais-rejuntes',
+	'G-PASTILHAS' => 'materiais-pastilhas',
+	'G-ALICATES'  => 'materiais-alicates',
+	'G-BASES'     => 'materiais-bases',
+	'G-ACABAMENTO' => 'materiais-acabamento',
+);
+$categorias_sem_trava = array();
+foreach ( cdm_casca_categorias_do_guia() as $c ) {
+	$arquivo = isset( $mapa_codigo_arquivo[ $c['codigo'] ] ) ? $mapa_codigo_arquivo[ $c['codigo'] ] : null;
+	if ( null === $arquivo ) {
+		$categorias_sem_trava[] = $c['codigo'];
+		continue;
+	}
+	$tem = isset( $banco_por_categoria[ $arquivo ] );
+	$esperado_categoria = $tem ? count( $banco_por_categoria[ $arquivo ]['materiais'] ) : 0;
+	cdm_ok( (int) $c['no_banco'] === $esperado_categoria,
+		"o cartao '" . $c['titulo'] . "' mostra o que o banco tem",
+		'tela ' . (int) $c['no_banco'] . ' / banco ' . $esperado_categoria );
+}
+cdm_ok( empty( $categorias_sem_trava ), 'toda categoria do Guia tem arquivo de banco mapeado',
+	empty( $categorias_sem_trava ) ? count( $mapa_codigo_arquivo ) . ' mapeadas' : implode( ', ', $categorias_sem_trava ) );
+
+/* E o contrario tambem: arquivo de banco que exista em dados/ e nao apareca em nenhum
+   cartao seria dado colhido que a tela nunca mostra. */
+$codigos_conhecidos = array_values( $mapa_codigo_arquivo );
+$orfaos = array();
+foreach ( array_keys( $banco_por_categoria ) as $nome ) {
+	if ( ! in_array( $nome, $codigos_conhecidos, true ) ) {
+		$orfaos[] = $nome;
+	}
+}
+cdm_ok( empty( $orfaos ), 'nenhum arquivo de banco fica sem cartao no Guia',
+	empty( $orfaos ) ? count( $banco_por_categoria ) . ' arquivos' : implode( ', ', $orfaos ) );
 
 /* Os numeros tem que APARECER na tela, e no corpo — nao basta a funcao devolver
    certo. Medido dentro de <main> (secao 8, regra 3). */

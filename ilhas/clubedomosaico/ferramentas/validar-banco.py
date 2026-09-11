@@ -81,6 +81,9 @@ AMBIENTES = set(VOC["ambiente"])
 REGRAS = esquema["regras_de_elegibilidade"]
 CRITICOS = set(REGRAS["4_ambiente_critico_exige_declaracao_EXPLICITA"]["ambientes"])
 NIVEL_MAX = esquema["escada_de_fontes"]["nivel_minimo_para_recomendacao_primaria"]
+CATEGORIA_DA_MATRIZ_F2 = esquema["matriz_esperada_da_F2"].get("categoria_considerada", "cola")
+if CATEGORIA_DA_MATRIZ_F2 not in VOC["categoria_material"]:
+    erro("matriz da F2: categoria_considerada '%s' fora do vocabulario" % CATEGORIA_DA_MATRIZ_F2)
 
 MAPA = {}
 VAGOS = set()
@@ -301,9 +304,20 @@ def avaliar(m, base, ambiente):
 
 
 def computar_celula(base, ambiente):
+    """A matriz da F2 e de COLA. Nada mais entra nela.
+
+    Ate o bloco 3c esta funcao varria o banco inteiro, e as 18 celulas passavam porque o
+    banco so tinha cola. O primeiro rejunte gravado fez as 18 falharem de uma vez, cada
+    uma acusando os cinco rejuntes como `eliminados_por_silencio` — frase sem sentido para
+    um produto que nunca foi candidato a colar coisa nenhuma. O conserto tentador seria
+    colar os cinco ids nas 18 celulas do esquema, e a matriz voltaria ao verde dizendo uma
+    besteira. O conserto certo e este: a categoria e parte da pergunta.
+    """
     recomendados, ressalva, proibidos, silencio = {}, [], [], []
     for ident, m in materiais.items():
         if m.get("status") != "ativo":
+            continue
+        if m.get("categoria") != CATEGORIA_DA_MATRIZ_F2:
             continue
         situacao, score = avaliar(m, base, ambiente)
         if situacao == "recomendado":
@@ -363,6 +377,238 @@ if materiais and matriz:
                  % (celula["base"], celula["ambiente"]))
 
 
+# ------------------------------------------------------- REJUNTE: regua propria
+#
+# Bloco 3c. Isto NAO reaproveita `perfil()` nem `avaliar()` de proposito, e a razao e a
+# trava da secao 8 do ARQUIPELAGO.md: quem confere escreve a propria regua. Mas aqui ha
+# um motivo a mais, e ele e de conteudo, nao de metodo — as duas categorias nao respondem
+# a mesma pergunta. Na cola, a lista do fabricante nomeia a BASE sobre a qual se cola; no
+# rejunte, a mesma lista nomeia a TESSELA que sera rejuntada e o AMBIENTE. Rejunte nao
+# toca a base. A variavel que decide um rejunte e a LARGURA DA JUNTA, que nao existe no
+# vocabulario da cola.
+
+REJ = esquema.get("regras_de_elegibilidade_do_rejunte")
+MAPA_REJ, MAPA_REJ_TESSELA, NAO_TRADUZ_REJ = {}, {}, set()
+CRITICOS_REJ = set()
+TESSELAS = set(VOC["material_tessela"])
+
+if REJ:
+    CRITICOS_REJ = set(REJ["2_ambiente_critico_exige_declaracao_EXPLICITA"]["ambientes"])
+    for a in CRITICOS_REJ:
+        if a not in AMBIENTES:
+            erro("regras do rejunte: ambiente critico '%s' fora do vocabulario" % a)
+
+mapa_rej = esquema.get("mapa_de_termos_do_rejunte")
+if mapa_rej:
+    for termo in mapa_rej["termos"]:
+        MAPA_REJ[normalizar(termo["literal"])] = termo.get("ambiente", [])
+    for termo in mapa_rej["termos_tessela"]:
+        MAPA_REJ_TESSELA[normalizar(termo["literal"])] = termo.get("tessela", [])
+    NAO_TRADUZ_REJ = {normalizar(t["literal"]) for t in mapa_rej["termos_que_nao_traduzem"]}
+    for chave, ambs in MAPA_REJ.items():
+        for a in ambs:
+            if a not in AMBIENTES:
+                erro("mapa do rejunte: '%s' aponta para ambiente inexistente '%s'" % (chave, a))
+    for chave, tess in MAPA_REJ_TESSELA.items():
+        for t in tess:
+            if t not in TESSELAS:
+                erro("mapa do rejunte: '%s' aponta para tessela inexistente '%s'" % (chave, t))
+    for chave in NAO_TRADUZ_REJ:
+        if chave in MAPA_REJ or chave in MAPA_REJ_TESSELA:
+            erro("mapa do rejunte: '%s' esta ao mesmo tempo no mapa e nos que nao traduzem" % chave)
+
+
+def _num(m, campo):
+    """Le propriedades[campo].valor, aceitando ausencia como null."""
+    prop = (m.get("propriedades") or {}).get(campo) or {}
+    return prop.get("valor")
+
+
+def traduzir_rejunte(lista, onde):
+    """Devolve (ambientes, tesselas). Termo desconhecido vira aviso e fica na citacao."""
+    ambientes, tesselas = set(), set()
+    for literal in lista or []:
+        chave = normalizar(literal)
+        if chave in MAPA_REJ:
+            ambientes.update(MAPA_REJ[chave])
+        elif chave in MAPA_REJ_TESSELA:
+            tesselas.update(MAPA_REJ_TESSELA[chave])
+        elif chave in NAO_TRADUZ_REJ:
+            continue
+        else:
+            aviso("%s: termo de rejunte sem traducao no mapa, ficou so na citacao literal: '%s'"
+                  % (onde, literal))
+    return ambientes, tesselas
+
+
+def perfil_rejunte(m):
+    d = m.get("declaracoes") or {}
+    onde = m.get("id")
+    amb_ind, tess_ind = traduzir_rejunte(d.get("indicado_para"), onde)
+    amb_delim, _ = traduzir_rejunte(d.get("ambientes_declarados"), onde)
+    amb_resist, tess_resist = traduzir_rejunte(d.get("resistencias_declaradas"), onde)
+    return {
+        "junta_min": _num(m, "junta_min_mm"),
+        "junta_max": _num(m, "junta_max_mm"),
+        "ambientes_cobertos": amb_ind | amb_delim | amb_resist,
+        "ambientes_delimitados": amb_delim,
+        "tesselas_declaradas": tess_ind | tess_resist,
+        "nivel": min((f["nivel"] for f in (m.get("fontes") or {}).values()), default=9),
+    }
+
+
+def avaliar_rejunte(m, junta_mm, ambiente):
+    """Devolve (situacao, score).
+
+    situacao: recomendado | ressalva | fora_da_junta | fora_do_ambiente
+    """
+    p = perfil_rejunte(m)
+    # regra 1: as DUAS pontas da faixa precisam existir, e a junta tem que caber nelas.
+    # Faixa com ponta null nao e faixa aberta — e faixa desconhecida, e nao passa.
+    if p["junta_min"] is None or p["junta_max"] is None:
+        return "fora_da_junta", 0
+    if not (p["junta_min"] <= junta_mm <= p["junta_max"]):
+        return "fora_da_junta", 0
+    # regra 3: quem delimita ambiente fica fechado nele
+    if p["ambientes_delimitados"] and ambiente not in p["ambientes_delimitados"]:
+        return "fora_do_ambiente", 0
+    # regra 2: ambiente critico exige declaracao explicita
+    if ambiente in CRITICOS_REJ and ambiente not in p["ambientes_cobertos"]:
+        return "fora_do_ambiente", 0
+    score = 2 + (2 if ambiente in p["ambientes_cobertos"] else 0)
+    # regra 4: nivel de fonte limita a recomendacao primaria
+    if p["nivel"] > NIVEL_MAX:
+        return "ressalva", score
+    return "recomendado", score
+
+
+def computar_celula_rejunte(junta_mm, ambiente):
+    recomendados, ressalva, fora_junta, fora_ambiente = {}, [], [], []
+    for ident, m in materiais.items():
+        if m.get("status") != "ativo" or m.get("categoria") != "rejunte":
+            continue
+        situacao, score = avaliar_rejunte(m, junta_mm, ambiente)
+        if situacao == "recomendado":
+            recomendados[ident] = score
+        elif situacao == "ressalva":
+            ressalva.append(ident)
+        elif situacao == "fora_da_junta":
+            fora_junta.append(ident)
+        else:
+            fora_ambiente.append(ident)
+    topo, abaixo = [], []
+    if recomendados:
+        maior = max(recomendados.values())
+        topo = sorted(i for i, s in recomendados.items() if s == maior)
+        abaixo = sorted(i for i, s in recomendados.items() if s < maior)
+    return {
+        "recomendados_topo": topo,
+        "elegiveis_abaixo_do_topo": abaixo,
+        "mencionados_com_ressalva": sorted(ressalva),
+        "eliminados_por_faixa_de_junta": sorted(fora_junta),
+        "eliminados_por_ambiente": sorted(fora_ambiente),
+    }
+
+
+rejuntes = {i: m for i, m in materiais.items() if m.get("categoria") == "rejunte"}
+celulas_rejunte_conferidas = 0
+
+if rejuntes:
+    if not REJ or not mapa_rej:
+        erro("ha rejunte no banco e o esquema nao tem regras_de_elegibilidade_do_rejunte "
+             "ou mapa_de_termos_do_rejunte: categoria sem regua nenhuma")
+
+    # coerencia interna de cada rejunte
+    for ident, m in rejuntes.items():
+        p = perfil_rejunte(m)
+        if p["junta_min"] is not None and p["junta_max"] is not None:
+            if p["junta_min"] > p["junta_max"]:
+                erro("%s: junta_min (%s) maior que junta_max (%s)"
+                     % (ident, p["junta_min"], p["junta_max"]))
+        elif (p["junta_min"] is None) != (p["junta_max"] is None):
+            erro("%s: faixa de junta pela metade. Uma ponta so nao e faixa — ou as duas "
+                 "sao obtidas, ou as duas ficam null com motivo" % ident)
+
+    # os perfis escritos a mao no esquema tem que bater com os recomputados
+    for esperado in esquema.get("perfis_esperados_do_rejunte", {}).get("perfis", []):
+        ident = esperado["id"]
+        if ident not in rejuntes:
+            erro("perfis do rejunte: '%s' nao existe no banco" % ident)
+            continue
+        p = perfil_rejunte(rejuntes[ident])
+        obtido_junta = [p["junta_min"], p["junta_max"]]
+        if esperado["junta_mm"] != obtido_junta:
+            erro("perfil %s / junta: esperado %s, computado %s"
+                 % (ident, esperado["junta_mm"], obtido_junta))
+        for campo, chave in (("ambientes_cobertos", "ambientes_cobertos"),
+                             ("ambientes_delimitados", "ambientes_delimitados")):
+            if sorted(esperado[campo]) != sorted(p[chave]):
+                erro("perfil %s / %s: esperado %s, computado %s"
+                     % (ident, campo, sorted(esperado[campo]), sorted(p[chave])))
+        if esperado["nivel"] != p["nivel"]:
+            erro("perfil %s / nivel: esperado %s, computado %s"
+                 % (ident, esperado["nivel"], p["nivel"]))
+    ids_com_perfil = {e["id"] for e in esquema.get("perfis_esperados_do_rejunte", {}).get("perfis", [])}
+    for ident in rejuntes:
+        if ident not in ids_com_perfil:
+            erro("%s: rejunte no banco sem perfil esperado escrito no esquema" % ident)
+
+    # a matriz junta x ambiente
+    for celula in esquema.get("matriz_esperada_do_rejunte", {}).get("celulas", []):
+        junta, ambiente = celula["junta_mm"], celula["ambiente"]
+        if ambiente not in AMBIENTES:
+            erro("matriz do rejunte: ambiente '%s' fora do vocabulario" % ambiente)
+            continue
+        computado = computar_celula_rejunte(junta, ambiente)
+        celulas_rejunte_conferidas += 1
+        for campo in ("recomendados_topo", "elegiveis_abaixo_do_topo",
+                      "mencionados_com_ressalva", "eliminados_por_faixa_de_junta",
+                      "eliminados_por_ambiente"):
+            if sorted(celula.get(campo, [])) != computado[campo]:
+                erro("matriz do rejunte %s mm x %s / %s: esperado %s, computado %s"
+                     % (junta, ambiente, campo,
+                        sorted(celula.get(campo, [])) or "[]", computado[campo] or "[]"))
+        # todo produto do banco aparece em exatamente uma lista da celula
+        vistos = (computado["recomendados_topo"] + computado["elegiveis_abaixo_do_topo"]
+                  + computado["mencionados_com_ressalva"]
+                  + computado["eliminados_por_faixa_de_junta"]
+                  + computado["eliminados_por_ambiente"])
+        if sorted(vistos) != sorted(rejuntes):
+            erro("matriz do rejunte %s mm x %s: a celula nao classifica todos os rejuntes "
+                 "exatamente uma vez (%s)" % (junta, ambiente, vistos))
+        if not celula.get("recomendados_topo") and not celula.get("observacao"):
+            erro("matriz do rejunte %s mm x %s: celula sem recomendacao e sem observacao "
+                 "dizendo por que" % (junta, ambiente))
+
+    # a grade tem que pisar nas BORDAS declaradas, senao e amostra com nome de grade
+    juntas_na_grade = {c["junta_mm"] for c in esquema.get("matriz_esperada_do_rejunte", {}).get("celulas", [])}
+    bordas = set()
+    for m in rejuntes.values():
+        for campo in ("junta_min_mm", "junta_max_mm"):
+            v = _num(m, campo)
+            if v is not None:
+                bordas.add(v)
+    faltando = sorted(b for b in bordas if b not in juntas_na_grade)
+    if faltando:
+        erro("matriz do rejunte: a grade nao pisa nas bordas declaradas %s. Grade que nao "
+             "inclui a borda nao consegue separar 'ate 4' de 'ate 5'" % faltando)
+    if bordas and not any(j > max(bordas) for j in juntas_na_grade):
+        erro("matriz do rejunte: a grade nao tem nenhum valor ACIMA da maior borda "
+             "declarada (%s). Sem isso ninguem prova que a faixa fecha" % max(bordas))
+
+    # regressao do defeito que este bloco corrigiu: rejunte nunca entra na matriz da F2
+    for celula in matriz:
+        computado = computar_celula(celula["base"], celula["ambiente"])
+        for campo in ("recomendados_topo", "elegiveis_abaixo_do_topo",
+                      "mencionados_com_ressalva", "eliminados_por_proibicao",
+                      "eliminados_por_silencio"):
+            invasores = [i for i in computado[campo] if i in rejuntes]
+            if invasores:
+                erro("matriz da F2 %s x %s / %s: rejunte na matriz de cola (%s). A matriz "
+                     "da F2 e de cola: rejunte nao toca a base"
+                     % (celula["base"], celula["ambiente"], campo, invasores))
+
+
 # ---------------------------------------------------------------- TECNICA
 
 tecnicas = carregar("tecnicas.json")
@@ -407,7 +653,8 @@ if os.path.exists(os.path.join(DADOS, "pecas.json")):
 
 print("Banco do Clube do Mosaico — verificacao do esquema do bloco 3")
 print("  materiais no banco ......... %d" % len(materiais))
-print("  celulas da F2 recomputadas . %d" % celulas_conferidas)
+print("  celulas da F2 recomputadas . %d  (so categoria %s)" % (celulas_conferidas, CATEGORIA_DA_MATRIZ_F2))
+print("  celulas do rejunte ......... %d" % celulas_rejunte_conferidas)
 print("  itens esperando link ....... %d" % esperando_link)
 print("  itens sem imagem ........... %d" % sem_imagem)
 for n in notas:

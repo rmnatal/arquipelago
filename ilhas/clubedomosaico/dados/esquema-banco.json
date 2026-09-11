@@ -1,9 +1,9 @@
 {
   "id": "esquema-banco",
   "ilha": "clubedomosaico",
-  "bloco": 3,
+  "bloco": "3 (criado) + 3c (categoria rejunte)",
   "gerado_em": "2026-09-10",
-  "versao_esquema": 1,
+  "versao_esquema": 2,
   "descricao": "Modelo do banco do Clube do Mosaico: entidades MATERIAL, PECA, TECNICA e a serie temporal COTACAO. Define campo a campo o tipo, a unidade, a obrigatoriedade, o vocabulario controlado e a ORIGEM esperada do dado. Nenhuma afirmacao tecnica entra no banco sem fonte de fabricante com data. Este arquivo e o contrato que dados/materiais-*.json e dados/tecnicas.json cumprem, que o CPT `peca` do WordPress espelha, e que ferramentas/validar-banco.py verifica.",
   "depende_de": [
     "dados/especificacao-calculadoras.md",
@@ -20,7 +20,9 @@
     "PECA NAO VIVE NO REPOSITORIO — E A UNICA ENTIDADE DO ARQUIPELAGO ASSIM. O catalogo da Loja e cadastrado pela artesa no painel /atelie/ e mora no WordPress como CPT `peca`. Este esquema descreve o CPT campo a campo para o snippet do bloco 4d nao inventar nada, mas nao existe arquivo de PECA em dados/. Nunca crie um: peca inventada e a unica forma de mentira que esta ilha pode cometer contra uma pessoa real.",
     "DOIS PRECOS DE NATUREZA DIFERENTE NO MESMO SITE. Peca propria tem preco REAL, obrigatorio e vendido pela ilha (Product + Offer, sem rel=sponsored). Material de afiliado tem FAIXA de preco com data de coleta, nunca cravada como atual, e o preco jamais entra em criterio de ordem. Confundir os dois transformaria a loja da artesa numa vitrine de afiliado, que e o oposto do que ela e.",
     "IMAGEM AUSENTE NAO ELIMINA O REGISTRO. Material sem foto aparece na vitrine com espaco reservado neutro (secao 6 do ARQUIPELAGO.md). A excecao e PECA: peca sem foto nao publica, porque a foto E o produto.",
-    "PROCEDENCIA POR CAMPO, NAO POR REGISTRO. Um material costuma ter a lista de substratos numa pagina do fabricante, a restricao na ficha tecnica e a embalagem numa terceira. Cada campo tecnico aponta a sua propria fonte com data e nivel na escada."
+    "PROCEDENCIA POR CAMPO, NAO POR REGISTRO. Um material costuma ter a lista de substratos numa pagina do fabricante, a restricao na ficha tecnica e a embalagem numa terceira. Cada campo tecnico aponta a sua propria fonte com data e nivel na escada.",
+    "REJUNTE NAO E COLA, E A LISTA DO FABRICANTE NAO NOMEIA A MESMA COISA NOS DOIS. Descoberto no bloco 3c, ao encher a categoria rejunte. Na cola, 'ceramica' na lista de indicacoes e a BASE — a superficie sobre a qual se cola, e e por isso que a matriz da F2 e base x ambiente. No rejunte, 'ceramicas, pastilhas de porcelana e de vidro' e a TESSELA, o que vai ser rejuntado: o rejunte nao toca a base. Traduzir declaracao de rejunte para o vocabulario de base produziria uma afirmacao sem sentido, e pior, ela entraria calada na matriz da F2, porque `computar_celula` varria TODOS os materiais do banco sem olhar categoria. Por isso o rejunte ganhou mapa, regras e matriz proprios, e a matriz da F2 passou a declarar que so olha `categoria == cola`.",
+    "A VARIAVEL QUE DECIDE UM REJUNTE E A LARGURA DA JUNTA, E ELA E UM INTERVALO FECHADO NOS DOIS LADOS. Cola se escolhe por base e ambiente; rejunte se escolhe por quantos milimetros existem entre uma pastilha e a outra. Os cinco produtos deste banco declaram faixas diferentes e incompativeis entre si — 1 a 4, 1 a 5, 2 a 10 —, e a junta tipica do mosaico artesanal (2 a 3 mm) cai na intersecao de quase todas, o que faz a escolha parecer livre quando nao e: a 1 mm sobram dois produtos, a 10 mm sobra um. Por isso a grade da matriz do rejunte pisa EXATAMENTE em 1, 2, 4, 5 e 10 — os extremos declarados — e tambem em 6 e 11, logo depois do ultimo. Grade que anda de dois em dois nunca separaria 'ate 4' de 'ate 5'."
   ],
   "regra_de_divergencia": {
     "principio": "Secao 10 do ARQUIPELAGO.md: quando as fontes divergem, quem decide a direcao e a assimetria de custo, nunca a media.",
@@ -1457,7 +1459,9 @@
         "divergencia_com_a_especificacao": null,
         "observacao": "FAIXA DESCOBERTA que a regra 5 mantem descoberta: o Durepoxi declara secar debaixo d'agua, mas a fonte e press release de 2018 (nivel 4) e o minimo para recomendacao primaria e 3. Fecha com o boletim do rejunte epoxi Quartzolit, ja nomeado em pendentes."
       }
-    ]
+    ],
+    "categoria_considerada": "cola",
+    "escopo": "SO MATERIAIS DE `categoria == cola` entram nesta matriz, e isso agora e verificado em codigo. Ate o bloco 3c a regra existia so na cabeca de quem escreveu: `computar_celula` varria o banco inteiro, e como o banco so tinha colas, as 18 celulas passavam. O primeiro rejunte gravado teria entrado nas 18 como 'eliminado por silencio' — frase que nem sentido faz para um rejunte, que nunca foi candidato a colar coisa nenhuma — e a correcao provavel seria colar os cinco ids nas 18 celulas, deixando a matriz verde e sem significado."
   },
   "ordem_da_vitrine": {
     "regra": "Secao 7 do ARQUIPELAGO.md, aplicada por este banco: (1) elegibilidade tecnica completa — nenhuma restricao declarada bate com a entrada; (2) adequacao tecnica entre os elegiveis — quem declara o ambiente exato vem antes de quem so nao proibe; (3) ter link de loja SO como desempate entre equivalentes.",
@@ -1467,6 +1471,415 @@
   "o_que_este_bloco_deixa_desbloqueado": [
     "Bloco 4 (as duas ferramentas) fica dependendo so do WordPress existir: o formato dos itens que a vitrine consome esta definido e a categoria cola ja tem 5 registros reais.",
     "As categorias rejunte, pastilha e alicate podem ser enchidas em qualquer execucao, sem decisao nova — o esquema ja diz que campo cada uma exige.",
-    "A entrada da F2 precisa de um campo a mais do que a secao 1.2 da especificacao previa: vidro LAMINADO e vidro comum sao bases distintas na matriz publicada, e o formulario tinha so 'vidro'. Corrigir no bloco 4, com a pergunta escrita em portugues de gente ('o vidro tem uma pelicula entre duas camadas?')."
-  ]
+    "A entrada da F2 precisa de um campo a mais do que a secao 1.2 da especificacao previa: vidro LAMINADO e vidro comum sao bases distintas na matriz publicada, e o formulario tinha so 'vidro'. Corrigir no bloco 4, com a pergunta escrita em portugues de gente ('o vidro tem uma pelicula entre duas camadas?').",
+    "A F2 pode enfim responder a metade do rejunte que o nome dela promete, recomputada do banco em vez de cravada na prosa: cinco produtos, faixa de junta declarada em quatro deles e a matriz junta x ambiente ja conferida.",
+    "A entrada da F2 e da F1 precisa de mais um campo: a LARGURA DA JUNTA em mm. A F1 ja a pedia para calcular consumo; a F2 nao a pedia, e sem ela nao ha como escolher rejunte. E o mesmo tipo de correcao de entrada que o bloco 3 fez com o vidro laminado.",
+    "Falta a categoria PASTILHA, e ela e de outra natureza: os campos que ela exige (passo de fabrica, espessura, peso unitario, unidade de venda) nao existem em boletim de fabricante, e sim em anuncio de loja — nivel 5 e 6 da escada. Nenhum dos dois dominios foi testado nesta execucao."
+  ],
+  "mapa_de_termos_do_rejunte": {
+    "descricao": "Onde mora o julgamento da ilha sobre REJUNTE, separado do mapa da cola de proposito: os dois traduzem para alvos diferentes. O mapa da cola traduz para `base`; este traduz para `ambiente` e para `material_tessela`. Termo que nao estiver aqui nao pode ser traduzido em codigo — ou entra nesta tabela, ou fica so na citacao literal.",
+    "regra": "Mesma assimetria de custo do mapa da cola, e por isso a traducao de INDICACAO e restritiva. Duas decisoes que saem dela e que valem ser lidas antes de discordar: 'areas internas e externas' NAO cobre externo_exposto, e 'em area externa, proteger do sol, do vento e da chuva por 24 horas' tambem NAO — a primeira e escopo generico e a segunda fala do que fazer durante a cura, nenhuma das duas declara que o rejunte curado aguenta sol e chuva. Quem aguenta sol e chuva escreve isso.",
+    "termos": [
+      {
+        "literal": "liberacao para contato com area molhada em 24 horas",
+        "ambiente": [
+          "interno_molhado"
+        ],
+        "observacao": "Declarar quando o rejunte pode encostar em agua e declarar que ele serve em area molhada. E a forma como este fabricante publica a aptidao."
+      },
+      {
+        "literal": "liberacao para contato com areas molhadas em 24 horas",
+        "ambiente": [
+          "interno_molhado"
+        ]
+      },
+      {
+        "literal": "liberacao para contato com agua em piscinas e areas molhadas em 7 dias",
+        "ambiente": [
+          "interno_molhado",
+          "contato_permanente_agua"
+        ]
+      },
+      {
+        "literal": "tecnologia antimofo, recomendado para areas molhadas",
+        "ambiente": [
+          "interno_molhado"
+        ]
+      },
+      {
+        "literal": "piscinas",
+        "ambiente": [
+          "contato_permanente_agua"
+        ]
+      },
+      {
+        "literal": "paredes, pisos e piscinas",
+        "ambiente": [
+          "contato_permanente_agua"
+        ],
+        "observacao": "Lista de lugares de aplicacao. So 'piscinas' diz ambiente no vocabulario da ilha; parede e piso sao suporte, nao ambiente."
+      },
+      {
+        "literal": "piscinas e areas submersas",
+        "ambiente": [
+          "contato_permanente_agua"
+        ]
+      },
+      {
+        "literal": "uso submerso em agua tratada quimicamente",
+        "ambiente": [
+          "contato_permanente_agua"
+        ],
+        "observacao": "TRADUZ, mas a ressalva vai junto para a tela e nao se perde aqui: agua TRATADA e piscina. A agua parada de uma fonte de jardim ou de um vaso nao e o que o fabricante declarou, e a pagina precisa dizer isso na mesma frase em que cita o produto."
+      },
+      {
+        "literal": "areas internas e externas",
+        "ambiente": [
+          "interno_seco",
+          "interno_molhado",
+          "externo_abrigado"
+        ],
+        "observacao": "TRADUCAO RESTRITIVA, e a decisao mais discutivel deste mapa. O mapa da cola manda 'area interna e externa' para os quatro ambientes, externo_exposto incluido. Aqui nao: e escopo comercial generico, e deixar que ele satisfaca sozinho a regra do ambiente critico esvaziaria a regra. Sol e chuva se declaram por nome."
+      },
+      {
+        "literal": "em area externa, proteger do sol, do vento e da chuva por 24 horas",
+        "ambiente": [
+          "externo_abrigado"
+        ],
+        "observacao": "Declara uso externo — mas e instrucao de CURA, nao de durabilidade. Por isso vai so ate externo_abrigado."
+      }
+    ],
+    "termos_que_nao_traduzem": [
+      {
+        "literal": "tecnologia Protect contra fungos e algas",
+        "por_que": "Aditivo biologico. Fungo aparece em area molhada, mas resistir a fungo nao e o mesmo que ser liberado para agua — e este produto ja declara a liberacao por nome, no campo certo."
+      },
+      {
+        "literal": "biocida e algicida contra fungos e algas",
+        "por_que": "Mesma coisa."
+      },
+      {
+        "literal": "impermeavel, antimofo e resistente a manchas",
+        "por_que": "Propriedades do material. 'Impermeavel' e a tentacao: seria facil ler ai uma autorizacao para imersao, e nao e — este produto declara a imersao separadamente, com prazo, e e essa declaracao que vale."
+      },
+      {
+        "literal": "piscinas aquecidas de ate 40 graus Celsius",
+        "por_que": "Limite de temperatura dentro de um ambiente que ja esta declarado. Nao acrescenta ambiente; vai para a tela como ressalva."
+      },
+      {
+        "literal": "sobreposicao de rejunte antigo, cimenticio, acrilico e epoxi",
+        "por_que": "Descreve sobre O QUE se aplica (rejunte velho), que nao e nem tessela nem ambiente."
+      },
+      {
+        "literal": "uso residencial, comercial e industrial",
+        "por_que": "Tipo de imovel, nao ambiente. Nao diz se e seco, molhado ou ao tempo."
+      },
+      {
+        "literal": "uso residencial e comercial",
+        "por_que": "Idem."
+      },
+      {
+        "literal": "pisos e paredes",
+        "por_que": "Posicao da superficie, nao ambiente."
+      },
+      {
+        "literal": "revestimentos especiais",
+        "por_que": "O fabricante nao nomeia qual. Vago: nao vira tessela declarada."
+      }
+    ],
+    "termos_tessela": [
+      {
+        "literal": "pastilhas de porcelana e de vidro",
+        "tessela": [
+          "pastilha_vidro",
+          "pastilha_ceramica"
+        ],
+        "observacao": "A unica declaracao do banco inteiro que nomeia a tessela do mosaico. Porcelana entra como pastilha_ceramica no vocabulario da ilha."
+      },
+      {
+        "literal": "pastilhas",
+        "tessela": [
+          "pastilha_vidro",
+          "pastilha_ceramica"
+        ],
+        "observacao": "Termo solto: cobre as duas pastilhas do vocabulario, nunca caco de espelho nem pedra, que o fabricante nao nomeou."
+      },
+      {
+        "literal": "ceramicas",
+        "tessela": [
+          "pastilha_ceramica",
+          "caco_azulejo"
+        ]
+      },
+      {
+        "literal": "porcelanatos",
+        "tessela": [
+          "pastilha_ceramica"
+        ]
+      },
+      {
+        "literal": "pedras",
+        "tessela": [
+          "pedra"
+        ]
+      }
+    ]
+  },
+  "regras_de_elegibilidade_do_rejunte": {
+    "descricao": "As regras que transformam as declaracoes de um MATERIAL de categoria rejunte em recomendacao. Sao PARENTES das cinco regras da cola, nao copia: a variavel de entrada e outra (largura de junta, nao base) e a lista de ambientes criticos e maior. ferramentas/validar-banco.py as roda e compara com perfis_esperados_do_rejunte e matriz_esperada_do_rejunte, escritos A MAO a partir das declaracoes — se as duas metades divergirem, uma das duas esta errada e a execucao para para descobrir qual.",
+    "1_a_junta_manda_e_precisa_das_duas_pontas": "Rejunte so e candidato numa junta de L mm se declarar junta_min <= L <= junta_max, com as DUAS pontas obtidas. Faixa com uma ponta null NAO vira 'sem limite': o produto fica fora de toda a grade, e a tela diz 'a faixa de junta deste produto nao foi obtida' em vez de deixa-lo aparecer como se coubesse. E o caso do rejunte piscinas quartzolit, que e o unico do banco declarado para pastilha de vidro submersa e mesmo assim nao entra em celula nenhuma.",
+    "2_ambiente_critico_exige_declaracao_EXPLICITA": {
+      "ambientes": [
+        "interno_molhado",
+        "externo_exposto",
+        "contato_permanente_agua"
+      ],
+      "regra": "Nestes tres, silencio nao basta: so entra quem declara o ambiente por nome, pelo mapa_de_termos_do_rejunte. Nos demais (interno_seco, externo_abrigado), silencio nao elimina.",
+      "por_que_interno_molhado_e_critico_aqui_e_nao_na_cola": "A lista de ambientes criticos da COLA tem dois; a do rejunte tem tres, e a diferenca e interno_molhado. Nao e inconsistencia: e a geometria da peca. A cola fica ESCONDIDA atras da tessela e a agua chega nela por ultimo; o rejunte e a superficie exposta, a agua fica parada em cima dele e e nele que o mofo cresce. Na pia e no banheiro, quem falha primeiro e o rejunte."
+    },
+    "3_ambiente_declarado_DELIMITA": "Igual a regra 3 da cola: `ambientes_declarados` nao vazio fecha o produto nos ambientes que ele lista. Quem nao delimita nada passa pelos ambientes nao criticos.",
+    "4_nivel_de_fonte_limita_a_recomendacao": "Igual a regra 5 da cola: recomendacao primaria exige fonte de nivel <= 3. O nivel do produto e o MENOR (melhor) entre as fontes dele — o rejunte epoxi tem boletim de nivel 2 e uma materia de blog de nivel 4, e quem o sustenta e o boletim; o blog so acrescenta a mencao a pastilhas, que vai para a tela citada como materia do proprio fabricante.",
+    "ordem_entre_os_elegiveis": "Score: +2 por junta dentro da faixa declarada, +2 por ambiente declarado por nome. Empate no topo NAO se desfaz por gosto — a pagina lista os empatados como equivalentes. O unico desempate permitido continua sendo ter link de loja (secao 7 do ARQUIPELAGO.md).",
+    "por_que_nao_ha_regra_de_proibicao": "Nenhum dos cinco produtos declara 'nao usar em'. A regra 1 da cola (proibicao vence indicacao) continua valendo e esta implementada, mas hoje nao encontra nada em que pegar — e isso e uma diferenca real entre as duas categorias, nao um esquecimento: o fabricante de cola publica lista de superficies proibidas, o de rejunte publica faixa de junta."
+  },
+  "perfis_esperados_do_rejunte": {
+    "descricao": "Escrito A MAO a partir das declaracoes de dados/materiais-rejuntes.json, produto por produto, ANTES de rodar o validador. O validador recomputa cada um pelas regras acima e falha se divergir. E a trava da secao 8 do ARQUIPELAGO.md aplicada aqui: quem confere escreve a propria regua, em vez de conferir o dado chamando a funcao de quem o produziu.",
+    "perfis": [
+      {
+        "id": "quartzolit-rejunte-ceramicas",
+        "junta_mm": [
+          2,
+          10
+        ],
+        "ambientes_cobertos": [
+          "externo_abrigado",
+          "interno_molhado"
+        ],
+        "ambientes_delimitados": [],
+        "nivel": 2,
+        "de_onde_sai": "interno_molhado vem de 'liberacao para contato com area molhada em 24 horas'; externo_abrigado vem de 'em area externa, proteger do sol, do vento e da chuva por 24 horas', que declara uso externo mas nao durabilidade ao tempo."
+      },
+      {
+        "id": "quartzolit-rejunte-porcelanatos-e-ceramicas",
+        "junta_mm": [
+          2,
+          10
+        ],
+        "ambientes_cobertos": [
+          "interno_molhado"
+        ],
+        "ambientes_delimitados": [],
+        "nivel": 2,
+        "de_onde_sai": "So a liberacao de 24 h para areas molhadas. A tecnologia Protect nao traduz em ambiente."
+      },
+      {
+        "id": "quartzolit-rejunte-acrilico",
+        "junta_mm": [
+          1,
+          4
+        ],
+        "ambientes_cobertos": [
+          "externo_abrigado",
+          "interno_molhado",
+          "interno_seco"
+        ],
+        "ambientes_delimitados": [
+          "externo_abrigado",
+          "interno_molhado",
+          "interno_seco"
+        ],
+        "nivel": 2,
+        "de_onde_sai": "'areas internas e externas' delimita os tres (externo_exposto fica de fora pela regra restritiva do mapa), e 'recomendado para areas molhadas' cobre interno_molhado por nome."
+      },
+      {
+        "id": "quartzolit-rejunte-epoxi",
+        "junta_mm": [
+          1,
+          5
+        ],
+        "ambientes_cobertos": [
+          "contato_permanente_agua",
+          "interno_molhado"
+        ],
+        "ambientes_delimitados": [],
+        "nivel": 2,
+        "de_onde_sai": "'paredes, pisos e piscinas' e 'piscinas' cobrem contato_permanente_agua; a liberacao de 7 dias cobre os dois."
+      },
+      {
+        "id": "quartzolit-rejunte-piscinas",
+        "junta_mm": [
+          null,
+          null
+        ],
+        "ambientes_cobertos": [
+          "contato_permanente_agua"
+        ],
+        "ambientes_delimitados": [],
+        "nivel": 3,
+        "de_onde_sai": "'piscinas e areas submersas' e 'uso submerso em agua tratada quimicamente'. Cobre o ambiente mais dificil do vocabulario e mesmo assim nao entra em celula nenhuma, porque a faixa de junta nao foi obtida — regra 1."
+      }
+    ]
+  },
+  "matriz_esperada_do_rejunte": {
+    "descricao": "Celulas junta x ambiente, escritas A MAO e recomputadas pelo validador. A grade NAO e regular de proposito: ela pisa exatamente em 1, 2, 4, 5 e 10 mm, que sao os extremos declarados pelos produtos, e em 6 e 11, que sao os primeiros valores depois do ultimo extremo. Grade de passo fixo nao separaria 'ate 4' de 'ate 5' — foi a lacuna de medicao que a Robometria pagou para aprender (secao 8 do ARQUIPELAGO.md).",
+    "leitura": "`recomendados_topo` e CONJUNTO, nao ordem. As duas listas de eliminados vao para a tela em secoes diferentes e com frases diferentes: `eliminados_por_faixa_de_junta` diz que o produto existe mas nao cobre essa junta, e `eliminados_por_ambiente` diz que o fabricante nao declara aquele ambiente.",
+    "celulas": [
+      {
+        "junta_mm": 1,
+        "ambiente": "interno_seco",
+        "recomendados_topo": [
+          "quartzolit-rejunte-acrilico"
+        ],
+        "elegiveis_abaixo_do_topo": [
+          "quartzolit-rejunte-epoxi"
+        ],
+        "mencionados_com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-piscinas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "eliminados_por_ambiente": [],
+        "observacao": "BORDA: 1 mm e exatamente o minimo do acrilico e do epoxi, e esta abaixo do minimo dos dois cimenticios de 2 mm. A junta mais fina do mosaico corta metade do banco."
+      },
+      {
+        "junta_mm": 2,
+        "ambiente": "interno_seco",
+        "recomendados_topo": [
+          "quartzolit-rejunte-acrilico"
+        ],
+        "elegiveis_abaixo_do_topo": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "mencionados_com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [],
+        "observacao": "BORDA: 2 mm e o minimo dos dois cimenticios. O acrilico fica sozinho no topo por declarar o ambiente por nome, nao por ser melhor."
+      },
+      {
+        "junta_mm": 2,
+        "ambiente": "externo_exposto",
+        "recomendados_topo": [],
+        "elegiveis_abaixo_do_topo": [],
+        "mencionados_com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "observacao": "FAIXA DESCOBERTA, e das caras: peca de mosaico em sol e chuva e metade do nicho (vaso de jardim, numero de casa, mandala de parede externa). Nenhum dos cinco declara resistencia a sol e chuva pelo nome. A pagina diz isso em vez de empurrar o de sempre."
+      },
+      {
+        "junta_mm": 3,
+        "ambiente": "contato_permanente_agua",
+        "recomendados_topo": [
+          "quartzolit-rejunte-epoxi"
+        ],
+        "elegiveis_abaixo_do_topo": [],
+        "mencionados_com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "observacao": "A CELULA QUE MAIS ENSINA DO BLOCO. A junta de 3 mm submersa tem resposta de rejunte — o epoxi, liberado em 7 dias. E o unico produto do banco cujo fabricante nomeia pastilha de VIDRO debaixo d'agua, o rejunte piscinas, e justamente o que nao pode ser recomendado, porque a faixa de junta dele nao foi obtida. Ter o dado quase todo nao e ter o dado."
+      },
+      {
+        "junta_mm": 4,
+        "ambiente": "interno_molhado",
+        "recomendados_topo": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "elegiveis_abaixo_do_topo": [],
+        "mencionados_com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [],
+        "observacao": "BORDA: 4 mm e o maximo do acrilico. Empate de quatro, e a pagina lista os quatro como equivalentes em vez de fingir preferencia."
+      },
+      {
+        "junta_mm": 5,
+        "ambiente": "interno_molhado",
+        "recomendados_topo": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "elegiveis_abaixo_do_topo": [],
+        "mencionados_com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [],
+        "observacao": "BORDA DUPLA: 5 mm e o maximo do epoxi E o primeiro milimetro fora do acrilico. Um milimetro a mais que a celula anterior e o produto mais facil de usar sai da lista."
+      },
+      {
+        "junta_mm": 6,
+        "ambiente": "contato_permanente_agua",
+        "recomendados_topo": [],
+        "elegiveis_abaixo_do_topo": [],
+        "mencionados_com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "observacao": "BORDA: 6 mm e o primeiro milimetro depois do maximo do epoxi, e com ele some a unica resposta submersa. Repare que os dois eliminados caem por motivos DIFERENTES, e sao duas frases diferentes na tela."
+      },
+      {
+        "junta_mm": 10,
+        "ambiente": "externo_abrigado",
+        "recomendados_topo": [
+          "quartzolit-rejunte-ceramicas"
+        ],
+        "elegiveis_abaixo_do_topo": [
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "mencionados_com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [],
+        "observacao": "BORDA: 10 mm e o maximo dos dois cimenticios. Sobram os dois, e o rejunte ceramicas vai a frente por declarar uso externo por nome."
+      },
+      {
+        "junta_mm": 11,
+        "ambiente": "interno_seco",
+        "recomendados_topo": [],
+        "elegiveis_abaixo_do_topo": [],
+        "mencionados_com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "eliminados_por_ambiente": [],
+        "observacao": "BORDA: 11 mm e o primeiro milimetro fora de TODA a faixa do banco, no ambiente mais facil que existe. Celula vazia num ambiente seco prova que quem elimina e a junta, nao o ambiente."
+      }
+    ]
+  }
 }

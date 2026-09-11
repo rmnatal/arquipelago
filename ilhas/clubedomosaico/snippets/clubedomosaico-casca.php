@@ -1,5 +1,9 @@
 /**
  * Clube do Mosaico Casca — identidade e estrutura do site
+ * Versão 1.1.0 (11/09/2026) — Bloco 3c: o Guia passou a CONTAR o banco por categoria
+ * em vez de trazer um zero digitado. O cartão de Rejuntes dizia "0 no banco" no mesmo
+ * dia em que a categoria ganhou cinco produtos — número falso na tela, e o teste não viu
+ * porque só media a categoria que existia quando ele foi escrito.
  * Versão 1.0.0 (11/09/2026) — Bloco 3b, a primeira casca desta ilha.
  *
  * Derivada da casca da Robometria 1.0.2 por SUBSTITUIÇÃO DE IDENTIDADE, não por
@@ -55,7 +59,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'CDM_CASCA_VERSAO' ) ) {
-	define( 'CDM_CASCA_VERSAO', '1.0.0' );
+	define( 'CDM_CASCA_VERSAO', '1.1.0' );
 	define( 'CDM_CASCA_TAGLINE', 'Mosaico artesanal: a peça pronta, o material certo para fazer a sua, e a declaração do fabricante por trás de cada recomendação' );
 	/* Os dois arquivos que o Raphael subiu na biblioteca de mídia em 11/09/2026.
 	   São os únicos endereços de imagem que esta casca conhece, e não se
@@ -116,7 +120,11 @@ if ( ! function_exists( 'cdm_casca_categorias_do_guia' ) ) {
  *
  * 'no_banco' é quantos itens REAIS o repositório já tem naquela categoria, e
  * não uma promessa: é ele que decide se a categoria aparece como ficha aberta ou
- * como categoria ainda sem dado. Hoje só COLA tem banco, e a tela diz isso.
+ * como categoria ainda sem dado. Nenhum destes números é digitado: cada um vem de
+ * cdm_casca_numeros(), que conta o arquivo do banco daquela categoria. Foi assim que
+ * o bloco 3c achou o zero de Rejuntes escrito à mão, no dia em que a categoria ganhou
+ * cinco produtos — categoria nova sem linha na lista de bancos continua mostrando
+ * zero, e é por isso que o teste cobra as duas listas juntas.
  */
 function cdm_casca_categorias_do_guia() {
 	$n = cdm_casca_numeros();
@@ -134,7 +142,7 @@ function cdm_casca_categorias_do_guia() {
 			'titulo'   => 'Rejuntes',
 			'slug'     => 'materiais/rejuntes',
 			'resumo'   => 'Faixa de junta, consumo por metro quadrado e cura. O consumo publicado na primeira página do Google é o de obra, com azulejo grande, e erra por sete a catorze vezes na pastilha de artesanato.',
-			'no_banco' => 0,
+			'no_banco' => $n['materiais_rejunte'],
 		),
 		array(
 			'codigo'   => 'G-PASTILHAS',
@@ -795,28 +803,53 @@ if ( ! function_exists( 'cdm_casca_numeros' ) ) {
  */
 function cdm_casca_numeros() {
 	$n = array(
-		'medido_em'          => '2026-09-10',
+		'medido_em'          => '2026-09-11',
 		'materiais_cola'     => 5,
+		'materiais_rejunte'  => 5,
 		'categorias_do_guia' => 6,
 		'celulas_matriz'     => 18,
+		'celulas_rejunte'    => 9,
 		'celulas_com_saida'  => 16,
 		'celulas_sem_saida'  => 2,
 		'bases'              => 9,
 		'ambientes'          => 5,
-		'esperando_link'     => 5,
-		'sem_imagem'         => 5,
+		'esperando_link'     => 10,
+		'sem_imagem'         => 10,
 		'pecas_na_loja'      => 0,
 	);
 
-	$banco = get_option( 'clubedomosaico_dados_materiais-colas' );
-	if ( is_array( $banco ) && isset( $banco['materiais'] ) && is_array( $banco['materiais'] ) ) {
-		$n['materiais_cola'] = count( $banco['materiais'] );
+	/* Uma linha por categoria que ja tem arquivo de banco. E esta lista que impede o
+	   zero digitado de voltar: categoria que ganha arquivo entra aqui, e o teste reprova
+	   se ela e os arquivos de dados/ se separarem. */
+	$bancos = array(
+		'materiais-colas'    => 'materiais_cola',
+		'materiais-rejuntes' => 'materiais_rejunte',
+	);
+
+	$link_vivo = 0;
+	$img_viva  = 0;
+	$lidos     = 0;
+	foreach ( $bancos as $arquivo => $chave ) {
+		$banco = get_option( 'clubedomosaico_dados_' . $arquivo );
+		if ( ! is_array( $banco ) || ! isset( $banco['materiais'] ) || ! is_array( $banco['materiais'] ) ) {
+			continue;
+		}
+		$lidos++;
+		$n[ $chave ] = count( $banco['materiais'] );
 		if ( isset( $banco['afiliado']['itens_esperando_link'] ) ) {
-			$n['esperando_link'] = (int) $banco['afiliado']['itens_esperando_link'];
+			$link_vivo += (int) $banco['afiliado']['itens_esperando_link'];
 		}
 		if ( isset( $banco['imagens']['itens_sem_imagem'] ) ) {
-			$n['sem_imagem'] = (int) $banco['imagens']['itens_sem_imagem'];
+			$img_viva += (int) $banco['imagens']['itens_sem_imagem'];
 		}
+	}
+
+	/* Os totais da ilha so assumem a via viva quando TODOS os bancos chegaram. Somar
+	   metade das categorias daria um total menor e com cara de verdadeiro — melhor o
+	   instantaneo inteiro, que ao menos diz a data em que foi medido. */
+	if ( $lidos === count( $bancos ) ) {
+		$n['esperando_link'] = $link_vivo;
+		$n['sem_imagem']     = $img_viva;
 	}
 
 	/* A Loja conta peça de verdade, nunca estimativa: enquanto o CPT do bloco 4d

@@ -135,6 +135,42 @@ inventar: **peça em contato permanente com água** (falta o boletim do rejunte 
 Quartzolit) e **base de plástico**. Silêncio parece defeito; texto honesto, não. As duas
 faixas estão em `pendentes` no `constantes.json` com o documento exato que as fecha.
 
+> **ATUALIZAÇÃO DO BLOCO 3c — a peça submersa ficou meio coberta, e "meio" é a palavra.**
+> A categoria REJUNTE trouxe o dado que faltava, e ele resolve só um dos dois lados:
+> - **O rejunte tem resposta.** O rejunte epóxi Quartzolit declara junta de 1 a 5 mm e
+>   liberação para contato com água em piscinas e áreas molhadas em 7 dias — boletim de
+>   2018-01, nível 2. A junta típica do mosaico (2 a 3 mm) cabe nessa faixa.
+> - **A cola continua sem resposta.** A única declaração de colagem submersa que a ilha tem
+>   é o press release do Loctite Durepoxi, nível 4, abaixo do mínimo para recomendação
+>   primária. Peça que fica na água precisa das duas coisas, e ter uma não faz a outra.
+> - **E há uma terceira ressalva, que é a mais fácil de perder.** O produto cujo fabricante
+>   nomeia a tessela do mosaico por escrito — "pastilhas de porcelana e de vidro" — é o
+>   *rejunte piscinas quartzolit*, e ele não entra em célula nenhuma por dois motivos que a
+>   página diz com todas as letras: a faixa de junta dele não foi obtida (então a regra 1 do
+>   rejunte o mantém fora), e o que ele declara é **água tratada quimicamente**, que é
+>   piscina — não a água parada de uma fonte ou de um vaso de jardim, que é o caso da peça
+>   de artesanato. Esticar essa frase até cobrir o vaso seria tirá-la do fabricante.
+>
+> Portanto a faixa **continua declarada como descoberta**, com o texto dizendo exatamente o
+> que já existe e o que falta. Meia resposta escrita como meia resposta ainda é a resposta
+> mais útil da página; meia resposta escrita como resposta inteira é o defeito.
+
+### 1.7 A metade do rejunte, que até o bloco 3c não existia — variável de entrada nova
+A F2 se chama *seletor de cola **e rejunte*** e até aqui só decidia cola: o banco tinha zero
+rejuntes, então a parte do rejunte sairia cravada na prosa do snippet. Com a categoria
+cheia, ela passa a ser recomputada como a da cola — e isso **acrescenta uma entrada ao
+formulário**: a **largura da junta, em milímetros**. Sem ela não há como escolher rejunte,
+porque é ela que decide: a 1 mm sobram dois produtos dos cinco, a 10 mm sobra um. A F1 já
+pedia esse campo para calcular consumo; a F2 não pedia. É a mesma correção de entrada que o
+bloco 3 fez com o vidro laminado, e a pergunta na tela é a mesma de sempre, em português de
+gente: *"quanto espaço você deixa entre uma pastilha e outra?"*, com 2 a 3 mm sugeridos e o
+aviso de que quem decide é a peça, não o padrão.
+
+A regra de decisão, a grade conferida e as nove células estão em
+`dados/esquema-banco.json` → `regras_de_elegibilidade_do_rejunte`,
+`perfis_esperados_do_rejunte` e `matriz_esperada_do_rejunte`. O snippet PHP do bloco 4 tem
+que repetir essa lógica e dar o mesmo resultado que `ferramentas/validar-banco.py`.
+
 ---
 
 ## 2. F1 — Calculadora de pastilhas e rejunte  *(constrói depois)*
@@ -186,6 +222,21 @@ material no meio da peça é pior que sobrar, porque lote novo muda de cor).
 `consumo_kg/m² = ((A + B) × E × L × CR) / (A × B)`, com A e B em mm (lados da pastilha), E a
 espessura em mm, L a junta em mm e **CR = 1,75**, que é o coeficiente que o fabricante usa
 no exemplo publicado dele — `(200+200) × 8 × 10 × 1,75 / (200×200) = 1,4 kg/m²`.
+
+> **CORREÇÃO DO BLOCO 3c — a coluna de rejunte só vale para rejunte CIMENTÍCIO, e a tela
+> tem que dizer isso.** Quando esta seção foi escrita, a ilha tinha um CR e nenhum rejunte
+> no banco; a tabela de 2.4 saiu aplicando 1,75 como se o coeficiente fosse do *material*
+> rejunte em geral. A categoria REJUNTE do banco mostrou que não é: dos cinco produtos, o
+> **acrílico é monocomponente pronto uso, vendido em pote de 1 kg**, e o **epóxi é
+> bicomponente fracionado em duas partes**. O 1,75 vem do exemplo publicado pelo fabricante,
+> e esse exemplo é de rejunte cimentício em pó. Aplicá-lo a um produto pronto uso é supor
+> que a fórmula vale sem olhar o estado físico do produto — o mesmo tipo de salto que a
+> seção 10 do contrato proíbe. Portanto: a F1 mantém os 12 valores de 2.4, agora rotulados
+> **"rejunte cimentício"**, e para acrílico e epóxi ela **diz que não calcula**, nomeando o
+> que falta. A pendência `rejunte-CR-por-tipo` continua aberta, mas deixou de ser "seria bom
+> ter" e virou o limite declarado da ferramenta. Duas buscas tentaram fechá-la nesta
+> execução e nenhuma serviu — uma devolveu um número que a própria consulta tinha plantado,
+> e a outra generalizou o 1,75 do cimentício sem citar documento do epóxi.
 
 **Cola**: a coluna existe e vem **vazia com explicação** nesta versão. O fabricante do
 silicone declara rendimento por cordão, não por área, e o consumo em kg/m² da cimentcola não
