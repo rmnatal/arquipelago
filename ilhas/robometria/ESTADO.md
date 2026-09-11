@@ -13,6 +13,38 @@ bloqueada_por: null
 
 Espelho legível do estado do projeto. **Nunca guarde credencial aqui.**
 
+## 11/09/2026, 13h17Z — Bloco de dados: as duas dívidas nomeadas, fechadas
+
+- **O banco parou de servir português errado.** 121 strings restauradas nos nove
+  campos que a varredura mediu chegando à tela. A operação é **provada
+  diacrítico-only**: reduzido a sem-diacrítico, o banco de hoje é byte a byte o
+  de ontem. **Não é releitura** — o acento foi reposto pela ilha, não lido no
+  fabricante, e `dados/acentuacao-restaurada.json` é a lista de conferência de
+  quem reler os manuais quando a rede abrir.
+- **A regra do nível 2, decidida:** manual de fabricante guardado por terceiro e
+  colhido por busca **não é nível 2, é nível 3**. Uma origem tem três elos —
+  autoria, custódia, leitura — e o nível é o do mais fraco. A direção saiu da
+  assimetria de custo, e a medição decidiu sozinha: as quatro únicas fontes de
+  nível 2 do banco eram a mesma entrada de `manuals.plus`.
+- **A coluna "Temos hoje" deixou de ser digitada e passou a ser contada.** Ao
+  virar contagem, caiu um segundo número que ninguém procurava: o nível 6 dizia
+  "sim" e a ilha **não tem uma fonte de marketplace**.
+- **Bancada:** `varrer-corpo.php` monta os **72 estados** que a ilha serve, um
+  processo por estado — no mesmo processo o cabeçalho aparecia só no primeiro, e
+  45 KB de corpo sumiam em silêncio.
+- **Travas:** `teste-acentuacao.php` (16 medições no CORPO, régua própria,
+  exceção do wordmark declarada no markup e contada) e duas invariantes novas em
+  `validar-banco.py`. **Seis mutações deliberadas, e as seis reprovaram.**
+- **NO AR:** Sync acionado às 13h52Z, **revisão 14 aplicada e conferida no
+  `/status`**, igual à do manifest. A R1 no `multi-ho041` devolve 200, **zero
+  `&#038;` dentro dos 9 blocos de `<script>`**, 12.332 caracteres de corpo, e
+  serve "Escova Lateral para Aspirador **Robô** Mars, Moon e Duster" e "vale para
+  a **versão** A deste modelo".
+- **Achado na fila, mesma família e não corrigido:** `robometria_casca_numeros()`
+  lê a option de `cobertura-r1`, que tem `publicar: false` — no ar, a seção 4 da
+  metodologia serve números digitados. Hoje eles por acaso batem com a medição:
+  latente, não disparado, que é como a escada ficou meses errada.
+
 ## 11/09/2026 — Blocos 4 e 5 da R2: as duas ferramentas e os dois artigos no ar
 
 - **A R2** (`/quantos-pa-o-robo-aspirador-precisa/`, revisão 12) e o **artigo-âncora
