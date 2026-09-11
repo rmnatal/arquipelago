@@ -456,3 +456,13 @@ Pergunta do Raphael em 11/09/2026: "por que que ela pega o erro e ela mesma não
 19.5 **Teto por passada:** no máximo 5 consertos por ronda e por ilha. Passou de 5, os demais viram um despacho único — volume alto de defeito mecânico é problema da casca, não de página, e isso é da Fundação.
 
 19.6 **A Fundação não reverte conserto de Sentinela** sem registrar o motivo no `REGISTRO.md` da ilha. Se ela achar que o conserto está errado, escreve por quê — duas camadas discordando no silêncio é como defeito volta a ficar horas no ar.
+
+## 20. ILHA NOVA ENTRA NA LISTA DE REDE NO DIA DO DOMÍNIO (11/09/2026)
+
+Descoberto em 11/09/2026, depois de três execuções seguidas travadas em silêncio: `clubedomosaico.com.br` nunca tinha sido acrescentado à lista de rede dos ambientes de nuvem — a lista fora montada quando só existiam duas ilhas. A Fundação escrevia no repositório normalmente, mas recebia **403 no CONNECT** ao tentar acionar o Sync e ao tentar abrir a URL para verificar. O trabalho ia para o `main` e não chegava ao site; três revisões ficaram presas sem ninguém perceber, porque o commit dava a impressão de que estava tudo entregue.
+
+20.1 **Passo obrigatório no nascimento da ilha (seção 11), no MESMO dia em que o domínio é comprado:** acrescentar `<ilha>.com.br` e `*.<ilha>.com.br` à lista "Domínios permitidos" dos ambientes de nuvem (`claude.ai/code` → seletor de ambiente → Nuvem → engrenagem). Enquanto isso não estiver feito, a ilha não recebe bloco: casca no ar que não pode ser verificada é pior que casca inexistente.
+
+20.2 **Conferência barata que a Fundação faz antes de trabalhar numa ilha:** um `curl -s -o /dev/null -w '%{http_code}' https://<ilha>.com.br/` no começo da execução. Se der 000 ou 403 de proxy, **pare a ilha imediatamente**, registre no `ESTADO.md` o campo `rede: bloqueada em <data>` e escreva no relatório — não construa às cegas. Commit sem Sync e sem verificação no ar não é entrega (seções 8 e 18.4).
+
+20.3 **A mesma armadilha vale para toda fonte nova** que uma ilha precise alcançar (domínio de fabricante, API, marketplace): quem escreve a regra que exige a fonte é quem confere se a fonte está liberada.
