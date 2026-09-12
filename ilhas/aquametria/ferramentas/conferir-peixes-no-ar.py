@@ -78,7 +78,7 @@ def main():
     banco = TP.carregar_banco()
     TP.banco_global[0] = banco
 
-    print("CONFERENCIA NO AR — a leva 1 do eixo /peixes/\n")
+    print("CONFERENCIA NO AR — o eixo /peixes/ inteiro\n")
 
     # O INDICE, e nao um provedor so: as cinco paginas novas moram no provedor de
     # `page` e os tres artigos-ancora no de `post`. Medir um provedor e chamar o
@@ -102,16 +102,25 @@ def main():
     # O que importa medir e que o sitemap cobre o que a ilha publica: as 13
     # antigas MAIS o eixo inteiro, e nada a menos.
     URLS_ANTES_DO_EIXO = 13
-    esperado = URLS_ANTES_DO_EIXO + 2 + len(TP.FICHAS)   # secao + categoria + fichas
+    # secao + uma pagina por categoria + as fichas
+    esperado = URLS_ANTES_DO_EIXO + 1 + len(TP.CATEGORIAS) + len(TP.FICHAS)
     ok("o sitemap publica as %d URLs da ilha (13 antigas + o eixo /peixes/)" % esperado,
        len(urls) == esperado, "%d URLs" % len(urls))
 
-    esperadas = {
-        "peixes": SITE + "/peixes/",
-        "tetras": SITE + "/peixes/tetras/",
-    }
+    # O CAMINHO DE CADA FICHA SAI DA MAE DELA, e ate a leva 2 saia de "tetras"
+    # escrito no meio da linha. Enquanto houve uma categoria so, a URL montada e
+    # a URL certa eram a mesma coisa; a leva 3 as separou. Do jeito antigo esta
+    # conferencia teria procurado /peixes/tetras/quantos-litros-para-coridora-panda/
+    # no sitemap, nao teria achado, e o alarme apontaria para o lugar errado —
+    # acusaria o desembarque de nao ter acontecido quando o que estava errado era
+    # a regua. E a mesma familia do "18 URLs" digitado que a leva 2 consertou
+    # nesta mesma funcao, dois paragrafos acima: numero e caminho, os dois nascem
+    # derivados ou os dois envelhecem.
+    esperadas = {"peixes": SITE + "/peixes/"}
+    for cat in TP.CATEGORIAS:
+        esperadas[cat] = SITE + "/peixes/" + cat + "/"
     for slug in TP.FICHAS:
-        esperadas[slug] = SITE + "/peixes/tetras/" + slug + "/"
+        esperadas[slug] = SITE + "/peixes/" + TP.CATEGORIA_DA_FICHA[slug] + "/" + slug + "/"
     for slug, url in esperadas.items():
         ok("o sitemap lista /%s/" % slug.replace(SITE, ""), url in urls, url)
 

@@ -1,4 +1,4 @@
-// AS TREZE PÁGINAS NUM CHROMIUM DE VERDADE, depois que a árvore chegou nelas.
+// AS PÁGINAS DA ILHA NUM CHROMIUM DE VERDADE, depois que a árvore chegou nelas.
 //
 //   for p in <as treze>; do php ferramentas/render-pagina-completa.php . $p > /tmp/aqmp-$p.html; done
 //   node ferramentas/teste-navegador-arvore.mjs /tmp
@@ -61,6 +61,15 @@ const PAGINAS = [
   'quantos-litros-para-tetra-brilhante',
   'quantos-litros-para-rodostomo',
   'quantos-litros-para-tetra-negro',
+  /* A leva 3 (12/09/2026): a categoria /peixes/corydoras/ e as quatro fichas.
+     A tabela da categoria tem SEIS colunas e a da coridora bronze carrega a
+     maior frente do banco (80 cm) ao lado do conflito de duas fontes — é a
+     linha mais larga que esta ilha já serviu a 360 px. */
+  'corydoras',
+  'quantos-litros-para-coridora-bronze',
+  'quantos-litros-para-coridora-pimenta',
+  'quantos-litros-para-coridora-panda',
+  'quantos-litros-para-coridora-sterbai',
 ];
 const LARGURAS = [360, 390, 781, 782, 783, 1200];
 

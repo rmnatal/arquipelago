@@ -92,6 +92,17 @@ $GLOBALS['__paginas'] = array(
 	'quantos-litros-para-tetra-brilhante'       => true,
 	'quantos-litros-para-rodostomo'             => true,
 	'quantos-litros-para-tetra-negro'           => true,
+	/* A leva 3 (12/09/2026): a SEGUNDA categoria do eixo, inteira. E a primeira
+	   vez que esta bancada tem duas maes de nivel 2 no ar ao mesmo tempo — ate
+	   aqui "a categoria" e "a unica categoria" eram a mesma coisa, e nenhuma
+	   afirmacao sobre parentesco podia errar. Com /peixes/corydoras/ ao lado de
+	   /peixes/tetras/, uma ficha registrada com a mae trocada passa a ser um
+	   defeito possivel, e por isso mensuravel. */
+	'corydoras'                                 => true,
+	'quantos-litros-para-coridora-bronze'       => true,
+	'quantos-litros-para-coridora-pimenta'      => true,
+	'quantos-litros-para-coridora-panda'        => true,
+	'quantos-litros-para-coridora-sterbai'      => true,
 );
 
 aquametria_teste_carregar( $raiz );

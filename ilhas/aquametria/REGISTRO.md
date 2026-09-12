@@ -6047,3 +6047,143 @@ URLs do eixo são as únicas desta ilha com três níveis, mãe publicada e
 `BreadcrumbList` de quatro degraus. **Mas isso não trava leva nenhuma** — a ilha
 tem 22 URLs, está abaixo do piso de 40 da seção 21, e abaixo do piso zero
 impressão não é informação. Teto da 21.4 nesta semana: **2 levas de 3 usadas**.
+
+## 2026-09-12, 23hZ — T4 LEVA 3: nasce `/peixes/corydoras/`, e a segunda categoria separa o declarado do digitado (peixes 1.2.0, manifest revisão 63)
+
+**O QUE FOI AO AR.** Cinco URLs novas no eixo `/peixes/`: a categoria
+`/peixes/corydoras/` e as **quatro** fichas dela — coridora bronze
+(`corydoras-aeneus`), coridora pimenta (`corydoras-paleatus`), coridora panda
+(`corydoras-panda`) e coridora sterbai (`corydoras-sterbai`). A ilha vai de **22
+para 27 URLs**. Nenhum endereço das levas 1 e 2 foi movido, e a casca **não foi
+tocada** (segue 1.7.3): o eixo inteiro mora no snippet das páginas, e a segunda
+categoria não pediu uma linha de casca — o mapa dela já vinha pelo filtro
+`aquametria_peixes`.
+
+SERP das cinco consultas classificada em 12/09/2026, **antes de a página nascer**,
+cada uma com o `porque` no registro do snippet (14.9). As cinco são ALVO, e a da
+categoria é a mais frouxa que este eixo já mediu: o top 7 tem um **post de grupo
+do Facebook** e um site que não é de aquarismo, e a mesma página de resultados dá
+54 L "para a maioria das espécies", 40 L para um grupo de 3 e **"7 litros por
+cada coridora que você adicionar"** — que é exatamente a conta per capita que
+esta ilha se recusa a fazer desde a leva 1, publicada ali como se fosse regra.
+
+**A CATEGORIA NASCEU COM 4 FILHAS E NÃO COM 3, E ISSO FOI TRABALHO DE COLETA.**
+O `ESTADO.md` anterior deixou a conta escrita: seriam **3** elegíveis (panda,
+paleatus, aeneus), o mínimo exato do 16.5, porque o `corydoras-sterbai` declarava
+convivência "grupo" e nenhuma fonte dizia de quantos. Ele apontava as duas saídas
+e dizia qual era melhor — colher o cardume por busca restrita, como o do
+tetra-negro foi colhido. Foi o que este bloco fez, em três passadas:
+
+1. **FishBase, restrita ao domínio.** Devolveu "grupos de 5 ou mais, aquário
+   mínimo de 60 cm" — e disse, **na mesma resposta**, que a ficha da sterbai não
+   traz isso e que o cuidado "é presumido igual ao das outras Corydoras".
+   **Recusado.** É a segunda vez que esta espécie recebe essa oferta (a primeira
+   está no registro de 09/09) e a segunda vez que ela é recusada: presunção
+   declarada pela própria fonte continua sendo número de outra espécie.
+2. **Seriously Fish, restrita ao domínio, sem o número dentro da consulta.** A
+   ficha da própria espécie declara que ela deve ser mantida sempre em grupo e que
+   **um grupo de pelo menos seis é o melhor**. É o número.
+3. **A passada de conferência de identidade**, com pergunta diferente: devolveu,
+   sem ser perguntada, a base de 18 × 12 × 12 pol — os **mesmos 45 × 30 cm** que o
+   registro já guardava desde 09/09, da mesma ficha. É a prova de que a busca leu
+   a página certa, e é o controle que o tetra-negro estreou ontem.
+
+**Por que o 09/09 tinha errado, e não foi descuido:** a passada daquele dia leu a
+sentença do aquário ("grande o bastante para um grupo pequeno", sem número) e não
+a sentença do grupo. Mesma página, outra frase. O registro agora guarda as duas
+fontes e diz qual frase sustenta qual campo.
+
+**A frase do compêndio é de alcance genérico** ("o gênero vai melhor em grupo"), e
+o banco a aceita pelo mesmo motivo que **já a aceitava na coridora-panda e na
+coridora-bronze**: quem a publica é a ficha da espécie, e a custódia é o elo que
+decide. Ler a mesma sentença como declaração em duas irmãs e como generalidade
+nesta seria a ilha escolhendo a leitura pelo resultado. O `convivencia` da sterbai
+passou de "grupo" para "cardume" pela mesma razão — as duas irmãs classificam a
+sentença idêntica assim, e três "cardume" ao lado de um "grupo" numa tabela
+comparativa é incoerência sem fato por baixo.
+
+**O DEFEITO QUE ESTE BLOCO PRODUZIU E O PORTÃO PEGOU ANTES DO AR.** A primeira
+renderização de `/peixes/corydoras/` serviu **"São 4 tetras"**. A contagem estava
+certa — 4 é o número derivado do banco — e o **substantivo** é que mentia: a
+palavra "tetras" estava escrita no meio do HTML, ao lado de uma contagem
+derivada. É a forma mais silenciosa do número de tela que envelhece, porque ali
+nem número era, e a trava que existia media justamente a contagem. Agora `plural`
+e `linha_mestra` moram na declaração da categoria, junto do `criterio`, e a
+abertura das coridoras diz o que precisava dizer: **coridora é peixe de fundo, e
+peixe de fundo se mede pelo chão** — quantos centímetros de base o grupo tem para
+vasculhar, não quantos litros cabem em cima.
+
+**TRÊS RÉGUAS ERAM MUNDOS DE UM ELEMENTO SÓ ESCRITOS COMO SE FOSSEM O MUNDO.**
+Não são números velhos — é a mesma família das três listas digitadas que a leva 2
+converteu, numa forma mais discreta, e as três teriam reprovado a segunda
+categoria da ilha **sem apontar defeito nenhum**:
+
+- `CATEGORIA = "tetras"` no `teste-peixes.py`, com a afirmação
+  `registradas == [CATEGORIA]`. A régua não dizia "as categorias registradas são
+  estas": dizia "só existe UMA". Virou `CATEGORIAS`, com o rótulo declarado ao
+  lado das espécies.
+- A categoria era cobrada a apontar para **todas** as fichas do eixo. Com a
+  segunda no ar, isso passou a exigir que `/peixes/tetras/` linkasse as coridoras
+  — pedindo justamente o cluster ralo que o 16.6 proíbe. Agora cobra as filhas
+  dela **e** que nenhuma ficha de outra categoria vaze para lá.
+- O `conferir-peixes-no-ar.py` montava o endereço de toda ficha como
+  `/peixes/tetras/<slug>/`. Do jeito antigo ele teria procurado a coridora panda
+  debaixo de tetras, não teria achado, e **o alarme apontaria para o lugar
+  errado**: acusaria o desembarque de não ter acontecido quando o que estava
+  errado era a régua. Mesma família do "18 URLs" digitado que a leva 2 consertou
+  nesta mesma função, dois parágrafos acima.
+
+**E UMA AFIRMAÇÃO NOVA, que só passou a poder falhar hoje: A MÃE É A DELA.**
+Enquanto o eixo teve uma categoria só, "linka a mãe" e "linka a mãe certa" eram a
+mesma frase. Com duas, o erro que a folga deixaria passar é mudo: uma ficha de
+coridora registrada com `'pai' => 'tetras'` iria **ao ar funcionando**, com a
+trilha, o breadcrumb e a frase de mãe inteiros, apontando para a categoria errada.
+
+**DUAS MUTAÇÕES PERDERAM O CHÃO, E O MOTIVO É UMA BOA NOTÍCIA.** Com a sterbai
+colhida, `podem virar ficha` passou de **26 de 27 para 27 de 27** — e com isso o
+banco deixou de ter um caso que discrimine o portão de página do de catálogo. As
+duas mutações que registravam a sterbai como ficha para provar a recusa teriam
+virado inertes de um jeito especialmente traiçoeiro: continuariam **reprovando**,
+agora por slug duplicado no registro, e o placar seguiria verde medindo outra
+coisa. Foram reescritas para PRODUZIR O MUNDO — tirar o número de quem o tem, uma
+no **banco** e outra no **catálogo do snippet**, porque as duas metades falham por
+motivos diferentes. **Régua que depende de um caso raro do banco morre no dia em
+que o banco melhora.**
+
+**A TRAVA ANTI-INÉRCIA DISPAROU DUAS VEZES NESTE BLOCO, e as duas contam algo.**
+(1) A âncora `'porque' => 'Medido em 12/09/2026: o top 7` passou a casar **duas**
+vezes, porque a SERP da categoria nova também tem sete resultados: primeira vez
+que a recusa dispara por **crescimento do conteúdo** e não por troca de bancada.
+(2) A âncora da mutação nova da sterbai casava também com a **coridora panda**,
+que tem o mesmo cardume (6), a mesma frente (45 cm) e a mesma convivência — o
+porte entrou na âncora, e sem ela as duas seriam mutadas de uma vez com o mesmo
+placar verde.
+
+**E UMA INÉRCIA HERDADA, CONSERTADA DE VEZ.** O `mutacoes-ga4.py` fixava
+`'AQUAMETRIA_CASCA_VERSAO', '1.7.2'`. A casca está em 1.7.3 desde a leva 2, então
+a bateria **abortava ali** — e as mutações seguintes, entre elas a que mede se o
+portão lê o ID do snippet em vez da própria régua, **nunca rodavam**. Ela já
+nascera com 1.6.0 e fora reapontada para 1.7.0 no mesmo dia, com um comentário
+avisando que era "a primeira a virar INERTE quando a casca sobe de número" — e
+envelheceu mais duas vezes. **Um SABOTADOR pode ler o estado atual; uma RÉGUA
+não**, e é a confusão entre os dois papéis que prendia aquela linha a um
+calendário. Virou `rebaixa_versao_da_casca()`, que rebaixa o número seja ele qual
+for e continua recusando operar se não achar a constante. Quem afirma o que é
+certo segue sendo o `teste-ga4.py`, com régua própria.
+
+**VERIFICAÇÃO NA BANCADA, 0 falha.** `teste-peixes.py` **1206** afirmações (eram
+732), um processo por página, aritmética recomputada do banco e comparada célula a
+célula; `mutacoes-peixes.py` **35 de 35 reprovadas** (eram 32); `teste-voz.mjs`
+**638** em 27 páginas (eram 518 em 22); `teste-navegador-arvore.mjs` **498**
+medições em 27 páginas × 6 larguras (eram 392 em 22), 0 px de rolagem;
+`teste-seo-tecnico.php` **330** (eram 285); `teste-ga4.py` **440** (eram 360);
+`validar-especies.py` 36 registros, 0 erro, o mesmo aviso E15 de sempre;
+`testar-validador-especies.py` 22; `teste-arvore`, apelidos 59, conversor 17,
+escape, atualizador 9, `conferir-slugs`, `php -l` em tudo,
+`conferir-protecao-funcoes`. Baterias antigas rodadas inteiras para provar que
+nenhuma virou inerte: voz 20/20, árvore 14/14, GA4 13/13.
+
+**RECEITA:** 39 dos 78 produtos seguem esperando link de afiliado. Este bloco não
+tocou catálogo de produto — espécie não é produto, e a página diz isso em vez de
+calar (seção 7). **Pauta da seção 17:** `pauta.md` ainda não existe — 0 escritos,
+0 na fila, 0 recusados.

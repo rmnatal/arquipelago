@@ -1931,7 +1931,7 @@
     "min": 2,
     "max": 25
    },
-   "cardume_minimo": null,
+   "cardume_minimo": 6,
    "comprimento_minimo_aquario_cm": 45,
    "base_minima_cm": {
     "comprimento": 45,
@@ -1941,7 +1941,7 @@
    "volume_minimo_declarado_L": null,
    "nivel_natacao": "fundo",
    "comportamento": null,
-   "convivencia": "grupo",
+   "convivencia": "cardume",
    "alimentacao": null,
    "dificuldade": null,
    "exige_aquario_maduro": null,
@@ -1978,12 +1978,24 @@
       "nivel_natacao"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED, reconfirmado nesta data. A confirmar na ficha."
+    },
+    {
+     "origem": "compendio-via-busca",
+     "status": "compendio-via-busca",
+     "referencia": "Seriously Fish - ficha da especie: a especie deve ser mantida SEMPRE em grupo, porque fica bem mais confiante e ativa na presenca dos seus, e um grupo de pelo menos SEIS e o melhor.",
+     "url": "https://www.seriouslyfish.com/species/corydoras-sterbai/",
+     "verificado_em": "2026-09-12",
+     "campos": [
+      "cardume_minimo",
+      "convivencia"
+     ],
+     "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 12/09/2026, em passada que NAO carregava o numero dentro da consulta. E a MESMA ficha da fonte de 09/09, outra frase dela: a passada de 09/09 leu a sentenca do aquario ('grupo pequeno', sem numero) e nao a sentenca do grupo, e foi por isso que o campo nasceu null. A identidade da ficha foi conferida por uma terceira passada, com pergunta diferente, que devolveu sem ser perguntada a base de 18 x 12 x 12 pol - os mesmos 45 x 30 cm que este registro ja guardava desde 09/09. Segue sem leitura direta: seriouslyfish.com devolve EGRESS_BLOCKED."
     }
    ],
    "conflitos": [],
-   "verificado_em": "2026-09-09",
+   "verificado_em": "2026-09-12",
    "status_registro": "completo",
-   "observacao": "A FishBase NAO declara tamanho minimo de aquario para esta especie - a busca restrita ao dominio em 09/09/2026 disse isso com todas as letras e ofereceu o numero das congeneres, que foi recusado: numero de outra especie nao e fonte. Os 45 cm vem do compendio, que e quem manda em campo de manutencao."
+   "observacao": "A FishBase NAO declara tamanho minimo de aquario para esta especie - a busca restrita ao dominio em 09/09/2026 disse isso com todas as letras e ofereceu o numero das congeneres, que foi recusado: numero de outra especie nao e fonte. Os 45 cm vem do compendio, que e quem manda em campo de manutencao. A RECUSA SE REPETIU EM 12/09/2026 e vale registrar, porque a tentacao veio pela segunda vez com outra roupa: a passada restrita a FishBase devolveu 'grupos de 5 ou mais, aquario minimo de 60 cm' dizendo, na mesma resposta, que a ficha da sterbai NAO traz isso e que o cuidado 'e presumido igual ao das outras Corydoras'. Presuncao declarada pela propria fonte continua sendo numero de outra especie, e foi recusada de novo. O 6 que este registro passou a guardar em 12/09 vem do compendio, da ficha da PROPRIA especie. A frase dele e de alcance generico ('o genero vai melhor em grupo'), e o banco a aceita pelo mesmo motivo que ja a aceitou na coridora-panda e na coridora-bronze: quem a publica e a ficha da especie, e a custodia e o elo que decide. Tratar a mesma sentenca como declaracao em duas irmas e como generalidade nesta seria a ilha escolhendo a leitura pelo resultado."
   },
   {
    "id": "puntigrus-tetrazona",

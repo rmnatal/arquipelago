@@ -28,6 +28,42 @@ CASCA = "snippets/aquametria-casca.php"
 PROMPT = "PROMPT.md"
 
 
+def rebaixa_versao_da_casca():
+    """Faz a constante de versao da casca ficar ATRAS, seja ela qual for hoje.
+
+    POR QUE ISTO NAO E UM `troca` COM O NUMERO ESCRITO (leva 3, 12/09/2026).
+    Esta mutacao ja nasceu com '1.6.0' literal, foi reapontada para '1.7.0' em
+    12/09 com um comentario avisando que ela e "a primeira a virar INERTE quando
+    a casca sobe de numero" — e virou inerte outras DUAS vezes no mesmo dia, em
+    1.7.2 e em 1.7.3, porque a casca subiu duas vezes. Pior que ficar parada: a
+    trava anti-inercia mata a bateria inteira ali, e as mutacoes seguintes nunca
+    rodam. Uma delas mede se o portao le o ID do snippet em vez da propria
+    regua, que e o defeito mais caro desta familia.
+
+    Um SABOTADOR pode ler o estado atual; uma REGUA nao. Sao papeis diferentes e
+    e a confusao entre os dois que deixou esta linha presa num calendario: quem
+    afirma o que e certo aqui e o `teste-ga4.py`, que compara a constante da
+    casca com a do manifest, e ele continua com a regua propria. Esta funcao so
+    precisa garantir que o numero FIQUE ATRAS, qualquer que ele seja — e ela
+    ainda recusa operar se nao achar a constante, que e a trava que importa.
+    """
+    def aplicar(base):
+        caminho = os.path.join(base, CASCA)
+        texto = open(caminho, encoding="utf-8").read()
+        achados = re.findall(r"'AQUAMETRIA_CASCA_VERSAO', '([^']+)'", texto)
+        if len(achados) != 1:
+            raise SystemExit(
+                "MUTACAO INERTE: achei %d constante(s) de versao da casca, esperava 1"
+                % len(achados))
+        atual = achados[0]
+        if atual == "0.0.1":
+            raise SystemExit("MUTACAO INERTE: a casca ja esta em 0.0.1")
+        open(caminho, "w", encoding="utf-8").write(
+            texto.replace("'AQUAMETRIA_CASCA_VERSAO', '%s'" % atual,
+                          "'AQUAMETRIA_CASCA_VERSAO', '0.0.1'", 1))
+    return aplicar
+
+
 def troca(arquivo, de, para, vezes=1):
     """Substituicao exata, que RECUSA operar se o alvo nao estiver la — a trava
     contra a mutacao inerte: alvo que nao existe mais nao quebra nada, e o teste
@@ -82,11 +118,8 @@ MUTACOES = [
            "if ( ! defined( 'AQUAMETRIA_CASCA_GA4_ID' ) || '' === AQUAMETRIA_CASCA_GA4_ID ) {\n\t\treturn;\n\t}",
            "if ( false ) {\n\t\treturn;\n\t}")),
 
-    # A versao viaja nesta mutacao, e por isso ela e a primeira a virar INERTE
-    # quando a casca sobe de numero. Reapontada em 12/09/2026 (1.6.0 -> 1.7.0):
-    # mutacao que nao morde e teste verde com outro nome.
     ("a versao da casca fica atras da do manifest — o conserto commitado e invisivel",
-     troca(CASCA, "'AQUAMETRIA_CASCA_VERSAO', '1.7.2'", "'AQUAMETRIA_CASCA_VERSAO', '1.7.1'")),
+     rebaixa_versao_da_casca()),
 
     # As duas ultimas atacam a REGUA, nao o site. Se o portao lesse o ID do
     # snippet, elas passariam — e e exatamente por isso que elas existem.

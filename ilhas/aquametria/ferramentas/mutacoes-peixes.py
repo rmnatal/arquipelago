@@ -141,7 +141,15 @@ MUTACOES = [
            "\t\t\t\t\t. 'Saiba mais' . '</a>';")),
 
     ("a promessa da secao 14.9 sai do registro de uma ficha — pagina que nao sabe o que mira",
-     troca(PEIXES, "\t\t\t'porque'   => 'Medido em 12/09/2026: o top 7", "\t\t\t'x_porque' => 'Medido em 12/09/2026: o top 7")),
+     # A ANCORA GANHOU CONTEXTO NA LEVA 3, e a trava anti-inercia e quem cobrou:
+     # ate aqui ela era o prefixo "...: o top 7", que bastava porque so uma
+     # pagina do eixo abria assim. A categoria /peixes/corydoras/ nasceu com uma
+     # SERP de sete resultados tambem, o prefixo passou a casar duas vezes e o
+     # `troca` recusou operar em vez de mutar a pagina errada em silencio. E o
+     # caso exato para o qual a recusa foi escrita, e a primeira vez que ela
+     # disparou por crescimento do conteudo e nao por troca de bancada.
+     troca(PEIXES, "\t\t\t'porque'   => 'Medido em 12/09/2026: o top 7 é blog de nicho",
+                   "\t\t\t'x_porque' => 'Medido em 12/09/2026: o top 7 é blog de nicho")),
 
     # ------------------------------------- 3. a regua perde o chao
     ("A COLISAO DE SLUG VOLTA: a categoria do C8 se chama 'peixes' outra vez",
@@ -177,42 +185,90 @@ MUTACOES = [
     # A primeira versao desta mutacao so afrouxava a regua — e PASSOU, porque
     # nenhuma ficha registrada hoje depende dela: com o mundo de hoje, `return
     # true` e `return a regra` dao o mesmo site. E a licao do Clube do Mosaico em
-    # 12/09/2026: a mutacao que mede um grupo vazio precisa PRODUZIR O MUNDO em
-    # que ele deixa de ser vazio. Entao sao duas, e elas medem coisas diferentes:
-    # a de baixo prova que o PHP recusa servir a ficha, e a de cima prova que o
-    # portao acusa a especie errada mesmo quando o PHP e afrouxado junto.
-    ("ESPECIE DE CARDUME SEM CARDUME VIRA FICHA: a regua afrouxa E a coridora sterbai ganha pagina",
+    # 12/09/2026, LEVA 3: AS DUAS MUTACOES DO CARDUME PERDERAM O CHAO E FORAM
+    # REESCRITAS. Ate a leva 2 elas registravam a coridora sterbai como ficha
+    # para provar que o portao recusa "especie de cardume sem o numero do
+    # cardume" — e funcionavam porque a sterbai era, no banco, a unica especie
+    # do catalogo nesse estado. Esta leva colheu o numero dela: `podem virar
+    # ficha` passou de 26 de 27 para 27 de 27, e com isso O CASO DISCRIMINANTE
+    # DEIXOU DE EXISTIR no banco. As duas mutacoes teriam virado inertes de um
+    # jeito especialmente traicoeiro — continuariam REPROVANDO, agora por slug
+    # duplicado no registro, e o placar seguiria verde medindo outra coisa.
+    #
+    # Entao elas voltam a PRODUZIR O MUNDO, que e a mesma licao da leva 2 escrita
+    # do outro lado: tirar o numero de quem o tem, em vez de dar pagina a quem
+    # nao o tinha. E sao duas porque medem metades diferentes — uma tira o
+    # numero do BANCO (a regua do teste e recomputada dele, e tem de acusar a
+    # ficha que sobrou apontando para especie que nao passa mais), a outra tira
+    # do CATALOGO DO SNIPPET (o site serve a tabela abrindo em UM exemplar, e
+    # quem tem de acusar e a pagina).
+    ("O BANCO PERDE O CARDUME DE QUEM JA TEM FICHA NO AR: a sterbai volta a 'grupo' sem numero",
      lambda base: (
-         troca(PEIXES,
-               "\tif ( ! empty( $e['cardume'] ) ) {\n\t\treturn true;\n\t}\n\treturn in_array( $e['convivencia'], array( 'solitario', 'casal', 'harem' ), true );",
-               "\treturn true;")(base),
-         troca(PEIXES,
-               "\t\t'quantos-litros-para-tetra-ember' => array(",
-               "\t\t'quantos-litros-para-coridora-sterbai' => array(\n"
-               "\t\t\t'nivel'    => 3,\n"
-               "\t\t\t'pai'      => 'tetras',\n"
-               "\t\t\t'especie'  => 'corydoras-sterbai',\n"
-               "\t\t\t'titulo'   => 'Quantos litros para um cardume de coridora sterbai?',\n"
-               "\t\t\t'conteudo' => '[aquametria_peixes_ficha]',\n"
-               "\t\t\t'consulta' => 'quantos litros para coridora sterbai',\n"
-               "\t\t\t'porque'   => 'mutacao',\n"
-               "\t\t),\n"
-               "\t\t'quantos-litros-para-tetra-ember' => array(")(base),
+         troca(BANCO,
+               '"cardume_minimo": 6,\n   "comprimento_minimo_aquario_cm": 45,\n'
+               '   "base_minima_cm": {\n    "comprimento": 45,\n    "largura": 30\n   },\n'
+               '   "altura_minima_cm": null,\n   "volume_minimo_declarado_L": null,\n'
+               '   "nivel_natacao": "fundo",\n   "comportamento": null,\n'
+               '   "convivencia": "cardume",',
+               '"cardume_minimo": null,\n   "comprimento_minimo_aquario_cm": 45,\n'
+               '   "base_minima_cm": {\n    "comprimento": 45,\n    "largura": 30\n   },\n'
+               '   "altura_minima_cm": null,\n   "volume_minimo_declarado_L": null,\n'
+               '   "nivel_natacao": "fundo",\n   "comportamento": null,\n'
+               '   "convivencia": "grupo",')(base),
      )),
 
-    ("A FICHA SEM CARDUME VAI AO AR: so o registro ganha a coridora sterbai, com a regua intacta",
+    ("O CATALOGO DO SNIPPET PERDE O CARDUME: a ficha da sterbai abre a tabela em UM exemplar",
      troca(PEIXES,
-           "\t\t'quantos-litros-para-tetra-ember' => array(",
-           "\t\t'quantos-litros-para-coridora-sterbai' => array(\n"
+           # O PORTE ENTRA NA ANCORA e nao e decoracao: sem ele a string casa
+           # tambem com a coridora panda, que tem o MESMO cardume (6), a MESMA
+           # frente (45) e a mesma convivencia. A trava anti-inercia recusou na
+           # primeira escrita desta mutacao, e estava certa — mutar as duas de
+           # uma vez mediria outra coisa com o mesmo placar verde.
+           "\t\t\t'porte_cm' => 6.8,\n\t\t\t'porte_medida' => 'SL',\n\t\t\t'cardume' => 6,\n\t\t\t'convivencia' => 'cardume',\n\t\t\t'comportamento' => '',\n\t\t\t'frente_cm' => 45,",
+           "\t\t\t'porte_cm' => 6.8,\n\t\t\t'porte_medida' => 'SL',\n\t\t\t'cardume' => null,\n"
+           "\t\t\t'convivencia' => 'grupo',\n\t\t\t'comportamento' => '',\n"
+           "\t\t\t'frente_cm' => 45,")),
+
+    # --- LEVA 3: os tres defeitos que a segunda categoria tornou possiveis.
+    # Nenhum dos tres podia existir enquanto o eixo teve uma categoria so, e e
+    # por isso que nenhuma mutacao antiga os cobre: com uma mae unica, "a mae" e
+    # "a mae certa" eram a mesma frase, e o substantivo da categoria era o unico
+    # substantivo possivel.
+
+    ("A MAE TROCADA: a ficha da coridora panda nasce registrada debaixo de /peixes/tetras/",
+     troca(PEIXES,
+           "\t\t'quantos-litros-para-coridora-panda' => array(\n"
            "\t\t\t'nivel'    => 3,\n"
-           "\t\t\t'pai'      => 'tetras',\n"
-           "\t\t\t'especie'  => 'corydoras-sterbai',\n"
-           "\t\t\t'titulo'   => 'Quantos litros para um cardume de coridora sterbai?',\n"
-           "\t\t\t'conteudo' => '[aquametria_peixes_ficha]',\n"
-           "\t\t\t'consulta' => 'quantos litros para coridora sterbai',\n"
-           "\t\t\t'porque'   => 'mutacao',\n"
-           "\t\t),\n"
-           "\t\t'quantos-litros-para-tetra-ember' => array(")),
+           "\t\t\t'pai'      => 'corydoras',",
+           "\t\t'quantos-litros-para-coridora-panda' => array(\n"
+           "\t\t\t'nivel'    => 3,\n"
+           "\t\t\t'pai'      => 'tetras',")),
+
+    # O DEFEITO QUE ESTA LEVA REALMENTE PRODUZIU, e que o portao pegou antes do
+    # ar: a abertura da categoria dizia "São N tetras" com o substantivo
+    # digitado, e a pagina das coridoras serviu "São 4 tetras". A contagem
+    # estava certa — e e isso que torna o caso perigoso, porque a trava que
+    # existia media a contagem.
+    ("O SUBSTANTIVO DA CATEGORIA VOLTA A SER DIGITADO: a pagina das coridoras diz 'tetras'",
+     troca(PEIXES,
+           "$html .= '<p>São ' . esc_html( count( $dentro ) ) . ' '\n\t\t. esc_html( $cat['plural'] )\n\t\t. ' com aquário mínimo declarado por fonte com nome e data, e o mínimo vai de '",
+           "$html .= '<p>São ' . esc_html( count( $dentro ) ) . ' '\n\t\t. 'tetras'\n\t\t. ' com aquário mínimo declarado por fonte com nome e data, e o mínimo vai de '")),
+
+    ("O CLUSTER VAZA ENTRE CATEGORIAS: /peixes/corydoras/ passa a listar um tetra",
+     troca(PEIXES,
+           "\t\t\t'especies' => array(\n"
+           "\t\t\t\t'corydoras-aeneus',\n"
+           "\t\t\t\t'corydoras-paleatus',\n"
+           "\t\t\t\t'corydoras-panda',\n"
+           "\t\t\t\t'corydoras-sterbai',\n"
+           "\t\t\t),",
+           "\t\t\t'especies' => array(\n"
+           "\t\t\t\t'corydoras-aeneus',\n"
+           "\t\t\t\t'corydoras-paleatus',\n"
+           "\t\t\t\t'corydoras-panda',\n"
+           "\t\t\t\t'corydoras-sterbai',\n"
+           "\t\t\t\t'paracheirodon-innesi',\n"
+           "\t\t\t),")),
 
     ("A PROMESSA DE LEVA VOLTA COM A FILA VAZIA: a categoria fechada diz que ha filhas na fila",
      troca(PEIXES,

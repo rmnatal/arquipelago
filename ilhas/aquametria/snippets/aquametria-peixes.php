@@ -1,6 +1,6 @@
 /**
  * Aquametria Peixes — a malha do eixo /peixes/
- * Versão: 1.1.0 (12/09/2026)
+ * Versão: 1.2.0 (12/09/2026)
  *
  * T4 do PROMPT.md, leva 1: cinco URLs novas no eixo que a Bússola verificou
  * ABERTO e que é o de maior volume de busca da ilha — "quantos litros para X
@@ -54,6 +54,17 @@
  *      temperatura declaradas, com o critério escrito na frente da lista — e
  *      quem o banco declara agressivo fica fora com o nome na tela.
  *
+ *   7. A SEGUNDA CATEGORIA (leva 3, 12/09/2026) SEPAROU O DECLARADO DO
+ *      DIGITADO. Enquanto /peixes/tetras/ foi a única mãe de nível 2, três
+ *      coisas eram indistinguíveis de suas versões corretas: "a mãe" e "a mãe
+ *      certa"; "as fichas do eixo" e "as fichas desta categoria"; e o
+ *      substantivo da abertura, que era a palavra "tetras" escrita no meio do
+ *      HTML ao lado de uma contagem derivada. A primeira renderização de
+ *      /peixes/corydoras/ serviu "São 4 tetras" — contagem certa, substantivo
+ *      mentindo —, e o portão pegou antes do ar porque a régua do teste passou
+ *      a declarar o rótulo em vez de derivá-lo do slug. Agora `plural` e
+ *      `linha_mestra` moram na declaração da categoria, junto do `criterio`.
+ *
  *   6. O JSON-LD SAI NO wp_head, NUNCA no retorno do shortcode. O retorno
  *      atravessa os filtros do the_content, que trocam "&" pela entidade
  *      numérica e quebrariam o JSON do mesmo jeito que quebraram o JavaScript
@@ -94,7 +105,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_PEIXES_VERSAO' ) ) {
-	define( 'AQUAMETRIA_PEIXES_VERSAO', '1.1.0' );
+	define( 'AQUAMETRIA_PEIXES_VERSAO', '1.2.0' );
 }
 
 /* A data em que a SERP das consultas foi classificada (seção 14.9). Está aqui
@@ -1357,8 +1368,8 @@ function aquametria_peixes_catalogo() {
 			'origem' => 'America do Sul: Brasil central e Bolivia',
 			'porte_cm' => 6.8,
 			'porte_medida' => 'SL',
-			'cardume' => null,
-			'convivencia' => 'grupo',
+			'cardume' => 6,
+			'convivencia' => 'cardume',
 			'comportamento' => '',
 			'frente_cm' => 45,
 			'base_comprimento' => 45,
@@ -1394,6 +1405,16 @@ function aquametria_peixes_catalogo() {
 						'nivel_natacao',
 					),
 					'referencia' => 'Seriously Fish - ficha da especie: um aquario de 45 x 30 x 30 cm (42,5 litros) e grande o bastante para um grupo pequeno desta especie.',
+				),
+				array(
+					'corpo' => 'Seriously Fish',
+					'url' => 'https://www.seriouslyfish.com/species/corydoras-sterbai/',
+					'em' => '2026-09-12',
+					'campos' => array(
+						'cardume_minimo',
+						'convivencia',
+					),
+					'referencia' => 'Seriously Fish - ficha da especie: a especie deve ser mantida SEMPRE em grupo, porque fica bem mais confiante e ativa na presenca dos seus, e um grupo de pelo menos SEIS e o melhor.',
 				),
 			),
 			'conflitos' => array(),
@@ -2239,6 +2260,55 @@ function aquametria_peixes_registro() {
 			'consulta' => 'quantos litros para tetra negro',
 			'porque'   => 'Medido em 12/09/2026: é a SERP mais disputada das sete deste eixo — tem a Petz, que é domínio forte, ao lado de zooplus.pt, PetMag, aquarismopaulista e três lojas. Segue ALVO porque um domínio forte não é "quase tudo" (14.9) e porque o que ele serve é blog de varejo sem número atribuído: a mesma página de resultados dá 60 L, 70 L e 112 L, e o conselho de "três a seis indivíduos de cada tipo", que é regra de aquário comunitário e não cardume mínimo da espécie. As duas fontes do nosso banco declaram 5 ou mais, e discordam da frente em 15 cm.',
 		),
+
+		/* --- LEVA 3, 12/09/2026: a segunda categoria do eixo. A mãe e as
+		   QUATRO filhas saem juntas, que é o 16.6 (a categoria inteira, nunca
+		   uma filha de cada). Nenhuma URL das levas 1 e 2 muda. --- */
+
+		'corydoras' => array(
+			'nivel'    => 2,
+			'pai'      => 'peixes',
+			'titulo'   => 'Coridoras: quanto chão o grupo pede',
+			'conteudo' => '[aquametria_peixes_categoria]',
+			'consulta' => 'quantos litros para coridoras',
+			'porque'   => 'Medido em 12/09/2026: o top 7 não tem um domínio forte e tem um POST DE GRUPO DO FACEBOOK — três fichas de aquarismo (myaquarium, peixeseaquarismo, peixepedia), um blog de loja estrangeira (tiendanimal.pt), um site que não é de aquarismo (caiaque.net) e a pergunta de um aquarista no Facebook. É a SERP mais frouxa das cinco desta leva. Os números se contradizem na mesma página de resultados — 54 L "para a maioria das espécies", 40 L para um grupo de 3, e "7 litros por cada coridora que você adicionar" — e o terceiro é justamente a conta per capita que esta ilha se recusa a fazer desde a leva 1, publicada ali como se fosse regra. Ela vale a categoria inteira: é a página que explica por que coridora se dimensiona por CHÃO e não por litro, e as quatro fichas pendem dela.',
+		),
+		'quantos-litros-para-coridora-bronze' => array(
+			'nivel'    => 3,
+			'pai'      => 'corydoras',
+			'especie'  => 'corydoras-aeneus',
+			'titulo'   => 'Quantos litros para um cardume de coridora bronze?',
+			'conteudo' => '[aquametria_peixes_ficha]',
+			'consulta' => 'quantos litros para coridora bronze',
+			'porque'   => 'Medido em 12/09/2026: o top 8 é uma ficha de aquarismo forte no nicho (aquarismopaulista), o aquaonline, o blogdopescador e cinco lojas (proaquarista duas vezes, fazendasubmersa, myaquarium). Nenhum domínio forte de fora do nicho. A contradição está dentro da mesma página de resultados: "60 x 30 x 40 cm (72 litros)", "60 litros no mínimo" e "70 litros comportam com folga cinco coridoras" — e a última briga com o cardume de 6 que a mesma resposta declara duas linhas acima. Nenhum atribui o número. O nosso registro é o que pede MAIS espaço da categoria (80 x 30 cm, Seriously Fish), e a página ganha por assumir isso com o nome da fonte em vez de competir por baixo.',
+		),
+		'quantos-litros-para-coridora-pimenta' => array(
+			'nivel'    => 3,
+			'pai'      => 'corydoras',
+			'especie'  => 'corydoras-paleatus',
+			'titulo'   => 'Quantos litros para um cardume de coridora pimenta?',
+			'conteudo' => '[aquametria_peixes_ficha]',
+			'consulta' => 'quantos litros para coridora pimenta',
+			'porque'   => 'Medido em 12/09/2026: o top 9 é seis lojas (rioaqua, aquaverso.pt, aquariumcrystal, aquastuchi, rsdiscus, proaquarista), duas fichas de aquarismo e um portal generalista de 2010 (culturamix). Duas lojas do top vendem a espécie com nomes populares diferentes — "pimenta" e "mármore" — o que reparte a própria SERP. Os números discordam (60 x 30 x 30 cm contra "mínimo 70 litros") e nenhum diz de onde saiu. É a única das quatro em que o nosso banco tem CONFLITO declarado de frente (60 cm na FishBase, 61 no compêndio), e a ficha publica os dois com a atribuição de cada um — que é exatamente o que o top 9 não faz.',
+		),
+		'quantos-litros-para-coridora-panda' => array(
+			'nivel'    => 3,
+			'pai'      => 'corydoras',
+			'especie'  => 'corydoras-panda',
+			'titulo'   => 'Quantos litros para um cardume de coridora panda?',
+			'conteudo' => '[aquametria_peixes_ficha]',
+			'consulta' => 'quantos litros para coridora panda',
+			'porque'   => 'Medido em 12/09/2026: o top 8 é blog (blogdopescador), duas fichas de aquarismo (aquarismopaulista, myaquarium), um Blogspot de 2006 e quatro lojas (rsdiscus, fazendasubmersa, proaquarista, rolizoo). Nenhum domínio forte. Eles dão "60 litros para 5 a 6" e "60 x 30 x 30 cm (54 litros)" na mesma resposta, que são dois números diferentes para a mesma pergunta, e nenhum é atribuído. Aqui a vantagem da ilha é incomum e vale dizer: o nosso número é MENOR que o do top — 45 x 30 cm declarados pelo compêndio contra os 60 cm que a SERP repete —, e é o registro que sustenta o aquário de 30 a 40 litros sem mentir. Número menor com fonte nomeada é mais difícil de publicar que número maior, e é o que a página faz.',
+		),
+		'quantos-litros-para-coridora-sterbai' => array(
+			'nivel'    => 3,
+			'pai'      => 'corydoras',
+			'especie'  => 'corydoras-sterbai',
+			'titulo'   => 'Quantos litros para um cardume de coridora sterbai?',
+			'conteudo' => '[aquametria_peixes_ficha]',
+			'consulta' => 'quantos litros para coridora sterbai',
+			'porque'   => 'Medido em 12/09/2026: o top 10 é o aquaonline, o blogdopescador, duas fichas de aquarismo e seis lojas (fazendasubmersa duas vezes, rsdiscus, proaquarista, myaquarium). Nenhum domínio forte, e é a SERP mais contraditória das cinco: a mesma página de resultados dá 54 L, 90 L "para um grupo de seis" e "70 litros comportam com folga cinco" — três respostas para uma pergunta só, nenhuma com fonte. É também a ficha que esta leva destravou: até 12/09 o cardume mínimo desta espécie era null no banco e ela não podia virar página, porque ficha que se chama "quantos litros para um cardume" e não sabe o cardume abre a tabela em um exemplar. O número veio da ficha da própria espécie no compêndio, por busca restrita, e o registro guarda a recusa da alternativa fácil ao lado dele.',
+		),
 	);
 }
 }
@@ -2255,6 +2325,8 @@ function aquametria_peixes_categorias() {
 	return array(
 		'tetras' => array(
 			'rotulo'  => 'Tetras',
+			'plural'  => 'tetras',
+			'linha_mestra' => 'Tetra pequeno não quer dizer aquário pequeno: o que decide o mínimo do seu aquário é o cardume, e não o tamanho do peixe.',
 			'criterio' => 'As espécies que a loja brasileira vende como tetra: os Paracheirodon, os Hemigrammus, os Hyphessobrycon e o Gymnocorymbus. A família não serve de critério aqui — a revisão recente dos caracídeos deixou o banco com tetra em duas famílias diferentes, e Characidae carrega peixe que ninguém vende como tetra.',
 			'especies' => array(
 				'paracheirodon-innesi',
@@ -2268,8 +2340,15 @@ function aquametria_peixes_categorias() {
 		),
 		'corydoras' => array(
 			'rotulo'   => 'Corydoras',
-			'criterio' => '',
-			'especies' => array(),
+			'plural'   => 'coridoras',
+			'linha_mestra' => 'Coridora é peixe de fundo, e peixe de fundo se mede pelo chão: o que decide o mínimo do seu aquário é quantos centímetros de base o grupo tem para vasculhar, não quantos litros cabem em cima.',
+			'criterio' => 'Os peixes de fundo que a loja brasileira vende como coridora, da subfamília Corydoradinae. O gênero Corydoras não serve de critério, e aqui pelo motivo oposto ao dos tetras: a revisão recente da subfamília tirou as quatro do gênero na própria fonte — a ficha já publica Hoplisoma panda, Hoplisoma paleatum, Hoplisoma sterbai e Osteogaster aenea —, então filtrar por Corydoras devolveria lista vazia para uma categoria que o aquarista brasileiro compra pelo nome todo dia. O banco guarda os dois nomes de cada uma e esta página serve os dois.',
+			'especies' => array(
+				'corydoras-aeneus',
+				'corydoras-paleatus',
+				'corydoras-panda',
+				'corydoras-sterbai',
+			),
 		),
 		'bettas' => array(
 			'rotulo'   => 'Bettas e gouramis',
@@ -3123,11 +3202,19 @@ function aquametria_peixes_categoria_html( $slug ) {
 		}
 	}
 
+	/* O SUBSTANTIVO DA CATEGORIA VEM DECLARADO, e isto é conserto de um defeito
+	   que o portão pegou nesta leva antes de ir ao ar: a abertura dizia "São N
+	   tetras" com o "tetras" digitado, e a página das coridoras serviu "São 4
+	   tetras" na primeira renderização. A contagem estava certa e o substantivo
+	   mentia — a forma mais silenciosa do número de tela que envelhece, porque
+	   aqui nem número era. Enquanto houve uma categoria só, digitado e derivado
+	   eram indistinguíveis; a segunda separou os dois. */
 	$html  = '<div class="aqm-px aqm-px-categoria">';
 	$html .= '<div class="aqm-px-direta">';
-	$html .= '<p class="aqm-px-linha-mestra">Tetra pequeno não quer dizer aquário pequeno: o que decide o mínimo do seu aquário é o cardume, e não o tamanho do peixe.</p>';
-	$html .= '<p>São ' . esc_html( count( $dentro ) )
-		. ' tetras com aquário mínimo declarado por fonte com nome e data, e o mínimo vai de '
+	$html .= '<p class="aqm-px-linha-mestra">' . esc_html( $cat['linha_mestra'] ) . '</p>';
+	$html .= '<p>São ' . esc_html( count( $dentro ) ) . ' '
+		. esc_html( $cat['plural'] )
+		. ' com aquário mínimo declarado por fonte com nome e data, e o mínimo vai de '
 		. esc_html( aquametria_peixes_num( aquametria_peixes_menor_frente( $dentro ) ) ) . ' a '
 		. esc_html( aquametria_peixes_num( aquametria_peixes_maior_frente( $dentro ) ) )
 		. ' cm de frente — com o cardume mínimo indo de '
@@ -3136,7 +3223,7 @@ function aquametria_peixes_categoria_html( $slug ) {
 		. ' exemplares. A tabela abaixo põe os dois números lado a lado, que é a comparação que nenhuma das respostas de busca desta consulta publica.</p>';
 	$html .= '</div>';
 
-	$html .= '<h2>Os tetras do banco, com o mínimo declarado de cada um</h2>';
+	$html .= '<h2>' . esc_html( ucfirst( $cat['plural'] ) ) . ' do banco, com o mínimo declarado de cada um</h2>';
 	$html .= '<p class="aqm-px-criterio"><strong>O critério desta lista:</strong> ' . esc_html( $cat['criterio'] ) . '</p>';
 	$html .= '<div class="aqm-px-rolagem"><table class="aqm-px-tabela">';
 	$html .= '<caption>Porte adulto, cardume mínimo e frente mínima declarada. Onde as fontes discordam, a coluna traz os dois extremos.</caption>';

@@ -4,7 +4,7 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 62,
+  "revisao": 63,
   "atualizado_em": "2026-09-12",
   "estado": "fundacao",
   "desembarque": {
@@ -54,7 +54,7 @@
       "ativo": true,
       "versao": "1.1.0",
       "publicar": true,
-      "sha256": "f03b76841f8189ffd7cfa784a39af3f127e9faf17df52485cbb34c2d12959fc2",
+      "sha256": "cef87959bee1e8650089f7020a55c20beb98c74416eee5ac556a770408b2c3eb",
       "descricao": "Conserta o item 1 do despacho da Sentinela de 09/09/2026: /category/uncategorized/ respondia 200 e estava no wp-sitemap.xml, gastando o orcamento de rastreamento de um dominio novo com um artefato do CMS enquanto a leva de 6 paginas de 08/09 nao indexava. A causa de raiz e o Sync, que grava artigo sem atribuir categoria e por isso deixa tudo cair na padrao; este snippet conserta pelo lado que se auto-corrige, sem mexer no Sync (que so chega ao site pelo atualizador). Faz cinco coisas: (a) cria a categoria de verdade \"Metodos\" (slug metodos), move para ela todo post que estiver na categoria padrao e passa a categoria padrao a ser ela, para o problema nao voltar pela porta que o criou; (b) tira do wp-sitemap.xml o provedor de autores sempre, e o de taxonomias enquanto nenhuma categoria estiver curada — sitemap e curadoria, nao inventario (secao 14.1 do ARQUIPELAGO.md); (c) manda noindex,follow para arquivo por data, autor, tag, categoria nao curada (a sem categoria inclusive), anexo, busca e 404, pelo filtro wp_robots do proprio nucleo, para nao sair meta robots repetida; (d) desliga a pagina de anexo pelo interruptor do nucleo (wp_attachment_pages_enabled); (e) nao toca em pagina, artigo nem home. A categoria Metodos nasce FORA do sitemap e com noindex de proposito: o item 2 do mesmo despacho congelou pagina nova ate 16/09 e a secao 14.4 exige texto proprio na listagem — quando ela tiver esse texto, basta acrescentar o slug em aquametria_seo_categorias_no_sitemap(). A decisao de indexar mora numa funcao pura (aquametria_seo_deve_noindex), exercitada por ferramentas/teste-seo-tecnico.php em 28 afirmacoes sem subir WordPress. v1.1.0 (10/09/2026): meta description e cartao de compartilhamento nas 13 URLs do sitemap. Item 1 do despacho da Sentinela de 10/09/2026: nenhuma pagina servia <meta name=description> e nenhuma tinha tag og:. O snippet passa a imprimir description, og:title, og:description, og:type, og:locale, og:site_name, og:url e twitter:card, a partir de um mapa GERADO por ferramentas/gerar-metas-descricao.py entre os marcadores METAS-INICIO e METAS-FIM — o texto mora no front matter de cada pagina de conteudo/ e, para as quatro paginas da casca, em dados/metas-seo.json. Slug fora do mapa nao imprime nada: description inventada seria pior que o recorte do Google. Sem og:image de proposito, ate a ilha ter imagem propria hospedada."
     },
     {
@@ -128,10 +128,10 @@
       "arquivo": "snippets/aquametria-peixes.php",
       "escopo": "front-end",
       "ativo": true,
-      "versao": "1.1.0",
+      "versao": "1.2.0",
       "publicar": true,
-      "sha256": "2368d39b176fdfa67b379f34addab644d2967353a4e5038860270c41f5fbba2f",
-      "descricao": "T4, levas 1 e 2 da malha: NOVE URLs no eixo que a Bussola verificou ABERTO e que e o de maior volume de busca da ilha — 'quantos litros para X peixes'. Nivel 1 /peixes/, nivel 2 /peixes/tetras/ e SETE fichas de nivel 3, que FECHAM a categoria: tetra neon, neon cardinal, mato-grosso (leva 1) e tetra ember, tetra-brilhante, rodostomo e tetra-negro (leva 2). A TESE: as fontes declaram a BASE do aquario, nao o litro, e as respostas da SERP brasileira dao litro sem fonte e discordam entre si — medido consulta a consulta em 12/09/2026, com o 'porque' de cada pagina escrito no registro. A pagina serve a base declarada com nome e data ao lado das duas reguas brasileiras de lotacao, que discordam em quatro vezes, com a atribuicao de cada extremo. Nenhum numero e digitado: tudo sai do catalogo gerado do banco de especies por ferramentas/gerar-catalogo-especies.py e e contado na hora de imprimir. O derivado per capita (frente minima / cardume minimo) sai na tela como leitura e NUNCA e multiplicado. Especie que o banco declara AGRESSIVA nao ganha lista de companheiro. DUAS REGRAS NOVAS NA 1.1.0, e as duas sao de ESCOPO de afirmacao. (1) BASE nao e FRENTE: a frase mestra so diz 'a fonte declara a BASE' quando o registro tem os dois lados do chao; em 14 dos 36 registros do banco a fonte declara so o COMPRIMENTO, e ai a pagina diz COMPRIMENTO, nao serve as duas tabelas que dependem do fundo e DECLARA a ausencia e a causa em vez de encolher calada. O rodostomo e o primeiro caso publicado. (2) Especie de cardume sem o numero do cardume nao vira ficha: aquametria_peixes_pode_virar_ficha() recusa, com a mesma frase que o esquema usa no portao da C8 desde que o banco nasceu. Nao tem link de loja, e a pagina diz por que (especie nao e produto); o equipamento sai pelas calculadoras, onde a vitrine existe. JSON-LD Article + FAQPage nas fichas e CollectionPage + ItemList nas listagens, no wp_head na prioridade 21 — nunca no retorno do shortcode. Quem cria as paginas, com pai, e a casca 1.7.0."
+      "sha256": "2dbcebab68c6de7adf9733ea1c5776cab6f475b1de5af370fad716a5f6ebfe8c",
+      "descricao": "T4, levas 1, 2 e 3 da malha: QUATORZE URLs no eixo que a Bussola verificou ABERTO e que e o de maior volume de busca da ilha. Nivel 1 /peixes/, DUAS categorias de nivel 2 (/peixes/tetras/ com 7 fichas e /peixes/corydoras/ com 4) e as doze fichas de especie, todas com base minima declarada por fonte com nome e data ao lado das duas reguas brasileiras de lotacao. A leva 3 tirou do codigo o que era digitado enquanto houve uma categoria so: o substantivo da abertura (a pagina das coridoras chegou a servir 'Sao 4 tetras'), o rotulo e a frase mestra passam a vir declarados por categoria em aquametria_peixes_categorias(), junto do criterio."
     }
   ],
   "conteudo": [
@@ -448,10 +448,10 @@
       "formato": "json",
       "entidade": "especie",
       "fonte": "ver fontes[] de cada registro: FishBase (base-cientifica-via-busca) e Seriously Fish (compendio-via-busca), os dois colhidos por busca restrita ao dominio porque o egresso bloqueia leitura direta",
-      "verificado_em": "2026-09-11",
+      "verificado_em": "2026-09-12",
       "registros": 36,
       "publicar": false,
-      "sha256": "6ad3044261d8a398f63f54d9bb07fe791dd3aeb334a711a9ba0d5d59366c474e",
+      "sha256": "fcbc5030b55a2e702dd1e5156ee377131d73624752b5f50324b90706a281fd09",
       "descricao": "Banco de especies: 36 peixes do varejo brasileiro, de 2,0 cm (tetra ember) a 48,0 cm (kinguio), com porte, faixa termica, pH, dureza, cardume minimo, frente e base minimas de aquario, familia e convivencia, cada campo atribuido a uma fonte com url e data. Frentes minimas declaradas de 45 a 180 cm, em dez degraus — e a malha de pagina de volume sem repetir numero. 27 dos 36 passam no portao de pagina de especie e 29 alimentam a C8; os 9 barrados dizem no proprio registro qual campo falta e por que nao foi estimado, e um deles (gurami mel) tem o porte RECUSADO por implausibilidade, com o motivo escrito. A leva 4 (11/09/2026) nao acrescentou especie: foi de profundidade, fechando campos que barravam registros ja existentes, e o tetra ember passou a ser ao mesmo tempo o menor peixe e a menor frente declarada do banco (45 cm), o piso util do eixo. Existe para destravar o eixo aberto 'quantos litros para X peixes' com dado em vez da regra de bolso de 1 cm por litro."
     },
     {
@@ -467,7 +467,7 @@
       "arquivo": "dados/metas-seo.json",
       "formato": "json",
       "publicar": false,
-      "sha256": "4704df055b32259a576c387bb202cde12f26189c385342d37745e0377f56df89",
+      "sha256": "d420a593b4c806b95a7c4f65c8658f4416e9782b796c618b3234a328a415d791",
       "descricao": "Meta description das QUATRO paginas da casca (inicio, calculadoras, metodologia, sobre), que nascem do snippet e nao tem arquivo em conteudo/. As nove paginas vindas de conteudo/*.md tem a delas no proprio front matter, campo meta_descricao, e nao se repetem aqui: uma pagina, um lugar. Nasce do despacho da Sentinela de 10/09/2026, item 1 — nenhuma das 13 URLs do sitemap servia meta description. Nao vai para o site por si: quem leva o texto ao ar e o mapa gerado dentro de aquametria-seo-tecnico.php."
     }
   ],
@@ -734,7 +734,7 @@
       "id": "mutacoes-ga4",
       "arquivo": "ferramentas/mutacoes-ga4.py",
       "publicar": false,
-      "sha256": "330443425b0ca5bb5cb4974bda4570c8d8d46617e3230786dadfb09e8b8534e7",
+      "sha256": "8a53f6a5b7f76ed682180e172a3479b53575f3acf00e2c62c4b5f2460911e10e",
       "descricao": "13 mutacoes deliberadas contra o teste-ga4.py, 13 reprovadas, cada uma numa copia da ilha. Onze atacam o site (ID da ilha vizinha, uma letra trocada no ID, async removido, prioridade em 2 e em 21, segundo parametro na URL, porta de consentimento, tag movida para o wp_footer, guarda removida, versao da casca atrasada em relacao ao manifest) e DUAS atacam a REGUA (o PROMPT.md perdendo a linha do ID, e o PROMPT.md divergindo do snippet) — estas duas passariam se o portao lesse o ID da constante, e sao a razao de ele nao ler. DUAS PASSARAM NA PRIMEIRA RODADA e viraram trava de estrutura, pela mesma licao da C15: devolver o ID literal para dentro da funcao e derrubar a guarda de constante ausente nao mudam um byte do que o site serve, entao nenhuma medicao de RESULTADO pode ve-las. A funcao troca() recusa operar quando o alvo nao existe mais no arquivo, que e a trava contra mutacao inerte."
     },
     {
@@ -755,21 +755,21 @@
       "id": "teste-peixes",
       "arquivo": "ferramentas/teste-peixes.py",
       "publicar": false,
-      "sha256": "72547b95142ae95943dca61985b258bc9acd2a2d2e1ab5604909ffc106235369",
+      "sha256": "b16e6e8147bc06723c5a2abaf61658e026791702c46cc9def620b3d9234234a0",
       "descricao": "O portao da leva 1 do eixo /peixes/: 295 afirmacoes, um processo php por pagina, medidas no CORPO do que a bancada serve. Toda aritmetica e recomputada do dados/especies-agua-doce.json, do zero, e o mapa pagina->especie esta escrito no teste — ler o mapa do snippet seria perguntar ao snippet qual e a resposta certa, e a proxima leva vai copiar este registro. Compara CELULA POR CELULA, e nao 'o numero esta na pagina': duas mutacoes deliberadas passaram na primeira rodada porque o numero errado que elas produziam existia em outra tabela (o 28 de 'cabem 28 neons' foi achado dentro de '20 a 28 C'). Mede tambem o que nao e numero: especie agressiva sem lista de companheiro, categoria de nivel 2 com 3 filhas ou mais no registro (16.5), ancora que nao diz 'saiba mais', ausencia de Product no JSON-LD, resposta de FAQ citando so numero que a pagina serve, trilha de quatro degraus com os tres primeiros linkados, e a colisao de slug entre a secao /peixes/ e a categoria de calculadora."
     },
     {
       "id": "mutacoes-peixes",
       "arquivo": "ferramentas/mutacoes-peixes.py",
       "publicar": false,
-      "sha256": "8cb129a2beac752dc53e5d4c59eb060b8208e9f71528acb043eb773b72fae457",
+      "sha256": "56ff3a113ee9c8539f0bb1e62996280e4a817de915f9929f7abc7088ed9317be",
       "descricao": "24 mutacoes deliberadas contra o portao do eixo /peixes/, em tres familias: o numero muda (regua de lotacao trocada, extremo errado de conflito declarado, borda da tabela que desaparece); o numero fica e a ESTRUTURA quebra (a especie agressiva ganha lista de companheiro, o derivado per capita volta a ser multiplicado, categoria vazia registrada como pagina, Product no JSON-LD); e a regua perde o chao (o catalogo do snippet envelhece em relacao ao banco, a colisao de slug volta). 24 de 24 reprovadas — duas delas so depois de o portao passar a comparar celula, e nao texto da pagina."
     },
     {
       "id": "conferir-peixes-no-ar",
       "arquivo": "ferramentas/conferir-peixes-no-ar.py",
       "publicar": false,
-      "sha256": "d1bae9bedba61eee31ff614ca28bbbe63f2597765afa2f5a6f1fb14769ebfe23",
+      "sha256": "ef07cadef445ffd546f894f7ae3158813f20d5e9671ab0fbabfada8c924c59a6",
       "descricao": "Confere a leva 1 do eixo /peixes/ no HTML SERVIDO, nao no repositorio: 103 afirmacoes, 0 falha em 12/09/2026. A lista de URLs vem do INDICE do sitemap (os dois provedores, page e post), nunca digitada, e toda requisicao leva ?v=<hora> por causa do cache duplo da secao 4. A aritmetica e a MESMA do teste-peixes.py, importada de la para a conta morar num lugar so; o que muda e o sujeito. Foi ela que achou os DOIS defeitos que a bancada nao podia ver: o degrau de nivel 2 da trilha que nao resolvia (url_se_existir pedia o slug solto e get_page_by_path casa o caminho inteiro) e as TRES FICHAS DUPLICADAS com '-2' que a remontagem publicou e mandou para o sitemap, sem uma linha de erro. Mede ainda que cada degrau do BreadcrumbList responde 200, que a tag do GA4 sobreviveu a troca de versao da casca, e conta as ligacoes internas das 18 paginas para provar que nenhuma das cinco e orfa (16.4f) — descontando menu e trilha, que estao em todas."
     },
     {

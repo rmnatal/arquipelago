@@ -42,14 +42,16 @@ Sem quarto nível. Fora da árvore ficam só a home, `/sobre/`, `/metodologia/`,
 
 Enquanto isso, `/calculadoras/` continua sendo a mãe direta das cinco calculadoras no ar — dois níveis em vez de três, declarado aqui como estado de transição, não como desenho.
 
-## 3. `/peixes/` — NO AR desde 12/09/2026 (levas 1 e 2 do T4)
+## 3. `/peixes/` — NO AR desde 12/09/2026 (levas 1, 2 e 3 do T4)
 
 A camada que a Bússola verificou ABERTA e a de maior volume de busca da ilha ("quantos litros para N neons"). O banco de espécies (`dados/especies-agua-doce.json`, 36 registros) é o que limita quantas filhas cabem, e desde 12/09/2026 são **duas** réguas com dois nomes, não uma:
 
 - **`catalogo-de-especies`** — sete campos e duas fontes de corpos distintos. **27 dos 36 passam.** É quem entra na contagem da seção, na tabela da categoria e na lista de quem divide a mesma água.
-- **`pagina-especie`** — o catálogo MAIS `cardume_minimo OU convivencia igual a solitario/casal/harem`. **26 dos 27 passam.** É quem pode ter página própria, porque a ficha deste eixo se chama "quantos litros para um cardume de X" e abre pela frase que nomeia o cardume mínimo.
+- **`pagina-especie`** — o catálogo MAIS `cardume_minimo OU convivencia igual a solitario/casal/harem`. **27 dos 27 passam**, desde 12/09/2026. É quem pode ter página própria, porque a ficha deste eixo se chama "quantos litros para um cardume de X" e abre pela frase que nomeia o cardume mínimo.
 
-As duas listas saem nomeadas, registro por registro, em `ferramentas/gerar-catalogo-especies.py`. **Quem está no catálogo e não pode ter página hoje: `corydoras-sterbai`** — declara convivência "grupo" e nenhuma fonte diz de quantos. Isso muda a próxima leva: `/peixes/corydoras/` tem **3** filhas elegíveis (panda, paleatus, aeneus), não 4, e 3 é exatamente o mínimo do 16.5.
+As duas listas saem nomeadas, registro por registro, em `ferramentas/gerar-catalogo-especies.py`. **Hoje ninguém está no catálogo sem poder ter página**, e isso mudou na leva 3: o `corydoras-sterbai` era o único, porque declarava convivência "grupo" e nenhuma fonte dizia de quantos. A leva 3 colheu o número na ficha da própria espécie, por busca restrita, e `/peixes/corydoras/` nasceu com **4** filhas em vez das 3 que este documento previa — folga de uma sobre o mínimo do 16.5, em vez do mínimo exato.
+
+**O que isso custou à bancada, e vale para a próxima categoria:** com 27 de 27 passando, o banco deixou de ter um caso que discrimine o portão de página do portão de catálogo. Duas mutações de `ferramentas/mutacoes-peixes.py` viviam da sterbai e teriam virado inertes continuando a reprovar — por slug duplicado, não pelo cardume. Foram reescritas para PRODUZIR o mundo: tiram o número de quem o tem, uma no banco e outra no catálogo do snippet. Régua que depende de um caso raro do banco morre no dia em que o banco melhora.
 
 A separação nasceu de um erro que vale registrar: a primeira versão pôs a regra do cardume no portão do CATÁLOGO, e a contagem da seção caiu de 27 para 26 — o sterbai sumiu de três lugares onde o dado dele é bom, para resolver um problema de outra página. Apertar o portão errado tira da tela informação verdadeira.
 
@@ -58,7 +60,7 @@ Categorias pelo nome que a pessoa usa, nunca pelo nome científico. Seis, e só 
 | nível 2 | filhas no ar | estado |
 |---|---|---|
 | `/peixes/tetras/` | tetra neon · neon cardinal · mato-grosso · tetra ember · tetra-brilhante · rodóstomo · tetra-negro | **no ar e FECHADA** (7 de 7 espécies do banco) |
-| `/peixes/corydoras/` | — | em breve, sem link e sem contagem (16.5) — 3 filhas elegíveis, o mínimo exato |
+| `/peixes/corydoras/` | coridora bronze · coridora pimenta · coridora panda · coridora sterbai | **no ar e FECHADA** (4 de 4 espécies do banco) |
 | `/peixes/bettas/` | — | em breve |
 | `/peixes/ciclideos-anoes/` | — | em breve |
 | `/peixes/plecos-e-limpa-vidros/` | — | em breve |

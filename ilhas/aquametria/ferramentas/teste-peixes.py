@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""O PORTAO DO EIXO /peixes/ — mede o que as NOVE paginas SERVEM.
+"""O PORTAO DO EIXO /peixes/ — mede o que as paginas do eixo SERVEM.
 
     python3 ferramentas/teste-peixes.py .
 
@@ -63,6 +63,11 @@ FICHAS = {
     "quantos-litros-para-tetra-brilhante": "hemigrammus-erythrozonus",
     "quantos-litros-para-rodostomo": "hemigrammus-rhodostomus",
     "quantos-litros-para-tetra-negro": "gymnocorymbus-ternetzi",
+    # leva 3, 12/09/2026 — a categoria corydoras inteira
+    "quantos-litros-para-coridora-bronze": "corydoras-aeneus",
+    "quantos-litros-para-coridora-pimenta": "corydoras-paleatus",
+    "quantos-litros-para-coridora-panda": "corydoras-panda",
+    "quantos-litros-para-coridora-sterbai": "corydoras-sterbai",
 }
 
 # As especies do catalogo que NAO declaram o fundo do aquario: a fonte publica o
@@ -71,20 +76,57 @@ FICHAS = {
 # contra ele mesmo e a afirmacao "a pagina diz COMPRIMENTO quando nao ha fundo"
 # passaria verde com o banco inteiro nulo.
 SEM_FUNDO_DECLARADO = {"hemigrammus-rhodostomus"}
-CATEGORIA = "tetras"
 SECAO = "peixes"
-PAGINAS = [SECAO, CATEGORIA] + list(FICHAS)
 
-# Os tetras que a categoria tem de listar, escritos aqui pelo mesmo motivo.
-TETRAS = [
-    "paracheirodon-innesi",
-    "paracheirodon-axelrodi",
-    "hyphessobrycon-amandae",
-    "hyphessobrycon-eques",
-    "hemigrammus-erythrozonus",
-    "hemigrammus-rhodostomus",
-    "gymnocorymbus-ternetzi",
-]
+# As categorias de nivel 2 QUE JA SAO PAGINA, e as especies que cada uma tem de
+# listar — escritas aqui a mao pelo mesmo motivo do mapa de cima.
+#
+# Ate a leva 2 isto era `CATEGORIA = "tetras"`, uma string, e o teste afirmava
+# `registradas == [CATEGORIA]`: a regua nao dizia "as categorias registradas sao
+# estas", dizia "so existe UMA". Passou tres blocos porque so havia uma mesmo, e
+# teria reprovado a segunda categoria da ilha sem apontar defeito nenhum — o
+# oposto do que um portao serve para fazer. E a mesma familia das tres listas
+# digitadas que a leva 2 converteu, numa forma mais discreta: nao um numero
+# velho, e um mundo de um elemento so escrito como se fosse o mundo inteiro.
+#
+# O rotulo entra aqui junto porque a frase de abertura da categoria o usa, e
+# tirar "tetras"/"coridoras" do slug por heuristica seria adivinhar por
+# vizinhanca (secao 8) onde o certo e declarar.
+CATEGORIAS = {
+    "tetras": {
+        "rotulo": "tetras",
+        "especies": [
+            "paracheirodon-innesi",
+            "paracheirodon-axelrodi",
+            "hyphessobrycon-amandae",
+            "hyphessobrycon-eques",
+            "hemigrammus-erythrozonus",
+            "hemigrammus-rhodostomus",
+            "gymnocorymbus-ternetzi",
+        ],
+    },
+    # leva 3, 12/09/2026
+    "corydoras": {
+        "rotulo": "coridoras",
+        "especies": [
+            "corydoras-aeneus",
+            "corydoras-paleatus",
+            "corydoras-panda",
+            "corydoras-sterbai",
+        ],
+    },
+}
+PAGINAS = [SECAO] + list(CATEGORIAS) + list(FICHAS)
+
+# A qual categoria cada ficha pertence, derivado da regua acima e nao do
+# snippet: e o que permite cobrar que a ficha aponte para a MAE dela, e nao
+# para uma categoria qualquer que por acaso exista.
+CATEGORIA_DA_FICHA = {
+    slug: cat
+    for cat, dados in CATEGORIAS.items()
+    for slug, ident in FICHAS.items()
+    if ident in dados["especies"]
+}
 
 CORPO_MINIMO = 1500      # secao 8: pagina fina e reprovacao
 MAX_PROVA = 2            # blocos aqm-prova por corpo (regra do portao da voz)
@@ -470,6 +512,18 @@ def medir_ficha(slug, ident, banco):
 
     # --- o cluster e a mae
     ok("%s: linka a mae numa frase do corpo" % slug, 'class="aqm-px-mae"' in c)
+    # E A MAE E A DELA, nao uma mae qualquer (leva 3, 12/09/2026). Enquanto o
+    # eixo teve uma categoria so, "linka a mae" e "linka a mae certa" eram a
+    # mesma afirmacao, e a primeira bastava. Com a segunda categoria no ar elas
+    # se separam, e o erro que a folga deixaria passar e mudo: uma ficha de
+    # coridora registrada com 'pai' => 'tetras' iria AO AR funcionando, com a
+    # trilha, o breadcrumb e a frase de mae inteiros, apontando para a categoria
+    # errada. E a decisao 2 do cabecalho aplicada ao parentesco.
+    mae = CATEGORIA_DA_FICHA[slug]
+    frase_mae = re.search(r'<[^>]*class="aqm-px-mae".*?</\w+>', c, re.S)
+    ok("%s: a mae da frase e a categoria %s" % (slug, mae),
+       frase_mae is not None and ('/%s/' % mae) in frase_mae.group(0),
+       frase_mae.group(0)[:160] if frase_mae else "sem frase de mae")
     ok("%s: o bloco Veja tambem tem as irmas" % slug, 'class="aqm-veja"' in c)
 
     # A REGRA E A DO 16.4(c) — DE 2 A 4 IRMAS —, e nao "todas as irmas".
@@ -504,8 +558,9 @@ def medir_ficha(slug, ident, banco):
     ok("%s: diz a data em que a SERP foi classificada" % slug, "12/09/2026" in t)
 
 
-def medir_categoria(banco):
-    slug = CATEGORIA
+def medir_categoria(slug, banco):
+    ESPECIES = CATEGORIAS[slug]["especies"]
+    ROTULO = CATEGORIAS[slug]["rotulo"]
     pagina = servir(slug)
     c = corpo(pagina)
     t = texto(c)
@@ -516,23 +571,24 @@ def medir_categoria(banco):
        all("&#038;" not in b for b in re.findall(r"<script[^>]*>(.*?)</script>", pagina, re.S)))
 
     # --- a listagem tem as sete especies e o numero CONTADO
-    for ident in TETRAS:
+    for ident in ESPECIES:
         ok("%s: lista %s" % (slug, ident), banco[ident]["nome_cientifico"] in t)
-    ok("%s: a contagem da abertura e %d" % (slug, len(TETRAS)),
-       ("São %d tetras" % len(TETRAS)) in t)
+    ok("%s: a contagem da abertura e %d" % (slug, len(ESPECIES)),
+       ("São %d %s" % (len(ESPECIES), ROTULO)) in t)
     # A prestação de contas tem DUAS formas, e a segunda so existe desde a leva
     # 2: com a fila vazia, "0 estão na fila, e a próxima leva sai depois" e uma
     # promessa sobre uma leva que nao existe. O teste cobra a forma certa para o
     # estado de hoje e cobra que a OUTRA nao apareca — senao a pagina poderia
     # servir as duas frases e passar.
-    na_fila = len(TETRAS) - len(FICHAS)
+    com_ficha = [i for i in ESPECIES if i in FICHAS.values()]
+    na_fila = len(ESPECIES) - len(com_ficha)
     if na_fila > 0:
         ok("%s: diz quantas ja tem ficha (%d) e quantas faltam (%d)" % (slug, len(FICHAS), na_fila),
-           ("%d já têm a conta inteira" % len(FICHAS)) in t and ("%d estão na fila" % na_fila) in t)
+           ("%d já têm a conta inteira" % len(com_ficha)) in t and ("%d estão na fila" % na_fila) in t)
         ok("%s: nao diz que a lista esta fechada" % slug, "esta lista está fechada" not in t)
     else:
         ok("%s: a categoria esta fechada e a pagina diz isso" % slug,
-           ("As %d espécies da tabela têm a conta inteira" % len(TETRAS)) in t
+           ("As %d espécies da tabela têm a conta inteira" % len(ESPECIES)) in t
            and "esta lista está fechada" in t)
         ok("%s: nao promete leva nenhuma com a fila vazia" % slug, "estão na fila" not in t)
 
@@ -545,13 +601,13 @@ def medir_categoria(banco):
     if linhas:
         ordem = []
         for tr in re.findall(r"<tr>(.*?)</tr>", linhas[0], re.S):
-            for ident in TETRAS:
+            for ident in ESPECIES:
                 if banco[ident]["nome_cientifico"] in texto(tr):
                     ordem.append(ident)
         frentes = [faixa_do_campo(banco[i], "comprimento_minimo_aquario_cm")[1] for i in ordem]
         ok("%s: a tabela sai da menor frente para a maior" % slug,
            frentes == sorted(frentes), str(list(zip(ordem, frentes))))
-        ok("%s: a tabela tem as sete linhas" % slug, len(ordem) == len(TETRAS), str(ordem))
+        ok("%s: a tabela tem uma linha por especie da categoria" % slug, len(ordem) == len(ESPECIES), str(ordem))
 
     # --- a ancora de cada filha e o titulo dela, nunca "clique aqui"
     ancoras = re.findall(r"<a [^>]*>(.*?)</a>", c, re.S)
@@ -559,8 +615,17 @@ def medir_categoria(banco):
     for proibida in ("clique aqui", "saiba mais", "veja mais", "leia mais"):
         ok("%s: nenhuma ancora diz %r" % (slug, proibida),
            not any(proibida in a.lower() for a in ancoras))
-    for outro in FICHAS:
+    # AS FICHAS DESTA CATEGORIA, nao as do eixo inteiro (leva 3, 12/09/2026).
+    # Ate a leva 2 as duas listas eram a mesma, porque so havia uma categoria, e
+    # esta afirmacao varria `FICHAS`. Com a segunda no ar ela passou a cobrar
+    # que /peixes/tetras/ apontasse para as coridoras — pedindo justamente o
+    # cluster ralo que o 16.6 proibe. A regua estava errada, nao a pagina.
+    minhas = [sl for sl, cat in CATEGORIA_DA_FICHA.items() if cat == slug]
+    for outro in minhas:
         ok("%s: aponta para a ficha %s" % (slug, outro), outro in c)
+    de_outra = [sl for sl, cat in CATEGORIA_DA_FICHA.items() if cat != slug]
+    vazadas = [sl for sl in de_outra if sl in c]
+    ok("%s: nao aponta para ficha de outra categoria" % slug, not vazadas, str(vazadas))
 
     # --- a trilha: tres degraus
     passos = trilha(pagina)
@@ -573,8 +638,8 @@ def medir_categoria(banco):
     ok("%s: JSON-LD tem ItemList" % slug, "ItemList" in tipos)
     for no in jsonlds(pagina):
         if no.get("@type") == "ItemList":
-            ok("%s: o ItemList tem %d itens, todos com endereco" % (slug, len(FICHAS)),
-               no["numberOfItems"] == len(FICHAS) and all(x.get("item") for x in no["itemListElement"]))
+            ok("%s: o ItemList tem %d itens, todos com endereco" % (slug, len(minhas)),
+               no["numberOfItems"] == len(minhas) and all(x.get("item") for x in no["itemListElement"]))
     ok("%s: linka a mae numa frase do corpo" % slug, 'class="aqm-px-mae"' in c)
 
 
@@ -616,7 +681,8 @@ def medir_secao(banco):
     cartoes = re.findall(r'<li class="aqm-px-cat">(.*?)</li>', c, re.S)
     ok("%s: serve seis cartoes de categoria" % slug, len(cartoes) == 6, "%d cartoes" % len(cartoes))
     com_link = [x for x in cartoes if "<a href=" in x]
-    ok("%s: so a categoria com filhas e link" % slug, len(com_link) == 1, "%d com link" % len(com_link))
+    ok("%s: so as categorias com filhas sao link (%d)" % (slug, len(CATEGORIAS)),
+       len(com_link) == len(CATEGORIAS), "%d com link" % len(com_link))
     for cartao in cartoes:
         if "<a href=" in cartao:
             continue
@@ -627,7 +693,8 @@ def medir_secao(banco):
     ok("%s: a trilha tem dois degraus" % slug, len(passos) == 2, str([p[0] for p in passos]))
     tipos = {no.get("@type") for no in jsonlds(pagina)}
     ok("%s: JSON-LD tem CollectionPage" % slug, "CollectionPage" in tipos, str(sorted(tipos)))
-    ok("%s: aponta para a categoria que existe" % slug, CATEGORIA in c)
+    for cat in CATEGORIAS:
+        ok("%s: aponta para a categoria %s, que existe" % (slug, cat), ("/%s/" % cat) in c)
 
 
 banco_global = [None]
@@ -745,8 +812,8 @@ def medir_o_que_vale_para_todas():
     #     sozinho — o erro estaria no registro, uma leva antes de aparecer.
     snippet = open(os.path.join(RAIZ, "snippets", "aquametria-peixes.php"), encoding="utf-8").read()
     registradas = re.findall(r"'([a-z0-9-]+)' => array\(\s*\n\s*'nivel'\s*=> 2,", snippet)
-    ok("so uma categoria de nivel 2 esta registrada como pagina",
-       registradas == [CATEGORIA], str(registradas))
+    ok("as categorias de nivel 2 registradas sao exatamente as da regua",
+       registradas == list(CATEGORIAS), "registro=%s regua=%s" % (registradas, list(CATEGORIAS)))
     for cat in registradas:
         bloco = re.search(r"'%s' => array\(\s*\n\s*'rotulo'.*?'especies' => array\((.*?)\),"
                           % re.escape(cat), snippet, re.S)
@@ -765,7 +832,8 @@ def main():
     banco = carregar_banco()
     banco_global[0] = banco
     medir_secao(banco)
-    medir_categoria(banco)
+    for cat in CATEGORIAS:
+        medir_categoria(cat, banco)
     for slug, ident in FICHAS.items():
         medir_ficha(slug, ident, banco)
     medir_o_que_vale_para_todas()

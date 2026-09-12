@@ -333,6 +333,16 @@ const CONTEUDO = [
   'quantos-litros-para-tetra-brilhante',
   'quantos-litros-para-rodostomo',
   'quantos-litros-para-tetra-negro',
+  /* A leva 3 (12/09/2026): a categoria /peixes/corydoras/ e as quatro fichas
+     dela. A da categoria é a que mais importa aqui: a abertura de categoria
+     deixou de ser texto fixo e passou a vir declarada por categoria, e texto
+     declarado num array de configuração é exatamente onde a voz escapa sem
+     ninguém ler — não passa por revisão de página, passa por revisão de dado. */
+  'corydoras',
+  'quantos-litros-para-coridora-bronze',
+  'quantos-litros-para-coridora-pimenta',
+  'quantos-litros-para-coridora-panda',
+  'quantos-litros-para-coridora-sterbai',
 ];
 
 /* Fabricantes e fontes citadas pela ilha. Escrita À MÃO aqui, como a lista de

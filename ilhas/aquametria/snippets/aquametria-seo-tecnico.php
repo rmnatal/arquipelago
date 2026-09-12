@@ -266,9 +266,29 @@ function aquametria_seo_metas_por_slug() {
 			'titulo'    => 'Quantos lúmens por litro o aquário plantado precisa',
 			'descricao' => 'Três fontes brasileiras chamam a mesma faixa de lúmens por litro com o dobro do número. De onde vem a regra e por que o lúmen é a unidade errada.',
 		),
+		'corydoras' => array(
+			'titulo'    => 'Coridoras: quanto chão o grupo pede',
+			'descricao' => 'Coridora se dimensiona pelo chão, não pelo litro: porte, cardume mínimo e base mínima das quatro espécies, com a fonte de cada linha.',
+		),
 		'peixes' => array(
 			'titulo'    => 'Quanto espaço cada peixe pede',
 			'descricao' => 'Quanto espaço cada peixe pede, em centímetros de chão e não em litros: o mínimo declarado por fonte com nome e data, espécie por espécie.',
+		),
+		'quantos-litros-para-coridora-bronze' => array(
+			'titulo'    => 'Quantos litros para um cardume de coridora bronze?',
+			'descricao' => 'Quantos litros para um cardume de coridora bronze? A base de 80 x 30 cm que a fonte declara, com nome e data, e a conta pelas duas réguas.',
+		),
+		'quantos-litros-para-coridora-panda' => array(
+			'titulo'    => 'Quantos litros para um cardume de coridora panda?',
+			'descricao' => 'Quantos litros para um cardume de coridora panda? A base de 45 x 30 cm que a fonte declara — a menor do banco — e a conta em litros.',
+		),
+		'quantos-litros-para-coridora-pimenta' => array(
+			'titulo'    => 'Quantos litros para um cardume de coridora pimenta?',
+			'descricao' => 'Quantos litros para um cardume de coridora pimenta? A base mínima declarada por duas fontes que discordam, com os dois números na tela.',
+		),
+		'quantos-litros-para-coridora-sterbai' => array(
+			'titulo'    => 'Quantos litros para um cardume de coridora sterbai?',
+			'descricao' => 'Quantos litros para um cardume de coridora sterbai? A base e o cardume mínimo que a ficha da espécie declara, com nome da fonte e data.',
 		),
 		'quantos-litros-para-mato-grosso' => array(
 			'titulo'    => 'Quantos litros para um cardume de mato-grosso?',

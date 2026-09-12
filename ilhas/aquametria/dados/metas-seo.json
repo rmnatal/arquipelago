@@ -73,6 +73,31 @@
    "titulo": "Quantos litros para um cardume de tetra-negro?",
    "url": "https://aquametria.com.br/peixes/tetras/quantos-litros-para-tetra-negro/",
    "meta_descricao": "Quantos litros para um cardume de tetra-negro? Cardume mínimo de 5, base declarada de 75 × 30 cm e a divergência de 15 cm entre as duas fontes."
+  },
+  "corydoras": {
+   "titulo": "Coridoras: quanto chão o grupo pede",
+   "url": "https://aquametria.com.br/peixes/corydoras/",
+   "meta_descricao": "Coridora se dimensiona pelo chão, não pelo litro: porte, cardume mínimo e base mínima das quatro espécies, com a fonte de cada linha."
+  },
+  "quantos-litros-para-coridora-bronze": {
+   "titulo": "Quantos litros para um cardume de coridora bronze?",
+   "url": "https://aquametria.com.br/peixes/corydoras/quantos-litros-para-coridora-bronze/",
+   "meta_descricao": "Quantos litros para um cardume de coridora bronze? A base de 80 x 30 cm que a fonte declara, com nome e data, e a conta pelas duas réguas."
+  },
+  "quantos-litros-para-coridora-pimenta": {
+   "titulo": "Quantos litros para um cardume de coridora pimenta?",
+   "url": "https://aquametria.com.br/peixes/corydoras/quantos-litros-para-coridora-pimenta/",
+   "meta_descricao": "Quantos litros para um cardume de coridora pimenta? A base mínima declarada por duas fontes que discordam, com os dois números na tela."
+  },
+  "quantos-litros-para-coridora-panda": {
+   "titulo": "Quantos litros para um cardume de coridora panda?",
+   "url": "https://aquametria.com.br/peixes/corydoras/quantos-litros-para-coridora-panda/",
+   "meta_descricao": "Quantos litros para um cardume de coridora panda? A base de 45 x 30 cm que a fonte declara — a menor do banco — e a conta em litros."
+  },
+  "quantos-litros-para-coridora-sterbai": {
+   "titulo": "Quantos litros para um cardume de coridora sterbai?",
+   "url": "https://aquametria.com.br/peixes/corydoras/quantos-litros-para-coridora-sterbai/",
+   "meta_descricao": "Quantos litros para um cardume de coridora sterbai? A base e o cardume mínimo que a ficha da espécie declara, com nome da fonte e data."
   }
  }
 }
