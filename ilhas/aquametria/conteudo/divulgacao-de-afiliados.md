@@ -55,6 +55,14 @@ Somos transparentes também sobre o tamanho disso. Hoje a Aquametria tem links d
 
 Sobre as fotos: as vitrines mostram a imagem do próprio anúncio do produto, quando existe, e o banco guarda de cada uma a origem e a data em que foi coletada. Foto nenhuma decide quem aparece na lista — **produto sem foto não some**: ele sai com um espaço reservado neutro, na mesma posição que a adequação técnica lhe deu. Perder a recomendação certa por falta de imagem seria trocar o certo pelo bonito.
 
+## O que a gente mede da sua visita
+
+**Desde 12/09/2026 este site usa o Google Analytics 4 para medir audiência** — quantas pessoas chegam, por qual página entram e de onde vieram.
+
+Vale dizer para que serve, porque é a razão de a medição existir aqui: a gente quer saber quando alguém chega por uma resposta de IA. ChatGPT, Perplexity e Gemini aparecem nesse relatório como origem da visita, e não aparecem em nenhum outro lugar. É o único jeito de saber se as contas daqui estão sendo citadas quando você pergunta a um assistente quantos watts de aquecedor o seu aquário precisa.
+
+O que **não** tem: não há banner de cookie pedindo o seu consentimento no meio da leitura, porque a resposta que você veio buscar não deve ficar embaixo de uma caixa; não há pixel de rede social, não há remarketing, não há venda de dado, e a tag do Google é o único script de terceiro que carrega em qualquer página desta ilha. A gente não guarda nome, e-mail nem nada que identifique você — não existe cadastro, login nem formulário de contato aqui.
+
 ## Se você discorda de uma escolha
 
 O critério está aberto em [como a Aquametria calcula](https://aquametria.com.br/metodologia/), e cada número publicado leva a fonte e a data ao lado justamente para poder ser contestado. Fonte melhor entra, o número muda e a data de verificação muda junto.

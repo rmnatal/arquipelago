@@ -1,5 +1,23 @@
 /**
  * Aquametria Casca — identidade e estrutura do site
+ * Versão: 1.6.0 (12/09/2026) — a ilha passa a MEDIR. Despacho de prioridade alta
+ * de 12/09/2026 (dados/despachos.md): a tag do GA4 entra no wp_head pela casca,
+ * nunca por plugin (seção 11.7), com o ID de medição desta ilha em constante no
+ * topo deste arquivo. Sem ela a seção 5 do ARQUIPELAGO.md — visibilidade em IA —
+ * não é mensurável: a referência de chatgpt.com, perplexity.ai e
+ * gemini.google.com só aparece no GA4. Detalhes e o porquê da prioridade 23 na
+ * seção 3f, aqui embaixo.
+ *   ESTA VERSÃO TAMBÉM ACERTA O NÚMERO DA CASCA, e isso não é detalhe de
+ *   etiqueta: a constante estava em 1.4.1 enquanto este cabeçalho, o manifest e
+ *   todo o REGISTRO.md documentavam 1.5.0 (a árvore das treze páginas) e 1.5.1
+ *   (o degrau da trilha da divulgação). As duas foram ao ar de verdade — o que
+ *   nunca subiu foi o número. Como aquametria_casca_montar() só remonta a
+ *   estrutura quando a constante muda, subir o número dispara uma remontagem, e
+ *   por isso o acerto esperava um bloco que tocasse a casca: é este. A
+ *   remontagem é idempotente (não duplica página, não repete a lixeira — que
+ *   além disso está travada pela opção aquametria_casca_limpeza, e não
+ *   reescreve página editada à mão), então o custo é uma passada de opções. A
+ *   1.6.0 carrega as três coisas: a 1.5.0, a 1.5.1 e o GA4.
  * Versão: 1.5.1 (11/09/2026) — o degrau da trilha da página de afiliados passa a
  * dizer o mesmo que o H1 logo abaixo dele. O rodapé continua com o nome
  * reconhecível de aviso de comissão; só a trilha responde pelo nome da página.
@@ -119,7 +137,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'AQUAMETRIA_CASCA_VERSAO', '1.4.1' );
+	define( 'AQUAMETRIA_CASCA_VERSAO', '1.6.0' );
 	/* A tagline é a primeira frase que um visitante lê no rodapé de toda página.
 	   Até a 1.3.1 ela era a descrição interna do produto ("Calculadoras e dados
 	   técnicos para dimensionar o seu aquário"); agora fala com quem chegou. */
@@ -133,6 +151,15 @@ if ( ! defined( 'AQUAMETRIA_CASCA_VERSAO' ) ) {
 	   pode ser longa porque quem chegou lá já está na página; a do título não,
 	   porque o Google corta perto de 60 caracteres. */
 	define( 'AQUAMETRIA_CASCA_TAGLINE_CURTA', 'as contas do seu aquário' );
+	/* ID de medição do GA4 desta ilha — AQUAMETRIA, propriedade 553860444 na conta
+	   'Arquipélago' (407777291), fluxo "Aquametria — site" (15766241359). Mora aqui,
+	   no topo, e não no meio do código que imprime a tag, porque o despacho de
+	   12/09/2026 é explícito: identificador de medição digitado no meio de uma
+	   função é o tipo de dado que ninguém acha quando precisa trocar. A mesma
+	   linha está no PROMPT.md da ilha, e é ELE que a bancada lê para conferir esta
+	   constante — teste que pergunta ao snippet qual é o ID certo não mede nada
+	   (seção 8 do ARQUIPELAGO.md). */
+	define( 'AQUAMETRIA_CASCA_GA4_ID', 'G-8Y26XFZF39' );
 }
 
 /* ---------------------------------------------------------------------------
@@ -1396,6 +1423,61 @@ add_action( 'wp_head', function () {
 	echo '<script type="application/ld+json" id="aquametria-trilha-jsonld">' . "\n"
 		. wp_json_encode( $dados ) . "\n" . '</script>' . "\n";
 }, 22 );
+
+/* ---------------------------------------------------------------------------
+ * 3f. A tag de medição (GA4)
+ *
+ * Despacho de 12/09/2026, prioridade alta: sem esta tag a seção 5 do
+ * ARQUIPELAGO.md (visibilidade em IA) não é mensurável, porque a referência de
+ * chatgpt.com, perplexity.ai e gemini.google.com só aparece no GA4 — o Search
+ * Console não a vê. Ela é SNIPPET e não plugin pela seção 11.7: a página
+ * pública é território da casca, e o repositório continua sendo o dono.
+ *
+ * PRIORIDADE 23, e o número é a regra escrita em código. O despacho manda
+ * imprimir "o mais cedo possível" E proíbe entrar antes do <title>, da meta
+ * descrição ou do JSON-LD. Quem já está no wp_head desta ilha:
+ *     1  <title> (o núcleo, _wp_render_title_tag)
+ *     3  meta descrição e og: (aquametria-seo-tecnico)
+ *     5  ícone do site
+ *    20  fontes e paleta; JSON-LD das cinco calculadoras e dos três artigos
+ *    22  BreadcrumbList
+ * Então 23 é o mais cedo que sobra depois do último JSON-LD, e não é escolha de
+ * gosto: é o único número que cumpre as duas metades do despacho ao mesmo tempo.
+ *
+ * UM PARÂMETRO SÓ NA URL, de propósito. O defeito de 08/09/2026 que derrubou
+ * cinco calculadoras foi o E-comercial virando &#038;; aqui o risco não é o
+ * mesmo (isto não sai de shortcode), mas esc_url() também escapa & e a tag do
+ * Google aceita só o id — então não existe segundo parâmetro para escapar, e o
+ * portão que conta &#038; dentro de <script> continua vendo zero.
+ *
+ * SEM BANNER DE CONSENTIMENTO, por decisão do despacho e da seção 22.4: nada
+ * que empurre a resposta para baixo da dobra. Quem declara a medição é a página
+ * de transparência da ilha, em uma frase.
+ * ------------------------------------------------------------------------- */
+
+add_action( 'wp_head', function () {
+	/* Esta guarda NÃO é ramo morto, e é a mesma do ícone do site logo acima: o
+	   bloco de constantes do topo inteiro está dentro de
+	   `if ( ! defined( 'AQUAMETRIA_CASCA_VERSAO' ) )`, então uma cópia antiga da
+	   casca já carregada define a VERSÃO, o bloco é pulado e AQUAMETRIA_CASCA_GA4_ID
+	   nunca nasce. Sem esta linha, o site serviria a tag com a constante crua no
+	   lugar do ID. Não há guarda de is_admin() nem de is_feed() de propósito: o
+	   wp_head não roda em nenhum dos dois (lá são admin_head e rss2_head), e ramo
+	   que não roda é código que teste nenhum protege — seção 8 do ARQUIPELAGO.md. */
+	if ( ! defined( 'AQUAMETRIA_CASCA_GA4_ID' ) || '' === AQUAMETRIA_CASCA_GA4_ID ) {
+		return;
+	}
+
+	$id = AQUAMETRIA_CASCA_GA4_ID;
+
+	echo '<script async src="' . esc_url( 'https://www.googletagmanager.com/gtag/js?id=' . $id ) . '"></script>' . "\n";
+	echo '<script id="aquametria-ga4">'
+		. 'window.dataLayer=window.dataLayer||[];'
+		. 'function gtag(){dataLayer.push(arguments);}'
+		. "gtag('js',new Date());"
+		. "gtag('config'," . wp_json_encode( $id ) . ');'
+		. '</script>' . "\n";
+}, 23 );
 
 /**
  * A home, no molde GUIA do VOZ.md: a pergunta mais frequente em cima, as
