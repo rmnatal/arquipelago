@@ -1,5 +1,28 @@
 # CONTRATO DO ARQUIPÉLAGO
 
+## 0. MAPA DE LEITURA — leia só a sua parte (12/09/2026)
+
+Este contrato tem mais de 500 linhas e continua crescendo. **Ninguém lê tudo.** Cada papel abre as seções da sua linha e para. Ler seção de outro papel não é zelo: é gastar orçamento de contexto que faria falta no trabalho da ilha.
+
+| Papel | Seções |
+|---|---|
+| **Fundação** | 1 a 11, 13 a 18, 20, 21, 22 |
+| **Sentinela — ronda diária** | 2, 3, 4, 10, 12, 15, 16, 18, 19, 21, 22 |
+| **Sentinela — leitura semanal** | 2, 3, 4, 10, 12, 12.1, 14, 18, 21 |
+| **Bússola** | 10, 11, 14, 20, 21 — e `bussola/BUSSOLA.md`, que é a lei dela |
+| **Pauta das ilhas** | 10, 14, 15, 16, 17, 21 |
+| **Mãos no repositório** | nenhuma. A decisão já vem no disparo; ler o contrato é sinal de que virou Fundação |
+
+**Sempre, para todo papel:** seções **2** (cabeçalho de estado), **3** (o repositório é o lugar do trabalho), **4** (o site fica para trás em silêncio), **10** (regras que valem sempre) e **18** (correção fura a fila).
+
+**Como extrair só o que é seu**, sem carregar o arquivo inteiro:
+
+```
+awk '/^## 12\./{p=1} /^## 13\./{p=0} p' ARQUIPELAGO.md
+```
+
+Troque os dois números pelo começo da sua seção e pelo começo da seguinte. Para várias seções, rode uma vez por seção. **Quem tiver dúvida se uma seção é sua, lê — errar por ler a mais é barato; errar por não saber a regra custa uma leva inteira.**
+
 Regras que valem para TODA ilha. Quem executa um bloco lê este arquivo primeiro e depois o `PROMPT.md` da ilha sorteada. Regra nova do Arquipélago se escreve AQUI, uma vez — nunca copiada para dentro dos prompts das ilhas.
 
 Vocabulário: cada site de nicho é uma **ilha**, o conjunto é o **arquipélago**, o portão de publicação é o **desembarque**. Camadas: **BÚSSOLA** (decide o nicho) → **FUNDAÇÃO** (constrói) → **SENTINELA** (cuida da ilha viva).
