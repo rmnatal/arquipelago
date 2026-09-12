@@ -1,6 +1,6 @@
 /**
- * Aquametria Peixes — a primeira leva de malha do eixo /peixes/
- * Versão: 1.0.0 (12/09/2026)
+ * Aquametria Peixes — a malha do eixo /peixes/
+ * Versão: 1.1.0 (12/09/2026)
  *
  * T4 do PROMPT.md, leva 1: cinco URLs novas no eixo que a Bússola verificou
  * ABERTO e que é o de maior volume de busca da ilha — "quantos litros para X
@@ -59,6 +59,31 @@
  *      numérica e quebrariam o JSON do mesmo jeito que quebraram o JavaScript
  *      das cinco calculadoras em 08/09/2026.
  *
+ *   7. A PÁGINA SÓ AFIRMA O QUE A FONTE DECLAROU, E "BASE" NÃO É "FRENTE"
+ *      (leva 2, 12/09/2026). A linha mestra da ficha terminava sempre em "e a
+ *      fonte declara a BASE, não o litro". Era verdade nas três fichas da leva
+ *      1, porque as três têm `base_minima_cm` preenchida — e é falsa em 14 dos
+ *      36 registros do banco, onde a fonte declara só o COMPRIMENTO mínimo e
+ *      nunca disse uma palavra sobre o fundo. O rodóstomo, desta leva, é o
+ *      primeiro caso: o Seriously Fish declara "no mínimo 90 cm de
+ *      comprimento" e ponto. Nesses registros a frase passa a dizer
+ *      COMPRIMENTO, as duas tabelas que dependem do fundo não saem — e a
+ *      página DIZ que não saíram e por quê, em vez de simplesmente encolher.
+ *      Sumiço silencioso de tabela é a forma disfarçada do "silêncio parece
+ *      defeito" da seção 7: quem lê não tem como saber se a ilha não sabe ou
+ *      se esqueceu.
+ *
+ *   8. ESPÉCIE DE CARDUME SEM O NÚMERO DO CARDUME NÃO VIRA FICHA. O título
+ *      deste eixo é "quantos litros para um cardume de X" e a linha mestra
+ *      abre por "para os N X que a fonte declara como cardume mínimo". Sem N a
+ *      página caía num ramo que escrevia a frase sem o número e abria a tabela
+ *      pré-renderizada em UM exemplar — numa página que, duas telas abaixo,
+ *      diz que a espécie só vive em grupo. O esquema já cobrava esse número no
+ *      portão da C8 desde que o banco nasceu; o que faltava era a página
+ *      cobrar o mesmo, com a mesma frase. `aquametria_peixes_pode_virar_ficha()`
+ *      é a régua DESTE lado, escrita aqui e não importada do gerador — quem
+ *      confere escreve a própria régua (seção 8 do contrato).
+ *
  * O QUE ESTE SNIPPET NÃO FAZ: criar página. Quem cria é a casca, pelo filtro
  * `aquametria_paginas` (casca 1.7.0) — inclusive o pai de cada uma, que é o que
  * faz a URL mostrar os três níveis da seção 16.1.
@@ -69,11 +94,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_PEIXES_VERSAO' ) ) {
-	define( 'AQUAMETRIA_PEIXES_VERSAO', '1.0.0' );
+	define( 'AQUAMETRIA_PEIXES_VERSAO', '1.1.0' );
 }
 
-/* A data em que a SERP das três consultas foi classificada (seção 14.9). Está
-   aqui uma vez só: data escrita à mão em três páginas envelhece em duas. */
+/* A data em que a SERP das consultas foi classificada (seção 14.9). Está aqui
+   uma vez só: data escrita à mão em sete páginas envelhece em duas. As quatro
+   consultas da leva 2 foram classificadas na MESMA data das três da leva 1 —
+   se uma leva futura sair em outro dia, esta constante deixa de servir para
+   todas e vira campo do registro. */
 if ( ! defined( 'AQUAMETRIA_PEIXES_SERP_EM' ) ) {
 	define( 'AQUAMETRIA_PEIXES_SERP_EM', '12/09/2026' );
 }
@@ -836,7 +864,7 @@ function aquametria_peixes_catalogo() {
 			'populares' => array(
 				'ramirezi',
 				'borboleta-boliviana',
-				'acara-borboleta',
+				'acará-borboleta',
 			),
 			'familia' => 'Cichlidae',
 			'origem' => '',
@@ -889,9 +917,9 @@ function aquametria_peixes_catalogo() {
 				'Petitella rhodostoma',
 			),
 			'populares' => array(
-				'rodostomo',
+				'rodóstomo',
 				'nariz-vermelho',
-				'cabeca-de-fosforo',
+				'cabeça-de-fósforo',
 			),
 			'familia' => 'Characidae',
 			'origem' => '',
@@ -1193,8 +1221,8 @@ function aquametria_peixes_catalogo() {
 				'Nannostomus aripirangensis',
 			),
 			'populares' => array(
-				'peixe-lapis',
-				'peixe lapis dourado',
+				'peixe-lápis',
+				'peixe lápis dourado',
 				'nannostomus beckfordi',
 			),
 			'familia' => 'Lebiasinidae',
@@ -1562,14 +1590,14 @@ function aquametria_peixes_catalogo() {
 			'sinonimos' => array(),
 			'populares' => array(
 				'tetra-negro',
-				'viuva-negra',
+				'viúva-negra',
 				'tetra-preto',
 			),
 			'familia' => 'Acestrorhamphidae',
 			'origem' => '',
 			'porte_cm' => 7.5,
 			'porte_medida' => 'SL',
-			'cardume' => null,
+			'cardume' => 5,
 			'convivencia' => 'cardume',
 			'comportamento' => 'pacifico',
 			'frente_cm' => 75,
@@ -1577,7 +1605,7 @@ function aquametria_peixes_catalogo() {
 			'base_largura' => 30,
 			'temp_min' => 20,
 			'temp_max' => 26,
-			'status' => 'completo',
+			'status' => 'conflito',
 			'fontes' => array(
 				array(
 					'corpo' => 'FishBase',
@@ -1606,17 +1634,45 @@ function aquametria_peixes_catalogo() {
 					),
 					'referencia' => 'Seriously Fish — ficha da especie: um grupo pode ser mantido em aquario padrao de 75 x 30 cm (70 litros); especie ativa, que quer bastante espaco aberto para nadar mais areas de plantio denso e vegetacao flutuante para amenizar a luz.',
 				),
+				array(
+					'corpo' => 'FishBase',
+					'url' => 'https://www.fishbase.se/summary/4682',
+					'em' => '2026-09-12',
+					'campos' => array(
+						'cardume_minimo',
+						'comprimento_minimo_aquario_cm',
+					),
+					'referencia' => 'FishBase - secao de aquario: manter em grupos de 5 ou mais individuos; aquario minimo de 60 cm.',
+				),
 			),
-			'conflitos' => array(),
+			'conflitos' => array(
+				array(
+					'campo' => 'comprimento_minimo_aquario_cm',
+					'valores' => array(
+						array(
+							'valor' => 60,
+							'fonte' => 'FishBase',
+							'referencia' => 'FishBase, secao de aquario: aquario minimo de 60 cm',
+						),
+						array(
+							'valor' => 75,
+							'fonte' => 'Seriously Fish',
+							'referencia' => 'Seriously Fish: um grupo pode ser mantido em aquario padrao de 75 x 30 cm',
+						),
+					),
+					'razao' => 'Quinze centimetros de frente entre as duas declaracoes, e as DUAS reguas do esquema apontam para o mesmo lado, o que e raro e vale registrar: comprimento_minimo_aquario_cm e campo de MANUTENCAO, e a tabela dominio_por_campo poe o compendio acima da base cientifica nesses campos; e a regra de assimetria de custo do banco de especies manda ficar com o MAIOR, porque errar espaco para cima so custa aquario mais largo. Fica 75. A divergencia nao e conflito de fato: a base cientifica declara o piso de onde a especie sobrevive e o compendio declara a base de onde o cardume nada em cardume - e e o segundo que a pergunta desta ilha faz.',
+					'tratamento' => 'publicar-os-dois',
+				),
+			),
 		),
 		'melanotaenia-boesemani' => array(
 			'id' => 'melanotaenia-boesemani',
 			'cientifico' => 'Melanotaenia boesemani',
 			'sinonimos' => array(),
 			'populares' => array(
-				'peixe arco-iris boesemani',
+				'peixe arco-íris boesemani',
 				'rainbow boesemani',
-				'arco-iris de boeseman',
+				'arco-íris de boeseman',
 			),
 			'familia' => 'Melanotaeniidae',
 			'origem' => 'Asia/Oceania: lagos Ajamaru, peninsula de Vogelkop, Irian Jaya, Indonesia',
@@ -1706,8 +1762,8 @@ function aquametria_peixes_catalogo() {
 			),
 			'populares' => array(
 				'colisa',
-				'colisa-anao',
-				'gurami-anao',
+				'colisa-anão',
+				'gurami-anão',
 			),
 			'familia' => 'Osphronemidae',
 			'origem' => 'Asia: Paquistao, India e Bangladesh',
@@ -1758,7 +1814,7 @@ function aquametria_peixes_catalogo() {
 			'cientifico' => 'Pterophyllum scalare',
 			'sinonimos' => array(),
 			'populares' => array(
-				'acara-bandeira',
+				'acará-bandeira',
 				'bandeira',
 				'anjo',
 			),
@@ -1882,7 +1938,7 @@ function aquametria_peixes_catalogo() {
 				'Botia macracantha',
 			),
 			'populares' => array(
-				'botia-palhaco',
+				'botia-palhaço',
 				'botia',
 			),
 			'familia' => 'Botiidae',
@@ -1958,7 +2014,7 @@ function aquametria_peixes_catalogo() {
 			'populares' => array(
 				'oscar',
 				'apaiari',
-				'acara-acu',
+				'acará-açu',
 			),
 			'familia' => 'Cichlidae',
 			'origem' => '',
@@ -2011,7 +2067,7 @@ function aquametria_peixes_catalogo() {
 			'populares' => array(
 				'kinguio',
 				'peixe dourado',
-				'japones',
+				'japonês',
 			),
 			'familia' => 'Cyprinidae',
 			'origem' => '',
@@ -2143,6 +2199,46 @@ function aquametria_peixes_registro() {
 			'consulta' => 'quantos litros para mato grosso peixe',
 			'porque'   => 'Medido em 12/09/2026: o top 8 é blog antigo, duas lojas e dois portais de ração, com números que se contradizem na mesma página de resultados — 40 L de mínimo contra 60 L para 6 a 8, cardume de 3 contra cardume de 6, e porte de 3 cm contra 5 cm. É a SERP mais frouxa das três, e a única em que as duas fontes do nosso banco também discordam: a página publica as duas.',
 		),
+
+		/* --- LEVA 2, 12/09/2026: as quatro que faltavam para fechar a
+		   categoria. Nenhuma URL da leva 1 muda, nenhum endereço se move. --- */
+
+		'quantos-litros-para-tetra-ember' => array(
+			'nivel'    => 3,
+			'pai'      => 'tetras',
+			'especie'  => 'hyphessobrycon-amandae',
+			'titulo'   => 'Quantos litros para um cardume de tetra ember?',
+			'conteudo' => '[aquametria_peixes_ficha]',
+			'consulta' => 'quantos litros para tetra ember',
+			'porque'   => 'Medido em 12/09/2026: o top 8 não tem um domínio brasileiro forte — é revista de loja estrangeira (zooplus.pt), blog (blogdopescador), três lojas hispano-americanas, uma ficha de aquarismo e uma loja brasileira. Os números discordam na mesma página de resultados (30 L, 40 L para 10 exemplares, 50 L para 10) e nenhum atribui o número a fonte nomeada. O caso que a 14.9 classifica como ALVO.',
+		),
+		'quantos-litros-para-tetra-brilhante' => array(
+			'nivel'    => 3,
+			'pai'      => 'tetras',
+			'especie'  => 'hemigrammus-erythrozonus',
+			'titulo'   => 'Quantos litros para um cardume de tetra-brilhante?',
+			'conteudo' => '[aquametria_peixes_ficha]',
+			'consulta' => 'quantos litros para tetra brilhante',
+			'porque'   => 'Medido em 12/09/2026: o top 10 é seis lojas (rsdiscus, proaquarista, kauar, barretos, aquastuchi), duas fichas de aquarismo, um portal e um WordPress de 2011. Dão 40, 50 e 60 L sem fonte, e a própria página de resultados mistura outras espécies (tetra gold, neon verde) na resposta — sinal de SERP frouxa. É ALVO, e o registro do nosso banco é o mais bem sustentado da categoria: as duas fontes concordam na frente e divergem em um exemplar de cardume.',
+		),
+		'quantos-litros-para-rodostomo' => array(
+			'nivel'    => 3,
+			'pai'      => 'tetras',
+			'especie'  => 'hemigrammus-rhodostomus',
+			'titulo'   => 'Quantos litros para um cardume de rodóstomo?',
+			'conteudo' => '[aquametria_peixes_ficha]',
+			'consulta' => 'quantos litros para rodostomo',
+			'porque'   => 'Medido em 12/09/2026: o top 9 é três fichas de aquarismo (aquarismopaulista, peixeseaquarismo, blogdopescador) e seis lojas. É a única das sete consultas deste eixo em que alguém do top publica a base (80 × 30 × 40 cm) — e publica sem dizer de onde tirou, ao lado de outra resposta que diz 60 L para o mesmo cardume. Segue ALVO, e aqui a vantagem da ilha não é o ineditismo do número: é a atribuição, e é a página assumir que o fundo NÃO está declarado por ninguém em vez de completá-lo de cabeça.',
+		),
+		'quantos-litros-para-tetra-negro' => array(
+			'nivel'    => 3,
+			'pai'      => 'tetras',
+			'especie'  => 'gymnocorymbus-ternetzi',
+			'titulo'   => 'Quantos litros para um cardume de tetra-negro?',
+			'conteudo' => '[aquametria_peixes_ficha]',
+			'consulta' => 'quantos litros para tetra negro',
+			'porque'   => 'Medido em 12/09/2026: é a SERP mais disputada das sete deste eixo — tem a Petz, que é domínio forte, ao lado de zooplus.pt, PetMag, aquarismopaulista e três lojas. Segue ALVO porque um domínio forte não é "quase tudo" (14.9) e porque o que ele serve é blog de varejo sem número atribuído: a mesma página de resultados dá 60 L, 70 L e 112 L, e o conselho de "três a seis indivíduos de cada tipo", que é regra de aquário comunitário e não cardume mínimo da espécie. As duas fontes do nosso banco declaram 5 ou mais, e discordam da frente em 15 cm.',
+		),
 	);
 }
 }
@@ -2224,6 +2320,29 @@ function aquametria_peixes_porte_faixa( $e ) {
 		}
 	}
 	return array( min( $valores ), max( $valores ) );
+}
+}
+
+/**
+ * O portão de PÁGINA, deste lado — decisão 8 do cabeçalho.
+ *
+ * Estar no catálogo não basta para ter página própria: a ficha deste eixo se
+ * chama "quantos litros para um cardume de X" e abre pela frase que nomeia o
+ * cardume mínimo. Espécie que o banco declara de cardume ou de grupo SEM o
+ * número não passa. Quem declara convivência solitário, casal ou harém passa
+ * sem o número — ali a ausência é a declaração, não o buraco.
+ *
+ * A régua está ESCRITA aqui e não importada do gerador de catálogo. É a mesma
+ * frase que o esquema usa (`minimo_para_sugerir.pagina-especie`), e é o teste
+ * que cobra que as duas digam o mesmo — se este arquivo chamasse a régua de
+ * quem produziu o dado, as duas metades errariam juntas (seção 8 do contrato).
+ */
+if ( ! function_exists( 'aquametria_peixes_pode_virar_ficha' ) ) {
+function aquametria_peixes_pode_virar_ficha( $e ) {
+	if ( ! empty( $e['cardume'] ) ) {
+		return true;
+	}
+	return in_array( $e['convivencia'], array( 'solitario', 'casal', 'harem' ), true );
 }
 }
 
@@ -2555,6 +2674,13 @@ function aquametria_peixes_ficha_html( $slug ) {
 		   ficha pela metade. Página sem corpo é página fina, e o teste reprova. */
 		return '';
 	}
+	if ( ! aquametria_peixes_pode_virar_ficha( $catalogo[ $id ] ) ) {
+		/* Decisão 8: espécie de cardume sem o número do cardume não vira ficha.
+		   Devolver vazio aqui é o mesmo tratamento de quem sai do catálogo —
+		   página sem corpo é página fina, e o portão do teste reprova antes de
+		   a URL nascer. */
+		return '';
+	}
 	$e      = $catalogo[ $id ];
 	$nome   = aquametria_peixes_nome( $e );
 	$porte  = aquametria_peixes_porte_faixa( $e );
@@ -2577,9 +2703,15 @@ function aquametria_peixes_ficha_html( $slug ) {
 			. esc_html( aquametria_peixes_num( $frente[1] ) ) . ' cm de frente';
 	}
 	if ( $larg ) {
-		$html .= ' por ' . esc_html( aquametria_peixes_num( $larg ) ) . ' cm de fundo';
+		$html .= ' por ' . esc_html( aquametria_peixes_num( $larg ) )
+			. ' cm de fundo — e a fonte declara a BASE, não o litro.</p>';
+	} else {
+		/* Decisão 7: a frase tem o escopo do que foi medido. Aqui a fonte
+		   declarou o comprimento e não disse uma palavra sobre o fundo, então
+		   a página não pode dizer "base" — em 14 dos 36 registros do banco é
+		   exatamente esse o caso. */
+		$html .= ' — e a fonte declara o COMPRIMENTO do aquário, não o litro.</p>';
 	}
-	$html .= ' — e a fonte declara a BASE, não o litro.</p>';
 
 	$alturas = aquametria_peixes_alturas();
 	$litros_alturas = array();
@@ -2607,6 +2739,15 @@ function aquametria_peixes_ficha_html( $slug ) {
 			. esc_html( aquametria_peixes_num( $cubo ) ) . ' cm de lado — o litro certo e '
 			. esc_html( aquametria_peixes_num( $frente[1] - $cubo ) )
 			. ' cm de frente a menos do que este cardume pede.</p>';
+	} else {
+		/* Decisão 7, a outra metade: sem o fundo declarado, as duas tabelas que
+		   dependem dele não saem — e a página DIZ que não saíram e por quê. A
+		   versão anterior deste código simplesmente encolhia, e quem lesse não
+		   tinha como distinguir "a ilha não sabe" de "a ilha esqueceu". */
+		$html .= '<p class="aqm-px-sem-fundo"><strong>O fundo do aquário esta página não tem como dizer, e isso é o que a fonte declarou — não um buraco nosso.</strong> '
+			. 'Para o ' . esc_html( $nome ) . ' a fonte publica o comprimento mínimo e para aí: não há largura declarada por ninguém. '
+			. 'Sem os dois lados do chão não existe litro, então aqui não sai a tabela de litros por altura nem a de quantos cabem no aquário mínimo — elas sairiam de um fundo que a gente teria inventado. '
+			. 'O que a página responde com o que está medido é a outra metade, e ela está logo abaixo: quantos litros o cardume pede pelas duas réguas brasileiras de lotação, que partem do comprimento dos peixes e não do chão do aquário.</p>';
 	}
 
 	/* A camada de prova: fonte pelo nome e data, um parágrafo abaixo (15.2). */
@@ -2616,7 +2757,8 @@ function aquametria_peixes_ficha_html( $slug ) {
 	}
 	$html .= '<p class="aqm-prova">';
 	if ( $fonte_frente ) {
-		$html .= 'Quem declara essa base é o ' . esc_html( $fonte_frente['corpo'] )
+		$html .= 'Quem declara ' . ( $larg ? 'essa base' : 'esse comprimento' ) . ' é o '
+			. esc_html( $fonte_frente['corpo'] )
 			. ', na ficha da espécie, colhido em ' . esc_html( aquametria_peixes_data_br( $fonte_frente['em'] ) ) . '. ';
 	}
 	if ( count( (array) $e['conflitos'] ) ) {
@@ -2884,8 +3026,8 @@ function aquametria_peixes_ficha_html( $slug ) {
 
 	/* --- 5.9 A consulta-alvo e a classificação da SERP, no corpo, porque quem
 	   confere a 14.9 é quem lê a página. --- */
-	$html .= '<p class="aqm-px-consulta">Esta página mira <strong>'
-		. esc_html( $registro[ $slug ]['consulta'] ) . '</strong>. A SERP dessa consulta foi classificada em '
+	$html .= '<p class="aqm-px-consulta">Esta página mira a consulta <strong>“'
+		. esc_html( $registro[ $slug ]['consulta'] ) . '”</strong>. A SERP dessa consulta foi classificada em '
 		. esc_html( AQUAMETRIA_PEIXES_SERP_EM ) . ' antes de a página nascer, como manda o critério da ilha, e a classificação está escrita no snippet que serve esta página.</p>';
 
 	$html .= '</div>';
@@ -3043,11 +3185,22 @@ function aquametria_peixes_categoria_html( $slug ) {
 	}
 	$html .= '</tbody></table></div>';
 
-	/* Prestação de contas da listagem: quantas têm página, quantas esperam. */
-	$html .= '<p class="aqm-px-fora">Das ' . esc_html( count( $dentro ) ) . ' espécies da tabela, '
-		. esc_html( count( $com_ficha ) ) . ' já têm a conta inteira numa página própria e '
-		. esc_html( count( $dentro ) - count( $com_ficha ) )
-		. ' estão na fila. A ordem não é alfabética nem por gosto: sai primeiro a que mais gente procura, e a próxima leva sai depois de medirmos se estas foram indexadas.</p>';
+	/* Prestação de contas da listagem: quantas têm página, quantas esperam. A
+	   frase muda de forma quando a fila zera, porque "0 estão na fila, e a
+	   próxima leva sai depois" é uma promessa sobre uma leva que não existe. */
+	$na_fila = count( $dentro ) - count( $com_ficha );
+	$html .= '<p class="aqm-px-fora">';
+	if ( $na_fila > 0 ) {
+		$html .= 'Das ' . esc_html( count( $dentro ) ) . ' espécies da tabela, '
+			. esc_html( count( $com_ficha ) ) . ' já têm a conta inteira numa página própria e '
+			. esc_html( $na_fila )
+			. ' estão na fila. A ordem não é alfabética nem por gosto: sai primeiro a que mais gente procura, e a próxima leva sai depois de medirmos se estas foram indexadas.';
+	} else {
+		$html .= 'As ' . esc_html( count( $dentro ) )
+			. ' espécies da tabela têm a conta inteira numa página própria — esta lista está fechada, e fechada quer dizer que todo tetra que o banco desta ilha sustenta com duas fontes já tem a página dele. '
+			. 'A lista cresce quando o banco crescer, não quando der vontade de escrever: espécie sem duas fontes de corpos distintos não entra na tabela, e espécie de cardume sem o número do cardume declarado não ganha página, porque a página começa justamente por esse número.';
+	}
+	$html .= '</p>';
 
 	$html .= '<h2>Por que a gente responde em centímetros antes de responder em litros</h2>';
 	$html .= '<p>Quem pergunta "quantos litros para dez neons" quer um número, e a resposta honesta tem duas partes. '
@@ -3056,8 +3209,8 @@ function aquametria_peixes_categoria_html( $slug ) {
 		. 'Um aquário alto e estreito pode ter o litro certo e o chão errado — e é por isso que a tabela acima tem a coluna em centímetros.</p>';
 
 	$html .= aquametria_peixes_frase_de_mae_html( $slug );
-	$html .= '<p class="aqm-px-consulta">Esta página mira <strong>'
-		. esc_html( $registro[ $slug ]['consulta'] ) . '</strong>, e a SERP dela foi classificada em '
+	$html .= '<p class="aqm-px-consulta">Esta página mira a consulta <strong>“'
+		. esc_html( $registro[ $slug ]['consulta'] ) . '”</strong>, e a SERP dela foi classificada em '
 		. esc_html( AQUAMETRIA_PEIXES_SERP_EM ) . ' antes de a página nascer.</p>';
 	$html .= '</div>';
 

@@ -138,9 +138,9 @@
     "Celestichthys margaritatus"
    ],
    "nomes_populares_br": [
-    "rasbora galaxia",
-    "danio galaxia",
-    "microrasbora galaxia"
+    "rasbora galáxia",
+    "danio galáxia",
+    "microrasbora galáxia"
    ],
    "familia": "Danionidae",
    "origem_geografica": null,
@@ -1129,7 +1129,7 @@
    "nomes_populares_br": [
     "ramirezi",
     "borboleta-boliviana",
-    "acara-borboleta"
+    "acará-borboleta"
    ],
    "familia": "Cichlidae",
    "origem_geografica": null,
@@ -1208,9 +1208,9 @@
     "Petitella rhodostoma"
    ],
    "nomes_populares_br": [
-    "rodostomo",
+    "rodóstomo",
     "nariz-vermelho",
-    "cabeca-de-fosforo"
+    "cabeça-de-fósforo"
    ],
    "familia": "Characidae",
    "origem_geografica": null,
@@ -1721,8 +1721,8 @@
     "Nannostomus aripirangensis"
    ],
    "nomes_populares_br": [
-    "peixe-lapis",
-    "peixe lapis dourado",
+    "peixe-lápis",
+    "peixe lápis dourado",
     "nannostomus beckfordi"
    ],
    "familia": "Lebiasinidae",
@@ -2252,7 +2252,7 @@
    "sinonimos_cientificos": [],
    "nomes_populares_br": [
     "tetra-negro",
-    "viuva-negra",
+    "viúva-negra",
     "tetra-preto"
    ],
    "familia": "Acestrorhamphidae",
@@ -2274,7 +2274,7 @@
     "min": 5,
     "max": 19
    },
-   "cardume_minimo": null,
+   "cardume_minimo": 5,
    "comprimento_minimo_aquario_cm": 75,
    "base_minima_cm": {
     "comprimento": 75,
@@ -2320,12 +2320,46 @@
       "base_minima_cm"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED, reconfirmado nesta data com WebFetch. A confirmar na ficha."
+    },
+    {
+     "origem": "base-cientifica-via-busca",
+     "status": "base-cientifica-via-busca",
+     "referencia": "FishBase - secao de aquario: manter em grupos de 5 ou mais individuos; aquario minimo de 60 cm.",
+     "url": "https://www.fishbase.se/summary/4682",
+     "verificado_em": "2026-09-12",
+     "campos": [
+      "cardume_minimo",
+      "comprimento_minimo_aquario_cm"
+     ],
+     "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 12/09/2026, em DUAS passadas com perguntas diferentes e nenhuma delas carregando o numero que se queria confirmar (secao 8 do ARQUIPELAGO.md). A mesma resposta devolveu, sem ser perguntada, porte 7,5 cm, pH 6,0 a 8,0, dH 5 a 19 e 20 a 26 C - identicos aos que este registro ja guardava desde 09/09, o que e a conferencia de que a busca leu a ficha desta especie e nao a de outra. A pagina nao foi lida direto: o egresso da nuvem barra fishbase.se. A confirmar na ficha."
     }
    ],
-   "conflitos": [],
-   "verificado_em": "2026-09-09",
-   "status_registro": "completo",
-   "observacao": "Cardume sem numero: nenhuma das duas fontes declara quantos individuos formam o cardume minimo, entao cardume_minimo fica null e a convivencia entra sustentada pela frase de cardume da base. E o registro mais frio do banco depois do paulistinha (20 a 26 C) e um dos poucos que dispensa aquecedor em boa parte do Brasil."
+   "conflitos": [
+    {
+     "campo": "comprimento_minimo_aquario_cm",
+     "valores": [
+      {
+       "valor": 60,
+       "referencia": "FishBase, secao de aquario: aquario minimo de 60 cm",
+       "url": "https://www.fishbase.se/summary/4682",
+       "origem": "base-cientifica-via-busca"
+      },
+      {
+       "valor": 75,
+       "referencia": "Seriously Fish: um grupo pode ser mantido em aquario padrao de 75 x 30 cm",
+       "url": "https://www.seriouslyfish.com/species/gymnocorymbus-ternetzi/",
+       "origem": "compendio-via-busca"
+      }
+     ],
+     "razao": "Quinze centimetros de frente entre as duas declaracoes, e as DUAS reguas do esquema apontam para o mesmo lado, o que e raro e vale registrar: comprimento_minimo_aquario_cm e campo de MANUTENCAO, e a tabela dominio_por_campo poe o compendio acima da base cientifica nesses campos; e a regra de assimetria de custo do banco de especies manda ficar com o MAIOR, porque errar espaco para cima so custa aquario mais largo. Fica 75. A divergencia nao e conflito de fato: a base cientifica declara o piso de onde a especie sobrevive e o compendio declara a base de onde o cardume nada em cardume - e e o segundo que a pergunta desta ilha faz.",
+     "tratamento": "publicar-os-dois",
+     "valor_conservador": 75,
+     "derivacao": null
+    }
+   ],
+   "verificado_em": "2026-09-12",
+   "status_registro": "conflito",
+   "observacao": "Em 12/09/2026 o registro deixou de ter o buraco que o barrava: a busca restrita a FishBase devolveu, em duas passadas independentes, a frase de cardume COM numero - grupos de 5 ou mais - e o aquario minimo de 60 cm. Ate aqui cardume_minimo era null e a observacao deste registro dizia que nenhuma das duas fontes declarava o numero; dizia isso porque a coleta de 09/09 tinha perguntado outra coisa, nao porque a fonte fosse muda. O 60 cm da FishBase entra como divergencia contra os 75 cm do Seriously Fish e o publicado continua sendo 75. E o registro mais frio do banco depois do paulistinha (20 a 26 C) e um dos poucos que dispensa aquecedor em boa parte do Brasil."
   },
   {
    "id": "ancistrus-cirrhosus",
@@ -2403,9 +2437,9 @@
    "nome_cientifico": "Melanotaenia boesemani",
    "sinonimos_cientificos": [],
    "nomes_populares_br": [
-    "peixe arco-iris boesemani",
+    "peixe arco-íris boesemani",
     "rainbow boesemani",
-    "arco-iris de boeseman"
+    "arco-íris de boeseman"
    ],
    "familia": "Melanotaeniidae",
    "origem_geografica": "Asia/Oceania: lagos Ajamaru, peninsula de Vogelkop, Irian Jaya, Indonesia",
@@ -2526,8 +2560,8 @@
    ],
    "nomes_populares_br": [
     "colisa",
-    "colisa-anao",
-    "gurami-anao"
+    "colisa-anão",
+    "gurami-anão"
    ],
    "familia": "Osphronemidae",
    "origem_geografica": "Asia: Paquistao, India e Bangladesh",
@@ -2607,9 +2641,9 @@
    "nome_cientifico": "Poecilia sphenops",
    "sinonimos_cientificos": [],
    "nomes_populares_br": [
-    "molinesia",
+    "molinésia",
     "black molly",
-    "molinesia preta"
+    "molinésia preta"
    ],
    "familia": "Poeciliidae",
    "origem_geografica": null,
@@ -2707,9 +2741,9 @@
     "Trichogaster leerii"
    ],
    "nomes_populares_br": [
-    "gurami perola",
-    "gourami perola",
-    "trichogaster perola"
+    "gurami pérola",
+    "gourami pérola",
+    "trichogaster pérola"
    ],
    "familia": "Osphronemidae",
    "origem_geografica": "Asia: peninsula Malaia, Tailandia, Sumatra e Borneo",
@@ -2789,7 +2823,7 @@
    "nome_cientifico": "Symphysodon aequifasciatus",
    "sinonimos_cientificos": [],
    "nomes_populares_br": [
-    "acara-disco",
+    "acará-disco",
     "disco",
     "disco azul"
    ],
@@ -2935,7 +2969,7 @@
    "nome_cientifico": "Pterophyllum scalare",
    "sinonimos_cientificos": [],
    "nomes_populares_br": [
-    "acara-bandeira",
+    "acará-bandeira",
     "bandeira",
     "anjo"
    ],
@@ -3034,7 +3068,7 @@
    "nomes_populares_br": [
     "tricogaster",
     "gurami-azul",
-    "tricogaster-tres-pintas"
+    "tricogaster-três-pintas"
    ],
    "familia": "Osphronemidae",
    "origem_geografica": null,
@@ -3229,7 +3263,7 @@
     "Botia macracantha"
    ],
    "nomes_populares_br": [
-    "botia-palhaco",
+    "botia-palhaço",
     "botia"
    ],
    "familia": "Botiidae",
@@ -3338,7 +3372,7 @@
    "nomes_populares_br": [
     "oscar",
     "apaiari",
-    "acara-acu"
+    "acará-açu"
    ],
    "familia": "Cichlidae",
    "origem_geografica": null,
@@ -3420,7 +3454,7 @@
    "nomes_populares_br": [
     "kinguio",
     "peixe dourado",
-    "japones"
+    "japonês"
    ],
    "familia": "Cyprinidae",
    "origem_geografica": null,

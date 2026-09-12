@@ -8,7 +8,7 @@ o banco precisa viajar DENTRO do snippet, e este script e o unico lugar onde a
 traducao acontece. Ele reescreve o trecho entre CATALOGO-INICIO e CATALOGO-FIM
 em snippets/aquametria-peixes.php. Nada mais do arquivo e tocado.
 
-QUATRO DECISOES, e nenhuma e de estilo:
+CINCO DECISOES, e nenhuma e de estilo:
 
   1. SO ENTRA QUEM PASSA NO PORTAO DE PAGINA do esquema
      (`minimo_para_sugerir.pagina-especie`): nome cientifico, nomes populares,
@@ -18,6 +18,32 @@ QUATRO DECISOES, e nenhuma e de estilo:
      lida do esquema apenas para conferir que as duas listas dizem a mesma
      coisa — se este script importasse a lista do esquema, apagar um campo la
      faria as duas metades errarem juntas (secao 8 do ARQUIPELAGO.md).
+
+  5. ESTAR NO CATALOGO E VIRAR FICHA SAO DUAS REGUAS, e ate 12/09/2026 elas
+     eram uma so — com o nome da segunda. O catalogo alimenta TRES coisas alem
+     da ficha: a contagem da secao ("N especies com o minimo declarado"), a
+     tabela da categoria e a lista de quem divide a mesma agua. Uma especie
+     pode ser dado bom para as tres e mesmo assim nao poder ter pagina propria.
+
+     O caso que mostrou isso: o titulo de toda ficha deste eixo e "quantos
+     litros para um cardume de X", e a linha mestra abre por "para os N X que a
+     fonte declara como cardume minimo". Sem N, o codigo cai num ramo que
+     escreve a frase sem o numero e a tabela pre-renderizada abre a primeira
+     linha em UM exemplar — numa pagina que, duas telas abaixo, diz que a
+     especie so vive em grupo. O esquema ja cobrava esse numero no portao da
+     C8, com a frase `cardume_minimo OU convivencia igual a
+     solitario/casal/harem`, desde que o banco nasceu; o que faltava era a
+     pagina cobrar o mesmo.
+
+     A primeira versao desta mudanca poe a regra no portao do CATALOGO, e a
+     conta da secao caiu de 27 para 26 especies: corydoras sterbai, que declara
+     convivencia "grupo" sem numero, sumiu da contagem, da tabela da categoria
+     e da lista de companheiros — tres lugares onde o dado dela e bom e a
+     afirmacao da pagina ("com o minimo declarado por fonte com nome e data")
+     continua verdadeira. Apertar o portao errado tirou informacao verdadeira
+     da tela para resolver um problema de outra pagina. Por isso sao duas
+     listas com dois nomes no esquema, `catalogo-de-especies` e
+     `pagina-especie`, e a segunda e a primeira MAIS a regra do cardume.
 
   2. A FONTE VIAJA COM O NOME DO CORPO, nunca com o codigo de origem. A tela
      precisa dizer "FishBase" e "Seriously Fish", porque procedencia na propria
@@ -61,6 +87,12 @@ CAMPOS_DO_PORTAO = [
     "temperatura_C",
 ]
 STATUS_BARRADOS = ("rascunho", "revalidar")
+
+# A regra 5 do cabecalho, escrita com a MESMA frase que o esquema usa no portao
+# da C8 — e de proposito: duas frases diferentes para a mesma regra viram duas
+# regras no dia em que alguem editar uma delas.
+REGRA_DO_CARDUME = "cardume_minimo OU convivencia igual a solitario/casal/harem"
+CONVIVENCIA_SEM_CARDUME = ("solitario", "casal", "harem")
 
 
 def php_valor(v, ident=2):
@@ -180,6 +212,17 @@ def passa_no_portao(e):
     return faltando
 
 
+def falta_para_virar_ficha(e):
+    """O portao de PAGINA: o do catalogo MAIS a regra do cardume (decisao 5).
+
+    Devolve a lista do que falta. Lista vazia = pode ter pagina propria.
+    """
+    faltando = list(passa_no_portao(e))
+    if not e.get("cardume_minimo") and e.get("convivencia") not in CONVIVENCIA_SEM_CARDUME:
+        faltando.append(REGRA_DO_CARDUME)
+    return faltando
+
+
 def conferir_esquema():
     """As duas listas do portao tem de dizer a mesma coisa.
 
@@ -189,13 +232,18 @@ def conferir_esquema():
     """
     with open(ESQUEMA, encoding="utf-8") as f:
         esquema = json.load(f)
-    do_esquema = list(esquema["minimo_para_sugerir"]["pagina-especie"])
-    daqui = CAMPOS_DO_PORTAO + ["duas fontes distintas"]
-    if [x for x in do_esquema if x not in daqui] or [x for x in daqui if x not in do_esquema]:
-        raise SystemExit(
-            "ERRO: o portao de pagina do esquema e o deste script divergem.\n"
-            "  esquema: %s\n  script : %s" % (do_esquema, daqui)
-        )
+    for nome, daqui in (
+        ("catalogo-de-especies", CAMPOS_DO_PORTAO + ["duas fontes distintas"]),
+        ("pagina-especie", CAMPOS_DO_PORTAO + ["duas fontes distintas", REGRA_DO_CARDUME]),
+    ):
+        if nome not in esquema["minimo_para_sugerir"]:
+            raise SystemExit("ERRO: o esquema nao declara minimo_para_sugerir.%s" % nome)
+        do_esquema = list(esquema["minimo_para_sugerir"][nome])
+        if [x for x in do_esquema if x not in daqui] or [x for x in daqui if x not in do_esquema]:
+            raise SystemExit(
+                "ERRO: o portao '%s' do esquema e o deste script divergem.\n"
+                "  esquema: %s\n  script : %s" % (nome, do_esquema, daqui)
+            )
     return esquema
 
 
@@ -302,10 +350,26 @@ def main():
     with open(ALVO, "w", encoding="utf-8") as f:
         f.write(php)
 
-    print("catalogo de especies: %d dentro, %d fora do portao de pagina" % (len(dentro), len(fora)))
+    print("catalogo de especies: %d dentro, %d fora do portao de catalogo" % (len(dentro), len(fora)))
     print("banco: %d registros" % len(banco["especies"]))
     for ident, faltando in fora:
         print("  fora: %-32s %s" % (ident, ", ".join(faltando)))
+
+    """Quem esta no catalogo e ainda assim NAO pode ter pagina propria.
+
+    Isto e impresso porque e a lista de onde sai a proxima leva de malha. Sem
+    ela a regra do cardume seria invisivel ate alguem escrever um registro no
+    `aquametria_peixes_registro()` e o teste reprovar sem dizer por que.
+    """
+    por_id = {e["id"]: e for e in banco["especies"]}
+    sem_ficha = []
+    for ident in dentro:
+        falta = falta_para_virar_ficha(por_id[ident])
+        if falta:
+            sem_ficha.append((ident, falta))
+    print("podem virar ficha: %d de %d no catalogo" % (len(dentro) - len(sem_ficha), len(dentro)))
+    for ident, falta in sem_ficha:
+        print("  sem pagina: %-30s %s" % (ident, ", ".join(falta)))
 
 
 if __name__ == "__main__":

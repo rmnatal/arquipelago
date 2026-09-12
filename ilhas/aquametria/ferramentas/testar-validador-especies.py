@@ -128,6 +128,24 @@ def c_e16_base(b):
     pega(b, "hyphessobrycon-amandae")["base_minima_cm"]["largura"] = 35
 
 
+def c_e17_acento(b):
+    # nome de tela sem acento. E o defeito que ficou tres levas no ar porque as
+    # tres primeiras fichas eram nomes que o portugues nao acentua.
+    pega(b, "hemigrammus-rhodostomus")["nomes_populares_br"][0] = "rodostomo"
+
+
+def c_e17_acento_no_meio(b):
+    # e nao so na primeira palavra, nem so no nome que a ficha usa como titulo:
+    # a tabela de companheiros imprime o [0] de TODAS as especies do catalogo, e
+    # o token errado pode estar depois de um hifen ou de um espaco.
+    pega(b, "astronotus-ocellatus")["nomes_populares_br"][2] = "acara-acu"
+
+
+def c_e17_acento_token_solto(b):
+    # token separado por ESPACO, para provar que a regra nao olha so o hifen
+    pega(b, "trichopodus-leerii")["nomes_populares_br"][0] = "gurami perola"
+
+
 def c_e16_extenso(b):
     # a fonte da coridora-panda escreve "pelo menos SEIS", por extenso. Trocar o campo
     # para 7 tem de reprovar — e o 6 continuar passando e o que prova que a leitura
@@ -155,6 +173,9 @@ TESTES = [
     ("E16", "um lado do intervalo fora do texto da fonte", c_e16_intervalo, "erro"),
     ("E16", "largura da base fora do texto da fonte", c_e16_base, "erro"),
     ("E16", "numero por extenso na fonte, campo trocado", c_e16_extenso, "erro"),
+    ("E17", "nome de tela sem acento (o nome que vira titulo)", c_e17_acento, "erro"),
+    ("E17", "nome de tela sem acento depois do hifen", c_e17_acento_no_meio, "erro"),
+    ("E17", "nome de tela sem acento em token separado por espaco", c_e17_acento_token_solto, "erro"),
 ]
 
 

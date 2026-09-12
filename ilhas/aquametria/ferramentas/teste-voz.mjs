@@ -326,6 +326,13 @@ const CONTEUDO = [
   'quantos-litros-para-tetra-neon',
   'quantos-litros-para-tetra-cardinal',
   'quantos-litros-para-mato-grosso',
+  /* A leva 2 (12/09/2026): as quatro que fecham a categoria. A do rodóstomo é a
+     primeira ficha da ilha que declara uma AUSÊNCIA de dado no corpo, e por isso
+     a que mais arriscava escorregar para o vocabulário de dentro da fábrica. */
+  'quantos-litros-para-tetra-ember',
+  'quantos-litros-para-tetra-brilhante',
+  'quantos-litros-para-rodostomo',
+  'quantos-litros-para-tetra-negro',
 ];
 
 /* Fabricantes e fontes citadas pela ilha. Escrita À MÃO aqui, como a lista de

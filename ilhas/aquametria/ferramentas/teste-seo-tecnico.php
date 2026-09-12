@@ -116,9 +116,52 @@ afirmar( array( 'category' => 'obj' ) === $tax, 'tag e formato saem do sitemap d
  * description e a og:description são o mesmo texto — duas descrições diferentes
  * na mesma página é o defeito que ninguém vê olhando a página renderizada.
  * ---------------------------------------------------------------------- */
+/* O TAMANHO DO MAPA SE CONTA DAS FONTES, NUNCA SE DIGITA.
+ *
+ * Esta afirmação dizia `13 === count( $metas )`, com o número escrito à mão. Em
+ * 12/09/2026 a leva 1 do eixo /peixes/ publicou cinco URLs sem description e
+ * este teste continuou VERDE, porque 13 ainda era 13: o mapa não tinha crescido,
+ * e a afirmação media o mapa contra ela mesma. É a cicatriz da seção 8 do
+ * ARQUIPELAGO.md — número de tela nasce contado — aplicada a um portão.
+ *
+ * Agora as três fontes são varridas: as páginas da casca e as do eixo saem de
+ * `dados/metas-seo.json`, e as de conteúdo são os próprios arquivos .md com
+ * `publicar` diferente de false. A conta cobra as duas direções.
+ */
 $metas = aquametria_seo_metas_por_slug();
-afirmar( is_array( $metas ) && 13 === count( $metas ),
-	'o mapa tem as 13 URLs do sitemap (tem ' . count( $metas ) . ')' );
+
+$seo_json = json_decode( file_get_contents( $raiz . '/dados/metas-seo.json' ), true );
+$esperados = array();
+foreach ( array( 'paginas_da_casca', 'paginas_do_eixo_peixes' ) as $bloco ) {
+	foreach ( array_keys( (array) $seo_json[ $bloco ] ) as $slug ) {
+		$esperados[ $slug ] = $bloco;
+	}
+}
+foreach ( glob( $raiz . '/conteudo/*.md' ) as $md ) {
+	if ( 'README.md' === basename( $md ) ) {
+		continue;
+	}
+	$texto = file_get_contents( $md );
+	if ( ! preg_match( '/^---(.*?)\n---/s', $texto, $fm ) ) {
+		continue;
+	}
+	if ( preg_match( '/^publicar:\s*false\s*$/m', $fm[1] ) ) {
+		continue;
+	}
+	if ( preg_match( '/^slug:\s*"?([a-z0-9-]+)"?\s*$/m', $fm[1], $s ) ) {
+		$esperados[ $s[1] ] = 'conteudo/';
+	}
+}
+
+afirmar( count( $esperados ) > 13, 'as fontes devolveram mais que as 13 originais (' . count( $esperados ) . ')' );
+afirmar( is_array( $metas ) && count( $metas ) === count( $esperados ),
+	'o mapa tem uma entrada por página das fontes (' . count( $metas ) . ' contra ' . count( $esperados ) . ')' );
+foreach ( $esperados as $slug => $origem ) {
+	afirmar( isset( $metas[ $slug ] ), "o mapa tem a página $slug ($origem)" );
+}
+foreach ( array_keys( (array) $metas ) as $slug ) {
+	afirmar( isset( $esperados[ $slug ] ), "o mapa não tem página que as fontes não declaram ($slug)" );
+}
 
 function aqm_valor_da_tag( $tags, $chave ) {
 	foreach ( $tags as $t ) {

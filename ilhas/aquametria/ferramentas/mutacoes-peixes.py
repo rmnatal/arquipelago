@@ -149,6 +149,81 @@ MUTACOES = [
 
     ("o catalogo do snippet envelhece: o porte do neon muda no banco e ninguem roda o gerador",
      troca(BANCO, '"porte_adulto_cm": 2.2,', '"porte_adulto_cm": 2.4,')),
+
+    # -------------------------------------------------- 4. as regras da leva 2
+    #
+    # As seis abaixo nasceram com a leva 2 (12/09/2026). As cinco primeiras sao
+    # das familias 2 e 3: o numero continua certo e o que quebra e o ESCOPO da
+    # frase, a lista que devia crescer junto com o eixo, ou a regra que so morde
+    # numa borda que o mundo acabou de produzir.
+
+    ("BASE VIRA FRENTE: a ficha sem fundo declarado volta a dizer que a fonte declara a BASE",
+     troca(PEIXES,
+           "\t\t$html .= ' — e a fonte declara o COMPRIMENTO do aquário, não o litro.</p>';",
+           "\t\t$html .= ' — e a fonte declara a BASE, não o litro.</p>';")),
+
+    ("O SUMICO SILENCIOSO VOLTA: a pagina sem fundo declarado para de dizer que as tabelas nao saem",
+     troca(PEIXES,
+           "\t\t$html .= '<p class=\"aqm-px-sem-fundo\">",
+           "\t\t$html .= '<p class=\"aqm-px-sem-fundo-desligado\" style=\"display:none\">")),
+
+    ("A ATRIBUICAO ERRA O CAMPO: a fonte do comprimento e anunciada como fonte da base",
+     troca(PEIXES,
+           "'Quem declara ' . ( $larg ? 'essa base' : 'esse comprimento' ) . ' é o '",
+           "'Quem declara essa base é o '")),
+
+    # AS DUAS METADES DO PORTAO DO CARDUME, e cada uma sozinha e inerte.
+    #
+    # A primeira versao desta mutacao so afrouxava a regua — e PASSOU, porque
+    # nenhuma ficha registrada hoje depende dela: com o mundo de hoje, `return
+    # true` e `return a regra` dao o mesmo site. E a licao do Clube do Mosaico em
+    # 12/09/2026: a mutacao que mede um grupo vazio precisa PRODUZIR O MUNDO em
+    # que ele deixa de ser vazio. Entao sao duas, e elas medem coisas diferentes:
+    # a de baixo prova que o PHP recusa servir a ficha, e a de cima prova que o
+    # portao acusa a especie errada mesmo quando o PHP e afrouxado junto.
+    ("ESPECIE DE CARDUME SEM CARDUME VIRA FICHA: a regua afrouxa E a coridora sterbai ganha pagina",
+     lambda base: (
+         troca(PEIXES,
+               "\tif ( ! empty( $e['cardume'] ) ) {\n\t\treturn true;\n\t}\n\treturn in_array( $e['convivencia'], array( 'solitario', 'casal', 'harem' ), true );",
+               "\treturn true;")(base),
+         troca(PEIXES,
+               "\t\t'quantos-litros-para-tetra-ember' => array(",
+               "\t\t'quantos-litros-para-coridora-sterbai' => array(\n"
+               "\t\t\t'nivel'    => 3,\n"
+               "\t\t\t'pai'      => 'tetras',\n"
+               "\t\t\t'especie'  => 'corydoras-sterbai',\n"
+               "\t\t\t'titulo'   => 'Quantos litros para um cardume de coridora sterbai?',\n"
+               "\t\t\t'conteudo' => '[aquametria_peixes_ficha]',\n"
+               "\t\t\t'consulta' => 'quantos litros para coridora sterbai',\n"
+               "\t\t\t'porque'   => 'mutacao',\n"
+               "\t\t),\n"
+               "\t\t'quantos-litros-para-tetra-ember' => array(")(base),
+     )),
+
+    ("A FICHA SEM CARDUME VAI AO AR: so o registro ganha a coridora sterbai, com a regua intacta",
+     troca(PEIXES,
+           "\t\t'quantos-litros-para-tetra-ember' => array(",
+           "\t\t'quantos-litros-para-coridora-sterbai' => array(\n"
+           "\t\t\t'nivel'    => 3,\n"
+           "\t\t\t'pai'      => 'tetras',\n"
+           "\t\t\t'especie'  => 'corydoras-sterbai',\n"
+           "\t\t\t'titulo'   => 'Quantos litros para um cardume de coridora sterbai?',\n"
+           "\t\t\t'conteudo' => '[aquametria_peixes_ficha]',\n"
+           "\t\t\t'consulta' => 'quantos litros para coridora sterbai',\n"
+           "\t\t\t'porque'   => 'mutacao',\n"
+           "\t\t),\n"
+           "\t\t'quantos-litros-para-tetra-ember' => array(")),
+
+    ("A PROMESSA DE LEVA VOLTA COM A FILA VAZIA: a categoria fechada diz que ha filhas na fila",
+     troca(PEIXES,
+           "\tif ( $na_fila > 0 ) {",
+           "\tif ( $na_fila >= 0 ) {")),
+
+    # O teto de quatro irmas do 16.4(c) so passou a ser ALCANCAVEL na leva 2:
+    # com tres fichas, cada pagina tinha duas irmas e trocar o 4 por 6 nao mudava
+    # uma virgula do que o site servia. Esta mutacao era inerte ate hoje.
+    ("O TETO DE IRMAS SOME: o cluster passa a servir as seis irmas em vez de ate quatro",
+     troca(CASCA, "\t\tif ( count( $irmas ) >= 4 ) {", "\t\tif ( count( $irmas ) >= 6 ) {")),
 ]
 
 

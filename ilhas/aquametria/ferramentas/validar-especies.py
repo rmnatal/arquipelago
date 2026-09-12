@@ -136,6 +136,8 @@ def main():
     campos_manutencao = set(dominio["manutencao"]["campos"])
     campos_bem_estar = {"cardume_minimo", "comprimento_minimo_aquario_cm", "base_minima_cm",
                         "altura_minima_cm"}
+    global ACENTUACAO
+    ACENTUACAO = dict(esquema["acentuacao_de_texto_de_tela"]["tabela"])
 
     banco = carregar(ARQUIVO)
     registros = banco["especies"]
@@ -281,6 +283,26 @@ def main():
             erro("E12", rid, "cardume_minimo %s com convivencia '%s'" % (card, conv))
         if conv == "solitario" and preenchido(card):
             erro("E12", rid, "convivencia solitario com cardume_minimo preenchido")
+
+        # E17 - acentuacao de texto de tela
+        #
+        # nomes_populares_br e o unico campo deste banco que vai INTEIRO para a
+        # tela: e o nome que a ficha imprime dezenas de vezes, o que a tabela da
+        # categoria mostra e o que o leitor de tela le. O resto do arquivo e nota
+        # interna e por isso e escrito sem acento — e foi por arrasto que este
+        # campo nasceu sem acento tambem, e assim ficou tres levas, invisivel
+        # porque as tres primeiras fichas eram nomes que o portugues nao acentua.
+        #
+        # A tabela mora no esquema e e DECLARADA, nao adivinhada: "parece que
+        # falta acento" seria a heuristica por vizinhanca que a secao 8 do
+        # contrato proibe. O que esta regra pega e o erro que ja foi achado uma
+        # vez; o que ela nao pega esta escrito no proprio esquema.
+        for nome in r.get("nomes_populares_br") or []:
+            for token in str(nome).split(" "):
+                for pedaco in sorted(set([token] + token.split("-"))):
+                    if pedaco in ACENTUACAO:
+                        erro("E17", rid, "nome popular '%s' com '%s' sem acento; na tela e '%s'"
+                             % (nome, pedaco, ACENTUACAO[pedaco]))
 
         # E13 - tolerancia disfarcada de recomendacao
         t = r.get("temperatura_C")

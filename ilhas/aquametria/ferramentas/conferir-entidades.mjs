@@ -51,9 +51,32 @@ let falhas = 0;
 const falhar = (m) => { falhas++; console.log('  FALHA  ' + m); };
 
 /* ---------- portão 1: o fonte ---------- */
+
+/* COMENTÁRIO NÃO É CÓDIGO, e este portão passou a acusar o próprio cuidado.
+ *
+ * A casca documenta, num comentário de bloco, a cicatriz de 08/09/2026 — o
+ * E-comercial virando entidade numérica dentro do <script> e derrubando cinco
+ * calculadoras. Para explicar o defeito, o comentário PRECISA escrever a
+ * entidade; e o portão, que varre o arquivo inteiro, lia aquilo como corrupção.
+ * Resultado: `conferir-entidades` ficou vermelho de forma permanente, e portão
+ * que está sempre vermelho é portão que ninguém lê — a versão barulhenta do
+ * portão que envelhece calado.
+ *
+ * A entidade dentro de um comentário PHP não pode quebrar script nenhum: ela
+ * nunca chega ao navegador. Então o portão tira os comentários antes de contar,
+ * e só antes de contar — o portão 2, que mede o que o navegador RECEBE, não é
+ * tocado por isto e continua sendo o que de fato prova a ausência do defeito.
+ */
+function semComentariosPhp(src) {
+  return src
+    .replace(/\/\*[\s\S]*?\*\//g, ' ')   // bloco /* ... */
+    .replace(/(^|\s)\/\/[^\n]*/g, '$1')  // linha //
+    .replace(/(^|\s)#[^\n]*/g, '$1');    // linha #
+}
+
 console.log('fonte (snippets/):');
 for (const arq of readdirSync(join(RAIZ, 'snippets')).filter(f => f.endsWith('.php')).sort()) {
-  const src = readFileSync(join(RAIZ, 'snippets', arq), 'utf8');
+  const src = semComentariosPhp(readFileSync(join(RAIZ, 'snippets', arq), 'utf8'));
   const numericas = src.match(NUMERICA) || [];
   if (numericas.length) {
     falhar(`${arq}: ${numericas.length} entidade(s) numérica(s) ${[...new Set(numericas)].join(' ')} — `

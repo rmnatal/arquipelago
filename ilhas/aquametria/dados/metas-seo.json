@@ -1,30 +1,78 @@
 {
-  "sobre_este_arquivo": "Meta description das paginas da CASCA — as quatro que nascem do snippet aquametria-casca e nao tem arquivo em conteudo/. Toda pagina vinda de conteudo/*.md tem a dela no proprio front matter, no campo meta_descricao, e NAO se repete aqui: uma pagina, um lugar. Quem junta as duas fontes e escreve o mapa dentro do snippet aquametria-seo-tecnico.php e ferramentas/gerar-metas-descricao.py, que recusa a geracao se faltar slug, se houver texto repetido ou se algum texto sair da faixa de 120 a 160 caracteres.",
-  "nasceu_de": "Despacho da Sentinela de 10/09/2026, item 1: nenhuma das 13 URLs do sitemap servia <meta name=\"description\">, e a meta description e metade da alavanca de CTR da secao 12.1 do ARQUIPELAGO.md.",
-  "faixa_de_caracteres": [
-    120,
-    160
-  ],
-  "paginas_da_casca": {
-    "inicio": {
-      "titulo": "As contas do seu aquário",
-      "url": "https://aquametria.com.br/",
-      "meta_descricao": "Quantos litros tem o seu aquário? E quantos watts de aquecedor, qual filtro, quanta luz? As contas do seu aquário, com a fonte de cada número."
-    },
-    "calculadoras": {
-      "titulo": "Calculadoras",
-      "url": "https://aquametria.com.br/calculadoras/",
-      "meta_descricao": "As contas do seu aquário em um lugar só: litros, vazão do filtro, watts do aquecedor, mídia filtrante e luz — cada uma com a fonte do número."
-    },
-    "metodologia": {
-      "titulo": "Como a gente calcula",
-      "url": "https://aquametria.com.br/metodologia/",
-      "meta_descricao": "De onde sai cada número da Aquametria: o manual do fabricante, a data em que foi conferido e a faixa inteira quando as fontes discordam."
-    },
-    "sobre": {
-      "titulo": "Sobre",
-      "url": "https://aquametria.com.br/sobre/",
-      "meta_descricao": "Quem publica a Aquametria e por quê: um site de aquarismo que mostra a conta, cita o manual do fabricante e recusa número sem fonte declarada."
-    }
+ "sobre_este_arquivo": "Meta description das paginas da CASCA — as quatro que nascem do snippet aquametria-casca e nao tem arquivo em conteudo/. Toda pagina vinda de conteudo/*.md tem a dela no proprio front matter, no campo meta_descricao, e NAO se repete aqui: uma pagina, um lugar. Quem junta as duas fontes e escreve o mapa dentro do snippet aquametria-seo-tecnico.php e ferramentas/gerar-metas-descricao.py, que recusa a geracao se faltar slug, se houver texto repetido ou se algum texto sair da faixa de 120 a 160 caracteres.",
+ "sobre_o_eixo_peixes": "As paginas do eixo /peixes/ nascem do snippet aquametria-peixes.php e nao tem arquivo em conteudo/, do mesmo jeito que as quatro da casca — entao a descricao delas mora aqui. ELAS FORAM AO AR SEM DESCRICAO NENHUMA em 12/09/2026 (leva 1, cinco URLs), e ninguem viu porque o gerador tinha a lista das 13 URLs do sitemap ESCRITA A MAO: lista de portao digitada envelhece calada. Desde 12/09/2026 o gerador pergunta ao proprio snippet quais paginas o eixo tem (ferramentas/listar-paginas-do-eixo.php) e RECUSA gerar se alguma delas nao tiver texto aqui. Pagina nova do eixo sem descricao reprova antes de nascer.",
+ "nasceu_de": "Despacho da Sentinela de 10/09/2026, item 1: nenhuma das 13 URLs do sitemap servia <meta name=\"description\">, e a meta description e metade da alavanca de CTR da secao 12.1 do ARQUIPELAGO.md.",
+ "faixa_de_caracteres": [
+  120,
+  160
+ ],
+ "paginas_da_casca": {
+  "inicio": {
+   "titulo": "As contas do seu aquário",
+   "url": "https://aquametria.com.br/",
+   "meta_descricao": "Quantos litros tem o seu aquário? E quantos watts de aquecedor, qual filtro, quanta luz? As contas do seu aquário, com a fonte de cada número."
+  },
+  "calculadoras": {
+   "titulo": "Calculadoras",
+   "url": "https://aquametria.com.br/calculadoras/",
+   "meta_descricao": "As contas do seu aquário em um lugar só: litros, vazão do filtro, watts do aquecedor, mídia filtrante e luz — cada uma com a fonte do número."
+  },
+  "metodologia": {
+   "titulo": "Como a gente calcula",
+   "url": "https://aquametria.com.br/metodologia/",
+   "meta_descricao": "De onde sai cada número da Aquametria: o manual do fabricante, a data em que foi conferido e a faixa inteira quando as fontes discordam."
+  },
+  "sobre": {
+   "titulo": "Sobre",
+   "url": "https://aquametria.com.br/sobre/",
+   "meta_descricao": "Quem publica a Aquametria e por quê: um site de aquarismo que mostra a conta, cita o manual do fabricante e recusa número sem fonte declarada."
   }
+ },
+ "paginas_do_eixo_peixes": {
+  "peixes": {
+   "titulo": "Quanto espaço cada peixe pede",
+   "url": "https://aquametria.com.br/peixes/",
+   "meta_descricao": "Quanto espaço cada peixe pede, em centímetros de chão e não em litros: o mínimo declarado por fonte com nome e data, espécie por espécie."
+  },
+  "tetras": {
+   "titulo": "Tetras: quantos litros o cardume pede",
+   "url": "https://aquametria.com.br/peixes/tetras/",
+   "meta_descricao": "Porte, cardume mínimo e frente mínima dos tetras lado a lado, com a fonte de cada linha — e a conta em litros pelas duas réguas brasileiras."
+  },
+  "quantos-litros-para-tetra-neon": {
+   "titulo": "Quantos litros para um cardume de tetra neon?",
+   "url": "https://aquametria.com.br/peixes/tetras/quantos-litros-para-tetra-neon/",
+   "meta_descricao": "Quantos litros para um cardume de tetra neon? A base que a fonte declara, a conta pelas duas réguas de lotação e quantos cabem no seu aquário."
+  },
+  "quantos-litros-para-tetra-cardinal": {
+   "titulo": "Quantos litros para um cardume de neon cardinal?",
+   "url": "https://aquametria.com.br/peixes/tetras/quantos-litros-para-tetra-cardinal/",
+   "meta_descricao": "Quantos litros para um cardume de neon cardinal? A base declarada pela fonte, o cardume mínimo de 8 e a conta em litros pelas duas réguas."
+  },
+  "quantos-litros-para-mato-grosso": {
+   "titulo": "Quantos litros para um cardume de mato-grosso?",
+   "url": "https://aquametria.com.br/peixes/tetras/quantos-litros-para-mato-grosso/",
+   "meta_descricao": "Quantos litros para um cardume de mato-grosso? As duas fontes discordam da frente mínima, e esta página publica as duas com o nome de cada uma."
+  },
+  "quantos-litros-para-tetra-ember": {
+   "titulo": "Quantos litros para um cardume de tetra ember?",
+   "url": "https://aquametria.com.br/peixes/tetras/quantos-litros-para-tetra-ember/",
+   "meta_descricao": "Quantos litros para um cardume de tetra ember? A base de 45 × 30 cm que a fonte declara, o cardume mínimo de 8 e a conta pelas duas réguas."
+  },
+  "quantos-litros-para-tetra-brilhante": {
+   "titulo": "Quantos litros para um cardume de tetra-brilhante?",
+   "url": "https://aquametria.com.br/peixes/tetras/quantos-litros-para-tetra-brilhante/",
+   "meta_descricao": "Quantos litros para um cardume de tetra-brilhante? A base declarada, a divergência de um exemplar no cardume e a conta pelas duas réguas."
+  },
+  "quantos-litros-para-rodostomo": {
+   "titulo": "Quantos litros para um cardume de rodóstomo?",
+   "url": "https://aquametria.com.br/peixes/tetras/quantos-litros-para-rodostomo/",
+   "meta_descricao": "Quantos litros para um cardume de rodóstomo? A fonte declara 90 cm de comprimento e nenhuma largura — e esta página diz isso em vez de inventar."
+  },
+  "quantos-litros-para-tetra-negro": {
+   "titulo": "Quantos litros para um cardume de tetra-negro?",
+   "url": "https://aquametria.com.br/peixes/tetras/quantos-litros-para-tetra-negro/",
+   "meta_descricao": "Quantos litros para um cardume de tetra-negro? Cardume mínimo de 5, base declarada de 75 × 30 cm e a divergência de 15 cm entre as duas fontes."
+  }
+ }
 }

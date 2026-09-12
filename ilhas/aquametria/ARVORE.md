@@ -15,7 +15,7 @@ Os nomes dos níveis são os do `VOZ.md` — é a pessoa que decide como a seç�
 | slug | o que mora ali | existe hoje |
 |---|---|---|
 | `/calculadoras/` | as contas | **sim** (página da casca) |
-| `/peixes/` | ficha de espécie: quanto espaço, que temperatura, com quem convive | **sim** (leva 1 do T4, 12/09/2026) |
+| `/peixes/` | ficha de espécie: quanto espaço, que temperatura, com quem convive | **sim** (levas 1 e 2 do T4, 12/09/2026) |
 | `/equipamentos/` | listagens do banco: filtro, aquecedor, luminária, mídia | não |
 | `/guias/` | os textos que explicam o porquê do número | não |
 
@@ -42,16 +42,23 @@ Sem quarto nível. Fora da árvore ficam só a home, `/sobre/`, `/metodologia/`,
 
 Enquanto isso, `/calculadoras/` continua sendo a mãe direta das cinco calculadoras no ar — dois níveis em vez de três, declarado aqui como estado de transição, não como desenho.
 
-## 3. `/peixes/` — NO AR desde 12/09/2026 (leva 1 do T4)
+## 3. `/peixes/` — NO AR desde 12/09/2026 (levas 1 e 2 do T4)
 
-A camada que a Bússola verificou ABERTA e a de maior volume de busca da ilha ("quantos litros para N neons"). O banco de espécies (`dados/especies-agua-doce.json`, 36 registros) é o que limita quantas filhas cabem: **27 passam no portão de página do esquema** (sete campos e duas fontes de corpos distintos) e as outras 9 estão nomeadas, uma por uma, na saída de `ferramentas/gerar-catalogo-especies.py`.
+A camada que a Bússola verificou ABERTA e a de maior volume de busca da ilha ("quantos litros para N neons"). O banco de espécies (`dados/especies-agua-doce.json`, 36 registros) é o que limita quantas filhas cabem, e desde 12/09/2026 são **duas** réguas com dois nomes, não uma:
+
+- **`catalogo-de-especies`** — sete campos e duas fontes de corpos distintos. **27 dos 36 passam.** É quem entra na contagem da seção, na tabela da categoria e na lista de quem divide a mesma água.
+- **`pagina-especie`** — o catálogo MAIS `cardume_minimo OU convivencia igual a solitario/casal/harem`. **26 dos 27 passam.** É quem pode ter página própria, porque a ficha deste eixo se chama "quantos litros para um cardume de X" e abre pela frase que nomeia o cardume mínimo.
+
+As duas listas saem nomeadas, registro por registro, em `ferramentas/gerar-catalogo-especies.py`. **Quem está no catálogo e não pode ter página hoje: `corydoras-sterbai`** — declara convivência "grupo" e nenhuma fonte diz de quantos. Isso muda a próxima leva: `/peixes/corydoras/` tem **3** filhas elegíveis (panda, paleatus, aeneus), não 4, e 3 é exatamente o mínimo do 16.5.
+
+A separação nasceu de um erro que vale registrar: a primeira versão pôs a regra do cardume no portão do CATÁLOGO, e a contagem da seção caiu de 27 para 26 — o sterbai sumiu de três lugares onde o dado dele é bom, para resolver um problema de outra página. Apertar o portão errado tira da tela informação verdadeira.
 
 Categorias pelo nome que a pessoa usa, nunca pelo nome científico. Seis, e só estas:
 
 | nível 2 | filhas no ar | estado |
 |---|---|---|
-| `/peixes/tetras/` | tetra neon · neon cardinal · mato-grosso | **no ar** (3 de 7 espécies do banco) |
-| `/peixes/corydoras/` | — | em breve, sem link e sem contagem (16.5) |
+| `/peixes/tetras/` | tetra neon · neon cardinal · mato-grosso · tetra ember · tetra-brilhante · rodóstomo · tetra-negro | **no ar e FECHADA** (7 de 7 espécies do banco) |
+| `/peixes/corydoras/` | — | em breve, sem link e sem contagem (16.5) — 3 filhas elegíveis, o mínimo exato |
 | `/peixes/bettas/` | — | em breve |
 | `/peixes/ciclideos-anoes/` | — | em breve |
 | `/peixes/plecos-e-limpa-vidros/` | — | em breve |
@@ -63,7 +70,9 @@ Filha de nível 3 = a ficha da espécie, com o número que ninguém mais dá. **
 
 **E espécie que o banco declara agressiva não ganha lista de companheiro** — a ficha conta quantas espécies dividem a faixa de temperatura e diz por que não recomenda nenhuma. O esquema do banco recusa compatibilidade como campo justamente porque ela depende de volume, layout e ordem de introdução.
 
-Portão da seção 9 conferido nas três: cada ficha nomeia 10 ou mais registros reais do banco e traz cinco tabelas calculadas na hora de imprimir.
+Portão da seção 9 conferido nas sete: cada ficha nomeia 10 ou mais registros reais do banco e traz tabelas calculadas na hora de imprimir.
+
+**E "BASE" não é "FRENTE" — a leva 2 achou isso na tela.** A frase mestra da ficha terminava sempre em "e a fonte declara a BASE, não o litro". Era verdade nas três fichas da leva 1, e é falsa em **14 dos 36 registros** do banco, onde a fonte declara só o comprimento mínimo e nunca disse uma palavra sobre o fundo. O rodóstomo é o primeiro caso publicado: o Seriously Fish declara "no mínimo 90 cm de comprimento" e para aí; uma coleta limpa em 12/09, restrita ao domínio, devolveu a mesma frase e mais nada. Nesses registros a ficha diz COMPRIMENTO, as duas tabelas que dependem do fundo não saem — **e a página declara a ausência e a causa** em vez de encolher calada, que é a forma disfarçada do "silêncio parece defeito" da seção 7.
 
 ## 4. `/equipamentos/`
 
@@ -112,7 +121,7 @@ Primeiro a mãe e as **3 primeiras filhas de maior intenção de compra**, depoi
 
 1. `/calculadoras/aquecimento-e-luz/` + C5, C15, C7 — é o cluster cuja resposta termina num produto do banco, e o C5 é a consulta de maior intenção de compra da ilha.
 2. `/guias/aquecimento/` + os guias da pauta que apontam para a C5.
-3. `/peixes/tetras/` + as 3 espécies de maior busca com banco fechado.
+3. ~~`/peixes/tetras/` + as 3 espécies de maior busca com banco fechado.~~ **FEITO** — leva 1 (12/09, 5 URLs) e leva 2 (12/09, 4 URLs: ember, brilhante, rodóstomo, negro). A categoria está fechada: 7 de 7.
 4. `/equipamentos/aquecedores/` — só depois que o cluster de aquecimento estiver indexado.
 
 A rampa da seção 9 manda em tudo isto: leva de 5 a 10 páginas, medir em `dados/indexacao.md`, e só dobrar se indexou **e** apareceu.

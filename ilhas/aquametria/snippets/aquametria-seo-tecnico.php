@@ -231,23 +231,23 @@ function aquametria_seo_metas_por_slug() {
 			'descricao' => 'Quem publica a Aquametria e por quê: um site de aquarismo que mostra a conta, cita o manual do fabricante e recusa número sem fonte declarada.',
 		),
 		'calculadora-de-litragem' => array(
-			'titulo'    => 'Calculadora de litragem: quantos litros tem o seu aquário',
+			'titulo'    => 'Quantos litros tem o seu aquário?',
 			'descricao' => 'Quantos litros tem o seu aquário? Informe as medidas em centímetros e receba os três volumes: o bruto da etiqueta, o interno e a água real.',
 		),
 		'calculadora-de-vazao-do-filtro' => array(
-			'titulo'    => 'Calculadora de vazão do filtro: quantos L/h o seu aquário pede',
+			'titulo'    => 'Qual filtro dá conta do seu aquário?',
 			'descricao' => 'Qual a vazão de filtro para o seu aquário, em L/h? A faixa vai de 1,76 a 10 renovações por hora, e cada extremo aparece com a fonte dele.',
 		),
 		'calculadora-de-potencia-do-aquecedor' => array(
-			'titulo'    => 'Calculadora de potência do aquecedor: quantos watts, pelo frio que faz aí',
+			'titulo'    => 'Quantos watts de aquecedor você precisa?',
 			'descricao' => 'Quantos watts de aquecedor o seu aquário pede? A conta parte da mínima do seu cômodo, não do genérico 1 W por litro, e filtra pela sua voltagem.',
 		),
 		'calculadora-de-midia-filtrante' => array(
-			'titulo'    => 'Calculadora de mídia filtrante: quantos mililitros o seu aquário pede',
+			'titulo'    => 'Quanta mídia biológica cabe no seu filtro?',
 			'descricao' => 'Quanta mídia filtrante o seu aquário pede, em mililitros? Quatro fabricantes declaram dosagens que variam dez vezes; aqui estão as quatro.',
 		),
 		'calculadora-de-iluminacao' => array(
-			'titulo'    => 'Calculadora de iluminação e fotoperíodo: quantos lúmens o seu aquário pede',
+			'titulo'    => 'Quanta luz o seu aquário precisa?',
 			'descricao' => 'Quantos lúmens o seu aquário plantado precisa? A faixa pelas três leituras brasileiras que discordam, mais fotoperíodo, Kelvin e consumo por mês.',
 		),
 		'divulgacao-de-afiliados' => array(
@@ -255,16 +255,52 @@ function aquametria_seo_metas_por_slug() {
 			'descricao' => 'A Aquametria recebe comissão por alguns links de loja. O que isso muda na ordem dos produtos recomendados: nada. O critério inteiro, por escrito.',
 		),
 		'quantos-watts-de-aquecedor-para-aquario' => array(
-			'titulo'    => 'Quantos watts de aquecedor o seu aquário precisa (e por que "1 W por litro" erra sempre para o mesmo lado)',
+			'titulo'    => 'Por que o 1 W por litro erra para o mesmo lado',
 			'descricao' => 'O 1 W por litro não veio de um cálculo, veio da prateleira. De onde a regra saiu, quando ela acerta por acidente e o que muda ao medir o cômodo.',
 		),
 		'quanta-midia-biologica-o-aquario-precisa' => array(
-			'titulo'    => 'Quanta mídia biológica o aquário precisa: quatro fabricantes, dez vezes de diferença',
+			'titulo'    => 'Cada marca pede uma dose diferente de mídia',
 			'descricao' => 'Seachem pede 1,25 mL de mídia por litro; Ocean Tech pede 12,5. Dez vezes de diferença para o mesmo trabalho — fomos às declarações originais.',
 		),
 		'quantos-lumens-por-litro-aquario-plantado' => array(
-			'titulo'    => 'Quantos lúmens por litro o aquário plantado precisa (e por que o lúmen é a unidade errada para medir luz de planta)',
+			'titulo'    => 'Quantos lúmens por litro o aquário plantado precisa',
 			'descricao' => 'Três fontes brasileiras chamam a mesma faixa de lúmens por litro com o dobro do número. De onde vem a regra e por que o lúmen é a unidade errada.',
+		),
+		'peixes' => array(
+			'titulo'    => 'Quanto espaço cada peixe pede',
+			'descricao' => 'Quanto espaço cada peixe pede, em centímetros de chão e não em litros: o mínimo declarado por fonte com nome e data, espécie por espécie.',
+		),
+		'quantos-litros-para-mato-grosso' => array(
+			'titulo'    => 'Quantos litros para um cardume de mato-grosso?',
+			'descricao' => 'Quantos litros para um cardume de mato-grosso? As duas fontes discordam da frente mínima, e esta página publica as duas com o nome de cada uma.',
+		),
+		'quantos-litros-para-rodostomo' => array(
+			'titulo'    => 'Quantos litros para um cardume de rodóstomo?',
+			'descricao' => 'Quantos litros para um cardume de rodóstomo? A fonte declara 90 cm de comprimento e nenhuma largura — e esta página diz isso em vez de inventar.',
+		),
+		'quantos-litros-para-tetra-brilhante' => array(
+			'titulo'    => 'Quantos litros para um cardume de tetra-brilhante?',
+			'descricao' => 'Quantos litros para um cardume de tetra-brilhante? A base declarada, a divergência de um exemplar no cardume e a conta pelas duas réguas.',
+		),
+		'quantos-litros-para-tetra-cardinal' => array(
+			'titulo'    => 'Quantos litros para um cardume de neon cardinal?',
+			'descricao' => 'Quantos litros para um cardume de neon cardinal? A base declarada pela fonte, o cardume mínimo de 8 e a conta em litros pelas duas réguas.',
+		),
+		'quantos-litros-para-tetra-ember' => array(
+			'titulo'    => 'Quantos litros para um cardume de tetra ember?',
+			'descricao' => 'Quantos litros para um cardume de tetra ember? A base de 45 × 30 cm que a fonte declara, o cardume mínimo de 8 e a conta pelas duas réguas.',
+		),
+		'quantos-litros-para-tetra-negro' => array(
+			'titulo'    => 'Quantos litros para um cardume de tetra-negro?',
+			'descricao' => 'Quantos litros para um cardume de tetra-negro? Cardume mínimo de 5, base declarada de 75 × 30 cm e a divergência de 15 cm entre as duas fontes.',
+		),
+		'quantos-litros-para-tetra-neon' => array(
+			'titulo'    => 'Quantos litros para um cardume de tetra neon?',
+			'descricao' => 'Quantos litros para um cardume de tetra neon? A base que a fonte declara, a conta pelas duas réguas de lotação e quantos cabem no seu aquário.',
+		),
+		'tetras' => array(
+			'titulo'    => 'Tetras: quantos litros o cardume pede',
+			'descricao' => 'Porte, cardume mínimo e frente mínima dos tetras lado a lado, com a fonte de cada linha — e a conta em litros pelas duas réguas brasileiras.',
 		),
 	);
 }

@@ -84,6 +84,14 @@ $GLOBALS['__paginas'] = array(
 	'quantos-litros-para-tetra-neon'            => true,
 	'quantos-litros-para-tetra-cardinal'        => true,
 	'quantos-litros-para-mato-grosso'           => true,
+	/* A leva 2 (12/09/2026): as quatro fichas que fecham a categoria /tetras/.
+	   Com elas a categoria passa a ter SETE filhas, que e a primeira vez que o
+	   teto de quatro irmas do 16.4(c) e exercitado de verdade por paginas que
+	   existem — ate aqui so o modo borda fabricava esse caso. */
+	'quantos-litros-para-tetra-ember'           => true,
+	'quantos-litros-para-tetra-brilhante'       => true,
+	'quantos-litros-para-rodostomo'             => true,
+	'quantos-litros-para-tetra-negro'           => true,
 );
 
 aquametria_teste_carregar( $raiz );

@@ -46,6 +46,21 @@ const PAGINAS = [
   'quantos-watts-de-aquecedor-para-aquario',
   'quanta-midia-biologica-o-aquario-precisa',
   'quantos-lumens-por-litro-aquario-plantado',
+  /* O eixo /peixes/ inteiro — leva 1 (12/09/2026) e leva 2 (12/09/2026).
+     Estas nove entraram aqui na leva 2, e entraram porque são as páginas com
+     MAIS tabela larga da ilha: a ficha serve até quatro tabelas, uma delas com
+     cinco colunas de número. Tabela é o caso que a seção 6 do contrato deixa
+     estourar a largura, e só dentro do próprio `overflow-x: auto` — medir isso
+     a 360 px é a diferença entre a regra e a esperança de que ela valha. */
+  'peixes',
+  'tetras',
+  'quantos-litros-para-tetra-neon',
+  'quantos-litros-para-tetra-cardinal',
+  'quantos-litros-para-mato-grosso',
+  'quantos-litros-para-tetra-ember',
+  'quantos-litros-para-tetra-brilhante',
+  'quantos-litros-para-rodostomo',
+  'quantos-litros-para-tetra-negro',
 ];
 const LARGURAS = [360, 390, 781, 782, 783, 1200];
 

@@ -1,534 +1,573 @@
 {
-  "id": "esquema-especies",
-  "descricao": "Contrato formal do banco de especies de agua doce da Aquametria: campos, tipos, unidades, vocabulario controlado, origem esperada por campo e as regras de validacao E1 a E16 que ferramentas/validar-especies.py executa. E o irmao de esquema-produtos.json para a entidade especie, e existe para destravar o eixo aberto 'quantos litros para X peixes' com dado real por tras, nunca com regra de bolso.",
-  "gerado_em": "2026-09-09",
-  "bloco": "4b(c) leva 1; revisado na leva 3 (E15 e a emenda do E10); revisado na leva 4 (T3d, 11/09/2026): regra da congenere e E16",
-  "versao_esquema": 3,
-  "depende_de": [
-    "dados/esquema-produtos.json",
-    "dados/especificacao-calculadoras.md"
+ "id": "esquema-especies",
+ "descricao": "Contrato formal do banco de especies de agua doce da Aquametria: campos, tipos, unidades, vocabulario controlado, origem esperada por campo e as regras de validacao E1 a E16 que ferramentas/validar-especies.py executa. E o irmao de esquema-produtos.json para a entidade especie, e existe para destravar o eixo aberto 'quantos litros para X peixes' com dado real por tras, nunca com regra de bolso.",
+ "gerado_em": "2026-09-09",
+ "bloco": "4b(c) leva 1; revisado na leva 3 (E15 e a emenda do E10); revisado na leva 4 (T3d, 11/09/2026): regra da congenere e E16",
+ "versao_esquema": 3,
+ "depende_de": [
+  "dados/esquema-produtos.json",
+  "dados/especificacao-calculadoras.md"
+ ],
+ "por_que_existe": [
+  "A Bussola verificou que o eixo 'quantos litros para X peixes' esta ABERTO na SERP brasileira, enquanto 'melhor filtro para aquario de X litros' ja foi tomado por tres fazendas de conteudo.",
+  "O portao da malha exige 3 itens de banco reais e um numero calculado proprio por pagina. Sem banco de especies, nenhuma pagina desse eixo passa no portao.",
+  "A regra de bolso brasileira ('1 cm de peixe por litro') nao tem fonte, nao distingue porte de carga e nao sobrevive a ser citada. O banco existe para que a Aquametria diga um numero com nome, fonte e data do lado."
+ ],
+ "principios": [
+  "Declarado nao e medido, igual ao banco de produtos. Nenhum campo aqui e medicao da Aquametria: tudo e declaracao de terceiro, com atribuicao.",
+  "O dominio da fonte muda com o campo. Para BIOLOGIA (porte adulto, familia, distribuicao) a base cientifica manda. Para MANUTENCAO (tamanho minimo de aquario, cardume minimo, temperamento) o compendio de aquarismo manda, porque e o corpo de conhecimento que trata disso. Ver dominio_por_campo.",
+  "Divergencia e conteudo. Fontes do mesmo dominio que discordam viram conflito publicado com atribuicao, nunca media.",
+  "Em conflito de campo de bem-estar (cardume_minimo, comprimento_minimo_aquario_cm, base_minima_cm) o valor conservador e o MAIOR, porque errar para menos custa a vida do animal e errar para mais custa espaco. Isso e o oposto da regra de produto, onde o conservador costuma ser o menor, e por isso esta escrito aqui.",
+  "O que falta fica explicito: campo sem fonte e null com motivo, nunca um numero plausivel.",
+  "Volume minimo NAO se escreve a mao. Quando a fonte declara base em centimetros, o volume e derivado pela calculadora, com a altura declarada pelo usuario. Gravar litro derivado e defeito (regra E7)."
+ ],
+ "escada_de_fontes": {
+  "descricao": "Nivel de confianca de uma origem para a entidade especie. Herda a forma da escada do banco de produtos, mas as origens sao outras: nao existe fabricante de peixe.",
+  "niveis": [
+   {
+    "nivel": 1,
+    "origem": "medicao-propria",
+    "status": "medida-aquametria",
+    "o_que_pode_sustentar": "qualquer campo, por observacao propria documentada. Nao existe hoje e talvez nunca exista: a ilha nao mantem aquario.",
+    "existe_hoje": false
+   },
+   {
+    "nivel": 2,
+    "origem": "base-cientifica",
+    "status": "verificada-base-cientifica",
+    "o_que_pode_sustentar": "qualquer campo de biologia (nome, autoria, familia, distribuicao, porte adulto) com a pagina LIDA direto.",
+    "existe_hoje": false,
+    "observacao": "Bloqueado hoje: o egresso da nuvem barra fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, todos testados em 09/09/2026 e todos com EGRESS_BLOCKED. So a busca atravessa."
+   },
+   {
+    "nivel": 3,
+    "origem": "base-cientifica-via-busca",
+    "status": "base-cientifica-via-busca",
+    "o_que_pode_sustentar": "campo de biologia atribuido a uma base cientifica (FishBase, Catalog of Fishes) colhido por resultado de busca restrita ao dominio da base, sem leitura da pagina. Sai na tela com 'a confirmar na ficha da base'.",
+    "existe_hoje": true
+   },
+   {
+    "nivel": 4,
+    "origem": "compendio-especializado",
+    "status": "verificada-compendio",
+    "o_que_pode_sustentar": "campo de manutencao (tamanho minimo de aquario, cardume, temperamento, alimentacao) publicado por compendio de aquarismo com bibliografia, com a pagina LIDA direto.",
+    "existe_hoje": false,
+    "observacao": "Mesmo bloqueio do nivel 2."
+   },
+   {
+    "nivel": 5,
+    "origem": "compendio-via-busca",
+    "status": "compendio-via-busca",
+    "o_que_pode_sustentar": "campo de manutencao atribuido a compendio especializado (Seriously Fish) colhido por busca restrita ao dominio, sem leitura da pagina.",
+    "existe_hoje": true
+   },
+   {
+    "nivel": 6,
+    "origem": "varejo",
+    "status": "transcrita-varejo",
+    "o_que_pode_sustentar": "APENAS a nomenclatura popular usada no comercio brasileiro e a disponibilidade. NUNCA um parametro de agua, um porte ou um tamanho de aquario.",
+    "existe_hoje": true
+   }
   ],
-  "por_que_existe": [
-    "A Bussola verificou que o eixo 'quantos litros para X peixes' esta ABERTO na SERP brasileira, enquanto 'melhor filtro para aquario de X litros' ja foi tomado por tres fazendas de conteudo.",
-    "O portao da malha exige 3 itens de banco reais e um numero calculado proprio por pagina. Sem banco de especies, nenhuma pagina desse eixo passa no portao.",
-    "A regra de bolso brasileira ('1 cm de peixe por litro') nao tem fonte, nao distingue porte de carga e nao sobrevive a ser citada. O banco existe para que a Aquametria diga um numero com nome, fonte e data do lado."
-  ],
-  "principios": [
-    "Declarado nao e medido, igual ao banco de produtos. Nenhum campo aqui e medicao da Aquametria: tudo e declaracao de terceiro, com atribuicao.",
-    "O dominio da fonte muda com o campo. Para BIOLOGIA (porte adulto, familia, distribuicao) a base cientifica manda. Para MANUTENCAO (tamanho minimo de aquario, cardume minimo, temperamento) o compendio de aquarismo manda, porque e o corpo de conhecimento que trata disso. Ver dominio_por_campo.",
-    "Divergencia e conteudo. Fontes do mesmo dominio que discordam viram conflito publicado com atribuicao, nunca media.",
-    "Em conflito de campo de bem-estar (cardume_minimo, comprimento_minimo_aquario_cm, base_minima_cm) o valor conservador e o MAIOR, porque errar para menos custa a vida do animal e errar para mais custa espaco. Isso e o oposto da regra de produto, onde o conservador costuma ser o menor, e por isso esta escrito aqui.",
-    "O que falta fica explicito: campo sem fonte e null com motivo, nunca um numero plausivel.",
-    "Volume minimo NAO se escreve a mao. Quando a fonte declara base em centimetros, o volume e derivado pela calculadora, com a altura declarada pelo usuario. Gravar litro derivado e defeito (regra E7)."
-  ],
-  "escada_de_fontes": {
-    "descricao": "Nivel de confianca de uma origem para a entidade especie. Herda a forma da escada do banco de produtos, mas as origens sao outras: nao existe fabricante de peixe.",
-    "niveis": [
-      {
-        "nivel": 1,
-        "origem": "medicao-propria",
-        "status": "medida-aquametria",
-        "o_que_pode_sustentar": "qualquer campo, por observacao propria documentada. Nao existe hoje e talvez nunca exista: a ilha nao mantem aquario.",
-        "existe_hoje": false
-      },
-      {
-        "nivel": 2,
-        "origem": "base-cientifica",
-        "status": "verificada-base-cientifica",
-        "o_que_pode_sustentar": "qualquer campo de biologia (nome, autoria, familia, distribuicao, porte adulto) com a pagina LIDA direto.",
-        "existe_hoje": false,
-        "observacao": "Bloqueado hoje: o egresso da nuvem barra fishbase.se, fishbase.org, seriouslyfish.com e en.wikipedia.org, todos testados em 09/09/2026 e todos com EGRESS_BLOCKED. So a busca atravessa."
-      },
-      {
-        "nivel": 3,
-        "origem": "base-cientifica-via-busca",
-        "status": "base-cientifica-via-busca",
-        "o_que_pode_sustentar": "campo de biologia atribuido a uma base cientifica (FishBase, Catalog of Fishes) colhido por resultado de busca restrita ao dominio da base, sem leitura da pagina. Sai na tela com 'a confirmar na ficha da base'.",
-        "existe_hoje": true
-      },
-      {
-        "nivel": 4,
-        "origem": "compendio-especializado",
-        "status": "verificada-compendio",
-        "o_que_pode_sustentar": "campo de manutencao (tamanho minimo de aquario, cardume, temperamento, alimentacao) publicado por compendio de aquarismo com bibliografia, com a pagina LIDA direto.",
-        "existe_hoje": false,
-        "observacao": "Mesmo bloqueio do nivel 2."
-      },
-      {
-        "nivel": 5,
-        "origem": "compendio-via-busca",
-        "status": "compendio-via-busca",
-        "o_que_pode_sustentar": "campo de manutencao atribuido a compendio especializado (Seriously Fish) colhido por busca restrita ao dominio, sem leitura da pagina.",
-        "existe_hoje": true
-      },
-      {
-        "nivel": 6,
-        "origem": "varejo",
-        "status": "transcrita-varejo",
-        "o_que_pode_sustentar": "APENAS a nomenclatura popular usada no comercio brasileiro e a disponibilidade. NUNCA um parametro de agua, um porte ou um tamanho de aquario.",
-        "existe_hoje": true
-      }
-    ],
-    "regra_de_atribuicao_por_busca": "Um numero so entra pelos niveis 3 e 5 quando a busca foi RESTRITA ao dominio da fonte (allowed_domains) ou quando o resumo da busca atribui o numero a fonte pelo nome. Numero que aparece em resumo de busca aberta, sem dono, nao entra no banco. Isso e o que separa colher de inventar.",
-    "regra_de_espelho": "fishbase.se e fishbase.org sao a MESMA FishBase, e url diferente nao e fonte diferente quando as duas leem o mesmo corpo de conhecimento. Toda contagem de 'duas fontes' colapsa espelhos antes de contar (regra E15). Sem isso, acrescentar o espelho a um registro de fonte unica o faria passar por conferido sem ninguem ter conferido nada — foi o que quase aconteceu com o guppy na leva 3, quando a coleta de familia trouxe a mesma ficha pelo outro dominio.",
-    "regra_da_congenere": "A CONGENERE E A ARMADILHA DESTE CANAL, medida em 09/09 e remedida em 11/09/2026. Quando a ficha da especie alvo nao publica um campo, o resumo da busca oferece, com ar de resposta, o numero da especie IRMA do mesmo genero - e o oferece sem dizer que trocou de ficha. Foi assim que a base do T. sp. 'Vietnam' quase virou a do T. albonubes, a das congeneres de Nannostomus quase virou a do N. beckfordi, e a de duas Celestichthys quase virou a do danio celestial. REGRA: um numero so entra quando o resumo o atribui a ESPECIE pelo nome. 'Especies relacionadas do genero', 'para referencia' e 'com base em congeneres' sao recusa, nao dado. Na duvida o campo fica null e a observacao do registro diz que numero foi oferecido e recusado - e isso que impede a proxima coleta de cair na mesma oferta. E o inverso tambem vale: REPRODUZIR NAO E CONFERIR. O porte de 13,7 cm TL do gurami mel voltou identico em tres formulacoes de busca, em duas datas, e continua recusado, porque quem o derruba e a contradicao interna da fonte (a mesma ficha que declara 13,7 cm declara aquario minimo de 60 cm, enquanto para um congenere de 12,0 cm declara 120 cm), nao a contagem de quantas vezes o numero apareceu."
+  "regra_de_atribuicao_por_busca": "Um numero so entra pelos niveis 3 e 5 quando a busca foi RESTRITA ao dominio da fonte (allowed_domains) ou quando o resumo da busca atribui o numero a fonte pelo nome. Numero que aparece em resumo de busca aberta, sem dono, nao entra no banco. Isso e o que separa colher de inventar.",
+  "regra_de_espelho": "fishbase.se e fishbase.org sao a MESMA FishBase, e url diferente nao e fonte diferente quando as duas leem o mesmo corpo de conhecimento. Toda contagem de 'duas fontes' colapsa espelhos antes de contar (regra E15). Sem isso, acrescentar o espelho a um registro de fonte unica o faria passar por conferido sem ninguem ter conferido nada — foi o que quase aconteceu com o guppy na leva 3, quando a coleta de familia trouxe a mesma ficha pelo outro dominio.",
+  "regra_da_congenere": "A CONGENERE E A ARMADILHA DESTE CANAL, medida em 09/09 e remedida em 11/09/2026. Quando a ficha da especie alvo nao publica um campo, o resumo da busca oferece, com ar de resposta, o numero da especie IRMA do mesmo genero - e o oferece sem dizer que trocou de ficha. Foi assim que a base do T. sp. 'Vietnam' quase virou a do T. albonubes, a das congeneres de Nannostomus quase virou a do N. beckfordi, e a de duas Celestichthys quase virou a do danio celestial. REGRA: um numero so entra quando o resumo o atribui a ESPECIE pelo nome. 'Especies relacionadas do genero', 'para referencia' e 'com base em congeneres' sao recusa, nao dado. Na duvida o campo fica null e a observacao do registro diz que numero foi oferecido e recusado - e isso que impede a proxima coleta de cair na mesma oferta. E o inverso tambem vale: REPRODUZIR NAO E CONFERIR. O porte de 13,7 cm TL do gurami mel voltou identico em tres formulacoes de busca, em duas datas, e continua recusado, porque quem o derruba e a contradicao interna da fonte (a mesma ficha que declara 13,7 cm declara aquario minimo de 60 cm, enquanto para um congenere de 12,0 cm declara 120 cm), nao a contagem de quantas vezes o numero apareceu."
+ },
+ "dominio_por_campo": {
+  "descricao": "Qual escada manda em qual campo. Existe porque FishBase e Seriously Fish nao competem: uma e melhor em biologia, a outra em manutencao. Sem esta tabela, 'nivel mais alto vence' daria a FishBase a ultima palavra sobre tamanho de aquario, que nao e o assunto dela.",
+  "biologia": {
+   "campos": [
+    "nome_cientifico",
+    "sinonimos_cientificos",
+    "familia",
+    "origem_geografica",
+    "porte_adulto_cm",
+    "porte_medida",
+    "porte_sexo",
+    "expectativa_vida_anos"
+   ],
+   "manda": "base-cientifica",
+   "ordem": [
+    "medicao-propria",
+    "base-cientifica",
+    "base-cientifica-via-busca",
+    "compendio-especializado",
+    "compendio-via-busca"
+   ]
   },
-  "dominio_por_campo": {
-    "descricao": "Qual escada manda em qual campo. Existe porque FishBase e Seriously Fish nao competem: uma e melhor em biologia, a outra em manutencao. Sem esta tabela, 'nivel mais alto vence' daria a FishBase a ultima palavra sobre tamanho de aquario, que nao e o assunto dela.",
-    "biologia": {
-      "campos": [
-        "nome_cientifico",
-        "sinonimos_cientificos",
-        "familia",
-        "origem_geografica",
-        "porte_adulto_cm",
-        "porte_medida",
-        "porte_sexo",
-        "expectativa_vida_anos"
-      ],
-      "manda": "base-cientifica",
-      "ordem": [
-        "medicao-propria",
-        "base-cientifica",
-        "base-cientifica-via-busca",
-        "compendio-especializado",
-        "compendio-via-busca"
-      ]
-    },
-    "manutencao": {
-      "campos": [
-        "temperatura_C",
-        "ph",
-        "dureza_dgh",
-        "cardume_minimo",
-        "comprimento_minimo_aquario_cm",
-        "base_minima_cm",
-        "nivel_natacao",
-        "comportamento",
-        "convivencia",
-        "alimentacao",
-        "dificuldade",
-        "exige_aquario_maduro"
-      ],
-      "manda": "compendio-especializado",
-      "ordem": [
-        "medicao-propria",
-        "compendio-especializado",
-        "compendio-via-busca",
-        "base-cientifica",
-        "base-cientifica-via-busca"
-      ]
-    },
-    "comercio": {
-      "campos": [
-        "nomes_populares_br",
-        "disponibilidade_br"
-      ],
-      "manda": "varejo",
-      "ordem": [
-        "varejo",
-        "compendio-via-busca",
-        "base-cientifica-via-busca"
-      ]
-    }
+  "manutencao": {
+   "campos": [
+    "temperatura_C",
+    "ph",
+    "dureza_dgh",
+    "cardume_minimo",
+    "comprimento_minimo_aquario_cm",
+    "base_minima_cm",
+    "nivel_natacao",
+    "comportamento",
+    "convivencia",
+    "alimentacao",
+    "dificuldade",
+    "exige_aquario_maduro"
+   ],
+   "manda": "compendio-especializado",
+   "ordem": [
+    "medicao-propria",
+    "compendio-especializado",
+    "compendio-via-busca",
+    "base-cientifica",
+    "base-cientifica-via-busca"
+   ]
   },
-  "campos": [
-    {
-      "campo": "id",
-      "tipo": "string",
-      "obrigatorio": true,
-      "formato": "kebab-case do nome cientifico, estavel para sempre. Ex.: paracheirodon-axelrodi."
-    },
-    {
-      "campo": "entidade",
-      "tipo": "string",
-      "obrigatorio": true,
-      "valores": [
-        "especie"
-      ]
-    },
-    {
-      "campo": "nome_cientifico",
-      "tipo": "string",
-      "obrigatorio": true,
-      "dominio": "biologia"
-    },
-    {
-      "campo": "sinonimos_cientificos",
-      "tipo": "lista de string",
-      "obrigatorio": false,
-      "dominio": "biologia",
-      "nota": "Guarda a sinonimia que o comercio ainda usa. Corydoras aeneus virou Osteogaster aenea em revisao recente e as duas grafias circulam: sem isso a busca nao casa."
-    },
-    {
-      "campo": "nomes_populares_br",
-      "tipo": "lista de string",
-      "obrigatorio": true,
-      "dominio": "comercio",
-      "nota": "Como a especie e pedida na loja brasileira. E o que casa a pagina com a busca real."
-    },
-    {
-      "campo": "familia",
-      "tipo": "string",
-      "obrigatorio": false,
-      "dominio": "biologia"
-    },
-    {
-      "campo": "origem_geografica",
-      "tipo": "string",
-      "obrigatorio": false,
-      "dominio": "biologia"
-    },
-    {
-      "campo": "porte_adulto_cm",
-      "tipo": "number",
-      "unidade": "cm",
-      "obrigatorio": true,
-      "dominio": "biologia",
-      "nota": "Comprimento maximo declarado do adulto. Sempre acompanhado de porte_medida."
-    },
-    {
-      "campo": "porte_medida",
-      "tipo": "string",
-      "obrigatorio": true,
-      "valores": [
-        "SL",
-        "TL"
-      ],
-      "nota": "SL e comprimento padrao (sem a cauda), TL e comprimento total. Misturar os dois em uma tabela e erro de leitura, nao de digitacao: para um peixe de cauda longa a diferenca passa de 20 %."
-    },
-    {
-      "campo": "porte_sexo",
-      "tipo": "string",
-      "obrigatorio": false,
-      "valores": [
-        "macho",
-        "femea",
-        "nao-sexado"
-      ],
-      "nota": "Em vivipara a femea e maior e e ela que define a carga. Quando a fonte separa, o banco guarda o valor da femea."
-    },
-    {
-      "campo": "expectativa_vida_anos",
-      "tipo": "number",
-      "obrigatorio": false,
-      "dominio": "biologia"
-    },
-    {
-      "campo": "temperatura_C",
-      "tipo": "intervalo {min,max}",
-      "unidade": "C",
-      "obrigatorio": true,
-      "dominio": "manutencao",
-      "nota": "Faixa de manutencao, nunca a faixa de tolerancia da especie na natureza. Quando a fonte publica so tolerancia (o caso do kinguio, 0 a 41 C), o campo guarda a tolerancia e observacao diz que nao serve para dimensionar aquecedor."
-    },
-    {
-      "campo": "temperatura_e_tolerancia",
-      "tipo": "boolean",
-      "obrigatorio": false,
-      "nota": "true quando temperatura_C e faixa de tolerancia e nao de manutencao. Bloqueia o uso do campo pela C5."
-    },
-    {
-      "campo": "ph",
-      "tipo": "intervalo {min,max}",
-      "obrigatorio": false,
-      "dominio": "manutencao"
-    },
-    {
-      "campo": "dureza_dgh",
-      "tipo": "intervalo {min,max}",
-      "unidade": "dGH",
-      "obrigatorio": false,
-      "dominio": "manutencao"
-    },
-    {
-      "campo": "cardume_minimo",
-      "tipo": "integer",
-      "unidade": "individuos",
-      "obrigatorio": false,
-      "dominio": "manutencao",
-      "nota": "Quantidade minima da propria especie para o comportamento normal. null quando a especie nao e de cardume; nesse caso convivencia diz o que ela e."
-    },
-    {
-      "campo": "comprimento_minimo_aquario_cm",
-      "tipo": "integer",
-      "unidade": "cm",
-      "obrigatorio": true,
-      "dominio": "manutencao",
-      "nota": "Frente minima declarada por fonte, para o cardume_minimo declarado. E o campo que sustenta o eixo 'quantos litros para X peixes': litro sem frente nao dimensiona nada, porque 60 L podem ser 60x30x33 ou 30x30x66."
-    },
-    {
-      "campo": "base_minima_cm",
-      "tipo": "objeto {comprimento,largura}",
-      "unidade": "cm",
-      "obrigatorio": false,
-      "dominio": "manutencao",
-      "nota": "Quando a fonte declara a base inteira. Melhor que so o comprimento, porque area de fundo e o que limita peixe de fundo."
-    },
-    {
-      "campo": "altura_minima_cm",
-      "tipo": "integer",
-      "unidade": "cm",
-      "obrigatorio": false,
-      "dominio": "manutencao",
-      "nota": "So existe para peixe alto, como o acara-bandeira. null e o normal."
-    },
-    {
-      "campo": "volume_minimo_declarado_L",
-      "tipo": "number",
-      "unidade": "L",
-      "obrigatorio": false,
-      "dominio": "manutencao",
-      "nota": "So quando a FONTE declara litro. Litro calculado a partir da base e derivado e NAO se grava (regra E7)."
-    },
-    {
-      "campo": "nivel_natacao",
-      "tipo": "string",
-      "obrigatorio": false,
-      "valores": [
-        "fundo",
-        "meio",
-        "superficie",
-        "toda-coluna"
-      ]
-    },
-    {
-      "campo": "comportamento",
-      "tipo": "string",
-      "obrigatorio": false,
-      "valores": [
-        "pacifico",
-        "semi-agressivo",
-        "agressivo",
-        "territorial"
-      ],
-      "nota": "Temperamento declarado por fonte. NAO e obrigatorio: em 09/09/2026 so 5 dos 12 registros tinham uma frase de fonte que sustentasse o campo, e inventar temperamento e exatamente o que a fazenda de conteudo faz. Quem sustenta a lotacao e convivencia, nao este campo."
-    },
-    {
-      "campo": "convivencia",
-      "tipo": "string",
-      "obrigatorio": true,
-      "valores": [
-        "cardume",
-        "grupo",
-        "casal",
-        "harem",
-        "solitario"
-      ],
-      "nota": "solitario significa um por aquario, e nao 'peixe que aguenta ficar sozinho'. O betta ornamental e o caso."
-    },
-    {
-      "campo": "alimentacao",
-      "tipo": "string",
-      "obrigatorio": false,
-      "valores": [
-        "onivoro",
-        "herbivoro",
-        "carnivoro",
-        "detritivoro",
-        "insetivoro"
-      ]
-    },
-    {
-      "campo": "dificuldade",
-      "tipo": "string",
-      "obrigatorio": false,
-      "valores": [
-        "iniciante",
-        "intermediario",
-        "avancado"
-      ],
-      "nota": "Campo de julgamento editorial, nao de fonte. So entra quando a observacao explica em que a dificuldade consiste."
-    },
-    {
-      "campo": "exige_aquario_maduro",
-      "tipo": "boolean",
-      "obrigatorio": false,
-      "nota": "true quando a fonte diz que a especie nao entra em aquario recem-montado. Otocinclus e o caso classico."
-    },
-    {
-      "campo": "disponibilidade_br",
-      "tipo": "string",
-      "obrigatorio": false,
-      "valores": [
-        "vendido",
-        "raro",
-        "nao-visto"
-      ],
-      "dominio": "comercio"
-    },
-    {
-      "campo": "fontes",
-      "tipo": "lista de objeto",
-      "obrigatorio": true,
-      "nota": "Igual ao banco de produtos: origem, status, referencia, url, verificado_em e campos[]. Todo campo preenchido precisa aparecer em pelo menos um campos[] (regra E3)."
-    },
-    {
-      "campo": "conflitos",
-      "tipo": "lista de objeto",
-      "obrigatorio": false,
-      "nota": "campo, valores[], razao, tratamento, valor_conservador."
-    },
-    {
-      "campo": "verificado_em",
-      "tipo": "data ISO",
-      "obrigatorio": true
-    },
-    {
-      "campo": "status_registro",
-      "tipo": "string",
-      "obrigatorio": true,
-      "valores": [
-        "completo",
-        "parcial",
-        "conflito",
-        "revalidar",
-        "rascunho"
-      ]
-    },
-    {
-      "campo": "observacao",
-      "tipo": "string",
-      "obrigatorio": false
-    }
-  ],
-  "campos_derivados": {
-    "descricao": "Calculados a partir dos campos com fonte. NUNCA gravados no banco (regra E7).",
-    "lista": [
-      {
-        "nome": "volume_minimo_derivado_L",
-        "formula": "comprimento_minimo_aquario_cm x largura_cm x altura_util_cm / 1000",
-        "quem_calcula": "a calculadora, com a altura que o usuario declarar"
-      },
-      {
-        "nome": "frente_por_individuo_cm",
-        "formula": "comprimento_minimo_aquario_cm / cardume_minimo",
-        "para_que": "estender o cardume alem do minimo sem inventar regra de bolso"
-      },
-      {
-        "nome": "biomassa_relativa",
-        "formula": "porte_adulto_cm elevado a 3, normalizado",
-        "para_que": "comparar carga entre especies de portes diferentes; o comprimento sozinho subestima o peixe grande"
-      }
-    ]
-  },
-  "minimo_para_sugerir": {
-    "pagina-especie": [
-      "nome_cientifico",
-      "nomes_populares_br",
-      "porte_adulto_cm",
-      "porte_medida",
-      "comprimento_minimo_aquario_cm",
-      "convivencia",
-      "temperatura_C",
-      "duas fontes distintas"
-    ],
-    "c8-lotacao": [
-      "porte_adulto_cm",
-      "porte_medida",
-      "comprimento_minimo_aquario_cm",
-      "cardume_minimo OU convivencia igual a solitario/casal/harem",
-      "convivencia"
-    ],
-    "c5-aquecedor": [
-      "temperatura_C com temperatura_e_tolerancia falso ou ausente"
-    ],
-    "regra": "Registro com status_registro rascunho ou revalidar nunca e sugerido, mesmo com todos os campos preenchidos. 'duas fontes distintas' significa dois corpos distintos, nao duas urls (E15)."
-  },
-  "regras_validacao": [
-    {
-      "id": "E1",
-      "regra": "id em kebab-case, unico no arquivo, e igual ao nome_cientifico em minusculas com hifen."
-    },
-    {
-      "id": "E2",
-      "regra": "Todo campo obrigatorio presente, ou o registro e parcial e a observacao diz qual campo falta e por que."
-    },
-    {
-      "id": "E3",
-      "regra": "Todo campo preenchido aparece em pelo menos um fontes[].campos, exceto os de campos_sem_fonte_exigida. Campo tecnico sem fonte e erro, nao aviso."
-    },
-    {
-      "id": "E4",
-      "regra": "Toda fonte tem origem do vocabulario da escada, status coerente com a origem, url e verificado_em."
-    },
-    {
-      "id": "E5",
-      "regra": "Campo de manutencao sustentado SO por fonte de origem varejo e erro: varejo nao sustenta parametro de agua nem tamanho de aquario."
-    },
-    {
-      "id": "E6",
-      "regra": "porte_adulto_cm exige porte_medida. Numero de porte sem SL ou TL do lado e erro."
-    },
-    {
-      "id": "E7",
-      "regra": "volume_minimo_declarado_L so existe com fonte que declare litro. Se o registro tem base em cm e um litro que bate com a multiplicacao, e derivado gravado a mao: erro."
-    },
-    {
-      "id": "E8",
-      "regra": "Intervalo com min maior que max e erro. Intervalo com min igual a max e aviso."
-    },
-    {
-      "id": "E9",
-      "regra": "Conflito declarado precisa de tratamento do vocabulario e, em campo de bem-estar, valor_conservador igual ao MAIOR dos valores."
-    },
-    {
-      "id": "E10",
-      "regra": "status_registro conflito exige conflitos nao vazio; conflitos nao vazio exige status conflito, revalidar ou — desde a leva 3 — parcial, quando o mesmo registro tambem tem campo obrigatorio faltando. Completude e divergencia sao fatos ortogonais e status_registro carrega um campo so: nesse caso vale o mais restritivo, e parcial e mais restritivo que conflito porque barra a pagina."
-    },
-    {
-      "id": "E11",
-      "regra": "verificado_em com mais de 365 dias vira aviso de revalidar (especie muda menos que catalogo de loja, por isso o prazo e maior que os 180 dias do produto)."
-    },
-    {
-      "id": "E12",
-      "regra": "cardume_minimo maior que 1 exige convivencia cardume ou grupo. convivencia solitario exige cardume_minimo null."
-    },
-    {
-      "id": "E13",
-      "regra": "temperatura_C com amplitude maior que 20 C exige temperatura_e_tolerancia true: faixa dessas nao e recomendacao de manutencao e nao pode alimentar a C5."
-    },
-    {
-      "id": "E14",
-      "regra": "status_registro completo exige pelo menos duas fontes de CORPOS distintos (ver E15). Fonte unica e parcial, mesmo com todos os campos preenchidos: uma so leitura nao se confere a si mesma, e este banco inteiro foi colhido por busca."
-    },
-    {
-      "id": "E15",
-      "regra": "Espelho nao confere espelho. Antes de contar fontes distintas, o validador colapsa os dominios que leem o mesmo corpo (fishbase.se e fishbase.org viram 'fishbase'). Registro com duas urls e um corpo so sai com aviso e nao conta como conferido, nem no E14 nem no minimo_para_sugerir."
-    },
-    {
-      "id": "E16",
-      "regra": "Todo valor NUMERICO de campo tem de aparecer no texto de pelo menos uma das fontes que declaram aquele campo, em algarismo ou por extenso. O campo e o numero que a maquina usa; a referencia e a transcricao do que a fonte disse. Sao duas escritas independentes do mesmo fato, e quando divergem alguem transcreveu errado, digitou errado ou editou um lado so. E a mesma familia de defeito que a Robometria achou ao comparar duas copias da mesma regua, so que aqui as duas copias sao mesmo independentes - por isso a comparacao vale. Vale para intervalo (min e max contam separados) e para objeto de base (comprimento e largura). Erro, nao aviso."
-    }
-  ],
-  "o_que_nao_entra": [
-    "Regra de bolso de litro por centimetro de peixe. Nao tem fonte, nao distingue porte de carga e e exatamente o que as fazendas de conteudo publicam.",
-    "Compatibilidade entre especies como campo booleano. Convivencia depende de volume, de layout e de ordem de introducao; vira conteudo de pagina de cruzamento, com o criterio na frente, nunca um sim/nao no banco.",
-    "Preco de peixe. Mesma politica do banco de produtos: preco e serie temporal e nao entra em criterio tecnico.",
-    "Numero colhido de resumo de busca aberta sem dono declarado."
-  ],
-  "campos_sem_fonte_exigida": {
-    "descricao": "Campos isentos da regra E3, pelo mesmo motivo que nomes_alternativos e isento no banco de produtos: sao identidade, grafia de comercio ou metadado do registro, e nao afirmacao tecnica sobre o animal. Todo o resto exige fonte.",
-    "lista": [
-      "id",
-      "entidade",
-      "nome_cientifico",
-      "sinonimos_cientificos",
-      "nomes_populares_br",
-      "temperatura_e_tolerancia",
-      "fontes",
-      "conflitos",
-      "verificado_em",
-      "status_registro",
-      "observacao"
-    ],
-    "nota_nome_cientifico": "nome_cientifico e isento porque e a chave do registro e aparece por inteiro na referencia de toda fonte citada; qualquer afirmacao sobre ele (autoria, sinonimia, revisao) e que exige fonte."
-  },
-  "status_registro": {
-    "completo": "todos os campos obrigatorios preenchidos e com fonte, e pelo menos DUAS fontes de corpos distintos (espelhos do mesmo corpo contam como um, regra E15). Pode virar pagina e alimentar calculadora.",
-    "parcial": "falta campo obrigatorio, ou o registro se apoia em um corpo de fonte so. Fica no banco porque a ficha ja vale como conteudo, mas nao passa no portao de pagina. Um registro pode ser parcial E ter conflitos declarados (emenda do E10).",
-    "conflito": "algum campo tem valores divergentes tratados em conflitos[]. Pode ser usado; a tela publica a divergencia com atribuicao.",
-    "revalidar": "verificado_em com mais de 365 dias, ou campo marcado como implausivel. Sai de uso ate ser reconferido.",
-    "rascunho": "registro aberto sem fonte suficiente. Nunca sai na tela."
+  "comercio": {
+   "campos": [
+    "nomes_populares_br",
+    "disponibilidade_br"
+   ],
+   "manda": "varejo",
+   "ordem": [
+    "varejo",
+    "compendio-via-busca",
+    "base-cientifica-via-busca"
+   ]
   }
+ },
+ "campos": [
+  {
+   "campo": "id",
+   "tipo": "string",
+   "obrigatorio": true,
+   "formato": "kebab-case do nome cientifico, estavel para sempre. Ex.: paracheirodon-axelrodi."
+  },
+  {
+   "campo": "entidade",
+   "tipo": "string",
+   "obrigatorio": true,
+   "valores": [
+    "especie"
+   ]
+  },
+  {
+   "campo": "nome_cientifico",
+   "tipo": "string",
+   "obrigatorio": true,
+   "dominio": "biologia"
+  },
+  {
+   "campo": "sinonimos_cientificos",
+   "tipo": "lista de string",
+   "obrigatorio": false,
+   "dominio": "biologia",
+   "nota": "Guarda a sinonimia que o comercio ainda usa. Corydoras aeneus virou Osteogaster aenea em revisao recente e as duas grafias circulam: sem isso a busca nao casa."
+  },
+  {
+   "campo": "nomes_populares_br",
+   "tipo": "lista de string",
+   "obrigatorio": true,
+   "dominio": "comercio",
+   "nota": "Como a especie e pedida na loja brasileira. E o que casa a pagina com a busca real."
+  },
+  {
+   "campo": "familia",
+   "tipo": "string",
+   "obrigatorio": false,
+   "dominio": "biologia"
+  },
+  {
+   "campo": "origem_geografica",
+   "tipo": "string",
+   "obrigatorio": false,
+   "dominio": "biologia"
+  },
+  {
+   "campo": "porte_adulto_cm",
+   "tipo": "number",
+   "unidade": "cm",
+   "obrigatorio": true,
+   "dominio": "biologia",
+   "nota": "Comprimento maximo declarado do adulto. Sempre acompanhado de porte_medida."
+  },
+  {
+   "campo": "porte_medida",
+   "tipo": "string",
+   "obrigatorio": true,
+   "valores": [
+    "SL",
+    "TL"
+   ],
+   "nota": "SL e comprimento padrao (sem a cauda), TL e comprimento total. Misturar os dois em uma tabela e erro de leitura, nao de digitacao: para um peixe de cauda longa a diferenca passa de 20 %."
+  },
+  {
+   "campo": "porte_sexo",
+   "tipo": "string",
+   "obrigatorio": false,
+   "valores": [
+    "macho",
+    "femea",
+    "nao-sexado"
+   ],
+   "nota": "Em vivipara a femea e maior e e ela que define a carga. Quando a fonte separa, o banco guarda o valor da femea."
+  },
+  {
+   "campo": "expectativa_vida_anos",
+   "tipo": "number",
+   "obrigatorio": false,
+   "dominio": "biologia"
+  },
+  {
+   "campo": "temperatura_C",
+   "tipo": "intervalo {min,max}",
+   "unidade": "C",
+   "obrigatorio": true,
+   "dominio": "manutencao",
+   "nota": "Faixa de manutencao, nunca a faixa de tolerancia da especie na natureza. Quando a fonte publica so tolerancia (o caso do kinguio, 0 a 41 C), o campo guarda a tolerancia e observacao diz que nao serve para dimensionar aquecedor."
+  },
+  {
+   "campo": "temperatura_e_tolerancia",
+   "tipo": "boolean",
+   "obrigatorio": false,
+   "nota": "true quando temperatura_C e faixa de tolerancia e nao de manutencao. Bloqueia o uso do campo pela C5."
+  },
+  {
+   "campo": "ph",
+   "tipo": "intervalo {min,max}",
+   "obrigatorio": false,
+   "dominio": "manutencao"
+  },
+  {
+   "campo": "dureza_dgh",
+   "tipo": "intervalo {min,max}",
+   "unidade": "dGH",
+   "obrigatorio": false,
+   "dominio": "manutencao"
+  },
+  {
+   "campo": "cardume_minimo",
+   "tipo": "integer",
+   "unidade": "individuos",
+   "obrigatorio": false,
+   "dominio": "manutencao",
+   "nota": "Quantidade minima da propria especie para o comportamento normal. null quando a especie nao e de cardume; nesse caso convivencia diz o que ela e."
+  },
+  {
+   "campo": "comprimento_minimo_aquario_cm",
+   "tipo": "integer",
+   "unidade": "cm",
+   "obrigatorio": true,
+   "dominio": "manutencao",
+   "nota": "Frente minima declarada por fonte, para o cardume_minimo declarado. E o campo que sustenta o eixo 'quantos litros para X peixes': litro sem frente nao dimensiona nada, porque 60 L podem ser 60x30x33 ou 30x30x66."
+  },
+  {
+   "campo": "base_minima_cm",
+   "tipo": "objeto {comprimento,largura}",
+   "unidade": "cm",
+   "obrigatorio": false,
+   "dominio": "manutencao",
+   "nota": "Quando a fonte declara a base inteira. Melhor que so o comprimento, porque area de fundo e o que limita peixe de fundo."
+  },
+  {
+   "campo": "altura_minima_cm",
+   "tipo": "integer",
+   "unidade": "cm",
+   "obrigatorio": false,
+   "dominio": "manutencao",
+   "nota": "So existe para peixe alto, como o acara-bandeira. null e o normal."
+  },
+  {
+   "campo": "volume_minimo_declarado_L",
+   "tipo": "number",
+   "unidade": "L",
+   "obrigatorio": false,
+   "dominio": "manutencao",
+   "nota": "So quando a FONTE declara litro. Litro calculado a partir da base e derivado e NAO se grava (regra E7)."
+  },
+  {
+   "campo": "nivel_natacao",
+   "tipo": "string",
+   "obrigatorio": false,
+   "valores": [
+    "fundo",
+    "meio",
+    "superficie",
+    "toda-coluna"
+   ]
+  },
+  {
+   "campo": "comportamento",
+   "tipo": "string",
+   "obrigatorio": false,
+   "valores": [
+    "pacifico",
+    "semi-agressivo",
+    "agressivo",
+    "territorial"
+   ],
+   "nota": "Temperamento declarado por fonte. NAO e obrigatorio: em 09/09/2026 so 5 dos 12 registros tinham uma frase de fonte que sustentasse o campo, e inventar temperamento e exatamente o que a fazenda de conteudo faz. Quem sustenta a lotacao e convivencia, nao este campo."
+  },
+  {
+   "campo": "convivencia",
+   "tipo": "string",
+   "obrigatorio": true,
+   "valores": [
+    "cardume",
+    "grupo",
+    "casal",
+    "harem",
+    "solitario"
+   ],
+   "nota": "solitario significa um por aquario, e nao 'peixe que aguenta ficar sozinho'. O betta ornamental e o caso."
+  },
+  {
+   "campo": "alimentacao",
+   "tipo": "string",
+   "obrigatorio": false,
+   "valores": [
+    "onivoro",
+    "herbivoro",
+    "carnivoro",
+    "detritivoro",
+    "insetivoro"
+   ]
+  },
+  {
+   "campo": "dificuldade",
+   "tipo": "string",
+   "obrigatorio": false,
+   "valores": [
+    "iniciante",
+    "intermediario",
+    "avancado"
+   ],
+   "nota": "Campo de julgamento editorial, nao de fonte. So entra quando a observacao explica em que a dificuldade consiste."
+  },
+  {
+   "campo": "exige_aquario_maduro",
+   "tipo": "boolean",
+   "obrigatorio": false,
+   "nota": "true quando a fonte diz que a especie nao entra em aquario recem-montado. Otocinclus e o caso classico."
+  },
+  {
+   "campo": "disponibilidade_br",
+   "tipo": "string",
+   "obrigatorio": false,
+   "valores": [
+    "vendido",
+    "raro",
+    "nao-visto"
+   ],
+   "dominio": "comercio"
+  },
+  {
+   "campo": "fontes",
+   "tipo": "lista de objeto",
+   "obrigatorio": true,
+   "nota": "Igual ao banco de produtos: origem, status, referencia, url, verificado_em e campos[]. Todo campo preenchido precisa aparecer em pelo menos um campos[] (regra E3)."
+  },
+  {
+   "campo": "conflitos",
+   "tipo": "lista de objeto",
+   "obrigatorio": false,
+   "nota": "campo, valores[], razao, tratamento, valor_conservador."
+  },
+  {
+   "campo": "verificado_em",
+   "tipo": "data ISO",
+   "obrigatorio": true
+  },
+  {
+   "campo": "status_registro",
+   "tipo": "string",
+   "obrigatorio": true,
+   "valores": [
+    "completo",
+    "parcial",
+    "conflito",
+    "revalidar",
+    "rascunho"
+   ]
+  },
+  {
+   "campo": "observacao",
+   "tipo": "string",
+   "obrigatorio": false
+  }
+ ],
+ "campos_derivados": {
+  "descricao": "Calculados a partir dos campos com fonte. NUNCA gravados no banco (regra E7).",
+  "lista": [
+   {
+    "nome": "volume_minimo_derivado_L",
+    "formula": "comprimento_minimo_aquario_cm x largura_cm x altura_util_cm / 1000",
+    "quem_calcula": "a calculadora, com a altura que o usuario declarar"
+   },
+   {
+    "nome": "frente_por_individuo_cm",
+    "formula": "comprimento_minimo_aquario_cm / cardume_minimo",
+    "para_que": "estender o cardume alem do minimo sem inventar regra de bolso"
+   },
+   {
+    "nome": "biomassa_relativa",
+    "formula": "porte_adulto_cm elevado a 3, normalizado",
+    "para_que": "comparar carga entre especies de portes diferentes; o comprimento sozinho subestima o peixe grande"
+   }
+  ]
+ },
+ "minimo_para_sugerir": {
+  "catalogo-de-especies": [
+   "nome_cientifico",
+   "nomes_populares_br",
+   "porte_adulto_cm",
+   "porte_medida",
+   "comprimento_minimo_aquario_cm",
+   "convivencia",
+   "temperatura_C",
+   "duas fontes distintas"
+  ],
+  "pagina-especie": [
+   "nome_cientifico",
+   "nomes_populares_br",
+   "porte_adulto_cm",
+   "porte_medida",
+   "comprimento_minimo_aquario_cm",
+   "convivencia",
+   "temperatura_C",
+   "duas fontes distintas",
+   "cardume_minimo OU convivencia igual a solitario/casal/harem"
+  ],
+  "c8-lotacao": [
+   "porte_adulto_cm",
+   "porte_medida",
+   "comprimento_minimo_aquario_cm",
+   "cardume_minimo OU convivencia igual a solitario/casal/harem",
+   "convivencia"
+  ],
+  "c5-aquecedor": [
+   "temperatura_C com temperatura_e_tolerancia falso ou ausente"
+  ],
+  "regra": "Registro com status_registro rascunho ou revalidar nunca e sugerido, mesmo com todos os campos preenchidos. 'duas fontes distintas' significa dois corpos distintos, nao duas urls (E15). Desde 12/09/2026 o portao de PAGINA cobra o mesmo cardume que o portao da C8 sempre cobrou, e pela mesma frase: a ficha deste eixo se chama 'quantos litros para um cardume de X' e abre pela frase que nomeia o cardume minimo. Sem o numero, a pagina cai no ramo que escreve a frase sem ele e abre a tabela em UM exemplar, contradizendo o que ela mesma diz duas telas abaixo. Quem declara convivencia solitario, casal ou harem passa sem cardume: ali a ausencia do numero e a declaracao, nao o buraco. DUAS LISTAS, DOIS NOMES, desde 12/09/2026: `catalogo-de-especies` e o que basta para o registro entrar no catalogo que a ilha publica - a contagem da secao, a tabela da categoria e a lista de quem divide a mesma agua. `pagina-especie` e essa lista MAIS a regra do cardume, porque a ficha deste eixo se chama 'quantos litros para um cardume de X' e abre pela frase que nomeia o cardume minimo; sem o numero ela abre a tabela em UM exemplar e contradiz a propria pagina. Quem declara convivencia solitario, casal ou harem passa sem cardume: ali a ausencia do numero e a declaracao. A primeira versao desta emenda poe a regra do cardume no portao do CATALOGO e a conta da secao caiu de 27 para 26 - corydoras sterbai sumiu de tres lugares onde o dado dele e bom, para resolver um problema de outra pagina. Apertar o portao errado tira da tela informacao verdadeira."
+ },
+ "regras_validacao": [
+  {
+   "id": "E1",
+   "regra": "id em kebab-case, unico no arquivo, e igual ao nome_cientifico em minusculas com hifen."
+  },
+  {
+   "id": "E2",
+   "regra": "Todo campo obrigatorio presente, ou o registro e parcial e a observacao diz qual campo falta e por que."
+  },
+  {
+   "id": "E3",
+   "regra": "Todo campo preenchido aparece em pelo menos um fontes[].campos, exceto os de campos_sem_fonte_exigida. Campo tecnico sem fonte e erro, nao aviso."
+  },
+  {
+   "id": "E4",
+   "regra": "Toda fonte tem origem do vocabulario da escada, status coerente com a origem, url e verificado_em."
+  },
+  {
+   "id": "E5",
+   "regra": "Campo de manutencao sustentado SO por fonte de origem varejo e erro: varejo nao sustenta parametro de agua nem tamanho de aquario."
+  },
+  {
+   "id": "E6",
+   "regra": "porte_adulto_cm exige porte_medida. Numero de porte sem SL ou TL do lado e erro."
+  },
+  {
+   "id": "E7",
+   "regra": "volume_minimo_declarado_L so existe com fonte que declare litro. Se o registro tem base em cm e um litro que bate com a multiplicacao, e derivado gravado a mao: erro."
+  },
+  {
+   "id": "E8",
+   "regra": "Intervalo com min maior que max e erro. Intervalo com min igual a max e aviso."
+  },
+  {
+   "id": "E9",
+   "regra": "Conflito declarado precisa de tratamento do vocabulario e, em campo de bem-estar, valor_conservador igual ao MAIOR dos valores."
+  },
+  {
+   "id": "E10",
+   "regra": "status_registro conflito exige conflitos nao vazio; conflitos nao vazio exige status conflito, revalidar ou — desde a leva 3 — parcial, quando o mesmo registro tambem tem campo obrigatorio faltando. Completude e divergencia sao fatos ortogonais e status_registro carrega um campo so: nesse caso vale o mais restritivo, e parcial e mais restritivo que conflito porque barra a pagina."
+  },
+  {
+   "id": "E11",
+   "regra": "verificado_em com mais de 365 dias vira aviso de revalidar (especie muda menos que catalogo de loja, por isso o prazo e maior que os 180 dias do produto)."
+  },
+  {
+   "id": "E12",
+   "regra": "cardume_minimo maior que 1 exige convivencia cardume ou grupo. convivencia solitario exige cardume_minimo null."
+  },
+  {
+   "id": "E13",
+   "regra": "temperatura_C com amplitude maior que 20 C exige temperatura_e_tolerancia true: faixa dessas nao e recomendacao de manutencao e nao pode alimentar a C5."
+  },
+  {
+   "id": "E14",
+   "regra": "status_registro completo exige pelo menos duas fontes de CORPOS distintos (ver E15). Fonte unica e parcial, mesmo com todos os campos preenchidos: uma so leitura nao se confere a si mesma, e este banco inteiro foi colhido por busca."
+  },
+  {
+   "id": "E15",
+   "regra": "Espelho nao confere espelho. Antes de contar fontes distintas, o validador colapsa os dominios que leem o mesmo corpo (fishbase.se e fishbase.org viram 'fishbase'). Registro com duas urls e um corpo so sai com aviso e nao conta como conferido, nem no E14 nem no minimo_para_sugerir."
+  },
+  {
+   "id": "E16",
+   "regra": "Todo valor NUMERICO de campo tem de aparecer no texto de pelo menos uma das fontes que declaram aquele campo, em algarismo ou por extenso. O campo e o numero que a maquina usa; a referencia e a transcricao do que a fonte disse. Sao duas escritas independentes do mesmo fato, e quando divergem alguem transcreveu errado, digitou errado ou editou um lado so. E a mesma familia de defeito que a Robometria achou ao comparar duas copias da mesma regua, so que aqui as duas copias sao mesmo independentes - por isso a comparacao vale. Vale para intervalo (min e max contam separados) e para objeto de base (comprimento e largura). Erro, nao aviso."
+  }
+ ],
+ "o_que_nao_entra": [
+  "Regra de bolso de litro por centimetro de peixe. Nao tem fonte, nao distingue porte de carga e e exatamente o que as fazendas de conteudo publicam.",
+  "Compatibilidade entre especies como campo booleano. Convivencia depende de volume, de layout e de ordem de introducao; vira conteudo de pagina de cruzamento, com o criterio na frente, nunca um sim/nao no banco.",
+  "Preco de peixe. Mesma politica do banco de produtos: preco e serie temporal e nao entra em criterio tecnico.",
+  "Numero colhido de resumo de busca aberta sem dono declarado."
+ ],
+ "campos_sem_fonte_exigida": {
+  "descricao": "Campos isentos da regra E3, pelo mesmo motivo que nomes_alternativos e isento no banco de produtos: sao identidade, grafia de comercio ou metadado do registro, e nao afirmacao tecnica sobre o animal. Todo o resto exige fonte.",
+  "lista": [
+   "id",
+   "entidade",
+   "nome_cientifico",
+   "sinonimos_cientificos",
+   "nomes_populares_br",
+   "temperatura_e_tolerancia",
+   "fontes",
+   "conflitos",
+   "verificado_em",
+   "status_registro",
+   "observacao"
+  ],
+  "nota_nome_cientifico": "nome_cientifico e isento porque e a chave do registro e aparece por inteiro na referencia de toda fonte citada; qualquer afirmacao sobre ele (autoria, sinonimia, revisao) e que exige fonte."
+ },
+ "status_registro": {
+  "completo": "todos os campos obrigatorios preenchidos e com fonte, e pelo menos DUAS fontes de corpos distintos (espelhos do mesmo corpo contam como um, regra E15). Pode virar pagina e alimentar calculadora.",
+  "parcial": "falta campo obrigatorio, ou o registro se apoia em um corpo de fonte so. Fica no banco porque a ficha ja vale como conteudo, mas nao passa no portao de pagina. Um registro pode ser parcial E ter conflitos declarados (emenda do E10).",
+  "conflito": "algum campo tem valores divergentes tratados em conflitos[]. Pode ser usado; a tela publica a divergencia com atribuicao.",
+  "revalidar": "verificado_em com mais de 365 dias, ou campo marcado como implausivel. Sai de uso ate ser reconferido.",
+  "rascunho": "registro aberto sem fonte suficiente. Nunca sai na tela."
+ },
+ "acentuacao_de_texto_de_tela": {
+  "descricao": "nomes_populares_br e TEXTO DE TELA: e o nome que a ficha, a tabela da categoria e a lista de quem divide a mesma agua imprimem, e o que o leitor de tela le. O resto deste arquivo e escrito sem acento de proposito - e nota interna -, e por isso o campo nasceu sem acento junto com tudo, em 09/09/2026. Ninguem viu durante tres levas porque as tres primeiras fichas (tetra neon, neon cardinal, mato-grosso) sao nomes que o portugues nao acentua. A leva 2 abriu a ficha do rodostomo e o defeito apareceu quinze vezes na mesma pagina, com o titulo dizendo rodostomo e o corpo dizendo rodostomo.",
+  "medido_em_12_09_2026": "No ar, na pagina do tetra neon, ja estavam servidos sem acento: coridora-panda (certo, e paroxitona), peixe-lapis, acara-bandeira e outros vindos da tabela de companheiros. 24 nomes em 15 dos 36 registros foram acentuados.",
+  "como_a_regra_morde": "Tabela declarada de forma-errada -> forma-certa, aplicada TOKEN a token (separando por espaco e por hifen) sobre nomes_populares_br. Registro com token da coluna errada reprova no validar-especies.py (regra E17).",
+  "o_que_ela_NAO_pega": "Palavra nova que ninguem errou ainda. E deliberado: heuristica de 'parece que falta acento' seria adivinhacao, e a secao 8 do contrato proibe perdoar ou reprovar por vizinhanca. Esta tabela e uma cicatriz que virou portao: cada erro achado entra aqui e nunca mais volta.",
+  "fora_de_proposito": "Estrangeirismo nao entra: guppy, platy, betta, glowlight, white cloud, zebrafish, rainbow, molly, cory, oscar, kinguio. Paroxitona terminada em -a tambem nao: coridora esta certa sem acento.",
+  "tabela": {
+   "galaxia": "galáxia",
+   "acara": "acará",
+   "rodostomo": "rodóstomo",
+   "cabeca-de-fosforo": "cabeça-de-fósforo",
+   "peixe-lapis": "peixe-lápis",
+   "lapis": "lápis",
+   "viuva-negra": "viúva-negra",
+   "arco-iris": "arco-íris",
+   "colisa-anao": "colisa-anão",
+   "gurami-anao": "gurami-anão",
+   "molinesia": "molinésia",
+   "perola": "pérola",
+   "acara-disco": "acará-disco",
+   "acara-bandeira": "acará-bandeira",
+   "acara-borboleta": "acará-borboleta",
+   "acara-acu": "acará-açu",
+   "tricogaster-tres-pintas": "tricogaster-três-pintas",
+   "botia-palhaco": "botia-palhaço",
+   "japones": "japonês"
+  }
+ }
 }

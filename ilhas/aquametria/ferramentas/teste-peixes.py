@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""O PORTAO DA LEVA 1 DO EIXO /peixes/ — mede o que as cinco paginas SERVEM.
+"""O PORTAO DO EIXO /peixes/ — mede o que as NOVE paginas SERVEM.
 
     python3 ferramentas/teste-peixes.py .
 
@@ -32,6 +32,7 @@ decidiram cada escolha:
      varredura que so passa pelo caso do meio e amostra com nome de varredura.
 """
 
+import decimal
 import html
 import json
 import math
@@ -57,7 +58,19 @@ FICHAS = {
     "quantos-litros-para-tetra-neon": "paracheirodon-innesi",
     "quantos-litros-para-tetra-cardinal": "paracheirodon-axelrodi",
     "quantos-litros-para-mato-grosso": "hyphessobrycon-eques",
+    # leva 2, 12/09/2026 — as quatro que fecham a categoria
+    "quantos-litros-para-tetra-ember": "hyphessobrycon-amandae",
+    "quantos-litros-para-tetra-brilhante": "hemigrammus-erythrozonus",
+    "quantos-litros-para-rodostomo": "hemigrammus-rhodostomus",
+    "quantos-litros-para-tetra-negro": "gymnocorymbus-ternetzi",
 }
+
+# As especies do catalogo que NAO declaram o fundo do aquario: a fonte publica o
+# comprimento minimo e para ai. Escrito aqui a mao pelo mesmo motivo do mapa de
+# cima — se o teste perguntasse ao banco quem tem base nula, ele mediria o banco
+# contra ele mesmo e a afirmacao "a pagina diz COMPRIMENTO quando nao ha fundo"
+# passaria verde com o banco inteiro nulo.
+SEM_FUNDO_DECLARADO = {"hemigrammus-rhodostomus"}
 CATEGORIA = "tetras"
 SECAO = "peixes"
 PAGINAS = [SECAO, CATEGORIA] + list(FICHAS)
@@ -113,14 +126,37 @@ def degraus(e):
     return sorted({minimo} | {n for n in DEGRAUS_EXTRA if n > minimo})
 
 
+def meio_para_cima(v, casas):
+    """Arredonda com o 5 subindo, que e o que o leitor brasileiro espera.
+
+    POR QUE ISTO E UMA FUNCAO E NAO UM '%.1f' (achado da leva 2, 12/09/2026).
+    O Python e o C arredondam o meio para o PAR — '%.1f' % 47.25 devolve '47,2'
+    —, e o number_format do PHP arredonda o meio para CIMA, devolvendo '47,3'.
+    Durante a leva 1 as duas reguas concordaram em 295 afirmacoes, e concordaram
+    por sorte: nenhum numero daquelas tres fichas caiu exatamente no meio. A
+    leva 2 pos tres deles na tela de uma vez — 45 x 30 x 35 / 1000 = 47,25 L no
+    tetra ember, 15 x 3,3 x 1,5 = 74,25 L no tetra-brilhante e 5 x 7,5 x 1,5 =
+    56,25 L no tetra-negro. E a cicatriz da secao 8 do ARQUIPELAGO.md em estado
+    puro: grade que nao pisa na borda nao separa uma regra da outra.
+
+    QUEM ESTA CERTO E A PAGINA, e isso e decisao, nao empate desfeito para o
+    teste ficar verde: "arredonda para cima no 5" e o que se ensina na escola
+    brasileira, e o meio-para-o-par e um artefato do C que ninguem escolheu.
+    """
+    d = decimal.Decimal(repr(float(v)))
+    passo = decimal.Decimal(1).scaleb(-casas)
+    return float(d.quantize(passo, rounding=decimal.ROUND_HALF_UP))
+
+
 def numero_br(v, casas=1):
     """O mesmo formato que a pagina serve: virgula decimal, sem zero inutil."""
     if v is None:
         return "—"
     v = float(v)
-    if abs(v - round(v)) < 0.05:
-        return "{:,.0f}".format(round(v)).replace(",", ".")
-    return ("%.*f" % (casas, v)).replace(".", ",")
+    inteiro = meio_para_cima(v, 0)
+    if abs(v - inteiro) < 0.05:
+        return "{:,.0f}".format(inteiro).replace(",", ".")
+    return ("%.*f" % (casas, meio_para_cima(v, casas))).replace(".", ",")
 
 
 # ---------------------------------------------------------------------------
@@ -285,6 +321,30 @@ def medir_ficha(slug, ident, banco):
             ok("%s: a linha de %d exemplares e rotulada pelo numero" % (slug, n),
                linha[0].startswith(str(n)), linha[0])
 
+    # --- BASE nao e FRENTE: a frase tem o escopo do que a fonte declarou
+    #
+    # A regua do lado do teste e o conjunto SEM_FUNDO_DECLARADO, escrito a mao no
+    # topo deste arquivo. Perguntar ao banco quem tem base nula faria as duas
+    # metades errarem juntas: com o banco inteiro nulo a afirmacao passaria.
+    sem_fundo = ident in SEM_FUNDO_DECLARADO
+    ok("%s: o banco concorda com a lista escrita a mao (fundo declarado: %s)"
+       % (slug, "nao" if sem_fundo else "sim"),
+       sem_fundo == ((e.get("base_minima_cm") or {}).get("largura") in (None, "")))
+    if sem_fundo:
+        ok("%s: a frase mestra diz COMPRIMENTO, nunca BASE" % slug,
+           "declara o COMPRIMENTO do aquário" in t and "declara a BASE" not in t)
+        ok("%s: declara a ausencia do fundo em vez de encolher calada" % slug,
+           'class="aqm-px-sem-fundo"' in c and "não há largura declarada por ninguém" in t)
+        ok("%s: e diz quais tabelas nao saem por causa disso" % slug,
+           "não sai a tabela de litros por altura" in t)
+        ok("%s: a fonte e atribuida ao comprimento, nao a base" % slug,
+           "Quem declara esse comprimento é o" in t and "Quem declara essa base é o" not in t)
+    else:
+        ok("%s: a frase mestra diz BASE, porque a fonte declarou os dois lados" % slug,
+           "declara a BASE" in t and "declara o COMPRIMENTO do aquário" not in t)
+        ok("%s: nao declara ausencia de fundo que nao existe" % slug,
+           'class="aqm-px-sem-fundo"' not in c)
+
     # --- o volume por altura, e o inverso (quantos cabem)
     largura = (e.get("base_minima_cm") or {}).get("largura")
     if largura:
@@ -411,10 +471,27 @@ def medir_ficha(slug, ident, banco):
     # --- o cluster e a mae
     ok("%s: linka a mae numa frase do corpo" % slug, 'class="aqm-px-mae"' in c)
     ok("%s: o bloco Veja tambem tem as irmas" % slug, 'class="aqm-veja"' in c)
-    for outro in FICHAS:
-        if outro == slug:
-            continue
-        ok("%s: o cluster aponta para a irma %s" % (slug, outro), ('/%s/' % outro) in c or outro in c)
+
+    # A REGRA E A DO 16.4(c) — DE 2 A 4 IRMAS —, e nao "todas as irmas".
+    #
+    # Ate a leva 1 esta afirmacao cobrava que o cluster apontasse para TODAS as
+    # outras fichas, e passava: com tres fichas, cada uma tinha duas irmas e o
+    # teto de quatro nunca era tocado. A leva 2 fechou a categoria em sete, cada
+    # ficha passou a ter seis irmas candidatas, e a afirmacao antiga reprovou as
+    # sete paginas de uma vez — acusando de defeito exatamente o comportamento
+    # que a regra manda ter. Era a afirmacao que estava errada, nao a pagina.
+    #
+    # E o outro lado da mesma cicatriz do arredondamento, duas telas acima:
+    # enquanto o mundo nao produz a borda, "todas" e "ate quatro" sao a mesma
+    # frase, e o portao fica verde nas duas versoes do codigo.
+    irmas_candidatas = [o for o in FICHAS if o != slug]
+    irmas_no_bloco = sorted({o for o in irmas_candidatas if ('/%s/' % o) in c})
+    ok("%s: o cluster aponta para 2 a 4 irmas (16.4c), e sao %d" % (slug, len(irmas_no_bloco)),
+       2 <= len(irmas_no_bloco) <= 4, ", ".join(irmas_no_bloco))
+    ok("%s: nenhuma irma do cluster e estranha ao registro" % slug,
+       all(o in FICHAS for o in irmas_no_bloco))
+    ok("%s: a propria pagina nao aparece como irma" % slug,
+       ('/%s/' % slug) not in c.split('aqm-veja', 1)[-1] if 'aqm-veja' in c else False)
 
     # --- espécie não é produto: nenhum link de afiliado, e a pagina diz por que
     ok("%s: nenhum link de loja (especie nao e produto)" % slug,
@@ -443,8 +520,21 @@ def medir_categoria(banco):
         ok("%s: lista %s" % (slug, ident), banco[ident]["nome_cientifico"] in t)
     ok("%s: a contagem da abertura e %d" % (slug, len(TETRAS)),
        ("São %d tetras" % len(TETRAS)) in t)
-    ok("%s: diz quantas ja tem ficha (%d) e quantas faltam (%d)" % (slug, len(FICHAS), len(TETRAS) - len(FICHAS)),
-       ("%d já têm a conta inteira" % len(FICHAS)) in t and ("%d estão na fila" % (len(TETRAS) - len(FICHAS))) in t)
+    # A prestação de contas tem DUAS formas, e a segunda so existe desde a leva
+    # 2: com a fila vazia, "0 estão na fila, e a próxima leva sai depois" e uma
+    # promessa sobre uma leva que nao existe. O teste cobra a forma certa para o
+    # estado de hoje e cobra que a OUTRA nao apareca — senao a pagina poderia
+    # servir as duas frases e passar.
+    na_fila = len(TETRAS) - len(FICHAS)
+    if na_fila > 0:
+        ok("%s: diz quantas ja tem ficha (%d) e quantas faltam (%d)" % (slug, len(FICHAS), na_fila),
+           ("%d já têm a conta inteira" % len(FICHAS)) in t and ("%d estão na fila" % na_fila) in t)
+        ok("%s: nao diz que a lista esta fechada" % slug, "esta lista está fechada" not in t)
+    else:
+        ok("%s: a categoria esta fechada e a pagina diz isso" % slug,
+           ("As %d espécies da tabela têm a conta inteira" % len(TETRAS)) in t
+           and "esta lista está fechada" in t)
+        ok("%s: nao promete leva nenhuma com a fila vazia" % slug, "estão na fila" not in t)
 
     # --- o criterio da listagem, na frente dela (14.4)
     ok("%s: publica o criterio da lista" % slug, "O critério desta lista" in t)
@@ -543,6 +633,68 @@ def medir_secao(banco):
 banco_global = [None]
 
 
+def medir_o_conjunto_contra_o_registro(banco):
+    """As tres coisas que a leva 1 deixou passar, e que nao sao de uma pagina.
+
+    Todas as tres tem a mesma forma: uma lista que devia crescer junto com o
+    eixo e nao cresceu, porque ninguem cobrava. Aqui a lista de referencia e o
+    REGISTRO do snippet — ele e o unico lugar que nao tem como ficar para tras,
+    porque e ele que cria a pagina.
+    """
+    print("\n### o conjunto contra o registro do eixo")
+
+    do_eixo = json.loads(subprocess.run(
+        ["php", os.path.join(RAIZ, "ferramentas", "listar-paginas-do-eixo.php"), RAIZ],
+        capture_output=True, text=True, check=True).stdout)
+
+    # 1. O registro e o mapa escrito a mao neste arquivo dizem a mesma coisa. Se
+    #    a proxima leva acrescentar pagina la e esquecer aqui, o teste mediria um
+    #    eixo menor do que o que vai ao ar — e passaria verde.
+    ok("o registro do snippet tem exatamente as %d paginas deste teste" % len(PAGINAS),
+       sorted(do_eixo) == sorted(PAGINAS),
+       "no snippet e nao aqui: %s" % sorted(set(do_eixo) - set(PAGINAS)))
+    for slug, ident in FICHAS.items():
+        ok("%s: o registro aponta para a especie que este teste conta (%s)" % (slug, ident),
+           do_eixo.get(slug, {}).get("especie") == ident,
+           str(do_eixo.get(slug, {}).get("especie")))
+
+    # 2. TODA pagina do eixo serve meta description. As cinco da leva 1 foram ao
+    #    ar sem nenhuma porque a lista do gerador era digitada; agora ela e
+    #    perguntada ao registro, e esta afirmacao mede o resultado no <head>.
+    for slug in do_eixo:
+        cab = cabeca(servir(slug))
+        ok("%s: serve <meta name=\"description\">" % slug,
+           re.search(r'<meta name="description" content="[^"]{80,}"', cab) is not None)
+        ok("%s: serve og:description" % slug, "og:description" in cab)
+
+    # 3. O portao de PAGINA do esquema e o do snippet dizem a mesma frase, e
+    #    nenhuma ficha registrada aponta para especie que nao passa nele.
+    esquema = json.load(open(os.path.join(RAIZ, "dados", "esquema-especies.json"), encoding="utf-8"))
+    regra = "cardume_minimo OU convivencia igual a solitario/casal/harem"
+    ok("o esquema declara o portao de pagina separado do de catalogo",
+       regra in esquema["minimo_para_sugerir"]["pagina-especie"]
+       and regra not in esquema["minimo_para_sugerir"]["catalogo-de-especies"])
+    snippet = open(os.path.join(RAIZ, "snippets", "aquametria-peixes.php"), encoding="utf-8").read()
+    ok("o snippet tem a regua da ficha escrita nele (pode_virar_ficha)",
+       "function aquametria_peixes_pode_virar_ficha" in snippet)
+
+    # A varredura e sobre o REGISTRO, nao sobre o mapa escrito a mao: a pergunta
+    # e "alguma pagina que o snippet CRIA aponta para especie que nao pode ter
+    # pagina?", e uma ficha registrada e esquecida aqui e exatamente o caso que
+    # precisa ser pego. Varrer FICHAS responderia a pergunta mais facil.
+    for slug, def_ in do_eixo.items():
+        ident = def_.get("especie")
+        if not ident:
+            continue
+        e = banco.get(ident)
+        ok("%s: a especie registrada existe no banco (%s)" % (slug, ident), e is not None)
+        if not e:
+            continue
+        passa = bool(e.get("cardume_minimo")) or e.get("convivencia") in ("solitario", "casal", "harem")
+        ok("%s: a especie passa no portao de pagina do esquema" % slug, passa,
+           "cardume=%s convivencia=%s" % (e.get("cardume_minimo"), e.get("convivencia")))
+
+
 def medir_o_que_vale_para_todas():
     """Duas afirmacoes que nao sao de uma pagina, e sim do conjunto."""
     print("\n### o conjunto")
@@ -591,6 +743,7 @@ def main():
     for slug, ident in FICHAS.items():
         medir_ficha(slug, ident, banco)
     medir_o_que_vale_para_todas()
+    medir_o_conjunto_contra_o_registro(banco)
 
     print("\n%d afirmacoes, %d falha(s)" % (contadas[0], len(falhas)))
     for f in falhas:
