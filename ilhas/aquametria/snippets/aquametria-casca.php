@@ -1,5 +1,15 @@
 /**
  * Aquametria Casca — identidade e estrutura do site
+ * Versão: 1.7.2 (12/09/2026) — A REMONTAGEM PARA DE DUPLICAR PÁGINA, e recolhe o
+ * que já duplicou. Na primeira remontagem depois da leva 1 do eixo, a busca da
+ * página existente usava mãe + slug concatenados ('tetras/quantos-litros-...')
+ * para uma página que mora em 'peixes/tetras/quantos-litros-...': a busca
+ * falhava e `wp_insert_post` criava de novo, com "-2" no fim. Três fichas
+ * duplicadas foram publicadas e entraram no sitemap de um domínio recém-nascido,
+ * sem uma linha de erro. Agora a busca usa o caminho do MAPA — o mesmo helper
+ * que a 1.7.1 deu ao `url_se_existir()` — e `recolher_duplicatas()` manda para a
+ * LIXEIRA toda página marcada como nossa que o mapa não reconhece.
+ *
  * Versão: 1.7.1 (12/09/2026) — O DEGRAU DO MEIO PASSA A RESOLVER. Achado no ar,
  * não na bancada: `aquametria_casca_url_se_existir()` pedia a página pelo SLUG
  * solto, e `get_page_by_path()` casa o CAMINHO INTEIRO em tipo hierárquico —
@@ -167,7 +177,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'AQUAMETRIA_CASCA_VERSAO', '1.7.1' );
+	define( 'AQUAMETRIA_CASCA_VERSAO', '1.7.2' );
 	/* A tagline é a primeira frase que um visitante lê no rodapé de toda página.
 	   Até a 1.3.1 ela era a descrição interna do produto ("Calculadoras e dados
 	   técnicos para dimensionar o seu aquário"); agora fala com quem chegou. */
@@ -2016,7 +2026,14 @@ function aquametria_casca_garantir_paginas( &$relato ) {
 			$pai_id = (int) $ids[ $def['pai'] ];
 		}
 
-		$pagina = get_page_by_path( '' !== $def['pai'] ? $def['pai'] . '/' . $slug : $slug, OBJECT, 'page' );
+		/* O CAMINHO INTEIRO, pelo mapa — nunca mãe + slug concatenados.
+		   Concatenar dá 'tetras/quantos-litros-para-tetra-neon' para uma página
+		   que mora em 'peixes/tetras/quantos-litros-para-tetra-neon', a busca
+		   falha, e wp_insert_post CRIA DE NOVO com o slug seguido de "-2". Foi o
+		   que aconteceu no ar em 12/09/2026, na primeira remontagem depois da
+		   leva: três fichas duplicadas, publicadas e no sitemap de um domínio
+		   recém-nascido, sem uma linha de erro em lugar nenhum. */
+		$pagina = get_page_by_path( aquametria_casca_caminho_de_pagina( $slug ), OBJECT, 'page' );
 
 		if ( ! $pagina ) {
 			$pid = wp_insert_post( array(
@@ -2083,6 +2100,54 @@ function aquametria_casca_garantir_paginas( &$relato ) {
 	}
 
 	return $ids;
+}
+}
+
+/**
+ * Página que a casca criou e que o mapa não reconhece mais vai para a LIXEIRA.
+ *
+ * Nasceu do defeito de 12/09/2026: a remontagem não achou as três fichas pelo
+ * caminho errado e criou "-2" de cada uma, publicadas e no sitemap. O conserto
+ * do caminho impede que aconteça de novo; esta função limpa o que já aconteceu —
+ * e é a rede permanente, porque a próxima causa de duplicata vai ser outra.
+ *
+ * TRÊS LIMITES, e eles são o que tornam isto seguro:
+ *   1. só toca em `page` com a meta `_aquametria_casca`, que é a marca que esta
+ *      casca põe no que ela mesma criou. Página do Sync, do wp-admin ou de outro
+ *      snippet não é vista aqui;
+ *   2. LIXEIRA, nunca exclusão: `wp_trash_post` é reversível, e quem decide
+ *      apagar de verdade é uma pessoa;
+ *   3. só recolhe quando o mapa tem páginas. Mapa vazio (filtro que falhou,
+ *      snippet que não carregou) recolheria o site inteiro, e é exatamente o
+ *      tipo de limpeza automática que não se conserta depois.
+ */
+if ( ! function_exists( 'aquametria_casca_recolher_duplicatas' ) ) {
+function aquametria_casca_recolher_duplicatas( $ids, &$relato ) {
+	$mapa = aquametria_casca_definicao_paginas();
+	if ( count( $mapa ) < 2 ) {
+		$relato[] = 'recolhimento pulado: o mapa de páginas veio vazio ou pela metade';
+		return;
+	}
+
+	$nossas = get_posts( array(
+		'post_type'   => 'page',
+		'post_status' => array( 'publish', 'draft', 'pending', 'private' ),
+		'meta_key'    => '_aquametria_casca',
+		'meta_value'  => '1',
+		'numberposts' => 200,
+	) );
+
+	foreach ( $nossas as $pagina ) {
+		if ( isset( $mapa[ $pagina->post_name ] ) ) {
+			continue;
+		}
+		if ( in_array( (int) $pagina->ID, array_map( 'intval', (array) $ids ), true ) ) {
+			continue;
+		}
+		wp_trash_post( $pagina->ID );
+		$relato[] = 'lixeira: página #' . $pagina->ID . ' (' . $pagina->post_name
+			. ') — nossa, e fora do mapa de páginas';
+	}
 }
 }
 
@@ -2166,6 +2231,7 @@ function aquametria_casca_montar( $forcar = false ) {
 
 	$relato = array();
 	$ids    = aquametria_casca_garantir_paginas( $relato );
+	aquametria_casca_recolher_duplicatas( $ids, $relato );
 	aquametria_casca_fixar_home( $ids, $relato );
 	aquametria_casca_fixar_tagline( $relato );
 	aquametria_casca_limpar_padrao( $relato );

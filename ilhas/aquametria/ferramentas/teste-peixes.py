@@ -138,13 +138,20 @@ def servir(slug):
 
 
 def cabeca(pagina):
-    m = re.search(r"<head>(.*?)</head>", pagina, re.S)
+    m = re.search(r"<head[^>]*>(.*?)</head>", pagina, re.S)
     return m.group(1) if m else ""
 
 
 def corpo(pagina):
-    """O corpo SEM head, sem script, sem style e sem rodape — decisao 3."""
-    m = re.search(r"<body>(.*)</body>", pagina, re.S)
+    """O corpo SEM head, sem script, sem style e sem rodape — decisao 3.
+
+    `<body[^>]*>` e nao `<body>`: a bancada serve a tag pelada e o WordPress
+    serve `<body class="wp-singular page page-child ...">`. Localizador que
+    exigia o fecho logo depois do nome achava o corpo na bancada e devolvia
+    VAZIO no ar — e corpo vazio faz toda afirmacao sobre o texto reprovar de
+    uma vez, que foi como esta conferencia abriu em 12/09/2026.
+    """
+    m = re.search(r"<body[^>]*>(.*)</body>", pagina, re.S)
     b = m.group(1) if m else ""
     b = re.sub(r"<(script|style)[^>]*>.*?</\1>", "", b, flags=re.S)
     b = re.sub(r'<footer class="aqm-rodape".*?</footer>', "", b, flags=re.S)
