@@ -1712,3 +1712,26 @@ desta ilha. Casca **1.7.0**, manifest na **revisão 13**, `/status` com revisão
   que o estado anterior deixou e que continua valendo — fechar 2×2 na categoria
   pastilha, que está a UM item dos 3 da 14.3, depois a vitrine de pastilha da F1,
   depois a categoria cola.
+
+- **ESTA EXECUÇÃO FOI O CASO QUE PRODUZIU A SEÇÃO 1.1 DO CONTRATO**, escrita por OUTRA
+  execução enquanto esta trabalhava, e o registro dela é útil aqui porque ela nos
+  salvou: o bloco durou 65 minutos, a reserva de 22h25Z venceu a janela de 40 minutos
+  do passo 3, e uma quarta execução da Fundação teria pegado esta ilha por estar
+  "livre" pela letra da regra. Se tivesse pegado, teria rodado o item 2 do despacho e
+  mandado um **segundo e-mail de acesso para a mãe do Raphael** — e o segundo
+  invalida o link do primeiro, na véspera do dia marcado. Ela não pegou porque
+  escreveu a regra antes de agir: reserva vencida se reconfere no git, e commit na
+  pasta da ilha nos últimos 40 minutos significa ilha VIVA.
+  **A 1.1 também manda quem passa de 40 minutos reescrever `executando_desde` no
+  próximo commit, e esta execução NÃO fez isso** — a regra não existia quando ela
+  começou, e o commit intermediário das 23h13Z manteve o relógio de 22h25Z. Fica
+  escrito para a próxima: renovar é uma linha, e é o que faz a execução seguinte não
+  precisar do git para saber.
+
+- **Segundo desembarque, e o que ele provou de quebra:** a revisão 17 subiu às 23h28Z
+  com a casca do painel em 1.0.1, e o `/atelie/` no ar serve `min-height:2.75rem` nos
+  botões de foto. E a rota de conferência mostrou `tentativas: 1` com a MESMA hora de
+  envio — ou seja, **o segundo Sync não reenviou o e-mail de acesso**. A guarda por
+  option funcionou exatamente onde precisava funcionar: e-mail repetido para a Hotmail
+  é o caminho mais curto para a caixa de spam, e caixa de spam aqui é uma pessoa
+  esperando na frente do filho sem conseguir entrar.
