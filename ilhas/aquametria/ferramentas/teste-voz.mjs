@@ -315,6 +315,17 @@ const CONTEUDO = [
   'quantos-watts-de-aquecedor-para-aquario',
   'quanta-midia-biologica-o-aquario-precisa',
   'quantos-lumens-por-litro-aquario-plantado',
+  /* A leva 1 do eixo /peixes/ (T4, 12/09/2026). Estas cinco não vêm de
+     conteudo/ — o corpo delas é shortcode —, mas saem inteiras pelo MESMO
+     renderizador, e a voz vale para toda página da ilha. Ao entrarem aqui, três
+     aberturas reprovaram de uma vez: nenhuma das três falava na segunda pessoa
+     e a da categoria abria com "o banco desta ilha", que é vocabulário de dentro
+     da fábrica. Nenhum olho tinha visto; a régua viu. */
+  'peixes',
+  'tetras',
+  'quantos-litros-para-tetra-neon',
+  'quantos-litros-para-tetra-cardinal',
+  'quantos-litros-para-mato-grosso',
 ];
 
 /* Fabricantes e fontes citadas pela ilha. Escrita À MÃO aqui, como a lista de

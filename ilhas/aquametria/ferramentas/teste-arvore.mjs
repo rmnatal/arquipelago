@@ -70,7 +70,7 @@ const ROTULO_CATEGORIA = {
   aquario: 'Aquário',
   filtragem: 'Filtragem',
   'aquecimento-e-luz': 'Aquecimento e luz',
-  peixes: 'Peixes',
+  lotacao: 'Lotação',
   aquecimento: 'Aquecimento',
   iluminacao: 'Iluminação',
 };

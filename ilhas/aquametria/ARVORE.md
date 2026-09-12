@@ -15,7 +15,7 @@ Os nomes dos níveis são os do `VOZ.md` — é a pessoa que decide como a seç�
 | slug | o que mora ali | existe hoje |
 |---|---|---|
 | `/calculadoras/` | as contas | **sim** (página da casca) |
-| `/peixes/` | ficha de espécie: quanto espaço, que temperatura, com quem convive | não |
+| `/peixes/` | ficha de espécie: quanto espaço, que temperatura, com quem convive | **sim** (leva 1 do T4, 12/09/2026) |
 | `/equipamentos/` | listagens do banco: filtro, aquecedor, luminária, mídia | não |
 | `/guias/` | os textos que explicam o porquê do número | não |
 
@@ -34,19 +34,36 @@ Sem quarto nível. Fora da árvore ficam só a home, `/sobre/`, `/metodologia/`,
 | `/calculadoras/aquario/` | C1 litragem · C2 peso e carga | 1 no ar, 1 na fila |
 | `/calculadoras/filtragem/` | C3 vazão · C12 mídia | 2 no ar |
 | `/calculadoras/aquecimento-e-luz/` | C5 aquecedor · C15 iluminação · C7 consumo | 2 no ar, 1 na fila |
-| `/calculadoras/peixes/` | C8 lotação | 0 no ar |
+| `/calculadoras/lotacao/` | C8 lotação | 0 no ar |
+
+**A categoria do C8 se chamava `peixes` e virou `lotacao` em 12/09/2026**, junto com a leva 1 do eixo. O motivo é de endereço, não de gosto: `aquametria_casca_url_se_existir()` acha a página pelo `post_name`, que é o último pedaço da URL, e com `/peixes/` e `/calculadoras/peixes/` no ar ao mesmo tempo o hub linkaria uma das duas ao acaso. A página do C8 não existe, então a troca não moveu URL nenhuma. `ferramentas/teste-peixes.py` tem a afirmação que impede a colisão de voltar, e `mutacoes-peixes.py` a exercita.
 
 **Nenhuma das quatro atinge as 3 filhas com dado real hoje**, então nenhuma nasce agora — é a regra 16.5, e ela é o que impede a ilha de publicar quatro páginas de categoria magras num domínio que ainda não indexou a primeira leva. A `/calculadoras/aquecimento-e-luz/` é a primeira a fechar, e fecha no dia em que a C7 entrar.
 
 Enquanto isso, `/calculadoras/` continua sendo a mãe direta das cinco calculadoras no ar — dois níveis em vez de três, declarado aqui como estado de transição, não como desenho.
 
-## 3. `/peixes/`
+## 3. `/peixes/` — NO AR desde 12/09/2026 (leva 1 do T4)
 
-A camada que a Bússola verificou ABERTA e a de maior volume de busca da ilha ("quantos litros para N neons"). Depende do bloco T3(d), o banco de espécies — `dados/especies-agua-doce.json` já existe e é o que limita quantas filhas cabem.
+A camada que a Bússola verificou ABERTA e a de maior volume de busca da ilha ("quantos litros para N neons"). O banco de espécies (`dados/especies-agua-doce.json`, 36 registros) é o que limita quantas filhas cabem: **27 passam no portão de página do esquema** (sete campos e duas fontes de corpos distintos) e as outras 9 estão nomeadas, uma por uma, na saída de `ferramentas/gerar-catalogo-especies.py`.
 
-Categorias pelo nome que a pessoa usa, nunca pelo nome científico: `/peixes/tetras/`, `/peixes/corydoras/`, `/peixes/bettas/`, `/peixes/ciclideos-anoes/`, `/peixes/plecos-e-limpa-vidros/`, `/peixes/camaroes-e-caramujos/`.
+Categorias pelo nome que a pessoa usa, nunca pelo nome científico. Seis, e só estas:
 
-Filha de nível 3 = a ficha da espécie, com o número que ninguém mais dá: quantos litros para N deles. Portão da seção 9: 3 itens de banco reais e um número calculado próprio.
+| nível 2 | filhas no ar | estado |
+|---|---|---|
+| `/peixes/tetras/` | tetra neon · neon cardinal · mato-grosso | **no ar** (3 de 7 espécies do banco) |
+| `/peixes/corydoras/` | — | em breve, sem link e sem contagem (16.5) |
+| `/peixes/bettas/` | — | em breve |
+| `/peixes/ciclideos-anoes/` | — | em breve |
+| `/peixes/plecos-e-limpa-vidros/` | — | em breve |
+| `/peixes/vivaparos/` | — | em breve |
+
+Filha de nível 3 = a ficha da espécie, com o número que ninguém mais dá. **E o número não é o litro: é a BASE.** As fontes de aquarismo declaram o tamanho do chão do aquário, e as sete primeiras respostas da SERP brasileira dão litro sem fonte e discordam entre si. Cada ficha serve a base declarada (com o nome do corpo de fonte e a data) ao lado das duas réguas brasileiras de lotação, que discordam em quatro vezes, com a atribuição de cada extremo.
+
+**O que NÃO se faz nesta camada, e está escrito no snippet:** multiplicar o derivado per capita (frente mínima ÷ cardume mínimo) para estender o cardume. Para o neon daria 120 cm para dez peixes, que nenhuma fonte sustenta. Quem responde "e para dez?" são os três critérios de lotação. `ferramentas/teste-peixes.py` tem afirmação para isso e `ferramentas/mutacoes-peixes.py` tem a mutação que a exercita.
+
+**E espécie que o banco declara agressiva não ganha lista de companheiro** — a ficha conta quantas espécies dividem a faixa de temperatura e diz por que não recomenda nenhuma. O esquema do banco recusa compatibilidade como campo justamente porque ela depende de volume, layout e ordem de introdução.
+
+Portão da seção 9 conferido nas três: cada ficha nomeia 10 ou mais registros reais do banco e traz cinco tabelas calculadas na hora de imprimir.
 
 ## 4. `/equipamentos/`
 
@@ -68,10 +85,12 @@ Filha de nível 3 = a ficha da espécie, com o número que ninguém mais dá: qu
 
 ## 6. O QUE ESTÁ TRAVADO, E POR QUÊ — leia antes de mover qualquer URL
 
-**Nada nesta árvore muda endereço de página antes da leitura de 16/09/2026.** Duas travas independentes, e basta uma:
+**ATUALIZADO EM 12/09/2026: das duas travas, uma caiu e a outra fica.** A distinção é a que decide o trabalho: **criar URL nova está liberado; MOVER URL publicada continua travado.**
 
-1. **Item 5 do despacho da Sentinela de 10/09:** nenhuma página nova até 16/09. As oito páginas de nível 1 e 2 desta árvore são oito URLs novas. A leva de 08/09 (6 páginas) não indexou nenhuma e as 7 indexadas não registraram impressão — publicar categoria agora é jogar mais página no mesmo buraco.
-2. **T2 do `PROMPT.md`:** a janela para trocar o endereço dos três artigos (hoje em `/2026/09/08/<slug>/`, endereço com data que envelhece sozinho) só abre depois que a leitura de 16/09 disser **por que** a leva de 08/09 não indexou. Trocar endereço antes disso soma uma variável a um diagnóstico que ainda não fechou.
+1. ~~**Item 5 do despacho da Sentinela de 10/09:** nenhuma página nova até 16/09.~~ **SUSPENSO em 12/09/2026 pela seção 21 do `ARQUIPELAGO.md`**, que é posterior ao despacho e o alcança: com 13 URLs a ilha está ABAIXO do piso de 40, e abaixo do piso "zero impressão" não é informação e nunca trava, adia ou reduz leva nenhuma. O campo `congelamento` no cabeçalho do `ESTADO.md` é o que vale. **A leva 1 do eixo `/peixes/` nasceu por causa disso** — cinco URLs novas, dentro do teto de 10 por leva e 3 levas por semana (21.4).
+2. **T2 do `PROMPT.md`: continua de pé.** A janela para trocar o endereço dos três artigos (hoje em `/2026/09/08/<slug>/`, endereço com data que envelhece sozinho) só abre depois que a leitura de 16/09 disser **por que** a leva de 08/09 não indexou. Trocar endereço antes disso soma uma variável a um diagnóstico que ainda não fechou. **Isto vale para as cinco calculadoras também:** elas não têm impressão registrada e a 12.1 permitiria mover o slug delas, mas a decisão fica para depois de 16/09.
+
+**Consequência prática para a próxima leva:** `/calculadoras/aquecimento-e-luz/` (item 1 da ordem da seção 7) continua esperando, não pela trava de página nova, e sim por duas outras coisas — a C7 não existe (16.5 exige 3 filhas) e pôr C5 e C15 sob a categoria nova seria MOVER duas URLs publicadas. Foi por isso que a leva 1 saiu pelo item 3 da ordem, `/peixes/tetras/`: é o único cluster do mapa que nasce inteiro sem mover endereço nenhum.
 
 As cinco calculadoras no ar **não têm impressão registrada**, então a seção 12.1 ainda permite mover o slug delas — mas as duas travas acima valem do mesmo jeito, e a decisão fica para depois de 16/09.
 

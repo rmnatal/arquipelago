@@ -70,6 +70,17 @@ $GLOBALS['__paginas'] = array(
 	'quantos-watts-de-aquecedor-para-aquario'   => true,
 	'quanta-midia-biologica-o-aquario-precisa'  => true,
 	'quantos-lumens-por-litro-aquario-plantado' => true,
+	/* A leva 1 da malha do eixo /peixes/ (T4, 12/09/2026). Nivel 1, nivel 2 e
+	   as tres fichas: sao as cinco primeiras paginas desta ilha que nascem com
+	   MAE, e por isso tambem as primeiras em que a trilha tem quatro degraus de
+	   verdade, todos com endereco. Ate aqui o degrau de nivel 2 desta ilha
+	   nunca era link, e afirmacao sobre o caso que nao existe e afirmacao que
+	   nao mede nada. */
+	'peixes'                                    => true,
+	'tetras'                                    => true,
+	'quantos-litros-para-tetra-neon'            => true,
+	'quantos-litros-para-tetra-cardinal'        => true,
+	'quantos-litros-para-mato-grosso'           => true,
 );
 
 aquametria_teste_carregar( $raiz );

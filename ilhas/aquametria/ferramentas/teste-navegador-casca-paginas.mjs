@@ -18,7 +18,19 @@ import { chromium } from 'playwright';
 
 const DIR = process.argv[2] || '/tmp';
 const CHROME = process.env.AQM_CHROME || '/opt/pw-browsers/chromium-1194/chrome-linux/chrome';
-const PAGINAS = ['inicio', 'calculadoras', 'metodologia', 'sobre'];
+/* As quatro da casca saem do render-casca-pagina.php; as cinco do eixo /peixes/
+   (T4, leva 1) saem do render-pagina-completa.php, porque o corpo delas é
+   shortcode de outro snippet. Este teste não se importa com quem renderizou: ele
+   abre o arquivo aqm-<slug>.html e mede o que o navegador faz. Elas entram aqui
+   porque trazem o layout mais largo que a ilha já publicou — cinco tabelas, uma
+   delas de seis colunas —, e tabela larga é onde a rolagem horizontal nasce. */
+const PAGINAS = [
+  'inicio', 'calculadoras', 'metodologia', 'sobre',
+  'peixes', 'tetras',
+  'quantos-litros-para-tetra-neon',
+  'quantos-litros-para-tetra-cardinal',
+  'quantos-litros-para-mato-grosso',
+];
 const LARGURAS = [360, 390, 781, 782, 783, 1200];
 
 let falhas = 0;

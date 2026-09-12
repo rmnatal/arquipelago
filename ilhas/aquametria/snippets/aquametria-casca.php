@@ -1,5 +1,24 @@
 /**
  * Aquametria Casca — identidade e estrutura do site
+ * Versão: 1.7.0 (12/09/2026) — A CASCA APRENDE A TER FILHA. T4, leva 1 da malha
+ * do eixo /peixes/. Três mudanças, e nenhuma cria página por conta própria:
+ *   1. `aquametria_casca_definicao_paginas()` passou a perguntar pelo filtro
+ *      `aquametria_paginas`, e cada entrada pode trazer `pai` => slug. É isso
+ *      que faz a URL mostrar os três níveis da seção 16.1; até aqui toda página
+ *      da ilha nascia na raiz, que é o que a árvore proíbe. Mãe antes de filha,
+ *      por profundidade, porque wp_insert_post precisa do ID do pai — e filha
+ *      que nasce na raiz por falta de mãe fica com o endereço errado, que não
+ *      se move depois (seção 12.1).
+ *   2. A CHAVE DE REMONTAGEM VIROU A VERSÃO MAIS UM RESUMO DO MAPA. Sem isso,
+ *      página nova anunciada pelo filtro não nasceria até alguém subir a
+ *      constante à mão — é o defeito que o Clube do Mosaico pagou em 12/09/2026,
+ *      com a ferramenta F1 no ar em 404 e o Sync dizendo "aplicado com sucesso".
+ *   3. A trilha e o cluster aprenderam o eixo /peixes/, pelo filtro
+ *      `aquametria_peixes`, no mesmo molde do hub de calculadoras: a casca não
+ *      guarda cópia de título nenhum, e ficha nova entra na trilha sozinha.
+ * A home ganhou a entrada da seção nova (16.4f: toda URL tem dois links
+ * internos, um deles da mãe) e o menu ganhou "Peixes".
+ *
  * Versão: 1.6.0 (12/09/2026) — a ilha passa a MEDIR. Despacho de prioridade alta
  * de 12/09/2026 (dados/despachos.md): a tag do GA4 entra no wp_head pela casca,
  * nunca por plugin (seção 11.7), com o ID de medição desta ilha em constante no
@@ -137,7 +156,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'AQUAMETRIA_CASCA_VERSAO', '1.6.0' );
+	define( 'AQUAMETRIA_CASCA_VERSAO', '1.7.0' );
 	/* A tagline é a primeira frase que um visitante lê no rodapé de toda página.
 	   Até a 1.3.1 ela era a descrição interna do produto ("Calculadoras e dados
 	   técnicos para dimensionar o seu aquário"); agora fala com quem chegou. */
@@ -227,7 +246,7 @@ function aquametria_casca_calculadoras() {
 		),
 		array(
 			'codigo'  => 'C8',
-			'categoria' => 'peixes',
+			'categoria' => 'lotacao',
 			'titulo'  => 'Quantos peixes cabem no seu aquário?',
 			'slug'    => 'calculadora-de-lotacao',
 			'resumo'  => 'Três critérios de lotação lado a lado, com o nome de quem publicou cada um, e o aquário mínimo por espécie quando existe fonte que diga.',
@@ -274,6 +293,78 @@ function aquametria_casca_guias() {
 	}
 
 	return $limpa;
+}
+}
+
+/**
+ * O mapa do eixo /peixes/, vindo de quem publica as páginas dele.
+ *
+ * Cada entrada: nivel (1, 2 ou 3), pai (slug ou ''), rotulo (o título da
+ * página, que é o degrau da trilha) e nivel2 (a categoria, quando houver).
+ * Entrada malformada é descartada: trilha inventada é pior que trilha ausente.
+ */
+if ( ! function_exists( 'aquametria_casca_peixes' ) ) {
+function aquametria_casca_peixes() {
+	$lista = apply_filters( 'aquametria_peixes', array() );
+	if ( ! is_array( $lista ) ) {
+		return array();
+	}
+
+	$limpa = array();
+	foreach ( $lista as $slug => $px ) {
+		if ( ! is_array( $px ) || empty( $px['nivel'] ) || empty( $px['rotulo'] ) ) {
+			continue;
+		}
+		$limpa[ (string) $slug ] = array(
+			'nivel'  => (int) $px['nivel'],
+			'pai'    => isset( $px['pai'] ) ? (string) $px['pai'] : '',
+			'rotulo' => (string) $px['rotulo'],
+			'nivel2' => isset( $px['nivel2'] ) && is_array( $px['nivel2'] ) ? $px['nivel2'] : array(),
+		);
+	}
+
+	return $limpa;
+}
+}
+
+/** O rótulo de uma página do eixo, ou o próprio slug quando ela não se anunciou. */
+if ( ! function_exists( 'aquametria_casca_peixes_rotulo' ) ) {
+function aquametria_casca_peixes_rotulo( $slug ) {
+	$mapa = aquametria_casca_peixes();
+	return isset( $mapa[ $slug ] ) ? $mapa[ $slug ]['rotulo'] : (string) $slug;
+}
+}
+
+/**
+ * As irmãs de uma página do eixo /peixes/: MESMA MÃE, no ar, no máximo quatro.
+ *
+ * Derivadas do mesmo mapa que serve a trilha, nunca digitadas — é a mesma
+ * escolha do `aquametria_casca_irmas()` das calculadoras, e pelo mesmo motivo:
+ * lista de irmãs escrita à mão envelhece no dia em que a próxima ficha nasce.
+ * Página de nível 1 não tem irmã publicada (as outras seções não existem), e
+ * devolver array() ali é o certo: cluster de um só não é cluster.
+ */
+if ( ! function_exists( 'aquametria_casca_irmas_de_peixes' ) ) {
+function aquametria_casca_irmas_de_peixes( $slug ) {
+	$mapa = aquametria_casca_peixes();
+	if ( ! isset( $mapa[ $slug ] ) || '' === $mapa[ $slug ]['pai'] ) {
+		return array();
+	}
+	$pai   = $mapa[ $slug ]['pai'];
+	$irmas = array();
+	foreach ( $mapa as $outro => $px ) {
+		if ( $outro === $slug || $px['pai'] !== $pai ) {
+			continue;
+		}
+		if ( '' === aquametria_casca_url_se_existir( $outro ) ) {
+			continue;
+		}
+		$irmas[] = array( 'slug' => $outro, 'rotulo' => $px['rotulo'] );
+		if ( count( $irmas ) >= 4 ) {
+			break;
+		}
+	}
+	return $irmas;
 }
 }
 
@@ -549,6 +640,13 @@ function aquametria_casca_nav_html() {
 	   critério. O slug — e portanto a URL — não muda (seção 12.1 do contrato). */
 	$itens = array(
 		'calculadoras' => 'Calculadoras',
+		/* "Peixes" é curto de propósito, e é a ÚNICA superfície onde o nome
+		   desta página encurta: o menu tem de caber no celular, e o VOZ.md pede
+		   menu curto. Quem responde pelo nome da página é a trilha, e lá ela se
+		   chama "Quanto espaço cada peixe pede", igual ao H1. É o mesmo
+		   precedente do rodapé, que diz "Divulgação de afiliados" onde a trilha
+		   diz "Como a Aquametria ganha dinheiro". */
+		'peixes'       => 'Peixes',
 		'metodologia'  => 'Como a gente calcula',
 		'sobre'        => 'Sobre',
 	);
@@ -987,11 +1085,19 @@ function aquametria_casca_conta_publicadas() {
    pessoa usa, como manda o VOZ.md. */
 if ( ! function_exists( 'aquametria_casca_categorias' ) ) {
 function aquametria_casca_categorias() {
+	/* A categoria do C8 se chamava `peixes` e passou a `lotacao` na 1.7.0, e o
+	   motivo é de endereço, não de gosto: a leva 1 do eixo publicou a seção de
+	   nível 1 `/peixes/`, e `aquametria_casca_url_se_existir()` acha a página
+	   pelo `post_name`, que é o ÚLTIMO pedaço da URL. Com `/peixes/` e
+	   `/calculadoras/peixes/` no ar ao mesmo tempo, o hub linkaria uma das duas
+	   ao acaso — e a página do C8 ainda não existe, então trocar o slug hoje não
+	   move URL nenhuma. `ferramentas/teste-peixes.py` tem a afirmação que impede
+	   a colisão de voltar. */
 	return array(
 		'aquario'           => 'Aquário',
 		'filtragem'         => 'Filtragem',
 		'aquecimento-e-luz' => 'Aquecimento e luz',
-		'peixes'            => 'Peixes',
+		'lotacao'           => 'Lotação',
 	);
 }
 }
@@ -1061,6 +1167,37 @@ function aquametria_casca_lugar( $slug ) {
 			'nivel2' => isset( $categorias[ $cat ] ) ? array( $cat, $categorias[ $cat ] ) : array(),
 			'rotulo' => isset( $c['titulo'] ) ? $c['titulo'] : $slug,
 			'irmas'  => aquametria_casca_irmas( $slug ),
+			'fora'   => false,
+		);
+	}
+
+	/* O eixo /peixes/, desde a 1.7.0. A casca NÃO guarda o mapa dele: pergunta
+	   pelo filtro e quem responde é o snippet que publica as páginas — mesmo
+	   molde do hub de calculadoras e da prateleira de guias, e pelo mesmo
+	   motivo (ficha nova entra na trilha sozinha, sem ninguém lembrar daqui).
+
+	   O rótulo do degrau é o TÍTULO da página, nunca um nome de menu: em 8 das
+	   9 páginas de conteúdo a trilha e o H1 diziam nomes diferentes a uma linha
+	   de distância, e foi o achado do bloco da voz de 11/09. O menu é a única
+	   superfície que pode encurtar, porque o trabalho dele é caber. */
+	foreach ( aquametria_casca_peixes() as $px_slug => $px ) {
+		if ( $px_slug !== $slug ) {
+			continue;
+		}
+		$mae = ( '' !== $px['pai'] ) ? $px['pai'] : '';
+		$n1  = array( '', '' );
+		if ( 3 === $px['nivel'] ) {
+			$n1 = array( 'peixes', aquametria_casca_peixes_rotulo( 'peixes' ) );
+		} elseif ( 2 === $px['nivel'] && '' !== $mae ) {
+			$n1 = array( $mae, aquametria_casca_peixes_rotulo( $mae ) );
+		}
+		return array(
+			'nivel1' => $n1,
+			'nivel2' => ( 3 === $px['nivel'] && '' !== $mae )
+				? array( $mae, aquametria_casca_peixes_rotulo( $mae ) )
+				: array(),
+			'rotulo' => $px['rotulo'],
+			'irmas'  => aquametria_casca_irmas_de_peixes( $slug ),
 			'fora'   => false,
 		);
 	}
@@ -1516,6 +1653,30 @@ add_shortcode( 'aquametria_home', function () {
 	$html .= aquametria_casca_cards_html();
 	$html .= '</div>';
 
+	/* 2b. O eixo dos peixes, quando a seção existe publicada. A home é a mãe do
+	   nível 1 (16.4a e 16.4f: toda URL tem ao menos dois links internos, um
+	   deles da mãe — o menu é o outro), e o número de fichas é CONTADO do mapa
+	   que o snippet do eixo anuncia, nunca digitado aqui. */
+	$url_peixes = aquametria_casca_url_se_existir( 'peixes' );
+	if ( '' !== $url_peixes ) {
+		$fichas = 0;
+		foreach ( aquametria_casca_peixes() as $px_slug => $px ) {
+			if ( 3 === $px['nivel'] && '' !== aquametria_casca_url_se_existir( $px_slug ) ) {
+				$fichas++;
+			}
+		}
+		$html .= '<div class="aqm-secao">';
+		$html .= '<h2>Quantos peixes cabem, espécie por espécie</h2>';
+		$html .= '<p>O aquário mínimo de um peixe vem em centímetros de frente, não em litros — é assim que as fontes de aquarismo declaram, e é o que quase nenhuma resposta de busca diz. ';
+		if ( $fichas > 0 ) {
+			$html .= 'Já são ' . esc_html( $fichas ) . ' espécies com a conta inteira, e cada ficha traz o mínimo declarado ao lado das duas réguas brasileiras de lotação, que discordam em quatro vezes.</p>';
+		} else {
+			$html .= 'As primeiras fichas entram uma leva por vez.</p>';
+		}
+		$html .= '<p class="aqm-acao-grande"><a href="' . esc_url( $url_peixes ) . '">Ver quanto espaço cada peixe pede</a></p>';
+		$html .= '</div>';
+	}
+
 	/* 3. Os guias, quando existem. Quem responde é o snippet dos artigos. */
 	if ( ! empty( $guias ) ) {
 		$html .= '<div class="aqm-secao">';
@@ -1699,12 +1860,88 @@ function aquametria_casca_definicao_paginas() {
 	   1.4.0 ele também fala a língua do VOZ.md — "Início" e "Metodologia" eram
 	   nomes de menu de painel, não o que a pessoa procura. O SLUG não muda em
 	   nenhum dos quatro: URL de página publicada não se mexe (seção 12.1). */
-	return array(
+	$base = array(
 		'inicio'       => array( 'titulo' => 'As contas do seu aquário', 'conteudo' => '[aquametria_home]' ),
 		'calculadoras' => array( 'titulo' => 'Calculadoras', 'conteudo' => '[aquametria_calculadoras]' ),
 		'metodologia'  => array( 'titulo' => 'Como a gente calcula', 'conteudo' => '[aquametria_metodologia]' ),
 		'sobre'        => array( 'titulo' => 'Sobre', 'conteudo' => '[aquametria_sobre]' ),
 	);
+
+	/* Desde a 1.7.0 a casca não é a única que tem página: quem publica malha se
+	   anuncia por este filtro, no mesmo molde do hub de calculadoras. Cada
+	   entrada pode trazer 'pai' => slug, e é isso que faz a URL mostrar os três
+	   níveis da seção 16.1 — sem pai, toda página nasceria na raiz, e página
+	   solta na raiz é justamente o que a árvore proíbe.
+
+	   Entrada malformada é DESCARTADA com o slug na mão, nunca aceita pela
+	   metade: página sem título ou sem corpo nasceria fina, e página fina em
+	   domínio novo gasta orçamento de rastreamento (seção 14.1). */
+	$vindas = apply_filters( 'aquametria_paginas', $base );
+	if ( ! is_array( $vindas ) ) {
+		return $base;
+	}
+
+	$limpa = array();
+	foreach ( $vindas as $slug => $def ) {
+		$slug = sanitize_title( (string) $slug );
+		if ( '' === $slug || ! is_array( $def ) || empty( $def['titulo'] ) || empty( $def['conteudo'] ) ) {
+			continue;
+		}
+		$limpa[ $slug ] = array(
+			'titulo'   => (string) $def['titulo'],
+			'conteudo' => (string) $def['conteudo'],
+			'pai'      => isset( $def['pai'] ) ? sanitize_title( (string) $def['pai'] ) : '',
+		);
+	}
+
+	/* Mãe antes de filha, sempre: wp_insert_post precisa do ID do pai, e pai
+	   que nasce depois deixa a filha na raiz com o endereço errado — e endereço
+	   de página publicada não se move (seção 12.1). Ordenar por profundidade
+	   resolve isso sem depender da ordem em que os filtros correram. */
+	$profundidade = array();
+	foreach ( $limpa as $slug => $def ) {
+		$n   = 0;
+		$sob = $def['pai'];
+		while ( '' !== $sob && isset( $limpa[ $sob ] ) && $n < 5 ) {
+			$n++;
+			$sob = $limpa[ $sob ]['pai'];
+		}
+		$profundidade[ $slug ] = $n;
+	}
+	uksort( $limpa, function ( $a, $b ) use ( $profundidade ) {
+		if ( $profundidade[ $a ] === $profundidade[ $b ] ) {
+			return 0;
+		}
+		return ( $profundidade[ $a ] > $profundidade[ $b ] ) ? 1 : -1;
+	} );
+
+	return $limpa;
+}
+}
+
+/**
+ * A chave de remontagem: a versão da casca MAIS um resumo do mapa de páginas.
+ *
+ * Por que não só a versão, que é como foi até a 1.6.0: `aquametria_casca_montar()`
+ * só remonta quando a chave muda, então página nova anunciada pelo filtro
+ * `aquametria_paginas` NÃO NASCERIA até alguém lembrar de subir a constante à
+ * mão. O Clube do Mosaico pagou exatamente isso em 12/09/2026: a ferramenta F1
+ * nasceu 404 com o Sync dizendo "seis itens aplicados", porque o filtro que ela
+ * usava para se registrar ficava inerte. Com o mapa dentro da chave, toda
+ * página nova nasce sozinha depois do Sync.
+ *
+ * O resumo é um hash do mapa inteiro — slug, título, corpo e pai. Trocar o
+ * título de uma página também remonta, e é o que se quer: é assim que o título
+ * do wp-admin volta a ser o da definição.
+ */
+if ( ! function_exists( 'aquametria_casca_chave_estrutura' ) ) {
+function aquametria_casca_chave_estrutura() {
+	$mapa = aquametria_casca_definicao_paginas();
+	$cru  = array();
+	foreach ( $mapa as $slug => $def ) {
+		$cru[] = $slug . '|' . $def['titulo'] . '|' . $def['conteudo'] . '|' . $def['pai'];
+	}
+	return AQUAMETRIA_CASCA_VERSAO . '+' . substr( md5( implode( "\n", $cru ) ), 0, 12 );
 }
 }
 
@@ -1714,13 +1951,26 @@ function aquametria_casca_garantir_paginas( &$relato ) {
 	$criou = false;
 
 	foreach ( aquametria_casca_definicao_paginas() as $slug => $def ) {
-		$pagina = get_page_by_path( $slug, OBJECT, 'page' );
+		/* O pai precisa existir antes: a ordem de `definicao_paginas()` garante
+		   isso, e se ainda assim ele faltar a filha NÃO nasce na raiz. Endereço
+		   errado de página publicada é dívida que não se paga (seção 12.1). */
+		$pai_id = 0;
+		if ( '' !== $def['pai'] ) {
+			if ( ! isset( $ids[ $def['pai'] ] ) ) {
+				$relato[] = 'página ' . $slug . ': adiada — a mãe ' . $def['pai'] . ' não existe ainda';
+				continue;
+			}
+			$pai_id = (int) $ids[ $def['pai'] ];
+		}
+
+		$pagina = get_page_by_path( '' !== $def['pai'] ? $def['pai'] . '/' . $slug : $slug, OBJECT, 'page' );
 
 		if ( ! $pagina ) {
 			$pid = wp_insert_post( array(
 				'post_type'    => 'page',
 				'post_title'   => $def['titulo'],
 				'post_name'    => $slug,
+				'post_parent'  => $pai_id,
 				'post_content' => $def['conteudo'],
 				'post_status'  => 'publish',
 				'comment_status' => 'closed',
@@ -1763,6 +2013,15 @@ function aquametria_casca_garantir_paginas( &$relato ) {
 		if ( $nossa && $def['titulo'] !== $pagina->post_title ) {
 			wp_update_post( array( 'ID' => $pid, 'post_title' => $def['titulo'] ) );
 			$relato[] = 'página ' . $slug . ': título atualizado (#' . $pid . ')';
+		}
+
+		/* O pai também se corrige, e só nas nossas. Página que perdeu o pai (por
+		   edição no wp-admin, ou porque nasceu antes da mãe) serve a URL de raiz
+		   e sai da árvore sem um erro aparecer. */
+		if ( $nossa && (int) $pagina->post_parent !== $pai_id ) {
+			wp_update_post( array( 'ID' => $pid, 'post_parent' => $pai_id ) );
+			$relato[] = 'página ' . $slug . ': mãe reposta (#' . $pid . ' sob #' . $pai_id . ')';
+			$criou    = true;
 		}
 	}
 
@@ -1847,7 +2106,8 @@ function aquametria_casca_limpar_padrao( &$relato ) {
 if ( ! function_exists( 'aquametria_casca_montar' ) ) {
 function aquametria_casca_montar( $forcar = false ) {
 	$feita = get_option( 'aquametria_casca_estrutura' );
-	if ( ! $forcar && AQUAMETRIA_CASCA_VERSAO === $feita ) {
+	$chave = aquametria_casca_chave_estrutura();
+	if ( ! $forcar && $chave === $feita ) {
 		return array();
 	}
 
@@ -1858,12 +2118,12 @@ function aquametria_casca_montar( $forcar = false ) {
 	aquametria_casca_limpar_padrao( $relato );
 
 	update_option( 'aquametria_casca_paginas', $ids, false );
-	update_option( 'aquametria_casca_estrutura', AQUAMETRIA_CASCA_VERSAO, false );
+	update_option( 'aquametria_casca_estrutura', $chave, false );
 
 	if ( ! $relato ) {
 		$relato[] = 'nada a fazer: estrutura já estava de pé';
 	}
-	$relato[] = 'casca ' . AQUAMETRIA_CASCA_VERSAO . ' em ' . current_time( 'Y-m-d H:i' );
+	$relato[] = 'casca ' . AQUAMETRIA_CASCA_VERSAO . ' (chave ' . $chave . ') em ' . current_time( 'Y-m-d H:i' );
 	update_option( 'aquametria_casca_relato', $relato, false );
 
 	return $relato;
