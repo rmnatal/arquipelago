@@ -276,6 +276,23 @@ foreach ( $esperado as $chave => $valor ) {
 	rbm_ok( (int) $n[ $chave ] === $valor, "numero '$chave' bate com o banco", 'tela ' . $n[ $chave ] . ' / banco ' . $valor );
 }
 
+/* CONTROLE NEGATIVO da casca 1.4.1: fonte sem publicacao nao vira numero.
+   O Sync so registra 'dados:<id>' quando APLICA o item, e ele so aplica
+   publicar=true. Tirado o registro, a option continua na mesa — e e exatamente
+   esse o caso que a funcao tem de recusar, em vez de servir um numero sem pagina
+   de origem viva. Se este teste passar a aprovar com a option sozinha, a trava
+   caiu. */
+$rbm_estado_guardado = $GLOBALS['__options']['robometria_sync_estado'];
+unset( $GLOBALS['__options']['robometria_sync_estado']['itens']['dados:casca-fatos'] );
+rbm_ok( array() === robometria_casca_numeros(),
+	'sem o registro do Sync, casca_numeros() nao publica numero',
+	'a option de casca-fatos continua na mesa' );
+rbm_ok( ! robometria_casca_tem_numeros(),
+	'e quem chama passa a dizer que a medicao esta fora do ar' );
+$GLOBALS['__options']['robometria_sync_estado'] = $rbm_estado_guardado;
+rbm_ok( robometria_casca_tem_numeros(),
+	'devolvido o registro, os numeros voltam' );
+
 /* ---------------------------------------------------------------------------
  * 9. Higiene de snippet (secao 8 e fase 4b do playbook).
  * ------------------------------------------------------------------------- */

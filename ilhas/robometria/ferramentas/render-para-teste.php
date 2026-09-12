@@ -230,13 +230,23 @@ function robometria_teste_titulo_do_alvo($alvo) {
 	return '';
 }
 
+/* A BANCADA TEM DE SERVIR O QUE O SITE SERVE, e no site a option de dados nunca
+   chega sozinha: quem a grava e o Sync, e ele deixa junto o registro de que
+   APLICOU aquele item (estado['itens']['dados:<id>']). A casca 1.4.1 passou a
+   exigir esse registro antes de publicar numero — sem ele aqui, a bancada mediria
+   um estado degradado que o site nao tem. */
 function robometria_teste_carregar_options($raiz) {
 	$manifest = json_decode(file_get_contents($raiz . '/manifest.json'), true);
+	if (!isset($GLOBALS['__options']['robometria_sync_estado']) || !is_array($GLOBALS['__options']['robometria_sync_estado'])) {
+		$GLOBALS['__options']['robometria_sync_estado'] = array('revisao' => isset($manifest['revisao']) ? (int) $manifest['revisao'] : -1, 'ultimo' => null, 'itens' => array(), 'log' => array());
+	}
 	foreach ((isset($manifest['dados']) ? $manifest['dados'] : array()) as $item) {
 		if (empty($item['publicar'])) { continue; }
 		$corpo = @file_get_contents($raiz . '/' . $item['arquivo']);
 		if (false === $corpo) { continue; }
 		$GLOBALS['__options']['robometria_dados_' . $item['id']] = json_decode($corpo, true);
+		$GLOBALS['__options']['robometria_sync_estado']['itens']['dados:' . $item['id']] =
+			array('option' => 'robometria_dados_' . $item['id'], 'sha256' => hash('sha256', $corpo));
 	}
 }
 

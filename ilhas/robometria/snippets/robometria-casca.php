@@ -1,5 +1,13 @@
 /**
  * Robometria Casca — identidade e estrutura do site
+ * Versão: 1.4.1 (12/09/2026) — FONTE NÃO PUBLICADA NÃO VIRA NÚMERO NA TELA.
+ *   robometria_casca_numeros() lia a option de dados direto, sem perguntar se o
+ *   item que a gerou ainda é publicar=true no manifest. Como o Sync PULA o item
+ *   despublicado mas NUNCA apaga a option que já gravou, a página seguiria
+ *   servindo o número de uma fonte sem página de origem viva. Agora o número só
+ *   sai quando o próprio Sync atesta que aplicou aquele item — e ele só aplica
+ *   publicar=true. Sem atestado, array() vazio e a página diz que a medição está
+ *   fora do ar; nunca um número de reserva.
  * Versão: 1.4.0 (11/09/2026) — UM NOME POR PÁGINA, e o <title> que o repositório
  *   não escrevia. Seis das nove páginas se chamavam de dois jeitos ao mesmo
  *   tempo, porque havia dois mapas de nome digitados; agora há uma fonte só
@@ -90,7 +98,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_CASCA_VERSAO' ) ) {
-	define( 'ROBOMETRIA_CASCA_VERSAO', '1.4.0' );
+	define( 'ROBOMETRIA_CASCA_VERSAO', '1.4.1' );
 	define( 'ROBOMETRIA_CASCA_TAGLINE', 'Qual peça o fabricante declarou para o seu robô aspirador — com código, endereço e data' );
 }
 
@@ -1161,6 +1169,45 @@ function robometria_casca_fonte_link( $url ) {
 }
 
 /**
+ * A FONTE PRECISA ESTAR PUBLICADA — e quem atesta isso é o próprio Sync.
+ *
+ * O defeito que esta função tinha, e que era latente: ela lia a option de dados
+ * direto, sem perguntar se o item que a gerou ainda tem `publicar: true` no
+ * manifest. O Sync PULA o item despublicado (`$pulados++`) e **nunca apaga a
+ * option que já gravou** — então, no dia em que alguém virasse `casca-fatos`
+ * para `publicar: false`, a página continuaria servindo aqueles números para
+ * sempre, com cara de medição e sem página de origem viva. Foi exatamente essa
+ * família de defeito que fez a seção 4 da metodologia servir número digitado
+ * durante semanas, lendo a option de `cobertura-r1`, que é `publicar: false`.
+ *
+ * O ATESTADO. O Sync só escreve `estado['itens']['dados:<id>']` quando APLICA o
+ * item, e ele só aplica `publicar: true` (robometria-sync.php, o desvio de
+ * `publicar` antes de `robometria_sync_aplicar_dados()`). Logo, a presença desse
+ * registro é a única prova, no próprio site, de que a fonte foi publicada. Sem
+ * registro, a resposta é NÃO — nada de número.
+ *
+ * FALHA FECHADA, de propósito: na dúvida a página diz que a medição está fora do
+ * ar, que é uma afirmação honesta. Valor de reserva seria mentira com cara de
+ * medição, e ninguém a releria para descobrir.
+ *
+ * LIMITE CONHECIDO, escrito aqui para ninguém confiar demais: depois que o Sync
+ * já aplicou o item, o registro fica. Se `publicar` virar `false` mais tarde, o
+ * site não tem como distinguir "não mudou" de "foi despublicado" — para fechar
+ * esse resto o Sync teria de gravar o `publicar` de cada item, e o snippet do
+ * Sync não viaja pelo manifest (ele é colado à mão no Code Snippets).
+ */
+if ( ! function_exists( 'robometria_casca_fonte_publicada' ) ) {
+function robometria_casca_fonte_publicada( $id ) {
+	$estado = get_option( 'robometria_sync_estado' );
+	if ( ! is_array( $estado ) || empty( $estado['itens'] ) || ! is_array( $estado['itens'] ) ) {
+		return false;
+	}
+	$chave = 'dados:' . $id;
+	return ! empty( $estado['itens'][ $chave ]['option'] );
+}
+}
+
+/**
  * OS NÚMEROS QUE A ILHA PUBLICA SOBRE SI MESMA — todos derivados, nenhum digitado.
  *
  * Até a casca 1.2.0 os onze moravam aqui dentro, escritos à mão, com um caminho
@@ -1183,6 +1230,10 @@ function robometria_casca_fonte_link( $url ) {
  */
 if ( ! function_exists( 'robometria_casca_numeros' ) ) {
 function robometria_casca_numeros() {
+	if ( ! robometria_casca_fonte_publicada( 'casca-fatos' ) ) {
+		return apply_filters( 'robometria_numeros', array() );
+	}
+
 	$fatos = get_option( 'robometria_dados_casca-fatos' );
 	if ( ! is_array( $fatos ) || empty( $fatos['medicao'] ) || ! is_array( $fatos['medicao'] ) ) {
 		return apply_filters( 'robometria_numeros', array() );
