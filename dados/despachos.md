@@ -22,6 +22,22 @@ Prioridade: `alta` fura a fila da próxima execução do destinatário.
 
 **O que NÃO se faz enquanto isso, escrito aqui para valer para toda ilha:** mandar evento pelo Measurement Protocol para "confirmar" que a medição funciona. Seria inventar a visita que se queria comprovar e sujar a série com uma sessão que nunca existiu. Zero medido é dado; zero fabricado é mentira.
 
+### prioridade NORMAL — a Fundação já roda mais vezes do que há ilha para construir
+
+12/09/2026 — RAPHAEL — Medido às 23h17Z: **três ilhas no arquipélago e quatro execuções da Fundação vivas na mesma janela de três minutos** — clubedomosaico reservada às 22h25Z e trabalhando (Sync na revisão 16 às 23h13m30Z), robometria às 23h18Z, aquametria às 23h19Z, e a quarta é a que escreve este despacho. Ela reservou a robometria, **perdeu a corrida do push por cerca de um minuto**, voltou ao passo 2 da seção 1 como manda o contrato e **não havia ilha para pegar**. Fechou em "nada elegível" sem construir nada.
+
+**Não é defeito e não bloqueia ilha nenhuma.** A reserva por commit funcionou exatamente como foi desenhada: ninguém se atropelou, nenhum trabalho foi perdido, nenhuma ilha ficou com duas execuções dentro. É **aritmética**: a rotação da seção 1 supõe que sobra ilha para quem perde a corrida, e com três ilhas a quarta execução da janela não tem o que fazer. Quanto mais frequente o disparo, maior a fração de execuções que fecha vazia.
+
+**Duas saídas, e as duas são suas — a Fundação não mexe em nenhuma:**
+1. **A Bússola entrega a ilha 4** (e a 5). A fila já está pontuada em `bussola/fila.md` e o topo disponível é **energia solar off-grid / estação portátil** (índice 4,20, paramétrica aberta), seguido de **nobreak e estabilizador** (4,19) — nenhum dos dois tem dossiê escrito ainda, e `bussola/dossies/` está vazia. Ilha nova é pasta nova: nenhuma rotina muda.
+2. **Espaçar os disparos da rotina "Arquipélago — Fundação"** para no máximo um por janela de ~40 minutos, que é a ordem de grandeza de um bloco. Configuração da sua conta, em claude.ai/code.
+
+A primeira é a que faz a fábrica crescer; a segunda só para de gastar execução. Dá para fazer as duas.
+
+**Pronto quando:** o número de ilhas não bloqueadas for maior ou igual ao número de execuções da Fundação que disparam na mesma janela de 40 minutos — ou seja, quando toda execução que acorda tiver ilha elegível para reservar.
+
+**A metade que a Fundação já fez sozinha:** a seção **1.1** do `ARQUIPELAGO.md` nasceu desta mesma execução e conserta o lado que era da máquina — a reserva vencida que esconde execução viva. Sem ela, esta execução teria pegado a clubedomosaico pela letra do passo 3 e mandado um **segundo** e-mail de acesso para a sua mãe, invalidando o link do primeiro na véspera do domingo.
+
 ### prioridade MÁXIMA — o ateliê da artesã tem de estar de pé no domingo 13/09
 
 12/09/2026 — FUNDAÇÃO — O Raphael vai à casa dos pais no domingo e quer ensinar a mãe a entrar no site e cadastrar as peças dela. O escopo cortado está no fim de `ilhas/clubedomosaico/PROMPT.md`, no "DESPACHO DO RAPHAEL — 12/09/2026, 18h20 BRT". A clubedomosaico está com `prioridade: 1`. Enquanto este despacho estiver aberto, toda execução da Fundação vai para ela.

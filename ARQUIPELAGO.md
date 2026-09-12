@@ -48,6 +48,26 @@ Se **nenhuma** ilha estiver elegível, não invente trabalho: registre "nada ele
 
 **Por que assim:** com uma rotina por ilha, 50 ilhas seriam 50 rotinas e 50 prompts para manter. Aqui, ilha nova é uma pasta nova — nenhuma rotina muda. E como a reserva é feita por commit, várias execuções podem rodar ao mesmo tempo sem se atropelar: quem perde a corrida do push simplesmente pega outra ilha.
 
+### 1.1 A RESERVA ENVELHECE ENQUANTO A EXECUÇÃO ESTÁ VIVA — quem decide é o último commit da ilha (12/09/2026)
+
+Medido em 12/09/2026 às 23h17Z, por uma execução da Fundação que não achou ilha. O passo 3 descarta a ilha com `executando_desde` de menos de 40 minutos — e **sozinho ele entrega ilha VIVA para uma segunda execução**, porque o relógio da reserva é escrito **uma vez**, no começo do bloco, e nunca mais é tocado. A clubedomosaico estava com reserva de 22h25Z, **53 minutos atrás**, portanto "livre" pela letra do passo 3; e estava trabalhando: commit `360f150` às 23h13m12Z e o Sync aplicando a **revisão 16** às 23h13m30Z, lido no `/status`. **Bloco longo não é bloco abandonado**, e a janela de 40 minutos é um palpite sobre abandono, não uma medição dele.
+
+O custo não era teórico justamente nessa ilha: o item 2 do despacho aberto **cria a usuária da artesã e dispara `retrieve_password` para o e-mail de uma pessoa de verdade**. Duas execuções no mesmo bloco mandam dois e-mails de acesso, e **o segundo invalida o link do primeiro** — na véspera do dia marcado para o Raphael ensinar a mãe a entrar. Colisão que em qualquer outro bloco custaria um rebase, ali custaria a entrega.
+
+**A regra, e ela cabe num comando:** antes de respeitar uma reserva vencida, pergunte ao git quando a ilha foi tocada pela última vez.
+
+```
+git log -1 --format=%cd --date=format-local:%H:%MZ -- ilhas/<ilha>
+```
+
+- Commit na pasta da ilha nos últimos **40 minutos** = ilha **VIVA**, seja qual for o `executando_desde`. Descarte-a como se a reserva fosse de agora, e siga para a próxima da ordem.
+- `executando_desde` vencido **e** nenhum commit na ilha nos últimos 40 minutos = reserva **abandonada de verdade**. Pegue a ilha, e diga no relatório que a reserva estava vencida e de quando ela era.
+- Quem executa bloco que passa de 40 minutos **reescreve `executando_desde`** no próximo commit que fizer. A reserva do passo 5 não é o único commit da execução; renovar é uma linha, e é o que faz a próxima execução não precisar do git para saber.
+
+**Por que o git e não o relógio:** a reserva é uma promessa escrita uma vez; o commit é trabalho acontecendo. O passo 3 mede **intenção** e isto mede **atividade** — e as duas discordam exatamente no caso que importa, o bloco longo. É a mesma família do "o site fica para trás em silêncio" da seção 4: o cabeçalho é o resumo, e resumo velho lido como fato é o defeito que este contrato mais paga.
+
+**E a outra metade do mesmo acontecimento, que não é regra e sim aritmética:** o arquipélago tem **três** ilhas e havia **quatro** execuções da Fundação vivas na mesma janela de três minutos (reservas de 22h25Z, 23h18Z e 23h19Z, mais a que escreveu isto). "Quem perde a corrida do push pega a próxima da ordem" só vale enquanto **sobrar** ilha. Não sobrou: esta execução perdeu a robometria por cerca de um minuto, voltou ao passo 2, achou as três ocupadas e fechou em "nada elegível" sem construir nada. Isso não tem conserto do lado da Fundação — é decisão do Raphael, e está escrito como despacho em `dados/despachos.md`.
+
 ---
 
 ## 2. Cabeçalho de estado — obrigatório no topo de todo `ilhas/<ilha>/ESTADO.md`
