@@ -2024,3 +2024,100 @@ catálogo), nenhum com loja possível hoje. Na vitrine do A2, 5 de 5 esperam lin
   vez foi preciso um despacho para fechar. O que muda em relação àquela: **desta vez a
   ronda também não atualizou o manifest**, e foi por isso que o conserto dela ficou fora
   do ar. As duas metades esquecidas são a mesma metade — o registro do que foi feito.
+
+## 2026-09-12 17:23Z — Despacho do GA4: a ilha passa a ser medida (casca 1.5.0, revisao 21)
+
+- **MARCO ZERO DA SERIE DE AUDIENCIA: 12/09/2026, 17h23Z.** E a partir deste
+  desembarque que existe medicao de audiencia nesta ilha. Toda leitura anterior
+  a esta data e ausencia de tag, nunca ausencia de visita — e a serie em
+  `dados/audiencia.md`, que a Sentinela escreve, comeca daqui.
+- Despacho de 12/09/2026 em `dados/despachos.md` (prioridade ALTA, FUNDACAO):
+  as tres ilhas ganharam propriedade GA4 e nenhuma tinha a tag no ar. Esta
+  execucao cumpriu a parte da Robometria; a Aquametria e o Clube do Mosaico
+  seguem abertas no despacho, para as execucoes que reservarem cada uma.
+- **A tag entra pela casca, nunca por plugin** (secao 11.7 do contrato): a
+  pagina publica e territorio deste repositorio, e plugin de medicao seria um
+  segundo dono do `<head>` que este repositorio nao versiona.
+- **O ID e constante do topo**, `ROBOMETRIA_CASCA_GA4 = G-RM7KS75QP2`, com o
+  nome da ilha ao lado. Nao e preciosismo de estilo: e a unica coisa que muda de
+  ilha para ilha nesta secao, e ID digitado no meio de uma funcao e exatamente
+  o que faz a casca copiada nascer medindo a propriedade da ilha anterior.
+- **PRIORIDADE 23, e o porque esta escrito no codigo.** O despacho pede a tag
+  cedo E proibe que ela entre antes do `<title>`, da meta descricao ou do
+  JSON-LD. As duas metades so cabem juntas depois do ultimo bloco protegido:
+  nesta casca eles saem em 1 (o titulo, pelo nucleo), 4 (description e Open
+  Graph), 6 (Organization + WebSite), 7 (o JSON-LD de cada ferramenta e de cada
+  artigo, nos snippets deles) e 22 (o BreadcrumbList). 23 e o primeiro degrau
+  livre acima de todos.
+- Script de terceiro com `async`, endereco com **um parametro so** de proposito
+  (um segundo traria um `&` dentro de `<script>`, que e o defeito que derrubou
+  cinco calculadoras da Aquametria em 08/09/2026), e **nenhum banner de
+  consentimento bloqueante** (secao 22.4).
+- **O PORTAO MEDE ORDEM, NAO PRESENCA — e essa e a licao deste bloco.** "A tag
+  esta na pagina" e a afirmacao facil, e e a que nao protege nada: um JSON-LD
+  novo numa prioridade acima de 23 quebra a regra sem tirar a tag do lugar, e
+  uma trava de presenca aprova isso com folga. Foi a quinta das nove mutacoes,
+  e por causa dela o teste mede a posicao da tag contra o ULTIMO bloco de
+  `application/ld+json` servido, nunca contra uma lista do que a casca acha que
+  imprime.
+- **O ID DESTA ILHA ESTA ESCRITO NA REGUA DOS DOIS TESTES**, e nao lido da
+  constante. Ler a constante e compara-la com o que a casca serviu e comparar a
+  constante consigo mesma — e o unico erro que essa comparacao nunca pegaria e o
+  que vai acontecer de verdade: esta casca foi copiada da Aquametria em
+  10/09/2026, a proxima ilha vai copiar esta, e o ID esquecido vai ao ar
+  funcionando, sem uma linha de defeito visivel, gravando sessao na propriedade
+  errada por meses. Foi a segunda mutacao.
+- **A pagina de divulgacao conta o que o site mede**, em duas frases, com a
+  origem de IA nomeada — o despacho pedia a frase na pagina de privacidade, e
+  esta ilha **nao tem** uma. Enquanto nao tiver, o lugar honesto e a pagina onde
+  o site conta como funciona por dentro e que esta no rodape de todas as outras.
+  Quando `/privacidade/` nascer, a secao muda de casa. De quebra, o corpo que a
+  ronda de 11/09 achou fino (1.325 caracteres, reprovado pela trava de pagina
+  fina) cresceu e passou com folga.
+- **VERIFICACAO.** Bancada: `teste-casca.php` de 152 para 191 afirmacoes, 0
+  falha, com a secao 15 nova (ID servido, async, `gtag('config')` na propriedade
+  certa, a tag depois do `<title>`, depois da description e depois do ultimo
+  JSON-LD, um unico script de terceiro contado pelo endereco servido, o ID
+  aparecendo UMA vez no arquivo da casca e dentro de um `define`, e a frase da
+  divulgacao medida no CORPO — no `<head>` a palavra googletagmanager aparece
+  nas nove paginas, e medir no HTML inteiro aprovaria uma pagina muda).
+  `ferramentas/mutacoes-ga4.py` novo: **9 de 9 reprovadas**, cada uma numa
+  afirmacao diferente — a tag sumindo, o ID da ilha vizinha, o `config` medindo
+  outra propriedade com o `src` certo, o async caindo, o JSON-LD intruso acima
+  da tag, a prioridade caindo para 3, o ID voltando a ser digitado no meio do
+  codigo, um segundo script de terceiro na pagina publica, e a pagina parando de
+  contar o que mede. As mutacoes so foram aceitas com a bancada verde por baixo:
+  na primeira rodada o manifest ainda estava na 1.4.1 contra a constante 1.5.0,
+  e **toda** mutacao reprovava tambem por isso — teste que ja esta vermelho nao
+  prova mutacao nenhuma.
+- Regressao sem uma falha: `teste-arvore` (213), `teste-voz` (155), `teste-r1`
+  (90), `teste-r2` (90), `teste-a1` (55), `teste-a2` (73), `teste-acentuacao`
+  (17), `validar-banco`, `php -l` em tudo, e as quatro baterias de mutacao
+  antigas (18, 29, 11, 15) — **nenhuma virou inerte**.
+- **NO AR as 17h23Z, em UM disparo do Sync:** `/status` na revisao 21, igual a
+  do manifest. `conferir-no-ar.py` de 82 para **138 afirmacoes, 0 falha**, com a
+  conferencia da tag nas nove URLs (ID, async, `config`, ordem contra o
+  `<title>` e contra o ultimo JSON-LD, unico terceiro) e a frase da divulgacao
+  medida no corpo servido. As nove URLs em 200.
+- **A METADE QUE NAO E DAQUI, e ela nao e defeito:** o despacho declara pronto
+  tambem quando o Tempo Real do GA4 registrar a visita de verificacao, e este
+  ambiente **nao tem** a credencial da conta de servico (`ferramentas/ga4.py`
+  responde "Sem credencial: defina GOOGLE_SA_B64..."). O que esta medido daqui e
+  a metade que estava quebrada — a tag certa, no lugar certo, no HTML servido.
+  A confirmacao no Tempo Real e de quem tiver a credencial: o navegador do
+  Raphael, ou a variavel de ambiente das rotinas.
+- Rede reconferida como manda a secao 20.2: o dominio da ilha em 200 em duas
+  passadas, mais o Sync e o `/status`. Nenhum bloqueio.
+- 44 itens esperando link de afiliado (nao mudou; este bloco nao tocou
+  catalogo). Pauta da secao 17: `pauta.md` ainda nao existe — 0 escritos, 0 na
+  fila, 0 recusados.
+- **PROXIMO:** a secao "Exatamente no limiar" da R2, que nomeia modelos e Pa e
+  nao cita origem — o ultimo lugar das duas ferramentas onde um numero decide e
+  a origem nao aparece, e as pecas ja existem. Junto dele, o `afiliado.sub_id_2`
+  dos cinco itens da vitrine do A2, que viajam carimbados como "R2" porque o
+  campo e do MODELO no banco e as duas paginas o compartilham: no dia em que o
+  primeiro link entrar, todo clique vindo do artigo sera contado como da
+  ferramenta, e o conserto e cada gerador carimbar o proprio codigo, nunca
+  trocar o valor no banco. Os kits e o 3c seguem parados por rede (politica de
+  egresso). Tudo que cria URL espera o reenvio do sitemap no Search Console, que
+  e do Raphael.
