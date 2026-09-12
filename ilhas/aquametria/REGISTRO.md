@@ -5374,3 +5374,123 @@ e nao trava, adia nem reduz leva nenhuma.
 O historico acima fica como esta: as entradas de 10, 11 e 12/09 que dizem "item 5
 segue de pe" descrevem o que valia naquele dia. O campo `congelamento` no cabecalho
 do `ESTADO.md` e o que vale agora.
+
+## 2026-09-12, 16hZ — T3a: A PRATELEIRA VAZIA ERA UM SINÔNIMO (C15 1.4.0, esquema 9, revisão 53)
+
+**O bloco começou medindo, e o que a medição achou não era o que a fila esperava.**
+O `ESTADO.md` mandava fazer o "catálogo de iluminação por faixa", e a `FILA DE BLOCOS`
+descrevia o problema como falta de produto: "hoje são 3 luminárias e a única com link
+não cai em faixa nenhuma". Esse texto é de 09/09 e o banco tem 26 registros desde
+11/09. Antes de colher uma linha, nasceu `ferramentas/varrer-c15-banco.py` — uma régua
+que lê `dados/produtos-iluminacao.json` e `dados/esquema-produtos.json` direto e
+reimplementa a regra publicada da C15, sem navegador. Ela responde o que o
+`varrer-cobertura.mjs` não responde: quantas luminárias **sobreviveriam** a cada faixa,
+inclusive nas faixas que saem vazias, onde a tela não tem cartão para contar e portanto
+não diz por quê.
+
+**O DEFEITO, e ele estava no ar.** O mesmo banco escrevia o mesmo fato de duas maneiras.
+Seis registros da família Chihiros WRGB II gravavam `regulagem: "aplicativo"`. A irmã
+`chihiros-wrgb-ii-pro-60`, colhida na MESMA leva e da MESMA fonte, gravava `"app"` — que
+é o valor que o vocabulário do esquema declara. E o `podeRegular()` do JavaScript tinha
+uma TERCEIRA cópia da lista, digitada dentro da função, testando `'app'`. Medido no HTML
+servido por curl antes de qualquer mudança: o catálogo no ar trazia 5 `"aplicativo"` e 1
+`"app"`. Consequência: das 8 luminárias do catálogo que declaram regulagem, 5 eram
+invisíveis para o ramo dos "reguláveis" — e a página **afirmava sobre elas** que "não
+declara regulagem de intensidade". Afirmação que o próprio banco desmentia, porque ele
+lista `regulagem` entre os campos que a fonte sustenta; e que o próprio cartão desmentia
+duas linhas abaixo, onde a ficha imprimia `Regulagem: aplicativo`. A página negava e
+afirmava o mesmo fato no mesmo cartão.
+
+**Por que a família WRGB II é justamente a que importa:** é ela que cobre 90 a 140 cm.
+Com o ramo morto, exigência baixa e média acima de 90 cm saíam com prateleira vazia — e
+a leitura fácil dessa prateleira vazia, que a fila já tinha feito, é "falta produto".
+Faltava um caractere.
+
+**NENHUM PORTÃO VIA, e essa é a parte que vale mais que o defeito.** Três portões verdes
+ao mesmo tempo: (1) o validador nunca leu a chave `vocabulario` do esquema — a declaração
+estava lá desde o começo e nenhuma regra a executava, então 0 erro por três dias; (2) o
+teste de navegador media a lista "dentro da faixa", que é onde o defeito NÃO aparece; e
+(3) o ramo dos reguláveis, que era o ramo quebrado, nunca executava. **Ramo que não roda
+é código que teste nenhum protege, por mais afirmações que o teste tenha** — e nenhuma
+contagem de afirmações revela isso. O que revelou foi uma régua que varreu a entrada
+inteira e contou quantos estados chegam a cada ramo.
+
+**É a V21 com a roupa trocada.** Em 11/09 a C12 pagou por um campo que era CÓPIA de outro
+campo, dando a um número um segundo significado que ninguém declarou. Aqui não é um valor
+com dois significados: é um significado com duas grafias. Nos dois casos, cópia não
+confere cópia.
+
+**O QUE FOI FEITO**
+
+1. **Banco** (nenhum número novo): os 6 registros passaram a gravar `"app"`. É grafia, não
+   dado — nenhuma fonte foi reinterpretada, e a razão está escrita na `observacao` de cada
+   um e na `descricao` do arquivo.
+2. **Esquema, versão 9:** o campo `regulagem` ganhou `regula_intensidade`, que é a fonte
+   **única** da classificação "quais comandos abaixam o brilho". `temporizador` fica de fora
+   (liga e desliga em horário, não abaixa brilho) e `nenhuma` também.
+3. **Regra V23, e ela é de uma família nova.** As outras conferem o VALOR de um campo; a V23
+   confere que o valor pertence ao VOCABULÁRIO que o esquema declara — em qualquer entidade,
+   sem lista mantida à mão dentro do validador. A V23b cobra o outro lado: subconjunto
+   declarado não pode nomear valor que o vocabulário não tem, senão descreve um estado
+   inalcançável. **Declaração que nenhum portão lê é comentário.**
+4. **C15 1.4.0:** o `podeRegular()` não guarda mais lista nenhuma — lê `AQM_C15_REGULA`, que
+   o gerador de catálogo escreve a partir do esquema. Três lugares liam a mesma lista; agora
+   um declara e dois leem. O gerador **recusa gravar** se a chave sumir do esquema, porque
+   lista vazia faria a C15 negar toda regulagem em silêncio — o mesmo defeito com o sinal
+   trocado.
+5. **A frase aprendeu a diferença entre três silêncios**, que era o defeito de fundo:
+   campo vazio quer dizer que **a Aquametria não colheu**; `nenhuma` quer dizer que **o
+   fabricante declara** que a peça não tem; e um valor que regula é o terceiro estado. A
+   página dizia os três com a mesma frase, e com isso atribuía ao fabricante um silêncio que
+   era nosso. A ficha passou de "não declarada" para "não colhemos este campo".
+
+**O QUE ISSO MOVEU, medido:** 32 dos 69 estados da varredura passam a servir cartão
+regulável (47 cartões), contra quase nenhum antes. As faixas que cumprem o critério de 3
+produtos da seção 14.3 foram de 1 para 3 — **sem um registro novo no catálogo**. A série
+de cobertura em `dados/cobertura-de-faixa.md` ganhou a medição de 12/09 com uma coluna
+nova, "+ regulável", porque contar só quem cai dentro da faixa mede metade da prateleira.
+
+**O QUE CONTINUA SENDO FALTA DE PRODUTO DE VERDADE**, e agora está separado do que era
+defeito: 50 a 55 cm, 85 cm e 115 cm em toda exigência (vãos entre as coberturas declaradas
+das famílias que temos), e 30 a 55 cm com fluxo alto. Nenhuma regulagem conserta isso.
+11 dos 26 registros seguem barrados por `fluxo_lm`, 8 deles Soma com link de afiliado.
+
+**DEFEITO DE ETIQUETA ACHADO DE QUEBRA, e três dos quatro não eram deste bloco.**
+`atualizar-manifest.py` ganhou a conferência que o Clube do Mosaico escreveu hoje, no
+mesmo dia e por conta própria: a versão do manifest tem de bater com a CONSTANTE do
+snippet. Ela reprovou quatro de uma vez — C12 (manifest 1.2.0, constante 1.3.0), artigos
+(1.1.0 contra 1.2.0), C15 (a minha) e, ao contrário das outras, a **casca**: o manifest
+dizia 1.5.0 e a constante está em **1.4.1**. As etiquetas do manifest foram acertadas pela
+regra (a constante manda). **A casca fica como item aberto e NÃO foi tocada aqui:** o
+cabeçalho dela documenta as versões 1.5.0 (a árvore das treze páginas) e 1.5.1 (o degrau
+da trilha da divulgação), e a constante nunca recebeu nenhuma das duas. Como
+`aquametria_casca_montar()` só remonta a estrutura quando a constante muda, subir esse
+número dispara uma remontagem no site — decisão que pertence a um bloco que toque a casca,
+não a um bloco de iluminação. O que está errado hoje é o relato: o site imprime
+`casca 1.4.1` enquanto todo registro diz 1.5.1.
+
+**VERIFICAÇÃO.** `teste-navegador-c15-regulagem.mjs`, novo: 335 afirmações, régua própria
+(lê o JSON do banco e do esquema, nunca `AQM_C15_CATALOGO` nem `aquametria_c15_catalogo()`),
+varrendo 69 estados — comprimento de 30 a **140** cm de 5 em 5 nos três níveis, indo até 140
+de propósito porque é a borda superior da cobertura declarada da família WRGB II. Tudo
+medido no CORPO da saída, nunca no HTML inteiro: a frase proibida aparece legitimamente
+dentro da documentação do próprio snippet. Uma afirmação nova que só existe porque a régua
+a tornou verdadeira: **faixa aberta não produz cartão regulável** — na exigência alta o teto
+não existe, então nada está "acima do teto", e um regulável ali significaria que alguém
+fechou a faixa aberta sem dizer. Regressões sem uma falha: `teste-navegador-c15.mjs`,
+`teste-navegador-c15-vitrine.mjs`, `teste-voz.mjs` (13 páginas), `teste-arvore.mjs`,
+`teste-navegador-visibilidade-ia.mjs` (com o JavaScript desligado), `validar-produtos.py`
+(78 produtos, 0 erro, 9 avisos — os mesmos 9 de antes), `validar-especies.py` (36, 0 erro),
+`testar-validador-especies.py` (19 testes), `conferir-slugs.py`, `conferir-protecao-funcoes.py`
+e `php -l` em todos os snippets e renderizadores.
+
+**REDE, reconferida nesta execução como manda a seção 20.2:** `aquametria.com.br` em 200 e
+`/status` respondendo; `chihirosaquaticstudio.com` e `ista-asia.com` em `000` por política de
+egresso, repetido 4 vezes, com o domínio da ilha em 200 na mesma passada — é política, não a
+intermitência de túnel da seção 20. **`WebSearch` funciona**, e é por ele que este banco
+inteiro foi construído (busca restrita ao domínio da fonte, níveis 3 e 5 da escada). Foi
+assim que a coleta desta execução confirmou, no site do fabricante, que a linha WRGB II é
+comandada por aplicativo — o que sustentou a normalização em vez de adivinhá-la.
+
+39 dos 78 produtos esperam link de afiliado (não mudou; este bloco não tocou catálogo).
+Pauta da seção 17: `pauta.md` ainda não existe — 0 escritos, 0 na fila, 0 recusados.

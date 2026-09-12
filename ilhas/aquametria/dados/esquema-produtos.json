@@ -3,7 +3,7 @@
   "descricao": "Modelo normalizado do banco de produtos da Aquametria: entidades filtro, aquecedor, iluminacao e midia, mais a entidade cotacao (preco). Define campo a campo o tipo, a unidade, a obrigatoriedade, o vocabulario controlado e a ORIGEM esperada do dado. Nenhum numero entra no banco sem uma entrada correspondente em fontes[]. Este arquivo e o contrato que dados/produtos-*.json cumprem e que ferramentas/validar-produtos.py verifica.",
   "gerado_em": "2026-09-07",
   "bloco": 3,
-  "versao_esquema": 8,
+  "versao_esquema": 9,
   "depende_de": [
     "dados/especificacao-calculadoras.md",
     "dados/constantes-calculadoras.json"
@@ -784,7 +784,13 @@
             "app",
             "controlador"
           ],
-          "origem": "fabricante"
+          "origem": "fabricante",
+          "regula_intensidade": [
+            "dimmer",
+            "app",
+            "controlador"
+          ],
+          "nota": "O vocabulario diz COMO a peca e comandada; 'regula_intensidade' diz quais desses comandos abaixam o brilho, que e a unica pergunta que interessa a C15 quando a luminaria passa do teto da faixa. 'temporizador' liga e desliga em horario e NAO abaixa intensidade, por isso fica de fora; 'nenhuma' e a declaracao de que a peca nao tem comando, e e DIFERENTE de null, que quer dizer que a Aquametria nao colheu o campo. Esta lista e a fonte unica da classificacao: o gerador de catalogo a copia para dentro do snippet e o podeRegular() da C15 le de la, em vez de guardar uma terceira copia. Declarado em 12/09/2026, no bloco que achou as duas grafias do mesmo fato."
         }
       ],
       "derivados": [
@@ -1143,7 +1149,16 @@
       "id": "V22",
       "regra": "DUPLA CONDICAO de elegibilidade, escrita em 09/09/2026 depois de um defeito visto no ar: a calculadora recomenda um produto so quando ele passa nas DUAS condicoes — o numero calculado (vazao, potencia, lumen) dentro da faixa E o volume do visitante dentro do volume_atendido_declarado_L do fabricante. Fabricante que NAO declara volume: o produto entra, com a ressalva escrita no cartao. Fabricante que declara e o volume do visitante passa (ou nao alcanca) a declaracao: o produto NAO entra nos recomendados; se aparecer, e em secao separada, ABAIXO, rotulada 'atendem a vazao mas o fabricante nao cobre esse volume'. Nunca misturado, nunca em primeiro lugar. O que motivou: a C3 no ar recomendava em PRIMEIRO lugar o Atman HF-0600 para um aquario de 189,6 L e o proprio cartao dele escrevia que o fabricante declara o modelo para ate 150 L. Recomendar o que a propria pagina diz que nao serve destroi a unica coisa que separa a ilha das fazendas de conteudo.",
       "severidade": "regra de produto, conferida na revisao de cada calculadora"
+    },
+    {
+      "id": "V23",
+      "regra": "VOCABULARIO DECLARADO E COBRADO, escrita em 12/09/2026 depois de um defeito que passou por tres portoes verdes. Todo campo cuja declaracao no esquema traz a chave 'vocabulario' so aceita valor que esteja nela — em qualquer entidade, sem lista mantida a mao dentro do validador. E a V23b cobra o outro lado: toda chave que declara um SUBCONJUNTO do vocabulario (hoje 'regula_intensidade', em iluminacao) so pode nomear valores que o vocabulario tem, senao ela descreve um estado inalcancavel e ninguem percebe. O QUE MOTIVOU: o esquema declarava vocabulario para 'regulagem' desde o comeco e NENHUMA regra lia essa chave. Seis registros da familia Chihiros WRGB II gravaram 'aplicativo'; a irma chihiros-wrgb-ii-pro-60, da mesma leva e da mesma fonte, gravou 'app', que e o valor do vocabulario. O validador passou com 0 erro por tres dias. A C15 testa por 'app', entao os seis ficaram invisiveis para o ramo dos reguláveis — e a pagina AFIRMAVA sobre eles que 'nao declara regulagem de intensidade', contradizendo o proprio banco, que lista 'regulagem' entre os campos que a fonte sustenta. O cartao dizia as duas coisas ao mesmo tempo, a duas linhas de distancia. E a familia do defeito ja tinha nome nesta ilha: e o mesmo da V21 (campo que e copia de outro campo) com a roupa trocada — aqui nao e um valor com dois significados, e um significado com duas grafias, e copia nao confere copia. COROLARIO QUE VALE PARA TODA ILHA: campo vazio e campo que declara ausencia sao estados DIFERENTES e a tela nunca os funde. 'regulagem: null' quer dizer que a Aquametria nao colheu; 'regulagem: nenhuma' quer dizer que o fabricante declara que a peca nao tem. Atribuir ao fabricante o silencio que e nosso e afirmar sobre ele o que nao medimos.",
+      "mede": [
+        "ferramentas/validar-produtos.py",
+        "ferramentas/mutacoes-c15-regulagem.py",
+        "ferramentas/teste-navegador-c15-regulagem.mjs"
+      ]
     }
   ],
-  "atualizado_em": "2026-09-11"
+  "atualizado_em": "2026-09-12"
 }

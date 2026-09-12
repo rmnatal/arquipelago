@@ -1,5 +1,47 @@
 /**
  * Aquametria Calculadora de Iluminação e Fotoperíodo — C15
+ * Versão: 1.4.0 (12/09/2026) — BLOCO T3a: A PRATELEIRA VAZIA ERA UM SINÔNIMO.
+ *
+ *   O mesmo banco escrevia o mesmo fato de duas maneiras. Seis registros da família
+ *   Chihiros WRGB II gravavam regulagem 'aplicativo'; a irmã chihiros-wrgb-ii-pro-60,
+ *   colhida na MESMA leva e da MESMA fonte, gravava 'app'. O vocabulário do esquema
+ *   declara 'app'. E o podeRegular() daqui tinha uma TERCEIRA cópia da lista, digitada
+ *   dentro da função, testando 'app'. Resultado, medido no HTML servido em 12/09/2026:
+ *   das 8 luminárias do catálogo que declaram regulagem, 5 eram invisíveis para o ramo
+ *   dos "reguláveis" — e a página afirmava sobre elas que "não declara regulagem de
+ *   intensidade", contradizendo o próprio banco, que lista `regulagem` entre os campos
+ *   que a fonte sustenta. O cartão dizia as duas coisas ao mesmo tempo: a frase negava a
+ *   regulagem e a ficha, duas linhas abaixo, imprimia 'aplicativo'.
+ *
+ *   NENHUM PORTÃO VIA, e essa é a parte que vale ser lida antes do próximo bloco. O
+ *   validador nunca leu a chave 'vocabulario' do esquema — a declaração estava lá desde
+ *   o começo e nenhuma regra a executava. O teste de navegador media a lista "dentro da
+ *   faixa", que é onde o defeito NÃO aparece. E o ramo dos reguláveis, que era o ramo
+ *   quebrado, nunca executava: ramo que não roda é código que teste nenhum protege, por
+ *   mais afirmações que o teste tenha. Foi preciso uma régua que varresse a entrada
+ *   inteira e contasse quantos estados chegam a cada ramo.
+ *
+ *   O QUE MUDOU AQUI: o podeRegular() não guarda mais lista nenhuma. A classificação
+ *   "quais comandos abaixam o brilho" passou a ter fonte única em
+ *   `regulagem.regula_intensidade`, no dados/esquema-produtos.json, e chega pelo gerador
+ *   de catálogo em AQM_C15_REGULA. Três lugares liam a mesma lista; agora um declara e
+ *   dois leem.
+ *
+ *   E A FRASE APRENDEU A DIFERENÇA ENTRE TRÊS SILÊNCIOS, que era o defeito de fundo:
+ *   campo vazio quer dizer que a Aquametria NÃO COLHEU; 'nenhuma' quer dizer que o
+ *   FABRICANTE declara que a peça não tem; e um valor que regula é o terceiro estado.
+ *   A página dizia os três com a mesma frase, e com isso atribuía ao fabricante um
+ *   silêncio que era nosso. Agora a ficha diz "não colhemos este campo" e a frase da
+ *   lista diz, com essas palavras, que não estamos afirmando que o fabricante não
+ *   oferece.
+ *
+ *   O catálogo NÃO cresceu: nenhum registro novo, nenhum número novo. O que mudou foi a
+ *   grafia de um campo e quem é dono da lista que a lê. Medido: 32 dos 69 estados da
+ *   varredura passam a servir cartão regulável (47 cartões), e as faixas que cumprem o
+ *   critério de 3 produtos foram de 1 para 3. Portão novo em
+ *   ferramentas/teste-navegador-c15-regulagem.mjs; mutações em
+ *   ferramentas/mutacoes-c15-regulagem.py; régua de banco em
+ *   ferramentas/varrer-c15-banco.py; trava do dado na regra V22 do validador.
  * Versão: 1.3.1 (11/09/2026) — o resumo do cartão dela no hub passa a falar na
  * voz do VOZ.md, como os outros sete. Esta é a única calculadora que sobrescreve
  * o resumo do catálogo da casca pelo filtro 'aquametria_calculadoras', então era a
@@ -105,7 +147,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_C15_VERSAO' ) ) {
-	define( 'AQUAMETRIA_C15_VERSAO', '1.3.1' );
+	define( 'AQUAMETRIA_C15_VERSAO', '1.4.0' );
 	define( 'AQUAMETRIA_C15_SLUG', 'calculadora-de-iluminacao' );
 	define( 'AQUAMETRIA_C15_VERIFICADO_EM', '08/09/2026' );
 	define( 'AQUAMETRIA_C15_PAGINA_AFILIADOS', 'divulgacao-de-afiliados' );
@@ -352,7 +394,7 @@ function aquametria_c15_catalogo() {
 			'aquario_min_cm' => 90,
 			'aquario_max_cm' => 110,
 			'voltagem' => array( 'bivolt' ),
-			'regulagem' => 'aplicativo',
+			'regulagem' => 'app',
 			'ppfd' => null,
 			'ppfd_distancia_cm' => null,
 			'fonte_ref' => 'Green Aqua e Aqua Zones (varejo especializado estrangeiro), ficha da Chihiros WRGB II Slim 90: tamanho de aquario de 90 a 110 cm, consumo de 69 W, fluxo luminoso de 3.600 lm',
@@ -363,7 +405,7 @@ function aquametria_c15_catalogo() {
 			'anuncio' => null,
 			'loja' => null,
 			'conflito' => null,
-			'observacao' => 'Fica \'parcial\' por UM campo: nenhuma das fichas conferidas publica o comprimento da PECA da Slim 90 — a irma de 120 cm publica 1184 x 128 x 15 mm e esta nao publica nada. E ausencia de fonte, nao de importancia: o comprimento da peca nao entra no criterio da C15 (que dimensiona por lumen e por cobertura declarada), entao o registro continua sendo sugerido normalmente. disponibilidade_br ficou \'desconhecido\' porque nenhuma das lojas brasileiras conferidas em 09/09/2026 anuncia a versao Slim, so a WRGB II e a WRGB II Pro. O registro entra porque a C15 dimensiona por lumen e cobertura, nao por loja, e porque a Slim e o contraponto util da familia: mesma cobertura de 90 a 110 cm com 3.600 lm contra os 9.250 lm da Pro — 2,6 vezes menos luz no mesmo aquario, o que separa exigencia baixa de exigencia alta melhor do que qualquer regra de bolso.',
+			'observacao' => 'Fica \'parcial\' por UM campo: nenhuma das fichas conferidas publica o comprimento da PECA da Slim 90 — a irma de 120 cm publica 1184 x 128 x 15 mm e esta nao publica nada. E ausencia de fonte, nao de importancia: o comprimento da peca nao entra no criterio da C15 (que dimensiona por lumen e por cobertura declarada), entao o registro continua sendo sugerido normalmente. disponibilidade_br ficou \'desconhecido\' porque nenhuma das lojas brasileiras conferidas em 09/09/2026 anuncia a versao Slim, so a WRGB II e a WRGB II Pro. O registro entra porque a C15 dimensiona por lumen e cobertura, nao por loja, e porque a Slim e o contraponto util da familia: mesma cobertura de 90 a 110 cm com 3.600 lm contra os 9.250 lm da Pro — 2,6 vezes menos luz no mesmo aquario, o que separa exigencia baixa de exigencia alta melhor do que qualquer regra de bolso. REGULAGEM NORMALIZADA EM 12/09/2026: o valor gravado era \'aplicativo\' e o vocabulario do esquema declara \'app\'. Nenhum numero mudou e nenhuma fonte foi reinterpretada — o registro sempre declarou controle por aplicativo, e a mesma familia ja gravava \'app\' na chihiros-wrgb-ii-pro-60. A grafia divergente deixava estes registros invisiveis para o podeRegular() da C15, que testa por \'app\', e a pagina dizia que eles \'nao declaram regulagem de intensidade\'.',
 			'imagem' => null,
 			'preco' => null,
 		),
@@ -418,7 +460,7 @@ function aquametria_c15_catalogo() {
 			'aquario_min_cm' => 120,
 			'aquario_max_cm' => 140,
 			'voltagem' => array( 'bivolt' ),
-			'regulagem' => 'aplicativo',
+			'regulagem' => 'app',
 			'ppfd' => null,
 			'ppfd_distancia_cm' => null,
 			'fonte_ref' => 'Green Aqua e Aqua Zones (varejo especializado estrangeiro), ficha da Chihiros WRGB II Slim 120: tamanho de aquario de 120 a 140 cm, consumo de 90 W, fluxo luminoso de 4.800 lm, 80 LEDs, grau de protecao IP 43, peca de 1184 x 128 x 15 mm',
@@ -429,7 +471,7 @@ function aquametria_c15_catalogo() {
 			'anuncio' => null,
 			'loja' => null,
 			'conflito' => null,
-			'observacao' => 'Mesma razao da Slim 90 para o disponibilidade_br. A peca mede 118,4 cm e a cobertura declarada e de 120 a 140 cm: e mais um caso do padrao que a ilha ja registrou tres vezes — o numero do nome nao e o tamanho da peca, e a peca nao e a cobertura. Aqui o proprio fabricante declara os dois numeros e eles nao coincidem, o que e justamente a prova de que converter um no outro seria inventar faixa. Sobre o status: \'desconhecido\' e um valor do vocabulario, nao um campo vazio, entao o registro e COMPLETO e a C15 pode sugeri-lo. A incerteza fica onde ela existe de verdade, que e dentro do campo de disponibilidade, e a tela diz que nao confirmamos loja brasileira para este modelo.',
+			'observacao' => 'Mesma razao da Slim 90 para o disponibilidade_br. A peca mede 118,4 cm e a cobertura declarada e de 120 a 140 cm: e mais um caso do padrao que a ilha ja registrou tres vezes — o numero do nome nao e o tamanho da peca, e a peca nao e a cobertura. Aqui o proprio fabricante declara os dois numeros e eles nao coincidem, o que e justamente a prova de que converter um no outro seria inventar faixa. Sobre o status: \'desconhecido\' e um valor do vocabulario, nao um campo vazio, entao o registro e COMPLETO e a C15 pode sugeri-lo. A incerteza fica onde ela existe de verdade, que e dentro do campo de disponibilidade, e a tela diz que nao confirmamos loja brasileira para este modelo. REGULAGEM NORMALIZADA EM 12/09/2026: o valor gravado era \'aplicativo\' e o vocabulario do esquema declara \'app\'. Nenhum numero mudou e nenhuma fonte foi reinterpretada — o registro sempre declarou controle por aplicativo, e a mesma familia ja gravava \'app\' na chihiros-wrgb-ii-pro-60. A grafia divergente deixava estes registros invisiveis para o podeRegular() da C15, que testa por \'app\', e a pagina dizia que eles \'nao declaram regulagem de intensidade\'.',
 			'imagem' => null,
 			'preco' => null,
 		),
@@ -576,7 +618,7 @@ function aquametria_c15_catalogo() {
 			'aquario_min_cm' => 90,
 			'aquario_max_cm' => 110,
 			'voltagem' => array( 'bivolt' ),
-			'regulagem' => 'aplicativo',
+			'regulagem' => 'app',
 			'ppfd' => null,
 			'ppfd_distancia_cm' => null,
 			'fonte_ref' => 'Green Aqua e Aqua Zones (varejo especializado estrangeiro), ficha da Chihiros WRGB II 90: tamanho de aquario de 90 a 110 cm de largura, consumo de 100 W, fluxo luminoso de 8.400 lm, 90 LEDs WRGB, controle pelo aplicativo My Chihiros',
@@ -587,7 +629,7 @@ function aquametria_c15_catalogo() {
 			'anuncio' => null,
 			'loja' => null,
 			'conflito' => null,
-			'observacao' => 'Entrou pela mesma razao da Pro 90: cobre a FAIXA de 90 a 110 cm, que estava vazia. O conflito de fluxo dentro de uma unica pagina de loja e o segundo achado do bloco e vale como conteudo: quando o proprio varejo especializado nao consegue manter dois numeros iguais na mesma pagina, a regra de bolso de \'lumens por litro\' que a web brasileira repete esta sendo aplicada sobre um dado que ninguem confere.',
+			'observacao' => 'Entrou pela mesma razao da Pro 90: cobre a FAIXA de 90 a 110 cm, que estava vazia. O conflito de fluxo dentro de uma unica pagina de loja e o segundo achado do bloco e vale como conteudo: quando o proprio varejo especializado nao consegue manter dois numeros iguais na mesma pagina, a regra de bolso de \'lumens por litro\' que a web brasileira repete esta sendo aplicada sobre um dado que ninguem confere. REGULAGEM NORMALIZADA EM 12/09/2026: o valor gravado era \'aplicativo\' e o vocabulario do esquema declara \'app\'. Nenhum numero mudou e nenhuma fonte foi reinterpretada — o registro sempre declarou controle por aplicativo, e a mesma familia ja gravava \'app\' na chihiros-wrgb-ii-pro-60. A grafia divergente deixava estes registros invisiveis para o podeRegular() da C15, que testa por \'app\', e a pagina dizia que eles \'nao declaram regulagem de intensidade\'.',
 			'imagem' => null,
 			'preco' => null,
 		),
@@ -604,7 +646,7 @@ function aquametria_c15_catalogo() {
 			'aquario_min_cm' => 90,
 			'aquario_max_cm' => 110,
 			'voltagem' => array( 'bivolt' ),
-			'regulagem' => 'aplicativo',
+			'regulagem' => 'app',
 			'ppfd' => null,
 			'ppfd_distancia_cm' => null,
 			'fonte_ref' => 'Fazenda Submersa e AquaBetta (varejo BR especializado), ficha da Chihiros WRGB II Pro 90 cm: tamanho da luminaria 90 x 14 x 1,8 cm, consumo de 110 W, 90 LEDs, fluxo luminoso de 9.250 lm, LEDs WRGB, grau de protecao IP 43, controlador Bluetooth integrado e aplicativo My Chihiros',
@@ -615,7 +657,7 @@ function aquametria_c15_catalogo() {
 			'anuncio' => null,
 			'loja' => null,
 			'conflito' => null,
-			'observacao' => 'PRIMEIRA luminaria do banco que cobre uma FAIXA acima de 80 cm em vez de um comprimento unico, e por isso e a que mais move a cobertura da C15: as duas Chihiros A-Series que ja existiam ali declaram 80 cm e 90 cm cravados, entao 95, 100, 105 e 110 cm saiam sem nenhuma opcao. 9.250 lm com 110 W da 84,1 lm/W, abaixo da Ista branca de 106 lm/W — que e exatamente o indicio do artigo da C15: o lumen e ponderado pela visao humana e desconta o azul e o vermelho, as duas faixas da clorofila, entao a luminaria feita para planta tende a marcar MENOS lumen que a calha branca de mesmo consumo.',
+			'observacao' => 'PRIMEIRA luminaria do banco que cobre uma FAIXA acima de 80 cm em vez de um comprimento unico, e por isso e a que mais move a cobertura da C15: as duas Chihiros A-Series que ja existiam ali declaram 80 cm e 90 cm cravados, entao 95, 100, 105 e 110 cm saiam sem nenhuma opcao. 9.250 lm com 110 W da 84,1 lm/W, abaixo da Ista branca de 106 lm/W — que e exatamente o indicio do artigo da C15: o lumen e ponderado pela visao humana e desconta o azul e o vermelho, as duas faixas da clorofila, entao a luminaria feita para planta tende a marcar MENOS lumen que a calha branca de mesmo consumo. REGULAGEM NORMALIZADA EM 12/09/2026: o valor gravado era \'aplicativo\' e o vocabulario do esquema declara \'app\'. Nenhum numero mudou e nenhuma fonte foi reinterpretada — o registro sempre declarou controle por aplicativo, e a mesma familia ja gravava \'app\' na chihiros-wrgb-ii-pro-60. A grafia divergente deixava estes registros invisiveis para o podeRegular() da C15, que testa por \'app\', e a pagina dizia que eles \'nao declaram regulagem de intensidade\'.',
 			'imagem' => null,
 			'preco' => null,
 		),
@@ -632,7 +674,7 @@ function aquametria_c15_catalogo() {
 			'aquario_min_cm' => 120,
 			'aquario_max_cm' => 140,
 			'voltagem' => array( 'bivolt' ),
-			'regulagem' => 'aplicativo',
+			'regulagem' => 'app',
 			'ppfd' => null,
 			'ppfd_distancia_cm' => null,
 			'fonte_ref' => 'Green Aqua e Aqua Zones (varejo especializado estrangeiro), ficha da Chihiros WRGB II 120: tamanho de aquario de 120 a 140 cm de largura, consumo de 130 W, fluxo luminoso de 11.000 lm, 120 LEDs, peca de 1200 x 140 x 18 mm',
@@ -643,7 +685,7 @@ function aquametria_c15_catalogo() {
 			'anuncio' => null,
 			'loja' => null,
 			'conflito' => null,
-			'observacao' => 'O registro e completo; disponibilidade_br fica \'desconhecido\': das lojas brasileiras conferidas em 09/09/2026, so a Fazenda Submersa anuncia um modelo de 120 cm da familia, e o dela e o PRO. Este registro fecha o degrau de 120 cm que a varredura mediu VAZIO em toda a escala de exigencia. Sobre o status: \'desconhecido\' e um valor do vocabulario, nao um campo vazio, entao o registro e COMPLETO e a C15 pode sugeri-lo. A incerteza fica onde ela existe de verdade, que e dentro do campo de disponibilidade, e a tela diz que nao confirmamos loja brasileira para este modelo.',
+			'observacao' => 'O registro e completo; disponibilidade_br fica \'desconhecido\': das lojas brasileiras conferidas em 09/09/2026, so a Fazenda Submersa anuncia um modelo de 120 cm da familia, e o dela e o PRO. Este registro fecha o degrau de 120 cm que a varredura mediu VAZIO em toda a escala de exigencia. Sobre o status: \'desconhecido\' e um valor do vocabulario, nao um campo vazio, entao o registro e COMPLETO e a C15 pode sugeri-lo. A incerteza fica onde ela existe de verdade, que e dentro do campo de disponibilidade, e a tela diz que nao confirmamos loja brasileira para este modelo. REGULAGEM NORMALIZADA EM 12/09/2026: o valor gravado era \'aplicativo\' e o vocabulario do esquema declara \'app\'. Nenhum numero mudou e nenhuma fonte foi reinterpretada — o registro sempre declarou controle por aplicativo, e a mesma familia ja gravava \'app\' na chihiros-wrgb-ii-pro-60. A grafia divergente deixava estes registros invisiveis para o podeRegular() da C15, que testa por \'app\', e a pagina dizia que eles \'nao declaram regulagem de intensidade\'.',
 			'imagem' => null,
 			'preco' => null,
 		),
@@ -724,6 +766,25 @@ function aquametria_c15_barrados() {
 		),
 	);
 	/* BARRADOS-FIM */
+}
+}
+
+/* Quais valores de 'regulagem' abaixam o brilho. NÃO é lista de opinião nem
+   cópia: sai de `regulagem.regula_intensidade` no dados/esquema-produtos.json,
+   escrita aqui pelo gerador de catálogo. Existia uma terceira cópia desta lista
+   digitada dentro do podeRegular() do JavaScript, e foi ela que deixou o defeito
+   de 12/09/2026 passar: o banco gravava 'aplicativo', o vocabulário do esquema
+   dizia 'app' e o podeRegular() testava 'app' — três lugares, duas grafias, e a
+   página afirmando que seis luminárias não declaravam regulagem nenhuma. */
+if ( ! function_exists( 'aquametria_c15_regula_intensidade' ) ) {
+function aquametria_c15_regula_intensidade() {
+	/* REGULA-INICIO — gerado por ferramentas/gerar-catalogo-iluminacao.py */
+	return array(
+		'dimmer',
+		'app',
+		'controlador',
+	);
+	/* REGULA-FIM */
 }
 }
 
@@ -1105,8 +1166,9 @@ function aquametria_c15_js() {
 				return;
 			}
 			fora.push(nome(p) + ' entrega ' + lm(p.fluxo_lm) + ' lm, '
-				+ (p.fluxo_lm < r.min ? 'abaixo dos ' + lm(r.min) + ' lm que o seu aquário pede neste nível'
-					: 'acima dos ' + lm(r.max) + ' lm do nível escolhido, e não declara regulagem de intensidade')
+				+ (p.fluxo_lm < r.min
+					? 'abaixo dos ' + lm(r.min) + ' lm que o seu aquário pede neste nível'
+					: 'acima dos ' + lm(r.max) + ' lm do nível escolhido, ' + frasearRegulagem(p))
 				+ '.');
 		});
 
@@ -1123,8 +1185,33 @@ function aquametria_c15_js() {
 
 	/* Temporizador não regula intensidade: liga e desliga. Só dimmer, app e
 	   controlador permitem baixar a luz de um modelo acima da faixa. */
+	/* A lista NÃO mora aqui. Ela sai de `regulagem.regula_intensidade` no
+	   esquema do banco e chega pelo gerador de catálogo, em AQM_C15_REGULA.
+	   Antes de 12/09/2026 era uma terceira cópia digitada nesta função, e foi
+	   ela que fez a página tratar como "sem regulagem" seis luminárias cujo
+	   registro declarava controle por aplicativo — o banco escrevia
+	   'aplicativo', o vocabulário dizia 'app' e esta linha testava 'app'.
+	   Regulagem não colhida (null) e regulagem declarada como inexistente
+	   ('nenhuma') são estados DIFERENTES, e nenhum dos dois regula. */
 	function podeRegular(p) {
-		return p.regulagem === 'dimmer' || p.regulagem === 'app' || p.regulagem === 'controlador';
+		return !!p.regulagem && AQM_C15_REGULA.indexOf(p.regulagem) !== -1;
+	}
+
+	/* O que a página tem o direito de afirmar sobre a regulagem de uma peça.
+	   Três estados, três frases — colapsar os três numa só foi o defeito. */
+	function frasearRegulagem(p) {
+		if (!p.regulagem) {
+			return 'e a Aquametria não colheu se ela tem regulagem de intensidade — '
+				+ 'não estamos dizendo que o fabricante não oferece, estamos dizendo que não conferimos';
+		}
+		if (p.regulagem === 'nenhuma') {
+			return 'e o fabricante declara que ela não tem regulagem de intensidade, '
+				+ 'então é este número que ela entrega';
+		}
+		if (!podeRegular(p)) {
+			return 'e a regulagem que o fabricante declara (' + esc(p.regulagem) + ') não abaixa o brilho';
+		}
+		return 'e o fabricante declara regulagem de intensidade (' + esc(p.regulagem) + ')';
 	}
 
 	function nome(p) {
@@ -1442,9 +1529,9 @@ function aquametria_c15_js() {
 					? 'ACIMA dos ' + fmt(r.nivel.consolidado[1], 0) + ' lm/L da leitura mais alta deste nível. '
 						+ 'Ela não está fora da faixa porque esta faixa não tem lado de fora por cima: a fonte aquarioturbinado publica '
 						+ '"acima de ' + fmt(r.nivel.consolidado[0], 0) + ' lm/L" sem dizer até onde, e inventar um teto para fechar a faixa seria inventar constante. '
-						+ (p.regulagem
+						+ (podeRegular(p)
 							? 'Com a regulagem declarada (' + esc(p.regulagem) + ') dá para trabalhar abaixo do máximo.'
-							: 'Ela não declara regulagem de intensidade, então é este número que ela entrega.')
+							: 'Sobre baixar a intensidade: ' + frasearRegulagem(p) + '.')
 					: 'dentro da faixa de ' + fmt(r.nivel.consolidado[0], 0) + ' a ' + fmt(r.nivel.consolidado[1], 0)
 						+ ' lm/L que este nível pede.')
 			+ ' A cobertura declarada é de '
@@ -1460,7 +1547,9 @@ function aquametria_c15_js() {
 				+ fmt(Math.round((p.fluxo_lm / p.potencia_w) * 10) / 10, 1) + ' lm/W</b> (cálculo nosso, a partir dos dois números declarados)',
 			'Comprimento da peça: <b>' + (p.peca_cm === null ? 'não declarado' : fmt(p.peca_cm, 1) + ' cm') + '</b>',
 			'Voltagem: <b>' + (p.voltagem.length ? p.voltagem.join(' ou ') : 'não declarada') + '</b>',
-			'Regulagem: <b>' + (p.regulagem ? esc(p.regulagem) : 'não declarada') + '</b>'
+			/* 'não colhemos' e não 'não declarada': o campo vazio é silêncio NOSSO,
+			   e atribuí-lo ao fabricante é afirmar sobre ele o que não medimos. */
+			'Regulagem: <b>' + (p.regulagem ? esc(p.regulagem) : 'não colhemos este campo') + '</b>'
 		];
 		if (p.kelvin) { linhas.push('Temperatura de cor: <b>' + fmt(p.kelvin, 0) + ' K</b>'); }
 		if (p.espectro) { linhas.push('Espectro: <b>' + esc(p.espectro) + '</b>'); }
@@ -3040,6 +3129,7 @@ function aquametria_c15_rodape() {
 	$js  = 'var AQM_C15_DATA = ' . wp_json_encode( AQUAMETRIA_C15_VERIFICADO_EM ) . ";\n";
 	$js .= 'var AQM_C15_CATALOGO = ' . wp_json_encode( array_values( aquametria_c15_catalogo() ) ) . ";\n";
 	$js .= 'var AQM_C15_BARRADOS = ' . wp_json_encode( array_values( aquametria_c15_barrados() ) ) . ";\n";
+	$js .= 'var AQM_C15_REGULA = ' . wp_json_encode( array_values( aquametria_c15_regula_intensidade() ) ) . ";\n";
 	$js .= aquametria_c15_js();
 	echo '<script id="aquametria-c15-script">' . "\n" . $js . "\n" . '</script>' . "\n";
 }

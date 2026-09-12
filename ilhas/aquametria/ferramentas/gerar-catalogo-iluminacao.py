@@ -66,6 +66,9 @@ FIM = "\t/* CATALOGO-FIM */"
 INICIO_FORA = "\t/* BARRADOS-INICIO — gerado por ferramentas/gerar-catalogo-iluminacao.py */"
 FIM_FORA = "\t/* BARRADOS-FIM */"
 
+INICIO_REGULA = "\t/* REGULA-INICIO — gerado por ferramentas/gerar-catalogo-iluminacao.py */"
+FIM_REGULA = "\t/* REGULA-FIM */"
+
 ROTULO_CAMPO = {
     "fluxo_lm": "não declara o fluxo luminoso (lúmens)",
     "potencia_w": "não declara a potência",
@@ -239,6 +242,9 @@ def main():
     esquema = carregar(ESQUEMA)
     banco = carregar(BANCO)
     requisitos = esquema["entidades"]["iluminacao"]["minimo_para_sugerir"]["c15-iluminacao"]
+    decl_regulagem = next(
+        (c for c in esquema["entidades"]["iluminacao"]["campos"] if c.get("campo") == "regulagem"),
+        {})
 
     cotacoes_por_produto = collections.defaultdict(list)
     for c in carregar(COTACOES)["cotacoes"]:
@@ -317,10 +323,35 @@ def main():
     corpo_fora.extend("\t\t" + php_valor(i, 2) + "," for i in fora)
     corpo_fora.append("\t);")
 
+    # A classificacao do esquema viaja junto, para o snippet parar de guardar uma
+    # terceira copia dela. Se a chave sumir do esquema, isto para: lista vazia
+    # aqui faria a C15 recusar TODA regulagem em silencio, que e o defeito com o
+    # sinal trocado.
+    regula = decl_regulagem.get("regula_intensidade") or []
+    if not regula:
+        problemas.append(
+            "o esquema nao declara 'regulagem.regula_intensidade': sem essa lista a C15 "
+            "nao tem como saber qual comando abaixa o brilho, e recusaria todos em silencio")
+    fora_do_vocabulario = [v for v in regula if v not in (decl_regulagem.get("vocabulario") or [])]
+    if fora_do_vocabulario:
+        problemas.append(
+            "'regulagem.regula_intensidade' lista valor que nao existe no vocabulario: "
+            + ", ".join(fora_do_vocabulario))
+    corpo_regula = ["\treturn array("]
+    corpo_regula.extend("\t\t" + php_valor(v, 2) + "," for v in regula)
+    corpo_regula.append("\t);")
+
+    if problemas:
+        print("ERRO: nada foi gravado. %d problema(s):" % len(problemas))
+        for t in problemas:
+            print("  " + t)
+        return 1
+
     with io.open(ALVO, encoding="utf-8") as f:
         php = f.read()
     php = escrever_bloco(php, INICIO, FIM, corpo)
     php = escrever_bloco(php, INICIO_FORA, FIM_FORA, corpo_fora)
+    php = escrever_bloco(php, INICIO_REGULA, FIM_REGULA, corpo_regula)
     with io.open(ALVO, "w", encoding="utf-8") as f:
         f.write(php)
 

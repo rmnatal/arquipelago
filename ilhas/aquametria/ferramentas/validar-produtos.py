@@ -4,9 +4,18 @@
 
 Uso (a partir de ilhas/aquametria/):  python3 ferramentas/validar-produtos.py
 
-As regras V1 a V18 estao descritas em dados/esquema-produtos.json e em
+As regras V1 a V23 estao descritas em dados/esquema-produtos.json e em
 dados/modelo-banco-produtos.md. Este arquivo e a versao executavel delas: regra
 que nao roda vira decoracao, e banco de produto sem validacao apodrece em silencio.
+
+A V23 nasceu em 12/09/2026 e e de uma familia diferente das outras. As demais
+conferem o VALOR de um campo; a V23 confere que o valor pertence ao VOCABULARIO
+que o proprio esquema declara para aquele campo. Ela existe porque o esquema
+declarava 'vocabulario' em varios campos e NENHUMA regra lia essa chave: seis
+registros de iluminacao gravaram 'aplicativo' onde o vocabulario diz 'app', o
+validador passou com 0 erro por tres dias, e a pagina — que testa por 'app' —
+tratou os seis como se nao declarassem regulagem nenhuma. Declaracao que nenhum
+portao le e comentario.
 
 Codigo de saida: 0 se nao houver erro (avisos nao reprovam), 1 se houver.
 """
@@ -35,6 +44,10 @@ CAMPOS_META = {
     "status_registro", "observacao", "imagem",
 }
 IMAGEM_FONTES = {"anuncio-shopee", "fabricante", "varejo", "propria"}
+# Chaves que declaram um SUBCONJUNTO do vocabulario de um campo. Cada uma e uma
+# classificacao editorial da ilha sobre os valores do campo, e a V23b cobra que
+# ela nao nomeie valor que o vocabulario nao tem.
+SUBCONJUNTOS_DECLARADOS = ("regula_intensidade",)
 MINIMO_ALT = 20
 LIMITE_DIAS_REVALIDAR = 180
 LIMITE_EFICIENCIA_FILTRO = 120.0   # L/h por W
@@ -97,6 +110,28 @@ def campos_tecnicos_da_entidade(esquema, entidade):
     return tecnicos
 
 
+def declaracao_de_campo(esquema, entidade, campo):
+    for c in esquema["entidades"][entidade]["campos"]:
+        if c.get("campo") == campo:
+            return c
+    return {}
+
+
+def vocabularios_da_entidade(esquema, entidade):
+    """Campos que o esquema fecha num conjunto de valores, com o conjunto.
+
+    Le a chave 'vocabulario' das declaracoes de campo. E de proposito generica:
+    qualquer campo de qualquer entidade que ganhe um vocabulario passa a ser
+    cobrado no mesmo dia, sem tocar neste arquivo.
+    """
+    fechados = {}
+    for c in esquema["entidades"][entidade]["campos"]:
+        voc = c.get("vocabulario")
+        if voc:
+            fechados[c["campo"]] = list(voc)
+    return fechados
+
+
 def derivados_da_entidade(esquema, entidade):
     return {d["campo"] for d in esquema["entidades"][entidade].get("derivados", [])}
 
@@ -126,6 +161,24 @@ def atende(produto, requisitos):
         if not ok:
             faltando.append(req)
     return faltando
+
+
+def valida_esquema_da_entidade(esquema, entidade):
+    """V23b - subconjunto declarado que escapa do proprio vocabulario.
+
+    Uma classificacao como 'regula_intensidade' so vale se cada valor dela
+    existir no vocabulario do campo; senao ela nomeia um estado inalcancavel e
+    ninguem percebe — que e a forma exata do defeito que criou a V23. E erro de
+    ESQUEMA, entao se reporta uma vez por entidade e nao uma vez por produto.
+    """
+    for campo, vocabulario in vocabularios_da_entidade(esquema, entidade).items():
+        declaracao = declaracao_de_campo(esquema, entidade, campo)
+        for chave in SUBCONJUNTOS_DECLARADOS:
+            for item in (declaracao.get(chave) or []):
+                if item not in vocabulario:
+                    erro("V23", "esquema:" + entidade,
+                         "'%s.%s' lista %r, que nao existe no vocabulario de '%s'"
+                         % (campo, chave, item, campo))
 
 
 def valida_produto(esquema, entidade, produto, vistos):
@@ -162,6 +215,22 @@ def valida_produto(esquema, entidade, produto, vistos):
 
     if not fontes:
         erro("V2", pid, "produto sem nenhuma fonte")
+
+    # V23 - valor fora do vocabulario que o proprio esquema declara.
+    # Campo vazio nao e violacao: 'null' quer dizer "nao colhemos", que e um
+    # estado legitimo e DIFERENTE do valor de vocabulario que nomeia a ausencia
+    # (em 'regulagem', 'nenhuma'). Quem confunde os dois faz a tela afirmar que o
+    # fabricante nao declara algo que a ilha so nao foi perguntar.
+    for campo, vocabulario in vocabularios_da_entidade(esquema, entidade).items():
+        valor = produto.get(campo)
+        if not preenchido(valor):
+            continue
+        candidatos = valor if isinstance(valor, list) else [valor]
+        for item in candidatos:
+            if item not in vocabulario:
+                erro("V23", pid,
+                     "campo '%s' com valor %r fora do vocabulario do esquema (%s)"
+                     % (campo, item, ", ".join(vocabulario)))
 
     # V3 - sanidade numerica
     vol = produto.get("volume_atendido_declarado_L")
@@ -438,6 +507,8 @@ def main():
         minimos = esquema["entidades"][entidade]["minimo_para_sugerir"]
         for calc in minimos:
             sugeribilidade.setdefault(calc, {"aptos": [], "sem_link": [], "barrados": []})
+
+        valida_esquema_da_entidade(esquema, entidade)
 
         print("\n== %s (%d registros) ==" % (entidade, len(produtos)))
         for produto in produtos:

@@ -27,12 +27,28 @@ import hashlib
 import io
 import json
 import os
+import re
 import sys
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # "esquema" NAO entra: naquela chave o manifest guarda a documentacao dos campos,
 # nao uma lista de arquivos.
 SECOES = ("snippets", "conteudo", "dados", "ferramentas")
+
+
+VERSAO_CONSTANTE = re.compile(
+    r"define\(\s*'AQUAMETRIA_[A-Z0-9_]+_VERSAO'\s*,\s*'([^']+)'\s*\)")
+
+
+def versao_do_snippet(caminho):
+    """A versao que o PROPRIO snippet define, ou None se ele nao definir nenhuma.
+
+    Le a constante, nunca o cabecalho em prosa: o docblock e texto e envelhece
+    sem que nada quebre, a constante e o que o codigo usa.
+    """
+    with io.open(caminho, encoding="utf-8") as f:
+        achado = VERSAO_CONSTANTE.search(f.read(20000))
+    return achado.group(1) if achado else None
 
 
 def frente(caminho):
@@ -81,6 +97,7 @@ def main():
 
     mudados, ausentes, listados = [], [], set()
     titulos = []
+    divergentes = []
     for secao in SECOES:
         for item in m.get(secao) or []:
             arq = item.get("arquivo")
@@ -95,6 +112,19 @@ def main():
             if item.get("sha256") != novo:
                 mudados.append((item.get("id"), arq, (item.get("sha256") or "")[:8], novo[:8]))
                 item["sha256"] = novo
+
+            # A CONSTANTE do snippet manda na versao; o manifest e espelho dela.
+            # Trazido do Clube do Mosaico em 12/09/2026, que pagou a mesma conta
+            # no mesmo dia: o manifest dizia casca 1.4.0 e o arquivo definia
+            # 1.5.0. O sha estava certo e o site nunca esteve errado — envelheceu
+            # a ETIQUETA, que e por onde todo relatorio le o que esta no ar.
+            # Aqui a divergencia PARA o script em vez de ser reespelhada calada:
+            # versao e decisao de quem escreveu o bloco, e um espelho automatico
+            # esconderia o esquecimento em vez de cobra-lo.
+            if secao == "snippets" and arq.endswith(".php"):
+                constante = versao_do_snippet(inteiro)
+                if constante and item.get("versao") and item["versao"] != constante:
+                    divergentes.append((arq, item.get("versao"), constante))
 
             # O front matter manda no titulo; o manifest e espelho dele.
             if secao == "conteudo" and arq.endswith(".md"):
@@ -122,6 +152,16 @@ def main():
         print("  AUSENTE no disco, mas listado no manifest: " + arq)
     for arq in orfaos:
         print("  fora do manifest: " + arq)
+
+    if divergentes:
+        print("")
+        for arq, no_manifest, na_constante in divergentes:
+            print("  VERSAO DIVERGENTE  %-44s manifest %s, constante %s"
+                  % (arq, no_manifest, na_constante))
+        print("\n  NADA FOI GRAVADO. A versao do manifest e a etiqueta por onde todo")
+        print("  relatorio le o que esta no ar; deixa-la para tras e publicar certo e")
+        print("  contar errado. Atualize a versao E a descricao do item no manifest.")
+        return 1
 
     if alvo is not None:
         m["revisao"] = alvo

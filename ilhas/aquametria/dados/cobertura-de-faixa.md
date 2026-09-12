@@ -12,6 +12,99 @@ compras do banco, em ordem de urgencia.
 Este arquivo e HISTORICO: cada medicao vira uma secao nova, nunca sobrescreve a
 anterior. E a serie que diz se o banco esta cobrindo mais faixa ou so ficando maior.
 
+## Medicao de 2026-09-12 — C15, medida no BANCO (bloco T3a)
+
+Instrumento NOVO e diferente do de 09/09: `ferramentas/varrer-c15-banco.py`, uma
+regua que le `dados/produtos-iluminacao.json` e `dados/esquema-produtos.json`
+direto e reimplementa a regra publicada da C15, sem abrir navegador. Ela nao
+substitui o `varrer-cobertura.mjs` — aquele conta o que a TELA desenha e continua
+sendo a medicao de fechamento. Esta responde a outra pergunta, a que decide o que
+colher: quantas luminarias do banco sobreviveriam a cada faixa, inclusive nas
+faixas que hoje saem vazias, onde a tela nao tem cartao nenhum para contar e
+portanto nao diz por que esta vazia.
+
+**A coluna nova e o assunto do bloco.** A C15 tem DOIS jeitos de oferecer uma
+luminaria: quem cai dentro da faixa de lm/L, e quem passa do teto mas tem
+regulagem de intensidade declarada e por isso pode trabalhar abaixo do maximo. A
+serie de 09/09 contava so a primeira coluna — e com isso leu como "falta produto"
+um problema que era de um campo com duas grafias (ver o `REGISTRO.md` de 12/09).
+Ate esta data o ramo dos reguláveis era inalcancavel para 5 das 8 luminarias do
+catalogo que declaram regulagem, entao a segunda coluna teria sido zero em quase
+toda a tabela mesmo se alguem a tivesse medido.
+
+| condicao declarada | faixa | na faixa | + regulavel | total | |
+|---|---|---:|---:|---:|---|
+| exigencia baixa | 30 a 40 cm | 1 | 0 | 1 | **abaixo de 3** |
+| exigencia baixa | 45 cm | 1 | 1 | 2 | **abaixo de 3** |
+| exigencia baixa | 50 a 55 cm | 0 | 0 | 0 | **VAZIA** |
+| exigencia baixa | 60 a 70 cm | 0 | 1 | 1 | **abaixo de 3** |
+| exigencia baixa | 75 cm | 1 | 1 | 2 | **abaixo de 3** |
+| exigencia baixa | 80 cm | 0 | 1 | 1 | **abaixo de 3** |
+| exigencia baixa | 85 cm | 0 | 0 | 0 | **VAZIA** |
+| exigencia baixa | 90 a 110 cm | 0 | 2 | 2 | **abaixo de 3** |
+| exigencia baixa | 115 cm | 0 | 0 | 0 | **VAZIA** |
+| exigencia baixa | 120 cm | 0 | 2 | 2 | **abaixo de 3** |
+| exigencia media | 30 a 40 cm | 0 | 0 | 0 | **VAZIA** |
+| exigencia media | 45 cm | 0 | 1 | 1 | **abaixo de 3** |
+| exigencia media | 50 cm | 0 | 0 | 0 | **VAZIA** |
+| exigencia media | 55 cm | 1 | 0 | 1 | **abaixo de 3** |
+| exigencia media | 60 a 65 cm | 2 | 1 | 3 | ok |
+| exigencia media | 70 a 75 cm | 1 | 1 | 2 | **abaixo de 3** |
+| exigencia media | 80 cm | 0 | 1 | 1 | **abaixo de 3** |
+| exigencia media | 85 cm | 0 | 0 | 0 | **VAZIA** |
+| exigencia media | 90 a 110 cm | 1 | 2 | 3 | ok |
+| exigencia media | 115 cm | 0 | 0 | 0 | **VAZIA** |
+| exigencia media | 120 cm | 1 | 1 | 2 | **abaixo de 3** |
+| exigencia alta | 30 cm | 1 | 0 | 1 | **abaixo de 3** |
+| exigencia alta | 35 a 40 cm | 0 | 0 | 0 | **VAZIA** |
+| exigencia alta | 45 cm | 1 | 0 | 1 | **abaixo de 3** |
+| exigencia alta | 50 a 55 cm | 0 | 0 | 0 | **VAZIA** |
+| exigencia alta | 60 cm | 2 | 0 | 2 | **abaixo de 3** |
+| exigencia alta | 65 a 75 cm | 1 | 0 | 1 | **abaixo de 3** |
+| exigencia alta | 80 cm | 2 | 0 | 2 | **abaixo de 3** |
+| exigencia alta | 85 cm | 0 | 0 | 0 | **VAZIA** |
+| exigencia alta | 90 cm | 3 | 0 | 3 | ok |
+| exigencia alta | 95 a 110 cm | 2 | 0 | 2 | **abaixo de 3** |
+| exigencia alta | 115 cm | 0 | 0 | 0 | **VAZIA** |
+| exigencia alta | 120 cm | 1 | 0 | 1 | **abaixo de 3** |
+
+Faixas medidas: 33 | VAZIAS: 11 | abaixo do piso de 3: 19 | cumprem: 3
+
+### O que mudou em relacao a 09/09, e o que NAO mudou
+
+- **O catalogo nao cresceu:** 15 luminarias sugeriveis, as mesmas de 11/09. Este
+  bloco nao trouxe um registro novo nem um numero novo.
+- **As faixas que cumprem o criterio foram de 1 para 3**, e as tres saem da
+  segunda coluna: 60 a 65 cm e 90 a 110 cm na exigencia media passam a ter tres
+  opcoes porque a regulagem declarada voltou a ser lida.
+- **O buraco de 90 a 140 cm em exigencia BAIXA e MEDIA deixou de ser silencio.**
+  Antes a pagina nao tinha o que oferecer e dizia, sobre a Chihiros WRGB II, que
+  ela "nao declara regulagem de intensidade" — afirmacao que o proprio banco
+  desmentia. Agora ela aparece como regulavel, com o comando nomeado.
+- **A exigencia ALTA nao tem nenhum regulavel, e isso esta certo:** a faixa alta e
+  ABERTA por cima (a fonte publica "acima de 40 lm/L" e para ai), entao nada
+  nunca esta "acima do teto" nela. Uma coluna de reguláveis diferente de zero na
+  linha da alta seria defeito, nao melhora — e e uma afirmacao que o portao mede.
+- **O que continua sendo falta de produto de verdade:** 50 a 55 cm e 85 cm e 115
+  cm em toda exigencia, e 35 a 55 cm na exigencia alta. Nenhuma regulagem
+  conserta isso: nao existe peca no banco que cubra aquele comprimento.
+- **O campo que barra continua sendo o mesmo:** 11 dos 26 registros nao declaram
+  `fluxo_lm`, e 8 deles sao as Soma, que tem link de afiliado. Ampliar o catalogo
+  com marca que nao publica lumen segue nao movendo este numero em nada.
+
+### Lista de compras, revisada por esta medicao
+
+1. Luminaria com fluxo declarado que cubra **50 a 55 cm** (hoje: nenhuma peca do
+   banco cobre esse comprimento em nenhum nivel).
+2. Luminaria que cubra **85 cm** e **115 cm** — sao os dois vaos entre as
+   coberturas declaradas das familias que ja temos.
+3. Luminaria de **30 a 55 cm com fluxo alto** para a exigencia alta.
+4. `fluxo_lm` das 8 Soma, que ja tem link e cobrem de 20 a 130 cm. Continua sendo
+   o item que mais move a tabela, e continua bloqueado pela mesma razao: nem a
+   marca nem as nove lojas conferidas publicam lumen.
+
+---
+
 ## Medicao de 2026-09-09
 
 ### C3 — vazao do filtro
