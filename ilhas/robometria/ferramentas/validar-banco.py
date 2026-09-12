@@ -55,7 +55,15 @@ CAMPOS_MODELO_OBRIGATORIOS = [
 ]
 
 CHAVES_IMAGEM = {"url", "largura", "altura", "fonte", "coletado_em", "alt"}
-CHAVES_AFILIADO = {"url", "plataforma", "coletado_em", "sub_id_1", "sub_id_2"}
+# O `sub_id_2` SAIU DAQUI em 12/09/2026, e a ausencia dele e uma regra, nao uma
+# limpeza. Ele nomeia a PAGINA que levou o clique, e o mesmo produto aparece em
+# mais de uma: os 33 modelos traziam "R2" e as 18 pecas "R1", entao o A2 e o A1
+# publicavam a vitrine deles com o codigo da ferramenta irma. Nao ha valor unico
+# certo para escrever no registro — quem sabe qual e a pagina e quem a monta, e
+# por isso cada gerador carimba o proprio codigo. Campo que parece a regra e nao
+# e, num arquivo publicado, e o mesmo defeito da funcao morta no snippet: um dia
+# alguem o usa.
+CHAVES_AFILIADO = {"url", "plataforma", "coletado_em", "sub_id_1"}
 
 
 ORIGEM_DO_NIVEL = {n["nivel"]: n["origem"] for n in esquema["escada_de_fontes"]["niveis"]}
@@ -220,7 +228,11 @@ for r in modelos["registros"]:
     if set(r.get("imagem", {})) < CHAVES_IMAGEM:
         erro("%s: imagem{} incompleta — falta %s"
              % (onde, sorted(CHAVES_IMAGEM - set(r.get("imagem", {})))))
-    if set(r.get("afiliado", {})) != CHAVES_AFILIADO:
+    if "sub_id_2" in (r.get("afiliado") or {}):
+        erro("%s: afiliado.sub_id_2 no banco. O codigo da pagina de origem e "
+             "carimbado por quem monta a pagina (gerar-r1/r2/a1/a2), porque o "
+             "mesmo modelo aparece em mais de uma" % onde)
+    elif set(r.get("afiliado", {})) != CHAVES_AFILIADO:
         erro("%s: afiliado{} fora da forma do esquema" % onde)
     elif r["afiliado"]["sub_id_1"] != "robometria":
         erro("%s: sub_id_1 tem que ser 'robometria'" % onde)
@@ -314,7 +326,11 @@ for p in pecas["registros"]:
 
     if set(p.get("imagem", {})) < CHAVES_IMAGEM:
         erro("%s: imagem{} incompleta" % onde)
-    if set(p.get("afiliado", {})) != CHAVES_AFILIADO:
+    if "sub_id_2" in (p.get("afiliado") or {}):
+        erro("%s: afiliado.sub_id_2 no banco. O codigo da pagina de origem e "
+             "carimbado por quem monta a pagina (gerar-r1/r2/a1/a2), porque a "
+             "mesma peca aparece em mais de uma" % onde)
+    elif set(p.get("afiliado", {})) != CHAVES_AFILIADO:
         erro("%s: afiliado{} fora da forma do esquema" % onde)
 
     if not p.get("compatibilidade"):

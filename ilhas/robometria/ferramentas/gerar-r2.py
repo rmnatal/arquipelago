@@ -103,8 +103,18 @@ def fato_do_modelo(m):
         "afiliado": {
             "url": a.get("url") or "",
             "programa": a.get("plataforma") or None,
-            "sub_id_1": a.get("sub_id_1") or "robometria",
-            "sub_id_2": a.get("sub_id_2") or "R2",
+            # O CODIGO DA PAGINA DE ORIGEM E CARIMBADO POR QUEM MONTA A PAGINA, e o
+            # banco nao opina. Ate 12/09/2026 este campo era LIDO do registro, e o
+            # registro trazia um valor so: `sub_id_2: "R2"` nos 33 modelos e `"R1"` nas
+            # 18 pecas. So que o campo nao e do produto — e da PAGINA que levou o
+            # clique, e cada produto aparece em mais de uma. O A2 publicava os cinco
+            # modelos da vitrine carimbados "R2", e o A1 as pecas dele carimbadas "R1":
+            # no dia do primeiro link de afiliado, todo clique dos dois artigos seria
+            # contado como das ferramentas, e a medicao diria que os artigos nao vendem
+            # nada. Nao se conserta trocando o valor no banco, porque nenhum valor
+            # unico e certo la: conserta-se cada gerador carimbando o proprio codigo.
+            "sub_id_1": "robometria",
+            "sub_id_2": "R2",
         },
     }
 

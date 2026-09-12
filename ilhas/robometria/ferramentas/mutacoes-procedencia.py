@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Quebra de proposito a procedencia do Pa no cartao da R2 e exige REPROVACAO.
+"""Quebra de proposito a procedencia do Pa na R2 e exige REPROVACAO.
 
     python3 ferramentas/mutacoes-procedencia.py
 
 POR QUE ESTE ARQUIVO EXISTE
 ---------------------------
 "A PROVA DE QUE UMA TRAVA REPROVA E PARTE DO BLOCO" (secao 8 do ARQUIPELAGO.md).
-A secao 16 do ferramentas/teste-r2.php nasceu VERDE — ela foi escrita depois da
-correcao, entao passar nao prova nada. Nesta ilha cinco travas ja passaram
+As secoes 16 e 17 do ferramentas/teste-r2.php nasceram VERDES — as duas foram escritas depois da
+correcao que medem, entao passar nao prova nada. Nesta ilha cinco travas ja passaram
 verdes medindo a si mesmas.
 
 Cada mutacao e uma copia da ilha inteira num diretorio temporario, com UMA
@@ -39,6 +39,7 @@ R2 = 'snippets/robometria-r2.php'
 ESQUEMA = 'dados/esquema-banco.json'
 RESPOSTAS = 'dados/r2-respostas.json'
 MODELOS = 'dados/modelos-robo.json'
+REFERENCIA = 'ferramentas/cobertura-r2.py'
 TESTES = ('ferramentas/teste-r2.php',)
 
 LINHA_FONTE = """\t\t$html .= '<span class="rbm-vitrine-fonte">'
@@ -157,10 +158,133 @@ def _atribuicao_digitada(base):
     editar_json(MODELOS, _pa_por_loja_oficial)(base)
     subprocess.run([sys.executable, os.path.join(base, 'ferramentas', 'gerar-r2.py'),
                     '--gravar'], cwd=base, capture_output=True, text=True, check=True)
-    troca(R2, "$m['procedencia']['quem_declara'],", "'pelo fabricante',")(base)
+    troca(R2,
+          "$m['procedencia']['quem_declara'],\n"
+          "\t\t( $m['pa'] > $seguro['valor'] ) ? 'acima' : 'no m\u00ednimo',",
+          "'pelo fabricante',\n"
+          "\t\t( $m['pa'] > $seguro['valor'] ) ? 'acima' : 'no m\u00ednimo',")(base)
+
+
+# --------------------------------------------------------------------------
+# A SECAO "EXATAMENTE NO LIMIAR" (R2 1.3.0, 12/09/2026). Mesma familia do
+# cartao, outra secao — e a secao que ficou doze dias sem procedencia porque
+# ninguem a le como recomendacao. As mutacoes aqui sao as mesmas tres familias,
+# mais as duas que so existem neste bloco: a porta de compra que nao pode
+# nascer, e a ausencia dela que nao pode voltar ao silencio.
+# --------------------------------------------------------------------------
+
+NL_LINHA_FONTE = """\t\t\t$html .= '<span class="rbm-vitrine-fonte">'
+\t\t\t\t. esc_html( 'Como sabemos \u2014 ' . $p['rotulo'] . ', verificado em '
+\t\t\t\t\t. robometria_r2_data( $p['verificado_em'] ) )
+\t\t\t\t. ( empty( $p['url'] ) ? '' : ' \u00b7 ' . ( function_exists( 'robometria_casca_fonte_link' )
+\t\t\t\t\t? robometria_casca_fonte_link( $p['url'] ) : '' ) )
+\t\t\t\t. '</span>';
+"""
+
+NL_BLOCO_TAG = """\t\t\tif ( ! empty( $p['ressalva'] ) ) {
+\t\t\t\t$html .= '<span class="rbm-tag">' . esc_html( $p['ressalva'] ) . '</span>';
+\t\t\t}
+"""
+
+NL_FRASE_SEM_PORTA = """\t\t$html .= '<p class="rbm-nota">' . esc_html( robometria_r2_frase_sem_porta() ) . '</p>';
+"""
+
+NL_ATRIBUICAO_PHP = """\t\t$m['procedencia']['quem_declara'],
+\t\trobometria_r2_com_artigo( $seguro ),"""
+
+NL_ATRIBUICAO_PY = """        % (rotulo_do_modelo(m), numero_br(pa), p["quem_declara"],
+           com_artigo(seguro["publicador"]), numero_br(seguro["valor"]))"""
+
+
+def _pa_do_limiar_por_loja_oficial(doc):
+    """O Pa do E10 entrando por loja oficial da marca.
+
+    O E10 e um dos DOIS modelos que estao exatamente no limiar em oito das nove
+    situacoes — e e por isso que ele, e nao o S20 do cartao, e o modelo desta
+    mutacao: quem nao aparece na secao medida nao produz o mundo em que o
+    defeito dela aparece.
+    """
+    for r in doc['registros']:
+        if r['id'] == 'xiaomi-e10':
+            r['fontes']['f-specs']['nivel'] = 4
+            r['fontes']['f-specs']['origem'] = 'varejo-oficial-da-marca'
+            return
+    raise AssertionError('xiaomi-e10 nao esta no banco')
+
+
+def _atribuicao_do_limiar_digitada(base):
+    """A atribuicao do Pa volta a ser o modelo, diante do mundo em que isso mente.
+
+    Os TRES passos do _atribuicao_digitada valem inteiros aqui, mais um quarto
+    que e proprio desta frase: ela e comparada, palavra por palavra, com a
+    implementacao de referencia (item 3 da bancada). Mudar so o PHP reprovaria
+    na comparacao das frases e deixaria a trava da ATRIBUICAO sem exercicio —
+    entao a referencia muda junto, e e o gerador que reescreve os dados.
+    """
+    editar_json(MODELOS, _pa_do_limiar_por_loja_oficial)(base)
+    troca(REFERENCIA, NL_ATRIBUICAO_PY,
+          """        % (rotulo_do_modelo(m), numero_br(pa), "pelo fabricante",
+           com_artigo(seguro["publicador"]), numero_br(seguro["valor"]))""")(base)
+    subprocess.run([sys.executable, os.path.join(base, 'ferramentas', 'gerar-r2.py'),
+                    '--gravar'], cwd=base, capture_output=True, text=True, check=True)
+    troca(R2, NL_ATRIBUICAO_PHP,
+          """\t\t'pelo fabricante',
+\t\trobometria_r2_com_artigo( $seguro ),""")(base)
+
+
+def _limiar_sem_quem_publica(base):
+    """O segundo numero perde a segunda procedencia.
+
+    A frase publica DOIS numeros de origens diferentes — o Pa do modelo e o
+    limiar da fonte editorial. Tirar o nome de quem publica o limiar deixa a
+    frase com uma atribuicao so cobrindo os dois, que e a sexta decisao do
+    PROMPT.md ao contrario. Referencia e PHP juntos, pelo mesmo motivo de cima.
+    """
+    troca(REFERENCIA, NL_ATRIBUICAO_PY,
+          """        % (rotulo_do_modelo(m), numero_br(pa), p["quem_declara"],
+           "a fonte", numero_br(seguro["valor"]))""")(base)
+    subprocess.run([sys.executable, os.path.join(base, 'ferramentas', 'gerar-r2.py'),
+                    '--gravar'], cwd=base, capture_output=True, text=True, check=True)
+    troca(R2, NL_ATRIBUICAO_PHP,
+          """\t\t$m['procedencia']['quem_declara'],
+\t\t'a fonte',""")(base)
 
 
 MUTACOES = [
+    (
+        'a linha de procedencia some da secao "Exatamente no limiar"',
+        'a secao nomeia modelo e Pa com a mesma autoridade da vitrine, e voltaria a nao dizer de onde o numero veio',
+        troca(R2, NL_LINHA_FONTE, ''),
+    ),
+    (
+        'a ressalva do degrau some da secao "Exatamente no limiar"',
+        'o elo mais fraco cala justamente onde a pagina ja esta dizendo que o modelo nao esta acima do limiar',
+        troca(R2, NL_BLOCO_TAG, ''),
+    ),
+    (
+        'a atribuicao do limiar volta a ser o modelo, e um Pa entra por loja oficial',
+        'a frase diria "declarados pelo fabricante" sobre um numero que quem transcreveu foi a loja — na secao que ninguem le como recomendacao',
+        _atribuicao_do_limiar_digitada,
+    ),
+    (
+        'o limiar perde o nome de quem o publica',
+        'dois numeros de origens diferentes ficam sob uma atribuicao so, que e a sexta decisao do PROMPT.md ao contrario',
+        _limiar_sem_quem_publica,
+    ),
+    (
+        'nasce uma porta de compra dentro da secao do limiar',
+        'a pagina acabou de recusar estes modelos; botao embaixo da recusa e recomendar assim mesmo',
+        troca(R2,
+              "\t\t\t$html .= '</li>';\n\t\t}\n\t\t$html .= '</ul></div>';",
+              "\t\t\t$html .= '<span class=\"rbm-vitrine-acao\"><span class=\"rbm-sem-loja\">"
+              "Link de loja em breve</span></span>';\n"
+              "\t\t\t$html .= '</li>';\n\t\t}\n\t\t$html .= '</ul></div>';"),
+    ),
+    (
+        'a ausencia da porta de compra volta a ser silencio',
+        'trocar um silencio por outro nao e conserto: sem a frase, o link de fonte volta a ser a unica coisa clicavel sem explicacao',
+        troca(R2, NL_FRASE_SEM_PORTA, ''),
+    ),
     (
         'a linha de procedencia some do cartao',
         'o numero que decide a recomendacao volta a ser publicado sem endereco e sem data',
@@ -181,9 +305,12 @@ MUTACOES = [
     (
         'o link de fonte vira botao',
         'a procedencia existe para ser conferida, nao clicada: com cara de botao ela volta a competir com a compra',
+        # A quebra de linha e a indentacao fazem parte do alvo: desde a 1.3.0 a mesma linha existe
+        # tambem na secao "Exatamente no limiar", um tab mais fundo — e quatro
+        # tabs sao um pedaco de cinco tabs, entao so a quebra de linha desempata.
         troca(R2,
-              "? robometria_casca_fonte_link( $p['url'] ) : '' ) )",
-              "? '<a class=\"rbm-comprar\" href=\"' . esc_url( $p['url'] ) . '\" rel=\"nofollow noopener\">fonte</a>' : '' ) )"),
+              "\n\t\t\t\t? robometria_casca_fonte_link( $p['url'] ) : '' ) )",
+              "\n\t\t\t\t? '<a class=\"rbm-comprar\" href=\"' . esc_url( $p['url'] ) . '\" rel=\"nofollow noopener\">fonte</a>' : '' ) )"),
     ),
     (
         'a ressalva do degrau some do cartao',
@@ -227,7 +354,7 @@ def main():
     reprovadas = 0
     passaram = []
 
-    print('Mutacoes deliberadas na procedencia do Pa (R2 1.2.0) — cada uma TEM que reprovar\n')
+    print('Mutacoes deliberadas na procedencia do Pa (R2 1.3.0) — cada uma TEM que reprovar\n')
 
     for nome, porque, aplicar in MUTACOES:
         with tempfile.TemporaryDirectory() as tmp:

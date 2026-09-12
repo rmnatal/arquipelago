@@ -1,5 +1,14 @@
 /**
  * Robometria R2 — Quantos Pa o seu robô aspirador precisa
+ * Versão: 1.3.0 (12/09/2026) — a procedência do Pa chega à seção "Exatamente no
+ * limiar", o último lugar das duas ferramentas em que a página nomeava modelo e
+ * número sem dizer de onde o número veio. A frase deixou de ter o modelo como
+ * sujeito do verbo declarar (o fabricante dito sem nome e sem degrau) e passou a
+ * atribuir o Pa ao degrau da escada, como o cartão faz desde a 1.2.0; a ressalva
+ * do degrau e a linha "Como sabemos" entram por item. E a ausência da porta de
+ * compra nesta seção deixou de ser silêncio: a página diz que não recomenda
+ * estes modelos e por isso não vende, em vez de deixar o link de fonte como
+ * única coisa clicável sem explicação.
  * Versão: 1.2.0 (11/09/2026) — a procedência do Pa chega ao cartão. O número que
  * decide esta recomendação passa a dizer de onde veio, com a ressalva do degrau
  * da escada de fontes e o link "fonte" depois do botão de compra; e a atribuição
@@ -91,7 +100,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_R2_VERSAO' ) ) {
-	define( 'ROBOMETRIA_R2_VERSAO', '1.2.0' );
+	define( 'ROBOMETRIA_R2_VERSAO', '1.3.0' );
 	define( 'ROBOMETRIA_R2_SLUG', 'quantos-pa-o-robo-aspirador-precisa' );
 	/* O NOME DA PÁGINA É A CONSULTA QUE A PESSOA DIGITA (seção 14.5), e ela está
 	   literalmente no endereço: "quantos pa o robô aspirador precisa". O nome
@@ -471,14 +480,47 @@ function robometria_r2_frase_cartao( $m, $s, $ressalvas ) {
 }
 }
 
+/**
+ * A frase de quem está EXATAMENTE no valor que a fonte escreve como "acima de".
+ *
+ * A ATRIBUIÇÃO DO Pa VEM DO DEGRAU, como no cartão. Até 12/09/2026 esta frase
+ * começava por "Xiaomi E10 declara exatamente 4.000 Pa" — o modelo como sujeito
+ * do verbo declarar, que é o fabricante dito sem nome e sem degrau. O cartão da
+ * vitrine tinha o mesmo defeito e o fechou em 11/09; esta seção ficou para trás
+ * porque ninguém a lê como recomendação — e é exatamente por isso que ela passou
+ * despercebida: a página nomeia modelo e Pa aqui com a mesma autoridade que lá.
+ *
+ * SÃO DOIS NÚMEROS E DUAS PROCEDÊNCIAS (sexta decisão, PROMPT.md): o Pa é do
+ * modelo e sai atribuído ao degrau dele; o limiar é da fonte editorial e sai
+ * com o nome de quem o publica, dentro da mesma frase. Uma frase que publica
+ * dois números de duas origens não pode atribuir os dois de uma vez.
+ */
 if ( ! function_exists( 'robometria_r2_frase_no_limiar' ) ) {
 function robometria_r2_frase_no_limiar( $m, $s ) {
 	$seguro = $s['limiar_seguro'];
 	return sprintf(
-		'%s declara exatamente %s Pa, e %s escreve "acima de %s Pa". Fica nesta seção separada porque estar no número não é estar acima dele.',
-		$m['rotulo'], robometria_r2_n( $m['pa'] ), robometria_r2_com_artigo( $seguro ),
+		'%s: %s Pa declarados %s, e %s escreve "acima de %s Pa". Fica nesta seção separada porque estar no número não é estar acima dele.',
+		$m['rotulo'], robometria_r2_n( $m['pa'] ),
+		$m['procedencia']['quem_declara'],
+		robometria_r2_com_artigo( $seguro ),
 		robometria_r2_n( $seguro['valor'] )
 	);
+}
+}
+
+/**
+ * POR QUE ESTA SEÇÃO NÃO TEM BOTÃO DE COMPRA, dito na página.
+ *
+ * A regra da seção 7 do ARQUIPELAGO.md é que a porta de compra venha antes da
+ * prova de procedência, para o link de fonte nunca ser a única coisa clicável —
+ * cicatriz de 10/09/2026. Aqui a porta não existe de propósito: a página acabou
+ * de dizer que estes modelos não estão acima do limiar, e pôr um botão embaixo
+ * disso seria recomendar o que a frase recusa. O que a regra proíbe é o silêncio
+ * sobre a ausência, não a ausência: então a ausência é declarada.
+ */
+if ( ! function_exists( 'robometria_r2_frase_sem_porta' ) ) {
+function robometria_r2_frase_sem_porta() {
+	return 'Não há botão de compra nesta seção, e a falta é de propósito: a página não recomenda estes modelos para a sua situação, e botão embaixo de uma recusa seria recomendar assim mesmo. O endereço da fonte fica aqui para você conferir o número, não para comprar por ele.';
 }
 }
 
@@ -930,9 +972,36 @@ function robometria_r2_resposta( $c ) {
 	   "acima de" não é quem a fonte cobre. */
 	if ( $no_limiar ) {
 		$html .= '<div class="rbm-secao rbm-terceiro"><h3>Exatamente no limiar — não acima dele</h3>';
+
+		/* A ausência da porta de compra é DITA, não deixada em silêncio: ver
+		   robometria_r2_frase_sem_porta(). */
+		$html .= '<p class="rbm-nota">' . esc_html( robometria_r2_frase_sem_porta() ) . '</p>';
+
 		$html .= '<ul class="rbm-lista-frases">';
 		foreach ( $no_limiar as $i ) {
-			$html .= '<li>' . esc_html( $i['frase'] ) . '</li>';
+			$m = $i['modelo'];
+			$p = $m['procedencia'];
+
+			$html .= '<li class="rbm-no-limiar-item">';
+			$html .= '<span class="rbm-no-limiar-frase">' . esc_html( $i['frase'] ) . '</span>';
+
+			/* A RESSALVA DO DEGRAU, igual à do cartão: é o elo mais fraco dito
+			   com todas as letras. Quem escolhe a palavra é a escada de fontes
+			   do banco, não este arquivo. */
+			if ( ! empty( $p['ressalva'] ) ) {
+				$html .= '<span class="rbm-tag">' . esc_html( $p['ressalva'] ) . '</span>';
+			}
+
+			/* E a procedência do Pa, no mesmo molde do cartão — o rótulo entra
+			   depois do travessão e não regido por preposição (cicatriz da R1). */
+			$html .= '<span class="rbm-vitrine-fonte">'
+				. esc_html( 'Como sabemos — ' . $p['rotulo'] . ', verificado em '
+					. robometria_r2_data( $p['verificado_em'] ) )
+				. ( empty( $p['url'] ) ? '' : ' · ' . ( function_exists( 'robometria_casca_fonte_link' )
+					? robometria_casca_fonte_link( $p['url'] ) : '' ) )
+				. '</span>';
+
+			$html .= '</li>';
 		}
 		$html .= '</ul></div>';
 	}
@@ -1382,6 +1451,13 @@ add_action( 'wp_head', function () {
 .rbm-frase{margin:0 0 .8rem;}
 .rbm-lista-frases{margin:.6rem 0 0;padding-left:1.1rem;}
 .rbm-lista-frases li{margin:0 0 .5rem;line-height:1.55;}
+/* O item da secao "Exatamente no limiar": frase, ressalva do degrau e a linha de
+   procedencia, cada uma na sua linha. Os <span> sao de nivel de bloco aqui
+   porque a linha de procedencia e discreta e nao pode colar na frase. */
+.rbm-no-limiar-item{margin:0 0 1rem;}
+.rbm-no-limiar-frase{display:block;}
+.rbm-no-limiar-item .rbm-tag{margin:.35rem 0 0;}
+.rbm-no-limiar-item .rbm-vitrine-fonte{display:block;margin:.3rem 0 0;}
 .rbm-situacoes{margin:1rem 0 0;}
 .rbm-situacoes dt{font-family:var(--rbm-display);font-weight:600;font-size:1rem;margin:1.1rem 0 .3rem;padding-top:.9rem;border-top:1px solid var(--rbm-traco);}
 .rbm-situacoes dt:first-of-type{border-top:0;padding-top:0;margin-top:0;}

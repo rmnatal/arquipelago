@@ -975,13 +975,28 @@ def frase_do_cartao(m, sit, ressalvas):
 
 
 def frase_do_no_limiar(m, sit):
+    """Quem esta EXATAMENTE no valor que a fonte escreve como "acima de".
+
+    A ATRIBUICAO DO Pa VEM DO DEGRAU, igual a do cartao. Ate 12/09/2026 esta
+    frase comecava por "Xiaomi E10 declara exatamente 4.000 Pa" — o modelo como
+    sujeito do verbo declarar, que e o fabricante dito sem nome e sem degrau. O
+    cartao fechou isso em 11/09 e esta secao ficou para tras justamente porque
+    ninguem a le como recomendacao: e a pagina nomeia modelo e Pa aqui com a
+    mesma autoridade que la.
+
+    SAO DOIS NUMEROS E DUAS PROCEDENCIAS (sexta decisao do PROMPT.md): o Pa e do
+    modelo e sai atribuido ao degrau dele; o limiar e da fonte editorial e sai
+    com o nome de quem o publica. Uma frase que publica dois numeros de origens
+    diferentes nao pode atribuir os dois de uma vez.
+    """
     pa = valor(m.get("pa_declarado"))
     seguro = sit["limiar_seguro"]
+    p = procedencia_do_pa(m)
     return (
-        "%s declara exatamente %s Pa, e %s escreve \"acima de %s Pa\". Fica "
+        "%s: %s Pa declarados %s, e %s escreve \"acima de %s Pa\". Fica "
         "nesta secao separada porque estar no numero nao e estar acima dele."
-        % (rotulo_do_modelo(m), numero_br(pa), com_artigo(seguro["publicador"]),
-           numero_br(seguro["valor"]))
+        % (rotulo_do_modelo(m), numero_br(pa), p["quem_declara"],
+           com_artigo(seguro["publicador"]), numero_br(seguro["valor"]))
     )
 
 

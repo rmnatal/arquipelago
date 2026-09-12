@@ -522,9 +522,9 @@
         "url": "string vazia enquanto nao houver link",
         "plataforma": "vocabulario plataforma_de_afiliado",
         "coletado_em": "data ou null",
-        "sub_id_1": "sempre 'robometria'",
-        "sub_id_2": "codigo da ferramenta de origem: R1 ou R2"
-      }
+        "sub_id_1": "sempre 'robometria'"
+      },
+      "o_codigo_da_pagina_NAO_mora_aqui": "O sub_id_2 saiu desta forma em 12/09/2026, e a ausencia dele e regra. Ele nomeia a PAGINA que levou o clique — R1, R2, A1, A2 — e o mesmo produto aparece em mais de uma: os 33 modelos traziam 'R2' e as 18 pecas 'R1', entao o artigo A2 publicava a vitrine dele carimbada como se fosse da ferramenta R2, e o A1 as pecas dele como se fossem da R1. No dia do primeiro link de afiliado a medicao diria que os artigos nao vendem nada. Nao existe valor unico certo para escrever no registro: quem sabe qual e a pagina e quem a monta, entao cada gerador (gerar-r1.py, gerar-r2.py, gerar-a1.py, gerar-a2.py) carimba o proprio codigo ao derivar a vitrine. validar-banco.py REPROVA o campo de volta no banco."
     },
     "fonte": {
       "forma": {

@@ -980,6 +980,183 @@ foreach ( $esquema_b['escada_de_fontes']['niveis'] as $n ) {
 rbm_ok( $copia_ok, 'a tabela que viaja para o site e a escada do esquema, degrau a degrau',
 	count( $dados['rotulos_de_origem'] ) . ' degraus no arquivo de dados' );
 
+/* ---------------------------------------------------------------------------
+ * 17. A PROCEDENCIA DO Pa NA SECAO "EXATAMENTE NO LIMIAR" (secoes 5.4, 7 e 10).
+ *
+ * O item 16 fechou o cartao da vitrine em 11/09/2026. Esta secao ficou de fora
+ * por doze dias pelo motivo que a torna perigosa: ninguem a le como
+ * recomendacao, entao ninguem foi conferir se ela cita origem. Mas ela nomeia
+ * MODELO e Pa com a mesma autoridade da vitrine — e um numero publicado sem
+ * endereco e sem degrau e exatamente o que esta ilha existe para nao fazer.
+ *
+ * Os tres cuidados do item 16 valem aqui inteiros: (a) regua propria, lida do
+ * esquema e do banco, nunca do r2-respostas.json que o mesmo gerador escreve;
+ * (b) no CORPO, com cada <li> da secao recortado; (c) a ENTRADA INTEIRA, as 9
+ * situacoes, porque esta lista muda com piso e pelo — e muda de um jeito que a
+ * ancora nao visita: na situacao da ancora ela e VAZIA.
+ *
+ * E DOIS CUIDADOS QUE SO EXISTEM AQUI:
+ *
+ * (d) A SECAO NAO PODE TER PORTA DE COMPRA, e a falta tem que estar DITA. A
+ *     regra da secao 7 (porta de compra antes da procedencia) existe para o
+ *     link de fonte nunca ser a unica coisa clicavel de um bloco. Aqui a porta
+ *     nao existe de proposito — a pagina acabou de recusar estes modelos —,
+ *     entao o que a medicao cobra e a declaracao da ausencia. Trocar o silencio
+ *     por outro silencio nao seria conserto.
+ *
+ * (e) A SECAO VEM DEPOIS DA LISTA PRINCIPAL, sempre. Ela e a excecao rotulada;
+ *     em primeiro lugar ela vira recomendacao de quem a fonte nao cobre.
+ * ------------------------------------------------------------------------- */
+
+echo "\n17. A procedencia do Pa na secao \"Exatamente no limiar\" (secoes 5.4, 7 e 10)\n";
+
+/** Os <li> da secao "Exatamente no limiar", recortados do corpo. */
+function rbm_itens_no_limiar( $corpo ) {
+	preg_match_all( '#<li class="rbm-no-limiar-item">(.*?)</li>#s', $corpo, $m );
+	return $m[1];
+}
+
+$erros_nl   = array();
+$itens_nl   = 0;
+$sit_com_nl = 0;
+$ressalva_nl = 0;
+
+foreach ( array_keys( $dados['classificacao'] ) as $chave ) {
+	list( $piso, $pelo ) = rbm_r2_partes( $chave );
+	rbm_r2_pagina( $dados['ancora']['area'], $piso, $pelo, null );
+	$corpo_sit = $GLOBALS['__retorno_shortcode'];
+
+	$ids   = $dados['classificacao'][ $chave ]['no_limiar'];
+	$itens = rbm_itens_no_limiar( $corpo_sit );
+
+	if ( count( $itens ) !== count( $ids ) ) {
+		$erros_nl[] = $chave . ': ' . count( $itens ) . ' item(ns) para '
+			. count( $ids ) . ' no limiar';
+		continue;
+	}
+
+	if ( ! $ids ) {
+		/* Sem ninguem no limiar a secao inteira nao existe — nem o titulo, nem a
+		   frase da ausencia de porta de compra. Bloco vazio rotulado seria a
+		   pagina anunciando uma excecao que nao tem. */
+		if ( false !== strpos( $corpo_sit, 'Exatamente no limiar' ) ) {
+			$erros_nl[] = $chave . ': titulo da secao sem nenhum item';
+		}
+		continue;
+	}
+	$sit_com_nl++;
+
+	/* (e) A ORDEM DAS DUAS SECOES no corpo. */
+	$p_lista = strpos( $corpo_sit, 'Modelos do banco que atendem' );
+	$p_nl    = strpos( $corpo_sit, 'Exatamente no limiar' );
+	if ( false === $p_nl || false === $p_lista || $p_nl < $p_lista ) {
+		$erros_nl[] = $chave . ': a secao do limiar veio antes da lista principal';
+		continue;
+	}
+
+	/* (d) NENHUMA PORTA DE COMPRA dentro dos itens, e a ausencia declarada. */
+	foreach ( $itens as $item ) {
+		if ( false !== strpos( $item, 'rbm-comprar' ) || false !== strpos( $item, 'rbm-sem-loja' ) ) {
+			$erros_nl[] = $chave . ': porta de compra dentro da secao do limiar';
+		}
+	}
+	$bloco_nl = substr( $corpo_sit, $p_nl );
+	if ( false === strpos( $bloco_nl, esc_html( 'a pagina nao recomenda estes modelos' ) )
+		&& false === strpos( $bloco_nl, esc_html( 'a página não recomenda estes modelos' ) ) ) {
+		$erros_nl[] = $chave . ': a secao nao diz por que nao tem botao de compra';
+	}
+
+	foreach ( $ids as $pos => $id ) {
+		$item = $itens[ $pos ];
+		$reg  = rbm_banco_modelo( $modelos_b, $id );
+		if ( ! $reg ) {
+			$erros_nl[] = $chave . '/' . $id . ': fora do banco';
+			continue;
+		}
+
+		$s      = robometria_r2_situacao( $chave );
+		$pa     = $reg['pa_declarado']['valor'];
+		$fid    = $reg['pa_declarado']['fonte'];
+		$fonte  = $reg['fontes'][ $fid ];
+		$origem = $fonte['origem'];
+
+		if ( ! isset( $degrau_por_origem[ $origem ] ) ) {
+			$erros_nl[] = $chave . '/' . $id . ': origem ' . $origem . ' fora da escada';
+			continue;
+		}
+		$na_tela = $degrau_por_origem[ $origem ]['na_tela'];
+
+		/* 0. ELE ESTA MESMO NO LIMIAR, pela regua deste arquivo — nao por estar
+		      nesta lista. Um modelo ACIMA do limiar aqui e uma recomendacao
+		      rebaixada em silencio; um ABAIXO e a pagina citando quem a fonte
+		      nao cobre de jeito nenhum. */
+		if ( 'acima_de' !== $s['limiar_seguro']['comparacao'] || $pa != $s['limiar_seguro']['valor'] ) {
+			$erros_nl[] = $chave . '/' . $id . ': nao esta exatamente no limiar';
+			continue;
+		}
+
+		/* 1. A ATRIBUICAO DENTRO DA FRASE vem do degrau, nao do modelo. */
+		if ( false === strpos( $item, esc_html( 'Pa declarados ' . $na_tela['quem_declara'] ) ) ) {
+			$erros_nl[] = $chave . '/' . $id . ': atribuicao fora do degrau';
+			continue;
+		}
+
+		/* 2. O SEGUNDO NUMERO leva a SEGUNDA atribuicao: o limiar sai com o nome
+		      de quem o publica, dentro da mesma frase. */
+		if ( false === strpos( $item, esc_html( $s['limiar_seguro']['publicador'] ) ) ) {
+			$erros_nl[] = $chave . '/' . $id . ': o limiar sem quem o publica';
+			continue;
+		}
+
+		/* 3. A linha de procedencia, com o rotulo do degrau e a data. */
+		$linha = 'Como sabemos — ' . $na_tela['rotulo'] . ', verificado em '
+			. rbm_data_br( $fonte['verificado_em'] );
+		if ( false === strpos( $item, esc_html( $linha ) ) ) {
+			$erros_nl[] = $chave . '/' . $id . ': sem a linha de procedencia';
+			continue;
+		}
+
+		/* 4. O endereco da fonte, clicavel e discreto. */
+		if ( false === strpos( $item, 'href="' . esc_url( $fonte['url'] ) . '"' ) ) {
+			$erros_nl[] = $chave . '/' . $id . ': sem o endereco da fonte';
+			continue;
+		}
+		if ( ! preg_match( '#<a class="rbm-fonte"[^>]*rel="nofollow noopener"#', $item ) ) {
+			$erros_nl[] = $chave . '/' . $id . ': o link de fonte nao e discreto';
+			continue;
+		}
+
+		/* 5. A ressalva do degrau, quando a escada obriga uma. */
+		if ( null === $na_tela['ressalva'] ) {
+			if ( preg_match( '#<span class="rbm-tag">#', $item ) ) {
+				$erros_nl[] = $chave . '/' . $id . ': ressalva num degrau que nao tem';
+				continue;
+			}
+		} else {
+			if ( false === strpos( $item, '<span class="rbm-tag">' . esc_html( $na_tela['ressalva'] ) . '</span>' ) ) {
+				$erros_nl[] = $chave . '/' . $id . ': sem a ressalva "' . $na_tela['ressalva'] . '"';
+				continue;
+			}
+			$ressalva_nl++;
+		}
+
+		$itens_nl++;
+	}
+}
+
+rbm_ok( empty( $erros_nl ),
+	'todo item do limiar diz de onde veio o Pa, com o degrau que o banco declara',
+	empty( $erros_nl )
+		? $itens_nl . ' itens em ' . $sit_com_nl . ' situacoes, ' . $ressalva_nl . ' com ressalva de degrau'
+		: implode( ' | ', array_slice( $erros_nl, 0, 6 ) ) );
+
+/* A SECAO EXISTE MESMO: portao contra o teste inerte. Se um dia o banco nao
+   tiver nenhum modelo exatamente no limiar, as afirmacoes acima passam varrendo
+   o vazio — e passariam em silencio, que e a forma mais barata de uma bancada
+   verde nao medir nada. */
+rbm_ok( $itens_nl > 0, 'a secao do limiar tem item medido em alguma situacao',
+	$itens_nl . ' itens medidos' );
+
 /* ------------------------------------------------------------------ RESUMO */
 
 echo "\n";

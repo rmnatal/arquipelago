@@ -106,6 +106,15 @@ R2_PROCEDENCIA = 'Como sabemos — página do fabricante, verificado em 09/09/20
 R2_RESSALVA = '<span class="rbm-tag">a confirmar no manual</span>'
 R2_ATRIBUICAO = 'Pa declarados pelo fabricante'
 
+# A secao "Exatamente no limiar" (R2 1.3.0, 12/09/2026). Os dois modelos que
+# estao EXATAMENTE em 4.000 Pa na situacao-ancora, escritos aqui literalmente
+# como manda o cabecalho deste arquivo: ler a lista do r2-respostas.json seria
+# conferir a pagina com o arquivo que a produziu.
+R2_LIMIAR_TITULO = 'Exatamente no limiar — não acima dele'
+R2_LIMIAR_SEM_PORTA = 'a página não recomenda estes modelos para a sua situação'
+R2_LIMIAR_MODELOS = ('Xiaomi E10', 'Xiaomi S10')
+R2_LIMIAR_FRASE = '4.000 Pa declarados pelo fabricante, e a Canaltech escreve "acima de 4.000 Pa"'
+
 # O MESMO, PARA O CARTAO DO A2 — e repare que o degrau NAO e o mesmo. A area por
 # carga dos cinco Electrolux vem da loja oficial da marca (degrau 4), e nao do
 # fabricante. Foi por credita-la ao fabricante, com a atribuicao digitada no
@@ -208,6 +217,68 @@ def conferir_procedencia_da_r2(carimbo):
        'todos os %d' % len(cartoes) if not sem_fonte else 'cartao(oes) %s' % sem_fonte)
 
 
+def conferir_secao_do_limiar(carimbo):
+    """A secao "Exatamente no limiar" SERVIDA (R2 1.3.0).
+
+    Ela nomeia modelo e Pa com a mesma autoridade da vitrine e, ate 12/09/2026,
+    nao dizia de onde o numero vinha. Aqui se mede o que o SERVIDOR serve, na
+    situacao-ancora — a pagina sem parametro nenhum, que e a que um modelo de
+    linguagem le.
+    """
+    print('\n[%s] a secao "Exatamente no limiar"' % R2_CAMINHO)
+    corpo, codigo = buscar(DOMINIO + R2_CAMINHO + '?v=' + carimbo)
+    if not ok('200' == codigo, 'HTTP 200', codigo):
+        return
+
+    texto = html.unescape(corpo)
+    if not ok(R2_LIMIAR_TITULO in texto, 'a secao existe na pagina servida'):
+        return
+
+    itens = re.findall(r'<li class="rbm-no-limiar-item">(.*?)</li>', corpo, re.S)
+    if not ok(len(itens) == len(R2_LIMIAR_MODELOS), 'a secao serve os itens esperados',
+              '%d item(ns)' % len(itens)):
+        return
+
+    faltando = [m for m in R2_LIMIAR_MODELOS
+                if not any(m in html.unescape(i) for i in itens)]
+    ok(not faltando, 'os modelos da secao sao os que estao exatamente no limiar',
+       ', '.join(R2_LIMIAR_MODELOS) if not faltando else 'faltou %s' % faltando)
+
+    sem_frase = [i for i, c in enumerate(itens) if R2_LIMIAR_FRASE not in html.unescape(c)]
+    ok(not sem_frase, 'a frase atribui o Pa ao degrau E nomeia quem publica o limiar',
+       'todos os %d' % len(itens) if not sem_frase else 'item(ns) %s' % sem_frase)
+
+    sem_linha = [i for i, c in enumerate(itens) if R2_PROCEDENCIA not in html.unescape(c)]
+    ok(not sem_linha, 'todo item diz de onde veio o Pa, com a data',
+       'todos os %d' % len(itens) if not sem_linha else 'item(ns) %s' % sem_linha)
+
+    sem_ressalva = [i for i, c in enumerate(itens) if R2_RESSALVA not in c]
+    ok(not sem_ressalva, 'todo item carrega a ressalva do degrau 3',
+       'todos os %d' % len(itens) if not sem_ressalva else 'item(ns) %s' % sem_ressalva)
+
+    sem_fonte = [i for i, c in enumerate(itens)
+                 if not re.search(r'<a class="rbm-fonte"[^>]*rel="nofollow noopener"', c)]
+    ok(not sem_fonte, 'o link de fonte e discreto e nofollow, em todo item',
+       'todos os %d' % len(itens) if not sem_fonte else 'item(ns) %s' % sem_fonte)
+
+    # A SECAO NAO VENDE, e a falta esta dita. Medir so a ausencia do botao
+    # aprovaria o silencio que estava la antes — e silencio e o defeito.
+    com_botao = [i for i, c in enumerate(itens)
+                 if 'rbm-comprar' in c or 'rbm-sem-loja' in c]
+    ok(not com_botao, 'nenhum item da secao tem porta de compra',
+       'nenhum dos %d' % len(itens) if not com_botao else 'item(ns) %s' % com_botao)
+
+    bloco = texto[texto.find(R2_LIMIAR_TITULO):]
+    ok(R2_LIMIAR_SEM_PORTA in bloco, 'a secao diz por que nao tem botao de compra')
+
+    # E ela vem DEPOIS da lista principal. Em primeiro lugar, a excecao rotulada
+    # vira recomendacao de quem a fonte nao cobre.
+    p_lista = texto.find('Modelos do banco que atendem')
+    p_limiar = texto.find(R2_LIMIAR_TITULO)
+    ok(0 <= p_lista < p_limiar, 'a secao vem depois da lista principal',
+       'lista em %d, limiar em %d' % (p_lista, p_limiar))
+
+
 def conferir_procedencia_do_a2(carimbo):
     """A procedencia da area por carga, medida no cartao SERVIDO (A2 1.2.0)."""
     print('\n[%s] procedencia da area por carga no cartao' % A2_CAMINHO)
@@ -308,6 +379,7 @@ def main():
         conferir_medicao(corpo, caminho)
 
     conferir_procedencia_da_r2(carimbo)
+    conferir_secao_do_limiar(carimbo)
     conferir_procedencia_do_a2(carimbo)
 
     print('\n' + '=' * 78)

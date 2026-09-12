@@ -747,6 +747,71 @@ foreach ( (array) $manifest['snippets'] as $item ) {
 		'manifest ' . $item['versao'] . ' / snippet ' . $mv2[1] );
 }
 
+echo "\n17. Cada pagina carimba o PROPRIO codigo de origem no link de afiliado\n";
+/* O sub_id_2 nomeia a PAGINA que levou o clique, e o mesmo produto aparece em
+   mais de uma. Ate 12/09/2026 ele era LIDO do banco, e o banco so sabe dizer um
+   valor: os 33 modelos traziam "R2" e as 18 pecas "R1". Resultado: o artigo A2
+   publicava os cinco modelos da vitrine dele carimbados como se fossem da
+   ferramenta R2, e o A1 as pecas dele como se fossem da R1 — no dia do primeiro
+   link de afiliado, a medicao diria que os dois artigos nao vendem nada, e
+   diria isso com cara de numero conferido.
+
+   O PORTAO MORA AQUI, e nao dentro de cada pagina, pelo mesmo motivo que a
+   porta de compra mora na casca: e uma regra de toda pagina desta ilha que
+   recomenda item. Pagina nova que copiar um gerador antigo — que e como cada
+   uma destas quatro nasceu — e reprovada aqui antes de existir URL.
+
+   A REGUA E O MAPA ABAIXO, escrito neste arquivo. Ler o codigo esperado do
+   proprio gerador seria compara-lo consigo mesmo: e exatamente o erro que esta
+   correcao existe para apagar, so que na bancada. */
+$carimbo_esperado = array(
+	'dados/r1-respostas.json' => 'R1',
+	'dados/r2-respostas.json' => 'R2',
+	'dados/a1-fatos.json'     => 'A1',
+	'dados/a2-fatos.json'     => 'A2',
+);
+
+/** Todo sub_id_2 de um documento, em qualquer profundidade. */
+function rbm_carimbos( $no, &$achados ) {
+	if ( is_array( $no ) ) {
+		if ( isset( $no['sub_id_2'] ) && is_string( $no['sub_id_2'] ) ) {
+			$achados[] = $no['sub_id_2'];
+		}
+		foreach ( $no as $filho ) {
+			rbm_carimbos( $filho, $achados );
+		}
+	}
+}
+
+foreach ( $carimbo_esperado as $arquivo => $codigo ) {
+	$doc = json_decode( file_get_contents( $raiz . '/' . $arquivo ), true );
+	$achados = array();
+	rbm_carimbos( $doc, $achados );
+	$distintos = array_values( array_unique( $achados ) );
+
+	/* CONTRA O PORTAO INERTE: arquivo sem nenhum carimbo passaria varrendo o
+	   vazio. A vitrine existe nas quatro paginas, entao zero e defeito. */
+	rbm_ok( count( $achados ) > 0, "[$arquivo] a vitrine leva codigo de origem",
+		count( $achados ) . ' item(ns)' );
+	rbm_ok( array( $codigo ) === $distintos, "[$arquivo] carimba so o proprio codigo ($codigo)",
+		$distintos ? implode( ', ', $distintos ) : 'nenhum' );
+}
+
+/* E O BANCO NAO OPINA. O campo saiu de modelos-robo.json e de pecas.json em
+   12/09/2026: nao ha valor unico certo para escrever la, e campo que parece a
+   regra e nao e, num arquivo publicado, um dia vira a regra de alguem. */
+$sem_carimbo = array();
+foreach ( array( 'dados/modelos-robo.json', 'dados/pecas.json' ) as $arquivo ) {
+	$doc = json_decode( file_get_contents( $raiz . '/' . $arquivo ), true );
+	$achados = array();
+	rbm_carimbos( $doc, $achados );
+	if ( $achados ) {
+		$sem_carimbo[] = $arquivo . ' (' . count( $achados ) . ')';
+	}
+}
+rbm_ok( empty( $sem_carimbo ), 'o banco nao carrega codigo de pagina de origem',
+	empty( $sem_carimbo ) ? 'modelos-robo.json e pecas.json limpos' : implode( ' ', $sem_carimbo ) );
+
 echo "\n";
 if ( $falhas ) {
 	printf( "REPROVADO: %d de %d verificacoes falharam.\n", $falhas, $feitos );

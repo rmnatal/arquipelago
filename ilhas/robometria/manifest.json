@@ -4,13 +4,13 @@
   "nicho": "robo aspirador — compatibilidade de pecas e consumiveis, e dimensionamento de succao e autonomia",
   "dominio": "https://robometria.com.br",
   "versao_manifest": 1,
-  "revisao": 21,
+  "revisao": 22,
   "atualizado_em": "2026-09-12",
   "estado": "nascendo",
   "desembarque": {
     "aprovado": true,
-    "decidido_em": "2026-09-11",
-    "observacao": "Desembarque automatico por forca da secao 10 do ARQUIPELAGO.md. A revisao 18 leva A PROCEDENCIA DO Pa para dentro do cartao da R2 (snippet 1.2.0). O Pa e o unico numero que decide aquela recomendacao e ele era publicado sem endereco, sem data e sem o degrau da escada de fontes — a R1 faz isso desde o primeiro dia no mesmo tipo de cartao, e a R2 nao fazia. Agora cada cartao traz a ressalva do degrau ('a confirmar no manual'), a porta de compra, e so depois dela a linha 'Como sabemos — pagina do fabricante, verificado em 09/09/2026' com o link discreto: a ordem e a secao 7 escrita em codigo. E a atribuicao dentro da frase deixou de ser digitada no molde: 'declarados pelo fabricante' era verdade so porque as onze fontes de Pa do banco sao do mesmo degrau, e no dia em que um Pa entrasse por loja oficial a pagina emprestaria, calada, a autoridade do fabricante a quem apenas transcreveu. Junto vai o arquivo de dados com a escada inteira e a procedencia por modelo, e o esquema do banco, onde o rotulo e a ressalva de cada degrau passaram a morar — antes eles eram uma tabela digitada dentro de um gerador, com a escada descrevendo os mesmos textos em prosa noutro arquivo. Nenhuma URL muda e nenhum numero muda. QUEM ACIONA O SYNC E A PROPRIA FUNDACAO, por curl, ao fim do bloco; so o /status prova que a revisao esta no ar."
+    "decidido_em": "2026-09-12",
+    "observacao": "Desembarque automatico por forca da secao 10 do ARQUIPELAGO.md. A revisao 22 fecha o ULTIMO lugar das duas ferramentas em que a pagina nomeava modelo e numero sem dizer de onde o numero veio: a secao \"Exatamente no limiar\" da R2 (snippet 1.3.0). Ate aqui a frase comecava por \"Xiaomi E10 declara exatamente 4.000 Pa\" — o modelo como sujeito do verbo declarar, que e o fabricante dito sem nome e sem degrau da escada de fontes. O cartao da vitrine fechou isso em 11/09 e esta secao ficou para tras justamente porque ninguem a le como recomendacao. Agora a atribuicao vem do degrau (procedencia_do_pa, na implementacao de referencia), cada item traz a ressalva do degrau e a linha \"Como sabemos\" com endereco e data, e a frase carrega DUAS procedencias porque publica DOIS numeros de origens diferentes — o Pa do modelo e o limiar da fonte editorial. A ausencia da porta de compra nesta secao deixou de ser silencio: a pagina diz que nao recomenda estes modelos e por isso nao vende, em vez de deixar o link de fonte como unica coisa clicavel sem explicacao. NENHUMA URL MUDA e nenhum numero muda. Junto vai uma correcao que nao aparece na tela e so viraria numero no dia do primeiro link de afiliado: o afiliado.sub_id_2 SAIU DO BANCO e passou a ser carimbado por cada gerador. Ele nomeia a PAGINA que levou o clique, e o banco so sabe dizer um valor por registro — os 33 modelos traziam 'R2' e as 18 pecas 'R1' —, entao o artigo A2 publicava a vitrine dele como se o clique fosse da ferramenta R2, e o A1 como se fosse da R1. QUEM ACIONA O SYNC E A PROPRIA FUNDACAO, por curl, ao fim do bloco; so o /status prova que a revisao esta no ar."
   },
   "snippets": [
     {
@@ -53,8 +53,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "74815082a7da99ec246c30648755e867eeb913d5864a0cbf23d19caa41af8e62",
-      "versao": "1.2.0",
+      "sha256": "e818774289b473767b7240b521f34ff56a3b3dbd35f3f14ae5caaabedc7bcf59",
+      "versao": "1.3.0",
       "descricao": "A R2 NA 1.1.0 — o nome virou a consulta que a pessoa digita, e ela esta no proprio endereco: 'Quantos Pa o seu robo aspirador precisa'. O nome anterior prometia duas coisas no mesmo folego e nao batia com o og:title, que dizia outra; a segunda metade (o tempo) continua inteira na promessa acima do formulario e na resposta. A abertura passou a falar com quem entrou e a ressalva de que os limiares de Pa sao recomendacao editorial desceu para a camada de prova. Como na R1: o catalogo recebe o titulo da constante, e garantir_pagina() reespelha o post_title."
     },
     {
@@ -116,7 +116,7 @@
       "verificado_em": "2026-09-09",
       "registros": 4,
       "publicar": false,
-      "sha256": "f3523f949b772e7832f7f98ff28c274beee3c99edb7bafc488a88be39f32efb1",
+      "sha256": "45d37cf5a92c3fe7246e2eb7bc738266b628317ffede4ec5baf8477382246ed4",
       "descricao": "Contrato do banco da Robometria, versao 3 do esquema (elevada na segunda leva do Bloco 3c). A versao 3 acrescenta divergencias[] e resolucao tambem em MODELO_ROBO — ate entao so PECA divergia, e o PRA500 declara 1600 Pa na ficha e 2000 Pa no texto de venda da MESMA pagina — e escreve a regra da FAIXA DECLARADA: faixa e tolerancia resolvem para o lado em que errar doi menos, nunca para o meio, com a faixa inteira preservada em declarado_como. Pa e autonomia resolvem para baixo; tempo de recarga resolve para cima."
     },
     {
@@ -140,7 +140,7 @@
       "verificado_em": "2026-09-09",
       "registros": 33,
       "publicar": false,
-      "sha256": "5c6d2f66ff8e9f7b592d0519b871cdd16506d01c3ae85e94df9a47e09a3abb80",
+      "sha256": "92c4e34bd996f11d1f2ca1bde4febb7c0dbd2e8aa21ba658372a588a77e6157b",
       "descricao": "33 modelos: 28 publicaveis, 1 nao publicavel (HO401, categoria a confirmar) e 4 excluidos por NAO serem robo. A segunda leva do Bloco 3c acrescentou seis Xiaomi (S10, E10, S40, S40C, H40 e Mop 2) e tres WAP (W400, W1000, W310), e preencheu a ficha de PRA500 e PRA2000. O campo pa_declarado saiu de 2 para 11 modelos publicaveis, em 3 marcas, cobrindo de 1.400 a 10.000 Pa — a R2 deixa de sair com lista vazia. Traz a varredura cobertura_de_faixa_r2 exigida pela secao 14.3: cinco das seis faixas passam no portao de 3 itens, acima de 6.000 Pa a faixa esta DESCOBERTA, e toda faixa acima de 3.000 Pa e 100% Xiaomi."
     },
     {
@@ -152,7 +152,7 @@
       "verificado_em": "2026-09-09",
       "registros": 18,
       "publicar": false,
-      "sha256": "d11c176cd6b71ba041dac56df47164fb3f5a6c04f564b24f6e6cbc9b8d8c3b26",
+      "sha256": "77b8d6a051c82c019072832c8efa56725373da16821ae925c2fefd186d6ec71a",
       "descricao": "18 pecas com 33 pares peca x modelo, TODOS declarados pelo fabricante e nenhum inferido. O Bloco 3c acrescentou 10: o Kit Performance KPCEL01 (que finalmente da dono a vida util de 6 meses do manual da Electrolux), o filtro HEPA com espuma do ERB44/60/61/62, o kit do ERB60/61/62, a escova rotativa central do ERB60/61/62/80, os kits do ERB44 e do ERB30, as tres pecas da Positivo para PRA800/PRA2000 e os acessorios do Xiaomi S20. Duas divergencias seguem resolvidas pelo conjunto mais estreito, com as duas declaracoes publicadas."
     },
     {
@@ -212,7 +212,7 @@
       "verificado_em": "2026-09-10",
       "registros": 16,
       "publicar": true,
-      "sha256": "3692f6efffeb11762a4c2d8d1edf6e06fa3ee8036ac0e71047237a83a979b108",
+      "sha256": "b922dc15a0e88cbe56cd5a28cc3289845eb4328b9da5b17f9842a8850f290fd7",
       "descricao": "O COMBUSTIVEL DO ARTIGO-ANCORA A1: o Sync o grava na option robometria_dados_a1-fatos e o snippet robometria-a1.php escreve as frases a partir dele. Tres medicoes separadas de proposito. (1) ALCANCE: quantos codigos de modelo cada uma das 16 pecas publicaveis tem declarados, com os codigos como a fonte os escreve. (2) TRAVESSIA DE MARCA: quantas pecas sao declaradas para modelos de mais de uma marca — hoje zero, e e essa a tese do artigo. (3) DISPERSAO DENTRO DA MARCA: quantos conjuntos DISTINTOS de modelos as pecas de cada fabricante formam; quando o numero iguala o de pecas, nenhuma repete a lista de outra. Traz ainda a cobertura por tipo vinda da varredura da R1, a vitrine de 4 itens (ordenada por alcance declarado, com kit de composicao nao transcrita FORA, porque oferecer a compra de um produto cuja composicao a pagina diz nao saber e o defeito da secao 7) e as tres perguntas do FAQPage, derivadas dos mesmos numeros."
     },
     {
@@ -257,7 +257,7 @@
       "verificado_em": "2026-09-10",
       "registros": 9,
       "publicar": false,
-      "sha256": "99c5d9c2620b3ba148cc88f46d0518f1f1b66e6ecfad9757259f7dd94bfd217f"
+      "sha256": "beb0e34d5f1ab0de6cd9b81727fd2c25a113ddbecdbb1e97a6d196af409c403f"
     },
     {
       "id": "a2-fatos",
@@ -268,7 +268,7 @@
       "verificado_em": "2026-09-10",
       "registros": 5,
       "publicar": true,
-      "sha256": "a7cad29e0bb864796fe2ae9ff32d58685f9df70127053435324941b7baad887b"
+      "sha256": "da093d2e69f98b8de0247817d1cadbb7c15103682a047a6cdaa3ef265bc06eb2"
     },
     {
       "id": "casca-fatos",
@@ -280,7 +280,7 @@
       "verificado_em": "2026-09-11",
       "registros": 7,
       "descricao": "Fatos que a casca publica sobre o proprio banco, derivados por ferramentas/gerar-casca-fatos.py. Desde 11/09/2026 traz duas coisas: a coluna 'Temos hoje' da escada de fontes, e a MEDICAO da secao 4 da metodologia — os onze numeros que a ilha afirma sobre si mesma, com a regua de cada um escrita no proprio arquivo, em reguas_da_medicao. Contagem so de registro publicavel: a coluna fala do que a ilha PUBLICA, nao do que ela guarda, e e por isso que 'pares peca x modelo' conta 32 (as duas pontas publicaveis) onde o cabecalho de pecas.json conta 33 (tudo que o arquivo declara). O gerador RECUSA gravar quando cobertura-r1.json nao bate com o banco de hoje, para a ilha nunca publicar medicao de ontem com data de hoje.",
-      "sha256": "b6c53fcea24a5102ed2cfaab4847377c0732db712e1907e4349f57440cabdac4"
+      "sha256": "5e8281b17d177f5e9c0e1e6cd8934fb52ba6a8664bb56b5552cd702f8ea5550a"
     },
     {
       "id": "acentuacao-restaurada",
@@ -429,12 +429,17 @@
     {
       "id": "conferir-no-ar",
       "arquivo": "ferramentas/conferir-no-ar.py",
-      "descricao": "Mede no HTML SERVIDO, depois do desembarque, o que a bancada so consegue medir no repositorio: as nove URLs em 200, o nome unico em cada superficie e zero entidade dentro de <script>. Os enderecos e os nomes estao escritos literalmente dentro dele, para as duas metades nao errarem juntas. Bancada: nunca e publicada. GANHOU NA CASCA 1.5.0 a conferencia da TAG DE MEDICAO no ar, e o que ela mede e ORDEM, nao presenca: o ID desta ilha escrito literalmente aqui (a copia cega para a ilha seguinte vai ao ar funcionando e grava na propriedade da anterior — nenhuma comparacao com a constante do snippet pegaria isso), o async no script de terceiro, o gtag('config') na propriedade certa, a tag depois do <title> e depois do ULTIMO JSON-LD, um unico script de terceiro na pagina publica, e a frase que conta o que o site mede medida no CORPO da pagina de divulgacao — no <head> a palavra googletagmanager aparece nas nove, e medir no HTML inteiro aprovaria uma pagina muda."
+      "descricao": "Mede no HTML SERVIDO, depois do desembarque, o que a bancada so consegue medir no repositorio: as nove URLs em 200, o nome unico em cada superficie e zero entidade dentro de <script>. Os enderecos e os nomes estao escritos literalmente dentro dele, para as duas metades nao errarem juntas. Bancada: nunca e publicada. GANHOU NA CASCA 1.5.0 a conferencia da TAG DE MEDICAO no ar, e o que ela mede e ORDEM, nao presenca: o ID desta ilha escrito literalmente aqui (a copia cega para a ilha seguinte vai ao ar funcionando e grava na propriedade da anterior — nenhuma comparacao com a constante do snippet pegaria isso), o async no script de terceiro, o gtag('config') na propriedade certa, a tag depois do <title> e depois do ULTIMO JSON-LD, um unico script de terceiro na pagina publica, e a frase que conta o que o site mede medida no CORPO da pagina de divulgacao — no <head> a palavra googletagmanager aparece nas nove, e medir no HTML inteiro aprovaria uma pagina muda. Em 12/09/2026 ganhou a secao \"Exatamente no limiar\" da R2 medida no HTML SERVIDO: os dois modelos que estao exatamente em 4.000 Pa na situacao-ancora (escritos literalmente aqui, nunca lidos do r2-respostas.json), a frase com as DUAS procedencias, a linha \"Como sabemos\" com data, a ressalva do degrau, o link de fonte discreto, a ausencia de porta de compra COM a frase que explica a ausencia, e a secao servida depois da lista principal."
     },
     {
       "id": "atualizar-manifest",
       "arquivo": "ferramentas/atualizar-manifest.py",
       "descricao": "Recalcula o sha256 de todo item que o esquema do manifest declara com sha, reespelha a versao de cada snippet a partir da CONSTANTE dele, imprime cada troca que faz e sobe a revisao. Bancada: nunca e publicada."
+    },
+    {
+      "id": "mutacoes-carimbo-de-origem",
+      "arquivo": "ferramentas/mutacoes-carimbo-de-origem.py",
+      "descricao": "Quebra de proposito o carimbo de origem do link de afiliado (afiliado.sub_id_2) e exige que a secao 17 do teste-casca.php REPROVE — cinco mutacoes, cinco reprovacoes, cada uma numa afirmacao diferente. A trava que ela mede nasceu em 12/09/2026 e mede um defeito que estava no ar sem quebrar nada: o campo nomeia a PAGINA que levou o clique, era LIDO do banco, e o banco so sabe dizer um valor por registro (os 33 modelos traziam 'R2' e as 18 pecas 'R1'), entao o artigo A2 publicava a vitrine dele com o codigo da ferramenta R2 e o A1 com o da R1. Nada disso aparece na tela: o campo so vira numero no dia do primeiro link de afiliado, e ai a medicao diria que os dois artigos nao vendem nada, com cara de numero conferido. A mutacao central devolve o defeito INTEIRO (gerador voltando a ler do banco E campo de volta no banco), porque as duas metades sozinhas sao inertes; as outras cobrem o gerador copiado que carimba o codigo da pagina irma — que e como cada pagina desta ilha nasceu —, o carimbo ausente e o campo voltando ao banco sem ninguem mexer em gerador. Toda mutacao que mexe em gerador REGERA os dados dentro da copia, senao reprovaria pelo motivo errado. Ferramenta de bancada: NUNCA e publicada no site."
     }
   ],
   "esquema": {

@@ -189,6 +189,24 @@ def cobertura_por_tipo(varredura):
     return saida
 
 
+def afiliado_do_item(registro, codigo_da_pagina):
+    """A porta de compra de um item, com o codigo de ORIGEM desta pagina.
+
+    `sub_id_2` nao e campo do produto: e da pagina que levou o clique. O mesmo
+    filtro aparece na R1 e neste artigo, e ate 12/09/2026 os dois carimbavam o
+    que estava escrito no banco — "R1" —, porque o gerador copiava o `afiliado`
+    inteiro do registro. Quem monta a pagina e quem sabe qual e a pagina, entao
+    e aqui que o codigo se escreve. Os quatro geradores desta ilha fazem igual.
+    """
+    a = registro.get("afiliado") or {}
+    return {
+        "url": a.get("url") or "",
+        "programa": a.get("plataforma") or None,
+        "sub_id_1": "robometria",
+        "sub_id_2": codigo_da_pagina,
+    }
+
+
 def vitrine(alcance, quantas=4):
     """Os itens de banco REAIS que o artigo mostra, com a porta de compra.
 
@@ -224,7 +242,14 @@ def vitrine(alcance, quantas=4):
             "codigos_declarados": l["codigos_declarados"],
             "tipos_do_kit": tipos_do_kit(p),
             "imagem": p.get("imagem", {}),
-            "afiliado": p.get("afiliado", {"url": ""}),
+            # O CODIGO DA PAGINA DE ORIGEM E CARIMBADO AQUI, e nao copiado do
+            # banco. Este gerador repassava `afiliado` inteiro do registro, e o
+            # registro da peca traz `sub_id_2: "R1"` — entao o artigo publicava
+            # as pecas dele com o codigo da FERRAMENTA irma. O campo nao e do
+            # produto: e da PAGINA que levou o clique, e a peca aparece nas
+            # duas. No dia do primeiro link, todo clique deste artigo seria
+            # contado como da R1, e a medicao diria que o artigo nao vende nada.
+            "afiliado": afiliado_do_item(p, "A1"),
             "fonte_url": fonte.get("url"),
             "fonte_publicador": fonte.get("publicador"),
             "verificado_em": p.get("verificado_em"),
