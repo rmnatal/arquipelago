@@ -5494,3 +5494,35 @@ comandada por aplicativo — o que sustentou a normalização em vez de adivinh�
 
 39 dos 78 produtos esperam link de afiliado (não mudou; este bloco não tocou catálogo).
 Pauta da seção 17: `pauta.md` ainda não existe — 0 escritos, 0 na fila, 0 recusados.
+
+**NO AR às 16h18Z**, e em UM disparo: `/status` na revisão **53**, igual à do manifest,
+18 aplicados. 15 afirmações medidas no HTML **servido** por curl, 15 aprovadas — 200;
+zero `&#038;` dentro de `<script>`; `AQM_C15_REGULA` servido e igual à lista do esquema;
+**zero `"aplicativo"` sobrando no catálogo**; a família WRGB II servindo `"app"`;
+`podeRegular()` lendo a fonte única e sem cópia digitada no corpo da função; a frase
+colapsada sumida do JavaScript servido; as três frases de silêncio no ar; e a versão
+1.4.0 impressa na tela. As 13 URLs da ilha em 200.
+
+**As mutações precisaram de duas rodadas, e as três que passaram na primeira ensinaram
+mais que as dez que reprovaram.** (a) Mutar o **gerador** não muda nada enquanto ninguém
+o roda — o catálogo já estava escrito dentro do snippet; a mutação passou a regerar na
+cópia. (b) A **ficha** não era medida, só a frase da lista, então devolver "não declarada"
+para o campo vazio passava batido; nasceu a afirmação da ficha. (c) Devolver a lista
+digitada ao `podeRegular()` **com os mesmos valores** é inerte para qualquer medição de
+resultado, porque o resultado é idêntico — e tentar fazê-la morder mudando também o
+esquema não resolve, já que quem julga é o portão do repositório LIMPO e a régua volta a
+concordar. O que essa mutação ameaça não é um valor, é a **estrutura**; então o portão
+passou a medir a estrutura do `podeRegular()` servido: que ele lê `AQM_C15_REGULA` e que
+não guarda valor de vocabulário digitado. É a mesma lição da seção 8 sobre perdoar por
+presença de palavra — quando o certo e o errado produzem o mesmo texto, quem decide é a
+estrutura. **13 de 13 na segunda rodada**, com 358 afirmações no portão.
+
+**PRÓXIMO.** O T3a fecha aqui na parte que era defeito. O que sobrou dele é compra de dado
+e está nomeado (50 a 55 cm, 85 cm, 115 cm, e fluxo alto de 30 a 55 cm), mas **não dá para
+colher luminária nova sem fonte que declare lúmen** — é o buraco estrutural do varejo
+brasileiro, já medido três vezes. Com o congelamento da seção 21 suspenso, o caminho que
+move a meta desta ilha (tráfego orgânico) é o **T4**, a primeira leva de malha de 5 a 10
+URLs, com o banco de espécies de 36 registros destravando "quantos litros para X peixes".
+E a lição deste bloco vale para ela: antes de escrever, procurar no banco de destino o
+campo que diz a mesma coisa de duas maneiras, porque é ali que um ramo inteiro da página
+morre sem ninguém ver.
