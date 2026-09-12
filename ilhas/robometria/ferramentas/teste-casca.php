@@ -654,7 +654,85 @@ foreach ( glob( $raiz . '/snippets/*.php' ) as $arq_snip ) {
 	rbm_ok( (bool) $sincroniza, "[$nome_arq] reespelha o post_title quando o nome muda" );
 }
 
-echo "\n15. A versao do manifest e a do snippet dizem a mesma coisa\n";
+echo "\n15. A tag de medicao: a que esta ilha mede, e DEPOIS do que nao pode atrasar\n";
+/* REGUA PROPRIA, e e por isso que o ID esta ESCRITO AQUI (secao 8 do contrato:
+   quem confere escreve a propria regua). Ler ROBOMETRIA_CASCA_GA4 e comparar com
+   o que a casca serviu e comparar a constante consigo mesma: no dia em que
+   alguem copiar esta casca para a ilha seguinte e esquecer de trocar o ID, as
+   duas metades errariam juntas e a ilha nova nasceria mandando dado para a
+   propriedade da anterior — calada, e por meses, porque a tag ESTARIA no ar.
+   O atrito de ter que reescrever esta linha a mao e o que faz dela medicao.
+
+   E O QUE SE MEDE AQUI E ORDEM, NAO PRESENCA. "A tag esta na pagina" e a
+   afirmacao facil e e a que nao protege nada: o despacho proibe a tag ANTES do
+   <title>, da description e do JSON-LD, e quem acrescentar um JSON-LD novo numa
+   prioridade acima de 23 quebra exatamente isso sem tirar a tag do lugar. */
+$GA4_ESTA_ILHA = 'G-RM7KS75QP2';
+$GA4_HOST      = 'https://www.googletagmanager.com/gtag/js?id=';
+
+foreach ( $paginas as $tag ) {
+	$html = $html_por_pagina[ $tag ];
+
+	$pos_tag = strpos( $html, $GA4_HOST . $GA4_ESTA_ILHA );
+	rbm_ok( false !== $pos_tag, "[$tag] serve a tag com o ID desta ilha", $GA4_ESTA_ILHA );
+	if ( false === $pos_tag ) { continue; }
+
+	/* O async nao e enfeite: sem ele o script de terceiro bloqueia o parser e a
+	   medicao passa a custar o LCP que o despacho manda nao atrasar. */
+	$abertura = substr( $html, strrpos( substr( $html, 0, $pos_tag ), '<script' ), 200 );
+	rbm_ok( false !== strpos( $abertura, 'async' ), "[$tag] o script de terceiro vai com async" );
+
+	rbm_ok( false !== strpos( $html, "gtag('config', '" . $GA4_ESTA_ILHA . "')" ),
+		"[$tag] configura a propriedade desta ilha" );
+
+	/* A ORDEM. O <title> e a description sao um lugar so cada; o JSON-LD sao
+	   varios, e o que vale e o ULTIMO deles. */
+	$pos_titulo = strripos( $html, '</title>' );
+	rbm_ok( false !== $pos_titulo && $pos_titulo < $pos_tag, "[$tag] a tag vem DEPOIS do <title>" );
+
+	$pos_desc = strripos( $html, '<meta name="description"' );
+	if ( false !== $pos_desc ) {
+		rbm_ok( $pos_desc < $pos_tag, "[$tag] a tag vem DEPOIS da meta descricao" );
+	}
+
+	preg_match_all( '#<script[^>]*type="application/ld\+json"#i', $html, $mld, PREG_OFFSET_CAPTURE );
+	$ultimo_ld = empty( $mld[0] ) ? -1 : $mld[0][ count( $mld[0] ) - 1 ][1];
+	rbm_ok( $ultimo_ld > -1 && $ultimo_ld < $pos_tag,
+		"[$tag] a tag vem DEPOIS do ultimo JSON-LD",
+		'blocos de JSON-LD: ' . count( $mld[0] ) );
+
+	/* UNICO SCRIPT DE TERCEIRO (despacho de 12/09 e secao 22.3). Contado pelo
+	   endereco servido, nunca por uma lista do que a casca acha que carrega. */
+	preg_match_all( '#<script[^>]*\bsrc="(https?://[^"]+)"#i', $html, $msrc );
+	$terceiros = array();
+	foreach ( $msrc[1] as $src ) {
+		if ( false === strpos( $src, 'robometria.com.br' ) ) { $terceiros[] = $src; }
+	}
+	rbm_ok( 1 === count( $terceiros ) && 0 === strpos( $terceiros[0], $GA4_HOST ),
+		"[$tag] um unico script de terceiro, e e o da medicao",
+		implode( ' ', $terceiros ) );
+}
+
+/* O ID NAO E DIGITADO NO MEIO DO CODIGO — cobrado no arquivo, nao na tela.
+   Na tela as duas formas sao identicas; e no arquivo que a diferenca existe. */
+$fonte_casca = file_get_contents( $raiz . '/snippets/robometria-casca.php' );
+$vezes = substr_count( $fonte_casca, $GA4_ESTA_ILHA );
+rbm_ok( 1 === $vezes, 'o ID aparece UMA vez na casca, e e a constante', "achado $vezes vez(es)" );
+rbm_ok( (bool) preg_match( "#define\(\s*'ROBOMETRIA_CASCA_GA4',\s*'" . preg_quote( $GA4_ESTA_ILHA, '#' ) . "'\s*\)#", $fonte_casca ),
+	'o ID e uma constante do topo, com o nome da ilha ao lado' );
+
+/* A PAGINA CONTA O QUE O SITE MEDE, e isso se mede no CORPO. No <head> a
+   palavra googletagmanager aparece em TODAS as paginas — medir no HTML inteiro
+   aprovaria uma pagina que nao diz uma palavra sobre medicao. */
+robometria_teste_rebobinar();
+robometria_teste_pagina( 'robometria_afiliados', 'Robometria — teste', robometria_teste_slug_do_alvo( 'robometria_afiliados' ) );
+$corpo_afiliados = $GLOBALS['__retorno_shortcode'];
+rbm_ok( false !== stripos( $corpo_afiliados, 'Google Analytics' ),
+	'a pagina de divulgacao nomeia a ferramenta de medicao' );
+rbm_ok( (bool) preg_match( '#medir audi[êe]ncia#iu', $corpo_afiliados ),
+	'e diz, na frase, para que ela serve' );
+
+echo "\n16. A versao do manifest e a do snippet dizem a mesma coisa\n";
 /* Achado em 11/09/2026 ao fechar a revisao 17: o manifest dizia que a R2 estava
    na 1.0.2 e a constante do snippet dizia 1.0.1. Ninguem tinha errado nada
    visivel — sao duas copias do mesmo numero, e uma envelheceu sozinha. E o

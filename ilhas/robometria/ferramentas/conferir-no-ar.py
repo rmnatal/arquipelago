@@ -120,6 +120,55 @@ A2_ATRIBUICAO = 'Área por carga declarada pela loja oficial da marca'
 A2_TITULO = 'Os modelos cuja área por carga é declarada pela loja oficial da marca'
 A2_FRASE_ANTIGA = 'O fabricante declara'
 
+# A TAG DE MEDICAO, com o ID DESTA ILHA escrito aqui pela mesma razao de sempre.
+#
+# Ler a constante do snippet e compara-la com o que o site serviu seria comparar
+# a constante consigo mesma. E o erro que essa comparacao nunca pegaria e o unico
+# que importa: a casca copiada para a ilha seguinte com o ID da anterior, que vai
+# para o ar funcionando, sem uma linha de defeito visivel, gravando sessao na
+# propriedade errada por meses.
+GA4_ID = 'G-RM7KS75QP2'
+GA4_SRC = 'https://www.googletagmanager.com/gtag/js?id=' + GA4_ID
+# Onde a frase que conta o que o site mede tem que estar. No <head> a palavra
+# googletagmanager aparece nas nove paginas: medir no HTML inteiro aprovaria uma
+# pagina que nao diz uma palavra sobre medicao.
+GA4_CAMINHO_DA_FRASE = '/divulgacao-de-afiliados/'
+
+
+def corpo_da_pagina(html_servido):
+    m = re.search(r'<main\b[^>]*>(.*?)</main>', html_servido, re.S | re.I)
+    return m.group(1) if m else ''
+
+
+def conferir_medicao(corpo, caminho):
+    """A tag de medicao no HTML SERVIDO: o ID certo, async, e DEPOIS do que ela
+    nao pode preceder. O que se mede e ORDEM: 'a tag esta ai' e a afirmacao que
+    um JSON-LD novo acima dela aprovaria sem piscar."""
+    pos = corpo.find(GA4_SRC)
+    if not ok(pos > -1, 'serve a tag de medicao com o ID desta ilha', GA4_ID):
+        return
+    abertura = corpo[max(0, corpo.rfind('<script', 0, pos)):pos + 200]
+    ok('async' in abertura, 'o script de terceiro vai com async')
+    ok(("gtag('config', '%s')" % GA4_ID) in corpo, 'configura a propriedade desta ilha')
+
+    fim_titulo = corpo.rfind('</title>')
+    ok(-1 < fim_titulo < pos, 'a tag vem DEPOIS do <title>')
+
+    lds = [m.start() for m in re.finditer(r'<script[^>]*type="application/ld\+json"', corpo, re.I)]
+    ok(bool(lds) and lds[-1] < pos, 'a tag vem DEPOIS do ultimo JSON-LD',
+       'blocos de JSON-LD: %d' % len(lds))
+
+    terceiros = [s for s in re.findall(r'<script[^>]*\bsrc="(https?://[^"]+)"', corpo, re.I)
+                 if 'robometria.com.br' not in s]
+    ok(len(terceiros) == 1 and terceiros[0].startswith(GA4_SRC),
+       'um unico script de terceiro, e e o da medicao', ' '.join(terceiros))
+
+    if caminho == GA4_CAMINHO_DA_FRASE:
+        miolo = corpo_da_pagina(corpo)
+        ok('Google Analytics' in miolo, 'a pagina de divulgacao nomeia a ferramenta de medicao')
+        ok(bool(re.search('medir audi[êe]ncia', miolo, re.I)),
+           'e diz, no corpo, para que ela serve')
+
 
 def conferir_procedencia_da_r2(carimbo):
     """A procedencia do Pa, medida no cartao SERVIDO (R2 1.2.0)."""
@@ -255,6 +304,8 @@ def main():
         scripts = '\n'.join(re.findall(r'<script\b[^>]*>(.*?)</script>', corpo, re.S | re.I))
         n = scripts.count('&#038;')
         ok(0 == n, 'zero &#038; dentro de <script>', 'achados: %d' % n)
+
+        conferir_medicao(corpo, caminho)
 
     conferir_procedencia_da_r2(carimbo)
     conferir_procedencia_do_a2(carimbo)

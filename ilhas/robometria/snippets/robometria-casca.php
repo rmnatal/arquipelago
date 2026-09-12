@@ -1,5 +1,19 @@
 /**
  * Robometria Casca — identidade e estrutura do site
+ * Versão: 1.5.0 (12/09/2026) — A ILHA PASSA A SER MEDIDA (despacho da Fundação
+ *   de 12/09/2026). A propriedade GA4 desta ilha existe desde hoje e a tag nunca
+ *   esteve no ar: sem ela, a seção 5 do ARQUIPELAGO.md — visibilidade em IA —
+ *   não é mensurável, porque referência de chatgpt.com, perplexity.ai e
+ *   gemini.google.com só aparece na medição de audiência. O ID entra como
+ *   constante no topo, com o nome da ilha ao lado; a tag sai no wp_head na
+ *   prioridade 23, que é o primeiro degrau acima de TODO bloco que o despacho
+ *   protege (o <title> em 1, a description em 4, o JSON-LD em 6, 7 e 22); o
+ *   script de terceiro vai com async e não há banner de consentimento
+ *   bloqueante. A página de divulgação ganhou a seção que conta, em uma frase,
+ *   o que o site mede — esta ilha não tem página de privacidade, e o despacho
+ *   pedia uma; quando ela nascer, a seção muda de casa. O portão da bancada
+ *   mede a ORDEM no HTML, não a presença: JSON-LD acrescentado acima de 23
+ *   reprova em vez de empurrar a tag para antes dele em silêncio.
  * Versão: 1.4.1 (12/09/2026) — FONTE NÃO PUBLICADA NÃO VIRA NÚMERO NA TELA.
  *   robometria_casca_numeros() lia a option de dados direto, sem perguntar se o
  *   item que a gerou ainda é publicar=true no manifest. Como o Sync PULA o item
@@ -98,8 +112,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_CASCA_VERSAO' ) ) {
-	define( 'ROBOMETRIA_CASCA_VERSAO', '1.4.1' );
+	define( 'ROBOMETRIA_CASCA_VERSAO', '1.5.0' );
 	define( 'ROBOMETRIA_CASCA_TAGLINE', 'Qual peça o fabricante declarou para o seu robô aspirador — com código, endereço e data' );
+
+	/* GA4 DESTA ILHA — robometria, propriedade 553889920 da conta Arquipélago.
+	   Fica aqui em cima, com o nome da ilha ao lado, e não digitado no meio do
+	   código: o ID é a única coisa que muda de ilha para ilha nesta seção, e
+	   número de identidade escondido no meio de uma função é exatamente o que
+	   faz a casca da ilha seguinte nascer medindo a propriedade da anterior. */
+	define( 'ROBOMETRIA_CASCA_GA4', 'G-RM7KS75QP2' );
 }
 
 /* ---------------------------------------------------------------------------
@@ -2012,6 +2033,50 @@ add_action( 'wp_head', function () {
 		. wp_json_encode( $dados ) . '</script>' . "\n";
 }, 22 );
 
+/* ---------------------------------------------------------------------------
+ * 3h. MEDIÇÃO DE AUDIÊNCIA — a tag do GA4 (despacho da Fundação, 12/09/2026)
+ *
+ * POR QUE ELA ENTRA PELA CASCA E NUNCA POR PLUGIN (seção 11.7 do ARQUIPELAGO.md):
+ * a página pública é território deste repositório. Plugin de medição vira um
+ * segundo dono do <head>, e um dono que este repositório não versiona.
+ *
+ * POR QUE A PRIORIDADE É 23, e não "o mais cedo possível" ao pé da letra. O
+ * despacho pede a tag cedo E proíbe que ela entre antes do <title>, da meta
+ * descrição ou do JSON-LD. As duas metades só cabem juntas num lugar: depois do
+ * último bloco que a regra protege. Nesta casca eles saem em 1 (o <title>, pelo
+ * núcleo), 4 (description e Open Graph), 6 (Organization + WebSite), 7 (o
+ * JSON-LD de cada ferramenta e de cada artigo, nos snippets deles) e 22 (o
+ * BreadcrumbList). 23 é o primeiro degrau livre acima de todos — e quem
+ * acrescentar JSON-LD novo acima de 23 tem de mover esta tag junto, que é o que
+ * o portão da bancada cobra medindo a ORDEM no HTML, nunca a presença.
+ *
+ * E ELA NÃO ATRASA O LCP: o script de terceiro vai com `async` e o de
+ * configuração é uma linha sem rede. Nenhum banner de consentimento bloqueante
+ * (seção 22.4) — quem conta o que este site mede é a página de divulgação.
+ *
+ * O `?id=` do endereço é o ÚNICO parâmetro de propósito: um segundo parâmetro
+ * traria um `&`, e `&` dentro de <script> é o defeito que derrubou cinco
+ * calculadoras da Aquametria em 08/09/2026 (seção 8, item 2).
+ * ------------------------------------------------------------------------- */
+
+add_action( 'wp_head', function () {
+	if ( ! defined( 'ROBOMETRIA_CASCA_GA4' ) || '' === ROBOMETRIA_CASCA_GA4 ) {
+		return;
+	}
+
+	$id = ROBOMETRIA_CASCA_GA4;
+
+	echo '<script async src="https://www.googletagmanager.com/gtag/js?id='
+		. esc_attr( rawurlencode( $id ) ) . '"></script>' . "\n";
+
+	$js = "window.dataLayer = window.dataLayer || [];\n"
+		. "function gtag(){dataLayer.push(arguments);}\n"
+		. "gtag('js', new Date());\n"
+		. "gtag('config', '" . $id . "');";
+
+	echo '<script id="robometria-ga4">' . $js . '</script>' . "\n";
+}, 23 );
+
 /**
  * A HOME É A FERRAMENTA (molde FERRAMENTA do VOZ.md, 11/09/2026).
  *
@@ -2351,6 +2416,16 @@ add_shortcode( 'robometria_afiliados', function () {
 
 	$html .= '<div class="rbm-secao"><h2>Por que dois programas, e não um</h2>';
 	$html .= '<p>Cada marketplace vende as marcas que vende. Peça de reposição de robô aspirador de marca de loja especializada costuma não existir num deles e existir no outro, e ficar com um só significaria deixar de fora justamente a peça certa. Quando o mesmo item está nos dois, o link sai para a Shopee; o Mercado Livre entra onde a Shopee não tem. Isso não é escolha por comissão — a taxa de um programa nunca é comparada com a do outro para decidir nada.</p>';
+	$html .= '</div>';
+
+	/* MEDIÇÃO DE AUDIÊNCIA — a frase que o despacho de 12/09/2026 exige.
+	   Ela deveria morar numa página de privacidade, e esta ilha não tem uma;
+	   enquanto não tiver, o lugar honesto é aqui, que é a página onde o site
+	   conta como funciona por dentro e está no rodapé de todas as outras. No dia
+	   em que /privacidade/ nascer, esta seção vai junto. */
+	$html .= '<div class="rbm-secao"><h2>O que a gente mede de quem entra aqui</h2>';
+	$html .= '<p>Este site usa o Google Analytics 4 para medir audiência: quantas pessoas chegam, por onde chegaram e quais páginas leram. É isso, e é agregado — a gente não sabe quem você é, não pede cadastro, não tem login e não vende nada que você faça por aqui para ninguém.</p>';
+	$html .= '<p>Tem um motivo prático para estar escrito aqui e não escondido: cada vez mais gente chega a uma página por uma resposta de assistente de IA, e essa origem só aparece na medição. Sem ela, a Robometria não sabe quais respostas estão sendo úteis — e é por elas que a gente decide o que conferir em seguida.</p>';
 	$html .= '</div>';
 
 	/* BLOCO DE RECUSA, marcado no markup e não deduzido pela vizinhança das

@@ -4,7 +4,7 @@
   "nicho": "robo aspirador — compatibilidade de pecas e consumiveis, e dimensionamento de succao e autonomia",
   "dominio": "https://robometria.com.br",
   "versao_manifest": 1,
-  "revisao": 20,
+  "revisao": 21,
   "atualizado_em": "2026-09-12",
   "estado": "nascendo",
   "desembarque": {
@@ -20,9 +20,9 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "b3d1080bedd49166074d26d06e8b6d6851dd37ce7aa89a6f33053417b962b906",
-      "descricao": "A CASCA NA 1.4.0 — UM NOME POR PAGINA, e o <title> que o repositorio nao escrevia. (1) NOME CANONICO com fonte unica: robometria_casca_nome_da_pagina() resolve as cinco paginas da casca pela definicao delas e as quatro de ferramenta e artigo pelo catalogo, que agora traz o titulo da constante do proprio snippet que cria a pagina. O mapa das cabecas PERDEU o campo titulo: era um segundo nome digitado ao lado do primeiro, e por causa dele SEIS das nove paginas tinham dois nomes ao mesmo tempo (og:title 'Quem publica a Robometria' com H1 'Sobre'; og:title 'Existe filtro universal?' com H1 'Por que nao existe filtro universal'). Agora o og:title, o degrau da trilha, o rotulo do cartao, o H1 e o <title> saem todos do mesmo lugar. (2) O <title> PASSOU A SER NOSSO, por document_title_parts: ate aqui a home servia 'Robometria – Compatibilidade de pecas e dimensionamento de robo aspirador', 73 caracteres, vindos do campo de descricao curta do wp-admin — um terceiro nome, em vocabulario de dentro da fabrica, num campo que nenhum arquivo deste repositorio escreve e nenhuma bancada podia ver. O teto de 65 caracteres e cobrado no NOME, antes de publicar. (3) OS NOMES DE GAVETA SAIRAM: Ferramentas, Metodologia, Sobre e Divulgacao de afiliados viraram o nome que a cabeca da propria pagina ja publicava na voz do VOZ.md desde a 1.2.0 — nada inventado, uma divergencia desfeita para o lado que ja estava escrito. (4) A VOZ CHEGOU AS ABERTURAS: as quatro paginas da casca deixaram de abrir falando do site em terceira pessoa e a procedencia desceu um paragrafo, para a camada de prova (classe rbm-prova), como manda a secao 15.2. (5) O ESTADO DEGRADADO GANHOU MARCA: robometria_casca_sem_banco_html() e o dono unico do aviso de 'estamos sem o banco', com a classe rbm-sem-banco — ela nao muda nada na tela e existe so para a bancada conseguir dizer 'isto nao e a pagina'. Continua valendo tudo da 1.3.0 (arvore, trilha, BreadcrumbList, Veja tambem e os onze numeros em casca-fatos.json) e da 1.2.0.",
-      "versao": "1.4.1"
+      "sha256": "782e735b7dcaa6e38ece3684364547a95ca016112060ef8739603c45b3b2c155",
+      "descricao": "A CASCA NA 1.5.0 — A ILHA PASSA A SER MEDIDA (despacho da Fundacao de 12/09/2026). As tres ilhas ganharam propriedade GA4 e nenhuma tinha a tag no ar; sem ela a secao 5 do ARQUIPELAGO.md (visibilidade em IA) nao e mensuravel, porque referencia de chatgpt.com, perplexity.ai e gemini.google.com so aparece na medicao de audiencia. (1) O ID entra como CONSTANTE no topo do arquivo, ROBOMETRIA_CASCA_GA4, com o nome da ilha ao lado — nunca digitado no meio de uma funcao, porque e a unica coisa que muda de ilha para ilha nesta secao e e assim que a casca copiada nasce medindo a propriedade da anterior. (2) A tag sai no wp_head na PRIORIDADE 23, o primeiro degrau acima de tudo o que o despacho manda nao atrasar: o <title> em 1, a description em 4, o JSON-LD da entidade em 6, o das ferramentas e artigos em 7 e o BreadcrumbList em 22. (3) O script de terceiro vai com async e e o UNICO terceiro da pagina publica; o endereco tem um parametro so, de proposito, porque um segundo traria um & dentro de <script>. Nenhum banner de consentimento bloqueante (secao 22.4). (4) A pagina de divulgacao ganhou a secao que conta o que o site mede — esta ilha nao tem pagina de privacidade e o despacho pedia uma; quando /privacidade/ nascer, a secao muda de casa, e o corpo da pagina que a ronda de 11/09 achou fina (1.325 caracteres) cresceu junto. O PORTAO MEDE ORDEM, NAO PRESENCA: 'a tag esta na pagina' e a afirmacao facil e a que nao protege nada, porque um JSON-LD acrescentado acima de 23 quebra a regra sem tirar a tag do lugar — e foi essa a quinta das nove mutacoes. Continua valendo tudo da 1.4.1, 1.4.0, 1.3.0 e 1.2.0.",
+      "versao": "1.5.0"
     },
     {
       "id": "robometria-r1",
@@ -402,6 +402,11 @@
       "descricao": "Quebra de proposito a arvore da casca e exige que teste-arvore.php e teste-casca.php reprovem. Bancada: nunca e publicada."
     },
     {
+      "id": "mutacoes-ga4",
+      "arquivo": "ferramentas/mutacoes-ga4.py",
+      "descricao": "A PROVA DE QUE A TRAVA DA TAG DE MEDICAO REPROVA (casca 1.5.0). Nove mutacoes deliberadas, cada uma numa copia da arvore inteira, exigindo que teste-casca.php saia com codigo diferente de zero. A tag de medicao e o alvo mais facil que existe para uma trava que mede a si mesma: ela nao muda NADA na tela, entao nenhum leitor, nenhuma ronda e nenhum olho humano separa medir a propriedade certa de medir a errada. A mutacao 5 e a razao de o portao medir ORDEM e nao presenca — um JSON-LD novo nascendo na prioridade 24 deixa a tag na pagina e a poe antes do bloco que ela nao pode preceder, e uma trava de presenca aprova isso com folga. A mutacao 2 e a que acontece de verdade: o ID trocado pelo da Aquametria, que e o que sobra quando alguem copia esta casca para a ilha seguinte como esta foi copiada da Aquametria em 10/09/2026 — e e por isso que o ID desta ilha esta ESCRITO na regua do teste. As outras sete: a tag sumindo, o config medindo outra propriedade com o src certo, o async caindo, a prioridade subindo para 3, o ID voltando a ser digitado no meio do codigo, um segundo script de terceiro entrando na pagina publica, e a pagina parando de contar o que o site mede. Ferramenta de bancada: NUNCA e publicada no site."
+    },
+    {
       "id": "teste-navegador-arvore",
       "arquivo": "ferramentas/teste-navegador-arvore.mjs",
       "descricao": "Medicao em Chromium das nove paginas em seis larguras: rolagem horizontal e a trilha visivel. Bancada: nunca e publicada."
@@ -424,7 +429,7 @@
     {
       "id": "conferir-no-ar",
       "arquivo": "ferramentas/conferir-no-ar.py",
-      "descricao": "Mede no HTML SERVIDO, depois do desembarque, o que a bancada so consegue medir no repositorio: as nove URLs em 200, o nome unico em cada superficie e zero entidade dentro de <script>. Os enderecos e os nomes estao escritos literalmente dentro dele, para as duas metades nao errarem juntas. Bancada: nunca e publicada."
+      "descricao": "Mede no HTML SERVIDO, depois do desembarque, o que a bancada so consegue medir no repositorio: as nove URLs em 200, o nome unico em cada superficie e zero entidade dentro de <script>. Os enderecos e os nomes estao escritos literalmente dentro dele, para as duas metades nao errarem juntas. Bancada: nunca e publicada. GANHOU NA CASCA 1.5.0 a conferencia da TAG DE MEDICAO no ar, e o que ela mede e ORDEM, nao presenca: o ID desta ilha escrito literalmente aqui (a copia cega para a ilha seguinte vai ao ar funcionando e grava na propriedade da anterior — nenhuma comparacao com a constante do snippet pegaria isso), o async no script de terceiro, o gtag('config') na propriedade certa, a tag depois do <title> e depois do ULTIMO JSON-LD, um unico script de terceiro na pagina publica, e a frase que conta o que o site mede medida no CORPO da pagina de divulgacao — no <head> a palavra googletagmanager aparece nas nove, e medir no HTML inteiro aprovaria uma pagina muda."
     },
     {
       "id": "atualizar-manifest",
