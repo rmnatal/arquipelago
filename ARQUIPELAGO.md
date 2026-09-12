@@ -6,8 +6,8 @@ Este contrato tem mais de 500 linhas e continua crescendo. **Ninguém lê tudo.*
 
 | Papel | Seções |
 |---|---|
-| **Fundação** | 1 a 11, 13 a 18, 20, 21, 22 |
-| **Sentinela — ronda diária** | 2, 3, 4, 10, 12, 15, 16, 18, 19, 21, 22 |
+| **Fundação** | 1 a 11, 13 a 18, 20, 21, 22, 24 |
+| **Sentinela — ronda diária** | 2, 3, 4, 10, 12, 15, 16, 18, 19, 21, 22, 23, 24 |
 | **Painel** | quem escreve é a ronda diária, pela seção 23. Quem quiser saber o estado do Arquipélago lê `dados/PAINEL.md` e não precisa de seção nenhuma |
 | **Sentinela — leitura semanal** | 2, 3, 4, 10, 12, 12.1, 14, 18, 21 |
 | **Bússola** | 10, 11, 14, 20, 21 — e `bussola/BUSSOLA.md`, que é a lei dela |
