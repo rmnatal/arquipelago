@@ -565,3 +565,23 @@ O que ela **despacha** em vez de consertar (19.2): trocar molde de casca, mudar 
 
 ### 22.8 O portão: a página tem de funcionar com o JavaScript desligado
 Cada ilha ganha `ferramentas/teste-desenho.mjs`. Ele abre as páginas **com JavaScript desligado** e reprova se faltar qualquer um: `<title>`, H1, primeiro parágrafo, breadcrumb, os links internos da malha, o bloco de prova e o bloco de compra. Uma ferramenta pode perder o resultado calculado sem JS — e só ele. Página que fica em branco sem JS não publica.
+
+## 23. O PAINEL — um instantâneo só, reescrito por quem já olhou (12/09/2026)
+
+O Raphael não deve ter de caçar o estado do Arquipélago dentro de conversa, de boletim ou de `ESTADO.md` de três ilhas. Existe **um** arquivo com o instantâneo: `dados/PAINEL.md`.
+
+### 23.1 Quem escreve
+A **Sentinela**, ao fim de toda ronda diária, como último passo, pelo mesmo canal das mãos (seção 19.3). Ela já abriu as ilhas e já leu os estados — reescrever o painel custa quase nada e é a única forma de ele nunca estar velho. **Ninguém mais escreve nesse arquivo.** A Fundação não escreve, o boletim não escreve.
+
+### 23.2 O que tem dentro, nesta ordem e só isto
+1. A data e a hora da ronda que o escreveu.
+2. Uma linha por ilha: `estado`, `prioridade`, `urls_publicadas / 40`, dias desde `primeira_indexacao` de 21, `ultima_execucao`, `ultima_ronda`, `piso`, e `congelamento` quando houver.
+3. **Despachos abertos**, um por linha: ilha, onde, o que é, há quantos dias está aberto.
+4. **Precisa do Raphael**: só o que depende mesmo dele — link de afiliado a gerar, dado que só ele tem, decisão que não é de máquina. Nada que a máquina possa fazer sozinha entra nesta lista.
+5. **Consertos das últimas 24 h**, da lista mecânica da 19.1.
+
+### 23.3 O que NÃO tem dentro
+Narrativa, histórico, opinião, projeção e elogio. O painel é instantâneo; a leitura é do boletim de sexta, e o histórico é do `REGISTRO.md`. Se uma linha do painel só faz sentido com um parágrafo de explicação, ela não é do painel.
+
+### 23.4 Número sem procedência não entra
+Vale aqui a regra de sempre: todo número do painel sai de arquivo do repositório ou de medição da própria ronda. Quando um campo não foi medido nesta ronda, o painel escreve `não medido hoje` — nunca repete o número velho com cara de novo.
