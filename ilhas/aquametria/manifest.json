@@ -4,7 +4,7 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 58,
+  "revisao": 59,
   "atualizado_em": "2026-09-12",
   "estado": "fundacao",
   "desembarque": {
@@ -764,6 +764,13 @@
       "publicar": false,
       "sha256": "283dda9916bb44bc9cfac08fc1b6dd30bd896278fac600602b5e3147c810df4c",
       "descricao": "24 mutacoes deliberadas contra o portao do eixo /peixes/, em tres familias: o numero muda (regua de lotacao trocada, extremo errado de conflito declarado, borda da tabela que desaparece); o numero fica e a ESTRUTURA quebra (a especie agressiva ganha lista de companheiro, o derivado per capita volta a ser multiplicado, categoria vazia registrada como pagina, Product no JSON-LD); e a regua perde o chao (o catalogo do snippet envelhece em relacao ao banco, a colisao de slug volta). 24 de 24 reprovadas — duas delas so depois de o portao passar a comparar celula, e nao texto da pagina."
+    },
+    {
+      "id": "conferir-peixes-no-ar",
+      "arquivo": "ferramentas/conferir-peixes-no-ar.py",
+      "publicar": false,
+      "sha256": "a155852991ae754f8f99ec3159220ccae28f39afed1d6c53c04e65b6eaedfe72",
+      "descricao": "Confere a leva 1 do eixo /peixes/ no HTML SERVIDO, nao no repositorio: 103 afirmacoes, 0 falha em 12/09/2026. A lista de URLs vem do INDICE do sitemap (os dois provedores, page e post), nunca digitada, e toda requisicao leva ?v=<hora> por causa do cache duplo da secao 4. A aritmetica e a MESMA do teste-peixes.py, importada de la para a conta morar num lugar so; o que muda e o sujeito. Foi ela que achou os DOIS defeitos que a bancada nao podia ver: o degrau de nivel 2 da trilha que nao resolvia (url_se_existir pedia o slug solto e get_page_by_path casa o caminho inteiro) e as TRES FICHAS DUPLICADAS com '-2' que a remontagem publicou e mandou para o sitemap, sem uma linha de erro. Mede ainda que cada degrau do BreadcrumbList responde 200, que a tag do GA4 sobreviveu a troca de versao da casca, e conta as ligacoes internas das 18 paginas para provar que nenhuma das cinco e orfa (16.4f) — descontando menu e trilha, que estao em todas."
     }
   ]
 }

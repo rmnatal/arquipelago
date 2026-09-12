@@ -4,6 +4,166 @@ Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e
 o proximo passo desbloqueado, e espelha o mesmo resumo em
 `/areas/projeto-aquametria.md` na memoria.
 
+## 2026-09-12 20h15Z — T4, LEVA 1: A MALHA DO EIXO /peixes/ NASCE (casca 1.7.2, snippet aquametria-peixes 1.0.0, manifest revisao 59)
+
+Cinco URLs novas, e a ilha vai de 13 para 18. Nivel 1 `/peixes/`, nivel 2
+`/peixes/tetras/` e tres fichas de especie — tetra neon, neon cardinal e
+mato-grosso —, na ordem do 16.6: a mae e as tres primeiras filhas de maior
+intencao, nunca uma filha de cada categoria espalhada.
+
+**Sao as primeiras paginas desta ilha que nascem com MAE.** A URL passa a mostrar
+os tres niveis da 16.1 e o `BreadcrumbList` passa a ter quatro degraus, todos com
+endereco. Ate hoje o degrau de nivel 2 desta ilha nunca tinha sido link — e
+afirmacao sobre o caso que nao existe nao mede nada, o que ficou provado da pior
+maneira (ver os dois defeitos abaixo).
+
+**Por que este cluster e nao o de aquecimento**, que e o item 1 da ordem do
+`ARVORE.md`: a secao 21 suspendeu a trava de pagina nova, mas **nao** a de mover
+URL publicada. `/calculadoras/aquecimento-e-luz/` exigiria pendurar C5 e C15 sob
+uma categoria nova — duas URLs movidas — alem de a C7 nao existir, e a 16.5 pedir
+3 filhas. `/peixes/tetras/` e o unico cluster do mapa que nasce inteiro sem mover
+endereco nenhum.
+
+### A tese da camada, e ela e o que a proxima leva copia
+
+**AS FONTES DECLARAM A BASE DO AQUARIO, NAO O LITRO.** As sete primeiras
+respostas da SERP brasileira, medidas em 12/09 **antes** de a pagina ser escrita,
+dao litro sem fonte e discordam entre si: 40 L para 8 a 10 neons contra 20 L para
+6 a 8; cardume de 3 contra cardume de 6 no mato-grosso; porte de 3 cm contra 5 cm
+na mesma pagina de resultados. Cada ficha serve a base declarada — com o nome do
+corpo de fonte e a data — ao lado das duas reguas brasileiras de lotacao, que
+discordam em **quatro vezes**, com a atribuicao de cada extremo. Nenhuma das sete
+publica as duas coisas juntas, e e nisso que a pagina ganha.
+
+### Duas recusas que ficam valendo para toda ficha de especie
+
+1. **O DERIVADO PER CAPITA NAO SE MULTIPLICA.** O esquema do banco declara
+   `frente_por_individuo_cm` (frente minima / cardume minimo) e ele sai na tela
+   como leitura, **nunca** extrapolado: para o neon daria 120 cm para dez peixes,
+   o que contradiz todas as fontes e seria regra de bolso nossa com cara de dado.
+   Quem responde "e para dez?" sao os criterios de lotacao, que existem para
+   isso. A pagina diz isso por escrito e o portao cobra a frase — e cobra tambem
+   que a tabela de lotacao **nao tenha coluna de frente**, porque e assim que a
+   multiplicacao voltaria sem ninguem perceber.
+2. **ESPECIE QUE O BANCO DECLARA AGRESSIVA NAO GANHA LISTA DE COMPANHEIRO.** Na
+   primeira versao o mato-grosso — que a FishBase declara agressivo — servia
+   tetra ember e tetra neon na tabela de quem divide a agua, com uma nota dizendo
+   que aquilo nao era veredito de convivencia. **Nota nao desfaz tabela:** quem
+   le ve a lista, nao a ressalva. E a saida honesta nao era uma lista menor, era
+   nao publicar lista — o esquema recusa compatibilidade como campo justamente
+   porque ela depende de volume, layout e ordem de introducao, e para peixe
+   agressivo e ai que a resposta mora. Agora a ficha conta quantas especies
+   dividem a faixa (18 das 27) e diz por que nao recomenda nenhuma.
+
+### Os dois defeitos que a bancada nao podia ver — e e por isso que a conferencia no ar existe
+
+Os dois foram achados **depois do desembarque**, por `conferir-peixes-no-ar.py`,
+com a bancada verde nas duas vezes.
+
+- **(a) O degrau do meio nao resolvia.** `aquametria_casca_url_se_existir()` pedia
+  a pagina pelo **slug solto**, e `get_page_by_path()` casa o **caminho inteiro**
+  em tipo hierarquico — entao `tetras` nunca achava `/peixes/tetras/`. A bancada
+  dava quatro degraus linkados; o site servia tres, com o do meio em texto e o
+  `BreadcrumbList` com um item a menos. A causa de as duas metades discordarem e
+  a licao: no ar a primeira via (`_aquametria_id`) so responde por pagina que veio
+  do **Sync**, e as cinco do eixo sao criadas pela **casca** — e a bancada
+  respondia essa via para qualquer slug do mapa. Casca 1.7.1, e
+  `render-para-teste.php` passou a imitar as tres vias do site, **inclusive as que
+  falham**: `get_page_by_path` casa caminho inteiro, `get_permalink` devolve URL
+  aninhada, e a via da meta so responde para quem tem arquivo em `conteudo/`.
+- **(b) Tres fichas duplicadas, publicadas e no sitemap.** Na primeira remontagem
+  depois da leva, a busca da pagina existente usava mae + slug concatenados
+  (`tetras/quantos-litros-para-tetra-neon`) para uma pagina que mora em
+  `peixes/tetras/quantos-litros-para-tetra-neon`. A busca falhava e
+  `wp_insert_post` **criava de novo**, com `-2` no fim. Tres paginas finas e
+  duplicadas entraram no sitemap de um dominio recem-nascido — o que gasta o
+  recurso escasso da secao 14.1 — e **nao houve uma linha de erro**: o log do Sync
+  disse "19 aplicado(s)". Casca 1.7.2: a busca passa a usar o caminho do mapa (o
+  mesmo helper da 1.7.1: um lugar so sabe montar caminho) e nasce
+  `recolher_duplicatas()`, que manda para a **lixeira** toda `page` marcada
+  `_aquametria_casca` que o mapa nao reconhece. Tres limites, e sao eles que
+  tornam isso seguro: so pagina que a casca criou e marcou; lixeira e nunca
+  exclusao; e nada e recolhido se o mapa vier vazio ou pela metade, porque
+  limpeza automatica sobre mapa quebrado nao se conserta depois. As tres
+  duplicatas foram recolhidas e devolvem 404.
+
+### Verificacao
+
+- **`ferramentas/teste-peixes.py` (novo): 295 afirmacoes, 0 falha**, um processo
+  `php` por pagina, com toda a aritmetica recomputada do
+  `dados/especies-agua-doce.json` e o mapa pagina->especie **escrito no teste** —
+  ler o mapa do snippet seria perguntar ao snippet qual e a resposta certa, e a
+  proxima leva vai copiar este registro.
+  **A licao dele, e ela e nova nesta fabrica: COMPARE CELULA, NAO PAGINA.** Duas
+  mutacoes deliberadas **passaram** enquanto o portao procurava o numero no texto
+  da pagina, porque o numero errado que elas produziam existia em **outra
+  tabela**: trocar `floor` por `ceil` devolvia 29 onde cabem 28, e o teste achou o
+  "28" dentro de "20 a 28 C". E o mesmo defeito de contar `&#038;` na pagina
+  inteira em vez de dentro do `<script>`.
+  **E o localizador do corpo era `<body>`**, que casa na bancada e devolve vazio
+  no ar, onde o WordPress serve `<body class="wp-singular page-child ...">` —
+  corpo vazio faz toda afirmacao sobre texto reprovar de uma vez.
+- **`ferramentas/mutacoes-peixes.py` (novo): 24 deliberadas, 24 reprovadas**, em
+  tres familias — o numero muda; o numero fica e a ESTRUTURA quebra (a especie
+  agressiva ganha lista, o per capita volta a ser multiplicado, categoria vazia
+  registrada como pagina, `Product` no JSON-LD); e a regua perde o chao (o
+  catalogo do snippet envelhece em relacao ao banco, a colisao de slug volta).
+- **`ferramentas/teste-voz.mjs` foi de 13 para 18 paginas** (293 para 422
+  afirmacoes) e **tres aberturas reprovaram de uma vez**: nenhuma das tres falava
+  na segunda pessoa, e a da categoria abria com "o banco desta ilha", que e
+  vocabulario de dentro da fabrica. Nenhum olho tinha visto; a regua viu.
+- **Colisao de slug consertada antes de existir:** `aquametria_casca_categorias()`
+  chamava de `peixes` a categoria de calculadora do C8, o mesmo slug da secao de
+  nivel 1 desta leva. Como `url_se_existir()` acha a pagina pelo `post_name`, com
+  as duas no ar o hub linkaria uma ao acaso. A pagina do C8 nao existe, entao a
+  troca para `lotacao` nao moveu URL nenhuma — e `teste-peixes.py` tem a
+  afirmacao que impede a colisao de voltar.
+- **Regressao sem uma falha:** `teste-arvore` (com o `ARVORE.md` atualizado),
+  `teste-seo-tecnico` (177), `teste-ga4` (291), `mutacoes-ga4` 13/13,
+  `mutacoes-voz` 20/20, `mutacoes-arvore` 14/14, `mutacoes-c15-regulagem` 13/13, `mutacoes-c12-vitrine` 11/11,
+  `teste-apelidos` (59), `teste-conversor-markdown` (17),
+  `teste-escape-shortcode`, `teste-atualizador-sync` (9), `validar-especies` (36,
+  0 erro), `validar-produtos` (78, 0 erro, os mesmos 9 avisos), `conferir-slugs`,
+  `php -l` em tudo e `conferir-protecao-funcoes`; `teste-navegador-visibilidade-ia`
+  nas cinco calculadoras com o JavaScript **desligado**; e as **nove** paginas da
+  casca e do eixo medidas em Chromium a 360/390/781/782/783/1200 px, **0 px de
+  rolagem horizontal** nas seis larguras e console limpo.
+- **No ar as 20h13Z: `ferramentas/conferir-peixes-no-ar.py` (novo), 103
+  afirmacoes, 0 falha.** A lista de URLs vem do **indice** do sitemap (os dois
+  provedores, `page` e `post`), nunca digitada; a aritmetica e conferida celula
+  por celula no que o **servidor** devolve; cada degrau do `BreadcrumbList`
+  responde 200; a tag do GA4 sobreviveu a troca de versao da casca; e as 18
+  paginas foram varridas para provar que nenhuma das cinco e orfa (16.4f),
+  descontando menu e trilha, que estao em todas.
+
+### O que este bloco NAO fez, escrito para ninguem procurar
+
+- **Nao tocou no catalogo de produto.** 39 dos 78 produtos seguem esperando link
+  de afiliado. Especie nao e produto, e a ficha **diz** por que nao tem link de
+  loja em vez de calar: peixe vivo nao se compra por link de afiliado, e o
+  equipamento sai pelas calculadoras, onde a vitrine ja existe.
+- **Nao moveu URL nenhuma.** Os tres artigos seguem em `/2026/09/08/<slug>/` e as
+  cinco calculadoras seguem na raiz, porque a trava do T2 continua de pe ate a
+  leitura de 16/09.
+- **Nao criou `pauta.md`** (secao 17): 0 escritos, 0 na fila, 0 recusados.
+
+### Fecho de fila
+
+- **Despacho vencido fechado:** a ronda do Clube do Mosaico estava aberta em
+  `dados/despachos.md` com prioridade ALTA depois de ja ter acontecido (14h43Z de
+  12/09, com `ultima_ronda` gravada e o despacho dela escrito). Movido para
+  FECHADOS ao ler a fila — despacho cumprido embaixo de ABERTOS manda a proxima
+  execucao refazer trabalho feito, e e a armadilha que o proprio arquivo registra.
+
+**PROXIMO: a leitura de 16/09 manda agora, e ela ganhou uma pergunta nova.** As
+cinco URLs de hoje sao as primeiras desta ilha com tres niveis, mae publicada e
+`BreadcrumbList` de quatro degraus. Se elas indexarem e a leva de 08/09 continuar
+fora, a hierarquia vira hipotese; se nenhuma das duas indexar, a causa e do
+dominio e nao da pagina. So depois disso sai a leva 2: as quatro fichas de tetra
+que faltam (ember, brilhante, rodostomo, negro), que fecham a categoria, e depois
+`/peixes/corydoras/`, com 4 especies do banco passando no portao.
+
+
 ## 2026-09-06 — Estrutura inicial do repositorio
 
 - Criada a pasta `ilhas/aquametria/` com `snippets/`, `conteudo/`, `dados/`

@@ -11,10 +11,6 @@ Prioridade: `alta` fura a fila da próxima execução do destinatário.
 
 ## ABERTOS
 
-### prioridade ALTA — primeira ronda do Clube do Mosaico
-
-12/09/2026 — SENTINELA — clubedomosaico nunca teve ronda (ultima_ronda: null desde a subida). Fazer a primeira ronda completa na próxima execução, antes de qualquer outra ilha: voz (seção 15 + ilhas/clubedomosaico/VOZ.md), árvore e breadcrumb (seção 16), links internos e órfãos, e a lista mecânica da seção 19.1 com o teto de 5 consertos.
-
 ### prioridade NORMAL — duas linhas de configuração que destravam a medição inteira
 
 12/09/2026 — RAPHAEL — Nada aqui é código, e nenhuma das duas bloqueia bloco: as duas ampliam o que a nuvem consegue **verificar sozinha**, em toda ilha presente e futura.
@@ -29,6 +25,13 @@ Prioridade: `alta` fura a fila da próxima execução do destinatário.
 ---
 
 ## FECHADOS
+
+### prioridade ALTA — primeira ronda do Clube do Mosaico
+
+12/09/2026 — SENTINELA — clubedomosaico nunca teve ronda (ultima_ronda: null desde a subida). Fazer a primeira ronda completa na próxima execução, antes de qualquer outra ilha: voz (seção 15 + ilhas/clubedomosaico/VOZ.md), árvore e breadcrumb (seção 16), links internos e órfãos, e a lista mecânica da seção 19.1 com o teto de 5 consertos.
+
+**FECHADO em 12/09/2026, e quem fechou não foi quem escreveu:** a ronda aconteceu às 14h43Z do mesmo dia — `ultima_ronda: 2026-09-12T14:43Z` no cabeçalho do `ESTADO.md` da ilha, e o `DESPACHO DA SENTINELA — 12/09/2026` no `PROMPT.md` dela conta o que foi medido: as 11 URLs e os 50 links internos em 200, nenhuma página órfã, os 12 exemplos da F1 recalculados à mão, e os dois itens de coerência da recomendação já cumpridos. **Este bloco continuou aqui embaixo de ABERTOS por horas depois de cumprido**, com prioridade ALTA, mandando a próxima Sentinela refazer uma ronda que já existia — que é exatamente a armadilha que o despacho do GA4 registra ter caído: resumo velho lido como fato. Fechado pela Fundação na execução das 19h20Z, ao ler a fila antes de escolher a ilha.
+
 
 **Despacho fechado nunca é apagado** — ele fica aqui inteiro, com a linha de fechamento
 dentro dele. Esta seção nasceu em 12/09/2026, junto com o primeiro fechamento: o arquivo
