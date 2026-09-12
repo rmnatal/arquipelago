@@ -5871,3 +5871,179 @@ E a partir de hoje a leva nasce **medida**: a tag esta no ar, entao a pergunta
 "esta leva trouxe visita, e de onde" tem resposta em `ferramentas/ga4.py` no dia
 em que a credencial existir — em vez de ser opiniao, como foi para as treze
 primeiras.
+
+---
+
+## 2026-09-12, 22hZ — T4 LEVA 2: a categoria `/peixes/tetras/` FECHA em 7 de 7, e três defeitos que já estavam no ar saem junto (peixes 1.1.0, casca 1.7.3, manifest revisão 62)
+
+**O QUE FOI AO AR.** Quatro URLs novas no eixo `/peixes/`, todas de nível 3 sob
+`/peixes/tetras/`: **tetra ember** (`hyphessobrycon-amandae`), **tetra-brilhante**
+(`hemigrammus-erythrozonus`), **rodóstomo** (`hemigrammus-rhodostomus`) e
+**tetra-negro** (`gymnocorymbus-ternetzi`). Com elas a categoria fecha — as 7
+espécies que o banco sustenta com duas fontes de corpos distintos têm ficha — e a
+ilha vai de **18 para 22 URLs**. Nenhum endereço foi movido. Revisão 61 aplicada
+no `/status` em **um** disparo; revisão 62 é a deste fecho.
+
+SERP das quatro consultas classificada em 12/09/2026, antes de a página nascer,
+cada uma com o `porque` escrito no registro do snippet (14.9). As quatro são
+ALVO. A mais disputada é a do tetra-negro, que tem a Petz no top — e segue ALVO
+porque um domínio forte não é "quase tudo", e o que ele serve é blog de varejo
+sem número atribuído: a mesma página de resultados dá 60 L, 70 L e 112 L.
+
+**O BLOCO COMEÇOU PELO CONSERTO, e a seção 18.5 é quem manda nisso.** Antes de
+escrever a primeira linha, a medição no ar das cinco URLs da leva 1 devolveu
+**zero `<meta name="description">` e zero tag `og:`** — com as 13 antigas
+servindo a delas normalmente, que é o que prova que o defeito não era do snippet
+de SEO. A causa: a lista de páginas do `gerar-metas-descricao.py` era **digitada**,
+com um comentário prometendo que "página nova entra aqui no mesmo commit — a
+recusa é o alarme". Alarme digitado não dispara sozinho. Agora a lista vem do
+**próprio snippet que cria as páginas** (`ferramentas/listar-paginas-do-eixo.php`)
+e o gerador recusa nas duas direções: página sem texto e texto sem página. Três
+controles negativos, incluindo o caso real — registrar uma página nova e esquecer
+a descrição. As 9 URLs do eixo servem description e `og:` no ar, medido.
+
+**DUAS REGRAS DE ESCOPO DE AFIRMAÇÃO, as duas descobertas ao renderizar a leva 2.**
+
+1. **BASE não é FRENTE.** A frase mestra da ficha terminava sempre em *"e a fonte
+   declara a BASE, não o litro"*. Era verdade nas três fichas da leva 1 — as três
+   têm `base_minima_cm` — e é **falsa em 14 dos 36 registros** do banco, onde a
+   fonte declara só o comprimento mínimo e nunca disse uma palavra sobre o fundo.
+   O rodóstomo é o primeiro caso publicado: uma coleta limpa em 12/09, restrita ao
+   domínio, devolveu *"no mínimo 90 cm de comprimento"* e nada mais — e a mesma
+   busca ofereceu um fundo "típico de tetras sul-americanos" que **não entrou**,
+   porque resposta que não cita o documento é paráfrase (seção 8). Agora a página
+   diz COMPRIMENTO, não serve as duas tabelas que dependem do fundo, e **declara a
+   ausência e a causa** em vez de encolher calada. Sumiço silencioso de tabela é a
+   forma disfarçada do "silêncio parece defeito" da seção 7.
+2. **Espécie de cardume sem o número do cardume não vira ficha.** O título deste
+   eixo é "quantos litros para um cardume de X" e a linha mestra abre pela frase
+   que nomeia o cardume mínimo; sem o número, o código caía num ramo que escrevia
+   a frase sem ele e abria a tabela em **um** exemplar, numa página que duas telas
+   abaixo diz que a espécie só vive em grupo. A régua já existia no esquema, no
+   portão da C8, desde que o banco nasceu — faltava a página cobrar o mesmo.
+
+**CATÁLOGO E FICHA VIRARAM DUAS RÉGUAS COM DOIS NOMES, e o erro do meio do
+caminho vale mais que o acerto.** A primeira versão pôs a regra do cardume no
+portão do **catálogo**, e a contagem da seção caiu de 27 para 26: a coridora
+sterbai sumiu da contagem, da tabela da categoria e da lista de quem divide a
+mesma água — **três lugares onde o dado dela é bom** — para resolver um problema
+de outra página. Apertar o portão errado tira da tela informação verdadeira.
+Agora o esquema declara `catalogo-de-especies` (27 dos 36) e `pagina-especie`
+(o catálogo mais a regra do cardume, 26 dos 27), e o gerador imprime as duas
+listas, registro por registro.
+
+**O BANCO: o tetra-negro deixou de ter buraco.** `cardume_minimo` era `null` com
+a observação dizendo que *"nenhuma das duas fontes declara"*. Dizia isso porque a
+coleta de 09/09 tinha perguntado outra coisa, não porque a fonte fosse muda: duas
+passadas restritas à FishBase em 12/09, com perguntas diferentes e **nenhuma
+carregando o número que se queria confirmar**, devolveram "grupos de 5 ou mais" e
+o aquário mínimo de 60 cm. A mesma resposta trouxe, sem ser perguntada, porte
+7,5 cm, pH 6,0–8,0, dH 5–19 e 20–26 °C, idênticos ao que o registro já guardava
+desde 09/09 — que é a conferência de que a busca leu a ficha desta espécie. O
+60 cm entra como **divergência** contra os 75 cm do Seriously Fish, e o publicado
+continua 75: as duas réguas do esquema apontam para o mesmo lado, o que é raro —
+a tabela `dominio_por_campo` põe o compêndio acima da base científica em campo de
+manutenção, e a assimetria de custo manda ficar com o maior.
+
+**ACENTUAÇÃO: `nomes_populares_br` é TEXTO DE TELA, e o banco inteiro estava sem
+acento.** O resto do arquivo é nota interna e é escrito sem acento de propósito;
+este campo nasceu sem acento por arrasto e ficou três levas assim, invisível
+porque as três primeiras fichas (tetra neon, neon cardinal, mato-grosso) são
+nomes que o português não acentua. **Já estava no ar:** a tabela de companheiros
+da página do tetra neon servia `peixe-lapis` e `acara-bandeira`. 24 nomes em 15
+dos 36 registros acentuados, com tabela **declarada** no esquema e regra **E17**
+no validador — declarada e não heurística, porque "parece que falta acento" é a
+adivinhação por vizinhança que a seção 8 proíbe. O que ela não pega está escrito
+no próprio esquema. Três controles negativos em `testar-validador-especies.py`.
+
+**ARREDONDAMENTO: as duas réguas discordavam e concordaram por sorte.** O Python
+e o C arredondam o meio para o par (`'%.1f' % 47.25` → `47,2`) e o
+`number_format` do PHP para cima (`47,3`). Durante a leva 1 as duas concordaram em
+295 afirmações porque **nenhum número daquelas três fichas caiu no meio**. A leva
+2 pôs três na tela de uma vez — 45 × 30 × 35 / 1000 = 47,25 L no ember, 15 × 3,3
+× 1,5 = 74,25 L no brilhante e 5 × 7,5 × 1,5 = 56,25 L no negro. Quem está certo
+é a página, e isso é decisão e não empate desfeito para o teste ficar verde:
+"arredonda para cima no 5" é o que se ensina na escola brasileira.
+
+**A RODA DAS IRMÃS — o defeito que só a conferência NO AR viu (casca 1.7.3).**
+Com sete filhas e um teto de quatro irmãs, a casca varria o mapa do começo e
+parava nas quatro primeiras: **toda página escolhia as mesmas quatro do topo**, e
+rodóstomo e tetra-negro não eram irmãs de ninguém. No ar elas ficaram com **um**
+link interno apontando para elas, o da mãe, contra os sete da primeira da lista —
+e o 16.4(f) cobra dois. Teto com ordem fixa não reparte: concentra. Agora a lista
+começa **depois de mim e dá a volta**; cada página é citada por exatamente quatro
+irmãs, medido no ar, e a ordem da roda continua sendo a da intenção de busca, que
+é a afinidade que o 16.4(c) pede. Era inerte com três fichas e passou três blocos.
+**E a contagem de links de entrada desceu para a bancada**: ela só existia no
+`conferir-peixes-no-ar.py`, e é por isso que o defeito foi descoberto depois do
+desembarque. A próxima leva reprova antes de publicar.
+
+**TRÊS LISTAS DIGITADAS VIRARAM CONTAGEM**, e as três são a mesma cicatriz
+("número de tela nasce contado") aplicada a um portão em vez de a uma frase: a
+lista de páginas do gerador de descrições, o `13 === count( $metas )` do
+`teste-seo-tecnico.php` (que continuou **verde** enquanto cinco URLs iam ao ar sem
+description, porque 13 ainda era 13) e o `18 URLs no sitemap` do conferidor no ar.
+
+**`conferir-entidades` estava VERMELHO DE FORMA PERMANENTE** e ninguém tinha
+notado: ele varria o fonte inteiro e acusava a casca por ela **documentar**, num
+comentário de bloco, a cicatriz de 08/09/2026 — para explicar o defeito, o
+comentário precisa escrever a entidade. Portão sempre vermelho é portão que
+ninguém lê, que é a versão barulhenta do portão que envelhece calado. Agora ele
+tira os comentários PHP antes de contar, e só antes de contar: o portão 2, que
+mede o que o navegador **recebe**, não foi tocado. Controle negativo feito.
+
+**VERIFICAÇÃO — 0 falha em tudo.** `teste-peixes` **732 afirmações** (era 295),
+agora sobre nove páginas, um processo por página, com a aritmética recomputada do
+banco e a comparação célula a célula; `mutacoes-peixes` **32 de 32** (eram 24),
+com oito novas — e uma delas **passou na primeira escrita**, porque afrouxar a
+régua do cardume não muda nada num mundo onde nenhuma ficha depende dela: teve de
+**produzir o mundo**, registrando a coridora sterbai junto, e virou duas mutações
+que medem metades diferentes. `teste-voz` **518 afirmações em 22 páginas** (era
+422 em 18); `teste-navegador-arvore` **392 medições em 22 páginas × 6 larguras**
+(era 258 em 13), 0 px de rolagem horizontal; `teste-seo-tecnico` 285; `teste-ga4`
+360 — e foi ele que pegou o manifest declarando casca 1.7.2 com a constante em
+1.7.3; `validar-especies` 36 registros, 0 erro; `testar-validador-especies` 22;
+`teste-arvore`, `apelidos` 59, conversor 17, escape, atualizador 9,
+`conferir-slugs`, `php -l`, `conferir-protecao-funcoes`, `conferir-entidades`; e
+as baterias antigas de mutação rodadas inteiras para provar que nenhuma virou
+inerte — voz 20/20, árvore 14/14, GA4 13/13, C15 13/13, C12 11/11.
+
+**NO AR, às 22hZ:** `conferir-peixes-no-ar.py` **227 afirmações, 0 falha** (era
+103), com a lista de URLs vinda do índice do sitemap e não digitada — as nove em
+200, a aritmética conferida célula a célula no que o **servidor** devolve, cada
+degrau do `BreadcrumbList` respondendo 200, a description medida no ar em todas as
+nove, e as 22 páginas varridas para provar que nenhuma é órfã.
+
+**RECEITA:** 39 dos 78 produtos seguem esperando link de afiliado. Este bloco não
+tocou catálogo. Pauta da seção 17: `pauta.md` ainda não existe — 0 escritos, 0 na
+fila, 0 recusados.
+
+### ABERTO E NOMEADO
+
+1. **Para onde `GT-PL9DD7KW` roteia** — humano, e a página vista pode estar
+   chegando duas vezes. Não mudou.
+2. **O Tempo Real do GA4** não se lê deste ambiente por falta de `GOOGLE_SA_B64`.
+   Não mudou.
+3. **A ilha não tem página de privacidade.** Não mudou, e com a tag do GA4 no ar
+   e links de afiliado publicados isso passa a ser dívida de verdade, não detalhe.
+4. **O `atualizar-manifest.py` avisa "fora do manifest" e SEGUE.** Sobram 22
+   arquivos fora — 21 ferramentas mais os README e o `dados/indexacao.md`. O
+   `listar-paginas-do-eixo.php` deste bloco **entrou**. O resto do diagnóstico do
+   bloco anterior continua valendo.
+
+### PRÓXIMO PASSO DESBLOQUEADO
+
+**`/peixes/corydoras/` — e a contagem mudou.** O `ESTADO.md` anterior dizia "4
+espécies do banco passando no portão"; são **3** (panda, paleatus, aeneus), porque
+a coridora sterbai declara convivência "grupo" **sem número** e o portão de página
+agora cobra isso. Três é exatamente o mínimo do 16.5, então a categoria nasce —
+mas sem folga nenhuma, e a leva seria de 4 URLs (a categoria e as três fichas).
+**Duas saídas, e a primeira é melhor:** colher o cardume mínimo da sterbai por
+busca restrita, do mesmo jeito que o do tetra-negro foi colhido hoje, e a
+categoria nasce com 4 filhas e folga; ou publicar com 3.
+
+Antes disso, vale conferir se a leitura de 16/09 já tem o que responder: as nove
+URLs do eixo são as únicas desta ilha com três níveis, mãe publicada e
+`BreadcrumbList` de quatro degraus. **Mas isso não trava leva nenhuma** — a ilha
+tem 22 URLs, está abaixo do piso de 40 da seção 21, e abaixo do piso zero
+impressão não é informação. Teto da 21.4 nesta semana: **2 levas de 3 usadas**.

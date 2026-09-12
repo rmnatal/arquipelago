@@ -68,6 +68,8 @@ Filha de nível 3 = a ficha da espécie, com o número que ninguém mais dá. **
 
 **O que NÃO se faz nesta camada, e está escrito no snippet:** multiplicar o derivado per capita (frente mínima ÷ cardume mínimo) para estender o cardume. Para o neon daria 120 cm para dez peixes, que nenhuma fonte sustenta. Quem responde "e para dez?" são os três critérios de lotação. `ferramentas/teste-peixes.py` tem afirmação para isso e `ferramentas/mutacoes-peixes.py` tem a mutação que a exercita.
 
+**A RODA DAS IRMÃS, e ela é regra de malha, não detalhe de casca (12/09/2026).** O cluster tem teto de quatro irmãs (16.4c) e varria o mapa do começo: toda página escolhia as mesmas quatro do topo, e as duas últimas da categoria não eram irmãs de ninguém — no ar, **um** link interno apontando para elas contra os sete da primeira, e o 16.4(f) cobra dois. **Teto com ordem fixa não reparte: concentra.** A lista passa a começar depois de mim e dar a volta. Era inerte com três filhas, e é o que qualquer categoria desta ilha vai encontrar ao passar de quatro.
+
 **E espécie que o banco declara agressiva não ganha lista de companheiro** — a ficha conta quantas espécies dividem a faixa de temperatura e diz por que não recomenda nenhuma. O esquema do banco recusa compatibilidade como campo justamente porque ela depende de volume, layout e ordem de introdução.
 
 Portão da seção 9 conferido nas sete: cada ficha nomeia 10 ou mais registros reais do banco e traz tabelas calculadas na hora de imprimir.

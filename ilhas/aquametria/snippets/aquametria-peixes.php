@@ -2744,7 +2744,7 @@ function aquametria_peixes_ficha_html( $slug ) {
 		   dependem dele não saem — e a página DIZ que não saíram e por quê. A
 		   versão anterior deste código simplesmente encolhia, e quem lesse não
 		   tinha como distinguir "a ilha não sabe" de "a ilha esqueceu". */
-		$html .= '<p class="aqm-px-sem-fundo"><strong>O fundo do aquário esta página não tem como dizer, e isso é o que a fonte declarou — não um buraco nosso.</strong> '
+		$html .= '<p class="aqm-px-sem-fundo"><strong>O fundo do aquário, esta página não tem como dizer — e isso é o que a fonte declarou, não um buraco nosso.</strong> '
 			. 'Para o ' . esc_html( $nome ) . ' a fonte publica o comprimento mínimo e para aí: não há largura declarada por ninguém. '
 			. 'Sem os dois lados do chão não existe litro, então aqui não sai a tabela de litros por altura nem a de quantos cabem no aquário mínimo — elas sairiam de um fundo que a gente teria inventado. '
 			. 'O que a página responde com o que está medido é a outra metade, e ela está logo abaixo: quantos litros o cardume pede pelas duas réguas brasileiras de lotação, que partem do comprimento dos peixes e não do chão do aquário.</p>';

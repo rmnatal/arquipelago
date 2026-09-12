@@ -4,7 +4,7 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 61,
+  "revisao": 62,
   "atualizado_em": "2026-09-12",
   "estado": "fundacao",
   "desembarque": {
@@ -130,7 +130,7 @@
       "ativo": true,
       "versao": "1.1.0",
       "publicar": true,
-      "sha256": "5885ccd5bc520e93ab1243d08c83b6e75b668debf30c05b1f3665055a4cd9828",
+      "sha256": "2368d39b176fdfa67b379f34addab644d2967353a4e5038860270c41f5fbba2f",
       "descricao": "T4, levas 1 e 2 da malha: NOVE URLs no eixo que a Bussola verificou ABERTO e que e o de maior volume de busca da ilha — 'quantos litros para X peixes'. Nivel 1 /peixes/, nivel 2 /peixes/tetras/ e SETE fichas de nivel 3, que FECHAM a categoria: tetra neon, neon cardinal, mato-grosso (leva 1) e tetra ember, tetra-brilhante, rodostomo e tetra-negro (leva 2). A TESE: as fontes declaram a BASE do aquario, nao o litro, e as respostas da SERP brasileira dao litro sem fonte e discordam entre si — medido consulta a consulta em 12/09/2026, com o 'porque' de cada pagina escrito no registro. A pagina serve a base declarada com nome e data ao lado das duas reguas brasileiras de lotacao, que discordam em quatro vezes, com a atribuicao de cada extremo. Nenhum numero e digitado: tudo sai do catalogo gerado do banco de especies por ferramentas/gerar-catalogo-especies.py e e contado na hora de imprimir. O derivado per capita (frente minima / cardume minimo) sai na tela como leitura e NUNCA e multiplicado. Especie que o banco declara AGRESSIVA nao ganha lista de companheiro. DUAS REGRAS NOVAS NA 1.1.0, e as duas sao de ESCOPO de afirmacao. (1) BASE nao e FRENTE: a frase mestra so diz 'a fonte declara a BASE' quando o registro tem os dois lados do chao; em 14 dos 36 registros do banco a fonte declara so o COMPRIMENTO, e ai a pagina diz COMPRIMENTO, nao serve as duas tabelas que dependem do fundo e DECLARA a ausencia e a causa em vez de encolher calada. O rodostomo e o primeiro caso publicado. (2) Especie de cardume sem o numero do cardume nao vira ficha: aquametria_peixes_pode_virar_ficha() recusa, com a mesma frase que o esquema usa no portao da C8 desde que o banco nasceu. Nao tem link de loja, e a pagina diz por que (especie nao e produto); o equipamento sai pelas calculadoras, onde a vitrine existe. JSON-LD Article + FAQPage nas fichas e CollectionPage + ItemList nas listagens, no wp_head na prioridade 21 — nunca no retorno do shortcode. Quem cria as paginas, com pai, e a casca 1.7.0."
     }
   ],
@@ -769,7 +769,7 @@
       "id": "conferir-peixes-no-ar",
       "arquivo": "ferramentas/conferir-peixes-no-ar.py",
       "publicar": false,
-      "sha256": "03e5267bfa51282c033e0700d8eadda0b455ec4d4d52a2bda33469e7f06a0916",
+      "sha256": "d1bae9bedba61eee31ff614ca28bbbe63f2597765afa2f5a6f1fb14769ebfe23",
       "descricao": "Confere a leva 1 do eixo /peixes/ no HTML SERVIDO, nao no repositorio: 103 afirmacoes, 0 falha em 12/09/2026. A lista de URLs vem do INDICE do sitemap (os dois provedores, page e post), nunca digitada, e toda requisicao leva ?v=<hora> por causa do cache duplo da secao 4. A aritmetica e a MESMA do teste-peixes.py, importada de la para a conta morar num lugar so; o que muda e o sujeito. Foi ela que achou os DOIS defeitos que a bancada nao podia ver: o degrau de nivel 2 da trilha que nao resolvia (url_se_existir pedia o slug solto e get_page_by_path casa o caminho inteiro) e as TRES FICHAS DUPLICADAS com '-2' que a remontagem publicou e mandou para o sitemap, sem uma linha de erro. Mede ainda que cada degrau do BreadcrumbList responde 200, que a tag do GA4 sobreviveu a troca de versao da casca, e conta as ligacoes internas das 18 paginas para provar que nenhuma das cinco e orfa (16.4f) — descontando menu e trilha, que estao em todas."
     },
     {

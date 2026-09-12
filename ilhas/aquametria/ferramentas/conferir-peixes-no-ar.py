@@ -124,6 +124,20 @@ def main():
            all("&#038;" not in b for b in re.findall(r"<script[^>]*>(.*?)</script>", html, re.S)))
         ok("%s: a tag de medicao continua no ar" % slug,
            "G-8Y26XFZF39" in html)
+
+        # A META DESCRIPTION, MEDIDA NO AR — o defeito que a leva 2 achou.
+        #
+        # As cinco URLs da leva 1 estavam no ar servindo ZERO description e zero
+        # tag og:, enquanto as 13 antigas serviam a delas. A bancada nao podia
+        # ver: o que estava errado era a LISTA do gerador, e a lista estava certa
+        # para as 13 que ela conhecia. Entao a afirmacao mora aqui, onde o
+        # sujeito e o que o servidor devolve, e cobra o texto inteiro e nao a
+        # presenca da tag: tag vazia passaria por um `in html`.
+        desc = re.search(r'<meta name="description" content="([^"]*)"', html)
+        ok("%s: serve meta description de 120 a 160 caracteres" % slug,
+           desc is not None and 120 <= len(desc.group(1)) <= 160,
+           "%d caracteres" % (len(desc.group(1)) if desc else 0))
+        ok("%s: serve og:description" % slug, "og:description" in html)
         ok("%s: o corpo nao comeca por metadado YAML" % slug,
            not TP.texto(TP.corpo(html)).startswith("---"))
 
