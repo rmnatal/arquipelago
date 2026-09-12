@@ -98,6 +98,8 @@ Decisão do Raphael, 08/09/2026: ser recomendado pelas IAs vale tanto quanto ran
 
 ## 6. Padrão de interface da ilha
 
+> Cor, fonte, escala e componentes desta ilha não moram mais aqui: moram em `ilhas/<ilha>/DESIGN.md`, e quem manda neles é a **seção 22**. Esta seção 6 continua valendo para o que é comportamento de interface, não para token.
+
 - **Menu hambúrguer no celular** é padrão fixo do Arquipélago. Sem custo de SEO se for feito certo: os links existem no HTML servido, são `<a href>` de verdade dentro de `<nav>`, o botão é `<button>` com `aria-expanded` e `aria-controls`, e o teclado funciona. Link escondido por CSS continua sendo rastreado; a preocupação com conteúdo oculto vale para conteúdo, não para navegação.
 - **Favicon próprio desde o dia 1.** `remove_action('wp_head','wp_site_icon')` e imprimir no `wp_head` um `<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,...">` com o símbolo da ilha embutido, mais `apple-touch-icon`. **Ícone padrão do WordPress na aba = bloco reprovado.**
 - **Vitrine de produto dentro do resultado**, desde a primeira ferramenta: carrossel de cartões com foto, marca, modelo, **a especificação que fez o produto entrar**, faixa de preço com data da coleta e botão de loja. `scroll-snap` em CSS puro, sem biblioteca; cartões são links de verdade, não `div` com `onclick`; `loading="lazy"`, `width`/`height` declarados, `alt` descritivo.
