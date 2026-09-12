@@ -155,6 +155,12 @@
       "descricao": "Mede o que o SITE serve, nao o que o repositorio guarda: abre as nove URLs com curl e afirma sobre o HTML SERVIDO. Existe porque 'aplicado com sucesso' no log do Sync nao e evidencia de nada (secao 8) e commit sem verificacao no ar nao e entrega (secoes 4 e 18.4). 102 afirmacoes: HTTP 200, a marca no HTML, o src igual ao arquivo que o Raphael subiu, zero texto ao lado do logo, alt com o nome, medida 78x52 declarada, o logo uma vez por pagina, o wordmark em texto de 1.2.0 fora de toda pagina, zero &#038; dentro de <script>, a folha servida mandando 52 px, o cabecalho ainda claro, e as tres URLs da imagem respondendo PNG. REGUA PROPRIA: a URL e a medida estao literais no arquivo, copiadas do despacho, e nao lidas da constante da casca — senao as duas metades errariam juntas. Todo endereco leva ?v= porque o cache de borda faz concluir que nada mudou. NUNCA e publicada no site."
     },
     {
+      "id": "conferir-tag-no-navegador",
+      "arquivo": "ferramentas/conferir-tag-no-navegador.mjs",
+      "sha256": "4620020112ba075e04701d59360d1f093c7a0d5381b5c62e7c991a1bfbb0cd34",
+      "descricao": "Abre a ilha num navegador de verdade e mede o DISPARO do GA4 saindo — a requisicao de coleta com o tid desta ilha e o codigo que o Google devolve. Existe porque o conferir-no-ar.py usa curl, e curl nao executa uma linha de JavaScript: ele prova que a tag ESTA na pagina, nunca que a visita CHEGA na propriedade. Entre as duas cabem o script bloqueado, o ID de propriedade apagada, o erro de JavaScript de outro trecho derrubando o gtag antes do config e o consentimento herdado de plugin — nenhuma aparece no HTML e todas terminam em relatorio zerado. Mede tambem UM page_view por pagina, que e onde a contagem dupla do Site Kit apareceria. NUNCA FOI VISTO APROVANDO, e isto esta escrito no cabecalho dele: a nuvem das rotinas nao o executa porque www.googletagmanager.com responde 403 ao CONNECT (politica de egresso, nao intermitencia) e porque o Chromium nao atravessa o tunel nem para o dominio liberado. Roda no Chrome do Raphael, ou na nuvem no dia em que os dois hosts entrarem na rede Personalizada. Bancada: nunca vai para o site."
+    },
+    {
       "id": "gerar-favicon",
       "arquivo": "ferramentas/gerar-favicon.php",
       "sha256": "f35b5c897a33be98d58ef2a9fbad44d10f69a1da0671f2e8773a968d1e74f363",

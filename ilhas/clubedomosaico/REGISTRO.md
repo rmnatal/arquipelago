@@ -1189,3 +1189,127 @@ normal, de 5 a 10 URLs, sem esperar medição.
   própria página — e o portão desta execução já sabe medir isso. A ilha está
   ABAIXO DO PISO da seção 21 (11 URLs, 21 dias não passaram), então a leva sai
   no ritmo normal, de 5 a 10 URLs, sem esperar medição.
+
+---
+
+## 12/09/2026 17h37Z — A TAG DO GA4 NO AR: a ilha começa a ser medida
+
+**Despacho ALTA de 12/09/2026 para a FUNDAÇÃO** (`dados/despachos.md`), na parte
+desta ilha. Casca **1.7.0**, manifest na **revisão 13**, `/status` com revisão 13
+às 17h37Z, em **UM disparo**.
+
+- **O MARCO ZERO DESTA ILHA É 12/09/2026 17h37Z.** Antes disso não existe dado de
+  audiência, e isso é a metade que faltava para a seção 5 ser executável: a ilha
+  nasceu em 10/09 e serviu nove, depois onze URLs **sem tag nenhuma**. Qualquer
+  leitura feita até hoje devolveria zero, e aquele zero media **a ausência da
+  tag** — nunca a ausência de visita. A seção 5 manda o relatório dizer qual dos
+  dois é; até hoje a resposta desta ilha era sempre o primeiro.
+
+- **A prioridade 8 no `wp_head` não é gosto, é o único número que cabe.** O
+  despacho pede a tag o mais cedo possível **e** proíbe que ela passe na frente
+  do `<title>`, da meta descrição e do JSON-LD. As duas metades juntas dão
+  exatamente 8: depois do robots (4), do ícone (5), do `Organization` (6) e da
+  trilha (7), e **antes da folha de fontes (20)**, que é o único recurso
+  bloqueante desta casca. O `async` faz o resto — o LCP desta ilha é texto.
+
+- **O ID é constante no topo e é conferido antes de ser impresso.** ID de medição
+  digitado no meio do código é ID que alguém copia junto com a casca para a ilha
+  4 e só descobre trocado quando o relatório do mês vier somando duas ilhas.
+  `cdm_casca_ga4_html()` só devolve markup se o ID casar com `G-` + maiúsculas e
+  dígitos: meia tag no ar não mede nada **e** ainda faz o console falar.
+
+- **A página de Privacidade mudou na mesma versão, e isso não foi zelo.** Ela
+  prometia, com todas as letras, que "se um dia houver medição de audiência, esta
+  página será atualizada *antes* de ela ser ligada, com a data da mudança".
+  Ligar a medição e deixar a promessa de pé seria publicar uma frase falsa na
+  página que existe justamente para não ter nenhuma. Sem banner de consentimento
+  (22.4).
+
+- **ACHADO QUE NÃO É DESTE BLOCO, E É PARA O RAPHAEL: o Site Kit by Google
+  1.187.0 está instalado e ativo nesta ilha e não mede nada.** Medido no HTML
+  servido **antes** de mudar qualquer coisa: zero ocorrência de `gtag(` e zero do
+  ID da ilha; o que ele deixa na página é uma meta `generator` e um
+  `dns-prefetch`. Plugin desconectado ocupando uma linha de `<head>`. O risco não
+  é hoje: no dia em que alguém o conectar pelo wp-admin, a propriedade ganha um
+  **segundo dono de tag** e toda sessão passa a ser contada duas vezes **sem uma
+  coisa mudar na tela**. Quem acusa isso é uma afirmação nova do
+  `conferir-no-ar.py`, que conta os inicializadores de `gtag` no HTML servido.
+
+- **DEFEITO MECÂNICO CONSERTADO NA MESMA PASSADA (seção 19), e ele mordeu esta
+  execução.** `atualizar-manifest.py` parava no **primeiro** achado, e o `return`
+  do descasamento de versão escondeu a conferência de ferramenta órfã: o
+  `mutacoes-ga4.py` recém-escrito ficou fora do manifest **sem uma linha de
+  aviso**, numa execução em que a versão do snippet acabara de subir — que é
+  exatamente quando ferramenta nova nasce. O portão existia, estava certo e era
+  **inalcançável**: a conferência que roda primeiro escondia a que interessava.
+  As quatro conferências agora acumulam e a lista sai inteira.
+
+- **VERIFICAÇÃO.** `teste-casca.php` de **409 para 539 afirmações**, 0 falha, com
+  a **ordem** medida e não só a presença — portão que só pergunta "existe gtag na
+  página?" fica verde com a tag no lugar errado, que é o único jeito de esta
+  mudança fazer mal. `mutacoes-ga4.py` novo: **14 de 14 reprovadas**, em três
+  famílias (a tag some ou sai pela metade; a tag fica e está errada — ID de outra
+  ilha, ID digitado ao lado da constante, `config` discordando do `src`, tag
+  dobrada, que é o caso Site Kit; e a tag certa no lugar errado — sem `async`,
+  antes do JSON-LD, depois das fontes). **Uma mutação reprovou pelo portão errado
+  na primeira rodada e foi reescrita:** ela trocava a frase nova da privacidade
+  *pela* velha, então morria na trava da frase nova e deixava sem medida a trava
+  que interessa — a que mede a **ausência** da promessa antiga. Agora ela
+  acrescenta o parágrafo velho sem tirar o novo, que é como isso acontece de
+  verdade. Regressões sem uma falha: f1 67, f2 72, prestação 5 em 729 estados,
+  `validar-banco`, e as mutações antigas (f1 27/27, f2 20/20, rejunte 12/12,
+  árvore 20/20, voz 24/24, prestação 11/11) — nenhuma virou inerte. `php -l` limpo.
+
+- **NO AR às 17h37Z:** `conferir-no-ar.py` de **231 para 334 afirmações** no HTML
+  **servido**, 0 falha. As onze URLs com a tag uma vez só dentro do `<head>`, o
+  ID desta ilha, o `async`, o `config` batendo com o `src`, a ordem conferida no
+  que o **servidor** serve, o `gtag` como **único** script de terceiro, **um**
+  inicializador e não dois, e a página de Privacidade com a frase nova, a data, e
+  a promessa antiga **medida como ausente**.
+
+- **O TERCEIRO CRITÉRIO DO DESPACHO FICOU ABERTO, e não por falta de tentativa.**
+  O Tempo Real do GA4 não foi confirmado. Duas causas independentes, as duas
+  medidas e **repetidas na mesma execução**, como a seção 20.2 exige:
+  1. **Sem credencial.** `ferramentas/ga4.py` pede `GOOGLE_SA_B64`,
+     `GOOGLE_SA_JSON` ou `GOOGLE_SA_FILE`, e o ambiente desta rotina não tem
+     nenhuma das três (zero variável `GOOGLE*`). A conta de serviço já é Leitor
+     na conta `Arquipélago`: falta a **variável**, não a permissão.
+  2. **`www.googletagmanager.com` está fora da lista de egresso.** 403 ao
+     CONNECT, cinco vezes, com `clubedomosaico.com.br` em 200 na mesma passada —
+     é **política**, e não a intermitência de túnel da seção 20.2, e a regra é
+     nomear o host barrado em vez de insistir. A consequência é maior que o item:
+     **nenhuma verificação de tag por navegador a partir da nuvem pode funcionar**
+     enquanto esse host estiver barrado, porque o navegador não baixaria o
+     `gtag.js`. De quebra, o Chromium não atravessa este túnel nem para o domínio
+     liberado (`ERR_CONNECTION_RESET` em 3 tentativas, `ws_closed_mid_exchange` no
+     proxy, `curl` em 200 no mesmo minuto).
+
+- **Nasceu mesmo assim `ferramentas/conferir-tag-no-navegador.mjs`**, que abre a
+  ilha num navegador e mede o **disparo saindo** (o `tid`, o código que o Google
+  devolve, **um** `page_view`, o console limpo). O `conferir-no-ar.py` usa `curl`
+  e `curl` não executa uma linha de JavaScript: ele prova que a tag **está** na
+  página e nunca que a visita **chega** na propriedade. O arquivo diz no próprio
+  cabeçalho que **nunca foi visto aprovando**, porque ferramenta que ninguém viu
+  rodar é promessa.
+
+- **O que fecha o item é configuração, não código:** `www.googletagmanager.com` e
+  `*.google-analytics.com` na rede Personalizada do ambiente das rotinas, junto
+  com os domínios das ilhas que já estão lá, e a credencial da conta de serviço
+  na variável de ambiente. Até lá, quem confirma o Tempo Real é o Raphael, no
+  Chrome dele. **E o que NÃO se fez, escrito para ninguém ter a ideia:** mandar
+  um evento pelo Measurement Protocol para "confirmar" a medição seria inventar a
+  visita que se queria comprovar e sujar a série com uma sessão que nunca
+  existiu. Zero medido é dado; zero fabricado é mentira.
+
+- **`dados/audiencia.md` nasceu** com o marco zero e com esta não-medição escrita
+  como linha da série — que é o que a seção 5 manda quando não se conseguiu medir.
+
+- **Receita:** 10 dos 10 itens do banco seguem esperando link de afiliado e 10
+  sem imagem; este bloco não tocou catálogo. Pauta da seção 17: `pauta.md` ainda
+  não existe — 0 escritos, 0 na fila, 0 recusados.
+
+- **PRÓXIMO PASSO:** o bloco **4c**, fichas de categoria de material, que já era
+  o próximo antes deste despacho furar a fila e continua sendo. A ilha está
+  ABAIXO DO PISO da seção 21 (11 URLs), então a leva sai no ritmo normal, de 5 a
+  10 URLs, sem esperar medição — e agora, pela primeira vez, com a série de
+  audiência correndo por baixo dela.
