@@ -1361,6 +1361,67 @@ cdm_ok( empty( $maes_quebradas ), 'nenhuma mae em circulo, ausente, nem quarto n
  * 22. A TRILHA NO HTML SERVIDO (16.3)
  * ------------------------------------------------------------------------- */
 
+/* ---------------------------------------------------------------------------
+ * 21b. A ESTRUTURA SE REMONTA QUANDO ENTRA PAGINA NOVA (defeito de 12/09/2026)
+ *
+ * A casca 1.5.0 criou o filtro `cdm_paginas` para a ferramenta registrar a
+ * propria pagina sem ninguem editar a casca, e a guarda de remontagem continuou
+ * sendo a VERSAO DA CASCA: pagina nova entrava na definicao, a versao nao
+ * mudava, e a pagina nunca nascia no site. A F1 respondeu 404 no ar depois de um
+ * Sync que aplicou tudo e disse revisao 10.
+ *
+ * A afirmacao abaixo mede o MECANISMO, nunca a versao: duas definicoes
+ * diferentes tem que produzir chaves diferentes. Um teste que olhasse
+ * CDM_CASCA_VERSAO teria ficado verde com o defeito no ar — foi o que aconteceu
+ * por um bloco inteiro.
+ * ------------------------------------------------------------------------- */
+
+echo "\n21b. A estrutura se remonta quando entra pagina nova (secao 8)\n";
+
+$impressao_hoje = cdm_casca_impressao_da_estrutura();
+cdm_ok( '' !== $impressao_hoje, 'a casca publica uma impressao da estrutura', $impressao_hoje );
+cdm_ok( false !== strpos( $impressao_hoje, CDM_CASCA_VERSAO ),
+	'a impressao carrega a versao da casca (mudar a casca tambem remonta)' );
+cdm_ok( $impressao_hoje !== CDM_CASCA_VERSAO,
+	'a impressao NAO e so a versao — era exatamente esse o defeito' );
+
+/* A BORDA FABRICADA: uma pagina a mais na definicao tem que mudar a chave. */
+$gancho_extra = function ( $paginas ) {
+	$paginas['materiais/pagina-que-so-existe-no-teste'] = array(
+		'titulo'   => 'Pagina de teste',
+		'conteudo' => '[cdm_teste_borda]',
+		'pai'      => 'materiais',
+	);
+	return $paginas;
+};
+add_filter( 'cdm_paginas', $gancho_extra );
+$impressao_com_pagina_nova = cdm_casca_impressao_da_estrutura();
+cdm_ok( $impressao_com_pagina_nova !== $impressao_hoje,
+	'pagina nova na definicao MUDA a chave de remontagem (a F1 nascia 404 sem isto)' );
+
+/* E o titulo trocado tambem: e o caso do "Inicio" que sobreviveu a duas versoes
+   da casca no ar, e o mesmo que a Robometria achou em seis paginas. */
+$gancho_titulo = function ( $paginas ) {
+	if ( isset( $paginas['sobre'] ) ) {
+		$paginas['sobre']['titulo'] = 'Outro nome, so no teste';
+	}
+	return $paginas;
+};
+add_filter( 'cdm_paginas', $gancho_titulo );
+cdm_ok( cdm_casca_impressao_da_estrutura() !== $impressao_com_pagina_nova,
+	'titulo trocado tambem muda a chave (o titulo se sincroniza na remontagem)' );
+
+/* Desfaz os dois ganchos: a bancada nao pode deixar rastro nas afirmacoes
+   seguintes, que leem a mesma definicao. */
+$GLOBALS['__filtros']['cdm_paginas'] = array_values( array_filter(
+	$GLOBALS['__filtros']['cdm_paginas'],
+	function ( $f ) use ( $gancho_extra, $gancho_titulo ) {
+		return $f !== $gancho_extra && $f !== $gancho_titulo;
+	}
+) );
+cdm_ok( cdm_casca_impressao_da_estrutura() === $impressao_hoje,
+	'a bancada devolveu a definicao ao estado de antes' );
+
 echo "\n22. Trilha visivel no corpo (16.3)\n";
 
 /* tag do shortcode -> caminho da pagina, pela definicao da casca. */
@@ -1539,6 +1600,28 @@ foreach ( $paginas as $tag ) {
 			empty( $mortos ) ? 'nenhuma' : implode( ', ', $mortos ) );
 		cdm_ok( false === strpos( $bloco, '>' . htmlspecialchars( $mapa_codigo[ $caminho ]['rotulo'], ENT_QUOTES ) . '<' ),
 			"[$tag] a pagina nao se lista como irma de si mesma" );
+
+		/* IRMA E QUEM TEM A MESMA MAE, e ate 12/09/2026 isto nao era medido: o
+		   portao contava quantas irmas saiam e se elas estavam no ar, nunca de
+		   ONDE elas vinham. A mutacao que fazia o cluster aceitar qualquer mae
+		   morria por acidente — com poucas paginas no ar ela estourava a
+		   contagem —, e no dia em que a ilha ganhou a terceira filha de
+		   /materiais/ o acidente sumiu e a mutacao passou. Trava que reprova por
+		   efeito colateral e trava que um dia para de reprovar. */
+		$de_outra_mae = array();
+		foreach ( $mi[1] as $url ) {
+			$caminho_irma = trim( str_replace( 'https://clubedomosaico.com.br/', '', $url ), '/' );
+			if ( ! isset( $mapa_codigo[ $caminho_irma ] ) ) {
+				$de_outra_mae[] = $caminho_irma . ' (fora do mapa)';
+				continue;
+			}
+			if ( $mapa_codigo[ $caminho_irma ]['mae'] !== $mapa_codigo[ $caminho ]['mae'] ) {
+				$de_outra_mae[] = $caminho_irma . ' (mae "' . $mapa_codigo[ $caminho_irma ]['mae']
+					. '", nao "' . $mapa_codigo[ $caminho ]['mae'] . '")';
+			}
+		}
+		cdm_ok( empty( $de_outra_mae ), "[$tag] toda irma listada tem a MESMA mae (16.4c)",
+			empty( $de_outra_mae ) ? $itens . ' irmas' : implode( ' | ', $de_outra_mae ) );
 	}
 }
 
@@ -1644,6 +1727,36 @@ foreach ( $fora_do_sitemap as $caminho ) {
 }
 cdm_ok( empty( $prova_sem_citacao ), 'a pagina fora do sitemap continua citada por outra pagina',
 	empty( $prova_sem_citacao ) ? implode( ', ', $fora_do_sitemap ) : implode( ', ', $prova_sem_citacao ) );
+
+/* E A CITACAO NO CORPO, medida separada — achado de 12/09/2026.
+   A afirmacao de cima passou a ser satisfeita SOZINHA pelo cluster: desde que
+   /materiais/ ganhou a terceira filha, o bloco "Veja tambem" das duas
+   ferramentas lista a camada de prova automaticamente. Isso e bom e nao
+   substitui o que a regra queria: uma frase, no meio do texto, mandando quem
+   quiser conferir para o bastidor. A mutacao que apagava essa frase parou de
+   morder no dia em que o cluster nasceu — a trava nao afrouxou, ela mudou de
+   dono, e o que mudou de dono precisa de trava propria. Aqui os links do
+   cluster e da trilha saem da conta de proposito: eles sao gerados, e o que se
+   mede e a escolha editorial. */
+$citada_no_texto = array();
+foreach ( $paginas as $tag ) {
+	$corpo_sem_gerado = preg_replace( '#<nav class="cdm-veja".*?</nav>#s', '',
+		preg_replace( '#<nav class="cdm-trilha".*?</nav>#s', '', cdm_corpo( $html_por_pagina[ $tag ] ) ) );
+	foreach ( $fora_do_sitemap as $caminho ) {
+		if ( false !== strpos( $corpo_sem_gerado, 'href="https://clubedomosaico.com.br/' . $caminho . '/"' ) ) {
+			$citada_no_texto[ $caminho ] = isset( $citada_no_texto[ $caminho ] ) ? $citada_no_texto[ $caminho ] + 1 : 1;
+		}
+	}
+}
+$sem_frase = array();
+foreach ( $fora_do_sitemap as $caminho ) {
+	if ( empty( $citada_no_texto[ $caminho ] ) ) {
+		$sem_frase[] = $caminho;
+	}
+}
+cdm_ok( empty( $sem_frase ), 'a pagina fora do sitemap e citada no TEXTO, nao so pelo cluster gerado',
+	empty( $sem_frase ) ? implode( ', ', array_map( function ( $k, $v ) { return $k . ':' . $v; },
+		array_keys( $citada_no_texto ), $citada_no_texto ) ) : implode( ', ', $sem_frase ) );
 cdm_ok( empty( $orfas ), 'toda pagina do sitemap recebe 2+ links internos de outras paginas',
 	empty( $orfas ) ? implode( ', ', array_map( function ( $k, $v ) { return $k . ':' . $v; }, array_keys( $apontam ), $apontam ) ) : implode( ' | ', $orfas ) );
 

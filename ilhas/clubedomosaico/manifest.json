@@ -4,8 +4,8 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 10,
-  "atualizado_em": "2026-09-11",
+  "revisao": 11,
+  "atualizado_em": "2026-09-12",
   "estado": "nascendo",
   "desembarque": {
     "aprovado": true,
@@ -20,9 +20,9 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.5.0",
-      "sha256": "bb3bb19a30e02196686b7f1f22450067a8db307e398a7a984af52e15df8ec0a1",
-      "descricao": "CASCA 1.5.0 — a versao do campo foi corrigida no bloco da F1, em 11/09/2026, e o defeito vale ser lido antes da descricao: este campo dizia 1.4.0 enquanto o arquivo definia CDM_CASCA_VERSAO '1.5.0'. O sha estava certo, entao o Sync aplicou os bytes certos e o site nunca esteve errado — o que envelheceu foi a ETIQUETA, que e por onde qualquer relatorio le o que esta no ar. O bloco que subiu a casca reespelhou sha e descricao e esqueceu a versao, porque nenhum portao lia essa metade; agora ferramentas/atualizar-manifest.py compara os dois e recusa gravar quando eles se separam. O QUE A 1.5.0 TROUXE, e continua valendo: o filtro cdm_paginas, que faz a pagina de ferramenta se registrar sozinha (sem ele toda ferramenta nova obrigaria a editar a casca, e casca editada por bloco de ferramenta e casca que sai do ar por defeito de ferramenta), e /materiais/ passando a LISTAR AS FERRAMENTAS antes das seis prateleiras, porque as seis sao cartao 'em breve' e nenhuma abre. Antes disso, a 1.4.0 tinha posto o logo do Raphael inteiro no cabecalho, em <img> de 52 px com link para a home e sem uma letra ao lado."
+      "versao": "1.6.0",
+      "sha256": "d31771a5f5c1fbe9541a4bba7851e44b9778058139ad9348bee6b0583e53c19c",
+      "descricao": "CASCA 1.6.0 — A ESTRUTURA SE REMONTA QUANDO ENTRA PAGINA NOVA, e a versao anterior tinha um defeito que so aparecia na SEGUNDA vez em que alguem usasse o mecanismo dela. A 1.5.0 criou o filtro cdm_paginas justamente para a ferramenta registrar a propria pagina sem ninguem editar a casca — e a guarda de cdm_casca_montar() continuou sendo a VERSAO DA CASCA: pagina nova entrava na definicao, a versao nao mudava, a montagem voltava na primeira linha e a pagina nunca nascia. A F2 escapou porque nasceu JUNTO com a 1.5.0 e foi de carona na troca de versao; a F1 nao teve essa sorte e respondeu 404 no ar depois de um Sync que aplicou seis itens e disse revisao 10. Agora a chave e a versao MAIS um resumo do mapa de paginas (slug, titulo, mae e shortcode de cada uma): pagina nova, titulo trocado ou mae trocada mudam a impressao e a estrutura se remonta sozinha no primeiro carregamento depois do Sync, sem humano logado. Remontar e barato e seguro porque cdm_casca_garantir_paginas() e idempotente. O portao 21b do teste-casca.php mede o MECANISMO e nunca a versao — um teste que olhasse CDM_CASCA_VERSAO teria ficado verde com o defeito no ar, que foi exatamente o que aconteceu por um bloco inteiro. O QUE A 1.5.0 TROUXE, e continua valendo: o filtro cdm_paginas e /materiais/ listando as ferramentas antes das seis prateleiras, que sao cartao 'em breve'. A 1.4.0 pos o logo do Raphael inteiro no cabecalho, em <img> de 52 px com link para a home e sem uma letra ao lado."
     },
     {
       "id": "f2",

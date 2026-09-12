@@ -133,7 +133,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'CDM_CASCA_VERSAO' ) ) {
-	define( 'CDM_CASCA_VERSAO', '1.5.0' );
+	define( 'CDM_CASCA_VERSAO', '1.6.0' );
 	/* O nome do site e a linha que o WordPress serve no <title> da home. A
 	   Aquametria descobriu em 11/09/2026 que a tagline nunca tocada desde o
 	   nascimento da ilha continuava sendo a linha mais lida do site — a do
@@ -2337,10 +2337,48 @@ function cdm_casca_limpar_padrao( &$relato ) {
 }
 }
 
+if ( ! function_exists( 'cdm_casca_impressao_da_estrutura' ) ) {
+/**
+ * A impressão digital do CONJUNTO DE PÁGINAS que a ilha declara hoje.
+ *
+ * POR QUE ELA EXISTE (defeito medido em 12/09/2026, no bloco da F1): a chave que
+ * decidia se a estrutura seria remontada era a versão da CASCA. A 1.5.0 tinha
+ * acabado de criar o filtro `cdm_paginas` exatamente para que uma ferramenta
+ * nova pudesse registrar a própria página sem ninguém editar a casca — e a
+ * guarda deixava aquele mecanismo inerte: página nova entrava na definição, a
+ * versão da casca continuava a mesma, `cdm_casca_montar()` voltava na primeira
+ * linha e a página nunca nascia. O site respondeu 404 na URL da F1 depois de um
+ * Sync que aplicou tudo com sucesso e disse revisão 10.
+ *
+ * O defeito ficou invisível por um bloco inteiro porque a F2 nasceu JUNTO com a
+ * casca 1.5.0: a versão mudou por outro motivo e carregou a página nova de
+ * carona. É o padrão desta ilha — mecanismo que só é exercitado de verdade na
+ * segunda vez em que alguém o usa.
+ *
+ * Agora a chave é a versão MAIS um resumo do mapa (slug, título, mãe e
+ * shortcode de cada página). Página nova, título trocado ou mãe trocada mudam a
+ * impressão e a estrutura se remonta sozinha, no primeiro carregamento depois do
+ * Sync, sem humano logado e sem tocar na casca. Remontar é barato e seguro:
+ * `cdm_casca_garantir_paginas()` só cria o que falta e sincroniza o que mudou.
+ */
+function cdm_casca_impressao_da_estrutura() {
+	$mapa = array();
+	foreach ( cdm_casca_definicao_paginas() as $slug => $def ) {
+		$mapa[ $slug ] = array(
+			isset( $def['titulo'] ) ? $def['titulo'] : '',
+			isset( $def['conteudo'] ) ? $def['conteudo'] : '',
+			isset( $def['pai'] ) ? $def['pai'] : '',
+		);
+	}
+
+	return CDM_CASCA_VERSAO . ':' . md5( (string) wp_json_encode( $mapa ) );
+}
+}
+
 if ( ! function_exists( 'cdm_casca_montar' ) ) {
 function cdm_casca_montar( $forcar = false ) {
 	$feita = get_option( 'cdm_casca_estrutura' );
-	if ( ! $forcar && CDM_CASCA_VERSAO === $feita ) {
+	if ( ! $forcar && cdm_casca_impressao_da_estrutura() === $feita ) {
 		return array();
 	}
 
@@ -2351,7 +2389,7 @@ function cdm_casca_montar( $forcar = false ) {
 	cdm_casca_limpar_padrao( $relato );
 
 	update_option( 'cdm_casca_paginas', $ids, false );
-	update_option( 'cdm_casca_estrutura', CDM_CASCA_VERSAO, false );
+	update_option( 'cdm_casca_estrutura', cdm_casca_impressao_da_estrutura(), false );
 
 	if ( ! $relato ) {
 		$relato[] = 'nada a fazer: estrutura já estava de pé';

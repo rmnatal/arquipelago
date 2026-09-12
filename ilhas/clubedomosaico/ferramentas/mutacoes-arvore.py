@@ -234,12 +234,48 @@ def m_pagina_de_prova_deixa_de_ser_citada(raiz):
     'Fora do sitemap' nao pode virar porta dos fundos para publicar pagina que
     ninguem linka — por isso a trava cobra a citacao dela tambem.
     """
+    # A MUTACAO PRECISOU SER REESCRITA EM 12/09/2026, e o motivo e o resultado:
+    # ela trocava a citacao SO NA CASCA, e parou de morder no dia em que as duas
+    # ferramentas passaram a citar a mesma pagina na camada de prova delas. A
+    # afirmacao continuava certa (a pagina seguia citada, por outras duas), e era
+    # a mutacao que tinha envelhecido. Agora ela apaga a citacao das TRES fontes,
+    # que e o estado que a trava existe para impedir: pagina fora do sitemap sem
+    # nenhum link interno some do site sem ninguem perceber.
+    apagou = 0
+    for arquivo in (CASCA,
+                    os.path.join("snippets", "clubedomosaico-f2.php"),
+                    os.path.join("snippets", "clubedomosaico-f1.php")):
+        caminho = os.path.join(raiz, arquivo)
+        with open(caminho, encoding="utf-8") as fh:
+            texto = fh.read()
+        alvo = "cdm_casca_link_html( 'materiais/como-sabemos', 'Como sabemos' )"
+        if alvo not in texto:
+            continue
+        apagou += texto.count(alvo)
+        with open(caminho, "w", encoding="utf-8") as fh:
+            fh.write(texto.replace(alvo, "esc_html( 'Como sabemos' )"))
+    if apagou < 3:
+        raise AssertionError(
+            "mutacao INERTE: achei %d citacoes de Como sabemos, esperava 3 ou mais" % apagou)
+
+
+def m_chave_de_remontagem_volta_a_ser_a_versao(raiz):
+    """A chave de remontagem da estrutura volta a ser a VERSAO da casca.
+
+    E o defeito de 12/09/2026, escrito de volta: com ele, pagina nova entra na
+    definicao, a versao da casca continua a mesma e a pagina nunca nasce no
+    site. A F1 respondeu 404 no ar depois de um Sync que disse revisao 10 e
+    aplicou seis itens com sucesso. Mutacao barata de escrever e cara de
+    descobrir — nenhuma pagina do site muda, e o defeito so aparece no dia em
+    que a proxima ferramenta nascer.
+    """
     trocar(raiz, CASCA,
-           "cdm_casca_link_html( 'materiais/como-sabemos', 'Como sabemos' )",
-           "esc_html( 'Como sabemos' )")
+           "	return CDM_CASCA_VERSAO . ':' . md5( (string) wp_json_encode( $mapa ) );",
+           "	return CDM_CASCA_VERSAO;")
 
 
 MUTACOES = [
+    ("a chave de remontagem volta a ser so a versao da casca", m_chave_de_remontagem_volta_a_ser_a_versao),
     ("a home ganha trilha (16.3)", m_home_ganha_trilha),
     ("a trilha sai ABAIXO do H1", m_trilha_depois_do_h1),
     ("a bancada volta a medir fora de ordem", m_bancada_mede_fora_de_ordem),
