@@ -597,3 +597,21 @@ Narrativa, histórico, opinião, projeção e elogio. O painel é instantâneo; 
 
 ### 23.4 Número sem procedência não entra
 Vale aqui a regra de sempre: todo número do painel sai de arquivo do repositório ou de medição da própria ronda. Quando um campo não foi medido nesta ronda, o painel escreve `não medido hoje` — nunca repete o número velho com cara de novo.
+
+## 24. DADO QUE SÓ EXISTE NO SITE NASCE COM CÓPIA (12/09/2026)
+
+O site de uma ilha é descartável de propósito: se o WordPress sumir, o Sync remonta tudo a partir do repositório. Isso vale para **tudo que a máquina escreve** — e deixa de valer no instante em que uma PESSOA passa a digitar dado dentro do WordPress.
+
+### 24.1 A regra
+**Todo bloco que cria uma tela onde uma pessoa cadastra dado entrega, no mesmo bloco, a exportação daquele dado para o repositório.** Painel da artesã, formulário de lead, ficha preenchida à mão: nenhum deles é entregue sem a cópia. Não é acabamento de depois — é parte do bloco, e o bloco não fecha sem ela.
+
+### 24.2 Como, e só assim
+- Um endpoint de leitura na própria ilha, **protegido pelo mesmo token do Sync**, devolvendo JSON com os registros e os metadados (inclusive as URLs das imagens).
+- A **ronda diária** busca esse endpoint e commita `ilhas/<ilha>/dados/<entidade>.json` pelo canal das mãos (seção 19.3). Se o JSON não mudou, não há commit.
+- **Nenhuma senha, nenhum OAuth, nenhum serviço de terceiro.** Não usamos plugin de backup, Google Drive nem `mysqldump` por cron — o cron precisaria da senha do banco em texto puro na linha de comando, e senha não entra em arquivo nem em rotina.
+
+### 24.3 O que essa cópia cobre, e o que não cobre
+Cobre o que não existe em outro lugar: o dado que a pessoa digitou. **Não cobre** usuários, senhas, options nem o banco inteiro — e não precisa, porque tudo isso se reconstrói pelo nascimento da ilha (seção 11). O "Assistente de backup" do cPanel existe e gera o arquivo completo, mas é **download manual e não é plano**: plano é o que roda sozinho.
+
+### 24.4 O ganho que não é backup
+O dado exportado deixa de ser refém da tela: vira dado do repositório, versionado, com histórico de cada mudança, e a Fundação passa a poder montar página a partir dele como já faz com os bancos de produto. A cópia é consequência, não objetivo.
