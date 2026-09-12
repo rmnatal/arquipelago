@@ -171,6 +171,20 @@ def frase_declarada(peca, par, modelo, dentro_do_kit=None, existe_avulso=False):
     afirmacao sobre o CATALOGO INTEIRO daquele modelo, entao ela so pode ser
     escrita quando nenhuma peca avulsa daquele tipo responde por ele. Quando
     existe avulso, o kit e um caminho A MAIS, e a frase diz isso.
+
+    E A FRASE DO CAMINHO A MAIS NOMEIA O TIPO, NUNCA UM PRONOME (12/09/2026).
+    Ela nasceu como "Ele tambem vem dentro do kit ...", e isso so lia certo
+    porque, no unico caso que existia, a peca avulsa do mesmo tipo vinha logo
+    antes no banco — o "Ele" apontava para a frase anterior por SORTE DE ORDEM.
+    Ao entrar o pano de microfibra ERB60/61/62/80, o mop passou a ter avulso E
+    kit, e a frase do kit foi emitida na posicao do KIT: ela caiu depois da
+    escova lateral e antes de o mop ser nomeado, virando um pronome sem
+    antecedente em tres paginas ja no ar. A saida nao e reordenar a lista — e
+    parar de depender da vizinhanca, que e a mesma regra da secao 8 do
+    ARQUIPELAGO.md ("quem decide e a estrutura, nunca a vizinhanca") e da 5.2
+    ("frase autossuficiente que sobrevive a ser citada fora de contexto").
+    Toda frase de resposta da R1 nomeia o tipo de peca de que fala, e
+    ferramentas/teste-r1.php cobra isso em TODA frase, com regua propria.
     """
     fonte = peca["fontes"][par["fonte"]]
     publicador = fonte.get("publicador") or marcas[peca["marca"]]["nome"]
@@ -182,11 +196,10 @@ def frase_declarada(peca, par, modelo, dentro_do_kit=None, existe_avulso=False):
 
     if dentro_do_kit and existe_avulso:
         artigo, _avulso = GENERO_DO_TIPO.get(dentro_do_kit, ("o", "avulso"))
-        pronome = "ele" if artigo == "o" else "ela"
         frase = (
-            "%s tambem vem dentro do kit %s, que a %s declara compativel com %s "
+            "%s %s tambem vem dentro do kit %s, que a %s declara compativel com %s "
             "(%s, verificado em %s)."
-            % (pronome.capitalize(), identificacao, publicador, lista,
+            % (artigo.capitalize(), dentro_do_kit, identificacao, publicador, lista,
                fonte.get("origem"), data)
         )
     elif dentro_do_kit:

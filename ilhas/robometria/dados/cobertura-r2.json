@@ -3,10 +3,10 @@
   "ilha": "robometria",
   "entidade": "medicao",
   "gerado_por": "ferramentas/cobertura-r2.py",
-  "banco_gerado_em": "2026-09-09",
+  "banco_gerado_em": "2026-09-12",
   "o_que_e": "Varredura da entrada da R2 de ponta a ponta, exigida pela secao 14.3 do ARQUIPELAGO.md: as 9 situacoes de piso x pelo, e a metragem de 10 a 400 m2 contra cada modelo de referencia. O criterio nao e numero redondo de itens — e que nenhuma situacao que a ferramenta consegue produzir saia com menos de 3 elegiveis.",
   "nota_sobre_a_medicao_anterior": "cobertura_de_faixa_r2, dentro de dados/modelos-robo.json, mediu a mesma faixa em 09/09/2026 e chegou a numeros MAIORES nas situacoes de pet. A diferenca nao e erro de nenhum dos dois: aquela varredura tratou o limiar da Canaltech como >=, e esta trata como >, porque a fonte escreve 'acima de 4.000 Pa' e um modelo de exatamente 4.000 Pa nao esta acima de 4.000. Os modelos que ficam no valor exato nao somem — vao para um grupo proprio, rotulado. Esta varredura passa a ser a que a ferramenta consulta.",
-  "medido_em": "2026-09-09",
+  "medido_em": "2026-09-12",
   "entrada": {
     "area_m2": {
       "minimo": 10,

@@ -23,6 +23,7 @@ outro lado do espelho.
 """
 
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -61,6 +62,34 @@ def trocas(arquivo, pares):
 
 def troca(arquivo, velho, novo):
     return trocas(arquivo, [(velho, novo)])
+
+
+def engorda(arquivo, chave):
+    """Soma 1 ao numero que a chave guarda hoje, seja ele qual for.
+
+    NASCEU DE UMA MUTACAO QUE MORREU CALADA (12/09/2026). Duas mutacoes daqui
+    tinham o numero DIGITADO nos dois lados ('"pares_declarados": 32,' ->
+    '... 33,'). No dia em que o banco cresceu, o alvo deixou de existir no
+    arquivo e a mutacao passou a nao editar nada — exatamente a "mutacao inerte"
+    que este arquivo existe para impedir, e pela mesma causa que a secao 8 do
+    ARQUIPELAGO.md registra em numero de tela: quem digita um numero derivado
+    assina um cheque contra o banco de amanha. A regra vale para a bancada
+    tambem, e nao so para a pagina: numero de mutacao nasce LIDO do arquivo.
+    """
+    def aplicar(base):
+        caminho = os.path.join(base, arquivo)
+        with open(caminho, encoding='utf-8') as f:
+            corpo = f.read()
+        achados = re.findall(r'"%s": (\d+),' % re.escape(chave), corpo)
+        if len(achados) != 1:
+            raise AssertionError('a chave %r nao esta unica em %s: %d ocorrencia(s)'
+                                 % (chave, arquivo, len(achados)))
+        hoje = int(achados[0])
+        corpo = corpo.replace('"%s": %d,' % (chave, hoje),
+                              '"%s": %d,' % (chave, hoje + 1))
+        with open(caminho, 'w', encoding='utf-8') as f:
+            f.write(corpo)
+    return aplicar
 
 
 MUTACOES = [
@@ -177,18 +206,14 @@ MUTACOES = [
               "\t\t'quantos-m2-o-robo-aspirador-limpa-por-carga' => 'guias-manutencao',"),
     ),
     (
-        'o par peca x modelo volta ao numero digitado',
-        '33 conta o que o banco guarda; a tela fala do que a ilha serve, e sao 32',
-        troca(FATOS,
-              '"pares_declarados": 32,',
-              '"pares_declarados": 33,'),
+        'o par peca x modelo engorda em um',
+        'a tela fala do que a ilha SERVE, e o numero so pode vir contado do banco — um a mais e o que a contagem digitada produzia',
+        engorda(FATOS, 'pares_declarados'),
     ),
     (
         'a contagem de marcas engorda em um',
         'numero de tela que nao nasce contado passa a mentir no dia em que o banco muda',
-        troca(FATOS,
-              '"marcas": 5,',
-              '"marcas": 6,'),
+        engorda(FATOS, 'marcas'),
     ),
     (
         'a pagina Sobre volta a ser fina',

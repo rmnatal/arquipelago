@@ -745,6 +745,101 @@ rbm_ok( false !== strpos( $h_vazio, 'não tem bloco de compra' ),
 	'e a pagina explica por que o bloco nao esta ali' );
 
 /* ---------------------------------------------------------------------------
+ * 14. TODA FRASE NOMEIA O TIPO DE QUE FALA (secao 5.2 e secao 8 do contrato)
+ *
+ * A trava nasceu de um defeito que ja estava NO AR em tres paginas e que nenhum
+ * portao daqui via, porque todos mediam a frase sozinha e ela estava certa
+ * sozinha. A frase do kit com avulso era "Ele tambem vem dentro do kit ...", e o
+ * "Ele" so apontava para alguma coisa porque, no unico caso que o banco tinha, a
+ * peca avulsa do mesmo tipo caia LOGO ANTES na lista. Quando o pano de microfibra
+ * ERB60/61/62/80 entrou, o mop passou a ter avulso e kit, e a frase do kit foi
+ * emitida na posicao do kit — depois da escova lateral e ANTES de o mop ser
+ * nomeado. Pronome sem antecedente, em pagina publicada.
+ *
+ * A regua nao e "procure um pronome": e a regra da secao 5.2 do ARQUIPELAGO.md,
+ * que manda a frase sobreviver a ser citada fora de contexto, e a da secao 8,
+ * que manda decidir pela estrutura e nunca pela vizinhanca. Entao: TODA frase de
+ * resposta nomeia o tipo de peca de que fala, e a conferencia varre as duas
+ * implementacoes.
+ *
+ * A TABELA DE NOMES E ESCRITA AQUI, A MAO. Chamar robometria_r1_nome_do_tipo()
+ * faria as duas metades errarem juntas — e a secao 8 do contrato registra essa
+ * cicatriz com todas as letras.
+ * ------------------------------------------------------------------------- */
+
+echo "\n14. Toda frase nomeia o tipo de peca de que fala (secao 5.2)\n";
+
+$nome_do_tipo_na_frase = array(
+	'filtro'           => 'filtro',
+	'escova lateral'   => 'escova lateral',
+	'escova principal' => 'escova principal',
+	'mop'              => 'mop',
+	'bateria'          => 'bateria',
+	'reservatorio'     => 'reservatorio',
+);
+
+$sem_o_tipo   = array();
+$frases_lidas = 0;
+$tipos_vistos = array();
+
+foreach ( $gabarito['respostas'] as $mid => $esperado ) {
+	$obtido = $dados['respostas'][ $mid ];
+	foreach ( array( 'fabricante', 'terceiro' ) as $grupo ) {
+		foreach ( $esperado[ $grupo ] as $k => $ref ) {
+			$tipo = $ref['tipo'];
+			if ( ! isset( $nome_do_tipo_na_frase[ $tipo ] ) ) {
+				$sem_o_tipo[] = "$mid/$grupo/$k: tipo '$tipo' fora da tabela deste teste";
+				continue;
+			}
+			$agulha = rbm_sem_acento( $nome_do_tipo_na_frase[ $tipo ] );
+			$tipos_vistos[ $tipo ] = true;
+
+			/* Os dois lados, sempre. A referencia sozinha nao prova o que a
+			   pagina serve, e o PHP sozinho nao prova o que a regra manda. */
+			$lados = array(
+				'referencia' => rbm_sem_acento( $ref['frase'] ),
+				'php'        => rbm_sem_acento( robometria_r1_frase( $obtido[ $grupo ][ $k ] ) ),
+			);
+			foreach ( $lados as $lado => $frase ) {
+				$frases_lidas++;
+				/* So a PRIMEIRA oracao, ate o primeiro ponto final: e ali que o
+				   leitor descobre de que peca se fala. O nome do tipo aparecendo
+				   depois, dentro do rodape "identifique o item pelo titulo", nao
+				   salva uma abertura que nao nomeia nada. */
+				$corte    = strpos( $frase, '. ' );
+				$abertura = ( false === $corte ) ? $frase : substr( $frase, 0, $corte );
+				if ( false === strpos( $abertura, $agulha ) ) {
+					$sem_o_tipo[] = "$mid/$grupo/$k ($lado): $abertura";
+				}
+			}
+		}
+	}
+}
+
+rbm_ok( empty( $sem_o_tipo ), 'toda frase de resposta abre nomeando o tipo de peca',
+	"$frases_lidas frases (as duas implementacoes)" );
+foreach ( array_slice( $sem_o_tipo, 0, 6 ) as $d ) {
+	echo "       . $d\n";
+}
+
+/* Grade que nao pisa em todos os casos e amostra com nome de grade: se o banco
+   de hoje nao produzisse a frase do kit-com-avulso, este bloco daria verde sem
+   medir o defeito que ele existe para pegar. */
+$com_avulso_e_kit = 0;
+foreach ( $gabarito['respostas'] as $mid => $esperado ) {
+	foreach ( $esperado['fabricante'] as $ref ) {
+		if ( false !== strpos( rbm_sem_acento( $ref['frase'] ), 'tambem vem dentro do kit' ) ) {
+			$com_avulso_e_kit++;
+		}
+	}
+}
+rbm_ok( $com_avulso_e_kit > 0,
+	'a frase do kit-com-avulso — a que nasceu com pronome — foi mesmo medida',
+	"$com_avulso_e_kit ocorrencia(s)" );
+rbm_ok( count( $tipos_vistos ) >= 4, 'a varredura cobriu varios tipos, nao um so',
+	implode( ', ', array_keys( $tipos_vistos ) ) );
+
+/* ---------------------------------------------------------------------------
  * Fecho
  * ------------------------------------------------------------------------- */
 

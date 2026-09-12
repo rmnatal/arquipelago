@@ -7,12 +7,12 @@
   "nota_de_procedencia": "Coleta de 09/09/2026 por busca restrita aos dominios do proprio fabricante; o egresso HTTP direto devolveu EGRESS_BLOCKED para multilaser.com.br nesta execucao. TODA compatibilidade abaixo e DECLARADA pelo fabricante — nenhuma foi inferida, e nenhuma linha diz 'serve' sem que o fabricante tenha dito. Onde nao ha declaracao, nao ha linha. Bloco 3c (09/09/2026): 10 pecas novas — 6 da Electrolux, 3 da Positivo e 1 da Xiaomi. Todas por busca restrita ao dominio oficial; o egresso segue fechado para leitura direta.",
   "nota_vida_util": "Nenhuma peca da Multi declara vida util nas paginas desta coleta. O unico numero de fabricante que a ilha tem e o do manual da Electrolux — 6 meses para o filtro HEPA do ERB10/ERB11/ERB20 — e ele esta em constantes.json preso AQUELES modelos. Veiculos editoriais dizem 3 meses e 2-3 meses, e divergem do manual. Manual de fabricante e recomendacao editorial nao se misturam numa frase: a R1 publica o intervalo do FABRICANTE do modelo consultado, e a recomendacao editorial so aparece rotulada como tal. Bloco 3c: a vida util de 6 meses do manual da Electrolux finalmente tem peca — e o filtro HEPA dentro do Kit Performance KPCEL01. E a Xiaomi trouxe o primeiro conjunto de intervalos por TIPO de peca (filtro 3-6, escova lateral 3-6, escova principal 6-12, mop 3 meses), que valem para o S20 e para nenhum outro modelo do banco.",
   "contagem": {
-    "total": 18,
-    "publicavel": 16,
+    "total": 20,
+    "publicavel": 18,
     "excluido_do_banco": 2,
     "nao_publicavel": 0,
-    "pares_peca_x_modelo_declarados": 33,
-    "esperando_link_de_afiliado": 16
+    "pares_peca_x_modelo_declarados": 38,
+    "esperando_link_de_afiliado": 18
   },
   "lista_de_compras": [
     {
@@ -1285,6 +1285,170 @@
       "status": "publicavel",
       "observacao": "FECHA A OUTRA METADE DA LACUNA (c). A compatibilidade ficou so no S20, de proposito: o S20+ tem FAQ propria (KA-378764) e nao esta no banco, e estender por semelhanca de nome e exatamente o erro caro desta ilha. Os intervalos de troca por tipo estao escritos em vida_util_declarada.motivo_do_null e sao dado publicavel — a frase da pagina cita a FAQ do fabricante com a data.",
       "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "electrolux-kit-performance-erb80",
+      "marca": "electrolux",
+      "codigo_fabricante": null,
+      "motivo_sem_codigo": "a Electrolux nao publica codigo de peca nesta pagina — identifica o item pelo titulo e pela lista de modelos. O codigo KPCEL01/KPCEL02 so aparece no canal de parceiros, e nem toda peca tem um la",
+      "tipo": "kit",
+      "nome_na_fonte": "Kit Performance Electrolux para Robô Aspirador ERB80",
+      "composicao": [
+        {
+          "tipo": "filtro",
+          "quantidade": null,
+          "descricao_na_fonte": "Filtro HEPA, que retém micropartículas e é eficiente contra alérgenos aspirados, como fungos e ácaros; a página do kit não declara quantidade"
+        },
+        {
+          "tipo": "escova lateral",
+          "quantidade": null,
+          "descricao_na_fonte": "Escovas laterais, direita e esquerda, que ampliam o alcance do aspirador; a página nomeia o TIPO da escova e não declara quantidade"
+        },
+        {
+          "tipo": "mop",
+          "quantidade": null,
+          "descricao_na_fonte": "Refil de microfibra, para limpeza impecável em uso seco ou úmido; a página do kit não declara quantidade"
+        }
+      ],
+      "compatibilidade": [
+        {
+          "modelo": "electrolux-erb80",
+          "codigo_declarado": "ERB80",
+          "variante_de_hardware": null,
+          "selo": "declarada_fabricante",
+          "fonte": "f-peca"
+        }
+      ],
+      "divergencias": [],
+      "vida_util_declarada": {
+        "valor": null,
+        "unidade": "meses",
+        "motivo_do_null": "o fabricante nao declara vida util nesta pagina, e o banco nao empresta o numero de um fabricante para a peca de outro"
+      },
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria"
+      },
+      "fontes": {
+        "f-peca": {
+          "nivel": 4,
+          "origem": "varejo-oficial-da-marca",
+          "publicador": "Electrolux (loja oficial)",
+          "titulo_na_fonte": "Kit Performance Electrolux para Robô Aspirador ERB80",
+          "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robo-aspirador-erb80/p",
+          "canal_de_coleta": "busca web restrita aos dominios loja.electrolux.com.br e content.electrolux.com.br (curl e WebFetch diretos devolveram 000/EGRESS_BLOCKED nesta execucao, remedido em duas passadas em 12/09/2026 com robometria.com.br em 200 nas duas). A composicao foi pedida DUAS vezes, com perguntas diferentes e sem o valor dentro da consulta",
+          "verificado_em": "2026-09-12"
+        },
+        "f-composicao": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "Electrolux (pagina institucional do produto)",
+          "titulo_na_fonte": "Kit Performance Electrolux ERB80",
+          "url": "https://content.electrolux.com.br/brasil/electrolux/cybertron/kit_performance_erb80/index.html",
+          "canal_de_coleta": "busca web restrita aos dominios loja.electrolux.com.br e content.electrolux.com.br (curl e WebFetch diretos devolveram 000/EGRESS_BLOCKED nesta execucao, remedido em duas passadas em 12/09/2026 com robometria.com.br em 200 nas duas). A composicao foi pedida DUAS vezes, com perguntas diferentes e sem o valor dentro da consulta",
+          "verificado_em": "2026-09-12",
+          "custodia": "fabricante",
+          "leitura": "busca-sem-leitura-direta"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "Kit dedicado a um unico modelo, e ele ENTRA ACIMA DO NIVEL DO ERB44 — o que estava previsto no PROMPT.md era o contrario, e a medicao desta execucao desfez a previsao. A pagina do kit no dominio do FABRICANTE (content.electrolux.com.br) declara os tres itens um a um, e nomeia a escova pelo TIPO: 'escovas laterais, direita e esquerda'. Isso NAO e molde compartilhado, e a conferencia que prova custou uma leitura a mais: a pagina irma do ERB44, no mesmo dominio e no mesmo formato, foi lida com a MESMA pergunta e traz so a copia generica ('escovas, filtros e pano de microfibra originais'), sem um bloco por item. Ou seja, o bloco por item existe na pagina do ERB80 porque a Electrolux o escreveu la — e, de quebra, confirma que o 'tipo: null' da escova do ERB44 foi acerto, nao preguica. A QUANTIDADE FICA null NOS TRES, de proposito: 'direita e esquerda' esta numa frase de BENEFICIO, descrevendo o que escova lateral faz, e nao numa lista de conteudo da embalagem. Ler dali um '2' seria transformar prosa de venda em quantidade declarada. A assimetria de custo manda o lado: dizer 'o fabricante nao declara quantas' custa uma frase mais fraca; dizer '2 escovas' e vir uma faz alguem comprar errado. A BUSCA OFERECEU '1 filtro HEPA, 1 pano e 2 escovas' COMO PREENCHIMENTO, dizendo textualmente que era 'baseado em kits similares de outros modelos' (ERB10/ERB11/ERB20), e ISSO FOI RECUSADO: modelo vizinho nao declara pelo vizinho, que e a mesma regra que barrou o preenchimento do ERB44 em 12/09. Antes deste registro o ERB80 so respondia escova principal; agora responde filtro, escova lateral e mop.",
+      "verificado_em": "2026-09-12"
+    },
+    {
+      "id": "electrolux-pano-microfibra-erb60-erb61-erb62-erb80",
+      "marca": "electrolux",
+      "codigo_fabricante": null,
+      "motivo_sem_codigo": "a Electrolux nao publica codigo de peca nesta pagina — identifica o item pelo titulo e pela lista de modelos. O codigo KPCEL01/KPCEL02 so aparece no canal de parceiros, e nem toda peca tem um la",
+      "tipo": "mop",
+      "nome_na_fonte": "Pano de Microfibra Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80",
+      "compatibilidade": [
+        {
+          "modelo": "electrolux-erb60",
+          "codigo_declarado": "ERB60",
+          "variante_de_hardware": null,
+          "selo": "declarada_fabricante",
+          "fonte": "f-peca"
+        },
+        {
+          "modelo": "electrolux-erb61",
+          "codigo_declarado": "ERB61",
+          "variante_de_hardware": null,
+          "selo": "declarada_fabricante",
+          "fonte": "f-peca"
+        },
+        {
+          "modelo": "electrolux-erb62",
+          "codigo_declarado": "ERB62",
+          "variante_de_hardware": null,
+          "selo": "declarada_fabricante",
+          "fonte": "f-peca"
+        },
+        {
+          "modelo": "electrolux-erb80",
+          "codigo_declarado": "ERB80",
+          "variante_de_hardware": null,
+          "selo": "declarada_fabricante",
+          "fonte": "f-peca"
+        }
+      ],
+      "divergencias": [],
+      "vida_util_declarada": {
+        "valor": null,
+        "unidade": "meses",
+        "motivo_do_null": "o fabricante nao declara vida util nesta pagina, e o banco nao empresta o numero de um fabricante para a peca de outro"
+      },
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria"
+      },
+      "fontes": {
+        "f-peca": {
+          "nivel": 4,
+          "origem": "varejo-oficial-da-marca",
+          "publicador": "Electrolux (loja oficial)",
+          "titulo_na_fonte": "Pano de Microfibra Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80",
+          "url": "https://loja.electrolux.com.br/pano-de-microfibra-electrolux-para-robos-aspiradores-erb60--erb61--erb62-e-erb80/p",
+          "canal_de_coleta": "busca web restrita aos dominios loja.electrolux.com.br e content.electrolux.com.br (curl e WebFetch diretos devolveram 000/EGRESS_BLOCKED nesta execucao, remedido em duas passadas em 12/09/2026 com robometria.com.br em 200 nas duas). A composicao foi pedida DUAS vezes, com perguntas diferentes e sem o valor dentro da consulta",
+          "verificado_em": "2026-09-12"
+        },
+        "f-descricao": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "Electrolux (pagina institucional do produto)",
+          "titulo_na_fonte": "Pano de Microfibra Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80",
+          "url": "https://content.electrolux.com.br/brasil/electrolux/cybertron/pano_microfibra_erb60_61_62_80/index.html",
+          "canal_de_coleta": "busca web restrita aos dominios loja.electrolux.com.br e content.electrolux.com.br (curl e WebFetch diretos devolveram 000/EGRESS_BLOCKED nesta execucao, remedido em duas passadas em 12/09/2026 com robometria.com.br em 200 nas duas). A composicao foi pedida DUAS vezes, com perguntas diferentes e sem o valor dentro da consulta",
+          "verificado_em": "2026-09-12",
+          "custodia": "fabricante",
+          "leitura": "busca-sem-leitura-direta"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "Peca avulsa, achada na mesma varredura do kit do ERB80 e nao prevista no PROMPT.md. E a PRIMEIRA peca desta ilha que serve o ERB80 fora de um kit, e ela cobre quatro modelos de uma vez. A quantidade por embalagem NAO foi encontrada em nenhuma das duas leituras — a pagina da loja e a institucional descrevem uso e compatibilidade e nao dizem quantas unidades vem —, entao o registro nao carrega quantidade e a R1 nao a afirma. As duas leituras foram feitas com perguntas diferentes, uma restrita a content.electrolux.com.br e outra a loja.electrolux.com.br, e as duas devolveram a mesma lista de quatro modelos compativeis. O ERB44 NAO esta na lista, embora esteja na do filtro HEPA com espuma: ficou como esta declarado, sem estender por semelhanca.",
+      "verificado_em": "2026-09-12"
     }
   ],
   "ordem_da_lista_de_compras": "Reordenada pela varredura da entrada da R1 (dados/cobertura-r1.json, ferramentas/cobertura-r1.py), nao por impressao. O criterio e o da secao 14.3 do ARQUIPELAGO.md aplicado a R1: vale mais a peca que tira um MODELO do vazio do que a peca que acrescenta um par a um modelo que ja respondia. Medido: a R1 responde em 15 dos 28 modelos publicaveis e sai vazia em 12, e apenas 3 dos 28 sao atendidos pelas DUAS ferramentas da ilha."

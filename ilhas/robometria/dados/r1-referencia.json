@@ -132,7 +132,7 @@
         {
           "tipo": "filtro",
           "peca": "electrolux-kit-performance-erb44",
-          "frase": "Ele tambem vem dentro do kit \"Kit Performance Electrolux para Robô Aspirador ERB44\", que a Electrolux (loja oficial) declara compativel com ERB44 (varejo-oficial-da-marca, verificado em 12/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+          "frase": "O filtro tambem vem dentro do kit \"Kit Performance Electrolux para Robô Aspirador ERB44\", que a Electrolux (loja oficial) declara compativel com ERB44 (varejo-oficial-da-marca, verificado em 12/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
         },
         {
           "tipo": "mop",
@@ -161,7 +161,7 @@
         {
           "tipo": "filtro",
           "peca": "electrolux-kit-performance-erb60-erb61-erb62",
-          "frase": "Ele tambem vem dentro do kit \"Kit Performance Electrolux para Robôs Aspiradores ERB60, ERB61 e ERB62\", que a Electrolux (loja oficial) declara compativel com ERB60, ERB61 e ERB62 (varejo-oficial-da-marca, verificado em 09/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+          "frase": "O filtro tambem vem dentro do kit \"Kit Performance Electrolux para Robôs Aspiradores ERB60, ERB61 e ERB62\", que a Electrolux (loja oficial) declara compativel com ERB60, ERB61 e ERB62 (varejo-oficial-da-marca, verificado em 09/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
         },
         {
           "tipo": "escova lateral",
@@ -171,12 +171,17 @@
         {
           "tipo": "mop",
           "peca": "electrolux-kit-performance-erb60-erb61-erb62",
-          "frase": "A Electrolux (loja oficial) nao vende o mop avulso para este modelo: ele vem dentro do kit \"Kit Performance Electrolux para Robôs Aspiradores ERB60, ERB61 e ERB62\", que o fabricante declara compativel com ERB60, ERB61 e ERB62 (varejo-oficial-da-marca, verificado em 09/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+          "frase": "O mop tambem vem dentro do kit \"Kit Performance Electrolux para Robôs Aspiradores ERB60, ERB61 e ERB62\", que a Electrolux (loja oficial) declara compativel com ERB60, ERB61 e ERB62 (varejo-oficial-da-marca, verificado em 09/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
         },
         {
           "tipo": "escova principal",
           "peca": "electrolux-escova-rotativa-central-erb60-erb61-erb62-erb80",
           "frase": "A Electrolux (loja oficial) declara a escova principal \"Escova Rotativa Central Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80\" compativel com ERB60, ERB61, ERB62 e ERB80 (varejo-oficial-da-marca, verificado em 09/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        },
+        {
+          "tipo": "mop",
+          "peca": "electrolux-pano-microfibra-erb60-erb61-erb62-erb80",
+          "frase": "A Electrolux (loja oficial) declara o mop \"Pano de Microfibra Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80\" compativel com ERB60, ERB61, ERB62 e ERB80 (varejo-oficial-da-marca, verificado em 12/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
         }
       ],
       "terceiro": [],
@@ -200,7 +205,7 @@
         {
           "tipo": "filtro",
           "peca": "electrolux-kit-performance-erb60-erb61-erb62",
-          "frase": "Ele tambem vem dentro do kit \"Kit Performance Electrolux para Robôs Aspiradores ERB60, ERB61 e ERB62\", que a Electrolux (loja oficial) declara compativel com ERB60, ERB61 e ERB62 (varejo-oficial-da-marca, verificado em 09/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+          "frase": "O filtro tambem vem dentro do kit \"Kit Performance Electrolux para Robôs Aspiradores ERB60, ERB61 e ERB62\", que a Electrolux (loja oficial) declara compativel com ERB60, ERB61 e ERB62 (varejo-oficial-da-marca, verificado em 09/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
         },
         {
           "tipo": "escova lateral",
@@ -210,12 +215,17 @@
         {
           "tipo": "mop",
           "peca": "electrolux-kit-performance-erb60-erb61-erb62",
-          "frase": "A Electrolux (loja oficial) nao vende o mop avulso para este modelo: ele vem dentro do kit \"Kit Performance Electrolux para Robôs Aspiradores ERB60, ERB61 e ERB62\", que o fabricante declara compativel com ERB60, ERB61 e ERB62 (varejo-oficial-da-marca, verificado em 09/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+          "frase": "O mop tambem vem dentro do kit \"Kit Performance Electrolux para Robôs Aspiradores ERB60, ERB61 e ERB62\", que a Electrolux (loja oficial) declara compativel com ERB60, ERB61 e ERB62 (varejo-oficial-da-marca, verificado em 09/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
         },
         {
           "tipo": "escova principal",
           "peca": "electrolux-escova-rotativa-central-erb60-erb61-erb62-erb80",
           "frase": "A Electrolux (loja oficial) declara a escova principal \"Escova Rotativa Central Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80\" compativel com ERB60, ERB61, ERB62 e ERB80 (varejo-oficial-da-marca, verificado em 09/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        },
+        {
+          "tipo": "mop",
+          "peca": "electrolux-pano-microfibra-erb60-erb61-erb62-erb80",
+          "frase": "A Electrolux (loja oficial) declara o mop \"Pano de Microfibra Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80\" compativel com ERB60, ERB61, ERB62 e ERB80 (varejo-oficial-da-marca, verificado em 12/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
         }
       ],
       "terceiro": [],
@@ -239,7 +249,7 @@
         {
           "tipo": "filtro",
           "peca": "electrolux-kit-performance-erb60-erb61-erb62",
-          "frase": "Ele tambem vem dentro do kit \"Kit Performance Electrolux para Robôs Aspiradores ERB60, ERB61 e ERB62\", que a Electrolux (loja oficial) declara compativel com ERB60, ERB61 e ERB62 (varejo-oficial-da-marca, verificado em 09/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+          "frase": "O filtro tambem vem dentro do kit \"Kit Performance Electrolux para Robôs Aspiradores ERB60, ERB61 e ERB62\", que a Electrolux (loja oficial) declara compativel com ERB60, ERB61 e ERB62 (varejo-oficial-da-marca, verificado em 09/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
         },
         {
           "tipo": "escova lateral",
@@ -249,12 +259,17 @@
         {
           "tipo": "mop",
           "peca": "electrolux-kit-performance-erb60-erb61-erb62",
-          "frase": "A Electrolux (loja oficial) nao vende o mop avulso para este modelo: ele vem dentro do kit \"Kit Performance Electrolux para Robôs Aspiradores ERB60, ERB61 e ERB62\", que o fabricante declara compativel com ERB60, ERB61 e ERB62 (varejo-oficial-da-marca, verificado em 09/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+          "frase": "O mop tambem vem dentro do kit \"Kit Performance Electrolux para Robôs Aspiradores ERB60, ERB61 e ERB62\", que a Electrolux (loja oficial) declara compativel com ERB60, ERB61 e ERB62 (varejo-oficial-da-marca, verificado em 09/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
         },
         {
           "tipo": "escova principal",
           "peca": "electrolux-escova-rotativa-central-erb60-erb61-erb62-erb80",
           "frase": "A Electrolux (loja oficial) declara a escova principal \"Escova Rotativa Central Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80\" compativel com ERB60, ERB61, ERB62 e ERB80 (varejo-oficial-da-marca, verificado em 09/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        },
+        {
+          "tipo": "mop",
+          "peca": "electrolux-pano-microfibra-erb60-erb61-erb62-erb80",
+          "frase": "A Electrolux (loja oficial) declara o mop \"Pano de Microfibra Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80\" compativel com ERB60, ERB61, ERB62 e ERB80 (varejo-oficial-da-marca, verificado em 12/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
         }
       ],
       "terceiro": [],
@@ -274,6 +289,26 @@
           "tipo": "escova principal",
           "peca": "electrolux-escova-rotativa-central-erb60-erb61-erb62-erb80",
           "frase": "A Electrolux (loja oficial) declara a escova principal \"Escova Rotativa Central Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80\" compativel com ERB60, ERB61, ERB62 e ERB80 (varejo-oficial-da-marca, verificado em 09/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        },
+        {
+          "tipo": "filtro",
+          "peca": "electrolux-kit-performance-erb80",
+          "frase": "A Electrolux (loja oficial) nao vende o filtro avulso para este modelo: ele vem dentro do kit \"Kit Performance Electrolux para Robô Aspirador ERB80\", que o fabricante declara compativel com ERB80 (varejo-oficial-da-marca, verificado em 12/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        },
+        {
+          "tipo": "escova lateral",
+          "peca": "electrolux-kit-performance-erb80",
+          "frase": "A Electrolux (loja oficial) nao vende a escova lateral avulsa para este modelo: ela vem dentro do kit \"Kit Performance Electrolux para Robô Aspirador ERB80\", que o fabricante declara compativel com ERB80 (varejo-oficial-da-marca, verificado em 12/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        },
+        {
+          "tipo": "mop",
+          "peca": "electrolux-kit-performance-erb80",
+          "frase": "O mop tambem vem dentro do kit \"Kit Performance Electrolux para Robô Aspirador ERB80\", que a Electrolux (loja oficial) declara compativel com ERB80 (varejo-oficial-da-marca, verificado em 12/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        },
+        {
+          "tipo": "mop",
+          "peca": "electrolux-pano-microfibra-erb60-erb61-erb62-erb80",
+          "frase": "A Electrolux (loja oficial) declara o mop \"Pano de Microfibra Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80\" compativel com ERB60, ERB61, ERB62 e ERB80 (varejo-oficial-da-marca, verificado em 12/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
         }
       ],
       "terceiro": [],

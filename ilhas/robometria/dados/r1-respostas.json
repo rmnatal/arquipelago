@@ -913,7 +913,7 @@
           "nome_na_fonte": "Kit Performance Electrolux para Robôs Aspiradores ERB60, ERB61 e ERB62",
           "tipo_da_peca": "kit",
           "dentro_de_kit": true,
-          "existe_avulso": false,
+          "existe_avulso": true,
           "publicador": "Electrolux (loja oficial)",
           "origem": "varejo-oficial-da-marca",
           "nivel_da_fonte": 4,
@@ -949,6 +949,37 @@
           "nivel_da_fonte": 4,
           "url": "https://loja.electrolux.com.br/escova-rotativa-central-electrolux-para-robos-aspiradores-erb60--erb61--erb62-e-erb80/p",
           "verificado_em": "2026-09-09",
+          "declarados": [
+            "ERB60",
+            "ERB61",
+            "ERB62",
+            "ERB80"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        },
+        {
+          "tipo": "mop",
+          "peca": "electrolux-pano-microfibra-erb60-erb61-erb62-erb80",
+          "codigo": null,
+          "nome_na_fonte": "Pano de Microfibra Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80",
+          "tipo_da_peca": "mop",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Electrolux (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.electrolux.com.br/pano-de-microfibra-electrolux-para-robos-aspiradores-erb60--erb61--erb62-e-erb80/p",
+          "verificado_em": "2026-09-12",
           "declarados": [
             "ERB60",
             "ERB61",
@@ -1072,7 +1103,7 @@
           "nome_na_fonte": "Kit Performance Electrolux para Robôs Aspiradores ERB60, ERB61 e ERB62",
           "tipo_da_peca": "kit",
           "dentro_de_kit": true,
-          "existe_avulso": false,
+          "existe_avulso": true,
           "publicador": "Electrolux (loja oficial)",
           "origem": "varejo-oficial-da-marca",
           "nivel_da_fonte": 4,
@@ -1108,6 +1139,37 @@
           "nivel_da_fonte": 4,
           "url": "https://loja.electrolux.com.br/escova-rotativa-central-electrolux-para-robos-aspiradores-erb60--erb61--erb62-e-erb80/p",
           "verificado_em": "2026-09-09",
+          "declarados": [
+            "ERB60",
+            "ERB61",
+            "ERB62",
+            "ERB80"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        },
+        {
+          "tipo": "mop",
+          "peca": "electrolux-pano-microfibra-erb60-erb61-erb62-erb80",
+          "codigo": null,
+          "nome_na_fonte": "Pano de Microfibra Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80",
+          "tipo_da_peca": "mop",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Electrolux (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.electrolux.com.br/pano-de-microfibra-electrolux-para-robos-aspiradores-erb60--erb61--erb62-e-erb80/p",
+          "verificado_em": "2026-09-12",
           "declarados": [
             "ERB60",
             "ERB61",
@@ -1231,7 +1293,7 @@
           "nome_na_fonte": "Kit Performance Electrolux para Robôs Aspiradores ERB60, ERB61 e ERB62",
           "tipo_da_peca": "kit",
           "dentro_de_kit": true,
-          "existe_avulso": false,
+          "existe_avulso": true,
           "publicador": "Electrolux (loja oficial)",
           "origem": "varejo-oficial-da-marca",
           "nivel_da_fonte": 4,
@@ -1284,6 +1346,37 @@
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
+        },
+        {
+          "tipo": "mop",
+          "peca": "electrolux-pano-microfibra-erb60-erb61-erb62-erb80",
+          "codigo": null,
+          "nome_na_fonte": "Pano de Microfibra Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80",
+          "tipo_da_peca": "mop",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Electrolux (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.electrolux.com.br/pano-de-microfibra-electrolux-para-robos-aspiradores-erb60--erb61--erb62-e-erb80/p",
+          "verificado_em": "2026-09-12",
+          "declarados": [
+            "ERB60",
+            "ERB61",
+            "ERB62",
+            "ERB80"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         }
       ],
       "terceiro": [],
@@ -1305,6 +1398,121 @@
           "nivel_da_fonte": 4,
           "url": "https://loja.electrolux.com.br/escova-rotativa-central-electrolux-para-robos-aspiradores-erb60--erb61--erb62-e-erb80/p",
           "verificado_em": "2026-09-09",
+          "declarados": [
+            "ERB60",
+            "ERB61",
+            "ERB62",
+            "ERB80"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        },
+        {
+          "tipo": "filtro",
+          "peca": "electrolux-kit-performance-erb80",
+          "codigo": null,
+          "nome_na_fonte": "Kit Performance Electrolux para Robô Aspirador ERB80",
+          "tipo_da_peca": "kit",
+          "dentro_de_kit": true,
+          "existe_avulso": false,
+          "publicador": "Electrolux (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robo-aspirador-erb80/p",
+          "verificado_em": "2026-09-12",
+          "declarados": [
+            "ERB80"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        },
+        {
+          "tipo": "escova lateral",
+          "peca": "electrolux-kit-performance-erb80",
+          "codigo": null,
+          "nome_na_fonte": "Kit Performance Electrolux para Robô Aspirador ERB80",
+          "tipo_da_peca": "kit",
+          "dentro_de_kit": true,
+          "existe_avulso": false,
+          "publicador": "Electrolux (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robo-aspirador-erb80/p",
+          "verificado_em": "2026-09-12",
+          "declarados": [
+            "ERB80"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        },
+        {
+          "tipo": "mop",
+          "peca": "electrolux-kit-performance-erb80",
+          "codigo": null,
+          "nome_na_fonte": "Kit Performance Electrolux para Robô Aspirador ERB80",
+          "tipo_da_peca": "kit",
+          "dentro_de_kit": true,
+          "existe_avulso": true,
+          "publicador": "Electrolux (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robo-aspirador-erb80/p",
+          "verificado_em": "2026-09-12",
+          "declarados": [
+            "ERB80"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        },
+        {
+          "tipo": "mop",
+          "peca": "electrolux-pano-microfibra-erb60-erb61-erb62-erb80",
+          "codigo": null,
+          "nome_na_fonte": "Pano de Microfibra Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80",
+          "tipo_da_peca": "mop",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Electrolux (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.electrolux.com.br/pano-de-microfibra-electrolux-para-robos-aspiradores-erb60--erb61--erb62-e-erb80/p",
+          "verificado_em": "2026-09-12",
           "declarados": [
             "ERB60",
             "ERB61",
@@ -2124,6 +2332,19 @@
       "verificado_em": "2026-09-09"
     },
     {
+      "modelo": "electrolux-erb60",
+      "modelo_rotulo": "Electrolux ERB60",
+      "tipo": "mop",
+      "peca": "electrolux-pano-microfibra-erb60-erb61-erb62-erb80",
+      "codigo": null,
+      "nome_na_fonte": "Pano de Microfibra Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/pano-de-microfibra-electrolux-para-robos-aspiradores-erb60--erb61--erb62-e-erb80/p",
+      "verificado_em": "2026-09-12"
+    },
+    {
       "modelo": "xiaomi-s20",
       "modelo_rotulo": "Xiaomi S20",
       "tipo": "filtro",
@@ -2332,6 +2553,19 @@
       "verificado_em": "2026-09-09"
     },
     {
+      "modelo": "electrolux-erb61",
+      "modelo_rotulo": "Electrolux ERB61",
+      "tipo": "mop",
+      "peca": "electrolux-pano-microfibra-erb60-erb61-erb62-erb80",
+      "codigo": null,
+      "nome_na_fonte": "Pano de Microfibra Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/pano-de-microfibra-electrolux-para-robos-aspiradores-erb60--erb61--erb62-e-erb80/p",
+      "verificado_em": "2026-09-12"
+    },
+    {
       "modelo": "multi-ob010",
       "modelo_rotulo": "Multi (ex-Multilaser) OB010",
       "tipo": "escova lateral",
@@ -2475,8 +2709,99 @@
       "verificado_em": "2026-09-09"
     },
     {
+      "modelo": "electrolux-erb62",
+      "modelo_rotulo": "Electrolux ERB62",
+      "tipo": "mop",
+      "peca": "electrolux-pano-microfibra-erb60-erb61-erb62-erb80",
+      "codigo": null,
+      "nome_na_fonte": "Pano de Microfibra Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/pano-de-microfibra-electrolux-para-robos-aspiradores-erb60--erb61--erb62-e-erb80/p",
+      "verificado_em": "2026-09-12"
+    },
+    {
       "modelo": "multi-ho400",
       "modelo_rotulo": "Multi (ex-Multilaser) HO400",
+      "tipo": "escova lateral",
+      "peca": "multi-pr10124",
+      "codigo": "PR10124",
+      "nome_na_fonte": "Escova Lateral para Aspirador Robô Mars, Moon e Duster",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.multilaser.com.br/escova-lateral-para-aspirador-robo-ho041-e-ob010/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "electrolux-erb80",
+      "modelo_rotulo": "Electrolux ERB80",
+      "tipo": "escova principal",
+      "peca": "electrolux-escova-rotativa-central-erb60-erb61-erb62-erb80",
+      "codigo": null,
+      "nome_na_fonte": "Escova Rotativa Central Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/escova-rotativa-central-electrolux-para-robos-aspiradores-erb60--erb61--erb62-e-erb80/p",
+      "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "electrolux-erb80",
+      "modelo_rotulo": "Electrolux ERB80",
+      "tipo": "filtro",
+      "peca": "electrolux-kit-performance-erb80",
+      "codigo": null,
+      "nome_na_fonte": "Kit Performance Electrolux para Robô Aspirador ERB80",
+      "dentro_de_kit": true,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robo-aspirador-erb80/p",
+      "verificado_em": "2026-09-12"
+    },
+    {
+      "modelo": "electrolux-erb80",
+      "modelo_rotulo": "Electrolux ERB80",
+      "tipo": "escova lateral",
+      "peca": "electrolux-kit-performance-erb80",
+      "codigo": null,
+      "nome_na_fonte": "Kit Performance Electrolux para Robô Aspirador ERB80",
+      "dentro_de_kit": true,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robo-aspirador-erb80/p",
+      "verificado_em": "2026-09-12"
+    },
+    {
+      "modelo": "electrolux-erb80",
+      "modelo_rotulo": "Electrolux ERB80",
+      "tipo": "mop",
+      "peca": "electrolux-kit-performance-erb80",
+      "codigo": null,
+      "nome_na_fonte": "Kit Performance Electrolux para Robô Aspirador ERB80",
+      "dentro_de_kit": true,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robo-aspirador-erb80/p",
+      "verificado_em": "2026-09-12"
+    },
+    {
+      "modelo": "electrolux-erb80",
+      "modelo_rotulo": "Electrolux ERB80",
+      "tipo": "mop",
+      "peca": "electrolux-pano-microfibra-erb60-erb61-erb62-erb80",
+      "codigo": null,
+      "nome_na_fonte": "Pano de Microfibra Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/pano-de-microfibra-electrolux-para-robos-aspiradores-erb60--erb61--erb62-e-erb80/p",
+      "verificado_em": "2026-09-12"
+    },
+    {
+      "modelo": "multi-ho407",
+      "modelo_rotulo": "Multi (ex-Multilaser) HO407",
       "tipo": "escova lateral",
       "peca": "multi-pr10124",
       "codigo": "PR10124",
@@ -2524,19 +2849,6 @@
       "divergencia": false,
       "origem": "varejo-oficial-da-marca",
       "url": "https://loja.electrolux.com.br/kit-performance-para-robos-aspiradores-erb10-erb11-e-erb20---electrolux/p",
-      "verificado_em": "2026-09-09"
-    },
-    {
-      "modelo": "multi-ho407",
-      "modelo_rotulo": "Multi (ex-Multilaser) HO407",
-      "tipo": "escova lateral",
-      "peca": "multi-pr10124",
-      "codigo": "PR10124",
-      "nome_na_fonte": "Escova Lateral para Aspirador Robô Mars, Moon e Duster",
-      "dentro_de_kit": false,
-      "divergencia": false,
-      "origem": "fabricante-via-busca",
-      "url": "https://www.multilaser.com.br/escova-lateral-para-aspirador-robo-ho041-e-ob010/p",
       "verificado_em": "2026-09-09"
     },
     {
@@ -2694,19 +3006,6 @@
       "origem": "varejo-oficial-da-marca",
       "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robo-aspirador-erb44/p",
       "verificado_em": "2026-09-12"
-    },
-    {
-      "modelo": "electrolux-erb80",
-      "modelo_rotulo": "Electrolux ERB80",
-      "tipo": "escova principal",
-      "peca": "electrolux-escova-rotativa-central-erb60-erb61-erb62-erb80",
-      "codigo": null,
-      "nome_na_fonte": "Escova Rotativa Central Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80",
-      "dentro_de_kit": false,
-      "divergencia": false,
-      "origem": "varejo-oficial-da-marca",
-      "url": "https://loja.electrolux.com.br/escova-rotativa-central-electrolux-para-robos-aspiradores-erb60--erb61--erb62-e-erb80/p",
-      "verificado_em": "2026-09-09"
     }
   ],
   "entrada_vazia": [
@@ -2728,13 +3027,13 @@
     "modelos_que_respondem": 16,
     "modelos_com_entrada_vazia": 12,
     "celulas": 168,
-    "celulas_sem_resposta": 123,
-    "pares_declarados": 33,
-    "pecas_publicaveis": 16,
+    "celulas_sem_resposta": 120,
+    "pares_declarados": 38,
+    "pecas_publicaveis": 18,
     "marcas": 5,
     "as_duas_ferramentas": 3,
-    "pecas_recomendadas": 16,
-    "pecas_esperando_link": 16,
+    "pecas_recomendadas": 18,
+    "pecas_esperando_link": 18,
     "pecas_com_link": 0
   }
 }

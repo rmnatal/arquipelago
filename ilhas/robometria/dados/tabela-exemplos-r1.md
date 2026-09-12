@@ -17,6 +17,7 @@ linhas em HTML, sem depender de script.
 | Electrolux ERB60 | escova lateral | o fabricante nao publica codigo | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 09/09/2026 |
 | Electrolux ERB60 | mop | o fabricante nao publica codigo | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 09/09/2026 |
 | Electrolux ERB60 | escova principal | o fabricante nao publica codigo | declarada_fabricante | varejo-oficial-da-marca · 09/09/2026 |
+| Electrolux ERB60 | mop | o fabricante nao publica codigo | declarada_fabricante | varejo-oficial-da-marca · 12/09/2026 |
 | Xiaomi S20 | filtro | o fabricante nao publica codigo | declarada_fabricante — dentro de kit | fabricante-via-busca · 09/09/2026 |
 | Xiaomi S20 | escova lateral | o fabricante nao publica codigo | declarada_fabricante — dentro de kit | fabricante-via-busca · 09/09/2026 |
 | Xiaomi S20 | escova principal | o fabricante nao publica codigo | declarada_fabricante — dentro de kit | fabricante-via-busca · 09/09/2026 |
@@ -33,6 +34,7 @@ linhas em HTML, sem depender de script.
 | Electrolux ERB61 | escova lateral | o fabricante nao publica codigo | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 09/09/2026 |
 | Electrolux ERB61 | mop | o fabricante nao publica codigo | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 09/09/2026 |
 | Electrolux ERB61 | escova principal | o fabricante nao publica codigo | declarada_fabricante | varejo-oficial-da-marca · 09/09/2026 |
+| Electrolux ERB61 | mop | o fabricante nao publica codigo | declarada_fabricante | varejo-oficial-da-marca · 12/09/2026 |
 | Multi (ex-Multilaser) OB010 | escova lateral | PR10124 | declarada_fabricante | fabricante-via-busca · 09/09/2026 |
 | Multi (ex-Multilaser) OB010 | filtro | PR10343 | declarada_fabricante | fabricante-via-busca · 09/09/2026 |
 | Multi (ex-Multilaser) OB010 | mop | PR10342 | declarada_fabricante | fabricante-via-busca · 09/09/2026 |
@@ -44,11 +46,17 @@ linhas em HTML, sem depender de script.
 | Electrolux ERB62 | escova lateral | o fabricante nao publica codigo | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 09/09/2026 |
 | Electrolux ERB62 | mop | o fabricante nao publica codigo | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 09/09/2026 |
 | Electrolux ERB62 | escova principal | o fabricante nao publica codigo | declarada_fabricante | varejo-oficial-da-marca · 09/09/2026 |
+| Electrolux ERB62 | mop | o fabricante nao publica codigo | declarada_fabricante | varejo-oficial-da-marca · 12/09/2026 |
 | Multi (ex-Multilaser) HO400 | escova lateral | PR10124 | declarada_fabricante | fabricante-via-busca · 09/09/2026 |
+| Electrolux ERB80 | escova principal | o fabricante nao publica codigo | declarada_fabricante | varejo-oficial-da-marca · 09/09/2026 |
+| Electrolux ERB80 | filtro | o fabricante nao publica codigo | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 12/09/2026 |
+| Electrolux ERB80 | escova lateral | o fabricante nao publica codigo | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 12/09/2026 |
+| Electrolux ERB80 | mop | o fabricante nao publica codigo | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 12/09/2026 |
+| Electrolux ERB80 | mop | o fabricante nao publica codigo | declarada_fabricante | varejo-oficial-da-marca · 12/09/2026 |
+| Multi (ex-Multilaser) HO407 | escova lateral | PR10124 | declarada_fabricante | fabricante-via-busca · 09/09/2026 |
 | Electrolux ERB10 | filtro | KPCEL01 | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 09/09/2026 |
 | Electrolux ERB10 | escova lateral | KPCEL01 | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 09/09/2026 |
 | Electrolux ERB10 | mop | KPCEL01 | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 09/09/2026 |
-| Multi (ex-Multilaser) HO407 | escova lateral | PR10124 | declarada_fabricante | fabricante-via-busca · 09/09/2026 |
 | Electrolux ERB11 | filtro | KPCEL01 | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 09/09/2026 |
 | Electrolux ERB11 | escova lateral | KPCEL01 | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 09/09/2026 |
 | Electrolux ERB11 | mop | KPCEL01 | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 09/09/2026 |
@@ -61,6 +69,5 @@ linhas em HTML, sem depender de script.
 | Electrolux ERB44 | filtro | o fabricante nao publica codigo | declarada_fabricante | varejo-oficial-da-marca · 09/09/2026 |
 | Electrolux ERB44 | filtro | o fabricante nao publica codigo | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 12/09/2026 |
 | Electrolux ERB44 | mop | o fabricante nao publica codigo | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 12/09/2026 |
-| Electrolux ERB80 | escova principal | o fabricante nao publica codigo | declarada_fabricante | varejo-oficial-da-marca · 09/09/2026 |
 
-Linhas: **50** — o minimo da secao 1.7 da especificacao e 8.
+Linhas: **57** — o minimo da secao 1.7 da especificacao e 8.

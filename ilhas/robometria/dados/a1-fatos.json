@@ -7,12 +7,12 @@
   "resumo": {
     "marcas": 5,
     "modelos_publicaveis": 28,
-    "pecas_publicaveis": 16,
-    "pares_declarados": 33,
+    "pecas_publicaveis": 18,
+    "pares_declarados": 38,
     "pecas_que_atravessam_marca": 0,
     "celulas_total": 168,
-    "celulas_sem_resposta": 123,
-    "pecas_esperando_link": 16
+    "celulas_sem_resposta": 120,
+    "pecas_esperando_link": 18
   },
   "maior_alcance": {
     "peca": "multi-pr10124",
@@ -94,6 +94,27 @@
         "ERB60",
         "ERB61",
         "ERB62"
+      ],
+      "modelos_publicaveis": 4,
+      "marcas_atendidas": [
+        "electrolux"
+      ],
+      "atravessa_marca": false
+    },
+    {
+      "peca": "electrolux-pano-microfibra-erb60-erb61-erb62-erb80",
+      "tipo": "mop",
+      "marca": "electrolux",
+      "publicador": "Electrolux",
+      "identificacao": "\"Pano de Microfibra Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80\"",
+      "sem_codigo_publicado": true,
+      "nome_na_fonte": "Pano de Microfibra Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80",
+      "codigos_declarados": 4,
+      "codigos_na_fonte": [
+        "ERB60",
+        "ERB61",
+        "ERB62",
+        "ERB80"
       ],
       "modelos_publicaveis": 4,
       "marcas_atendidas": [
@@ -235,6 +256,24 @@
       "atravessa_marca": false
     },
     {
+      "peca": "electrolux-kit-performance-erb80",
+      "tipo": "kit",
+      "marca": "electrolux",
+      "publicador": "Electrolux",
+      "identificacao": "\"Kit Performance Electrolux para Robô Aspirador ERB80\"",
+      "sem_codigo_publicado": true,
+      "nome_na_fonte": "Kit Performance Electrolux para Robô Aspirador ERB80",
+      "codigos_declarados": 1,
+      "codigos_na_fonte": [
+        "ERB80"
+      ],
+      "modelos_publicaveis": 1,
+      "marcas_atendidas": [
+        "electrolux"
+      ],
+      "atravessa_marca": false
+    },
+    {
       "peca": "multi-pr10127",
       "tipo": "bateria",
       "marca": "multi",
@@ -347,9 +386,9 @@
     {
       "marca": "electrolux",
       "publicador": "Electrolux",
-      "pecas": 6,
-      "conjuntos_distintos": 6,
-      "nenhuma_repete": true
+      "pecas": 8,
+      "conjuntos_distintos": 7,
+      "nenhuma_repete": false
     },
     {
       "marca": "multi",
@@ -377,19 +416,19 @@
     {
       "tipo": "escova lateral",
       "nome": "escova lateral",
-      "modelos_com_declaracao": 14,
+      "modelos_com_declaracao": 15,
       "modelos_publicaveis": 28
     },
     {
       "tipo": "mop",
       "nome": "mop",
-      "modelos_com_declaracao": 12,
+      "modelos_com_declaracao": 13,
       "modelos_publicaveis": 28
     },
     {
       "tipo": "filtro",
       "nome": "filtro",
-      "modelos_com_declaracao": 11,
+      "modelos_com_declaracao": 12,
       "modelos_publicaveis": 28
     },
     {
@@ -519,24 +558,21 @@
       "verificado_em": "2026-09-09"
     },
     {
-      "peca": "electrolux-kit-performance-erb60-erb61-erb62",
-      "tipo": "kit",
-      "nome_do_tipo": "kit",
+      "peca": "electrolux-pano-microfibra-erb60-erb61-erb62-erb80",
+      "tipo": "mop",
+      "nome_do_tipo": "mop",
       "publicador": "Electrolux",
-      "identificacao": "\"Kit Performance Electrolux para Robôs Aspiradores ERB60, ERB61 e ERB62\"",
+      "identificacao": "\"Pano de Microfibra Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80\"",
       "sem_codigo_publicado": true,
-      "nome_na_fonte": "Kit Performance Electrolux para Robôs Aspiradores ERB60, ERB61 e ERB62",
+      "nome_na_fonte": "Pano de Microfibra Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80",
       "codigos_na_fonte": [
         "ERB60",
         "ERB61",
-        "ERB62"
+        "ERB62",
+        "ERB80"
       ],
-      "codigos_declarados": 3,
-      "tipos_do_kit": [
-        "escova lateral",
-        "filtro",
-        "mop"
-      ],
+      "codigos_declarados": 4,
+      "tipos_do_kit": [],
       "imagem": {
         "url": null,
         "largura": null,
@@ -552,23 +588,23 @@
         "sub_id_1": "robometria",
         "sub_id_2": "A1"
       },
-      "fonte_url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robos-aspiradores-erb60--erb61-e-erb62/p",
+      "fonte_url": "https://loja.electrolux.com.br/pano-de-microfibra-electrolux-para-robos-aspiradores-erb60--erb61--erb62-e-erb80/p",
       "fonte_publicador": "Electrolux (loja oficial)",
-      "verificado_em": "2026-09-09"
+      "verificado_em": "2026-09-12"
     }
   ],
   "perguntas": [
     {
       "pergunta": "Existe filtro universal para robô aspirador?",
-      "resposta": "Não. Nas 16 peças de reposição com compatibilidade declarada pelo fabricante que a Robometria conferiu, nenhuma é declarada para modelos de mais de uma marca, e a lista mais longa do banco nomeia 5 códigos de modelo, todos da mesma marca."
+      "resposta": "Não. Nas 18 peças de reposição com compatibilidade declarada pelo fabricante que a Robometria conferiu, nenhuma é declarada para modelos de mais de uma marca, e a lista mais longa do banco nomeia 5 códigos de modelo, todos da mesma marca."
     },
     {
       "pergunta": "Uma peça que serve num modelo da marca serve nos outros modelos dela?",
-      "resposta": "Nem sempre, e o próprio catálogo dos fabricantes mostra isso: as 6 peças da Electrolux no banco formam 6 conjuntos de modelos diferentes. Compatibilidade é declarada por código de peça, uma a uma, e não se herda de uma peça para a seguinte."
+      "resposta": "Nem sempre, e o próprio catálogo dos fabricantes mostra isso: as 8 peças da Electrolux no banco formam 7 conjuntos de modelos diferentes. Compatibilidade é declarada por código de peça, uma a uma, e não se herda de uma peça para a seguinte."
     },
     {
       "pergunta": "Como descobrir o código da peça certa para o meu robô aspirador?",
-      "resposta": "Procurando o modelo na lista de compatibilidade publicada pelo próprio fabricante. A Robometria reúne essas listas: são 33 pares peça × modelo em 5 marcas, todos declarados pelo fabricante e nenhum inferido, cada um com o endereço da declaração e a data em que ela foi verificada."
+      "resposta": "Procurando o modelo na lista de compatibilidade publicada pelo próprio fabricante. A Robometria reúne essas listas: são 38 pares peça × modelo em 5 marcas, todos declarados pelo fabricante e nenhum inferido, cada um com o endereço da declaração e a data em que ela foi verificada."
     }
   ]
 }

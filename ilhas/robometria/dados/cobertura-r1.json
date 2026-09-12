@@ -24,9 +24,9 @@
       "reservatorio"
     ],
     "celulas": {
-      "declarada": 45,
+      "declarada": 48,
       "kit_sem_composicao": 0,
-      "vazia": 123
+      "vazia": 120
     },
     "celulas_total": 168
   },
@@ -90,18 +90,18 @@
     "POR QUE ISSO CUSTA DINHEIRO: a ilha ganha a visita pela R2 ('quantos Pa para pelo de cachorro'), que hoje so consegue recomendar Xiaomi na faixa alta. Quem compra volta meses depois procurando o filtro daquele robo — a consulta de maior intencao de compra do nicho, e a razao de a R1 existir — e recebe 'nao localizamos declaracao do fabricante'. As duas ferramentas nao se entregam a visita uma para a outra. O funil esta partido na emenda, e nenhuma das duas medicoes isoladas mostrava a emenda.",
     "O QUE ISSO MUDA NA ORDEM DA FILA: a leva anterior deixou 'pecas da Xiaomi e da WAP com codigo' em ULTIMO lugar entre os alvos de coleta. A varredura diz que ele e o primeiro entre os coletaveis, por dois motivos medidos. Primeiro: e o unico alvo que fecha a emenda pelo lado que da para colher — a lacuna simetrica (Pa da Electrolux e da Multi) ja foi medida como inexistente no mercado, essas marcas nao publicam Pa em canal nenhum, entao insistir nela e trabalho sem fim. Segundo: sao exatamente os 8 modelos que a R2 ja recomenda, ou seja, o retorno chega na visita que a ilha ja sabe atrair, nao numa visita hipotetica.",
     "DECISAO DE INTERFACE que a varredura obriga: o tipo 'reservatorio' nao tem NENHUMA peca declarada no banco inteiro. Deixar esse tipo no seletor da R1 e oferecer uma escolha que sempre devolve recusa — pela secao 6 do ARQUIPELAGO.md a promessa vem antes do formulario, entao o seletor da R1 so oferece tipo que o banco consegue responder em pelo menos um modelo, e o tipo volta ao seletor no dia em que a primeira peca dele entrar.",
-    "O QUE A VARREDURA NAO E: ela nao aplica o portao de 3 itens da secao 9. Na R2 a faixa produz uma lista de produtos concorrentes e tres e o minimo honesto; na R1 a resposta certa costuma ser UMA peca, a que o fabricante declarou, e exigir tres levaria a ilha a inventar concorrente onde o fabricante tem uma peca so. O criterio aqui e binario e mais duro: das 168 celulas (modelo x tipo), 123 nao tem o que responder."
+    "O QUE A VARREDURA NAO E: ela nao aplica o portao de 3 itens da secao 9. Na R2 a faixa produz uma lista de produtos concorrentes e tres e o minimo honesto; na R1 a resposta certa costuma ser UMA peca, a que o fabricante declarou, e exigir tres levaria a ilha a inventar concorrente onde o fabricante tem uma peca so. O criterio aqui e binario e mais duro: das 168 celulas (modelo x tipo), 120 nao tem o que responder."
   ],
   "por_tipo": {
     "filtro": {
-      "declarada": 11,
+      "declarada": 12,
       "kit_sem_composicao": 0,
-      "vazia": 17
+      "vazia": 16
     },
     "escova lateral": {
-      "declarada": 14,
+      "declarada": 15,
       "kit_sem_composicao": 0,
-      "vazia": 14
+      "vazia": 13
     },
     "escova principal": {
       "declarada": 7,
@@ -109,9 +109,9 @@
       "vazia": 21
     },
     "mop": {
-      "declarada": 12,
+      "declarada": 13,
       "kit_sem_composicao": 0,
-      "vazia": 16
+      "vazia": 15
     },
     "bateria": {
       "declarada": 1,
@@ -268,7 +268,7 @@
         "bateria",
         "reservatorio"
       ],
-      "pecas_do_fabricante": 3,
+      "pecas_do_fabricante": 4,
       "tem_aviso_de_variante": false
     },
     {
@@ -286,7 +286,7 @@
         "bateria",
         "reservatorio"
       ],
-      "pecas_do_fabricante": 3,
+      "pecas_do_fabricante": 4,
       "tem_aviso_de_variante": false
     },
     {
@@ -304,7 +304,7 @@
         "bateria",
         "reservatorio"
       ],
-      "pecas_do_fabricante": 3,
+      "pecas_do_fabricante": 4,
       "tem_aviso_de_variante": false
     },
     {
@@ -313,16 +313,16 @@
       "codigo_fabricante": "ERB80",
       "resultado": "responde",
       "tipos_cobertos": [
-        "escova principal"
+        "escova lateral",
+        "escova principal",
+        "filtro",
+        "mop"
       ],
       "tipos_vazios": [
-        "filtro",
-        "escova lateral",
-        "mop",
         "bateria",
         "reservatorio"
       ],
-      "pecas_do_fabricante": 1,
+      "pecas_do_fabricante": 3,
       "tem_aviso_de_variante": false
     },
     {

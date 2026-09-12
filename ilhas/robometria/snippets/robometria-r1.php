@@ -87,7 +87,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_R1_VERSAO' ) ) {
-	define( 'ROBOMETRIA_R1_VERSAO', '1.2.0' );
+	define( 'ROBOMETRIA_R1_VERSAO', '1.3.0' );
 	define( 'ROBOMETRIA_R1_SLUG', 'qual-peca-serve-no-meu-robo-aspirador' );
 	define( 'ROBOMETRIA_R1_TITULO', 'Qual peça serve no meu robô aspirador' );
 	define( 'ROBOMETRIA_R1_DADOS', 'robometria_dados_r1-respostas' );
@@ -387,11 +387,16 @@ function robometria_r1_frase( $item ) {
 		   dizer "não vende avulso" seria negar, na mesma tela, a peça que a
 		   frase anterior acabou de mostrar. A contradição só apareceu lendo a
 		   resposta inteira como um leitor lê — verificação por regra objetiva
-		   não pega defeito de julgamento. */
+		   não pega defeito de julgamento.
+
+		   E ela NOMEIA O TIPO, nunca um pronome: escrita como "Ele também vem
+		   dentro do kit…", só lia certo enquanto a peça avulsa do mesmo tipo
+		   caísse logo antes por ordem do banco. Ver o porquê inteiro em
+		   ferramentas/cobertura-r1.py, frase_declarada(). */
 		list( $artigo, $avulso, $pronome ) = robometria_r1_genero( $item['tipo'] );
 		$frase = sprintf(
-			'%1$s também vem dentro do kit %2$s, que a %3$s declara compatível com %4$s (%5$s, verificado em %6$s).',
-			robometria_r1_maiuscula( $pronome ), $identificacao, $item['publicador'],
+			'%1$s %2$s também vem dentro do kit %3$s, que a %4$s declara compatível com %5$s (%6$s, verificado em %7$s).',
+			robometria_r1_maiuscula( $artigo ), $tipo, $identificacao, $item['publicador'],
 			$lista, $rotulo_origem, $data
 		);
 	} elseif ( ! empty( $item['dentro_de_kit'] ) ) {
