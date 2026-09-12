@@ -2344,3 +2344,186 @@ aberto e e por ele que o 3c anda enquanto o egresso direto nao abrir:
    alcanca `mi.com`? Nao foi testado nesta execucao; teste antes de escolher.
 3. A leva de malha (5b) **continua travada** pela metade humana do despacho de
    10/09 — o reenvio do sitemap no Search Console, que e do Raphael.
+
+## 2026-09-12, 23h18Z — Bloco 3c: o kit do ERB80 e o pano de microfibra entram no banco, e um pronome sem antecedente sai do ar (R1 1.3.0, revisao 24)
+
+**O que foi entregue.** Dois registros novos em `dados/pecas.json`, colhidos pelo
+canal de busca, e uma correcao de frase que estava publicada em tres paginas. O
+banco vai de 18 para 20 pecas (16 para 18 publicaveis) e de 33 para 38 pares
+peca x modelo declarados. **Nenhuma URL nova.**
+
+**A REDE, reconferida como a 20.2 manda, em duas passadas na mesma execucao:**
+`robometria.com.br` em 200 nas duas; `loja.electrolux.com.br`,
+`content.electrolux.com.br`, `mi.com.br` e `wap.ind.br` em `000` por politica de
+egresso, com o proxy nomeando `connect_rejected`. Nao e intermitencia de tunel: e
+politica, e o canal de BUSCA continua alcancando os mesmos fabricantes. Foi por
+ele que os dois registros subiram.
+
+### O kit do ERB80, e a previsao deste arquivo estava errada
+
+O `PROMPT.md` dizia, escrito na execucao anterior, que o kit do ERB80 entraria
+"no nivel do ERB44": tipos declarados, sem quantidade e **sem o tipo da escova**.
+A coleta desta execucao achou o contrario. A pagina do kit no dominio do
+**fabricante** (`content.electrolux.com.br/.../kit_performance_erb80/`) descreve
+os tres itens **um a um** — filtro HEPA, "escovas laterais, direita e esquerda",
+refil de microfibra — e portanto **nomeia a escova pelo tipo**. Ele entra ACIMA
+do ERB44.
+
+**A CONFERENCIA QUE SUSTENTA ISSO CUSTOU UMA LEITURA A MAIS, e vale como regua
+para toda transcricao desta ilha.** Bloco por item numa pagina de catalogo pode
+ser **molde do gerador de paginas**, e molde nao declara nada sobre o produto. O
+jeito de separar as duas coisas nao e olhar mais forte a mesma pagina: e ler a
+pagina IRMA com a MESMA pergunta. A do ERB44, no mesmo dominio e no mesmo
+formato, devolveu so a copia generica ("escovas, filtros e pano de microfibra
+originais"), sem um bloco por item. Logo o bloco por item existe na pagina do
+ERB80 porque a Electrolux o escreveu la — e, de quebra, **isso confirma
+retroativamente que o `tipo: null` da escova do ERB44 foi acerto, e nao
+preguica**. E a prima da regra de 12/09 sobre documento de familia com dois
+numeros; a diferenca e que ali a declaracao vizinha desmascarou uma atribuicao e
+aqui ela CONFIRMA uma.
+
+**A QUANTIDADE FICOU `null` NOS TRES ITENS, de proposito.** "Direita e esquerda"
+esta numa frase de BENEFICIO, descrevendo o que escova lateral faz, e nao numa
+lista de conteudo de embalagem. Ler dali um "2" seria transformar prosa de venda
+em quantidade declarada. A assimetria de custo manda o lado: dizer "o fabricante
+nao declara quantas" custa uma frase mais fraca na tela; dizer "2 escovas" e vir
+uma faz alguem comprar errado.
+
+**E A BUSCA TENTOU PREENCHER DE NOVO, agora se confessando.** A segunda leitura
+devolveu "1 filtro HEPA, 1 pano de microfibra e 2 escovas de canto" dizendo
+**textualmente** que era "baseado em kits similares de outros modelos
+(ERB10/ERB11/ERB20)". Recusado, pela mesma regra que barrou o preenchimento do
+ERB44 em 12/09: modelo vizinho nao declara pelo vizinho. Registrar que a resposta
+veio rotulada como analogia e util — nem sempre ela vem.
+
+### O pano de microfibra ERB60/61/62/80, que ninguem tinha pedido
+
+Apareceu na lista de resultados da mesma varredura. E a **primeira peca avulsa
+desta ilha a servir o ERB80** e cobre quatro modelos de uma vez. Duas leituras
+com perguntas diferentes, uma restrita a `content.electrolux.com.br` e outra a
+`loja.electrolux.com.br`, devolveram a mesma lista de compativeis; a quantidade
+por embalagem nao esta declarada em nenhuma das duas, entao o registro nao a
+carrega. O ERB44 NAO esta na lista, embora esteja na do filtro HEPA com espuma:
+ficou como esta declarado, sem estender por semelhanca.
+
+**A licao de fila:** varredura feita para colher UM alvo devolve vizinhos, e aqui
+o vizinho era mais barato que o alvo. Vale ler a lista de resultados inteira
+antes de fechar a coleta.
+
+### O DEFEITO QUE OS DOIS REGISTROS DESENTERRARAM, e ele JA ESTAVA NO AR
+
+Ao ler a resposta do ERB80 como um leitor le — o que a secao 12 do contrato
+manda e a verificacao por regra objetiva nao faz — apareceu isto:
+
+> A Electrolux nao vende a escova lateral avulsa para este modelo: ela vem dentro
+> do kit "…". **Ele tambem vem dentro do kit "…"**, que a Electrolux declara
+> compativel com ERB80.
+
+**"Ele" quem?** A frase do kit-com-avulso nasceu com pronome em 11/09, e lia
+certo por **sorte de ordem**: as frases da resposta saem na ordem do banco, e no
+unico caso que existia entao (o filtro do ERB60/61/62) o registro da peca avulsa
+vinha antes do registro do kit, entao o pronome caia logo depois da frase que
+nomeava o filtro. **O pano de microfibra deu ao mop um avulso**, e a frase do kit
+foi emitida na posicao do KIT — depois da escova lateral e ANTES de o mop ser
+nomeado. Pronome sem antecedente, em pagina publicada, e nao so no ERB80: no
+ERB60, no ERB61 e no ERB62, que estao no ar desde 09/09.
+
+**Oito portoes verdes**, porque todos mediam a frase sozinha — e sozinha ela
+estava certa. E a mesma familia do "teste que mede a si mesmo", com uma volta a
+mais: aqui nao era a regua que estava errada, era a **unidade medida**. Frase e a
+unidade errada quando a correcao depende da frase vizinha.
+
+**A saida NAO foi reordenar a lista.** Reordenar devolveria o verde e deixaria a
+dependencia de pe — no dia seguinte, qualquer mudanca de ordem no banco traria o
+defeito de volta, calado. A frase passa a **NOMEAR O TIPO** ("O mop tambem vem
+dentro do kit…"), nas duas implementacoes, e fica autossuficiente. E literalmente
+o que a 5.2 do contrato pede ("frase autossuficiente que sobrevive a ser citada
+fora de contexto") e o que a 8 decide ("quem decide e a estrutura, nunca a
+vizinhanca").
+
+**A TRAVA, e a prova de que ela reprova.** Secao 14 do `ferramentas/teste-r1.php`:
+toda frase de resposta **ABRE** nomeando o tipo de peca de que fala, medido nas
+DUAS implementacoes, so na primeira oracao — o nome do tipo aparecendo depois,
+dentro do rodape "identifique o item pelo titulo", nao salva uma abertura que nao
+nomeia nada. A tabela de nomes e escrita a mao dentro do teste; chamar
+`robometria_r1_nome_do_tipo()` faria as duas metades errarem juntas. Ela tambem
+conta quantas frases do tipo kit-com-avulso existem e reprova se forem zero:
+grade que nao pisa no caso e amostra com nome de grade.
+
+`ferramentas/mutacoes-frase-nomeia-o-tipo.py`, **4 de 4 reprovadas**:
+1. a referencia volta ao pronome;
+2. o snippet volta ao pronome;
+3. **os dois lados voltam juntos** — e esta e a que importa: a comparacao PHP x
+   referencia da secao 3 continua VERDE, o numero de frases comparadas nao muda,
+   e **so a trava nova pega**. Era exatamente assim que o defeito original
+   entrava;
+4. o tipo existe na frase, mas so depois do ponto final — a porta dos fundos de
+   uma regua que procurasse o nome na frase inteira, mesma familia do "contar
+   `&#038;` na pagina inteira".
+
+**A metade NO AR** entrou em `conferir-kits-no-ar.py`, que passou de 9 para 14
+estados de entrada: os 5 do ERB80 entraram, cada um cobrando que a resposta
+nomeie o tipo e que nenhuma frase abra por "ele/ela tambem vem dentro do kit",
+com as duas reguas escritas literalmente dentro do arquivo. Ele confere ainda que
+o estado que PRODUZIU o defeito (o mop do ERB80, que tem avulso e kit) esteja
+mesmo entre os medidos — senao a trava daria verde sem medir nada.
+
+### E uma mutacao morreu calada por culpa desta propria entrega
+
+Ao rodar as sete baterias antigas para provar que nenhuma virou inerte, uma
+passou: "o par peca x modelo volta ao numero digitado", em `mutacoes-arvore.py`.
+Ela trocava `"pares_declarados": 32,` por `33,` — **com o numero digitado nos
+dois lados**. O banco cresceu, o alvo sumiu do arquivo, e a mutacao passou a
+editar coisa nenhuma. E a "mutacao inerte" que aquele arquivo existe para
+impedir, agora dentro dele. A irma dela ("a contagem de marcas engorda em um")
+tinha o mesmo desenho e so nao caiu porque o numero de marcas nao mudou hoje.
+
+Consertadas: as duas leem o valor de HOJE e somam 1. **A cicatriz do "numero de
+tela nasce contado" vale para a bancada, nao so para a pagina** — quem digita um
+numero derivado assina um cheque contra o banco de amanha.
+
+### Verificacao
+
+**Bancada, 901 afirmacoes, 0 falha:** teste-casca 200, teste-r1 **96** (era 93),
+teste-a1 55, teste-r2 92, teste-a2 73, teste-acentuacao 17, teste-arvore 213,
+teste-voz 155. `php -l` limpo em todo snippet e toda ferramenta.
+`validar-banco.py` aprovado, com os mesmos 2 avisos de variante — **e ele pegou
+sozinho as duas contagens digitadas do cabecalho de `pecas.json`** quando os
+registros entraram, que e o portao funcionando.
+
+**Mutacoes, 101 em 8 baterias, todas reprovadas:** a2-procedencia 15, arvore
+**18** (depois do conserto acima), cabeca-e-voz 29, carimbo-de-origem 5,
+chaves-da-r1 4, **frase-nomeia-o-tipo 4 (nova)**, ga4 9, procedencia 17.
+
+**NO AR as 23h30Z, em UM disparo:** `/status` na revisao **24**, igual a do
+manifest, 10 itens aplicados. `conferir-no-ar.py` 149 afirmacoes, 0 falha;
+`conferir-kits-no-ar.py` **71** afirmacoes (era 41), 0 falha.
+
+**Itens esperando link de afiliado: 46** (eram 44; os dois registros novos entram
+com `afiliado.url` presente e vazio, como manda a secao 7).
+**Cobertura:** a R1 continua respondendo **16 dos 28** modelos — o ERB80 ja
+respondia escova principal, entao nenhum modelo saiu do vazio —, mas as celulas
+sem resposta caem de **123 para 120** (modelo x tipo).
+**Pauta da secao 17:** `pauta.md` ainda nao existe — 0 escritos, 0 na fila, 0
+recusados.
+
+### PROXIMO PASSO
+
+1. **Pecas da Xiaomi e da WAP com codigo** — segue sendo o primeiro alvo entre os
+   coletaveis (os 8 modelos que a R2 ja recomenda e a R1 deixa vazios). O egresso
+   direto para `mi.com.br` e `wap.ind.br` foi remedido hoje, duas passadas, `000`
+   por politica. **O canal de BUSCA nunca foi testado nesses dois dominios** — e
+   foi ele que trouxe os tres kits da Electrolux. Teste a busca antes de declarar
+   a coleta bloqueada; foi essa confusao que deixou os kits tres dias parados.
+2. **CATEGORIA DESCOBERTA, nao coleta pendente: o `Kit 3 Sacos Descartaveis` do
+   ERB80** (`loja.electrolux.com.br/kit-3-sacos-descartaveis-electrolux-para-robo-aspirador-erb80/p`).
+   Saco descartavel e consumivel de base autolimpante, e o ERB80 tem base
+   autolimpante — mas `tipo_de_peca` nao tem esse tipo no `esquema-banco.json`, e
+   acrescentar tipo mexe no seletor da R1, na cobertura e nos portoes. Quem pegar
+   decide primeiro **se o tipo nasce**, pela regua da 14.3 (faixa descoberta, nao
+   numero redondo). Nao grave o registro antes dessa decisao.
+3. **O ERB40 tem Kit Performance proprio e o modelo nao esta em
+   `modelos-robo.json`** — achado na mesma varredura. Modelo antes de peca: sem o
+   modelo, o par nao tem onde encostar.
+4. A leva de malha (5b) **continua travada** pela metade humana do despacho de
+   10/09 — o reenvio do sitemap no Search Console, que e do Raphael.

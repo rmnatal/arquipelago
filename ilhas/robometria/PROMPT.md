@@ -419,14 +419,27 @@ qualquer página nova:
   **entregue** (ERB30 e ERB44, ver os itens logo abaixo) e a recarga **recusada com
   causa medida** — ela deixou de ser coleta, como os m² do item (d). O que destravou
   não foi a rede abrir: foi separar o egresso direto do canal de busca.
-  **O PRÓXIMO PASSO AGORA** é o **kit do ERB80** (item abaixo, com as duas URLs e a
-  ressalva de que ele entra no nível do ERB44) e, depois dele, **peças da Xiaomi e da
-  WAP com código** — que a varredura da R1 aponta como o primeiro alvo entre os
-  coletáveis, porque são os 8 modelos que a R2 já recomenda e a R1 deixa vazios. Se
-  o canal de **busca** alcança `mi.com` ainda não foi testado: teste os **dois**
-  canais antes de escolher o alvo.
+  ~~**O PRÓXIMO PASSO AGORA** é o kit do ERB80.~~ **CUMPRIDO em 12/09/2026** (ver
+  os itens abaixo), junto com o pano de microfibra que a mesma varredura achou.
+  **O PRÓXIMO PASSO AGORA** são as **peças da Xiaomi e da WAP com código** — que a
+  varredura da R1 aponta como o primeiro alvo entre os coletáveis, porque são os 8
+  modelos que a R2 já recomenda e a R1 deixa vazios. **O egresso direto para
+  `mi.com.br` e `wap.ind.br` foi remedido em 12/09/2026, em duas passadas, e segue
+  em `000` por política** — mas o canal de **busca** alcançou a Electrolux duas
+  vezes seguidas e nunca foi testado nesses dois domínios. **Teste a busca antes de
+  declarar a coleta bloqueada**, que foi o erro que deixou os kits três dias
+  parados.
+  **E há um alvo NOVO, achado nesta execução e que o vocabulário não comporta:**
+  `loja.electrolux.com.br/kit-3-sacos-descartaveis-electrolux-para-robo-aspirador-erb80/p`.
+  Saco descartável é consumível de base autolimpante, e o ERB80 tem base
+  autolimpante — mas `tipo_de_peca` no `esquema-banco.json` não tem esse tipo, e
+  **acrescentar tipo mexe no seletor da R1, na cobertura e nos portões**. Fica
+  registrado como categoria descoberta, não como coleta pendente: quem for pegá-lo
+  decide primeiro se o tipo nasce, e a régua dessa decisão é a 14.3 (faixa
+  descoberta, não número redondo). Na mesma varredura apareceu também um **ERB40**
+  com Kit Performance próprio, e ele não está em `modelos-robo.json`.
   **A leva de malha (5b) continua travada** pela metade humana do despacho: o sitemap precisa ser reenviado no Search Console, e isso exige o navegador do Raphael.
-- **Antes de mexer em qualquer snippet, rode os OITO testes de bancada:** `php ferramentas/teste-casca.php .` (149 verificações), `php ferramentas/teste-r1.php .` (90), `php ferramentas/teste-a1.php .` (55), `php ferramentas/teste-r2.php .` (86), `php ferramentas/teste-a2.php .` (63), `php ferramentas/teste-acentuacao.php .` (17), `php ferramentas/teste-arvore.php .` (213) e `php ferramentas/teste-voz.php .` (155). Em 12/09/2026 são **898 afirmações**, com o `teste-r1` em 93. Depois do desembarque, `python3 ferramentas/conferir-no-ar.py` mede as nove URLs no ar com régua própria — **e `python3 ferramentas/conferir-kits-no-ar.py` (41) mede a ENTRADA da R1 no ar, 9 estados de modelo × tipo, porque o primeiro mede o caso-âncora e bloco que muda resposta de consulta não aparece lá** — os endereços e os nomes estão escritos literalmente dentro dele, e não lidos do código, para as duas metades não errarem juntas. Eles são a única verificação da seção 8 que roda sem depender do site. **O sexto é o único que varre a ENTRADA INTEIRA** — 72 estados, um processo por estado, via `ferramentas/varrer-corpo.php`: os outros medem o caso-âncora, e foi por isso que "Aspirador Robo" e "Versao A" ficaram invisíveis para cinco testes verdes. O segundo compara as 188 frases publicadas contra a implementação de referência; o terceiro **recalcula a tese do artigo em PHP, direto do banco, sem olhar para o que o gerador em Python escreveu** — duas contas independentes que batem são medição, uma conta sozinha é o que o autor achou.
+- **Antes de mexer em qualquer snippet, rode os OITO testes de bancada:** `php ferramentas/teste-casca.php .` (149 verificações), `php ferramentas/teste-r1.php .` (90), `php ferramentas/teste-a1.php .` (55), `php ferramentas/teste-r2.php .` (86), `php ferramentas/teste-a2.php .` (63), `php ferramentas/teste-acentuacao.php .` (17), `php ferramentas/teste-arvore.php .` (213) e `php ferramentas/teste-voz.php .` (155). Em 12/09/2026 são **901 afirmações**, com o `teste-r1` em 96 (a seção 14, "toda frase nomeia o tipo de que fala", nasceu na segunda execução do dia). Depois do desembarque, `python3 ferramentas/conferir-no-ar.py` mede as nove URLs no ar com régua própria — **e `python3 ferramentas/conferir-kits-no-ar.py` (71) mede a ENTRADA da R1 no ar, 14 estados de modelo × tipo, porque o primeiro mede o caso-âncora e bloco que muda resposta de consulta não aparece lá** — os endereços e os nomes estão escritos literalmente dentro dele, e não lidos do código, para as duas metades não errarem juntas. Eles são a única verificação da seção 8 que roda sem depender do site. **O sexto é o único que varre a ENTRADA INTEIRA** — 72 estados, um processo por estado, via `ferramentas/varrer-corpo.php`: os outros medem o caso-âncora, e foi por isso que "Aspirador Robo" e "Versao A" ficaram invisíveis para cinco testes verdes. O segundo compara as 188 frases publicadas contra a implementação de referência; o terceiro **recalcula a tese do artigo em PHP, direto do banco, sem olhar para o que o gerador em Python escreveu** — duas contas independentes que batem são medição, uma conta sozinha é o que o autor achou.
 - **A PORTA DE COMPRA TEM UM DONO SÓ, e ele é a casca.** `robometria_casca_porta_de_compra`, `robometria_casca_rotulo_da_loja`, `robometria_casca_fonte_link` e `robometria_casca_css_vitrine` valem para toda página desta ilha que recomenda item; a R1 delega para elas. Página nova que recomenda produto **chama estas funções**, nunca escreve as suas. Os pesos visuais do botão de compra e do link de procedência são regra do Arquipélago (seção 7), não estilo local: com uma cópia por página, bastaria alguém ajustar uma delas para a ilha voltar — numa página só, e sem ninguém notar — ao defeito de 10/09/2026.
 - **Página nova entra no catálogo da casca pelo FILTRO dela**, `robometria_ferramentas` para ferramenta e `robometria_artigos` para artigo. A casca nunca ganha uma cópia da página dentro; é assim que a home e o hub listam qualquer coisa nova sem serem editados de novo, e é o que garante as duas listagens que a seção 9 exige.
 - ~~**O BANCO ESTÁ EM ASCII, E AGORA ISSO APARECE NA TELA.**~~ **CUMPRIDO em 11/09/2026.** 121 strings restauradas nos nove campos que a varredura mediu chegando ao corpo servido, e a operação é **provada diacrítico-only**: reduzido a sem-diacrítico, o banco de hoje é byte a byte o de ontem (`dados/acentuacao-restaurada.json`, conferido linha a linha por `teste-acentuacao.php` com régua própria). **A restauração não é releitura:** o acento foi reposto pela ilha, não lido no fabricante — e é por isso que o livro-razão existe, como lista de conferência de quem reler os manuais quando a rede abrir.
@@ -447,15 +460,65 @@ qualquer página nova:
   declara pelo vizinho. Item sem tipo entra com `tipo: null`, que é como o esquema
   diz "o kit serve e nós não sabemos dizer este item" — e a R1 então recusa aquele
   tipo, que é o acerto e não a falta.
-- **O KIT DO ERB80 EXISTE NA LOJA E NÃO ESTÁ NO BANCO** — achado em 12/09/2026, e
-  é o próximo alvo do 3c. `loja.electrolux.com.br/kit-performance-electrolux-para-robo-aspirador-erb80/p`
-  e `content.electrolux.com.br/brasil/electrolux/cybertron/kit_performance_erb80/index.html`.
-  O ERB80 hoje só responde escova principal; o kit destravaria filtro e mop.
-  **Ficou fora do bloco de 12/09 de propósito:** é registro NOVO, não transcrição,
-  e as duas leituras dele devolveram só o trio genérico ("escovas, filtros e pano
-  de microfibra"), sem quantidade e sem o tipo da escova — então ele entra no
-  nível do ERB44, não no do ERB30, e quem o gravar precisa saber disso antes de
-  colher.
+- ~~**O KIT DO ERB80 EXISTE NA LOJA E NÃO ESTÁ NO BANCO.**~~ **CUMPRIDO em
+  12/09/2026** (manifest revisão 24, `/status` conferido em UM disparo) — **e a
+  previsão escrita aqui estava errada, o que vale mais que o registro em si.**
+  O texto anterior dizia que o kit entraria "no nível do ERB44, não no do
+  ERB30", porque as leituras de então tinham devolvido só o trio genérico. A
+  coleta desta execução, com perguntas limpas, achou o contrário: a página do
+  kit no domínio do **fabricante**
+  (`content.electrolux.com.br/…/kit_performance_erb80/`) descreve os três itens
+  **um a um** e nomeia a escova pelo **tipo** — "escovas laterais, direita e
+  esquerda". Ele entra ACIMA do ERB44.
+  **A CONFERÊNCIA QUE SUSTENTA ISSO CUSTOU UMA LEITURA A MAIS, e é a régua para
+  a próxima transcrição desta ilha:** um bloco por item numa página de catálogo
+  pode ser molde do gerador de páginas, e aí não declara nada sobre aquele
+  produto. O jeito de saber é ler a **página irmã** com a MESMA pergunta — a do
+  ERB44, mesmo domínio, mesmo formato, traz só a cópia genérica. Logo o bloco
+  por item existe na página do ERB80 porque a Electrolux o escreveu lá; e, de
+  quebra, isso confirma que o `tipo: null` do ERB44 foi acerto e não preguiça.
+  É a mesma família do "documento de família com dois números", só que a
+  declaração vizinha aqui serve para **confirmar**, não para desmascarar.
+  **A QUANTIDADE FICOU null NOS TRÊS**, de propósito: "direita e esquerda" está
+  numa frase de benefício, descrevendo o que escova lateral faz, não numa lista
+  de conteúdo da embalagem. Ler dali um "2" é transformar prosa de venda em
+  quantidade declarada. E a busca ofereceu "1 filtro HEPA, 1 pano e 2 escovas"
+  dizendo **textualmente** que era "baseado em kits similares de outros
+  modelos" — recusado, pela mesma regra que barrou o preenchimento do ERB44.
+- **O PANO DE MICROFIBRA ERB60/61/62/80 ENTROU JUNTO, e não estava previsto em
+  lugar nenhum** — apareceu na mesma varredura do kit. É a primeira peça avulsa
+  desta ilha a servir o ERB80 e cobre quatro modelos de uma vez. **A lição de
+  fila:** varredura feita para colher UM alvo devolve vizinhos, e o vizinho aqui
+  era mais barato que o alvo. Vale olhar a lista de resultados inteira antes de
+  fechar a coleta.
+- **FRASE QUE DEPENDE DA VIZINHA É FRASE QUE UM DIA MENTE — e esta estava NO AR
+  em três páginas** (12/09/2026, R1 **1.3.0**). A frase do kit quando existe a
+  peça avulsa era *"Ele também vem dentro do kit …"*. O pronome só apontava para
+  alguma coisa por **sorte de ordem**: as frases saem na ordem do banco, e no
+  único caso que existia (o filtro do ERB60/61/62) o registro da peça avulsa
+  vinha antes do registro do kit. Quando o pano de microfibra deu ao **mop** um
+  avulso, a frase do kit saiu na posição do KIT — depois da escova lateral e
+  **antes de o mop ser nomeado**. Oito portões verdes, porque todos mediam a
+  frase sozinha, e sozinha ela estava certa.
+  **A saída não foi reordenar a lista** — seria consertar o sintoma e deixar a
+  dependência de pé. A frase passa a **nomear o tipo**, nas duas implementações,
+  e fica autossuficiente: é a 5.2 do contrato ("frase que sobrevive a ser citada
+  fora de contexto") e a 8 ("quem decide é a estrutura, nunca a vizinhança").
+  **Quem segura daqui para a frente:** a seção 14 do `teste-r1.php` (régua
+  escrita à mão no próprio teste, medindo só a **primeira oração** das frases
+  das DUAS implementações), `ferramentas/mutacoes-frase-nomeia-o-tipo.py` (4 de
+  4 reprovadas — e a terceira **produz o mundo**, quebrando os dois lados juntos,
+  então a comparação PHP × referência continua verde e só a trava nova pega), e
+  a metade no ar em `conferir-kits-no-ar.py`, que passou a varrer os 5 estados
+  do ERB80.
+- **MUTAÇÃO TAMBÉM TEM NÚMERO DE TELA, e duas morreram caladas aqui**
+  (12/09/2026). Duas mutações do `mutacoes-arvore.py` traziam o número
+  **digitado** nos dois lados (`"pares_declarados": 32` → `33`). Bastou o banco
+  crescer para o alvo sumir do arquivo e elas deixarem de editar coisa alguma —
+  a "mutação inerte" que aquele arquivo existe para impedir, agora dentro dele.
+  Agora leem o valor de hoje e somam 1. **A cicatriz do "número de tela nasce
+  contado" vale para a bancada, não só para a página:** quem digita um número
+  derivado assina um cheque contra o banco de amanhã.
 - **O EGRESSO DIRETO E O CANAL DE BUSCA SÃO DUAS REDES DIFERENTES, e a distinção
   vale por um bloco inteiro** (12/09/2026). `curl` e `WebFetch` devolvem `000` e
   `EGRESS_BLOCKED` em `electrolux.com.br`, `loja.electrolux.com.br`,

@@ -132,7 +132,38 @@ ESTADOS = [
      'a pagina do kit diz "escovas" sem dizer qual — o item entrou com tipo null'),
     ('electrolux-erb44', 'escova principal', False,
      'mesma razao: tipo nao declarado pela fonte'),
+    # ERB80, 12/09/2026. Ele so respondia escova principal; o Kit Performance
+    # dele destravou filtro, escova lateral e mop, e o pano de microfibra
+    # ERB60/61/62/80 deu ao mop uma peca AVULSA — o estado que nao existia e que
+    # tirou o pronome sem antecedente do ar.
+    ('electrolux-erb80', 'filtro',           True,
+     'o kit do ERB80 declara filtro HEPA — a pagina do fabricante lista item a item'),
+    ('electrolux-erb80', 'escova lateral',   True,
+     'o kit do ERB80 nomeia a escova pelo TIPO ("escovas laterais"), ao contrario do ERB44'),
+    ('electrolux-erb80', 'mop',              True,
+     'duas portas: o refil dentro do kit e o pano de microfibra avulso'),
+    ('electrolux-erb80', 'escova principal', True,
+     'a escova rotativa central ja declarava o ERB80 desde 09/09'),
+    ('electrolux-erb80', 'bateria',          False,
+     'nenhuma peca do banco declara bateria para este modelo'),
 ]
+
+# O nome do tipo, como o leitor tem que le-lo na abertura da frase. Escrito aqui
+# a mao, nunca lido do snippet nem da referencia: se a regua viesse de la, as
+# duas metades errariam juntas (secao 8 do ARQUIPELAGO.md).
+NOME_DO_TIPO = {
+    'filtro': 'filtro',
+    'escova lateral': 'escova lateral',
+    'escova principal': 'escova principal',
+    'mop': 'mop',
+    'bateria': 'bateria',
+}
+
+# A abertura da frase do kit quando existe a peca avulsa. Ela ja esteve NO AR
+# comecando por "ele tambem"/"ela tambem" — pronome cujo antecedente dependia de
+# a peca avulsa do mesmo tipo cair logo antes na lista, o que era sorte de ordem
+# do banco. Aqui a proibicao e literal.
+PRONOMES_PROIBIDOS = ('ele tambem vem dentro do kit', 'ela tambem vem dentro do kit')
 
 # Como a pagina diz que NAO tem o que responder. Escrito aqui, e nao lido do
 # snippet, pelo mesmo motivo que o resto da regua.
@@ -196,6 +227,27 @@ def main():
     t_bateria = texto(corpos[('electrolux-erb30', 'bateria')])
     ok('onde comprar' not in t_bateria,
        'onde a pagina recusa, a porta de compra nao aparece')
+
+    print('\nO ERB80 saiu de uma resposta so, e nenhuma frase abre com pronome\n')
+
+    # A metade NO AR da trava que a secao 14 do teste-r1.php mede na bancada. Ela
+    # existe separada porque o defeito que ela pega so aparece na resposta INTEIRA
+    # de um modelo — e a bancada nao serve HTML.
+    for tipo in ('filtro', 'escova lateral', 'mop', 'escova principal'):
+        t = texto(corpos[('electrolux-erb80', tipo)])
+        agulha = NOME_DO_TIPO[tipo]
+        ok(agulha in t, 'erb80 x %-16s a resposta nomeia o tipo' % tipo, agulha)
+        achados = [p for p in PRONOMES_PROIBIDOS if p in t]
+        ok(not achados,
+           'erb80 x %-16s nenhuma frase abre com pronome' % tipo,
+           ', '.join(achados) if achados else 'nenhum')
+
+    t_mop80 = texto(corpos[('electrolux-erb80', 'mop')])
+    ok('tambem vem dentro do kit' in t_mop80,
+       'o estado que produziu o defeito foi mesmo medido',
+       'o mop do ERB80 tem avulso E kit — e a frase do kit e a que nasceu com pronome')
+    ok('pano de microfibra' in t_mop80,
+       'a peca avulsa que criou esse estado esta na resposta')
 
     print('\nSe a quantidade chegar a tela, ela e a que a fonte declara\n')
     achadas = [q for q in COMPOSICAO_ERB30 if q in t_filtro]
