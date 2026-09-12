@@ -907,3 +907,161 @@ cimentcola e o rendimento por área do silicone. Ela reaproveita da F2 o registr
 de página pelo filtro, o desenho de resposta servida pelo servidor com `noindex`
 no estado com parâmetro, o cartão de compra e o padrão de teste com varredura
 da entrada inteira.
+
+## 12/09/2026, 00h05Z — BLOCO 4, SEGUNDA PARTE: A F1 NO AR — e a casca que não deixava a página nascer
+
+**Entregue:** `/materiais/quantas-pastilhas-para-mosaico/`, a segunda ferramenta
+da ilha (`snippets/clubedomosaico-f1.php` 1.0.0, casca **1.6.0**, manifest na
+revisão **11**, `/status` com revisão 11 às 00h05Z). Nível 3, mãe `/materiais/`,
+a mesma escolha da F2 e pelo mesmo motivo.
+
+### Por que esta página ganha, e é a única que responde isto
+
+O bloco 1 mediu que a primeira página inteira de "rejunte para mosaico" responde
+à pergunta da **obra** — 0,2 a 0,4 kg/m², "1 kg faz 3 m²" —, e esses números
+foram calculados com azulejo grande. A **mesma fórmula do fabricante**, aplicada
+à pastilha de 1×1 cm com folga de 2 mm, dá **2,8 kg/m²**: 3,8 vezes o azulejo de
+10 cm e 2 vezes o piso de 20. A página não disputa aquelas — ela responde outra
+pergunta, e serve as duas contas **lado a lado, na mesma tabela**, para a
+diferença ficar verificável em vez de afirmada.
+
+### As cinco decisões, e a cicatriz que cada uma evita
+
+1. **A conta é do servidor**, como na F2: o formulário é um GET para a própria
+   página, não existe uma linha de decisão em JavaScript, e todo estado é HTML
+   servido de verdade. O preço é URL com parâmetro, pago na mesma linha —
+   `noindex, follow` no estado com parâmetro, e quem entra no índice é a âncora.
+2. **A geometria é nossa; o consumo é do fabricante.** Área por forma (o cone
+   pela **geratriz**, nunca pela altura — num vaso bojudo a diferença passa de
+   10% e sempre para menos) e contagem pelo passo são aritmética e não dependem
+   de banco nenhum. Os gramas saem da fórmula publicada pela Quartzolit com o
+   coeficiente **lido do registro do rejunte cerâmicas**, nunca digitado.
+3. **A correção do bloco 3c está na tela.** O 1,75 vem de um exemplo de rejunte
+   cimentício **em pó**; o acrílico é pronto uso em pote e o epóxi é
+   bicomponente. A ferramenta recusa calcular para os dois e nomeia o que falta.
+   E recusa também **se o banco trouxer dois coeficientes diferentes**: escolher
+   um deles calado é a mesma invenção com outra roupa.
+4. **A régua do rejunte tem dono.** `cdm_f2_celula_rejunte()` é chamada daqui em
+   vez de reescrita; a F1 só filtra pelo tipo escolhido. Duas implementações da
+   mesma decisão no mesmo site é o defeito que a Robometria pagou comparando
+   duas cópias da mesma régua.
+5. **A sobra vai na pastilha e não no rejunte**, e arredonda para cima. Lote
+   novo de pastilha muda de cor: faltar dez peças no fim é pior que sobrar dez.
+   O saco de rejunte não tem esse problema.
+
+### O QUE QUASE PASSOU: a página respondeu 404 com o Sync dizendo revisão 10
+
+O Sync aplicou seis itens, criou o snippet #8, escreveu revisão 10 no `/status`
+— e `conferir-no-ar.py` devolveu **37 falhas**, todas a mesma: a URL da F1 não
+existia. **Commit sem verificação no ar não é entrega**, e foi a régua que disse
+isso, não a leitura do log.
+
+A causa é da casca, e é fina: `cdm_casca_montar()` voltava na primeira linha
+quando `get_option('cdm_casca_estrutura')` era igual a `CDM_CASCA_VERSAO`. A
+1.5.0 tinha acabado de criar o filtro `cdm_paginas` **exatamente** para que uma
+ferramenta nova registrasse a própria página sem ninguém editar a casca — e a
+guarda deixava esse mecanismo inerte: página nova entrava na definição, a versão
+da casca continuava a mesma, a montagem não rodava, a página nunca nascia. **A
+F2 escapou porque nasceu junto com a 1.5.0** e foi de carona na troca de versão.
+Mecanismo que só é exercitado de verdade na segunda vez que alguém o usa.
+
+**Casca 1.6.0:** a chave passa a ser a versão **mais um resumo do mapa de
+páginas** (slug, título, mãe e shortcode de cada uma). Página nova, título
+trocado ou mãe trocada mudam a impressão e a estrutura se remonta sozinha no
+primeiro carregamento depois do Sync — sem humano logado, sem `?cdm_casca=refazer`
+e sem tocar na casca. Remontar é barato e seguro porque `garantir_paginas()` só
+cria o que falta. O portão 21b do `teste-casca.php` **mede o mecanismo, nunca a
+versão**: um teste que olhasse `CDM_CASCA_VERSAO` teria ficado verde com o
+defeito no ar, que foi o que aconteceu por um bloco inteiro.
+
+### O cluster mudou de estado sozinho — e duas mutações antigas pararam de morder
+
+Com a terceira filha de `/materiais/` no ar, a F2 e a `/materiais/como-sabemos/`
+passaram a ter **duas irmãs** e as três publicam "Veja também". Ninguém editou
+nada: as irmãs são derivadas do mapa, e a regra da seção 6 do `ARVORE.md`
+funcionou pela primeira vez no sentido inverso — antes ela **proibia** o bloco,
+agora ela o **exige**.
+
+O efeito colateral foi o achado do dia, e são dois casos diferentes:
+
+- **"irmã escolhida fora da mãe" passou** porque o portão do cluster contava
+  quantas irmãs saíam e se estavam no ar, **nunca de onde elas vinham**. A
+  mutação morria por efeito colateral — estourava a contagem — e o efeito sumiu
+  quando havia mais páginas no ar. **Trava frouxa de verdade**, e agora toda
+  irmã listada tem a mãe recomputada do mapa. Trava que reprova por efeito
+  colateral é trava que um dia para de reprovar.
+- **"a página fora do sitemap perde a citação" passou** porque o cluster novo
+  liga a camada de prova sozinho. Aqui a trava **não** afrouxou: ela mudou de
+  dono. E o que mudou de dono ganhou trava própria — a citação **no texto**,
+  medida com o cluster e a trilha fora da conta, porque o que se mede ali é
+  escolha editorial, não geração automática.
+
+### O que a página diz que não sabe
+
+A linha de **gramas de cola** nasce vazia com o motivo escrito (o fabricante do
+silicone declara rendimento por cordão, não por área, e o consumo por área da
+cimentcola não foi obtido). A **pastilha não tem banco**: o cartão de compra tem
+o lugar reservado dizendo que está vazio, em vez de sumir. E **sem o banco a
+página continua respondendo área e pastilhas** e diz que não publica os gramas —
+a bancada mede esse estado de propósito, porque página degradada é uma página
+válida, com cabeçalho, rodapé e prosa, e foi assim que a Robometria mediu três
+páginas pela metade sem ninguém acusar.
+
+### Verificação
+
+- `ferramentas/teste-f1.php`: **67 afirmações**, régua aritmética escrita fora do
+  snippet, um processo por estado. Varre 24 combinações de forma × caquinho, 36
+  de folga × tipo de rejunte, as cinco sobras, quatro espessuras, cinco lugares,
+  e as bordas fabricadas: vão maior que a moldura, folga que nenhum fabricante
+  cobre, caquinho irregular, banco ausente e **banco com outro coeficiente**.
+- `ferramentas/mutacoes-f1.py`: **27 de 27 reprovadas.** Duas passaram na
+  primeira rodada e as duas viraram afirmação nova — o CR digitado dentro do
+  snippet **com o valor certo** (invisível para qualquer teste sobre a tela de
+  hoje; só troca de banco o revela) e a vitrine ignorando o tipo escolhido
+  (continua sendo subconjunto do que a F2 aprova, então a trava de subconjunto
+  não a via).
+- `teste-casca.php` de **367 para 409** com a página nova nos portões de voz,
+  prova, trilha, árvore e página fina; `mutacoes-arvore.py` **20 de 20**;
+  `teste-f2.php` 72 e `validar-banco.py` sem regressão; `php -l` limpo nos
+  quatro snippets; os três JSON reparseados.
+- Chromium em 360/390/781/782/783/1200 nas **14 páginas** — três delas estados
+  da F1, incluindo o da medida que não fecha —, **88 medições, 0 px de rolagem**.
+  **A medição foi feita com a casca 1.5.0**, antes do conserto da remontagem, e
+  fica dito assim de propósito: o que a prova valer tem que ser o que foi
+  medido. O que sustenta ela continuar valendo é uma segunda medida, não uma
+  suposição — o HTML servido das 14 páginas é **byte a byte idêntico** entre a
+  1.5.0 e a 1.6.0, porque a 1.6.0 só troca a chave que decide *quando* a
+  estrutura é remontada e não imprime uma linha na tela (a constante de versão
+  nem aparece no HTML). Uma terceira rodada do navegador foi tentada e morreu no
+  túnel de rede, que estava derrubando as conexões de fonte.
+- **No ar, às 00h05Z:** `conferir-no-ar.py` com **194 afirmações medidas no HTML
+  servido, zero falha**. As 11 URLs em 200, as três tabelas pré-renderizadas
+  servidas, JSON-LD `WebApplication` + `FAQPage`, canonical na âncora e
+  `noindex` em todo estado com parâmetro, e **quatro contas conferidas contra o
+  que foi calculado à mão** (vaso 942 cm²/720/264 g, tampo 2.827/588/594 g,
+  esfera 1.257/960/352 g, moldura 900/188/189 g). O sitemap passou de 9 para
+  **10 URLs**.
+- **Defeito de etiqueta consertado de quebra:** o manifest dizia casca 1.4.0
+  enquanto o arquivo definia 1.5.0. O sha estava certo — o Sync aplicou os bytes
+  certos e o site nunca esteve errado —, envelheceu a **etiqueta**, que é por
+  onde qualquer relatório lê o que está no ar. Nenhum portão lia essa metade;
+  agora `atualizar-manifest.py` compara a versão do manifest com a constante do
+  snippet e **recusa gravar** quando os dois se separam. Foi ele que acusou a
+  1.6.0 antes deste commit.
+
+### Números da ilha, contados
+
+**10 dos 10 itens do banco esperam link de afiliado; 10 estão sem imagem** —
+este bloco não tocou catálogo, e nenhum dos dez tem loja possível hoje. Da pauta
+da seção 17: **nenhum tema escrito, nenhum na fila, nenhum recusado** —
+`pauta.md` ainda não existe nesta pasta.
+
+**Próximo passo:** as **fichas de categoria de material** (bloco 4c). A 16.5
+continua valendo — categoria só nasce com três filhas de dado real —, e hoje
+Colas e Rejuntes têm banco de cinco itens cada e **uma** filha cada (as duas
+ferramentas). O caminho mais curto para destravar `/materiais/colas-e-adesivos/`
+e `/materiais/rejuntes/` é a leva de fichas de produto, que são nível 3 com dado
+real: cinco colas e cinco rejuntes já cadastrados, cada ficha com a declaração
+do fabricante, a faixa, a fonte e o cartão de compra. A ilha está **abaixo do
+piso** da seção 21 (10 URLs, 21 dias não passaram), então a leva sai no ritmo
+normal, de 5 a 10 URLs, sem esperar medição.
