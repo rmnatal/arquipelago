@@ -179,6 +179,25 @@ def valida_produto(esquema, entidade, produto, vistos):
         if faixa["min"] >= faixa["max"]:
             erro("V3", pid, "faixa_ajuste_C com min >= max")
 
+    # V21 - o volume atendido de MIDIA e o da DOSAGEM, nunca o da EMBALAGEM
+    #
+    # Os dois numeros sao a mesma declaracao do fabricante: "250 mL para 200 L"
+    # e "atende ate 200 L" sao a frase e o denominador dela. Como sao copia um
+    # do outro, eles nao se conferem — foi por essa fresta que a C12 publicou,
+    # na mesma pagina, 200 L no cartao e 800 L na tabela para o mesmo Matrix.
+    # O que a tela pode derivar (quanto rende UMA embalagem) sai de
+    # volume_embalagem_L / dosagem, e nunca se digita aqui (V4).
+    if entidade == "midia":
+        dose = produto.get("dosagem_declarada")
+        vmax = (produto.get("volume_atendido_declarado_L") or {}).get("max")
+        if isinstance(dose, dict) and dose.get("por_volume_agua_L") and vmax is not None:
+            if float(vmax) != float(dose["por_volume_agua_L"]):
+                erro("V21", pid,
+                     "volume_atendido_declarado_L.max (%s L) nao e o denominador da "
+                     "dosagem declarada (%s mL para %s L). Os dois sao a MESMA "
+                     "declaracao; o que a embalagem rende e derivado, nao declarado"
+                     % (vmax, dose.get("volume_midia_mL"), dose.get("por_volume_agua_L")))
+
     # V4 - derivado gravado a mao
     for campo in derivados:
         if campo in produto:

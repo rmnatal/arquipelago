@@ -45,7 +45,7 @@ Campo sem fonte fica vazio, e vazio é melhor que inventado. Um produto com camp
 
 Preço não é campo de produto na Aquametria: é série temporal separada, com loja e data de leitura, e **nunca entra em critério técnico de sugestão**.
 
-**Onde houver preço, ele vem com a data da coleta ao lado — nunca cravado como preço de hoje.** Desde 10/09/2026 as vitrines da calculadora de vazão do filtro e da calculadora de potência do aquecedor mostram a cotação que lemos no anúncio, com o dia em que a lemos, e desde 11/09/2026 a calculadora de iluminação faz o mesmo; as outras calculadoras ainda não mostram preço nenhum, e vão passar a mostrar do mesmo jeito, datado, à medida que a vitrine chegar a cada uma.
+**Onde houver preço, ele vem com a data da coleta ao lado — nunca cravado como preço de hoje.** Toda calculadora que recomenda produto tem vitrine, e toda vitrine mostra a cotação que lemos no anúncio com o dia em que a lemos. A única calculadora sem vitrine é a de litragem, e não é esquecimento: litragem é geometria, e geometria não escolhe produto — a página dela diz isso em vez de ficar em silêncio. Onde não há cotação coletada, o cartão escreve que não há, em vez de mostrar um número inventado.
 
 O motivo de a data ser inegociável é prático: uma calculadora é código que fica no ar por meses, e um preço apresentado como atual envelheceria em dias. Um número velho passando por atual é pior que nenhum — um número velho que diz quando foi lido é informação honesta. Confira no anúncio antes de comprar: o valor da loja é o que vale.
 
@@ -53,7 +53,7 @@ O motivo de a data ser inegociável é prático: uma calculadora é código que 
 
 Somos transparentes também sobre o tamanho disso. Hoje a Aquametria tem links de afiliado da Shopee para uma parte pequena do banco de produtos, gerados em setembro de 2026. Não há programa da Amazon, não há acordo com fabricante e não há qualquer combinação sobre o que publicamos. Se isso mudar, muda aqui primeiro.
 
-Sobre as fotos: desde 10/09/2026 a vitrine da calculadora de vazão do filtro mostra a imagem do próprio anúncio do produto, e o banco guarda de cada uma a origem e a data em que foi coletada. Foto nenhuma decide quem aparece na lista — **produto sem foto não some**: ele sai com um espaço reservado neutro, na mesma posição que a adequação técnica lhe deu. Perder a recomendação certa por falta de imagem seria trocar o certo pelo bonito.
+Sobre as fotos: as vitrines mostram a imagem do próprio anúncio do produto, quando existe, e o banco guarda de cada uma a origem e a data em que foi coletada. Foto nenhuma decide quem aparece na lista — **produto sem foto não some**: ele sai com um espaço reservado neutro, na mesma posição que a adequação técnica lhe deu. Perder a recomendação certa por falta de imagem seria trocar o certo pelo bonito.
 
 ## Se você discorda de uma escolha
 

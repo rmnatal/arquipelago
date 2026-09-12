@@ -4,7 +4,7 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 50,
+  "revisao": 52,
   "atualizado_em": "2026-09-11",
   "estado": "fundacao",
   "desembarque": {
@@ -96,7 +96,7 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "a3782665366f9b2a03fc4ac4de33c50d819ff4ad01f8a8647171fc3df8c9f2b9",
+      "sha256": "236490d02e20f6ceca05b6c2ee19d19c48c40763f803111a1135d52dd293ffa3",
       "descricao": "v1.2.0 (09/09/2026): a C12 deixa de ser um formulario vazio para quem nao executa JavaScript. As tres pecas da secao 5 do ARQUIPELAGO.md, entregues de uma vez nesta pagina: (a) RESPOSTA ANTES DA EXPLICACAO, em frase autossuficiente com o numero, a unidade, quem declarou e a data, escrita para sobreviver a ser citada fora de contexto por um modelo que leu so aquele paragrafo; (b) TABELA DE EXEMPLOS PRE-RENDERIZADA no HTML servido, seis aquarios de 30 a 300 L resolvidos no PHP com as MESMAS regras do script (mL(), litros(), pct(), ancorasBio() e ancorasFiltro() espelhados funcao a funcao, senao a tabela contradiria a calculadora logo acima dela), com cinco colunas: a faixa da midia biologica do piso ao teto com o nome de quem sustenta cada extremo, a midia TOTAL que quem vende filtro reserva, o TETO FISICO (quanto a dosagem do teto ocuparia do cesto do menor filtro do banco declarado para aquele volume, com aviso quando estoura - quatro das seis linhas nao cabem, e a celula diz que o problema nao e a midia, e o filtro) e a midia do banco para comprar, com a quantidade calculada pela dosagem daquele fabricante e quanto rende a embalagem; (c) JSON-LD no wp_head (NUNCA dentro do retorno do shortcode, que atravessa os filtros do the_content e trocaria & pela entidade numerica) com WebApplication e FAQPage de 15 perguntas, cada resposta carregando o mesmo numero que a tabela servida mostra. Nenhuma formula mudou e nenhuma dosagem foi escolhida: a pagina continua publicando as quatro declaracoes com atribuicao e recusando a media. Classes novas (aqm-c12-bloco-exemplos, aqm-c12-exemplos, aqm-c12-direta, aqm-c12-aviso-tabela) porque reusar as antigas quebraria os localizadores estritos do teste de navegador - licao que custou duas rodadas na C15. A constante AQUAMETRIA_C12_VERSAO tambem foi acertada: tinha ficado em 1.0.1 quando a 1.1.0 saiu, e e ela que a pagina imprime na tela. Verificado: 124 afirmacoes em Chromium real com o JavaScript DESLIGADO nas quatro calculadoras medidas, zero falha; JSON-LD analisado como JSON e valido; zero entidade numerica dentro de <script>. Anterior - v1.1.0 (08/09/2026), CORRECAO GRAVE: o JS e o CSS sairam de dentro do retorno do shortcode e passaram para wp_head (estilo) e wp_footer (comportamento); o primeiro && escapado matava o JavaScript inteiro com SyntaxError e o bloco de produto nunca aparecia. v1.0.0 (08/09/2026): estreia da calculadora, atacando o VACUO DE CONTEUDO N. 1 do Bloco 1 - quanta midia biologica um aquario precisa, em mL por litro de agua - com QUATRO dosagens declaradas por fabricante que discordam por dez vezes, a segunda familia de ancoras de quem vende FILTRO, o teto fisico do cesto, a ordem das camadas com fonte e a recusa explicita de publicar a proporcao entre elas, o ranking por area e a conversao de grama em mililitro no carvao.",
       "versao": "1.2.0"
     },
@@ -175,7 +175,7 @@
       ],
       "verificado_em": "2026-09-08",
       "publicar": true,
-      "sha256": "0c3c5f59e33af129316bf62e900b40492fe12dbbf9006cd22f0c4c2acde1d682",
+      "sha256": "5af6ec3c41570a2fa85d533113d3e8646794f482f361d0be47e2841444b84f2d",
       "descricao": "Pagina institucional exigida pelo primeiro bloco de produto (C3) e pela autorregulamentacao publicitaria brasileira: declara o link de afiliado, transcreve a regra V16 na integra, explica que quem entra na lista e a ordem sao decididos so por adequacao tecnica, que produto sem link aparece igual e que sem produto adequado nao aparece nada, mostra a escada de fontes na tela, diz por que preco nao e publicado em pagina de calculadora e admite o tamanho atual do programa. Linkada do rodape do site (casca 1.0.3) e do bloco de produto da C3."
     },
     {
@@ -235,7 +235,7 @@
       ],
       "verificado_em": "2026-09-08",
       "publicar": true,
-      "sha256": "634abde551cf193b9e6979e81b1a81c68e22b31ded80d278d5da63dbab9452ad",
+      "sha256": "f25cceb06381fddad9c1998c8624cb025de2bd92148dc568ccec14466d064a01",
       "descricao": "Pagina-ancora da C12, com o shortcode no corpo. Traz as duas tabelas de ancoras com atribuicao, explica o teto fisico do cesto, destrincha as fichas ambiguas do Atman (a mesma frase lida ao contrario em dois modelos irmaos, com a geometria apoiando leituras opostas), lista o que a calculadora se recusa a fazer e por que, e publica o aviso de nunca lavar toda a midia biologica de uma vez como mecanismo explicado. Linka a C1, a C3, a C5, o hub, a metodologia, a divulgacao de afiliados e o artigo pareado."
     },
     {
@@ -344,7 +344,7 @@
       "verificado_em": "2026-09-09",
       "registros": 5,
       "publicar": false,
-      "sha256": "96a908cbf8db4d0bfc3876afbd90590cae06a6db943cae53bfc92cfdd1b2584c",
+      "sha256": "77a08a538589eaa2004bfe79465c7594e1e70b68bc5304145b72a4b1f8968b28",
       "descricao": "Contrato formal do banco de produtos: campos, tipos, unidades, vocabularios controlados, origem esperada por campo, campos derivados (nunca gravados), minimo_para_sugerir por calculadora e as 14 regras de validacao. E o arquivo que ferramentas/validar-produtos.py executa. Versao 2 (07/09/2026): documenta o campo afiliado dos produtos e a regra V15. Versao 3 (08/09/2026): coluna_maxima_m passou a ser obrigatoria so para canister e sump (hang-on e interno nao tem recalque a vencer, e ganharam o campo coluna_maxima_nao_se_aplica); a regra V10 de plausibilidade de eficiencia ficou restrita a canister e sump; abriu o campo imagem, ainda null em todo o banco; e entrou a regra V16, que proibe link de afiliado de ordenar ou filtrar sugestao de calculadora. v3 (08/09/2026): tratamento de conflito 'intersecao-conservadora' com valor_conservador e derivacao (regra V17), regra V18 (aquecedor sugerido tem de alcancar a temperatura-alvo) e minimo_para_sugerir da C5 aceitando 'conflito:faixa_ajuste_C'. Versao 4 (08/09/2026): a pendencia_de_criterio da entidade iluminacao foi RESOLVIDA pelo caminho conservador — o comprimento da peca nao vira cobertura de aquario, e o minimo_para_sugerir da c15-iluminacao passou a exigir comprimento_aquario_cm declarado. Em 09/09/2026 subiu para a versao 5 do esquema: o campo imagem deixou de ser placeholder e passou a ter subcampos, vocabulario de fonte e regras de tela (V19), e o V20 passou a CONTAR os produtos com link e sem foto. Versao 6 do esquema (09/09/2026): o campo imagem ganhou verificado_em e motivo_sem_verificacao. Motivo escrito por extenso porque quase se perdeu dado bom por causa dele: a sessao da nuvem NAO alcanca down-bs-br.img.susercontent.com (o egresso barra todo dominio de loja), e nao conseguir BUSCAR um arquivo nao e evidencia de que a URL esteja errada. As 21 URLs foram colhidas do painel de afiliados da Shopee, no navegador do Raphael, em 09/09/2026. Quem confere se a foto carrega e a Sentinela Tecnica, que roda no Chrome. A regra V21 do validador passa a exigir que imagem sem verificado_em diga por que, em vez de a imagem ser anulada."
     },
     {
@@ -392,7 +392,7 @@
       "verificado_em": "2026-09-09",
       "registros": 6,
       "publicar": false,
-      "sha256": "5aaefcfd9682ffdc6936ff91da8345e84162ccbad7e2878b562e7b239d67cdf7",
+      "sha256": "422673b16cbab6e576c1f9cc58f1f37ecb2a8c39434e5ab738839d22aa338e59",
       "descricao": "Semente de midia filtrante: Seachem Matrix 1 L e Eheim SUBSTRAT pro 1 L. Guarda o conflito de dosagem do proprio Seachem (1,25 x 2,6 mL de midia por litro de agua) e as duas areas superficiais declaradas sem metodo publicado (>700 e ~450 m2/L). Em 09/09/2026 o Seachem Matrix 1 L ganhou imagem do anuncio da Shopee; o Eheim SUBSTRAT pro segue com link e sem foto."
     },
     {
@@ -507,7 +507,7 @@
       "arquivo": "ferramentas/validar-produtos.py",
       "publicar": false,
       "descricao": "Valida o banco de produtos contra dados/esquema-produtos.json (regras V1 a V20, imagem inclusa) e imprime os campos derivados e quais produtos cada calculadora consegue sugerir. Rodar antes de todo commit que toque dados/produtos-*.json. Nao vai para o WordPress: e ferramenta do repositorio, por isso fica fora das listas que o Sync consome. V21 (09/09/2026): imagem com verificado_em null precisa de motivo_sem_verificacao. Apagar URL de foto boa porque a nuvem nao consegue busca-la seria trocar o certo pelo bonito ao contrario — o lugar da falta e o campo, nao o lixo.",
-      "sha256": "ca9fedf60b793ed77a8de6e84657740aaffd8aeb16475a0b5c850e61548d50a1"
+      "sha256": "5eef20f787be7b292ebe9eaddcfe54133f5d9dbb92cddacd8223f26f91e40de3"
     },
     {
       "id": "gerar-catalogo-filtros",
@@ -541,14 +541,14 @@
       "id": "gerar-catalogo-midias",
       "arquivo": "ferramentas/gerar-catalogo-midias.py",
       "publicar": false,
-      "sha256": "e3d36cfd449bf65cb000781cb911758c29105297e777df54d2d8b8b09231f8d9",
+      "sha256": "30872d1f8612af6a2e21f0e37504a5de8b945f4a8ddabc465070e3532f332dde",
       "descricao": "Gera os DOIS catalogos que a C12 embute no snippet: as midias de dados/produtos-midia.json (bloco CATALOGO-MIDIAS) e os filtros de dados/produtos-filtro.json que declaram volume util de midia (bloco CATALOGO-FILTROS). Aplica o minimo_para_sugerir do esquema, carrega a segunda leitura dos campos em conflito para a tela publicar as duas, e ordena as midias pela dosagem declarada (link de afiliado nao ordena, regra V16). Rodar SEMPRE depois de mexer nos dois bancos. Nao vai para o WordPress."
     },
     {
       "id": "teste-navegador-c12",
       "arquivo": "ferramentas/teste-navegador-c12.mjs",
       "publicar": false,
-      "sha256": "a63b94e5b2a9c3ec865c0ead660b1f3aa2100a1549294e2d1aad6ad026477ae0",
+      "sha256": "b56268017434c0724b52e3e10a110ffb14c3178552ae7d08025429cada0e60ab",
       "descricao": "Teste de navegador da C12 em Chromium de verdade (Playwright): 19 cenarios, entre eles a faixa das quatro dosagens, as duas tabelas de ancoras, o teto fisico do cesto (inclusive o caso que estoura), as duas leituras da ficha ambigua do Atman, o calendario de trocas com datas calculadas, o aviso obrigatorio sobre lavar midia biologica, os atributos do link de afiliado, a recusa de converter grama em mililitro, a mescla do estado compartilhado com C1/C3/C5 e o celular de 390 px sem rolagem horizontal. Nao vai para o WordPress."
     },
     {

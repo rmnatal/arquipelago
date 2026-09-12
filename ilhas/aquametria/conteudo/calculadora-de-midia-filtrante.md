@@ -87,7 +87,11 @@ A mesma frase, dois modelos, duas leituras opostas. Publicamos as duas, com a ra
 
 **Não estima quando a mídia biológica "vence".** A colônia de bactérias não tem prazo de validade; o que envelhece é a porosidade entupida, e ninguém no corpus mede isso. Publicamos a substituição **parcial** de 6 a 12 meses, que tem fonte, e explicamos por que ela é parcial.
 
-**Não dimensiona mídia cujo fabricante não declara dosagem.** O Eheim Substrat pro aparece na lista com a ficha completa e sem número de compra, dizendo isso com todas as letras. O silêncio dele é parte do assunto.
+**Não dimensiona mídia cujo fabricante não declara dosagem.** O Eheim Substrat pro aparece na lista com a ficha completa e sem número de compra, dizendo isso com todas as letras. O silêncio dele é parte do assunto. Desde 11/09/2026 ele aparece também na vitrine, no mesmo lugar que a ficha lhe deu, com a borda tracejada e sem número nenhum ao lado do nome — ele é, aliás, uma das duas mídias com botão de loja, e é justamente a que a página não sabe dimensionar.
+
+**Não publica preço de hoje.** Desde 11/09/2026 os cartões mostram a **cotação** que lemos no anúncio, com a data em que a lemos ao lado — que é outra coisa. Preço muda toda semana, e um número velho passando por atual seria pior que nenhum; um número velho que diz quando foi lido é informação honesta. Confira no anúncio antes de comprar, e confira também o volume da embalagem: a mesma mídia é vendida em vários tamanhos e a granel, e o nosso número é por litro.
+
+**Não confunde o que o fabricante declara com a conta que fazemos por cima.** O Seachem declara "250 mL para 200 L". Disso a página deriva duas coisas diferentes, e elas aparecem em linhas separadas: quanto a *dose* atende (200 L, que é declaração dele) e quanto uma *embalagem* de 1 litro rende nessa mesma dosagem (800 L, que é conta nossa, porque a embalagem são quatro doses). Até 11/09/2026 a ficha chamava os 200 L de "uma embalagem atende" — verdade para o JBL, cuja embalagem é a dose inteira, e quatro vezes menos que a verdade para o Matrix. A tabela pré-calculada da mesma página já dizia 800 L; eram dois números para o mesmo fato, e agora são dois fatos com nomes diferentes.
 
 ## O aviso que vale mais que qualquer número desta página
 

@@ -3,7 +3,7 @@
   "descricao": "Modelo normalizado do banco de produtos da Aquametria: entidades filtro, aquecedor, iluminacao e midia, mais a entidade cotacao (preco). Define campo a campo o tipo, a unidade, a obrigatoriedade, o vocabulario controlado e a ORIGEM esperada do dado. Nenhum numero entra no banco sem uma entrada correspondente em fontes[]. Este arquivo e o contrato que dados/produtos-*.json cumprem e que ferramentas/validar-produtos.py verifica.",
   "gerado_em": "2026-09-07",
   "bloco": 3,
-  "versao_esquema": 7,
+  "versao_esquema": 8,
   "depende_de": [
     "dados/especificacao-calculadoras.md",
     "dados/constantes-calculadoras.json"
@@ -1135,10 +1135,15 @@
       "severidade": "aviso"
     },
     {
+      "id": "V21",
+      "regra": "MIDIA: volume_atendido_declarado_L.max e o volume que a DOSAGEM declarada atende, nunca o que uma EMBALAGEM atende. Quando a midia declara dosagem, os dois numeros sao a mesma declaracao e tem de bater — max == dosagem_declarada.por_volume_agua_L. Escrito em 11/09/2026 depois de a C12 publicar, na mesma pagina, dois numeros para o mesmo fato: o cartao pintado dizia 'uma embalagem atende ate 200 L' para o Seachem Matrix (cuja embalagem de 1 L sao QUATRO doses de 250 mL) enquanto a tabela servida logo abaixo dizia 800 L, calculado por embalagem / dosagem. O campo era uma SEGUNDA COPIA do denominador da dosagem, e a tela deu a ela um significado que o fabricante nao declarou. O rendimento por embalagem e DERIVADO (volume_embalagem_L x 1000 / mL por litro) e nunca se digita no banco (V4).",
+      "severidade": "erro"
+    },
+    {
       "id": "V22",
       "regra": "DUPLA CONDICAO de elegibilidade, escrita em 09/09/2026 depois de um defeito visto no ar: a calculadora recomenda um produto so quando ele passa nas DUAS condicoes — o numero calculado (vazao, potencia, lumen) dentro da faixa E o volume do visitante dentro do volume_atendido_declarado_L do fabricante. Fabricante que NAO declara volume: o produto entra, com a ressalva escrita no cartao. Fabricante que declara e o volume do visitante passa (ou nao alcanca) a declaracao: o produto NAO entra nos recomendados; se aparecer, e em secao separada, ABAIXO, rotulada 'atendem a vazao mas o fabricante nao cobre esse volume'. Nunca misturado, nunca em primeiro lugar. O que motivou: a C3 no ar recomendava em PRIMEIRO lugar o Atman HF-0600 para um aquario de 189,6 L e o proprio cartao dele escrevia que o fabricante declara o modelo para ate 150 L. Recomendar o que a propria pagina diz que nao serve destroi a unica coisa que separa a ilha das fazendas de conteudo.",
       "severidade": "regra de produto, conferida na revisao de cada calculadora"
     }
   ],
-  "atualizado_em": "2026-09-09"
+  "atualizado_em": "2026-09-11"
 }

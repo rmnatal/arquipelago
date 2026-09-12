@@ -5248,3 +5248,115 @@ Sentinela e o T2 deste arquivo). O proximo bloco sem URL nova e a **vitrine da
 C12** (T8), a unica calculadora que ainda nao a tem; antes de escrever uma linha
 dela, procurar na C12 a faixa que nao tem um dos dois lados, que foi o que a C15
 ensinou. Depois, o catalogo de iluminacao por faixa (T3a).
+
+## 2026-09-11, 23h — T8: a VITRINE chega a C12, e a ficha para de dar dois numeros para o mesmo fato
+
+**O bloco:** a quarta e ultima vitrine da ilha (C3, C5 e C15 ja tinham; a C1 nao
+recebe, porque litragem e geometria e geometria nao escolhe produto). Nenhuma
+URL nova, como manda o item 5 do despacho da Sentinela de 10/09. C12 v1.3.0,
+manifest na revisao 52, esquema de produtos na versao 8.
+
+**O QUE A C12 TINHA DE PROCURAR ANTES DE ESCREVER UM CARTAO — e nao era o que a
+C15 tinha.** A C15 ensinou a procurar "a faixa que nao tem um dos dois lados",
+porque la o nivel de alta exigencia abre em 40 lm/L e a fonte nao fecha. Aqui
+nao existe faixa aberta: **nenhuma midia e eliminada pelo volume do aquario**, e
+por isso a regua da C15 para escolher o aquario de referencia ("a celula com tres
+a cinco produtos") nao discrimina nada nesta pagina — todas as celulas dao a
+mesma lista, so muda a quantidade. O que existe aqui e outra coisa, e e pior de
+ver: **uma midia que responde METADE da pergunta.** O Eheim SUBSTRAT pro entra
+pela area declarada (450 m²/L), o fabricante nao publica dosagem por litro
+nenhuma, e ele e **uma das duas unicas midias com link de loja**. Um cartao de
+vitrine com um numero ao lado do nome dele faria o leitor achar que o numero e
+dele. O cartao dele sai sem numero, com a borda tracejada, com a recusa escrita
+por extenso, e o grupo vai para o DOM (`aqm-c12-vt-grupo-sem-dose`) para o portao
+poder cobrar que o cartao diga o mesmo grupo que a lista tecnica.
+
+**O DEFEITO QUE JA ESTAVA NO AR, e que so apareceu ao ler o cartao como um leitor
+leria.** A ficha de cada midia dizia *"Uma embalagem atende, pela declaracao do
+fabricante: ate 200 L de aquario"*. Isso e verdade para a JBL, cuja embalagem de
+1 L **e** a dose inteira. Para o Seachem Matrix e quatro vezes menos que a
+verdade: a dose declarada e "250 mL para 200 L" e a embalagem de 1 L sao QUATRO
+doses, entao ela rende 800 L. E a tabela pre-calculada da MESMA pagina ja dizia
+800 L, porque ela derivava por embalagem ÷ dosagem. **Dois numeros para o mesmo
+fato, quatro vezes de diferenca, um deles no produto que abre a lista e tem link
+de loja.** A causa e a forma classica: `volume_atendido_declarado_L.max` e, em 5
+de 5 registros, **uma segunda copia do denominador da dosagem** — e copia nao
+confere copia; ela so da a um numero um segundo significado que ninguem declarou.
+
+**O conserto e mecanico, nao redacional.** (1) A regra **V21** do
+`esquema-produtos.json` (versao 7 → 8) cobra que `volume_atendido_declarado_L.max`
+seja o denominador da dosagem, porque os dois sao a mesma declaracao; o validador
+a executa. (2) O rendimento da embalagem virou campo **derivado** no gerador
+(`rende_L = embalagem × 1000 ÷ dosagem`), nunca digitado no banco (V4). (3) A
+ficha passou a ter DUAS linhas com nomes diferentes: "o fabricante declara que
+250 mL para 200 L atendem ate 200 L de agua" e "uma embalagem de 1,00 L, nessa
+dosagem, rende ate 800 L — conta nossa". A pagina de conteudo da C12 ganhou o
+paragrafo que explica isso, porque a distincao e conteudo, nao rodape.
+
+**A vitrine.** Desenho copiado da C3/C5/C15 e nao reinventado: uma funcao de
+cartao em PHP e o espelho dela em JavaScript com a MESMA marcacao; a sequencia
+calculada UMA vez em `sequenciaProdutos()` e passada para `pintarVitrine()`
+(calculador de ordem duplicado e combinar de divergir depois); a vitrine ANTES da
+ficha e da procedencia (contrato 7); duas vitrines por pagina, a pintada e a
+SERVIDA no HTML. **O aquario de referencia da servida e 60 L, e o motivo esta
+publicado na propria pagina:** varridos os seis casos da tabela, 30 e 60 L sao os
+unicos em que a dosagem do TETO da faixa ainda cabe no cesto do filtro que o banco
+declara para aquele volume (16,3% e 32,6%); de 100 L em diante a camada biologica
+sozinha estoura o cesto (104%, 156%, 208% e 107%). Entre os dois que cabem, o
+maior. Servir vitrine para um caso em que a propria pagina diz "nao cabe" seria
+vender o que ela desaconselha — e escolher o caso calando o motivo seria colher
+cereja.
+
+**Preco entrou junto, como o T8 manda:** cotacao com data nos cartoes (Matrix
+R$ 73,90 e Eheim R$ 285,00, Shopee, cotados em 07/09/2026), lidos de
+`produtos-cotacoes.json` pelo gerador — e **as duas frases de "nao publicamos
+preco" foram reescritas na mesma versao**, no aviso de publicidade e no rodape da
+tabela, porque pagina que mostra preco e diz que nao publica preco se contradiz.
+A pagina `divulgacao-de-afiliados.md` tambem parou de enumerar quais calculadoras
+ja tem vitrine: a frase virou "toda calculadora que recomenda produto tem
+vitrine; a unica sem e a de litragem, e a pagina dela diz por que" — enumeracao
+digitada e a forma que envelhece em silencio.
+
+**O `alt` do banco de midia foi acentuado** (era o ultimo dos quatro bancos sem
+isso) e o gerador de midias ganhou o portao que os outros tres ja tinham: imagem
+com url e sem alt **para** a geracao, em vez de sair calada.
+
+**VERIFICACAO.** `ferramentas/teste-navegador-c12-vitrine.mjs`, novo, com **84
+afirmacoes, regua propria** (ele le `AQM_C12_MIDIAS` e recalcula mL, embalagens e
+rendimento sozinho, sem chamar uma linha da pagina) e **varredura da entrada
+inteira**: 15 volumes, incluindo as bordas de arredondamento de embalagem
+(80/81 da Ocean Tech, 200/201 da JBL, 800/801 do Matrix) e os dois extremos.
+`ferramentas/mutacoes-c12-vitrine.py`: **11 mutacoes deliberadas, 11 reprovadas**
+— entre elas as duas metades do defeito original (o rendimento voltando a ser o
+volume da dose, e a ficha voltando a chamar a dose de "uma embalagem"), a vitrine
+ordenada por quem tem link, a servida ordenada por preco, o `ceil` virando
+`round`, a midia sem foto sumindo da vitrine, a vitrine descendo para depois da
+procedencia, o preco perdendo a data, o cartao sem link virando ancora falsa, e a
+V21 no validador. **A mutacao roda numa COPIA e quem julga e o portao do
+repositorio limpo** — portao copiado junto poderia ser afrouxado pela propria
+mutacao que deveria reprova-lo.
+Resto da bancada: `teste-navegador-c12.mjs` 84 afirmacoes (uma asercao trocada —
+ela cobrava que NAO houvesse preco na tela, e agora cobra que todo preco venha
+com a data da coleta), `teste-voz.mjs` aprovado nas 13 paginas,
+`teste-navegador-visibilidade-ia.mjs` 155 afirmacoes com o JavaScript DESLIGADO,
+`teste-arvore.mjs` 290 afirmacoes, `validar-produtos.py` 78 produtos 0 erro 9
+avisos, `validar-especies.py` 36 especies 0 erro 1 aviso, `conferir-slugs.py` sem
+falha, `php -l` limpo nos dez snippets, e 390 px sem rolagem horizontal.
+
+**Receita:** 39 dos 78 produtos seguem esperando link de afiliado (nao mudou;
+este bloco nao tocou catalogo). Das quatro midias biologicas, 2 tem link e 1 tem
+foto — e a que **tem** link e justamente a que a pagina nao dimensiona, o que
+torna o cartao honesto dela mais importante que o bonito. As quatro midias sem
+link (JBL MicroMec, Ocean Tech Bio Glass, MatrixCarbon, Purigen) tem loja
+possivel hoje: sao vendidas na Shopee, e o que falta e a geracao do link, que e
+da Sentinela estrategica no navegador do Raphael.
+
+**Pauta da secao 17:** `pauta.md` ainda nao existe nesta pasta — 0 escritos, 0 na
+fila, 0 recusados.
+
+**Proximo passo desbloqueado:** com a vitrine fechada nas quatro calculadoras que
+recomendam produto, o T8 acaba. Sem criar URL (item 5 do despacho segue de pe ate
+a leitura de 16/09), o proximo e o **catalogo de iluminacao por faixa (T3a)** — e
+a licao deste bloco vale para ele: antes de escrever, procurar no banco de destino
+o campo que e copia de outro campo, porque e ali que a tela inventa um significado
+que o fabricante nao declarou.

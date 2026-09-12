@@ -30,6 +30,7 @@ RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ESQUEMA = os.path.join(RAIZ, "dados", "esquema-produtos.json")
 MIDIAS = os.path.join(RAIZ, "dados", "produtos-midia.json")
 FILTROS = os.path.join(RAIZ, "dados", "produtos-filtro.json")
+COTACOES = os.path.join(RAIZ, "dados", "produtos-cotacoes.json")
 ALVO = os.path.join(RAIZ, "snippets", "aquametria-calculadora-midia.php")
 
 MARCAS = {
@@ -95,6 +96,55 @@ def mL_por_L(dose):
     return round(dose["volume_midia_mL"] / float(dose["por_volume_agua_L"]), 3)
 
 
+def imagem_do(produto, problemas):
+    """A imagem do cartao da vitrine, ou None. Url sem alt PARA o gerador.
+
+    Mesmo portao dos geradores de filtro, de aquecedor e de iluminacao: a
+    vitrine nao publica imagem sem texto alternativo (secao 6 do
+    ARQUIPELAGO.md). O alt e texto de TELA, entao ele mora acentuado no banco.
+    """
+    im = produto.get("imagem") or {}
+    url = im.get("url")
+    if not url:
+        return None
+    if not (im.get("alt") or "").strip():
+        problemas.append(
+            "%s tem imagem.url e nao tem imagem.alt — a vitrine nao publica "
+            "imagem sem texto alternativo (secao 6 do ARQUIPELAGO.md)" % produto["id"]
+        )
+        return None
+
+    saida = collections.OrderedDict()
+    saida["url"] = url
+    saida["alt"] = im.get("alt")
+    saida["largura"] = im.get("largura")
+    saida["altura"] = im.get("altura")
+    saida["verificado_em"] = im.get("verificado_em")
+    return saida
+
+
+def preco_do(produto, cotacoes_por_produto):
+    """Faixa de cotacao com data. NUNCA preco atual, e nunca comissao."""
+    cotacoes = [c for c in cotacoes_por_produto.get(produto["id"], [])
+                if c.get("disponivel") is not False and c.get("preco_brl") is not None]
+    if not cotacoes:
+        return None
+
+    precos = [float(c["preco_brl"]) for c in cotacoes]
+    datas = sorted(c.get("cotado_em") for c in cotacoes if c.get("cotado_em"))
+    lojas = sorted(set(c.get("loja") for c in cotacoes if c.get("loja")))
+
+    saida = collections.OrderedDict()
+    saida["min"] = min(precos)
+    saida["max"] = max(precos)
+    saida["loja"] = lojas[0] if len(lojas) == 1 else None
+    # A data que a tela mostra e a MAIS ANTIGA da faixa: e a que diz ha quanto
+    # tempo o numero pode ter envelhecido.
+    saida["coletado_em"] = datas[0] if datas else None
+    saida["cotacoes"] = len(cotacoes)
+    return saida
+
+
 def php_valor(v, nivel):
     tab = "\t" * nivel
     if v is None:
@@ -120,7 +170,7 @@ def php_valor(v, nivel):
     raise TypeError(repr(v))
 
 
-def montar_midias(esquema, banco):
+def montar_midias(esquema, banco, cotacoes_por_produto, problemas):
     requisitos = esquema["entidades"]["midia"]["minimo_para_sugerir"]["c12-midia-filtrante"]
     catalogo, fora = [], []
     for p in banco["produtos"]:
@@ -168,7 +218,18 @@ def montar_midias(esquema, banco):
         item["regeneravel"] = p.get("regeneravel")
         item["vida_util_meses"] = p.get("vida_util_declarada_meses")
         item["posicao"] = p.get("posicao_no_fluxo")
+        # O volume que a DOSAGEM declarada atende. O V21 cobra que ele seja o
+        # denominador da propria dosagem: os dois sao a mesma declaracao.
         item["volume_max_L"] = vol.get("max")
+        # DERIVADO, e por isso calculado aqui e nunca digitado no banco (V4):
+        # quanto de aquario UMA embalagem cobre nessa dosagem. Para o Seachem
+        # Matrix da 800 L, quatro vezes os 200 L da declaracao — porque a
+        # embalagem de 1 L sao quatro doses de 250 mL. Era exatamente essa
+        # diferenca que o cartao da C12 apagava ao chamar os 200 L de
+        # "uma embalagem atende".
+        item["rende_L"] = None
+        if item["dose_mL_por_L"] and item["embalagem_L"]:
+            item["rende_L"] = round(item["embalagem_L"] * 1000.0 / item["dose_mL_por_L"], 1)
         item["fonte_ref"] = fonte.get("referencia")
         item["fonte_url"] = fonte.get("url")
         item["fonte_status"] = fonte.get("status")
@@ -176,6 +237,8 @@ def montar_midias(esquema, banco):
         item["link"] = afiliado.get("url")
         item["anuncio"] = afiliado.get("anuncio_shopee")
         item["loja"] = afiliado.get("plataforma")
+        item["imagem"] = imagem_do(p, problemas)
+        item["preco"] = preco_do(p, cotacoes_por_produto)
         item["observacao"] = p.get("observacao")
         catalogo.append(item)
 
@@ -247,8 +310,19 @@ def escrever(php, chave, catalogo):
 
 def main():
     esquema = carregar(ESQUEMA)
-    midias, fora_midias = montar_midias(esquema, carregar(MIDIAS))
+    cotacoes_por_produto = collections.defaultdict(list)
+    for c in carregar(COTACOES)["cotacoes"]:
+        cotacoes_por_produto[c["produto_id"]].append(c)
+
+    problemas = []
+    midias, fora_midias = montar_midias(esquema, carregar(MIDIAS),
+                                        cotacoes_por_produto, problemas)
     filtros, fora_filtros = montar_filtros(carregar(FILTROS))
+
+    if problemas:
+        for t in problemas:
+            print("  ERRO   " + t)
+        raise SystemExit("catalogo NAO gerado: %d problema(s)" % len(problemas))
 
     with io.open(ALVO, encoding="utf-8") as f:
         php = f.read()
@@ -259,10 +333,23 @@ def main():
 
     print("catalogo da C12: %d midia(s) e %d filtro(s) embutido(s)" % (len(midias), len(filtros)))
     for i in midias:
-        print("  midia   %-28s %-10s %s mL/L  link: %s"
+        print("  midia   %-28s %-10s %s mL/L  rende: %-7s link: %-3s foto: %-3s cotacao: %s"
               % (i["id"], i["tipo"],
                  i["dose_mL_por_L"] if i["dose_mL_por_L"] is not None else "  sem",
-                 "sim" if i["link"] else "nao"))
+                 i["rende_L"] if i["rende_L"] is not None else "sem",
+                 "sim" if i["link"] else "nao",
+                 "sim" if i["imagem"] else "nao",
+                 "R$ %.2f" % i["preco"]["min"] if i["preco"] else "sem"))
+
+    # A medida CERTA para escolher a proxima vitrine e esta, e ela e contada
+    # DEPOIS do portao de elegibilidade — foi o que a C5 ensinou em 11/09/2026.
+    # Aqui a vitrine e a das midias biologicas, que sao as que a pagina
+    # dimensiona; as quimicas so entram quando o leitor pede.
+    bio = [i for i in midias if i["tipo"] == "biologica"]
+    print("  vitrine: %d de %d com link, %d com foto, %d com cotacao"
+          % (sum(1 for i in bio if i["link"]), len(bio),
+             sum(1 for i in bio if i["imagem"]),
+             sum(1 for i in bio if i["preco"])))
     for i in filtros:
         print("  filtro  %-28s %s L de midia%s"
               % (i["id"], i["midia_L"],

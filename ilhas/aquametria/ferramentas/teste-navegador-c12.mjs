@@ -190,7 +190,14 @@ ok('aviso de comissao visivel', await page.locator('.aqm-c12-aviso-afiliado').is
 ok('aviso diz comissao', avisoAf.includes('comissão'));
 ok('aviso diz que a ordem nao muda', avisoAf.includes('não muda quem aparece'));
 ok('aviso linka a divulgacao', (await page.locator('.aqm-c12-aviso-afiliado a').count()) > 0);
-ok('nenhum preco na tela', !(await page.locator('.aqm-c12').innerText()).match(/R\$\s*\d/));
+// Ate 11/09/2026 esta linha cobrava que NAO houvesse preco nenhum na tela. A
+// vitrine do bloco T8 publica cotacao, e o que protege o mesmo valor agora e
+// outra coisa: todo valor em reais na pagina vem com a data em que foi lido.
+// Preco cravado como atual e o defeito; preco datado e informacao honesta.
+const precos = (await page.locator('.aqm-c12').innerText()).match(/R\$\s*[\d.,]+[^\n]*/g) || [];
+ok('todo preco na tela vem com a data da coleta',
+   precos.length > 0 && precos.every(t => /cotado em \d{2}\/\d{2}\/\d{4}/.test(t)),
+   precos.join(' | ').slice(0, 120));
 
 console.log('\n15. estado compartilhado — mescla, nao substitui');
 await page.goto(URL);

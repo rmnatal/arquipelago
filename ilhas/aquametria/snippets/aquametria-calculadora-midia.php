@@ -1,5 +1,27 @@
 /**
  * Aquametria Calculadora de Mídia Filtrante — C12
+ * Versão: 1.3.0 (11/09/2026) — BLOCO T8: a VITRINE de produto chega à C12, a última das quatro
+ *   calculadoras que recomendam produto (a C1 não recebe: litragem é geometria, e geometria não
+ *   escolhe produto). Mesmo desenho da C3, da C5 e da C15 — uma função de cartão em PHP e o
+ *   espelho dela em JavaScript, a sequência calculada UMA vez e passada adiante, a vitrine ANTES
+ *   da ficha e da procedência (contrato 7), e duas vitrines por página: a pintada dentro do
+ *   resultado e a SERVIDA no HTML, para um aquário de referência de 60 L cuja escolha está
+ *   publicada na própria página.
+ *   O QUE A C12 TINHA DE PROCURAR ANTES DE ESCREVER UM CARTÃO, e achou: aqui não existe faixa
+ *   aberta por cima como na C15 — existe uma mídia que responde METADE da pergunta. O Eheim
+ *   SUBSTRAT pro entra pela área declarada, o fabricante não publica dosagem por litro nenhuma,
+ *   e ele é uma das DUAS mídias com link de loja. O cartão dele sai sem número, com a borda
+ *   tracejada e com a recusa escrita.
+ *   E O DEFEITO QUE ESTAVA NO AR, achado ao ler o cartão como um leitor leria: a ficha dizia
+ *   "uma embalagem atende, pela declaração do fabricante: até 200 L" para o Seachem Matrix, cuja
+ *   embalagem de 1 L são QUATRO doses de 250 mL — enquanto a tabela servida da MESMA página
+ *   dizia 800 L, calculado por embalagem ÷ dosagem. O campo do banco era uma segunda cópia do
+ *   denominador da dose, e a tela deu a ela um significado que o fabricante não declarou. Virou
+ *   a regra V21 do esquema (o validador cobra que os dois números sejam o mesmo) e a ficha
+ *   passou a ter duas linhas com nomes diferentes: o que o fabricante declara e a conta nossa.
+ *   Preço entrou junto, como manda o T8: cotação com data nos cartões, e as duas frases de "não
+ *   publicamos preço" reescritas na mesma versão — página que mostra preço e diz que não
+ *   publica preço se contradiz.
  * Versão: 1.2.0 (09/09/2026) — VISIBILIDADE EM IA (seção 5 do ARQUIPELAGO.md), as três peças de
  *   uma vez: resposta antes da explicação, tabela de exemplos pré-renderizada de 30 a 300 L e
  *   JSON-LD com WebApplication e FAQPage no wp_head. Nenhuma fórmula mudou: tudo que a tabela
@@ -76,11 +98,27 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_C12_VERSAO' ) ) {
-	define( 'AQUAMETRIA_C12_VERSAO', '1.2.0' );
+	define( 'AQUAMETRIA_C12_VERSAO', '1.3.0' );
 	define( 'AQUAMETRIA_C12_SLUG', 'calculadora-de-midia-filtrante' );
 	define( 'AQUAMETRIA_C12_VERIFICADO_EM', '08/09/2026' );
 	define( 'AQUAMETRIA_C12_ARTIGO', 'quanta-midia-biologica-o-aquario-precisa' );
 	define( 'AQUAMETRIA_C12_PAGINA_AFILIADOS', 'divulgacao-de-afiliados' );
+
+	/* O aquário de referência da VITRINE SERVIDA, e ele NÃO foi escolhido por
+	   ser o mais bonito. Aqui a régua da C15 — "varra os casos da tabela e pegue
+	   a célula com três a cinco produtos" — não discrimina nada: nesta
+	   calculadora TODA mídia do banco aparece em TODO volume, porque nenhuma é
+	   eliminada pelo tamanho do aquário; o que muda de caso para caso é a
+	   quantidade, não a lista. Então o critério que decide é o outro número da
+	   página, o teto físico: varridos os seis casos da tabela, 30 e 60 L são os
+	   únicos em que a dosagem do TETO da faixa ainda cabe no cesto do filtro que
+	   o nosso banco declara para aquele volume (16,3% e 32,6%); de 100 L em
+	   diante a camada biológica sozinha já estoura o cesto (104%, 156%, 208% e
+	   107%). Entre os dois que cabem, o maior. Servir uma vitrine para um caso
+	   em que a própria página diz "não cabe" seria vender o que ela desaconselha
+	   — e o parágrafo abaixo dos cartões publica essa varredura, porque escolher
+	   o caso e calar o motivo é colher cereja. */
+	define( 'AQUAMETRIA_C12_VITRINE_L', 60 );
 }
 
 /* ---------------------------------------------------------------------------
@@ -134,6 +172,7 @@ function aquametria_c12_catalogo_midias() {
 			'vida_util_meses' => 6,
 			'posicao' => 'polimento',
 			'volume_max_L' => 400,
+			'rende_L' => 400.0,
 			'fonte_ref' => 'Seachem, ficha do Purigen replicada pelo varejo BR (Atlantida Aquarios, Aqua Ura, Pro-Aquarista, Fazenda Submersa): 100 mL tratam ate 400 L, ou 1 mL para cada 4 L, por ate 6 meses; polimero macro e microporoso; escurece conforme esgota e e regenerado com solucao de agua sanitaria 1:1 por 24 h, seguida de enxague e neutralizacao',
 			'fonte_url' => 'https://atlantidaaquarios.com.br/loja1/purigen-100-ml-seachem-trata-400-litros.html',
 			'fonte_status' => 'fabricante-via-busca',
@@ -141,6 +180,8 @@ function aquametria_c12_catalogo_midias() {
 			'link' => null,
 			'anuncio' => null,
 			'loja' => null,
+			'imagem' => null,
+			'preco' => null,
 			'observacao' => 'Entra no banco como a midia de polimento com dosagem declarada mais precisa que achamos: 0,25 mL por litro de agua, com validade declarada em meses e nao em \'ate saturar\'. E a prova de que a industria SABE publicar dosagem por litro quando quer - o que torna o silencio sobre a midia biologica ainda mais estranho.',
 		),
 		array(
@@ -162,6 +203,7 @@ function aquametria_c12_catalogo_midias() {
 			'vida_util_meses' => null,
 			'posicao' => 'quimica',
 			'volume_max_L' => 400,
+			'rende_L' => 400.0,
 			'fonte_ref' => 'Seachem, ficha do MatrixCarbon replicada pelo varejo BR (Aqua SN, Fazenda Submersa, Aqua e Pesca, BR Fish): \'250 mL tratam facilmente 400 L por varios meses\'; carvao macroporoso de carvao betuminoso, baixo teor de cinzas, nao eleva o pH acima de 7,0 nem em agua destilada',
 			'fonte_url' => 'https://www.aquasn.com.br/seachem-matrix-carbon-250ml-trata-400-litros',
 			'fonte_status' => 'fabricante-via-busca',
@@ -169,6 +211,8 @@ function aquametria_c12_catalogo_midias() {
 			'link' => null,
 			'anuncio' => null,
 			'loja' => null,
+			'imagem' => null,
+			'preco' => null,
 			'observacao' => 'O contraponto de fabricante a regra brasileira de carvao ativado. O corpus BR (constante carvao-ativado) manda 1 a 2 g por litro de agua e troca a cada 15 a 30 dias; o fabricante declara 250 mL para 400 L, ou seja 0,625 mL por litro, durando varios meses. NAO da para converter uma coisa na outra nesta pagina: falta a densidade aparente do carvao com fonte, e sem ela transformar mL em g seria inventar constante. A C12 publica as duas em suas proprias unidades e diz por que nao converte.',
 		),
 		array(
@@ -190,6 +234,7 @@ function aquametria_c12_catalogo_midias() {
 			'vida_util_meses' => null,
 			'posicao' => 'biologica',
 			'volume_max_L' => 200,
+			'rende_L' => 800.0,
 			'fonte_ref' => 'Seachem, pagina do Matrix (mais de 700 m2 de area por litro; particula de cerca de 10 mm; use 250 mL de Matrix para cada 200 L de agua); mesma coleta que gerou a constante seachem-matrix-dosagem do Bloco 2',
 			'fonte_url' => 'https://www.seachem.com/matrix.php',
 			'fonte_status' => 'fabricante-via-busca',
@@ -197,6 +242,20 @@ function aquametria_c12_catalogo_midias() {
 			'link' => 'https://s.shopee.com.br/9Khs5ozO8W',
 			'anuncio' => 'Mídia biológica - Matrix 1 Litro (Granel) com Bolsa - Seachem',
 			'loja' => 'shopee',
+			'imagem' => array(
+				'url' => 'https://down-bs-br.img.susercontent.com/sg-11134201-8262j-ml3uq5wz57gh0d.webp',
+				'alt' => 'Mídia biológica Seachem Matrix, saco de 1 litro de granulado cerâmico poroso claro com a bolsa de tela inclusa',
+				'largura' => null,
+				'altura' => null,
+				'verificado_em' => null,
+			),
+			'preco' => array(
+				'min' => 73.9,
+				'max' => 73.9,
+				'loja' => 'Shopee',
+				'coletado_em' => '2026-09-07',
+				'cotacoes' => 1,
+			),
 			'observacao' => 'Ancora principal da C12 e a primeira publicacao brasileira de mL de midia por litro com fonte de fabricante. O conflito e do proprio fabricante consigo mesmo, entao a C12 publica as duas leituras com atribuicao. Compare com o cesto do Eheim classic 250 (3,0 L de midia para 250 L = 12 mL/L): a diferenca entre a dosagem da marca de midia e o cesto do fabricante de filtro chega a uma ordem de grandeza, e ninguem no Brasil discute isso.',
 		),
 		array(
@@ -218,6 +277,7 @@ function aquametria_c12_catalogo_midias() {
 			'vida_util_meses' => 6,
 			'posicao' => 'biologica',
 			'volume_max_L' => 200,
+			'rende_L' => 200.0,
 			'fonte_ref' => 'JBL, pagina do MicroMec (650 g indicado para aquario de 200 L, troca a cada 6 meses; 1 L com 1500 m2 de superficie de colonizacao; esferas de vidro sinterizado com cerca de 14 mm; usar como penultimo estagio de filtragem)',
 			'fonte_url' => 'https://www.jbl.de/pt/produtos/detail/2418/jbl-micromec',
 			'fonte_status' => 'fabricante-via-busca',
@@ -225,6 +285,8 @@ function aquametria_c12_catalogo_midias() {
 			'link' => null,
 			'anuncio' => null,
 			'loja' => null,
+			'imagem' => null,
+			'preco' => null,
 			'observacao' => 'A TERCEIRA ancora de mL de midia biologica por litro de agua, e a que faltava para a C12 deixar de ser um duelo: 1000 mL para 200 L = 5,0 mL/L. Cai exatamente entre a Seachem (1,25 a 2,6 mL/L) e a Ocean Tech (12,5 mL/L). Repare que a area declarada, 1500 m2/L, e o MESMO numero que a Ocean Tech declara para outro produto, de outro material - sem nenhum dos dois publicar metodo de medicao.',
 		),
 		array(
@@ -246,6 +308,7 @@ function aquametria_c12_catalogo_midias() {
 			'vida_util_meses' => null,
 			'posicao' => 'biologica',
 			'volume_max_L' => 80,
+			'rende_L' => 80.0,
 			'fonte_ref' => 'Ocean Tech, ficha do Bio Glass replicada pelo varejo BR especializado (Aqua Life Brasil, Aquaricamp, Portal dos Bichos, Betta Aquarismo): midia de vidro sinterizado de alta porosidade chegando a 1500 m2 por litro; dosagem recomendada de 1 litro para cada 80 litros de agua; poros de 60 a 300 micrometros',
 			'fonte_url' => 'https://www.aqualifebrasil.com.br/midias-filtrantes/midia-biologica-bio-glass-ceramica-1-litro-oceantech',
 			'fonte_status' => 'fabricante-via-busca',
@@ -253,6 +316,8 @@ function aquametria_c12_catalogo_midias() {
 			'link' => null,
 			'anuncio' => null,
 			'loja' => null,
+			'imagem' => null,
+			'preco' => null,
 			'observacao' => 'A UNICA dosagem de midia biologica por litro de agua publicada por uma marca BRASILEIRA que o levantamento achou: 1 L para cada 80 L = 12,5 mL/L. E DEZ VEZES a leitura mais economica da Seachem (1,25 mL/L) para a mesma funcao. Nao ha metodo publicado dos dois lados que explique a diferenca - e e por isso que a C12 nao escolhe.',
 		),
 		array(
@@ -274,6 +339,7 @@ function aquametria_c12_catalogo_midias() {
 			'vida_util_meses' => null,
 			'posicao' => 'biologica',
 			'volume_max_L' => null,
+			'rende_L' => null,
 			'fonte_ref' => 'Eheim, SUBSTRAT pro (vidro sinterizado em esferas, cerca de 450 m2 de area por litro); midia de fabrica do classic 250 (2213)',
 			'fonte_url' => 'https://eheim.com/en_GB/products/filter-media/biological/substrat',
 			'fonte_status' => 'fabricante-via-busca',
@@ -281,6 +347,14 @@ function aquametria_c12_catalogo_midias() {
 			'link' => 'https://s.shopee.com.br/9051hAWjge',
 			'anuncio' => 'Mídia Biológica Eheim Substrat Pro 1L',
 			'loja' => 'shopee',
+			'imagem' => null,
+			'preco' => array(
+				'min' => 285.0,
+				'max' => 285.0,
+				'loja' => 'Shopee',
+				'coletado_em' => '2026-09-07',
+				'cotacoes' => 1,
+			),
 			'observacao' => 'Sem dosagem declarada e sem volume atendido, so entra na C12 pelo caminho da area superficial. Fica como o contraponto do Matrix: 450 contra mais de 700 m2/L, medidos por metodos que nenhum dos dois fabricantes publica.',
 		),
 	);
@@ -475,8 +549,33 @@ max-width:52rem;font-family:var(--c12-texto);color:var(--c12-tinta);}
 .aqm-c12-selo{display:inline-block;font-family:var(--c12-mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--c12-alerta);border:1px solid var(--c12-alerta);border-radius:2px;padding:.1rem .35rem;}
 .aqm-c12-adiante ul{margin:.5rem 0 0;padding-left:1.1rem;}
 .aqm-c12-adiante li{margin:0 0 .4rem;font-size:.94rem;line-height:1.5;}
+.aqm-c12-vitrine{margin:1rem 0 0;}
+.aqm-c12-vitrine h4{font-family:var(--c12-display);font-size:.95rem;margin:0 0 .15rem;}
+.aqm-c12-vt-trilho{display:flex;gap:.8rem;margin:.7rem 0 0;padding:.15rem .15rem .9rem;list-style:none;overflow-x:auto;-webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory;scroll-padding-left:.15rem;}
+.aqm-c12-vt-item{flex:0 0 13.5rem;margin:0;scroll-snap-align:start;}
+.aqm-c12-vt-cartao{display:flex;flex-direction:column;gap:.28rem;height:100%;background:var(--c12-superficie);border:1px solid var(--c12-traco);border-radius:3px;padding:.7rem .75rem .8rem;text-decoration:none;color:var(--c12-tinta);}
+.aqm-c12-vt-cartao.aqm-c12-vt-sem-dose{border-style:dashed;}
+a.aqm-c12-vt-cartao:hover{border-color:var(--c12-lamina);color:var(--c12-tinta);}
+a.aqm-c12-vt-cartao:focus-visible{outline:2px solid var(--c12-lamina);outline-offset:1px;}
+.aqm-c12-vt-foto{display:flex;align-items:center;justify-content:center;aspect-ratio:1/1;width:100%;max-width:100%;background:var(--c12-papel);border:1px solid var(--c12-traco);border-radius:2px;overflow:hidden;margin:0 0 .35rem;}
+.aqm-c12-vt-foto img{display:block;width:100%;height:100%;max-width:100%;object-fit:contain;}
+.aqm-c12-vt-foto-vazia .aqm-c12-vt-sigla{font-family:var(--c12-display);font-size:1rem;font-weight:700;color:var(--c12-legenda);letter-spacing:.02em;text-align:center;padding:0 .4rem;}
+.aqm-c12-vt-marca{font-family:var(--c12-mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--c12-legenda);}
+.aqm-c12-vt-modelo{font-family:var(--c12-display);font-size:.92rem;font-weight:700;line-height:1.25;}
+.aqm-c12-vt-espec{font-family:var(--c12-mono);font-size:.76rem;line-height:1.4;color:var(--c12-lamina);font-variant-numeric:tabular-nums;}
+.aqm-c12-vt-rende{font-family:var(--c12-texto);font-size:.75rem;line-height:1.35;color:var(--c12-legenda);}
+.aqm-c12-vt-ressalva{font-family:var(--c12-texto);font-size:.74rem;line-height:1.35;color:var(--c12-alerta);}
+.aqm-c12-vt-preco{font-family:var(--c12-mono);font-size:.8rem;font-variant-numeric:tabular-nums;color:var(--c12-tinta);}
+.aqm-c12-vt-preco.aqm-c12-vt-sem-preco{font-family:var(--c12-texto);font-size:.76rem;color:var(--c12-legenda);font-style:italic;}
+.aqm-c12-vt-botao{margin-top:auto;text-align:center;font-family:var(--c12-texto);font-weight:600;font-size:.85rem;padding:.42rem .7rem;border-radius:2px;background:var(--c12-lamina);color:var(--c12-superficie);}
+.aqm-c12-vt-espera{margin-top:auto;text-align:center;font-family:var(--c12-texto);font-weight:600;font-size:.82rem;padding:.42rem .7rem;border-radius:2px;background:var(--c12-papel);border:1px dashed var(--c12-traco);color:var(--c12-legenda);}
+.aqm-c12-vt-selo{font-family:var(--c12-mono);font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;color:var(--c12-legenda);text-align:center;margin-top:.25rem;}
+.aqm-c12-vitrine-servida .aqm-c12-criterio{margin-top:.5rem;}
+.aqm-c12-aviso-vitrine{background:var(--c12-papel);border:1px solid var(--c12-traco);border-left:3px solid var(--c12-alerta);border-radius:2px;padding:.8rem 1rem;font-size:.86rem;line-height:1.5;color:var(--c12-legenda);margin:1rem 0 0;}
+.aqm-c12-aviso-vitrine strong{color:var(--c12-tinta);}
 .aqm-c12-oculto{display:none;}
-@media (max-width:600px){.aqm-c12-valor{font-size:1.6rem;}
+@media (max-width:600px){.aqm-c12-vt-item{flex-basis:11.5rem;}
+.aqm-c12-valor{font-size:1.6rem;}
 .aqm-c12-produto{grid-template-columns:1fr;}
 .aqm-c12-placa{min-height:0;flex-direction:row;gap:.5rem;align-items:baseline;justify-content:flex-start;}}
 CSS;
@@ -1021,21 +1120,47 @@ function aquametria_c12_js() {
 	   a sua água pede, cada uma medida pela dosagem que ela mesma declara.
 	   Mídia sem dosagem declarada não é dimensionada — sai numa lista à parte,
 	   dizendo que o fabricante não publica o número. */
+	/* A SEQUÊNCIA, calculada UMA vez e passada adiante para a vitrine. Calculador
+	   de ordem duplicado é combinar de divergir depois — foi o que a C5 ensinou
+	   em 11/09/2026, e por isso pintarVitrine() RECEBE esta lista em vez de
+	   montar a dela. O grupo viaja junto com o produto, porque é ele que decide
+	   a frase do cartão: o que a C12 tem e a C5 não tinha é uma mídia que entra
+	   pela ficha e que a página NÃO dimensiona. */
+	function sequenciaProdutos(r) {
+		var comDose = [];
+		var semDose = [];
+		AQM_C12_MIDIAS.forEach(function (m) {
+			if (m.tipo !== 'biologica') { return; }
+			if (m.dose_mL_por_L === null) {
+				semDose.push({ m: m, grupo: 'sem-dose' });
+			} else {
+				comDose.push({ m: m, grupo: 'dimensionada' });
+			}
+		});
+
+		var seq = comDose.concat(semDose);
+
+		if (r.entradas.quimica) {
+			AQM_C12_MIDIAS.forEach(function (m) {
+				if (m.tipo !== 'quimica') { return; }
+				seq.push({ m: m, grupo: m.dose_mL_por_L === null ? 'sem-dose' : 'quimica' });
+			});
+		}
+		return seq;
+	}
+
 	function pintarProdutos(r) {
 		var bloco = el('aqm-c12-produtos');
 		var lista = el('aqm-c12-produtos-lista');
 		var nada = el('aqm-c12-produtos-nada');
 		lista.innerHTML = '';
 
-		var comDose = [];
-		var semDose = [];
-		AQM_C12_MIDIAS.forEach(function (m) {
-			if (m.tipo !== 'biologica') { return; }
-			if (m.dose_mL_por_L === null) { semDose.push(m); } else { comDose.push(m); }
-		});
+		var sequencia = sequenciaProdutos(r);
+		var biologicas = sequencia.filter(function (i) { return i.grupo !== 'quimica'; });
 
-		if (!comDose.length && !semDose.length) {
+		if (!biologicas.length) {
 			bloco.classList.add('aqm-c12-oculto');
+			el('aqm-c12-vitrine').classList.add('aqm-c12-oculto');
 			nada.classList.remove('aqm-c12-oculto');
 			nada.textContent = 'O nosso banco ainda não tem mídia biológica com ficha suficiente para sugerir. '
 				+ 'Preferimos não mostrar produto nenhum a mostrar um que não sabemos dimensionar.';
@@ -1051,14 +1176,13 @@ function aquametria_c12_js() {
 			+ 'declarações sustentam; não é ranking de qualidade e não é ordem de comissão. '
 			+ 'Mídia sem link de loja aparece na mesma lista, no mesmo lugar.';
 
-		comDose.forEach(function (m) { lista.appendChild(produtoHtml(m, r, true)); });
-		semDose.forEach(function (m) { lista.appendChild(produtoHtml(m, r, false)); });
+		/* A vitrine vem ANTES da ficha e da procedência (contrato 7), e desenha a
+		   MESMA sequência que esta lista. */
+		pintarVitrine(r, sequencia);
 
-		if (r.entradas.quimica) {
-			AQM_C12_MIDIAS.forEach(function (m) {
-				if (m.tipo === 'quimica') { lista.appendChild(produtoHtml(m, r, m.dose_mL_por_L !== null)); }
-			});
-		}
+		sequencia.forEach(function (item) {
+			lista.appendChild(produtoHtml(item.m, r, item.grupo !== 'sem-dose'));
+		});
 	}
 
 	function produtoHtml(m, r, dimensionavel) {
@@ -1118,8 +1242,21 @@ function aquametria_c12_js() {
 			linhas.push('Área declarada: <b>' + fmt(m.area_m2_L, 0) + ' m²/L</b> <span class="aqm-c12-selo">não compara marcas</span> '
 				+ 'nenhum fabricante publica o método de medição');
 		}
+		/* DUAS linhas, e elas dizem coisas diferentes: a declaração do fabricante
+		   fala da DOSE ("250 mL para 200 L"), e quanto uma embalagem rende é
+		   conta nossa (embalagem ÷ dosagem). Até a 1.2.0 esta ficha tinha uma
+		   linha só, dizendo "uma embalagem atende até 200 L" — que é verdade
+		   para o JBL, cuja embalagem é a dose inteira, e é quatro vezes menos
+		   que a verdade para o Seachem Matrix, cuja embalagem de 1 L são quatro
+		   doses de 250 mL. A tabela servida da mesma página já dizia 800 L. */
 		if (m.volume_max_L) {
-			linhas.push('Uma embalagem atende, pela declaração do fabricante: <b>até ' + litros(m.volume_max_L) + ' L</b> de aquário');
+			linhas.push('O fabricante declara que <b>' + esc(m.dose_texto) + '</b> atendem <b>até '
+				+ litros(m.volume_max_L) + ' L</b> de água');
+		}
+		if (m.rende_L) {
+			linhas.push('Uma embalagem de <b>' + fmt(m.embalagem_L, 2) + ' L</b>, nessa dosagem, rende até <b>'
+				+ litros(m.rende_L) + ' L</b> de aquário <span class="aqm-c12-selo">conta nossa</span> '
+				+ 'embalagem dividida pela dosagem declarada, não é número do fabricante');
 		}
 		if (m.granulometria_mm) { linhas.push('Granulometria: <b>' + fmt(m.granulometria_mm, 0) + ' mm</b>'); }
 		if (m.regeneravel === true) { linhas.push('Regenerável: <b>sim</b>, pelo procedimento que vem na embalagem'); }
@@ -1155,6 +1292,132 @@ function aquametria_c12_js() {
 		li.appendChild(placa);
 		li.appendChild(corpo);
 		return li;
+	}
+
+	/* ------------------------------------------------------------- vitrine */
+
+	/* Espelhos em JavaScript das funções PHP de mesmo nome. Elas existem aos
+	   pares de propósito: o cartão SERVIDO e o cartão PINTADO precisam dizer a
+	   mesma frase, e a única maneira de garantir isso sem servidor é escrever a
+	   mesma regra dos dois lados e medir as duas com o mesmo teste. */
+
+	function precoTexto(m) {
+		if (!m.preco || m.preco.min === null) { return ''; }
+		var pr = m.preco;
+		var valor = 'R$ ' + fmt(pr.min, 2);
+		if (pr.max > pr.min) { valor = 'R$ ' + fmt(pr.min, 2) + ' a R$ ' + fmt(pr.max, 2); }
+		return valor + (pr.loja ? ' na ' + pr.loja : '') + ', cotado em ' + dataBr(pr.coletado_em);
+	}
+
+	/* A especificação QUE FEZ A MÍDIA ENTRAR, no tamanho de um cartão — e ela
+	   muda com o grupo, que é o ponto inteiro desta função. O grupo 'sem-dose'
+	   é o que a C5 não tinha: a mídia entrou pela ficha e a página NÃO
+	   dimensiona a compra por ela. Um cartão bonito com um número ao lado faria
+	   o leitor achar que aquele número é dela. */
+	function vtEspecFrase(m, r, grupo) {
+		if (grupo === 'sem-dose') {
+			return 'sem dosagem por litro publicada'
+				+ (m.area_m2_L ? ' — entrou pela área declarada de ' + fmt(m.area_m2_L, 0) + ' m²/L' : '');
+		}
+		return fmt(m.dose_mL_por_L, 2) + ' mL/L — ' + mL(m.dose_mL_por_L * r.V) + ' nos seus ' + litros(r.V) + ' L';
+	}
+
+	/* A segunda linha do cartão. Para a mídia dimensionada é quanto a embalagem
+	   rende, que é conta NOSSA e o cartão diz isso; para a mídia sem dosagem é a
+	   recusa, escrita por extenso. */
+	function vtRendeFrase(m, r, grupo) {
+		if (grupo === 'sem-dose') {
+			return 'esta página não dimensiona a compra por ela: o número que falta é do fabricante';
+		}
+		if (grupo === 'quimica') {
+			return 'camada química, calculada pela dosagem que esta marca publica — não substitui a biológica';
+		}
+		if (!m.rende_L) { return 'sem volume de embalagem declarado'; }
+		var embalagens = Math.ceil((m.dose_mL_por_L * r.V) / (m.embalagem_L * 1000));
+		return embalagens + (embalagens === 1 ? ' embalagem de ' : ' embalagens de ') + fmt(m.embalagem_L, 2)
+			+ ' L; cada uma rende até ' + litros(m.rende_L) + ' L nessa dosagem';
+	}
+
+	/* Espelho de aquametria_c12_vitrine_cartao_html(). Mesma marcação, mesmo CSS
+	   — duas marcações para o mesmo cartão viram duas aparências. */
+	function vitrineCartao(m, r, grupo) {
+		var preco = precoTexto(m);
+
+		var li = document.createElement('li');
+		li.className = 'aqm-c12-vt-item aqm-c12-vt-grupo-' + grupo;
+
+		var cartao;
+		if (m.link) {
+			cartao = document.createElement('a');
+			cartao.className = 'aqm-c12-vt-cartao';
+			cartao.href = m.link;
+			cartao.target = '_blank';
+			cartao.rel = 'sponsored noopener';
+		} else {
+			/* Sem link não existe destino, e cartão sem destino não é âncora. */
+			cartao = document.createElement('div');
+			cartao.className = 'aqm-c12-vt-cartao';
+		}
+		if (grupo === 'sem-dose') { cartao.className += ' aqm-c12-vt-sem-dose'; }
+
+		var partes = '';
+		if (m.imagem && m.imagem.url) {
+			partes += '<span class="aqm-c12-vt-foto"><img src="' + esc(m.imagem.url) + '" alt="' + esc(m.imagem.alt) + '"'
+				+ (m.imagem.largura && m.imagem.altura
+					? ' width="' + esc(m.imagem.largura) + '" height="' + esc(m.imagem.altura) + '"'
+					: '')
+				+ ' loading="lazy" decoding="async"></span>';
+		} else {
+			/* Produto sem foto NÃO some da vitrine: espaço reservado neutro. */
+			partes += '<span class="aqm-c12-vt-foto aqm-c12-vt-foto-vazia" aria-hidden="true">'
+				+ '<span class="aqm-c12-vt-sigla">' + esc(m.marca || 'sem marca') + '</span></span>';
+		}
+
+		partes += '<span class="aqm-c12-vt-marca">' + esc(m.marca || 'sem marca declarada') + '</span>';
+		partes += '<span class="aqm-c12-vt-modelo">' + esc(m.modelo) + '</span>';
+		partes += '<span class="aqm-c12-vt-espec">' + esc(vtEspecFrase(m, r, grupo)) + '</span>';
+		partes += '<span class="aqm-c12-vt-rende">' + esc(vtRendeFrase(m, r, grupo)) + '</span>';
+
+		partes += preco
+			? '<span class="aqm-c12-vt-preco">' + esc(preco) + '</span>'
+			: '<span class="aqm-c12-vt-preco aqm-c12-vt-sem-preco">sem cotação coletada</span>';
+
+		if (m.link) {
+			partes += '<span class="aqm-c12-vt-botao">Ver na ' + esc(m.loja === 'shopee' ? 'Shopee' : m.loja) + '</span>';
+			partes += '<span class="aqm-c12-vt-selo">link patrocinado</span>';
+		} else {
+			partes += '<span class="aqm-c12-vt-espera">link de loja em breve</span>';
+			partes += '<span class="aqm-c12-vt-selo">entrou pela ficha técnica, não pelo link</span>';
+		}
+
+		cartao.innerHTML = partes;
+		li.appendChild(cartao);
+		return li;
+	}
+
+	/* A vitrine NUNCA reordena. Ela recebe a MESMA sequência que a lista técnica
+	   recebe, já calculada — e é essa afirmação que o teste de navegador mede. */
+	function pintarVitrine(r, sequencia) {
+		var bloco = el('aqm-c12-vitrine');
+		var trilho = el('aqm-c12-vitrine-trilho');
+		if (!bloco || !trilho) { return; }
+
+		trilho.innerHTML = '';
+		if (!sequencia.length) {
+			bloco.classList.add('aqm-c12-oculto');
+			return;
+		}
+		bloco.classList.remove('aqm-c12-oculto');
+
+		var comLink = 0;
+		sequencia.forEach(function (item) {
+			if (item.m.link) { comLink++; }
+			trilho.appendChild(vitrineCartao(item.m, r, item.grupo));
+		});
+
+		el('aqm-c12-vitrine-nota').textContent = comLink + ' de ' + sequencia.length
+			+ ' têm link de loja hoje; os outros aparecem do mesmo jeito, com o lugar do botão reservado — '
+			+ 'quem entra é decidido pela ficha técnica, e nunca por ter ou não link.';
 	}
 
 	/* ------------------------------------------------- estado compartilhado */
@@ -1554,13 +1817,28 @@ function aquametria_c12_produtos_html() {
 	$h  = '<div class="aqm-c12-produtos aqm-c12-painel aqm-c12-oculto" id="aqm-c12-produtos">';
 	$h .= '<h3>As mídias do nosso banco, medidas pela dosagem de cada fabricante</h3>';
 	$h .= '<p class="aqm-c12-sub" id="aqm-c12-produtos-sub"></p>';
+
+	/* A vitrine vem ANTES da ficha e da procedência (contrato 7): a prova de onde
+	   veio o número fica, mas ela existe para ser conferida — não para ser o
+	   único clique de compra da página. */
+	$h .= '<div class="aqm-c12-vitrine aqm-c12-oculto" id="aqm-c12-vitrine">';
+	$h .= '<h4>Onde comprar cada uma</h4>';
+	$h .= '<p class="aqm-c12-criterio">Mesma ordem da lista completa abaixo: da dosagem declarada mais econômica para a mais generosa. ';
+	$h .= 'O cartão de cada mídia diz quanto o fabricante dela manda pôr no seu aquário e quanto rende uma embalagem nessa dosagem. ';
+	$h .= 'A mídia que não publica dosagem por litro aparece com a borda tracejada e sem número: ela entrou pela ficha, e esta página não dimensiona a compra por ela. ';
+	$h .= 'O valor é cotação com data, não preço de hoje.</p>';
+	$h .= '<ul class="aqm-c12-vt-trilho" id="aqm-c12-vitrine-trilho"></ul>';
+	$h .= '<p class="aqm-c12-criterio" id="aqm-c12-vitrine-nota"></p>';
+	$h .= '</div>';
+
 	$h .= '<ul class="aqm-c12-lista" id="aqm-c12-produtos-lista"></ul>';
 	$h .= '<p class="aqm-c12-aviso-afiliado"><strong>Aviso de publicidade.</strong> ';
 	$h .= 'Alguns dos botões acima levam a lojas por links de afiliado: se você comprar por eles, a Aquametria pode receber uma comissão, sem custo nenhum a mais para você. ';
 	$h .= 'Isso não muda quem aparece na lista nem em que ordem — a ordem é a da dosagem declarada, da mais econômica para a mais generosa, e mídia sem link aparece do mesmo jeito e no mesmo lugar. ';
 	$h .= 'A quantidade que aparece em cada cartão é calculada com a dosagem que <em>aquele</em> fabricante publica, e não com um número escolhido por nós. ';
 	$h .= 'A ficha técnica de cada mídia vem do fabricante ou do varejo especializado, com o endereço e a data ao lado; o anúncio da loja nunca é a nossa fonte. ';
-	$h .= 'Também não publicamos preço nesta página: preço muda toda semana e um número velho na tela seria pior que nenhum. ';
+	$h .= 'O valor que aparece nos cartões da vitrine <strong>não é preço de hoje</strong>: é a cotação que a Aquametria leu naquele anúncio na data escrita ao lado, ';
+	$h .= 'e preço de aquarismo muda toda semana — confira no anúncio antes de comprar e trate o nosso número como ordem de grandeza, não como promessa. ';
 	$h .= '<a href="' . esc_url( $divulgacao ) . '">Como a Aquametria ganha dinheiro</a>.</p>';
 	$h .= '</div>';
 	$h .= '<p class="aqm-c12-nota aqm-c12-oculto" id="aqm-c12-produtos-nada"></p>';
@@ -1979,6 +2257,264 @@ function aquametria_c12_compra_celula_html( $e ) {
 }
 }
 
+/* ---------------------------------------------------------------------------
+ * 5d. A VITRINE — bloco T8, 11/09/2026
+ *
+ * Copiada do desenho da C3, da C5 e da C15, e não reinventada: uma função de
+ * cartão em PHP e o espelho dela em JavaScript, com a MESMA marcação. Duas
+ * vitrines por página — a pintada, dentro do resultado, e a SERVIDA no HTML
+ * para um aquário de referência, porque crawler de IA não executa JavaScript.
+ *
+ * A vitrine vem ANTES da ficha e da procedência (contrato 7) e NUNCA reordena:
+ * desenha a MESMA sequência que a lista técnica, calculada uma vez só.
+ *
+ * O QUE É DIFERENTE AQUI, e é o que a C12 tinha de procurar antes de montar
+ * cartão nenhum: nesta calculadora não existe faixa aberta por cima como na
+ * C15 — existe uma mídia que responde METADE da pergunta. O Eheim SUBSTRAT pro
+ * entra pela área declarada e o fabricante não publica dosagem por litro
+ * nenhuma; ele é, aliás, uma das duas mídias com link de loja. Um cartão de
+ * vitrine com um número ao lado do nome dele faria o leitor achar que aquele
+ * número é dele. Por isso o grupo viaja na frase do próprio cartão, e vai
+ * também para o DOM (aqm-c12-vt-grupo-sem-dose), para o portão poder conferir
+ * que o cartão da vitrine diz o mesmo grupo que a lista técnica.
+ *
+ * E o defeito que apareceu ao ler o cartão como um leitor leria: a ficha dizia
+ * "uma embalagem atende, pela declaração do fabricante: até 200 L" para o
+ * Seachem Matrix, cuja embalagem de 1 L são QUATRO doses de 250 mL — enquanto a
+ * tabela servida da mesma página dizia 800 L, calculado por embalagem ÷
+ * dosagem. Os 200 L são o denominador da DOSE, não o rendimento da embalagem.
+ * Virou a regra V21 do esquema, e a ficha passou a ter duas linhas: a
+ * declaração do fabricante, com a quantidade que ela nomeia, e o rendimento da
+ * embalagem, marcado como conta nossa.
+ * ------------------------------------------------------------------------- */
+
+/* Espelho em PHP do dataBr() do script. */
+if ( ! function_exists( 'aquametria_c12_data_br' ) ) {
+function aquametria_c12_data_br( $iso ) {
+	if ( ! $iso || ! preg_match( '/^(\d{4})-(\d{2})-(\d{2})$/', $iso, $m ) ) {
+		return (string) $iso;
+	}
+	return $m[3] . '/' . $m[2] . '/' . $m[1];
+}
+}
+
+/* A cotação vira frase: valor (ou faixa), loja e a data da coleta. Nunca "de
+   R$ X por R$ Y", nunca "a partir de" — os dois sugerem promoção, e a
+   Aquametria não sabe se há promoção. */
+if ( ! function_exists( 'aquametria_c12_preco_texto' ) ) {
+function aquametria_c12_preco_texto( $m ) {
+	if ( empty( $m['preco'] ) || null === $m['preco']['min'] ) {
+		return '';
+	}
+
+	$pr    = $m['preco'];
+	$valor = 'R$ ' . number_format_i18n( $pr['min'], 2 );
+
+	if ( $pr['max'] > $pr['min'] ) {
+		$valor = 'R$ ' . number_format_i18n( $pr['min'], 2 ) . ' a R$ ' . number_format_i18n( $pr['max'], 2 );
+	}
+
+	$onde = $pr['loja'] ? ' na ' . $pr['loja'] : '';
+
+	return $valor . $onde . ', cotado em ' . aquametria_c12_data_br( $pr['coletado_em'] );
+}
+}
+
+/* A SEQUÊNCIA, e ela é uma só para a lista técnica e para a vitrine. Espelho de
+   sequenciaProdutos() do script: biológicas com dosagem declarada na ordem do
+   catálogo (da mais econômica para a mais generosa), depois a que não publica
+   dosagem, e as químicas só quando o leitor pede. */
+if ( ! function_exists( 'aquametria_c12_sequencia_vitrine' ) ) {
+function aquametria_c12_sequencia_vitrine( $com_quimica = false ) {
+	$com_dose = array();
+	$sem_dose = array();
+	$quimicas = array();
+
+	foreach ( aquametria_c12_catalogo_midias() as $m ) {
+		if ( 'biologica' === $m['tipo'] ) {
+			if ( null === $m['dose_mL_por_L'] ) {
+				$sem_dose[] = array( 'm' => $m, 'grupo' => 'sem-dose' );
+			} else {
+				$com_dose[] = array( 'm' => $m, 'grupo' => 'dimensionada' );
+			}
+		} elseif ( 'quimica' === $m['tipo'] ) {
+			$quimicas[] = array(
+				'm'     => $m,
+				'grupo' => ( null === $m['dose_mL_por_L'] ) ? 'sem-dose' : 'quimica',
+			);
+		}
+	}
+
+	$seq = array_merge( $com_dose, $sem_dose );
+	return $com_quimica ? array_merge( $seq, $quimicas ) : $seq;
+}
+}
+
+/* A especificação QUE FEZ A MÍDIA ENTRAR, no tamanho de um cartão. Espelho de
+   vtEspecFrase(). */
+if ( ! function_exists( 'aquametria_c12_vt_espec_frase' ) ) {
+function aquametria_c12_vt_espec_frase( $m, $volume, $grupo ) {
+	if ( 'sem-dose' === $grupo ) {
+		return 'sem dosagem por litro publicada'
+			. ( $m['area_m2_L']
+				? ' — entrou pela área declarada de ' . number_format_i18n( $m['area_m2_L'], 0 ) . ' m²/L'
+				: '' );
+	}
+	return aquametria_c12_fmt( $m['dose_mL_por_L'], 2 ) . ' mL/L — '
+		. aquametria_c12_ml( $m['dose_mL_por_L'] * $volume ) . ' nos seus '
+		. aquametria_c12_litros( $volume ) . ' L';
+}
+}
+
+/* A segunda linha do cartão. Espelho de vtRendeFrase(). */
+if ( ! function_exists( 'aquametria_c12_vt_rende_frase' ) ) {
+function aquametria_c12_vt_rende_frase( $m, $volume, $grupo ) {
+	if ( 'sem-dose' === $grupo ) {
+		return 'esta página não dimensiona a compra por ela: o número que falta é do fabricante';
+	}
+	if ( 'quimica' === $grupo ) {
+		return 'camada química, calculada pela dosagem que esta marca publica — não substitui a biológica';
+	}
+	if ( empty( $m['rende_L'] ) ) {
+		return 'sem volume de embalagem declarado';
+	}
+	$embalagens = (int) ceil( ( $m['dose_mL_por_L'] * $volume ) / ( $m['embalagem_L'] * 1000 ) );
+
+	return $embalagens . ( 1 === $embalagens ? ' embalagem de ' : ' embalagens de ' )
+		. aquametria_c12_fmt( $m['embalagem_L'], 2 ) . ' L; cada uma rende até '
+		. aquametria_c12_litros( $m['rende_L'] ) . ' L nessa dosagem';
+}
+}
+
+/* Um cartão. O MESMO HTML que o script monta em vitrineCartao(). */
+if ( ! function_exists( 'aquametria_c12_vitrine_cartao_html' ) ) {
+function aquametria_c12_vitrine_cartao_html( $m, $volume, $grupo ) {
+	$preco = aquametria_c12_preco_texto( $m );
+
+	$h = '<li class="aqm-c12-vt-item aqm-c12-vt-grupo-' . esc_attr( $grupo ) . '">';
+
+	$classe = 'aqm-c12-vt-cartao' . ( 'sem-dose' === $grupo ? ' aqm-c12-vt-sem-dose' : '' );
+
+	if ( $m['link'] ) {
+		$h .= '<a class="' . esc_attr( $classe ) . '" href="' . esc_url( $m['link'] ) . '" target="_blank" rel="sponsored noopener">';
+	} else {
+		/* Sem link não existe destino, e cartão sem destino não é âncora. O que o
+		   contrato proíbe é div com onclick fingindo ser link. */
+		$h .= '<div class="' . esc_attr( $classe ) . '">';
+	}
+
+	if ( ! empty( $m['imagem'] ) && ! empty( $m['imagem']['url'] ) ) {
+		$img = '<img src="' . esc_url( $m['imagem']['url'] ) . '" alt="' . esc_attr( $m['imagem']['alt'] ) . '"';
+		if ( ! empty( $m['imagem']['largura'] ) && ! empty( $m['imagem']['altura'] ) ) {
+			$img .= ' width="' . esc_attr( $m['imagem']['largura'] ) . '" height="' . esc_attr( $m['imagem']['altura'] ) . '"';
+		}
+		$img .= ' loading="lazy" decoding="async">';
+		$h   .= '<span class="aqm-c12-vt-foto">' . $img . '</span>';
+	} else {
+		/* Espaço reservado neutro. Produto sem foto NÃO some da vitrine: perder a
+		   recomendação técnica certa por falta de imagem é trocar o certo pelo
+		   bonito (seção 6 do ARQUIPELAGO.md). Aqui isso é a regra: 1 das 4
+		   mídias biológicas do catálogo tem foto. */
+		$h .= '<span class="aqm-c12-vt-foto aqm-c12-vt-foto-vazia" aria-hidden="true">';
+		$h .= '<span class="aqm-c12-vt-sigla">' . esc_html( $m['marca'] ? $m['marca'] : 'sem marca' ) . '</span></span>';
+	}
+
+	$h .= '<span class="aqm-c12-vt-marca">' . esc_html( $m['marca'] ? $m['marca'] : 'sem marca declarada' ) . '</span>';
+	$h .= '<span class="aqm-c12-vt-modelo">' . esc_html( $m['modelo'] ) . '</span>';
+	$h .= '<span class="aqm-c12-vt-espec">' . esc_html( aquametria_c12_vt_espec_frase( $m, $volume, $grupo ) ) . '</span>';
+	$h .= '<span class="aqm-c12-vt-rende">' . esc_html( aquametria_c12_vt_rende_frase( $m, $volume, $grupo ) ) . '</span>';
+
+	if ( '' !== $preco ) {
+		$h .= '<span class="aqm-c12-vt-preco">' . esc_html( $preco ) . '</span>';
+	} else {
+		$h .= '<span class="aqm-c12-vt-preco aqm-c12-vt-sem-preco">sem cotação coletada</span>';
+	}
+
+	if ( $m['link'] ) {
+		$h .= '<span class="aqm-c12-vt-botao">Ver na ' . esc_html( 'shopee' === $m['loja'] ? 'Shopee' : $m['loja'] ) . '</span>';
+		$h .= '<span class="aqm-c12-vt-selo">link patrocinado</span>';
+		$h .= '</a>';
+	} else {
+		$h .= '<span class="aqm-c12-vt-espera">link de loja em breve</span>';
+		$h .= '<span class="aqm-c12-vt-selo">entrou pela ficha técnica, não pelo link</span>';
+		$h .= '</div>';
+	}
+
+	$h .= '</li>';
+
+	return $h;
+}
+}
+
+/* A vitrine SERVIDA no HTML, para o aquário de referência. É o que um crawler
+   de IA recebe, e por isso ela não pode depender de clique nenhum. */
+if ( ! function_exists( 'aquametria_c12_vitrine_servida_html' ) ) {
+function aquametria_c12_vitrine_servida_html() {
+	$v          = AQUAMETRIA_C12_VITRINE_L;
+	$e          = aquametria_c12_exemplo( $v );
+	$seq        = aquametria_c12_sequencia_vitrine( false );
+	$divulgacao = aquametria_c12_url( AQUAMETRIA_C12_PAGINA_AFILIADOS );
+
+	$h  = '<div class="aqm-c12-painel aqm-c12-vitrine-servida">';
+	$h .= '<h3>As mídias biológicas para um aquário de ' . esc_html( aquametria_c12_litros( $v ) ) . ' litros</h3>';
+
+	if ( ! $seq ) {
+		$h .= '<p class="aqm-c12-sub">Nenhuma mídia biológica do banco da Aquametria tem hoje ficha suficiente para entrar aqui. '
+			. 'Preferimos não mostrar produto nenhum a mostrar um que não sabemos dimensionar.</p>';
+		$h .= '</div>';
+		return $h;
+	}
+
+	$com_link = 0;
+	$com_dose = 0;
+	foreach ( $seq as $item ) {
+		if ( $item['m']['link'] ) {
+			$com_link++;
+		}
+		if ( 'dimensionada' === $item['grupo'] ) {
+			$com_dose++;
+		}
+	}
+
+	$h .= '<p class="aqm-c12-sub">Para ' . esc_html( aquametria_c12_litros( $v ) ) . ' litros de água real, as dosagens declaradas pedem de '
+		. esc_html( aquametria_c12_ml( $e['piso']['mL'] ) ) . ' a ' . esc_html( aquametria_c12_ml( $e['teto']['mL'] ) )
+		. ' de mídia biológica — e cada cartão abaixo traz a quantidade pela dosagem que <em>aquele</em> fabricante publica, nunca por um número escolhido por nós. '
+		. 'A ordem é a mesma da lista completa: da dosagem declarada mais econômica para a mais generosa. '
+		. 'Preencha o formulário acima para ver a lista do seu aquário.</p>';
+
+	$h .= '<ul class="aqm-c12-vt-trilho">';
+	foreach ( $seq as $item ) {
+		$h .= aquametria_c12_vitrine_cartao_html( $item['m'], $v, $item['grupo'] );
+	}
+	$h .= '</ul>';
+
+	$h .= '<p class="aqm-c12-criterio">' . esc_html( $com_link ) . ' de ' . esc_html( count( $seq ) )
+		. ' têm link de loja hoje; os outros aparecem do mesmo jeito, com o lugar do botão reservado — '
+		. 'quem entra é decidido pela ficha técnica, e nunca por ter ou não link. '
+		. esc_html( $com_dose ) . ' das ' . esc_html( count( $seq ) )
+		. ' publicam dosagem por litro de água: a que não publica aparece com a borda tracejada e sem número, porque esta página não dimensiona a compra por ela.</p>';
+
+	/* Por que ESTE aquário, dito na própria página. */
+	$h .= '<p class="aqm-c12-criterio">Por que o exemplo é um aquário de ' . esc_html( aquametria_c12_litros( $v ) ) . ' litros: '
+		. 'a lista de mídias desta calculadora não muda com o tamanho do aquário — nenhuma mídia é eliminada pelo volume, o que muda é a quantidade. '
+		. 'Então o que escolheu o caso foi o outro número da página, o teto físico. '
+		. 'Varridos os seis aquários da tabela acima, ' . esc_html( aquametria_c12_litros( $v ) ) . ' L é o MAIOR em que a dosagem do teto da faixa ainda cabe no cesto do filtro que o nosso banco declara para aquele volume. '
+		. 'De 100 L em diante a camada biológica sozinha já estoura o cesto, e servir uma vitrine para um caso em que a própria página diz "não cabe" seria vender o que ela desaconselha. '
+		. 'Isso é medição nossa, e está publicado aqui pelo mesmo motivo que a divergência de dez vezes entre fabricantes está.</p>';
+
+	$h .= '<p class="aqm-c12-aviso-vitrine"><strong>Sobre o preço e o botão.</strong> '
+		. 'O valor de cada cartão <strong>não é preço de hoje</strong>: é a cotação que a Aquametria leu naquele anúncio na data escrita ao lado, e preço de aquarismo muda toda semana. '
+		. 'Confira no anúncio antes de comprar, e confira também o volume da embalagem: a mesma mídia é vendida em vários tamanhos e a granel, e o nosso número é por litro. '
+		. 'Os botões levam a lojas por link de afiliado, marcado como patrocinado: se você comprar por eles, a Aquametria pode receber comissão, sem custo a mais para você. '
+		. 'A ficha técnica de cada mídia vem do fabricante ou do varejo especializado, com o endereço e a data — o anúncio da loja nunca é a nossa fonte. '
+		. '<a href="' . esc_url( $divulgacao ) . '">Como a Aquametria ganha dinheiro</a>.</p>';
+
+	$h .= '</div>';
+
+	return $h;
+}
+}
+
 /* ---- A resposta antes da explicação (seção 5, item 2 do ARQUIPELAGO.md) ---
    Frase autossuficiente: precisa sobreviver a ser citada fora de contexto, por
    um modelo de linguagem que leu só este parágrafo. Por isso repete o número, a
@@ -2108,7 +2644,7 @@ function aquametria_c12_exemplos_html() {
 	$h .= 'A ordem é essa e só essa: dosagem declarada, da mais econômica para a mais generosa. A comissão não entra em degrau nenhum, e mídia sem link de loja aparece do mesmo jeito e no mesmo lugar — a coluna diz quando é o caso. ';
 	$h .= 'Escolher a mais econômica não é dizer que ela é a melhor: é o piso da faixa, e a página inteira existe para mostrar que o teto está dez vezes acima dele. ';
 	$h .= 'Alguns desses nomes levam a lojas por link de afiliado, marcado como patrocinado: se você comprar por ele, a Aquametria pode receber comissão, sem custo a mais para você. ';
-	$h .= 'Não publicamos preço aqui, porque preço muda toda semana e número velho na tela é pior que nenhum. ';
+	$h .= 'Esta coluna não traz cotação: o preço com data aparece nos cartões da vitrine, logo abaixo, e nunca como preço de hoje. ';
 	$h .= '<a href="' . esc_url( $divulgacao ) . '">Como a Aquametria ganha dinheiro</a>.</p>';
 
 	$h .= '</div>';
@@ -2398,6 +2934,9 @@ function aquametria_c12_shortcode() {
 	$h .= aquametria_c12_form_html();
 	$h .= aquametria_c12_resposta_html();
 	$h .= aquametria_c12_exemplos_html();
+	/* A vitrine servida vem depois da tabela e ANTES da procedência (contrato 7):
+	   a prova de onde veio o número não pode ser a única porta de compra. */
+	$h .= aquametria_c12_vitrine_servida_html();
 	$h .= aquametria_c12_tenho_html();
 	$h .= aquametria_c12_fontes_html();
 	$h .= aquametria_c12_adiante_html();
