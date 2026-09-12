@@ -4,7 +4,7 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 12,
+  "revisao": 13,
   "atualizado_em": "2026-09-12",
   "estado": "nascendo",
   "desembarque": {
@@ -20,9 +20,9 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.6.0",
-      "sha256": "d31771a5f5c1fbe9541a4bba7851e44b9778058139ad9348bee6b0583e53c19c",
-      "descricao": "CASCA 1.6.0 — A ESTRUTURA SE REMONTA QUANDO ENTRA PAGINA NOVA, e a versao anterior tinha um defeito que so aparecia na SEGUNDA vez em que alguem usasse o mecanismo dela. A 1.5.0 criou o filtro cdm_paginas justamente para a ferramenta registrar a propria pagina sem ninguem editar a casca — e a guarda de cdm_casca_montar() continuou sendo a VERSAO DA CASCA: pagina nova entrava na definicao, a versao nao mudava, a montagem voltava na primeira linha e a pagina nunca nascia. A F2 escapou porque nasceu JUNTO com a 1.5.0 e foi de carona na troca de versao; a F1 nao teve essa sorte e respondeu 404 no ar depois de um Sync que aplicou seis itens e disse revisao 10. Agora a chave e a versao MAIS um resumo do mapa de paginas (slug, titulo, mae e shortcode de cada uma): pagina nova, titulo trocado ou mae trocada mudam a impressao e a estrutura se remonta sozinha no primeiro carregamento depois do Sync, sem humano logado. Remontar e barato e seguro porque cdm_casca_garantir_paginas() e idempotente. O portao 21b do teste-casca.php mede o MECANISMO e nunca a versao — um teste que olhasse CDM_CASCA_VERSAO teria ficado verde com o defeito no ar, que foi exatamente o que aconteceu por um bloco inteiro. O QUE A 1.5.0 TROUXE, e continua valendo: o filtro cdm_paginas e /materiais/ listando as ferramentas antes das seis prateleiras, que sao cartao 'em breve'. A 1.4.0 pos o logo do Raphael inteiro no cabecalho, em <img> de 52 px com link para a home e sem uma letra ao lado."
+      "versao": "1.7.0",
+      "sha256": "acedb055ef1bd74eb18df5d6ff8d9708676915e18f3529d76ad6726dddcf5aa9",
+      "descricao": "CASCA 1.7.0 — A ILHA COMECA A SER MEDIDA. A tag do GA4 desta ilha (G-0K5PY39HV7) entra no wp_head e com ela a secao 5 do ARQUIPELAGO.md deixa de ser intencao: as referencias de chatgpt.com, perplexity.ai e gemini.google.com so existem no GA4, e ate hoje esta ilha servia ZERO — o que nao era 'ninguem veio', era 'ninguem contou'. Quatro decisoes: o ID e CONSTANTE NO TOPO, ao lado das outras, porque e a linha que muda quando esta casca for a semente da ilha 4; PRIORIDADE 8 no wp_head, que e o unico numero que satisfaz as duas metades do despacho ao mesmo tempo (o mais cedo possivel E nunca antes do title, da meta descricao e do JSON-LD) — depois do robots (4), do icone (5), do Organization (6) e da trilha (7), e ANTES da folha de fontes (20), que e o unico recurso bloqueante da casca; o ID e CONFERIDO POR REGEX antes de ser impresso, porque meia tag no ar nao mede nada e ainda faz o console falar, e a bancada mede os DOIS lados dessa borda; e a PAGINA DE PRIVACIDADE MUDA NA MESMA VERSAO, porque ela prometia com todas as letras ser atualizada ANTES de a medicao ser ligada e deixar a promessa de pe seria publicar uma frase falsa na pagina que existe para nao ter nenhuma. Sem banner de consentimento (22.4). ACHADO QUE NAO E DESTE BLOCO E NAO FOI CONSERTADO: o Site Kit by Google 1.187.0 esta instalado e ativo nesta ilha e NAO serve gtag nenhum — medido antes da mudanca, zero ocorrencia de gtag( e zero do ID. Plugin desconectado gastando uma linha de <head>; no dia em que alguem o conectar pelo wp-admin a propriedade passa a ter DOIS donos de tag e toda sessao e contada duas vezes, sem nada mudar na tela. Quem acusa isso e uma afirmacao do conferir-no-ar.py, que conta os inicializadores de gtag no HTML servido. A 1.6.0 ganhou de quebra o paragrafo que nunca teve no cabecalho do proprio arquivo: ela subiu a constante e descreveu-se so aqui no manifest."
     },
     {
       "id": "f2",
@@ -145,13 +145,13 @@
     {
       "id": "atualizar-manifest",
       "arquivo": "ferramentas/atualizar-manifest.py",
-      "sha256": "11f67cd2f0032f9efe0cc907f660d1496dbe176b1070d0e735953f8d8affd536",
+      "sha256": "c48d5550caf145f51f9c94a413d942c34e9c7ba4d1abc58d0cbd6b526ce51aba",
       "descricao": "Recalcula o sha256 de cada item do manifest e IMPRIME cada troca; recusa gravar quando a versao do manifest diverge da constante do snippet, e quando ha arquivo publicavel ou ferramenta no disco que o manifest nao conhece. Bancada."
     },
     {
       "id": "conferir-no-ar",
       "arquivo": "ferramentas/conferir-no-ar.py",
-      "sha256": "205338321ae1c020488238f98e01882af3d302b0fec64fc0ddf79579cf41a34c",
+      "sha256": "8b7f7a55bb679f23b5d75425c4e3c0a79557a333da2f5c59bf07b85b3550eaa7",
       "descricao": "Mede o que o SITE serve, nao o que o repositorio guarda: abre as nove URLs com curl e afirma sobre o HTML SERVIDO. Existe porque 'aplicado com sucesso' no log do Sync nao e evidencia de nada (secao 8) e commit sem verificacao no ar nao e entrega (secoes 4 e 18.4). 102 afirmacoes: HTTP 200, a marca no HTML, o src igual ao arquivo que o Raphael subiu, zero texto ao lado do logo, alt com o nome, medida 78x52 declarada, o logo uma vez por pagina, o wordmark em texto de 1.2.0 fora de toda pagina, zero &#038; dentro de <script>, a folha servida mandando 52 px, o cabecalho ainda claro, e as tres URLs da imagem respondendo PNG. REGUA PROPRIA: a URL e a medida estao literais no arquivo, copiadas do despacho, e nao lidas da constante da casca — senao as duas metades errariam juntas. Todo endereco leva ?v= porque o cache de borda faz concluir que nada mudou. NUNCA e publicada no site."
     },
     {
@@ -185,9 +185,15 @@
       "descricao": "Quebra a F2 de proposito, uma mutacao por vez, e exige que teste-f2.php reprove cada uma. Bancada."
     },
     {
+      "id": "mutacoes-ga4",
+      "arquivo": "ferramentas/mutacoes-ga4.py",
+      "sha256": "59be164f67f5ed36d4c4eeed8f086d546d99314f03cd7ed30230a31dcc6c4b91",
+      "descricao": "Quebra a tag do GA4 de proposito, uma mutacao por vez, e exige que teste-casca.php reprove cada uma. Existe porque a tag e a unica coisa desta ilha cujo defeito NAO APARECE NA TELA: tag no lugar errado, com o ID de outra ilha ou impressa duas vezes serve uma pagina identica, e o sintoma so chega semanas depois como um numero que ninguem tem como conferir de memoria. Tres familias: a tag some ou sai pela metade; a tag fica e esta errada (ID de outra ilha, ID digitado ao lado da constante, config discordando do src, tag dobrada — o caso Site Kit); e a tag certa no lugar errado (sem async, antes do JSON-LD, depois da folha de fontes), que e cada linha do despacho de 12/09 virada em medicao. Bancada: nunca vai para o site."
+    },
+    {
       "id": "mutacoes-prestacao",
       "arquivo": "ferramentas/mutacoes-prestacao.py",
-      "sha256": "876c6d42fbecec9b8241d52eff2427f52d7dbed033aea719395bf1fb7131073c",
+      "sha256": "be107eb087f98bf9b38f2ebc4f0ab0c1a150866174792f8bef0be5bc469e0a32",
       "descricao": "Quebra a prestacao de contas do rejunte de proposito, uma mutacao por vez, e exige que teste-prestacao-rejunte.php reprove cada uma. As duas primeiras sao os dois defeitos do despacho de 12/09 escritos de volta. Bancada: nunca vai para o site."
     },
     {
@@ -217,7 +223,7 @@
     {
       "id": "teste-casca",
       "arquivo": "ferramentas/teste-casca.php",
-      "sha256": "6c83183f0769f88f732744b356dbc819ffd2302f7efe3af066151a6c31b3d89f",
+      "sha256": "6ae78769324a8ca64e3a091129cb7b8972307cede7f9bc9770786cc5decb0126",
       "descricao": "347 afirmacoes medidas sobre a casca, sem site e sem rede: script fora do retorno do shortcode, zero &#038; dentro de <script>, corpo que nao comeca por metadado, JSON-LD que decodifica, a arvore da secao 16 nas duas direcoes contra o ARVORE.md, a Loja nos dois estados, a camada de prova pela ESTRUTURA e nao pela vizinhanca da palavra, e o piso de 1.500 caracteres de corpo. UM PROCESSO POR PAGINA: o static que impede logotipo e rodape em dobro na mesma pagina faria a bancada medir oito paginas sem eles. SECAO 7 REESCRITA EM 1.4.0 — ate 1.3.0 ela afirmava o CONTRARIO do que o site tem que servir (que o logo nao podia entrar no cabecalho por ter fundo preto, o que era falso). Agora cobra o logo do Raphael em <img>, o src igual ao arquivo que ele subiu, ZERO texto dentro da marca, alt com o nome, width/height na proporcao 3:2, o srcset servindo so o MESMO arquivo menor, os 52 px no CSS, a folga da barra e o logo uma vez em CADA uma das nove paginas. A REGUA E DESTE ARQUIVO: a URL e a medida estao literais aqui, copiadas do despacho, nunca lidas da constante da casca."
     },
     {

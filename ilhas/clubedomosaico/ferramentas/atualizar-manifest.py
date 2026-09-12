@@ -71,9 +71,20 @@ def main():
                 print("  %-28s %s  ->  %s" % (item["id"], (item.get("sha256") or "—")[:12], novo[:12]))
                 item["sha256"] = novo
 
+    # AS QUATRO CONFERENCIAS ABAIXO ACUMULAM, E NAO SE INTERROMPEM, e isto foi
+    # medido doendo em 12/09/2026, no bloco do GA4: o `return 1` do descasamento
+    # de versao saia ANTES da conferencia de ferramenta orfa, e com isso o
+    # `mutacoes-ga4.py` recem-escrito ficou fora do manifest sem uma linha de
+    # aviso — numa execucao em que a versao do snippet tinha acabado de subir,
+    # que e EXATAMENTE quando ferramenta nova costuma nascer. O portao existia,
+    # estava certo, e era inalcancavel: a conferencia que roda primeiro escondia
+    # a que interessava. Portao que para no primeiro achado nao mede a entrada
+    # inteira — mede o primeiro erro dela, e faz quem conserta descobrir os
+    # outros um por rodada, quando descobre.
+    problemas = []
+
     if faltando:
-        print("\n  ARQUIVO NO MANIFEST QUE NAO EXISTE NO DISCO: " + ", ".join(faltando))
-        return 1
+        problemas.append("  ARQUIVO NO MANIFEST QUE NAO EXISTE NO DISCO: " + ", ".join(faltando))
 
     # A VERSAO DO MANIFEST x A CONSTANTE DENTRO DO SNIPPET.
     #
@@ -97,10 +108,8 @@ def main():
         if achado.group(1) != item.get("versao"):
             divergem.append("%s: manifest %s, snippet %s" % (item["id"], item.get("versao"), achado.group(1)))
     if divergem:
-        print("\n  VERSAO DO MANIFEST DIFERENTE DA CONSTANTE DO SNIPPET:")
-        for linha in divergem:
-            print("    " + linha)
-        return 1
+        problemas.append("  VERSAO DO MANIFEST DIFERENTE DA CONSTANTE DO SNIPPET:\n"
+                         + "\n".join("    " + l for l in divergem))
 
     # E o outro sentido: arquivo publicavel no disco que o manifest nao conhece
     # nunca chega ao site, e some em silencio. A pergunta e das duas direcoes.
@@ -118,8 +127,7 @@ def main():
             if nome.endswith(".php") and rel not in no_manifest:
                 orfaos.append(rel)
     if orfaos:
-        print("\n  SNIPPET NO DISCO FORA DO MANIFEST (nunca chega ao site): " + ", ".join(orfaos))
-        return 1
+        problemas.append("  SNIPPET NO DISCO FORA DO MANIFEST (nunca chega ao site): " + ", ".join(orfaos))
 
     # A BANCADA TAMBEM E INVENTARIO, e em 12/09/2026 ela estava pela METADE: o
     # manifest listava 9 das 18 ferramentas, e as que faltavam incluiam
@@ -138,7 +146,14 @@ def main():
             if nome.endswith((".py", ".php", ".mjs")) and rel not in no_manifest:
                 ferramentas_fora.append(rel)
     if ferramentas_fora:
-        print("\n  FERRAMENTA NO DISCO FORA DO MANIFEST: " + ", ".join(ferramentas_fora))
+        problemas.append("  FERRAMENTA NO DISCO FORA DO MANIFEST: " + ", ".join(ferramentas_fora))
+
+    # Aqui, e so aqui, a ferramenta desiste — com a lista INTEIRA na tela, para
+    # quem conserta consertar tudo numa passada em vez de uma por rodada.
+    if problemas:
+        print("\n%d problema(s), e nenhum deles escondeu os outros:\n" % len(problemas))
+        for linha in problemas:
+            print(linha)
         return 1
 
     if revisao is not None:

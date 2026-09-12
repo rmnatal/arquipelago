@@ -21,6 +21,11 @@ import re, subprocess, sys, time
 
 BASE = "https://clubedomosaico.com.br"
 LOGO = "https://clubedomosaico.com.br/wp-content/uploads/2026/09/logo-clube-do-mosaico.png"
+# O ID de medicao DESTA ilha, copiado a mao do PROMPT.md (despacho de 12/09/2026).
+# Escrito aqui literal de proposito: ler CDM_CASCA_GA4_ID seria conferir a casca
+# com a propria casca, e o defeito que este numero pega — o ID de outra ilha
+# viajando numa copia da casca — nao tem sintoma nenhum na tela.
+GA4 = "G-0K5PY39HV7"
 PAGS = ["/", "/loja/", "/materiais/", "/materiais/como-sabemos/", "/como-fazer/",
         "/sobre/", "/contato/", "/divulgacao-de-afiliados/", "/privacidade/",
         "/materiais/qual-cola-usar-no-mosaico/", "/materiais/quantas-pastilhas-para-mosaico/"]
@@ -81,6 +86,56 @@ for p in PAGS:
        f"[{p}] a folha servida manda 52 px de altura")
     ok(re.search(r"header[^{}]*\{[^{}]*background:var\(--cdm-papel\)", css) is not None,
        f"[{p}] o cabecalho onde o logo vive continua claro")
+
+    # ---- A TAG DO GA4 (despacho de 12/09/2026, secao 5 do ARQUIPELAGO.md).
+    # Medida no <head> SERVIDO, porque a bancada prova que o codigo esta certo e
+    # so isto prova que ele esta no ar — e porque nesta ilha existe um segundo
+    # candidato a dono da tag (o Site Kit) que a bancada nao tem como ver.
+    cabeca = re.search(r"<head\b[^>]*>(.*?)</head>", html, re.S)
+    cabeca = cabeca.group(1) if cabeca else ""
+    ok(cabeca.count("www.googletagmanager.com/gtag/js") == 1,
+       f"[{p}] a tag do GA4 sai UMA vez no <head> servido",
+       cabeca.count("www.googletagmanager.com/gtag/js"))
+    ok(f"id={GA4}" in cabeca, f"[{p}] o ID servido e o desta ilha")
+    ok(re.search(r'<script async src="https://www\.googletagmanager\.com/gtag/js\?id=' + re.escape(GA4) + r'">',
+                 cabeca) is not None, f"[{p}] o script de terceiro vai com async")
+    ok(f"gtag('config','{GA4}')" in cabeca, f"[{p}] o config nomeia o mesmo ID do src")
+    # A ORDEM, medida no que o servidor serve — e nao no que a bancada monta.
+    pos_gtag = html.find("www.googletagmanager.com/gtag/js")
+    pos_title = html.find("<title>")
+    pos_org = html.find('id="cdm-casca-jsonld"')
+    pos_fonte = html.find("fonts.googleapis.com/css2")
+    ok(-1 < pos_title < pos_gtag, f"[{p}] a tag nao entra antes do <title>")
+    ok(-1 < pos_org < pos_gtag, f"[{p}] a tag nao entra antes do JSON-LD")
+    ok(-1 < pos_gtag < pos_fonte, f"[{p}] mas entra antes da folha de fontes")
+    # O UNICO SCRIPT DE TERCEIRO. Aqui esta afirmacao vale mais do que na
+    # bancada: no site existem plugin e tema, e e o site que decide de verdade
+    # quem imprime script na pagina publica.
+    externos = [s for s in re.findall(r'<script[^>]+src="(https?://[^"]+)"', html)
+                if "clubedomosaico.com.br" not in s]
+    ok(len(externos) == 1 and "googletagmanager.com" in externos[0],
+       f"[{p}] o gtag e o UNICO script de terceiro servido",
+       "; ".join(externos) if externos else "nenhum")
+    # A TAG SO PODE TER UM DONO. O Site Kit esta instalado nesta ilha (medido em
+    # 12/09/2026: meta generator presente, gtag ausente). No dia em que alguem o
+    # conectar pelo wp-admin, a sessao passa a ser contada duas vezes e nada na
+    # tela muda — entao quem acusa e esta linha.
+    ok(html.count("gtag('js',new Date())") == 1,
+       f"[{p}] existe UM inicializador de gtag, e nao dois (Site Kit)",
+       html.count("gtag('js',new Date())"))
+
+print("\nA pagina de Privacidade no ar — a promessa que venceu hoje:")
+html_pr, _ = buscar(BASE + "/privacidade/")
+corpo_pr = re.search(r"<main.*?</main>", html_pr, re.S)
+corpo_pr = corpo_pr.group(0) if corpo_pr else html_pr
+ok("Google Analytics 4" in corpo_pr, "[privacidade] a pagina diz que o site mede audiencia com GA4")
+ok("12 de setembro de 2026" in corpo_pr, "[privacidade] com a data em que a medicao comecou")
+# A AFIRMACAO QUE MEDE A AUSENCIA, e e ela que importa: a pagina prometia por
+# escrito ser atualizada ANTES de a medicao ser ligada. Conferir so que a frase
+# nova chegou aprovaria uma pagina servindo a promessa e o fato lado a lado.
+ok("Se um dia houver" not in corpo_pr,
+   "[privacidade] a promessa antiga SAIU do HTML servido")
+ok("remarketing" in corpo_pr, "[privacidade] e o que continua nao acontecendo continua escrito")
 
 print("\nA F2 no ar — a ferramenta responde, e nunca recomenda o que ela diz que nao serve:")
 html_f2, codigo_f2 = buscar(BASE + F2)

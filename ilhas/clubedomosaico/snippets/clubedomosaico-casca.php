@@ -1,5 +1,63 @@
 /**
  * Clube do Mosaico Casca — identidade e estrutura do site
+ *
+ * Versão 1.7.0 (12/09/2026) — DESPACHO DA FUNDAÇÃO: A ILHA COMEÇA A SER MEDIDA.
+ * A tag do GA4 desta ilha entra no `wp_head`, e com ela a seção 5 do
+ * ARQUIPELAGO.md deixa de ser uma intenção: as referências de `chatgpt.com`,
+ * `perplexity.ai` e `gemini.google.com` só existem no GA4, e até hoje esta ilha
+ * servia zero — o que não era "ninguém veio", era "ninguém contou".
+ *
+ * QUATRO DECISÕES, e a razão de cada uma:
+ *   (a) O ID É CONSTANTE NO TOPO, ao lado das outras. ID de medição digitado no
+ *       meio do código é o mesmo defeito da URL do logo digitada: no dia em que
+ *       alguém copiar esta casca para a ilha 4, a linha que precisa mudar tem
+ *       que estar onde se procura por ela, e não num `echo` no meio do arquivo.
+ *   (b) PRIORIDADE 8 NO `wp_head`, e não 1. O despacho pede a tag o mais cedo
+ *       possível E proíbe que ela passe na frente do `<title>`, da meta
+ *       descrição e do JSON-LD. As duas coisas juntas são exatamente a
+ *       prioridade 8: depois do robots (4), do ícone (5), do Organization (6) e
+ *       da trilha (7), e ANTES da folha de fontes (20), que é o único recurso
+ *       bloqueante desta casca. O `async` faz o resto: o LCP desta ilha é texto
+ *       e não espera script nenhum.
+ *   (c) O ID É CONFERIDO ANTES DE SER IMPRESSO. `cdm_casca_ga4_html()` só
+ *       devolve markup se o ID casar com `G-` + maiúsculas e dígitos; com
+ *       constante vazia ou trocada por lixo ela devolve string vazia. Meia tag
+ *       no ar não mede nada e ainda faz o console falar, e a bancada mede os
+ *       DOIS lados dessa borda — que é o que impede "nunca sai" de passar por
+ *       trava.
+ *   (d) A PÁGINA DE PRIVACIDADE MUDA NA MESMA VERSÃO. Ela prometia, com todas as
+ *       letras, que "se um dia houver medição de audiência, esta página será
+ *       atualizada ANTES de ela ser ligada, com a data da mudança". Ligar a
+ *       medição e deixar a promessa de pé seria publicar uma frase falsa na
+ *       página que existe para não ter nenhuma. Não entra banner de
+ *       consentimento: a 22.4 proíbe o que empurra a resposta para baixo da
+ *       dobra, e o que esta ilha coleta continua sendo o mínimo.
+ *
+ * O QUE ESTA VERSÃO ACHOU E NÃO CONSERTOU, porque não é dela e nem é daqui: o
+ * **Site Kit by Google 1.187.0 está instalado e ativo** nesta ilha (assinatura
+ * na meta `generator` e o `dns-prefetch` para `//www.googletagmanager.com` no
+ * HTML servido em 12/09/2026), e ele NÃO serve gtag nenhum — medido antes desta
+ * mudança: zero ocorrência de `gtag(` e zero do ID da ilha. Ou seja, o
+ * plugin está lá desconectado, gastando uma linha de `<head>` e não medindo
+ * nada. Isso é informação para o Raphael e não é conserto de casca: no dia em
+ * que alguém conectar o Site Kit ao GA4 pelo wp-admin, a propriedade passa a ter
+ * DOIS donos de tag e a sessão é contada duas vezes — e quem olha o número não
+ * tem como ver isso no relatório. O lugar disso é o `ESTADO.md`.
+ *
+ * Versão 1.6.0 (12/09/2026) — A ESTRUTURA SE REMONTA QUANDO ENTRA PÁGINA NOVA.
+ * *(Este parágrafo foi escrito DEPOIS, em 12/09/2026, pelo bloco do GA4: a 1.6.0
+ * subiu a constante e descreveu-se só no `manifest.json`, e o cabeçalho do
+ * próprio arquivo pulou de 1.5.0 para cá. Arquivo que não conta a própria
+ * história obriga quem chega a abrir o manifest para saber o que leu.)*
+ * O filtro `cdm_paginas` da 1.5.0 existia para a ferramenta registrar a própria
+ * página sem ninguém editar a casca — e a guarda de `cdm_casca_montar()`
+ * continuou sendo a VERSÃO: página nova entrava na definição, a versão não
+ * mudava, a montagem voltava na primeira linha e a página nunca nascia. A F2
+ * escapou porque nasceu junto com a 1.5.0; a F1 respondeu 404 no ar depois de um
+ * Sync que disse revisão 10 e seis itens aplicados. A chave de remontagem virou
+ * a versão MAIS um resumo do mapa de páginas, e o portão 21b do
+ * `teste-casca.php` mede o MECANISMO, nunca a versão.
+ *
  * Versão 1.5.0 (11/09/2026) — bloco 4: a casca abre a porta para a primeira
  * ferramenta da ilha, e faz isso com DUAS mudanças pequenas e nenhuma a mais.
  *
@@ -133,7 +191,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'CDM_CASCA_VERSAO' ) ) {
-	define( 'CDM_CASCA_VERSAO', '1.6.0' );
+	define( 'CDM_CASCA_VERSAO', '1.7.0' );
 	/* O nome do site e a linha que o WordPress serve no <title> da home. A
 	   Aquametria descobriu em 11/09/2026 que a tagline nunca tocada desde o
 	   nascimento da ilha continuava sendo a linha mais lida do site — a do
@@ -159,6 +217,13 @@ if ( ! defined( 'CDM_CASCA_VERSAO' ) ) {
 	define( 'CDM_CASCA_LOGO_ALTURA', 52 );
 	define( 'CDM_CASCA_LOGO_LARGURA', 78 );
 	define( 'CDM_CASCA_FAVICON_URL', 'https://clubedomosaico.com.br/wp-content/uploads/2026/09/clube-do-mosaico-favicon.png' );
+	/* O ID de medição do GA4 DESTA ilha — propriedade 553922792 na conta
+	   Arquipélago (407777291), fluxo "Clube do Mosaico — site" (15766180417).
+	   Fica aqui em cima, com o nome da ilha ao lado, porque é a linha que muda
+	   quando esta casca for a semente da ilha 4: ID de medição digitado dentro
+	   de um `echo` é ID que alguém copia junto com o código e só descobre
+	   trocado quando o relatório do mês vier somando duas ilhas. */
+	define( 'CDM_CASCA_GA4_ID', 'G-0K5PY39HV7' );
 }
 
 /* ---------------------------------------------------------------------------
@@ -694,6 +759,63 @@ add_action( 'wp_head', function () {
 	echo '<script type="application/ld+json" id="cdm-casca-jsonld">'
 		. wp_json_encode( $grafo ) . '</script>' . "\n";
 }, 6 );
+
+/* ---------------------------------------------------------------------------
+ * 2d. A TAG DO GA4 (seção 5 do ARQUIPELAGO.md, despacho de 12/09/2026)
+ *
+ * É o ÚNICO script de terceiro que esta página pública aceita, e o único lugar
+ * onde ela toca em rede que não seja a folha de fontes. Sai em `async` e na
+ * prioridade 8 do `wp_head`: depois de tudo que o buscador e o modelo de
+ * linguagem leem primeiro (title, robots, Organization, BreadcrumbList) e antes
+ * da folha de fontes, que é o recurso bloqueante de verdade.
+ *
+ * NÃO HÁ BANNER DE CONSENTIMENTO, e isso é decisão escrita, não esquecimento: a
+ * 22.4 proíbe o que empurra a resposta para baixo da dobra, e quem chega aqui
+ * vem escolher presente ou resolver qual cola usar. O que a página passa a fazer
+ * está dito em uma frase na página de Privacidade, com a data em que começou.
+ * ------------------------------------------------------------------------- */
+
+if ( ! function_exists( 'cdm_casca_ga4_html' ) ) {
+/**
+ * A tag do GA4 desta ilha — ou string vazia, quando o ID não serve.
+ *
+ * O parâmetro existe para a bancada: o ID de verdade é uma constante e constante
+ * não se troca dentro do teste, então sem ele a borda "constante vazia" e a
+ * borda "constante com lixo" nunca seriam medidas — e um portão que só mede o
+ * caso bom aprova uma função que imprime meia tag em toda página que não é a
+ * home. Tag pela metade não mede nada E ainda faz o console falar.
+ */
+function cdm_casca_ga4_html( $id = null ) {
+	if ( null === $id ) {
+		$id = defined( 'CDM_CASCA_GA4_ID' ) ? CDM_CASCA_GA4_ID : '';
+	}
+	$id = (string) $id;
+	/* O formato que o Google emite: G- e depois maiúsculas e dígitos. Conferir
+	   antes de imprimir é barato e evita a única falha silenciosa possível aqui,
+	   que é servir um ID quebrado e ler o zero do relatório como "não veio
+	   ninguém" em vez de "a tag está torta". */
+	if ( ! preg_match( '/^G-[A-Z0-9]{6,}$/', $id ) ) {
+		return '';
+	}
+
+	/* Sem `&` nesta URL, de propósito: `esc_url` escreveria `&#038;` e o
+	   `&#038;` dentro de `<script>` é a cicatriz que esta ilha já mede em toda
+	   página (portão do teste-casca). Um parâmetro só, e o problema não existe. */
+	$src = 'https://www.googletagmanager.com/gtag/js?id=' . rawurlencode( $id );
+
+	return '<script async src="' . esc_url( $src ) . '"></script>' . "\n"
+		. '<script id="cdm-casca-ga4">'
+		. 'window.dataLayer=window.dataLayer||[];'
+		. 'function gtag(){dataLayer.push(arguments);}'
+		. "gtag('js',new Date());"
+		. "gtag('config','" . $id . "');"
+		. '</script>' . "\n";
+}
+}
+
+add_action( 'wp_head', function () {
+	echo cdm_casca_ga4_html(); // markup fixo + constante conferida por regex
+}, 8 );
 
 /* ---------------------------------------------------------------------------
  * 3. Tipografia e paleta por cima do tema ativo
@@ -2002,8 +2124,9 @@ add_shortcode( 'cdm_privacidade', function () {
 	$html .= '<p>Você pode pedir, a qualquer momento, para ver, corrigir ou apagar o que foi guardado sobre você — basta dizer isso na própria conversa do WhatsApp. Apagar é apagar: o registro sai do site.</p></div>';
 
 	$html .= '<div class="cdm-secao"><h2>Cookies e medição</h2>';
-	$html .= '<p>O site usa os cookies essenciais do WordPress para funcionar. Não há remarketing, não há pixel de rede social e não há perfil de comportamento sendo montado sobre você.</p>';
-	$html .= '<p>Se um dia houver medição de audiência, esta página será atualizada <em>antes</em> de ela ser ligada, com a data da mudança.</p></div>';
+	$html .= '<p>O site usa os cookies essenciais do WordPress para funcionar.</p>';
+	$html .= '<p><strong>Desde 12 de setembro de 2026, o site usa o Google Analytics 4 para medir audiência</strong> — quantas pessoas chegam, por qual página entram e de onde vieram. É contagem de visita, e nada disso é ligado ao seu nome ou ao seu WhatsApp: o formulário de disponibilidade e a medição de audiência são duas coisas separadas, e não se cruzam aqui.</p>';
+	$html .= '<p>Não há remarketing, não há pixel de rede social e não há perfil de comportamento sendo montado sobre você. Nenhum anúncio é dirigido a você por causa do que você viu neste site.</p></div>';
 
 	$html .= '<div class="cdm-secao"><h2>Links para outras lojas</h2>';
 	$html .= '<p>Algumas páginas do guia de materiais podem trazer link para loja externa, explicado em ' . cdm_casca_link_html( 'divulgacao-de-afiliados', 'Divulgação de afiliados' ) . '. Ao clicar, você entra no site daquela loja, e o que acontece lá é regido pela política dela, não por esta.</p></div>';

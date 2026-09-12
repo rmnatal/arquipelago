@@ -190,6 +190,113 @@ cdm_ok( base64_encode( (string) $png_commitado ) === CDM_CASCA_ICONE_PNG_32,
 	'o base64 do snippet e exatamente o PNG commitado (gerar-favicon.php rodou)' );
 
 /* ---------------------------------------------------------------------------
+ * 4b. A TAG DO GA4 (secao 5 do ARQUIPELAGO.md, despacho de 12/09/2026).
+ *
+ * A REGUA E DESTE ARQUIVO: o ID esperado esta escrito LITERAL abaixo, copiado do
+ * PROMPT.md da ilha, e nao lido de CDM_CASCA_GA4_ID. Ler a constante seria
+ * afirmar que a casca concorda consigo mesma — que e sempre verdade. O dia em
+ * que alguem copiar esta casca para a ilha 4 e esquecer de trocar o ID, e este
+ * numero digitado aqui que acusa.
+ *
+ * E A POSICAO E MEDIDA, nao so a presenca: o despacho pede a tag o mais cedo
+ * possivel E proibe que ela passe na frente do title, da meta descricao e do
+ * JSON-LD. Portao que so pergunta "existe gtag na pagina?" fica verde com a tag
+ * no lugar errado, que e exatamente o unico jeito de esta mudanca fazer mal.
+ * ------------------------------------------------------------------------- */
+
+echo "\n4b. Tag do GA4 (secao 5)\n";
+
+/* Copiado do PROMPT.md da ilha, a mao. Nao trocar por CDM_CASCA_GA4_ID. */
+$ga4_esperado = 'G-0K5PY39HV7';
+
+foreach ( $paginas as $tag ) {
+	$html   = $html_por_pagina[ $tag ];
+	$cabeca = preg_match( '#<head\b[^>]*>(.*?)</head>#is', $html, $mh ) ? $mh[1] : '';
+
+	cdm_ok( 1 === substr_count( $cabeca, 'www.googletagmanager.com/gtag/js' ),
+		"[$tag] a tag do GA4 sai UMA vez, dentro do <head>",
+		substr_count( $cabeca, 'www.googletagmanager.com/gtag/js' ) . 'x' );
+	cdm_ok( 1 === substr_count( $html, 'www.googletagmanager.com/gtag/js' ),
+		"[$tag] e nao sai uma segunda vez no resto da pagina" );
+	cdm_ok( false !== strpos( $cabeca, 'id=' . $ga4_esperado ),
+		"[$tag] o ID servido e o desta ilha, e nao o de outra" );
+	cdm_ok( preg_match( '#<script async src="https://www\.googletagmanager\.com/gtag/js\?id=' . preg_quote( $ga4_esperado, '#' ) . '"></script>#', $cabeca ),
+		"[$tag] o script de terceiro vai com async (22.4)" );
+	cdm_ok( false !== strpos( $cabeca, "gtag('config','" . $ga4_esperado . "')" ),
+		"[$tag] o config nomeia o mesmo ID do src" );
+
+	/* ORDEM. Cada um destes e uma linha do despacho virada em numero. */
+	$p_gtag  = strpos( $html, 'www.googletagmanager.com/gtag/js' );
+	$p_title = strpos( $html, '<title>' );
+	$p_org   = strpos( $html, 'id="cdm-casca-jsonld"' );
+	$p_fonte = strpos( $html, 'fonts.googleapis.com' );
+
+	cdm_ok( false !== $p_title && false !== $p_gtag && $p_title < $p_gtag,
+		"[$tag] a tag NAO entra antes do <title>" );
+	cdm_ok( false !== $p_org && $p_org < $p_gtag,
+		"[$tag] a tag NAO entra antes do JSON-LD Organization" );
+	cdm_ok( false !== $p_fonte && $p_gtag < $p_fonte,
+		"[$tag] mas entra ANTES da folha de fontes, que e o recurso bloqueante" );
+
+	/* A trilha so existe fora da home (16.3), entao a afirmacao muda de lado
+	   junto com ela — em vez de ser pulada, que deixaria o caso sem medida. */
+	$p_trilha = strpos( $html, 'id="cdm-trilha-jsonld"' );
+	if ( 'cdm_home' === $tag ) {
+		cdm_ok( false === $p_trilha, "[$tag] a home nao tem trilha, e a ordem acima ja basta" );
+	} else {
+		cdm_ok( false !== $p_trilha && $p_trilha < $p_gtag,
+			"[$tag] a tag NAO entra antes do BreadcrumbList" );
+	}
+
+	/* O UNICO SCRIPT DE TERCEIRO. Qualquer <script src> apontando para fora do
+	   dominio da ilha que nao seja o gtag reprova aqui — e a regra do despacho
+	   escrita como medida, em vez de como promessa no cabecalho do arquivo. */
+	preg_match_all( '#<script[^>]+src="(https?://[^"]+)"#i', $html, $ms );
+	$externos = array();
+	foreach ( $ms[1] as $src ) {
+		if ( false === strpos( $src, 'clubedomosaico.com.br' ) ) {
+			$externos[] = $src;
+		}
+	}
+	cdm_ok( 1 === count( $externos ) && false !== strpos( $externos[0], 'googletagmanager.com' ),
+		"[$tag] o gtag e o UNICO script de terceiro da pagina",
+		count( $externos ) . ' externo(s)' );
+
+	/* A cicatriz da ilha, aplicada ao bloco novo: &#038; dentro de <script>
+	   quebra o JavaScript em silencio. A URL do gtag tem um parametro so
+	   justamente para nao ter ampersand — e isto mede que continua assim. */
+	cdm_ok( false === strpos( $cabeca, 'gtag/js?id=' . $ga4_esperado . '&' ),
+		"[$tag] a URL do gtag nao ganhou um segundo parametro (e com ele o &#038;)" );
+}
+
+/* AS DUAS BORDAS DA GUARDA DE ID. Sem elas, uma funcao que devolvesse string
+   vazia SEMPRE passaria em tudo acima se a constante fosse a unica entrada
+   possivel — e uma que imprimisse QUALQUER coisa tambem. */
+cdm_ok( '' === cdm_casca_ga4_html( '' ),
+	'borda: com ID vazio a funcao nao imprime meia tag' );
+cdm_ok( '' === cdm_casca_ga4_html( 'lixo' ),
+	'borda: com ID fora do formato a funcao nao imprime nada' );
+cdm_ok( '' === cdm_casca_ga4_html( 'g-0k5py39hv7' ),
+	'borda: minuscula nao passa (o Google emite maiuscula)' );
+cdm_ok( '' !== cdm_casca_ga4_html( 'G-ABC123' ),
+	'borda: e um ID BEM formado passa — senao "nunca imprime" viraria a trava' );
+cdm_ok( false !== strpos( cdm_casca_ga4_html( 'G-ABC123' ), "gtag('config','G-ABC123')" ),
+	'borda: e o que ela imprime e o ID que recebeu, nao o da constante' );
+
+/* A PROMESSA DA PAGINA DE PRIVACIDADE. Ela estava escrita com todas as letras e
+   venceu hoje; medir que a frase NOVA chegou sem medir que a VELHA saiu deixaria
+   a pagina dizendo as duas coisas ao mesmo tempo. */
+$corpo_privacidade = cdm_corpo( $html_por_pagina['cdm_privacidade'] );
+cdm_ok( false !== strpos( $corpo_privacidade, 'Google Analytics 4' ),
+	'privacidade: a pagina diz que o site mede audiencia com GA4' );
+cdm_ok( false !== strpos( $corpo_privacidade, '12 de setembro de 2026' ),
+	'privacidade: com a data em que a medicao comecou' );
+cdm_ok( false === strpos( $corpo_privacidade, 'Se um dia houver' ),
+	'privacidade: a promessa antiga ("se um dia houver") SAIU da pagina' );
+cdm_ok( false !== strpos( $corpo_privacidade, 'remarketing' ),
+	'privacidade: e o que continua nao acontecendo continua escrito' );
+
+/* ---------------------------------------------------------------------------
  * 5. JSON-LD valido em toda pagina (secao 5.3).
  * ------------------------------------------------------------------------- */
 
