@@ -118,6 +118,8 @@ Decisão do Raphael, 08/09/2026: ser recomendado pelas IAs vale tanto quanto ran
 5. **`robots.txt` não bloqueia crawler de IA** (GPTBot, ClaudeBot, PerplexityBot, Google-Extended).
 6. **Entidade clara**: página Sobre com quem publica e qual o método.
 
+**COMO ISTO VIRA NÚMERO, desde 12/09/2026.** As três ilhas têm propriedade GA4 na conta `Arquipélago` (`407777291`), e a mesma conta de serviço da Search Console é **Leitor** nela — então vale para toda ilha futura sem nenhum clique novo. A leitura é `python3 ferramentas/ga4.py <ilha> [--dias 7] [--json]`, na nuvem, sem navegador. Ela devolve totais, canais e origem/mídia com a coluna **IA** marcada. O que a Sentinela grava é a série em `ilhas/<ilha>/dados/audiencia.md` — **uma linha nova por leitura, nunca sobrescrevendo a anterior**, do mesmo jeito que `dados/indexacao.md`. Zero sessão é dado e entra na série; "não consegui medir" também, desde que diga por quê. Enquanto o `gtag` não estiver no HTML servido, o zero mede a ausência da tag, não a ausência de visita — e o relatório tem de dizer qual dos dois é.
+
 ---
 
 ## 6. Padrão de interface da ilha
