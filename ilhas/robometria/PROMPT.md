@@ -335,6 +335,25 @@ três decisões que este bloco fixou:
 foram medidas quebrando o banco de propósito numa cópia — números adulterados nos fatos e
 uma peça multimarca plantada. Trava que nunca foi vista reprovando é trava não medida.
 
+**A SEXTA DECISÃO, fixada em 12/09/2026 no A2 e valendo para toda página desta ilha: A
+ATRIBUIÇÃO DE UM NÚMERO É LIDA DO DEGRAU, NUNCA DIGITADA — e a régua que a deriva serve
+a QUALQUER campo.** A R2 fechou isso em 11/09 para o Pa, e escreveu no próprio registro o
+que aconteceria no dia em que um número entrasse por loja oficial da marca: "a página
+emprestaria calada a autoridade do fabricante a quem apenas transcreveu". No A2 esse dia
+já era o dia — a área por carga dos cinco Electrolux vem do degrau 4, e os cinco cartões
+publicavam "O fabricante declara". Duas coisas seguem disso, e valem antes de escrever
+qualquer página nova:
+
+1. **Regra derivável por um campo só é regra que a segunda página reescreve.** A versão
+   de 11/09 só sabia derivar a procedência do Pa; o A2 decide pela ÁREA e ficou sem de
+   onde ler. Hoje quem deriva é `procedencia_do_campo(m, campo)` em `cobertura-r2.py` —
+   página nova chama essa, não escreve a sua.
+2. **Frase que publica DOIS números precisa de DUAS procedências.** Hoje os dois do
+   cartão do A2 saem da mesma fonte, e é justamente por isso que a frase não pode
+   presumir: verdade por coincidência do banco é a família de defeito que esta ilha já
+   pagou duas vezes. Trava latente assim só conta como medida quando a mutação PRODUZ o
+   mundo em que ela morde — ver `ferramentas/mutacoes-a2-procedencia.py`.
+
 **5b. MALHA DE PÁGINAS.** Camadas: (1) ficha de peça; (2) ficha de modelo de robô; (3) página de parâmetro ("robô para 80 m²", "robô acima de 4.000 Pa"); (4) cruzamentos (modelo × peça, marca × tipo de peça, parâmetro × modelo).
 
 **6. LISTA DE PROSPECÇÃO DO WIDGET** — lojas brasileiras de robô aspirador e assistência técnica com site próprio, `publicar: false`. É a **única** alavanca de link do projeto.

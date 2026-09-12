@@ -1912,3 +1912,115 @@ páginas.
   mesma passada — é política de rede, não a intermitência de túnel da seção 20. Tudo
   que cria URL continua esperando o **reenvio do sitemap no Search Console**, que é
   do Raphael.
+
+## 2026-09-12, 15h40Z — A procedência da área por carga chega ao cartão do A2 (1.2.0, revisão 20)
+
+**O bloco começou medindo no ar antes de escrever uma linha** — que foi a lição que o
+bloco anterior deixou escrita, depois de começar pelo passo errado. Desta vez a página
+foi aberta primeiro, e o que ela mostrou era pior do que o cabeçalho previa.
+
+**O QUE O CABEÇALHO PREVIA:** "o A2 serve 5 cartões de vitrine com ZERO procedência". Era
+verdade e era metade. **O QUE ESTAVA NO AR:** os cinco cartões diziam *"O fabricante
+declara 166 m² por carga"*, e essa frase era **falsa**. Os cinco modelos que declaram área
+por carga declaram todos pela fonte `f-loja` — degrau **4** da escada, `varejo-oficial-da-marca`,
+cujo `quem_declara` é "pela loja oficial da marca". A página não estava só calando a
+origem: estava **creditando ao fabricante o que a loja transcreveu**.
+
+**E ISSO É EXATAMENTE O QUE A R2 PREVIU EM 11/09, NA PÁGINA IRMÃ.** O registro daquele
+bloco diz, palavra por palavra: *"No dia em que um Pa entrasse por loja oficial da marca
+(degrau 4), a página emprestaria calada a autoridade do fabricante a quem apenas
+transcreveu."* Lá o defeito era latente — a frase digitada era verdade por coincidência do
+banco. Aqui o dia já tinha chegado e ninguém tinha olhado: **o mesmo defeito, na página ao
+lado, já disparado.** A diferença entre as duas páginas não era o código; era que uma
+tinha sido lida como um leitor lê e a outra não.
+
+**A REGRA MUDOU DE LUGAR, e essa é a metade estrutural.** `procedencia_do_pa()` sabia
+derivar a procedência de **um campo só**. O A2 decide pela ÁREA, não pelo Pa, e por isso
+não tinha de onde ler o degrau — regra derivável por um campo só é regra que a segunda
+página reescreve. Agora existe `procedencia_do_campo(m, campo)` em `cobertura-r2.py`, com
+`procedencia_do_pa`, `procedencia_da_cobertura` e `procedencia_da_autonomia` por cima.
+**Regerar a R2 devolve `r2-respostas.json` byte a byte idêntico** — a prova de que a
+refatoração não mudou valor nenhum, e não uma promessa.
+
+**NA TELA:** o cartão traz a ressalva do degrau ("confira a embalagem"), a porta de compra,
+e só depois dela a linha "Como sabemos — loja oficial da marca, verificado em 09/09/2026 ·
+fonte", com `nofollow` na classe discreta da casca. A ordem é a seção 7 escrita em código.
+O título da seção também era digitado ("Os modelos cujo fabricante publica o número") e
+agora só nomeia um publicador **quando todos os itens concordam**; com degraus misturados
+ele não atribui a lista a ninguém, porque uma frase só não pode fazer isso sem mentir
+sobre parte dela.
+
+**E UMA CORREÇÃO QUE VEIO DE LER O CARTÃO COMO UM LEITOR LÊ:** a frase nova abria repetindo
+o número que já era o título do cartão uma linha acima ("166 m² por carga" / "166 m² por
+carga, declarados pela…"). O número já está dito; a frase existe para dizer QUEM declarou.
+Virou "Área por carga declarada pela loja oficial da marca".
+
+**VERIFICAÇÃO.** `teste-a2.php` de 63 para **73 medições**, com os três cuidados que esta
+ilha já pagou: **régua própria** (lê `esquema-banco.json` e `modelos-robo.json` direto,
+nunca `a2-fatos.json`, que é escrito pelo mesmo gerador que preenche a procedência),
+**medição no corpo** (recorta cada `<li>`, nunca a página inteira — a seção de procedência
+do artigo também fala em "fabricante", e medir a página toda aprovaria um cartão mudo) e
+**a entrada inteira** (os cinco cartões).
+
+`mutacoes-a2-procedencia.py`: **15 deliberadas, 15 reprovadas** — e **TRÊS passaram na
+primeira rodada**, que é o que este arquivo existe para descobrir:
+1. **a ressalva empurrada para depois do botão de compra.** O teste media que ela
+   *existisse*, nunca *onde* — e ressalva depois da decisão não é ressalva, é nota de
+   rodapé. Virou medição por POSIÇÃO.
+2. **a tabela `rotulos_de_origem` divergindo da escada** no lado que o site consome. Duas
+   cópias do mesmo fato, nenhuma capaz de corrigir a outra — a forma exata dos dois mapas
+   de nome que a casca 1.2.0 pagou.
+3. **a que não era trava faltando, e sim bancada incompleta:** "o degrau 4 fica sem
+   ressalva na escada" passou porque a mutação rodava só `teste-a2.php`. A trava existia
+   desde 11/09, no `validar-banco.py`, e não estava sendo chamada. **Mutação no BANCO
+   julgada só pelo teste da PÁGINA mede metade do mundo** — a bancada deste arquivo passou
+   a ter os dois portões.
+
+A diferença deste arquivo para o irmão da R2 vale ser lida antes do próximo bloco: lá, "a
+atribuição volta a ser digitada" era **inerte** com o banco de hoje e precisava PRODUZIR o
+mundo em que o defeito aparece. Aqui esse mundo já era o mundo, e a mutação reprova sem
+tocar no banco. O banco mutado continua necessário para as duas travas **latentes** — a
+atribuição do SEGUNDO número do cartão (a autonomia, hoje da mesma fonte nos cinco) e o
+título com degraus misturados. **Trava latente sem mutação que produza o mundo dela é
+trava não medida.**
+
+**DE QUEBRA, E NÃO ERA DESTE BLOCO — um conserto estava commitado e fora do ar.** A
+bancada acusou `casca: manifest 1.4.0 / snippet 1.4.1`. A ronda de hoje, 14h40Z
+(`1ffbdd2`), consertou o `robometria_casca_numeros()` lendo option de `publicar=false` — o
+defeito latente que o `ESTADO.md` nomeava — bumpou a casca para 1.4.1 e **não tocou no
+manifest**: nem a versão, nem o sha. O Sync não tinha como ver o arquivo novo, então o
+conserto passou uma hora commitado e invisível. É a seção 4 ("o site fica para trás em
+silêncio") pelo caminho mais discreto de todos, porque aqui nem o desembarque parcial
+aparecia no log. Entrou nesta revisão. `atualizar-manifest.py` acusou os dois
+descasamentos antes do commit, que é para isso que ele nasceu no bloco anterior.
+
+**NO AR às 15h30Z:** `/status` na **revisão 20**, igual à do manifest, 10 aplicados, **um
+disparo**. `conferir-no-ar.py` de 72 para **82 afirmações** no HTML servido, **0 falha** —
+as nove URLs em 200, e no A2 os cinco cartões com a linha de procedência com data, a
+ressalva do degrau 4, a atribuição da loja oficial, a porta de compra antes da fonte, a
+ressalva antes da porta e o link discreto com `nofollow`. **A afirmação mais importante da
+lista nova mede a AUSÊNCIA:** a frase "O fabricante declara" sumiu dos cinco cartões —
+trava que só confere o texto novo aprova uma página que sirva os dois.
+
+**Receita:** 44 itens esperando link de afiliado (não mudou; este bloco não tocou
+catálogo), nenhum com loja possível hoje. Na vitrine do A2, 5 de 5 esperam link.
+**Pauta da seção 17:** `pauta.md` ainda não existe — 0 escritos, 0 na fila, 0 recusados.
+
+- **Próximo passo, e desta vez ele sai MEDIDO deste bloco, não lembrado:** a seção
+  "Exatamente no limiar" da própria R2 nomeia modelos e Pa e **não cita origem** — é o
+  último lugar das duas ferramentas onde um número decide e a origem não aparece, e as
+  peças já existem. Junto com ele, um achado pequeno e de receita que este bloco viu e
+  **não consertou de propósito, para não alargar o bloco:** os cinco itens da vitrine do
+  A2 viajam com `afiliado.sub_id_2 = "R2"`, porque o campo é do MODELO no banco e as duas
+  páginas o compartilham. No dia em que o primeiro link entrar, todo clique vindo do
+  artigo será contado como se fosse da ferramenta. O conserto não é trocar o valor no
+  banco (quebraria a R2): é o gerador de cada página carimbar o próprio código, que é o
+  que a seção "Específico desta ilha" do `PROMPT.md` já descreve.
+
+- **Achado de processo, o mesmo de 11/09 com outra roupa:** a ronda de hoje commitou às
+  14h40Z e o `ultima_ronda` do `ESTADO.md` continua em `2026-09-11T14:53Z`. O campo é da
+  Sentinela e a Fundação não o escreve (seção 2), então ele fica como está — mas é a
+  segunda vez que uma ronda trabalha nesta ilha sem gravar a própria data, e da primeira
+  vez foi preciso um despacho para fechar. O que muda em relação àquela: **desta vez a
+  ronda também não atualizou o manifest**, e foi por isso que o conserto dela ficou fora
+  do ar. As duas metades esquecidas são a mesma metade — o registro do que foi feito.

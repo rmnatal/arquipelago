@@ -106,6 +106,20 @@ R2_PROCEDENCIA = 'Como sabemos — página do fabricante, verificado em 09/09/20
 R2_RESSALVA = '<span class="rbm-tag">a confirmar no manual</span>'
 R2_ATRIBUICAO = 'Pa declarados pelo fabricante'
 
+# O MESMO, PARA O CARTAO DO A2 — e repare que o degrau NAO e o mesmo. A area por
+# carga dos cinco Electrolux vem da loja oficial da marca (degrau 4), e nao do
+# fabricante. Foi por credita-la ao fabricante, com a atribuicao digitada no
+# molde, que a pagina passou dois dias no ar dizendo uma frase falsa.
+#
+# A ULTIMA LINHA E A MAIS IMPORTANTE DESTA LISTA: ela mede a AUSENCIA da frase
+# antiga. Trava que so confere o texto novo aprova uma pagina que sirva os dois.
+A2_CAMINHO = '/quantos-m2-o-robo-aspirador-limpa-por-carga/'
+A2_PROCEDENCIA = 'Como sabemos — loja oficial da marca, verificado em 09/09/2026'
+A2_RESSALVA = '<span class="rbm-tag">confira a embalagem</span>'
+A2_ATRIBUICAO = 'Área por carga declarada pela loja oficial da marca'
+A2_TITULO = 'Os modelos cuja área por carga é declarada pela loja oficial da marca'
+A2_FRASE_ANTIGA = 'O fabricante declara'
+
 
 def conferir_procedencia_da_r2(carimbo):
     """A procedencia do Pa, medida no cartao SERVIDO (R2 1.2.0)."""
@@ -141,6 +155,61 @@ def conferir_procedencia_da_r2(carimbo):
             sem_fonte.append(i)
     ok(not fora_de_ordem, 'a porta de compra vem antes da procedencia, em todo cartao',
        'todos os %d' % len(cartoes) if not fora_de_ordem else 'cartao(oes) %s' % fora_de_ordem)
+    ok(not sem_fonte, 'o link de fonte e discreto e nofollow, em todo cartao',
+       'todos os %d' % len(cartoes) if not sem_fonte else 'cartao(oes) %s' % sem_fonte)
+
+
+def conferir_procedencia_do_a2(carimbo):
+    """A procedencia da area por carga, medida no cartao SERVIDO (A2 1.2.0)."""
+    print('\n[%s] procedencia da area por carga no cartao' % A2_CAMINHO)
+    corpo, codigo = buscar(DOMINIO + A2_CAMINHO + '?v=' + carimbo)
+    if not ok('200' == codigo, 'HTTP 200', codigo):
+        return
+
+    cartoes = re.findall(r'<li class="rbm-vitrine-item">(.*?)</li>', corpo, re.S)
+    if not ok(len(cartoes) > 0, 'a vitrine serve cartoes', '%d cartoes' % len(cartoes)):
+        return
+
+    sem_linha = [i for i, c in enumerate(cartoes) if A2_PROCEDENCIA not in c]
+    ok(not sem_linha, 'todo cartao diz de onde veio a area, com a data',
+       'todos os %d' % len(cartoes) if not sem_linha else 'cartao(oes) %s' % sem_linha)
+
+    sem_ressalva = [i for i, c in enumerate(cartoes) if A2_RESSALVA not in c]
+    ok(not sem_ressalva, 'todo cartao carrega a ressalva do degrau 4',
+       'todos os %d' % len(cartoes) if not sem_ressalva else 'cartao(oes) %s' % sem_ressalva)
+
+    sem_atribuicao = [i for i, c in enumerate(cartoes)
+                      if A2_ATRIBUICAO not in html.unescape(c)]
+    ok(not sem_atribuicao, 'a atribuicao e a da LOJA OFICIAL, nao a do fabricante',
+       'todos os %d' % len(cartoes) if not sem_atribuicao else 'cartao(oes) %s' % sem_atribuicao)
+
+    creditam_fabricante = [i for i, c in enumerate(cartoes)
+                           if A2_FRASE_ANTIGA in html.unescape(c)]
+    ok(not creditam_fabricante,
+       'a frase falsa que estava no ar sumiu do cartao',
+       'nenhum dos %d' % len(cartoes) if not creditam_fabricante
+       else 'cartao(oes) %s' % creditam_fabricante)
+
+    ok(A2_TITULO in html.unescape(corpo),
+       'o titulo da secao nomeia o degrau, e nao o fabricante')
+
+    fora_de_ordem = []
+    ressalva_tarde = []
+    sem_fonte = []
+    for i, c in enumerate(cartoes):
+        t = c.find('class="rbm-tag"')
+        a = c.find('class="rbm-vitrine-acao"')
+        f = c.find('class="rbm-vitrine-fonte"')
+        if a < 0 or f < 0 or a > f:
+            fora_de_ordem.append(i)
+        if t < 0 or a < 0 or t > a:
+            ressalva_tarde.append(i)
+        if not re.search(r'<a class="rbm-fonte"[^>]*rel="nofollow noopener"', c):
+            sem_fonte.append(i)
+    ok(not fora_de_ordem, 'a porta de compra vem antes da procedencia, em todo cartao',
+       'todos os %d' % len(cartoes) if not fora_de_ordem else 'cartao(oes) %s' % fora_de_ordem)
+    ok(not ressalva_tarde, 'a ressalva vem antes da porta de compra, em todo cartao',
+       'todos os %d' % len(cartoes) if not ressalva_tarde else 'cartao(oes) %s' % ressalva_tarde)
     ok(not sem_fonte, 'o link de fonte e discreto e nofollow, em todo cartao',
        'todos os %d' % len(cartoes) if not sem_fonte else 'cartao(oes) %s' % sem_fonte)
 
@@ -188,6 +257,7 @@ def main():
         ok(0 == n, 'zero &#038; dentro de <script>', 'achados: %d' % n)
 
     conferir_procedencia_da_r2(carimbo)
+    conferir_procedencia_do_a2(carimbo)
 
     print('\n' + '=' * 78)
     if falhas:
