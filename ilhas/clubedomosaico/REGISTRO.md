@@ -1535,3 +1535,20 @@ desta ilha. Casca **1.7.0**, manifest na **revisão 13**, `/status` com revisão
   imagem (eram 10 e 10; os 10 novos entram todos assim, e nenhuma foto foi
   colhida porque o egresso não alcança os domínios). Pauta da seção 17:
   `pauta.md` ainda não existe — 0 escritos, 0 na fila, 0 recusados.
+
+- **NO AR, 21h58Z, em UM disparo do Sync:** `/status` na revisão 15, igual à do
+  manifest; 7 itens aplicados. `ferramentas/conferir-no-ar.py` passou de 334 para
+  **339 afirmações, 0 falha**, porque ganhou a seção que este bloco tornou
+  necessária: **a prestação de contas do banco medida no HTML servido.** A frase
+  do Guia publica um total e a repartição dele, e agora tem TRÊS parcelas em vez
+  de duas — no ar ela diz "20 itens de fabricante, sendo 5 colas, 5 rejuntes e 10
+  pastilhas, e 20 deles ainda esperam link". A régua não lê a frase do snippet:
+  lê os **arquivos de banco do repositório**, um a um, e cobra quatro coisas
+  distintas — o total servido bate com a soma dos arquivos; as parcelas somam o
+  total que **a própria frase** publica (defeito diferente do primeiro: uma frase
+  pode estar internamente certa e desatualizada, e foi o outro caso que pôs no ar
+  "hoje 10 dos 5 itens"); **toda categoria com arquivo de banco é nomeada** na
+  frase, que é o que impede a próxima categoria de entrar na soma e ficar fora do
+  texto; e o número de itens esperando link bate com os cabeçalhos. Testada por
+  negação antes de ser dada por boa: com o banco adulterado para 9 pastilhas, as
+  três afirmações que deviam cair caíram.

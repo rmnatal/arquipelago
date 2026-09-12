@@ -175,7 +175,7 @@
     {
       "id": "conferir-no-ar",
       "arquivo": "ferramentas/conferir-no-ar.py",
-      "sha256": "8b7f7a55bb679f23b5d75425c4e3c0a79557a333da2f5c59bf07b85b3550eaa7",
+      "sha256": "4337f6d7088ec84652b269cfb391d6481bb168ed1ae2015600260f97b63f0b54",
       "descricao": "Mede o que o SITE serve, nao o que o repositorio guarda: abre as nove URLs com curl e afirma sobre o HTML SERVIDO. Existe porque 'aplicado com sucesso' no log do Sync nao e evidencia de nada (secao 8) e commit sem verificacao no ar nao e entrega (secoes 4 e 18.4). 102 afirmacoes: HTTP 200, a marca no HTML, o src igual ao arquivo que o Raphael subiu, zero texto ao lado do logo, alt com o nome, medida 78x52 declarada, o logo uma vez por pagina, o wordmark em texto de 1.2.0 fora de toda pagina, zero &#038; dentro de <script>, a folha servida mandando 52 px, o cabecalho ainda claro, e as tres URLs da imagem respondendo PNG. REGUA PROPRIA: a URL e a medida estao literais no arquivo, copiadas do despacho, e nao lidas da constante da casca — senao as duas metades errariam juntas. Todo endereco leva ?v= porque o cache de borda faz concluir que nada mudou. NUNCA e publicada no site."
     },
     {

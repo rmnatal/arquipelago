@@ -17,6 +17,8 @@ O `?v=` em toda URL nao e enfeite: o raw.githubusercontent guarda ~5 min e o
 cache de borda guarda mais, e sem ele se conclui que nada mudou (secao 4).
 """
 
+import json
+import os
 import re, subprocess, sys, time
 
 BASE = "https://clubedomosaico.com.br"
@@ -312,6 +314,56 @@ if tabela:
 ok(tabela is not None and not linhas_ruins,
    "[item 2] toda linha da tabela pre-renderizada soma os 5 do banco",
    "9 linhas" if not linhas_ruins else "; ".join(linhas_ruins))
+
+# ---------------------------------------------------------------------------
+# A PRESTACAO DE CONTAS DO BANCO, no HTML servido (bloco 3d, 12/09/2026).
+#
+# A frase do "Como sabemos" publica um total e a reparticao dele por categoria.
+# Ela ja esteve errada nesta ilha ("hoje 10 dos 5 itens esperam link": dois
+# numeros certos numa frase impossivel), e agora ela tem TRES parcelas em vez de
+# duas. Duas coisas podem se separar sem ninguem ver: a soma pode deixar de bater
+# com as parcelas, e uma categoria que ganhou arquivo de banco pode nao entrar na
+# frase — item que a soma conta e a frase nao nomeia e prestacao de contas pela
+# metade, que e o defeito que o despacho de 12/09 fechou nas ferramentas.
+#
+# A regua nao le a frase do snippet: le os ARQUIVOS de banco do repositorio,
+# um a um, e cobra que a tela diga o que eles dizem.
+print("\nA prestacao de contas do banco, no ar:")
+
+_dados = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "dados")
+_por_categoria = {}
+for _nome in sorted(os.listdir(_dados)):
+    if _nome.startswith("materiais-") and _nome.endswith(".json"):
+        with open(os.path.join(_dados, _nome), encoding="utf-8") as _fh:
+            _b = json.load(_fh)
+        _por_categoria[_b["categoria"]] = len(_b["materiais"])
+_total_banco = sum(_por_categoria.values())
+
+html_m, _ = buscar(BASE + "/materiais/")
+_frase = re.search(r"Hoje o banco tem (.{0,240}?)esperam link de loja", re.sub(r"<[^>]+>", "", html_m), re.S)
+_texto = re.sub(r"\s+", " ", _frase.group(1)) if _frase else ""
+_nums = [int(x.replace(".", "")) for x in re.findall(r"(\d[\d.]*)", _texto)]
+
+ok(_frase is not None, "a frase do total do banco esta na pagina servida", _texto[:80])
+ok(bool(_nums) and _nums[0] == _total_banco,
+   "o total servido e a soma dos arquivos de banco do repositorio",
+   f"tela {_nums[0] if _nums else '-'} / repositorio {_total_banco}")
+# Esta afirmacao NAO repete a de cima: ali a tela e comparada com o repositorio,
+# aqui a frase e comparada CONSIGO MESMA. Uma frase pode estar internamente certa
+# e desatualizada, e pode estar atualizada no total e errada na reparticao — sao
+# dois defeitos diferentes, e foi o segundo que pos no ar "hoje 10 dos 5 itens".
+ok(len(_nums) >= 3 and sum(_nums[1:-1]) == _nums[0],
+   "as parcelas nomeadas na frase somam o total que a propria frase publica",
+   f"{' + '.join(str(n) for n in _nums[1:-1])} = {_nums[0] if _nums else '-'}")
+_faltando = [c for c in _por_categoria if c not in _texto and c + "s" not in _texto]
+ok(not _faltando,
+   "toda categoria com arquivo de banco e NOMEADA na frase",
+   "nenhuma faltando" if not _faltando else "faltou: " + ", ".join(_faltando))
+ok(len(_nums) >= 2 and _nums[-1] == sum(
+       json.load(open(os.path.join(_dados, n), encoding="utf-8"))["afiliado"]["itens_esperando_link"]
+       for n in sorted(os.listdir(_dados)) if n.startswith("materiais-") and n.endswith(".json")),
+   "o numero de itens esperando link servido bate com os cabecalhos do banco",
+   f"tela {_nums[-1] if _nums else '-'}")
 
 print("\nA imagem, no ar:")
 for rot, url in [("original (src)", LOGO),
