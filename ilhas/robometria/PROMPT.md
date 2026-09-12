@@ -378,16 +378,37 @@ qualquer página nova:
   11/09/2026** (R2 1.2.0, revisão 18): o Pa é o único número que decide a
   recomendação e saía sem endereço, sem data e sem o degrau da escada. Ver o
   `REGISTRO.md`.
-- **O PRÓXIMO PASSO, medido no ar em 23h37Z de 11/09/2026 e não lembrado:** o **A2**
+- ~~**O PRÓXIMO PASSO, medido no ar em 23h37Z de 11/09/2026 e não lembrado:** o **A2**
   (`/quantos-m2-o-robo-aspirador-limpa-por-carga/`) serve **5 cartões de vitrine com
   ZERO procedência** — "O fabricante declara 166 m² por carga", sem endereço, sem
   data, sem degrau e sem link. É o mesmo defeito que a R2 acabou de fechar, na página
   irmã dela, e a casca já tem todas as peças (`na_tela` na escada de fontes,
   `robometria_casca_fonte_link`, e o padrão de teste da seção 16 do `teste-r2.php`
   para copiar). Depois dele, a seção **"Exatamente no limiar"** da própria R2, que
-  nomeia modelos e Pa e também não cita origem. Nenhum dos dois cria URL nem depende
-  de rede. Só então, e só se a rede abrir, a **transcrição da composição dos kits**
-  (item logo abaixo) e o 3c.
+  nomeia modelos e Pa e também não cita origem.~~ **OS DOIS ESTÃO CUMPRIDOS:** o A2
+  em 12/09/2026 (A2 1.2.0, revisão 20) e a seção da R2 em 12/09/2026 (R2 **1.3.0**,
+  revisão **22**, `/status` conferido às 19h30Z em um disparo). Com isso **não resta
+  nenhum lugar nas duas ferramentas nem nos dois artigos em que um número decide e a
+  origem não aparece** — mede isso a seção 17 do `teste-r2.php` e a do
+  `conferir-no-ar.py`, no HTML servido.
+  **A DECISÃO QUE FICOU, e vale para toda seção desta ilha que NÃO recomenda:** a
+  regra da seção 7 (porta de compra antes da procedência) existe para o link de fonte
+  nunca ser a única coisa clicável de um bloco. Onde a página recusa o item, a porta
+  não pode existir — e o que a regra proíbe é o **silêncio** sobre a ausência, não a
+  ausência. Então a seção declara que não vende e diz por quê. Trocar um silêncio por
+  outro não é conserto.
+  **E o `afiliado.sub_id_2` saiu do banco na mesma passada:** ele nomeia a PÁGINA que
+  levou o clique, e o banco só sabe dizer um valor por registro. Cada gerador carimba
+  o próprio código (R1, R2, A1, A2); `validar-banco.py` reprova o campo de volta no
+  banco, e a seção 17 do `teste-casca.php` cobra que cada arquivo de dados carimbe só
+  o seu — **página nova que copiar um gerador antigo reprova antes de existir URL**.
+  **O PRÓXIMO PASSO** é a **transcrição da composição dos kits** (item logo abaixo) e,
+  junto dela, o item **(e)** da fila do 3c — a recarga dos cinco Electrolux que já
+  declaram cobertura e autonomia. **As duas dependem de rede que em 12/09/2026 seguia
+  fechada por política de egresso** (`wap.ind.br`, `mais.conteudo.wap.ind.br` e
+  `mi.com.br` em `connect_rejected`, medido em duas passadas com o domínio da ilha em
+  200 na mesma). Teste com `curl` antes de escolher o alvo; se continuar fechada, a
+  fila cai para trabalho de repositório.
   **Só depois disso, e só se a rede abrir**, vem o 3c: teste com `curl` antes de escolher o alvo, e leia a ordem atualizada na fila (o item (e), a recarga dos modelos que já declaram cobertura, é o de menor custo e maior retorno).
   **A leva de malha (5b) continua travada** pela metade humana do despacho: o sitemap precisa ser reenviado no Search Console, e isso exige o navegador do Raphael.
 - **Antes de mexer em qualquer snippet, rode os OITO testes de bancada:** `php ferramentas/teste-casca.php .` (149 verificações), `php ferramentas/teste-r1.php .` (90), `php ferramentas/teste-a1.php .` (55), `php ferramentas/teste-r2.php .` (86), `php ferramentas/teste-a2.php .` (63), `php ferramentas/teste-acentuacao.php .` (17), `php ferramentas/teste-arvore.php .` (213) e `php ferramentas/teste-voz.php .` (155). Depois do desembarque, `python3 ferramentas/conferir-no-ar.py` mede as nove URLs no ar com régua própria — os endereços e os nomes estão escritos literalmente dentro dele, e não lidos do código, para as duas metades não errarem juntas. Eles são a única verificação da seção 8 que roda sem depender do site. **O sexto é o único que varre a ENTRADA INTEIRA** — 72 estados, um processo por estado, via `ferramentas/varrer-corpo.php`: os outros medem o caso-âncora, e foi por isso que "Aspirador Robo" e "Versao A" ficaram invisíveis para cinco testes verdes. O segundo compara as 188 frases publicadas contra a implementação de referência; o terceiro **recalcula a tese do artigo em PHP, direto do banco, sem olhar para o que o gerador em Python escreveu** — duas contas independentes que batem são medição, uma conta sozinha é o que o autor achou.

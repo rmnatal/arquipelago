@@ -2121,3 +2121,101 @@ catálogo), nenhum com loja possível hoje. Na vitrine do A2, 5 de 5 esperam lin
   trocar o valor no banco. Os kits e o 3c seguem parados por rede (politica de
   egresso). Tudo que cria URL espera o reenvio do sitemap no Search Console, que
   e do Raphael.
+
+## 2026-09-12 — A procedencia chega a secao "Exatamente no limiar", e o carimbo de origem sai do banco (R2 1.3.0, revisao 22)
+
+- **O ULTIMO LUGAR DAS DUAS FERRAMENTAS em que a pagina nomeava modelo e numero
+  sem dizer de onde o numero veio.** A frase da secao comecava por "Xiaomi E10
+  declara exatamente 4.000 Pa" — o modelo como sujeito do verbo declarar, que e
+  o fabricante dito sem nome e sem degrau da escada de fontes. O cartao da
+  vitrine fechou isso em 11/09 e esta secao ficou para tras **justamente porque
+  ninguem a le como recomendacao**, e e por isso que ela passou despercebida: a
+  pagina nomeia modelo e Pa aqui com a mesma autoridade que la.
+- **SAO DOIS NUMEROS E DUAS PROCEDENCIAS** (sexta decisao do `PROMPT.md`): o Pa
+  e do modelo e sai atribuido ao degrau dele, lido de `procedencia_do_pa()` na
+  implementacao de referencia; o limiar e da fonte editorial e sai com o nome de
+  quem o publica, dentro da mesma frase. Frase que publica dois numeros de
+  origens diferentes nao pode atribuir os dois de uma vez.
+- Cada item ganhou a ressalva do degrau e a linha "Como sabemos — pagina do
+  fabricante, verificado em 09/09/2026 · fonte", no mesmo molde do cartao.
+- **A AUSENCIA DA PORTA DE COMPRA DEIXOU DE SER SILENCIO, e isto foi a decisao
+  de desenho do bloco.** A regra da secao 7 (porta de compra antes da
+  procedencia) existe para o link de fonte nunca ser a unica coisa clicavel de
+  um bloco. Aqui a porta nao pode existir: a pagina acabou de dizer que estes
+  modelos nao estao acima do limiar, e botao embaixo de uma recusa e recomendar
+  assim mesmo. O que a regra proibe e o silencio sobre a ausencia, nao a
+  ausencia — entao a pagina declara a ausencia e diz por que. **Trocar um
+  silencio por outro nao seria conserto**, e a mutacao que apaga essa frase
+  reprova por isso.
+- **A CORRECAO QUE NAO APARECE NA TELA E QUE SO VIRARIA NUMERO NO DIA DO
+  PRIMEIRO LINK: `afiliado.sub_id_2` saiu do banco.** Ele nomeia a PAGINA que
+  levou o clique, e o banco so sabe dizer um valor por registro: os 33 modelos
+  traziam `"R2"` e as 18 pecas `"R1"`. So que o mesmo modelo aparece na R2 **e**
+  no artigo A2, e a mesma peca na R1 **e** no A1 — entao os dois artigos
+  publicavam a vitrine deles carimbada com o codigo da ferramenta irma. Nada
+  disso quebra nada hoje; no dia do primeiro link de afiliado, a medicao diria
+  que os dois artigos nao vendem nada, **com cara de numero conferido**, e a
+  decisao seguinte seria despublicar o que estava vendendo.
+- **O A1 TINHA O MESMO DEFEITO e ninguem tinha visto**: o despacho anterior
+  nomeou os cinco itens do A2, e o `gerar-a1.py` repassava o `afiliado` INTEIRO
+  do registro da peca, entao as quatro pecas dele saiam como "R1". Conserto:
+  cada gerador carimba o proprio codigo (`gerar-r1` R1, `gerar-r2` R2,
+  `gerar-a1` A1, `gerar-a2` A2), o campo saiu de `modelos-robo.json` e de
+  `pecas.json`, saiu da forma do `esquema-banco.json` com o motivo escrito, e
+  `validar-banco.py` REPROVA o campo de volta no banco. **Nao se conserta
+  trocando o valor no banco, porque nenhum valor unico e certo la.**
+- **Campo que parece a regra e nao e, num arquivo publicado, e a mesma familia
+  da funcao morta no snippet:** um dia alguem o usa. Por isso ele saiu, em vez
+  de ficar zerado.
+- **VERIFICACAO.** `teste-r2.php` de 90 para **92** afirmacoes, com a secao 17
+  nova medindo a entrada inteira (9 situacoes, 16 itens em 8 delas, um processo
+  por situacao), regua propria lida do `esquema-banco.json` e do
+  `modelos-robo.json` — nunca do `r2-respostas.json`, que o mesmo gerador
+  escreve. `teste-casca.php` de 191 para **200**, com a secao 17 nova: cada um
+  dos quatro arquivos de dados carimba SO o proprio codigo, e o banco nao
+  carimba nenhum. **O portao mora na casca e nao dentro de cada pagina**, pelo
+  mesmo motivo que a porta de compra mora la: e regra de toda pagina desta ilha
+  que recomenda item, e pagina nova que copiar um gerador antigo reprova antes
+  de existir URL.
+- **MUTACOES.** `mutacoes-procedencia.py` de 11 para **17 de 17 reprovadas**;
+  `mutacoes-carimbo-de-origem.py` novo, **5 de 5**. Duas licoes delas:
+  (a) **a mutacao central do carimbo precisa das DUAS metades** — o gerador
+  voltando a ler do banco E o campo voltando ao banco —, porque cada uma
+  sozinha e inerte: com o banco limpo o `or "A2"` devolve "A2", e com o gerador
+  carimbando o campo no banco e ignorado;
+  (b) **o alvo de uma mutacao antiga deixou de ser unico** quando a frase nova
+  passou a usar `$m['procedencia']['quem_declara']` — quatro tabs sao um pedaco
+  de cinco tabs, e so a quebra de linha desempatou. A guarda de unicidade do
+  proprio arquivo pegou isso; sem ela a mutacao teria editado nada e passado
+  verde.
+- **NO AR as 19h30Z, em UM disparo:** `/status` na revisao **22**, igual a do
+  manifest; `conferir-no-ar.py` de 82 para **149** afirmacoes, 0 falha, com a
+  secao nova medida no HTML SERVIDO — os dois modelos (escritos literalmente no
+  medidor, nunca lidos do arquivo de dados), a frase com as duas procedencias,
+  a linha "Como sabemos", a ressalva, o link discreto, a **ausencia de porta de
+  compra junto com a frase que a explica**, e a secao servida depois da lista
+  principal.
+- Regressao sem uma falha: `teste-r1` (90), `teste-a1` (55), `teste-a2` (73),
+  `teste-acentuacao` (17), `teste-arvore` (213), `teste-voz` (155),
+  `validar-banco`, `php -l` em tudo, e as mutacoes antigas (`a2-procedencia`
+  15/15, `arvore` 18/18, `cabeca-e-voz` 29/29, `ga4` 9/9) — nenhuma virou
+  inerte. A pagina que este bloco editou foi medida a parte em Chromium a
+  360/390/781/782/1200 px: rolagem horizontal 0 px nas cinco, e os tres blocos
+  de cada item empilhados em vez de colados. `teste-navegador-arvore.mjs` nas
+  nove paginas x seis larguras: 258 medicoes, 0 falha.
+- **REDE reconferida (secao 20.2):** dominio da ilha em 200, mais Sync e
+  `/status`. Nenhum bloqueio.
+- 44 itens esperando link de afiliado (nao mudou; este bloco nao tocou
+  catalogo). Nenhuma URL nova e nenhum numero novo. Pauta da secao 17:
+  `pauta.md` ainda nao existe — 0 escritos, 0 na fila, 0 recusados.
+- **PROXIMO:** a **transcricao da composicao dos kits** (item do `PROMPT.md`),
+  que e o que destrava a porta de compra do Kit Performance na consulta ERB30 +
+  filtro, e junto dela o item **(e)** da fila do 3c — a recarga dos cinco
+  Electrolux que ja declaram cobertura e autonomia, o campo de menor custo e
+  maior retorno do banco, porque e ele que completa a frase que e a razao de a
+  R2 existir ("a sua casa fica pronta em X minutos"). **As duas dependem de
+  rede que hoje esta fechada por politica de egresso** (`wap.ind.br`,
+  `mi.com.br`, `xiaomi.com.br`): teste com `curl` antes de escolher o alvo, e
+  se continuar fechada a fila cai para trabalho de repositorio. A leva de malha
+  (5b) segue travada pela metade humana do despacho de 10/09 — o reenvio do
+  sitemap no Search Console, que e do Raphael.
