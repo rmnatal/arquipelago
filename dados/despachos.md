@@ -21,12 +21,20 @@ Prioridade: `alta` fura a fila da próxima execução do destinatário.
 
 **ESTADO EM 12/09/2026 17h23Z — falta a Aquametria e o Clube do Mosaico.** A Robometria está cumprida e medida no ar (casca 1.5.0, manifest revisão 21, `/status` conferido em um disparo; `conferir-no-ar.py` com 138 afirmações, 0 falha, a tag conferida nas nove URLs). O despacho **fica aberto** para as outras duas, e quem reservar cada uma faz a sua parte.
 
+**A TERCEIRA, ACHADA NA AQUAMETRIA, E ELA CORRIGE A PRIMEIRA FRASE DESTE DESPACHO — "nenhuma tem a tag no ar" era FALSO para a Aquametria.** Antes de escrever uma linha de código, o medidor novo foi rodado contra o site como ele estava, para provar que sabia distinguir (77 falhas, como devia) — e no meio delas apareceu que as **treze páginas já serviam** um `gtag/js?id=GT-PL9DD7KW`, posto pelo plugin **Google Site Kit**, que é legítimo na ilha (seção 11.7 o deixa opcional, e o Raphael fez a conexão). Três coisas saem daí, e a terceira é para quem pegar o Clube do Mosaico:
+
+   (a) **MEÇA O QUE JÁ ESTÁ NO AR ANTES DE ACRESCENTAR TAG.** Um `curl` na home, procurando `googletagmanager`, custa segundos e responde se a ilha já mede — e a resposta muda o bloco.
+
+   (b) **O PORTÃO NÃO PODE LOCALIZAR A TAG PELA PALAVRA "googletagmanager": localiza pelo ID DA ILHA.** Na primeira versão do medidor, três afirmações de ordem deram **verde com a nossa tag ausente**, porque a posição que elas leram era a da tag do Site Kit. É a cicatriz da seção 8 na escolha do localizador: quando o texto legítimo e o que se quer medir são a mesma palavra, quem decide é o identificador, nunca a vizinhança.
+
+   (c) **PRECISA DE RESPOSTA DO RAPHAEL, porque muda número e ninguém na nuvem pode ler.** `GT-PL9DD7KW` é um Google Tag, e para onde ele roteia só se lê logado (`www.googletagmanager.com` responde `000` por política de egresso, remedido duas vezes). **Se ele rotear para a propriedade 553860444 da Aquametria, a página vista chega DUAS vezes e a série da seção 5 nasce dobrada** — e número medido errado é pior que número digitado errado, porque parece conferido. A tag do Site Kit **não foi tocada** por esta execução, de propósito: desligar medição que o Raphael montou, sem saber o que ela alimenta, não é conserto de bloco. Até a resposta chegar, a primeira leitura de `dados/audiencia.md` da Aquametria sai com essa ressalva escrita ao lado. A Robometria e o Clube do Mosaico **não têm** o Site Kit servindo tag, então isto é só da Aquametria.
+
 **Duas coisas aprendidas na Robometria que valem para as duas que faltam, e que não estavam escritas aqui:**
 1. **O portão mede ORDEM, não presença.** "A tag está na página" é a afirmação fácil e é a que não protege nada: um JSON-LD novo numa prioridade acima da tag quebra a regra deste despacho sem tirar a tag do lugar. Meça a posição da tag contra o **último** bloco `application/ld+json` servido, nunca contra uma lista do que a casca acha que imprime.
 2. **O ID da ilha vai ESCRITO na régua do teste, nunca lido da constante.** Comparar a constante com o que a casca serviu é compará-la consigo mesma — e o único erro que isso nunca pegaria é o que vai acontecer de verdade, porque cada casca é copiada da anterior: o ID esquecido vai **ao ar funcionando**, sem uma linha de defeito visível, gravando sessão na propriedade da ilha vizinha por meses.
 
 **O que fazer, em cada ilha, dentro da CASCA (nunca por plugin — seção 11.7):** imprimir no `wp_head`, o mais cedo possível, a tag do Google com o ID de medição da ilha:
-- aquametria → `G-8Y26XFZF39`
+- ~~aquametria → `G-8Y26XFZF39`~~ **CUMPRIDO em 12/09/2026 17h39Z** (casca 1.6.0, manifest revisão 54, `/status` conferido em um disparo; `ferramentas/teste-ga4.py` com 216 afirmações e `ferramentas/mutacoes-ga4.py` com 13 de 13 reprovadas; `ferramentas/conferir-ga4-no-ar.py` com 168 afirmações no HTML servido das 13 URLs, 0 falha)
 - ~~robometria → `G-RM7KS75QP2`~~ **CUMPRIDO em 12/09/2026 17h23Z** (prioridade 23 do `wp_head`, `ferramentas/mutacoes-ga4.py` com 9 de 9 reprovadas)
 - clubedomosaico → `G-0K5PY39HV7`
 

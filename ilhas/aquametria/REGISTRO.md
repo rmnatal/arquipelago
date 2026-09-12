@@ -5526,3 +5526,179 @@ URLs, com o banco de espécies de 36 registros destravando "quantos litros para 
 E a lição deste bloco vale para ela: antes de escrever, procurar no banco de destino o
 campo que diz a mesma coisa de duas maneiras, porque é ali que um ramo inteiro da página
 morre sem ninguém ver.
+
+## 2026-09-12 17h39Z — A ILHA PASSA A MEDIR: GA4 na casca (1.6.0, revisao 54)
+
+**MARCO ZERO DA SERIE DE AUDIENCIA: 12/09/2026.** E a data que o despacho pede
+para a secao 21 e para a serie de `dados/audiencia.md`. Toda leitura de GA4 desta
+ilha anterior a este dia mede a ausencia da tag, nao a ausencia de visita — e a
+frase e literal da secao 5 do `ARQUIPELAGO.md`.
+
+Bloco: o despacho de prioridade ALTA de 12/09/2026 (`dados/despachos.md`), a parte
+da Aquametria. Nenhuma URL nova, nenhum registro novo de banco, nenhum numero novo
+de calculadora.
+
+### O QUE ENTROU
+
+A tag do Google entra no `wp_head` **pela casca**, nunca por plugin (secao 11.7),
+com o ID de medicao da ilha (`G-8Y26XFZF39`) em **constante no topo do arquivo**.
+
+**Prioridade 23, e o numero e a regra escrita em codigo.** O despacho manda
+imprimir "o mais cedo possivel" E proibe entrar antes do `<title>`, da meta
+descricao ou do JSON-LD — duas metades que so fecham num numero. Quem ja estava no
+`wp_head` desta ilha: 1 (`<title>`, do nucleo), 3 (meta descricao e `og:`), 5
+(icone do site), 20 (fontes e paleta; JSON-LD das cinco calculadoras e dos tres
+artigos) e 22 (`BreadcrumbList`). Entao 23 e o mais cedo que sobra depois do
+ultimo JSON-LD. Isso nao vive so no comentario: uma afirmacao le a prioridade de
+**todo** `add_action('wp_head')` dos snippets da ilha e cobra que a do gtag seja a
+maior — no dia em que uma calculadora nova registrar JSON-LD numa prioridade
+acima de 23, o portao reprova antes de a pagina existir.
+
+**Um parametro so na URL, de proposito.** O `esc_url()` escapa `&`, e o defeito de
+08/09/2026 que derrubou cinco calculadoras foi o E-comercial virando `&#038;`. Com
+`?id=` e nada mais, nao existe segundo parametro para escapar. Uma mutacao
+deliberada acrescenta `l=dataLayer&` de volta, e o portao reprova.
+
+Sem banner de consentimento (secao 22.4). Quem declara a medicao e a pagina de
+transparencia da ilha, `/divulgacao-de-afiliados/`, que ganhou a secao "O que a
+gente mede da sua visita" — a frase que o despacho pede, mais o que a medicao NAO
+tem (sem pixel de rede social, sem remarketing, sem dado que identifique quem le).
+**A ilha nao tem pagina de privacidade**, e isso esta nomeado em "o que fica
+aberto" mais abaixo: a frase foi para a pagina que hoje faz esse papel, porque
+criar pagina nova seria alargar um despacho que pediu uma frase.
+
+### A VERSAO DA CASCA SE ACERTA AQUI, E O ITEM NAO ERA DE ETIQUETA
+
+A constante `AQUAMETRIA_CASCA_VERSAO` estava em **1.4.1** enquanto o cabecalho do
+proprio arquivo, o `manifest.json` e todo este registro documentavam a **1.5.0**
+(a arvore das treze paginas) e a **1.5.1** (o degrau da trilha da divulgacao). As
+duas foram ao ar de verdade; o que nunca subiu foi o numero, e o site imprimia
+"casca 1.4.1" enquanto todo relato dizia 1.5.1. Como `aquametria_casca_montar()`
+so remonta a estrutura quando a constante muda, subir o numero dispara remontagem
+— e por isso o acerto esperava um bloco que **tocasse** a casca. Este e ele. A
+remontagem e idempotente (nao duplica pagina, nao reescreve pagina editada a mao,
+e a limpeza do tema padrao esta travada pela opcao `aquametria_casca_limpeza`),
+entao o custo foi uma passada de opcoes. A 1.6.0 carrega as tres coisas.
+
+### O ACHADO QUE MUDOU O BLOCO, E ELE ESTAVA NO AR HA DIAS
+
+O despacho abre dizendo que **nenhuma** ilha tem tag no ar. Para a Aquametria isso
+era **falso**, e quem mostrou foi o proprio medidor novo rodado ANTES de escrever
+codigo, para provar que ele sabia distinguir o site sem tag do site com tag (77
+falhas, como devia). No meio delas: as **treze paginas ja serviam**
+`gtag/js?id=GT-PL9DD7KW`, posto pelo plugin **Google Site Kit** — legitimo nesta
+ilha, porque a secao 11.7 o deixa opcional e a conexao OAuth foi do Raphael.
+
+Tres consequencias, e a primeira e a licao de metodo:
+
+1. **RODAR O PORTAO NOVO CONTRA O SITE ANTIGO E O QUE ACHOU ISTO.** Trava que so
+   e vista depois do desembarque nao tem chance de contar o que o site ja servia.
+   Custa um comando e foi o unico motivo de este achado existir.
+2. **O PORTAO NAO LOCALIZA A TAG PELA PALAVRA `googletagmanager` — LOCALIZA PELO
+   ID DA ILHA.** Na primeira versao do medidor, **tres afirmacoes de ordem deram
+   verde com a nossa tag ausente**, porque a posicao que elas leram era a da tag
+   do Site Kit. E a cicatriz da secao 8 na hora de escolher o localizador, a mesma
+   familia do "conte `&#038;` dentro do `<script>`, nunca na pagina inteira":
+   quando o texto legitimo e o que se quer medir sao a mesma palavra, quem decide
+   e o identificador, nunca a vizinhanca.
+3. **FICA UM ITEM QUE E HUMANO E MUDA NUMERO.** `GT-PL9DD7KW` e um Google Tag, e
+   para onde ele roteia so se le logado: `www.googletagmanager.com` responde `000`
+   por politica de egresso deste ambiente (repetido duas vezes, com o dominio da
+   ilha em 200 na mesma passada — politica, nao a intermitencia de tunel da secao
+   20). **Se ele rotear para a propriedade 553860444, a pagina vista chega DUAS
+   vezes e a serie da secao 5 nasce dobrada.** A tag do Site Kit **nao foi tocada**
+   por esta execucao, de proposito: desligar medicao que o Raphael montou, sem
+   saber o que ela alimenta, nao e conserto de bloco — e a ressalva esta escrita no
+   despacho, para a primeira leitura de `dados/audiencia.md` sair com ela ao lado.
+   A Robometria, que fechou a parte dela as 17h23Z, **nao** tem o Site Kit
+   servindo tag; isto e so da Aquametria, a primeira ilha, onde o Site Kit entrou
+   pelo checklist antigo.
+
+De quebra, medido na mesma passada e registrado sem conserto: o Site Kit tambem
+serve `googlesitekit-events-provider-content-events-*.js` nas treze paginas
+publicas. A secao 11.7 reserva a pagina publica para a casca; o medidor novo
+nomeia o plugin em vez de calar, e nao reprova, porque quem o serve nao e a casca.
+
+### VERIFICACAO
+
+- `ferramentas/teste-ga4.py` **novo, 216 afirmacoes, 0 falha**, 13 paginas, **um
+  processo cada**. Regua propria no sentido que importa: **o ID esperado e lido do
+  `PROMPT.md` da ilha, nunca do snippet.** Perguntar ao snippet qual e o ID certo
+  aprovaria o ID da ilha vizinha — e tag com ID errado **mede** em silencio, sem
+  uma linha de defeito, gravando sessao na propriedade de outra ilha por meses.
+  Uma terceira testemunha entra quando existe: o `dados/despachos.md` nomeia o ID
+  de cada ilha, e a afirmacao cobra que os tres concordem.
+- `ferramentas/mutacoes-ga4.py` **novo, 13 deliberadas, 13 reprovadas — e DUAS
+  passaram na primeira rodada.** As duas eram a mesma licao da C15 de hoje: o que
+  elas ameacam nao e um valor, e a ESTRUTURA, entao o resultado servido fica
+  identico byte a byte e nenhuma medicao de resultado pode ver. (a) Devolver o ID
+  **literal** para dentro da funcao, longe da constante — que e exatamente o que o
+  despacho proibe, e o defeito do `podeRegular()`, que guardava uma segunda copia
+  da lista do esquema. (b) Derrubar a guarda de constante ausente: ela nao e ramo
+  morto, porque o bloco de constantes do topo esta todo dentro de
+  `if ( ! defined( 'AQUAMETRIA_CASCA_VERSAO' ) )` — uma copia antiga da casca ja
+  carregada define a VERSAO, o bloco e pulado, o `GA4_ID` nunca nasce e o PHP 8
+  mata a pagina inteira por uma tag de medicao. O portao passou a medir as duas
+  pela estrutura do bloco servido. Duas mutacoes atacam a REGUA e nao o site (o
+  `PROMPT.md` perdendo a linha do ID, e o `PROMPT.md` divergindo do snippet): se o
+  portao lesse o ID da constante, as duas passariam.
+- `ferramentas/conferir-ga4-no-ar.py` **novo, 168 afirmacoes no HTML SERVIDO, 0
+  falha**, nas 13 URLs. **A lista de URLs vem do sitemap no ar**, nunca digitada:
+  pagina nova entra na medicao sozinha. Conferido em cada uma: 200, um carregador
+  com o ID da ilha e um so, `async`, `?id=` sem segundo parametro, um bloco de
+  configuracao, o ID configurado **exatamente uma vez** (dois `config` para o mesmo
+  destino dobrariam a pagina vista), a tag dentro do `<head>`, depois do `<title>`,
+  depois da meta descricao e depois do ultimo JSON-LD, nenhum script de outro
+  dominio alem do Google, e zero `&#038;` dentro de `<script>`.
+- **No ar as 17h39Z:** `/status` na **revisao 54**, igual a do manifest, 18
+  aplicados, **UM disparo**. Rede reconferida como manda a secao 20.2: o dominio
+  da ilha em 200 tres vezes.
+- Regressoes sem uma falha: `php -l` em todos os snippets e ferramentas;
+  `conferir-protecao-funcoes.py` (35 funcoes da casca, todas protegidas);
+  `teste-voz.mjs` nas 13 paginas; `teste-arvore.mjs`; `teste-seo-tecnico.php` (177
+  afirmacoes); `teste-navegador-visibilidade-ia.mjs` com o JavaScript DESLIGADO;
+  `teste-navegador-casca-paginas.mjs` (6 larguras, 0 px de rolagem, console
+  limpo); `validar-produtos.py` (78 produtos, 0 erro, os mesmos 9 avisos);
+  `validar-especies.py` (36, 0 erro); `conferir-slugs.py`. A pagina que eu editei
+  foi medida a parte em Chromium a 360/390/781/782/783/1200 px: **0 px de rolagem
+  horizontal** nas seis.
+
+### RECEITA E PAUTA, como o despacho de 10/09 item 4 cobra em todo bloco
+
+39 dos 78 produtos esperam link de afiliado — **nao mudou**, este bloco nao tocou
+catalogo. Pauta da secao 17: `pauta.md` ainda nao existe — 0 escritos, 0 na fila,
+0 recusados.
+
+### O QUE FICA ABERTO, nomeado em vez de esquecido
+
+1. **Para onde `GT-PL9DD7KW` roteia** — humano, e muda numero (acima).
+2. **O Tempo Real do GA4 confirmando a propria visita**, que e a terceira metade
+   do "pronto quando" do despacho. Nao e da Fundacao neste ambiente:
+   `GOOGLE_SA_B64`, `GOOGLE_SA_JSON` e `GOOGLE_SA_FILE` estao **ausentes**, entao
+   `ferramentas/ga4.py` nao le, e `www.googletagmanager.com` responde `000`. E do
+   navegador do Raphael, ou de uma execucao com a credencial no ambiente — igual
+   ao reenvio do sitemap.
+3. **A ilha nao tem pagina de privacidade.** A frase do despacho foi para
+   `/divulgacao-de-afiliados/`, que e a pagina de transparencia que existe hoje.
+   Pagina nova e URL nova, com portao de 1.500 caracteres de corpo, lugar na
+   arvore, `BreadcrumbList` e meta propria — bloco, nao frase. Fica na fila.
+4. **O `atualizar-manifest.py` desta ilha nao espelha o grupo `ferramentas`**: ele
+   avisa "fora do manifest" para 19 arquivos (os tres deste bloco inclusive) e
+   segue. O `atualizar-manifest.py` do Clube do Mosaico aprendeu hoje a cobrar as
+   duas direcoes; portar essa regra para ca e trabalho curto e e da mesma familia
+   do "numero de tela nasce contado".
+
+### PROXIMO PASSO DESBLOQUEADO
+
+**T4 — a primeira leva de malha, de 5 a 10 URLs.** Segue sendo o unico caminho que
+move a meta desta ilha, que e trafego organico: 13 URLs nao competem por nada. O
+banco de especies com 36 registros destrava "quantos litros para X peixes", que a
+Bussola verificou ABERTO e e o maior volume de busca da ilha. A ilha esta ABAIXO
+do piso da secao 21 (13 URLs, piso de 40), entao a leva sai no ritmo normal, sem
+esperar medicao — presa ao teto de 10 URLs por leva e 3 levas por semana (21.4),
+ao portao de dado da secao 13 e a classificacao de SERP da 14.9.
+
+E a partir de hoje a leva nasce **medida**: a tag esta no ar, entao a pergunta
+"esta leva trouxe visita, e de onde" tem resposta em `ferramentas/ga4.py` no dia
+em que a credencial existir — em vez de ser opiniao, como foi para as treze
+primeiras.
