@@ -152,13 +152,21 @@ def vitrine(med):
 
     NAO e um ranking de qualidade de limpeza, e a pagina escreve isso com todas
     as letras. E a lista dos unicos modelos do banco sobre os quais a pergunta
-    do titulo tem resposta do fabricante, o que e uma informacao de compra de
+    do titulo tem resposta DECLARADA, o que e uma informacao de compra de
     verdade: com esse numero da para calcular ciclos; sem ele, nao da.
 
     A ordem e por cobertura declarada, da maior para a menor, e o desempate e o
     id — nunca a comissao, nunca quem tem link (secao 7 do ARQUIPELAGO.md). O
     campo de afiliado viaja mesmo vazio, para a pagina RESERVAR o lugar do link
     em vez de esconder o bloco.
+
+    A PROCEDENCIA DE CADA NUMERO VIAJA COM ELE, e a atribuicao sai do degrau.
+    Ate 12/09/2026 o cartao escrevia "O fabricante declara 166 m2 por carga" com
+    "o fabricante" DIGITADO no molde do snippet — e aqui, diferente do que
+    acontecia na R2 antes de 11/09, a frase ja era FALSA no ar: os cinco modelos
+    que declaram area por carga declaram todos pela fonte f-loja, que e o degrau
+    4 da escada (varejo-oficial-da-marca). A pagina emprestava a autoridade do
+    fabricante a quem apenas transcreveu, e emprestava calada.
     """
     itens = []
     for m in sorted(med["com_cobertura"],
@@ -166,6 +174,16 @@ def vitrine(med):
         a = m.get("afiliado") or {}
         imagem = m.get("imagem") or {}
         retoma = ref.valor(m.get("retoma_apos_recarga"))
+
+        # OS DOIS NUMEROS DA FRASE TEM PROCEDENCIA SEPARADA. Hoje os dois saem da
+        # mesma fonte nos cinco modelos, e e justamente por isso que a frase nao
+        # pode presumir: uma so consulta que trouxesse a autonomia de outro
+        # degrau faria o cartao atribuir a um publicador o numero do outro, sem
+        # mudar um byte do codigo. Verdade por coincidencia do banco foi o que
+        # esta ilha ja pagou em 11/09 na R2.
+        p_cob = ref.procedencia_da_cobertura(m)
+        p_aut = ref.procedencia_da_autonomia(m)
+
         itens.append({
             "modelo": m["id"],
             "rotulo": ref.rotulo_do_modelo(m),
@@ -173,6 +191,12 @@ def vitrine(med):
             "autonomia_min": ref.valor(m.get("autonomia_min_declarada")),
             "recarga_min": ref.valor(m.get("recarga_min_declarada")),
             "retoma_apos_recarga": retoma,
+            "procedencia": p_cob,
+            "procedencia_autonomia": p_aut,
+            # Se os dois numeros vem do MESMO degrau, a frase os atribui de uma
+            # vez; se nao, cada um leva a sua atribuicao. Quem decide e esta
+            # comparacao, nao o molde do snippet.
+            "mesma_origem": bool(p_aut) and p_aut["origem"] == p_cob["origem"],
             "tem_imagem": bool(imagem.get("url")),
             "esperando_link": not a.get("url"),
             "afiliado": {
@@ -183,6 +207,26 @@ def vitrine(med):
             },
         })
     return itens
+
+
+def atribuicao_do_conjunto(itens):
+    """Como o TITULO e a abertura da vitrine nomeiam quem declarou a area.
+
+    O cartao fala de um modelo; o titulo da secao fala dos cinco de uma vez, e
+    ate 12/09/2026 ele dizia "Os modelos cujo fabricante publica o numero" —
+    digitado, e falso pelo mesmo motivo do cartao.
+
+    A regra: se TODOS os itens declaram pelo mesmo degrau, a secao nomeia esse
+    degrau; se houver mais de um, ela nao nomeia nenhum, porque uma frase so nao
+    pode atribuir a lista inteira a um publicador sem mentir sobre parte dela. O
+    fallback nao e um texto vago escolhido por gosto: e a unica frase que
+    continua verdadeira quando o banco misturar degraus, e o cartao segue dizendo
+    a origem de cada um.
+    """
+    origens = {i["procedencia"]["origem"] for i in itens}
+    if len(origens) != 1:
+        return None
+    return itens[0]["procedencia"]["quem_declara"]
 
 
 # ------------------------------------------------------------------ PERGUNTAS
@@ -357,6 +401,16 @@ def montar():
         "dispersao": med["dispersao"],
         "vitrine": vitrine(med),
     }
+
+    # A ESCADA INTEIRA VIAJA, e nao so o degrau dos cinco modelos de hoje: e ela
+    # que o teste le como REGUA (se o degrau mudar de texto, o teste cobra o
+    # texto novo sem ninguem reescrever asercao) e e ela que prova ao snippet que
+    # o banco na option ja e o desta versao. Mesma decisao da R2 em 11/09/2026.
+    f["rotulos_de_origem"] = {
+        origem: dict(t) for origem, t in ref.ROTULOS_DE_ORIGEM.items()
+    }
+    f["vitrine_atribuicao"] = atribuicao_do_conjunto(f["vitrine"])
+
     f["perguntas"] = perguntas(f)
     return f
 

@@ -504,6 +504,233 @@ rbm_ok( empty( $desprotegidas ), 'toda funcao de nivel superior dentro de functi
 
 rbm_ok( false !== strpos( $retorno, 'não' ), 'o texto da tela sai acentuado' );
 
+/* ---------------------------------------------------------------------------
+ * 9. A PROCEDENCIA DA AREA POR CARGA, no cartao (secoes 5.4 e 7)
+ *
+ * A area por carga e o unico numero que faz um modelo entrar nesta lista, e ate
+ * 12/09/2026 o cartao a publicava sem endereco, sem data e sem degrau, com a
+ * atribuicao "O fabricante declara" DIGITADA no molde. Aqui isso nao era nem
+ * verdade por coincidencia, como era na R2 antes de 11/09: os cinco modelos que
+ * declaram area por carga declaram todos pela fonte f-loja, que e o degrau 4
+ * (loja oficial da marca). A pagina no ar emprestava a autoridade do fabricante
+ * a quem apenas transcreveu.
+ *
+ * OS TRES CUIDADOS QUE A R2 JA PAGOU, e que esta secao repete de proposito:
+ *
+ *   REGUA PROPRIA — o esperado e derivado AQUI, de dados/esquema-banco.json e
+ *   dados/modelos-robo.json, e nunca de dados/a2-fatos.json nem de
+ *   robometria_a2_dados(). Conferir a tela contra o arquivo que o MESMO gerador
+ *   escreveu e conferir uma copia contra a outra: as duas erram juntas.
+ *
+ *   MEDICAO NO CORPO — cada afirmacao e medida dentro do <li> do cartao, nunca
+ *   na pagina inteira. A secao de procedencia do artigo tambem fala em
+ *   "fabricante" e em endereco, e medir na pagina inteira aprovaria um cartao
+ *   mudo.
+ *
+ *   A ENTRADA INTEIRA — os cinco cartoes, e nao o primeiro.
+ * ------------------------------------------------------------------------- */
+
+echo "\n9. A procedencia da area por carga, no cartao (secoes 5.4 e 7)\n";
+
+/* A REGUA: a escada de fontes e o banco, lidos direto. */
+$esquema_r  = json_decode( file_get_contents( $raiz . '/dados/esquema-banco.json' ), true );
+$modelos_r  = json_decode( file_get_contents( $raiz . '/dados/modelos-robo.json' ), true );
+$marcas_r   = json_decode( file_get_contents( $raiz . '/dados/marcas.json' ), true );
+
+$degraus_r = array();
+foreach ( $esquema_r['escada_de_fontes']['niveis'] as $n ) {
+	$degraus_r[ $n['origem'] ] = $n['na_tela'];
+}
+
+/* rotulo do modelo -> o modelo, montado da mesma forma que a ilha monta o nome
+   na tela (marca + codigo do fabricante). E uma reimplementacao de uma linha, e
+   e de proposito: ela nao passa por nenhum arquivo que o gerador escreve. */
+$nome_da_marca = array();
+foreach ( (array) $marcas_r['registros'] as $b ) {
+	$nome_da_marca[ $b['id'] ] = $b['nome'];
+}
+$por_rotulo = array();
+foreach ( (array) $modelos_r['registros'] as $m ) {
+	$por_rotulo[ $nome_da_marca[ $m['marca'] ] . ' ' . $m['codigo_fabricante'] ] = $m;
+}
+
+/* Cada cartao, recortado do CORPO. */
+preg_match_all( '#<li class="rbm-vitrine-item">(.*?)</li>#s', $retorno, $mcart );
+$cartoes = $mcart[1];
+
+rbm_ok( count( $cartoes ) > 0, 'a vitrine serve cartoes no corpo', count( $cartoes ) . ' cartoes' );
+
+$sem_procedencia = array();
+$atribuicao_errada = array();
+$sem_ressalva      = array();
+$sem_endereco      = array();
+$fora_de_ordem     = array();
+$origens_vistas    = array();
+
+foreach ( $cartoes as $c ) {
+	preg_match( '#<span class="rbm-vitrine-tipo">(.*?)</span>#s', $c, $mt );
+	$rotulo = isset( $mt[1] ) ? html_entity_decode( $mt[1], ENT_QUOTES, 'UTF-8' ) : '';
+
+	if ( ! isset( $por_rotulo[ $rotulo ] ) ) {
+		$sem_procedencia[] = $rotulo . ' (nao achei no banco)';
+		continue;
+	}
+	$m = $por_rotulo[ $rotulo ];
+
+	/* O DEGRAU ESPERADO, derivado do banco pela regua deste arquivo. */
+	$fid   = $m['cobertura_m2_declarada']['fonte'];
+	$fonte = $m['fontes'][ $fid ];
+	$esp   = $degraus_r[ $fonte['origem'] ];
+	$origens_vistas[ $fonte['origem'] ] = true;
+
+	$texto_c = rbm_texto( $c );
+
+	/* 1. A ATRIBUICAO E A DO DEGRAU, e nao a digitada. */
+	if ( false === strpos( $texto_c, $esp['quem_declara'] ) ) {
+		$atribuicao_errada[] = $rotulo . ' (esperava "' . $esp['quem_declara'] . '")';
+	}
+
+	/* 1b. O SEGUNDO NUMERO DA FRASE TEM DEGRAU PROPRIO. Hoje os dois saem da
+	       mesma fonte nos cinco modelos, entao esta asercao e VAZIA com o banco
+	       de hoje — e e por isso que ela existe: no dia em que uma autonomia
+	       entrar por outro degrau, o cartao tem que dizer qual, em vez de
+	       herdar calado a atribuicao do numero anterior. Quem prova que ela
+	       morde e mutacoes-a2-procedencia.py, que produz esse banco. */
+	$fa = isset( $m['autonomia_min_declarada']['fonte'] ) ? $m['autonomia_min_declarada']['fonte'] : null;
+	if ( null !== $fa ) {
+		$origem_aut = $m['fontes'][ $fa ]['origem'];
+		if ( $origem_aut === $fonte['origem'] ) {
+			if ( false === strpos( $texto_c, 'pela mesma fonte' ) ) {
+				$atribuicao_errada[] = $rotulo . ' (autonomia: esperava "pela mesma fonte")';
+			}
+		} elseif ( false === strpos( $texto_c, $degraus_r[ $origem_aut ]['quem_declara'] ) ) {
+			$atribuicao_errada[] = $rotulo . ' (autonomia: esperava "'
+				. $degraus_r[ $origem_aut ]['quem_declara'] . '")';
+		}
+	}
+
+	/* 2. A RESSALVA DO DEGRAU chega a tela, quando o degrau tem uma. */
+	if ( ! empty( $esp['ressalva'] ) && false === strpos( $texto_c, $esp['ressalva'] ) ) {
+		$sem_ressalva[] = $rotulo;
+	}
+
+	/* 3. O ENDERECO E A DATA, dentro do cartao. */
+	$data_br = substr( $fonte['verificado_em'], 8, 2 ) . '/'
+		. substr( $fonte['verificado_em'], 5, 2 ) . '/'
+		. substr( $fonte['verificado_em'], 0, 4 );
+	$tem_linha = false !== strpos( $texto_c, 'Como sabemos — ' . $esp['rotulo'] . ', verificado em ' . $data_br );
+	if ( ! $tem_linha ) {
+		$sem_procedencia[] = $rotulo;
+	}
+	if ( false === strpos( $c, $fonte['url'] ) ) {
+		$sem_endereco[] = $rotulo;
+	}
+
+	/* 4. A PORTA DE COMPRA VEM ANTES DA PROCEDENCIA (secao 7). Inverter os dois
+	      devolve ao link de procedencia o papel de unica porta clicavel — a
+	      cicatriz de 10/09/2026, e ela e medida por POSICAO, nao por presenca. */
+	$p_acao  = strpos( $c, 'rbm-vitrine-acao' );
+	$p_fonte = strpos( $c, 'rbm-vitrine-fonte' );
+	if ( false === $p_acao || false === $p_fonte || $p_acao > $p_fonte ) {
+		$fora_de_ordem[] = $rotulo;
+	}
+
+	/* 5. E A RESSALVA VEM ANTES DA PORTA DE COMPRA. Esta afirmacao faltava, e
+	      quem a cobrou foi uma mutacao: a ressalva podia ser empurrada para
+	      depois do botao sem a bancada piscar, porque o teste so media que ela
+	      ESTIVESSE na tela. Ressalva que aparece depois da decisao nao e
+	      ressalva, e nota de rodape — o elo fraco tem que estar onde o leitor
+	      ainda esta decidindo. */
+	if ( ! empty( $esp['ressalva'] ) ) {
+		$p_tag = strpos( $c, 'rbm-tag' );
+		if ( false === $p_tag || false === $p_acao || $p_tag > $p_acao ) {
+			$fora_de_ordem[] = $rotulo . ' (ressalva depois do botao)';
+		}
+	}
+}
+
+rbm_ok( empty( $sem_procedencia ), 'todo cartao diz de onde vem a area, com rotulo e data',
+	empty( $sem_procedencia ) ? count( $cartoes ) . ' cartoes' : implode( ', ', $sem_procedencia ) );
+rbm_ok( empty( $atribuicao_errada ), 'a atribuicao de cada cartao e a do DEGRAU, nao uma digitada',
+	empty( $atribuicao_errada ) ? 'os ' . count( $cartoes ) : implode( ', ', $atribuicao_errada ) );
+rbm_ok( empty( $sem_ressalva ), 'a ressalva do degrau chega a tela',
+	empty( $sem_ressalva ) ? 'em todos que a tem' : implode( ', ', $sem_ressalva ) );
+rbm_ok( empty( $sem_endereco ), 'o endereco da fonte esta no cartao',
+	empty( $sem_endereco ) ? 'os ' . count( $cartoes ) : implode( ', ', $sem_endereco ) );
+rbm_ok( empty( $fora_de_ordem ), 'a porta de compra vem ANTES da procedencia, em todo cartao',
+	empty( $fora_de_ordem ) ? 'os ' . count( $cartoes ) : implode( ', ', $fora_de_ordem ) );
+
+/* A ATRIBUICAO FALSA QUE ESTAVA NO AR ATE 12/09/2026. Medida no corpo, e nao na
+   pagina: a secao de procedencia do artigo fala de "paginas de fabricante" com
+   razao, e medir na pagina inteira reprovaria texto correto. */
+$falsa = false;
+foreach ( $cartoes as $c ) {
+	if ( false !== strpos( rbm_texto( $c ), 'O fabricante declara' ) ) {
+		$falsa = true;
+	}
+}
+rbm_ok( ! $falsa, 'nenhum cartao atribui ao fabricante o que a loja oficial declarou' );
+
+/* O TITULO DA SECAO fala dos cinco de uma vez: so nomeia um publicador quando
+   TODOS declaram pelo mesmo degrau. Este teste deriva a condicao da regua. */
+$origens = array_keys( $origens_vistas );
+if ( 1 === count( $origens ) ) {
+	$q = $degraus_r[ $origens[0] ]['quem_declara'];
+	rbm_ok( false !== strpos( $texto, 'área por carga é declarada ' . $q ),
+		'com um degrau so, o titulo da secao nomeia esse degrau', $q );
+} else {
+	rbm_ok( false !== strpos( $texto, 'declarada, e por quem' ),
+		'com degraus misturados, o titulo nao atribui a lista a um publicador',
+		count( $origens ) . ' degraus' );
+}
+
+/* O TEXTO DO DEGRAU NAO MORA NO SNIPPET. E o portao estrutural: enquanto nenhum
+   rotulo, ressalva ou atribuicao da escada aparecer literalmente no CODIGO, nao
+   ha como a tela discordar do banco — e trocar o texto de um degrau no esquema
+   passa a mudar a pagina sem ninguem reescrever uma linha de codigo.
+
+   A MEDICAO E NO CODIGO, e nao no arquivo: os comentarios deste snippet contam a
+   historia do defeito e citam "loja oficial da marca" de proposito, porque e
+   assim que a proxima pessoa entende por que a atribuicao e lida e nao escrita.
+   Comentario nao chega a tela. Medir o arquivo inteiro aqui seria o mesmo engano
+   de contar `&#038;` na pagina toda em vez de dentro do <script> — reprovaria
+   justamente a documentacao que faz a trava durar. */
+$fonte_a2  = file_get_contents( $raiz . '/snippets/robometria-a2.php' );
+$codigo_a2 = preg_replace( '#/\*.*?\*/|//[^\n]*#s', '', $fonte_a2 );
+$vazados   = array();
+foreach ( $degraus_r as $origem => $t ) {
+	foreach ( array( 'rotulo', 'ressalva', 'quem_declara' ) as $campo ) {
+		if ( ! empty( $t[ $campo ] ) && false !== strpos( $codigo_a2, $t[ $campo ] ) ) {
+			$vazados[] = $origem . '.' . $campo;
+		}
+	}
+}
+rbm_ok( empty( $vazados ), 'nenhum texto de degrau esta digitado dentro do snippet',
+	empty( $vazados ) ? count( $degraus_r ) . ' degraus conferidos' : implode( ' ', $vazados ) );
+
+/* A TABELA QUE VIAJA PARA O SITE E A ESCADA, e nao uma copia dela. O snippet le
+   `rotulos_de_origem` do arquivo de dados, e esse arquivo pode divergir do
+   esquema sem ninguem ver — foi o que uma mutacao mostrou, perdendo a ressalva
+   do degrau 4 no lado que o site consome enquanto a escada continuava inteira.
+   Duas copias do mesmo fato, nenhuma capaz de corrigir a outra: e o defeito que
+   a casca 1.2.0 desta ilha ja pagou com dois mapas de nome. */
+$tabela   = isset( $fatos['rotulos_de_origem'] ) ? $fatos['rotulos_de_origem'] : array();
+$divergem = array();
+foreach ( $degraus_r as $origem => $t ) {
+	if ( ! isset( $tabela[ $origem ] ) ) {
+		$divergem[] = $origem . ' (ausente)';
+		continue;
+	}
+	foreach ( array( 'rotulo', 'ressalva', 'quem_declara' ) as $campo ) {
+		$na_tabela = array_key_exists( $campo, $tabela[ $origem ] ) ? $tabela[ $origem ][ $campo ] : false;
+		if ( $na_tabela !== $t[ $campo ] ) {
+			$divergem[] = $origem . '.' . $campo;
+		}
+	}
+}
+rbm_ok( empty( $divergem ), 'a tabela que viaja para o site e igual a escada, degrau a degrau',
+	empty( $divergem ) ? count( $degraus_r ) . ' degraus' : implode( ' ', $divergem ) );
+
 /* ------------------------------------------------------------------ RESUMO */
 
 echo "\n";

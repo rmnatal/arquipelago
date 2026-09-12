@@ -103,6 +103,29 @@
       "autonomia_min": 100,
       "recarga_min": null,
       "retoma_apos_recarga": true,
+      "procedencia": {
+        "fonte": "f-loja",
+        "origem": "varejo-oficial-da-marca",
+        "nivel": 4,
+        "rotulo": "loja oficial da marca",
+        "ressalva": "confira a embalagem",
+        "quem_declara": "pela loja oficial da marca",
+        "publicador": "Electrolux (loja oficial)",
+        "url": "https://loja.electrolux.com.br/robo-aspirador-electrolux-4-em-1-wi-fi-experience-ate-1h40-mapeamento-preto--erb60-/p",
+        "verificado_em": "2026-09-09"
+      },
+      "procedencia_autonomia": {
+        "fonte": "f-loja",
+        "origem": "varejo-oficial-da-marca",
+        "nivel": 4,
+        "rotulo": "loja oficial da marca",
+        "ressalva": "confira a embalagem",
+        "quem_declara": "pela loja oficial da marca",
+        "publicador": "Electrolux (loja oficial)",
+        "url": "https://loja.electrolux.com.br/robo-aspirador-electrolux-4-em-1-wi-fi-experience-ate-1h40-mapeamento-preto--erb60-/p",
+        "verificado_em": "2026-09-09"
+      },
+      "mesma_origem": true,
       "tem_imagem": false,
       "esperando_link": true,
       "afiliado": {
@@ -119,6 +142,29 @@
       "autonomia_min": 100,
       "recarga_min": null,
       "retoma_apos_recarga": true,
+      "procedencia": {
+        "fonte": "f-loja",
+        "origem": "varejo-oficial-da-marca",
+        "nivel": 4,
+        "rotulo": "loja oficial da marca",
+        "ressalva": "confira a embalagem",
+        "quem_declara": "pela loja oficial da marca",
+        "publicador": "Electrolux (loja oficial)",
+        "url": "https://loja.electrolux.com.br/robo-aspirador-electrolux-4-em-1-wi-fi-experience-ate-1h40-mapeamento-cinza--erb61-/p",
+        "verificado_em": "2026-09-09"
+      },
+      "procedencia_autonomia": {
+        "fonte": "f-loja",
+        "origem": "varejo-oficial-da-marca",
+        "nivel": 4,
+        "rotulo": "loja oficial da marca",
+        "ressalva": "confira a embalagem",
+        "quem_declara": "pela loja oficial da marca",
+        "publicador": "Electrolux (loja oficial)",
+        "url": "https://loja.electrolux.com.br/robo-aspirador-electrolux-4-em-1-wi-fi-experience-ate-1h40-mapeamento-cinza--erb61-/p",
+        "verificado_em": "2026-09-09"
+      },
+      "mesma_origem": true,
       "tem_imagem": false,
       "esperando_link": true,
       "afiliado": {
@@ -135,6 +181,29 @@
       "autonomia_min": 100,
       "recarga_min": null,
       "retoma_apos_recarga": true,
+      "procedencia": {
+        "fonte": "f-loja",
+        "origem": "varejo-oficial-da-marca",
+        "nivel": 4,
+        "rotulo": "loja oficial da marca",
+        "ressalva": "confira a embalagem",
+        "quem_declara": "pela loja oficial da marca",
+        "publicador": "Electrolux (loja oficial)",
+        "url": "https://loja.electrolux.com.br/robo-aspirador-electrolux-4-em-1-wi-fi-experience-ate-1h40-mapeamento-branco--erb62-/p",
+        "verificado_em": "2026-09-09"
+      },
+      "procedencia_autonomia": {
+        "fonte": "f-loja",
+        "origem": "varejo-oficial-da-marca",
+        "nivel": 4,
+        "rotulo": "loja oficial da marca",
+        "ressalva": "confira a embalagem",
+        "quem_declara": "pela loja oficial da marca",
+        "publicador": "Electrolux (loja oficial)",
+        "url": "https://loja.electrolux.com.br/robo-aspirador-electrolux-4-em-1-wi-fi-experience-ate-1h40-mapeamento-branco--erb62-/p",
+        "verificado_em": "2026-09-09"
+      },
+      "mesma_origem": true,
       "tem_imagem": false,
       "esperando_link": true,
       "afiliado": {
@@ -151,6 +220,29 @@
       "autonomia_min": 100,
       "recarga_min": null,
       "retoma_apos_recarga": null,
+      "procedencia": {
+        "fonte": "f-loja",
+        "origem": "varejo-oficial-da-marca",
+        "nivel": 4,
+        "rotulo": "loja oficial da marca",
+        "ressalva": "confira a embalagem",
+        "quem_declara": "pela loja oficial da marca",
+        "publicador": "Electrolux (loja oficial)",
+        "url": "https://loja.electrolux.com.br/robo-aspirador-electrolux-4-em-1-wi-fi-experience-ate-1h40-mapeamento-e-base-autolimpante--erb80-/p",
+        "verificado_em": "2026-09-09"
+      },
+      "procedencia_autonomia": {
+        "fonte": "f-loja",
+        "origem": "varejo-oficial-da-marca",
+        "nivel": 4,
+        "rotulo": "loja oficial da marca",
+        "ressalva": "confira a embalagem",
+        "quem_declara": "pela loja oficial da marca",
+        "publicador": "Electrolux (loja oficial)",
+        "url": "https://loja.electrolux.com.br/robo-aspirador-electrolux-4-em-1-wi-fi-experience-ate-1h40-mapeamento-e-base-autolimpante--erb80-/p",
+        "verificado_em": "2026-09-09"
+      },
+      "mesma_origem": true,
       "tem_imagem": false,
       "esperando_link": true,
       "afiliado": {
@@ -167,6 +259,29 @@
       "autonomia_min": 120,
       "recarga_min": null,
       "retoma_apos_recarga": null,
+      "procedencia": {
+        "fonte": "f-loja",
+        "origem": "varejo-oficial-da-marca",
+        "nivel": 4,
+        "rotulo": "loja oficial da marca",
+        "ressalva": "confira a embalagem",
+        "quem_declara": "pela loja oficial da marca",
+        "publicador": "Electrolux (loja oficial)",
+        "url": "https://loja.electrolux.com.br/robo-aspirador-electrolux-4-em-1-wi-fi-experience-ate-2h-azul--erb44-/p",
+        "verificado_em": "2026-09-09"
+      },
+      "procedencia_autonomia": {
+        "fonte": "f-loja",
+        "origem": "varejo-oficial-da-marca",
+        "nivel": 4,
+        "rotulo": "loja oficial da marca",
+        "ressalva": "confira a embalagem",
+        "quem_declara": "pela loja oficial da marca",
+        "publicador": "Electrolux (loja oficial)",
+        "url": "https://loja.electrolux.com.br/robo-aspirador-electrolux-4-em-1-wi-fi-experience-ate-2h-azul--erb44-/p",
+        "verificado_em": "2026-09-09"
+      },
+      "mesma_origem": true,
       "tem_imagem": false,
       "esperando_link": true,
       "afiliado": {
@@ -177,6 +292,51 @@
       }
     }
   ],
+  "rotulos_de_origem": {
+    "medicao-propria": {
+      "rotulo": "medição da Robometria",
+      "ressalva": null,
+      "quem_declara": "pela Robometria",
+      "nivel": 1
+    },
+    "manual-fabricante": {
+      "rotulo": "manual do fabricante",
+      "ressalva": null,
+      "quem_declara": "pelo fabricante",
+      "nivel": 2
+    },
+    "fabricante-via-busca": {
+      "rotulo": "página do fabricante",
+      "ressalva": "a confirmar no manual",
+      "quem_declara": "pelo fabricante",
+      "nivel": 3
+    },
+    "varejo-oficial-da-marca": {
+      "rotulo": "loja oficial da marca",
+      "ressalva": "confira a embalagem",
+      "quem_declara": "pela loja oficial da marca",
+      "nivel": 4
+    },
+    "varejo-especializado": {
+      "rotulo": "varejista especializado",
+      "ressalva": "confira a embalagem",
+      "quem_declara": "por varejista especializado",
+      "nivel": 5
+    },
+    "marketplace-anuncio": {
+      "rotulo": "anúncio de marketplace",
+      "ressalva": "anúncio não é especificação",
+      "quem_declara": "em anúncio de marketplace",
+      "nivel": 6
+    },
+    "editorial": {
+      "rotulo": "publicação editorial",
+      "ressalva": "é recomendação publicada, não especificação",
+      "quem_declara": "por veículo editorial",
+      "nivel": 7
+    }
+  },
+  "vitrine_atribuicao": "pela loja oficial da marca",
   "perguntas": [
     {
       "pergunta": "Quantos m² um robô aspirador limpa por carga?",

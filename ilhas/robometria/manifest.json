@@ -4,8 +4,8 @@
   "nicho": "robo aspirador — compatibilidade de pecas e consumiveis, e dimensionamento de succao e autonomia",
   "dominio": "https://robometria.com.br",
   "versao_manifest": 1,
-  "revisao": 18,
-  "atualizado_em": "2026-09-11",
+  "revisao": 20,
+  "atualizado_em": "2026-09-12",
   "estado": "nascendo",
   "desembarque": {
     "aprovado": true,
@@ -20,9 +20,9 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "3d5998fc10e88a73903e101a64f1f73e7ad238b7bee040757fcbbe47cd2cacb1",
+      "sha256": "b3d1080bedd49166074d26d06e8b6d6851dd37ce7aa89a6f33053417b962b906",
       "descricao": "A CASCA NA 1.4.0 — UM NOME POR PAGINA, e o <title> que o repositorio nao escrevia. (1) NOME CANONICO com fonte unica: robometria_casca_nome_da_pagina() resolve as cinco paginas da casca pela definicao delas e as quatro de ferramenta e artigo pelo catalogo, que agora traz o titulo da constante do proprio snippet que cria a pagina. O mapa das cabecas PERDEU o campo titulo: era um segundo nome digitado ao lado do primeiro, e por causa dele SEIS das nove paginas tinham dois nomes ao mesmo tempo (og:title 'Quem publica a Robometria' com H1 'Sobre'; og:title 'Existe filtro universal?' com H1 'Por que nao existe filtro universal'). Agora o og:title, o degrau da trilha, o rotulo do cartao, o H1 e o <title> saem todos do mesmo lugar. (2) O <title> PASSOU A SER NOSSO, por document_title_parts: ate aqui a home servia 'Robometria – Compatibilidade de pecas e dimensionamento de robo aspirador', 73 caracteres, vindos do campo de descricao curta do wp-admin — um terceiro nome, em vocabulario de dentro da fabrica, num campo que nenhum arquivo deste repositorio escreve e nenhuma bancada podia ver. O teto de 65 caracteres e cobrado no NOME, antes de publicar. (3) OS NOMES DE GAVETA SAIRAM: Ferramentas, Metodologia, Sobre e Divulgacao de afiliados viraram o nome que a cabeca da propria pagina ja publicava na voz do VOZ.md desde a 1.2.0 — nada inventado, uma divergencia desfeita para o lado que ja estava escrito. (4) A VOZ CHEGOU AS ABERTURAS: as quatro paginas da casca deixaram de abrir falando do site em terceira pessoa e a procedencia desceu um paragrafo, para a camada de prova (classe rbm-prova), como manda a secao 15.2. (5) O ESTADO DEGRADADO GANHOU MARCA: robometria_casca_sem_banco_html() e o dono unico do aviso de 'estamos sem o banco', com a classe rbm-sem-banco — ela nao muda nada na tela e existe so para a bancada conseguir dizer 'isto nao e a pagina'. Continua valendo tudo da 1.3.0 (arvore, trilha, BreadcrumbList, Veja tambem e os onze numeros em casca-fatos.json) e da 1.2.0.",
-      "versao": "1.4.0"
+      "versao": "1.4.1"
     },
     {
       "id": "robometria-r1",
@@ -64,8 +64,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "729259a8f26d1562cfe2f6ccd58aad9623db0b36a76a9d717c4f4334db6371a6",
-      "versao": "1.1.0",
+      "sha256": "7e650a097acfb270b95dd01013d73d63da5f3b4b50f1e3f740c94f6acedbfea8",
+      "versao": "1.2.0",
       "descricao": "O A2 NA 1.1.0 — a tese passou a falar com quem entrou, e o NOME DA MARCA saiu da abertura. A forma antiga comecava 'Uma marca so declara... e os 5 sao da Electrolux': o numero e a resposta e fica, mas nome de fabricante e procedencia, e a secao 15.2 manda procedencia morar na camada de prova. Ele desceu um paragrafo, para robometria_a2_quem_declara(), dentro da mesma caixa — e continua derivado, como tudo nesta pagina. As duas mutacoes do proprio teste passaram a medir o PARAGRAFO certo em vez da pagina inteira: uma delas estava aprovando porque a frase procurada existia em outra secao do artigo. Par com a ferramenta por slug, e post_title reespelhado."
     }
   ],
@@ -268,7 +268,7 @@
       "verificado_em": "2026-09-10",
       "registros": 5,
       "publicar": true,
-      "sha256": "6f1662df6e2041459a8b93e4428e3099b4ac6374777a840fe2c30938a5c6c637"
+      "sha256": "a7cad29e0bb864796fe2ae9ff32d58685f9df70127053435324941b7baad887b"
     },
     {
       "id": "casca-fatos",
@@ -415,6 +415,11 @@
       "id": "mutacoes-procedencia",
       "arquivo": "ferramentas/mutacoes-procedencia.py",
       "descricao": "Quebra de proposito a procedencia do Pa no cartao da R2 (linha de fonte, ordem, ressalva do degrau, atribuicao digitada, escada mutilada) e exige que teste-r2.php reprove as onze. Bancada: nunca e publicada."
+    },
+    {
+      "id": "mutacoes-a2-procedencia",
+      "arquivo": "ferramentas/mutacoes-a2-procedencia.py",
+      "descricao": "Quebra de proposito a procedencia da area por carga no cartao do A2 e exige REPROVACAO da bancada, numa copia da ilha por mutacao. Quinze mutacoes, quinze reprovadas. O que ele tem de diferente do irmao da R2 e o achado do bloco: la, 'a atribuicao volta a ser digitada' era INERTE com o banco de hoje e precisava PRODUZIR o mundo em que o defeito aparece; aqui esse mundo ja era o mundo — os cinco modelos que declaram area por carga declaram pela loja oficial da marca (degrau 4), e a frase 'O fabricante declara' que estava no ar era falsa, entao a mutacao reprova sem tocar no banco. O banco mutado continua sendo necessario para as duas travas LATENTES, que sao as escritas de olho no amanha: a atribuicao do SEGUNDO numero do cartao (a autonomia, hoje da mesma fonte nos cinco) e o titulo da secao quando os degraus se misturam. Tres mutacoes passaram na primeira rodada e viraram trava nova: a ressalva empurrada para depois do botao de compra (o teste media que ela existisse, nunca onde), a tabela rotulos_de_origem divergindo da escada no lado que o site consome, e uma que nao era trava faltando e sim bancada incompleta — mutacao no BANCO julgada so pelo teste da pagina, sem chamar validar-banco.py, que ja tinha a trava desde 11/09/2026."
     },
     {
       "id": "conferir-no-ar",

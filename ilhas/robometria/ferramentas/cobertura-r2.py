@@ -290,13 +290,19 @@ for _n in esquema["escada_de_fontes"]["niveis"]:
     }
 
 
-def procedencia_do_pa(m):
-    """De onde veio o Pa deste modelo, no vocabulario da tela.
+def procedencia_do_campo(m, campo_id):
+    """De onde veio UM campo declarado deste modelo, no vocabulario da tela.
 
-    Devolve None quando o modelo nao declara Pa — e o caso dos cinco Electrolux,
-    que so aparecem como modelo de referencia dos ciclos e nunca em cartao.
+    Devolve None quando o modelo nao declara o campo.
+
+    E GENERICA DE PROPOSITO, e isso foi aprendido no A2 em 12/09/2026. A versao
+    de 11/09 so sabia derivar a procedencia do Pa, entao o artigo-irmao, cujo
+    numero que decide e a AREA POR CARGA e nao o Pa, nao tinha de onde ler o
+    degrau — e publicou "O fabricante declara 166 m2 por carga" com atribuicao
+    digitada. Regra derivavel por um campo so e regra que a segunda pagina
+    reescreve; e reescrita e onde as duas copias comecam a discordar.
     """
-    campo = m.get("pa_declarado")
+    campo = m.get(campo_id)
     if not isinstance(campo, dict) or campo.get("valor") is None:
         return None
 
@@ -304,9 +310,9 @@ def procedencia_do_pa(m):
     fonte = (m.get("fontes") or {}).get(fid)
     if not fonte:
         sys.stderr.write(
-            "ERRO: o modelo %r declara Pa pela fonte %r, que nao existe em "
+            "ERRO: o modelo %r declara %s pela fonte %r, que nao existe em "
             "fontes{}. Numero publicado sem procedencia e exatamente o que esta "
-            "ilha existe para nao fazer.\n" % (m["id"], fid)
+            "ilha existe para nao fazer.\n" % (m["id"], campo_id, fid)
         )
         sys.exit(1)
 
@@ -330,6 +336,36 @@ def procedencia_do_pa(m):
         "url": fonte.get("url"),
         "verificado_em": fonte.get("verificado_em"),
     }
+
+
+def procedencia_do_pa(m):
+    """De onde veio o Pa deste modelo — o numero que decide a recomendacao da R2.
+
+    Devolve None quando o modelo nao declara Pa — e o caso dos cinco Electrolux,
+    que so aparecem como modelo de referencia dos ciclos e nunca em cartao da R2.
+    """
+    return procedencia_do_campo(m, "pa_declarado")
+
+
+def procedencia_da_cobertura(m):
+    """De onde veio a area por carga — o numero que decide o cartao do A2.
+
+    Hoje, nos cinco modelos que a declaram, a resposta e o DEGRAU 4 (loja oficial
+    da marca), e nao o fabricante. E por isso que este bloco existiu.
+    """
+    return procedencia_do_campo(m, "cobertura_m2_declarada")
+
+
+def procedencia_da_autonomia(m):
+    """De onde veio a autonomia em minutos.
+
+    O cartao do A2 publica DOIS numeros na mesma frase, e eles podem vir de
+    degraus diferentes. Hoje nao vem — nos cinco modelos os dois saem da mesma
+    fonte —, e e exatamente por isso que a frase nao pode presumir: verdade por
+    coincidencia do banco e a familia de defeito que esta ilha ja pagou duas
+    vezes.
+    """
+    return procedencia_do_campo(m, "autonomia_min_declarada")
 
 
 # ------------------------------------------------- A REGRA DA R2, EM UM LUGAR SO

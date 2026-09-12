@@ -1,5 +1,12 @@
 /**
  * Robometria A2 — Quantos m² um robô aspirador limpa por carga
+ * Versão: 1.2.0 (12/09/2026) — a procedência da ÁREA POR CARGA chega ao cartão, e
+ * a atribuição deixa de ser digitada. Esta página publicava "O fabricante declara
+ * 166 m² por carga" nos cinco cartões, e a frase era FALSA no ar: os cinco modelos
+ * declaram pela fonte f-loja, que é o degrau 4 da escada (loja oficial da marca).
+ * Onde a R2 corrigiu em 11/09 um defeito que ainda era só latente — lá a frase
+ * digitada era verdade por coincidência do banco —, aqui ele já tinha disparado:
+ * a página emprestava calada a autoridade do fabricante a quem só transcreveu.
  * Versão: 1.1.0 (11/09/2026) — a tese fala com quem entrou e o nome da marca saiu
  * da abertura para a camada de prova (seção 15.2), derivado como tudo aqui. As
  * mutações do próprio teste passaram a medir o parágrafo certo: uma delas estava
@@ -60,7 +67,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_A2_VERSAO' ) ) {
-	define( 'ROBOMETRIA_A2_VERSAO', '1.1.0' );
+	define( 'ROBOMETRIA_A2_VERSAO', '1.2.0' );
 	define( 'ROBOMETRIA_A2_SLUG', 'quantos-m2-o-robo-aspirador-limpa-por-carga' );
 	define( 'ROBOMETRIA_A2_TITULO', 'Quantos m² um robô aspirador limpa por carga' );
 	define( 'ROBOMETRIA_A2_DADOS', 'robometria_dados_a2-fatos' );
@@ -85,8 +92,40 @@ function robometria_a2_dados() {
 		return $cache;
 	}
 
+	/* O BANCO TEM QUE TER A FORMA QUE ESTA VERSÃO LÊ, e a janela em que isso
+	   falha é real e já foi medida na R2: o Sync aplica cada item do manifest
+	   separadamente, então existem minutos em que este snippet já está na 1.2.0 e
+	   a option ainda traz o arquivo de dados anterior, sem `procedencia` em cada
+	   item da vitrine. Sem esta conferência a página serviria aviso de PHP no ar.
+	   Com ela, cai no estado degradado que a ilha já desenhou — que diz a verdade
+	   e que o portão da voz REPROVA, então ele não passa despercebido se durar. */
+	if ( empty( $d['rotulos_de_origem'] ) ) {
+		$cache = array();
+		return $cache;
+	}
+	foreach ( (array) $d['vitrine'] as $i ) {
+		if ( empty( $i['procedencia'] ) ) {
+			$cache = array();
+			return $cache;
+		}
+	}
+
 	$cache = $d;
 	return $cache;
+}
+}
+
+/** 2026-09-09 -> 09/09/2026. A frase publicada leva data em português. */
+if ( ! function_exists( 'robometria_a2_data' ) ) {
+function robometria_a2_data( $iso ) {
+	if ( ! is_string( $iso ) || 10 !== strlen( $iso ) ) {
+		return 'sem data';
+	}
+	$p = explode( '-', $iso );
+	if ( 3 !== count( $p ) ) {
+		return 'sem data';
+	}
+	return $p[2] . '/' . $p[1] . '/' . $p[0];
 }
 }
 
@@ -327,7 +366,7 @@ function robometria_a2_vitrine() {
 	if ( empty( $d['vitrine'] ) ) {
 		/* Bloco vazio é PORTÃO, não defeito — mas silêncio parece defeito, então
 		   a página diz por quê (seção 7). */
-		return '<div class="rbm-secao"><h2>Onde comprar</h2><p>Nenhum modelo deste banco tem área por carga declarada pelo fabricante hoje, então não há o que listar aqui — e listar assim mesmo seria recomendar pelo que não sabemos.</p></div>';
+		return '<div class="rbm-secao"><h2>Onde comprar</h2><p>Nenhum modelo deste banco tem área por carga declarada hoje, então não há o que listar aqui — e listar assim mesmo seria recomendar pelo que não sabemos.</p></div>';
 	}
 
 	$itens    = $d['vitrine'];
@@ -339,11 +378,24 @@ function robometria_a2_vitrine() {
 		}
 	}
 
-	$html  = '<div class="rbm-secao rbm-compra"><h2>Os modelos cujo fabricante publica o número</h2>';
-	$html .= '<p>São os <span class="rbm-num">' . esc_html( robometria_a2_n( $total ) )
-		. '</span> modelos deste banco sobre os quais a pergunta do título tem resposta do próprio fabricante. <strong>Isto não é um ranking de limpeza</strong> — é a lista de quem publica a área por carga, que é o número sem o qual nenhuma conta de tempo começa.</p>';
+	/* O TÍTULO DA SEÇÃO FALA DOS CINCO DE UMA VEZ, e por isso ele só nomeia um
+	   publicador quando TODOS declaram pelo mesmo degrau. Quem faz essa
+	   comparação é o gerador, não este arquivo — aqui só chega a resposta, ou
+	   nada. Até 12/09/2026 o título dizia "Os modelos cujo fabricante publica o
+	   número", digitado, e era falso pelo mesmo motivo dos cartões. */
+	$atr = isset( $d['vitrine_atribuicao'] ) ? $d['vitrine_atribuicao'] : null;
 
-	$html .= '<p class="rbm-aviso-comissao">Os botões de compra abaixo são links de afiliado: se você comprar por eles, a Robometria pode receber comissão, sem custo a mais para você. Isso não muda a ordem da lista — ela é decidida pela área que o fabricante declara, e só por isso. '
+	$html  = '<div class="rbm-secao rbm-compra"><h2>'
+		. esc_html( $atr
+			? sprintf( 'Os modelos cuja área por carga é declarada %s', $atr )
+			: 'Os modelos cuja área por carga é declarada, e por quem' )
+		. '</h2>';
+	$html .= '<p>São os <span class="rbm-num">' . esc_html( robometria_a2_n( $total ) )
+		. '</span> modelos deste banco sobre os quais a pergunta do título tem resposta '
+		. esc_html( $atr ? 'declarada ' . $atr : 'declarada por alguém, e cada cartão diz por quem' )
+		. '. <strong>Isto não é um ranking de limpeza</strong> — é a lista de quem publica a área por carga, que é o número sem o qual nenhuma conta de tempo começa.</p>';
+
+	$html .= '<p class="rbm-aviso-comissao">Os botões de compra abaixo são links de afiliado: se você comprar por eles, a Robometria pode receber comissão, sem custo a mais para você. Isso não muda a ordem da lista — ela é decidida pela área declarada, e só por isso. '
 		. ( function_exists( 'robometria_casca_link_html' )
 			? robometria_casca_link_html( 'divulgacao-de-afiliados', 'Como isto funciona' )
 			: 'Veja a página de divulgação de afiliados' ) . '.</p>';
@@ -370,14 +422,32 @@ function robometria_a2_vitrine() {
 		$html .= '<span class="rbm-vitrine-nome rbm-num">'
 			. esc_html( robometria_a2_n( $i['cobertura_m2'] ) . ' m² por carga' ) . '</span>';
 
+		$p = $i['procedencia'];
+
 		/* A ESPECIFICAÇÃO QUE FEZ O PRODUTO ENTRAR (seção 6), e a ressalva junto:
-		   declarar a área não é a mesma coisa que a conta fechar. */
-		$porque = sprintf(
-			'O fabricante declara %s m² por carga',
-			robometria_a2_n( $i['cobertura_m2'] )
-		);
+		   declarar a área não é a mesma coisa que a conta fechar.
+
+		   A ATRIBUIÇÃO VEM DO DEGRAU DA ESCADA, e este arquivo não a escreve.
+		   Até 12/09/2026 o molde trazia "O fabricante declara" digitado, e aqui
+		   isso não era nem verdade por coincidência: os cinco modelos declaram
+		   pela loja oficial da marca, que é o degrau 4. E os DOIS números da
+		   frase têm procedência separada — hoje ela é a mesma nos cinco, e é
+		   justamente por isso que a frase não pode presumir. */
+		/* O NÚMERO NÃO SE REPETE: ele já é o título do cartão, uma linha acima.
+		   O molde antigo abria com "O fabricante declara 166 m² por carga" logo
+		   depois de um "166 m² por carga" em destaque, e lido como um leitor lê
+		   isso é ruído — a frase existe para dizer QUEM declarou, que é o que o
+		   cartão não dizia. */
+		$porque = sprintf( 'Área por carga declarada %s', $p['quem_declara'] );
 		if ( null !== $i['autonomia_min'] ) {
-			$porque .= sprintf( ' e %s minutos de autonomia', robometria_a2_n( $i['autonomia_min'] ) );
+			$porque .= empty( $i['mesma_origem'] )
+				? sprintf(
+					', e %s minutos de autonomia declarados %s',
+					robometria_a2_n( $i['autonomia_min'] ),
+					$i['procedencia_autonomia']['quem_declara']
+				)
+				: sprintf( ', e %s minutos de autonomia pela mesma fonte',
+					robometria_a2_n( $i['autonomia_min'] ) );
 		}
 		$porque .= '. ';
 		if ( null === $i['recarga_min'] ) {
@@ -391,11 +461,36 @@ function robometria_a2_vitrine() {
 		}
 		$html .= '<span class="rbm-vitrine-porque">' . esc_html( $porque ) . '</span>';
 
+		/* A RESSALVA DO DEGRAU, antes do botão: ela é o elo mais fraco dito com
+		   todas as letras, e o lugar dela é onde o leitor decide se compra. Quem
+		   escolhe a palavra é a escada de fontes do banco, não este arquivo. */
+		if ( ! empty( $p['ressalva'] ) ) {
+			$html .= '<span class="rbm-tag">' . esc_html( $p['ressalva'] ) . '</span>';
+		}
+
+		/* PRIMEIRO A PORTA DE COMPRA. A ordem destes dois <span> é a regra da
+		   seção 7 do ARQUIPELAGO.md escrita em código: inverter os dois é
+		   devolver ao link de procedência o papel de única porta clicável, que é
+		   a cicatriz de 10/09/2026. */
 		$html .= '<span class="rbm-vitrine-acao">'
 			. ( function_exists( 'robometria_casca_porta_de_compra' )
 				? robometria_casca_porta_de_compra( $i )
 				: '<span class="rbm-sem-loja">Link de loja em breve</span>' )
 			. '</span>';
+
+		/* DEPOIS A PROCEDÊNCIA, discreta. A área por carga é o único número que
+		   faz este modelo entrar na lista, e até 12/09/2026 o cartão não dizia de
+		   onde ele vinha: o endereço e a data existiam no banco e paravam antes
+		   da tela. O rótulo entra depois do travessão e não regido por
+		   preposição — "no loja oficial da marca" é o erro de concordância que
+		   nasce de colar rótulo em preposição fixa (cicatriz da R1). */
+		$html .= '<span class="rbm-vitrine-fonte">'
+			. esc_html( 'Como sabemos — ' . $p['rotulo'] . ', verificado em '
+				. robometria_a2_data( $p['verificado_em'] ) )
+			. ( empty( $p['url'] ) ? '' : ' · ' . ( function_exists( 'robometria_casca_fonte_link' )
+				? robometria_casca_fonte_link( $p['url'] ) : '' ) )
+			. '</span>';
+
 		$html .= '</li>';
 	}
 	$html .= '</ul></div>';
