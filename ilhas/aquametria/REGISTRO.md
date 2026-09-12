@@ -6181,7 +6181,8 @@ medições em 27 páginas × 6 larguras (eram 392 em 22), 0 px de rolagem;
 `testar-validador-especies.py` 22; `teste-arvore`, apelidos 59, conversor 17,
 escape, atualizador 9, `conferir-slugs`, `php -l` em tudo,
 `conferir-protecao-funcoes`. Baterias antigas rodadas inteiras para provar que
-nenhuma virou inerte: voz 20/20, árvore 14/14, GA4 13/13.
+nenhuma virou inerte: voz 20/20, árvore 14/14, GA4 13/13, c15-regulagem 13/13
+e c12-vitrine 11/11.
 
 **RECEITA:** 39 dos 78 produtos seguem esperando link de afiliado. Este bloco não
 tocou catálogo de produto — espécie não é produto, e a página diz isso em vez de
