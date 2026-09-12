@@ -240,3 +240,25 @@ Nada mais nesta ronda.
 - O dado que é o produto da ilha: a **compatibilidade cola × base × ambiente** e a **quantidade por peça**. Errar aí faz a peça descolar ou faltar material — é a confiança que separa a ilha da lojinha.
 - Programas de afiliado: **Shopee** (conta única do Arquipélago; Sub_id 1 = `clubedomosaico`, Sub_id 2 = código da página: `F1`, `F2`, `G-PASTILHAS`, `G-ALICATES`, `G-COLAS`, `T-VASO`…) e **Mercado Livre** (etiqueta `clubedomosaico-<código>`). Amazon só com tráfego.
 - Enquanto falta infraestrutura: blocos 1, 2 e 3 não dependem de site. Não invente peça para preencher a Loja.
+
+## DESPACHO DO RAPHAEL — 12/09/2026, 18h20 BRT — O ATELIÊ TEM DE ESTAR DE PÉ AMANHÃ
+
+Ele vai à casa dos pais **no domingo, 13/09**, e quer ensinar a própria mãe a entrar no site e cadastrar as peças dela. É a primeira vez que alguém de fora da máquina vai usar o que a gente construiu, e é a mãe dele. **Isto fura tudo** (seção 18.1: despacho aberto do Raphael vence qualquer rotação).
+
+### O CORTE — o que entra hoje e o que NÃO entra
+O bloco 4d inteiro não cabe numa noite, e tentar tudo é a forma mais segura de não entregar nada. **Entregue este mínimo, inteiro e funcionando; o resto do 4d continua na fila para depois de domingo.**
+
+**ENTRA (nesta ordem, e cada peça só depois da anterior estar de pé):**
+1. **CPT `peca`** e o papel `artesa`, com as capacidades da especificação (só as próprias peças, `upload_files`), e o bloqueio duplo do wp-admin.
+2. **O usuário da artesã e o e-mail de acesso** — login `artesa`, e-mail `mina196@hotmail.com`, senha aleatória descartada e `retrieve_password` disparado, com o e-mail HTML em português, o logo e o botão único "Criar minha senha e entrar". **Este item é o que precisa estar feito mais cedo**, porque o e-mail tem de chegar hoje e ele quer poder conferir antes de sair de casa. Escreva no `ESTADO.md` a hora exata do envio.
+3. **`/atelie/` — login e tela inicial**: formulário de login com a cara da ilha, "Olá, <nome>", botão grande **Nova peça**, e a lista das peças em cartões com Editar e Publicar/Pausar.
+4. **Formulário de peça, uma tela só**, em português simples: título · descrição · **fotos (várias de uma vez, miniaturas, a primeira é a capa)** · preço · pronta entrega ou sob encomenda + prazo · medidas · base · técnica · coleção. Salvar rascunho e Publicar. **Tem de funcionar no CELULAR** — ela vai fotografar e cadastrar do telefone, e é assim que ele vai ensinar amanhã.
+5. **A página pública da peça**: fotos, título, preço, medidas, disponibilidade, botão de WhatsApp, `Product`+`Offer`, breadcrumb. E `/loja/` listando o que estiver publicado.
+
+**NÃO ENTRA HOJE — e não é esquecimento, é escolha:** o formulário "Verificar disponibilidade" e o CPT `lead_peca` (adendo 3), o feed do Merchant Center, as páginas de técnica, os textos editoriais das coleções, "peças parecidas" e a malha completa da peça. Tudo isso volta à fila depois de domingo. **Se faltar tempo, corte de baixo para cima nesta lista de 1 a 5, nunca pelo meio.**
+
+### O PORTÃO, que aqui vale mais que o de sempre
+Antes de dar por pronto: entre em `/atelie/` como `artesa`, **numa janela de 360 px de largura**, cadastre uma peça de teste com 3 fotos, publique, abra a página pública, volte, pause e apague. Se qualquer passo exigir saber o que é WordPress, **não está pronto** — ela nunca viu um painel de CMS, e o objetivo é que ela não precise ver.
+
+### O que escrever no `ESTADO.md` ao fechar
+A hora do envio do e-mail para `mina196@hotmail.com`, o que dos cinco itens saiu, o que ficou de fora, e **uma frase que o Raphael possa ler no domingo de manhã dizendo se ele pode ou não ensinar a mãe hoje**. Se não deu, diga que não deu — ele prefere saber antes de chegar lá do que descobrir na frente dela.
