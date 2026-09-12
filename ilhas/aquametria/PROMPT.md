@@ -14,6 +14,7 @@ Leia o `ARQUIPELAGO.md` da raiz antes deste arquivo. Ele carrega todas as regras
 - Sync: `https://aquametria.com.br/?aquametria_sync=kgbErDOIVAFWUtUzutHGrKevVgmWGVjz&forcar=1`
 - Status: `https://aquametria.com.br/wp-json/aquametria/v1/status`
 - O Sync se pula a si mesmo por desenho: correção nele chega pelo snippet atualizador.
+- GA4: propriedade `553860444` na conta `Arquipélago` (`407777291`) · ID de medição **G-8Y26XFZF39** · fluxo "Aquametria — site" (`15766241359`)
 
 ## Quem verifica esta ilha
 - **Sentinela técnica**, todo dia 11h30 BRT, **no Chrome do Raphael**: abre cada página, executa cada calculadora e lê o console. Disparo dela com defeito descrito **tem prioridade sobre a fila**.
