@@ -2219,3 +2219,128 @@ catálogo), nenhum com loja possível hoje. Na vitrine do A2, 5 de 5 esperam lin
   se continuar fechada a fila cai para trabalho de repositorio. A leva de malha
   (5b) segue travada pela metade humana do despacho de 10/09 — o reenvio do
   sitemap no Search Console, que e do Raphael.
+
+## 2026-09-12, 21h16Z — Bloco 3c, item dos kits: a composicao do ERB30 e do ERB44 transcrita, e o ERB30 sai do vazio
+
+**Manifest revisao 23, `/status` conferido as 21h29Z em UM disparo.** Nenhuma URL
+nova e nenhum snippet tocado: mudou o BANCO e, com ele, o que cinco arquivos de
+dados publicaveis servem.
+
+**A REDE DE FABRICANTE SEGUE FECHADA, E O CANAL DE BUSCA NAO.** Reconferido como
+a secao 20.2 manda, em duas passadas da mesma execucao: `robometria.com.br` em
+200 nas duas, `mais.conteudo.wap.ind.br`, `mi.com.br`, `electrolux.com.br` e
+`loja.electrolux.com.br` em `000` nas duas, por politica de egresso (o CONNECT
+ao proxy morre antes do TLS). O `WebFetch` devolveu `EGRESS_BLOCKED` em
+`loja.electrolux.com.br` e em `cuida.electrolux.com.br`. **Mas o canal de BUSCA
+alcanca a Electrolux** — foi o que o Clube do Mosaico registrou em 12/09 e vale
+aqui igual. Era por esse canal que os dois kits estavam esperando desde 09/09, e
+nenhuma execucao tinha testado a distincao entre os dois canais nesta ilha.
+
+**O QUE ENTROU NO BANCO.**
+- **ERB30** — composicao completa, com as quantidades que a propria pagina do kit
+  declara: `01 Filtro HEPA`, `01 Pano de Microfibra (seco)`, `02 Escovas de
+  Varredura de Cantos`. Pedida DUAS vezes, com perguntas diferentes e **sem o
+  valor dentro da consulta** (secao 8), as duas devolvendo a mesma lista a partir
+  da pagina deste kit. Era a unica peca que servia o ERB30: o modelo nao respondia
+  consulta nenhuma, e o kit fechado e justamente o estado em que a R1 sabe que ha
+  um kit e nao sabe dizer o que vem dentro.
+- **ERB44** — composicao **pela metade, de proposito**. A pagina declara os TIPOS
+  e nao as quantidades, e chama a escova de "escovas" sem dizer se e a de cantos
+  ou a rotativa central — e o ERB44 tem uma rotativa central vendida a parte.
+  Filtro e mop entram confirmados; a escova entra com `tipo: null`, que e como o
+  esquema diz "o kit serve e nos nao sabemos dizer este item". **A busca ofereceu
+  a composicao do ERB30 como preenchimento e ela foi RECUSADA:** modelo vizinho
+  nao declara pelo vizinho, que e a cicatriz do coeficiente do epoxi.
+
+**MEDIDO, pela varredura e nao por contagem de cabecalho:** celulas declaradas de
+41 para 45; os **11** cruzamentos em "kit sem composicao" foram a **zero**; a R1
+responde em **16** dos 28 modelos publicaveis (era 15) e a Electrolux passa a
+**9/9**. Por tipo: filtro 10 -> 11, escova lateral 13 -> 14, mop 10 -> 12. Sete
+celulas mudaram de "ha um kit e nao sabemos" para **vazia declarada**, que e mais
+honesto e nao menos: o kit realmente nao traz bateria nem reservatorio.
+
+**A RECARGA (item (e) do 3c) MUDOU DE NATUREZA E NAO E MAIS COLETA — igual ao que
+aconteceu com os m2 no item (d).** Nenhuma pagina de modelo declara tempo de
+carga (conferido nas paginas do ERB60 e do ERB80). O unico numero publicado pela
+Electrolux no canal alcancavel esta num artigo de **familia** —
+`cuida.electrolux.com.br/artigos/como-faco-para-utilizar-o-meu-robo-aspirador-home-e-experience-com-autonomous-technology`,
+24 h na primeira carga e 5 h nas seguintes — e **esse mesmo artigo declara, na
+mesma frase, autonomia de 90 minutos**. 90 min nao e a autonomia de nenhum dos
+cinco modelos alvo (ERB60/61/62/80 tem 100 e o ERB44 tem 120): o artigo fala de
+outro aparelho, e atribuir aquele 5 h a estes seria generalizar de uma linha de
+produto para outra. **Foi a propria declaracao vizinha do documento que
+desmascarou a atribuicao** — e essa e a regra que vale para toda coleta desta
+ilha: quando um documento de familia traz DOIS numeros, o que voce ja conhece
+diz se o outro e do seu modelo. Os cinco `motivo_do_null` passaram de "nao
+coletado ainda" para a causa medida, com o nome do documento.
+
+**O DEFEITO QUE A PROPRIA TRANSCRICAO DESCOBRIU, e ele estava verde havia
+blocos.** Os quatro lacos da secao 3 do `teste-r1.php` — o bloco que justifica o
+arquivo existir — varriam a lista da REFERENCIA e indexavam a do PHP pela chave
+dela:
+1. **Peca a MAIS no lado do PHP nunca era comparada com nada.** Se o snippet
+   passasse a recomendar uma peca que a regra da ilha nao declarou, nao havia
+   chave por onde encontra-la. Numa ilha cujo produto e compatibilidade, esse e o
+   defeito mais caro que existe.
+2. **Grupo vazio rodava zero vezes e continuava verde.** Ao transcrever os kits,
+   `kits_sem_composicao` zerou em TODOS os modelos e aquela comparacao deixou de
+   medir o que foi escrita para medir — a "mutacao inerte" de 11/09, agora do
+   lado do teste, e causada pela minha propria entrega.
+3. E ao contar por grupo apareceu **um segundo vazio que ninguem sabia**:
+   `terceiro`, que nunca mediu nada desde que o arquivo existe.
+Conserto: as chaves sao comparadas nos **dois sentidos**, e grupo com zero
+aparece nomeado ("<- vazio") em vez de passar calado.
+
+**VERIFICACAO.** `teste-r1.php` de 90 para 93 medicoes. Os oito portoes de
+bancada em **898** afirmacoes, 0 falha: teste-casca 200, teste-r1 93, teste-a1
+55, teste-r2 92, teste-a2 73, teste-acentuacao 17, teste-arvore 213, teste-voz
+155. `php -l` em todos os snippets e ferramentas. `validar-banco.py` aprovado
+(os mesmos 2 avisos de variante de antes). **Mutacoes:**
+`ferramentas/mutacoes-chaves-da-r1.py` novo, **4 de 4 reprovadas**, e a de "peca a
+mais" so a trava nova pega — as outras tres foram escolhidas para passar pelo
+portao ANTIGO de proposito (a de grupo vazio deixa 141 frases comparadas, acima
+do piso de 100). As **seis baterias antigas** rodadas inteiras para provar que
+nenhuma virou inerte: procedencia 17/17, arvore 18/18, cabeca-e-voz 29/29, ga4
+9/9, a2-procedencia 15/15, carimbo-de-origem 5/5.
+
+**NO AR as 21h3xZ:** `ferramentas/conferir-kits-no-ar.py` novo — **41 afirmacoes,
+0 falha** —, porque o `conferir-no-ar.py` mede as nove URLs no caso-ANCORA e este
+bloco mudou paginas que **so existem quando alguem escolhe um modelo**. Ele varre
+9 estados de entrada (ERB30 x 5 tipos, ERB44 x 4), com a regua escrita
+literalmente dentro do arquivo. `conferir-no-ar.py` rodado tambem: 149
+afirmacoes, 0 falha.
+**A LICAO DELE, e ela custou uma reprovacao antes de o arquivo servir para algo:**
+a primeira versao procurava "nao localizamos" no CORPO e reprovou os cinco
+estados que RESPONDEM — porque a frase existe duas vezes na pagina por motivo
+legitimo (na promessa do topo e na secao que lista os 12 modelos sem resposta).
+Era a heuristica por vizinhanca que a secao 8 proibe, escrita por quem acabara de
+citar a secao 8. **Quem decide e a ESTRUTURA:** o bloco vai de `id="resultado"`
+ate `rbm-quadro`, e se a fronteira nao for encontrada a conferencia REPROVA em
+vez de aprovar por ausencia — que foi o `<body>` da Aquametria.
+
+**O numero de tela nasceu contado, e mudou sozinho:** a home e a R1 servem agora
+"cobrindo **16** dos 28 modelos do banco" (era 15), sem ninguem digitar, porque
+`casca-fatos.json` e derivado. E o ERB30 saiu da lista dos 12 modelos que a
+pagina nomeia como ainda sem resposta.
+
+**Itens esperando link de afiliado: 44** (nao mudou; este bloco nao acrescentou
+item ao catalogo, so descreveu o que ja estava la).
+**Pauta da secao 17:** `pauta.md` ainda nao existe — 0 escritos, 0 na fila, 0
+recusados.
+
+**PROXIMO PASSO, e ele agora tem alvo e canal nomeados.** O canal de busca esta
+aberto e e por ele que o 3c anda enquanto o egresso direto nao abrir:
+1. **O Kit Performance do ERB80** (`loja.electrolux.com.br/kit-performance-electrolux-para-robo-aspirador-erb80/p`
+   e `content.electrolux.com.br/brasil/electrolux/cybertron/kit_performance_erb80/index.html`).
+   Ele **existe e nao esta no banco** — achado nesta execucao. O ERB80 hoje so
+   responde escova principal; o kit destravaria filtro e mop. **Ficou fora deste
+   bloco de proposito:** e registro NOVO, nao transcricao, e as duas leituras que
+   fiz dele devolveram so o trio generico ("escovas, filtros e pano de
+   microfibra"), sem quantidade e sem o tipo da escova — entao ele entra no nivel
+   do ERB44, nao no do ERB30, e quem o gravar precisa saber disso antes.
+2. **Pecas da Xiaomi e da WAP com codigo**, que a varredura da R1 aponta como o
+   primeiro alvo entre os coletaveis: sao os 8 modelos que a R2 ja recomenda e a
+   R1 deixa vazios — a emenda partida entre as duas ferramentas. O canal de busca
+   alcanca `mi.com`? Nao foi testado nesta execucao; teste antes de escolher.
+3. A leva de malha (5b) **continua travada** pela metade humana do despacho de
+   10/09 — o reenvio do sitemap no Search Console, que e do Raphael.

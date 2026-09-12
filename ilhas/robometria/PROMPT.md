@@ -205,7 +205,19 @@ declara. Não adianta procurar mais: o número não está publicado. A
 virou conteúdo: a R2 mostra os minutos, diz que o fabricante não declara área e explica
 por que não chuta.
 
-(e) **A RECARGA DOS MODELOS QUE JÁ DECLARAM COBERTURA — o item de MENOR custo e
+(e) ~~**A RECARGA DOS MODELOS QUE JÁ DECLARAM COBERTURA.**~~ **FECHADO em
+12/09/2026, e NÃO por coleta: a lacuna mudou de natureza, como a dos m² no item
+(d).** Nenhuma página de modelo declara tempo de carga (conferido no ERB60 e no
+ERB80). O único número que a Electrolux publica no canal alcançável está num
+artigo de **família** — 24 h na primeira carga, 5 h nas seguintes — e esse mesmo
+artigo declara, **na mesma frase**, autonomia de 90 minutos, que não é a de
+nenhum dos cinco (100, 100, 100, 100 e 120). O artigo fala de outro aparelho.
+Os cinco `motivo_do_null` agora carregam essa causa, com o nome do documento. O
+caminho de volta é a leitura direta do manual de cada modelo, que segue atrás do
+egresso fechado. **O texto original fica abaixo, porque a medição que o derrubou
+só faz sentido ao lado da expectativa que ele criou:**
+
+(e-original) **A RECARGA DOS MODELOS QUE JÁ DECLARAM COBERTURA — o item de MENOR custo e
 MAIOR retorno que a varredura da R2 encontrou, e ele não existia nesta lista até
 11/09/2026.** Medido: a fórmula do tempo real da especificação precisa de TRÊS
 números declarados — cobertura por carga, autonomia e recarga — e **nenhum dos 28
@@ -402,29 +414,65 @@ qualquer página nova:
   o próprio código (R1, R2, A1, A2); `validar-banco.py` reprova o campo de volta no
   banco, e a seção 17 do `teste-casca.php` cobra que cada arquivo de dados carimbe só
   o seu — **página nova que copiar um gerador antigo reprova antes de existir URL**.
-  **O PRÓXIMO PASSO** é a **transcrição da composição dos kits** (item logo abaixo) e,
-  junto dela, o item **(e)** da fila do 3c — a recarga dos cinco Electrolux que já
-  declaram cobertura e autonomia. **As duas dependem de rede que em 12/09/2026 seguia
-  fechada por política de egresso** (`wap.ind.br`, `mais.conteudo.wap.ind.br` e
-  `mi.com.br` em `connect_rejected`, medido em duas passadas com o domínio da ilha em
-  200 na mesma). Teste com `curl` antes de escolher o alvo; se continuar fechada, a
-  fila cai para trabalho de repositório.
-  **Só depois disso, e só se a rede abrir**, vem o 3c: teste com `curl` antes de escolher o alvo, e leia a ordem atualizada na fila (o item (e), a recarga dos modelos que já declaram cobertura, é o de menor custo e maior retorno).
+  ~~**O PRÓXIMO PASSO** é a transcrição da composição dos kits e o item **(e)** do 3c.~~
+  **OS DOIS FORAM FECHADOS EM 12/09/2026**, e cada um de um jeito: a transcrição
+  **entregue** (ERB30 e ERB44, ver os itens logo abaixo) e a recarga **recusada com
+  causa medida** — ela deixou de ser coleta, como os m² do item (d). O que destravou
+  não foi a rede abrir: foi separar o egresso direto do canal de busca.
+  **O PRÓXIMO PASSO AGORA** é o **kit do ERB80** (item abaixo, com as duas URLs e a
+  ressalva de que ele entra no nível do ERB44) e, depois dele, **peças da Xiaomi e da
+  WAP com código** — que a varredura da R1 aponta como o primeiro alvo entre os
+  coletáveis, porque são os 8 modelos que a R2 já recomenda e a R1 deixa vazios. Se
+  o canal de **busca** alcança `mi.com` ainda não foi testado: teste os **dois**
+  canais antes de escolher o alvo.
   **A leva de malha (5b) continua travada** pela metade humana do despacho: o sitemap precisa ser reenviado no Search Console, e isso exige o navegador do Raphael.
-- **Antes de mexer em qualquer snippet, rode os OITO testes de bancada:** `php ferramentas/teste-casca.php .` (149 verificações), `php ferramentas/teste-r1.php .` (90), `php ferramentas/teste-a1.php .` (55), `php ferramentas/teste-r2.php .` (86), `php ferramentas/teste-a2.php .` (63), `php ferramentas/teste-acentuacao.php .` (17), `php ferramentas/teste-arvore.php .` (213) e `php ferramentas/teste-voz.php .` (155). Depois do desembarque, `python3 ferramentas/conferir-no-ar.py` mede as nove URLs no ar com régua própria — os endereços e os nomes estão escritos literalmente dentro dele, e não lidos do código, para as duas metades não errarem juntas. Eles são a única verificação da seção 8 que roda sem depender do site. **O sexto é o único que varre a ENTRADA INTEIRA** — 72 estados, um processo por estado, via `ferramentas/varrer-corpo.php`: os outros medem o caso-âncora, e foi por isso que "Aspirador Robo" e "Versao A" ficaram invisíveis para cinco testes verdes. O segundo compara as 188 frases publicadas contra a implementação de referência; o terceiro **recalcula a tese do artigo em PHP, direto do banco, sem olhar para o que o gerador em Python escreveu** — duas contas independentes que batem são medição, uma conta sozinha é o que o autor achou.
+- **Antes de mexer em qualquer snippet, rode os OITO testes de bancada:** `php ferramentas/teste-casca.php .` (149 verificações), `php ferramentas/teste-r1.php .` (90), `php ferramentas/teste-a1.php .` (55), `php ferramentas/teste-r2.php .` (86), `php ferramentas/teste-a2.php .` (63), `php ferramentas/teste-acentuacao.php .` (17), `php ferramentas/teste-arvore.php .` (213) e `php ferramentas/teste-voz.php .` (155). Em 12/09/2026 são **898 afirmações**, com o `teste-r1` em 93. Depois do desembarque, `python3 ferramentas/conferir-no-ar.py` mede as nove URLs no ar com régua própria — **e `python3 ferramentas/conferir-kits-no-ar.py` (41) mede a ENTRADA da R1 no ar, 9 estados de modelo × tipo, porque o primeiro mede o caso-âncora e bloco que muda resposta de consulta não aparece lá** — os endereços e os nomes estão escritos literalmente dentro dele, e não lidos do código, para as duas metades não errarem juntas. Eles são a única verificação da seção 8 que roda sem depender do site. **O sexto é o único que varre a ENTRADA INTEIRA** — 72 estados, um processo por estado, via `ferramentas/varrer-corpo.php`: os outros medem o caso-âncora, e foi por isso que "Aspirador Robo" e "Versao A" ficaram invisíveis para cinco testes verdes. O segundo compara as 188 frases publicadas contra a implementação de referência; o terceiro **recalcula a tese do artigo em PHP, direto do banco, sem olhar para o que o gerador em Python escreveu** — duas contas independentes que batem são medição, uma conta sozinha é o que o autor achou.
 - **A PORTA DE COMPRA TEM UM DONO SÓ, e ele é a casca.** `robometria_casca_porta_de_compra`, `robometria_casca_rotulo_da_loja`, `robometria_casca_fonte_link` e `robometria_casca_css_vitrine` valem para toda página desta ilha que recomenda item; a R1 delega para elas. Página nova que recomenda produto **chama estas funções**, nunca escreve as suas. Os pesos visuais do botão de compra e do link de procedência são regra do Arquipélago (seção 7), não estilo local: com uma cópia por página, bastaria alguém ajustar uma delas para a ilha voltar — numa página só, e sem ninguém notar — ao defeito de 10/09/2026.
 - **Página nova entra no catálogo da casca pelo FILTRO dela**, `robometria_ferramentas` para ferramenta e `robometria_artigos` para artigo. A casca nunca ganha uma cópia da página dentro; é assim que a home e o hub listam qualquer coisa nova sem serem editados de novo, e é o que garante as duas listagens que a seção 9 exige.
 - ~~**O BANCO ESTÁ EM ASCII, E AGORA ISSO APARECE NA TELA.**~~ **CUMPRIDO em 11/09/2026.** 121 strings restauradas nos nove campos que a varredura mediu chegando ao corpo servido, e a operação é **provada diacrítico-only**: reduzido a sem-diacrítico, o banco de hoje é byte a byte o de ontem (`dados/acentuacao-restaurada.json`, conferido linha a linha por `teste-acentuacao.php` com régua própria). **A restauração não é releitura:** o acento foi reposto pela ilha, não lido no fabricante — e é por isso que o livro-razão existe, como lista de conferência de quem reler os manuais quando a rede abrir.
   **Quem segura daqui para a frente é `ferramentas/teste-acentuacao.php`**, que lê o CORPO dos 72 estados e reprova qualquer palavra da régua. Palavra ambígua (o "e" que pode ser "é") ficou de fora do mapa de propósito: acertar por adivinhação não é acertar. **O que ficou de fora do escopo, e é trabalho de verdade:** `declarado_como`, `motivo_do_null` e `descricao_na_fonte` seguem em ASCII. Elas NÃO estão na tela hoje (medido), mas são prosa longa e chegam à tela no dia em que alguém as publicar — e aí o portão reprova, que é exatamente o desenho.
-- **O KIT DECLARADO NÃO TEM PORTA DE COMPRA, E ISSO SE DESTRAVA POR DADO.** Na
-  consulta ERB30 + filtro, a Electrolux declara um Kit Performance compatível com
-  o modelo e a página não oferece compra dele: a composição do kit não foi
-  transcrita, então a página não sabe se ele contém filtro, e vender kit debaixo
-  de "qual filtro serve no meu robô" seria recomendar em primeiro lugar um
-  produto que a própria página diz não saber se serve (seção 7). **Não afrouxe a
-  regra: transcreva a composição dos kits na próxima leva do 3c** — o dado abre
-  a porta de compra sozinho, e hoje são os kits que concentram o que a Electrolux
-  declara para os modelos mais novos.
+- ~~**O KIT DECLARADO NÃO TEM PORTA DE COMPRA, E ISSO SE DESTRAVA POR DADO.**~~
+  **CUMPRIDO em 12/09/2026** (manifest revisão 23, `/status` conferido em um
+  disparo). A previsão estava certa e foi medida, não suposta: **o dado abriu a
+  porta de compra sozinho**, sem uma linha de snippet. Na consulta ERB30 +
+  filtro a página agora diz que a Electrolux não vende o filtro avulso, nomeia o
+  Kit Performance que o contém, e serve o bloco "Onde comprar" antes da
+  procedência. O ERB30 era o único modelo da ilha que não respondia consulta
+  nenhuma; a Electrolux passou a 9/9 e a R1 a 16 dos 28 modelos.
+  **O QUE FICOU VALENDO PARA A PRÓXIMA TRANSCRIÇÃO, e é o mais importante:** o
+  ERB30 veio com quantidades e o **ERB44 veio pela metade** — a página dele
+  declara os tipos e não as quantidades, e diz "escovas" sem dizer qual, num
+  modelo que tem escova rotativa central vendida à parte. A busca **ofereceu a
+  composição do ERB30 como preenchimento** e ela foi recusada: modelo vizinho não
+  declara pelo vizinho. Item sem tipo entra com `tipo: null`, que é como o esquema
+  diz "o kit serve e nós não sabemos dizer este item" — e a R1 então recusa aquele
+  tipo, que é o acerto e não a falta.
+- **O KIT DO ERB80 EXISTE NA LOJA E NÃO ESTÁ NO BANCO** — achado em 12/09/2026, e
+  é o próximo alvo do 3c. `loja.electrolux.com.br/kit-performance-electrolux-para-robo-aspirador-erb80/p`
+  e `content.electrolux.com.br/brasil/electrolux/cybertron/kit_performance_erb80/index.html`.
+  O ERB80 hoje só responde escova principal; o kit destravaria filtro e mop.
+  **Ficou fora do bloco de 12/09 de propósito:** é registro NOVO, não transcrição,
+  e as duas leituras dele devolveram só o trio genérico ("escovas, filtros e pano
+  de microfibra"), sem quantidade e sem o tipo da escova — então ele entra no
+  nível do ERB44, não no do ERB30, e quem o gravar precisa saber disso antes de
+  colher.
+- **O EGRESSO DIRETO E O CANAL DE BUSCA SÃO DUAS REDES DIFERENTES, e a distinção
+  vale por um bloco inteiro** (12/09/2026). `curl` e `WebFetch` devolvem `000` e
+  `EGRESS_BLOCKED` em `electrolux.com.br`, `loja.electrolux.com.br`,
+  `cuida.electrolux.com.br`, `mi.com.br` e `wap.ind.br` — política de egresso,
+  remedida em duas passadas com a ilha em 200 nas duas. **A busca alcança os
+  mesmos fabricantes.** Os dois kits ficaram três dias esperando porque o
+  `ESTADO.md` dizia "a rede está fechada" e ninguém tinha separado os dois canais.
+  Antes de declarar coleta bloqueada nesta ilha, teste **os dois**.
+- **QUANDO UM DOCUMENTO DE FAMÍLIA TRAZ DOIS NÚMEROS, O QUE VOCÊ JÁ CONHECE DIZ SE
+  O OUTRO É DO SEU MODELO** (12/09/2026, e é a régua que fechou o item (e) do 3c).
+  A recarga dos cinco Electrolux que declaram cobertura não é mais coleta: nenhuma
+  página de modelo declara tempo de carga, e o único número publicado está num
+  artigo de família ("Como faço para utilizar o meu Robô Aspirador Home-e
+  Experience com Autonomous Technology") que, **na mesma frase**, declara autonomia
+  de 90 minutos — número que não é o de nenhum dos cinco (100, 100, 100, 100 e
+  120). A declaração vizinha desmascarou a atribuição. Sem essa conferência, o 5 h
+  entraria com cara de dado de fabricante.
 - ~~**UMA FONTE ESTÁ NO NÍVEL 2 E A ESCADA DIZ QUE O NÍVEL 2 NÃO EXISTE.**~~ **DECIDIDO em 11/09/2026: NÃO é nível 2. É nível 3.**
   **A regra, e ela vale para toda fonte de toda ilha desta pasta:** uma origem tem TRÊS elos — quem escreveu o documento, quem o guarda e como nós o lemos — e **o nível é o do elo MAIS FRACO**, nunca o do mais forte. O manual do ERB10/ERB11/ERB20 é escrito pela Electrolux (elo forte), mas está guardado por `manuals.plus` e chegou aqui por busca, sem leitura direta. Dois dos três elos são fracos.
   **A direção saiu da assimetria de custo (seção 10 do contrato), não do gosto:** errar para BAIXO custa uma frase mais fraca na tela ("a confirmar no manual"); errar para CIMA faz a página de metodologia declarar um rigor que a ilha não tem — e metodologia é a página cujo único produto é o rigor.
