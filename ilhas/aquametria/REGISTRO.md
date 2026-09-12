@@ -5360,3 +5360,17 @@ a leitura de 16/09), o proximo e o **catalogo de iluminacao por faixa (T3a)** �
 a licao deste bloco vale para ele: antes de escrever, procurar no banco de destino
 o campo que e copia de outro campo, porque e ali que a tela inventa um significado
 que o fabricante nao declarou.
+
+---
+
+## 2026-09-12 — FECHADO o item 5 do despacho da Sentinela de 10/09 (congelamento ate 16/09)
+
+O item 5 do despacho da Sentinela de 10/09/2026 proibia pagina nova ate a leitura
+de 16/09, por causa de zero impressao. **Ele esta suspenso desde 12/09/2026**, pela
+secao 21 do `ARQUIPELAGO.md` (o piso da rampa): a Aquametria tem 13 URLs publicadas
+e esta ABAIXO do piso de 40 URLs — abaixo do piso, zero impressao nao e informacao
+e nao trava, adia nem reduz leva nenhuma.
+
+O historico acima fica como esta: as entradas de 10, 11 e 12/09 que dizem "item 5
+segue de pe" descrevem o que valia naquele dia. O campo `congelamento` no cabecalho
+do `ESTADO.md` e o que vale agora.
