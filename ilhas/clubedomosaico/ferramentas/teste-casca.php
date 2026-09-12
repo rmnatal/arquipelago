@@ -520,7 +520,19 @@ $loja_com_peca  = cdm_teste_pagina( 'cdm_loja' );
 $corpo_com_peca = cdm_corpo( $loja_com_peca );
 cdm_ok( false !== strpos( $corpo_com_peca, 'Vaso de mosaico azul' ), 'com CPT: a peca publicada aparece na Loja' );
 cdm_ok( false !== strpos( $corpo_com_peca, 'cdm-preco' ), 'com CPT: o preco sai marcado como preco' );
-cdm_ok( false !== strpos( $corpo_com_peca, 'R$ 189,90' ), 'com CPT: preco em formato brasileiro', '189.90 -> R$ 189,90' );
+/* PRECO EM FORMATO BRASILEIRO, E COM ESPACO QUE NAO QUEBRA.
+ *
+ * Era `strpos( ..., 'R$ 189,90' )` com espaco comum, e o bloco 4d trocou a
+ * vitrine pela versao com foto — que serve `R$&nbsp;189,90`. A afirmacao caiu, e
+ * o certo aqui NAO era afrouxar a regua para aceitar as duas: um preco que quebra
+ * a linha entre o "R$" e o numero e defeito de verdade num cartao de produto, e o
+ * cartao e a primeira coisa que alguem ve na Loja. Entao a regua APERTOU — ela
+ * cobra o espaco inquebravel e proibe o comum, para o dia em que alguem
+ * "simplificar" o `&nbsp;` de volta. As duas direcoes, como toda trava desta ilha. */
+cdm_ok( false !== strpos( $corpo_com_peca, 'R$&nbsp;189,90' ),
+	'com CPT: preco em formato brasileiro, com espaco que nao quebra', '189.90 -> R$&nbsp;189,90' );
+cdm_ok( false === strpos( $corpo_com_peca, 'R$ 189,90' ),
+	'com CPT: o preco NAO sai com espaco comum (quebraria de linha no cartao)' );
 cdm_ok( false === strpos( $corpo_com_peca, 'cdm-vazio' ), 'com CPT: o estado vazio SOME quando ha peca' );
 
 cdm_teste_rebobinar();
@@ -754,11 +766,22 @@ foreach ( cdm_casca_apelidos() as $apelido => $destino ) {
 cdm_ok( empty( $orfaos ), 'todo apelido aponta para pagina conhecida',
 	empty( $orfaos ) ? count( cdm_casca_apelidos() ) . ' apelidos' : implode( ', ', $orfaos ) );
 
-/* /atelie/ e o painel da artesa (bloco 4d). Um apelido da casca apontando para
-   outro lugar tiraria o painel do ar no dia em que ele nascesse. */
+/* /atelie/ e o painel da artesa, e desde 12/09/2026 ele EXISTE (bloco 4d).
+ *
+ * Esta dupla de afirmacoes era uma RESERVA: enquanto o painel nao existia, elas
+ * cobravam que nada da casca ocupasse o endereco, para o snippet do Atelie poder
+ * nascer sem disputa. A reserva cumpriu o papel e agora se inverte — o que se
+ * cobra e que o painel esteja registrado E que nenhum apelido aponte para ele. Um
+ * apelido da casca em cima de /atelie/ redirecionaria a artesa para outro lugar
+ * na hora em que ela abrisse o link do e-mail, que e o pior momento possivel. */
 $apelidos = cdm_casca_apelidos();
 cdm_ok( ! isset( $apelidos['atelie'] ), 'o endereco /atelie/ NAO e apelido da casca (e o painel da artesa)' );
-cdm_ok( ! in_array( 'atelie', $destinos, true ), 'nenhuma pagina da casca ocupa o slug atelie' );
+cdm_ok( in_array( 'atelie', $destinos, true ), 'o painel da artesa esta registrado em /atelie/' );
+$def_atelie = cdm_casca_definicao_paginas();
+cdm_ok( '[cdm_atelie]' === ( $def_atelie['atelie']['conteudo'] ?? '' ),
+	'a pagina /atelie/ serve o shortcode do painel', $def_atelie['atelie']['conteudo'] ?? '(ausente)' );
+cdm_ok( 'privada' === ( $def_atelie['atelie']['camada'] ?? '' ),
+	'a pagina /atelie/ se declara camada privada', $def_atelie['atelie']['camada'] ?? '(ausente)' );
 
 /* O apelido resolve de verdade, e so para o que conhece. */
 cdm_ok( 'materiais' === cdm_casca_apelido_para_slug( '/guia/' ), 'apelido com barra resolve para o slug canonico' );
@@ -1300,22 +1323,56 @@ $GLOBALS['__updates']        = array();
  * ------------------------------------------------------------------------- */
 
 echo "\n20. Noindex so na pagina de bastidor (secao 14.1)\n";
+/* DUAS RAZOES PARA SAIR DO INDICE, E SO DUAS, cada uma DECLARADA na definicao.
+ *
+ * Isto era "so a pagina de camada de prova sai do indice", e a regra estava certa
+ * enquanto a ilha tinha uma razao so. O bloco 4d trouxe a segunda: /atelie/ e a
+ * area de uma pessoa. Perdoar o slug 'atelie' por nome seria a heuristica por
+ * vizinhanca que a secao 8 proibe — bastaria uma pagina futura se chamar assim.
+ * Entao a regua cobra a DECLARACAO, e nomeia as duas camadas admitidas; camada
+ * nova exige mexer aqui, que e o ponto.
+ *
+ * A contagem tambem deixa de ser "uma": ela e recontada das definicoes, e o que
+ * se cobra e a EQUIVALENCIA entre "tem noindex" e "declara camada de bastidor".
+ * As duas direcoes, porque as duas doem: noindex sem camada e pagina que sumiu do
+ * indice sem ninguem declarar, e camada sem noindex e bastidor pedindo
+ * rastreamento (secao 14.1). */
 $menu_da_ilha = array( 'inicio', 'loja', 'materiais', 'como-fazer', 'sobre' );
+$camadas_de_bastidor = array( 'prova', 'privada' );
 $fora_indevido = array();
 foreach ( cdm_casca_paginas_noindex() as $slug ) {
 	$def = $definicoes[ $slug ];
-	if ( ! isset( $def['camada'] ) || 'prova' !== $def['camada'] ) {
-		$fora_indevido[] = $slug . ' (nao e camada de prova)';
+	if ( ! isset( $def['camada'] ) || ! in_array( $def['camada'], $camadas_de_bastidor, true ) ) {
+		$fora_indevido[] = $slug . ' (noindex sem camada declarada)';
 	}
 	if ( in_array( $slug, $menu_da_ilha, true ) ) {
 		$fora_indevido[] = $slug . ' (esta no menu da ilha)';
 	}
 }
-cdm_ok( empty( $fora_indevido ), 'so a pagina de camada de prova sai do indice',
+/* O outro sentido, que nenhuma versao anterior cobrava. */
+foreach ( $definicoes as $slug => $def ) {
+	if ( isset( $def['camada'] ) && in_array( $def['camada'], $camadas_de_bastidor, true )
+		&& ! in_array( $slug, cdm_casca_paginas_noindex(), true ) ) {
+		$fora_indevido[] = $slug . ' (camada ' . $def['camada'] . ' DENTRO do indice)';
+	}
+}
+cdm_ok( empty( $fora_indevido ), 'toda pagina fora do indice declara a camada, e vice-versa',
 	empty( $fora_indevido ) ? implode( ', ', cdm_casca_paginas_noindex() ) : implode( ' | ', $fora_indevido ) );
+
+/* E A CAMADA DE PROVA CONTINUA SENDO UMA SO. Era esta a metade que valia da
+   afirmacao antiga, e ela nao pode ser perdida no caminho: sem ela bastaria
+   declarar a home como prova para o portao de voz da secao 15.2 parar de valer —
+   a porta dos fundos que a Aquametria achou em 11/09/2026. */
+$de_prova = array();
+foreach ( $definicoes as $slug => $def ) {
+	if ( isset( $def['camada'] ) && 'prova' === $def['camada'] ) { $de_prova[] = $slug; }
+}
+cdm_ok( 1 === count( $de_prova ), 'exatamente uma pagina e camada de prova',
+	implode( ', ', $de_prova ) );
+
 $indexaveis = array_diff( array_keys( $definicoes ), cdm_casca_paginas_noindex() );
-cdm_ok( count( $indexaveis ) === count( $definicoes ) - 1,
-	'exatamente uma pagina da ilha esta fora do indice',
+cdm_ok( count( $indexaveis ) === count( $definicoes ) - count( cdm_casca_paginas_noindex() ),
+	'as indexaveis sao todas as que nao declaram bastidor',
 	count( $indexaveis ) . ' de ' . count( $definicoes ) . ' indexaveis' );
 
 /* ---------------------------------------------------------------------------
@@ -1389,15 +1446,25 @@ cdm_ok( empty( $divergem ), 'nivel e mae de cada pagina batem entre ARVORE.md e 
    trilha, e pagina sem trilha e pagina sem lugar na arvore. A home e a unica
    excecao, e ela e nomeada. */
 $sem_lugar = array();
-foreach ( array_keys( cdm_casca_definicao_paginas() ) as $caminho ) {
+foreach ( cdm_casca_definicao_paginas() as $caminho => $def ) {
 	if ( 'inicio' === $caminho ) {
+		continue;
+	}
+	/* A CAMADA PRIVADA FICA FORA DA ARVORE, e e a segunda excecao depois da home.
+	   Nao e falta de lugar: e nao TER lugar na arvore publica, de propriedade. O
+	   painel da artesa nao e um degrau de trilha nem irma de ninguem — se
+	   estivesse no mapa, `cdm_casca_irmas()` o ofereceria como "Veja tambem" nas
+	   paginas de raiz e a ilha publicaria um link para a area de uma pessoa em
+	   toda pagina institucional. */
+	if ( isset( $def['camada'] ) && 'privada' === $def['camada'] ) {
+		cdm_ok( ! isset( $mapa_codigo[ $caminho ] ), 'a camada privada NAO entra na arvore', $caminho );
 		continue;
 	}
 	if ( ! isset( $mapa_codigo[ $caminho ] ) ) {
 		$sem_lugar[] = $caminho;
 	}
 }
-cdm_ok( empty( $sem_lugar ), 'toda pagina publicada tem lugar na arvore (so a home fica fora)',
+cdm_ok( empty( $sem_lugar ), 'toda pagina publica tem lugar na arvore (so a home e a privada ficam fora)',
 	empty( $sem_lugar ) ? count( cdm_casca_definicao_paginas() ) . ' paginas' : implode( ', ', $sem_lugar ) );
 
 /* (b) OS SLUGS DE NIVEL 2 SAO OS DO VOZ.md. Era exatamente por aqui que a
@@ -1816,6 +1883,18 @@ foreach ( $paginas as $tag ) {
    e a linha seguinte cobra que ela ainda assim seja citada, para "fora do
    sitemap" nao virar porta dos fundos para publicar pagina que ninguem linka. */
 $fora_do_sitemap = cdm_casca_paginas_noindex();
+/* AS DUAS CAMADAS DE BASTIDOR SE SEPARAM AQUI, e a regra de uma e o contrario da
+   regra da outra: a de PROVA tem de ser citada (senao "fora do sitemap" vira
+   porta dos fundos para publicar pagina que ninguem linka) e a PRIVADA nao pode
+   ser citada por nenhuma (link publico para a area de uma pessoa e convite a todo
+   robo que passar). Ler as duas pela mesma lista, como esta afirmacao fazia antes
+   do bloco 4d, cobraria do painel da artesa exatamente o que ele nao deve ter. */
+$fora_de_prova   = array();
+$fora_privadas   = array();
+foreach ( $fora_do_sitemap as $caminho ) {
+	$camada = isset( $definicoes[ $caminho ]['camada'] ) ? $definicoes[ $caminho ]['camada'] : '';
+	if ( 'privada' === $camada ) { $fora_privadas[] = $caminho; } else { $fora_de_prova[] = $caminho; }
+}
 $orfas = array();
 foreach ( array_keys( cdm_teste_paginas_no_ar( 'hoje' ) ) as $caminho ) {
 	if ( in_array( $caminho, $fora_do_sitemap, true ) ) {
@@ -1827,13 +1906,23 @@ foreach ( array_keys( cdm_teste_paginas_no_ar( 'hoje' ) ) as $caminho ) {
 	}
 }
 $prova_sem_citacao = array();
-foreach ( $fora_do_sitemap as $caminho ) {
+foreach ( $fora_de_prova as $caminho ) {
 	if ( ( isset( $apontam[ $caminho ] ) ? $apontam[ $caminho ] : 0 ) < 1 ) {
 		$prova_sem_citacao[] = $caminho;
 	}
 }
-cdm_ok( empty( $prova_sem_citacao ), 'a pagina fora do sitemap continua citada por outra pagina',
-	empty( $prova_sem_citacao ) ? implode( ', ', $fora_do_sitemap ) : implode( ', ', $prova_sem_citacao ) );
+cdm_ok( empty( $prova_sem_citacao ), 'a pagina de prova fora do sitemap continua citada por outra pagina',
+	empty( $prova_sem_citacao ) ? implode( ', ', $fora_de_prova ) : implode( ', ', $prova_sem_citacao ) );
+
+/* E O CONTRARIO, PARA A CAMADA PRIVADA: zero citacao em pagina publica nenhuma.
+   O painel e alcancado pelo link que chegou no e-mail dela, e por mais nada. */
+$privada_citada = array();
+foreach ( $fora_privadas as $caminho ) {
+	$n = isset( $apontam[ $caminho ] ) ? $apontam[ $caminho ] : 0;
+	if ( $n > 0 ) { $privada_citada[] = $caminho . ' (' . $n . ' links)'; }
+}
+cdm_ok( empty( $privada_citada ), 'a camada privada NAO e linkada por nenhuma pagina publica',
+	empty( $privada_citada ) ? implode( ', ', $fora_privadas ) . ': 0 links' : implode( ', ', $privada_citada ) );
 
 /* E A CITACAO NO CORPO, medida separada — achado de 12/09/2026.
    A afirmacao de cima passou a ser satisfeita SOZINHA pelo cluster: desde que
@@ -1849,14 +1938,14 @@ $citada_no_texto = array();
 foreach ( $paginas as $tag ) {
 	$corpo_sem_gerado = preg_replace( '#<nav class="cdm-veja".*?</nav>#s', '',
 		preg_replace( '#<nav class="cdm-trilha".*?</nav>#s', '', cdm_corpo( $html_por_pagina[ $tag ] ) ) );
-	foreach ( $fora_do_sitemap as $caminho ) {
+	foreach ( $fora_de_prova as $caminho ) {
 		if ( false !== strpos( $corpo_sem_gerado, 'href="https://clubedomosaico.com.br/' . $caminho . '/"' ) ) {
 			$citada_no_texto[ $caminho ] = isset( $citada_no_texto[ $caminho ] ) ? $citada_no_texto[ $caminho ] + 1 : 1;
 		}
 	}
 }
 $sem_frase = array();
-foreach ( $fora_do_sitemap as $caminho ) {
+foreach ( $fora_de_prova as $caminho ) {
 	if ( empty( $citada_no_texto[ $caminho ] ) ) {
 		$sem_frase[] = $caminho;
 	}

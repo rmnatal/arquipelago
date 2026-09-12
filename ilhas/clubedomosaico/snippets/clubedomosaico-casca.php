@@ -202,7 +202,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'CDM_CASCA_VERSAO' ) ) {
-	define( 'CDM_CASCA_VERSAO', '1.8.0' );
+	define( 'CDM_CASCA_VERSAO', '1.9.0' );
 	/* O nome do site e a linha que o WordPress serve no <title> da home. A
 	   Aquametria descobriu em 11/09/2026 que a tagline nunca tocada desde o
 	   nascimento da ilha continuava sendo a linha mais lida do site — a do
@@ -1304,10 +1304,21 @@ if ( ! function_exists( 'cdm_casca_vitrine_de_pecas_html' ) ) {
  * imprime o estado vazio honesto. NUNCA devolve peça de exemplo: peça inventada
  * é proibida nesta ilha por decisão escrita no PROMPT.md, e um "exemplo" que
  * ninguém pode comprar é exatamente isso.
+ *
+ * 1.9.0 — O FILTRO NO FIM É A ÚNICA MUDANÇA DESTA VERSÃO, e ela existe para o
+ * bloco 4d NÃO precisar editar esta casca. O cartão de peça do `DESIGN.md` é
+ * "a foto manda, proporção 4:5", e esta função nasceu sem foto porque foto de
+ * peça não existia. Quem sabe desenhar o cartão com foto é o snippet da Loja,
+ * que é dono do CPT; então ele acrescenta a versão dele pelo filtro e esta
+ * continua sendo o piso — inclusive o estado vazio, que já está no ar e já foi
+ * conferido, e que seria a segunda coisa a envelhecer se fosse reescrita lá.
+ * Sem o filtro, o snippet da Loja teria de sobrescrever esta função, e as duas
+ * metades dependeriam da ordem em que o Code Snippets carrega os arquivos — que
+ * é a última coisa que se quer decidindo o que a home serve.
  */
 function cdm_casca_vitrine_de_pecas_html( $quantas = 8 ) {
 	if ( ! function_exists( 'post_type_exists' ) || ! post_type_exists( 'peca' ) ) {
-		return '';
+		return apply_filters( 'cdm_vitrine_de_pecas', '', (int) $quantas );
 	}
 
 	$pecas = get_posts( array(
@@ -1316,7 +1327,7 @@ function cdm_casca_vitrine_de_pecas_html( $quantas = 8 ) {
 		'numberposts' => (int) $quantas,
 	) );
 	if ( ! $pecas ) {
-		return '';
+		return apply_filters( 'cdm_vitrine_de_pecas', '', (int) $quantas );
 	}
 
 	$html = '<ul class="cdm-cards">';
@@ -1331,7 +1342,7 @@ function cdm_casca_vitrine_de_pecas_html( $quantas = 8 ) {
 	}
 	$html .= '</ul>';
 
-	return $html;
+	return apply_filters( 'cdm_vitrine_de_pecas', $html, (int) $quantas );
 }
 }
 

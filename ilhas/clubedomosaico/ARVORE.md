@@ -65,6 +65,27 @@ Nível 2 pelo tipo de peça, com o nome que a pessoa busca: `/loja/vasos/`, `/lo
 
 Nível 3 = a peça, com `Product` + `Offer`, preço real e prazo. Peça própria **nunca** leva `rel="sponsored"`.
 
+### 3b. A PEÇA NASCE EM `/loja/<slug>/`, nível 2, e é estado de transição declarado (12/09/2026)
+
+O bloco 4d publicou o modelo, e a peça **não** nasceu em três níveis: ela nasce filha direta de `/loja/`, do mesmo jeito e pelo mesmo motivo que as duas ferramentas nasceram filhas diretas de `/materiais/`. A coleção de nível 2 (`vasos`, `colares`…) só pode nascer com três filhas de dado real — e "dado real" aqui é peça publicada pela artesã, que hoje são zero. **A mãe de hoje é a mãe que já tem endereço**, que é a regra que a seção 2 deste arquivo já tinha escrito para a F2.
+
+O que isso custa e onde ele será pago: no dia em que uma coleção tiver três peças, mover `/loja/vaso-azul/` para `/loja/vasos/vaso-azul/` seria mexer em URL publicada, o que a 12.1 proíbe para página com impressão registrada. Então há duas saídas, e a escolha é da leitura que tiver número: ou a peça fica em dois níveis para sempre (e a coleção é uma página de listagem que aponta para as filhas sem ser mãe delas na URL), ou as peças que ainda não tiverem impressão nenhuma se movem com 301 na mesma passada em que a coleção nasce. **Nenhuma das duas se decide hoje**, porque hoje não há peça — e decidir sem peça é decidir sem o único dado que importa.
+
+As **taxonomias existem, as páginas delas não.** `colecao` e `tecnica` são registradas desde 12/09 para o dado existir desde a primeira peça (é por elas que a peça se liga ao resto do site, e o formulário as cobra), mas com `public => false`: taxonomia pública nasce com arquivo próprio e entra no `wp-sitemap.xml`, e seriam de sete a doze URLs finas pedindo rastreamento num domínio de dois dias (14.1). O dia em que elas virarem página é o dia em que tiverem peça para listar.
+
+### 3c. `/atelie/` NÃO ESTÁ NA ÁRVORE, e a ausência é de propriedade (12/09/2026)
+
+O painel da artesã é uma página publicada da ilha e **não tem lugar na árvore** — é a segunda exceção, depois da home, e a razão não é a mesma. A home fica fora porque a 16.3 diz que ela não tem trilha; o painel fica fora porque **ele não é conteúdo do site, é a área de uma pessoa**.
+
+Ele se declara `camada: privada` na definição de páginas, e essa declaração é o que faz a ilha tratar as duas razões de `noindex` de forma **oposta**:
+
+| camada | exemplo | `noindex` | no sitemap | citada por outra página |
+|---|---|---|---|---|
+| `prova` | `/materiais/como-sabemos/` | sim | não | **obrigatoriamente sim** — senão "fora do sitemap" vira porta dos fundos para publicar página que ninguém linka |
+| `privada` | `/atelie/` | sim | não | **obrigatoriamente não** — link público para a área de alguém é convite a todo robô que passar |
+
+Antes do bloco 4d a ilha tinha uma razão só, e o portão da casca cobrava literalmente que a única página fora do índice fosse a de camada de prova. Ele reprovou o painel na primeira execução do bloco, e estava certo: o conserto não foi abrir exceção para o slug `atelie` — isso seria a heurística por vizinhança que a seção 8 proíbe, e bastaria uma página futura se chamar assim — e sim **declarar a camada e cobrar as duas direções**. O `teste-casca.php` agora mede: toda página com `noindex` declara camada, toda camada declarada tem `noindex`, a de prova continua sendo exatamente uma, a privada não entra na árvore, e as onze páginas públicas servem **zero** links para ela.
+
 ## 4. `/como-fazer/` — a Escola
 
 Nível 2 pelo tipo de peça que a pessoa vai fazer: `/como-fazer/vasos/`, `/como-fazer/quadros-e-espelhos/`, `/como-fazer/bijuteria/`, `/como-fazer/mesas-e-tampos/`.
@@ -90,6 +111,8 @@ Nível 3 = o tutorial, com a lista de materiais ligada ao Guia e o "prefere pron
 | `/contato/` | raiz | — | Início › Contato |
 | `/divulgacao-de-afiliados/` | raiz | — | Início › Divulgação de afiliados |
 | `/privacidade/` | raiz | — | Início › Privacidade |
+| `/atelie/` | **fora da árvore** | — | nenhuma — camada `privada` (ver 3c) |
+| `/loja/<peça>/` | 2 | `/loja/` | Início › Loja › &lt;nome da peça&gt; — nasce com a primeira peça publicada (ver 3b) |
 
 **Nenhuma página mudou de endereço neste bloco, e nenhuma precisou mudar** — as três seções já eram nível 1, a única página de nível 2 já nascera com mãe em 1.2.0, e as quatro da raiz são as que a 16.1 admite ali. Por isso este bloco não tem 301 nenhum e o sitemap não muda: a árvore desta ilha estava certa na estrutura e faltava ficar **visível** (breadcrumb, schema, cluster), que é o que a 16.3 e a 16.4 pedem.
 
