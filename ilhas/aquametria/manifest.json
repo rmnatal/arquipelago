@@ -4,7 +4,7 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 54,
+  "revisao": 55,
   "atualizado_em": "2026-09-12",
   "estado": "fundacao",
   "desembarque": {
@@ -711,6 +711,27 @@
       "publicar": false,
       "sha256": "4b2a3b0d21435c10c70e156bfb5fc0f81d88589bcb04b937b5c651b3fb7bf4dd",
       "descricao": "Portao da vitrine da C15 (bloco T8, 11/09/2026). Copia o desenho do teste da C5 e troca o que o grupo significa aqui: o nivel de alta exigencia tem a faixa ABERTA por cima, porque a fonte aquarioturbinado publica 'acima de 40 lm/L' e nao diz ate onde. Entao os dois grupos sao 'dentro do intervalo que as tres fontes publicam' e 'acima do teto da leitura mais alta' — e ate a v1.2.0 o cartao dizia 'dentro da faixa de 40 a 60 lm/L' inclusive para uma luminaria de 115,1 lm/L. O caso do teste (60 cm, 57,6 L, alta exigencia) reproduz exatamente essa lista, com um item dentro e tres acima. Afirmacao central, igual a da C3 e a da C5: a ordem da vitrine e identica a da lista tecnica, cartao por cartao. Mede as duas metades da pagina — a vitrine SERVIDA com JavaScript DESLIGADO (o que um crawler de IA recebe) e a PINTADA com ele ligado (o que o comprador ve) — e nao guarda numero esperado nenhum: le o AQM_C15_CATALOGO que o snippet embute e tira a regua da faixa do TEXTO que a propria pagina publicou. Confere ainda que nenhum produto some por falta de foto ou link, que todo preco sai como cotacao com data, que o alt das imagens sai acentuado, que a vitrine vem antes da procedencia, que a lista vazia DIZ por que esta vazia, e a barra fixa e a rolagem do celular. 55 afirmacoes. Tres testes negativos feitos em 11/09/2026 — rotulo mentindo, vitrine reordenando por quem tem link e produto sem foto sumindo — fizeram os portoes reprovarem como deviam."
+    },
+    {
+      "id": "teste-ga4",
+      "arquivo": "ferramentas/teste-ga4.py",
+      "publicar": false,
+      "sha256": "1a8fc2d7046ea37d315cd23a288f039164d52f8bd2725f728c9d96961b287675",
+      "descricao": "Portao da tag de medicao (GA4) na bancada: 216 afirmacoes, 13 paginas montadas UMA POR PROCESSO pelo render-pagina-completa.php. A regua que faz este arquivo valer: o ID de medicao esperado e lido do PROMPT.md da ilha, NUNCA do snippet — perguntar ao snippet qual e o ID certo aprovaria o ID da ilha vizinha, e tag com ID errado MEDE em silencio, sem uma linha de defeito visivel, gravando sessao na propriedade de outra ilha por meses. Quando o dados/despachos.md nomeia o ID da ilha, ele entra como terceira testemunha. Afirma por pagina: um carregador com o ID da ilha e um so, async, ?id= sem segundo parametro (sem E-comercial nao ha &#038; para o esc_url() criar), um bloco de configuracao, nenhum outro ID de medicao, configuracao incondicional (sem porta de consentimento), a tag dentro do <head> e depois do <title>, da meta descricao e de todo JSON-LD, o Google como unico script de outro dominio, e zero &#038; dentro de <script>. Afirma estruturalmente, o que a medicao por pagina nao alcanca: que a prioridade do gtag no wp_head e a MAIOR de todos os add_action('wp_head') dos snippets da ilha (calculadora nova que registre JSON-LD acima de 23 reprova antes de a pagina existir), que o bloco que imprime a tag nao guarda ID literal e le a constante, e que a guarda de constante ausente esta de pe. Nasceu no despacho de 12/09/2026."
+    },
+    {
+      "id": "mutacoes-ga4",
+      "arquivo": "ferramentas/mutacoes-ga4.py",
+      "publicar": false,
+      "sha256": "54fe162459898976e3dfef1125abb4286d194f13d65b0f214aa8aa815d535b61",
+      "descricao": "13 mutacoes deliberadas contra o teste-ga4.py, 13 reprovadas, cada uma numa copia da ilha. Onze atacam o site (ID da ilha vizinha, uma letra trocada no ID, async removido, prioridade em 2 e em 21, segundo parametro na URL, porta de consentimento, tag movida para o wp_footer, guarda removida, versao da casca atrasada em relacao ao manifest) e DUAS atacam a REGUA (o PROMPT.md perdendo a linha do ID, e o PROMPT.md divergindo do snippet) — estas duas passariam se o portao lesse o ID da constante, e sao a razao de ele nao ler. DUAS PASSARAM NA PRIMEIRA RODADA e viraram trava de estrutura, pela mesma licao da C15: devolver o ID literal para dentro da funcao e derrubar a guarda de constante ausente nao mudam um byte do que o site serve, entao nenhuma medicao de RESULTADO pode ve-las. A funcao troca() recusa operar quando o alvo nao existe mais no arquivo, que e a trava contra mutacao inerte."
+    },
+    {
+      "id": "conferir-ga4-no-ar",
+      "arquivo": "ferramentas/conferir-ga4-no-ar.py",
+      "publicar": false,
+      "sha256": "96c6df4f158417e37285a9fb89a33550eb7c1a62e9a07e7b9666be10f4f7aed0",
+      "descricao": "Mede a tag de medicao no HTML SERVIDO, nao no repositorio: 168 afirmacoes nas 13 URLs, com ?v=<hora e minuto> em toda requisicao por causa do cache duplo da secao 4. A LISTA DE URLS VEM DO SITEMAP NO AR, nunca digitada aqui — pagina nova entra na medicao sozinha e lista escrita a mao vira, com o tempo, afirmacao sobre um site que nao existe mais. Rodado ANTES do desembarque para provar que sabia distinguir (77 falhas, como devia), foi ele que achou que o site JA servia gtag/js?id=GT-PL9DD7KW pelo plugin Google Site Kit nas treze paginas — e foi ali que tres afirmacoes de ordem deram VERDE com a nossa tag ausente, porque liam a posicao da palavra 'googletagmanager' e nao a do ID da ilha. Toda afirmacao localiza a tag pelo ID; o ID estrangeiro e RELATADO com nome em vez de reprovar ou ser calado, porque quem o serve e um plugin e nao a casca, e a pergunta de para onde ele roteia so se le logado. Nao mede se o GA4 recebeu o evento: www.googletagmanager.com responde 000 por politica de egresso e a credencial da conta de servico nao existe no ambiente das rotinas."
     }
   ]
 }

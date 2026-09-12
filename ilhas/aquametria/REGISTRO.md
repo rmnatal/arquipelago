@@ -5683,10 +5683,19 @@ catalogo. Pauta da secao 17: `pauta.md` ainda nao existe — 0 escritos, 0 na fi
    Pagina nova e URL nova, com portao de 1.500 caracteres de corpo, lugar na
    arvore, `BreadcrumbList` e meta propria — bloco, nao frase. Fica na fila.
 4. **O `atualizar-manifest.py` desta ilha nao espelha o grupo `ferramentas`**: ele
-   avisa "fora do manifest" para 19 arquivos (os tres deste bloco inclusive) e
-   segue. O `atualizar-manifest.py` do Clube do Mosaico aprendeu hoje a cobrar as
-   duas direcoes; portar essa regra para ca e trabalho curto e e da mesma familia
-   do "numero de tela nasce contado".
+   avisa "fora do manifest" e **segue**, em vez de reprovar como faz com a versao
+   divergente. As tres ferramentas deste bloco foram inventariadas (manifest na
+   **revisao 55**, `publicar: false` nas tres, `/status` reconferido), e sobram
+   **18 arquivos fora**: 15 ferramentas antigas — entre elas `teste-voz.mjs`,
+   `teste-arvore.mjs` e `render-pagina-completa.php`, que sao portoes principais
+   desta ilha — mais tres `README.md` e o `dados/indexacao.md`. O
+   `atualizar-manifest.py` do Clube do Mosaico aprendeu hoje a cobrar as duas
+   direcoes e a PARAR; portar a regra para ca so faz sentido junto com a entrada
+   dos 18, porque uma trava que reprova de saida travaria todo manifest desta ilha
+   ate alguem escrever 18 descricoes honestas — e descricao de enchimento e pior
+   que ausencia. E da mesma familia do "numero de tela nasce contado": inventario
+   pela metade nao mente sobre nenhuma pagina, mente sobre com o que esta ilha se
+   verifica.
 
 ### PROXIMO PASSO DESBLOQUEADO
 
