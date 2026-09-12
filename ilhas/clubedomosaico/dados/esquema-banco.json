@@ -1,1885 +1,1907 @@
 {
-  "id": "esquema-banco",
-  "ilha": "clubedomosaico",
-  "bloco": "3 (criado) + 3c (categoria rejunte)",
-  "gerado_em": "2026-09-10",
-  "versao_esquema": 2,
-  "descricao": "Modelo do banco do Clube do Mosaico: entidades MATERIAL, PECA, TECNICA e a serie temporal COTACAO. Define campo a campo o tipo, a unidade, a obrigatoriedade, o vocabulario controlado e a ORIGEM esperada do dado. Nenhuma afirmacao tecnica entra no banco sem fonte de fabricante com data. Este arquivo e o contrato que dados/materiais-*.json e dados/tecnicas.json cumprem, que o CPT `peca` do WordPress espelha, e que ferramentas/validar-banco.py verifica.",
-  "depende_de": [
-    "dados/especificacao-calculadoras.md",
-    "dados/constantes.json",
-    "dados/corpus-buscas.md"
-  ],
-  "principios": [
-    "O CAMPO QUE DECIDE A RECOMENDACAO E NEGATIVO. Em quase todo banco de produto o que vale e o que o produto FAZ. Aqui o campo que manda e o que o fabricante diz para NAO fazer: a ficha BRSA004 do Silicone Acetico Construcao Tekbond publica a lista de superficies proibidas, e sao exatamente as que o mosaico artesanal brasileiro usa por indicacao de blog. Por isso `declaracoes.nao_usar_em` e campo de primeira classe, estruturado no vocabulario de base e ambiente, e nao prosa.",
-    "TRES ESTADOS, NUNCA DOIS. Ausencia de declaracao NAO e proibicao, e proibicao NAO e o contrario de indicacao. Todo par produto x (base, ambiente) resolve para `declarado_indicado`, `declarado_proibido`, `declarado_nao_recomendado` ou `nao_declarado`. O Cascorez PVA e o caso que obrigou isso: o fabricante lista usos porosos e internos e nao declara resistencia a agua nem uso externo — a ilha nao inventa proibicao, mas tambem nao recomenda no silencio. Banco de dois estados publicaria uma das duas mentiras.",
-    "A ESCADA DE FONTES DECIDE O QUE PODE VIRAR RECOMENDACAO PRIMARIA, E ISSO E MECANICO. O Loctite Durepoxi declara aderir submerso, mas a fonte e material de imprensa do fabricante, nao ficha tecnica: nivel 4, abaixo do minimo. Por isso a peca em contato permanente com agua continua sendo faixa DESCOBERTA na F2, e nao vira recomendacao. Sem escada, essa decisao seria gosto de quem grava.",
-    "UNIDADE DE VENDA E PARTE DA IDENTIDADE DA OFERTA, NAO DETALHE DE PRECO. O bloco 1 mediu que a pastilha e vendida em tres unidades incompativeis (100 pecas, 100 gramas, placa 30x30 com 225). Um mesmo produto em placa e em peca avulsa sao duas entradas em `venda[]`, cada uma com a sua conversao. Banco que guarda so 'preco' nao consegue nem comparar duas lojas.",
-    "PASSO DE FABRICA, NAO LADO NOMINAL. Placa quadrada de lado L com N pastilhas tem passo L/raiz(N): a placa 30x30 com 225 nao e pastilha de 1x1 cm, e sim de 2,00 cm. O campo gravado e o passo calculado, e o lado anunciado pela loja fica ao lado como `lado_anunciado_cm` para a pagina poder mostrar a diferenca — que e o erro de compra mais comum do nicho.",
-    "NULL E RESPOSTA, NAO LACUNA. Espessura de pastilha, peso unitario e consumo de cola por area sao nulos com motivo escrito, porque nenhum fabricante os padroniza ou declara. Esses nulos sao o vacuo que as ferramentas ocupam e vao para a tela com essas palavras.",
-    "PECA NAO VIVE NO REPOSITORIO — E A UNICA ENTIDADE DO ARQUIPELAGO ASSIM. O catalogo da Loja e cadastrado pela artesa no painel /atelie/ e mora no WordPress como CPT `peca`. Este esquema descreve o CPT campo a campo para o snippet do bloco 4d nao inventar nada, mas nao existe arquivo de PECA em dados/. Nunca crie um: peca inventada e a unica forma de mentira que esta ilha pode cometer contra uma pessoa real.",
-    "DOIS PRECOS DE NATUREZA DIFERENTE NO MESMO SITE. Peca propria tem preco REAL, obrigatorio e vendido pela ilha (Product + Offer, sem rel=sponsored). Material de afiliado tem FAIXA de preco com data de coleta, nunca cravada como atual, e o preco jamais entra em criterio de ordem. Confundir os dois transformaria a loja da artesa numa vitrine de afiliado, que e o oposto do que ela e.",
-    "IMAGEM AUSENTE NAO ELIMINA O REGISTRO. Material sem foto aparece na vitrine com espaco reservado neutro (secao 6 do ARQUIPELAGO.md). A excecao e PECA: peca sem foto nao publica, porque a foto E o produto.",
-    "PROCEDENCIA POR CAMPO, NAO POR REGISTRO. Um material costuma ter a lista de substratos numa pagina do fabricante, a restricao na ficha tecnica e a embalagem numa terceira. Cada campo tecnico aponta a sua propria fonte com data e nivel na escada.",
-    "REJUNTE NAO E COLA, E A LISTA DO FABRICANTE NAO NOMEIA A MESMA COISA NOS DOIS. Descoberto no bloco 3c, ao encher a categoria rejunte. Na cola, 'ceramica' na lista de indicacoes e a BASE — a superficie sobre a qual se cola, e e por isso que a matriz da F2 e base x ambiente. No rejunte, 'ceramicas, pastilhas de porcelana e de vidro' e a TESSELA, o que vai ser rejuntado: o rejunte nao toca a base. Traduzir declaracao de rejunte para o vocabulario de base produziria uma afirmacao sem sentido, e pior, ela entraria calada na matriz da F2, porque `computar_celula` varria TODOS os materiais do banco sem olhar categoria. Por isso o rejunte ganhou mapa, regras e matriz proprios, e a matriz da F2 passou a declarar que so olha `categoria == cola`.",
-    "A VARIAVEL QUE DECIDE UM REJUNTE E A LARGURA DA JUNTA, E ELA E UM INTERVALO FECHADO NOS DOIS LADOS. Cola se escolhe por base e ambiente; rejunte se escolhe por quantos milimetros existem entre uma pastilha e a outra. Os cinco produtos deste banco declaram faixas diferentes e incompativeis entre si — 1 a 4, 1 a 5, 2 a 10 —, e a junta tipica do mosaico artesanal (2 a 3 mm) cai na intersecao de quase todas, o que faz a escolha parecer livre quando nao e: a 1 mm sobram dois produtos, a 10 mm sobra um. Por isso a grade da matriz do rejunte pisa EXATAMENTE em 1, 2, 4, 5 e 10 — os extremos declarados — e tambem em 6 e 11, logo depois do ultimo. Grade que anda de dois em dois nunca separaria 'ate 4' de 'ate 5'."
-  ],
-  "regra_de_divergencia": {
-    "principio": "Secao 10 do ARQUIPELAGO.md: quando as fontes divergem, quem decide a direcao e a assimetria de custo, nunca a media.",
-    "compatibilidade_de_adesivo": {
-      "resolve_para": "conjunto MAIS ESTREITO",
-      "erro_caro": "Recomendar adesivo que o fabricante desaconselha faz a peca descolar meses depois, na casa de quem comprou a peca da artesa ou na peca que a leitora passou o fim de semana montando. Basta UMA restricao declarada bater com a entrada para o produto sair dos recomendados.",
-      "as_duas_declaracoes_vao_para_a_tela": true
-    },
-    "quantidade_de_material": {
-      "resolve_para": "o MAIOR",
-      "erro_caro": "Faltar pastilha ou rejunte no meio da peca e pior do que sobrar: lote novo muda de cor e a peca fica remendada. Arredonda para cima e publica a sobra como numero explicito, nunca escondida."
-    },
-    "empate_de_nivel_na_escada": "Duas fontes do mesmo nivel discordando NAO viram media: o campo grava o lado em que errar doi menos pela regra acima, as duas declaracoes ficam em `divergencias[]` com suas datas, e `resolucao` escreve qual e o erro caro. Divergencia sem resolucao escrita e a ilha empurrando a duvida para o visitante."
+ "id": "esquema-banco",
+ "ilha": "clubedomosaico",
+ "bloco": "3 (criado) + 3c (categoria rejunte)",
+ "gerado_em": "2026-09-10",
+ "versao_esquema": 2,
+ "descricao": "Modelo do banco do Clube do Mosaico: entidades MATERIAL, PECA, TECNICA e a serie temporal COTACAO. Define campo a campo o tipo, a unidade, a obrigatoriedade, o vocabulario controlado e a ORIGEM esperada do dado. Nenhuma afirmacao tecnica entra no banco sem fonte de fabricante com data. Este arquivo e o contrato que dados/materiais-*.json e dados/tecnicas.json cumprem, que o CPT `peca` do WordPress espelha, e que ferramentas/validar-banco.py verifica.",
+ "depende_de": [
+  "dados/especificacao-calculadoras.md",
+  "dados/constantes.json",
+  "dados/corpus-buscas.md"
+ ],
+ "principios": [
+  "O CAMPO QUE DECIDE A RECOMENDACAO E NEGATIVO. Em quase todo banco de produto o que vale e o que o produto FAZ. Aqui o campo que manda e o que o fabricante diz para NAO fazer: a ficha BRSA004 do Silicone Acetico Construcao Tekbond publica a lista de superficies proibidas, e sao exatamente as que o mosaico artesanal brasileiro usa por indicacao de blog. Por isso `declaracoes.nao_usar_em` e campo de primeira classe, estruturado no vocabulario de base e ambiente, e nao prosa.",
+  "TRES ESTADOS, NUNCA DOIS. Ausencia de declaracao NAO e proibicao, e proibicao NAO e o contrario de indicacao. Todo par produto x (base, ambiente) resolve para `declarado_indicado`, `declarado_proibido`, `declarado_nao_recomendado` ou `nao_declarado`. O Cascorez PVA e o caso que obrigou isso: o fabricante lista usos porosos e internos e nao declara resistencia a agua nem uso externo — a ilha nao inventa proibicao, mas tambem nao recomenda no silencio. Banco de dois estados publicaria uma das duas mentiras.",
+  "A ESCADA DE FONTES DECIDE O QUE PODE VIRAR RECOMENDACAO PRIMARIA, E ISSO E MECANICO. O Loctite Durepoxi declara aderir submerso, mas a fonte e material de imprensa do fabricante, nao ficha tecnica: nivel 4, abaixo do minimo. Por isso a peca em contato permanente com agua continua sendo faixa DESCOBERTA na F2, e nao vira recomendacao. Sem escada, essa decisao seria gosto de quem grava.",
+  "UNIDADE DE VENDA E PARTE DA IDENTIDADE DA OFERTA, NAO DETALHE DE PRECO. O bloco 1 mediu que a pastilha e vendida em tres unidades incompativeis (100 pecas, 100 gramas, placa 30x30 com 225). Um mesmo produto em placa e em peca avulsa sao duas entradas em `venda[]`, cada uma com a sua conversao. Banco que guarda so 'preco' nao consegue nem comparar duas lojas.",
+  "PASSO DE FABRICA, NAO LADO NOMINAL. Placa quadrada de lado L com N pastilhas tem passo L/raiz(N): a placa 30x30 com 225 nao e pastilha de 1x1 cm, e sim de 2,00 cm. O campo gravado e o passo calculado, e o lado anunciado pela loja fica ao lado como `lado_anunciado_cm` para a pagina poder mostrar a diferenca — que e o erro de compra mais comum do nicho.",
+  "NULL E RESPOSTA, NAO LACUNA. Espessura de pastilha, peso unitario e consumo de cola por area sao nulos com motivo escrito, porque nenhum fabricante os padroniza ou declara. Esses nulos sao o vacuo que as ferramentas ocupam e vao para a tela com essas palavras.",
+  "PECA NAO VIVE NO REPOSITORIO — E A UNICA ENTIDADE DO ARQUIPELAGO ASSIM. O catalogo da Loja e cadastrado pela artesa no painel /atelie/ e mora no WordPress como CPT `peca`. Este esquema descreve o CPT campo a campo para o snippet do bloco 4d nao inventar nada, mas nao existe arquivo de PECA em dados/. Nunca crie um: peca inventada e a unica forma de mentira que esta ilha pode cometer contra uma pessoa real.",
+  "DOIS PRECOS DE NATUREZA DIFERENTE NO MESMO SITE. Peca propria tem preco REAL, obrigatorio e vendido pela ilha (Product + Offer, sem rel=sponsored). Material de afiliado tem FAIXA de preco com data de coleta, nunca cravada como atual, e o preco jamais entra em criterio de ordem. Confundir os dois transformaria a loja da artesa numa vitrine de afiliado, que e o oposto do que ela e.",
+  "IMAGEM AUSENTE NAO ELIMINA O REGISTRO. Material sem foto aparece na vitrine com espaco reservado neutro (secao 6 do ARQUIPELAGO.md). A excecao e PECA: peca sem foto nao publica, porque a foto E o produto.",
+  "PROCEDENCIA POR CAMPO, NAO POR REGISTRO. Um material costuma ter a lista de substratos numa pagina do fabricante, a restricao na ficha tecnica e a embalagem numa terceira. Cada campo tecnico aponta a sua propria fonte com data e nivel na escada.",
+  "REJUNTE NAO E COLA, E A LISTA DO FABRICANTE NAO NOMEIA A MESMA COISA NOS DOIS. Descoberto no bloco 3c, ao encher a categoria rejunte. Na cola, 'ceramica' na lista de indicacoes e a BASE — a superficie sobre a qual se cola, e e por isso que a matriz da F2 e base x ambiente. No rejunte, 'ceramicas, pastilhas de porcelana e de vidro' e a TESSELA, o que vai ser rejuntado: o rejunte nao toca a base. Traduzir declaracao de rejunte para o vocabulario de base produziria uma afirmacao sem sentido, e pior, ela entraria calada na matriz da F2, porque `computar_celula` varria TODOS os materiais do banco sem olhar categoria. Por isso o rejunte ganhou mapa, regras e matriz proprios, e a matriz da F2 passou a declarar que so olha `categoria == cola`.",
+  "A VARIAVEL QUE DECIDE UM REJUNTE E A LARGURA DA JUNTA, E ELA E UM INTERVALO FECHADO NOS DOIS LADOS. Cola se escolhe por base e ambiente; rejunte se escolhe por quantos milimetros existem entre uma pastilha e a outra. Os cinco produtos deste banco declaram faixas diferentes e incompativeis entre si — 1 a 4, 1 a 5, 2 a 10 —, e a junta tipica do mosaico artesanal (2 a 3 mm) cai na intersecao de quase todas, o que faz a escolha parecer livre quando nao e: a 1 mm sobram dois produtos, a 10 mm sobra um. Por isso a grade da matriz do rejunte pisa EXATAMENTE em 1, 2, 4, 5 e 10 — os extremos declarados — e tambem em 6 e 11, logo depois do ultimo. Grade que anda de dois em dois nunca separaria 'ate 4' de 'ate 5'."
+ ],
+ "regra_de_divergencia": {
+  "principio": "Secao 10 do ARQUIPELAGO.md: quando as fontes divergem, quem decide a direcao e a assimetria de custo, nunca a media.",
+  "compatibilidade_de_adesivo": {
+   "resolve_para": "conjunto MAIS ESTREITO",
+   "erro_caro": "Recomendar adesivo que o fabricante desaconselha faz a peca descolar meses depois, na casa de quem comprou a peca da artesa ou na peca que a leitora passou o fim de semana montando. Basta UMA restricao declarada bater com a entrada para o produto sair dos recomendados.",
+   "as_duas_declaracoes_vao_para_a_tela": true
   },
-  "escada_de_fontes": {
-    "descricao": "Nivel de confianca de uma origem. Em conflito, o nivel mais alto vence e o outro fica registrado em divergencias[]. O nivel tambem decide o que a fonte PODE sustentar: recomendacao primaria publicada exige nivel <= 3.",
-    "nivel_minimo_para_recomendacao_primaria": 3,
-    "niveis": [
-      {
-        "nivel": 1,
-        "origem": "ficha-tecnica-fabricante-lida",
-        "o_que_pode_sustentar": "qualquer campo tecnico, inclusive restricao e tempo de cura, com o numero do documento e a revisao citados.",
-        "existe_hoje": false,
-        "observacao": "Bloqueado hoje: o egresso da nuvem das rotinas barra quartzolit.weber, tekbond.com.br, cascola.com.br e henkel.com.br (medido em 10/09/2026, EGRESS_BLOCKED / connect_rejected). E coleta em aberto, nao dependencia humana — se o Raphael acrescentar esses dominios a rede Personalizada do ambiente, sobe todo o banco de nivel 2 para nivel 1."
-      },
-      {
-        "nivel": 2,
-        "origem": "ficha-tecnica-fabricante-via-busca",
-        "o_que_pode_sustentar": "qualquer campo tecnico atribuido a uma ficha tecnica identificada por codigo e revisao, colhido por busca restrita ao dominio do fabricante sem abrir o PDF. Vai para a tela com o codigo da ficha e a data de coleta.",
-        "existe_hoje": true,
-        "observacao": "E o nivel da constante mais valiosa da ilha (BRSA004). Todo campo neste nivel carrega conferir_no_pdf: true."
-      },
-      {
-        "nivel": 3,
-        "origem": "pagina-de-produto-do-fabricante",
-        "o_que_pode_sustentar": "substratos declarados, indicacoes de uso, embalagem e classificacao normativa citada pelo proprio fabricante. E o limite do que sustenta recomendacao primaria.",
-        "existe_hoje": true
-      },
-      {
-        "nivel": 4,
-        "origem": "material-de-imprensa-do-fabricante",
-        "o_que_pode_sustentar": "mencao de uso, sempre citada como 'segundo material do proprio fabricante (ANO)'. NAO sustenta recomendacao primaria nem entra em formula publicada.",
-        "existe_hoje": true,
-        "caso_que_criou_o_nivel": "loctite-durepoxi: o press release de 2018 diz que o produto adere submerso, e e a unica declaracao que a ilha tem para peca em contato permanente com agua. Como e nivel 4, a F2 mantem essa faixa DESCOBERTA em vez de recomendar."
-      },
-      {
-        "nivel": 5,
-        "origem": "varejo-oficial-da-marca",
-        "o_que_pode_sustentar": "embalagem, unidade de venda, peso liquido e imagem. Campo tecnico so com 'confira a embalagem' na tela.",
-        "existe_hoje": false
-      },
-      {
-        "nivel": 6,
-        "origem": "marketplace-ou-loja",
-        "o_que_pode_sustentar": "APENAS preco, unidade de venda, peso declarado no anuncio e imagem. Nunca compatibilidade, nunca restricao, nunca numero que entre em formula.",
-        "existe_hoje": false,
-        "observacao": "E daqui que sai a conversao grama <-> peca da pastilha, que nenhum fabricante declara: peso por SKU, com a data e o nome da loja na frase."
-      },
-      {
-        "nivel": 7,
-        "origem": "blog-serp-agregador",
-        "o_que_pode_sustentar": "NADA. Proibido como fonte tecnica nesta ilha.",
-        "existe_hoje": false,
-        "por_que": "O bloco 1 mediu que a regra cola x base circula em blog (FazFacil, Vila do Artesao) sem fabricante, sem codigo, sem data e sem separar interno de externo e de molhado. Essa e a pagina que a ilha vai substituir; usa-la como fonte seria copiar o defeito que abre o buraco."
-      }
-    ]
+  "quantidade_de_material": {
+   "resolve_para": "o MAIOR",
+   "erro_caro": "Faltar pastilha ou rejunte no meio da peca e pior do que sobrar: lote novo muda de cor e a peca fica remendada. Arredonda para cima e publica a sobra como numero explicito, nunca escondida."
   },
-  "vocabularios": {
+  "empate_de_nivel_na_escada": "Duas fontes do mesmo nivel discordando NAO viram media: o campo grava o lado em que errar doi menos pela regra acima, as duas declaracoes ficam em `divergencias[]` com suas datas, e `resolucao` escreve qual e o erro caro. Divergencia sem resolucao escrita e a ilha empurrando a duvida para o visitante."
+ },
+ "escada_de_fontes": {
+  "descricao": "Nivel de confianca de uma origem. Em conflito, o nivel mais alto vence e o outro fica registrado em divergencias[]. O nivel tambem decide o que a fonte PODE sustentar: recomendacao primaria publicada exige nivel <= 3.",
+  "nivel_minimo_para_recomendacao_primaria": 3,
+  "niveis": [
+   {
+    "nivel": 1,
+    "origem": "ficha-tecnica-fabricante-lida",
+    "o_que_pode_sustentar": "qualquer campo tecnico, inclusive restricao e tempo de cura, com o numero do documento e a revisao citados.",
+    "existe_hoje": false,
+    "observacao": "Bloqueado hoje: o egresso da nuvem das rotinas barra quartzolit.weber, tekbond.com.br, cascola.com.br e henkel.com.br (medido em 10/09/2026, EGRESS_BLOCKED / connect_rejected). E coleta em aberto, nao dependencia humana — se o Raphael acrescentar esses dominios a rede Personalizada do ambiente, sobe todo o banco de nivel 2 para nivel 1."
+   },
+   {
+    "nivel": 2,
+    "origem": "ficha-tecnica-fabricante-via-busca",
+    "o_que_pode_sustentar": "qualquer campo tecnico atribuido a uma ficha tecnica identificada por codigo e revisao, colhido por busca restrita ao dominio do fabricante sem abrir o PDF. Vai para a tela com o codigo da ficha e a data de coleta.",
+    "existe_hoje": true,
+    "observacao": "E o nivel da constante mais valiosa da ilha (BRSA004). Todo campo neste nivel carrega conferir_no_pdf: true."
+   },
+   {
+    "nivel": 3,
+    "origem": "pagina-de-produto-do-fabricante",
+    "o_que_pode_sustentar": "substratos declarados, indicacoes de uso, embalagem e classificacao normativa citada pelo proprio fabricante. E o limite do que sustenta recomendacao primaria.",
+    "existe_hoje": true
+   },
+   {
+    "nivel": 4,
+    "origem": "material-de-imprensa-do-fabricante",
+    "o_que_pode_sustentar": "mencao de uso, sempre citada como 'segundo material do proprio fabricante (ANO)'. NAO sustenta recomendacao primaria nem entra em formula publicada.",
+    "existe_hoje": true,
+    "caso_que_criou_o_nivel": "loctite-durepoxi: o press release de 2018 diz que o produto adere submerso, e e a unica declaracao que a ilha tem para peca em contato permanente com agua. Como e nivel 4, a F2 mantem essa faixa DESCOBERTA em vez de recomendar."
+   },
+   {
+    "nivel": 5,
+    "origem": "varejo-oficial-da-marca",
+    "o_que_pode_sustentar": "embalagem, unidade de venda, peso liquido e imagem. Campo tecnico so com 'confira a embalagem' na tela.",
+    "existe_hoje": false
+   },
+   {
+    "nivel": 6,
+    "origem": "marketplace-ou-loja",
+    "o_que_pode_sustentar": "APENAS preco, unidade de venda, peso declarado no anuncio e imagem. Nunca compatibilidade, nunca restricao, nunca numero que entre em formula.",
+    "existe_hoje": false,
+    "observacao": "E daqui que sai a conversao grama <-> peca da pastilha, que nenhum fabricante declara: peso por SKU, com a data e o nome da loja na frase."
+   },
+   {
+    "nivel": 7,
+    "origem": "blog-serp-agregador",
+    "o_que_pode_sustentar": "NADA. Proibido como fonte tecnica nesta ilha.",
+    "existe_hoje": false,
+    "por_que": "O bloco 1 mediu que a regra cola x base circula em blog (FazFacil, Vila do Artesao) sem fabricante, sem codigo, sem data e sem separar interno de externo e de molhado. Essa e a pagina que a ilha vai substituir; usa-la como fonte seria copiar o defeito que abre o buraco."
+   }
+  ]
+ },
+ "vocabularios": {
+  "base": [
+   "ceramica_esmaltada_porcelana",
+   "vidro",
+   "vidro_laminado",
+   "espelho",
+   "mdf_madeira",
+   "cimento_concreto",
+   "alvenaria_tijolo",
+   "metal",
+   "plastico"
+  ],
+  "ambiente": [
+   "interno_seco",
+   "interno_molhado",
+   "externo_abrigado",
+   "externo_exposto",
+   "contato_permanente_agua"
+  ],
+  "material_tessela": [
+   "pastilha_vidro",
+   "pastilha_ceramica",
+   "caco_azulejo",
+   "caco_louca",
+   "caco_espelho",
+   "pedra"
+  ],
+  "categoria_material": [
+   "cola",
+   "rejunte",
+   "pastilha",
+   "alicate",
+   "base",
+   "acabamento",
+   "apoio"
+  ],
+  "tipo_por_categoria": {
+   "cola": [
+    "pva",
+    "silicone_acetico",
+    "silicone_neutro",
+    "cimentcola_acii",
+    "cimentcola_aciii",
+    "epoxi",
+    "adesivo_para_espelho"
+   ],
+   "rejunte": [
+    "cimenticio",
+    "flexivel",
+    "acrilico",
+    "epoxi"
+   ],
+   "pastilha": [
+    "vidro",
+    "ceramica",
+    "pedra",
+    "caco_azulejo",
+    "caco_espelho",
+    "resina"
+   ],
+   "alicate": [
+    "torques",
+    "cortador_de_azulejo",
+    "pinca_mosaico",
+    "martelinho"
+   ],
+   "base": [
+    "mdf_cru",
+    "ceramica_crua",
+    "cimento",
+    "isopor_estrutural",
+    "moldura"
+   ],
+   "acabamento": [
+    "verniz",
+    "impermeabilizante",
+    "selador"
+   ],
+   "apoio": [
+    "espatula",
+    "desempenadeira",
+    "oculos",
+    "luva",
+    "pinca",
+    "marcador"
+   ]
+  },
+  "unidade_de_venda": [
+   "peca",
+   "grama",
+   "quilo",
+   "placa",
+   "cartucho",
+   "bisnaga",
+   "saco",
+   "lata",
+   "kit",
+   "metro"
+  ],
+  "estado_da_declaracao": [
+   "declarado_indicado",
+   "declarado_proibido",
+   "declarado_nao_recomendado",
+   "nao_declarado"
+  ],
+  "programa_de_afiliado": [
+   "shopee",
+   "mercadolivre"
+  ],
+  "status_do_registro": [
+   "ativo",
+   "descartado"
+  ],
+  "tecnica": [
+   "direto",
+   "indireto",
+   "bizantino",
+   "opus_palladianum",
+   "opus_tesselatum",
+   "opus_vermiculatum",
+   "trencadis"
+  ],
+  "colecao_uso": [
+   "centro_de_mesa",
+   "presente",
+   "jardim",
+   "parede",
+   "joia",
+   "utilitario"
+  ]
+ },
+ "mapa_de_termos_do_fabricante": {
+  "descricao": "Onde mora o julgamento desta ilha, e por isso fica auditavel num lugar so: o fabricante escreve 'superficie alcalina' e a entrada da ferramenta diz 'vaso de cimento'. Cada linha traduz o termo LITERAL do fabricante para o vocabulario da ilha. Termo que nao estiver aqui NAO pode ser traduzido no codigo do snippet: ou entra nesta tabela, ou fica so na citacao literal.",
+  "regra": "A traducao e sempre ampliativa para o lado da restricao e restritiva para o lado da indicacao — mesma assimetria de custo da regra de divergencia. 'Ceramica' indicada cobre ceramica_esmaltada_porcelana; 'superficie porosa' proibida cobre mdf_madeira, cimento_concreto e alvenaria_tijolo.",
+  "termos": [
+   {
+    "literal": "ceramica",
     "base": [
-      "ceramica_esmaltada_porcelana",
-      "vidro",
-      "vidro_laminado",
-      "espelho",
-      "mdf_madeira",
-      "cimento_concreto",
-      "alvenaria_tijolo",
-      "metal",
-      "plastico"
+     "ceramica_esmaltada_porcelana"
+    ]
+   },
+   {
+    "literal": "azulejo",
+    "base": [
+     "ceramica_esmaltada_porcelana"
+    ]
+   },
+   {
+    "literal": "porcelana",
+    "base": [
+     "ceramica_esmaltada_porcelana"
+    ]
+   },
+   {
+    "literal": "vidro nao laminado",
+    "base": [
+     "vidro"
+    ]
+   },
+   {
+    "literal": "vidro comum e temperado",
+    "base": [
+     "vidro"
+    ]
+   },
+   {
+    "literal": "vidro laminado",
+    "base": [
+     "vidro_laminado"
+    ]
+   },
+   {
+    "literal": "vidro aramado",
+    "base": [
+     "vidro"
+    ]
+   },
+   {
+    "literal": "espelhos",
+    "base": [
+     "espelho"
+    ]
+   },
+   {
+    "literal": "madeira de alta, media e baixa densidade",
+    "base": [
+     "mdf_madeira"
+    ]
+   },
+   {
+    "literal": "MDF",
+    "base": [
+     "mdf_madeira"
+    ]
+   },
+   {
+    "literal": "compensado",
+    "base": [
+     "mdf_madeira"
+    ]
+   },
+   {
+    "literal": "madeira",
+    "base": [
+     "mdf_madeira"
+    ]
+   },
+   {
+    "literal": "superficies porosas",
+    "base": [
+     "mdf_madeira",
+     "cimento_concreto",
+     "alvenaria_tijolo"
+    ]
+   },
+   {
+    "literal": "outros materiais porosos",
+    "base": [
+     "mdf_madeira"
+    ]
+   },
+   {
+    "literal": "concreto",
+    "base": [
+     "cimento_concreto"
+    ]
+   },
+   {
+    "literal": "cimento",
+    "base": [
+     "cimento_concreto"
+    ]
+   },
+   {
+    "literal": "superficies alcalinas",
+    "base": [
+     "cimento_concreto",
+     "alvenaria_tijolo"
+    ]
+   },
+   {
+    "literal": "alvenaria",
+    "base": [
+     "cimento_concreto",
+     "alvenaria_tijolo"
+    ]
+   },
+   {
+    "literal": "tijolo",
+    "base": [
+     "alvenaria_tijolo"
+    ]
+   },
+   {
+    "literal": "calcario",
+    "base": [
+     "alvenaria_tijolo"
+    ]
+   },
+   {
+    "literal": "pedras",
+    "base": [
+     "alvenaria_tijolo"
+    ]
+   },
+   {
+    "literal": "pedra",
+    "base": [
+     "alvenaria_tijolo"
+    ]
+   },
+   {
+    "literal": "granito",
+    "base": [
+     "alvenaria_tijolo"
+    ]
+   },
+   {
+    "literal": "marmore",
+    "base": [
+     "alvenaria_tijolo"
+    ]
+   },
+   {
+    "literal": "laminados",
+    "base": [
+     "vidro_laminado"
     ],
+    "observacao": "TRADUCAO POR VIZINHANCA, e por isso escrita aqui em vez de decidida no codigo: na ficha do Silicone Neutro Tekbond o termo aparece no meio de uma lista de vidros ('vidro comum e temperado, laminados, vidro aramado'), entao neste produto ele e vidro laminado. Se o mesmo termo aparecer noutro produto fora de uma lista de vidros, NAO traduz — vira laminado melaminico e fica so na citacao literal."
+   },
+   {
+    "literal": "vidro",
+    "base": [
+     "vidro"
+    ],
+    "observacao": "Traducao RESTRITIVA, pela mesma assimetria do resto do mapa: 'vidro' solto numa lista de indicacao vale para vidro comum, nunca para laminado — vidro laminado so entra quando o fabricante escreve 'laminado'."
+   },
+   {
+    "literal": "metais",
+    "base": [
+     "metal"
+    ]
+   },
+   {
+    "literal": "metal",
+    "base": [
+     "metal"
+    ]
+   },
+   {
+    "literal": "aluminio",
+    "base": [
+     "metal"
+    ]
+   },
+   {
+    "literal": "ferro",
+    "base": [
+     "metal"
+    ]
+   },
+   {
+    "literal": "cobre",
+    "base": [
+     "metal"
+    ]
+   },
+   {
+    "literal": "latao",
+    "base": [
+     "metal"
+    ]
+   },
+   {
+    "literal": "metal corrosivel",
+    "base": [
+     "metal"
+    ]
+   },
+   {
+    "literal": "zinco",
+    "base": [
+     "metal"
+    ]
+   },
+   {
+    "literal": "chapa galvanizada",
+    "base": [
+     "metal"
+    ]
+   },
+   {
+    "literal": "aluminio comum e anodizado",
+    "base": [
+     "metal"
+    ]
+   },
+   {
+    "literal": "acrilico",
+    "base": [
+     "plastico"
+    ]
+   },
+   {
+    "literal": "polietileno",
+    "base": [
+     "plastico"
+    ]
+   },
+   {
+    "literal": "polipropileno",
+    "base": [
+     "plastico"
+    ]
+   },
+   {
+    "literal": "policarbonato",
+    "base": [
+     "plastico"
+    ]
+   },
+   {
+    "literal": "certos tipos de plastico",
+    "base": [
+     "plastico"
+    ],
+    "vago": true,
+    "observacao": "Declaracao vaga do fabricante: entra como declarado_nao_recomendado, NUNCA como indicado. 'Certos tipos' nao nomeia tipo nenhum."
+   },
+   {
+    "literal": "alguns tipos de plastico",
+    "base": [
+     "plastico"
+    ],
+    "vago": true,
+    "observacao": "Mesma regra: nomeia zero tipos, entao nao vira indicacao."
+   },
+   {
+    "literal": "imersao continua em meio liquido",
     "ambiente": [
-      "interno_seco",
-      "interno_molhado",
-      "externo_abrigado",
-      "externo_exposto",
-      "contato_permanente_agua"
-    ],
-    "material_tessela": [
-      "pastilha_vidro",
-      "pastilha_ceramica",
-      "caco_azulejo",
-      "caco_louca",
-      "caco_espelho",
-      "pedra"
-    ],
-    "categoria_material": [
-      "cola",
-      "rejunte",
-      "pastilha",
-      "alicate",
-      "base",
-      "acabamento",
-      "apoio"
-    ],
-    "tipo_por_categoria": {
-      "cola": [
-        "pva",
-        "silicone_acetico",
-        "silicone_neutro",
-        "cimentcola_acii",
-        "cimentcola_aciii",
-        "epoxi",
-        "adesivo_para_espelho"
-      ],
-      "rejunte": [
-        "cimenticio",
-        "flexivel",
-        "acrilico",
-        "epoxi"
-      ],
-      "pastilha": [
-        "vidro",
-        "ceramica",
-        "pedra",
-        "caco_azulejo",
-        "caco_espelho",
-        "resina"
-      ],
-      "alicate": [
-        "torques",
-        "cortador_de_azulejo",
-        "pinca_mosaico",
-        "martelinho"
-      ],
-      "base": [
-        "mdf_cru",
-        "ceramica_crua",
-        "cimento",
-        "isopor_estrutural",
-        "moldura"
-      ],
-      "acabamento": [
-        "verniz",
-        "impermeabilizante",
-        "selador"
-      ],
-      "apoio": [
-        "espatula",
-        "desempenadeira",
-        "oculos",
-        "luva",
-        "pinca",
-        "marcador"
-      ]
-    },
-    "unidade_de_venda": [
-      "peca",
-      "grama",
-      "quilo",
-      "placa",
-      "cartucho",
-      "bisnaga",
-      "saco",
-      "lata",
-      "kit",
-      "metro"
-    ],
-    "estado_da_declaracao": [
-      "declarado_indicado",
-      "declarado_proibido",
-      "declarado_nao_recomendado",
-      "nao_declarado"
-    ],
-    "programa_de_afiliado": [
-      "shopee",
-      "mercadolivre"
-    ],
-    "status_do_registro": [
-      "ativo",
-      "descartado"
-    ],
-    "tecnica": [
-      "direto",
-      "indireto",
-      "bizantino",
-      "opus_palladianum",
-      "opus_tesselatum",
-      "opus_vermiculatum",
-      "trencadis"
-    ],
-    "colecao_uso": [
-      "centro_de_mesa",
-      "presente",
-      "jardim",
-      "parede",
-      "joia",
-      "utilitario"
+     "contato_permanente_agua"
     ]
-  },
-  "mapa_de_termos_do_fabricante": {
-    "descricao": "Onde mora o julgamento desta ilha, e por isso fica auditavel num lugar so: o fabricante escreve 'superficie alcalina' e a entrada da ferramenta diz 'vaso de cimento'. Cada linha traduz o termo LITERAL do fabricante para o vocabulario da ilha. Termo que nao estiver aqui NAO pode ser traduzido no codigo do snippet: ou entra nesta tabela, ou fica so na citacao literal.",
-    "regra": "A traducao e sempre ampliativa para o lado da restricao e restritiva para o lado da indicacao — mesma assimetria de custo da regra de divergencia. 'Ceramica' indicada cobre ceramica_esmaltada_porcelana; 'superficie porosa' proibida cobre mdf_madeira, cimento_concreto e alvenaria_tijolo.",
-    "termos": [
-      {
-        "literal": "ceramica",
-        "base": [
-          "ceramica_esmaltada_porcelana"
-        ]
-      },
-      {
-        "literal": "azulejo",
-        "base": [
-          "ceramica_esmaltada_porcelana"
-        ]
-      },
-      {
-        "literal": "porcelana",
-        "base": [
-          "ceramica_esmaltada_porcelana"
-        ]
-      },
-      {
-        "literal": "vidro nao laminado",
-        "base": [
-          "vidro"
-        ]
-      },
-      {
-        "literal": "vidro comum e temperado",
-        "base": [
-          "vidro"
-        ]
-      },
-      {
-        "literal": "vidro laminado",
-        "base": [
-          "vidro_laminado"
-        ]
-      },
-      {
-        "literal": "vidro aramado",
-        "base": [
-          "vidro"
-        ]
-      },
-      {
-        "literal": "espelhos",
-        "base": [
-          "espelho"
-        ]
-      },
-      {
-        "literal": "madeira de alta, media e baixa densidade",
-        "base": [
-          "mdf_madeira"
-        ]
-      },
-      {
-        "literal": "MDF",
-        "base": [
-          "mdf_madeira"
-        ]
-      },
-      {
-        "literal": "compensado",
-        "base": [
-          "mdf_madeira"
-        ]
-      },
-      {
-        "literal": "madeira",
-        "base": [
-          "mdf_madeira"
-        ]
-      },
-      {
-        "literal": "superficies porosas",
-        "base": [
-          "mdf_madeira",
-          "cimento_concreto",
-          "alvenaria_tijolo"
-        ]
-      },
-      {
-        "literal": "outros materiais porosos",
-        "base": [
-          "mdf_madeira"
-        ]
-      },
-      {
-        "literal": "concreto",
-        "base": [
-          "cimento_concreto"
-        ]
-      },
-      {
-        "literal": "cimento",
-        "base": [
-          "cimento_concreto"
-        ]
-      },
-      {
-        "literal": "superficies alcalinas",
-        "base": [
-          "cimento_concreto",
-          "alvenaria_tijolo"
-        ]
-      },
-      {
-        "literal": "alvenaria",
-        "base": [
-          "cimento_concreto",
-          "alvenaria_tijolo"
-        ]
-      },
-      {
-        "literal": "tijolo",
-        "base": [
-          "alvenaria_tijolo"
-        ]
-      },
-      {
-        "literal": "calcario",
-        "base": [
-          "alvenaria_tijolo"
-        ]
-      },
-      {
-        "literal": "pedras",
-        "base": [
-          "alvenaria_tijolo"
-        ]
-      },
-      {
-        "literal": "pedra",
-        "base": [
-          "alvenaria_tijolo"
-        ]
-      },
-      {
-        "literal": "granito",
-        "base": [
-          "alvenaria_tijolo"
-        ]
-      },
-      {
-        "literal": "marmore",
-        "base": [
-          "alvenaria_tijolo"
-        ]
-      },
-      {
-        "literal": "laminados",
-        "base": [
-          "vidro_laminado"
-        ],
-        "observacao": "TRADUCAO POR VIZINHANCA, e por isso escrita aqui em vez de decidida no codigo: na ficha do Silicone Neutro Tekbond o termo aparece no meio de uma lista de vidros ('vidro comum e temperado, laminados, vidro aramado'), entao neste produto ele e vidro laminado. Se o mesmo termo aparecer noutro produto fora de uma lista de vidros, NAO traduz — vira laminado melaminico e fica so na citacao literal."
-      },
-      {
-        "literal": "vidro",
-        "base": [
-          "vidro"
-        ],
-        "observacao": "Traducao RESTRITIVA, pela mesma assimetria do resto do mapa: 'vidro' solto numa lista de indicacao vale para vidro comum, nunca para laminado — vidro laminado so entra quando o fabricante escreve 'laminado'."
-      },
-      {
-        "literal": "metais",
-        "base": [
-          "metal"
-        ]
-      },
-      {
-        "literal": "metal",
-        "base": [
-          "metal"
-        ]
-      },
-      {
-        "literal": "aluminio",
-        "base": [
-          "metal"
-        ]
-      },
-      {
-        "literal": "ferro",
-        "base": [
-          "metal"
-        ]
-      },
-      {
-        "literal": "cobre",
-        "base": [
-          "metal"
-        ]
-      },
-      {
-        "literal": "latao",
-        "base": [
-          "metal"
-        ]
-      },
-      {
-        "literal": "metal corrosivel",
-        "base": [
-          "metal"
-        ]
-      },
-      {
-        "literal": "zinco",
-        "base": [
-          "metal"
-        ]
-      },
-      {
-        "literal": "chapa galvanizada",
-        "base": [
-          "metal"
-        ]
-      },
-      {
-        "literal": "aluminio comum e anodizado",
-        "base": [
-          "metal"
-        ]
-      },
-      {
-        "literal": "acrilico",
-        "base": [
-          "plastico"
-        ]
-      },
-      {
-        "literal": "polietileno",
-        "base": [
-          "plastico"
-        ]
-      },
-      {
-        "literal": "polipropileno",
-        "base": [
-          "plastico"
-        ]
-      },
-      {
-        "literal": "policarbonato",
-        "base": [
-          "plastico"
-        ]
-      },
-      {
-        "literal": "certos tipos de plastico",
-        "base": [
-          "plastico"
-        ],
-        "vago": true,
-        "observacao": "Declaracao vaga do fabricante: entra como declarado_nao_recomendado, NUNCA como indicado. 'Certos tipos' nao nomeia tipo nenhum."
-      },
-      {
-        "literal": "alguns tipos de plastico",
-        "base": [
-          "plastico"
-        ],
-        "vago": true,
-        "observacao": "Mesma regra: nomeia zero tipos, entao nao vira indicacao."
-      },
-      {
-        "literal": "imersao continua em meio liquido",
-        "ambiente": [
-          "contato_permanente_agua"
-        ]
-      },
-      {
-        "literal": "condicao submersa",
-        "ambiente": [
-          "contato_permanente_agua"
-        ]
-      },
-      {
-        "literal": "aquarios",
-        "ambiente": [
-          "contato_permanente_agua"
-        ]
-      },
-      {
-        "literal": "chuva",
-        "ambiente": [
-          "externo_exposto"
-        ]
-      },
-      {
-        "literal": "raios UV",
-        "ambiente": [
-          "externo_exposto"
-        ]
-      },
-      {
-        "literal": "area interna e externa",
-        "ambiente": [
-          "interno_seco",
-          "interno_molhado",
-          "externo_abrigado",
-          "externo_exposto"
-        ]
-      },
-      {
-        "literal": "ambientes internos",
-        "ambiente": [
-          "interno_seco"
-        ]
-      }
-    ],
-    "termos_que_nao_traduzem": [
-      {
-        "literal": "placas de pedra natural",
-        "por_que": "Na pagina da cimentcola AC-II o termo nomeia a PECA QUE SE ASSENTA (ceramicas e placas de ate 120x120 cm), nao a base sobre a qual se assenta. Traduzir isso em base seria fabricar uma declaracao que o fabricante nao fez — e e exatamente o erro que este bloco encontrou na matriz publicada."
-      },
-      {
-        "literal": "ceramicas",
-        "por_que": "Mesma coisa quando aparece em produto de assentamento: e a peca assentada. So traduz em produto de colagem, onde a lista e de substratos."
-      },
-      {
-        "literal": "vedacao de esquadria de aluminio com vidro",
-        "por_que": "Descreve uma aplicacao inteira (esquadria), nao um substrato do mosaico. Fica na citacao literal."
-      },
-      {
-        "literal": "laminados plasticos (Formica, Formiplac, Perstop)",
-        "por_que": "Laminado melaminico de movel, nao e a base de plastico da entrada da F2 (PE, PP, PC, acrilico). Fica na citacao literal."
-      },
-      {
-        "literal": "gesso",
-        "por_que": "Nao esta no vocabulario de base da ilha e nao aparece como base de peca de mosaico no corpus. Se aparecer, entra no vocabulario primeiro."
-      },
-      {
-        "literal": "superficies pintadas",
-        "por_que": "Estado da superficie, nao base: MDF pintado e cimento pintado sao a MESMA restricao vista de fora. Vai para a tela como aviso de preparo ('lixe a tinta antes'), que e onde ela serve."
-      },
-      {
-        "literal": "fachada de vidro",
-        "por_que": "Aplicacao predial inteira, nao substrato de peca de mosaico."
-      },
-      {
-        "literal": "colagem estrutural que exija resistencia",
-        "por_que": "Descreve o esforco, nao a superficie."
-      },
-      {
-        "literal": "contato com alimento",
-        "por_que": "Restricao sanitaria. Nao e base nem ambiente do vocabulario — mas E texto obrigatorio na pagina de bandeja e travessa, que sao pecas do catalogo."
-      },
-      {
-        "literal": "ambiente completamente fechado",
-        "por_que": "Condicao de CURA (o acetico precisa da umidade do ar), nao ambiente de uso. Traduzir isso em ambiente seria inverter o sentido da frase do fabricante."
-      },
-      {
-        "literal": "agentes acidos",
-        "por_que": "Resistencia quimica, sem ambiente correspondente no vocabulario da ilha."
-      },
-      {
-        "literal": "metais corrosiveis",
-        "por_que": "Aparece nas RESISTENCIAS do silicone neutro, com o mesmo texto que aparece nas PROIBICOES do acetico. Nao traduz: o sinal vem da lista em que o termo esta, e como resistencia ele nao muda ambiente nenhum."
-      },
-      {
-        "literal": "variacao de temperatura",
-        "por_que": "Resistencia sem ambiente correspondente."
-      },
-      {
-        "literal": "couro",
-        "por_que": "Material colado, nao base de peca de mosaico."
-      },
-      {
-        "literal": "tela",
-        "por_que": "Idem."
-      },
-      {
-        "literal": "borracha",
-        "por_que": "Idem."
-      },
-      {
-        "literal": "poliestireno expandido",
-        "por_que": "Isopor comum. Nao esta no vocabulario de base e nao aparece como base de peca no corpus; se virar base (isopor estrutural), entra no vocabulario primeiro."
-      },
-      {
-        "literal": "papel, papelao, tecido e cortica",
-        "por_que": "Materiais de papelaria e encadernacao, fora do mosaico."
-      },
-      {
-        "literal": "encadernacao",
-        "por_que": "Aplicacao, nao substrato."
-      },
-      {
-        "literal": "fibras naturais",
-        "por_que": "Generico demais para virar base."
-      },
-      {
-        "literal": "prata",
-        "por_que": "Metal precioso de joalheria; a peca de mosaico nao e colada sobre prata. Nao inflar a base metal com termo de reparo."
-      },
-      {
-        "literal": "ouro",
-        "por_que": "Idem."
-      },
-      {
-        "literal": "molduras, rodapes e revestimentos decorativos em ambientes internos",
-        "por_que": "Frase de aplicacao. A parte que importa dela — 'ambientes internos' — ja esta em ambientes_declarados, onde delimita de verdade."
-      },
-      {
-        "literal": "assentamento ceramico em area interna e externa",
-        "por_que": "Frase de aplicacao da cimentcola. A parte de ambiente ja esta em ambientes_declarados; a de substrato NAO existe, que e o achado deste bloco."
-      },
-      {
-        "literal": "ceramicas e placas de pedra natural de ate 120 x 120 cm em area interna e 100 x 100 cm em area externa",
-        "por_que": "O que a frase nomeia e a PECA ASSENTADA e o tamanho maximo dela, nunca o substrato. Traduzir isso em base seria fabricar uma declaracao que o fabricante nao fez."
-      }
+   },
+   {
+    "literal": "condicao submersa",
+    "ambiente": [
+     "contato_permanente_agua"
     ]
-  },
-  "regras_de_elegibilidade": {
-    "descricao": "As cinco regras que transformam as declaracoes de MATERIAL na matriz da F2. Elas sao a secao 7 do ARQUIPELAGO.md escrita de forma executavel: ferramentas/validar-banco.py as roda, o snippet do bloco 4 as repete em PHP, e as duas implementacoes tem que dar o mesmo resultado.",
-    "1_proibicao_vence_indicacao_dentro_do_mesmo_produto": "Quando o mesmo fabricante indica e proibe a mesma base, vale a proibicao. Caso real: o Silicone Acetico Tekbond indica 'aluminio comum e anodizado' (metal) e proibe 'metal corrosivel, zinco e chapa galvanizada' (metal) — o produto sai de metal. E a regra do conjunto MAIS ESTREITO da secao 10 do contrato: quem monta mosaico nao sabe se a chapa dela e galvanizada.",
-    "2_base_sem_declaracao_nao_e_recomendacao": "Produto so entra nos recomendados de uma base que o fabricante declara. Silencio sobre a base manda o produto para a secao rotulada, com a frase 'o fabricante nao declara uso nesta superficie' — que e diferente de proibicao e sai na tela com essas palavras.",
-    "3_ambiente_declarado_DELIMITA": "Quando o produto tem `ambientes_declarados` nao vazio, ele so e elegivel nos ambientes que declara. O fabricante que escreve 'revestimentos decorativos em ambientes internos' delimitou o uso dele — e por isso o PVA Cascorez nao entra em peca molhada nem externa, sem que a ilha precise inventar proibicao. Produto que nao delimita ambiente nenhum passa pelos ambientes comuns.",
-    "4_ambiente_critico_exige_declaracao_EXPLICITA": {
-      "ambientes": [
-        "externo_exposto",
-        "contato_permanente_agua"
-      ],
-      "regra": "Nestes dois, silencio NAO basta: so entra nos recomendados quem declara resistencia ao ambiente. E a assimetria de custo aplicada ao ambiente — sol, chuva e imersao sao onde a peca descola, e onde errar custa a peca inteira. E o que mantem 'peca em contato permanente com agua' como faixa DESCOBERTA em vez de virar palpite."
-    },
-    "5_nivel_de_fonte_limita_a_recomendacao": "Recomendacao primaria exige fonte de nivel <= 3 (escada_de_fontes). Produto elegivel por fonte de nivel 4 ou pior aparece so como mencao com ressalva, citando o tipo do documento e o ano. E o que separa o Loctite Durepoxi — cuja unica declaracao de uso submerso e press release de 2018 — de uma recomendacao publicada.",
-    "ordem_entre_os_elegiveis": "Score de adequacao: +2 por base declarada indicada, +2 por ambiente declarado indicado. Empate no topo NAO se desfaz por gosto: a pagina lista os empatados como equivalentes, dizendo que os dois servem, e o unico desempate permitido e ter link de loja (secao 7). Fingir uma preferencia que a fonte nao sustenta e o comeco de ordenar por comissao."
-  },
-  "entidades": {
-    "MATERIAL": {
-      "arquivo": "dados/materiais-<categoria>.json (um arquivo por categoria: materiais-colas.json, materiais-rejuntes.json, materiais-pastilhas.json, ...)",
-      "o_que_e": "Produto de terceiro que a artesa compra para fazer mosaico. E o que a vitrine de afiliado do Guia e das ferramentas recomenda. NUNCA e produto da ilha.",
-      "campos": {
-        "id": {
-          "tipo": "string",
-          "obrigatorio": true,
-          "formato": "kebab-case estavel, comecando pela marca: tekbond-silicone-acetico-construcao. Nunca numerado."
-        },
-        "categoria": {
-          "tipo": "enum",
-          "vocabulario": "categoria_material",
-          "obrigatorio": true
-        },
-        "tipo": {
-          "tipo": "enum",
-          "vocabulario": "tipo_por_categoria[categoria]",
-          "obrigatorio": true
-        },
-        "marca": {
-          "tipo": "string",
-          "obrigatorio": true
-        },
-        "fabricante": {
-          "tipo": "string",
-          "obrigatorio": true,
-          "observacao": "Grupo dono da marca quando diferente: Cascola e Henkel, Quartzolit e Saint-Gobain Weber."
-        },
-        "nome_comercial": {
-          "tipo": "string",
-          "obrigatorio": true,
-          "observacao": "Como o fabricante escreve, nao como a loja anuncia."
-        },
-        "codigo_fabricante": {
-          "tipo": "string|null",
-          "obrigatorio": true,
-          "null_exige": "motivo_sem_codigo"
-        },
-        "motivo_sem_codigo": {
-          "tipo": "string|null",
-          "obrigatorio": false
-        },
-        "declaracoes": {
-          "tipo": "objeto",
-          "obrigatorio": true,
-          "observacao": "As listas sao LITERAIS do fabricante, na lingua dele. A traducao para o vocabulario da ilha e feita pelo mapa_de_termos_do_fabricante e recomputada pelo validador — nunca digitada a mao aqui.",
-          "subcampos": {
-            "indicado_para": {
-              "tipo": "lista de string",
-              "fonte_obrigatoria": true
-            },
-            "nao_usar_em": {
-              "tipo": "lista de string",
-              "fonte_obrigatoria": true,
-              "peso": "declarado_proibido"
-            },
-            "nao_recomendado_em": {
-              "tipo": "lista de string",
-              "fonte_obrigatoria": false,
-              "peso": "declarado_nao_recomendado"
-            },
-            "nao_indicado_para": {
-              "tipo": "lista de string",
-              "fonte_obrigatoria": false,
-              "peso": "declarado_proibido"
-            },
-            "ambientes_declarados": {
-              "tipo": "lista de string",
-              "fonte_obrigatoria": false,
-              "peso": "delimita",
-              "observacao": "So o que DELIMITA o uso: 'ambientes internos', 'area interna e externa'. Preencher aqui fecha o produto nos ambientes listados (regra 3). Nao confundir com resistencia."
-            },
-            "resistencias_declaradas": {
-              "tipo": "lista de string",
-              "fonte_obrigatoria": false,
-              "peso": "soma",
-              "observacao": "O que o fabricante declara que o produto AGUENTA ('chuva', 'raios UV'). Soma no score e satisfaz a regra 4 do ambiente critico, mas NAO delimita: silicone que resiste a chuva nao deixa de servir dentro de casa."
-            }
-          }
-        },
-        "propriedades": {
-          "tipo": "objeto de campos tecnicos",
-          "obrigatorio": false,
-          "formato_de_cada_campo": "{valor, unidade, fonte_id, declarado_como}",
-          "observacao": "`declarado_como` guarda a frase do fabricante, para a pagina citar a faixa inteira e nao so o numero escolhido."
-        },
-        "geometria": {
-          "tipo": "objeto|null",
-          "obrigatorio_para": [
-            "pastilha"
-          ],
-          "subcampos": {
-            "lado_anunciado_cm": {
-              "tipo": "number|null",
-              "observacao": "O que a loja diz."
-            },
-            "passo_de_fabrica_cm": {
-              "tipo": "number|null",
-              "observacao": "Calculado: L/raiz(N) em placa. E este que vale."
-            },
-            "espessura_mm": {
-              "tipo": "number|null",
-              "null_exige": "motivo",
-              "motivo_padrao": "Nenhum fabricante de pastilha de artesanato padroniza espessura — e entrada da F1, com aviso 'meca a sua'."
-            },
-            "pastilhas_por_placa": {
-              "tipo": "integer|null"
-            },
-            "peso_unitario_g": {
-              "tipo": "number|null",
-              "null_exige": "motivo",
-              "observacao": "So existe por SKU, colhido de loja (nivel 6) com data. E o que destrava a conversao grama <-> peca da F1."
-            }
-          }
-        },
-        "venda": {
-          "tipo": "lista de ofertas",
-          "obrigatorio": true,
-          "minimo": 0,
-          "observacao": "Lista vazia e valida e significa 'ainda nao levantamos onde se compra'. Cada oferta e uma UNIDADE DE VENDA distinta, nao um preco distinto.",
-          "subcampos": {
-            "unidade": {
-              "tipo": "enum",
-              "vocabulario": "unidade_de_venda",
-              "obrigatorio": true
-            },
-            "quantidade": {
-              "tipo": "number|null",
-              "observacao": "Quantas unidades a embalagem traz: 225 pastilhas, 15 kg, 280 g."
-            },
-            "embalagem_declarada": {
-              "tipo": "string|null"
-            },
-            "loja": {
-              "tipo": "string|null"
-            },
-            "fonte_id": {
-              "tipo": "string",
-              "obrigatorio": true
-            },
-            "coletado_em": {
-              "tipo": "data ISO",
-              "obrigatorio": true
-            }
-          }
-        },
-        "afiliado": {
-          "tipo": "objeto",
-          "obrigatorio": true,
-          "observacao": "OBRIGATORIO E PRESENTE MESMO VAZIO (secao 7 do ARQUIPELAGO.md): a pagina reserva o lugar e mostra 'link de loja em breve', e a ilha reporta em todo bloco quantos itens esperam link. O preenchimento e da Sentinela estrategica, no navegador, e nunca da Fundacao.",
-          "subcampos": {
-            "programa": {
-              "tipo": "enum|null",
-              "vocabulario": "programa_de_afiliado"
-            },
-            "url": {
-              "tipo": "string",
-              "obrigatorio": true,
-              "observacao": "String vazia ate a Sentinela gerar. Nunca ausente."
-            },
-            "sub_id_1": {
-              "tipo": "string",
-              "valor_fixo": "clubedomosaico",
-              "observacao": "Shopee."
-            },
-            "sub_id_2": {
-              "tipo": "string|null",
-              "observacao": "Codigo da pagina de origem: F1, F2, G-COLAS, G-PASTILHAS, T-VASO."
-            },
-            "etiqueta_ml": {
-              "tipo": "string|null",
-              "formato": "clubedomosaico-<codigo>",
-              "observacao": "Mercado Livre. Uma etiqueta por par ilha x ferramenta."
-            },
-            "gerado_em": {
-              "tipo": "data ISO|null"
-            }
-          }
-        },
-        "imagem": {
-          "tipo": "objeto|null",
-          "obrigatorio": true,
-          "null_permitido": true,
-          "subcampos": {
-            "url": "string",
-            "largura": "integer",
-            "altura": "integer",
-            "fonte": "string",
-            "coletado_em": "data ISO",
-            "alt": "string descritivo"
-          },
-          "observacao": "null nao elimina o registro: a vitrine mostra espaco reservado neutro e o nome em destaque."
-        },
-        "fontes": {
-          "tipo": "objeto id -> fonte",
-          "obrigatorio": true,
-          "subcampos": {
-            "url": {
-              "tipo": "string",
-              "obrigatorio": true
-            },
-            "tipo": {
-              "tipo": "string",
-              "obrigatorio": true,
-              "observacao": "Descricao humana do documento: 'ficha tecnica BRSA004, revisada em 10/2025'."
-            },
-            "nivel": {
-              "tipo": "integer 1-7",
-              "obrigatorio": true,
-              "vocabulario": "escada_de_fontes"
-            },
-            "coletado_em": {
-              "tipo": "data ISO",
-              "obrigatorio": true
-            },
-            "conferir_no_pdf": {
-              "tipo": "boolean",
-              "obrigatorio": true
-            }
-          }
-        },
-        "constantes_relacionadas": {
-          "tipo": "lista de id de dados/constantes.json",
-          "obrigatorio": false
-        },
-        "divergencias": {
-          "tipo": "lista",
-          "obrigatorio": true,
-          "observacao": "Lista vazia e afirmacao: 'nao encontramos declaracoes conflitantes'."
-        },
-        "resolucao": {
-          "tipo": "string|null",
-          "obrigatorio_se": "divergencias nao vazia"
-        },
-        "status": {
-          "tipo": "enum",
-          "vocabulario": "status_do_registro",
-          "obrigatorio": true
-        },
-        "motivo_do_descarte": {
-          "tipo": "string|null",
-          "obrigatorio_se": "status == descartado"
-        },
-        "usada_por": {
-          "tipo": "lista",
-          "obrigatorio": false,
-          "observacao": "Codigos das paginas que consomem o item: F1, F2, G-COLAS."
-        }
-      },
-      "portao_de_categoria": {
-        "regra": "Material entra pelo USO que o proprio fabricante declara e que a peca de artesanato precisa — nunca porque a busca casa com a palavra 'mosaico'.",
-        "descarta": "Revestimento vendido em formato de obra (placa por m2 para piscina, cozinha e banheiro) fica com status `descartado` e motivo `formato_de_obra`, e permanece gravado para a proxima execucao nao recolher de novo. E a armadilha que o bloco 1 mediu: 'pastilha de vidro' sozinho leva a Leroy e Portobello, outra intencao.",
-        "nao_descarta": "Produto de obra cujo fabricante declara o uso que a peca precisa ENTRA normalmente — cimentcola AC-II e rejunte ceramicas Quartzolit sao de obra e sao a resposta certa para vaso de cimento. O portao e o uso declarado, nao a prateleira da loja."
-      }
-    },
-    "PECA": {
-      "arquivo": "NENHUM — vive no WordPress como CPT `peca`, cadastrado pela artesa em /atelie/",
-      "o_que_e": "Produto proprio do atelie, vendido pela ilha com margem cheia. Unica entidade do Arquipelago que nao e arquivo commitado.",
-      "por_que_nao_e_arquivo": "Requisito do Raphael de 10/09/2026: a mae dele cadastra as pecas sozinha, com login proprio, numa area amigavel fora do wp-admin. Repositorio como fonte da verdade valeria uma Fundacao entre ela e o catalogo dela — o que na pratica significaria nenhuma peca cadastrada.",
-      "regra_absoluta": "PECA NUNCA E INVENTADA. Sem peca cadastrada, a Loja mostra estado vazio honesto ('em breve'). Inventar peca, preco, medida ou foto seria mentir sobre o trabalho de uma pessoa real e prometer ao visitante um objeto que nao existe.",
-      "campos": {
-        "titulo": {
-          "meta": "post_title",
-          "obrigatorio": true
-        },
-        "slug": {
-          "meta": "post_name",
-          "obrigatorio": true,
-          "gerado": true
-        },
-        "descricao": {
-          "meta": "post_content",
-          "obrigatorio": false,
-          "observacao": "Textarea simples no painel, sem editor de blocos."
-        },
-        "preco": {
-          "meta": "_cdm_preco",
-          "tipo": "decimal",
-          "obrigatorio": true,
-          "bloqueia_publicacao_se_ausente": true
-        },
-        "disponibilidade": {
-          "meta": "_cdm_disponibilidade",
-          "tipo": "enum",
-          "valores": [
-            "pronta_entrega",
-            "sob_encomenda"
-          ],
-          "obrigatorio": true
-        },
-        "prazo_dias": {
-          "meta": "_cdm_prazo_dias",
-          "tipo": "integer|null",
-          "obrigatorio_se": "disponibilidade == sob_encomenda"
-        },
-        "medidas": {
-          "meta": "_cdm_medidas",
-          "tipo": "string A x L x P em cm",
-          "obrigatorio": false
-        },
-        "peso_g": {
-          "meta": "_cdm_peso_g",
-          "tipo": "integer|null",
-          "obrigatorio": false,
-          "observacao": "Necessario para frete e para o feed do Merchant Center do bloco 6."
-        },
-        "base": {
-          "meta": "_cdm_base",
-          "tipo": "enum",
-          "vocabulario": "base",
-          "obrigatorio": true,
-          "observacao": "E o que liga a peca ao tutorial 'como fazer mosaico em <base>' e as fichas de material que a base implica."
-        },
-        "cores": {
-          "meta": "_cdm_cores",
-          "tipo": "lista de string",
-          "obrigatorio": false
-        },
-        "quantidade": {
-          "meta": "_cdm_quantidade",
-          "tipo": "integer",
-          "obrigatorio": true,
-          "observacao": "Peca artesanal costuma ser unica: 1 e o padrao."
-        },
-        "galeria": {
-          "meta": "_cdm_galeria",
-          "tipo": "lista de ID de anexo em ordem",
-          "obrigatorio": true,
-          "minimo": 1,
-          "bloqueia_publicacao_se_vazia": true,
-          "observacao": "A primeira e a capa e vira a imagem destacada."
-        },
-        "colecao": {
-          "taxonomia": "colecao",
-          "vocabulario": "colecao_uso",
-          "obrigatorio": true,
-          "bloqueia_publicacao_se_ausente": true
-        },
-        "tecnica": {
-          "taxonomia": "tecnica",
-          "vocabulario": "tecnica",
-          "obrigatorio": true,
-          "bloqueia_publicacao_se_ausente": true
-        },
-        "materiais_usados": {
-          "tipo": "lista de id de MATERIAL",
-          "gerado": true,
-          "observacao": "Derivado do mapa fixo base x tecnica do snippet do bloco 4d — a artesa nao preenche. E o que faz a ficha de material ganhar 'pecas feitas com este material'."
-        }
-      },
-      "gerado_no_ato_de_publicar": [
-        "title, meta description, canonical e slug limpo a partir dos campos",
-        "alt de cada foto: '<titulo>, mosaico em <base>, foto N'",
-        "breadcrumb Inicio > Loja > <colecao> > <peca>, visivel e em JSON-LD BreadcrumbList",
-        "Product + Offer com preco real, availability InStock ou PreOrder, image = galeria, brand Clube do Mosaico. NUNCA rel=sponsored: produto proprio",
-        "OpenGraph com a capa",
-        "links de saida para a colecao, a tecnica, o tutorial da base, as fichas de material implicadas e 4 pecas parecidas",
-        "entrada em wp-sitemap.xml e no feed /feed-produtos.xml"
-      ],
-      "regra_de_qualidade": "Peca sem foto ou sem preco nao publica. Peca publicada nunca fica orfa: o teste do bloco 4d confere, para uma peca de teste, que ela aparece na colecao, na tecnica, no tutorial da base e na ficha de material, e que a pagina dela linka de volta para os quatro."
-    },
-    "TECNICA": {
-      "arquivo": "dados/tecnicas.json",
-      "o_que_e": "As tecnicas do mosaico (direto, indireto, bizantino, opus...). Sustenta as paginas /tecnicas/<slug>/, que sao a unica cabeca de volume alto com chance real de primeira pagina segundo o bloco 1.",
-      "campos": {
-        "id": {
-          "tipo": "string",
-          "obrigatorio": true,
-          "vocabulario": "tecnica"
-        },
-        "nome": {
-          "tipo": "string",
-          "obrigatorio": true
-        },
-        "nomes_alternativos": {
-          "tipo": "lista de string",
-          "obrigatorio": false
-        },
-        "definicao": {
-          "tipo": "string",
-          "obrigatorio": true,
-          "fonte_obrigatoria": true
-        },
-        "como_se_executa": {
-          "tipo": "lista de passos",
-          "obrigatorio": false,
-          "fonte_obrigatoria": true
-        },
-        "bases_compativeis": {
-          "tipo": "lista",
-          "vocabulario": "base",
-          "obrigatorio": false
-        },
-        "materiais_tipicos": {
-          "tipo": "lista",
-          "vocabulario": "material_tessela",
-          "obrigatorio": false
-        },
-        "junta_tipica_mm": {
-          "tipo": "number|null",
-          "observacao": "Alimenta o valor sugerido da F1 quando a pessoa escolhe a tecnica."
-        },
-        "dificuldade": {
-          "tipo": "enum",
-          "valores": [
-            "iniciante",
-            "intermediaria",
-            "avancada"
-          ],
-          "obrigatorio": false
-        },
-        "consulta_alvo": {
-          "tipo": "string",
-          "obrigatorio": true,
-          "observacao": "Secao 14.9: toda pagina nasce com a consulta que mira escrita no proprio arquivo."
-        },
-        "por_que_chega_ao_top_10": {
-          "tipo": "string",
-          "obrigatorio": true
-        },
-        "imagem": {
-          "tipo": "objeto|null",
-          "obrigatorio": true
-        },
-        "fontes": {
-          "tipo": "objeto id -> fonte",
-          "obrigatorio": true
-        },
-        "revisao_tecnica": {
-          "tipo": "enum",
-          "valores": [
-            "pendente",
-            "revisada"
-          ],
-          "obrigatorio": true,
-          "observacao": "Fica `pendente` ate a artesa revisar. A pagina publica com o estado declarado — nunca finge revisao que nao houve."
-        }
-      },
-      "natureza_da_fonte": {
-        "regra": "TECNICA e a unica entidade em que a fonte pode ser enciclopedica ou editorial, porque nao existe fabricante de tecnica. Em compensacao ela NUNCA sustenta numero que entre em formula publicada: junta_tipica_mm e valor sugerido de campo de entrada, nunca constante de calculo.",
-        "niveis_aceitos": [
-          "enciclopedico",
-          "instituicao-de-ensino-ou-museu",
-          "editorial-da-ilha"
-        ],
-        "editorial_da_ilha": "So vale para definicao e organizacao do conteudo, e sai na tela como afirmacao da ilha, com o metodo dito na pagina Sobre. Nunca como 'segundo especialistas'."
-      }
-    },
-    "COTACAO": {
-      "arquivo": "dados/cotacoes.json",
-      "o_que_e": "Serie temporal de preco de MATERIAL. Entidade de apoio, nao de conteudo.",
-      "por_que_separada": "Preco nao e campo de produto: muda toda semana, e campo que muda toda semana dentro do registro tecnico obriga a reescrever o registro tecnico. Alem disso, preco NUNCA entra em criterio de recomendacao — separar o arquivo torna isso estrutural em vez de disciplina.",
-      "campos": {
-        "material_id": {
-          "tipo": "string",
-          "obrigatorio": true
-        },
-        "loja": {
-          "tipo": "string",
-          "obrigatorio": true
-        },
-        "programa": {
-          "tipo": "enum|null",
-          "vocabulario": "programa_de_afiliado"
-        },
-        "preco_brl": {
-          "tipo": "number",
-          "obrigatorio": true
-        },
-        "unidade": {
-          "tipo": "enum",
-          "vocabulario": "unidade_de_venda",
-          "obrigatorio": true
-        },
-        "quantidade_na_embalagem": {
-          "tipo": "number|null"
-        },
-        "url": {
-          "tipo": "string",
-          "obrigatorio": true,
-          "observacao": "URL de origem do preco. NUNCA o link de afiliado — sao coisas diferentes e o link de afiliado nunca substitui a URL de origem do dado."
-        },
-        "coletado_em": {
-          "tipo": "data ISO",
-          "obrigatorio": true
-        }
-      },
-      "regra_de_publicacao": "A pagina nunca crava preco como atual: ou nao mostra preco, ou mostra FAIXA com a data da coleta na frase. Peca propria (PECA) e o oposto: preco real, obrigatorio e atual, porque quem vende e a ilha."
-    }
-  },
-  "matriz_esperada_da_F2": {
-    "descricao": "As 18 celulas base x ambiente que a F2 publica, RECOMPUTADAS neste bloco a partir das declaracoes de dados/materiais-colas.json pelas cinco regras_de_elegibilidade. ferramentas/validar-banco.py recalcula cada uma e falha se o resultado divergir — e o que impede o banco e a pagina de se separarem em silencio. Onde o resultado computado difere da matriz escrita a mao na secao 1.3 de dados/especificacao-calculadoras.md, a diferenca esta anotada em `divergencia_com_a_especificacao`: quem manda e esta tabela, porque ela sai da declaracao e a outra saiu da leitura.",
-    "leitura": "`recomendados_topo` e um CONJUNTO, nao uma ordem: quando mais de um produto empata no score, a pagina lista os dois como equivalentes. `eliminados_por_proibicao` sao os que o fabricante proibe naquela base ou ambiente; `eliminados_por_silencio` sao os que ele simplesmente nao declara — as duas listas vao para a tela em secoes DIFERENTES, com frases diferentes.",
-    "celulas": [
-      {
-        "base": "ceramica_esmaltada_porcelana",
-        "ambiente": "interno_seco",
-        "recomendados_topo": [
-          "tekbond-silicone-acetico-construcao",
-          "tekbond-silicone-neutro"
-        ],
-        "eliminados_por_proibicao": [],
-        "eliminados_por_silencio": [
-          "cascola-cascorez-extra",
-          "quartzolit-cimentcola-externo-acii"
-        ],
-        "mencionados_com_ressalva": [
-          "loctite-durepoxi"
-        ],
-        "divergencia_com_a_especificacao": "A secao 1.3 poe o acetico sozinho. As declaracoes nao sustentam a escolha: o mesmo fabricante declara ceramica para o acetico E para o neutro, e nenhum dos dois declara o ambiente. Empate de verdade — a pagina lista os dois."
-      },
-      {
-        "base": "ceramica_esmaltada_porcelana",
-        "ambiente": "interno_molhado",
-        "recomendados_topo": [
-          "tekbond-silicone-acetico-construcao",
-          "tekbond-silicone-neutro"
-        ],
-        "eliminados_por_proibicao": [],
-        "eliminados_por_silencio": [
-          "cascola-cascorez-extra",
-          "quartzolit-cimentcola-externo-acii"
-        ],
-        "mencionados_com_ressalva": [
-          "loctite-durepoxi"
-        ],
-        "divergencia_com_a_especificacao": "Mesmo empate da linha anterior."
-      },
-      {
-        "base": "ceramica_esmaltada_porcelana",
-        "ambiente": "externo_abrigado",
-        "recomendados_topo": [
-          "tekbond-silicone-acetico-construcao",
-          "tekbond-silicone-neutro"
-        ],
-        "eliminados_por_proibicao": [],
-        "eliminados_por_silencio": [
-          "cascola-cascorez-extra",
-          "quartzolit-cimentcola-externo-acii"
-        ],
-        "mencionados_com_ressalva": [
-          "loctite-durepoxi"
-        ],
-        "divergencia_com_a_especificacao": "Mesmo empate. Externo ABRIGADO nao e ambiente critico: silencio nao elimina."
-      },
-      {
-        "base": "ceramica_esmaltada_porcelana",
-        "ambiente": "externo_exposto",
-        "recomendados_topo": [
-          "tekbond-silicone-neutro"
-        ],
-        "eliminados_por_proibicao": [],
-        "eliminados_por_silencio": [
-          "tekbond-silicone-acetico-construcao",
-          "cascola-cascorez-extra",
-          "quartzolit-cimentcola-externo-acii",
-          "loctite-durepoxi"
-        ],
-        "mencionados_com_ressalva": [],
-        "divergencia_com_a_especificacao": "A secao 1.3 deixa o acetico 'em segundo lugar'. Pela regra 4 ele nao fica em lugar nenhum da lista de recomendados: sol e chuva exigem declaracao explicita, e so o neutro declara chuva e raios UV."
-      },
-      {
-        "base": "vidro",
-        "ambiente": "interno_seco",
-        "recomendados_topo": [
-          "tekbond-silicone-acetico-construcao",
-          "tekbond-silicone-neutro"
-        ],
-        "eliminados_por_proibicao": [],
-        "eliminados_por_silencio": [
-          "cascola-cascorez-extra",
-          "quartzolit-cimentcola-externo-acii"
-        ],
-        "mencionados_com_ressalva": [
-          "loctite-durepoxi"
-        ],
-        "divergencia_com_a_especificacao": null
-      },
-      {
-        "base": "vidro",
-        "ambiente": "externo_abrigado",
-        "recomendados_topo": [
-          "tekbond-silicone-acetico-construcao",
-          "tekbond-silicone-neutro"
-        ],
-        "eliminados_por_proibicao": [],
-        "eliminados_por_silencio": [
-          "cascola-cascorez-extra",
-          "quartzolit-cimentcola-externo-acii"
-        ],
-        "mencionados_com_ressalva": [
-          "loctite-durepoxi"
-        ],
-        "divergencia_com_a_especificacao": null
-      },
-      {
-        "base": "vidro",
-        "ambiente": "externo_exposto",
-        "recomendados_topo": [
-          "tekbond-silicone-neutro"
-        ],
-        "eliminados_por_proibicao": [],
-        "eliminados_por_silencio": [
-          "tekbond-silicone-acetico-construcao",
-          "cascola-cascorez-extra",
-          "quartzolit-cimentcola-externo-acii",
-          "loctite-durepoxi"
-        ],
-        "mencionados_com_ressalva": [],
-        "divergencia_com_a_especificacao": "Celula que a secao 1.3 nao tinha: ela trata vidro so em 'interno, externo abrigado'. Vidro em sol e chuva existe (mesa de jardim, placa de numero) e agora tem resposta."
-      },
-      {
-        "base": "vidro_laminado",
-        "ambiente": "interno_seco",
-        "recomendados_topo": [
-          "tekbond-silicone-neutro"
-        ],
-        "eliminados_por_proibicao": [
-          "tekbond-silicone-acetico-construcao"
-        ],
-        "eliminados_por_silencio": [
-          "cascola-cascorez-extra",
-          "quartzolit-cimentcola-externo-acii",
-          "loctite-durepoxi"
-        ],
-        "mencionados_com_ressalva": [],
-        "divergencia_com_a_especificacao": null
-      },
-      {
-        "base": "espelho",
-        "ambiente": "interno_seco",
-        "recomendados_topo": [
-          "tekbond-silicone-neutro"
-        ],
-        "eliminados_por_proibicao": [
-          "tekbond-silicone-acetico-construcao"
-        ],
-        "eliminados_por_silencio": [
-          "cascola-cascorez-extra",
-          "quartzolit-cimentcola-externo-acii",
-          "loctite-durepoxi"
-        ],
-        "mencionados_com_ressalva": [],
-        "divergencia_com_a_especificacao": null,
-        "observacao": "A celula mais importante da ilha: caco de espelho e um dos tutoriais-ancora, e a ficha BRSA004 proibe o acetico em espelho — que e exatamente o que o blog manda usar."
-      },
-      {
-        "base": "mdf_madeira",
-        "ambiente": "interno_seco",
-        "recomendados_topo": [
-          "cascola-cascorez-extra"
-        ],
-        "eliminados_por_proibicao": [
-          "tekbond-silicone-acetico-construcao"
-        ],
-        "eliminados_por_silencio": [
-          "quartzolit-cimentcola-externo-acii"
-        ],
-        "mencionados_com_ressalva": [
-          "loctite-durepoxi"
-        ],
-        "elegiveis_abaixo_do_topo": [
-          "tekbond-silicone-neutro"
-        ],
-        "divergencia_com_a_especificacao": null,
-        "observacao": "O PVA ganha do neutro por score: declara a base (MDF, compensado, madeira) E o ambiente (ambientes internos). O neutro declara so a base e fica atras, elegivel."
-      },
-      {
-        "base": "mdf_madeira",
-        "ambiente": "interno_molhado",
-        "recomendados_topo": [
-          "tekbond-silicone-neutro"
-        ],
-        "eliminados_por_proibicao": [
-          "tekbond-silicone-acetico-construcao"
-        ],
-        "eliminados_por_silencio": [
-          "cascola-cascorez-extra",
-          "quartzolit-cimentcola-externo-acii"
-        ],
-        "mencionados_com_ressalva": [
-          "loctite-durepoxi"
-        ],
-        "divergencia_com_a_especificacao": "A secao 1.3 escreveu 'a ilha nao recomenda' porque so olhou PVA e acetico. O banco mostra saida: o Silicone Neutro Tekbond declara madeira entre os substratos que veda. O PVA sai por delimitacao propria do fabricante (ambientes internos), nao por proibicao."
-      },
-      {
-        "base": "mdf_madeira",
-        "ambiente": "externo_exposto",
-        "recomendados_topo": [
-          "tekbond-silicone-neutro"
-        ],
-        "eliminados_por_proibicao": [
-          "tekbond-silicone-acetico-construcao"
-        ],
-        "eliminados_por_silencio": [
-          "cascola-cascorez-extra",
-          "quartzolit-cimentcola-externo-acii",
-          "loctite-durepoxi"
-        ],
-        "mencionados_com_ressalva": [],
-        "divergencia_com_a_especificacao": "Mesma correcao: o neutro declara madeira e declara chuva e raios UV, entao passa ate na regra do ambiente critico. Continua valendo o aviso de que MDF ao tempo e problema de BASE, nao de cola — e isso e texto da pagina, nao campo do banco."
-      },
-      {
-        "base": "cimento_concreto",
-        "ambiente": "interno_seco",
-        "recomendados_topo": [
-          "tekbond-silicone-neutro"
-        ],
-        "eliminados_por_proibicao": [
-          "tekbond-silicone-acetico-construcao"
-        ],
-        "eliminados_por_silencio": [
-          "cascola-cascorez-extra",
-          "quartzolit-cimentcola-externo-acii",
-          "loctite-durepoxi"
-        ],
-        "mencionados_com_ressalva": [],
-        "divergencia_com_a_especificacao": "ACHADO QUE MUDA A PAGINA: a secao 1.3 recomenda a cimentcola AC-II para base de cimento citando 'e declarada para area interna e externa pela NBR 14.081' — mas isso e declaracao de AMBIENTE, nao de SUBSTRATO. A coleta do bloco 2 nao obteve nenhuma declaracao de base para a cimentcola: o que a pagina do fabricante nomeia ('ceramicas e placas de pedra natural de ate 120x120 cm') e a PECA ASSENTADA. Enquanto essa declaracao nao for colhida, a cimentcola nao e recomendacao primaria — e quem responde a base de cimento e o silicone neutro, que declara concreto e alvenaria com todas as letras."
-      },
-      {
-        "base": "cimento_concreto",
-        "ambiente": "externo_exposto",
-        "recomendados_topo": [
-          "tekbond-silicone-neutro"
-        ],
-        "eliminados_por_proibicao": [
-          "tekbond-silicone-acetico-construcao"
-        ],
-        "eliminados_por_silencio": [
-          "cascola-cascorez-extra",
-          "quartzolit-cimentcola-externo-acii",
-          "loctite-durepoxi"
-        ],
-        "mencionados_com_ressalva": [],
-        "divergencia_com_a_especificacao": "Mesmo achado da linha anterior."
-      },
-      {
-        "base": "alvenaria_tijolo",
-        "ambiente": "externo_exposto",
-        "recomendados_topo": [
-          "tekbond-silicone-neutro"
-        ],
-        "eliminados_por_proibicao": [
-          "tekbond-silicone-acetico-construcao"
-        ],
-        "eliminados_por_silencio": [
-          "cascola-cascorez-extra",
-          "quartzolit-cimentcola-externo-acii",
-          "loctite-durepoxi"
-        ],
-        "mencionados_com_ressalva": [],
-        "divergencia_com_a_especificacao": "Mesmo achado da cimentcola."
-      },
-      {
-        "base": "metal",
-        "ambiente": "interno_seco",
-        "recomendados_topo": [
-          "tekbond-silicone-neutro"
-        ],
-        "eliminados_por_proibicao": [
-          "tekbond-silicone-acetico-construcao"
-        ],
-        "eliminados_por_silencio": [
-          "cascola-cascorez-extra",
-          "quartzolit-cimentcola-externo-acii"
-        ],
-        "mencionados_com_ressalva": [
-          "loctite-durepoxi"
-        ],
-        "divergencia_com_a_especificacao": null,
-        "observacao": "Caso da regra 1: o acetico e indicado para aluminio anodizado e proibido em metal corrosivel, zinco e chapa galvanizada. Duas declaracoes do mesmo fabricante sobre a mesma base — vence a proibicao, porque quem monta mosaico nao sabe dizer se a chapa dela e galvanizada."
-      },
-      {
-        "base": "plastico",
-        "ambiente": "interno_seco",
-        "recomendados_topo": [],
-        "eliminados_por_proibicao": [
-          "tekbond-silicone-acetico-construcao"
-        ],
-        "eliminados_por_silencio": [
-          "tekbond-silicone-neutro",
-          "cascola-cascorez-extra",
-          "quartzolit-cimentcola-externo-acii",
-          "loctite-durepoxi"
-        ],
-        "mencionados_com_ressalva": [],
-        "divergencia_com_a_especificacao": null,
-        "observacao": "FAIXA DESCOBERTA declarada (secao 1.6). O acetico proibe acrilico e desaconselha PE, PP e PC; neutro e Durepoxi dizem 'certos/alguns tipos de plastico', que nao nomeia tipo nenhum e por isso nunca vira indicacao."
-      },
-      {
-        "base": "ceramica_esmaltada_porcelana",
-        "ambiente": "contato_permanente_agua",
-        "recomendados_topo": [],
-        "eliminados_por_proibicao": [
-          "tekbond-silicone-acetico-construcao"
-        ],
-        "eliminados_por_silencio": [
-          "tekbond-silicone-neutro",
-          "cascola-cascorez-extra",
-          "quartzolit-cimentcola-externo-acii"
-        ],
-        "mencionados_com_ressalva": [
-          "loctite-durepoxi"
-        ],
-        "divergencia_com_a_especificacao": null,
-        "observacao": "FAIXA DESCOBERTA que a regra 5 mantem descoberta: o Durepoxi declara secar debaixo d'agua, mas a fonte e press release de 2018 (nivel 4) e o minimo para recomendacao primaria e 3. Fecha com o boletim do rejunte epoxi Quartzolit, ja nomeado em pendentes."
-      }
-    ],
-    "categoria_considerada": "cola",
-    "escopo": "SO MATERIAIS DE `categoria == cola` entram nesta matriz, e isso agora e verificado em codigo. Ate o bloco 3c a regra existia so na cabeca de quem escreveu: `computar_celula` varria o banco inteiro, e como o banco so tinha colas, as 18 celulas passavam. O primeiro rejunte gravado teria entrado nas 18 como 'eliminado por silencio' — frase que nem sentido faz para um rejunte, que nunca foi candidato a colar coisa nenhuma — e a correcao provavel seria colar os cinco ids nas 18 celulas, deixando a matriz verde e sem significado."
-  },
-  "ordem_da_vitrine": {
-    "regra": "Secao 7 do ARQUIPELAGO.md, aplicada por este banco: (1) elegibilidade tecnica completa — nenhuma restricao declarada bate com a entrada; (2) adequacao tecnica entre os elegiveis — quem declara o ambiente exato vem antes de quem so nao proibe; (3) ter link de loja SO como desempate entre equivalentes.",
-    "nunca": "Comparar comissao, promover produto pior porque paga mais, ou usar preco como criterio de ordem.",
-    "quando_ninguem_passa": "A vitrine nao lista e a pagina DIZ por que — 'nenhum fabricante declara uso nesta condicao' e resposta; silencio parece defeito."
-  },
-  "o_que_este_bloco_deixa_desbloqueado": [
-    "Bloco 4 (as duas ferramentas) fica dependendo so do WordPress existir: o formato dos itens que a vitrine consome esta definido e a categoria cola ja tem 5 registros reais.",
-    "As categorias rejunte, pastilha e alicate podem ser enchidas em qualquer execucao, sem decisao nova — o esquema ja diz que campo cada uma exige.",
-    "A entrada da F2 precisa de um campo a mais do que a secao 1.2 da especificacao previa: vidro LAMINADO e vidro comum sao bases distintas na matriz publicada, e o formulario tinha so 'vidro'. Corrigir no bloco 4, com a pergunta escrita em portugues de gente ('o vidro tem uma pelicula entre duas camadas?').",
-    "A F2 pode enfim responder a metade do rejunte que o nome dela promete, recomputada do banco em vez de cravada na prosa: cinco produtos, faixa de junta declarada em quatro deles e a matriz junta x ambiente ja conferida.",
-    "A entrada da F2 e da F1 precisa de mais um campo: a LARGURA DA JUNTA em mm. A F1 ja a pedia para calcular consumo; a F2 nao a pedia, e sem ela nao ha como escolher rejunte. E o mesmo tipo de correcao de entrada que o bloco 3 fez com o vidro laminado.",
-    "Falta a categoria PASTILHA, e ela e de outra natureza: os campos que ela exige (passo de fabrica, espessura, peso unitario, unidade de venda) nao existem em boletim de fabricante, e sim em anuncio de loja — nivel 5 e 6 da escada. Nenhum dos dois dominios foi testado nesta execucao."
+   },
+   {
+    "literal": "aquarios",
+    "ambiente": [
+     "contato_permanente_agua"
+    ]
+   },
+   {
+    "literal": "chuva",
+    "ambiente": [
+     "externo_exposto"
+    ]
+   },
+   {
+    "literal": "raios UV",
+    "ambiente": [
+     "externo_exposto"
+    ]
+   },
+   {
+    "literal": "area interna e externa",
+    "ambiente": [
+     "interno_seco",
+     "interno_molhado",
+     "externo_abrigado",
+     "externo_exposto"
+    ]
+   },
+   {
+    "literal": "ambientes internos",
+    "ambiente": [
+     "interno_seco"
+    ]
+   }
   ],
-  "mapa_de_termos_do_rejunte": {
-    "descricao": "Onde mora o julgamento da ilha sobre REJUNTE, separado do mapa da cola de proposito: os dois traduzem para alvos diferentes. O mapa da cola traduz para `base`; este traduz para `ambiente` e para `material_tessela`. Termo que nao estiver aqui nao pode ser traduzido em codigo — ou entra nesta tabela, ou fica so na citacao literal.",
-    "regra": "Mesma assimetria de custo do mapa da cola, e por isso a traducao de INDICACAO e restritiva. Duas decisoes que saem dela e que valem ser lidas antes de discordar: 'areas internas e externas' NAO cobre externo_exposto, e 'em area externa, proteger do sol, do vento e da chuva por 24 horas' tambem NAO — a primeira e escopo generico e a segunda fala do que fazer durante a cura, nenhuma das duas declara que o rejunte curado aguenta sol e chuva. Quem aguenta sol e chuva escreve isso.",
-    "termos": [
-      {
-        "literal": "liberacao para contato com area molhada em 24 horas",
-        "ambiente": [
-          "interno_molhado"
-        ],
-        "observacao": "Declarar quando o rejunte pode encostar em agua e declarar que ele serve em area molhada. E a forma como este fabricante publica a aptidao."
-      },
-      {
-        "literal": "liberacao para contato com areas molhadas em 24 horas",
-        "ambiente": [
-          "interno_molhado"
-        ]
-      },
-      {
-        "literal": "liberacao para contato com agua em piscinas e areas molhadas em 7 dias",
-        "ambiente": [
-          "interno_molhado",
-          "contato_permanente_agua"
-        ]
-      },
-      {
-        "literal": "tecnologia antimofo, recomendado para areas molhadas",
-        "ambiente": [
-          "interno_molhado"
-        ]
-      },
-      {
-        "literal": "piscinas",
-        "ambiente": [
-          "contato_permanente_agua"
-        ]
-      },
-      {
-        "literal": "paredes, pisos e piscinas",
-        "ambiente": [
-          "contato_permanente_agua"
-        ],
-        "observacao": "Lista de lugares de aplicacao. So 'piscinas' diz ambiente no vocabulario da ilha; parede e piso sao suporte, nao ambiente."
-      },
-      {
-        "literal": "piscinas e areas submersas",
-        "ambiente": [
-          "contato_permanente_agua"
-        ]
-      },
-      {
-        "literal": "uso submerso em agua tratada quimicamente",
-        "ambiente": [
-          "contato_permanente_agua"
-        ],
-        "observacao": "TRADUZ, mas a ressalva vai junto para a tela e nao se perde aqui: agua TRATADA e piscina. A agua parada de uma fonte de jardim ou de um vaso nao e o que o fabricante declarou, e a pagina precisa dizer isso na mesma frase em que cita o produto."
-      },
-      {
-        "literal": "areas internas e externas",
-        "ambiente": [
-          "interno_seco",
-          "interno_molhado",
-          "externo_abrigado"
-        ],
-        "observacao": "TRADUCAO RESTRITIVA, e a decisao mais discutivel deste mapa. O mapa da cola manda 'area interna e externa' para os quatro ambientes, externo_exposto incluido. Aqui nao: e escopo comercial generico, e deixar que ele satisfaca sozinho a regra do ambiente critico esvaziaria a regra. Sol e chuva se declaram por nome."
-      },
-      {
-        "literal": "em area externa, proteger do sol, do vento e da chuva por 24 horas",
-        "ambiente": [
-          "externo_abrigado"
-        ],
-        "observacao": "Declara uso externo — mas e instrucao de CURA, nao de durabilidade. Por isso vai so ate externo_abrigado."
-      }
-    ],
-    "termos_que_nao_traduzem": [
-      {
-        "literal": "tecnologia Protect contra fungos e algas",
-        "por_que": "Aditivo biologico. Fungo aparece em area molhada, mas resistir a fungo nao e o mesmo que ser liberado para agua — e este produto ja declara a liberacao por nome, no campo certo."
-      },
-      {
-        "literal": "biocida e algicida contra fungos e algas",
-        "por_que": "Mesma coisa."
-      },
-      {
-        "literal": "impermeavel, antimofo e resistente a manchas",
-        "por_que": "Propriedades do material. 'Impermeavel' e a tentacao: seria facil ler ai uma autorizacao para imersao, e nao e — este produto declara a imersao separadamente, com prazo, e e essa declaracao que vale."
-      },
-      {
-        "literal": "piscinas aquecidas de ate 40 graus Celsius",
-        "por_que": "Limite de temperatura dentro de um ambiente que ja esta declarado. Nao acrescenta ambiente; vai para a tela como ressalva."
-      },
-      {
-        "literal": "sobreposicao de rejunte antigo, cimenticio, acrilico e epoxi",
-        "por_que": "Descreve sobre O QUE se aplica (rejunte velho), que nao e nem tessela nem ambiente."
-      },
-      {
-        "literal": "uso residencial, comercial e industrial",
-        "por_que": "Tipo de imovel, nao ambiente. Nao diz se e seco, molhado ou ao tempo."
-      },
-      {
-        "literal": "uso residencial e comercial",
-        "por_que": "Idem."
-      },
-      {
-        "literal": "pisos e paredes",
-        "por_que": "Posicao da superficie, nao ambiente."
-      },
-      {
-        "literal": "revestimentos especiais",
-        "por_que": "O fabricante nao nomeia qual. Vago: nao vira tessela declarada."
-      }
-    ],
-    "termos_tessela": [
-      {
-        "literal": "pastilhas de porcelana e de vidro",
-        "tessela": [
-          "pastilha_vidro",
-          "pastilha_ceramica"
-        ],
-        "observacao": "A unica declaracao do banco inteiro que nomeia a tessela do mosaico. Porcelana entra como pastilha_ceramica no vocabulario da ilha."
-      },
-      {
-        "literal": "pastilhas",
-        "tessela": [
-          "pastilha_vidro",
-          "pastilha_ceramica"
-        ],
-        "observacao": "Termo solto: cobre as duas pastilhas do vocabulario, nunca caco de espelho nem pedra, que o fabricante nao nomeou."
-      },
-      {
-        "literal": "ceramicas",
-        "tessela": [
-          "pastilha_ceramica",
-          "caco_azulejo"
-        ]
-      },
-      {
-        "literal": "porcelanatos",
-        "tessela": [
-          "pastilha_ceramica"
-        ]
-      },
-      {
-        "literal": "pedras",
-        "tessela": [
-          "pedra"
-        ]
-      }
-    ]
+  "termos_que_nao_traduzem": [
+   {
+    "literal": "placas de pedra natural",
+    "por_que": "Na pagina da cimentcola AC-II o termo nomeia a PECA QUE SE ASSENTA (ceramicas e placas de ate 120x120 cm), nao a base sobre a qual se assenta. Traduzir isso em base seria fabricar uma declaracao que o fabricante nao fez — e e exatamente o erro que este bloco encontrou na matriz publicada."
+   },
+   {
+    "literal": "ceramicas",
+    "por_que": "Mesma coisa quando aparece em produto de assentamento: e a peca assentada. So traduz em produto de colagem, onde a lista e de substratos."
+   },
+   {
+    "literal": "vedacao de esquadria de aluminio com vidro",
+    "por_que": "Descreve uma aplicacao inteira (esquadria), nao um substrato do mosaico. Fica na citacao literal."
+   },
+   {
+    "literal": "laminados plasticos (Formica, Formiplac, Perstop)",
+    "por_que": "Laminado melaminico de movel, nao e a base de plastico da entrada da F2 (PE, PP, PC, acrilico). Fica na citacao literal."
+   },
+   {
+    "literal": "gesso",
+    "por_que": "Nao esta no vocabulario de base da ilha e nao aparece como base de peca de mosaico no corpus. Se aparecer, entra no vocabulario primeiro."
+   },
+   {
+    "literal": "superficies pintadas",
+    "por_que": "Estado da superficie, nao base: MDF pintado e cimento pintado sao a MESMA restricao vista de fora. Vai para a tela como aviso de preparo ('lixe a tinta antes'), que e onde ela serve."
+   },
+   {
+    "literal": "fachada de vidro",
+    "por_que": "Aplicacao predial inteira, nao substrato de peca de mosaico."
+   },
+   {
+    "literal": "colagem estrutural que exija resistencia",
+    "por_que": "Descreve o esforco, nao a superficie."
+   },
+   {
+    "literal": "contato com alimento",
+    "por_que": "Restricao sanitaria. Nao e base nem ambiente do vocabulario — mas E texto obrigatorio na pagina de bandeja e travessa, que sao pecas do catalogo."
+   },
+   {
+    "literal": "ambiente completamente fechado",
+    "por_que": "Condicao de CURA (o acetico precisa da umidade do ar), nao ambiente de uso. Traduzir isso em ambiente seria inverter o sentido da frase do fabricante."
+   },
+   {
+    "literal": "agentes acidos",
+    "por_que": "Resistencia quimica, sem ambiente correspondente no vocabulario da ilha."
+   },
+   {
+    "literal": "metais corrosiveis",
+    "por_que": "Aparece nas RESISTENCIAS do silicone neutro, com o mesmo texto que aparece nas PROIBICOES do acetico. Nao traduz: o sinal vem da lista em que o termo esta, e como resistencia ele nao muda ambiente nenhum."
+   },
+   {
+    "literal": "variacao de temperatura",
+    "por_que": "Resistencia sem ambiente correspondente."
+   },
+   {
+    "literal": "couro",
+    "por_que": "Material colado, nao base de peca de mosaico."
+   },
+   {
+    "literal": "tela",
+    "por_que": "Idem."
+   },
+   {
+    "literal": "borracha",
+    "por_que": "Idem."
+   },
+   {
+    "literal": "poliestireno expandido",
+    "por_que": "Isopor comum. Nao esta no vocabulario de base e nao aparece como base de peca no corpus; se virar base (isopor estrutural), entra no vocabulario primeiro."
+   },
+   {
+    "literal": "papel, papelao, tecido e cortica",
+    "por_que": "Materiais de papelaria e encadernacao, fora do mosaico."
+   },
+   {
+    "literal": "encadernacao",
+    "por_que": "Aplicacao, nao substrato."
+   },
+   {
+    "literal": "fibras naturais",
+    "por_que": "Generico demais para virar base."
+   },
+   {
+    "literal": "prata",
+    "por_que": "Metal precioso de joalheria; a peca de mosaico nao e colada sobre prata. Nao inflar a base metal com termo de reparo."
+   },
+   {
+    "literal": "ouro",
+    "por_que": "Idem."
+   },
+   {
+    "literal": "molduras, rodapes e revestimentos decorativos em ambientes internos",
+    "por_que": "Frase de aplicacao. A parte que importa dela — 'ambientes internos' — ja esta em ambientes_declarados, onde delimita de verdade."
+   },
+   {
+    "literal": "assentamento ceramico em area interna e externa",
+    "por_que": "Frase de aplicacao da cimentcola. A parte de ambiente ja esta em ambientes_declarados; a de substrato NAO existe, que e o achado deste bloco."
+   },
+   {
+    "literal": "ceramicas e placas de pedra natural de ate 120 x 120 cm em area interna e 100 x 100 cm em area externa",
+    "por_que": "O que a frase nomeia e a PECA ASSENTADA e o tamanho maximo dela, nunca o substrato. Traduzir isso em base seria fabricar uma declaracao que o fabricante nao fez."
+   }
+  ]
+ },
+ "regras_de_elegibilidade": {
+  "descricao": "As cinco regras que transformam as declaracoes de MATERIAL na matriz da F2. Elas sao a secao 7 do ARQUIPELAGO.md escrita de forma executavel: ferramentas/validar-banco.py as roda, o snippet do bloco 4 as repete em PHP, e as duas implementacoes tem que dar o mesmo resultado.",
+  "1_proibicao_vence_indicacao_dentro_do_mesmo_produto": "Quando o mesmo fabricante indica e proibe a mesma base, vale a proibicao. Caso real: o Silicone Acetico Tekbond indica 'aluminio comum e anodizado' (metal) e proibe 'metal corrosivel, zinco e chapa galvanizada' (metal) — o produto sai de metal. E a regra do conjunto MAIS ESTREITO da secao 10 do contrato: quem monta mosaico nao sabe se a chapa dela e galvanizada.",
+  "2_base_sem_declaracao_nao_e_recomendacao": "Produto so entra nos recomendados de uma base que o fabricante declara. Silencio sobre a base manda o produto para a secao rotulada, com a frase 'o fabricante nao declara uso nesta superficie' — que e diferente de proibicao e sai na tela com essas palavras.",
+  "3_ambiente_declarado_DELIMITA": "Quando o produto tem `ambientes_declarados` nao vazio, ele so e elegivel nos ambientes que declara. O fabricante que escreve 'revestimentos decorativos em ambientes internos' delimitou o uso dele — e por isso o PVA Cascorez nao entra em peca molhada nem externa, sem que a ilha precise inventar proibicao. Produto que nao delimita ambiente nenhum passa pelos ambientes comuns.",
+  "4_ambiente_critico_exige_declaracao_EXPLICITA": {
+   "ambientes": [
+    "externo_exposto",
+    "contato_permanente_agua"
+   ],
+   "regra": "Nestes dois, silencio NAO basta: so entra nos recomendados quem declara resistencia ao ambiente. E a assimetria de custo aplicada ao ambiente — sol, chuva e imersao sao onde a peca descola, e onde errar custa a peca inteira. E o que mantem 'peca em contato permanente com agua' como faixa DESCOBERTA em vez de virar palpite."
   },
-  "regras_de_elegibilidade_do_rejunte": {
-    "descricao": "As regras que transformam as declaracoes de um MATERIAL de categoria rejunte em recomendacao. Sao PARENTES das cinco regras da cola, nao copia: a variavel de entrada e outra (largura de junta, nao base) e a lista de ambientes criticos e maior. ferramentas/validar-banco.py as roda e compara com perfis_esperados_do_rejunte e matriz_esperada_do_rejunte, escritos A MAO a partir das declaracoes — se as duas metades divergirem, uma das duas esta errada e a execucao para para descobrir qual.",
-    "1_a_junta_manda_e_precisa_das_duas_pontas": "Rejunte so e candidato numa junta de L mm se declarar junta_min <= L <= junta_max, com as DUAS pontas obtidas. Faixa com uma ponta null NAO vira 'sem limite': o produto fica fora de toda a grade, e a tela diz 'a faixa de junta deste produto nao foi obtida' em vez de deixa-lo aparecer como se coubesse. E o caso do rejunte piscinas quartzolit, que e o unico do banco declarado para pastilha de vidro submersa e mesmo assim nao entra em celula nenhuma.",
-    "2_ambiente_critico_exige_declaracao_EXPLICITA": {
-      "ambientes": [
-        "interno_molhado",
-        "externo_exposto",
-        "contato_permanente_agua"
-      ],
-      "regra": "Nestes tres, silencio nao basta: so entra quem declara o ambiente por nome, pelo mapa_de_termos_do_rejunte. Nos demais (interno_seco, externo_abrigado), silencio nao elimina.",
-      "por_que_interno_molhado_e_critico_aqui_e_nao_na_cola": "A lista de ambientes criticos da COLA tem dois; a do rejunte tem tres, e a diferenca e interno_molhado. Nao e inconsistencia: e a geometria da peca. A cola fica ESCONDIDA atras da tessela e a agua chega nela por ultimo; o rejunte e a superficie exposta, a agua fica parada em cima dele e e nele que o mofo cresce. Na pia e no banheiro, quem falha primeiro e o rejunte."
+  "5_nivel_de_fonte_limita_a_recomendacao": "Recomendacao primaria exige fonte de nivel <= 3 (escada_de_fontes). Produto elegivel por fonte de nivel 4 ou pior aparece so como mencao com ressalva, citando o tipo do documento e o ano. E o que separa o Loctite Durepoxi — cuja unica declaracao de uso submerso e press release de 2018 — de uma recomendacao publicada.",
+  "ordem_entre_os_elegiveis": "Score de adequacao: +2 por base declarada indicada, +2 por ambiente declarado indicado. Empate no topo NAO se desfaz por gosto: a pagina lista os empatados como equivalentes, dizendo que os dois servem, e o unico desempate permitido e ter link de loja (secao 7). Fingir uma preferencia que a fonte nao sustenta e o comeco de ordenar por comissao."
+ },
+ "entidades": {
+  "MATERIAL": {
+   "arquivo": "dados/materiais-<categoria>.json (um arquivo por categoria: materiais-colas.json, materiais-rejuntes.json, materiais-pastilhas.json, ...)",
+   "o_que_e": "Produto de terceiro que a artesa compra para fazer mosaico. E o que a vitrine de afiliado do Guia e das ferramentas recomenda. NUNCA e produto da ilha.",
+   "campos": {
+    "id": {
+     "tipo": "string",
+     "obrigatorio": true,
+     "formato": "kebab-case estavel, comecando pela marca: tekbond-silicone-acetico-construcao. Nunca numerado."
     },
-    "3_ambiente_declarado_DELIMITA": "Igual a regra 3 da cola: `ambientes_declarados` nao vazio fecha o produto nos ambientes que ele lista. Quem nao delimita nada passa pelos ambientes nao criticos.",
-    "4_nivel_de_fonte_limita_a_recomendacao": "Igual a regra 5 da cola: recomendacao primaria exige fonte de nivel <= 3. O nivel do produto e o MENOR (melhor) entre as fontes dele — o rejunte epoxi tem boletim de nivel 2 e uma materia de blog de nivel 4, e quem o sustenta e o boletim; o blog so acrescenta a mencao a pastilhas, que vai para a tela citada como materia do proprio fabricante.",
-    "ordem_entre_os_elegiveis": "Score: +2 por junta dentro da faixa declarada, +2 por ambiente declarado por nome. Empate no topo NAO se desfaz por gosto — a pagina lista os empatados como equivalentes. O unico desempate permitido continua sendo ter link de loja (secao 7 do ARQUIPELAGO.md).",
-    "por_que_nao_ha_regra_de_proibicao": "Nenhum dos cinco produtos declara 'nao usar em'. A regra 1 da cola (proibicao vence indicacao) continua valendo e esta implementada, mas hoje nao encontra nada em que pegar — e isso e uma diferenca real entre as duas categorias, nao um esquecimento: o fabricante de cola publica lista de superficies proibidas, o de rejunte publica faixa de junta."
-  },
-  "perfis_esperados_do_rejunte": {
-    "descricao": "Escrito A MAO a partir das declaracoes de dados/materiais-rejuntes.json, produto por produto, ANTES de rodar o validador. O validador recomputa cada um pelas regras acima e falha se divergir. E a trava da secao 8 do ARQUIPELAGO.md aplicada aqui: quem confere escreve a propria regua, em vez de conferir o dado chamando a funcao de quem o produziu.",
-    "perfis": [
-      {
-        "id": "quartzolit-rejunte-ceramicas",
-        "junta_mm": [
-          2,
-          10
-        ],
-        "ambientes_cobertos": [
-          "externo_abrigado",
-          "interno_molhado"
-        ],
-        "ambientes_delimitados": [],
-        "nivel": 2,
-        "de_onde_sai": "interno_molhado vem de 'liberacao para contato com area molhada em 24 horas'; externo_abrigado vem de 'em area externa, proteger do sol, do vento e da chuva por 24 horas', que declara uso externo mas nao durabilidade ao tempo."
+    "categoria": {
+     "tipo": "enum",
+     "vocabulario": "categoria_material",
+     "obrigatorio": true
+    },
+    "tipo": {
+     "tipo": "enum",
+     "vocabulario": "tipo_por_categoria[categoria]",
+     "obrigatorio": true
+    },
+    "marca": {
+     "tipo": "string",
+     "obrigatorio": true
+    },
+    "fabricante": {
+     "tipo": "string",
+     "obrigatorio": true,
+     "observacao": "Grupo dono da marca quando diferente: Cascola e Henkel, Quartzolit e Saint-Gobain Weber."
+    },
+    "nome_comercial": {
+     "tipo": "string",
+     "obrigatorio": true,
+     "observacao": "Como o fabricante escreve, nao como a loja anuncia."
+    },
+    "codigo_fabricante": {
+     "tipo": "string|null",
+     "obrigatorio": true,
+     "null_exige": "motivo_sem_codigo"
+    },
+    "motivo_sem_codigo": {
+     "tipo": "string|null",
+     "obrigatorio": false
+    },
+    "declaracoes": {
+     "tipo": "objeto",
+     "obrigatorio": true,
+     "observacao": "As listas sao LITERAIS do fabricante, na lingua dele. A traducao para o vocabulario da ilha e feita pelo mapa_de_termos_do_fabricante e recomputada pelo validador — nunca digitada a mao aqui.",
+     "subcampos": {
+      "indicado_para": {
+       "tipo": "lista de string",
+       "fonte_obrigatoria": true
       },
-      {
-        "id": "quartzolit-rejunte-porcelanatos-e-ceramicas",
-        "junta_mm": [
-          2,
-          10
-        ],
-        "ambientes_cobertos": [
-          "interno_molhado"
-        ],
-        "ambientes_delimitados": [],
-        "nivel": 2,
-        "de_onde_sai": "So a liberacao de 24 h para areas molhadas. A tecnologia Protect nao traduz em ambiente."
+      "nao_usar_em": {
+       "tipo": "lista de string",
+       "fonte_obrigatoria": true,
+       "peso": "declarado_proibido"
       },
-      {
-        "id": "quartzolit-rejunte-acrilico",
-        "junta_mm": [
-          1,
-          4
-        ],
-        "ambientes_cobertos": [
-          "externo_abrigado",
-          "interno_molhado",
-          "interno_seco"
-        ],
-        "ambientes_delimitados": [
-          "externo_abrigado",
-          "interno_molhado",
-          "interno_seco"
-        ],
-        "nivel": 2,
-        "de_onde_sai": "'areas internas e externas' delimita os tres (externo_exposto fica de fora pela regra restritiva do mapa), e 'recomendado para areas molhadas' cobre interno_molhado por nome."
+      "nao_recomendado_em": {
+       "tipo": "lista de string",
+       "fonte_obrigatoria": false,
+       "peso": "declarado_nao_recomendado"
       },
-      {
-        "id": "quartzolit-rejunte-epoxi",
-        "junta_mm": [
-          1,
-          5
-        ],
-        "ambientes_cobertos": [
-          "contato_permanente_agua",
-          "interno_molhado"
-        ],
-        "ambientes_delimitados": [],
-        "nivel": 2,
-        "de_onde_sai": "'paredes, pisos e piscinas' e 'piscinas' cobrem contato_permanente_agua; a liberacao de 7 dias cobre os dois."
+      "nao_indicado_para": {
+       "tipo": "lista de string",
+       "fonte_obrigatoria": false,
+       "peso": "declarado_proibido"
       },
-      {
-        "id": "quartzolit-rejunte-piscinas",
-        "junta_mm": [
-          null,
-          null
-        ],
-        "ambientes_cobertos": [
-          "contato_permanente_agua"
-        ],
-        "ambientes_delimitados": [],
-        "nivel": 3,
-        "de_onde_sai": "'piscinas e areas submersas' e 'uso submerso em agua tratada quimicamente'. Cobre o ambiente mais dificil do vocabulario e mesmo assim nao entra em celula nenhuma, porque a faixa de junta nao foi obtida — regra 1."
+      "ambientes_declarados": {
+       "tipo": "lista de string",
+       "fonte_obrigatoria": false,
+       "peso": "delimita",
+       "observacao": "So o que DELIMITA o uso: 'ambientes internos', 'area interna e externa'. Preencher aqui fecha o produto nos ambientes listados (regra 3). Nao confundir com resistencia."
+      },
+      "resistencias_declaradas": {
+       "tipo": "lista de string",
+       "fonte_obrigatoria": false,
+       "peso": "soma",
+       "observacao": "O que o fabricante declara que o produto AGUENTA ('chuva', 'raios UV'). Soma no score e satisfaz a regra 4 do ambiente critico, mas NAO delimita: silicone que resiste a chuva nao deixa de servir dentro de casa."
       }
-    ]
-  },
-  "matriz_esperada_do_rejunte": {
-    "descricao": "Celulas junta x ambiente, escritas A MAO e recomputadas pelo validador. A grade NAO e regular de proposito: ela pisa exatamente em 1, 2, 4, 5 e 10 mm, que sao os extremos declarados pelos produtos, e em 6 e 11, que sao os primeiros valores depois do ultimo extremo. Grade de passo fixo nao separaria 'ate 4' de 'ate 5' — foi a lacuna de medicao que a Robometria pagou para aprender (secao 8 do ARQUIPELAGO.md).",
-    "leitura": "`recomendados_topo` e CONJUNTO, nao ordem. As duas listas de eliminados vao para a tela em secoes diferentes e com frases diferentes: `eliminados_por_faixa_de_junta` diz que o produto existe mas nao cobre essa junta, e `eliminados_por_ambiente` diz que o fabricante nao declara aquele ambiente.",
-    "celulas": [
-      {
-        "junta_mm": 1,
-        "ambiente": "interno_seco",
-        "recomendados_topo": [
-          "quartzolit-rejunte-acrilico"
-        ],
-        "elegiveis_abaixo_do_topo": [
-          "quartzolit-rejunte-epoxi"
-        ],
-        "mencionados_com_ressalva": [],
-        "eliminados_por_faixa_de_junta": [
-          "quartzolit-rejunte-ceramicas",
-          "quartzolit-rejunte-piscinas",
-          "quartzolit-rejunte-porcelanatos-e-ceramicas"
-        ],
-        "eliminados_por_ambiente": [],
-        "observacao": "BORDA: 1 mm e exatamente o minimo do acrilico e do epoxi, e esta abaixo do minimo dos dois cimenticios de 2 mm. A junta mais fina do mosaico corta metade do banco."
+     }
+    },
+    "propriedades": {
+     "tipo": "objeto de campos tecnicos",
+     "obrigatorio": false,
+     "formato_de_cada_campo": "{valor, unidade, fonte_id, declarado_como}",
+     "observacao": "`declarado_como` guarda a frase do fabricante, para a pagina citar a faixa inteira e nao so o numero escolhido."
+    },
+    "geometria": {
+     "tipo": "objeto|null",
+     "obrigatorio_para": [
+      "pastilha"
+     ],
+     "subcampos": {
+      "lado_anunciado_cm": {
+       "tipo": "number|null",
+       "observacao": "O lado da PASTILHA como o fabricante anuncia ('2,5x2,5 cm'). NAO e o lado da placa — a confusao entre os dois e o defeito que o bloco 3d encontrou na propria regua, ver placa_lado_a_cm."
       },
-      {
-        "junta_mm": 2,
-        "ambiente": "interno_seco",
-        "recomendados_topo": [
-          "quartzolit-rejunte-acrilico"
-        ],
-        "elegiveis_abaixo_do_topo": [
-          "quartzolit-rejunte-ceramicas",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-porcelanatos-e-ceramicas"
-        ],
-        "mencionados_com_ressalva": [],
-        "eliminados_por_faixa_de_junta": [
-          "quartzolit-rejunte-piscinas"
-        ],
-        "eliminados_por_ambiente": [],
-        "observacao": "BORDA: 2 mm e o minimo dos dois cimenticios. O acrilico fica sozinho no topo por declarar o ambiente por nome, nao por ser melhor."
+      "placa_lado_a_cm": {
+       "tipo": "number|null",
+       "observacao": "O lado da PLACA telada, como o fabricante declara. E o L da formula L/raiz(N); antes do bloco 3d este campo nao existia e a regua usava o lado_anunciado_cm no lugar dele, o que dava um passo menor que a propria pastilha."
       },
-      {
-        "junta_mm": 2,
-        "ambiente": "externo_exposto",
-        "recomendados_topo": [],
-        "elegiveis_abaixo_do_topo": [],
-        "mencionados_com_ressalva": [],
-        "eliminados_por_faixa_de_junta": [
-          "quartzolit-rejunte-piscinas"
-        ],
-        "eliminados_por_ambiente": [
-          "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-ceramicas",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-porcelanatos-e-ceramicas"
-        ],
-        "observacao": "FAIXA DESCOBERTA, e das caras: peca de mosaico em sol e chuva e metade do nicho (vaso de jardim, numero de casa, mandala de parede externa). Nenhum dos cinco declara resistencia a sol e chuva pelo nome. A pagina diz isso em vez de empurrar o de sempre."
+      "placa_lado_b_cm": {
+       "tipo": "number|null",
+       "observacao": "O outro lado da placa. Quando difere de placa_lado_a_cm a placa nao e quadrada e a formula L/raiz(N) nao se aplica — a regua exige passo null nesse caso."
       },
-      {
-        "junta_mm": 3,
-        "ambiente": "contato_permanente_agua",
-        "recomendados_topo": [
-          "quartzolit-rejunte-epoxi"
-        ],
-        "elegiveis_abaixo_do_topo": [],
-        "mencionados_com_ressalva": [],
-        "eliminados_por_faixa_de_junta": [
-          "quartzolit-rejunte-piscinas"
-        ],
-        "eliminados_por_ambiente": [
-          "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-ceramicas",
-          "quartzolit-rejunte-porcelanatos-e-ceramicas"
-        ],
-        "observacao": "A CELULA QUE MAIS ENSINA DO BLOCO. A junta de 3 mm submersa tem resposta de rejunte — o epoxi, liberado em 7 dias. E o unico produto do banco cujo fabricante nomeia pastilha de VIDRO debaixo d'agua, o rejunte piscinas, e justamente o que nao pode ser recomendado, porque a faixa de junta dele nao foi obtida. Ter o dado quase todo nao e ter o dado."
+      "formato": {
+       "tipo": "string|null",
+       "vocabulario_livre": [
+        "quadrada",
+        "retangular_strip",
+        "redonda",
+        "hexagonal",
+        "irregular"
+       ],
+       "observacao": "Formato da pastilha. So 'quadrada' admite passo por L/raiz(N)."
       },
-      {
-        "junta_mm": 4,
-        "ambiente": "interno_molhado",
-        "recomendados_topo": [
-          "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-ceramicas",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-porcelanatos-e-ceramicas"
-        ],
-        "elegiveis_abaixo_do_topo": [],
-        "mencionados_com_ressalva": [],
-        "eliminados_por_faixa_de_junta": [
-          "quartzolit-rejunte-piscinas"
-        ],
-        "eliminados_por_ambiente": [],
-        "observacao": "BORDA: 4 mm e o maximo do acrilico. Empate de quatro, e a pagina lista os quatro como equivalentes em vez de fingir preferencia."
+      "passo_de_fabrica_cm": {
+       "tipo": "number|null",
+       "observacao": "Distancia de centro a centro entre duas pastilhas vizinhas na placa: peca + junta. So se calcula quando o fabricante declara pastilhas_por_placa, e ai e placa_lado_a_cm / raiz(N) em placa QUADRADA. E este numero que vale para converter placa em peca — nao o lado anunciado."
       },
-      {
-        "junta_mm": 5,
-        "ambiente": "interno_molhado",
-        "recomendados_topo": [
-          "quartzolit-rejunte-ceramicas",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-porcelanatos-e-ceramicas"
-        ],
-        "elegiveis_abaixo_do_topo": [],
-        "mencionados_com_ressalva": [],
-        "eliminados_por_faixa_de_junta": [
-          "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-piscinas"
-        ],
-        "eliminados_por_ambiente": [],
-        "observacao": "BORDA DUPLA: 5 mm e o maximo do epoxi E o primeiro milimetro fora do acrilico. Um milimetro a mais que a celula anterior e o produto mais facil de usar sai da lista."
+      "espessura_mm": {
+       "tipo": "number|null",
+       "null_exige": "motivo",
+       "motivo_padrao": "Nenhum fabricante de pastilha de artesanato padroniza espessura — e entrada da F1, com aviso 'meca a sua'."
       },
-      {
-        "junta_mm": 6,
-        "ambiente": "contato_permanente_agua",
-        "recomendados_topo": [],
-        "elegiveis_abaixo_do_topo": [],
-        "mencionados_com_ressalva": [],
-        "eliminados_por_faixa_de_junta": [
-          "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas"
-        ],
-        "eliminados_por_ambiente": [
-          "quartzolit-rejunte-ceramicas",
-          "quartzolit-rejunte-porcelanatos-e-ceramicas"
-        ],
-        "observacao": "BORDA: 6 mm e o primeiro milimetro depois do maximo do epoxi, e com ele some a unica resposta submersa. Repare que os dois eliminados caem por motivos DIFERENTES, e sao duas frases diferentes na tela."
+      "pastilhas_por_placa": {
+       "tipo": "integer|null",
+       "null_exige": "motivo_pastilhas_por_placa",
+       "observacao": "Medido em 12/09/2026 (bloco 3d): NENHUM fabricante brasileiro de pastilha declara este campo. Ele NUNCA se deriva dividindo o lado da placa pelo lado anunciado da pastilha: em 6 dos 10 itens do banco a divisao nem da inteiro, e nos outros 4 da inteiro exigindo junta zero, que e placa que nao se rejunta."
       },
-      {
-        "junta_mm": 10,
-        "ambiente": "externo_abrigado",
-        "recomendados_topo": [
-          "quartzolit-rejunte-ceramicas"
-        ],
-        "elegiveis_abaixo_do_topo": [
-          "quartzolit-rejunte-porcelanatos-e-ceramicas"
-        ],
-        "mencionados_com_ressalva": [],
-        "eliminados_por_faixa_de_junta": [
-          "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas"
-        ],
-        "eliminados_por_ambiente": [],
-        "observacao": "BORDA: 10 mm e o maximo dos dois cimenticios. Sobram os dois, e o rejunte ceramicas vai a frente por declarar uso externo por nome."
-      },
-      {
-        "junta_mm": 11,
-        "ambiente": "interno_seco",
-        "recomendados_topo": [],
-        "elegiveis_abaixo_do_topo": [],
-        "mencionados_com_ressalva": [],
-        "eliminados_por_faixa_de_junta": [
-          "quartzolit-rejunte-acrilico",
-          "quartzolit-rejunte-ceramicas",
-          "quartzolit-rejunte-epoxi",
-          "quartzolit-rejunte-piscinas",
-          "quartzolit-rejunte-porcelanatos-e-ceramicas"
-        ],
-        "eliminados_por_ambiente": [],
-        "observacao": "BORDA: 11 mm e o primeiro milimetro fora de TODA a faixa do banco, no ambiente mais facil que existe. Celula vazia num ambiente seco prova que quem elimina e a junta, nao o ambiente."
+      "peso_unitario_g": {
+       "tipo": "number|null",
+       "null_exige": "motivo",
+       "observacao": "So existe por SKU, colhido de loja (nivel 6) com data. E o que destrava a conversao grama <-> peca da F1."
       }
-    ]
+     },
+     "correcao_do_bloco_3d": "12/09/2026. A geometria de pastilha nao tinha onde guardar o lado da PLACA, e a unica regua que checava o passo (validar-banco.py) dividia o lado_anunciado_cm pela raiz de N — o lado da pastilha no lugar do lado da placa. Com o exemplo do proprio especificacao-calculadoras.md (placa 30x30 com 225 pastilhas tem passo 2,00 cm) a formula certa e 30/raiz(225); a que estava escrita dava 1/15 = 0,07 cm. O defeito nunca disparou porque a categoria pastilha tinha ZERO itens ate este bloco — e funcao de portao que nunca rodou e funcao morta, a mesma familia que a Robometria nomeou em 11/09."
+    },
+    "venda": {
+     "tipo": "lista de ofertas",
+     "obrigatorio": true,
+     "minimo": 0,
+     "observacao": "Lista vazia e valida e significa 'ainda nao levantamos onde se compra'. Cada oferta e uma UNIDADE DE VENDA distinta, nao um preco distinto.",
+     "subcampos": {
+      "unidade": {
+       "tipo": "enum",
+       "vocabulario": "unidade_de_venda",
+       "obrigatorio": true
+      },
+      "quantidade": {
+       "tipo": "number|null",
+       "observacao": "Quantas unidades a embalagem traz: 225 pastilhas, 15 kg, 280 g."
+      },
+      "embalagem_declarada": {
+       "tipo": "string|null"
+      },
+      "loja": {
+       "tipo": "string|null"
+      },
+      "fonte_id": {
+       "tipo": "string",
+       "obrigatorio": true
+      },
+      "coletado_em": {
+       "tipo": "data ISO",
+       "obrigatorio": true
+      }
+     }
+    },
+    "afiliado": {
+     "tipo": "objeto",
+     "obrigatorio": true,
+     "observacao": "OBRIGATORIO E PRESENTE MESMO VAZIO (secao 7 do ARQUIPELAGO.md): a pagina reserva o lugar e mostra 'link de loja em breve', e a ilha reporta em todo bloco quantos itens esperam link. O preenchimento e da Sentinela estrategica, no navegador, e nunca da Fundacao.",
+     "subcampos": {
+      "programa": {
+       "tipo": "enum|null",
+       "vocabulario": "programa_de_afiliado"
+      },
+      "url": {
+       "tipo": "string",
+       "obrigatorio": true,
+       "observacao": "String vazia ate a Sentinela gerar. Nunca ausente."
+      },
+      "sub_id_1": {
+       "tipo": "string",
+       "valor_fixo": "clubedomosaico",
+       "observacao": "Shopee."
+      },
+      "sub_id_2": {
+       "tipo": "string|null",
+       "observacao": "Codigo da pagina de origem: F1, F2, G-COLAS, G-PASTILHAS, T-VASO."
+      },
+      "etiqueta_ml": {
+       "tipo": "string|null",
+       "formato": "clubedomosaico-<codigo>",
+       "observacao": "Mercado Livre. Uma etiqueta por par ilha x ferramenta."
+      },
+      "gerado_em": {
+       "tipo": "data ISO|null"
+      }
+     }
+    },
+    "imagem": {
+     "tipo": "objeto|null",
+     "obrigatorio": true,
+     "null_permitido": true,
+     "subcampos": {
+      "url": "string",
+      "largura": "integer",
+      "altura": "integer",
+      "fonte": "string",
+      "coletado_em": "data ISO",
+      "alt": "string descritivo"
+     },
+     "observacao": "null nao elimina o registro: a vitrine mostra espaco reservado neutro e o nome em destaque."
+    },
+    "fontes": {
+     "tipo": "objeto id -> fonte",
+     "obrigatorio": true,
+     "subcampos": {
+      "url": {
+       "tipo": "string",
+       "obrigatorio": true
+      },
+      "tipo": {
+       "tipo": "string",
+       "obrigatorio": true,
+       "observacao": "Descricao humana do documento: 'ficha tecnica BRSA004, revisada em 10/2025'."
+      },
+      "nivel": {
+       "tipo": "integer 1-7",
+       "obrigatorio": true,
+       "vocabulario": "escada_de_fontes"
+      },
+      "coletado_em": {
+       "tipo": "data ISO",
+       "obrigatorio": true
+      },
+      "conferir_no_pdf": {
+       "tipo": "boolean",
+       "obrigatorio": true
+      }
+     }
+    },
+    "constantes_relacionadas": {
+     "tipo": "lista de id de dados/constantes.json",
+     "obrigatorio": false
+    },
+    "divergencias": {
+     "tipo": "lista",
+     "obrigatorio": true,
+     "observacao": "Lista vazia e afirmacao: 'nao encontramos declaracoes conflitantes'."
+    },
+    "resolucao": {
+     "tipo": "string|null",
+     "obrigatorio_se": "divergencias nao vazia"
+    },
+    "status": {
+     "tipo": "enum",
+     "vocabulario": "status_do_registro",
+     "obrigatorio": true
+    },
+    "motivo_do_descarte": {
+     "tipo": "string|null",
+     "obrigatorio_se": "status == descartado"
+    },
+    "usada_por": {
+     "tipo": "lista",
+     "obrigatorio": false,
+     "observacao": "Codigos das paginas que consomem o item: F1, F2, G-COLAS."
+    }
+   },
+   "portao_de_categoria": {
+    "regra": "Material entra pelo USO que o proprio fabricante declara e que a peca de artesanato precisa — nunca porque a busca casa com a palavra 'mosaico'.",
+    "descarta": "Revestimento vendido em formato de obra (placa por m2 para piscina, cozinha e banheiro) fica com status `descartado` e motivo `formato_de_obra`, e permanece gravado para a proxima execucao nao recolher de novo. E a armadilha que o bloco 1 mediu: 'pastilha de vidro' sozinho leva a Leroy e Portobello, outra intencao.",
+    "nao_descarta": "Produto de obra cujo fabricante declara o uso que a peca precisa ENTRA normalmente — cimentcola AC-II e rejunte ceramicas Quartzolit sao de obra e sao a resposta certa para vaso de cimento. O portao e o uso declarado, nao a prateleira da loja."
+   }
+  },
+  "PECA": {
+   "arquivo": "NENHUM — vive no WordPress como CPT `peca`, cadastrado pela artesa em /atelie/",
+   "o_que_e": "Produto proprio do atelie, vendido pela ilha com margem cheia. Unica entidade do Arquipelago que nao e arquivo commitado.",
+   "por_que_nao_e_arquivo": "Requisito do Raphael de 10/09/2026: a mae dele cadastra as pecas sozinha, com login proprio, numa area amigavel fora do wp-admin. Repositorio como fonte da verdade valeria uma Fundacao entre ela e o catalogo dela — o que na pratica significaria nenhuma peca cadastrada.",
+   "regra_absoluta": "PECA NUNCA E INVENTADA. Sem peca cadastrada, a Loja mostra estado vazio honesto ('em breve'). Inventar peca, preco, medida ou foto seria mentir sobre o trabalho de uma pessoa real e prometer ao visitante um objeto que nao existe.",
+   "campos": {
+    "titulo": {
+     "meta": "post_title",
+     "obrigatorio": true
+    },
+    "slug": {
+     "meta": "post_name",
+     "obrigatorio": true,
+     "gerado": true
+    },
+    "descricao": {
+     "meta": "post_content",
+     "obrigatorio": false,
+     "observacao": "Textarea simples no painel, sem editor de blocos."
+    },
+    "preco": {
+     "meta": "_cdm_preco",
+     "tipo": "decimal",
+     "obrigatorio": true,
+     "bloqueia_publicacao_se_ausente": true
+    },
+    "disponibilidade": {
+     "meta": "_cdm_disponibilidade",
+     "tipo": "enum",
+     "valores": [
+      "pronta_entrega",
+      "sob_encomenda"
+     ],
+     "obrigatorio": true
+    },
+    "prazo_dias": {
+     "meta": "_cdm_prazo_dias",
+     "tipo": "integer|null",
+     "obrigatorio_se": "disponibilidade == sob_encomenda"
+    },
+    "medidas": {
+     "meta": "_cdm_medidas",
+     "tipo": "string A x L x P em cm",
+     "obrigatorio": false
+    },
+    "peso_g": {
+     "meta": "_cdm_peso_g",
+     "tipo": "integer|null",
+     "obrigatorio": false,
+     "observacao": "Necessario para frete e para o feed do Merchant Center do bloco 6."
+    },
+    "base": {
+     "meta": "_cdm_base",
+     "tipo": "enum",
+     "vocabulario": "base",
+     "obrigatorio": true,
+     "observacao": "E o que liga a peca ao tutorial 'como fazer mosaico em <base>' e as fichas de material que a base implica."
+    },
+    "cores": {
+     "meta": "_cdm_cores",
+     "tipo": "lista de string",
+     "obrigatorio": false
+    },
+    "quantidade": {
+     "meta": "_cdm_quantidade",
+     "tipo": "integer",
+     "obrigatorio": true,
+     "observacao": "Peca artesanal costuma ser unica: 1 e o padrao."
+    },
+    "galeria": {
+     "meta": "_cdm_galeria",
+     "tipo": "lista de ID de anexo em ordem",
+     "obrigatorio": true,
+     "minimo": 1,
+     "bloqueia_publicacao_se_vazia": true,
+     "observacao": "A primeira e a capa e vira a imagem destacada."
+    },
+    "colecao": {
+     "taxonomia": "colecao",
+     "vocabulario": "colecao_uso",
+     "obrigatorio": true,
+     "bloqueia_publicacao_se_ausente": true
+    },
+    "tecnica": {
+     "taxonomia": "tecnica",
+     "vocabulario": "tecnica",
+     "obrigatorio": true,
+     "bloqueia_publicacao_se_ausente": true
+    },
+    "materiais_usados": {
+     "tipo": "lista de id de MATERIAL",
+     "gerado": true,
+     "observacao": "Derivado do mapa fixo base x tecnica do snippet do bloco 4d — a artesa nao preenche. E o que faz a ficha de material ganhar 'pecas feitas com este material'."
+    }
+   },
+   "gerado_no_ato_de_publicar": [
+    "title, meta description, canonical e slug limpo a partir dos campos",
+    "alt de cada foto: '<titulo>, mosaico em <base>, foto N'",
+    "breadcrumb Inicio > Loja > <colecao> > <peca>, visivel e em JSON-LD BreadcrumbList",
+    "Product + Offer com preco real, availability InStock ou PreOrder, image = galeria, brand Clube do Mosaico. NUNCA rel=sponsored: produto proprio",
+    "OpenGraph com a capa",
+    "links de saida para a colecao, a tecnica, o tutorial da base, as fichas de material implicadas e 4 pecas parecidas",
+    "entrada em wp-sitemap.xml e no feed /feed-produtos.xml"
+   ],
+   "regra_de_qualidade": "Peca sem foto ou sem preco nao publica. Peca publicada nunca fica orfa: o teste do bloco 4d confere, para uma peca de teste, que ela aparece na colecao, na tecnica, no tutorial da base e na ficha de material, e que a pagina dela linka de volta para os quatro."
+  },
+  "TECNICA": {
+   "arquivo": "dados/tecnicas.json",
+   "o_que_e": "As tecnicas do mosaico (direto, indireto, bizantino, opus...). Sustenta as paginas /tecnicas/<slug>/, que sao a unica cabeca de volume alto com chance real de primeira pagina segundo o bloco 1.",
+   "campos": {
+    "id": {
+     "tipo": "string",
+     "obrigatorio": true,
+     "vocabulario": "tecnica"
+    },
+    "nome": {
+     "tipo": "string",
+     "obrigatorio": true
+    },
+    "nomes_alternativos": {
+     "tipo": "lista de string",
+     "obrigatorio": false
+    },
+    "definicao": {
+     "tipo": "string",
+     "obrigatorio": true,
+     "fonte_obrigatoria": true
+    },
+    "como_se_executa": {
+     "tipo": "lista de passos",
+     "obrigatorio": false,
+     "fonte_obrigatoria": true
+    },
+    "bases_compativeis": {
+     "tipo": "lista",
+     "vocabulario": "base",
+     "obrigatorio": false
+    },
+    "materiais_tipicos": {
+     "tipo": "lista",
+     "vocabulario": "material_tessela",
+     "obrigatorio": false
+    },
+    "junta_tipica_mm": {
+     "tipo": "number|null",
+     "observacao": "Alimenta o valor sugerido da F1 quando a pessoa escolhe a tecnica."
+    },
+    "dificuldade": {
+     "tipo": "enum",
+     "valores": [
+      "iniciante",
+      "intermediaria",
+      "avancada"
+     ],
+     "obrigatorio": false
+    },
+    "consulta_alvo": {
+     "tipo": "string",
+     "obrigatorio": true,
+     "observacao": "Secao 14.9: toda pagina nasce com a consulta que mira escrita no proprio arquivo."
+    },
+    "por_que_chega_ao_top_10": {
+     "tipo": "string",
+     "obrigatorio": true
+    },
+    "imagem": {
+     "tipo": "objeto|null",
+     "obrigatorio": true
+    },
+    "fontes": {
+     "tipo": "objeto id -> fonte",
+     "obrigatorio": true
+    },
+    "revisao_tecnica": {
+     "tipo": "enum",
+     "valores": [
+      "pendente",
+      "revisada"
+     ],
+     "obrigatorio": true,
+     "observacao": "Fica `pendente` ate a artesa revisar. A pagina publica com o estado declarado — nunca finge revisao que nao houve."
+    }
+   },
+   "natureza_da_fonte": {
+    "regra": "TECNICA e a unica entidade em que a fonte pode ser enciclopedica ou editorial, porque nao existe fabricante de tecnica. Em compensacao ela NUNCA sustenta numero que entre em formula publicada: junta_tipica_mm e valor sugerido de campo de entrada, nunca constante de calculo.",
+    "niveis_aceitos": [
+     "enciclopedico",
+     "instituicao-de-ensino-ou-museu",
+     "editorial-da-ilha"
+    ],
+    "editorial_da_ilha": "So vale para definicao e organizacao do conteudo, e sai na tela como afirmacao da ilha, com o metodo dito na pagina Sobre. Nunca como 'segundo especialistas'."
+   }
+  },
+  "COTACAO": {
+   "arquivo": "dados/cotacoes.json",
+   "o_que_e": "Serie temporal de preco de MATERIAL. Entidade de apoio, nao de conteudo.",
+   "por_que_separada": "Preco nao e campo de produto: muda toda semana, e campo que muda toda semana dentro do registro tecnico obriga a reescrever o registro tecnico. Alem disso, preco NUNCA entra em criterio de recomendacao — separar o arquivo torna isso estrutural em vez de disciplina.",
+   "campos": {
+    "material_id": {
+     "tipo": "string",
+     "obrigatorio": true
+    },
+    "loja": {
+     "tipo": "string",
+     "obrigatorio": true
+    },
+    "programa": {
+     "tipo": "enum|null",
+     "vocabulario": "programa_de_afiliado"
+    },
+    "preco_brl": {
+     "tipo": "number",
+     "obrigatorio": true
+    },
+    "unidade": {
+     "tipo": "enum",
+     "vocabulario": "unidade_de_venda",
+     "obrigatorio": true
+    },
+    "quantidade_na_embalagem": {
+     "tipo": "number|null"
+    },
+    "url": {
+     "tipo": "string",
+     "obrigatorio": true,
+     "observacao": "URL de origem do preco. NUNCA o link de afiliado — sao coisas diferentes e o link de afiliado nunca substitui a URL de origem do dado."
+    },
+    "coletado_em": {
+     "tipo": "data ISO",
+     "obrigatorio": true
+    }
+   },
+   "regra_de_publicacao": "A pagina nunca crava preco como atual: ou nao mostra preco, ou mostra FAIXA com a data da coleta na frase. Peca propria (PECA) e o oposto: preco real, obrigatorio e atual, porque quem vende e a ilha."
   }
+ },
+ "matriz_esperada_da_F2": {
+  "descricao": "As 18 celulas base x ambiente que a F2 publica, RECOMPUTADAS neste bloco a partir das declaracoes de dados/materiais-colas.json pelas cinco regras_de_elegibilidade. ferramentas/validar-banco.py recalcula cada uma e falha se o resultado divergir — e o que impede o banco e a pagina de se separarem em silencio. Onde o resultado computado difere da matriz escrita a mao na secao 1.3 de dados/especificacao-calculadoras.md, a diferenca esta anotada em `divergencia_com_a_especificacao`: quem manda e esta tabela, porque ela sai da declaracao e a outra saiu da leitura.",
+  "leitura": "`recomendados_topo` e um CONJUNTO, nao uma ordem: quando mais de um produto empata no score, a pagina lista os dois como equivalentes. `eliminados_por_proibicao` sao os que o fabricante proibe naquela base ou ambiente; `eliminados_por_silencio` sao os que ele simplesmente nao declara — as duas listas vao para a tela em secoes DIFERENTES, com frases diferentes.",
+  "celulas": [
+   {
+    "base": "ceramica_esmaltada_porcelana",
+    "ambiente": "interno_seco",
+    "recomendados_topo": [
+     "tekbond-silicone-acetico-construcao",
+     "tekbond-silicone-neutro"
+    ],
+    "eliminados_por_proibicao": [],
+    "eliminados_por_silencio": [
+     "cascola-cascorez-extra",
+     "quartzolit-cimentcola-externo-acii"
+    ],
+    "mencionados_com_ressalva": [
+     "loctite-durepoxi"
+    ],
+    "divergencia_com_a_especificacao": "A secao 1.3 poe o acetico sozinho. As declaracoes nao sustentam a escolha: o mesmo fabricante declara ceramica para o acetico E para o neutro, e nenhum dos dois declara o ambiente. Empate de verdade — a pagina lista os dois."
+   },
+   {
+    "base": "ceramica_esmaltada_porcelana",
+    "ambiente": "interno_molhado",
+    "recomendados_topo": [
+     "tekbond-silicone-acetico-construcao",
+     "tekbond-silicone-neutro"
+    ],
+    "eliminados_por_proibicao": [],
+    "eliminados_por_silencio": [
+     "cascola-cascorez-extra",
+     "quartzolit-cimentcola-externo-acii"
+    ],
+    "mencionados_com_ressalva": [
+     "loctite-durepoxi"
+    ],
+    "divergencia_com_a_especificacao": "Mesmo empate da linha anterior."
+   },
+   {
+    "base": "ceramica_esmaltada_porcelana",
+    "ambiente": "externo_abrigado",
+    "recomendados_topo": [
+     "tekbond-silicone-acetico-construcao",
+     "tekbond-silicone-neutro"
+    ],
+    "eliminados_por_proibicao": [],
+    "eliminados_por_silencio": [
+     "cascola-cascorez-extra",
+     "quartzolit-cimentcola-externo-acii"
+    ],
+    "mencionados_com_ressalva": [
+     "loctite-durepoxi"
+    ],
+    "divergencia_com_a_especificacao": "Mesmo empate. Externo ABRIGADO nao e ambiente critico: silencio nao elimina."
+   },
+   {
+    "base": "ceramica_esmaltada_porcelana",
+    "ambiente": "externo_exposto",
+    "recomendados_topo": [
+     "tekbond-silicone-neutro"
+    ],
+    "eliminados_por_proibicao": [],
+    "eliminados_por_silencio": [
+     "tekbond-silicone-acetico-construcao",
+     "cascola-cascorez-extra",
+     "quartzolit-cimentcola-externo-acii",
+     "loctite-durepoxi"
+    ],
+    "mencionados_com_ressalva": [],
+    "divergencia_com_a_especificacao": "A secao 1.3 deixa o acetico 'em segundo lugar'. Pela regra 4 ele nao fica em lugar nenhum da lista de recomendados: sol e chuva exigem declaracao explicita, e so o neutro declara chuva e raios UV."
+   },
+   {
+    "base": "vidro",
+    "ambiente": "interno_seco",
+    "recomendados_topo": [
+     "tekbond-silicone-acetico-construcao",
+     "tekbond-silicone-neutro"
+    ],
+    "eliminados_por_proibicao": [],
+    "eliminados_por_silencio": [
+     "cascola-cascorez-extra",
+     "quartzolit-cimentcola-externo-acii"
+    ],
+    "mencionados_com_ressalva": [
+     "loctite-durepoxi"
+    ],
+    "divergencia_com_a_especificacao": null
+   },
+   {
+    "base": "vidro",
+    "ambiente": "externo_abrigado",
+    "recomendados_topo": [
+     "tekbond-silicone-acetico-construcao",
+     "tekbond-silicone-neutro"
+    ],
+    "eliminados_por_proibicao": [],
+    "eliminados_por_silencio": [
+     "cascola-cascorez-extra",
+     "quartzolit-cimentcola-externo-acii"
+    ],
+    "mencionados_com_ressalva": [
+     "loctite-durepoxi"
+    ],
+    "divergencia_com_a_especificacao": null
+   },
+   {
+    "base": "vidro",
+    "ambiente": "externo_exposto",
+    "recomendados_topo": [
+     "tekbond-silicone-neutro"
+    ],
+    "eliminados_por_proibicao": [],
+    "eliminados_por_silencio": [
+     "tekbond-silicone-acetico-construcao",
+     "cascola-cascorez-extra",
+     "quartzolit-cimentcola-externo-acii",
+     "loctite-durepoxi"
+    ],
+    "mencionados_com_ressalva": [],
+    "divergencia_com_a_especificacao": "Celula que a secao 1.3 nao tinha: ela trata vidro so em 'interno, externo abrigado'. Vidro em sol e chuva existe (mesa de jardim, placa de numero) e agora tem resposta."
+   },
+   {
+    "base": "vidro_laminado",
+    "ambiente": "interno_seco",
+    "recomendados_topo": [
+     "tekbond-silicone-neutro"
+    ],
+    "eliminados_por_proibicao": [
+     "tekbond-silicone-acetico-construcao"
+    ],
+    "eliminados_por_silencio": [
+     "cascola-cascorez-extra",
+     "quartzolit-cimentcola-externo-acii",
+     "loctite-durepoxi"
+    ],
+    "mencionados_com_ressalva": [],
+    "divergencia_com_a_especificacao": null
+   },
+   {
+    "base": "espelho",
+    "ambiente": "interno_seco",
+    "recomendados_topo": [
+     "tekbond-silicone-neutro"
+    ],
+    "eliminados_por_proibicao": [
+     "tekbond-silicone-acetico-construcao"
+    ],
+    "eliminados_por_silencio": [
+     "cascola-cascorez-extra",
+     "quartzolit-cimentcola-externo-acii",
+     "loctite-durepoxi"
+    ],
+    "mencionados_com_ressalva": [],
+    "divergencia_com_a_especificacao": null,
+    "observacao": "A celula mais importante da ilha: caco de espelho e um dos tutoriais-ancora, e a ficha BRSA004 proibe o acetico em espelho — que e exatamente o que o blog manda usar."
+   },
+   {
+    "base": "mdf_madeira",
+    "ambiente": "interno_seco",
+    "recomendados_topo": [
+     "cascola-cascorez-extra"
+    ],
+    "eliminados_por_proibicao": [
+     "tekbond-silicone-acetico-construcao"
+    ],
+    "eliminados_por_silencio": [
+     "quartzolit-cimentcola-externo-acii"
+    ],
+    "mencionados_com_ressalva": [
+     "loctite-durepoxi"
+    ],
+    "elegiveis_abaixo_do_topo": [
+     "tekbond-silicone-neutro"
+    ],
+    "divergencia_com_a_especificacao": null,
+    "observacao": "O PVA ganha do neutro por score: declara a base (MDF, compensado, madeira) E o ambiente (ambientes internos). O neutro declara so a base e fica atras, elegivel."
+   },
+   {
+    "base": "mdf_madeira",
+    "ambiente": "interno_molhado",
+    "recomendados_topo": [
+     "tekbond-silicone-neutro"
+    ],
+    "eliminados_por_proibicao": [
+     "tekbond-silicone-acetico-construcao"
+    ],
+    "eliminados_por_silencio": [
+     "cascola-cascorez-extra",
+     "quartzolit-cimentcola-externo-acii"
+    ],
+    "mencionados_com_ressalva": [
+     "loctite-durepoxi"
+    ],
+    "divergencia_com_a_especificacao": "A secao 1.3 escreveu 'a ilha nao recomenda' porque so olhou PVA e acetico. O banco mostra saida: o Silicone Neutro Tekbond declara madeira entre os substratos que veda. O PVA sai por delimitacao propria do fabricante (ambientes internos), nao por proibicao."
+   },
+   {
+    "base": "mdf_madeira",
+    "ambiente": "externo_exposto",
+    "recomendados_topo": [
+     "tekbond-silicone-neutro"
+    ],
+    "eliminados_por_proibicao": [
+     "tekbond-silicone-acetico-construcao"
+    ],
+    "eliminados_por_silencio": [
+     "cascola-cascorez-extra",
+     "quartzolit-cimentcola-externo-acii",
+     "loctite-durepoxi"
+    ],
+    "mencionados_com_ressalva": [],
+    "divergencia_com_a_especificacao": "Mesma correcao: o neutro declara madeira e declara chuva e raios UV, entao passa ate na regra do ambiente critico. Continua valendo o aviso de que MDF ao tempo e problema de BASE, nao de cola — e isso e texto da pagina, nao campo do banco."
+   },
+   {
+    "base": "cimento_concreto",
+    "ambiente": "interno_seco",
+    "recomendados_topo": [
+     "tekbond-silicone-neutro"
+    ],
+    "eliminados_por_proibicao": [
+     "tekbond-silicone-acetico-construcao"
+    ],
+    "eliminados_por_silencio": [
+     "cascola-cascorez-extra",
+     "quartzolit-cimentcola-externo-acii",
+     "loctite-durepoxi"
+    ],
+    "mencionados_com_ressalva": [],
+    "divergencia_com_a_especificacao": "ACHADO QUE MUDA A PAGINA: a secao 1.3 recomenda a cimentcola AC-II para base de cimento citando 'e declarada para area interna e externa pela NBR 14.081' — mas isso e declaracao de AMBIENTE, nao de SUBSTRATO. A coleta do bloco 2 nao obteve nenhuma declaracao de base para a cimentcola: o que a pagina do fabricante nomeia ('ceramicas e placas de pedra natural de ate 120x120 cm') e a PECA ASSENTADA. Enquanto essa declaracao nao for colhida, a cimentcola nao e recomendacao primaria — e quem responde a base de cimento e o silicone neutro, que declara concreto e alvenaria com todas as letras."
+   },
+   {
+    "base": "cimento_concreto",
+    "ambiente": "externo_exposto",
+    "recomendados_topo": [
+     "tekbond-silicone-neutro"
+    ],
+    "eliminados_por_proibicao": [
+     "tekbond-silicone-acetico-construcao"
+    ],
+    "eliminados_por_silencio": [
+     "cascola-cascorez-extra",
+     "quartzolit-cimentcola-externo-acii",
+     "loctite-durepoxi"
+    ],
+    "mencionados_com_ressalva": [],
+    "divergencia_com_a_especificacao": "Mesmo achado da linha anterior."
+   },
+   {
+    "base": "alvenaria_tijolo",
+    "ambiente": "externo_exposto",
+    "recomendados_topo": [
+     "tekbond-silicone-neutro"
+    ],
+    "eliminados_por_proibicao": [
+     "tekbond-silicone-acetico-construcao"
+    ],
+    "eliminados_por_silencio": [
+     "cascola-cascorez-extra",
+     "quartzolit-cimentcola-externo-acii",
+     "loctite-durepoxi"
+    ],
+    "mencionados_com_ressalva": [],
+    "divergencia_com_a_especificacao": "Mesmo achado da cimentcola."
+   },
+   {
+    "base": "metal",
+    "ambiente": "interno_seco",
+    "recomendados_topo": [
+     "tekbond-silicone-neutro"
+    ],
+    "eliminados_por_proibicao": [
+     "tekbond-silicone-acetico-construcao"
+    ],
+    "eliminados_por_silencio": [
+     "cascola-cascorez-extra",
+     "quartzolit-cimentcola-externo-acii"
+    ],
+    "mencionados_com_ressalva": [
+     "loctite-durepoxi"
+    ],
+    "divergencia_com_a_especificacao": null,
+    "observacao": "Caso da regra 1: o acetico e indicado para aluminio anodizado e proibido em metal corrosivel, zinco e chapa galvanizada. Duas declaracoes do mesmo fabricante sobre a mesma base — vence a proibicao, porque quem monta mosaico nao sabe dizer se a chapa dela e galvanizada."
+   },
+   {
+    "base": "plastico",
+    "ambiente": "interno_seco",
+    "recomendados_topo": [],
+    "eliminados_por_proibicao": [
+     "tekbond-silicone-acetico-construcao"
+    ],
+    "eliminados_por_silencio": [
+     "tekbond-silicone-neutro",
+     "cascola-cascorez-extra",
+     "quartzolit-cimentcola-externo-acii",
+     "loctite-durepoxi"
+    ],
+    "mencionados_com_ressalva": [],
+    "divergencia_com_a_especificacao": null,
+    "observacao": "FAIXA DESCOBERTA declarada (secao 1.6). O acetico proibe acrilico e desaconselha PE, PP e PC; neutro e Durepoxi dizem 'certos/alguns tipos de plastico', que nao nomeia tipo nenhum e por isso nunca vira indicacao."
+   },
+   {
+    "base": "ceramica_esmaltada_porcelana",
+    "ambiente": "contato_permanente_agua",
+    "recomendados_topo": [],
+    "eliminados_por_proibicao": [
+     "tekbond-silicone-acetico-construcao"
+    ],
+    "eliminados_por_silencio": [
+     "tekbond-silicone-neutro",
+     "cascola-cascorez-extra",
+     "quartzolit-cimentcola-externo-acii"
+    ],
+    "mencionados_com_ressalva": [
+     "loctite-durepoxi"
+    ],
+    "divergencia_com_a_especificacao": null,
+    "observacao": "FAIXA DESCOBERTA que a regra 5 mantem descoberta: o Durepoxi declara secar debaixo d'agua, mas a fonte e press release de 2018 (nivel 4) e o minimo para recomendacao primaria e 3. Fecha com o boletim do rejunte epoxi Quartzolit, ja nomeado em pendentes."
+   }
+  ],
+  "categoria_considerada": "cola",
+  "escopo": "SO MATERIAIS DE `categoria == cola` entram nesta matriz, e isso agora e verificado em codigo. Ate o bloco 3c a regra existia so na cabeca de quem escreveu: `computar_celula` varria o banco inteiro, e como o banco so tinha colas, as 18 celulas passavam. O primeiro rejunte gravado teria entrado nas 18 como 'eliminado por silencio' — frase que nem sentido faz para um rejunte, que nunca foi candidato a colar coisa nenhuma — e a correcao provavel seria colar os cinco ids nas 18 celulas, deixando a matriz verde e sem significado."
+ },
+ "ordem_da_vitrine": {
+  "regra": "Secao 7 do ARQUIPELAGO.md, aplicada por este banco: (1) elegibilidade tecnica completa — nenhuma restricao declarada bate com a entrada; (2) adequacao tecnica entre os elegiveis — quem declara o ambiente exato vem antes de quem so nao proibe; (3) ter link de loja SO como desempate entre equivalentes.",
+  "nunca": "Comparar comissao, promover produto pior porque paga mais, ou usar preco como criterio de ordem.",
+  "quando_ninguem_passa": "A vitrine nao lista e a pagina DIZ por que — 'nenhum fabricante declara uso nesta condicao' e resposta; silencio parece defeito."
+ },
+ "o_que_este_bloco_deixa_desbloqueado": [
+  "Bloco 4 (as duas ferramentas) fica dependendo so do WordPress existir: o formato dos itens que a vitrine consome esta definido e a categoria cola ja tem 5 registros reais.",
+  "As categorias rejunte, pastilha e alicate podem ser enchidas em qualquer execucao, sem decisao nova — o esquema ja diz que campo cada uma exige.",
+  "A entrada da F2 precisa de um campo a mais do que a secao 1.2 da especificacao previa: vidro LAMINADO e vidro comum sao bases distintas na matriz publicada, e o formulario tinha so 'vidro'. Corrigir no bloco 4, com a pergunta escrita em portugues de gente ('o vidro tem uma pelicula entre duas camadas?').",
+  "A F2 pode enfim responder a metade do rejunte que o nome dela promete, recomputada do banco em vez de cravada na prosa: cinco produtos, faixa de junta declarada em quatro deles e a matriz junta x ambiente ja conferida.",
+  "A entrada da F2 e da F1 precisa de mais um campo: a LARGURA DA JUNTA em mm. A F1 ja a pedia para calcular consumo; a F2 nao a pedia, e sem ela nao ha como escolher rejunte. E o mesmo tipo de correcao de entrada que o bloco 3 fez com o vidro laminado.",
+  "Falta a categoria PASTILHA, e ela e de outra natureza: os campos que ela exige (passo de fabrica, espessura, peso unitario, unidade de venda) nao existem em boletim de fabricante, e sim em anuncio de loja — nivel 5 e 6 da escada. Nenhum dos dois dominios foi testado nesta execucao."
+ ],
+ "mapa_de_termos_do_rejunte": {
+  "descricao": "Onde mora o julgamento da ilha sobre REJUNTE, separado do mapa da cola de proposito: os dois traduzem para alvos diferentes. O mapa da cola traduz para `base`; este traduz para `ambiente` e para `material_tessela`. Termo que nao estiver aqui nao pode ser traduzido em codigo — ou entra nesta tabela, ou fica so na citacao literal.",
+  "regra": "Mesma assimetria de custo do mapa da cola, e por isso a traducao de INDICACAO e restritiva. Duas decisoes que saem dela e que valem ser lidas antes de discordar: 'areas internas e externas' NAO cobre externo_exposto, e 'em area externa, proteger do sol, do vento e da chuva por 24 horas' tambem NAO — a primeira e escopo generico e a segunda fala do que fazer durante a cura, nenhuma das duas declara que o rejunte curado aguenta sol e chuva. Quem aguenta sol e chuva escreve isso.",
+  "termos": [
+   {
+    "literal": "liberacao para contato com area molhada em 24 horas",
+    "ambiente": [
+     "interno_molhado"
+    ],
+    "observacao": "Declarar quando o rejunte pode encostar em agua e declarar que ele serve em area molhada. E a forma como este fabricante publica a aptidao."
+   },
+   {
+    "literal": "liberacao para contato com areas molhadas em 24 horas",
+    "ambiente": [
+     "interno_molhado"
+    ]
+   },
+   {
+    "literal": "liberacao para contato com agua em piscinas e areas molhadas em 7 dias",
+    "ambiente": [
+     "interno_molhado",
+     "contato_permanente_agua"
+    ]
+   },
+   {
+    "literal": "tecnologia antimofo, recomendado para areas molhadas",
+    "ambiente": [
+     "interno_molhado"
+    ]
+   },
+   {
+    "literal": "piscinas",
+    "ambiente": [
+     "contato_permanente_agua"
+    ]
+   },
+   {
+    "literal": "paredes, pisos e piscinas",
+    "ambiente": [
+     "contato_permanente_agua"
+    ],
+    "observacao": "Lista de lugares de aplicacao. So 'piscinas' diz ambiente no vocabulario da ilha; parede e piso sao suporte, nao ambiente."
+   },
+   {
+    "literal": "piscinas e areas submersas",
+    "ambiente": [
+     "contato_permanente_agua"
+    ]
+   },
+   {
+    "literal": "uso submerso em agua tratada quimicamente",
+    "ambiente": [
+     "contato_permanente_agua"
+    ],
+    "observacao": "TRADUZ, mas a ressalva vai junto para a tela e nao se perde aqui: agua TRATADA e piscina. A agua parada de uma fonte de jardim ou de um vaso nao e o que o fabricante declarou, e a pagina precisa dizer isso na mesma frase em que cita o produto."
+   },
+   {
+    "literal": "areas internas e externas",
+    "ambiente": [
+     "interno_seco",
+     "interno_molhado",
+     "externo_abrigado"
+    ],
+    "observacao": "TRADUCAO RESTRITIVA, e a decisao mais discutivel deste mapa. O mapa da cola manda 'area interna e externa' para os quatro ambientes, externo_exposto incluido. Aqui nao: e escopo comercial generico, e deixar que ele satisfaca sozinho a regra do ambiente critico esvaziaria a regra. Sol e chuva se declaram por nome."
+   },
+   {
+    "literal": "em area externa, proteger do sol, do vento e da chuva por 24 horas",
+    "ambiente": [
+     "externo_abrigado"
+    ],
+    "observacao": "Declara uso externo — mas e instrucao de CURA, nao de durabilidade. Por isso vai so ate externo_abrigado."
+   }
+  ],
+  "termos_que_nao_traduzem": [
+   {
+    "literal": "tecnologia Protect contra fungos e algas",
+    "por_que": "Aditivo biologico. Fungo aparece em area molhada, mas resistir a fungo nao e o mesmo que ser liberado para agua — e este produto ja declara a liberacao por nome, no campo certo."
+   },
+   {
+    "literal": "biocida e algicida contra fungos e algas",
+    "por_que": "Mesma coisa."
+   },
+   {
+    "literal": "impermeavel, antimofo e resistente a manchas",
+    "por_que": "Propriedades do material. 'Impermeavel' e a tentacao: seria facil ler ai uma autorizacao para imersao, e nao e — este produto declara a imersao separadamente, com prazo, e e essa declaracao que vale."
+   },
+   {
+    "literal": "piscinas aquecidas de ate 40 graus Celsius",
+    "por_que": "Limite de temperatura dentro de um ambiente que ja esta declarado. Nao acrescenta ambiente; vai para a tela como ressalva."
+   },
+   {
+    "literal": "sobreposicao de rejunte antigo, cimenticio, acrilico e epoxi",
+    "por_que": "Descreve sobre O QUE se aplica (rejunte velho), que nao e nem tessela nem ambiente."
+   },
+   {
+    "literal": "uso residencial, comercial e industrial",
+    "por_que": "Tipo de imovel, nao ambiente. Nao diz se e seco, molhado ou ao tempo."
+   },
+   {
+    "literal": "uso residencial e comercial",
+    "por_que": "Idem."
+   },
+   {
+    "literal": "pisos e paredes",
+    "por_que": "Posicao da superficie, nao ambiente."
+   },
+   {
+    "literal": "revestimentos especiais",
+    "por_que": "O fabricante nao nomeia qual. Vago: nao vira tessela declarada."
+   }
+  ],
+  "termos_tessela": [
+   {
+    "literal": "pastilhas de porcelana e de vidro",
+    "tessela": [
+     "pastilha_vidro",
+     "pastilha_ceramica"
+    ],
+    "observacao": "A unica declaracao do banco inteiro que nomeia a tessela do mosaico. Porcelana entra como pastilha_ceramica no vocabulario da ilha."
+   },
+   {
+    "literal": "pastilhas",
+    "tessela": [
+     "pastilha_vidro",
+     "pastilha_ceramica"
+    ],
+    "observacao": "Termo solto: cobre as duas pastilhas do vocabulario, nunca caco de espelho nem pedra, que o fabricante nao nomeou."
+   },
+   {
+    "literal": "ceramicas",
+    "tessela": [
+     "pastilha_ceramica",
+     "caco_azulejo"
+    ]
+   },
+   {
+    "literal": "porcelanatos",
+    "tessela": [
+     "pastilha_ceramica"
+    ]
+   },
+   {
+    "literal": "pedras",
+    "tessela": [
+     "pedra"
+    ]
+   }
+  ]
+ },
+ "regras_de_elegibilidade_do_rejunte": {
+  "descricao": "As regras que transformam as declaracoes de um MATERIAL de categoria rejunte em recomendacao. Sao PARENTES das cinco regras da cola, nao copia: a variavel de entrada e outra (largura de junta, nao base) e a lista de ambientes criticos e maior. ferramentas/validar-banco.py as roda e compara com perfis_esperados_do_rejunte e matriz_esperada_do_rejunte, escritos A MAO a partir das declaracoes — se as duas metades divergirem, uma das duas esta errada e a execucao para para descobrir qual.",
+  "1_a_junta_manda_e_precisa_das_duas_pontas": "Rejunte so e candidato numa junta de L mm se declarar junta_min <= L <= junta_max, com as DUAS pontas obtidas. Faixa com uma ponta null NAO vira 'sem limite': o produto fica fora de toda a grade, e a tela diz 'a faixa de junta deste produto nao foi obtida' em vez de deixa-lo aparecer como se coubesse. E o caso do rejunte piscinas quartzolit, que e o unico do banco declarado para pastilha de vidro submersa e mesmo assim nao entra em celula nenhuma.",
+  "2_ambiente_critico_exige_declaracao_EXPLICITA": {
+   "ambientes": [
+    "interno_molhado",
+    "externo_exposto",
+    "contato_permanente_agua"
+   ],
+   "regra": "Nestes tres, silencio nao basta: so entra quem declara o ambiente por nome, pelo mapa_de_termos_do_rejunte. Nos demais (interno_seco, externo_abrigado), silencio nao elimina.",
+   "por_que_interno_molhado_e_critico_aqui_e_nao_na_cola": "A lista de ambientes criticos da COLA tem dois; a do rejunte tem tres, e a diferenca e interno_molhado. Nao e inconsistencia: e a geometria da peca. A cola fica ESCONDIDA atras da tessela e a agua chega nela por ultimo; o rejunte e a superficie exposta, a agua fica parada em cima dele e e nele que o mofo cresce. Na pia e no banheiro, quem falha primeiro e o rejunte."
+  },
+  "3_ambiente_declarado_DELIMITA": "Igual a regra 3 da cola: `ambientes_declarados` nao vazio fecha o produto nos ambientes que ele lista. Quem nao delimita nada passa pelos ambientes nao criticos.",
+  "4_nivel_de_fonte_limita_a_recomendacao": "Igual a regra 5 da cola: recomendacao primaria exige fonte de nivel <= 3. O nivel do produto e o MENOR (melhor) entre as fontes dele — o rejunte epoxi tem boletim de nivel 2 e uma materia de blog de nivel 4, e quem o sustenta e o boletim; o blog so acrescenta a mencao a pastilhas, que vai para a tela citada como materia do proprio fabricante.",
+  "ordem_entre_os_elegiveis": "Score: +2 por junta dentro da faixa declarada, +2 por ambiente declarado por nome. Empate no topo NAO se desfaz por gosto — a pagina lista os empatados como equivalentes. O unico desempate permitido continua sendo ter link de loja (secao 7 do ARQUIPELAGO.md).",
+  "por_que_nao_ha_regra_de_proibicao": "Nenhum dos cinco produtos declara 'nao usar em'. A regra 1 da cola (proibicao vence indicacao) continua valendo e esta implementada, mas hoje nao encontra nada em que pegar — e isso e uma diferenca real entre as duas categorias, nao um esquecimento: o fabricante de cola publica lista de superficies proibidas, o de rejunte publica faixa de junta."
+ },
+ "perfis_esperados_do_rejunte": {
+  "descricao": "Escrito A MAO a partir das declaracoes de dados/materiais-rejuntes.json, produto por produto, ANTES de rodar o validador. O validador recomputa cada um pelas regras acima e falha se divergir. E a trava da secao 8 do ARQUIPELAGO.md aplicada aqui: quem confere escreve a propria regua, em vez de conferir o dado chamando a funcao de quem o produziu.",
+  "perfis": [
+   {
+    "id": "quartzolit-rejunte-ceramicas",
+    "junta_mm": [
+     2,
+     10
+    ],
+    "ambientes_cobertos": [
+     "externo_abrigado",
+     "interno_molhado"
+    ],
+    "ambientes_delimitados": [],
+    "nivel": 2,
+    "de_onde_sai": "interno_molhado vem de 'liberacao para contato com area molhada em 24 horas'; externo_abrigado vem de 'em area externa, proteger do sol, do vento e da chuva por 24 horas', que declara uso externo mas nao durabilidade ao tempo."
+   },
+   {
+    "id": "quartzolit-rejunte-porcelanatos-e-ceramicas",
+    "junta_mm": [
+     2,
+     10
+    ],
+    "ambientes_cobertos": [
+     "interno_molhado"
+    ],
+    "ambientes_delimitados": [],
+    "nivel": 2,
+    "de_onde_sai": "So a liberacao de 24 h para areas molhadas. A tecnologia Protect nao traduz em ambiente."
+   },
+   {
+    "id": "quartzolit-rejunte-acrilico",
+    "junta_mm": [
+     1,
+     4
+    ],
+    "ambientes_cobertos": [
+     "externo_abrigado",
+     "interno_molhado",
+     "interno_seco"
+    ],
+    "ambientes_delimitados": [
+     "externo_abrigado",
+     "interno_molhado",
+     "interno_seco"
+    ],
+    "nivel": 2,
+    "de_onde_sai": "'areas internas e externas' delimita os tres (externo_exposto fica de fora pela regra restritiva do mapa), e 'recomendado para areas molhadas' cobre interno_molhado por nome."
+   },
+   {
+    "id": "quartzolit-rejunte-epoxi",
+    "junta_mm": [
+     1,
+     5
+    ],
+    "ambientes_cobertos": [
+     "contato_permanente_agua",
+     "interno_molhado"
+    ],
+    "ambientes_delimitados": [],
+    "nivel": 2,
+    "de_onde_sai": "'paredes, pisos e piscinas' e 'piscinas' cobrem contato_permanente_agua; a liberacao de 7 dias cobre os dois."
+   },
+   {
+    "id": "quartzolit-rejunte-piscinas",
+    "junta_mm": [
+     null,
+     null
+    ],
+    "ambientes_cobertos": [
+     "contato_permanente_agua"
+    ],
+    "ambientes_delimitados": [],
+    "nivel": 3,
+    "de_onde_sai": "'piscinas e areas submersas' e 'uso submerso em agua tratada quimicamente'. Cobre o ambiente mais dificil do vocabulario e mesmo assim nao entra em celula nenhuma, porque a faixa de junta nao foi obtida — regra 1."
+   }
+  ]
+ },
+ "matriz_esperada_do_rejunte": {
+  "descricao": "Celulas junta x ambiente, escritas A MAO e recomputadas pelo validador. A grade NAO e regular de proposito: ela pisa exatamente em 1, 2, 4, 5 e 10 mm, que sao os extremos declarados pelos produtos, e em 6 e 11, que sao os primeiros valores depois do ultimo extremo. Grade de passo fixo nao separaria 'ate 4' de 'ate 5' — foi a lacuna de medicao que a Robometria pagou para aprender (secao 8 do ARQUIPELAGO.md).",
+  "leitura": "`recomendados_topo` e CONJUNTO, nao ordem. As duas listas de eliminados vao para a tela em secoes diferentes e com frases diferentes: `eliminados_por_faixa_de_junta` diz que o produto existe mas nao cobre essa junta, e `eliminados_por_ambiente` diz que o fabricante nao declara aquele ambiente.",
+  "celulas": [
+   {
+    "junta_mm": 1,
+    "ambiente": "interno_seco",
+    "recomendados_topo": [
+     "quartzolit-rejunte-acrilico"
+    ],
+    "elegiveis_abaixo_do_topo": [
+     "quartzolit-rejunte-epoxi"
+    ],
+    "mencionados_com_ressalva": [],
+    "eliminados_por_faixa_de_junta": [
+     "quartzolit-rejunte-ceramicas",
+     "quartzolit-rejunte-piscinas",
+     "quartzolit-rejunte-porcelanatos-e-ceramicas"
+    ],
+    "eliminados_por_ambiente": [],
+    "observacao": "BORDA: 1 mm e exatamente o minimo do acrilico e do epoxi, e esta abaixo do minimo dos dois cimenticios de 2 mm. A junta mais fina do mosaico corta metade do banco."
+   },
+   {
+    "junta_mm": 2,
+    "ambiente": "interno_seco",
+    "recomendados_topo": [
+     "quartzolit-rejunte-acrilico"
+    ],
+    "elegiveis_abaixo_do_topo": [
+     "quartzolit-rejunte-ceramicas",
+     "quartzolit-rejunte-epoxi",
+     "quartzolit-rejunte-porcelanatos-e-ceramicas"
+    ],
+    "mencionados_com_ressalva": [],
+    "eliminados_por_faixa_de_junta": [
+     "quartzolit-rejunte-piscinas"
+    ],
+    "eliminados_por_ambiente": [],
+    "observacao": "BORDA: 2 mm e o minimo dos dois cimenticios. O acrilico fica sozinho no topo por declarar o ambiente por nome, nao por ser melhor."
+   },
+   {
+    "junta_mm": 2,
+    "ambiente": "externo_exposto",
+    "recomendados_topo": [],
+    "elegiveis_abaixo_do_topo": [],
+    "mencionados_com_ressalva": [],
+    "eliminados_por_faixa_de_junta": [
+     "quartzolit-rejunte-piscinas"
+    ],
+    "eliminados_por_ambiente": [
+     "quartzolit-rejunte-acrilico",
+     "quartzolit-rejunte-ceramicas",
+     "quartzolit-rejunte-epoxi",
+     "quartzolit-rejunte-porcelanatos-e-ceramicas"
+    ],
+    "observacao": "FAIXA DESCOBERTA, e das caras: peca de mosaico em sol e chuva e metade do nicho (vaso de jardim, numero de casa, mandala de parede externa). Nenhum dos cinco declara resistencia a sol e chuva pelo nome. A pagina diz isso em vez de empurrar o de sempre."
+   },
+   {
+    "junta_mm": 3,
+    "ambiente": "contato_permanente_agua",
+    "recomendados_topo": [
+     "quartzolit-rejunte-epoxi"
+    ],
+    "elegiveis_abaixo_do_topo": [],
+    "mencionados_com_ressalva": [],
+    "eliminados_por_faixa_de_junta": [
+     "quartzolit-rejunte-piscinas"
+    ],
+    "eliminados_por_ambiente": [
+     "quartzolit-rejunte-acrilico",
+     "quartzolit-rejunte-ceramicas",
+     "quartzolit-rejunte-porcelanatos-e-ceramicas"
+    ],
+    "observacao": "A CELULA QUE MAIS ENSINA DO BLOCO. A junta de 3 mm submersa tem resposta de rejunte — o epoxi, liberado em 7 dias. E o unico produto do banco cujo fabricante nomeia pastilha de VIDRO debaixo d'agua, o rejunte piscinas, e justamente o que nao pode ser recomendado, porque a faixa de junta dele nao foi obtida. Ter o dado quase todo nao e ter o dado."
+   },
+   {
+    "junta_mm": 4,
+    "ambiente": "interno_molhado",
+    "recomendados_topo": [
+     "quartzolit-rejunte-acrilico",
+     "quartzolit-rejunte-ceramicas",
+     "quartzolit-rejunte-epoxi",
+     "quartzolit-rejunte-porcelanatos-e-ceramicas"
+    ],
+    "elegiveis_abaixo_do_topo": [],
+    "mencionados_com_ressalva": [],
+    "eliminados_por_faixa_de_junta": [
+     "quartzolit-rejunte-piscinas"
+    ],
+    "eliminados_por_ambiente": [],
+    "observacao": "BORDA: 4 mm e o maximo do acrilico. Empate de quatro, e a pagina lista os quatro como equivalentes em vez de fingir preferencia."
+   },
+   {
+    "junta_mm": 5,
+    "ambiente": "interno_molhado",
+    "recomendados_topo": [
+     "quartzolit-rejunte-ceramicas",
+     "quartzolit-rejunte-epoxi",
+     "quartzolit-rejunte-porcelanatos-e-ceramicas"
+    ],
+    "elegiveis_abaixo_do_topo": [],
+    "mencionados_com_ressalva": [],
+    "eliminados_por_faixa_de_junta": [
+     "quartzolit-rejunte-acrilico",
+     "quartzolit-rejunte-piscinas"
+    ],
+    "eliminados_por_ambiente": [],
+    "observacao": "BORDA DUPLA: 5 mm e o maximo do epoxi E o primeiro milimetro fora do acrilico. Um milimetro a mais que a celula anterior e o produto mais facil de usar sai da lista."
+   },
+   {
+    "junta_mm": 6,
+    "ambiente": "contato_permanente_agua",
+    "recomendados_topo": [],
+    "elegiveis_abaixo_do_topo": [],
+    "mencionados_com_ressalva": [],
+    "eliminados_por_faixa_de_junta": [
+     "quartzolit-rejunte-acrilico",
+     "quartzolit-rejunte-epoxi",
+     "quartzolit-rejunte-piscinas"
+    ],
+    "eliminados_por_ambiente": [
+     "quartzolit-rejunte-ceramicas",
+     "quartzolit-rejunte-porcelanatos-e-ceramicas"
+    ],
+    "observacao": "BORDA: 6 mm e o primeiro milimetro depois do maximo do epoxi, e com ele some a unica resposta submersa. Repare que os dois eliminados caem por motivos DIFERENTES, e sao duas frases diferentes na tela."
+   },
+   {
+    "junta_mm": 10,
+    "ambiente": "externo_abrigado",
+    "recomendados_topo": [
+     "quartzolit-rejunte-ceramicas"
+    ],
+    "elegiveis_abaixo_do_topo": [
+     "quartzolit-rejunte-porcelanatos-e-ceramicas"
+    ],
+    "mencionados_com_ressalva": [],
+    "eliminados_por_faixa_de_junta": [
+     "quartzolit-rejunte-acrilico",
+     "quartzolit-rejunte-epoxi",
+     "quartzolit-rejunte-piscinas"
+    ],
+    "eliminados_por_ambiente": [],
+    "observacao": "BORDA: 10 mm e o maximo dos dois cimenticios. Sobram os dois, e o rejunte ceramicas vai a frente por declarar uso externo por nome."
+   },
+   {
+    "junta_mm": 11,
+    "ambiente": "interno_seco",
+    "recomendados_topo": [],
+    "elegiveis_abaixo_do_topo": [],
+    "mencionados_com_ressalva": [],
+    "eliminados_por_faixa_de_junta": [
+     "quartzolit-rejunte-acrilico",
+     "quartzolit-rejunte-ceramicas",
+     "quartzolit-rejunte-epoxi",
+     "quartzolit-rejunte-piscinas",
+     "quartzolit-rejunte-porcelanatos-e-ceramicas"
+    ],
+    "eliminados_por_ambiente": [],
+    "observacao": "BORDA: 11 mm e o primeiro milimetro fora de TODA a faixa do banco, no ambiente mais facil que existe. Celula vazia num ambiente seco prova que quem elimina e a junta, nao o ambiente."
+   }
+  ]
+ }
 }

@@ -238,11 +238,34 @@ for nome in arquivos_material:
             else:
                 if g.get("espessura_mm") is None and not g.get("motivo"):
                     erro("%s / geometria: espessura null sem motivo" % onde)
-                lado, n = g.get("lado_anunciado_cm"), g.get("pastilhas_por_placa")
-                if n and lado and g.get("passo_de_fabrica_cm"):
-                    passo = round(lado / (n ** 0.5), 2)
-                    if abs(passo - g["passo_de_fabrica_cm"]) > 0.01:
-                        erro("%s / geometria: passo de fabrica deveria ser %.2f cm (L/raiz(N))" % (onde, passo))
+                # CORRIGIDO no bloco 3d (12/09/2026). O L da formula L/raiz(N) e o lado da
+                # PLACA, nao o da pastilha: com o exemplo do proprio `especificacao-calculadoras.md`
+                # (placa 30x30 com 225 pastilhas -> passo 2,00 cm) a conta certa e 30/raiz(225);
+                # a que estava escrita aqui usava `lado_anunciado_cm` e daria 1/15 = 0,07 cm.
+                # Nunca disparou porque a categoria pastilha tinha zero itens ate este bloco.
+                lado_placa = g.get("placa_lado_a_cm")
+                lado_b = g.get("placa_lado_b_cm")
+                n = g.get("pastilhas_por_placa")
+                passo_declarado = g.get("passo_de_fabrica_cm")
+                if n is None and not g.get("motivo_pastilhas_por_placa"):
+                    erro("%s / geometria: pastilhas_por_placa null sem motivo escrito" % onde)
+                if passo_declarado is None and not g.get("motivo_passo"):
+                    erro("%s / geometria: passo_de_fabrica_cm null sem motivo escrito" % onde)
+                if passo_declarado is not None and n is None:
+                    erro("%s / geometria: passo de fabrica declarado sem pastilhas_por_placa que o sustente" % onde)
+                if passo_declarado is not None and lado_b is not None and lado_placa is not None \
+                        and abs(lado_b - lado_placa) > 0.001:
+                    erro("%s / geometria: placa nao e quadrada (%s x %s), e L/raiz(N) nao se aplica"
+                         % (onde, lado_placa, lado_b))
+                if n and lado_placa and passo_declarado:
+                    passo = round(lado_placa / (n ** 0.5), 2)
+                    if abs(passo - passo_declarado) > 0.01:
+                        erro("%s / geometria: passo de fabrica deveria ser %.2f cm (lado da PLACA / raiz(N))"
+                             % (onde, passo))
+                lado_past = g.get("lado_anunciado_cm")
+                if passo_declarado is not None and lado_past is not None and passo_declarado < lado_past - 0.001:
+                    erro("%s / geometria: passo (%s cm) menor que a propria pastilha (%s cm) — junta negativa"
+                         % (onde, passo_declarado, lado_past))
 
     # o cabecalho do arquivo declara numeros; eles tem que bater com a contagem
     dec_link = (arq.get("afiliado") or {}).get("itens_esperando_link")

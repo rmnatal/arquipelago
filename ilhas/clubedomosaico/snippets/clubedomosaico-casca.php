@@ -1,6 +1,17 @@
 /**
  * Clube do Mosaico Casca — identidade e estrutura do site
  *
+ * Versão 1.8.0 (12/09/2026) — A TERCEIRA CATEGORIA DO BANCO ENTRA NA CONTA.
+ *   `materiais-pastilhas` passa a ser lido por `cdm_casca_numeros()` junto de
+ *   colas e rejuntes, e o cartão "Pastilhas e tesselas" do Guia deixa de servir
+ *   um zero digitado. Não nasce URL nenhuma: `/materiais/pastilhas/` continua
+ *   sem página (seção 16.5 pede 3 filhas de nível 3 com dado próprio), e o
+ *   cartão só vira link quando a página existir — quem decide isso é
+ *   `cdm_casca_url_se_existir()`, não esta lista.
+ *   A frase do "Como sabemos" passou a nomear as TRÊS categorias: item de banco
+ *   que a soma conta e a frase não nomeia é a prestação de contas pela metade
+ *   que o despacho da Sentinela de 12/09 fechou nas ferramentas.
+ *
  * Versão 1.7.0 (12/09/2026) — DESPACHO DA FUNDAÇÃO: A ILHA COMEÇA A SER MEDIDA.
  * A tag do GA4 desta ilha entra no `wp_head`, e com ela a seção 5 do
  * ARQUIPELAGO.md deixa de ser uma intenção: as referências de `chatgpt.com`,
@@ -191,7 +202,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'CDM_CASCA_VERSAO' ) ) {
-	define( 'CDM_CASCA_VERSAO', '1.7.0' );
+	define( 'CDM_CASCA_VERSAO', '1.8.0' );
 	/* O nome do site e a linha que o WordPress serve no <title> da home. A
 	   Aquametria descobriu em 11/09/2026 que a tagline nunca tocada desde o
 	   nascimento da ilha continuava sendo a linha mais lida do site — a do
@@ -307,7 +318,7 @@ function cdm_casca_categorias_do_guia() {
 			'titulo'   => 'Pastilhas e tesselas',
 			'slug'     => 'materiais/pastilhas',
 			'resumo'   => 'Vidro, cerâmica, cristal e caquinho irregular: como cada uma é vendida (por peça, por grama ou na placa) e quanto rende.',
-			'no_banco' => 0,
+			'no_banco' => $n['materiais_pastilha'],
 		),
 		array(
 			'codigo'   => 'G-ALICATES',
@@ -1090,9 +1101,10 @@ if ( ! function_exists( 'cdm_casca_numeros' ) ) {
  */
 function cdm_casca_numeros() {
 	$n = array(
-		'medido_em'          => '2026-09-11',
+		'medido_em'          => '2026-09-12',
 		'materiais_cola'     => 5,
 		'materiais_rejunte'  => 5,
+		'materiais_pastilha' => 10,
 		'categorias_do_guia' => 6,
 		'celulas_matriz'     => 18,
 		'celulas_rejunte'    => 9,
@@ -1100,8 +1112,8 @@ function cdm_casca_numeros() {
 		'celulas_sem_saida'  => 2,
 		'bases'              => 9,
 		'ambientes'          => 5,
-		'esperando_link'     => 10,
-		'sem_imagem'         => 10,
+		'esperando_link'     => 20,
+		'sem_imagem'         => 20,
 		'pecas_na_loja'      => 0,
 	);
 
@@ -1109,8 +1121,9 @@ function cdm_casca_numeros() {
 	   zero digitado de voltar: categoria que ganha arquivo entra aqui, e o teste reprova
 	   se ela e os arquivos de dados/ se separarem. */
 	$bancos = array(
-		'materiais-colas'    => 'materiais_cola',
-		'materiais-rejuntes' => 'materiais_rejunte',
+		'materiais-colas'     => 'materiais_cola',
+		'materiais-rejuntes'  => 'materiais_rejunte',
+		'materiais-pastilhas' => 'materiais_pastilha',
 	);
 
 	$link_vivo = 0;
@@ -1868,7 +1881,7 @@ add_shortcode( 'cdm_materiais', function () {
 	$html .= '<div class="cdm-prova">';
 	$html .= '<h2>Como sabemos</h2>';
 	$html .= '<p>Nenhuma recomendação daqui veio de blog: cada uma sai do que o fabricante publica sobre o próprio produto, com o documento e a data em que foi lido. Quando ele não fala de uma superfície, a página escreve que não fala — silêncio não vira "pode".</p>';
-	$html .= '<p>Hoje o banco tem ' . cdm_casca_num( $n['itens_no_banco'] ) . ' itens de fabricante, sendo ' . cdm_casca_num( $n['materiais_cola'] ) . ' colas e ' . cdm_casca_num( $n['materiais_rejunte'] ) . ' rejuntes, e ' . cdm_casca_num( $n['esperando_link'] ) . ' deles ainda esperam link de loja.</p>';
+	$html .= '<p>Hoje o banco tem ' . cdm_casca_num( $n['itens_no_banco'] ) . ' itens de fabricante, sendo ' . cdm_casca_num( $n['materiais_cola'] ) . ' colas, ' . cdm_casca_num( $n['materiais_rejunte'] ) . ' rejuntes e ' . cdm_casca_num( $n['materiais_pastilha'] ) . ' pastilhas, e ' . cdm_casca_num( $n['esperando_link'] ) . ' deles ainda esperam link de loja.</p>';
 	$html .= '<p>O método inteiro — de onde vem cada declaração, o que fazemos quando duas fontes discordam e o que ainda não conferimos — está em ' . cdm_casca_link_html( 'materiais/como-sabemos', 'Como sabemos' ) . '.</p>';
 	$html .= '</div>';
 	$html .= '</div>';
@@ -1900,6 +1913,7 @@ add_shortcode( 'cdm_como_sabemos', function () {
 	$html .= '<tr><td>Itens de fabricante no banco</td><td class="cdm-n">' . esc_html( number_format_i18n( $n['itens_no_banco'] ) ) . '</td></tr>';
 	$html .= '<tr><td>Adesivos</td><td class="cdm-n">' . esc_html( number_format_i18n( $n['materiais_cola'] ) ) . '</td></tr>';
 	$html .= '<tr><td>Rejuntes</td><td class="cdm-n">' . esc_html( number_format_i18n( $n['materiais_rejunte'] ) ) . '</td></tr>';
+	$html .= '<tr><td>Pastilhas</td><td class="cdm-n">' . esc_html( number_format_i18n( $n['materiais_pastilha'] ) ) . '</td></tr>';
 	$html .= '<tr><td>Bases cobertas (cerâmica, vidro, laminado, espelho, MDF, cimento, alvenaria, metal, plástico)</td><td class="cdm-n">' . esc_html( number_format_i18n( $n['bases'] ) ) . '</td></tr>';
 	$html .= '<tr><td>Ambientes cobertos (seco, molhado, externo abrigado, sol e chuva, imersão)</td><td class="cdm-n">' . esc_html( number_format_i18n( $n['ambientes'] ) ) . '</td></tr>';
 	$html .= '<tr><td>Combinações base × ambiente mapeadas</td><td class="cdm-n">' . esc_html( number_format_i18n( $n['celulas_matriz'] ) ) . '</td></tr>';

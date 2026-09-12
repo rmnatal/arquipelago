@@ -1434,3 +1434,104 @@ desta ilha. Casca **1.7.0**, manifest na **revisão 13**, `/status` com revisão
   por cluster (16.6), e **só então** a mãe de nível 2, que é o 4c. A coleta vai
   pelo canal de busca, com as travas da seção 8: nunca pôr na consulta o valor
   que se quer confirmar, e fonte que não cita o documento é paráfrase.
+
+12/09/2026 21:19Z — BLOCO 3d ENTREGUE: a categoria PASTILHA nasce no banco, e com ela o número que os fabricantes não publicam
+
+- **Por que este bloco e não o 4c.** O `ESTADO.md` da execução anterior deixou a
+  ordem escrita e o motivo junto: **banco antes de página**, e `pastilha` é a
+  primeira das cinco categorias que a varredura da seção 14.3 achou com ZERO
+  itens — a F1 responde "quantas pastilhas comprar" e a ilha não tinha **uma**
+  pastilha para vender. Nenhuma URL nasceu ou mudou.
+
+- **O QUE ENTROU:** `dados/materiais-pastilhas.json`, 10 SKUs de dois lugares
+  distintos da escada de fontes. Nove da **Glass Mosaic** (fabricante, nível 3):
+  linha Cristal 2,5 cm (K2501, K2502, MIX2510) e 3 cm (K117, K77, K66), linha
+  Fosca 2 cm (A11, A61) e linha Strip 1,2 cm (ST5102). Um da **Pastilhart**
+  (AF1500, 1,5 cm) — e ele entra em **nível 5**, não 3, porque a empresa se
+  declara "importadora e distribuidora" na própria página institucional. É o
+  único item do arquivo que declara ambiente, inclusive piscina, justamente o
+  campo que mais pesaria numa recomendação: ter o dado e **não poder recomendar
+  com ele** é o resultado certo da escada, não um defeito da coleta.
+
+- **A COLETA, e as travas da seção 8.** Busca restrita ao domínio, como nos
+  blocos 2, 3 e 3c. `curl` e `WebFetch` para glassmosaic.com.br,
+  pastilhart.com.br, vidrotil.com.br, colormix.com.br e jatoba.ind.br devolveram
+  `000`/`EGRESS_BLOCKED` em **duas passadas** da mesma execução, com
+  clubedomosaico.com.br em **200 nas duas** — é política de egresso e não a
+  intermitência de túnel que custou dois dias a esta ilha em 11/09 (seção 20.2).
+  **Nenhuma consulta plantou o valor que se queria confirmar:** as buscas
+  pediram os RÓTULOS da ficha ("tamanho, espessura, tamanho placa, placas caixa,
+  peso caixa"), nunca um número.
+
+- **TRÊS CAMPOS NASCEM NULL, E É O QUE ESTE ARQUIVO TEM DE MAIS ÚTIL.**
+  - **Peças por placa — nenhum fabricante declara**, e é exatamente o número de
+    que a F1 precisa para converter placa em peça. A SERP inteira preenche o
+    buraco dividindo o lado da placa pelo lado da pastilha. **A divisão não
+    fecha:** 29,2 / 3,0 = 9,73 e 32,3 / 2,0 = 16,15 não são inteiros — em 6 dos
+    10 itens. E onde ela fecha, fecha errado por outro motivo: 30,0 / 2,5 = 12
+    exige **junta zero** na placa telada, e placa sem junta é placa que não se
+    rejunta. As duas leituras possíveis do número anunciado — lado da PEÇA e
+    passo do MÓDULO — não podem valer ao mesmo tempo no catálogo de um mesmo
+    fabricante. Então `pastilhas_por_placa` e `passo_de_fabrica_cm` ficam null,
+    com o motivo escrito, e a régua **reprova** quem os preencher.
+  - **Peso unitário — e aqui o próprio catálogo se entrega.** Dividindo peso da
+    caixa pela metragem sai um kg/m², que se compara com o teto físico do vidro
+    maciço (espessura × densidade). A linha Cristal de 4 mm dá 8,9 e 9,4 kg/m²
+    contra teto de 10,0: cabe, e a folga é a junta. A linha Strip de 6 mm dá
+    **16,9 contra teto de 15,0 — passa do teto**, o que só pode ser embalagem,
+    tela e papel contados junto. Portanto **peso de caixa não vira peso de
+    produto em tela nenhuma**, e o item fica no banco com `divergencias` e
+    `resolucao` escritas em vez de ser descartado: descartar o caso que não
+    fecha é apagar a prova.
+
+- **O DEFEITO QUE ESTE BLOCO ENCONTROU NA PRÓPRIA RÉGUA, e que só podia aparecer
+  agora.** O `validar-banco.py` checava o passo de fábrica com
+  `lado_anunciado_cm / raiz(N)` — o lado da **pastilha** no lugar do lado da
+  **placa**. Com o exemplo do próprio `especificacao-calculadoras.md` (placa
+  30×30 com 225 pastilhas → passo 2,00 cm) a conta certa é 30/raiz(225); a que
+  estava escrita dava 1/15 = 0,07 cm. **Nunca disparou porque a categoria
+  pastilha tinha zero itens** — função de portão que nunca rodou é função morta,
+  a mesma família que a Robometria nomeou em 11/09. Consertado, e a geometria do
+  `esquema-banco.json` ganhou os campos que a fórmula precisava
+  (`placa_lado_a_cm`, `placa_lado_b_cm`, `formato`), mais a recusa de aplicar
+  L/raiz(N) em placa que não é quadrada — o caso da linha Strip, 28,6 × 31,2.
+
+- **A CASCA 1.8.0, e por que o banco foi publicado nesta passada.** Option que
+  nenhuma página lê é caminho morto, e caminho morto envelhece calado. Então
+  `materiais-pastilhas` entra em `cdm_casca_numeros()` junto de colas e rejuntes
+  **na mesma revisão**: o cartão "Pastilhas e tesselas" do Guia deixa de servir
+  um zero digitado, a tabela do "Como sabemos" ganha a linha e a frase passa a
+  nomear as **três** categorias — item que a soma conta e a frase não nomeia é a
+  prestação de contas pela metade que o despacho da Sentinela de 12/09 fechou nas
+  ferramentas. **Nenhuma URL nova:** `/materiais/pastilhas/` continua sem página
+  (16.5 pede 3 filhas de nível 3), e o cartão só vira link quando a página
+  existir — quem decide isso é `cdm_casca_url_se_existir()`, não a lista.
+
+- **VERIFICAÇÃO.** `ferramentas/validar-pastilhas.py`, **139 afirmações, 0
+  falha**, um processo por item, com a régua escrita à mão no próprio arquivo e
+  nunca lida do banco que ela mede. Ela fez duas descobertas que a leitura não
+  faria: (a) **o catálogo não tem uma regra única de arredondamento** — a caixa
+  da Fosca cobre 2,086583 m² e sai "2,086" num SKU (corte) e "2,09" no irmão
+  (arredondamento); uma régua que exigisse uma das duas reprovaria metade da
+  linha sem haver erro de dado, e uma que aceitasse tolerância frouxa não mediria
+  nada, então ela aceita **exatamente** as duas operações e **diz qual foi usada
+  em cada item**; (b) a aritmética das fichas fecha na terceira casa em todos os
+  10, o que é o que sustenta que os três números de cada ficha são do mesmo
+  produto. `ferramentas/mutacoes-pastilhas.py`: **12 escritas, 12 reprovadas**, e
+  **6 delas nenhum portão antigo viu** — entre elas a mutação que "produz o
+  mundo", promovendo o distribuidor a fabricante, que sem tocar em mais nada faz
+  1,5 cm passar de zero para um elegível.
+
+- **A COBERTURA POR TAMANHO, que é o eixo pelo qual a F1 escolhe pastilha**, e é
+  o número que este bloco deixa para o próximo: dos quatro tamanhos que a
+  ferramenta oferece, só **um** chega aos 3 elegíveis da seção 14.3 — 2,5×2,5 com
+  3; 2×2 com 2; **1×1 com ZERO** e irregular com zero. E 1×1 é o tamanho de **7
+  das 12 linhas** da tabela pré-renderizada da F1: ele não aparece em catálogo de
+  fabricante nenhum, só em armarinho e marketplace, vendido **a peso** ("100
+  gramas") ou por contagem solta — nível 6, que sustenta preço e nada mais. É a
+  mesma pendência da conversão grama↔peça vista pelo outro lado.
+
+- **Receita:** 20 dos 20 itens do banco esperam link de afiliado e 20 estão sem
+  imagem (eram 10 e 10; os 10 novos entram todos assim, e nenhuma foto foi
+  colhida porque o egresso não alcança os domínios). Pauta da seção 17:
+  `pauta.md` ainda não existe — 0 escritos, 0 na fila, 0 recusados.

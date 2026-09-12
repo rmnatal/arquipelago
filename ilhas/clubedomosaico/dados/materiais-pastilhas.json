@@ -1,0 +1,985 @@
+{
+  "id": "materiais-pastilhas",
+  "ilha": "clubedomosaico",
+  "categoria": "pastilha",
+  "bloco": "3d",
+  "gerado_em": "2026-09-12",
+  "esquema": "dados/esquema-banco.json",
+  "o_que_este_arquivo_e": "A categoria PASTILHA do banco MATERIAL — a primeira das cinco categorias que a varredura da secao 14.3 encontrou com ZERO itens em 12/09/2026, e a primeira da ordem porque a F1 responde 'quantas pastilhas comprar' e ate aqui a ferramenta de maior intencao de compra da ilha calculava uma quantidade sem ter o que vender. O bloco NAO publica pagina nenhuma: ele traz o dado que faltava, e diz por escrito o que os fabricantes brasileiros de pastilha nao declaram.",
+  "metodo_de_coleta": "Busca restrita ao dominio do fabricante, como nos blocos 2, 3 e 3c. WebFetch e curl para glassmosaic.com.br, pastilhart.com.br, vidrotil.com.br, colormix.com.br e jatoba.ind.br devolveram EGRESS_BLOCKED / 000 nesta execucao, medido em DUAS passadas com clubedomosaico.com.br em 200 nas duas (secao 20.2 do ARQUIPELAGO.md) — e politica de egresso, nao intermitencia de tunel. Por isso todo campo tecnico daqui carrega conferir_no_pdf: true. Nenhuma consulta plantou o valor que se queria confirmar (secao 8): as buscas pediram os ROTULOS da ficha ('tamanho, espessura, tamanho placa, placas caixa, peso caixa'), nunca um numero.",
+  "o_que_este_arquivo_descobriu_sobre_o_proprio_banco": [
+    "NENHUM FABRICANTE DECLARA PECAS POR PLACA, que e exatamente o numero de que a F1 precisa para converter placa em peca. A ficha declara o lado da pastilha e o lado da placa, e a SERP inteira preenche o buraco dividindo um pelo outro. A divisao nao fecha: 29,2 / 3,0 = 9,73 e 32,3 / 2,0 = 16,15 nao sao inteiros. Onde ela fecha, fecha errado por outro motivo: 30,0 / 2,5 = 12 exige junta ZERO entre as pastilhas da placa, e placa telada sem junta e placa que nao se rejunta. As duas leituras possiveis do numero anunciado — lado da PECA e passo do MODULO — nao podem valer ao mesmo tempo no catalogo de um mesmo fabricante, e e por isso que pastilhas_por_placa e passo_de_fabrica_cm nascem null aqui, com o motivo escrito, em vez de calculados.",
+    "O PESO DA CAIXA NAO E O PESO DO PRODUTO, e o proprio catalogo prova. Dividindo peso da caixa pela metragem da caixa sai um kg/m2 que pode ser comparado com o teto fisico do vidro macico (espessura x 2,5 g/cm3). A linha Cristal de 4 mm da 8,9 e 9,4 kg/m2 contra um teto de 10,0 — cabe, e a folga e a junta. A linha Strip de 6 mm da 16,9 kg/m2 contra um teto de 15,0: PASSA DO TETO, o que so pode ser embalagem, tela e papel contados junto. Portanto peso da caixa nao vira peso de produto em nenhuma tela, e peso_unitario_g continua null.",
+    "A PASTILHA DE 1x1 cm, que e o tamanho de 7 das 12 linhas da tabela pre-renderizada da F1, NAO EXISTE em nenhum catalogo de fabricante alcancado nesta passada. Ela aparece so em armarinho e marketplace, e vendida A PESO ('100 gramas') ou por contagem solta ('100 pecas') — nivel 6 da escada, que sustenta preco e nada mais. O tamanho que a ferramenta mais usa e o unico da lista que nao tem produto de nivel 3 atras."
+  ],
+  "afiliado": {
+    "itens_esperando_link": 10,
+    "observacao": "Os dez. A geracao de link e da Sentinela estrategica, no navegador do Raphael, e nunca da Fundacao — o campo `afiliado.url` nasce presente e vazio para a pagina reservar o lugar e mostrar 'link de loja em breve' (secao 7 do ARQUIPELAGO.md). Codigo de origem: Sub_id 2 = F1 na calculadora e G-PASTILHAS na ficha do Guia."
+  },
+  "imagens": {
+    "itens_sem_imagem": 10,
+    "observacao": "Nenhuma foto coletada: a nuvem das rotinas nao alcanca o dominio dos fabricantes (EGRESS_BLOCKED medido nesta execucao). Material sem imagem NAO some da vitrine — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+  },
+  "publicacao": {
+    "publicar": true,
+    "motivo": "Vira option do site NESTA passada, e so porque ganhou leitor na mesma revisao: a casca 1.8.0 le `materiais-pastilhas` em cdm_casca_numeros() junto de colas e rejuntes, e o cartao 'Pastilhas e tesselas' do Guia deixa de servir um zero digitado. Option que nenhuma pagina le e caminho morto, e caminho morto envelhece calado — foi esse o defeito latente que a Robometria nomeou em 11/09 e que esta ilha fechou em 11/09 ao publicar colas e rejuntes. Nenhuma URL nasce ou muda: /materiais/pastilhas/ continua sem pagina pela secao 16.5."
+  },
+  "materiais": [
+    {
+      "id": "glassmosaic-k2501",
+      "categoria": "pastilha",
+      "tipo": "vidro",
+      "marca": "Glass Mosaic",
+      "fabricante": "Glass Mosaic",
+      "nome_comercial": "K2501 — linha Cristal",
+      "codigo_fabricante": "K2501",
+      "motivo_sem_codigo": null,
+      "declaracoes": {
+        "indicado_para": [],
+        "nao_usar_em": [],
+        "nao_recomendado_em": [],
+        "nao_indicado_para": [],
+        "ambientes_declarados": [],
+        "resistencias_declaradas": []
+      },
+      "motivo_declaracoes_vazias": "A pagina de produto do fabricante declara medida, espessura, placa, caixa, material e unidade de venda — e sobre assentamento diz uma frase so, 'utilizar argamassa/rejunte especifico de acordo com o produto adquirido', que nao nomeia substrato nem ambiente. Silencio nao e permissao: a pastilha entra no banco pela GEOMETRIA, que e o eixo pelo qual a F1 a escolhe, e nao pela matriz base x ambiente, que e da cola e do rejunte.",
+      "propriedades": {
+        "placas_por_caixa": {
+          "valor": 22,
+          "unidade": "placa",
+          "fonte_id": "pagina-produto-k2501",
+          "declarado_como": "Placas caixa: 22"
+        },
+        "m2_por_caixa": {
+          "valor": 1.98,
+          "unidade": "m2",
+          "fonte_id": "pagina-produto-k2501",
+          "declarado_como": "Metragem: 1,98 m2"
+        },
+        "peso_caixa_kg": {
+          "valor": 17.6,
+          "unidade": "kg",
+          "fonte_id": "pagina-produto-k2501",
+          "declarado_como": "Peso caixa: 17,6 kg — e peso de CAIXA, nao de produto; ver o que este arquivo descobriu sobre o proprio banco."
+        }
+      },
+      "preparo": null,
+      "geometria": {
+        "lado_anunciado_cm": 2.5,
+        "placa_lado_a_cm": 30.0,
+        "placa_lado_b_cm": 30.0,
+        "formato": "quadrada",
+        "espessura_mm": 4,
+        "pastilhas_por_placa": null,
+        "motivo_pastilhas_por_placa": "O fabricante nao declara. 30,0 / 2,5 = 12 exige junta zero na placa telada, e placa sem junta e placa que nao se rejunta; a leitura alternativa (2,5 como passo do modulo, peca menor) cabe fisicamente mas nao esta escrita em lugar nenhum. Duas leituras, nenhuma declarada: fica null.",
+        "passo_de_fabrica_cm": null,
+        "motivo_passo": "Sai de pastilhas_por_placa, que e null.",
+        "peso_unitario_g": null,
+        "motivo": "Nao existe peso unitario declarado. O peso da caixa nao serve de atalho: ele passa do teto fisico do vidro macico em pelo menos um item deste arquivo, o que prova que embalagem esta contada dentro."
+      },
+      "venda": [
+        {
+          "unidade": "placa",
+          "quantidade": 1,
+          "embalagem_declarada": "Unidade de venda: placa; caixa fechada com 22 placas, 1,98 m2",
+          "loja": null,
+          "fonte_id": "pagina-produto-k2501",
+          "coletado_em": "2026-09-12"
+        }
+      ],
+      "afiliado": {
+        "programa": null,
+        "url": "",
+        "sub_id_1": "clubedomosaico",
+        "sub_id_2": "F1",
+        "etiqueta_ml": "clubedomosaico-F1",
+        "gerado_em": null
+      },
+      "imagem": null,
+      "fontes": {
+        "pagina-produto-k2501": {
+          "url": "https://glassmosaic.com.br/todos-os-produtos/revestimentos/cristal/k2501/",
+          "tipo": "pagina de produto do fabricante, lida por busca restrita ao dominio; pagina nao aberta (EGRESS_BLOCKED)",
+          "nivel": 3,
+          "coletado_em": "2026-09-12",
+          "conferir_no_pdf": true
+        }
+      },
+      "constantes_relacionadas": [],
+      "divergencias": [],
+      "resolucao": null,
+      "status": "ativo",
+      "motivo_do_descarte": null,
+      "usada_por": [
+        "F1",
+        "G-PASTILHAS"
+      ],
+      "observacao": "Um dos tres SKUs de 2,5 cm da linha Cristal com ficha identica (K2501, K2502, MIX2510). Ficha identica entre cores e o normal da categoria e nao e duplicata: a cor e o que a artesa escolhe, e a medida e o que a ferramenta filtra."
+    },
+    {
+      "id": "glassmosaic-k2502",
+      "categoria": "pastilha",
+      "tipo": "vidro",
+      "marca": "Glass Mosaic",
+      "fabricante": "Glass Mosaic",
+      "nome_comercial": "K2502 — linha Cristal",
+      "codigo_fabricante": "K2502",
+      "motivo_sem_codigo": null,
+      "declaracoes": {
+        "indicado_para": [],
+        "nao_usar_em": [],
+        "nao_recomendado_em": [],
+        "nao_indicado_para": [],
+        "ambientes_declarados": [],
+        "resistencias_declaradas": []
+      },
+      "motivo_declaracoes_vazias": "Mesma ficha da linha Cristal: medida, espessura, placa, caixa, material e unidade de venda, sem substrato nem ambiente.",
+      "propriedades": {
+        "placas_por_caixa": {
+          "valor": 22,
+          "unidade": "placa",
+          "fonte_id": "pagina-produto-k2502",
+          "declarado_como": "Placas caixa: 22"
+        },
+        "m2_por_caixa": {
+          "valor": 1.98,
+          "unidade": "m2",
+          "fonte_id": "pagina-produto-k2502",
+          "declarado_como": "Metragem: 1,98 m2"
+        },
+        "peso_caixa_kg": {
+          "valor": 17.6,
+          "unidade": "kg",
+          "fonte_id": "pagina-produto-k2502",
+          "declarado_como": "Peso caixa: 17,6 kg"
+        }
+      },
+      "preparo": null,
+      "geometria": {
+        "lado_anunciado_cm": 2.5,
+        "placa_lado_a_cm": 30.0,
+        "placa_lado_b_cm": 30.0,
+        "formato": "quadrada",
+        "espessura_mm": 4,
+        "pastilhas_por_placa": null,
+        "motivo_pastilhas_por_placa": "O fabricante nao declara, e a divisao 30,0 / 2,5 so fecha com junta zero.",
+        "passo_de_fabrica_cm": null,
+        "motivo_passo": "Sai de pastilhas_por_placa, que e null.",
+        "peso_unitario_g": null,
+        "motivo": "Nao existe peso unitario declarado."
+      },
+      "venda": [
+        {
+          "unidade": "placa",
+          "quantidade": 1,
+          "embalagem_declarada": "Unidade de venda: placa; caixa fechada com 22 placas, 1,98 m2",
+          "loja": null,
+          "fonte_id": "pagina-produto-k2502",
+          "coletado_em": "2026-09-12"
+        }
+      ],
+      "afiliado": {
+        "programa": null,
+        "url": "",
+        "sub_id_1": "clubedomosaico",
+        "sub_id_2": "F1",
+        "etiqueta_ml": "clubedomosaico-F1",
+        "gerado_em": null
+      },
+      "imagem": null,
+      "fontes": {
+        "pagina-produto-k2502": {
+          "url": "https://glassmosaic.com.br/todos-os-produtos/revestimentos/cristal/k2502/",
+          "tipo": "pagina de produto do fabricante, lida por busca restrita ao dominio; pagina nao aberta (EGRESS_BLOCKED)",
+          "nivel": 3,
+          "coletado_em": "2026-09-12",
+          "conferir_no_pdf": true
+        }
+      },
+      "constantes_relacionadas": [],
+      "divergencias": [],
+      "resolucao": null,
+      "status": "ativo",
+      "motivo_do_descarte": null,
+      "usada_por": [
+        "F1",
+        "G-PASTILHAS"
+      ],
+      "observacao": null
+    },
+    {
+      "id": "glassmosaic-mix2510",
+      "categoria": "pastilha",
+      "tipo": "vidro",
+      "marca": "Glass Mosaic",
+      "fabricante": "Glass Mosaic",
+      "nome_comercial": "MIX2510 — linha Cristal",
+      "codigo_fabricante": "MIX2510",
+      "motivo_sem_codigo": null,
+      "declaracoes": {
+        "indicado_para": [],
+        "nao_usar_em": [],
+        "nao_recomendado_em": [],
+        "nao_indicado_para": [],
+        "ambientes_declarados": [],
+        "resistencias_declaradas": []
+      },
+      "motivo_declaracoes_vazias": "Mesma ficha da linha Cristal.",
+      "propriedades": {
+        "placas_por_caixa": {
+          "valor": 22,
+          "unidade": "placa",
+          "fonte_id": "pagina-produto-mix2510",
+          "declarado_como": "Placas caixa: 22"
+        },
+        "m2_por_caixa": {
+          "valor": 1.98,
+          "unidade": "m2",
+          "fonte_id": "pagina-produto-mix2510",
+          "declarado_como": "Metragem: 1,98 m2"
+        },
+        "peso_caixa_kg": {
+          "valor": 17.6,
+          "unidade": "kg",
+          "fonte_id": "pagina-produto-mix2510",
+          "declarado_como": "Peso caixa: 17,6 kg"
+        }
+      },
+      "preparo": null,
+      "geometria": {
+        "lado_anunciado_cm": 2.5,
+        "placa_lado_a_cm": 30.0,
+        "placa_lado_b_cm": 30.0,
+        "formato": "quadrada",
+        "espessura_mm": 4,
+        "pastilhas_por_placa": null,
+        "motivo_pastilhas_por_placa": "O fabricante nao declara, e a divisao 30,0 / 2,5 so fecha com junta zero.",
+        "passo_de_fabrica_cm": null,
+        "motivo_passo": "Sai de pastilhas_por_placa, que e null.",
+        "peso_unitario_g": null,
+        "motivo": "Nao existe peso unitario declarado."
+      },
+      "venda": [
+        {
+          "unidade": "placa",
+          "quantidade": 1,
+          "embalagem_declarada": "Unidade de venda: placa; caixa fechada com 22 placas, 1,98 m2",
+          "loja": null,
+          "fonte_id": "pagina-produto-mix2510",
+          "coletado_em": "2026-09-12"
+        }
+      ],
+      "afiliado": {
+        "programa": null,
+        "url": "",
+        "sub_id_1": "clubedomosaico",
+        "sub_id_2": "F1",
+        "etiqueta_ml": "clubedomosaico-F1",
+        "gerado_em": null
+      },
+      "imagem": null,
+      "fontes": {
+        "pagina-produto-mix2510": {
+          "url": "https://glassmosaic.com.br/todos-os-produtos/revestimentos/cristal/mix2510/",
+          "tipo": "pagina de produto do fabricante, lida por busca restrita ao dominio; pagina nao aberta (EGRESS_BLOCKED)",
+          "nivel": 3,
+          "coletado_em": "2026-09-12",
+          "conferir_no_pdf": true
+        }
+      },
+      "constantes_relacionadas": [],
+      "divergencias": [],
+      "resolucao": null,
+      "status": "ativo",
+      "motivo_do_descarte": null,
+      "usada_por": [
+        "F1",
+        "G-PASTILHAS"
+      ],
+      "observacao": null
+    },
+    {
+      "id": "glassmosaic-k117",
+      "categoria": "pastilha",
+      "tipo": "vidro",
+      "marca": "Glass Mosaic",
+      "fabricante": "Glass Mosaic",
+      "nome_comercial": "K117 — linha Cristal",
+      "codigo_fabricante": "K117",
+      "motivo_sem_codigo": null,
+      "declaracoes": {
+        "indicado_para": [],
+        "nao_usar_em": [],
+        "nao_recomendado_em": [],
+        "nao_indicado_para": [],
+        "ambientes_declarados": [],
+        "resistencias_declaradas": []
+      },
+      "motivo_declaracoes_vazias": "Mesma ficha da linha Cristal.",
+      "propriedades": {
+        "placas_por_caixa": {
+          "valor": 22,
+          "unidade": "placa",
+          "fonte_id": "pagina-produto-k117",
+          "declarado_como": "Placas caixa: 22"
+        },
+        "m2_por_caixa": {
+          "valor": 1.87,
+          "unidade": "m2",
+          "fonte_id": "pagina-produto-k117",
+          "declarado_como": "Metragem: 1,87 m2"
+        },
+        "peso_caixa_kg": {
+          "valor": 17.6,
+          "unidade": "kg",
+          "fonte_id": "pagina-produto-k117",
+          "declarado_como": "Peso caixa: 17,6 kg"
+        }
+      },
+      "preparo": null,
+      "geometria": {
+        "lado_anunciado_cm": 3.0,
+        "placa_lado_a_cm": 29.2,
+        "placa_lado_b_cm": 29.2,
+        "formato": "quadrada",
+        "espessura_mm": 4,
+        "pastilhas_por_placa": null,
+        "motivo_pastilhas_por_placa": "O fabricante nao declara e a divisao nem fecha: 29,2 / 3,0 = 9,73. Nove por fileira dariam passo de 3,24 cm (junta de 2,4 mm), que e plausivel — mas plausivel nao e declarado, e essa mesma leitura contradiz a da linha de 2,5 cm do mesmo catalogo.",
+        "passo_de_fabrica_cm": null,
+        "motivo_passo": "Sai de pastilhas_por_placa, que e null.",
+        "peso_unitario_g": null,
+        "motivo": "Nao existe peso unitario declarado."
+      },
+      "venda": [
+        {
+          "unidade": "placa",
+          "quantidade": 1,
+          "embalagem_declarada": "Unidade de venda: placa; caixa fechada com 22 placas, 1,87 m2",
+          "loja": null,
+          "fonte_id": "pagina-produto-k117",
+          "coletado_em": "2026-09-12"
+        }
+      ],
+      "afiliado": {
+        "programa": null,
+        "url": "",
+        "sub_id_1": "clubedomosaico",
+        "sub_id_2": "F1",
+        "etiqueta_ml": "clubedomosaico-F1",
+        "gerado_em": null
+      },
+      "imagem": null,
+      "fontes": {
+        "pagina-produto-k117": {
+          "url": "https://glassmosaic.com.br/todos-os-produtos/revestimentos/cristal/k117/",
+          "tipo": "pagina de produto do fabricante, lida por busca restrita ao dominio; pagina nao aberta (EGRESS_BLOCKED)",
+          "nivel": 3,
+          "coletado_em": "2026-09-12",
+          "conferir_no_pdf": true
+        }
+      },
+      "constantes_relacionadas": [],
+      "divergencias": [],
+      "resolucao": null,
+      "status": "ativo",
+      "motivo_do_descarte": null,
+      "usada_por": [
+        "F1",
+        "G-PASTILHAS"
+      ],
+      "observacao": "K117, K77 e K66 sao a mesma pastilha de 3 cm em caixas de tamanhos diferentes. O kg/m2 recomputado das duas embalagens bate na terceira casa (9,41), e e essa coincidencia que sustenta que os numeros da ficha sao do mesmo produto e nao aproximacoes soltas."
+    },
+    {
+      "id": "glassmosaic-k77",
+      "categoria": "pastilha",
+      "tipo": "vidro",
+      "marca": "Glass Mosaic",
+      "fabricante": "Glass Mosaic",
+      "nome_comercial": "K77 — linha Cristal",
+      "codigo_fabricante": "K77",
+      "motivo_sem_codigo": null,
+      "declaracoes": {
+        "indicado_para": [],
+        "nao_usar_em": [],
+        "nao_recomendado_em": [],
+        "nao_indicado_para": [],
+        "ambientes_declarados": [],
+        "resistencias_declaradas": []
+      },
+      "motivo_declaracoes_vazias": "Mesma ficha da linha Cristal.",
+      "propriedades": {
+        "placas_por_caixa": {
+          "valor": 10,
+          "unidade": "placa",
+          "fonte_id": "pagina-produto-k77",
+          "declarado_como": "Placas caixa: 10"
+        },
+        "m2_por_caixa": {
+          "valor": 0.85,
+          "unidade": "m2",
+          "fonte_id": "pagina-produto-k77",
+          "declarado_como": "Metragem: 0,85 m2"
+        },
+        "peso_caixa_kg": {
+          "valor": 8.0,
+          "unidade": "kg",
+          "fonte_id": "pagina-produto-k77",
+          "declarado_como": "Peso caixa: 8 kg"
+        }
+      },
+      "preparo": null,
+      "geometria": {
+        "lado_anunciado_cm": 3.0,
+        "placa_lado_a_cm": 29.2,
+        "placa_lado_b_cm": 29.2,
+        "formato": "quadrada",
+        "espessura_mm": 4,
+        "pastilhas_por_placa": null,
+        "motivo_pastilhas_por_placa": "O fabricante nao declara e 29,2 / 3,0 = 9,73 nao e inteiro.",
+        "passo_de_fabrica_cm": null,
+        "motivo_passo": "Sai de pastilhas_por_placa, que e null.",
+        "peso_unitario_g": null,
+        "motivo": "Nao existe peso unitario declarado."
+      },
+      "venda": [
+        {
+          "unidade": "placa",
+          "quantidade": 1,
+          "embalagem_declarada": "Unidade de venda: placa; caixa fechada com 10 placas, 0,85 m2",
+          "loja": null,
+          "fonte_id": "pagina-produto-k77",
+          "coletado_em": "2026-09-12"
+        }
+      ],
+      "afiliado": {
+        "programa": null,
+        "url": "",
+        "sub_id_1": "clubedomosaico",
+        "sub_id_2": "F1",
+        "etiqueta_ml": "clubedomosaico-F1",
+        "gerado_em": null
+      },
+      "imagem": null,
+      "fontes": {
+        "pagina-produto-k77": {
+          "url": "https://glassmosaic.com.br/todos-os-produtos/revestimentos/cristal/k77/",
+          "tipo": "pagina de produto do fabricante, lida por busca restrita ao dominio; pagina nao aberta (EGRESS_BLOCKED)",
+          "nivel": 3,
+          "coletado_em": "2026-09-12",
+          "conferir_no_pdf": true
+        }
+      },
+      "constantes_relacionadas": [],
+      "divergencias": [],
+      "resolucao": null,
+      "status": "ativo",
+      "motivo_do_descarte": null,
+      "usada_por": [
+        "F1",
+        "G-PASTILHAS"
+      ],
+      "observacao": null
+    },
+    {
+      "id": "glassmosaic-k66",
+      "categoria": "pastilha",
+      "tipo": "vidro",
+      "marca": "Glass Mosaic",
+      "fabricante": "Glass Mosaic",
+      "nome_comercial": "K66 — linha Cristal",
+      "codigo_fabricante": "K66",
+      "motivo_sem_codigo": null,
+      "declaracoes": {
+        "indicado_para": [],
+        "nao_usar_em": [],
+        "nao_recomendado_em": [],
+        "nao_indicado_para": [],
+        "ambientes_declarados": [],
+        "resistencias_declaradas": []
+      },
+      "motivo_declaracoes_vazias": "Mesma ficha da linha Cristal.",
+      "propriedades": {
+        "placas_por_caixa": {
+          "valor": 10,
+          "unidade": "placa",
+          "fonte_id": "pagina-produto-k66",
+          "declarado_como": "Placas caixa: 10"
+        },
+        "m2_por_caixa": {
+          "valor": 0.85,
+          "unidade": "m2",
+          "fonte_id": "pagina-produto-k66",
+          "declarado_como": "Metragem: 0,85 m2"
+        },
+        "peso_caixa_kg": {
+          "valor": 8.0,
+          "unidade": "kg",
+          "fonte_id": "pagina-produto-k66",
+          "declarado_como": "Peso caixa: 8 kg"
+        }
+      },
+      "preparo": null,
+      "geometria": {
+        "lado_anunciado_cm": 3.0,
+        "placa_lado_a_cm": 29.2,
+        "placa_lado_b_cm": 29.2,
+        "formato": "quadrada",
+        "espessura_mm": 4,
+        "pastilhas_por_placa": null,
+        "motivo_pastilhas_por_placa": "O fabricante nao declara e 29,2 / 3,0 = 9,73 nao e inteiro.",
+        "passo_de_fabrica_cm": null,
+        "motivo_passo": "Sai de pastilhas_por_placa, que e null.",
+        "peso_unitario_g": null,
+        "motivo": "Nao existe peso unitario declarado."
+      },
+      "venda": [
+        {
+          "unidade": "placa",
+          "quantidade": 1,
+          "embalagem_declarada": "Unidade de venda: placa; caixa fechada com 10 placas, 0,85 m2",
+          "loja": null,
+          "fonte_id": "pagina-produto-k66",
+          "coletado_em": "2026-09-12"
+        }
+      ],
+      "afiliado": {
+        "programa": null,
+        "url": "",
+        "sub_id_1": "clubedomosaico",
+        "sub_id_2": "F1",
+        "etiqueta_ml": "clubedomosaico-F1",
+        "gerado_em": null
+      },
+      "imagem": null,
+      "fontes": {
+        "pagina-produto-k66": {
+          "url": "https://glassmosaic.com.br/todos-os-produtos/revestimentos/cristal/k66/",
+          "tipo": "pagina de produto do fabricante, lida por busca restrita ao dominio; pagina nao aberta (EGRESS_BLOCKED)",
+          "nivel": 3,
+          "coletado_em": "2026-09-12",
+          "conferir_no_pdf": true
+        }
+      },
+      "constantes_relacionadas": [],
+      "divergencias": [],
+      "resolucao": null,
+      "status": "ativo",
+      "motivo_do_descarte": null,
+      "usada_por": [
+        "F1",
+        "G-PASTILHAS"
+      ],
+      "observacao": null
+    },
+    {
+      "id": "glassmosaic-a11",
+      "categoria": "pastilha",
+      "tipo": "vidro",
+      "marca": "Glass Mosaic",
+      "fabricante": "Glass Mosaic",
+      "nome_comercial": "A11 — linha Fosca",
+      "codigo_fabricante": "A11",
+      "motivo_sem_codigo": null,
+      "declaracoes": {
+        "indicado_para": [],
+        "nao_usar_em": [],
+        "nao_recomendado_em": [],
+        "nao_indicado_para": [],
+        "ambientes_declarados": [],
+        "resistencias_declaradas": []
+      },
+      "motivo_declaracoes_vazias": "A ficha da linha Fosca declara, alem da geometria, 'Tipo de Material: Vidro' e 'Unidade de venda: Placa'. Nenhum substrato, nenhum ambiente.",
+      "propriedades": {
+        "placas_por_caixa": {
+          "valor": 20,
+          "unidade": "placa",
+          "fonte_id": "pagina-produto-a11",
+          "declarado_como": "Placas caixa: 20"
+        },
+        "m2_por_caixa": {
+          "valor": 2.086,
+          "unidade": "m2",
+          "fonte_id": "pagina-produto-a11",
+          "declarado_como": "Metragem: 2,086 m2"
+        },
+        "peso_caixa_kg": {
+          "valor": 13.0,
+          "unidade": "kg",
+          "fonte_id": "pagina-produto-a11",
+          "declarado_como": "Peso caixa: 13 kg"
+        }
+      },
+      "preparo": null,
+      "geometria": {
+        "lado_anunciado_cm": 2.0,
+        "placa_lado_a_cm": 32.3,
+        "placa_lado_b_cm": 32.3,
+        "formato": "quadrada",
+        "espessura_mm": 3,
+        "pastilhas_por_placa": null,
+        "motivo_pastilhas_por_placa": "O fabricante nao declara e 32,3 / 2,0 = 16,15 nao e inteiro.",
+        "passo_de_fabrica_cm": null,
+        "motivo_passo": "Sai de pastilhas_por_placa, que e null.",
+        "peso_unitario_g": null,
+        "motivo": "Nao existe peso unitario declarado."
+      },
+      "venda": [
+        {
+          "unidade": "placa",
+          "quantidade": 1,
+          "embalagem_declarada": "Unidade de venda: placa; caixa fechada com 20 placas, 2,086 m2",
+          "loja": null,
+          "fonte_id": "pagina-produto-a11",
+          "coletado_em": "2026-09-12"
+        }
+      ],
+      "afiliado": {
+        "programa": null,
+        "url": "",
+        "sub_id_1": "clubedomosaico",
+        "sub_id_2": "F1",
+        "etiqueta_ml": "clubedomosaico-F1",
+        "gerado_em": null
+      },
+      "imagem": null,
+      "fontes": {
+        "pagina-produto-a11": {
+          "url": "https://glassmosaic.com.br/todos-os-produtos/revestimentos/fosca/a11/",
+          "tipo": "pagina de produto do fabricante, lida por busca restrita ao dominio; pagina nao aberta (EGRESS_BLOCKED)",
+          "nivel": 3,
+          "coletado_em": "2026-09-12",
+          "conferir_no_pdf": true
+        }
+      },
+      "constantes_relacionadas": [],
+      "divergencias": [],
+      "resolucao": null,
+      "status": "ativo",
+      "motivo_do_descarte": null,
+      "usada_por": [
+        "F1",
+        "G-PASTILHAS"
+      ],
+      "observacao": "A11 e A61 tem ficha identica e METRAGEM ARREDONDADA DE JEITO DIFERENTE — 2,086 numa, 2,09 na outra, para a mesma caixa de 20 placas de 32,3 cm. Nao e divergencia de dado, e arredondamento do proprio catalogo; fica registrado porque uma regua que exigisse igualdade exata entre SKUs da mesma linha reprovaria sem haver erro."
+    },
+    {
+      "id": "glassmosaic-a61",
+      "categoria": "pastilha",
+      "tipo": "vidro",
+      "marca": "Glass Mosaic",
+      "fabricante": "Glass Mosaic",
+      "nome_comercial": "A61 — linha Fosca",
+      "codigo_fabricante": "A61",
+      "motivo_sem_codigo": null,
+      "declaracoes": {
+        "indicado_para": [],
+        "nao_usar_em": [],
+        "nao_recomendado_em": [],
+        "nao_indicado_para": [],
+        "ambientes_declarados": [],
+        "resistencias_declaradas": []
+      },
+      "motivo_declaracoes_vazias": "Mesma ficha da linha Fosca.",
+      "propriedades": {
+        "placas_por_caixa": {
+          "valor": 20,
+          "unidade": "placa",
+          "fonte_id": "pagina-produto-a61",
+          "declarado_como": "Placas caixa: 20"
+        },
+        "m2_por_caixa": {
+          "valor": 2.09,
+          "unidade": "m2",
+          "fonte_id": "pagina-produto-a61",
+          "declarado_como": "Metragem: 2,09 m2"
+        },
+        "peso_caixa_kg": {
+          "valor": 13.0,
+          "unidade": "kg",
+          "fonte_id": "pagina-produto-a61",
+          "declarado_como": "Peso caixa: 13 kg"
+        }
+      },
+      "preparo": null,
+      "geometria": {
+        "lado_anunciado_cm": 2.0,
+        "placa_lado_a_cm": 32.3,
+        "placa_lado_b_cm": 32.3,
+        "formato": "quadrada",
+        "espessura_mm": 3,
+        "pastilhas_por_placa": null,
+        "motivo_pastilhas_por_placa": "O fabricante nao declara e 32,3 / 2,0 = 16,15 nao e inteiro.",
+        "passo_de_fabrica_cm": null,
+        "motivo_passo": "Sai de pastilhas_por_placa, que e null.",
+        "peso_unitario_g": null,
+        "motivo": "Nao existe peso unitario declarado."
+      },
+      "venda": [
+        {
+          "unidade": "placa",
+          "quantidade": 1,
+          "embalagem_declarada": "Unidade de venda: placa; caixa fechada com 20 placas, 2,09 m2",
+          "loja": null,
+          "fonte_id": "pagina-produto-a61",
+          "coletado_em": "2026-09-12"
+        }
+      ],
+      "afiliado": {
+        "programa": null,
+        "url": "",
+        "sub_id_1": "clubedomosaico",
+        "sub_id_2": "F1",
+        "etiqueta_ml": "clubedomosaico-F1",
+        "gerado_em": null
+      },
+      "imagem": null,
+      "fontes": {
+        "pagina-produto-a61": {
+          "url": "https://glassmosaic.com.br/todos-os-produtos/revestimentos/fosca/a61/",
+          "tipo": "pagina de produto do fabricante, lida por busca restrita ao dominio; pagina nao aberta (EGRESS_BLOCKED)",
+          "nivel": 3,
+          "coletado_em": "2026-09-12",
+          "conferir_no_pdf": true
+        }
+      },
+      "constantes_relacionadas": [],
+      "divergencias": [],
+      "resolucao": null,
+      "status": "ativo",
+      "motivo_do_descarte": null,
+      "usada_por": [
+        "F1",
+        "G-PASTILHAS"
+      ],
+      "observacao": null
+    },
+    {
+      "id": "glassmosaic-st5102",
+      "categoria": "pastilha",
+      "tipo": "vidro",
+      "marca": "Glass Mosaic",
+      "fabricante": "Glass Mosaic",
+      "nome_comercial": "ST5102 — linha Strip",
+      "codigo_fabricante": "ST5102",
+      "motivo_sem_codigo": null,
+      "declaracoes": {
+        "indicado_para": [],
+        "nao_usar_em": [],
+        "nao_recomendado_em": [],
+        "nao_indicado_para": [],
+        "ambientes_declarados": [],
+        "resistencias_declaradas": []
+      },
+      "motivo_declaracoes_vazias": "Mesma ficha das outras linhas do fabricante.",
+      "propriedades": {
+        "placas_por_caixa": {
+          "valor": 10,
+          "unidade": "placa",
+          "fonte_id": "pagina-produto-st5102",
+          "declarado_como": "Placas caixa: 10"
+        },
+        "m2_por_caixa": {
+          "valor": 0.89,
+          "unidade": "m2",
+          "fonte_id": "pagina-produto-st5102",
+          "declarado_como": "Metragem: 0,89 m2"
+        },
+        "peso_caixa_kg": {
+          "valor": 15.0,
+          "unidade": "kg",
+          "fonte_id": "pagina-produto-st5102",
+          "declarado_como": "Peso caixa: 15 kg"
+        }
+      },
+      "preparo": null,
+      "geometria": {
+        "lado_anunciado_cm": 1.2,
+        "placa_lado_a_cm": 28.6,
+        "placa_lado_b_cm": 31.2,
+        "formato": "retangular_strip",
+        "espessura_mm": 6,
+        "pastilhas_por_placa": null,
+        "motivo_pastilhas_por_placa": "O fabricante nao declara. A placa nem e quadrada (28,6 x 31,2), entao nem a conta ingenua da SERP existe aqui: lado da placa dividido por lado da pastilha da dois numeros diferentes conforme o lado escolhido.",
+        "passo_de_fabrica_cm": null,
+        "motivo_passo": "Sai de pastilhas_por_placa, que e null; e a formula L/raiz(N) pressupoe placa quadrada, que esta nao e.",
+        "peso_unitario_g": null,
+        "motivo": "Nao existe peso unitario declarado."
+      },
+      "venda": [
+        {
+          "unidade": "placa",
+          "quantidade": 1,
+          "embalagem_declarada": "Unidade de venda: placa; caixa fechada com 10 placas, 0,89 m2",
+          "loja": null,
+          "fonte_id": "pagina-produto-st5102",
+          "coletado_em": "2026-09-12"
+        }
+      ],
+      "afiliado": {
+        "programa": null,
+        "url": "",
+        "sub_id_1": "clubedomosaico",
+        "sub_id_2": "F1",
+        "etiqueta_ml": "clubedomosaico-F1",
+        "gerado_em": null
+      },
+      "imagem": null,
+      "fontes": {
+        "pagina-produto-st5102": {
+          "url": "https://glassmosaic.com.br/todos-os-produtos/revestimentos/strip/st5102/",
+          "tipo": "pagina de produto do fabricante, lida por busca restrita ao dominio; pagina nao aberta (EGRESS_BLOCKED)",
+          "nivel": 3,
+          "coletado_em": "2026-09-12",
+          "conferir_no_pdf": true
+        }
+      },
+      "constantes_relacionadas": [],
+      "divergencias": [
+        {
+          "campo": "peso_caixa_kg",
+          "o_que_diverge": "O kg/m2 recomputado da propria ficha (15 kg / 0,89 m2 = 16,9) PASSA do teto fisico do vidro macico na espessura declarada (6 mm x 2,5 g/cm3 = 15,0 kg/m2). Um produto com junta nao pode pesar mais que a chapa cheia da mesma espessura.",
+          "leitura_mais_provavel": "O 'peso caixa' e peso bruto — vidro, tela ou papel, cola da tela e a caixa. Nas linhas de 3 e 4 mm a folga esconde isso; nesta ela estoura."
+        }
+      ],
+      "resolucao": "Peso de caixa NAO vira peso de produto em nenhuma tela desta ilha, e peso_unitario_g segue null em todos os itens. O que a ficha sustenta e 'quanto pesa a caixa que voce vai carregar', que e informacao de compra, nao de calculo.",
+      "status": "ativo",
+      "motivo_do_descarte": null,
+      "usada_por": [
+        "F1",
+        "G-PASTILHAS"
+      ],
+      "observacao": "E o item que rendeu a segunda descoberta do arquivo. Ele entra no banco justamente por isso: descartar o caso que nao fecha e apagar a prova."
+    },
+    {
+      "id": "pastilhart-af1500",
+      "categoria": "pastilha",
+      "tipo": "vidro",
+      "marca": "Pastilhart",
+      "fabricante": "Pastilhart Revestimentos Ltda (importadora e distribuidora, nao fabricante)",
+      "nome_comercial": "Pastilha de Vidro 1,5x1,5 Bronze Metalizado AF1500",
+      "codigo_fabricante": "AF1500",
+      "motivo_sem_codigo": null,
+      "declaracoes": {
+        "indicado_para": [
+          "banheiros, inclusive dentro do box",
+          "cozinhas modernas e areas gourmet",
+          "lavanderias e lavabos",
+          "halls de entrada, garagens cobertas e varandas",
+          "piscinas internas, spas e saunas"
+        ],
+        "nao_usar_em": [],
+        "nao_recomendado_em": [],
+        "nao_indicado_para": [],
+        "ambientes_declarados": [],
+        "resistencias_declaradas": []
+      },
+      "motivo_declaracoes_vazias": null,
+      "propriedades": {
+        "assentamento_recomendado": {
+          "valor": "argamassa branca e rejunte flexivel",
+          "unidade": "texto",
+          "fonte_id": "pagina-produto-af1500",
+          "declarado_como": "utilizar argamassa branca e rejunte flexivel de boa qualidade; desempenadeira de borracha para nao riscar; remover o excesso de rejunte entre 15 e 30 minutos apos a aplicacao"
+        },
+        "sobra_recomendada_pct": {
+          "valor": 10,
+          "unidade": "%",
+          "fonte_id": "pagina-produto-af1500",
+          "declarado_como": "comprar 10% a mais para cortes e ajustes na aplicacao"
+        }
+      },
+      "preparo": "Argamassa branca e rejunte flexivel; desempenadeira de borracha; retirar o excesso de rejunte entre 15 e 30 minutos.",
+      "geometria": {
+        "lado_anunciado_cm": 1.5,
+        "placa_lado_a_cm": 30.0,
+        "placa_lado_b_cm": 30.0,
+        "formato": "quadrada",
+        "espessura_mm": 8,
+        "pastilhas_por_placa": null,
+        "motivo_pastilhas_por_placa": "Nao declarado. 30,0 / 1,5 = 20 fecha em inteiro, e fecha com junta zero — o mesmo caso da linha de 2,5 cm do outro fabricante, e pela mesma razao nao vira numero aqui.",
+        "passo_de_fabrica_cm": null,
+        "motivo_passo": "Sai de pastilhas_por_placa, que e null.",
+        "peso_unitario_g": null,
+        "motivo": "Nao existe peso unitario declarado."
+      },
+      "venda": [
+        {
+          "unidade": "placa",
+          "quantidade": 1,
+          "embalagem_declarada": "placa de 30x30 cm; a base pode vir em papel OU em tela, e o proprio vendedor declara que isso nao altera a qualidade do material",
+          "loja": null,
+          "fonte_id": "pagina-produto-af1500",
+          "coletado_em": "2026-09-12"
+        }
+      ],
+      "afiliado": {
+        "programa": null,
+        "url": "",
+        "sub_id_1": "clubedomosaico",
+        "sub_id_2": "F1",
+        "etiqueta_ml": "clubedomosaico-F1",
+        "gerado_em": null
+      },
+      "imagem": null,
+      "fontes": {
+        "pagina-produto-af1500": {
+          "url": "https://www.pastilhart.com.br/pastilha-de-vidro-af1500",
+          "tipo": "pagina de produto do importador e distribuidor da marca, lida por busca restrita ao dominio; pagina nao aberta (EGRESS_BLOCKED)",
+          "nivel": 5,
+          "coletado_em": "2026-09-12",
+          "conferir_no_pdf": true
+        },
+        "pagina-sobre-pastilhart": {
+          "url": "https://www.pastilhart.com.br/pagina/sobre-nos.html",
+          "tipo": "pagina institucional, onde a propria empresa se declara importadora e distribuidora",
+          "nivel": 5,
+          "coletado_em": "2026-09-12",
+          "conferir_no_pdf": false
+        }
+      },
+      "constantes_relacionadas": [],
+      "divergencias": [],
+      "resolucao": null,
+      "status": "ativo",
+      "motivo_do_descarte": null,
+      "usada_por": [
+        "F1",
+        "G-PASTILHAS"
+      ],
+      "observacao": "UNICO ITEM DE NIVEL 5 DO ARQUIVO, e esta aqui de proposito. A empresa se declara 'importadora e distribuidora' na propria pagina institucional: nao fabrica, e por isso a ficha dela nao e ficha de fabricante. Pela escada de fontes, nivel 5 NAO sustenta recomendacao primaria (o teto e 3) — e este e o unico item do arquivo que declara ambiente, inclusive piscina, justamente o campo que mais pesaria numa recomendacao. Ter o dado e nao poder recomenda-lo com ele e o resultado certo: a regra existe para o caso em que a fonte mais generosa e a menos confiavel."
+    }
+  ],
+  "pendencias_desta_categoria": [
+    {
+      "id": "pastilha-pecas-por-placa",
+      "estado": "ABERTA, e este bloco mediu o tamanho dela",
+      "o_que_falta": "Quantas pastilhas vem numa placa, por SKU.",
+      "o_que_este_bloco_apurou": "Nenhum dos onze SKUs alcancados declara. Em 6 dos 10 itens a divisao lado_da_placa / lado_da_pastilha nem da inteiro; nos outros 4 da inteiro exigindo junta zero. Portanto nao e campo 'que faltou colher': e campo que os catalogos brasileiros de pastilha nao publicam.",
+      "consequencia_ja_aplicada": "pastilhas_por_placa e passo_de_fabrica_cm nascem null nos 10 itens, e a regua nova reprova qualquer um deles que apareca preenchido sem uma fonte que o declare.",
+      "onde_buscar": "Catalogo em PDF do fabricante (a lista de catalogos existe em glassmosaic.com.br e pastilhart.com.br e nao foi alcancada por egresso), ou a embalagem fisica, que e coisa de quem esta na loja — nao da nuvem."
+    },
+    {
+      "id": "pastilha-1x1-nao-tem-fabricante",
+      "estado": "ABERTA e e a mais cara das tres",
+      "o_que_falta": "Um produto de 1x1 cm com fonte de nivel 3.",
+      "o_que_este_bloco_apurou": "1x1 e o tamanho de 7 das 12 linhas da tabela pre-renderizada da F1 e nao apareceu em catalogo de fabricante nenhum. Aparece em armarinho virtual e marketplace, vendido a peso (100 gramas) ou por contagem solta (100 pecas) — nivel 6, que sustenta preco e nada mais. E a mesma pendencia da conversao grama<->peca vista pelo outro lado: sem peso unitario, 100 gramas nao vira numero de pastilhas.",
+      "consequencia_ja_aplicada": "A cobertura por tamanho medida por `ferramentas/validar-pastilhas.py` sai com 1x1 em ZERO, e e assim que a F1 vai ter de dizer quando o bloco da vitrine nascer.",
+      "onde_buscar": "Fabricantes de pastilha para artesanato (nao de revestimento de obra): a busca alcanca os dominios, o egresso e que nao."
+    },
+    {
+      "id": "pastilha-material-misto",
+      "estado": "ABERTA, e e do esquema, nao do mundo",
+      "o_que_falta": "Um valor de `tipo` para pastilha de material misto.",
+      "o_que_este_bloco_apurou": "A linha Matisse do mesmo fabricante (MT700, MT710) e declarada 'marmore e vidro'. O vocabulario `tipo_por_categoria.pastilha` tem vidro, ceramica, pedra, caco_azulejo, caco_espelho e resina — e nenhum deles e verdade para um produto que e os dois. Os dois SKUs ficaram FORA do arquivo por isso, e nao por falta de dado: a ficha deles esta colhida e completa.",
+      "onde_buscar": "Nao e coleta, e decisao de esquema: ou entra `misto` no vocabulario, ou entra um campo `materiais_declarados` em lista. Fica para o bloco que precisar deles."
+    },
+    {
+      "id": "pastilha-fichas-colhidas-pela-metade",
+      "estado": "ABERTA e barata",
+      "o_que_falta": "Fechar a ficha de A37 (linha Fosca, 2x2, sem metragem nem peso colhidos), de 102 (2,5x2,5, placa 31,7, sem metragem colhida) e de IC02 (linha Ice, 2,3x2,3, 8 mm).",
+      "o_que_este_bloco_apurou": "Os tres apareceram na busca com ficha parcial. Entraram aqui como pendencia em vez de entrarem no banco com campo vazio: item no banco e item que a vitrine pode servir, e servir meia ficha e o comeco do numero sem procedencia.",
+      "onde_buscar": "Mesma busca restrita ao dominio, uma consulta por SKU."
+    }
+  ],
+  "o_que_este_bloco_deixa_desbloqueado": "A vitrine de pastilha da F1 — o bloco `cdm_f1_pastilha_sem_banco_html()`, que hoje diz 'ainda nao temos as pastilhas no nosso banco'. Com este arquivo ela pode nascer filtrada por TAMANHO, que e o eixo pelo qual a ferramenta escolhe pastilha, e com a frase honesta para os tamanhos que continuam com zero produto. NAO desbloqueia a ficha de categoria /materiais/pastilhas/ da secao 16.5, que pede 3 filhas de nivel 3 com dado proprio, nem muda a aritmetica da F1, que nunca dependeu de banco."
+}

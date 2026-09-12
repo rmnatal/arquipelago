@@ -4,7 +4,7 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 14,
+  "revisao": 15,
   "atualizado_em": "2026-09-12",
   "estado": "nascendo",
   "desembarque": {
@@ -20,8 +20,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.7.0",
-      "sha256": "acedb055ef1bd74eb18df5d6ff8d9708676915e18f3529d76ad6726dddcf5aa9",
+      "versao": "1.8.0",
+      "sha256": "0f999bca1e237610620fbf624bb27b19102acf31604a482b7eb5d5d551da9220",
       "descricao": "CASCA 1.7.0 — A ILHA COMECA A SER MEDIDA. A tag do GA4 desta ilha (G-0K5PY39HV7) entra no wp_head e com ela a secao 5 do ARQUIPELAGO.md deixa de ser intencao: as referencias de chatgpt.com, perplexity.ai e gemini.google.com so existem no GA4, e ate hoje esta ilha servia ZERO — o que nao era 'ninguem veio', era 'ninguem contou'. Quatro decisoes: o ID e CONSTANTE NO TOPO, ao lado das outras, porque e a linha que muda quando esta casca for a semente da ilha 4; PRIORIDADE 8 no wp_head, que e o unico numero que satisfaz as duas metades do despacho ao mesmo tempo (o mais cedo possivel E nunca antes do title, da meta descricao e do JSON-LD) — depois do robots (4), do icone (5), do Organization (6) e da trilha (7), e ANTES da folha de fontes (20), que e o unico recurso bloqueante da casca; o ID e CONFERIDO POR REGEX antes de ser impresso, porque meia tag no ar nao mede nada e ainda faz o console falar, e a bancada mede os DOIS lados dessa borda; e a PAGINA DE PRIVACIDADE MUDA NA MESMA VERSAO, porque ela prometia com todas as letras ser atualizada ANTES de a medicao ser ligada e deixar a promessa de pe seria publicar uma frase falsa na pagina que existe para nao ter nenhuma. Sem banner de consentimento (22.4). ACHADO QUE NAO E DESTE BLOCO E NAO FOI CONSERTADO: o Site Kit by Google 1.187.0 esta instalado e ativo nesta ilha e NAO serve gtag nenhum — medido antes da mudanca, zero ocorrencia de gtag( e zero do ID. Plugin desconectado gastando uma linha de <head>; no dia em que alguem o conectar pelo wp-admin a propriedade passa a ter DOIS donos de tag e toda sessao e contada duas vezes, sem nada mudar na tela. Quem acusa isso e uma afirmacao do conferir-no-ar.py, que conta os inicializadores de gtag no HTML servido. A 1.6.0 ganhou de quebra o paragrafo que nunca teve no cabecalho do proprio arquivo: ela subiu a constante e descreveu-se so aqui no manifest."
     },
     {
@@ -99,7 +99,7 @@
       "verificado_em": "2026-09-11",
       "registros": 4,
       "publicar": true,
-      "sha256": "635e2ce7ab67f058bae7de2505a72e7207d800c1d327776a9ac285ff2eed0c08",
+      "sha256": "e877f8b09191f892f73fe107afe3fcb5c93d181b2913a7d7c7729f355b15b9bd",
       "descricao": "Modelo do banco: entidades MATERIAL, PECA (CPT no WordPress, nunca arquivo), TECNICA e a serie temporal COTACAO, campo a campo, com vocabulario controlado, escada de fontes de 7 niveis e o mapa que traduz o termo LITERAL do fabricante para a base e o ambiente da ilha. O que este esquema tem de proprio: o campo que decide a recomendacao e NEGATIVO (a lista de restricoes da ficha BRSA004), existem TRES estados de declaracao e nao dois (silencio nao e proibicao), e cinco regras de elegibilidade executaveis recomputam as 18 celulas da matriz da F2 a partir das declaracoes — quatro delas divergindo da matriz que o bloco 2 tinha escrito a mao. ATUALIZADO NO BLOCO 3c (versao_esquema 2): o esquema passou a ter DUAS reguas, porque as duas categorias nao respondem a mesma pergunta. A matriz_esperada_da_F2 declara agora que so olha categoria == cola, e o validador confere isso — ate aqui a regra existia so na cabeca de quem escreveu, e o primeiro rejunte gravado fez as 18 celulas falharem de uma vez acusando os cinco rejuntes como 'eliminados por silencio', frase sem sentido para um produto que nunca foi candidato a colar nada. Ao lado dela nasceram mapa_de_termos_do_rejunte (que traduz para ambiente e TESSELA, nunca para base), regras_de_elegibilidade_do_rejunte (a junta manda e precisa das duas pontas; ambiente critico do rejunte tem TRES ambientes e nao dois, porque o rejunte e a superficie exposta e a cola fica escondida atras da tessela), perfis_esperados_do_rejunte e matriz_esperada_do_rejunte, cuja grade pisa de proposito em 1, 2, 4, 5 e 10 mm — as bordas declaradas — e em 6 e 11, logo depois da ultima."
     },
     {
@@ -149,8 +149,20 @@
       "verificado_em": "2026-09-12",
       "registros": 105,
       "publicar": false,
-      "sha256": "d788c1397310b7ec175ad3e0643065b3b26b61ec19e5fdee9ceaffe5c44ae0ec",
+      "sha256": "d58d58f2cd7c87d0e34bb670456f2a51b830bce39d0774aee38c5fe8877f7b9c",
       "descricao": "O censo de cobertura das duas ferramentas: quantos produtos do banco sao elegiveis em cada um dos 105 estados que a F2 serve, quais faixas saem abaixo dos 3 que a secao 14.3 exige, e a causa que o proprio calculo separou em cada uma. NAO e serie historica: e uma fotografia do banco de hoje, e se regenera a cada mudanca de banco ou de faixa — por isso publicar=false e por isso o arquivo nao leva carimbo de relogio. E o numero que decide qual bloco a ilha faz em seguida: enquanto ele disser que nenhum estado de cola chega a 3 elegiveis, nenhuma filha de nivel 3 do Guia passa no portao de dado da secao 9, e a 16.5 mantem as seis fichas do 4c fechadas."
+    },
+    {
+      "id": "materiais-pastilhas",
+      "arquivo": "dados/materiais-pastilhas.json",
+      "formato": "json",
+      "entidade": "MATERIAL",
+      "fonte": "Bloco 3d da Fundacao, 12/09/2026. Dez SKUs colhidos por busca restrita ao dominio do fabricante (glassmosaic.com.br, nivel 3) e do importador (pastilhart.com.br, nivel 5); os dominios nao foram abertos — curl e WebFetch devolveram 000/EGRESS_BLOCKED em duas passadas com o dominio da ilha em 200 nas duas. Nenhuma consulta plantou valor: as buscas pediram os rotulos da ficha, nunca um numero.",
+      "verificado_em": "2026-09-12",
+      "registros": 10,
+      "publicar": true,
+      "sha256": "d883c5ec4aae63bfc77b4183aa771f6723b9197b397a22f92d9ce65f90558141",
+      "descricao": "A categoria PASTILHA do banco MATERIAL — a primeira das cinco que a varredura da secao 14.3 achou com zero itens. Dez SKUs com lado da pastilha, lado da placa, espessura, placas por caixa, metragem e peso de caixa. Tres campos nascem NULL com motivo escrito, e e isso que o arquivo tem de mais util: pecas por placa e passo de fabrica, porque nenhum fabricante brasileiro declara e a divisao que a SERP faz nao fecha (em 6 dos 10 nao da inteiro, nos outros 4 exige junta zero); e peso unitario, porque o peso da caixa de um dos itens PASSA do teto fisico do vidro macico, o que prova que embalagem esta contada dentro. Mede isso ferramentas/validar-pastilhas.py (139 afirmacoes, um processo por item) e ferramentas/mutacoes-pastilhas.py (12 de 12, 6 delas invisiveis para o portao do esquema)."
     }
   ],
   "ferramentas": [
@@ -271,7 +283,7 @@
     {
       "id": "validar-banco",
       "arquivo": "ferramentas/validar-banco.py",
-      "sha256": "d9648f1369677a00ad327729b180e62dd4155a8d7b7d8c02a509a8766fcc26c5",
+      "sha256": "46756220089f12bb298cdabac573623f89ef9e06848493057b4b29964c99e794",
       "descricao": "Verifica o banco contra dados/esquema-banco.json sem rede e sem dependencia: campos obrigatorios, vocabularios, fonte por campo tecnico, nivel de fonte, afiliado presente mesmo vazio, contagem declarada no cabecalho e passo de fabrica das pastilhas. O principal: RECOMPUTA as 18 celulas da matriz da F2 pelas cinco regras de elegibilidade e falha se o banco e a pagina se separarem. E a implementacao de referencia que o snippet PHP do bloco 4 tem que repetir. NUNCA e publicada no site. BLOCO 3c: ganhou a regua propria do REJUNTE, escrita sem reaproveitar perfil() nem avaliar() da cola — nao por cerimonia, mas porque as declaracoes nomeiam coisas diferentes nas duas categorias. Confere os cinco perfis e as nove celulas junta x ambiente contra o que esta escrito A MAO no esquema, exige que a grade pise em toda borda declarada e em pelo menos um valor acima da maior delas, reprova faixa de junta pela metade ou invertida, cobra perfil escrito para todo rejunte do banco, e guarda a regressao do defeito que o bloco corrigiu: rejunte que aparecer em qualquer lista da matriz da F2 e erro."
     },
     {
@@ -297,6 +309,18 @@
       "arquivo": "ferramentas/mutacoes-cobertura.py",
       "sha256": "529b3d554d5cf997918122bfa9682bf7ddc8e2e8f6c415d629d4b9f7d22e23b5",
       "descricao": "Quebra a varredura de proposito, uma mutacao por vez, e exige que cobertura.py --conferir ou conferir-cobertura.php reprove cada uma. Mede uma segunda coisa, que e a razao de o bloco existir: para cada mutacao roda TAMBEM os portoes anteriores (validar-banco.py e teste-f2.php) e marca as que so a varredura viu — mutacao que qualquer portao antigo pega ja estava coberta e nao justificaria arquivo novo. A mais importante afrouxa a faixa de junta SO em 7, 8 e 9 mm, que e o vao onde a grade escrita a mao do esquema nao pisa. Bancada: nunca vai para o site."
+    },
+    {
+      "id": "validar-pastilhas",
+      "arquivo": "ferramentas/validar-pastilhas.py",
+      "sha256": "c5c2dd054de6b13dd1c72ba6b6bcc1f2eba95b5905a6889f6f64d8157835a545",
+      "descricao": "A regua da categoria pastilha: confere se os numeros da MESMA ficha do fabricante fecham entre si (placas x area da placa = metragem da caixa, aceitando corte OU arredondamento, porque o catalogo usa os dois na mesma linha), se o kg/m2 tirado do peso da caixa cabe no teto fisico do vidro macico na espessura declarada, e se o banco NAO transformou em numero a divisao lado-da-placa/lado-da-pastilha. Regua escrita a mao no proprio arquivo, um processo por item. Bancada."
+    },
+    {
+      "id": "mutacoes-pastilhas",
+      "arquivo": "ferramentas/mutacoes-pastilhas.py",
+      "sha256": "08cfd19f477e168e824f663797bd55a28dd553da7102ff3df34dea165bca31aa",
+      "descricao": "Doze defeitos escritos de volta no banco de pastilhas, cada um rodando os DOIS portoes (esquema e regua da categoria) e marcando os que SO a regua nova ve — porque mutacao que o portao antigo ja pegava nao justifica arquivo novo. Bancada."
     }
   ],
   "esquema": {
