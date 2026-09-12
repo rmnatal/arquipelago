@@ -490,3 +490,53 @@ Decisão do Raphael em 11/09/2026, depois de eu apontar o risco: a Aquametria ti
 21.5 **O que acontece AO ATINGIR o piso.** Se, com 40 URLs e 21 dias, a ilha continuar com **zero impressões**, isso passa a ser sinal forte e a resposta NÃO é publicar mais. A leitura semanal (seção 12) abre um diagnóstico com três hipóteses, nesta ordem, e escreve qual delas o dado sustenta: (a) **indexação** — as URLs estão no índice? (URL Inspection); (b) **consulta** — as páginas miram consultas que alguém digita, ou só variações que ninguém busca? (c) **SERP** — a classificação da seção 14 estava errada e o top 10 é mais fechado do que se mediu. Enquanto o diagnóstico não sair, a ilha não recebe leva nova de malha; ferramenta e guia continuam.
 
 21.6 **Registrar o piso.** O cabeçalho do `ESTADO.md` de cada ilha ganha `piso: abaixo|atingido` e `primeira_indexacao: <data ou null>`, preenchidos pela leitura semanal. A Fundação lê esse campo antes de decidir o tamanho da leva — não recalcula de cabeça.
+
+## 22. O DESENHO SERVE À MALHA — beleza e ranqueamento no mesmo lado da mesa (12/09/2026)
+
+Escrita a pedido do Raphael em 12/09/2026, com a frase dele: *"o objetivo principal é ranqueamento no Google, toda a estratégia de malha de links e arquitetura voltadas ao SEO do projeto; design sempre será secundário, mas o plano perfeito é casar os dois em harmonia."* Esta seção existe para que o casamento seja possível **sem** que a ilha tenha de escolher — e para que, no dia em que houver escolha, ela já esteja feita.
+
+### 22.1 A ordem nunca inverte
+Ranqueamento primeiro, conversão depois, beleza por último. As três quase sempre andam juntas: página rápida, legível e organizada ranqueia melhor, vende melhor e é mais bonita. **Quando não andarem** — quando um desenho bonito custar uma posição, um link ou um dado — **o desenho cede, e o motivo vai para o `REGISTRO.md`.** Nunca o contrário, e nunca em silêncio.
+
+### 22.2 O que o desenho NUNCA toca
+Estes são estruturais e pertencem às seções 9, 14, 15 e 16. Nenhum despacho de desenho mexe neles:
+- URL, árvore, nível e breadcrumb (seção 16) — nem por estética, nem por "ficou mais limpo".
+- Links internos da malha e o **texto âncora** deles: âncora é consulta, não é rótulo de botão bonito.
+- `<title>`, meta descrição, H1 e a ordem **resposta antes da explicação**.
+- JSON-LD e o bloco de prova ("como sabemos", tabela, fonte, data).
+- A camada de voz (seção 15): o `DESIGN.md` manda na forma, o `VOZ.md` manda na palavra. Quando os dois discordarem, é o `VOZ.md` que decide, porque é ele que fala com a pessoa.
+
+### 22.3 HTML servido — a regra que mais protege o ranqueamento
+**Tudo que precisa ranquear sai pronto do servidor, no primeiro HTML.** Nada de conteúdo injetado por JavaScript depois que a página abre.
+- Link é sempre `<a href="…">` de verdade. Nunca `div` com `onclick`, nunca botão que navega por script, nunca `href="#"` com JS por trás. Um link que só existe depois do JS **não é link da malha** — e a malha é o motor da ilha inteira.
+- "Ver mais", paginação, abas e acordeões: o conteúdo já está no HTML; o script só mostra e esconde. Acordeão fechado com o texto presente está certo; acordeão que busca o texto ao abrir está errado.
+- Vitrine, tabela de produto, resultado de ferramenta com valores padrão, breadcrumb e rodapé: todos pré-renderizados.
+- O JavaScript da ilha serve só interação: calcular quando a pessoa digita, abrir menu, trocar aba. **Zero framework na página pública.**
+
+### 22.4 Orçamento de desempenho (é parte do desenho, não detalhe de programador)
+- No máximo **duas famílias de texto + uma monoespaçada**, as que o `DESIGN.md` da ilha nomeia, sempre com `font-display: swap`. Fonte nova exige mudar o `DESIGN.md`.
+- **Toda imagem com `width` e `height` no HTML** — é o que impede o salto de layout. Imagem abaixo da dobra com `loading="lazy"`; a imagem do LCP **nunca** é lazy e leva `fetchpriority="high"`.
+- **Nada de carrossel automático acima da dobra.** Carrossel de vitrine é permitido abaixo do resultado, sem autoplay.
+- CSS crítico embutido, o resto pode esperar. Sem biblioteca de ícone: ícone é SVG embutido.
+- O LCP da página é **texto ou a foto principal** — nunca um bloco que só aparece depois de um script.
+
+### 22.5 Onde o desenho tem liberdade inteira
+Cor, tipografia, escala, espaçamento, foto, ilustração, moldura, microcópia dos botões, o molde de casca (LOJA / FERRAMENTA / GUIA, seção 15.3) e o desenho de cada componente. É bastante: é aí que mora a diferença entre três ilhas com a mesma cara e três ilhas com três personalidades.
+
+### 22.6 `ilhas/<ilha>/DESIGN.md` passa a ser o dono dos tokens
+Cada ilha tem um `DESIGN.md` com paleta, escala tipográfica, espaçamento, raio, sombra e a especificação dos componentes. A casca renderiza a partir dele.
+- O `PROMPT.md` **deixa de ser dono da paleta**: onde ele hoje lista cor e fonte, passa a apontar para o `DESIGN.md`.
+- **Token novo não nasce em despacho.** Cor, fonte ou medida que não está no `DESIGN.md` é defeito, não identidade — foi essa regra que barrou, no Clube do Mosaico em 11/09, um segundo branco a quatro passos do branco aprovado.
+- Mudar token é mudar o `DESIGN.md` primeiro, num commit só, com o motivo.
+
+### 22.7 A Sentinela confere o desenho na mesma ronda
+Entram na lista mecânica da seção 19.1, que ela conserta na hora:
+- imagem sem `width`/`height`;
+- link interno que não é `<a href>`;
+- texto que só aparece com JS ligado;
+- cor ou fonte fora do `DESIGN.md` da ilha;
+- imagem acima da dobra marcada como `lazy`.
+O que ela **despacha** em vez de consertar (19.2): trocar molde de casca, mudar escala tipográfica, qualquer coisa que mexa em mais de uma página de uma vez.
+
+### 22.8 O portão: a página tem de funcionar com o JavaScript desligado
+Cada ilha ganha `ferramentas/teste-desenho.mjs`. Ele abre as páginas **com JavaScript desligado** e reprova se faltar qualquer um: `<title>`, H1, primeiro parágrafo, breadcrumb, os links internos da malha, o bloco de prova e o bloco de compra. Uma ferramenta pode perder o resultado calculado sem JS — e só ele. Página que fica em branco sem JS não publica.
