@@ -1,7 +1,7 @@
 ---
 ilha: clubedomosaico
 estado: nascendo
-prioridade: 2
+prioridade: 1
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 11
 primeira_indexacao: desconhecida
