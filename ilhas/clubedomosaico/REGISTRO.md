@@ -1552,3 +1552,163 @@ desta ilha. Casca **1.7.0**, manifest na **revisão 13**, `/status` com revisão
   texto; e o número de itens esperando link bate com os cabeçalhos. Testada por
   negação antes de ser dada por boa: com o banco adulterado para 9 pastilhas, as
   três afirmações que deviam cair caíram.
+
+12/09/2026 23:20Z — BLOCO 4d, O CORTE DO DESPACHO: A ILHA TEM UM ATELIÊ
+
+- **Por que este bloco e não a ordem de banco que o estado anterior deixou.** O
+  despacho do Raphael de 12/09, 18h20 BRT, tem prioridade MÁXIMA e prazo, e o prazo
+  é amanhã: ele vai à casa dos pais no domingo 13/09 ensinar a própria mãe a
+  cadastrar as peças dela. É a primeira vez que alguém de fora da máquina vai usar o
+  que esta fábrica constrói, e é a mãe dele. A seção 18.1 diz que despacho aberto do
+  Raphael vence qualquer rotação; a execução das 21h26Z tinha subido a prioridade da
+  ilha para 1 sem escrever despacho, mas o despacho estava em `dados/despachos.md`,
+  aberto, com prioridade máxima.
+
+- **Dois snippets novos, e a separação não é organização — é o Sync desembarcando um
+  sem o outro.** Se o painel tiver defeito, a loja no ar não cai com ele; se a loja
+  mudar, ela não perde o acesso.
+  - `snippets/clubedomosaico-loja.php` **1.0.0** = snippet **#9** (criado pelo Sync):
+    CPT `peca`, taxonomias `colecao` e `tecnica`, a ficha pública em `/loja/<slug>/`,
+    a vitrine com foto e o endpoint de cópia da seção 24.
+    sha256: `769be91f7e43...`
+  - `snippets/clubedomosaico-atelie.php` **1.0.1** = snippet **#10**: papel `artesa`,
+    a usuária e o e-mail de acesso, `/atelie/` com login, lista e formulário.
+  - `snippets/clubedomosaico-casca.php` **1.9.0**: UMA linha de mudança, o filtro
+    `cdm_vitrine_de_pecas`.
+  Manifest na revisão **17**; `/status` conferido às 23h13Z (revisão 16) e de novo
+  depois do conserto de 1.0.1.
+
+- **OS CINCO ITENS DO CORTE SAÍRAM.** (1) CPT `peca` com `show_ui` FALSE — ela nunca
+  vê o wp-admin, e isso é requisito escrito dele — mais o papel `artesa` com sete
+  capacidades e o bloqueio duplo; (2) a usuária criada e **o e-mail de acesso enviado
+  às 23h13m23s Z**; (3) `/atelie/` com login e tela inicial; (4) o formulário de peça
+  em uma tela, no celular; (5) a ficha pública com `Product`+`Offer` e a `/loja/`
+  listando. **Uma URL nova**, `/atelie/`, que é `noindex`: a ilha vai de 11 para 12
+  páginas publicadas e continua com 11 no índice.
+
+- **O que ficou FORA, por escrito no próprio despacho:** o formulário "Verificar
+  disponibilidade" e o CPT `lead_peca` (adendo 3 de 11/09), a aba Interessados, a
+  exportação CSV, "Meus dados", o feed do Merchant Center e as páginas de técnica e
+  de coleção.
+
+- **A METADE DO PORTÃO QUE A FUNDAÇÃO NÃO CUMPRE, e por que fabricar um jeito seria
+  pior que não cumprir.** O despacho manda entrar em `/atelie/` como `artesa` e
+  cadastrar uma peça de teste. A senha dela **não existe** em lugar nenhum a que a
+  nuvem tenha acesso: o snippet gera uma senha aleatória e a descarta sem imprimir em
+  log, e-mail ou option, e o que chega a ela é um link na caixa dela. Gravar a senha
+  ou criar um segundo acesso para "poder testar" quebraria a única coisa que protege
+  a conta de uma pessoa de verdade. O portão foi partido em duas metades
+  **declaradas** no cabeçalho do `teste-atelie.php`, e a metade da LARGUra — os 360
+  px que o despacho escreve dentro do portão — foi cumprida num Chromium de verdade,
+  porque essa uma máquina mede melhor que um humano.
+
+- **A senha é criada em `/atelie/` e não no `wp-login.php`** — único desvio
+  consciente da especificação de 10/09, e a favor dela: o fluxo nativo manda o link
+  para uma tela com a marca do WordPress e um medidor de força de senha, que é a
+  definição literal do que o portão reprova. A CHAVE continua nativa
+  (`check_password_reset_key` e `reset_password`); a TELA é a nossa, com o logo dela,
+  e ao terminar ela já entra logada.
+
+- **Reordenar foto é botão ◀ ▶ e não arrastar-e-soltar**, contra o que a
+  especificação pedia, por duas razões que valem mais que a especificação: arrastar
+  depende de JavaScript (portão 22.8) e de precisão de dedo, e ela vai cadastrar de
+  um celular.
+
+- **O QUE OS PORTÕES ACHARAM, e nenhum foi achado lendo código:**
+  1. **O `teste-casca` reprovou o painel, e estava certo.** Ele cobrava que a ÚNICA
+     página fora do índice fosse a camada de prova. O painel sai do índice por outro
+     motivo, e as duas razões exigem tratamentos OPOSTOS — a de prova TEM de ser
+     citada por outra página, esta NÃO pode ser citada por nenhuma. Nasceu a camada
+     `privada`, declarada no markup e cobrada nas duas direções. A exceção pelo nome
+     do slug foi recusada: seria a heurística por vizinhança que a seção 8 proíbe.
+  2. **Dois filtros que eu escrevi e ninguém aplicava**, achados antes de rodar uma
+     linha: um em `cdm_vitrine_de_pecas` que a casca não aplicava, e um em
+     `clubedomosaico_status` que o Sync não aplica porque **ele se pula a si mesmo por
+     desenho**. Portão que nunca roda é função morta. O primeiro virou filtro de
+     verdade na casca (a única mudança da 1.9.0), o segundo virou rota pública.
+  3. **A direção da foto num campo escondido.** Campo `hidden` é enviado seja qual
+     for o botão apertado, então o botão "para frente" mandava "para trás" junto e a
+     foto andava para o lado errado. Virou `value` do próprio botão, e a mutação 22 é
+     esse defeito escrito de volta.
+  4. **Os botões de foto tinham 38 px** — achado pelo medidor de navegador a 360 px,
+     e invisível em leitura de código e no HTML servido, porque só o motor de layout
+     sabe o tamanho que o botão ficou tendo. São os menores do painel e os que ela
+     mais vai apertar com o dedo. Viraram 44, na versão **1.0.1**, depois de a 1.0.0
+     já estar no ar.
+  5. **O canonical da BANCADA** dizia `/vaso-azul/` e o site diz
+     `/loja/vaso-azul/` — defeito da bancada, mesma família de "a bancada e o site
+     lendo fontes diferentes para o mesmo campo".
+  6. **A description abria cinco frases em minúscula depois de ponto**, visto ao
+     renderizar a primeira ficha, não em revisão de código.
+  7. **O piso de tamanho de página do `teste-loja` estava cravado em 40 KB**,
+     calibrado na F2 que carrega uma ferramenta inteira, e REPROVAVA fichas corretas
+     de 26 KB. Passou a ser DERIVADO de `/contato/` na mesma bancada: piso inventado
+     reprova o certo.
+  8. **Código morto que a mutação expôs:** um `str_replace` de `%0D%0A` que nunca
+     podia disparar, porque `rawurlencode` de `\n` já devolve `%0A`. Saiu do snippet,
+     e a mutação saiu com ele.
+  9. **NO AR, e este foi o mais humilhante:** o conferidor contou 6 cartões de peça
+     numa Loja com ZERO peça publicada, e os 6 eram os seletores da própria folha de
+     estilo. É literalmente o erro que a seção 8 nomeia — medir no HTML inteiro em vez
+     de no CORPO — cometido por quem tinha acabado de escrever uma bancada que faz
+     isso certo. A bancada media no corpo, o conferidor no ar não, e **nada obrigava
+     os dois a concordarem**.
+  10. **Três réguas minhas erradas no medidor de navegador:** o piso de 200
+     caracteres de corpo, emprestado da regra de página fina que existe para página
+     de ÍNDICE, reprovava a tela de entrar, a lista e a de criar senha — as três
+     estão certas, porque tela de ação boa tem pouco texto; e duas réguas do painel
+     aplicadas na FICHA da peça, que não tem formulário (o botão dela é um link
+     `wa.me`) e que mostra foto grande e título na primeira tela, exatamente o que o
+     `DESIGN.md` manda. **Apertar o portão errado reprova o desenho certo** — é a
+     mesma lição que a Aquametria escreveu em 12/09 sobre catálogo e ficha.
+  11. **O `/loja/<peça>/` na tabela do `ARVORE.md`** foi reprovado pelo portão da
+     casca, com razão: ele cobra que toda linha daquela tabela exista no código, e
+     molde não é página. Foi para a prosa da seção 3b.
+
+- **VERIFICAÇÃO, 0 falha.** `teste-casca` 546 (era 539); `teste-loja` **140, novo**,
+  com 72 estados da ficha em processo próprio; `teste-atelie` **209, novo**, com 9
+  telas em processo próprio; `teste-navegador-atelie.mjs` **91 medições, novo**, em 6
+  páginas × 5 larguras num Chromium de verdade, com um contexto de
+  `javaScriptEnabled: false` para medir a 22.8 de verdade; `teste-f1` 67, `teste-f2`
+  72, `teste-prestacao-rejunte` 5 sobre 720 estados, `conferir-cobertura` 128,
+  `validar-banco` e `validar-pastilhas` aprovados, `php -l` em tudo (com `<?php`
+  prefixado, porque o snippet desta ilha nasce sem a tag).
+
+- **MUTAÇÕES.** `mutacoes-loja` **23 de 23** reprovadas, **22 que só o portão novo
+  pega**; `mutacoes-atelie` **26 de 26**, **23 que só o novo pega**. E **quatro
+  passaram na primeira passada**, as quatro lacunas reais do meu portão: duas porque
+  ele media TELAS e nunca DISPARAVA os ganchos (`admin_init` e o filtro da barra não
+  aparecem em HTML nenhum), uma porque a varredura da senha NOMEAVA dois lugares onde
+  procurar e a mutação gravou num terceiro, e uma porque eu conferia a função de
+  mascarar o e-mail sem conferir se a rota a CHAMAVA. As nove baterias antigas
+  rodadas inteiras, nenhuma inerte: árvore 20, cobertura 14, f1 27, f2 20, ga4 14,
+  pastilhas 12, prestação 11, rejunte 12, voz-e-cabeça 24.
+
+- **NO AR.** `/status` na revisão 16 igual à do manifest às 23h13Z, em UM disparo, 9
+  itens aplicados, snippets #9 e #10 criados pelo Sync; e a revisão 17 depois do
+  conserto de 1.0.1. `conferir-atelie-no-ar.py` **novo, 33 afirmações, 0 falha, 1
+  pulada**: `/atelie/` em 200 servindo a tela de entrar, com `noindex`, FORA do
+  sitemap (varrido pelo índice e pelos sub-mapas), ZERO links para ela nas oito
+  páginas públicas, e o corpo sem dizer "WordPress", "wp-admin" ou "wp-login" uma
+  vez; a rota RECUSANDO sem token (401) **antes** de ser usada com token; as sete
+  capacidades presentes e NENHUMA das oito proibidas; o e-mail MASCARADO na resposta.
+  A pulada é a ficha da peça, porque não há peça publicada — e esse é o estado certo
+  hoje. `conferir-no-ar.py` também rodado: 339 afirmações, 0 falha.
+
+- **O QUE FALTA, E SÓ UM HUMANO FAZ:** confirmar que o e-mail **chegou** na caixa de
+  mina196@hotmail.com. `wp_mail` devolveu true, o que diz que o servidor **aceitou** a
+  mensagem, não que ela passou do filtro de spam da Hotmail — e a linha 178 do
+  `PROMPT.md` manda tratar queda em spam como **bloqueio da ilha**. E o dedo dela na
+  tela.
+
+- **A option `cdm_whatsapp` continua VAZIA**, e por isso a ficha da peça serve, no
+  lugar do botão, a frase de que o contato ainda não foi publicado — em vez de um
+  número inventado. É o primeiro item da fila e é de UMA linha.
+
+- **Próximo passo, com ordem e motivo:** (a) a option `cdm_whatsapp`, que é o que
+  transforma a ficha da peça em venda e não depende de bloco nenhum; (b) o adendo 3
+  inteiro (`lead_peca`, notificação por e-mail, aba Interessados, CSV), que era o
+  corte de hoje e volta à fila agora que o painel está de pé; (c) a ordem de BANCO
+  que o estado anterior deixou e que continua valendo — fechar 2×2 na categoria
+  pastilha, que está a UM item dos 3 da 14.3, depois a vitrine de pastilha da F1,
+  depois a categoria cola.

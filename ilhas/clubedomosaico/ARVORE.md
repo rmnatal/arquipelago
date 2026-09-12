@@ -112,7 +112,8 @@ Nível 3 = o tutorial, com a lista de materiais ligada ao Guia e o "prefere pron
 | `/divulgacao-de-afiliados/` | raiz | — | Início › Divulgação de afiliados |
 | `/privacidade/` | raiz | — | Início › Privacidade |
 | `/atelie/` | **fora da árvore** | — | nenhuma — camada `privada` (ver 3c) |
-| `/loja/<peça>/` | 2 | `/loja/` | Início › Loja › &lt;nome da peça&gt; — nasce com a primeira peça publicada (ver 3b) |
+
+**A peça NÃO está nesta tabela, e a ausência é literal:** o título dela diz "cada página que existe HOJE", e hoje não existe peça nenhuma — a artesã ainda não publicou a primeira. O molde do endereço está na seção 3b (`/loja/<slug>/`, nível 2, mãe `/loja/`), e ele entra aqui como linha de verdade no dia em que houver peça. Pôr o molde na tabela foi tentado e o portão da casca reprovou na hora, e com razão: ele cobra que **toda linha desta tabela exista no código**, e molde não é página. A trava é a mesma que impede o documento e o código de divergirem em silêncio — e ela funcionou contra quem a escreveu.
 
 **Nenhuma página mudou de endereço neste bloco, e nenhuma precisou mudar** — as três seções já eram nível 1, a única página de nível 2 já nascera com mãe em 1.2.0, e as quatro da raiz são as que a 16.1 admite ali. Por isso este bloco não tem 301 nenhum e o sitemap não muda: a árvore desta ilha estava certa na estrutura e faltava ficar **visível** (breadcrumb, schema, cluster), que é o que a 16.3 e a 16.4 pedem.
 

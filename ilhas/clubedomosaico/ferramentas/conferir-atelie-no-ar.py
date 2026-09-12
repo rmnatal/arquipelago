@@ -86,6 +86,26 @@ def buscar(url):
     return partes[0], (partes[1] if len(partes) > 1 else "000")
 
 
+def corpo_visivel(html):
+    """O que a pessoa VE: dentro de <main>, sem folha e sem script.
+
+    ESCRITO DEPOIS DE ERRAR, na primeira passada no ar de 12/09/2026. A contagem
+    de cartoes da vitrine procurava `cdm-card-peca` no HTML INTEIRO e achou 6 numa
+    Loja com ZERO peca publicada — as seis eram os seletores da propria folha de
+    estilo do snippet. E literalmente o erro que a secao 8 do ARQUIPELAGO.md
+    nomeia ("afirmacao sobre o que a pagina diz se mede no CORPO, nunca no HTML
+    completo", a mesma familia de contar &#038; na pagina inteira), cometido por
+    quem acabara de escrever um teste de bancada que faz isso certo. Vale
+    registrar: a bancada media no corpo e o conferidor no ar nao, e nada obrigava
+    os dois a concordarem.
+    """
+    m = re.search(r"<main.*?>(.*?)</main>", html, re.S)
+    c = m.group(1) if m else ""
+    c = re.sub(r"<style.*?</style>", "", c, flags=re.S)
+    c = re.sub(r"<script.*?</script>", "", c, flags=re.S)
+    return c
+
+
 def token():
     if len(sys.argv) > 1 and sys.argv[1].strip():
         return sys.argv[1].strip()
@@ -103,10 +123,7 @@ def main():
     html, codigo = buscar(BASE + PAINEL)
     ok("200" == codigo, "[/atelie/] HTTP 200", codigo)
 
-    corpo = ""
-    m = re.search(r"<main.*?>(.*?)</main>", html, re.S)
-    if m:
-        corpo = m.group(1)
+    corpo = corpo_visivel(html)
     ok(corpo != "", "[/atelie/] a pagina tem corpo", f"{len(corpo)} caracteres")
     ok("Entrar no meu ateliê" in corpo, "[/atelie/] quem nao entrou ve a tela de entrar")
     ok('name="cdm_senha"' in corpo, "[/atelie/] a tela tem campo de senha")
@@ -170,26 +187,27 @@ def main():
     # A TELA E A ROTA TEM DE CONCORDAR. Duas metades lendo o mesmo banco: se
     # divergirem, uma delas esta servindo cache velho — e e assim que o site fica
     # para tras em silencio (secao 4).
-    cartoes = len(re.findall(r"cdm-card-peca", loja_html))
+    loja_corpo = corpo_visivel(loja_html)
+    cartoes = len(re.findall(r'<li class="cdm-card cdm-card-peca"', loja_corpo))
     if publicadas >= 0:
         if publicadas == 0:
-            ok(cartoes == 0 and "cdm-vazio" in loja_html,
+            ok(cartoes == 0 and "cdm-vazio" in loja_corpo,
                "[/loja/] sem peca publicada, a pagina serve o estado vazio honesto",
-               f"{cartoes} cartoes")
-            ok("em breve" in loja_html.lower(),
+               f"{cartoes} cartoes no corpo")
+            ok("em breve" in loja_corpo.lower(),
                "[/loja/] e o estado vazio nao inventa peca nenhuma")
         else:
             ok(cartoes == publicadas,
                "[/loja/] a vitrine mostra exatamente as pecas que a rota conta",
                f"{cartoes} cartoes / {publicadas} publicadas")
-            ok("cdm-vazio" not in loja_html, "[/loja/] o estado vazio SOME quando ha peca")
+            ok("cdm-vazio" not in loja_corpo, "[/loja/] o estado vazio SOME quando ha peca")
 
     # ---------------------------------------------------- a ficha de cada peca
     print("\n5. A ficha de cada peca publicada")
     if publicadas <= 0:
         pular("a ficha da peca", "nenhuma peca publicada ainda — e o estado normal hoje")
     else:
-        for url in sorted(set(re.findall(r'href="(' + re.escape(BASE) + r'/loja/[^"/]+/)"', loja_html))):
+        for url in sorted(set(re.findall(r'href="(' + re.escape(BASE) + r'/loja/[^"/]+/)"', loja_corpo))):
             h, c = buscar(url)
             curto = url.replace(BASE, "")
             ok("200" == c, f"[{curto}] HTTP 200", c)

@@ -38,13 +38,28 @@ A primeira é a que faz a fábrica crescer; a segunda só para de gastar execuç
 
 **A metade que a Fundação já fez sozinha:** a seção **1.1** do `ARQUIPELAGO.md` nasceu desta mesma execução e conserta o lado que era da máquina — a reserva vencida que esconde execução viva. Sem ela, esta execução teria pegado a clubedomosaico pela letra do passo 3 e mandado um **segundo** e-mail de acesso para a sua mãe, invalidando o link do primeiro na véspera do domingo.
 
+---
+
+## FECHADOS
+
 ### prioridade MÁXIMA — o ateliê da artesã tem de estar de pé no domingo 13/09
 
 12/09/2026 — FUNDAÇÃO — O Raphael vai à casa dos pais no domingo e quer ensinar a mãe a entrar no site e cadastrar as peças dela. O escopo cortado está no fim de `ilhas/clubedomosaico/PROMPT.md`, no "DESPACHO DO RAPHAEL — 12/09/2026, 18h20 BRT". A clubedomosaico está com `prioridade: 1`. Enquanto este despacho estiver aberto, toda execução da Fundação vai para ela.
 
----
+**FECHADO em 12/09/2026 23h20Z, e o critério de pronto que ele mesmo escreveu foi cumprido pela metade que a nuvem alcança — a outra metade está nomeada, não escondida.**
 
-## FECHADOS
+Os cinco itens do corte saíram, nesta ordem, e cada um só depois do anterior estar de pé: CPT `peca` e o papel `artesa` com o bloqueio duplo do wp-admin; a usuária e **o e-mail de acesso, enviado às 23h13m23s Z** para mina196@hotmail.com; `/atelie/` com login e tela inicial; o formulário de peça em uma tela, no celular; e a ficha pública da peça com `Product`+`Offer`, com a `/loja/` listando. Manifest na revisão 17, `/status` conferido, snippets #9 (loja) e #10 (ateliê) criados pelo Sync.
+
+**O PORTÃO DESTE DESPACHO NÃO PODE SER CUMPRIDO INTEIRO PELA FUNDAÇÃO, e isso não é desculpa — é a consequência de uma decisão que o próprio despacho de 10/09 tomou.** Ele manda "entre em /atelie/ como `artesa`, numa janela de 360 px, cadastre uma peça de teste com 3 fotos, publique, abra a página pública, volte, pause e apague". A senha da artesã **não existe** em lugar nenhum a que a nuvem tenha acesso: o snippet gera uma senha aleatória e a descarta sem imprimir em log, e-mail ou option, e o que chega a ela é um link na caixa dela. Gravar a senha ou criar um segundo acesso "só para testar" quebraria a única coisa que protege a conta de uma pessoa de verdade — e a pessoa aqui é a mãe do Raphael.
+
+O portão foi então partido em duas metades **declaradas**, e as duas estão escritas no cabeçalho de `ilhas/clubedomosaico/ferramentas/teste-atelie.php`:
+
+- **A metade que a máquina mediu, e mediu inteira:** todo o caminho de dentro do painel, com uma pessoa logada de mentira que tem as capacidades que o **snippet** criou — as telas, o formulário, salvar, publicar, pausar, apagar, as fotos, o nonce, o bloqueio do wp-admin e cada recusa com a frase que ela lê (209 afirmações). Mais a **janela de 360 px**, que é a medida escrita dentro do próprio portão, num Chromium de verdade: 91 medições em 6 páginas × 5 larguras, rolagem lateral zero, todo alvo de toque com 44 px ou mais, todo campo com 16 px ou mais (abaixo disso o iPhone dá zoom sozinho e a tela pula), nenhum par de campos lado a lado, e o painel inteiro num contexto com o JavaScript **desligado**. Foi esse medidor que achou os três botões de foto com 38 px — invisíveis em leitura de código e no HTML servido.
+- **A metade que só um humano faz, e que fica aberta:** confirmar que o e-mail **chegou** na caixa da Hotmail (o `wp_mail` devolveu true, o que diz que o servidor **aceitou** a mensagem, não que ela passou do filtro de spam), e o dedo dela na tela.
+
+**A frase que o despacho pede que o Raphael possa ler no domingo de manhã:** *o ateliê está de pé e ele pode ensinar a mãe hoje — abra o e-mail dela antes de sair de casa, e se a mensagem não estiver na caixa de entrada, procure no spam; se ela estiver lá, o link funciona igual, e é o único passo que a nuvem não conseguiu conferir.* O endereço é `https://clubedomosaico.com.br/atelie/`.
+
+**Uma coisa que ele vai querer fazer em um minuto, e que é de uma linha:** a option `cdm_whatsapp` está vazia, então a ficha da peça serve, no lugar do botão, a frase de que o contato ainda não foi publicado — em vez de um número inventado. Com o número lá, o botão "Falar com a artesã sobre esta peça" nasce funcionando.
 
 ### prioridade ALTA — primeira ronda do Clube do Mosaico
 

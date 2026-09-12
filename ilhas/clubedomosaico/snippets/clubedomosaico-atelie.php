@@ -77,7 +77,7 @@
  */
 
 if ( ! defined( 'CDM_ATELIE_VERSAO' ) ) {
-	define( 'CDM_ATELIE_VERSAO', '1.0.0' );
+	define( 'CDM_ATELIE_VERSAO', '1.0.1' );
 }
 if ( ! defined( 'CDM_ATELIE_SLUG' ) ) {
 	define( 'CDM_ATELIE_SLUG', 'atelie' );
@@ -1487,7 +1487,13 @@ add_action( 'wp_footer', function () {
 .cdm-at-foto img{display:block;width:110px;height:110px;object-fit:cover;border-radius:8px;background:var(--cdm-traco);}
 .cdm-at-capa{position:absolute;top:.3rem;left:.3rem;background:var(--cdm-coral);color:var(--cdm-papel);font-family:var(--cdm-mono);font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;padding:.1rem .35rem;border-radius:3px;}
 .cdm-at-foto form{display:flex;gap:.25rem;margin:.35rem 0 0;}
-.cdm-at-fbotao{display:inline-flex;align-items:center;justify-content:center;min-width:2.4rem;min-height:2.4rem;font-size:.95rem;color:var(--cdm-tinta);background:var(--cdm-papel);border:1px solid var(--cdm-traco);border-radius:6px;cursor:pointer;}
+/* 2.75rem = 44px, e o numero NAO e estetico: e o minimo de alvo de toque, e estes
+   tres botoes (mover, mover, remover) sao os menores do painel e os que ela vai
+   apertar mais vezes, com o dedo, num telefone. Nasceram com 2.4rem = 38 px e o
+   medidor de navegador reprovou a 360 px — defeito que nenhuma leitura de codigo
+   nem o HTML servido mostravam, porque so o motor de layout sabe o tamanho que o
+   botao ficou tendo. */
+.cdm-at-fbotao{display:inline-flex;align-items:center;justify-content:center;min-width:2.75rem;min-height:2.75rem;font-size:1rem;color:var(--cdm-tinta);background:var(--cdm-papel);border:1px solid var(--cdm-traco);border-radius:6px;cursor:pointer;}
 .cdm-at-fbotao:hover{border-color:var(--cdm-coral);color:var(--cdm-coral);}
 .cdm-at-so-leitor{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
 .cdm-at-previa{display:flex;flex-wrap:wrap;gap:.6rem;margin:-.6rem 0 1.3rem;}

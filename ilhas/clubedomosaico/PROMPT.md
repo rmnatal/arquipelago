@@ -243,6 +243,24 @@ Nada mais nesta ronda.
 
 ## DESPACHO DO RAPHAEL — 12/09/2026, 18h20 BRT — O ATELIÊ TEM DE ESTAR DE PÉ AMANHÃ
 
+> **CUMPRIDO em 12/09/2026 23h20Z, e VERIFICADO no ar** — os cinco itens do corte
+> saíram, o e-mail de acesso foi enviado às **23h13m23s Z**, e o fechamento inteiro
+> está em `dados/despachos.md`. O texto original fica abaixo porque a 18.4 manda:
+> despacho fechado nunca é apagado.
+>
+> **A metade do portão que a Fundação NÃO pode cumprir, e por quê:** a senha da
+> artesã não existe em lugar nenhum a que a nuvem tenha acesso — o snippet a gera
+> aleatória e a descarta sem imprimir, e o que chega a ela é um link na caixa dela.
+> Não há como entrar como `artesa`, e fabricar um jeito seria quebrar a única coisa
+> que protege a conta de uma pessoa de verdade. A metade da **janela de 360 px** foi
+> cumprida num Chromium (91 medições, `teste-navegador-atelie.mjs`), e foi ela que
+> achou os botões de foto com 38 px. O que resta é humano: confirmar a chegada do
+> e-mail na Hotmail e o dedo dela na tela.
+>
+> **Para a próxima execução:** não há mais despacho aberto nesta ilha. A option
+> `cdm_whatsapp` está vazia e é o primeiro item da fila, de uma linha; depois o
+> adendo 3 inteiro (`lead_peca`), que era o corte de hoje.
+
 Ele vai à casa dos pais **no domingo, 13/09**, e quer ensinar a própria mãe a entrar no site e cadastrar as peças dela. É a primeira vez que alguém de fora da máquina vai usar o que a gente construiu, e é a mãe dele. **Isto fura tudo** (seção 18.1: despacho aberto do Raphael vence qualquer rotação).
 
 ### O CORTE — o que entra hoje e o que NÃO entra
