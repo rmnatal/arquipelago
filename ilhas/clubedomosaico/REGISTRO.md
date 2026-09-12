@@ -1065,3 +1065,127 @@ real: cinco colas e cinco rejuntes já cadastrados, cada ficha com a declaraçã
 do fabricante, a faixa, a fonte e o cartão de compra. A ilha está **abaixo do
 piso** da seção 21 (10 URLs, 21 dias não passaram), então a leva sai no ritmo
 normal, de 5 a 10 URLs, sem esperar medição.
+
+12/09/2026 15h55Z — DESPACHO DA SENTINELA DE 12/09 CUMPRIDO INTEIRO (itens 1 e 2)
+
+- **Os dois itens eram o mesmo defeito com duas roupas**, e foi por isso que o
+  conserto virou UMA regra em vez de dois remendos: a página falava de menos
+  produtos do que listava, ou nomeava a causa errada por quem ficou de fora. A
+  regra subiu para o `ARQUIPELAGO.md` seção 7, porque vale para toda ilha:
+  **todo item do banco é nomeado exatamente uma vez em cada resposta** — na
+  frase que o recomenda, e aí ele está na vitrine, ou numa linha que diz por que
+  ele não está — e **o bloco de compra serve exatamente o que a frase nomeia**.
+  Junto com ela foi a metade complementar: **a recusa nomeia a causa que a
+  página mediu, nunca oferece hipótese**, e **afirmação em bloco tem o escopo
+  do que foi medido**.
+
+- **ITEM 2 (F2, `clubedomosaico-f2.php` 1.0.0 → 1.1.0).** A frase dizia "o
+  rejunte é Rejunte Acrílico Quartzolit", singular e definitiva, e a vitrine
+  logo abaixo servia QUATRO cartões. Agora a frase tem duas linhas — a
+  recomendação e os que também servem, com o que os separa escrito (o fabricante
+  não nomeia o lugar; a régua do rejunte só transforma silêncio em exclusão nos
+  ambientes críticos) — e a vitrine serve exatamente esses. Os que ficaram de
+  fora ganharam uma linha cada: fora pela folga (com a faixa publicada), fora
+  pelo lugar, fonte de imprensa e **faixa não obtida**.
+  **Dois achados dentro do item**, e nenhum dos dois estava no despacho:
+  (a) o grupo `mencionados_com_ressalva` não era impresso em lugar nenhum —
+  vazio com o banco de hoje, invisível para sempre no dia em que enchesse;
+  (b) "faixa não obtida" estava sendo contada como "a folga não cabe", que é
+  afirmar sobre uma declaração que ninguém leu — o rejunte piscinas não publica
+  faixa, e a página dizia que ele não cobria 2 mm. Esse mesmo defeito tinha
+  tornado INALCANÇÁVEL um ramo da frase de recusa que eu mesma acabara de
+  escrever ("só o lugar exclui"): com o piscinas eternamente no balde da folga,
+  aquele caso nunca acontece. Ramo morto saiu; quem diz a causa são as linhas.
+
+- **ITEM 1 (F1, `clubedomosaico-f1.php` 1.0.0 → 1.1.0).** A recusa culpava
+  SEMPRE a folga, inclusive quando a folga cabia e quem excluía era o lugar — e
+  com a linha de "outro tipo" logo abaixo dizendo "dentro dessa folga", a página
+  negava e afirmava o mesmo fato em duas frases seguidas. Agora são três causas
+  com nome próprio, produtos nomeados e a faixa que o fabricante publica; e
+  quando a causa é o lugar a página diz "é o LUGAR, não a folga", o que não é
+  suposição: quem cai pelo lugar passou pela trava da folga antes.
+  **A outra metade do defeito não estava no despacho e só a tela mostrava:**
+  `strtok( $rotulo, ' —' )` cortava no primeiro espaço e devolvia só "Rejunte",
+  então a frase afirmava sobre o banco INTEIRO ("Nenhum rejunte do nosso
+  banco…") o que valia no máximo para o tipo escolhido.
+
+- **O PORTÃO ACHOU UM BURACO NO PRÓPRIO CONSERTO, antes do desembarque.** A
+  primeira versão da F1 só prestava contas quando a lista voltava vazia: em 27
+  estados ela listava dois cimentícios e não dizia uma palavra sobre o terceiro.
+  É o item 2 um andar acima — produto do banco que some da tela sem que nada
+  diga por quê. A prestação de contas passou a sair sempre.
+
+- **PORTÃO NOVO: `ferramentas/teste-prestacao-rejunte.php`.** Régua própria,
+  recomputada aqui a partir dos `perfis_esperados_do_rejunte` escritos à mão e
+  das regras 1 a 4 do esquema — nada nele chama `cdm_f2_celula_rejunte()`,
+  `cdm_f2_avaliar_rejunte()` nem `cdm_f2_perfil_rejunte()`. Varre **540 estados
+  da F2** (9 bases × 5 lugares × 12 folgas), **180 da F1** (3 tipos × 5 lugares
+  × 12 folgas) e as **9 linhas da tabela pré-renderizada**, um processo por
+  estado, com as folgas indo de 1 a 12 para pisar nas bordas (1 e 11 estão fora
+  de todo extremo declarado; 2, 4, 5 e 10 são extremos exatos). 5 afirmações, 0
+  falha.
+
+- **`ferramentas/mutacoes-prestacao.py`: 11 mutações, 11 reprovadas.** As duas
+  primeiras são os dois defeitos do despacho escritos de volta. **Quatro delas
+  não morderam na primeira rodada, e as quatro ensinaram coisa diferente:**
+  (1) a que condicionava a linha de `fora_lugar` mirava um estado que o banco de
+  hoje não produz — os dois cimentícios têm faixa e declarações iguais, então ou
+  os dois servem ou os dois caem; o estado que existe é o de `sem_faixa`;
+  (2) a do grupo de ressalva não mudava um byte enquanto o banco não tivesse
+  fonte fraca, e precisou **produzir o mundo** nas DUAS metades (o nível nas
+  `fontes` do banco, que o snippet lê, e o nível no perfil escrito à mão, que a
+  régua lê) — rebaixar só uma faria o teste reprovar pelo motivo errado;
+  (3) a da tabela mirava o grupo de ressalva, vazio, e teve de mirar o de faixa
+  não obtida, que está fora em todas as nove linhas;
+  (4) a da promoção silenciosa **passou por erro de alvo**: a linha do score é
+  idêntica byte a byte em `cdm_f2_avaliar_cola()` e em `cdm_f2_avaliar_rejunte()`,
+  e a substituição pegou a primeira — mutou a cola, que este portão não mede, e
+  o verde foi honesto. O alvo agora carrega a linha anterior, que é a única
+  diferença entre as duas funções naquele ponto.
+
+- **DOIS DEFEITOS MECÂNICOS CONSERTADOS NA MESMA PASSADA (seção 19).** O
+  manifest declara `sha256` no grupo `ferramentas` desde que nasceu e **nenhuma
+  linha o recalculava**: `render-para-teste` e `teste-casca` estavam com a
+  etiqueta de uma versão que não existe mais, de blocos anteriores. E a lista
+  conhecia **9 das 18 ferramentas** do disco — entre as ausentes, `teste-f1.php`
+  e `teste-f2.php`, que são os dois portões principais da ilha. Bancada não vai
+  para o site, então nada disso quebraria uma página; quebrava a capacidade de
+  qualquer relatório dizer com o que esta ilha se verifica.
+  `atualizar-manifest.py` passou a espelhar o grupo e a cobrar as duas direções
+  (ferramenta no disco fora do manifest agora reprova). 16 sha recalculados.
+
+- **VERIFICAÇÃO.** `php -l` limpo nos três snippets; `teste-prestacao-rejunte`
+  5 afirmações 0 falha em 729 estados; `teste-f1` 67; `teste-f2` 72;
+  `teste-casca` 409; `validar-banco` sem regressão; mutações antigas intactas
+  (f1 27/27, f2 20/20, rejunte 12/12, árvore 20/20 — nenhuma virou inerte);
+  Chromium em 360/390/781/782/783/1200 nas **16 páginas** renderizadas (as 11 da
+  casca mais os 5 estados de ferramenta que este bloco mudou), **98 medições, 0
+  px de rolagem lateral**.
+  **UMA AFIRMAÇÃO ANTIGA FOI REESCRITA, e isso é parte da entrega:** o
+  `teste-f1.php` cobrava a string `'do nosso banco declara folga'` para os 11 e
+  12 mm — que é a frase DO DEFEITO. Afirmação que fixa o texto de hoje vira
+  trava contra o conserto de amanhã; ela passou a cobrar a intenção (a página
+  diz que nenhum serve E diz que a causa é a folga).
+
+- **NO AR às 15h51Z: revisão 12 no `/status`, igual à do manifest, 6 aplicados,
+  UM disparo** — sem o atraso de CDN dos blocos anteriores. `conferir-no-ar.py`
+  mediu **231 afirmações no HTML servido, 0 falha**, e ele ganhou as afirmações
+  do despacho escritas nas palavras do próprio despacho: as 6 combinações do
+  item 1 (externo_exposto e contato_permanente_agua × 2, 4 e 10 mm) sem a frase
+  antiga, dizendo que a exclusão é do lugar e nomeando o lugar; os 5 rejuntes do
+  banco contados um a um em 3 respostas do item 2; e as 9 linhas da tabela
+  somando 5.
+
+- **Receita:** 10 dos 10 itens do banco continuam esperando link de afiliado e
+  10 seguem sem imagem; este bloco não tocou catálogo, e nenhum dos dez tem loja
+  possível hoje. Pauta da seção 17: `pauta.md` ainda não existe — 0 escritos, 0
+  na fila, 0 recusados.
+
+- **PRÓXIMO PASSO:** o bloco **4c**, fichas de categoria de material
+  (`/materiais/pastilhas/`, `/alicates/`, `/colas/`, `/rejuntes/`, `/bases/`,
+  `/acabamento/`). A regra nova da seção 7 nasce com ele em vez de ser
+  descoberta depois: ficha de categoria é, por definição, uma página que fala de
+  TODOS os itens de uma categoria do banco, então a prestação de contas dela é a
+  própria página — e o portão desta execução já sabe medir isso. A ilha está
+  ABAIXO DO PISO da seção 21 (11 URLs, 21 dias não passaram), então a leva sai
+  no ritmo normal, de 5 a 10 URLs, sem esperar medição.
