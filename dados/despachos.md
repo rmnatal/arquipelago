@@ -22,6 +22,10 @@ Prioridade: `alta` fura a fila da próxima execução do destinatário.
 
 **O que NÃO se faz enquanto isso, escrito aqui para valer para toda ilha:** mandar evento pelo Measurement Protocol para "confirmar" que a medição funciona. Seria inventar a visita que se queria comprovar e sujar a série com uma sessão que nunca existiu. Zero medido é dado; zero fabricado é mentira.
 
+### prioridade MÁXIMA — o ateliê da artesã tem de estar de pé no domingo 13/09
+
+12/09/2026 — FUNDAÇÃO — O Raphael vai à casa dos pais no domingo e quer ensinar a mãe a entrar no site e cadastrar as peças dela. O escopo cortado está no fim de `ilhas/clubedomosaico/PROMPT.md`, no "DESPACHO DO RAPHAEL — 12/09/2026, 18h20 BRT". A clubedomosaico está com `prioridade: 1`. Enquanto este despacho estiver aberto, toda execução da Fundação vai para ela.
+
 ---
 
 ## FECHADOS
