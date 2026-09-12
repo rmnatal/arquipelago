@@ -86,7 +86,7 @@ MUTACOES = [
     # quando a casca sobe de numero. Reapontada em 12/09/2026 (1.6.0 -> 1.7.0):
     # mutacao que nao morde e teste verde com outro nome.
     ("a versao da casca fica atras da do manifest — o conserto commitado e invisivel",
-     troca(CASCA, "'AQUAMETRIA_CASCA_VERSAO', '1.7.0'", "'AQUAMETRIA_CASCA_VERSAO', '1.6.9'")),
+     troca(CASCA, "'AQUAMETRIA_CASCA_VERSAO', '1.7.1'", "'AQUAMETRIA_CASCA_VERSAO', '1.7.0'")),
 
     # As duas ultimas atacam a REGUA, nao o site. Se o portao lesse o ID do
     # snippet, elas passariam — e e exatamente por isso que elas existem.

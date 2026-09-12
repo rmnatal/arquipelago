@@ -43,6 +43,9 @@ $alvo = isset( $argv[2] ) ? $argv[2] : 'inicio';
 
 /* O slug PRECISA estar no global antes de carregar os snippets: o snippet dos
    artigos e a trilha da casca se reconhecem por post_name, nao por shortcode. */
+/* A raiz da ilha no global: a bancada precisa dela para saber quais paginas
+   vieram do Sync — so essas tem _aquametria_id no ar (ver render-para-teste.php). */
+$GLOBALS['__raiz_ilha']      = $raiz;
 $GLOBALS['__slug_pagina']    = $alvo;
 $GLOBALS['__pagina_inicial'] = ( 'inicio' === $alvo );
 

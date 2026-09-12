@@ -74,23 +74,68 @@ function get_queried_object(){ return get_post(); }
 function aquametria_teste_slug(){ return isset($GLOBALS['__slug_pagina']) ? $GLOBALS['__slug_pagina'] : 'pagina-de-teste'; }
 function get_post($p=null){ return (object) array('ID'=>1,'post_content'=>$GLOBALS['__conteudo_pagina'],'post_status'=>'publish','post_name'=>aquametria_teste_slug()); }
 /* Paginas que 'existem' no site de teste: mapa slug => true em __paginas.
-   Vazio por padrao, entao quem nao mexe nele continua vendo o que via. */
+   Vazio por padrao, entao quem nao mexe nele continua vendo o que via.
+
+   O CAMINHO DE CADA UMA SAI DO MAPA DE PAGINAS DA CASCA, e nao do slug solto.
+   Ate 12/09/2026 esta bancada devolvia /tetras/ para uma pagina que no ar mora
+   em /peixes/tetras/, e — pior — respondia a busca por _aquametria_id para
+   QUALQUER slug do mapa. No ar essa meta so existe em pagina que veio do Sync
+   (as de conteudo/); pagina criada pela casca nao tem. Resultado: a bancada
+   achava a pagina pela primeira via e o site, que so tinha a segunda, nao
+   achava — quatro degraus de trilha aqui, tres no ar. A bancada tem de servir o
+   que o site serve, inclusive nas vias por onde ele NAO acha. */
+function aquametria_teste_caminho($slug){
+	if (!function_exists('aquametria_casca_definicao_paginas')) { return $slug; }
+	$mapa = aquametria_casca_definicao_paginas();
+	if (!isset($mapa[$slug])) { return $slug; }
+	$partes = array($slug); $sobe = $mapa[$slug]['pai']; $voltas = 0;
+	while ('' !== $sobe && isset($mapa[$sobe]) && $voltas < 5) {
+		array_unshift($partes, $sobe); $sobe = $mapa[$sobe]['pai']; $voltas++;
+	}
+	return implode('/', $partes);
+}
+/* O slug veio do Sync? So essas tem _aquametria_id no ar. */
+function aquametria_teste_do_sync($slug){
+	$raiz = isset($GLOBALS['__raiz_ilha']) ? $GLOBALS['__raiz_ilha'] : '.';
+	return file_exists($raiz.'/conteudo/'.$slug.'.md');
+}
 function get_posts($a=array()){
 	$mapa = isset($GLOBALS['__paginas']) ? $GLOBALS['__paginas'] : array();
-	/* Duas buscas atendidas pelo mesmo mapa: por _aquametria_id (meta_value) e
-	   por post_name ('name'), que e a via do artigo-ancora — ele e 'post', nao
-	   'page', e sem esta linha o teste nunca exercitaria a terceira via da casca. */
-	$chave = isset($a['meta_value']) ? $a['meta_value'] : (isset($a['name']) ? $a['name'] : '');
-	if ('' !== $chave && isset($mapa[$chave])) { return array((object) array('ID'=>1,'post_name'=>$chave)); }
+	/* Primeira via da casca: _aquametria_id. So responde para quem o Sync criou. */
+	if (isset($a['meta_value'])) {
+		$k = $a['meta_value'];
+		if (isset($mapa[$k]) && aquametria_teste_do_sync($k)) {
+			return array((object) array('ID'=>1,'post_name'=>$k));
+		}
+		return array();
+	}
+	/* Terceira via: o artigo-ancora, que e 'post' e nao 'page'. */
+	if (isset($a['name'])) {
+		$k = $a['name'];
+		if (isset($mapa[$k]) && aquametria_teste_do_sync($k)) {
+			return array((object) array('ID'=>1,'post_name'=>$k));
+		}
+	}
 	return array();
 }
+/* Segunda via: o caminho INTEIRO, como o WordPress faz em tipo hierarquico. */
+function get_page_by_path($p,$saida=null,$tipo=null){
+	$mapa = isset($GLOBALS['__paginas']) ? $GLOBALS['__paginas'] : array();
+	foreach (array_keys($mapa) as $slug) {
+		if (aquametria_teste_caminho($slug) === $p) {
+			return (object) array('ID'=>1,'post_name'=>$slug,'post_status'=>'publish');
+		}
+	}
+	return null;
+}
 function get_permalink($p=null){
-	if (is_object($p) && isset($p->post_name)) { return 'https://aquametria.com.br/'.$p->post_name.'/'; }
+	if (is_object($p) && isset($p->post_name)) {
+		return 'https://aquametria.com.br/'.aquametria_teste_caminho($p->post_name).'/';
+	}
 	return 'https://aquametria.com.br/pagina-de-teste/';
 }
 function get_post_field($c,$p){ return aquametria_teste_slug(); }
 function has_shortcode($conteudo,$tag){ return false !== strpos((string)$conteudo, '['.$tag); }
-function get_page_by_path($p,$saida=null,$tipo=null){ return null; }
 function date_i18n($f){ return date($f); }
 function wp_remote_get($u,$a=array()){ return array('body'=>''); }
 function current_time($t){ return date('Y-m-d H:i:s'); }
@@ -112,6 +157,10 @@ function aquametria_teste_escapar_conteudo($html) {
 add_action('wp_head','wp_site_icon',99);
 
 function aquametria_teste_carregar($raiz) {
+	/* A raiz vale para todo renderizador que chama este carregador — sem ela a
+	   bancada nao sabe quais paginas vieram do Sync e a primeira via da casca
+	   responderia para todas, que e o defeito de 12/09/2026. */
+	$GLOBALS['__raiz_ilha'] = rtrim($raiz, '/');
 	foreach (glob($raiz.'/snippets/*.php') as $arquivo) {
 		if (basename($arquivo) === 'aquametria-sync.php') { continue; }            // fala com o WP de verdade
 		if (basename($arquivo) === 'aquametria-atualizador-sync.php') { continue; } // idem

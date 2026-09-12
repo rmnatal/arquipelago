@@ -1,5 +1,16 @@
 /**
  * Aquametria Casca — identidade e estrutura do site
+ * Versão: 1.7.1 (12/09/2026) — O DEGRAU DO MEIO PASSA A RESOLVER. Achado no ar,
+ * não na bancada: `aquametria_casca_url_se_existir()` pedia a página pelo SLUG
+ * solto, e `get_page_by_path()` casa o CAMINHO INTEIRO em tipo hierárquico —
+ * então 'tetras' nunca achava /peixes/tetras/. A bancada dava quatro degraus de
+ * trilha, todos linkados; o site servia três, com o do meio em texto e o
+ * BreadcrumbList com um item a menos. As duas metades liam vias diferentes: no
+ * ar a primeira via (`_aquametria_id`) só responde por página que veio do Sync,
+ * e as do eixo são criadas pela casca. Agora o caminho sai do mapa de páginas,
+ * que é quem sabe quem é mãe de quem, e `ferramentas/render-para-teste.php`
+ * imitou as três vias do site em vez de responder por todas.
+ *
  * Versão: 1.7.0 (12/09/2026) — A CASCA APRENDE A TER FILHA. T4, leva 1 da malha
  * do eixo /peixes/. Três mudanças, e nenhuma cria página por conta própria:
  *   1. `aquametria_casca_definicao_paginas()` passou a perguntar pelo filtro
@@ -156,7 +167,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'AQUAMETRIA_CASCA_VERSAO', '1.7.0' );
+	define( 'AQUAMETRIA_CASCA_VERSAO', '1.7.1' );
 	/* A tagline é a primeira frase que um visitante lê no rodapé de toda página.
 	   Até a 1.3.1 ela era a descrição interna do produto ("Calculadoras e dados
 	   técnicos para dimensionar o seu aquário"); agora fala com quem chegou. */
@@ -369,6 +380,33 @@ function aquametria_casca_irmas_de_peixes( $slug ) {
 }
 
 /**
+ * O caminho completo de uma página do mapa: 'peixes/tetras' para `tetras`.
+ *
+ * Sobe a cadeia de mães do mapa de páginas. Slug que não está no mapa volta como
+ * veio — é o caso das páginas de `conteudo/`, que o Sync cria na raiz. O teto de
+ * cinco voltas existe para mapa com mãe circular não pendurar a página inteira.
+ */
+if ( ! function_exists( 'aquametria_casca_caminho_de_pagina' ) ) {
+function aquametria_casca_caminho_de_pagina( $slug ) {
+	$mapa = aquametria_casca_definicao_paginas();
+	if ( ! isset( $mapa[ $slug ] ) ) {
+		return $slug;
+	}
+
+	$partes = array( $slug );
+	$sobe   = $mapa[ $slug ]['pai'];
+	$voltas = 0;
+	while ( '' !== $sobe && isset( $mapa[ $sobe ] ) && $voltas < 5 ) {
+		array_unshift( $partes, $sobe );
+		$sobe = $mapa[ $sobe ]['pai'];
+		$voltas++;
+	}
+
+	return implode( '/', $partes );
+}
+}
+
+/**
  * URL REAL da página, ou '' se ela não existe publicada no site.
  *
  * Duas vias, nesta ordem:
@@ -399,7 +437,22 @@ function aquametria_casca_url_se_existir( $slug ) {
 		return get_permalink( $achados[0] );
 	}
 
-	$pagina = get_page_by_path( $slug, OBJECT, 'page' );
+	/* Segunda via: o CAMINHO INTEIRO, e não o slug solto.
+	 *
+	 * `get_page_by_path()` casa o caminho completo em tipo hierárquico, então
+	 * pedir 'tetras' NUNCA acha /peixes/tetras/ — e foi exatamente isso que
+	 * aconteceu no ar em 12/09/2026, na primeira leva do eixo: a bancada dava
+	 * quatro degraus de trilha, todos linkados, e o site servia três, com o
+	 * degrau do meio em texto. A bancada respondia a primeira via pelo mapa de
+	 * slugs; no ar a primeira via não responde por página da casca, porque
+	 * `_aquametria_id` é meta que o Sync grava em página de `conteudo/`, e as
+	 * páginas do eixo são criadas pela casca. Duas metades lendo coisas
+	 * diferentes, e só a conferência no HTML servido podia ver.
+	 *
+	 * O caminho sai do mapa de páginas (que é quem sabe quem é mãe de quem), e
+	 * não de uma concatenação adivinhada. Página de raiz continua com o caminho
+	 * igual ao slug, então nada muda para as quatro páginas antigas. */
+	$pagina = get_page_by_path( aquametria_casca_caminho_de_pagina( $slug ), OBJECT, 'page' );
 	if ( $pagina && 'publish' === $pagina->post_status ) {
 		return get_permalink( $pagina );
 	}
