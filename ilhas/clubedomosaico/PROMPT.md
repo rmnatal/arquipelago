@@ -182,6 +182,8 @@ Decisão do Raphael em 11/09/2026. Faz parte do bloco 4d (Loja + painel) e vai n
 
 **Quem recebe:** só a artesã (mina196@hotmail.com). O Raphael NÃO recebe cópia de lead, a não ser que a option `cdm_email_leads_copia` seja preenchida.
 
+**CÓPIA DO DADO DA ARTESÃ — parte deste bloco, seção 24 do `ARQUIPELAGO.md`.** As peças que ela cadastra são o único dado do Arquipélago inteiro que não existe fora do banco do WordPress. Este bloco não fecha sem: (a) um endpoint de leitura protegido pelo mesmo token do Sync devolvendo JSON com todas as peças, seus metadados e as URLs das fotos; (b) a linha no `ESTADO.md` dizendo que a ronda diária passa a commitar `ilhas/clubedomosaico/dados/pecas.json`. O mesmo vale para `lead_peca`, com uma ressalva: o JSON dos leads **não vai para o repositório** — nome e WhatsApp de pessoa não entram em arquivo versionado. Para os leads, a cópia é a exportação CSV dentro do próprio painel, para a artesã baixar.
+
 ## DESPACHO DA SENTINELA — 12/09/2026
 
 Ronda diária de 12/09/2026, 14h43Z, no navegador do Raphael. Primeira ronda desta ilha (`ultima_ronda` era `null`). Foram abertas as 11 URLs, conferidos os 50 links internos, executadas as duas ferramentas com entradas reais e recalculados à mão os 12 exemplos pré-renderizados da F1.
