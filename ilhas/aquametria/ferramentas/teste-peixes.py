@@ -667,6 +667,32 @@ def medir_o_conjunto_contra_o_registro(banco):
            re.search(r'<meta name="description" content="[^"]{80,}"', cab) is not None)
         ok("%s: serve og:description" % slug, "og:description" in cab)
 
+    # 2b. NENHUMA PAGINA DO EIXO E ORFA — o 16.4(f) medido NA BANCADA.
+    #
+    # Ate a leva 2 esta contagem so existia no `conferir-peixes-no-ar.py`, e por
+    # isso o defeito foi descoberto depois do desembarque: com sete filhas e um
+    # teto de quatro irmas, a casca escolhia sempre as quatro primeiras do mapa e
+    # as duas ultimas da categoria nao eram irmas de ninguem. No ar elas ficaram
+    # com UM link apontando para elas — o da mae — contra os sete da primeira.
+    #
+    # A conta e a mesma do ar: quantos CORPOS citam cada URL. Medir na bancada
+    # significa que a proxima leva reprova antes de publicar, e nao depois.
+    corpos = {slug: corpo(servir(slug)) for slug in do_eixo}
+    for alvo in do_eixo:
+        citam = sorted(s for s, c in corpos.items() if s != alvo and ('/%s/' % alvo) in c)
+        ok("%s: 2 ou mais irmas do eixo a citam (16.4f)" % alvo, len(citam) >= 2,
+           "%d: %s" % (len(citam), ", ".join(citam)))
+
+    # A REPARTICAO, que e a razao de a roda existir: com teto de quatro e ordem
+    # fixa, a cauda da categoria fica sem ninguem. Esta afirmacao mede a
+    # diferenca entre a mais citada e a menos citada entre as FICHAS — se ela
+    # abrir, o teto voltou a concentrar.
+    citacoes = {a: sum(1 for s, c in corpos.items() if s != a and ('/%s/' % a) in c)
+                for a in FICHAS}
+    ok("as citacoes entre irmas sao repartidas (max - min <= 2)",
+       max(citacoes.values()) - min(citacoes.values()) <= 2,
+       "max=%d min=%d" % (max(citacoes.values()), min(citacoes.values())))
+
     # 3. O portao de PAGINA do esquema e o do snippet dizem a mesma frase, e
     #    nenhuma ficha registrada aponta para especie que nao passa nele.
     esquema = json.load(open(os.path.join(RAIZ, "dados", "esquema-especies.json"), encoding="utf-8"))

@@ -223,7 +223,23 @@ MUTACOES = [
     # com tres fichas, cada pagina tinha duas irmas e trocar o 4 por 6 nao mudava
     # uma virgula do que o site servia. Esta mutacao era inerte ate hoje.
     ("O TETO DE IRMAS SOME: o cluster passa a servir as seis irmas em vez de ate quatro",
-     troca(CASCA, "\t\tif ( count( $irmas ) >= 4 ) {", "\t\tif ( count( $irmas ) >= 6 ) {")),
+     troca(CASCA, "for ( $n = 1; $n < $total && count( $irmas ) < 4; $n++ ) {",
+                  "for ( $n = 1; $n < $total && count( $irmas ) < 6; $n++ ) {")),
+
+    # A RODA VOLTA A SER UMA FILA. Foi assim que o defeito nasceu, e no ar: com
+    # teto de quatro e ordem fixa, toda pagina escolhe as mesmas quatro do topo e
+    # a cauda da categoria nao e irma de ninguem. Era inerte com tres fichas.
+    ("A CAUDA DA CATEGORIA FICA ORFA: as irmas voltam a ser as quatro primeiras do mapa",
+     troca(CASCA,
+           "\tfor ( $n = 1; $n < $total && count( $irmas ) < 4; $n++ ) {\n"
+           "\t\t$irmas[] = $candidatas[ ( $eu + $n ) % $total ];\n"
+           "\t}",
+           "\tfor ( $n = 0; $n < $total && count( $irmas ) < 4; $n++ ) {\n"
+           "\t\tif ( $n === $eu ) {\n"
+           "\t\t\tcontinue;\n"
+           "\t\t}\n"
+           "\t\t$irmas[] = $candidatas[ $n ];\n"
+           "\t}")),
 ]
 
 

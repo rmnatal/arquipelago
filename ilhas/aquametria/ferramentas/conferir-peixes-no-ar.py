@@ -94,7 +94,17 @@ def main():
         s2, xml = buscar(prov)
         ok("o provedor %s responde 200" % prov.rsplit("/", 1)[-1], s2 == 200)
         urls += [u.split("?")[0] for u in re.findall(r"<loc>([^<]+)</loc>", xml)]
-    ok("a ilha publica 18 URLs no sitemap", len(urls) == 18, "%d URLs" % len(urls))
+    # O TOTAL SE CONTA, NUNCA SE DIGITA — e este arquivo tinha o 18 escrito.
+    #
+    # A leva 2 publicou quatro URLs e a afirmacao reprovou sozinha, o que e o
+    # comportamento certo de um alarme; o que estava errado era o alarme dizer a
+    # coisa errada ("a ilha publica 18 URLs" e uma afirmacao sobre o passado).
+    # O que importa medir e que o sitemap cobre o que a ilha publica: as 13
+    # antigas MAIS o eixo inteiro, e nada a menos.
+    URLS_ANTES_DO_EIXO = 13
+    esperado = URLS_ANTES_DO_EIXO + 2 + len(TP.FICHAS)   # secao + categoria + fichas
+    ok("o sitemap publica as %d URLs da ilha (13 antigas + o eixo /peixes/)" % esperado,
+       len(urls) == esperado, "%d URLs" % len(urls))
 
     esperadas = {
         "peixes": SITE + "/peixes/",

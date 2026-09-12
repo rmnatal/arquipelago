@@ -1,5 +1,15 @@
 /**
  * Aquametria Casca — identidade e estrutura do site
+ * Versão: 1.7.3 (12/09/2026) — A RODA DAS IRMÃS. Achado NO AR, na conferência da
+ * leva 2: com sete filhas em /peixes/tetras/ e um teto de quatro irmãs, toda
+ * página escolhia as mesmas quatro do topo do mapa, e as duas últimas da
+ * categoria não eram irmãs de ninguém — um único link interno apontando para
+ * elas, o da mãe, contra sete da primeira da lista. O 16.4(f) cobra dois. Teto
+ * com ordem fixa não reparte, concentra: agora a lista começa DEPOIS de mim e
+ * dá a volta, cada página é citada por exatamente quatro irmãs, e a ordem da
+ * roda continua sendo a da intenção de busca, que é a afinidade que o 16.4(c)
+ * pede. Era inerte com três fichas, e por isso passou três blocos.
+ *
  * Versão: 1.7.2 (12/09/2026) — A REMONTAGEM PARA DE DUPLICAR PÁGINA, e recolhe o
  * que já duplicou. Na primeira remontagem depois da leva 1 do eixo, a busca da
  * página existente usava mãe + slug concatenados ('tetras/quantos-litros-...')
@@ -177,7 +187,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'AQUAMETRIA_CASCA_VERSAO', '1.7.2' );
+	define( 'AQUAMETRIA_CASCA_VERSAO', '1.7.3' );
 	/* A tagline é a primeira frase que um visitante lê no rodapé de toda página.
 	   Até a 1.3.1 ela era a descrição interna do produto ("Calculadoras e dados
 	   técnicos para dimensionar o seu aquário"); agora fala com quem chegou. */
@@ -371,19 +381,53 @@ function aquametria_casca_irmas_de_peixes( $slug ) {
 	if ( ! isset( $mapa[ $slug ] ) || '' === $mapa[ $slug ]['pai'] ) {
 		return array();
 	}
-	$pai   = $mapa[ $slug ]['pai'];
-	$irmas = array();
+	$pai = $mapa[ $slug ]['pai'];
+
+	/* A RODA, e ela existe por um defeito medido NO AR em 12/09/2026.
+	 *
+	 * Até aqui esta função varria o mapa do começo e parava nas quatro
+	 * primeiras irmãs. Com três fichas na categoria isso nunca fez diferença —
+	 * cada página tinha duas irmãs e o teto de quatro nunca era tocado. A leva 2
+	 * fechou /peixes/tetras/ em sete, e o resultado foi que TODA página escolhia
+	 * as mesmas quatro do topo da lista: as duas últimas, rodóstomo e
+	 * tetra-negro, não eram irmãs de ninguém. No ar elas ficaram com UM link
+	 * interno apontando para elas, o da mãe, contra os sete que a primeira da
+	 * lista recebeu — e o 16.4(f) cobra dois, um deles da mãe.
+	 *
+	 * Teto com ordem fixa não reparte: ele concentra. Então a lista das irmãs
+	 * começa DEPOIS de mim e dá a volta. Cada página escolhe as quatro
+	 * seguintes, cada página é escolhida por exatamente quatro, e nenhuma
+	 * cauda de categoria fica sem quem a cite. A ordem do mapa continua sendo a
+	 * da intenção de busca, então quem está perto de mim na roda é quem está
+	 * perto na intenção — é afinidade, não sorteio, que é o que o 16.4(c) pede.
+	 */
+	$candidatas = array();
 	foreach ( $mapa as $outro => $px ) {
-		if ( $outro === $slug || $px['pai'] !== $pai ) {
+		if ( $px['pai'] !== $pai ) {
 			continue;
 		}
 		if ( '' === aquametria_casca_url_se_existir( $outro ) ) {
 			continue;
 		}
-		$irmas[] = array( 'slug' => $outro, 'rotulo' => $px['rotulo'] );
-		if ( count( $irmas ) >= 4 ) {
+		$candidatas[] = array( 'slug' => $outro, 'rotulo' => $px['rotulo'] );
+	}
+
+	$eu = -1;
+	foreach ( $candidatas as $i => $c ) {
+		if ( $c['slug'] === $slug ) {
+			$eu = $i;
 			break;
 		}
+	}
+	if ( $eu < 0 ) {
+		/* Eu não estou publicado ainda: as irmãs são as quatro primeiras. */
+		return array_slice( $candidatas, 0, 4 );
+	}
+
+	$total = count( $candidatas );
+	$irmas = array();
+	for ( $n = 1; $n < $total && count( $irmas ) < 4; $n++ ) {
+		$irmas[] = $candidatas[ ( $eu + $n ) % $total ];
 	}
 	return $irmas;
 }
