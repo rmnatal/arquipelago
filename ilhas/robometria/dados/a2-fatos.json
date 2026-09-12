@@ -2,7 +2,7 @@
   "id": "a2-fatos",
   "ilha": "robometria",
   "artigo": "A2",
-  "gerado_em": "2026-09-09",
+  "gerado_em": "2026-09-12",
   "nota": "Fatos do artigo-ancora A2, derivados do banco commitado por ferramentas/gerar-a2.py, lendo o banco pela mesma implementacao de referencia que a R2 usa. Nenhum numero aqui e digitado: se o banco crescer e a tese do artigo deixar de valer, e este arquivo que muda, e ferramentas/teste-a2.php reprova a pagina antes de ela ir ao ar dizendo o que o banco nao sustenta.",
   "serp": {
     "verificada_nesta_execucao": false,

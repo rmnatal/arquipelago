@@ -2,7 +2,7 @@
   "id": "a1-fatos",
   "ilha": "robometria",
   "artigo": "A1",
-  "gerado_em": "2026-09-09",
+  "gerado_em": "2026-09-12",
   "nota": "Fatos do artigo-ancora A1, derivados do banco commitado por ferramentas/gerar-a1.py. Nenhum numero aqui e digitado: se o banco crescer e a tese do artigo deixar de valer, e este arquivo que muda, e ferramentas/teste-a1.php reprova a pagina antes de ela ir ao ar dizendo o que o banco nao sustenta.",
   "resumo": {
     "marcas": 5,
@@ -11,7 +11,7 @@
     "pares_declarados": 33,
     "pecas_que_atravessam_marca": 0,
     "celulas_total": 168,
-    "celulas_sem_resposta": 116,
+    "celulas_sem_resposta": 123,
     "pecas_esperando_link": 16
   },
   "maior_alcance": {
@@ -377,19 +377,19 @@
     {
       "tipo": "escova lateral",
       "nome": "escova lateral",
-      "modelos_com_declaracao": 13,
-      "modelos_publicaveis": 28
-    },
-    {
-      "tipo": "filtro",
-      "nome": "filtro",
-      "modelos_com_declaracao": 10,
+      "modelos_com_declaracao": 14,
       "modelos_publicaveis": 28
     },
     {
       "tipo": "mop",
       "nome": "mop",
-      "modelos_com_declaracao": 10,
+      "modelos_com_declaracao": 12,
+      "modelos_publicaveis": 28
+    },
+    {
+      "tipo": "filtro",
+      "nome": "filtro",
+      "modelos_com_declaracao": 11,
       "modelos_publicaveis": 28
     },
     {

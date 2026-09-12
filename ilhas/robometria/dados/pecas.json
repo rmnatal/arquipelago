@@ -3,7 +3,7 @@
   "ilha": "robometria",
   "entidade": "peca",
   "esquema": "dados/esquema-banco.json",
-  "gerado_em": "2026-09-09",
+  "gerado_em": "2026-09-12",
   "nota_de_procedencia": "Coleta de 09/09/2026 por busca restrita aos dominios do proprio fabricante; o egresso HTTP direto devolveu EGRESS_BLOCKED para multilaser.com.br nesta execucao. TODA compatibilidade abaixo e DECLARADA pelo fabricante — nenhuma foi inferida, e nenhuma linha diz 'serve' sem que o fabricante tenha dito. Onde nao ha declaracao, nao ha linha. Bloco 3c (09/09/2026): 10 pecas novas — 6 da Electrolux, 3 da Positivo e 1 da Xiaomi. Todas por busca restrita ao dominio oficial; o egresso segue fechado para leitura direta.",
   "nota_vida_util": "Nenhuma peca da Multi declara vida util nas paginas desta coleta. O unico numero de fabricante que a ilha tem e o do manual da Electrolux — 6 meses para o filtro HEPA do ERB10/ERB11/ERB20 — e ele esta em constantes.json preso AQUELES modelos. Veiculos editoriais dizem 3 meses e 2-3 meses, e divergem do manual. Manual de fabricante e recomendacao editorial nao se misturam numa frase: a R1 publica o intervalo do FABRICANTE do modelo consultado, e a recomendacao editorial so aparece rotulada como tal. Bloco 3c: a vida util de 6 meses do manual da Electrolux finalmente tem peca — e o filtro HEPA dentro do Kit Performance KPCEL01. E a Xiaomi trouxe o primeiro conjunto de intervalos por TIPO de peca (filtro 3-6, escova lateral 3-6, escova principal 6-12, mop 3 meses), que valem para o S20 e para nenhum outro modelo do banco.",
   "contagem": {
@@ -895,9 +895,19 @@
       "nome_na_fonte": "Kit Performance Electrolux para Robô Aspirador ERB44",
       "composicao": [
         {
+          "tipo": "filtro",
+          "quantidade": null,
+          "descricao_na_fonte": "filtros originais — o kit e descrito como 'escovas, filtros e pano de microfibra originais'; a pagina nao declara quantidade"
+        },
+        {
+          "tipo": "mop",
+          "quantidade": null,
+          "descricao_na_fonte": "pano de microfibra original; a pagina nao declara quantidade"
+        },
+        {
           "tipo": null,
           "quantidade": null,
-          "descricao_na_fonte": "composicao nao transcrita nesta coleta: a busca restrita devolveu o titulo e a compatibilidade, nao a lista de itens. E trabalho a fazer, nao lacuna permanente"
+          "descricao_na_fonte": "escovas originais, SEM o tipo declarado: a pagina do kit do ERB44 diz 'escovas' e nao diz se sao de varrer cantos (escova lateral) ou a rotativa central (escova principal), e o ERB44 tem uma escova rotativa central vendida a parte. Os kits do ERB30 e do ERB10/11/20 dizem 'Escovas de Varredura de Cantos', mas emprestar esse tipo para o ERB44 seria generalizar de um modelo para outro — o defeito que o ARQUIPELAGO.md registra na secao 8. Fica sem tipo ate a pagina declarar, e a R1 nao afirma escova para este kit"
         }
       ],
       "compatibilidade": [
@@ -937,13 +947,13 @@
           "publicador": "Electrolux (loja oficial)",
           "titulo_na_fonte": "Kit Performance Electrolux para Robô Aspirador ERB44",
           "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robo-aspirador-erb44/p",
-          "canal_de_coleta": "busca web restrita aos dominios electrolux.com.br, loja.electrolux.com.br e compraparceiros.electrolux.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
-          "verificado_em": "2026-09-09"
+          "canal_de_coleta": "busca web restrita aos dominios loja.electrolux.com.br e content.electrolux.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao, em 12/09/2026). A composicao foi pedida DUAS vezes, com perguntas diferentes e sem o valor dentro da consulta, e as duas devolveram a mesma lista a partir da pagina deste kit",
+          "verificado_em": "2026-09-12"
         }
       },
       "status": "publicavel",
-      "observacao": "Kit dedicado a um unico modelo. A composicao ainda nao foi transcrita, entao a R1 pode afirmar QUE ele serve e nao pode ainda dizer O QUE vem dentro.",
-      "verificado_em": "2026-09-09"
+      "observacao": "Kit dedicado a um unico modelo. COMPOSICAO TRANSCRITA EM 12/09/2026, e ela veio pela metade de proposito: a pagina deste kit declara os tipos e NAO as quantidades, e chama a escova de 'escovas' sem dizer qual. Filtro e mop entram confirmados; a escova entra com tipo null, que e como o esquema diz 'o kit serve e nos nao sabemos dizer este item'. A busca ofereceu a composicao do ERB30 como preenchimento e ela foi RECUSADA: modelo vizinho nao declara pelo vizinho.",
+      "verificado_em": "2026-09-12"
     },
     {
       "id": "electrolux-kit-performance-erb30",
@@ -954,9 +964,19 @@
       "nome_na_fonte": "Kit Performance para Robô Aspirador ERB30 - Electrolux",
       "composicao": [
         {
-          "tipo": null,
-          "quantidade": null,
-          "descricao_na_fonte": "composicao nao transcrita nesta coleta: a busca restrita devolveu o titulo e a compatibilidade, nao a lista de itens. E trabalho a fazer, nao lacuna permanente"
+          "tipo": "filtro",
+          "quantidade": 1,
+          "descricao_na_fonte": "01 Filtro HEPA para Robô Aspirador"
+        },
+        {
+          "tipo": "mop",
+          "quantidade": 1,
+          "descricao_na_fonte": "01 Pano de Microfibra para Robô Aspirador (seco)"
+        },
+        {
+          "tipo": "escova lateral",
+          "quantidade": 2,
+          "descricao_na_fonte": "02 Escovas de Varredura de Cantos para Robô Aspirador"
         }
       ],
       "compatibilidade": [
@@ -996,13 +1016,13 @@
           "publicador": "Electrolux (loja oficial)",
           "titulo_na_fonte": "Kit Performance para Robô Aspirador ERB30 - Electrolux",
           "url": "https://loja.electrolux.com.br/kit-performance-para-robo-aspirador-erb30---electrolux/p",
-          "canal_de_coleta": "busca web restrita aos dominios electrolux.com.br, loja.electrolux.com.br e compraparceiros.electrolux.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao)",
-          "verificado_em": "2026-09-09"
+          "canal_de_coleta": "busca web restrita aos dominios loja.electrolux.com.br e content.electrolux.com.br (WebFetch direto devolveu EGRESS_BLOCKED nesta execucao, em 12/09/2026). A composicao foi pedida DUAS vezes, com perguntas diferentes e sem o valor dentro da consulta, e as duas devolveram a mesma lista a partir da pagina deste kit",
+          "verificado_em": "2026-09-12"
         }
       },
       "status": "publicavel",
-      "observacao": "Kit dedicado a um unico modelo. A composicao ainda nao foi transcrita, entao a R1 pode afirmar QUE ele serve e nao pode ainda dizer O QUE vem dentro.",
-      "verificado_em": "2026-09-09"
+      "observacao": "Kit dedicado a um unico modelo. COMPOSICAO TRANSCRITA EM 12/09/2026, com as quantidades que a propria pagina do kit declara. Era a unica peca que servia o ERB30, e enquanto a composicao nao existia a R1 sabia que o kit servia e nao sabia dizer O QUE vinha dentro — entao o ERB30 nao respondia consulta nenhuma. Agora responde filtro, mop e escova lateral, e a porta de compra abre por dado, sem afrouxar a regra da secao 7 do ARQUIPELAGO.md.",
+      "verificado_em": "2026-09-12"
     },
     {
       "id": "positivo-11206518",

@@ -3,7 +3,7 @@
   "ilha": "robometria",
   "entidade": "modelo-robo",
   "esquema": "dados/esquema-banco.json",
-  "gerado_em": "2026-09-09",
+  "gerado_em": "2026-09-12",
   "nota_de_procedencia": "Coleta de 09/09/2026. O egresso HTTP direto desta nuvem esta fechado: multilaser.com.br, suporte.multilaser.com.br, lamina.multilaser.com.br, arquivos.multilaser.com.br e mi.com devolveram EGRESS_BLOCKED nesta execucao. Todo campo abaixo saiu de busca restrita ao dominio da fonte, e o canal de coleta esta declarado campo a campo. A leitura direta dos manuais e laminas continua sendo coleta em aberto — e trabalho a fazer, nao dependencia humana. Bloco 3c (09/09/2026): 7 modelos novos e 4 atualizados, todos por busca restrita ao dominio oficial da marca — o egresso continua fechado para leitura direta. SEGUNDA LEVA DO BLOCO 3c (09/09/2026): coleta dirigida ao campo pa_declarado fora da Electrolux, por busca restrita a mi.com, wap.ind.br, positivocasainteligente.com.br e loja.meupositivo.com.br. Toda leitura direta continua devolvendo EGRESS_BLOCKED — inclusive os PDFs de manual da WAP (mais.conteudo.wap.ind.br) e o guia rapido da Positivo (static.positivocasainteligente.com.br), que ficaram registrados em fontes{} como alvo da releitura de nivel 2.",
   "contagem": {
     "total": 33,
@@ -845,7 +845,7 @@
       },
       "recarga_min_declarada": {
         "valor": null,
-        "motivo_do_null": "nao coletado ainda nesta ilha; a fonte primaria (manual/lamina) esta bloqueada pelo egresso e a busca restrita ao dominio nao devolveu o numero"
+        "motivo_do_null": "MEDIDO EM 12/09/2026, e a lacuna MUDOU DE NATUREZA: a recarga nao esta declarada por MODELO em nenhuma fonte que esta ilha alcanca. A pagina deste modelo na loja oficial declara autonomia e area por carga e NAO declara tempo de carga (conferido nesta execucao). O unico numero de recarga publicado pela Electrolux no canal alcancavel esta num artigo de suporte de FAMILIA ('Como faco para utilizar o meu Robo Aspirador Home-e Experience com Autonomous Technology', cuida.electrolux.com.br) — 24 h na primeira carga e 5 h nas seguintes —, e esse mesmo artigo declara, na mesma frase, autonomia de 90 minutos. 90 min nao e a autonomia de nenhum dos cinco modelos que declaram cobertura (ERB60/61/62/80 tem 100 min e o ERB44 tem 120), entao o artigo fala de outro aparelho e atribuir o 5 h a este modelo seria generalizar de uma linha para outra — exatamente o defeito que o ARQUIPELAGO.md secao 8 registra no coeficiente do epoxi. Nao e mais 'nao coletado ainda': e coletado e RECUSADO, com a causa nomeada. A recarga so sai de null por leitura direta do manual deste modelo, que segue atras do egresso fechado."
       },
       "retoma_apos_recarga": {
         "valor": null,
@@ -1786,7 +1786,7 @@
       "recarga_min_declarada": {
         "valor": null,
         "unidade": "min",
-        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+        "motivo_do_null": "MEDIDO EM 12/09/2026, e a lacuna MUDOU DE NATUREZA: a recarga nao esta declarada por MODELO em nenhuma fonte que esta ilha alcanca. A pagina deste modelo na loja oficial declara autonomia e area por carga e NAO declara tempo de carga (conferido nesta execucao). O unico numero de recarga publicado pela Electrolux no canal alcancavel esta num artigo de suporte de FAMILIA ('Como faco para utilizar o meu Robo Aspirador Home-e Experience com Autonomous Technology', cuida.electrolux.com.br) — 24 h na primeira carga e 5 h nas seguintes —, e esse mesmo artigo declara, na mesma frase, autonomia de 90 minutos. 90 min nao e a autonomia de nenhum dos cinco modelos que declaram cobertura (ERB60/61/62/80 tem 100 min e o ERB44 tem 120), entao o artigo fala de outro aparelho e atribuir o 5 h a este modelo seria generalizar de uma linha para outra — exatamente o defeito que o ARQUIPELAGO.md secao 8 registra no coeficiente do epoxi. Nao e mais 'nao coletado ainda': e coletado e RECUSADO, com a causa nomeada. A recarga so sai de null por leitura direta do manual deste modelo, que segue atras do egresso fechado."
       },
       "retoma_apos_recarga": {
         "valor": true,
@@ -1886,7 +1886,7 @@
       "recarga_min_declarada": {
         "valor": null,
         "unidade": "min",
-        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+        "motivo_do_null": "MEDIDO EM 12/09/2026, e a lacuna MUDOU DE NATUREZA: a recarga nao esta declarada por MODELO em nenhuma fonte que esta ilha alcanca. A pagina deste modelo na loja oficial declara autonomia e area por carga e NAO declara tempo de carga (conferido nesta execucao). O unico numero de recarga publicado pela Electrolux no canal alcancavel esta num artigo de suporte de FAMILIA ('Como faco para utilizar o meu Robo Aspirador Home-e Experience com Autonomous Technology', cuida.electrolux.com.br) — 24 h na primeira carga e 5 h nas seguintes —, e esse mesmo artigo declara, na mesma frase, autonomia de 90 minutos. 90 min nao e a autonomia de nenhum dos cinco modelos que declaram cobertura (ERB60/61/62/80 tem 100 min e o ERB44 tem 120), entao o artigo fala de outro aparelho e atribuir o 5 h a este modelo seria generalizar de uma linha para outra — exatamente o defeito que o ARQUIPELAGO.md secao 8 registra no coeficiente do epoxi. Nao e mais 'nao coletado ainda': e coletado e RECUSADO, com a causa nomeada. A recarga so sai de null por leitura direta do manual deste modelo, que segue atras do egresso fechado."
       },
       "retoma_apos_recarga": {
         "valor": true,
@@ -1986,7 +1986,7 @@
       "recarga_min_declarada": {
         "valor": null,
         "unidade": "min",
-        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+        "motivo_do_null": "MEDIDO EM 12/09/2026, e a lacuna MUDOU DE NATUREZA: a recarga nao esta declarada por MODELO em nenhuma fonte que esta ilha alcanca. A pagina deste modelo na loja oficial declara autonomia e area por carga e NAO declara tempo de carga (conferido nesta execucao). O unico numero de recarga publicado pela Electrolux no canal alcancavel esta num artigo de suporte de FAMILIA ('Como faco para utilizar o meu Robo Aspirador Home-e Experience com Autonomous Technology', cuida.electrolux.com.br) — 24 h na primeira carga e 5 h nas seguintes —, e esse mesmo artigo declara, na mesma frase, autonomia de 90 minutos. 90 min nao e a autonomia de nenhum dos cinco modelos que declaram cobertura (ERB60/61/62/80 tem 100 min e o ERB44 tem 120), entao o artigo fala de outro aparelho e atribuir o 5 h a este modelo seria generalizar de uma linha para outra — exatamente o defeito que o ARQUIPELAGO.md secao 8 registra no coeficiente do epoxi. Nao e mais 'nao coletado ainda': e coletado e RECUSADO, com a causa nomeada. A recarga so sai de null por leitura direta do manual deste modelo, que segue atras do egresso fechado."
       },
       "retoma_apos_recarga": {
         "valor": true,
@@ -2086,7 +2086,7 @@
       "recarga_min_declarada": {
         "valor": null,
         "unidade": "min",
-        "motivo_do_null": "nao coletado nesta execucao: o egresso desta nuvem barra o dominio do fabricante (EGRESS_BLOCKED medido em 09/09/2026) e a busca restrita ao dominio nao devolveu o numero"
+        "motivo_do_null": "MEDIDO EM 12/09/2026, e a lacuna MUDOU DE NATUREZA: a recarga nao esta declarada por MODELO em nenhuma fonte que esta ilha alcanca. A pagina deste modelo na loja oficial declara autonomia e area por carga e NAO declara tempo de carga (conferido nesta execucao). O unico numero de recarga publicado pela Electrolux no canal alcancavel esta num artigo de suporte de FAMILIA ('Como faco para utilizar o meu Robo Aspirador Home-e Experience com Autonomous Technology', cuida.electrolux.com.br) — 24 h na primeira carga e 5 h nas seguintes —, e esse mesmo artigo declara, na mesma frase, autonomia de 90 minutos. 90 min nao e a autonomia de nenhum dos cinco modelos que declaram cobertura (ERB60/61/62/80 tem 100 min e o ERB44 tem 120), entao o artigo fala de outro aparelho e atribuir o 5 h a este modelo seria generalizar de uma linha para outra — exatamente o defeito que o ARQUIPELAGO.md secao 8 registra no coeficiente do epoxi. Nao e mais 'nao coletado ainda': e coletado e RECUSADO, com a causa nomeada. A recarga so sai de null por leitura direta do manual deste modelo, que segue atras do egresso fechado."
       },
       "retoma_apos_recarga": {
         "valor": null,

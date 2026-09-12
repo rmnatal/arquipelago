@@ -55,7 +55,12 @@ linhas em HTML, sem depender de script.
 | Electrolux ERB20 | filtro | KPCEL01 | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 09/09/2026 |
 | Electrolux ERB20 | escova lateral | KPCEL01 | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 09/09/2026 |
 | Electrolux ERB20 | mop | KPCEL01 | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 09/09/2026 |
+| Electrolux ERB30 | filtro | o fabricante nao publica codigo | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 12/09/2026 |
+| Electrolux ERB30 | escova lateral | o fabricante nao publica codigo | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 12/09/2026 |
+| Electrolux ERB30 | mop | o fabricante nao publica codigo | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 12/09/2026 |
 | Electrolux ERB44 | filtro | o fabricante nao publica codigo | declarada_fabricante | varejo-oficial-da-marca · 09/09/2026 |
+| Electrolux ERB44 | filtro | o fabricante nao publica codigo | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 12/09/2026 |
+| Electrolux ERB44 | mop | o fabricante nao publica codigo | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 12/09/2026 |
 | Electrolux ERB80 | escova principal | o fabricante nao publica codigo | declarada_fabricante | varejo-oficial-da-marca · 09/09/2026 |
 
-Linhas: **45** — o minimo da secao 1.7 da especificacao e 8.
+Linhas: **50** — o minimo da secao 1.7 da especificacao e 8.

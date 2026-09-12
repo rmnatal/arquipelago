@@ -94,14 +94,25 @@
     },
     "electrolux-erb30": {
       "aviso_de_variante": null,
-      "fabricante": [],
-      "terceiro": [],
-      "kits_sem_composicao": [
+      "fabricante": [
         {
+          "tipo": "filtro",
           "peca": "electrolux-kit-performance-erb30",
-          "frase": "A Electrolux (loja oficial) declara o Kit Performance para Robô Aspirador ERB30 - Electrolux compativel com este modelo (varejo-oficial-da-marca, verificado em 09/09/2026), mas nao transcrevemos ainda a lista do que vem dentro — entao nao afirmamos qual peca o kit cobre."
+          "frase": "A Electrolux (loja oficial) nao vende o filtro avulso para este modelo: ele vem dentro do kit \"Kit Performance para Robô Aspirador ERB30 - Electrolux\", que o fabricante declara compativel com ERB30 (varejo-oficial-da-marca, verificado em 12/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        },
+        {
+          "tipo": "escova lateral",
+          "peca": "electrolux-kit-performance-erb30",
+          "frase": "A Electrolux (loja oficial) nao vende a escova lateral avulsa para este modelo: ela vem dentro do kit \"Kit Performance para Robô Aspirador ERB30 - Electrolux\", que o fabricante declara compativel com ERB30 (varejo-oficial-da-marca, verificado em 12/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        },
+        {
+          "tipo": "mop",
+          "peca": "electrolux-kit-performance-erb30",
+          "frase": "A Electrolux (loja oficial) nao vende o mop avulso para este modelo: ele vem dentro do kit \"Kit Performance para Robô Aspirador ERB30 - Electrolux\", que o fabricante declara compativel com ERB30 (varejo-oficial-da-marca, verificado em 12/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
         }
       ],
+      "terceiro": [],
+      "kits_sem_composicao": [],
       "recusa_por_tipo": {
         "filtro": "Nao localizamos declaracao do fabricante de filtro para este modelo; nao vamos supor.",
         "escova lateral": "Nao localizamos declaracao do fabricante de escova lateral para este modelo; nao vamos supor.",
@@ -117,15 +128,20 @@
           "tipo": "filtro",
           "peca": "electrolux-filtro-hepa-espuma-erb44-erb60-erb61-erb62",
           "frase": "A Electrolux (loja oficial) declara o filtro \"Filtro HEPA com Espuma Electrolux para Robôs Aspiradores ERB44, ERB60, ERB61 e ERB62\" compativel com ERB44, ERB60, ERB61 e ERB62 (varejo-oficial-da-marca, verificado em 09/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        },
+        {
+          "tipo": "filtro",
+          "peca": "electrolux-kit-performance-erb44",
+          "frase": "Ele tambem vem dentro do kit \"Kit Performance Electrolux para Robô Aspirador ERB44\", que a Electrolux (loja oficial) declara compativel com ERB44 (varejo-oficial-da-marca, verificado em 12/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        },
+        {
+          "tipo": "mop",
+          "peca": "electrolux-kit-performance-erb44",
+          "frase": "A Electrolux (loja oficial) nao vende o mop avulso para este modelo: ele vem dentro do kit \"Kit Performance Electrolux para Robô Aspirador ERB44\", que o fabricante declara compativel com ERB44 (varejo-oficial-da-marca, verificado em 12/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
         }
       ],
       "terceiro": [],
-      "kits_sem_composicao": [
-        {
-          "peca": "electrolux-kit-performance-erb44",
-          "frase": "A Electrolux (loja oficial) declara o Kit Performance Electrolux para Robô Aspirador ERB44 compativel com este modelo (varejo-oficial-da-marca, verificado em 09/09/2026), mas nao transcrevemos ainda a lista do que vem dentro — entao nao afirmamos qual peca o kit cobre."
-        }
-      ],
+      "kits_sem_composicao": [],
       "recusa_por_tipo": {
         "filtro": "Nao localizamos declaracao do fabricante de filtro para este modelo; nao vamos supor.",
         "escova lateral": "Nao localizamos declaracao do fabricante de escova lateral para este modelo; nao vamos supor.",

@@ -143,11 +143,51 @@ function rbm_normalizar_referencia( $frase, $rotulos ) {
 $comparadas = 0;
 $divergentes = array();
 
+/* Quantas frases cada GRUPO comparou. Existe porque os lacos abaixo varrem a
+ * lista da REFERENCIA: um grupo que fica vazio no banco de hoje passa a rodar
+ * zero vezes e continua dando verde, que e a mesma "mutacao inerte" que esta
+ * ilha ja pagou. O grupo com zero aparece nomeado no fim, em vez de passar
+ * calado. Aconteceu de verdade em 12/09/2026: ao transcrever a composicao dos
+ * kits do ERB30 e do ERB44, 'kits_sem_composicao' zerou em TODOS os modelos e
+ * este bloco deixou de medir o que foi escrito para medir. */
+$por_grupo = array(
+	'fabricante'          => 0,
+	'terceiro'            => 0,
+	'kits_sem_composicao' => 0,
+	'recusa_por_tipo'     => 0,
+	'aviso_de_variante'   => 0,
+);
+
+/* Chaves de um lado que o outro nao tem, nos DOIS sentidos. Os lacos de frase
+ * indexam $obtido pela chave de $esperado, entao item a MAIS no lado do PHP
+ * nunca seria comparado com nada — o buraco era unidirecional nos quatro
+ * grupos, nao so no de kit. */
+$chaves_divergentes = array();
+
+function rbm_chaves( $v ) {
+	return is_array( $v ) ? array_keys( $v ) : array();
+}
+
 foreach ( $gabarito['respostas'] as $mid => $esperado ) {
 	$obtido = $dados['respostas'][ $mid ];
 
+	/* So os grupos que sao LISTA dos dois lados. 'recusa_por_tipo' fica de fora
+	 * porque o lado do PHP nao e uma lista: a frase de recusa e derivada do tipo
+	 * por robometria_r1_frase_recusa(), e nao ha chave obtida para comparar. */
+	foreach ( array( 'fabricante', 'terceiro', 'kits_sem_composicao' ) as $grupo ) {
+		$ca = rbm_chaves( isset( $esperado[ $grupo ] ) ? $esperado[ $grupo ] : null );
+		$cb = rbm_chaves( isset( $obtido[ $grupo ] ) ? $obtido[ $grupo ] : null );
+		sort( $ca );
+		sort( $cb );
+		if ( $ca !== $cb ) {
+			$chaves_divergentes[] = "$mid/$grupo\n      referencia: " . implode( ',', $ca )
+				. "\n      php ......: " . implode( ',', $cb );
+		}
+	}
+
 	foreach ( array( 'fabricante', 'terceiro' ) as $grupo ) {
 		foreach ( $esperado[ $grupo ] as $k => $ref ) {
+			$por_grupo[ $grupo ]++;
 			$item = $obtido[ $grupo ][ $k ];
 			$php  = rbm_sem_acento( robometria_r1_frase( $item ) );
 			$gab  = rbm_normalizar_referencia( $ref['frase'], $dados['rotulos_de_origem'] );
@@ -159,6 +199,7 @@ foreach ( $gabarito['respostas'] as $mid => $esperado ) {
 	}
 
 	foreach ( $esperado['kits_sem_composicao'] as $k => $ref ) {
+		$por_grupo['kits_sem_composicao']++;
 		$php = rbm_sem_acento( robometria_r1_frase_kit( $obtido['kits_sem_composicao'][ $k ] ) );
 		$gab = rbm_normalizar_referencia( $ref['frase'], $dados['rotulos_de_origem'] );
 		$comparadas++;
@@ -168,6 +209,7 @@ foreach ( $gabarito['respostas'] as $mid => $esperado ) {
 	}
 
 	foreach ( $esperado['recusa_por_tipo'] as $tipo => $ref ) {
+		$por_grupo['recusa_por_tipo']++;
 		$php = rbm_sem_acento( robometria_r1_frase_recusa( $tipo ) );
 		$comparadas++;
 		if ( $php !== rbm_sem_acento( $ref ) ) {
@@ -176,6 +218,7 @@ foreach ( $gabarito['respostas'] as $mid => $esperado ) {
 	}
 
 	if ( ! empty( $esperado['aviso_de_variante'] ) ) {
+		$por_grupo['aviso_de_variante']++;
 		$php = rbm_sem_acento( robometria_r1_frase_variante( $obtido['aviso_de_variante'] ) );
 		$comparadas++;
 		if ( $php !== rbm_sem_acento( $esperado['aviso_de_variante'] ) ) {
@@ -189,6 +232,48 @@ foreach ( $divergentes as $d ) {
 	echo "       . $d\n";
 }
 rbm_ok( $comparadas >= 100, 'a comparacao cobriu o banco inteiro, nao uma amostra', "$comparadas frases" );
+
+/* As duas travas que 12/09/2026 obrigou a escrever. A primeira fecha o buraco
+ * unidirecional: sem ela, uma peca que o PHP inventasse e a referencia nao
+ * tivesse nunca seria comparada com nada, porque o laco indexa $obtido pela
+ * chave de $esperado. A segunda impede que um grupo vazio passe calado. */
+rbm_ok(
+	empty( $chaves_divergentes ),
+	'os dois lados tem as MESMAS chaves em cada grupo, nos dois sentidos',
+	count( $gabarito['respostas'] ) . ' modelos x 3 grupos de lista'
+);
+foreach ( $chaves_divergentes as $d ) {
+	echo "       . $d\n";
+}
+
+$vazios = array();
+foreach ( $por_grupo as $g => $n ) {
+	if ( 0 === $n ) {
+		$vazios[] = $g;
+	}
+}
+rbm_ok(
+	true,
+	'quanto cada grupo comparou (grupo com 0 NAO foi exercitado)',
+	implode( ' · ', array_map(
+		function ( $g ) use ( $por_grupo ) {
+			return $g . ' ' . $por_grupo[ $g ] . ( 0 === $por_grupo[ $g ] ? ' <- vazio' : '' );
+		},
+		array_keys( $por_grupo )
+	) )
+);
+rbm_ok(
+	$por_grupo['fabricante'] > 0 && $por_grupo['recusa_por_tipo'] > 0,
+	'os grupos que o banco de hoje SEMPRE tem foram exercitados',
+	'fabricante ' . $por_grupo['fabricante'] . ' · recusa ' . $por_grupo['recusa_por_tipo']
+);
+if ( $vazios ) {
+	echo "       . grupo(s) sem nenhum caso no banco de hoje: " . implode( ', ', $vazios )
+		. "\n         Isto NAO e falha: e o aviso de que esta comparacao nao mediu nada nesta\n"
+		. "         passada. 'kits_sem_composicao' zerou em 12/09/2026 porque a composicao dos\n"
+		. "         kits do ERB30 e do ERB44 foi transcrita — o grupo volta a ser exercitado no\n"
+		. "         dia em que entrar um kit novo sem composicao, e e por isso que o laco fica.\n";
+}
 
 /* ---------------------------------------------------------------------------
  * 4. A resposta esta no HTML SERVIDO, sem depender de JavaScript (secao 5).

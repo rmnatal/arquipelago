@@ -3,7 +3,7 @@
   "ilha": "robometria",
   "entidade": "medicao",
   "gerado_por": "ferramentas/gerar-r2.py",
-  "banco_gerado_em": "2026-09-09",
+  "banco_gerado_em": "2026-09-12",
   "o_que_e": "Combustivel da ferramenta R2 no site: as 9 situacoes de piso x pelo com os limiares de Pa que cada fonte brasileira declara para elas, a classificacao dos modelos do banco em cada situacao, e os numeros de cada modelo de referencia. Sem prosa: a frase que o visitante le e montada pelo snippet, em portugues acentuado, e conferida contra a implementacao de referencia por ferramentas/teste-r2.php.",
   "entrada": {
     "area_minima": 10,

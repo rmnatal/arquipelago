@@ -3,7 +3,7 @@
   "ilha": "robometria",
   "entidade": "medicao",
   "gerado_por": "ferramentas/gerar-r1.py",
-  "banco_gerado_em": "2026-09-09",
+  "banco_gerado_em": "2026-09-12",
   "o_que_e": "Combustivel da ferramenta R1 no site: para cada modelo publicavel, os FATOS de cada peca que o fabricante declarou compativel — codigo, publicador, conjunto declarado, endereco e data. Sem prosa: a frase que o visitante le e montada pelo snippet, em portugues acentuado, e conferida contra a implementacao de referencia por ferramentas/teste-r1.php.",
   "marcas": [
     {
@@ -112,8 +112,8 @@
       "marca": "electrolux",
       "codigo": "ERB30",
       "linha": "Home-E Power Experience",
-      "responde": false,
-      "so_kit": true
+      "responde": true,
+      "so_kit": false
     },
     {
       "id": "electrolux-erb44",
@@ -629,17 +629,83 @@
     },
     "electrolux-erb30": {
       "aviso_de_variante": null,
-      "fabricante": [],
-      "terceiro": [],
-      "kits_sem_composicao": [
+      "fabricante": [
         {
+          "tipo": "filtro",
           "peca": "electrolux-kit-performance-erb30",
           "codigo": null,
           "nome_na_fonte": "Kit Performance para Robô Aspirador ERB30 - Electrolux",
+          "tipo_da_peca": "kit",
+          "dentro_de_kit": true,
+          "existe_avulso": false,
           "publicador": "Electrolux (loja oficial)",
           "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
           "url": "https://loja.electrolux.com.br/kit-performance-para-robo-aspirador-erb30---electrolux/p",
-          "verificado_em": "2026-09-09",
+          "verificado_em": "2026-09-12",
+          "declarados": [
+            "ERB30"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        },
+        {
+          "tipo": "escova lateral",
+          "peca": "electrolux-kit-performance-erb30",
+          "codigo": null,
+          "nome_na_fonte": "Kit Performance para Robô Aspirador ERB30 - Electrolux",
+          "tipo_da_peca": "kit",
+          "dentro_de_kit": true,
+          "existe_avulso": false,
+          "publicador": "Electrolux (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.electrolux.com.br/kit-performance-para-robo-aspirador-erb30---electrolux/p",
+          "verificado_em": "2026-09-12",
+          "declarados": [
+            "ERB30"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        },
+        {
+          "tipo": "mop",
+          "peca": "electrolux-kit-performance-erb30",
+          "codigo": null,
+          "nome_na_fonte": "Kit Performance para Robô Aspirador ERB30 - Electrolux",
+          "tipo_da_peca": "kit",
+          "dentro_de_kit": true,
+          "existe_avulso": false,
+          "publicador": "Electrolux (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.electrolux.com.br/kit-performance-para-robo-aspirador-erb30---electrolux/p",
+          "verificado_em": "2026-09-12",
+          "declarados": [
+            "ERB30"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -648,7 +714,9 @@
             "sub_id_2": "R1"
           }
         }
-      ]
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": []
     },
     "electrolux-erb44": {
       "aviso_de_variante": null,
@@ -683,18 +751,55 @@
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
-        }
-      ],
-      "terceiro": [],
-      "kits_sem_composicao": [
+        },
         {
+          "tipo": "filtro",
           "peca": "electrolux-kit-performance-erb44",
           "codigo": null,
           "nome_na_fonte": "Kit Performance Electrolux para Robô Aspirador ERB44",
+          "tipo_da_peca": "kit",
+          "dentro_de_kit": true,
+          "existe_avulso": true,
           "publicador": "Electrolux (loja oficial)",
           "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
           "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robo-aspirador-erb44/p",
-          "verificado_em": "2026-09-09",
+          "verificado_em": "2026-09-12",
+          "declarados": [
+            "ERB44"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        },
+        {
+          "tipo": "mop",
+          "peca": "electrolux-kit-performance-erb44",
+          "codigo": null,
+          "nome_na_fonte": "Kit Performance Electrolux para Robô Aspirador ERB44",
+          "tipo_da_peca": "kit",
+          "dentro_de_kit": true,
+          "existe_avulso": false,
+          "publicador": "Electrolux (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robo-aspirador-erb44/p",
+          "verificado_em": "2026-09-12",
+          "declarados": [
+            "ERB44"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
           "esperando_link": true,
           "afiliado": {
             "url": "",
@@ -703,7 +808,9 @@
             "sub_id_2": "R1"
           }
         }
-      ]
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": []
     },
     "electrolux-erb60": {
       "aviso_de_variante": null,
@@ -2511,6 +2618,45 @@
       "verificado_em": "2026-09-09"
     },
     {
+      "modelo": "electrolux-erb30",
+      "modelo_rotulo": "Electrolux ERB30",
+      "tipo": "filtro",
+      "peca": "electrolux-kit-performance-erb30",
+      "codigo": null,
+      "nome_na_fonte": "Kit Performance para Robô Aspirador ERB30 - Electrolux",
+      "dentro_de_kit": true,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/kit-performance-para-robo-aspirador-erb30---electrolux/p",
+      "verificado_em": "2026-09-12"
+    },
+    {
+      "modelo": "electrolux-erb30",
+      "modelo_rotulo": "Electrolux ERB30",
+      "tipo": "escova lateral",
+      "peca": "electrolux-kit-performance-erb30",
+      "codigo": null,
+      "nome_na_fonte": "Kit Performance para Robô Aspirador ERB30 - Electrolux",
+      "dentro_de_kit": true,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/kit-performance-para-robo-aspirador-erb30---electrolux/p",
+      "verificado_em": "2026-09-12"
+    },
+    {
+      "modelo": "electrolux-erb30",
+      "modelo_rotulo": "Electrolux ERB30",
+      "tipo": "mop",
+      "peca": "electrolux-kit-performance-erb30",
+      "codigo": null,
+      "nome_na_fonte": "Kit Performance para Robô Aspirador ERB30 - Electrolux",
+      "dentro_de_kit": true,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/kit-performance-para-robo-aspirador-erb30---electrolux/p",
+      "verificado_em": "2026-09-12"
+    },
+    {
       "modelo": "electrolux-erb44",
       "modelo_rotulo": "Electrolux ERB44",
       "tipo": "filtro",
@@ -2522,6 +2668,32 @@
       "origem": "varejo-oficial-da-marca",
       "url": "https://loja.electrolux.com.br/filtro-hepa-com-espuma-electrolux-para-robos-aspiradores-erb44--erb60--erb61-e-erb62/p",
       "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "electrolux-erb44",
+      "modelo_rotulo": "Electrolux ERB44",
+      "tipo": "filtro",
+      "peca": "electrolux-kit-performance-erb44",
+      "codigo": null,
+      "nome_na_fonte": "Kit Performance Electrolux para Robô Aspirador ERB44",
+      "dentro_de_kit": true,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robo-aspirador-erb44/p",
+      "verificado_em": "2026-09-12"
+    },
+    {
+      "modelo": "electrolux-erb44",
+      "modelo_rotulo": "Electrolux ERB44",
+      "tipo": "mop",
+      "peca": "electrolux-kit-performance-erb44",
+      "codigo": null,
+      "nome_na_fonte": "Kit Performance Electrolux para Robô Aspirador ERB44",
+      "dentro_de_kit": true,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.electrolux.com.br/kit-performance-electrolux-para-robo-aspirador-erb44/p",
+      "verificado_em": "2026-09-12"
     },
     {
       "modelo": "electrolux-erb80",
@@ -2553,16 +2725,16 @@
   ],
   "resumo": {
     "modelos_publicaveis": 28,
-    "modelos_que_respondem": 15,
+    "modelos_que_respondem": 16,
     "modelos_com_entrada_vazia": 12,
     "celulas": 168,
-    "celulas_sem_resposta": 116,
+    "celulas_sem_resposta": 123,
     "pares_declarados": 33,
     "pecas_publicaveis": 16,
     "marcas": 5,
     "as_duas_ferramentas": 3,
-    "pecas_recomendadas": 14,
-    "pecas_esperando_link": 14,
+    "pecas_recomendadas": 16,
+    "pecas_esperando_link": 16,
     "pecas_com_link": 0
   }
 }

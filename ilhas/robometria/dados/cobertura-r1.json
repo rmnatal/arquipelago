@@ -3,7 +3,7 @@
   "ilha": "robometria",
   "entidade": "medicao",
   "gerado_por": "ferramentas/cobertura-r1.py",
-  "gerado_em": "2026-09-09",
+  "gerado_em": "2026-09-12",
   "o_que_e": "Varredura da faixa de entrada da R1 de ponta a ponta, exigida pela secao 14.3 do ARQUIPELAGO.md — o mesmo que cobertura_de_faixa_r2 faz para a R2. A entrada da R1 e o par (modelo publicavel, tipo de peca consultavel), entao a varredura passa por todas as celulas e registra, celula a celula, se a ferramenta tem o que responder. O criterio da R1 NAO e o de 3 itens da secao 9: ali a faixa produz uma lista de produtos concorrentes, aqui a resposta certa costuma ser UMA peca — a que o fabricante declarou. Exigir tres levaria a ilha a inventar concorrente onde o fabricante tem uma peca so. O criterio aqui e binario e mais duro: a celula responde ou nao responde, e celula que nao responde e a lista de compras.",
   "criterio": {
     "declarada": "existe peca com selo declarada_fabricante para o par (modelo, tipo)",
@@ -12,8 +12,8 @@
   },
   "resumo": {
     "modelos_publicaveis": 28,
-    "modelos_que_respondem": 15,
-    "modelos_so_com_kit_de_composicao_nao_transcrita": 1,
+    "modelos_que_respondem": 16,
+    "modelos_so_com_kit_de_composicao_nao_transcrita": 0,
     "modelos_com_entrada_vazia": 12,
     "tipos_consultaveis": [
       "filtro",
@@ -24,9 +24,9 @@
       "reservatorio"
     ],
     "celulas": {
-      "declarada": 41,
-      "kit_sem_composicao": 11,
-      "vazia": 116
+      "declarada": 45,
+      "kit_sem_composicao": 0,
+      "vazia": 123
     },
     "celulas_total": 168
   },
@@ -51,6 +51,7 @@
       "electrolux-erb10",
       "electrolux-erb11",
       "electrolux-erb20",
+      "electrolux-erb30",
       "electrolux-erb44",
       "electrolux-erb60",
       "electrolux-erb61",
@@ -62,7 +63,6 @@
       "multi-ob010"
     ],
     "nenhuma_das_duas_responde": [
-      "electrolux-erb30",
       "multi-ho243",
       "multi-ho411",
       "wap-w1000",
@@ -80,54 +80,54 @@
     "contagem": {
       "as_duas": 3,
       "so_a_r2": 8,
-      "so_a_r1": 12,
-      "nenhuma": 5
+      "so_a_r1": 13,
+      "nenhuma": 4
     }
   },
   "leitura": [
-    "A R1 responde alguma peca em 15 dos 28 modelos publicaveis, e sai VAZIA em 12. Contar os 33 pares declarados do cabecalho escondia isso: par novo num modelo que ja respondia nao tira modelo nenhum do vazio, e so a varredura separa as duas coisas.",
-    "O ACHADO, e ele so aparece cruzando as duas ferramentas: das 28 entradas publicaveis, apenas 3 sao atendidas pelas DUAS. A R2 atende 8 modelos que a R1 nao atende (positivo, wap, xiaomi) e a R1 atende 12 que a R2 nao atende (electrolux, multi). A cobertura das duas ferramentas da ilha e quase disjunta, e a causa e a mesma nos dois sentidos: Electrolux e Multi publicam peca com compatibilidade declarada e NAO publicam Pa; Xiaomi e WAP publicam Pa e NAO publicam peca com codigo.",
+    "A R1 responde alguma peca em 16 dos 28 modelos publicaveis, e sai VAZIA em 12. Contar os 33 pares declarados do cabecalho escondia isso: par novo num modelo que ja respondia nao tira modelo nenhum do vazio, e so a varredura separa as duas coisas.",
+    "O ACHADO, e ele so aparece cruzando as duas ferramentas: das 28 entradas publicaveis, apenas 3 sao atendidas pelas DUAS. A R2 atende 8 modelos que a R1 nao atende (positivo, wap, xiaomi) e a R1 atende 13 que a R2 nao atende (electrolux, multi). A cobertura das duas ferramentas da ilha e quase disjunta, e a causa e a mesma nos dois sentidos: Electrolux e Multi publicam peca com compatibilidade declarada e NAO publicam Pa; Xiaomi e WAP publicam Pa e NAO publicam peca com codigo.",
     "POR QUE ISSO CUSTA DINHEIRO: a ilha ganha a visita pela R2 ('quantos Pa para pelo de cachorro'), que hoje so consegue recomendar Xiaomi na faixa alta. Quem compra volta meses depois procurando o filtro daquele robo — a consulta de maior intencao de compra do nicho, e a razao de a R1 existir — e recebe 'nao localizamos declaracao do fabricante'. As duas ferramentas nao se entregam a visita uma para a outra. O funil esta partido na emenda, e nenhuma das duas medicoes isoladas mostrava a emenda.",
     "O QUE ISSO MUDA NA ORDEM DA FILA: a leva anterior deixou 'pecas da Xiaomi e da WAP com codigo' em ULTIMO lugar entre os alvos de coleta. A varredura diz que ele e o primeiro entre os coletaveis, por dois motivos medidos. Primeiro: e o unico alvo que fecha a emenda pelo lado que da para colher — a lacuna simetrica (Pa da Electrolux e da Multi) ja foi medida como inexistente no mercado, essas marcas nao publicam Pa em canal nenhum, entao insistir nela e trabalho sem fim. Segundo: sao exatamente os 8 modelos que a R2 ja recomenda, ou seja, o retorno chega na visita que a ilha ja sabe atrair, nao numa visita hipotetica.",
     "DECISAO DE INTERFACE que a varredura obriga: o tipo 'reservatorio' nao tem NENHUMA peca declarada no banco inteiro. Deixar esse tipo no seletor da R1 e oferecer uma escolha que sempre devolve recusa — pela secao 6 do ARQUIPELAGO.md a promessa vem antes do formulario, entao o seletor da R1 so oferece tipo que o banco consegue responder em pelo menos um modelo, e o tipo volta ao seletor no dia em que a primeira peca dele entrar.",
-    "O QUE A VARREDURA NAO E: ela nao aplica o portao de 3 itens da secao 9. Na R2 a faixa produz uma lista de produtos concorrentes e tres e o minimo honesto; na R1 a resposta certa costuma ser UMA peca, a que o fabricante declarou, e exigir tres levaria a ilha a inventar concorrente onde o fabricante tem uma peca so. O criterio aqui e binario e mais duro: das 168 celulas (modelo x tipo), 116 nao tem o que responder."
+    "O QUE A VARREDURA NAO E: ela nao aplica o portao de 3 itens da secao 9. Na R2 a faixa produz uma lista de produtos concorrentes e tres e o minimo honesto; na R1 a resposta certa costuma ser UMA peca, a que o fabricante declarou, e exigir tres levaria a ilha a inventar concorrente onde o fabricante tem uma peca so. O criterio aqui e binario e mais duro: das 168 celulas (modelo x tipo), 123 nao tem o que responder."
   ],
   "por_tipo": {
     "filtro": {
-      "declarada": 10,
-      "kit_sem_composicao": 1,
+      "declarada": 11,
+      "kit_sem_composicao": 0,
       "vazia": 17
     },
     "escova lateral": {
-      "declarada": 13,
-      "kit_sem_composicao": 2,
-      "vazia": 13
+      "declarada": 14,
+      "kit_sem_composicao": 0,
+      "vazia": 14
     },
     "escova principal": {
       "declarada": 7,
-      "kit_sem_composicao": 2,
-      "vazia": 19
+      "kit_sem_composicao": 0,
+      "vazia": 21
     },
     "mop": {
-      "declarada": 10,
-      "kit_sem_composicao": 2,
+      "declarada": 12,
+      "kit_sem_composicao": 0,
       "vazia": 16
     },
     "bateria": {
       "declarada": 1,
-      "kit_sem_composicao": 2,
-      "vazia": 25
+      "kit_sem_composicao": 0,
+      "vazia": 27
     },
     "reservatorio": {
       "declarada": 0,
-      "kit_sem_composicao": 2,
-      "vazia": 26
+      "kit_sem_composicao": 0,
+      "vazia": 28
     }
   },
   "por_marca": {
     "electrolux": {
       "modelos": 9,
-      "respondem": 8
+      "respondem": 9
     },
     "multi": {
       "modelos": 6,
@@ -160,13 +160,8 @@
     "xiaomi-s40",
     "xiaomi-s40c"
   ],
-  "so_kit_de_composicao_nao_transcrita": [
-    "electrolux-erb30"
-  ],
-  "pecas_publicaveis_que_nao_alcancam_resposta": [
-    "electrolux-kit-performance-erb44",
-    "electrolux-kit-performance-erb30"
-  ],
+  "so_kit_de_composicao_nao_transcrita": [],
+  "pecas_publicaveis_que_nao_alcancam_resposta": [],
   "por_modelo": [
     {
       "modelo": "electrolux-erb10",
@@ -226,10 +221,18 @@
       "modelo": "electrolux-erb30",
       "marca": "electrolux",
       "codigo_fabricante": "ERB30",
-      "resultado": "so_kit_de_composicao_nao_transcrita",
-      "tipos_cobertos": [],
-      "tipos_vazios": [],
-      "pecas_do_fabricante": 0,
+      "resultado": "responde",
+      "tipos_cobertos": [
+        "escova lateral",
+        "filtro",
+        "mop"
+      ],
+      "tipos_vazios": [
+        "escova principal",
+        "bateria",
+        "reservatorio"
+      ],
+      "pecas_do_fabricante": 1,
       "tem_aviso_de_variante": false
     },
     {
@@ -238,10 +241,16 @@
       "codigo_fabricante": "ERB44",
       "resultado": "responde",
       "tipos_cobertos": [
-        "filtro"
+        "filtro",
+        "mop"
       ],
-      "tipos_vazios": [],
-      "pecas_do_fabricante": 1,
+      "tipos_vazios": [
+        "escova lateral",
+        "escova principal",
+        "bateria",
+        "reservatorio"
+      ],
+      "pecas_do_fabricante": 2,
       "tem_aviso_de_variante": false
     },
     {
