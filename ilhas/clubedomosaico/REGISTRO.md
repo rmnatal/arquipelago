@@ -1313,3 +1313,124 @@ desta ilha. Casca **1.7.0**, manifest na **revisão 13**, `/status` com revisão
   ABAIXO DO PISO da seção 21 (11 URLs), então a leva sai no ritmo normal, de 5 a
   10 URLs, sem esperar medição — e agora, pela primeira vez, com a série de
   audiência correndo por baixo dela.
+
+12/09/2026 19:21Z — A VARREDURA DA SEÇÃO 14.3: o 4c não estava esperando ser escrito, estava esperando banco — e agora isso é um número
+
+- **O bloco começou como 4c e virou a medição que o 4c pedia.** O `ESTADO.md`
+  vinha dizendo, execução após execução, que o próximo passo eram as **seis
+  fichas de categoria de material** (`/materiais/pastilhas`, `/alicates`,
+  `/colas`, `/rejuntes`, `/bases`, `/acabamento`). O `ARVORE.md` já dizia, desde
+  11/09, que nenhuma delas podia nascer pela **16.5** — categoria só nasce com 3
+  filhas de dado real, e Colas e Rejuntes têm **uma** cada. As duas frases
+  conviviam porque nenhuma era falsa. O que faltava era o segundo portão, que
+  ninguém tinha medido: **a seção 14.3**, que proíbe faixa de ferramenta sair com
+  menos de 3 produtos elegíveis. Sem esse número, a próxima execução escolheria
+  entre escrever seis páginas magras e adiar de novo, sem critério.
+
+- **O QUE A VARREDURA MEDIU, de ponta a ponta e pela primeira vez.** Dos **45**
+  estados de cola que a F2 serve, **ZERO** chegam aos 3 elegíveis que a 14.3
+  exige; o teto é **2** e **13** não servem nenhum produto. Dos **60** estados de
+  rejunte, **12** chegam, **48** não, e **25** não servem nenhum. E **5 das 7
+  categorias do vocabulário não têm um único item no banco**: `pastilha`,
+  `alicate`, `base`, `acabamento`, `apoio`. A consequência é mais dura do que a
+  16.5 sozinha: com o banco de hoje **nem as filhas de nível 3 de cola podem
+  nascer**, porque nenhum recorte da categoria reúne os 3 itens que o portão de
+  dado da seção 9 cobra. Não é falta de texto — é falta de produto.
+
+- **TRÊS FONTES, E NENHUM NÚMERO DIGITADO.** (1) A **faixa** vem de
+  `ferramentas/faixa-da-f2.php`, que a mede **provocando o próprio snippet**: põe
+  cada valor de um superconjunto deliberadamente maior em `$_GET`, chama
+  `cdm_f2_entrada()` — a mesma função que saneia a consulta de quem visita — e
+  fica com o que sobreviveu. Faixa digitada mediria a faixa que alguém lembrou e
+  ficaria verde no dia em que o campo da junta mudasse de teto. O medidor
+  **recusa medir** quando o superconjunto não passa por cima nem por baixo da
+  faixa (teto medido igual ao teto da régua não é teto, é o fim da régua) e
+  quando o saneamento aceita um valor inventado. (2) A **régua** é a de
+  `validar-banco.py`, importada: ela recompõe a elegibilidade das **declarações**
+  pelas regras do esquema e foi escrita no bloco 3 **antes** de existir uma linha
+  do snippet PHP. Reimplementá-la aqui uma terceira vez não acrescentaria
+  independência nenhuma — acrescentaria uma cópia para envelhecer calada. (3) O
+  que o **site serve** é conferido por `ferramentas/conferir-cobertura.php`, que
+  anda os mesmos estados chamando o snippet, **um processo por estado**.
+
+- **O CRUZAMENTO PASSOU DE 27 PARA 105 ESTADOS, e esse é o ganho estrutural do
+  bloco.** A régua Python e a régua PHP são duas implementações da mesma regra, e
+  até hoje elas só se encontravam nas **27** células escritas à mão do esquema —
+  18 de cola e 9 de rejunte — de **105** que as ferramentas servem. Os outros
+  **78** nunca tinham sido comparados com nada: se as duas metades divergissem
+  ali, o censo diria um número e a página serviria outro, e nenhum portão veria.
+  Hoje as duas concordam nos 105. `conferir-cobertura.php`: **128 afirmações, 0
+  falha**.
+
+- **MUTAÇÕES: 14 escritas, 14 reprovadas, e 9 delas NENHUM portão antigo pegou.**
+  O script roda, para cada mutação, também `validar-banco.py` e `teste-f2.php`, e
+  marca as que só a varredura viu — mutação que qualquer portão antigo pega já
+  estava coberta e não justificaria arquivo novo. A que melhor mostra o buraco:
+  **a faixa de junta afrouxa só em 7, 8 e 9 mm**. A grade escrita à mão do
+  esquema pisa em 1, 2, 3, 4, 5, 6, 10 e 11 mm, escolhidos para encostar nas
+  bordas declaradas — é uma grade boa, e é exatamente por isso que 7, 8 e 9 caem
+  num vão onde nenhum extremo mora. Com esse afrouxamento o site passa a
+  recomendar rejunte que o fabricante não cobre, e os 27 cruzamentos antigos
+  continuam verdes.
+
+- **DUAS MUTAÇÕES FORAM REESCRITAS DEPOIS DE PASSAR, e as duas ensinaram algo.**
+  (a) A que derrubava a **regra 3 do rejunte** (quem delimita ambiente fica
+  fechado nele) passou — e não por buraco no portão: **com o banco de hoje essa
+  regra é código morto.** Das cinco fichas, só o acrílico declara ambiente
+  (`áreas internas e externas`), e nos estados em que a regra 3 o cortaria a
+  regra 2 já o tinha cortado antes, porque `contato_permanente_agua` é crítico e
+  as resistências dele param em `áreas molhadas`. A regra **fica no snippet** — é
+  ela que vai decidir no dia em que entrar um rejunte que delimite ambiente — mas
+  a mutação saiu, porque mutação inerte é teste verde com outro nome. (b) A do
+  **gerador contando errado** reprovava pelo portão errado: ela mutava
+  `cobertura.py` sem regenerar o JSON, então caía em "arquivo velho" em vez de na
+  recontagem. O caso real é alguém mexer no gerador, rodar e commitar as duas
+  coisas juntas — aí a regeneração bate consigo mesma e só a recontagem do lado
+  PHP vê. Reescrita assim, ela passou a cair em `cola: "com o mínimo" bate com a
+  contagem`, que é o portão que ela existe para medir.
+
+- **REDE, reconferida como a seção 20.2 manda.** Os domínios de fabricante estão
+  **fora da lista de egresso**: `colormix.com.br`, `vidrotil.com.br` e
+  `quartzolit.weber` responderam `000` por `curl` em **duas passadas da mesma
+  execução**, com `clubedomosaico.com.br` em **200** nas duas. É política, não a
+  intermitência de túnel. **Mas isso NÃO bloqueia a coleta de banco:** o canal de
+  busca alcança os mesmos fabricantes, foi assim que o bloco 3c colheu os cinco
+  rejuntes, e foi reconfirmado nesta execução. Escrever "coleta bloqueada por
+  rede" aqui seria repetir o diagnóstico que custou dois dias a esta ilha em
+  11/09.
+
+- **NADA FOI AO AR, e isso é desenho, não pendência.** Nenhum arquivo publicável
+  mudou: os três snippets estão byte a byte como estavam, nenhuma URL nasceu e
+  nenhuma mudou. `dados/cobertura.json` entra com `publicar: false` — o site não
+  precisa dele, e publicá-lo criaria uma segunda fonte do mesmo número dentro do
+  site. Portanto **não houve Sync nesta execução**, pela mesma leitura da seção 4
+  que valeu no bloco 1. Manifest na **revisão 14**, com as quatro ferramentas
+  novas e o censo inventariados — o portão de ferramenta órfã de
+  `atualizar-manifest.py` acusou as quatro antes de qualquer commit, que é para
+  isso que ele foi consertado ontem.
+
+- **REGRESSÃO SEM UMA FALHA:** `php -l` em todos os snippets e ferramentas,
+  `validar-banco` (10 materiais, 18 + 9 células recomputadas), `teste-casca`
+  (539), `teste-f1` (67, 24 estados um processo cada), `teste-f2` (72),
+  `teste-prestacao-rejunte` (5 afirmações sobre 540 estados da F2 e 180 da F1).
+  O `teste-casca` importa em especial porque ele **lê o `ARVORE.md`** para cobrar
+  que documento e código digam a mesma coisa, e este bloco escreveu uma seção
+  nova lá. As sete baterias de mutação antigas foram rodadas inteiras para provar
+  que **nenhuma virou inerte**: árvore 20/20, F1 27/27, F2 20/20, GA4 14/14,
+  prestação 11/11, rejunte 12/12, voz e cabeça 24/24 — **128 mutações, 128
+  reprovadas**.
+
+- **Receita:** 10 dos 10 itens do banco seguem esperando link de afiliado e 10
+  sem imagem; este bloco não tocou catálogo. Pauta da seção 17: `pauta.md` ainda
+  não existe — 0 escritos, 0 na fila, 0 recusados.
+
+- **PRÓXIMO PASSO, e agora ele tem ordem e motivo.** **Banco antes de página.** A
+  categoria `pastilha` é a primeira, e não por gosto: a F1 responde "quantas
+  pastilhas comprar" e a ilha não tem **uma** pastilha no banco, então a
+  ferramenta de maior intenção de compra da ilha calcula uma quantidade e não tem
+  o que vender — é a faixa descoberta mais cara da seção 14.3 e o buraco que
+  nenhuma coleta de cola ou de rejunte fecha. Depois dela, cola, onde o teto de 2
+  elegíveis por estado diz que faltam produtos. **Só então** as filhas de nível 3
+  por cluster (16.6), e **só então** a mãe de nível 2, que é o 4c. A coleta vai
+  pelo canal de busca, com as travas da seção 8: nunca pôr na consulta o valor
+  que se quer confirmar, e fonte que não cita o documento é paráfrase.

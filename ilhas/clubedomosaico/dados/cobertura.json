@@ -1,0 +1,3499 @@
+{
+  "id": "cobertura",
+  "ilha": "clubedomosaico",
+  "bloco": "varredura da secao 14.3",
+  "gerado_por": "ferramentas/cobertura.py",
+  "derivado_de": {
+    "esquema-banco.json": "2026-09-10",
+    "materiais-colas.json": "2026-09-10",
+    "materiais-rejuntes.json": "2026-09-11",
+    "snippets/clubedomosaico-f2.php": "a faixa de entrada, medida em cada varredura"
+  },
+  "o_que_este_arquivo_e": "O censo de cobertura das duas ferramentas da ilha: para CADA estado que a F2 consegue servir, quantos produtos do banco sao elegiveis. Serie nao: e uma fotografia do banco de hoje, e se regenera a cada mudanca de banco ou de faixa.",
+  "criterio": "secao 14.3 do ARQUIPELAGO.md: nenhuma faixa que as ferramentas da ilha conseguem produzir pode sair sem pelo menos 3 produtos elegiveis",
+  "minimo_exigido": 3,
+  "o_que_conta_como_elegivel": "recomendados_topo + elegiveis_abaixo_do_topo. Mencao com ressalva NAO conta: pela regra 5 do esquema ela vem de fonte fraca demais para virar recomendacao.",
+  "faixa_varrida": {
+    "fonte": "ferramentas/faixa-da-f2.php, medindo o proprio snippet",
+    "bases": 9,
+    "ambientes": 5,
+    "juntas_mm": 12,
+    "estados_de_cola": 45,
+    "estados_de_rejunte": 60
+  },
+  "banco_hoje": {
+    "por_categoria": {
+      "cola": 5,
+      "rejunte": 5
+    },
+    "categorias_do_vocabulario_sem_nenhum_item": [
+      "pastilha",
+      "alicate",
+      "base",
+      "acabamento",
+      "apoio"
+    ]
+  },
+  "resumo": {
+    "cola": {
+      "estados_varridos": 45,
+      "estados_com_o_minimo": 0,
+      "estados_descobertos": 45,
+      "estados_sem_nenhum_elegivel": 13,
+      "maior_numero_de_elegiveis_em_um_estado": 2,
+      "menor_numero_de_elegiveis_em_um_estado": 0
+    },
+    "rejunte": {
+      "estados_varridos": 60,
+      "estados_com_o_minimo": 12,
+      "estados_descobertos": 48,
+      "estados_sem_nenhum_elegivel": 25,
+      "maior_numero_de_elegiveis_em_um_estado": 4,
+      "menor_numero_de_elegiveis_em_um_estado": 0
+    }
+  },
+  "faixas_descobertas": {
+    "cola": [
+      {
+        "base": "alvenaria_tijolo",
+        "ambiente": "contato_permanente_agua",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-neutro"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "alvenaria_tijolo",
+        "ambiente": "externo_abrigado",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "alvenaria_tijolo",
+        "ambiente": "externo_exposto",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "alvenaria_tijolo",
+        "ambiente": "interno_molhado",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "alvenaria_tijolo",
+        "ambiente": "interno_seco",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "ceramica_esmaltada_porcelana",
+        "ambiente": "contato_permanente_agua",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-neutro"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "ceramica_esmaltada_porcelana",
+        "ambiente": "externo_abrigado",
+        "elegiveis": [
+          "tekbond-silicone-acetico-construcao",
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante nao declara esta base ou este ambiente"
+      },
+      {
+        "base": "ceramica_esmaltada_porcelana",
+        "ambiente": "externo_exposto",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "por_que": "o fabricante nao declara esta base ou este ambiente"
+      },
+      {
+        "base": "ceramica_esmaltada_porcelana",
+        "ambiente": "interno_molhado",
+        "elegiveis": [
+          "tekbond-silicone-acetico-construcao",
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante nao declara esta base ou este ambiente"
+      },
+      {
+        "base": "ceramica_esmaltada_porcelana",
+        "ambiente": "interno_seco",
+        "elegiveis": [
+          "tekbond-silicone-acetico-construcao",
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante nao declara esta base ou este ambiente"
+      },
+      {
+        "base": "cimento_concreto",
+        "ambiente": "contato_permanente_agua",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-neutro"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "cimento_concreto",
+        "ambiente": "externo_abrigado",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "cimento_concreto",
+        "ambiente": "externo_exposto",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "cimento_concreto",
+        "ambiente": "interno_molhado",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "cimento_concreto",
+        "ambiente": "interno_seco",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "espelho",
+        "ambiente": "contato_permanente_agua",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-neutro"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "espelho",
+        "ambiente": "externo_abrigado",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "espelho",
+        "ambiente": "externo_exposto",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "espelho",
+        "ambiente": "interno_molhado",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "espelho",
+        "ambiente": "interno_seco",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "mdf_madeira",
+        "ambiente": "contato_permanente_agua",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-neutro"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "mdf_madeira",
+        "ambiente": "externo_abrigado",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "mdf_madeira",
+        "ambiente": "externo_exposto",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "mdf_madeira",
+        "ambiente": "interno_molhado",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "mdf_madeira",
+        "ambiente": "interno_seco",
+        "elegiveis": [
+          "cascola-cascorez-extra",
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "metal",
+        "ambiente": "contato_permanente_agua",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-neutro"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "metal",
+        "ambiente": "externo_abrigado",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "metal",
+        "ambiente": "externo_exposto",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "metal",
+        "ambiente": "interno_molhado",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "metal",
+        "ambiente": "interno_seco",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "plastico",
+        "ambiente": "contato_permanente_agua",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-neutro"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "plastico",
+        "ambiente": "externo_abrigado",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-neutro"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "plastico",
+        "ambiente": "externo_exposto",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-neutro"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "plastico",
+        "ambiente": "interno_molhado",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-neutro"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "plastico",
+        "ambiente": "interno_seco",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-neutro"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "vidro",
+        "ambiente": "contato_permanente_agua",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-neutro"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "vidro",
+        "ambiente": "externo_abrigado",
+        "elegiveis": [
+          "tekbond-silicone-acetico-construcao",
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante nao declara esta base ou este ambiente"
+      },
+      {
+        "base": "vidro",
+        "ambiente": "externo_exposto",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "por_que": "o fabricante nao declara esta base ou este ambiente"
+      },
+      {
+        "base": "vidro",
+        "ambiente": "interno_molhado",
+        "elegiveis": [
+          "tekbond-silicone-acetico-construcao",
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante nao declara esta base ou este ambiente"
+      },
+      {
+        "base": "vidro",
+        "ambiente": "interno_seco",
+        "elegiveis": [
+          "tekbond-silicone-acetico-construcao",
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante nao declara esta base ou este ambiente"
+      },
+      {
+        "base": "vidro_laminado",
+        "ambiente": "contato_permanente_agua",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-neutro"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "vidro_laminado",
+        "ambiente": "externo_abrigado",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "vidro_laminado",
+        "ambiente": "externo_exposto",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "vidro_laminado",
+        "ambiente": "interno_molhado",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "vidro_laminado",
+        "ambiente": "interno_seco",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      }
+    ],
+    "rejunte": [
+      {
+        "junta_mm": 1,
+        "ambiente": "contato_permanente_agua",
+        "elegiveis": [
+          "quartzolit-rejunte-epoxi"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-piscinas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "eliminados_por_ambiente": [
+          "quartzolit-rejunte-acrilico"
+        ],
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+      },
+      {
+        "junta_mm": 1,
+        "ambiente": "externo_abrigado",
+        "elegiveis": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-piscinas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 1,
+        "ambiente": "externo_exposto",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-piscinas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "eliminados_por_ambiente": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi"
+        ],
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+      },
+      {
+        "junta_mm": 1,
+        "ambiente": "interno_molhado",
+        "elegiveis": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-piscinas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 1,
+        "ambiente": "interno_seco",
+        "elegiveis": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-piscinas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 2,
+        "ambiente": "contato_permanente_agua",
+        "elegiveis": [
+          "quartzolit-rejunte-epoxi"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+      },
+      {
+        "junta_mm": 2,
+        "ambiente": "externo_exposto",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+      },
+      {
+        "junta_mm": 3,
+        "ambiente": "contato_permanente_agua",
+        "elegiveis": [
+          "quartzolit-rejunte-epoxi"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+      },
+      {
+        "junta_mm": 3,
+        "ambiente": "externo_exposto",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+      },
+      {
+        "junta_mm": 4,
+        "ambiente": "contato_permanente_agua",
+        "elegiveis": [
+          "quartzolit-rejunte-epoxi"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+      },
+      {
+        "junta_mm": 4,
+        "ambiente": "externo_exposto",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+      },
+      {
+        "junta_mm": 5,
+        "ambiente": "contato_permanente_agua",
+        "elegiveis": [
+          "quartzolit-rejunte-epoxi"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+      },
+      {
+        "junta_mm": 5,
+        "ambiente": "externo_exposto",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+      },
+      {
+        "junta_mm": 6,
+        "ambiente": "contato_permanente_agua",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+      },
+      {
+        "junta_mm": 6,
+        "ambiente": "externo_abrigado",
+        "elegiveis": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 6,
+        "ambiente": "externo_exposto",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+      },
+      {
+        "junta_mm": 6,
+        "ambiente": "interno_molhado",
+        "elegiveis": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 6,
+        "ambiente": "interno_seco",
+        "elegiveis": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 7,
+        "ambiente": "contato_permanente_agua",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+      },
+      {
+        "junta_mm": 7,
+        "ambiente": "externo_abrigado",
+        "elegiveis": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 7,
+        "ambiente": "externo_exposto",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+      },
+      {
+        "junta_mm": 7,
+        "ambiente": "interno_molhado",
+        "elegiveis": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 7,
+        "ambiente": "interno_seco",
+        "elegiveis": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 8,
+        "ambiente": "contato_permanente_agua",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+      },
+      {
+        "junta_mm": 8,
+        "ambiente": "externo_abrigado",
+        "elegiveis": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 8,
+        "ambiente": "externo_exposto",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+      },
+      {
+        "junta_mm": 8,
+        "ambiente": "interno_molhado",
+        "elegiveis": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 8,
+        "ambiente": "interno_seco",
+        "elegiveis": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 9,
+        "ambiente": "contato_permanente_agua",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+      },
+      {
+        "junta_mm": 9,
+        "ambiente": "externo_abrigado",
+        "elegiveis": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 9,
+        "ambiente": "externo_exposto",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+      },
+      {
+        "junta_mm": 9,
+        "ambiente": "interno_molhado",
+        "elegiveis": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 9,
+        "ambiente": "interno_seco",
+        "elegiveis": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 10,
+        "ambiente": "contato_permanente_agua",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+      },
+      {
+        "junta_mm": 10,
+        "ambiente": "externo_abrigado",
+        "elegiveis": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 10,
+        "ambiente": "externo_exposto",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+      },
+      {
+        "junta_mm": 10,
+        "ambiente": "interno_molhado",
+        "elegiveis": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 10,
+        "ambiente": "interno_seco",
+        "elegiveis": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 11,
+        "ambiente": "contato_permanente_agua",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 11,
+        "ambiente": "externo_abrigado",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 11,
+        "ambiente": "externo_exposto",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 11,
+        "ambiente": "interno_molhado",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 11,
+        "ambiente": "interno_seco",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 12,
+        "ambiente": "contato_permanente_agua",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 12,
+        "ambiente": "externo_abrigado",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 12,
+        "ambiente": "externo_exposto",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 12,
+        "ambiente": "interno_molhado",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 12,
+        "ambiente": "interno_seco",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      }
+    ]
+  },
+  "estados": {
+    "cola": [
+      {
+        "base": "alvenaria_tijolo",
+        "ambiente": "contato_permanente_agua",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-neutro"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "alvenaria_tijolo",
+        "ambiente": "externo_abrigado",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "alvenaria_tijolo",
+        "ambiente": "externo_exposto",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "alvenaria_tijolo",
+        "ambiente": "interno_molhado",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "alvenaria_tijolo",
+        "ambiente": "interno_seco",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "ceramica_esmaltada_porcelana",
+        "ambiente": "contato_permanente_agua",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-neutro"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "ceramica_esmaltada_porcelana",
+        "ambiente": "externo_abrigado",
+        "elegiveis": [
+          "tekbond-silicone-acetico-construcao",
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante nao declara esta base ou este ambiente"
+      },
+      {
+        "base": "ceramica_esmaltada_porcelana",
+        "ambiente": "externo_exposto",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "por_que": "o fabricante nao declara esta base ou este ambiente"
+      },
+      {
+        "base": "ceramica_esmaltada_porcelana",
+        "ambiente": "interno_molhado",
+        "elegiveis": [
+          "tekbond-silicone-acetico-construcao",
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante nao declara esta base ou este ambiente"
+      },
+      {
+        "base": "ceramica_esmaltada_porcelana",
+        "ambiente": "interno_seco",
+        "elegiveis": [
+          "tekbond-silicone-acetico-construcao",
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante nao declara esta base ou este ambiente"
+      },
+      {
+        "base": "cimento_concreto",
+        "ambiente": "contato_permanente_agua",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-neutro"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "cimento_concreto",
+        "ambiente": "externo_abrigado",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "cimento_concreto",
+        "ambiente": "externo_exposto",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "cimento_concreto",
+        "ambiente": "interno_molhado",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "cimento_concreto",
+        "ambiente": "interno_seco",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "espelho",
+        "ambiente": "contato_permanente_agua",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-neutro"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "espelho",
+        "ambiente": "externo_abrigado",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "espelho",
+        "ambiente": "externo_exposto",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "espelho",
+        "ambiente": "interno_molhado",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "espelho",
+        "ambiente": "interno_seco",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "mdf_madeira",
+        "ambiente": "contato_permanente_agua",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-neutro"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "mdf_madeira",
+        "ambiente": "externo_abrigado",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "mdf_madeira",
+        "ambiente": "externo_exposto",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "mdf_madeira",
+        "ambiente": "interno_molhado",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "mdf_madeira",
+        "ambiente": "interno_seco",
+        "elegiveis": [
+          "cascola-cascorez-extra",
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "metal",
+        "ambiente": "contato_permanente_agua",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-neutro"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "metal",
+        "ambiente": "externo_abrigado",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "metal",
+        "ambiente": "externo_exposto",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "metal",
+        "ambiente": "interno_molhado",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "metal",
+        "ambiente": "interno_seco",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "plastico",
+        "ambiente": "contato_permanente_agua",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-neutro"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "plastico",
+        "ambiente": "externo_abrigado",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-neutro"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "plastico",
+        "ambiente": "externo_exposto",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-neutro"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "plastico",
+        "ambiente": "interno_molhado",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-neutro"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "plastico",
+        "ambiente": "interno_seco",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-neutro"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "vidro",
+        "ambiente": "contato_permanente_agua",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-neutro"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "vidro",
+        "ambiente": "externo_abrigado",
+        "elegiveis": [
+          "tekbond-silicone-acetico-construcao",
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante nao declara esta base ou este ambiente"
+      },
+      {
+        "base": "vidro",
+        "ambiente": "externo_exposto",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "por_que": "o fabricante nao declara esta base ou este ambiente"
+      },
+      {
+        "base": "vidro",
+        "ambiente": "interno_molhado",
+        "elegiveis": [
+          "tekbond-silicone-acetico-construcao",
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante nao declara esta base ou este ambiente"
+      },
+      {
+        "base": "vidro",
+        "ambiente": "interno_seco",
+        "elegiveis": [
+          "tekbond-silicone-acetico-construcao",
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "eliminados_por_proibicao": [],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante nao declara esta base ou este ambiente"
+      },
+      {
+        "base": "vidro_laminado",
+        "ambiente": "contato_permanente_agua",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-neutro"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "vidro_laminado",
+        "ambiente": "externo_abrigado",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "vidro_laminado",
+        "ambiente": "externo_exposto",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "vidro_laminado",
+        "ambiente": "interno_molhado",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      },
+      {
+        "base": "vidro_laminado",
+        "ambiente": "interno_seco",
+        "elegiveis": [
+          "tekbond-silicone-neutro"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii"
+        ],
+        "por_que": "o fabricante proibe uns e nao declara os outros"
+      }
+    ],
+    "rejunte": [
+      {
+        "junta_mm": 1,
+        "ambiente": "contato_permanente_agua",
+        "elegiveis": [
+          "quartzolit-rejunte-epoxi"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-piscinas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "eliminados_por_ambiente": [
+          "quartzolit-rejunte-acrilico"
+        ],
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+      },
+      {
+        "junta_mm": 1,
+        "ambiente": "externo_abrigado",
+        "elegiveis": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-piscinas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 1,
+        "ambiente": "externo_exposto",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-piscinas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "eliminados_por_ambiente": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi"
+        ],
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+      },
+      {
+        "junta_mm": 1,
+        "ambiente": "interno_molhado",
+        "elegiveis": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-piscinas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 1,
+        "ambiente": "interno_seco",
+        "elegiveis": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-piscinas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 2,
+        "ambiente": "contato_permanente_agua",
+        "elegiveis": [
+          "quartzolit-rejunte-epoxi"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+      },
+      {
+        "junta_mm": 2,
+        "ambiente": "externo_abrigado",
+        "elegiveis": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "quantos_elegiveis": 4,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": []
+      },
+      {
+        "junta_mm": 2,
+        "ambiente": "externo_exposto",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+      },
+      {
+        "junta_mm": 2,
+        "ambiente": "interno_molhado",
+        "elegiveis": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "quantos_elegiveis": 4,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": []
+      },
+      {
+        "junta_mm": 2,
+        "ambiente": "interno_seco",
+        "elegiveis": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "quantos_elegiveis": 4,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": []
+      },
+      {
+        "junta_mm": 3,
+        "ambiente": "contato_permanente_agua",
+        "elegiveis": [
+          "quartzolit-rejunte-epoxi"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+      },
+      {
+        "junta_mm": 3,
+        "ambiente": "externo_abrigado",
+        "elegiveis": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "quantos_elegiveis": 4,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": []
+      },
+      {
+        "junta_mm": 3,
+        "ambiente": "externo_exposto",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+      },
+      {
+        "junta_mm": 3,
+        "ambiente": "interno_molhado",
+        "elegiveis": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "quantos_elegiveis": 4,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": []
+      },
+      {
+        "junta_mm": 3,
+        "ambiente": "interno_seco",
+        "elegiveis": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "quantos_elegiveis": 4,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": []
+      },
+      {
+        "junta_mm": 4,
+        "ambiente": "contato_permanente_agua",
+        "elegiveis": [
+          "quartzolit-rejunte-epoxi"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+      },
+      {
+        "junta_mm": 4,
+        "ambiente": "externo_abrigado",
+        "elegiveis": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "quantos_elegiveis": 4,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": []
+      },
+      {
+        "junta_mm": 4,
+        "ambiente": "externo_exposto",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+      },
+      {
+        "junta_mm": 4,
+        "ambiente": "interno_molhado",
+        "elegiveis": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "quantos_elegiveis": 4,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": []
+      },
+      {
+        "junta_mm": 4,
+        "ambiente": "interno_seco",
+        "elegiveis": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "quantos_elegiveis": 4,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": []
+      },
+      {
+        "junta_mm": 5,
+        "ambiente": "contato_permanente_agua",
+        "elegiveis": [
+          "quartzolit-rejunte-epoxi"
+        ],
+        "quantos_elegiveis": 1,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+      },
+      {
+        "junta_mm": 5,
+        "ambiente": "externo_abrigado",
+        "elegiveis": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "quantos_elegiveis": 3,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": []
+      },
+      {
+        "junta_mm": 5,
+        "ambiente": "externo_exposto",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+      },
+      {
+        "junta_mm": 5,
+        "ambiente": "interno_molhado",
+        "elegiveis": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "quantos_elegiveis": 3,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": []
+      },
+      {
+        "junta_mm": 5,
+        "ambiente": "interno_seco",
+        "elegiveis": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "quantos_elegiveis": 3,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": []
+      },
+      {
+        "junta_mm": 6,
+        "ambiente": "contato_permanente_agua",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+      },
+      {
+        "junta_mm": 6,
+        "ambiente": "externo_abrigado",
+        "elegiveis": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 6,
+        "ambiente": "externo_exposto",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+      },
+      {
+        "junta_mm": 6,
+        "ambiente": "interno_molhado",
+        "elegiveis": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 6,
+        "ambiente": "interno_seco",
+        "elegiveis": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 7,
+        "ambiente": "contato_permanente_agua",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+      },
+      {
+        "junta_mm": 7,
+        "ambiente": "externo_abrigado",
+        "elegiveis": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 7,
+        "ambiente": "externo_exposto",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+      },
+      {
+        "junta_mm": 7,
+        "ambiente": "interno_molhado",
+        "elegiveis": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 7,
+        "ambiente": "interno_seco",
+        "elegiveis": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 8,
+        "ambiente": "contato_permanente_agua",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+      },
+      {
+        "junta_mm": 8,
+        "ambiente": "externo_abrigado",
+        "elegiveis": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 8,
+        "ambiente": "externo_exposto",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+      },
+      {
+        "junta_mm": 8,
+        "ambiente": "interno_molhado",
+        "elegiveis": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 8,
+        "ambiente": "interno_seco",
+        "elegiveis": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 9,
+        "ambiente": "contato_permanente_agua",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+      },
+      {
+        "junta_mm": 9,
+        "ambiente": "externo_abrigado",
+        "elegiveis": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 9,
+        "ambiente": "externo_exposto",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+      },
+      {
+        "junta_mm": 9,
+        "ambiente": "interno_molhado",
+        "elegiveis": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 9,
+        "ambiente": "interno_seco",
+        "elegiveis": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 10,
+        "ambiente": "contato_permanente_agua",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+      },
+      {
+        "junta_mm": 10,
+        "ambiente": "externo_abrigado",
+        "elegiveis": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 10,
+        "ambiente": "externo_exposto",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "por_que": "a faixa de junta exclui uns e o ambiente nao declarado exclui os outros"
+      },
+      {
+        "junta_mm": 10,
+        "ambiente": "interno_molhado",
+        "elegiveis": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 10,
+        "ambiente": "interno_seco",
+        "elegiveis": [
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "quantos_elegiveis": 2,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 11,
+        "ambiente": "contato_permanente_agua",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 11,
+        "ambiente": "externo_abrigado",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 11,
+        "ambiente": "externo_exposto",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 11,
+        "ambiente": "interno_molhado",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 11,
+        "ambiente": "interno_seco",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 12,
+        "ambiente": "contato_permanente_agua",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 12,
+        "ambiente": "externo_abrigado",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 12,
+        "ambiente": "externo_exposto",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 12,
+        "ambiente": "interno_molhado",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      },
+      {
+        "junta_mm": 12,
+        "ambiente": "interno_seco",
+        "elegiveis": [],
+        "quantos_elegiveis": 0,
+        "com_ressalva": [],
+        "eliminados_por_faixa_de_junta": [
+          "quartzolit-rejunte-acrilico",
+          "quartzolit-rejunte-ceramicas",
+          "quartzolit-rejunte-epoxi",
+          "quartzolit-rejunte-piscinas",
+          "quartzolit-rejunte-porcelanatos-e-ceramicas"
+        ],
+        "eliminados_por_ambiente": [],
+        "por_que": "a faixa de junta declarada nao cobre esta largura"
+      }
+    ]
+  }
+}

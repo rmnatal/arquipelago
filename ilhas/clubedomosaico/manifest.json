@@ -4,7 +4,7 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 13,
+  "revisao": 14,
   "atualizado_em": "2026-09-12",
   "estado": "nascendo",
   "desembarque": {
@@ -139,6 +139,18 @@
       "publicar": false,
       "sha256": "5ebe20dfbce0daec1bed22d71b74191bbf490e54d233446fe1339c676b8132d8",
       "descricao": "A regua da tabela pre-renderizada da F1, e ela e de BANCADA, nao de site: publicar=false de proposito. O site nao precisa deste arquivo, porque a tabela das doze pecas sai da mesma funcao que responde ao formulario — publica-lo criaria uma segunda fonte do mesmo numero dentro do site, que e exatamente o defeito que ele existe para pegar. ferramentas/teste-f1.php le os esperados daqui, recalcula cada um com a propria implementacao e compara com o que a pagina SERVE: tres escritas independentes do mesmo numero, a mao, a bancada e o snippet. Cada linha carrega a conta escrita por extenso, para um humano poder refazer com calculadora. E o arquivo diz tambem o que NAO cobre — caquinho irregular, sobra diferente de 10%, rejunte que nao e cimenticio e medida que nao fecha sao varridos em estados proprios pela bancada, porque tabela nao e grade."
+    },
+    {
+      "id": "cobertura",
+      "arquivo": "dados/cobertura.json",
+      "formato": "json",
+      "entidade": "constante",
+      "fonte": "Varredura da secao 14.3 do ARQUIPELAGO.md, gerada por ferramentas/cobertura.py a partir de dados/esquema-banco.json, dados/materiais-colas.json e dados/materiais-rejuntes.json, com a faixa medida em snippets/clubedomosaico-f2.php. Nao ha coleta nova neste arquivo: ele so conta o que o banco ja declara.",
+      "verificado_em": "2026-09-12",
+      "registros": 105,
+      "publicar": false,
+      "sha256": "d788c1397310b7ec175ad3e0643065b3b26b61ec19e5fdee9ceaffe5c44ae0ec",
+      "descricao": "O censo de cobertura das duas ferramentas: quantos produtos do banco sao elegiveis em cada um dos 105 estados que a F2 serve, quais faixas saem abaixo dos 3 que a secao 14.3 exige, e a causa que o proprio calculo separou em cada uma. NAO e serie historica: e uma fotografia do banco de hoje, e se regenera a cada mudanca de banco ou de faixa — por isso publicar=false e por isso o arquivo nao leva carimbo de relogio. E o numero que decide qual bloco a ilha faz em seguida: enquanto ele disser que nenhum estado de cola chega a 3 elegiveis, nenhuma filha de nivel 3 do Guia passa no portao de dado da secao 9, e a 16.5 mantem as seis fichas do 4c fechadas."
     }
   ],
   "ferramentas": [
@@ -261,6 +273,30 @@
       "arquivo": "ferramentas/validar-banco.py",
       "sha256": "d9648f1369677a00ad327729b180e62dd4155a8d7b7d8c02a509a8766fcc26c5",
       "descricao": "Verifica o banco contra dados/esquema-banco.json sem rede e sem dependencia: campos obrigatorios, vocabularios, fonte por campo tecnico, nivel de fonte, afiliado presente mesmo vazio, contagem declarada no cabecalho e passo de fabrica das pastilhas. O principal: RECOMPUTA as 18 celulas da matriz da F2 pelas cinco regras de elegibilidade e falha se o banco e a pagina se separarem. E a implementacao de referencia que o snippet PHP do bloco 4 tem que repetir. NUNCA e publicada no site. BLOCO 3c: ganhou a regua propria do REJUNTE, escrita sem reaproveitar perfil() nem avaliar() da cola — nao por cerimonia, mas porque as declaracoes nomeiam coisas diferentes nas duas categorias. Confere os cinco perfis e as nove celulas junta x ambiente contra o que esta escrito A MAO no esquema, exige que a grade pise em toda borda declarada e em pelo menos um valor acima da maior delas, reprova faixa de junta pela metade ou invertida, cobra perfil escrito para todo rejunte do banco, e guarda a regressao do defeito que o bloco corrigiu: rejunte que aparecer em qualquer lista da matriz da F2 e erro."
+    },
+    {
+      "id": "faixa-da-f2",
+      "arquivo": "ferramentas/faixa-da-f2.php",
+      "sha256": "e659dde9a2190995970a0a8d431ada12858f18f4962146949ba8d1fca5e45017",
+      "descricao": "Mede a faixa de entrada da F2 PROVOCANDO o proprio snippet, em vez de le-la no codigo ou digita-la: poe cada valor de um superconjunto deliberadamente maior em $_GET, chama cdm_f2_entrada() — a mesma funcao que sanea a consulta de quem visita — e fica com o que sobreviveu. Devolve as 9 bases, os 5 ambientes, as 6 tesselas, a faixa de junta e o produto delas (45 estados de cola, 60 de rejunte). RECUSA medir quando o superconjunto nao passa por cima ou por baixo da faixa (teto medido igual ao teto da regua nao e teto, e o fim da regua) e quando o saneamento aceita um valor inventado. Existe porque a secao 14.3 manda varrer a faixa 'de ponta a ponta', e varredura sobre faixa digitada fica verde no dia em que o campo mudar de teto. Bancada: nunca vai para o site."
+    },
+    {
+      "id": "cobertura",
+      "arquivo": "ferramentas/cobertura.py",
+      "sha256": "a9202154a92f10d0ccbc89ace2143776b9c915cd8800ecd028e1d33326999f41",
+      "descricao": "A varredura da secao 14.3: para CADA estado que a F2 serve, conta quantos produtos do banco sao elegiveis, e escreve dados/cobertura.json. A faixa vem de faixa-da-f2.php (medida no snippet); a regua vem de validar-banco.py, importada — ela recompoe a elegibilidade das DECLARACOES pelas regras do esquema e foi escrita antes de existir o snippet PHP, entao reimplementa-la aqui uma terceira vez nao acrescentaria independencia, so uma copia para envelhecer calada. Mencao com ressalva NAO conta como elegivel (regra 5: fonte fraca demais). O arquivo gerado NAO leva carimbo de relogio, de proposito: ele e funcao das entradas, e com timestamp dentro o modo --conferir acusaria 'velho' a cada execucao ate alguem desligar o portao. Bancada: nunca vai para o site."
+    },
+    {
+      "id": "conferir-cobertura",
+      "arquivo": "ferramentas/conferir-cobertura.php",
+      "sha256": "97b6b218cfe6ffb23233d674169420edfed399c4eb490092b114b0383cd5b1e6",
+      "descricao": "Cruza o censo com o que o site SERVE, estado a estado, um processo por estado. dados/cobertura.json e escrito pela regua Python; quem serve a pagina e o snippet PHP: duas implementacoes da mesma regra que, ate este bloco, so se cruzavam nas 27 celulas escritas a mao do esquema, de 105 que as ferramentas servem. Confere tambem que a faixa do censo e a que o snippet serve hoje, que o censo tem um estado por par e nenhum repetido, que toda contagem do resumo BATE com a recontagem feita das listas (numero de tela nasce contado, nunca digitado), que toda faixa descoberta nomeia a causa que o calculo separou, e que nenhuma categoria declarada vazia tem item no banco. Bancada: nunca vai para o site."
+    },
+    {
+      "id": "mutacoes-cobertura",
+      "arquivo": "ferramentas/mutacoes-cobertura.py",
+      "sha256": "529b3d554d5cf997918122bfa9682bf7ddc8e2e8f6c415d629d4b9f7d22e23b5",
+      "descricao": "Quebra a varredura de proposito, uma mutacao por vez, e exige que cobertura.py --conferir ou conferir-cobertura.php reprove cada uma. Mede uma segunda coisa, que e a razao de o bloco existir: para cada mutacao roda TAMBEM os portoes anteriores (validar-banco.py e teste-f2.php) e marca as que so a varredura viu — mutacao que qualquer portao antigo pega ja estava coberta e nao justificaria arquivo novo. A mais importante afrouxa a faixa de junta SO em 7, 8 e 9 mm, que e o vao onde a grade escrita a mao do esquema nao pisa. Bancada: nunca vai para o site."
     }
   ],
   "esquema": {

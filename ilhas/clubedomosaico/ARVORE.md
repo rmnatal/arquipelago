@@ -117,6 +117,25 @@ Hoje isso não corta nada nesta ilha, porque os três degraus de nível 1 existe
 
 ---
 
+## 7b. O 4c NÃO ESTÁ ESPERANDO SER ESCRITO — ele está esperando banco, e agora isso é um número (12/09/2026)
+
+O `ESTADO.md` vinha dizendo, execução após execução, que o próximo passo era o **bloco 4c — as seis fichas de categoria de material**. A seção 2 deste arquivo já dizia que nenhuma das seis podia nascer, pela 16.5, e as duas frases conviveram porque nenhuma das duas era falsa: 4c é mesmo o próximo da fila, e mesmo assim nenhuma das seis páginas pode ser publicada. O que faltava era dizer **o que exatamente destrava**, com número, em vez de deixar a próxima execução redescobrir isso do zero — e foi o que a varredura da seção 14.3 mediu nesta execução (`dados/cobertura.json`).
+
+**São dois portões em série, e o segundo é o que ninguém tinha medido.**
+
+1. **16.5 — categoria só nasce com 3 filhas de dado real.** Colas e Rejuntes têm **uma** filha cada (a F2 e a F1, e a F1 conta para Pastilhas também). Pastilhas, Alicates, Bases e Acabamento têm zero.
+2. **Seção 14.3 — nenhuma faixa que as ferramentas produzem pode sair sem 3 produtos elegíveis.** Medido de ponta a ponta: dos **45** estados de cola que a F2 serve, **0** chegam a 3 elegíveis, o teto é **2** e **13** não servem nenhum; dos **60** estados de rejunte, **12** chegam, **48** não, e **25** não servem nenhum.
+
+O segundo portão é o que decide, e ele é mais duro do que parece: **uma filha de nível 3 do Guia teria que passar no portão de dado da seção 9 — 3 itens de banco reais —, e hoje nenhum recorte da categoria cola consegue reunir 3.** Ou seja, não é só que as seis categorias não têm filhas: com o banco de hoje, **as filhas de cola também não podem nascer**, por mais bem escritas que fossem. Publicá-las assim seria página fina em domínio novo, que é o que a 14.1 existe para impedir.
+
+**O que destrava, na ordem, e nada disso é opinião:**
+
+- **Banco.** As cinco categorias do vocabulário sem um único item (`pastilha`, `alicate`, `base`, `acabamento`, `apoio`) não são fechadas por coleta nenhuma de cola ou de rejunte. E mesmo em cola, o teto de 2 elegíveis por estado diz que faltam produtos, não texto.
+- **Só então as filhas de nível 3**, por cluster (16.6), começando pelo cluster cuja resposta termina em produto do banco (seção 9).
+- **Só então a mãe de nível 2**, que é o 4c.
+
+**Por que a coleta não aconteceu nesta execução, e a metade que não é bloqueio:** os domínios de fabricante estão fora da lista de egresso das rotinas — `colormix.com.br`, `vidrotil.com.br` e `quartzolit.weber` responderam `000` por `curl` em **duas passadas da mesma execução**, com `clubedomosaico.com.br` em 200 nas duas (é a reconferência que a seção 20.2 exige antes de chamar qualquer coisa de bloqueio). **Mas a busca alcança**: a coleta do bloco 3c foi feita assim, e foi reconfirmada aqui. Então a coleta de banco continua possível pelo canal de busca, com as travas de coleta da seção 8 — nunca pôr na consulta o valor que se quer confirmar, e fonte que não cita o documento é paráfrase, não fonte.
+
 ## 8. O que este bloco NÃO fez, de propósito
 
 - **Não criou nenhuma URL.** As dez páginas de nível 2 desta árvore (seis do Guia, mais as da Loja e da Escola) esperam a 16.5, que é portão de dado e não de calendário.
