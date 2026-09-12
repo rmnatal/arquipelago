@@ -4,7 +4,7 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 11,
+  "revisao": 12,
   "atualizado_em": "2026-09-12",
   "estado": "nascendo",
   "desembarque": {
@@ -31,8 +31,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.0.0",
-      "sha256": "16a371b57aa4fdc39750726b840ec169707ba403cc84a387d3506915a8839622",
+      "versao": "1.1.0",
+      "sha256": "ce23c0f7ab6b37519eb286c89293ad4171df5a3205780bfd61ffb2448209060c",
       "descricao": "BLOCO 4 — a primeira ferramenta da ilha e a primeira pagina de nivel 3 dela, em /materiais/qual-cola-usar-no-mosaico/. Responde 'qual cola usar no mosaico' pela declaracao do proprio fabricante, com a superficie, o lugar onde a peca vai ficar e a largura da junta. A RESPOSTA E SERVIDA PELO SERVIDOR: o formulario e um GET para a propria pagina e o PHP monta a resposta, entao nao existe uma linha de decisao em JavaScript — todo estado da entrada e HTML servido de verdade (secao 5: ferramenta que calcula no navegador mostra a um modelo de linguagem um formulario vazio), e nao ha regua duplicada entre PHP e JS para as duas se separarem. O preco disso e URL com parametro, pago na mesma linha: estado com parametro sai com noindex, follow e canonical para o endereco limpo, e quem entra no indice e a pagina-ancora, uma so. A ELEGIBILIDADE E RECOMPUTADA das declaracoes de dados/materiais-colas.json e dados/materiais-rejuntes.json pelas cinco regras da cola e pelas quatro do rejunte escritas em dados/esquema-banco.json — as mesmas que ferramentas/validar-banco.py implementa em Python, separado, e que ferramentas/teste-f2.php confere contra as matrizes escritas A MAO no bloco 3. A categoria e parte da pergunta: a regua da cola decide sobre BASE, a do rejunte sobre LARGURA DE JUNTA, e rejunte nao toca a base. O bloco de compra vem ANTES da prova de procedencia em todo cartao (cicatriz da Robometria de 10/09/2026) e nasce mesmo com os dez itens sem link, reservando o lugar e dizendo 'link de loja em breve'. Duas faixas ficam DECLARADAS como descobertas em vez de preenchidas no chute: base de plastico e peca em contato permanente com agua."
     },
     {
@@ -42,8 +42,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.0.0",
-      "sha256": "e7cf644c244c092f7ee9b6af42a7979037bb36fbdc89ecc39235ce383dd7b710",
+      "versao": "1.1.0",
+      "sha256": "c6169928b9271b36f5ed7e5fed066ae2ff50d9cdc2a4e8cddbe5b1feae155ccb",
       "descricao": "BLOCO 4, SEGUNDA FERRAMENTA — /materiais/quantas-pastilhas-para-mosaico/. Responde 'quantas pastilhas e quanto rejunte' com a conta da pastilha de artesanato, e nao com a do azulejo de obra: o bloco 1 mediu que a primeira pagina inteira de 'rejunte para mosaico' responde a pergunta da OBRA (0,2 a 0,4 kg/m2, calculado com azulejo grande), e a mesma formula do fabricante aplicada a pastilha de 1x1 cm com junta de 2 mm da 2,8 kg/m2 — quatro vezes o do azulejo de 10 cm e duas vezes o do piso de 20. A pagina nao disputa aquelas; ela responde outra pergunta. COMO NA F2, A CONTA E DO SERVIDOR: o formulario e um GET para a propria pagina, nao ha uma linha de decisao em JavaScript, e o estado com parametro sai com noindex, follow. A GEOMETRIA E NOSSA E O CONSUMO E DO FABRICANTE: area por forma (cilindro, cone pela GERATRIZ e nunca pela altura, placa, disco, esfera e moldura com vao) e contagem pelo passo (lado + folga, arredondada sempre para CIMA, porque lote novo de pastilha muda de cor) sao aritmetica desta ilha e nao dependem de banco nenhum; ja os gramas saem da formula publicada pela Quartzolit com o coeficiente LIDO do registro do rejunte ceramicas — e quando ele nao chega, a pagina continua respondendo area e pastilhas e diz que nao publica os gramas. A CORRECAO DO BLOCO 3c ESTA NA TELA: o 1,75 vem de um exemplo de rejunte cimenticio EM PO, entao a ferramenta RECUSA calcular para acrilico (pronto uso em pote) e epoxi (bicomponente) e nomeia o que falta; e recusa tambem se o banco trouxer dois coeficientes diferentes, porque escolher um dos dois calado e a mesma invencao com outra roupa. A REGUA DO REJUNTE TEM DONO: quem decide qual produto cabe na folga e no lugar e cdm_f2_celula_rejunte(), chamada daqui em vez de reescrita — a F1 so filtra pelo tipo que a pessoa escolheu. A coluna de gramas de COLA nasce vazia com o motivo escrito (o fabricante do silicone declara rendimento por cordao, nao por area), e a pastilha, que ainda nao tem banco, tem o cartao de compra reservado dizendo que esta vazio."
     }
   ],
@@ -143,10 +143,16 @@
   ],
   "ferramentas": [
     {
-      "id": "validar-banco",
-      "arquivo": "ferramentas/validar-banco.py",
-      "sha256": "d9648f1369677a00ad327729b180e62dd4155a8d7b7d8c02a509a8766fcc26c5",
-      "descricao": "Verifica o banco contra dados/esquema-banco.json sem rede e sem dependencia: campos obrigatorios, vocabularios, fonte por campo tecnico, nivel de fonte, afiliado presente mesmo vazio, contagem declarada no cabecalho e passo de fabrica das pastilhas. O principal: RECOMPUTA as 18 celulas da matriz da F2 pelas cinco regras de elegibilidade e falha se o banco e a pagina se separarem. E a implementacao de referencia que o snippet PHP do bloco 4 tem que repetir. NUNCA e publicada no site. BLOCO 3c: ganhou a regua propria do REJUNTE, escrita sem reaproveitar perfil() nem avaliar() da cola — nao por cerimonia, mas porque as declaracoes nomeiam coisas diferentes nas duas categorias. Confere os cinco perfis e as nove celulas junta x ambiente contra o que esta escrito A MAO no esquema, exige que a grade pise em toda borda declarada e em pelo menos um valor acima da maior delas, reprova faixa de junta pela metade ou invertida, cobra perfil escrito para todo rejunte do banco, e guarda a regressao do defeito que o bloco corrigiu: rejunte que aparecer em qualquer lista da matriz da F2 e erro."
+      "id": "atualizar-manifest",
+      "arquivo": "ferramentas/atualizar-manifest.py",
+      "sha256": "11f67cd2f0032f9efe0cc907f660d1496dbe176b1070d0e735953f8d8affd536",
+      "descricao": "Recalcula o sha256 de cada item do manifest e IMPRIME cada troca; recusa gravar quando a versao do manifest diverge da constante do snippet, e quando ha arquivo publicavel ou ferramenta no disco que o manifest nao conhece. Bancada."
+    },
+    {
+      "id": "conferir-no-ar",
+      "arquivo": "ferramentas/conferir-no-ar.py",
+      "sha256": "205338321ae1c020488238f98e01882af3d302b0fec64fc0ddf79579cf41a34c",
+      "descricao": "Mede o que o SITE serve, nao o que o repositorio guarda: abre as nove URLs com curl e afirma sobre o HTML SERVIDO. Existe porque 'aplicado com sucesso' no log do Sync nao e evidencia de nada (secao 8) e commit sem verificacao no ar nao e entrega (secoes 4 e 18.4). 102 afirmacoes: HTTP 200, a marca no HTML, o src igual ao arquivo que o Raphael subiu, zero texto ao lado do logo, alt com o nome, medida 78x52 declarada, o logo uma vez por pagina, o wordmark em texto de 1.2.0 fora de toda pagina, zero &#038; dentro de <script>, a folha servida mandando 52 px, o cabecalho ainda claro, e as tres URLs da imagem respondendo PNG. REGUA PROPRIA: a URL e a medida estao literais no arquivo, copiadas do despacho, e nao lidas da constante da casca — senao as duas metades errariam juntas. Todo endereco leva ?v= porque o cache de borda faz concluir que nada mudou. NUNCA e publicada no site."
     },
     {
       "id": "gerar-favicon",
@@ -155,22 +161,34 @@
       "descricao": "Le identidade/logo/favicon-32.png e grava o base64 dele dentro do snippet da casca, entre os marcadores FAVICON-INICIO/FIM. Diferente da ferramenta homonima da Robometria, que DESENHA o icone: aqui o simbolo e arte entregue e o PROMPT.md proibe redesenhar. Confere que o arquivo e mesmo um PNG de 32x32 antes de embutir. NUNCA e publicada no site."
     },
     {
-      "id": "render-para-teste",
-      "arquivo": "ferramentas/render-para-teste.php",
-      "sha256": "8bce042cc987fe7941895b1ab33f7c0cf4822eeb9cc4fcf891a8f91a225609ae",
-      "descricao": "Monta uma pagina do site fora do WordPress para poder medir o HTML servido sem depender do site no ar — necessario porque o gateway da rede das rotinas respondeu 403 ao CONNECT para clubedomosaico.com.br em 11/09/2026. Imita de verdade os ganchos wp_head/wp_footer com prioridade, o escape de '&' que os filtros do the_content aplicam ao retorno do shortcode, e o remove_action casando gancho + funcao + prioridade. Carrega nas options o que o Sync carrega, pela cicatriz da bancada pela metade (secao 8). NUNCA e publicada no site."
+      "id": "gerar-marca",
+      "arquivo": "ferramentas/gerar-marca.php",
+      "sha256": "d8f61aa70cbc3d74d49008d526d94ede3e76f706c08b3d0201ab83f66e2edcda",
+      "descricao": "Embute a lotus do cabecalho dentro do snippet da casca, entre marcadores; recusa arquivo que nao abre, sem canal alfa ou com canto opaco. Bancada."
     },
     {
-      "id": "teste-casca",
-      "arquivo": "ferramentas/teste-casca.php",
-      "sha256": "6d27dac38dc1251d36bc59c54860d031bafd8e194d8f1453cb4fb45338caaa32",
-      "descricao": "347 afirmacoes medidas sobre a casca, sem site e sem rede: script fora do retorno do shortcode, zero &#038; dentro de <script>, corpo que nao comeca por metadado, JSON-LD que decodifica, a arvore da secao 16 nas duas direcoes contra o ARVORE.md, a Loja nos dois estados, a camada de prova pela ESTRUTURA e nao pela vizinhanca da palavra, e o piso de 1.500 caracteres de corpo. UM PROCESSO POR PAGINA: o static que impede logotipo e rodape em dobro na mesma pagina faria a bancada medir oito paginas sem eles. SECAO 7 REESCRITA EM 1.4.0 — ate 1.3.0 ela afirmava o CONTRARIO do que o site tem que servir (que o logo nao podia entrar no cabecalho por ter fundo preto, o que era falso). Agora cobra o logo do Raphael em <img>, o src igual ao arquivo que ele subiu, ZERO texto dentro da marca, alt com o nome, width/height na proporcao 3:2, o srcset servindo so o MESMO arquivo menor, os 52 px no CSS, a folga da barra e o logo uma vez em CADA uma das nove paginas. A REGUA E DESTE ARQUIVO: a URL e a medida estao literais aqui, copiadas do despacho, nunca lidas da constante da casca."
+      "id": "mutacoes-arvore",
+      "arquivo": "ferramentas/mutacoes-arvore.py",
+      "sha256": "ce3c311633161f6ac612020b27bd8e2ff074f729788d6c10d2975fe2c5d6c85a",
+      "descricao": "Quebra a arvore da casca de proposito, uma mutacao por vez, e exige que teste-casca.php reprove cada uma. Bancada."
     },
     {
-      "id": "teste-navegador-casca",
-      "arquivo": "ferramentas/teste-navegador-casca.mjs",
-      "sha256": "a5ecbb0023650c967988b9c53e25d26298f6b0fa3079b19d2cf092fe9b84ca01",
-      "descricao": "63 medicoes num Chromium de verdade, que e onde aparece o que o HTML VIRA: rolagem lateral em 360/390/781/782/783/1200, a borda exata do menu sanfona, area de toque do botao, foco que volta ao botao no Escape, contraste medido contra a cor que SAI na tela, e a pagina com o JavaScript desligado (o que o crawler de IA recebe). Comeca conferindo que a pagina medida TEM TAMANHO DE PAGINA — a cicatriz do render de bancada pela metade. EM 1.4.0: mede a caixa do logo desenhada pelo motor de layout (78x52 px, e 66x44 no telefone pequeno), exige zero texto dentro da marca, e trocou o contraste do wordmark em texto — que deixou de existir — pelo contraste do vinho DENTRO do arquivo contra o fundo do cabecalho, que e a condicao real que o logo impoe."
+      "id": "mutacoes-f1",
+      "arquivo": "ferramentas/mutacoes-f1.py",
+      "sha256": "2bc9d71ecd248d45ea4c73b1c1e8d3bec4800b73b292fd74415e96babc04495b",
+      "descricao": "Quebra a F1 de proposito, uma mutacao por vez, e exige que teste-f1.php reprove cada uma. Bancada."
+    },
+    {
+      "id": "mutacoes-f2",
+      "arquivo": "ferramentas/mutacoes-f2.py",
+      "sha256": "1218fe63ce9d5cfa521260433db87ad40559cb56b55c728b251c8b5f8f4f6c65",
+      "descricao": "Quebra a F2 de proposito, uma mutacao por vez, e exige que teste-f2.php reprove cada uma. Bancada."
+    },
+    {
+      "id": "mutacoes-prestacao",
+      "arquivo": "ferramentas/mutacoes-prestacao.py",
+      "sha256": "876c6d42fbecec9b8241d52eff2427f52d7dbed033aea719395bf1fb7131073c",
+      "descricao": "Quebra a prestacao de contas do rejunte de proposito, uma mutacao por vez, e exige que teste-prestacao-rejunte.php reprove cada uma. As duas primeiras sao os dois defeitos do despacho de 12/09 escritos de volta. Bancada: nunca vai para o site."
     },
     {
       "id": "mutacoes-rejunte",
@@ -179,10 +197,58 @@
       "descricao": "Quebra o banco de rejunte de proposito, uma mutacao por vez numa COPIA da pasta da ilha, e exige que validar-banco.py reprove cada uma. DOZE mutacoes, doze reprovadas. A que mais vale e a ultima: ela tira a declaracao de piscina do epoxi E ajusta o perfil esperado no esquema junto, que e como um editor de verdade mexeria nas duas metades — as duas passam a errar juntas e a conferencia de perfil deixa de ver. Quem viu foi a MATRIZ, que continuava esperando o epoxi no topo da celula de 3 mm submersa. E a prova de que a matriz nao e enfeite da conferencia de perfil, e a resposta local a cicatriz da secao 8 do contrato: teste que chama a regua de quem produziu o dado erra junto com ele. NUNCA e publicada no site."
     },
     {
-      "id": "conferir-no-ar",
-      "arquivo": "ferramentas/conferir-no-ar.py",
-      "sha256": "4969c8ec5aa8a32805ad99e4b92bc5499f27b3e5ed289c1da1c76f143cdb74b7",
-      "descricao": "Mede o que o SITE serve, nao o que o repositorio guarda: abre as nove URLs com curl e afirma sobre o HTML SERVIDO. Existe porque 'aplicado com sucesso' no log do Sync nao e evidencia de nada (secao 8) e commit sem verificacao no ar nao e entrega (secoes 4 e 18.4). 102 afirmacoes: HTTP 200, a marca no HTML, o src igual ao arquivo que o Raphael subiu, zero texto ao lado do logo, alt com o nome, medida 78x52 declarada, o logo uma vez por pagina, o wordmark em texto de 1.2.0 fora de toda pagina, zero &#038; dentro de <script>, a folha servida mandando 52 px, o cabecalho ainda claro, e as tres URLs da imagem respondendo PNG. REGUA PROPRIA: a URL e a medida estao literais no arquivo, copiadas do despacho, e nao lidas da constante da casca — senao as duas metades errariam juntas. Todo endereco leva ?v= porque o cache de borda faz concluir que nada mudou. NUNCA e publicada no site."
+      "id": "mutacoes-voz-e-cabeca",
+      "arquivo": "ferramentas/mutacoes-voz-e-cabeca.py",
+      "sha256": "be988e919fee61aa90743a302714b4561a99e80c5ebf316556ddeffed1bc357b",
+      "descricao": "Quebra a voz e o cabecalho da casca de proposito e exige que teste-casca.php reprove cada uma. Bancada."
+    },
+    {
+      "id": "render-para-teste",
+      "arquivo": "ferramentas/render-para-teste.php",
+      "sha256": "aea85f0c15f3b00eb9a6cf50054c8de4ffc98dbe57aaa55b30945e750a3708ce",
+      "descricao": "Monta uma pagina do site fora do WordPress para poder medir o HTML servido sem depender do site no ar — necessario porque o gateway da rede das rotinas respondeu 403 ao CONNECT para clubedomosaico.com.br em 11/09/2026. Imita de verdade os ganchos wp_head/wp_footer com prioridade, o escape de '&' que os filtros do the_content aplicam ao retorno do shortcode, e o remove_action casando gancho + funcao + prioridade. Carrega nas options o que o Sync carrega, pela cicatriz da bancada pela metade (secao 8). NUNCA e publicada no site."
+    },
+    {
+      "id": "restaurar-acentos",
+      "arquivo": "ferramentas/restaurar-acentos.py",
+      "sha256": "f7a01cd22a2148aacd07baec6dcfee7df9b3695da6fa549b380e48f0a9ff04a6",
+      "descricao": "Devolve os acentos as strings do banco que chegam a tela. Bancada."
+    },
+    {
+      "id": "teste-casca",
+      "arquivo": "ferramentas/teste-casca.php",
+      "sha256": "6c83183f0769f88f732744b356dbc819ffd2302f7efe3af066151a6c31b3d89f",
+      "descricao": "347 afirmacoes medidas sobre a casca, sem site e sem rede: script fora do retorno do shortcode, zero &#038; dentro de <script>, corpo que nao comeca por metadado, JSON-LD que decodifica, a arvore da secao 16 nas duas direcoes contra o ARVORE.md, a Loja nos dois estados, a camada de prova pela ESTRUTURA e nao pela vizinhanca da palavra, e o piso de 1.500 caracteres de corpo. UM PROCESSO POR PAGINA: o static que impede logotipo e rodape em dobro na mesma pagina faria a bancada medir oito paginas sem eles. SECAO 7 REESCRITA EM 1.4.0 — ate 1.3.0 ela afirmava o CONTRARIO do que o site tem que servir (que o logo nao podia entrar no cabecalho por ter fundo preto, o que era falso). Agora cobra o logo do Raphael em <img>, o src igual ao arquivo que ele subiu, ZERO texto dentro da marca, alt com o nome, width/height na proporcao 3:2, o srcset servindo so o MESMO arquivo menor, os 52 px no CSS, a folga da barra e o logo uma vez em CADA uma das nove paginas. A REGUA E DESTE ARQUIVO: a URL e a medida estao literais aqui, copiadas do despacho, nunca lidas da constante da casca."
+    },
+    {
+      "id": "teste-f1",
+      "arquivo": "ferramentas/teste-f1.php",
+      "sha256": "336eba82c2f23e7757e11afeed1b35a979530fdd5f4c48a018a3f38c9ffa5ea4",
+      "descricao": "Verificacao medida da F1: regua aritmetica propria, um processo por estado, varrendo forma x caquinho, folga x tipo, sobras, espessuras, lugares e as bordas. Bancada."
+    },
+    {
+      "id": "teste-f2",
+      "arquivo": "ferramentas/teste-f2.php",
+      "sha256": "26518e8c756d9f8fc57e4b44fed2e1cbf0a4c60c6d1f06b56798f995a3ababc2",
+      "descricao": "Verificacao medida da F2: varre os 45 estados de cola e os 60 de rejunte, um processo cada, com regua lida do esquema e nao do snippet. Bancada."
+    },
+    {
+      "id": "teste-navegador-casca",
+      "arquivo": "ferramentas/teste-navegador-casca.mjs",
+      "sha256": "a5ecbb0023650c967988b9c53e25d26298f6b0fa3079b19d2cf092fe9b84ca01",
+      "descricao": "63 medicoes num Chromium de verdade, que e onde aparece o que o HTML VIRA: rolagem lateral em 360/390/781/782/783/1200, a borda exata do menu sanfona, area de toque do botao, foco que volta ao botao no Escape, contraste medido contra a cor que SAI na tela, e a pagina com o JavaScript desligado (o que o crawler de IA recebe). Comeca conferindo que a pagina medida TEM TAMANHO DE PAGINA — a cicatriz do render de bancada pela metade. EM 1.4.0: mede a caixa do logo desenhada pelo motor de layout (78x52 px, e 66x44 no telefone pequeno), exige zero texto dentro da marca, e trocou o contraste do wordmark em texto — que deixou de existir — pelo contraste do vinho DENTRO do arquivo contra o fundo do cabecalho, que e a condicao real que o logo impoe."
+    },
+    {
+      "id": "teste-prestacao-rejunte",
+      "arquivo": "ferramentas/teste-prestacao-rejunte.php",
+      "sha256": "4f87e8efb43c7531641ed4f6c765928fd8a80b1bd39a3140fbd4e760368a2c27",
+      "descricao": "Portao do despacho da Sentinela de 12/09/2026: cobra que todo rejunte do banco seja nomeado uma vez em cada resposta — na frase que o recomenda ou numa linha que diz por que ele nao esta — e que a vitrine sirva exatamente o que a frase nomeia, nas duas ferramentas e na tabela pre-renderizada. Regua propria, recomputada dos perfis escritos a mao no esquema; 540 estados da F2, 180 da F1 e as 9 linhas da tabela, um processo por estado. Bancada: nunca vai para o site."
+    },
+    {
+      "id": "validar-banco",
+      "arquivo": "ferramentas/validar-banco.py",
+      "sha256": "d9648f1369677a00ad327729b180e62dd4155a8d7b7d8c02a509a8766fcc26c5",
+      "descricao": "Verifica o banco contra dados/esquema-banco.json sem rede e sem dependencia: campos obrigatorios, vocabularios, fonte por campo tecnico, nivel de fonte, afiliado presente mesmo vazio, contagem declarada no cabecalho e passo de fabrica das pastilhas. O principal: RECOMPUTA as 18 celulas da matriz da F2 pelas cinco regras de elegibilidade e falha se o banco e a pagina se separarem. E a implementacao de referencia que o snippet PHP do bloco 4 tem que repetir. NUNCA e publicada no site. BLOCO 3c: ganhou a regua propria do REJUNTE, escrita sem reaproveitar perfil() nem avaliar() da cola — nao por cerimonia, mas porque as declaracoes nomeiam coisas diferentes nas duas categorias. Confere os cinco perfis e as nove celulas junta x ambiente contra o que esta escrito A MAO no esquema, exige que a grade pise em toda borda declarada e em pelo menos um valor acima da maior delas, reprova faixa de junta pela metade ou invertida, cobra perfil escrito para todo rejunte do banco, e guarda a regressao do defeito que o bloco corrigiu: rejunte que aparecer em qualquer lista da matriz da F2 e erro."
     }
   ],
   "esquema": {

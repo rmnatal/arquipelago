@@ -175,6 +175,89 @@ ok(re.search(r"\d[\d\.,]* g\b", bloco_e) is None,
 ok("não calcula" in re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", html_e)),
    "[F1 epoxi] a pagina diz POR QUE nao calcula")
 
+# ---------------------------------------------------------------------------
+# O DESPACHO DA SENTINELA DE 12/09/2026, medido no HTML SERVIDO — e nas palavras
+# do proprio despacho, nao nas minhas. A secao 18.4 do contrato e explicita: o
+# despacho morre quando e VERIFICADO no ar, e o criterio e o que ele declara.
+#
+# A bancada varre 720 estados; aqui vao os que o despacho nomeia um a um, mais a
+# soma que ele exige. Regua propria: os 5 nomes comerciais estao escritos
+# LITERAIS abaixo, copiados do banco a mao, para o site e o teste nao lerem a
+# mesma fonte (secao 8).
+# ---------------------------------------------------------------------------
+print("\nO despacho da Sentinela de 12/09, medido no ar:")
+
+REJUNTES = ["Rejunte Cerâmicas Quartzolit", "Rejunte Porcelanatos e Cerâmicas Quartzolit",
+            "Rejunte Acrílico Quartzolit", "Rejunte Epóxi Quartzolit", "Rejunte Piscinas Quartzolit"]
+
+
+def so_prosa(html, abre, fecha):
+    """O bloco pedido, SEM os cartoes da vitrine: a prestacao de contas e prosa,
+    e o nome dentro do cartao e a vitrine fazendo o trabalho dela."""
+    m = re.search(abre + r"(.*?)(?=" + fecha + r"|</main>)", html, re.S)
+    if not m:
+        return ""
+    corpo = re.sub(r"<li\b.*?</li>", " ", m.group(1), flags=re.S)
+    return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", corpo))
+
+
+def conta(texto, nome):
+    """Nome de produto e substring de outro; desconta o nome maior."""
+    n = texto.count(nome)
+    for outro in REJUNTES:
+        if outro != nome and nome in outro:
+            n -= texto.count(outro)
+    return max(0, n)
+
+
+# ITEM 1 — a F1 nao culpa mais a folga quando quem exclui e o lugar.
+BASE_F1 = "forma=disco&d=50&pastilha=p20&esp=6&sobra=15&rejunte=cimenticio"
+for onde, rotulo in [("externo_exposto", "no sol e na chuva"), ("contato_permanente_agua", "dentro da água")]:
+    for junta in (2, 4, 10):
+        html_d, codigo_d = buscar(f"{BASE}{F1}?{BASE_F1}&onde={onde}&junta={junta}")
+        bloco = so_prosa(html_d, r"<h2>Qual rejunte cabe nessa folga</h2>", r'<p class="cdm-f1-aviso"')
+        marca = f"[item 1 {onde[:9]} {junta}mm]"
+        ok("200" == codigo_d, f"{marca} responde 200", codigo_d)
+        ok("Nenhum rejunte do nosso banco declara folga de" not in bloco,
+           f"{marca} a frase do defeito sumiu da pagina")
+        ok("é o LUGAR, não a folga" in bloco,
+           f"{marca} a pagina diz que a exclusao e do lugar")
+        ok(rotulo in bloco, f"{marca} e nomeia o lugar", rotulo)
+        # A contradicao do despacho: negar a folga e, no mesmo bloco, listar
+        # produto "dentro dessa folga".
+        ok(not ("do nosso banco cobre folga de" in bloco and "dentro dessa folga" in bloco),
+           f"{marca} nao nega e afirma o mesmo fato no mesmo bloco")
+
+# ITEM 2 — a prestacao de contas da F2 fecha o banco, e a vitrine serve o que a
+# frase nomeia. O caso-ancora e o que a Sentinela mediu, com os 5 nomes.
+for consulta in ["base=ceramica_esmaltada_porcelana&caco=pastilha_ceramica&onde=interno_seco&junta=2",
+                 "base=ceramica_esmaltada_porcelana&caco=pastilha_ceramica&onde=externo_exposto&junta=2",
+                 "base=vidro&caco=pastilha_vidro&onde=interno_molhado&junta=4"]:
+    html_d, codigo_d = buscar(f"{BASE}{F2}?{consulta}")
+    bloco = so_prosa(html_d, r"<h2>E o rejunte, que vai entre os caquinhos</h2>", r'<div class="cdm-f2-secao[ "]')
+    marca = "[item 2 " + consulta.split("onde=")[1][:22] + "]"
+    ok("200" == codigo_d, f"{marca} responde 200", codigo_d)
+    faltando = [n for n in REJUNTES if conta(bloco, n) != 1]
+    ok(not faltando, f"{marca} os 5 rejuntes do banco nomeados 1 vez cada",
+       "todos" if not faltando else "; ".join(faltando))
+
+# A tabela pre-renderizada, que e a metade que a IA le: cada linha soma o banco.
+html_t, _ = buscar(BASE + F2)
+tabela = re.search(r"<h2>O mesmo, para o rejunte</h2>(.*?)</table>", html_t, re.S)
+linhas_ruins = []
+if tabela:
+    for i, tr in enumerate(re.findall(r"<tr>\s*<td>(.*?)</td>\s*<td>(.*?)</td>\s*<td>(.*?)</td>\s*<td>(.*?)</td>\s*</tr>",
+                                      tabela.group(1), re.S)):
+        serve = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", tr[2]))
+        fora_c = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", tr[3]))
+        n_serve = sum(conta(serve, n) for n in REJUNTES)
+        n_fora = sum(int(x) for x in re.findall(r"(\d+)\s+(?:por|porque)", fora_c))
+        if n_serve + n_fora != len(REJUNTES):
+            linhas_ruins.append(f"linha {i}: {n_serve}+{n_fora}")
+ok(tabela is not None and not linhas_ruins,
+   "[item 2] toda linha da tabela pre-renderizada soma os 5 do banco",
+   "9 linhas" if not linhas_ruins else "; ".join(linhas_ruins))
+
 print("\nA imagem, no ar:")
 for rot, url in [("original (src)", LOGO),
                  ("-300x200 (srcset)", LOGO.replace(".png", "-300x200.png")),

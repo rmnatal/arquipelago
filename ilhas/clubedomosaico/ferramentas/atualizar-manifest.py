@@ -51,7 +51,15 @@ def main():
 
     trocas = 0
     faltando = []
-    for grupo in ("snippets", "conteudo", "dados"):
+    # `ferramentas` ENTROU AQUI EM 12/09/2026, e o motivo e a propria cicatriz
+    # do cabecalho deste arquivo. O grupo declara `sha256` no esquema do manifest
+    # desde que nasceu, e nenhuma linha o recalculava: quem mexesse numa
+    # ferramenta de bancada deixava para tras uma etiqueta que dizia o hash de
+    # uma versao que nao existe mais. Bancada nao vai para o site, entao isso
+    # nunca quebraria uma pagina — e e exatamente por isso que envelheceria
+    # calado, que e o defeito, nao a consequencia. Campo declarado sem quem o
+    # espelhe e promessa; ou se recalcula, ou sai do esquema.
+    for grupo in ("snippets", "conteudo", "dados", "ferramentas"):
         for item in manifest.get(grupo, []):
             arquivo = os.path.join(raiz, item["arquivo"])
             if not os.path.exists(arquivo):
@@ -96,7 +104,8 @@ def main():
 
     # E o outro sentido: arquivo publicavel no disco que o manifest nao conhece
     # nunca chega ao site, e some em silencio. A pergunta e das duas direcoes.
-    no_manifest = {i["arquivo"] for g in ("snippets", "conteudo", "dados") for i in manifest.get(g, [])}
+    no_manifest = {i["arquivo"] for g in ("snippets", "conteudo", "dados", "ferramentas")
+                   for i in manifest.get(g, [])}
     orfaos = []
     for pasta in ("snippets",):
         for nome in sorted(os.listdir(os.path.join(raiz, pasta))):
@@ -110,6 +119,26 @@ def main():
                 orfaos.append(rel)
     if orfaos:
         print("\n  SNIPPET NO DISCO FORA DO MANIFEST (nunca chega ao site): " + ", ".join(orfaos))
+        return 1
+
+    # A BANCADA TAMBEM E INVENTARIO, e em 12/09/2026 ela estava pela METADE: o
+    # manifest listava 9 das 18 ferramentas, e as que faltavam incluiam
+    # `teste-f1.php` e `teste-f2.php`, que sao os dois portoes principais da
+    # ilha. Ninguem tinha mentido — o grupo so nunca foi cobrado nas duas
+    # direcoes, que e a forma silenciosa do mesmo defeito que a secao 8 do
+    # contrato descreve para contagem de tela: categoria mostrada sem arquivo e
+    # promessa, arquivo sem categoria e trabalho que a tela nunca ve. Ferramenta
+    # nao vai para o site, entao um esquecimento aqui nao quebra pagina; quebra
+    # a capacidade de qualquer relatorio dizer com o que esta ilha se verifica.
+    ferramentas_fora = []
+    pasta_f = os.path.join(raiz, "ferramentas")
+    if os.path.isdir(pasta_f):
+        for nome in sorted(os.listdir(pasta_f)):
+            rel = "ferramentas/" + nome
+            if nome.endswith((".py", ".php", ".mjs")) and rel not in no_manifest:
+                ferramentas_fora.append(rel)
+    if ferramentas_fora:
+        print("\n  FERRAMENTA NO DISCO FORA DO MANIFEST: " + ", ".join(ferramentas_fora))
         return 1
 
     if revisao is not None:

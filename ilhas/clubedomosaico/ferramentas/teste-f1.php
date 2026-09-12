@@ -354,9 +354,22 @@ for ( $junta = 1; $junta <= 12; $junta++ ) {
 			}
 		}
 		/* A FOLGA QUE NENHUM FABRICANTE COBRE — 11 e 12 mm — tem que devolver a
-		   verdade, nunca uma lista vazia calada. */
-		if ( $junta >= 11 && false === mb_stripos( $texto, 'do nosso banco declara folga' ) ) {
-			$sem_faixa[] = $consulta;
+		   verdade, nunca uma lista vazia calada.
+
+		   REESCRITA EM 12/09/2026, com o conserto do despacho da Sentinela. Ela
+		   cobrava a string 'do nosso banco declara folga', que era a frase do
+		   DEFEITO: a mesma sentenca saia quando quem excluia era o lugar, e ela
+		   afirmava sobre o banco inteiro o que valia so para o tipo escolhido.
+		   Afirmacao que fixa o texto de hoje vira trava contra o conserto de
+		   amanha — o que importa aqui nunca foi a frase, foi a pagina dizer que
+		   nao tem indicacao E dizer o motivo. E o motivo, nestes dois estados, e
+		   mesmo a folga: 11 e 12 mm estao fora da faixa dos cinco produtos. */
+		if ( $junta >= 11 ) {
+			if ( false === mb_stripos( $texto, 'do nosso banco serve para essa peça' ) ) {
+				$sem_faixa[] = $consulta . ' (nao disse que nenhum serve)';
+			} elseif ( false === mb_stripos( $texto, 'Fora por causa da folga de' ) ) {
+				$sem_faixa[] = $consulta . ' (nao nomeou a folga como causa)';
+			}
 		}
 	}
 }

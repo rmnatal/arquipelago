@@ -57,7 +57,7 @@
  */
 
 if ( ! defined( 'CDM_F2_VERSAO' ) ) {
-	define( 'CDM_F2_VERSAO', '1.0.0' );
+	define( 'CDM_F2_VERSAO', '1.1.0' );
 }
 if ( ! defined( 'CDM_F2_SLUG' ) ) {
 	/* Nível 3 com mãe /materiais/ direto — dois níveis em vez de três, estado de
@@ -1045,7 +1045,67 @@ function cdm_f2_fora_html( $base, $ambiente ) {
 }
 }
 
+if ( ! function_exists( 'cdm_f2_rejuntes_do_banco' ) ) {
+/**
+ * Os ids de TODO rejunte do banco, contados — nunca digitados.
+ *
+ * Existe para a prestação de contas da resposta e da tabela poderem fechar
+ * contra o banco em vez de contra um número escrito à mão (seção 8 do
+ * `ARQUIPELAGO.md`: número de tela nasce contado). Banco que cresce corrige
+ * as duas telas sozinho.
+ */
+function cdm_f2_rejuntes_do_banco() {
+	$banco = cdm_f2_banco();
+	$ids   = array();
+	foreach ( $banco['materiais'] as $id => $m ) {
+		if ( 'rejunte' === ( isset( $m['categoria'] ) ? $m['categoria'] : '' ) ) {
+			$ids[] = $id;
+		}
+	}
+	sort( $ids );
+
+	return $ids;
+}
+}
+
+if ( ! function_exists( 'cdm_f2_rejunte_nomes' ) ) {
+/** Lista de ids → lista de nomes comerciais, na ordem recebida. */
+function cdm_f2_rejunte_nomes( $ids ) {
+	$nomes = array();
+	foreach ( (array) $ids as $id ) {
+		$nomes[] = cdm_f2_nome( $id );
+	}
+
+	return $nomes;
+}
+}
+
 if ( ! function_exists( 'cdm_f2_resposta_rejunte_html' ) ) {
+/**
+ * A resposta do rejunte — e a PRESTAÇÃO DE CONTAS dela.
+ *
+ * Consertado em 12/09/2026 (despacho da Sentinela de 12/09, item 2). O defeito:
+ * a frase dizia "o rejunte é X", no singular e em definitivo, e o bloco de
+ * compra logo abaixo servia QUATRO cartões — os três a mais eram os elegíveis
+ * abaixo do topo, que entravam na vitrine sem que uma linha da página dissesse
+ * o que eles são. Pior: `mencionados_com_ressalva` não era impresso em lugar
+ * nenhum, então havia um quinto estado invisível. Somando, a página falava de
+ * 2 a 4 dos 5 rejuntes do banco e o leitor não tinha como saber o que era o
+ * resto.
+ *
+ * A regra que passa a valer, e ela é uma só: **todo rejunte do banco é nomeado
+ * exatamente uma vez em cada resposta** — ou na frase de recomendação (e aí ele
+ * está na vitrine), ou numa linha de prestação de contas que diz por que ele
+ * não está. A vitrine serve EXATAMENTE o que a frase nomeia; não existe produto
+ * no bloco de compra que o texto não sustente.
+ *
+ * Por que os elegíveis abaixo do topo continuam à venda, em vez de saírem: eles
+ * passam nas duas travas que importam — cobrem a folga e não estão excluídos do
+ * lugar. O que os separa do topo é o fabricante não NOMEAR o lugar, e a régua
+ * do rejunte só transforma silêncio em exclusão nos ambientes críticos (regra 2
+ * do esquema). Tirá-los da vitrine esconderia do leitor produto que serve;
+ * mantê-los sem dizer o que são era a contradição. A saída é a frase dizer.
+ */
 function cdm_f2_resposta_rejunte_html( $junta, $ambiente, $tessela ) {
 	$rot    = cdm_f2_rotulos();
 	$celula = cdm_f2_celula_rejunte( $junta, $ambiente );
@@ -1056,12 +1116,22 @@ function cdm_f2_resposta_rejunte_html( $junta, $ambiente, $tessela ) {
 	$html .= '<h2>E o rejunte, que vai entre os caquinhos</h2>';
 
 	if ( $celula['recomendados_topo'] ) {
-		$nomes = array();
-		foreach ( $celula['recomendados_topo'] as $id ) {
-			$nomes[] = cdm_f2_nome( $id );
-		}
+		$nomes = cdm_f2_rejunte_nomes( $celula['recomendados_topo'] );
 		$html .= '<p class="cdm-f2-frase">Com <strong>' . cdm_casca_num( $junta ) . ' mm</strong> de espaço entre uma pastilha e outra, '
-			. esc_html( $na ) . ', o rejunte é <strong>' . esc_html( cdm_f2_lista_humana( $nomes ) ) . '</strong>.</p>';
+			. esc_html( $na ) . ', o rejunte é <strong>' . esc_html( cdm_f2_lista_humana( $nomes ) ) . '</strong>'
+			. ( count( $nomes ) > 1 ? ' — o fabricante nomeia este lugar nos ' . ( 2 === count( $nomes ) ? 'dois' : count( $nomes ) ) . '.' : '.' )
+			. '</p>';
+
+		/* OS SEGUNDOS SÃO NOMEADOS NA FRASE, e é por isso que eles podem ficar
+		   na vitrine. Enquanto esta linha não existia, o bloco de compra servia
+		   três produtos que o texto da página não sustentava. */
+		if ( $celula['elegiveis_abaixo_do_topo'] ) {
+			$segundos = cdm_f2_rejunte_nomes( $celula['elegiveis_abaixo_do_topo'] );
+			$html    .= '<p class="cdm-f2-frase cdm-f2-segunda-linha">Também servem, e por isso estão na lista de compra: <strong>'
+				. esc_html( cdm_f2_lista_humana( $segundos ) ) . '</strong>. '
+				. ( 1 === count( $segundos ) ? 'Ele cobre' : 'Eles cobrem' ) . ' essa folga e o fabricante não proíbe este lugar — o que ele não faz é '
+				. 'nomear o lugar por escrito, e é só isso que separa ' . ( 1 === count( $segundos ) ? 'esse' : 'esses' ) . ' do primeiro.</p>';
+		}
 
 		$html .= '<ul class="cdm-f2-vitrine">';
 		foreach ( array_merge( $celula['recomendados_topo'], $celula['elegiveis_abaixo_do_topo'] ) as $id ) {
@@ -1077,30 +1147,71 @@ function cdm_f2_resposta_rejunte_html( $junta, $ambiente, $tessela ) {
 		}
 		$html .= '</ul>';
 	} else {
+		/* A RECUSA NÃO OFERECE HIPÓTESE — as linhas de prestação de contas logo
+		   abaixo nomeiam quem caiu por qual motivo, e é delas que o leitor tira
+		   a causa. A versão anterior desta frase enumerava "ou a folga, ou o
+		   lugar" tendo as duas listas na mão; a que a substituiu tentou escolher
+		   entre três casos (só folga, só lugar, os dois) e o caso "só lugar"
+		   nasceu INALCANÇÁVEL, porque o rejunte de faixa desconhecida vive no
+		   balde da folga e nunca sai dele. Código que não pode rodar não é
+		   cuidado, é um ramo que ninguém vai medir: quem diz a causa são as
+		   linhas, uma por motivo. */
 		$html .= '<p class="cdm-f2-frase cdm-f2-faixa">Não temos rejunte para indicar com <strong>' . cdm_casca_num( $junta )
-			. ' mm</strong> de junta ' . esc_html( $na ) . '. Ou a folga que você quer está fora da faixa que os fabricantes publicam, ou nenhum deles declara esse lugar pelo nome.</p>';
+			. ' mm</strong> de junta ' . esc_html( $na ) . '. Abaixo, um a um, o motivo de cada produto do nosso banco ter ficado de fora.</p>';
 	}
 
-	if ( $celula['eliminados_por_faixa_de_junta'] ) {
+	/* ------------------------------------------------------------------
+	 * A PRESTAÇÃO DE CONTAS. Os grupos que NÃO estão na vitrine, cada um com
+	 * nome próprio e motivo próprio. Somados aos nomeados na frase, fecham o
+	 * banco inteiro — é essa soma que o portão cobra, em toda combinação de
+	 * folga × lugar, na resposta e na tabela.
+	 *
+	 * SÃO QUATRO GRUPOS, e não três: a célula junta num balde só quem tem faixa
+	 * publicada e não cobre a folga e quem NÃO TEM FAIXA NENHUMA — para decidir
+	 * elegibilidade tanto faz, os dois estão fora. Para o texto não tanto faz:
+	 * dizer "fora por causa da folga" de um produto cuja faixa a gente nunca
+	 * conseguiu é afirmar sobre uma declaração que não foi lida. A F1 já fazia
+	 * esse corte; aqui ele faltava, e era isso que tornava o ramo acima morto.
+	 * ------------------------------------------------------------------ */
+	$fora_folga = array();
+	$sem_faixa  = array();
+	foreach ( $celula['eliminados_por_faixa_de_junta'] as $id ) {
+		$p = cdm_f2_perfil_rejunte( $banco['materiais'][ $id ] );
+		if ( null === $p['junta_min'] || null === $p['junta_max'] ) {
+			$sem_faixa[] = $id;
+		} else {
+			$fora_folga[] = $id;
+		}
+	}
+	if ( $fora_folga ) {
 		$linhas = array();
-		foreach ( $celula['eliminados_por_faixa_de_junta'] as $id ) {
-			$p = cdm_f2_perfil_rejunte( $banco['materiais'][ $id ] );
-			if ( null === $p['junta_min'] || null === $p['junta_max'] ) {
-				$linhas[] = esc_html( cdm_f2_nome( $id ) ) . ' (não conseguimos a faixa de junta dele, então ele não entra em recomendação nenhuma)';
-			} else {
-				$linhas[] = esc_html( cdm_f2_nome( $id ) ) . ' (de ' . $p['junta_min'] . ' a ' . $p['junta_max'] . ' mm)';
-			}
+		foreach ( $fora_folga as $id ) {
+			$p        = cdm_f2_perfil_rejunte( $banco['materiais'][ $id ] );
+			$linhas[] = esc_html( cdm_f2_nome( $id ) ) . ' (o fabricante publica de ' . $p['junta_min'] . ' a ' . $p['junta_max'] . ' mm)';
 		}
 		$html .= '<p class="cdm-f2-silencio">Fora por causa da folga: ' . implode( '; ', $linhas ) . '.</p>';
 	}
 	if ( $celula['eliminados_por_ambiente'] ) {
-		$nomes = array();
-		foreach ( $celula['eliminados_por_ambiente'] as $id ) {
-			$nomes[] = cdm_f2_nome( $id );
-		}
-		$html .= '<p class="cdm-f2-silencio">Fora porque o fabricante não declara este lugar: ' . esc_html( cdm_f2_lista_humana( $nomes ) ) . '.</p>';
+		$html .= '<p class="cdm-f2-silencio">Fora porque o fabricante não declara este lugar: '
+			. esc_html( cdm_f2_lista_humana( cdm_f2_rejunte_nomes( $celula['eliminados_por_ambiente'] ) ) ) . '.</p>';
+	}
+	if ( $celula['mencionados_com_ressalva'] ) {
+		/* O QUINTO ESTADO, que não era impresso em lugar nenhum até 12/09/2026.
+		   Enquanto o banco tivesse só fonte de nível bom ele ficava vazio, e um
+		   grupo vazio não denuncia que a tela não sabe imprimi-lo: no dia em que
+		   um rejunte entrasse por fonte fraca, ele sumiria da página inteira —
+		   nem na vitrine, nem na prestação de contas. */
+		$html .= '<p class="cdm-f2-ressalva">Existe menção a '
+			. esc_html( cdm_f2_lista_humana( cdm_f2_rejunte_nomes( $celula['mencionados_com_ressalva'] ) ) )
+			. ', mas o que sustenta isso é material de imprensa do fabricante, não documento de produto — por isso ele não entra na indicação nem na lista de compra.</p>';
 	}
 
+	if ( $sem_faixa ) {
+		$html .= '<p class="cdm-f2-silencio">De ' . esc_html( cdm_f2_lista_humana( cdm_f2_rejunte_nomes( $sem_faixa ) ) )
+			. ' a gente não conseguiu a faixa de junta que o fabricante publica, então '
+			. ( 1 === count( $sem_faixa ) ? 'ele não entra' : 'eles não entram' ) . ' em recomendação nenhuma — '
+			. 'nem para dizer que cabe, nem para dizer que não cabe.</p>';
+	}
 	$html .= '</div>';
 
 	return $html;
@@ -1235,22 +1346,50 @@ function cdm_f2_tabela_rejunte_html() {
 		}
 		$celula = cdm_f2_celula_rejunte( (int) $c['junta_mm'], $c['ambiente'] );
 
+		/* A MESMA PRESTAÇÃO DE CONTAS DA RESPOSTA, na tabela — e pelo mesmo
+		   motivo, que aqui é mais caro ainda: esta é a metade que um modelo de
+		   linguagem lê sem preencher formulário nenhum. Até 12/09/2026 a coluna
+		   "serve" trazia só o topo e a coluna "fora" só dois dos três grupos, e
+		   três das nove linhas não somavam os 5 rejuntes do banco. */
 		$usa = array();
-		foreach ( $celula['recomendados_topo'] as $id ) {
-			$usa[] = cdm_f2_nome( $id );
+		if ( $celula['recomendados_topo'] ) {
+			$usa[] = cdm_f2_lista_humana( cdm_f2_rejunte_nomes( $celula['recomendados_topo'] ) )
+				. ' (o fabricante nomeia este lugar)';
+		}
+		if ( $celula['elegiveis_abaixo_do_topo'] ) {
+			$usa[] = cdm_f2_lista_humana( cdm_f2_rejunte_nomes( $celula['elegiveis_abaixo_do_topo'] ) )
+				. ( 1 === count( $celula['elegiveis_abaixo_do_topo'] ) ? ' (cobre' : ' (cobrem' )
+				. ' a folga, e o fabricante não fala deste lugar)';
+		}
+
+		$t_folga = array();
+		$t_sem   = array();
+		foreach ( $celula['eliminados_por_faixa_de_junta'] as $id ) {
+			$p = cdm_f2_perfil_rejunte( $banco['materiais'][ $id ] );
+			if ( null === $p['junta_min'] || null === $p['junta_max'] ) {
+				$t_sem[] = $id;
+			} else {
+				$t_folga[] = $id;
+			}
 		}
 		$fora = array();
-		if ( $celula['eliminados_por_faixa_de_junta'] ) {
-			$fora[] = count( $celula['eliminados_por_faixa_de_junta'] ) . ' por causa da folga';
+		if ( $t_folga ) {
+			$fora[] = count( $t_folga ) . ' por causa da folga';
 		}
 		if ( $celula['eliminados_por_ambiente'] ) {
 			$fora[] = count( $celula['eliminados_por_ambiente'] ) . ' porque o fabricante não declara este lugar';
+		}
+		if ( $celula['mencionados_com_ressalva'] ) {
+			$fora[] = count( $celula['mencionados_com_ressalva'] ) . ' porque a fonte é material de imprensa';
+		}
+		if ( $t_sem ) {
+			$fora[] = count( $t_sem ) . ' porque a faixa de folga dele não foi obtida';
 		}
 
 		$html .= '<tr>';
 		$html .= '<td>' . cdm_casca_num( $c['junta_mm'] ) . ' mm</td>';
 		$html .= '<td>' . esc_html( $rot['ambiente_curto'][ $c['ambiente'] ] ) . '</td>';
-		$html .= '<td>' . ( $usa ? esc_html( cdm_f2_lista_humana( $usa ) ) : '<span class="cdm-f2-vazio">a gente não indica nenhum</span>' ) . '</td>';
+		$html .= '<td>' . ( $usa ? esc_html( implode( '; ', $usa ) ) : '<span class="cdm-f2-vazio">a gente não indica nenhum</span>' ) . '</td>';
 		$html .= '<td>' . ( $fora ? esc_html( cdm_f2_lista_humana( $fora ) ) : '—' ) . '</td>';
 		$html .= '</tr>';
 	}
@@ -1519,6 +1658,10 @@ add_action( 'wp_footer', function () {
 .cdm-f2-botao:hover{background:var(--cdm-vinho);color:#FFFFFF;text-decoration:none;}
 .cdm-f2-resposta{margin:1.6rem 0;padding:1.2rem;border:1px solid var(--cdm-traco);border-left:3px solid var(--cdm-coral);border-radius:2px;}
 .cdm-f2-frase{font-size:1.15rem;line-height:1.5;margin:0;}
+/* A segunda linha da recomendacao — os que servem sem o fabricante nomear o
+   lugar. Ela e frase, nao nota de rodape, entao fica no corpo do texto; o
+   degrau de tamanho e o que diz ao olho que o primeiro e o primeiro. */
+.cdm-f2-frase.cdm-f2-segunda-linha{font-size:1rem;margin:.7rem 0 0;color:var(--cdm-tinta);}
 .cdm-f2-resposta .cdm-prova{margin-top:1rem;}
 .cdm-f2-secao{margin:2rem 0;}
 .cdm-f2-secao h2{font-size:1.25rem;margin:0 0 .6rem;}

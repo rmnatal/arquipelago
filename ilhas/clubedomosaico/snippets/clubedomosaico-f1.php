@@ -65,7 +65,7 @@
  */
 
 if ( ! defined( 'CDM_F1_VERSAO' ) ) {
-	define( 'CDM_F1_VERSAO', '1.0.0' );
+	define( 'CDM_F1_VERSAO', '1.1.0' );
 }
 if ( ! defined( 'CDM_F1_SLUG' ) ) {
 	/* Mesma escolha da F2, pelo mesmo motivo (ARVORE.md, seção 2): nível 3 com
@@ -759,6 +759,40 @@ function cdm_f1_recusa_html( $e ) {
 }
 }
 
+if ( ! function_exists( 'cdm_f1_nomes_de' ) ) {
+/** Ids → nomes comerciais, pela mesma fonte que a F2 usa. Sem segundo mapa. */
+function cdm_f1_nomes_de( $ids ) {
+	$nomes = array();
+	foreach ( (array) $ids as $id ) {
+		$nomes[] = cdm_f2_nome( $id );
+	}
+
+	return $nomes;
+}
+}
+
+if ( ! function_exists( 'cdm_f1_faixas_de' ) ) {
+/**
+ * Ids → "Nome (de X a Y mm)", para a recusa por folga dizer QUAL é a faixa que
+ * o fabricante publica em vez de só afirmar que a folga não cabe. Faixa que o
+ * banco não tem sai dita, nunca inventada.
+ */
+function cdm_f1_faixas_de( $ids, $por_id ) {
+	$linhas = array();
+	foreach ( (array) $ids as $id ) {
+		$p = cdm_f2_perfil_rejunte( $por_id[ $id ] );
+		if ( null === $p['junta_min'] || null === $p['junta_max'] ) {
+			$linhas[] = esc_html( cdm_f2_nome( $id ) ) . ' (não conseguimos a faixa de folga dele)';
+		} else {
+			$linhas[] = esc_html( cdm_f2_nome( $id ) ) . ' (o fabricante publica de '
+				. cdm_casca_num( $p['junta_min'] ) . ' a ' . cdm_casca_num( $p['junta_max'] ) . ' mm)';
+		}
+	}
+
+	return $linhas;
+}
+}
+
 if ( ! function_exists( 'cdm_f1_vitrine_html' ) ) {
 /**
  * O bloco de compra (seções 6 e 7 do contrato), ANTES da prova de procedência.
@@ -797,11 +831,54 @@ function cdm_f1_vitrine_html( $e ) {
 		}
 	}
 
+	/* POR QUE A LISTA VOLTOU VAZIA — a causa, lida da própria célula, e não uma
+	   hipótese oferecida ao leitor. Ver o comentário do bloco abaixo.
+
+	   Os grupos são do TIPO ESCOLHIDO: produto de outro tipo cair pela folga não
+	   diz nada sobre a pergunta que esta pessoa fez. E são TRÊS, não dois: a
+	   célula da F2 junta num balde só quem tem faixa publicada e não cobre a
+	   folga e quem NÃO TEM FAIXA NENHUMA — para ela tanto faz, os dois estão
+	   fora. Para esta frase não tanto faz: dizer "não cobre 4 mm" de um produto
+	   cuja faixa a gente nunca conseguiu é afirmar sobre uma declaração que não
+	   foi lida, que é exatamente o que esta ilha existe para não fazer. */
+	$fora_folga  = array();
+	$sem_faixa   = array();
+	$fora_lugar  = array();
+	foreach ( $celula['eliminados_por_faixa_de_junta'] as $id ) {
+		if ( ! isset( $por_id[ $id ] ) || $e['rejunte'] !== ( isset( $por_id[ $id ]['tipo'] ) ? $por_id[ $id ]['tipo'] : '' ) ) {
+			continue;
+		}
+		$p = cdm_f2_perfil_rejunte( $por_id[ $id ] );
+		if ( null === $p['junta_min'] || null === $p['junta_max'] ) {
+			$sem_faixa[] = $id;
+		} else {
+			$fora_folga[] = $id;
+		}
+	}
+	foreach ( $celula['eliminados_por_ambiente'] as $id ) {
+		if ( isset( $por_id[ $id ] ) && $e['rejunte'] === ( isset( $por_id[ $id ]['tipo'] ) ? $por_id[ $id ]['tipo'] : '' ) ) {
+			$fora_lugar[] = $id;
+		}
+	}
+
+	/* O nome do tipo em texto corrido. `strtok( $rotulo, ' —' )` cortava no
+	   PRIMEIRO espaço e devolvia só "Rejunte", então a frase saía dizendo
+	   "nenhum rejunte do nosso banco" — uma afirmação sobre o banco INTEIRO
+	   onde cabia só uma sobre o tipo escolhido. Foi metade do defeito que a
+	   Sentinela mediu em 12/09/2026. */
+	$nome_tipo = mb_strtolower( trim( strtok( $tipos[ $e['rejunte'] ], '—' ) ), 'UTF-8' );
+
+	$lugar = ( function_exists( 'cdm_f2_rotulos' ) && isset( $e['ambiente'] ) )
+		? cdm_f2_rotulos()['ambiente_curto'][ $e['ambiente'] ]
+		: '';
+	$mm    = '<strong>' . cdm_casca_num( $e['junta'] ) . ' mm</strong>';
+
 	$html  = '<div class="cdm-f1-secao">';
 	$html .= '<h2>Qual rejunte cabe nessa folga</h2>';
 
 	if ( $do_tipo ) {
-		$html .= '<p>Com <strong>' . cdm_casca_num( $e['junta'] ) . ' mm</strong> de folga, estes são os que o fabricante declara para essa largura:</p>';
+		$html .= '<p>Com ' . $mm . ' de folga, e para peça ' . esc_html( $lugar )
+			. ', estes são os ' . esc_html( $nome_tipo ) . ' que o fabricante declara:</p>';
 		$html .= '<ul class="cdm-f1-vitrine">';
 		foreach ( $do_tipo as $id ) {
 			$p      = cdm_f2_perfil_rejunte( $por_id[ $id ] );
@@ -809,18 +886,63 @@ function cdm_f1_vitrine_html( $e ) {
 			$html  .= cdm_f2_cartao_html( $id, $motivo );
 		}
 		$html .= '</ul>';
+	} elseif ( ! $fora_folga && ! $sem_faixa && ! $fora_lugar ) {
+		/* Nem eliminado, nem elegível: o tipo não existe no banco. */
+		$html .= '<p class="cdm-f1-faixa">Ainda não temos nenhum ' . esc_html( $nome_tipo ) . ' no nosso banco — nenhuma marca, '
+			. 'nenhuma faixa de folga. Quando tiver, o cartão aparece aqui com a medida que fez o produto entrar na lista.</p>';
 	} else {
-		$html .= '<p class="cdm-f1-faixa">Nenhum ' . esc_html( mb_strtolower( strtok( $tipos[ $e['rejunte'] ], ' —' ), 'UTF-8' ) )
-			. ' do nosso banco declara folga de <strong>' . cdm_casca_num( $e['junta'] ) . ' mm</strong>. '
-			. 'Ou a folga que você quer está fora da faixa que os fabricantes publicam, ou o produto não declara essa largura.</p>';
+		/* A RECUSA NOMEIA A CAUSA CERTA — despacho da Sentinela de 12/09/2026,
+		   item 1. A frase antiga culpava SEMPRE a folga ("Nenhum … declara folga
+		   de N mm"), inclusive quando a folga cabia perfeitamente e quem excluía
+		   era o lugar; e como a linha de "outro tipo" vinha logo depois dizendo
+		   "dentro dessa folga", a página chegava a negar e afirmar o mesmo fato
+		   em duas frases seguidas. A célula da F2 já separava os dois motivos —
+		   o que faltava era esta tela ler a separação em vez de adivinhar.
+		   O molde é o da F2, que faz isto certo desde o primeiro dia. */
+		$html .= '<p class="cdm-f1-faixa">Nenhum ' . esc_html( $nome_tipo ) . ' do nosso banco serve para essa peça '
+			. ( $lugar ? esc_html( $lugar ) : '' ) . ', com ' . $mm . ' de folga.</p>';
+	}
+
+	/* ------------------------------------------------------------------
+	 * A PRESTAÇÃO DE CONTAS DO TIPO ESCOLHIDO, e ela sai SEMPRE — inclusive
+	 * quando a lista de cima tem produto.
+	 *
+	 * Este pedaço nasceu de um buraco no próprio conserto deste despacho,
+	 * achado pelo portão antes do desembarque: a primeira versão só explicava
+	 * os excluídos quando a lista voltava vazia, então em 27 estados a página
+	 * listava dois cimentícios e não dizia uma palavra sobre o terceiro. É o
+	 * mesmo defeito do item 2 do despacho, um andar acima — produto do banco
+	 * que some da tela sem que nada diga por quê. A regra vale para as duas
+	 * ferramentas: todo rejunte é nomeado uma vez, ou na lista, ou aqui.
+	 *
+	 * Uma frase por CAUSA, cada uma nomeando quem caiu por ela. Quando a causa
+	 * é o lugar, a página diz isso com todas as letras — quem cai pelo lugar
+	 * passou pela folga antes (a régua da F2 testa a folga primeiro), então "a
+	 * folga cabe" não é suposição, é o que a ordem das travas garante.
+	 * ------------------------------------------------------------------ */
+	if ( $fora_lugar ) {
+		$html .= '<p class="cdm-f1-faixa">O que exclui ' . esc_html( cdm_f2_lista_humana( cdm_f1_nomes_de( $fora_lugar ) ) )
+			. ' é o LUGAR, não a folga: ' . $mm . ' cabe na faixa que o fabricante publica para '
+			. ( 1 === count( $fora_lugar ) ? 'ele' : 'eles' ) . ', e o que ele não declara é peça '
+			. esc_html( $lugar ) . '.</p>';
+	}
+	if ( $fora_folga ) {
+		$html .= '<p class="cdm-f1-faixa">Fora por causa da folga de ' . $mm . ': '
+			. implode( '; ', cdm_f1_faixas_de( $fora_folga, $por_id ) ) . '.</p>';
+	}
+	if ( $sem_faixa ) {
+		$html .= '<p class="cdm-f1-faixa">De ' . esc_html( cdm_f2_lista_humana( cdm_f1_nomes_de( $sem_faixa ) ) )
+			. ' a gente não conseguiu a faixa de folga que o fabricante publica, então '
+			. ( 1 === count( $sem_faixa ) ? 'ele não entra' : 'eles não entram' ) . ' em recomendação nenhuma — '
+			. 'nem para dizer que cabe, nem para dizer que não cabe.</p>';
 	}
 
 	if ( $outro_tipo ) {
-		$nomes = array();
-		foreach ( $outro_tipo as $id ) {
-			$nomes[] = cdm_f2_nome( $id );
-		}
-		$html .= '<p class="cdm-f1-nota-lista">De outro tipo, mas dentro dessa folga: ' . esc_html( cdm_f2_lista_humana( $nomes ) )
+		/* A célula da F2 já filtrou pela folga E pelo lugar, então dizer só
+		   "dentro dessa folga" dizia menos do que a página sabe — e era a metade
+		   que produzia a contradição. */
+		$html .= '<p class="cdm-f1-nota-lista">De outro tipo, e que servem nessa folga e nesse lugar: '
+			. esc_html( cdm_f2_lista_humana( cdm_f1_nomes_de( $outro_tipo ) ) )
 			. '. Eles servem para a peça — o que a gente não tem é o número de consumo deles.</p>';
 	}
 
