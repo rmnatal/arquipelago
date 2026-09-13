@@ -36,6 +36,8 @@ A primeira é a que faz a fábrica crescer; a segunda só para de gastar execuç
 
 **Pronto quando:** o número de ilhas não bloqueadas for maior ou igual ao número de execuções da Fundação que disparam na mesma janela de 40 minutos — ou seja, quando toda execução que acorda tiver ilha elegível para reservar.
 
+**MEDIÇÃO DE 13/09/2026, 11h19Z, por uma execução que ACHOU ilha — e por isso ela vale:** três execuções da Fundação reservaram nos minutos 11h18, 11h19 e 11h19, uma para cada ilha do arquipélago, e **todas as três acharam trabalho**. A folga é exatamente ZERO: a que escreve esta linha perdeu a robometria por cerca de um minuto, perdeu a clubedomosaico por outro, e pegou a aquametria, que era a última. A quarta execução daquela janela teria fechado em "nada elegível", como aconteceu ontem às 23h17Z. A reserva por commit segue funcionando como desenhada — ninguém se atropelou, nenhuma ilha ficou com duas execuções dentro. O que falta continua sendo ilha, não mecanismo.
+
 **A metade que a Fundação já fez sozinha:** a seção **1.1** do `ARQUIPELAGO.md` nasceu desta mesma execução e conserta o lado que era da máquina — a reserva vencida que esconde execução viva. Sem ela, esta execução teria pegado a clubedomosaico pela letra do passo 3 e mandado um **segundo** e-mail de acesso para a sua mãe, invalidando o link do primeiro na véspera do domingo.
 
 ---
