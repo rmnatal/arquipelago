@@ -611,12 +611,28 @@ for base, caco, onde, precisa, proibido in REGRA6_CASOS:
     html_r, codigo_r = buscar(f"{BASE}{F2}?base={base}&caco={caco}&onde={onde}&junta=2")
     corpo_r = re.search(r"<main[^>]*>(.*?)</main>", html_r, re.S)
     texto_r = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", corpo_r.group(1))) if corpo_r else ""
+    # A LISTA DO "NAO SERVE" MEDE A REGIAO DA RECOMENDACAO, NUNCA O CORPO.
+    # A primeira versao disto media o corpo e reprovou a pagina CERTA: em vidro
+    # dentro da agua, o Maxx e o PL500 aparecem — na prestacao de contas, que e
+    # onde a secao 7 EXIGE que eles apareçam, cada um com o motivo de nao estar
+    # ali. Presenca do nome nao e recomendacao; quem decide e a regiao, e a
+    # regiao e marcada no markup. Mesmo erro de contar &#038; na pagina inteira.
+    reg = re.search(r'<div class="cdm-f2-resposta">(.*?)<div class="cdm-f2-secao cdm-f2-fora"', html_r, re.S)
+    if reg is None:
+        reg = re.search(r'<div class="cdm-f2-resposta">(.*?)<div class="cdm-f2-secao"', html_r, re.S)
+    bruto_rec = reg.group(1) if reg else ""
+    # o bloco de recusa mora dentro da resposta e nomeia produto para dizer que
+    # ele NAO foi indicado: sai daqui, pelo mesmo motivo e pela mesma marcacao.
+    bruto_rec = re.sub(r'<p class="cdm-f2-frase cdm-f2-faixa">.*?</p>', " ", bruto_rec, flags=re.S)
+    texto_rec = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", bruto_rec))
     marca = f"[regra 6 {base[:9]}/{caco[:9]}/{onde[:9]}]"
     ok("200" == codigo_r, f"{marca} responde 200", codigo_r)
+    ok(texto_rec.strip() != "", f"{marca} a regiao da recomendacao foi encontrada para medir")
     for frase in precisa:
         ok(frase in texto_r, f"{marca} serve: {frase[:44]}")
     for frase in proibido:
-        ok(frase not in texto_r, f"{marca} NAO serve: {frase[:44]}")
+        alvo = texto_rec if frase not in ("Não temos cola para indicar",) else texto_r
+        ok(frase not in alvo, f"{marca} NAO recomenda: {frase[:40]}")
 
 # A contagem do que falta, recontada aqui pelo tamanho do vocabulario — que e
 # aritmetica e nao depende de elegibilidade nenhuma. Se a pagina publicar um

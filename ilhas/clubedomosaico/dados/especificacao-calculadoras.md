@@ -105,8 +105,10 @@ Matriz publicada (cada linha vira uma linha da tabela pré-renderizada):
 | cimento / concreto | qualquer | cimentcola AC-II (área grande) ou silicone neutro (colagem pontual) | AC-II é declarada para área interna e externa pela NBR 14.081; o neutro é declarado para concreto e alvenaria | **acético: concreto, cimento e superfície alcalina são restrição declarada** |
 | alvenaria / tijolo | qualquer | cimentcola AC-II ou silicone neutro | mesma justificativa | **acético: tijolo e superfície alcalina, restrição declarada** |
 | metal | interno | silicone neutro | declarado resistente a metais corrosíveis | **acético: metal corrosível, zinco e chapa galvanizada, restrição declarada** |
-| plástico | qualquer | **faixa descoberta** — ver 1.6 | — | acético não recomendado em PE, PP e PC |
-| qualquer | contato permanente com água | **faixa descoberta** — ver 1.6 | — | **acético: imersão contínua é restrição declarada**; em piscina, a cimentcola AC-II só recebe água 7 dias depois |
+| plástico | interno seco, com caquinho poroso | Cascola Adesivo de Montagem PL500 (desde 13/09/2026) | a Henkel lista plásticos entre os materiais em que o produto adere, e exige que ao menos uma das superfícies seja porosa — sobre plástico, quem cumpre é o caquinho | acético não recomendado em PE, PP e PC |
+| plástico | os outros 26 dos 30 casos | **faixa descoberta** — ver 1.6 | o PL500 é declarado para uso interno, e com caquinho liso a condição de porosidade não fecha | — |
+| cerâmica ou porcelana | contato permanente com água | Tekbond Silicone Acético Maxx (desde 13/09/2026) | a Tekbond declara vedação de aquário e piscina na página de produto, nível 3 da escada — é a declaração explícita que a regra 4 exige para ambiente crítico | **acético Construção: imersão contínua é restrição declarada** |
+| as outras oito bases | contato permanente com água | **faixa descoberta** — ver 1.6 | 'cerâmicas vitrificadas' é a única superfície que o fabricante do Maxx nomeia, e a ilha não traduz 'fabricação de aquários' em base vidro | em piscina, a cimentcola AC-II só recebe água 7 dias depois |
 
 ### 1.4 O que a F2 devolve
 1. **A frase-resposta**, primeira coisa da página, com fabricante e data dentro dela.
@@ -134,6 +136,19 @@ Dois casos ficam **sem recomendação publicada** nesta versão, e a página diz
 inventar: **peça em contato permanente com água** (falta o boletim do rejunte epóxi
 Quartzolit) e **base de plástico**. Silêncio parece defeito; texto honesto, não. As duas
 faixas estão em `pendentes` no `constantes.json` com o documento exato que as fecha.
+
+> **AS DUAS FECHARAM EM 13/09/2026, E O NÚMERO DELAS DEIXOU DE MORAR NESTA PÁGINA.**
+> O texto acima fica como registro do que elas eram; o que ele **não pode mais ser lido
+> como** é o estado de hoje. Duas coisas mudaram, e a segunda importa mais que a primeira:
+>
+> - **O que fechou:** o `Cascola Adesivo de Montagem PL500` abriu a base de plástico e o
+>   `Tekbond Silicone Acético Maxx` abriu o contato permanente com água em cerâmica. As
+>   duas entraram por fonte de nível 3, pela busca restrita ao domínio do fabricante.
+> - **Onde o número mora agora:** a própria página passou a **contar** o que falta a cada
+>   requisição, varrendo base × lugar × caquinho. Esta seção 1.6 era prosa escrita à mão e
+>   virou mentira no mesmo dia em que os produtos entraram — no ar, em voz de confissão.
+>   **Quem quiser o estado de hoje lê `dados/cobertura.json`, que se regenera**, ou a
+>   própria F2. Frase de honestidade também envelhece, e esta envelheceu calada.
 
 > **ATUALIZAÇÃO DO BLOCO 3c — a peça submersa ficou meio coberta, e "meio" é a palavra.**
 > A categoria REJUNTE trouxe o dado que faltava, e ele resolve só um dos dois lados:

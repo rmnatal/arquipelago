@@ -2584,3 +2584,234 @@ Ninguém tinha visto porque quem lê o cabeçalho hoje é a Fundação, com `gre
 duas coisas atravessam YAML quebrado sem reclamar. **Cabeçalho que só o olho lê é cabeçalho sem
 portão.** A metade que vale para toda ilha foi escrita onde regra nova mora, uma vez: a
 **seção 2 do `ARQUIPELAGO.md`**, com o comando de uma linha e a convenção de aspas simples.
+
+13/09/2026 21:19Z — BLOCO 3e ENTREGUE: A CATEGORIA COLA GANHA OS DOIS PRODUTOS DAS FAIXAS DE ZERO, E A F2 APRENDE A CONDIÇÃO DE SUPERFÍCIE (regra 6)
+
+**A ilha desta execução foi a terceira tentativa.** A robometria foi reservada às
+21h16Z por outra execução — o push da minha reserva foi recusado por cerca de um
+minuto, o passo 5 da seção 1 manda voltar ao passo 2, e nenhum force push
+aconteceu. Antes de escolher, os três `PROMPT.md` foram lidos: **nenhuma ilha
+tinha despacho aberto para a Fundação**, então a 18.1 não se aplicou e valeu a
+rotação da seção 1. A clubedomosaico era a de `ultima_execucao` mais antiga entre
+as livres (19h17Z), com prioridade 1.
+
+**O QUE ESTE BLOCO FOI BUSCAR, e estava escrito no `ESTADO.md` desde as 19h17Z:**
+a categoria COLA era a faixa mais descoberta da ilha. O censo da seção 14.3 media
+**45 estados, 0 com o mínimo de 3 elegíveis, teto de 2**. Era a única categoria em
+que a ferramenta responde e o banco não tinha o que vender.
+
+## A rede, medida antes de trabalhar (seção 20.2)
+
+`clubedomosaico.com.br` e o `/status` em 200. O egresso a fabricante segue
+fechado e foi **remedido em duas passadas** antes de ser respeitado, como manda a
+seção 4: `quartzolit.weber`, `tekbond.com.br`, `cascola.com.br`, `henkel.com.br`,
+`bra.sika.com` e `brascola.com.br` responderam `000` nas duas, com o domínio da
+ilha em 200 como controle na mesma janela. O WebFetch devolveu `EGRESS_BLOCKED`
+para o mesmo domínio. **O canal que sobrou é exatamente o que a escada de fontes
+do esquema chama de nível 2 e 3: busca restrita ao domínio do fabricante, sem
+abrir o PDF** — e foi por ele que os dois produtos entraram.
+
+## Os dois produtos, e por que cada um fecha uma faixa
+
+**Tekbond Silicone Acético Maxx (BRSA005)** — o primeiro produto do banco que
+pode ser **recomendado em contato permanente com água**. Até hoje essa faixa
+tinha zero elegíveis nas nove bases, e a única declaração de colagem submersa da
+ilha era press release de 2018 (`loctite-durepoxi`, nível 4, abaixo do mínimo de
+3). A declaração de aquário e piscina está na página de produto do fabricante,
+nível 3, e cumpre a regra 4 (ambiente crítico exige declaração explícita).
+
+**Cascola Adesivo de Montagem PL500 Interior** — o primeiro indicado **sobre
+plástico**. O único que falava de plástico dizia "certos tipos de plástico", que
+não nomeia tipo nenhum e por isso nunca virou indicação; aqui o fabricante lista
+"plásticos" sem qualificador.
+
+**O QUE FOI RECUSADO DE PROPÓSITO, nos dois:**
+
+- No Maxx, **vidro NÃO entrou**. É um silicone de aquário e aquário é de vidro, e
+  a tentação de traduzir "fabricação e reparo de aquários" em base VIDRO é a
+  heurística por vizinhança que a seção 8 proíbe. "Aquários" é aplicação e entra
+  como AMBIENTE, que é o que ela mede. As outras oito bases seguem descobertas
+  dentro da água, e a página diz isso.
+- No PL500, a frase *"ideal para adesão de rodapés, peças decorativas, azulejos,
+  ladrilhos, molduras, canaletas, cantoneiras, maquetes, mosaicos"* **não entrou
+  em `indicado_para`**, embora contenha "azulejos", que o mapa traduz como BASE.
+  É a lista do que se COLA, nunca a do que se cola SOBRE — o mesmo erro que este
+  banco já pegou na cimentcola AC-II. **"Mosaicos" está escrito lá pelo próprio
+  fabricante e mesmo assim não virou declaração de substrato: virou citação.**
+
+## A regra 6, e por que ela precisou existir
+
+O PL500 declara **"ao menos uma das superfícies deve ser porosa, já que o produto
+seca por evaporação da água"**. Isso não é base e não é ambiente: é o **PAR de
+superfícies coladas**. Sem tratá-la, a página mandaria colar pastilha de vidro em
+vaso de plástico com um adesivo que não teria por onde curar — recomendar em
+primeiro lugar um produto que a própria página diz não servir, que a seção 7
+chama de defeito GRAVE.
+
+Nasce a **regra 6 do esquema (versão 3)**: a primeira régua de cola que olha o
+CAQUINHO. A entrada existia desde a F2 1.0.0 e nenhuma régua de cola a lia — o
+mesmo defeito que a F1 tinha com o banco de pastilhas e a F2 com o `url_busca`.
+
+**TRÊS DECISÕES DECLARADAS NO CÓDIGO:**
+
+1. **A ordem.** A condição roda DEPOIS das cinco e ANTES da ordenação por score.
+   Rodar depois da ordenação deixaria célula sem topo com elegíveis na mão: em
+   `vidro` + `caquinho de espelho` o produto com condição é o PRIMEIRO colocado,
+   e quem sobe no lugar dele são os dois silicones que estavam abaixo. É uma das
+   cinco âncoras escritas à mão no esquema.
+2. **A causa tem grupo próprio.** Quem cai pela condição não vai para o balde do
+   silêncio. Não é proibição (o fabricante não proíbe) e não é silêncio (ele
+   falou, e falou desta superfície). Misturar seria a mistura de causas que a
+   seção 7 proíbe desde 12/09/2026, escrita nesta mesma ilha.
+3. **A atribuição sai dividida ao meio (seção 26.3).** A **condição** é do
+   fabricante; a classificação de **quais superfícies são porosas** é da ilha. A
+   página escreve as duas metades em orações separadas — *"a Henkel escreve ao
+   menos uma das superfícies deve ser porosa; quem diz que pastilha de cerâmica é
+   a superfície porosa deste caso somos nós, não ela"* — e o portão mede a
+   separação.
+
+**A lista mora no esquema, nunca na régua (seção 26.2)**, com as duas direções
+cobradas: a união de porosas e não porosas tem de ser IGUAL ao vocabulário, e as
+duas listas disjuntas. A direção da dúvida está escrita: **na dúvida, NÃO
+porosa** — cerâmica esmaltada entra como não porosa mesmo sabendo que o biscoito
+por baixo do esmalte é poroso, porque quem escolhe "cerâmica ou porcelana" na F2
+está colando sobre a face esmaltada.
+
+## O ACHADO QUE QUASE FOI COMMITADO, e foi um portão que o pegou
+
+A ficha técnica BRSA005 foi **localizada e não lida** (o PDF não abre desta
+nuvem). Ela tinha sido gravada dentro de `fontes`, "para a próxima execução saber
+onde ir", com o nível 2 dela. **O nível de um material é o MELHOR dos níveis das
+fontes**, então aquela linha promoveu o produto inteiro de 3 para 2 sem que uma
+declaração dele viesse da ficha — e a linha de prova da tela passou a atribuir a
+declaração a um documento que ninguém abriu. Quem viu foi o portão de acentuação
+da F2, que reprovou a palavra `tecnica` chegando à tela vinda do campo `tipo`
+daquela fonte.
+
+Seção 10 do contrato: **o nível é o do elo MAIS FRACO, e inflar o próprio nível
+de fonte é o defeito mais caro numa fábrica que vende procedência.** O endereço
+ficou, em campo próprio — `fonte_localizada_nao_lida` —, e nasceu a trava:
+`fontes` é o que SUSTENTA o registro, e fonte que declara não sustentar campo
+nenhum é recusada pelo validador com o motivo escrito.
+
+## O OUTRO ACHADO, de carona, e ele estava numa régua
+
+O validador cobrava etiqueta do Mercado Livre no formato `clubedomosaico-<código>`
+— **uma etiqueta IMPOSSÍVEL de criar**. A seção 7 do `ARQUIPELAGO.md` foi
+corrigida em 13/09/2026 MEDINDO o painel: só minúsculas e números, sem hífen, no
+máximo 30 caracteres. A régua ficou para trás e aprovava os **23 registros** do
+banco que carregavam a forma com hífen. Portão verde sobre um valor que não
+existe do outro lado. Os 23 registros e a régua foram corrigidos no mesmo commit.
+
+## O DEFEITO QUE ESTE BLOCO CRIOU E CONSERTOU NO AR: prosa que envelhece calada
+
+A seção "Duas coisas que a gente ainda não responde" era **duas frases escritas à
+mão**, e as duas eram exatas no dia em que nasceram. Os dois produtos as fizeram
+mentir no mesmo dia — **no ar, em voz de confissão**, que é pior, porque frase de
+honestidade é a última de que alguém desconfia. O conserto não foi reescrever a
+prosa: a seção passou a ser **CONTADA a cada requisição**, varrendo a entrada
+inteira (base × lugar × caquinho) e publicando *"esta página responde 270
+combinações; em 68 delas a gente ainda não tem cola para indicar"*.
+
+**Mais três listas digitadas caíram no mesmo bloco**, e a quarta foi pega pelo
+portão que eu mesmo tinha acabado de escrever: a resposta do FAQ e a frase
+*"trocando por X, ele voltaria a servir"* traziam os nomes dos caquinhos porosos
+escritos à mão. Essa última é a única frase da página que diz à pessoa **o que
+fazer para a peça não descolar**, e digitada ela erraria do jeito caro. As duas
+passaram a sair das mesmas listas que a régua usa.
+
+**A tabela pré-renderizada ganhou a coluna da condição.** Sem ela, a linha
+"plástico, dentro de casa: use Cascola PL500" sairia servida no HTML como se
+valesse sempre — e ela só vale com caquinho poroso. É a metade que um modelo de
+linguagem lê sem preencher formulário, e é onde a afirmação sem escopo custa mais.
+
+**Na casca, três números entraram na via viva**: `celulas_matriz`,
+`celulas_com_saida` e `celulas_sem_saida` eram os únicos do instantâneo que
+nenhuma linha recontava, e a página de metodologia — cujo único produto é o rigor
+— passou a publicar que a ilha tinha duas combinações sem saída num dia em que
+ela não tinha nenhuma. A frase também ganhou o ESCOPO do que ela mediu, e aponta
+para a ferramenta, que tem a conta com as três dimensões.
+
+## A verificação, em números
+
+**Banco:** `validar-banco.py` APROVADO — 25 materiais, 18 células da F2
+recomputadas, 9 do rejunte, **54 pares da regra 6 com 5 âncoras ponta a ponta**.
+As 18 células da matriz foram **derivadas à mão** das declarações dos dois
+produtos ANTES de o validador rodar; as 32 divergências que ele acusou bateram
+uma a uma com a derivação.
+
+**Bancada, 0 falha:** teste-f2 de 87 para **102 afirmações**, com varredura da
+entrada INTEIRA — 270 estados, um processo cada —, incluindo a **prestação de
+contas da cola** que a ilha nunca teve: 1.890 nomeações (7 colas contadas do
+arquivo × 270 respostas), cada item em exatamente UM lado. teste-casca 546,
+teste-f1 182, teste-loja 147, teste-leads 211, teste-atelie, validar-pastilhas,
+prestação de rejunte (540 estados da F2 e 180 da F1), `php -l` em tudo.
+`conferir-cobertura.php` **353 afirmações, 0 falha**: a régua do censo e a do
+snippet dão o mesmo elegível nos 270 estados de cola e nos 60 de rejunte.
+
+**Censo da 14.3, o número deste bloco:** a cola sai de **45 estados varridos, 0
+com o mínimo, teto 2** para **270 varridos, 28 com o mínimo de 3, teto 4**. Os
+com zero elegíveis são 68, e é esse o número que a página publica.
+
+**Navegador:** a bateria rodou sobre os quatro estados novos da F2, com a passada
+de JavaScript desligado inteira.
+
+**Mutações:** a bateria rodou inteira **três vezes**, e as três passadas
+produziram achado. **Quatro resultados**, e os quatro valem mais que o verde:
+- Uma mutação antiga **virou INERTE** quando a assinatura de `cdm_f2_fora_html()`
+  ganhou a tessela. Mutação que não morde é teste verde com outro nome; foi
+  reapontada.
+- Uma **PASSOU**, e o motivo era meu: eu declarei o portão errado. Ela edita o
+  snippet e eu mandei o validador do banco julgá-la, e o validador não lê uma
+  linha de PHP. Ganhou o portão certo, e ganhou uma **gêmea do lado do Python**,
+  porque duas implementações da mesma regra precisam das duas mutações.
+- A trava que ela deveria ter acionado **não existia**. A afirmação que faltava —
+  *"produto proibido sai no bloco da proibição, nunca no da condição"* — nasceu e
+  descobriu-se **verde sem poder falhar**: o banco tem um produto com condição e
+  ele não é proibido em base nenhuma. Nasceu com ela a mutação que **produz o
+  mundo**, criando o par proibido-com-condição que o banco de hoje não tem.
+- Na passada seguinte, **uma segunda PASSOU**: apagar a coluna da condição da
+  tabela pré-renderizada deixava o portão inteiro verde. O defeito era real e o
+  `conferir-no-ar.py` o pegava — **mas defeito pego pela regra VIZINHA prova que
+  ALGUMA trava existe, nunca que ESTA existe**, e é por isso que cada mutação
+  deste bloco declara qual portão tem de reprová-la. Enquanto a bancada não
+  medisse, a tabela podia perder a coluna e só o desembarque diria. A afirmação
+  nasceu, com régua própria (o literal do fabricante lido do banco em disco), e
+  a mutação foi reaplicada sozinha para ver a trava reprová-la antes da passada
+  final: **6 linhas da tabela indicam produto com condição, e as 6 publicam a
+  condição literal.**
+
+O resultado final das 44 está no fim desta entrada.
+
+## Receita e dívida, contadas do arquivo
+
+7 colas no banco (eram 5). **Os dois novos nascem SEM PISO**, e isso é dívida
+contada, não estado de espera: a palavra-chave de busca dos dois está escrita em
+`afiliado.url_busca_produto`, e o que falta é o encurtamento, que exige a sessão
+logada do painel de afiliado — medido nesta execução às 21h (o
+`affiliate.shopee.com.br` serve casca de JavaScript sem sessão). **No dia da
+sessão são duas colagens e nenhuma linha de código muda.** A ilha vai a 25 itens
+de fabricante, 15 esperando link, 15 sem piso, 22 sem imagem.
+
+## Aberto e nomeado
+
+- (a) **A matriz escrita à mão cobre 18 das 45 células de base × lugar.** As
+  outras 27 são verificadas só pela varredura das páginas servidas, que mede a
+  agregação e NÃO é régua independente de elegibilidade. Está dito dentro do
+  próprio portão, em vez de escondido. O conserto é a matriz chegar a 45 — nunca
+  o portão fingir que já mede o que não mede.
+- (b) Os 15 `url_busca` dependem de uma sessão do painel da Shopee.
+- (c) O egresso a fabricante segue fechado; a ficha BRSA005 está localizada e não
+  lida, com o endereço guardado.
+- (d) `1x1` de fabricante continua com zero elegível, e é o tamanho de 7 das 12
+  linhas da tabela da F1.
+- (e) A ilha não tem peça publicada, então ficha, formulário no ar e feed do
+  Merchant Center esperam a artesã.
+- (f) `contato@clubedomosaico.com.br` ainda não existe como caixa.
+
+**PRÓXIMO, com ordem e motivo:** (1) **a matriz esperada da F2 de 18 para 45
+células**, que é a independência que falta ao número que a página publica, e é o
+único item aberto que este bloco criou; (2) a ordem das duas vitrines na F1, hoje
+herdada de quando o bloco da pastilha era uma frase de espera; (3) `1x1` de
+fabricante, a pendência mais cara da categoria pastilha; (4) os 15 `url_busca`,
+no minuto em que houver sessão — e é copiar e colar.

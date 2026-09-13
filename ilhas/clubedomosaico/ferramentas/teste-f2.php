@@ -1095,6 +1095,74 @@ f2_ok( $descobertos_varridos > 0 && $descobertos_varridos < $total_combinacoes,
 f2_ok( false !== mb_strpos( $t, 'material de imprensa' ),
 	'a pagina diz por que a menção de nivel 4 nao vira recomendacao' );
 
+/* ---------------------------------------------------------------------------
+ * A TABELA PRE-RENDERIZADA, E A COLUNA DA CONDICAO.
+ *
+ * Esta afirmacao nasceu de uma mutacao que PASSOU: apagar a coluna da condicao
+ * da tabela deixava o portao inteiro verde. O defeito era real e o ar o pegava,
+ * mas conferir-no-ar.py e outro portao — e defeito pego pela regra VIZINHA
+ * prova que ALGUMA trava existe, nunca que ESTA existe. Enquanto a bancada nao
+ * medisse, a tabela podia perder a coluna e so o desembarque diria.
+ *
+ * E ela e a metade mais cara de errar: a tabela e o que um modelo de linguagem
+ * le sem preencher formulario, e ela nao tem a coluna do caquinho — a linha
+ * "plastico, dentro de casa: use PL500" sai servida no HTML como se valesse
+ * sempre. A coluna da condicao e o escopo dessa linha, e sem ela a tabela
+ * afirma num escopo maior do que o medido.
+ *
+ * A regua e propria: quem carrega condicao sai do BANCO lido do disco, e o
+ * texto esperado e o literal do fabricante gravado la — nunca o que o snippet
+ * imprime.
+ * ------------------------------------------------------------------------- */
+
+$com_condicao_no_banco = array();
+foreach ( $por_id as $id_c => $m_c ) {
+	if ( 'cola' === $m_c['categoria'] && 'ativo' === $m_c['status']
+		&& ! empty( $m_c['condicoes']['exige_superficie_porosa']['valor'] ) ) {
+		$com_condicao_no_banco[ (string) $m_c['nome_comercial'] ] =
+			(string) $m_c['condicoes']['exige_superficie_porosa']['literal'];
+	}
+}
+f2_ok( ! empty( $com_condicao_no_banco ),
+	'o banco tem produto com condicao declarada — sem isso esta secao nao mede nada',
+	count( $com_condicao_no_banco ) . ' com condicao' );
+
+$tabela_html = preg_match( '#<h2>A tabela inteira, sem preencher nada</h2>(.*?)</table>#is', $corpo_ancora, $mt )
+	? $mt[1] : '';
+f2_ok( '' !== $tabela_html, 'a tabela pre-renderizada esta no HTML servido' );
+f2_ok( false !== mb_strpos( $tabela_html, 'Com que condição' ),
+	'a tabela declara a coluna da condicao no cabecalho' );
+
+$linhas_tabela = preg_match_all( '#<tr>(?!<th)(.*?)</tr>#is', $tabela_html, $mlt ) ? $mlt[1] : array();
+$erros_tabela  = array();
+$linhas_com_condicao = 0;
+foreach ( $linhas_tabela as $linha ) {
+	if ( ! preg_match_all( '#<td>(.*?)</td>#is', $linha, $mtd ) || count( $mtd[1] ) < 5 ) {
+		continue;
+	}
+	$usa   = f2_texto( $mtd[1][2] );
+	$cond  = f2_texto( $mtd[1][4] );
+	foreach ( $com_condicao_no_banco as $nome_c => $literal_c ) {
+		$na_coluna_usa = ( false !== mb_strpos( $usa, $nome_c ) );
+		$na_coluna_cond = ( false !== mb_strpos( $cond, $nome_c ) );
+		if ( $na_coluna_usa ) {
+			$linhas_com_condicao++;
+			if ( ! $na_coluna_cond ) {
+				$erros_tabela[] = '"' . $usa . '" indica ' . $nome_c . ' e a linha nao diz a condicao';
+			} elseif ( false === mb_strpos( $cond, $literal_c ) ) {
+				$erros_tabela[] = '"' . $usa . '" diz a condicao sem o texto literal do fabricante';
+			}
+		} elseif ( $na_coluna_cond ) {
+			$erros_tabela[] = 'linha cita a condicao de ' . $nome_c . ' sem indicar o produto';
+		}
+	}
+}
+f2_ok( $linhas_com_condicao > 0,
+	'ha linha da tabela que indica produto com condicao — senao a afirmacao abaixo nao morde',
+	$linhas_com_condicao . ' linhas' );
+f2_ok( empty( $erros_tabela ), 'toda linha que indica produto com condicao publica a condicao literal',
+	empty( $erros_tabela ) ? $linhas_com_condicao . ' linhas conferidas' : implode( ' | ', array_slice( $erros_tabela, 0, 3 ) ) );
+
 /* O tempo de espera que a ilha NAO tem: o campo existe no banco com o motivo
    escrito, e a pagina diz que nao publica em vez de simplesmente nao ter a
    secao. Ausencia de secao e indistinguivel de "nao importa". */
