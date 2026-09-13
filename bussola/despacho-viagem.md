@@ -44,13 +44,24 @@ Se a rodada achar recorte melhor, troque — mas **derrube este com medição, n
 - **DESCARTADO — companhia aérea:** comissão sobre passagem é ínfima. Não gaste rodada nisso.
 - **DESCARTADO POR ORA — pacote e grupo de viagem:** isso não é afiliação, é **operar agência** (CADASTUR, responsabilidade sobre a viagem de terceiros, risco operacional real). Decisão do Raphael de 13/09: não começar por aí. O caminho, se um dia, é **ele captar e uma operadora existente operar**.
 
+## O DOMÍNIO JÁ ESTÁ REGISTRADO — não faça naming
+
+**`jornadafly.com.br` foi registrado pelo Raphael em 13/09/2026** (registro.br, titular RAPHAEL NATAL, expira 13/09/2028). **A seção (d) do dossiê — naming, 30 a 40 candidatos, filtro DNS, registro.br — NÃO se aplica a esta ilha.** Não gaste um minuto nisso. O nome está decidido e é o mesmo do Instagram, o que é o ponto: a audiência e o site passam a ter um nome só.
+
+**MAS O NOME TRAZ UMA TENSÃO QUE O DOSSIÊ TEM DE RESOLVER, e ela é real:**
+
+O domínio diz **"Fly"**. O recorte proposto **não é sobre voar** — é sobre julgar se a experiência vale a pena (balão, lagoa termal, passeio no deserto). Passagem aérea, aliás, está descartada como monetização: comissão ínfima. E a regra de símbolo da seção 5 do `BUSSOLA.md` proíbe avião, mala, globo e passaporte, que é exatamente para onde "Fly" puxa.
+
+Resolva isso de propósito, não por acidente. O caminho que parece certo: **o peso semântico fica em "JORNADA"** — o percurso, a decisão, o que se vive — e "Fly" é a assinatura de marca herdada do Instagram, não a promessa do produto. O símbolo nasce do gesto de **medir o custo e decidir se compensa**. Se a rodada discordar, diga por quê no dossiê; o que não pode é o dossiê passar por cima da contradição em silêncio.
+
+**Domínio já registrado também significa que o relógio do Google já está correndo.** Pela seção 5 do `BUSSOLA.md`, casca + 1 ferramenta + sitemap no ar em até 48h da aprovação. Aqui não há espera de compra de domínio — a única coisa entre a aprovação e o nascimento é o dossiê.
+
 ## O que a rodada tem de entregar
 
-O dossiê completo da seção 5 do `BUSSOLA.md` — notas com as duas SERPs, as 5 consultas-alvo com quem ocupa o top 10, a prova de cobertura de afiliado pela regra NOVA da seção 2, naming com filtro no registro.br, identidade, plano das 3 primeiras ferramentas, e o `VOZ.md`.
+O dossiê da seção 5 do `BUSSOLA.md`, **sem a parte (d) de naming**: notas com as duas SERPs, as 5 consultas-alvo com quem ocupa o top 10 hoje, a prova de cobertura de afiliado pela regra NOVA da seção 2, identidade, plano das 3 primeiras ferramentas, e o `VOZ.md`.
 
-**Duas adaptações obrigatórias no dossiê desta ilha, e só desta:**
+**Três exigências que valem só para esta ilha:**
 
-1. **A prova de cobertura usa a regra nova** (programa acessível com link rastreável), não Shopee/ML. Liste os 10 e onde cada um tem programa.
-2. **Um parágrafo sobre o encaixe com o Instagram:** que conteúdo do site vira Reel e que Reel manda para que página. O ativo é a audiência; o dossiê que ignorar isso está incompleto.
-
-**O símbolo continua nascendo do gesto técnico do nicho** (seção 5 do BUSSOLA.md) — aqui o gesto é **medir o custo e decidir se compensa**, não avião, mala, globo ou passaporte, que são o mascote óbvio que a regra proíbe.
+1. **A prova de cobertura usa a regra nova** (programa acessível com link rastreável), não Shopee/ML. Liste os 10 e onde cada um tem programa. **As comissões de Civitatis e GetYourGuide NÃO foram verificadas na fonte, e a faixa de 10–30% do seguro veio de fonte secundária** — não pontue o M em cima disso sem confirmar.
+2. **Um parágrafo sobre o encaixe com o Instagram:** que conteúdo do site vira Reel e que Reel manda para que página. O ativo é a audiência; dossiê que ignorar isso está incompleto.
+3. **O `VOZ.md` tem de caber na voz que já existe em @jornadafly.** Não invente uma persona nova para o site: a pessoa que chega do Reel e a que chega do Google têm de encontrar a mesma voz. Se a rodada não conseguir observar o Instagram, diga isso no dossiê em vez de inventar.
