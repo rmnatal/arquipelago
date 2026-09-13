@@ -60,12 +60,36 @@
  * A coluna de gramas de COLA nasce vazia, com o motivo escrito: o fabricante do
  * silicone declara rendimento por cordão, não por área, e o consumo por área da
  * cimentcola não foi obtido. As duas pendências estão nomeadas no
- * `dados/constantes.json`. E não há banco de pastilha ainda: o cartão de compra
- * da pastilha tem o lugar reservado e diz que está vazio, em vez de sumir.
+ * `dados/constantes.json`.
+ *
+ * ------------------------------------------------------------------------
+ * VERSÃO 1.2.0 (13/09/2026) — A VITRINE DE PASTILHA
+ * ------------------------------------------------------------------------
+ * Até a 1.1.0 esta página dizia "ainda não temos as pastilhas no nosso banco".
+ * O banco existia desde 12/09/2026, com treze itens em 13/09, publicado como
+ * option e lido pela casca — e nenhuma linha de código desta ferramenta o abria.
+ * Dado no banco e tela sem leitor é o mesmo defeito que a F2 tinha com o
+ * `url_busca`, e aqui era mais caro: esta é a ferramenta cuja pergunta É
+ * "quantas pastilhas comprar".
+ *
+ * O que entrou, e o comentário do bloco 6b explica cada um: a vitrine filtrada
+ * pelo lado, com as três travas em ordem (lado, formato, fonte) e uma frase por
+ * causa; a prestação de contas das quatro listas disjuntas, que somam o banco
+ * contado do arquivo; a porta do caquinho irregular para os lados que o seletor
+ * não oferece; e a tabela pré-renderizada do banco inteiro, que existe porque o
+ * estado-âncora desta página é 1 cm e 1 cm tem zero item.
+ *
+ * O que NÃO entrou, e é declarado: quantas pastilhas vêm na placa. Nenhum dos
+ * treze fabricantes publica, a divisão ingênua não fecha em 9 dos 13 e fecha
+ * exigindo junta zero nos outros 4 — então o cartão fala em PLACA, que é conta
+ * de área e não supõe nada, e a página diz na cara que a peça a gente não
+ * converte. Os treze também estão sem link e sem piso de busca, o que é defeito
+ * declarado da 19.1: gerar o link exige a sessão do painel de afiliado, e o
+ * cartão reserva o lugar em vez de sumir.
  */
 
 if ( ! defined( 'CDM_F1_VERSAO' ) ) {
-	define( 'CDM_F1_VERSAO', '1.1.0' );
+	define( 'CDM_F1_VERSAO', '1.2.0' );
 }
 if ( ! defined( 'CDM_F1_SLUG' ) ) {
 	/* Mesma escolha da F2, pelo mesmo motivo (ARVORE.md, seção 2): nível 3 com
@@ -280,6 +304,37 @@ function cdm_f1_banco_rejuntes() {
 	}
 	$bruto = get_option( 'clubedomosaico_dados_materiais-rejuntes' );
 	$banco = ( is_array( $bruto ) && ! empty( $bruto['materiais'] ) ) ? $bruto : array( 'materiais' => array() );
+
+	return $banco;
+}
+}
+
+if ( ! function_exists( 'cdm_f1_banco_pastilhas' ) ) {
+/**
+ * O banco de pastilhas, lido da option que o Sync grava. Só item `ativo`.
+ *
+ * Ele existe desde 12/09/2026 e até a 1.1.0 nenhuma linha de código o lia: a
+ * página dizia "ainda não temos as pastilhas no nosso banco" com treze itens
+ * gravados e publicados como option. É o mesmo defeito que a F2 tinha com o
+ * `url_busca` — dado no banco, tela sem leitor — e o custo aqui era maior,
+ * porque esta é a ferramenta cuja pergunta É "quantas pastilhas comprar".
+ */
+function cdm_f1_banco_pastilhas() {
+	static $banco = null;
+	if ( null !== $banco ) {
+		return $banco;
+	}
+	$bruto = get_option( 'clubedomosaico_dados_materiais-pastilhas' );
+	$itens = array();
+	if ( is_array( $bruto ) && ! empty( $bruto['materiais'] ) && is_array( $bruto['materiais'] ) ) {
+		foreach ( $bruto['materiais'] as $m ) {
+			if ( empty( $m['id'] ) || 'ativo' !== ( isset( $m['status'] ) ? $m['status'] : '' ) ) {
+				continue;
+			}
+			$itens[] = $m;
+		}
+	}
+	$banco = array( 'materiais' => $itens );
 
 	return $banco;
 }
@@ -956,17 +1011,433 @@ function cdm_f1_vitrine_html( $e ) {
 }
 }
 
-if ( ! function_exists( 'cdm_f1_pastilha_sem_banco_html' ) ) {
+/* ---------------------------------------------------------------------------
+ * 6b. A VITRINE DE PASTILHA — e o eixo dela é a GEOMETRIA, não a matriz da cola
+ *
+ * Até a 1.1.0 este bloco era uma frase só: "ainda não temos as pastilhas no
+ * nosso banco". Ela nasceu verdadeira em 11/09/2026 e ficou falsa em 12/09,
+ * quando o bloco 3d gravou dez itens, e mais falsa em 13/09, quando entraram os
+ * outros três — com a option publicada e lida pela casca o tempo inteiro. É o
+ * mesmo defeito que a F2 tinha com o `url_busca`: dado no banco, tela sem
+ * leitor. Aqui custava mais, porque a pergunta desta página É "quantas
+ * pastilhas comprar" e ela respondia sem ter o que vender.
+ *
+ * O QUE DECIDE UMA PASTILHA NÃO É O QUE DECIDE UMA COLA, e esta é a primeira
+ * coisa que o código declara. A cola se escolhe por base × ambiente; o rejunte,
+ * pela largura da folga. A pastilha entrou no banco pela GEOMETRIA — o próprio
+ * arquivo diz isso, e diz por quê: o fabricante não nomeia substrato nem
+ * ambiente na ficha dela. Varrer a pastilha com a régua da cola produziria a
+ * mesma afirmação sem sentido que a Robometria e esta ilha já pagaram
+ * ("eliminado por silêncio" num produto que nunca foi candidato a colar nada).
+ * Então aqui a elegibilidade tem três travas, NESTA ORDEM, e a ordem é o que
+ * faz cada frase de recusa poder ser verdadeira:
+ *
+ *   1. O LADO. Tem de ser exatamente o lado que a pessoa escolheu (ou digitou,
+ *      no caquinho irregular). Quem não tem esse lado sai por aqui, e a frase
+ *      dele fala de lado — nunca de fonte, nunca de formato.
+ *   2. O FORMATO. O seletor oferece pastilha QUADRADA ("2 × 2 cm"), e o banco
+ *      tem um strip retangular de 1,2 cm. Mesmo lado não é mesma peça: quem cai
+ *      aqui já passou pelo lado, então "o lado é o mesmo" não é suposição.
+ *   3. A FONTE. Recomendação primária exige nível <= 3 (escada de fontes do
+ *      esquema). O único item de 1,5 cm do banco é sustentado por distribuidor,
+ *      e é por isso que 1,5 sai com ZERO elegível tendo um item — a causa é a
+ *      fonte, não o tamanho, e a tela diz qual das duas é.
+ *
+ * PRESTAÇÃO DE CONTAS (seção 7 do contrato): as quatro listas são disjuntas e
+ * somam o banco inteiro, contado do arquivo. Todo item aparece uma vez — no
+ * cartão que o recomenda, ou numa linha que diz por que ele não está. Nenhum
+ * número desta tela é digitado.
+ * ------------------------------------------------------------------------- */
+
+if ( ! function_exists( 'cdm_f1_nivel_da_pastilha' ) ) {
 /**
- * A pastilha não tem banco ainda, e o lugar dela fica reservado dizendo isso.
- * Sumir com o bloco esconderia o trabalho que falta; inventar produto seria
- * pior. É o item 3 da seção 3 do `especificacao-calculadoras.md`.
+ * O nível da melhor fonte do item. A escada de fontes é regra do Arquipélago e
+ * a implementação dela nesta ilha é `cdm_f2_nivel()` — uma segunda cópia aqui
+ * seria a régua duplicada que a Robometria pagou comparando duas metades que
+ * erram juntas. Quem chama isto já conferiu que a F2 está de pé.
  */
-function cdm_f1_pastilha_sem_banco_html() {
-	return '<div class="cdm-f1-secao"><h2>E onde comprar a pastilha</h2>'
-		. '<p class="cdm-f1-faixa">Ainda não temos as pastilhas no nosso banco — nenhuma marca, nenhum preço, nenhum link. '
-		. 'Quando tiver, o cartão de compra aparece aqui do mesmo jeito que o do rejunte, com a medida que fez o produto entrar na lista. '
-		. 'Até lá, a conta acima serve para você comprar em qualquer lugar: leve o número de pastilhas e o tamanho.</p></div>';
+function cdm_f1_nivel_da_pastilha( $m ) {
+	return cdm_f2_nivel( $m );
+}
+}
+
+if ( ! function_exists( 'cdm_f1_pastilhas_classificadas' ) ) {
+/**
+ * As quatro listas disjuntas, para um lado pedido em milímetros.
+ *
+ * `recomendadas` vai para a vitrine; as outras três vão para a prosa, cada uma
+ * com a sua causa. A soma das quatro é sempre o banco inteiro.
+ */
+function cdm_f1_pastilhas_classificadas( $lado_mm ) {
+	$itens = cdm_f1_banco_pastilhas()['materiais'];
+	$teto  = cdm_f2_nivel_maximo();
+
+	$saida = array(
+		'recomendadas'   => array(),
+		'fonte_fraca'    => array(),
+		'outro_formato'  => array(),
+		'outro_lado'     => array(),
+		'total'          => count( $itens ),
+		'teto_de_fonte'  => $teto,
+	);
+
+	foreach ( $itens as $m ) {
+		$g    = isset( $m['geometria'] ) ? $m['geometria'] : array();
+		$lado = isset( $g['lado_anunciado_cm'] ) ? (float) $g['lado_anunciado_cm'] * 10 : null;
+
+		if ( null === $lado || abs( $lado - (float) $lado_mm ) > 0.001 ) {
+			$saida['outro_lado'][] = $m;
+			continue;
+		}
+		if ( 'quadrada' !== ( isset( $g['formato'] ) ? $g['formato'] : '' ) ) {
+			$saida['outro_formato'][] = $m;
+			continue;
+		}
+		if ( cdm_f1_nivel_da_pastilha( $m ) > $teto ) {
+			$saida['fonte_fraca'][] = $m;
+			continue;
+		}
+		$saida['recomendadas'][] = $m;
+	}
+
+	return $saida;
+}
+}
+
+if ( ! function_exists( 'cdm_f1_placas_para' ) ) {
+/**
+ * Quantas placas a peça pede — e ela é conta de ÁREA, de propósito.
+ *
+ * Converter "N pastilhas" em "M placas" exigiria quantas pastilhas vêm na
+ * placa, e NENHUM fabricante brasileiro declara esse campo: nos treze itens ele
+ * é null com o motivo escrito. Área, sim, se converte sem supor nada — a placa
+ * cobre o seu próprio tamanho, seja qual for o arranjo das peças dentro dela, e
+ * recortar placa para caber é o normal do trabalho. A sobra que a pessoa
+ * escolheu entra aqui também, e o arredondamento é para cima pelo mesmo motivo
+ * da contagem de peças: lote novo muda de cor.
+ */
+function cdm_f1_placas_para( $m, $area_cm2, $sobra_pct ) {
+	$g = isset( $m['geometria'] ) ? $m['geometria'] : array();
+	$a = isset( $g['placa_lado_a_cm'] ) ? (float) $g['placa_lado_a_cm'] : 0;
+	$b = isset( $g['placa_lado_b_cm'] ) ? (float) $g['placa_lado_b_cm'] : 0;
+
+	if ( $a <= 0 || $b <= 0 || null === $area_cm2 || $area_cm2 <= 0 ) {
+		return null;
+	}
+
+	return (int) ceil( ( $area_cm2 * ( 1 + $sobra_pct / 100 ) ) / ( $a * $b ) );
+}
+}
+
+if ( ! function_exists( 'cdm_f1_pastilha_codigo' ) ) {
+/** O nome curto do item na prosa: o código do fabricante, que é como a loja o chama. */
+function cdm_f1_pastilha_codigo( $m ) {
+	if ( ! empty( $m['codigo_fabricante'] ) ) {
+		return (string) $m['codigo_fabricante'];
+	}
+
+	return isset( $m['nome_comercial'] ) ? (string) $m['nome_comercial'] : '';
+}
+}
+
+if ( ! function_exists( 'cdm_f1_pastilha_codigos' ) ) {
+function cdm_f1_pastilha_codigos( $itens ) {
+	$fora = array();
+	foreach ( $itens as $m ) {
+		$fora[] = cdm_f1_pastilha_codigo( $m );
+	}
+
+	return $fora;
+}
+}
+
+if ( ! function_exists( 'cdm_f1_lado_de' ) ) {
+/** O lado anunciado do item, em centímetros, como a tela escreve. */
+function cdm_f1_lado_de( $m ) {
+	$lado = isset( $m['geometria']['lado_anunciado_cm'] ) ? (float) $m['geometria']['lado_anunciado_cm'] : null;
+
+	return null === $lado ? '' : number_format_i18n( $lado, ( (float) $lado == (int) $lado ) ? 0 : 1 );
+}
+}
+
+if ( ! function_exists( 'cdm_f1_pastilha_fonte' ) ) {
+/** A melhor fonte do item — a que sustenta a medida, para o link discreto. */
+function cdm_f1_pastilha_fonte( $m ) {
+	$melhor = null;
+	foreach ( (array) ( isset( $m['fontes'] ) ? $m['fontes'] : array() ) as $f ) {
+		if ( ! isset( $f['nivel'] ) ) {
+			continue;
+		}
+		if ( null === $melhor || (int) $f['nivel'] < (int) $melhor['nivel'] ) {
+			$melhor = $f;
+		}
+	}
+
+	return $melhor;
+}
+}
+
+if ( ! function_exists( 'cdm_f1_cartao_pastilha_html' ) ) {
+/**
+ * O cartão de pastilha. Mesmo molde do cartão da F2 — as mesmas classes, o
+ * mesmo bloco de compra e a mesma ordem: a declaração que fez o item entrar, o
+ * bloco de compra, e só depois a procedência discreta.
+ *
+ * A ESCADA DA SEÇÃO 25 NÃO É REESCRITA AQUI: quem serve os três estados é
+ * `cdm_f2_compra_html()`, que nasceu em 13/09/2026 dizendo, no próprio
+ * comentário, que a vitrine de pastilha da F1 a chamaria em vez de copiá-la.
+ * Hoje os treze itens caem no terceiro estado — sem ficha e sem piso —, e isso
+ * é defeito declarado da 19.1, não estado de espera: o cartão reserva o lugar e
+ * a página conta quantos estão assim.
+ */
+function cdm_f1_cartao_pastilha_html( $m, $area_cm2, $sobra_pct ) {
+	$g     = isset( $m['geometria'] ) ? $m['geometria'] : array();
+	$fonte = cdm_f1_pastilha_fonte( $m );
+	$html  = '<li class="cdm-f2-cartao">';
+
+	if ( ! empty( $m['imagem']['url'] ) ) {
+		$html .= '<img class="cdm-f2-foto" src="' . esc_url( $m['imagem']['url'] ) . '"'
+			. ' width="' . (int) $m['imagem']['largura'] . '" height="' . (int) $m['imagem']['altura'] . '"'
+			. ' loading="lazy" alt="' . esc_attr( $m['imagem']['alt'] ) . '">';
+	} else {
+		$html .= '<span class="cdm-f2-sem-foto" aria-hidden="true"></span>';
+	}
+
+	$html .= '<span class="cdm-f2-marca">' . esc_html( isset( $m['marca'] ) ? $m['marca'] : '' ) . '</span>';
+	$html .= '<h3>' . esc_html( isset( $m['nome_comercial'] ) ? $m['nome_comercial'] : '' ) . '</h3>';
+
+	/* A DECLARAÇÃO QUE FEZ O ITEM ENTRAR (seção 6): lado, placa e espessura,
+	   como o fabricante publica. Nada aqui é derivado. */
+	$motivo = 'Caquinho de ' . esc_html( cdm_f1_lado_de( $m ) ) . ' cm em placa de '
+		. esc_html( number_format_i18n( (float) $g['placa_lado_a_cm'], 1 ) ) . ' × '
+		. esc_html( number_format_i18n( (float) $g['placa_lado_b_cm'], 1 ) ) . ' cm';
+	if ( ! empty( $g['espessura_mm'] ) ) {
+		$motivo .= ', com ' . cdm_casca_num( $g['espessura_mm'] ) . ' mm de espessura';
+	}
+	$motivo .= '.';
+
+	$placas = cdm_f1_placas_para( $m, $area_cm2, $sobra_pct );
+	if ( null !== $placas ) {
+		$motivo .= ' A sua peça pede <strong>' . cdm_casca_num( $placas ) . ' placa'
+			. ( $placas > 1 ? 's' : '' ) . '</strong> dessa, com a sobra já dentro.';
+	}
+	$html .= '<p class="cdm-f2-motivo">' . $motivo . '</p>';
+
+	$html .= cdm_f2_compra_html( isset( $m['afiliado'] ) ? $m['afiliado'] : array() );
+
+	if ( $fonte && ! empty( $fonte['url'] ) ) {
+		$html .= '<span class="cdm-f2-fonte"><a href="' . esc_url( $fonte['url'] ) . '"'
+			. ' rel="nofollow noopener" target="_blank">fonte</a>'
+			. ' · lido em ' . esc_html( cdm_casca_data_br( $fonte['coletado_em'] ) ) . '</span>';
+	}
+
+	$html .= '</li>';
+
+	return $html;
+}
+}
+
+if ( ! function_exists( 'cdm_f1_vitrine_pastilha_html' ) ) {
+/**
+ * A vitrine de pastilha, filtrada pelo lado que a pessoa pediu.
+ *
+ * A CAUSA QUE O CÓDIGO SEPARA, O TEXTO SEPARA (seção 7): uma frase por lista,
+ * cada uma nomeando quem caiu por ela. E cada frase só pode ser dita porque a
+ * ordem das travas garante o que ela afirma — quem cai pelo formato já passou
+ * pelo lado, quem cai pela fonte já passou pelos dois.
+ *
+ * A PORTA DO CAQUINHO IRREGULAR é a resposta desta tela para a pendência que o
+ * banco abriu em 13/09/2026: seis dos treze itens têm lado que o seletor não
+ * lista (3 cm, 2,3 cm, 1,2 cm). Esconder isso seria publicar um catálogo menor
+ * do que o banco; inventar opção nova no seletor seria prometer cobertura que a
+ * seção 14.3 não tem. O campo do caquinho irregular já aceita qualquer lado de
+ * 0,3 a 10 cm, e é por ele que esses itens se alcançam — a página diz isso com
+ * os lados nomeados, em vez de deixar a pessoa descobrir.
+ */
+function cdm_f1_vitrine_pastilha_html( $e ) {
+	$html = '<div class="cdm-f1-secao"><h2>E onde comprar a pastilha</h2>';
+
+	/* Sem a F2 de pé não há escada de compra nem escada de fontes, e esta página
+	   não escreve uma segunda. Mesma saída do bloco do rejunte. */
+	if ( ! function_exists( 'cdm_f2_compra_html' ) || ! function_exists( 'cdm_f2_nivel' )
+		|| ! function_exists( 'cdm_f2_nivel_maximo' ) || ! function_exists( 'cdm_f2_lista_humana' ) ) {
+		return $html . '<p class="cdm-f1-faixa">A lista de pastilhas está fora do ar neste momento. '
+			. 'A conta acima continua de pé — ela não depende dela.</p></div>';
+	}
+
+	$c     = cdm_f1_pastilhas_classificadas( $e['lado_mm'] );
+	$lado  = cdm_f1_lado_em_texto( $e['lado_mm'] );
+	$area  = cdm_f1_area_cm2( $e['forma'], $e['medidas'] );
+
+	if ( 0 === $c['total'] ) {
+		return $html . '<p class="cdm-f1-faixa">O nosso banco de pastilhas não chegou ao site nesta hora. '
+			. 'A conta acima continua valendo — leve o número de pastilhas e o tamanho para qualquer loja.</p></div>';
+	}
+
+	if ( $c['recomendadas'] ) {
+		$quantas = count( $c['recomendadas'] );
+		$html   .= 1 === $quantas
+			? '<p>Para caquinho de <strong>' . esc_html( $lado ) . ' cm</strong>, o nosso banco tem <strong>uma</strong> pastilha, '
+				. 'com a medida publicada pelo próprio fabricante:</p>'
+			: '<p>Para caquinho de <strong>' . esc_html( $lado ) . ' cm</strong>, estas são as <strong>'
+				. cdm_casca_num( $quantas ) . '</strong> pastilhas do nosso banco — cada uma com a medida '
+				. 'publicada pelo próprio fabricante:</p>';
+		$html .= '<ul class="cdm-f1-vitrine">';
+		foreach ( $c['recomendadas'] as $m ) {
+			$html .= cdm_f1_cartao_pastilha_html( $m, $area, $e['sobra'] );
+		}
+		$html .= '</ul>';
+	} elseif ( $c['fonte_fraca'] || $c['outro_formato'] ) {
+		/* Tem item desse lado, e o que o exclui está nomeado nas linhas abaixo —
+		   por isso esta frase NÃO diz qual é a causa: dizer aqui seria repetir, e
+		   escolher uma das duas seria afirmar sobre a outra. */
+		$html .= '<p class="cdm-f1-faixa">Nenhuma pastilha de ' . esc_html( $lado )
+			. ' cm entra na nossa recomendação hoje, e não é por falta de produto desse lado — é pelo que está escrito aqui embaixo.</p>';
+	} else {
+		$por_lado = cdm_f1_lados_com_elegivel();
+		$html    .= '<p class="cdm-f1-faixa">A gente não tem nenhuma pastilha de ' . esc_html( $lado )
+			. ' cm no banco — nem uma marca.';
+		if ( $por_lado ) {
+			$html .= ' O que a gente tem, por lado: ' . esc_html( cdm_f2_lista_humana( $por_lado ) ) . '.';
+		}
+		$html .= '</p>';
+		if ( 10 === (int) $e['lado_mm'] ) {
+			/* SÓ QUANDO A CONTAGEM DESSE LADO É ZERO, e é por isso que a frase pode
+			   ser dita: ela afirma sobre o mercado, e no dia em que um 1 cm de
+			   fabricante entrar no banco esta linha deixa de sair sozinha. */
+			$html .= '<p class="cdm-f1-faixa">E isso não é descuido de coleta: 1 cm é o tamanho mais usado do mosaico '
+				. 'e não aparece em catálogo de fabricante nenhum. Quem vende é armarinho e marketplace, a peso ou por peça solta — '
+				. 'e a peso a gente não consegue dizer quantas peças vêm, porque ninguém publica o peso de uma pastilha.</p>';
+		}
+	}
+
+	/* --- as três listas que não foram para a vitrine, uma frase por causa --- */
+
+	if ( $c['outro_formato'] ) {
+		$html .= '<p class="cdm-f1-faixa">Do mesmo lado de ' . esc_html( $lado ) . ' cm, mas de outro formato: '
+			. esc_html( cdm_f2_lista_humana( cdm_f1_pastilha_codigos( $c['outro_formato'] ) ) )
+			. '. ' . ( 1 === count( $c['outro_formato'] ) ? 'Ele não é' : 'Eles não são' )
+			. ' quadradinho — a conta aqui em cima é de peça quadrada, então '
+			. ( 1 === count( $c['outro_formato'] ) ? 'ele fica' : 'eles ficam' ) . ' fora da lista.</p>';
+	}
+
+	if ( $c['fonte_fraca'] ) {
+		$html .= '<p class="cdm-f1-faixa">O lado de ' . esc_html( $lado ) . ' cm é o mesmo em '
+			. esc_html( cdm_f2_lista_humana( cdm_f1_pastilha_codigos( $c['fonte_fraca'] ) ) )
+			. ', e o que ' . ( 1 === count( $c['fonte_fraca'] ) ? 'exclui ele' : 'exclui eles' )
+			. ' é quem publica a medida: um distribuidor, não o fabricante. A gente só recomenda pelo que o fabricante publica.</p>';
+	}
+
+	if ( $c['outro_lado'] ) {
+		$html .= '<p class="cdm-f1-nota-lista">De outro lado, e no nosso banco: '
+			. esc_html( cdm_f2_lista_humana( cdm_f1_grupos_por_lado( $c['outro_lado'] ) ) ) . '.</p>';
+
+		/* O LADO EM QUE A PESSOA JÁ ESTÁ SAI DESTA LISTA: ela chegou aqui, o item
+		   daquele lado foi recusado por formato ou por fonte, e mandá-la de volta
+		   pelo caquinho irregular seria mandá-la ao lugar onde ela está. */
+		$fora = cdm_f1_lados_fora_do_seletor( $e['lado_mm'] );
+		if ( $fora ) {
+			$html .= '<p class="cdm-f1-nota-lista">Os tamanhos aí em cima são cinco, e o nosso banco tem lado que eles não listam: '
+				. esc_html( cdm_f2_lista_humana( $fora ) ) . '. Para comprar '
+				. ( 1 === count( $fora ) ? 'esse' : 'esses' ) . ', escolha <em>caquinho irregular</em> no formulário e digite o lado — '
+				. 'a conta é a mesma, e a lista daqui passa a mostrar o que serve.</p>';
+		}
+	}
+
+	/* O QUE A PLACA NÃO DIZ, dito uma vez e não em treze cartões. */
+	$html .= '<p class="cdm-f1-nota-lista">Uma coisa que nenhuma dessas placas diz: quantas pastilhas vêm nela. '
+		. 'A gente procurou nos ' . cdm_casca_num( $c['total'] ) . ' produtos do nosso banco e o fabricante não publica — '
+		. 'por isso o cartão fala em placa, e não em peça. '
+		. 'A tabela da placa, mais abaixo, mostra como você descobre isso com a embalagem na mão.</p>';
+
+	$html .= '<p class="cdm-f1-aviso">Alguns links desta página são de afiliado: se você comprar por eles, a gente pode receber uma comissão, '
+		. 'sem custo nenhum para você. Isso não muda a ordem da lista — quem decide é a declaração do fabricante.</p>';
+	$html .= '</div>';
+
+	return $html;
+}
+}
+
+if ( ! function_exists( 'cdm_f1_lados_com_elegivel' ) ) {
+/**
+ * "3 de 2 cm e 4 de 2,5 cm" — os lados que TÊM item elegível, contados do
+ * banco. Existe para a frase do lado vazio poder apontar para onde há produto
+ * sem que ninguém digite um número.
+ */
+function cdm_f1_lados_com_elegivel() {
+	$teto  = cdm_f2_nivel_maximo();
+	$conta = array();
+	foreach ( cdm_f1_banco_pastilhas()['materiais'] as $m ) {
+		$g = isset( $m['geometria'] ) ? $m['geometria'] : array();
+		if ( 'quadrada' !== ( isset( $g['formato'] ) ? $g['formato'] : '' ) || empty( $g['lado_anunciado_cm'] ) ) {
+			continue;
+		}
+		if ( cdm_f1_nivel_da_pastilha( $m ) > $teto ) {
+			continue;
+		}
+		$chave = (string) (float) $g['lado_anunciado_cm'];
+		$conta[ $chave ] = isset( $conta[ $chave ] ) ? $conta[ $chave ] + 1 : 1;
+	}
+	ksort( $conta, SORT_NUMERIC );
+
+	$fora = array();
+	foreach ( $conta as $lado => $n ) {
+		$fora[] = number_format_i18n( $n ) . ' de ' . cdm_f1_lado_em_texto( (float) $lado * 10 ) . ' cm';
+	}
+
+	return $fora;
+}
+}
+
+if ( ! function_exists( 'cdm_f1_grupos_por_lado' ) ) {
+/** "4 de 2,5 cm (K2501, K2502, MIX2510 e 102)" — cada item nomeado uma vez. */
+function cdm_f1_grupos_por_lado( $itens ) {
+	$grupos = array();
+	foreach ( $itens as $m ) {
+		$lado = isset( $m['geometria']['lado_anunciado_cm'] ) ? (string) (float) $m['geometria']['lado_anunciado_cm'] : '0';
+		$grupos[ $lado ][] = cdm_f1_pastilha_codigo( $m );
+	}
+	ksort( $grupos, SORT_NUMERIC );
+
+	$fora = array();
+	foreach ( $grupos as $lado => $codigos ) {
+		$fora[] = number_format_i18n( count( $codigos ) ) . ' de ' . cdm_f1_lado_em_texto( (float) $lado * 10 )
+			. ' cm (' . cdm_f2_lista_humana( $codigos ) . ')';
+	}
+
+	return $fora;
+}
+}
+
+if ( ! function_exists( 'cdm_f1_lados_fora_do_seletor' ) ) {
+/**
+ * Os lados do banco que o seletor não oferece — medidos nos DOIS lados, o banco
+ * e a própria lista da ferramenta. Digitar essa lista seria repetir o defeito
+ * que o `validar-pastilhas.py` achou em 13/09/2026 do outro lado da cerca: a
+ * régua tinha quatro tamanhos escritos à mão e a ferramenta servia cinco.
+ */
+function cdm_f1_lados_fora_do_seletor( $exceto_mm = null ) {
+	$do_seletor = array();
+	foreach ( cdm_f1_pastilhas_disponiveis() as $t ) {
+		if ( null !== $t['lado_mm'] ) {
+			$do_seletor[ (string) (float) $t['lado_mm'] ] = true;
+		}
+	}
+
+	$fora = array();
+	foreach ( cdm_f1_banco_pastilhas()['materiais'] as $m ) {
+		$lado = isset( $m['geometria']['lado_anunciado_cm'] ) ? (float) $m['geometria']['lado_anunciado_cm'] * 10 : null;
+		if ( null === $lado || isset( $do_seletor[ (string) $lado ] ) ) {
+			continue;
+		}
+		if ( null !== $exceto_mm && abs( $lado - (float) $exceto_mm ) < 0.001 ) {
+			continue;
+		}
+		$fora[ (string) $lado ] = cdm_f1_lado_em_texto( $lado ) . ' cm';
+	}
+	ksort( $fora, SORT_NUMERIC );
+
+	return array_values( $fora );
 }
 }
 
@@ -993,6 +1464,85 @@ function cdm_f1_tabela_pecas_html() {
 			. cdm_casca_num( $p['junta_mm'] ) . ' mm · ' . cdm_casca_num( $p['espessura_mm'] ) . ' mm</td>';
 		$html .= '<td>' . cdm_casca_num( $r['pastilhas'] ) . '</td>';
 		$html .= '<td>' . ( null !== $r['gramas'] ? cdm_f1_gramas_na_tela( $r['gramas'] ) . ' g' : '<span class="cdm-f1-vazio">sem número hoje</span>' ) . '</td>';
+		$html .= '</tr>';
+	}
+
+	$html .= '</tbody></table></div></div>';
+
+	return $html;
+}
+}
+
+if ( ! function_exists( 'cdm_f1_tabela_pastilhas_html' ) ) {
+/**
+ * O BANCO DE PASTILHAS INTEIRO, PRÉ-RENDERIZADO — a metade que um modelo de
+ * linguagem lê sem preencher formulário (seção 5 do contrato, item 1) e a
+ * segunda superfície da prestação de contas (seção 7).
+ *
+ * Ela existe por uma razão que a vitrine sozinha não resolve: o estado-âncora
+ * desta página é caquinho de 1 cm, e 1 cm tem ZERO item no banco. Sem esta
+ * tabela, a página indexada — a única sem parâmetro, a que o Google e as IAs
+ * leem — não citaria um único produto do nosso catálogo de pastilha. A vitrine
+ * responde a quem escolheu um lado; a tabela responde a quem só chegou.
+ *
+ * Cada item aparece em EXATAMENTE uma linha, e o total da legenda é contado do
+ * arquivo. A última coluna é a cobertura da seção 14.3 publicada em vez de
+ * medida só na bancada: ela diz, item por item, se o seletor desta ferramenta
+ * oferece aquele lado — e é assim que a pessoa descobre que o mercado tem
+ * tamanho que o formulário não lista.
+ */
+function cdm_f1_tabela_pastilhas_html() {
+	$itens = cdm_f1_banco_pastilhas()['materiais'];
+	if ( ! $itens ) {
+		return '';
+	}
+
+	$do_seletor = array();
+	foreach ( cdm_f1_pastilhas_disponiveis() as $t ) {
+		if ( null !== $t['lado_mm'] ) {
+			$do_seletor[ (string) (float) $t['lado_mm'] ] = true;
+		}
+	}
+
+	$marcas = array();
+	foreach ( $itens as $m ) {
+		if ( ! empty( $m['marca'] ) ) {
+			$marcas[ $m['marca'] ] = true;
+		}
+	}
+
+	$html  = '<div class="cdm-f1-secao"><h2>As pastilhas que a gente já conferiu</h2>';
+	$html .= '<p>São <strong>' . cdm_casca_num( count( $itens ) ) . '</strong> produtos de '
+		. cdm_casca_num( count( $marcas ) ) . ' marcas, com a medida que o próprio fabricante publica. '
+		. 'A última coluna diz se o formulário aí em cima oferece aquele lado: quando não oferece, '
+		. 'o caminho é o caquinho irregular, digitando o lado.</p>';
+	$html .= '<div class="cdm-f1-rolagem"><table class="cdm-f1-tabela cdm-f1-tabela-pastilhas"><thead><tr>'
+		. '<th scope="col">Produto</th><th scope="col">Caquinho</th><th scope="col">Placa</th>'
+		. '<th scope="col">Espessura</th><th scope="col">A caixa</th><th scope="col">Está no formulário?</th>'
+		. '</tr></thead><tbody>';
+
+	foreach ( $itens as $m ) {
+		$g     = isset( $m['geometria'] ) ? $m['geometria'] : array();
+		$props = isset( $m['propriedades'] ) ? $m['propriedades'] : array();
+		$lado  = isset( $g['lado_anunciado_cm'] ) ? (float) $g['lado_anunciado_cm'] * 10 : null;
+		$tem   = ( null !== $lado && isset( $do_seletor[ (string) $lado ] ) );
+
+		$caixa = '<span class="cdm-f1-vazio">não publicada</span>';
+		if ( isset( $props['placas_por_caixa']['valor'] ) && isset( $props['m2_por_caixa']['valor'] ) ) {
+			$caixa = cdm_casca_num( $props['placas_por_caixa']['valor'] ) . ' placas · '
+				. esc_html( number_format_i18n( $props['m2_por_caixa']['valor'], 2 ) ) . ' m²';
+		}
+
+		$html .= '<tr>';
+		$html .= '<td>' . esc_html( isset( $m['marca'] ) ? $m['marca'] : '' ) . ' '
+			. esc_html( cdm_f1_pastilha_codigo( $m ) ) . '</td>';
+		$html .= '<td>' . esc_html( cdm_f1_lado_de( $m ) ) . ' cm'
+			. ( 'quadrada' === ( isset( $g['formato'] ) ? $g['formato'] : '' ) ? '' : ' (não é quadrado)' ) . '</td>';
+		$html .= '<td>' . esc_html( number_format_i18n( (float) $g['placa_lado_a_cm'], 1 ) ) . ' × '
+			. esc_html( number_format_i18n( (float) $g['placa_lado_b_cm'], 1 ) ) . ' cm</td>';
+		$html .= '<td>' . cdm_casca_num( $g['espessura_mm'] ) . ' mm</td>';
+		$html .= '<td>' . $caixa . '</td>';
+		$html .= '<td>' . ( $tem ? 'sim' : '<span class="cdm-f1-vazio">não</span>' ) . '</td>';
 		$html .= '</tr>';
 	}
 
@@ -1211,8 +1761,9 @@ add_shortcode( 'cdm_f1', function () {
 	$html .= cdm_f1_resposta_html( $e );
 	$html .= cdm_f1_recusa_html( $e );
 	$html .= cdm_f1_vitrine_html( $e );
-	$html .= cdm_f1_pastilha_sem_banco_html();
+	$html .= cdm_f1_vitrine_pastilha_html( $e );
 	$html .= cdm_f1_tabela_pecas_html();
+	$html .= cdm_f1_tabela_pastilhas_html();
 	$html .= cdm_f1_tabela_consumo_html();
 	$html .= cdm_f1_placa_html();
 
@@ -1261,6 +1812,25 @@ function cdm_f1_prova_html() {
 	} else {
 		$html .= '<p>O consumo de rejunte não está publicado nesta página hoje: ' . esc_html( $cr['motivo'] ) . '. '
 			. 'A conta de pastilhas não depende dele e continua valendo.</p>';
+	}
+
+	/* A PROCEDÊNCIA DA PASTILHA, com os números CONTADOS do banco. A frase mais
+	   importante desta seção é a última: ela diz o que a gente NÃO tem, e é a que
+	   explica por que o cartão fala em placa e não em peça. */
+	$pastilhas = cdm_f1_banco_pastilhas()['materiais'];
+	if ( $pastilhas ) {
+		$sem_peca = 0;
+		foreach ( $pastilhas as $m ) {
+			if ( ! isset( $m['geometria']['pastilhas_por_placa'] ) || null === $m['geometria']['pastilhas_por_placa'] ) {
+				$sem_peca++;
+			}
+		}
+		$html .= '<p>As medidas das pastilhas — lado, placa, espessura e o que vem na caixa — saem da página de produto de cada '
+			. 'fabricante, lida por busca no domínio dele, e cada item do nosso banco guarda o endereço e o dia da leitura. '
+			. 'São ' . cdm_casca_num( count( $pastilhas ) ) . ' produtos conferidos assim. '
+			. 'Em ' . cdm_casca_num( $sem_peca ) . ' deles o fabricante não publica quantas pastilhas vêm na placa, '
+			. 'e a gente não deduz esse número dividindo o lado da placa pelo lado do caquinho: a divisão não fecha em '
+			. 'quase todos, e onde fecha só fecha com folga zero entre as peças — que é placa que não se rejunta.</p>';
 	}
 
 	$html .= '<p>Nenhum documento de fabricante foi aberto linha a linha daqui: a leitura foi feita no domínio de cada um, '

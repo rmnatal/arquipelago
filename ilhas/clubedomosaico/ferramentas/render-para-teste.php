@@ -959,6 +959,86 @@ if (isset($argv[1]) && basename(__FILE__) === basename($argv[0])) {
 		unset($_GET['sem_piso']);
 	}
 
+	/* PRODUZ O MUNDO EM QUE AS PASTILHAS JA TEM PISO. `com_piso=1` na consulta.
+	 *
+	 * Ele e o avesso dos dois de cima, e existe pela cicatriz que o contrato chama
+	 * de "regua escrita para um mundo que nunca aconteceu nasce errada sem poder
+	 * falhar" (secao 8, Robometria 13/09/2026). Hoje os treze itens do banco de
+	 * pastilha nao tem `url` nem `url_busca`, entao o cartao da vitrine de pastilha
+	 * cai SEMPRE no terceiro degrau da escada — "Link de loja em breve". Uma regua
+	 * que so medisse esse estado ficaria verde para sempre sem nunca provar que o
+	 * reuso de `cdm_f2_compra_html()` sabe subir os outros dois degraus, e morreria
+	 * calada no dia em que o Raphael colar os treze links.
+	 *
+	 * Entao aqui a busca e ESCRITA em quem nao tem, com um endereco de teste que
+	 * nao vai para lugar nenhum: o que se mede e o COMPORTAMENTO da tela diante do
+	 * dado, nunca o dado de hoje. Nao toca em quem ja tem — o mundo produzido e o
+	 * do banco melhor, nao um banco diferente. */
+	if (!empty($_GET['com_piso'])) {
+		foreach ($GLOBALS['__options'] as $chave => $valor) {
+			if (0 !== strpos($chave, 'clubedomosaico_dados_materiais-') || !is_array($valor)) { continue; }
+			$lista = isset($valor['materiais']) ? 'materiais' : (isset($valor['itens']) ? 'itens' : '');
+			if ('' === $lista) { continue; }
+			foreach ($valor[$lista] as $i => $item) {
+				if (isset($item['afiliado']) && empty($item['afiliado']['url_busca'])) {
+					$GLOBALS['__options'][$chave][$lista][$i]['afiliado']['url_busca'] =
+						'https://exemplo-de-teste.invalido/busca?q=' . rawurlencode(isset($item['id']) ? $item['id'] : 'x');
+					$GLOBALS['__options'][$chave][$lista][$i]['afiliado']['programa'] = 'shopee';
+				}
+			}
+			if (isset($valor['afiliado']['itens_sem_piso'])) {
+				$GLOBALS['__options'][$chave]['afiliado']['itens_sem_piso'] = 0;
+			}
+		}
+		unset($_GET['com_piso']);
+	}
+
+	/* PRODUZ O MUNDO EM QUE UM ITEM CAI PELAS DUAS TRAVAS DE UMA VEZ.
+	 * `strip_fraco=1` rebaixa a fonte do unico item nao-quadrado do banco para
+	 * nivel 5. Ele passa a ser, ao mesmo tempo, de formato errado E de fonte
+	 * fraca — e e o unico jeito de PROVAR que a vitrine de pastilha decide na
+	 * ordem que ela declara (lado, formato, fonte), porque com um item so em cada
+	 * balde qualquer ordem produz a mesma tela. Mundo que o banco de hoje nao tem
+	 * e regua que nao pode falhar (secao 8 do ARQUIPELAGO.md). */
+	if (!empty($_GET['strip_fraco'])) {
+		$chave = 'clubedomosaico_dados_materiais-pastilhas';
+		if (isset($GLOBALS['__options'][$chave]['materiais'])) {
+			foreach ($GLOBALS['__options'][$chave]['materiais'] as $i => $item) {
+				if ('quadrada' === (isset($item['geometria']['formato']) ? $item['geometria']['formato'] : '')) { continue; }
+				foreach ((array) (isset($item['fontes']) ? $item['fontes'] : array()) as $fid => $f) {
+					$GLOBALS['__options'][$chave]['materiais'][$i]['fontes'][$fid]['nivel'] = 5;
+				}
+			}
+		}
+		unset($_GET['strip_fraco']);
+	}
+
+	/* PRODUZ O MUNDO EM QUE 1 cm EXISTE EM CATALOGO DE FABRICANTE. `um_de_1cm=1`.
+	 *
+	 * A pagina diz hoje, no estado-ancora, que 1 cm "nao aparece em catalogo de
+	 * fabricante nenhum" — e isso e verdade medida em 12 e 13/09/2026. Frase
+	 * verdadeira hoje que ninguem amarra ao dado e a familia inteira de defeitos
+	 * que esta ilha ja pagou (o cartao com zero digitado, a faixa de quatro
+	 * tamanhos numa ferramenta de cinco). Este mundo clona um item para o lado de
+	 * 1 cm e exige que a frase DESAPARECA — se ela sobreviver, ela era digitada. */
+	if (!empty($_GET['um_de_1cm'])) {
+		$chave = 'clubedomosaico_dados_materiais-pastilhas';
+		if (!empty($GLOBALS['__options'][$chave]['materiais'])) {
+			$modelo = null;
+			foreach ($GLOBALS['__options'][$chave]['materiais'] as $item) {
+				if ('quadrada' === (isset($item['geometria']['formato']) ? $item['geometria']['formato'] : '')) { $modelo = $item; break; }
+			}
+			if ($modelo) {
+				$modelo['id'] = 'teste-de-1cm';
+				$modelo['codigo_fabricante'] = 'T1CM';
+				$modelo['nome_comercial'] = 'T1CM — item de teste de 1 cm';
+				$modelo['geometria']['lado_anunciado_cm'] = 1.0;
+				$GLOBALS['__options'][$chave]['materiais'][] = $modelo;
+			}
+		}
+		unset($_GET['um_de_1cm']);
+	}
+
 	/* O MUNDO SEM O SNIPPET DE LEADS. `sem_leads=1` na consulta. */
 	$fora = array();
 	if (!empty($_GET['sem_leads'])) {

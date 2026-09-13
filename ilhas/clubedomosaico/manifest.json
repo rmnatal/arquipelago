@@ -4,7 +4,7 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 24,
+  "revisao": 25,
   "atualizado_em": "2026-09-13",
   "estado": "nascendo",
   "desembarque": {
@@ -42,8 +42,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.1.0",
-      "sha256": "c6169928b9271b36f5ed7e5fed066ae2ff50d9cdc2a4e8cddbe5b1feae155ccb",
+      "versao": "1.2.0",
+      "sha256": "ace8ebe32958218b5df924fbe1e1251d81e9688477db297d43dfe1a13bd5736e",
       "descricao": "BLOCO 4, SEGUNDA FERRAMENTA — /materiais/quantas-pastilhas-para-mosaico/. Responde 'quantas pastilhas e quanto rejunte' com a conta da pastilha de artesanato, e nao com a do azulejo de obra: o bloco 1 mediu que a primeira pagina inteira de 'rejunte para mosaico' responde a pergunta da OBRA (0,2 a 0,4 kg/m2, calculado com azulejo grande), e a mesma formula do fabricante aplicada a pastilha de 1x1 cm com junta de 2 mm da 2,8 kg/m2 — quatro vezes o do azulejo de 10 cm e duas vezes o do piso de 20. A pagina nao disputa aquelas; ela responde outra pergunta. COMO NA F2, A CONTA E DO SERVIDOR: o formulario e um GET para a propria pagina, nao ha uma linha de decisao em JavaScript, e o estado com parametro sai com noindex, follow. A GEOMETRIA E NOSSA E O CONSUMO E DO FABRICANTE: area por forma (cilindro, cone pela GERATRIZ e nunca pela altura, placa, disco, esfera e moldura com vao) e contagem pelo passo (lado + folga, arredondada sempre para CIMA, porque lote novo de pastilha muda de cor) sao aritmetica desta ilha e nao dependem de banco nenhum; ja os gramas saem da formula publicada pela Quartzolit com o coeficiente LIDO do registro do rejunte ceramicas — e quando ele nao chega, a pagina continua respondendo area e pastilhas e diz que nao publica os gramas. A CORRECAO DO BLOCO 3c ESTA NA TELA: o 1,75 vem de um exemplo de rejunte cimenticio EM PO, entao a ferramenta RECUSA calcular para acrilico (pronto uso em pote) e epoxi (bicomponente) e nomeia o que falta; e recusa tambem se o banco trouxer dois coeficientes diferentes, porque escolher um dos dois calado e a mesma invencao com outra roupa. A REGUA DO REJUNTE TEM DONO: quem decide qual produto cabe na folga e no lugar e cdm_f2_celula_rejunte(), chamada daqui em vez de reescrita — a F1 so filtra pelo tipo que a pessoa escolheu. A coluna de gramas de COLA nasce vazia com o motivo escrito (o fabricante do silicone declara rendimento por cordao, nao por area), e a pastilha, que ainda nao tem banco, tem o cartao de compra reservado dizendo que esta vazio."
     },
     {
@@ -194,7 +194,7 @@
       "verificado_em": "2026-09-13",
       "registros": 13,
       "publicar": true,
-      "sha256": "bb034e5f841f307321cb11ce99b299f7628d1bcdef895fb32f19eba39435cc88",
+      "sha256": "d02e51381a94dcba580f3f71728c4afd9cb215b00197a78d85932e32f634fd7a",
       "descricao": "A categoria PASTILHA do banco MATERIAL. Treze SKUs com lado da pastilha, lado da placa, espessura, placas por caixa, metragem e peso de caixa. A leva de 13/09/2026 acrescentou A37, 102 e IC02, e a A37 e a que FECHA o tamanho 2x2 no minimo de 3 elegiveis da secao 14.3. Tres campos nascem NULL com motivo escrito, e e isso que o arquivo tem de mais util: pecas por placa e passo de fabrica, porque nenhum fabricante brasileiro declara e a divisao que a SERP faz nao fecha (em 9 dos 13 nao da inteiro, nos outros 4 exige junta zero); e peso unitario, porque o peso da caixa de um dos itens PASSA do teto fisico do vidro macico, o que prova que embalagem esta contada dentro. Mede isso ferramentas/validar-pastilhas.py (189 afirmacoes, um processo por item, com a faixa de tamanhos medida na F1 por ferramentas/tamanhos-da-f1.php em vez de digitada) e ferramentas/mutacoes-pastilhas.py (14 de 14: 12 no banco e 2 no codigo da F1)."
     }
   ],
@@ -238,7 +238,7 @@
     {
       "id": "mutacoes-f1",
       "arquivo": "ferramentas/mutacoes-f1.py",
-      "sha256": "fdbf1fa31af7722eb5f3f9c7bf45d46a7d786981eff521b9704ebfa9aabcbbf3",
+      "sha256": "9932b99292edc3ea58d1a5d45e4749c7a73105e5bfd5d56ebe60fbced49dfed4",
       "descricao": "Quebra a F1 de proposito, uma mutacao por vez, e exige que teste-f1.php reprove cada uma. Bancada."
     },
     {
@@ -274,7 +274,7 @@
     {
       "id": "render-para-teste",
       "arquivo": "ferramentas/render-para-teste.php",
-      "sha256": "cf6f1b86b9a762b2b0128410ace38664d80c93edb74434932bf821944276be08",
+      "sha256": "798f81968b7fb80df43bfad6cff79d95d01c6a1aa4d9bb0eb408362b417ba642",
       "descricao": "Monta uma pagina do site fora do WordPress para poder medir o HTML servido sem depender do site no ar — necessario porque o gateway da rede das rotinas respondeu 403 ao CONNECT para clubedomosaico.com.br em 11/09/2026. Imita de verdade os ganchos wp_head/wp_footer com prioridade, o escape de '&' que os filtros do the_content aplicam ao retorno do shortcode, e o remove_action casando gancho + funcao + prioridade. Carrega nas options o que o Sync carrega, pela cicatriz da bancada pela metade (secao 8). NUNCA e publicada no site."
     },
     {
@@ -292,7 +292,7 @@
     {
       "id": "teste-f1",
       "arquivo": "ferramentas/teste-f1.php",
-      "sha256": "77ed9f4abb4174a526445d4478d38ee14ef4d803962a2ebf6545a61eeef35f3d",
+      "sha256": "32b727515f1a4156058e278145d80c2618df29856bec386a84dd08eb2e1fb9f3",
       "descricao": "Verificacao medida da F1: regua aritmetica propria, um processo por estado, varrendo forma x caquinho, folga x tipo, sobras, espessuras, lugares e as bordas. Bancada."
     },
     {

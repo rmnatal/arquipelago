@@ -344,8 +344,70 @@ ok(_reserva_ou_entrega(corpo_f1, ("rejunte",)),
    "[F1] o bloco de compra reserva o lugar do link OU serve o link, conforme o banco",
    _diagnostico_do_link(corpo_f1, ("rejunte",)))
 _escada_na_tela(corpo_f1, ("rejunte",), "F1")
-ok("Ainda não temos as pastilhas no nosso banco" in texto_f1,
-   "[F1] a pastilha sem banco aparece declarada, nao escondida")
+ok("Ainda não temos as pastilhas no nosso banco" not in texto_f1,
+   "[F1] a frase 'ainda nao temos as pastilhas' saiu do ar (era falsa desde 12/09)")
+
+# ---------------------------------------------------------------------------
+# A VITRINE DE PASTILHA NO AR (f1 1.2.0). A regua e deste arquivo: os treze
+# codigos estao escritos LITERAIS abaixo, copiados do banco a mao, e os tres
+# elegiveis de 2 cm tambem. Ler o banco daqui seria conferir o site com a mesma
+# fonte que o site le (secao 8).
+# ---------------------------------------------------------------------------
+PASTILHAS_NO_BANCO = ["K2501", "K2502", "MIX2510", "K117", "K77", "K66", "A11", "A61",
+                      "A37", "ST5102", "AF1500", "102", "IC02"]
+DE_2CM = ["A11", "A61", "A37"]
+
+print("\nA vitrine de pastilha no ar (f1 1.2.0):")
+tabela_p = re.search(r'<table class="cdm-f1-tabela cdm-f1-tabela-pastilhas">.*?<tbody>(.*?)</tbody>',
+                     corpo_f1, re.S)
+tabela_p = tabela_p.group(1) if tabela_p else ""
+ok(tabela_p != "", "[F1] a tabela pre-renderizada do banco de pastilhas esta no HTML SERVIDO")
+ok(tabela_p.count("<tr>") == len(PASTILHAS_NO_BANCO),
+   "[F1] a tabela serve uma linha por item do banco",
+   f"{tabela_p.count('<tr>')} de {len(PASTILHAS_NO_BANCO)}")
+texto_tab = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", tabela_p))
+faltam = [c for c in PASTILHAS_NO_BANCO if not re.search(r"\b" + re.escape(c) + r"\b", texto_tab)]
+ok(not faltam, "[F1] os treze codigos do banco estao na tabela servida",
+   "todos" if not faltam else ", ".join(faltam))
+# O ESTADO-ANCORA E 1 cm E 1 cm TEM ZERO: a pagina explica a causa que mediu.
+ok("não tem nenhuma pastilha de 1 cm no banco" in texto_f1,
+   "[F1] no ancora a pagina diz que nao tem 1 cm, com a causa medida")
+ok("não aparece em catálogo de fabricante" in texto_f1,
+   "[F1] e diz POR QUE: 1 cm nao existe em catalogo de fabricante")
+
+# O estado de 2 cm: tres cartoes, e cada um com o lugar do link reservado.
+html_p20, codigo_p20 = buscar(BASE + F1 + "?forma=cilindro&d=15&h=20&pastilha=p20&junta=2&sobra=10&esp=4&rejunte=cimenticio")
+ok("200" == codigo_p20, "[F1 2 cm] responde 200", codigo_p20)
+bloco_p20 = re.search(r"<h2>E onde comprar a pastilha</h2>(.*?)</div>\s*<div class=\"cdm-f1-secao\">",
+                      html_p20, re.S)
+bloco_p20 = bloco_p20.group(1) if bloco_p20 else ""
+ok(bloco_p20 != "", "[F1 2 cm] o bloco da pastilha sai no HTML servido")
+cartoes_p20 = bloco_p20.count('<li class="cdm-f2-cartao"')
+ok(cartoes_p20 == len(DE_2CM),
+   "[F1 2 cm] a vitrine serve um cartao por elegivel de 2 cm",
+   "%d de %d" % (cartoes_p20, len(DE_2CM)))
+# AS ETIQUETAS VIRAM ESPACO, e nao desaparecem: `strip_tags` cola "Mosaic" com
+# "A11" e a busca por palavra isolada nao casa com nada. Foi assim que a bancada
+# acusou quatro estados de nao nomear os elegiveis que eles nomeiam.
+texto_p20 = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", bloco_p20))
+ok(all(re.search(r"\b" + re.escape(c) + r"\b", texto_p20) for c in DE_2CM),
+   "[F1 2 cm] os tres de 2 cm estao nomeados no bloco", ", ".join(DE_2CM))
+ok(bloco_p20.count('class="cdm-f2-compra"') == len(DE_2CM),
+   "[F1 2 cm] todo cartao de pastilha tem bloco de compra, cheio ou reservado")
+ok(bloco_p20.count("Link de loja em breve") == len(DE_2CM),
+   "[F1 2 cm] os treze estao sem piso, e o cartao RESERVA o lugar em vez de sumir")
+# A PORTA DO CAQUINHO IRREGULAR, que e a decisao desta versao sobre os cinco
+# itens cujo lado o seletor nao lista.
+ok("caquinho irregular" in re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", bloco_p20)),
+   "[F1 2 cm] a pagina manda ao caquinho irregular quem quer o lado que o seletor nao lista")
+html_ir, codigo_ir = buscar(BASE + F1 + "?forma=cilindro&d=15&h=20&pastilha=irregular&ladoeq=3&junta=2&sobra=10&esp=4&rejunte=cimenticio")
+bloco_ir = re.search(r"<h2>E onde comprar a pastilha</h2>(.*?)</div>\s*<div class=\"cdm-f1-secao\">",
+                     html_ir, re.S)
+bloco_ir = bloco_ir.group(1) if bloco_ir else ""
+ok("200" == codigo_ir, "[F1 irregular 3 cm] responde 200", codigo_ir)
+ok(bloco_ir.count('<li class="cdm-f2-cartao"') == 3,
+   "[F1 irregular 3 cm] o caquinho irregular ALCANCA os tres K de 3 cm, que o seletor nao lista",
+   bloco_ir.count('<li class="cdm-f2-cartao"'))
 # A TRILHA E O CLUSTER, que so existem porque a pagina tem mae e agora tem irmas
 ok('Veja também' in corpo_f1, "[F1] o bloco Veja tambem saiu (duas irmas no ar)")
 ok(BASE + "/materiais/qual-cola-usar-no-mosaico/" in corpo_f1,

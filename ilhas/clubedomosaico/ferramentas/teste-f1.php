@@ -433,11 +433,27 @@ foreach ( array( 2, 4, 6, 10 ) as $esp ) {
 f1_ok( empty( $esp_ruins ), 'a espessura muda o rejunte e nao toca a contagem de pastilhas',
 	empty( $esp_ruins ) ? '4 espessuras' : implode( ' | ', $esp_ruins ) );
 
-/* (f) AS BORDAS DE MEDIDA: vao maior que a moldura, e medida fora da faixa. */
-$borda_moldura = f1_texto( f1_corpo( f1_render( $raiz, 'forma=moldura&l=40&a=60&vl=50&va=70&pastilha=p10&junta=2&sobra=10&esp=4&rejunte=cimenticio' ) ) );
-f1_ok( false !== mb_stripos( $borda_moldura, 'não fecha' ),
-	'vao maior que a moldura devolve recusa, nunca area negativa nem zero' );
-f1_ok( ! preg_match( '#-\d+ cm²#u', $borda_moldura ), 'nenhuma area negativa na tela' );
+/* (f) AS BORDAS DE MEDIDA: vao maior que a moldura, e medida fora da faixa.
+ *
+ * AS DUAS AFIRMACOES ABAIXO FORAM CONSERTADAS EM 13/09/2026, e as duas estavam
+ * furadas desde que nasceram — a mutacao que derruba a guarda do vao passou a
+ * escapar no dia em que a pagina ganhou texto novo, e foi assim que se descobriu:
+ *
+ * (1) A RECUSA SE MEDE NO BLOCO DA RESPOSTA, nao no corpo inteiro. "nao fecha" e
+ *     frase curta e comum: a camada de prova da f1 1.2.0 passou a dizer que a
+ *     divisao do lado da placa "nao fecha" em quase todos os itens, e a agulha
+ *     comecou a ser encontrada numa secao que nada tem a ver com a recusa. E o
+ *     mesmo defeito que a secao 8 do contrato registra como "a conferencia
+ *     procurava o texto na pagina INTEIRA e o achava dentro do proprio JSON-LD".
+ * (2) O NUMERO NEGATIVO TEM SEPARADOR DE MILHAR. `-\d+ cm²` nunca casaria com
+ *     "-1.100 cm²", que e exatamente o que a pagina serve quando a guarda cai —
+ *     a regua so pegava area negativa de tres digitos ou menos. */
+$corpo_borda   = f1_corpo( f1_render( $raiz, 'forma=moldura&l=40&a=60&vl=50&va=70&pastilha=p10&junta=2&sobra=10&esp=4&rejunte=cimenticio' ) );
+$borda_moldura = f1_texto( $corpo_borda );
+f1_ok( false !== mb_stripos( f1_texto( f1_bloco_resposta( $corpo_borda ) ), 'não fecha' ),
+	'vao maior que a moldura devolve recusa NO BLOCO DA RESPOSTA, nunca area negativa nem zero' );
+f1_ok( ! preg_match( '#-[\d.,]+ (cm²|g\b|kg)#u', $borda_moldura ),
+	'nenhum numero negativo na tela: nem area, nem gramas de rejunte' );
 
 $borda_fora = f1_texto( f1_corpo( f1_render( $raiz, 'forma=cilindro&d=9999&h=20&pastilha=p10&junta=2&sobra=10&esp=4&rejunte=cimenticio' ) ) );
 f1_ok( false !== mb_strpos( $borda_fora, '720 pastilhas' ),
@@ -593,8 +609,315 @@ foreach ( $rejuntes['materiais'] as $m ) {
 f1_ok( empty( $dobradas ), 'nenhum lugar da pagina repete a marca dentro do nome do produto',
 	empty( $dobradas ) ? count( $rejuntes['materiais'] ) . ' rejuntes' : implode( ' | ', $dobradas ) );
 
-f1_ok( false !== mb_stripos( $texto_ancora, 'Ainda não temos as pastilhas no nosso banco' ),
-	'a pastilha sem banco tem o lugar reservado e a pagina diz isso' );
+f1_ok( false === mb_stripos( $texto_ancora, 'Ainda não temos as pastilhas no nosso banco' ),
+	'a frase "ainda nao temos as pastilhas" MORREU: ela era falsa desde 12/09/2026, com o banco publicado' );
+
+/* ---------------------------------------------------------------------------
+ * 4b. A VITRINE DE PASTILHA — a f1 1.2.0
+ *
+ * REGUA PROPRIA, RECOMPUTADA DO ARQUIVO: a classificacao abaixo e escrita AQUI,
+ * em PHP, lendo `dados/materiais-pastilhas.json` direto do disco. Ela nao chama
+ * `cdm_f1_pastilhas_classificadas()` nem nenhuma funcao do snippet — se as duas
+ * implementacoes discordarem, este arquivo diz qual item e qual balde.
+ *
+ * A GRADE VARRE A FAIXA INTEIRA e pisa nas bordas que o mundo tem: os cinco
+ * tamanhos do seletor, os tres lados que o banco tem e o seletor NAO oferece
+ * (alcancados pelo caquinho irregular, que e o unico caminho em que o lado e
+ * digitado), e um lado que nao existe em ninguem. Um processo por estado.
+ * ------------------------------------------------------------------------- */
+
+echo "\n4b. A vitrine de pastilha: quatro listas disjuntas que somam o banco\n";
+
+$pastilhas = json_decode( (string) file_get_contents( $raiz . '/dados/materiais-pastilhas.json' ), true );
+$p_itens   = array();
+foreach ( $pastilhas['materiais'] as $m ) {
+	if ( 'ativo' === $m['status'] ) {
+		$p_itens[] = $m;
+	}
+}
+$p_teto = 3;   /* escada de fontes: recomendacao primaria exige nivel <= 3. Escrito
+                  a mao aqui, nunca lido do esquema que o snippet tambem le. */
+
+/** O nivel da melhor fonte, implementado NESTE arquivo. */
+function f1_nivel_do_item( $m ) {
+	$niveis = array();
+	foreach ( (array) $m['fontes'] as $f ) {
+		$niveis[] = (int) $f['nivel'];
+	}
+	return $niveis ? min( $niveis ) : 9;
+}
+
+/** A classificacao, na ordem declarada: lado, formato, fonte. */
+function f1_classificar( $itens, $lado_mm, $teto ) {
+	$c = array( 'rec' => array(), 'fonte' => array(), 'formato' => array(), 'lado' => array() );
+	foreach ( $itens as $m ) {
+		$lado = $m['geometria']['lado_anunciado_cm'] * 10;
+		if ( abs( $lado - $lado_mm ) > 0.001 ) {
+			$c['lado'][] = $m;
+		} elseif ( 'quadrada' !== $m['geometria']['formato'] ) {
+			$c['formato'][] = $m;
+		} elseif ( f1_nivel_do_item( $m ) > $teto ) {
+			$c['fonte'][] = $m;
+		} else {
+			$c['rec'][] = $m;
+		}
+	}
+	return $c;
+}
+
+/** Quantas placas, pela area — a mesma conta escrita de novo aqui. */
+function f1_placas( $m, $area_cm2, $sobra ) {
+	$area_placa = $m['geometria']['placa_lado_a_cm'] * $m['geometria']['placa_lado_b_cm'];
+	return (int) ceil( ( $area_cm2 * ( 1 + $sobra / 100 ) ) / $area_placa );
+}
+
+/** SO o bloco da pastilha, que e onde estas afirmacoes valem. Medir na pagina
+    inteira acharia os codigos dentro da tabela do banco e passaria de graca. */
+function f1_bloco_pastilha( $corpo ) {
+	return preg_match( '#<h2>E onde comprar a pastilha</h2>(.*?)</div>\s*<div class="cdm-f1-secao">#is', $corpo, $m )
+		? $m[1] : '';
+}
+
+/** SO o CORPO da tabela pre-renderizada do banco de pastilhas — sem o cabecalho,
+    porque a linha de rotulos nao e item e contá-la daria 14 de 13. */
+function f1_bloco_tabela_pastilhas( $corpo ) {
+	return preg_match( '#<table class="cdm-f1-tabela cdm-f1-tabela-pastilhas">.*?<tbody>(.*?)</tbody>#is', $corpo, $m )
+		? $m[1] : '';
+}
+
+/** O TEXTO COM AS ETIQUETAS VIRANDO ESPACO, e nao desaparecendo.
+ *
+ * `f1_texto()` usa `strip_tags`, que cola o que estava em celulas vizinhas:
+ * "Glass Mosaic</span><h3>A11" vira "Glass MosaicA11", e ai `\bA11\b` nao casa
+ * com nada. A primeira versao desta secao acusou quatro estados de nao nomear os
+ * elegiveis que eles nomeiam — defeito da REGUA, achado por ela mesma. Afirmacao
+ * sobre palavra isolada precisa de separador entre os blocos; afirmacao sobre
+ * frase corrida continua usando `f1_texto`. */
+function f1_texto_espacado( $html ) {
+	return trim( preg_replace( '/\s+/u', ' ',
+		html_entity_decode( strip_tags( preg_replace( '#<[^>]+>#', ' $0 ', $html ) ), ENT_QUOTES, 'UTF-8' ) ) );
+}
+
+/* A grade: chave da consulta => lado em mm que ela pede. */
+$grade_pastilha = array(
+	'pastilha=p10'                  => 10,
+	'pastilha=p15'                  => 15,
+	'pastilha=p20'                  => 20,
+	'pastilha=p25'                  => 25,
+	'pastilha=irregular&ladoeq=1,2' => 12,    /* o strip: mesmo lado, outro formato */
+	'pastilha=irregular&ladoeq=2,3' => 23,    /* lado que o seletor nao oferece */
+	'pastilha=irregular&ladoeq=3'   => 30,    /* idem, e o unico com 3 elegiveis */
+	'pastilha=irregular&ladoeq=7'   => 70,    /* lado que nao existe em ninguem */
+);
+
+$total_do_banco = count( $p_itens );
+foreach ( $grade_pastilha as $consulta => $lado_mm ) {
+	$corpo = f1_corpo( f1_render( $raiz, 'forma=cilindro&d=15&h=20&sobra=10&' . $consulta ) );
+	$bloco = f1_bloco_pastilha( $corpo );
+	$texto = f1_texto( $bloco );
+	$texto_com_espaco = f1_texto_espacado( $bloco );
+	$c     = f1_classificar( $p_itens, $lado_mm, $p_teto );
+	$rot   = str_replace( 'pastilha=', '', $consulta );
+
+	f1_ok( '' !== $bloco, "[$rot] o bloco da pastilha existe no corpo servido" );
+
+	/* PRESTACAO DE CONTAS (secao 7): todo item do banco nomeado EXATAMENTE uma
+	   vez neste bloco. A soma dos quatro baldes e o banco contado do arquivo —
+	   nunca um numero digitado. */
+	$soma = count( $c['rec'] ) + count( $c['fonte'] ) + count( $c['formato'] ) + count( $c['lado'] );
+	f1_ok( $soma === $total_do_banco, "[$rot] a regua deste teste cobre o banco inteiro", "$soma de $total_do_banco" );
+
+	$fora_de_conta = array();
+	foreach ( $p_itens as $m ) {
+		$codigo = $m['codigo_fabricante'];
+		$vezes  = preg_match_all( '/\b' . preg_quote( $codigo, '/' ) . '\b/u', $texto_com_espaco );
+		if ( 1 !== $vezes ) {
+			$fora_de_conta[] = $codigo . ' x' . $vezes;
+		}
+	}
+	f1_ok( empty( $fora_de_conta ), "[$rot] cada um dos $total_do_banco itens aparece UMA vez na prosa",
+		empty( $fora_de_conta ) ? 'todos' : implode( ', ', $fora_de_conta ) );
+
+	/* A VITRINE SERVE EXATAMENTE O QUE A FRASE NOMEIA: um cartao por elegivel,
+	   nem um a mais. Contado pelos cartoes, nao pela frase. */
+	$cartoes = preg_match_all( '#<li class="cdm-f2-cartao"#', $bloco );
+	f1_ok( $cartoes === count( $c['rec'] ), "[$rot] a vitrine tem um cartao por elegivel",
+		$cartoes . ' cartoes, ' . count( $c['rec'] ) . ' elegiveis' );
+
+	/* E O NUMERO DA FRASE E O NUMERO DOS CARTOES. Contar so os cartoes deixaria
+	   passar a frase digitada, que e o defeito que esta ilha achou no cartao do
+	   Guia com zero digitado: as duas metades nunca se falavam. */
+	if ( $cartoes > 1 ) {
+		f1_ok( false !== mb_strpos( $bloco, 'estas são as <strong><span class="cdm-num">' . $cartoes . '</span></strong> pastilhas' ),
+			"[$rot] a frase da vitrine anuncia o MESMO numero de cartoes que ela serve" );
+	} elseif ( 1 === $cartoes ) {
+		f1_ok( false !== mb_stripos( $bloco, 'tem <strong>uma</strong> pastilha' ),
+			"[$rot] com um elegivel so, a frase vai no singular e nao diz '1 pastilhas'" );
+	}
+
+	/* A CAUSA QUE O CODIGO SEPARA, O TEXTO SEPARA — e a frase de cada balde so
+	   sai quando aquele balde tem gente. */
+	f1_ok( ( count( $c['formato'] ) > 0 ) === ( false !== mb_stripos( $texto, 'mas de outro formato' ) ),
+		"[$rot] a frase do FORMATO sai se e somente se alguem caiu por formato" );
+	f1_ok( ( count( $c['fonte'] ) > 0 ) === ( false !== mb_stripos( $texto, 'quem publica a medida' ) ),
+		"[$rot] a frase da FONTE sai se e somente se alguem caiu por fonte" );
+	f1_ok( ( count( $c['lado'] ) > 0 ) === ( false !== mb_stripos( $texto, 'De outro lado' ) ),
+		"[$rot] a frase do LADO sai se e somente se alguem caiu por lado" );
+
+	/* O LADO VAZIO NAO CULPA A FONTE, E A FONTE FRACA NAO CULPA O TAMANHO. Foi
+	   exatamente essa troca que a Sentinela mediu na F1 em 12/09/2026, um andar
+	   acima: a frase da recusa culpava sempre a folga. */
+	$nada_desse_lado = ( 0 === count( $c['rec'] ) + count( $c['fonte'] ) + count( $c['formato'] ) );
+	f1_ok( $nada_desse_lado === ( false !== mb_stripos( $texto, 'não tem nenhuma pastilha de' ) ),
+		"[$rot] a frase do 'nao existe esse lado' sai so quando nao existe MESMO" );
+
+	/* AFIRMACAO EM BLOCO TEM O ESCOPO DO QUE FOI MEDIDO (secao 7 do contrato).
+	   A frase "1 cm nao aparece em catalogo de fabricante nenhum" foi medida no
+	   lado de 1 cm e so vale ali: num lado de 7 cm ela seria uma afirmacao sobre
+	   um mercado que ninguem olhou. Sem esta linha, tirar a frase de dentro do
+	   `if` do lado passava sem ninguem ver — foi o que a mutacao mostrou. */
+	f1_ok( ( 10 === $lado_mm && $nada_desse_lado ) === ( false !== mb_stripos( $texto, 'não aparece em catálogo de fabricante' ) ),
+		"[$rot] a frase do mercado de 1 cm so sai NO LADO DE 1 cm, e so quando ele esta vazio" );
+
+	/* AS PLACAS, RECALCULADAS AQUI. Area do cilindro de 15 x 20 com a base da
+	   propria regua deste arquivo, ja usada na secao 3. */
+	$area = f1_area( 'cilindro', array( 'd' => 15, 'h' => 20 ) );
+	$erradas = array();
+	foreach ( $c['rec'] as $m ) {
+		$esperado = f1_placas( $m, $area, 10 );
+		$agulha   = $esperado . '</span> placa';
+		if ( false === mb_strpos( $bloco, $agulha ) ) {
+			$erradas[] = $m['codigo_fabricante'] . ' esperava ' . $esperado;
+		}
+	}
+	f1_ok( empty( $erradas ), "[$rot] o numero de placas de cada cartao fecha com a conta deste arquivo",
+		empty( $erradas ) ? count( $c['rec'] ) . ' cartoes' : implode( ' | ', $erradas ) );
+
+	/* O BLOCO DE COMPRA NASCE EM TODO CARTAO, mesmo sem link nenhum (secao 7). */
+	$compras = preg_match_all( '#class="cdm-f2-compra"#', $bloco );
+	f1_ok( $compras === $cartoes, "[$rot] todo cartao de pastilha tem bloco de compra, cheio ou reservado",
+		$compras . ' de ' . $cartoes );
+}
+
+/* --- A BORDA DA SOBRA NAS PLACAS, e ela nao estava na grade ---
+ *
+ * A grade acima roda o vaso de 15 x 20, e nele a sobra de 10% NAO muda o numero
+ * de placas: 942 cm2 e 1.036 cm2 caem os dois na mesma placa depois do
+ * arredondamento para cima. A mutacao que tira a sobra da conta das placas
+ * PASSOU por isso — grade que nao pisa na borda e amostra com nome de grade
+ * (secao 8 do ARQUIPELAGO.md). A peca abaixo e escolhida para que a sobra
+ * atravesse o degrau: 44,5 x 40 cm da 1.780 cm2, que sao 2 placas de 32,3 cm
+ * sem sobra e 3 com 20%. */
+echo "\n4c. A borda da sobra na conta das placas\n";
+
+$area_borda = f1_area( 'placa', array( 'l' => 44.5, 'a' => 40 ) );
+$um_de_2cm  = null;
+foreach ( f1_classificar( $p_itens, 20, $p_teto )['rec'] as $m ) {
+	$um_de_2cm = $m;
+	break;
+}
+$degraus = array();
+foreach ( array( 0, 10, 20 ) as $sobra ) {
+	$bloco_s  = f1_bloco_pastilha( f1_corpo( f1_render( $raiz,
+		'forma=placa&l=44,5&a=40&pastilha=p20&junta=2&esp=4&sobra=' . $sobra ) ) );
+	$esperado = f1_placas( $um_de_2cm, $area_borda, $sobra );
+	$degraus[] = $esperado;
+	f1_ok( false !== mb_strpos( $bloco_s, $esperado . '</span> placa' ),
+		"[sobra $sobra%] a conta das placas serve " . $esperado . ' como esta regua calculou' );
+}
+f1_ok( count( array_unique( $degraus ) ) > 1,
+	'a peca desta borda REALMENTE separa as sobras — senao a afirmacao acima nao mediria a sobra',
+	implode( ' / ', $degraus ) . ' placas' );
+
+/* --- a tabela pre-renderizada do banco: a superficie que a IA le sem formulario --- */
+$tabela_p = f1_bloco_tabela_pastilhas( $corpo_ancora );
+$texto_tp = f1_texto_espacado( $tabela_p );
+f1_ok( '' !== $tabela_p, 'a tabela do banco de pastilhas esta no HTML SERVIDO do estado-ancora' );
+f1_ok( preg_match_all( '#<tr>#', $tabela_p ) === $total_do_banco,
+	'a tabela tem uma linha por item do banco', preg_match_all( '#<tr>#', $tabela_p ) . " de $total_do_banco" );
+$faltando_na_tabela = array();
+foreach ( $p_itens as $m ) {
+	if ( 1 !== preg_match_all( '/\b' . preg_quote( $m['codigo_fabricante'], '/' ) . '\b/u', $texto_tp ) ) {
+		$faltando_na_tabela[] = $m['codigo_fabricante'];
+	}
+}
+f1_ok( empty( $faltando_na_tabela ), 'cada item aparece UMA vez na tabela',
+	empty( $faltando_na_tabela ) ? 'todos' : implode( ', ', $faltando_na_tabela ) );
+/* O ESTADO-ANCORA E 1 cm E 1 cm TEM ZERO ELEGIVEL: sem esta tabela, a unica
+   pagina indexada desta ferramenta nao citaria um produto do catalogo. */
+f1_ok( 0 === count( f1_classificar( $p_itens, 10, $p_teto )['rec'] )
+	&& false !== mb_stripos( $texto_tp, 'K2501' ),
+	'a pagina indexada cita o catalogo mesmo com ZERO elegivel no lado do ancora' );
+/* A COBERTURA DA 14.3 PUBLICADA: a coluna diz, item a item, se o seletor lista
+   aquele lado — e a contagem sai do cruzamento dos dois, nunca digitada. */
+$lados_do_seletor = array( 10, 15, 20, 25 );
+$fora_esperado    = 0;
+foreach ( $p_itens as $m ) {
+	if ( ! in_array( (int) round( $m['geometria']['lado_anunciado_cm'] * 10 ), $lados_do_seletor, true ) ) {
+		$fora_esperado++;
+	}
+}
+f1_ok( preg_match_all( '#<span class="cdm-f1-vazio">não</span>#u', $tabela_p ) === $fora_esperado,
+	'a coluna "esta no formulario?" diz nao para cada lado que o seletor nao oferece',
+	$fora_esperado . ' de ' . $total_do_banco );
+
+/* --- OS MUNDOS PRODUZIDOS: o que o banco de hoje nao consegue mostrar --- */
+
+/* (1) A ORDEM DAS TRAVAS. Com um item so em cada balde, qualquer ordem produz a
+   mesma tela; `strip_fraco=1` faz o strip cair pelas DUAS e exige que a pagina
+   nomeie o FORMATO, que e a primeira trava depois do lado. */
+$duplo = f1_texto( f1_bloco_pastilha( f1_corpo( f1_render( $raiz, 'pastilha=irregular&ladoeq=1,2&strip_fraco=1' ) ) ) );
+f1_ok( false !== mb_stripos( $duplo, 'mas de outro formato' ),
+	'PRODUZ O MUNDO: item que cai pelas duas travas e nomeado pela PRIMEIRA (formato)' );
+f1_ok( false === mb_stripos( $duplo, 'quem publica a medida' ),
+	'PRODUZ O MUNDO: e nao aparece tambem na frase da fonte — os baldes sao disjuntos' );
+
+/* (2) A FRASE DO 1 cm E AMARRADA AO DADO, nao digitada. Ela e verdadeira hoje, e
+   frase verdadeira que ninguem amarra ao banco e a familia do zero digitado. */
+$ancora_1cm = f1_texto( f1_bloco_pastilha( $corpo_ancora ) );
+f1_ok( false !== mb_stripos( $ancora_1cm, 'não aparece em catálogo de fabricante' ),
+	'hoje a pagina explica POR QUE 1 cm tem zero, com a causa que ela mediu' );
+$com_1cm = f1_texto( f1_bloco_pastilha( f1_corpo( f1_render( $raiz, 'pastilha=p10&um_de_1cm=1' ) ) ) );
+f1_ok( false === mb_stripos( $com_1cm, 'não aparece em catálogo de fabricante' ),
+	'PRODUZ O MUNDO: com um 1 cm de fabricante no banco, a frase DESAPARECE' );
+
+/* (3) A ESCADA DA SECAO 25 NO CARTAO DE PASTILHA, nos tres degraus. Hoje os
+   treze estao sem piso, e uma regua presa a isso ficaria verde para sempre. */
+$p20        = f1_bloco_pastilha( f1_corpo( f1_render( $raiz, 'pastilha=p20' ) ) );
+$p20_piso   = f1_bloco_pastilha( f1_corpo( f1_render( $raiz, 'pastilha=p20&com_piso=1' ) ) );
+$p20_sem    = f1_bloco_pastilha( f1_corpo( f1_render( $raiz, 'pastilha=p20&sem_piso=1' ) ) );
+$sem_piso_no_banco = 0;
+foreach ( $p_itens as $m ) {
+	if ( empty( $m['afiliado']['url'] ) && empty( $m['afiliado']['url_busca'] ) ) {
+		$sem_piso_no_banco++;
+	}
+}
+f1_ok( $sem_piso_no_banco === $total_do_banco
+	&& preg_match_all( '#Link de loja em breve#', $p20 ) === count( f1_classificar( $p_itens, 20, $p_teto )['rec'] ),
+	'hoje os itens de pastilha estao sem piso, e o cartao RESERVA o lugar em vez de sumir',
+	$sem_piso_no_banco . ' de ' . $total_do_banco . ' sem piso' );
+f1_ok( preg_match_all( '#cdm-f2-botao cdm-f2-botao-busca#', $p20_piso ) === count( f1_classificar( $p_itens, 20, $p_teto )['rec'] ),
+	'PRODUZ O MUNDO: com piso no banco, o cartao de pastilha serve a busca como botao' );
+f1_ok( false === mb_stripos( $p20_piso, 'Link de loja em breve' ),
+	'PRODUZ O MUNDO: e nesse mundo a pastilha NUNCA diz "em breve" (25.2)' );
+f1_ok( false !== mb_stripos( $p20_sem, 'Link de loja em breve' )
+	&& false === mb_stripos( $p20_sem, 'rel="sponsored' ),
+	'PRODUZ O MUNDO: sem ficha e sem piso, nenhum botao de compra sai do cartao de pastilha' );
+
+/* A MARCA EM DOBRO, agora tambem na pastilha (o teste antigo so varria rejunte). */
+$dobradas_p = array();
+foreach ( $p_itens as $m ) {
+	$marca = (string) $m['marca'];
+	$nome  = (string) $m['nome_comercial'];
+	if ( '' === $marca || false === mb_stripos( $nome, $marca ) ) {
+		continue;
+	}
+	if ( false !== mb_strpos( $texto_ancora, $marca . ' ' . $nome ) ) {
+		$dobradas_p[] = $marca . ' ' . $nome;
+	}
+}
+f1_ok( empty( $dobradas_p ), 'nenhum lugar repete a marca dentro do nome da pastilha',
+	empty( $dobradas_p ) ? count( $p_itens ) . ' pastilhas' : implode( ' | ', $dobradas_p ) );
 
 /* ---------------------------------------------------------------------------
  * 5. A BORDA MAIS DIFICIL: a pagina SEM o banco

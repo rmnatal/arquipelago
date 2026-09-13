@@ -2385,3 +2385,92 @@ caixa da Hotmail, e o `contato@clubedomosaico.com.br` que ainda não existe como
   sessão — é copiar e colar no banco, sem uma linha de código.
 
 ---
+
+## 13/09/2026, 19h17–20hZ — A VITRINE DE PASTILHA DA F1 (f1 1.2.0, manifest revisão 25)
+
+**Terceira ilha tentada nesta execução, de novo, e de novo é a seção 1 funcionando.** A
+aquametria foi reservada às 19h18Z e a robometria às 19h16Z por outras duas execuções — o meu
+push da reserva da aquametria foi recusado por cerca de um minuto, e o da robometria também.
+O passo 5 manda voltar ao passo 2 e escolher a próxima da ordem; sem force push, sem atropelo.
+Antes de escolher, conferi os três `PROMPT.md`: **nenhuma ilha tem despacho aberto para a
+Fundação** (a 18.1 não se aplicou), então valeu a rotação normal da seção 1.
+
+**O bloco é o item (1) que a execução anterior desta ilha deixou escrito**, e ele não tinha
+mais nada na frente: *"a vitrine de pastilha da F1 — `cdm_f1_pastilha_sem_banco_html()` ainda
+diz 'ainda não temos as pastilhas no nosso banco'"*.
+
+### O defeito era de OMISSÃO, e ele tinha data
+
+A frase nasceu verdadeira em 11/09/2026. Em **12/09** o bloco 3d gravou dez pastilhas; em
+**13/09** entraram outras três. O arquivo está com `publicar: true` desde 12/09, a casca lê
+ele em `cdm_casca_numeros()` e o cartão do Guia publica a contagem — e **nenhuma linha de
+código da F1 abria o banco**. Dado no banco e tela sem leitor é o mesmo defeito que a F2
+tinha com o `url_busca` até 13/09 de manhã; aqui era mais caro, porque esta é a ferramenta
+cuja pergunta **é** "quantas pastilhas comprar", e ela respondia sem ter o que vender.
+
+### O que decide uma pastilha não é o que decide uma cola
+
+Primeira coisa que o código novo declara, e é a cicatriz da "categoria nova herda a régua da
+antiga em silêncio" (seção 8), que esta ilha já pagou quando o primeiro rejunte fez as 18
+células da cola falharem de uma vez. A cola se escolhe por base × ambiente; o rejunte, pela
+folga. **A pastilha entrou no banco pela GEOMETRIA** — o próprio arquivo diz isso e diz por
+quê: o fabricante não nomeia substrato nem ambiente na ficha dela. Então a elegibilidade tem
+três travas, **nesta ordem**, e a ordem é o que faz cada frase de recusa poder ser verdadeira:
+
+1. **o LADO** (o que a pessoa escolheu, ou digitou no caquinho irregular);
+2. **o FORMATO** — o seletor oferece pastilha quadrada e o banco tem um strip retangular de
+   1,2 cm. Quem cai aqui já passou pelo lado, então "o lado é o mesmo" não é suposição;
+3. **a FONTE** — nível <= 3 pela escada do esquema. É por isso que **1,5 cm sai com ZERO
+   tendo um item**: a causa é a fonte (distribuidor), não o tamanho, e a tela diz qual das duas.
+
+**Prestação de contas (seção 7):** as quatro listas são disjuntas e somam o banco inteiro,
+contado do arquivo. Todo item aparece **uma vez** — no cartão que o recomenda ou numa linha
+que diz por que ele não está. Uma frase por causa, cada uma nomeando quem caiu por ela.
+
+### A PENDÊNCIA DO SELETOR FECHOU POR UM TERCEIRO CAMINHO — e o número dela estava errado
+
+O banco abriu em 13/09 a pendência `pastilha-tamanho-fora-do-seletor-da-f1` dizendo **6 dos
+13**. São **5**. Ela listava o AF1500 de 1,5 cm entre os lados que o seletor não tem, porque
+foi escrita a partir da frase "a F1 oferece quatro tamanhos — 1x1, 2x2, 2,5x2,5 e a tessela
+irregular". **A F1 oferece cinco, e o quinto é justamente 1,5 cm** — foi esse o defeito que
+`ferramentas/tamanhos-da-f1.php` achou na régua de manhã, e **a prosa da pendência herdou a
+mesma lista vencida no mesmo dia**. Lista digitada envelhece calada em qualquer arquivo,
+inclusive num que descreve o problema. Os cinco são os três K de 3,0 cm, o ST5102 de 1,2 cm e
+o IC02 de 2,3 cm, contados do cruzamento do banco com `cdm_f1_pastilhas_disponiveis()`.
+
+A pendência propunha duas saídas e **nenhuma das duas foi tomada**: opção nova no seletor
+prometeria cobertura da 14.3 que não existe, e servir tamanho aproximado seria recomendar 3,0
+a quem pediu 2,5 com a conta de 2,5. Havia um terceiro caminho, e ele **já estava construído**:
+o campo do **caquinho irregular** aceita qualquer lado de 0,3 a 10 cm e é o único da
+ferramenta em que o lado é digitado. A vitrine casa pelo lado em milímetros, então quem digita
+3 recebe os três K de 3,0 cm com a conta do próprio lado dele. A tela nomeia os lados que o
+seletor não lista e manda a pessoa para lá.
+
+### O CARTÃO FALA EM PLACA, E ISSO É ESCOLHA DECLARADA
+
+Converter "N pastilhas" em "M placas" exigiria quantas pastilhas vêm na placa, e **nenhum dos
+treze fabricantes publica**: a divisão ingênua não fecha em 9 dos 13 e, nos outros 4, fecha
+exigindo folga zero — placa que não se rejunta. Área, sim, se converte sem supor nada: a
+placa cobre o próprio tamanho, seja qual for o arranjo das peças dentro dela. Então o cartão
+diz quantas **placas** a peça pede, com a sobra escolhida dentro e arredondando para cima
+pelo mesmo motivo da contagem de peças — e a página diz, na cara, que a peça ela não converte.
+
+### A ESCADA DA SEÇÃO 25 FOI CHAMADA, NÃO COPIADA
+
+`cdm_f2_compra_html()` nasceu em 13/09 dizendo, no próprio comentário, que a vitrine de
+pastilha da F1 a chamaria em vez de reescrevê-la. Foi o que aconteceu. Hoje os treze caem no
+**terceiro** degrau — sem ficha e sem piso —, e isso é defeito declarado da 19.1, não estado
+de espera: o cartão reserva o lugar, e o número está contado no banco (`itens_sem_piso: 13`).
+
+### A TABELA PRÉ-RENDERIZADA EXISTE POR UM MOTIVO ARITMÉTICO
+
+O estado-âncora desta página é caquinho de **1 cm**, e 1 cm tem **zero** elegível. Sem a
+tabela do banco inteiro, a única URL indexada desta ferramenta — a sem parâmetro, a que o
+Google e as IAs leem — **não citaria um único produto do nosso catálogo de pastilha**. A
+vitrine responde a quem escolheu um lado; a tabela responde a quem só chegou. Treze linhas,
+cada item uma vez, com uma coluna "está no formulário?" que publica a cobertura da 14.3 item
+por item, em vez de a deixar só na bancada.
+
+E a frase que explica o zero de 1 cm — "não aparece em catálogo de fabricante nenhum; quem
+vende é armarinho e marketplace, a peso ou por peça solta" — **só sai no lado de 1 cm e só
+quando ele está vazio**. Ela é verdadeira hoje, e é isso que a tornava perigosa.

@@ -319,6 +319,137 @@ def m_bloco_de_compra_depois_da_procedencia(raiz):
            "\t$html .= cdm_f2_compra_html( isset( $m['afiliado'] ) ? $m['afiliado'] : array() );")
 
 
+
+# ---------------------------------------------- a vitrine de pastilha (1.2.0)
+#
+# As travas desta vitrine sao TRES e a ordem delas e o que faz cada frase de
+# recusa poder ser verdadeira. Com o banco de hoje — um item por balde — quase
+# toda troca de ordem produz a MESMA tela, e e por isso que tres das mutacoes
+# abaixo so reprovam num mundo produzido pelo `render-para-teste.php`.
+
+def m_pastilha_ignora_o_lado(raiz):
+    """A vitrine para de filtrar pelo lado: os treze itens viram elegiveis em
+    qualquer estado. E o defeito mais caro dos possiveis aqui — a pessoa pede
+    caquinho de 1 cm e a pagina recomenda placa de 3 cm com a conta de 1 cm."""
+    editar(raiz, SNIPPET,
+           "		if ( null === $lado || abs( $lado - (float) $lado_mm ) > 0.001 ) {\n			$saida['outro_lado'][] = $m;\n			continue;\n		}",
+           "		if ( null === $lado ) {\n			$saida['outro_lado'][] = $m;\n			continue;\n		}")
+
+
+def m_pastilha_ignora_o_formato(raiz):
+    """O strip retangular de 1,2 cm passa a ser recomendado como se fosse
+    quadradinho: a conta de area da pagina e de peca quadrada, e a contagem sai
+    errada para quem comprar aquilo."""
+    editar(raiz, SNIPPET,
+           "		if ( 'quadrada' !== ( isset( $g['formato'] ) ? $g['formato'] : '' ) ) {\n			$saida['outro_formato'][] = $m;\n			continue;\n		}",
+           "")
+
+
+def m_pastilha_ignora_a_fonte(raiz):
+    """A escada de fontes deixa de valer para a pastilha: o item sustentado por
+    DISTRIBUIDOR entra em recomendacao primaria, que e exatamente o que o
+    nivel <= 3 do esquema existe para impedir."""
+    editar(raiz, SNIPPET,
+           "		if ( cdm_f1_nivel_da_pastilha( $m ) > $teto ) {\n			$saida['fonte_fraca'][] = $m;\n			continue;\n		}",
+           "")
+
+
+def m_pastilha_inverte_formato_e_fonte(raiz):
+    """A ordem das duas ultimas travas troca: a fonte passa a decidir antes do
+    formato. COM O BANCO DE HOJE A TELA NAO MUDA — nenhum item cai pelas duas —,
+    e quem pega isto e o mundo `strip_fraco=1`, que rebaixa a fonte do strip
+    para nivel 5 e exige que a pagina culpe o FORMATO."""
+    editar(raiz, SNIPPET,
+           "		if ( 'quadrada' !== ( isset( $g['formato'] ) ? $g['formato'] : '' ) ) {\n			$saida['outro_formato'][] = $m;\n			continue;\n		}\n		if ( cdm_f1_nivel_da_pastilha( $m ) > $teto ) {\n			$saida['fonte_fraca'][] = $m;\n			continue;\n		}",
+           "		if ( cdm_f1_nivel_da_pastilha( $m ) > $teto ) {\n			$saida['fonte_fraca'][] = $m;\n			continue;\n		}\n		if ( 'quadrada' !== ( isset( $g['formato'] ) ? $g['formato'] : '' ) ) {\n			$saida['outro_formato'][] = $m;\n			continue;\n		}")
+
+
+def m_pastilha_reimplementa_a_escada(raiz):
+    """O cartao de pastilha para de chamar `cdm_f2_compra_html()` e escreve a
+    etiqueta de "em breve" na mao. HOJE A TELA E IDENTICA, byte a byte: os treze
+    itens estao sem ficha e sem piso, entao a escada cai no terceiro degrau de
+    qualquer jeito. Quem pega isto e o mundo `com_piso=1`, e esta mutacao e a
+    razao de aquele mundo existir — a copia da escada so mentiria no dia em que
+    o Raphael colasse os links, com um portao verde ao lado."""
+    editar(raiz, SNIPPET,
+           "	$html .= cdm_f2_compra_html( isset( $m['afiliado'] ) ? $m['afiliado'] : array() );\n\n	if ( $fonte && ! empty( $fonte['url'] ) ) {",
+           "	$html .= '<span class=\"cdm-f2-compra\"><span class=\"cdm-f2-sem-loja\">Link de loja em breve</span></span>';\n\n	if ( $fonte && ! empty( $fonte['url'] ) ) {")
+
+
+def m_pastilha_sem_bloco_de_compra(raiz):
+    """O cartao de pastilha perde o bloco de compra: sem link, o lugar SOME em
+    vez de ficar reservado. E o "em breve com outro nome" que a secao 7 proibe."""
+    editar(raiz, SNIPPET,
+           "	$html .= cdm_f2_compra_html( isset( $m['afiliado'] ) ? $m['afiliado'] : array() );\n\n	if ( $fonte && ! empty( $fonte['url'] ) ) {",
+           "	if ( $fonte && ! empty( $fonte['url'] ) ) {")
+
+
+def m_placas_arredonda_para_baixo(raiz):
+    """As placas arredondam para BAIXO: a pessoa compra menos placa do que a
+    peca pede e descobre no meio do trabalho, com o lote seguinte de outra cor."""
+    editar(raiz, SNIPPET,
+           "	return (int) ceil( ( $area_cm2 * ( 1 + $sobra_pct / 100 ) ) / ( $a * $b ) );",
+           "	return (int) floor( ( $area_cm2 * ( 1 + $sobra_pct / 100 ) ) / ( $a * $b ) );")
+
+
+def m_placas_esquecem_a_sobra(raiz):
+    """A sobra que a pessoa escolheu sai da conta das placas — e ela continua
+    dentro da conta das pecas, logo acima, o que faz as duas discordarem em
+    silencio na mesma tela."""
+    editar(raiz, SNIPPET,
+           "	return (int) ceil( ( $area_cm2 * ( 1 + $sobra_pct / 100 ) ) / ( $a * $b ) );",
+           "	return (int) ceil( $area_cm2 / ( $a * $b ) );")
+
+
+def m_contagem_da_vitrine_digitada(raiz):
+    """O numero da frase vira literal com o valor CERTO do estado de 2 cm. A tela
+    de 2 cm nao muda; a de 2,5 cm passa a anunciar tres pastilhas servindo
+    quatro cartoes. E a familia do zero digitado no cartao do Guia, que esta
+    ilha ja pagou em 11/09/2026."""
+    editar(raiz, SNIPPET,
+           "				. cdm_casca_num( $quantas ) . '</strong> pastilhas do nosso banco",
+           "				. cdm_casca_num( 3 ) . '</strong> pastilhas do nosso banco")
+
+
+def m_frase_do_1cm_vira_incondicional(raiz):
+    """A frase "1 cm nao aparece em catalogo de fabricante nenhum" sai de dentro
+    do `if` da contagem e passa a sair sempre. Ela e VERDADEIRA hoje, e e isso
+    que a torna perigosa: no dia em que um 1 cm de fabricante entrar no banco, a
+    pagina segue afirmando o contrario do que ela mesma serve no cartao."""
+    editar(raiz, SNIPPET,
+           "		if ( 10 === (int) $e['lado_mm'] ) {",
+           "		if ( true ) {")
+
+
+def m_tabela_do_banco_some(raiz):
+    """A tabela pre-renderizada do banco desaparece do HTML servido: a unica
+    pagina indexada desta ferramenta e a de 1 cm, que tem zero elegivel, e sem a
+    tabela ela deixa de citar um unico produto do catalogo (secao 5)."""
+    editar(raiz, SNIPPET,
+           "	$html .= cdm_f1_tabela_pastilhas_html();",
+           "")
+
+
+def m_tabela_do_banco_pula_os_nao_quadrados(raiz):
+    """A tabela passa a listar so as pastilhas quadradas. O item que ficou de
+    fora e justamente o que a vitrine tambem recusa — entao ele deixa de ser
+    nomeado em QUALQUER superficie da pagina, que e o defeito da prestacao de
+    contas da secao 7 na sua forma original."""
+    editar(raiz, SNIPPET,
+           "	foreach ( $itens as $m ) {\n		$g     = isset( $m['geometria'] ) ? $m['geometria'] : array();\n		$props = isset( $m['propriedades'] ) ? $m['propriedades'] : array();",
+           "	foreach ( $itens as $m ) {\n		$g     = isset( $m['geometria'] ) ? $m['geometria'] : array();\n		if ( 'quadrada' !== ( isset( $g['formato'] ) ? $g['formato'] : '' ) ) { continue; }\n		$props = isset( $m['propriedades'] ) ? $m['propriedades'] : array();")
+
+
+def m_coluna_do_seletor_diz_sempre_sim(raiz):
+    """A coluna "esta no formulario?" passa a dizer sim para todo item. A
+    cobertura da secao 14.3 sai publicada dizendo que a ferramenta cobre cinco
+    lados que ela nao cobre — e e essa coluna que manda a pessoa para o caquinho
+    irregular."""
+    editar(raiz, SNIPPET,
+           "		$html .= '<td>' . ( $tem ? 'sim' : '<span class=\"cdm-f1-vazio\">não</span>' ) . '</td>';",
+           "		$html .= '<td>sim</td>';")
+
+
 MUTACOES = [
     ("cilindro usa o raio no lugar do diametro", m_cilindro_usa_raio),
     ("cone usa a altura no lugar da geratriz", m_conico_usa_altura_em_vez_da_geratriz),
@@ -347,6 +478,19 @@ MUTACOES = [
     ("a coluna de cola some em vez de declarar o vazio", m_coluna_de_cola_some_em_vez_de_declarar),
     ("a tabela escrita a mao diverge do calculo", m_tabela_a_mao_diverge_do_calculo),
     ("o bloco de compra vai para depois da procedencia", m_bloco_de_compra_depois_da_procedencia),
+    ("a vitrine de pastilha ignora o lado pedido", m_pastilha_ignora_o_lado),
+    ("a vitrine de pastilha ignora o formato (o strip vira quadradinho)", m_pastilha_ignora_o_formato),
+    ("a vitrine de pastilha ignora a escada de fontes", m_pastilha_ignora_a_fonte),
+    ("a ordem das travas troca: fonte antes de formato", m_pastilha_inverte_formato_e_fonte),
+    ("o cartao de pastilha reimplementa a escada em vez de chamar a da F2", m_pastilha_reimplementa_a_escada),
+    ("o cartao de pastilha sem link perde o bloco de compra", m_pastilha_sem_bloco_de_compra),
+    ("as placas arredondam para baixo", m_placas_arredonda_para_baixo),
+    ("as placas esquecem a sobra que a pessoa escolheu", m_placas_esquecem_a_sobra),
+    ("a contagem da vitrine vira numero digitado, com o valor certo de 2 cm", m_contagem_da_vitrine_digitada),
+    ("a frase do 1 cm passa a sair sempre, em vez de seguir a contagem", m_frase_do_1cm_vira_incondicional),
+    ("a tabela do banco de pastilhas some do HTML servido", m_tabela_do_banco_some),
+    ("a tabela do banco pula os itens nao quadrados", m_tabela_do_banco_pula_os_nao_quadrados),
+    ("a coluna 'esta no formulario?' diz sempre sim", m_coluna_do_seletor_diz_sempre_sim),
 ]
 
 
