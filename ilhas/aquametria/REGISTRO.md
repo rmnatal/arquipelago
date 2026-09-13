@@ -6188,3 +6188,117 @@ e c12-vitrine 11/11.
 tocou catálogo de produto — espécie não é produto, e a página diz isso em vez de
 calar (seção 7). **Pauta da seção 17:** `pauta.md` ainda não existe — 0 escritos,
 0 na fila, 0 recusados.
+
+## 2026-09-13, 11hZ — T3d: O GURAMI MEL ENTRA NO CATÁLOGO, e o número que a base científica publica continua RECUSADO (peixes 1.2.1, manifest revisão 64, nenhuma URL nova)
+
+**POR QUE ESTE BLOCO E NÃO UMA LEVA.** O teto da 21.4 é de três levas de URL por
+semana por ilha, e a semana já usou as três (levas 1, 2 e 3 do T4, todas em
+12/09). O que falta neste eixo agora não é página, é **banco**: quatro categorias
+do `ARVORE.md` estão vazias e nenhuma chegava às três filhas do 16.5. Coleta por
+busca restrita cabe numa execução, não publica endereço nenhum e é o que faz a
+leva da semana que vem nascer pronta — foi o que o estado anterior deixou escrito
+como próximo passo, e é o que esta execução fez.
+
+**O QUE ENTROU NO BANCO, e os dois números vieram da ficha da PRÓPRIA espécie.**
+
+1. **`trichogaster-chuna` (gurami mel) — `porte_adulto_cm` 5,5 cm SL.** O
+   compêndio declara 55 mm SL na ficha da espécie, e o número voltou **igual em
+   duas passadas independentes**, nenhuma delas carregando o número dentro da
+   consulta — a cicatriz da sterbai, aplicada antes de o dado entrar.
+2. **`trichogaster-chuna` — `cardume_minimo` 4, com a faixa declarada de 4 a 6.**
+   A mesma ficha diz que a espécie **não é gregária no sentido dos peixes de
+   cardume**, que precisa da interação com os seus e que a compra de "não menos
+   que 4 a 6 exemplares" é recomendada; e diz mais, que o grupo forma hierarquia
+   com dominante enxotando rival na hora da comida. O campo guarda o **piso que a
+   fonte declara**, que é 4; a ficha que nascer daqui serve a **faixa**, nunca o
+   piso sozinho, e tem material próprio para explicar a diferença.
+3. **`trichopodus-trichopterus` — `origem_geografica`**, que estava `null` desde
+   09/09: bacia do Mekong (Laos, Yunnan, Tailândia, Camboja e Vietnã), pela base
+   científica, que é quem manda em campo de biologia. **Não era o alvo da
+   passada** — veio junto com a busca que foi atrás da convivência e não a achou.
+   É a mesma lição que o pano de microfibra escreveu na Robometria ontem:
+   varredura feita para UM alvo devolve vizinhos.
+
+**O NÚMERO QUE A FISHBASE PUBLICA PARA O GURAMI MEL CONTINUA RECUSADO, E ESTA É A
+QUARTA VEZ.** 13,7 cm TL voltou em 09/09 (duas formulações), em 11/09 (outras
+duas, por uma execução que não conhecia a nota) e hoje. **Reproduzir não é
+conferir**, e o que o derruba não é a implausibilidade de quem lê: é a
+contradição interna da própria ficha, que declara aquário mínimo de **60 cm**
+para este peixe enquanto a **mesma base** declara **120 cm** para o *T. leerii*,
+de 12,0 cm. O que mudou hoje é que a recusa deixou de ser leitura solitária: a
+ficha da mesma espécie no compêndio declara 55 mm, duas vezes.
+
+**A DECISÃO DE DOMÍNIO, escrita porque ela parece contrariar a tabela e não
+contraria.** `dominio_por_campo` põe a base científica na frente em campo de
+biologia, e ela continua na frente. Mas a `ordem` dela não termina na base: ela
+segue para o compêndio. Quando o valor da base é **recusado**, quem sustenta o
+campo é o próximo corpo que o declara — e recusar não é "não achar".
+
+**O CAMINHO ÓBVIO ERA REGISTRAR UM CONFLITO, E ELE ESTARIA ERRADO.** `conflitos[]`
+é a estrutura dos valores que o banco **aceita** como declarados: quem consome é
+`aquametria_peixes_porte_faixa()`, que junta o valor do campo com **todo** valor
+de conflito e entrega `[min, max]` — e a lotação usa o **maior**, de propósito,
+porque errar o porte para menos é o lado que lota demais. Gravar 13,7 ali
+publicaria na tela um gurami mel de 13,7 cm: exatamente o número que quatro
+passadas recusaram, entrando pela porta dos fundos da estrutura que existe para
+ser honesta. **Número recusado não é divergência — é número que não entrou.** A
+divergência fica na observação do registro, com atribuição, com o porquê, e sem
+alimentar conta nenhuma.
+
+**E DUAS RECUSAS QUE NÃO VIRARAM CAMPO, medidas hoje em dois corpos.** O gurami
+pérola (`trichopodus-leerii`) e o tricogaster (`trichopodus-trichopterus`)
+continuam sem `convivencia`. O compêndio, perguntado de duas maneiras diferentes
+em cada um, declara temperamento, longevidade, forma de cor e montagem — e não
+declara o arranjo social; a base científica declara os 120 cm, o ar obrigatório e
+o ninho de bolhas, e também não declara. **A TENTAÇÃO VEIO NOMEADA:** a busca
+ofereceu, sem ser perguntada, o número das **congêneres** — "não menos que 4 a 6"
+do próprio gurami mel e "não menos que 6" do gurami-chocolate — dizendo com todas
+as letras que a ficha do pérola não traz isso. É a regra da congênere do esquema,
+e ela custou o empréstimo de um número que teria fechado a categoria com folga.
+Preferimos o mínimo exato do 16.5 com dado da espécie certa.
+
+**O QUE ISSO DESTRAVA, e está medido no `ARVORE.md`:** `/peixes/bettas/` (rótulo
+"Bettas e gouramis") passa a ter **três** espécies elegíveis — betta
+(`solitario`), colisa-anão (`casal`) e gurami mel (`grupo`) —, que é o mínimo
+exato do 16.5. As outras três categorias vazias ficaram **nomeadas com o que
+falta**: ciclídeos anões tem 1 (o banco não tem outro ciclídeo ANÃO), plecos tem 1
+e o cascudo está a UM campo (`temperatura_C`), vivíparos tem 2 e guppy e molly
+estão a um campo cada (E15 no guppy, `comprimento_minimo_aquario_cm` no molly).
+
+**O QUE MUDOU NO AR SEM UMA URL NOVA.** O catálogo embutido no snippet foi de
+**27 para 28** espécies, e isso muda **nove páginas publicadas**: oito ganham a
+linha do gurami mel na tabela de quem divide a faixa de temperatura (22 a 28 °C,
+interseção, 5,5 cm, 60 cm), e a do mato-grosso — a única que não publica lista de
+companheiro, por ser declarada agressiva — passa a contar "28 espécies do banco"
+onde contava 27. **Nenhum nome dessa tabela é link**, então espécie sem página não
+cria endereço inexistente. O snippet subiu para **1.2.1** sem uma linha de código
+mudada: só o bloco entre `CATALOGO-INICIO` e `CATALOGO-FIM`.
+
+**VERIFICAÇÃO NA BANCADA, 0 falha.** `validar-especies.py` 36 registros, 0 erro,
+o mesmo aviso E15 de sempre (guppy); `testar-validador-especies.py` 22;
+`teste-peixes.py` **1206** afirmações, um processo por página;
+`mutacoes-peixes.py` **35 de 35 reprovadas**; `teste-navegador-arvore.mjs` **498**
+medições em 27 páginas × 6 larguras, 0 px de rolagem; `teste-voz.mjs`,
+`teste-arvore.mjs`, `teste-seo-tecnico.php` 330, `teste-ga4.py` 440,
+`conferir-entidades.mjs` 0 falha, `conferir-slugs.py`, apelidos 59, conversor 17,
+escape, atualizador 9, `conferir-protecao-funcoes.py`, `php -l` em tudo. Baterias
+antigas rodadas inteiras para provar que nenhuma virou inerte: voz 20/20, árvore
+14/14, GA4 13/13.
+
+**NO AR às 11h34Z, em UM disparo.** `/status` na **revisão 64**, igual à do
+`manifest.json`, 19 aplicados. `conferir-peixes-no-ar.py` com **356** afirmações,
+0 falha, com a aritmética conferida célula a célula no que o servidor devolve. E a
+metade que só este bloco tinha para provar, medida no HTML servido e não na
+bancada: a linha do gurami mel está na tabela do tetra neon e a frase da sterbai o
+cita entre os vizinhos; a página do mato-grosso serve "das **28** espécies do
+banco".
+
+**REDE (20.2):** a ilha respondeu 200 nas duas passadas do começo da execução. O
+egresso para `fishbase.se` e `seriouslyfish.com` segue fechado **por política** —
+o proxy nomeia `connect_rejected`, reconferido hoje com `curl` —, e é por isso que
+esta coleta, como todo o banco desta ilha, sai por **busca restrita ao domínio**,
+com "a confirmar na ficha" escrito em cada fonte.
+
+**RECEITA:** 39 dos 78 produtos seguem esperando link de afiliado. Este bloco não
+tocou catálogo de produto. **Pauta da seção 17:** `pauta.md` ainda não existe — 0
+escritos, 0 na fila, 0 recusados.

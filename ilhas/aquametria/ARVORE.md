@@ -46,8 +46,8 @@ Enquanto isso, `/calculadoras/` continua sendo a mãe direta das cinco calculado
 
 A camada que a Bússola verificou ABERTA e a de maior volume de busca da ilha ("quantos litros para N neons"). O banco de espécies (`dados/especies-agua-doce.json`, 36 registros) é o que limita quantas filhas cabem, e desde 12/09/2026 são **duas** réguas com dois nomes, não uma:
 
-- **`catalogo-de-especies`** — sete campos e duas fontes de corpos distintos. **27 dos 36 passam.** É quem entra na contagem da seção, na tabela da categoria e na lista de quem divide a mesma água.
-- **`pagina-especie`** — o catálogo MAIS `cardume_minimo OU convivencia igual a solitario/casal/harem`. **27 dos 27 passam**, desde 12/09/2026. É quem pode ter página própria, porque a ficha deste eixo se chama "quantos litros para um cardume de X" e abre pela frase que nomeia o cardume mínimo.
+- **`catalogo-de-especies`** — sete campos e duas fontes de corpos distintos. **28 dos 36 passam** desde 13/09/2026 (eram 27; o gurami mel entrou quando o porte foi colhido no compêndio). É quem entra na contagem da seção, na tabela da categoria e na lista de quem divide a mesma água.
+- **`pagina-especie`** — o catálogo MAIS `cardume_minimo OU convivencia igual a solitario/casal/harem`. **28 dos 28 passam**, desde 12/09/2026 (27 de 27 naquele dia; 28 de 28 em 13/09). É quem pode ter página própria, porque a ficha deste eixo se chama "quantos litros para um cardume de X" e abre pela frase que nomeia o cardume mínimo.
 
 As duas listas saem nomeadas, registro por registro, em `ferramentas/gerar-catalogo-especies.py`. **Hoje ninguém está no catálogo sem poder ter página**, e isso mudou na leva 3: o `corydoras-sterbai` era o único, porque declarava convivência "grupo" e nenhuma fonte dizia de quantos. A leva 3 colheu o número na ficha da própria espécie, por busca restrita, e `/peixes/corydoras/` nasceu com **4** filhas em vez das 3 que este documento previa — folga de uma sobre o mínimo do 16.5, em vez do mínimo exato.
 
@@ -61,10 +61,10 @@ Categorias pelo nome que a pessoa usa, nunca pelo nome científico. Seis, e só 
 |---|---|---|
 | `/peixes/tetras/` | tetra neon · neon cardinal · mato-grosso · tetra ember · tetra-brilhante · rodóstomo · tetra-negro | **no ar e FECHADA** (7 de 7 espécies do banco) |
 | `/peixes/corydoras/` | coridora bronze · coridora pimenta · coridora panda · coridora sterbai | **no ar e FECHADA** (4 de 4 espécies do banco) |
-| `/peixes/bettas/` | — | em breve |
-| `/peixes/ciclideos-anoes/` | — | em breve |
-| `/peixes/plecos-e-limpa-vidros/` | — | em breve |
-| `/peixes/vivaparos/` | — | em breve |
+| `/peixes/bettas/` | — | **banco fechado em 13/09/2026 — 3 espécies elegíveis**: betta (`solitario`), colisa-anão (`casal`) e gurami mel (`grupo`, cardume 4 a 6). É o mínimo exato do 16.5, sem folga. Os dois guramis grandes do banco — pérola e tricogaster — estão fora por falta de `convivencia`, medida em quatro passadas e dois corpos, não por falta de tentativa. Falta a classificação de SERP da 14.9 e o critério da categoria |
+| `/peixes/ciclideos-anoes/` | — | em breve — **1 elegível** (ramirezi). O banco não tem mais nenhum ciclídeo ANÃO: acará-bandeira, discus e oscar são ciclídeos e não cabem no rótulo |
+| `/peixes/plecos-e-limpa-vidros/` | — | em breve — **1 elegível** (otocinclo). O cascudo (`ancistrus-cirrhosus`) está a UM campo de entrar: falta `temperatura_C` |
+| `/peixes/vivaparos/` | — | em breve — **2 elegíveis** (platy e espada). Guppy e molly estão a um campo cada: o guppy tem duas urls de um corpo só (E15, espelho não confere espelho) e o molly não tem `comprimento_minimo_aquario_cm` |
 
 Filha de nível 3 = a ficha da espécie, com o número que ninguém mais dá. **E o número não é o litro: é a BASE.** As fontes de aquarismo declaram o tamanho do chão do aquário, e as sete primeiras respostas da SERP brasileira dão litro sem fonte e discordam entre si. Cada ficha serve a base declarada (com o nome do corpo de fonte e a data) ao lado das duas réguas brasileiras de lotação, que discordam em quatro vezes, com a atribuição de cada extremo.
 
