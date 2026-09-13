@@ -3222,3 +3222,188 @@ manifest, não os 23 que o cabeçalho anterior vinha carregando.
 coleta mais barata que existe hoje, com a página já localizada, e
 `reservatorio` é o único tipo do vocabulário com zero peça, então a primeira
 devolve o tipo ao seletor da R1 de graça.
+
+---
+
+## 2026-09-13 (21h16Z) — O TIPO `reservatorio` DEIXA DE SER ZERO: os dois recipientes de pó da WAP entram, e a borda da 16.5 passa a produzir o mundo
+
+**Ilha escolhida pela rotação da seção 1**, sem despacho aberto em nenhuma das
+três (os três `PROMPT.md` foram lidos antes de escolher, e a 18.1 não se
+aplicou). A robometria era a de `ultima_execucao` mais antiga (19h16Z, contra
+19h17Z da clubedomosaico e 19h35Z da aquametria), com `executando_desde: null`
+nas três — e pela 1.1, `null` já significa que nenhum bloco da Fundação está
+vivo, então o git não precisou desempatar nada. Reserva escrita às 21h16Z e
+**empurrada de primeira**; ela foi renovada às 21h29Z, no commit do bloco,
+porque a execução passou dos 40 minutos. O push do bloco foi recusado uma vez
+(duas outras execuções reservaram clubedomosaico e aquametria nesse intervalo),
+resolvido com `fetch` + `rebase` — **nenhum force push**.
+
+**O alvo era o mais barato da lista de compras, e por um motivo que não é
+tamanho:** as páginas dos dois recipientes já estavam localizadas desde a leva
+de escovas da manhã, e `reservatorio` era o **único tipo do vocabulário com zero
+peça no banco inteiro** — por isso estava fora do seletor da R1 desde 10/09. A
+primeira peça dele devolvia o tipo **de graça**, porque o seletor é **gerado da
+varredura e nunca digitado**. Foi o que aconteceu: `tipos_sem_nenhuma_peca_no_banco`
+ficou **vazio pela primeira vez na história da ilha**, e nenhuma linha de código
+mudou para isso.
+
+**O QUE ENTROU NO BANCO — dois registros, e a assimetria entre eles é a medição:**
+
+- `wap-recipiente-de-po-w300`, "Recipiente de Pó Para Robô Aspirador de Pó WAP
+  Robot W300", **sem código de fabricante**. E a ausência foi **procurada**, não
+  presumida: duas passadas próprias, uma delas com o título entre aspas somado ao
+  token `FW`, não devolveram código em canal nenhum — nem da WAP, nem de
+  marketplace.
+- `wap-fw008024`, "Recipiente de Pó Para Robô Aspirador de Pó WAP Robot WSMART",
+  **com código**. É o **primeiro código de fabricante WAP do banco**, e ele entra
+  pelo critério que a leva de escovas escreveu ao **recusar** três códigos hoje
+  de manhã. O que reprovava FW006267, FW008028 e FW009132 não era o formato nem a
+  marca: era o **canal** — apareceram em UMA passada e sempre em título de
+  marketplace ou de varejista (níveis 5 e 6), nunca num canal da WAP. FW008024
+  passa nesse mesmo critério, e a prova está em **quatro passadas**: três
+  restritas aos domínios da WAP e uma **sem restrição nenhuma**, com o código
+  entre aspas, em que a página da loja oficial volta entre os primeiros
+  resultados **ao lado de dois anúncios de marketplace que nomeiam o MESMO
+  produto**. Canais independentes concordando sobre **qual peça** o código nomeia
+  é mais forte do que qualquer um deles sozinho.
+
+**O que continua não sendo possível, dito em vez de escondido:** ler o campo
+"Referência" na ficha. `loja.wap.ind.br` segue em `EGRESS_BLOCKED` (medido nesta
+execução: os três domínios da WAP em `000`/`connect_rejected`, `robometria.com.br`
+em 200 na mesma passada, e o WebFetch da loja recusado pelo proxy). Por isso o
+nível das duas fontes é **4, e não 2**. Os 300 ml e os 450 ml que os modelos
+declaram **já estavam** em `modelos-robo.json` antes desta coleta e bateram com o
+que a busca devolveu — **corroboração, não fonte**: capacidade é atributo do
+MODELO e não foi copiada para a peça.
+
+**O DEFEITO QUE O PRÓPRIO BLOCO ACORDOU, e ele é o achado da execução.** Assim
+que o reservatório deixou de ser vazio, `teste-arvore.php` **reprovou** — e
+reprovou dizendo, com todas as letras, `tipos vazios: NENHUM — esta afirmacao nao
+mede nada`. A afirmação "tipo sem peça nenhuma não vira categoria, **e a borda
+existe no banco de hoje**" dependia de o banco **conter** a borda. É uma régua que
+o **crescimento saudável do banco desliga**: no dia em que a ilha cobrisse todos
+os tipos, a trava da 16.5 deixaria de ser exercitada exatamente quando a árvore
+ficasse mais fartamente povoada. Ela estava certa em gritar, e é o melhor
+comportamento que uma régua dessas pode ter — gritar em vez de virar verde
+silencioso.
+
+**O conserto não foi afrouxar nem apagar: foi FABRICAR o mundo.** Saiu uma
+afirmação e entraram sete. Uma mede o **mundo real** (nenhum tipo vazio tem
+categoria declarada hoje). Uma cobra que **exista** categoria de peça na árvore
+para a borda poder ser produzida. E cinco produzem o mundo, **uma por categoria
+declarada**: esvaziam o tipo daquela categoria e exigem que a trava aponte
+**exatamente ela**, comparando com a **linha de base** e não com lista vazia —
+comparar com vazio faria as cinco repetirem o mesmo defeito no relatório em vez
+de cada uma dizer o que pegou. Enquanto existir uma categoria de peça na árvore,
+essa afirmação tem o que medir: não há banco que a desligue.
+
+**A MUTAÇÃO DO RESERVATÓRIO FICOU INERTE PELO MESMO MOTIVO, e foi re-apontada.**
+"Nasce a categoria de reservatórios, que não tem uma peça sequer" continuava
+sendo reprovada — mas pela regra **vizinha**, a de documento e código
+divergentes. *Defeito pego pela regra vizinha prova que ALGUMA trava existe, não
+que ESTA existe.* Agora ela esvazia o tipo, declara a categoria **e** acerta o
+`ARVORE.md`, tudo na mesma cópia, e a 16.5 volta a ser a trava medida — as
+falhas saíram de 2 genéricas para as 2 que nomeiam a 16.5. Nasceram os auxiliares
+`troca_n` (alvo legitimamente repetido, com a contagem **declarada**, para que
+banco maior faça a mutação **parar** em vez de editar linhas que ninguém previu)
+e `varias` (mutação de mais de um arquivo). E nasceu uma **mutação nova**, a
+única que faz a trava do **mundo produzido** reprovar: a casca declara uma
+categoria de peça que o vocabulário do banco não conhece.
+
+**A CONFERÊNCIA NO AR DESTE BLOCO PRECISOU EXISTIR, e os três conferidores
+antigos mostram por quê:** `conferir-no-ar` (149), `conferir-kits-no-ar` (163) e
+`conferir-atribuicao-no-ar` (19) passaram **verdes depois do desembarque sem
+tocar uma linha do que mudou** — nenhum deles sabe o que é um reservatório. Dar o
+bloco por entregue com 331 afirmações verdes que não medem a mudança é a cicatriz
+"VARRER A ENTRADA INTEIRA, NÃO O CASO-ÂNCORA" da seção 8. Nasce
+`conferir-reservatorio-no-ar.py`, **25 afirmações em quatro estados**, com régua
+escrita literalmente no arquivo (não lida de `pecas.json`: conferência que deriva
+do mesmo lugar de onde a página deriva erra junto com ela).
+
+- **A âncora**, e nela a **promessa cumprida**: os seis tipos no seletor, e a
+  frase "o seletor acima não oferece..." **sumida**. Ela terminava com *"o tipo
+  volta ao seletor no dia em que a primeira peça dele entrar"* — a página fez uma
+  promessa em 10/09 e hoje ela é cobrada por um portão.
+- **Os dois estados que respondem**, com a assimetria cobrada: o W300 cita o
+  **título** e **não pode citar código nenhum** (`fw\d{6}` no bloco da resposta
+  reprova), o WSMART cita **FW008024**.
+- **O estado NEGATIVO**, sem o qual os três de cima têm porta dos fundos: o ERB60
+  consultado por reservatório **tem de recusar**, e a recusa não pode vazar nem o
+  título do W300 nem o código do WSMART. Sem ele, uma página que respondesse
+  qualquer coisa a qualquer consulta passaria.
+
+**E A RÉGUA DE AR FOI VISTA REPROVANDO — o problema que ela tem por ser de ar, e
+como ele se resolveu.** Conferência no ar não se muta: o site é um só, e fabricar
+o defeito nele seria **publicar defeito para depois medi-lo**. A saída foi separar
+o que a régua **afirma** do lugar de onde ela **lê**: com `RBM_BANCADA` no
+ambiente ela lê cada estado de um arquivo renderizado em vez da rede. Para isso,
+`render-para-teste.php` ganhou dois argumentos (modelo e tipo) que entram pelo
+**filtro `robometria_r1_entrada`** — o caminho que o próprio snippet já oferece a
+quem monta a página fora do WordPress, e **não** `$_GET` forjado, que o
+`teste-r1.php` proíbe o snippet de usar e que mediria um caminho que o site não
+tem. Até hoje o render solto só sabia produzir o caso-âncora, e é por isso que os
+estados de consulta nunca tinham sido medidos fora do ar. `mutacoes-reservatorio.py`:
+**5 mutações reprovadas e 1 mundo intacto aprovado**, cada uma montando a ilha
+inteira num diretório temporário, quebrando UMA coisa, regerando o catálogo da R1
+e renderizando os quatro estados. O site não foi tocado.
+
+**O QUE ESTE BLOCO NÃO FEZ, com nome e motivo:**
+
+- **`/pecas/reservatorios/` não nasceu**, e não é esquecimento: a própria tabela
+  do `ARVORE.md` exige **3 filhas de dado real** e há **2** peças, de uma marca
+  só. A terceira peça de reservatório é o que abre a linha — não uma decisão de
+  desenho. O parágrafo do `ARVORE.md` que dizia "não tem **nenhuma** peça
+  declarada" **virou mentira no mesmo dia** e foi reescrito com o motivo novo:
+  prosa que descreve o problema também envelhece calada.
+- **A chave de busca dos dois recipientes é a mesma** — `WAP reservatorio robo
+  aspirador` — e isso é propriedade do desenho da 25.2, não deste bloco: a chave
+  de PEÇA não leva código porque vendedor de marketplace não digita SKU no
+  título. **Este bloco mediu a outra metade disso**, e ela está escrita aqui
+  porque vale para os 31 itens de peça: os dois anúncios de Mercado Livre que
+  apareceram na passada sem restrição chamam a peça de *"Recipiente Para
+  Aspirador De Pó Wap Robot Wsmart"* — **o vendedor digita o MODELO**. Uma chave
+  que nomeasse o modelo para a peça declarada em **um só** modelo seria mais
+  estreita; para as peças de família (a B112-CH atravessa cinco modelos) não há
+  modelo único a nomear. É bloco próprio, com portão próprio, e não cabia aqui.
+- **A frase da R1 para peça COM código cita só o código**, e para peça sem código
+  cita o título. É o formato estabelecido da ilha (Multi, Positivo e Xiaomi saem
+  assim), e foi mantido. Registro do que isso significa **nesta marca**: como o
+  vendedor da WAP não usa o código no título, quem procurar "FW008024" num
+  marketplace acha menos do que quem procurar o nome — mas quem compra não segue a
+  frase, segue a escada, e a escada usa a palavra-chave, não o código.
+
+**VERIFICAÇÃO NA BANCADA, 0 falha:** `teste-casca` 200, `teste-r1` 106,
+`teste-r2` 92, `teste-a1` 56, `teste-a2` 73, `teste-voz` 155, `teste-acentuacao`
+17, `teste-arvore` **de 213 para 219**, `teste-escada-compra` 503,
+`validar-banco` aprovado, `php -l` limpo em tudo.
+**MUTAÇÕES: 14 baterias, 0 inertes** — `arvore` 19 (eram 18), `reservatorio` 6
+(nova), `a2-procedencia` 15, `cabeca-e-voz` 29, `procedencia` 17, `ga4` 9,
+`funcao-da-escova` 7, `carimbo-de-origem` 5, `par-sem-modelo` 5, `chaves-da-r1` 4,
+`frase-nomeia-o-tipo` 4, `varredura-por-modelo` 3, mais `atribuicao-da-funcao` e
+`escada`, que declaram trava a trava. As antigas rodaram **inteiras** porque o
+banco mudou.
+**NAVEGADOR:** 258 medições em 9 páginas × 6 larguras, 0 px de rolagem
+horizontal, console limpo.
+**NO AR**, manifest na revisão **31**, `/status` conferido às 21h30Z em UM
+disparo (10 aplicados, 14 aguardando desembarque), e as quatro conferências
+rodadas **depois** do Sync: `conferir-no-ar` 149, `conferir-kits-no-ar` 163,
+`conferir-atribuicao-no-ar` 19 e `conferir-reservatorio-no-ar` 25 — **0 falha nas
+quatro**. **Nenhuma URL nova, nenhum snippet tocado.**
+
+**RECEITA (seção 7), contada do arquivo:** 31 peças publicáveis e 33 modelos
+publicáveis, **64 itens publicáveis, 0 com ficha de loja, 64 sem piso** — os dois
+recipientes entram no **terceiro degrau** da escada da 25.1, com a palavra-chave
+escrita e sem o encurtamento, e os cartões deles dizem "Link de loja em breve",
+medido no ar. Nenhum modelo saiu do vazio da R1 (W300 e WSMART já respondiam), e
+não era para sair: o que este bloco tirou do zero foi um **tipo**, não um modelo.
+Pauta da seção 17: `pauta.md` ainda não existe — 0 escritos, 0 na fila, 0
+recusados.
+
+**Próximo passo desbloqueado:** o RECIPIENTE DE PÓ dos outros modelos WAP — o
+catálogo publica a categoria "Recipiente" e a ilha tem **6 modelos WAP no vazio
+da R1** (W400, W1000, W310, W100, W100c e W90). A terceira peça de reservatório
+abre `/pecas/reservatorios/` pelo mínimo de 3 filhas do `ARVORE.md`, e cada
+recipiente de um modelo que hoje não responde **tira o modelo do vazio**, que é o
+critério da lista de compras. Depois dele, a chave de busca que nomeia o modelo
+para peça de modelo único, com a medição dos títulos de marketplace já feita
+acima.

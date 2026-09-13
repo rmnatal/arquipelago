@@ -392,5 +392,32 @@ if (isset($argv[1]) && basename(__FILE__) === basename($argv[0])) {
 	 */
 	add_filter($alvo . '_na_pagina', function () { return true; });
 
+	/* A CONSULTA DA R1 NUM RENDER SOLTO (13/09/2026, bloco do reservatorio).
+	 *
+	 *   php ferramentas/render-para-teste.php . robometria_r1 wap-w300 reservatorio
+	 *
+	 * Ate aqui o render solto so produzia o caso-ANCORA, a pagina sem consulta —
+	 * e a R1 e ferramenta de entrada variavel: o que ela responde SO existe
+	 * quando alguem escolhe um modelo. Consequencia pratica, e ela e a razao
+	 * deste trecho existir: a conferencia no ar dos estados de consulta nao tinha
+	 * como ser vista REPROVANDO, porque nao havia como fabricar daqui uma pagina
+	 * defeituosa para mostrar a ela. Regua que nunca foi vista reprovando e regua
+	 * nao medida (secao 8 do ARQUIPELAGO.md), e era o caso desta.
+	 *
+	 * O snippet le a consulta por filter_input(INPUT_GET), que num processo de
+	 * linha de comando devolve null, e oferece o filtro `robometria_r1_entrada`
+	 * justamente para quem monta a pagina fora do WordPress. Entao a entrada
+	 * entra pelo filtro, e NAO por $_GET forjado: o teste-r1.php cobra que o
+	 * snippet nunca toque em $_GET, e um render que forjasse a superglobal
+	 * estaria medindo um caminho que o site nao usa.
+	 */
+	if (isset($argv[3]) || isset($argv[4])) {
+		$entrada = array(
+			'modelo' => isset($argv[3]) ? $argv[3] : null,
+			'peca'   => isset($argv[4]) ? $argv[4] : null,
+		);
+		add_filter('robometria_r1_entrada', function () use ($entrada) { return $entrada; });
+	}
+
 	echo robometria_teste_pagina($alvo, 'Robometria — teste', robometria_teste_slug_do_alvo($alvo));
 }
