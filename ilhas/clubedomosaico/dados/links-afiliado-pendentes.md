@@ -1,55 +1,53 @@
-# Links de afiliado pendentes — Clube do Mosaico
+# Links de afiliado — Clube do Mosaico
 
-**Levantado em 13/09/2026 por busca na web (a nuvem não abre o Mercado Livre: a busca interna do site não renderiza em aba de segundo plano).** As URLs de produto abaixo já estão conferidas uma a uma contra o `nome_comercial` do banco. O que falta é o passo humano: abrir `mercadolivre.com.br/afiliados/linkbuilder`, escolher a etiqueta indicada, colar o bloco de URLs, apertar **Gerar** e copiar os links curtos.
+**Estado em 13/09/2026:** 9 dos 20 itens do banco com link de afiliado vivo, todos da **Shopee**. 1 espera o Mercado Livre. 10 (as pastilhas) estão fora por decisão registrada abaixo.
 
-**Por que o Raphael tem de apertar o botão:** o gerador do Mercado Livre carrega reCAPTCHA e ignora clique programático. As etiquetas `clubedomosaicof1` e `clubedomosaicof2` já foram criadas (13/09/2026) e aparecem no seletor.
+## A DESCOBERTA QUE VALE PARA TODAS AS ILHAS
 
-## Bloco 1 — etiqueta `clubedomosaicof2` (8 URLs, colar de uma vez)
+**O gerador da Shopee funciona por máquina. O do Mercado Livre não.**
 
-```
-https://produto.mercadolivre.com.br/MLB-1915431798-silicone-acetico-cartucho-280g-blister-transparente-tekbond-_JM
-https://www.mercadolivre.com.br/cola-adesivo-silicone-transparente-neutro-280g-tekbond/p/MLB38691363
-https://www.mercadolivre.com.br/cola-branca-de-1kg-cascorez-extra-adesivo-pva-extraforte/p/MLB26891495
-https://www.mercadolivre.com.br/argamassa-externa-quartzolit-ac-ii-saco-20kg-cinza-weber/p/MLB27315078
-https://produto.mercadolivre.com.br/MLB-2109686664-massa-adesiva-epoxi-durepoxi-50g-loctite-henkel-01-un-_JM
-https://www.mercadolivre.com.br/rejunte-acrilico-weber-quartzolit-1kg-cores-cor-ype/p/MLB24454967
-https://www.mercadolivre.com.br/rejunte-epoxi-quartzolit-1kg-cinza-platina/p/MLB25541512
-https://www.mercadolivre.com.br/rejunte-piscinas-quartzolit-5kg-cinza-platina/p/MLB23483782
-```
+- **Shopee** (`affiliate.shopee.com.br/offer/custom_link`): aceita até 5 URLs por vez, campos Sub_id 1 a 5, e responde a clique programático. Os links saem **na mesma ordem** em que as URLs entraram, num `textarea` de resultado. Medido de ponta a ponta em 13/09/2026 — nove links gerados numa sessão. **Sub_id aceita maiúscula** (`F1`, `F2` entram como estão), ao contrário da etiqueta do Mercado Livre.
+- **Mercado Livre** (`mercadolivre.com.br/afiliados/linkbuilder`): tem reCAPTCHA. Clicar "Gerar" por script não dispara requisição nenhuma. Depende do Raphael.
 
-Os links saem **na mesma ordem** em que as URLs entraram. Cole o resultado em `afiliado.url` dos itens, nesta ordem:
+**Consequência para a fábrica: a Shopee passa a ser o caminho padrão de link, e não só por cobertura de catálogo — é o único dos dois que a máquina consegue percorrer sozinha.** O Mercado Livre continua valendo para o que a Shopee não vende (foi por isso que ele entrou, em 09/09), mas cada item que só existe lá vira uma pendência com nome e sobrenome na lista do Raphael.
 
-| ordem | item do banco | arquivo | observação sobre o casamento |
+## Os 9 links vivos
+
+Todos com Sub_id 1 = `clubedomosaico`. Gerados em 13/09/2026.
+
+| item do banco | arquivo | Sub_id 2 | link |
 |---|---|---|---|
-| 1 | `tekbond-silicone-acetico-construcao` | materiais-colas.json | **casamento parcial.** O anúncio é silicone acético Tekbond em cartucho de 280 g, que é a apresentação declarada no banco; não foi possível confirmar que é o SKU BRSA004 da linha "Construção". A recomendação técnica da F2 é por TIPO (silicone acético), não por SKU, então o link serve — mas se aparecer um anúncio da linha Construção, troque. |
-| 2 | `tekbond-silicone-neutro` | materiais-colas.json | catálogo, silicone neutro transparente Tekbond 280 g |
-| 3 | `cascola-cascorez-extra` | materiais-colas.json | catálogo, Cascorez Extra PVA extraforte 1 kg — casamento exato |
-| 4 | `quartzolit-cimentcola-externo-acii` | materiais-colas.json | catálogo, argamassa externa AC-II Quartzolit/Weber. **O banco diz saco de 15 kg e o anúncio é de 20 kg** — o Quartzolit vende as duas; anotar como divergência de embalagem, não de produto. |
-| 5 | `loctite-durepoxi` | materiais-colas.json | Durepoxi 50 g, 1 unidade — casamento exato |
-| 6 | `quartzolit-rejunte-acrilico` | materiais-rejuntes.json | catálogo, rejunte acrílico Weber/Quartzolit 1 kg (cor Ypê). **O catálogo do ML é por cor**; o link leva a uma cor específica. Aceitável como porta de compra. |
-| 7 | `quartzolit-rejunte-epoxi` | materiais-rejuntes.json | catálogo, rejunte epóxi Quartzolit 1 kg (cinza platina) — mesma ressalva de cor |
-| 8 | `quartzolit-rejunte-piscinas` | materiais-rejuntes.json | catálogo, rejunte piscinas Quartzolit 5 kg (cinza platina) — mesma ressalva de cor |
+| tekbond-silicone-acetico-construcao | colas | F2 | https://s.shopee.com.br/9fKqoq8pmC |
+| tekbond-silicone-neutro | colas | F2 | https://s.shopee.com.br/9peH198CRF |
+| cascola-cascorez-extra | colas | F2 | https://s.shopee.com.br/W6btt21Hf |
+| loctite-durepoxi | colas | F2 | https://s.shopee.com.br/9Ki0QEA6SA |
+| quartzolit-rejunte-acrilico | rejuntes | F2 | https://s.shopee.com.br/9V1QcX9T7D |
+| quartzolit-rejunte-epoxi | rejuntes | F2 | https://s.shopee.com.br/AKaXc46IQO |
+| quartzolit-rejunte-piscinas | rejuntes | F2 | https://s.shopee.com.br/1qbzUUOFBe |
+| quartzolit-rejunte-ceramicas | rejuntes | F1 | https://s.shopee.com.br/AKaXc8DTnU |
+| quartzolit-rejunte-porcelanatos-e-ceramicas | rejuntes | F1 | https://s.shopee.com.br/AUtxoRCqSX |
 
-## Bloco 2 — etiqueta `clubedomosaicof1` (2 URLs)
+**Ressalvas honestas, para quem for auditar:**
+- **Nenhum dos nove foi clicado para conferir o destino.** Clicar o próprio link de afiliado suja a métrica de cliques do Raphael e, em alguns programas, é infração. A conferência foi feita pelo título do anúncio contra o `nome_comercial` do banco, não pelo destino final. Se algum link levar a produto errado, é aqui que o erro estará — a ronda da Sentinela deve tratar link morto ou trocado como defeito da seção 19.
+- **Silicone acético:** o anúncio é acético transparente Tekbond 280 g, apresentação que bate com o banco, mas **não foi possível confirmar que é o SKU BRSA004 da linha "Construção"**. A F2 recomenda por TIPO, não por SKU, então serve; trocar se aparecer a linha Construção nomeada.
+- **Rejuntes:** o anúncio da Shopee é por linha com escolha de cor no próprio anúncio, o que casa melhor com o banco do que o catálogo do Mercado Livre, que separa por cor.
 
-```
-https://produto.mercadolivre.com.br/MLB-3855986795-rejunte-cimenticio-1kg-quartzolit-diversas-cores-_JM
-https://www.mercadolivre.com.br/rejunte-quartzolit-porcelanato-e-ceramica-marfim-1kg/p/MLB32462343
-```
+## O que falta — 1 item, e depende do Raphael
 
-| ordem | item do banco | arquivo | observação |
-|---|---|---|---|
-| 1 | `quartzolit-rejunte-ceramicas` | materiais-rejuntes.json | **o mais fraco dos dez.** O anúncio é "rejunte cimentício 1 kg Quartzolit diversas cores"; o ML não tem página de catálogo limpa da linha "Cerâmicas". Trocar quando aparecer melhor. |
-| 2 | `quartzolit-rejunte-porcelanatos-e-ceramicas` | materiais-rejuntes.json | catálogo, linha Porcelanatos e Cerâmicas 1 kg (marfim) — ressalva de cor |
+**`quartzolit-cimentcola-externo-acii`.** A Shopee não vende a cimentcola **externo AC-II** da Quartzolit: tem AC-I interna, AC-III flexível, e uma AC-2 *interna* para porcelanato — todas produto diferente, e a diferença é justamente a que a F2 usa para recomendar. Ligar a um desses seria recomendar a argamassa errada para área externa, que é o erro que faz a peça descolar.
 
-## As dez pastilhas ficaram de fora, e por quê
+No Mercado Livre existe e está conferida: `https://www.mercadolivre.com.br/argamassa-externa-quartzolit-ac-ii-saco-20kg-cinza-weber/p/MLB27315078`
 
-`materiais-pastilhas.json` tem 10 itens (nove Glass Mosaic — K2501, K2502, MIX2510, K117, K77, K66, A11, A61, ST5102 — e o AF1500 da Pastilhart). **Nenhum link foi levantado, de propósito.** Esses são códigos de linha de fabricante, não nomes que apareçam em anúncio de marketplace; qualquer link seria uma pastilha *parecida* de outro vendedor, e a ilha inteira se sustenta em dizer com precisão qual produto tem qual declaração. Ligar o K2501 do banco a uma placa genérica de outro fornecedor seria mentir na página que mais promete exatidão.
+Passo do Raphael, dois minutos: abrir `mercadolivre.com.br/afiliados/linkbuilder`, escolher a etiqueta **`clubedomosaicof2`** (já criada), colar essa URL, apertar **Gerar**, copiar o link curto e devolver. Observação do banco para registrar junto: o banco declara saco de 15 kg e o anúncio é de 20 kg — a Quartzolit vende as duas, é divergência de embalagem, não de produto.
 
-O caminho certo para pastilha é outro e fica escrito aqui para o próximo bloco: procurar no Mercado Livre e na Shopee por **loja oficial ou revendedor da Glass Mosaic** e casar por código na descrição do anúncio; se não existir, pastilha entra pela Shopee com busca por atributo (tamanho da pastilha, acabamento, cor) e o banco ganha um campo dizendo que o link é de *equivalente*, não do SKU — e a página tem de dizer isso na cara do leitor.
+## As 10 pastilhas ficaram de fora, e por quê
 
-## Estado
+`materiais-pastilhas.json` tem 10 itens: nove da Glass Mosaic (K2501, K2502, MIX2510, K117, K77, K66, A11, A61, ST5102) e o AF1500 da Pastilhart. **Nenhum link foi gerado, de propósito.**
 
-- 10 de 20 itens do banco com URL de produto escolhida, 0 com link de afiliado gerado.
-- 10 itens (pastilhas) sem URL, por decisão registrada acima.
-- Todos os 20 seguem sem imagem (a nuvem não alcança o domínio dos fabricantes).
+A Shopee **tem** produto Glass Mosaic — mas anunciado com outra codificação (CG10, CG21, CG33) e com nomes genéricos de cor e medida. Nenhum anúncio cita os códigos do banco. Casar K2501 com "Pastilha de Vidro Cristal 2,3x2,3 BRANCO CG10" seria um palpite, e a ilha inteira se sustenta em dizer com precisão qual produto tem qual declaração do fabricante.
+
+**O caminho certo, para o próximo bloco de banco:** ou achar loja oficial/revendedor Glass Mosaic que cite o código no anúncio e casar por código; ou aceitar que pastilha entra como **equivalente por atributo** (medida, acabamento, cor) — e nesse caso o esquema do banco ganha um campo `afiliado.tipo_de_casamento: "equivalente"` e **a página tem de dizer isso ao leitor, na cara**, do tipo "não achamos esta referência exata à venda; este é um produto com a mesma medida e acabamento". Vender equivalente é legítimo; vender equivalente fingindo ser o exato, não.
+
+## Imagens
+
+Os 20 itens seguem sem imagem: a nuvem das rotinas não alcança o domínio dos fabricantes. Pendência separada desta.

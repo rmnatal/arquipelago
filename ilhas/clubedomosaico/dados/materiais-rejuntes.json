@@ -9,8 +9,8 @@
   "metodo_de_coleta": "Busca restrita ao dominio quartzolit.weber, como nos blocos 2 e 3. Os PDFs dos boletins NAO foram abertos linha a linha: WebFetch para www.quartzolit.weber devolveu EGRESS_BLOCKED nesta execucao (medido, nao presumido), igual ao bloco 2. Por isso todo campo tecnico daqui e nivel 2 ou 3 da escada e carrega conferir_no_pdf: true.",
   "o_que_este_arquivo_descobriu_sobre_o_proprio_banco": "REJUNTE NAO E COLA, E O ESQUEMA DO BLOCO 3 SO TINHA OLHADO COLA. Na cola, a lista do fabricante nomeia a BASE — a superficie sobre a qual se cola. No rejunte, a mesma lista nomeia a TESSELA e o AMBIENTE: 'ceramicas, pastilhas de porcelana e de vidro' e o que vai ser rejuntado, nunca o vaso de cimento embaixo. Um rejunte no vocabulario de base nao quer dizer nada, porque rejunte nao toca a base. Por isso este bloco criou um mapa de termos e um conjunto de regras proprios para rejunte, em vez de enfiar os cinco registros na matriz da F2 — ver `regras_de_elegibilidade_do_rejunte` e `matriz_esperada_do_rejunte` no esquema.",
   "afiliado": {
-    "itens_esperando_link": 5,
-    "observacao": "Os cinco. A geracao de link e da Sentinela estrategica, no navegador do Raphael, e nunca da Fundacao — o campo `afiliado.url` nasce presente e vazio para a pagina reservar o lugar e mostrar 'link de loja em breve' (secao 7 do ARQUIPELAGO.md). Codigos de origem: Sub_id 2 = F1 na calculadora, F2 na ferramenta de selecao e G-REJUNTES na ficha do Guia; etiqueta do Mercado Livre = clubedomosaico-F1, clubedomosaico-F2 e clubedomosaico-G-REJUNTES."
+    "itens_esperando_link": 0,
+    "observacao": "Os cinco com link da Shopee gerado em 13/09/2026. Sub_id 1 = clubedomosaico em todos; Sub_id 2 = F1 nos dois rejuntes que a F1 recomenda (ceramicas e porcelanatos-e-ceramicas) e F2 nos outros tres."
   },
   "imagens": {
     "itens_sem_imagem": 5,
@@ -107,12 +107,12 @@
       "geometria": null,
       "venda": [],
       "afiliado": {
-        "programa": null,
-        "url": "",
+        "programa": "shopee",
+        "url": "https://s.shopee.com.br/AKaXc8DTnU",
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "F1",
         "etiqueta_ml": "clubedomosaico-F1",
-        "gerado_em": null
+        "gerado_em": "2026-09-13"
       },
       "imagem": null,
       "fontes": {
@@ -224,12 +224,12 @@
       "geometria": null,
       "venda": [],
       "afiliado": {
-        "programa": null,
-        "url": "",
+        "programa": "shopee",
+        "url": "https://s.shopee.com.br/AUtxoRCqSX",
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "F1",
         "etiqueta_ml": "clubedomosaico-F1",
-        "gerado_em": null
+        "gerado_em": "2026-09-13"
       },
       "imagem": null,
       "fontes": {
@@ -346,12 +346,12 @@
         }
       ],
       "afiliado": {
-        "programa": null,
-        "url": "",
+        "programa": "shopee",
+        "url": "https://s.shopee.com.br/9V1QcX9T7D",
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "F2",
         "etiqueta_ml": "clubedomosaico-F2",
-        "gerado_em": null
+        "gerado_em": "2026-09-13"
       },
       "imagem": null,
       "fontes": {
@@ -440,12 +440,12 @@
       "geometria": null,
       "venda": [],
       "afiliado": {
-        "programa": null,
-        "url": "",
+        "programa": "shopee",
+        "url": "https://s.shopee.com.br/AKaXc46IQO",
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "F2",
         "etiqueta_ml": "clubedomosaico-F2",
-        "gerado_em": null
+        "gerado_em": "2026-09-13"
       },
       "imagem": null,
       "fontes": {
@@ -535,12 +535,12 @@
       "geometria": null,
       "venda": [],
       "afiliado": {
-        "programa": null,
-        "url": "",
+        "programa": "shopee",
+        "url": "https://s.shopee.com.br/1qbzUUOFBe",
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "F2",
         "etiqueta_ml": "clubedomosaico-F2",
-        "gerado_em": null
+        "gerado_em": "2026-09-13"
       },
       "imagem": null,
       "fontes": {

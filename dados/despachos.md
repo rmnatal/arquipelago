@@ -114,6 +114,6 @@ despacho do GA4 registra ter caído — resumo velho lido como fato.
 
 ---
 
-### precisa do Raphael — gerar os 10 links de afiliado do Mosaico no Mercado Livre
+### precisa do Raphael — 1 link de afiliado no Mercado Livre (cimentcola AC-II do Mosaico)
 
-Aberto em 13/09/2026. As URLs estão prontas em `ilhas/clubedomosaico/dados/links-afiliado-pendentes.md`, em dois blocos, com a etiqueta de cada um. O painel do Mercado Livre tem reCAPTCHA no gerador e não aceita clique de máquina — o passo é dele: abrir o gerador, escolher a etiqueta, colar o bloco, apertar Gerar, copiar os links curtos e devolver. Quando devolver, a Fundação escreve os links em `afiliado.url` e `afiliado.gerado_em` dos dez itens e a vitrine para de dizer "link de loja em breve". As etiquetas já existem.
+Reduzido em 13/09/2026: nove dos dez materiais do Clube do Mosaico ganharam link da Shopee, gerado por máquina na mesma noite. Sobrou um, `quartzolit-cimentcola-externo-acii`, que a Shopee não vende. A URL do produto no Mercado Livre e a etiqueta a usar (`clubedomosaicof2`, já criada) estão em `ilhas/clubedomosaico/dados/links-afiliado-pendentes.md`. O gerador do Mercado Livre tem reCAPTCHA e não aceita clique de máquina — por isso é dele. Quando devolver o link curto, a Fundação escreve em `afiliado.url` e `afiliado.gerado_em` do item.
