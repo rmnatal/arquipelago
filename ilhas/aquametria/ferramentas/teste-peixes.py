@@ -967,10 +967,137 @@ def medir_serp_em_produzido():
         shutil.rmtree(base, ignore_errors=True)
 
 
+# Qual familia cada CRITERIO de categoria preparada declara como sendo o
+# criterio dela. Escrito AQUI a mao, e de proposito: e a afirmacao central
+# daqueles textos, e perguntar ao snippet qual familia ele usa seria pedir a
+# resposta a quem produziu o dado (cicatriz 1 do cabecalho deste arquivo). Se
+# uma categoria trocar de familia sem trocar esta linha, a afirmacao reprova.
+FAMILIA_DO_CRITERIO = {
+    "bettas": "Osphronemidae",
+    "vivaparos": "Poeciliidae",
+}
+
+# O que o criterio dos vivaparos AFIRMA sobre o banco, em numero: que plati e
+# espada, do mesmo genero, pedem frentes que diferem em duas vezes. Publicar a
+# razao na tela e digitar um numero de banco numa frase — entao ela e cobrada
+# aqui, e no dia em que o banco mudar a frase e reescrita em vez de envelhecer
+# calada.
+RAZAO_DE_FRENTE_DOS_VIVAPAROS = 2.0
+
+
+def medir_categoria_preparada(banco):
+    """A PRIMEIRA VIDA DE UMA CATEGORIA — declarada, e ainda sem URL.
+
+    A `bettas` ganhou `criterio` e `linha_mestra` em 13/09/2026 e nada conferia
+    que eles estavam la, nem que a familia declarada por aquele texto tem no
+    banco as tres filhas do 16.5. Preparacao de leva conferida a olho e a mesma
+    familia de defeito que o numero de tela digitado: parece conferida.
+
+    A regua e propria: a pertinencia a categoria e recomputada do banco pela
+    FAMILIA que o criterio declara (mapa acima, escrito a mao), e o portao de
+    pagina e reescrito aqui pela frase do esquema — nunca importado do snippet.
+    """
+    print("\n### a categoria preparada, antes de existir URL")
+
+    cats = json.loads(subprocess.run(
+        ["php", os.path.join(RAIZ, "ferramentas", "listar-categorias-do-eixo.php"), RAIZ],
+        capture_output=True, text=True, check=True).stdout)
+    do_eixo = json.loads(subprocess.run(
+        ["php", os.path.join(RAIZ, "ferramentas", "listar-paginas-do-eixo.php"), RAIZ],
+        capture_output=True, text=True, check=True).stdout)
+
+    def passa_no_portao_de_pagina(e):
+        campos = ("nome_cientifico", "nomes_populares_br", "porte_adulto_cm",
+                  "porte_medida", "comprimento_minimo_aquario_cm", "convivencia",
+                  "temperatura_C")
+        if any(not e.get(c) for c in campos):
+            return False
+        corpos = {f["origem"].replace("-via-busca", "") for f in e.get("fontes", [])}
+        if len(corpos) < 2:
+            return False
+        return bool(e.get("cardume_minimo")) or e.get("convivencia") in ("solitario", "casal", "harem")
+
+    # 1. PREPARACAO INTEIRA OU NENHUMA. Categoria com criterio e sem linha
+    #    mestra (ou o contrario) e meia preparacao, e meia preparacao vai ao ar
+    #    como pagina sem a primeira linha que explica por que ela junta o que
+    #    junta — foi o que a `bettas` teve de escrever na mao em 1.3.0.
+    for slug, c in cats.items():
+        tem_crit = c["criterio"].strip() != ""
+        tem_linha = c["linha_mestra"].strip() != ""
+        ok("%s: criterio e linha_mestra declarados juntos, ou nenhum dos dois" % slug,
+           tem_crit == tem_linha, "criterio=%s linha_mestra=%s" % (tem_crit, tem_linha))
+
+    # 2. CATEGORIA SEM CRITERIO NAO NASCE (14.4: listagem tem texto proprio
+    #    explicando o critério). Medido contra o REGISTRO, que e quem cria a
+    #    pagina: se um dia alguem registrar a pagina antes de escrever o texto,
+    #    isto reprova antes do desembarque.
+    for slug, c in cats.items():
+        if c["criterio"].strip() == "":
+            ok("%s: sem criterio escrito, nao esta no registro do eixo" % slug,
+               slug not in do_eixo)
+
+    # 3. LISTA DE ESPECIES E DA LEVA, NAO DA PREPARACAO. Categoria declarada e
+    #    nao nascida tem `especies` vazio; categoria nascida tem cheio. As duas
+    #    direcoes, porque preencher a lista antes da leva faria a mae publicar
+    #    contagem de uma categoria que o 16.5 ainda nao deixou nascer.
+    for slug, c in cats.items():
+        if slug in do_eixo:
+            ok("%s: nascida, e a lista de especies dela esta cheia" % slug,
+               len(c["especies"]) > 0)
+        else:
+            ok("%s: nao nascida, e a lista de especies dela esta vazia" % slug,
+               len(c["especies"]) == 0, "%d" % len(c["especies"]))
+
+    # 4. O 16.5 MEDIDO NA PREPARACAO: a familia que o criterio declara tem tres
+    #    ou mais especies do banco que passam no portao de PAGINA. Tres e o
+    #    minimo exato, e uma categoria preparada que caia abaixo disso nao pode
+    #    receber leva — e melhor descobrir aqui que na hora de publicar.
+    for slug, familia in FAMILIA_DO_CRITERIO.items():
+        ok("%s: esta declarada no snippet" % slug, slug in cats)
+        if slug not in cats:
+            continue
+        ok("%s: o criterio declarado nomeia a familia %s" % (slug, familia),
+           familia in cats[slug]["criterio"] or familia.lower() in cats[slug]["criterio"].lower())
+        da_familia = [e for e in banco.values() if e.get("familia") == familia]
+        aptas = [e for e in da_familia if passa_no_portao_de_pagina(e)]
+        ok("%s: a familia %s tem 3 ou mais especies aptas no banco (16.5)" % (slug, familia),
+           len(aptas) >= 3, "%d de %d no banco: %s" % (
+               len(aptas), len(da_familia), ", ".join(sorted(e["id"] for e in aptas))))
+
+    # 5. A AFIRMACAO QUE O CRITERIO DOS VIVAPAROS PUBLICA, em numero. Ele diz
+    #    que duas especies do mesmo genero pedem frentes que diferem em duas
+    #    vezes; a razao e recomputada do banco entre as aptas da familia.
+    aptas_viv = [e for e in banco.values()
+                 if e.get("familia") == FAMILIA_DO_CRITERIO["vivaparos"]
+                 and passa_no_portao_de_pagina(e)]
+    frentes = [float(e["comprimento_minimo_aquario_cm"]) for e in aptas_viv]
+    if frentes:
+        razao = max(frentes) / min(frentes)
+        ok("vivaparos: a razao entre a maior e a menor frente e %.1f, como o criterio afirma"
+           % RAZAO_DE_FRENTE_DOS_VIVAPAROS,
+           abs(razao - RAZAO_DE_FRENTE_DOS_VIVAPAROS) < 1e-9,
+           "razao=%.3f frentes=%s" % (razao, sorted(frentes)))
+
+    # 6. A PROMESSA DO CRITERIO E CUMPRIVEL, e isso se mede numa categoria que
+    #    JA EXISTE. O texto novo termina dizendo que a contagem de quantas estao
+    #    dentro e quantas esperam fica abaixo da tabela, nunca escrita no
+    #    criterio — promessa sobre outra parte da pagina. Quem prova que aquela
+    #    parte existe e o corpo de uma categoria no ar.
+    nascida = next((s for s in CATEGORIAS if s in do_eixo), None)
+    ok("existe categoria nascida para medir a promessa do criterio", nascida is not None)
+    if nascida:
+        c_nascida = corpo(servir(nascida))
+        ok("%s: serve o bloco de contagem abaixo da tabela (aqm-px-fora)" % nascida,
+           "aqm-px-fora" in c_nascida)
+        ok("vivaparos: o criterio NAO escreve a contagem, e remete a ela",
+           "contado logo abaixo da tabela" in cats["vivaparos"]["criterio"])
+
+
 def main():
     banco = carregar_banco()
     banco_global[0] = banco
     medir_secao(banco)
+    medir_categoria_preparada(banco)
     for cat in CATEGORIAS:
         medir_categoria(cat, banco)
     for slug, ident in FICHAS.items():

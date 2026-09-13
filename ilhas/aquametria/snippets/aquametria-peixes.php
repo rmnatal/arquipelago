@@ -1,5 +1,31 @@
 /**
  * Aquametria Peixes — a malha do eixo /peixes/
+ * Versão: 1.5.0 (13/09/2026) — A CATEGORIA DOS VIVÍPAROS ALCANÇA O MÍNIMO DO
+ * 16.5 E GANHA CRITÉRIO ESCRITO, com a lista de espécies ainda vazia. Nenhuma
+ * URL nova: é a mesma preparação que a `bettas` recebeu na 1.3.0, agora na
+ * categoria seguinte da ordem, e o que a destravou foi um registro de banco.
+ *
+ *   O QUE MUDOU DE ESTADO. `/peixes/vivaparos/` tinha DOIS elegíveis (platy e
+ *   espada) e o 16.5 pede três; com `xiphophorus-variatus` no banco passa a ter
+ *   três, que é o mínimo exato, sem folga — a mesma posição em que a `bettas`
+ *   está. As duas espécies que estavam a UM campo de entrar continuam fora, e
+ *   as duas recusas de 13/09/2026 estão escritas nos registros delas: o molly
+ *   (`poecilia-sphenops`) porque os DOIS corpos de fonte foram perguntados e
+ *   nenhum entrega a frente mínima, e o guppy (`poecilia-reticulata`) porque
+ *   suas duas urls são do mesmo corpo (aviso E15).
+ *
+ *   O CRITÉRIO DESTA CATEGORIA PRESTA CONTAS DE QUEM FICOU FORA, e é por isso
+ *   que ele é mais longo que o rótulo: as três que podem ter página hoje são
+ *   todas `Xiphophorus`, e as duas `Poecilia` do banco — os dois vivíparos que
+ *   o Brasil vende MAIS — estão de fora. Categoria que se chama "Vivíparos" e
+ *   serve só um gênero tem de dizer isso na primeira linha, do mesmo jeito que
+ *   a `bettas` diz que junta um peixe solitário, um de casal e um de grupo.
+ *
+ *   A CLASSIFICAÇÃO DE SERP DA 14.9 FOI MEDIDA ANTES, em 13/09/2026, nas três
+ *   consultas das fichas: as três são ALVO. A data está na régua de `serp_em`
+ *   abaixo; o que cada SERP tem está no `REGISTRO.md` desta execução e no
+ *   `ARVORE.md`, que é onde a categoria seguinte vai buscá-la.
+ *
  * Versão: 1.4.0 (13/09/2026) — A FICHA PARA DE ABRIR PELA PROVA, E O `Article`
  * GANHA DATA, AUTOR E PUBLICADOR. Itens 2 e 4 do despacho da Sentinela de
  * 13/09/2026, e os dois eram o mesmo defeito visto de dois lados: a página que
@@ -143,7 +169,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_PEIXES_VERSAO' ) ) {
-	define( 'AQUAMETRIA_PEIXES_VERSAO', '1.4.0' );
+	define( 'AQUAMETRIA_PEIXES_VERSAO', '1.5.0' );
 }
 
 /* A data em que a SERP das consultas foi classificada (seção 14.9).
@@ -152,7 +178,11 @@ if ( ! defined( 'AQUAMETRIA_PEIXES_VERSAO' ) ) {
    em outro dia, esta constante deixa de servir para todas e vira campo do
    registro". O dia chegou antes da leva — a classificação das quatro consultas
    de `/peixes/bettas/` foi medida em 13/09/2026, e as doze páginas no ar
-   continuam classificadas em 12/09/2026.
+   continuam classificadas em 12/09/2026. As TRÊS consultas de
+   `/peixes/vivaparos/` também foram medidas em 13/09/2026, mais tarde no mesmo
+   dia — e a coincidência de data entre as duas categorias é o argumento contra
+   voltar a confiar na constante: duas medições do mesmo dia não são a mesma
+   medição, e a página que herdar a data de outra não tem como mostrar isso.
 
    Ela continua existindo como PADRÃO, e não por compatibilidade: doze páginas
    repetirem a mesma data doze vezes é a mesma data escrita doze vezes, que é
@@ -2289,6 +2319,56 @@ function aquametria_peixes_catalogo() {
 			),
 			'conflitos' => array(),
 		),
+		'xiphophorus-variatus' => array(
+			'id' => 'xiphophorus-variatus',
+			'cientifico' => 'Xiphophorus variatus',
+			'sinonimos' => array(),
+			'populares' => array(
+				'plati variatus',
+				'platy variatus',
+			),
+			'familia' => 'Poeciliidae',
+			'origem' => 'bacias que drenam para o Golfo do Mexico, do sul de Tamaulipas ao norte de Veracruz (Mexico)',
+			'porte_cm' => 7,
+			'porte_medida' => 'TL',
+			'cardume' => null,
+			'convivencia' => 'harem',
+			'comportamento' => 'pacifico',
+			'frente_cm' => 60,
+			'base_comprimento' => null,
+			'base_largura' => null,
+			'temp_min' => 15,
+			'temp_max' => 25,
+			'status' => 'completo',
+			'fontes' => array(
+				array(
+					'corpo' => 'FishBase',
+					'url' => 'https://www.fishbase.se/summary/3233',
+					'em' => '2026-09-13',
+					'campos' => array(
+						'familia',
+						'porte_adulto_cm',
+						'porte_medida',
+						'porte_sexo',
+						'temperatura_C',
+						'comprimento_minimo_aquario_cm',
+					),
+					'referencia' => 'FishBase — ficha da especie: Cyprinodontiformes > Poeciliidae (Poeciliids); max 7,0 cm TL macho/nao sexado, comprimento comum 3,9 cm TL; secao de aquario: aquario minimo de 60 cm e faixa de manutencao de 15 a 25 C.',
+				),
+				array(
+					'corpo' => 'Seriously Fish',
+					'url' => 'https://www.seriouslyfish.com/species/xiphophorus-variatus/',
+					'em' => '2026-09-13',
+					'campos' => array(
+						'comportamento',
+						'convivencia',
+						'origem_geografica',
+					),
+					'referencia' => 'Seriously Fish — ficha da especie: bom peixe para aquario comunitario geral, pacifico e rustico; havendo machos e femeas juntos deve haver mais femeas que machos, para dissipar a atencao do macho, que e incessante, e varias femeas para cada macho; precisa de agua de dureza moderada ou maior e nao prospera em agua mole e acida; nativo das bacias que drenam para o Golfo do Mexico, do sul de Tamaulipas ao norte de Veracruz.',
+				),
+			),
+			'conflitos' => array(),
+		),
 	);
 	return $catalogo;
 	/* CATALOGO-FIM */
@@ -2497,7 +2577,8 @@ function aquametria_peixes_categorias() {
 		),
 		'vivaparos' => array(
 			'rotulo'   => 'Vivíparos',
-			'criterio' => '',
+			'linha_mestra' => 'Estes peixes não põem ovo: nascem nadando, e nascem muitos — então o número que decide o seu aquário não é quantos você comprou, é quantos vão existir daqui a três meses, e o macho é quem manda nessa conta.',
+			'criterio' => 'Os vivíparos da família Poeciliidae que a loja brasileira vende como plati, espada, molinésia e lebiste. A família serve de critério e o gênero não, e por um motivo que o aquarista reconhece na prateleira: plati e espada são o mesmo gênero e pedem frentes de aquário que diferem em duas vezes, enquanto plati e molinésia são gêneros diferentes e pedem água da mesma dureza. Quem decide a resposta aqui é o tamanho adulto da fêmea, porque nesta família é ela que carrega a carga — e é ela que o vendedor não separa na hora de vender. O que esta tabela publica é o vivíparo cujos sete campos os dois corpos de fonte sustentam; espécie a um campo de distância fica de fora e a frente mínima dela NÃO é completada pela da espécie vizinha, que é o atalho que faria esta lista crescer hoje e mentir amanhã. Quantas estão dentro e quantas esperam está contado logo abaixo da tabela, nunca escrito aqui.',
 			'especies' => array(),
 		),
 	);

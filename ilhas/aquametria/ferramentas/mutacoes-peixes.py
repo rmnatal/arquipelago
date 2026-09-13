@@ -55,6 +55,40 @@ def troca(arquivo, de, para, vezes=1):
     return aplicar
 
 
+def banco_json(mudar):
+    """Mutacao que edita o BANCO pela estrutura, e nao por texto.
+
+    Existe porque as mutacoes desta familia precisam mexer num campo de UM
+    registro, e o valor desse campo aparece igual em varios outros — trocar
+    "harem" por texto atingiria quatro especies e a mutacao mediria outra coisa.
+    A trava contra a mutacao inerte continua de pe: se o banco sair identico, a
+    edicao nao encontrou o alvo e isto para.
+    """
+    def aplicar(base):
+        import json as _json
+        caminho = os.path.join(base, BANCO)
+        d = _json.load(open(caminho, encoding="utf-8"))
+        antes = _json.dumps(d, sort_keys=True, ensure_ascii=False)
+        mudar(d)
+        if _json.dumps(d, sort_keys=True, ensure_ascii=False) == antes:
+            raise SystemExit("MUTACAO INERTE: o banco saiu identico ao original")
+        _json.dump(d, open(caminho, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    return aplicar
+
+
+def mut_campo(d, ident, campo, valor):
+    """Troca UM campo de UM registro do banco, recusando alvo que nao existe."""
+    for e in d["especies"]:
+        if e["id"] == ident:
+            if campo not in e:
+                raise SystemExit("MUTACAO INERTE: %s nao tem o campo %s" % (ident, campo))
+            if e[campo] == valor:
+                raise SystemExit("MUTACAO INERTE: %s.%s ja vale %r" % (ident, campo, valor))
+            e[campo] = valor
+            return
+    raise SystemExit("MUTACAO INERTE: %s nao esta no banco" % ident)
+
+
 MUTACOES = [
     # ---------------------------------------------------- 1. o numero muda
     ("o criterio conservador vira 3 L/cm — a regua brasileira do extremo apertado muda de valor",
@@ -342,6 +376,51 @@ MUTACOES = [
      troca(PEIXES,
            "\t\t\t'criterio' => 'As espécies que a loja brasileira vende como tetra: os Paracheirodon, os Hemigrammus, os Hyphessobrycon e o Gymnocorymbus. A família não serve de critério aqui — a revisão recente dos caracídeos deixou o banco com tetra em duas famílias diferentes, e Characidae carrega peixe que ninguém vende como tetra.',",
            "\t\t\t'criterio' => '',")),
+
+    # ------------------------------------------------------------------------
+    # 5. A CATEGORIA PREPARADA (13/09/2026, snippet 1.5.0)
+    #
+    # Estas sete atacam a PRIMEIRA VIDA de uma categoria: declarada, com texto
+    # escrito, e ainda sem URL. Nenhuma delas era mensuravel antes deste bloco —
+    # a `bettas` passou 13/09 inteiro preparada e nada conferia a preparacao —,
+    # e quatro delas PRODUZEM O MUNDO, porque o estado que elas quebram nao
+    # existe no repositorio de hoje: nao ha categoria preparada com lista cheia,
+    # nem familia preparada abaixo do minimo do 16.5.
+    ("A PREPARACAO VIRA MEIA PREPARACAO: o criterio dos vivaparos fica e a linha mestra some",
+     troca(PEIXES,
+           "\t\t\t'linha_mestra' => 'Estes peixes não põem ovo: nascem nadando, e nascem muitos — então o número que decide o seu aquário não é quantos você comprou, é quantos vão existir daqui a três meses, e o macho é quem manda nessa conta.',\n",
+           "")),
+
+    ("A LISTA DE ESPECIES E PREENCHIDA ANTES DA LEVA: a categoria sem URL ja nomeia as tres",
+     troca(PEIXES,
+           " Quantas estão dentro e quantas esperam está contado logo abaixo da tabela, nunca escrito aqui.',\n\t\t\t'especies' => array(),",
+           " Quantas estão dentro e quantas esperam está contado logo abaixo da tabela, nunca escrito aqui.',\n"
+           "\t\t\t'especies' => array(\n"
+           "\t\t\t\t'xiphophorus-maculatus',\n"
+           "\t\t\t\t'xiphophorus-hellerii',\n"
+           "\t\t\t\t'xiphophorus-variatus',\n"
+           "\t\t\t),")),
+
+    ("O CRITERIO PARA DE NOMEAR A FAMILIA QUE ELE MESMO DECLARA COMO CRITERIO",
+     troca(PEIXES,
+           "Os vivíparos da família Poeciliidae que a loja brasileira vende",
+           "Os vivíparos que a loja brasileira vende")),
+
+    ("O CRITERIO PASSA A ESCREVER A CONTAGEM QUE ELE PROMETE ESTAR ABAIXO DA TABELA",
+     troca(PEIXES,
+           " Quantas estão dentro e quantas esperam está contado logo abaixo da tabela, nunca escrito aqui.',",
+           " São 3 espécies nesta lista e 2 esperando.',")),
+
+    ("A PROMESSA DO CRITERIO DEIXA DE SER CUMPRIVEL: o bloco de contagem sai da pagina de categoria",
+     troca(PEIXES,
+           "\t$html .= '<p class=\"aqm-px-fora\">';\n\tif ( $na_fila > 0 ) {\n\t\t$html .= 'Das '",
+           "\t$html .= '<p class=\"aqm-px-nota\">';\n\tif ( $na_fila > 0 ) {\n\t\t$html .= 'Das '")),
+
+    ("A CATEGORIA PREPARADA CAI ABAIXO DO MINIMO DO 16.5 E CONTINUA PREPARADA: o vivaparo novo perde a convivencia declarada",
+     banco_json(lambda d: mut_campo(d, "xiphophorus-variatus", "convivencia", "cardume"))),
+
+    ("A RAZAO QUE O CRITERIO PUBLICA MUDA NO BANCO E A FRASE FICA: a frente do espada vira 100 cm",
+     banco_json(lambda d: mut_campo(d, "xiphophorus-hellerii", "comprimento_minimo_aquario_cm", 100))),
 ]
 
 

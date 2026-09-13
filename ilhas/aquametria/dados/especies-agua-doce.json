@@ -2743,7 +2743,7 @@
    ],
    "verificado_em": "2026-09-09",
    "status_registro": "parcial",
-   "observacao": "Falta comprimento_minimo_aquario_cm: a ficha do compendio tem a secao de dimensoes, mas nenhuma das buscas restritas de 09/09/2026 devolveu o numero, e frente de aquario nao se estima. Sem ele o registro nao passa no portao de pagina de especie nem alimenta a C8. Fica no banco porque a exigencia de agua DURA E ALCALINA (pH 7,5 a 8,2, dH ate 30) ja e conteudo publicavel sozinho: e o oposto do cardinal e do rodostomo, e explica por que 'peixe comunitario' nao e categoria util. RECONFERIDO em 11/09/2026: a busca restrita de hoje tornou a nao devolver a frente minima, e agora sabe-se por que - o proprio compendio publica a ficha desta especie INCOMPLETA, com a secao de dimensoes vazia, e o resumo da busca disse isso com todas as letras. Nao e limite da busca, e buraco da fonte; procurar de novo pelo mesmo caminho nao vai achar. A mesma coleta confirmou o porte: macho 8 cm, femea 12 cm, o que ratifica o porte_sexo 'femea' ja gravado e explica por que a ilha dimensiona pela femea - e ela que carrega a carga e a que o comercio vende. E confirmou a exigencia de agua dura e alcalina, que ja estava no pH 7,5 a 8,2."
+   "observacao": "Falta comprimento_minimo_aquario_cm: a ficha do compendio tem a secao de dimensoes, mas nenhuma das buscas restritas de 09/09/2026 devolveu o numero, e frente de aquario nao se estima. Sem ele o registro nao passa no portao de pagina de especie nem alimenta a C8. Fica no banco porque a exigencia de agua DURA E ALCALINA (pH 7,5 a 8,2, dH ate 30) ja e conteudo publicavel sozinho: e o oposto do cardinal e do rodostomo, e explica por que 'peixe comunitario' nao e categoria util. RECONFERIDO em 11/09/2026: a busca restrita de hoje tornou a nao devolver a frente minima, e agora sabe-se por que - o proprio compendio publica a ficha desta especie INCOMPLETA, com a secao de dimensoes vazia, e o resumo da busca disse isso com todas as letras. Nao e limite da busca, e buraco da fonte; procurar de novo pelo mesmo caminho nao vai achar. A mesma coleta confirmou o porte: macho 8 cm, femea 12 cm, o que ratifica o porte_sexo 'femea' ja gravado e explica por que a ilha dimensiona pela femea - e ela que carrega a carga e a que o comercio vende. E confirmou a exigencia de agua dura e alcalina, que ja estava no pH 7,5 a 8,2. TERCEIRO CAMINHO TENTADO E RECUSADO em 13/09/2026, e ele era o unico que faltava: as tentativas de 09/09 e 11/09 procuraram a frente no COMPENDIO, cuja secao de dimensoes desta especie a propria fonte publica vazia. Faltava perguntar a BASE CIENTIFICA, que tem secao de aquario e e quem sustenta este mesmo campo para o platy e para o variatus. Duas passadas restritas a fishbase.se/org em 13/09/2026, nenhuma carregando numero: NENHUMA das duas devolveu a secao de aquario desta especie. O que as duas devolveram foi o numero da VIZINHA - uma disse 60 cm citando esta especie e a outra disse 60 cm citando a P. velifera, o que e a impressao digital do vazamento e nao uma leitura. Entao a situacao mudou de 'a fonte da vez tem buraco' para 'os DOIS corpos foram perguntados e nenhum entregou', e o desbloqueio deste registro passa a depender da leitura direta - o despacho de egresso aberto para o Raphael, que cita este peixe pelo nome."
   },
   {
    "id": "trichopodus-leerii",
@@ -3275,7 +3275,7 @@
    "conflitos": [],
    "verificado_em": "2026-09-09",
    "status_registro": "completo",
-   "observacao": "O contraste com o platy (X. maculatus, ja no banco) e o achado: dois vivipara da mesma familia, vendidos lado a lado na mesma loja, e o compendio pede 60 cm de frente para um e 120 cm para o outro. A espada e o peixe que mais aparece em aquario de 60 L no Brasil e o que menos cabe nele. Convivencia harem, e nao grupo, porque a fonte declara varias femeas por macho: e o assedio do macho, nao a lotacao, que define o arranjo."
+   "observacao": "O contraste com o platy (X. maculatus, ja no banco) e o achado: dois vivipara da mesma familia, vendidos lado a lado na mesma loja, e as fontes pedem 60 cm de frente para um e 120 cm para o outro. A espada e o peixe que mais aparece em aquario de 60 L no Brasil e o que menos cabe nele. Convivencia harem, e nao grupo, porque a fonte declara varias femeas por macho: e o assedio do macho, nao a lotacao, que define o arranjo. ATRIBUICAO CORRIGIDA em 13/09/2026: a frase acima dizia 'o compendio pede 60 cm para um e 120 para o outro', e o sujeito estava errado na metade dos 60 - quem declara os 60 cm do platy e a BASE CIENTIFICA (e esta no campos[] da fonte dele), enquanto os 120 x 30 cm desta especie sao do COMPENDIO. Nao muda numero nenhum e muda o que a frase afirma: o contraste continua valendo e agora esta no escopo do que foi medido, que e a regra da secao 7. Achado de carona na coleta do X. variatus, quando a base devolveu 80 cm para ESTA especie - numero mais baixo que os 120 do compendio, e que nao entra no campo justamente porque o dominio_por_campo poe o compendio na frente em campo de manutencao. Os 80 cm ficam escritos aqui, sem virar conflito[], porque conflito e a estrutura dos valores que o banco ACEITA e a faixa de frente usa o MAIOR: gravar 80 ali nao mudaria a resposta e publicaria um segundo numero sem necessidade."
   },
   {
    "id": "chromobotia-macracanthus",
@@ -3674,6 +3674,76 @@
    "verificado_em": "2026-09-13",
    "status_registro": "completo",
    "observacao": "PORTE COLHIDO EM 13/09/2026 NO COMPENDIO, E O NUMERO DA FISHBASE SEGUE RECUSADO - a decisao e esta e o motivo esta escrito. A busca restrita a FishBase devolveu 13,7 cm TL pela QUARTA vez (09/09 em duas formulacoes, 11/09 em outras duas, 13/09 mais uma), e o que o derruba nao e implausibilidade de quem le: e a contradicao interna da propria ficha, que declara aquario minimo de 60 cm para este peixe enquanto a MESMA base declara 120 cm para o T. leerii, de 12,0 cm. Reproduzir nao e conferir. O que mudou hoje e que a recusa deixou de ser leitura solitaria: a ficha da PROPRIA especie no compendio declara 55 mm SL, e o numero voltou identico em duas passadas independentes que nao o carregavam na consulta. A tabela dominio_por_campo poe a base cientifica na frente em campo de biologia, e ela continua na frente - mas a ordem dela nao termina na base: quando o valor da base e RECUSADO, quem sustenta o campo e o proximo corpo que o declara, e aqui e o compendio. POR QUE ISTO NAO VIROU UM CONFLITO DECLARADO, que era o caminho obvio: conflitos[] e a estrutura dos valores que o banco ACEITA como declarados, e aquametria_peixes_porte_faixa() consome TODO valor de conflito como utilizavel - o maior deles vira o porte que a lotacao usa. Registrar 13,7 ali publicaria na tela um gurami-mel de 13,7 cm, que e exatamente o numero que quatro passadas recusaram. Numero recusado nao e divergencia: e numero que nao entrou. A divergencia fica escrita aqui, com atribuicao e com o porque. PORTE_SEXO FICA NULL: o compendio declara o maximo da especie sem separar sexo, e diz na mesma ficha que as femeas adultas sao visivelmente maiores que os machos - sem o numero delas, escolher um rotulo de sexo seria inventar a metade que falta. CARDUME_MINIMO 4, E A FAIXA DECLARADA E 4 A 6: a fonte escreve \"nao menos que 4 a 6 exemplares\", entao o piso que ela declara e 4 e e ele que o campo guarda; a ficha que nascer daqui serve a FAIXA, nunca o piso sozinho, e tem material proprio para isso - a mesma fonte diz que a especie nao e de cardume no sentido dos lambaris, precisa da companhia dos seus e forma hierarquia com dominante enxotando rival na hora da comida. Faixa termica de 22 a 28 C e frente de 60 cm continuam como estavam desde 09/09."
+  },
+  {
+   "id": "xiphophorus-variatus",
+   "entidade": "especie",
+   "nome_cientifico": "Xiphophorus variatus",
+   "sinonimos_cientificos": [],
+   "nomes_populares_br": [
+    "plati variatus",
+    "platy variatus"
+   ],
+   "familia": "Poeciliidae",
+   "origem_geografica": "bacias que drenam para o Golfo do Mexico, do sul de Tamaulipas ao norte de Veracruz (Mexico)",
+   "porte_adulto_cm": 7.0,
+   "porte_medida": "TL",
+   "porte_sexo": "nao-sexado",
+   "expectativa_vida_anos": null,
+   "temperatura_C": {
+    "min": 15,
+    "max": 25
+   },
+   "temperatura_e_tolerancia": false,
+   "ph": null,
+   "dureza_dgh": null,
+   "cardume_minimo": null,
+   "comprimento_minimo_aquario_cm": 60,
+   "base_minima_cm": null,
+   "altura_minima_cm": null,
+   "volume_minimo_declarado_L": null,
+   "nivel_natacao": null,
+   "comportamento": "pacifico",
+   "convivencia": "harem",
+   "alimentacao": null,
+   "dificuldade": null,
+   "exige_aquario_maduro": null,
+   "disponibilidade_br": null,
+   "fontes": [
+    {
+     "origem": "base-cientifica-via-busca",
+     "status": "base-cientifica-via-busca",
+     "referencia": "FishBase — ficha da especie: Cyprinodontiformes > Poeciliidae (Poeciliids); max 7,0 cm TL macho/nao sexado, comprimento comum 3,9 cm TL; secao de aquario: aquario minimo de 60 cm e faixa de manutencao de 15 a 25 C.",
+     "url": "https://www.fishbase.se/summary/3233",
+     "verificado_em": "2026-09-13",
+     "campos": [
+      "familia",
+      "porte_adulto_cm",
+      "porte_medida",
+      "porte_sexo",
+      "temperatura_C",
+      "comprimento_minimo_aquario_cm"
+     ],
+     "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 13/09/2026. A pagina nao foi lida direto: o egresso da nuvem devolve connect_rejected para fishbase.se, fishbase.org e seriouslyfish.com, reconferido por curl nesta data. A confirmar na ficha. CADA NUMERO DESTE REGISTRO VOLTOU EM DUAS PASSADAS INDEPENDENTES, nenhuma delas carregando o valor dentro da consulta (secao 8 do contrato): o porte em duas, a frente minima em duas e a faixa de manutencao em duas. A passada intermediaria que NAO devolveu a frente ofereceu no lugar a da especie congenere ('may be similar for the Variable platyfish as well') e foi descartada, porque parametro de especie vizinha e chute com cara de dado."
+    },
+    {
+     "origem": "compendio-via-busca",
+     "status": "compendio-via-busca",
+     "referencia": "Seriously Fish — ficha da especie: bom peixe para aquario comunitario geral, pacifico e rustico; havendo machos e femeas juntos deve haver mais femeas que machos, para dissipar a atencao do macho, que e incessante, e varias femeas para cada macho; precisa de agua de dureza moderada ou maior e nao prospera em agua mole e acida; nativo das bacias que drenam para o Golfo do Mexico, do sul de Tamaulipas ao norte de Veracruz.",
+     "url": "https://www.seriouslyfish.com/species/xiphophorus-variatus/",
+     "verificado_em": "2026-09-13",
+     "campos": [
+      "comportamento",
+      "convivencia",
+      "origem_geografica"
+     ],
+     "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 13/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve connect_rejected por politica de egresso, reconferido nesta data. A confirmar na ficha. A origem geografica voltou IGUAL em duas passadas independentes. RISCO DE VAZAMENTO NOMEADO NA FRASE DO ASSEDIO: a ficha do congenere (X. maculatus, ja no banco) publica a mesma recomendacao com palavras quase iguais, e um resumo de busca nao distingue as duas por si. O que sustenta a leitura e a passada ter devolvido, na MESMA resposta, fatos que sao desta especie e nao da vizinha (a distribuicao Tamaulipas-Veracruz e a exigencia de agua de dureza moderada ou maior); e o veredito nao muda com a duvida, porque as duas fichas sustentam harem. Fica escrito para a leitura direta desempatar um dia."
+    }
+   ],
+   "conflitos": [],
+   "verificado_em": "2026-09-13",
+   "status_registro": "completo",
+   "observacao": "TERCEIRO VIVIPARO ELEGIVEL DA ILHA, e e ele que faz /peixes/vivaparos/ alcancar o minimo do 16.5: a categoria tinha platy e espada, e com este passa a ter tres. NAO FOI ESCOLHIDO POR SER FACIL: o molly e o guppy estao a um campo cada e os dois foram recusados de novo em 13/09/2026, cada um pelo seu motivo, e as duas recusas estao escritas nos registros deles. PORTE SEM SEXO DECLARADO, E ISSO IMPORTA NESTA FAMILIA: a base publica 7,0 cm TL para macho/nao sexado e nao separa os sexos para esta especie, entao porte_sexo e 'nao-sexado'. Em vivipara a femea e maior e e ela que carrega a carga, logo este numero erra para MENOS - o lado que lota demais -, e a ficha que nascer daqui tem de dizer que a fonte nao separou os sexos, em vez de deixar o leitor supor que 7,0 cm e o maximo do peixe. O varejo brasileiro diz 6 a 7 cm 'principalmente as femeas', o que e coerente com o numero e NAO o substitui: porte e campo de biologia e varejo nao manda nele. pH E DUREZA FICARAM NULOS DE PROPOSITO, e a causa e a que este bloco mediu: os dois voltaram em UMA passada so e com valores IDENTICOS aos do congenere ja gravado (pH 7,0 a 8,0 e dH 9 a 19 do X. maculatus). Uma passada nao e confirmacao, e valor igual ao do vizinho colhido numa busca que traz a pagina do vizinho e exatamente o caso em que nao se distingue leitura de eco. Nenhum dos dois esta no portao, entao a ausencia nao custa pagina - e gravar custaria a procedencia. A FRENTE MINIMA VEM DA BASE CIENTIFICA E PODE SER SUPERADA, dito aqui porque o dominio_por_campo poe o compendio na frente neste campo: a ficha do Seriously Fish desta especie TEM secao de dimensoes de aquario, e tres formulacoes de busca restrita nao alcancaram os valores dela. Nao e buraco da fonte (o caso do molly, cuja secao a propria fonte publica vazia): e buraco da NOSSA leitura. Enquanto isso, quem sustenta o campo e o proximo corpo que o declara, que e a base - e no dia em que a leitura direta abrir, este numero e o primeiro a reconferir. O CONTROLE QUE AUTORIZOU GRAVAR OS 60 cm, porque 'especie vizinha tambem tem 60' seria motivo para recusar: na mesma sessao, o resumo de busca atribuiu 'aquario minimo de 60 cm' a TRES especies diferentes em passadas diferentes (P. sphenops, P. velifera e esta), o que e impressao digital de vazamento. O que separou os casos foi perguntar pelo campo de uma especie cuja verdade a ilha ja tem: o espada (X. hellerii), que a base declara com 80 cm e o compendio com 120 x 30 cm - numero DIFERENTE de 60, devolvido na hora. Ou seja a fonte publica valor por especie e a busca o distingue; e a passada que devolveu os 60 cm desta especie devolveu, na mesma resposta, a faixa de 15 a 25 C, que NAO e a do congenere (18 a 25 C), provando que estava lendo a secao de aquario desta ficha e nao da vizinha. O ACHADO DA CLASSIFICACAO DE SERP, e ele e o angulo da ficha: a consulta 'quantos litros para plati variatus' e respondida no Brasil por paginas do OUTRO peixe - o terceiro resultado editorial e a ficha do X. maculatus, e o resumo mistura os numeros dos dois. A SERP brasileira trata as duas especies como uma, e a mesma fonte que sustenta este banco as separa em dois campos ao mesmo tempo (7,0 contra 6,0 cm TL, e 15 a 25 contra 18 a 25 C). E o buraco mais limpo que esta categoria tem para ocupar."
   }
  ],
  "atualizado_em": "2026-09-13",
@@ -3684,6 +3754,18 @@
    "nome_popular_br": "guppy endler",
    "leva": "T3(a), 09/09/2026",
    "motivo": "A busca restrita a FishBase devolveu porte (2,0 cm SL, femea), familia e distribuicao, mas NENHUMA faixa de temperatura e NENHUM tamanho minimo de aquario - a ficha nao traz secao de aquario, e a busca restrita repetiu isso em tres formulacoes. Sem temperatura o registro nao serve nem a pagina de especie nem a C5, e o que sobraria seria uma ficha que so repete o nome. Volta quando a leitura direta abrir."
+  },
+  {
+   "nome_cientifico": "Poecilia latipinna",
+   "nome_popular_br": "molinesia de vela",
+   "leva": "13/09/2026, coleta para /peixes/vivaparos/",
+   "motivo": "Falta comprimento_minimo_aquario_cm e NENHUM dos dois corpos o declara: duas passadas de busca restrita a fishbase.se/org nao devolveram a secao de aquario desta especie, e duas passadas restritas a seriouslyfish.com devolveram, no lugar do numero, a frase de que o aquario deve ser 'o maior possivel, porque em aquario pequeno o desenvolvimento da dorsal do macho fica prejudicado' - que e conselho, nao dimensao. Sem a frente o registro nao passa no portao de pagina nem alimenta a C8, e frente de aquario nao se estima. O que a coleta TROUXE e fica anotado para o dia em que a frente aparecer: a base declara 10,0 cm TL para a femea, e o compendio declara que a especie exige agua de dureza moderada ou maior com pH basico e que ela 'pode incomodar peixe menor conforme amadurece' - ou seja comportamento semi-agressivo declarado, diferente do platy. DUAS ARMADILHAS RECUSADAS NA MESMA PASSADA: a faixa de 24 a 28 C que voltou atribuida ao compendio veio de ARTIGO CIENTIFICO de terceiro dominio ('maintained under standardized conditions'), que e condicao de experimento e nao recomendacao de manutencao; e a faixa de 20 a 28 C da base e a do ambiente SUBTROPICAL da especie, isto e tolerancia, que a C5 nao pode usar."
+  },
+  {
+   "nome_cientifico": "Poecilia velifera",
+   "nome_popular_br": "molinesia veleira",
+   "leva": "13/09/2026, coleta para /peixes/vivaparos/",
+   "motivo": "Recusada por DOIS campos, e os dois por vizinhanca de congenere. (1) comprimento_minimo_aquario_cm: o compendio NAO declara dimensao para esta especie - diz 'o maior possivel', a mesma frase da P. latipinna -, e o 'aquario minimo de 60 cm' que a base devolveu apareceu em UMA passada so, dentro do mesmo cluster de respostas em que o resumo de busca atribuiu 60 cm a TRES especies diferentes (P. sphenops, esta e X. variatus) em passadas diferentes. Para o variatus houve controle que separou leitura de eco; para esta nao houve, e um numero do cluster sem controle e eco ate prova em contrario. (2) convivencia: a unica recomendacao de arranjo que a busca devolveu vinha declarada, com essas palavras, 'para especies de molinesia RELACIONADAS como a P. latipinna' - congenere explicito, o caso que a regra da ilha proibe gravar. O que a coleta trouxe e fica anotado: o compendio declara macho a 15 cm e femea a 17,5 cm, e diz que a especie nao deve dividir aquario com outras molinesias porque cruzam entre si."
   }
  ]
 }
