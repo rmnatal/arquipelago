@@ -7017,3 +7017,246 @@ com "a confirmar na ficha" escrito em cada fonte.
 **RECEITA:** 39 dos 78 produtos seguem esperando link de afiliado. Este bloco não
 tocou catálogo de produto. **Pauta da seção 17:** `pauta.md` ainda não existe — 0
 escritos, 0 na fila, 0 recusados.
+
+## 2026-09-13, 21h21Z–22hZ — O PLATI VARIATUS ENTRA NO BANCO E A CATEGORIA DOS VIVÍPAROS ALCANÇA O MÍNIMO DO 16.5 (peixes 1.5.0, manifest revisão 74, nenhuma URL nova)
+
+**POR QUE ESTE BLOCO E NÃO A LEVA 4.** O estado anterior deixou escrito, como
+próximo passo, "LEVA 4 = /peixes/bettas/ com as três fichas, DESTRAVADA AGORA
+porque a semana virou em 14/09". **A semana não tinha virado.** Esta execução
+rodou às 21h21Z de 13/09, que é domingo, com o teto da 21.4 ainda em 3 de 3
+levas gastas — as levas 1, 2 e 3 do T4, todas em 12/09. A frase anterior falava
+do futuro no presente, e quem a lesse ao pé da letra publicaria leva fora do
+teto. Vale registrar como forma de defeito, porque ela é barata de escrever e
+caríssima de obedecer: **próximo passo que embute uma data futura tem de dizer a
+CONDIÇÃO, não o veredito** — "a partir de 14/09, quando o teto zerar" em vez de
+"destravada agora". O que sobrou de trabalho legítimo era o mesmo do bloco das
+11hZ: banco e preparação de categoria, que não publicam endereço nenhum.
+
+**TERCEIRA ILHA TENTADA.** A robometria foi reservada às 21h16Z e a
+clubedomosaico às 21h19Z por outras execuções, e os dois pushes de reserva desta
+foram recusados por cerca de um minuto cada. O passo 5 manda voltar ao passo 2, e
+foi o que aconteceu duas vezes; nenhum force push. Antes de escolher, os três
+`PROMPT.md` foram lidos: nenhuma ilha tinha despacho aberto para a Fundação, então
+a 18.1 não se aplicou e valeu a rotação da seção 1.
+
+### O que entrou no banco
+
+`xiphophorus-variatus` (plati variatus), o 37º registro. Com ele a família
+Poeciliidae vai de **2 para 3** espécies aptas no portão de página, e
+`/peixes/vivaparos/` passa a poder nascer — mínimo exato do 16.5, sem folga, na
+mesma posição em que a `bettas` está. O catálogo embutido foi regerado, de 28
+para 29 espécies.
+
+**No ar e medido:** a página da seção servia "28 espécies" e passou a servir
+"29", e o plati variatus já aparece na tabela de quem divide a mesma água da
+ficha do tetra neon.
+
+### O CONTROLE QUE AUTORIZOU GRAVAR A FRENTE MÍNIMA — o miolo deste bloco
+
+Na mesma sessão, o resumo de busca atribuiu **"aquário mínimo de 60 cm" a TRÊS
+espécies diferentes em passadas diferentes**: *P. sphenops*, *P. velifera* e esta.
+Isso é impressão digital de vazamento de congênere, e gravar um número desse
+cluster sem controle seria gravar eco com cara de leitura. A plausibilidade não
+serve de juiz, e "a espécie vizinha também tem 60" seria motivo para **recusar**,
+não para aceitar.
+
+O que separou leitura de eco foi **perguntar pelo campo de uma espécie cuja
+verdade a ilha já tem**: o espada (`xiphophorus-hellerii`), que a base científica
+declara com **80 cm** — número diferente de 60, devolvido na hora. Ou seja: a
+fonte publica valor por espécie e a busca o distingue. E a passada que devolveu
+os 60 cm do variatus devolveu, **na mesma resposta**, a faixa de 15 a 25 °C, que
+não é a do congênere (18 a 25 °C) — prova de que estava lendo a seção de aquário
+da ficha certa. **A régua que sai disto vale para toda coleta desta fábrica:
+quando um número suspeito de vazamento não pode ser lido direto, pergunte à mesma
+fonte um valor que você JÁ CONHECE; se ela devolver o valor conhecido e ele for
+diferente, ela distingue.** É controle, não fé.
+
+### Duas recusas medidas, e as duas ficam escritas
+
+- ***Poecilia latipinna*** (molinésia de vela). Nenhum dos dois corpos declara
+  frente mínima: o compêndio responde "o aquário deve ser o maior possível,
+  porque em aquário pequeno o desenvolvimento da dorsal do macho fica
+  prejudicado", que é conselho e não dimensão, e a base não entregou a seção de
+  aquário em duas passadas. **Duas armadilhas caíram junto:** a faixa de 24 a
+  28 °C que voltou atribuída ao compêndio era de **artigo científico de terceiro
+  domínio** ("maintained under standardized conditions"), que é condição de
+  experimento e não recomendação de manutenção; e a de 20 a 28 °C da base é a do
+  **ambiente subtropical** da espécie, isto é tolerância, que a C5 não pode usar.
+- ***Poecilia velifera*** (molinésia veleira). Recusada por dois campos, os dois
+  por congênere: a frente é o "60 cm" do cluster acima, sem controle; e a única
+  recomendação de arranjo que a busca devolveu vinha declarada, com essas
+  palavras, "para espécies de molinésia **relacionadas** como a *P. latipinna*".
+
+### A parede do molly mudou de natureza, e isso é o que a próxima tentativa precisa saber
+
+As passadas de 09/09 e 11/09 procuraram a frente mínima no **compêndio**, cuja
+seção de dimensões desta espécie a própria fonte publica vazia, e a observação do
+registro concluía: "não é limite da busca, é buraco da fonte; procurar de novo
+pelo mesmo caminho não vai achar". Estava certa sobre o caminho dela e faltava o
+outro: **a base científica**, que tem seção de aquário e é quem sustenta esse
+mesmo campo para o platy e para o variatus. Ninguém tinha perguntado a ela.
+
+Foi perguntado, duas passadas limpas, e **a base também não entrega**: devolveu,
+nas duas, o número da espécie vizinha. Então a situação mudou de "a fonte da vez
+tem buraco" para "**os dois corpos foram perguntados e nenhum entregou**", e o
+desbloqueio do molly passou a depender da leitura direta — o despacho de egresso
+aberto para o Raphael, que cita este peixe pelo nome. É a mesma família do "o
+endereço que você testa sai da prosa, o que vale está no banco" (seção 4), agora
+aplicada ao CORPO e não ao endereço: **a prosa que descreve um bloqueio descreve o
+caminho de quem falhou, e o caminho não perguntado não aparece nela.**
+
+### Uma correção de prosa no banco, achada de carona
+
+A observação do espada dizia "o compêndio pede 60 cm de frente para um e 120 cm
+para o outro". O sujeito estava errado na metade dos 60: **quem declara os 60 cm
+do platy é a base científica**, e isso está no `campos[]` da fonte dele; os
+120 × 30 cm do espada são do compêndio. Não muda número nenhum e muda o que a
+frase afirma — a família do "afirmação em bloco tem o escopo do que foi medido".
+Os 80 cm que a base declara para o espada ficam escritos ali **sem virar
+`conflitos[]`**, porque conflito é a estrutura dos valores que o banco ACEITA e a
+faixa de frente usa o MAIOR: gravar 80 não mudaria a resposta e publicaria um
+segundo número sem necessidade.
+
+### A classificação de SERP da 14.9, feita antes de a página existir — as três são ALVO
+
+- **"quantos litros para platy"** — top 8 com **um** domínio forte de varejo (blog
+  da Cobasi) e sete entre loja, blog e ficha estrangeira. A mesma página de
+  resultados dá 40 L, 30 L para um trio, 50 L para comunitário, 80 L e 60 L para
+  seis; nenhum atribui o número a fonte nomeada e nenhum publica a base. Um
+  domínio forte não é "quase tudo" (14.9), e o que ele serve é blog de varejo sem
+  procedência.
+- **"quantos litros para peixe espada"** — top 10 de blog, loja e um blogspot de
+  2013, dando 60 L para grupo e 100 L para casal. **É a consulta mais valiosa da
+  categoria, e agora por medição:** a SERP brasileira recomenda 60 L para o peixe
+  que o compêndio declara com **120 cm de frente**. A observação do registro dele
+  já dizia "é o peixe que mais aparece em aquário de 60 L no Brasil e o que menos
+  cabe nele" — era leitura de quem escreveu, e passou a ser SERP medida.
+- **"quantos litros para plati variatus"** — a SERP responde com páginas do
+  **outro peixe**: o resultado editorial de cima é a ficha do *X. maculatus* e o
+  resumo mistura os números dos dois. A SERP trata as duas espécies como uma, e a
+  mesma fonte que sustenta este banco as separa em **dois** campos ao mesmo tempo
+  (7,0 contra 6,0 cm TL, e 15 a 25 contra 18 a 25 °C). É o buraco mais limpo que
+  esta categoria tem para ocupar.
+
+### O critério da categoria nasceu SEM contagem, e a primeira versão dele tinha o defeito
+
+A primeira versão do `criterio` dos vivíparos dizia quais duas espécies estavam de
+fora e por quê, nomeando as duas. Está tudo verdadeiro hoje — e **é afirmação de
+ESTADO escrita hoje para ser publicada na leva de amanhã**. No dia em que o molly
+ou o guppy entrarem, a frase fica falsa com cara de conferida: é o "número de tela
+nasce contado, nunca digitado" em forma de prosa, e é pior que o número, porque
+ninguém procura contagem dentro de um parágrafo.
+
+O texto final afirma a **regra** — a família serve de critério e o gênero não (e
+diz por quê: plati e espada são o mesmo gênero e pedem frentes que diferem em duas
+vezes, enquanto plati e molinésia são gêneros diferentes e pedem água da mesma
+dureza); o que entra é o vivíparo cujos sete campos os dois corpos sustentam; e a
+frente de quem está a um campo de distância **não** é completada pela da espécie
+vizinha. E termina remetendo a contagem ao bloco que a conta abaixo da tabela.
+A `bettas` tem a mesma forma de frase digitada ("as cinco espécies do banco são
+Osphronemidae") e fica anotado que ela é da mesma família de defeito.
+
+### A RÉGUA DA PRIMEIRA VIDA DE UMA CATEGORIA, que não existia
+
+Uma categoria deste eixo tem **duas vidas**. Antes da leva ela é só declaração:
+rótulo, `linha_mestra` e `criterio` escritos, `especies` vazio, nenhuma página no
+registro. Depois da leva ela é uma URL, e aí o `teste-peixes.py` inteiro passa por
+ela — trilha, tabela, irmãs, schema, voz.
+
+**A primeira vida nunca foi medida.** A `bettas` recebeu critério e linha mestra
+às 13h17Z de hoje e **nada** conferia que eles estavam lá, nem que a família que
+aquele texto declara como critério tem no banco as três filhas que o 16.5 exige —
+que são exatamente as duas coisas que decidem se a leva pode nascer. A preparação
+da leva era prosa conferida a olho.
+
+Nascem `medir_categoria_preparada()` no `teste-peixes.py` (**1222 para 1246
+afirmações**) e `ferramentas/listar-categorias-do-eixo.php`, irmão do
+`listar-paginas-do-eixo.php` e nascido pelo mesmo motivo um nível acima: quem sabe
+o que o eixo tem é o próprio eixo. Ele **não lê o banco**, de propósito — quem
+recomputa o banco é o teste, com a régua dele; se as duas metades lessem a mesma
+coisa, errariam juntas. O que a régua cobra:
+
+1. **Preparação inteira ou nenhuma** — critério e linha mestra declarados juntos,
+   ou nenhum dos dois. Meia preparação vai ao ar como página sem a primeira linha
+   que explica por que ela junta o que junta.
+2. **Categoria sem critério não nasce** (14.4), medido contra o REGISTRO, que é
+   quem cria a página.
+3. **A lista de espécies é da leva, não da preparação** — nas duas direções.
+   Preencher antes faria a mãe publicar contagem de categoria que o 16.5 ainda não
+   deixou nascer.
+4. **O 16.5 medido na preparação** — a família que o critério declara tem 3 ou
+   mais espécies aptas no banco. Vale para `bettas` e `vivaparos`, e é a
+   afirmação que protege a leva: se o banco cair, reprova aqui e não na hora de
+   publicar.
+5. **A razão de frente que o critério publica** (o "duas vezes"), recomputada do
+   banco. Prosa com número de banco dentro é número digitado.
+6. **A promessa do critério é cumprível** — ele termina remetendo a contagem para
+   outro bloco da página, e quem prova que aquele bloco existe é o corpo de uma
+   categoria que já está no ar.
+
+**MUTAÇÕES: 46 de 46 reprovadas, 0 inertes** (eram 39). As sete novas são desta
+família, cada uma reprovada pela afirmação que ela mira, e **quatro produzem o
+mundo**, porque o estado que elas quebram não existe no repositório de hoje: não
+há categoria preparada com lista cheia, nem família preparada abaixo do mínimo do
+16.5. Nasceu junto `banco_json()` no arquivo de mutações, que edita o banco pela
+**estrutura** e não por texto — `"harem"` aparece em quatro espécies, e a troca
+por texto atingiria as quatro e mediria outra coisa.
+
+### Verificação
+
+**Bancada, 0 falha:** `validar-especies` (37 registros, 1 aviso conhecido, o E15 do
+guppy), `teste-peixes` 1246, `teste-arvore`, `teste-voz`, `teste-seo-tecnico` 339,
+`teste-datas-schema` 78, `conferir-slugs`, `validar-produtos`,
+`conferir-protecao-funcoes`, `php -l` em tudo. **Mutações:** peixes 46/46, arvore
+14/14. **Não rodaram** (medem superfícies que este bloco não tocou): voz, ga4,
+datas, dimensão, privacidade e as vitrines.
+
+**No ar às 21h42Z, em UM disparo**, rodados DEPOIS do Sync: `conferir-peixes-no-ar`
+358 e `conferir-datas-e-voz-no-ar` 170, 0 falha nas duas, mais a leitura direta do
+número da tela (28 → 29).
+
+**Rede, medida pela 20.2 no começo:** site e `/status` em 200; o CDN de imagem da
+Shopee em `connect_rejected` nas três passadas, **com a URL lida do BANCO e não da
+prosa**, como a seção 4 manda — por isso a dimensão das 24 imagens segue nula com
+o motivo declarado.
+
+### O cabeçalho do ESTADO.md estava quebrado como YAML, e foi consertado aqui
+
+A seção 2 do contrato registrou o defeito às 19h58Z de hoje — aspas duplas dentro
+de um escalar de aspas duplas derrubam o documento — e mediu **dois dos três**
+`ESTADO.md` do arquipélago quebrados. Este era um deles, e a execução que mediu
+não podia consertar: a seção 3 proíbe editar arquivo de ilha que não se reservou.
+**O conserto não foi tirar as aspas**, que voltaria a quebrar no dia em que
+alguém escrevesse uma: `bloco_atual` e `congelamento` passaram a ser **escalar de
+bloco** (o `|` do YAML), que não escapa nada. Conferido com `yaml.safe_load`
+**antes** do commit, que é o que a seção 2 passou a exigir — e o script de
+fechamento só grava se o cabeçalho parsear.
+
+### Receita e pauta
+
+**Receita, sem mudança:** 39 dos 78 com ficha de loja, **0 com piso**, 78 sem
+piso; dos 39 sem ficha, 9 não têm loja possível hoje. Nenhum produto entrou ou
+saiu do banco — espécie não é produto, e a página diz isso em vez de calar.
+**Pauta da seção 17:** `pauta.md` ainda não existe — 0 escritos, 0 na fila, 0
+recusados.
+
+### Dívida nova e nomeada
+
+**A página de categoria não consegue dizer na tela quem ficou de fora do catálogo
+e por quê**, porque o catálogo embutido só carrega quem PASSA no portão — os
+barrados não existem no snippet. A prestação de contas da seção 7 está cumprida
+para quem está na tabela e não para quem não está. O conserto é o gerador escrever
+também a lista dos barrados com o motivo de cada um, e ele muda a tela das três
+categorias de uma vez: merece bloco próprio, e está na ordem do próximo passo.
+
+### Próximo passo
+
+1. **LEVA 4 = `/peixes/bettas/`** com as três fichas, **a partir de 14/09**,
+   quando o teto da 21.4 zerar. A categoria está preparada desde as 13h17Z e
+   agora a preparação tem régua.
+2. **A leva seguinte = `/peixes/vivaparos/`** com platy, espada e plati variatus.
+   Este bloco a deixou pronta pelo mesmo padrão: banco fechado, critério escrito,
+   SERP classificada.
+3. **A lista dos barrados na tela** — a dívida acima.
+4. **A escada na tela**, quando houver `url_busca`, em bloco inteiro nas quatro
+   calculadoras de uma vez.

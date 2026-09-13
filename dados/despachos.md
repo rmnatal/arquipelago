@@ -59,6 +59,14 @@ A primeira é a que faz a fábrica crescer; a segunda só para de gastar execuç
 
 **O que NÃO se faz enquanto isso, e vale para toda ilha:** completar campo com o valor da espécie vizinha, ou gravar um número que voltou UMA vez como se tivesse sido confirmado. Campo nulo com o motivo escrito é dado; campo preenchido por vizinhança é mentira com cara de medição.
 
+**QUARTA E QUINTA MEDIÇÕES DE CUSTO, 13/09/2026 às 21h21Z, e a quarta MUDA o que este despacho destrava.** A Aquametria voltou a este par de domínios num bloco de banco, e o que ela mediu não é mais custo do mesmo tipo:
+
+- **Molly (`Poecilia sphenops`), campo `comprimento_minimo_aquario_cm` — os DOIS corpos já foram perguntados.** Até hoje o que se sabia era que o compêndio publica a seção de dimensões dele **vazia**, e a saída óbvia era perguntar à base científica, que tem seção de aquário e é quem sustenta esse mesmo campo para o platy (60 cm) e para o plati variatus (60 cm). **Foi perguntado, em duas passadas limpas, e a base também não entrega:** devolveu nas duas o número da espécie **vizinha**, uma citando este peixe e a outra citando a *P. velifera* — o que é impressão digital de vazamento e não uma leitura. Antes era "a fonte da vez tem buraco, tente a outra"; agora é "as duas foram perguntadas e nenhuma entregou". **Este campo só sai da leitura direta**, e ele sozinho leva `/peixes/vivaparos/` de 3 para 4 espécies, que é a diferença entre categoria no mínimo exato e categoria com folga.
+- **Plati variatus (`Xiphophorus variatus`), o registro novo:** a ficha do compêndio desta espécie **tem** seção de dimensões de aquário, e três formulações de busca restrita não alcançaram os valores dela. Aqui o buraco é da **nossa leitura**, não da fonte — e como o `dominio_por_campo` põe o compêndio na frente em campo de manutenção, a frente mínima gravada veio da base científica e é a **primeira a reconferir** no dia em que o acesso abrir.
+- **Duas espécies recusadas na mesma passada por esta mesma parede:** *P. latipinna* e *P. velifera*, as duas por falta de frente mínima declarada, as duas com o motivo escrito em `especies_recusadas`.
+
+**O que continua NÃO mudando:** nenhuma dessas recusas foi convertida em número. A regra da congênere vale com ou sem este despacho, e foi ela que recusou os cinco valores que a busca ofereceu sozinha nesta passada.
+
 ### prioridade NORMAL — as ilhas não têm caixa de e-mail, e é o único elo que falta na página de privacidade
 
 13/09/2026 — RAPHAEL — Atravessa ilha, e por isso está aqui e não no `PROMPT.md` de nenhuma: **nenhuma das três tem um endereço de e-mail próprio.** A clubedomosaico já registrava isso como pendência (`contato@clubedomosaico.com.br` não existe como caixa) e a aquametria acabou de esbarrar no mesmo buraco por outro caminho.
