@@ -1,6 +1,6 @@
 /**
  * Aquametria Peixes — a malha do eixo /peixes/
- * Versão: 1.2.0 (12/09/2026)
+ * Versão: 1.3.0 (13/09/2026)
  *
  * T4 do PROMPT.md, leva 1: cinco URLs novas no eixo que a Bússola verificou
  * ABERTO e que é o de maior volume de busca da ilha — "quantos litros para X
@@ -105,16 +105,43 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_PEIXES_VERSAO' ) ) {
-	define( 'AQUAMETRIA_PEIXES_VERSAO', '1.2.1' );
+	define( 'AQUAMETRIA_PEIXES_VERSAO', '1.3.0' );
 }
 
-/* A data em que a SERP das consultas foi classificada (seção 14.9). Está aqui
-   uma vez só: data escrita à mão em sete páginas envelhece em duas. As quatro
-   consultas da leva 2 foram classificadas na MESMA data das três da leva 1 —
-   se uma leva futura sair em outro dia, esta constante deixa de servir para
-   todas e vira campo do registro. */
+/* A data em que a SERP das consultas foi classificada (seção 14.9).
+   ESTA CONSTANTE DEIXOU DE SER A ÚNICA FONTE DA DATA em 13/09/2026, e o
+   próprio comentário anterior tinha previsto o dia: "se uma leva futura sair
+   em outro dia, esta constante deixa de servir para todas e vira campo do
+   registro". O dia chegou antes da leva — a classificação das quatro consultas
+   de `/peixes/bettas/` foi medida em 13/09/2026, e as doze páginas no ar
+   continuam classificadas em 12/09/2026.
+
+   Ela continua existindo como PADRÃO, e não por compatibilidade: doze páginas
+   repetirem a mesma data doze vezes é a mesma data escrita doze vezes, que é
+   o defeito que ela nasceu para impedir. Quem tem data própria declara
+   `serp_em` no registro; quem não declara herda esta. Lê os dois lados
+   `aquametria_peixes_serp_em()`, e é ela — nunca a constante — que as páginas
+   chamam. */
 if ( ! defined( 'AQUAMETRIA_PEIXES_SERP_EM' ) ) {
 	define( 'AQUAMETRIA_PEIXES_SERP_EM', '12/09/2026' );
+}
+
+/**
+ * A data em que a SERP da consulta desta página foi classificada.
+ *
+ * O campo `serp_em` do registro quando ele existe; a constante quando não.
+ * Nenhuma página imprime a constante direto: se imprimisse, a página com data
+ * própria continuaria servindo a data das outras e o defeito seria invisível
+ * justamente na página que ele afeta.
+ */
+if ( ! function_exists( 'aquametria_peixes_serp_em' ) ) {
+function aquametria_peixes_serp_em( $slug ) {
+	$registro = aquametria_peixes_registro();
+	if ( isset( $registro[ $slug ]['serp_em'] ) && '' !== $registro[ $slug ]['serp_em'] ) {
+		return $registro[ $slug ]['serp_em'];
+	}
+	return AQUAMETRIA_PEIXES_SERP_EM;
+}
 }
 
 /* As duas réguas brasileiras de lotação, com o extremo de cada uma. Vêm de
@@ -2416,7 +2443,8 @@ function aquametria_peixes_categorias() {
 		),
 		'bettas' => array(
 			'rotulo'   => 'Bettas e gouramis',
-			'criterio' => '',
+			'linha_mestra' => 'Estes peixes respiram ar da superfície, e por isso o número que quase ninguém publica não é o litro nem a base: é quanto da superfície do aquário fica livre para eles subirem — e quantos deles cabem juntos sem um enxotar o outro da comida.',
+			'criterio' => 'Os anabantídeos da família Osphronemidae que a loja brasileira vende como betta, colisa e gurami. Aqui o posto taxonômico SERVE de critério, e é a primeira categoria deste eixo em que ele serve: nos tetras a família não servia (a revisão dos caracídeos deixou tetra em duas famílias e Characidae carrega peixe que ninguém vende como tetra) e nas coridoras o gênero não servia (a revisão da subfamília tirou as quatro do gênero Corydoras na própria fonte). Nesta, as cinco espécies do banco são Osphronemidae e todas as cinco são vendidas com um desses três nomes — não há uma sexta que a família traga de brinde nem uma que ela deixe de fora. O que a família NÃO decide é o arranjo social, e é ele que muda a resposta: dentro do mesmo rótulo estão um peixe que vive sozinho (o betta), um que vive em casal (a colisa-anão) e um que vive em grupo com hierarquia (o gurami mel). Categoria que junta os três tem de dizer isso na primeira linha, em vez de publicar um mínimo só.',
 			'especies' => array(),
 		),
 		'ciclideos-anoes' => array(
@@ -3171,7 +3199,7 @@ function aquametria_peixes_ficha_html( $slug ) {
 	   confere a 14.9 é quem lê a página. --- */
 	$html .= '<p class="aqm-px-consulta">Esta página mira a consulta <strong>“'
 		. esc_html( $registro[ $slug ]['consulta'] ) . '”</strong>. A SERP dessa consulta foi classificada em '
-		. esc_html( AQUAMETRIA_PEIXES_SERP_EM ) . ' antes de a página nascer, como manda o critério da ilha, e a classificação está escrita no snippet que serve esta página.</p>';
+		. esc_html( aquametria_peixes_serp_em( $slug ) ) . ' antes de a página nascer, como manda o critério da ilha, e a classificação está escrita no snippet que serve esta página.</p>';
 
 	$html .= '</div>';
 
@@ -3362,7 +3390,7 @@ function aquametria_peixes_categoria_html( $slug ) {
 	$html .= aquametria_peixes_frase_de_mae_html( $slug );
 	$html .= '<p class="aqm-px-consulta">Esta página mira a consulta <strong>“'
 		. esc_html( $registro[ $slug ]['consulta'] ) . '”</strong>, e a SERP dela foi classificada em '
-		. esc_html( AQUAMETRIA_PEIXES_SERP_EM ) . ' antes de a página nascer.</p>';
+		. esc_html( aquametria_peixes_serp_em( $slug ) ) . ' antes de a página nascer.</p>';
 	$html .= '</div>';
 
 	return $html;

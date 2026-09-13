@@ -38,8 +38,10 @@ import json
 import math
 import os
 import re
+import shutil
 import subprocess
 import sys
+import tempfile
 
 RAIZ = sys.argv[1].rstrip("/") if len(sys.argv) > 1 else "."
 BANCO = os.path.join(RAIZ, "dados", "especies-agua-doce.json")
@@ -77,6 +79,39 @@ FICHAS = {
 # passaria verde com o banco inteiro nulo.
 SEM_FUNDO_DECLARADO = {"hemigrammus-rhodostomus"}
 SECAO = "peixes"
+
+# A DATA DA CLASSIFICACAO DE SERP (14.9), com a regua propria deste arquivo.
+#
+# Ate 13/09/2026 esta afirmacao era `"12/09/2026" in t` — uma data digitada, e
+# ela reprovaria uma pagina CERTA no dia em que uma leva nascesse classificada
+# em outro dia. E a mesma familia da regua que morre quando o banco melhora: a
+# afirmacao dependia de TODAS as paginas terem a mesma data, que e um caso do
+# banco de hoje e nao uma propriedade do codigo.
+#
+# A regua agora e a regra, escrita aqui a mao pela decisao 1 do cabecalho: a
+# pagina que declara `serp_em` no registro serve a data DELA; quem nao declara
+# herda o padrao. O teste le o registro do snippet em texto e NAO chama
+# `aquametria_peixes_serp_em()` — se chamasse, um erro na funcao faria os dois
+# lados errarem juntos e o portao ficaria verde.
+SERP_PADRAO = "12/09/2026"
+
+
+def serp_declarada_no_registro(slug):
+    """O `serp_em` que o registro do snippet declara para este slug, ou None."""
+    snippet = open(os.path.join(RAIZ, "snippets", "aquametria-peixes.php"),
+                   encoding="utf-8").read()
+    bloco = re.search(r"'%s' => array\((.*?)\n\t\t\),\n" % re.escape(slug), snippet, re.S)
+    if bloco is None:
+        return None
+    achado = re.search(r"'serp_em'\s*=>\s*'([^']*)'", bloco.group(1))
+    if achado is None or achado.group(1) == "":
+        return None
+    return achado.group(1)
+
+
+def serp_esperada(slug):
+    declarada = serp_declarada_no_registro(slug)
+    return declarada if declarada is not None else SERP_PADRAO
 
 # As categorias de nivel 2 QUE JA SAO PAGINA, e as especies que cada uma tem de
 # listar — escritas aqui a mao pelo mesmo motivo do mapa de cima.
@@ -555,7 +590,8 @@ def medir_ficha(slug, ident, banco):
 
     # --- a consulta-alvo e a classificacao da SERP, no corpo
     ok("%s: publica a consulta-alvo" % slug, 'class="aqm-px-consulta"' in c)
-    ok("%s: diz a data em que a SERP foi classificada" % slug, "12/09/2026" in t)
+    ok("%s: diz a data em que a SERP DESTA pagina foi classificada" % slug,
+       serp_esperada(slug) in t, serp_esperada(slug))
 
 
 def medir_categoria(slug, banco):
@@ -827,6 +863,97 @@ def medir_o_que_vale_para_todas():
         ok("%s: o registro declara a consulta-alvo e o porque da primeira pagina" % slug,
            bloco is not None and "'consulta'" in bloco.group(1) and "'porque'" in bloco.group(1))
 
+    # --- CATEGORIA COM ESPECIE TEM DE DECLARAR O CRITERIO DE QUEM ENTRA NELA.
+    #
+    #     A regra e sobre quem TEM especies, e nao sobre quem esta registrada
+    #     como pagina, e a diferenca e a que importa: em 13/09/2026 a `bettas`
+    #     ganhou o criterio escrito com a lista de especies ainda VAZIA, porque
+    #     o criterio e o que a leva 4 precisa ter decidido ANTES de escrever uma
+    #     linha (14.9 e 14.4). Cobrar o criterio so das registradas deixaria a
+    #     leva seguinte encher a lista e publicar a categoria com o campo vazio
+    #     — o defeito entraria no ar uma leva depois de ser cometido.
+    #
+    #     O bloco se procura dentro de `aquametria_peixes_categorias()` e nao no
+    #     arquivo inteiro: o registro das paginas usa a MESMA forma `'slug' =>
+    #     array(` e vem antes no arquivo, entao a busca solta achava o bloco
+    #     errado e reprovava duas categorias que declaram o criterio ha tres
+    #     blocos. Regua que mede o pedaco errado do arquivo reprova codigo certo.
+    corpo_cats = re.search(
+        r"function aquametria_peixes_categorias\(\) \{(.*?)\n\}\n\}", snippet, re.S)
+    ok("o corpo de aquametria_peixes_categorias() foi localizado", corpo_cats is not None)
+    if corpo_cats:
+        for cat in re.findall(r"\t\t'([a-z0-9-]+)' => array\(", corpo_cats.group(1)):
+            bloco = re.search(r"'%s' => array\((.*?)\n\t\t\),\n" % re.escape(cat),
+                              corpo_cats.group(1), re.S)
+            if bloco is None:
+                continue
+            especies = re.search(r"'especies' => array\((.*?)\),", bloco.group(1), re.S)
+            tem_especie = bool(especies and re.search(r"'[a-z0-9-]+'", especies.group(1)))
+            crit = re.search(r"'criterio'\s*=>\s*'(.*?)',\n", bloco.group(1), re.S)
+            texto_crit = crit.group(1).strip() if crit else ""
+            if tem_especie:
+                ok("a categoria %s tem especie e declara o criterio de quem entra nela" % cat,
+                   len(texto_crit) >= 80, "%d caracteres" % len(texto_crit))
+            else:
+                ok("a categoria %s ainda nao tem especie — criterio escrito e preparo, nao defeito"
+                   % cat, True, "criterio com %d caracteres" % len(texto_crit))
+
+
+def medir_serp_em_produzido():
+    """O CAMINHO DA DATA PROPRIA, medido num mundo PRODUZIDO de proposito.
+
+    Em 13/09/2026 nenhuma das doze paginas no ar declara `serp_em`: as doze
+    herdam o padrao. Uma afirmacao sobre o caminho da data propria, medida no
+    banco de hoje, mediria o caminho do PADRAO e ficaria verde com a funcao
+    quebrada — e o dia em que ela importasse seria justamente o dia da leva 4,
+    que nasce classificada em outra data. Entao o mundo se produz: uma copia da
+    ilha em que UMA ficha declara data propria.
+
+    As tres afirmacoes sao uma so ideia partida em tres, e cada uma pega um
+    defeito diferente:
+      (a) a pagina com data propria serve a data DELA — pega a funcao que
+          ignora o campo e devolve a constante sempre;
+      (b) essa mesma pagina NAO serve mais o padrao — pega a funcao que
+          imprime os dois, que passaria em (a) sem consertar nada;
+      (c) a pagina vizinha, que nao declara nada, CONTINUA no padrao — pega a
+          funcao que devolve a data declarada para todo mundo, que e o erro
+          mais provavel de quem escreve isto com pressa e o unico que (a) e (b)
+          aprovariam juntas.
+    """
+    print("\n### o caminho da data propria da SERP (mundo produzido)")
+    alvo, vizinho = "quantos-litros-para-tetra-neon", "quantos-litros-para-tetra-cardinal"
+    propria = "01/01/2027"
+
+    base = tempfile.mkdtemp(prefix="serp-em-")
+    try:
+        copia = os.path.join(base, "ilha")
+        shutil.copytree(RAIZ, copia)
+        caminho = os.path.join(copia, "snippets", "aquametria-peixes.php")
+        fonte = open(caminho, encoding="utf-8").read()
+        marca = "\t\t'%s' => array(\n\t\t\t'nivel'    => 3," % alvo
+        if fonte.count(marca) != 1:
+            ok("o mundo produzido consegue injetar a data propria", False,
+               "a marca do registro de %s mudou de forma" % alvo)
+            return
+        open(caminho, "w", encoding="utf-8").write(
+            fonte.replace(marca, marca + "\n\t\t\t'serp_em'  => '%s'," % propria, 1))
+
+        def servir_na_copia(slug):
+            return subprocess.run(
+                ["php", os.path.join(copia, "ferramentas", "render-pagina-completa.php"),
+                 copia, slug],
+                capture_output=True, text=True, check=True).stdout
+
+        t_alvo = texto(corpo(servir_na_copia(alvo)))
+        t_vizinho = texto(corpo(servir_na_copia(vizinho)))
+
+        ok("(a) a pagina que declara serp_em serve a data DELA", propria in t_alvo)
+        ok("(b) e deixa de servir o padrao", SERP_PADRAO not in t_alvo)
+        ok("(c) a vizinha que nao declara nada segue no padrao",
+           SERP_PADRAO in t_vizinho and propria not in t_vizinho)
+    finally:
+        shutil.rmtree(base, ignore_errors=True)
+
 
 def main():
     banco = carregar_banco()
@@ -838,6 +965,7 @@ def main():
         medir_ficha(slug, ident, banco)
     medir_o_que_vale_para_todas()
     medir_o_conjunto_contra_o_registro(banco)
+    medir_serp_em_produzido()
 
     print("\n%d afirmacoes, %d falha(s)" % (contadas[0], len(falhas)))
     for f in falhas:

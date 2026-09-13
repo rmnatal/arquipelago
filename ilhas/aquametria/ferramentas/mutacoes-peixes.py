@@ -296,6 +296,47 @@ MUTACOES = [
            "\t\t}\n"
            "\t\t$irmas[] = $candidatas[ $n ];\n"
            "\t}")),
+
+    # ------------------------------------------------------------------------
+    # 4. A DATA DA CLASSIFICACAO DE SERP (13/09/2026, snippet 1.3.0)
+    #
+    # As tres primeiras atacam o caminho que NENHUMA pagina do banco de hoje usa
+    # — as doze herdam o padrao —, e por isso as tres so sao mensuraveis no mundo
+    # produzido dentro do proprio portao. Sem ele, as tres PASSARIAM: e a familia
+    # de defeito que fica verde ate o dia em que importa, e o dia em que ela
+    # importa e o da leva 4, que nasce classificada em outra data.
+    ("a data propria e ignorada: a funcao devolve o padrao para todo mundo",
+     troca(PEIXES,
+           "\tif ( isset( $registro[ $slug ]['serp_em'] ) && '' !== $registro[ $slug ]['serp_em'] ) {\n"
+           "\t\treturn $registro[ $slug ]['serp_em'];\n"
+           "\t}\n",
+           "\tif ( false ) {\n"
+           "\t\treturn $registro[ $slug ]['serp_em'];\n"
+           "\t}\n")),
+
+    ("a pagina serve as DUAS datas: a propria e a do padrao, coladas",
+     troca(PEIXES,
+           "\t\treturn $registro[ $slug ]['serp_em'];",
+           "\t\treturn $registro[ $slug ]['serp_em'] . ' (' . AQUAMETRIA_PEIXES_SERP_EM . ')';")),
+
+    ("a data declarada por UMA pagina vaza para as vizinhas que nao declaram nada",
+     troca(PEIXES,
+           "\tif ( isset( $registro[ $slug ]['serp_em'] ) && '' !== $registro[ $slug ]['serp_em'] ) {\n"
+           "\t\treturn $registro[ $slug ]['serp_em'];\n"
+           "\t}\n"
+           "\treturn AQUAMETRIA_PEIXES_SERP_EM;",
+           "\tforeach ( $registro as $def ) {\n"
+           "\t\tif ( isset( $def['serp_em'] ) && '' !== $def['serp_em'] ) {\n"
+           "\t\t\treturn $def['serp_em'];\n"
+           "\t\t}\n"
+           "\t}\n"
+           "\treturn AQUAMETRIA_PEIXES_SERP_EM;")),
+
+    # E a quarta ataca o campo que a leva 4 precisa ter decidido antes de existir.
+    ("a categoria com especies perde o criterio de quem entra nela",
+     troca(PEIXES,
+           "\t\t\t'criterio' => 'As espécies que a loja brasileira vende como tetra: os Paracheirodon, os Hemigrammus, os Hyphessobrycon e o Gymnocorymbus. A família não serve de critério aqui — a revisão recente dos caracídeos deixou o banco com tetra em duas famílias diferentes, e Characidae carrega peixe que ninguém vende como tetra.',",
+           "\t\t\t'criterio' => '',")),
 ]
 
 
