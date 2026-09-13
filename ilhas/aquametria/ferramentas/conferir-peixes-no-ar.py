@@ -99,12 +99,43 @@ def main():
     # A leva 2 publicou quatro URLs e a afirmacao reprovou sozinha, o que e o
     # comportamento certo de um alarme; o que estava errado era o alarme dizer a
     # coisa errada ("a ilha publica 18 URLs" e uma afirmacao sobre o passado).
-    # O que importa medir e que o sitemap cobre o que a ilha publica: as 13
-    # antigas MAIS o eixo inteiro, e nada a menos.
-    URLS_ANTES_DO_EIXO = 13
+    # O que importa medir e que o sitemap cobre o que a ilha publica: o que esta
+    # fora do eixo MAIS o eixo inteiro, e nada a menos.
+    #
+    # O "13 ANTIGAS" ERA A METADE DIGITADA QUE SOBRAVA AQUI, e ela envelheceu em
+    # 13/09/2026, no dia em que /politica-de-privacidade/ nasceu: o alarme
+    # reprovou dizendo "o sitemap publica as 27 URLs da ilha" quando o certo era
+    # 28, e a frase estava errada nas duas metades — no numero e no que ela
+    # afirmava. Trocar 13 por 14 so reagendaria o defeito para a proxima pagina
+    # institucional, que e exatamente o que a secao 8 do contrato proibe fazer
+    # com literal ("trocar o literal por outro literal so reagenda"). Entao o
+    # numero passa a ser DERIVADO das duas fontes que criam pagina nesta ilha:
+    #
+    #   * a casca, pelo `$base` de aquametria_casca_definicao_paginas() — quatro
+    #     hoje, e o dia em que uma quinta entrar ali o numero anda sozinho;
+    #   * o manifest, pelos itens de conteudo/ com publicar=true — e o Sync que
+    #     cria pagina a partir deles, entao o manifest e a fonte de quem publica,
+    #     nao o diretorio.
+    #
+    # O eixo continua vindo do proprio portao (TP), como ja vinha.
+    with open(os.path.join(RAIZ, "snippets", "aquametria-casca.php"),
+              encoding="utf-8") as fh:
+        fonte_casca = fh.read()
+    bloco = re.search(r"\$base\s*=\s*array\((.*?)\n\t\);", fonte_casca, re.S)
+    ok("achei o bloco $base da casca, de onde saem as paginas dela", bloco is not None)
+    paginas_da_casca = len(re.findall(r"^\s*'[a-z0-9-]+'\s*=>\s*array\(",
+                                      bloco.group(1), re.M)) if bloco else 0
+    manifest = json.load(open(os.path.join(RAIZ, "manifest.json"), encoding="utf-8"))
+    paginas_de_conteudo = sum(1 for it in manifest["conteudo"] if it.get("publicar"))
+    urls_antes_do_eixo = paginas_da_casca + paginas_de_conteudo
+    ok("as paginas fora do eixo sao contadas, nunca digitadas",
+       paginas_da_casca > 0 and paginas_de_conteudo > 0,
+       "%d da casca + %d de conteudo/ = %d" %
+       (paginas_da_casca, paginas_de_conteudo, urls_antes_do_eixo))
     # secao + uma pagina por categoria + as fichas
-    esperado = URLS_ANTES_DO_EIXO + 1 + len(TP.CATEGORIAS) + len(TP.FICHAS)
-    ok("o sitemap publica as %d URLs da ilha (13 antigas + o eixo /peixes/)" % esperado,
+    esperado = urls_antes_do_eixo + 1 + len(TP.CATEGORIAS) + len(TP.FICHAS)
+    ok("o sitemap publica as %d URLs da ilha (%d fora do eixo + o eixo /peixes/)"
+       % (esperado, urls_antes_do_eixo),
        len(urls) == esperado, "%d URLs" % len(urls))
 
     # O CAMINHO DE CADA FICHA SAI DA MAE DELA, e ate a leva 2 saia de "tetras"

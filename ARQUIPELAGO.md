@@ -561,6 +561,12 @@ Decisão do Raphael em 11/09/2026, depois de eu apontar o risco: a Aquametria ti
 
 21.6 **Registrar o piso.** O cabeçalho do `ESTADO.md` de cada ilha ganha `piso: abaixo|atingido` e `primeira_indexacao: <data ou null>`, preenchidos pela leitura semanal. A Fundação lê esse campo antes de decidir o tamanho da leva — não recalcula de cabeça.
 
+21.7 **O TETO DA 21.4 CONTA URL DE MALHA. A PÁGINA INSTITUCIONAL NÃO É LEVA (13/09/2026).** Escrito depois de a Aquametria passar 13/09 inteiro com o teto da semana gasto (3 de 3 levas) e a página de privacidade parada na lista de "aberto" do `ESTADO.md` — com a etiqueta do GA4 no ar e link de afiliado publicado desde 12/09. Lido ao pé da letra, o teto congelava por uma semana a única página que o site devia a quem lê, e o motivo declarado da 21.4 diz o contrário do que a letra dela fazia: ela existe contra "despejar centenas de páginas", que é **padrão de fazenda** — e página de privacidade é o oposto de sinal de fazenda, é o que o Google lê como sinal de confiança.
+
+**A regra, e a fronteira é dura de propósito:** o teto de 10 URLs por leva e 3 levas por semana conta **página de malha** — a que nasce de uma consulta e existe para ranquear (seção 9, dentro da árvore da seção 16). **As cinco páginas que a 16.1 nomeia por nome — home, sobre, contato, divulgação de afiliados e privacidade — ficam fora do teto**, porque são uma família fechada, de no máximo uma de cada por ilha, e nenhuma delas responde a uma busca. Publicá-las não é leva e não gasta leva.
+
+**O que a exceção NÃO cobre**, para ela não virar porta dos fundos: qualquer outra página da raiz, `/metodologia/` incluída, e qualquer página que mire uma consulta. Cinco endereços por ilha, listados por nome, contados: o que não está naquela lista é malha e obedece ao teto. E a exceção só afrouxa a CONTAGEM — o portão de dado da 13, a classificação de SERP da 14, a verificação no ar da 8, a voz da 15 e a árvore da 16 continuam inteiros, como manda a 21.3.
+
 ## 22. O DESENHO SERVE À MALHA — beleza e ranqueamento no mesmo lado da mesa (12/09/2026)
 
 Escrita a pedido do Raphael em 12/09/2026, com a frase dele: *"o objetivo principal é ranqueamento no Google, toda a estratégia de malha de links e arquitetura voltadas ao SEO do projeto; design sempre será secundário, mas o plano perfeito é casar os dois em harmonia."* Esta seção existe para que o casamento seja possível **sem** que a ilha tenha de escolher — e para que, no dia em que houver escolha, ela já esteja feita.

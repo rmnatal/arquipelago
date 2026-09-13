@@ -4,7 +4,7 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 71,
+  "revisao": 72,
   "atualizado_em": "2026-09-13",
   "estado": "fundacao",
   "desembarque": {
@@ -786,7 +786,7 @@
       "id": "conferir-peixes-no-ar",
       "arquivo": "ferramentas/conferir-peixes-no-ar.py",
       "publicar": false,
-      "sha256": "ef07cadef445ffd546f894f7ae3158813f20d5e9671ab0fbabfada8c924c59a6",
+      "sha256": "06a603af529379632d40106ec0e8417bf9d14f25373a245ee64947278acd7ee5",
       "descricao": "Confere a leva 1 do eixo /peixes/ no HTML SERVIDO, nao no repositorio: 103 afirmacoes, 0 falha em 12/09/2026. A lista de URLs vem do INDICE do sitemap (os dois provedores, page e post), nunca digitada, e toda requisicao leva ?v=<hora> por causa do cache duplo da secao 4. A aritmetica e a MESMA do teste-peixes.py, importada de la para a conta morar num lugar so; o que muda e o sujeito. Foi ela que achou os DOIS defeitos que a bancada nao podia ver: o degrau de nivel 2 da trilha que nao resolvia (url_se_existir pedia o slug solto e get_page_by_path casa o caminho inteiro) e as TRES FICHAS DUPLICADAS com '-2' que a remontagem publicou e mandou para o sitemap, sem uma linha de erro. Mede ainda que cada degrau do BreadcrumbList responde 200, que a tag do GA4 sobreviveu a troca de versao da casca, e conta as ligacoes internas das 18 paginas para provar que nenhuma das cinco e orfa (16.4f) — descontando menu e trilha, que estao em todas."
     },
     {

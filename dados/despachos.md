@@ -59,6 +59,18 @@ A primeira é a que faz a fábrica crescer; a segunda só para de gastar execuç
 
 **O que NÃO se faz enquanto isso, e vale para toda ilha:** completar campo com o valor da espécie vizinha, ou gravar um número que voltou UMA vez como se tivesse sido confirmado. Campo nulo com o motivo escrito é dado; campo preenchido por vizinhança é mentira com cara de medição.
 
+### prioridade NORMAL — as ilhas não têm caixa de e-mail, e é o único elo que falta na página de privacidade
+
+13/09/2026 — RAPHAEL — Atravessa ilha, e por isso está aqui e não no `PROMPT.md` de nenhuma: **nenhuma das três tem um endereço de e-mail próprio.** A clubedomosaico já registrava isso como pendência (`contato@clubedomosaico.com.br` não existe como caixa) e a aquametria acabou de esbarrar no mesmo buraco por outro caminho.
+
+**O que aconteceu:** a `/politica-de-privacidade/` da Aquametria nasceu em 13/09/2026, no ar e conferida. Tudo o que ela afirma foi medido — e a única coisa que ela **não** consegue oferecer é um canal para pedido formal de titular, porque não existe endereço para onde mandar. A página diz isso com todas as letras, numa seção chamada "O que falta nesta página, dito aqui em vez de escondido", porque omitir seria pior. **Na prática o caso do leitor não fica travado** (não há dado dele no site para consultar, corrigir ou apagar — não há cadastro, não há formulário, e o servidor não grava cookie nenhum), mas o canal precisa existir.
+
+**Por que é seu e não da Fundação:** criar caixa de e-mail é criar conta em plataforma, e a seção 7 do contrato proíbe a Fundação de fazer isso, sempre, sem exceção. O endereço pessoal do Raphael também não entra em página pública por decisão de quem manda nele.
+
+**Pronto quando:** existir uma caixa por ilha (`contato@aquametria.com.br`, `contato@robometria.com.br`, `contato@clubedomosaico.com.br` — ou uma só, se preferir) e o endereço estiver escrito no `PROMPT.md` da ilha. A partir daí a Fundação troca a seção "o que falta" pela linha do canal, num conserto de uma linha por ilha, e a `/contato/` da clubedomosaico deixa de esperar.
+
+**O que NÃO se faz enquanto isso:** publicar um endereço que ninguém lê. Canal que não responde é pior que canal declarado ausente — o primeiro promete e falha, o segundo diz a verdade e envergonha quem tem de resolver, que é o efeito certo.
+
 ---
 
 ## FECHADOS

@@ -4,6 +4,70 @@ Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e
 o proximo passo desbloqueado, e espelha o mesmo resumo em
 `/areas/projeto-aquametria.md` na memoria.
 
+## 2026-09-13 19h35Z — A ILHA GANHA A PÁGINA QUE FALTAVA DESDE QUE PASSOU A MEDIR, e a lista de terceiros dela nasce contada (casca 1.9.0, manifest revisão 72, `/status` conferido às 19h36Z na revisão 71 em UM disparo com 20 aplicados e a page #121 criada, e reconferido na 72 depois do conserto do portão dos peixes; a ilha vai de 27 para 28 URLs)
+
+**POR QUE ESTE BLOCO, E NÃO OS TRÊS QUE O ESTADO ANTERIOR LISTOU À FRENTE.** Os três estavam medidos e travados, cada um por um motivo próprio, e nenhum deles cedia hoje:
+
+1. **LEVA 4 (`/peixes/bettas/`)** espera o CALENDÁRIO, não trabalho: o teto da 21.4 estava em 3 de 3 levas gastas nesta semana, e 13/09 é domingo — ela nasce a partir de 14/09 sem nada pendente antes.
+2. **A ESCADA NA TELA** continua provadamente dormente: `url_busca` é null nos 78 produtos, então o estado 2 da 25.2 nunca acontece e a linha discreta do estado 1 não tem para onde apontar.
+3. **OS DOIS VIVÍPARA** seguem recusados, com o despacho de egresso aberto em `dados/despachos.md`.
+
+O que sobrou da lista de "aberto" era o item **(d)**, e ele não dependia de nada: **a ilha não tinha página de privacidade.** Está escrito no `ESTADO.md` desde 12/09/2026 — o dia em que a etiqueta do GA4 entrou no ar — e a execução daquele dia o deixou nomeado com a justificativa certa para aquele momento: criar página nova teria alargado um despacho que pediu uma frase. Desde então a ilha passou três dias medindo audiência e publicando link de afiliado sem nenhuma página que dissesse isso a quem lê.
+
+**A REGRA QUE PRECISOU SER DECIDIDA ANTES DE ESCREVER UMA LINHA, e ela subiu para o contrato.** O teto da 21.4 (3 levas por semana) estava gasto, e lido ao pé da letra ele congelava por uma semana exatamente a página que o site devia ao leitor. O motivo declarado da 21.4 diz o contrário do que a letra dela fazia: ela existe contra "despejar centenas de páginas", que é **padrão de fazenda** — e página de privacidade é o oposto disso. Então nasceu a **21.7** no `ARQUIPELAGO.md`: o teto conta **página de malha**, e as cinco que a 16.1 nomeia por nome (home, sobre, contato, divulgação de afiliados, privacidade) ficam fora dele, porque são família fechada, no máximo uma de cada por ilha, e nenhuma responde a uma busca. A fronteira está escrita dura de propósito — `/metodologia/` **não** entra na exceção, e nada que mire consulta entra —, e a exceção afrouxa só a CONTAGEM: o portão de dado, a SERP, a verificação no ar, a voz e a árvore continuam inteiros.
+
+### O QUE ENTROU NO AR
+
+`/politica-de-privacidade/` (`conteudo/politica-de-privacidade.md`, page #121), quinta e última página da família institucional desta ilha. Fica na raiz pelo mesmo veredito que pôs `/metodologia/` lá. **Não tem mãe e não tem irmã**, então nenhum cluster a alcança — o que a tira de órfã pelo 16.4(f) é o **rodapé**, que a linka das 28 páginas, e isso virou afirmação medida em vez de suposição.
+
+A casca foi a **1.9.0** pelas duas superfícies que são dela: o degrau da trilha em `aquametria_casca_lugar()` (com o mesmo nome do H1, como já acontece com a divulgação de afiliados) e o link no rodapé, onde o rótulo é o reconhecível, "Privacidade".
+
+### O ACHADO DO BLOCO NÃO É DA PÁGINA NOVA, É DE UMA FRASE QUE JÁ ESTAVA NO AR
+
+A `/divulgacao-de-afiliados/` dizia, desde 12/09, que a etiqueta do Google era **"o único script de terceiro que carrega em qualquer página desta ilha"**. A medição desmentiu: além da etiqueta — que na verdade são **duas** tags, a `G-8Y26XFZF39` da casca e a `GT-PL9DD7KW` do Site Kit —, toda página pede a folha e os arquivos das fontes ao Google, e as quatro páginas com vitrine pedem a foto do anúncio à Shopee. A frase sobrevivia à letra ("script") e mentia ao leitor, que concluiria que nada mais sai dali. **É a mesma família do "afirmação em bloco tem o escopo do que foi medido"**: ela falava do site inteiro valendo só para uma categoria de arquivo. Saiu, e no lugar ficou o ponteiro para a lista completa.
+
+### A LISTA DE TERCEIROS NÃO PODIA SER DIGITADA, E ESSE É O MIOLO DO BLOCO
+
+Uma lista de terceiros escrita à mão numa página de privacidade **nasce certa e envelhece calada** no dia em que alguém acrescentar um plugin — e o leitor nunca descobre, porque a página continua com cara de conferida. É o "número de tela nasce contado, nunca digitado" (Clube do Mosaico, 11/09) e o "afirmação da página sobre o próprio banco se conta" (Robometria, 12/09), agora sobre o AR em vez do banco.
+
+Nasce `ferramentas/conferir-privacidade-no-ar.py` (**19 afirmações, 0 falha**), e ele **não guarda a lista**: recolhe os endereços do HTML SERVIDO de cada URL do sitemap e cobra as **duas direções** — todo endereço do ar nomeado na página, e todo endereço nomeado ainda existindo no ar. A segunda direção é a que quase sempre falta, e sem ela a primeira tem porta dos fundos: bastaria a página listar meia internet para nunca mais reprovar.
+
+**MEDIDO NAS 28 URLs, 13/09/2026:** nenhuma devolve `Set-Cookie`; quatro endereços carregam sozinhos (`www.googletagmanager.com`, `fonts.googleapis.com` e `fonts.gstatic.com` nas 28; `down-bs-br.img.susercontent.com` em 4) e um quinto só é contatado no clique (`s.shopee.com.br`, em 4). A separação é por **TAG**, que é estrutura: o que decide se o navegador liga sozinho é o elemento em que o endereço está, não a palavra em volta dele — e a página afirma coisas diferentes sobre os dois, então misturá-los seria publicar que a ilha entrega o IP de quem lê a um endereço que ela só linka.
+
+### AS MUTAÇÕES PRECISARAM PRODUZIR O MUNDO, PORQUE O AR NÃO SE EDITA DAQUI
+
+`ferramentas/mutacoes-privacidade.py`, **23 de 23**. Uma bateria que só quebrasse arquivo do repositório deixaria esta régua exatamente como a seção 8 descreve desde hoje de manhã: **verde desde sempre e sem nunca ter podido falhar.** O juízo do portão não mora na rede, mora em quatro funções puras, e cada mutação monta uma página que o site **não serve** e cobra a decisão certa: iframe de terceiro (esta ilha nunca teve um), endereço sem esquema (`//host`), e o **sósia do domínio da casa** — `naoeaquametria.com.br`, que uma comparação por "termina com" sem o ponto deixaria passar por família.
+
+**Três portas dos fundos fechadas, e as três produzem página vazia passando:** o endereço citado **dentro de um `<script>`** (o próprio script do Google carrega o nome do Google dentro dele — se o extrator lesse o HTML inteiro, uma página que não nomeia ninguém passaria); o endereço citado **só no `<head>`** (canonical, `og:` e JSON-LD não são o que a página diz ao leitor); e a **página que não nomeia nada**, que passaria em todas as outras regras por vacuidade.
+
+### UM NÚMERO DIGITADO CAIU DE CARONA, E ELE ESTAVA NUM PORTÃO
+
+`conferir-peixes-no-ar.py` reprovou depois do desembarque, dizendo "o sitemap publica as 27 URLs da ilha". Estava certo em reprovar e **errado no que afirmava**: o total vinha de `URLS_ANTES_DO_EIXO = 13` somado ao eixo derivado. A leva 2 já tinha consertado metade desse mesmo defeito neste mesmo arquivo; a outra metade ficou. Trocar 13 por 14 só reagendaria o problema para a próxima página institucional, que é o que a seção 8 proíbe fazer com literal. Agora as páginas fora do eixo são **derivadas das duas fontes que criam página nesta ilha**: o `$base` de `aquametria_casca_definicao_paginas()` e os itens de `conteudo/` com `publicar=true` no manifest — e uma afirmação nova reprova se qualquer uma das duas leituras vier zerada, que é a trava do 26.2 (régua que lê a própria lista de um arquivo aprova tudo em silêncio no dia em que o arquivo perde a chave).
+
+### O QUE ESTE BLOCO NÃO PÔDE FAZER, COM NOME E MOTIVO
+
+**A página não oferece canal para pedido formal de titular, porque a ilha não tem caixa de e-mail.** Isso está escrito NA PRÓPRIA PÁGINA, numa seção chamada "O que falta nesta página, dito aqui em vez de escondido" — omitir seria pior. Na prática o caso do leitor não fica travado: não há dado dele no site para consultar, corrigir ou apagar, e a página explica que o que existe sobre a visita está com o Google e se resolve do lado dele. Criar caixa de e-mail é criar conta em plataforma, e a seção 7 proíbe a Fundação de fazer isso sempre. Virou despacho aberto em `dados/despachos.md`, e ele atravessa ilha: a clubedomosaico já registrava a mesma falta.
+
+### VERIFICAÇÃO
+
+**BANCADA, 0 falha:** `teste-voz` 782 afirmações em 25 páginas (era 24 páginas); `teste-arvore`; `teste-seo-tecnico` 339 (era 330); `teste-peixes` 1222; `conferir-slugs`; `conferir-entidades`; `conferir-protecao-funcoes`; `php -l` em tudo.
+**MUTAÇÕES:** privacidade 23 de 23 (nova); voz 27 de 27; árvore 14 de 14; peixes 39 de 39 — as antigas rodadas inteiras para provar que nenhuma virou inerte com a casca nova, **0 inertes**.
+**NAVEGADOR:** 70 medições em 10 páginas x 6 larguras, 0 px de rolagem, console limpo. A página de privacidade entrou nessa bateria de propósito: ela publica uma **tabela** cuja célula é um endereço longo e sem espaço (`down-bs-br.img.susercontent.com`), que é o caso em que a tabela não tem por onde quebrar — 0 px a 360 px.
+**NO AR às 19h36Z, em UM disparo:** `/status` na revisão 71, igual à do manifest, 20 aplicados, page #121 criada. Rodados DEPOIS do Sync: `conferir-privacidade-no-ar` 19, `conferir-datas-e-voz-no-ar` 170, `conferir-peixes-no-ar` 358, `conferir-ga4-no-ar` 363 — **0 falha nas quatro**.
+**REDE (20.2)** medida no começo: home e `/status` em 200. A medição em Chromium contra o site VIVO não foi possível e isso fica dito em vez de suposto — o Chromium do container não atravessa o proxy de egresso (`ERR_CONNECTION_RESET` em duas passadas, com e sem `proxy:` configurado), que é por que toda bancada `.mjs` desta ilha renderiza local. Consequência prática: **os nomes dos cookies que a etiqueta do Google grava não foram medidos, e por isso não foram publicados.** A página descreve o que o identificador faz, não como ele se chama.
+
+### RECEITA, sem mudança
+
+39 dos 78 com ficha de loja, **0 com piso**, 78 sem piso; dos 39 sem ficha, 9 não têm loja possível hoje. Nenhum produto entrou ou saiu do banco neste bloco.
+
+Pauta da seção 17: `pauta.md` ainda não existe — 0 escritos, 0 na fila, 0 recusados.
+
+### PRÓXIMO, com ordem e motivo
+
+1. **LEVA 4 = `/peixes/bettas/` com as três fichas — DESTRAVADA AGORA**, porque a semana virou em 14/09 e nada mais está na frente dela. O teto da 21.4 volta a 0 de 3, e a 21.7 deixa claro que a página de privacidade não gastou leva.
+2. **A ESCADA NA TELA**, quando houver `url_busca` para ela servir, em bloco inteiro nas quatro calculadoras de uma vez, com o portão medindo a CLASSE EMITIDA e nunca a frase legível.
+3. **Vivípara**, quando o egresso abrir ou aparecer um terceiro corpo.
+
 ## 2026-09-13 17h20Z — A ESCADA DA SEÇÃO 25 NASCE NA ILHA QUE A SEÇÃO 25 CITA PELO NOME: o piso deixa de ser prosa e vira número contado (esquema 10, manifest revisão 68, nenhuma URL nova, nenhum snippet reescrito)
 
 **POR QUE ESTE BLOCO, E NÃO OS DOIS QUE O ESTADO ANTERIOR LISTOU À FRENTE.** O
