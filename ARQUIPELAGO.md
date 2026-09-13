@@ -644,3 +644,45 @@ Cobre o que não existe em outro lugar: o dado que a pessoa digitou. **Não cobr
 
 ### 24.4 O ganho que não é backup
 O dado exportado deixa de ser refém da tela: vira dado do repositório, versionado, com histórico de cada mudança, e a Fundação passa a poder montar página a partir dele como já faz com os bancos de produto. A cópia é consequência, não objetivo.
+
+## 25. A ESCADA DO LINK DE COMPRA — porque link de afiliado apodrece
+
+**A cicatriz, de 13/09/2026, medida e não estimada.** Dez links de afiliado do Clube do Mosaico nasceram em 12/09 à noite. Na manhã seguinte, **quatro dos nove da Shopee estavam quebrados** — dois devolvendo "O produto não existe", dois "Esgotado". Menos de doze horas. Quem viu primeiro foi o Raphael, abrindo o próprio site.
+
+**A causa não foi azar: foi a fonte da escolha.** Os produtos vinham da busca do Google, que indexa a página exista ela ou não, tenha estoque ou não. E na Shopee **não existe página de catálogo** — todo anúncio pertence a um vendedor. Anúncio de vendedor é coisa perecível.
+
+### 25.1 A escada, em ordem de durabilidade
+
+Toda escolha de link de compra desce esta escada e **para no primeiro degrau que servir**. O degrau usado fica gravado em `afiliado.degrau`.
+
+1. **Loja oficial do fabricante na Shopee.** Achada no **feed de afiliado** (ver 25.3). É o mais durável que existe: fabricante não fecha loja nem fica sem o próprio produto. Exemplo vivo: Cascorez na Henkel Oficial.
+2. **Página de catálogo do Mercado Livre** — a URL com `/p/MLB...`. Ela é *o produto*, não o anúncio: o Mercado Livre roteia para quem tiver estoque. Só morre se ninguém no Brasil vender aquilo. **Nunca use `produto.mercadolivre.com.br/MLB-...-_JM`** quando existir a `/p/` — aquela é anúncio de vendedor e apodrece igual à Shopee.
+3. **Anúncio de vendedor comum na Shopee.** Último recurso. Foi o degrau que quebrou quatro em doze horas. Quem usa este degrau **tem de** ter `url_busca` preenchida.
+4. **Link de busca** — `shopee.com.br/search?keyword=...`, transformado em link de afiliado pelo gerador normal. Página de busca não esgota e não some. Converte pior que ficha de produto, mas é o que separa "ver outras ofertas" de beco sem saída.
+
+### 25.2 Na página, dois links e um só botão
+
+O **botão** é o degrau mais alto que serviu. Abaixo dele, discreto e em texto, **"Veja todos disponíveis aqui"** apontando para a `url_busca`. Isso é do Raphael, 13/09, e é melhor do que trocar o botão quando o link morre — porque não depende de a máquina ter medido a morte a tempo. Item sem `url_busca` não vai ao ar no degrau 3.
+
+### 25.3 Os dois feeds da Shopee, e o que cada um é
+
+Em *Criativo → Feed de produto* do painel de afiliado. Atualizam sozinhos todo dia. O download exige a sessão logada do Raphael — a nuvem recebe 401 e a extensão do navegador bloqueia o redirecionamento, medido em 13/09. **Baixar o feed é passo dele.**
+
+- **"Shopee Oficial BR"** — 2,8 milhões de produtos, **só lojas oficiais**. É a fonte do degrau 1. Colunas: `title`, `price`, `sale_price`, `image_link`, `image_link_3`, `shop_name`, `product_link`, `item_rating`, `global_category1..3`.
+- **"Shopee Brasil"** — **apenas 10 mil produtos**, e é uma seleção de mais vendidos, **não o catálogo**. Para nicho de cauda longa é quase inútil: dos dez materiais do Mosaico ele conhecia um. Não confunda os dois, e não prometa cobertura que ele não tem.
+
+**A foto do produto sai do feed** (`image_link`), e é a fonte legítima: a imagem do anúncio ao lado do link do anúncio é exatamente o que o feed existe para permitir. Produto fora do feed fica sem foto e aparece com espaço reservado neutro, pela regra da seção 4.
+
+### 25.4 O teste de vida, que agora existe
+
+Abrir a URL do produto e ler o texto servido:
+
+- **`"O produto não existe"`** no corpo → link morto.
+- **`"Esgotado"`** junto ao título → existe e não vende.
+- O `<title>` **não serve**: a Shopee devolve "Shopee Brasil | Ofertas incríveis..." em toda página, viva ou morta. Este erro custou uma medição errada em 13/09.
+
+**A ronda diária confere os links dos itens publicados** e trata link morto como defeito da 19.1. Conferir é abrir a página do produto — **nunca clicar no próprio link de afiliado**, que suja a métrica de cliques e em alguns programas é infração.
+
+### 25.5 O que isto custa, dito na cara
+
+Subir a qualidade empurra itens para o degrau 2, e o gerador do Mercado Livre tem reCAPTCHA. Ou seja: **menos link morto, mais clique do Raphael.** É troca consciente. A ilha prefere depender de um clique dele a mandar a mãe de alguém para "produto não existe".

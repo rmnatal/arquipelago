@@ -8,7 +8,7 @@
   "o_que_este_arquivo_e": "A categoria COLA do banco MATERIAL, escrita no formato do esquema do bloco 3. NENHUM dado novo foi coletado nesta execucao: cada declaracao abaixo e a transposicao campo a campo do que o bloco 2 ja tinha colhido em dados/constantes.json, com a mesma fonte, o mesmo tipo de documento e a mesma data. O que este arquivo acrescenta e ESTRUTURA — a lista literal do fabricante virou campo com peso (indicado, proibido, nao recomendado, delimita, resiste), e por isso a matriz da F2 pode ser recomputada em vez de lida.",
   "afiliado": {
     "itens_esperando_link": 0,
-    "observacao": "Os cinco com link vivo desde 13/09/2026. Quatro pela Shopee (Sub_id 1 = clubedomosaico, Sub_id 2 = F2) e a argamassa cimentcola externo AC-II pelo Mercado Livre, etiqueta clubedomosaicof2, gerada pelo Raphael no painel porque o gerador do Mercado Livre tem reCAPTCHA. A Shopee nao vende a AC-II externa — so AC-I, AC-III e a AC-2 interna, que sao produto diferente e a diferenca e justamente a que a F2 usa para recomendar."
+    "observacao": "Todos os cinco com link vivo e conferido em 13/09/2026, depois de uma varredura que achou QUATRO dos nove links da Shopee mortos em menos de doze horas (dois com 'O produto nao existe', dois esgotados). O campo `degrau` diz de que degrau da escada da secao 25 o link veio; `url_busca` e o link de busca que nunca morre. Cascorez esta na loja oficial da Henkel (degrau 1). Silicone acetico caiu para o degrau 3 e e casamento parcial: o anuncio e Tekbond acetico BRANCO 256 g, nao o incolor da linha Construcao — a F2 recomenda por tipo, nao por SKU, mas isso e para trocar quando aparecer melhor."
   },
   "imagens": {
     "itens_sem_imagem": 5,
@@ -151,13 +151,21 @@
       ],
       "afiliado": {
         "programa": "shopee",
-        "url": "https://s.shopee.com.br/9fKqoq8pmC",
+        "url": "https://s.shopee.com.br/8plkZpZ0xy",
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "F2",
         "etiqueta_ml": "clubedomosaico-F2",
-        "gerado_em": "2026-09-13"
+        "gerado_em": "2026-09-13",
+        "url_busca": "https://s.shopee.com.br/1qc0FNpEIK",
+        "degrau": 3,
+        "conferido_em": "2026-09-13"
       },
-      "imagem": null,
+      "imagem": {
+        "url": "https://cf.shopee.com.br/file/br-11134207-7r98o-lx03nvf7r5bzf2",
+        "fonte": "feed de afiliado da Shopee, 13/09/2026",
+        "alt": "Silicone acetico Tekbond branco 256 g",
+        "coletado_em": "2026-09-13"
+      },
       "fontes": {
         "ficha-brsa004": {
           "url": "https://www.tekbond.com.br/sites/Tekbond.com.br/files/media/downloadable/2025-10/Silicone_Acetico_Construcao-BRSA004-ficha_tecnica_01.pdf",
@@ -228,12 +236,15 @@
       "geometria": null,
       "venda": [],
       "afiliado": {
-        "programa": "shopee",
-        "url": "https://s.shopee.com.br/9peH198CRF",
+        "programa": "mercado_livre",
+        "url": "https://meli.la/2nKnsA9",
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "F2",
         "etiqueta_ml": "clubedomosaico-F2",
-        "gerado_em": "2026-09-13"
+        "gerado_em": "2026-09-13",
+        "url_busca": "https://s.shopee.com.br/1gIa34prdJ",
+        "degrau": 2,
+        "conferido_em": "2026-09-13"
       },
       "imagem": null,
       "fontes": {
@@ -303,13 +314,21 @@
       "venda": [],
       "afiliado": {
         "programa": "shopee",
-        "url": "https://s.shopee.com.br/W6btt21Hf",
+        "url": "https://s.shopee.com.br/905Am8YNcz",
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "F2",
         "etiqueta_ml": "clubedomosaico-F2",
-        "gerado_em": "2026-09-13"
+        "gerado_em": "2026-09-13",
+        "url_busca": "https://s.shopee.com.br/1Vz9qlqUyI",
+        "degrau": 1,
+        "conferido_em": "2026-09-13"
       },
-      "imagem": null,
+      "imagem": {
+        "url": "https://cf.shopee.com.br/file/br-11134207-7r98o-mdasbwbuzm0i23",
+        "fonte": "feed de afiliado da Shopee, 13/09/2026",
+        "alt": "Cola branca PVA Cascorez Extra 1 kg",
+        "coletado_em": "2026-09-13"
+      },
       "fontes": {
         "pagina-produto-cascorez": {
           "url": "https://www.cascola.com.br/products-diy/central-pdp.html/cascola-cascorez-cola-branca-pva-extraforte/SAP_0201FTC20WQ5.html",
@@ -412,7 +431,10 @@
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "F2",
         "etiqueta_ml": "clubedomosaico-F2",
-        "gerado_em": "2026-09-13"
+        "gerado_em": "2026-09-13",
+        "url_busca": "https://s.shopee.com.br/1LfjeSr8JH",
+        "degrau": 2,
+        "conferido_em": "2026-09-13"
       },
       "imagem": null,
       "fontes": {
@@ -485,12 +507,15 @@
       "geometria": null,
       "venda": [],
       "afiliado": {
-        "programa": "shopee",
-        "url": "https://s.shopee.com.br/9Ki0QEA6SA",
+        "programa": "mercado_livre",
+        "url": "https://meli.la/2ujbpEQ",
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "F2",
         "etiqueta_ml": "clubedomosaico-F2",
-        "gerado_em": "2026-09-13"
+        "gerado_em": "2026-09-13",
+        "url_busca": "https://s.shopee.com.br/1LfjeUPmyk",
+        "degrau": 2,
+        "conferido_em": "2026-09-13"
       },
       "imagem": null,
       "fontes": {

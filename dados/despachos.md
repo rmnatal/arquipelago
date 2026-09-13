@@ -117,3 +117,7 @@ despacho do GA4 registra ter caído — resumo velho lido como fato.
 ---
 
 - **CUMPRIDO 13/09/2026** — o link de afiliado da cimentcola AC-II do Clube do Mosaico, gerado pelo Raphael no Mercado Livre e escrito no banco. Com ele, os 10 materiais da ilha (5 colas, 5 rejuntes) estão com link vivo; sobram as 10 pastilhas, que estão fora por decisão e não por pendência.
+
+### clubedomosaico — a Loja e as fichas precisam mostrar o "Veja todos disponíveis aqui"
+
+Aberto em 13/09/2026 pela seção 25. O banco já tem `afiliado.url_busca` e `afiliado.degrau` nos dez materiais, e `afiliado.imagem.url` em três deles (Cascorez, silicone acético e rejunte acrílico, vindos do feed da Shopee). Falta a casca e as fichas **usarem**: o botão de compra aponta para `url`, e logo abaixo, em texto discreto com `rel="sponsored nofollow noopener"`, a linha "Veja todos disponíveis aqui" apontando para `url_busca`. Onde houver `imagem.url`, mostre a foto com `width` e `height` (regra 22.4) e o `alt` que está no banco. **Item de `degrau` 3 sem `url_busca` não pode ir ao ar** — portão novo para o `teste-casca.php`.

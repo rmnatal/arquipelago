@@ -112,7 +112,10 @@
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "F1",
         "etiqueta_ml": "clubedomosaico-F1",
-        "gerado_em": "2026-09-13"
+        "gerado_em": "2026-09-13",
+        "url_busca": "https://s.shopee.com.br/3qN4d6g80x",
+        "degrau": 3,
+        "conferido_em": "2026-09-13"
       },
       "imagem": null,
       "fontes": {
@@ -229,7 +232,10 @@
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "F1",
         "etiqueta_ml": "clubedomosaico-F1",
-        "gerado_em": "2026-09-13"
+        "gerado_em": "2026-09-13",
+        "url_busca": "https://s.shopee.com.br/2gB7ExkZNk",
+        "degrau": 3,
+        "conferido_em": "2026-09-13"
       },
       "imagem": null,
       "fontes": {
@@ -347,13 +353,21 @@
       ],
       "afiliado": {
         "programa": "shopee",
-        "url": "https://s.shopee.com.br/9V1QcX9T7D",
+        "url": "https://s.shopee.com.br/8fSKNwPDQd",
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "F2",
         "etiqueta_ml": "clubedomosaico-F2",
-        "gerado_em": "2026-09-13"
+        "gerado_em": "2026-09-13",
+        "url_busca": "https://s.shopee.com.br/1Vz9qnP9dn",
+        "degrau": 2,
+        "conferido_em": "2026-09-13"
       },
-      "imagem": null,
+      "imagem": {
+        "url": "https://cf.shopee.com.br/file/br-11134207-820mb-mpdulabp648zf5",
+        "fonte": "feed de afiliado da Shopee, 13/09/2026",
+        "alt": "Rejunte acrilico pronto Quartzolit 1 kg",
+        "coletado_em": "2026-09-13"
+      },
       "fontes": {
         "bt-rejunte-acrilico-2023-04": {
           "url": "https://www.quartzolit.weber/files/br/2023-04/rejunte_acrilico_quartzolit%20(1).pdf",
@@ -440,12 +454,15 @@
       "geometria": null,
       "venda": [],
       "afiliado": {
-        "programa": "shopee",
-        "url": "https://s.shopee.com.br/AKaXc46IQO",
+        "programa": "mercado_livre",
+        "url": "https://meli.la/1U7jhjr",
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "F2",
         "etiqueta_ml": "clubedomosaico-F2",
-        "gerado_em": "2026-09-13"
+        "gerado_em": "2026-09-13",
+        "url_busca": "https://s.shopee.com.br/3g3eQmGuFE",
+        "degrau": 2,
+        "conferido_em": "2026-09-13"
       },
       "imagem": null,
       "fontes": {
@@ -540,7 +557,10 @@
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "F2",
         "etiqueta_ml": "clubedomosaico-F2",
-        "gerado_em": "2026-09-13"
+        "gerado_em": "2026-09-13",
+        "url_busca": "https://s.shopee.com.br/3qN4d5GGuH",
+        "degrau": 3,
+        "conferido_em": "2026-09-13"
       },
       "imagem": null,
       "fontes": {
