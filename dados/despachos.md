@@ -140,3 +140,23 @@ despacho do GA4 registra ter caído — resumo velho lido como fato.
 ### clubedomosaico — a Loja e as fichas precisam mostrar o "Veja todos disponíveis aqui"
 
 Aberto em 13/09/2026 pela seção 25. O banco já tem `afiliado.url_busca` e `afiliado.degrau` nos dez materiais, e `afiliado.imagem.url` em três deles (Cascorez, silicone acético e rejunte acrílico, vindos do feed da Shopee). Falta a casca e as fichas **usarem**: o botão de compra aponta para `url`, e logo abaixo, em texto discreto com `rel="sponsored nofollow noopener"`, a linha "Veja todos disponíveis aqui" apontando para `url_busca`. Onde houver `imagem.url`, mostre a foto com `width` e `height` (regra 22.4) e o `alt` que está no banco. **Item de `degrau` 3 sem `url_busca` não pode ir ao ar** — portão novo para o `teste-casca.php`.
+
+### aquametria — 39 links de afiliado nunca foram conferidos, e não dá para conferir
+
+Aberto em 13/09/2026 pela seção 25. **Prioridade alta, e a razão é um número:** no Clube do Mosaico, **quatro de nove links da Shopee morreram em menos de doze horas** — dois com "O produto não existe", dois esgotados. Os 39 links da Aquametria foram gerados pelo mesmo método (anúncio de vendedor comum, degrau 3 da escada) e são **muito mais velhos**. A taxa de morte esperada é pior, não melhor.
+
+E não dá para medir: o banco guarda só o `s.shopee.com.br/XXXX`, sem `url_produto` (ver 25.4-b). A URL da página se perdeu.
+
+**O que fazer, e a ordem importa:** reescolher os 39 pelo **feed "Shopee Oficial BR"** (2,8 milhões de produtos, só loja oficial), que é a fonte do degrau 1 — Eheim, JBL, Chihiros e Seachem são marcas com chance real de loja oficial, e esse é o degrau mais durável. O que não estiver no feed desce a escada: catálogo `/p/` do Mercado Livre, depois vendedor comum **com `url_busca` obrigatória**. Cada item sai com `url_produto`, `degrau` e `conferido_em`.
+
+**Os 39 itens que hoje NÃO têm link continuam sem link até isso acontecer** — não adianta encher o cano com mais links do degrau 3; seria repetir o erro em escala maior. Consertar os 39 existentes vem antes de gerar os 39 que faltam.
+
+O feed só é baixável pelo navegador logado do Raphael (a nuvem recebe 401 e a extensão bloqueia o redirecionamento). Ou seja: **este despacho precisa do arquivo dele.** Peça na Pauta.
+
+### robometria — a ilha está no ar recomendando peça e não tem UM link de compra
+
+Aberto em 13/09/2026. As 44 respostas do banco (`r1-respostas.json` com 33, `r2-respostas.json` com 11) têm **zero** links de afiliado e **zero** fotos. Isto não é pendência nova: é a cicatriz de 10/09 registrada na seção 8 do contrato — "PROCEDÊNCIA NUNCA É A ÚNICA PORTA DE COMPRA" — ainda aberta na ilha que a gerou.
+
+A ilha responde "qual peça serve no seu robô", a pessoa descobre a peça certa, e **não tem onde comprar**. É o pior estado possível para uma ilha de afiliado: ela faz o trabalho caro (a compatibilidade) e entrega o clique de graça para outro.
+
+Mesmo caminho da Aquametria: feed "Shopee Oficial BR" primeiro (peça de robô aspirador é justamente o tipo de coisa que tem loja oficial de marca), escada abaixo depois, `url_produto` e `url_busca` em todos. Depende do mesmo arquivo do Raphael.

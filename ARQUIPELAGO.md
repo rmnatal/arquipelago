@@ -683,6 +683,21 @@ Abrir a URL do produto e ler o texto servido:
 
 **A ronda diária confere os links dos itens publicados** e trata link morto como defeito da 19.1. Conferir é abrir a página do produto — **nunca clicar no próprio link de afiliado**, que suja a métrica de cliques e em alguns programas é infração.
 
+### 25.4-b SEM `url_produto` NÃO EXISTE TESTE DE VIDA
+
+Buraco encontrado em 13/09/2026, poucos minutos depois de a 25.4 ser escrita. **O banco guardava só o link de afiliado encurtado.** Mas a 25.4 manda testar abrindo a página do produto e proíbe clicar no próprio link de afiliado — e de um `s.shopee.com.br/XXXX` não se chega à página do produto sem clicar. **A regra era impossível de cumprir no dia em que nasceu.**
+
+Portanto, todo item com link de compra guarda **dois** endereços:
+
+- `afiliado.url` — o link de afiliado, que é o que vai para o leitor.
+- `afiliado.url_produto` — **a URL crua da página do produto**, exatamente como ela foi escolhida, antes de virar link de afiliado. Não vai para o leitor; existe só para a ronda poder abrir a página e ler "O produto não existe" ou "Esgotado" sem gastar um clique de afiliado.
+
+**Item sem `url_produto` é item que ninguém consegue conferir** — trate como defeito da 19.1, no mesmo peso de link morto, porque é a mesma coisa com outro nome: um link cuja saúde é desconhecida e permanecerá desconhecida.
+
+A mesma regra vale para `url_busca`: guarde a URL crua da busca em `afiliado.url_busca_produto`. Busca não esgota, mas muda de nome — palavra-chave que deixou de trazer resultado é defeito silencioso.
+
+**Dívida registrada na mesma hora:** os 39 links da Aquametria nasceram antes desta regra e **têm só o encurtado**. A URL do produto se perdeu. Não dá para recuperá-la sem clicar; então a saída é reescolher pelo feed, e isso está no despacho abaixo.
+
 ### 25.5 O que isto custa, dito na cara
 
 Subir a qualidade empurra itens para o degrau 2, e o gerador do Mercado Livre tem reCAPTCHA. Ou seja: **menos link morto, mais clique do Raphael.** É troca consciente. A ilha prefere depender de um clique dele a mandar a mãe de alguém para "produto não existe".
