@@ -2,15 +2,17 @@
 
 Instantâneo. Reescrito pela Sentinela ao fim de toda ronda (seção 23 do `ARQUIPELAGO.md`). Não escreva aqui se você não é a ronda.
 
-**Escrito em:** 13/09/2026 11h56Z — as linhas da clubedomosaico e o que deixou de ser verdade sobre ela foram atualizados pela Fundação ao fechar o adendo 3, pelo mesmo motivo da nota anterior: deixá-los velhos é a armadilha que o despacho do GA4 registra (resumo velho lido como fato). As linhas das outras duas ilhas continuam do arquivo inicial e estão velhas — as duas construíram hoje. **A primeira ronda que rodar reescreve tudo abaixo** — a seção 23 diz que quem escreve o painel é a ronda diária, não a Fundação.
+**Escrito em:** 13/09/2026 14h47Z, pela ronda diária da **aquametria**.
 
 ## Ilhas
 
 | ilha | estado | prio | páginas | dias de indexação | última construção | última ronda | piso |
 |---|---|---|---|---|---|---|---|
-| aquametria | viva | 2 | 13 / 40 | 3 / 21 | 11/09 23h59Z | 10/09 14h55Z | abaixo |
-| robometria | nascendo | 1 | 9 / 40 | sem registro | 11/09 23h37Z | 11/09 14h53Z | abaixo |
-| clubedomosaico | nascendo | 1 | 12 / 40 | sem registro | 13/09 11h56Z | 12/09 14h43Z | abaixo |
+| aquametria | viva | 2 | 27 / 40 | 4 / 21 | 13/09 13h17Z | 13/09 14h47Z | abaixo |
+| robometria | nascendo | 1 | 9 / 40 | sem registro | 13/09 13h32Z | 11/09 14h53Z | abaixo |
+| clubedomosaico | nascendo | 1 | 12 / 40 | sem registro | 13/09 14h10Z | 12/09 14h43Z | abaixo |
+
+As 27 páginas da aquametria foram contadas no `wp-sitemap.xml` no ar nesta ronda (3 posts + 24 pages) e a revisão 65 foi lida no `/status`. Os números das outras duas ilhas saem do cabeçalho do `ESTADO.md` de cada uma, lido hoje — **não foram medidos no ar nesta ronda**, porque a ronda é da aquametria pela regra da dívida (seção 12).
 
 Aquametria: `congelamento` suspenso em 12/09/2026 pela seção 21 — abaixo do piso, zero impressão não é sinal.
 
@@ -18,25 +20,23 @@ Aquametria: `congelamento` suspenso em 12/09/2026 pela seção 21 — abaixo do 
 
 | ilha | onde | o que é | aberto desde |
 |---|---|---|---|
-| _(nenhum em ilha)_ | — | nenhuma ilha tem defeito aberto: o despacho do ateliê foi fechado em 12/09 23h20Z e os dois de coerência da F1 e da F2 estão cumpridos desde 12/09 15h51Z | — |
+| aquametria | `ilhas/aquametria/PROMPT.md` | `dateModified` fixo no código (`aquametria-artigos.php` linha 591): os três artigos declaram 10/09 e o sitemap declara 13/09 para as mesmas URLs | 13/09/2026 |
+| aquametria | `ilhas/aquametria/PROMPT.md` | as 11 fichas de peixe servem `Article` sem `datePublished`, `dateModified`, `author` e `publisher` — os três artigos têm os quatro | 13/09/2026 |
+| aquametria | `ilhas/aquametria/PROMPT.md` | 8 imagens de produto sem `width`/`height`: faltam `largura` e `altura` no banco, e o renderizador omite em silêncio quando faltam (medidas entregues no despacho) | 13/09/2026 |
+| aquametria | `ilhas/aquametria/PROMPT.md` | voz: as 11 fichas de peixe abrem com "a fonte declara", duas vezes na primeira frase, contra a 15.2 | 13/09/2026 |
+| aquametria | `ilhas/aquametria/PROMPT.md` | receita: na C5 com 120 L, 1 de 5 cartões tem link de loja e os quatro sem link vêm antes na ordem | 10/09/2026 |
+| clubedomosaico | `ilhas/clubedomosaico/PROMPT.md` | a seção "Endpoints desta ilha" não documenta o parâmetro de autenticação de `/wp-json/clubedomosaico/v1/pecas` (responde 401), então a cópia da seção 24.2 não pode ser feita pela ronda | 13/09/2026 |
 
-**Os dois despachos abertos em `dados/despachos.md` são para o RAPHAEL, não para uma ilha** — e nenhum dos dois bloqueia bloco: (1) `googletagmanager` e a credencial do GA4 na rede das rotinas; (2) a Bússola precisa entregar a ilha 4, porque a Fundação já dispara mais vezes do que há ilha para construir e execução que acorda sem ilha elegível fecha vazia.
+**Os dois despachos abertos em `dados/despachos.md` são para o RAPHAEL, não para uma ilha**, e nenhum dos dois bloqueia bloco: (1) `googletagmanager` e a credencial do GA4 na rede das rotinas; (2) a Bússola precisa entregar a ilha 4, porque a Fundação já dispara mais vezes do que há ilha para construir.
 
 ## Precisa do Raphael
 
-- **Links de afiliado.** Decisão já tomada em 10/09 (Shopee primeiro, Mercado Livre segundo, Amazon fora até haver tráfego); falta gerar os links no navegador dele. Aquametria 39 de 78 produtos esperando; **clubedomosaico 0 de 10 — os dez chegaram em 13/09 e estão NO AR desde as 11h56Z** (estavam commitados fora do manifest desde 12/09, e por isso não estavam); robometria 46 esperando, no ar com zero link de loja.
+- **Links de afiliado.** Decisão tomada em 10/09 (Shopee primeiro, Mercado Livre segundo, Amazon fora até haver tráfego); falta gerar os links no navegador dele. Na aquametria, medido no ar nesta ronda: a vitrine da C5 serve 1 link de loja em 5 cartões, e os quatro sem link vêm antes na ordem. As contagens de catálogo das outras duas ilhas não foram medidas hoje.
 - **Dados da artesã** (nome, foto, perfis) para `ilhas/clubedomosaico/identidade/artesa/`.
-- **O e-mail do ateliê chegou?** Enviado em 12/09 23h13m23s Z para a caixa da artesã. O
-  `wp_mail` devolveu true, o que diz que o servidor **aceitou** a mensagem — não que ela
-  passou do filtro de spam da Hotmail. É o único passo do despacho do ateliê que a nuvem
-  não consegue conferir, e a linha 178 do `PROMPT.md` da ilha manda tratar queda em spam
-  como **bloqueio da ilha**, não como detalhe.
-- ~~**A option `cdm_whatsapp` da clubedomosaico está vazia.**~~ **SAIU DA LISTA em
-  13/09/2026.** Ela continua vazia e deixou de bloquear a venda: com o adendo 3 no ar, o
-  caminho de compra da ficha é o formulário "Verificar disponibilidade", que grava o lead e
-  avisa a artesã por e-mail — e não depende de número nenhum. A option continua útil para um
-  botão direto no futuro; não trava mais nada.
+- **O e-mail do ateliê chegou?** Enviado em 12/09 23h13Z para a caixa da artesã; o `wp_mail` devolveu true, o que diz que o servidor aceitou a mensagem, não que ela passou do filtro de spam. É o único passo do despacho do ateliê que a nuvem não confere. Não medido hoje.
+- **`googletagmanager`, `*.google-analytics.com` e a credencial `GOOGLE_SA_B64`** na rede Personalizada das rotinas — detalhe em `dados/despachos.md`.
+- **A ilha 4.** `bussola/dossies/` está vazia e o topo da fila é energia solar off-grid (4,20), seguido de nobreak e estabilizador (4,19).
 
 ## Consertos das últimas 24 h
 
-Nenhum. A ronda de 12/09 na clubedomosaico foi a primeira da ilha e não achou defeito da lista 19.1.
+Nenhum. A ronda de 13/09 na aquametria achou quatro defeitos e os quatro são da lista 19.2 — código de snippet ou dado do banco —, então foram despachados em vez de consertados. `ilhas/aquametria/dados/consertos.md` nasceu nesta ronda com essa constatação.
