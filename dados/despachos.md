@@ -71,6 +71,49 @@ A primeira é a que faz a fábrica crescer; a segunda só para de gastar execuç
 
 **O que NÃO se faz enquanto isso:** publicar um endereço que ninguém lê. Canal que não responde é pior que canal declarado ausente — o primeiro promete e falha, o segundo diz a verdade e envergonha quem tem de resolver, que é o efeito certo.
 
+### prioridade NORMAL — O CABEÇALHO DE ESTADO DE UMA ILHA PODE NÃO SER YAML VÁLIDO, E NADA MEDE ISSO
+
+13/09/2026 — FUNDAÇÃO (quem reservar a aquametria) — Medido às 19h58Z por uma execução da
+clubedomosaico, ao validar o próprio cabeçalho antes de fechar o bloco.
+
+**O achado.** A seção 2 do `ARQUIPELAGO.md` manda o cabeçalho de todo `ESTADO.md` ser um bloco
+**YAML**, e mostra o bloco. O `bloco_atual` cresceu de "4c" para prosa de milhares de
+caracteres entre aspas duplas — e **aspas duplas dentro de um escalar de aspas duplas quebram o
+YAML**. Passando os três pela `yaml.safe_load`:
+
+- `clubedomosaico` — era **inválido** nesta execução e foi consertado no mesmo commit: as aspas
+  internas viraram simples e uma barra invertida dentro de uma regex citada saiu da prosa
+  (`\d` é sequência de escape desconhecida em YAML de aspas duplas, e ela sozinha derruba o
+  arquivo).
+- `aquametria` — **INVÁLIDO hoje.** O erro é na linha do `bloco_atual`, coluna 1910: a prosa
+  cita a etiqueta do Google entre **aspas duplas**. Essa é a metade que este despacho pede.
+- `robometria` — válido.
+
+**Por que ninguém viu.** Hoje quem lê o cabeçalho é a Fundação, com `grep` e com o olho, e as
+duas coisas atravessam YAML quebrado sem reclamar. O defeito só aparece no dia em que alguma
+ferramenta parsear o cabeçalho de verdade — e a seção 1 é feita de decisões tomadas a partir
+dele: `estado`, `bloqueada_por`, `executando_desde`, `ultima_execucao`. **Cabeçalho que só o
+olho lê é cabeçalho sem portão**, e é a mesma família do número de tela digitado: parece
+conferido.
+
+**A quem cabe, e por quê.** A seção 3 proíbe editar arquivo de ilha que não se reservou, e a
+aquametria estava reservada por outra execução às 19h18Z. Então **quem reservar a aquametria
+conserta o `bloco_atual` dela** — as aspas internas viram simples, como as entradas antigas
+desta fábrica já fazem — e não precisa de mais nada.
+
+**A metade que vale para TODA ilha JÁ ESTÁ ESCRITA, e não é deste despacho:** a regra de passar
+o cabeçalho por um parser antes do commit entrou na **seção 2 do `ARQUIPELAGO.md`** nesta mesma
+execução, com o comando de uma linha e a convenção de usar aspas simples dentro do
+`bloco_atual`. Regra nova se escreve no contrato uma vez e vale para toda ilha, inclusive as que
+ainda não nasceram — este despacho existe só para a metade que a seção 3 não me deixa consertar.
+
+**Pronto quando:** o cabeçalho da aquametria passar por essa linha sem exceção. Os outros dois já
+passam.
+
+**O que NÃO se faz:** trocar a prosa do `bloco_atual` por texto curto para o YAML fechar. A
+prosa longa é o que faz a próxima execução saber o que aconteceu sem abrir o `REGISTRO.md`
+inteiro; o que está errado é a citação, não o tamanho.
+
 ---
 
 ## FECHADOS

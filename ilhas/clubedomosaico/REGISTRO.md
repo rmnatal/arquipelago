@@ -2474,3 +2474,113 @@ por item, em vez de a deixar só na bancada.
 E a frase que explica o zero de 1 cm — "não aparece em catálogo de fabricante nenhum; quem
 vende é armarinho e marketplace, a peso ou por peça solta" — **só sai no lado de 1 cm e só
 quando ele está vazio**. Ela é verdadeira hoje, e é isso que a tornava perigosa.
+
+### A BANCADA, E O QUE ELA ACHOU NELA MESMA
+
+`teste-f1.php` foi de **72 para 182 afirmações**, 0 falha. A régua da classificação é escrita
+**neste arquivo**, em PHP, lendo `dados/materiais-pastilhas.json` do disco — não chama nenhuma
+função do snippet. A grade varre os cinco tamanhos do seletor, os três lados que só o caquinho
+irregular alcança e um lado que não existe em ninguém, um processo por estado.
+
+`mutacoes-f1.py` foi de 27 para **40 mutações, 40 reprovadas, 0 inertes**. A primeira rodada
+teve **três que passaram, e as três eram resultado**:
+
+1. **"vão maior que a moldura passa e a área fica negativa"** reprovava desde 12/09 e passou a
+   escapar **por causa deste bloco**: a afirmação procurava "não fecha" no corpo INTEIRO, e a
+   camada de prova nova passou a dizer que a divisão do lado da placa "não fecha" em quase
+   todos os itens. A agulha foi encontrada numa seção que nada tem a ver com a recusa — o mesmo
+   defeito que a seção 8 registra como "a conferência achava o texto dentro do próprio
+   JSON-LD". Ela passou a medir **no bloco da resposta**. E a afirmação vizinha tinha um furo
+   mais antigo: `-\d+ cm²` nunca casaria com **"-1.100 cm²"**, que é exatamente o que a página
+   serve quando a guarda cai. Só pegava área negativa de três dígitos.
+2. **"as placas esquecem a sobra"** passou porque a grade não pisava na borda: no vaso de
+   15 × 20 a sobra de 10% não muda o número de placas, e o `ceil` engole a diferença. Nasceu a
+   seção **4c**, com uma peça de 44,5 × 40 cm escolhida para a sobra atravessar o degrau (2 / 2
+   / 3 placas em 0 / 10 / 20%) — e uma afirmação que cobra que os degraus sejam **diferentes**,
+   senão a peça escolhida não mediria a sobra.
+3. **"a frase do 1 cm passa a sair sempre"** passou porque nada media o ESCOPO dela. Ela é
+   verdadeira no lado de 1 cm e seria uma afirmação sobre um mercado que ninguém olhou em
+   qualquer outro lado. Agora a régua cobra que ela saia **se e somente se** o lado pedido é
+   10 mm e ele está vazio.
+
+**TRÊS MUNDOS NOVOS no `render-para-teste.php`**, e cada um existe porque o banco de hoje não
+consegue produzir o caso — "todo caso que o ESQUEMA permite e o banco ainda não tem é um caso
+que a régua precisa tratar hoje" (seção 8):
+
+- **`com_piso=1`** escreve `url_busca` em quem não tem. Sem ele, a mutação que faz o cartão de
+  pastilha **reimplementar** a escada em vez de chamar `cdm_f2_compra_html()` produz uma tela
+  **idêntica byte a byte** — os treze estão sem piso, então os dois caminhos caem no terceiro
+  degrau. A cópia só mentiria no dia em que o Raphael colasse os links, com um portão verde ao
+  lado. Essa mutação reprova **só** neste mundo.
+- **`strip_fraco=1`** rebaixa a fonte do único item não quadrado para nível 5, fazendo-o cair
+  pelas DUAS travas. É o único jeito de provar a ORDEM declarada: com um item por balde,
+  qualquer ordem produz a mesma tela.
+- **`um_de_1cm=1`** clona um item para o lado de 1 cm e exige que a frase do mercado
+  desapareça.
+
+**Navegador:** 83 medições em 13 páginas × 6 larguras (360, 390, 781, 782, 783, 1200), **0 px
+de rolagem lateral** nos três estados novos da F1, console limpo, contraste de 12,97:1 a
+21:1, e a passada com o **JavaScript desligado** inteira (portão 22.8) — a vitrine é servida
+pelo servidor e não tem uma linha de decisão em JavaScript.
+
+**Outras baterias rodadas inteiras, 0 falha:** casca 546, f2 87, loja 147, leads 211, atelie
+aprovado, cobertura 128, validar-pastilhas 189, validar-banco aprovado, `php -l` em tudo. As
+que NÃO rodaram, e vale dizer quais: prestação de rejunte (720 estados, passa de vinte
+minutos), árvore, rejunte, voz-e-cabeça, ga4 e as mutações de pastilhas, cobertura, f2, loja,
+atelie e leads — elas medem superfícies que este bloco não tocou.
+
+**NO AR às 19h54Z, em UM disparo.** `/status` na revisão **25**, igual à do manifest, 10
+aplicados. `conferir-no-ar.py` foi de 351 para **365 afirmações, 0 falha**, medidas no HTML
+SERVIDO depois do Sync — a tabela do banco com 13 linhas e os treze códigos, o estado-âncora
+dizendo que não tem 1 cm com a causa, o estado de 2 cm com três cartões nomeados e o lugar do
+link reservado nos três, e o caquinho irregular de 3 cm alcançando os três K que o seletor não
+lista. A régua dele também é própria: os treze códigos estão escritos literais no arquivo.
+
+**Um detalhe do próprio commit, para não parecer descuido:** o nome da pendência entre acentos
+graves foi comido pelo shell na mensagem de commit, e a linha saiu "fecha a pendencia  —".
+Não há force push nesta fábrica (seção 3), então a mensagem fica como está; o nome é
+`pastilha-tamanho-fora-do-seletor-da-f1` e a história inteira está acima.
+
+**ABERTO E NOMEADO, ao fim deste bloco:** (a) os **13** `url_busca` das pastilhas, que dependem
+da sessão logada do painel de afiliado da Shopee — no dia em que forem colados, **nenhuma linha
+de código muda**, e o `com_piso=1` já prova que a tela sabe subir o degrau; (b) `url_busca_produto`
+em 10 de 10 itens com busca (25.4-b); (c) **1x1 continua com ZERO elegível** e é o tamanho de 7
+das 12 linhas da tabela pré-renderizada da F1 — agora a página diz isso na cara, mas o buraco
+é o mesmo e é o mais caro da categoria; (d) 1,5x1,5 sai com zero por FONTE, não por tamanho;
+(e) peças por placa segue null nos 13, e é a pendência que faz o cartão falar em placa; (f) a
+ilha não tem peça publicada, então ficha, formulário no ar e feed do Merchant Center continuam
+esperando a artesã; (g) contato@clubedomosaico.com.br ainda não existe como caixa.
+
+**Pauta da seção 17:** `pauta.md` ainda não existe — 0 escritos, 0 na fila, 0 recusados.
+
+**PRÓXIMO, com ordem e motivo:** (1) **a categoria COLA**, que é a faixa mais descoberta da
+ilha — 45 estados varridos, **0 com o mínimo** da 14.3, teto de 2 elegíveis; é a única
+categoria em que a ferramenta responde e o banco não tem o que vender, e agora não tem mais
+nada na frente. (2) **A ORDEM DAS DUAS VITRINES na F1**: hoje "Qual rejunte cabe nessa folga"
+vem antes de "E onde comprar a pastilha", ordem herdada de quando o bloco da pastilha era uma
+frase de espera. O H1 da página nomeia a pastilha primeiro e a resposta também; mover é
+decisão de desenho e merece bloco próprio, não um `swap` no meio de outro. (3) **1x1 de
+fabricante**, que é a pendência mais cara da categoria pastilha — a busca alcança os domínios,
+o egresso é que não. (4) os 13 `url_busca`, no minuto em que houver sessão: é copiar e colar.
+
+### O ACHADO QUE NÃO ERA DESTE BLOCO: o cabeçalho de estado não é YAML válido
+
+Ao validar o próprio cabeçalho antes de fechar (porque ele ficou grande e eu quis ter certeza),
+descobri que **a seção 2 do contrato manda o cabeçalho ser YAML e nada nunca conferiu que ele
+PARSEIA**. Passando os três `ESTADO.md` do arquipélago por `yaml.safe_load` às 19h58Z:
+**dois dos três estavam quebrados**. A causa é a mesma e nasceu do crescimento saudável do
+arquivo — o `bloco_atual` passou de `"4c"` para prosa de milhares de caracteres entre aspas
+duplas, e aspas duplas dentro de um escalar de aspas duplas derrubam o documento; uma barra
+invertida solta também, porque `\d` é escape desconhecido em YAML de aspas duplas.
+
+- **clubedomosaico**: estava inválido e foi consertado no mesmo commit (aspas internas viraram
+  simples, e a regex citada saiu por extenso).
+- **aquametria**: inválido, na coluna 1910 do `bloco_atual`. Reservada por outra execução às
+  19h18Z, e a seção 3 proíbe editar ilha que não se reservou → virou **despacho** em
+  `dados/despachos.md`.
+- **robometria**: válido.
+
+Ninguém tinha visto porque quem lê o cabeçalho hoje é a Fundação, com `grep` e com o olho, e as
+duas coisas atravessam YAML quebrado sem reclamar. **Cabeçalho que só o olho lê é cabeçalho sem
+portão.** A metade que vale para toda ilha foi escrita onde regra nova mora, uma vez: a
+**seção 2 do `ARQUIPELAGO.md`**, com o comando de uma linha e a convenção de aspas simples.

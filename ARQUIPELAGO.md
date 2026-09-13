@@ -96,6 +96,16 @@ Regras do cabeçalho:
 - Abaixo do cabeçalho, o `ESTADO.md` continua sendo prosa livre: credenciais **não**, estado do projeto **sim**.
 - `ultima_ronda` é escrita pela Sentinela, não pela Fundação. É o que faz a verificação ser distribuída por dívida em vez de varrer tudo todo dia (seção 12).
 
+**O CABEÇALHO É YAML, E ISSO SE MEDE COM UM PARSER ANTES DO COMMIT (Clube do Mosaico, 13/09/2026).** Este bloco é YAML e sempre foi, mas nada nunca conferiu que ele PARSEIA — e às 19h58Z de 13/09/2026, passando os três `ESTADO.md` do arquipélago por `yaml.safe_load`, **dois dos três estavam quebrados**. A causa é a mesma nos dois e nasceu do crescimento saudável do arquivo: o `bloco_atual` passou de `"4c"` para prosa de milhares de caracteres entre aspas duplas, e **aspas duplas dentro de um escalar de aspas duplas derrubam o documento** — assim como uma barra invertida solta, porque `\d` é sequência de escape desconhecida em YAML de aspas duplas e sozinha basta. Ninguém tinha visto porque quem lê o cabeçalho hoje é a Fundação, com `grep` e com o olho, e as duas coisas atravessam YAML quebrado sem reclamar. **Cabeçalho que só o olho lê é cabeçalho sem portão** — a mesma família do número de tela digitado: parece conferido. E não é teórico: a seção 1 decide a ilha da execução a partir de `estado`, `bloqueada_por`, `executando_desde` e `ultima_execucao`, então a primeira ferramenta que parsear o cabeçalho de verdade decide errado ou morre.
+
+Portanto, **quem fecha bloco de qualquer ilha roda esta linha antes do commit**, e ela é uma linha:
+
+```
+python3 -c "import io,yaml;yaml.safe_load(io.open('ilhas/<ilha>/ESTADO.md',encoding='utf-8').read().split('---')[1]);print('YAML ok')"
+```
+
+Dentro do `bloco_atual`, **citação vai entre aspas simples** e regex ou caminho com barra invertida se escreve por extenso. O conserto nunca é encurtar a prosa: ela é o que faz a próxima execução saber o que aconteceu sem abrir o `REGISTRO.md` inteiro — o que está errado é a citação, não o tamanho.
+
 ---
 
 ## 3. O repositório é o lugar do trabalho
