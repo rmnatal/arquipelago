@@ -26,6 +26,7 @@ import os
 import re
 import sys
 from datetime import date, datetime
+from urllib.parse import unquote
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ESQUEMA = os.path.join(RAIZ, "dados", "esquema-produtos.json")
@@ -179,6 +180,87 @@ def valida_esquema_da_entidade(esquema, entidade):
                     erro("V23", "esquema:" + entidade,
                          "'%s.%s' lista %r, que nao existe no vocabulario de '%s'"
                          % (campo, chave, item, campo))
+
+
+def valida_escada_de_compra(esquema, entidade, produto, afil, pid):
+    """V24 a V27 - a escada da secao 25 do ARQUIPELAGO.md, dentro do banco.
+
+    A secao 25 nasceu em 13/09/2026 de uma cicatriz medida: quatro de nove links
+    de afiliado quebraram em menos de doze horas, porque anuncio de vendedor e
+    coisa pereciel. Este banco foi escrito ANTES dela e nao conhecia nenhum dos
+    campos que ela criou — a divida dos 39 links sem url crua esta nomeada na
+    propria 25.4-b, com o nome desta ilha.
+
+    As quatro regras sao de familias diferentes de proposito: a V24 pergunta em
+    que degrau a escolha parou, a V25 pergunta se alguem consegue conferir o
+    link depois, a V26 pergunta se o item tem PISO, e a V27 pergunta se a busca
+    sabe de qual JBL esta falando.
+    """
+    escada = esquema["afiliado"]["escada_de_compra"]
+    degraus = {d["degrau"] for d in escada["degraus"]}
+    sem_ficha_conferivel = preenchido(afil.get("motivo_sem_url_produto"))
+
+    # V24 - o degrau da escolha, ou a causa unica que apaga os dois
+    degrau = afil.get("degrau")
+    if afil.get("plataforma"):
+        if degrau is None:
+            if not sem_ficha_conferivel:
+                erro("V24", pid, "afiliado com plataforma e sem 'degrau': em qual degrau da "
+                                 "escada da 25.1 esta escolha parou? A unica ausencia aceita e "
+                                 "a do link sem url crua, e ela se declara em "
+                                 "motivo_sem_url_produto")
+        elif degrau not in degraus:
+            erro("V24", pid, "degrau %r fora da escada declarada no esquema (%s)"
+                 % (degrau, ", ".join(str(x) for x in sorted(degraus))))
+    elif degrau is not None:
+        erro("V24", pid, "produto sem plataforma com degrau %r: sem link nao ha degrau" % degrau)
+
+    # V25 - sem url crua nao existe teste de vida (25.4-b)
+    if preenchido(afil.get("url")) and not preenchido(afil.get("url_produto")) \
+            and not sem_ficha_conferivel:
+        erro("V25", pid, "tem 'url' de afiliado e nao tem 'url_produto' nem "
+                         "'motivo_sem_url_produto': a 25.4 manda conferir a saude do link "
+                         "ABRINDO a pagina do produto e proibe clicar no link de afiliado, "
+                         "entao sem a url crua ninguem consegue conferir este link")
+    if preenchido(afil.get("url_busca")) and not preenchido(afil.get("url_busca_produto")):
+        erro("V25", pid, "tem 'url_busca' e nao tem 'url_busca_produto': busca nao esgota, mas "
+                         "muda de nome, e palavra-chave que parou de trazer resultado e defeito "
+                         "silencioso")
+
+    # V26 - o piso e a busca, e o piso nunca depende de ninguem (25.2)
+    if not preenchido(afil.get("url_busca_produto")):
+        erro("V26", pid, "sem 'url_busca_produto': a palavra-chave da busca e escolha da "
+                         "maquina e nao espera ninguem — rode "
+                         "ferramentas/gerar-busca-de-produto.py --gravar")
+    if not preenchido(afil.get("url_busca")) and not preenchido(afil.get("motivo_sem_url_busca")):
+        erro("V26", pid, "sem piso ('url_busca') e sem 'motivo_sem_url_busca': item sem piso e "
+                         "defeito da 19.1 pela 25.2, e defeito que nao diz a causa nao e "
+                         "contavel")
+
+    # V27 - marca sem contexto e armadilha (25.3)
+    busca = afil.get("url_busca_produto")
+    if preenchido(busca):
+        base = escada["base_da_busca"]
+        if not str(busca).startswith(base):
+            erro("V27", pid, "url_busca_produto nao comeca pela base declarada no esquema (%s)"
+                 % base)
+        chave = unquote(str(busca)[len(base):]).lower()
+        marca = str(produto.get("marca") or "").strip().lower()
+        termo = str(escada["termo_de_contexto_por_entidade"].get(entidade) or "").lower()
+        # A marca so e cobrada de quem TEM marca: rs-50-50w e
+        # aquarios-do-rio-led-60cm declaram marca null porque sao produto sem
+        # marca, e a primeira versao desta regra os reprovou estando os dois
+        # certos. A 25.3 proibe buscar SO POR MARCA; quem nao tem marca nenhuma
+        # nao cai nessa armadilha, e o que sobra para cobrar dele e o contexto.
+        if marca and marca not in chave:
+            erro("V27", pid, "a busca nao carrega a marca do produto ('%s')" % produto["marca"])
+        if not termo:
+            erro("V27", "esquema:" + entidade, "entidade sem termo de contexto declarado em "
+                                               "escada_de_compra: uma busca so por marca traz a "
+                                               "JBL de caixa de som e a 'Aquario' de roteador")
+        elif not any(palavra in chave for palavra in termo.split()):
+            erro("V27", pid, "a busca nao carrega nenhuma palavra do termo de contexto da "
+                             "entidade ('%s')" % termo)
 
 
 def valida_produto(esquema, entidade, produto, vistos):
@@ -387,6 +469,9 @@ def valida_produto(esquema, entidade, produto, vistos):
     elif not preenchido(afil.get("motivo")):
         erro("V15", pid, "afiliado sem plataforma precisa dizer o motivo")
 
+    if afil is not None:
+        valida_escada_de_compra(esquema, entidade, produto, afil, pid)
+
     # V19 - imagem e dado COMERCIAL: existe com url, fonte, data e alt, ou nao existe
     img = produto.get("imagem")
     if img is not None:
@@ -529,6 +614,8 @@ def main():
     vistos = {}
     total = 0
     sugeribilidade = {}
+    escada = {"com_ficha": 0, "com_piso": 0, "sem_piso": 0, "sem_degrau": 0,
+              "sem_url_produto": 0, "por_degrau": {}}
 
     for entidade, caminho in ARQUIVOS.items():
         arquivo = carregar(caminho)
@@ -548,7 +635,21 @@ def main():
             print("  %-28s %-10s %s" % (produto.get("id"),
                                         produto.get("status_registro"),
                                         desc or "(sem derivado calculavel)"))
-            tem_link = bool((produto.get("afiliado") or {}).get("plataforma"))
+            afil = produto.get("afiliado") or {}
+            tem_link = bool(afil.get("plataforma"))
+            if preenchido(afil.get("url")):
+                escada["com_ficha"] += 1
+                if afil.get("degrau") is None:
+                    escada["sem_degrau"] += 1
+                if not preenchido(afil.get("url_produto")):
+                    escada["sem_url_produto"] += 1
+            if afil.get("degrau") is not None:
+                chave = str(afil["degrau"])
+                escada["por_degrau"][chave] = escada["por_degrau"].get(chave, 0) + 1
+            if preenchido(afil.get("url_busca")):
+                escada["com_piso"] += 1
+            else:
+                escada["sem_piso"] += 1
             for calc, requisitos in minimos.items():
                 faltando = atende(produto, requisitos)
                 bloqueado = produto.get("status_registro") in ("rascunho", "revalidar")
@@ -577,6 +678,19 @@ def main():
                   "sai no cartao sem botao de loja (V16)" % pid)
         for pid, motivo in dados["barrados"]:
             print("      - %-28s falta: %s" % (pid, motivo))
+
+    # A ESCADA DA SECAO 25, CONTADA. Enquanto isto era prosa no ESTADO.md, a
+    # divida nao tinha tamanho: o cabecalho dizia "39 esperam link" e nao dizia
+    # que 78 estavam sem PISO, que e outra coisa e e a que a 25.2 chama de
+    # defeito. Numero contado do arquivo, nunca digitado.
+    print("\n== a escada da secao 25, contada ==")
+    print("  %-24s %d de %d" % ("com ficha (url)", escada["com_ficha"], total))
+    print("  %-24s %d de %d" % ("com piso (url_busca)", escada["com_piso"], total))
+    print("  %-24s %d de %d" % ("itens_sem_piso", escada["sem_piso"], total))
+    print("  %-24s %d de %d" % ("links_sem_degrau", escada["sem_degrau"], escada["com_ficha"]))
+    print("  %-24s %d de %d" % ("links sem url crua", escada["sem_url_produto"], escada["com_ficha"]))
+    for degrau in sorted(escada["por_degrau"]):
+        print("  %-24s %d" % ("degrau %s" % degrau, escada["por_degrau"][degrau]))
 
     print("\n== resultado ==")
     print("  %d produtos, %d cotacoes, %d erro(s), %d aviso(s)"

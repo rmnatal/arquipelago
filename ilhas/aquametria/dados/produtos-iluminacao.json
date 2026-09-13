@@ -40,8 +40,12 @@
       "imagem": null,
       "afiliado": {
         "plataforma": null,
+        "verificado_em": "2026-09-09",
+        "degrau": null,
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "motivo": "produto novo no banco, entrou em 09/09/2026 na leva de fechamento de faixa para cobrir buraco que ferramentas/varrer-cobertura.mjs mediu. Quem gera link de afiliado e a Sentinela Estrategica, no navegador do Raphael, e tem teto de calendario. Pela regra V16 o produto ja e sugerido pela adequacao tecnica; o cartao sai sem botao de loja ate o link existir.",
-        "verificado_em": "2026-09-09"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Chihiros%20WRGB%20II%20Pro%20120%20luminaria%20aquario"
       },
       "fontes": [
         {
@@ -173,7 +177,13 @@
         "rel": "sponsored",
         "verificado_em": "2026-09-07",
         "anuncio_shopee": "Ista Luminária Aquário LED I-401 45cm Branca Bivolt",
-        "observacao": "Link curto gerado no painel Shopee Afiliados em 07/09/2026. Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data."
+        "degrau": null,
+        "url_produto": null,
+        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina.",
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
+        "observacao": "Link curto gerado no painel Shopee Afiliados em 07/09/2026. Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data.",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Ista%20I-401%2045%20cm%20luminaria%20aquario"
       },
       "fontes": [
         {
@@ -261,7 +271,13 @@
         "verificado_em": "2026-09-09",
         "anuncio_shopee": "Luminaria Led Soma S-200 WRGB 10W bivolt aquario 20-30 cm",
         "voltagem_anuncio": "bivolt",
-        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
+        "degrau": null,
+        "url_produto": null,
+        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina.",
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
+        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto.",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Soma%20S-200%20luminaria%20aquario"
       },
       "fontes": [
         {
@@ -337,7 +353,13 @@
         "verificado_em": "2026-09-09",
         "anuncio_shopee": "Luminaria Led Soma S-300 WRGB 12W bivolt aquario 30-40 cm",
         "voltagem_anuncio": "bivolt",
-        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
+        "degrau": null,
+        "url_produto": null,
+        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina.",
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
+        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto.",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Soma%20S-300%20luminaria%20aquario"
       },
       "fontes": [
         {
@@ -396,8 +418,12 @@
       "imagem": null,
       "afiliado": {
         "plataforma": null,
+        "verificado_em": "2026-09-09",
+        "degrau": null,
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "motivo": "produto novo no banco, entrou em 09/09/2026 pelo bloco T3(a2) para fechar faixa de comprimento descoberta na C15. Quem gera link de afiliado e a Sentinela Estrategica, ate 10 por semana; este registro espera link. Pela regra V16 o produto ja e sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
-        "verificado_em": "2026-09-09"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Chihiros%20A301%20luminaria%20aquario"
       },
       "fontes": [
         {
@@ -474,7 +500,13 @@
         "verificado_em": "2026-09-09",
         "anuncio_shopee": "Luminaria Led Soma S-400 WRGB 18W bivolt aquario 40-50 cm",
         "voltagem_anuncio": "bivolt",
-        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
+        "degrau": null,
+        "url_produto": null,
+        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina.",
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
+        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto.",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Soma%20S-400%20luminaria%20aquario"
       },
       "fontes": [
         {
@@ -539,7 +571,13 @@
         "rel": "sponsored",
         "verificado_em": "2026-09-07",
         "anuncio_shopee": "Luminária Led Aquário 18w Sunsun Ade-400c 48 A 65cm Bivolt",
-        "observacao": "Link curto gerado no painel Shopee Afiliados em 07/09/2026. Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data."
+        "degrau": null,
+        "url_produto": null,
+        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina.",
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
+        "observacao": "Link curto gerado no painel Shopee Afiliados em 07/09/2026. Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data.",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=SunSun%20ADE-400c%20luminaria%20aquario"
       },
       "fontes": [
         {
@@ -597,8 +635,12 @@
       "imagem": null,
       "afiliado": {
         "plataforma": null,
+        "verificado_em": "2026-09-09",
+        "degrau": null,
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "motivo": "produto novo no banco, entrou em 09/09/2026 pelo bloco T3(a2) para fechar faixa de comprimento descoberta na C15. Quem gera link de afiliado e a Sentinela Estrategica, ate 10 por semana; este registro espera link. Pela regra V16 o produto ja e sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
-        "verificado_em": "2026-09-09"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Chihiros%20A361%20luminaria%20aquario"
       },
       "fontes": [
         {
@@ -675,7 +717,13 @@
         "verificado_em": "2026-09-09",
         "anuncio_shopee": "Luminaria Led Soma S-500 WRGB 21W bivolt aquario 50-60 cm",
         "voltagem_anuncio": "bivolt",
-        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
+        "degrau": null,
+        "url_produto": null,
+        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina.",
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
+        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto.",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Soma%20S-500%20luminaria%20aquario"
       },
       "fontes": [
         {
@@ -733,8 +781,12 @@
       "imagem": null,
       "afiliado": {
         "plataforma": null,
+        "verificado_em": "2026-09-07",
+        "degrau": null,
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "motivo": "o anuncio generico da Shopee (Newpet Slim 3 modulos, 30 a 60 cm) e outro produto, de outro revendedor, sem ficha tecnica localizavel. Ficou registrado em dados/afiliados-sem-produto.json, sem virar produto: link sem especificacao verificada nao entra no banco.",
-        "verificado_em": "2026-09-07"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Luminaria%20LED%20Aquario%2060%20cm%20full%20spectrum%20luminaria%20aquario"
       },
       "fontes": [
         {
@@ -822,7 +874,13 @@
         "verificado_em": "2026-09-09",
         "anuncio_shopee": "Luminaria Led Soma S-600 WRGB 24W bivolt aquario 60-70 cm",
         "voltagem_anuncio": "bivolt",
-        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
+        "degrau": null,
+        "url_produto": null,
+        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina.",
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
+        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto.",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Soma%20S-600%20luminaria%20aquario"
       },
       "fontes": [
         {
@@ -898,7 +956,13 @@
         "verificado_em": "2026-09-09",
         "anuncio_shopee": "Luminaria Led Soma S-800 WRGB 26W bivolt aquario 80-90 cm",
         "voltagem_anuncio": "bivolt",
-        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
+        "degrau": null,
+        "url_produto": null,
+        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina.",
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
+        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto.",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Soma%20S-800%20luminaria%20aquario"
       },
       "fontes": [
         {
@@ -974,7 +1038,13 @@
         "verificado_em": "2026-09-09",
         "anuncio_shopee": "Chihiros Marine A-Series A451M 45 cm 27 W 3.850 lm bivolt",
         "voltagem_anuncio": "bivolt",
-        "observacao": "Titulo e voltagem como o operador transcreveu do painel Shopee Afiliados em 09/09/2026. ATENCAO: o anuncio declara 3.850 lm e a ficha de varejo declara 3.500 lm. O banco publica 3.500 lm, porque anuncio de marketplace (nivel 6) nao sustenta campo tecnico. A divergencia fica aqui de proposito, para a tela poder avisar."
+        "degrau": null,
+        "url_produto": null,
+        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina.",
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
+        "observacao": "Titulo e voltagem como o operador transcreveu do painel Shopee Afiliados em 09/09/2026. ATENCAO: o anuncio declara 3.850 lm e a ficha de varejo declara 3.500 lm. O banco publica 3.500 lm, porque anuncio de marketplace (nivel 6) nao sustenta campo tecnico. A divergencia fica aqui de proposito, para a tela poder avisar.",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Chihiros%20A451M%20luminaria%20aquario"
       },
       "fontes": [
         {
@@ -1062,7 +1132,13 @@
         "verificado_em": "2026-09-09",
         "anuncio_shopee": "Luminaria Led Soma S-1000 WRGB 32W bivolt aquario 100-110 cm",
         "voltagem_anuncio": "bivolt",
-        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
+        "degrau": null,
+        "url_produto": null,
+        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina.",
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
+        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto.",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Soma%20S-1000%20luminaria%20aquario"
       },
       "fontes": [
         {
@@ -1121,8 +1197,12 @@
       "imagem": null,
       "afiliado": {
         "plataforma": null,
+        "verificado_em": "2026-09-07",
+        "degrau": null,
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "motivo": "o anuncio disponivel na Shopee em 07/09/2026 e da variante de 45 cm (registro ista-i-401-45), com 7,6 W e 810 lm — outro produto. Atribuir aquele link a este registro faria a C15 recomendar 3717 lm e entregar 810 lm.",
-        "verificado_em": "2026-09-07"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Ista%20IL-401%2060%20cm%20luminaria%20aquario"
       },
       "fontes": [
         {
@@ -1229,7 +1309,13 @@
         "verificado_em": "2026-09-09",
         "anuncio_shopee": "Luminaria Led Soma S-1200 WRGB 36W bivolt aquario 120-130 cm",
         "voltagem_anuncio": "bivolt",
-        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
+        "degrau": null,
+        "url_produto": null,
+        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina.",
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
+        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto.",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Soma%20S-1200%20luminaria%20aquario"
       },
       "fontes": [
         {
@@ -1288,8 +1374,12 @@
       "imagem": null,
       "afiliado": {
         "plataforma": null,
+        "verificado_em": "2026-09-08",
+        "degrau": null,
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "motivo": "ha anuncio do modelo na Shopee em 08/09/2026, mas o link curto de afiliado e gerado a mao no painel Shopee Afiliados, fora desta sessao. E, sem lumen declarado, a C15 nao sugeriria este produto nem com link: link nao promove produto barrado (regra V16).",
-        "verificado_em": "2026-09-08"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=WFish%20WF-H600%20WRGB%20luminaria%20aquario"
       },
       "fontes": [
         {
@@ -1347,8 +1437,12 @@
       "imagem": null,
       "afiliado": {
         "plataforma": null,
+        "verificado_em": "2026-09-09",
+        "degrau": null,
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "motivo": "produto novo no banco, entrou em 09/09/2026 pelo bloco T3(a2) para fechar faixa de comprimento descoberta na C15. Quem gera link de afiliado e a Sentinela Estrategica, ate 10 por semana; este registro espera link. Pela regra V16 o produto ja e sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
-        "verificado_em": "2026-09-09"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Chihiros%20A601%20luminaria%20aquario"
       },
       "fontes": [
         {
@@ -1408,8 +1502,12 @@
       "imagem": null,
       "afiliado": {
         "plataforma": null,
+        "verificado_em": "2026-09-09",
+        "degrau": null,
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "motivo": "produto novo no banco, entrou em 09/09/2026 pelo bloco T3(a2) para fechar faixa de comprimento descoberta na C15. Quem gera link de afiliado e a Sentinela Estrategica, ate 10 por semana; este registro espera link. Pela regra V16 o produto ja e sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
-        "verificado_em": "2026-09-09"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Chihiros%20A801%20luminaria%20aquario"
       },
       "fontes": [
         {
@@ -1488,7 +1586,13 @@
         "verificado_em": "2026-09-09",
         "anuncio_shopee": "Chihiros A-Series A901 90 cm 55 W 8.200 lm bivolt",
         "voltagem_anuncio": "bivolt",
-        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
+        "degrau": null,
+        "url_produto": null,
+        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina.",
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
+        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto.",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Chihiros%20A901%20luminaria%20aquario"
       },
       "fontes": [
         {
@@ -1558,8 +1662,12 @@
       "imagem": null,
       "afiliado": {
         "plataforma": null,
+        "verificado_em": "2026-09-09",
+        "degrau": null,
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "motivo": "produto novo no banco, entrou em 09/09/2026 na leva de fechamento de faixa para cobrir buraco que ferramentas/varrer-cobertura.mjs mediu. Quem gera link de afiliado e a Sentinela Estrategica, no navegador do Raphael, e tem teto de calendario. Pela regra V16 o produto ja e sugerido pela adequacao tecnica; o cartao sai sem botao de loja ate o link existir.",
-        "verificado_em": "2026-09-09"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Chihiros%20WRGB%20II%20Slim%2090%20luminaria%20aquario"
       },
       "fontes": [
         {
@@ -1635,7 +1743,13 @@
         "rel": "sponsored",
         "verificado_em": "2026-09-07",
         "anuncio_shopee": "Chihiros WRGB-2 PRO 60cm- Luminária P/ Aquário Plantado High",
-        "observacao": "Link curto gerado no painel Shopee Afiliados em 07/09/2026. Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data."
+        "degrau": null,
+        "url_produto": null,
+        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina.",
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
+        "observacao": "Link curto gerado no painel Shopee Afiliados em 07/09/2026. Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data.",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Chihiros%20WRGB%20II%20Pro%2060%20luminaria%20aquario"
       },
       "fontes": [
         {
@@ -1727,8 +1841,12 @@
       "imagem": null,
       "afiliado": {
         "plataforma": null,
+        "verificado_em": "2026-09-09",
+        "degrau": null,
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "motivo": "produto novo no banco, entrou em 09/09/2026 na leva de fechamento de faixa para cobrir buraco que ferramentas/varrer-cobertura.mjs mediu. Quem gera link de afiliado e a Sentinela Estrategica, no navegador do Raphael, e tem teto de calendario. Pela regra V16 o produto ja e sugerido pela adequacao tecnica; o cartao sai sem botao de loja ate o link existir.",
-        "verificado_em": "2026-09-09"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Chihiros%20WRGB%20II%20Slim%20120%20luminaria%20aquario"
       },
       "fontes": [
         {
@@ -1798,8 +1916,12 @@
       "imagem": null,
       "afiliado": {
         "plataforma": null,
+        "verificado_em": "2026-09-09",
+        "degrau": null,
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "motivo": "produto novo no banco, entrou em 09/09/2026 na leva de fechamento de faixa para cobrir buraco que ferramentas/varrer-cobertura.mjs mediu. Quem gera link de afiliado e a Sentinela Estrategica, no navegador do Raphael, e tem teto de calendario. Pela regra V16 o produto ja e sugerido pela adequacao tecnica; o cartao sai sem botao de loja ate o link existir.",
-        "verificado_em": "2026-09-09"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Chihiros%20WRGB%20II%2090%20luminaria%20aquario"
       },
       "fontes": [
         {
@@ -1903,8 +2025,12 @@
       "imagem": null,
       "afiliado": {
         "plataforma": null,
+        "verificado_em": "2026-09-09",
+        "degrau": null,
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "motivo": "produto novo no banco, entrou em 09/09/2026 na leva de fechamento de faixa para cobrir buraco que ferramentas/varrer-cobertura.mjs mediu. Quem gera link de afiliado e a Sentinela Estrategica, no navegador do Raphael, e tem teto de calendario. Pela regra V16 o produto ja e sugerido pela adequacao tecnica; o cartao sai sem botao de loja ate o link existir.",
-        "verificado_em": "2026-09-09"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Chihiros%20WRGB%20II%20Pro%2090%20luminaria%20aquario"
       },
       "fontes": [
         {
@@ -1985,8 +2111,12 @@
       "imagem": null,
       "afiliado": {
         "plataforma": null,
+        "verificado_em": "2026-09-09",
+        "degrau": null,
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "motivo": "produto novo no banco, entrou em 09/09/2026 na leva de fechamento de faixa para cobrir buraco que ferramentas/varrer-cobertura.mjs mediu. Quem gera link de afiliado e a Sentinela Estrategica, no navegador do Raphael, e tem teto de calendario. Pela regra V16 o produto ja e sugerido pela adequacao tecnica; o cartao sai sem botao de loja ate o link existir.",
-        "verificado_em": "2026-09-09"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Chihiros%20WRGB%20II%20120%20luminaria%20aquario"
       },
       "fontes": [
         {

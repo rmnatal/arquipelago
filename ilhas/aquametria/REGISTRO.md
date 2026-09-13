@@ -4,6 +4,238 @@ Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e
 o proximo passo desbloqueado, e espelha o mesmo resumo em
 `/areas/projeto-aquametria.md` na memoria.
 
+## 2026-09-13 17h20Z — A ESCADA DA SEÇÃO 25 NASCE NA ILHA QUE A SEÇÃO 25 CITA PELO NOME: o piso deixa de ser prosa e vira número contado (esquema 10, manifest revisão 68, nenhuma URL nova, nenhum snippet reescrito)
+
+**POR QUE ESTE BLOCO, E NÃO OS DOIS QUE O ESTADO ANTERIOR LISTOU À FRENTE.** O
+"PRÓXIMO" da execução das 15h16Z tinha três itens, e os dois primeiros foram
+medidos e estão travados hoje, cada um por um motivo diferente:
+
+1. **A leva 4 (`/peixes/bettas/`) espera o calendário, não trabalho.** O teto da
+   21.4 é de três levas por semana e a semana gastou as três. Hoje é domingo,
+   13/09; a leva nasce a partir de 14/09 e não falta nada antes de escrevê-la.
+2. **O banco dos vivíparos foi TENTADO nesta execução e os dois continuam
+   recusados** — e uma das recusas ficou mais forte do que estava. Está abaixo.
+3. Sobrou o que o próprio `ESTADO.md` chamava de espera do Raphael e que **o
+   contrato chama de defeito**: a ilha não implementava a seção 25, escrita em
+   13/09/2026 e que **cita esta ilha pelo nome** na 25.4-b. A 18.5 é explícita:
+   verificação antes de construção, e ilha com defeito no ar não recebe página
+   nova. Era este o bloco.
+
+**O QUE FOI MEDIDO ANTES DE ESCOLHER, porque escolher bloco por suposição custa a
+execução inteira.** `url_busca`, `url_produto` e `degrau` **não existiam em
+nenhum arquivo desta ilha** — nem no esquema, nem no banco, nem nos snippets.
+Não era dívida parcial: a seção 25 inteira estava fora.
+
+**A FRASE DO PRÓPRIO ESTADO QUE CONTRADIZIA O CONTRATO.** O cabeçalho dizia que
+os 30 produtos com anúncio "esperam a geração manual do link curto no painel, que
+é a metade do Raphael". A 25.2 decide o contrário, com a palavra do dono citada
+literalmente: *"deve ser 100% automático sem eu tocar"* — e a consequência
+escrita logo abaixo, **"nada, nunca, fica na fila esperando o Raphael"**. O que
+estava na fila não era a escolha: era o encurtamento. Este bloco separa as duas
+coisas, e só a segunda depende de alguém.
+
+### O que a nuvem alcança, e o que ela não alcança — remedido hoje, duas passadas
+
+- `affiliate.shopee.com.br/offer/custom_link` responde **HTTP 200** e serve uma
+  **casca de JavaScript**: zero ocorrência de `custom_link`, zero de `sub_id`,
+  **zero de `input`**. Não é bloqueio de rede, é falta de sessão — e criar conta
+  ou tocar na conta do Raphael está fora do que esta camada faz. É a mesma parede
+  que o Clube do Mosaico mediu hoje mais cedo, agora medida também daqui.
+- **A recuperação da url crua pelo título do anúncio foi tentada e recusada.** A
+  25.4-b declara a dívida dos 39 links desta ilha como irrecuperável "sem
+  clicar", mas o banco guarda `afiliado.anuncio_shopee`, o título exato — o que
+  abriria um caminho sem clique: buscar o título e reencontrar a página. Não
+  abre: `shopee.com.br/search` responde 200 e serve casca de JavaScript com
+  **zero ocorrência de `shopee.com.br/` no HTML servido**. A dívida fica, agora
+  com a saída fechada *medida* em vez de suposta.
+- `mercadolivre.com.br` responde **403** desta nuvem, o que fecha também o degrau 2.
+- Egresso de fonte técnica remedido e igual ao de sempre: `fishbase.se`,
+  `fishbase.org`, `seriouslyfish.com` e `en.wikipedia.org` em **000**.
+- A ilha em **200** na home e no `/status`, nas duas passadas.
+
+### O que entrou
+
+**O esquema aprendeu a escada (versão 10).** `afiliado` ganhou seis campos —
+`degrau`, `url_produto`, `motivo_sem_url_produto`, `url_busca`,
+`url_busca_produto`, `motivo_sem_url_busca` — e um bloco `escada_de_compra` com
+os **quatro degraus da 25.1 nomeados**, a base da busca e o **termo de contexto
+por entidade**. Os quatro degraus ficam declarados mesmo com o banco de hoje
+usando um só, porque a escada é do contrato e não do banco.
+
+**DUAS FRASES DO ESQUEMA FORAM REESCRITAS, NÃO ACRESCENTADAS, PORQUE JÁ ERAM
+FALSAS.** As duas diziam que produto sem link não aparece no bloco de produto —
+uma na observação de `plataforma`, outra na terceira linha de `afiliado.regras`.
+A **V16**, escrita no mesmo arquivo, decide o oposto, e é a V16 que está no ar: o
+cartão sai sem botão, com o selo "entrou pela ficha técnica, não pelo link". As
+duas frases eram anteriores à V16 e sobreviveram a ela caladas. O que falta a
+produto sem link não é presença: é **piso**.
+
+**O DEGRAU DOS 39 LINKS VIVOS É NULL, E ISSO NÃO É PREGUIÇA — É A ÚNICA COISA
+HONESTA A ESCREVER.** Seria fácil carimbar `degrau: 3` nos 39 e ficar verde. Mas
+o degrau se lê da **url crua**, e ela se perdeu: `s.shopee.com.br` encurta a loja
+oficial (degrau 1) e o anúncio de vendedor (degrau 3) com a mesma cara, e os dois
+apodrecem de forma oposta. Daí sai a regra, e ela é **causal e não conveniente**:
+o degrau e a saúde do link morrem **pela mesma causa**, então um único motivo
+cobre os dois, e a V24 aceita degrau ausente **só** quando
+`motivo_sem_url_produto` declara aquela causa. Uma das mutações é exatamente
+tirar o motivo e deixar o degrau vazio.
+
+**O PISO TEM DOIS ELOS, E SÓ UM DEPENDE DE ALGUÉM.** Nasce
+`ferramentas/gerar-busca-de-produto.py`, que escreve `url_busca_produto` nos
+**78** produtos compondo `marca + modelo + termo de contexto da entidade`. A
+escolha da palavra-chave é da máquina, do começo ao fim, e já está feita: **no
+dia em que houver sessão, é colar — nenhuma linha de código muda.** O que ficou
+para o encurtamento está declarado item a item em `motivo_sem_url_busca`, com a
+medição de hoje dentro.
+
+**O TERMO DE CONTEXTO MORA NO ESQUEMA E NÃO DENTRO DO GERADOR**, pelo mesmo
+motivo que a Robometria tirou a lista de tipos de dentro da régua hoje mais cedo:
+lista dentro da régua envelhece calada, e **entidade nova entraria sem termo
+nenhum com o banco inteiro verde**. A 25.3 diz o que isso traz para o cartão — a
+JBL de caixa de som e a "Aquário" de roteador. É a mutação 10, e é a que mais
+importa: ela não estraga registro nenhum, tira a lista do esquema, e sem a trava
+o banco de hoje continuaria passando.
+
+### A régua reprovou dois registros CERTOS, e a correção é da régua
+
+A primeira versão cobrava a marca na busca de **todo** produto. Ela reprovou
+`rs-50-50w` e `aquarios-do-rio-led-60cm`, que estão **certos**: os dois declaram
+`marca: null` porque são produto sem marca. A 25.3 proíbe buscar **só por
+marca**; quem não tem marca nenhuma não cai nessa armadilha. A regra passou a
+cobrar a marca **de quem tem marca** e o contexto **de todos**, mais uma
+afirmação nova — fora o contexto, a busca tem de identificar alguma coisa —, para
+a correção não abrir a porta que ela fechou. É a mesma família do que aconteceu
+com a régua de voz hoje mais cedo, quando "conforme" e "segundo" reprovaram três
+primeiros parágrafos corretos.
+
+### A dívida deixou de ser prosa e virou número contado
+
+O `validar-produtos.py` passou a imprimir a escada, **recomputada do arquivo**:
+
+```
+com ficha (url)          39 de 78
+com piso (url_busca)      0 de 78
+itens_sem_piso           78 de 78
+links_sem_degrau         39 de 39
+links sem url crua       39 de 39
+```
+
+Enquanto isso era prosa no `ESTADO.md`, a dívida não tinha tamanho: o cabeçalho
+dizia "39 esperam link" e **não dizia que 78 estavam sem piso**, que é outra
+coisa e é a que a 25.2 chama de defeito. Uma das mutações troca a contagem por um
+`78` digitado no lugar certo, e o portão pega.
+
+### Verificação na bancada, 0 falha
+
+`teste-escada-compra.py` **522** afirmações (novo) · `mutacoes-escada.py`
+**14 de 14, cada uma reprovada pela REGRA QUE A NOMEIA** — exigência um nível
+mais dura que a das outras baterias desta ilha, porque defeito pego pela regra
+vizinha prova que alguma trava existe, não que **esta** existe · `validar-produtos`
+78 produtos, 0 erro, 9 avisos (os mesmos de antes) · `validar-especies` 36, 0
+erro, o mesmo aviso E15 do guppy · `testar-validador-especies` 22 ·
+`teste-peixes` 1222 · `teste-ga4` 440 · `teste-seo-tecnico` 330 ·
+`teste-apelidos` 59 · `teste-voz` · `teste-arvore` · `conferir-entidades` ·
+`conferir-slugs` · `conferir-protecao-funcoes` · `php -l` em tudo.
+
+**Baterias antigas rodadas inteiras, para provar que nenhuma virou inerte com o
+banco novo:** `mutacoes-dimensao` **14 de 14**, `mutacoes-peixes` **39 de 39**,
+`mutacoes-voz` **27 de 27**. Nenhuma inerte — o que importa aqui porque este
+bloco reordenou os campos de `afiliado` nos quatro arquivos de produto.
+
+**OS QUATRO GERADORES DE CATÁLOGO FORAM RODADOS E NÃO MOVERAM UM BYTE DOS
+SNIPPETS.** Era a medição que decidia se este bloco toca o ar: os catálogos
+embutidos leem `afiliado.url` e `afiliado.plataforma`, e nenhum dos dois mudou.
+**Nenhuma página servida mudou, nenhuma URL nasceu, nenhum snippet foi
+reescrito** — o que subiu foi esquema, banco e bancada.
+
+### O que este bloco NÃO fez, com o nome e o motivo
+
+**A escada não chegou à TELA, e isso é escolha declarada, não esquecimento.** Os
+três estados da 25.2 (ficha + busca discreta / busca vira botão / nem uma nem
+outra) vivem em **quatro calculadoras × PHP e JavaScript**, com o cartão da
+vitrine, a lista técnica, o desempate de ordem e o texto de FAQ em cada uma — da
+ordem de quarenta pontos de decisão, cada um com portão de navegador próprio.
+Dois motivos para não começar isso na cauda deste bloco:
+
+1. **Renderizaria exatamente o que já está no ar.** Com `url_busca` null nos 78,
+   o estado 2 nunca acontece e a linha discreta do estado 1 não tem para onde
+   apontar. Seria refatoração grande e **provadamente dormente**.
+2. **Meia refatoração em quatro calculadoras que discordam em silêncio é pior do
+   que nenhuma.** O Clube do Mosaico levou a escada à tela hoje em duas
+   superfícies e achou duas mutações inertes no caminho; aqui são oito.
+
+A diferença para o caso dele importa e está dita: lá **o dado existia e o código
+faltava**, e o leitor perdia monetização real. Aqui o dado do piso **não pode ser
+completado desta nuvem**, e o código esperaria por ele de qualquer jeito.
+
+### Os dois vivíparos, tentados hoje e recusados — e um deles com mecanismo novo
+
+- **Molly (`poecilia-sphenops`), `comprimento_minimo_aquario_cm`: recusado, e
+  agora se sabe POR QUÊ.** Três passadas de busca restrita ao compêndio hoje, com
+  três formulações. Nenhuma atribui o número à espécie. E a terceira trouxe o
+  achado: **`90 × 30 cm` é medida-padrão que aquele compêndio repete em fichas de
+  espécies sem parentesco** (o headstander pintado, o panda garra). Ou seja, o
+  `90 × 30 × 30 cm` que a coleta de 13/09 viu numa passada só não era uma
+  confirmação fraca — era a **medida-padrão do corpo**, oferecida com cara de
+  resposta. É a `regra_da_congenere` numa forma nova: não a ficha da irmã, e sim
+  **o número de prateleira da casa**. Quem derruba o número passa a ser o
+  mecanismo, não a contagem de passadas.
+  **O que uma das passadas trouxe e NÃO entrou:** `21 a 28 °C`, pH `7,5 a 8,5` e
+  dureza `10-25 mg/l` atribuídos ao compêndio, que discordam do que o banco tem
+  pela base científica. Não entram na cauda de um bloco que não é de coleta:
+  seriam conflito declarado em três campos, com tratamento pela V17, e isso é
+  bloco.
+- **Guppy (`poecilia-reticulata`), o segundo corpo: recusado.** A busca restrita
+  ao Catalog of Fishes **não devolveu nada daquele domínio** — os resultados
+  vieram de NCBI, bioRxiv e até de patente. Pela `regra_de_atribuicao_por_busca`,
+  número sem dono não entra. **E fica dito, para a próxima coleta não gastar a
+  passada:** existe um atalho que passaria no portão e que foi **recusado de
+  propósito** — juntar um corpo taxonômico só para a contagem de "duas fontes"
+  fechar. Ele confirmaria a família e deixaria todos os números de manutenção
+  ainda sustentados por um corpo só. É o mesmo movimento que a regra E15 existe
+  para impedir, de roupa nova.
+
+**Resultado:** `/peixes/vivaparos/` continua com **2 elegíveis**. O `ARVORE.md`
+não muda, porque o que ele já dizia continua verdadeiro.
+
+### Aberto e nomeado
+
+- **(a) O PISO DE 78 ITENS depende de UMA sessão.** `url_busca_produto` está
+  escrito nos 78; falta o encurtamento. Não é código e não é decisão: é a sessão
+  do painel de afiliado, e no dia em que ela existir são 78 colagens e **nenhuma
+  linha de código**.
+- **(b) A SAÚDE DOS 39 LINKS NO AR É DESCONHECIDA E VAI CONTINUAR.** A 25.4 manda
+  a ronda conferir link publicado; sem `url_produto` ela não consegue, e hoje
+  ficou medido que nem o título do anúncio reabre o caminho. A saída é
+  **reescolher** os 39, e reescolher exige o feed ou a sessão. É a dívida que a
+  própria 25.4-b registrou com o nome desta ilha.
+- **(c) A escada não está na tela** — item nomeado acima, com os dois motivos.
+- **(d)** A ilha **não tem página de privacidade**, com GA4 no ar e link de
+  afiliado publicado. Continua sendo dívida de verdade.
+- **(e)** `atualizar-manifest.py` avisa "fora do manifest" e segue; **os três
+  portões novos deste bloco ENTRARAM**, então a dívida não cresceu com ele.
+- **(f)** A dimensão de 24 imagens do banco segue nula com motivo declarado; só o
+  Chrome da Sentinela alcança aquele CDN.
+- **(g)** GT-PL9DD7KW e o Tempo Real do GA4 (falta `GOOGLE_SA_B64`) seguem como
+  estavam.
+
+**RECEITA:** 39 dos 78 produtos com ficha de loja, **0 com piso**, 78 sem piso.
+Dos 39 sem ficha, 9 não têm loja possível hoje (7 sem anúncio, 1 cujo único
+anúncio é outro produto, 1 cujo único anúncio é outra variante). **Pauta da seção
+17:** `pauta.md` ainda não existe — 0 escritos, 0 na fila, 0 recusados.
+
+**PRÓXIMO, com ordem e motivo:**
+1. **LEVA 4 = `/peixes/bettas/`** com as três fichas (betta, colisa-anão, gurami
+   mel). **Destravada a partir de 14/09**, quando a semana vira. Não falta nada
+   antes de escrever, e as quatro páginas nascem declarando `serp_em` =>
+   `13/09/2026`.
+2. **A ESCADA NA TELA**, quando houver `url_busca` para ela servir — ou antes, se
+   o dono preferir o código pronto esperando o dado. É bloco inteiro, nas quatro
+   calculadoras de uma vez, e o portão tem de medir a **classe emitida**, nunca a
+   frase legível.
+3. **Vivíparos**, quando o egresso abrir ou aparecer um terceiro corpo: é a
+   categoria mais barata do banco e vai de 2 para 4 com dois campos.
+
 ## 2026-09-13 15h16Z — O DESPACHO DA SENTINELA DE 13/09 SAI INTEIRO: as datas do schema passam a sair de onde já são verdade, e a ficha de peixe para de abrir pela prova (casca 1.8.0, artigos 1.3.0, peixes 1.4.0, os quatro catálogos regerados, manifest revisão 66, `/status` conferido às 15h50Z em UM disparo)
 
 **Nenhuma URL nova. Nada na fila de construção foi tocado:** a 18.5 manda fechar

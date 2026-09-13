@@ -40,8 +40,12 @@
       "imagem": null,
       "afiliado": {
         "plataforma": null,
+        "verificado_em": "2026-09-08",
+        "degrau": null,
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "motivo": "a coleta de links da Shopee em 07/09/2026 cobriu so as potencias de 100, 200 e 300 W da linha. Este modelo entrou no banco em 08/09 e ainda nao teve link coletado. Pela regra V16 ele e sugerido do mesmo jeito, sem botao de loja.",
-        "verificado_em": "2026-09-08"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Roxin%20HT-1300%2025%20W%20aquecedor%20aquario"
       },
       "fontes": [
         {
@@ -146,8 +150,12 @@
       "imagem": null,
       "afiliado": {
         "plataforma": null,
+        "verificado_em": "2026-09-08",
+        "degrau": null,
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "motivo": "sem anuncio deste modelo na Shopee em 07/09/2026 (a busca do painel de afiliados so devolveu pecas de reposicao e lampadas UV) e nao foi refeita em 08/09. Pela regra V16 o produto continua sendo sugerido pela adequacao tecnica; o cartao sai sem botao de loja.",
-        "verificado_em": "2026-09-08"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Eheim%20Jager%2050%20W%20aquecedor%20aquario"
       },
       "fontes": [
         {
@@ -239,7 +247,13 @@
         "verificado_em": "2026-09-09",
         "anuncio_shopee": "Maxxi Termostato M-050 50 W 220 V para aquario ate 50 litros",
         "voltagem_anuncio": "220",
-        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
+        "degrau": null,
+        "url_produto": null,
+        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina.",
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
+        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto.",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Maxxi%20M-050%20aquecedor%20aquario"
       },
       "fontes": [
         {
@@ -309,7 +323,13 @@
         "verificado_em": "2026-09-09",
         "anuncio_shopee": "Roxin Q3 50 W 220 V",
         "voltagem_anuncio": "220",
-        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
+        "degrau": null,
+        "url_produto": null,
+        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina.",
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
+        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto.",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Roxin%20HT-1300%2050%20W%20aquecedor%20aquario"
       },
       "fontes": [
         {
@@ -421,7 +441,13 @@
         "verificado_em": "2026-09-09",
         "anuncio_shopee": "Termostato Aquecedor para Aquario RS-50 50 W 220 V",
         "voltagem_anuncio": "220",
-        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
+        "degrau": null,
+        "url_produto": null,
+        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina.",
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
+        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto.",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=RS-50%20aquecedor%20aquario"
       },
       "fontes": [
         {
@@ -478,8 +504,12 @@
       "imagem": null,
       "afiliado": {
         "plataforma": null,
+        "verificado_em": "2026-09-09",
+        "degrau": null,
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "motivo": "produto novo no banco em 09/09/2026, entrou pela expansao do catalogo (bloco 4b). O link de afiliado e gerado pela Sentinela Estrategica no painel da Shopee; enquanto nao houver, pela regra V16 o produto continua sendo sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
-        "verificado_em": "2026-09-09"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Atman%20AT-100%20aquecedor%20aquario"
       },
       "fontes": [
         {
@@ -562,8 +592,12 @@
       "imagem": null,
       "afiliado": {
         "plataforma": null,
+        "verificado_em": "2026-09-08",
+        "degrau": null,
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "motivo": "sem anuncio deste modelo na Shopee em 07/09/2026 (a busca do painel de afiliados so devolveu pecas de reposicao e lampadas UV) e nao foi refeita em 08/09. Pela regra V16 o produto continua sendo sugerido pela adequacao tecnica; o cartao sai sem botao de loja.",
-        "verificado_em": "2026-09-08"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Eheim%20Jager%20100%20W%20aquecedor%20aquario"
       },
       "fontes": [
         {
@@ -655,7 +689,13 @@
         "verificado_em": "2026-09-09",
         "anuncio_shopee": "Maxxi Termostato M-100 100 W 127 V para aquario ate 100 litros",
         "voltagem_anuncio": "127",
-        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
+        "degrau": null,
+        "url_produto": null,
+        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina.",
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
+        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto.",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Maxxi%20M-100%20aquecedor%20aquario"
       },
       "fontes": [
         {
@@ -715,7 +755,13 @@
         "verificado_em": "2026-09-07",
         "anuncio_shopee": "ROXIN HT-1300 Q3 100W 127V para aquario ate 100 litros",
         "voltagem_anuncio": "127",
-        "observacao": "voltagem_anuncio e a voltagem DO ANUNCIO, nao do produto: anuncio de marketplace (nivel 6) nao sustenta campo tecnico. O campo voltagem do registro veio do varejo especializado, que publica a mesma potencia em 110 V e em 220 V. A tela precisa avisar qual versao o link abre."
+        "degrau": null,
+        "url_produto": null,
+        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina.",
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
+        "observacao": "voltagem_anuncio e a voltagem DO ANUNCIO, nao do produto: anuncio de marketplace (nivel 6) nao sustenta campo tecnico. O campo voltagem do registro veio do varejo especializado, que publica a mesma potencia em 110 V e em 220 V. A tela precisa avisar qual versao o link abre.",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Roxin%20HT-1300%20100%20W%20aquecedor%20aquario"
       },
       "fontes": [
         {
@@ -819,8 +865,12 @@
       "imagem": null,
       "afiliado": {
         "plataforma": null,
+        "verificado_em": "2026-09-09",
+        "degrau": null,
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "motivo": "produto novo no banco em 09/09/2026, entrou pela expansao do catalogo (bloco 4b). O link de afiliado e gerado pela Sentinela Estrategica no painel da Shopee; enquanto nao houver, pela regra V16 o produto continua sendo sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
-        "verificado_em": "2026-09-09"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Atman%20AT-150%20aquecedor%20aquario"
       },
       "fontes": [
         {
@@ -903,8 +953,12 @@
       "imagem": null,
       "afiliado": {
         "plataforma": null,
+        "verificado_em": "2026-09-08",
+        "degrau": null,
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "motivo": "sem anuncio deste modelo na Shopee em 07/09/2026 (a busca do painel de afiliados so devolveu pecas de reposicao e lampadas UV) e nao foi refeita em 08/09. Pela regra V16 o produto continua sendo sugerido pela adequacao tecnica; o cartao sai sem botao de loja.",
-        "verificado_em": "2026-09-08"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Eheim%20Jager%20150%20W%20aquecedor%20aquario"
       },
       "fontes": [
         {
@@ -1023,7 +1077,13 @@
         "verificado_em": "2026-09-09",
         "anuncio_shopee": "Maxxi Termostato M-150 150 W 220 V para aquario ate 150 litros",
         "voltagem_anuncio": "220",
-        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
+        "degrau": null,
+        "url_produto": null,
+        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina.",
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
+        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto.",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Maxxi%20M-150%20aquecedor%20aquario"
       },
       "fontes": [
         {
@@ -1099,7 +1159,13 @@
         "verificado_em": "2026-09-09",
         "anuncio_shopee": "OceanTech X-5 150 W 220 V / 110 V",
         "voltagem_anuncio": "220",
-        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
+        "degrau": null,
+        "url_produto": null,
+        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina.",
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
+        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto.",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Ocean%20Tech%20Warmer%20X-5%20150%20W%20aquecedor%20aquario"
       },
       "fontes": [
         {
@@ -1226,7 +1292,13 @@
         "verificado_em": "2026-09-09",
         "anuncio_shopee": "Sicce Scuba NFC 150 W 220 V com termometro",
         "voltagem_anuncio": "220",
-        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
+        "degrau": null,
+        "url_produto": null,
+        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina.",
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
+        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto.",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Sicce%20Scuba%20Contactless%20150%20aquecedor%20aquario"
       },
       "fontes": [
         {
@@ -1300,8 +1372,12 @@
       "imagem": null,
       "afiliado": {
         "plataforma": null,
+        "verificado_em": "2026-09-09",
+        "degrau": null,
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "motivo": "produto novo no banco em 09/09/2026, entrou pela expansao do catalogo (bloco 4b). O link de afiliado e gerado pela Sentinela Estrategica no painel da Shopee; enquanto nao houver, pela regra V16 o produto continua sendo sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
-        "verificado_em": "2026-09-09"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Atman%20AT-200%20aquecedor%20aquario"
       },
       "fontes": [
         {
@@ -1406,8 +1482,12 @@
       "imagem": null,
       "afiliado": {
         "plataforma": null,
+        "verificado_em": "2026-09-08",
+        "degrau": null,
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "motivo": "sem anuncio do produto na Shopee em 07/09/2026 (busca do painel de afiliados so devolveu pecas de reposicao e lampadas UV). Pela regra V16 o produto continua sendo sugerido pela adequacao tecnica; o cartao sai sem botao de loja.",
-        "verificado_em": "2026-09-08"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Eheim%20Jager%20200%20W%20aquecedor%20aquario"
       },
       "fontes": [
         {
@@ -1517,7 +1597,13 @@
         "verificado_em": "2026-09-09",
         "anuncio_shopee": "Maxxi Termostato M-200 200 W 110 V",
         "voltagem_anuncio": "110",
-        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
+        "degrau": null,
+        "url_produto": null,
+        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina.",
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
+        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto.",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Maxxi%20M-200%20aquecedor%20aquario"
       },
       "fontes": [
         {
@@ -1581,7 +1667,13 @@
         "verificado_em": "2026-09-09",
         "anuncio_shopee": "Maxxi Termostato M-200 200 W 220 V",
         "voltagem_anuncio": "220",
-        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
+        "degrau": null,
+        "url_produto": null,
+        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina.",
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
+        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto.",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Maxxi%20M-200%20aquecedor%20aquario"
       },
       "fontes": [
         {
@@ -1641,7 +1733,13 @@
         "verificado_em": "2026-09-07",
         "anuncio_shopee": "Roxin Q3 Ht-1300 Q3 200w 110V",
         "voltagem_anuncio": "110",
-        "observacao": "voltagem_anuncio e a voltagem DO ANUNCIO, nao do produto: anuncio de marketplace (nivel 6) nao sustenta campo tecnico. O campo voltagem do registro veio do varejo especializado, que publica a mesma potencia em 110 V e em 220 V. A tela precisa avisar qual versao o link abre."
+        "degrau": null,
+        "url_produto": null,
+        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina.",
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
+        "observacao": "voltagem_anuncio e a voltagem DO ANUNCIO, nao do produto: anuncio de marketplace (nivel 6) nao sustenta campo tecnico. O campo voltagem do registro veio do varejo especializado, que publica a mesma potencia em 110 V e em 220 V. A tela precisa avisar qual versao o link abre.",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Roxin%20HT-1300%20200%20W%20aquecedor%20aquario"
       },
       "fontes": [
         {
@@ -1744,8 +1842,12 @@
       "imagem": null,
       "afiliado": {
         "plataforma": null,
+        "verificado_em": "2026-09-09",
+        "degrau": null,
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "motivo": "produto novo no banco, entrou em 09/09/2026 na leva de fechamento de faixa para cobrir buraco que ferramentas/varrer-cobertura.mjs mediu. Quem gera link de afiliado e a Sentinela Estrategica, no navegador do Raphael, e tem teto de calendario. Pela regra V16 o produto ja e sugerido pela adequacao tecnica; o cartao sai sem botao de loja ate o link existir.",
-        "verificado_em": "2026-09-09"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Ocean%20Tech%20Warmer%20X-5%20250%20W%20aquecedor%20aquario"
       },
       "fontes": [
         {
@@ -1820,8 +1922,12 @@
       "imagem": null,
       "afiliado": {
         "plataforma": null,
+        "verificado_em": "2026-09-09",
+        "degrau": null,
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "motivo": "produto novo no banco em 09/09/2026, entrou pela expansao do catalogo (bloco 4b). O link de afiliado e gerado pela Sentinela Estrategica no painel da Shopee; enquanto nao houver, pela regra V16 o produto continua sendo sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
-        "verificado_em": "2026-09-09"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Atman%20AT-300%20aquecedor%20aquario"
       },
       "fontes": [
         {
@@ -1911,7 +2017,13 @@
         "verificado_em": "2026-09-09",
         "anuncio_shopee": "Maxxi Termostato M-300 300 W 110 V",
         "voltagem_anuncio": "110",
-        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
+        "degrau": null,
+        "url_produto": null,
+        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina.",
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
+        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto.",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Maxxi%20M-300%20aquecedor%20aquario"
       },
       "fontes": [
         {
@@ -1975,7 +2087,13 @@
         "verificado_em": "2026-09-09",
         "anuncio_shopee": "Maxxi Termostato M-300 300 W 220 V para aquario ate 300 litros",
         "voltagem_anuncio": "220",
-        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto."
+        "degrau": null,
+        "url_produto": null,
+        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina.",
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
+        "observacao": "Titulo e voltagem do anuncio como o operador transcreveu do painel Shopee Afiliados em 09/09/2026; a pagina do anuncio nao abre para a nuvem (egresso barra shopee.com.br). voltagem_anuncio e a voltagem DAQUELE anuncio, nao campo tecnico do produto.",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Maxxi%20M-300%20aquecedor%20aquario"
       },
       "fontes": [
         {
@@ -2035,7 +2153,13 @@
         "verificado_em": "2026-09-07",
         "anuncio_shopee": "Termostato Com Aquecedor Roxin HT-1300 - Q3 - 300w - 220v",
         "voltagem_anuncio": "220",
-        "observacao": "voltagem_anuncio e a voltagem DO ANUNCIO, nao do produto: anuncio de marketplace (nivel 6) nao sustenta campo tecnico. O campo voltagem do registro veio do varejo especializado, que publica a mesma potencia em 110 V e em 220 V. A tela precisa avisar qual versao o link abre."
+        "degrau": null,
+        "url_produto": null,
+        "motivo_sem_url_produto": "A url crua da ficha se perdeu: este link nasceu em 07/09 e 08/09/2026, antes de a 25.4-b existir, e o banco guardou so o encurtado. A 25.4 proibe conferir a saude do link clicando no proprio link de afiliado, e de um s.shopee.com.br nao se chega a pagina do produto sem clicar — entao a saude DESTE link e desconhecida e permanecera desconhecida ate ele ser reescolhido. Pela mesma causa o degrau fica null: durabilidade se le da url crua, nao do encurtador. RECUPERACAO PELO TITULO DO ANUNCIO, TENTADA E RECUSADA em 13/09/2026: afiliado.anuncio_shopee guarda o titulo exato, mas shopee.com.br/search responde 200 e serve casca de JavaScript — zero ocorrencia de 'shopee.com.br/' no HTML servido —, entao desta nuvem o titulo nao reencontra a pagina.",
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
+        "observacao": "voltagem_anuncio e a voltagem DO ANUNCIO, nao do produto: anuncio de marketplace (nivel 6) nao sustenta campo tecnico. O campo voltagem do registro veio do varejo especializado, que publica a mesma potencia em 110 V e em 220 V. A tela precisa avisar qual versao o link abre.",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Roxin%20HT-1300%20300%20W%20aquecedor%20aquario"
       },
       "fontes": [
         {
@@ -2138,8 +2262,12 @@
       "imagem": null,
       "afiliado": {
         "plataforma": null,
+        "verificado_em": "2026-09-09",
+        "degrau": null,
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "motivo": "produto novo no banco, entrou em 09/09/2026 na leva de fechamento de faixa para cobrir buraco que ferramentas/varrer-cobertura.mjs mediu. Quem gera link de afiliado e a Sentinela Estrategica, no navegador do Raphael, e tem teto de calendario. Pela regra V16 o produto ja e sugerido pela adequacao tecnica; o cartao sai sem botao de loja ate o link existir.",
-        "verificado_em": "2026-09-09"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Hopar%20J-226%20400%20W%20aquecedor%20aquario"
       },
       "fontes": [
         {
@@ -2231,8 +2359,12 @@
       "imagem": null,
       "afiliado": {
         "plataforma": null,
+        "verificado_em": "2026-09-09",
+        "degrau": null,
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "motivo": "produto novo no banco, entrou em 09/09/2026 na leva de fechamento de faixa para cobrir buraco que ferramentas/varrer-cobertura.mjs mediu. Quem gera link de afiliado e a Sentinela Estrategica, no navegador do Raphael, e tem teto de calendario. Pela regra V16 o produto ja e sugerido pela adequacao tecnica; o cartao sai sem botao de loja ate o link existir.",
-        "verificado_em": "2026-09-09"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Hopar%20J-226%20500%20W%20aquecedor%20aquario"
       },
       "fontes": [
         {
@@ -2305,8 +2437,12 @@
       "imagem": null,
       "afiliado": {
         "plataforma": null,
+        "verificado_em": "2026-09-09",
+        "degrau": null,
+        "url_busca": null,
+        "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "motivo": "produto novo no banco, entrou em 09/09/2026 na leva de fechamento de faixa para cobrir buraco que ferramentas/varrer-cobertura.mjs mediu. Quem gera link de afiliado e a Sentinela Estrategica, no navegador do Raphael, e tem teto de calendario. Pela regra V16 o produto ja e sugerido pela adequacao tecnica; o cartao sai sem botao de loja ate o link existir.",
-        "verificado_em": "2026-09-09"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Ocean%20Tech%20Warmer%20X-5%20500%20W%20aquecedor%20aquario"
       },
       "fontes": [
         {
