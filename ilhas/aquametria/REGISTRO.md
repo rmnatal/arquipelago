@@ -4,6 +4,65 @@ Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e
 o proximo passo desbloqueado, e espelha o mesmo resumo em
 `/areas/projeto-aquametria.md` na memoria.
 
+## 2026-09-13 23h19Z — A PRESTAÇÃO DE CONTAS DA SEÇÃO 7 ALCANÇA QUEM NÃO ESTÁ NA TABELA (peixes 1.6.0, manifest revisão 76, `/status` conferido às 23h38Z em UM disparo com 20 aplicados; NENHUMA URL nova, NENHUMA página criada, NENHUMA leva consumida)
+
+**POR QUE ESTE BLOCO, com a leva 4 escrita como próximo passo.** A leva 4 (`/peixes/bettas/`) espera o CALENDÁRIO e não trabalho: o teto da 21.4 segue em 3 de 3 levas gastas nesta semana e 13/09 é domingo — esta execução rodou às 23h19Z de domingo, então a leva 4 continua nascendo só a partir de 14/09, exatamente como a execução das 21h21Z já tinha medido. O item (2) da lista é a leva seguinte, e vale o mesmo. O (4), a escada na tela, segue provadamente dormente com `url_busca` null nos 78 produtos. Sobrou o **item (3)**, que a execução anterior nomeou como dívida NOVA no `ESTADO.md` e deixou marcada como "merece bloco próprio". É este.
+
+**A ESCOLHA DA ILHA.** Segunda ilha tentada: a robometria foi reservada às 23h18Z por outra execução e o push de reserva desta foi recusado por cerca de um minuto; o passo 5 manda voltar ao passo 2 e nenhum force push aconteceu. A clubedomosaico foi reservada às 23h18Z por uma terceira. Antes de escolher, os três `PROMPT.md` foram lidos: **nenhuma ilha tinha despacho aberto para a Fundação** — o da Sentinela de 13/09 desta ilha está com os itens 1 a 4 cumpridos, o 5 é registro e o 6 está suspenso pela seção 21 —, então a 18.1 não se aplicou e valeu a rotação da seção 1, com a aquametria de `ultima_execucao` mais antiga entre as que sobraram. Rede conferida pela 20.2 antes de trabalhar: home em 200 e `/status` na revisão 74, em uma passada.
+
+### O BURACO ERA ESTRUTURAL, E NÃO DE TEXTO
+
+A seção `/peixes/` servia **"São 29 espécies"** e não tinha como dizer que o banco tem **37**, nem por que os outros 8 não estão ali. Não era descuido de redação: o catálogo embutido — o bloco que o `gerar-catalogo-especies.py` escreve dentro do snippet — carregava **só quem PASSA no portão**, então os barrados simplesmente não existiam do lado de cá. A regra da seção 7 do `ARQUIPELAGO.md` ("cada item da categoria consultada aparece exatamente uma vez na prosa da resposta — ou na frase que o recomenda, ou numa linha que diz por que ele não está") estava cumprida para quem está na tabela e para mais ninguém.
+
+O custo disso é específico desta ilha: **ausência sem nome, numa página que fala do próprio banco, é indistinguível de espécie que a ilha nunca procurou.** O molly e o guppy são os dois vivíparos mais vendidos do Brasil, estão no banco, foram perguntados a dois corpos de fonte cada um, e quem abrisse `/peixes/` concluiria que a ilha nem sabe que eles existem.
+
+### O QUE PASSOU A EXISTIR
+
+O gerador escreve um **segundo bloco** no snippet, `aquametria_peixes_barrados()`, com o registro barrado, a família e o que falta em cada um. A seção publica os três números **contados na hora** — 37 no banco, 29 na contagem, 8 fora — e a lista dos ausentes; a página de categoria faz o mesmo com quem **ela declara** e a tabela não mostra.
+
+**O MOTIVO VIAJA COMO CÓDIGO, E A TRADUÇÃO MORA NUM MAPA SÓ DO PHP.** Se o gerador escrevesse a frase pronta, mudar a redação de um motivo reescreveria o catálogo inteiro e moveria o `sha256` do manifest por causa de uma vírgula. O vocabulário de códigos é **fechado nos dois lados** e o gerador RECUSA gravar código fora dele — o portão produz motivo de duas formas, o nome seco do campo e uma frase de diagnóstico com URL dentro (`conflito em pH sem nome de corpo: https://...`), e a segunda **nunca pode chegar à tela**. Cortar a URL por heurística seria adivinhar por vizinhança, então o corte é por prefixo declarado e o que não casar PARA o script. Regra nova de portão que chegasse à tela como `comprimento_minimo_aquario_cm` seria vocabulário de dentro da fábrica na cara de quem lê.
+
+**UM ITEM POR ESPÉCIE, E NÃO UM GRUPO POR MOTIVO** — a decisão é entre duas regras da seção 7 que se cruzam aqui. Ela manda que cada item apareça **exatamente uma vez** na prosa e também que **causa que o código separa, o texto separa**. O `danio-margaritatus` está a QUATRO campos de distância; agrupado por motivo ele apareceria em quatro lugares, quebrando a primeira regra, e fundido numa razão genérica quebraria a segunda. A saída é a espécie aparecer uma vez com cada causa em oração própria. A primeira versão repetia "falta" quatro vezes na mesma linha e ficou ilegível justamente na espécie que mais precisa ser lida; a enumeração com "e" antes da última resolveu sem juntar causa nenhuma.
+
+**A ORDEM É DERIVADA, de quem está mais perto de entrar para quem está mais longe.** Ordem de arquivo é ordem de digitação, e quem lê esta lista quer saber quem está a um campo de distância — que é, aliás, a mesma frase que o critério dos vivíparos já publica.
+
+### O DEFEITO LATENTE QUE SAIU JUNTO, E ELE É FILHO DA MESMA MUDANÇA
+
+O cartão de categoria da seção virava link quando a categoria **DECLARAVA** espécie. Enquanto o snippet só conhecia quem passa, declarar e entrar na tabela eram a mesma coisa; com os barrados aqui dentro deixaram de ser, e **uma categoria que declarasse só barradas viraria link para uma página de tabela vazia** — a página fina que o 16.5 existe para não deixar entrar no índice de domínio novo. Quem decide o link passou a ser a contagem de quem está no catálogo. Pela mesma raiz, a frase **"esta lista está fechada"** ganhou a forma que faltava: com uma barrada declarada na categoria ela ficaria falsa sem mudar uma letra, que é a forma mais silenciosa do número de tela que envelhece.
+
+### QUATRO MUTAÇÕES PRODUZEM O MUNDO, PORQUE O RAMO DA CATEGORIA NÃO EXISTE HOJE
+
+Nenhuma das duas categorias no ar declara espécie barrada — `tetras` e `corydoras` estão com o conjunto vazio. Régua escrita para um mundo que nunca aconteceu nasce errada sem poder falhar (seção 8), então as quatro criam a declaração e só depois quebram: a categoria declara uma barrada e a bancada não percebe; declara, a bancada sabe, e a página cala; declara e a lista continua se dizendo fechada; e declara um id que o banco não tem, que é o erro de digitação capaz de encolher a tabela em silêncio.
+
+### VERIFICAÇÃO
+
+**BANCADA, 0 falha:** `teste-peixes.py` de **1246 para 1302** afirmações — com régua própria que recomputa o portão E os motivos do banco do zero, sem importar nada do gerador, e que lê o bloco do snippet em texto para cobrar as duas direções —, `teste-arvore.mjs`, `teste-voz.mjs`, `teste-datas-schema.py` 78, `teste-seo-tecnico.php` 339, `teste-escada-compra.py` 522, `validar-especies.py` (37 registros, 0 erro, 1 aviso conhecido — o E15 do guppy), `conferir-slugs.py`, `validar-produtos.py`, `conferir-protecao-funcoes.py` e `php -l` limpo.
+
+**MUTAÇÕES:** `mutacoes-peixes.py` de **46 para 56**, **56 reprovadas, 0 INERTES**, cópia limpa passando em 1302. `mutacoes-arvore.py` 14 de 14. Nasceram dois auxiliares: `varias()`, para a mutação que toca snippet e bancada como UMA mudança, e `inverter_ordem_dos_barrados()`, que mexe só na ordem e em mais nada — afirmação de ordem só se mede mexendo na ordem, porque trocar um campo junto mediria o campo.
+
+**NAVEGADOR:** 480 medições em 27 páginas × 6 larguras (360 a 1200 px), 0 falha, console sem mensagem. A lista nova é um `<ul>` e entra no caso que a seção 6 mede a 360 px.
+
+**NO AR, DEPOIS DO SYNC:** `/status` na revisão **76**, igual à do manifest, em um disparo às 23h38Z. `conferir-peixes-no-ar.py` foi de **358 para 380** afirmações, 0 falha, medindo o HTML que o servidor devolve. A conferência da prestação de contas mora ali e não só na bancada por um motivo desta ilha: **o corpo da seção é um shortcode**, então mudança que vem só do snippet não move `post_modified` e não aparece em log de desembarque nenhum — o Sync pode dizer "0 aplicado(s)" e a tela ter mudado. A única prova é ler o que o servidor devolve, e é a mesma cicatriz dos nove títulos de 11/09.
+
+### DUAS COISAS DE PROCESSO, DITAS EM VEZ DE ESCONDIDAS
+
+1. **O `manifest.json` volta ao recuo de dois espaços** que o próprio `atualizar-manifest.py` grava. A execução anterior o deixou com um espaço, e é por isso que o arquivo inteiro aparece no diff desta — nenhuma linha de conteúdo mudou além do `sha256`, da `versao` e da `descricao` do snippet dos peixes.
+2. **A bancada de navegador precisou de `npm install`** nesta nuvem: o `playwright` não vinha instalado e o `package.json` já existia justamente para isso. O Chromium não foi baixado — ele já está em `/opt/pw-browsers`, como o próprio `package.json` diz.
+
+### RECEITA, sem mudança
+
+39 dos 78 com ficha de loja, **0 COM PISO**, 78 sem piso; dos 39 sem ficha, 9 não têm loja possível hoje. Nenhum produto entrou ou saiu do banco — espécie não é produto, e este bloco não tocou produto nenhum. Pauta da seção 17: `pauta.md` ainda não existe — 0 escritos, 0 na fila, 0 recusados.
+
+### ABERTO E NOMEADO
+
+(a) o piso de 78 itens depende de uma sessão do painel; (b) a saúde dos 39 links no ar segue desconhecida; (c) a escada não está na tela, provadamente dormente com `url_busca` null nos 78; (d) a dimensão de 24 imagens segue nula, por `connect_rejected` no CDN da Shopee; (e) 18 arquivos seguem fora do manifest — este bloco **não criou arquivo nenhum**, então a dívida não cresceu; (f) a ilha não tem canal para pedido formal de titular, despacho do Raphael; (g) `GT-PL9DD7KW` e o Tempo Real do GA4 seguem como estavam; (h) **a dívida (h) do estado anterior está PAGA** — era exatamente esta.
+
+### PRÓXIMO, com ordem e motivo
+
+1. **LEVA 4 = `/peixes/bettas/`** com as três fichas, a partir de 14/09, quando o teto da 21.4 zera. A categoria está preparada desde 13/09 às 13h17Z e a preparação tem régua desde as 21h21Z.
+2. **A LEVA SEGUINTE = `/peixes/vivaparos/`** com platy, espada e plati variatus, pronta pelo mesmo padrão: banco fechado, critério escrito, SERP classificada. **E agora ela nasce com a prestação de contas de fábrica** — as duas `Poecilia` que ficaram de fora já têm nome e causa escritos, e a página de categoria vai servi-los sozinha no dia em que a lista declarar as duas.
+3. **A escada na tela**, no minuto em que houver `url_busca`, em bloco inteiro nas quatro calculadoras de uma vez.
+
 ## 2026-09-13 19h35Z — A ILHA GANHA A PÁGINA QUE FALTAVA DESDE QUE PASSOU A MEDIR, e a lista de terceiros dela nasce contada (casca 1.9.0, manifest revisão 72, `/status` conferido às 19h36Z na revisão 71 em UM disparo com 20 aplicados e a page #121 criada, e reconferido na 72 depois do conserto do portão dos peixes; a ilha vai de 27 para 28 URLs)
 
 **POR QUE ESTE BLOCO, E NÃO OS TRÊS QUE O ESTADO ANTERIOR LISTOU À FRENTE.** Os três estavam medidos e travados, cada um por um motivo próprio, e nenhum deles cedia hoje:
