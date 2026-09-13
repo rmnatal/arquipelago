@@ -1,560 +1,579 @@
 {
-  "id": "esquema-banco",
-  "ilha": "robometria",
-  "bloco": 3,
-  "gerado_em": "2026-09-09",
-  "versao_esquema": 3,
-  "descricao": "Modelo normalizado do banco da Robometria: entidades MARCA, MODELO_ROBO, PECA e COTACAO. Define campo a campo o tipo, a unidade, a obrigatoriedade, o vocabulario controlado e a ORIGEM esperada do dado. Nenhum numero entra no banco sem uma entrada correspondente em fontes{}. Este arquivo e o contrato que dados/marcas.json, dados/modelos-robo.json e dados/pecas.json cumprem e que ferramentas/validar-banco.py verifica.",
-  "depende_de": [
-    "dados/especificacao-calculadoras.md",
-    "dados/constantes.json",
-    "dados/corpus-buscas.md"
+ "id": "esquema-banco",
+ "ilha": "robometria",
+ "bloco": 3,
+ "gerado_em": "2026-09-09",
+ "versao_esquema": 4,
+ "descricao": "Modelo normalizado do banco da Robometria: entidades MARCA, MODELO_ROBO, PECA e COTACAO. Define campo a campo o tipo, a unidade, a obrigatoriedade, o vocabulario controlado e a ORIGEM esperada do dado. Nenhum numero entra no banco sem uma entrada correspondente em fontes{}. Este arquivo e o contrato que dados/marcas.json, dados/modelos-robo.json e dados/pecas.json cumprem e que ferramentas/validar-banco.py verifica.",
+ "depende_de": [
+  "dados/especificacao-calculadoras.md",
+  "dados/constantes.json",
+  "dados/corpus-buscas.md"
+ ],
+ "principios": [
+  "PROCEDENCIA POR CAMPO, NAO POR REGISTRO. Um modelo costuma ter a autonomia da pagina oficial e a categoria do titulo de outra pagina do mesmo fabricante. Cada campo tecnico e um objeto {valor, fonte, declarado_como} e aponta para a sua propria fonte.",
+  "DECLARADO NAO E MEDIDO. Todo campo de fabricante e declaracao. O banco nunca converte declaracao em desempenho, e nao existe nenhuma medicao propria nesta ilha.",
+  "NULL E RESPOSTA, NAO LACUNA. Quando o fabricante nao declara um numero, o campo e null com motivo. A Xiaomi nao declara cobertura em m2 do S20: esse null e a evidencia do vacuo que a R2 ocupa, e vai para a tela com essas palavras.",
+  "CATEGORIA E PORTAO. Modelo so entra no banco como robo se o proprio fabricante o chamar de aspirador robo. Aspirador vertical, de mao e 2 em 1 entram com categoria aspirador_comum e status excluido_do_banco — ficam gravados para a proxima execucao nao os recolher de novo.",
+  "COMPATIBILIDADE NAO SE HERDA. Ela e declarada por CODIGO DE PECA, nunca deduzida do modelo, da linha ou da marca. Uma peca da mesma familia pode cobrir menos modelos que outra.",
+  "VARIANTE DE HARDWARE PARTE O CODIGO DE MODELO. Achado desta coleta: o HO041 tem bateria versao A (PR10127) e versao B (PR8116). Saber o codigo do modelo NAO basta para acertar a peca — por isso variante_de_hardware e campo de primeira classe, e a R1 avisa quando existe mais de uma.",
+  "DIVERGENCIA E CONTEUDO. Quando duas fontes discordam, o registro publica as duas declaracoes com as duas datas. Nunca a media.",
+  "PRECO NAO E CAMPO DE PRODUTO. E serie temporal (entidade COTACAO) e nunca entra em criterio tecnico de recomendacao.",
+  "IMAGEM AUSENTE NAO ELIMINA O REGISTRO. Produto sem imagem aparece na vitrine com espaco reservado neutro e o nome em destaque. Perder a recomendacao tecnica certa por falta de foto e trocar o certo pelo bonito (secao 6 do ARQUIPELAGO.md).",
+  "CONSUMIVEL VENDIDO EM KIT E UM REGISTRO, NAO TRES. Achado do Bloco 3c: a Electrolux nao vende filtro de robo avulso — vende o Kit Performance, que traz filtro HEPA, pano de microfibra e escovas de canto juntos. Sem o tipo 'kit' a R1 nao consegue responder 'qual filtro serve no meu ERB10', que e exatamente a consulta-alvo. O kit declara sua composicao em composicao[], e cada item aponta um tipo do vocabulario.",
+  "CODIGO DE PECA NEM SEMPRE EXISTE, E ISSO SE ESCREVE. A Multi publica codigo proprio (PR10205); a Electrolux publica varias pecas so pelo titulo; a Positivo identifica pelo SKU do canal oficial. Por isso codigo_fabricante aceita null COM motivo_sem_codigo, pela mesma regra que ja vale para os numeros: null e resposta, nao lacuna.",
+  "FAIXA E TOLERANCIA DECLARADAS RESOLVEM PARA O LADO EM QUE ERRAR DOI MENOS, NUNCA PARA O MEIO. Achado da segunda leva do Bloco 3c: o fabricante costuma declarar faixa ('carrega de 5 a 6 horas') ou tolerancia ('130 minutos +-10%') em vez de numero. A media e a unica saida proibida (secao 10 do ARQUIPELAGO.md). O campo grava o extremo conservador e declarado_como carrega a faixa INTEIRA, para a pagina citar a faixa e nao o numero escolhido. Por campo: succao em Pa resolve para BAIXO (errar para cima faz recomendar robo fraco demais); autonomia em minutos resolve para BAIXO (errar para cima faz prometer que ele termina a casa); tempo de recarga resolve para CIMA (errar para baixo faz a R2 prometer mais ciclos por dia do que o aparelho entrega).",
+  "DIVERGENCIA DE ESPECIFICACAO NAO E SO DE PECA. Ate a versao 2 so PECA tinha divergencias[], porque a divergencia conhecida era de compatibilidade. A segunda leva do Bloco 3c encontrou o mesmo problema em MODELO_ROBO — o PRA500 declara 1600 Pa na ficha e 2000 Pa no texto de venda da MESMA pagina — entao divergencias[] e resolucao passam a existir tambem em MODELO_ROBO, com a mesma regra: lista vazia e afirmacao, e divergencia sem resolucao escrita e a ilha empurrando a duvida para o visitante.",
+  "FUNCAO NAO SE LE DO NOME DO PRODUTO. O fabricante batiza a peca pela POSICAO e o banco a classifica pela FUNCAO, e as duas nao sao a mesma coisa — a WAP usa 'giratoria' para o par LATERAL do W300 e para a PRINCIPAL do W90, no mesmo canal. O tipo de uma escova so entra com o campo funcao{} dizendo onde o fabricante declarou: no titulo, no contraste do catalogo daquele modelo, ou no canal de manutencao. Sem nenhum dos tres, o registro NAO nasce — foi o que aconteceu com a escova do W90 em 13/09/2026."
+ ],
+ "regra_de_divergencia": {
+  "compatibilidade": "Vale o conjunto MAIS ESTREITO, e as duas declaracoes sao publicadas com suas datas.",
+  "por_que": "A assimetria de custo decide a direcao do arredondamento, nunca a media e nunca o gosto de quem grava (secao 10 do ARQUIPELAGO.md). Aqui o erro caro e o do lado largo: faz alguem comprar peca que nao encaixa. E o OPOSTO do banco de especies da Aquametria, que resolve pelo maior porque la errar para cima so da ao peixe mais espaco do que precisa.",
+  "especificacao_de_aparelho": "Quando dois canais do fabricante declaram numeros diferentes para o mesmo modelo, vale o canal de nivel mais alto na escada_de_fontes e o outro fica registrado em divergencias[]. EMPATE DE NIVEL (inclusive duas declaracoes do MESMO canal, que foi o caso do PRA500): o campo grava o valor do lado em que ERRAR DOI MENOS, conforme o principio da faixa, e resolucao explica qual e o erro caro. As DUAS declaracoes vao para a tela com atribuicao — a divergencia e conteudo, e e exatamente o que nenhum anuncio de marketplace mostra. Escolher pela media continua proibido.",
+  "recomendacao_editorial": "Nunca resolve. Publica o desacordo com o nome de quem recomenda cada numero."
+ },
+ "escada_de_fontes": {
+  "descricao": "Nivel de confianca de uma origem. Em conflito, o nivel mais alto vence e o outro fica registrado. Dentro do mesmo nivel, ninguem vence: o campo vira conflito.",
+  "niveis": [
+   {
+    "nivel": 1,
+    "origem": "medicao-propria",
+    "na_tela": {
+     "rotulo": "medição da Robometria",
+     "ressalva": null,
+     "quem_declara": "pela Robometria"
+    },
+    "o_que_pode_sustentar": "desempenho real (sucao medida, autonomia medida, area coberta medida). E a unica origem que poderia publicar desempenho.",
+    "existe_hoje": false
+   },
+   {
+    "nivel": 2,
+    "origem": "manual-fabricante",
+    "na_tela": {
+     "rotulo": "manual do fabricante",
+     "ressalva": null,
+     "quem_declara": "pelo fabricante"
+    },
+    "o_que_pode_sustentar": "qualquer campo tecnico declarado, e vida util de peca. Exige manual, lamina ou pagina oficial LIDA direto NO ENDERECO DO FABRICANTE. Documento do fabricante guardado por terceiro, ou colhido por busca sem leitura, NAO e nivel 2 — e nivel 3.",
+    "existe_hoje": false,
+    "observacao": "Bloqueado hoje: o egresso desta nuvem barra multilaser.com.br, suporte.multilaser.com.br, lamina.multilaser.com.br, arquivos.multilaser.com.br, mi.com, wap.ind.br, mais.conteudo.wap.ind.br e manuals.plus (remedido em 11/09/2026: 000). A releitura na fonte primaria continua sendo coleta em aberto — e trabalho a fazer, nao dependencia humana. Em 11/09/2026 as quatro fontes que se declaravam nivel 2 desceram para 3 pela regra do elo mais fraco, e a ilha voltou a nao ter nivel 2 nenhum."
+   },
+   {
+    "nivel": 3,
+    "origem": "fabricante-via-busca",
+    "na_tela": {
+     "rotulo": "página do fabricante",
+     "ressalva": "a confirmar no manual",
+     "quem_declara": "pelo fabricante"
+    },
+    "o_que_pode_sustentar": "campo tecnico e categoria atribuidos ao fabricante, colhidos por busca e NAO lidos na fonte primaria — tanto faz se a pagina fica no dominio do fabricante ou se e um documento dele guardado por terceiro. Vai para a tela com 'a confirmar no manual'.",
+    "existe_hoje": true,
+    "observacao": "E o nivel de quase tudo que este banco tem hoje. A Aquametria ja registrou um caso de busca restrita devolver numero errado com atribuicao certa — por isso cada campo carrega canal_de_coleta. Desde 11/09/2026 este degrau tambem recebe o manual de fabricante em custodia de terceiro: o texto e do fabricante, a guarda e a leitura nao sao."
+   },
+   {
+    "nivel": 4,
+    "origem": "varejo-oficial-da-marca",
+    "na_tela": {
+     "rotulo": "loja oficial da marca",
+     "ressalva": "confira a embalagem",
+     "quem_declara": "pela loja oficial da marca"
+    },
+    "o_que_pode_sustentar": "campo tecnico transcrito pela loja oficial da propria marca no Brasil. Vai para a tela com 'confira a embalagem'.",
+    "existe_hoje": true
+   },
+   {
+    "nivel": 5,
+    "origem": "varejo-especializado",
+    "na_tela": {
+     "rotulo": "varejista especializado",
+     "ressalva": "confira a embalagem",
+     "quem_declara": "por varejista especializado"
+    },
+    "o_que_pode_sustentar": "campo tecnico transcrito por varejista ou assistencia especializada.",
+    "existe_hoje": false
+   },
+   {
+    "nivel": 6,
+    "origem": "marketplace-anuncio",
+    "na_tela": {
+     "rotulo": "anúncio de marketplace",
+     "ressalva": "anúncio não é especificação",
+     "quem_declara": "em anúncio de marketplace"
+    },
+    "o_que_pode_sustentar": "APENAS a existencia do item e o selo declarada_terceiro. NUNCA sustenta especificacao de aparelho nem compatibilidade escrita como 'serve'.",
+    "existe_hoje": true,
+    "observacao": "E o que ocupa a primeira pagina da consulta-alvo da R1 hoje: copy de anuncio, sem fonte e sem data. E exatamente o que esta ilha existe para substituir."
+   },
+   {
+    "nivel": 7,
+    "origem": "editorial",
+    "na_tela": {
+     "rotulo": "publicação editorial",
+     "ressalva": "é recomendação publicada, não especificação",
+     "quem_declara": "por veículo editorial"
+    },
+    "o_que_pode_sustentar": "recomendacao de faixa (quanto Pa uma casa precisa), sempre rotulada como opiniao publicada e sempre com o nome de quem publica. NUNCA sustenta especificacao de aparelho nem vida util contra o manual.",
+    "existe_hoje": true
+   }
   ],
-  "principios": [
-    "PROCEDENCIA POR CAMPO, NAO POR REGISTRO. Um modelo costuma ter a autonomia da pagina oficial e a categoria do titulo de outra pagina do mesmo fabricante. Cada campo tecnico e um objeto {valor, fonte, declarado_como} e aponta para a sua propria fonte.",
-    "DECLARADO NAO E MEDIDO. Todo campo de fabricante e declaracao. O banco nunca converte declaracao em desempenho, e nao existe nenhuma medicao propria nesta ilha.",
-    "NULL E RESPOSTA, NAO LACUNA. Quando o fabricante nao declara um numero, o campo e null com motivo. A Xiaomi nao declara cobertura em m2 do S20: esse null e a evidencia do vacuo que a R2 ocupa, e vai para a tela com essas palavras.",
-    "CATEGORIA E PORTAO. Modelo so entra no banco como robo se o proprio fabricante o chamar de aspirador robo. Aspirador vertical, de mao e 2 em 1 entram com categoria aspirador_comum e status excluido_do_banco — ficam gravados para a proxima execucao nao os recolher de novo.",
-    "COMPATIBILIDADE NAO SE HERDA. Ela e declarada por CODIGO DE PECA, nunca deduzida do modelo, da linha ou da marca. Uma peca da mesma familia pode cobrir menos modelos que outra.",
-    "VARIANTE DE HARDWARE PARTE O CODIGO DE MODELO. Achado desta coleta: o HO041 tem bateria versao A (PR10127) e versao B (PR8116). Saber o codigo do modelo NAO basta para acertar a peca — por isso variante_de_hardware e campo de primeira classe, e a R1 avisa quando existe mais de uma.",
-    "DIVERGENCIA E CONTEUDO. Quando duas fontes discordam, o registro publica as duas declaracoes com as duas datas. Nunca a media.",
-    "PRECO NAO E CAMPO DE PRODUTO. E serie temporal (entidade COTACAO) e nunca entra em criterio tecnico de recomendacao.",
-    "IMAGEM AUSENTE NAO ELIMINA O REGISTRO. Produto sem imagem aparece na vitrine com espaco reservado neutro e o nome em destaque. Perder a recomendacao tecnica certa por falta de foto e trocar o certo pelo bonito (secao 6 do ARQUIPELAGO.md).",
-    "CONSUMIVEL VENDIDO EM KIT E UM REGISTRO, NAO TRES. Achado do Bloco 3c: a Electrolux nao vende filtro de robo avulso — vende o Kit Performance, que traz filtro HEPA, pano de microfibra e escovas de canto juntos. Sem o tipo 'kit' a R1 nao consegue responder 'qual filtro serve no meu ERB10', que e exatamente a consulta-alvo. O kit declara sua composicao em composicao[], e cada item aponta um tipo do vocabulario.",
-    "CODIGO DE PECA NEM SEMPRE EXISTE, E ISSO SE ESCREVE. A Multi publica codigo proprio (PR10205); a Electrolux publica varias pecas so pelo titulo; a Positivo identifica pelo SKU do canal oficial. Por isso codigo_fabricante aceita null COM motivo_sem_codigo, pela mesma regra que ja vale para os numeros: null e resposta, nao lacuna.",
-    "FAIXA E TOLERANCIA DECLARADAS RESOLVEM PARA O LADO EM QUE ERRAR DOI MENOS, NUNCA PARA O MEIO. Achado da segunda leva do Bloco 3c: o fabricante costuma declarar faixa ('carrega de 5 a 6 horas') ou tolerancia ('130 minutos +-10%') em vez de numero. A media e a unica saida proibida (secao 10 do ARQUIPELAGO.md). O campo grava o extremo conservador e declarado_como carrega a faixa INTEIRA, para a pagina citar a faixa e nao o numero escolhido. Por campo: succao em Pa resolve para BAIXO (errar para cima faz recomendar robo fraco demais); autonomia em minutos resolve para BAIXO (errar para cima faz prometer que ele termina a casa); tempo de recarga resolve para CIMA (errar para baixo faz a R2 prometer mais ciclos por dia do que o aparelho entrega).",
-    "DIVERGENCIA DE ESPECIFICACAO NAO E SO DE PECA. Ate a versao 2 so PECA tinha divergencias[], porque a divergencia conhecida era de compatibilidade. A segunda leva do Bloco 3c encontrou o mesmo problema em MODELO_ROBO — o PRA500 declara 1600 Pa na ficha e 2000 Pa no texto de venda da MESMA pagina — entao divergencias[] e resolucao passam a existir tambem em MODELO_ROBO, com a mesma regra: lista vazia e afirmacao, e divergencia sem resolucao escrita e a ilha empurrando a duvida para o visitante."
+  "o_nivel_e_o_elo_mais_fraco": {
+   "decidido_em": "2026-09-11",
+   "a_pergunta": "Manual do fabricante hospedado por terceiro, colhido por busca, e nivel 2?",
+   "resposta": "NAO. E nivel 3.",
+   "por_que": "Uma origem tem tres elos — QUEM ESCREVEU o documento, QUEM O GUARDA e COMO NOS O LEMOS —, e o nivel e o do elo MAIS FRACO, nunca o do mais forte. O manual do ERB10/ERB11/ERB20 e escrito pela Electrolux (elo forte), mas esta guardado por manuals.plus (terceiro, que pode ter arquivado uma revisao velha ou alterado o texto sem que ninguem note) e chegou aqui por busca, sem leitura direta: o WebFetch devolveu EGRESS_BLOCKED. Dois dos tres elos sao fracos.",
+   "a_assimetria_de_custo_que_decide": "Pela secao 10 do ARQUIPELAGO.md, quem decide a direcao e o lado em que errar dói menos. Errar para BAIXO custa uma frase mais fraca na tela ('a confirmar no manual'). Errar para CIMA custa a pagina de metodologia declarar um rigor que a ilha nao tem — e a metodologia e justamente a pagina cujo unico produto e o rigor. Numa ilha que existe para substituir copy de anuncio por procedencia, inflar o proprio nivel de fonte e o defeito mais caro possivel.",
+   "o_que_destrava_o_nivel_2": "Ler o documento na fonte primaria, no endereco do fabricante. No dia em que a rede abrir (item (c) do bloco 3c do PROMPT.md), a releitura sobe o campo de 3 para 2 sem que nada mais mude: e por isso que a fonte guarda url, canal_de_coleta e verificado_em separados.",
+   "medido_em_11_09_2026": "As QUATRO unicas fontes de nivel 2 que o banco tinha eram a MESMA entrada de manuals.plus, e nenhuma outra fonte do banco fica em dominio de fabricante sem ser nivel 3. Ou seja: a contradicao nao era um registro solto — nivel 2, neste banco, era inteiro custodia de terceiro."
+  },
+  "onde_moram_as_fontes": {
+   "escrito_em": "2026-09-11",
+   "por_que": "A escada vale para TODA origem da ilha, e elas nao moram todas no mesmo arquivo: pecas.json e modelos-robo.json guardam fontes{} com nivel explicito; constantes.json guarda recomendacao de faixa e especificacao com um campo 'tipo', sem nivel. Quem contar so os dois primeiros conclui que a ilha nao tem fonte editorial — e tem seis, usadas pela R2 em toda resposta. Medicao que le metade das origens e pior que o numero digitado que ela substitui.",
+   "arquivos_com_fontes_de_nivel_explicito": [
+    "dados/pecas.json",
+    "dados/modelos-robo.json"
+   ],
+   "tipo_de_constante_para_nivel": {
+    "recomendacao_editorial": 7,
+    "fabricante": 3,
+    "derivada": null,
+    "pendente": null
+   },
+   "por_que_fabricante_e_3_e_nao_2": "Toda constante de tipo 'fabricante' deste banco foi colhida por busca restrita ao dominio, sem leitura direta — o proprio canal_de_coleta de cada uma diz isso. Pela regra do elo mais fraco, busca sem leitura e nivel 3.",
+   "so_conta_o_publicavel": "A contagem e de registro e constante com status publicavel. A coluna fala do que a ilha publica, nao do que ela guarda."
+  },
+  "o_degrau_chega_a_TELA_pelo_na_tela": {
+   "escrito_em": "2026-09-11",
+   "por_que": "A escada dizia o degrau em prosa ('Vai para a tela com \"a confirmar no manual\"') e quem imprimia o degrau na tela era uma tabela DIGITADA dentro de ferramentas/gerar-r1.py. Duas copias do mesmo fato, cada uma certa no seu lugar e nenhuma capaz de corrigir a outra — a mesma forma do defeito dos dois mapas de nome da casca 1.2.0 e da coluna 'Temos hoje' digitada na metodologia. Agora o rotulo, a ressalva e a atribuicao moram AQUI, no mesmo degrau que declara o nivel, e os geradores das duas ferramentas leem deste arquivo.",
+   "os_tres_campos": {
+    "rotulo": "como o degrau e NOMEADO na linha de procedencia do cartao ('Como sabemos — pagina do fabricante').",
+    "ressalva": "o degrau dito com todas as letras, no lugar onde o leitor decide se compra. Null so nos niveis 1 e 2, os unicos em que nada fica por confirmar; do 3 para baixo e obrigatoria.",
+    "quem_declara": "a atribuicao usada DENTRO da frase do cartao, depois de 'declarados'. Ela existe porque o nivel e o elo mais fraco e a AUTORIA e outro elo: nivel 3 continua sendo 'pelo fabricante' (a autoria e dele) e leva a ressalva; nivel 4 e 'pela loja oficial da marca', porque quem transcreveu foi a loja. Escrever 'pelo fabricante' para os dois seria emprestar a autoridade do fabricante a quem so transcreveu."
+   },
+   "quem_cobra": "ferramentas/validar-banco.py (todo degrau declara os tres campos, e a ressalva e nula exatamente nos niveis 1 e 2) e ferramentas/teste-r2.php, que le ESTE arquivo como regua propria e confere o que o cartao serve."
+  }
+ },
+ "vocabularios": {
+  "categoria": [
+   "robo",
+   "aspirador_comum",
+   "a_confirmar"
   ],
-  "regra_de_divergencia": {
-    "compatibilidade": "Vale o conjunto MAIS ESTREITO, e as duas declaracoes sao publicadas com suas datas.",
-    "por_que": "A assimetria de custo decide a direcao do arredondamento, nunca a media e nunca o gosto de quem grava (secao 10 do ARQUIPELAGO.md). Aqui o erro caro e o do lado largo: faz alguem comprar peca que nao encaixa. E o OPOSTO do banco de especies da Aquametria, que resolve pelo maior porque la errar para cima so da ao peixe mais espaco do que precisa.",
-    "especificacao_de_aparelho": "Quando dois canais do fabricante declaram numeros diferentes para o mesmo modelo, vale o canal de nivel mais alto na escada_de_fontes e o outro fica registrado em divergencias[]. EMPATE DE NIVEL (inclusive duas declaracoes do MESMO canal, que foi o caso do PRA500): o campo grava o valor do lado em que ERRAR DOI MENOS, conforme o principio da faixa, e resolucao explica qual e o erro caro. As DUAS declaracoes vao para a tela com atribuicao — a divergencia e conteudo, e e exatamente o que nenhum anuncio de marketplace mostra. Escolher pela media continua proibido.",
-    "recomendacao_editorial": "Nunca resolve. Publica o desacordo com o nome de quem recomenda cada numero."
-  },
-  "escada_de_fontes": {
-    "descricao": "Nivel de confianca de uma origem. Em conflito, o nivel mais alto vence e o outro fica registrado. Dentro do mesmo nivel, ninguem vence: o campo vira conflito.",
-    "niveis": [
-      {
-        "nivel": 1,
-        "origem": "medicao-propria",
-        "na_tela": {
-          "rotulo": "medição da Robometria",
-          "ressalva": null,
-          "quem_declara": "pela Robometria"
-        },
-        "o_que_pode_sustentar": "desempenho real (sucao medida, autonomia medida, area coberta medida). E a unica origem que poderia publicar desempenho.",
-        "existe_hoje": false
-      },
-      {
-        "nivel": 2,
-        "origem": "manual-fabricante",
-        "na_tela": {
-          "rotulo": "manual do fabricante",
-          "ressalva": null,
-          "quem_declara": "pelo fabricante"
-        },
-        "o_que_pode_sustentar": "qualquer campo tecnico declarado, e vida util de peca. Exige manual, lamina ou pagina oficial LIDA direto NO ENDERECO DO FABRICANTE. Documento do fabricante guardado por terceiro, ou colhido por busca sem leitura, NAO e nivel 2 — e nivel 3.",
-        "existe_hoje": false,
-        "observacao": "Bloqueado hoje: o egresso desta nuvem barra multilaser.com.br, suporte.multilaser.com.br, lamina.multilaser.com.br, arquivos.multilaser.com.br, mi.com, wap.ind.br, mais.conteudo.wap.ind.br e manuals.plus (remedido em 11/09/2026: 000). A releitura na fonte primaria continua sendo coleta em aberto — e trabalho a fazer, nao dependencia humana. Em 11/09/2026 as quatro fontes que se declaravam nivel 2 desceram para 3 pela regra do elo mais fraco, e a ilha voltou a nao ter nivel 2 nenhum."
-      },
-      {
-        "nivel": 3,
-        "origem": "fabricante-via-busca",
-        "na_tela": {
-          "rotulo": "página do fabricante",
-          "ressalva": "a confirmar no manual",
-          "quem_declara": "pelo fabricante"
-        },
-        "o_que_pode_sustentar": "campo tecnico e categoria atribuidos ao fabricante, colhidos por busca e NAO lidos na fonte primaria — tanto faz se a pagina fica no dominio do fabricante ou se e um documento dele guardado por terceiro. Vai para a tela com 'a confirmar no manual'.",
-        "existe_hoje": true,
-        "observacao": "E o nivel de quase tudo que este banco tem hoje. A Aquametria ja registrou um caso de busca restrita devolver numero errado com atribuicao certa — por isso cada campo carrega canal_de_coleta. Desde 11/09/2026 este degrau tambem recebe o manual de fabricante em custodia de terceiro: o texto e do fabricante, a guarda e a leitura nao sao."
-      },
-      {
-        "nivel": 4,
-        "origem": "varejo-oficial-da-marca",
-        "na_tela": {
-          "rotulo": "loja oficial da marca",
-          "ressalva": "confira a embalagem",
-          "quem_declara": "pela loja oficial da marca"
-        },
-        "o_que_pode_sustentar": "campo tecnico transcrito pela loja oficial da propria marca no Brasil. Vai para a tela com 'confira a embalagem'.",
-        "existe_hoje": true
-      },
-      {
-        "nivel": 5,
-        "origem": "varejo-especializado",
-        "na_tela": {
-          "rotulo": "varejista especializado",
-          "ressalva": "confira a embalagem",
-          "quem_declara": "por varejista especializado"
-        },
-        "o_que_pode_sustentar": "campo tecnico transcrito por varejista ou assistencia especializada.",
-        "existe_hoje": false
-      },
-      {
-        "nivel": 6,
-        "origem": "marketplace-anuncio",
-        "na_tela": {
-          "rotulo": "anúncio de marketplace",
-          "ressalva": "anúncio não é especificação",
-          "quem_declara": "em anúncio de marketplace"
-        },
-        "o_que_pode_sustentar": "APENAS a existencia do item e o selo declarada_terceiro. NUNCA sustenta especificacao de aparelho nem compatibilidade escrita como 'serve'.",
-        "existe_hoje": true,
-        "observacao": "E o que ocupa a primeira pagina da consulta-alvo da R1 hoje: copy de anuncio, sem fonte e sem data. E exatamente o que esta ilha existe para substituir."
-      },
-      {
-        "nivel": 7,
-        "origem": "editorial",
-        "na_tela": {
-          "rotulo": "publicação editorial",
-          "ressalva": "é recomendação publicada, não especificação",
-          "quem_declara": "por veículo editorial"
-        },
-        "o_que_pode_sustentar": "recomendacao de faixa (quanto Pa uma casa precisa), sempre rotulada como opiniao publicada e sempre com o nome de quem publica. NUNCA sustenta especificacao de aparelho nem vida util contra o manual.",
-        "existe_hoje": true
-      }
-    ],
-    "o_nivel_e_o_elo_mais_fraco": {
-      "decidido_em": "2026-09-11",
-      "a_pergunta": "Manual do fabricante hospedado por terceiro, colhido por busca, e nivel 2?",
-      "resposta": "NAO. E nivel 3.",
-      "por_que": "Uma origem tem tres elos — QUEM ESCREVEU o documento, QUEM O GUARDA e COMO NOS O LEMOS —, e o nivel e o do elo MAIS FRACO, nunca o do mais forte. O manual do ERB10/ERB11/ERB20 e escrito pela Electrolux (elo forte), mas esta guardado por manuals.plus (terceiro, que pode ter arquivado uma revisao velha ou alterado o texto sem que ninguem note) e chegou aqui por busca, sem leitura direta: o WebFetch devolveu EGRESS_BLOCKED. Dois dos tres elos sao fracos.",
-      "a_assimetria_de_custo_que_decide": "Pela secao 10 do ARQUIPELAGO.md, quem decide a direcao e o lado em que errar dói menos. Errar para BAIXO custa uma frase mais fraca na tela ('a confirmar no manual'). Errar para CIMA custa a pagina de metodologia declarar um rigor que a ilha nao tem — e a metodologia e justamente a pagina cujo unico produto e o rigor. Numa ilha que existe para substituir copy de anuncio por procedencia, inflar o proprio nivel de fonte e o defeito mais caro possivel.",
-      "o_que_destrava_o_nivel_2": "Ler o documento na fonte primaria, no endereco do fabricante. No dia em que a rede abrir (item (c) do bloco 3c do PROMPT.md), a releitura sobe o campo de 3 para 2 sem que nada mais mude: e por isso que a fonte guarda url, canal_de_coleta e verificado_em separados.",
-      "medido_em_11_09_2026": "As QUATRO unicas fontes de nivel 2 que o banco tinha eram a MESMA entrada de manuals.plus, e nenhuma outra fonte do banco fica em dominio de fabricante sem ser nivel 3. Ou seja: a contradicao nao era um registro solto — nivel 2, neste banco, era inteiro custodia de terceiro."
+  "status_do_registro": [
+   "publicavel",
+   "nao_publicavel",
+   "excluido_do_banco"
+  ],
+  "selo_de_compatibilidade": [
+   "declarada_fabricante",
+   "declarada_terceiro",
+   "nao_declarada"
+  ],
+  "tipo_de_peca": [
+   "filtro",
+   "escova lateral",
+   "escova principal",
+   "mop",
+   "bateria",
+   "reservatorio",
+   "kit"
+  ],
+  "voltagem": [
+   "127",
+   "220",
+   "bivolt",
+   null
+  ],
+  "navegacao": [
+   "aleatoria",
+   "giroscopio",
+   "laser",
+   "camera",
+   null
+  ],
+  "plataforma_de_afiliado": [
+   "shopee",
+   null
+  ],
+  "funcao_declarada_por": [
+   "titulo",
+   "contraste-no-catalogo",
+   "canal-de-manutencao"
+  ]
+ },
+ "campo_de_valor": {
+  "descricao": "Forma de TODO campo tecnico do banco. Um numero solto e defeito: sem fonte ele nao pode ir para a tela, porque a frase publicada tem que carregar a procedencia (secao 5 do ARQUIPELAGO.md).",
+  "forma": {
+   "valor": "numero, texto, booleano ou null",
+   "unidade": "unidade do valor, quando houver",
+   "fonte": "id de uma entrada de fontes{} deste mesmo registro. Obrigatorio quando valor nao e null",
+   "declarado_como": "transcricao do texto exato da fonte, para a frase publicada poder citar em vez de parafrasear",
+   "motivo_do_null": "obrigatorio quando valor e null. 'o fabricante nao declara' e uma resposta legitima e vai para a tela com essas palavras"
+  }
+ },
+ "entidades": {
+  "MARCA": {
+   "arquivo": "dados/marcas.json",
+   "chave": "id",
+   "campos": {
+    "id": {
+     "tipo": "slug",
+     "obrigatorio": true
     },
-    "onde_moram_as_fontes": {
-      "escrito_em": "2026-09-11",
-      "por_que": "A escada vale para TODA origem da ilha, e elas nao moram todas no mesmo arquivo: pecas.json e modelos-robo.json guardam fontes{} com nivel explicito; constantes.json guarda recomendacao de faixa e especificacao com um campo 'tipo', sem nivel. Quem contar so os dois primeiros conclui que a ilha nao tem fonte editorial — e tem seis, usadas pela R2 em toda resposta. Medicao que le metade das origens e pior que o numero digitado que ela substitui.",
-      "arquivos_com_fontes_de_nivel_explicito": [
-        "dados/pecas.json",
-        "dados/modelos-robo.json"
-      ],
-      "tipo_de_constante_para_nivel": {
-        "recomendacao_editorial": 7,
-        "fabricante": 3,
-        "derivada": null,
-        "pendente": null
-      },
-      "por_que_fabricante_e_3_e_nao_2": "Toda constante de tipo 'fabricante' deste banco foi colhida por busca restrita ao dominio, sem leitura direta — o proprio canal_de_coleta de cada uma diz isso. Pela regra do elo mais fraco, busca sem leitura e nivel 3.",
-      "so_conta_o_publicavel": "A contagem e de registro e constante com status publicavel. A coluna fala do que a ilha publica, nao do que ela guarda."
+    "nome": {
+     "tipo": "texto",
+     "obrigatorio": true
     },
-    "o_degrau_chega_a_TELA_pelo_na_tela": {
-      "escrito_em": "2026-09-11",
-      "por_que": "A escada dizia o degrau em prosa ('Vai para a tela com \"a confirmar no manual\"') e quem imprimia o degrau na tela era uma tabela DIGITADA dentro de ferramentas/gerar-r1.py. Duas copias do mesmo fato, cada uma certa no seu lugar e nenhuma capaz de corrigir a outra — a mesma forma do defeito dos dois mapas de nome da casca 1.2.0 e da coluna 'Temos hoje' digitada na metodologia. Agora o rotulo, a ressalva e a atribuicao moram AQUI, no mesmo degrau que declara o nivel, e os geradores das duas ferramentas leem deste arquivo.",
-      "os_tres_campos": {
-        "rotulo": "como o degrau e NOMEADO na linha de procedencia do cartao ('Como sabemos — pagina do fabricante').",
-        "ressalva": "o degrau dito com todas as letras, no lugar onde o leitor decide se compra. Null so nos niveis 1 e 2, os unicos em que nada fica por confirmar; do 3 para baixo e obrigatoria.",
-        "quem_declara": "a atribuicao usada DENTRO da frase do cartao, depois de 'declarados'. Ela existe porque o nivel e o elo mais fraco e a AUTORIA e outro elo: nivel 3 continua sendo 'pelo fabricante' (a autoria e dele) e leva a ressalva; nivel 4 e 'pela loja oficial da marca', porque quem transcreveu foi a loja. Escrever 'pelo fabricante' para os dois seria emprestar a autoridade do fabricante a quem so transcreveu."
-      },
-      "quem_cobra": "ferramentas/validar-banco.py (todo degrau declara os tres campos, e a ressalva e nula exatamente nos niveis 1 e 2) e ferramentas/teste-r2.php, que le ESTE arquivo como regua propria e confere o que o cartao serve."
+    "site_oficial": {
+     "tipo": "url",
+     "obrigatorio": true
+    },
+    "canal_de_pecas": {
+     "tipo": "url",
+     "obrigatorio": false,
+     "descricao": "onde o fabricante publica as pecas de reposicao. E a fonte primaria da R1"
+    },
+    "sameAs": {
+     "tipo": "lista de url",
+     "obrigatorio": true,
+     "descricao": "alimenta o JSON-LD Organization (secao 5 do ARQUIPELAGO.md)"
+    },
+    "observacao": {
+     "tipo": "texto",
+     "obrigatorio": false
+    },
+    "verificado_em": {
+     "tipo": "data",
+     "obrigatorio": true
     }
+   }
   },
-  "vocabularios": {
-    "categoria": [
-      "robo",
-      "aspirador_comum",
-      "a_confirmar"
-    ],
-    "status_do_registro": [
-      "publicavel",
-      "nao_publicavel",
-      "excluido_do_banco"
-    ],
-    "selo_de_compatibilidade": [
-      "declarada_fabricante",
-      "declarada_terceiro",
-      "nao_declarada"
-    ],
-    "tipo_de_peca": [
-      "filtro",
-      "escova lateral",
-      "escova principal",
-      "mop",
-      "bateria",
-      "reservatorio",
-      "kit"
-    ],
-    "voltagem": [
-      "127",
-      "220",
-      "bivolt",
-      null
-    ],
-    "navegacao": [
-      "aleatoria",
-      "giroscopio",
-      "laser",
-      "camera",
-      null
-    ],
-    "plataforma_de_afiliado": [
-      "shopee",
-      null
-    ]
-  },
-  "campo_de_valor": {
-    "descricao": "Forma de TODO campo tecnico do banco. Um numero solto e defeito: sem fonte ele nao pode ir para a tela, porque a frase publicada tem que carregar a procedencia (secao 5 do ARQUIPELAGO.md).",
-    "forma": {
-      "valor": "numero, texto, booleano ou null",
-      "unidade": "unidade do valor, quando houver",
-      "fonte": "id de uma entrada de fontes{} deste mesmo registro. Obrigatorio quando valor nao e null",
-      "declarado_como": "transcricao do texto exato da fonte, para a frase publicada poder citar em vez de parafrasear",
-      "motivo_do_null": "obrigatorio quando valor e null. 'o fabricante nao declara' e uma resposta legitima e vai para a tela com essas palavras"
-    }
-  },
-  "entidades": {
-    "MARCA": {
-      "arquivo": "dados/marcas.json",
-      "chave": "id",
-      "campos": {
-        "id": {
-          "tipo": "slug",
-          "obrigatorio": true
-        },
-        "nome": {
-          "tipo": "texto",
-          "obrigatorio": true
-        },
-        "site_oficial": {
-          "tipo": "url",
-          "obrigatorio": true
-        },
-        "canal_de_pecas": {
-          "tipo": "url",
-          "obrigatorio": false,
-          "descricao": "onde o fabricante publica as pecas de reposicao. E a fonte primaria da R1"
-        },
-        "sameAs": {
-          "tipo": "lista de url",
-          "obrigatorio": true,
-          "descricao": "alimenta o JSON-LD Organization (secao 5 do ARQUIPELAGO.md)"
-        },
-        "observacao": {
-          "tipo": "texto",
-          "obrigatorio": false
-        },
-        "verificado_em": {
-          "tipo": "data",
-          "obrigatorio": true
-        }
-      }
+  "MODELO_ROBO": {
+   "arquivo": "dados/modelos-robo.json",
+   "chave": "id",
+   "campos": {
+    "id": {
+     "tipo": "slug",
+     "obrigatorio": true,
+     "formato": "<marca>-<codigo_fabricante em minusculas>"
     },
-    "MODELO_ROBO": {
-      "arquivo": "dados/modelos-robo.json",
-      "chave": "id",
-      "campos": {
-        "id": {
-          "tipo": "slug",
-          "obrigatorio": true,
-          "formato": "<marca>-<codigo_fabricante em minusculas>"
-        },
-        "marca": {
-          "tipo": "ref MARCA.id",
-          "obrigatorio": true
-        },
-        "linha": {
-          "tipo": "texto",
-          "obrigatorio": false,
-          "descricao": "Mars, Moon, Duster, ObaDuster, Midnight, Acqua Solution"
-        },
-        "codigo_fabricante": {
-          "tipo": "texto",
-          "obrigatorio": true,
-          "descricao": "HO041, OB010, PRA800, S20, ERB44. E a chave que a pessoa digita e a que a R1 casa"
-        },
-        "nome_comercial": {
-          "tipo": "texto",
-          "obrigatorio": true
-        },
-        "categoria": {
-          "tipo": "vocabulario categoria",
-          "obrigatorio": true,
-          "descricao": "PORTAO. So categoria=robo pode ser publicavel"
-        },
-        "variantes_de_hardware": {
-          "tipo": "lista",
-          "obrigatorio": false,
-          "descricao": "quando o mesmo codigo de modelo tem revisoes com pecas diferentes. Cada item {rotulo, o_que_muda, fonte}. Lista vazia significa 'nao ha variante conhecida', NAO significa 'nao ha variante'"
-        },
-        "pa_declarado": {
-          "tipo": "campo_de_valor",
-          "unidade": "Pa",
-          "obrigatorio": true
-        },
-        "potencia_w_declarada": {
-          "tipo": "campo_de_valor",
-          "unidade": "W",
-          "obrigatorio": true,
-          "descricao": "potencia NAO e sucao. Nunca converter W em Pa: nao existe conversao e inventar uma seria dado tecnico inventado"
-        },
-        "autonomia_min_declarada": {
-          "tipo": "campo_de_valor",
-          "unidade": "min",
-          "obrigatorio": true
-        },
-        "cobertura_m2_declarada": {
-          "tipo": "campo_de_valor",
-          "unidade": "m2",
-          "obrigatorio": true,
-          "descricao": "null quando o fabricante nao declara. Alimenta a formula de CICLOS da R2; sem ele a R2 mostra so a autonomia e diz que o fabricante nao declara area"
-        },
-        "recarga_min_declarada": {
-          "tipo": "campo_de_valor",
-          "unidade": "min",
-          "obrigatorio": true
-        },
-        "retoma_apos_recarga": {
-          "tipo": "campo_de_valor",
-          "unidade": null,
-          "obrigatorio": true,
-          "descricao": "booleano declarado. Sem ele a R2 NAO publica resultado de mais de um ciclo (secao 2.2 da especificacao)"
-        },
-        "bateria_mah": {
-          "tipo": "campo_de_valor",
-          "unidade": "mAh",
-          "obrigatorio": true
-        },
-        "voltagem": {
-          "tipo": "campo_de_valor",
-          "unidade": "V",
-          "obrigatorio": true,
-          "descricao": "NUNCA chutar 127 ou 220. Sem declaracao, null com motivo"
-        },
-        "base_autoesvaziamento": {
-          "tipo": "campo_de_valor",
-          "unidade": null,
-          "obrigatorio": true
-        },
-        "navegacao": {
-          "tipo": "campo_de_valor",
-          "unidade": null,
-          "obrigatorio": false
-        },
-        "reservatorio_po_ml": {
-          "tipo": "campo_de_valor",
-          "unidade": "ml",
-          "obrigatorio": false
-        },
-        "reservatorio_agua_ml": {
-          "tipo": "campo_de_valor",
-          "unidade": "ml",
-          "obrigatorio": false
-        },
-        "divergencias": {
-          "tipo": "lista",
-          "obrigatorio": true,
-          "descricao": "um item por declaracao divergente, {campo, canal, valor_declarado, titulo_na_fonte, transcricao, url, verificado_em}. Lista vazia e AFIRMACAO ('nao encontramos declaracao divergente'); ausencia e omissao"
-        },
-        "resolucao": {
-          "tipo": "texto",
-          "obrigatorio": false,
-          "descricao": "obrigatorio quando divergencias nao esta vazia. Diz qual valor valeu e QUAL E O ERRO CARO que decidiu a direcao — nunca a media"
-        },
-        "imagem": {
-          "tipo": "imagem",
-          "obrigatorio": true
-        },
-        "afiliado": {
-          "tipo": "afiliado",
-          "obrigatorio": true
-        },
-        "fontes": {
-          "tipo": "mapa id -> fonte",
-          "obrigatorio": true
-        },
-        "status": {
-          "tipo": "vocabulario status_do_registro",
-          "obrigatorio": true
-        },
-        "motivo_do_status": {
-          "tipo": "texto",
-          "obrigatorio": false,
-          "descricao": "obrigatorio quando status nao e publicavel"
-        },
-        "verificado_em": {
-          "tipo": "data",
-          "obrigatorio": true
-        }
-      }
+    "marca": {
+     "tipo": "ref MARCA.id",
+     "obrigatorio": true
     },
-    "PECA": {
-      "arquivo": "dados/pecas.json",
-      "chave": "id",
-      "campos": {
-        "id": {
-          "tipo": "slug",
-          "obrigatorio": true,
-          "formato": "<marca>-<codigo_fabricante em minusculas>"
-        },
-        "marca": {
-          "tipo": "ref MARCA.id",
-          "obrigatorio": true
-        },
-        "codigo_fabricante": {
-          "tipo": "texto ou null",
-          "obrigatorio": false,
-          "descricao": "PR10124, KPCEL01, 11206518. E o que a pessoa procura e o que ela compra. null quando o fabricante nao publica codigo — e ai motivo_sem_codigo e obrigatorio e o registro e identificado pelo nome_na_fonte"
-        },
-        "tipo": {
-          "tipo": "vocabulario tipo_de_peca",
-          "obrigatorio": true
-        },
-        "nome_na_fonte": {
-          "tipo": "texto",
-          "obrigatorio": true,
-          "descricao": "titulo exato como o fabricante publica. E o que a frase da R1 cita"
-        },
-        "compatibilidade": {
-          "tipo": "lista",
-          "obrigatorio": true,
-          "descricao": "um item por par peca x modelo. NUNCA inferida",
-          "item": {
-            "modelo": "ref MODELO_ROBO.id, ou null quando o codigo aparece na declaracao mas o modelo ainda nao esta no banco",
-            "codigo_declarado": "o codigo como a fonte escreve",
-            "variante_de_hardware": "rotulo da variante quando a peca so serve numa delas; null quando serve em todas as conhecidas",
-            "selo": "vocabulario selo_de_compatibilidade",
-            "fonte": "id em fontes{}"
-          }
-        },
-        "divergencias": {
-          "tipo": "lista",
-          "obrigatorio": true,
-          "descricao": "lista vazia e afirmacao: 'nao encontramos declaracao divergente'. Cada item {canal, conjunto_declarado, titulo_na_fonte, url, verificado_em}"
-        },
-        "resolucao": {
-          "tipo": "texto",
-          "obrigatorio": false,
-          "descricao": "obrigatorio quando divergencias nao esta vazia. Diz qual conjunto valeu e por que — sempre o MAIS ESTREITO"
-        },
-        "vida_util_declarada": {
-          "tipo": "campo_de_valor",
-          "unidade": "meses",
-          "obrigatorio": true,
-          "descricao": "carrega a classe da fonte junto do numero: manual de fabricante e recomendacao editorial nao se misturam numa frase"
-        },
-        "imagem": {
-          "tipo": "imagem",
-          "obrigatorio": true
-        },
-        "afiliado": {
-          "tipo": "afiliado",
-          "obrigatorio": true
-        },
-        "fontes": {
-          "tipo": "mapa id -> fonte",
-          "obrigatorio": true
-        },
-        "status": {
-          "tipo": "vocabulario status_do_registro",
-          "obrigatorio": true
-        },
-        "motivo_do_status": {
-          "tipo": "texto",
-          "obrigatorio": false
-        },
-        "verificado_em": {
-          "tipo": "data",
-          "obrigatorio": true
-        },
-        "motivo_sem_codigo": {
-          "tipo": "texto",
-          "obrigatorio": false,
-          "descricao": "obrigatorio quando codigo_fabricante e null"
-        },
-        "composicao": {
-          "tipo": "lista",
-          "obrigatorio": false,
-          "descricao": "obrigatorio quando tipo = kit. Um item por peca dentro do kit, {tipo, quantidade, descricao_na_fonte}. tipo sai do vocabulario tipo_de_peca e nunca e 'kit'",
-          "por_que": "sem isto o kit e uma caixa fechada e a R1 nao pode dizer 'o filtro HEPA que serve no seu ERB10 vem dentro do Kit Performance KPCEL01'"
-        }
-      }
+    "linha": {
+     "tipo": "texto",
+     "obrigatorio": false,
+     "descricao": "Mars, Moon, Duster, ObaDuster, Midnight, Acqua Solution"
     },
-    "COTACAO": {
-      "arquivo": "dados/cotacoes.json",
-      "chave": [
-        "item",
-        "coletado_em"
-      ],
-      "registros_hoje": 0,
-      "descricao": "Serie temporal de preco. Preco NUNCA e campo de produto e NUNCA entra em criterio tecnico de recomendacao. A vitrine mostra faixa com a data da coleta, nunca preco cravado como atual (secao 7 do ARQUIPELAGO.md).",
-      "campos": {
-        "item": {
-          "tipo": "ref MODELO_ROBO.id ou PECA.id",
-          "obrigatorio": true
-        },
-        "loja": {
-          "tipo": "texto",
-          "obrigatorio": true
-        },
-        "url": {
-          "tipo": "url",
-          "obrigatorio": true
-        },
-        "preco_brl": {
-          "tipo": "numero",
-          "obrigatorio": true
-        },
-        "coletado_em": {
-          "tipo": "data",
-          "obrigatorio": true
-        }
-      }
-    }
-  },
-  "tipos_compostos": {
+    "codigo_fabricante": {
+     "tipo": "texto",
+     "obrigatorio": true,
+     "descricao": "HO041, OB010, PRA800, S20, ERB44. E a chave que a pessoa digita e a que a R1 casa"
+    },
+    "nome_comercial": {
+     "tipo": "texto",
+     "obrigatorio": true
+    },
+    "categoria": {
+     "tipo": "vocabulario categoria",
+     "obrigatorio": true,
+     "descricao": "PORTAO. So categoria=robo pode ser publicavel"
+    },
+    "variantes_de_hardware": {
+     "tipo": "lista",
+     "obrigatorio": false,
+     "descricao": "quando o mesmo codigo de modelo tem revisoes com pecas diferentes. Cada item {rotulo, o_que_muda, fonte}. Lista vazia significa 'nao ha variante conhecida', NAO significa 'nao ha variante'"
+    },
+    "pa_declarado": {
+     "tipo": "campo_de_valor",
+     "unidade": "Pa",
+     "obrigatorio": true
+    },
+    "potencia_w_declarada": {
+     "tipo": "campo_de_valor",
+     "unidade": "W",
+     "obrigatorio": true,
+     "descricao": "potencia NAO e sucao. Nunca converter W em Pa: nao existe conversao e inventar uma seria dado tecnico inventado"
+    },
+    "autonomia_min_declarada": {
+     "tipo": "campo_de_valor",
+     "unidade": "min",
+     "obrigatorio": true
+    },
+    "cobertura_m2_declarada": {
+     "tipo": "campo_de_valor",
+     "unidade": "m2",
+     "obrigatorio": true,
+     "descricao": "null quando o fabricante nao declara. Alimenta a formula de CICLOS da R2; sem ele a R2 mostra so a autonomia e diz que o fabricante nao declara area"
+    },
+    "recarga_min_declarada": {
+     "tipo": "campo_de_valor",
+     "unidade": "min",
+     "obrigatorio": true
+    },
+    "retoma_apos_recarga": {
+     "tipo": "campo_de_valor",
+     "unidade": null,
+     "obrigatorio": true,
+     "descricao": "booleano declarado. Sem ele a R2 NAO publica resultado de mais de um ciclo (secao 2.2 da especificacao)"
+    },
+    "bateria_mah": {
+     "tipo": "campo_de_valor",
+     "unidade": "mAh",
+     "obrigatorio": true
+    },
+    "voltagem": {
+     "tipo": "campo_de_valor",
+     "unidade": "V",
+     "obrigatorio": true,
+     "descricao": "NUNCA chutar 127 ou 220. Sem declaracao, null com motivo"
+    },
+    "base_autoesvaziamento": {
+     "tipo": "campo_de_valor",
+     "unidade": null,
+     "obrigatorio": true
+    },
+    "navegacao": {
+     "tipo": "campo_de_valor",
+     "unidade": null,
+     "obrigatorio": false
+    },
+    "reservatorio_po_ml": {
+     "tipo": "campo_de_valor",
+     "unidade": "ml",
+     "obrigatorio": false
+    },
+    "reservatorio_agua_ml": {
+     "tipo": "campo_de_valor",
+     "unidade": "ml",
+     "obrigatorio": false
+    },
+    "divergencias": {
+     "tipo": "lista",
+     "obrigatorio": true,
+     "descricao": "um item por declaracao divergente, {campo, canal, valor_declarado, titulo_na_fonte, transcricao, url, verificado_em}. Lista vazia e AFIRMACAO ('nao encontramos declaracao divergente'); ausencia e omissao"
+    },
+    "resolucao": {
+     "tipo": "texto",
+     "obrigatorio": false,
+     "descricao": "obrigatorio quando divergencias nao esta vazia. Diz qual valor valeu e QUAL E O ERRO CARO que decidiu a direcao — nunca a media"
+    },
     "imagem": {
-      "descricao": "Entra desde o primeiro registro, por forca da secao 6 do ARQUIPELAGO.md. A Aquametria descobriu tarde que o banco nao tinha e travou a vitrine inteira.",
-      "forma": {
-        "url": "url do arquivo, ou null",
-        "largura": "px, obrigatorio quando url nao e null — declarado no HTML para a pagina nao pular layout",
-        "altura": "px, obrigatorio quando url nao e null",
-        "fonte": "de onde a imagem veio (anuncio, pagina oficial)",
-        "coletado_em": "data",
-        "alt": "descricao de verdade, nao o nome do produto repetido. E acessibilidade e e leitura de IA"
-      },
-      "regra": "url null NAO elimina o registro da vitrine: ele aparece com espaco reservado neutro na paleta da ilha e o nome em destaque."
+     "tipo": "imagem",
+     "obrigatorio": true
     },
     "afiliado": {
-      "descricao": "Campo presente e vazio desde o nascimento do registro (secao 7 do ARQUIPELAGO.md). Quem gera o link e a Sentinela estrategica, no navegador do Raphael, com teto de calendario. A ilha reporta em todo bloco quantos itens esperam link, e esse numero e trabalho pendente de verdade.",
-      "forma": {
-        "url": "string vazia enquanto nao houver link",
-        "plataforma": "vocabulario plataforma_de_afiliado",
-        "coletado_em": "data ou null",
-        "sub_id_1": "sempre 'robometria'"
-      },
-      "o_codigo_da_pagina_NAO_mora_aqui": "O sub_id_2 saiu desta forma em 12/09/2026, e a ausencia dele e regra. Ele nomeia a PAGINA que levou o clique — R1, R2, A1, A2 — e o mesmo produto aparece em mais de uma: os 33 modelos traziam 'R2' e as 18 pecas 'R1', entao o artigo A2 publicava a vitrine dele carimbada como se fosse da ferramenta R2, e o A1 as pecas dele como se fossem da R1. No dia do primeiro link de afiliado a medicao diria que os artigos nao vendem nada. Nao existe valor unico certo para escrever no registro: quem sabe qual e a pagina e quem a monta, entao cada gerador (gerar-r1.py, gerar-r2.py, gerar-a1.py, gerar-a2.py) carimba o proprio codigo ao derivar a vitrine. validar-banco.py REPROVA o campo de volta no banco."
+     "tipo": "afiliado",
+     "obrigatorio": true
     },
-    "fonte": {
-      "forma": {
-        "id": "chave curta usada pelos campos deste registro",
-        "nivel": "inteiro da escada_de_fontes",
-        "origem": "rotulo da escada_de_fontes",
-        "publicador": "quem publica",
-        "titulo_na_fonte": "titulo exato",
-        "url": "url, ou null quando a atribuicao exata nao foi possivel",
-        "canal_de_coleta": "como o dado chegou aqui: leitura direta, busca restrita ao dominio, busca sem restricao",
-        "verificado_em": "data"
-      }
+    "fontes": {
+     "tipo": "mapa id -> fonte",
+     "obrigatorio": true
+    },
+    "status": {
+     "tipo": "vocabulario status_do_registro",
+     "obrigatorio": true
+    },
+    "motivo_do_status": {
+     "tipo": "texto",
+     "obrigatorio": false,
+     "descricao": "obrigatorio quando status nao e publicavel"
+    },
+    "verificado_em": {
+     "tipo": "data",
+     "obrigatorio": true
     }
+   }
   },
-  "invariantes_verificadas_por_ferramentas_validar-banco.py": [
-    "Todo id e unico dentro do seu arquivo.",
-    "Todo campo tecnico obrigatorio existe e tem a forma campo_de_valor.",
-    "Todo valor nao nulo aponta para um id existente em fontes{} do proprio registro.",
-    "Todo valor nulo tem motivo_do_null.",
-    "Nenhum registro com status publicavel tem categoria diferente de robo.",
-    "Nenhum registro com status diferente de publicavel deixa de ter motivo_do_status.",
-    "Todo selo de compatibilidade esta no vocabulario, e nenhum par com selo nao_declarada aparece como compatibilidade afirmativa.",
-    "Toda peca com divergencias nao vazias tem resolucao escrita.",
-    "Todo modelo referenciado por uma peca existe em modelos-robo.json, ou esta explicitamente como null com o codigo declarado preservado.",
-    "Todo registro tem imagem{} e afiliado{} com a forma completa, mesmo vazios.",
-    "Nenhuma constante com status pendente e usada em campo publicavel.",
-    "Toda peca com tipo=kit tem composicao nao vazia, e nenhum item da composicao e do tipo kit.",
-    "Toda peca com codigo_fabricante null tem motivo_sem_codigo escrito.",
-    "Todo MODELO_ROBO tem divergencias[] presente, e todo modelo com divergencias nao vazias tem resolucao escrita.",
-    "Todo item de divergencias[] nomeia o campo divergente, e esse campo existe no registro.",
-    "As contagens do cabecalho de modelos-robo.json (com_pa_declarado, marcas_que_declaram_pa, esperando_link_de_afiliado) batem com o que o arquivo tem."
-  ]
+  "PECA": {
+   "arquivo": "dados/pecas.json",
+   "chave": "id",
+   "campos": {
+    "id": {
+     "tipo": "slug",
+     "obrigatorio": true,
+     "formato": "<marca>-<codigo_fabricante em minusculas>"
+    },
+    "marca": {
+     "tipo": "ref MARCA.id",
+     "obrigatorio": true
+    },
+    "codigo_fabricante": {
+     "tipo": "texto ou null",
+     "obrigatorio": false,
+     "descricao": "PR10124, KPCEL01, 11206518. E o que a pessoa procura e o que ela compra. null quando o fabricante nao publica codigo — e ai motivo_sem_codigo e obrigatorio e o registro e identificado pelo nome_na_fonte"
+    },
+    "tipo": {
+     "tipo": "vocabulario tipo_de_peca",
+     "obrigatorio": true
+    },
+    "nome_na_fonte": {
+     "tipo": "texto",
+     "obrigatorio": true,
+     "descricao": "titulo exato como o fabricante publica. E o que a frase da R1 cita"
+    },
+    "compatibilidade": {
+     "tipo": "lista",
+     "obrigatorio": true,
+     "descricao": "um item por par peca x modelo. NUNCA inferida",
+     "item": {
+      "modelo": "ref MODELO_ROBO.id, ou null quando o codigo aparece na declaracao mas o modelo ainda nao esta no banco",
+      "codigo_declarado": "o codigo como a fonte escreve",
+      "variante_de_hardware": "rotulo da variante quando a peca so serve numa delas; null quando serve em todas as conhecidas",
+      "selo": "vocabulario selo_de_compatibilidade",
+      "fonte": "id em fontes{}"
+     }
+    },
+    "divergencias": {
+     "tipo": "lista",
+     "obrigatorio": true,
+     "descricao": "lista vazia e afirmacao: 'nao encontramos declaracao divergente'. Cada item {canal, conjunto_declarado, titulo_na_fonte, url, verificado_em}"
+    },
+    "resolucao": {
+     "tipo": "texto",
+     "obrigatorio": false,
+     "descricao": "obrigatorio quando divergencias nao esta vazia. Diz qual conjunto valeu e por que — sempre o MAIS ESTREITO"
+    },
+    "vida_util_declarada": {
+     "tipo": "campo_de_valor",
+     "unidade": "meses",
+     "obrigatorio": true,
+     "descricao": "carrega a classe da fonte junto do numero: manual de fabricante e recomendacao editorial nao se misturam numa frase"
+    },
+    "imagem": {
+     "tipo": "imagem",
+     "obrigatorio": true
+    },
+    "afiliado": {
+     "tipo": "afiliado",
+     "obrigatorio": true
+    },
+    "fontes": {
+     "tipo": "mapa id -> fonte",
+     "obrigatorio": true
+    },
+    "status": {
+     "tipo": "vocabulario status_do_registro",
+     "obrigatorio": true
+    },
+    "motivo_do_status": {
+     "tipo": "texto",
+     "obrigatorio": false
+    },
+    "verificado_em": {
+     "tipo": "data",
+     "obrigatorio": true
+    },
+    "motivo_sem_codigo": {
+     "tipo": "texto",
+     "obrigatorio": false,
+     "descricao": "obrigatorio quando codigo_fabricante e null"
+    },
+    "composicao": {
+     "tipo": "lista",
+     "obrigatorio": false,
+     "descricao": "obrigatorio quando tipo = kit. Um item por peca dentro do kit, {tipo, quantidade, descricao_na_fonte}. tipo sai do vocabulario tipo_de_peca e nunca e 'kit'",
+     "por_que": "sem isto o kit e uma caixa fechada e a R1 nao pode dizer 'o filtro HEPA que serve no seu ERB10 vem dentro do Kit Performance KPCEL01'"
+    },
+    "funcao": {
+     "tipo": "objeto {declarada_por, fonte, declarado_como}",
+     "obrigatorio": "quando tipo esta em tipos_que_exigem_funcao_declarada",
+     "descricao": "Onde o FABRICANTE declara a funcao desta peca. declarada_por sai do vocabulario funcao_declarada_por; fonte e um id em fontes{}; declarado_como transcreve a declaracao ou explica o contraste.",
+     "por_que": "Medido em 13/09/2026 na WAP: o titulo da peca nomeia a POSICAO ('Direita', 'Esquerda', 'Central', 'Frontal', 'Rotativa') e o vocabulario desta ilha nomeia a FUNCAO. As duas nao coincidem, e a mesma palavra da WAP cobre as duas funcoes — o conteudo declarado do W300 chama de 'escovas giratorias' o PAR LATERAL, e o artigo de limpeza do W90 chama de 'escova giratoria' a PRINCIPAL. Ler a funcao do nome do produto e a heuristica por vizinhanca que a secao 8 do ARQUIPELAGO.md proibe; este campo obriga quem grava a dizer de ONDE leu."
+    }
+   }
+  },
+  "COTACAO": {
+   "arquivo": "dados/cotacoes.json",
+   "chave": [
+    "item",
+    "coletado_em"
+   ],
+   "registros_hoje": 0,
+   "descricao": "Serie temporal de preco. Preco NUNCA e campo de produto e NUNCA entra em criterio tecnico de recomendacao. A vitrine mostra faixa com a data da coleta, nunca preco cravado como atual (secao 7 do ARQUIPELAGO.md).",
+   "campos": {
+    "item": {
+     "tipo": "ref MODELO_ROBO.id ou PECA.id",
+     "obrigatorio": true
+    },
+    "loja": {
+     "tipo": "texto",
+     "obrigatorio": true
+    },
+    "url": {
+     "tipo": "url",
+     "obrigatorio": true
+    },
+    "preco_brl": {
+     "tipo": "numero",
+     "obrigatorio": true
+    },
+    "coletado_em": {
+     "tipo": "data",
+     "obrigatorio": true
+    }
+   }
+  }
+ },
+ "tipos_compostos": {
+  "imagem": {
+   "descricao": "Entra desde o primeiro registro, por forca da secao 6 do ARQUIPELAGO.md. A Aquametria descobriu tarde que o banco nao tinha e travou a vitrine inteira.",
+   "forma": {
+    "url": "url do arquivo, ou null",
+    "largura": "px, obrigatorio quando url nao e null — declarado no HTML para a pagina nao pular layout",
+    "altura": "px, obrigatorio quando url nao e null",
+    "fonte": "de onde a imagem veio (anuncio, pagina oficial)",
+    "coletado_em": "data",
+    "alt": "descricao de verdade, nao o nome do produto repetido. E acessibilidade e e leitura de IA"
+   },
+   "regra": "url null NAO elimina o registro da vitrine: ele aparece com espaco reservado neutro na paleta da ilha e o nome em destaque."
+  },
+  "afiliado": {
+   "descricao": "Campo presente e vazio desde o nascimento do registro (secao 7 do ARQUIPELAGO.md). Quem gera o link e a Sentinela estrategica, no navegador do Raphael, com teto de calendario. A ilha reporta em todo bloco quantos itens esperam link, e esse numero e trabalho pendente de verdade.",
+   "forma": {
+    "url": "string vazia enquanto nao houver link",
+    "plataforma": "vocabulario plataforma_de_afiliado",
+    "coletado_em": "data ou null",
+    "sub_id_1": "sempre 'robometria'"
+   },
+   "o_codigo_da_pagina_NAO_mora_aqui": "O sub_id_2 saiu desta forma em 12/09/2026, e a ausencia dele e regra. Ele nomeia a PAGINA que levou o clique — R1, R2, A1, A2 — e o mesmo produto aparece em mais de uma: os 33 modelos traziam 'R2' e as 18 pecas 'R1', entao o artigo A2 publicava a vitrine dele carimbada como se fosse da ferramenta R2, e o A1 as pecas dele como se fossem da R1. No dia do primeiro link de afiliado a medicao diria que os artigos nao vendem nada. Nao existe valor unico certo para escrever no registro: quem sabe qual e a pagina e quem a monta, entao cada gerador (gerar-r1.py, gerar-r2.py, gerar-a1.py, gerar-a2.py) carimba o proprio codigo ao derivar a vitrine. validar-banco.py REPROVA o campo de volta no banco."
+  },
+  "fonte": {
+   "forma": {
+    "id": "chave curta usada pelos campos deste registro",
+    "nivel": "inteiro da escada_de_fontes",
+    "origem": "rotulo da escada_de_fontes",
+    "publicador": "quem publica",
+    "titulo_na_fonte": "titulo exato",
+    "url": "url, ou null quando a atribuicao exata nao foi possivel",
+    "canal_de_coleta": "como o dado chegou aqui: leitura direta, busca restrita ao dominio, busca sem restricao",
+    "verificado_em": "data"
+   }
+  }
+ },
+ "invariantes_verificadas_por_ferramentas_validar-banco.py": [
+  "Todo id e unico dentro do seu arquivo.",
+  "Todo campo tecnico obrigatorio existe e tem a forma campo_de_valor.",
+  "Todo valor nao nulo aponta para um id existente em fontes{} do proprio registro.",
+  "Todo valor nulo tem motivo_do_null.",
+  "Nenhum registro com status publicavel tem categoria diferente de robo.",
+  "Nenhum registro com status diferente de publicavel deixa de ter motivo_do_status.",
+  "Todo selo de compatibilidade esta no vocabulario, e nenhum par com selo nao_declarada aparece como compatibilidade afirmativa.",
+  "Toda peca com divergencias nao vazias tem resolucao escrita.",
+  "Todo modelo referenciado por uma peca existe em modelos-robo.json, ou esta explicitamente como null com o codigo declarado preservado.",
+  "Todo registro tem imagem{} e afiliado{} com a forma completa, mesmo vazios.",
+  "Nenhuma constante com status pendente e usada em campo publicavel.",
+  "Toda peca com tipo=kit tem composicao nao vazia, e nenhum item da composicao e do tipo kit.",
+  "Toda peca com codigo_fabricante null tem motivo_sem_codigo escrito.",
+  "Todo MODELO_ROBO tem divergencias[] presente, e todo modelo com divergencias nao vazias tem resolucao escrita.",
+  "Todo item de divergencias[] nomeia o campo divergente, e esse campo existe no registro.",
+  "As contagens do cabecalho de modelos-robo.json (com_pa_declarado, marcas_que_declaram_pa, esperando_link_de_afiliado) batem com o que o arquivo tem."
+ ],
+ "tipos_que_exigem_funcao_declarada": {
+  "tipos": [
+   "escova lateral",
+   "escova principal"
+  ],
+  "por_que": "Sao os dois unicos tipos do vocabulario que o titulo do fabricante NAO separa. Filtro, mop, bateria e reservatorio o titulo nomeia pelo que a peca e; escova o titulo nomeia por onde ela fica. A lista mora AQUI e nao dentro do validador para nao envelhecer calada: tipo novo que sofra do mesmo mal entra nesta linha e a trava passa a cobra-lo sem uma linha de codigo."
+ }
 }

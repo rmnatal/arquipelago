@@ -65,6 +65,20 @@ CHAVES_IMAGEM = {"url", "largura", "altura", "fonte", "coletado_em", "alt"}
 # alguem o usa.
 CHAVES_AFILIADO = {"url", "plataforma", "coletado_em", "sub_id_1"}
 
+# Os tipos que o titulo do fabricante NAO separa. Lidos do esquema de proposito:
+# ver tipos_que_exigem_funcao_declarada la, e o principio "FUNCAO NAO SE LE DO NOME
+# DO PRODUTO". Se um dia esta chave sumir do esquema, a trava cai em silencio — por
+# isso ela e exigida aqui em vez de ter valor de reserva.
+if "tipos_que_exigem_funcao_declarada" not in esquema:
+    erro("esquema-banco.json: sem tipos_que_exigem_funcao_declarada. A trava da funcao "
+         "da escova le a lista daqui, e lista ausente faria a trava aprovar tudo")
+TIPOS_COM_FUNCAO = set(
+    esquema.get("tipos_que_exigem_funcao_declarada", {}).get("tipos", []))
+for _t in TIPOS_COM_FUNCAO:
+    if _t not in esquema["vocabularios"]["tipo_de_peca"]:
+        erro("esquema-banco.json/tipos_que_exigem_funcao_declarada: %r nao existe no "
+             "vocabulario tipo_de_peca" % _t)
+
 
 ORIGEM_DO_NIVEL = {n["nivel"]: n["origem"] for n in esquema["escada_de_fontes"]["niveis"]}
 
@@ -281,6 +295,34 @@ for p in pecas["registros"]:
         erro("%s: marca %r nao existe em marcas.json" % (onde, p["marca"]))
     if p["tipo"] not in VOC["tipo_de_peca"]:
         erro("%s: tipo %r fora do vocabulario" % (onde, p["tipo"]))
+
+    # A FUNCAO NAO SE LE DO NOME DO PRODUTO (esquema, principio de 13/09/2026).
+    # O fabricante batiza a peca pela POSICAO e o banco a classifica pela FUNCAO. A
+    # WAP prova que as duas nao coincidem: o conteudo declarado do W300 chama de
+    # 'escovas giratorias' o PAR LATERAL e o artigo de limpeza do W90 chama de
+    # 'escova giratoria' a PRINCIPAL — mesma palavra, mesmo fabricante, funcoes
+    # opostas. Quem grava tem de dizer de ONDE leu.
+    # A lista de tipos mora no ESQUEMA e nao aqui: numero e lista digitados dentro
+    # da regua envelhecem calados, e esta ilha ja pagou por isso no teste-acentuacao.
+    if p["tipo"] in TIPOS_COM_FUNCAO:
+        f = p.get("funcao")
+        if not f:
+            erro("%s: tipo %r sem funcao{}. O titulo do fabricante nomeia a posicao, nao a "
+                 "funcao — sem dizer onde a funcao foi declarada, o tipo e um palpite com "
+                 "cara de dado" % (onde, p["tipo"]))
+        else:
+            if f.get("declarada_por") not in VOC["funcao_declarada_por"]:
+                erro("%s: funcao.declarada_por %r fora do vocabulario"
+                     % (onde, f.get("declarada_por")))
+            if f.get("fonte") not in p.get("fontes", {}):
+                erro("%s: funcao aponta para a fonte %r, que nao existe em fontes{}"
+                     % (onde, f.get("fonte")))
+            if not f.get("declarado_como"):
+                erro("%s: funcao sem declarado_como — nao sobra o que citar nem o que "
+                     "reconferir na proxima passada" % onde)
+    elif p.get("funcao"):
+        erro("%s: funcao{} em peca do tipo %r. O campo existe para os tipos que o titulo "
+             "do fabricante nao separa, e esta lista esta no esquema" % (onde, p["tipo"]))
 
     # Kit e caixa fechada ate declarar o que tem dentro. Sem isto a R1 sabe QUE o kit
     # serve e nao consegue dizer que o filtro do ERB10 vem dentro dele — que e a resposta

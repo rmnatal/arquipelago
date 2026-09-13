@@ -256,7 +256,7 @@
       "marca": "wap",
       "codigo": "W300",
       "linha": null,
-      "responde": false,
+      "responde": true,
       "so_kit": false
     },
     {
@@ -288,7 +288,7 @@
       "marca": "wap",
       "codigo": "WSMART",
       "linha": null,
-      "responde": false,
+      "responde": true,
       "so_kit": false
     },
     {
@@ -2106,7 +2106,64 @@
     },
     "wap-w300": {
       "aviso_de_variante": null,
-      "fabricante": [],
+      "fabricante": [
+        {
+          "tipo": "escova lateral",
+          "peca": "wap-escova-direita-w300",
+          "codigo": null,
+          "nome_na_fonte": "Escova Direita Para Robô Aspirador de Pó Robot W300",
+          "tipo_da_peca": "escova lateral",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "WAP (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.wap.ind.br/escova-direita-para-robo-aspirador-de-po-wap-robot-w300/p",
+          "verificado_em": "2026-09-13",
+          "declarados": [
+            "W300"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        },
+        {
+          "tipo": "escova lateral",
+          "peca": "wap-escova-esquerda-w300",
+          "codigo": null,
+          "nome_na_fonte": "Escova Esquerda Para Robô Aspirador WAP Robot W300",
+          "tipo_da_peca": "escova lateral",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "WAP (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.wap.ind.br/escova-esquerda-para-robo-aspirador-de-po-wap-robot-w300/p",
+          "verificado_em": "2026-09-13",
+          "declarados": [
+            "W300"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        }
+      ],
       "terceiro": [],
       "kits_sem_composicao": []
     },
@@ -2130,7 +2187,64 @@
     },
     "wap-wsmart": {
       "aviso_de_variante": null,
-      "fabricante": [],
+      "fabricante": [
+        {
+          "tipo": "escova principal",
+          "peca": "wap-escova-central-wsmart",
+          "codigo": null,
+          "nome_na_fonte": "Escova Central Para Robô Aspirador de Pó WAP Robot WSMART",
+          "tipo_da_peca": "escova principal",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "WAP (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.wap.ind.br/escova-central-para-robo-aspirador-de-po-wap-robot-wsmart/p",
+          "verificado_em": "2026-09-13",
+          "declarados": [
+            "WSMART"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        },
+        {
+          "tipo": "escova lateral",
+          "peca": "wap-escova-frontal-wsmart",
+          "codigo": null,
+          "nome_na_fonte": "Escova Frontal Para Robô Aspirador de Pó WAP Robot WSmart",
+          "tipo_da_peca": "escova lateral",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "WAP (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.wap.ind.br/escova-frontal-para-robo-aspirador-de-po-wap-robot-wsmart/p",
+          "verificado_em": "2026-09-13",
+          "declarados": [
+            "WSMART"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        }
+      ],
       "terceiro": [],
       "kits_sem_composicao": []
     },
@@ -2864,6 +2978,32 @@
       "verificado_em": "2026-09-09"
     },
     {
+      "modelo": "wap-wsmart",
+      "modelo_rotulo": "WAP WSMART",
+      "tipo": "escova principal",
+      "peca": "wap-escova-central-wsmart",
+      "codigo": null,
+      "nome_na_fonte": "Escova Central Para Robô Aspirador de Pó WAP Robot WSMART",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.wap.ind.br/escova-central-para-robo-aspirador-de-po-wap-robot-wsmart/p",
+      "verificado_em": "2026-09-13"
+    },
+    {
+      "modelo": "wap-wsmart",
+      "modelo_rotulo": "WAP WSMART",
+      "tipo": "escova lateral",
+      "peca": "wap-escova-frontal-wsmart",
+      "codigo": null,
+      "nome_na_fonte": "Escova Frontal Para Robô Aspirador de Pó WAP Robot WSmart",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.wap.ind.br/escova-frontal-para-robo-aspirador-de-po-wap-robot-wsmart/p",
+      "verificado_em": "2026-09-13"
+    },
+    {
       "modelo": "electrolux-erb61",
       "modelo_rotulo": "Electrolux ERB61",
       "tipo": "filtro",
@@ -3056,6 +3196,32 @@
       "divergencia": false,
       "origem": "fabricante-via-busca",
       "url": "https://www.mi.com/uk/product/xiaomi-robot-vacuum-e10-accessories/specs/",
+      "verificado_em": "2026-09-13"
+    },
+    {
+      "modelo": "wap-w300",
+      "modelo_rotulo": "WAP W300",
+      "tipo": "escova lateral",
+      "peca": "wap-escova-direita-w300",
+      "codigo": null,
+      "nome_na_fonte": "Escova Direita Para Robô Aspirador de Pó Robot W300",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.wap.ind.br/escova-direita-para-robo-aspirador-de-po-wap-robot-w300/p",
+      "verificado_em": "2026-09-13"
+    },
+    {
+      "modelo": "wap-w300",
+      "modelo_rotulo": "WAP W300",
+      "tipo": "escova lateral",
+      "peca": "wap-escova-esquerda-w300",
+      "codigo": null,
+      "nome_na_fonte": "Escova Esquerda Para Robô Aspirador WAP Robot W300",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.wap.ind.br/escova-esquerda-para-robo-aspirador-de-po-wap-robot-w300/p",
       "verificado_em": "2026-09-13"
     },
     {
@@ -3495,26 +3661,24 @@
     "wap-w100",
     "wap-w1000",
     "wap-w100c",
-    "wap-w300",
     "wap-w310",
     "wap-w400",
     "wap-w90",
-    "wap-wsmart",
     "xiaomi-mop-2",
     "xiaomi-s10"
   ],
   "resumo": {
     "modelos_publicaveis": 33,
-    "modelos_que_respondem": 20,
-    "modelos_com_entrada_vazia": 13,
+    "modelos_que_respondem": 22,
+    "modelos_com_entrada_vazia": 11,
     "celulas": 198,
-    "celulas_sem_resposta": 142,
-    "pares_declarados": 55,
-    "pecas_publicaveis": 25,
+    "celulas_sem_resposta": 139,
+    "pares_declarados": 59,
+    "pecas_publicaveis": 29,
     "marcas": 5,
     "as_duas_ferramentas": 7,
-    "pecas_recomendadas": 25,
-    "pecas_esperando_link": 25,
+    "pecas_recomendadas": 29,
+    "pecas_esperando_link": 29,
     "pecas_com_link": 0
   }
 }

@@ -29,6 +29,8 @@ linhas em HTML, sem depender de script.
 | Positivo Casa Inteligente PRA2000 | escova lateral | 11206518 | declarada_fabricante | varejo-oficial-da-marca · 09/09/2026 |
 | Positivo Casa Inteligente PRA2000 | escova principal | 11206519 | declarada_fabricante | varejo-oficial-da-marca · 09/09/2026 |
 | Positivo Casa Inteligente PRA2000 | mop | 11206540 | declarada_fabricante | varejo-oficial-da-marca · 09/09/2026 |
+| WAP WSMART | escova principal | o fabricante nao publica codigo | declarada_fabricante | varejo-oficial-da-marca · 13/09/2026 |
+| WAP WSMART | escova lateral | o fabricante nao publica codigo | declarada_fabricante | varejo-oficial-da-marca · 13/09/2026 |
 | Electrolux ERB61 | filtro | o fabricante nao publica codigo | declarada_fabricante | varejo-oficial-da-marca · 09/09/2026 |
 | Electrolux ERB61 | filtro | o fabricante nao publica codigo | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 09/09/2026 |
 | Electrolux ERB61 | escova lateral | o fabricante nao publica codigo | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 09/09/2026 |
@@ -44,6 +46,8 @@ linhas em HTML, sem depender de script.
 | Xiaomi E10 | escova principal | B112-ZS | declarada_fabricante | fabricante-via-busca · 13/09/2026 |
 | Xiaomi E10 | filtro | B112-CH | declarada_fabricante (divergencia registrada) | fabricante-via-busca · 13/09/2026 |
 | Xiaomi E10 | mop | B112-TB | declarada_fabricante | fabricante-via-busca · 13/09/2026 |
+| WAP W300 | escova lateral | o fabricante nao publica codigo | declarada_fabricante | varejo-oficial-da-marca · 13/09/2026 |
+| WAP W300 | escova lateral | o fabricante nao publica codigo | declarada_fabricante | varejo-oficial-da-marca · 13/09/2026 |
 | Electrolux ERB62 | filtro | o fabricante nao publica codigo | declarada_fabricante | varejo-oficial-da-marca · 09/09/2026 |
 | Electrolux ERB62 | filtro | o fabricante nao publica codigo | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 09/09/2026 |
 | Electrolux ERB62 | escova lateral | o fabricante nao publica codigo | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 09/09/2026 |
@@ -78,4 +82,4 @@ linhas em HTML, sem depender de script.
 | Electrolux ERB44 | filtro | o fabricante nao publica codigo | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 12/09/2026 |
 | Electrolux ERB44 | mop | o fabricante nao publica codigo | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 12/09/2026 |
 
-Linhas: **65** — o minimo da secao 1.7 da especificacao e 8.
+Linhas: **69** — o minimo da secao 1.7 da especificacao e 8.

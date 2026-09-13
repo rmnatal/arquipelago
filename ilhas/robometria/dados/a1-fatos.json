@@ -7,12 +7,12 @@
   "resumo": {
     "marcas": 5,
     "modelos_publicaveis": 33,
-    "pecas_publicaveis": 25,
-    "pares_declarados": 55,
+    "pecas_publicaveis": 29,
+    "pares_declarados": 59,
     "pecas_que_atravessam_marca": 0,
     "celulas_total": 198,
-    "celulas_sem_resposta": 142,
-    "pecas_esperando_link": 25
+    "celulas_sem_resposta": 139,
+    "pecas_esperando_link": 29
   },
   "maior_alcance": {
     "peca": "multi-pr10124",
@@ -464,6 +464,78 @@
       "atravessa_marca": false
     },
     {
+      "peca": "wap-escova-central-wsmart",
+      "tipo": "escova principal",
+      "marca": "wap",
+      "publicador": "WAP",
+      "identificacao": "\"Escova Central Para Robô Aspirador de Pó WAP Robot WSMART\"",
+      "sem_codigo_publicado": true,
+      "nome_na_fonte": "Escova Central Para Robô Aspirador de Pó WAP Robot WSMART",
+      "codigos_declarados": 1,
+      "codigos_na_fonte": [
+        "WSMART"
+      ],
+      "modelos_publicaveis": 1,
+      "marcas_atendidas": [
+        "wap"
+      ],
+      "atravessa_marca": false
+    },
+    {
+      "peca": "wap-escova-direita-w300",
+      "tipo": "escova lateral",
+      "marca": "wap",
+      "publicador": "WAP",
+      "identificacao": "\"Escova Direita Para Robô Aspirador de Pó Robot W300\"",
+      "sem_codigo_publicado": true,
+      "nome_na_fonte": "Escova Direita Para Robô Aspirador de Pó Robot W300",
+      "codigos_declarados": 1,
+      "codigos_na_fonte": [
+        "W300"
+      ],
+      "modelos_publicaveis": 1,
+      "marcas_atendidas": [
+        "wap"
+      ],
+      "atravessa_marca": false
+    },
+    {
+      "peca": "wap-escova-esquerda-w300",
+      "tipo": "escova lateral",
+      "marca": "wap",
+      "publicador": "WAP",
+      "identificacao": "\"Escova Esquerda Para Robô Aspirador WAP Robot W300\"",
+      "sem_codigo_publicado": true,
+      "nome_na_fonte": "Escova Esquerda Para Robô Aspirador WAP Robot W300",
+      "codigos_declarados": 1,
+      "codigos_na_fonte": [
+        "W300"
+      ],
+      "modelos_publicaveis": 1,
+      "marcas_atendidas": [
+        "wap"
+      ],
+      "atravessa_marca": false
+    },
+    {
+      "peca": "wap-escova-frontal-wsmart",
+      "tipo": "escova lateral",
+      "marca": "wap",
+      "publicador": "WAP",
+      "identificacao": "\"Escova Frontal Para Robô Aspirador de Pó WAP Robot WSmart\"",
+      "sem_codigo_publicado": true,
+      "nome_na_fonte": "Escova Frontal Para Robô Aspirador de Pó WAP Robot WSmart",
+      "codigos_declarados": 1,
+      "codigos_na_fonte": [
+        "WSMART"
+      ],
+      "modelos_publicaveis": 1,
+      "marcas_atendidas": [
+        "wap"
+      ],
+      "atravessa_marca": false
+    },
+    {
       "peca": "xiaomi-b106gl-bx",
       "tipo": "escova lateral",
       "marca": "xiaomi",
@@ -541,6 +613,13 @@
       "nenhuma_repete": false
     },
     {
+      "marca": "wap",
+      "publicador": "WAP",
+      "pecas": 4,
+      "conjuntos_distintos": 2,
+      "nenhuma_repete": false
+    },
+    {
       "marca": "positivo",
       "publicador": "Positivo Casa Inteligente",
       "pecas": 3,
@@ -552,7 +631,7 @@
     {
       "tipo": "escova lateral",
       "nome": "escova lateral",
-      "modelos_com_declaracao": 17,
+      "modelos_com_declaracao": 19,
       "modelos_publicaveis": 33
     },
     {
@@ -570,7 +649,7 @@
     {
       "tipo": "escova principal",
       "nome": "escova principal",
-      "modelos_com_declaracao": 10,
+      "modelos_com_declaracao": 11,
       "modelos_publicaveis": 33
     },
     {
@@ -732,7 +811,7 @@
   "perguntas": [
     {
       "pergunta": "Existe filtro universal para robô aspirador?",
-      "resposta": "Não. Nas 25 peças de reposição com compatibilidade declarada pelo fabricante que a Robometria conferiu, nenhuma é declarada para modelos de mais de uma marca, e a lista mais longa do banco nomeia 5 códigos de modelo, todos da mesma marca."
+      "resposta": "Não. Nas 29 peças de reposição com compatibilidade declarada pelo fabricante que a Robometria conferiu, nenhuma é declarada para modelos de mais de uma marca, e a lista mais longa do banco nomeia 5 códigos de modelo, todos da mesma marca."
     },
     {
       "pergunta": "Uma peça que serve num modelo da marca serve nos outros modelos dela?",
@@ -740,7 +819,7 @@
     },
     {
       "pergunta": "Como descobrir o código da peça certa para o meu robô aspirador?",
-      "resposta": "Procurando o modelo na lista de compatibilidade publicada pelo próprio fabricante. A Robometria reúne essas listas: são 55 pares peça × modelo em 5 marcas, todos declarados pelo fabricante e nenhum inferido, cada um com o endereço da declaração e a data em que ela foi verificada."
+      "resposta": "Procurando o modelo na lista de compatibilidade publicada pelo próprio fabricante. A Robometria reúne essas listas: são 59 pares peça × modelo em 5 marcas, todos declarados pelo fabricante e nenhum inferido, cada um com o endereço da declaração e a data em que ela foi verificada."
     }
   ]
 }
