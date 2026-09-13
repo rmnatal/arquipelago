@@ -114,6 +114,4 @@ despacho do GA4 registra ter caído — resumo velho lido como fato.
 
 ---
 
-### precisa do Raphael — 1 link de afiliado no Mercado Livre (cimentcola AC-II do Mosaico)
-
-Reduzido em 13/09/2026: nove dos dez materiais do Clube do Mosaico ganharam link da Shopee, gerado por máquina na mesma noite. Sobrou um, `quartzolit-cimentcola-externo-acii`, que a Shopee não vende. A URL do produto no Mercado Livre e a etiqueta a usar (`clubedomosaicof2`, já criada) estão em `ilhas/clubedomosaico/dados/links-afiliado-pendentes.md`. O gerador do Mercado Livre tem reCAPTCHA e não aceita clique de máquina — por isso é dele. Quando devolver o link curto, a Fundação escreve em `afiliado.url` e `afiliado.gerado_em` do item.
+- **CUMPRIDO 13/09/2026** — o link de afiliado da cimentcola AC-II do Clube do Mosaico, gerado pelo Raphael no Mercado Livre e escrito no banco. Com ele, os 10 materiais da ilha (5 colas, 5 rejuntes) estão com link vivo; sobram as 10 pastilhas, que estão fora por decisão e não por pendência.

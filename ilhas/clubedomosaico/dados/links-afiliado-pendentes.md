@@ -1,6 +1,6 @@
 # Links de afiliado — Clube do Mosaico
 
-**Estado em 13/09/2026:** 9 dos 20 itens do banco com link de afiliado vivo, todos da **Shopee**. 1 espera o Mercado Livre. 10 (as pastilhas) estão fora por decisão registrada abaixo.
+**Estado em 13/09/2026:** 10 dos 20 itens do banco com link de afiliado vivo — 9 pela Shopee e 1 pelo Mercado Livre. **Nenhum material espera link.** As 10 pastilhas estão fora por decisão registrada abaixo.
 
 ## A DESCOBERTA QUE VALE PARA TODAS AS ILHAS
 
@@ -32,13 +32,15 @@ Todos com Sub_id 1 = `clubedomosaico`. Gerados em 13/09/2026.
 - **Silicone acético:** o anúncio é acético transparente Tekbond 280 g, apresentação que bate com o banco, mas **não foi possível confirmar que é o SKU BRSA004 da linha "Construção"**. A F2 recomenda por TIPO, não por SKU, então serve; trocar se aparecer a linha Construção nomeada.
 - **Rejuntes:** o anúncio da Shopee é por linha com escolha de cor no próprio anúncio, o que casa melhor com o banco do que o catálogo do Mercado Livre, que separa por cor.
 
-## O que falta — 1 item, e depende do Raphael
+## O item que veio pelo Mercado Livre
 
-**`quartzolit-cimentcola-externo-acii`.** A Shopee não vende a cimentcola **externo AC-II** da Quartzolit: tem AC-I interna, AC-III flexível, e uma AC-2 *interna* para porcelanato — todas produto diferente, e a diferença é justamente a que a F2 usa para recomendar. Ligar a um desses seria recomendar a argamassa errada para área externa, que é o erro que faz a peça descolar.
+**`quartzolit-cimentcola-externo-acii`** → `https://meli.la/13fPigD` — etiqueta `clubedomosaicof2`, gerado pelo Raphael no painel em 13/09/2026, porque o gerador do Mercado Livre tem reCAPTCHA e não aceita clique de máquina. A máquina preencheu a etiqueta e a URL na tela; ele apertou "Gerar" e devolveu o link.
 
-No Mercado Livre existe e está conferida: `https://www.mercadolivre.com.br/argamassa-externa-quartzolit-ac-ii-saco-20kg-cinza-weber/p/MLB27315078`
+Por que este item não pôde vir da Shopee: ela não vende a cimentcola **externo AC-II** da Quartzolit — tem AC-I interna, AC-III flexível e uma AC-2 *interna* para porcelanato, todas produto diferente, e a diferença é exatamente a que a F2 usa para decidir. Ligar a qualquer uma delas seria recomendar a argamassa errada para área externa, que é o erro que faz a peça descolar.
 
-Passo do Raphael, dois minutos: abrir `mercadolivre.com.br/afiliados/linkbuilder`, escolher a etiqueta **`clubedomosaicof2`** (já criada), colar essa URL, apertar **Gerar**, copiar o link curto e devolver. Observação do banco para registrar junto: o banco declara saco de 15 kg e o anúncio é de 20 kg — a Quartzolit vende as duas, é divergência de embalagem, não de produto.
+Divergência a registrar: o banco declara **saco de 15 kg** e o anúncio é de **20 kg**. A Quartzolit vende as duas — é divergência de embalagem, não de produto, e não invalida o link.
+
+**O padrão que isto estabelece, e vale para toda ilha:** quando um produto só existe no Mercado Livre, a máquina deixa a etiqueta escolhida e a URL colada na tela do Raphael e escreve o pedido em `dados/despachos.md`. O trabalho dele é um clique e um copiar-colar, não uma pesquisa.
 
 ## As 10 pastilhas ficaram de fora, e por quê
 

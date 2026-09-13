@@ -7,8 +7,8 @@
   "esquema": "dados/esquema-banco.json",
   "o_que_este_arquivo_e": "A categoria COLA do banco MATERIAL, escrita no formato do esquema do bloco 3. NENHUM dado novo foi coletado nesta execucao: cada declaracao abaixo e a transposicao campo a campo do que o bloco 2 ja tinha colhido em dados/constantes.json, com a mesma fonte, o mesmo tipo de documento e a mesma data. O que este arquivo acrescenta e ESTRUTURA — a lista literal do fabricante virou campo com peso (indicado, proibido, nao recomendado, delimita, resiste), e por isso a matriz da F2 pode ser recomputada em vez de lida.",
   "afiliado": {
-    "itens_esperando_link": 1,
-    "observacao": "Quatro dos cinco com link da Shopee gerado em 13/09/2026 (Sub_id 1 = clubedomosaico, Sub_id 2 = F2). Falta so a argamassa cimentcola externo AC-II: a Shopee nao tem esse produto (so as versoes AC-I e AC-III, e a AC-II interna, que sao outro produto), entao ele espera o Mercado Livre, cujo gerador tem reCAPTCHA e depende do Raphael — ver dados/links-afiliado-pendentes.md."
+    "itens_esperando_link": 0,
+    "observacao": "Os cinco com link vivo desde 13/09/2026. Quatro pela Shopee (Sub_id 1 = clubedomosaico, Sub_id 2 = F2) e a argamassa cimentcola externo AC-II pelo Mercado Livre, etiqueta clubedomosaicof2, gerada pelo Raphael no painel porque o gerador do Mercado Livre tem reCAPTCHA. A Shopee nao vende a AC-II externa — so AC-I, AC-III e a AC-2 interna, que sao produto diferente e a diferenca e justamente a que a F2 usa para recomendar."
   },
   "imagens": {
     "itens_sem_imagem": 5,
@@ -407,12 +407,12 @@
         }
       ],
       "afiliado": {
-        "programa": null,
-        "url": "",
+        "programa": "mercado_livre",
+        "url": "https://meli.la/13fPigD",
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "F2",
         "etiqueta_ml": "clubedomosaico-F2",
-        "gerado_em": null
+        "gerado_em": "2026-09-13"
       },
       "imagem": null,
       "fontes": {
