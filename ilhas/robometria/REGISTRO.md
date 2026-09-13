@@ -2975,3 +2975,109 @@ busca restrita e todas as fontes desta leva são **nível 4**.
    o que mudou é que agora ele é **mensurável**, porque `declarada_por` existe.
    Está escrito na seção 26.3 do contrato.
 
+
+---
+
+## 2026-09-13, 17h22Z — a frase da R1 devolve a função a quem a leu (R1 1.3.0, manifest revisão 29)
+
+**O único defeito de precisão que a ilha tinha no ar, e ele foi nomeado pela execução anterior.** A R1 publicava,
+em cinco peças:
+
+> A WAP (loja oficial) declara **a escova lateral** "Escova Direita Para Robô Aspirador de Pó Robot W300"
+> compatível com W300 (loja oficial da marca, verificado em 13/09/2026).
+
+A WAP nunca usou a palavra "lateral". Ela batiza a peça pela **posição** — Direita, Esquerda, Central, Frontal —
+e o vocabulário desta ilha classifica pela **função**. Quem leu a função no contraste do catálogo dela foi a
+Robometria, e a frase emprestava ao fabricante a única coisa que esta ilha vende, que é a declaração dele. A
+Xiaomi é o caso extremo: o título dela é só "Brush", e não nomeia nem posição.
+
+**O conserto, e por que o molde mudou em vez de ganhar um remendo.** Onde `funcao.declarada_por` não é `titulo`,
+o verbo "declara" passa a recair sobre o que o fabricante **de fato** declarou — o nome da peça e a lista de
+modelos — e a atribuição da função vira ressalva própria, ao lado das que a frase já tinha (sem código
+publicado, canais que discordam, variante de hardware):
+
+> Escova lateral: "Escova Direita Para Robô Aspirador de Pó Robot W300", que a WAP (loja oficial) declara
+> compatível com W300 (loja oficial da marca, verificado em 13/09/2026). **Quem chama esta peça de escova lateral
+> é a Robometria, pelo contraste do catálogo do próprio fabricante: o título dela não nomeia a função.**
+
+O tipo continua **abrindo** a frase, porque a régua 14 (toda frase nomeia o tipo de que fala, seção 5.2) mede a
+primeira oração e o leitor descobre ali de que peça se fala. Onde o título declara a função — Multi, Positivo,
+Electrolux, a "Side Brush" da Xiaomi — **nada mudou**: a atribuição ao fabricante é verdadeira e é a frase mais
+forte que a ilha tem.
+
+**A RESSALVA FICOU HONESTA NA SEGUNDA VERSÃO, e isso é medição e não capricho.** A primeira dizia "o título dela
+nomeia a posição, não a função" — verdade na WAP e **falsa na Xiaomi**, cujo título é só "Brush" e não nomeia
+posição nenhuma. Afirmação em bloco tem o escopo do que foi medido (seção 8 do contrato), e o que vale nos dois
+é mais curto: o título **não nomeia** a função. O detalhe de cada caso continua no banco, em
+`funcao.declarado_como`.
+
+**POR QUE NENHUM PORTÃO DA ILHA VIA O DEFEITO, que é o achado de processo deste bloco.** Todos comparavam a
+frase do PHP com a da referência — e as duas diziam a mesma coisa errada. **Duas metades que erram juntas ficam
+verdes.** Por isso o portão 15 novo do `teste-r1.php` não chama `robometria_r1_funcao_derivada()` nem lê o campo
+`funcao_declarada_por` de `r1-respostas.json`: os dois são produto de quem escreve a frase. Ele reabre
+`dados/pecas.json` e o esquema, recomputa quem é derivada e cobra as duas implementações.
+
+**E ele cobra os DOIS LADOS.** Proibir a atribuição na peça derivada, sozinho, seria atendido por uma frase que
+nunca atribui nada a ninguém — e a ilha perderia de graça a autoridade do título do fabricante. Então: derivada
+nunca atribui e sempre traz a ressalva; de título sempre atribui e nunca traz ressalva.
+
+**A PRIMEIRA VERSÃO DA RÉGUA TINHA UM BURACO, e quem o mostrou foi a mutação.** Ela procurava só a frase
+"Quem chama esta peça de", e a mutação que faz a ressalva sair em **toda** peça escapava dela: com
+`declarada_por = titulo` o PHP cai no aviso de origem desconhecida, que começa com outras palavras. Quem proíbe
+um texto tem de proibir as formas que o **código consegue produzir**, não a que veio à cabeça de quem escreveu a
+régua. Corrigido, a mutação passou a ser pega por dois portões em vez de um.
+
+**O RAMO DEFENSIVO DO SNIPPET PASSOU A SER MEDIDO.** Ele existe porque o Sync entrega dado e código em
+requisições separadas: um `r1-respostas.json` com origem de função nova pode chegar ao site **antes** do snippet
+que sabe explicá-la, e aí a página não pode publicar a atribuição por omissão. Nenhum caminho do teste passava
+por ele — ramo defensivo não medido é ramo que pode mentir à vontade (seção 8). O mundo é produzido no item,
+porque o banco nunca gravaria uma origem fora do vocabulário: o validador o impede.
+
+**AS TRÊS MUTAÇÕES QUE PRODUZEM O MUNDO, e a décima, que tem de PASSAR.** O esquema permite
+`canal-de-manutencao` como origem de função e o banco **não tem nenhuma peça assim** — é o caso em que a função é
+palavra do fabricante, só que dita no manual e não no título, e a ressalva muda de sujeito. Régua escrita para um
+mundo que nunca aconteceu nasce sem poder falhar (seção 8, cicatriz de hoje mais cedo nesta ilha), então três
+mutações criam a peça que não existe e só então quebram a regra nela. A décima é o mesmo mundo **intacto**: se a
+régua reprovasse ali, seria um falso-positivo esperando a primeira peça de manual entrar no banco, e o próximo
+coletor aprenderia a ignorá-la.
+
+**VERIFICAÇÃO NA BANCADA, 0 falha:** `teste-r1` 106 medições (era 96), `teste-casca` 200, `teste-a1` 56,
+`teste-r2` 92, `teste-a2` 73, `teste-voz` 155, `teste-acentuacao` 17, `teste-arvore` 213, `validar-banco`
+APROVADO, `php -l` limpo em tudo. **NAVEGADOR:** 258 medições em 9 páginas × 6 larguras, 0 px de rolagem,
+console limpo.
+
+**MUTAÇÕES: 126 em 12 baterias, 125 reprovadas e 1 aprovada de propósito, 0 inertes.** As 116 antigas foram
+rodadas inteiras para provar que nenhuma morreu com o molde novo — a de `mutacoes-frase-nomeia-o-tipo`, que é a
+vizinha mais próxima, continua reprovando as 4.
+
+**NO AR às 17h32Z, em UM disparo:** `/status` na revisão 29, igual à do manifest, 10 aplicados.
+`conferir-no-ar` 149 e `conferir-kits-no-ar` 163 rodados depois do Sync, 0 falha. E a medição que só o ar podia
+fazer nasceu como arquivo commitado, `ferramentas/conferir-atribuicao-no-ar.py`, 19 afirmações e 0 falha: as
+cinco peças derivadas com a ressalva servida e nenhuma atribuição ao fabricante no corpo, e o
+`electrolux-erb60` do outro lado, com a atribuição de título intacta e sem ressalva nenhuma. Ela mede no
+**corpo** e imprime o tamanho da página (132 a 136 KB), e o modelo de cada peça sai do gabarito, nunca digitado.
+
+**UMA AFIRMAÇÃO QUE A RÉGUA NÃO PODE FAZER, e está escrita nela:** "nada atribui X ao fabricante" só é cobrada
+no modelo em que **todas** as peças daquele tipo são derivadas. Num modelo misto, a mesma frase proibida seria a
+frase **certa** da peça vizinha — e cobrar ali reprovaria a página correta, que é como duas réguas desta ilha já
+nasceram erradas.
+
+**A REDE (20.2), remedida no começo desta execução:** `robometria.com.br` em 200 na home e no `/status`.
+
+**BANCO, sem mudança:** 38 modelos (33 publicáveis), 32 peças (29 publicáveis), 59 pares. **Nenhuma URL nova,
+nenhuma peça entrou ou saiu, nenhum snippet além da R1 foi tocado.** Pauta da seção 17: `pauta.md` ainda não
+existe — 0 escritos, 0 na fila, 0 recusados.
+
+**RECEITA:** 29 de 29 peças publicáveis esperando link de afiliado. E o item (a) do bloco anterior continua de
+pé e continua sendo o maior buraco desta ilha: **`url_busca` não existe em nenhum arquivo do banco**, e a seção
+25.2 diz que item sem piso é defeito da 19.1, sempre.
+
+**PRÓXIMO, com ordem e motivo:** (1) **O PISO DA 25.2** — os 62 itens publicáveis (33 modelos + 29 peças) sem
+`url_busca`, com a ilha no ar servindo "link de loja em breve" em todo cartão. Agora ele não tem mais nada na
+frente: era o item (2) da ordem anterior porque o (1) era este conserto de frase, e o (1) saiu. É esquema + dois
+geradores + snippet, com portão próprio, e é bloco inteiro. (2) o **recipiente de pó** do W300 e do WSMART, a
+coleta mais barata que existe hoje — a página já está localizada e `reservatorio` é o único tipo do vocabulário
+com zero peça, então a primeira devolve o tipo ao seletor da R1 de graça. (3) W90 Pérola, W96, W3000, W4000,
+W2000 e WConnect, localizados e não gravados por falta de duas passadas limpas próprias. (4) o S10 e o Mop 2
+seguem sendo os dois Xiaomi vazios. (5) o reenvio do sitemap no Search Console, metade humana do despacho de
+10/09, segue travando a leva de malha 5b.
