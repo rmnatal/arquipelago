@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 28
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
 ultima_execucao: 2026-09-13T21:21Z
-executando_desde: null
+executando_desde: 2026-09-13T23:19Z
 bloco_atual: |
   O PLATI VARIATUS ENTRA NO BANCO E A CATEGORIA DOS VIVIPAROS ALCANCA O MINIMO DO 16.5 (peixes 1.5.0, manifest revisao 74, /status conferido as 21h42Z em UM disparo com 20 aplicados; NENHUMA URL nova, NENHUMA pagina criada).
   POR QUE ESTE BLOCO E NAO A LEVA 4, que o estado anterior deixou escrita como proximo passo: o cabecalho dizia "DESTRAVADA AGORA porque a semana virou em 14/09" e a semana NAO tinha virado — esta execucao rodou as 21h21Z de 13/09, que e domingo, com o teto da 21.4 ainda em 3 de 3 levas gastas (levas 1, 2 e 3, todas em 12/09). A frase anterior falava do futuro no presente, e quem a lesse ao pe da letra publicaria leva fora do teto. A leva 4 nasce a partir de 14/09, e nada neste bloco a consome.
