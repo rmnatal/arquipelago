@@ -139,6 +139,62 @@ ok("Se um dia houver" not in corpo_pr,
    "[privacidade] a promessa antiga SAIU do HTML servido")
 ok("remarketing" in corpo_pr, "[privacidade] e o que continua nao acontecendo continua escrito")
 
+# ---------------------------------------------------------------------------
+# O LUGAR DO LINK DE LOJA — a regua que envelheceu em 12/09/2026
+#
+# Ela era `"Link de loja em breve" in corpo`, e media o banco daquele dia: zero
+# item com link de afiliado. Na noite em que as dez colas e rejuntes ganharam
+# link, as duas afirmacoes reprovaram NO AR sem defeito nenhum embaixo — a ilha
+# tinha melhorado e a regua chamou isso de erro. E a mesma familia que a
+# Aquametria nomeou: regua que depende de um caso raro do banco morre no dia em
+# que o banco melhora.
+#
+# O que se mede agora e o COMPORTAMENTO, e ele tem dois lados que o banco
+# escolhe: item sem link reserva o lugar e diz "em breve" (nunca some do
+# cartao); item com link serve o botao marcado como patrocinado. A regra vale
+# com 0, com 10 ou com 500 links, e o banco do repositorio e quem diz qual dos
+# dois lados tem de estar na tela.
+_DADOS_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "dados")
+
+
+def _conta_links(categorias):
+    """(com link, sem link) somados nas categorias pedidas, lidos do repositorio."""
+    com = sem = 0
+    for nome in sorted(os.listdir(_DADOS_DIR)):
+        if not (nome.startswith("materiais-") and nome.endswith(".json")):
+            continue
+        with open(os.path.join(_DADOS_DIR, nome), encoding="utf-8") as fh:
+            banco = json.load(fh)
+        if banco.get("categoria") not in categorias:
+            continue
+        for item in banco.get("materiais", []):
+            if (item.get("afiliado") or {}).get("url"):
+                com += 1
+            else:
+                sem += 1
+    return com, sem
+
+
+def _reserva_ou_entrega(corpo, categorias):
+    com, sem = _conta_links(categorias)
+    reserva = "Link de loja em breve" in corpo
+    entrega = 'rel="sponsored' in corpo
+    if sem > 0 and not reserva:
+        return False          # ha item esperando e a pagina escondeu o cartao
+    if com > 0 and not entrega:
+        return False          # ha link no banco e a pagina nao o serve
+    if sem == 0 and reserva:
+        return False          # promete "em breve" sem ninguem esperando
+    return com > 0 or sem > 0
+
+
+def _diagnostico_do_link(corpo, categorias):
+    com, sem = _conta_links(categorias)
+    botoes = corpo.count('rel="sponsored')
+    breves = corpo.count("Link de loja em breve")
+    return "banco: %d com link, %d sem | tela: %d botoes, %d 'em breve'" % (com, sem, botoes, breves)
+
+
 print("\nA F2 no ar — a ferramenta responde, e nunca recomenda o que ela diz que nao serve:")
 html_f2, codigo_f2 = buscar(BASE + F2)
 ok("200" == codigo_f2, "[F2] a pagina-ancora responde 200", codigo_f2)
@@ -152,7 +208,9 @@ ok('rel="canonical" href="' + BASE + F2 + '"' in html_f2, "[F2] canonical aponta
 ok('name="robots"' not in html_f2, "[F2] a ancora nao sai com noindex")
 ok('"@type":"WebApplication"' in html_f2.replace(" ", ""), "[F2] JSON-LD WebApplication servido")
 ok('"@type":"FAQPage"' in html_f2.replace(" ", ""), "[F2] JSON-LD FAQPage servido")
-ok("Link de loja em breve" in corpo_f2, "[F2] o bloco de compra reserva o lugar do link")
+ok(_reserva_ou_entrega(corpo_f2, ("cola", "rejunte")),
+   "[F2] o bloco de compra reserva o lugar do link OU serve o link, conforme o banco",
+   _diagnostico_do_link(corpo_f2, ("cola", "rejunte")))
 
 for consulta, tem_que_recomendar, nao_pode_recomendar in F2_CASOS:
     html_c, codigo_c = buscar(BASE + F2 + "?" + consulta)
@@ -200,7 +258,9 @@ ok('rel="canonical" href="' + BASE + F1 + '"' in html_f1, "[F1] canonical aponta
 ok('name="robots"' not in html_f1, "[F1] a ancora nao sai com noindex")
 ok('"@type":"WebApplication"' in html_f1.replace(" ", ""), "[F1] JSON-LD WebApplication servido")
 ok('"@type":"FAQPage"' in html_f1.replace(" ", ""), "[F1] JSON-LD FAQPage servido")
-ok("Link de loja em breve" in corpo_f1, "[F1] o bloco de compra reserva o lugar do link")
+ok(_reserva_ou_entrega(corpo_f1, ("rejunte",)),
+   "[F1] o bloco de compra reserva o lugar do link OU serve o link, conforme o banco",
+   _diagnostico_do_link(corpo_f1, ("rejunte",)))
 ok("Ainda não temos as pastilhas no nosso banco" in texto_f1,
    "[F1] a pastilha sem banco aparece declarada, nao escondida")
 # A TRILHA E O CLUSTER, que so existem porque a pagina tem mae e agora tem irmas

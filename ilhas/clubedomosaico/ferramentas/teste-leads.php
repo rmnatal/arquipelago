@@ -536,9 +536,31 @@ $peca = cdm_cenario_limpo();
 $GLOBALS['__email_falha'] = true;
 cdm_enviar( $peca );
 cdm_ok( 1 === count( $GLOBALS['__leads'] ), 'e-mail que falha NAO impede o lead de ser gravado' );
-cdm_ok( 'falhou' === get_post_meta( (int) $GLOBALS['__leads'][0]->ID, '_cdm_email_enviado', true ),
-	'e a falha fica registrada no proprio lead' );
+cdm_ok( 'falhou nas duas tentativas' === get_post_meta( (int) $GLOBALS['__leads'][0]->ID, '_cdm_email_enviado', true ),
+	'e a falha fica registrada no proprio lead',
+	get_post_meta( (int) $GLOBALS['__leads'][0]->ID, '_cdm_email_enviado', true ) );
+cdm_ok( 2 === count( $GLOBALS['__emails'] ),
+	'e ele TENTA duas vezes antes de desistir', count( $GLOBALS['__emails'] ) . ' tentativas' );
 unset( $GLOBALS['__email_falha'] );
+
+/* A SEGUNDA TENTATIVA, COM O REMETENTE PADRAO.
+   O adendo manda `From: contato@`, e a conta `contato@` no cPanel ainda nao
+   existe — e do Raphael. Muita hospedagem recusa enviar com remetente que nao e
+   caixa local, e ai a artesa nao fica sabendo do lead ate abrir o painel. O
+   mundo e PRODUZIDO: a bancada recusa so a mensagem que leva `contato@`. */
+$peca = cdm_cenario_limpo();
+$GLOBALS['__email_falha_com_from'] = 'contato@clubedomosaico.com.br';
+cdm_enviar( $peca );
+cdm_ok( 2 === count( $GLOBALS['__emails'] ),
+	'PRODUZ O MUNDO: recusado o contato@, ele tenta de novo com o remetente padrao',
+	count( $GLOBALS['__emails'] ) . ' tentativas' );
+$ultimo = end( $GLOBALS['__emails'] );
+cdm_ok( false === stripos( implode( "\n", (array) $ultimo['cabecalho'] ), 'From:' ),
+	'e a segunda vai SEM o From que foi recusado' );
+cdm_ok( false !== strpos( (string) get_post_meta( (int) $GLOBALS['__leads'][0]->ID, '_cdm_email_enviado', true ), 'remetente padrao' ),
+	'e o caminho usado fica gravado no lead (a ronda ve que o contato@ nao esta de pe)',
+	get_post_meta( (int) $GLOBALS['__leads'][0]->ID, '_cdm_email_enviado', true ) );
+unset( $GLOBALS['__email_falha_com_from'] );
 
 /* ======================================================================== */
 echo "\n7. A aba Interessados — vazia e cheia, cada uma em processo proprio\n";
@@ -718,6 +740,30 @@ cdm_ok( false !== strpos( $csv, '"(11) 98765-4321"' ), 'o telefone sai legivel, 
 cdm_ok( false !== strpos( $csv, '"Novo"' ), 'o estado sai no rotulo de gente, nao na chave do codigo' );
 cdm_ok( 2 === substr_count( $csv, "\r\n" ), 'uma linha de cabecalho e uma de dado', substr_count( $csv, "\r\n" ) . '' );
 cdm_ok( false === strpos( $csv, ',' . '"' ), 'a virgula NAO e o separador (o Excel em portugues a le como decimal)' );
+
+/* O CSV NAO PODE SER EXECUTADO PELA PLANILHA DELA.
+   O campo `nome` e digitado por qualquer pessoa que abra a ficha de uma peca na
+   internet, e planilha trata celula que comeca por = + - @ como FORMULA. Aspas
+   protegem a COLUNA e nao a leitura — o que protege e o apostrofo na frente. As
+   quatro bordas estao escritas a mao aqui, mais uma celula normal para a regra
+   nao virar "poe apostrofo em tudo". */
+foreach ( array( '=HYPERLINK("http://x","clique")', '+1+1', '-2+3', '@SUM(A1)' ) as $malicioso ) {
+	$linha_ruim = array( array(
+		'id' => 2, 'nome' => $malicioso, 'whatsapp' => '5511987654321',
+		'legivel' => '(11) 98765-4321', 'peca' => 'Vaso', 'peca_id' => 300,
+		'peca_url' => '', 'status' => 'novo', 'quando' => '2026-09-13 11:20:00',
+		'origem' => '', 'responder' => '',
+	) );
+	$csv_ruim = cdm_leads_csv( $linha_ruim );
+	/* O esperado leva o escape do CSV junto — a aspa de dentro sai duplicada — e
+	   e montado AQUI, nao pedido ao snippet. */
+	$esperado = '"\'' . str_replace( '"', '""', $malicioso ) . '"';
+	cdm_ok( false !== strpos( $csv_ruim, $esperado ),
+		'CSV: celula que comecaria formula sai como TEXTO: ' . substr( $malicioso, 0, 12 ),
+		substr( strstr( $csv_ruim, '"\'' ) ?: '(nao escapou)', 0, 26 ) );
+}
+cdm_ok( false !== strpos( $csv, '"Ana; Clara"' ) && false === strpos( $csv, "\"'Ana" ),
+	'e a celula normal NAO ganha apostrofo (a regra nao e "poe em tudo")' );
 
 /* ======================================================================== */
 echo "\n9. O estado com parametro fica fora do indice\n";

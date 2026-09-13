@@ -282,8 +282,8 @@ def m28(r):
     """A aspa dentro de um campo do CSV para de ser duplicada. Um nome de peca com
     aspas quebra a coluna a partir dali."""
     trocar(r, LEADS,
-           "\t\t\t$escapados[] = '\"' . str_replace( '\"', '\"\"', (string) $c ) . '\"';",
-           "\t\t\t$escapados[] = '\"' . (string) $c . '\"';")
+           "\t\t\t$escapados[] = '\"' . str_replace( '\"', '\"\"', cdm_leads_celula_segura( $c ) ) . '\"';",
+           "\t\t\t$escapados[] = '\"' . cdm_leads_celula_segura( $c ) . '\"';")
 
 
 def m29(r):
@@ -351,6 +351,44 @@ def m36(r):
            "\t\t'edit_pecas'              => true,\n\t\t'ler_interessados'        => true,")
 
 
+def m37(r):
+    """A segunda tentativa de e-mail some: recusado o `contato@`, o aviso nao vai.
+    A conta `contato@` no cPanel ainda nao existe — e do Raphael —, e muita
+    hospedagem recusa enviar com remetente que nao e caixa local. Sem a segunda
+    tentativa, a artesa so descobre o interessado se abrir o painel."""
+    trocar(r, LEADS,
+           "\t\t$ok = wp_mail( cdm_leads_email_destino(), $assunto, $corpo, array( 'Content-Type: text/html; charset=UTF-8' ) );",
+           "\t\t$ok = false;")
+
+
+def m38(r):
+    """O caminho usado para de ser gravado no lead. O aviso chega e ninguem fica
+    sabendo QUE remetente funcionou — entao a ronda nunca descobre que o
+    `contato@` nao esta de pe, e o item some da lista do Raphael sozinho."""
+    trocar(r, LEADS,
+           "\t\t$como = $ok ? 'remetente padrao (contato@ recusado)' : '';",
+           "\t\t$como = '';")
+
+
+def m39(r):
+    """A trava de formula do CSV some: o nome do lead volta a poder ser executado
+    pela planilha da artesa. O campo `nome` e digitado por qualquer pessoa da
+    internet, e planilha trata celula que comeca por = + - @ como FORMULA — aspas
+    protegem a coluna, nao a leitura."""
+    trocar(r, LEADS,
+           "\tif ( false !== strpos( \"=+-@\\t\\r\", $primeiro ) ) {\n\t\treturn \"'\" . $texto;\n\t}",
+           "\tif ( false ) {\n\t\treturn \"'\" . $texto;\n\t}")
+
+
+def m40(r):
+    """A trava passa a valer para TODA celula, e nao so para a que comeca formula.
+    O verde volta e o CSV fica com um apostrofo na frente de cada nome — a
+    correcao que parece mais segura e so quebra a leitura."""
+    trocar(r, LEADS,
+           "\t$primeiro = substr( $texto, 0, 1 );\n\tif ( false !== strpos( \"=+-@\\t\\r\", $primeiro ) ) {",
+           "\t$primeiro = substr( $texto, 0, 1 );\n\tif ( true ) {")
+
+
 MUTACOES = [
     ("01 o CPT de interessados volta ao wp-admin", m01),
     ("02 o tipo vira publico (cada lead ganha URL)", m02),
@@ -388,6 +426,10 @@ MUTACOES = [
     ("34 o Atelie para de aplicar o filtro das telas", m34),
     ("35 qualquer ?estado vira aba", m35),
     ("36 o papel artesa ganha capacidade nova", m36),
+    ("37 a segunda tentativa de e-mail some", m37),
+    ("38 o caminho do remetente nao e gravado", m38),
+    ("39 a trava de formula do CSV some", m39),
+    ("40 a trava de formula passa a valer para toda celula", m40),
 ]
 
 PORTAO_NOVO = "teste-leads.php"

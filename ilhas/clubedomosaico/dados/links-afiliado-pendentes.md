@@ -2,6 +2,18 @@
 
 **Estado em 13/09/2026:** 10 dos 20 itens do banco com link de afiliado vivo — 9 pela Shopee e 1 pelo Mercado Livre. **Nenhum material espera link.** As 10 pastilhas estão fora por decisão registrada abaixo.
 
+> **E ELES SÓ FORAM AO AR ÀS 11h56Z, oito horas depois de commitados.** A execução que
+> gerou os links gravou `materiais-colas.json` e `materiais-rejuntes.json` **sem atualizar
+> o `manifest.json` e sem acionar o Sync** — os dois arquivos ficaram com `sha256`
+> divergente e o site continuou servindo o banco antigo, com dez cartões dizendo "Link de
+> loja em breve" enquanto os dez links já existiam no repositório. É a seção 4 do contrato
+> na forma mais pura: o site fica para trás em silêncio, e ninguém percebe porque a
+> verificação olhava o repositório. Quem achou foi a execução seguinte, ao rodar
+> `atualizar-manifest.py` antes de construir. **O programa do Mercado Livre também estava
+> gravado como `mercado_livre`** e o esquema declara `mercadolivre` — o `validar-banco.py`
+> reprovava, e não tinha sido rodado. Lição de processo, não de link: **gerar dado é
+> metade; o bloco só fecha com manifest, Sync e `/status` batendo.**
+
 ## A DESCOBERTA QUE VALE PARA TODAS AS ILHAS
 
 **O gerador da Shopee funciona por máquina. O do Mercado Livre não.**

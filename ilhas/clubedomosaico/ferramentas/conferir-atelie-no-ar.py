@@ -203,9 +203,30 @@ def main():
             ok("cdm-vazio" not in loja_corpo, "[/loja/] o estado vazio SOME quando ha peca")
 
     # ---------------------------------------------------- a ficha de cada peca
+    # ------------------------------------------- o snippet de leads, no ar
+    #
+    # POR QUE ISTO EXISTE SEPARADO DA FICHA: o formulario do adendo 3 so aparece
+    # numa pagina de peca, e hoje nao ha peca publicada — entao a secao 5 abaixo
+    # PULA, e pular e honesto. O que nao seria honesto e fechar o bloco sem uma
+    # unica medicao no ar do snippet que acabou de desembarcar. Estas duas
+    # afirmacoes medem o que da para medir hoje: que o snippet esta ATIVO (a
+    # folha dele sai no /atelie/, que e pagina dele tambem) e que ele NAO abriu
+    # rota nenhuma de lead. A segunda e uma AUSENCIA, e ausencia so nao some
+    # sozinha quando alguem a mede.
+    print("\n4b. O snippet de leads (adendo 3)")
+    at_html, at_cod = buscar(BASE + "/atelie/")
+    ok("200" == at_cod and 'id="cdm-leads-folha"' in at_html,
+       "[/atelie/] a folha do snippet de leads sai no ar (ele esta ATIVO)", at_cod)
+    for rota in ("leads", "lead_peca", "interessados"):
+        _, cod_lead = buscar(BASE + "/wp-json/clubedomosaico/v1/" + rota)
+        ok(cod_lead in ("404", "401", "403"),
+           f"[rota] /v1/{rota} NAO existe (lead nao sai por endpoint)", cod_lead)
+
     print("\n5. A ficha de cada peca publicada")
     if publicadas <= 0:
         pular("a ficha da peca", "nenhuma peca publicada ainda — e o estado normal hoje")
+        pular("o formulario 'Verificar disponibilidade' no ar",
+              "so existe em pagina de peca, e nao ha peca publicada — medido na bancada, nao no ar")
     else:
         for url in sorted(set(re.findall(r'href="(' + re.escape(BASE) + r'/loja/[^"/]+/)"', loja_corpo))):
             h, c = buscar(url)

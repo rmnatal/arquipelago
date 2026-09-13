@@ -442,7 +442,19 @@ function wp_logout(){ $GLOBALS['__usuaria'] = null; $GLOBALS['__logout'] = true;
 function is_ssl(){ return true; }
 function wp_mail($para,$assunto,$corpo,$cab=array()){
 	$GLOBALS['__emails'][] = array('para'=>$para,'assunto'=>$assunto,'corpo'=>$corpo,'cabecalho'=>$cab);
-	return empty($GLOBALS['__email_falha']);
+	if (!empty($GLOBALS['__email_falha'])) { return false; }
+	/* RECUSAR SO A MENSAGEM QUE LEVA UM REMETENTE ESPECIFICO. E como se produz o
+	   mundo da hospedagem que nao envia com um `From:` que nao existe como caixa
+	   local — sem isso, "ele tenta de novo com o remetente padrao" seria uma
+	   frase que nenhum teste consegue medir. */
+	if (!empty($GLOBALS['__email_falha_com_from'])) {
+		foreach ((array) $cab as $linha) {
+			if (false !== stripos($linha, 'From:') && false !== strpos($linha, $GLOBALS['__email_falha_com_from'])) {
+				return false;
+			}
+		}
+	}
+	return true;
 }
 function remove_filter($h,$f,$p=10){
 	if (!isset($GLOBALS['__filtros'][$h])) { return false; }

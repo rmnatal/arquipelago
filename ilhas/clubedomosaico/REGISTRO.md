@@ -1735,3 +1735,190 @@ desta ilha. Casca **1.7.0**, manifest na **revisão 13**, `/status` com revisão
   option funcionou exatamente onde precisava funcionar: e-mail repetido para a Hotmail
   é o caminho mais curto para a caixa de spam, e caixa de spam aqui é uma pessoa
   esperando na frente do filho sem conseguir entrar.
+
+13/09/2026 11:56Z — ADENDO 3 ENTREGUE: os leads da Loja, e tres defeitos herdados que sairam junto
+
+**O BLOCO.** O adendo 3 de 11/09/2026 — o formulario "Verificar disponibilidade",
+o CPT `lead_peca`, a notificacao por e-mail, a aba Interessados e a exportacao
+CSV — ficou FORA do corte do despacho de 12/09 **por escrito**, e voltou a fila
+agora que o painel esta de pe. Saiu inteiro. Snippet novo
+`clubedomosaico-leads.php` 1.0.0 (snippet #11, criado pelo Sync), `loja` 1.1.0,
+`atelie` 1.1.0, manifest na revisao 18, `/status` conferido as 11h56Z **em UM
+disparo**, 10 itens aplicados.
+
+**O QUE MUDOU NA FICHA DA PECA.** O botao principal deixou de ser um `wa.me`
+direto e passou a ser "Verificar disponibilidade": um `<details>` que abre um
+formulario de **dois campos** — nome e WhatsApp, e nada mais, como o adendo
+manda ("Sem e-mail, sem CEP") — com o texto de consentimento e o link para
+`/privacidade/`. Envia, grava o lead, manda o aviso para
+`mina196@hotmail.com` com um botao que abre a conversa **com o cliente**,
+mensagem ja escrita, e volta para a peca dizendo "Pronto, {nome}!".
+
+**AS SETE DECISOES, e a cicatriz que cada uma evita** (estao inteiras no
+cabecalho do snippet; aqui o resumo):
+
+1. **Terceiro snippet, nao um pedaco da Loja.** O Sync desembarca um sem o
+   outro — e este e o primeiro arquivo desta ilha que guarda DADO DE PESSOA.
+2. **A Loja aplica `cdm_peca_acao`, e ele e aplicado de verdade.** A cicatriz e
+   de 12/09, aqui mesmo: dois `add_filter` sem ninguem do outro lado. Por isso
+   os portoes medem os DOIS lados — que a Loja CHAMA, e que o que volta aparece
+   no corpo servido. Sem o snippet de Leads no ar, a ficha volta ao que servia
+   ontem, e nao quebra.
+3. **Funciona com o JavaScript desligado** (22.8). O unico script e a mascara do
+   telefone, e ela e enfeite: quem canoniza e o PHP.
+4. **O nome da pessoa nao viaja na URL.** O POST guarda a confirmacao num
+   transient de 10 minutos e redireciona com uma CHAVE aleatoria — o nome nao
+   entra no historico, no Referer nem no log de acesso, e quem nao enviou nada
+   nao consegue fabricar a tela de "enviado".
+5. **O estado com parametro sai `noindex`**, pela mesma razao da F2.
+6. **O lead NAO vai para o repositorio.** A copia da secao 24 para a PECA e o
+   endpoint `/v1/pecas`; para o LEAD e o CSV dentro do painel, na mao dela. Nao
+   ha rota REST de lead — e o portao mede a AUSENCIA, no banco e no ar.
+7. **A aba nao cria capacidade nova.** As mesmas sete de ontem: quem pode editar
+   as pecas pode ver quem perguntou por elas.
+
+**O DEFEITO QUE O PORTAO PEGOU ANTES DO AR, e a forma dele vale mais que o
+conserto.** `cdm_leads_nome_da_artesa()` nasceu lendo o `first_name` da usuaria e
+descartando o valor quando ele fosse a palavra "artesa" — uma **lista de palavras
+proibidas**, exatamente a heuristica por vizinhanca que a secao 8 do contrato
+proibe. Falhou na primeira medicao pelo motivo mais previsivel: o que o snippet
+do Atelie grava ali e `Artesã`, com til e cedilha, e nenhuma lista de palavras
+acerta a grafia de um texto de espera que ela nao escreveu. A mensagem teria dito
+**"Aqui é Artesã"** para uma cliente de verdade. A saida nao foi uma lista melhor:
+o nome publico passou a ser **DECLARADO** na option `cdm_artesa_nome`, que nasce
+vazia — e vazia significa uma coisa so, que a identidade de `identidade/artesa/`
+ainda nao chegou, que e o mesmo estado que o `PROMPT.md` ja manda a pagina Sobre
+respeitar.
+
+**O QUE O NAVEGADOR ACHOU, e nenhum apareceria em leitura de codigo.** (a) O
+botao "Quero esta peca" saia com **43 px** — um pixel abaixo do alvo de toque,
+o mesmo defeito dos botoes de foto do painel em 12/09 e do mesmo jeito, porque so
+o motor de layout sabe a altura que o botao ficou tendo. (b) O `select` de estado
+da aba saia com 34 px e fonte de 15 px — abaixo de 16 px o iPhone da zoom sozinho
+ao tocar no campo e a tela pula. (c) **A aba Interessados vazia nao tinha uma
+unica acao**: uma tela sem saida, e o portao a chamou de beco. Ganhou "+ Nova
+peca" e "Ver minhas pecas".
+
+**TRES REGUAS DO NAVEGADOR MEDIAM A COISA ERRADA, e as tres teriam reprovado
+codigo certo.** (1) `getBoundingClientRect()` de um elemento dentro de um
+`<details>` FECHADO **nao devolve zero** neste Chromium — o conteudo e escondido
+por `content-visibility`, que pula a pintura e preserva a caixa; medindo altura,
+"antes" e "depois" davam o mesmo numero. Quem decide e `details.open`, e ele e a
+prova da 22.8 porque o clique acontece num contexto com o JavaScript
+**desligado**. (2) O alvo de toque era medido no proprio campo, e o alvo de um
+checkbox e o **rotulo** que o liga; e um honeypot, que esta fora da vista, fora do
+teclado e fora do leitor de tela, tem caixa de layout e era cobrado. As duas
+exclusoes sao ESTRUTURAIS, declaradas no markup — nunca pelo nome do campo. (3)
+"existe formulario E todo formulario POSTa" era uma afirmacao so, e reprovou a aba
+vazia, que legitimamente nao tem formulario nenhum. Virou duas: todo formulario
+PRESENTE POSTa, e a tela tem pelo menos um lugar onde agir.
+
+**OS TRES DEFEITOS HERDADOS, achados ao rodar os portoes ANTES de construir
+(secao 18.5).** A execucao das 02h33Z de 13/09 gravou os links de afiliado e nao
+rodou portao nenhum:
+
+- **DOIS BANCOS ESTAVAM COMMITADOS FORA DO MANIFEST.** `materiais-colas.json` e
+  `materiais-rejuntes.json` divergiam do `sha256` do manifest desde 12/09 — os
+  **dez links de afiliado estavam no repositorio e nao estavam no ar**. E a secao
+  4 na forma mais pura: o site fica para tras em silencio. O manifest deste bloco
+  os levou junto, e o `/status` na revisao 18 e a prova.
+- **O PROGRAMA DO MERCADO LIVRE ESTAVA GRAVADO COMO `mercado_livre`** e o
+  esquema declara `mercadolivre`. O `validar-banco.py` reprovava; ele nao tinha
+  sido rodado. Corrigido no banco, que e o lado errado — o esquema e a
+  declaracao.
+- **AS REGUAS DA F1 E DA F2 MEDIAM UM MUNDO COM ZERO LINK.** Elas cobravam a
+  frase "Link de loja em breve" no corpo da ancora, e isso era verdade so
+  enquanto NENHUM item tivesse link. Na noite em que as dez colas e rejuntes
+  ganharam link, as duas reprovaram **sem defeito nenhum embaixo** — a ilha tinha
+  melhorado e a regua chamou isso de erro. E a familia que a Aquametria nomeou em
+  12/09: **regua que depende de um caso raro do banco morre no dia em que o banco
+  melhora.** As tres (bancada da F1, bancada da F2 e a conferencia no ar) passaram
+  a medir o COMPORTAMENTO nos dois lados — item sem link reserva o lugar, item com
+  link serve o botao patrocinado —, e a bancada ganhou um mundo produzido de
+  proposito (`sem_links=1`) para poder medir o lado que o banco de hoje nao tem.
+
+**VERIFICACAO NA BANCADA, 0 falha:** teste-leads **175 NOVO** (8 estados de
+pagina, um processo cada), teste-loja 147 (era 140), teste-atelie 209,
+teste-casca 546, teste-f1 70 (era 67), teste-f2 74 (era 72),
+teste-prestacao-rejunte 5 sobre 720 estados, conferir-cobertura 128,
+validar-banco aprovado, validar-pastilhas aprovado, `php -l` em tudo.
+**NAVEGADOR:** teste-navegador-atelie **124 medicoes** em 7 paginas x 5 larguras,
+0 falha, 0 px de rolagem lateral em todas.
+**MUTACOES:** mutacoes-leads **36 de 36 reprovadas, 34 que so o portao novo
+pega**. Sete delas sao de PRIVACIDADE — o nome na URL, o IP em texto puro, o nome
+no titulo do registro, o tipo publico, o tipo na REST, o tipo na busca, a copia
+para o Raphael sem option — porque trava de privacidade que ninguem quebra de
+proposito e trava que ninguem sabe se funciona. **QUATRO PASSARAM NA PRIMEIRA
+PASSADA, e eram quatro buracos reais do meu portao:** o IP guardado em texto puro
+(o portao media que o limite funcionava e nao COM O QUE ele o fazia), o e-mail que
+falha apagando o lead (o stub da bancada esquecia de apagar, entao a contagem nao
+mudava), a acao da aba sem conferir capacidade (o portao media a TELA e nunca as
+ACOES) e o despacho de um estado que ninguem registrou como aba (so mensuravel
+PRODUZINDO um atendente intrometido).
+
+**NO AR as 11h56Z, em UM disparo:** `/status` na revisao 18, igual a do manifest,
+10 itens aplicados, snippet #11 criado. `conferir-no-ar.py` 339 afirmacoes, 0
+falha, as 11 URLs intactas. `conferir-atelie-no-ar.py` 37 afirmacoes (era 33), 0
+falha, 2 puladas — e as sete capacidades do papel `artesa` continuam sendo
+exatamente sete, com nenhuma das oito proibidas, que era a razao da decisao 7.
+Medido no ar tambem: a folha do snippet de Leads sai no `/atelie/` (ele esta
+ATIVO) e `/v1/leads`, `/v1/lead_peca` e `/v1/interessados` respondem **404** —
+lead nao sai por endpoint.
+
+**O QUE NAO FOI MEDIDO NO AR, e e pulada declarada, nao aprovada:** o formulario
+so existe em pagina de peca e **nao ha peca publicada**. Ele esta medido na
+bancada, em 8 estados, e no navegador a 360 px; no ar, so quando a artesa
+publicar a primeira peca. Esta escrito assim no proprio `conferir-atelie-no-ar.py`.
+
+**UMA CONSEQUENCIA QUE VALE DIZER:** a option `cdm_whatsapp` **deixou de decidir
+se a peca tem como ser pedida**. Ela estava vazia e por isso a ficha servia a
+frase de que o contato nao foi publicado; agora o caminho de venda e o
+formulario, que nao depende de numero nenhum. O item "a option de uma linha"
+sai da lista do que trava a venda — continua util para um botao direto no
+futuro, mas nao bloqueia mais nada.
+
+**PROXIMO, com ordem e motivo:** (a) **"Meus dados"** dentro do painel, que e o
+que torna a option `cdm_email_leads` editavel por ela e fecha o unico pedaco do
+adendo 3 que ficou em codigo — a option existe e funciona, mas so por
+`update_option`; (b) a ordem de BANCO que o estado anterior ja deixava: fechar
+2x2 na categoria pastilha, que esta a UM item dos 3 da 14.3, depois a vitrine de
+pastilha da F1, depois a categoria cola; (c) o feed do Merchant Center, que
+**depende de haver peca publicada** e por isso nao e escolha de fila e sim de
+espera. E um item que so um humano fecha, o mesmo de ontem: confirmar que o
+e-mail de acesso CHEGOU na caixa da Hotmail.
+
+**A REVISÃO 19, e por que houve um segundo desembarque.** Três coisas só
+apareceram depois de o primeiro estar no ar:
+
+- **O CSV podia ser EXECUTADO pela planilha dela.** O campo `nome` é digitado por
+  qualquer pessoa que abra a ficha de uma peça na internet, e planilha trata
+  célula que começa por `=`, `+`, `-` ou `@` como **fórmula** — um nome escrito
+  como `=HYPERLINK(...)` vira um link clicável dentro do arquivo que a artesã
+  abre. As aspas do CSV protegem a **coluna**, não a leitura; o que protege é um
+  apóstrofo na frente. Duas mutações novas medem os dois erros possíveis: não
+  escapar, e escapar tudo (que devolve o verde e quebra a leitura).
+- **O `From: contato@` que o adendo pede aponta para uma caixa que não existe.**
+  A mesma linha do adendo diz que a casca "precisa criar a conta `contato@` no
+  cPanel OU garantir SPF/DKIM", e isso é do Raphael e não foi feito. Muita
+  hospedagem recusa enviar com remetente que não é caixa local, e aí o lead fica
+  gravado e a artesã não fica sabendo dele até abrir o painel. Agora, se a
+  primeira tentativa falhar, vai uma **segunda com o remetente padrão do
+  WordPress** — o mesmo que entregou o e-mail de acesso dela em 12/09 — e o
+  caminho usado fica **gravado no lead**, para a ronda ver que o `contato@` não
+  está de pé em vez de descobrir pela ausência.
+- **Não deu para conferir SPF/DKIM daqui.** `dns.google` e `cloudflare-dns.com`
+  respondem **403 ao CONNECT por política de egresso**, em duas passadas cada,
+  como a 20.2 manda testar antes de declarar. Não é intermitência de túnel: é a
+  lista Personalizada da rede das rotinas, que tem os domínios das ilhas,
+  `googleapis` e `github`, e nenhum resolvedor de DNS. Fica declarado, não
+  presumido.
+
+**Números finais, com as duas revisões dentro.** Bancada: teste-leads **184**,
+teste-loja 147, teste-atelie 209, teste-casca 546, teste-f1 70, teste-f2 74,
+teste-prestacao-rejunte 5 sobre 720 estados, conferir-cobertura 128 — 0 falha em
+todas. Navegador: 124 medições em 7 páginas × 5 larguras, 0 falha. Mutações:
+**mutacoes-leads 40 de 40 reprovadas, 38 que só o portão novo pega, 0 inertes**.
+**As onze baterias antigas rodadas inteiras, para provar que nenhuma virou
+inerte: árvore 20, ateliê 26, cobertura 14, F1 27, F2 20, GA4 14, loja 23,
+pastilhas 12, prestação 11, rejunte 12 e voz-e-cabeça 24 — 203 mutações, 203
+reprovadas, 0 passaram, 0 inertes.**

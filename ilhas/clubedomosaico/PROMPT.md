@@ -160,6 +160,31 @@ A mãe do Raphael cadastra as peças **ela mesma**, com login e senha próprios,
 - **Verificação obrigatória antes de `publicar: true`**: `php -l` nos dois; entrar em `/atelie/` como `artesa`, cadastrar uma peça de TESTE ("TESTE — apagar", 3 fotos) pelo formulário, publicar, abrir a página pública (carrossel, JSON-LD válido, botão do WhatsApp), pausar, excluir; confirmar que `artesa` em `/wp-admin/` é redirecionada para `/atelie/`; testar a 360 px de largura.
 
 ### ADENDO 3 — 11/09/2026 — LEADS DA LOJA ("Verificar disponibilidade")
+
+> **CUMPRIDO em 13/09/2026 11h56Z** — snippet `clubedomosaico-leads.php` 1.0.0
+> (snippet #11), `loja` 1.1.0, `atelie` 1.1.0, manifest na revisão 18, `/status`
+> conferido em UM disparo. Saiu inteiro: o botão "Verificar disponibilidade", o
+> formulário de dois campos, o CPT `lead_peca`, o e-mail imediato com o botão que
+> abre a conversa **com o cliente**, a aba Interessados e o CSV. O texto abaixo
+> fica como escrito, que é o que permite conferir o que foi entregue contra o que
+> foi pedido; o que **mudou de forma e não de conteúdo** está declarado aqui:
+>
+> - **A mensagem pronta sai em português de conversa**, não com os rótulos do
+>   adendo dentro da frase ("Ela está pronta, já feita." em vez de "Ela está
+>   pronta entrega"). Os dados são os mesmos e nenhum é inventado — sem
+>   disponibilidade gravada, a frase simplesmente não sai.
+> - **O nome da artesã vem da option `cdm_artesa_nome`, que nasce vazia**, e não
+>   do `first_name` da usuária. O Ateliê grava ali o texto de espera `Artesã`, e
+>   ler dali faria a mensagem dizer "Aqui é Artesã" para uma cliente — o portão
+>   pegou isso antes do ar. Enquanto a option estiver vazia a mensagem assina "do
+>   Clube do Mosaico", que é o mesmo estado que a página Sobre já respeita.
+> - **"Meus dados" continua fora**, como já estava: a option `cdm_email_leads`
+>   existe e funciona, mas ainda não é editável por ela na tela. É o primeiro
+>   item do próximo bloco.
+>
+> **A option `cdm_whatsapp` deixou de decidir se a peça tem como ser pedida.** O
+> caminho de venda passou a ser o formulário, que não depende de número nenhum.
+
 Decisão do Raphael em 11/09/2026. Faz parte do bloco 4d (Loja + painel) e vai no mesmo snippet "Clube do Mosaico Loja — peças e vitrine" ou num terceiro snippet "Clube do Mosaico Leads — verificar disponibilidade" (preferir o terceiro, para o Sync desembarcar separado).
 
 **Na página da peça**, o botão principal (coral, único por tela) é **"Verificar disponibilidade"**. Ele abre um formulário curto, na própria página (modal ou bloco que desliza, sem sair da peça):

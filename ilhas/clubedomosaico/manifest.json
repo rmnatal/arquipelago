@@ -4,7 +4,7 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 18,
+  "revisao": 19,
   "atualizado_em": "2026-09-13",
   "estado": "nascendo",
   "desembarque": {
@@ -76,7 +76,7 @@
       "ativo": true,
       "publicar": true,
       "versao": "1.0.0",
-      "sha256": "ea93f1b695803450a8eeb68a4e3436c51b011c24c6f0ba3e0c43ab53959a9109",
+      "sha256": "56f2a430150a39be1c46aab38be3f82f50180479cf16c38b080804d8d83e0c43",
       "descricao": "ADENDO 3 DO BLOCO 4d — os leads da Loja, que ficaram FORA do corte de 12/09 por escrito e voltaram a fila agora que o painel esta de pe. O botao principal da ficha da peca deixou de ser um `wa.me` direto e passou a ser \"Verificar disponibilidade\": um formulario de dois campos (nome e WhatsApp) na propria pagina, que grava o CPT `lead_peca` e manda um aviso imediato para a caixa da artesa com um botao que abre a conversa com o CLIENTE, mensagem ja escrita. SETE DECISOES. (1) TERCEIRO SNIPPET E NAO UM PEDACO DA LOJA — o Sync desembarca um sem o outro, e este e o primeiro arquivo desta ilha que guarda DADO DE PESSOA: manter nome e telefone num lugar so faz a pergunta \"onde eles moram?\" ter resposta de uma linha. (2) A LOJA APLICA UM FILTRO, `cdm_peca_acao`, E ELE E APLICADO DE VERDADE — a cicatriz de 12/09 nesta ilha foram dois add_filter sem ninguem do outro lado, e por isso o portao mede os DOIS lados: que a Loja chama, e que o que volta aparece no corpo servido. Sem este snippet no ar a ficha volta exatamente ao que servia ontem. (3) O FORMULARIO FUNCIONA COM O JAVASCRIPT DESLIGADO (22.8): e um <details> com um <form method=\"post\"> dentro; o unico script e a mascara do telefone, que e enfeite — a canonizacao acontece no PHP. (4) O NOME DA PESSOA NAO VIAJA NA URL: o POST guarda a confirmacao num transient de 10 minutos e redireciona com uma CHAVE aleatoria, entao o nome nao entra no historico, no Referer nem no log de acesso — e quem nao enviou nada nao consegue fabricar a tela de enviado. (5) O ESTADO COM PARAMETRO SAI NOINDEX, pela mesma razao da F2: quem entra no indice e UMA pagina, a ficha limpa. (6) O LEAD NAO VAI PARA O REPOSITORIO — a copia da secao 24 para a PECA e o endpoint /v1/pecas, e para o LEAD e o CSV dentro do painel, na mao dela; NAO existe rota REST de lead, e o portao mede a AUSENCIA, que e a unica forma de uma ausencia nao sumir num bloco futuro. (7) A ABA NAO CRIA CAPACIDADE NOVA no papel `artesa` — sao as mesmas sete, e quem pode editar as pecas pode ver quem perguntou por elas. O DEFEITO QUE O PORTAO PEGOU ANTES DO AR: a funcao do nome da artesa nasceu lendo `first_name` e descartando a palavra \"artesa\" — lista de palavras proibidas, a heuristica que a secao 8 proibe — e falhou na primeira medicao porque o que o Atelie grava ali e `Artesã`, com til e cedilha. A mensagem teria dito \"Aqui é Artesã\" para uma cliente. Agora o nome publico e DECLARADO na option `cdm_artesa_nome`, que nasce vazia, e vazia significa uma coisa so: a identidade de identidade/artesa/ ainda nao chegou."
     }
   ],
@@ -208,7 +208,7 @@
     {
       "id": "conferir-no-ar",
       "arquivo": "ferramentas/conferir-no-ar.py",
-      "sha256": "4337f6d7088ec84652b269cfb391d6481bb168ed1ae2015600260f97b63f0b54",
+      "sha256": "35fee612736ffceae1f32b4beb87b87ad137d4003783333aec6d1b5c303eff52",
       "descricao": "Mede o que o SITE serve, nao o que o repositorio guarda: abre as nove URLs com curl e afirma sobre o HTML SERVIDO. Existe porque 'aplicado com sucesso' no log do Sync nao e evidencia de nada (secao 8) e commit sem verificacao no ar nao e entrega (secoes 4 e 18.4). 102 afirmacoes: HTTP 200, a marca no HTML, o src igual ao arquivo que o Raphael subiu, zero texto ao lado do logo, alt com o nome, medida 78x52 declarada, o logo uma vez por pagina, o wordmark em texto de 1.2.0 fora de toda pagina, zero &#038; dentro de <script>, a folha servida mandando 52 px, o cabecalho ainda claro, e as tres URLs da imagem respondendo PNG. REGUA PROPRIA: a URL e a medida estao literais no arquivo, copiadas do despacho, e nao lidas da constante da casca — senao as duas metades errariam juntas. Todo endereco leva ?v= porque o cache de borda faz concluir que nada mudou. NUNCA e publicada no site."
     },
     {
@@ -274,7 +274,7 @@
     {
       "id": "render-para-teste",
       "arquivo": "ferramentas/render-para-teste.php",
-      "sha256": "a4577c05196b38861a6bb1ac9184742cfb975d1dae6486ce2c9174cd58ed5f2a",
+      "sha256": "369fe0c809fe067192a00c3ea4d6edebf8941c7d788c638d897d8397e0b45656",
       "descricao": "Monta uma pagina do site fora do WordPress para poder medir o HTML servido sem depender do site no ar — necessario porque o gateway da rede das rotinas respondeu 403 ao CONNECT para clubedomosaico.com.br em 11/09/2026. Imita de verdade os ganchos wp_head/wp_footer com prioridade, o escape de '&' que os filtros do the_content aplicam ao retorno do shortcode, e o remove_action casando gancho + funcao + prioridade. Carrega nas options o que o Sync carrega, pela cicatriz da bancada pela metade (secao 8). NUNCA e publicada no site."
     },
     {
@@ -382,7 +382,7 @@
     {
       "id": "conferir-atelie-no-ar",
       "arquivo": "ferramentas/conferir-atelie-no-ar.py",
-      "sha256": "e06ed0188b7222d5c5b10196c58e575c677febe6c87140b94d913f258f594c6b",
+      "sha256": "45aff135d1723dcf75f94d7023a5e1b07fe717645b2109cf5c92b9d7fa8cf87f",
       "descricao": "Mede NO AR o bloco 4d. Separado do conferir-no-ar.py porque aquele mede as onze URLs no caso-ANCORA e este bloco trouxe uma pagina que muda conforme QUEM abre (o painel) e uma URL que so existe quando a artesa publica (a ficha) — a mesma razao do conferir-kits-no-ar.py da Robometria. PROVA: /atelie/ em 200 servindo a tela de entrar, com noindex, FORA do sitemap (varrendo o indice e os sub-mapas), e ZERO links para ela nas oito paginas publicas; que a vitrine da Loja mostre exatamente as pecas que a rota publica de contagem conta (duas metades lendo o mesmo banco: divergencia e cache velho, que e como o site fica para tras em silencio); que cada ficha publicada sirva description, og:, Product+Offer valido e trilha, e que o preco da TELA e o do SCHEMA sejam o mesmo numero; e, com o token do Sync, que o papel tenha as 7 capacidades e NENHUMA das proibidas, que a usuaria exista, e A HORA EM UTC em que o e-mail de acesso saiu — que e o que o despacho manda escrever no ESTADO.md. Mede a RECUSA da rota sem token antes de usar o token. Sem token, as afirmacoes que dependem dela sao contadas como PULADAS, nunca como aprovadas. NAO PROVA, e diz isso no fim: se o e-mail chegou na caixa da Hotmail (wp_mail true diz que o servidor aceitou, nao que passou do filtro de spam) e se o dedo dela funciona a 360 px."
     },
     {
@@ -394,13 +394,13 @@
     {
       "id": "teste-leads",
       "arquivo": "ferramentas/teste-leads.php",
-      "sha256": "71c626fb5e9cbccb9f868da5b1f3e182f7c26a41132e5e475b575fa3d0710213",
+      "sha256": "a09a958af94e3547abd77100e9a3f56711f24f0446a47de5cd77488d4ca00d60",
       "descricao": "Portao do adendo 3 (leads da Loja), sem site e sem rede. REGUA PROPRIA: a tabela de telefones esta escrita a mao, entrada por entrada, com o canonico esperado digitado do lado — nada aqui chama cdm_leads_wa_canonico() para saber o que esperar. GRADE COM BORDA: pisa no DDD 10 (invalido) e no 11 (o primeiro valido), no DDD 99 (o ultimo), no assinante de 8 e de 9 digitos e no 9 inicial do celular. Mede no CORPO, conta &#038; so dentro dos <script>, e roda UM PROCESSO POR ESTADO de pagina. O que ele tem de diferente dos outros portoes desta ilha: sete afirmacoes nao medem se a tela esta certa e sim se nome e telefone de uma cliente VAZAM — para a URL, para o repositorio, para o indice ou para quem nao e a artesa. Foi ele que pegou, ANTES do ar, a funcao do nome da artesa lendo o texto de espera `Artesã` do painel e escrevendo 'Aqui é Artesã' na mensagem que iria para uma cliente."
     },
     {
       "id": "mutacoes-leads",
       "arquivo": "ferramentas/mutacoes-leads.py",
-      "sha256": "20c1ff7b3c3ac532e46e37be158c23915d6da1c1d4ea511e36dcbae2f6676b5d",
+      "sha256": "d94a59e3c7db9f4c75a132673f62b59eb4c5dbdcc2edde8ddf4bb0141296066d",
       "descricao": "36 defeitos escritos de volta no snippet de Leads, na Loja e no Atelie, cada um rodando o portao NOVO e dois ANTIGOS para provar quais so o novo pega. Sete delas sao de PRIVACIDADE (o nome na URL, o IP em texto puro, o nome no titulo do registro, o tipo publico, o tipo na REST, o tipo na busca, a copia para o Raphael sem option) — trava de privacidade que ninguem quebra de proposito e trava que ninguem sabe se funciona. Quatro passaram na primeira passada e eram quatro buracos reais do portao: o IP em texto puro, o e-mail que falha apagando o lead, a acao da aba sem conferir capacidade e o despacho de um estado que ninguem registrou como aba."
     }
   ],

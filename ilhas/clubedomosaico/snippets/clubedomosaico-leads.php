@@ -87,6 +87,19 @@
  * continua sendo gravado e enviado por e-mail. Nada quebra pela metade.
  *
  * ------------------------------------------------------------------------
+ * O QUE VIGIAR NO DIA EM QUE ESTA ILHA GANHAR CACHE DE PÁGINA
+ * ------------------------------------------------------------------------
+ * O nonce do formulário é gerado quando a página é montada. Se um dia alguém
+ * ligar cache de HTML nesta hospedagem, a ficha da peça passa a ser servida do
+ * cache com um nonce cada vez mais velho, e o envio começa a cair em "a página
+ * ficou aberta tempo demais". O nonce do WordPress vive de 12 a 24 horas e
+ * cache de página costuma ser bem mais curto, então hoje isso não acontece — e
+ * hoje esta ilha não tem plugin de cache (Code Snippets, Site Kit, Converter
+ * for Media e Limit Login Attempts, medido em 11/09/2026). Fica escrito porque
+ * o sintoma é enganoso: parece defeito do formulário e é do cache, e a única
+ * pessoa que veria seria uma cliente que desistiu sem avisar ninguém.
+ *
+ * ------------------------------------------------------------------------
  * SOBRE `$_SERVER`, QUE APARECE UMA VEZ SÓ NESTE ARQUIVO
  * ------------------------------------------------------------------------
  * O playbook (fase 4b) manda evitar `$_SERVER` literal porque o ModSecurity da
@@ -856,30 +869,62 @@ function cdm_leads_notificar( $lead_id, $peca ) {
 	}
 	$nome  = (string) get_post_meta( (int) $lead_id, '_cdm_nome', true );
 	$assunto = 'Novo interessado: ' . (string) $peca->post_title . ' — ' . $nome;
+	$corpo   = cdm_leads_email_html( (int) $lead_id, $peca );
 
-	$ok = wp_mail(
-		cdm_leads_email_destino(),
-		$assunto,
-		cdm_leads_email_html( (int) $lead_id, $peca ),
-		array(
-			'Content-Type: text/html; charset=UTF-8',
-			'From: Clube do Mosaico <contato@clubedomosaico.com.br>',
-		)
-	);
-	update_post_meta( (int) $lead_id, '_cdm_email_enviado', $ok ? current_time( 'mysql' ) : 'falhou' );
+	$ok = wp_mail( cdm_leads_email_destino(), $assunto, $corpo, cdm_leads_cabecalhos() );
+
+	/* A SEGUNDA TENTATIVA, COM O REMETENTE PADRÃO DO SITE.
+	 *
+	 * O adendo manda usar `From: contato@clubedomosaico.com.br`, e a mesma linha
+	 * dele diz que a casca "precisa criar a conta `contato@` no cPanel OU
+	 * garantir SPF/DKIM" — isso ainda não foi feito, e é do Raphael. Muita
+	 * hospedagem recusa enviar com um remetente que não existe como caixa local,
+	 * e aí o `wp_mail` devolve false: o lead fica gravado e a artesã não fica
+	 * sabendo dele até abrir o painel.
+	 *
+	 * Então, se a primeira falhar, vai uma segunda com o remetente que o próprio
+	 * WordPress usa — o mesmo que entregou o e-mail de acesso dela em 12/09. Não
+	 * é contorno de configuração: é a diferença entre ela ser avisada e não ser,
+	 * num dia em que ninguém está olhando. E o caminho usado fica GRAVADO no
+	 * lead, para a ronda ver que o `contato@` não está de pé em vez de descobrir
+	 * pela ausência.
+	 *
+	 * Esta execução não conseguiu conferir SPF/DKIM: `dns.google` e
+	 * `cloudflare-dns.com` respondem 403 ao CONNECT por política de egresso, em
+	 * duas passadas cada (13/09/2026). Fica declarado, não presumido.
+	 */
+	$como = $ok ? 'contato@' : '';
+	if ( ! $ok ) {
+		$ok = wp_mail( cdm_leads_email_destino(), $assunto, $corpo, array( 'Content-Type: text/html; charset=UTF-8' ) );
+		$como = $ok ? 'remetente padrao (contato@ recusado)' : '';
+	}
+	update_post_meta( (int) $lead_id, '_cdm_email_enviado',
+		$ok ? current_time( 'mysql' ) . ' via ' . $como : 'falhou nas duas tentativas' );
 
 	/* A CÓPIA PARA O RAPHAEL SÓ EXISTE SE ALGUÉM A PEDIR. O adendo é explícito:
 	   "O Raphael NÃO recebe cópia de lead, a não ser que a option
 	   `cdm_email_leads_copia` seja preenchida." */
 	$copia = sanitize_email( (string) get_option( 'cdm_email_leads_copia', '' ) );
 	if ( '' !== $copia ) {
-		wp_mail( $copia, $assunto, cdm_leads_email_html( (int) $lead_id, $peca ), array(
-			'Content-Type: text/html; charset=UTF-8',
-			'From: Clube do Mosaico <contato@clubedomosaico.com.br>',
-		) );
+		wp_mail( $copia, $assunto, $corpo, cdm_leads_cabecalhos() );
 	}
 
 	return $ok;
+}
+}
+
+if ( ! function_exists( 'cdm_leads_cabecalhos' ) ) {
+/**
+ * Os cabeçalhos do adendo, num lugar só.
+ *
+ * `Reply-To` vazio não é descuido: responder ao e-mail não fala com ninguém —
+ * quem fala é o botão que abre o WhatsApp do cliente.
+ */
+function cdm_leads_cabecalhos() {
+	return array(
+		'Content-Type: text/html; charset=UTF-8',
+		'From: Clube do Mosaico <contato@clubedomosaico.com.br>',
+	);
 }
 }
 
@@ -1024,7 +1069,12 @@ function cdm_leads_tela_interessados( $usuaria ) {
 
 	$h .= '<p class="cdm-at-linha cdm-leads-conta">';
 	$h .= count( $linhas ) === 1 ? '1 pessoa perguntou' : count( $linhas ) . ' pessoas perguntaram';
-	$h .= $novos > 0 ? ' · <strong>' . $novos . ( 1 === $novos ? ' sem resposta' : ' sem resposta' ) . '</strong>' : '';
+	/* "sem resposta" não flexiona, então não há ternário de plural aqui — um que
+	   devolvesse a mesma frase dos dois lados seria a "função morta" que esta
+	   ilha já nomeou: parece regra e não decide nada. */
+	if ( $novos > 0 ) {
+		$h .= ' · <strong>' . $novos . ' sem resposta</strong>';
+	}
 	$h .= '</p>';
 
 	$h .= '<ul class="cdm-at-lista cdm-leads-lista">';
@@ -1098,6 +1148,40 @@ add_filter( 'cdm_atelie_tela', function ( $html, $estado, $usuaria ) {
  * 8. AS AÇÕES DO PAINEL — mudar o estado e baixar o CSV
  * ------------------------------------------------------------------------- */
 
+if ( ! function_exists( 'cdm_leads_celula_segura' ) ) {
+/**
+ * Uma célula que o Excel não vai EXECUTAR.
+ *
+ * O CSV é a cópia da seção 24 e vai para a planilha de uma pessoa de verdade. O
+ * campo `nome` é digitado por qualquer um que abra a ficha de uma peça na
+ * internet — e planilha trata célula que começa por `=`, `+`, `-` ou `@` como
+ * FÓRMULA, não como texto. Um nome escrito como `=HYPERLINK(...)` vira um link
+ * clicável dentro da planilha dela; há variações piores.
+ *
+ * O escape do CSV não resolve isso: aspas protegem a coluna, não a leitura. O
+ * que resolve é um apóstrofo na frente, que é como planilha nenhuma trata a
+ * célula como fórmula — e que some da tela quando ela olha.
+ *
+ * A lista inclui tabulação e retorno de carro porque alguns leitores os pulam
+ * antes de decidir o que é fórmula, e aí o `=` volta a ser o primeiro caractere
+ * que importa. É a mesma família do "perdoar por presença de palavra é
+ * adivinhar": quem decide é a estrutura do começo da célula, não a aparência
+ * dela.
+ */
+function cdm_leads_celula_segura( $valor ) {
+	$texto = (string) $valor;
+	if ( '' === $texto ) {
+		return '';
+	}
+	$primeiro = substr( $texto, 0, 1 );
+	if ( false !== strpos( "=+-@\t\r", $primeiro ) ) {
+		return "'" . $texto;
+	}
+
+	return $texto;
+}
+}
+
 if ( ! function_exists( 'cdm_leads_csv' ) ) {
 /**
  * O CSV, como texto. Separado da ação que o serve para PODER ser medido.
@@ -1124,7 +1208,7 @@ function cdm_leads_csv( $linhas ) {
 		);
 		$escapados = array();
 		foreach ( $campos as $c ) {
-			$escapados[] = '"' . str_replace( '"', '""', (string) $c ) . '"';
+			$escapados[] = '"' . str_replace( '"', '""', cdm_leads_celula_segura( $c ) ) . '"';
 		}
 		$saida .= implode( ';', $escapados ) . "\r\n";
 	}
