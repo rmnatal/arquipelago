@@ -17,13 +17,12 @@ tráfego 100% orgânico sem anúncio, sem link building pago, nunca YMYL (saúde
 
 ## 2. O que um nicho precisa ter (critérios estruturais — eliminatórios)
 
-- Produto físico comprável no Brasil, com **especificação verificável na fonte do fabricante**.
-- **Decisão de compra paramétrica**: depende de um número do usuário (medida, litragem, potência, compatibilidade peça × modelo).
-- Existe consumível ou peça de recompra (recorrência).
-- **Cobertura de afiliado (cicatriz da Aquametria, 09/09/2026):** os produtos que a ferramenta recomendaria existem na
-  Shopee **ou** no Mercado Livre. Verifique pelo menos 10 produtos que uma calculadora do nicho indicaria; se menos de 7
-  tiverem anúncio num dos dois programas, o nicho está **desqualificado** por enquanto — ilha que recomenda o que não tem
-  link é trabalho sem receita (na Aquametria, 20 de 29 produtos não existiam na Shopee).
+**Ampliados em 13/09/2026, por decisão do Raphael.** O motivo está registrado porque importa: os três primeiros nichos eram todos de marketplace, e os critérios tinham sido escritos descrevendo **esses três** em vez de descrever a regra. Critério que descreve o passado desqualifica o futuro — foi o que quase aconteceu com o nicho de viagem, que reprovava nos quatro e mesmo assim tem a forma certa.
+
+- **Objeto de compra verificável na fonte de quem vende, fabrica ou opera.** O caso comum é produto físico com ficha de fabricante. **Também vale serviço com preço e condição publicados por quem opera** — passeio, ingresso, seguro, plano. O que NÃO vale é objeto cujo preço e cujas condições só existam em opinião de terceiro: sem fonte primária não há dado, e sem dado a ilha é blog.
+- **Decisão de compra paramétrica**: depende de um número que o usuário dá. Em produto físico é medida, litragem, potência, compatibilidade peça × modelo. **Em serviço é dias × pessoas × padrão** — "quanto custa 7 dias em X para 2 pessoas" é tão paramétrico quanto "qual cola para vaso de cerâmica".
+- **Existe recompra.** Consumível, peça, ou **o mesmo usuário voltando para outra ocasião do mesmo tipo** (outro destino, outra temporada). Recorrência anual conta; recorrência nenhuma desqualifica.
+- **Cobertura de afiliado (cicatriz da Aquametria, 09/09/2026 — ampliada em 13/09/2026):** o que a ferramenta recomendaria tem **programa de afiliado acessível, com link rastreável e comissão declarada**. Verifique pelo menos 10 itens que uma ferramenta do nicho indicaria; se menos de 7 tiverem programa, o nicho está **desqualificado** por enquanto. **Marketplace não é requisito — é o caso comum.** Na Aquametria, 20 de 29 produtos não existiam na Shopee, e foi isso que criou a regra: o que ela protege é a existência de **porta de compra rastreável**, não a marca do programa. Ilha que recomenda o que não tem link é trabalho sem receita, venha o link de onde vier.
 
 ## 3. Scorecard v3 (rodada 004 em diante)
 

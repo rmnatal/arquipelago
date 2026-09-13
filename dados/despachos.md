@@ -196,3 +196,7 @@ dia em que ela ia aprender a usar o painel. Isto é decisão do Raphael, como a
 aritmética de "três ilhas e quatro execuções" de 12/09: ou a camada de links de
 afiliado passa a reservar a ilha como a Fundação reserva, ou ela deixa de tocar em
 `ilhas/<ilha>/dados/` e vira despacho para quem tem a ilha na mão.
+
+### bússola — pontuar o nicho de viagem na rodada 004 (segunda, 14/09)
+
+Aberto em 13/09/2026 pelo Raphael. O enquadramento, a medição de quatro SERPs e o levantamento de monetização já estão em `bussola/despacho-viagem.md` — a rodada não recomeça do zero. Os critérios eliminatórios da seção 2 do `BUSSOLA.md` foram ampliados no mesmo dia para permitir nicho de serviço; sem essa mudança, viagem reprovava nos quatro. Entrega esperada: dossiê completo, com as duas adaptações que o despacho exige.

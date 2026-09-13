@@ -9,6 +9,7 @@ Estado: `ilha` = já nasceu · `dossie` = dossiê pronto em `dossies/<nicho>/` �
 | # | Nicho | Índice | S | P | D | M (R$/venda) | R | A | V | Estado | Observação |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | 1 | Robô aspirador (peças e compatibilidade) | 4,30 | 4 | 4 | 4,5 | 4,50 (R$120) | 5 | 5 | 4,5 | ilha | robometria.com.br, nasceu 09–10/09 |
+| — | **Viagem — "vale a pena?" sobre experiência icônica** | a pontuar | — | — | — | — | — | — | — | despacho | **entra por despacho do Raphael, 13/09** — ver `bussola/despacho-viagem.md`. SERP de julgamento medida e ABERTA (Capadócia, Blue Lagoon); SERP de ingresso FECHADA (Burj Khalifa, Dubai). Tem ativo próprio: Instagram @jornadafly, ~10 mil seguidores. Pontuar na rodada 004 pelos critérios AMPLIADOS da seção 2 |
 | 2 | Energia solar off-grid / estação portátil | 4,20 | 4 | 5 | 4 | 4,78 (R$160) | 2 | 4 | 5 | fila | paramétrica 100% aberta (só blog de loja solar) |
 | 3 | Nobreak e estabilizador | 4,19 | 4 | 5 | 4 | 4,21 (R$88) | 3 | 4,5 | 5 | fila | bateria selada como recompra (2–3 anos) |
 | 4 | Coifa e exaustor | 4,17 | 4 | 5 | 3,5 | 4,29 (R$96) | 4,5 | 3,5 | 5 | fila | filtro de carvão troca a cada 3–6 meses |
@@ -40,3 +41,5 @@ Estado: `ilha` = já nasceu · `dossie` = dossiê pronto em `dossies/<nicho>/` �
 Fora da Bússola (projeto pessoal, não pontuado): **Clube do Mosaico** (clubedomosaico.com.br, nasceu 10/09/2026).
 
 As notas "—" da rodada 002 estão na tabela do painel publicado ("Garimpeiro de Nichos"); a rodada 004 traz todas para cá.
+
+**Critérios ampliados em 13/09/2026** (`BUSSOLA.md`, seção 2): nicho de **serviço** com preço publicado por quem opera passou a ser elegível, e a cobertura de afiliado deixou de exigir Shopee ou Mercado Livre — passou a exigir **programa acessível com link rastreável**. Nenhuma pontuação antiga muda por isso; o que muda é o que pode entrar daqui pra frente.
