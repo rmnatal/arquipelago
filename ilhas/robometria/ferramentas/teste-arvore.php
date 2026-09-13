@@ -170,19 +170,62 @@ foreach ( $cod_categorias as $caminho => $secao ) {
 arv_ok( empty( $declaradas_sem_peca ), 'toda categoria de peca declarada tem peca no banco (16.5)',
 	$declaradas . ' declaradas / vazias: ' . ( $declaradas_sem_peca ? implode( ', ', $declaradas_sem_peca ) : 'nenhuma' ) );
 
+/* A BORDA DA 16.5 PASSOU A PRODUZIR O MUNDO (13/09/2026, bloco do reservatorio).
+   Esta afirmacao nasceu presa ao banco de hoje — "a borda existe no banco de hoje" —
+   e ela mesma DECLAROU que tinha parado de medir no minuto em que o reservatorio
+   ganhou as duas primeiras pecas e nenhum tipo do vocabulario ficou vazio. Regua que
+   depende de o banco CONTER a borda e regua que o crescimento saudavel do banco
+   desliga: no dia em que a ilha cobre todos os tipos, a trava da 16.5 deixaria de
+   ser exercitada exatamente quando a arvore fica mais fartamente povoada. O conserto
+   nao e afrouxar a afirmacao nem apaga-la: e FABRICAR o mundo em que a borda existe,
+   que e o que as mutacoes desta ilha ja fazem desde 12/09. */
+$tipos_consultaveis = json_decode( file_get_contents( $raiz . '/dados/cobertura-r1.json' ), true )['resumo']['tipos_consultaveis'];
+$detectar_proibidas = function ( $mundo ) use ( $cod_categorias, $tipo_da_categoria, $tipos_consultaveis ) {
+	$proibidas = array();
+	foreach ( $tipos_consultaveis as $tipo ) {
+		if ( ! empty( $mundo[ $tipo ] ) ) { continue; }
+		foreach ( $tipo_da_categoria as $cat => $t ) {
+			if ( $t === $tipo && isset( $cod_categorias[ 'pecas/' . $cat ] ) ) { $proibidas[] = $cat; }
+		}
+	}
+	sort( $proibidas );
+	return $proibidas;
+};
+
+/* (1) O MUNDO REAL: o banco de hoje nao pode ter categoria de tipo vazio. */
 $tipos_sem_peca = array();
-foreach ( json_decode( file_get_contents( $raiz . '/dados/cobertura-r1.json' ), true )['resumo']['tipos_consultaveis'] as $tipo ) {
+foreach ( $tipos_consultaveis as $tipo ) {
 	if ( empty( $por_tipo[ $tipo ] ) ) { $tipos_sem_peca[] = $tipo; }
 }
-$proibidas = array();
-foreach ( $tipos_sem_peca as $tipo ) {
-	foreach ( $tipo_da_categoria as $cat => $t ) {
-		if ( $t === $tipo && isset( $cod_categorias[ 'pecas/' . $cat ] ) ) { $proibidas[] = $cat; }
-	}
+arv_ok( empty( $detectar_proibidas( $por_tipo ) ),
+	'no banco de hoje, nenhum tipo vazio tem categoria declarada (16.5)',
+	'tipos vazios hoje: ' . ( $tipos_sem_peca ? implode( ', ', $tipos_sem_peca ) : 'nenhum — e por isso a borda e produzida abaixo' ) );
+
+/* (2) O MUNDO PRODUZIDO, uma vez por categoria declarada: esvazie o tipo dela e a
+   trava tem de apontar ESSA categoria, e so ela. Enquanto existir uma categoria de
+   peca na arvore, esta afirmacao tem o que medir — nao ha banco que a desligue. */
+$categorias_de_peca = array();
+foreach ( $cod_categorias as $caminho => $secao ) {
+	if ( 'pecas' === $secao ) { $categorias_de_peca[] = substr( $caminho, strlen( 'pecas/' ) ); }
 }
-arv_ok( empty( $proibidas ) && ! empty( $tipos_sem_peca ),
-	'tipo sem peca nenhuma nao vira categoria, e a borda existe no banco de hoje',
-	'tipos vazios: ' . ( $tipos_sem_peca ? implode( ', ', $tipos_sem_peca ) : 'NENHUM — esta afirmacao nao mede nada' ) );
+arv_ok( ! empty( $categorias_de_peca ), 'ha categoria de peca na arvore para a borda da 16.5 ser produzida',
+	count( $categorias_de_peca ) . ' categoria(s)' );
+/* A comparacao e com a LINHA DE BASE, e nao com a lista vazia: o que esta afirmacao
+   mede e o DELTA de esvaziar um tipo. Comparar com lista vazia faria cada uma das
+   cinco repetir a reprovacao de (1) quando o banco ja estivesse torto, e o relatorio
+   diria cinco vezes o mesmo defeito em vez de dizer qual trava pegou o que. */
+$base_proibidas = $detectar_proibidas( $por_tipo );
+foreach ( $categorias_de_peca as $cat ) {
+	$tipo  = isset( $tipo_da_categoria[ $cat ] ) ? $tipo_da_categoria[ $cat ] : null;
+	$mundo = $por_tipo;
+	unset( $mundo[ $tipo ] );
+	$pegas     = $detectar_proibidas( $mundo );
+	$esperadas = array_values( array_unique( array_merge( $base_proibidas, array( $cat ) ) ) );
+	sort( $esperadas );
+	arv_ok( $esperadas === $pegas,
+		"mundo produzido: sem nenhuma peca de '$tipo', a trava da 16.5 proibe /pecas/$cat/",
+		'a trava apontou: ' . ( $pegas ? implode( ', ', $pegas ) : 'NADA — a trava nao reprovou o mundo produzido' ) );
+}
 
 /* As categorias de /modelos/ sao as marcas com modelo publicavel — contadas. */
 $modelos_json = json_decode( file_get_contents( $raiz . '/dados/modelos-robo.json' ), true );

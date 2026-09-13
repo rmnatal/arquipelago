@@ -38,7 +38,7 @@ Os nomes dos níveis são os do `VOZ.md`: quem chega aqui diz peça, sucção, m
 | `/guias/pecas/` | `/guias/` | os textos sobre peça e compatibilidade |
 | `/guias/succao/` | `/guias/` | os textos sobre sucção, autonomia e metragem |
 
-**`/pecas/reservatorios/` não está na lista de propósito.** O tipo "reservatório" existe no vocabulário do banco e não tem **nenhuma** peça declarada — é o mesmo motivo pelo qual ele já saiu do seletor da ferramenta. Categoria sem filha é página fina, e página fina em domínio novo gasta orçamento de rastreamento (14.1).
+**`/pecas/reservatorios/` continua fora da lista de propósito, mas o MOTIVO mudou em 13/09/2026 e a frase antiga virou mentira no mesmo dia.** Ela dizia que o tipo "reservatório" não tinha **nenhuma** peça declarada, e por isso estava fora também do seletor da ferramenta. Passou a ter **duas** — o recipiente de pó do W300 e o do WSMART, os dois publicados pela loja oficial da WAP —, e o seletor, que é gerado da varredura e nunca digitado, **devolveu o tipo sozinho, sem uma linha de código mudar**. O que segura a categoria agora é o mínimo desta própria tabela: **categoria só nasce com 3 filhas de dado real** (16.5), e duas peças de uma marca só não são três. Categoria sem filha é página fina, e página fina em domínio novo gasta orçamento de rastreamento (14.1). A terceira peça de reservatório é o que abre esta linha — não uma decisão de desenho.
 
 **Nível 3 — a pergunta ou a ficha**, com as palavras que a pessoa digita.
 

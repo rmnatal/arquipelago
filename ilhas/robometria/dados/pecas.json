@@ -7,31 +7,26 @@
  "nota_de_procedencia": "Coleta de 09/09/2026 por busca restrita aos dominios do proprio fabricante; o egresso HTTP direto devolveu EGRESS_BLOCKED para multilaser.com.br nesta execucao. TODA compatibilidade abaixo e DECLARADA pelo fabricante — nenhuma foi inferida, e nenhuma linha diz 'serve' sem que o fabricante tenha dito. Onde nao ha declaracao, nao ha linha. Bloco 3c (09/09/2026): 10 pecas novas — 6 da Electrolux, 3 da Positivo e 1 da Xiaomi. LEVA DE 13/09/2026: 8 pecas da XIAOMI COM CODIGO, e a coleta so aconteceu porque o dominio testado ate entao estava errado. O PROMPT.md e o ESTADO.md mandavam testar mi.com.br e xiaomi.com.br; o banco desta ilha sempre citou www.mi.com/br. O egresso direto segue fechado por politica nos tres (000, 403 ao CONNECT, duas passadas), mas a BUSCA alcanca mi.com — e nunca tinha sido testada nele. A REGUA DE COMPATIBILIDADE DESTA LEVA, escrita antes de gravar: a Xiaomi declara compatibilidade no TITULO PUBLICADO da peca ('Xiaomi Robot Vacuum E10/E12/E10C/S20 Brush'), e o codigo mora na subpagina /specs/ como 'Product model'. Um par entra quando o modelo e nomeado num titulo que aparece na pagina de acessorio daquele modelo ou numa pagina de peca dedicada; titulo de listagem que nomeia modelo que a especificacao da peca nao repete vai para divergencias e e resolvido pelo MAIS ESTREITO (secao 10 do ARQUIPELAGO.md). LEVA DE 13/09/2026 (segunda do dia): 4 pecas da WAP, as primeiras da marca — 2 do W300 e 2 do WSMART. TODAS com codigo_fabricante null: ver lista_de_compras. A REGRA QUE ESTA LEVA ESCREVEU, e ela subiu para a secao 26 do ARQUIPELAGO.md: a FUNCAO da peca nao se le do nome do produto. O fabricante batiza pela POSICAO (Direita, Esquerda, Central, Frontal, Rotativa) e este banco classifica pela FUNCAO (escova lateral, escova principal). A WAP desmente a si mesma no proprio canal — 'escovas giratorias direita e esquerda' e o par LATERAL do W300, e 'Escova Principal (Escova giratoria)' e a PRINCIPAL do W90 —, entao toda escova passa a carregar funcao{} dizendo onde a funcao foi declarada: no titulo, no contraste do catalogo daquele modelo, ou no canal de manutencao. Sem nenhum dos tres o registro nao nasce, e foi por isso que a escova do W90 ficou de fora.",
  "nota_vida_util": "Nenhuma peca da Multi declara vida util nas paginas desta coleta. O unico numero de fabricante que a ilha tem e o do manual da Electrolux — 6 meses para o filtro HEPA do ERB10/ERB11/ERB20 — e ele esta em constantes.json preso AQUELES modelos. Veiculos editoriais dizem 3 meses e 2-3 meses, e divergem do manual. Manual de fabricante e recomendacao editorial nao se misturam numa frase: a R1 publica o intervalo do FABRICANTE do modelo consultado, e a recomendacao editorial so aparece rotulada como tal. Bloco 3c: a vida util de 6 meses do manual da Electrolux finalmente tem peca — e o filtro HEPA dentro do Kit Performance KPCEL01. E a Xiaomi trouxe o primeiro conjunto de intervalos por TIPO de peca (filtro 3-6, escova lateral 3-6, escova principal 6-12, mop 3 meses), que valem para o S20 e para nenhum outro modelo do banco.",
  "contagem": {
-  "total": 32,
-  "publicavel": 29,
+  "total": 34,
+  "publicavel": 31,
   "excluido_do_banco": 3,
   "nao_publicavel": 0,
-  "pares_peca_x_modelo_declarados": 59,
-  "esperando_link_de_afiliado": 29,
+  "pares_peca_x_modelo_declarados": 61,
+  "esperando_link_de_afiliado": 31,
   "itens_com_ficha": 0,
-  "itens_sem_piso": 29,
+  "itens_sem_piso": 31,
   "links_sem_degrau": 0
  },
  "lista_de_compras": [
   {
-   "codigo": "o codigo de referencia WAP das quatro pecas ja gravadas (W300 direita e esquerda, WSMART central e frontal)",
+   "codigo": "o codigo de referencia WAP das quatro ESCOVAS ja gravadas (W300 direita e esquerda, WSMART central e frontal) — o recipiente de po do WSMART saiu desta linha em 13/09 porque o dele apareceu",
    "marca": "wap",
-   "por_que": "As quatro entraram com codigo_fabricante null. NAO e que a WAP nao publique codigo — ela publica, na ficha da pagina do produto; o que a BUSCA alcanca e o titulo e a URL, nao o campo. Medido em 13/09/2026: FW006267, FW008028 e FW009132 voltaram em UMA passada e SEMPRE em titulo de marketplace ou de varejista (niveis 5 e 6), nunca num canal da WAP, e a segunda passada restrita a loja oficial devolveu a pagina sem o campo. Isto NAO se resolve com mais busca: resolve-se com o egresso abrindo para loja.wap.ind.br, ou com alguem lendo a ficha. Enquanto isso o registro vive pelo titulo, que e o que a R1 cita — a pessoa acha a peca pelo nome, nao pelo codigo."
+   "por_que": "AS QUATRO ESCOVAS CONTINUAM SEM CODIGO, e a linha ficou mais estreita e mais clara no bloco do reservatorio de 13/09/2026. O que reprova FW006267, FW008028 e FW009132 nao e o formato nem a marca: e o CANAL — os tres voltaram em UMA passada e sempre em titulo de marketplace ou de varejista (niveis 5 e 6), nunca num canal da WAP, e a segunda passada restrita a loja oficial devolveu a pagina sem o campo. A PROVA DE QUE O CRITERIO E O CANAL, E NAO TEIMOSIA, ESTA NO MESMO DIA: FW008024 passou no mesmo criterio e entrou no banco — tres passadas restritas aos dominios da WAP mais uma quarta sem restricao nenhuma, com a pagina da loja oficial entre os primeiros resultados ao lado de dois anuncios que nomeiam o MESMO produto. Ou seja: onde a WAP publica o codigo num canal dela, a busca acha; onde nao publica, mais busca nao resolve. O que resolve para as quatro escovas e o egresso abrindo para loja.wap.ind.br, ou alguem lendo a ficha. Enquanto isso o registro vive pelo titulo, que e o que a R1 cita."
   },
   {
    "codigo": "a funcao da escova do W90 (e, no dia em que abrir, a dos outros modelos WAP de escova unica)",
    "marca": "wap",
    "por_que": "A RECUSA DESTE BLOCO, e ela e do tipo que nao se desfaz com esforco. O catalogo do W90 publica UMA escova, 'Escova Rotativa Para Robo Aspirador de Po WAP Robot W90', sem vizinha para contrastar — e o artigo de limpeza do W90 no blog da propria WAP declara que o modelo tem DUAS escovas, lateral e principal. Pelos tres caminhos da secao 26 do ARQUIPELAGO.md nao ha de onde ler a funcao. O que resolve e o manual do W90 (FW010263 REV00JAN24, nomeado na busca), que traz a lista de pecas — e ele esta atras do egresso fechado em mais.conteudo.wap.ind.br. NAO grave pelo nome: 'giratoria' e a palavra que a WAP usa para o par LATERAL do W300 e para a PRINCIPAL do W90."
-  },
-  {
-   "codigo": "recipiente de po do W300 e do WSMART — o tipo 'reservatorio' continua com ZERO peca no banco inteiro",
-   "marca": "wap",
-   "por_que": "O catalogo dos dois modelos publica 'Recipiente de Po' (o do W300 apareceu na lista de conteudo declarado e o do WSMART na categoria Recipiente do catalogo de acessorios). E o unico tipo do vocabulario sem nenhuma peca, e por isso ele esta FORA do seletor da R1 desde 10/09 — a primeira peca de reservatorio devolve o tipo ao seletor de graca. Este bloco nao o gravou porque a coleta foi de ESCOVA e uma segunda passada propria por alvo e a regra desta ilha; a pagina ja esta localizada, entao o custo e uma passada limpa, nao uma varredura."
   },
   {
    "codigo": "B106GL-BX e as escovas laterais de titulo largo da familia E10/S10",
@@ -2495,7 +2490,122 @@
    "status": "publicavel",
    "observacao": "Apareceu em DUAS passadas, e nao na primeira varredura de 13/09 — o alvo era o codigo FW008028 e a vizinha so apareceu quando a busca foi pelo CATALOGO do modelo em vez de pelo codigo. E justamente ela que faz o contraste existir: sem a frontal, 'central' seria uma palavra solta num titulo.",
    "verificado_em": "2026-09-13"
+  },
+  {
+   "id": "wap-recipiente-de-po-w300",
+   "marca": "wap",
+   "codigo_fabricante": null,
+   "motivo_sem_codigo": "MEDIDO nesta coleta, em duas passadas proprias: a busca por titulo entre aspas somada ao token 'FW' NAO devolveu codigo nenhum para esta peca em canal nenhum — nem da WAP, nem de marketplace. E o contrario exato do que aconteceu com a irma do WSMART, cujo codigo voltou em quatro passadas: aqui a ausencia foi PROCURADA e nao presumida. O registro e identificado pelo nome_na_fonte, que e o que a frase da R1 cita",
+   "tipo": "reservatorio",
+   "nome_na_fonte": "Recipiente de Pó Para Robô Aspirador de Pó WAP Robot W300",
+   "compatibilidade": [
+    {
+     "modelo": "wap-w300",
+     "codigo_declarado": "W300",
+     "variante_de_hardware": null,
+     "selo": "declarada_fabricante",
+     "fonte": "f-peca"
+    }
+   ],
+   "divergencias": [],
+   "vida_util_declarada": {
+    "valor": null,
+    "unidade": "meses",
+    "motivo_do_null": "a WAP nao declara vida util nesta pagina, e o banco nao empresta o numero de um fabricante para a peca de outro"
+   },
+   "imagem": {
+    "url": null,
+    "largura": null,
+    "altura": null,
+    "fonte": null,
+    "coletado_em": null,
+    "alt": null,
+    "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+   },
+   "afiliado": {
+    "url": "",
+    "url_produto": null,
+    "motivo_sem_url_produto": null,
+    "degrau": null,
+    "url_busca": "",
+    "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20reservatorio%20robo%20aspirador",
+    "motivo_sem_url_busca": "falta o ENCURTAMENTO, nao a escolha: gerar o link de afiliado da busca exige a sessao logada do painel da Shopee (25.6). A palavra-chave ja esta escrita em url_busca_produto, e no dia da sessao e colar.",
+    "plataforma": null,
+    "coletado_em": null,
+    "sub_id_1": "robometria"
+   },
+   "fontes": {
+    "f-peca": {
+     "nivel": 4,
+     "origem": "varejo-oficial-da-marca",
+     "publicador": "WAP (loja oficial)",
+     "titulo_na_fonte": "Recipiente de Pó Para Robô Aspirador de Pó WAP Robot W300",
+     "url": "https://loja.wap.ind.br/recipiente-de-po-para-robo-aspirador-de-po-wap-robot-w300/p",
+     "canal_de_coleta": "busca web restrita aos dominios wap.ind.br, loja.wap.ind.br, parceiros.wap.ind.br e blog.wap.ind.br. O egresso HTTP direto devolveu 000 (connect_rejected) para os tres dominios da WAP nesta execucao, com robometria.com.br em 200 na mesma passada, e o WebFetch de loja.wap.ind.br devolveu EGRESS_BLOCKED. A LEITURA NAO E DIRETA NA FONTE PRIMARIA, e por isso o nivel e 4 e nao 2",
+     "verificado_em": "2026-09-13"
+    }
+   },
+   "status": "publicavel",
+   "observacao": "PRIMEIRA peca de tipo 'reservatorio' do banco inteiro, junto com a irma do WSMART. O par das duas devolve o tipo ao seletor da R1, de onde ele estava fora desde 10/09 por nao haver uma peca sequer — o seletor e GERADO da varredura e nao digitado, entao nenhuma linha de codigo muda por causa disto. O par com o W300 e declarado pelo proprio titulo publicado pela loja oficial, a mesma regra da leva Xiaomi de 13/09. O reservatorio de 300 ml que o modelo declara ja estava gravado em modelos-robo.json ANTES desta coleta e as duas leituras bateram — corroboracao, nao fonte: a capacidade e atributo do MODELO e nao foi copiada para ca.",
+   "verificado_em": "2026-09-13"
+  },
+  {
+   "id": "wap-fw008024",
+   "marca": "wap",
+   "codigo_fabricante": "FW008024",
+   "tipo": "reservatorio",
+   "nome_na_fonte": "Recipiente de Pó Para Robô Aspirador de Pó WAP Robot WSMART",
+   "compatibilidade": [
+    {
+     "modelo": "wap-wsmart",
+     "codigo_declarado": "WAP ROBOT WSMART",
+     "variante_de_hardware": null,
+     "selo": "declarada_fabricante",
+     "fonte": "f-peca"
+    }
+   ],
+   "divergencias": [],
+   "vida_util_declarada": {
+    "valor": null,
+    "unidade": "meses",
+    "motivo_do_null": "a WAP nao declara vida util nesta pagina, e o banco nao empresta o numero de um fabricante para a peca de outro"
+   },
+   "imagem": {
+    "url": null,
+    "largura": null,
+    "altura": null,
+    "fonte": null,
+    "coletado_em": null,
+    "alt": null,
+    "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+   },
+   "afiliado": {
+    "url": "",
+    "url_produto": null,
+    "motivo_sem_url_produto": null,
+    "degrau": null,
+    "url_busca": "",
+    "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20reservatorio%20robo%20aspirador",
+    "motivo_sem_url_busca": "falta o ENCURTAMENTO, nao a escolha: gerar o link de afiliado da busca exige a sessao logada do painel da Shopee (25.6). A palavra-chave ja esta escrita em url_busca_produto, e no dia da sessao e colar.",
+    "plataforma": null,
+    "coletado_em": null,
+    "sub_id_1": "robometria"
+   },
+   "fontes": {
+    "f-peca": {
+     "nivel": 4,
+     "origem": "varejo-oficial-da-marca",
+     "publicador": "WAP (loja oficial)",
+     "titulo_na_fonte": "Recipiente de Pó Para Robô Aspirador de Pó WAP Robot WSMART",
+     "url": "https://loja.wap.ind.br/recipiente-de-po-para-robo-aspirador-de-po-wap-robot-wsmart/p",
+     "canal_de_coleta": "busca web restrita aos dominios wap.ind.br, loja.wap.ind.br, parceiros.wap.ind.br e blog.wap.ind.br. O egresso HTTP direto devolveu 000 (connect_rejected) para os tres dominios da WAP nesta execucao, com robometria.com.br em 200 na mesma passada, e o WebFetch de loja.wap.ind.br devolveu EGRESS_BLOCKED. A LEITURA NAO E DIRETA NA FONTE PRIMARIA, e por isso o nivel e 4 e nao 2",
+     "verificado_em": "2026-09-13"
+    }
+   },
+   "status": "publicavel",
+   "observacao": "O PRIMEIRO CODIGO DE FABRICANTE WAP DO BANCO, e ele entra por um criterio que a leva de escovas de 13/09 escreveu ao RECUSAR tres codigos: o que reprovava FW006267, FW008028 e FW009132 era o CANAL — apareceram em UMA passada e sempre em titulo de marketplace ou de varejista (niveis 5 e 6), nunca num canal da WAP. FW008024 passa nesse mesmo criterio, e a prova esta em quatro passadas: TRES restritas aos dominios da WAP, e uma QUARTA sem restricao nenhuma, com o codigo entre aspas, em que a pagina da loja oficial volta entre os primeiros resultados AO LADO de dois anuncios de marketplace que nomeiam o MESMO produto. Canais independentes concordando sobre QUAL peca o codigo nomeia e mais forte que qualquer um deles sozinho. O QUE CONTINUA NAO SENDO POSSIVEL, dito em vez de escondido: ler o campo 'Referencia' na ficha, porque loja.wap.ind.br segue em EGRESS_BLOCKED — por isso o nivel da fonte e 4, e nao 2. PRIMEIRA peca de tipo 'reservatorio' do banco junto com a irma do W300; o par devolve o tipo ao seletor da R1. Os 450 ml que o modelo declara ja estavam em modelos-robo.json e bateram com esta coleta — corroboracao, nao fonte.",
+   "verificado_em": "2026-09-13"
   }
  ],
- "ordem_da_lista_de_compras": "Reordenada em 13/09/2026 pela varredura da entrada da R1 (dados/cobertura-r1.json), nao por impressao. O criterio e o da secao 14.3 do ARQUIPELAGO.md aplicado a R1: vale mais a peca que tira um MODELO do vazio do que a peca que acrescenta um par a um modelo que ja respondia. A leva da Xiaomi tirou quatro modelos do vazio de uma vez (E10, H40, S40 e S40C) e deu codigo ao quinto (S20), entao a entrada vazia caiu de 12 para 8 e as celulas vazias de 120 para 112. O que sobrou na emenda com a R2 e a WAP inteira, e por isso ela subiu para o topo — com o alvo trocado: o gargalo la nao e peca, e MODELO."
+ "ordem_da_lista_de_compras": "Reordenada em 13/09/2026 pela varredura da entrada da R1 (dados/cobertura-r1.json), nao por impressao. O criterio e o da secao 14.3 do ARQUIPELAGO.md aplicado a R1: vale mais a peca que tira um MODELO do vazio do que a peca que acrescenta um par a um modelo que ja respondia. A leva da Xiaomi tirou quatro modelos do vazio de uma vez (E10, H40, S40 e S40C) e deu codigo ao quinto (S20), entao a entrada vazia caiu de 12 para 8 e as celulas vazias de 120 para 112. O que sobrou na emenda com a R2 e a WAP inteira, e por isso ela subiu para o topo — com o alvo trocado: o gargalo la nao e peca, e MODELO. ATUALIZADA em 13/09/2026 pelo bloco do reservatorio: o alvo mais barato da lista saiu dela. O recipiente de po do W300 e o do WSMART estavam nomeados aqui com a pagina JA LOCALIZADA — custo de uma passada limpa, nao de uma varredura — e eram o unico alvo que devolvia um TIPO INTEIRO ao seletor da R1 em vez de um par a um modelo que ja respondia. Foi o que aconteceu: reservatorio saiu de 0 para 2 pecas e o seletor, que e gerado da varredura, voltou a oferecer o tipo sem uma linha de codigo mudar. Nenhum modelo saiu do vazio, e nao era para sair — W300 e WSMART ja respondiam. O topo da lista continua sendo a WAP, e o gargalo la segue sendo MODELO."
 }

@@ -7,12 +7,12 @@
   "resumo": {
     "marcas": 5,
     "modelos_publicaveis": 33,
-    "pecas_publicaveis": 29,
-    "pares_declarados": 59,
+    "pecas_publicaveis": 31,
+    "pares_declarados": 61,
     "pecas_que_atravessam_marca": 0,
     "celulas_total": 198,
-    "celulas_sem_resposta": 139,
-    "pecas_esperando_link": 29
+    "celulas_sem_resposta": 137,
+    "pecas_esperando_link": 31
   },
   "maior_alcance": {
     "peca": "multi-pr10124",
@@ -536,6 +536,42 @@
       "atravessa_marca": false
     },
     {
+      "peca": "wap-fw008024",
+      "tipo": "reservatorio",
+      "marca": "wap",
+      "publicador": "WAP",
+      "identificacao": "FW008024",
+      "sem_codigo_publicado": false,
+      "nome_na_fonte": "Recipiente de Pó Para Robô Aspirador de Pó WAP Robot WSMART",
+      "codigos_declarados": 1,
+      "codigos_na_fonte": [
+        "WAP ROBOT WSMART"
+      ],
+      "modelos_publicaveis": 1,
+      "marcas_atendidas": [
+        "wap"
+      ],
+      "atravessa_marca": false
+    },
+    {
+      "peca": "wap-recipiente-de-po-w300",
+      "tipo": "reservatorio",
+      "marca": "wap",
+      "publicador": "WAP",
+      "identificacao": "\"Recipiente de Pó Para Robô Aspirador de Pó WAP Robot W300\"",
+      "sem_codigo_publicado": true,
+      "nome_na_fonte": "Recipiente de Pó Para Robô Aspirador de Pó WAP Robot W300",
+      "codigos_declarados": 1,
+      "codigos_na_fonte": [
+        "W300"
+      ],
+      "modelos_publicaveis": 1,
+      "marcas_atendidas": [
+        "wap"
+      ],
+      "atravessa_marca": false
+    },
+    {
       "peca": "xiaomi-b106gl-bx",
       "tipo": "escova lateral",
       "marca": "xiaomi",
@@ -615,8 +651,8 @@
     {
       "marca": "wap",
       "publicador": "WAP",
-      "pecas": 4,
-      "conjuntos_distintos": 2,
+      "pecas": 6,
+      "conjuntos_distintos": 3,
       "nenhuma_repete": false
     },
     {
@@ -653,15 +689,15 @@
       "modelos_publicaveis": 33
     },
     {
-      "tipo": "bateria",
-      "nome": "bateria",
-      "modelos_com_declaracao": 1,
+      "tipo": "reservatorio",
+      "nome": "reservatorio",
+      "modelos_com_declaracao": 2,
       "modelos_publicaveis": 33
     },
     {
-      "tipo": "reservatorio",
-      "nome": "reservatorio",
-      "modelos_com_declaracao": 0,
+      "tipo": "bateria",
+      "nome": "bateria",
+      "modelos_com_declaracao": 1,
       "modelos_publicaveis": 33
     }
   ],
@@ -811,7 +847,7 @@
   "perguntas": [
     {
       "pergunta": "Existe filtro universal para robô aspirador?",
-      "resposta": "Não. Nas 29 peças de reposição com compatibilidade declarada pelo fabricante que a Robometria conferiu, nenhuma é declarada para modelos de mais de uma marca, e a lista mais longa do banco nomeia 5 códigos de modelo, todos da mesma marca."
+      "resposta": "Não. Nas 31 peças de reposição com compatibilidade declarada pelo fabricante que a Robometria conferiu, nenhuma é declarada para modelos de mais de uma marca, e a lista mais longa do banco nomeia 5 códigos de modelo, todos da mesma marca."
     },
     {
       "pergunta": "Uma peça que serve num modelo da marca serve nos outros modelos dela?",
@@ -819,7 +855,7 @@
     },
     {
       "pergunta": "Como descobrir o código da peça certa para o meu robô aspirador?",
-      "resposta": "Procurando o modelo na lista de compatibilidade publicada pelo próprio fabricante. A Robometria reúne essas listas: são 59 pares peça × modelo em 5 marcas, todos declarados pelo fabricante e nenhum inferido, cada um com o endereço da declaração e a data em que ela foi verificada."
+      "resposta": "Procurando o modelo na lista de compatibilidade publicada pelo próprio fabricante. A Robometria reúne essas listas: são 61 pares peça × modelo em 5 marcas, todos declarados pelo fabricante e nenhum inferido, cada um com o endereço da declaração e a data em que ela foi verificada."
     }
   ]
 }

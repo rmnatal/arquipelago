@@ -77,11 +77,10 @@
     "escova lateral",
     "escova principal",
     "mop",
-    "bateria"
-  ],
-  "tipos_sem_nenhuma_peca_no_banco": [
+    "bateria",
     "reservatorio"
   ],
+  "tipos_sem_nenhuma_peca_no_banco": [],
   "modelos": [
     {
       "id": "electrolux-erb10",
@@ -2217,6 +2216,35 @@
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
+        },
+        {
+          "tipo": "reservatorio",
+          "peca": "wap-recipiente-de-po-w300",
+          "codigo": null,
+          "nome_na_fonte": "Recipiente de Pó Para Robô Aspirador de Pó WAP Robot W300",
+          "tipo_da_peca": "reservatorio",
+          "funcao_declarada_por": null,
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "WAP (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.wap.ind.br/recipiente-de-po-para-robo-aspirador-de-po-wap-robot-w300/p",
+          "verificado_em": "2026-09-13",
+          "declarados": [
+            "W300"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         }
       ],
       "terceiro": [],
@@ -2288,6 +2316,35 @@
           "verificado_em": "2026-09-13",
           "declarados": [
             "WSMART"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        },
+        {
+          "tipo": "reservatorio",
+          "peca": "wap-fw008024",
+          "codigo": "FW008024",
+          "nome_na_fonte": "Recipiente de Pó Para Robô Aspirador de Pó WAP Robot WSMART",
+          "tipo_da_peca": "reservatorio",
+          "funcao_declarada_por": null,
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "WAP (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.wap.ind.br/recipiente-de-po-para-robo-aspirador-de-po-wap-robot-wsmart/p",
+          "verificado_em": "2026-09-13",
+          "declarados": [
+            "WAP ROBOT WSMART"
           ],
           "divergencia": false,
           "variante_do_par": null,
@@ -3073,6 +3130,19 @@
       "verificado_em": "2026-09-13"
     },
     {
+      "modelo": "wap-wsmart",
+      "modelo_rotulo": "WAP WSMART",
+      "tipo": "reservatorio",
+      "peca": "wap-fw008024",
+      "codigo": "FW008024",
+      "nome_na_fonte": "Recipiente de Pó Para Robô Aspirador de Pó WAP Robot WSMART",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.wap.ind.br/recipiente-de-po-para-robo-aspirador-de-po-wap-robot-wsmart/p",
+      "verificado_em": "2026-09-13"
+    },
+    {
       "modelo": "electrolux-erb61",
       "modelo_rotulo": "Electrolux ERB61",
       "tipo": "filtro",
@@ -3291,6 +3361,19 @@
       "divergencia": false,
       "origem": "varejo-oficial-da-marca",
       "url": "https://loja.wap.ind.br/escova-esquerda-para-robo-aspirador-de-po-wap-robot-w300/p",
+      "verificado_em": "2026-09-13"
+    },
+    {
+      "modelo": "wap-w300",
+      "modelo_rotulo": "WAP W300",
+      "tipo": "reservatorio",
+      "peca": "wap-recipiente-de-po-w300",
+      "codigo": null,
+      "nome_na_fonte": "Recipiente de Pó Para Robô Aspirador de Pó WAP Robot W300",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.wap.ind.br/recipiente-de-po-para-robo-aspirador-de-po-wap-robot-w300/p",
       "verificado_em": "2026-09-13"
     },
     {
@@ -3741,13 +3824,13 @@
     "modelos_que_respondem": 22,
     "modelos_com_entrada_vazia": 11,
     "celulas": 198,
-    "celulas_sem_resposta": 139,
-    "pares_declarados": 59,
-    "pecas_publicaveis": 29,
+    "celulas_sem_resposta": 137,
+    "pares_declarados": 61,
+    "pecas_publicaveis": 31,
     "marcas": 5,
     "as_duas_ferramentas": 7,
-    "pecas_recomendadas": 29,
-    "pecas_esperando_link": 29,
+    "pecas_recomendadas": 31,
+    "pecas_esperando_link": 31,
     "pecas_com_link": 0
   }
 }

@@ -34,6 +34,7 @@ CASCA = 'snippets/robometria-casca.php'
 R2 = 'snippets/robometria-r2.php'
 ARVORE = 'ARVORE.md'
 FATOS = 'dados/casca-fatos.json'
+PECAS = 'dados/pecas.json'
 TESTES = ('ferramentas/teste-arvore.php', 'ferramentas/teste-casca.php')
 
 
@@ -62,6 +63,46 @@ def trocas(arquivo, pares):
 
 def troca(arquivo, velho, novo):
     return trocas(arquivo, [(velho, novo)])
+
+
+def troca_n(arquivo, velho, novo, quantas):
+    """Como trocas(), mas o alvo se repete um numero DECLARADO de vezes.
+
+    A unicidade de trocas() existe para que mutacao que nao encontra o alvo nao
+    passe por mutacao aplicada. Quando o alvo e legitimamente repetido — duas
+    pecas do mesmo tipo, por exemplo — a mesma protecao se faz declarando quantas
+    ocorrencias tem de existir: se o banco crescer e virarem tres, a mutacao PARA
+    em vez de editar um numero de linhas que ninguem previu.
+    """
+    def aplicar(base):
+        caminho = os.path.join(base, arquivo)
+        with open(caminho, encoding='utf-8') as f:
+            corpo = f.read()
+        achados = corpo.count(velho)
+        if achados != quantas:
+            raise AssertionError(
+                'alvo da mutacao aparece %d vez(es) em %s, e a mutacao declara %d'
+                % (achados, arquivo, quantas))
+        with open(caminho, 'w', encoding='utf-8') as f:
+            f.write(corpo.replace(velho, novo))
+    return aplicar
+
+
+def varias(*aplicadores):
+    """Uma mutacao que precisa de mais de um arquivo para PRODUZIR o mundo.
+
+    Nasceu em 13/09/2026: a mutacao do reservatorio media a 16.5 enquanto o tipo
+    nao tinha peca nenhuma no banco, e o bloco que gravou as duas primeiras a
+    deixou INERTE — com a categoria declarada e o tipo povoado, quem a reprovava
+    passou a ser a regra VIZINHA, a de documento e codigo divergentes. Defeito
+    pego pela regra vizinha prova que ALGUMA trava existe, nao que ESTA existe.
+    Para a 16.5 voltar a ser a trava medida, a mutacao tem de esvaziar o tipo E
+    declarar a categoria E acertar o documento, tudo na mesma copia.
+    """
+    def aplicar(base):
+        for f in aplicadores:
+            f(base)
+    return aplicar
 
 
 def engorda(arquivo, chave):
@@ -191,12 +232,38 @@ MUTACOES = [
               "| `/guias/succao/` | `/guias/` | os textos sobre sucção, autonomia e metragem |\n| `/guias/manutencao/` | `/guias/` | os textos sobre limpeza e troca |"),
     ),
     (
-        'nasce a categoria de reservatorios, que nao tem uma peca sequer',
-        'categoria vazia indexada e pagina fina que derruba o resto (16.5)',
-        trocas(CASCA, [
-            ("\t\t'baterias'              => array( 'pecas',   'Baterias' ),",
-             "\t\t'baterias'              => array( 'pecas',   'Baterias' ),\n\t\t'reservatorios'         => array( 'pecas',   'Reservatórios' ),"),
-        ]),
+        'nasce a categoria de reservatorios no dia em que as duas pecas saem do banco',
+        'categoria vazia indexada e pagina fina que derruba o resto (16.5) — e aqui a '
+        '16.5 e a trava MEDIDA, porque o documento tambem ganha a linha e a regra '
+        'vizinha da divergencia nao tem do que reclamar',
+        varias(
+            # o mundo: o tipo 'reservatorio' volta a nao ter peca nenhuma
+            troca_n(PECAS, '"tipo": "reservatorio",', '"tipo": "filtro",', 2),
+            # a categoria proibida, declarada no codigo
+            troca(CASCA,
+                  "\t\t'baterias'              => array( 'pecas',   'Baterias' ),",
+                  "\t\t'baterias'              => array( 'pecas',   'Baterias' ),\n\t\t'reservatorios'         => array( 'pecas',   'Reservatórios' ),"),
+            # e no documento, para a divergencia doc x codigo ficar fora do caminho
+            troca(ARVORE,
+                  "| `/pecas/baterias/` | `/pecas/` | bateria por modelo |",
+                  "| `/pecas/baterias/` | `/pecas/` | bateria por modelo |\n| `/pecas/reservatorios/` | `/pecas/` | recipiente de pó por modelo |"),
+        ),
+    ),
+    (
+        'a casca declara uma categoria de peca que o vocabulario do banco nao conhece',
+        'e a UNICA mutacao que faz a trava do MUNDO PRODUZIDO da 16.5 reprovar, e ela '
+        'nasceu para isso: com o banco cobrindo todos os tipos, as cinco afirmacoes '
+        'produzidas passariam para sempre e ninguem teria visto nenhuma delas reprovar. '
+        'Categoria sem tipo no vocabulario e o defeito real que ela pega — a arvore '
+        'promete uma prateleira que o banco nao sabe encher',
+        varias(
+            troca(CASCA,
+                  "\t\t'baterias'              => array( 'pecas',   'Baterias' ),",
+                  "\t\t'baterias'              => array( 'pecas',   'Baterias' ),\n\t\t'reservatorios-de-agua' => array( 'pecas',   'Reservatórios de água' ),"),
+            troca(ARVORE,
+                  "| `/pecas/baterias/` | `/pecas/` | bateria por modelo |",
+                  "| `/pecas/baterias/` | `/pecas/` | bateria por modelo |\n| `/pecas/reservatorios-de-agua/` | `/pecas/` | reservatório de água por modelo |"),
+        ),
     ),
     (
         'a categoria de um guia aponta para categoria inexistente',
