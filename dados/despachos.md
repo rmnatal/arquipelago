@@ -40,6 +40,25 @@ A primeira é a que faz a fábrica crescer; a segunda só para de gastar execuç
 
 **A metade que a Fundação já fez sozinha:** a seção **1.1** do `ARQUIPELAGO.md` nasceu desta mesma execução e conserta o lado que era da máquina — a reserva vencida que esconde execução viva. Sem ela, esta execução teria pegado a clubedomosaico pela letra do passo 3 e mandado um **segundo** e-mail de acesso para a sua mãe, invalidando o link do primeiro na véspera do domingo.
 
+### prioridade NORMAL — dois domínios de fonte que a Aquametria já perdeu campo por não alcançar
+
+13/09/2026 — RAPHAEL — Nada aqui é código e isto **não bloqueia bloco nenhum**: a Aquametria constrói normalmente e o banco dela cresce. O que trava é uma família específica de campo, e ela já custou quatro passadas medidas.
+
+**O pedido, e é da mesma família do despacho de 12/09:** acrescentar `www.fishbase.se`, `www.fishbase.org` e `www.seriouslyfish.com` à lista "Domínios permitidos" dos ambientes das rotinas (claude.ai/code → seletor de ambiente → engrenagem), junto com os domínios das ilhas que já estão lá.
+
+**O que está acontecendo hoje.** Os três respondem `connect_rejected` ao CONNECT, por POLÍTICA de egresso — não é intermitência de túnel, e foi reconferido com `curl` em 13/09/2026 como a 20.2 manda testar antes de declarar. **Todo o banco de espécies desta ilha foi colhido por BUSCA RESTRITA ao domínio**, com "a confirmar na ficha" escrito em cada fonte. A busca funciona e sustenta a maior parte dos campos; o que ela não alcança é a ficha inteira.
+
+**O custo medido, e ele não é hipotético:**
+- **Molly** (`Poecilia sphenops`), campo `comprimento_minimo_aquario_cm`: a busca devolveu `90 × 30 × 30 cm` em UMA passada e em nenhuma das outras três que não carregavam o número na consulta. Uma passada não é confirmação, então o campo ficou nulo. **Ele sozinho levaria `/peixes/vivaparos/` de 2 para 3 espécies elegíveis, que é o mínimo exato do 16.5** — ou seja, uma categoria inteira de malha esperando um número que está publicado numa página que a nuvem não abre.
+- **Guppy** (`Poecilia reticulata`): três tentativas (09/09, 11/09, 13/09) de achar um segundo corpo de fonte. O peixe mais vendido do Brasil é um dos poucos sem ficha própria no compêndio, e o aviso E15 do validador fica de pé de propósito.
+- **Cascudo** (`Ancistrus cirrhosus`), campo `temperatura_C`: duas tentativas (09/09, 13/09). Nenhum dos dois corpos declara faixa térmica para a espécie por busca.
+
+**Em todas essas passadas a busca ofereceu SOZINHA o número da espécie congênere** — 60 cm de *P. velifera* para o molly, pH 6,0–6,5 de "espécies aparentadas" para o cascudo — e em todas foi recusado. A regra da congênere é da ilha e continua valendo com ou sem este despacho: **parâmetro de água de espécie vizinha é chute com cara de dado.** O que o acesso direto muda não é a regra, é poder ler a ficha certa.
+
+**Pronto quando:** de dentro de uma rotina, `curl -s -o /dev/null -w "%{http_code}" https://www.seriouslyfish.com/species/poecilia-sphenops/` devolver 200.
+
+**O que NÃO se faz enquanto isso, e vale para toda ilha:** completar campo com o valor da espécie vizinha, ou gravar um número que voltou UMA vez como se tivesse sido confirmado. Campo nulo com o motivo escrito é dado; campo preenchido por vizinhança é mentira com cara de medição.
+
 ---
 
 ## FECHADOS
