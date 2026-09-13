@@ -1,5 +1,15 @@
 /**
  * Clube do Mosaico Ateliê — painel da artesã
+ * Versão 1.1.0 (13/09/2026) — O PAINEL GANHOU ABAS, e só isso. A lista de peças,
+ * o formulário, o login e a criação de senha continuam letra por letra como
+ * estavam. O que entrou são dois pontos de extensão, `cdm_atelie_abas` (quem
+ * quer uma aba) e `cdm_atelie_tela` (quem a desenha), mais a navegação que os
+ * mostra — e ela só aparece quando existe mais de uma aba, para o painel de
+ * ontem continuar sendo o painel de ontem se ninguém se registrar.
+ * A primeira aba de fora é "Interessados", do snippet de Leads (adendo 3).
+ * O papel `artesa` NÃO mudou: nenhuma capacidade nova, e a aba é gated pela
+ * `edit_pecas` que já existia.
+ *
  * Versão 1.0.0 (12/09/2026) — bloco 4d, itens 2, 3 e 4 do CORTE do despacho do
  * Raphael das 18h20 BRT de 12/09/2026.
  *
@@ -77,7 +87,7 @@
  */
 
 if ( ! defined( 'CDM_ATELIE_VERSAO' ) ) {
-	define( 'CDM_ATELIE_VERSAO', '1.0.1' );
+	define( 'CDM_ATELIE_VERSAO', '1.1.0' );
 }
 if ( ! defined( 'CDM_ATELIE_SLUG' ) ) {
 	define( 'CDM_ATELIE_SLUG', 'atelie' );
@@ -1021,6 +1031,7 @@ function cdm_atelie_avisos() {
 		'nonce'     => array( 'atencao', 'A página ficou aberta tempo demais e o envio expirou. Tente de novo.' ),
 		'nao-sua'   => array( 'atencao', 'Essa peça não está no seu ateliê.' ),
 		'erro'      => array( 'atencao', 'Algo deu errado ao guardar. Tente de novo.' ),
+		'lead'      => array( 'bom', 'Guardado.' ),
 	);
 }
 }
@@ -1110,6 +1121,67 @@ function cdm_atelie_tela_criar_senha( $chave, $quem ) {
 }
 }
 
+if ( ! function_exists( 'cdm_atelie_abas' ) ) {
+/**
+ * As abas do painel. "Minhas peças" é a casa e vem sempre; as outras chegam por
+ * filtro, de outros snippets.
+ *
+ * POR QUE UM FILTRO E NÃO UMA LISTA ESCRITA AQUI: o adendo 3 pede a aba
+ * "Interessados", e ela vive no snippet de Leads — que o Sync desembarca separado
+ * deste. Uma lista escrita aqui faria o painel prometer uma aba que talvez não
+ * exista no ar, que é exatamente o tipo de divergência silenciosa que esta ilha
+ * já pagou. Com o filtro, a aba só aparece se quem a desenha estiver no ar.
+ *
+ * A chave vazia é a lista de peças, porque o painel sem `estado` na URL é ela.
+ */
+function cdm_atelie_abas() {
+	$abas = array( '' => array( 'rotulo' => 'Minhas peças' ) );
+
+	$vindas = apply_filters( 'cdm_atelie_abas', array() );
+	if ( is_array( $vindas ) ) {
+		foreach ( $vindas as $slug => $def ) {
+			$slug = sanitize_key( $slug );
+			if ( '' === $slug || isset( $abas[ $slug ] ) || empty( $def['rotulo'] ) ) {
+				continue;
+			}
+			$abas[ $slug ] = array( 'rotulo' => (string) $def['rotulo'] );
+		}
+	}
+
+	return $abas;
+}
+}
+
+if ( ! function_exists( 'cdm_atelie_abas_html' ) ) {
+/**
+ * A navegação entre abas, ou '' quando só existe uma.
+ *
+ * UMA ABA SOZINHA NÃO É NAVEGAÇÃO — é um botão que não leva a lugar nenhum, e
+ * numa tela que uma pessoa vai usar pela primeira vez isso é ruído puro. Se o
+ * snippet de Leads não estiver no ar, o painel fica exatamente como estava.
+ */
+function cdm_atelie_abas_html( $atual = '' ) {
+	$abas = cdm_atelie_abas();
+	if ( count( $abas ) < 2 ) {
+		return '';
+	}
+	$h = '<nav class="cdm-at-abas" aria-label="Áreas do ateliê"><ul>';
+	foreach ( $abas as $slug => $def ) {
+		$aqui = ( (string) $slug === (string) $atual );
+		$url  = ( '' === $slug ) ? cdm_atelie_url() : cdm_atelie_url( array( 'estado' => $slug ) );
+		$h   .= '<li class="cdm-at-aba' . ( $aqui ? ' cdm-at-aba-aqui' : '' ) . '">';
+		if ( $aqui ) {
+			$h .= '<span aria-current="page">' . esc_html( $def['rotulo'] ) . '</span>';
+		} else {
+			$h .= '<a href="' . esc_url( $url ) . '">' . esc_html( $def['rotulo'] ) . '</a>';
+		}
+		$h .= '</li>';
+	}
+
+	return $h . '</ul></nav>';
+}
+}
+
 if ( ! function_exists( 'cdm_atelie_estado_rotulo' ) ) {
 function cdm_atelie_estado_rotulo( $estado ) {
 	if ( 'publish' === $estado ) {
@@ -1149,6 +1221,8 @@ function cdm_atelie_tela_lista( $usuaria ) {
 		'cdm_nonce' => wp_create_nonce( 'cdm_atelie_sair' ),
 	) ) ) . '">Sair</a></p>';
 	$h .= '</div>';
+
+	$h .= cdm_atelie_abas_html( '' );
 
 	$h .= '<p class="cdm-at-acao cdm-at-acao-grande">';
 	$h .= '<a class="cdm-botao cdm-at-botao" href="' . esc_url( cdm_atelie_url( array( 'estado' => 'nova' ) ) ) . '">+ Nova peça</a>';
@@ -1414,6 +1488,18 @@ add_shortcode( 'cdm_atelie', function () {
 		}
 	}
 
+	/* AS ABAS DE FORA. Só um estado que alguém REGISTROU como aba chega aqui: sem
+	   isso, `?estado=qualquer-coisa` viraria um ponto de extensão aberto a quem
+	   não o declarou. E o filtro é aplicado de verdade — a cicatriz de 12/09
+	   nesta ilha foram dois `add_filter` sem ninguém do outro lado. */
+	$abas = cdm_atelie_abas();
+	if ( '' !== $estado && isset( $abas[ $estado ] ) ) {
+		$tela = apply_filters( 'cdm_atelie_tela', '', $estado, $usuaria );
+		if ( is_string( $tela ) && '' !== $tela ) {
+			return $tela;
+		}
+	}
+
 	return cdm_atelie_tela_lista( $usuaria );
 } );
 
@@ -1468,6 +1554,11 @@ add_action( 'wp_footer', function () {
 .cdm-at-detalhe summary{cursor:pointer;font-weight:600;font-size:1rem;padding:.4rem 0;}
 /* A LISTA DAS PECAS. Cartao alto com a foto a esquerda: e o que cabe num
    telefone em pe sem ela ter de rolar de lado. */
+.cdm-at-abas{margin:0 0 1.25rem;border-bottom:1px solid var(--traco,#E9DCD7);}
+.cdm-at-abas ul{list-style:none;margin:0;padding:0;display:flex;gap:1.25rem;flex-wrap:wrap;}
+.cdm-at-aba a,.cdm-at-aba span{display:block;padding:.6rem 0;font-weight:600;font-size:1rem;text-decoration:none;}
+.cdm-at-aba a{color:var(--legenda,#6E5F5B);}
+.cdm-at-aba-aqui span{color:var(--tinta,#1F1715);box-shadow:inset 0 -3px 0 var(--coral,#FC483B);}
 .cdm-at-lista{list-style:none;margin:0;padding:0;}
 .cdm-at-item{display:flex;gap:.9rem;align-items:flex-start;margin:0 0 1rem;padding:.9rem;border:1px solid var(--cdm-traco);border-radius:14px;}
 .cdm-at-mini{display:block;width:72px;height:72px;flex:0 0 72px;object-fit:cover;border-radius:8px;background:var(--cdm-traco);}

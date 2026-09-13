@@ -368,10 +368,18 @@ foreach ( $bases as $b ) {
 				if ( false !== strpos( cdm_scripts( $html ), '&#038;' ) )    { $com_escape[] = $rotulo; }
 				/* A FICHA DA PECA NUNCA SAI DO INDICE. E a pagina que vende. */
 				if ( false !== strpos( $html, 'noindex' ) )                  { $sem_noindex_errado[] = $rotulo; }
-				/* O BOTAO SAI SE E SO SE HA TELEFONE PUBLICADO. */
-				$tem_botao = ( false !== strpos( $corpo, 'https://wa.me/' ) );
-				if ( 1 === $z && ! $tem_botao )  { $sem_botao[] = $rotulo; }
-				if ( 0 === $z && $tem_botao )    { $com_botao_sem_zap[] = $rotulo; }
+				/* TODO ESTADO TEM BLOCO DE ACAO, seja ele qual for.
+				   Esta afirmacao ja foi "o botao de wa.me sai se e so se ha
+				   telefone publicado", e ela media a IMPLEMENTACAO de um caminho
+				   que desde a 1.1.0 nao e mais da Loja: quem desenha o bloco e
+				   quem atende `cdm_peca_acao` (hoje, o snippet de Leads). O que
+				   continua sendo responsabilidade DESTA Loja, e e o que se mede
+				   agora, e a ficha NUNCA sair sem lugar de agir — peca sem
+				   nenhuma forma de pedir e uma vitrine com a porta trancada. O
+				   caminho do telefone publicado tem portao proprio mais abaixo,
+				   contra o PADRAO, que e o pedaco que a Loja ainda escreve. */
+				if ( false === strpos( $corpo, 'cdm-peca-acao' )
+					&& false === strpos( $corpo, 'cdm-peca-sem-contato' ) ) { $sem_botao[] = $rotulo; }
 				/* TODA FOTO COM alt E COM MEDIDA. */
 				preg_match_all( '#<img[^>]*>#i', $corpo, $imgs );
 				foreach ( $imgs[0] as $img ) {
@@ -395,8 +403,43 @@ cdm_ok( empty( $sem_produto ), 'os 72 estados servem o JSON-LD da peca', empty( 
 cdm_ok( empty( $sem_trilha ), 'os 72 estados servem a trilha no corpo', empty( $sem_trilha ) ? '72 de 72' : implode( ', ', array_slice( $sem_trilha, 0, 4 ) ) );
 cdm_ok( empty( $com_escape ), 'zero &#038; DENTRO de <script> nos 72 estados', empty( $com_escape ) ? '0' : implode( ', ', array_slice( $com_escape, 0, 4 ) ) );
 cdm_ok( empty( $sem_noindex_errado ), 'a ficha da peca NUNCA sai do indice', empty( $sem_noindex_errado ) ? '0 noindex' : implode( ', ', array_slice( $sem_noindex_errado, 0, 4 ) ) );
-cdm_ok( empty( $sem_botao ), 'com telefone publicado, os 36 estados tem botao de WhatsApp', empty( $sem_botao ) ? '36 de 36' : implode( ', ', array_slice( $sem_botao, 0, 4 ) ) );
-cdm_ok( empty( $com_botao_sem_zap ), 'SEM telefone publicado, nenhum estado inventa botao', empty( $com_botao_sem_zap ) ? '0 de 36' : implode( ', ', array_slice( $com_botao_sem_zap, 0, 4 ) ) );
+cdm_ok( empty( $sem_botao ), 'os 72 estados servem um bloco de acao (nenhuma peca sem como pedir)', empty( $sem_botao ) ? '72 de 72' : implode( ', ', array_slice( $sem_botao, 0, 4 ) ) );
+
+/* O PADRAO, que e o pedaco que a Loja AINDA escreve, medido na unidade.
+   Regua propria: as bordas do telefone estao digitadas aqui, e a mensagem e
+   conferida decodificada. */
+unset( $GLOBALS['__options']['cdm_whatsapp'] );
+cdm_ok( '' === cdm_loja_whatsapp(), 'sem a option cdm_whatsapp, a Loja nao devolve numero' );
+$GLOBALS['__options']['cdm_whatsapp'] = '5511987654321';
+cdm_ok( '5511987654321' === cdm_loja_whatsapp(), 'com a option preenchida, ela devolve o numero limpo' );
+$GLOBALS['__options']['cdm_whatsapp'] = '11987';
+cdm_ok( '' === cdm_loja_whatsapp(), 'BORDA: numero curto e numero errado, e nao vira botao' );
+$GLOBALS['__options']['cdm_whatsapp'] = '55119876543210';
+cdm_ok( '' === cdm_loja_whatsapp(), 'BORDA: numero longo demais tambem nao' );
+unset( $GLOBALS['__options']['cdm_whatsapp'] );
+$msg = rawurldecode( cdm_loja_mensagem_whatsapp( 'Vaso azul', 'https://x/', 'pronta_entrega', '' ) );
+cdm_ok( false !== strpos( $msg, 'Vaso azul' ) && false !== strpos( $msg, 'https://x/' ),
+	'a mensagem padrao cita a peca e leva a URL' );
+
+/* E O FILTRO QUE A 1.1.0 ABRIU, medido dos DOIS lados.
+   Lado A: a ficha CHAMA `cdm_peca_acao` — sem isso, quem atende e codigo morto,
+   que e a cicatriz de 12/09 nesta ilha. Lado B: o que o atendente devolve
+   aparece no corpo servido. Um lado sozinho nao prova nada: a chamada sem
+   ninguem do outro lado passa, e o atendente sem chamada tambem. */
+$peca_do_filtro = cdm_teste_peca_de_mentira( array() );
+$GLOBALS['__pecas_por_id'][ (int) $peca_do_filtro->ID ] = $peca_do_filtro;
+$atendido = apply_filters( 'cdm_peca_acao', 'PISO-DO-TESTE', $peca_do_filtro, array(
+	'titulo' => $peca_do_filtro->post_title,
+	'url'    => get_permalink( $peca_do_filtro ),
+	'disp'   => 'pronta_entrega',
+	'prazo'  => '',
+	'preco'  => '189.90',
+) );
+cdm_ok( 'PISO-DO-TESTE' !== $atendido, 'o filtro cdm_peca_acao tem quem o atenda' );
+$marca_do_atendente = 'Verificar disponibilidade';
+cdm_ok( false !== strpos( $atendido, $marca_do_atendente ), 'e o atendente devolve o bloco dele' );
+cdm_ok( false !== strpos( cdm_corpo( $html ), $marca_do_atendente ),
+	'a ficha servida contem o que o atendente devolveu — o filtro e APLICADO, nao so declarado' );
 cdm_ok( empty( $sem_alt ), 'toda foto servida tem alt', empty( $sem_alt ) ? 'todas' : implode( ', ', array_slice( $sem_alt, 0, 4 ) ) );
 cdm_ok( empty( $sem_dim ), 'toda foto servida tem width e height (22.4)', empty( $sem_dim ) ? 'todas' : implode( ', ', array_slice( $sem_dim, 0, 4 ) ) );
 cdm_ok( empty( $menores ), 'nenhum estado e render pela metade (piso = /contato/ desta bancada)',
@@ -458,7 +501,10 @@ cdm_ok( 'https://clubedomosaico.com.br/loja/vaso-azul-com-flores/' === ( $mc[1][
    peca veio ver a peca — o preco tem de vir ANTES da ficha tecnica e ANTES do
    "prefere fazer a sua". Medido por POSICAO no corpo, nunca por presenca. */
 $pos_preco  = strpos( $corpo, 'cdm-peca-preco' );
-$pos_botao  = strpos( $corpo, 'https://wa.me/' );
+/* A POSICAO DO BLOCO DE ACAO, nao a do `wa.me`: desde a 1.1.0 quem desenha o
+   bloco e quem atende o filtro, e a ordem da secao 5 vale para o LUGAR de agir,
+   qualquer que seja o botao que esteja nele. */
+$pos_botao  = strpos( $corpo, 'cdm-peca-acao' );
 $pos_ficha  = strpos( $corpo, 'A peça em números' );
 $pos_guia   = strpos( $corpo, 'Prefere fazer a sua?' );
 cdm_ok( false !== $pos_preco && $pos_preco < $pos_ficha, 'o preco vem antes da ficha tecnica' );

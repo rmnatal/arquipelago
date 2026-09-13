@@ -540,8 +540,23 @@ $pos_fonte  = mb_strpos( $corpo_ancora, 'cdm-f2-fonte' );
 f1_ok( false !== $pos_compra, 'o bloco de compra existe mesmo com todos os itens sem link' );
 f1_ok( false !== $pos_compra && false !== $pos_fonte && $pos_compra < $pos_fonte,
 	'o bloco de compra vem ANTES da prova de procedencia (cicatriz da Robometria)' );
-f1_ok( false !== mb_stripos( $corpo_ancora, 'Link de loja em breve' ),
-	'o lugar do link de loja fica reservado e a pagina diz que esta vazio' );
+/* O CARTAO SEM LINK RESERVA O LUGAR EM VEZ DE SUMIR — e isto se mede num mundo
+   PRODUZIDO, nao no banco de hoje.
+   Esta linha ja foi "a pagina diz 'Link de loja em breve'" contra o corpo da
+   ancora, e era verdade so enquanto ZERO item tivesse link. Na noite de 12/09 as
+   dez colas e rejuntes ganharam link e ela reprovou sem defeito nenhum embaixo:
+   regua que depende de um caso raro do banco morre no dia em que o banco
+   melhora (cicatriz da Aquametria, 12/09/2026). Agora sao os DOIS lados, e
+   nenhum depende de quantos links existem hoje. */
+$sem_link = f1_corpo( f1_render( $raiz, 'sem_links=1' ) );
+f1_ok( false !== mb_stripos( $sem_link, 'Link de loja em breve' ),
+	'PRODUZ O MUNDO: sem link, o lugar fica reservado e a pagina diz que esta vazio' );
+f1_ok( false === mb_stripos( $sem_link, 'rel="sponsored' ),
+	'PRODUZ O MUNDO: sem link, nao sai botao de compra nenhum' );
+f1_ok( false !== mb_stripos( $corpo_ancora, 'rel="sponsored' ),
+	'com link no banco, o cartao serve o botao de verdade, marcado como patrocinado' );
+f1_ok( false === mb_stripos( $corpo_ancora, 'Link de loja em breve' ),
+	'e nesse caso NAO diz "em breve" (a pagina nao promete o que ja entregou)' );
 f1_ok( preg_match( '#rel="nofollow noopener"#', $corpo_ancora ) > 0,
 	'o link de procedencia e discreto e nofollow, nunca botao' );
 f1_ok( false !== mb_stripos( $corpo_ancora, 'links desta página são de afiliado' ),

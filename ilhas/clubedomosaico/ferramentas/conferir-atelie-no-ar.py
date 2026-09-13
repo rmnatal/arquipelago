@@ -241,6 +241,25 @@ def main():
                 ok(abs(da_tela - do_schema) < 0.005,
                    f"[{curto}] o preco da TELA e o do SCHEMA sao o mesmo numero",
                    f"{da_tela} / {do_schema}")
+            # ---- O FORMULARIO DO ADENDO 3, medido no ar e no CORPO ----
+            # A regua esta escrita aqui: o botao, os dois campos, o consentimento
+            # e o <details>. E o <details> e o que prova a 22.8 no ar — se um dia
+            # alguem trocar por um botao de JavaScript, esta linha reprova.
+            cp = corpo_visivel(h)
+            ok("Verificar disponibilidade" in cp,
+               f"[{curto}] o botao principal e 'Verificar disponibilidade'")
+            ok('<details class="cdm-lead"' in cp,
+               f"[{curto}] o formulario abre por <details> (funciona sem JavaScript)")
+            ok('name="cdm_nome"' in cp and 'name="cdm_zap"' in cp,
+               f"[{curto}] pede nome e WhatsApp")
+            ok('name="cdm_email"' not in cp and 'name="cdm_cpf"' not in cp,
+               f"[{curto}] e NAO pede e-mail nem CPF")
+            ok("você autoriza o Clube do Mosaico a entrar em contato" in cp,
+               f"[{curto}] o consentimento esta na tela, antes do botao")
+            ok('name="cdm_nonce"' in cp, f"[{curto}] o formulario leva nonce")
+            # O HONEYPOT esta na pagina e fora da vista das duas maneiras.
+            ok('tabindex="-1"' in cp and 'cdm-lead-hp' in cp,
+               f"[{curto}] o honeypot esta fora do teclado e fora da vista")
 
     # -------------------------------------------- o acesso dela, pela rota com token
     print("\n6. O acesso da artesa (rota protegida)")

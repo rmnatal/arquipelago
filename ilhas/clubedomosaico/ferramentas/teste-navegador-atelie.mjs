@@ -147,19 +147,58 @@ for (const arquivo of arquivos) {
 		ruins.length ? ruins.map(([l, e]) => `${l}px: ${e}px`).join(' ') : '0 px em todas');
 }
 
+/* ---------------------------------------------------------------------------
+ * QUEM CONTA COMO ALVO DE TOQUE, e por que a regra mudou em 13/09/2026
+ *
+ * Duas correcoes, e as duas vieram de o adendo 3 trazer os dois primeiros
+ * controles desta ilha que a regra antiga media errado:
+ *
+ *   (a) CAMPO QUE NINGUEM PODE TOCAR NAO E ALVO DE TOQUE. O honeypot do
+ *       formulario esta fora da vista (`left:-9999px`), fora do teclado
+ *       (`tabindex="-1"`) e fora do leitor de tela (`aria-hidden`), e mesmo
+ *       assim tem caixa de layout — entao a regra antiga o cobrava. Cobrar 44 px
+ *       de um campo que so um robo preenche seria pedir para o honeypot ficar
+ *       grande. A exclusao e ESTRUTURAL, declarada no markup: `aria-hidden` ou
+ *       `tabindex="-1"`, nunca pelo nome do campo.
+ *
+ *   (b) O ALVO DE UM CHECKBOX E O ROTULO QUE O LIGA. Um checkbox desenhado com
+ *       24 px nunca chega a 44, e nao precisa: clicar no texto do consentimento
+ *       marca a caixa, entao o alvo real e o <label>. Medir a caixinha era medir
+ *       a coisa errada — e a saida certa nao e afrouxar o minimo, e sim medir o
+ *       que a pessoa toca. Sem rotulo em volta, volta a valer o proprio campo.
+ * ------------------------------------------------------------------------- */
+const ALVO = `
+	function cdmEscondido(e) {
+		for (let n = e; n && n !== document.body; n = n.parentElement) {
+			if (n.getAttribute && (n.getAttribute('aria-hidden') === 'true' || n.getAttribute('tabindex') === '-1')) { return true; }
+		}
+		return false;
+	}
+	function cdmCaixaDoAlvo(e) {
+		const tipo = (e.type || '').toLowerCase();
+		if ('checkbox' === tipo || 'radio' === tipo) {
+			const rot = e.closest('label') || (e.id ? document.querySelector('label[for="' + e.id + '"]') : null);
+			if (rot) { return rot.getBoundingClientRect(); }
+		}
+		return e.getBoundingClientRect();
+	}
+	function cdmNome(e) { return (e.name || e.id || e.value || e.tagName).toString().slice(0, 28); }
+`;
+
 console.log(`\n2. Alvo de toque: TODO botao e TODO campo com ${TOQUE_MINIMO} px ou mais, a 360 px`);
 for (const arquivo of arquivos) {
 	await pagina.setViewportSize({ width: 360, height: 900 });
 	await pagina.goto('file://' + join(pasta, arquivo));
-	const pequenos = await pagina.evaluate((minimo) => {
-		const alvos = [...document.querySelectorAll(
-			'main button, main input:not([type=hidden]), main select, main textarea, main a.cdm-botao, main a.cdm-at-botao-fraco'
-		)];
-		return alvos.map((e) => {
-			const c = e.getBoundingClientRect();
-			return { nome: (e.name || e.id || e.value || e.tagName).toString().slice(0, 28), a: Math.round(c.height), l: Math.round(c.width) };
-		}).filter((m) => m.a > 0 && m.a < minimo);
-	}, TOQUE_MINIMO);
+	const pequenos = await pagina.evaluate(`(() => { ${ALVO}
+		return (function (minimo) {
+			const alvos = [...document.querySelectorAll(
+				'main button, main input:not([type=hidden]), main select, main textarea, main a.cdm-botao, main a.cdm-at-botao-fraco'
+			)].filter((e) => !cdmEscondido(e));
+			return alvos.map((e) => {
+				const c = cdmCaixaDoAlvo(e);
+				return { nome: cdmNome(e), a: Math.round(c.height), l: Math.round(c.width) };
+			}).filter((m) => m.a > 0 && m.a < minimo);
+		})(${TOQUE_MINIMO}); })()`);
 	ok(0 === pequenos.length, `[${arquivo}] nenhum alvo de toque abaixo de ${TOQUE_MINIMO} px`,
 		pequenos.length ? pequenos.map((p) => `${p.nome} ${p.l}x${p.a}`).join(', ') : 'todos acima');
 }
@@ -168,13 +207,19 @@ console.log(`\n3. O zoom que o iOS da sozinho: campo com fonte de ${FONTE_MINIMA
 for (const arquivo of arquivos) {
 	await pagina.setViewportSize({ width: 360, height: 900 });
 	await pagina.goto('file://' + join(pasta, arquivo));
-	const miudos = await pagina.evaluate((minima) => {
-		const campos = [...document.querySelectorAll('main input:not([type=hidden]), main select, main textarea')];
-		return campos.map((e) => ({
-			nome: (e.name || e.id || e.tagName).toString().slice(0, 28),
-			px: parseFloat(getComputedStyle(e).fontSize),
-		})).filter((m) => m.px < minima);
-	}, FONTE_MINIMA);
+	/* O zoom do iOS dispara ao TOCAR num campo de digitar. Checkbox e radio nao
+	   abrem teclado e nao disparam nada, e o honeypot ninguem toca — os tres
+	   ficam de fora, pela mesma regra estrutural do bloco acima. */
+	const miudos = await pagina.evaluate(`(() => { ${ALVO}
+		return (function (minima) {
+			const campos = [...document.querySelectorAll('main input:not([type=hidden]), main select, main textarea')]
+				.filter((e) => !cdmEscondido(e))
+				.filter((e) => !['checkbox', 'radio'].includes((e.type || '').toLowerCase()));
+			return campos.map((e) => ({
+				nome: cdmNome(e),
+				px: parseFloat(getComputedStyle(e).fontSize),
+			})).filter((m) => m.px < minima);
+		})(${FONTE_MINIMA}); })()`);
 	ok(0 === miudos.length, `[${arquivo}] nenhum campo abaixo de ${FONTE_MINIMA} px (sem zoom no iPhone)`,
 		miudos.length ? miudos.map((m) => `${m.nome} ${m.px}px`).join(', ') : 'todos em 16px ou mais');
 }
@@ -266,18 +311,98 @@ for (const arquivo of arquivos) {
 			rolagem: Math.max(0, document.documentElement.scrollWidth - document.documentElement.clientWidth),
 		};
 	});
-	/* A FICHA DA PECA NAO TEM FORMULARIO, e nao deve ter: o botao dela e um link
-	   `wa.me`, que e a coisa que mais funciona sem JavaScript que existe. Cobrar
-	   formulario dela era a regua do painel aplicada na pagina errada — o que se
-	   cobra aqui e que o caminho de acao continue de pe, e ele e outro. */
+	/* A FICHA DA PECA PASSOU A TER FORMULARIO — e esta regua mediu o mundo de
+	   ontem ate 13/09/2026.
+	   Ela dizia "a ficha nao tem formulario, e nao deve ter: o botao dela e um
+	   link `wa.me`". Era verdade e deixou de ser no dia em que o adendo 3 trocou
+	   o link direto pelo "Verificar disponibilidade". Do jeito antigo ela
+	   REPROVARIA a ficha certa, apontando para o lugar errado — a familia de
+	   defeito que a Aquametria nomeou em 12/09 (mundo de um elemento so escrito
+	   como se fosse o mundo inteiro).
+	   O que se cobra agora e mais forte que antes, e e o que a 22.8 realmente
+	   pede: o formulario tem de ABRIR e ser usavel COM O SCRIPT DESLIGADO. Por
+	   isso a medicao clica no <summary> num navegador sem JavaScript — se um dia
+	   alguem trocar o <details> por um botao que so o script abre, isto reprova. */
 	if (ehFicha(arquivo)) {
-		ok(retrato.links > 0, `[${arquivo}] sem JS: o link de contato continua de pe`, `${retrato.links} links`);
-		ok(0 === retrato.forms, `[${arquivo}] sem JS: e ela nao depende de formulario nenhum`);
-	} else {
 		ok(retrato.forms > 0 && retrato.forms === retrato.postam,
-			`[${arquivo}] sem JS: todo formulario ainda POSTa`, `${retrato.postam}/${retrato.forms}`);
-		ok(retrato.botoes > 0 && retrato.botoes === retrato.visiveis,
+			`[${arquivo}] sem JS: a ficha tem formulario e ele POSTa`, `${retrato.postam}/${retrato.forms}`);
+		/* COMO SE MEDE "ESTA FECHADO", e a primeira versao disto errou:
+		   `getBoundingClientRect()` de um elemento dentro de um <details>
+		   FECHADO NAO devolve zero neste Chromium — o conteudo e escondido por
+		   `content-visibility`, que pula a pintura e preserva a caixa. Medindo
+		   altura, "antes" e "depois" davam o mesmo numero e a afirmacao reprovava
+		   uma pagina certa. Quem decide e o estado que o navegador realmente
+		   alterna, `details.open`, e ele e a prova da 22.8: o clique acontece num
+		   contexto com o JavaScript DESLIGADO, entao quem abriu foi o HTML. */
+		const dobra = await semJs.evaluate(() => {
+			const d = document.querySelector('main details.cdm-lead');
+			if (!d) { return { achou: false }; }
+			const s = d.querySelector('summary');
+			const antes = d.open;
+			s.click();
+			return {
+				achou: true,
+				antes,
+				depois: d.open,
+				sumario: s.getBoundingClientRect().height,
+			};
+		});
+		ok(dobra.achou, `[${arquivo}] sem JS: o bloco <details> existe na ficha`);
+		/* A ficha com erro ja vem `open` de proposito — ali o que se cobra e que
+		   ela esteja aberta, e nao que o clique a abra. */
+		if (arquivo.includes('erro')) {
+			ok(dobra.achou && true === dobra.antes,
+				`[${arquivo}] sem JS: com erro, o formulario ja vem ABERTO`, `open=${dobra.antes}`);
+		} else {
+			ok(dobra.achou && false === dobra.antes && true === dobra.depois,
+				`[${arquivo}] sem JS: clicar no <summary> ABRE o formulario`, `open ${dobra.antes} -> ${dobra.depois}`);
+		}
+		ok(dobra.achou && dobra.sumario >= TOQUE_MINIMO,
+			`[${arquivo}] sem JS: o <summary> tem alvo de toque`, `${Math.round(dobra.sumario)} px`);
+
+		/* E COM O FORMULARIO ABERTO, a geometria de verdade: os dois campos, o
+		   botao e a ausencia de rolagem lateral. Medido DEPOIS de abrir, porque
+		   medir um formulario fechado e medir o que ninguem ve. */
+		const aberta = await semJs.evaluate(`(() => { ${ALVO}
+			return (function (minimo) {
+				const d = document.querySelector('main details.cdm-lead');
+				if (!d) { return { achou: false }; }
+				d.open = true;
+				void d.offsetHeight;
+				const campos = [...d.querySelectorAll('input[name="cdm_nome"], input[name="cdm_zap"]')];
+				const botao = d.querySelector('button[type=submit]');
+				const marca = [...d.querySelectorAll('input[type=checkbox]')];
+				return {
+					achou: true,
+					campos: campos.filter((c) => c.getBoundingClientRect().height >= minimo).length,
+					botao: botao ? Math.round(botao.getBoundingClientRect().height) : 0,
+					consente: marca.length ? Math.round(cdmCaixaDoAlvo(marca[0]).height) : 0,
+					rolagem: Math.max(0, document.documentElement.scrollWidth - document.documentElement.clientWidth),
+				};
+			})(${TOQUE_MINIMO}); })()`);
+		ok(aberta.achou && 2 === aberta.campos,
+			`[${arquivo}] sem JS: os dois campos abrem com alvo de toque`, `${aberta.campos} de 2`);
+		ok(aberta.achou && aberta.botao >= TOQUE_MINIMO,
+			`[${arquivo}] sem JS: "Quero esta peça" tem alvo de toque`, `${aberta.botao} px`);
+		ok(aberta.achou && aberta.consente >= TOQUE_MINIMO,
+			`[${arquivo}] sem JS: o rotulo do consentimento tem alvo de toque`, `${aberta.consente} px`);
+		ok(aberta.achou && 0 === aberta.rolagem,
+			`[${arquivo}] sem JS: o formulario aberto nao cria rolagem lateral a 360 px`, `${aberta.rolagem} px`);
+	} else {
+		/* DUAS AFIRMACOES SEPARADAS, e a separacao e o conserto de 13/09/2026.
+		   Antes eram uma so — "existe formulario E todo formulario POSTa" —, e ela
+		   reprovou a aba Interessados VAZIA, que legitimamente nao tem formulario
+		   nenhum: so uma lista que nao existe e um caminho de volta. A regra que
+		   importa e outra e vale para as duas telas: todo formulario PRESENTE tem
+		   de POSTar, e a tela tem de ter pelo menos UM lugar onde agir — botao ou
+		   link de acao. Tela sem saida e beco, com ou sem formulario. */
+		ok(retrato.forms === retrato.postam,
+			`[${arquivo}] sem JS: todo formulario presente ainda POSTa`, `${retrato.postam}/${retrato.forms}`);
+		ok(retrato.botoes === retrato.visiveis,
 			`[${arquivo}] sem JS: todo botao continua visivel`, `${retrato.visiveis}/${retrato.botoes}`);
+		ok(retrato.botoes > 0 || retrato.links > 0,
+			`[${arquivo}] sem JS: a tela tem pelo menos um lugar onde agir`,
+			`${retrato.botoes} botoes, ${retrato.links} links`);
 	}
 	ok(retrato.corpo > 80, `[${arquivo}] sem JS: o corpo continua inteiro`, `${retrato.corpo} caracteres`);
 	ok(0 === retrato.rolagem, `[${arquivo}] sem JS: sem rolagem lateral`, `${retrato.rolagem} px`);

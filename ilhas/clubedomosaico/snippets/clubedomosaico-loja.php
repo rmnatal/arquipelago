@@ -1,5 +1,13 @@
 /**
  * Clube do Mosaico Loja — peças e vitrine
+ * Versão 1.1.0 (13/09/2026) — UMA mudança sobre a 1.0.0, e ela é de tomada e não
+ * de comportamento: o bloco de ação da ficha (preço, disponibilidade, botão)
+ * passou a sair por `apply_filters( 'cdm_peca_acao', $padrao, $peca, $dados )`.
+ * Sem ninguém atendendo, a ficha serve exatamente o que servia ontem. Quem
+ * atende é o snippet de Leads (adendo 3 de 11/09), que troca o botão pelo
+ * "Verificar disponibilidade" e o formulário. Ver a nota no corpo de
+ * `cdm_loja_ficha_html()`.
+ *
  * Versão 1.0.0 (12/09/2026) — bloco 4d, o CORTE do despacho do Raphael das
  * 18h20 BRT de 12/09/2026: ele vai à casa dos pais no domingo 13/09 ensinar a
  * própria mãe a cadastrar as peças dela, e o que estiver de pé hoje é o que ela
@@ -81,7 +89,7 @@
  */
 
 if ( ! defined( 'CDM_LOJA_VERSAO' ) ) {
-	define( 'CDM_LOJA_VERSAO', '1.0.0' );
+	define( 'CDM_LOJA_VERSAO', '1.1.0' );
 }
 if ( ! defined( 'CDM_LOJA_BASE' ) ) {
 	/* O primeiro segmento da URL da peça. É o mesmo slug da página /loja/ de
@@ -706,17 +714,39 @@ function cdm_loja_ficha_html( $peca ) {
 		$html .= '<p class="cdm-peca-disp">' . esc_html( $frase_disp ) . '</p>';
 	}
 
-	$zap = cdm_loja_whatsapp();
+	/* O BLOCO DE AÇÃO SAI POR FILTRO desde a 1.1.0, e o que está abaixo é o
+	   PADRÃO — o que a ficha serve quando ninguém atende.
+
+	   Quem atende é o snippet de Leads (adendo 3), que troca o botão por
+	   "Verificar disponibilidade" e o formulário de nome e WhatsApp. A separação
+	   existe porque o Sync desembarca um item por vez: se o Leads não estiver no
+	   ar, a ficha continua exatamente como estava, e nunca com um botão que não
+	   leva a lugar nenhum.
+
+	   E O FILTRO É APLICADO DE VERDADE, o que nesta ilha precisa ser dito: em
+	   12/09 dois `add_filter` escritos aqui mesmo ficaram sem ninguém que os
+	   aplicasse, e portão que nunca roda é função morta. O `teste-loja.php` cobra
+	   que esta chamada exista e que um atendente mude o resultado. */
+	$zap    = cdm_loja_whatsapp();
+	$padrao = '';
 	if ( '' !== $zap ) {
-		$link  = 'https://wa.me/' . $zap . '?text=' . cdm_loja_mensagem_whatsapp( $titulo, $url, $disp, $prazo );
-		$html .= '<p class="cdm-peca-acao"><a class="cdm-botao" href="' . esc_url( $link ) . '" rel="noopener">Falar com a artesã sobre esta peça</a></p>';
-		$html .= '<p class="cdm-peca-nota">Você fala direto com quem fez. Ela confirma se a peça está disponível e como fica o envio.</p>';
+		$link    = 'https://wa.me/' . $zap . '?text=' . cdm_loja_mensagem_whatsapp( $titulo, $url, $disp, $prazo );
+		$padrao .= '<p class="cdm-peca-acao"><a class="cdm-botao" href="' . esc_url( $link ) . '" rel="noopener">Falar com a artesã sobre esta peça</a></p>';
+		$padrao .= '<p class="cdm-peca-nota">Você fala direto com quem fez. Ela confirma se a peça está disponível e como fica o envio.</p>';
 	} else {
-		$html .= '<div class="cdm-vazio cdm-peca-sem-contato">';
-		$html .= '<h3>O contato ainda não foi publicado</h3>';
-		$html .= '<p>Esta peça existe e está aqui, mas o canal de conversa do ateliê ainda não foi ligado — e a gente não inventa um número de telefone para o botão parecer pronto. Volte em algumas horas.</p>';
-		$html .= '</div>';
+		$padrao .= '<div class="cdm-vazio cdm-peca-sem-contato">';
+		$padrao .= '<h3>O contato ainda não foi publicado</h3>';
+		$padrao .= '<p>Esta peça existe e está aqui, mas o canal de conversa do ateliê ainda não foi ligado — e a gente não inventa um número de telefone para o botão parecer pronto. Volte em algumas horas.</p>';
+		$padrao .= '</div>';
 	}
+
+	$html .= apply_filters( 'cdm_peca_acao', $padrao, $peca, array(
+		'titulo' => $titulo,
+		'url'    => $url,
+		'disp'   => $disp,
+		'prazo'  => $prazo,
+		'preco'  => $preco,
+	) );
 	$html .= '</div>';
 
 	/* 3. A DESCRIÇÃO, com as palavras dela. */

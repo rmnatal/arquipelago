@@ -43,6 +43,11 @@
 define('ABSPATH', '/tmp/wp/'); define('OBJECT','OBJECT'); define('ARRAY_A','ARRAY_A');
 $GLOBALS['__filtros']=array(); $GLOBALS['__shortcodes']=array(); $GLOBALS['__acoes']=array();
 $GLOBALS['__conteudo_pagina']='';
+$GLOBALS['__leads']=array(); $GLOBALS['__leads_por_id']=array(); $GLOBALS['__transients']=array();
+/* O ENDERECO DE QUEM PEDIU. No site vem do servidor; aqui vem daqui, e e por
+   isso que o limite de 5 por hora do adendo 3 pode ser MEDIDO — o teste troca
+   este valor para ser outra pessoa. */
+if (!isset($_SERVER['REMOTE_ADDR'])) { $_SERVER['REMOTE_ADDR'] = '203.0.113.7'; }
 
 function add_filter($h,$f,$p=10,$a=1){ $GLOBALS['__filtros'][$h][]=$f; }
 function apply_filters($h,$v){ $extra=array_slice(func_get_args(),2);
@@ -94,6 +99,7 @@ function get_post($p=null){
 	   mesmo objeto que o render da ficha usa, para a bancada nao ter duas
 	   versoes da mesma peca. */
 	if (is_numeric($p) && isset($GLOBALS['__pecas_por_id'][(int) $p])) { return $GLOBALS['__pecas_por_id'][(int) $p]; }
+	if (is_numeric($p) && isset($GLOBALS['__leads_por_id'][(int) $p])) { return $GLOBALS['__leads_por_id'][(int) $p]; }
 	if (is_object($p)) { return $p; }
 	if (null === $p && isset($GLOBALS['__post_atual'])) { return $GLOBALS['__post_atual']; }
 	$caminho = isset($GLOBALS['__caminho_atual']) ? $GLOBALS['__caminho_atual'] : '';
@@ -116,6 +122,12 @@ function post_type_exists($tipo){
 function get_posts($a=array()){
 	if (isset($a['post_type']) && 'peca' === $a['post_type']) {
 		return isset($GLOBALS['__pecas']) ? $GLOBALS['__pecas'] : array();
+	}
+	/* O ADENDO 3 trouxe um segundo tipo. Sem este ramo, a aba Interessados
+	   mediria uma lista vazia achando que mede a lista cheia — a "pagina VALIDA"
+	   que a secao 8 avisa que a bancada mede por engano. */
+	if (isset($a['post_type']) && 'lead_peca' === $a['post_type']) {
+		return isset($GLOBALS['__leads']) ? $GLOBALS['__leads'] : array();
 	}
 	$mapa = isset($GLOBALS['__paginas']) ? $GLOBALS['__paginas'] : array();
 	$chave = isset($a['meta_value']) ? $a['meta_value'] : '';
@@ -170,6 +182,21 @@ function wp_insert_post($a,$erro=false){
 		);
 		return $id;
 	}
+	/* O LEAD, pelo mesmo motivo: `cdm_leads_gravar()` grava as metas no id que
+	   volta daqui, e a aba Interessados le esse id de volta. */
+	if (isset($a['post_type']) && 'lead_peca' === $a['post_type']) {
+		if (!isset($GLOBALS['__proximo_lead'])) { $GLOBALS['__proximo_lead'] = 900; }
+		$id = $GLOBALS['__proximo_lead']++;
+		$lead = (object) array(
+			'ID'=>$id,'post_type'=>'lead_peca','post_title'=>$a['post_title'] ?? '',
+			'post_status'=>$a['post_status'] ?? 'publish','post_name'=>'lead-'.$id,
+			'post_date_gmt'=> $GLOBALS['__lead_data'] ?? '2026-09-13 11:20:00',
+		);
+		$GLOBALS['__leads_por_id'][$id] = $lead;
+		/* O mais novo primeiro, como o `orderby date DESC` do site. */
+		array_unshift($GLOBALS['__leads'], $lead);
+		return $id;
+	}
 	return count($GLOBALS['__inserts']);
 }
 function wp_update_post($a){
@@ -186,7 +213,20 @@ function wp_trash_post($id){ $GLOBALS['__lixeira'][] = (int) $id; if (isset($GLO
    em vez de reprovar — e "nao compila" nao e evidencia de que a trava funciona.
    Guarda em lista PROPRIA: e a distincao entre apagar e poder desfazer, que e a
    unica coisa que essa trava protege. */
-function wp_delete_post($id,$forcar=false){ $GLOBALS['__apagados'][] = (int) $id; unset($GLOBALS['__pecas_por_id'][(int) $id]); return true; }
+function wp_delete_post($id,$forcar=false){
+	$GLOBALS['__apagados'][] = (int) $id;
+	unset($GLOBALS['__pecas_por_id'][(int) $id]);
+	/* O LEAD TAMBEM SOME DA LISTA, e nao so do mapa por id.
+	   Sem esta metade, uma mutacao que APAGA o lead passava verde: o teste
+	   contava `__leads`, que continuava com o objeto dentro. Stub que esquece de
+	   apagar e a versao do "teste que mede a si mesmo" do lado da bancada. */
+	unset($GLOBALS['__leads_por_id'][(int) $id]);
+	foreach (($GLOBALS['__leads'] ?? array()) as $i => $l) {
+		if ((int) $l->ID === (int) $id) { unset($GLOBALS['__leads'][$i]); }
+	}
+	$GLOBALS['__leads'] = array_values($GLOBALS['__leads'] ?? array());
+	return true;
+}
 function is_wp_error($v){ return ($v instanceof CdmTesteErro); }
 function flush_rewrite_rules($dura=true){ $GLOBALS['__reescritas'] = (isset($GLOBALS['__reescritas']) ? $GLOBALS['__reescritas'] : 0) + 1; }
 /* O REDIRECIONAMENTO VIRA EXCECAO, e e o unico jeito de medir as acoes do painel
@@ -350,6 +390,36 @@ function wp_insert_user($a){
 	return $id;
 }
 function wp_generate_password($n=12,$especial=true,$extra=false){ return str_repeat('x',(int) $n); }
+
+/* --- TRANSIENTS E IMPRESSAO DE ENDERECO, que o ADENDO 3 trouxe.
+ *
+ * Guardam DE VERDADE (num array), pelo mesmo motivo que update_post_meta passou
+ * a guardar: o snippet de Leads grava a confirmacao e a LE de volta na
+ * requisicao seguinte, e um stub que esquece faria a tela de "enviado" nunca
+ * aparecer na bancada — medindo o formulario vazio e achando que mede o envio.
+ *
+ * A validade e guardada junto e CONFERIDA na leitura: sem isso, o limite de 5
+ * por hora e a vida de 10 minutos da confirmacao seriam numeros que o snippet
+ * escreve e ninguem cobra. `cdm_teste_envelhecer_transients()` e como o teste
+ * faz o tempo passar sem esperar. --- */
+function set_transient($k,$v,$vida=0){
+	$GLOBALS['__transients'][$k] = array('v'=>$v, 'ate'=> $vida > 0 ? time() + (int) $vida : 0);
+	return true;
+}
+function get_transient($k){
+	if (!isset($GLOBALS['__transients'][$k])) { return false; }
+	$t = $GLOBALS['__transients'][$k];
+	if ($t['ate'] > 0 && time() > $t['ate']) { unset($GLOBALS['__transients'][$k]); return false; }
+	return $t['v'];
+}
+function delete_transient($k){ unset($GLOBALS['__transients'][$k]); return true; }
+/** Empurra o relogio de todo transient $segundos para tras. */
+function cdm_teste_envelhecer_transients($segundos){
+	foreach (($GLOBALS['__transients'] ?? array()) as $k=>$t) {
+		if ($t['ate'] > 0) { $GLOBALS['__transients'][$k]['ate'] = $t['ate'] - (int) $segundos; }
+	}
+}
+function wp_hash($dado,$esquema='auth'){ return hash('sha256', 'sal-de-teste|'.$dado); }
 
 /* --- senha, sessao e e-mail. Nada aqui e criptografia: e registro do que foi
        pedido, para o teste poder afirmar sobre o que o snippet TENTOU fazer. --- */
@@ -730,6 +800,41 @@ function cdm_teste_peca_de_mentira($g = array()) {
 	);
 }
 
+/**
+ * UM LEAD DE MENTIRA, para a aba Interessados poder ser medida cheia.
+ *
+ * Os valores sao os que uma pessoa digitaria, nao os canonicos: o telefone entra
+ * pelo `cdm_leads_wa_canonico()` do proprio snippet, porque e a canonizacao que
+ * a tela mostra de volta — e se a bancada escrevesse o canonico a mao, os dois
+ * lados poderiam errar juntos (secao 8, a regua do teste nunca e a do snippet;
+ * aqui e o contrario do teste: e um FIXTURE, e fixture que ja vem pronto esconde
+ * justamente o passo que se quer medir).
+ */
+function cdm_teste_lead_de_mentira($n = 1, $status = 'novo', $peca_id = 300) {
+	$id = 900 + (int) $n;
+	$nomes = array(1 => 'Ana Clara', 2 => 'Joao', 3 => 'Marisa de Souza');
+	$zaps  = array(1 => '(11) 98765-4321', 2 => '21 3456-7890', 3 => '5531999887766');
+	$nome  = $nomes[$n] ?? ('Pessoa ' . $n);
+	$zap   = $zaps[$n] ?? '(11) 98765-4321';
+
+	$lead = (object) array(
+		'ID' => $id, 'post_type' => 'lead_peca', 'post_status' => 'publish',
+		'post_title' => 'Interesse: Vaso azul com flores', 'post_name' => 'lead-' . $id,
+		'post_date_gmt' => '2026-09-13 1' . (int) $n . ':20:00',
+	);
+	$GLOBALS['__meta'][$id] = array(
+		'_cdm_nome'           => $nome,
+		'_cdm_whatsapp'       => function_exists('cdm_leads_wa_canonico') ? cdm_leads_wa_canonico($zap) : $zap,
+		'_cdm_peca_id'        => (int) $peca_id,
+		'_cdm_origem'         => 'https://clubedomosaico.com.br/loja/vaso-azul-com-flores/',
+		'_cdm_status'         => $status,
+		'_cdm_consentimento'  => array('em' => '2026-09-13 11:20:00', 'texto' => 'texto de teste'),
+	);
+	$GLOBALS['__leads_por_id'][$id] = $lead;
+
+	return $lead;
+}
+
 if (isset($argv[1]) && basename(__FILE__) === basename($argv[0])) {
 	$alvo = isset($argv[2]) ? $argv[2] : 'cdm_home';
 	$modo = isset($argv[3]) ? $argv[3] : 'hoje';
@@ -737,6 +842,41 @@ if (isset($argv[1]) && basename(__FILE__) === basename($argv[0])) {
 	   'base=espelho&onde=externo_exposto&junta=3'. Vazio = pagina-ancora. */
 	if (isset($argv[4]) && '' !== $argv[4]) { parse_str($argv[4], $_GET); }
 	cdm_teste_carregar_options($argv[1]);
+
+	/* PRODUZ O MUNDO EM QUE NINGUEM TEM LINK DE AFILIADO.
+	 *
+	 * Existe por uma cicatriz de 13/09/2026: dois portoes da F1 e da F2 cobravam
+	 * a frase "Link de loja em breve" no corpo da pagina-ancora, e ela era
+	 * verdade so enquanto ZERO item do banco tivesse link. Na noite em que as
+	 * dez colas e rejuntes ganharam link, os dois reprovaram sem defeito nenhum
+	 * embaixo — a mesma familia do "regua que depende de um caso raro do banco
+	 * morre no dia em que o banco melhora" que a Aquametria nomeou em 12/09.
+	 *
+	 * A saida nao e apagar a afirmacao: e ela passar a medir o COMPORTAMENTO
+	 * (cartao sem link reserva o lugar em vez de sumir) num mundo produzido de
+	 * proposito, e nao no estado do banco de hoje. Daqui em diante o portao
+	 * mede os dois lados, e nenhum dos dois depende de quantos links existem. */
+	if (!empty($_GET['sem_links'])) {
+		foreach ($GLOBALS['__options'] as $chave => $valor) {
+			if (0 !== strpos($chave, 'clubedomosaico_dados_materiais-') || !is_array($valor)) { continue; }
+			/* A lista chama-se `materiais` neste banco; o nome e lido do proprio
+			   arquivo, nunca adivinhado — se um banco futuro usar outro nome, a
+			   varredura o encontra em vez de silenciosamente nao mexer em nada. */
+			$lista = isset($valor['materiais']) ? 'materiais' : (isset($valor['itens']) ? 'itens' : '');
+			if ('' === $lista) { continue; }
+			foreach ($valor[$lista] as $i => $item) {
+				if (isset($item['afiliado'])) {
+					$GLOBALS['__options'][$chave][$lista][$i]['afiliado']['url'] = '';
+					$GLOBALS['__options'][$chave][$lista][$i]['afiliado']['programa'] = '';
+				}
+			}
+			if (isset($valor['afiliado']['itens_esperando_link'])) {
+				$GLOBALS['__options'][$chave]['afiliado']['itens_esperando_link'] = count($valor[$lista]);
+			}
+		}
+		unset($_GET['sem_links']);
+	}
+
 	cdm_teste_carregar($argv[1]);
 	/* Depois de carregar a casca, porque o modo 'todas' le o registro dela. */
 	$GLOBALS['__paginas'] = cdm_teste_paginas_no_ar($modo);
@@ -780,6 +920,18 @@ if (isset($argv[1]) && basename(__FILE__) === basename($argv[0])) {
 			$p->post_status = isset($_GET['estado_peca']) ? $_GET['estado_peca'] : 'publish';
 			$GLOBALS['__pecas_por_id'][(int) $p->ID] = $p;
 			$GLOBALS['__pecas'] = array($p);
+		}
+		/* Quantos interessados, para a aba do adendo 3 ser medida VAZIA e CHEIA —
+		   as duas sao telas de verdade e as duas dizem coisas diferentes. */
+		$quantos_leads = isset($_GET['com_leads']) ? (int) $_GET['com_leads'] : 0;
+		if ($quantos_leads > 0) {
+			$p = cdm_teste_peca_de_mentira($_GET);
+			$GLOBALS['__pecas_por_id'][(int) $p->ID] = $p;
+			$estados = array(1 => 'novo', 2 => 'contatado', 3 => 'vendido');
+			$GLOBALS['__leads'] = array();
+			for ($i = 1; $i <= $quantos_leads; $i++) {
+				$GLOBALS['__leads'][] = cdm_teste_lead_de_mentira($i, $estados[$i] ?? 'novo', (int) $p->ID);
+			}
 		}
 		echo cdm_teste_pagina('cdm_atelie');
 		return;

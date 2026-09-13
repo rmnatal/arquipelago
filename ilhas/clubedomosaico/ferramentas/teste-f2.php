@@ -649,8 +649,19 @@ foreach ( $por_id as $m ) {
 $declarado = (int) $colas['afiliado']['itens_esperando_link'] + (int) $rejuntes['afiliado']['itens_esperando_link'];
 f2_ok( $esperando === $declarado, 'o numero de itens esperando link bate com o banco contado',
 	$esperando . ' contados, ' . $declarado . ' declarados' );
-$sem_loja = substr_count( $corpo_ancora, 'Link de loja em breve' );
-f2_ok( $sem_loja > 0, 'a pagina reserva o lugar do link em vez de esconder o cartao', $sem_loja . ' cartoes' );
+/* O CARTAO SEM LINK RESERVA O LUGAR EM VEZ DE SUMIR — medido num mundo
+   PRODUZIDO, pela mesma razao escrita no `teste-f1.php`: a versao antiga desta
+   linha contava "Link de loja em breve" no corpo da ancora e era verdade so
+   enquanto ZERO item tivesse link. Ela reprovou na noite em que o banco
+   melhorou, sem defeito nenhum embaixo. */
+$sem_loja = substr_count( f2_corpo( f2_render( $raiz, 'sem_links=1' ) ), 'Link de loja em breve' );
+f2_ok( $sem_loja > 0, 'PRODUZ O MUNDO: sem link, a pagina reserva o lugar em vez de esconder o cartao',
+	$sem_loja . ' cartoes' );
+$com_loja = substr_count( $corpo_ancora, 'rel="sponsored' );
+f2_ok( $com_loja > 0, 'com link no banco, o cartao serve o botao marcado como patrocinado',
+	$com_loja . ' botoes' );
+f2_ok( 0 === substr_count( $corpo_ancora, 'Link de loja em breve' ) || $esperando > 0,
+	'so promete "em breve" quando ha item de verdade esperando link' );
 
 /* ---------------------------------------------------------------------------
  * 8. As duas faixas descobertas, declaradas em vez de preenchidas no chute
