@@ -254,6 +254,10 @@ function aquametria_seo_metas_por_slug() {
 			'titulo'    => 'Como a Aquametria ganha dinheiro',
 			'descricao' => 'A Aquametria recebe comissão por alguns links de loja. O que isso muda na ordem dos produtos recomendados: nada. O critério inteiro, por escrito.',
 		),
+		'politica-de-privacidade' => array(
+			'titulo'    => 'O que este site sabe sobre você',
+			'descricao' => 'Sem cadastro, sem formulário e sem cookie vindo do servidor. Os quatro endereços que o seu navegador procura fora daqui, medidos página por página.',
+		),
 		'quantos-watts-de-aquecedor-para-aquario' => array(
 			'titulo'    => 'Por que o 1 W por litro erra para o mesmo lado',
 			'descricao' => 'O 1 W por litro não veio de um cálculo, veio da prateleira. De onde a regra saiu, quando ela acerta por acidente e o que muda ao medir o cômodo.',

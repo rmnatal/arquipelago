@@ -1,5 +1,22 @@
 /**
  * Aquametria Casca — identidade e estrutura do site
+ * Versão: 1.9.0 (13/09/2026) — A ILHA GANHA PÁGINA DE PRIVACIDADE, e a casca é
+ * quem lhe dá trilha e lugar no rodapé. Era o item (d) da lista de aberto do
+ * `ESTADO.md` desde 12/09/2026, quando a etiqueta do GA4 entrou no ar: a ilha
+ * mede audiência e publica link de afiliado sem nenhuma página que diga isso a
+ * quem lê. O corpo mora em `conteudo/politica-de-privacidade.md` (é página de
+ * conteudo/, como a de afiliados); o que muda AQUI são as duas superfícies que a
+ * casca possui — `aquametria_casca_lugar()`, para a trilha ter o degrau com o
+ * mesmo nome do H1, e o rodapé, onde o rótulo é o reconhecível ("Privacidade") e
+ * não o da trilha, pelo mesmo precedente da divulgação de afiliados.
+ * A AFIRMAÇÃO DA PÁGINA NÃO É SOBRE O CÓDIGO, É SOBRE O AR: ela lista os
+ * endereços externos que o navegador de quem lê procura, e quem cobra que essa
+ * lista seja a verdadeira é `ferramentas/conferir-privacidade-no-ar.py`, que
+ * varre as URLs do sitemap, recolhe os endereços do HTML SERVIDO e compara com
+ * os que a página nomeia — nas duas direções. Lista digitada de terceiro é a
+ * mesma família do número de tela digitado da seção 8: ela nasce certa e
+ * envelhece calada no dia em que alguém acrescentar um script.
+ *
  * Versão: 1.8.0 (13/09/2026) — A CASCA PASSA A SABER A DATA DA PÁGINA, e é dela
  * que o JSON-LD de toda a ilha tira `dateModified`. Itens 1 e 2 do despacho da
  * Sentinela de 13/09/2026: os três artigos serviam `'dateModified' => '2026-09-10'`
@@ -206,7 +223,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'AQUAMETRIA_CASCA_VERSAO', '1.8.0' );
+	define( 'AQUAMETRIA_CASCA_VERSAO', '1.9.0' );
 	/* A tagline é a primeira frase que um visitante lê no rodapé de toda página.
 	   Até a 1.3.1 ela era a descrição interna do produto ("Calculadoras e dados
 	   técnicos para dimensionar o seu aquário"); agora fala com quem chegou. */
@@ -878,6 +895,7 @@ function aquametria_casca_rodape_html() {
 	$html .= '<p class="aqm-prova">Todo número publicado aqui cita a fonte — manual de fabricante, norma técnica ou fonte brasileira nomeada — e leva a data em que foi verificado. Quando as fontes discordam, a Aquametria publica a divergência com a atribuição de cada extremo, nunca a média. Onde não há fonte aceitável, a página diz por que não publica número.</p>';
 	$html .= '<p>' . aquametria_casca_link_html( 'metodologia', 'Como a gente calcula' )
 		. ' · ' . aquametria_casca_link_html( 'divulgacao-de-afiliados', 'Divulgação de afiliados' )
+		. ' · ' . aquametria_casca_link_html( 'politica-de-privacidade', 'Privacidade' )
 		. ' · ' . aquametria_casca_link_html( 'sobre', 'Sobre' )
 		. ' · Aquametria ' . esc_html( date_i18n( 'Y' ) ) . '</p>';
 	$html .= '</div></footer>';
@@ -1333,6 +1351,10 @@ function aquametria_casca_lugar( $slug ) {
 		   superfícies com trabalhos diferentes, e só a trilha responde pelo
 		   nome da página. */
 		'divulgacao-de-afiliados' => 'Como a Aquametria ganha dinheiro',
+		/* Mesmo desenho da linha acima: o degrau da trilha diz o que o H1 diz, e
+		   o rodapé diz "Privacidade", que é o nome pelo qual a pessoa procura
+		   esta página quando quer saber o que o site guarda dela. */
+		'politica-de-privacidade' => 'O que este site sabe sobre você',
 	);
 	if ( isset( $raiz[ $slug ] ) ) {
 		return array(

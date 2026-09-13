@@ -74,6 +74,10 @@ SLUGS_DAS_FONTES_ANTIGAS = [
     'calculadora-de-midia-filtrante',
     'calculadora-de-iluminacao',
     'divulgacao-de-afiliados',
+    # 13/09/2026: a pagina de privacidade entra aqui, e nao em paginas_do_eixo(),
+    # porque ela nasce do mesmo lugar que a de afiliados — um arquivo de
+    # conteudo/ com front matter — e nao do snippet que cria o eixo /peixes/.
+    'politica-de-privacidade',
     'quantos-watts-de-aquecedor-para-aquario',
     'quanta-midia-biologica-o-aquario-precisa',
     'quantos-lumens-por-litro-aquario-plantado',

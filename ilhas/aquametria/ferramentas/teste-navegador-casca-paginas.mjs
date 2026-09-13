@@ -24,8 +24,15 @@ const CHROME = process.env.AQM_CHROME || '/opt/pw-browsers/chromium-1194/chrome-
    abre o arquivo aqm-<slug>.html e mede o que o navegador faz. Elas entram aqui
    porque trazem o layout mais largo que a ilha já publicou — cinco tabelas, uma
    delas de seis colunas —, e tabela larga é onde a rolagem horizontal nasce. */
+/* 13/09/2026 — a página de privacidade entra aqui pelo mesmo motivo que as do
+   eixo: ela publica uma TABELA de quatro colunas, e uma das células é um
+   endereço longo e sem espaço (`down-bs-br.img.susercontent.com`), que é o
+   caso em que a tabela não tem por onde quebrar. Texto que não quebra dentro
+   de tabela é a forma mais comum de rolagem horizontal no celular, e 360 px é
+   onde ela aparece. */
 const PAGINAS = [
   'inicio', 'calculadoras', 'metodologia', 'sobre',
+  'politica-de-privacidade',
   'peixes', 'tetras',
   'quantos-litros-para-tetra-neon',
   'quantos-litros-para-tetra-cardinal',

@@ -434,6 +434,12 @@ const CONTEUDO = [
   'calculadora-de-midia-filtrante',
   'calculadora-de-iluminacao',
   'divulgacao-de-afiliados',
+  /* 13/09/2026 — a página de privacidade. Entra aqui pelo mesmo motivo que a de
+     afiliados: mesma família institucional, mesmo renderizador. Ela é a página
+     desta ilha com o maior risco de escorregar para o vocabulário de dentro da
+     fábrica, porque o assunto dela é técnico e a tentação é falar de "coleta de
+     dados" e "tratamento" em vez de dizer o que o site guarda de você. */
+  'politica-de-privacidade',
   'quantos-watts-de-aquecedor-para-aquario',
   'quanta-midia-biologica-o-aquario-precisa',
   'quantos-lumens-por-litro-aquario-plantado',

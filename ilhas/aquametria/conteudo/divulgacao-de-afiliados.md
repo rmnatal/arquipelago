@@ -61,7 +61,9 @@ Sobre as fotos: as vitrines mostram a imagem do próprio anúncio do produto, qu
 
 Vale dizer para que serve, porque é a razão de a medição existir aqui: a gente quer saber quando alguém chega por uma resposta de IA. ChatGPT, Perplexity e Gemini aparecem nesse relatório como origem da visita, e não aparecem em nenhum outro lugar. É o único jeito de saber se as contas daqui estão sendo citadas quando você pergunta a um assistente quantos watts de aquecedor o seu aquário precisa.
 
-O que **não** tem: não há banner de cookie pedindo o seu consentimento no meio da leitura, porque a resposta que você veio buscar não deve ficar embaixo de uma caixa; não há pixel de rede social, não há remarketing, não há venda de dado, e a tag do Google é o único script de terceiro que carrega em qualquer página desta ilha. A gente não guarda nome, e-mail nem nada que identifique você — não existe cadastro, login nem formulário de contato aqui.
+O que **não** tem: não há banner de cookie pedindo o seu consentimento no meio da leitura, porque a resposta que você veio buscar não deve ficar embaixo de uma caixa; não há pixel de rede social, não há remarketing e não há venda de dado. A gente não guarda nome, e-mail nem nada que identifique você — não existe cadastro, login nem formulário de contato aqui.
+
+Esta página dizia, até 13/09/2026, que a etiqueta do Google era "o único script de terceiro que carrega em qualquer página desta ilha". A frase foi medida e saiu daqui: ela afirmava sobre o site inteiro o que só valia para uma categoria de arquivo. Além da etiqueta, toda página pede a folha e os arquivos das fontes em que o site é escrito, e as páginas com vitrine pedem a foto do próprio anúncio. **A lista completa, contada endereço por endereço nas 27 páginas, está em [o que este site sabe sobre você](https://aquametria.com.br/politica-de-privacidade/)** — que é onde este assunto passa a morar.
 
 ## Se você discorda de uma escolha
 
