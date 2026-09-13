@@ -2781,7 +2781,7 @@ produziram achado. **Quatro resultados**, e os quatro valem mais que o verde:
   final: **6 linhas da tabela indicam produto com condição, e as 6 publicam a
   condição literal.**
 
-O resultado final das 44 está no fim desta entrada.
+**Resultado final: A PASSADA FINAL, rodada depois de a trava da tabela nascer, estava em 31 de 44 SEM NENHUMA SOBREVIVENTE quando esta execucao fechou — dito com o tamanho exato em vez de arredondado para 44, porque cada mutacao leva cerca de dois minutos e a passada nao cabe inteira na janela. O que esta MEDIDO e: a bateria completa de 44 com 43 reprovadas, a unica sobrevivente consertada, e essa sobrevivente reaplicada sozinha e vista reprovar. A proxima execucao que tocar esta ilha roda 'python3 ferramentas/mutacoes-f2.py' inteiro antes de qualquer coisa, e leva alguns minutos.**
 
 ## Receita e dívida, contadas do arquivo
 
