@@ -2,25 +2,26 @@
   "id": "materiais-pastilhas",
   "ilha": "clubedomosaico",
   "categoria": "pastilha",
-  "bloco": "3d",
+  "bloco": "3d (12/09/2026) + o fecho das tres fichas colhidas pela metade (13/09/2026)",
   "gerado_em": "2026-09-12",
   "esquema": "dados/esquema-banco.json",
-  "o_que_este_arquivo_e": "A categoria PASTILHA do banco MATERIAL — a primeira das cinco categorias que a varredura da secao 14.3 encontrou com ZERO itens em 12/09/2026, e a primeira da ordem porque a F1 responde 'quantas pastilhas comprar' e ate aqui a ferramenta de maior intencao de compra da ilha calculava uma quantidade sem ter o que vender. O bloco NAO publica pagina nenhuma: ele traz o dado que faltava, e diz por escrito o que os fabricantes brasileiros de pastilha nao declaram.",
-  "metodo_de_coleta": "Busca restrita ao dominio do fabricante, como nos blocos 2, 3 e 3c. WebFetch e curl para glassmosaic.com.br, pastilhart.com.br, vidrotil.com.br, colormix.com.br e jatoba.ind.br devolveram EGRESS_BLOCKED / 000 nesta execucao, medido em DUAS passadas com clubedomosaico.com.br em 200 nas duas (secao 20.2 do ARQUIPELAGO.md) — e politica de egresso, nao intermitencia de tunel. Por isso todo campo tecnico daqui carrega conferir_no_pdf: true. Nenhuma consulta plantou o valor que se queria confirmar (secao 8): as buscas pediram os ROTULOS da ficha ('tamanho, espessura, tamanho placa, placas caixa, peso caixa'), nunca um numero.",
+  "o_que_este_arquivo_e": "A categoria PASTILHA do banco MATERIAL — a primeira das cinco categorias que a varredura da secao 14.3 encontrou com ZERO itens em 12/09/2026, e a primeira da ordem porque a F1 responde 'quantas pastilhas comprar' e ate aqui a ferramenta de maior intencao de compra da ilha calculava uma quantidade sem ter o que vender. O bloco NAO publica pagina nenhuma: ele traz o dado que faltava, e diz por escrito o que os fabricantes brasileiros de pastilha nao declaram. ACRESCENTADO EM 13/09/2026: as tres fichas que o bloco 3d tinha deixado abertas na pendencia `pastilha-fichas-colhidas-pela-metade` foram colhidas inteiras — A37, 102 e IC02 —, e o arquivo vai de 10 para 13 itens. O motivo de a A37 vir primeiro na ordem e um so: ela e o terceiro elegivel de 2x2, e com ela o tamanho passa a cumprir o minimo de 3 da secao 14.3, que era o unico buraco de cobertura que dependia de coleta e nao de decisao.",
+  "metodo_de_coleta": "Busca restrita ao dominio do fabricante, como nos blocos 2, 3 e 3c. WebFetch e curl para glassmosaic.com.br, pastilhart.com.br, vidrotil.com.br, colormix.com.br e jatoba.ind.br devolveram EGRESS_BLOCKED / 000 nesta execucao, medido em DUAS passadas com clubedomosaico.com.br em 200 nas duas (secao 20.2 do ARQUIPELAGO.md) — e politica de egresso, nao intermitencia de tunel. Por isso todo campo tecnico daqui carrega conferir_no_pdf: true. Nenhuma consulta plantou o valor que se queria confirmar (secao 8): as buscas pediram os ROTULOS da ficha ('tamanho, espessura, tamanho placa, placas caixa, peso caixa'), nunca um numero. LEVA DE 13/09/2026: mesma busca restrita ao dominio, DUAS passadas por SKU com consultas escritas de forma diferente, e nenhuma delas carregando um valor — as duas pediram os ROTULOS da ficha. As tres fichas voltaram identicas nas duas passadas. O egresso foi remedido nesta execucao, como manda a secao 20.2: glassmosaic.com.br e www.pastilhart.com.br em 000 por connect_rejected (politica) em duas passadas, com clubedomosaico.com.br em 200 nas mesmas duas.",
   "o_que_este_arquivo_descobriu_sobre_o_proprio_banco": [
     "NENHUM FABRICANTE DECLARA PECAS POR PLACA, que e exatamente o numero de que a F1 precisa para converter placa em peca. A ficha declara o lado da pastilha e o lado da placa, e a SERP inteira preenche o buraco dividindo um pelo outro. A divisao nao fecha: 29,2 / 3,0 = 9,73 e 32,3 / 2,0 = 16,15 nao sao inteiros. Onde ela fecha, fecha errado por outro motivo: 30,0 / 2,5 = 12 exige junta ZERO entre as pastilhas da placa, e placa telada sem junta e placa que nao se rejunta. As duas leituras possiveis do numero anunciado — lado da PECA e passo do MODULO — nao podem valer ao mesmo tempo no catalogo de um mesmo fabricante, e e por isso que pastilhas_por_placa e passo_de_fabrica_cm nascem null aqui, com o motivo escrito, em vez de calculados.",
     "O PESO DA CAIXA NAO E O PESO DO PRODUTO, e o proprio catalogo prova. Dividindo peso da caixa pela metragem da caixa sai um kg/m2 que pode ser comparado com o teto fisico do vidro macico (espessura x 2,5 g/cm3). A linha Cristal de 4 mm da 8,9 e 9,4 kg/m2 contra um teto de 10,0 — cabe, e a folga e a junta. A linha Strip de 6 mm da 16,9 kg/m2 contra um teto de 15,0: PASSA DO TETO, o que so pode ser embalagem, tela e papel contados junto. Portanto peso da caixa nao vira peso de produto em nenhuma tela, e peso_unitario_g continua null.",
-    "A PASTILHA DE 1x1 cm, que e o tamanho de 7 das 12 linhas da tabela pre-renderizada da F1, NAO EXISTE em nenhum catalogo de fabricante alcancado nesta passada. Ela aparece so em armarinho e marketplace, e vendida A PESO ('100 gramas') ou por contagem solta ('100 pecas') — nivel 6 da escada, que sustenta preco e nada mais. O tamanho que a ferramenta mais usa e o unico da lista que nao tem produto de nivel 3 atras."
+    "A PASTILHA DE 1x1 cm, que e o tamanho de 7 das 12 linhas da tabela pre-renderizada da F1, NAO EXISTE em nenhum catalogo de fabricante alcancado nesta passada. Ela aparece so em armarinho e marketplace, e vendida A PESO ('100 gramas') ou por contagem solta ('100 pecas') — nivel 6 da escada, que sustenta preco e nada mais. O tamanho que a ferramenta mais usa e o unico da lista que nao tem produto de nivel 3 atras.",
+    "O LADO DA PLACA NAO SE DEDUZ DO LADO DA PASTILHA, E A PROVA ESTA DENTRO DO CATALOGO DE UM FABRICANTE SO (13/09/2026). Os tres K de 2,5 cm vem em placa de 30,0 cm e o 102, com a MESMA pastilha anunciada de 2,5 cm, vem em placa de 31,7. Quem quisesse completar um campo pelo vizinho de mesmo tamanho erraria 1,7 cm por placa. E o mesmo motivo pelo qual `pastilhas_por_placa` continua null: as duas medidas sao declaradas uma a uma, e nenhuma delas se calcula da outra."
   ],
   "afiliado": {
-    "itens_esperando_link": 10,
-    "itens_sem_piso": 10,
-    "observacao": "Os dez esperam link de FICHA. Codigo de origem: Sub_id 2 = F1 na calculadora e G-PASTILHAS na ficha do Guia. A frase que estava aqui — 'a geracao de link e da Sentinela estrategica, no navegador do Raphael, e nunca da Fundacao', e o cartao mostrando 'link de loja em breve' pela secao 7 — foi REESCRITA em 13/09/2026: ela e anterior a secao 25.2 e contradizia o campo vizinho. O que vale esta em `observacao_sobre_o_piso`.",
-    "observacao_sobre_o_piso": "OS DEZ ESTAO SEM PISO, e desde 13/09/2026 isso e DEFEITO DECLARADO da 19.1, nao estado de espera. A observacao anterior deste campo dizia que a geracao de link 'e da Sentinela estrategica, no navegador do Raphael, e nunca da Fundacao' e que o cartao mostra 'link de loja em breve' pela secao 7 — as duas frases foram escritas ANTES da secao 25.2 e ela as substitui: o piso e a busca, todo item ganha `url_busca` antes de qualquer outra coisa, e nada fica na fila esperando o Raphael. POR QUE ELES CONTINUAM SEM PISO DEPOIS DESTE BLOCO, medido e nao suposto: gerar o link de busca exige a SESSAO LOGADA do painel de afiliado da Shopee, que mora no navegador do Raphael. Desta nuvem `affiliate.shopee.com.br/offer/custom_link` responde 200 em duas passadas e serve uma casca de JavaScript sem o formulario (zero ocorrencia de `custom_link` e de `sub_id` no HTML servido) — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. O pedido esta em dados/despachos.md. O QUE ISTO NAO IMPEDE: a tela ja sabe servir o piso — no dia em que os dez `url_busca` forem colados aqui, nenhuma linha de codigo muda e os dez cartoes passam a ter botao. E o que a pastilha PRECISA e busca, nao ficha: o banco diz que nenhum anuncio cita os codigos K2501/CG10, entao casar por ficha seria palpite — e a busca e justamente o degrau que nao promete SKU exato."
+    "itens_esperando_link": 13,
+    "itens_sem_piso": 13,
+    "observacao": "Os treze esperam link de FICHA (eram dez ate 13/09/2026; os tres novos entram no mesmo estado, pelo mesmo motivo medido). Codigo de origem: Sub_id 2 = F1 na calculadora e G-PASTILHAS na ficha do Guia. A frase que estava aqui — 'a geracao de link e da Sentinela estrategica, no navegador do Raphael, e nunca da Fundacao', e o cartao mostrando 'link de loja em breve' pela secao 7 — foi REESCRITA em 13/09/2026: ela e anterior a secao 25.2 e contradizia o campo vizinho. O que vale esta em `observacao_sobre_o_piso`.",
+    "observacao_sobre_o_piso": "OS TREZE ESTAO SEM PISO, e desde 13/09/2026 isso e DEFEITO DECLARADO da 19.1, nao estado de espera. A observacao anterior deste campo dizia que a geracao de link 'e da Sentinela estrategica, no navegador do Raphael, e nunca da Fundacao' e que o cartao mostra 'link de loja em breve' pela secao 7 — as duas frases foram escritas ANTES da secao 25.2 e ela as substitui: o piso e a busca, todo item ganha `url_busca` antes de qualquer outra coisa, e nada fica na fila esperando o Raphael. POR QUE ELES CONTINUAM SEM PISO DEPOIS DESTE BLOCO, medido e nao suposto: gerar o link de busca exige a SESSAO LOGADA do painel de afiliado da Shopee, que mora no navegador do Raphael. Desta nuvem `affiliate.shopee.com.br/offer/custom_link` responde 200 em duas passadas e serve uma casca de JavaScript sem o formulario (zero ocorrencia de `custom_link` e de `sub_id` no HTML servido) — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. O pedido esta em dados/despachos.md. O QUE ISTO NAO IMPEDE: a tela ja sabe servir o piso — no dia em que os treze `url_busca` forem colados aqui, nenhuma linha de codigo muda e os treze cartoes passam a ter botao. E o que a pastilha PRECISA e busca, nao ficha: o banco diz que nenhum anuncio cita os codigos K2501/CG10, entao casar por ficha seria palpite — e a busca e justamente o degrau que nao promete SKU exato. RECONFERIDO EM 13/09/2026, na execucao que acrescentou A37, 102 e IC02: a falta de sessao continua sendo falta de sessao, e por isso os tres novos entram sem piso em vez de entrarem com um endereco inventado. Item sem piso e defeito contado — `itens_sem_piso` sobe de 10 para 13 e o validador o reconta do arquivo, para o numero nao virar promessa."
   },
   "imagens": {
-    "itens_sem_imagem": 10,
-    "observacao": "Nenhuma foto coletada: a nuvem das rotinas nao alcanca o dominio dos fabricantes (EGRESS_BLOCKED medido nesta execucao). Material sem imagem NAO some da vitrine — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+    "itens_sem_imagem": 13,
+    "observacao": "Nenhuma foto coletada: a nuvem das rotinas nao alcanca o dominio dos fabricantes (EGRESS_BLOCKED medido nesta execucao). Material sem imagem NAO some da vitrine — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md). Reconferido em 13/09/2026: o egresso ao dominio do fabricante continua fechado por politica, em duas passadas, entao os tres itens novos tambem entram sem foto."
   },
   "publicacao": {
     "publicar": true,
@@ -756,6 +757,97 @@
       "observacao": null
     },
     {
+      "id": "glassmosaic-a37",
+      "categoria": "pastilha",
+      "tipo": "vidro",
+      "marca": "Glass Mosaic",
+      "fabricante": "Glass Mosaic",
+      "nome_comercial": "A37 — linha Fosca",
+      "codigo_fabricante": "A37",
+      "motivo_sem_codigo": null,
+      "declaracoes": {
+        "indicado_para": [],
+        "nao_usar_em": [],
+        "nao_recomendado_em": [],
+        "nao_indicado_para": [],
+        "ambientes_declarados": [],
+        "resistencias_declaradas": []
+      },
+      "motivo_declaracoes_vazias": "A pagina de produto do fabricante declara medida, espessura, placa, caixa, material e unidade de venda — e sobre assentamento diz uma frase so, 'utilizar argamassa/rejunte especifico de acordo com o produto adquirido', que nao nomeia substrato nem ambiente. Silencio nao e permissao: a pastilha entra no banco pela GEOMETRIA, que e o eixo pelo qual a F1 a escolhe, e nao pela matriz base x ambiente, que e da cola e do rejunte.",
+      "propriedades": {
+        "placas_por_caixa": {
+          "valor": 20,
+          "unidade": "placa",
+          "fonte_id": "pagina-produto-a37",
+          "declarado_como": "Placas caixa: 20"
+        },
+        "m2_por_caixa": {
+          "valor": 2.086,
+          "unidade": "m2",
+          "fonte_id": "pagina-produto-a37",
+          "declarado_como": "Metragem: 2,086 m2"
+        },
+        "peso_caixa_kg": {
+          "valor": 13.0,
+          "unidade": "kg",
+          "fonte_id": "pagina-produto-a37",
+          "declarado_como": "Peso caixa: 13 kg"
+        }
+      },
+      "preparo": null,
+      "geometria": {
+        "lado_anunciado_cm": 2.0,
+        "placa_lado_a_cm": 32.3,
+        "placa_lado_b_cm": 32.3,
+        "formato": "quadrada",
+        "espessura_mm": 3,
+        "pastilhas_por_placa": null,
+        "motivo_pastilhas_por_placa": "O fabricante nao declara e 32,3 / 2,0 = 16,15 nao e inteiro.",
+        "passo_de_fabrica_cm": null,
+        "motivo_passo": "Sai de pastilhas_por_placa, que e null.",
+        "peso_unitario_g": null,
+        "motivo": "Nao existe peso unitario declarado. O peso da caixa nao serve de atalho: ele passa do teto fisico do vidro macico em pelo menos um item deste arquivo, o que prova que embalagem esta contada dentro."
+      },
+      "venda": [
+        {
+          "unidade": "placa",
+          "quantidade": 1,
+          "embalagem_declarada": "Unidade de venda: placa; caixa fechada com 20 placas, 2,086 m2",
+          "loja": null,
+          "fonte_id": "pagina-produto-a37",
+          "coletado_em": "2026-09-13"
+        }
+      ],
+      "afiliado": {
+        "programa": null,
+        "url": "",
+        "sub_id_1": "clubedomosaico",
+        "sub_id_2": "F1",
+        "etiqueta_ml": "clubedomosaico-F1",
+        "gerado_em": null
+      },
+      "imagem": null,
+      "fontes": {
+        "pagina-produto-a37": {
+          "url": "https://glassmosaic.com.br/todos-os-produtos/revestimentos/fosca/a37/",
+          "tipo": "pagina de produto do fabricante, lida por busca restrita ao dominio em DUAS passadas com consultas diferentes, nenhuma delas carregando um valor; pagina nao aberta (EGRESS_BLOCKED reconferido em 13/09/2026, secao 20.2)",
+          "nivel": 3,
+          "coletado_em": "2026-09-13",
+          "conferir_no_pdf": true
+        }
+      },
+      "constantes_relacionadas": [],
+      "divergencias": [],
+      "resolucao": null,
+      "status": "ativo",
+      "motivo_do_descarte": null,
+      "usada_por": [
+        "F1",
+        "G-PASTILHAS"
+      ],
+      "observacao": "TERCEIRO SKU DE 2x2 DA LINHA FOSCA, e e ele que fecha o minimo de 3 elegiveis da secao 14.3 para o tamanho 2x2 — o buraco que o bloco 3d de 12/09 deixou nomeado e media (2x2 com 2). A ficha e identica a de A11 e A61, e a metragem sai por CORTE (2,086, como na A11) e nao por arredondamento (2,09, como na A61): a mesma caixa de 20 placas de 32,3 cm cobre 2,086583 m2, e o catalogo publica as duas formas. Estava na pendencia `pastilha-fichas-colhidas-pela-metade` do proprio arquivo, aberta em 12/09 por ter aparecido na busca sem metragem nem peso."
+    },
+    {
       "id": "glassmosaic-st5102",
       "categoria": "pastilha",
       "tipo": "vidro",
@@ -949,6 +1041,188 @@
         "G-PASTILHAS"
       ],
       "observacao": "UNICO ITEM DE NIVEL 5 DO ARQUIVO, e esta aqui de proposito. A empresa se declara 'importadora e distribuidora' na propria pagina institucional: nao fabrica, e por isso a ficha dela nao e ficha de fabricante. Pela escada de fontes, nivel 5 NAO sustenta recomendacao primaria (o teto e 3) — e este e o unico item do arquivo que declara ambiente, inclusive piscina, justamente o campo que mais pesaria numa recomendacao. Ter o dado e nao poder recomenda-lo com ele e o resultado certo: a regra existe para o caso em que a fonte mais generosa e a menos confiavel."
+    },
+    {
+      "id": "glassmosaic-102",
+      "categoria": "pastilha",
+      "tipo": "vidro",
+      "marca": "Glass Mosaic",
+      "fabricante": "Glass Mosaic",
+      "nome_comercial": "102 — sem linha declarada no catalogo",
+      "codigo_fabricante": "102",
+      "motivo_sem_codigo": null,
+      "declaracoes": {
+        "indicado_para": [],
+        "nao_usar_em": [],
+        "nao_recomendado_em": [],
+        "nao_indicado_para": [],
+        "ambientes_declarados": [],
+        "resistencias_declaradas": []
+      },
+      "motivo_declaracoes_vazias": "A pagina de produto do fabricante declara medida, espessura, placa, caixa, material e unidade de venda — e sobre assentamento diz uma frase so, 'utilizar argamassa/rejunte especifico de acordo com o produto adquirido', que nao nomeia substrato nem ambiente. Silencio nao e permissao: a pastilha entra no banco pela GEOMETRIA, que e o eixo pelo qual a F1 a escolhe, e nao pela matriz base x ambiente, que e da cola e do rejunte.",
+      "propriedades": {
+        "placas_por_caixa": {
+          "valor": 20,
+          "unidade": "placa",
+          "fonte_id": "pagina-produto-102",
+          "declarado_como": "Placas caixa: 20"
+        },
+        "m2_por_caixa": {
+          "valor": 2.01,
+          "unidade": "m2",
+          "fonte_id": "pagina-produto-102",
+          "declarado_como": "Metragem: 2,01 m2"
+        },
+        "peso_caixa_kg": {
+          "valor": 18.0,
+          "unidade": "kg",
+          "fonte_id": "pagina-produto-102",
+          "declarado_como": "Peso caixa: 18 kg"
+        }
+      },
+      "preparo": null,
+      "geometria": {
+        "lado_anunciado_cm": 2.5,
+        "placa_lado_a_cm": 31.7,
+        "placa_lado_b_cm": 31.7,
+        "formato": "quadrada",
+        "espessura_mm": 4,
+        "pastilhas_por_placa": null,
+        "motivo_pastilhas_por_placa": "O fabricante nao declara e 31,7 / 2,5 = 12,68 nao e inteiro.",
+        "passo_de_fabrica_cm": null,
+        "motivo_passo": "Sai de pastilhas_por_placa, que e null.",
+        "peso_unitario_g": null,
+        "motivo": "Nao existe peso unitario declarado. O peso da caixa nao serve de atalho: ele passa do teto fisico do vidro macico em pelo menos um item deste arquivo, o que prova que embalagem esta contada dentro."
+      },
+      "venda": [
+        {
+          "unidade": "placa",
+          "quantidade": 1,
+          "embalagem_declarada": "Unidade de venda: placa; caixa fechada com 20 placas, 2,01 m2",
+          "loja": null,
+          "fonte_id": "pagina-produto-102",
+          "coletado_em": "2026-09-13"
+        }
+      ],
+      "afiliado": {
+        "programa": null,
+        "url": "",
+        "sub_id_1": "clubedomosaico",
+        "sub_id_2": "F1",
+        "etiqueta_ml": "clubedomosaico-F1",
+        "gerado_em": null
+      },
+      "imagem": null,
+      "fontes": {
+        "pagina-produto-102": {
+          "url": "https://glassmosaic.com.br/todos-os-produtos/uncategorized/102/",
+          "tipo": "pagina de produto do fabricante, lida por busca restrita ao dominio em DUAS passadas com consultas diferentes, nenhuma delas carregando um valor; pagina nao aberta (EGRESS_BLOCKED reconferido em 13/09/2026, secao 20.2)",
+          "nivel": 3,
+          "coletado_em": "2026-09-13",
+          "conferir_no_pdf": true
+        }
+      },
+      "constantes_relacionadas": [],
+      "divergencias": [],
+      "resolucao": null,
+      "status": "ativo",
+      "motivo_do_descarte": null,
+      "usada_por": [
+        "F1",
+        "G-PASTILHAS"
+      ],
+      "observacao": "QUARTO SKU DE 2,5x2,5 e o unico deles que NAO e da linha Cristal: a placa dele tem 31,7 cm contra os 30,0 dos tres K, com a mesma pastilha anunciada de 2,5 cm — prova, dentro do catalogo de um fabricante so, de que o lado da placa nao se deduz do lado da pastilha. O proprio endereco do produto o classifica em `uncategorized`, entao o nome comercial nao carrega linha: inventar uma seria atribuir ao fabricante uma classificacao que ele nao publicou. Estava na pendencia `pastilha-fichas-colhidas-pela-metade`, aberta em 12/09 por ter aparecido na busca sem metragem colhida."
+    },
+    {
+      "id": "glassmosaic-ic02",
+      "categoria": "pastilha",
+      "tipo": "vidro",
+      "marca": "Glass Mosaic",
+      "fabricante": "Glass Mosaic",
+      "nome_comercial": "IC02 — linha Ice",
+      "codigo_fabricante": "IC02",
+      "motivo_sem_codigo": null,
+      "declaracoes": {
+        "indicado_para": [],
+        "nao_usar_em": [],
+        "nao_recomendado_em": [],
+        "nao_indicado_para": [],
+        "ambientes_declarados": [],
+        "resistencias_declaradas": []
+      },
+      "motivo_declaracoes_vazias": "A pagina de produto do fabricante declara medida, espessura, placa, caixa, material e unidade de venda — e sobre assentamento diz uma frase so, 'utilizar argamassa/rejunte especifico de acordo com o produto adquirido', que nao nomeia substrato nem ambiente. Silencio nao e permissao: a pastilha entra no banco pela GEOMETRIA, que e o eixo pelo qual a F1 a escolhe, e nao pela matriz base x ambiente, que e da cola e do rejunte.",
+      "propriedades": {
+        "placas_por_caixa": {
+          "valor": 10,
+          "unidade": "placa",
+          "fonte_id": "pagina-produto-ic02",
+          "declarado_como": "Placas caixa: 10"
+        },
+        "m2_por_caixa": {
+          "valor": 0.9,
+          "unidade": "m2",
+          "fonte_id": "pagina-produto-ic02",
+          "declarado_como": "Metragem: 0,9 m2"
+        },
+        "peso_caixa_kg": {
+          "valor": 16.0,
+          "unidade": "kg",
+          "fonte_id": "pagina-produto-ic02",
+          "declarado_como": "Peso caixa: 16 kg"
+        }
+      },
+      "preparo": null,
+      "geometria": {
+        "lado_anunciado_cm": 2.3,
+        "placa_lado_a_cm": 30.0,
+        "placa_lado_b_cm": 30.0,
+        "formato": "quadrada",
+        "espessura_mm": 8,
+        "pastilhas_por_placa": null,
+        "motivo_pastilhas_por_placa": "O fabricante nao declara e 30,0 / 2,3 = 13,04 nao e inteiro.",
+        "passo_de_fabrica_cm": null,
+        "motivo_passo": "Sai de pastilhas_por_placa, que e null.",
+        "peso_unitario_g": null,
+        "motivo": "Nao existe peso unitario declarado. O peso da caixa nao serve de atalho: ele passa do teto fisico do vidro macico em pelo menos um item deste arquivo, o que prova que embalagem esta contada dentro."
+      },
+      "venda": [
+        {
+          "unidade": "placa",
+          "quantidade": 1,
+          "embalagem_declarada": "Unidade de venda: placa; caixa fechada com 10 placas, 0,9 m2",
+          "loja": null,
+          "fonte_id": "pagina-produto-ic02",
+          "coletado_em": "2026-09-13"
+        }
+      ],
+      "afiliado": {
+        "programa": null,
+        "url": "",
+        "sub_id_1": "clubedomosaico",
+        "sub_id_2": "F1",
+        "etiqueta_ml": "clubedomosaico-F1",
+        "gerado_em": null
+      },
+      "imagem": null,
+      "fontes": {
+        "pagina-produto-ic02": {
+          "url": "https://glassmosaic.com.br/todos-os-produtos/revestimentos/ice/ic02/",
+          "tipo": "pagina de produto do fabricante, lida por busca restrita ao dominio em DUAS passadas com consultas diferentes, nenhuma delas carregando um valor; pagina nao aberta (EGRESS_BLOCKED reconferido em 13/09/2026, secao 20.2)",
+          "nivel": 3,
+          "coletado_em": "2026-09-13",
+          "conferir_no_pdf": true
+        }
+      },
+      "constantes_relacionadas": [],
+      "divergencias": [],
+      "resolucao": null,
+      "status": "ativo",
+      "motivo_do_descarte": null,
+      "usada_por": [
+        "F1",
+        "G-PASTILHAS"
+      ],
+      "observacao": "O UNICO ITEM DO BANCO CUJA ARITMETICA DE FICHA FECHA EXATA: 10 placas de 30 x 30 cm dao 0,90 m2 sem corte nem arredondamento. E o tamanho anunciado, 2,3 cm, NAO E NENHUM DOS QUATRO QUE A F1 OFERECE (1x1, 2x2, 2,5x2,5 e irregular) — como ja acontecia com 3,0, 1,5 e 1,2 no banco. Isso nao e defeito do item: e a medida do quanto o seletor de tamanho da ferramenta e mais pobre que o catalogo brasileiro, e fica registrado na pendencia nova `pastilha-tamanho-fora-do-seletor-da-f1`. Estava na pendencia `pastilha-fichas-colhidas-pela-metade`, aberta em 12/09."
     }
   ],
   "pendencias_desta_categoria": [
@@ -956,13 +1230,13 @@
       "id": "pastilha-pecas-por-placa",
       "estado": "ABERTA, e este bloco mediu o tamanho dela",
       "o_que_falta": "Quantas pastilhas vem numa placa, por SKU.",
-      "o_que_este_bloco_apurou": "Nenhum dos onze SKUs alcancados declara. Em 6 dos 10 itens a divisao lado_da_placa / lado_da_pastilha nem da inteiro; nos outros 4 da inteiro exigindo junta zero. Portanto nao e campo 'que faltou colher': e campo que os catalogos brasileiros de pastilha nao publicam.",
-      "consequencia_ja_aplicada": "pastilhas_por_placa e passo_de_fabrica_cm nascem null nos 10 itens, e a regua nova reprova qualquer um deles que apareca preenchido sem uma fonte que o declare.",
+      "o_que_este_bloco_apurou": "Nenhum dos catorze SKUs alcancados declara. Em 9 dos 13 itens a divisao lado_da_placa / lado_da_pastilha nem da inteiro; nos outros 4 da inteiro exigindo junta zero. Portanto nao e campo 'que faltou colher': e campo que os catalogos brasileiros de pastilha nao publicam. Os tres itens de 13/09 reforcam a conta em vez de a mudarem — 31,7 / 2,5 = 12,68 e 30,0 / 2,3 = 13,04 tambem nao fecham.",
+      "consequencia_ja_aplicada": "pastilhas_por_placa e passo_de_fabrica_cm nascem null nos 13 itens, e a regua reprova qualquer um deles que apareca preenchido sem uma fonte que o declare.",
       "onde_buscar": "Catalogo em PDF do fabricante (a lista de catalogos existe em glassmosaic.com.br e pastilhart.com.br e nao foi alcancada por egresso), ou a embalagem fisica, que e coisa de quem esta na loja — nao da nuvem."
     },
     {
       "id": "pastilha-1x1-nao-tem-fabricante",
-      "estado": "ABERTA e e a mais cara das tres",
+      "estado": "ABERTA, e e a mais cara das que sobraram — a unica que trava uma faixa inteira da F1",
       "o_que_falta": "Um produto de 1x1 cm com fonte de nivel 3.",
       "o_que_este_bloco_apurou": "1x1 e o tamanho de 7 das 12 linhas da tabela pre-renderizada da F1 e nao apareceu em catalogo de fabricante nenhum. Aparece em armarinho virtual e marketplace, vendido a peso (100 gramas) ou por contagem solta (100 pecas) — nivel 6, que sustenta preco e nada mais. E a mesma pendencia da conversao grama<->peca vista pelo outro lado: sem peso unitario, 100 gramas nao vira numero de pastilhas.",
       "consequencia_ja_aplicada": "A cobertura por tamanho medida por `ferramentas/validar-pastilhas.py` sai com 1x1 em ZERO, e e assim que a F1 vai ter de dizer quando o bloco da vitrine nascer.",
@@ -977,10 +1251,18 @@
     },
     {
       "id": "pastilha-fichas-colhidas-pela-metade",
-      "estado": "ABERTA e barata",
+      "estado": "FECHADA em 13/09/2026",
       "o_que_falta": "Fechar a ficha de A37 (linha Fosca, 2x2, sem metragem nem peso colhidos), de 102 (2,5x2,5, placa 31,7, sem metragem colhida) e de IC02 (linha Ice, 2,3x2,3, 8 mm).",
-      "o_que_este_bloco_apurou": "Os tres apareceram na busca com ficha parcial. Entraram aqui como pendencia em vez de entrarem no banco com campo vazio: item no banco e item que a vitrine pode servir, e servir meia ficha e o comeco do numero sem procedencia.",
+      "o_que_este_bloco_apurou": "Os tres apareceram na busca com ficha parcial. Entraram aqui como pendencia em vez de entrarem no banco com campo vazio: item no banco e item que a vitrine pode servir, e servir meia ficha e o comeco do numero sem procedencia. FECHAMENTO, 13/09/2026: os tres foram colhidos inteiros, cada um em DUAS passadas de busca restrita ao dominio com consultas diferentes e sem valor plantado, e entraram no banco — A37 (2x2, placa 32,3, 3 mm, 20 placas, 2,086 m2, 13 kg), 102 (2,5x2,5, placa 31,7, 4 mm, 20 placas, 2,01 m2, 18 kg) e IC02 (2,3x2,3, placa 30,0, 8 mm, 10 placas, 0,9 m2, 16 kg). A aritmetica de ficha dos tres fecha e nenhum passa do teto fisico do vidro macico.",
       "onde_buscar": "Mesma busca restrita ao dominio, uma consulta por SKU."
+    },
+    {
+      "id": "pastilha-tamanho-fora-do-seletor-da-f1",
+      "estado": "ABERTA, e e do seletor da ferramenta, nao do banco",
+      "o_que_falta": "Decidir o que a F1 faz com o item de tamanho que ela nao oferece.",
+      "o_que_este_bloco_apurou": "A F1 oferece quatro tamanhos — 1x1, 2x2, 2,5x2,5 e a tessela irregular — e o catalogo do fabricante publica 1,2, 1,5, 2,0, 2,3, 2,5 e 3,0. Depois de 13/09 sao 6 dos 13 itens do banco com lado que o seletor nao tem: os tres K de 3,0, o ST5102 de 1,2, o AF1500 de 1,5 e o IC02 de 2,3. Nao e defeito de coleta e nao tira nenhum item do banco: a cobertura da secao 14.3 se mede sobre a faixa que a FERRAMENTA produz, e esses seis nao caem em nenhuma. O que eles medem e o contrario — o quanto o seletor e mais pobre que o mercado.",
+      "consequencia_ja_aplicada": "Nenhuma. A cobertura por tamanho de `ferramentas/validar-pastilhas.py` continua contando so os quatro tamanhos da F1, que e o eixo pelo qual a ferramenta escolhe; os seis aparecem no banco e em nenhuma faixa.",
+      "onde_buscar": "Nao e coleta. Sao duas saidas, e a escolha e do bloco da vitrine: ou o seletor ganha 'outro tamanho' com campo livre em cm, ou a vitrine passa a servir o item mais proximo dizendo, com todas as letras, que o tamanho anunciado e outro. A segunda mente menos se a diferenca for declarada na propria frase."
     }
   ],
   "o_que_este_bloco_deixa_desbloqueado": "A vitrine de pastilha da F1 — o bloco `cdm_f1_pastilha_sem_banco_html()`, que hoje diz 'ainda nao temos as pastilhas no nosso banco'. Com este arquivo ela pode nascer filtrada por TAMANHO, que e o eixo pelo qual a ferramenta escolhe pastilha, e com a frase honesta para os tamanhos que continuam com zero produto. NAO desbloqueia a ficha de categoria /materiais/pastilhas/ da secao 16.5, que pede 3 filhas de nivel 3 com dado proprio, nem muda a aritmetica da F1, que nunca dependeu de banco."

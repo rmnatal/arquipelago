@@ -32,7 +32,12 @@ arquivo que ela mede:
 
  4. COBERTURA POR TAMANHO, que e o eixo pelo qual a F1 escolhe pastilha, com a
     regra de nivel da escada de fontes: so item de nivel <= 3 conta como
-    elegivel para recomendacao primaria.
+    elegivel para recomendacao primaria. A FAIXA DE TAMANHOS NAO MORA AQUI desde
+    13/09/2026: ela e medida na propria F1 por `ferramentas/tamanhos-da-f1.php`,
+    porque a lista escrita a mao que existia aqui tinha quatro tamanhos e a
+    ferramenta serve cinco — o 1,5 cm nunca apareceu no relatorio do buraco, e era
+    justamente o lado do unico item sustentado por distribuidor. Lista dentro da
+    regua envelhece calada, e o sintoma e o portao verde.
 
 Um processo por item, como nas outras baterias da ilha.
 Uso:  python3 ferramentas/validar-pastilhas.py
@@ -62,17 +67,41 @@ REGUA = {
     "glassmosaic-k66":    (3.0, 29.2, 29.2, 4, 10, 0.85,   8.0, 3),
     "glassmosaic-a11":    (2.0, 32.3, 32.3, 3, 20, 2.086, 13.0, 3),
     "glassmosaic-a61":    (2.0, 32.3, 32.3, 3, 20, 2.09,  13.0, 3),
+    "glassmosaic-a37":    (2.0, 32.3, 32.3, 3, 20, 2.086, 13.0, 3),
     "glassmosaic-st5102": (1.2, 28.6, 31.2, 6, 10, 0.89,  15.0, 3),
     "pastilhart-af1500":  (1.5, 30.0, 30.0, 8, None, None, None, 5),
+    # leva de 13/09/2026 — as tres fichas que o bloco 3d deixou colhidas pela metade.
+    # Cada uma lida em DUAS passadas de busca restrita ao dominio, com consultas escritas
+    # de forma diferente e sem valor plantado (secao 8 do ARQUIPELAGO.md).
+    "glassmosaic-102":    (2.5, 31.7, 31.7, 4, 20, 2.01,  18.0, 3),
+    "glassmosaic-ic02":   (2.3, 30.0, 30.0, 8, 10, 0.9,   16.0, 3),
 }
 
 DENSIDADE_MIN = 2.4   # g/cm3, vidro sodo-calcico
 DENSIDADE_MAX = 2.6
 
-# Os tamanhos que a F1 oferece, em cm. `None` e a tessela irregular, que nao tem lado.
-TAMANHOS_DA_F1 = [("1x1", 1.0), ("2x2", 2.0), ("2,5x2,5", 2.5), ("irregular", None)]
-
 NIVEL_MAXIMO_PARA_RECOMENDACAO = 3
+
+MEDIDOR_DE_TAMANHOS = os.path.join(AQUI, "tamanhos-da-f1.php")
+
+
+def tamanhos_da_f1():
+    """A faixa de tamanhos que a F1 serve, MEDIDA NA FERRAMENTA — nunca digitada aqui.
+
+    Ate 13/09/2026 esta lista era uma constante de quatro linhas neste arquivo, com
+    o comentario 'os tamanhos que a F1 oferece'. A F1 oferece CINCO, e a que faltava
+    era 1,5 cm — que e justamente o lado do unico item do banco sustentado por
+    distribuidor. A cobertura da secao 14.3 saia publicada sobre quatro linhas de uma
+    faixa de cinco, e o tamanho ausente nunca aparecia no relatorio do buraco.
+    Lista dentro da regua envelhece calada; o sintoma e o portao verde.
+    """
+    r = subprocess.run(["php", MEDIDOR_DE_TAMANHOS, ILHA],
+                       capture_output=True, text=True)
+    if r.returncode:
+        raise SystemExit("FALHA: nao consegui medir os tamanhos da F1.\n" + r.stderr)
+    medido = json.loads(r.stdout)
+    return ([(t["rotulo"], t["lado_cm"]) for t in medido["tamanhos"]],
+            medido["afirmacoes"])
 
 
 class Contagem(object):
@@ -188,10 +217,11 @@ def medir(item, c):
 def cobertura_por_tamanho(itens):
     """Quantos itens ELEGIVEIS (nivel <= 3) cada tamanho da F1 tem."""
     saida = []
-    for rotulo, lado in TAMANHOS_DA_F1:
+    faixa, _ = tamanhos_da_f1()
+    for rotulo, lado in faixa:
         if lado is None:
             n = 0
-            motivo = "tessela irregular nao tem lado declarado; nenhum produto de placa serve"
+            motivo = "nao tem lado declarado; nenhum produto de placa serve"
         else:
             n = 0
             for it in itens:
@@ -267,13 +297,17 @@ def main():
     print("    da inteiro (e exige junta ZERO) ... %d de %d" % (inteiras, len(itens)))
     print("    nao da inteiro .................... %d de %d" % (len(itens) - inteiras, len(itens)))
     print("")
-    print("  cobertura por tamanho da F1 (so fonte de nivel <= %d):" % NIVEL_MAXIMO_PARA_RECOMENDACAO)
+    faixa, afirmacoes_da_faixa = tamanhos_da_f1()
+    print("  cobertura por tamanho da F1 (so fonte de nivel <= %d), sobre a faixa de %d"
+          " tamanhos MEDIDA no snippet:" % (NIVEL_MAXIMO_PARA_RECOMENDACAO, len(faixa)))
     for rotulo, n, motivo in cobertura_por_tamanho(itens):
         marca = "OK " if n >= 3 else "ZERO" if n == 0 else "<3 "
-        print("    %-10s %2d elegivel(is)  %s%s" % (rotulo, n, marca, ("  — " + motivo) if motivo else ""))
+        print("    %-42s %2d elegivel(is)  %s%s" % (rotulo, n, marca, ("  — " + motivo) if motivo else ""))
     print("")
     print("  itens .......................... %d" % len(itens))
-    print("  afirmacoes ..................... %d" % (total_ok + c.ok + len(c.falhas)))
+    print("  afirmacoes ..................... %d  (%d na regua por item, %d na faixa da F1)"
+          % (total_ok + c.ok + len(c.falhas) + afirmacoes_da_faixa,
+             total_ok + c.ok + len(c.falhas), afirmacoes_da_faixa))
     print("  itens com falha ................ %d" % total_falha)
 
     if total_falha or c.falhas:

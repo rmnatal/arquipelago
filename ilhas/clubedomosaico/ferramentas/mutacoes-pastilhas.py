@@ -32,6 +32,7 @@ ILHA = os.path.dirname(AQUI)
 BANCO = os.path.join(ILHA, "dados", "materiais-pastilhas.json")
 VALIDAR_BANCO = os.path.join(AQUI, "validar-banco.py")
 VALIDAR_PASTILHAS = os.path.join(AQUI, "validar-pastilhas.py")
+SNIPPET_F1 = os.path.join(ILHA, "snippets", "clubedomosaico-f1.php")
 
 
 def item(banco, ident):
@@ -128,6 +129,25 @@ def m12(b):
     item(b, "glassmosaic-k2502")["fontes"]["pagina-produto-k2502"]["nivel"] = 7
 
 
+# --------------------------------------------- mutacoes de CODIGO (13/09/2026)
+# As duas de baixo nao tocam no banco: elas atacam a FAIXA sobre a qual a cobertura
+# da secao 14.3 e publicada. Nasceram junto com `ferramentas/tamanhos-da-f1.php`, no
+# bloco que fechou o 2x2, e produzem um mundo que o banco nao tem como produzir —
+# que e exatamente o que a secao 8 do contrato exige de quem escreve regua nova.
+# Antes delas a faixa era uma lista digitada dentro do portao, e nenhuma mutacao
+# podia toca-la: portao que so mede o dado nao ve o defeito que mora na regua.
+
+MUTACOES_DE_CODIGO = [
+    ("13 o padrao do saneamento cai num tamanho que a tela nao lista",
+     SNIPPET_F1,
+     "$tamanho = isset( $tam[ $tamanho ] ) ? $tamanho : 'p10';",
+     "$tamanho = isset( $tam[ $tamanho ] ) ? $tamanho : 'p99';"),
+    ("14 o saneamento aceita qualquer chave: nao existe faixa",
+     SNIPPET_F1,
+     "$tamanho = isset( $tam[ $tamanho ] ) ? $tamanho : 'p10';",
+     "$tamanho = $tamanho;"),
+]
+
 MUTACOES = [
     ("01 pecas por placa pela divisao ingenua", m01),
     ("02 passo declarado sem N que o sustente", m02),
@@ -160,7 +180,8 @@ def main():
               "(validar-banco=%s, validar-pastilhas=%s)" % (base_banco, base_past))
         return 1
 
-    print("Mutacoes da categoria PASTILHA — %d escritas" % len(MUTACOES))
+    print("Mutacoes da categoria PASTILHA — %d escritas (%d no banco, %d no codigo)"
+          % (len(MUTACOES) + len(MUTACOES_DE_CODIGO), len(MUTACOES), len(MUTACOES_DE_CODIGO)))
     print("")
     reprovadas = 0
     so_a_regua_nova = 0
@@ -193,16 +214,47 @@ def main():
         else:
             print("  PASSOU    %-52s  <-- NENHUM PORTAO VIU" % nome)
 
+    for nome, arquivo, de, para in MUTACOES_DE_CODIGO:
+        fonte = open(arquivo, encoding="utf-8").read()
+        # alvo que nao e unico edita a coisa errada e passa verde
+        if fonte.count(de) != 1:
+            print("  INERTE  %s — o alvo aparece %d vezes em %s"
+                  % (nome, fonte.count(de), os.path.basename(arquivo)))
+            continue
+        backup = arquivo + ".original"
+        shutil.copy2(arquivo, backup)
+        try:
+            with open(arquivo, "w", encoding="utf-8") as fh:
+                fh.write(fonte.replace(de, para))
+            pegou_banco = roda(VALIDAR_BANCO, ILHA)
+            pegou_past = roda(VALIDAR_PASTILHAS, ILHA)
+        finally:
+            shutil.move(backup, arquivo)
+
+        if pegou_banco or pegou_past:
+            reprovadas += 1
+            quem = []
+            if pegou_banco:
+                quem.append("esquema")
+            if pegou_past:
+                quem.append("regua nova")
+            if pegou_past and not pegou_banco:
+                so_a_regua_nova += 1
+            print("  REPROVOU  %-52s (%s)" % (nome, " + ".join(quem)))
+        else:
+            print("  PASSOU    %-52s  <-- NENHUM PORTAO VIU" % nome)
+
+    total = len(MUTACOES) + len(MUTACOES_DE_CODIGO)
     print("")
-    print("  reprovadas ..................... %d de %d" % (reprovadas, len(MUTACOES)))
+    print("  reprovadas ..................... %d de %d" % (reprovadas, total))
     print("  so a regua nova viu ............ %d" % so_a_regua_nova)
-    if reprovadas != len(MUTACOES):
+    if reprovadas != total:
         print("\nREPROVADO: mutacao que passa e buraco de portao.")
         return 1
     if so_a_regua_nova == 0:
         print("\nREPROVADO: se o esquema antigo pega tudo, a regua nova nao se justifica.")
         return 1
-    print("\nOK: as %d mutacoes reprovaram." % len(MUTACOES))
+    print("\nOK: as %d mutacoes reprovaram." % total)
     return 0
 
 
