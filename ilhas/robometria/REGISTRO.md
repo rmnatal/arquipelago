@@ -3204,12 +3204,19 @@ dormente, e meia refatoração em quatro superfícies que discordam em silêncio
 pior que nenhuma. O cartão continua dizendo "Link de loja em breve" — que é
 verdade hoje e deixa de ser no minuto em que houver sessão.
 
-**NO AR:** manifest na revisão 30; nenhum arquivo `publicar: true` mudou um
-byte (os quatro geradores e o de casca foram rodados e os nove derivados
-saíram com o mesmo sha256), então o desembarque aplicou 0 itens e serve para
-uma coisa só: `/status` voltar a bater com o manifest. Os três portões novos
+**NO AR às 19h35Z, em UM disparo:** `/status` na **revisão 30**, igual à do
+manifest. **Nenhum arquivo `publicar: true` mudou um byte** — os quatro
+geradores e o de casca foram rodados e os nove derivados saíram com o MESMO
+sha256, e era essa medição que decidia se este bloco tocava o ar. O log do Sync
+diz "10 aplicado(s)" e isso não contradiz o parágrafo: o disparo vai com
+`forcar=1`, que reaplica os publicáveis **tenha o conteúdo mudado ou não**, e
+dizer que ele aplicou zero seria ler o campo errado. O que prova que a tela não
+mudou são os sha256 iguais e as **331 afirmações medidas no ar DEPOIS do
+Sync**: `conferir-no-ar` 149, `conferir-kits-no-ar` 163 e
+`conferir-atribuicao-no-ar` 19, **0 falha nas três**. Os três portões novos
 ENTRARAM no manifest, então a dívida de arquivo fora dele não cresceu com este
-bloco.
+bloco — e ela foi **contada** em vez de repetida: são **13** arquivos fora do
+manifest, não os 23 que o cabeçalho anterior vinha carregando.
 
 **Próximo passo desbloqueado:** o RECIPIENTE DE PÓ do W300 e do WSMART — a
 coleta mais barata que existe hoje, com a página já localizada, e
