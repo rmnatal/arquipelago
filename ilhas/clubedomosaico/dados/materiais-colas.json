@@ -2,19 +2,19 @@
   "id": "materiais-colas",
   "ilha": "clubedomosaico",
   "categoria": "cola",
-  "bloco": 3,
-  "gerado_em": "2026-09-10",
+  "bloco": "3 (criado) + 3e (os dois produtos das faixas de zero e a condicao de superficie)",
+  "gerado_em": "2026-09-13",
   "esquema": "dados/esquema-banco.json",
   "o_que_este_arquivo_e": "A categoria COLA do banco MATERIAL, escrita no formato do esquema do bloco 3. NENHUM dado novo foi coletado nesta execucao: cada declaracao abaixo e a transposicao campo a campo do que o bloco 2 ja tinha colhido em dados/constantes.json, com a mesma fonte, o mesmo tipo de documento e a mesma data. O que este arquivo acrescenta e ESTRUTURA — a lista literal do fabricante virou campo com peso (indicado, proibido, nao recomendado, delimita, resiste), e por isso a matriz da F2 pode ser recomputada em vez de lida.",
   "afiliado": {
-    "itens_esperando_link": 0,
-    "itens_sem_piso": 0,
-    "observacao": "Todos os cinco com link vivo e conferido em 13/09/2026, depois de uma varredura que achou QUATRO dos nove links da Shopee mortos em menos de doze horas (dois com 'O produto nao existe', dois esgotados). O campo `degrau` diz de que degrau da escada da secao 25 o link veio; `url_busca` e o link de busca que nunca morre. Cascorez esta na loja oficial da Henkel (degrau 1). Silicone acetico caiu para o degrau 3 e e casamento parcial: o anuncio e Tekbond acetico BRANCO 256 g, nao o incolor da linha Construcao — a F2 recomenda por tipo, nao por SKU, mas isso e para trocar quando aparecer melhor.",
+    "itens_esperando_link": 2,
+    "itens_sem_piso": 2,
+    "observacao": "Cinco dos sete tem link vivo e conferido em 13/09/2026. Os DOIS que entraram em 13/09/2026 as 21h — Silicone Acetico Maxx e Cascola PL500 — nascem SEM PISO, e isso e divida contada, nao estado de espera: a palavra-chave de busca dos dois esta escrita em `afiliado.url_busca_produto`, e o que falta e o encurtamento, que exige a sessao logada do painel de afiliado (medido nesta execucao). No dia da sessao sao duas colagens e nenhuma linha de codigo muda. Todos os cinco com link vivo e conferido em 13/09/2026, depois de uma varredura que achou QUATRO dos nove links da Shopee mortos em menos de doze horas (dois com 'O produto nao existe', dois esgotados). O campo `degrau` diz de que degrau da escada da secao 25 o link veio; `url_busca` e o link de busca que nunca morre. Cascorez esta na loja oficial da Henkel (degrau 1). Silicone acetico caiu para o degrau 3 e e casamento parcial: o anuncio e Tekbond acetico BRANCO 256 g, nao o incolor da linha Construcao — a F2 recomenda por tipo, nao por SKU, mas isso e para trocar quando aparecer melhor.",
     "observacao_sobre_o_piso": "Os cinco tem ficha de produto E piso de busca: `url` vira o botao e `url_busca` vira a linha discreta abaixo dele, servidas pela `cdm_f2_compra_html()` desde a f2 1.2.0 (13/09/2026). Zero item sem piso."
   },
   "imagens": {
-    "itens_sem_imagem": 3,
-    "observacao": "Duas das cinco tem foto, e as duas vieram do FEED DE AFILIADO DA SHOPEE (secao 25.3 do ARQUIPELAGO.md), que e a fonte legitima: a imagem do anuncio ao lado do link do anuncio. A largura e a altura NAO vieram do feed — ele nao as declara — e foram LIDAS do arquivo servido por ferramentas/medir-imagens.py em 13/09/2026, nunca estimadas. As tres sem foto continuam sem foto pelo motivo de sempre, remedido em 13/09/2026 com duas passadas: www.tekbond.com.br e www.quartzolit.weber respondem 000 por politica de egresso. Material sem imagem NAO some da vitrine — aparece com espaco reservado neutro e o nome em destaque."
+    "itens_sem_imagem": 5,
+    "observacao": "Duas das sete tem foto, e as duas vieram do FEED DE AFILIADO DA SHOPEE (secao 25.3), que e a fonte legitima. Largura e altura foram LIDAS do arquivo servido por ferramentas/medir-imagens.py em 13/09/2026, nunca estimadas. As CINCO sem foto seguem sem foto pelo mesmo motivo, remedido em 13/09/2026 em duas passadas: tekbond.com.br, quartzolit.weber, cascola.com.br e henkel.com.br respondem 000 por politica de egresso, e os dois produtos novos deste bloco entram sem foto porque nao estao no recorte de feed que a ilha tem. Material sem imagem NAO some da vitrine — aparece com espaco reservado neutro e o nome em destaque."
   },
   "pendencias_desta_categoria": [
     {
@@ -157,7 +157,7 @@
         "url_produto": "https://shopee.com.br/product/727184858/23097607614",
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "F2",
-        "etiqueta_ml": "clubedomosaico-F2",
+        "etiqueta_ml": "clubedomosaicof2",
         "gerado_em": "2026-09-13",
         "url_busca": "https://s.shopee.com.br/1qc0FNpEIK",
         "degrau": 3,
@@ -246,7 +246,7 @@
         "url_produto": "https://www.mercadolivre.com.br/cola-adesivo-silicone-transparente-neutro-280g-tekbond/p/MLB38691363",
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "F2",
-        "etiqueta_ml": "clubedomosaico-F2",
+        "etiqueta_ml": "clubedomosaicof2",
         "gerado_em": "2026-09-13",
         "url_busca": "https://s.shopee.com.br/1gIa34prdJ",
         "degrau": 2,
@@ -324,7 +324,7 @@
         "url_produto": "https://shopee.com.br/product/1270088146/19497747157",
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "F2",
-        "etiqueta_ml": "clubedomosaico-F2",
+        "etiqueta_ml": "clubedomosaicof2",
         "gerado_em": "2026-09-13",
         "url_busca": "https://s.shopee.com.br/1Vz9qlqUyI",
         "degrau": 1,
@@ -440,7 +440,7 @@
         "url_produto": "https://www.mercadolivre.com.br/argamassa-externa-quartzolit-ac-ii-saco-20kg-cinza-weber/p/MLB27315078",
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "F2",
-        "etiqueta_ml": "clubedomosaico-F2",
+        "etiqueta_ml": "clubedomosaicof2",
         "gerado_em": "2026-09-13",
         "url_busca": "https://s.shopee.com.br/1LfjeSr8JH",
         "degrau": 2,
@@ -522,7 +522,7 @@
         "url_produto": "https://www.mercadolivre.com.br/durepoxi-branco-adesivo-epoxi-massa-loctite-50g-henkel/p/MLB27690478",
         "sub_id_1": "clubedomosaico",
         "sub_id_2": "F2",
-        "etiqueta_ml": "clubedomosaico-F2",
+        "etiqueta_ml": "clubedomosaicof2",
         "gerado_em": "2026-09-13",
         "url_busca": "https://s.shopee.com.br/1LfjeUPmyk",
         "degrau": 2,
@@ -549,6 +549,194 @@
         "F2"
       ],
       "observacao": "O registro que criou o nivel 4 da escada de fontes. Ele e o unico do banco que declara aderir em condicao submersa — exatamente a faixa descoberta da F2 — e mesmo assim NAO vira recomendacao, porque a unica declaracao vem de press release de 2018. Aparece so como mencao com ressalva, com a frase 'segundo material do proprio fabricante (2018)'. Troca-se pela ficha tecnica assim que ela for aberta, e ai a faixa deixa de ser descoberta."
+    },
+    {
+      "id": "tekbond-silicone-acetico-maxx",
+      "categoria": "cola",
+      "tipo": "silicone_acetico",
+      "marca": "Tekbond",
+      "fabricante": "Tekbond",
+      "nome_comercial": "Silicone Acético Maxx",
+      "codigo_fabricante": "BRSA005",
+      "declaracoes": {
+        "indicado_para": [
+          "cerâmicas vitrificadas",
+          "superfícies lisas em geral",
+          "terrários",
+          "vitrines de alimentos",
+          "bebedouros",
+          "embarcações",
+          "aplicações tradicionais no mercado da construção civil"
+        ],
+        "nao_usar_em": [],
+        "nao_recomendado_em": [],
+        "nao_indicado_para": [],
+        "ambientes_declarados": [],
+        "resistencias_declaradas": [
+          "aquários",
+          "piscinas",
+          "variação de temperatura"
+        ]
+      },
+      "propriedades": {
+        "rendimento_por_area": {
+          "valor": null,
+          "unidade": "kg/m2",
+          "fonte_id": null,
+          "motivo": "Mesmo caso do Silicone Acetico Construcao: silicone rende por CORDAO, nao por area colada. Converter seria palpite."
+        }
+      },
+      "preparo": null,
+      "geometria": null,
+      "condicoes": {},
+      "venda": [
+        {
+          "unidade": "cartucho",
+          "quantidade": null,
+          "embalagem_declarada": null,
+          "loja": null,
+          "fonte_id": "pagina-produto-maxx",
+          "coletado_em": "2026-09-13",
+          "observacao": "O fabricante cita as versoes blister e cartucho. Peso e volume da embalagem NAO foram coletados."
+        }
+      ],
+      "afiliado": {
+        "programa": null,
+        "url": "",
+        "sub_id_1": "clubedomosaico",
+        "sub_id_2": "F2",
+        "etiqueta_ml": "clubedomosaicof2",
+        "gerado_em": null,
+        "url_busca": "",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=silicone%20maxx%20tekbond%20aquario",
+        "motivo_sem_url_busca": "O encurtador de afiliado da Shopee (affiliate.shopee.com.br/offer/custom_link) exige a sessao logada: medido em 13/09/2026 as 19h16Z, ele serve casca de JavaScript com zero ocorrencia de 'custom_link' para quem chega sem sessao. A PALAVRA-CHAVE esta escrita aqui; no dia da sessao e uma colagem e nenhuma linha de codigo muda.",
+        "degrau": null
+      },
+      "imagem": null,
+      "fontes": {
+        "pagina-produto-maxx": {
+          "url": "https://www.tekbond.com.br/produtos/sela-e-veda/silicones/silicone-acetico-maxx",
+          "tipo": "página de produto do fabricante",
+          "nivel": 3,
+          "coletado_em": "2026-09-13",
+          "conferir_no_pdf": false,
+          "leitura": "busca restrita ao dominio do fabricante. O egresso desta nuvem NAO abre tekbond.com.br — remedido em 13/09/2026 em duas passadas, 000 nas duas, com clubedomosaico.com.br em 200 como controle. Por isso a fonte e nivel 3 e nao nivel 1: o elo mais fraco e a leitura (secao 10 do ARQUIPELAGO.md)."
+        }
+      },
+      "constantes_relacionadas": [],
+      "divergencias": [],
+      "resolucao": null,
+      "status": "ativo",
+      "motivo_do_descarte": null,
+      "usada_por": [
+        "F2"
+      ],
+      "observacao": "O PRIMEIRO PRODUTO DO BANCO QUE PODE SER RECOMENDADO EM CONTATO PERMANENTE COM AGUA. Ate 13/09/2026 essa faixa tinha ZERO elegiveis nas nove bases, e a unica declaracao de colagem submersa da ilha era press release de 2018 (loctite-durepoxi, nivel 4, abaixo do minimo). Aqui a declaracao e da pagina de produto do fabricante, nivel 3, e a regra 4 (ambiente critico exige declaracao EXPLICITA) e cumprida por 'aquarios' e 'piscinas'. O QUE ELE NAO FECHA, E ESTA ESCRITO EM VEZ DE ESCONDIDO: das nove bases, ele so entra em ceramica_esmaltada_porcelana, porque 'ceramicas vitrificadas' e a UNICA superficie que o fabricante nomeia. VIDRO nao esta na lista dele — e um silicone de aquario, e aquario e de vidro, e a tentacao de traduzir 'fabricacao e reparo de aquarios' em base VIDRO e exatamente a heuristica por vizinhanca que a secao 8 do contrato proibe. 'Aquarios' e aplicacao e entra como AMBIENTE, que e o que ela mede. O dia em que a ficha BRSA005 for aberta, a lista de substratos dela decide — nao a nossa leitura do que um aquario e.",
+      "fonte_localizada_nao_lida": {
+        "url": "https://www.tekbond.com.br/sites/Tekbond.com.br/files/media-library/product/BRSA005/documents/technical_sheet/downloadable_file/Silicone_Acetico_Maxx-BRSA005-ficha_tecnica_01.pdf",
+        "tipo": "ficha tecnica do fabricante — LOCALIZADA, NAO LIDA",
+        "nivel": 2,
+        "coletado_em": "2026-09-13",
+        "conferir_no_pdf": true,
+        "leitura": "A ficha EXISTE e o endereco dela esta aqui, mas NENHUM campo deste registro veio dela: o PDF nao abre desta nuvem. Ela esta gravada para que a proxima execucao que tiver canal saiba exatamente onde ir — e para que ninguem a colha de novo.",
+        "sustenta_algum_campo": false,
+        "por_que_ela_NAO_esta_em_fontes": "Porque `fontes` e o que SUSTENTA este registro, e ela nao sustenta uma linha dele. Gravada dentro de `fontes` ela fez duas coisas erradas de uma vez, e as duas foram pegas por portao em 13/09/2026, antes do commit: (1) o nivel do produto virou 2, o da ficha tecnica, quando toda declaracao deste registro veio da pagina de produto, nivel 3 — e a secao 10 do ARQUIPELAGO.md diz que o nivel e o do elo MAIS FRACO, entao inflar aqui e o defeito mais caro que existe numa fabrica que vende procedencia; (2) a linha de prova da tela passou a atribuir a declaracao a um documento que ninguem abriu. Ficha localizada e endereco guardado, nao fonte."
+      }
+    },
+    {
+      "id": "cascola-pl500-adesivo-de-montagem",
+      "categoria": "cola",
+      "tipo": "pva",
+      "marca": "Cascola",
+      "fabricante": "Henkel",
+      "nome_comercial": "Cascola Adesivo de Montagem PL500 Interior",
+      "codigo_fabricante": "PL500",
+      "declaracoes": {
+        "indicado_para": [
+          "metal",
+          "porcelana",
+          "plásticos",
+          "madeira",
+          "concreto",
+          "vidro",
+          "poliestireno expandido",
+          "drywall"
+        ],
+        "nao_usar_em": [],
+        "nao_recomendado_em": [],
+        "nao_indicado_para": [],
+        "ambientes_declarados": [
+          "uso interno"
+        ],
+        "resistencias_declaradas": []
+      },
+      "propriedades": {
+        "tempo_de_ajuste": {
+          "valor": 5,
+          "unidade": "min",
+          "fonte_id": "pagina-produto-pl500",
+          "declarado_como": "o tempo para ajustes e de 5 minutos"
+        },
+        "rendimento_por_area": {
+          "valor": null,
+          "unidade": "kg/m2",
+          "fonte_id": null,
+          "motivo": "O fabricante nao publica rendimento por area colada para este produto. A coluna de cola da F1 continua vazia com a frase na tela."
+        }
+      },
+      "preparo": "Superficies limpas, firmes e niveladas. Parede pintada ou com tinta em mau estado deve ser lixada antes. Excesso sai com pano umido em agua ou alcool domestico ANTES de secar. Peca pesada ou que va receber esforco pede escora ate a cura completa.",
+      "geometria": null,
+      "condicoes": {
+        "exige_superficie_porosa": {
+          "valor": true,
+          "literal": "ao menos uma das superfícies deve ser porosa, já que o produto seca por evaporação da água",
+          "fonte_id": "pagina-produto-pl500",
+          "quem_classifica_a_porosidade": "a ilha, em esquema-banco.json / superficies_porosas — nunca o fabricante, que declarou a condicao e nao a lista (secao 26.3 do ARQUIPELAGO.md)"
+        }
+      },
+      "venda": [
+        {
+          "unidade": "cartucho",
+          "quantidade": null,
+          "embalagem_declarada": null,
+          "loja": null,
+          "fonte_id": "pagina-produto-pl500",
+          "coletado_em": "2026-09-13",
+          "observacao": "Adesivo de montagem da linha DIY. Peso e volume da embalagem NAO foram coletados."
+        }
+      ],
+      "afiliado": {
+        "programa": null,
+        "url": "",
+        "sub_id_1": "clubedomosaico",
+        "sub_id_2": "F2",
+        "etiqueta_ml": "clubedomosaicof2",
+        "gerado_em": null,
+        "url_busca": "",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=cascola%20adesivo%20de%20montagem%20pl500",
+        "motivo_sem_url_busca": "Mesmo motivo do Silicone Maxx, medido na mesma execucao: o encurtador da Shopee exige sessao logada. A palavra-chave esta escrita; falta o encurtamento.",
+        "degrau": null
+      },
+      "imagem": null,
+      "fontes": {
+        "pagina-produto-pl500": {
+          "url": "https://www.cascola.com.br/products-diy/central-pdp.html/cascola-adesivo-de-montagem---pl500-interior/SAP_0201C8I05EAB.html",
+          "tipo": "página de produto do fabricante",
+          "nivel": 3,
+          "coletado_em": "2026-09-13",
+          "conferir_no_pdf": false,
+          "leitura": "busca restrita ao dominio do fabricante. cascola.com.br tambem nao abre desta nuvem (000, medido em 13/09/2026). Duas buscas independentes, com perguntas diferentes e SEM o valor dentro da pergunta (secao 8), devolveram a mesma lista de materiais, a mesma condicao de porosidade e o mesmo tempo de ajuste."
+        }
+      },
+      "constantes_relacionadas": [],
+      "divergencias": [],
+      "resolucao": null,
+      "status": "ativo",
+      "motivo_do_descarte": null,
+      "usada_por": [
+        "F2"
+      ],
+      "observacao": "O PRIMEIRO PRODUTO DO BANCO INDICADO SOBRE PLASTICO, e o primeiro que traz uma CONDICAO que nao fala de base nem de ambiente. Ate hoje a base plastico saia com zero elegiveis nos cinco ambientes: o unico que falava de plastico era o Silicone Neutro, com 'certos tipos de plastico', que nao nomeia tipo nenhum. Aqui o fabricante lista 'plasticos' numa lista de materiais que o produto adere, sem qualificador — e isso indica. A CONDICAO E A METADE QUE IMPORTA: o produto seca por evaporacao de agua, entao ao menos uma das duas superficies tem de ser porosa. Sobre plastico, quem tem de ser poroso e o CAQUINHO — e por isso este registro obrigou a regra 6 do esquema, a primeira regra de cola que olha a tessela. Com pastilha de vidro sobre vaso de plastico ele NAO e recomendado, e a pagina diz isso com a causa certa, em grupo proprio: nao e proibicao (ele nao proibe) e nao e silencio (ele falou). O QUE FOI RECUSADO DE PROPOSITO: a frase 'ideal para adesao de rodapes, pecas decorativas, azulejos, ladrilhos, molduras, canaletas, cantoneiras, maquetes, mosaicos' NAO entrou em indicado_para, embora contenha 'azulejos', que o mapa traduz como base. E a lista do que se COLA, nunca a do que se cola SOBRE — o mesmo erro que este banco ja pegou na cimentcola AC-II. 'Mosaicos' esta escrito la pelo proprio fabricante, e mesmo assim nao vira declaracao de substrato: vira citacao."
     }
   ]
 }

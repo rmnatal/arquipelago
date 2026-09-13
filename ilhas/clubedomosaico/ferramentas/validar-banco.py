@@ -25,6 +25,7 @@ O que ele faz, alem de conferir campo obrigatorio:
 
 import json
 import os
+import re
 import sys
 import unicodedata
 
@@ -190,6 +191,21 @@ for nome in arquivos_material:
                 erro("%s / fonte %s: nivel fora de 1-7" % (onde, fid))
             if f.get("nivel") == 7:
                 erro("%s / fonte %s: nivel 7 (blog/SERP) e PROIBIDO como fonte tecnica nesta ilha" % (onde, fid))
+            # `fontes` E O QUE SUSTENTA O REGISTRO, e nada mais. Achado em 13/09/2026,
+            # pelo portao da F2, antes do commit: uma ficha tecnica LOCALIZADA e nao lida
+            # tinha sido gravada aqui "para a proxima execucao saber onde ir", com nivel 2.
+            # O nivel de um material e o MELHOR dos niveis das fontes dele, entao aquela
+            # linha promoveu o produto inteiro de 3 para 2 sem que uma declaracao dele
+            # viesse da ficha — e a linha de prova da tela passou a atribuir a declaracao a
+            # um documento que ninguem abriu. Secao 10 do ARQUIPELAGO.md: o nivel e o do elo
+            # MAIS FRACO, e inflar o proprio nivel de fonte e o defeito mais caro desta
+            # fabrica. Endereco de documento que ainda nao foi lido mora em
+            # `fonte_localizada_nao_lida`, fora de `fontes`.
+            if f.get("sustenta_algum_campo") is False:
+                erro("%s / fonte %s: esta em `fontes` declarando que nao sustenta campo "
+                     "nenhum. Fonte que nao sustenta nada nao e fonte: ela empresta o nivel "
+                     "dela ao produto inteiro. Mova para `fonte_localizada_nao_lida`."
+                     % (onde, fid))
 
         # toda propriedade com valor precisa apontar fonte; toda propriedade nula, motivo
         for pnome, prop in (m.get("propriedades") or {}).items():
@@ -222,8 +238,22 @@ for nome in arquivos_material:
             erro("%s: programa de afiliado invalido" % onde)
         if af.get("sub_id_1") != "clubedomosaico":
             erro("%s: sub_id_1 tem que ser o nome da ilha" % onde)
-        if af.get("etiqueta_ml") and not af["etiqueta_ml"].startswith("clubedomosaico-"):
-            erro("%s: etiqueta do Mercado Livre fora do formato clubedomosaico-<codigo>" % onde)
+        # A ETIQUETA DO MERCADO LIVRE, com a regra que o PAINEL aceita — e ela nao e a
+        # que estava escrita aqui. A secao 7 do ARQUIPELAGO.md foi corrigida em 13/09/2026
+        # MEDINDO o painel: so letras minusculas e numeros, sem hifen, sem espaco, sem
+        # maiuscula, no maximo 30 caracteres, no formato <ilha><ferramenta>. A regua daqui
+        # cobrava `clubedomosaico-<codigo>`, que e uma etiqueta IMPOSSIVEL de criar, e
+        # aprovava os 23 registros do banco que a carregavam. Portao verde sobre um valor
+        # que nao existe do outro lado: o mesmo defeito do numero de tela digitado, agora
+        # numa regra de formato. Corrigido no mesmo commit que corrige os 23 registros.
+        etiqueta = af.get("etiqueta_ml")
+        if etiqueta:
+            if not re.match(r"^[a-z0-9]{1,30}$", etiqueta):
+                erro("%s: etiqueta '%s' fora do que o painel do Mercado Livre aceita "
+                     "(so minuscula e numero, sem hifen, ate 30 caracteres — secao 7)"
+                     % (onde, etiqueta))
+            elif not etiqueta.startswith("clubedomosaico"):
+                erro("%s: etiqueta '%s' nao comeca pelo nome da ilha" % (onde, etiqueta))
 
         # A ESCADA DA SECAO 25, medida no dado.
         #
@@ -447,6 +477,183 @@ if materiais and matriz:
         if not celula.get("recomendados_topo") and not celula.get("observacao"):
             erro("matriz %s x %s: celula sem recomendacao e sem observacao dizendo por que"
                  % (celula["base"], celula["ambiente"]))
+
+
+# ------------------------------------- REGRA 6: a condicao declarada de superficie
+#
+# Bloco 3e, 13/09/2026. A primeira regra de cola que olha a TESSELA, e ela nasceu de um
+# produto: o Cascola PL500 declara "ao menos uma das superficies deve ser porosa, ja que o
+# produto seca por evaporacao da agua". Isso nao e base e nao e ambiente — e o PAR.
+#
+# A lista de quais superficies sao porosas mora no ESQUEMA, nunca aqui (secao 26.2 do
+# ARQUIPELAGO.md): lista digitada dentro da regua envelhece calada no dia em que uma base
+# nova entrar no vocabulario. E a outra metade da mesma secao e a que quase ninguem escreve:
+# a trava tem de REPROVAR quando a lista some. As tres afirmacoes abaixo sao isso.
+
+POROSAS = esquema.get("superficies_porosas")
+if not POROSAS:
+    erro("esquema sem `superficies_porosas`: a regra 6 nao tem de onde ler a classificacao, "
+         "e sem esta trava ela aprovaria tudo em silencio (secao 26.2)")
+    POROSAS = {}
+
+BASES_POROSAS = set(POROSAS.get("bases_porosas") or [])
+BASES_NAO_POROSAS = set(POROSAS.get("bases_nao_porosas") or [])
+TESSELAS_POROSAS = set(POROSAS.get("tesselas_porosas") or [])
+TESSELAS_NAO_POROSAS = set(POROSAS.get("tesselas_nao_porosas") or [])
+TESSELAS = VOC["material_tessela"]
+
+if POROSAS:
+    # cobertura nas DUAS direcoes: superficie do vocabulario sem classificacao seria
+    # decidida por omissao, que e exatamente o que a regra 2 desta ilha proibe.
+    if BASES_POROSAS | BASES_NAO_POROSAS != set(BASES):
+        erro("superficies_porosas: a classificacao de base nao cobre o vocabulario "
+             "(faltam %s; sobram %s)"
+             % (sorted(set(BASES) - BASES_POROSAS - BASES_NAO_POROSAS) or "nenhuma",
+                sorted((BASES_POROSAS | BASES_NAO_POROSAS) - set(BASES)) or "nenhuma"))
+    if BASES_POROSAS & BASES_NAO_POROSAS:
+        erro("superficies_porosas: base em duas listas ao mesmo tempo: %s"
+             % sorted(BASES_POROSAS & BASES_NAO_POROSAS))
+    if TESSELAS_POROSAS | TESSELAS_NAO_POROSAS != set(TESSELAS):
+        erro("superficies_porosas: a classificacao de tessela nao cobre o vocabulario "
+             "(faltam %s; sobram %s)"
+             % (sorted(set(TESSELAS) - TESSELAS_POROSAS - TESSELAS_NAO_POROSAS) or "nenhuma",
+                sorted((TESSELAS_POROSAS | TESSELAS_NAO_POROSAS) - set(TESSELAS)) or "nenhuma"))
+    if TESSELAS_POROSAS & TESSELAS_NAO_POROSAS:
+        erro("superficies_porosas: tessela em duas listas ao mesmo tempo: %s"
+             % sorted(TESSELAS_POROSAS & TESSELAS_NAO_POROSAS))
+    # e a lista tem de ter alguem dos dois lados, senao "cobre o vocabulario" passa a ser
+    # verdade de graca com uma das listas vazia
+    for nome_lista, conjunto in (("bases_porosas", BASES_POROSAS),
+                                 ("bases_nao_porosas", BASES_NAO_POROSAS),
+                                 ("tesselas_porosas", TESSELAS_POROSAS),
+                                 ("tesselas_nao_porosas", TESSELAS_NAO_POROSAS)):
+        if not conjunto:
+            erro("superficies_porosas: `%s` vazia — classificacao de um lado so nao e "
+                 "classificacao" % nome_lista)
+
+
+def exige_porosa(m):
+    """True quando o fabricante declarou a condicao para este produto."""
+    c = ((m.get("condicoes") or {}).get("exige_superficie_porosa") or {})
+    return bool(c.get("valor"))
+
+
+def condicao_cumprida(base, tessela):
+    """A condicao do fabricante, medida sobre o PAR. Regua propria: le as listas do
+    esquema e nao chama nada de quem produziu o dado."""
+    return base in BASES_POROSAS or tessela in TESSELAS_POROSAS
+
+
+def computar_celula_com_condicao(base, ambiente, tessela):
+    """A celula que a PAGINA serve: a de declaracao, filtrada pela regra 6.
+
+    A ordem importa e esta escrita: a condicao roda DEPOIS das cinco e ANTES da
+    ordenacao por score. Rodar depois da ordenacao deixaria celula sem topo com
+    elegiveis na mao — e a ancora vidro x caco_espelho existe para medir isso.
+    """
+    recomendados, ressalva, proibidos, silencio, condicao = {}, [], [], [], []
+    for ident, m in materiais.items():
+        if m.get("status") != "ativo":
+            continue
+        if m.get("categoria") != CATEGORIA_DA_MATRIZ_F2:
+            continue
+        situacao, score = avaliar(m, base, ambiente)
+        if situacao in ("recomendado", "ressalva") and exige_porosa(m) \
+                and not condicao_cumprida(base, tessela):
+            condicao.append(ident)
+            continue
+        if situacao == "recomendado":
+            recomendados[ident] = score
+        elif situacao == "ressalva":
+            ressalva.append(ident)
+        elif situacao == "proibido":
+            proibidos.append(ident)
+        else:
+            silencio.append(ident)
+    topo, abaixo = [], []
+    if recomendados:
+        maior = max(recomendados.values())
+        topo = sorted(i for i, s in recomendados.items() if s == maior)
+        abaixo = sorted(i for i, s in recomendados.items() if s < maior)
+    return {
+        "recomendados_topo": topo,
+        "elegiveis_abaixo_do_topo": abaixo,
+        "mencionados_com_ressalva": sorted(ressalva),
+        "eliminados_por_proibicao": sorted(proibidos),
+        "eliminados_por_silencio": sorted(silencio),
+        "eliminados_por_condicao": sorted(condicao),
+    }
+
+
+mc = esquema.get("matriz_esperada_da_condicao_de_superficie")
+pares_conferidos = 0
+ancoras_conferidas = 0
+if mc is None:
+    erro("esquema sem `matriz_esperada_da_condicao_de_superficie`: a regra 6 ficaria sem "
+         "regua escrita a mao, e duas metades que erram juntas ficam verdes")
+elif materiais:
+    # 1) os pares em que a condicao falha, contados e comparados um a um
+    falha_computada = sorted([b, t] for b in BASES for t in TESSELAS
+                             if not condicao_cumprida(b, t))
+    falha_escrita = sorted([list(p) for p in mc.get("pares_em_que_a_condicao_FALHA", [])])
+    pares_conferidos = len(BASES) * len(TESSELAS)
+    if pares_conferidos != mc.get("total_de_pares"):
+        erro("matriz da condicao: total_de_pares diz %r e o vocabulario da %d"
+             % (mc.get("total_de_pares"), pares_conferidos))
+    if falha_computada != falha_escrita:
+        erro("matriz da condicao: os pares em que ela falha nao batem.\n      escrito:  %s"
+             "\n      computado: %s" % (falha_escrita, falha_computada))
+
+    # 2) quem carrega a condicao hoje — para produto novo com condicao nao entrar mudo
+    carregam = sorted(i for i, m in materiais.items()
+                      if m.get("categoria") == CATEGORIA_DA_MATRIZ_F2
+                      and m.get("status") == "ativo" and exige_porosa(m))
+    if carregam != sorted(mc.get("produtos_que_carregam_a_condicao_hoje", [])):
+        erro("matriz da condicao: `produtos_que_carregam_a_condicao_hoje` diz %s e o banco "
+             "tem %s" % (sorted(mc.get("produtos_que_carregam_a_condicao_hoje", [])), carregam))
+    for ident in carregam:
+        c = materiais[ident]["condicoes"]["exige_superficie_porosa"]
+        if not c.get("literal"):
+            erro("%s: condicao sem o texto LITERAL do fabricante" % ident)
+        if c.get("fonte_id") not in (materiais[ident].get("fontes") or {}):
+            erro("%s: condicao aponta fonte_id inexistente" % ident)
+        if not c.get("quem_classifica_a_porosidade"):
+            erro("%s: condicao sem dizer QUEM classifica a porosidade — secao 26.3, a tela "
+                 "nao pode atribuir ao fabricante uma classificacao que e nossa" % ident)
+
+    # 3) as ancoras ponta a ponta
+    for a in mc.get("ancoras_ponta_a_ponta", []):
+        if a["tessela"] not in TESSELAS:
+            erro("ancora da condicao: tessela '%s' fora do vocabulario" % a["tessela"])
+            continue
+        c = computar_celula_com_condicao(a["base"], a["ambiente"], a["tessela"])
+        ancoras_conferidas += 1
+        for campo in ("recomendados_topo", "eliminados_por_condicao"):
+            if sorted(a.get(campo, [])) != c[campo]:
+                erro("ancora %s x %s x %s / %s: esperado %s, computado %s"
+                     % (a["base"], a["ambiente"], a["tessela"], campo,
+                        sorted(a.get(campo, [])) or "[]", c[campo] or "[]"))
+        if not a.get("por_que"):
+            erro("ancora %s x %s x %s: sem `por_que` escrito"
+                 % (a["base"], a["ambiente"], a["tessela"]))
+
+    # 4) a condicao NUNCA manda ninguem para o silencio nem ressuscita proibido
+    for b in BASES:
+        for t in TESSELAS:
+            for amb in AMBIENTES:
+                sem = computar_celula(b, amb)
+                com = computar_celula_com_condicao(b, amb, t)
+                if com["eliminados_por_silencio"] != sem["eliminados_por_silencio"]:
+                    erro("condicao %s x %s x %s: ela mexeu na lista do silencio, e silencio "
+                         "e outra causa" % (b, amb, t))
+                if com["eliminados_por_proibicao"] != sem["eliminados_por_proibicao"]:
+                    erro("condicao %s x %s x %s: ela mexeu na lista da proibicao" % (b, amb, t))
+                movidos = set(com["eliminados_por_condicao"])
+                antes = set(sem["recomendados_topo"] + sem["elegiveis_abaixo_do_topo"]
+                            + sem["mencionados_com_ressalva"])
+                if movidos - antes:
+                    erro("condicao %s x %s x %s: moveu %s, que nao estava elegivel antes"
+                         % (b, amb, t, sorted(movidos - antes)))
 
 
 # ------------------------------------------------------- REJUNTE: regua propria
@@ -727,6 +934,8 @@ print("Banco do Clube do Mosaico — verificacao do esquema do bloco 3")
 print("  materiais no banco ......... %d" % len(materiais))
 print("  celulas da F2 recomputadas . %d  (so categoria %s)" % (celulas_conferidas, CATEGORIA_DA_MATRIZ_F2))
 print("  celulas do rejunte ......... %d" % celulas_rejunte_conferidas)
+print("  pares da condicao (regra 6) . %d  (%d ancoras ponta a ponta)"
+      % (pares_conferidos, ancoras_conferidas))
 print("  itens esperando link ....... %d" % esperando_link)
 print("  itens SEM PISO (25.2) ...... %d" % sem_piso)
 print("  busca sem endereco cru ..... %d  (25.4-b)" % sem_busca_crua)

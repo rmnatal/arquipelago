@@ -4,7 +4,7 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 25,
+  "revisao": 26,
   "atualizado_em": "2026-09-13",
   "estado": "nascendo",
   "desembarque": {
@@ -20,9 +20,9 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.9.0",
-      "sha256": "f627eed231a5565a36e51ad8a6d9398deba42025c7cd0afcf03bc75e066c4d76",
-      "descricao": "CASCA 1.9.0 — UMA MUDANCA SO, e ela existe para o bloco 4d NAO precisar editar esta casca. cdm_casca_vitrine_de_pecas_html() passa a aplicar o filtro cdm_vitrine_de_pecas nos dois caminhos de retorno (com peca e sem). O cartao de peca do DESIGN.md e 'a foto manda, proporcao 4:5', e esta funcao nasceu sem foto porque foto de peca nao existia; quem sabe desenhar o cartao com foto e o snippet da Loja, que e dono do CPT. Sem o filtro, o snippet da Loja teria de SOBRESCREVER esta funcao, e as duas metades dependeriam da ordem em que o Code Snippets carrega os arquivos — a ultima coisa que se quer decidindo o que a home serve. O estado VAZIO continua sendo o desta casca, que ja esta no ar e ja foi conferido: duas versoes do estado vazio seria uma para envelhecer. Nada mais foi tocado — a tag do GA4, a arvore, a trilha, o robots, o sitemap e a definicao de paginas sao as mesmas da 1.8.0."
+      "versao": "1.9.1",
+      "sha256": "f91816b753e35ed55ea638b5be8a5381c41dee502c074c03e3e927c3912989a3",
+      "descricao": "Casca 1.9.1 — TRES NUMEROS DA TELA ENTRARAM NA VIA VIVA. `celulas_matriz`, `celulas_com_saida` e `celulas_sem_saida` eram os unicos do instantaneo de `cdm_casca_numeros()` que nenhuma linha recontava do repositorio, e em 13/09/2026 os dois produtos novos da categoria cola fecharam as duas ultimas combinacoes sem saida — com a pagina de metodologia, cujo unico produto e o rigor, continuando a publicar que a ilha tinha duas. Agora elas saem contadas do `matriz_esperada_da_F2` gravado nas options, como as contagens de banco ja saiam. A frase da metodologia tambem ganhou o ESCOPO do que ela mede: os numeros sao de base x ambiente, e desde a f2 1.3.0 a ferramenta decide tambem pelo caquinho — sem essa linha, o numero certo virava promessa errada. Nada mais foi tocado."
     },
     {
       "id": "f2",
@@ -31,9 +31,9 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.2.0",
-      "sha256": "0e5e119686e8bc72fab7559ad201e88228757c699444427b5e480fe8bd9c73b3",
-      "descricao": "F2 1.2.0 — A ESCADA DA SECAO 25 CHEGA A TELA. O `url_busca` estava no banco desde 13/09 e nenhuma linha de codigo o lia: a escada existia no dado e nao no site, que e a secao 4 do contrato vista pelo lado do dado. Nasce `cdm_f2_compra_html()`, dona dos tres estados do bloco de compra: com ficha, a ficha e o botao e a busca desce para a linha discreta 'Veja todos disponiveis aqui' logo abaixo; sem ficha, a BUSCA SOBE e vira o botao, com texto proprio ('Ver as opcoes na loja') porque ela abre uma LISTA e prometer 'Ver na loja' ali seria o leitor clicar esperando a ficha do produto recomendado; sem nenhum dos dois, sobra 'Link de loja em breve', que pela 25.2 e defeito contado e nunca estado de espera. A F1 reusa o mesmo cartao, entao os dois lugares que servem produto nesta ilha desceram a escada de uma vez. A funcao e propria, e nao um if dentro do cartao, porque a escada e regra do Arquipelago e o cartao e desenho da ilha — quem servir a vitrine de pastilha da F1, a ficha do Guia ou a pagina da peca chama esta funcao em vez de reescrever tres degraus que discordariam em silencio."
+      "versao": "1.3.0",
+      "sha256": "3993cfc9675e4d28b6e73018d962c95ed5abdd3b783df8c7b7d08427b3b5ed53",
+      "descricao": "F2 1.3.0 — A REGRA 6 NASCE, E AS DUAS FAIXAS QUE ESTA PAGINA DECLARAVA NAO SABER RESPONDER DEIXAM DE SER BURACO. Entraram no banco o Silicone Acetico Maxx (BRSA005), primeiro produto da ilha que pode ser recomendado em contato permanente com agua por fonte de nivel 3, e o Cascola Adesivo de Montagem PL500, primeiro indicado sobre PLASTICO. O PL500 trouxe junto a condicao que obrigou a regra: 'ao menos uma das superficies deve ser porosa, ja que o produto seca por evaporacao da agua' — isso nao e base e nao e ambiente, e o PAR de superficies coladas. A regra 6 e a primeira regua de cola que olha o CAQUINHO, entrada que a ferramenta coleta desde a 1.0.0 e que nenhuma regua de cola lia. Ela roda DEPOIS das cinco e ANTES da ordenacao por score, e quem cai por ela vai para um QUINTO grupo, com frase propria: nao e proibicao (o fabricante nao proibe) e nao e silencio (ele falou). A atribuicao sai dividida ao meio pela secao 26.3 — a condicao e dele, a classificacao de quais superficies sao porosas e nossa, e a pagina diz isso com essas palavras. A secao 'o que a gente ainda nao responde' deixou de ser duas frases escritas a mao (as duas viraram mentira no mesmo dia em que os produtos entraram) e passou a ser CONTADA a cada requisicao: 270 combinacoes de base, lugar e caquinho, 68 delas ainda sem resposta. A tabela pre-renderizada ganhou a coluna da condicao, porque ela e a metade que um modelo de linguagem le sem preencher formulario e era onde 'use PL500 em plastico' sairia sem escopo."
     },
     {
       "id": "f1",
@@ -132,7 +132,7 @@
       "verificado_em": "2026-09-11",
       "registros": 4,
       "publicar": true,
-      "sha256": "03dd442f7f8683c3bf87dedb19d1440fdd62076d7f5338d7e720ce8c81ce6237",
+      "sha256": "0c919137cb6824bd2079011c4f3c8858a503b3e549bccf07630e0527f206a4c2",
       "descricao": "Modelo do banco: entidades MATERIAL, PECA (CPT no WordPress, nunca arquivo), TECNICA e a serie temporal COTACAO, campo a campo, com vocabulario controlado, escada de fontes de 7 niveis e o mapa que traduz o termo LITERAL do fabricante para a base e o ambiente da ilha. O que este esquema tem de proprio: o campo que decide a recomendacao e NEGATIVO (a lista de restricoes da ficha BRSA004), existem TRES estados de declaracao e nao dois (silencio nao e proibicao), e cinco regras de elegibilidade executaveis recomputam as 18 celulas da matriz da F2 a partir das declaracoes — quatro delas divergindo da matriz que o bloco 2 tinha escrito a mao. ATUALIZADO NO BLOCO 3c (versao_esquema 2): o esquema passou a ter DUAS reguas, porque as duas categorias nao respondem a mesma pergunta. A matriz_esperada_da_F2 declara agora que so olha categoria == cola, e o validador confere isso — ate aqui a regra existia so na cabeca de quem escreveu, e o primeiro rejunte gravado fez as 18 celulas falharem de uma vez acusando os cinco rejuntes como 'eliminados por silencio', frase sem sentido para um produto que nunca foi candidato a colar nada. Ao lado dela nasceram mapa_de_termos_do_rejunte (que traduz para ambiente e TESSELA, nunca para base), regras_de_elegibilidade_do_rejunte (a junta manda e precisa das duas pontas; ambiente critico do rejunte tem TRES ambientes e nao dois, porque o rejunte e a superficie exposta e a cola fica escondida atras da tessela), perfis_esperados_do_rejunte e matriz_esperada_do_rejunte, cuja grade pisa de proposito em 1, 2, 4, 5 e 10 mm — as bordas declaradas — e em 6 e 11, logo depois da ultima."
     },
     {
@@ -144,7 +144,7 @@
       "verificado_em": "2026-09-11",
       "registros": 5,
       "publicar": true,
-      "sha256": "22e7f20d2c923558457645aef777c27873627df8ecf166b7daf1c8e7c31805d6",
+      "sha256": "736a6388ebf9fb763a149344e59ec785047213070bc9e4afe14ac89773a50c58",
       "descricao": "A categoria COLA do banco MATERIAL: Silicone Acetico Construcao Tekbond (BRSA004), Silicone Neutro Tekbond, Cascorez PVA, Cimentcola Externo AC-II Quartzolit e Loctite Durepoxi. Cada um com as listas literais do fabricante separadas por peso (indicado, proibido, nao recomendado, delimita ambiente, resiste a ambiente), fonte com nivel na escada e data, afiliado.url presente e vazio e imagem null. 5 itens esperando link de afiliado e 5 sem imagem. Duas pendencias nomeadas, sendo a principal a falta de declaracao de SUBSTRATO da cimentcola AC-II, que a impede de ser recomendacao primaria.",
       "pendencias": 2,
       "pendencias_que_bloqueiam_publicacao": []
@@ -158,7 +158,7 @@
       "verificado_em": "2026-09-11",
       "registros": 5,
       "publicar": true,
-      "sha256": "61b8a015eb213e43e9f87960f0a98a05509dee739ae81a8710b584df35893789",
+      "sha256": "5349bfda8338d4c90d98801232c668e57228f9a5133c75794e4589826f488f6f",
       "descricao": "A categoria REJUNTE do banco MATERIAL: cinco rejuntes Quartzolit (ceramicas, porcelanatos e ceramicas 2024, acrilico, epoxi e piscinas) com faixa de junta, prazo de liberacao e ambiente declarado campo a campo. Sem ela a F2 — que se chama 'seletor de cola E REJUNTE' — respondia metade do que promete, com a metade do rejunte cravada na prosa do snippet em vez de recomputada da declaracao. O arquivo descobriu uma coisa sobre o proprio banco: REJUNTE NAO E COLA. Na cola, a lista do fabricante nomeia a BASE sobre a qual se cola; no rejunte, a mesma lista nomeia a TESSELA que sera rejuntada, porque rejunte nao toca a base — e a variavel que decide passa a ser a LARGURA DA JUNTA. Achado de maior valor: o rejunte piscinas quartzolit e o unico material do banco inteiro cujo fabricante nomeia 'pastilhas de porcelana e de vidro' em uso submerso, e mesmo assim ele NAO e recomendado em celula nenhuma, porque a faixa de junta dele nao foi obtida e o que ele declara e agua tratada quimicamente, que e piscina e nao a agua parada de um vaso de jardim."
     },
     {
@@ -182,7 +182,7 @@
       "verificado_em": "2026-09-12",
       "registros": 105,
       "publicar": false,
-      "sha256": "1912843fca4e8c77c45ae4801fb9fa05d185bf51c70410546a7ad686d0c9a8d3",
+      "sha256": "3fcb891c99e2c10ca9df675ea6da2579f296242597f5bda3b7f0f785fa4e93f3",
       "descricao": "O censo de cobertura das duas ferramentas: quantos produtos do banco sao elegiveis em cada um dos 105 estados que a F2 serve, quais faixas saem abaixo dos 3 que a secao 14.3 exige, e a causa que o proprio calculo separou em cada uma. NAO e serie historica: e uma fotografia do banco de hoje, e se regenera a cada mudanca de banco ou de faixa — por isso publicar=false e por isso o arquivo nao leva carimbo de relogio. E o numero que decide qual bloco a ilha faz em seguida: enquanto ele disser que nenhum estado de cola chega a 3 elegiveis, nenhuma filha de nivel 3 do Guia passa no portao de dado da secao 9, e a 16.5 mantem as seis fichas do 4c fechadas."
     },
     {
@@ -194,7 +194,7 @@
       "verificado_em": "2026-09-13",
       "registros": 13,
       "publicar": true,
-      "sha256": "d02e51381a94dcba580f3f71728c4afd9cb215b00197a78d85932e32f634fd7a",
+      "sha256": "23e8607008b48e53aacff4841e344951bea9196c93bc4006952f51ca3493c20a",
       "descricao": "A categoria PASTILHA do banco MATERIAL. Treze SKUs com lado da pastilha, lado da placa, espessura, placas por caixa, metragem e peso de caixa. A leva de 13/09/2026 acrescentou A37, 102 e IC02, e a A37 e a que FECHA o tamanho 2x2 no minimo de 3 elegiveis da secao 14.3. Tres campos nascem NULL com motivo escrito, e e isso que o arquivo tem de mais util: pecas por placa e passo de fabrica, porque nenhum fabricante brasileiro declara e a divisao que a SERP faz nao fecha (em 9 dos 13 nao da inteiro, nos outros 4 exige junta zero); e peso unitario, porque o peso da caixa de um dos itens PASSA do teto fisico do vidro macico, o que prova que embalagem esta contada dentro. Mede isso ferramentas/validar-pastilhas.py (189 afirmacoes, um processo por item, com a faixa de tamanhos medida na F1 por ferramentas/tamanhos-da-f1.php em vez de digitada) e ferramentas/mutacoes-pastilhas.py (14 de 14: 12 no banco e 2 no codigo da F1)."
     }
   ],
@@ -208,7 +208,7 @@
     {
       "id": "conferir-no-ar",
       "arquivo": "ferramentas/conferir-no-ar.py",
-      "sha256": "dc6d8e9f4c8811941494ff7f49fb7e130a61d2aeb4acbf0fb9b5b67b8b887be4",
+      "sha256": "bfc31100918441d91969b53a021476be9522b2115c3f07663f13a2bd131d4f9b",
       "descricao": "Mede o que o SITE serve, nao o que o repositorio guarda: abre as nove URLs com curl e afirma sobre o HTML SERVIDO. Existe porque 'aplicado com sucesso' no log do Sync nao e evidencia de nada (secao 8) e commit sem verificacao no ar nao e entrega (secoes 4 e 18.4). 102 afirmacoes: HTTP 200, a marca no HTML, o src igual ao arquivo que o Raphael subiu, zero texto ao lado do logo, alt com o nome, medida 78x52 declarada, o logo uma vez por pagina, o wordmark em texto de 1.2.0 fora de toda pagina, zero &#038; dentro de <script>, a folha servida mandando 52 px, o cabecalho ainda claro, e as tres URLs da imagem respondendo PNG. REGUA PROPRIA: a URL e a medida estao literais no arquivo, copiadas do despacho, e nao lidas da constante da casca — senao as duas metades errariam juntas. Todo endereco leva ?v= porque o cache de borda faz concluir que nada mudou. NUNCA e publicada no site."
     },
     {
@@ -244,7 +244,7 @@
     {
       "id": "mutacoes-f2",
       "arquivo": "ferramentas/mutacoes-f2.py",
-      "sha256": "694220aec27faa6b965f393c453b15ab4c4b6ee6e0dfd1040f0598a1654ee213",
+      "sha256": "5fdc13d52b3714d105b03d1cafd547c2cd6af588bc0d7732ed1e690ef66fbffe",
       "descricao": "Quebra a F2 de proposito, uma mutacao por vez, e exige que teste-f2.php reprove cada uma. Bancada."
     },
     {
@@ -298,7 +298,7 @@
     {
       "id": "teste-f2",
       "arquivo": "ferramentas/teste-f2.php",
-      "sha256": "cbfad8ee1f490f1096307e176d2292f3273c47fd2285c64d109d44f4acac86af",
+      "sha256": "00b6af640f616cb922b319a4657aac6e9feb5086137826d59e8a6ee65696b3b8",
       "descricao": "Verificacao medida da F2: varre os 45 estados de cola e os 60 de rejunte, um processo cada, com regua lida do esquema e nao do snippet. Bancada."
     },
     {
@@ -316,25 +316,25 @@
     {
       "id": "validar-banco",
       "arquivo": "ferramentas/validar-banco.py",
-      "sha256": "77f76725302ba39c5be103ff680e3f904c25722d61ecc4d8c7ded56f6bc2e271",
+      "sha256": "d6df9c6b7efd228d37100d108f2ed2ee5802c12526d39baa60123a1e9db16659",
       "descricao": "Verifica o banco contra dados/esquema-banco.json sem rede e sem dependencia: campos obrigatorios, vocabularios, fonte por campo tecnico, nivel de fonte, afiliado presente mesmo vazio, contagem declarada no cabecalho e passo de fabrica das pastilhas. O principal: RECOMPUTA as 18 celulas da matriz da F2 pelas cinco regras de elegibilidade e falha se o banco e a pagina se separarem. E a implementacao de referencia que o snippet PHP do bloco 4 tem que repetir. NUNCA e publicada no site. BLOCO 3c: ganhou a regua propria do REJUNTE, escrita sem reaproveitar perfil() nem avaliar() da cola — nao por cerimonia, mas porque as declaracoes nomeiam coisas diferentes nas duas categorias. Confere os cinco perfis e as nove celulas junta x ambiente contra o que esta escrito A MAO no esquema, exige que a grade pise em toda borda declarada e em pelo menos um valor acima da maior delas, reprova faixa de junta pela metade ou invertida, cobra perfil escrito para todo rejunte do banco, e guarda a regressao do defeito que o bloco corrigiu: rejunte que aparecer em qualquer lista da matriz da F2 e erro."
     },
     {
       "id": "faixa-da-f2",
       "arquivo": "ferramentas/faixa-da-f2.php",
-      "sha256": "e659dde9a2190995970a0a8d431ada12858f18f4962146949ba8d1fca5e45017",
+      "sha256": "00a926ecead6c96abc21a4e30062bf2ab0e135cc59936188848f70ef20240439",
       "descricao": "Mede a faixa de entrada da F2 PROVOCANDO o proprio snippet, em vez de le-la no codigo ou digita-la: poe cada valor de um superconjunto deliberadamente maior em $_GET, chama cdm_f2_entrada() — a mesma funcao que sanea a consulta de quem visita — e fica com o que sobreviveu. Devolve as 9 bases, os 5 ambientes, as 6 tesselas, a faixa de junta e o produto delas (45 estados de cola, 60 de rejunte). RECUSA medir quando o superconjunto nao passa por cima ou por baixo da faixa (teto medido igual ao teto da regua nao e teto, e o fim da regua) e quando o saneamento aceita um valor inventado. Existe porque a secao 14.3 manda varrer a faixa 'de ponta a ponta', e varredura sobre faixa digitada fica verde no dia em que o campo mudar de teto. Bancada: nunca vai para o site."
     },
     {
       "id": "cobertura",
       "arquivo": "ferramentas/cobertura.py",
-      "sha256": "a9202154a92f10d0ccbc89ace2143776b9c915cd8800ecd028e1d33326999f41",
+      "sha256": "c10283bfd23170c95dbb1194f0747e53ed547b29e52a598628b0172e224c3831",
       "descricao": "A varredura da secao 14.3: para CADA estado que a F2 serve, conta quantos produtos do banco sao elegiveis, e escreve dados/cobertura.json. A faixa vem de faixa-da-f2.php (medida no snippet); a regua vem de validar-banco.py, importada — ela recompoe a elegibilidade das DECLARACOES pelas regras do esquema e foi escrita antes de existir o snippet PHP, entao reimplementa-la aqui uma terceira vez nao acrescentaria independencia, so uma copia para envelhecer calada. Mencao com ressalva NAO conta como elegivel (regra 5: fonte fraca demais). O arquivo gerado NAO leva carimbo de relogio, de proposito: ele e funcao das entradas, e com timestamp dentro o modo --conferir acusaria 'velho' a cada execucao ate alguem desligar o portao. Bancada: nunca vai para o site."
     },
     {
       "id": "conferir-cobertura",
       "arquivo": "ferramentas/conferir-cobertura.php",
-      "sha256": "97b6b218cfe6ffb23233d674169420edfed399c4eb490092b114b0383cd5b1e6",
+      "sha256": "b4ca13a2bd3762fa1ef21e372624a1b761d7cfbd5b703845ac94133673d0308a",
       "descricao": "Cruza o censo com o que o site SERVE, estado a estado, um processo por estado. dados/cobertura.json e escrito pela regua Python; quem serve a pagina e o snippet PHP: duas implementacoes da mesma regra que, ate este bloco, so se cruzavam nas 27 celulas escritas a mao do esquema, de 105 que as ferramentas servem. Confere tambem que a faixa do censo e a que o snippet serve hoje, que o censo tem um estado por par e nenhum repetido, que toda contagem do resumo BATE com a recontagem feita das listas (numero de tela nasce contado, nunca digitado), que toda faixa descoberta nomeia a causa que o calculo separou, e que nenhuma categoria declarada vazia tem item no banco. Bancada: nunca vai para o site."
     },
     {

@@ -570,6 +570,88 @@ ok(len(_nums) >= 2 and _nums[-1] == sum(
    "o numero de itens esperando link servido bate com os cabecalhos do banco",
    f"tela {_nums[-1] if _nums else '-'}")
 
+# ---------------------------------------------------------------------------
+# A REGRA 6 NO AR — bloco 3e, 13/09/2026.
+#
+# A regua e deste arquivo. Os ids dos dois produtos e as duas listas de
+# porosidade estao escritos LITERAIS abaixo, copiados das declaracoes lidas na
+# coleta, e NAO sao lidos do esquema: ler o esquema aqui seria conferir a regra
+# com a propria regra, e a secao 8 do contrato ja cobrou essa conta tres vezes
+# nesta fabrica. O unico numero que este bloco le do repositorio e o tamanho do
+# banco, e ele o CONTA do arquivo.
+# ---------------------------------------------------------------------------
+
+print("\nA regra 6 (condicao de superficie), no ar:")
+
+MAXX = "Tekbond Silicone Acético Maxx"
+PL500 = "Cascola Adesivo de Montagem PL500 Interior"
+
+# (base, caquinho, ambiente) -> o que a pagina TEM que dizer, e o que NAO pode.
+REGRA6_CASOS = [
+    # A faixa do plastico, os dois lados dela. As duas telas seriam identicas
+    # byte a byte se a regra 6 nao existisse: e o par que prova que ela morde.
+    ("plastico", "pastilha_ceramica", "interno_seco",
+     [PL500, "somos nós, não ela"],
+     ["Não temos cola para indicar"]),
+    ("plastico", "pastilha_vidro", "interno_seco",
+     ["o motivo não é falta de declaração", "voltaria a servir"],
+     ["Nenhum dos adesivos do nosso banco é declarado"]),
+    # A faixa da agua, e o limite dela dito no mesmo folego: aberta em ceramica,
+    # fechada em vidro, porque 'ceramicas vitrificadas' e a unica superficie que
+    # o fabricante do Maxx nomeia.
+    ("ceramica_esmaltada_porcelana", "pastilha_vidro", "contato_permanente_agua",
+     [MAXX],
+     ["Não temos cola para indicar"]),
+    ("vidro", "pastilha_vidro", "contato_permanente_agua",
+     ["Não temos cola para indicar"],
+     [MAXX, PL500]),
+]
+
+for base, caco, onde, precisa, proibido in REGRA6_CASOS:
+    html_r, codigo_r = buscar(f"{BASE}{F2}?base={base}&caco={caco}&onde={onde}&junta=2")
+    corpo_r = re.search(r"<main[^>]*>(.*?)</main>", html_r, re.S)
+    texto_r = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", corpo_r.group(1))) if corpo_r else ""
+    marca = f"[regra 6 {base[:9]}/{caco[:9]}/{onde[:9]}]"
+    ok("200" == codigo_r, f"{marca} responde 200", codigo_r)
+    for frase in precisa:
+        ok(frase in texto_r, f"{marca} serve: {frase[:44]}")
+    for frase in proibido:
+        ok(frase not in texto_r, f"{marca} NAO serve: {frase[:44]}")
+
+# A contagem do que falta, recontada aqui pelo tamanho do vocabulario — que e
+# aritmetica e nao depende de elegibilidade nenhuma. Se a pagina publicar um
+# total menor, ela esta falando de um recorte da entrada com cara de entrada
+# inteira, que e a afirmacao com escopo maior do que o medido ao contrario.
+_esq = json.load(open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                                   "dados", "esquema-banco.json"), encoding="utf-8"))
+_total_esperado = (len(_esq["vocabularios"]["base"]) * len(_esq["vocabularios"]["ambiente"])
+                   * len(_esq["vocabularios"]["material_tessela"]))
+html_a, codigo_a = buscar(f"{BASE}{F2}")
+_m = re.search(r"O que a gente ainda não responde</h2>(.*?)</div>", html_a, re.S)
+_txt = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", _m.group(1))) if _m else ""
+ok(_txt != "", "a pagina no ar serve a secao do que ela ainda nao responde")
+ok(f"{_total_esperado} combinações" in _txt,
+   "o total publicado bate com o vocabulario contado do repositorio",
+   f"{_total_esperado} esperado")
+_sem = re.search(r"Em ([\d.]+) delas", _txt)
+ok(_sem is not None and 0 < int(_sem.group(1).replace(".", "")) < _total_esperado,
+   "o numero de faixas sem resposta e publicado e nao e vacuidade",
+   (_sem.group(1) if _sem else "-") + f" de {_total_esperado}")
+
+# A tabela pre-renderizada e a metade que um modelo de linguagem le sem
+# preencher formulario. A coluna da condicao tem de estar LA, servida no HTML.
+ok("Com que condição" in html_a,
+   "a tabela pre-renderizada publica a coluna da condicao no HTML servido")
+ok("ao menos uma das superfícies deve ser porosa" in html_a,
+   "e a condicao literal do fabricante aparece servida, nao resumida")
+
+# O banco cresceu e a tela tem de dizer o numero CONTADO do arquivo.
+_colas = json.load(open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                                     "dados", "materiais-colas.json"), encoding="utf-8"))
+_n_colas = len([m for m in _colas["materiais"] if m.get("status") == "ativo"])
+ok(f">{_n_colas}<" in html_a or f" {_n_colas} colas" in re.sub(r"<[^>]+>", " ", html_a),
+   "o numero de colas servido bate com o banco contado do arquivo", f"{_n_colas} colas")
+
 print("\nA imagem, no ar:")
 for rot, url in [("original (src)", LOGO),
                  ("-300x200 (srcset)", LOGO.replace(".png", "-300x200.png")),

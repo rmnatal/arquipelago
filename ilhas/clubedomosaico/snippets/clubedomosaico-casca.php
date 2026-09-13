@@ -202,7 +202,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'CDM_CASCA_VERSAO' ) ) {
-	define( 'CDM_CASCA_VERSAO', '1.9.0' );
+	define( 'CDM_CASCA_VERSAO', '1.9.1' );
 	/* O nome do site e a linha que o WordPress serve no <title> da home. A
 	   Aquametria descobriu em 11/09/2026 que a tagline nunca tocada desde o
 	   nascimento da ilha continuava sendo a linha mais lida do site — a do
@@ -1152,6 +1152,37 @@ function cdm_casca_numeros() {
 		$n['sem_imagem']     = $img_viva;
 	}
 
+	/* AS CÉLULAS DA MATRIZ ENTRAM NA VIA VIVA, e a razão tem data: em 13/09/2026
+	   dois produtos novos fecharam as duas únicas combinações que saíam sem
+	   resposta, e estes três números continuaram dizendo 18 / 16 / 2 porque eram
+	   os únicos do instantâneo que nenhuma linha recontava. A página de
+	   metodologia — cujo único produto é o rigor — passou a publicar que a ilha
+	   tem duas combinações sem saída num dia em que ela não tinha nenhuma.
+	   É o mesmo defeito que esta ilha já pagou com o cartão do Guia dizendo zero:
+	   número de tela nasce contado, nunca digitado. */
+	$esquema_banco = get_option( 'clubedomosaico_dados_esquema-banco' );
+	if ( is_array( $esquema_banco ) && ! empty( $esquema_banco['matriz_esperada_da_F2']['celulas'] ) ) {
+		$celulas_f2 = $esquema_banco['matriz_esperada_da_F2']['celulas'];
+		$com_saida  = 0;
+		foreach ( $celulas_f2 as $celula ) {
+			if ( ! empty( $celula['recomendados_topo'] ) ) {
+				$com_saida++;
+			}
+		}
+		$n['celulas_matriz']    = count( $celulas_f2 );
+		$n['celulas_com_saida'] = $com_saida;
+		$n['celulas_sem_saida'] = count( $celulas_f2 ) - $com_saida;
+		if ( ! empty( $esquema_banco['matriz_esperada_do_rejunte']['celulas'] ) ) {
+			$n['celulas_rejunte'] = count( $esquema_banco['matriz_esperada_do_rejunte']['celulas'] );
+		}
+		if ( ! empty( $esquema_banco['vocabularios']['base'] ) ) {
+			$n['bases'] = count( $esquema_banco['vocabularios']['base'] );
+		}
+		if ( ! empty( $esquema_banco['vocabularios']['ambiente'] ) ) {
+			$n['ambientes'] = count( $esquema_banco['vocabularios']['ambiente'] );
+		}
+	}
+
 	/* O TOTAL DE ITENS DA ILHA, SOMADO — nunca digitado, e nunca confundido com o
 	   total de UMA categoria. Foi exatamente essa confusão que pôs no ar a frase
 	   "hoje 10 dos 5 itens esperam link": os dois números estavam certos sozinhos
@@ -2052,7 +2083,14 @@ add_shortcode( 'cdm_sobre', function () {
 
 	$html .= '<div class="cdm-secao"><h2>Por que existe o guia</h2>';
 	$html .= '<p>Porque a pergunta técnica do mosaico artesanal não tem dono. Quem procura "qual cola para mosaico" hoje encontra lojinha, Pinterest, vídeo e blog de 2012 — nenhum deles citando fabricante, código de ficha ou data. É um assunto em que errar custa caro: a peça descola semanas depois, e quem fez não sabe por quê.</p>';
-	$html .= '<p>Estado de hoje, sem arredondar para cima: ' . cdm_casca_num( $n['materiais_cola'] ) . ' adesivos de fabricante no banco, ' . cdm_casca_num( $n['celulas_matriz'] ) . ' combinações de base e ambiente mapeadas, e ' . cdm_casca_num( $n['celulas_sem_saida'] ) . ' delas declaradas sem resposta. Nenhuma recomendação foi herdada de blog.</p></div>';
+	/* A FRASE DECLARA O ESCOPO DO QUE ELA MEDIU. Estes números são da matriz de
+	   base × ambiente, e desde 13/09/2026 a ferramenta decide também pelo
+	   caquinho — então "nenhuma sem resposta" aqui NÃO quer dizer que a
+	   ferramenta responde tudo. Sem esta linha, o número certo vira promessa
+	   errada, que é a mesma família do "afirmação em bloco com escopo maior do
+	   que o medido". Quem tem o número completo é a própria ferramenta, e é
+	   para lá que a frase manda. */
+	$html .= '<p>Estado de hoje, sem arredondar para cima: ' . cdm_casca_num( $n['materiais_cola'] ) . ' adesivos de fabricante no banco e ' . cdm_casca_num( $n['celulas_matriz'] ) . ' combinações de base e lugar mapeadas, ' . ( (int) $n['celulas_sem_saida'] > 0 ? cdm_casca_num( $n['celulas_sem_saida'] ) . ' delas declaradas sem resposta' : 'nenhuma delas sem resposta' ) . '. Isso conta base e lugar; o caquinho que você vai colar também decide, e a conta com os três está na própria ' . cdm_casca_link_html( 'materiais/qual-cola-usar-no-mosaico', 'ferramenta de cola' ) . ', que a recalcula cada vez que é aberta. Nenhuma recomendação foi herdada de blog.</p></div>';
 
 	$html .= '<div class="cdm-secao"><h2>Como é feito</h2>';
 	$html .= '<p>O conteúdo técnico é versionado num repositório antes de chegar ao site, e o banco tem um verificador que reprova registro sem fonte, sem data ou com declaração incoerente — a tabela de recomendações é <em>recalculada</em> a partir das declarações dos fabricantes, nunca digitada à mão. O que está no ar passou por ele.</p>';

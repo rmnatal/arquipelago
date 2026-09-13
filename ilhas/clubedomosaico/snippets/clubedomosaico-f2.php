@@ -1,5 +1,10 @@
 /**
  * Clube do Mosaico F2 — Qual cola usar no mosaico, e qual rejunte
+ * Versão 1.3.0 (13/09/2026) — a REGRA 6 nasce, e com ela as duas faixas que esta
+ * página declarava não saber responder deixam de ser buracos. A regra 6 é a
+ * primeira regra de cola que olha o CAQUINHO: o Cascola PL500 declara que "ao
+ * menos uma das superfícies deve ser porosa", e isso não é base nem ambiente, é o
+ * PAR. A entrada do caquinho existia desde a 1.0.0 e nenhuma régua de cola a lia.
  * Versão 1.2.0 (13/09/2026) — a escada da seção 25 chega à tela. O `url_busca`
  * estava no banco desde 13/09 e nenhuma linha de código o lia: a escada existia
  * no dado e não no site. Ver `cdm_f2_compra_html()`.
@@ -53,16 +58,29 @@
  * ------------------------------------------------------------------------
  * O QUE ESTA PÁGINA DIZ QUE NÃO SABE
  * ------------------------------------------------------------------------
- * Duas faixas ficam sem recomendação publicada e a página escreve isso: base de
- * plástico (nenhum fabricante do banco declara colagem sobre plástico — o
- * neutro fala em "certos tipos de plástico", que não nomeia tipo nenhum) e peça
- * em contato permanente com água (a única declaração de colagem submersa que a
- * ilha tem é material de imprensa, nível 4, abaixo do mínimo). Silêncio parece
- * defeito; texto honesto, não.
+ * AS DUAS FAIXAS QUE ESTAVAM ESCRITAS AQUI FECHARAM EM 13/09/2026, e o registro
+ * do que elas eram fica porque explica a forma das duas regras novas:
+ *
+ * - **Base de plástico** ficava vazia porque o único produto que falava de
+ *   plástico dizia "certos tipos de plástico", que não nomeia tipo nenhum.
+ *   Abriu com o Cascola PL500, que lista "plásticos" sem qualificador — e que
+ *   trouxe junto a condição de porosidade, porque colar sobre plástico é
+ *   exatamente o caso em que a condição decide.
+ * - **Peça em contato permanente com água** ficava vazia porque a única
+ *   declaração de colagem submersa era press release de 2018 (nível 4, abaixo
+ *   do mínimo de 3). Abriu com o Silicone Acético Maxx, cuja declaração de
+ *   aquário e piscina está na página de produto do fabricante.
+ *
+ * O QUE CONTINUA SEM RESPOSTA, dito com o tamanho certo: das nove bases, o Maxx
+ * só entra em cerâmica, porque "cerâmicas vitrificadas" é a única superfície que
+ * o fabricante nomeia — as outras oito seguem descobertas dentro da água. E o
+ * PL500 é de uso interno declarado, então a base de plástico só está coberta
+ * dentro de casa, em lugar seco. Faixa que fechou em uma célula não fechou na
+ * linha inteira, e a página não finge que sim.
  */
 
 if ( ! defined( 'CDM_F2_VERSAO' ) ) {
-	define( 'CDM_F2_VERSAO', '1.2.0' );
+	define( 'CDM_F2_VERSAO', '1.3.0' );
 }
 if ( ! defined( 'CDM_F2_SLUG' ) ) {
 	/* Nível 3 com mãe /materiais/ direto — dois níveis em vez de três, estado de
@@ -324,6 +342,67 @@ function cdm_f2_nivel_maximo() {
 }
 }
 
+if ( ! function_exists( 'cdm_f2_porosas' ) ) {
+/**
+ * A classificação de porosidade, LIDA DO ESQUEMA — nunca escrita aqui.
+ *
+ * Seção 26.2 do ARQUIPELAGO.md: lista digitada dentro da régua envelhece calada no
+ * dia em que uma base nova entrar no vocabulário. E a outra metade da mesma seção é
+ * a que morde aqui: régua que lê a própria lista de um arquivo de dados aprova tudo,
+ * em silêncio, no dia em que o arquivo perder a chave. Por isso o retorno vazio NÃO
+ * é tratado como "nada é poroso" — `cdm_f2_condicao_conhecida()` separa "a condição
+ * não se aplica" de "a gente não sabe classificar", e quem não sabe não recomenda.
+ */
+function cdm_f2_porosas() {
+	static $cache = null;
+	if ( null !== $cache ) {
+		return $cache;
+	}
+	$banco = cdm_f2_banco();
+	$p     = isset( $banco['esquema']['superficies_porosas'] ) ? $banco['esquema']['superficies_porosas'] : array();
+	$cache = array(
+		'bases'    => array_flip( (array) ( isset( $p['bases_porosas'] ) ? $p['bases_porosas'] : array() ) ),
+		'tesselas' => array_flip( (array) ( isset( $p['tesselas_porosas'] ) ? $p['tesselas_porosas'] : array() ) ),
+		'existe'   => ( isset( $p['bases_porosas'] ) && isset( $p['tesselas_porosas'] ) ),
+	);
+
+	return $cache;
+}
+}
+
+if ( ! function_exists( 'cdm_f2_exige_porosa' ) ) {
+/** O fabricante declarou, para ESTE produto, que uma das superfícies tem de ser porosa. */
+function cdm_f2_exige_porosa( $m ) {
+	return ! empty( $m['condicoes']['exige_superficie_porosa']['valor'] );
+}
+}
+
+if ( ! function_exists( 'cdm_f2_condicao_conhecida' ) ) {
+/**
+ * A ilha ainda sabe classificar porosidade?
+ *
+ * Existe para a página nunca confundir "a condição não se aplica" com "a
+ * classificação sumiu". Se alguém apagar `superficies_porosas` do esquema, a
+ * régua acima passa a reprovar TODO produto com condição em TODA combinação —
+ * que é a direção segura — e é esta função que faz a tela dizer o motivo certo
+ * em vez de acusar o par de superfícies de uma coisa que ninguém mediu.
+ */
+function cdm_f2_condicao_conhecida() {
+	$p = cdm_f2_porosas();
+
+	return ! empty( $p['existe'] ) && $p['bases'] && $p['tesselas'];
+}
+}
+
+if ( ! function_exists( 'cdm_f2_condicao_cumprida' ) ) {
+/** A condição do fabricante, medida sobre o PAR de superfícies coladas. */
+function cdm_f2_condicao_cumprida( $base, $tessela ) {
+	$p = cdm_f2_porosas();
+
+	return isset( $p['bases'][ $base ] ) || isset( $p['tesselas'][ $tessela ] );
+}
+}
+
 if ( ! function_exists( 'cdm_f2_avaliar_cola' ) ) {
 /**
  * As cinco regras, na ordem em que elas decidem.
@@ -370,19 +449,40 @@ if ( ! function_exists( 'cdm_f2_celula_cola' ) ) {
  * A célula base × ambiente. SÓ materiais de categoria cola entram aqui — a
  * categoria é parte da pergunta, e um rejunte listado como "eliminado por
  * silêncio" numa célula de colagem é uma frase sem sentido.
+ *
+ * O TERCEIRO ARGUMENTO É A REGRA 6, e ele é opcional de propósito. Com `null`
+ * (que é o que a tabela pré-renderizada passa) a função devolve a camada de
+ * DECLARAÇÃO, que é a que a `matriz_esperada_da_F2` confere célula a célula.
+ * Com uma tessela, ela aplica a condição declarada do fabricante sobre o PAR de
+ * superfícies — e é essa que a resposta da pessoa usa, porque a pergunta dela
+ * sempre tem as duas.
+ *
+ * A ORDEM ESTÁ ESCRITA E IMPORTA: a condição roda DEPOIS das cinco regras e
+ * ANTES da ordenação por score. Rodar depois da ordenação deixaria célula sem
+ * topo com elegíveis na mão — em `vidro` + `caco de espelho` o produto com
+ * condição é justamente o primeiro colocado, e quem sobe no lugar dele são os
+ * dois silicones que estavam abaixo.
  */
-function cdm_f2_celula_cola( $base, $ambiente ) {
+function cdm_f2_celula_cola( $base, $ambiente, $tessela = null ) {
 	$banco       = cdm_f2_banco();
 	$recomendados = array();
 	$ressalva     = array();
 	$proibidos    = array();
 	$silencio     = array();
+	$condicao     = array();
 
 	foreach ( $banco['materiais'] as $id => $m ) {
 		if ( 'cola' !== ( isset( $m['categoria'] ) ? $m['categoria'] : '' ) ) {
 			continue;
 		}
 		list( $situacao, $score ) = cdm_f2_avaliar_cola( $m, $base, $ambiente );
+		if ( null !== $tessela
+			&& ( 'recomendado' === $situacao || 'ressalva' === $situacao )
+			&& cdm_f2_exige_porosa( $m )
+			&& ! cdm_f2_condicao_cumprida( $base, $tessela ) ) {
+			$condicao[] = $id;
+			continue;
+		}
 		if ( 'recomendado' === $situacao ) {
 			$recomendados[ $id ] = $score;
 		} elseif ( 'ressalva' === $situacao ) {
@@ -411,6 +511,7 @@ function cdm_f2_celula_cola( $base, $ambiente ) {
 	sort( $ressalva );
 	sort( $proibidos );
 	sort( $silencio );
+	sort( $condicao );
 
 	return array(
 		'recomendados_topo'        => $topo,
@@ -418,6 +519,7 @@ function cdm_f2_celula_cola( $base, $ambiente ) {
 		'mencionados_com_ressalva' => $ressalva,
 		'eliminados_por_proibicao' => $proibidos,
 		'eliminados_por_silencio'  => $silencio,
+		'eliminados_por_condicao'  => $condicao,
 	);
 }
 }
@@ -939,9 +1041,9 @@ function cdm_f2_motivo_proibicao( $id, $base, $ambiente ) {
  * ------------------------------------------------------------------------- */
 
 if ( ! function_exists( 'cdm_f2_resposta_cola_html' ) ) {
-function cdm_f2_resposta_cola_html( $base, $ambiente ) {
+function cdm_f2_resposta_cola_html( $base, $ambiente, $tessela ) {
 	$rot    = cdm_f2_rotulos();
-	$celula = cdm_f2_celula_cola( $base, $ambiente );
+	$celula = cdm_f2_celula_cola( $base, $ambiente, $tessela );
 	$nb     = $rot['base_curto'][ $base ];
 	$na     = $rot['ambiente_curto'][ $ambiente ];
 
@@ -957,6 +1059,26 @@ function cdm_f2_resposta_cola_html( $base, $ambiente ) {
 			. esc_html( $na ) . '</strong>, use <strong>' . esc_html( cdm_f2_lista_humana( $nomes ) ) . '</strong>'
 			. ( $quantos > 1 ? ' — os ' . ( 2 === $quantos ? 'dois' : $quantos ) . ' servem aqui, e a gente não escolhe por você o que o fabricante não separou.' : '.' )
 			. '</p>';
+	} elseif ( $celula['eliminados_por_condicao'] ) {
+		/* A RECUSA NOMEIA A CAUSA QUE A PÁGINA MEDIU (seção 7 do ARQUIPELAGO.md).
+		   A frase antiga dizia "nenhum dos adesivos do nosso banco é declarado
+		   pelo próprio fabricante para esse caso", e ela era verdadeira enquanto
+		   só existiam duas causas de exclusão. Com a regra 6 ela passou a ser
+		   FALSA exatamente onde mais importa: em plástico, dentro de casa, o
+		   Cascola PL500 É declarado pelo fabricante — ele só não cumpre uma
+		   condição que este par de superfícies não atende. Dizer "ninguém
+		   declara" ali seria afirmar sobre uma declaração que existe, e no mesmo
+		   parágrafo em que a página está prestes a citá-la. */
+		$nomes = array();
+		foreach ( $celula['eliminados_por_condicao'] as $id ) {
+			$nomes[] = cdm_f2_nome( $id );
+		}
+		$quantos = count( $nomes );
+		$html   .= '<p class="cdm-f2-frase cdm-f2-faixa">Não dá para indicar cola aqui, e o motivo '
+			. 'não é falta de declaração: <strong>' . esc_html( cdm_f2_lista_humana( $nomes ) ) . '</strong> '
+			. ( 1 === $quantos ? 'é declarado' : 'são declarados' ) . ' pelo fabricante para <strong>'
+			. esc_html( $nb ) . '</strong>, mas ' . ( 1 === $quantos ? 'exige' : 'exigem' )
+			. ' uma condição que este caso não cumpre. Logo abaixo está qual é, e o que mudaria.</p>';
 	} else {
 		$html .= '<p class="cdm-f2-frase cdm-f2-faixa">Não temos cola para indicar em <strong>' . esc_html( $nb )
 			. '</strong> ' . esc_html( $na ) . '. Nenhum dos adesivos do nosso banco é declarado pelo próprio fabricante para esse caso — e a gente prefere dizer isso a chutar o de sempre.</p>';
@@ -981,6 +1103,35 @@ function cdm_f2_resposta_cola_html( $base, $ambiente ) {
 		$html .= '<div class="cdm-prova"><p>' . implode( '. ', $provas ) . '.</p></div>';
 	}
 
+	/* A CONDIÇÃO DE QUEM FICOU, e a atribuição dividida ao meio (seção 26.3 do
+	   ARQUIPELAGO.md). O fabricante declarou a CONDIÇÃO — "ao menos uma das
+	   superfícies deve ser porosa" — e não declarou QUAIS superfícies são
+	   porosas: quem classifica o MDF, o caquinho de azulejo e o vidro somos nós.
+	   Escrever "a Cascola declara que a pastilha de cerâmica é porosa" seria
+	   emprestar autoridade dela para uma frase nossa, que é exatamente o defeito
+	   que a 26.3 nomeia. Por isso as duas metades saem em orações separadas, e o
+	   portão mede que as duas estão lá. */
+	$com_condicao = array();
+	foreach ( array_merge( $celula['recomendados_topo'], $celula['elegiveis_abaixo_do_topo'] ) as $id ) {
+		$banco = cdm_f2_banco();
+		$m     = $banco['materiais'][ $id ];
+		if ( ! cdm_f2_exige_porosa( $m ) ) {
+			continue;
+		}
+		$p        = cdm_f2_porosas();
+		$quem     = isset( $p['bases'][ $base ] )
+			? $rot['base_curto'][ $base ]
+			: mb_strtolower( $rot['tessela'][ $tessela ], 'UTF-8' );
+		$com_condicao[] = '<strong>' . esc_html( cdm_f2_nome( $id ) ) . '</strong> só serve aqui '
+			. 'porque uma das duas superfícies é porosa. A ' . esc_html( $m['fabricante'] )
+			. ' escreve <em>' . esc_html( $m['condicoes']['exige_superficie_porosa']['literal'] )
+			. '</em>; quem diz que <em>' . esc_html( $quem ) . '</em> é a superfície porosa deste caso '
+			. 'somos nós, não ela.';
+	}
+	if ( $com_condicao ) {
+		$html .= '<div class="cdm-f2-condicao"><p>' . implode( ' ', $com_condicao ) . '</p></div>';
+	}
+
 	$html .= '</div>';
 
 	return $html;
@@ -993,8 +1144,8 @@ if ( ! function_exists( 'cdm_f2_vitrine_html' ) ) {
  * adequação; (3) ter link de loja SÓ como desempate entre equivalentes. Nunca
  * comparar comissão, nunca promover produto pior porque paga mais.
  */
-function cdm_f2_vitrine_html( $base, $ambiente ) {
-	$celula = cdm_f2_celula_cola( $base, $ambiente );
+function cdm_f2_vitrine_html( $base, $ambiente, $tessela ) {
+	$celula = cdm_f2_celula_cola( $base, $ambiente, $tessela );
 	$banco  = cdm_f2_banco();
 
 	$ordem = $celula['recomendados_topo'];
@@ -1015,7 +1166,13 @@ function cdm_f2_vitrine_html( $base, $ambiente ) {
 	$html .= '<h2>Onde comprar</h2>';
 
 	if ( ! $ordem && ! $celula['elegiveis_abaixo_do_topo'] ) {
-		$html .= '<p>Não há o que listar aqui: nesta combinação nenhum produto do nosso banco passa no que o fabricante declara. Listar assim mesmo seria o contrário do que esta página existe para fazer.</p>';
+		/* Mesma correção de escopo da frase de recusa: onde quem caiu foi a
+		   condição, "nenhum produto passa no que o fabricante declara" é falso —
+		   ele passa no que o fabricante declara e não passa na condição que o
+		   mesmo fabricante põe. */
+		$html .= $celula['eliminados_por_condicao']
+			? '<p>Não há o que listar aqui. Não é que ninguém sirva para esta base: é que quem serve põe uma condição que este caso não cumpre, e ela está explicada logo abaixo. Vender assim mesmo seria o contrário do que esta página existe para fazer.</p>'
+			: '<p>Não há o que listar aqui: nesta combinação nenhum produto do nosso banco passa no que o fabricante declara. Listar assim mesmo seria o contrário do que esta página existe para fazer.</p>';
 		$html .= '</div>';
 
 		return $html;
@@ -1046,12 +1203,13 @@ if ( ! function_exists( 'cdm_f2_fora_html' ) ) {
  * Misturar os dois seria inventar proibição — que é tão desonesto quanto
  * inventar indicação.
  */
-function cdm_f2_fora_html( $base, $ambiente ) {
-	$celula = cdm_f2_celula_cola( $base, $ambiente );
+function cdm_f2_fora_html( $base, $ambiente, $tessela ) {
+	$celula = cdm_f2_celula_cola( $base, $ambiente, $tessela );
 	$rot    = cdm_f2_rotulos();
 	$banco  = cdm_f2_banco();
 
-	if ( ! $celula['eliminados_por_proibicao'] && ! $celula['eliminados_por_silencio'] && ! $celula['mencionados_com_ressalva'] ) {
+	if ( ! $celula['eliminados_por_proibicao'] && ! $celula['eliminados_por_silencio']
+		&& ! $celula['mencionados_com_ressalva'] && ! $celula['eliminados_por_condicao'] ) {
 		return '';
 	}
 
@@ -1102,6 +1260,37 @@ function cdm_f2_fora_html( $base, $ambiente ) {
 		}
 		$html .= '<p class="cdm-f2-ressalva">Existe menção a ' . esc_html( cdm_f2_lista_humana( $nomes ) )
 			. ', mas o que sustenta isso é material de imprensa do fabricante, não documento de produto — por isso ele aparece aqui embaixo e não na recomendação.</p>';
+	}
+
+	/* O GRUPO DA CONDIÇÃO — quarta causa, e ela precisou de frase própria porque
+	   não é nenhuma das três anteriores. Não é proibição: o fabricante não proíbe
+	   nada aqui. Não é silêncio: ele falou, e falou desta superfície. Não é fonte
+	   fraca: a fonte é a mesma que sustenta a recomendação dele em outros casos.
+	   É uma condição que ESTA combinação não cumpre — e juntar isso ao balde do
+	   silêncio seria a mistura de causas que a seção 7 do contrato proíbe desde
+	   12/09/2026, escrita nesta mesma ilha. */
+	if ( $celula['eliminados_por_condicao'] ) {
+		foreach ( $celula['eliminados_por_condicao'] as $id ) {
+			$m = $banco['materiais'][ $id ];
+			if ( ! cdm_f2_condicao_conhecida() ) {
+				/* A classificação sumiu do esquema. A direção segura é não
+				   recomendar, e a frase honesta é dizer o que aconteceu — nunca
+				   acusar as superfícies de uma coisa que ninguém mediu. */
+				$html .= '<p class="cdm-f2-condicao-fora"><strong>' . esc_html( cdm_f2_nome( $id ) )
+					. '</strong> — a ' . esc_html( $m['fabricante'] ) . ' exige uma condição de superfície '
+					. 'para este produto e a nossa classificação de superfícies não está disponível agora, '
+					. 'então ele fica de fora. Preferimos deixar de indicar a indicar sem conferir.</p>';
+				continue;
+			}
+			$html .= '<p class="cdm-f2-condicao-fora"><strong>' . esc_html( cdm_f2_nome( $id ) )
+				. '</strong> — não está proibido e não é falta de declaração: a '
+				. esc_html( $m['fabricante'] ) . ' escreve <em>'
+				. esc_html( $m['condicoes']['exige_superficie_porosa']['literal'] ) . '</em>, e '
+				. 'nem <em>' . esc_html( $rot['base_curto'][ $base ] )
+				. '</em> nem <em>' . esc_html( mb_strtolower( $rot['tessela'][ $tessela ], 'UTF-8' ) )
+				. '</em> absorvem água. Essa última parte é classificação nossa, não dela. '
+				. 'Trocando por ' . esc_html( cdm_f2_caquinhos_porosos_lista() ) . ', ele voltaria a servir.</p>';
+		}
 	}
 
 	$html .= '</div>';
@@ -1288,8 +1477,8 @@ if ( ! function_exists( 'cdm_f2_espera_html' ) ) {
  * O tempo de espera — o número que a SERP nunca dá, e que é a diferença entre a
  * peça pronta e a peça que solta o caquinho no dia seguinte.
  */
-function cdm_f2_espera_html( $base, $ambiente ) {
-	$celula = cdm_f2_celula_cola( $base, $ambiente );
+function cdm_f2_espera_html( $base, $ambiente, $tessela ) {
+	$celula = cdm_f2_celula_cola( $base, $ambiente, $tessela );
 	$banco  = cdm_f2_banco();
 	$linhas = array();
 
@@ -1332,6 +1521,177 @@ function cdm_f2_espera_html( $base, $ambiente ) {
  * preenche o formulário.
  * ------------------------------------------------------------------------- */
 
+if ( ! function_exists( 'cdm_f2_caquinhos_porosos_texto' ) ) {
+/**
+ * "pastilha de cerâmica, caquinho de azulejo, de louça e pedrinha servem; de
+ * vidro e de espelho não" — DERIVADO, nunca digitado.
+ *
+ * A primeira versão desta resposta trazia as seis palavras escritas à mão, e
+ * seria a terceira lista digitada deste mesmo bloco a envelhecer calada: bastaria
+ * uma tessela nova no vocabulário para a página ensinar errado com cara de
+ * conferido. Aqui ela sai das mesmas duas listas que a régua usa, então a
+ * resposta da pessoa e a decisão do código não têm como discordar.
+ */
+function cdm_f2_caquinhos_porosos_texto() {
+	$rot = cdm_f2_rotulos();
+	$p   = cdm_f2_porosas();
+
+	$servem = array();
+	$nao    = array();
+	foreach ( $rot['tessela'] as $id => $rotulo ) {
+		$nome = mb_strtolower( $rotulo, 'UTF-8' );
+		if ( isset( $p['tesselas'][ $id ] ) ) {
+			$servem[] = $nome;
+		} else {
+			$nao[] = $nome;
+		}
+	}
+
+	if ( ! $servem ) {
+		return 'nenhum dos caquinhos que a gente conhece resolve, e por isso este produto não entra aqui';
+	}
+	if ( ! $nao ) {
+		return 'qualquer um dos caquinhos que a gente conhece resolve';
+	}
+
+	return cdm_f2_lista_humana( $servem ) . ' resolvem; '
+		. cdm_f2_lista_humana( $nao ) . ' não';
+}
+}
+
+if ( ! function_exists( 'cdm_f2_caquinhos_porosos_lista' ) ) {
+/**
+ * Só os caquinhos que resolvem a condição, em lista humana — DERIVADO.
+ *
+ * A primeira versão desta frase trazia "cerâmica, azulejo, louça ou pedra"
+ * escrito à mão, e teria sido a QUARTA lista digitada deste mesmo bloco a
+ * envelhecer calada. Uma tessela nova no vocabulário e a página passa a ensinar
+ * errado com cara de conferida — e aqui doeria mais do que nas outras três,
+ * porque esta é a frase que diz à pessoa o que fazer para a peça não descolar.
+ */
+function cdm_f2_caquinhos_porosos_lista() {
+	$rot = cdm_f2_rotulos();
+	$p   = cdm_f2_porosas();
+
+	$servem = array();
+	foreach ( $rot['tessela'] as $id => $rotulo ) {
+		if ( isset( $p['tesselas'][ $id ] ) ) {
+			$servem[] = mb_strtolower( $rotulo, 'UTF-8' );
+		}
+	}
+
+	return $servem ? cdm_f2_lista_humana( $servem ) : 'nenhum caquinho do nosso vocabulário';
+}
+}
+
+if ( ! function_exists( 'cdm_f2_faixas_descobertas_html' ) ) {
+/**
+ * O que a ilha ainda NÃO responde — DERIVADO do banco, nunca digitado.
+ *
+ * Esta seção era duas frases escritas à mão, e as duas eram exatas no dia em que
+ * nasceram: "não indicamos cola para peça de plástico" e "nem para peça que fica
+ * dentro da água o tempo todo". Em 13/09/2026 entraram no banco o Cascola PL500
+ * e o Silicone Acético Maxx, e as duas frases passaram a mentir — no ar, em voz
+ * de confissão, o que é pior, porque frase de honestidade é a última que alguém
+ * desconfia. É a mesma família do número de tela digitado que esta ilha já pagou
+ * uma vez: o texto nasce certo e envelhece calado enquanto o dado embaixo dele
+ * muda.
+ *
+ * Então ela passa a ser contada. A varredura é a entrada INTEIRA — base ×
+ * lugar × caquinho, as três perguntas que a ferramenta faz —, porque desde a
+ * regra 6 o caquinho decide junto, e varrer só base × lugar seria afirmar sobre
+ * um escopo maior do que o medido.
+ */
+function cdm_f2_faixas_descobertas_html() {
+	$rot   = cdm_f2_rotulos();
+	$bases = array_keys( $rot['base_curto'] );
+	$ambs  = array_keys( $rot['ambiente_curto'] );
+	$tess  = array_keys( $rot['tessela'] );
+
+	$total       = 0;
+	$descobertos = 0;
+	$vazio_base  = array();   // base => quantos casos dela saem sem indicação
+	$vazio_amb   = array();
+	foreach ( $bases as $b ) {
+		$vazio_base[ $b ] = 0;
+		foreach ( $ambs as $a ) {
+			if ( ! isset( $vazio_amb[ $a ] ) ) {
+				$vazio_amb[ $a ] = 0;
+			}
+			foreach ( $tess as $t ) {
+				$total++;
+				$c = cdm_f2_celula_cola( $b, $a, $t );
+				if ( ! $c['recomendados_topo'] && ! $c['elegiveis_abaixo_do_topo'] ) {
+					$descobertos++;
+					$vazio_base[ $b ]++;
+					$vazio_amb[ $a ]++;
+				}
+			}
+		}
+	}
+
+	$por_base = count( $ambs ) * count( $tess );
+	$por_amb  = count( $bases ) * count( $tess );
+
+	$html  = '<div class="cdm-f2-secao">';
+	$html .= '<h2>O que a gente ainda não responde</h2>';
+
+	if ( 0 === $descobertos ) {
+		$html .= '<p>Hoje toda combinação desta página sai com pelo menos uma cola indicada pelo próprio fabricante. Quando deixar de ser assim, esta seção volta a listar o que falta — ela é contada do nosso banco, não escrita à mão.</p>';
+		$html .= '</div>';
+
+		return $html;
+	}
+
+	$html .= '<p>Esta página responde <strong>' . cdm_casca_num( $total ) . '</strong> combinações de base, lugar e caquinho. '
+		. 'Em <strong>' . cdm_casca_num( $descobertos ) . '</strong> delas a gente ainda não tem cola para indicar, '
+		. 'e prefere dizer isso a chutar o de sempre. Esta contagem sai do nosso banco a cada vez que a página é servida.</p>';
+
+	/* Base que sai vazia em TODOS os casos dela tem nome próprio: é a faixa que
+	   falta inteira, e não um canto dela. */
+	$inteiras = array();
+	foreach ( $vazio_base as $b => $n ) {
+		if ( $n === $por_base ) {
+			$inteiras[] = $rot['base_curto'][ $b ];
+		}
+	}
+	if ( $inteiras ) {
+		$html .= '<p class="cdm-f2-faixa">Não indicamos cola nenhuma, em lugar nenhum, para: <strong>'
+			. esc_html( cdm_f2_lista_humana( $inteiras ) ) . '</strong>.</p>';
+	}
+
+	$ambs_inteiros = array();
+	foreach ( $vazio_amb as $a => $n ) {
+		if ( $n === $por_amb ) {
+			$ambs_inteiros[] = mb_strtolower( $rot['ambiente_curto'][ $a ], 'UTF-8' );
+		}
+	}
+	if ( $ambs_inteiros ) {
+		$html .= '<p class="cdm-f2-faixa">E não indicamos cola nenhuma, sobre base nenhuma, para peça que fica <strong>'
+			. esc_html( cdm_f2_lista_humana( $ambs_inteiros ) ) . '</strong>.</p>';
+	}
+
+	/* Os cantos: base que responde em parte. É aqui que mora a diferença entre
+	   "a gente não sabe" e "a gente sabe num caso e não no outro" — e dizer as
+	   duas com a mesma frase seria afirmar num escopo maior do que o medido. */
+	$parciais = array();
+	foreach ( $vazio_base as $b => $n ) {
+		if ( $n > 0 && $n < $por_base ) {
+			$parciais[] = $rot['base_curto'][ $b ] . ' (' . $n . ' de ' . $por_base . ')';
+		}
+	}
+	if ( $parciais ) {
+		$html .= '<p class="cdm-f2-faixa">Estas bases a gente responde em parte, e o buraco é o resto: <strong>'
+			. esc_html( cdm_f2_lista_humana( $parciais ) ) . '</strong>. O que decide, caso a caso, é o lugar onde a peça vai ficar e o caquinho que você vai colar — troque os dois no formulário lá em cima e a resposta muda.</p>';
+	}
+
+	$html .= '<p>Ter metade da resposta não é ter a resposta, e a peça precisa das duas.</p>';
+	$html .= '</div>';
+
+	return $html;
+}
+}
+
 if ( ! function_exists( 'cdm_f2_tabela_cola_html' ) ) {
 function cdm_f2_tabela_cola_html() {
 	$banco  = cdm_f2_banco();
@@ -1343,10 +1703,11 @@ function cdm_f2_tabela_cola_html() {
 	}
 
 	$html  = '<div class="cdm-f2-secao"><h2>A tabela inteira, sem preencher nada</h2>';
-	$html .= '<p>Cada linha é uma combinação que a gente já conferiu: a base, o lugar onde a peça vai ficar, a cola que serve e a que não serve.</p>';
+	$html .= '<p>Cada linha é uma combinação que a gente já conferiu: a base, o lugar onde a peça vai ficar, a cola que serve, a que não serve, e a condição que o fabricante põe quando ele põe alguma.</p>';
 	$html .= '<div class="cdm-f2-rolagem"><table class="cdm-f2-tabela"><thead><tr>'
 		. '<th scope="col">Sobre o que você vai colar</th><th scope="col">Onde a peça vai ficar</th>'
-		. '<th scope="col">Use</th><th scope="col">Não use, e por quê</th></tr></thead><tbody>';
+		. '<th scope="col">Use</th><th scope="col">Não use, e por quê</th>'
+		. '<th scope="col">Com que condição</th></tr></thead><tbody>';
 
 	foreach ( $grade as $c ) {
 		if ( ! isset( $rot['base_curto'][ $c['base'] ] ) || ! isset( $rot['ambiente_curto'][ $c['ambiente'] ] ) ) {
@@ -1375,11 +1736,29 @@ function cdm_f2_tabela_cola_html() {
 			$nao[] = cdm_f2_nome( $id ) . ' — a ' . $m['fabricante'] . ' escreve ' . cdm_f2_lista_humana( $termos );
 		}
 
+		/* A COLUNA DA CONDIÇÃO, e ela existe por aritmética, não por capricho.
+		   Esta tabela é a camada de DECLARAÇÃO: ela não tem o caquinho, porque
+		   cruzá-lo aqui daria 108 linhas numa página cuja tabela existe para ser
+		   lida inteira por um modelo de linguagem. Sem esta coluna, a linha
+		   "plástico, dentro de casa: use Cascola PL500" seria servida no HTML
+		   como se valesse sempre — e ela só vale com caquinho poroso. É a
+		   afirmação em bloco com escopo maior do que o medido, que a seção 7 do
+		   contrato nomeia, e a tabela pré-renderizada é onde ela custa mais
+		   caro, porque é a metade que se lê sem preencher formulário. */
+		$cond = array();
+		foreach ( $celula['recomendados_topo'] as $id ) {
+			$m = $banco['materiais'][ $id ];
+			if ( cdm_f2_exige_porosa( $m ) ) {
+				$cond[] = cdm_f2_nome( $id ) . ': ' . $m['condicoes']['exige_superficie_porosa']['literal'];
+			}
+		}
+
 		$html .= '<tr>';
 		$html .= '<td>' . esc_html( $rot['base_curto'][ $c['base'] ] ) . '</td>';
 		$html .= '<td>' . esc_html( $rot['ambiente_curto'][ $c['ambiente'] ] ) . '</td>';
 		$html .= '<td>' . ( $usa ? esc_html( cdm_f2_lista_humana( $usa ) ) : '<span class="cdm-f2-vazio">a gente não indica nenhuma</span>' ) . '</td>';
 		$html .= '<td>' . ( $nao ? esc_html( cdm_f2_lista_humana( $nao ) ) : '—' ) . '</td>';
+		$html .= '<td>' . ( $cond ? esc_html( implode( '; ', $cond ) ) : '—' ) . '</td>';
 		$html .= '</tr>';
 	}
 
@@ -1541,23 +1920,17 @@ add_shortcode( 'cdm_f2', function () {
 	$html .= cdm_f2_form_html( $e );
 
 	$html .= '<div class="cdm-f2-saida" id="resposta">';
-	$html .= cdm_f2_resposta_cola_html( $e['base'], $e['ambiente'] );
-	$html .= cdm_f2_vitrine_html( $e['base'], $e['ambiente'] );
-	$html .= cdm_f2_espera_html( $e['base'], $e['ambiente'] );
+	$html .= cdm_f2_resposta_cola_html( $e['base'], $e['ambiente'], $e['tessela'] );
+	$html .= cdm_f2_vitrine_html( $e['base'], $e['ambiente'], $e['tessela'] );
+	$html .= cdm_f2_espera_html( $e['base'], $e['ambiente'], $e['tessela'] );
 	$html .= cdm_f2_resposta_rejunte_html( $e['junta'], $e['ambiente'], $e['tessela'] );
-	$html .= cdm_f2_fora_html( $e['base'], $e['ambiente'] );
+	$html .= cdm_f2_fora_html( $e['base'], $e['ambiente'], $e['tessela'] );
 	$html .= '</div>';
 
 	$html .= cdm_f2_tabela_cola_html();
 	$html .= cdm_f2_tabela_rejunte_html();
 
-	/* AS DUAS FAIXAS DESCOBERTAS, declaradas em vez de preenchidas no chute. */
-	$html .= '<div class="cdm-f2-secao">';
-	$html .= '<h2>Duas coisas que a gente ainda não responde</h2>';
-	$html .= '<p class="cdm-f2-faixa">Não indicamos cola para <strong>peça de plástico</strong>. Nenhum fabricante do nosso banco declara colagem sobre plástico: o que existe é um "certos tipos de plástico" que não nomeia tipo nenhum, e isso não dá para transformar em recomendação.</p>';
-	$html .= '<p class="cdm-f2-faixa">Não indicamos cola para <strong>peça que fica dentro da água o tempo todo</strong> — fonte, bebedouro, vaso com água parada. O rejunte dessa peça a gente tem: o rejunte epóxi Quartzolit é liberado para contato com água em 7 dias, com junta de 1 a 5 mm. A cola, não — a única menção de colagem submersa que achamos veio de material de imprensa, e material de imprensa não sustenta recomendação.</p>';
-	$html .= '<p>Ter metade da resposta não é ter a resposta, e a peça precisa das duas.</p>';
-	$html .= '</div>';
+	$html .= cdm_f2_faixas_descobertas_html();
 
 	/* PERGUNTAS QUE AS PESSOAS REALMENTE FAZEM — as mesmas do FAQPage abaixo. O
 	   texto na tela e o do schema saem da MESMA função, senão os dois envelhecem
@@ -1609,6 +1982,16 @@ function cdm_f2_perguntas() {
 		array(
 			'pergunta' => 'Quanto tempo esperar antes de rejuntar?',
 			'resposta' => 'Com silicone acético, 24 horas: é o tempo em que o fabricante declara 3 mm de cura, a 23 graus e 55% de umidade. Rejuntar antes disso é mexer na peça enquanto a cola ainda está trabalhando.',
+		),
+		/* A PERGUNTA QUE A ILHA PASSOU A SABER RESPONDER EM 13/09/2026, e ela é a
+		   cara da regra 6: a resposta depende das DUAS superfícies, e a página
+		   diz qual das duas resolve. Vaso de plástico é peça comum de mosaico
+		   (a busca existe no corpus do bloco 1) e até hoje a ilha não tinha o
+		   que responder. */
+		array(
+			'pergunta' => 'Dá para colar mosaico em vaso de plástico?',
+			'resposta' => 'Dá, com uma condição, e ela não é nossa: a Cascola declara plásticos entre os materiais em que o Adesivo de Montagem PL500 adere, e diz que ao menos uma das superfícies tem de ser porosa, porque o produto seca por evaporação da água. O plástico não é poroso — então quem resolve é o caquinho: '
+				. cdm_f2_caquinhos_porosos_texto() . '. Quem classificou essas superfícies fomos nós, não o fabricante. E vale só dentro de casa, em lugar seco: o produto é declarado para uso interno.',
 		),
 		array(
 			'pergunta' => 'Qual rejunte para peça que fica no sol e na chuva?',
@@ -1753,6 +2136,12 @@ add_action( 'wp_footer', function () {
 .cdm-f2-lista-fora{margin:.6rem 0 0;padding-left:1.1rem;}
 .cdm-f2-lista-fora li{margin:0 0 .5rem;}
 .cdm-f2-silencio,.cdm-f2-ressalva{font-size:.95rem;color:var(--cdm-legenda);margin:.7rem 0 0;}
+.cdm-f2-condicao-fora{font-size:.95rem;color:var(--cdm-legenda);margin:.7rem 0 0;}
+/* A condicao de quem FICOU na recomendacao nao e nota de rodape: ela e parte da
+   resposta, entao fica no corpo e nao na cor de legenda. Sem sombra e sem
+   gradiente (secao 6), separada por linha de 1px como o resto da ilha. */
+.cdm-f2-condicao{margin:.9rem 0 0;padding:.7rem .8rem;border:1px solid var(--cdm-traco);border-radius:2px;font-size:.95rem;}
+.cdm-f2-condicao p{margin:0;}
 .cdm-f2-rolagem{overflow-x:auto;}
 .cdm-f2-tabela{width:100%;font-size:.93rem;}
 .cdm-f2-vazio{color:var(--cdm-ambar);}

@@ -47,8 +47,13 @@ if ( false !== $pos_celula && isset( $argv[ $pos_celula + 1 ] ) ) {
 	$partes = explode( ':', $argv[ $pos_celula + 1 ] );
 	$tipo   = isset( $partes[0] ) ? $partes[0] : '';
 
-	if ( 'cola' === $tipo && isset( $partes[2] ) ) {
-		$c = cdm_f2_celula_cola( $partes[1], $partes[2] );
+	if ( 'cola' === $tipo && isset( $partes[3] ) ) {
+		/* O CAQUINHO ENTROU NA CHAVE EM 13/09/2026. Sem ele este cruzamento
+		   compararia o censo de 270 estados contra 45 respostas do snippet — e,
+		   pior, contra a camada de DECLARACAO dele, que e outra coisa do que a
+		   pagina serve. Cruzamento que compara duas coisas diferentes fica
+		   verde ou vermelho por motivo errado nos dois casos. */
+		$c = cdm_f2_celula_cola( $partes[1], $partes[2], $partes[3] );
 	} elseif ( 'rejunte' === $tipo && isset( $partes[2] ) ) {
 		$c = cdm_f2_celula_rejunte( (int) $partes[1], $partes[2] );
 	} else {
@@ -144,7 +149,7 @@ foreach ( array( 'cola', 'rejunte' ) as $tipo ) {
 
 	$vistos = array();
 	foreach ( $censo['estados'][ $tipo ] as $e ) {
-		$chave = ( 'cola' === $tipo ? $e['base'] : $e['junta_mm'] ) . '|' . $e['ambiente'];
+		$chave = ( 'cola' === $tipo ? $e['base'] . '|' . $e['tessela'] : $e['junta_mm'] ) . '|' . $e['ambiente'];
 		$vistos[ $chave ] = isset( $vistos[ $chave ] ) ? $vistos[ $chave ] + 1 : 1;
 	}
 	$repetidos = array_keys( array_filter( $vistos, function ( $n ) { return $n > 1; } ) );
@@ -157,7 +162,7 @@ $comparados = 0;
 $divergentes = array();
 
 foreach ( $censo['estados']['cola'] as $e ) {
-	$chave = 'cola:' . $e['base'] . ':' . $e['ambiente'];
+	$chave = 'cola:' . $e['base'] . ':' . $e['ambiente'] . ':' . $e['tessela'];
 	$doSite = cob_celula_do_snippet( $raiz, $chave );
 	$comparados++;
 	if ( null === $doSite || $doSite !== $e['elegiveis'] ) {

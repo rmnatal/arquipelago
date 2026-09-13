@@ -132,7 +132,7 @@ def m_secao_do_que_nao_usar_some(raiz):
     certa — e e por isso que a mutacao vale: um teste que so olhasse o topo da
     lista aprovaria."""
     editar(raiz, SNIPPET,
-           "\t$html .= cdm_f2_fora_html( $e['base'], $e['ambiente'] );",
+           "\t$html .= cdm_f2_fora_html( $e['base'], $e['ambiente'], $e['tessela'] );",
            "\t$html .= '';")
 
 
@@ -319,6 +319,231 @@ def m_cartao_sem_compra_some(raiz):
            "\t$html .= $bloco_compra;")
 
 
+
+# ------------------------------------------------- A REGRA 6, bloco 3e (13/09/2026)
+#
+# Estas quinze nascem com a regra e com os dois produtos que a obrigaram. Duas
+# coisas as separam das anteriores, e as duas sao exigencia da secao 8 do
+# contrato:
+#
+#   - CADA UMA DECLARA QUAL PORTAO TEM DE REPROVA-LA. Defeito pego pela regra
+#     vizinha prova que ALGUMA trava existe, nao que ESTA existe — e metade
+#     destas mutacoes fala com o validador do banco, nao com o teste da tela.
+#   - VARIAS PRODUZEM O MUNDO. O banco tem UM produto com condicao de
+#     superficie; regua escrita sobre um mundo de um elemento so nao e medicao,
+#     e sim ausencia de contraexemplo confundida com prova.
+
+
+def m_condicao_ignorada(raiz):
+    """A regra 6 cai: o produto com condicao volta a ser recomendado sempre.
+
+    E a mutacao central do bloco. Sem ela, a pagina manda colar pastilha de
+    vidro em vaso de plastico com um adesivo que seca por evaporacao de agua e
+    nao tem por onde secar."""
+    editar(raiz, SNIPPET,
+           "\t\t\t&& cdm_f2_exige_porosa( $m )\n\t\t\t&& ! cdm_f2_condicao_cumprida( $base, $tessela ) ) {",
+           "\t\t\t&& cdm_f2_exige_porosa( $m )\n\t\t\t&& false ) {")
+
+
+def m_condicao_sempre_falha(raiz):
+    """O avesso: a condicao passa a reprovar SEMPRE, e o produto some de toda
+    combinacao. Erro plausivel de quem inverte o sinal — e ele encolhe a
+    resposta em silencio, que e o modo de falhar mais dificil de ver."""
+    editar(raiz, SNIPPET,
+           "\treturn isset( $p['bases'][ $base ] ) || isset( $p['tesselas'][ $tessela ] );",
+           "\treturn false;")
+
+
+def m_condicao_so_olha_a_base(raiz):
+    """A condicao esquece o caquinho. Passa a valer em MDF e cimento e a
+    reprovar em plastico mesmo com pastilha de ceramica — ou seja, fecha de
+    novo a faixa que este bloco abriu, sem que nenhuma frase da pagina mude."""
+    editar(raiz, SNIPPET,
+           "\treturn isset( $p['bases'][ $base ] ) || isset( $p['tesselas'][ $tessela ] );",
+           "\treturn isset( $p['bases'][ $base ] );")
+
+
+def m_condicao_manda_para_o_silencio(raiz):
+    """A causa nova e jogada no balde do silencio. A elegibilidade fica IGUAL,
+    entao a unica coisa que muda e a frase que o leitor recebe: passa a ler que
+    o fabricante nao fala daquela superficie quando ele fala. E a mistura de
+    causas que a secao 7 proibe desde 12/09/2026, nesta mesma ilha."""
+    editar(raiz, SNIPPET,
+           "\t\t\t$condicao[] = $id;\n\t\t\tcontinue;",
+           "\t\t\t$silencio[] = $id;\n\t\t\tcontinue;")
+
+
+def m_condicao_antes_das_cinco(raiz):
+    """A regra 6 passa a rodar sobre QUEM FOI PROIBIDO tambem, e um produto
+    proibido pelo fabricante reaparece no grupo da condicao — que e uma forma
+    de ressuscitar proibicao com outro nome."""
+    editar(raiz, SNIPPET,
+           "\t\t\t&& ( 'recomendado' === $situacao || 'ressalva' === $situacao )",
+           "\t\t\t&& true")
+
+
+def m_recusa_volta_a_negar_a_declaracao(raiz):
+    """A frase de recusa volta a dizer que ninguem declara, num estado em que a
+    propria pagina cita a declaracao duas secoes abaixo. Foi o defeito que o
+    portao pegou nesta execucao, escrito de volta."""
+    editar(raiz, SNIPPET,
+           "\t} elseif ( $celula['eliminados_por_condicao'] ) {",
+           "\t} elseif ( false ) {")
+
+
+def m_atribuicao_vira_do_fabricante(raiz):
+    """A pagina passa a dizer que quem classificou a porosidade foi o
+    fabricante. A frase fica mais forte e mais vendavel, e e emprestimo de
+    autoridade: secao 26.3 do ARQUIPELAGO.md."""
+    editar(raiz, SNIPPET,
+           "'somos nós, não ela.';",
+           "'foi o próprio fabricante.';")
+
+
+def m_contagem_do_que_falta_vira_digitada(raiz):
+    """O numero da secao "o que a gente ainda nao responde" volta a ser
+    digitado. E a forma exata do defeito que esta secao veio consertar: o
+    numero nasce certo e envelhece calado."""
+    editar(raiz, SNIPPET,
+           "\t\t. 'Em <strong>' . cdm_casca_num( $descobertos ) . '</strong> delas a gente ainda não tem cola para indicar, '",
+           "\t\t. 'Em <strong>' . cdm_casca_num( 2 ) . '</strong> delas a gente ainda não tem cola para indicar, '")
+
+
+def m_contagem_esquece_o_caquinho(raiz):
+    """A varredura da secao do que falta perde a dimensao do caquinho e passa a
+    publicar 45 combinacoes em vez de 270 — afirmacao com escopo menor do que a
+    ferramenta responde."""
+    editar(raiz, SNIPPET,
+           "\t$tess  = array_keys( $rot['tessela'] );",
+           "\t$tess  = array( 'pastilha_vidro' );")
+
+
+def m_tabela_perde_a_coluna_da_condicao(raiz):
+    """A tabela pre-renderizada volta a servir "use Cascola PL500" em plastico
+    sem dizer a condicao. E a metade que um modelo de linguagem le sem preencher
+    formulario, e e onde a afirmacao sem escopo custa mais caro."""
+    editar(raiz, SNIPPET,
+           "\t\t\tif ( cdm_f2_exige_porosa( $m ) ) {",
+           "\t\t\tif ( false ) {")
+
+
+def m_esquema_perde_a_lista_de_porosas(raiz):
+    """A chave `superficies_porosas` some do esquema. E a mutacao que a secao
+    26.2 prescreve por escrito: regua que le a propria lista de um arquivo de
+    dados aprova tudo, em silencio, no dia em que o arquivo perder a chave. Ela
+    nao estraga registro nenhum."""
+    esquema = carregar(raiz, "esquema-banco.json")
+    del esquema["superficies_porosas"]
+    gravar(raiz, "esquema-banco.json", esquema)
+
+
+def m_base_nova_sem_classificacao(raiz):
+    """Uma base sai da classificacao de porosidade sem sair do vocabulario —
+    que e o que acontece no dia em que alguem acrescentar uma base e esquecer
+    esta lista. Sem a trava das duas direcoes, ela seria tratada como nao
+    porosa por omissao, decidindo por silencio."""
+    esquema = carregar(raiz, "esquema-banco.json")
+    esquema["superficies_porosas"]["bases_nao_porosas"].remove("metal")
+    gravar(raiz, "esquema-banco.json", esquema)
+
+
+def m_porosidade_em_duas_listas(raiz):
+    """A mesma base fica porosa E nao porosa. O codigo nao quebra: ele le a
+    lista das porosas e ignora a outra, entao a contradicao passaria calada."""
+    esquema = carregar(raiz, "esquema-banco.json")
+    esquema["superficies_porosas"]["bases_porosas"].append("plastico")
+    gravar(raiz, "esquema-banco.json", esquema)
+
+
+def m_ficha_nao_lida_volta_para_fontes(raiz):
+    """PRODUZ O MUNDO: a ficha localizada e nao lida volta para `fontes`, com o
+    nivel 2 dela. O produto inteiro sobe de nivel 3 para 2 e a linha de prova da
+    tela passa a atribuir a declaracao a um documento que ninguem abriu. Foi o
+    que esta execucao quase commitou."""
+    colas = carregar(raiz, "materiais-colas.json")
+    for m in colas["materiais"]:
+        if m["id"] == "tekbond-silicone-acetico-maxx":
+            m["fontes"]["ficha-brsa005"] = m.pop("fonte_localizada_nao_lida")
+    gravar(raiz, "materiais-colas.json", colas)
+
+
+def m_condicao_sem_dizer_quem_classifica(raiz):
+    """O campo que separa a condicao (do fabricante) da classificacao (nossa)
+    some do banco. Sem ele a tela nao tem como escolher a atribuicao certa, e a
+    26.3 vira intencao em vez de regra."""
+    colas = carregar(raiz, "materiais-colas.json")
+    for m in colas["materiais"]:
+        c = (m.get("condicoes") or {}).get("exige_superficie_porosa")
+        if c:
+            del c["quem_classifica_a_porosidade"]
+    gravar(raiz, "materiais-colas.json", colas)
+
+
+def m_segundo_produto_com_condicao(raiz):
+    """PRODUZ O MUNDO: um SEGUNDO produto ganha a condicao de superficie, e o
+    esquema nao e atualizado. O banco de hoje tem um so, entao a afirmacao que
+    cobra a lista `produtos_que_carregam_a_condicao_hoje` nunca foi exercitada
+    por um mundo com dois — e produto novo entrando mudo e exatamente o modo de
+    falhar que ela existe para impedir."""
+    colas = carregar(raiz, "materiais-colas.json")
+    for m in colas["materiais"]:
+        if m["id"] == "cascola-cascorez-extra":
+            m["condicoes"] = {
+                "exige_superficie_porosa": {
+                    "valor": True,
+                    "literal": "seca por evaporacao da agua",
+                    "fonte_id": list(m["fontes"].keys())[0],
+                    "quem_classifica_a_porosidade": "a ilha",
+                }
+            }
+    gravar(raiz, "materiais-colas.json", colas)
+
+
+def m_validador_condicao_antes_das_cinco(raiz):
+    """A GEMEA DA ANTERIOR, do lado do Python. A de cima edita o snippet e e
+    pega pela tela; esta edita o validador e e pega pela afirmacao que ele ja
+    tinha e que nunca tinha sido exercitada — "a condicao moveu quem nao estava
+    elegivel antes". Duas implementacoes da mesma regra precisam das duas
+    mutacoes: quem so muta uma delas mede metade."""
+    caminho = os.path.join(raiz, "ferramentas", "validar-banco.py")
+    with open(caminho, encoding="utf-8") as fh:
+        texto = fh.read()
+    velho = '        if situacao in ("recomendado", "ressalva") and exige_porosa(m) \\\n                and not condicao_cumprida(base, tessela):'
+    novo = '        if exige_porosa(m) \\\n                and not condicao_cumprida(base, tessela):'
+    if velho not in texto:
+        raise AssertionError("mutacao INERTE: nao achei a guarda da regra 6 no validador")
+    with open(caminho, "w", encoding="utf-8") as fh:
+        fh.write(texto.replace(velho, novo, 1))
+
+
+def m_proibido_com_condicao_cai_no_bloco_errado(raiz):
+    """PRODUZ O MUNDO, e sem ele a trava mais nova do portao NAO PODE FALHAR.
+
+    A afirmacao "produto proibido sai no bloco da proibicao, nunca no da
+    condicao" nasceu verde e sem poder errar: o banco tem UM produto com
+    condicao de superficie e ele nao e proibido em base nenhuma, entao o estado
+    que ela mede nao existe. E a cicatriz que a secao 8 do ARQUIPELAGO.md
+    descreve com todas as letras — regua escrita para um mundo que nunca
+    aconteceu, verde desde sempre.
+
+    Esta mutacao cria o mundo em duas metades: (1) o fabricante do PL500 passa a
+    proibir espelho, e (2) a regra 6 passa a rodar tambem sobre quem foi
+    proibido. Com as duas, o produto proibido sai da pagina acusado de falta de
+    porosidade — a pagina troca a frase mais forte que ela tem ("o fabricante
+    escreve espelhos na lista do que este produto nao deve tocar") por uma
+    frase sobre outra coisa. A elegibilidade nao muda; so o que o leitor le.
+    """
+    colas = carregar(raiz, "materiais-colas.json")
+    for m in colas["materiais"]:
+        if m["id"] == "cascola-pl500-adesivo-de-montagem":
+            m["declaracoes"]["nao_usar_em"] = ["espelhos"]
+            m["declaracoes"]["indicado_para"].append("espelhos")
+    gravar(raiz, "materiais-colas.json", colas)
+    editar(raiz, SNIPPET,
+           "\t\t\t&& ( 'recomendado' === $situacao || 'ressalva' === $situacao )",
+           "\t\t\t&& true")
+
+
 MUTACOES = [
     ("proibicao do fabricante deixa de vencer", m_proibicao_deixa_de_vencer),
     ("silencio do fabricante vira 'pode'", m_silencio_vira_pode),
@@ -347,12 +572,44 @@ MUTACOES = [
     ("o botao de busca promete a ficha do produto", m_botao_de_busca_promete_ficha),
     ("o link de busca perde o rel=sponsored", m_busca_sem_sponsored),
     ("cartao sem nenhum degrau some em vez de reservar o lugar", m_cartao_sem_compra_some),
+    # --- regra 6, bloco 3e. A terceira coluna diz QUAL portao tem de reprovar:
+    #     "tela" = ferramentas/teste-f2.php; "banco" = ferramentas/validar-banco.py.
+    #     Sem ela, uma mutacao reprovada pela trava VIZINHA passaria por prova de
+    #     que a trava NOVA existe.
+    ("a regra 6 e ignorada: quem tem condicao e recomendado sempre", m_condicao_ignorada, "tela"),
+    ("a condicao reprova SEMPRE e o produto some de tudo", m_condicao_sempre_falha, "tela"),
+    ("a condicao esquece o caquinho e so olha a base", m_condicao_so_olha_a_base, "tela"),
+    ("a condicao manda o produto para o balde do silencio", m_condicao_manda_para_o_silencio, "tela"),
+    ("a condicao roda antes das cinco e ressuscita proibido", m_condicao_antes_das_cinco, "tela"),
+    ("a recusa volta a negar a declaracao que a pagina cita", m_recusa_volta_a_negar_a_declaracao, "tela"),
+    ("a classificacao de porosidade vira declaracao do fabricante", m_atribuicao_vira_do_fabricante, "tela"),
+    ("o numero do que falta volta a ser digitado", m_contagem_do_que_falta_vira_digitada, "tela"),
+    ("a contagem do que falta esquece o caquinho", m_contagem_esquece_o_caquinho, "tela"),
+    ("a tabela pre-renderizada perde a coluna da condicao", m_tabela_perde_a_coluna_da_condicao, "tela"),
+    ("o esquema perde a lista de superficies porosas", m_esquema_perde_a_lista_de_porosas, "banco"),
+    ("uma base fica sem classificacao de porosidade", m_base_nova_sem_classificacao, "banco"),
+    ("a mesma base fica porosa E nao porosa", m_porosidade_em_duas_listas, "banco"),
+    ("PRODUZ O MUNDO: a ficha nao lida volta para fontes", m_ficha_nao_lida_volta_para_fontes, "banco"),
+    ("a condicao para de dizer quem classifica a porosidade", m_condicao_sem_dizer_quem_classifica, "banco"),
+    ("PRODUZ O MUNDO: um segundo produto ganha a condicao, mudo", m_segundo_produto_com_condicao, "banco"),
+    ("no VALIDADOR, a condicao roda antes das cinco", m_validador_condicao_antes_das_cinco, "banco"),
+    ("PRODUZ O MUNDO: proibido COM condicao sai no bloco errado", m_proibido_com_condicao_cai_no_bloco_errado, "tela"),
 ]
 
 
-def rodar_teste(raiz):
-    r = subprocess.run(["php", os.path.join(raiz, "ferramentas", "teste-f2.php"), raiz],
-                       capture_output=True, text=True)
+def rodar_teste(raiz, portao="tela"):
+    """Roda o portao que a mutacao declarou.
+
+    Uma mutacao pode ser reprovada pela trava VIZINHA e nao pela que ela mira —
+    e ai o verde prova que ALGUMA trava existe, nunca que ESTA existe. Por isso
+    cada mutacao da regra 6 nomeia o portao, e e so ele que decide.
+    """
+    if portao == "banco":
+        r = subprocess.run([sys.executable, os.path.join(raiz, "ferramentas", "validar-banco.py")],
+                           capture_output=True, text=True, cwd=raiz)
+    else:
+        r = subprocess.run(["php", os.path.join(raiz, "ferramentas", "teste-f2.php"), raiz],
+                           capture_output=True, text=True)
     return r.returncode, (r.stdout + r.stderr)
 
 
@@ -364,8 +621,17 @@ def main():
         return 1
     print("F2 intacta: APROVADA (como tem que estar antes de comecar)\n")
 
+    base_rc_banco, base_saida_banco = rodar_teste(ILHA, "banco")
+    if base_rc_banco != 0:
+        print("O banco de verdade ja esta reprovado — conserte antes de mutar.")
+        print("\n".join(l for l in base_saida_banco.splitlines() if "ERRO" in l or "-" == l[:1]))
+        return 1
+    print("Banco intacto: APROVADO\n")
+
     passaram = []
-    for nome, mutar in MUTACOES:
+    for entrada in MUTACOES:
+        nome, mutar = entrada[0], entrada[1]
+        portao = entrada[2] if len(entrada) > 2 else "tela"
         tmp = tempfile.mkdtemp(prefix="mut-f2-")
         copia = os.path.join(tmp, "ilha")
         shutil.copytree(ILHA, copia)
@@ -376,17 +642,17 @@ def main():
                 passaram.append(nome + " [" + str(erro) + "]")
                 print("  INERTE (nao achou o alvo): %s" % nome)
                 continue
-            rc, saida = rodar_teste(copia)
+            rc, saida = rodar_teste(copia, portao)
             if rc == 0:
                 passaram.append(nome)
                 print("  PASSOU (a trava NAO viu): %s" % nome)
             else:
                 primeira = ""
                 for linha in saida.splitlines():
-                    if "FALHA" in linha:
+                    if "FALHA" in linha or linha.strip().startswith("- "):
                         primeira = " ".join(linha.split())[6:]
                         break
-                print("  reprovou como devia: %-56s | %s" % (nome, primeira[:80]))
+                print("  reprovou como devia [%s]: %-48s | %s" % (portao, nome, primeira[:70]))
         finally:
             shutil.rmtree(tmp, ignore_errors=True)
 

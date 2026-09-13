@@ -326,6 +326,61 @@ f2_ok( empty( $sem_acento ), 'nenhum estado serve portugues sem acento',
  * 5. AS 18 CELULAS CONFERIDAS — a regua escrita a mao contra o que a tela diz
  * ------------------------------------------------------------------------- */
 
+/* ---------------------------------------------------------------------------
+ * A REGUA DA REGRA 6, escrita AQUI.
+ *
+ * Ela le `superficies_porosas` do esquema e `condicoes` do banco, e nao chama
+ * uma linha do snippet. E a trava da secao 8: duas metades que erram juntas
+ * ficam verdes. A varredura acima serve os 45 estados SEM escolher caquinho, e
+ * o padrao da ferramenta e pastilha de vidro — que NAO e porosa. Entao a
+ * matriz escrita a mao no esquema, que e a camada de DECLARACAO, nao pode ser
+ * comparada crua com o que a tela serve: quem carrega condicao cai antes de
+ * chegar la, e e esta funcao que diz quem.
+ * ------------------------------------------------------------------------- */
+
+$porosas_base    = array_flip( $esquema['superficies_porosas']['bases_porosas'] );
+$porosas_tessela = array_flip( $esquema['superficies_porosas']['tesselas_porosas'] );
+
+/** Os elegiveis da camada de declaracao, lidos da matriz escrita a mao. */
+function f2_elegiveis_da_matriz( $esquema, $base, $ambiente ) {
+	static $cache = array();
+	$chave = $base . '|' . $ambiente;
+	if ( isset( $cache[ $chave ] ) ) {
+		return $cache[ $chave ];
+	}
+	$cache[ $chave ] = array();
+	foreach ( $esquema['matriz_esperada_da_F2']['celulas'] as $c ) {
+		if ( $c['base'] === $base && $c['ambiente'] === $ambiente ) {
+			$cache[ $chave ] = array_merge(
+				isset( $c['recomendados_topo'] ) ? $c['recomendados_topo'] : array(),
+				isset( $c['elegiveis_abaixo_do_topo'] ) ? $c['elegiveis_abaixo_do_topo'] : array() );
+		}
+	}
+
+	return $cache[ $chave ];
+}
+
+function f2_exige_porosa_no_banco( $m ) {
+	return ! empty( $m['condicoes']['exige_superficie_porosa']['valor'] );
+}
+
+function f2_condicao_falha( $m, $base, $tessela ) {
+	global $porosas_base, $porosas_tessela;
+	if ( ! f2_exige_porosa_no_banco( $m ) ) {
+		return false;
+	}
+
+	return ! isset( $porosas_base[ $base ] ) && ! isset( $porosas_tessela[ $tessela ] );
+}
+
+/* O caquinho que a varredura dos 45 estados realmente serviu. Lido da entrada
+   saneada da propria ferramenta e nao digitado aqui: se um dia o padrao mudar,
+   este portao acompanha em vez de medir um estado que ninguem ve. */
+$entrada_padrao = cdm_f2_entrada();
+$tessela_varrida = $entrada_padrao['tessela'];
+f2_ok( isset( $rot['tessela'][ $tessela_varrida ] ),
+	'o caquinho padrao da varredura e um do vocabulario', $tessela_varrida );
+
 echo "\n5. As " . $esperadas_cola . " celulas de cola, contra a matriz escrita a mao no bloco 3\n";
 
 $erros_celula = array();
@@ -342,19 +397,78 @@ foreach ( $esquema['matriz_esperada_da_F2']['celulas'] as $c ) {
 	/* A FRASE-RESPOSTA e a vitrine sao onde o recomendado aparece. A secao de
 	   eliminados fica FORA desta medida de proposito: o nome de um produto
 	   proibido aparece la, e contar na pagina inteira encontraria os dois. */
-	$pedaco = '';
+	$pedaco_html = '';
 	if ( preg_match( '#<div class="cdm-f2-resposta">(.*?)</div>\s*<div class="cdm-f2-secao">\s*<h2>Onde comprar</h2>(.*?)(?=<div class="cdm-f2-secao">)#is', $corpo, $mp ) ) {
-		$pedaco = f2_texto( $mp[1] . $mp[2] );
+		$pedaco_html = $mp[1] . $mp[2];
 	} elseif ( preg_match( '#<div class="cdm-f2-resposta">(.*?)</div>#is', $corpo, $mp ) ) {
-		$pedaco = f2_texto( $mp[1] );
+		$pedaco_html = $mp[1];
 	}
+	$pedaco = f2_texto( $pedaco_html );
 	$fora_html = preg_match( '#<div class="cdm-f2-secao cdm-f2-fora">(.*?)</div>#is', $corpo, $mf ) ? $mf[1] : '';
 	$fora      = f2_texto( $fora_html );
 
-	foreach ( $c['recomendados_topo'] as $id ) {
+	/* O BLOCO DE RECUSA SAI DO PEDACO ANTES DE QUALQUER AFIRMACAO SOBRE QUEM
+	   ESTA RECOMENDADO — e isto e a quarta trava da secao 8 do ARQUIPELAGO.md
+	   aplicada de novo, agora contra um texto que esta execucao mesma escreveu.
+	   A recusa da regra 6 NOMEIA o produto ("o Cascola PL500 e declarado para
+	   plastico, mas exige uma condicao..."), porque a secao 7 manda nomear a
+	   causa medida. A regua antiga media presenca de palavra dentro da regiao da
+	   resposta e leu esse nome como recomendacao: acusou de GRAVE uma pagina que
+	   estava dizendo exatamente a verdade. A saida nao e heuristica melhor (
+	   procurar "mas exige" perto do nome seria adivinhar pela vizinhanca): e a
+	   pagina MARCAR a recusa no markup, que ela ja faz com `cdm-f2-faixa`, e o
+	   teste retirar o marcado e proibir o nome em todo o resto.
+
+	   E para a declaracao nao virar porta dos fundos — bastaria embrulhar a
+	   vitrine inteira na classe de recusa —, o bloco marcado tem de ABRIR
+	   negando, e eles sao CONTADOS: no maximo um por resposta de cola. */
+	$blocos_recusa = array();
+	if ( preg_match_all( '#<p class="cdm-f2-frase cdm-f2-faixa">(.*?)</p>#is', $pedaco_html, $mr ) ) {
+		$blocos_recusa = $mr[1];
+	}
+	foreach ( $blocos_recusa as $bloco ) {
+		$t_bloco = f2_texto( $bloco );
+		if ( 0 !== mb_strpos( $t_bloco, 'Não' ) ) {
+			$graves[] = $chave . ': bloco marcado como recusa que nao ABRE negando — "'
+				. mb_substr( $t_bloco, 0, 40 ) . '"';
+		}
+	}
+	if ( count( $blocos_recusa ) > 1 ) {
+		$graves[] = $chave . ': ' . count( $blocos_recusa ) . ' blocos de recusa numa resposta so';
+	}
+	$pedaco = f2_texto( preg_replace( '#<p class="cdm-f2-frase cdm-f2-faixa">.*?</p>#is', '', $pedaco_html ) );
+
+	/* A MATRIZ DO ESQUEMA E A CAMADA DE DECLARACAO; a tela e ela MENOS a regra 6.
+	   Quem carrega condicao e nao a cumpre neste par de superficies sai da
+	   recomendacao e tem de aparecer no grupo proprio — e as duas metades sao
+	   cobradas, porque so cobrar a primeira deixaria o produto sumir da pagina
+	   inteira sem ninguem ver. */
+	$caidos_pela_condicao = array();
+	$elegiveis_da_celula  = array_merge(
+		isset( $c['recomendados_topo'] ) ? $c['recomendados_topo'] : array(),
+		isset( $c['elegiveis_abaixo_do_topo'] ) ? $c['elegiveis_abaixo_do_topo'] : array() );
+	foreach ( $elegiveis_da_celula as $id ) {
+		if ( f2_condicao_falha( $por_id[ $id ], $c['base'], $tessela_varrida ) ) {
+			$caidos_pela_condicao[] = $id;
+		}
+	}
+	$sobreviventes = array_values( array_diff( $elegiveis_da_celula, $caidos_pela_condicao ) );
+
+	foreach ( $sobreviventes as $id ) {
 		$nome = f2_nome_esperado( $por_id[ $id ] );
 		if ( false === mb_strpos( $pedaco, $nome ) ) {
 			$erros_celula[] = $chave . ': "' . $nome . '" era para estar recomendado e nao esta';
+		}
+	}
+	foreach ( $caidos_pela_condicao as $id ) {
+		$nome = f2_nome_esperado( $por_id[ $id ] );
+		if ( false !== mb_strpos( $pedaco, $nome ) ) {
+			/* Mesmo peso do defeito GRAVE: a pagina estaria recomendando um produto
+			   que ela mesma, duas secoes abaixo, diz que nao cumpre a condicao. */
+			$graves[] = $chave . ': "' . $nome . '" caiu pela condicao e mesmo assim esta recomendado';
+		}
+		if ( false === mb_strpos( $fora, $nome ) ) {
+			$erros_celula[] = $chave . ': "' . $nome . '" caiu pela condicao e sumiu da pagina';
 		}
 	}
 	foreach ( $c['eliminados_por_proibicao'] as $id ) {
@@ -366,6 +480,25 @@ foreach ( $esquema['matriz_esperada_da_F2']['celulas'] as $c ) {
 		}
 		if ( false === mb_strpos( $fora, $nome ) ) {
 			$erros_celula[] = $chave . ': "' . $nome . '" nao aparece na secao do que nao usar';
+		}
+		/* E APARECE NO BLOCO DA CAUSA CERTA. A afirmacao acima procura o nome na
+		   secao inteira, e ficou verde quando uma mutacao fez a regra 6 rodar
+		   ANTES das cinco: o produto proibido pelo fabricante saia do bloco da
+		   proibicao e caia no da condicao, e a pagina parava de dizer "a Tekbond
+		   escreve espelhos na lista do que este produto nao deve tocar" para
+		   dizer que faltava porosidade. A elegibilidade nao muda; a frase que o
+		   leitor recebe muda inteira, e e a frase que esta pagina vende.
+		   Causa se mede pelo BLOCO em que o produto sai, nunca por estar na
+		   secao — e o bloco e marcado no markup, como manda a secao 8. */
+		$lista_proibicao = preg_match( '#<ul class="cdm-f2-lista-fora">(.*?)</ul>#is', $fora_html, $mlp )
+			? f2_texto( $mlp[1] ) : '';
+		$blocos_condicao = preg_match_all( '#<p class="cdm-f2-condicao-fora">(.*?)</p>#is', $fora_html, $mbc )
+			? f2_texto( implode( ' ', $mbc[1] ) ) : '';
+		if ( false === mb_strpos( $lista_proibicao, $nome ) ) {
+			$graves[] = $chave . ': "' . $nome . '" e proibido pelo fabricante e nao esta no bloco da proibicao';
+		}
+		if ( '' !== $blocos_condicao && false !== mb_strpos( $blocos_condicao, $nome ) ) {
+			$graves[] = $chave . ': "' . $nome . '" e proibido e aparece como caso de condicao de superficie';
 		}
 	}
 	/* A LISTA DO SILENCIO E CONFERIDA NOS DOIS SENTIDOS, e nao por acaso: sem
@@ -393,9 +526,22 @@ foreach ( $esquema['matriz_esperada_da_F2']['celulas'] as $c ) {
 		}
 	}
 
-	/* Celula sem recomendado tem que DIZER que nao tem, nunca ficar em branco. */
-	if ( ! $c['recomendados_topo'] && false === mb_strpos( f2_texto( $corpo ), 'Não temos cola para indicar' ) ) {
-		$erros_celula[] = $chave . ': faixa descoberta sem a frase que a declara';
+	/* Celula sem recomendado tem que DIZER que nao tem, nunca ficar em branco — e
+	   dizer a CAUSA CERTA. Sao duas frases porque sao duas causas: "ninguem
+	   declara" e "alguem declara e a condicao nao fecha". Trocar uma pela outra
+	   e a afirmacao em bloco com escopo maior do que o medido. */
+	if ( ! $sobreviventes ) {
+		$t_corpo = f2_texto( $corpo );
+		if ( $caidos_pela_condicao ) {
+			if ( false === mb_strpos( $t_corpo, 'o motivo não é falta de declaração' ) ) {
+				$erros_celula[] = $chave . ': caiu pela condicao e a recusa nao nomeia a causa medida';
+			}
+			if ( false !== mb_strpos( $t_corpo, 'Nenhum dos adesivos do nosso banco é declarado' ) ) {
+				$graves[] = $chave . ': a pagina nega que exista declaracao e ela mesma cita a declaracao';
+			}
+		} elseif ( false === mb_strpos( $t_corpo, 'Não temos cola para indicar' ) ) {
+			$erros_celula[] = $chave . ': faixa descoberta sem a frase que a declara';
+		}
 	}
 }
 f2_ok( empty( $graves ), 'nenhuma pagina recomenda o que ela mesma diz que nao serve',
@@ -725,8 +871,48 @@ f2_ok( $botoes_busca > 0, 'PRODUZ O MUNDO: sem ficha, a busca sobe e vira o bota
 	$botoes_busca . ' botoes de busca' );
 f2_ok( false !== mb_strpos( $mundo_so_busca, 'Ver as opções na loja' ),
 	'o botao de busca tem texto PROPRIO — ele abre uma lista, nao a ficha do produto' );
-f2_ok( false === mb_strpos( $mundo_so_busca, 'Link de loja em breve' ),
-	'25.2: com piso no banco, a pagina NUNCA diz "em breve" — ela ja esta monetizada' );
+/* A AFIRMACAO ERA "NUNCA DIZ EM BREVE", E ELA MORREU NO DIA EM QUE O BANCO
+   CRESCEU — de um jeito que vale escrever, porque e a forma disfarcada do
+   numero digitado. Ela nasceu em 13/09/2026 de manha, quando os CINCO itens de
+   cola tinham piso, e naquele mundo ela era exata. Ao entrarem dois produtos
+   sem piso, no mesmo dia a tarde, ela passou a reprovar uma pagina CERTA: a
+   25.2 manda o cartao reservar o lugar de quem nao tem nem piso, e era isso que
+   a tela estava fazendo. O conserto nao e afrouxar — e contar. O numero de
+   "em breve" na tela tem de ser IGUAL ao numero de cartoes cujo produto o BANCO
+   diz estar sem piso, e essa versao e mais dura que a antiga nas duas direcoes:
+   ela reprova o "em breve" a mais (o defeito original) E o "em breve" a menos,
+   que seria a pagina escondendo do leitor que aquele produto nao tem para onde
+   mandar. A antiga ficaria verde de graca no dia em que todo item tivesse piso
+   de novo; esta continua medindo. */
+$cartoes_sem_piso_no_banco = 0;
+if ( preg_match_all( '#<li class="cdm-f2-cartao[^"]*">(.*?)</li>#is', $mundo_so_busca, $mcb ) ) {
+	foreach ( $mcb[1] as $cartao ) {
+		/* O nome sai do <h3> do cartao, que e onde a tela o escreve, e nao de uma
+		   busca por substring no cartao inteiro: `strip_tags` cola a marca no
+		   nome ("TekbondSilicone Acetico Maxx") e a comparacao ingenua nunca
+		   casa. Errar isso deixaria o contador em zero e o portao verde por
+		   vacuidade, que e o defeito que este portao existe para pegar. */
+		if ( ! preg_match( '#<h3>(.*?)</h3>#is', $cartao, $mh ) ) {
+			continue;
+		}
+		$nome_no_cartao = f2_texto( $mh[1] );
+		foreach ( $por_id as $m ) {
+			if ( ! empty( $m['afiliado']['url_busca'] ) ) {
+				continue;
+			}
+			if ( $nome_no_cartao === (string) $m['nome_comercial'] ) {
+				$cartoes_sem_piso_no_banco++;
+				break;
+			}
+		}
+	}
+	f2_ok( count( $mcb[1] ) > 0, 'a varredura do mundo sem ficha acha os cartoes para contar',
+		count( $mcb[1] ) . ' cartoes' );
+}
+$em_breve_na_tela = substr_count( $mundo_so_busca, 'Link de loja em breve' );
+f2_ok( $em_breve_na_tela === $cartoes_sem_piso_no_banco,
+	'25.2: a tela diz "em breve" exatamente para quem o BANCO diz estar sem piso',
+	$em_breve_na_tela . ' na tela, ' . $cartoes_sem_piso_no_banco . ' contados no banco' );
 f2_ok( false === mb_strpos( $mundo_so_busca, 'Ver na loja</a>' ),
 	'sem ficha, nenhum cartao promete "Ver na loja" — a promessa segue o link que existe' );
 
@@ -770,8 +956,142 @@ f2_ok( array( 'clubedomosaico-f2.php' => 3 ) === $emissoes,
 echo "\n8. O que a ilha diz que nao sabe (secao 7 do contrato)\n";
 
 $t = f2_texto( $corpo_ancora );
-f2_ok( false !== mb_strpos( $t, 'peça de plástico' ), 'a pagina declara a faixa descoberta do plastico' );
-f2_ok( false !== mb_strpos( $t, 'dentro da água o tempo todo' ), 'a pagina declara a faixa descoberta da peca submersa' );
+
+/* A SECAO DO QUE FALTA E CONTADA, E O PORTAO RECONTA POR UM CAMINHO PROPRIO.
+   As duas afirmacoes que estavam aqui procuravam as frases "peça de plástico" e
+   "dentro da água o tempo todo" — as duas faixas que a pagina declarava nao
+   saber. Elas eram exatas ate 13/09/2026 e viraram falsas no mesmo dia, quando
+   os dois produtos novos abriram as duas. Portao que procura a frase de ontem
+   passa a cobrar a mentira: por isso ele deixou de procurar texto e passou a
+   RECONTAR, com regua propria (le o banco e o esquema, nao chama o snippet) e
+   comparar com o numero que a tela publica. */
+if ( preg_match( '#<h2>O que a gente ainda não responde</h2>(.*?)</div>#is', $corpo_ancora, $mfx ) ) {
+	$texto_faltas = f2_texto( $mfx[1] );
+} else {
+	$texto_faltas = '';
+}
+f2_ok( '' !== $texto_faltas, 'a pagina serve a secao do que ela ainda nao responde' );
+
+/* A RECONTAGEM SAI POR DOIS CAMINHOS, E OS DOIS MEDEM COISAS DIFERENTES.
+ *
+ * (i) O TOTAL e aritmetica do vocabulario: base x lugar x caquinho. Nao depende
+ *     de elegibilidade nenhuma, entao ele prova que a pagina esta falando da
+ *     entrada INTEIRA e nao de um recorte dela.
+ *
+ * (ii) O NUMERO DE DESCOBERTAS e recontado VARRENDO AS PAGINAS SERVIDAS, uma
+ *      por combinacao, um processo cada. Isso mede a agregacao — o laco que a
+ *      secao nova escreveu — contra o que cada estado realmente serve, e e
+ *      exatamente onde mora o erro provavel de quem escreve um contador: somar
+ *      uma dimensao a menos, ou contar "sem topo" onde ha elegivel abaixo do
+ *      topo.
+ *
+ * O QUE ISTO NAO MEDE, dito em vez de escondido: as duas metades leem a mesma
+ * implementacao de elegibilidade, entao esta recontagem NAO e regua independente
+ * para as cinco regras — quem faz esse papel sao as 18 celulas escritas a mao no
+ * esquema e as 5 ancoras da regra 6 no validador. A independencia que falta tem
+ * nome e tamanho: a matriz escrita a mao cobre 18 das 45 celulas de base x
+ * lugar, e as outras 27 so passam por aqui. Esta escrito no ESTADO.md como
+ * divida nomeada, e o conserto e a matriz chegar a 45 — nunca o portao fingir
+ * que ja mede o que nao mede.
+ */
+$total_combinacoes = count( $esquema['vocabularios']['base'] )
+	* count( $esquema['vocabularios']['ambiente'] )
+	* count( $esquema['vocabularios']['material_tessela'] );
+
+$descobertos_varridos = 0;
+$varridos             = 0;
+$sem_resposta_mudos   = array();
+$nao_prestados        = array();
+foreach ( $esquema['vocabularios']['base'] as $b_ ) {
+	foreach ( $esquema['vocabularios']['ambiente'] as $a_ ) {
+		foreach ( $esquema['vocabularios']['material_tessela'] as $t_ ) {
+			$corpo_ = f2_corpo( f2_render( $raiz, 'base=' . $b_ . '&onde=' . $a_ . '&caco=' . $t_ ) );
+			$varridos++;
+			$texto_ = f2_texto( $corpo_ );
+			$vazio  = ( false !== mb_strpos( $texto_, 'Não temos cola para indicar' )
+				|| false !== mb_strpos( $texto_, 'o motivo não é falta de declaração' ) );
+			if ( $vazio ) {
+				$descobertos_varridos++;
+			}
+			/* Estado sem recomendacao tem de DIZER isso. Pagina que fica em
+			   branco e indistinguivel de pagina quebrada — e some da contagem
+			   sem ninguem ver, que e como um contador fica verde errado. */
+			if ( ! $vazio && false === mb_strpos( $corpo_, 'class="cdm-f2-cartao' ) ) {
+				$sem_resposta_mudos[] = $b_ . ' x ' . $a_ . ' x ' . $t_;
+			}
+
+			/* A PRESTACAO DE CONTAS DA COLA, nas 270 respostas (secao 7 do
+			   ARQUIPELAGO.md, a regra que nasceu nesta ilha em 12/09/2026).
+			   Todo item da categoria consultada aparece EXATAMENTE UMA VEZ na
+			   prosa: ou na frase que o recomenda, e ai ele esta na vitrine, ou
+			   numa linha que diz por que ele nao esta. O rejunte ja tinha portao
+			   proprio para isso; a cola nunca teve, e a regra 6 acabou de criar
+			   um QUINTO grupo — que e exatamente a forma como um grupo some da
+			   tela sem ninguem ver, porque grupo vazio nao denuncia que a tela
+			   nao sabe imprimi-lo.
+
+			   A soma e cobrada contra o banco CONTADO do arquivo, nunca contra
+			   um numero digitado aqui. */
+			/* O LADO em que o produto cai e decidido pelo MARKUP, nao pela
+			   posicao no texto. O bloco de recusa (`cdm-f2-faixa`) mora dentro
+			   da regiao da resposta e e, em conteudo, o lado do "por que ele nao
+			   esta" — ele nomeia produto para dizer que aquele produto NAO foi
+			   indicado. Conta-lo como recomendacao poria o mesmo item nos dois
+			   lados e reprovaria uma pagina certa; ignora-lo deixaria passar uma
+			   pagina que nomeia o produto sem nunca dizer de que lado ele esta.
+			   A regra que a secao 7 cobra e "cada item em exatamente UM lado", e
+			   e o lado que se mede. */
+			$resposta_html = '';
+			if ( preg_match( '#<div class="cdm-f2-resposta">(.*?)</div>\s*<div class="cdm-f2-secao">\s*<h2>Onde comprar</h2>(.*?)(?=<div class="cdm-f2-secao">)#is', $corpo_, $mr_ ) ) {
+				$resposta_html = $mr_[1] . $mr_[2];
+			}
+			$recusa_html     = '';
+			if ( preg_match_all( '#<p class="cdm-f2-frase cdm-f2-faixa">.*?</p>#is', $resposta_html, $mrec_ ) ) {
+				$recusa_html = implode( ' ', $mrec_[0] );
+			}
+			$regiao_resposta = f2_texto( preg_replace( '#<p class="cdm-f2-frase cdm-f2-faixa">.*?</p>#is', '', $resposta_html ) );
+			$regiao_fora = preg_match( '#<div class="cdm-f2-secao cdm-f2-fora">(.*?)</div>#is', $corpo_, $mf_ )
+				? f2_texto( $recusa_html . ' ' . $mf_[1] ) : f2_texto( $recusa_html );
+			foreach ( $por_id as $id_c => $m_c ) {
+				if ( 'cola' !== $m_c['categoria'] || 'ativo' !== $m_c['status'] ) {
+					continue;
+				}
+				$nome_c = (string) $m_c['nome_comercial'];
+				$na_resposta = ( false !== mb_strpos( $regiao_resposta, $nome_c ) );
+				$no_fora     = ( false !== mb_strpos( $regiao_fora, $nome_c ) );
+				if ( ! $na_resposta && ! $no_fora ) {
+					$nao_prestados[] = $b_ . ' x ' . $a_ . ' x ' . $t_ . ': ' . $nome_c . ' sumiu da pagina';
+				} elseif ( $na_resposta && $no_fora ) {
+					$nao_prestados[] = $b_ . ' x ' . $a_ . ' x ' . $t_ . ': ' . $nome_c . ' aparece nos dois lados';
+				}
+			}
+		}
+	}
+}
+f2_ok( $varridos === $total_combinacoes, 'a varredura visitou a entrada inteira, um processo cada',
+	$varridos . ' de ' . $total_combinacoes );
+$colas_ativas = 0;
+foreach ( $por_id as $m_c ) {
+	if ( 'cola' === $m_c['categoria'] && 'ativo' === $m_c['status'] ) {
+		$colas_ativas++;
+	}
+}
+f2_ok( empty( $nao_prestados ),
+	'secao 7: cada cola do banco e nomeada UMA vez em cada uma das ' . $varridos . ' respostas',
+	empty( $nao_prestados )
+		? ( $colas_ativas * $varridos ) . ' nomeacoes, ' . $colas_ativas . ' colas contadas do arquivo'
+		: implode( ' | ', array_slice( $nao_prestados, 0, 3 ) ) );
+f2_ok( empty( $sem_resposta_mudos ), 'nenhum estado fica sem cartao E sem dizer que nao tem',
+	empty( $sem_resposta_mudos ) ? $varridos . ' estados' : implode( ' | ', array_slice( $sem_resposta_mudos, 0, 3 ) ) );
+f2_ok( false !== mb_strpos( $texto_faltas, number_format_i18n( $total_combinacoes ) . ' combinações' ),
+	'o total de combinacoes publicado bate com o vocabulario contado', $total_combinacoes . ' combinacoes' );
+f2_ok( false !== mb_strpos( $texto_faltas, 'Em ' . number_format_i18n( $descobertos_varridos ) . ' delas' ),
+	'o numero de faixas descobertas publicado bate com a varredura das paginas',
+	$descobertos_varridos . ' varridas' );
+f2_ok( $descobertos_varridos > 0 && $descobertos_varridos < $total_combinacoes,
+	'a contagem nao e vacuidade: nem tudo descoberto, nem tudo coberto',
+	$descobertos_varridos . ' de ' . $total_combinacoes );
+
 f2_ok( false !== mb_strpos( $t, 'material de imprensa' ),
 	'a pagina diz por que a menção de nivel 4 nao vira recomendacao' );
 
@@ -785,18 +1105,73 @@ $ceramica = f2_texto( f2_corpo( f2_render( $raiz, 'base=ceramica_esmaltada_porce
 f2_ok( false !== mb_strpos( $ceramica, '24 horas' ),
 	'quando o fabricante declara a cura, a pagina publica o numero' );
 
-$plastico = f2_texto( f2_corpo( f2_render( $raiz, 'base=plastico&onde=interno_seco' ) ) );
-f2_ok( false !== mb_strpos( $plastico, 'Não temos cola para indicar' ),
-	'o estado de plastico responde com a faixa descoberta, nao em branco' );
+/* PLASTICO: a faixa abriu em 13/09/2026, e o portao mede as DUAS metades dela.
+   Com caquinho de vidro continua sem resposta — e agora com a causa certa, que
+   e a condicao e nao a ausencia de declaracao. Com caquinho de ceramica ha
+   recomendacao. Medir so uma das duas deixaria a regra 6 sem prova: as duas
+   telas seriam identicas byte a byte se a condicao nao existisse. */
+$plastico = f2_texto( f2_corpo( f2_render( $raiz, 'base=plastico&onde=interno_seco&caco=pastilha_vidro' ) ) );
+f2_ok( false !== mb_strpos( $plastico, 'o motivo não é falta de declaração' ),
+	'plastico com caquinho liso: a recusa nomeia a condicao, nao a ausencia de declaracao' );
+
+/* A SAIDA QUE A PAGINA OFERECE E CONFERIDA CONTRA O ESQUEMA, nas duas direcoes.
+   A frase "trocando por X, ele voltaria a servir" e a unica da pagina que diz a
+   pessoa o que FAZER para a peca nao descolar, e ela nasceu com os quatro nomes
+   digitados. Digitada, ela erra calada no dia em que uma tessela nova entrar no
+   vocabulario — e erra do jeito caro, mandando colar. Aqui o esperado sai do
+   esquema e cobra as duas direcoes: toda porosa nomeada, nenhuma nao porosa. */
+/* MEDIDO NO BLOCO, NAO NO CORPO — e a primeira versao disto reprovou por isso.
+   Ela procurou os nomes no corpo inteiro e achou "Caquinho de espelho" dentro
+   do <select> do formulario, que serve as seis opcoes em toda pagina. E o mesmo
+   erro de contar &#038; na pagina inteira em vez de dentro do <script>, um
+   nivel mais fundo: aqui nem o corpo basta, porque a afirmacao e sobre UMA
+   frase. Quem afirma sobre uma frase mede naquela frase. */
+$plastico_html = f2_corpo( f2_render( $raiz, 'base=plastico&onde=interno_seco&caco=pastilha_vidro' ) );
+$bloco_saida   = preg_match_all( '#<p class="cdm-f2-condicao-fora">(.*?)</p>#is', $plastico_html, $mbs )
+	? f2_texto( implode( ' ', $mbs[1] ) ) : '';
+$rot_t = $rot['tessela'];
+$erros_saida = array();
+f2_ok( '' !== $bloco_saida, 'a varredura acha o bloco da condicao para medir a saida oferecida' );
+foreach ( $esquema['superficies_porosas']['tesselas_porosas'] as $t_p ) {
+	if ( false === mb_stripos( $bloco_saida, $rot_t[ $t_p ] ) ) {
+		$erros_saida[] = 'falta ' . $rot_t[ $t_p ];
+	}
+}
+foreach ( $esquema['superficies_porosas']['tesselas_nao_porosas'] as $t_n ) {
+	/* O caquinho ESCOLHIDO aparece no mesmo bloco, na frase que diz que ele nao
+	   absorve agua — entao a proibicao vale so para os OUTROS nao porosos. */
+	if ( 'pastilha_vidro' !== $t_n && false !== mb_stripos( $bloco_saida, $rot_t[ $t_n ] ) ) {
+		$erros_saida[] = 'oferece ' . $rot_t[ $t_n ] . ', que nao e porosa';
+	}
+}
+f2_ok( empty( $erros_saida ), 'a saida oferecida bate com a classificacao do esquema, nas duas direcoes',
+	empty( $erros_saida ) ? count( $esquema['superficies_porosas']['tesselas_porosas'] ) . ' porosas nomeadas'
+		: implode( ' | ', $erros_saida ) );
+f2_ok( false === mb_strpos( $plastico, 'Nenhum dos adesivos do nosso banco é declarado' ),
+	'plastico com caquinho liso: a pagina NAO nega a declaracao que ela mesma cita' );
+$plastico_poroso = f2_texto( f2_corpo( f2_render( $raiz, 'base=plastico&onde=interno_seco&caco=pastilha_ceramica' ) ) );
+f2_ok( false !== mb_strpos( $plastico_poroso, 'Cascola Adesivo de Montagem PL500 Interior' ),
+	'plastico com caquinho poroso: a faixa que estava descoberta responde' );
+f2_ok( false === mb_strpos( $plastico_poroso, 'Não temos cola para indicar' ),
+	'plastico com caquinho poroso: a pagina nao diz que nao sabe o que ela sabe' );
+f2_ok( false !== mb_strpos( $plastico_poroso, 'somos nós, não ela' ),
+	'a atribuicao fica dividida: a condicao e do fabricante, a classificacao e nossa (26.3)' );
 /* DECLARACAO VAGA NAO E SILENCIO, e a pagina separa as duas. Dizer "o
    fabricante nao fala" de um produto cujo fabricante escreveu "certos tipos de
    plastico" seria falso: ele falou, e falou de um jeito que nao decide. */
 f2_ok( false !== mb_strpos( $plastico, 'certos tipos de plástico' )
 	&& false !== mb_strpos( $plastico, 'não nomeia material nenhum' ),
 	'a declaracao vaga aparece separada do silencio, com a frase do fabricante' );
+/* CONTATO PERMANENTE COM AGUA: aberto em ceramica e SO em ceramica. As duas
+   afirmacoes sao o par que impede a faixa de parecer maior do que e. */
 $submerso = f2_texto( f2_corpo( f2_render( $raiz, 'base=ceramica_esmaltada_porcelana&onde=contato_permanente_agua' ) ) );
-f2_ok( false !== mb_strpos( $submerso, 'Não temos cola para indicar' ),
-	'o estado submerso responde com a faixa descoberta' );
+f2_ok( false !== mb_strpos( $submerso, 'Tekbond Silicone Acético Maxx' ),
+	'o estado submerso em ceramica responde: a faixa de nivel 4 virou faixa de nivel 3' );
+f2_ok( false === mb_strpos( $submerso, 'Não temos cola para indicar' ),
+	'o estado submerso em ceramica nao diz mais que a ilha nao sabe' );
+$submerso_vidro = f2_texto( f2_corpo( f2_render( $raiz, 'base=vidro&onde=contato_permanente_agua' ) ) );
+f2_ok( false !== mb_strpos( $submerso_vidro, 'Não temos cola para indicar' ),
+	'a mesma agua sobre VIDRO continua descoberta — o fabricante nomeia ceramica, nao vidro' );
 
 /* ---------------------------------------------------------------------------
  * Fecho

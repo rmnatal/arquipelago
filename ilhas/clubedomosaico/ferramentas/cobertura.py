@@ -119,19 +119,29 @@ def elegiveis(celula):
 def varrer(regua, faixa):
     estados = {"cola": [], "rejunte": []}
 
+    # O CAQUINHO ENTROU NA VARREDURA EM 13/09/2026, e nao e refinamento: a regra 6 do
+    # esquema decide sobre o PAR de superficies coladas, entao a resposta da cola muda
+    # com o caquinho. Enquanto este laco fosse base x ambiente, o censo da secao 14.3
+    # declararia cobertura sobre 45 estados de uma ferramenta que serve 270 — e a
+    # faixa que mais precisa de produto (plastico) e justamente a que so responde com
+    # uma metade dos caquinhos. Amostra com nome de grade e o defeito que este arquivo
+    # nasceu para nao cometer.
     for base in faixa["base"]:
         for ambiente in faixa["ambiente"]:
-            c = regua.computar_celula(base, ambiente)
-            eleg = elegiveis(c)
-            estados["cola"].append({
-                "base": base,
-                "ambiente": ambiente,
-                "elegiveis": eleg,
-                "quantos_elegiveis": len(eleg),
-                "com_ressalva": c["mencionados_com_ressalva"],
-                "eliminados_por_proibicao": c["eliminados_por_proibicao"],
-                "eliminados_por_silencio": c["eliminados_por_silencio"],
-            })
+            for tessela in faixa["tessela"]:
+                c = regua.computar_celula_com_condicao(base, ambiente, tessela)
+                eleg = elegiveis(c)
+                estados["cola"].append({
+                    "base": base,
+                    "ambiente": ambiente,
+                    "tessela": tessela,
+                    "elegiveis": eleg,
+                    "quantos_elegiveis": len(eleg),
+                    "com_ressalva": c["mencionados_com_ressalva"],
+                    "eliminados_por_proibicao": c["eliminados_por_proibicao"],
+                    "eliminados_por_silencio": c["eliminados_por_silencio"],
+                    "eliminados_por_condicao": c["eliminados_por_condicao"],
+                })
 
     for junta in faixa["junta_mm"]:
         for ambiente in faixa["ambiente"]:
@@ -159,6 +169,16 @@ def causa_da_cola(e):
     """
     proib = bool(e["eliminados_por_proibicao"])
     sil = bool(e["eliminados_por_silencio"])
+    # A QUARTA CAUSA, e ela vem PRIMEIRO quando existe: um produto que caiu pela
+    # condicao declarada e o caso mais acionavel do censo, porque nao falta produto
+    # nem falta declaracao — falta trocar o caquinho, e isso quem faz e quem le a
+    # pagina. Somar essa celula a "o fabricante nao declara" mandaria comprar um
+    # produto novo para um buraco que nao e de catalogo.
+    cond = bool(e.get("eliminados_por_condicao"))
+    if cond and not (proib or sil):
+        return "ha produto declarado para esta base, e a condicao de superficie dele nao fecha com este caquinho"
+    if cond:
+        return "a condicao de superficie exclui uns, e os outros o fabricante proibe ou nao declara"
     if proib and sil:
         return "o fabricante proibe uns e nao declara os outros"
     if proib:

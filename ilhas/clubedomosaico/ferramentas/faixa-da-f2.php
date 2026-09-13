@@ -124,7 +124,12 @@ if ( ! $juntas ) {
 
 /* ---- o que a varredura vai andar, contado e nunca digitado --------------- */
 
-$faixa['estados_de_cola']   = count( $faixa['base'] ) * count( $faixa['ambiente'] );
+/* A COLA PASSOU A DEPENDER DO CAQUINHO EM 13/09/2026 (regra 6 do esquema: a
+   condicao declarada de superficie vale sobre o PAR de superficies coladas).
+   Enquanto este numero fosse base x ambiente, a varredura da secao 14.3 mediria
+   45 estados de uma ferramenta que serve 270 — amostra com nome de grade, que e
+   exatamente o que este arquivo existe para impedir. */
+$faixa['estados_de_cola']   = count( $faixa['base'] ) * count( $faixa['ambiente'] ) * count( $faixa['tessela'] );
 $faixa['estados_de_rejunte'] = count( $faixa['junta_mm'] ) * count( $faixa['ambiente'] );
 
 $saida = array(
