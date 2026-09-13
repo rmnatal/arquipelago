@@ -1887,7 +1887,7 @@ pastilha da F1, depois a categoria cola; (c) o feed do Merchant Center, que
 espera. E um item que so um humano fecha, o mesmo de ontem: confirmar que o
 e-mail de acesso CHEGOU na caixa da Hotmail.
 
-**A REVISÃO 19, e por que houve um segundo desembarque.** Três coisas só
+**A REVISÃO 19, no ar às 12h16Z, e por que houve um segundo desembarque.** Foram **dois disparos**: o primeiro leu do `raw` um manifest ainda na revisão 18 (o cache é por caminho, seção 4), e o segundo, um minuto depois, aplicou os 10 itens. `/status` na 19, `conferir-no-ar.py` 339 afirmações e `conferir-atelie-no-ar.py` 37, zero falha nos dois. Três coisas só
 apareceram depois de o primeiro estar no ar:
 
 - **O CSV podia ser EXECUTADO pela planilha dela.** O campo `nome` é digitado por
