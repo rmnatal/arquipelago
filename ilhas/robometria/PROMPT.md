@@ -421,15 +421,30 @@ qualquer página nova:
   não foi a rede abrir: foi separar o egresso direto do canal de busca.
   ~~**O PRÓXIMO PASSO AGORA** é o kit do ERB80.~~ **CUMPRIDO em 12/09/2026** (ver
   os itens abaixo), junto com o pano de microfibra que a mesma varredura achou.
-  **O PRÓXIMO PASSO AGORA** são as **peças da Xiaomi e da WAP com código** — que a
-  varredura da R1 aponta como o primeiro alvo entre os coletáveis, porque são os 8
-  modelos que a R2 já recomenda e a R1 deixa vazios. **O egresso direto para
-  `mi.com.br` e `wap.ind.br` foi remedido em 12/09/2026, em duas passadas, e segue
-  em `000` por política** — mas o canal de **busca** alcançou a Electrolux duas
-  vezes seguidas e nunca foi testado nesses dois domínios. **Teste a busca antes de
-  declarar a coleta bloqueada**, que foi o erro que deixou os kits três dias
-  parados.
-  **E há um alvo NOVO, achado nesta execução e que o vocabulário não comporta:**
+  ~~**O PRÓXIMO PASSO AGORA** são as **peças da Xiaomi e da WAP com código.**~~
+  **O LADO XIAOMI FOI CUMPRIDO em 13/09/2026** (manifest revisão 25, `/status`
+  conferido em UM disparo): oito peças com código entraram, a R1 foi de 16 para
+  **20 dos 28** modelos e o cruzamento com a R2 de **3 para 7**. E a causa dos três
+  dias parados **não era a rede**: o `PROMPT.md` e o `ESTADO.md` mandavam testar
+  `mi.com.br` e `xiaomi.com.br`, e o banco desta ilha sempre citou
+  **`www.mi.com/br`** — o endereço está escrito em sete registros desde 09/09. O
+  egresso direto segue fechado por política nos três; a **busca alcança `mi.com`**,
+  e nunca tinha sido testada nele. **Quando o canal falhar, confira o endereço
+  contra o BANCO**, que é quem guarda a fonte, e não contra a prosa que descreve o
+  bloqueio.
+  **O PRÓXIMO PASSO AGORA é a WAP, e o alvo TROCOU: lá o gargalo é MODELO, não
+  peça.** A busca alcança `wap.ind.br`, `loja.wap.ind.br` e
+  `mais.conteudo.wap.ind.br` — inclusive os **manuais em PDF**, que voltaram
+  nomeados com revisão e data (W400 "FW009293 REV00MAI23", W1000 "FW010143
+  REV03ABR25", W90 "FW010263 REV00JAN24"); só o `WebFetch` do PDF segue
+  `EGRESS_BLOCKED`. E a loja da WAP publica página de peça **por modelo** ("Escova
+  Direita Para Robô Aspirador de Pó WAP Robot W300", "Escova Rotativa … W90",
+  "Escova Central … WSMART") — e **nenhum** desses modelos está em
+  `modelos-robo.json`, enquanto os três que estão (W400, W1000, W310) não têm
+  página de peça própria. Modelo antes de peça.
+  **E há alvos de CATEGORIA DESCOBERTA que o vocabulário não comporta — dois
+  agora, porque a leva da Xiaomi acrescentou a tampa de escova `D106-BZSZ` do S20
+  ao lado do saco descartável do ERB80. Os dois ficam fora pela mesma régua:**
   `loja.electrolux.com.br/kit-3-sacos-descartaveis-electrolux-para-robo-aspirador-erb80/p`.
   Saco descartável é consumível de base autolimpante, e o ERB80 tem base
   autolimpante — mas `tipo_de_peca` no `esquema-banco.json` não tem esse tipo, e

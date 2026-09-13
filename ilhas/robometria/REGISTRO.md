@@ -2527,3 +2527,145 @@ recusados.
    modelo, o par nao tem onde encostar.
 4. A leva de malha (5b) **continua travada** pela metade humana do despacho de
    10/09 — o reenvio do sitemap no Search Console, que e do Raphael.
+
+---
+
+## 2026-09-13 — bloco 3c, leva 4: oito peças da Xiaomi **com código**, e o kit que nunca foi kit sai do ar
+
+Manifest **revisão 25**, `/status` conferido às 11h35Z em **um** disparo, 10 itens
+aplicados. **Nenhuma URL nova e nenhum snippet tocado** — o dado abriu tudo
+sozinho, como o kit do ERB30 em 12/09.
+
+**O NÚMERO DO BLOCO:** a R1 responde agora em **20 dos 28** modelos publicáveis
+(eram 16), e o cruzamento com a R2 — a emenda que a varredura de 10/09 nomeou
+como urgência número 1 — vai de **3 para 7**. Entrada vazia de 12 para 8, células
+vazias de 120 para 112, Xiaomi de 1/7 para 5/7. Saíram do vazio: **E10, H40, S40
+e S40C**; o **S20**, que já respondia, passou a responder com código e como peça
+avulsa.
+
+**A COLETA SÓ ACONTECEU PORQUE O DOMÍNIO TESTADO ESTAVA ERRADO, e isto vale mais
+que a leva.** O `PROMPT.md` e o `ESTADO.md` mandavam testar `mi.com.br` e
+`xiaomi.com.br`. O banco desta ilha **sempre** citou `www.mi.com/br` — o endereço
+está escrito em sete registros desde 09/09. O egresso direto segue fechado por
+política nos três (`000`, 403 ao CONNECT nomeado pelo proxy, duas passadas), mas
+a **busca alcança `mi.com`**, e nunca tinha sido testada nele. Três dias de
+"coleta bloqueada" eram um domínio digitado errado numa linha de prosa. A lição
+não é sobre a Xiaomi: **quando o canal falha, confira o endereço contra o BANCO**,
+que é quem guarda a fonte, e não contra o texto que descreve o bloqueio.
+
+**O DEFEITO QUE ESTAVA NO AR, e ele mentia duas vezes na mesma tela.** O registro
+`xiaomi-s20-acessorios` leu a página "Xiaomi Robot Vacuum S20 Accessories" como um
+**kit** — uma caixa com cinco peças dentro — e ela é um **catálogo de variantes**:
+cinco produtos avulsos, cada um com código e pacote próprios ("Package contents:
+Mop pad x2", "Side brush x2", "Main brush x1"). A R1 dizia a quem tem um S20 que o
+filtro, as escovas e o mop só existem **dentro de um kit** (`dentro_de_kit=true`,
+`existe_avulso=false`) **e** que a peça não tem código para procurar. O
+`motivo_sem_codigo` de 09/09 — *"a Xiaomi identifica consumível pelo nome do
+acessório e pelo modelo compatível, não por código de peça"* — é uma afirmação
+sobre o fabricante que o fabricante **desmente na subpágina `/specs/` da mesma
+URL**, que publica "Product model" para cada variante. A coleta de 09/09 leu a
+página e não a especificação dela.
+
+**A RÉGUA DESTA LEVA, escrita antes de gravar.** A Xiaomi declara compatibilidade
+no **título publicado** da peça ("Xiaomi Robot Vacuum E10/E12/E10C/S20 Brush") e o
+código mora na `/specs/`. Um par entra quando o modelo é nomeado num título que
+aparece na página de acessório **daquele** modelo ou numa página de peça dedicada;
+título de **listagem** que nomeia modelo que a especificação não repete vai para
+`divergencias` e é resolvido pelo **mais estreito** (seção 10).
+
+Onde isso custou caro de propósito: o mop **E101-TB**. A listagem o chama de
+"S40C/H40/S40 Mop Pad" e a especificação, de "S40C Mop Pad". O H40 e o S40 **estão
+no banco**, então aqui a escolha muda a tela — e é por isso que ela é a estreita:
+errar para o lado largo faz alguém com um H40 comprar um mop que não encaixa.
+Ficou só no S40C, com a divergência transcrita.
+
+A **régua da página irmã** (12/09) foi aplicada e passou: a lista de acessórios do
+E10 e a do S20 declaram conjuntos **diferentes** por peça — mop e tampa levam o
+prefixo `D106`, que é o código do próprio S20, e escova principal e filtro levam
+`B112`, da família E10. Página de catálogo que fosse molde não faria essa
+distinção.
+
+**O DEFEITO LATENTE QUE ESTA LEVA DESENTERROU, e ele só podia aparecer hoje.** O
+esquema diz desde sempre que `compatibilidade[].modelo` é `null` quando o código
+aparece na declaração e o modelo ainda não está no banco — e o banco **não tinha
+um único par assim**, zero, medido. Duas réguas do `gerar-a1.py` foram escritas
+como se o null não pudesse existir:
+
+1. `marcas_atendidas` resolvia o modelo desconhecido para a marca `"?"` e a
+   contava. A **primeira** peça com par null fazia `atravessa_marca` virar
+   verdadeiro sozinha — e esse é o número que **escolhe entre as duas formas** da
+   frase de abertura do A1, cuja tese é que não existe peça universal. O gerador
+   anunciou "4 peças atravessam marca" e mandou reescrever o artigo. Nenhuma
+   atravessa.
+2. A dispersão montava o conjunto com ids de **modelo**, e num `frozenset` os
+   vários nulls de uma peça viram **um** elemento só: a B112-ZS (E10/E12/E10C/S20)
+   e a B112-CH (E10/E10C/S20) colapsavam no mesmo conjunto — e "conjuntos
+   distintos" é publicado como prova de que compatibilidade não se herda.
+
+É o **contrário** da cicatriz de 12/09: lá a régua morreu no dia em que o banco
+melhorou; aqui ela dependia de um caso que **nunca tinha acontecido** e nasceu
+errada sem poder falhar. **Quem pegou o (1) sozinho foi o `teste-a1.php`**, porque
+a régua dele em PHP já ignorava modelo null — "quem confere escreve a própria
+régua" pagando exatamente como foi desenhado.
+
+**O que ficou mecânico:** os dois lados passaram a contar **código declarado**,
+que o esquema exige em todo par e nunca é null; e nasceu no `teste-a1.php` uma
+**terceira conta**, que lê só código declarado e compara com o que foi
+**publicado**. Ela existe porque a afirmação que compara gerador e teste fica
+**verde quando os dois erram juntos**, que é como esta família de defeito entra
+nesta ilha. `ferramentas/mutacoes-par-sem-modelo.py`, **5 de 5** reprovadas: a
+quarta **produz o mundo** (quebra gerador e teste juntos, a comparação continua
+verde e só a terceira conta pega) e a quinta ataca pelo **dado**, apagando o
+código declarado de um par — é o ramo `__sem_codigo__`, que nunca tinha sido visto
+reprovando.
+
+**Dois portões pegaram coisa minha, e os dois estavam certos.** O
+`teste-acentuacao.php` achou `dominio` sem acento chegando ao corpo servido em
+cinco estados, pelo campo `canal` das divergências — texto que a ilha **escreve**
+sai acentuado, o banco é ASCII porque **cita**. E o `conferir-kits-no-ar.py`, na
+primeira versão da afirmação de ausência de código, procurava o rótulo do cartão
+("sem código publicado") e **reprovou uma página certa**: o rótulo existe, mas
+fora do bloco de resposta, e a declaração de verdade está na prosa ("este
+fabricante não publica código de peça nesta página: identifique o item pelo título
+e pela lista de modelos"). Régua trocada pela que mede o **sentido**.
+
+**VERIFICAÇÃO, 0 falha.** Bancada **902** afirmações em 8 portões (`teste-a1` de
+55 para 56); `php -l` limpo nos cinco snippets; `validar-banco.py` aprovado — e foi
+**ele** que pegou as duas contagens digitadas do cabeçalho de `pecas.json`, de
+novo. Mutações: **106** em 9 baterias, todas reprovadas, com as 101 antigas
+rodadas inteiras para provar que nenhuma virou inerte. No ar às 11h35Z, em **um**
+disparo: `/status` na revisão 25 igual à do manifest; `conferir-no-ar.py` 149
+afirmações e `conferir-kits-no-ar.py` **de 71 para 163** — os cinco estados novos
+de modelo × tipo medidos no corpo servido, com o código do fabricante conferido
+**com maiúscula preservada**, porque é o que a pessoa digita na busca da loja.
+
+**BANCO:** 28 peças (25 publicáveis), 55 pares declarados, **53 esperando link de
+afiliado** (eram 46 — as 8 novas nascem com o campo presente e vazio, seção 7).
+Pauta da seção 17: `pauta.md` ainda não existe — 0 escritos, 0 na fila, 0
+recusados.
+
+### PROXIMO PASSO
+
+1. **A WAP é o que sobrou da emenda — 0/3 modelos — e o alvo TROCOU.** Medido hoje:
+   a busca alcança `wap.ind.br`, `loja.wap.ind.br` **e**
+   `mais.conteudo.wap.ind.br`, inclusive os **manuais em PDF** (voltaram nomeados
+   na busca o do W400 "FW009293 REV00MAI23", o do W1000 "FW010143 REV03ABR25" e o
+   do W90 "FW010263 REV00JAN24"); o `WebFetch` do PDF segue `EGRESS_BLOCKED`. E a
+   loja da WAP publica página de peça **por modelo** ("Escova Direita Para Robô
+   Aspirador de Pó WAP Robot W300", "Escova Rotativa … W90", "Escova Central …
+   WSMART") — e **nenhum** desses modelos está em `modelos-robo.json`. O gargalo lá
+   é **modelo**, não peça: vale a regra desta ilha, modelo antes de peça.
+2. **O S10 e o Mop 2** são os dois Xiaomi que sobraram vazios. O S10 destrava com
+   **uma** leitura da `/specs/` da escova lateral de título largo da família E10
+   ("S10/E10/X20/S20" e "S10/E10/S12/E12/X20" foram vistos, nenhum ao lado de um
+   código — e juntar título de uma página com código de outra seria inventar a
+   declaração).
+3. **CATEGORIA DESCOBERTA, sem mudança:** o `Kit 3 Sacos Descartáveis` do ERB80 e
+   agora também a **tampa de escova D106-BZSZ** do S20. Os dois ficam fora porque
+   "saco descartável" e "tampa de escova" não existem no vocabulário
+   `tipo_de_peca`, e acrescentar tipo mexe no seletor da R1, na cobertura e nos
+   portões. Decida **se o tipo nasce** pela régua da 14.3 antes de gravar.
+4. **O ERB40 tem Kit Performance próprio e o modelo não está em
+   `modelos-robo.json`** — modelo antes de peça.
+5. A leva de malha (5b) **continua travada** pela metade humana do despacho de
+   10/09 — o reenvio do sitemap no Search Console, que é do Raphael.

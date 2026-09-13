@@ -146,7 +146,67 @@ ESTADOS = [
      'a escova rotativa central ja declarava o ERB80 desde 09/09'),
     ('electrolux-erb80', 'bateria',          False,
      'nenhuma peca do banco declara bateria para este modelo'),
+    # XIAOMI, 13/09/2026. Ate esta leva a R1 respondia em UM modelo Xiaomi (o
+    # S20) e o que ela dizia la era falso duas vezes: que as pecas so existem
+    # dentro de um kit e que nao ha codigo para procurar. Os cinco modelos
+    # abaixo sao o estado NOVO, e a metade que so o ar mede.
+    ('xiaomi-e10',   'escova principal', True,
+     'a B112-ZS e declarada para E10/E12/E10C/S20 no titulo da propria peca'),
+    ('xiaomi-e10',   'filtro',           True,
+     'a B112-CH atravessa a familia E10 e o S20 porque o reservatorio 2 em 1 e o mesmo'),
+    ('xiaomi-e10',   'mop',              True,
+     'a B112-TB e declarada para E10/E12/E10C'),
+    ('xiaomi-e10',   'escova lateral',   False,
+     'os titulos largos de escova lateral do E10 nunca foram vistos ao lado de um codigo, '
+     'e juntar titulo de uma pagina com codigo de outra seria inventar a declaracao'),
+    ('xiaomi-s20',   'escova lateral',   True,
+     'a B106GL-BX e a escova lateral do S20, com pacote de 2'),
+    ('xiaomi-s20',   'mop',              True,
+     'a D106-TB e o mop do S20 — codigo diferente do mop do E10, e a diferenca e a prova '
+     'de que nao se herda peca de um modelo para o vizinho'),
+    ('xiaomi-s20',   'bateria',          False,
+     'nenhuma peca do banco declara bateria para este modelo'),
+    ('xiaomi-h40',   'escova lateral',   True,
+     'a OV81GL-BS e a escova lateral antiemaranhamento do H40/S40/S40 Pro'),
+    ('xiaomi-h40',   'escova principal', True,
+     'a Xiaomi publica uma pagina de escova cujo endereco e o titulo nomeiam H40 e S40'),
+    ('xiaomi-h40',   'mop',              False,
+     'o mop E101-TB foi resolvido pelo conjunto MAIS ESTREITO e ficou so no S40C'),
+    ('xiaomi-s40',   'escova principal', True,
+     'mesma pagina de escova do H40'),
+    ('xiaomi-s40',   'filtro',           False,
+     'a Xiaomi nao publica filtro avulso desta familia em pagina que a busca tenha devolvido'),
+    ('xiaomi-s40c',  'mop',              True,
+     'a E101-TB e o mop do S40C, e e a primeira peca desta ilha a servir este modelo'),
+    ('xiaomi-s40c',  'escova principal', False,
+     'a pagina da escova nomeia H40 e S40, e o S40C nao esta nela'),
 ]
+
+# O CODIGO NA TELA, escrito aqui a mao. E a razao de ser desta leva: o esquema
+# diz que o codigo do fabricante "e o que a pessoa procura e o que ela compra", e
+# ate 12/09/2026 a unica resposta Xiaomi no ar dizia "sem codigo publicado".
+# Cada par e (modelo, tipo, codigo que TEM que aparecer no bloco de resposta).
+CODIGOS_NA_TELA = [
+    ('xiaomi-e10',  'escova principal', 'B112-ZS'),
+    ('xiaomi-e10',  'filtro',           'B112-CH'),
+    ('xiaomi-e10',  'mop',              'B112-TB'),
+    ('xiaomi-s20',  'escova lateral',   'B106GL-BX'),
+    ('xiaomi-s20',  'mop',              'D106-TB'),
+    ('xiaomi-h40',  'escova lateral',   'OV81GL-BS'),
+    ('xiaomi-s40c', 'mop',              'E101-TB'),
+]
+
+# O CONTRARIO, e ele importa igual: a escova principal do H40/S40 NAO tem codigo
+# publicado, e a pagina tem que dizer isso com todas as letras em vez de calar.
+SEM_CODIGO_NA_TELA = [
+    ('xiaomi-h40', 'escova principal'),
+    ('xiaomi-s40', 'escova principal'),
+]
+
+# A frase que saiu do ar nesta leva. Ela dizia, a quem tem um S20, que o filtro e
+# as escovas so existem dentro de um kit — e as cinco variantes da pagina de
+# acessorios da Xiaomi sao produtos avulsos, cada um com pacote proprio.
+KIT_QUE_NUNCA_FOI_KIT = 'xiaomi robot vacuum s20 accessories'
 
 # O nome do tipo, como o leitor tem que le-lo na abertura da frase. Escrito aqui
 # a mao, nunca lido do snippet nem da referencia: se a regua viesse de la, as
@@ -254,6 +314,45 @@ def main():
     ok(all(q in COMPOSICAO_ERB30 for q in achadas),
        'nenhuma quantidade estranha a fonte na tela',
        'encontradas: %s' % (', '.join(achadas) if achadas else 'nenhuma (a R1 fala de tipo)'))
+
+    print('\nO codigo do fabricante chegou a tela nos modelos Xiaomi\n')
+    for modelo, tipo, codigo in CODIGOS_NA_TELA:
+        # Aqui a comparacao e com MAIUSCULA preservada: o codigo e o que a
+        # pessoa digita na busca da loja, e "b112-zs" nao e o que ela procura.
+        bruto = corpos[(modelo, tipo)]
+        ok(codigo in bruto,
+           '%-22s serve o codigo %s' % ('%s x %s' % (modelo.split('-')[-1], tipo), codigo),
+           codigo)
+        ok('sem código publicado' not in texto(bruto),
+           '%-22s e nao diz mais "sem codigo publicado"'
+           % ('%s x %s' % (modelo.split('-')[-1], tipo)))
+
+    print('\nE onde nao ha codigo, a pagina diz que nao ha\n')
+    # A ausencia e declarada na PROSA da resposta, nao so no cartao da vitrine:
+    # quem le a frase tem que saber por que nao ha o que copiar para a busca da
+    # loja. A primeira versao desta afirmacao procurava o rotulo do cartao
+    # ("sem código publicado") e reprovou uma pagina CERTA — o rotulo existe,
+    # mas fora do bloco de resposta. Regua trocada pela que mede o sentido.
+    for modelo, tipo in SEM_CODIGO_NA_TELA:
+        t = texto(corpos[(modelo, tipo)])
+        ok('nao publica codigo de peca' in t,
+           '%-22s declara a ausencia em vez de calar'
+           % ('%s x %s' % (modelo.split('-')[-1], tipo)),
+           'a escova do H40/S40 nao teve a /specs/ devolvida pela busca')
+        ok('identifique o item pelo titulo' in t,
+           '%-22s e diz ao leitor o que usar no lugar do codigo'
+           % ('%s x %s' % (modelo.split('-')[-1], tipo)))
+
+    print('\nA frase que saiu do ar: o kit que nunca foi kit\n')
+    for modelo, tipo, deve, _ in ESTADOS:
+        if not modelo.startswith('xiaomi-') or not deve:
+            continue
+        t = texto(corpos[(modelo, tipo)])
+        rotulo = '%s x %s' % (modelo.split('-')[-1], tipo)
+        ok(KIT_QUE_NUNCA_FOI_KIT not in t,
+           '%-30s nao oferece mais o "S20 Accessories" como kit' % rotulo)
+        ok('vem dentro do kit' not in t,
+           '%-30s a peca e avulsa, e a frase nao a poe dentro de um kit' % rotulo)
 
     print('\n' + '=' * 78)
     if falhas:
