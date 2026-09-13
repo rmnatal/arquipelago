@@ -2032,3 +2032,80 @@ não poderem divergir.
 páginas × 5 larguras**, 0 falha, 0 px de rolagem — a tela nova passou de primeira
 no alvo de toque e na fonte de 16 px, porque reusa `.cdm-at-campo` e
 `.cdm-at-botao` em vez de inventar botão.
+
+**MUTAÇÕES: 262 em 12 baterias, 262 reprovadas, 0 passaram, 0 inertes.**
+`mutacoes-atelie` de 26 para **37** e `mutacoes-leads` de 40 para **48** — as 19
+novas atacam a aba pelas duas famílias de sempre: as que **abrem porta** (o nonce
+que some, a capacidade que some, o piso da senha que cai, o segundo campo que
+deixa de ser conferido) e as que **vazam segredo** (a senha no endereço de volta,
+o e-mail da conta virando campo). As dez baterias antigas rodadas inteiras:
+árvore 20, cobertura 14, F1 27, F2 20, GA4 14, loja 23, pastilhas 12, prestação
+11, rejunte 12 e voz-e-cabeça 24.
+
+**NO AR às 14h04Z, e foram TRÊS revisões e quatro disparos, por um motivo que não
+era o cache.** `/status` na **revisão 22** igual à do manifest, 10 aplicados,
+`conferir-no-ar.py` **339** afirmações e `conferir-atelie-no-ar.py` **45** (era
+37), 0 falha nos dois, as 11 URLs intactas, e as sete capacidades do papel
+`artesa` continuam sendo exatamente sete. A marca do código novo foi medida **no
+corpo servido**, não no log do Sync: `.cdm-at-secao` só existe no Ateliê 1.2.0, e
+a folha do painel sai no `/atelie/` mesmo deslogada — é a diferença entre "o
+manifest diz que subiu" e "o site está servindo". Medido também que
+`?estado=meus-dados` deslogada cai na tela de entrar, sai `noindex`, e **não
+serve** `trocar_senha`, `cdm_email_leads`, `cdm_artesa_nome` nem o e-mail dela.
+
+**PULADA DECLARADA, não aprovada:** a aba só existe para quem entrou, e a
+Fundação não entra — a senha da artesã não existe para a nuvem, por desenho. O
+que está medido no ar é a versão servida e a ausência do que não pode vazar; o
+dedo dela na tela de 360 px continua sendo a metade do domingo.
+
+### O QUE ESTA EXECUÇÃO ENCONTROU E NÃO ERA DELA — dois commits mexeram no banco desta ilha enquanto ela estava reservada
+
+**Isto é o achado mais caro do bloco, e não é sobre "Meus dados".** Os commits
+`4e69738` (a escada do link de compra, seção 25 nova do contrato) e `35412c1` (o
+`url_produto` do teste de vida) chegaram ao `main` às 13h36Z e depois, editaram
+`dados/materiais-colas.json` e `dados/materiais-rejuntes.json` e **não tocaram no
+`manifest.json`**. Lido no `/status`, três vezes seguidas: `"materiais-colas:
+sha256 divergente — não aplicado"`. **Os dez links novos, o `url_produto` e as
+três fotos estavam no repositório e fora do ar** — a seção 4 na forma mais pura, e
+a segunda vez no mesmo dia (a execução das 11h56Z tinha achado exatamente isto).
+
+O `4e69738` também deixou **11 erros de esquema**, nenhum dos quais sobreviveria a
+um `validar-banco.py` de segundos: `mercado_livre` em três itens onde o
+vocabulário declara `mercadolivre` (**o mesmo defeito de 12/09, de volta**),
+`imagem` sem `largura`/`altura`, e os contadores de cabeçalho dizendo "nenhuma
+foto foi coletada" com três fotos coletadas.
+
+**A LARGURA E A ALTURA DA FOTO: havia dois caminhos, e o cômodo era o errado.** O
+feed de afiliado da Shopee — que a seção 25.3 nomeia como a fonte legítima da foto
+— **não declara dimensão**. O caminho cômodo era afrouxar o esquema para aceitar
+os dois campos ausentes; e ele estaria errado, porque os dois campos existem para
+a página **reservar a caixa da foto antes de ela chegar**, e caixa sem medida é o
+salto de layout que a seção 22.4 chama de defeito de desempenho. O outro caminho
+era **medir**: `cf.shopee.com.br` responde 200 em duas passadas (medido, não
+presumido), e nasceu `ferramentas/medir-imagens.py`, que lê a dimensão do
+cabeçalho do arquivo servido — JPEG, PNG e WebP, sem biblioteca, porque instalar
+Pillow para ler dois inteiros seria trocar uma linha de código por um risco de
+ambiente. **1024×1024, 1024×1024 e 768×768, lidas.** `800x800` digitado porque
+"foto de e-commerce costuma ser quadrada" passaria no validador exatamente igual —
+e seria chute com cara de dado, que é o defeito mais caro que esta fábrica tem.
+Download que falha vira `FALHOU` e o item **continua reprovando**: rede fechada
+nunca vira número.
+
+**E a metade que não tem conserto do lado da Fundação está em `dados/despachos.md`:**
+a reserva por commit da seção 1 funcionou como escrito — esta execução perdeu a
+robometria e a aquametria e pegou a clubedomosaico às 13h19Z —, e **uma terceira
+sessão editou o banco desta ilha assim mesmo**. A reserva protege contra quem a
+lê; não existe para quem entra pela porta do dado. Hoje custou dois rebases e duas
+revisões a mais; o custo caro é o do próprio 1.1, dois trabalhos concorrentes na
+ilha da artesã no dia em que ela ia aprender a usar o painel. É decisão do
+Raphael.
+
+**PRÓXIMO, com ordem e motivo:** (a) a ordem de BANCO que o estado anterior já
+deixava — fechar 2×2 na categoria pastilha, que está a UM item dos 3 da 14.3,
+depois a vitrine de pastilha da F1, depois a categoria cola; (b) o `url_busca` do
+degrau 3 e o segundo link discreto que a seção 25.2 manda pôr embaixo do botão —
+os campos chegaram ao banco e **a página ainda não os serve**, então hoje a escada
+existe no dado e não na tela; (c) o feed do Merchant Center, que depende de haver
+peça publicada e por isso não é escolha de fila e sim de espera. O que só um
+humano fecha continua o mesmo: confirmar que o e-mail de acesso CHEGOU na caixa da
+Hotmail, e o `contato@clubedomosaico.com.br` que ainda não existe como caixa.

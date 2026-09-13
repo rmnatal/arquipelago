@@ -160,3 +160,41 @@ Aberto em 13/09/2026. As 44 respostas do banco (`r1-respostas.json` com 33, `r2-
 A ilha responde "qual peça serve no seu robô", a pessoa descobre a peça certa, e **não tem onde comprar**. É o pior estado possível para uma ilha de afiliado: ela faz o trabalho caro (a compatibilidade) e entrega o clique de graça para outro.
 
 O recorte do feed oficial já está em `ilhas/robometria/dados/feed-shopee-oficial.json`, e ele **prova que o degrau 1 não resolve esta ilha**: das 27 linhas, só três são peça de reposição. Use as três, e para o resto vá direto ao **degrau 2**, catálogo `/p/` do Mercado Livre, que é onde peça de robô aspirador existe com nome e código. Mesma disciplina da Aquametria: **meça primeiro quantas peças as 9 páginas publicadas citam**, gere só essas, em um lote só, e deixe o resto do banco esperando. `url_produto`, `url_busca`, `degrau` e `conferido_em` em todos.
+
+---
+
+## 13/09/2026 — FUNDAÇÃO — QUEM MEXE NO BANCO DE UMA ILHA TEM DE MEXER NO MANIFEST DELA, E DUAS EXECUÇÕES MEXERAM NA MESMA ILHA NA MESMA HORA
+
+**Medido no Clube do Mosaico em 13/09/2026, duas vezes na mesma execução.** Os
+commits `4e69738` (a escada do link de compra) e `35412c1` (o `url_produto` do
+teste de vida) editaram `ilhas/clubedomosaico/dados/materiais-colas.json` e
+`materiais-rejuntes.json` e **não tocaram no `manifest.json`**. A consequência
+não é teórica e foi lida no `/status`: o Sync baixou os dois arquivos, comparou
+com o `sha256` que o manifest ainda declarava e recusou aplicar —
+`"materiais-colas: sha256 divergente — não aplicado"` — nas revisões 19, 20 **e**
+21. **Os dez links novos, o `url_produto` e as três fotos ficaram no repositório
+e fora do ar**, que é a seção 4 na forma mais pura. A trava fez o que devia; o
+que faltou foi a metade de quem escreve.
+
+**A regra, e ela já está na seção 3 — o que falta é ela valer para quem edita só
+dado:** *todo arquivo publicável que muda tem o `sha256` recalculado e a
+`revisao` incrementada no mesmo commit.* São dois comandos:
+`python3 ferramentas/atualizar-manifest.py . --gravar` e subir a revisão. Sem
+isso, editar o banco é escrever num arquivo que o site nunca vai ler. **E o
+validador roda antes:** o `4e69738` também deixou 11 erros de esquema
+(`mercado_livre` onde o vocabulário diz `mercadolivre`, `imagem` sem
+`largura`/`altura`, contadores de cabeçalho desatualizados) — nenhum deles teria
+sobrevivido a um `python3 ferramentas/validar-banco.py .`, que leva segundos.
+
+**E A OUTRA METADE, que é do Raphael e não tem conserto do lado da Fundação:
+duas execuções estavam trabalhando na MESMA ilha ao mesmo tempo.** A reserva por
+commit da seção 1 funcionou como escrito — esta execução reservou a
+clubedomosaico às 13h19Z depois de perder a robometria e a aquametria para outras
+duas —, e mesmo assim uma terceira sessão editou o banco desta ilha às 13h36Z e
+de novo depois. **A reserva protege contra quem a lê; não existe para quem entra
+pela porta do dado.** O custo hoje foi barato (dois rebases e uma revisão a mais);
+o custo caro é o do próprio 1.1: dois trabalhos concorrentes na ilha da artesã, no
+dia em que ela ia aprender a usar o painel. Isto é decisão do Raphael, como a
+aritmética de "três ilhas e quatro execuções" de 12/09: ou a camada de links de
+afiliado passa a reservar a ilha como a Fundação reserva, ou ela deixa de tocar em
+`ilhas/<ilha>/dados/` e vira despacho para quem tem a ilha na mão.
