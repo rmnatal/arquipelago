@@ -101,14 +101,18 @@ def corpo_da_pagina(servido):
 def bloco_da_resposta(corpo):
     """SO o bloco que responde a consulta — mesma fronteira do conferir-kits.
 
-    Vai de id="resultado" ate a tabela pre-renderizada (rbm-quadro). Fronteira
+    Vai de id="resultado" ate a tabela pre-renderizada (id rbm-exemplos). Fronteira
     nao encontrada devolve vazio E quem chama REPROVA: localizador que nao casa
     tem de gritar, nunca aprovar por ausencia.
     """
     i = corpo.find('id="resultado"')
     if i < 0:
         return ''
-    fim = corpo.find('rbm-quadro', i)
+    # A FRONTEIRA E UM MARCADOR DECLARADO, e nao "a primeira coisa parecida com
+    # uma tabela": `rbm-quadro` e a classe de qualquer quadro, inclusive o de
+    # DIVERGENCIAS, que fica dentro da resposta. Ate 13/09/2026 o bloco medido
+    # terminava nele, e a tabela de divergencias ficava publicada sem regua.
+    fim = corpo.find('id="rbm-exemplos"', i)
     if fim < 0:
         return ''
     return corpo[i:fim]
@@ -141,6 +145,8 @@ ESTADOS = {
     'w300': ('wap-w300', 'reservatorio'),
     'wsmart': ('wap-wsmart', 'reservatorio'),
     'erb60': ('electrolux-erb60', 'reservatorio'),
+    'w100': ('wap-w100', 'reservatorio'),
+    'w90': ('wap-w90', 'reservatorio'),
 }
 
 
@@ -177,6 +183,18 @@ TIPOS_NO_SELETOR = [
 # o do W300 nao, e essa assimetria e o que a trava de baixo cobra.
 RECIPIENTE_W300 = 'Recipiente de Pó Para Robô Aspirador de Pó WAP Robot W300'
 RECIPIENTE_WSMART_CODIGO = 'FW008024'
+
+# A TERCEIRA PECA, de 13/09/2026, e a primeira declarada para DOIS modelos. O
+# titulo e o codigo sao transcritos do que a loja oficial publica — escritos aqui,
+# nao lidos do banco, para as duas metades nao errarem juntas.
+RECIPIENTE_W100_W90_CODIGO = 'FW008543'
+RECIPIENTE_W100_W90_TITULO = ('Kit Recipiente de Pó Para Robôs Aspiradores de Pó '
+                              'WAP Robot W100 e WAP Robot W90')
+
+# OS MODELOS QUE OS REVENDEDORES ANUNCIAM E O FABRICANTE NAO DECLARA. O W100C e o
+# unico deles que existe no banco desta ilha, e ele esta no vazio da R1: se a
+# extensao por vizinhanca entrasse um dia, e aqui que ela apareceria.
+MODELOS_SO_DO_VAREJO = ('W95', 'W96', 'W100C')
 
 # O estado NEGATIVO: um modelo sem reservatorio declarado. O ERB60 e da marca com
 # mais pecas do banco — se a recusa falhar em algum, falha aqui.
@@ -253,8 +271,60 @@ ok(RECIPIENTE_WSMART_CODIGO.lower() not in erb60,
    'a recusa do ERB60 nao vaza o codigo do WSMART',
    'limpo' if RECIPIENTE_WSMART_CODIGO.lower() not in erb60 else 'VAZOU')
 
-# ------------------------------------------------------------- 4. A RECEITA DITA
-print('\n4. A receita, dita como ela e (secao 7 e escada da 25)')
+# ---------------------------------------- 4. A PECA DE FAMILIA E QUEM DIVERGE
+print('\n4. A terceira peca: um registro, DOIS modelos, e tres canais que divergem')
+
+# POR QUE ESTES DOIS ESTADOS PRECISAM DOS DOIS: a peca e UMA e os modelos sao
+# DOIS. Medir so o W100 deixaria o W90 com porta dos fundos — bastaria a
+# compatibilidade do segundo par sumir do banco para a bancada seguir verde.
+for estado, rotulo in (('w100', 'W100'), ('w90', 'W90')):
+    servido, codigo = obter(estado)
+    ok(codigo == '200', '%s + reservatorio responde HTTP 200' % rotulo, codigo)
+    bloco = bloco_da_resposta(corpo_da_pagina(servido))
+    ok(bool(bloco), 'o bloco da resposta do %s foi localizado' % rotulo,
+       '%d bytes' % len(bloco))
+    txt = texto(bloco)
+    ok('nao localizamos' not in txt, 'a resposta do %s nao recusa' % rotulo,
+       'recusou' if 'nao localizamos' in txt else 'respondeu')
+    ok(RECIPIENTE_W100_W90_CODIGO.lower() in txt,
+       'a resposta do %s cita o codigo de fabricante' % rotulo,
+       RECIPIENTE_W100_W90_CODIGO if RECIPIENTE_W100_W90_CODIGO.lower() in txt else 'AUSENTE')
+    ok(sem_acento(RECIPIENTE_W100_W90_TITULO).lower() in txt,
+       'a resposta do %s cita o titulo publicado pela loja oficial' % rotulo)
+
+    # A ATRIBUICAO. Tres anuncios de revendedor divergem desta peca, e ate
+    # 13/09/2026 a pagina os chamava de "canais do FABRICANTE" — na cauda da
+    # frase E no titulo do bloco. Sao as duas superficies medidas aqui.
+    ok('canais de fora do fabricante declaram' in txt,
+       'a pagina do %s diz que quem diverge esta FORA do fabricante' % rotulo)
+    ok('canais do fabricante discordam' not in txt
+       and 'canais do fabricante declaram' not in txt,
+       'e NAO empresta ao fabricante a declaracao de quem revende (%s)' % rotulo,
+       'limpo' if 'canais do fabricante' not in txt else 'ATRIBUIU AO FABRICANTE')
+    # O NUMERO SAI CONTADO: sao tres canais divergentes, e a frase diz tres.
+    ok('tres canais de fora do fabricante' in txt,
+       'o numero de canais divergentes sai contado na frase (%s)' % rotulo)
+
+    # A DIVERGENCIA E PUBLICADA, e ela e conteudo: sem ver o que foi descartado,
+    # a regra do conjunto mais estreito nao e verificavel por quem le.
+    for modelo_do_varejo in MODELOS_SO_DO_VAREJO:
+        ok(modelo_do_varejo.lower() in txt,
+           'o quadro de divergencia do %s publica o %s que so o varejo declara'
+           % (rotulo, modelo_do_varejo))
+
+# E A OUTRA METADE, sem a qual a de cima aprovaria uma pagina que RECOMENDA o
+# W100C: o modelo que so o revendedor declara nao pode virar recomendacao. A
+# consulta dele nao esta nos estados porque ele continua no vazio da R1 — e e
+# justamente isso que esta afirmacao cobra, no estado do W100.
+servido, _ = obter('w100')
+bloco_w100 = texto(bloco_da_resposta(corpo_da_pagina(servido)))
+antes_da_divergencia = bloco_w100.split('canais de fora do fabricante')[0]
+ok('w100c' not in antes_da_divergencia,
+   'o W100C aparece SO no quadro de divergencia, nunca na recomendacao',
+   'limpo' if 'w100c' not in antes_da_divergencia else 'VAZOU PARA A RECOMENDACAO')
+
+# ------------------------------------------------------------- 5. A RECEITA DITA
+print('\n5. A receita, dita como ela e (secao 7 e escada da 25)')
 ok('link de loja em breve' in w300,
    'o recipiente do W300 reserva o lugar do botao, sem prometer link',
    'presente' if 'link de loja em breve' in w300 else 'AUSENTE')

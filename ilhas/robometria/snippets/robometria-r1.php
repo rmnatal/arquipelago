@@ -1126,7 +1126,13 @@ function robometria_r1_tabela_exemplos() {
 		return '';
 	}
 
-	$html  = '<div class="rbm-secao"><h2>Tudo o que esta ferramenta responde hoje</h2>';
+	/* O ID EXISTE PARA A BANCADA TER UMA FRONTEIRA DECLARADA. Os conferidores de
+	   ar delimitavam "a resposta" de id=resultado ate o primeiro `rbm-quadro`, e
+	   `rbm-quadro` e a classe de QUALQUER tabela — inclusive a de divergencias,
+	   que fica DENTRO da resposta. O resultado era um bloco cortado ao meio, e
+	   uma tabela publicada que nenhuma regua lia. Fronteira de teste tem de ser
+	   um marcador escrito, nunca "a primeira coisa parecida com uma tabela". */
+	$html  = '<div class="rbm-secao" id="rbm-exemplos"><h2>Tudo o que esta ferramenta responde hoje</h2>';
 	$html .= '<p>São <span class="rbm-num">' . esc_html( count( $d['exemplos'] ) )
 		. '</span> pares peça × modelo, cada um com o código, quem declarou, o endereço e a data. A tabela sai do mesmo banco que a ferramenta consulta: se ela mudar, esta lista muda junto.</p>';
 

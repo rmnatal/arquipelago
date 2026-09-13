@@ -4,7 +4,7 @@
   "nicho": "robo aspirador — compatibilidade de pecas e consumiveis, e dimensionamento de succao e autonomia",
   "dominio": "https://robometria.com.br",
   "versao_manifest": 1,
-  "revisao": 33,
+  "revisao": 34,
   "atualizado_em": "2026-09-13",
   "estado": "nascendo",
   "desembarque": {
@@ -31,7 +31,7 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "a9bf68877b2054f7265131269f3e8f3f8847c60703d97aa4a88e9042ca600a6f",
+      "sha256": "e07ed221fb2e171d581e5aac26780cb50393981a4b4e759892d38dcfb4c53621",
       "descricao": "A R1 NA 1.3.0 — a frase devolve a FUNCAO a quem a leu (secao 26.3 do ARQUIPELAGO.md). Estava no ar 'A WAP declara a escova lateral \"Escova Direita Para Robo Aspirador W300\"', e a WAP nunca usou a palavra 'lateral': ela batiza a peca pela POSICAO, e a Xiaomi nem isso — publica so 'Brush'. Quem leu a funcao no contraste do catalogo do fabricante foi esta ilha, e a frase emprestava a ele a unica coisa que a Robometria vende, que e a declaracao dele. Onde funcao.declarada_por nao e 'titulo', o verbo 'declara' passa a recair sobre o que o fabricante de fato declarou (o nome da peca e a lista de modelos) e a atribuicao vira ressalva propria, que nomeia quem classificou. Nenhum portao da ilha via o defeito porque todos comparavam a frase do PHP com a da referencia, e as duas diziam a mesma coisa errada: o portao 15 do teste-r1.php recomputa quem e derivada lendo dados/pecas.json e o esquema, sem chamar nenhuma das duas. Cinco pecas do banco mudaram de frase; nenhuma URL mudou e nenhuma peca saiu do banco. || A R1 NA 1.2.0 — a abertura na voz e o titulo que envelhecia calado. A linha-mestra deixou de ser 'Esta ferramenta responde qual filtro... o fabricante declarou...' e passou a falar com quem entrou ('Diga a marca e o modelo do seu robo...'); a contagem e a regra de procedencia desceram para o paragrafo seguinte, marcado com rbm-prova (secao 15.2 do ARQUIPELAGO.md). O catalogo da casca passa a receber o titulo da constante deste snippet, entao o nome da pagina tem um dono so. E garantir_pagina() passou a REESPELHAR o post_title quando o nome muda: sem isso, renomear no repositorio trocava o og:title, o cartao e a trilha, e deixava o H1 e o <title> do ar com o nome antigo — duas fontes para o mesmo campo, que e a cicatriz da Aquametria de 11/09/2026.",
       "versao": "1.3.0"
     },

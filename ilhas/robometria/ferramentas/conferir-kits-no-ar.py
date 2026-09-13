@@ -83,7 +83,11 @@ def bloco_da_resposta(corpo):
     i = corpo.find('id="resultado"')
     if i < 0:
         return ''
-    fim = corpo.find('rbm-quadro', i)
+    # A FRONTEIRA E UM MARCADOR DECLARADO, e nao "a primeira coisa parecida com
+    # uma tabela": `rbm-quadro` e a classe de qualquer quadro, inclusive o de
+    # DIVERGENCIAS, que fica dentro da resposta. Ate 13/09/2026 o bloco medido
+    # terminava nele, e a tabela de divergencias ficava publicada sem regua.
+    fim = corpo.find('id="rbm-exemplos"', i)
     if fim < 0:
         return ''
     return corpo[i:fim]
