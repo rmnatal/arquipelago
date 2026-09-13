@@ -76,6 +76,63 @@ def banco_json(mudar):
     return aplicar
 
 
+def varias(*aplicadores):
+    """Mutacao que toca mais de um arquivo, e as duas coisas sao UMA mudanca.
+
+    Existe para as mutacoes que PRODUZEM O MUNDO: acrescentar uma especie
+    barrada a uma categoria muda o snippet E a lista que a bancada declara, e
+    aplicar so metade mediria a outra afirmacao. Cada aplicador de dentro mantem
+    a propria trava contra a mutacao inerte.
+    """
+    def aplicar(base):
+        for a in aplicadores:
+            a(base)
+    return aplicar
+
+
+TESTE = "ferramentas/teste-peixes.py"
+
+# O registro inteiro de UMA barrada, como o gerador o escreve. Serve de alvo
+# para as mutacoes que apagam e que duplicam — e escrito aqui por extenso
+# porque `troca` recusa alvo que nao exista, entao o dia em que o formato do
+# gerador mudar esta mutacao para em vez de virar inerte.
+BARRADA_ANCISTRUS = """		'ancistrus-cirrhosus' => array(
+			'id' => 'ancistrus-cirrhosus',
+			'cientifico' => 'Ancistrus cirrhosus',
+			'populares' => array(
+				'cascudo-ancistrus',
+				'ancistrus',
+				'cascudo-barbudo',
+			),
+			'familia' => 'Loricariidae',
+			'faltando' => array(
+				'temperatura_C',
+			),
+		),
+"""
+
+
+def inverter_ordem_dos_barrados(base):
+    """Poe os barrados na ordem inversa, sem mudar nenhum dado deles.
+
+    A ordem e uma afirmacao da pagina — "de quem esta mais perto de entrar para
+    quem esta mais longe" — e afirmacao de ordem so se mede mexendo na ordem e
+    em mais nada: trocar um campo junto mediria o campo.
+    """
+    caminho = os.path.join(base, PEIXES)
+    texto = open(caminho, encoding="utf-8").read()
+    antes, resto = texto.split("\t$barrados = array(\n", 1)
+    corpo, depois = resto.split("\n\t);\n\treturn $barrados;", 1)
+    registros = re.findall(r"\t\t'[a-z0-9-]+' => array\(\n.*?\n\t\t\),", corpo, re.S)
+    if len(registros) < 2:
+        raise SystemExit("MUTACAO INERTE: achei %d barrados, preciso de 2 ou mais" % len(registros))
+    novo = "\n".join(reversed(registros))
+    if novo == corpo:
+        raise SystemExit("MUTACAO INERTE: a ordem invertida e igual a original")
+    open(caminho, "w", encoding="utf-8").write(
+        antes + "\t$barrados = array(\n" + novo + "\n\t);\n\treturn $barrados;" + depois)
+
+
 def mut_campo(d, ident, campo, valor):
     """Troca UM campo de UM registro do banco, recusando alvo que nao existe."""
     for e in d["especies"]:
@@ -421,6 +478,84 @@ MUTACOES = [
 
     ("A RAZAO QUE O CRITERIO PUBLICA MUDA NO BANCO E A FRASE FICA: a frente do espada vira 100 cm",
      banco_json(lambda d: mut_campo(d, "xiphophorus-hellerii", "comprimento_minimo_aquario_cm", 100))),
+
+    # ------------------------------------------------------------------------
+    # 6. OS BARRADOS (13/09/2026, snippet 1.6.0)
+    #
+    # A prestacao de contas da secao 7 do ARQUIPELAGO.md alcancou quem NAO esta
+    # na tabela. Estas nove atacam as duas metades da coisa: o bloco gerado, que
+    # pode envelhecer em relacao ao banco, e a tela, que pode calar, mentir a
+    # contagem ou servir codigo de banco na cara do leitor.
+    #
+    # QUATRO DELAS PRODUZEM O MUNDO. Nenhuma das duas categorias no ar declara
+    # especie barrada hoje, entao o ramo cheio da pagina de categoria nao existe
+    # no repositorio — e regua sobre mundo que nunca aconteceu nasce errada sem
+    # poder falhar (secao 8). Elas criam a declaracao e so depois quebram.
+    ("O BLOCO DE AUSENTES SAI DA SECAO: a pagina volta a dizer 29 e a calar sobre os 37 do banco",
+     troca(PEIXES,
+           "\t$barrados = aquametria_peixes_barrados();\n\tif ( $barrados ) {\n\t\t$total =",
+           "\t$barrados = aquametria_peixes_barrados();\n\tif ( false ) {\n\t\t$total =")),
+
+    ("A CONTAGEM DO BANCO VIRA A DO CATALOGO: o total deixa de somar quem ficou de fora",
+     troca(PEIXES,
+           "\t\t$total = count( $catalogo ) + count( $barrados );",
+           "\t\t$total = count( $catalogo );")),
+
+    ("A TRADUCAO DA CAUSA MAIS COMUM SOME DO MAPA: tres ausentes perdem o motivo na tela",
+     troca(PEIXES,
+           "\t\t'duas fontes distintas'         => 'um segundo corpo de fonte (as duas referências do banco são do mesmo)',\n",
+           "")),
+
+    ("UM AUSENTE E APAGADO DO BLOCO GERADO: o snippet envelhece em relacao ao banco",
+     troca(PEIXES, BARRADA_ANCISTRUS, "")),
+
+    ("UMA ESPECIE DA TABELA ENTRA TAMBEM NA LISTA DOS AUSENTES: a pagina nega e afirma o mesmo fato",
+     troca(PEIXES, BARRADA_ANCISTRUS, BARRADA_ANCISTRUS + BARRADA_ANCISTRUS.replace(
+         "'ancistrus-cirrhosus'", "'paracheirodon-innesi'").replace(
+         "'cientifico' => 'Ancistrus cirrhosus'", "'cientifico' => 'Paracheirodon innesi'"))),
+
+    ("A ORDEM DOS AUSENTES VIRA A INVERSA: quem esta a quatro campos de distancia sobe para o topo",
+     inverter_ordem_dos_barrados),
+
+    # --- as quatro que produzem o mundo
+    ("MUNDO PRODUZIDO: a categoria nascida passa a declarar uma barrada e a bancada nao percebe",
+     troca(PEIXES,
+           "\t\t\t\t'gymnocorymbus-ternetzi',\n\t\t\t),",
+           "\t\t\t\t'gymnocorymbus-ternetzi',\n\t\t\t\t'danio-margaritatus',\n\t\t\t),")),
+
+    ("MUNDO PRODUZIDO: a categoria declara a barrada, a bancada sabe, e a pagina cala sobre ela",
+     varias(
+         troca(PEIXES,
+               "\t\t\t\t'gymnocorymbus-ternetzi',\n\t\t\t),",
+               "\t\t\t\t'gymnocorymbus-ternetzi',\n\t\t\t\t'danio-margaritatus',\n\t\t\t),"),
+         troca(TESTE,
+               "        \"rotulo\": \"tetras\",\n        \"barradas\": [],",
+               "        \"rotulo\": \"tetras\",\n        \"barradas\": [\"danio-margaritatus\"],"),
+         troca(PEIXES,
+               "\tif ( $barradas_daqui ) {\n\t\t$html .= '<p class=\"aqm-px-fora\">Fora da tabela",
+               "\tif ( false ) {\n\t\t$html .= '<p class=\"aqm-px-fora\">Fora da tabela"),
+     )),
+
+    ("MUNDO PRODUZIDO: a lista com alguem esperando do lado de fora continua se dizendo fechada",
+     varias(
+         troca(PEIXES,
+               "\t\t\t\t'gymnocorymbus-ternetzi',\n\t\t\t),",
+               "\t\t\t\t'gymnocorymbus-ternetzi',\n\t\t\t\t'danio-margaritatus',\n\t\t\t),"),
+         troca(TESTE,
+               "        \"rotulo\": \"tetras\",\n        \"barradas\": [],",
+               "        \"rotulo\": \"tetras\",\n        \"barradas\": [\"danio-margaritatus\"],"),
+         troca(PEIXES, "\t} elseif ( $barradas_daqui ) {", "\t} elseif ( false ) {"),
+     )),
+
+    ("MUNDO PRODUZIDO: a categoria declara um id que o banco nao tem e a tabela encolhe em silencio",
+     varias(
+         troca(PEIXES,
+               "\t\t\t\t'gymnocorymbus-ternetzi',\n\t\t\t),",
+               "\t\t\t\t'gymnocorymbus-ternetzi',\n\t\t\t\t'hyphessobrycon-serpae',\n\t\t\t),"),
+         troca(TESTE,
+               "        \"rotulo\": \"tetras\",\n        \"barradas\": [],",
+               "        \"rotulo\": \"tetras\",\n        \"barradas\": [\"hyphessobrycon-serpae\"],"),
+     )),
 ]
 
 

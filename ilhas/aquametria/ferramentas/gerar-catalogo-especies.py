@@ -61,6 +61,33 @@ CINCO DECISOES, e nenhuma e de estilo:
      dois extremos com a atribuicao de cada um (secao 15.2 e o rodape da
      ilha: a Aquametria nunca tira media). Conflito que ficasse fora do
      catalogo faria a pagina publicar um numero unico com cara de consenso.
+
+  6. QUEM NAO PASSA TAMBEM VIAJA — e ate 13/09/2026 nao viajava (bloco das
+     23h19Z). O catalogo carregava so quem PASSA no portao, entao os barrados
+     simplesmente NAO EXISTIAM no snippet: a pagina podia dizer "sao 29
+     especies" e nao tinha como dizer que o banco tem 37 nem por que os outros
+     8 nao estao ali. A prestacao de contas da secao 7 do ARQUIPELAGO.md ("cada
+     item da categoria consultada aparece exatamente uma vez na prosa da
+     resposta — ou na frase que o recomenda, ou numa linha que diz por que ele
+     nao esta") estava cumprida para quem esta na tabela e para mais ninguem.
+     Este script passou a escrever um SEGUNDO bloco, entre BARRADOS-INICIO e
+     BARRADOS-FIM, com o registro barrado e o que falta nele.
+
+     E O MOTIVO VIAJA COMO CODIGO, NUNCA COMO FRASE. A traducao para a lingua
+     do leitor mora no PHP, num mapa so, e nao aqui: se este script escrevesse
+     a frase pronta, o dia em que alguem mudasse a redacao de um motivo
+     reescreveria o catalogo inteiro e o `sha256` do manifest mudaria por causa
+     de uma virgula. O vocabulario de codigos e FECHADO (`MOTIVOS`) e este
+     script RECUSA gravar codigo que nao esteja nele — regra nova de portao que
+     chegasse a tela como `comprimento_minimo_aquario_cm` seria vocabulario de
+     dentro da fabrica na cara do leitor, que e o defeito que a secao 5 do
+     contrato existe para impedir.
+
+     E RECUSA TAMBEM registro barrado sem `nome_cientifico`: linha que nao sabe
+     nomear a especie e linha que o leitor nao consegue conferir. O esquema
+     declara esse campo obrigatorio, entao o caso nao existe hoje — a recusa
+     esta aqui para o dia em que alguem afrouxar o esquema, e nao como ramo de
+     tela, que seria regua escrita para um mundo que nao pode acontecer.
 """
 
 import json
@@ -75,6 +102,9 @@ ALVO = os.path.join(RAIZ, "snippets", "aquametria-peixes.php")
 
 INICIO = "\t/* CATALOGO-INICIO — gerado por ferramentas/gerar-catalogo-especies.py */"
 FIM = "\t/* CATALOGO-FIM */"
+
+BARRADOS_INICIO = "\t/* BARRADOS-INICIO — gerado por ferramentas/gerar-catalogo-especies.py */"
+BARRADOS_FIM = "\t/* BARRADOS-FIM */"
 
 # A regua do portao de pagina, escrita aqui. Ver decisao 1 do cabecalho.
 CAMPOS_DO_PORTAO = [
@@ -93,6 +123,41 @@ STATUS_BARRADOS = ("rascunho", "revalidar")
 # regras no dia em que alguem editar uma delas.
 REGRA_DO_CARDUME = "cardume_minimo OU convivencia igual a solitario/casal/harem"
 CONVIVENCIA_SEM_CARDUME = ("solitario", "casal", "harem")
+
+# O VOCABULARIO FECHADO DOS MOTIVOS (decisao 6 do cabecalho). Um codigo por
+# causa, e a causa e o que o leitor precisa entender — nao o texto de depuracao
+# que o terminal imprime. Por isso `fonte sem nome de corpo: https://...` vira
+# `fonte sem nome de corpo` sem a url: url dentro de um motivo na tela nao
+# explica nada a quem le e ainda publica endereco de fonte que a ilha nao
+# conseguiu ler.
+MOTIVOS = tuple(CAMPOS_DO_PORTAO) + (
+    "duas fontes distintas",
+    "status_registro rascunho",
+    "status_registro revalidar",
+    "fonte sem nome de corpo",
+)
+
+
+def codigo_de_motivo(bruto):
+    """O codigo fechado de um motivo que o portao produziu.
+
+    O portao escreve motivo de DUAS formas: o nome do campo que faltou, seco, e
+    uma frase de diagnostico com url dentro ("conflito em pH sem nome de corpo:
+    https://..."). A segunda nunca pode chegar a tela, e cortar a url por
+    heuristica seria adivinhar por vizinhanca — entao o corte e por prefixo
+    declarado, e o que nao casar com nenhum prefixo conhecido PARA o script.
+    """
+    if bruto in MOTIVOS:
+        return bruto
+    for prefixo in ("fonte sem nome de corpo", "conflito em "):
+        if bruto.startswith(prefixo):
+            return "fonte sem nome de corpo"
+    raise SystemExit(
+        "ERRO: motivo sem codigo no vocabulario fechado: %r\n"
+        "  Regra nova de portao precisa de um codigo em MOTIVOS aqui E de uma\n"
+        "  traducao em aquametria_peixes_motivo_na_tela() no snippet, senao ela\n"
+        "  chega a tela do leitor como nome de campo de banco." % (bruto,)
+    )
 
 
 def php_valor(v, ident=2):
@@ -339,14 +404,65 @@ def main():
             "conflitos": conflitos,
         }
 
+    """OS BARRADOS, na ordem de quem esta mais perto de entrar (decisao 6).
+
+    A ordem e DERIVADA — quantos motivos faltam, e entre iguais o nome
+    cientifico — e nunca a do arquivo do banco: quem le a lista quer saber
+    quem esta a um campo de distancia, e ordem de arquivo e ordem de digitacao.
+    """
+    por_id = {e["id"]: e for e in banco["especies"]}
+    barrados = {}
+    for ident, faltando in fora:
+        e = por_id[ident]
+        if not e.get("nome_cientifico"):
+            raise SystemExit(
+                "ERRO: %s foi barrado e nao tem nome_cientifico — linha que nao\n"
+                "  sabe nomear a especie e linha que o leitor nao pode conferir." % ident
+            )
+        codigos = []
+        for bruto in faltando:
+            codigo = codigo_de_motivo(bruto)
+            if codigo not in codigos:
+                codigos.append(codigo)
+        barrados[ident] = {
+            "id": ident,
+            "cientifico": e["nome_cientifico"],
+            "populares": list(e.get("nomes_populares_br") or []),
+            "familia": e.get("familia") or "",
+            "faltando": codigos,
+        }
+    barrados = dict(sorted(
+        barrados.items(),
+        key=lambda par: (len(par[1]["faltando"]), par[1]["cientifico"]),
+    ))
+
+    # A prova de que as duas listas sao disjuntas, feita aqui e nao confiada ao
+    # `continue` do laco de cima: especie nos dois blocos apareceria na tabela E
+    # na lista de ausentes da mesma pagina, que e a contradicao que a secao 7
+    # nomeia ("negar e afirmar o mesmo fato em duas frases seguidas").
+    nos_dois = sorted(set(dentro) & set(barrados))
+    if nos_dois:
+        raise SystemExit("ERRO: no catalogo E barrados ao mesmo tempo: %s" % ", ".join(nos_dois))
+    if len(dentro) + len(barrados) != len(banco["especies"]):
+        raise SystemExit(
+            "ERRO: %d no catalogo + %d barrados nao fecham os %d registros do banco"
+            % (len(dentro), len(barrados), len(banco["especies"]))
+        )
+
     corpo = "\tstatic $catalogo = null;\n"
     corpo += "\tif ( null !== $catalogo ) {\n\t\treturn $catalogo;\n\t}\n"
     corpo += "\t$catalogo = " + php_valor(dentro, 1) + ";\n"
     corpo += "\treturn $catalogo;"
 
+    corpo_barrados = "\tstatic $barrados = null;\n"
+    corpo_barrados += "\tif ( null !== $barrados ) {\n\t\treturn $barrados;\n\t}\n"
+    corpo_barrados += "\t$barrados = " + php_valor(barrados, 1) + ";\n"
+    corpo_barrados += "\treturn $barrados;"
+
     with open(ALVO, encoding="utf-8") as f:
         php = f.read()
     php = escrever_bloco(php, INICIO, FIM, corpo)
+    php = escrever_bloco(php, BARRADOS_INICIO, BARRADOS_FIM, corpo_barrados)
     with open(ALVO, "w", encoding="utf-8") as f:
         f.write(php)
 
@@ -354,6 +470,9 @@ def main():
     print("banco: %d registros" % len(banco["especies"]))
     for ident, faltando in fora:
         print("  fora: %-32s %s" % (ident, ", ".join(faltando)))
+    print("barrados no snippet: %d, com os motivos em codigo fechado" % len(barrados))
+    for ident, b in barrados.items():
+        print("  barrado: %-30s %s" % (ident, ", ".join(b["faltando"])))
 
     """Quem esta no catalogo e ainda assim NAO pode ter pagina propria.
 
@@ -361,7 +480,6 @@ def main():
     ela a regra do cardume seria invisivel ate alguem escrever um registro no
     `aquametria_peixes_registro()` e o teste reprovar sem dizer por que.
     """
-    por_id = {e["id"]: e for e in banco["especies"]}
     sem_ficha = []
     for ident in dentro:
         falta = falta_para_virar_ficha(por_id[ident])

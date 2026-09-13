@@ -1,5 +1,47 @@
 /**
  * Aquametria Peixes — a malha do eixo /peixes/
+ * Versão: 1.6.0 (13/09/2026) — A PRESTAÇÃO DE CONTAS DA SEÇÃO 7 ALCANÇA QUEM
+ * NÃO ESTÁ NA TABELA. Nenhuma URL nova, nenhuma página criada: o que muda é o
+ * que a seção e as categorias conseguem dizer sobre o próprio banco.
+ *
+ *   O BURACO, E ELE ERA ESTRUTURAL. O catálogo embutido carregava só quem PASSA
+ *   no portão, então os barrados não existiam dentro do snippet. A seção servia
+ *   "são 29 espécies" e não tinha como dizer que o banco tem 37, nem por que os
+ *   outros 8 não estão ali — não por descuido de texto, mas porque o dado não
+ *   chegava à página. A regra da seção 7 do `ARQUIPELAGO.md` ("cada item da
+ *   categoria consultada aparece exatamente uma vez na prosa da resposta — ou
+ *   na frase que o recomenda, ou numa linha que diz por que ele não está")
+ *   estava cumprida para quem está na tabela e para mais ninguém, e ausência
+ *   sem nome, numa página que fala do próprio banco, é indistinguível de
+ *   espécie que a ilha nunca procurou.
+ *
+ *   O QUE PASSOU A EXISTIR. `ferramentas/gerar-catalogo-especies.py` escreve um
+ *   SEGUNDO bloco, `aquametria_peixes_barrados()`, com o registro barrado, a
+ *   família e o motivo em CÓDIGO — e a tradução do código para a língua do
+ *   leitor mora em `aquametria_peixes_motivo_na_tela()`, num mapa só. O
+ *   vocabulário de códigos é fechado nos dois lados e o gerador RECUSA gravar
+ *   código fora dele: regra nova de portão que chegasse à tela como
+ *   `comprimento_minimo_aquario_cm` seria vocabulário de dentro da fábrica na
+ *   cara de quem lê.
+ *
+ *   UM DEFEITO LATENTE SAIU JUNTO, e ele é filho da mesma mudança: o cartão de
+ *   categoria da seção virava link quando a categoria DECLARAVA espécie.
+ *   Enquanto o snippet só conhecia quem passa, declarar e entrar na tabela eram
+ *   a mesma coisa; com os barrados aqui dentro deixaram de ser, e uma categoria
+ *   que declarasse só barradas viraria link para uma página de tabela vazia —
+ *   a página fina que o 16.5 existe para não deixar entrar no índice de domínio
+ *   novo. Quem decide o link passou a ser a contagem de quem está no catálogo.
+ *
+ *   E A FRASE "ESTA LISTA ESTÁ FECHADA" GANHOU A FORMA QUE FALTAVA. Com uma
+ *   barrada declarada na categoria ela ficaria falsa sem mudar uma letra, que é
+ *   a forma mais silenciosa do número de tela que envelhece.
+ *
+ *   Medem isso `ferramentas/teste-peixes.py` (1246 → 1302 afirmações, com régua
+ *   própria que recomputa o portão e os motivos do banco, sem importar nada do
+ *   gerador), `ferramentas/mutacoes-peixes.py` (46 → 56, e QUATRO delas produzem
+ *   o mundo, porque nenhuma categoria no ar declara barrada hoje) e
+ *   `ferramentas/conferir-peixes-no-ar.py`, no HTML que o servidor devolve.
+ *
  * Versão: 1.5.0 (13/09/2026) — A CATEGORIA DOS VIVÍPAROS ALCANÇA O MÍNIMO DO
  * 16.5 E GANHA CRITÉRIO ESCRITO, com a lista de espécies ainda vazia. Nenhuma
  * URL nova: é a mesma preparação que a `bettas` recebeu na 1.3.0, agora na
@@ -169,7 +211,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_PEIXES_VERSAO' ) ) {
-	define( 'AQUAMETRIA_PEIXES_VERSAO', '1.5.0' );
+	define( 'AQUAMETRIA_PEIXES_VERSAO', '1.6.0' );
 }
 
 /* A data em que a SERP das consultas foi classificada (seção 14.9).
@@ -2376,6 +2418,221 @@ function aquametria_peixes_catalogo() {
 }
 
 /* ---------------------------------------------------------------------------
+ * 1b. Os barrados — o que o banco tem e o portão não deixa entrar
+ *
+ * Mesmo gerador, segundo bloco. Existe porque até 13/09/2026 o snippet só
+ * conhecia quem PASSA: a seção podia dizer "são 29 espécies" e não tinha como
+ * dizer que o banco tem 37 nem por que os outros 8 não estão na tabela. A
+ * prestação de contas da seção 7 do `ARQUIPELAGO.md` estava cumprida para quem
+ * está na tabela e para mais ninguém — e ausência sem nome, numa página que
+ * fala do próprio banco, é indistinguível de espécie que nunca foi procurada.
+ *
+ * O motivo chega aqui como CÓDIGO, e quem traduz é
+ * `aquametria_peixes_motivo_na_tela()`, logo abaixo. Código na tela do leitor
+ * seria `comprimento_minimo_aquario_cm` no lugar de "a frente mínima de
+ * aquário", que é vocabulário de dentro da fábrica — e é justamente o defeito
+ * que a seção 15.1 e a seção 5 do contrato existem para impedir.
+ * ------------------------------------------------------------------------- */
+
+if ( ! function_exists( 'aquametria_peixes_barrados' ) ) {
+function aquametria_peixes_barrados() {
+	/* BARRADOS-INICIO — gerado por ferramentas/gerar-catalogo-especies.py */
+	static $barrados = null;
+	if ( null !== $barrados ) {
+		return $barrados;
+	}
+	$barrados = array(
+		'ancistrus-cirrhosus' => array(
+			'id' => 'ancistrus-cirrhosus',
+			'cientifico' => 'Ancistrus cirrhosus',
+			'populares' => array(
+				'cascudo-ancistrus',
+				'ancistrus',
+				'cascudo-barbudo',
+			),
+			'familia' => 'Loricariidae',
+			'faltando' => array(
+				'temperatura_C',
+			),
+		),
+		'pethia-conchonius' => array(
+			'id' => 'pethia-conchonius',
+			'cientifico' => 'Pethia conchonius',
+			'populares' => array(
+				'barbo rosado',
+				'barbo rosa',
+				'puntius rosado',
+			),
+			'familia' => 'Cyprinidae',
+			'faltando' => array(
+				'duas fontes distintas',
+			),
+		),
+		'poecilia-reticulata' => array(
+			'id' => 'poecilia-reticulata',
+			'cientifico' => 'Poecilia reticulata',
+			'populares' => array(
+				'guppy',
+				'lebiste',
+				'barrigudinho',
+			),
+			'familia' => 'Poeciliidae',
+			'faltando' => array(
+				'duas fontes distintas',
+			),
+		),
+		'poecilia-sphenops' => array(
+			'id' => 'poecilia-sphenops',
+			'cientifico' => 'Poecilia sphenops',
+			'populares' => array(
+				'molinésia',
+				'black molly',
+				'molinésia preta',
+			),
+			'familia' => 'Poeciliidae',
+			'faltando' => array(
+				'comprimento_minimo_aquario_cm',
+			),
+		),
+		'symphysodon-aequifasciatus' => array(
+			'id' => 'symphysodon-aequifasciatus',
+			'cientifico' => 'Symphysodon aequifasciatus',
+			'populares' => array(
+				'acará-disco',
+				'disco',
+				'disco azul',
+			),
+			'familia' => 'Cichlidae',
+			'faltando' => array(
+				'duas fontes distintas',
+			),
+		),
+		'trichopodus-leerii' => array(
+			'id' => 'trichopodus-leerii',
+			'cientifico' => 'Trichopodus leerii',
+			'populares' => array(
+				'gurami pérola',
+				'gourami pérola',
+				'trichogaster pérola',
+			),
+			'familia' => 'Osphronemidae',
+			'faltando' => array(
+				'convivencia',
+			),
+		),
+		'trichopodus-trichopterus' => array(
+			'id' => 'trichopodus-trichopterus',
+			'cientifico' => 'Trichopodus trichopterus',
+			'populares' => array(
+				'tricogaster',
+				'gurami-azul',
+				'tricogaster-três-pintas',
+			),
+			'familia' => 'Osphronemidae',
+			'faltando' => array(
+				'convivencia',
+			),
+		),
+		'danio-margaritatus' => array(
+			'id' => 'danio-margaritatus',
+			'cientifico' => 'Danio margaritatus',
+			'populares' => array(
+				'rasbora galáxia',
+				'danio galáxia',
+				'microrasbora galáxia',
+			),
+			'familia' => 'Danionidae',
+			'faltando' => array(
+				'comprimento_minimo_aquario_cm',
+				'convivencia',
+				'temperatura_C',
+				'duas fontes distintas',
+			),
+		),
+	);
+	return $barrados;
+	/* BARRADOS-FIM */
+}
+}
+
+/**
+ * O motivo de um barrado, na língua de quem lê.
+ *
+ * Cada frase completa "falta ___". O mapa é FECHADO e casado com o vocabulário
+ * do gerador: código sem tradução devolve string vazia, e quem chama NUNCA
+ * imprime o código cru no lugar — a página prefere contar sem nomear a causa a
+ * publicar nome de campo de banco. Quem não deixa isso acontecer em silêncio é
+ * a bancada: `ferramentas/teste-peixes.py` reprova se algum barrado do banco de
+ * hoje tiver motivo sem tradução, então o buraco aparece antes do desembarque e
+ * não na tela.
+ */
+if ( ! function_exists( 'aquametria_peixes_motivo_na_tela' ) ) {
+function aquametria_peixes_motivo_na_tela( $codigo ) {
+	$mapa = array(
+		'nome_cientifico'               => 'o nome científico',
+		'nomes_populares_br'            => 'o nome pelo qual a loja brasileira vende',
+		'porte_adulto_cm'               => 'o tamanho adulto',
+		'porte_medida'                  => 'qual medida de comprimento a fonte usa',
+		'comprimento_minimo_aquario_cm' => 'a frente mínima de aquário',
+		'convivencia'                   => 'como a espécie vive (sozinha, em casal ou em grupo)',
+		'temperatura_C'                 => 'a faixa de temperatura',
+		'duas fontes distintas'         => 'um segundo corpo de fonte (as duas referências do banco são do mesmo)',
+		'status_registro rascunho'      => 'fechar o registro, que ainda está em rascunho',
+		'status_registro revalidar'     => 'refazer a conferência, que o próprio registro pede',
+		'fonte sem nome de corpo'       => 'o nome de quem declarou o número, que a referência não deixa ler',
+	);
+	return isset( $mapa[ $codigo ] ) ? $mapa[ $codigo ] : '';
+}
+}
+
+/**
+ * A lista de barrados em HTML: um item por espécie, com todos os motivos dela.
+ *
+ * UM ITEM POR ESPÉCIE, E NÃO UM GRUPO POR MOTIVO, e a escolha é entre duas
+ * regras da seção 7 que se cruzam aqui. Ela manda que "cada item da categoria
+ * consultada apareça exatamente uma vez na prosa" e também que "causa que o
+ * código separa, o texto separa". Espécie a que faltam duas coisas — e há uma
+ * assim no banco de hoje — apareceria em dois grupos, quebrando a primeira; e
+ * juntar as duas causas numa frase só quebraria a segunda. A saída é a espécie
+ * aparecer uma vez e cada causa ser uma oração própria, nomeada, nunca fundida
+ * numa razão genérica.
+ */
+if ( ! function_exists( 'aquametria_peixes_barrados_lista_html' ) ) {
+function aquametria_peixes_barrados_lista_html( $lista ) {
+	$html = '<ul class="aqm-px-barrados">';
+	foreach ( $lista as $b ) {
+		$html .= '<li><strong>' . esc_html( $b['cientifico'] ) . '</strong>';
+		if ( ! empty( $b['populares'] ) ) {
+			$html .= ' (' . esc_html( implode( ', ', $b['populares'] ) ) . ')';
+		}
+		$frases = array();
+		foreach ( (array) $b['faltando'] as $codigo ) {
+			$frase = aquametria_peixes_motivo_na_tela( $codigo );
+			if ( '' !== $frase ) {
+				$frases[] = $frase;
+			}
+		}
+		if ( $frases ) {
+			/* Enumeração com "e" antes do último: cada causa continua com nome
+			   próprio (seção 7), e repetir "falta" quatro vezes na mesma linha
+			   — o que a primeira versão fazia — só torna ilegível a espécie que
+			   mais precisa ser lida, que é justamente a que está mais longe. */
+			$ultima = array_pop( $frases );
+			$texto  = $frases ? implode( ', ', $frases ) . ' e ' . $ultima : $ultima;
+			$html  .= ' — falta ' . esc_html( $texto ) . '.';
+		} else {
+			/* Motivo sem tradução: a página conta e não nomeia, em vez de servir
+			   o código do banco. A bancada reprova este estado antes do ar. */
+			$html .= ' — o registro não passou no portão, e o motivo dele ainda não tem nome nesta tela.';
+		}
+		$html .= '</li>';
+	}
+	$html .= '</ul>';
+	return $html;
+}
+}
+
+/* ---------------------------------------------------------------------------
  * 2. As páginas desta leva, e as duas promessas da seção 14.9
  *
  * `consulta` é a consulta-alvo, e `porque` é por que esta página consegue
@@ -3420,6 +3677,21 @@ function aquametria_peixes_categoria_html( $slug ) {
 		}
 	}
 
+	/* A OUTRA METADE DA MESMA LISTA: quem esta categoria declara e o portão
+	   barra. Até 13/09/2026 o `foreach` acima era a lista inteira, e o `if`
+	   descartava em silêncio — a categoria podia declarar uma espécie e a
+	   página não dizia uma palavra sobre ela. Hoje as duas categorias no ar
+	   têm este conjunto vazio, e é por isso que a prova deste ramo é uma
+	   mutação que PRODUZ O MUNDO (seção 8: caso que o esquema permite e o
+	   banco ainda não tem é caso que a régua trata hoje). */
+	$barrados = aquametria_peixes_barrados();
+	$barradas_daqui = array();
+	foreach ( $cat['especies'] as $id ) {
+		if ( ! isset( $catalogo[ $id ] ) && isset( $barrados[ $id ] ) ) {
+			$barradas_daqui[ $id ] = $barrados[ $id ];
+		}
+	}
+
 	$com_ficha = array();
 	foreach ( $registro as $s => $def ) {
 		if ( isset( $def['especie'] ) && isset( $dentro[ $def['especie'] ] ) ) {
@@ -3507,12 +3779,32 @@ function aquametria_peixes_categoria_html( $slug ) {
 			. esc_html( count( $com_ficha ) ) . ' já têm a conta inteira numa página própria e '
 			. esc_html( $na_fila )
 			. ' estão na fila. A ordem não é alfabética nem por gosto: sai primeiro a que mais gente procura, e a próxima leva sai depois de medirmos se estas foram indexadas.';
+	} elseif ( $barradas_daqui ) {
+		/* FECHADA SÓ VALE QUANDO NÃO HÁ NINGUÉM ESPERANDO DO LADO DE FORA. A
+		   frase de baixo diz "fechada quer dizer que todo X que o banco
+		   sustenta já tem página" — com um barrado declarado nesta categoria
+		   ela passa a ser falsa sem mudar uma letra, que é a forma silenciosa
+		   do número de tela que envelhece. Aqui o texto muda de forma. */
+		$html .= 'As ' . esc_html( count( $dentro ) )
+			. ' espécies da tabela têm a conta inteira numa página própria, e a lista NÃO está fechada: o banco tem mais '
+			. esc_html( count( $barradas_daqui ) )
+			. ' desta mesma categoria que o portão ainda barra, e o que falta em cada uma está logo abaixo. '
+			. 'A lista cresce quando o banco crescer, não quando der vontade de escrever.';
 	} else {
 		$html .= 'As ' . esc_html( count( $dentro ) )
 			. ' espécies da tabela têm a conta inteira numa página própria — esta lista está fechada, e fechada quer dizer que todo tetra que o banco desta ilha sustenta com duas fontes já tem a página dele. '
 			. 'A lista cresce quando o banco crescer, não quando der vontade de escrever: espécie sem duas fontes de corpos distintos não entra na tabela, e espécie de cardume sem o número do cardume declarado não ganha página, porque a página começa justamente por esse número.';
 	}
 	$html .= '</p>';
+
+	/* Quem esta categoria declara e a tabela não mostra, com nome e causa. */
+	if ( $barradas_daqui ) {
+		$html .= '<p class="aqm-px-fora">Fora da tabela, e declarados nesta categoria: '
+			. esc_html( count( $barradas_daqui ) ) . ' de '
+			. esc_html( count( $cat['especies'] ) )
+			. '. Não é escolha editorial — é o portão de dado, e o que falta em cada um está nomeado aqui em vez de sumir da página.</p>';
+		$html .= aquametria_peixes_barrados_lista_html( $barradas_daqui );
+	}
 
 	$html .= '<h2>Por que a gente responde em centímetros antes de responder em litros</h2>';
 	$html .= '<p>Quem pergunta "quantos litros para dez neons" quer um número, e a resposta honesta tem duas partes. '
@@ -3606,8 +3898,21 @@ function aquametria_peixes_secao_html() {
 	$html .= '<h2>Por onde começar</h2>';
 	$html .= '<ul class="aqm-px-cats">';
 	foreach ( $categorias as $slug => $cat ) {
+		/* QUEM DECIDE O LINK É QUANTAS ESPÉCIES ENTRAM NA TABELA, e não quantas
+		   a categoria declara. Eram a mesma coisa enquanto o snippet só
+		   conhecia quem passa no portão; desde que os barrados existem aqui
+		   dentro, uma categoria poderia declarar três espécies e as três serem
+		   barradas — o cartão viraria link para uma página de tabela vazia, que
+		   é exatamente a página fina que o 16.5 existe para não deixar entrar
+		   no índice de domínio novo. */
+		$quantas = 0;
+		foreach ( $cat['especies'] as $id ) {
+			if ( isset( $catalogo[ $id ] ) ) {
+				$quantas++;
+			}
+		}
 		$url = '';
-		if ( $cat['especies'] ) {
+		if ( $quantas ) {
 			$url = aquametria_casca_url_se_existir( $slug );
 		}
 		$html .= '<li class="aqm-px-cat">';
@@ -3615,12 +3920,6 @@ function aquametria_peixes_secao_html() {
 			$html .= '<h3><a href="' . esc_url( $url ) . '">'
 				. esc_html( isset( $registro[ $slug ]['titulo'] ) ? $registro[ $slug ]['titulo'] : $cat['rotulo'] )
 				. '</a></h3>';
-			$quantas = 0;
-			foreach ( $cat['especies'] as $id ) {
-				if ( isset( $catalogo[ $id ] ) ) {
-					$quantas++;
-				}
-			}
 			$html .= '<p>' . esc_html( $quantas ) . ' espécies com o mínimo declarado, da menor frente para a maior.</p>';
 		} else {
 			/* Categoria sem as 3 filhas de dado real não é link e não mostra
@@ -3640,6 +3939,24 @@ function aquametria_peixes_secao_html() {
 		. 'Onde o banco não tem fonte que preste, a ficha diz que não tem, em vez de chutar um número redondo.</p>';
 	$html .= '<p class="aqm-prova">' . esc_html( $com_ficha ) . ' espécies têm ficha própria no ar hoje, e a contagem desta frase é feita na hora de imprimir a página, não digitada. '
 		. 'Todo número do banco veio de busca restrita ao domínio da fonte, porque o egresso da nuvem barra a leitura direta das duas bases usadas — é reconferência em aberto, e está escrita na nota do banco.</p>';
+
+	/* AS QUE FICARAM DE FORA. A frase de abertura diz quantas espécies a ilha
+	   publica; sem este bloco ela era a única coisa que a página dizia sobre o
+	   tamanho do banco, e quem lesse não tinha como saber que existem registros
+	   colhidos que a tabela não mostra. Os três números são contados na hora,
+	   nunca digitados, e o terceiro é a subtração dos dois primeiros feita pelo
+	   PHP — número de tela nasce contado (seção 8). */
+	$barrados = aquametria_peixes_barrados();
+	if ( $barrados ) {
+		$total = count( $catalogo ) + count( $barrados );
+		$html .= '<h2>As espécies que o banco tem e esta seção não publica</h2>';
+		$html .= '<p>O banco desta ilha guarda ' . esc_html( $total ) . ' registros de espécie, e '
+			. esc_html( count( $catalogo ) ) . ' deles têm o mínimo declarado que as tabelas acima exigem. '
+			. 'Os outros ' . esc_html( count( $barrados ) ) . ' estão aqui pelo nome, com o que falta em cada um — '
+			. 'porque espécie que a ilha já procurou e não publica é uma ausência que ninguém consegue adivinhar do lado de fora. '
+			. 'A ordem é de quem está mais perto de entrar para quem está mais longe, e nenhuma delas tem número chutado para completar o que a fonte não declarou.</p>';
+		$html .= aquametria_peixes_barrados_lista_html( $barrados );
+	}
 
 	$html .= '</div>';
 
@@ -3792,6 +4109,11 @@ padding:.1rem 0 .1rem .7rem;}
 .aqm-px-razao{display:block;font-size:.84rem;color:var(--px-legenda);margin:.2rem 0 0;}
 .aqm-px-consulta{font-family:var(--px-mono);font-size:.76rem;color:var(--px-legenda);
 border-top:1px solid var(--px-traco);margin:1.4rem 0 0;padding:.6rem 0 0;}
+.aqm-px-barrados{list-style:none;padding:0;margin:0 0 1.4rem;}
+.aqm-px-barrados li{font-size:.88rem;color:var(--px-legenda);
+border-bottom:1px solid var(--px-traco);padding:.5rem 0;}
+.aqm-px-barrados strong{font-family:var(--px-mono);font-style:italic;
+font-weight:500;color:var(--px-tinta);}
 .aqm-px-irmas,.aqm-px-cats{list-style:none;padding:0;margin:0 0 1.2rem;}
 .aqm-px-irmas li{border-bottom:1px solid var(--px-traco);padding:.5rem 0;}
 .aqm-px-cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:.8rem;}

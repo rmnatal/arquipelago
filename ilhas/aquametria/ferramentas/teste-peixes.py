@@ -127,9 +127,17 @@ def serp_esperada(slug):
 # O rotulo entra aqui junto porque a frase de abertura da categoria o usa, e
 # tirar "tetras"/"coridoras" do slug por heuristica seria adivinhar por
 # vizinhanca (secao 8) onde o certo e declarar.
+# `barradas` e a OUTRA METADE da lista declarada: as especies que a categoria
+# declara e o portao de catalogo recusa. Ela nasceu vazia nas duas categorias no
+# ar, e nasceu declarada mesmo assim porque o que ela mede nao e o banco de
+# hoje: e que a lista do snippet e a lista deste arquivo digam a mesma coisa.
+# Sem ela, acrescentar uma especie barrada a uma categoria mudaria a pagina e
+# nao mudaria uma afirmacao sequer — a tabela continuaria com o mesmo numero de
+# linhas, que e exatamente como uma mudanca de lista passa despercebida.
 CATEGORIAS = {
     "tetras": {
         "rotulo": "tetras",
+        "barradas": [],
         "especies": [
             "paracheirodon-innesi",
             "paracheirodon-axelrodi",
@@ -143,6 +151,7 @@ CATEGORIAS = {
     # leva 3, 12/09/2026
     "corydoras": {
         "rotulo": "coridoras",
+        "barradas": [],
         "especies": [
             "corydoras-aeneus",
             "corydoras-paleatus",
@@ -681,6 +690,9 @@ def medir_categoria(slug, banco):
     if len(passos) == 3:
         ok("%s: os dois primeiros degraus sao link" % slug, all(p[1] for p in passos[:2]))
 
+    # --- a prestacao de contas de quem a categoria DECLARA e a tabela nao mostra
+    medir_barradas_da_categoria(slug, c, t, banco)
+
     tipos = {no.get("@type") for no in jsonlds(pagina)}
     ok("%s: JSON-LD tem CollectionPage" % slug, "CollectionPage" in tipos, str(sorted(tipos)))
     ok("%s: JSON-LD tem ItemList" % slug, "ItemList" in tipos)
@@ -689,6 +701,286 @@ def medir_categoria(slug, banco):
             ok("%s: o ItemList tem %d itens, todos com endereco" % (slug, len(minhas)),
                no["numberOfItems"] == len(minhas) and all(x.get("item") for x in no["itemListElement"]))
     ok("%s: linka a mae numa frase do corpo" % slug, 'class="aqm-px-mae"' in c)
+
+
+# ---------------------------------------------------------------------------
+# A REGUA DO PORTAO DE CATALOGO, E O MOTIVO DE CADA RECUSA — escrita aqui
+#
+# Ate 13/09/2026 a unica regua deste arquivo sobre o portao era a `passa()` de
+# dentro da `medir_secao`, que devolvia sim ou nao. O snippet passou a carregar
+# tambem QUEM NAO PASSA, com o motivo, e "quem confere escreve a propria regua"
+# vale igual para a lista dos ausentes: se este arquivo importasse os motivos do
+# gerador, a tela e o portao errariam juntos e a lista de barrados poderia
+# publicar a causa errada com toda a cara de conferida.
+#
+# A implementacao aqui NAO e a do gerador — e a mesma regra escrita de outro
+# jeito, de proposito. O que as duas tem de concordar e o resultado.
+# ---------------------------------------------------------------------------
+
+CAMPOS_DO_PORTAO = (
+    "nome_cientifico", "nomes_populares_br", "porte_adulto_cm", "porte_medida",
+    "comprimento_minimo_aquario_cm", "convivencia", "temperatura_C",
+)
+
+
+def corpo_da_referencia(ref):
+    """O nome do corpo de fonte que uma referencia deixa ler, ou ''.
+
+    A regra: corta no primeiro separador (travessao, dois-pontos ou virgula
+    seguidos de espaco), recusa o que tiver digito e o que passar de 40
+    caracteres. Nome de corpo de fonte nao tem numero dentro — e o que separa
+    "FishBase" de "FishBase: pH 5,0 a 7,8".
+    """
+    pedaco = re.split(r"(?:\s+[—–-]\s+|:\s|,\s)", str(ref or ""), maxsplit=1)[0].strip(" .:,")
+    if not pedaco or len(pedaco) > 40 or any(d.isdigit() for d in pedaco):
+        return ""
+    return pedaco
+
+
+def dominio(url):
+    achado = re.match(r"https?://([^/]+)", str(url or ""))
+    return achado.group(1).lower().replace("www.", "") if achado else ""
+
+
+def corpos_por_dominio(banco):
+    """dominio -> nome do corpo, aprendido das referencias do proprio banco."""
+    mapa = {}
+    for e in banco.values():
+        for f in e.get("fontes", []):
+            nome = corpo_da_referencia(f.get("referencia"))
+            d = dominio(f.get("url"))
+            if nome and d:
+                mapa.setdefault(d, nome)
+    return mapa
+
+
+def motivos_do_portao(e, mapa_dominio):
+    """Os codigos do vocabulario fechado que barram esta especie, na ordem."""
+    codigos = []
+    for campo in CAMPOS_DO_PORTAO:
+        if campo == "temperatura_C":
+            faixa = e.get(campo) or {}
+            if faixa.get("min") is None or faixa.get("max") is None:
+                codigos.append(campo)
+        elif not e.get(campo):
+            codigos.append(campo)
+    corpos = set()
+    for f in e.get("fontes", []):
+        corpos.add(corpo_da_referencia(f.get("referencia")) or f.get("origem") or "")
+    if len(corpos) < 2:
+        codigos.append("duas fontes distintas")
+    if e.get("status_registro") in ("rascunho", "revalidar"):
+        codigos.append("status_registro " + str(e.get("status_registro")))
+    if codigos:
+        return codigos
+    # So quem passou nos campos chega aqui: o gerador so procura fonte sem nome
+    # depois de o registro estar completo, e a ordem importa porque um registro
+    # pode falhar nas duas coisas.
+    for f in e.get("fontes", []):
+        if not (corpo_da_referencia(f.get("referencia")) or mapa_dominio.get(dominio(f.get("url")))):
+            return ["fonte sem nome de corpo"]
+    for c in e.get("conflitos", []):
+        for v in c.get("valores", []):
+            if not (corpo_da_referencia(v.get("referencia")) or mapa_dominio.get(dominio(v.get("url")))):
+                return ["fonte sem nome de corpo"]
+    return []
+
+
+def barrados_do_banco(banco):
+    """id -> codigos, para todo registro que o portao de catalogo recusa."""
+    mapa = corpos_por_dominio(banco)
+    fora = {}
+    for ident, e in banco.items():
+        codigos = motivos_do_portao(e, mapa)
+        if codigos:
+            fora[ident] = codigos
+    return fora
+
+
+def barrados_do_snippet():
+    """O que o bloco BARRADOS do snippet carrega: id -> (cientifico, codigos).
+
+    Lido em TEXTO, e na ordem em que esta escrito — a ordem e uma afirmacao da
+    pagina ("de quem esta mais perto de entrar para quem esta mais longe") e
+    ler por dicionario a perderia.
+    """
+    php = open(os.path.join(RAIZ, "snippets", "aquametria-peixes.php"), encoding="utf-8").read()
+    bloco = php.split("BARRADOS-INICIO")[1].split("BARRADOS-FIM")[0]
+    achados = []
+    for m in re.finditer(r"\n\t\t'([a-z0-9-]+)' => array\((.*?)\n\t\t\),", bloco, re.S):
+        ident, corpo_reg = m.group(1), m.group(2)
+        cientifico = re.search(r"'cientifico' => '([^']*)'", corpo_reg)
+        faltando = re.search(r"'faltando' => array\((.*?)\n\t\t\t\)", corpo_reg, re.S)
+        codigos = re.findall(r"'([^']+)',", faltando.group(1)) if faltando else []
+        achados.append((ident, cientifico.group(1) if cientifico else "", codigos))
+    return achados
+
+
+def medir_barrados(banco):
+    """A PRESTACAO DE CONTAS DA SECAO 7 ALCANCA QUEM NAO ESTA NA TABELA.
+
+    A pagina dizia "sao 29 especies" e nao tinha como dizer que o banco tem 37:
+    os barrados nao existiam no snippet. Estas afirmacoes cobram as duas metades
+    — que o snippet carregue exatamente quem a regua daqui barra, e que a tela
+    nomeie cada um com a causa em lingua de gente.
+    """
+    print("\n### os barrados: quem o banco tem e o portao nao deixa entrar")
+
+    esperados = barrados_do_banco(banco)
+    do_snippet = barrados_do_snippet()
+    ids_snippet = [x[0] for x in do_snippet]
+
+    ok("o snippet carrega os %d barrados do banco" % len(esperados),
+       sorted(ids_snippet) == sorted(esperados),
+       "snippet=%s banco=%s" % (sorted(ids_snippet), sorted(esperados)))
+    ok("nenhum barrado esta tambem no catalogo",
+       not (set(ids_snippet) & set(catalogo_do_snippet())),
+       str(sorted(set(ids_snippet) & set(catalogo_do_snippet()))))
+    ok("catalogo mais barrados fecham os %d registros do banco" % len(banco),
+       len(catalogo_do_snippet()) + len(ids_snippet) == len(banco),
+       "%d + %d" % (len(catalogo_do_snippet()), len(ids_snippet)))
+
+    for ident, cientifico, codigos in do_snippet:
+        if ident not in esperados:
+            continue
+        ok("%s: o motivo gravado e o que a regua daqui calcula" % ident,
+           codigos == esperados[ident], "snippet=%s regua=%s" % (codigos, esperados[ident]))
+        ok("%s: viaja com o nome cientifico do banco" % ident,
+           cientifico == banco[ident]["nome_cientifico"], cientifico)
+
+    # A ORDEM E UMA AFIRMACAO DA PAGINA: de quem falta menos para quem falta
+    # mais. Recomputada aqui, nunca lida do gerador.
+    quantos = [len(c) for _, _, c in do_snippet]
+    ok("os barrados vao de quem esta mais perto de entrar para quem esta mais longe",
+       quantos == sorted(quantos), str(list(zip(ids_snippet, quantos))))
+
+    # --- a tela da secao
+    c = corpo(servir(SECAO))
+    t = texto(c)
+    lista = re.search(r'<ul class="aqm-px-barrados">(.*?)</ul>', c, re.S)
+    ok("%s: serve a lista de barrados" % SECAO, lista is not None)
+    if lista is None:
+        return
+    itens = [texto(x) for x in re.findall(r"<li>(.*?)</li>", lista.group(1), re.S)]
+    ok("%s: um item por barrado (%d)" % (SECAO, len(esperados)), len(itens) == len(esperados),
+       "%d itens" % len(itens))
+
+    total = len(banco)
+    ok("%s: a frase conta os %d registros do banco" % (SECAO, total),
+       ("guarda %d registros de espécie" % total) in t)
+    ok("%s: a frase conta os %d que a tabela exige" % (SECAO, len(banco) - len(esperados)),
+       ("e %d deles têm o mínimo declarado" % (len(banco) - len(esperados))) in t)
+    ok("%s: a frase conta os %d que ficaram de fora" % (SECAO, len(esperados)),
+       ("Os outros %d estão aqui pelo nome" % len(esperados)) in t)
+
+    for ident in esperados:
+        nome = banco[ident]["nome_cientifico"]
+        achados = [x for x in itens if nome in x]
+        ok("%s: nomeia %s uma vez so" % (SECAO, ident), len(achados) == 1, "%d vezes" % len(achados))
+        if achados:
+            ok("%s: a causa de %s esta em lingua de gente, e a traducao e a do codigo"
+               % (SECAO, ident),
+               all(traducao_do_motivo(cod) and traducao_do_motivo(cod) in achados[0]
+                   for cod in esperados[ident]),
+               achados[0])
+
+    # NENHUMA DO CATALOGO NA LISTA DOS AUSENTES. A contradicao que a secao 7
+    # nomeia — negar e afirmar o mesmo fato na mesma pagina — e o unico jeito de
+    # este bloco ficar pior do que nao existir.
+    vazadas = [i for i in catalogo_do_snippet() if banco[i]["nome_cientifico"] in texto(lista.group(1))]
+    ok("%s: nenhuma espécie da contagem publicada aparece entre os ausentes" % SECAO,
+       not vazadas, str(vazadas))
+
+    # CODIGO DE BANCO NUNCA CHEGA A TELA (secao 5 e 15.1).
+    crus = [cod for cod in CAMPOS_DO_PORTAO if cod in t]
+    ok("%s: nenhum nome de campo do banco aparece no corpo" % SECAO, not crus, str(crus))
+    ok("%s: nenhum motivo caiu no ramo sem tradução" % SECAO,
+       "ainda não tem nome nesta tela" not in t)
+
+
+def catalogo_do_snippet():
+    """Os ids que o bloco CATALOGO do snippet carrega."""
+    php = open(os.path.join(RAIZ, "snippets", "aquametria-peixes.php"), encoding="utf-8").read()
+    bloco = php.split("CATALOGO-INICIO")[1].split("CATALOGO-FIM")[0]
+    return re.findall(r"\n\t\t'([a-z0-9-]+)' => array\(", bloco)
+
+
+def traducao_do_motivo(codigo):
+    """A frase que o snippet publica para um codigo, lida do mapa do PHP.
+
+    LER O MAPA NAO E CHAMAR A REGUA DE QUEM PRODUZ O DADO: o que se mede aqui e
+    que a tela nao serve codigo cru, e para isso e preciso saber qual frase
+    corresponde a qual codigo. A afirmacao que importa — que o codigo esteja
+    certo — e feita acima, contra o banco, sem passar por aqui.
+    """
+    php = open(os.path.join(RAIZ, "snippets", "aquametria-peixes.php"), encoding="utf-8").read()
+    bloco = php.split("function aquametria_peixes_motivo_na_tela")[1].split("return isset")[0]
+    achado = re.search(r"'%s'\s*=> '([^']*)'" % re.escape(codigo), bloco)
+    return achado.group(1) if achado else ""
+
+
+def categorias_declaradas_no_snippet():
+    """O que o snippet declara por categoria, via a ferramenta que pergunta ao eixo."""
+    return json.loads(subprocess.run(
+        ["php", os.path.join(RAIZ, "ferramentas", "listar-categorias-do-eixo.php"), RAIZ],
+        capture_output=True, text=True, check=True).stdout)
+
+
+def medir_barradas_da_categoria(slug, c, t, banco):
+    """QUEM A CATEGORIA DECLARA E A TABELA NAO MOSTRA.
+
+    Ate 13/09/2026 o snippet descartava em silencio o id declarado que nao
+    estivesse no catalogo: a lista podia crescer e a pagina nao dizia nada. As
+    afirmacoes daqui cobram as tres coisas que aquele silencio escondia — que
+    nenhum id declarado seja desconhecido do banco (erro de digitacao encolhe a
+    tabela sem aviso), que a lista do snippet e a deste arquivo coincidam, e que
+    a pagina nomeie cada barrada com a causa.
+
+    O CONJUNTO ESTA VAZIO NAS DUAS CATEGORIAS NO AR, e por isso o ramo cheio e
+    provado por mutacao que PRODUZ O MUNDO (secao 8 do ARQUIPELAGO.md): caso que
+    o codigo permite e o banco ainda nao tem e caso que a regua trata hoje.
+    """
+    declaradas = categorias_declaradas_no_snippet()[slug]["especies"]
+    esperadas = CATEGORIAS[slug]["especies"] + CATEGORIAS[slug]["barradas"]
+    ok("%s: a lista declarada no snippet e a deste arquivo dizem o mesmo" % slug,
+       sorted(declaradas) == sorted(esperadas),
+       "snippet=%s aqui=%s" % (sorted(declaradas), sorted(esperadas)))
+
+    desconhecidas = [i for i in declaradas if i not in banco]
+    ok("%s: nenhum id declarado esta fora do banco" % slug, not desconhecidas, str(desconhecidas))
+
+    barradas = CATEGORIAS[slug]["barradas"]
+    lista = re.search(r'<ul class="aqm-px-barrados">(.*?)</ul>', c, re.S)
+    if not barradas:
+        ok("%s: sem barrada declarada, a pagina nao serve bloco de ausentes" % slug,
+           lista is None)
+        ok("%s: e a lista continua podendo se dizer fechada" % slug,
+           "NÃO está fechada" not in t)
+        return
+
+    ok("%s: serve o bloco de ausentes" % slug, lista is not None)
+    ok("%s: a contagem de ausentes e %d de %d declaradas" % (slug, len(barradas), len(declaradas)),
+       ("%d de %d" % (len(barradas), len(declaradas))) in t)
+    ok("%s: nao se diz fechada com %d esperando do lado de fora" % (slug, len(barradas)),
+       "esta lista está fechada" not in t)
+    if lista is None:
+        return
+    itens = [texto(x) for x in re.findall(r"<li>(.*?)</li>", lista.group(1), re.S)]
+    ok("%s: um item por barrada declarada (%d)" % (slug, len(barradas)), len(itens) == len(barradas),
+       "%d itens" % len(itens))
+    esperados = barrados_do_banco(banco)
+    for ident in barradas:
+        if ident not in banco:
+            continue  # ja reprovou em `desconhecidas`; perguntar ao banco aqui so quebraria
+        nome = banco[ident]["nome_cientifico"]
+        achados = [x for x in itens if nome in x]
+        ok("%s: nomeia a ausente %s uma vez so" % (slug, ident), len(achados) == 1,
+           "%d vezes" % len(achados))
+        if achados:
+            ok("%s: a causa de %s esta em lingua de gente" % (slug, ident),
+               all(traducao_do_motivo(cod) and traducao_do_motivo(cod) in achados[0]
+                   for cod in esperados.get(ident, [])),
+               achados[0])
 
 
 def medir_secao(banco):
@@ -731,6 +1023,23 @@ def medir_secao(banco):
     com_link = [x for x in cartoes if "<a href=" in x]
     ok("%s: so as categorias com filhas sao link (%d)" % (slug, len(CATEGORIAS)),
        len(com_link) == len(CATEGORIAS), "%d com link" % len(com_link))
+
+    # A REGRA QUE O CARTAO IMPLEMENTA, dita como regra e nao como numero. Ate
+    # 13/09/2026 o cartao virava link quando a categoria DECLARAVA especie; com
+    # os barrados dentro do snippet, declarar deixou de significar entrar na
+    # tabela, e categoria que declarasse so barradas viraria link para uma
+    # pagina de tabela vazia — a pagina fina que o 16.5 nao deixa entrar no
+    # indice. O que decide e a contagem de quem esta no catalogo, e e isso que
+    # esta afirmacao cobra, recomputado do banco pela regua deste arquivo.
+    no_catalogo = set(catalogo_do_snippet())
+    for slug_cat, declarada in categorias_declaradas_no_snippet().items():
+        cabem = [i for i in declarada["especies"] if i in no_catalogo]
+        rotulo = declarada["rotulo"]
+        tem_link = any(("<a href=" in x and rotulo in texto(x)) or
+                       ("<a href=" in x and ("/%s/" % slug_cat) in x) for x in cartoes)
+        if not cabem:
+            ok("%s: o cartao de %s nao e link, porque nenhuma declarada entra na tabela"
+               % (slug, slug_cat), not tem_link)
     for cartao in cartoes:
         if "<a href=" in cartao:
             continue
@@ -1097,6 +1406,7 @@ def main():
     banco = carregar_banco()
     banco_global[0] = banco
     medir_secao(banco)
+    medir_barrados(banco)
     medir_categoria_preparada(banco)
     for cat in CATEGORIAS:
         medir_categoria(cat, banco)

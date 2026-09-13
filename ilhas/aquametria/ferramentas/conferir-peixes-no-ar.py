@@ -252,6 +252,40 @@ def main():
                "Quem divide a mesma faixa de temperatura" not in t)
         ok("%s: no ar, nenhum link de loja" % slug, 'rel="sponsored"' not in servidas[slug])
 
+    # --- A PRESTACAO DE CONTAS DE QUEM NAO ESTA NA TABELA, no HTML servido.
+    #
+    # Mora aqui e nao so na bancada porque o corpo da secao e um SHORTCODE: a
+    # mudanca que vem do snippet nao move `post_modified` e nao aparece em log de
+    # desembarque nenhum — o Sync pode dizer "0 aplicado(s)" e a tela ter mudado,
+    # ou nao ter mudado. A unica prova de que o bloco chegou ao ar e ler o HTML
+    # que o servidor devolve, e e a mesma cicatriz dos nove titulos de 11/09.
+    print("\nOS AUSENTES DO CATALOGO, no HTML servido pela secao")
+    c_secao = TP.corpo(servidas["peixes"])
+    t_secao = TP.texto(c_secao)
+    esperados = TP.barrados_do_banco(banco)
+    lista = re.search(r'<ul class="aqm-px-barrados">(.*?)</ul>', c_secao, re.S)
+    ok("no ar, a secao serve a lista de ausentes", lista is not None)
+    ok("no ar, a frase conta os %d registros do banco" % len(banco),
+       ("guarda %d registros de espécie" % len(banco)) in t_secao)
+    ok("no ar, a frase conta os %d que ficaram de fora" % len(esperados),
+       ("Os outros %d estão aqui pelo nome" % len(esperados)) in t_secao)
+    ok("no ar, nenhum nome de campo do banco vaza para o corpo",
+       not [cod for cod in TP.CAMPOS_DO_PORTAO if cod in t_secao])
+    ok("no ar, nenhum motivo caiu no ramo sem traducao",
+       "ainda não tem nome nesta tela" not in t_secao)
+    if lista is not None:
+        itens = [TP.texto(x) for x in re.findall(r"<li>(.*?)</li>", lista.group(1), re.S)]
+        ok("no ar, um item por ausente (%d)" % len(esperados), len(itens) == len(esperados),
+           "%d itens" % len(itens))
+        for ident, codigos in esperados.items():
+            nome = banco[ident]["nome_cientifico"]
+            achados = [x for x in itens if nome in x]
+            ok("no ar, %s aparece uma vez so" % ident, len(achados) == 1, "%d" % len(achados))
+            if achados:
+                ok("no ar, a causa de %s esta em lingua de gente" % ident,
+                   all(TP.traducao_do_motivo(cod) and TP.traducao_do_motivo(cod) in achados[0]
+                       for cod in codigos), achados[0])
+
     # --- NENHUMA DAS CINCO E ORFA: 16.4(f), contado nas 18 paginas servidas.
     #     A casca e o rodape estao em todas, entao o que se conta e a ligacao que
     #     o CORPO de outra pagina faz — e a mae tem de ser uma delas.
