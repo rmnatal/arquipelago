@@ -2843,7 +2843,9 @@ inteira saiu.
 ## 2026-09-13, 15h32Z — bloco 3c, leva 6: as primeiras peças da WAP, e a função da escova vira campo porque o título do fabricante não a declara
 
 **Bloco de BANCO, zero URL nova.** Esquema do banco na **versão 4**, manifest na
-revisão **27**, `/status` conferido às 15h29Z em **um** disparo (10 aplicados).
+revisão **28**, `/status` conferido em **dois** disparos: **27** às 15h29Z com o
+banco, **28** às 15h35Z com a lista de compras reescrita e a nota da marca (10
+aplicados em cada).
 
 **O número que mede o bloco:** a R1 sai de **20 para 22** modelos que respondem e
 o vazio cai de **13 para 11**. W300 e WSMART saem da lacuna que a varredura de
@@ -2936,8 +2938,9 @@ do W90 e o contraste do W300.
 inertes** — as 109 antigas rodadas inteiras para provar que nenhuma morreu com o
 banco maior. `mutacoes-funcao-da-escova.py`: 7 de 7.
 
-**No ar às 15h29Z, em um disparo:** `/status` na revisão 27 igual à do manifest;
-`conferir-no-ar` 149 e `conferir-kits-no-ar` 163, zero falha. E a medição que só
+**No ar:** `/status` na revisão **28**, igual à do manifest; `conferir-no-ar` 149 e
+`conferir-kits-no-ar` 163 rodados **depois de cada um dos dois disparos** — zero
+falha nas quatro passadas. E a medição que só
 este bloco tinha para fazer, **no HTML servido** e com parâmetro anti-cache (a
 armadilha que o bloco das 13h32Z nomeou):
 
