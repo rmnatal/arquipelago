@@ -4,7 +4,7 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 20,
+  "revisao": 21,
   "atualizado_em": "2026-09-13",
   "estado": "nascendo",
   "desembarque": {
@@ -144,7 +144,7 @@
       "verificado_em": "2026-09-11",
       "registros": 5,
       "publicar": true,
-      "sha256": "41aa62d0fe12e34f08f42240dc4507fe3b7712500b4df0df6821b3cb7f9d2bcb",
+      "sha256": "1128efefb04d14558d68f83f42f873907b32ca850d5f8af0676f9c86af1ace4b",
       "descricao": "A categoria COLA do banco MATERIAL: Silicone Acetico Construcao Tekbond (BRSA004), Silicone Neutro Tekbond, Cascorez PVA, Cimentcola Externo AC-II Quartzolit e Loctite Durepoxi. Cada um com as listas literais do fabricante separadas por peso (indicado, proibido, nao recomendado, delimita ambiente, resiste a ambiente), fonte com nivel na escada e data, afiliado.url presente e vazio e imagem null. 5 itens esperando link de afiliado e 5 sem imagem. Duas pendencias nomeadas, sendo a principal a falta de declaracao de SUBSTRATO da cimentcola AC-II, que a impede de ser recomendacao primaria.",
       "pendencias": 2,
       "pendencias_que_bloqueiam_publicacao": []
@@ -158,7 +158,7 @@
       "verificado_em": "2026-09-11",
       "registros": 5,
       "publicar": true,
-      "sha256": "6c126367f8a3eafbca0aa999d0dc78b1d104144fc1827c9af5182c41162b440d",
+      "sha256": "8e7f1ba170252168298971e861a3f05c90df44e03218cb204daff368d8222c7f",
       "descricao": "A categoria REJUNTE do banco MATERIAL: cinco rejuntes Quartzolit (ceramicas, porcelanatos e ceramicas 2024, acrilico, epoxi e piscinas) com faixa de junta, prazo de liberacao e ambiente declarado campo a campo. Sem ela a F2 — que se chama 'seletor de cola E REJUNTE' — respondia metade do que promete, com a metade do rejunte cravada na prosa do snippet em vez de recomputada da declaracao. O arquivo descobriu uma coisa sobre o proprio banco: REJUNTE NAO E COLA. Na cola, a lista do fabricante nomeia a BASE sobre a qual se cola; no rejunte, a mesma lista nomeia a TESSELA que sera rejuntada, porque rejunte nao toca a base — e a variavel que decide passa a ser a LARGURA DA JUNTA. Achado de maior valor: o rejunte piscinas quartzolit e o unico material do banco inteiro cujo fabricante nomeia 'pastilhas de porcelana e de vidro' em uso submerso, e mesmo assim ele NAO e recomendado em celula nenhuma, porque a faixa de junta dele nao foi obtida e o que ele declara e agua tratada quimicamente, que e piscina e nao a agua parada de um vaso de jardim."
     },
     {
@@ -394,7 +394,7 @@
     {
       "id": "teste-leads",
       "arquivo": "ferramentas/teste-leads.php",
-      "sha256": "ddfb570293665e520259440ff9be1d8a12ea138de25219e3eb5b54e22963c5ad",
+      "sha256": "4b2acf0287bd2edea9ab165b611f453e8f82c5d52645da8f928134679037b1fa",
       "descricao": "Portao do adendo 3 (leads da Loja), sem site e sem rede. REGUA PROPRIA: a tabela de telefones esta escrita a mao, entrada por entrada, com o canonico esperado digitado do lado — nada aqui chama cdm_leads_wa_canonico() para saber o que esperar. GRADE COM BORDA: pisa no DDD 10 (invalido) e no 11 (o primeiro valido), no DDD 99 (o ultimo), no assinante de 8 e de 9 digitos e no 9 inicial do celular. Mede no CORPO, conta &#038; so dentro dos <script>, e roda UM PROCESSO POR ESTADO de pagina. O que ele tem de diferente dos outros portoes desta ilha: sete afirmacoes nao medem se a tela esta certa e sim se nome e telefone de uma cliente VAZAM — para a URL, para o repositorio, para o indice ou para quem nao e a artesa. Foi ele que pegou, ANTES do ar, a funcao do nome da artesa lendo o texto de espera `Artesã` do painel e escrevendo 'Aqui é Artesã' na mensagem que iria para uma cliente."
     },
     {
@@ -402,6 +402,12 @@
       "arquivo": "ferramentas/mutacoes-leads.py",
       "sha256": "f69d100aaaf2676b1a4e27474a456cdaa78c45f42024f117ee1d221f10700b24",
       "descricao": "36 defeitos escritos de volta no snippet de Leads, na Loja e no Atelie, cada um rodando o portao NOVO e dois ANTIGOS para provar quais so o novo pega. Sete delas sao de PRIVACIDADE (o nome na URL, o IP em texto puro, o nome no titulo do registro, o tipo publico, o tipo na REST, o tipo na busca, a copia para o Raphael sem option) — trava de privacidade que ninguem quebra de proposito e trava que ninguem sabe se funciona. Quatro passaram na primeira passada e eram quatro buracos reais do portao: o IP em texto puro, o e-mail que falha apagando o lead, a acao da aba sem conferir capacidade e o despacho de um estado que ninguem registrou como aba."
+    },
+    {
+      "id": "medir-imagens",
+      "arquivo": "ferramentas/medir-imagens.py",
+      "sha256": "94028d9266ac4c7f9ad2aa798e1f9b2672a3e30b732e0befdfc9ba4b6f71cad8",
+      "descricao": "Le a largura e a altura REAIS de cada imagem do banco no arquivo servido (JPEG, PNG e WebP, sem biblioteca) e as grava com --gravar. Existe porque o feed de afiliado da Shopee, que e a fonte legitima da foto pela secao 25.3, nao declara dimensao — e o esquema exige as duas para a pagina reservar a caixa e nao dar salto de layout. Nunca inventa: download que falha vira FALHOU e o item continua reprovando no validador. Bancada."
     }
   ],
   "esquema": {

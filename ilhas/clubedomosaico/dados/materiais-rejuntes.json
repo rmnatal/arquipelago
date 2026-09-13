@@ -13,8 +13,8 @@
     "observacao": "Os cinco com link da Shopee gerado em 13/09/2026. Sub_id 1 = clubedomosaico em todos; Sub_id 2 = F1 nos dois rejuntes que a F1 recomenda (ceramicas e porcelanatos-e-ceramicas) e F2 nos outros tres."
   },
   "imagens": {
-    "itens_sem_imagem": 5,
-    "observacao": "Nenhuma foto coletada: a nuvem das rotinas nao alcanca o dominio dos fabricantes. Material sem imagem NAO some da vitrine — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+    "itens_sem_imagem": 4,
+    "observacao": "Uma das cinco tem foto, vinda do FEED DE AFILIADO DA SHOPEE (secao 25.3 do ARQUIPELAGO.md). A largura e a altura foram LIDAS do arquivo servido por ferramentas/medir-imagens.py em 13/09/2026, porque o feed nao declara dimensao — e caixa de foto sem medida e salto de layout, que a secao 22.4 chama de defeito. As quatro sem foto seguem sem: www.quartzolit.weber responde 000 por politica de egresso, remedido em duas passadas em 13/09/2026. Material sem imagem NAO some da vitrine — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
   },
   "pendencias_desta_categoria": [
     {
@@ -367,9 +367,11 @@
       },
       "imagem": {
         "url": "https://cf.shopee.com.br/file/br-11134207-820mb-mpdulabp648zf5",
+        "largura": 768,
+        "altura": 768,
         "fonte": "feed de afiliado da Shopee, 13/09/2026",
-        "alt": "Rejunte acrilico pronto Quartzolit 1 kg",
-        "coletado_em": "2026-09-13"
+        "coletado_em": "2026-09-13",
+        "alt": "Rejunte acrilico pronto Quartzolit 1 kg"
       },
       "fontes": {
         "bt-rejunte-acrilico-2023-04": {
@@ -457,7 +459,7 @@
       "geometria": null,
       "venda": [],
       "afiliado": {
-        "programa": "mercado_livre",
+        "programa": "mercadolivre",
         "url": "https://meli.la/1U7jhjr",
         "url_produto": "https://www.mercadolivre.com.br/rejunte-epoxi-quartzolit-1kg-cinza-platina/p/MLB25541512",
         "sub_id_1": "clubedomosaico",

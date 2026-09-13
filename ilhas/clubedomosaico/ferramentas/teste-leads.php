@@ -870,12 +870,20 @@ cdm_ok( false !== strpos( $destino, 'estado=meus-dados' ) && false !== strpos( $
    ser cobrada de verdade. */
 $secoes_dep = apply_filters( 'cdm_atelie_meus_dados', array(), wp_get_current_user() );
 $miolo_dep  = isset( $secoes_dep['leads']['html'] ) ? $secoes_dep['leads']['html'] : '';
-cdm_ok( false !== strpos( $miolo_dep, 'avisos@exemplo.com' ),
-	'com um endereco gravado, a tela mostra o endereco DE HOJE, nao so o padrao' );
-cdm_ok( false !== strpos( $miolo_dep, 'mina196@hotmail.com' ),
+
+/* E A AFIRMACAO MEDE A FRASE DE AJUDA, NUNCA O MIOLO INTEIRO — segunda correcao
+   que uma mutacao ditou. Procurar o endereco em qualquer lugar do formulario
+   fica VERDE com a frase apagada, porque o endereco tambem esta no `value=` do
+   campo. O que ela le e a explicacao embaixo do campo, entao e la que se mede. */
+preg_match_all( '#<span class="cdm-at-ajuda">(.*?)</span>#s', $miolo_dep, $m_ajuda );
+$ajudas = isset( $m_ajuda[1] ) ? implode( ' | ', $m_ajuda[1] ) : '';
+cdm_ok( '' !== $ajudas, 'os campos trazem frase de ajuda', strlen( $ajudas ) . ' caracteres' );
+cdm_ok( false !== strpos( $ajudas, 'avisos@exemplo.com' ),
+	'a AJUDA mostra o endereco DE HOJE, nao so o padrao' );
+cdm_ok( false !== strpos( $ajudas, 'mina196@hotmail.com' ),
 	'e continua dizendo qual e o padrao, para ela saber o que o branco faz' );
-cdm_ok( false !== strpos( $miolo_dep, '>Mina<' ) || false !== strpos( $miolo_dep, 'assinam: <strong>Mina' ),
-	'e a assinatura de hoje aparece com o nome gravado' );
+cdm_ok( false !== strpos( $ajudas, 'Mina' ),
+	'e a AJUDA mostra a assinatura de hoje com o nome gravado' );
 
 /* E O QUE FOI GRAVADO MUDA O QUE SAI: sem esta metade, gravar option seria um
    fato sobre o banco e nao sobre a ilha. */

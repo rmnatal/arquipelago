@@ -11,8 +11,8 @@
     "observacao": "Todos os cinco com link vivo e conferido em 13/09/2026, depois de uma varredura que achou QUATRO dos nove links da Shopee mortos em menos de doze horas (dois com 'O produto nao existe', dois esgotados). O campo `degrau` diz de que degrau da escada da secao 25 o link veio; `url_busca` e o link de busca que nunca morre. Cascorez esta na loja oficial da Henkel (degrau 1). Silicone acetico caiu para o degrau 3 e e casamento parcial: o anuncio e Tekbond acetico BRANCO 256 g, nao o incolor da linha Construcao — a F2 recomenda por tipo, nao por SKU, mas isso e para trocar quando aparecer melhor."
   },
   "imagens": {
-    "itens_sem_imagem": 5,
-    "observacao": "Nenhuma foto foi coletada: a nuvem das rotinas nao alcanca o dominio dos fabricantes. Material sem imagem NAO some da vitrine — aparece com espaco reservado neutro e o nome em destaque."
+    "itens_sem_imagem": 3,
+    "observacao": "Duas das cinco tem foto, e as duas vieram do FEED DE AFILIADO DA SHOPEE (secao 25.3 do ARQUIPELAGO.md), que e a fonte legitima: a imagem do anuncio ao lado do link do anuncio. A largura e a altura NAO vieram do feed — ele nao as declara — e foram LIDAS do arquivo servido por ferramentas/medir-imagens.py em 13/09/2026, nunca estimadas. As tres sem foto continuam sem foto pelo motivo de sempre, remedido em 13/09/2026 com duas passadas: www.tekbond.com.br e www.quartzolit.weber respondem 000 por politica de egresso. Material sem imagem NAO some da vitrine — aparece com espaco reservado neutro e o nome em destaque."
   },
   "pendencias_desta_categoria": [
     {
@@ -163,9 +163,11 @@
       },
       "imagem": {
         "url": "https://cf.shopee.com.br/file/br-11134207-7r98o-lx03nvf7r5bzf2",
+        "largura": 1024,
+        "altura": 1024,
         "fonte": "feed de afiliado da Shopee, 13/09/2026",
-        "alt": "Silicone acetico Tekbond branco 256 g",
-        "coletado_em": "2026-09-13"
+        "coletado_em": "2026-09-13",
+        "alt": "Silicone acetico Tekbond branco 256 g"
       },
       "fontes": {
         "ficha-brsa004": {
@@ -237,7 +239,7 @@
       "geometria": null,
       "venda": [],
       "afiliado": {
-        "programa": "mercado_livre",
+        "programa": "mercadolivre",
         "url": "https://meli.la/2nKnsA9",
         "url_produto": "https://www.mercadolivre.com.br/cola-adesivo-silicone-transparente-neutro-280g-tekbond/p/MLB38691363",
         "sub_id_1": "clubedomosaico",
@@ -328,9 +330,11 @@
       },
       "imagem": {
         "url": "https://cf.shopee.com.br/file/br-11134207-7r98o-mdasbwbuzm0i23",
+        "largura": 1024,
+        "altura": 1024,
         "fonte": "feed de afiliado da Shopee, 13/09/2026",
-        "alt": "Cola branca PVA Cascorez Extra 1 kg",
-        "coletado_em": "2026-09-13"
+        "coletado_em": "2026-09-13",
+        "alt": "Cola branca PVA Cascorez Extra 1 kg"
       },
       "fontes": {
         "pagina-produto-cascorez": {
@@ -511,7 +515,7 @@
       "geometria": null,
       "venda": [],
       "afiliado": {
-        "programa": "mercado_livre",
+        "programa": "mercadolivre",
         "url": "https://meli.la/2ujbpEQ",
         "url_produto": "https://www.mercadolivre.com.br/durepoxi-branco-adesivo-epoxi-massa-loctite-50g-henkel/p/MLB27690478",
         "sub_id_1": "clubedomosaico",

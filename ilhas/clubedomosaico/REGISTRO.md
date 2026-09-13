@@ -1922,3 +1922,113 @@ todas. Navegador: 124 medições em 7 páginas × 5 larguras, 0 falha. Mutaçõe
 inerte: árvore 20, ateliê 26, cobertura 14, F1 27, F2 20, GA4 14, loja 23,
 pastilhas 12, prestação 11, rejunte 12 e voz-e-cabeça 24 — 203 mutações, 203
 reprovadas, 0 passaram, 0 inertes.**
+
+## 13/09/2026 — "MEUS DADOS": a aba onde ela manda no que só existia em código
+
+Ateliê **1.2.0**, Leads **1.1.0**, manifest na **revisão 20**. **Nenhuma URL
+nova.** Fecha o último pedaço do adendo 3 que tinha ficado por fazer — a option
+`cdm_email_leads` existia, funcionava, e só a Fundação podia mexer nela — e
+cumpre a linha do `PROMPT.md` que promete desde 10/09 que "ela troca a senha em
+Meus dados dentro do painel".
+
+**A ABA TEM TRÊS SEÇÕES, e a divisão entre elas é a decisão do bloco.** "Seu
+acesso" mostra o e-mail da conta **como texto**; "Sua senha" troca a senha; e
+"Avisos de interessados" — que **não é deste arquivo** — traz o endereço para
+onde vai o aviso e o nome que assina a mensagem do WhatsApp.
+
+- **A TROCA DE SENHA NÃO PEDE A SENHA ATUAL, e isso é escolha e não esquecimento.**
+  O WordPress não pede na tela de perfil dele, e aqui a razão é mais forte que a
+  dele: **ela entrou na conta por um link de e-mail** e pode legitimamente não
+  saber a senha que quer trocar. Pedi-la trancaria a porta justamente para quem
+  tem a chave. O que protege a ação é sessão autenticada + nonce, e o custo de
+  errar para este lado é conhecido e menor — quem já está dentro da sessão dela
+  já podia publicar, apagar e exportar os interessados. Se um dia houver mais de
+  uma pessoa no ateliê, a linha se reabre; está escrita no cabeçalho do snippet.
+
+- **O E-MAIL DA CONTA APARECE E NÃO SE EDITA.** É o endereço para onde vai o link
+  de recuperar a senha; um dedo errado num teclado de celular a deixaria de fora
+  da própria conta, sem ninguém do outro lado para socorrer no domingo. Aparecer
+  responde a única pergunta que ela vai fazer sobre esse endereço ("para onde vai
+  o link?"); virar campo é risco sem ganho. O portão mede as duas metades: que o
+  endereço **aparece** e que **não existe `<input>` com ele**.
+
+- **QUEM LÊ A OPTION É QUEM A ESCREVE — e por isso nasceu um terceiro ponto de
+  extensão.** `cdm_email_leads` e `cdm_artesa_nome` são lidas **só** pelo snippet
+  de Leads, então os campos delas nascem lá e chegam à tela pelo filtro
+  `cdm_atelie_meus_dados`, do mesmo jeito e pela mesma razão que a aba
+  "Interessados" chega pelo `cdm_atelie_abas`: **o Sync desembarca um snippet sem
+  o outro**, e uma tela que promete um campo cujo dono não está no ar é a
+  divergência silenciosa que esta ilha já pagou duas vezes. **Cada seção é um
+  formulário próprio**, com nonce e gravação próprios — nada de um caminho de
+  salvar compartilhado onde o campo de um dono sobrescreve o do outro por
+  descuido. E a borda do cartão não é enfeite: é o que diz onde um formulário
+  acaba e o outro começa, para ela não apertar "Trocar a senha" achando que
+  salvou os dois.
+
+- **O VAZIO CONTINUA SIGNIFICANDO O QUE SIGNIFICAVA, e agora a tela DIZ isso.**
+  E-mail em branco é "avise no endereço padrão"; nome em branco é "a identidade
+  da artesã ainda não chegou", e a mensagem assina "do Clube do Mosaico". Os dois
+  campos escrevem embaixo o que o branco faz e **qual é o estado de hoje**, em
+  vez de deixar ela adivinhar se esqueceram de preencher ou se é assim mesmo. E
+  branco **grava** branco em vez de ser ignorado: sem isso ela não teria como
+  desfazer um endereço digitado por engano.
+
+- **E-MAIL INVÁLIDO NÃO DERRUBA O QUE FUNCIONAVA.** O antigo fica de pé e a tela
+  diz que não deu. A direção sai da assimetria de custo, como manda a seção 10:
+  trocar um endereço que recebe por um que não existe é o aviso do interessado
+  sumindo sem ninguém perceber.
+
+**A GUARDA DE `defined()` NO SNIPPET DE LEADS não é paranoia, é a ordem do
+desembarque:** este arquivo pode chegar ao ar minutos antes do Ateliê 1.2.0, que
+é quem declara `CDM_ATELIE_ABA_DADOS`. Sem ela, um POST daquela ação levaria erro
+fatal do PHP no lugar da tela. Com ela, a ação simplesmente não existe enquanto o
+outro lado não chega — que é o mesmo que já acontece com a seção, porque o filtro
+não é aplicado.
+
+**O QUE A BANCADA GANHOU, e ela é a metade que dá sentido ao filtro:** o
+`render-para-teste.php` passou a **produzir o mundo em que um snippet não
+desembarcou** (`sem_leads=1`), na mesma família do `sem_links` de 13/09. "A tela
+não promete o que o dono ausente não entrega" é uma afirmação que **só pode ser
+medida com o dono ausente**, e não há como produzir essa ausência lendo código —
+só deixando de carregar o arquivo. O portão mede os dois lados: com o Leads no
+ar a seção aparece; sem ele, ela some **e a troca de senha continua inteira**.
+
+**DUAS MUTAÇÕES PASSARAM NA PRIMEIRA PASSADA, e as duas eram buraco de portão —
+não de código.** É o resultado do teste, não um detalhe:
+
+1. **`34 quem não está logada troca a senha dela`.** Todas as afirmações da aba
+   rodavam **com a artesã logada**, e por isso nenhuma delas via a guarda de
+   sessão cair. A mutação removeu `is_user_logged_in()` e `current_user_can()` da
+   ação e ficou verde. **Um portão que só mede o caminho feliz da recusa mede a
+   recusa errada.** O conserto foi medir a ação deslogada e logada-sem-capacidade
+   — o nonce da bancada é determinístico, e é isso que torna a medição possível:
+   quem está de fora consegue calculá-lo, que é exatamente o mundo contra o qual
+   a capacidade protege.
+2. **`48 a tela para de dizer para onde os avisos vão hoje`.** A régua cobrava o
+   endereço na tela **com a option vazia** — e aí "hoje" e "o padrão" são o mesmo
+   texto, então a frase "deixe em branco para usar mina196@..." satisfazia a
+   régua sem a tela dizer nada sobre o estado atual. **Régua que só distingue
+   quando os dois valores diferem tem de ser medida onde eles diferem:** a
+   afirmação mudou de lugar e passou a rodar depois de gravar um endereço
+   diferente do padrão.
+
+**E UMA MUTAÇÃO ANTIGA TINHA VIRADO INERTE nesta mesma passada** — a `24 o script
+volta para dentro do shortcode`. O alvo dela era "o `</form></div>` que vem antes
+do `add_shortcode`", e o Ateliê 1.2.0 pôs duas funções entre um e outro. **Alvo
+de mutação que depende da vizinhança morre no dia em que o vizinho se muda**, e
+mutação inerte não mede nada — ela conta como "passou". Reescrita com âncora no
+próprio fim do formulário da peça.
+
+**UM DEFEITO MENOR CONSERTADO DE PASSAGEM:** o piso de 8 caracteres da senha
+estava escrito três vezes na tela de criar senha (o `strlen`, dois `minlength` e
+a frase de ajuda). Virou `CDM_ATELIE_SENHA_MINIMA`, uma vez, para as duas telas
+não poderem divergir.
+
+**VERIFICAÇÃO NA BANCADA, 0 falha:** `teste-atelie` **251** (era 209),
+`teste-leads` **210** (era 184), `teste-casca` 546, `teste-loja` 147, `teste-f1`
+70, `teste-f2` 74, `teste-prestacao-rejunte` 5 sobre 720 estados,
+`conferir-cobertura` 128, `validar-banco` aprovado, `validar-pastilhas` aprovado,
+`php -l` em tudo. **NAVEGADOR:** `teste-navegador-atelie` **128 medições em 8
+páginas × 5 larguras**, 0 falha, 0 px de rolagem — a tela nova passou de primeira
+no alvo de toque e na fonte de 16 px, porque reusa `.cdm-at-campo` e
+`.cdm-at-botao` em vez de inventar botão.
