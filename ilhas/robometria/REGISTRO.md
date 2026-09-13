@@ -3407,3 +3407,141 @@ recipiente de um modelo que hoje não responde **tira o modelo do vazio**, que �
 critério da lista de compras. Depois dele, a chave de busca que nomeia o modelo
 para peça de modelo único, com a medição dos títulos de marketplace já feita
 acima.
+
+## 2026-09-13, 23h18Z — O recipiente do W100 e do W90 entra, e quem diverge passa a decidir a frase
+
+**Manifest na revisão 34**, `/status` conferido com a revisão batendo com o
+manifest. **Nenhuma URL nova, nenhuma URL mudou.** R1 1.4.0, casca 1.5.1.
+
+**Escolha da ilha.** Rotação da seção 1, sem despacho aberto para a Fundação em
+nenhuma das três (os três `PROMPT.md` lidos antes de escolher; o que resta nos
+desta ilha é a metade **humana** do reenvio do sitemap). A robometria tinha a
+`ultima_execucao` mais antiga e as três estavam com `executando_desde: null` —
+pela 1.1, o `null` já significa que não há bloco da Fundação vivo, então o git não
+precisou desempatar. Reserva às 23h18Z empurrada de primeira; nenhum push
+recusado, nenhum force push.
+
+### O que entrou
+
+O **Kit Recipiente de Pó FW008543**, declarado pela loja oficial da WAP para o
+**WAP Robot W100** e para o **WAP Robot W90**. É a **terceira** peça de tipo
+`reservatorio` e a primeira peça WAP a tirar **dois** modelos do vazio da R1 de
+uma vez: a ferramenta passa a responder em **24 dos 33** modelos publicáveis e o
+vazio cai de 11 para **9**. Era o item (1) do PRÓXIMO da execução das 21h16Z, e o
+critério daquela lista era exatamente este — cada recipiente de um modelo que hoje
+não responde tira o modelo do vazio.
+
+**O código passou no critério de canal** que a leva de escovas escreveu ao recusar
+`FW006267`, `FW008028` e `FW009132`: `FW008543` voltou em passada restrita aos
+domínios da WAP, com a página da loja oficial entre os resultados, **e** em
+passada sem restrição nenhuma, em que quatro canais independentes entre si
+(Americanas, Amazon, Mercado Livre e um varejista de peças) nomeiam o **mesmo**
+produto com o **mesmo** código.
+
+**Por que o tipo é `reservatorio` e não `kit`**, que é a palavra do próprio
+fabricante no título: a seção 26 do contrato diz que o fabricante batiza pela
+posição ou pelo marketing e a ilha classifica pela **função**, e a função está
+escrita literalmente no título. O tipo `kit` deste esquema exige `composicao` com
+um item por peça separada, e a WAP não declara composição nenhuma. A direção saiu
+da assimetria de custo da seção 10: gravar `reservatorio` faz a R1 deixar de
+oferecer esta peça a quem procura **filtro**, que é uma frase mais fraca; gravar
+`kit` com a composição lida em **varejista** faria a R1 dizer a alguém que o
+filtro dele vem nesta caixa, com a autoridade do fabricante emprestada a quem só
+revende.
+
+### A recusa, que vale mais que o que entrou
+
+Os revendedores declaram o mesmo código para até **cinco** modelos, e um deles é o
+**W100C**, que está no banco desta ilha e está no vazio da R1. Estender por
+vizinhança tiraria um **terceiro** modelo do vazio hoje — e o próprio varejo deu o
+argumento contra: **dois anúncios do mesmo código, na mesma loja, declaram
+conjuntos diferentes** (um diz W90/W95/W96/W100/W100C, o outro diz W100/W100C).
+Canal que discorda de si mesmo não promove modelo nenhum. As três declarações
+foram para `divergencias`, com a `resolucao` escrita, e o caminho de volta também:
+a vista explodida VEG02.122 do W100C existe em `mais.wap.ind.br`, e uma leitura
+dela declara ou nega o par no canal do fabricante. W95 e W96 não estão no banco de
+modelos desta ilha.
+
+### O achado, e ele estava no ar
+
+A cauda da frase da R1 era **fixa** — *"Dois canais do fabricante discordam sobre
+o alcance desta peça"* — e o **título** do bloco de divergências dizia o mesmo. As
+duas eram verdadeiras **por acidente do banco**: as sete divergências de peça
+existentes vinham todas de canal de fabricante. Este registro fez as duas
+emprestarem a autoridade do **fabricante** a três anúncios de revendedor, e **oito
+portões seguiram verdes**, porque nenhum deles media **quem** diverge. E "Dois"
+era a cicatriz do número de tela digitado, já paga duas vezes nesta ilha.
+
+**O conserto não foi reescrever a frase:** o número sai **contado** e o lado é
+**lido** do degrau que cada divergência declara. Nasceu `fala_pela_marca` na
+escada de fontes do esquema — a fronteira mora lá para que degrau novo declare de
+que lado está sem uma linha de código mudar — e `origem` passou a ser obrigatória
+em toda divergência de **peça**, com o validador cobrando as duas. As origens das
+sete divergências antigas não foram classificadas de fora: foram **lidas** da
+fonte do próprio registro que publica aquele mesmo canal. O rodapé da casca, que
+descreve o método em **toda** página, dizia só a metade que o banco tinha no dia
+em que foi escrito; e a metodologia perdeu a contagem digitada de casos.
+
+**A mutação que passou foi o segundo achado**, e é da mesma família do `>` trocado
+por `>=` que a R2 pagou em 11/09: mover a fronteira no esquema deixava a bancada
+**inteira** verde, porque a régua derivava o lado do mesmo arquivo que ela
+conferia e as três metades erravam juntas. A fronteira passou a ser escrita **à
+mão** dentro do `teste-r1.php`, e o esquema é conferido contra ela.
+
+**O terceiro achado veio da régua de ar nova reprovando**, e o defeito era do
+**localizador**: os dois conferidores delimitavam "a resposta" de `id="resultado"`
+até o primeiro `rbm-quadro` — e `rbm-quadro` é a classe de **qualquer** quadro,
+inclusive o de **divergências**, que fica **dentro** da resposta. O bloco medido
+terminava exatamente no começo dele, então a tabela que publica os modelos que só
+o varejo declara estava no ar **sem régua nenhuma lendo**, desde que a primeira
+divergência existe. A tabela pré-renderizada ganhou `id="rbm-exemplos"` e os dois
+conferidores param nele: fronteira de teste tem de ser marcador escrito, nunca "a
+primeira coisa parecida com uma tabela".
+
+### Verificação
+
+**Bancada, 0 falha:** casca 200, r1 de 106 para **138**, a1 56, r2 92, a2 73,
+acentuação 17, árvore 219, voz 155, escada 511, `validar-banco` aprovado, `php -l`
+limpo. **Mutações:** 15 baterias, **0 inertes**. Nasce `mutacoes-divergencia` com
+**9**, duas delas **produzindo** o mundo misto que o banco de hoje não tem; a de
+reservatório foi de 6 para **10**, com as quatro da peça nova — inclusive a que
+faz o W100C entrar como declaração do fabricante, que é a recusa central deste
+bloco virando trava. Duas baterias **pararam sozinhas como foram desenhadas** e
+foram corrigidas à mão: o `troca_n` da árvore, porque a contagem declarada deixou
+de bater com um banco de três reservatórios, e a lista de estados da de
+reservatório, que não renderizava os dois estados novos da régua e a fazia
+reprovar pelo motivo errado. **Navegador:** 258 medições nas nove páginas mais 6
+no estado novo da R1, 0 px de rolagem, console limpo. **No ar, depois do Sync:**
+`conferir-no-ar` 149, `conferir-kits-no-ar` 163, `conferir-atribuicao-no-ar` 19 e
+`conferir-reservatorio-no-ar` de 25 para **48**, 0 falha nas quatro.
+
+`ARVORE.md`: o parágrafo do `/pecas/reservatorios/` já tinha virado mentira uma
+vez e virou de novo. O mínimo de 3 filhas da 16.5 está **cumprido** — são três
+peças cobrindo quatro modelos. O que segura a categoria agora não é dado, é o
+portão de malha: categoria nova é URL nova, e o 5b espera o reenvio do sitemap.
+
+**Receita:** 35 registros de peça, 32 publicáveis, 63 pares declarados; 32
+esperando link, 32 **sem piso**, 0 com ficha.
+
+### A dívida que este bloco criou e não consertou
+
+O cartão da vitrine da R1 escreve *"o fabricante declara esta peça"*, **digitado**,
+para qualquer degrau — e esta peça vem do degrau 4, cujo rótulo é "loja oficial da
+marca". A sexta decisão desta ilha (a atribuição é lida do degrau, nunca digitada)
+já cobria isso para **número**, e não para esta frase. O conserto está desenhado:
+o degrau precisa declarar o **artigo** além do rótulo, porque "a loja oficial" e
+"o manual" não levam o mesmo, e aí a frase sai composta. Não entrou aqui para o
+bloco não virar dois.
+
+### Próximo passo
+
+1. **O recipiente dos outros quatro modelos WAP** (W400, W1000, W310 e W100C).
+   Este bloco **procurou e não achou** página de acessório de recipiente para eles
+   em canal da WAP, então o alvo mudou de natureza: não é mais "colher a página",
+   é decidir se a vista explodida de cada modelo (VEG02.122 do W100C, VEG02.238 do
+   W310, VEG02.217 do W1000) sustenta o par — e ela está atrás do egresso fechado.
+   O W100C é o mais barato dos quatro, porque o código já está no banco e falta só
+   a declaração do canal certo.
+2. **A atribuição do cartão lida do degrau**, que é a dívida acima.
+3. A página de privacidade, com o molde da aquametria.
+4. A escada na tela, no minuto em que houver `url_busca`.

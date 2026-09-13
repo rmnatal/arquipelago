@@ -46,6 +46,7 @@ PECAS = 'dados/pecas.json'
 
 W300 = 'wap-recipiente-de-po-w300'
 WSMART = 'wap-fw008024'
+W100_W90 = 'wap-fw008543'
 
 # Os quatro estados que a regua le, e o argumento de render de cada um. O nome do
 # arquivo e o contrato entre este arquivo e a regua: rbm-r1-<estado>.html.
@@ -54,6 +55,13 @@ ESTADOS = (
     ('w300', 'wap-w300', 'reservatorio'),
     ('wsmart', 'wap-wsmart', 'reservatorio'),
     ('erb60', 'electrolux-erb60', 'reservatorio'),
+    # OS DOIS ESTADOS DA TERCEIRA PECA (13/09/2026). Sem eles a regua nao acha os
+    # arquivos, devolve 000 e REPROVA tudo — inclusive o mundo intacto, que e a
+    # unica mutacao que tem de passar. Estado novo na regua e estado novo aqui:
+    # foi assim que esta bateria comecou a reprovar pelo motivo errado, e reprovar
+    # pelo motivo errado nao prova trava nenhuma.
+    ('w100', 'wap-w100', 'reservatorio'),
+    ('w90', 'wap-w90', 'reservatorio'),
 )
 
 
@@ -142,6 +150,46 @@ MUTACOES = [
         'manda a pessoa procurar uma coisa que nao esta a venda com esse nome',
         editar_banco(W300, lambda r: r.__setitem__(
             'nome_na_fonte', 'Recipiente de Pó para robô aspirador WAP')),
+        False,
+    ),
+    (
+        'a terceira peca sai do banco',
+        'e o mundo de ontem a esta execucao: o W100 e o W90 voltam ao vazio da R1 '
+        'e as duas consultas passam a recusar. Sem esta mutacao, os dois estados '
+        'novos da regua nunca foram vistos reprovando',
+        remover_do_banco(W100_W90),
+        False,
+    ),
+    (
+        'a peca deixa de ser declarada para o W90 e fica so no W100',
+        'a peca e UMA e os modelos sao DOIS. Sem esta, bastaria o segundo par sumir '
+        'do banco para a bancada seguir verde medindo so o primeiro',
+        editar_banco(W100_W90, lambda r: r.__setitem__(
+            'compatibilidade', [c for c in r['compatibilidade']
+                                if c['modelo'] != 'wap-w90'])),
+        False,
+    ),
+    (
+        'a compatibilidade do varejo vira declaracao do fabricante (o W100C entra)',
+        'a EXTENSAO POR VIZINHANCA, que e a recusa central deste bloco: tres '
+        'revendedores anunciam esta peca para o W100C e o fabricante nao a declara. '
+        'Se ela entrasse, um terceiro modelo sairia do vazio hoje — e a pagina '
+        'recomendaria uma peca com a autoridade de quem nunca a declarou',
+        editar_banco(W100_W90, lambda r: r['compatibilidade'].append({
+            'modelo': 'wap-w100c',
+            'codigo_declarado': 'WAP Robot W100C',
+            'variante_de_hardware': None,
+            'selo': 'declarada_fabricante',
+            'fonte': 'f-peca',
+        })),
+        False,
+    ),
+    (
+        'o quadro de divergencia some do banco',
+        'a regra do conjunto mais estreito so e verificavel por quem enxerga o que '
+        'foi descartado. Sem o quadro, a pagina pede confianca em vez de dar prova '
+        '— e a frase que atribui a divergencia a quem revende fica sem lastro',
+        editar_banco(W100_W90, lambda r: r.__setitem__('divergencias', [])),
         False,
     ),
     (
