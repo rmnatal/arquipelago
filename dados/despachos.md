@@ -200,3 +200,18 @@ afiliado passa a reservar a ilha como a Fundação reserva, ou ela deixa de toca
 ### bússola — pontuar o nicho de viagem na rodada 004 (segunda, 14/09)
 
 Aberto em 13/09/2026 pelo Raphael. O enquadramento, a medição de quatro SERPs e o levantamento de monetização já estão em `bussola/despacho-viagem.md` — a rodada não recomeça do zero. Os critérios eliminatórios da seção 2 do `BUSSOLA.md` foram ampliados no mesmo dia para permitir nicho de serviço; sem essa mudança, viagem reprovava nos quatro. Entrega esperada: dossiê completo, com as duas adaptações que o despacho exige.
+
+### precisa do Raphael — conferir se a credencial da Open API já apareceu no painel
+
+Aberto em 13/09/2026. A Shopee **aprovou** o acesso à Open API no mesmo dia do pedido (protocolo 2099140709749702724) e disse que a liberação sai **em até 5 dias úteis, direto no portal do afiliado**. A credencial aparece **sem aviso nenhum**, em `affiliate.shopee.com.br/open_api`, nos campos `AppID` e `Senha` que hoje mostram `--`.
+
+**Nenhuma rotina alcança essa tela.** Então o passo é dele: abrir a página a partir de **18/09** e ver se os dois campos saíram do `--`. Quando saírem, ele passa os valores **no chat**, e eles viram variável de ambiente da rotina — nunca arquivo do repositório (regra em 25.6).
+
+**O boletim de sexta 18/09 tem de carregar este lembrete em destaque.** É o único mecanismo que a gente tem contra o cenário provável: credencial liberada, ninguém olha, e ela fica parada por semanas.
+
+**O que a Fundação constrói no dia em que a credencial chegar** — para não se descobrir o plano naquele dia:
+
+1. `ferramentas/shopee.py`, irmão de `ga4.py`: mesmo `_bootstrap_venv()`, credencial só de ambiente, GraphQL por POST simples.
+2. **Primeiro uso, e é o que paga a conta:** buscar produto por palavra-chave **com estoque**, para alimentar o degrau 1 da escada sem depender do feed que só ele baixa.
+3. **Segundo uso:** conferir, todo dia na ronda, se os produtos já ligados continuam vivos — o que hoje exige abrir página no navegador e ler o texto (25.4).
+4. A Shopee **não dá suporte**; a documentação está na Central do Afiliado, e é de lá que sai o esquema das consultas. Leia antes de escrever.
