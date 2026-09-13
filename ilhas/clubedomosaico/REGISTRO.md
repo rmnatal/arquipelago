@@ -2109,3 +2109,136 @@ existe no dado e não na tela; (c) o feed do Merchant Center, que depende de hav
 peça publicada e por isso não é escolha de fila e sim de espera. O que só um
 humano fecha continua o mesmo: confirmar que o e-mail de acesso CHEGOU na caixa da
 Hotmail, e o `contato@clubedomosaico.com.br` que ainda não existe como caixa.
+
+---
+
+## 13/09/2026, 15h18–15h45Z — A ESCADA DA SEÇÃO 25 CHEGA À TELA (f2 1.2.0, manifest revisão 23)
+
+**Terceira ilha tentada nesta execução, e isso é a seção 1 funcionando.** A aquametria foi
+reservada às 15h16Z e a robometria às 15h17Z por outras duas execuções; o push da minha
+reserva da aquametria foi recusado por cerca de um minuto. O passo 5 manda voltar ao passo 2
+e escolher outra ilha, e foi o que aconteceu — sem force push, sem atropelo.
+
+**O bloco é o item (b) que a execução anterior deixou escrito**, palavra por palavra: *"o
+`url_busca` do degrau 3 e o segundo link discreto que a seção 25.2 manda pôr embaixo do
+botão — os campos chegaram ao banco e a página ainda não os serve, então hoje a escada
+existe no dado e não na tela."* Ele venceu a ordem de BANCO que vinha antes na fila porque a
+25.2 não é preferência de fila: ela diz que **não existe item publicável sem piso** e que a
+página com piso no banco **nunca** diz "em breve". Dez itens estavam nesse estado.
+
+### O que mudou na tela
+
+Nasce `cdm_f2_compra_html()`, dona dos três estados do bloco de compra. **A F1 reusa o mesmo
+cartão**, então os dois lugares que servem produto nesta ilha desceram a escada de uma vez:
+
+1. **Com ficha** — a ficha é o botão ("Ver na loja") e a busca desce para a linha discreta
+   "Veja todos disponíveis aqui", palavra por palavra como a 25.2 a escreve. As duas convivem
+   de propósito: ficha converte melhor, e a busca é a saída de quem chegou num anúncio
+   esgotado. O degrau 3 é justamente o que quebrou quatro links em doze horas em 13/09.
+2. **Só com busca** — a busca **sobe e vira o botão**, com texto próprio: "Ver as opções na
+   loja". O texto muda junto com o papel, e não por estilo: o botão abre uma **lista**, e
+   prometer "Ver na loja" ali seria o leitor clicar esperando a ficha do que a página acabou
+   de recomendar.
+3. **Sem nada** — sobra "Link de loja em breve", e ele deixa de ser estado de espera para ser
+   **defeito contado**.
+
+**Por que é função própria e não um `if` dentro do cartão:** a escada é regra do Arquipélago
+e o cartão é desenho da ilha. Quem for servir a vitrine de pastilha da F1, a ficha do Guia ou
+a página da peça **chama a função** em vez de reescrever quatro degraus que discordariam em
+silêncio. O portão mede isso contando a **classe emitida** nos snippets — e não a frase
+legível, porque a primeira versão dessa régua contou a frase e reprovou o próprio comentário
+que a explica.
+
+### Os três mundos produzidos, e por que `sem_links=1` mudou de significado
+
+O banco de hoje só produz o estado 1, então medir os outros dois no banco de hoje seria medir
+o caminho que nenhum cartão percorre — verde com a função quebrada, e o dia em que importasse
+seria o dia em que um link morresse.
+
+`sem_links=1` **apaga a ficha e deixa o piso de pé**, que é exatamente o estado 2. Até a
+1.1.0 esse mundo produzia "em breve"; depois da 1.2.0, produzir "em breve" nele **é o
+defeito**. A afirmação antiga reprovou na primeira rodada, e essa reprovação é a mudança
+funcionando. Nasceu `sem_piso=1` para o vazio de verdade.
+
+**A ordem das três réguas importa, e é o que as torna três:** (a) sozinha passaria numa
+função que ignora a ficha e serve só a busca; (b) sozinha passaria numa que serve a busca por
+cima da ficha; e (c) pega o erro mais provável de quem escreve isto com pressa — deixar o "em
+breve" no lugar do piso —, **o único que (a) e (b) aprovariam juntas.**
+
+### O banco aprende o que a seção 25 criou
+
+O esquema não conhecia `url_produto`, `url_busca`, `url_busca_produto`, `degrau` nem
+`conferido_em`, e a observação dele ainda mandava a página dizer "em breve" e declarava que
+gerar link *"é da Sentinela estratégica, no navegador, e nunca da Fundação"*. As duas frases
+são **anteriores à 25.2** e foram **reescritas, não acrescentadas**: deixadas ali, o esquema
+contradiria o campo vizinho, e contradição no dado é pior que lacuna porque tem cara de
+decisão. O `validar-banco.py` passa a exigir `url_produto` de quem tem link (25.4-b: link
+cuja saúde ninguém consegue conferir), a cobrar o degrau, e a **contar** os itens sem piso num
+campo novo de cabeçalho, `itens_sem_piso`, reconferido contra o arquivo.
+
+**Os dez sem piso são as pastilhas, e o motivo é medido e não suposto.** Gerar o link de busca
+exige a **sessão logada** do painel de afiliado da Shopee, que mora no navegador do Raphael.
+Desta nuvem o `custom_link` responde **200 em duas passadas** e serve uma casca de JavaScript
+**sem o formulário** — zero ocorrência de `custom_link` e de `sub_id` no HTML servido. **Não é
+bloqueio de rede** (a seção 4 manda testar duas vezes antes de chamar de bloqueio, e o teste
+foi feito): é falta de sessão, e criar conta ou tocar na conta dele está fora do que esta
+camada faz. **Não virou erro duro do validador de propósito** — portão vermelho que ninguém
+consegue fechar é portão que se aprende a ignorar; contado e declarado, ele é o número que a
+ilha reporta em todo bloco, que foi exatamente o desenho que fez os dez links nascerem em
+13/09. **No dia em que os dez `url_busca` forem colados, nenhuma linha de código muda.**
+
+### Uma mutação antiga tinha virado inerte em cada bateria, e inerte conta como passou
+
+O alvo das duas era a linha que **abria** o `<span>` do bloco de compra dentro do cartão, e a
+refatoração mudou o vizinho: a abertura desceu para a função nova. As duas acharam zero
+ocorrência e foram contadas como PASSOU. É a mesma família da mutação 24 desta ilha em 12/09
+— **alvo que depende da vizinhança morre quando o vizinho se muda.** As duas apontam agora
+para a **chamada** da função, que é o que governa a ordem hoje.
+
+### Um achado de outra ilha, fechado
+
+A ronda da Aquametria de 13/09 escreveu, por não haver outro canal, que o endpoint de cópia da
+seção 24 desta ilha **existia** e devolvia 401, mas que o nome do parâmetro de autenticação
+não estava documentado em lugar nenhum — então a cópia da 24 não acontecia e não ia acontecer.
+O parâmetro é `token` e o valor é **o mesmo token do Sync**. A URL completa e literal entrou em
+"Endpoints desta ilha", conferida desta nuvem: HTTP 200, `{"total":0,"pecas":[]}`. **Zero peça
+é resposta, não falha** — o `dados/pecas.json` nasce no dia em que a artesã cadastrar a
+primeira.
+
+### A regra nova que subiu para o contrato (seção 1.1)
+
+A 1.1 manda descartar a ilha com commit na pasta nos últimos 40 minutos e **não diz commit de
+quem**. Lida ao pé da letra, ela manda a Fundação ignorar por 40 minutos exatamente a ilha que
+a **Sentinela** acabou de tocar — que é a ilha com despacho novo, a primeira da 18.1. As duas
+regras se contradiziam. O que a 1.1 mede é **execução da Fundação viva**, e `executando_desde:
+null` já prova que não há bloco em andamento, **porque a reserva é escrita antes do trabalho**.
+
+### Verificação
+
+**Bancada, 0 falha:** `teste-f2` 87 afirmações (era 74), `teste-f1` 72 (era 70), `teste-casca`
+546, `teste-loja` 147, `teste-leads` 211, `teste-atelie`, `teste-prestacao-rejunte` 5 sobre
+720 estados, `conferir-cobertura` 128, `validar-banco` APROVADO, `php -l` em tudo.
+**Mutações:** f2 **26 de 26** reprovadas, f1 **27 de 27**, **0 inertes** nas duas depois do
+conserto dos dois alvos. **Navegador:** 63 medições em 9 páginas × 6 larguras, 0 px de
+rolagem, console limpo — e entre as nove está o **mundo produzido em que a busca é o botão**,
+porque alvo de toque de botão novo não se mede no mundo onde ele não aparece.
+
+**No ar às 15h40Z, em UM disparo:** `/status` na revisão **23**, igual à do `manifest.json`, 10
+aplicados; `conferir-no-ar` **351 afirmações, 0 falha**, com a escada medida **cartão a cartão
+no HTML servido** (6 cartões na F2 e 2 na F1, todos com as duas portas) e a marca do código
+novo — a classe `cdm-f2-busca` — no corpo servido, que é a diferença entre "o manifest diz que
+subiu" e "o site está servindo".
+
+**A primeira versão dessa régua no ar reprovou a página certa**, e vale registrar: ela comparou
+as linhas discretas da tela com o número de itens do **banco**, e a âncora serve 6 cartões de
+um banco de 10 porque publica um **caso de referência**, não o catálogo. Régua de página medida
+com régua de banco. O banco continua na medição, mas no papel certo: dizer o que a tela **não
+pode** ter.
+
+**PRÓXIMO, com ordem e motivo:** (1) a ordem de BANCO que já estava escrita e **agora não tem
+mais nada na frente** — fechar 2×2 na categoria pastilha, que está a UM item dos 3 da 14.3,
+depois a vitrine de pastilha da F1, que já nasce com a escada pronta, depois a categoria cola;
+(2) os dez `url_busca` das pastilhas, no minuto em que houver sessão — é copiar e colar no
+banco, sem uma linha de código; (3) o feed do Merchant Center, que é espera e não escolha de
+fila. O que só um humano fecha continua o mesmo: confirmar que o e-mail de acesso chegou na
+caixa da Hotmail, e o `contato@clubedomosaico.com.br` que ainda não existe como caixa.

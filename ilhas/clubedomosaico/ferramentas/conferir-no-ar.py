@@ -230,21 +230,49 @@ def _conta_escada(categorias):
 
 
 def _escada_na_tela(corpo, categorias, rotulo):
+    """A escada e medida CARTAO A CARTAO, nunca contra o tamanho do banco.
+
+    A primeira versao desta regua comparou `cdm-f2-busca` no corpo com o numero
+    de itens do banco que tem ficha e piso, e reprovou a pagina certa: a ancora
+    da F2 serve SEIS cartoes e o banco tem DEZ itens, porque a pagina publica um
+    caso de referencia e nao o catalogo inteiro. A regua media a pagina com a
+    regua do banco. O que a escada afirma e sobre CADA cartao servido — todo
+    cartao que tem botao de ficha tem tambem a linha discreta —, e essa
+    afirmacao vale com 6, com 10 ou com 500 cartoes na tela.
+
+    O banco continua entrando na medicao, mas no papel certo: ele diz o que a
+    tela NAO pode ter (cartao a mais do que o banco sustenta) e se a etiqueta
+    "em breve" tem direito de existir.
+    """
     ficha_e_piso, so_piso, sem_nada = _conta_escada(categorias)
-    segundas = corpo.count('class="cdm-f2-busca"')
-    botoes_busca = corpo.count("cdm-f2-botao cdm-f2-botao-busca")
-    ok(segundas >= ficha_e_piso if ficha_e_piso else True,
-       "[%s] 25.2: todo item com ficha serve TAMBEM a busca, na linha discreta" % rotulo,
-       "banco: %d com ficha+piso | tela: %d linhas discretas" % (ficha_e_piso, segundas))
-    ok(botoes_busca >= so_piso if so_piso else True,
-       "[%s] 25.2: item sem ficha e com piso serve a busca COMO BOTAO" % rotulo,
-       "banco: %d so com piso | tela: %d botoes de busca" % (so_piso, botoes_busca))
-    ok(("Link de loja em breve" in corpo) == (sem_nada > 0),
-       "[%s] 25.2: 'em breve' aparece se e SO SE ha item sem piso nenhum" % rotulo,
-       "banco: %d sem piso | tela diz 'em breve': %s"
-       % (sem_nada, "Link de loja em breve" in corpo))
-    if ficha_e_piso or so_piso:
-        ok("cdm-f2-busca" in corpo,
+    cartoes = re.findall(r'<li class="cdm-f2-cartao[^"]*">.*?</li>', corpo, re.S)
+    ok(len(cartoes) > 0, "[%s] a varredura acha os cartoes servidos" % rotulo, len(cartoes))
+
+    com_ficha = [c for c in cartoes if 'class="cdm-f2-botao" href' in c]
+    sem_segunda = [c for c in com_ficha if 'class="cdm-f2-busca"' not in c]
+    ok(not sem_segunda,
+       "[%s] 25.2: todo cartao com ficha serve TAMBEM a busca, na linha discreta" % rotulo,
+       "%d cartoes com ficha, %d sem a segunda porta" % (len(com_ficha), len(sem_segunda)))
+
+    so_busca = [c for c in cartoes if "cdm-f2-botao cdm-f2-botao-busca" in c]
+    ok(not (set(so_busca) & set(com_ficha)),
+       "[%s] 25.2: nenhum cartao serve a busca COMO BOTAO tendo ficha" % rotulo,
+       "%d cartoes com a busca no botao" % len(so_busca))
+
+    sem_compra = [c for c in cartoes if "cdm-f2-sem-loja" in c]
+    ok(not sem_compra or sem_nada > 0,
+       "[%s] 25.2: 'em breve' na tela exige item sem piso nenhum no banco" % rotulo,
+       "banco: %d sem piso | tela: %d cartoes 'em breve'" % (sem_nada, len(sem_compra)))
+    ok(len(cartoes) <= ficha_e_piso + so_piso + sem_nada,
+       "[%s] a tela nao serve mais cartao do que o banco sustenta" % rotulo,
+       "%d na tela, %d no banco" % (len(cartoes), ficha_e_piso + so_piso + sem_nada))
+
+    # A MARCA DO CODIGO NOVO NO CORPO SERVIDO. E a diferenca entre "o manifest
+    # diz que subiu" e "o site esta servindo": `cdm-f2-busca` so existe a partir
+    # da f2 1.2.0, e foi exatamente este campo que passou semanas no banco sem
+    # nenhuma linha de codigo para le-lo.
+    if com_ficha or so_busca:
+        ok('class="cdm-f2-busca"' in corpo or "cdm-f2-botao-busca" in corpo,
            "[%s] o site esta servindo a f2 1.2.0 — a marca do codigo novo esta no corpo" % rotulo)
 
 
