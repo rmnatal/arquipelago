@@ -143,6 +143,8 @@ if not arquivos_material:
 materiais = {}
 esperando_link = 0
 sem_imagem = 0
+sem_piso = 0          # secao 25.2: item sem `url_busca` — sem piso de compra
+sem_busca_crua = 0    # secao 25.4-b: tem busca e nao guarda o endereco cru dela
 
 for nome in arquivos_material:
     arq = carregar(nome)
@@ -223,6 +225,38 @@ for nome in arquivos_material:
         if af.get("etiqueta_ml") and not af["etiqueta_ml"].startswith("clubedomosaico-"):
             erro("%s: etiqueta do Mercado Livre fora do formato clubedomosaico-<codigo>" % onde)
 
+        # A ESCADA DA SECAO 25, medida no dado.
+        #
+        # 25.2 (decisao do Raphael, 13/09/2026): "todo item ganha `url_busca`
+        # ANTES de qualquer outra coisa. Item sem `url_busca` e defeito da 19.1,
+        # sempre, em qualquer degrau." Aqui ele e CONTADO, nao ignorado nem
+        # transformado em erro duro, e a diferenca e deliberada:
+        #
+        #  - erro duro deixaria o `validar-banco.py` vermelho hoje pelas dez
+        #    pastilhas, e portao vermelho que ninguem consegue fechar e portao
+        #    que se aprende a ignorar;
+        #  - silencio deixaria a divida invisivel, que e como ela chegou ate aqui.
+        #
+        # Contado e declarado no cabecalho do proprio arquivo, ele vira numero que
+        # a ilha reporta em todo bloco — o mesmo desenho de `itens_esperando_link`,
+        # que foi o que fez os dez links serem gerados em 13/09. No dia em que o
+        # numero chegar a zero em todos os bancos, esta linha vira `erro()` e o
+        # portao passa a impedir a divida de voltar.
+        if not af.get("url_busca"):
+            sem_piso += 1
+        # 25.4-b: o endereco CRU da busca, que e o que a ronda abre para conferir
+        # se a palavra-chave ainda traz resultado. Do link encurtado nao se chega
+        # la sem clicar, e clicar o proprio link de afiliado e o que a 25.4 proibe.
+        if af.get("url_busca") and not af.get("url_busca_produto"):
+            sem_busca_crua += 1
+        if af.get("url") and not af.get("url_produto"):
+            erro("%s: tem link de afiliado e nao tem url_produto — 25.4-b, link cuja saude "
+                 "ninguem consegue conferir" % onde)
+        if af.get("degrau") is not None and af["degrau"] not in (1, 2, 3, 4):
+            erro("%s: degrau %r fora da escada da secao 25 (1 a 4)" % (onde, af["degrau"]))
+        if af.get("url") and af.get("degrau") is None:
+            erro("%s: tem link de afiliado e nao diz de que degrau da escada ele veio" % onde)
+
         if m.get("imagem") is None:
             sem_imagem += 1
         else:
@@ -276,6 +310,21 @@ for nome in arquivos_material:
         erro("%s: cabecalho declara %s itens esperando link, o arquivo tem %s" % (nome, dec_link, conta_link))
     if dec_img is not None and dec_img != conta_img:
         erro("%s: cabecalho declara %s itens sem imagem, o arquivo tem %s" % (nome, dec_img, conta_img))
+
+    # O PISO DA 25.2 TAMBEM E NUMERO DE CABECALHO, e pela mesma razao que o link:
+    # numero que o arquivo declara e a regua reconta nao envelhece calado. Este e
+    # OBRIGATORIO desde 13/09/2026 — `itens_esperando_link` pode faltar num banco
+    # antigo, mas nenhum banco nasce depois da 25.2 sem dizer quantos itens seus
+    # estao sem piso, porque e exatamente o numero que a ilha tem de reportar em
+    # todo bloco.
+    dec_piso = (arq.get("afiliado") or {}).get("itens_sem_piso")
+    conta_piso = sum(1 for m in arq.get("materiais", [])
+                     if not (m.get("afiliado") or {}).get("url_busca"))
+    if dec_piso is None:
+        erro("%s: o cabecalho nao declara `afiliado.itens_sem_piso` (secao 25.2); "
+             "o arquivo tem %s item(ns) sem piso" % (nome, conta_piso))
+    elif dec_piso != conta_piso:
+        erro("%s: cabecalho declara %s itens sem piso, o arquivo tem %s" % (nome, dec_piso, conta_piso))
 
 
 # ------------------------------------------- as cinco regras de elegibilidade
@@ -679,6 +728,8 @@ print("  materiais no banco ......... %d" % len(materiais))
 print("  celulas da F2 recomputadas . %d  (so categoria %s)" % (celulas_conferidas, CATEGORIA_DA_MATRIZ_F2))
 print("  celulas do rejunte ......... %d" % celulas_rejunte_conferidas)
 print("  itens esperando link ....... %d" % esperando_link)
+print("  itens SEM PISO (25.2) ...... %d" % sem_piso)
+print("  busca sem endereco cru ..... %d  (25.4-b)" % sem_busca_crua)
 print("  itens sem imagem ........... %d" % sem_imagem)
 for n in notas:
     print("  nota: %s" % n)

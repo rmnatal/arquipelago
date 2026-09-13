@@ -548,11 +548,25 @@ f1_ok( false !== $pos_compra && false !== $pos_fonte && $pos_compra < $pos_fonte
    regua que depende de um caso raro do banco morre no dia em que o banco
    melhora (cicatriz da Aquametria, 12/09/2026). Agora sao os DOIS lados, e
    nenhum depende de quantos links existem hoje. */
-$sem_link = f1_corpo( f1_render( $raiz, 'sem_links=1' ) );
+/* E DESDE 13/09/2026 SAO TRES MUNDOS, NAO DOIS — a escada da secao 25 chegou a
+   tela na f2 1.2.0, e `sem_links=1` deixou de produzir o vazio: ele apaga a
+   FICHA e deixa o PISO (`url_busca`) de pe, que e o estado 2 da escada. Exigir
+   "em breve" nele passou a ser exigir o defeito que a 25.2 existe para matar.
+   O vazio de verdade e `sem_piso=1`, e ele continua sendo medido logo abaixo.
+   A F1 reusa o cartao da F2, entao aqui a regua e curta de proposito: quem mede
+   a escada degrau a degrau e o `teste-f2.php`, secao 7b; o que esta pagina tem
+   de provar e que o REUSO carrega os tres estados, e nao que ela os reimplementa. */
+$so_busca = f1_corpo( f1_render( $raiz, 'sem_links=1' ) );
+f1_ok( false !== mb_stripos( $so_busca, 'cdm-f2-botao cdm-f2-botao-busca' ),
+	'PRODUZ O MUNDO: sem ficha, a F1 tambem serve a busca como botao (reuso do cartao da F2)' );
+f1_ok( false === mb_stripos( $so_busca, 'Link de loja em breve' ),
+	'25.2: com piso no banco, a F1 NUNCA diz "em breve"' );
+
+$sem_link = f1_corpo( f1_render( $raiz, 'sem_piso=1' ) );
 f1_ok( false !== mb_stripos( $sem_link, 'Link de loja em breve' ),
-	'PRODUZ O MUNDO: sem link, o lugar fica reservado e a pagina diz que esta vazio' );
+	'PRODUZ O MUNDO: sem ficha E sem piso, o lugar fica reservado e a pagina diz que esta vazio' );
 f1_ok( false === mb_stripos( $sem_link, 'rel="sponsored' ),
-	'PRODUZ O MUNDO: sem link, nao sai botao de compra nenhum' );
+	'PRODUZ O MUNDO: sem piso nenhum, nao sai botao de compra nenhum' );
 f1_ok( false !== mb_stripos( $corpo_ancora, 'rel="sponsored' ),
 	'com link no banco, o cartao serve o botao de verdade, marcado como patrocinado' );
 f1_ok( false === mb_stripos( $corpo_ancora, 'Link de loja em breve' ),

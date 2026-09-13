@@ -10,7 +10,9 @@
   "o_que_este_arquivo_descobriu_sobre_o_proprio_banco": "REJUNTE NAO E COLA, E O ESQUEMA DO BLOCO 3 SO TINHA OLHADO COLA. Na cola, a lista do fabricante nomeia a BASE — a superficie sobre a qual se cola. No rejunte, a mesma lista nomeia a TESSELA e o AMBIENTE: 'ceramicas, pastilhas de porcelana e de vidro' e o que vai ser rejuntado, nunca o vaso de cimento embaixo. Um rejunte no vocabulario de base nao quer dizer nada, porque rejunte nao toca a base. Por isso este bloco criou um mapa de termos e um conjunto de regras proprios para rejunte, em vez de enfiar os cinco registros na matriz da F2 — ver `regras_de_elegibilidade_do_rejunte` e `matriz_esperada_do_rejunte` no esquema.",
   "afiliado": {
     "itens_esperando_link": 0,
-    "observacao": "Os cinco com link da Shopee gerado em 13/09/2026. Sub_id 1 = clubedomosaico em todos; Sub_id 2 = F1 nos dois rejuntes que a F1 recomenda (ceramicas e porcelanatos-e-ceramicas) e F2 nos outros tres."
+    "itens_sem_piso": 0,
+    "observacao": "Os cinco com link da Shopee gerado em 13/09/2026. Sub_id 1 = clubedomosaico em todos; Sub_id 2 = F1 nos dois rejuntes que a F1 recomenda (ceramicas e porcelanatos-e-ceramicas) e F2 nos outros tres.",
+    "observacao_sobre_o_piso": "Os cinco tem ficha de produto E piso de busca: `url` vira o botao e `url_busca` vira a linha discreta abaixo dele, servidas pela `cdm_f2_compra_html()` desde a f2 1.2.0 (13/09/2026). Zero item sem piso."
   },
   "imagens": {
     "itens_sem_imagem": 4,

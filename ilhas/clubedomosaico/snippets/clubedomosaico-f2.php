@@ -1,5 +1,8 @@
 /**
  * Clube do Mosaico F2 — Qual cola usar no mosaico, e qual rejunte
+ * Versão 1.2.0 (13/09/2026) — a escada da seção 25 chega à tela. O `url_busca`
+ * estava no banco desde 13/09 e nenhuma linha de código o lia: a escada existia
+ * no dado e não no site. Ver `cdm_f2_compra_html()`.
  * Versão 1.0.0 (11/09/2026) — bloco 4 da fila, a primeira ferramenta da ilha e
  * a primeira página de nível 3 dela.
  *
@@ -34,10 +37,12 @@
  *    seção 8: quem confere escreve a própria régua.
  *
  * 3. O BLOCO DE COMPRA VEM ANTES DA PROVA DE PROCEDÊNCIA (seção 7, cicatriz da
- *    Robometria de 10/09/2026). Os dez itens do banco estão com `afiliado.url`
- *    vazio, e mesmo assim o bloco nasce: ele reserva o lugar, diz "link de loja
- *    em breve" e a ilha reporta quantos itens esperam link. O link de
- *    procedência é texto pequeno, `rel="nofollow noopener"`, nunca botão.
+ *    Robometria de 10/09/2026), e desde a 1.2.0 ele DESCE A ESCADA DA SEÇÃO 25:
+ *    ficha de produto no botão, busca na linha discreta abaixo; sem ficha, a
+ *    busca sobe e vira o botão; "link de loja em breve" só sobra para quem não
+ *    tem nem piso, e esse caso é defeito contado, não estado de espera. A régua
+ *    inteira está em `cdm_f2_compra_html()`. O link de procedência continua
+ *    sendo texto pequeno, `rel="nofollow noopener"`, nunca botão.
  *
  * 4. A CATEGORIA É PARTE DA PERGUNTA. A régua da cola decide sobre BASE; a do
  *    rejunte, sobre LARGURA DE JUNTA. São duas funções separadas de propósito —
@@ -57,7 +62,7 @@
  */
 
 if ( ! defined( 'CDM_F2_VERSAO' ) ) {
-	define( 'CDM_F2_VERSAO', '1.1.0' );
+	define( 'CDM_F2_VERSAO', '1.2.0' );
 }
 if ( ! defined( 'CDM_F2_SLUG' ) ) {
 	/* Nível 3 com mãe /materiais/ direto — dois níveis em vez de três, estado de
@@ -770,16 +775,83 @@ function cdm_f2_lista_humana( $itens ) {
 }
 }
 
+if ( ! function_exists( 'cdm_f2_compra_html' ) ) {
+/**
+ * O BLOCO DE COMPRA, E ELE DESCE A ESCADA DA SEÇÃO 25 DO CONTRATO.
+ *
+ * Até a 1.1.0 este bloco tinha dois estados: link de ficha, ou a etiqueta "Link
+ * de loja em breve". A seção 25.2 — decisão do Raphael de 13/09/2026, textual,
+ * "deve ser 100% automático sem eu tocar" — criou um terceiro, e ele é o mais
+ * importante dos três: **a busca é o PISO de todo item, e piso não espera
+ * ninguém.** O link de busca já estava no banco desde 13/09; o que faltava era
+ * a tela, e é essa a metade que esta versão entrega.
+ *
+ * OS TRÊS ESTADOS, e o que cada um diz ao leitor:
+ *
+ * 1. TEM FICHA — a ficha é o botão ("Ver na loja") e a busca desce para a linha
+ *    discreta logo abaixo ("Veja todos disponíveis aqui"), palavra por palavra
+ *    como a 25.2 a escreve. As duas convivem de propósito: ficha converte
+ *    melhor, e a busca é a saída de quem chegou num anúncio esgotado. O degrau 3
+ *    da escada — anúncio de vendedor comum — é justamente o que quebrou quatro
+ *    links em doze horas, e é ele que mais precisa dessa segunda porta.
+ * 2. SÓ TEM BUSCA — a busca SOBE e vira o botão, com texto próprio ("Ver as
+ *    opções na loja"). O texto muda junto com o papel, e não por estilo: o botão
+ *    abre uma LISTA, não um produto, e prometer "Ver na loja" ali seria o leitor
+ *    clicar esperando a ficha do que a página acabou de recomendar. A 25.2 manda
+ *    que este caso nunca diga "em breve" — a página está monetizada.
+ * 3. NÃO TEM NADA — sobra a etiqueta "Link de loja em breve", que é a única
+ *    forma legítima que restou, e ela é DEFEITO DECLARADO: pela 25.2 item sem
+ *    `url_busca` é defeito da 19.1, sempre, em qualquer degrau. O `validar-banco.py`
+ *    conta esses itens e o cabeçalho de cada banco declara o número, do mesmo
+ *    jeito que já declara `itens_esperando_link` — número contado, nunca digitado.
+ *
+ * POR QUE ISTO É FUNÇÃO PRÓPRIA, e não um `if` dentro do cartão: a escada é
+ * regra do Arquipélago e o cartão é desenho desta ilha. Quem for servir a escada
+ * na ficha do Guia, na vitrine de pastilha da F1 ou na página da peça chama esta
+ * função em vez de reescrever os três estados — e três cópias de uma escada de
+ * quatro degraus é o jeito mais curto de dois degraus discordarem em silêncio.
+ *
+ * `rel="sponsored"` vale para os dois links: link de busca de afiliado é link de
+ * afiliado, e o que o atributo declara é a relação comercial, não o formato da
+ * página de destino.
+ */
+function cdm_f2_compra_html( $afiliado ) {
+	$ficha = ( is_array( $afiliado ) && ! empty( $afiliado['url'] ) ) ? $afiliado['url'] : '';
+	$busca = ( is_array( $afiliado ) && ! empty( $afiliado['url_busca'] ) ) ? $afiliado['url_busca'] : '';
+
+	$html = '<span class="cdm-f2-compra">';
+
+	if ( '' !== $ficha ) {
+		$html .= '<a class="cdm-f2-botao" href="' . esc_url( $ficha ) . '"'
+			. ' rel="sponsored noopener" target="_blank">Ver na loja</a>';
+		if ( '' !== $busca ) {
+			$html .= '<a class="cdm-f2-busca" href="' . esc_url( $busca ) . '"'
+				. ' rel="sponsored noopener" target="_blank">Veja todos disponíveis aqui</a>';
+		}
+	} elseif ( '' !== $busca ) {
+		$html .= '<a class="cdm-f2-botao cdm-f2-botao-busca" href="' . esc_url( $busca ) . '"'
+			. ' rel="sponsored noopener" target="_blank">Ver as opções na loja</a>';
+	} else {
+		$html .= '<span class="cdm-f2-sem-loja">Link de loja em breve</span>';
+	}
+
+	$html .= '</span>';
+
+	return $html;
+}
+}
+
 if ( ! function_exists( 'cdm_f2_cartao_html' ) ) {
 /**
  * O cartão do bloco de compra (seção 6 e 7 do contrato).
  *
  * Traz a declaração que fez o produto entrar — "cerâmica" e "azulejo" saídos da
- * lista do fabricante, não adjetivo de marketing —, o lugar do link de loja
- * (vazio hoje, e a página diz isso em vez de esconder) e, depois de tudo, o
- * link discreto de procedência. Produto sem foto NÃO some: aparece com espaço
- * reservado neutro, porque perder a recomendação certa por falta de imagem é
- * trocar o certo pelo bonito.
+ * lista do fabricante, não adjetivo de marketing —, o bloco de compra e, depois
+ * de tudo, o link discreto de procedência. Produto sem foto NÃO some: aparece
+ * com espaço reservado neutro, porque perder a recomendação certa por falta de
+ * imagem é trocar o certo pelo bonito.
+ *
+ * O BLOCO DE COMPRA DESCE A ESCADA DA SEÇÃO 25 — ver `cdm_f2_compra_html()`.
  */
 function cdm_f2_cartao_html( $id, $motivo, $classe = '' ) {
 	$banco = cdm_f2_banco();
@@ -806,14 +878,7 @@ function cdm_f2_cartao_html( $id, $motivo, $classe = '' ) {
 	}
 
 	/* O BLOCO DE COMPRA VEM ANTES DA PROCEDÊNCIA, e nasce mesmo vazio. */
-	$html .= '<span class="cdm-f2-compra">';
-	if ( ! empty( $m['afiliado']['url'] ) ) {
-		$html .= '<a class="cdm-f2-botao" href="' . esc_url( $m['afiliado']['url'] ) . '"'
-			. ' rel="sponsored noopener" target="_blank">Ver na loja</a>';
-	} else {
-		$html .= '<span class="cdm-f2-sem-loja">Link de loja em breve</span>';
-	}
-	$html .= '</span>';
+	$html .= cdm_f2_compra_html( isset( $m['afiliado'] ) ? $m['afiliado'] : array() );
 
 	if ( $fonte && ! empty( $fonte['url'] ) ) {
 		$html .= '<span class="cdm-f2-fonte"><a href="' . esc_url( $fonte['url'] ) . '"'
@@ -1672,7 +1737,16 @@ add_action( 'wp_footer', function () {
 .cdm-f2-marca{font-family:var(--cdm-mono);font-size:.78rem;letter-spacing:.04em;text-transform:uppercase;color:var(--cdm-legenda);}
 .cdm-f2-cartao h3{font-size:1rem;margin:0;}
 .cdm-f2-motivo{font-size:.9rem;line-height:1.45;margin:0;color:var(--cdm-tinta);}
-.cdm-f2-compra{margin-top:auto;}
+.cdm-f2-compra{margin-top:auto;display:flex;flex-direction:column;align-items:flex-start;gap:.4rem;}
+/* A SEGUNDA PORTA DA ESCADA (25.2) É LINHA DE TEXTO, NUNCA SEGUNDO BOTÃO. Dois
+   botões no mesmo cartão disputam o clique e o leitor não sabe qual é a
+   recomendação; a busca está ali para quem o primeiro link deixou na mão. */
+.cdm-f2-busca{font-size:.82rem;color:var(--cdm-legenda);text-decoration:underline;}
+.cdm-f2-busca:hover{color:var(--cdm-rubi);}
+/* Quando a busca É o botão, ela não vira texto pequeno: é o único caminho de
+   compra do cartão, e esconder o único caminho é o "em breve" com outro nome. */
+.cdm-f2-botao-busca{background:var(--cdm-rubi);}
+.cdm-f2-botao-busca:hover{background:var(--cdm-vinho);}
 .cdm-f2-sem-loja{display:inline-block;font-size:.85rem;color:var(--cdm-legenda);border:1px dashed var(--cdm-traco);border-radius:2px;padding:.45rem .7rem;}
 .cdm-f2-fonte{font-size:.8rem;color:var(--cdm-legenda);}
 .cdm-f2-aviso{font-size:.88rem;color:var(--cdm-legenda);margin:.8rem 0 0;}

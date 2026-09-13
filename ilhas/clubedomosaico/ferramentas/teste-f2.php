@@ -649,19 +649,119 @@ foreach ( $por_id as $m ) {
 $declarado = (int) $colas['afiliado']['itens_esperando_link'] + (int) $rejuntes['afiliado']['itens_esperando_link'];
 f2_ok( $esperando === $declarado, 'o numero de itens esperando link bate com o banco contado',
 	$esperando . ' contados, ' . $declarado . ' declarados' );
-/* O CARTAO SEM LINK RESERVA O LUGAR EM VEZ DE SUMIR — medido num mundo
-   PRODUZIDO, pela mesma razao escrita no `teste-f1.php`: a versao antiga desta
-   linha contava "Link de loja em breve" no corpo da ancora e era verdade so
-   enquanto ZERO item tivesse link. Ela reprovou na noite em que o banco
-   melhorou, sem defeito nenhum embaixo. */
-$sem_loja = substr_count( f2_corpo( f2_render( $raiz, 'sem_links=1' ) ), 'Link de loja em breve' );
-f2_ok( $sem_loja > 0, 'PRODUZ O MUNDO: sem link, a pagina reserva o lugar em vez de esconder o cartao',
-	$sem_loja . ' cartoes' );
 $com_loja = substr_count( $corpo_ancora, 'rel="sponsored' );
 f2_ok( $com_loja > 0, 'com link no banco, o cartao serve o botao marcado como patrocinado',
 	$com_loja . ' botoes' );
 f2_ok( 0 === substr_count( $corpo_ancora, 'Link de loja em breve' ) || $esperando > 0,
 	'so promete "em breve" quando ha item de verdade esperando link' );
+
+/* ---------------------------------------------------------------------------
+ * 7b. A ESCADA DA SECAO 25 NA TELA — os tres estados, cada um no seu mundo
+ *
+ * A regua e partida em tres porque cada estado pega um defeito diferente, e
+ * duas delas so existem num mundo PRODUZIDO: o banco de hoje tem os dez itens
+ * no estado 1, entao medir o estado 2 e o 3 no banco de hoje seria medir o
+ * caminho que nenhum cartao percorre — verde com a funcao quebrada, e o dia em
+ * que importasse seria o dia em que um link morresse.
+ *
+ * A ordem das tres importa: (a) sozinha passaria numa funcao que ignora a ficha
+ * e serve so a busca; (b) sozinha passaria numa funcao que serve a busca sempre,
+ * inclusive por cima da ficha; e (c) e a que pega o erro mais provavel de quem
+ * escrever isto com pressa — deixar o "em breve" no lugar do piso, que e
+ * exatamente o defeito que este bloco veio consertar E O UNICO QUE (a) E (b)
+ * APROVARIAM JUNTAS.
+ * ------------------------------------------------------------------------- */
+
+echo "\n7b. A escada da secao 25 chega a tela\n";
+
+/* (a) COM FICHA: a ficha e o botao e a busca desce para a linha discreta. */
+$com_ficha = 0;
+$sem_segunda_porta = array();
+foreach ( $mc[1] as $cartao ) {
+	if ( false === mb_strpos( $cartao, 'class="cdm-f2-botao" href' ) ) {
+		continue;
+	}
+	$com_ficha++;
+	if ( false === mb_strpos( $cartao, 'cdm-f2-busca' ) ) {
+		$sem_segunda_porta[] = trim( f2_texto( $cartao ) );
+	}
+}
+f2_ok( $com_ficha > 0, 'o banco de hoje serve cartao com ficha de produto', $com_ficha . ' cartoes' );
+f2_ok( empty( $sem_segunda_porta ), 'cartao com ficha leva TAMBEM a busca, na linha discreta abaixo do botao',
+	empty( $sem_segunda_porta ) ? $com_ficha . ' com as duas portas' : count( $sem_segunda_porta ) . ' so com o botao' );
+f2_ok( false !== mb_strpos( $corpo_ancora, 'Veja todos disponíveis aqui' ),
+	'a linha discreta usa a frase que a 25.2 escreve, palavra por palavra' );
+f2_ok( false === mb_strpos( $corpo_ancora, 'cdm-f2-botao cdm-f2-botao-busca' ),
+	'com ficha viva, a busca NAO vira botao — ela e a segunda porta, nao a primeira' );
+
+/* TODO link do bloco de compra e link comercial, e os DOIS tem de declarar isso.
+   A afirmacao antiga ("quando existir, leva rel=sponsored") olhava a pagina
+   inteira e ficava verde com UM link marcado entre dois; esta varre link por
+   link dentro do bloco, que e onde a diferenca aparece. Link de busca de
+   afiliado e link de afiliado: o atributo declara a relacao comercial, nao o
+   formato da pagina de destino. */
+$links_sem_sponsored = array();
+if ( preg_match_all( '#<span class="cdm-f2-compra">(.*?)</span>\s*<span class="cdm-f2-fonte"#is', $corpo_ancora, $mb ) ) {
+	foreach ( $mb[1] as $bloco ) {
+		if ( preg_match_all( '#<a\b[^>]*>#i', $bloco, $ml ) ) {
+			foreach ( $ml[0] as $tag ) {
+				if ( false === mb_strpos( $tag, 'rel="sponsored' ) ) {
+					$links_sem_sponsored[] = $tag;
+				}
+			}
+		}
+	}
+}
+f2_ok( ! empty( $mb[1] ), 'a varredura acha os blocos de compra para conferir link por link',
+	count( $mb[1] ) . ' blocos' );
+f2_ok( empty( $links_sem_sponsored ), 'TODO link do bloco de compra declara rel="sponsored" — a busca tambem',
+	empty( $links_sem_sponsored ) ? 'todos marcados' : implode( ' | ', array_slice( $links_sem_sponsored, 0, 2 ) ) );
+
+/* (b) SEM FICHA, COM BUSCA: a busca SOBE e vira o botao. `sem_links=1` apaga a
+      ficha e deixa o piso de pe, que e o estado 2 da escada. */
+$mundo_so_busca = f2_corpo( f2_render( $raiz, 'sem_links=1' ) );
+$botoes_busca   = substr_count( $mundo_so_busca, 'cdm-f2-botao cdm-f2-botao-busca' );
+f2_ok( $botoes_busca > 0, 'PRODUZ O MUNDO: sem ficha, a busca sobe e vira o botao do cartao',
+	$botoes_busca . ' botoes de busca' );
+f2_ok( false !== mb_strpos( $mundo_so_busca, 'Ver as opções na loja' ),
+	'o botao de busca tem texto PROPRIO — ele abre uma lista, nao a ficha do produto' );
+f2_ok( false === mb_strpos( $mundo_so_busca, 'Link de loja em breve' ),
+	'25.2: com piso no banco, a pagina NUNCA diz "em breve" — ela ja esta monetizada' );
+f2_ok( false === mb_strpos( $mundo_so_busca, 'Ver na loja</a>' ),
+	'sem ficha, nenhum cartao promete "Ver na loja" — a promessa segue o link que existe' );
+
+/* (c) SEM NADA: "em breve" e a resposta certa, e so aqui. */
+$mundo_sem_piso = f2_corpo( f2_render( $raiz, 'sem_piso=1' ) );
+$sem_loja       = substr_count( $mundo_sem_piso, 'Link de loja em breve' );
+f2_ok( $sem_loja > 0, 'PRODUZ O MUNDO: sem ficha E sem piso, o cartao reserva o lugar em vez de sumir',
+	$sem_loja . ' cartoes' );
+f2_ok( 0 === substr_count( $mundo_sem_piso, 'rel="sponsored' ),
+	'sem piso nenhum, nao sobra link de afiliado nenhum na pagina' );
+$cartoes_sem_piso = preg_match_all( '#<li class="cdm-f2-cartao[^"]*">#is', $mundo_sem_piso );
+f2_ok( $cartoes_sem_piso === $cartoes,
+	'o cartao sem compra continua sendo servido: a recomendacao nao depende do link',
+	$cartoes_sem_piso . ' cartoes contra ' . $cartoes . ' do banco de hoje' );
+
+/* A ESCADA E DE UMA FUNCAO SO, E ISTO SE MEDE NA MARCACAO, NAO NA PROSA.
+   Se a F1, a ficha do Guia ou a pagina da peca reescreverem os tres estados por
+   conta propria, dois degraus discordam em silencio. A varredura conta a CLASSE
+   emitida — `class="cdm-f2-sem-loja"` so aparece em marcacao, enquanto a frase
+   legivel aparece tambem em comentario, e contar a frase mediria o quanto os
+   comentarios falam dela. A primeira versao desta linha cometeu esse erro e
+   reprovou o proprio comentario que explica a regra. */
+$emissoes = array();
+foreach ( glob( dirname( __DIR__ ) . '/snippets/*.php' ) as $arquivo ) {
+	$fonte = file_get_contents( $arquivo );
+	$n     = substr_count( $fonte, 'class="cdm-f2-sem-loja"' )
+		+ substr_count( $fonte, 'cdm-f2-botao cdm-f2-botao-busca' )
+		+ substr_count( $fonte, 'class="cdm-f2-busca"' );
+	if ( $n ) {
+		$emissoes[ basename( $arquivo ) ] = $n;
+	}
+}
+f2_ok( array( 'clubedomosaico-f2.php' => 3 ) === $emissoes,
+	'os tres degraus sao emitidos por UM snippet so, um lugar cada, nunca copiados',
+	json_encode( $emissoes ) );
 
 /* ---------------------------------------------------------------------------
  * 8. As duas faixas descobertas, declaradas em vez de preenchidas no chute

@@ -304,10 +304,19 @@ def m_tabela_a_mao_diverge_do_calculo(raiz):
 def m_bloco_de_compra_depois_da_procedencia(raiz):
     """O cartao passa a servir a fonte antes do link de loja — a cicatriz da
     Robometria de 10/09/2026, em que o unico clique de compra levava para onde a
-    ilha nao ganha nada. Mora no cartao da F2, que e o que esta pagina usa."""
+    ilha nao ganha nada. Mora no cartao da F2, que e o que esta pagina usa.
+
+    ALVO ATUALIZADO EM 13/09/2026: a f2 1.2.0 tirou a abertura do `<span
+    class="cdm-f2-compra">` de dentro do cartao e a pos em `cdm_f2_compra_html()`.
+    O alvo antigo deixou de existir, a mutacao virou INERTE e foi contada como
+    PASSOU — inerte nao mede nada. O alvo novo e a CHAMADA da funcao, que e o que
+    governa a ordem no cartao de hoje."""
     editar(raiz, os.path.join("snippets", "clubedomosaico-f2.php"),
-           "\t$html .= '<span class=\"cdm-f2-compra\">';",
-           "\tif ( $fonte && ! empty( $fonte['url'] ) ) {\n\t\t$html .= '<span class=\"cdm-f2-fonte\">fonte</span>';\n\t}\n\t$html .= '<span class=\"cdm-f2-compra\">';")
+           "\t$html .= cdm_f2_compra_html( isset( $m['afiliado'] ) ? $m['afiliado'] : array() );",
+           "\tif ( $fonte && ! empty( $fonte['url'] ) ) {\n"
+           "\t\t$html .= '<span class=\"cdm-f2-fonte\">fonte</span>';\n"
+           "\t}\n"
+           "\t$html .= cdm_f2_compra_html( isset( $m['afiliado'] ) ? $m['afiliado'] : array() );")
 
 
 MUTACOES = [

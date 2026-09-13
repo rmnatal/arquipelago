@@ -195,6 +195,59 @@ def _diagnostico_do_link(corpo, categorias):
     return "banco: %d com link, %d sem | tela: %d botoes, %d 'em breve'" % (com, sem, botoes, breves)
 
 
+# ---------------------------------------------------------------------------
+# A ESCADA DA SECAO 25 NO HTML SERVIDO (13/09/2026, f2 1.2.0)
+#
+# A bancada ja mede os tres degraus em mundos produzidos (`teste-f2.php`, secao
+# 7b). O que SO se mede aqui e se o site esta servindo a versao que os conhece:
+# `url_busca` estava no banco desde 13/09 e o site serviu semanas de cartao sem
+# ele, porque a tela nao lia o campo. A diferenca entre "o manifest diz que
+# subiu" e "o site esta servindo" e a marca do codigo novo no corpo servido —
+# aqui, a classe `cdm-f2-busca`, que so existe a partir da 1.2.0.
+#
+# A regua conta do BANCO quantos itens da pagina tem ficha e piso, e cobra a
+# tela pelo mesmo numero. Numero digitado envelheceria calado no dia em que um
+# link fosse gerado ou morresse.
+def _conta_escada(categorias):
+    """(com ficha e piso, so piso, sem nada) lidos do repositorio."""
+    ficha_e_piso = so_piso = sem_nada = 0
+    for nome in sorted(os.listdir(_DADOS_DIR)):
+        if not (nome.startswith("materiais-") and nome.endswith(".json")):
+            continue
+        with open(os.path.join(_DADOS_DIR, nome), encoding="utf-8") as fh:
+            banco = json.load(fh)
+        if banco.get("categoria") not in categorias:
+            continue
+        for item in banco.get("materiais", []):
+            af = item.get("afiliado") or {}
+            if af.get("url") and af.get("url_busca"):
+                ficha_e_piso += 1
+            elif af.get("url_busca"):
+                so_piso += 1
+            elif not af.get("url"):
+                sem_nada += 1
+    return ficha_e_piso, so_piso, sem_nada
+
+
+def _escada_na_tela(corpo, categorias, rotulo):
+    ficha_e_piso, so_piso, sem_nada = _conta_escada(categorias)
+    segundas = corpo.count('class="cdm-f2-busca"')
+    botoes_busca = corpo.count("cdm-f2-botao cdm-f2-botao-busca")
+    ok(segundas >= ficha_e_piso if ficha_e_piso else True,
+       "[%s] 25.2: todo item com ficha serve TAMBEM a busca, na linha discreta" % rotulo,
+       "banco: %d com ficha+piso | tela: %d linhas discretas" % (ficha_e_piso, segundas))
+    ok(botoes_busca >= so_piso if so_piso else True,
+       "[%s] 25.2: item sem ficha e com piso serve a busca COMO BOTAO" % rotulo,
+       "banco: %d so com piso | tela: %d botoes de busca" % (so_piso, botoes_busca))
+    ok(("Link de loja em breve" in corpo) == (sem_nada > 0),
+       "[%s] 25.2: 'em breve' aparece se e SO SE ha item sem piso nenhum" % rotulo,
+       "banco: %d sem piso | tela diz 'em breve': %s"
+       % (sem_nada, "Link de loja em breve" in corpo))
+    if ficha_e_piso or so_piso:
+        ok("cdm-f2-busca" in corpo,
+           "[%s] o site esta servindo a f2 1.2.0 — a marca do codigo novo esta no corpo" % rotulo)
+
+
 print("\nA F2 no ar — a ferramenta responde, e nunca recomenda o que ela diz que nao serve:")
 html_f2, codigo_f2 = buscar(BASE + F2)
 ok("200" == codigo_f2, "[F2] a pagina-ancora responde 200", codigo_f2)
@@ -211,6 +264,7 @@ ok('"@type":"FAQPage"' in html_f2.replace(" ", ""), "[F2] JSON-LD FAQPage servid
 ok(_reserva_ou_entrega(corpo_f2, ("cola", "rejunte")),
    "[F2] o bloco de compra reserva o lugar do link OU serve o link, conforme o banco",
    _diagnostico_do_link(corpo_f2, ("cola", "rejunte")))
+_escada_na_tela(corpo_f2, ("cola", "rejunte"), "F2")
 
 for consulta, tem_que_recomendar, nao_pode_recomendar in F2_CASOS:
     html_c, codigo_c = buscar(BASE + F2 + "?" + consulta)
@@ -261,6 +315,7 @@ ok('"@type":"FAQPage"' in html_f1.replace(" ", ""), "[F1] JSON-LD FAQPage servid
 ok(_reserva_ou_entrega(corpo_f1, ("rejunte",)),
    "[F1] o bloco de compra reserva o lugar do link OU serve o link, conforme o banco",
    _diagnostico_do_link(corpo_f1, ("rejunte",)))
+_escada_na_tela(corpo_f1, ("rejunte",), "F1")
 ok("Ainda não temos as pastilhas no nosso banco" in texto_f1,
    "[F1] a pastilha sem banco aparece declarada, nao escondida")
 # A TRILHA E O CLUSTER, que so existem porque a pagina tem mae e agora tem irmas

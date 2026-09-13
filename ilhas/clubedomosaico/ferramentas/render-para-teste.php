@@ -894,6 +894,15 @@ if (isset($argv[1]) && basename(__FILE__) === basename($argv[0])) {
 	 * (cartao sem link reserva o lugar em vez de sumir) num mundo produzido de
 	 * proposito, e nao no estado do banco de hoje. Daqui em diante o portao
 	 * mede os dois lados, e nenhum dos dois depende de quantos links existem. */
+	/* DESDE 13/09/2026 ELE PRODUZ O SEGUNDO DEGRAU, NAO O VAZIO.
+	 *
+	 * `sem_links=1` apaga a FICHA (`afiliado.url`) e deixa `url_busca` de pe, que
+	 * e exatamente o estado 2 da escada da secao 25.2: sem ficha, a busca sobe e
+	 * vira o botao. Ate a f2 1.1.0 esse mundo produzia a etiqueta "Link de loja
+	 * em breve", porque nenhuma linha de codigo lia `url_busca`; hoje produzir
+	 * "em breve" aqui seria DEFEITO, e e por isso que o portao mede os dois
+	 * mundos separados em vez de um so. Quem quiser o vazio de verdade usa
+	 * `sem_piso=1`, logo abaixo. */
 	if (!empty($_GET['sem_links'])) {
 		foreach ($GLOBALS['__options'] as $chave => $valor) {
 			if (0 !== strpos($chave, 'clubedomosaico_dados_materiais-') || !is_array($valor)) { continue; }
@@ -913,6 +922,41 @@ if (isset($argv[1]) && basename(__FILE__) === basename($argv[0])) {
 			}
 		}
 		unset($_GET['sem_links']);
+	}
+
+	/* PRODUZ O MUNDO EM QUE NINGUEM TEM NEM PISO. `sem_piso=1` na consulta.
+	 *
+	 * Apaga a ficha E a busca, e e o UNICO mundo em que "Link de loja em breve"
+	 * continua sendo a resposta certa. Ele existe por duas razoes, e a segunda e
+	 * a que importa:
+	 *
+	 * (a) o terceiro estado da escada precisa ser medido em algum lugar, e o
+	 *     banco de colas e rejuntes de hoje nao o produz — os dez tem busca;
+	 * (b) e no dia em que as dez pastilhas ganharem `url_busca`, este mundo
+	 *     continua produzindo o caso, enquanto uma regua presa ao banco de hoje
+	 *     ficaria verde medindo nada. E a mesma cicatriz de 13/09 que fez o
+	 *     `sem_links` nascer, um degrau abaixo.
+	 *
+	 * A pastilha nao serve de caso natural nem hoje: ela nao tem pagina (16.5) e
+	 * portanto nao chega a cartao nenhum. Defeito que nao tem tela onde aparecer
+	 * e defeito que o portao so pega se produzir a tela. */
+	if (!empty($_GET['sem_piso'])) {
+		foreach ($GLOBALS['__options'] as $chave => $valor) {
+			if (0 !== strpos($chave, 'clubedomosaico_dados_materiais-') || !is_array($valor)) { continue; }
+			$lista = isset($valor['materiais']) ? 'materiais' : (isset($valor['itens']) ? 'itens' : '');
+			if ('' === $lista) { continue; }
+			foreach ($valor[$lista] as $i => $item) {
+				if (isset($item['afiliado'])) {
+					$GLOBALS['__options'][$chave][$lista][$i]['afiliado']['url'] = '';
+					$GLOBALS['__options'][$chave][$lista][$i]['afiliado']['programa'] = '';
+					$GLOBALS['__options'][$chave][$lista][$i]['afiliado']['url_busca'] = '';
+				}
+			}
+			if (isset($valor['afiliado']['itens_esperando_link'])) {
+				$GLOBALS['__options'][$chave]['afiliado']['itens_esperando_link'] = count($valor[$lista]);
+			}
+		}
+		unset($_GET['sem_piso']);
 	}
 
 	/* O MUNDO SEM O SNIPPET DE LEADS. `sem_leads=1` na consulta. */

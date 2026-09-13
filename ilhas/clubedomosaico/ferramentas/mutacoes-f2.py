@@ -147,10 +147,22 @@ def m_tabela_pre_renderizada_some(raiz):
 
 def m_compra_depois_da_procedencia(raiz):
     """A cicatriz da Robometria de 10/09/2026, refeita: a procedencia vira a
-    primeira porta do cartao e o link de compra desce para baixo dela."""
+    primeira porta do cartao e o link de compra desce para baixo dela.
+
+    O ALVO MUDOU EM 13/09/2026, e a razao e a mesma que matou a mutacao 24 desta
+    ilha em 12/09: o alvo desta mutacao era a linha que ABRIA o `<span
+    class="cdm-f2-compra">` dentro do cartao, e a f2 1.2.0 mudou o vizinho — a
+    abertura desceu para `cdm_f2_compra_html()` e o cartao passou a chamar a
+    funcao. A mutacao virou INERTE, achou zero ocorrencia e foi contada como
+    PASSOU, que e o certo: mutacao que nao morde nao mede nada. O alvo novo e a
+    CHAMADA, que e o que o cartao tem hoje e e o que de fato governa a ordem."""
     editar(raiz, SNIPPET,
-           "\t$html .= '<span class=\"cdm-f2-compra\">';",
-           "\t$fonte_antes = $fonte && ! empty( $fonte['url'] )\n\t\t? '<span class=\"cdm-f2-fonte\"><a href=\"' . esc_url( $fonte['url'] ) . '\" rel=\"nofollow noopener\">fonte</a></span>'\n\t\t: '';\n\t$html .= $fonte_antes;\n\t$html .= '<span class=\"cdm-f2-compra\">';")
+           "\t$html .= cdm_f2_compra_html( isset( $m['afiliado'] ) ? $m['afiliado'] : array() );",
+           "\t$fonte_antes = $fonte && ! empty( $fonte['url'] )\n"
+           "\t\t? '<span class=\"cdm-f2-fonte\"><a href=\"' . esc_url( $fonte['url'] ) . '\" rel=\"nofollow noopener\">fonte</a></span>'\n"
+           "\t\t: '';\n"
+           "\t$html .= $fonte_antes;\n"
+           "\t$html .= cdm_f2_compra_html( isset( $m['afiliado'] ) ? $m['afiliado'] : array() );")
 
 
 def m_estado_com_parametro_entra_no_indice(raiz):
@@ -237,6 +249,76 @@ def m_junta_para_em_dez(raiz):
     editar(raiz, SNIPPET, "for ( $i = 1; $i <= 12; $i++ ) {", "for ( $i = 1; $i <= 10; $i++ ) {")
 
 
+def m_busca_some_quando_ha_ficha(raiz):
+    """A segunda porta da 25.2 desaparece: o cartao com ficha volta a ter so o
+    botao. E o defeito MENOS visivel dos cinco, porque a pagina continua com
+    link de compra em todo cartao — o que se perde e a saida de quem chegou num
+    anuncio esgotado, que e exatamente o caso que quebrou quatro links em doze
+    horas em 13/09."""
+    editar(raiz, SNIPPET,
+           "\t\tif ( '' !== $busca ) {\n"
+           "\t\t\t$html .= '<a class=\"cdm-f2-busca\" href=\"' . esc_url( $busca ) . '\"'\n"
+           "\t\t\t\t. ' rel=\"sponsored noopener\" target=\"_blank\">Veja todos disponíveis aqui</a>';\n"
+           "\t\t}\n",
+           "")
+
+
+def m_busca_atropela_a_ficha(raiz):
+    """O `elseif` vira `if` independente e a busca passa a ser botao TAMBEM onde
+    existe ficha: dois botoes no mesmo cartao, e o leitor nao sabe qual e a
+    recomendacao. E o erro de quem troca a escada por 'servir tudo que tiver'."""
+    editar(raiz, SNIPPET,
+           "\t} elseif ( '' !== $busca ) {",
+           "\t}\n\tif ( '' === $ficha && '' !== $busca ) {\n\t\t/* nada */\n\t}\n\tif ( '' !== $busca ) {")
+
+
+def m_sem_ficha_volta_o_em_breve(raiz):
+    """O DEFEITO QUE ESTE BLOCO VEIO CONSERTAR, escrito de volta: sem ficha, o
+    cartao volta a dizer "Link de loja em breve" com o piso da 25.2 parado no
+    banco. E a forma exata do estado da ilha antes da f2 1.2.0 — a escada existia
+    no dado e nao na tela."""
+    editar(raiz, SNIPPET,
+           "\t} elseif ( '' !== $busca ) {\n"
+           "\t\t$html .= '<a class=\"cdm-f2-botao cdm-f2-botao-busca\" href=\"' . esc_url( $busca ) . '\"'\n"
+           "\t\t\t. ' rel=\"sponsored noopener\" target=\"_blank\">Ver as opções na loja</a>';\n",
+           "\t} elseif ( false ) {\n")
+
+
+def m_botao_de_busca_promete_ficha(raiz):
+    """O botao da busca passa a dizer "Ver na loja", igual ao da ficha. Nenhuma
+    regua de existencia pega isto — o link esta la, marcado, vivo — e mesmo
+    assim a pagina promete a ficha do produto recomendado e entrega uma lista de
+    busca. E a familia do "faixa aberta mente em silencio" da C15 da Aquametria:
+    o filtro esta certo e a FRASE e que afirma o que nao pode."""
+    editar(raiz, SNIPPET,
+           "target=\"_blank\">Ver as opções na loja</a>';",
+           "target=\"_blank\">Ver na loja</a>';")
+
+
+def m_busca_sem_sponsored(raiz):
+    """O link de busca perde o `rel=\"sponsored\"` e a relacao comercial deixa de
+    ser declarada em metade dos links da pagina. A afirmacao antiga do portao
+    ficava verde aqui, porque olhava a pagina inteira e achava o OUTRO link
+    marcado."""
+    editar(raiz, SNIPPET,
+           "$html .= '<a class=\"cdm-f2-busca\" href=\"' . esc_url( $busca ) . '\"'\n"
+           "\t\t\t\t. ' rel=\"sponsored noopener\"",
+           "$html .= '<a class=\"cdm-f2-busca\" href=\"' . esc_url( $busca ) . '\"'\n"
+           "\t\t\t\t. ' rel=\"noopener\"")
+
+
+def m_cartao_sem_compra_some(raiz):
+    """Sem nenhum degrau, o cartao inteiro desaparece em vez de reservar o lugar:
+    a recomendacao passa a depender do link de afiliado existir. E a inversao que
+    a secao 7 do contrato proibe — o que a pagina recomenda nao pode ser decidido
+    pelo que da para monetizar."""
+    editar(raiz, SNIPPET,
+           "\t$html .= cdm_f2_compra_html( isset( $m['afiliado'] ) ? $m['afiliado'] : array() );",
+           "\t$bloco_compra = cdm_f2_compra_html( isset( $m['afiliado'] ) ? $m['afiliado'] : array() );\n"
+           "\tif ( false !== strpos( $bloco_compra, 'cdm-f2-sem-loja' ) ) {\n\t\treturn '';\n\t}\n"
+           "\t$html .= $bloco_compra;")
+
+
 MUTACOES = [
     ("proibicao do fabricante deixa de vencer", m_proibicao_deixa_de_vencer),
     ("silencio do fabricante vira 'pode'", m_silencio_vira_pode),
@@ -258,6 +340,13 @@ MUTACOES = [
     ("a faixa descoberta deixa de ser declarada", m_faixa_descoberta_fica_em_branco),
     ("uma base do vocabulario fica sem rotulo", m_rotulo_de_base_some),
     ("o campo de junta volta a parar em 10 mm", m_junta_para_em_dez),
+    # A escada da secao 25 na tela (f2 1.2.0, 13/09/2026)
+    ("a busca some do cartao que tem ficha", m_busca_some_quando_ha_ficha),
+    ("a busca vira botao POR CIMA da ficha", m_busca_atropela_a_ficha),
+    ("sem ficha, volta o 'em breve' com piso no banco", m_sem_ficha_volta_o_em_breve),
+    ("o botao de busca promete a ficha do produto", m_botao_de_busca_promete_ficha),
+    ("o link de busca perde o rel=sponsored", m_busca_sem_sponsored),
+    ("cartao sem nenhum degrau some em vez de reservar o lugar", m_cartao_sem_compra_some),
 ]
 
 
