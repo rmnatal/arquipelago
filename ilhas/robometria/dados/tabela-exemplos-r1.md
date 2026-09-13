@@ -18,10 +18,10 @@ linhas em HTML, sem depender de script.
 | Electrolux ERB60 | mop | o fabricante nao publica codigo | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 09/09/2026 |
 | Electrolux ERB60 | escova principal | o fabricante nao publica codigo | declarada_fabricante | varejo-oficial-da-marca · 09/09/2026 |
 | Electrolux ERB60 | mop | o fabricante nao publica codigo | declarada_fabricante | varejo-oficial-da-marca · 12/09/2026 |
-| Xiaomi S20 | filtro | o fabricante nao publica codigo | declarada_fabricante — dentro de kit | fabricante-via-busca · 09/09/2026 |
-| Xiaomi S20 | escova lateral | o fabricante nao publica codigo | declarada_fabricante — dentro de kit | fabricante-via-busca · 09/09/2026 |
-| Xiaomi S20 | escova principal | o fabricante nao publica codigo | declarada_fabricante — dentro de kit | fabricante-via-busca · 09/09/2026 |
-| Xiaomi S20 | mop | o fabricante nao publica codigo | declarada_fabricante — dentro de kit | fabricante-via-busca · 09/09/2026 |
+| Xiaomi S20 | escova principal | B112-ZS | declarada_fabricante | fabricante-via-busca · 13/09/2026 |
+| Xiaomi S20 | filtro | B112-CH | declarada_fabricante (divergencia registrada) | fabricante-via-busca · 13/09/2026 |
+| Xiaomi S20 | mop | D106-TB | declarada_fabricante | fabricante-via-busca · 13/09/2026 |
+| Xiaomi S20 | escova lateral | B106GL-BX | declarada_fabricante | fabricante-via-busca · 13/09/2026 |
 | Multi (ex-Multilaser) HO041 | escova lateral | PR10124 | declarada_fabricante | fabricante-via-busca · 09/09/2026 |
 | Multi (ex-Multilaser) HO041 | filtro | PR10205 | declarada_fabricante (divergencia registrada) | fabricante-via-busca · 09/09/2026 |
 | Multi (ex-Multilaser) HO041 | bateria | PR10127 | declarada_fabricante | fabricante-via-busca · 09/09/2026 |
@@ -41,22 +41,30 @@ linhas em HTML, sem depender de script.
 | Positivo Casa Inteligente PRA800 | escova lateral | 11206518 | declarada_fabricante | varejo-oficial-da-marca · 09/09/2026 |
 | Positivo Casa Inteligente PRA800 | escova principal | 11206519 | declarada_fabricante | varejo-oficial-da-marca · 09/09/2026 |
 | Positivo Casa Inteligente PRA800 | mop | 11206540 | declarada_fabricante | varejo-oficial-da-marca · 09/09/2026 |
+| Xiaomi E10 | escova principal | B112-ZS | declarada_fabricante | fabricante-via-busca · 13/09/2026 |
+| Xiaomi E10 | filtro | B112-CH | declarada_fabricante (divergencia registrada) | fabricante-via-busca · 13/09/2026 |
+| Xiaomi E10 | mop | B112-TB | declarada_fabricante | fabricante-via-busca · 13/09/2026 |
 | Electrolux ERB62 | filtro | o fabricante nao publica codigo | declarada_fabricante | varejo-oficial-da-marca · 09/09/2026 |
 | Electrolux ERB62 | filtro | o fabricante nao publica codigo | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 09/09/2026 |
 | Electrolux ERB62 | escova lateral | o fabricante nao publica codigo | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 09/09/2026 |
 | Electrolux ERB62 | mop | o fabricante nao publica codigo | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 09/09/2026 |
 | Electrolux ERB62 | escova principal | o fabricante nao publica codigo | declarada_fabricante | varejo-oficial-da-marca · 09/09/2026 |
 | Electrolux ERB62 | mop | o fabricante nao publica codigo | declarada_fabricante | varejo-oficial-da-marca · 12/09/2026 |
+| Xiaomi H40 | escova lateral | OV81GL-BS | declarada_fabricante (divergencia registrada) | fabricante-via-busca · 13/09/2026 |
+| Xiaomi H40 | escova principal | o fabricante nao publica codigo | declarada_fabricante | fabricante-via-busca · 13/09/2026 |
 | Multi (ex-Multilaser) HO400 | escova lateral | PR10124 | declarada_fabricante | fabricante-via-busca · 09/09/2026 |
 | Electrolux ERB80 | escova principal | o fabricante nao publica codigo | declarada_fabricante | varejo-oficial-da-marca · 09/09/2026 |
 | Electrolux ERB80 | filtro | o fabricante nao publica codigo | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 12/09/2026 |
 | Electrolux ERB80 | escova lateral | o fabricante nao publica codigo | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 12/09/2026 |
 | Electrolux ERB80 | mop | o fabricante nao publica codigo | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 12/09/2026 |
 | Electrolux ERB80 | mop | o fabricante nao publica codigo | declarada_fabricante | varejo-oficial-da-marca · 12/09/2026 |
+| Xiaomi S40 | escova lateral | OV81GL-BS | declarada_fabricante (divergencia registrada) | fabricante-via-busca · 13/09/2026 |
+| Xiaomi S40 | escova principal | o fabricante nao publica codigo | declarada_fabricante | fabricante-via-busca · 13/09/2026 |
 | Multi (ex-Multilaser) HO407 | escova lateral | PR10124 | declarada_fabricante | fabricante-via-busca · 09/09/2026 |
 | Electrolux ERB10 | filtro | KPCEL01 | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 09/09/2026 |
 | Electrolux ERB10 | escova lateral | KPCEL01 | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 09/09/2026 |
 | Electrolux ERB10 | mop | KPCEL01 | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 09/09/2026 |
+| Xiaomi S40C | mop | E101-TB | declarada_fabricante (divergencia registrada) | fabricante-via-busca · 13/09/2026 |
 | Electrolux ERB11 | filtro | KPCEL01 | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 09/09/2026 |
 | Electrolux ERB11 | escova lateral | KPCEL01 | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 09/09/2026 |
 | Electrolux ERB11 | mop | KPCEL01 | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 09/09/2026 |
@@ -70,4 +78,4 @@ linhas em HTML, sem depender de script.
 | Electrolux ERB44 | filtro | o fabricante nao publica codigo | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 12/09/2026 |
 | Electrolux ERB44 | mop | o fabricante nao publica codigo | declarada_fabricante — dentro de kit | varejo-oficial-da-marca · 12/09/2026 |
 
-Linhas: **57** — o minimo da secao 1.7 da especificacao e 8.
+Linhas: **65** — o minimo da secao 1.7 da especificacao e 8.

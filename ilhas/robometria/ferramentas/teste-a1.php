@@ -140,7 +140,13 @@ foreach ( $pecas_b['registros'] as $p ) {
 	$conjunto = array();
 	foreach ( $p['compatibilidade'] as $c ) {
 		$pares++;
-		$conjunto[] = $c['modelo'];
+		/* O conjunto que a dispersao conta e o de CODIGOS DECLARADOS pelo
+		   fabricante, nunca o de ids de modelo: o codigo existe em todo par
+		   (o esquema o exige) e o `modelo` e null quando aquele codigo ainda
+		   nao tem registro nesta ilha. Contar ids faria duas pecas com
+		   conjuntos diferentes colidirem assim que um par null aparecesse.
+		   Regua escrita aqui, nao lida do gerador. */
+		$conjunto[] = $c['codigo_declarado'];
 		if ( isset( $marca_do_modelo[ $c['modelo'] ] ) ) {
 			$marcas[ $marca_do_modelo[ $c['modelo'] ] ] = true;
 		}
@@ -152,6 +158,7 @@ foreach ( $pecas_b['registros'] as $p ) {
 		$maior    = count( $p['compatibilidade'] );
 		$maior_id = $p['id'];
 	}
+	$conjunto = array_unique( $conjunto );
 	sort( $conjunto );
 	$conj_por_marca[ $p['marca'] ]['pecas'] = isset( $conj_por_marca[ $p['marca'] ]['pecas'] )
 		? $conj_por_marca[ $p['marca'] ]['pecas'] + 1 : 1;
@@ -191,6 +198,48 @@ foreach ( $fatos['dispersao'] as $d ) {
 rbm_ok( $dispersao_ok,
 	'dispersao por marca: as duas contas batem em todas as marcas',
 	count( $fatos['dispersao'] ) . ' marcas' );
+
+/* A TRAVA QUE NAO DEPENDE DAS DUAS CONTAS CONCORDAREM (13/09/2026).
+   A afirmacao acima compara gerador e teste, e por isso ela fica VERDE quando
+   os dois erram juntos — que e exatamente como o defeito desta familia entra
+   nesta ilha. Esta aqui mede uma propriedade do BANCO sozinho: duas pecas cuja
+   lista de codigos declarados e diferente nao podem cair no mesmo conjunto,
+   porque "conjuntos distintos" e o numero que a resposta do FAQ publica como
+   prova de que compatibilidade nao se herda de uma peca para a seguinte.
+   Com o conjunto montado por id de MODELO, a xiaomi-b112-zs (E10, E12, E10C,
+   S20) e a xiaomi-b112-ch (E10, E10C, S20) colapsam num conjunto so, porque os
+   dois nulls viram o mesmo elemento — e o numero publicado encolhe sem que
+   nenhuma das duas contas discorde da outra. */
+$terceira_conta = array();
+foreach ( $pecas_b['registros'] as $p ) {
+	if ( 'publicavel' !== $p['status'] ) {
+		continue;
+	}
+	$codigos = array();
+	foreach ( $p['compatibilidade'] as $c ) {
+		if ( ! isset( $c['codigo_declarado'] ) || '' === $c['codigo_declarado'] ) {
+			/* Sem o codigo nao ha conjunto para contar, e o esquema exige o
+			   campo — silenciar aqui devolveria o verde por outro caminho. */
+			$terceira_conta['__sem_codigo__'][ $p['id'] ] = true;
+			continue;
+		}
+		$codigos[ $c['codigo_declarado'] ] = true;
+	}
+	ksort( $codigos );
+	$terceira_conta[ $p['marca'] ][ implode( '|', array_keys( $codigos ) ) ] = true;
+}
+$publicado_bate = ! isset( $terceira_conta['__sem_codigo__'] );
+$detalhe        = array();
+foreach ( $fatos['dispersao'] as $d ) {
+	$esperado = isset( $terceira_conta[ $d['marca'] ] ) ? count( $terceira_conta[ $d['marca'] ] ) : -1;
+	$detalhe[] = $d['marca'] . ' ' . (int) $d['conjuntos_distintos'] . '/' . $esperado;
+	if ( (int) $d['conjuntos_distintos'] !== $esperado ) {
+		$publicado_bate = false;
+	}
+}
+rbm_ok( $publicado_bate,
+	'conjuntos distintos publicados: a TERCEIRA conta, so de codigos declarados, bate',
+	implode( ', ', $detalhe ) );
 
 /* A tese do TEXTO so vale enquanto o banco a sustenta. Se um dia uma peca
    atravessar marca, a frase de abertura vira mentira — e este teste reprova

@@ -117,7 +117,18 @@ def alcance_das_pecas():
     for p in publicaveis_de(ref.pecas):
         pares = p.get("compatibilidade", [])
         modelos = [c["modelo"] for c in pares]
-        marcas_atendidas = sorted({marcas_dos_modelos.get(m, "?") for m in modelos})
+        # PAR COM `modelo` NULL NAO E OUTRA MARCA — e um modelo que esta na
+        # declaracao do fabricante e ainda nao esta no banco (e o esquema diz
+        # isso com essas palavras). Ate 13/09/2026 esta linha resolvia o null
+        # para a marca "?" e o contava como marca atendida, entao a PRIMEIRA
+        # peca com um par assim faria `atravessa_marca` virar verdadeiro
+        # sozinha — e `pecas_que_atravessam_marca` e o numero que escolhe entre
+        # as DUAS formas da frase de abertura do A1, cuja tese e que nao existe
+        # peca universal. O banco nao tinha um unico par com modelo null ate
+        # aquele dia, entao a regua nunca pode errar: e a "regua escrita para um
+        # mundo de um elemento so" outra vez, agora do lado do gerador.
+        marcas_atendidas = sorted({marcas_dos_modelos[m] for m in modelos
+                                   if m is not None and m in marcas_dos_modelos})
         identificacao, sem_codigo = ref.identificar_peca(p)
         linhas.append({
             "peca": p["id"],
@@ -151,7 +162,16 @@ def dispersao_por_marca(alcance):
     """
     por_marca = {}
     for p in publicaveis_de(ref.pecas):
-        conjunto = frozenset(c["modelo"] for c in p.get("compatibilidade", []))
+        # O CONJUNTO E DE CODIGOS DECLARADOS, nao de ids de modelo do banco.
+        # Ate 13/09/2026 esta linha usava c["modelo"], e com todos os pares
+        # apontando para um modelo do banco as duas contas eram a mesma. Ao
+        # entrarem os primeiros pares com `modelo` null (E12, E10C, S40 Pro —
+        # codigos que o fabricante declara e que a ilha ainda nao publica), o
+        # frozenset passou a somar TODOS os nulls de uma peca num elemento so, e
+        # duas pecas de conjuntos diferentes viravam o mesmo conjunto. O codigo
+        # declarado e o que a frase do artigo afirma ("compatibilidade e
+        # declarada por codigo de peca"), e ele nunca e null.
+        conjunto = frozenset(c["codigo_declarado"] for c in p.get("compatibilidade", []))
         b = por_marca.setdefault(p["marca"], {"pecas": 0, "conjuntos": set()})
         b["pecas"] += 1
         b["conjuntos"].add(conjunto)

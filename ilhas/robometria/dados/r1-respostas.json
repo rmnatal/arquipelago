@@ -3,7 +3,7 @@
   "ilha": "robometria",
   "entidade": "medicao",
   "gerado_por": "ferramentas/gerar-r1.py",
-  "banco_gerado_em": "2026-09-12",
+  "banco_gerado_em": "2026-09-13",
   "o_que_e": "Combustivel da ferramenta R1 no site: para cada modelo publicavel, os FATOS de cada peca que o fabricante declarou compativel — codigo, publicador, conjunto declarado, endereco e data. Sem prosa: a frase que o visitante le e montada pelo snippet, em portugues acentuado, e conferida contra a implementacao de referencia por ferramentas/teste-r1.php.",
   "marcas": [
     {
@@ -256,7 +256,7 @@
       "marca": "xiaomi",
       "codigo": "E10",
       "linha": null,
-      "responde": false,
+      "responde": true,
       "so_kit": false
     },
     {
@@ -264,7 +264,7 @@
       "marca": "xiaomi",
       "codigo": "H40",
       "linha": null,
-      "responde": false,
+      "responde": true,
       "so_kit": false
     },
     {
@@ -296,7 +296,7 @@
       "marca": "xiaomi",
       "codigo": "S40",
       "linha": null,
-      "responde": false,
+      "responde": true,
       "so_kit": false
     },
     {
@@ -304,7 +304,7 @@
       "marca": "xiaomi",
       "codigo": "S40C",
       "linha": null,
-      "responde": false,
+      "responde": true,
       "so_kit": false
     }
   ],
@@ -2066,13 +2066,171 @@
     },
     "xiaomi-e10": {
       "aviso_de_variante": null,
-      "fabricante": [],
+      "fabricante": [
+        {
+          "tipo": "escova principal",
+          "peca": "xiaomi-b112-zs",
+          "codigo": "B112-ZS",
+          "nome_na_fonte": "Xiaomi Robot Vacuum E10/E12/E10C/S20 Brush",
+          "tipo_da_peca": "escova principal",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Xiaomi",
+          "origem": "fabricante-via-busca",
+          "nivel_da_fonte": 3,
+          "url": "https://www.mi.com/sg/product/xiaomi-robot-vacuum-e10-accessories/",
+          "verificado_em": "2026-09-13",
+          "declarados": [
+            "E10",
+            "E12",
+            "E10C",
+            "S20"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": {
+            "valor": "6 a 12",
+            "unidade": "meses"
+          },
+          "tem_imagem": false,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        },
+        {
+          "tipo": "filtro",
+          "peca": "xiaomi-b112-ch",
+          "codigo": "B112-CH",
+          "nome_na_fonte": "Xiaomi Robot Vacuum E10/E10C/S20 Filter",
+          "tipo_da_peca": "filtro",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Xiaomi",
+          "origem": "fabricante-via-busca",
+          "nivel_da_fonte": 3,
+          "url": "https://www.mi.com/sg/product/xiaomi-robot-vacuum-e10-accessories/",
+          "verificado_em": "2026-09-13",
+          "declarados": [
+            "E10",
+            "E10C",
+            "S20"
+          ],
+          "divergencia": true,
+          "variante_do_par": null,
+          "vida_util": {
+            "valor": "3 a 6",
+            "unidade": "meses"
+          },
+          "tem_imagem": false,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        },
+        {
+          "tipo": "mop",
+          "peca": "xiaomi-b112-tb",
+          "codigo": "B112-TB",
+          "nome_na_fonte": "Xiaomi Robot Vacuum E10/E12/E10C Mop Pad",
+          "tipo_da_peca": "mop",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Xiaomi",
+          "origem": "fabricante-via-busca",
+          "nivel_da_fonte": 3,
+          "url": "https://www.mi.com/uk/product/xiaomi-robot-vacuum-e10-accessories/specs/",
+          "verificado_em": "2026-09-13",
+          "declarados": [
+            "E10",
+            "E12",
+            "E10C"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        }
+      ],
       "terceiro": [],
       "kits_sem_composicao": []
     },
     "xiaomi-h40": {
       "aviso_de_variante": null,
-      "fabricante": [],
+      "fabricante": [
+        {
+          "tipo": "escova lateral",
+          "peca": "xiaomi-ov81gl-bs",
+          "codigo": "OV81GL-BS",
+          "nome_na_fonte": "Xiaomi Robot Vacuum H40/ S40/ S40 Pro Anti-tangle Side Brush",
+          "tipo_da_peca": "escova lateral",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Xiaomi Global",
+          "origem": "fabricante-via-busca",
+          "nivel_da_fonte": 3,
+          "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-anti-tangle-side-brush/specs/",
+          "verificado_em": "2026-09-13",
+          "declarados": [
+            "H40",
+            "S40",
+            "S40 Pro"
+          ],
+          "divergencia": true,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        },
+        {
+          "tipo": "escova principal",
+          "peca": "xiaomi-escova-principal-h40-s40",
+          "codigo": null,
+          "nome_na_fonte": "Xiaomi Robot Vacuum H40/S40 Brush",
+          "tipo_da_peca": "escova principal",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Xiaomi Global",
+          "origem": "fabricante-via-busca",
+          "nivel_da_fonte": 3,
+          "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-h40-and-s40-brush/",
+          "verificado_em": "2026-09-13",
+          "declarados": [
+            "H40",
+            "S40"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        }
+      ],
       "terceiro": [],
       "kits_sem_composicao": []
     },
@@ -2092,24 +2250,94 @@
       "aviso_de_variante": null,
       "fabricante": [
         {
+          "tipo": "escova principal",
+          "peca": "xiaomi-b112-zs",
+          "codigo": "B112-ZS",
+          "nome_na_fonte": "Xiaomi Robot Vacuum E10/E12/E10C/S20 Brush",
+          "tipo_da_peca": "escova principal",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Xiaomi",
+          "origem": "fabricante-via-busca",
+          "nivel_da_fonte": 3,
+          "url": "https://www.mi.com/sg/product/xiaomi-robot-vacuum-e10-accessories/",
+          "verificado_em": "2026-09-13",
+          "declarados": [
+            "E10",
+            "E12",
+            "E10C",
+            "S20"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": {
+            "valor": "6 a 12",
+            "unidade": "meses"
+          },
+          "tem_imagem": false,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        },
+        {
           "tipo": "filtro",
-          "peca": "xiaomi-s20-acessorios",
-          "codigo": null,
-          "nome_na_fonte": "Xiaomi Robot Vacuum S20 Accessories",
-          "tipo_da_peca": "kit",
-          "dentro_de_kit": true,
+          "peca": "xiaomi-b112-ch",
+          "codigo": "B112-CH",
+          "nome_na_fonte": "Xiaomi Robot Vacuum E10/E10C/S20 Filter",
+          "tipo_da_peca": "filtro",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Xiaomi",
+          "origem": "fabricante-via-busca",
+          "nivel_da_fonte": 3,
+          "url": "https://www.mi.com/sg/product/xiaomi-robot-vacuum-e10-accessories/",
+          "verificado_em": "2026-09-13",
+          "declarados": [
+            "E10",
+            "E10C",
+            "S20"
+          ],
+          "divergencia": true,
+          "variante_do_par": null,
+          "vida_util": {
+            "valor": "3 a 6",
+            "unidade": "meses"
+          },
+          "tem_imagem": false,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        },
+        {
+          "tipo": "mop",
+          "peca": "xiaomi-d106-tb",
+          "codigo": "D106-TB",
+          "nome_na_fonte": "Xiaomi Robot Vacuum S20 Mop Pad",
+          "tipo_da_peca": "mop",
+          "dentro_de_kit": false,
           "existe_avulso": false,
           "publicador": "Xiaomi Global",
           "origem": "fabricante-via-busca",
           "nivel_da_fonte": 3,
-          "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s20-accessories/",
-          "verificado_em": "2026-09-09",
+          "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s20-accessories/specs/",
+          "verificado_em": "2026-09-13",
           "declarados": [
-            "Xiaomi Robot Vacuum S20"
+            "S20"
           ],
           "divergencia": false,
           "variante_do_par": null,
-          "vida_util": null,
+          "vida_util": {
+            "valor": "3",
+            "unidade": "meses"
+          },
           "tem_imagem": false,
           "esperando_link": true,
           "afiliado": {
@@ -2121,21 +2349,61 @@
         },
         {
           "tipo": "escova lateral",
-          "peca": "xiaomi-s20-acessorios",
-          "codigo": null,
-          "nome_na_fonte": "Xiaomi Robot Vacuum S20 Accessories",
-          "tipo_da_peca": "kit",
-          "dentro_de_kit": true,
+          "peca": "xiaomi-b106gl-bx",
+          "codigo": "B106GL-BX",
+          "nome_na_fonte": "Xiaomi Robot Vacuum S20 Side Brush",
+          "tipo_da_peca": "escova lateral",
+          "dentro_de_kit": false,
           "existe_avulso": false,
           "publicador": "Xiaomi Global",
           "origem": "fabricante-via-busca",
           "nivel_da_fonte": 3,
-          "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s20-accessories/",
-          "verificado_em": "2026-09-09",
+          "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s20-accessories/specs/",
+          "verificado_em": "2026-09-13",
           "declarados": [
-            "Xiaomi Robot Vacuum S20"
+            "S20"
           ],
           "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": {
+            "valor": "3 a 6",
+            "unidade": "meses"
+          },
+          "tem_imagem": false,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        }
+      ],
+      "terceiro": [],
+      "kits_sem_composicao": []
+    },
+    "xiaomi-s40": {
+      "aviso_de_variante": null,
+      "fabricante": [
+        {
+          "tipo": "escova lateral",
+          "peca": "xiaomi-ov81gl-bs",
+          "codigo": "OV81GL-BS",
+          "nome_na_fonte": "Xiaomi Robot Vacuum H40/ S40/ S40 Pro Anti-tangle Side Brush",
+          "tipo_da_peca": "escova lateral",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Xiaomi Global",
+          "origem": "fabricante-via-busca",
+          "nivel_da_fonte": 3,
+          "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-anti-tangle-side-brush/specs/",
+          "verificado_em": "2026-09-13",
+          "declarados": [
+            "H40",
+            "S40",
+            "S40 Pro"
+          ],
+          "divergencia": true,
           "variante_do_par": null,
           "vida_util": null,
           "tem_imagem": false,
@@ -2149,47 +2417,20 @@
         },
         {
           "tipo": "escova principal",
-          "peca": "xiaomi-s20-acessorios",
+          "peca": "xiaomi-escova-principal-h40-s40",
           "codigo": null,
-          "nome_na_fonte": "Xiaomi Robot Vacuum S20 Accessories",
-          "tipo_da_peca": "kit",
-          "dentro_de_kit": true,
+          "nome_na_fonte": "Xiaomi Robot Vacuum H40/S40 Brush",
+          "tipo_da_peca": "escova principal",
+          "dentro_de_kit": false,
           "existe_avulso": false,
           "publicador": "Xiaomi Global",
           "origem": "fabricante-via-busca",
           "nivel_da_fonte": 3,
-          "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s20-accessories/",
-          "verificado_em": "2026-09-09",
+          "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-h40-and-s40-brush/",
+          "verificado_em": "2026-09-13",
           "declarados": [
-            "Xiaomi Robot Vacuum S20"
-          ],
-          "divergencia": false,
-          "variante_do_par": null,
-          "vida_util": null,
-          "tem_imagem": false,
-          "esperando_link": true,
-          "afiliado": {
-            "url": "",
-            "programa": null,
-            "sub_id_1": "robometria",
-            "sub_id_2": "R1"
-          }
-        },
-        {
-          "tipo": "mop",
-          "peca": "xiaomi-s20-acessorios",
-          "codigo": null,
-          "nome_na_fonte": "Xiaomi Robot Vacuum S20 Accessories",
-          "tipo_da_peca": "kit",
-          "dentro_de_kit": true,
-          "existe_avulso": false,
-          "publicador": "Xiaomi Global",
-          "origem": "fabricante-via-busca",
-          "nivel_da_fonte": 3,
-          "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s20-accessories/",
-          "verificado_em": "2026-09-09",
-          "declarados": [
-            "Xiaomi Robot Vacuum S20"
+            "H40",
+            "S40"
           ],
           "divergencia": false,
           "variante_do_par": null,
@@ -2207,15 +2448,38 @@
       "terceiro": [],
       "kits_sem_composicao": []
     },
-    "xiaomi-s40": {
-      "aviso_de_variante": null,
-      "fabricante": [],
-      "terceiro": [],
-      "kits_sem_composicao": []
-    },
     "xiaomi-s40c": {
       "aviso_de_variante": null,
-      "fabricante": [],
+      "fabricante": [
+        {
+          "tipo": "mop",
+          "peca": "xiaomi-e101-tb",
+          "codigo": "E101-TB",
+          "nome_na_fonte": "Xiaomi Robot Vacuum S40C Mop Pad",
+          "tipo_da_peca": "mop",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Xiaomi Global",
+          "origem": "fabricante-via-busca",
+          "nivel_da_fonte": 3,
+          "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s40c-mop-pad/specs/",
+          "verificado_em": "2026-09-13",
+          "declarados": [
+            "S40C"
+          ],
+          "divergencia": true,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        }
+      ],
       "terceiro": [],
       "kits_sem_composicao": []
     }
@@ -2262,6 +2526,48 @@
         "titulo_na_fonte": "bateria-para-aspirador-robo-mars-ho041-versao-b--pr8116",
         "url": "https://www.multilaserempresas.com.br/produto/eletroportateis-para-sua-casa/lar/aspiradores/bateria-para-aspirador-robo-mars-ho041-versao-b--pr8116/PR8116/",
         "verificado_em": "2026-09-09"
+      }
+    ],
+    "xiaomi-b112-ch": [
+      {
+        "canal": "busca web restrita ao domínio mi.com",
+        "conjunto": [
+          "E10",
+          "E12",
+          "E10C",
+          "S20"
+        ],
+        "titulo_na_fonte": "Xiaomi Robot Vacuum E10/E12/E10C/S20 Filter",
+        "url": "https://www.mi.com/sg/product/xiaomi-robot-vacuum-e10-accessories/",
+        "verificado_em": "2026-09-13"
+      }
+    ],
+    "xiaomi-e101-tb": [
+      {
+        "canal": "busca web restrita ao domínio mi.com",
+        "conjunto": [
+          "S40C",
+          "H40",
+          "S40"
+        ],
+        "titulo_na_fonte": "Xiaomi Robot Vacuum S40C/H40/S40 Mop Pad (titulo da LISTAGEM de acessorios; a pagina de especificacao do mesmo endereco se chama apenas 'Xiaomi Robot Vacuum S40C Mop Pad')",
+        "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s40c-mop-pad/",
+        "verificado_em": "2026-09-13"
+      }
+    ],
+    "xiaomi-ov81gl-bs": [
+      {
+        "canal": "busca web restrita ao domínio mi.com",
+        "conjunto": [
+          "Xiaomi Robot Vacuum 5",
+          "5 Pro",
+          "H40",
+          "S40",
+          "S40 Pro"
+        ],
+        "titulo_na_fonte": "Xiaomi Robot Vacuum H40/ S40/ S40 Pro Anti-tangle Side Brush (a lista de modelos compativeis no corpo da mesma pagina acrescenta o Robot Vacuum 5 e o 5 Pro, que o TITULO nao traz)",
+        "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-anti-tangle-side-brush/specs/",
+        "verificado_em": "2026-09-13"
       }
     ]
   },
@@ -2347,54 +2653,54 @@
     {
       "modelo": "xiaomi-s20",
       "modelo_rotulo": "Xiaomi S20",
-      "tipo": "filtro",
-      "peca": "xiaomi-s20-acessorios",
-      "codigo": null,
-      "nome_na_fonte": "Xiaomi Robot Vacuum S20 Accessories",
-      "dentro_de_kit": true,
-      "divergencia": false,
-      "origem": "fabricante-via-busca",
-      "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s20-accessories/",
-      "verificado_em": "2026-09-09"
-    },
-    {
-      "modelo": "xiaomi-s20",
-      "modelo_rotulo": "Xiaomi S20",
-      "tipo": "escova lateral",
-      "peca": "xiaomi-s20-acessorios",
-      "codigo": null,
-      "nome_na_fonte": "Xiaomi Robot Vacuum S20 Accessories",
-      "dentro_de_kit": true,
-      "divergencia": false,
-      "origem": "fabricante-via-busca",
-      "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s20-accessories/",
-      "verificado_em": "2026-09-09"
-    },
-    {
-      "modelo": "xiaomi-s20",
-      "modelo_rotulo": "Xiaomi S20",
       "tipo": "escova principal",
-      "peca": "xiaomi-s20-acessorios",
-      "codigo": null,
-      "nome_na_fonte": "Xiaomi Robot Vacuum S20 Accessories",
-      "dentro_de_kit": true,
+      "peca": "xiaomi-b112-zs",
+      "codigo": "B112-ZS",
+      "nome_na_fonte": "Xiaomi Robot Vacuum E10/E12/E10C/S20 Brush",
+      "dentro_de_kit": false,
       "divergencia": false,
       "origem": "fabricante-via-busca",
-      "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s20-accessories/",
-      "verificado_em": "2026-09-09"
+      "url": "https://www.mi.com/sg/product/xiaomi-robot-vacuum-e10-accessories/",
+      "verificado_em": "2026-09-13"
+    },
+    {
+      "modelo": "xiaomi-s20",
+      "modelo_rotulo": "Xiaomi S20",
+      "tipo": "filtro",
+      "peca": "xiaomi-b112-ch",
+      "codigo": "B112-CH",
+      "nome_na_fonte": "Xiaomi Robot Vacuum E10/E10C/S20 Filter",
+      "dentro_de_kit": false,
+      "divergencia": true,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.mi.com/sg/product/xiaomi-robot-vacuum-e10-accessories/",
+      "verificado_em": "2026-09-13"
     },
     {
       "modelo": "xiaomi-s20",
       "modelo_rotulo": "Xiaomi S20",
       "tipo": "mop",
-      "peca": "xiaomi-s20-acessorios",
-      "codigo": null,
-      "nome_na_fonte": "Xiaomi Robot Vacuum S20 Accessories",
-      "dentro_de_kit": true,
+      "peca": "xiaomi-d106-tb",
+      "codigo": "D106-TB",
+      "nome_na_fonte": "Xiaomi Robot Vacuum S20 Mop Pad",
+      "dentro_de_kit": false,
       "divergencia": false,
       "origem": "fabricante-via-busca",
-      "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s20-accessories/",
-      "verificado_em": "2026-09-09"
+      "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s20-accessories/specs/",
+      "verificado_em": "2026-09-13"
+    },
+    {
+      "modelo": "xiaomi-s20",
+      "modelo_rotulo": "Xiaomi S20",
+      "tipo": "escova lateral",
+      "peca": "xiaomi-b106gl-bx",
+      "codigo": "B106GL-BX",
+      "nome_na_fonte": "Xiaomi Robot Vacuum S20 Side Brush",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s20-accessories/specs/",
+      "verificado_em": "2026-09-13"
     },
     {
       "modelo": "multi-ho041",
@@ -2644,6 +2950,45 @@
       "verificado_em": "2026-09-09"
     },
     {
+      "modelo": "xiaomi-e10",
+      "modelo_rotulo": "Xiaomi E10",
+      "tipo": "escova principal",
+      "peca": "xiaomi-b112-zs",
+      "codigo": "B112-ZS",
+      "nome_na_fonte": "Xiaomi Robot Vacuum E10/E12/E10C/S20 Brush",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.mi.com/sg/product/xiaomi-robot-vacuum-e10-accessories/",
+      "verificado_em": "2026-09-13"
+    },
+    {
+      "modelo": "xiaomi-e10",
+      "modelo_rotulo": "Xiaomi E10",
+      "tipo": "filtro",
+      "peca": "xiaomi-b112-ch",
+      "codigo": "B112-CH",
+      "nome_na_fonte": "Xiaomi Robot Vacuum E10/E10C/S20 Filter",
+      "dentro_de_kit": false,
+      "divergencia": true,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.mi.com/sg/product/xiaomi-robot-vacuum-e10-accessories/",
+      "verificado_em": "2026-09-13"
+    },
+    {
+      "modelo": "xiaomi-e10",
+      "modelo_rotulo": "Xiaomi E10",
+      "tipo": "mop",
+      "peca": "xiaomi-b112-tb",
+      "codigo": "B112-TB",
+      "nome_na_fonte": "Xiaomi Robot Vacuum E10/E12/E10C Mop Pad",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.mi.com/uk/product/xiaomi-robot-vacuum-e10-accessories/specs/",
+      "verificado_em": "2026-09-13"
+    },
+    {
       "modelo": "electrolux-erb62",
       "modelo_rotulo": "Electrolux ERB62",
       "tipo": "filtro",
@@ -2720,6 +3065,32 @@
       "origem": "varejo-oficial-da-marca",
       "url": "https://loja.electrolux.com.br/pano-de-microfibra-electrolux-para-robos-aspiradores-erb60--erb61--erb62-e-erb80/p",
       "verificado_em": "2026-09-12"
+    },
+    {
+      "modelo": "xiaomi-h40",
+      "modelo_rotulo": "Xiaomi H40",
+      "tipo": "escova lateral",
+      "peca": "xiaomi-ov81gl-bs",
+      "codigo": "OV81GL-BS",
+      "nome_na_fonte": "Xiaomi Robot Vacuum H40/ S40/ S40 Pro Anti-tangle Side Brush",
+      "dentro_de_kit": false,
+      "divergencia": true,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-anti-tangle-side-brush/specs/",
+      "verificado_em": "2026-09-13"
+    },
+    {
+      "modelo": "xiaomi-h40",
+      "modelo_rotulo": "Xiaomi H40",
+      "tipo": "escova principal",
+      "peca": "xiaomi-escova-principal-h40-s40",
+      "codigo": null,
+      "nome_na_fonte": "Xiaomi Robot Vacuum H40/S40 Brush",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-h40-and-s40-brush/",
+      "verificado_em": "2026-09-13"
     },
     {
       "modelo": "multi-ho400",
@@ -2800,6 +3171,32 @@
       "verificado_em": "2026-09-12"
     },
     {
+      "modelo": "xiaomi-s40",
+      "modelo_rotulo": "Xiaomi S40",
+      "tipo": "escova lateral",
+      "peca": "xiaomi-ov81gl-bs",
+      "codigo": "OV81GL-BS",
+      "nome_na_fonte": "Xiaomi Robot Vacuum H40/ S40/ S40 Pro Anti-tangle Side Brush",
+      "dentro_de_kit": false,
+      "divergencia": true,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-anti-tangle-side-brush/specs/",
+      "verificado_em": "2026-09-13"
+    },
+    {
+      "modelo": "xiaomi-s40",
+      "modelo_rotulo": "Xiaomi S40",
+      "tipo": "escova principal",
+      "peca": "xiaomi-escova-principal-h40-s40",
+      "codigo": null,
+      "nome_na_fonte": "Xiaomi Robot Vacuum H40/S40 Brush",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-h40-and-s40-brush/",
+      "verificado_em": "2026-09-13"
+    },
+    {
       "modelo": "multi-ho407",
       "modelo_rotulo": "Multi (ex-Multilaser) HO407",
       "tipo": "escova lateral",
@@ -2850,6 +3247,19 @@
       "origem": "varejo-oficial-da-marca",
       "url": "https://loja.electrolux.com.br/kit-performance-para-robos-aspiradores-erb10-erb11-e-erb20---electrolux/p",
       "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "xiaomi-s40c",
+      "modelo_rotulo": "Xiaomi S40C",
+      "tipo": "mop",
+      "peca": "xiaomi-e101-tb",
+      "codigo": "E101-TB",
+      "nome_na_fonte": "Xiaomi Robot Vacuum S40C Mop Pad",
+      "dentro_de_kit": false,
+      "divergencia": true,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s40c-mop-pad/specs/",
+      "verificado_em": "2026-09-13"
     },
     {
       "modelo": "electrolux-erb11",
@@ -3015,25 +3425,21 @@
     "wap-w1000",
     "wap-w310",
     "wap-w400",
-    "xiaomi-e10",
-    "xiaomi-h40",
     "xiaomi-mop-2",
-    "xiaomi-s10",
-    "xiaomi-s40",
-    "xiaomi-s40c"
+    "xiaomi-s10"
   ],
   "resumo": {
     "modelos_publicaveis": 28,
-    "modelos_que_respondem": 16,
-    "modelos_com_entrada_vazia": 12,
+    "modelos_que_respondem": 20,
+    "modelos_com_entrada_vazia": 8,
     "celulas": 168,
-    "celulas_sem_resposta": 120,
-    "pares_declarados": 38,
-    "pecas_publicaveis": 18,
+    "celulas_sem_resposta": 112,
+    "pares_declarados": 55,
+    "pecas_publicaveis": 25,
     "marcas": 5,
-    "as_duas_ferramentas": 3,
-    "pecas_recomendadas": 18,
-    "pecas_esperando_link": 18,
+    "as_duas_ferramentas": 7,
+    "pecas_recomendadas": 25,
+    "pecas_esperando_link": 25,
     "pecas_com_link": 0
   }
 }

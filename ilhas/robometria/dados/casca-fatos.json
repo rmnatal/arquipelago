@@ -3,7 +3,7 @@
   "ilha": "robometria",
   "entidade": "medicao",
   "gerado_por": "ferramentas/gerar-casca-fatos.py",
-  "gerado_em": "2026-09-12",
+  "gerado_em": "2026-09-13",
   "o_que_e": "Fatos que a casca publica sobre o proprio banco. Hoje: a coluna \"Temos hoje\" da escada de fontes, na pagina de metodologia. Contagem so de registro publicavel.",
   "por_que_derivado": "Ate 11/09/2026 a coluna estava digitada dentro do snippet e contradizia o banco: ela dizia que a ilha nao tinha nenhuma fonte de nivel 2 enquanto quatro fontes se declaravam nivel 2. Afirmacao da pagina sobre o banco se conta no banco.",
   "onde_foi_contado": [
@@ -11,7 +11,7 @@
     "dados/modelos-robo.json",
     "dados/constantes.json"
   ],
-  "total_de_fontes": 76,
+  "total_de_fontes": 86,
   "niveis": [
     {
       "nivel": 1,
@@ -28,7 +28,7 @@
     {
       "nivel": 3,
       "origem": "fabricante-via-busca",
-      "fontes_no_banco": 49,
+      "fontes_no_banco": 59,
       "existe_hoje": true
     },
     {
@@ -59,16 +59,16 @@
   "medicao": {
     "marcas": 5,
     "modelos_publicaveis": 28,
-    "pecas_publicaveis": 18,
-    "pares_declarados": 37,
-    "itens_publicaveis": 46,
-    "esperando_link": 46,
-    "r1_responde": 16,
-    "r1_vazia": 12,
+    "pecas_publicaveis": 25,
+    "pares_declarados": 48,
+    "itens_publicaveis": 53,
+    "esperando_link": 53,
+    "r1_responde": 20,
+    "r1_vazia": 8,
     "celulas": 168,
-    "celulas_sem_resposta": 120,
-    "as_duas": 3,
-    "medido_em": "2026-09-12"
+    "celulas_sem_resposta": 112,
+    "as_duas": 7,
+    "medido_em": "2026-09-13"
   },
   "reguas_da_medicao": {
     "marcas": "marcas distintas em registro publicavel de modelo ou peca",
