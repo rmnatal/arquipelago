@@ -2242,3 +2242,146 @@ depois a vitrine de pastilha da F1, que já nasce com a escada pronta, depois a 
 banco, sem uma linha de código; (3) o feed do Merchant Center, que é espera e não escolha de
 fila. O que só um humano fecha continua o mesmo: confirmar que o e-mail de acesso chegou na
 caixa da Hotmail, e o `contato@clubedomosaico.com.br` que ainda não existe como caixa.
+
+13/09/2026 17:50Z — O 2×2 FECHA O MÍNIMO DA 14.3, E A FAIXA SOBRE A QUAL A COBERTURA ERA PUBLICADA ESTAVA FALTANDO UM TAMANHO
+
+- **Por que este bloco.** Era a ordem de banco que o estado anterior deixou escrita
+  e que não tinha mais nada na frente: fechar 2×2 na categoria pastilha, que estava
+  a UM item dos 3 da seção 14.3. Nenhum despacho aberto nesta ilha, nenhum defeito
+  da 19.1 registrado pela ronda. **Nenhuma URL nova, nenhum snippet reescrito,
+  nenhuma página criada** — manifest na revisão **24**.
+
+- **As três fichas que o bloco 3d deixou pela metade entraram inteiras**, e a
+  pendência `pastilha-fichas-colhidas-pela-metade` está FECHADA: **A37** (2×2,
+  placa 32,3, 3 mm, 20 placas, 2,086 m², 13 kg), **102** (2,5×2,5, placa 31,7,
+  4 mm, 20 placas, 2,01 m², 18 kg) e **IC02** (2,3×2,3, placa 30,0, 8 mm, 10
+  placas, 0,9 m², 16 kg). O banco vai de 10 para **13** itens, e **a A37 é o
+  terceiro elegível de 2×2**: o tamanho passa de 2 para 3 e cumpre o mínimo da
+  14.3. Era o único buraco de cobertura desta ilha que dependia de coleta e não
+  de decisão.
+
+- **Coleta.** Busca restrita ao domínio, **duas passadas por SKU** com consultas
+  escritas de forma diferente e **nenhuma delas carregando um valor** — as duas
+  pediram os rótulos da ficha. As três voltaram idênticas nas duas. O egresso foi
+  remedido antes, como a 20.2 manda: `glassmosaic.com.br` e `www.pastilhart.com.br`
+  em 000 por `connect_rejected` (política) em duas passadas, com
+  `clubedomosaico.com.br` em 200 nas mesmas duas. Por isso `conferir_no_pdf: true`
+  nos três, como nos dez anteriores.
+
+- **O ACHADO DO BLOCO NÃO É DO DADO — É DO PRÓPRIO PORTÃO, e ele muda o que a ilha
+  vinha publicando sobre si mesma.** O `validar-pastilhas.py` carregava os tamanhos
+  da F1 numa constante de **quatro** linhas, com o comentário "os tamanhos que a F1
+  oferece". **A F1 oferece cinco:** `cdm_f1_pastilhas_disponiveis()` serve 1×1,
+  **1,5×1,5**, 2×2, 2,5×2,5 e o caquinho irregular. A cópia nasceu certa e
+  envelheceu calada.
+
+  **O custo não era cosmético.** A seção 14.3 manda varrer "a faixa de entrada de
+  cada ferramenta de ponta a ponta", e a cobertura saía publicada sobre quatro
+  linhas de uma faixa de cinco: **um tamanho que a ferramenta serve nunca apareceu
+  no relatório do buraco.** E logo esse — 1,5 cm é o lado do `pastilhart-af1500`, o
+  único item do banco sustentado por distribuidor (nível 5). A **mutação 07** desta
+  bateria diz, com todas as letras, que promover o distribuidor "faz 1,5 cm passar
+  de zero para um elegível": uma afirmação sobre uma linha que o relatório não
+  tinha. Ela reprovava pelo nível na régua por item, e a outra metade nunca foi
+  medida.
+
+- **Nasce `ferramentas/tamanhos-da-f1.php`**, irmão do `faixa-da-f2.php`. Ele **não
+  lê o código: provoca a ferramenta.** As chaves saem de
+  `cdm_f1_pastilhas_disponiveis()`, que é a declaração da própria F1, e cada uma
+  passa por `cdm_f1_entrada()` — a MESMA função que saneia a consulta de quem
+  visita — para provar que sobrevive ao saneamento. As duas metades falham por
+  motivos diferentes: tamanho que a tela lista e o saneamento derruba é tamanho que
+  a ferramenta não aceita. **8 afirmações, com a borda dentro delas:** uma chave
+  inventada tem de ser recusada, e o padrão do saneamento tem de ser um tamanho que
+  a tela lista. É a mesma família do "número de tela nasce contado, nunca digitado"
+  da seção 8 e da lista de tipos que a Robometria tirou de dentro da régua hoje de
+  manhã pela seção 26: **lista dentro da régua envelhece calada, e o sintoma é o
+  portão verde.**
+
+- **As duas primeiras mutações de CÓDIGO desta bateria (13 e 14)** nasceram junto, e
+  existem porque a bateria só sabia mexer no banco — portão que só mede o dado não
+  vê o defeito que mora na régua. A 13 faz o padrão do saneamento cair num tamanho
+  que a tela não lista; a 14 faz o saneamento aceitar qualquer chave. As duas
+  **produzem um mundo que o banco não tem como produzir**, que é o que a seção 8
+  exige de quem escreve régua nova, e as duas reprovaram.
+
+- **O que os três itens ensinaram sobre o catálogo.** (1) O **102** tem a mesma
+  pastilha anunciada de 2,5 cm dos três K e placa de **31,7** contra 30,0 — prova,
+  dentro do catálogo de um fabricante só, de que **o lado da placa não se deduz do
+  lado da pastilha**; quem completasse um campo pelo vizinho de mesmo tamanho
+  erraria 1,7 cm por placa. O próprio endereço o classifica em `uncategorized`,
+  então o nome comercial não carrega linha: inventar uma seria atribuir ao
+  fabricante uma classificação que ele não publicou. (2) O **IC02** é o único item
+  do banco cuja aritmética de ficha fecha **exata** (10 × 30 × 30 = 0,90 m², sem
+  corte nem arredondamento), e o lado dele, 2,3 cm, não é nenhum dos cinco do
+  seletor — como já acontecia com 3,0, 1,5 e 1,2. Virou pendência nova,
+  `pastilha-tamanho-fora-do-seletor-da-f1`: **6 dos 13 itens** têm lado que a F1 não
+  oferece, e o que eles medem não é defeito de coleta, é o quanto o seletor é mais
+  pobre que o mercado. (3) A **A37** fecha a metragem por CORTE (2,086) e a irmã A61
+  por ARREDONDAMENTO (2,09) na mesma caixa — a régua já aceitava exatamente as duas
+  operações e diz qual foi usada em cada item, então a A37 entrou sem uma linha nova
+  de tolerância.
+
+- **Receita, e o número PIOROU de propósito.** `itens_sem_piso` sobe de 10 para
+  **13**, contado do arquivo pelo validador e nunca digitado. Os três novos entram
+  sem `url_busca` pelo mesmo motivo medido ontem e hoje: gerar o link de busca exige
+  a **sessão logada** do painel de afiliado da Shopee, que mora no navegador do
+  Raphael, e isso não é bloqueio de rede. **Inventar um endereço para o contador não
+  subir seria trocar defeito contado por defeito escondido.** No dia em que os treze
+  forem colados, nenhuma linha de código muda — a escada de ontem já serve os três
+  estados.
+
+- **VERIFICAÇÃO NA BANCADA, 0 falha:** `validar-pastilhas` **189 afirmações** (era
+  139) em 13 itens, um processo cada, 8 delas vindas da faixa medida na F1;
+  `validar-banco` APROVADO com 23 materiais; `cobertura` 128; `teste-casca` 546;
+  `teste-f2` 87; `teste-f1` 72; `teste-loja`, `teste-leads` e `teste-atelie`
+  aprovados; `prestacao-rejunte` 5 sobre 720 estados; `php -l` em tudo.
+  **MUTAÇÕES:** pastilhas **14 de 14** (12 no banco e as 2 novas no código), 0
+  inertes; cobertura **14 de 14**, 9 que só a varredura vê; f1 **27 de 27** e f2
+  **26 de 26**, 0 inertes nas duas — as antigas rodadas inteiras para provar que
+  nenhuma morreu com o banco maior. **NAVEGADOR:** 63 medições em 9 páginas × 6
+  larguras, 0 px de rolagem, console limpo, e a passada com o JavaScript
+  **desligado** (portão 22.8) inteira.
+
+- **As baterias que esta execução NÃO rodou, ditas pelo nome:** prestação, árvore,
+  loja, leads, ateliê, rejunte, voz-e-cabeça e ga4. Elas medem superfícies que este
+  bloco não tocou, e a de prestação sozinha passa de vinte minutos (720 estados por
+  mutação). Ficam para quem mexer naquelas superfícies. Dizer quais é o mínimo:
+  "rodei as mutações" sem a lista é a mesma promessa vazia que o número digitado.
+
+- **NO AR às 17h47Z, em DOIS disparos**, e o primeiro é o caso que a seção 4
+  documenta: às 17h42Z o Sync leu um manifest ainda na revisão 23 **enquanto já
+  baixava o banco novo** e recusou com `"materiais-pastilhas: sha256 divergente —
+  não aplicado"`. A trava fez o que devia; o segundo disparo aplicou. `/status` na
+  **revisão 24**, igual à do manifest. `conferir-no-ar` **351 afirmações, 0 falha**,
+  com a prestação de contas do banco medida no HTML SERVIDO: a página do Guia serve
+  **"23 itens de fabricante, sendo 5 colas, 5 rejuntes e 13 pastilhas, e 13 deles
+  ainda esperam link"** — total batendo com a soma dos arquivos do repositório,
+  parcelas somando o total que a própria frase publica, e toda categoria com arquivo
+  de banco nomeada.
+
+- **ABERTO E NOMEADO:** (a) os 13 `url_busca` das pastilhas, que dependem da sessão
+  do painel da Shopee; (b) `url_busca_produto` em 10 de 10 itens com busca (25.4-b)
+  — a URL crua se perdeu e não se recupera sem clicar; (c) **1×1 continua com ZERO**
+  e é o tamanho de 7 das 12 linhas da tabela pré-renderizada da F1 — não existe em
+  catálogo de fabricante, só em armarinho e marketplace vendido a peso, e é a
+  pendência mais cara da categoria; (d) **1,5×1,5 aparece pela primeira vez no
+  relatório e sai com ZERO**, porque o único item daquele lado é de nível 5; (e)
+  peças por placa segue null nos 13, agora com 9 de 13 sem divisão inteira; (f) a
+  ilha não tem peça publicada, então ficha, formulário no ar e feed do Merchant
+  Center continuam esperando a artesã; (g) `contato@clubedomosaico.com.br` ainda não
+  existe como caixa. Pauta da seção 17: `pauta.md` ainda não existe — 0 escritos, 0
+  na fila, 0 recusados.
+
+- **PRÓXIMO, com ordem e motivo:** (1) **a vitrine de pastilha da F1**, que agora não
+  tem mais nada na frente e ficou mais barata do que estava —
+  `cdm_f1_pastilha_sem_banco_html()` ainda diz "ainda não temos as pastilhas no
+  nosso banco", o 2×2 e o 2,5×2,5 têm os 3 elegíveis da 14.3 para servir, a escada
+  de compra já está pronta, e a faixa por onde ela vai filtrar agora é **medida** em
+  vez de digitada; falta decidir o que a tela diz nos três tamanhos que continuam em
+  zero e nos 6 itens cujo lado o seletor não oferece, que é a pendência nova; (2) a
+  categoria **cola**, que é a faixa mais descoberta da ilha (45 estados varridos, 0
+  com o mínimo, teto de 2 elegíveis); (3) os 13 `url_busca`, no minuto em que houver
+  sessão — é copiar e colar no banco, sem uma linha de código.
+
+---
