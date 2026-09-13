@@ -4,6 +4,203 @@ Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e
 o proximo passo desbloqueado, e espelha o mesmo resumo em
 `/areas/projeto-aquametria.md` na memoria.
 
+## 2026-09-13 13h17Z — A DATA DA SERP VIRA CAMPO E A BETTAS GANHA CRITERIO: a leva 4 fica pronta para nascer (snippet aquametria-peixes 1.3.0, manifest revisao 65, /status conferido as 13h38Z em UM disparo)
+
+**Nenhuma URL nova, e isso e regra e nao escolha:** o teto da 21.4 e de tres levas
+de URL por semana e a semana ja gastou as tres (levas 1, 2 e 3, todas em 12/09).
+O que o `ESTADO.md` anterior nomeava como "o que falta antes de escrever uma
+linha" da leva 4 eram duas coisas — a classificacao de SERP da 14.9 e o criterio
+da categoria — e este bloco entrega as duas, mais a consequencia de codigo que a
+primeira delas criou.
+
+### 1. A CLASSIFICACAO DE SERP DAS QUATRO CONSULTAS: as quatro sao ALVO
+
+A leitura inteira, com quem ocupa cada top e que numero cada um publica, esta em
+`dados/indexacao.md`. Aqui fica o que ela tem de diferente das tres anteriores.
+
+**A medicao que vale mais nao e sobre uma consulta: e sobre duas.** O
+*Trichogaster lalius* — a colisa-anao, UMA especie — aparece com **56 L** numa
+consulta e com **70 L** na outra, no mesmo dia, alem do **40** e do **36** que ja
+discordavam entre si. Quatro numeros para o mesmo peixe, nenhum atribuido a fonte
+nomeada, dois deles na primeira pagina. E a tese desta ilha medida **por fora**
+dela: nas levas 1 a 3 a discordancia foi medida entre paginas diferentes sobre
+especies diferentes; aqui ela e a mesma especie se contradizendo em duas buscas.
+
+**O que a ilha tem A MAIS nesta categoria, e e o que justifica a categoria
+existir em vez de tres fichas soltas:** o arranjo social. Sob o mesmo rotulo
+estao um peixe que vive SOZINHO (betta), um que vive EM CASAL (colisa-anao) e um
+que vive EM GRUPO COM HIERARQUIA (gurami mel, cardume de 4 a 6), e nenhuma das
+quatro SERPs distingue isso. Quem responde "quantos litros para gourami" com um
+numero so esta respondendo a pergunta errada.
+
+**O limite do metodo fica declarado, nao escondido:** a classificacao sai da
+ferramenta de busca desta nuvem, que nao e o Google brasileiro visto de um IP
+brasileiro. Ela mede QUEM publica e QUE numero publica — que e o que a 14.9 pede
+para decidir — e nao a ordem exata do top 10 no Brasil. E o mesmo metodo das
+levas 1 a 3; a diferenca e que agora esta escrito.
+
+### 2. A CONSEQUENCIA QUE O PROPRIO CODIGO TINHA PREVISTO, e o dia chegou
+
+O comentario da constante `AQUAMETRIA_PEIXES_SERP_EM`, escrito na leva 2, dizia:
+*"se uma leva futura sair em outro dia, esta constante deixa de servir para todas
+e vira campo do registro"*. **O dia chegou antes da leva** — estas quatro
+consultas foram classificadas em 13/09 e as doze paginas no ar continuam em
+12/09.
+
+Nasceu o campo `serp_em` no registro e a funcao `aquametria_peixes_serp_em()`. A
+constante **continua existindo, e nao por compatibilidade**: doze paginas
+declarando a mesma data doze vezes seria a mesma data escrita doze vezes, que e
+exatamente o defeito que a constante nasceu para impedir. Ela e o PADRAO; quem
+tem data propria declara. **Nenhuma pagina imprime a constante direto** — se
+imprimisse, a pagina com data propria continuaria servindo a data das outras e o
+defeito seria invisivel justamente na pagina que ele afeta.
+
+### 3. A REGUA DA DATA ERA UMA DATA DIGITADA, E TERIA REPROVADO UMA PAGINA CERTA
+
+O portao afirmava a presenca do texto "12/09/2026" no corpo. **A afirmacao
+dependia de TODAS as paginas terem a mesma data**, que e um caso do banco de hoje
+e nao uma propriedade do codigo — e no dia da leva 4 ela reprovaria quatro
+paginas corretas por servirem a data certa. E a mesma familia da regua que morreu
+quando o banco melhorou na clubedomosaico em 12/09, numa forma mais discreta:
+la a regua dependia de o banco NAO ter link nenhum; aqui dependia de o eixo ter
+uma data so.
+
+O teste agora recomputa a data esperada pela propria regra — le o `serp_em` do
+registro **em texto** e cai no padrao quando nao ha — e **nao chama**
+`aquametria_peixes_serp_em()`. Se chamasse, um erro na funcao faria as duas
+metades errarem juntas e o portao ficaria verde, que e a decisao 1 do cabecalho
+daquele arquivo.
+
+### 4. O CAMINHO NOVO SO E MENSURAVEL NUM MUNDO PRODUZIDO
+
+Nenhuma das doze paginas declara `serp_em`: as doze herdam o padrao. Uma
+afirmacao sobre o caminho da data propria, medida no banco de hoje, mediria o
+caminho do PADRAO e ficaria verde com a funcao quebrada — e o dia em que ela
+importasse seria o da leva 4. Entao o portao **produz o mundo**: copia a ilha,
+injeta o campo numa ficha e mede tres coisas, que sao uma ideia partida em tres
+porque cada uma pega um defeito diferente:
+
+- **(a)** a pagina com data propria serve a data DELA — pega a funcao que ignora
+  o campo;
+- **(b)** essa mesma pagina NAO serve mais o padrao — pega a funcao que imprime
+  os dois, que passaria em (a) sem consertar nada;
+- **(c)** a VIZINHA, que nao declara nada, continua no padrao — pega a funcao que
+  devolve a data declarada para todo mundo, **o erro mais provavel de quem
+  escreve isto com pressa e o unico que (a) e (b) aprovariam juntas**.
+
+As tres mutacoes correspondentes reprovam, cada uma na sua afirmacao.
+
+### 5. O CRITERIO DA `bettas`, escrito com a lista de especies ainda VAZIA
+
+E a primeira categoria deste eixo em que **o posto taxonomico SERVE de criterio**.
+Nos tetras a familia nao servia (a revisao dos caracideos deixou tetra em duas
+familias, e Characidae carrega peixe que ninguem vende como tetra); nas coridoras
+o genero nao servia (a revisao da subfamilia tirou as quatro do genero Corydoras
+na propria fonte). Aqui as cinco especies do banco sao Osphronemidae e as cinco
+sao vendidas como betta, colisa ou gurami: a familia nao traz uma sexta de brinde
+nem deixa nenhuma de fora. **E o criterio diz tambem o que a familia NAO decide**
+— o arranjo social —, porque e ele que muda a resposta.
+
+**A regra nova do portao cobra o criterio de quem TEM especie, e nao de quem esta
+registrada como pagina.** A diferenca e a que importa: cobrar so das registradas
+deixaria a leva seguinte encher a lista e publicar a categoria com o campo vazio,
+e o defeito entraria no ar **uma leva depois de ser cometido**. A primeira versao
+da regua cobrava so das registradas e ainda mediu o pedaco errado do arquivo (o
+registro das paginas usa a MESMA forma `'slug' => array(` e vem antes), reprovando
+duas categorias que declaram o criterio ha tres blocos — regua que le o pedaco
+errado do arquivo reprova codigo certo.
+
+### COLETA DE BANCO: tres alvos, tres RECUSAS, nenhum campo gravado
+
+Os tres alvos mais baratos que o estado anterior nomeava. **Nenhum entrou, e os
+tres motivos sao diferentes:**
+
+1. **Molly (`comprimento_minimo_aquario_cm`), o mais caro de perder** — ele
+   sozinho levaria a `/peixes/vivaparos/` de 2 para 3, que e o minimo exato do
+   16.5. O compendio devolveu **90 × 30 × 30 cm** em UMA passada e em nenhuma das
+   outras tres que nao carregavam o numero na consulta. **Reproduzir uma vez nao
+   e confirmar**, e a regua e a mesma que sustentou o porte do gurami mel ontem:
+   o numero volta IGUAL em duas passadas independentes. Aqui nao voltou. Isto
+   **nao** e uma contradicao da fonte — e ausencia de confirmacao, e o campo fica
+   nulo ate a leitura direta da ficha.
+2. **Cascudo (`temperatura_C`)** — segunda tentativa, mesma parede de 09/09: nem
+   o compendio nem a base cientifica declaram faixa termica para esta especie.
+3. **Guppy (segunda fonte)** — terceira tentativa, mesma parede. A saida dele
+   continua sendo a que o proprio registro ja dizia: leitura direta da ficha
+   quando o egresso abrir, ou um terceiro corpo.
+
+**NAS TRES A BUSCA OFERECEU SOZINHA O NUMERO DA CONGENERE**, e nas tres foi
+recusado: 60 cm de *P. velifera* e de *P. reticulata* para o molly; pH 6,0–6,5 e
+75–80 °F de "especies aparentadas do genero" para o cascudo; temperatura de
+*P. latipinna* para o molly. A busca inclusive DIZ que o numero e da vizinha — a
+tentacao vem rotulada, como veio no gurami perola em 12/09.
+
+**O que a coleta CONFIRMOU, e e o unico ganho dela:** a base de **60 × 30 cm** do
+cascudo voltou igual a que o banco guarda desde 09/09, por uma passada que nao a
+carregava na consulta. Reconferencia independente de campo antigo, nao campo
+novo.
+
+**REDE (20.2):** a ilha em **200** na home e no `/status`. `fishbase.se` e
+`seriouslyfish.com` em `connect_rejected` por POLITICA de egresso, reconferido
+hoje com `curl` — e por isso esta coleta, como todo o banco desta ilha, sai por
+busca restrita ao dominio, com "a confirmar na ficha" escrito em cada fonte.
+
+### VERIFICACAO, 0 falha
+
+**Bancada:** `teste-peixes` **1222** afirmacoes (era 1206); `mutacoes-peixes`
+**39 de 39 reprovadas** (era 35 de 35 — as 35 antigas rodadas inteiras, nenhuma
+virou inerte); `validar-especies` 36 registros, 0 erro e o mesmo aviso E15 do
+guppy; `testar-validador` 22; `teste-arvore`; `teste-voz`; `teste-seo-tecnico`
+330; `teste-ga4` 440; `teste-apelidos` 59; `conferir-entidades`;
+`conferir-slugs`; `conferir-protecao-funcoes` (39 funcoes, todas dentro de
+`function_exists`); `php -l` limpo nos snippets.
+
+**Navegador:** `teste-navegador-arvore` **498 medicoes** em 27 paginas x 6
+larguras, 0 px de rolagem, console limpo.
+
+**A PROVA QUE VALE MAIS QUE TODAS, e ela e desta familia de mudanca:** as
+QUATORZE paginas do eixo servem **HTML byte a byte identico** ao do HEAD
+anterior, medido pagina a pagina contra uma copia do commit de antes. Refatoracao
+que promete nao mudar a tela tem como PROVAR isso, e o `cmp` e a prova.
+
+**No ar as 13h38Z, em UM disparo:** `/status` na revisao **65** igual a do
+manifest, 19 aplicados. `conferir-peixes-no-ar.py` **356** afirmacoes, 0 falha.
+E as duas medicoes que so este bloco tinha para fazer, no HTML SERVIDO: (1) as
+paginas do eixo continuam servindo **12/09/2026** e **nenhuma** serve 13/09/2026
+— o caminho do padrao funciona em producao, e nao so na bancada; (2)
+`/peixes/` serve a categoria **"Bettas e gouramis" com "Em breve", sem `<a>`**, e
+a palavra "Osphronemidae" **nao aparece** na tela: o criterio e preparo, nao
+publicacao.
+
+### PROXIMO, com ordem e motivo
+
+1. **LEVA 4 = `/peixes/bettas/` com as tres fichas**, e ela ja pode nascer **na
+   semana que comeca em 14/09**, quando o teto da 21.4 virar. **Nao falta mais
+   nada antes de escrever**: a SERP esta classificada e o criterio esta escrito.
+   As quatro paginas nascem declarando `'serp_em' => '13/09/2026'` — quem nao
+   declarar herda 12/09/2026, que seria mentira nestas quatro. A ficha da
+   colisa-anao tem um paragrafo obrigatorio: os quatro numeros que a SERP publica
+   para ela.
+2. **BANCO, a categoria mais barata:** `/peixes/vivaparos/` esta a DOIS campos de
+   ter 4 fichas (guppy e molly), e a UM de ter 3. Os dois dependem de leitura
+   direta da ficha ou de um terceiro corpo — busca restrita ja foi tentada tres
+   vezes no guppy e quatro no molly. **Isto e o que mais destrava malha por
+   campo colhido em toda a ilha.**
+3. A leitura de 16/09 continua tendo o que responder sobre a leva de 08/09 e
+   continua **nao travando leva nenhuma**: 27 URLs, abaixo do piso de 40 da
+   secao 21.
+
+**ABERTO E NOMEADO, o mesmo de antes e nada novo:** (a) para onde `GT-PL9DD7KW`
+roteia, humano; (b) o Tempo Real do GA4, que este ambiente nao le por falta de
+`GOOGLE_SA_B64`; (c) a ilha **NAO TEM PAGINA DE PRIVACIDADE**, e com a tag do GA4
+no ar e link de afiliado publicado isso e divida de verdade; (d) o
+`atualizar-manifest.py` avisa "fora do manifest" e SEGUE, e sobram 22 arquivos
+fora. **RECEITA (item 4 do despacho da Sentinela de 10/09):** este bloco nao
+tocou catalogo de produto — seguem **39 dos 78** produtos esperando link de
+afiliado. **Pauta da secao 17:** `pauta.md` ainda nao existe — 0 escritos, 0 na
+fila, 0 recusados.
+
+
 ## 2026-09-12 20h15Z — T4, LEVA 1: A MALHA DO EIXO /peixes/ NASCE (casca 1.7.2, snippet aquametria-peixes 1.0.0, manifest revisao 59)
 
 Cinco URLs novas, e a ilha vai de 13 para 18. Nivel 1 `/peixes/`, nivel 2
