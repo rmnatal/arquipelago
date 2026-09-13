@@ -147,7 +147,7 @@ Aberto em 13/09/2026 pela seção 25. **Prioridade alta, e a razão é um númer
 
 E não dá para medir: o banco guarda só o `s.shopee.com.br/XXXX`, sem `url_produto` (ver 25.4-b). A URL da página se perdeu.
 
-**O que fazer, e a ordem importa:** reescolher os 39 pelo **feed "Shopee Oficial BR"** (2,8 milhões de produtos, só loja oficial), que é a fonte do degrau 1 — Eheim, JBL, Chihiros e Seachem são marcas com chance real de loja oficial, e esse é o degrau mais durável. O que não estiver no feed desce a escada: catálogo `/p/` do Mercado Livre, depois vendedor comum **com `url_busca` obrigatória**. Cada item sai com `url_produto`, `degrau` e `conferido_em`.
+**O que fazer, e a ordem importa.** O feed oficial foi medido em 13/09 e **não serve para esta ilha** (ver 25.3): a categoria de aquário dele é quase toda pesca. Então o caminho é o **degrau 2**, catálogo `/p/` do Mercado Livre, onde Eheim, Chihiros e Seachem existem de verdade e a página não morre. **Antes de gerar um link sequer, meça quantos produtos distintos as páginas PUBLICADAS realmente citam** — o banco tem 78 itens, mas só os que aparecem em página no ar custam venda hoje, e gerar link para os outros é trabalho sem retorno. Gere primeiro a lista curta, em lote, para um clique só do Raphael no gerador do Mercado Livre. Cada item sai com `url_produto`, `url_busca`, `degrau` e `conferido_em`.
 
 **Os 39 itens que hoje NÃO têm link continuam sem link até isso acontecer** — não adianta encher o cano com mais links do degrau 3; seria repetir o erro em escala maior. Consertar os 39 existentes vem antes de gerar os 39 que faltam.
 
@@ -159,4 +159,4 @@ Aberto em 13/09/2026. As 44 respostas do banco (`r1-respostas.json` com 33, `r2-
 
 A ilha responde "qual peça serve no seu robô", a pessoa descobre a peça certa, e **não tem onde comprar**. É o pior estado possível para uma ilha de afiliado: ela faz o trabalho caro (a compatibilidade) e entrega o clique de graça para outro.
 
-Mesmo caminho da Aquametria: feed "Shopee Oficial BR" primeiro (peça de robô aspirador é justamente o tipo de coisa que tem loja oficial de marca), escada abaixo depois, `url_produto` e `url_busca` em todos. Depende do mesmo arquivo do Raphael.
+O recorte do feed oficial já está em `ilhas/robometria/dados/feed-shopee-oficial.json`, e ele **prova que o degrau 1 não resolve esta ilha**: das 27 linhas, só três são peça de reposição. Use as três, e para o resto vá direto ao **degrau 2**, catálogo `/p/` do Mercado Livre, que é onde peça de robô aspirador existe com nome e código. Mesma disciplina da Aquametria: **meça primeiro quantas peças as 9 páginas publicadas citam**, gere só essas, em um lote só, e deixe o resto do banco esperando. `url_produto`, `url_busca`, `degrau` e `conferido_em` em todos.

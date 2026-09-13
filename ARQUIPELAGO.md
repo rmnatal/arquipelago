@@ -668,8 +668,18 @@ O **botão** é o degrau mais alto que serviu. Abaixo dele, discreto e em texto,
 
 Em *Criativo → Feed de produto* do painel de afiliado. Atualizam sozinhos todo dia. O download exige a sessão logada do Raphael — a nuvem recebe 401 e a extensão do navegador bloqueia o redirecionamento, medido em 13/09. **Baixar o feed é passo dele.**
 
-- **"Shopee Oficial BR"** — 2,8 milhões de produtos, **só lojas oficiais**. É a fonte do degrau 1. Colunas: `title`, `price`, `sale_price`, `image_link`, `image_link_3`, `shop_name`, `product_link`, `item_rating`, `global_category1..3`.
-- **"Shopee Brasil"** — **apenas 10 mil produtos**, e é uma seleção de mais vendidos, **não o catálogo**. Para nicho de cauda longa é quase inútil: dos dez materiais do Mosaico ele conhecia um. Não confunda os dois, e não prometa cobertura que ele não tem.
+- **"Shopee Oficial BR"** — **100 mil produtos**, só lojas oficiais. Colunas: `title`, `price`, `sale_price`, `image_link`, `image_link_3`, `shop_name`, `product_link`, `item_rating`, `global_category1..3`. (O arquivo tem ~2,8 milhões de LINHAS, porque as descrições contêm quebras de linha; contar linha em vez de registro dá um número 28 vezes maior e errado. Medido e corrigido em 13/09/2026, no mesmo dia em que o erro foi escrito aqui.)
+- **"Shopee Brasil"** — **apenas 10 mil produtos**, e é uma seleção de mais vendidos, **não o catálogo**. Dos dez materiais do Clube do Mosaico ele conhecia um.
+
+**O QUE O FEED OFICIAL NÃO COBRE, medido em 13/09/2026 nas três ilhas — e isto derruba a ideia de que o feed resolve tudo:**
+
+- **Clube do Mosaico:** funcionou. Cascorez está na Henkel Oficial, e virou degrau 1. Funcionou **porque cola branca é produto de massa e a Henkel tem loja oficial.**
+- **Robometria:** das 27 linhas que o recorte trouxe, **três são peça** (controle remoto Electrolux, pano mop Dreame, bateria WAP). O resto é robô inteiro. Loja oficial quase não vende reposição — e reposição é o produto da ilha.
+- **Aquametria:** pior. A categoria `Pets > Aquarium Needs` do feed tem 220 produtos e a esmagadora maioria é **pesca**, não aquarismo. Nenhum Eheim, Chihiros ou Seachem de aquário. Filtrar por marca sem exigir contexto traz **a JBL de caixa de som e a "Aquário" de roteador** — erro cometido e pego antes de commitar, em 13/09.
+
+**A regra que sai disso:** o feed oficial é **um primeiro exame barato**, não o plano. Ele cobre mercado de massa. As ilhas do Arquipélago vivem de **cauda longa técnica** — peça, modelo, compatibilidade — que é exatamente o que loja oficial não estoca. Onde o feed não tiver, **desça a escada sem lamentar**: o degrau 2 (catálogo `/p/` do Mercado Livre) é o cavalo de batalha destes nichos, e o preço dele é um clique do Raphael.
+
+**Nunca filtre o feed só por marca.** Marca sem contexto é armadilha: JBL é som e é aquário; Aquário é roteador e é peixe; Betta é peixe e é móvel. Exija palavra de contexto no título **ou** categoria compatível, e **confira uma amostra com os olhos antes de gravar** — um recorte errado no repositório é pior que recorte nenhum, porque parece dado.
 
 **A foto do produto sai do feed** (`image_link`), e é a fonte legítima: a imagem do anúncio ao lado do link do anúncio é exatamente o que o feed existe para permitir. Produto fora do feed fica sem foto e aparece com espaço reservado neutro, pela regra da seção 4.
 
