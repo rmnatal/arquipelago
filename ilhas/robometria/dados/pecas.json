@@ -7,14 +7,14 @@
  "nota_de_procedencia": "Coleta de 09/09/2026 por busca restrita aos dominios do proprio fabricante; o egresso HTTP direto devolveu EGRESS_BLOCKED para multilaser.com.br nesta execucao. TODA compatibilidade abaixo e DECLARADA pelo fabricante — nenhuma foi inferida, e nenhuma linha diz 'serve' sem que o fabricante tenha dito. Onde nao ha declaracao, nao ha linha. Bloco 3c (09/09/2026): 10 pecas novas — 6 da Electrolux, 3 da Positivo e 1 da Xiaomi. LEVA DE 13/09/2026: 8 pecas da XIAOMI COM CODIGO, e a coleta so aconteceu porque o dominio testado ate entao estava errado. O PROMPT.md e o ESTADO.md mandavam testar mi.com.br e xiaomi.com.br; o banco desta ilha sempre citou www.mi.com/br. O egresso direto segue fechado por politica nos tres (000, 403 ao CONNECT, duas passadas), mas a BUSCA alcanca mi.com — e nunca tinha sido testada nele. A REGUA DE COMPATIBILIDADE DESTA LEVA, escrita antes de gravar: a Xiaomi declara compatibilidade no TITULO PUBLICADO da peca ('Xiaomi Robot Vacuum E10/E12/E10C/S20 Brush'), e o codigo mora na subpagina /specs/ como 'Product model'. Um par entra quando o modelo e nomeado num titulo que aparece na pagina de acessorio daquele modelo ou numa pagina de peca dedicada; titulo de listagem que nomeia modelo que a especificacao da peca nao repete vai para divergencias e e resolvido pelo MAIS ESTREITO (secao 10 do ARQUIPELAGO.md). LEVA DE 13/09/2026 (segunda do dia): 4 pecas da WAP, as primeiras da marca — 2 do W300 e 2 do WSMART. TODAS com codigo_fabricante null: ver lista_de_compras. A REGRA QUE ESTA LEVA ESCREVEU, e ela subiu para a secao 26 do ARQUIPELAGO.md: a FUNCAO da peca nao se le do nome do produto. O fabricante batiza pela POSICAO (Direita, Esquerda, Central, Frontal, Rotativa) e este banco classifica pela FUNCAO (escova lateral, escova principal). A WAP desmente a si mesma no proprio canal — 'escovas giratorias direita e esquerda' e o par LATERAL do W300, e 'Escova Principal (Escova giratoria)' e a PRINCIPAL do W90 —, entao toda escova passa a carregar funcao{} dizendo onde a funcao foi declarada: no titulo, no contraste do catalogo daquele modelo, ou no canal de manutencao. Sem nenhum dos tres o registro nao nasce, e foi por isso que a escova do W90 ficou de fora.",
  "nota_vida_util": "Nenhuma peca da Multi declara vida util nas paginas desta coleta. O unico numero de fabricante que a ilha tem e o do manual da Electrolux — 6 meses para o filtro HEPA do ERB10/ERB11/ERB20 — e ele esta em constantes.json preso AQUELES modelos. Veiculos editoriais dizem 3 meses e 2-3 meses, e divergem do manual. Manual de fabricante e recomendacao editorial nao se misturam numa frase: a R1 publica o intervalo do FABRICANTE do modelo consultado, e a recomendacao editorial so aparece rotulada como tal. Bloco 3c: a vida util de 6 meses do manual da Electrolux finalmente tem peca — e o filtro HEPA dentro do Kit Performance KPCEL01. E a Xiaomi trouxe o primeiro conjunto de intervalos por TIPO de peca (filtro 3-6, escova lateral 3-6, escova principal 6-12, mop 3 meses), que valem para o S20 e para nenhum outro modelo do banco.",
  "contagem": {
-  "total": 34,
-  "publicavel": 31,
+  "total": 35,
+  "publicavel": 32,
   "excluido_do_banco": 3,
   "nao_publicavel": 0,
-  "pares_peca_x_modelo_declarados": 61,
-  "esperando_link_de_afiliado": 31,
+  "pares_peca_x_modelo_declarados": 63,
+  "esperando_link_de_afiliado": 32,
   "itens_com_ficha": 0,
-  "itens_sem_piso": 31,
+  "itens_sem_piso": 32,
   "links_sem_degrau": 0
  },
  "lista_de_compras": [
@@ -143,6 +143,7 @@
    "divergencias": [
     {
      "canal": "multilaser.com.br (varejo)",
+     "origem": "fabricante-via-busca",
      "conjunto_declarado": [
       "HO041"
      ],
@@ -152,6 +153,7 @@
     },
     {
      "canal": "multilaserempresas.com.br",
+     "origem": "fabricante-via-busca",
      "conjunto_declarado": [
       "HO041",
       "OB010"
@@ -400,6 +402,7 @@
    "divergencias": [
     {
      "canal": "multilaserempresas.com.br — título da página",
+     "origem": "fabricante-via-busca",
      "conjunto_declarado": [
       "Mars",
       "Moon",
@@ -411,6 +414,7 @@
     },
     {
      "canal": "multilaserempresas.com.br — endereço da MESMA página",
+     "origem": "fabricante-via-busca",
      "conjunto_declarado": [
       "HO041 versão B"
      ],
@@ -1699,6 +1703,7 @@
    "divergencias": [
     {
      "canal": "busca web restrita ao domínio mi.com",
+     "origem": "fabricante-via-busca",
      "conjunto_declarado": [
       "E10",
       "E12",
@@ -2009,6 +2014,7 @@
    "divergencias": [
     {
      "canal": "busca web restrita ao domínio mi.com",
+     "origem": "fabricante-via-busca",
      "conjunto_declarado": [
       "Xiaomi Robot Vacuum 5",
       "5 Pro",
@@ -2081,6 +2087,7 @@
    "divergencias": [
     {
      "canal": "busca web restrita ao domínio mi.com",
+     "origem": "fabricante-via-busca",
      "conjunto_declarado": [
       "S40C",
       "H40",
@@ -2604,6 +2611,111 @@
    },
    "status": "publicavel",
    "observacao": "O PRIMEIRO CODIGO DE FABRICANTE WAP DO BANCO, e ele entra por um criterio que a leva de escovas de 13/09 escreveu ao RECUSAR tres codigos: o que reprovava FW006267, FW008028 e FW009132 era o CANAL — apareceram em UMA passada e sempre em titulo de marketplace ou de varejista (niveis 5 e 6), nunca num canal da WAP. FW008024 passa nesse mesmo criterio, e a prova esta em quatro passadas: TRES restritas aos dominios da WAP, e uma QUARTA sem restricao nenhuma, com o codigo entre aspas, em que a pagina da loja oficial volta entre os primeiros resultados AO LADO de dois anuncios de marketplace que nomeiam o MESMO produto. Canais independentes concordando sobre QUAL peca o codigo nomeia e mais forte que qualquer um deles sozinho. O QUE CONTINUA NAO SENDO POSSIVEL, dito em vez de escondido: ler o campo 'Referencia' na ficha, porque loja.wap.ind.br segue em EGRESS_BLOCKED — por isso o nivel da fonte e 4, e nao 2. PRIMEIRA peca de tipo 'reservatorio' do banco junto com a irma do W300; o par devolve o tipo ao seletor da R1. Os 450 ml que o modelo declara ja estavam em modelos-robo.json e bateram com esta coleta — corroboracao, nao fonte.",
+   "verificado_em": "2026-09-13"
+  },
+  {
+   "id": "wap-fw008543",
+   "marca": "wap",
+   "codigo_fabricante": "FW008543",
+   "tipo": "reservatorio",
+   "nome_na_fonte": "Kit Recipiente de Pó Para Robôs Aspiradores de Pó WAP Robot W100 e WAP Robot W90",
+   "compatibilidade": [
+    {
+     "modelo": "wap-w100",
+     "codigo_declarado": "WAP Robot W100",
+     "variante_de_hardware": null,
+     "selo": "declarada_fabricante",
+     "fonte": "f-peca"
+    },
+    {
+     "modelo": "wap-w90",
+     "codigo_declarado": "WAP Robot W90",
+     "variante_de_hardware": null,
+     "selo": "declarada_fabricante",
+     "fonte": "f-peca"
+    }
+   ],
+   "divergencias": [
+    {
+     "canal": "americanas.com.br (marketplace)",
+     "origem": "marketplace-anuncio",
+     "conjunto_declarado": [
+      "W90",
+      "W95",
+      "W96",
+      "W100",
+      "W100C"
+     ],
+     "titulo_na_fonte": "Reservatório Recipiente Completo para Robô Aspirador wap W90 W95 W96 W100 W100C FW008543",
+     "url": "https://www.americanas.com.br/reservatorio-recipiente-completo-para-robo-aspirador-wap-w90-w95-w96-w100-w100c-fw008543-7504755755/p",
+     "verificado_em": "2026-09-13"
+    },
+    {
+     "canal": "americanas.com.br (marketplace, segundo anúncio do MESMO código)",
+     "origem": "marketplace-anuncio",
+     "conjunto_declarado": [
+      "W100",
+      "W100C"
+     ],
+     "titulo_na_fonte": "Kit Recipiente Reservatório com Tampa e Filtro para Robô Aspirador wap W100 e W100C FW008543",
+     "url": "https://www.americanas.com.br/produto/5362648381/kit-recipiente-reservatorio-com-tampa-e-filtro-para-robo-aspirador-wap-w100-e-w100c-fw008543",
+     "verificado_em": "2026-09-13"
+    },
+    {
+     "canal": "soldigital.com.br (varejista)",
+     "origem": "varejo-especializado",
+     "conjunto_declarado": [
+      "W100",
+      "W90",
+      "W100C",
+      "W95",
+      "W96"
+     ],
+     "titulo_na_fonte": "Kit Recipiente de Pó completo Para Robôs Aspiradores de Pó WAP Robot W100, Robot W90, Robot W100C, Robot W95 e Robot W96 - FW008543",
+     "url": "https://www.soldigital.com.br/kit-recipiente-de-po-completo-para-robos-aspiradores-de-po-wap-robot-w100-robot-w90-robot-w100c-robot-w95-e-robot-w96-fw008543",
+     "verificado_em": "2026-09-13"
+    }
+   ],
+   "resolucao": "Vale o conjunto MAIS ESTREITO, o do FABRICANTE: W100 e W90, que e o que o titulo da loja oficial nomeia. A regra de sempre e a assimetria de custo — mandar alguem comprar recipiente que nao encaixa e o erro caro —, e aqui o proprio canal largo derruba a si mesmo: DOIS anuncios do MESMO codigo, na MESMA loja, declaram conjuntos DIFERENTES entre si (W90/W95/W96/W100/W100C contra W100/W100C). Nenhum dos dois pode estar completo e certo ao mesmo tempo, e nenhum e o fabricante. O W100C e o unico dos modelos extras que existe no banco desta ilha, e ele fica no vazio da R1 ate a WAP declarar o par num canal dela — a vista explodida VEG02.122 do W100C e o documento que resolve, e ela esta atras do egresso fechado. AS TRES DECLARACOES VAO PARA A TELA com o nome do canal e a data: divergencia e conteudo, nao ruido a esconder.",
+   "vida_util_declarada": {
+    "valor": null,
+    "unidade": "meses",
+    "motivo_do_null": "a WAP nao declara vida util nesta pagina, e o banco nao empresta o numero de um fabricante para a peca de outro"
+   },
+   "imagem": {
+    "url": null,
+    "largura": null,
+    "altura": null,
+    "fonte": null,
+    "coletado_em": null,
+    "alt": null,
+    "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+   },
+   "afiliado": {
+    "url": "",
+    "url_produto": null,
+    "motivo_sem_url_produto": null,
+    "degrau": null,
+    "url_busca": "",
+    "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20reservatorio%20robo%20aspirador",
+    "motivo_sem_url_busca": "falta o ENCURTAMENTO, nao a escolha: gerar o link de afiliado da busca exige a sessao logada do painel da Shopee (25.6). A palavra-chave ja esta escrita em url_busca_produto, e no dia da sessao e colar.",
+    "plataforma": null,
+    "coletado_em": null,
+    "sub_id_1": "robometria"
+   },
+   "fontes": {
+    "f-peca": {
+     "nivel": 4,
+     "origem": "varejo-oficial-da-marca",
+     "publicador": "WAP (loja oficial)",
+     "titulo_na_fonte": "Kit Recipiente de Pó Para Robôs Aspiradores de Pó WAP Robot W100 e WAP Robot W90",
+     "url": "https://loja.wap.ind.br/kit-recipiente-de-po-para-robos-aspiradores-de-po-wap-robot-w100-e-wap-robot-w90/p",
+     "canal_de_coleta": "busca web restrita aos dominios wap.ind.br, loja.wap.ind.br, parceiros.wap.ind.br e blog.wap.ind.br. O egresso HTTP direto devolveu 000 (connect_rejected) para loja.wap.ind.br, wap.ind.br e blog.wap.ind.br nesta execucao, com robometria.com.br em 200 na mesma passada. A LEITURA NAO E DIRETA NA FONTE PRIMARIA, e por isso o nivel e 4 e nao 2",
+     "verificado_em": "2026-09-13"
+    }
+   },
+   "status": "publicavel",
+   "observacao": "TERCEIRA peca de tipo 'reservatorio' do banco, e a primeira peca WAP que tira DOIS modelos do vazio da R1 de uma vez: o W100 e o W90 estavam entre os 11 que a ferramenta nao respondia. O PAR DE MODELOS E DECLARADO PELO PROPRIO TITULO da loja oficial, que nomeia os dois. O CODIGO PASSOU NO CRITERIO DE CANAL que a leva de escovas de 13/09 escreveu ao recusar FW006267, FW008028 e FW009132: FW008543 voltou em passada restrita aos dominios da WAP com a pagina da loja oficial entre os resultados, E em passada SEM restricao nenhuma, em que quatro canais independentes entre si (Americanas, Amazon, Mercado Livre e um varejista de pecas) nomeiam o MESMO produto com o MESMO codigo. POR QUE O TIPO E 'reservatorio' E NAO 'kit', que e a palavra que o proprio fabricante usa no titulo: a secao 26 do ARQUIPELAGO.md diz que o fabricante batiza pela posicao ou pelo marketing e a ilha classifica pela FUNCAO, e a funcao esta escrita literalmente no titulo ('Recipiente de Po'). O tipo 'kit' deste esquema exige composicao com um item por PECA separada, e a WAP nao declara composicao nenhuma nesta pagina. A direcao da duvida saiu da assimetria de custo da secao 10: gravar 'reservatorio' faz a R1 deixar de oferecer esta peca a quem procura FILTRO, que e uma frase mais fraca; gravar 'kit' com a composicao lida em VAREJISTA faria a R1 dizer a uma pessoa que o filtro dela vem nesta caixa, com a autoridade do fabricante emprestada a quem so revende. Errar para baixo custa uma frase; errar para cima custa a compra errada. A COMPOSICAO QUE OS VAREJISTAS DECLARAM ('recipiente mais tampa mais filtro') FOI LIDA E RECUSADA, nao ignorada: ela esta nas divergencias pelo titulo dos anuncios, que e onde ela e verdadeira como declaracao DELES. A COMPATIBILIDADE MAIOR DO VAREJO TAMBEM FOI RECUSADA, e o proprio varejo deu o argumento: dois anuncios do MESMO codigo, na MESMA loja, declaram conjuntos DIFERENTES (um diz W90/W95/W96/W100/W100C, o outro diz W100/W100C). Canal que discorda de si mesmo nao promove modelo nenhum. O W100C esta no banco desta ilha e esta no vazio da R1 — estender a compatibilidade por vizinhanca tiraria um TERCEIRO modelo do vazio hoje, e e exatamente por isso que a recusa importa. O caminho de volta esta escrito: a vista explodida VEG02.122 do W100C existe em mais.wap.ind.br, e uma leitura dela declara ou nega o par no canal do fabricante. W95 e W96 nao estao no banco de modelos desta ilha.",
    "verificado_em": "2026-09-13"
   }
  ],

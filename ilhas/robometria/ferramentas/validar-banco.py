@@ -155,6 +155,11 @@ def checar_escada_na_tela():
     """
     for n in esquema["escada_de_fontes"]["niveis"]:
         onde = "esquema-banco/escada_de_fontes/nivel %d" % n["nivel"]
+        # De que lado da fronteira este degrau esta. Sem isto a frase da
+        # divergencia volta a chamar marketplace de canal do fabricante.
+        if not isinstance(n.get("fala_pela_marca"), bool):
+            erro("%s: sem fala_pela_marca. Degrau que nao declara se fala PELA "
+                 "marca ou SOBRE ela obriga a frase da tela a adivinhar" % onde)
         t = n.get("na_tela")
         if not isinstance(t, dict):
             erro("%s: sem na_tela. Degrau que nao declara como aparece na tela "
@@ -499,6 +504,19 @@ for p in pecas["registros"]:
     if p.get("divergencias") and not p.get("resolucao"):
         erro("%s: tem divergencias e nao diz qual conjunto valeu. Divergencia sem "
              "resolucao escrita e a ilha empurrando a duvida para o visitante" % onde)
+
+    # A NATUREZA DO CANAL DIVERGENTE E CAMPO, E NAO ADJETIVO NA FRASE (13/09/2026).
+    # Ver esquema-banco > PECA > divergencias > por_que_a_origem_e_obrigatoria: a
+    # frase da R1 dizia "canais do FABRICANTE discordam" para qualquer divergencia,
+    # e era verdade por acidente do banco. Sem este campo a frase volta a adivinhar.
+    for _i, _dv in enumerate(p.get("divergencias") or []):
+        _od = "%s/divergencia %d" % (onde, _i + 1)
+        if not _dv.get("origem"):
+            erro("%s: sem origem. Quem diverge e o fabricante consigo mesmo ou um "
+                 "terceiro alem dele, e a frase da tela diz coisas diferentes nos "
+                 "dois casos" % _od)
+        elif _dv["origem"] not in NA_TELA:
+            erro("%s: origem %r nao existe na escada_de_fontes" % (_od, _dv["origem"]))
 
     if set(p.get("imagem", {})) < CHAVES_IMAGEM:
         erro("%s: imagem{} incompleta" % onde)

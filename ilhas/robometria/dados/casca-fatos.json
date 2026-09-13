@@ -11,7 +11,7 @@
     "dados/modelos-robo.json",
     "dados/constantes.json"
   ],
-  "total_de_fontes": 105,
+  "total_de_fontes": 106,
   "niveis": [
     {
       "nivel": 1,
@@ -34,7 +34,7 @@
     {
       "nivel": 4,
       "origem": "varejo-oficial-da-marca",
-      "fontes_no_banco": 38,
+      "fontes_no_banco": 39,
       "existe_hoje": true
     },
     {
@@ -59,14 +59,14 @@
   "medicao": {
     "marcas": 5,
     "modelos_publicaveis": 33,
-    "pecas_publicaveis": 31,
-    "pares_declarados": 54,
-    "itens_publicaveis": 64,
-    "esperando_link": 64,
-    "r1_responde": 22,
-    "r1_vazia": 11,
+    "pecas_publicaveis": 32,
+    "pares_declarados": 56,
+    "itens_publicaveis": 65,
+    "esperando_link": 65,
+    "r1_responde": 24,
+    "r1_vazia": 9,
     "celulas": 198,
-    "celulas_sem_resposta": 137,
+    "celulas_sem_resposta": 135,
     "as_duas": 7,
     "medido_em": "2026-09-13"
   },

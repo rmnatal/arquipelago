@@ -1069,6 +1069,176 @@ if ( null !== $item_origem_nova ) {
 	rbm_ok( false, 'ha peca derivada para produzir o mundo da origem desconhecida' );
 }
 
+
+echo "\n16. Quem diverge decide a frase, e o numero sai contado (secao 8; 13/09/2026)\n";
+
+/* A CAUDA DE DIVERGENCIA ERA UMA FRASE FIXA — "Dois canais do fabricante
+   discordam" — e era verdadeira por ACIDENTE do banco: todas as divergencias de
+   peca vinham de canal de fabricante. O primeiro registro cujos canais
+   divergentes eram marketplace e varejista fez a frase emprestar a autoridade do
+   FABRICANTE a quem so revende, e o titulo do bloco repetia o mesmo erro na linha
+   mais lida dele.
+
+   ESTA SECAO PRODUZ O MUNDO, e tem de produzir: o banco de hoje tem registro do
+   lado "terceiro" e registro do lado "fabricante", e NENHUM misto. Afirmacao que
+   so consegue ser exercitada pelo banco de hoje e afirmacao que o banco de amanha
+   desliga — a cicatriz que a trava do reservatorio deixou em 13/09. Os tres lados
+   sao montados aqui, em memoria, e nenhum arquivo do banco e tocado. */
+
+$mapa_div = isset( $dados['divergencias'] ) ? $dados['divergencias'] : array();
+rbm_ok( count( $mapa_div ) > 0, 'ha divergencia no banco para esta secao medir',
+	count( $mapa_div ) . ' peca(s)' );
+
+/* -- o mundo real, peca a peca ------------------------------------------- */
+$vistos = array( 'fabricante' => 0, 'terceiro' => 0, 'misto' => 0 );
+foreach ( $mapa_div as $pid => $lista ) {
+	$lado = robometria_r1_lado_da_divergencia( $lista );
+	$vistos[ $lado ]++;
+	$frase = rbm_sem_acento( robometria_r1_frase_da_divergencia( $pid ) );
+
+	/* O NUMERO E CONTADO, NUNCA DIGITADO: o teste conta os canais do arquivo e
+	   exige a palavra correspondente na frase. */
+	$extenso = array( 1 => 'Um', 2 => 'Dois', 3 => 'Tres', 4 => 'Quatro', 5 => 'Cinco',
+		6 => 'Seis', 7 => 'Sete', 8 => 'Oito', 9 => 'Nove', 10 => 'Dez' );
+	$n = count( $lista );
+	$esperado = isset( $extenso[ $n ] ) ? $extenso[ $n ] : (string) $n;
+	rbm_ok( 0 === strpos( $frase, $esperado . ' ' ),
+		'a frase de ' . $pid . ' abre com o numero CONTADO de canais', $esperado . ' (' . $n . ')' );
+
+	/* E A NATUREZA SO PODE SER DITA QUANDO TODOS OS CANAIS A SUSTENTAM. */
+	if ( 'fabricante' === $lado ) {
+		rbm_ok( false !== strpos( $frase, 'do fabricante declara' ),
+			'divergencia so de canal do fabricante atribui ao fabricante: ' . $pid );
+		rbm_ok( false === strpos( $frase, 'de fora do fabricante' ),
+			'e nao chama de terceiro quem fala pela marca: ' . $pid );
+	} else {
+		rbm_ok( false !== strpos( $frase, 'de fora do fabricante' ),
+			'divergencia de revendedor NAO e atribuida ao fabricante: ' . $pid );
+		rbm_ok( false === strpos( $frase, 'canais do fabricante declaram' )
+			&& false === strpos( $frase, 'canal do fabricante declara' ),
+			'e a frase nao empresta a autoridade do fabricante a quem revende: ' . $pid );
+	}
+}
+
+/* -- o mundo PRODUZIDO: os tres lados, um por um ------------------------- */
+$mundos = array(
+	'fabricante' => array(
+		array( 'canal' => 'canal-a', 'fala_pela_marca' => true,  'conjunto' => array( 'X1' ), 'verificado_em' => '2026-09-13' ),
+		array( 'canal' => 'canal-b', 'fala_pela_marca' => true,  'conjunto' => array( 'X2' ), 'verificado_em' => '2026-09-13' ),
+	),
+	'terceiro'   => array(
+		array( 'canal' => 'canal-a', 'fala_pela_marca' => false, 'conjunto' => array( 'X1' ), 'verificado_em' => '2026-09-13' ),
+		array( 'canal' => 'canal-b', 'fala_pela_marca' => false, 'conjunto' => array( 'X2' ), 'verificado_em' => '2026-09-13' ),
+	),
+	'misto'      => array(
+		array( 'canal' => 'canal-a', 'fala_pela_marca' => true,  'conjunto' => array( 'X1' ), 'verificado_em' => '2026-09-13' ),
+		array( 'canal' => 'canal-b', 'fala_pela_marca' => false, 'conjunto' => array( 'X2' ), 'verificado_em' => '2026-09-13' ),
+	),
+);
+foreach ( $mundos as $lado_esperado => $lista ) {
+	rbm_ok( robometria_r1_lado_da_divergencia( $lista ) === $lado_esperado,
+		'o lado ' . $lado_esperado . ' e LIDO do degrau de cada canal, nao do nome dele' );
+}
+
+/* E O MISTO NAO PODE SAIR COM AS PALAVRAS DE NENHUM DOS DOIS PUROS. Sem esta
+   afirmacao o ramo do meio poderia atribuir ao fabricante o que metade dos canais
+   nao sustenta — ramo defensivo nao medido e ramo que pode mentir a vontade. */
+$frase_mista = rbm_sem_acento( robometria_r1_frase_da_divergencia( '__mundo__', $mundos['misto'] ) );
+rbm_ok( false === strpos( $frase_mista, 'do fabricante declaram' )
+	&& false !== strpos( $frase_mista, 'parte deles esta fora do fabricante' ),
+	'lado misto nao atribui ao fabricante, e diz que parte dos canais esta fora dele' );
+
+/* -- o TITULO do bloco segue o mesmo degrau ------------------------------- */
+/* Ele dizia "O que os canais do fabricante discordam sobre X" para qualquer
+   divergencia. Titulo e a linha mais lida do bloco: errar ali e pior que errar na
+   cauda da frase. */
+foreach ( $mapa_div as $pid => $lista ) {
+	$item = null;
+	foreach ( $dados['respostas'] as $r ) {
+		foreach ( array( 'fabricante', 'terceiro' ) as $g ) {
+			foreach ( $r[ $g ] as $it ) {
+				if ( $it['peca'] === $pid && null === $item ) {
+					$item = $it;
+				}
+			}
+		}
+	}
+	if ( null === $item ) {
+		continue;
+	}
+	$html = rbm_sem_acento( robometria_r1_divergencias( array( $item ) ) );
+	$lado = robometria_r1_lado_da_divergencia( $lista );
+	if ( 'fabricante' === $lado ) {
+		rbm_ok( false !== strpos( $html, 'canais do fabricante discordam sobre' ),
+			'o titulo do bloco de ' . $pid . ' nomeia o fabricante quando so ele diverge' );
+	} else {
+		rbm_ok( false !== strpos( $html, 'canais de fora do fabricante declaram sobre' )
+			&& false === strpos( $html, 'canais do fabricante discordam sobre' ),
+			'o titulo do bloco de ' . $pid . ' NAO nomeia o fabricante quando quem diverge revende' );
+	}
+}
+
+/* -- a fronteira mora no ESQUEMA, e regua que a perde tem de gritar -------- */
+$esq = json_decode( file_get_contents( $raiz . '/dados/esquema-banco.json' ), true );
+$sem_lado = array();
+foreach ( $esq['escada_de_fontes']['niveis'] as $deg ) {
+	if ( ! array_key_exists( 'fala_pela_marca', $deg ) || ! is_bool( $deg['fala_pela_marca'] ) ) {
+		$sem_lado[] = $deg['nivel'];
+	}
+}
+rbm_ok( empty( $sem_lado ),
+	'todo degrau da escada declara de que lado da fronteira esta (fala_pela_marca)',
+	count( $esq['escada_de_fontes']['niveis'] ) . ' degrau(s)' );
+
+/* A FRONTEIRA TEM DE SER CONFERIDA POR UMA REGUA QUE NAO SEJA ELA MESMA, e esta
+   afirmacao nasceu de uma MUTACAO QUE PASSOU. Tudo acima nesta secao deriva o
+   lado do proprio `fala_pela_marca` do esquema — o gerador tambem, e o snippet
+   tambem. Entao mover a fronteira no esquema deixa as tres metades erram do
+   dentro da mesma mentira e a bancada inteira continua verde: e o mesmo defeito
+   do `>` trocado por `>=` que a R2 pagou em 11/09/2026.
+
+   A saida e a mesma de la: a regua da FRONTEIRA se escreve A MAO, aqui, e o
+   esquema e conferido contra ela. Quem mexer no esquema com razao mexe aqui
+   tambem, e isso e uma decisao com duas assinaturas em vez de uma. O criterio,
+   dito por extenso para nao virar tabela sem porque: fala pela marca quem E a
+   marca (o manual dela, a pagina dela, a loja oficial dela) ou quem mediu por
+   conta propria; quem revende o produto de outro fala SOBRE a marca. */
+$fronteira_a_mao = array(
+	'medicao-propria'        => true,
+	'manual-fabricante'      => true,
+	'fabricante-via-busca'   => true,
+	'varejo-oficial-da-marca' => true,
+	'varejo-especializado'   => false,
+	'marketplace-anuncio'    => false,
+	'editorial'              => false,
+);
+$divergiu = array();
+foreach ( $esq['escada_de_fontes']['niveis'] as $deg ) {
+	if ( ! array_key_exists( $deg['origem'], $fronteira_a_mao ) ) {
+		$divergiu[] = $deg['origem'] . ' (degrau novo, sem lado escrito no teste)';
+	} elseif ( $fronteira_a_mao[ $deg['origem'] ] !== $deg['fala_pela_marca'] ) {
+		$divergiu[] = $deg['origem'];
+	}
+}
+rbm_ok( empty( $divergiu ),
+	'a fronteira do esquema bate com a escrita A MAO neste teste',
+	empty( $divergiu ) ? count( $fronteira_a_mao ) . ' origem(ns)' : implode( ', ', $divergiu ) );
+
+/* E O BANCO DECLARA A ORIGEM DE CADA DIVERGENCIA. Sem ela o gerador nao tem o que
+   carregar e o snippet volta a adivinhar pelo nome do canal. */
+$div_sem_origem = 0;
+$div_total      = 0;
+foreach ( $pecas_b['registros'] as $reg ) {
+	foreach ( ( isset( $reg['divergencias'] ) ? $reg['divergencias'] : array() ) as $dv ) {
+		$div_total++;
+		if ( empty( $dv['origem'] ) ) {
+			$div_sem_origem++;
+		}
+	}
+}
+rbm_ok( 0 === $div_sem_origem && $div_total > 0,
+	'toda divergencia de peca do banco declara a origem do canal', $div_total . ' divergencia(s)' );
+
 /* ---------------------------------------------------------------------------
  * Fecho
  * ------------------------------------------------------------------------- */

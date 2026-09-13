@@ -185,6 +185,78 @@ RESSALVA_DA_FUNCAO = {
 }
 
 
+# QUEM DIVERGE MUDA A FRASE, E A FRASE NAO PODE DIGITAR NEM O NUMERO NEM A
+# NATUREZA (13/09/2026). Ate esta data a cauda de divergencia era uma frase fixa:
+# "Dois canais do fabricante discordam". Ela era verdadeira por acidente do banco —
+# as sete divergencias de peca existentes vinham todas de canal de fabricante. O
+# primeiro registro cujos canais divergentes eram marketplace e varejista (o
+# recipiente FW008543 da WAP) fez a frase emprestar a autoridade do FABRICANTE a
+# quem so revende, que e o defeito exato que esta ilha existe para nao cometer. E
+# "Dois" e a cicatriz do numero de tela digitado, ja paga duas vezes nesta ilha.
+#
+# A fronteira entre "fala pela marca" e "fala sobre a marca" mora no ESQUEMA, no
+# proprio degrau da escada (fala_pela_marca), pelo mesmo motivo que a lista de
+# tipos saiu de dentro da regua da funcao: lista dentro da regua envelhece calada.
+FALA_PELA_MARCA = {n["origem"]: n["fala_pela_marca"]
+                   for n in esquema["escada_de_fontes"]["niveis"]}
+
+POR_EXTENSO = {1: "Um", 2: "Dois", 3: "Tres", 4: "Quatro", 5: "Cinco",
+               6: "Seis", 7: "Sete", 8: "Oito", 9: "Nove", 10: "Dez"}
+
+
+def numeral(n):
+    """O numero da frase sai CONTADO e por extenso; acima de dez, em algarismo."""
+    return POR_EXTENSO.get(n, str(n))
+
+
+def lado_da_divergencia(divergencias):
+    """'fabricante', 'terceiro' ou 'misto' — lido do degrau de cada canal."""
+    lados = set()
+    for d in divergencias:
+        if d["origem"] not in FALA_PELA_MARCA:
+            raise SystemExit(
+                "PARE: divergencia com origem %r fora da escada_de_fontes. A frase "
+                "da tela nao tem como saber se quem diverge fala pela marca."
+                % d["origem"])
+        lados.add("fabricante" if FALA_PELA_MARCA[d["origem"]] else "terceiro")
+    return lados.pop() if len(lados) == 1 else "misto"
+
+
+def frase_da_divergencia(divergencias):
+    """A cauda de divergencia, com o numero contado e a natureza lida do degrau.
+
+    As duas metades sao afirmacoes diferentes e nao podem sair com as mesmas
+    palavras: o fabricante que discorda de si mesmo e uma coisa, e um terceiro que
+    afirma alem do que o fabricante declarou e outra. So a primeira justifica dizer
+    'canais do fabricante'."""
+    n = len(divergencias)
+    lado = lado_da_divergencia(divergencias)
+    # +1: a declaracao desta pagina tambem esta publicada e datada.
+    total = numeral(n + 1).lower()
+    canal = "canal" if n == 1 else "canais"
+    declara = "declara" if n == 1 else "declaram"
+    if lado == "fabricante":
+        return (
+            "%s %s do fabricante %s alcance diferente para esta peca: vale o "
+            "conjunto MAIS ESTREITO, e as %s declaracoes estao publicadas com as "
+            "suas datas."
+            % (numeral(n), canal, declara, total)
+        )
+    if lado == "terceiro":
+        return (
+            "%s %s de fora do fabricante %s para esta peca um alcance que o "
+            "fabricante nao declara: quem decide aqui e o fabricante, e as %s "
+            "declaracoes estao publicadas com o nome de cada canal e a sua data."
+            % (numeral(n), canal, declara, total)
+        )
+    return (
+        "%s canais declaram alcances diferentes para esta peca, e parte deles esta "
+        "fora do fabricante: vale o conjunto MAIS ESTREITO, e as %s declaracoes "
+        "estao publicadas com o nome de cada canal e a sua data."
+        % (numeral(n), total)
+    )
+
+
 def atribuicao_da_funcao(peca):
     """Quem nomeou a funcao desta peca: 'titulo', 'contraste-no-catalogo' ou
     'canal-de-manutencao'. None quando o tipo nao exige a declaracao (filtro, mop,
@@ -341,11 +413,7 @@ def frase_declarada(peca, par, modelo, dentro_do_kit=None, existe_avulso=False):
         )
 
     if peca.get("divergencias"):
-        frase += (
-            " Dois canais do fabricante discordam sobre o alcance desta peca: vale o "
-            "conjunto MAIS ESTREITO, e as duas declaracoes estao publicadas com as "
-            "suas datas."
-        )
+        frase += " " + frase_da_divergencia(peca["divergencias"])
     if par.get("variante_de_hardware"):
         frase += " Vale para a versao %s deste modelo." % par["variante_de_hardware"]
     return frase

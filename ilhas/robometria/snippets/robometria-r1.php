@@ -1,5 +1,13 @@
 /**
  * Robometria R1 — Qual peça serve no meu robô aspirador
+ * Versão: 1.4.0 (13/09/2026) — QUEM DIVERGE DECIDE A FRASE. A cauda da
+ * divergência era fixa ("Dois canais do fabricante discordam") e o título do
+ * bloco dizia o mesmo; as duas eram verdadeiras por acidente do banco, porque
+ * toda divergência de peça vinha de canal de fabricante. Com o primeiro registro
+ * cujos canais divergentes são marketplace e varejista, elas passaram a emprestar
+ * a autoridade do FABRICANTE a quem só revende. Agora o número sai contado e o
+ * lado é lido do degrau que cada divergência declara (fala_pela_marca, no
+ * esquema). Nenhuma URL mudou.
  * Versão: 1.3.0 (13/09/2026) — a frase devolve a função a quem a leu (seção 26.3
  * do ARQUIPELAGO.md). "A WAP declara a escova lateral 'Escova Direita ...'"
  * estava no ar em cinco peças e a WAP nunca usou a palavra "lateral": ela batiza
@@ -403,6 +411,102 @@ function robometria_r1_funcao_derivada( $item ) {
 }
 
 /**
+ * De que lado da fronteira estão os canais que discordam desta peça:
+ * 'fabricante', 'terceiro' ou 'misto'.
+ *
+ * O lado é LIDO do degrau que cada divergência declara (fala_pela_marca, escrito
+ * no esquema e carregado pelo gerador), nunca deduzido do nome do canal — deduzir
+ * do nome seria a heurística por vizinhança que a seção 8 do contrato proíbe.
+ */
+if ( ! function_exists( 'robometria_r1_lado_da_divergencia' ) ) {
+function robometria_r1_lado_da_divergencia( $lista ) {
+	$lados = array();
+	foreach ( (array) $lista as $dv ) {
+		$lados[ ! empty( $dv['fala_pela_marca'] ) ? 'fabricante' : 'terceiro' ] = true;
+	}
+	if ( 1 === count( $lados ) ) {
+		return key( $lados );
+	}
+	return 'misto';
+}
+}
+
+/**
+ * A cauda de divergência da frase, com o número CONTADO e a natureza lida do degrau.
+ *
+ * Até 13/09/2026 esta cauda era uma frase fixa — "Dois canais do fabricante
+ * discordam" — e ela era verdadeira por acidente do banco: todas as divergências
+ * de peça vinham de canal de fabricante. O primeiro registro cujos canais
+ * divergentes eram marketplace e varejista fez a frase emprestar a autoridade do
+ * FABRICANTE a quem só revende. São duas afirmações diferentes e elas não podem
+ * sair com as mesmas palavras.
+ */
+if ( ! function_exists( 'robometria_r1_frase_da_divergencia' ) ) {
+function robometria_r1_frase_da_divergencia( $peca_id, $lista = null ) {
+	/* A LISTA ENTRA PELO ARGUMENTO quando quem chama ja a tem. Não é conveniência:
+	   é o que permite à bancada PRODUZIR o mundo misto, que o banco de hoje não
+	   tem — e afirmação que só o banco de hoje consegue exercitar é afirmação que
+	   o banco de amanhã desliga. Sem argumento, a lista sai dos dados servidos. */
+	if ( null === $lista ) {
+		$d    = robometria_r1_dados();
+		$mapa = isset( $d['divergencias'] ) ? $d['divergencias'] : array();
+		$lista = isset( $mapa[ $peca_id ] ) ? $mapa[ $peca_id ] : array();
+	}
+	if ( empty( $lista ) ) {
+		return '';
+	}
+	$n     = count( $lista );
+	$lado  = robometria_r1_lado_da_divergencia( $lista );
+	/* +1: a declaração desta página também está publicada e datada. */
+	$total   = robometria_r1_strtolower( robometria_r1_numeral( $n + 1 ) );
+	$canal   = ( 1 === $n ) ? 'canal' : 'canais';
+	$declara = ( 1 === $n ) ? 'declara' : 'declaram';
+
+	if ( 'fabricante' === $lado ) {
+		return sprintf(
+			'%1$s %2$s do fabricante %3$s alcance diferente para esta peça: vale o conjunto MAIS ESTREITO, e as %4$s declarações estão publicadas com as suas datas.',
+			robometria_r1_numeral( $n ), $canal, $declara, $total
+		);
+	}
+	if ( 'terceiro' === $lado ) {
+		return sprintf(
+			'%1$s %2$s de fora do fabricante %3$s para esta peça um alcance que o fabricante não declara: quem decide aqui é o fabricante, e as %4$s declarações estão publicadas com o nome de cada canal e a sua data.',
+			robometria_r1_numeral( $n ), $canal, $declara, $total
+		);
+	}
+	return sprintf(
+		'%1$s canais declaram alcances diferentes para esta peça, e parte deles está fora do fabricante: vale o conjunto MAIS ESTREITO, e as %2$s declarações estão publicadas com o nome de cada canal e a sua data.',
+		robometria_r1_numeral( $n ), $total
+	);
+}
+}
+
+/**
+ * O número da frase sai contado e por extenso; acima de dez, em algarismo.
+ */
+if ( ! function_exists( 'robometria_r1_numeral' ) ) {
+function robometria_r1_numeral( $n ) {
+	$mapa = array( 1 => 'Um', 2 => 'Dois', 3 => 'Três', 4 => 'Quatro', 5 => 'Cinco',
+		6 => 'Seis', 7 => 'Sete', 8 => 'Oito', 9 => 'Nove', 10 => 'Dez' );
+	return isset( $mapa[ $n ] ) ? $mapa[ $n ] : (string) $n;
+}
+}
+
+/**
+ * Minúscula que não estraga acento — mb_strtolower quando existe, e a tabela das
+ * iniciais que esta função de fato encontra quando não existe.
+ */
+if ( ! function_exists( 'robometria_r1_strtolower' ) ) {
+function robometria_r1_strtolower( $texto ) {
+	if ( function_exists( 'mb_strtolower' ) ) {
+		return mb_strtolower( $texto, 'UTF-8' );
+	}
+	return strtr( $texto, array( 'T' => 't', 'U' => 'u', 'D' => 'd', 'Q' => 'q',
+		'C' => 'c', 'S' => 's', 'O' => 'o', 'N' => 'n' ) );
+}
+}
+
+/**
  * A ressalva que devolve a função a quem a leu. Vazia quando a função veio do
  * título — ali o fabricante escreveu a palavra, e a frase pode atribuí-la a ele.
  *
@@ -505,7 +609,7 @@ function robometria_r1_frase( $item ) {
 		$frase .= ' Este fabricante não publica código de peça nesta página: identifique o item pelo título e pela lista de modelos.';
 	}
 	if ( ! empty( $item['divergencia'] ) ) {
-		$frase .= ' Dois canais do fabricante discordam sobre o alcance desta peça: vale o conjunto MAIS ESTREITO, e as duas declarações estão publicadas com as suas datas.';
+		$frase .= ' ' . robometria_r1_frase_da_divergencia( $item['peca'] );
 	}
 	if ( ! empty( $item['variante_do_par'] ) ) {
 		$frase .= sprintf( ' Vale para a versão %s deste modelo.', $item['variante_do_par'] );
@@ -797,9 +901,23 @@ function robometria_r1_divergencias( $itens ) {
 		$vistas[ $i['peca'] ] = true;
 
 		list( $identificacao ) = robometria_r1_identificacao( $i );
-		$html .= '<div class="rbm-secao"><h3>O que os canais do fabricante discordam sobre '
-			. esc_html( $identificacao ) . '</h3>';
-		$html .= '<p>Vale o conjunto mais estreito. Errar para o lado largo faria você comprar uma peça que não encaixa — e é essa assimetria, não a média, que decide a direção.</p>';
+		/* O TÍTULO DO BLOCO SEGUE O MESMO DEGRAU DA FRASE. Ele dizia "os canais do
+		   fabricante" para qualquer divergência, e num registro cujos canais
+		   divergentes são marketplace e varejista isso é atribuir ao fabricante o
+		   que ele não disse — no título, que é a linha mais lida do bloco. */
+		$lado = robometria_r1_lado_da_divergencia( $mapa[ $i['peca'] ] );
+		if ( 'fabricante' === $lado ) {
+			$titulo = 'O que os canais do fabricante discordam sobre ';
+			$regra  = 'Vale o conjunto mais estreito. Errar para o lado largo faria você comprar uma peça que não encaixa — e é essa assimetria, não a média, que decide a direção.';
+		} elseif ( 'terceiro' === $lado ) {
+			$titulo = 'O que canais de fora do fabricante declaram sobre ';
+			$regra  = 'Nenhuma destas declarações é do fabricante: quem decide aqui é ele, e o que vale nesta página é o conjunto que ele declarou. Elas estão publicadas porque a regra do conjunto mais estreito só é verificável por quem enxerga o que foi descartado — errar para o lado largo faria você comprar uma peça que não encaixa.';
+		} else {
+			$titulo = 'O que os canais declaram sobre ';
+			$regra  = 'Vale o conjunto mais estreito, e parte destas declarações não é do fabricante. Errar para o lado largo faria você comprar uma peça que não encaixa — e é essa assimetria, não a média, que decide a direção.';
+		}
+		$html .= '<div class="rbm-secao"><h3>' . esc_html( $titulo . $identificacao ) . '</h3>';
+		$html .= '<p>' . esc_html( $regra ) . '</p>';
 		$html .= '<div class="rbm-tabela"><table class="rbm-quadro"><thead><tr><th>Canal</th><th>Modelos que ele declara</th><th>Verificado em</th></tr></thead><tbody>';
 		foreach ( $mapa[ $i['peca'] ] as $dv ) {
 			$html .= '<tr>';

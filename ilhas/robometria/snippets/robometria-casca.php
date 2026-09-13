@@ -1,5 +1,9 @@
 /**
  * Robometria Casca — identidade e estrutura do site
+ * Versão: 1.5.1 (13/09/2026) — a frase de método do rodapé descrevia só a
+ * metade que o banco tinha no dia em que foi escrita ("quando dois canais do
+ * MESMO FABRICANTE discordam"). Divergência de revendedor é outra coisa, e nela
+ * quem decide é o fabricante. A metodologia perdeu a contagem digitada de casos.
  * Versão: 1.5.0 (12/09/2026) — A ILHA PASSA A SER MEDIDA (despacho da Fundação
  *   de 12/09/2026). A propriedade GA4 desta ilha existe desde hoje e a tag nunca
  *   esteve no ar: sem ela, a seção 5 do ARQUIPELAGO.md — visibilidade em IA —
@@ -477,7 +481,13 @@ function robometria_casca_rodape_html() {
 
 	$html  = '<footer class="rbm-rodape"><div class="rbm-rodape-interno">';
 	$html .= '<p class="rbm-tagline">' . esc_html( ROBOMETRIA_CASCA_TAGLINE ) . '</p>';
-	$html .= '<p>Compatibilidade aqui não se deduz: cada par peça × modelo carrega quem declarou, onde declarou e em que data foi verificado. Quando dois canais do mesmo fabricante discordam, a Robometria publica as duas declarações e vale o conjunto mais estreito — errar para o lado largo faz alguém comprar peça que não encaixa. Onde o fabricante não declara, a página diz isso com todas as letras.</p>';
+	/* A FRASE DO RODAPÉ DESCREVE O MÉTODO INTEIRO E VAI EM TODA PÁGINA, então ela
+	   não pode descrever só a metade que o banco tinha no dia em que foi escrita.
+	   Até 13/09/2026 ela dizia "quando dois canais do MESMO FABRICANTE discordam",
+	   e era verdade por acidente: todas as divergências do banco eram desse tipo.
+	   Divergência de varejista ou de marketplace é outra coisa, e quem decide ali
+	   é o fabricante — não o conjunto mais estreito entre iguais. */
+	$html .= '<p>Compatibilidade aqui não se deduz: cada par peça × modelo carrega quem declarou, onde declarou e em que data foi verificado. Quando canais discordam, a Robometria publica todas as declarações com as suas datas: entre canais do mesmo fabricante vale o conjunto mais estreito, e quando quem diverge é um revendedor, vale o que o fabricante declarou — errar para o lado largo faz alguém comprar peça que não encaixa. Onde o fabricante não declara, a página diz isso com todas as letras.</p>';
 	/* 'ferramentas' entrou aqui quando o menu do topo passou a apontar direto para
 	   as duas ferramentas (v1.2.0): o hub perdeu o link do menu e ficaria com um
 	   só, o do corpo da home. Seção 16.4-f: nenhuma URL do sitemap com menos de
@@ -2274,9 +2284,12 @@ add_shortcode( 'robometria_metodologia', function () {
 
 	$html .= '<div class="rbm-secao"><h2>2. Quando as fontes discordam, vale o conjunto mais estreito</h2>';
 	$html .= '<p>Duas fontes boas discordando é rotina. A saída proibida é a média, porque ela esconde justamente o desacordo que faz a informação valer. A Robometria publica as duas declarações com as duas datas e resolve para o lado em que <strong>errar dói menos</strong> — e aqui esse lado é sempre o mais estreito, porque errar para o lado largo faz alguém comprar uma peça que não encaixa.</p>';
-	$html .= '<p>Dois casos reais do nosso banco:</p>';
+	/* SEM CONTAGEM NO TEXTO: "dois casos reais" era um número digitado numa frase,
+	   e ele ficou falso no dia em que o terceiro caso entrou no banco. */
+	$html .= '<p>Casos reais do nosso banco:</p>';
 	$html .= '<ul class="rbm-lista">';
 	$html .= '<li>Um mesmo código de filtro é anunciado por dois canais do mesmo fabricante com listas de modelos diferentes. Vale a lista menor; a outra fica registrada como divergência, visível na página.</li>';
+	$html .= '<li>Um recipiente de pó é publicado pela loja oficial da marca para uma lista de modelos, e revendedores anunciam o mesmo código para listas maiores — discordando inclusive entre si, na mesma loja. Quem decide é o fabricante: vale a lista dele. Os anúncios ficam na página, com o nome de cada canal, porque a regra só é verificável por quem enxerga o que foi descartado.</li>';
 	$html .= '<li>Um modelo de robô é declarado com <span class="rbm-num">1600</span> Pa na ficha técnica e <span class="rbm-num">2000</span> Pa no texto de venda da <strong>mesma página</strong>. Vale 1600: publicar 2000 faria alguém comprar, por recomendação nossa, um robô mais fraco do que esperava.</li>';
 	$html .= '</ul>';
 	$html .= '<p>A mesma regra vale para faixa e tolerância declaradas. Quando o fabricante escreve "de 5 a 6 horas" ou "130 minutos ±10 %", guardamos a faixa inteira e resolvemos por campo: sucção e autonomia para baixo, tempo de recarga para cima.</p></div>';

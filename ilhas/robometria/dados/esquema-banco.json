@@ -38,6 +38,7 @@
    {
     "nivel": 1,
     "origem": "medicao-propria",
+    "fala_pela_marca": true,
     "na_tela": {
      "rotulo": "medição da Robometria",
      "ressalva": null,
@@ -49,6 +50,7 @@
    {
     "nivel": 2,
     "origem": "manual-fabricante",
+    "fala_pela_marca": true,
     "na_tela": {
      "rotulo": "manual do fabricante",
      "ressalva": null,
@@ -61,6 +63,7 @@
    {
     "nivel": 3,
     "origem": "fabricante-via-busca",
+    "fala_pela_marca": true,
     "na_tela": {
      "rotulo": "página do fabricante",
      "ressalva": "a confirmar no manual",
@@ -73,6 +76,7 @@
    {
     "nivel": 4,
     "origem": "varejo-oficial-da-marca",
+    "fala_pela_marca": true,
     "na_tela": {
      "rotulo": "loja oficial da marca",
      "ressalva": "confira a embalagem",
@@ -84,6 +88,7 @@
    {
     "nivel": 5,
     "origem": "varejo-especializado",
+    "fala_pela_marca": false,
     "na_tela": {
      "rotulo": "varejista especializado",
      "ressalva": "confira a embalagem",
@@ -95,6 +100,7 @@
    {
     "nivel": 6,
     "origem": "marketplace-anuncio",
+    "fala_pela_marca": false,
     "na_tela": {
      "rotulo": "anúncio de marketplace",
      "ressalva": "anúncio não é especificação",
@@ -107,6 +113,7 @@
    {
     "nivel": 7,
     "origem": "editorial",
+    "fala_pela_marca": false,
     "na_tela": {
      "rotulo": "publicação editorial",
      "ressalva": "é recomendação publicada, não especificação",
@@ -150,7 +157,8 @@
     "quem_declara": "a atribuicao usada DENTRO da frase do cartao, depois de 'declarados'. Ela existe porque o nivel e o elo mais fraco e a AUTORIA e outro elo: nivel 3 continua sendo 'pelo fabricante' (a autoria e dele) e leva a ressalva; nivel 4 e 'pela loja oficial da marca', porque quem transcreveu foi a loja. Escrever 'pelo fabricante' para os dois seria emprestar a autoridade do fabricante a quem so transcreveu."
    },
    "quem_cobra": "ferramentas/validar-banco.py (todo degrau declara os tres campos, e a ressalva e nula exatamente nos niveis 1 e 2) e ferramentas/teste-r2.php, que le ESTE arquivo como regua propria e confere o que o cartao serve."
-  }
+  },
+  "por_que_fala_pela_marca_existe": "A tela precisa dizer DUAS coisas diferentes com palavras diferentes: o fabricante que discorda de si mesmo (dois canais dele declarando conjuntos diferentes) e um terceiro que afirma alem do que o fabricante declarou. Ate 13/09/2026 a frase da R1 chamava as duas de 'canais do fabricante', porque toda divergencia do banco era do primeiro tipo. A fronteira mora AQUI, no degrau, e nao dentro da regua nem dentro da frase: degrau novo declara de que lado esta, e nenhuma linha de codigo muda. A loja oficial da marca fica do lado de dentro porque e a propria marca vendendo; o varejista especializado e o anuncio de marketplace ficam de fora porque revendem."
  },
  "vocabularios": {
   "categoria": [
@@ -433,7 +441,16 @@
     "divergencias": {
      "tipo": "lista",
      "obrigatorio": true,
-     "descricao": "lista vazia e afirmacao: 'nao encontramos declaracao divergente'. Cada item {canal, conjunto_declarado, titulo_na_fonte, url, verificado_em}"
+     "descricao": "lista vazia e afirmacao: 'nao encontramos declaracao divergente'. Cada item {canal, origem, conjunto_declarado, titulo_na_fonte, url, verificado_em}",
+     "item": {
+      "canal": "o nome do canal como ele vai para a tela",
+      "origem": "vocabulario escada_de_fontes.origem. OBRIGATORIO. E o que decide a FRASE da R1: divergencia de canal do fabricante e desacordo do fabricante consigo mesmo; divergencia de varejista ou de marketplace e terceiro afirmando alem do que o fabricante declarou, e a pagina nao pode chamar as duas coisas pelo mesmo nome",
+      "conjunto_declarado": "os modelos que ESTE canal declara",
+      "titulo_na_fonte": "o titulo publicado, literal",
+      "url": "o endereco",
+      "verificado_em": "a data"
+     },
+     "por_que_a_origem_e_obrigatoria": "Ate 13/09/2026 a frase da R1 dizia, digitada, 'Dois canais do FABRICANTE discordam' — e ela era verdadeira por acidente do banco: as oito divergencias de peca existentes vinham todas de canal de fabricante. O primeiro registro cujos canais divergentes eram marketplace e varejista fez a frase emprestar a autoridade do fabricante a quem so revende, que e o defeito exato que esta ilha existe para nao cometer. Numero digitado ('Dois') e natureza digitada ('do fabricante') sao a mesma cicatriz: quem escreve estado de hoje dentro de uma frase assina um cheque contra o banco de amanha."
     },
     "resolucao": {
      "tipo": "texto",

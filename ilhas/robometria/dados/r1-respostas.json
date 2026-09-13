@@ -231,7 +231,7 @@
       "marca": "wap",
       "codigo": "W100",
       "linha": null,
-      "responde": false,
+      "responde": true,
       "so_kit": false
     },
     {
@@ -279,7 +279,7 @@
       "marca": "wap",
       "codigo": "W90",
       "linha": null,
-      "responde": false,
+      "responde": true,
       "so_kit": false
     },
     {
@@ -2140,7 +2140,38 @@
     },
     "wap-w100": {
       "aviso_de_variante": null,
-      "fabricante": [],
+      "fabricante": [
+        {
+          "tipo": "reservatorio",
+          "peca": "wap-fw008543",
+          "codigo": "FW008543",
+          "nome_na_fonte": "Kit Recipiente de Pó Para Robôs Aspiradores de Pó WAP Robot W100 e WAP Robot W90",
+          "tipo_da_peca": "reservatorio",
+          "funcao_declarada_por": null,
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "WAP (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.wap.ind.br/kit-recipiente-de-po-para-robos-aspiradores-de-po-wap-robot-w100-e-wap-robot-w90/p",
+          "verificado_em": "2026-09-13",
+          "declarados": [
+            "WAP Robot W100",
+            "WAP Robot W90"
+          ],
+          "divergencia": true,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        }
+      ],
       "terceiro": [],
       "kits_sem_composicao": []
     },
@@ -2264,7 +2295,38 @@
     },
     "wap-w90": {
       "aviso_de_variante": null,
-      "fabricante": [],
+      "fabricante": [
+        {
+          "tipo": "reservatorio",
+          "peca": "wap-fw008543",
+          "codigo": "FW008543",
+          "nome_na_fonte": "Kit Recipiente de Pó Para Robôs Aspiradores de Pó WAP Robot W100 e WAP Robot W90",
+          "tipo_da_peca": "reservatorio",
+          "funcao_declarada_por": null,
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "WAP (loja oficial)",
+          "origem": "varejo-oficial-da-marca",
+          "nivel_da_fonte": 4,
+          "url": "https://loja.wap.ind.br/kit-recipiente-de-po-para-robos-aspiradores-de-po-wap-robot-w100-e-wap-robot-w90/p",
+          "verificado_em": "2026-09-13",
+          "declarados": [
+            "WAP Robot W100",
+            "WAP Robot W90"
+          ],
+          "divergencia": true,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        }
+      ],
       "terceiro": [],
       "kits_sem_composicao": []
     },
@@ -2798,6 +2860,8 @@
     "multi-pr10205": [
       {
         "canal": "multilaser.com.br (varejo)",
+        "origem": "fabricante-via-busca",
+        "fala_pela_marca": true,
         "conjunto": [
           "HO041"
         ],
@@ -2807,6 +2871,8 @@
       },
       {
         "canal": "multilaserempresas.com.br",
+        "origem": "fabricante-via-busca",
+        "fala_pela_marca": true,
         "conjunto": [
           "HO041",
           "OB010"
@@ -2819,6 +2885,8 @@
     "multi-pr8116": [
       {
         "canal": "multilaserempresas.com.br — título da página",
+        "origem": "fabricante-via-busca",
+        "fala_pela_marca": true,
         "conjunto": [
           "Mars",
           "Moon",
@@ -2830,6 +2898,8 @@
       },
       {
         "canal": "multilaserempresas.com.br — endereço da MESMA página",
+        "origem": "fabricante-via-busca",
+        "fala_pela_marca": true,
         "conjunto": [
           "HO041 versão B"
         ],
@@ -2838,9 +2908,55 @@
         "verificado_em": "2026-09-09"
       }
     ],
+    "wap-fw008543": [
+      {
+        "canal": "americanas.com.br (marketplace)",
+        "origem": "marketplace-anuncio",
+        "fala_pela_marca": false,
+        "conjunto": [
+          "W90",
+          "W95",
+          "W96",
+          "W100",
+          "W100C"
+        ],
+        "titulo_na_fonte": "Reservatório Recipiente Completo para Robô Aspirador wap W90 W95 W96 W100 W100C FW008543",
+        "url": "https://www.americanas.com.br/reservatorio-recipiente-completo-para-robo-aspirador-wap-w90-w95-w96-w100-w100c-fw008543-7504755755/p",
+        "verificado_em": "2026-09-13"
+      },
+      {
+        "canal": "americanas.com.br (marketplace, segundo anúncio do MESMO código)",
+        "origem": "marketplace-anuncio",
+        "fala_pela_marca": false,
+        "conjunto": [
+          "W100",
+          "W100C"
+        ],
+        "titulo_na_fonte": "Kit Recipiente Reservatório com Tampa e Filtro para Robô Aspirador wap W100 e W100C FW008543",
+        "url": "https://www.americanas.com.br/produto/5362648381/kit-recipiente-reservatorio-com-tampa-e-filtro-para-robo-aspirador-wap-w100-e-w100c-fw008543",
+        "verificado_em": "2026-09-13"
+      },
+      {
+        "canal": "soldigital.com.br (varejista)",
+        "origem": "varejo-especializado",
+        "fala_pela_marca": false,
+        "conjunto": [
+          "W100",
+          "W90",
+          "W100C",
+          "W95",
+          "W96"
+        ],
+        "titulo_na_fonte": "Kit Recipiente de Pó completo Para Robôs Aspiradores de Pó WAP Robot W100, Robot W90, Robot W100C, Robot W95 e Robot W96 - FW008543",
+        "url": "https://www.soldigital.com.br/kit-recipiente-de-po-completo-para-robos-aspiradores-de-po-wap-robot-w100-robot-w90-robot-w100c-robot-w95-e-robot-w96-fw008543",
+        "verificado_em": "2026-09-13"
+      }
+    ],
     "xiaomi-b112-ch": [
       {
         "canal": "busca web restrita ao domínio mi.com",
+        "origem": "fabricante-via-busca",
+        "fala_pela_marca": true,
         "conjunto": [
           "E10",
           "E12",
@@ -2855,6 +2971,8 @@
     "xiaomi-e101-tb": [
       {
         "canal": "busca web restrita ao domínio mi.com",
+        "origem": "fabricante-via-busca",
+        "fala_pela_marca": true,
         "conjunto": [
           "S40C",
           "H40",
@@ -2868,6 +2986,8 @@
     "xiaomi-ov81gl-bs": [
       {
         "canal": "busca web restrita ao domínio mi.com",
+        "origem": "fabricante-via-busca",
+        "fala_pela_marca": true,
         "conjunto": [
           "Xiaomi Robot Vacuum 5",
           "5 Pro",
@@ -3494,6 +3614,19 @@
       "verificado_em": "2026-09-09"
     },
     {
+      "modelo": "wap-w100",
+      "modelo_rotulo": "WAP W100",
+      "tipo": "reservatorio",
+      "peca": "wap-fw008543",
+      "codigo": "FW008543",
+      "nome_na_fonte": "Kit Recipiente de Pó Para Robôs Aspiradores de Pó WAP Robot W100 e WAP Robot W90",
+      "dentro_de_kit": false,
+      "divergencia": true,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.wap.ind.br/kit-recipiente-de-po-para-robos-aspiradores-de-po-wap-robot-w100-e-wap-robot-w90/p",
+      "verificado_em": "2026-09-13"
+    },
+    {
       "modelo": "electrolux-erb80",
       "modelo_rotulo": "Electrolux ERB80",
       "tipo": "escova principal",
@@ -3596,6 +3729,19 @@
       "origem": "fabricante-via-busca",
       "url": "https://www.multilaser.com.br/escova-lateral-para-aspirador-robo-ho041-e-ob010/p",
       "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "wap-w90",
+      "modelo_rotulo": "WAP W90",
+      "tipo": "reservatorio",
+      "peca": "wap-fw008543",
+      "codigo": "FW008543",
+      "nome_na_fonte": "Kit Recipiente de Pó Para Robôs Aspiradores de Pó WAP Robot W100 e WAP Robot W90",
+      "dentro_de_kit": false,
+      "divergencia": true,
+      "origem": "varejo-oficial-da-marca",
+      "url": "https://loja.wap.ind.br/kit-recipiente-de-po-para-robos-aspiradores-de-po-wap-robot-w100-e-wap-robot-w90/p",
+      "verificado_em": "2026-09-13"
     },
     {
       "modelo": "electrolux-erb10",
@@ -3810,27 +3956,25 @@
     "multi-ho243",
     "multi-ho411",
     "positivo-pra500",
-    "wap-w100",
     "wap-w1000",
     "wap-w100c",
     "wap-w310",
     "wap-w400",
-    "wap-w90",
     "xiaomi-mop-2",
     "xiaomi-s10"
   ],
   "resumo": {
     "modelos_publicaveis": 33,
-    "modelos_que_respondem": 22,
-    "modelos_com_entrada_vazia": 11,
+    "modelos_que_respondem": 24,
+    "modelos_com_entrada_vazia": 9,
     "celulas": 198,
-    "celulas_sem_resposta": 137,
-    "pares_declarados": 61,
-    "pecas_publicaveis": 31,
+    "celulas_sem_resposta": 135,
+    "pares_declarados": 63,
+    "pecas_publicaveis": 32,
     "marcas": 5,
     "as_duas_ferramentas": 7,
-    "pecas_recomendadas": 31,
-    "pecas_esperando_link": 31,
+    "pecas_recomendadas": 32,
+    "pecas_esperando_link": 32,
     "pecas_com_link": 0
   }
 }

@@ -7,12 +7,12 @@
   "resumo": {
     "marcas": 5,
     "modelos_publicaveis": 33,
-    "pecas_publicaveis": 31,
-    "pares_declarados": 61,
+    "pecas_publicaveis": 32,
+    "pares_declarados": 63,
     "pecas_que_atravessam_marca": 0,
     "celulas_total": 198,
-    "celulas_sem_resposta": 137,
-    "pecas_esperando_link": 31
+    "celulas_sem_resposta": 135,
+    "pecas_esperando_link": 32
   },
   "maior_alcance": {
     "peca": "multi-pr10124",
@@ -297,6 +297,25 @@
       "modelos_publicaveis": 2,
       "marcas_atendidas": [
         "positivo"
+      ],
+      "atravessa_marca": false
+    },
+    {
+      "peca": "wap-fw008543",
+      "tipo": "reservatorio",
+      "marca": "wap",
+      "publicador": "WAP",
+      "identificacao": "FW008543",
+      "sem_codigo_publicado": false,
+      "nome_na_fonte": "Kit Recipiente de Pó Para Robôs Aspiradores de Pó WAP Robot W100 e WAP Robot W90",
+      "codigos_declarados": 2,
+      "codigos_na_fonte": [
+        "WAP Robot W100",
+        "WAP Robot W90"
+      ],
+      "modelos_publicaveis": 2,
+      "marcas_atendidas": [
+        "wap"
       ],
       "atravessa_marca": false
     },
@@ -642,15 +661,15 @@
       "nenhuma_repete": false
     },
     {
-      "marca": "multi",
-      "publicador": "Multi (ex-Multilaser)",
-      "pecas": 6,
-      "conjuntos_distintos": 3,
+      "marca": "wap",
+      "publicador": "WAP",
+      "pecas": 7,
+      "conjuntos_distintos": 4,
       "nenhuma_repete": false
     },
     {
-      "marca": "wap",
-      "publicador": "WAP",
+      "marca": "multi",
+      "publicador": "Multi (ex-Multilaser)",
       "pecas": 6,
       "conjuntos_distintos": 3,
       "nenhuma_repete": false
@@ -691,7 +710,7 @@
     {
       "tipo": "reservatorio",
       "nome": "reservatorio",
-      "modelos_com_declaracao": 2,
+      "modelos_com_declaracao": 4,
       "modelos_publicaveis": 33
     },
     {
@@ -847,7 +866,7 @@
   "perguntas": [
     {
       "pergunta": "Existe filtro universal para robô aspirador?",
-      "resposta": "Não. Nas 31 peças de reposição com compatibilidade declarada pelo fabricante que a Robometria conferiu, nenhuma é declarada para modelos de mais de uma marca, e a lista mais longa do banco nomeia 5 códigos de modelo, todos da mesma marca."
+      "resposta": "Não. Nas 32 peças de reposição com compatibilidade declarada pelo fabricante que a Robometria conferiu, nenhuma é declarada para modelos de mais de uma marca, e a lista mais longa do banco nomeia 5 códigos de modelo, todos da mesma marca."
     },
     {
       "pergunta": "Uma peça que serve num modelo da marca serve nos outros modelos dela?",
@@ -855,7 +874,7 @@
     },
     {
       "pergunta": "Como descobrir o código da peça certa para o meu robô aspirador?",
-      "resposta": "Procurando o modelo na lista de compatibilidade publicada pelo próprio fabricante. A Robometria reúne essas listas: são 61 pares peça × modelo em 5 marcas, todos declarados pelo fabricante e nenhum inferido, cada um com o endereço da declaração e a data em que ela foi verificada."
+      "resposta": "Procurando o modelo na lista de compatibilidade publicada pelo próprio fabricante. A Robometria reúne essas listas: são 63 pares peça × modelo em 5 marcas, todos declarados pelo fabricante e nenhum inferido, cada um com o endereço da declaração e a data em que ela foi verificada."
     }
   ]
 }

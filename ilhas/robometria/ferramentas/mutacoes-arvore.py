@@ -238,7 +238,12 @@ MUTACOES = [
         'vizinha da divergencia nao tem do que reclamar',
         varias(
             # o mundo: o tipo 'reservatorio' volta a nao ter peca nenhuma
-            troca_n(PECAS, '"tipo": "reservatorio",', '"tipo": "filtro",', 2),
+            # A CONTAGEM E DECLARADA e sobe a mao de proposito: em 13/09/2026 o
+            # recipiente FW008543 da WAP virou a TERCEIRA peca deste tipo e a
+            # mutacao PAROU, que e o desenho do troca_n. Numero que subisse
+            # sozinho deixaria a mutacao editar um numero de linhas que ninguem
+            # previu — e mutacao que nao esvazia o tipo nao testa a 16.5.
+            troca_n(PECAS, '"tipo": "reservatorio",', '"tipo": "filtro",', 3),
             # a categoria proibida, declarada no codigo
             troca(CASCA,
                   "\t\t'baterias'              => array( 'pecas',   'Baterias' ),",

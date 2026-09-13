@@ -268,6 +268,12 @@ def divergencias_publicaveis(ids_de_peca):
         saida[pid] = [
             {
                 "canal": d.get("canal"),
+                # O DEGRAU VIAJA JUNTO porque o titulo do bloco e a cauda da frase
+                # dizem coisas diferentes quando quem diverge nao fala pela marca.
+                # Sem ele o snippet teria de adivinhar pelo nome do canal, que e a
+                # heuristica por vizinhanca que a secao 8 do contrato proibe.
+                "origem": d.get("origem"),
+                "fala_pela_marca": ref.FALA_PELA_MARCA[d["origem"]],
                 "conjunto": d.get("conjunto_declarado") or [],
                 "titulo_na_fonte": d.get("titulo_na_fonte"),
                 "url": d.get("url"),

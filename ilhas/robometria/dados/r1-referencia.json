@@ -341,7 +341,7 @@
         {
           "tipo": "filtro",
           "peca": "multi-pr10205",
-          "frase": "A Multi (multilaser.com.br, canal varejo) declara o filtro PR10205 compativel com HO041 (fabricante-via-busca, verificado em 09/09/2026). Dois canais do fabricante discordam sobre o alcance desta peca: vale o conjunto MAIS ESTREITO, e as duas declaracoes estao publicadas com as suas datas."
+          "frase": "A Multi (multilaser.com.br, canal varejo) declara o filtro PR10205 compativel com HO041 (fabricante-via-busca, verificado em 09/09/2026). Dois canais do fabricante declaram alcance diferente para esta peca: vale o conjunto MAIS ESTREITO, e as tres declaracoes estao publicadas com as suas datas."
         },
         {
           "tipo": "bateria",
@@ -351,7 +351,7 @@
         {
           "tipo": "bateria",
           "peca": "multi-pr8116",
-          "frase": "A Multi (multilaserempresas.com.br) declara a bateria PR8116 compativel com HO041 (fabricante-via-busca, verificado em 09/09/2026). Dois canais do fabricante discordam sobre o alcance desta peca: vale o conjunto MAIS ESTREITO, e as duas declaracoes estao publicadas com as suas datas. Vale para a versao B deste modelo."
+          "frase": "A Multi (multilaserempresas.com.br) declara a bateria PR8116 compativel com HO041 (fabricante-via-busca, verificado em 09/09/2026). Dois canais do fabricante declaram alcance diferente para esta peca: vale o conjunto MAIS ESTREITO, e as tres declaracoes estao publicadas com as suas datas. Vale para a versao B deste modelo."
         }
       ],
       "terceiro": [],
@@ -539,7 +539,13 @@
     },
     "wap-w100": {
       "aviso_de_variante": null,
-      "fabricante": [],
+      "fabricante": [
+        {
+          "tipo": "reservatorio",
+          "peca": "wap-fw008543",
+          "frase": "A WAP (loja oficial) declara o reservatorio FW008543 compativel com WAP Robot W100 e WAP Robot W90 (varejo-oficial-da-marca, verificado em 13/09/2026). Tres canais de fora do fabricante declaram para esta peca um alcance que o fabricante nao declara: quem decide aqui e o fabricante, e as quatro declaracoes estao publicadas com o nome de cada canal e a sua data."
+        }
+      ],
       "terceiro": [],
       "kits_sem_composicao": [],
       "recusa_por_tipo": {
@@ -639,7 +645,13 @@
     },
     "wap-w90": {
       "aviso_de_variante": null,
-      "fabricante": [],
+      "fabricante": [
+        {
+          "tipo": "reservatorio",
+          "peca": "wap-fw008543",
+          "frase": "A WAP (loja oficial) declara o reservatorio FW008543 compativel com WAP Robot W100 e WAP Robot W90 (varejo-oficial-da-marca, verificado em 13/09/2026). Tres canais de fora do fabricante declaram para esta peca um alcance que o fabricante nao declara: quem decide aqui e o fabricante, e as quatro declaracoes estao publicadas com o nome de cada canal e a sua data."
+        }
+      ],
       "terceiro": [],
       "kits_sem_composicao": [],
       "recusa_por_tipo": {
@@ -692,7 +704,7 @@
         {
           "tipo": "filtro",
           "peca": "xiaomi-b112-ch",
-          "frase": "A Xiaomi declara o filtro B112-CH compativel com E10, E10C e S20 (fabricante-via-busca, verificado em 13/09/2026). Dois canais do fabricante discordam sobre o alcance desta peca: vale o conjunto MAIS ESTREITO, e as duas declaracoes estao publicadas com as suas datas."
+          "frase": "A Xiaomi declara o filtro B112-CH compativel com E10, E10C e S20 (fabricante-via-busca, verificado em 13/09/2026). Um canal do fabricante declara alcance diferente para esta peca: vale o conjunto MAIS ESTREITO, e as dois declaracoes estao publicadas com as suas datas."
         },
         {
           "tipo": "mop",
@@ -717,7 +729,7 @@
         {
           "tipo": "escova lateral",
           "peca": "xiaomi-ov81gl-bs",
-          "frase": "A Xiaomi Global declara a escova lateral OV81GL-BS compativel com H40, S40 e S40 Pro (fabricante-via-busca, verificado em 13/09/2026). Dois canais do fabricante discordam sobre o alcance desta peca: vale o conjunto MAIS ESTREITO, e as duas declaracoes estao publicadas com as suas datas."
+          "frase": "A Xiaomi Global declara a escova lateral OV81GL-BS compativel com H40, S40 e S40 Pro (fabricante-via-busca, verificado em 13/09/2026). Um canal do fabricante declara alcance diferente para esta peca: vale o conjunto MAIS ESTREITO, e as dois declaracoes estao publicadas com as suas datas."
         },
         {
           "tipo": "escova principal",
@@ -775,7 +787,7 @@
         {
           "tipo": "filtro",
           "peca": "xiaomi-b112-ch",
-          "frase": "A Xiaomi declara o filtro B112-CH compativel com E10, E10C e S20 (fabricante-via-busca, verificado em 13/09/2026). Dois canais do fabricante discordam sobre o alcance desta peca: vale o conjunto MAIS ESTREITO, e as duas declaracoes estao publicadas com as suas datas."
+          "frase": "A Xiaomi declara o filtro B112-CH compativel com E10, E10C e S20 (fabricante-via-busca, verificado em 13/09/2026). Um canal do fabricante declara alcance diferente para esta peca: vale o conjunto MAIS ESTREITO, e as dois declaracoes estao publicadas com as suas datas."
         },
         {
           "tipo": "mop",
@@ -805,7 +817,7 @@
         {
           "tipo": "escova lateral",
           "peca": "xiaomi-ov81gl-bs",
-          "frase": "A Xiaomi Global declara a escova lateral OV81GL-BS compativel com H40, S40 e S40 Pro (fabricante-via-busca, verificado em 13/09/2026). Dois canais do fabricante discordam sobre o alcance desta peca: vale o conjunto MAIS ESTREITO, e as duas declaracoes estao publicadas com as suas datas."
+          "frase": "A Xiaomi Global declara a escova lateral OV81GL-BS compativel com H40, S40 e S40 Pro (fabricante-via-busca, verificado em 13/09/2026). Um canal do fabricante declara alcance diferente para esta peca: vale o conjunto MAIS ESTREITO, e as dois declaracoes estao publicadas com as suas datas."
         },
         {
           "tipo": "escova principal",
@@ -830,7 +842,7 @@
         {
           "tipo": "mop",
           "peca": "xiaomi-e101-tb",
-          "frase": "A Xiaomi Global declara o mop E101-TB compativel com S40C (fabricante-via-busca, verificado em 13/09/2026). Dois canais do fabricante discordam sobre o alcance desta peca: vale o conjunto MAIS ESTREITO, e as duas declaracoes estao publicadas com as suas datas."
+          "frase": "A Xiaomi Global declara o mop E101-TB compativel com S40C (fabricante-via-busca, verificado em 13/09/2026). Um canal do fabricante declara alcance diferente para esta peca: vale o conjunto MAIS ESTREITO, e as dois declaracoes estao publicadas com as suas datas."
         }
       ],
       "terceiro": [],
