@@ -1,5 +1,25 @@
 /**
  * Clube do Mosaico Leads — verificar disponibilidade
+ * Versão 1.1.0 (13/09/2026) — AS DUAS OPTIONS DESTE ARQUIVO VIRARAM CAMPO DELA.
+ * `cdm_email_leads` (para onde vai o aviso de interessado) e `cdm_artesa_nome`
+ * (o nome que assina a mensagem no WhatsApp) existiam e funcionavam, e só a
+ * Fundação podia mexer nelas. Agora as duas são uma seção da aba "Meus dados"
+ * do painel, entregue pelo filtro `cdm_atelie_meus_dados` que o Ateliê 1.2.0
+ * abriu. Nada mais mudou: o formulário da peça, o CPT, o e-mail, a aba
+ * Interessados e o CSV continuam como estavam.
+ *
+ * POR QUE OS CAMPOS NASCEM AQUI E NÃO NO ATELIÊ, que é o dono da tela: quem lê
+ * a option é quem a escreve. As duas são lidas SÓ por este arquivo, e um campo
+ * desenhado no Ateliê gravando uma option que só faz sentido aqui é a promessa
+ * de uma tela que o Sync pode desembarcar sem o lado que lhe dá efeito — a
+ * mesma razão pela qual a aba "Interessados" também mora aqui.
+ *
+ * E O VAZIO CONTINUA SIGNIFICANDO O QUE SIGNIFICAVA: e-mail em branco é "avise
+ * no endereço da conta"; nome em branco é "a identidade da artesã ainda não
+ * chegou", e a mensagem assina "do Clube do Mosaico". Os dois campos DIZEM na
+ * tela o que o vazio faz, em vez de deixar ela adivinhar por que o campo está
+ * em branco.
+ *
  * Versão 1.0.0 (13/09/2026) — o ADENDO 3 de 11/09/2026, que ficou FORA do corte
  * do despacho de 12/09 por escrito, e volta à fila agora que o painel está de pé.
  *
@@ -115,7 +135,7 @@
  */
 
 if ( ! defined( 'CDM_LEADS_VERSAO' ) ) {
-	define( 'CDM_LEADS_VERSAO', '1.0.0' );
+	define( 'CDM_LEADS_VERSAO', '1.1.0' );
 }
 if ( ! defined( 'CDM_LEADS_TIPO' ) ) {
 	define( 'CDM_LEADS_TIPO', 'lead_peca' );
@@ -1145,6 +1165,61 @@ add_filter( 'cdm_atelie_tela', function ( $html, $estado, $usuaria ) {
 }, 10, 3 );
 
 /* ---------------------------------------------------------------------------
+ * 7b. A SEÇÃO DENTRO DE "MEUS DADOS" — as duas options que eram só nossas
+ * ------------------------------------------------------------------------- */
+
+if ( ! function_exists( 'cdm_leads_form_meus_dados' ) ) {
+/**
+ * Os dois campos, com o efeito do vazio escrito ao lado de cada um.
+ *
+ * A ASSINATURA MOSTRA O ESTADO DE HOJE, e mostra o valor REAL — nunca um exemplo
+ * fabricado com um nome de cliente inventado. "Hoje as mensagens assinam: do
+ * Clube do Mosaico" é um fato que ela confere; "Olá, Maria! Aqui é..." seria uma
+ * tela ensinando a ler um dado que não existe.
+ */
+function cdm_leads_form_meus_dados() {
+	$email_gravado = sanitize_email( (string) get_option( 'cdm_email_leads', '' ) );
+	$nome_gravado  = trim( (string) get_option( 'cdm_artesa_nome', '' ) );
+	$assina        = ( '' !== $nome_gravado ) ? $nome_gravado : 'do Clube do Mosaico';
+
+	$h  = '<form class="cdm-at-form" method="post" action="' . esc_url( cdm_atelie_url() ) . '">';
+	$h .= '<input type="hidden" name="cdm_acao" value="leads_dados">';
+	$h .= '<input type="hidden" name="cdm_nonce" value="' . esc_attr( wp_create_nonce( 'cdm_leads_dados' ) ) . '">';
+
+	$h .= '<p class="cdm-at-campo"><label for="cdm-leads-email">E-mail para receber os avisos</label>';
+	$h .= '<input id="cdm-leads-email" name="cdm_email_leads" type="email" autocomplete="email" inputmode="email" value="'
+		. esc_attr( $email_gravado ) . '">';
+	$h .= '<span class="cdm-at-ajuda">Deixe em branco para usar o e-mail da sua conta ('
+		. esc_html( CDM_LEADS_EMAIL_PADRAO ) . '). Hoje os avisos vão para <strong>'
+		. esc_html( cdm_leads_email_destino() ) . '</strong>.</span></p>';
+
+	$h .= '<p class="cdm-at-campo"><label for="cdm-artesa-nome">Como você quer assinar as mensagens</label>';
+	$h .= '<input id="cdm-artesa-nome" name="cdm_artesa_nome" type="text" autocomplete="name" maxlength="60" value="'
+		. esc_attr( $nome_gravado ) . '">';
+	$h .= '<span class="cdm-at-ajuda">É o nome que aparece na mensagem pronta do WhatsApp. '
+		. 'Hoje as mensagens assinam: <strong>' . esc_html( $assina ) . '</strong>.</span></p>';
+
+	$h .= '<p class="cdm-at-acao"><button class="cdm-botao cdm-at-botao" type="submit">Guardar</button></p>';
+	$h .= '</form>';
+
+	return $h;
+}
+}
+
+add_filter( 'cdm_atelie_meus_dados', function ( $secoes, $usuaria ) {
+	if ( ! is_array( $secoes ) ) {
+		$secoes = array();
+	}
+	$secoes['leads'] = array(
+		'titulo' => 'Avisos de interessados',
+		'linha'  => 'Quando alguém pede uma peça sua, um aviso sai na hora. Aqui você diz para onde ele vai e como você assina.',
+		'html'   => cdm_leads_form_meus_dados(),
+	);
+
+	return $secoes;
+}, 10, 2 );
+
+/* ---------------------------------------------------------------------------
  * 8. AS AÇÕES DO PAINEL — mudar o estado e baixar o CSV
  * ------------------------------------------------------------------------- */
 
@@ -1248,6 +1323,59 @@ function cdm_leads_agir_painel() {
 			update_post_meta( $id, '_cdm_status', $novo );
 		}
 		wp_safe_redirect( cdm_atelie_url( array( 'estado' => 'interessados', 'aviso' => 'lead' ) ) );
+		exit;
+	}
+
+	/* AS DUAS OPTIONS DE "MEUS DADOS". Grava quem as lê, pela decisão do cabeçalho.
+	 *
+	 * O E-MAIL VAZIO É UM VALOR, não um erro: significa "use o endereço da conta",
+	 * e é por isso que o campo em branco GRAVA vazio em vez de ser ignorado — sem
+	 * isso ela não teria como desfazer um endereço que digitou por engano. O que
+	 * é recusado é endereço INVÁLIDO: aí o antigo fica de pé e a tela diz que não
+	 * deu, porque trocar um endereço que funciona por um que não existe é como o
+	 * aviso do interessado some sem ninguém perceber.
+	 *
+	 * O NOME PASSA POR sanitize_text_field E POR UM TETO DE 60: ele vai dentro de
+	 * uma URL de wa.me e dentro do corpo de um e-mail, e uma quebra de linha ali
+	 * parte a mensagem no meio. */
+	/* A GUARDA DO `defined` NÃO É PARANOIA: o Sync desembarca um snippet sem o
+	   outro, e este arquivo pode chegar ao ar minutos antes do Ateliê 1.2.0, que
+	   é quem declara a constante. Sem ela, a primeira pessoa que abrisse o painel
+	   com um POST desta ação levaria um erro fatal do PHP no lugar da tela. Com
+	   ela, a ação simplesmente não existe enquanto o outro lado não chega — que é
+	   o mesmo que acontece com a seção, porque o filtro não é aplicado. */
+	if ( 'leads_dados' === $acao && defined( 'CDM_ATELIE_ABA_DADOS' ) ) {
+		$volta = array( 'estado' => CDM_ATELIE_ABA_DADOS );
+		if ( ! current_user_can( 'edit_pecas' )
+			|| ! wp_verify_nonce( cdm_atelie_post( 'cdm_nonce' ), 'cdm_leads_dados' ) ) {
+			$volta['aviso'] = 'nonce';
+			wp_safe_redirect( cdm_atelie_url( $volta ) );
+			exit;
+		}
+
+		$bruto = trim( cdm_atelie_post( 'cdm_email_leads' ) );
+		if ( '' === $bruto ) {
+			update_option( 'cdm_email_leads', '' );
+			$volta['aviso'] = 'dados';
+		} else {
+			$limpo = sanitize_email( $bruto );
+			if ( '' === $limpo ) {
+				$volta['aviso'] = 'email-ruim';
+			} else {
+				update_option( 'cdm_email_leads', $limpo );
+				$volta['aviso'] = 'dados';
+			}
+		}
+
+		$nome = sanitize_text_field( cdm_atelie_post( 'cdm_artesa_nome' ) );
+		if ( function_exists( 'mb_substr' ) ) {
+			$nome = mb_substr( $nome, 0, 60 );
+		} else {
+			$nome = substr( $nome, 0, 60 );
+		}
+		update_option( 'cdm_artesa_nome', trim( $nome ) );
+
+		wp_safe_redirect( cdm_atelie_url( $volta ) );
 		exit;
 	}
 

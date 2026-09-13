@@ -260,9 +260,15 @@ def m23(r):
 
 def m24(r):
     """O script volta para dentro do retorno do shortcode — a cicatriz de
-    08/09/2026 que derrubou cinco calculadoras da Aquametria."""
-    trocar(r, SNIPPET, "	$h .= '</form></div>';\n\n\treturn $h;\n}\n}\n\nadd_shortcode( 'cdm_atelie'",
-           "	$h .= '</form></div>';\n\t$h .= '<script>var a=1&&2;</script>';\n\n\treturn $h;\n}\n}\n\nadd_shortcode( 'cdm_atelie'")
+    08/09/2026 que derrubou cinco calculadoras da Aquametria.
+
+    O ALVO E O FIM DO FORMULARIO DA PECA, e nao "o que vem antes do
+    add_shortcode": a segunda formulacao ficou INERTE no dia em que o Atelie 1.2.0
+    pos duas funcoes novas entre um e outro, e mutacao inerte nao mede nada. Alvo
+    que depende da VIZINHANCA morre quando o vizinho se muda."""
+    trocar(r, SNIPPET,
+           "a gente guarda como rascunho e diz o que falta.</p>';\n\t$h .= '</form></div>';",
+           "a gente guarda como rascunho e diz o que falta.</p>';\n\t$h .= '<script>var a=1&&2;</script>';\n\t$h .= '</form></div>';")
 
 
 def m25(r):
@@ -285,6 +291,90 @@ def m26(r):
 				wp_safe_redirect( cdm_atelie_url( array( 'estado' => 'editar', 'peca' => $id, 'aviso' => 'falta' ) ) );
 				exit;
 			}""")
+
+
+# ------------------------------------- familia 3: a aba "Meus dados" (1.2.0)
+#
+# Ela e a primeira tela desta ilha onde a artesa MUDA alguma coisa que nao e peca
+# dela: a propria senha e o endereco para onde vai o aviso de interessado. As
+# mutacoes daqui sao das duas familias de cima ao mesmo tempo — uma senha trocada
+# por quem nao devia abre porta, e uma senha que viaja na URL vaza segredo.
+
+
+def m27(r):
+    """A aba some da navegacao. O codigo todo continua de pe e ela nunca chega la:
+    e o defeito mais barato de escrever e o mais dificil de ver em revisao."""
+    trocar(r, SNIPPET, "\t$abas[ CDM_ATELIE_ABA_DADOS ] = array( 'rotulo' => 'Meus dados' );",
+           "")
+
+
+def m28(r):
+    """A troca de senha para de conferir o nonce. Qualquer pagina da internet
+    passa a poder trocar a senha dela enquanto ela estiver logada aqui."""
+    trocar(r, SNIPPET, "\t\t\t|| ! wp_verify_nonce( cdm_atelie_post( 'cdm_nonce' ), 'cdm_atelie_trocar_senha' ) ) {",
+           "\t\t\t) {")
+
+
+def m29(r):
+    """O piso de 8 caracteres cai para 1."""
+    trocar(r, SNIPPET, "\t\tif ( strlen( $nova ) < CDM_ATELIE_SENHA_MINIMA ) {\n\t\t\twp_safe_redirect( cdm_atelie_url( array( 'estado' => CDM_ATELIE_ABA_DADOS, 'aviso' => 'curta' ) ) );",
+           "\t\tif ( strlen( $nova ) < 1 ) {\n\t\t\twp_safe_redirect( cdm_atelie_url( array( 'estado' => CDM_ATELIE_ABA_DADOS, 'aviso' => 'curta' ) ) );")
+
+
+def m30(r):
+    """As duas digitadas nao precisam mais ser iguais. O segundo campo existe
+    justamente porque um dedo errado no celular a trancaria para fora."""
+    trocar(r, SNIPPET, "\t\tif ( $nova !== $nova2 ) {\n\t\t\twp_safe_redirect( cdm_atelie_url( array( 'estado' => CDM_ATELIE_ABA_DADOS, 'aviso' => 'difere' ) ) );",
+           "\t\tif ( false ) {\n\t\t\twp_safe_redirect( cdm_atelie_url( array( 'estado' => CDM_ATELIE_ABA_DADOS, 'aviso' => 'difere' ) ) );")
+
+
+def m31(r):
+    """A sessao nao e reemitida. Ela troca a senha e cai na tela de entrar, com a
+    certeza de ter quebrado o proprio site."""
+    trocar(r, SNIPPET, "\t\twp_set_auth_cookie( $quem, true );", "")
+
+
+def m32(r):
+    """A senha nova vai no endereco de volta — historico, Referer e log de acesso.
+    E a mesma regra que o adendo 3 escreveu para o nome do cliente."""
+    trocar(r, SNIPPET,
+           "\t\tunset( $nova, $nova2 );\n\t\twp_safe_redirect( cdm_atelie_url( array( 'estado' => CDM_ATELIE_ABA_DADOS, 'aviso' => 'trocada' ) ) );",
+           "\t\twp_safe_redirect( cdm_atelie_url( array( 'estado' => CDM_ATELIE_ABA_DADOS, 'aviso' => 'trocada', 'senha' => $nova ) ) );")
+
+
+def m33(r):
+    """O ponto de extensao para de ser aplicado. A cicatriz de 12/09 nesta ilha
+    escrita de volta: um `add_filter` sem ninguem do outro lado."""
+    trocar(r, SNIPPET, "\t$vindas = apply_filters( 'cdm_atelie_meus_dados', array(), $usuaria );",
+           "\t$vindas = array();")
+
+
+def m34(r):
+    """Deslogada e sem capacidade nenhuma, com um nonce valido no bolso, troca a
+    senha da artesa. Nonce protege do site de fora; capacidade, da pessoa errada."""
+    trocar(r, SNIPPET, "\t\tif ( ! is_user_logged_in() || ! current_user_can( 'edit_pecas' )\n\t\t\t|| ! wp_verify_nonce( cdm_atelie_post( 'cdm_nonce' ), 'cdm_atelie_trocar_senha' ) ) {",
+           "\t\tif ( ! wp_verify_nonce( cdm_atelie_post( 'cdm_nonce' ), 'cdm_atelie_trocar_senha' ) ) {")
+
+
+def m35(r):
+    """O e-mail da conta vira campo. Um dedo errado no teclado do celular e ela
+    fica de fora da propria conta, sem ninguem do outro lado no domingo."""
+    trocar(r, SNIPPET, "\t\t$h .= '<p class=\"cdm-at-linha\">Se você esquecer a senha, o link para criar outra vai para <strong>'",
+           "\t\t$h .= '<input name=\"user_email\" type=\"email\" value=\"' . esc_attr( $email ) . '\">';\n\t\t$h .= '<p class=\"cdm-at-linha\">Se você esquecer a senha, o link para criar outra vai para <strong>'")
+
+
+def m36(r):
+    """Secao registrada pela metade entra na tela. Meia secao — titulo sem
+    formulario — e pior que nenhuma: ela aperta e nao acontece nada."""
+    trocar(r, SNIPPET, "empty( $def['titulo'] ) || empty( $def['html'] ) ) {",
+           "empty( $def['titulo'] ) ) {")
+
+
+def m37(r):
+    """A aba deixa de ser despachada e cai no filtro, que devolve '' para um estado
+    que nao e de ninguem — a aba aparece no menu e abre a lista de pecas."""
+    trocar(r, SNIPPET, "\tif ( CDM_ATELIE_ABA_DADOS === $estado ) {\n\t\treturn cdm_atelie_tela_meus_dados( $usuaria );\n\t}",
+           "")
 
 
 MUTACOES = [
@@ -314,6 +404,17 @@ MUTACOES = [
     ("24 o script volta para dentro do shortcode", m24),
     ("25 a peca nasce publicada em vez de rascunho", m25),
     ("26 a recusa de publicar perde o motivo", m26),
+    ("27 a aba Meus dados some da navegacao", m27),
+    ("28 a troca de senha para de conferir o nonce", m28),
+    ("29 a troca de senha aceita senha de uma letra", m29),
+    ("30 a troca de senha nao confere se as duas sao iguais", m30),
+    ("31 a troca de senha nao reemite a sessao dela", m31),
+    ("32 a senha nova viaja no endereco de volta", m32),
+    ("33 cdm_atelie_meus_dados deixa de ser aplicado", m33),
+    ("34 quem nao esta logada troca a senha dela", m34),
+    ("35 o e-mail da conta vira campo editavel", m35),
+    ("36 secao registrada sem miolo entra na tela", m36),
+    ("37 a aba Meus dados cai na lista de pecas", m37),
 ]
 
 

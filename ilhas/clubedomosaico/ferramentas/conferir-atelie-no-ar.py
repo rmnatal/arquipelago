@@ -222,6 +222,35 @@ def main():
         ok(cod_lead in ("404", "401", "403"),
            f"[rota] /v1/{rota} NAO existe (lead nao sai por endpoint)", cod_lead)
 
+    # ------------------------------------------ a aba "Meus dados" (1.2.0)
+    #
+    # A ABA SO EXISTE PARA QUEM ENTROU, e a Fundacao nao entra — a senha dela nao
+    # existe para a nuvem, por desenho. Entao a pergunta que este bloco responde
+    # nao e "a aba esta bonita", e sim a que o /status sozinho NAO responde: **a
+    # versao nova do snippet esta mesmo servindo esta pagina?** A folha do painel
+    # sai no /atelie/ mesmo deslogada, e `.cdm-at-secao` so existe no Atelie
+    # 1.2.0 — e uma marca do CODIGO NOVO no corpo servido, que e a diferenca
+    # entre "o manifest diz que subiu" e "o site esta servindo".
+    #
+    # A REGUA E DAQUI: o nome da classe e o endereco estao escritos nesta linha,
+    # copiados do snippet uma vez, nunca lidos dele.
+    print("\n4c. O Atelie 1.2.0 — a marca da versao nova no corpo servido")
+    ok("200" == at_cod and ".cdm-at-secao{" in at_html,
+       "[/atelie/] a folha traz .cdm-at-secao (so existe no Atelie 1.2.0)", at_cod)
+
+    # E O ESTADO NOVO NA URL NAO PODE VAZAR NEM ENTRAR NO INDICE. Quem nao entrou
+    # tem de cair na tela de entrar, como em qualquer outro estado do painel.
+    md_html, md_cod = buscar(BASE + "/atelie/?estado=meus-dados")
+    ok("200" == md_cod, "[/atelie/?estado=meus-dados] HTTP 200", md_cod)
+    ok('content="noindex, follow"' in md_html,
+       "[/atelie/?estado=meus-dados] serve noindex, follow")
+    md_corpo = corpo_visivel(md_html)
+    ok("Entrar no meu ateliê" in md_corpo,
+       "[/atelie/?estado=meus-dados] deslogada cai na tela de entrar")
+    for vazamento in ("trocar_senha", "cdm_email_leads", "cdm_artesa_nome", "mina196"):
+        ok(vazamento not in md_html,
+           f"[/atelie/?estado=meus-dados] deslogada NAO ve '{vazamento}'")
+
     print("\n5. A ficha de cada peca publicada")
     if publicadas <= 0:
         pular("a ficha da peca", "nenhuma peca publicada ainda — e o estado normal hoje")

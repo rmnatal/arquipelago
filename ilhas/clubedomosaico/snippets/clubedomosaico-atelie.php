@@ -1,5 +1,48 @@
 /**
  * Clube do Mosaico Ateliê — painel da artesã
+ * Versão 1.2.0 (13/09/2026) — "MEUS DADOS", a aba onde ela manda no que hoje só
+ * existe em código. Fecha o último pedaço do adendo 3 que ficou por fazer, e
+ * cumpre a linha do `PROMPT.md` que promete desde 10/09 que "ela troca a senha
+ * em Meus dados dentro do painel".
+ *
+ * O QUE ENTROU, e nada além disto: a aba `meus-dados`, a troca de senha, e um
+ * TERCEIRO ponto de extensão, `cdm_atelie_meus_dados`, para quem tem opção dela
+ * para oferecer. A lista de peças, o formulário, e o login continuam letra por letra
+ * como estavam; a criação de senha mudou UMA coisa, o piso de 8 caracteres, que
+ * virou constante para as duas telas não poderem divergir.
+ *
+ * AS QUATRO DECISÕES DESTA VERSÃO:
+ *
+ * 1. A TROCA DE SENHA NÃO PEDE A SENHA ATUAL, e isto é escolha e não esquecimento.
+ *    O WordPress não pede na tela de perfil dele, e aqui a razão é mais forte que
+ *    a dele: ela ENTROU NA CONTA POR UM LINK DE E-MAIL e pode legitimamente não
+ *    saber a senha que quer trocar — pedi-la seria trancar a porta justamente
+ *    para quem tem a chave. O que protege a ação é o par de sempre, sessão
+ *    autenticada + nonce, e o custo de errar para este lado é conhecido e menor:
+ *    quem já está dentro da sessão dela já podia publicar, apagar e exportar os
+ *    interessados. Se um dia houver mais de uma pessoa no ateliê, esta linha se
+ *    reabre.
+ *
+ * 2. O E-MAIL DA CONTA APARECE E NÃO SE EDITA. É o endereço para onde vai o link
+ *    de recuperar a senha; um dedo errado num teclado de celular a deixaria de
+ *    fora da própria conta, sem ninguém do outro lado para socorrer no domingo.
+ *    Aparecer é útil (é a resposta de "para onde vai o link?"); virar campo é
+ *    risco sem ganho. Quando houver por que trocar, quem troca é o Raphael.
+ *
+ * 3. QUEM LÊ A OPTION É QUEM A ESCREVE. `cdm_email_leads` e `cdm_artesa_nome` são
+ *    lidas SÓ pelo snippet de Leads, então os campos delas nascem lá e chegam
+ *    aqui pelo filtro `cdm_atelie_meus_dados` — do mesmo jeito e pela mesma razão
+ *    que a aba "Interessados" chega pelo `cdm_atelie_abas`: o Sync desembarca um
+ *    snippet sem o outro, e uma tela que promete um campo cujo dono não está no
+ *    ar é a divergência silenciosa que esta ilha já pagou duas vezes. Cada seção
+ *    é um FORMULÁRIO PRÓPRIO, com nonce próprio e gravação própria — sem um
+ *    caminho de salvar compartilhado onde o campo de um dono sobrescreve o do
+ *    outro por descuido.
+ *
+ * 4. A ABA EXISTE MESMO SEM O SNIPPET DE LEADS. "Meus dados" é da casa: a senha é
+ *    da conta, não dos interessados. Isso muda o painel de 12/09 num ponto — a
+ *    navegação passa a aparecer sempre, porque agora existem sempre duas abas.
+ *
  * Versão 1.1.0 (13/09/2026) — O PAINEL GANHOU ABAS, e só isso. A lista de peças,
  * o formulário, o login e a criação de senha continuam letra por letra como
  * estavam. O que entrou são dois pontos de extensão, `cdm_atelie_abas` (quem
@@ -87,10 +130,22 @@
  */
 
 if ( ! defined( 'CDM_ATELIE_VERSAO' ) ) {
-	define( 'CDM_ATELIE_VERSAO', '1.1.0' );
+	define( 'CDM_ATELIE_VERSAO', '1.2.0' );
 }
 if ( ! defined( 'CDM_ATELIE_SLUG' ) ) {
 	define( 'CDM_ATELIE_SLUG', 'atelie' );
+}
+if ( ! defined( 'CDM_ATELIE_ABA_DADOS' ) ) {
+	/* O `estado` da aba "Meus dados" na URL. Constante e não texto solto porque
+	   ele aparece em cinco lugares — a aba, o despacho da tela, os três
+	   redirecionamentos — e um deles divergindo dos outros é uma aba que existe
+	   no menu e cai na lista de peças sem dizer por quê. */
+	define( 'CDM_ATELIE_ABA_DADOS', 'meus-dados' );
+}
+if ( ! defined( 'CDM_ATELIE_SENHA_MINIMA' ) ) {
+	/* O mesmo piso da tela de criar senha. Escrito uma vez: se um dia subir, as
+	   duas telas sobem juntas, e não uma delas. */
+	define( 'CDM_ATELIE_SENHA_MINIMA', 8 );
 }
 if ( ! defined( 'CDM_ATELIE_PAPEL' ) ) {
 	define( 'CDM_ATELIE_PAPEL', 'artesa' );
@@ -796,7 +851,7 @@ function cdm_atelie_agir() {
 		}
 		$nova  = isset( $_POST['cdm_senha'] ) ? (string) wp_unslash( $_POST['cdm_senha'] ) : '';
 		$nova2 = isset( $_POST['cdm_senha2'] ) ? (string) wp_unslash( $_POST['cdm_senha2'] ) : '';
-		if ( strlen( $nova ) < 8 ) {
+		if ( strlen( $nova ) < CDM_ATELIE_SENHA_MINIMA ) {
 			wp_safe_redirect( cdm_atelie_url( array( 'criar-senha' => $chave, 'quem' => $login, 'aviso' => 'curta' ) ) );
 			exit;
 		}
@@ -814,6 +869,47 @@ function cdm_atelie_agir() {
 		), is_ssl() );
 		unset( $nova, $nova2 );
 		wp_safe_redirect( cdm_atelie_url( is_wp_error( $logada ) ? array( 'aviso' => 'entre' ) : array( 'aviso' => 'bemvinda' ) ) );
+		exit;
+	}
+
+	/* --- TROCAR A SENHA, de dentro do painel (aba "Meus dados") ---
+	 *
+	 * A tela de criar senha, logo acima, é para quem está DE FORA e chegou por um
+	 * link de e-mail: lá quem autoriza é a chave nativa do WordPress. Aqui quem
+	 * autoriza é a sessão dela mais o nonce, e por isso as duas não podem ser a
+	 * mesma função — a de cima aceita alguém deslogado, e aceitar alguém deslogado
+	 * nesta seria trocar a senha de quem só sabe o endereço do painel.
+	 *
+	 * Sem senha atual, pela decisão 1 do cabeçalho. As duas recusas são as MESMAS
+	 * da tela de criar senha (curta e difere), porque a regra é da senha e não da
+	 * tela — duas listas de recusa divergindo é como uma tela vira mais frouxa
+	 * que a outra sem ninguém decidir isso. */
+	if ( 'trocar_senha' === $acao ) {
+		if ( ! is_user_logged_in() || ! current_user_can( 'edit_pecas' )
+			|| ! wp_verify_nonce( cdm_atelie_post( 'cdm_nonce' ), 'cdm_atelie_trocar_senha' ) ) {
+			wp_safe_redirect( cdm_atelie_url( array( 'estado' => CDM_ATELIE_ABA_DADOS, 'aviso' => 'nonce' ) ) );
+			exit;
+		}
+		$nova  = isset( $_POST['cdm_senha'] ) ? (string) wp_unslash( $_POST['cdm_senha'] ) : '';
+		$nova2 = isset( $_POST['cdm_senha2'] ) ? (string) wp_unslash( $_POST['cdm_senha2'] ) : '';
+		if ( strlen( $nova ) < CDM_ATELIE_SENHA_MINIMA ) {
+			wp_safe_redirect( cdm_atelie_url( array( 'estado' => CDM_ATELIE_ABA_DADOS, 'aviso' => 'curta' ) ) );
+			exit;
+		}
+		if ( $nova !== $nova2 ) {
+			wp_safe_redirect( cdm_atelie_url( array( 'estado' => CDM_ATELIE_ABA_DADOS, 'aviso' => 'difere' ) ) );
+			exit;
+		}
+		$quem = get_current_user_id();
+		wp_update_user( array( 'ID' => $quem, 'user_pass' => $nova ) );
+		/* O NÚCLEO JÁ REEMITE O COOKIE de quem trocou a própria senha, e mesmo
+		   assim isto está aqui: se ele não o fizer, ela cai na tela de entrar
+		   logo depois de trocar a senha, com a senha nova na cabeça e a certeza
+		   de ter quebrado alguma coisa. Reemitir duas vezes não custa nada;
+		   descobrir isso pelo relato dela custaria o domingo. */
+		wp_set_auth_cookie( $quem, true );
+		unset( $nova, $nova2 );
+		wp_safe_redirect( cdm_atelie_url( array( 'estado' => CDM_ATELIE_ABA_DADOS, 'aviso' => 'trocada' ) ) );
 		exit;
 	}
 
@@ -1032,6 +1128,14 @@ function cdm_atelie_avisos() {
 		'nao-sua'   => array( 'atencao', 'Essa peça não está no seu ateliê.' ),
 		'erro'      => array( 'atencao', 'Algo deu errado ao guardar. Tente de novo.' ),
 		'lead'      => array( 'bom', 'Guardado.' ),
+		'trocada'    => array( 'bom', 'Pronto! Sua senha foi trocada. Use a nova da próxima vez que entrar.' ),
+		'dados'      => array( 'bom', 'Guardado.' ),
+		/* ESTE AVISO É DE UMA SEÇÃO QUE MORA NO SNIPPET DE LEADS, e mesmo assim
+		   está aqui, ao lado do `lead` que já estava. A lista de avisos é o
+		   VOCABULÁRIO do painel, e vocabulário espalhado por três arquivos é como
+		   a mesma tela passa a falar em três tons — que é justamente o que este
+		   painel não pode fazer com a pessoa que vai usá-lo. */
+		'email-ruim' => array( 'atencao', 'Esse e-mail não parece certo, então guardamos o que já estava. Confira e tente de novo.' ),
 	);
 }
 }
@@ -1110,10 +1214,10 @@ function cdm_atelie_tela_criar_senha( $chave, $quem ) {
 	$h .= '<input type="hidden" name="cdm_chave" value="' . esc_attr( $chave ) . '">';
 	$h .= '<input type="hidden" name="cdm_quem" value="' . esc_attr( $quem ) . '">';
 	$h .= '<p class="cdm-at-campo"><label for="cdm-senha">Sua senha nova</label>';
-	$h .= '<input id="cdm-senha" name="cdm_senha" type="password" autocomplete="new-password" minlength="8" required>';
-	$h .= '<span class="cdm-at-ajuda">Pelo menos 8 letras ou números.</span></p>';
+	$h .= '<input id="cdm-senha" name="cdm_senha" type="password" autocomplete="new-password" minlength="' . (int) CDM_ATELIE_SENHA_MINIMA . '" required>';
+	$h .= '<span class="cdm-at-ajuda">Pelo menos ' . (int) CDM_ATELIE_SENHA_MINIMA . ' letras ou números.</span></p>';
 	$h .= '<p class="cdm-at-campo"><label for="cdm-senha2">Digite a senha outra vez</label>';
-	$h .= '<input id="cdm-senha2" name="cdm_senha2" type="password" autocomplete="new-password" minlength="8" required></p>';
+	$h .= '<input id="cdm-senha2" name="cdm_senha2" type="password" autocomplete="new-password" minlength="' . (int) CDM_ATELIE_SENHA_MINIMA . '" required></p>';
 	$h .= '<p class="cdm-at-acao"><button class="cdm-botao cdm-at-botao" type="submit">Criar minha senha e entrar</button></p>';
 	$h .= '</form></div>';
 
@@ -1137,6 +1241,9 @@ if ( ! function_exists( 'cdm_atelie_abas' ) ) {
 function cdm_atelie_abas() {
 	$abas = array( '' => array( 'rotulo' => 'Minhas peças' ) );
 
+	/* "MEUS DADOS" É DA CASA E NÃO VEM POR FILTRO: a senha é da conta, e a conta é
+	   deste snippet. Ela fica no FIM, depois do que outros snippets registrarem —
+	   é a aba que ela vai abrir de vez em quando, não a que ela usa todo dia. */
 	$vindas = apply_filters( 'cdm_atelie_abas', array() );
 	if ( is_array( $vindas ) ) {
 		foreach ( $vindas as $slug => $def ) {
@@ -1147,6 +1254,8 @@ function cdm_atelie_abas() {
 			$abas[ $slug ] = array( 'rotulo' => (string) $def['rotulo'] );
 		}
 	}
+
+	$abas[ CDM_ATELIE_ABA_DADOS ] = array( 'rotulo' => 'Meus dados' );
 
 	return $abas;
 }
@@ -1451,6 +1560,114 @@ function cdm_atelie_tela_form( $peca ) {
 }
 }
 
+if ( ! function_exists( 'cdm_atelie_secoes_dados' ) ) {
+/**
+ * As seções da aba "Meus dados": as desta casa, e depois as de quem se registrar.
+ *
+ * O FORMATO É slug => array('titulo','linha','html'), o mesmo shape de
+ * `cdm_atelie_abas`, e por uma razão prática: quem contribui escreve só o miolo
+ * do próprio formulário e ganha o cartão, o título e o espaçamento de graça, o
+ * que mantém a tela parecendo UMA tela em vez de um mural de retalhos.
+ *
+ * `linha` é a frase de uma linha embaixo do título — opcional, e quase sempre é
+ * ela que faz a diferença entre um campo que ela entende e um que ela evita.
+ */
+function cdm_atelie_secoes_dados( $usuaria ) {
+	$secoes = array();
+
+	$secoes['senha'] = array(
+		'titulo' => 'Sua senha',
+		'linha'  => 'Serve para entrar aqui. Pelo menos ' . (int) CDM_ATELIE_SENHA_MINIMA . ' letras ou números.',
+		'html'   => cdm_atelie_form_senha(),
+	);
+
+	$vindas = apply_filters( 'cdm_atelie_meus_dados', array(), $usuaria );
+	if ( is_array( $vindas ) ) {
+		foreach ( $vindas as $slug => $def ) {
+			$slug = sanitize_key( $slug );
+			if ( '' === $slug || isset( $secoes[ $slug ] ) || empty( $def['titulo'] ) || empty( $def['html'] ) ) {
+				continue;
+			}
+			$secoes[ $slug ] = array(
+				'titulo' => (string) $def['titulo'],
+				'linha'  => isset( $def['linha'] ) ? (string) $def['linha'] : '',
+				'html'   => (string) $def['html'],
+			);
+		}
+	}
+
+	return $secoes;
+}
+}
+
+if ( ! function_exists( 'cdm_atelie_form_senha' ) ) {
+/** O formulário de trocar a senha. Dois campos, um botão, nenhum medidor de força. */
+function cdm_atelie_form_senha() {
+	$min = (int) CDM_ATELIE_SENHA_MINIMA;
+
+	$h  = '<form class="cdm-at-form" method="post" action="' . esc_url( cdm_atelie_url() ) . '">';
+	$h .= '<input type="hidden" name="cdm_acao" value="trocar_senha">';
+	$h .= '<input type="hidden" name="cdm_nonce" value="' . esc_attr( wp_create_nonce( 'cdm_atelie_trocar_senha' ) ) . '">';
+	$h .= '<p class="cdm-at-campo"><label for="cdm-nova-senha">Nova senha</label>';
+	$h .= '<input id="cdm-nova-senha" name="cdm_senha" type="password" autocomplete="new-password" minlength="' . $min . '" required></p>';
+	$h .= '<p class="cdm-at-campo"><label for="cdm-nova-senha2">Digite a senha outra vez</label>';
+	$h .= '<input id="cdm-nova-senha2" name="cdm_senha2" type="password" autocomplete="new-password" minlength="' . $min . '" required></p>';
+	$h .= '<p class="cdm-at-acao"><button class="cdm-botao cdm-at-botao" type="submit">Trocar a senha</button></p>';
+	$h .= '</form>';
+
+	return $h;
+}
+}
+
+if ( ! function_exists( 'cdm_atelie_tela_meus_dados' ) ) {
+/**
+ * A aba "Meus dados".
+ *
+ * O E-MAIL DA CONTA SAI COMO TEXTO, não como campo (decisão 2). Ele aparece
+ * porque é a resposta de "para onde vai o link se eu esquecer a senha?", que é a
+ * única pergunta que ela vai fazer sobre este endereço.
+ */
+function cdm_atelie_tela_meus_dados( $usuaria ) {
+	$h  = '<div class="cdm-at">';
+	$h .= cdm_atelie_aviso_html();
+	$h .= '<div class="cdm-at-cabeca">';
+	$h .= '<h2 class="cdm-at-h2">Meus dados</h2>';
+	$h .= '<p class="cdm-at-sair"><a href="' . esc_url( cdm_atelie_url( array(
+		'cdm_acao'  => 'sair',
+		'cdm_nonce' => wp_create_nonce( 'cdm_atelie_sair' ),
+	) ) ) . '">Sair</a></p>';
+	$h .= '</div>';
+	$h .= cdm_atelie_abas_html( CDM_ATELIE_ABA_DADOS );
+
+	$email = is_object( $usuaria ) && isset( $usuaria->user_email ) ? (string) $usuaria->user_email : '';
+	if ( '' !== $email ) {
+		$h .= '<div class="cdm-at-secao cdm-at-secao-fixa">';
+		$h .= '<h3 class="cdm-at-h3">Seu acesso</h3>';
+		$h .= '<p class="cdm-at-linha">Se você esquecer a senha, o link para criar outra vai para <strong>'
+			. esc_html( $email ) . '</strong>. Para trocar esse endereço, fale com o Raphael — '
+			. 'um endereço digitado errado deixaria você de fora do seu próprio ateliê.</p>';
+		$h .= '</div>';
+	}
+
+	foreach ( cdm_atelie_secoes_dados( $usuaria ) as $slug => $secao ) {
+		$h .= '<div class="cdm-at-secao" id="cdm-dados-' . esc_attr( $slug ) . '">';
+		$h .= '<h3 class="cdm-at-h3">' . esc_html( $secao['titulo'] ) . '</h3>';
+		if ( '' !== $secao['linha'] ) {
+			$h .= '<p class="cdm-at-linha">' . esc_html( $secao['linha'] ) . '</p>';
+		}
+		$h .= $secao['html'];
+		$h .= '</div>';
+	}
+
+	/* NENHUMA TELA DESTE PAINEL É UM BECO — foi o portão do navegador que nomeou
+	   isso na aba Interessados vazia, em 13/09, e a regra não era daquela aba. */
+	$h .= '<p class="cdm-at-linha"><a href="' . esc_url( cdm_atelie_url() ) . '">← Voltar para as minhas peças</a></p>';
+	$h .= '</div>';
+
+	return $h;
+}
+}
+
 add_shortcode( 'cdm_atelie', function () {
 	/* A TELA DE CRIAR SENHA vem antes de tudo: ela é o primeiro contato dela com
 	   este site, e nesse momento ela ainda não está logada. */
@@ -1486,6 +1703,14 @@ add_shortcode( 'cdm_atelie', function () {
 		if ( $peca ) {
 			return cdm_atelie_tela_form( $peca );
 		}
+	}
+
+	/* "MEUS DADOS" É DESTE ARQUIVO e por isso é despachada antes do filtro: se ela
+	   passasse pelo `cdm_atelie_tela`, quem devolvesse '' (que é o que todo mundo
+	   devolve para um estado que não é seu) a mandaria calada para a lista de
+	   peças — uma aba que existe no menu e não abre. */
+	if ( CDM_ATELIE_ABA_DADOS === $estado ) {
+		return cdm_atelie_tela_meus_dados( $usuaria );
 	}
 
 	/* AS ABAS DE FORA. Só um estado que alguém REGISTROU como aba chega aqui: sem
@@ -1526,6 +1751,15 @@ add_action( 'wp_footer', function () {
 .cdm-at-h2{margin:0 0 .3rem;font-size:1.6rem;font-weight:600;}
 .cdm-at-h3{margin:0 0 .2rem;font-size:1.1rem;}
 .cdm-at-linha{margin:0 0 1.4rem;color:var(--cdm-legenda);font-size:1rem;}
+/* AS SECOES DE "MEUS DADOS". Cada uma e um cartao, porque cada uma e um
+   formulario proprio que grava sozinho — e sem a borda ela apertaria "Trocar a
+   senha" achando que estava salvando os dois. A borda aqui NAO e enfeite: e o
+   que diz onde um formulario acaba e o outro comeca. */
+.cdm-at-secao{margin:0 0 1.4rem;padding:1.1rem 1.1rem .3rem;border:1px solid var(--cdm-traco);border-radius:10px;}
+.cdm-at-secao .cdm-at-linha{margin-bottom:1rem;}
+.cdm-at-secao .cdm-at-form{margin-bottom:1.1rem;}
+.cdm-at-secao-fixa{background:var(--cdm-papel);}
+.cdm-at-secao-fixa .cdm-at-linha{margin-bottom:1rem;}
 .cdm-at-sair{margin:0;font-size:.95rem;}
 .cdm-at-aviso{margin:0 0 1.2rem;padding:.9rem 1rem;border-radius:8px;font-size:1rem;line-height:1.5;}
 .cdm-at-aviso-bom{background:#F3F8F3;border:1px solid #CBE3CB;color:#1F1715;}

@@ -433,6 +433,19 @@ function check_password_reset_key($chave,$login){
 	return $u ? $u : new CdmTesteErro('sem usuária');
 }
 function reset_password($u,$nova){ $GLOBALS['__senhas_trocadas'][] = is_object($u) ? $u->user_login : ''; return true; }
+/* A TROCA DE SENHA DE DENTRO DO PAINEL (Ateliê 1.2.0). Guarda O QUE FOI PEDIDO —
+   de quem, e se veio senha —, nunca a senha: o teste afirma sobre a INTENCAO do
+   snippet, e um stub que guardasse o texto da senha seria o proprio defeito que
+   as mutacoes desta ilha procuram. */
+function wp_update_user($dados){
+	$id = (int) ($dados['ID'] ?? 0);
+	$GLOBALS['__usuarias_atualizadas'][] = array('ID'=>$id, 'trocou_senha'=> isset($dados['user_pass']) && '' !== $dados['user_pass']);
+	if (isset($dados['user_pass'])) { $GLOBALS['__senhas_trocadas'][] = 'ID:'.$id; }
+	return $id;
+}
+/* A SESSAO REEMITIDA. Sem isto, "ela continua logada depois de trocar a senha"
+   seria uma frase do cabecalho que nenhum portao consegue medir. */
+function wp_set_auth_cookie($id,$lembrar=false,$ssl=''){ $GLOBALS['__cookies_emitidos'][] = (int) $id; }
 function wp_signon($c=array(),$ssl=false){
 	$GLOBALS['__signon'][] = $c;
 	$u = get_user_by('login', $c['user_login'] ?? '');
@@ -577,9 +590,22 @@ function rel_canonical(){
 }
 add_action('wp_head','rel_canonical',10);
 
-function cdm_teste_carregar($raiz) {
+/**
+ * PRODUZ O MUNDO EM QUE UM SNIPPET NAO DESEMBARCOU.
+ *
+ * O Sync aplica um snippet sem o outro, e o painel tem DOIS pontos de extensao
+ * (`cdm_atelie_abas` e `cdm_atelie_meus_dados`) cujo unico cliente hoje e o
+ * arquivo de Leads. "A tela nao promete o que o dono ausente nao entrega" e uma
+ * afirmacao que so pode ser medida com o dono AUSENTE — e nao ha como produzir
+ * essa ausencia lendo codigo, so deixando de carregar o arquivo.
+ *
+ * E a mesma familia do `sem_links`: a regua mede o COMPORTAMENTO nos dois lados,
+ * e nenhum dos dois depende de quais snippets estao no repositorio hoje.
+ */
+function cdm_teste_carregar($raiz, $fora = array()) {
 	foreach (glob($raiz.'/snippets/*.php') as $arquivo) {
 		if (basename($arquivo) === 'clubedomosaico-sync.php') { continue; } // fala com o WP de verdade
+		if (in_array(basename($arquivo), (array) $fora, true)) { continue; }
 		eval(file_get_contents($arquivo));
 	}
 	/* Retrato dos ganchos registrados na CARGA dos snippets, para quem monta
@@ -889,7 +915,14 @@ if (isset($argv[1]) && basename(__FILE__) === basename($argv[0])) {
 		unset($_GET['sem_links']);
 	}
 
-	cdm_teste_carregar($argv[1]);
+	/* O MUNDO SEM O SNIPPET DE LEADS. `sem_leads=1` na consulta. */
+	$fora = array();
+	if (!empty($_GET['sem_leads'])) {
+		$fora[] = 'clubedomosaico-leads.php';
+		unset($_GET['sem_leads']);
+	}
+
+	cdm_teste_carregar($argv[1], $fora);
 	/* Depois de carregar a casca, porque o modo 'todas' le o registro dela. */
 	$GLOBALS['__paginas'] = cdm_teste_paginas_no_ar($modo);
 

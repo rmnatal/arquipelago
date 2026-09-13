@@ -389,6 +389,69 @@ def m40(r):
            "\t$primeiro = substr( $texto, 0, 1 );\n\tif ( true ) {")
 
 
+# ------------------------- familia 5: "Meus dados" — as duas options dela (1.1.0)
+#
+# Ate hoje `cdm_email_leads` e `cdm_artesa_nome` so mudavam por mao da Fundacao.
+# Agora um formulario numa pagina publica-por-caminho as escreve, e isso muda a
+# classe do defeito: uma option gravada por quem nao devia desvia TODO aviso de
+# interessado para a caixa de outra pessoa, sem nada na tela dizer que mudou.
+
+
+def m41(r):
+    """A secao para de ser registrada. O painel fica com "Meus dados" sem os dois
+    campos do adendo, e o unico jeito de mudar o e-mail volta a ser a Fundacao."""
+    trocar(r, LEADS, "\t$secoes['leads'] = array(", "\t$nao_registra = array(")
+
+
+def m42(r):
+    """A gravacao para de conferir o nonce: qualquer pagina da internet passa a
+    poder desviar o aviso de interessado enquanto ela estiver logada."""
+    trocar(r, LEADS, "\t\t\t|| ! wp_verify_nonce( cdm_atelie_post( 'cdm_nonce' ), 'cdm_leads_dados' ) ) {",
+           "\t\t\t) {")
+
+
+def m43(r):
+    """A gravacao para de conferir a capacidade. Nonce protege do site de fora;
+    capacidade, da pessoa errada logada. Sem as duas, so uma metade esta de pe."""
+    trocar(r, LEADS, "\t\tif ( ! current_user_can( 'edit_pecas' )\n\t\t\t|| ! wp_verify_nonce( cdm_atelie_post( 'cdm_nonce' ), 'cdm_leads_dados' ) ) {",
+           "\t\tif ( ! wp_verify_nonce( cdm_atelie_post( 'cdm_nonce' ), 'cdm_leads_dados' ) ) {")
+
+
+def m44(r):
+    """E-mail invalido passa a ser gravado. O endereco que RECEBIA e trocado por um
+    que nao existe, e o aviso do interessado some sem ninguem perceber — que e
+    exatamente o erro caro deste campo."""
+    trocar(r, LEADS, "\t\t\t$limpo = sanitize_email( $bruto );", "\t\t\t$limpo = $bruto;")
+
+
+def m45(r):
+    """O nome para de ser limpo. Uma quebra de linha colada ali parte a mensagem do
+    WhatsApp no meio e injeta o resto numa segunda linha do corpo do e-mail."""
+    trocar(r, LEADS, "\t\t$nome = sanitize_text_field( cdm_atelie_post( 'cdm_artesa_nome' ) );",
+           "\t\t$nome = cdm_atelie_post( 'cdm_artesa_nome' );")
+
+
+def m46(r):
+    """O teto de 60 vira 6000: o `maxlength` do campo passa a ser uma sugestao, e
+    quem enviar por fora do formulario passa por cima dele."""
+    trocar(r, LEADS, "\t\t\t$nome = mb_substr( $nome, 0, 60 );", "\t\t\t$nome = mb_substr( $nome, 0, 6000 );")
+
+
+def m47(r):
+    """Campo em branco passa a ser ignorado em vez de apagar. Ela nao consegue mais
+    desfazer um endereco que digitou por engano — e o campo vazio na tela passa a
+    mentir sobre o que esta gravado."""
+    trocar(r, LEADS, "\t\t\tupdate_option( 'cdm_email_leads', '' );\n\t\t\t$volta['aviso'] = 'dados';",
+           "\t\t\t$volta['aviso'] = 'dados';")
+
+
+def m48(r):
+    """A tela para de dizer para onde os avisos vao hoje. O campo vazio vira uma
+    pergunta sem resposta: esqueceram de preencher, ou e assim mesmo?"""
+    trocar(r, LEADS, "\t\t. esc_html( CDM_LEADS_EMAIL_PADRAO ) . '). Hoje os avisos vão para <strong>'\n\t\t. esc_html( cdm_leads_email_destino() ) . '</strong>.</span></p>';",
+           "\t\t. esc_html( CDM_LEADS_EMAIL_PADRAO ) . ').</span></p>';")
+
+
 MUTACOES = [
     ("01 o CPT de interessados volta ao wp-admin", m01),
     ("02 o tipo vira publico (cada lead ganha URL)", m02),
@@ -430,6 +493,14 @@ MUTACOES = [
     ("38 o caminho do remetente nao e gravado", m38),
     ("39 a trava de formula do CSV some", m39),
     ("40 a trava de formula passa a valer para toda celula", m40),
+    ("41 a secao de Meus dados para de ser registrada", m41),
+    ("42 a gravacao para de conferir o nonce", m42),
+    ("43 a gravacao para de conferir a capacidade", m43),
+    ("44 e-mail invalido apaga o endereco que funcionava", m44),
+    ("45 o nome que assina para de ser limpo", m45),
+    ("46 o teto de 60 do nome vira 6000", m46),
+    ("47 campo em branco deixa de apagar o endereco", m47),
+    ("48 a tela para de dizer para onde os avisos vao hoje", m48),
 ]
 
 PORTAO_NOVO = "teste-leads.php"

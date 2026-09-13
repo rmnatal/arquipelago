@@ -606,7 +606,13 @@ $pos_pecas = strpos( $nav, 'Minhas peças' );
 $pos_inter = strpos( $nav, 'Interessados' );
 cdm_ok( false !== $pos_pecas && false !== $pos_inter && $pos_pecas < $pos_inter,
 	'"Minhas peças" vem antes de "Interessados" (ordem do adendo)' );
-cdm_ok( 2 === substr_count( $nav, '<li' ), 'a navegacao tem DUAS abas e mais nada', substr_count( $nav, '<li' ) . '' );
+$pos_dados = strpos( $nav, 'Meus dados' );
+cdm_ok( false !== $pos_dados && $pos_inter < $pos_dados,
+	'"Meus dados" e a ultima, depois de "Interessados" (Atelie 1.2.0)' );
+/* TRES DESDE O ATELIE 1.2.0, e nao duas: "Meus dados" e da casa e aparece
+   mesmo sem este snippet. A afirmacao continua sendo de contagem EXATA de
+   proposito — o que ela impede e uma aba nascer sem ninguem decidir. */
+cdm_ok( 3 === substr_count( $nav, '<li' ), 'a navegacao tem TRES abas e mais nada', substr_count( $nav, '<li' ) . '' );
 cdm_ok( preg_match( '#aria-current="page">Interessados<#', $cc ) === 1, 'a aba aberta se declara para o leitor de tela' );
 
 $lista = cdm_painel( $raiz, 'quem_sou=artesa&com_peca=1' );
@@ -790,6 +796,134 @@ $json  = wp_json_encode( $copia );
 cdm_ok( false === stripos( $json, 'whatsapp' ), 'a copia das pecas nao carrega telefone' );
 cdm_ok( false === stripos( $json, 'lead' ), 'a copia das pecas nao carrega lead' );
 cdm_ok( false === stripos( $json, 'consentimento' ), 'a copia das pecas nao carrega consentimento' );
+
+/* ======================================================================== */
+echo "\n11. Meus dados — as duas options que deixaram de ser so nossas (Leads 1.1.0)\n";
+
+/* A REGUA E DESTE ARQUIVO: os nomes das duas options e o endereco padrao estao
+   escritos aqui, copiados do adendo 3, nunca lidos das constantes do snippet.
+   Comparar a constante consigo mesma nunca pegou nada. */
+cdm_teste_logar( 'artesa' );
+$GLOBALS['__options']['cdm_email_leads'] = '';
+$GLOBALS['__options']['cdm_artesa_nome'] = '';
+
+/* O LADO DAQUI: o snippet registra a secao. O lado de la — que o Atelie a
+   RENDERIZA — e medido no teste-atelie.php, e as duas metades tem de existir,
+   que e a cicatriz dos dois add_filter de 12/09. */
+$secoes = apply_filters( 'cdm_atelie_meus_dados', array(), wp_get_current_user() );
+cdm_ok( isset( $secoes['leads'] ), 'o snippet registra a secao "leads" em Meus dados' );
+$miolo = isset( $secoes['leads']['html'] ) ? $secoes['leads']['html'] : '';
+cdm_ok( false !== strpos( $miolo, 'name="cdm_email_leads"' ), 'o campo do e-mail dos avisos esta la' );
+cdm_ok( false !== strpos( $miolo, 'name="cdm_artesa_nome"' ), 'o campo do nome que assina esta la' );
+cdm_ok( false !== strpos( $miolo, 'name="cdm_acao" value="leads_dados"' ), 'e o formulario grava por acao propria' );
+
+/* O VAZIO DIZ O QUE FAZ. Campo em branco sem explicacao e a tela pedindo que ela
+   adivinhe se esqueceram de preencher ou se e assim mesmo. */
+cdm_ok( false !== strpos( $miolo, 'mina196@hotmail.com' ),
+	'com o campo vazio, a tela DIZ para onde os avisos vao hoje' );
+cdm_ok( false !== strpos( $miolo, 'do Clube do Mosaico' ),
+	'e com o nome vazio, DIZ como as mensagens assinam hoje' );
+/* E ESTA AFIRMACAO SOZINHA NAO BASTA, o que so uma mutacao mostrou: com a option
+   VAZIA, o endereco de hoje e igual ao endereco padrao, entao a frase "deixe em
+   branco para usar mina196@..." satisfaz a regua sem que a tela diga coisa
+   nenhuma sobre o estado atual. Medir "a tela diz para onde vai hoje" exige um
+   mundo em que hoje e DIFERENTE do padrao — e e o que a alinea (c) faz, mais
+   abaixo, depois de gravar. Regua que so distingue quando os dois valores
+   diferem tem de ser medida onde eles diferem. */
+
+function cdm_leads_dados( $post ) {
+	$_POST = $post;
+	$_GET  = array();
+	try {
+		cdm_leads_agir_painel();
+	} catch ( CdmTesteRedirecionou $e ) {
+		return $e->destino;
+	}
+	return '';
+}
+
+$nonce_bom = wp_create_nonce( 'cdm_leads_dados' );
+
+/* (a) SEM NONCE NAO GRAVA. */
+cdm_leads_dados( array( 'cdm_acao' => 'leads_dados', 'cdm_nonce' => 'ERRADO',
+	'cdm_email_leads' => 'invasor@exemplo.com', 'cdm_artesa_nome' => 'Invasor' ) );
+cdm_ok( '' === (string) get_option( 'cdm_email_leads', '' ), 'nonce errado nao grava o e-mail' );
+cdm_ok( '' === (string) get_option( 'cdm_artesa_nome', '' ), 'nem o nome' );
+
+/* (b) SEM CAPACIDADE TAMBEM NAO — nonce protege do site de fora, capacidade da
+       pessoa errada logada, e so as duas juntas protegem das duas coisas. */
+cdm_teste_logar( 'subscriber', 11, 'outra' );
+cdm_leads_dados( array( 'cdm_acao' => 'leads_dados', 'cdm_nonce' => wp_create_nonce( 'cdm_leads_dados' ),
+	'cdm_email_leads' => 'estranha@exemplo.com', 'cdm_artesa_nome' => 'Estranha' ) );
+cdm_ok( '' === (string) get_option( 'cdm_email_leads', '' ), 'quem nao tem edit_pecas nao grava o e-mail' );
+cdm_teste_logar( 'artesa' );
+
+/* (c) O CAMINHO QUE GRAVA. */
+$destino = cdm_leads_dados( array( 'cdm_acao' => 'leads_dados', 'cdm_nonce' => wp_create_nonce( 'cdm_leads_dados' ),
+	'cdm_email_leads' => 'avisos@exemplo.com', 'cdm_artesa_nome' => 'Mina' ) );
+cdm_ok( 'avisos@exemplo.com' === (string) get_option( 'cdm_email_leads', '' ), 'a artesa grava o e-mail dos avisos' );
+cdm_ok( 'Mina' === (string) get_option( 'cdm_artesa_nome', '' ), 'e o nome que assina' );
+cdm_ok( false !== strpos( $destino, 'estado=meus-dados' ) && false !== strpos( $destino, 'aviso=dados' ),
+	'e volta para a aba com o aviso de guardado', $destino );
+
+/* AGORA O ESTADO DE HOJE E DIFERENTE DO PADRAO, e so aqui a frase da tela pode
+   ser cobrada de verdade. */
+$secoes_dep = apply_filters( 'cdm_atelie_meus_dados', array(), wp_get_current_user() );
+$miolo_dep  = isset( $secoes_dep['leads']['html'] ) ? $secoes_dep['leads']['html'] : '';
+cdm_ok( false !== strpos( $miolo_dep, 'avisos@exemplo.com' ),
+	'com um endereco gravado, a tela mostra o endereco DE HOJE, nao so o padrao' );
+cdm_ok( false !== strpos( $miolo_dep, 'mina196@hotmail.com' ),
+	'e continua dizendo qual e o padrao, para ela saber o que o branco faz' );
+cdm_ok( false !== strpos( $miolo_dep, '>Mina<' ) || false !== strpos( $miolo_dep, 'assinam: <strong>Mina' ),
+	'e a assinatura de hoje aparece com o nome gravado' );
+
+/* E O QUE FOI GRAVADO MUDA O QUE SAI: sem esta metade, gravar option seria um
+   fato sobre o banco e nao sobre a ilha. */
+cdm_ok( 'avisos@exemplo.com' === cdm_leads_email_destino(), 'o aviso passa a ir para o endereco novo' );
+/* A mensagem sai `rawurlencode`ada, porque ela vive dentro de uma URL de wa.me:
+   quem afirma sobre o TEXTO decodifica antes, senao mede a codificacao. */
+$msg = rawurldecode( cdm_leads_mensagem_para_cliente( 'Ana', 'Vaso', '', '', 'https://x/' ) );
+cdm_ok( false !== strpos( $msg, 'Aqui é Mina' ),
+	'e a mensagem do WhatsApp passa a assinar com o nome dela', substr( $msg, 0, 40 ) );
+
+/* (d) E-MAIL INVALIDO NAO DERRUBA O QUE FUNCIONAVA. Trocar um endereco que
+       recebe por um que nao existe e como o aviso do interessado some sem
+       ninguem perceber — o erro caro esta desse lado. */
+$destino = cdm_leads_dados( array( 'cdm_acao' => 'leads_dados', 'cdm_nonce' => wp_create_nonce( 'cdm_leads_dados' ),
+	'cdm_email_leads' => 'isto nao e um e-mail', 'cdm_artesa_nome' => 'Mina' ) );
+cdm_ok( 'avisos@exemplo.com' === (string) get_option( 'cdm_email_leads', '' ),
+	'e-mail invalido nao apaga o que ja estava', (string) get_option( 'cdm_email_leads', '' ) );
+cdm_ok( false !== strpos( $destino, 'aviso=email-ruim' ), 'e a tela diz que nao deu', $destino );
+
+/* (e) VAZIO E UM VALOR, e nao "ignorar": sem isto ela nao teria como desfazer um
+       endereco digitado por engano. */
+cdm_leads_dados( array( 'cdm_acao' => 'leads_dados', 'cdm_nonce' => wp_create_nonce( 'cdm_leads_dados' ),
+	'cdm_email_leads' => '', 'cdm_artesa_nome' => '' ) );
+cdm_ok( '' === (string) get_option( 'cdm_email_leads', '' ), 'campo em branco APAGA o endereco gravado' );
+cdm_ok( 'mina196@hotmail.com' === cdm_leads_email_destino(),
+	'e o aviso volta para o endereco padrao do adendo', cdm_leads_email_destino() );
+cdm_ok( '' === cdm_leads_nome_da_artesa(), 'nome em branco volta a nao existir' );
+
+/* (f) O NOME NAO PARTE A MENSAGEM. Ele viaja dentro de uma URL de wa.me e dentro
+       do corpo de um e-mail; uma quebra de linha ali corta a frase no meio. */
+cdm_leads_dados( array( 'cdm_acao' => 'leads_dados', 'cdm_nonce' => wp_create_nonce( 'cdm_leads_dados' ),
+	'cdm_email_leads' => '', 'cdm_artesa_nome' => "Mina\r\ndo Clube\t<b>x</b>" ) );
+$gravado = (string) get_option( 'cdm_artesa_nome', '' );
+cdm_ok( false === strpos( $gravado, "\n" ) && false === strpos( $gravado, "\r" ) && false === strpos( $gravado, "\t" ),
+	'o nome gravado nao tem quebra de linha nem tabulacao', json_encode( $gravado ) );
+cdm_ok( false === strpos( $gravado, '<b>' ), 'nem etiqueta de HTML', $gravado );
+
+/* (g) E ELE TEM TETO. Sessenta e o `maxlength` do campo; sem o teto no PHP, o
+       campo seria uma sugestao e quem enviasse por fora passaria por cima. */
+cdm_leads_dados( array( 'cdm_acao' => 'leads_dados', 'cdm_nonce' => wp_create_nonce( 'cdm_leads_dados' ),
+	'cdm_email_leads' => '', 'cdm_artesa_nome' => str_repeat( 'a', 200 ) ) );
+$longo = (string) get_option( 'cdm_artesa_nome', '' );
+cdm_ok( strlen( $longo ) <= 60, 'o nome e cortado em 60, mesmo enviado por fora do formulario', strlen( $longo ) . ' bytes' );
+
+/* Devolve o mundo ao estado em que este arquivo o encontrou. */
+$GLOBALS['__options']['cdm_email_leads'] = '';
+$GLOBALS['__options']['cdm_artesa_nome'] = '';
+$_POST = array();
 
 echo "\n" . str_repeat( '-', 78 ) . "\n";
 printf( "%d afirmacoes, %d falha(s). %d estados de pagina, um processo cada.\n", $feitos, $falhas, $estados_medidos );

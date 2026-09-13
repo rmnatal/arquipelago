@@ -313,6 +313,13 @@ $telas = array(
 	'criar senha'       => 'criar-senha=CHAVE-DE-TESTE&quem=artesa',
 	'chave gasta'       => 'criar-senha=CHAVE-VELHA&quem=artesa',
 	'logada sem acesso' => 'quem_sou=estranha',
+	'meus dados'        => 'quem_sou=artesa&estado=meus-dados',
+	/* O MUNDO SEM O DONO DA SECAO. Sem esta tela, "a aba nao promete campo cujo
+	   dono nao desembarcou" nao teria como ser medida — e ela e a razao inteira
+	   pela qual a secao chega por filtro em vez de estar escrita no painel. */
+	'meus dados sem leads' => 'quem_sou=artesa&estado=meus-dados&sem_leads=1',
+	'estranha em meus dados' => 'quem_sou=estranha&estado=meus-dados',
+	'deslogada em meus dados' => 'estado=meus-dados',
 );
 
 $html_por_tela = array();
@@ -774,6 +781,167 @@ cdm_acao( array(
 ) );
 cdm_ok( '' === cdm_loja_meta( 891, '_cdm_disponibilidade' ), 'disponibilidade inventada nao grava' );
 cdm_ok( '' === cdm_loja_meta( 891, '_cdm_base' ), 'base inventada nao grava' );
+
+/* ---------------------------------------------------------------------------
+ * 15. A ABA "MEUS DADOS" — Atelie 1.2.0
+ *
+ * A REGUA E ESCRITA A MAO: as frases esperadas estao NESTE arquivo, nunca lidas
+ * de `cdm_atelie_avisos()` nem do formulario. Comparar o snippet consigo mesmo e
+ * o unico erro que um portao nunca pega.
+ * ------------------------------------------------------------------------- */
+
+echo "\n15. A aba Meus dados — a senha, o e-mail da conta e a secao de fora\n";
+
+$corpo_dados = cdm_corpo( $html_por_tela['meus dados'] );
+$corpo_sem_leads = cdm_corpo( $html_por_tela['meus dados sem leads'] );
+
+cdm_ok( false !== strpos( $corpo_dados, '>Meus dados</h2>' ), 'a tela se chama Meus dados' );
+cdm_ok( false !== strpos( $corpo_dados, 'aria-current="page">Meus dados<' ),
+	'a aba atual e marcada como a pagina atual' );
+
+/* A ABA APARECE NAS OUTRAS TELAS TAMBEM — uma aba que so existe quando ja se
+   esta nela nao e navegacao, e ninguem a encontraria. */
+foreach ( array( 'artesa sem peca', 'artesa com peca' ) as $onde ) {
+	cdm_ok( false !== strpos( cdm_corpo( $html_por_tela[ $onde ] ), 'estado=meus-dados' ),
+		"a tela '$onde' oferece o caminho para Meus dados" );
+}
+
+/* A TROCA DE SENHA, na tela. */
+cdm_ok( false !== strpos( $corpo_dados, 'name="cdm_acao" value="trocar_senha"' ),
+	'o formulario declara a acao de trocar senha' );
+cdm_ok( 2 === preg_match_all( '#name="cdm_senha2?"[^>]*type="password"#', $corpo_dados ),
+	'os dois campos de senha sao type=password',
+	preg_match_all( '#name="cdm_senha2?"#', $corpo_dados ) . ' campos' );
+cdm_ok( false !== strpos( $corpo_dados, 'minlength="8"' ), 'o minimo de 8 e cobrado no proprio campo' );
+/* SENHA NUNCA VOLTA PREENCHIDA. Um `value=` num campo de senha poe a senha no
+   HTML servido, no histórico e no cache do navegador dela. */
+cdm_ok( 0 === preg_match( '#name="cdm_senha2?"[^>]*value=#', $corpo_dados ),
+	'nenhum campo de senha sai com value preenchido' );
+cdm_ok( false !== strpos( $corpo_dados, 'Trocar a senha</button>' ), 'o botao diz o que faz' );
+
+/* O E-MAIL DA CONTA APARECE E NAO E CAMPO (decisao 2 do cabecalho). */
+cdm_ok( false !== strpos( $corpo_dados, 'mina196@hotmail.com' ), 'o e-mail da conta aparece na tela' );
+cdm_ok( 0 === preg_match( '#<input[^>]*name="(user_email|cdm_email_conta)"#', $corpo_dados ),
+	'o e-mail da CONTA nao e um campo editavel' );
+
+/* A SECAO QUE VEM DE FORA, e a metade que so a ausencia mede. */
+cdm_ok( false !== strpos( $corpo_dados, 'id="cdm-dados-leads"' ),
+	'com o snippet de Leads no ar, a secao dele aparece' );
+cdm_ok( false === strpos( $corpo_sem_leads, 'id="cdm-dados-leads"' ),
+	'SEM o snippet de Leads, a secao dele NAO e prometida' );
+cdm_ok( false !== strpos( $corpo_sem_leads, 'id="cdm-dados-senha"' ),
+	'e sem ele a troca de senha continua inteira' );
+cdm_ok( false === strpos( $corpo_sem_leads, 'estado=interessados' ),
+	'sem o snippet de Leads a aba Interessados tambem some' );
+
+/* O FILTRO E APLICADO DE VERDADE. A cicatriz de 12/09 nesta ilha foram dois
+   `add_filter` sem ninguem do outro lado; aqui a bancada REGISTRA um ouvinte de
+   mentira e cobra que o que ele devolveu chegue a tela. */
+add_filter( 'cdm_atelie_meus_dados', function ( $secoes, $usuaria ) {
+	$secoes['sonda'] = array( 'titulo' => 'SONDA DA BANCADA', 'html' => '<p>MIOLO-DA-SONDA</p>' );
+	return $secoes;
+}, 20, 2 );
+$com_sonda = cdm_atelie_tela_meus_dados( wp_get_current_user() );
+cdm_ok( false !== strpos( $com_sonda, 'MIOLO-DA-SONDA' ),
+	'cdm_atelie_meus_dados e APLICADO — o miolo de quem se registra chega a tela' );
+cdm_ok( false !== strpos( $com_sonda, 'id="cdm-dados-sonda"' ), 'e a secao de fora ganha o cartao da casa' );
+/* E SECAO MAL DECLARADA NAO ENTRA: sem titulo ou sem miolo nao ha o que mostrar,
+   e meia secao na tela dela e pior que nenhuma. */
+add_filter( 'cdm_atelie_meus_dados', function ( $secoes, $usuaria ) {
+	$secoes['torta'] = array( 'titulo' => 'SEM MIOLO' );
+	return $secoes;
+}, 21, 2 );
+cdm_ok( false === strpos( cdm_atelie_tela_meus_dados( wp_get_current_user() ), 'SEM MIOLO' ),
+	'secao registrada sem miolo nao chega a tela' );
+
+/* QUEM NAO E DO ATELIE NAO VE NADA DISTO. */
+$corpo_estranha = cdm_corpo( $html_por_tela['estranha em meus dados'] );
+cdm_ok( false === strpos( $corpo_estranha, 'trocar_senha' ), 'quem nao tem edit_pecas nao ve a troca de senha' );
+cdm_ok( false === strpos( $corpo_estranha, 'mina196@hotmail.com' ), 'nem o e-mail da conta dela' );
+$corpo_fora = cdm_corpo( $html_por_tela['deslogada em meus dados'] );
+cdm_ok( false === strpos( $corpo_fora, 'trocar_senha' ), 'deslogada em ?estado=meus-dados cai na tela de entrar' );
+cdm_ok( false !== strpos( $corpo_fora, 'cdm_atelie_entrar' ) || false !== strpos( $corpo_fora, 'name="cdm_acao" value="entrar"' ),
+	'e a tela de entrar e a que aparece' );
+
+echo "\n16. As acoes de Meus dados — as tres recusas e o unico caminho que grava\n";
+
+$antes_cookies = count( $GLOBALS['__cookies_emitidos'] ?? array() );
+$antes_trocas  = count( $GLOBALS['__senhas_trocadas'] ?? array() );
+
+$destino = cdm_acao( array(
+	'cdm_acao' => 'trocar_senha', 'cdm_nonce' => 'ERRADO',
+	'cdm_senha' => 'umasenhaboa', 'cdm_senha2' => 'umasenhaboa',
+) );
+cdm_ok( false !== strpos( $destino, 'aviso=nonce' ), 'nonce errado nao troca senha nenhuma', $destino );
+cdm_ok( $antes_trocas === count( $GLOBALS['__senhas_trocadas'] ?? array() ), 'e nada foi gravado' );
+
+$destino = cdm_acao( array(
+	'cdm_acao' => 'trocar_senha', 'cdm_nonce' => wp_create_nonce( 'cdm_atelie_trocar_senha' ),
+	'cdm_senha' => 'curta', 'cdm_senha2' => 'curta',
+) );
+cdm_ok( false !== strpos( $destino, 'estado=meus-dados' ) && false !== strpos( $destino, 'aviso=curta' ),
+	'senha de menos de 8 volta para a aba com o aviso certo', $destino );
+
+$destino = cdm_acao( array(
+	'cdm_acao' => 'trocar_senha', 'cdm_nonce' => wp_create_nonce( 'cdm_atelie_trocar_senha' ),
+	'cdm_senha' => 'umasenhaboa', 'cdm_senha2' => 'outrasenhaboa',
+) );
+cdm_ok( false !== strpos( $destino, 'aviso=difere' ), 'as duas diferentes tambem recusa', $destino );
+cdm_ok( $antes_trocas === count( $GLOBALS['__senhas_trocadas'] ?? array() ), 'nenhuma das recusas gravou' );
+
+$destino = cdm_acao( array(
+	'cdm_acao' => 'trocar_senha', 'cdm_nonce' => wp_create_nonce( 'cdm_atelie_trocar_senha' ),
+	'cdm_senha' => 'umasenhaboa', 'cdm_senha2' => 'umasenhaboa',
+) );
+cdm_ok( false !== strpos( $destino, 'aviso=trocada' ), 'as duas iguais e com 8+ trocam a senha', $destino );
+cdm_ok( count( $GLOBALS['__senhas_trocadas'] ?? array() ) === $antes_trocas + 1, 'e UMA troca foi pedida, nao duas' );
+/* ELA CONTINUA LOGADA. Sem isto, trocar a senha a joga na tela de entrar com a
+   senha nova na cabeca e a certeza de ter quebrado alguma coisa. */
+cdm_ok( count( $GLOBALS['__cookies_emitidos'] ?? array() ) > $antes_cookies,
+	'a sessao dela e reemitida depois da troca' );
+/* A SENHA NAO VIAJA NA URL. Mesma regra que o adendo 3 escreveu para o nome do
+   cliente: o que vai na URL entra no historico, no Referer e no log de acesso. */
+cdm_ok( false === strpos( $destino, 'umasenhaboa' ), 'a senha nao aparece no endereco de volta', $destino );
+
+/* O BURACO QUE A MUTACAO 34 ACHOU NO PROPRIO PORTAO, e vale mais que o conserto:
+   todas as afirmacoes acima rodam COM A ARTESA LOGADA, e por isso nenhuma delas
+   via a guarda de sessao cair. A mutacao removeu `is_user_logged_in()` e
+   `current_user_can()` da acao e PASSOU verde — um portao que so mede o caminho
+   feliz da recusa mede a recusa errada. O nonce da bancada e deterministico, e e
+   isso que torna esta medicao possivel: quem esta de fora consegue calcula-lo,
+   que e exatamente o mundo contra o qual a capacidade protege. */
+$antes_trocas = count( $GLOBALS['__senhas_trocadas'] ?? array() );
+cdm_teste_deslogar();
+$destino = cdm_acao( array(
+	'cdm_acao' => 'trocar_senha', 'cdm_nonce' => wp_create_nonce( 'cdm_atelie_trocar_senha' ),
+	'cdm_senha' => 'senhadeinvasor', 'cdm_senha2' => 'senhadeinvasor',
+) );
+cdm_ok( $antes_trocas === count( $GLOBALS['__senhas_trocadas'] ?? array() ),
+	'DESLOGADA, com nonce valido, NAO troca a senha dela', $destino );
+
+cdm_teste_logar( 'subscriber', 11, 'outra' );
+cdm_acao( array(
+	'cdm_acao' => 'trocar_senha', 'cdm_nonce' => wp_create_nonce( 'cdm_atelie_trocar_senha' ),
+	'cdm_senha' => 'senhadeoutra', 'cdm_senha2' => 'senhadeoutra',
+) );
+cdm_ok( $antes_trocas === count( $GLOBALS['__senhas_trocadas'] ?? array() ),
+	'logada SEM edit_pecas tambem nao troca a senha dela' );
+cdm_teste_logar( 'artesa' );
+
+/* AS FRASES QUE ELA LE, escritas a mao aqui. */
+$avisos_esperados = array(
+	'trocada'    => 'Pronto! Sua senha foi trocada.',
+	'curta'      => 'A senha precisa ter pelo menos 8 letras ou números.',
+	'difere'     => 'As duas senhas que você digitou não são iguais.',
+	'email-ruim' => 'Esse e-mail não parece certo',
+	'dados'      => 'Guardado.',
+);
+foreach ( $avisos_esperados as $chave => $trecho ) {
+	$_GET = array( 'aviso' => $chave );
+	cdm_ok( false !== strpos( cdm_atelie_aviso_html(), $trecho ),
+		"o aviso '$chave' fala em portugues de gente", $trecho );
+}
+$_GET = array();
 
 echo "\n" . str_repeat( '-', 78 ) . "\n";
 printf( "%d afirmacoes, %d falha(s). %d telas renderizadas, um processo cada.\n",
