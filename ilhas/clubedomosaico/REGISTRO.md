@@ -2781,7 +2781,12 @@ produziram achado. **Quatro resultados**, e os quatro valem mais que o verde:
   final: **6 linhas da tabela indicam produto com condição, e as 6 publicam a
   condição literal.**
 
-**Resultado final: A PASSADA FINAL, rodada depois de a trava da tabela nascer, estava em 31 de 44 SEM NENHUMA SOBREVIVENTE quando esta execucao fechou — dito com o tamanho exato em vez de arredondado para 44, porque cada mutacao leva cerca de dois minutos e a passada nao cabe inteira na janela. O que esta MEDIDO e: a bateria completa de 44 com 43 reprovadas, a unica sobrevivente consertada, e essa sobrevivente reaplicada sozinha e vista reprovar. A proxima execucao que tocar esta ilha roda 'python3 ferramentas/mutacoes-f2.py' inteiro antes de qualquer coisa, e leva alguns minutos.**
+**Resultado final, medido depois do fechamento e corrigido aqui: 44 mutações, 44 reprovadas,
+0 passaram, 0 inertes.** A entrada acima foi escrita quando a terceira passada estava em 31 de
+44, e era isso que ela dizia — o número menor, que era o medido naquele minuto. A bateria
+terminou em seguida, no mesmo container, e este parágrafo é a correção. **Escrever o número
+menor e corrigi-lo custa um commit; escrever 44 antes de vê-lo seria a única coisa que esta
+fábrica não perdoa.**
 
 ## Receita e dívida, contadas do arquivo
 
