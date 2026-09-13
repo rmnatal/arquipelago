@@ -119,6 +119,10 @@ Dentro do `bloco_atual`, **citação vai entre aspas simples** e regex ou caminh
 - Push recusado = rebase e tentar de novo, até 3 vezes. **NUNCA force push.**
 - `REGISTRO.md` é append-only: o que foi entregue e qual é o próximo passo.
 
+**A MENSAGEM DE COMMIT PASSA PELO SHELL, E O SHELL COME O QUE ESTÁ ENTRE CRASES (13/09/2026).** Duas execuções do mesmo dia, na mesma ilha, perderam uma palavra da mensagem de commit pelo mesmo motivo: `git commit -m` com a mensagem entre aspas **duplas** executa o que estiver entre crases e cola a saída no lugar. Às 19h17Z sumiu o nome de uma pendência e a linha foi ao ar como *"fecha a pendencia  —"*; às 22h30Z sumiu a palavra `fontes` de uma frase que explicava justamente de onde um dado tinha saído. Nos dois casos a mensagem já estava no `main` quando alguém percebeu, e **a seção 3 proíbe force push**, então o buraco fica na história para sempre.
+
+A regra é de uma linha: **crase não entra em mensagem de commit.** Nome de arquivo, de campo e de função se escrevem por extenso ou entre aspas simples — a mensagem é texto para uma pessoa ler, não Markdown renderizado. Quem quiser marcação escreve no `REGISTRO.md`, que é arquivo e não passa por shell nenhum. A mesma armadilha vale para `$` e para `!` dentro de aspas duplas; na dúvida, escreva a mensagem sem símbolo nenhum.
+
 ---
 
 ## 4. O SITE FICA PARA TRÁS EM SILÊNCIO

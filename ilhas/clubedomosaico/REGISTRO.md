@@ -2809,6 +2809,21 @@ de fabricante, 15 esperando link, 15 sem piso, 22 sem imagem.
   Merchant Center esperam a artesã.
 - (f) `contato@clubedomosaico.com.br` ainda não existe como caixa.
 
+## UM DETALHE DO COMMIT, e desta vez ele virou regra do Arquipélago
+
+A mensagem do commit deste bloco perdeu a palavra `fontes`: ela estava entre
+crases dentro de aspas duplas, e o shell executou o que havia ali e colou a saída
+vazia no lugar. A linha foi ao ar como *"saiu de \n depois que"*. **É a segunda
+vez no mesmo dia e na mesma ilha** — às 19h17Z sumiu o nome de uma pendência,
+pelo mesmo motivo, e a execução de então registrou o fato só aqui, no `REGISTRO`
+da ilha. Registrado só aqui, o defeito repetiu.
+
+A seção 3 proíbe force push, então as duas mensagens ficam como estão. O que
+mudou é onde a lição foi escrita: **a regra nova está na seção 3 do
+`ARQUIPELAGO.md`**, que é onde regra do Arquipélago mora e é lida por toda
+execução de toda ilha — *crase não entra em mensagem de commit*, e a mesma
+armadilha vale para `$` e `!` dentro de aspas duplas.
+
 **PRÓXIMO, com ordem e motivo:** (1) **a matriz esperada da F2 de 18 para 45
 células**, que é a independência que falta ao número que a página publica, e é o
 único item aberto que este bloco criou; (2) a ordem das duas vitrines na F1, hoje
