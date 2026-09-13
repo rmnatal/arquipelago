@@ -808,7 +808,14 @@ foreach ( $gabarito['respostas'] as $mid => $esperado ) {
 				   salva uma abertura que nao nomeia nada. */
 				$corte    = strpos( $frase, '. ' );
 				$abertura = ( false === $corte ) ? $frase : substr( $frase, 0, $corte );
-				if ( false === strpos( $abertura, $agulha ) ) {
+				/* A comparacao ignora caixa porque o nome do tipo pode ABRIR a
+				   frase, e ai ele vem capitalizado por gramatica: a frase da
+				   peca cuja funcao nao veio do titulo comeca por "Escova
+				   lateral: ..." (secao 26.3). Isso nao afrouxa o que a regua
+				   mede — "Escova lateral" e o mesmo nome de tipo que "escova
+				   lateral", e uma abertura que nao nomeia nada continua sendo
+				   reprovada, em qualquer caixa. */
+				if ( false === stripos( $abertura, $agulha ) ) {
 					$sem_o_tipo[] = "$mid/$grupo/$k ($lado): $abertura";
 				}
 			}
@@ -838,6 +845,229 @@ rbm_ok( $com_avulso_e_kit > 0,
 	"$com_avulso_e_kit ocorrencia(s)" );
 rbm_ok( count( $tipos_vistos ) >= 4, 'a varredura cobriu varios tipos, nao um so',
 	implode( ', ', array_keys( $tipos_vistos ) ) );
+
+/* ---------------------------------------------------------------------------
+ * 15. A FRASE SO ATRIBUI AO FABRICANTE A FUNCAO QUE ELE ESCREVEU (secao 26.3)
+ *
+ * O defeito estava NO AR e nenhum portao daqui o via, porque todos mediam se a
+ * frase BATE com a referencia — e as duas batiam, erradas juntas. "A WAP declara
+ * a escova lateral 'Escova Direita Para Robo Aspirador W300'": a WAP batiza a
+ * peca pela POSICAO e nunca usou a palavra "lateral"; quem leu a funcao no
+ * contraste do catalogo dela foi esta ilha. A Xiaomi e pior — o titulo dela e so
+ * "Brush" e nao nomeia nem posicao.
+ *
+ * A REGUA E PROPRIA, e isso aqui e o ponto (secao 8 do contrato). Ela nao chama
+ * robometria_r1_funcao_derivada() nem le o campo `funcao_declarada_por` de
+ * r1-respostas.json: os dois sao produto de quem escreve a frase, e as duas
+ * metades errariam juntas de novo. Ela reabre dados/pecas.json e o esquema,
+ * recomputa quem e derivada e cobra as DUAS implementacoes.
+ *
+ * E ela cobra os DOIS LADOS. Proibir a atribuicao na peca derivada, sozinho,
+ * seria atendido por uma frase que nunca atribui nada a ninguem — e a ilha
+ * perderia de graca a autoridade que o titulo do fabricante lhe da. Entao:
+ * derivada NUNCA atribui e SEMPRE traz a ressalva; de titulo SEMPRE atribui e
+ * NUNCA traz ressalva.
+ * ------------------------------------------------------------------------- */
+
+echo "\n15. A frase atribui a funcao a quem a leu (secao 26.3)\n";
+
+$esquema_b = json_decode( file_get_contents( $raiz . '/dados/esquema-banco.json' ), true );
+
+/* Lista dentro da regua envelhece calada (26.2): ela se le do esquema. E se a
+   chave sumir, isto REPROVA — regua que cai para "nada a cobrar" quando o dado
+   falta aprova tudo em silencio, com o banco de hoje verde. */
+$tipos_com_funcao = isset( $esquema_b['tipos_que_exigem_funcao_declarada']['tipos'] )
+	? $esquema_b['tipos_que_exigem_funcao_declarada']['tipos'] : null;
+rbm_ok( is_array( $tipos_com_funcao ) && count( $tipos_com_funcao ) > 0,
+	'o esquema declara quais tipos exigem a funcao declarada (26.2)',
+	is_array( $tipos_com_funcao ) ? implode( ', ', $tipos_com_funcao ) : 'CHAVE AUSENTE' );
+
+/* Quem e derivada, recomputado do banco pela regua deste teste. */
+$derivada_por = array();   // id da peca => declarada_por, so quando NAO e titulo
+$de_titulo    = array();   // id da peca => true
+if ( is_array( $tipos_com_funcao ) ) {
+	foreach ( $pecas_b['registros'] as $r ) {
+		if ( ! in_array( $r['tipo'], $tipos_com_funcao, true ) ) {
+			continue;
+		}
+		$d = isset( $r['funcao']['declarada_por'] ) ? $r['funcao']['declarada_por'] : null;
+		if ( 'titulo' === $d ) {
+			$de_titulo[ $r['id'] ] = true;
+		} elseif ( null !== $d ) {
+			$derivada_por[ $r['id'] ] = $d;
+		}
+	}
+}
+
+/* O texto que so pode aparecer onde o fabricante escreveu a palavra, e o que so
+   pode aparecer onde ele nao escreveu. Escritos A MAO, nunca lidos do snippet. */
+$marca_da_ressalva = array(
+	'contraste-no-catalogo' => 'e a Robometria, pelo contraste do catalogo do proprio fabricante',
+	'canal-de-manutencao'   => 'e o proprio fabricante, no canal de manutencao dele',
+);
+
+/* TODA forma de ressalva de funcao, inclusive o aviso do ramo defensivo do
+   snippet. A primeira versao desta regua procurava so "Quem chama esta peca de"
+   e deixava passar a mutacao que faz a ressalva sair em TODA peca: com
+   declarada_por = "titulo" o PHP caia no aviso de origem desconhecida, que nao
+   comeca por aquela frase. Quem proibe um texto tem de proibir as formas que o
+   codigo consegue produzir, nao a que veio a cabeca de quem escreveu a regua. */
+$qualquer_ressalva = array(
+	'Quem chama esta peca de',
+	'e ainda nao temos a frase que explica esse caminho',
+);
+
+$atribuiu_derivada  = array();
+$sem_ressalva       = array();
+$ressalva_errada    = array();
+$titulo_sem_atribuir = array();
+$titulo_com_ressalva = array();
+$frases_15          = 0;
+$vistas_derivadas   = array();
+$vistas_de_titulo   = 0;
+
+foreach ( $gabarito['respostas'] as $mid => $esperado ) {
+	$obtido = $dados['respostas'][ $mid ];
+	foreach ( array( 'fabricante', 'terceiro' ) as $grupo ) {
+		foreach ( $esperado[ $grupo ] as $k => $ref ) {
+			$item_php = $obtido[ $grupo ][ $k ];
+			$pid      = $ref['peca'];
+			$tipo     = $ref['tipo'];
+
+			/* A frase do KIT fala do kit, e kit nao tem funcao: o tipo ali sai
+			   da composicao declarada, nao da classificacao de uma peca. */
+			if ( false !== strpos( rbm_sem_acento( $ref['frase'] ), 'vem dentro do kit' ) ) {
+				continue;
+			}
+
+			$lados = array(
+				'referencia' => rbm_sem_acento( $ref['frase'] ),
+				'php'        => rbm_sem_acento( robometria_r1_frase( $item_php ) ),
+			);
+
+			foreach ( $lados as $lado => $frase ) {
+				$frases_15++;
+				$atribuicao = rbm_sem_acento( 'declara ' ) ;
+				/* O molde atribuidor, escrito aqui a mao nas duas formas que o
+				   vocabulario tem hoje. Ele e legitimo — so nao na peca cuja
+				   funcao a ilha derivou. */
+				$atribui = ( false !== stripos( $frase, 'declara a ' . $tipo )
+					|| false !== stripos( $frase, 'declara o ' . $tipo ) );
+
+				if ( isset( $derivada_por[ $pid ] ) ) {
+					$d = $derivada_por[ $pid ];
+					$vistas_derivadas[ $d ] = true;
+					if ( $atribui ) {
+						$atribuiu_derivada[] = "$mid/$grupo/$k ($lado): $frase";
+					}
+					$marca = isset( $marca_da_ressalva[ $d ] ) ? $marca_da_ressalva[ $d ] : null;
+					if ( null === $marca ) {
+						$ressalva_errada[] = "$mid/$grupo/$k ($lado): origem $d sem ressalva escrita neste teste";
+					} elseif ( false === stripos( $frase, 'Quem chama esta peca de ' . $tipo ) ) {
+						$sem_ressalva[] = "$mid/$grupo/$k ($lado): $frase";
+					} elseif ( false === stripos( $frase, $marca ) ) {
+						$ressalva_errada[] = "$mid/$grupo/$k ($lado): ressalva nao corresponde a origem $d — $frase";
+					}
+				} elseif ( isset( $de_titulo[ $pid ] ) ) {
+					$vistas_de_titulo++;
+					if ( ! $atribui ) {
+						$titulo_sem_atribuir[] = "$mid/$grupo/$k ($lado): $frase";
+					}
+					foreach ( $qualquer_ressalva as $marca_proibida ) {
+						if ( false !== stripos( $frase, $marca_proibida ) ) {
+							$titulo_com_ressalva[] = "$mid/$grupo/$k ($lado): $frase";
+							break;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+rbm_ok( empty( $atribuiu_derivada ),
+	'nenhuma frase atribui ao fabricante a funcao que a ilha derivou',
+	"$frases_15 frases (as duas implementacoes)" );
+foreach ( array_slice( $atribuiu_derivada, 0, 4 ) as $d ) {
+	echo "       . $d\n";
+}
+rbm_ok( empty( $sem_ressalva ),
+	'e toda frase derivada diz QUEM leu a funcao, com o nome do tipo' );
+foreach ( array_slice( $sem_ressalva, 0, 4 ) as $d ) {
+	echo "       . $d\n";
+}
+rbm_ok( empty( $ressalva_errada ),
+	'a ressalva servida corresponde a origem gravada no banco' );
+foreach ( array_slice( $ressalva_errada, 0, 4 ) as $d ) {
+	echo "       . $d\n";
+}
+rbm_ok( empty( $titulo_sem_atribuir ),
+	'a peca cujo titulo declara a funcao CONTINUA atribuindo ao fabricante',
+	"$vistas_de_titulo frases de titulo" );
+foreach ( array_slice( $titulo_sem_atribuir, 0, 4 ) as $d ) {
+	echo "       . $d\n";
+}
+rbm_ok( empty( $titulo_com_ressalva ),
+	'e ela nao carrega ressalva de funcao derivada' );
+
+/* GRADE QUE NAO PISA NOS DOIS LADOS E AMOSTRA COM NOME DE GRADE. Se o banco
+   parasse de ter peca derivada, os tres primeiros portoes ficariam verdes sem
+   medir nada — que e a morte silenciosa registrada na secao 8 do contrato. */
+rbm_ok( count( $vistas_derivadas ) > 0 && $vistas_de_titulo > 0,
+	'a varredura pisou nos dois lados: funcao derivada E funcao de titulo',
+	sprintf( '%d origem(ns) derivada(s), %d frases de titulo',
+		count( $vistas_derivadas ), $vistas_de_titulo ) );
+
+/* A TERCEIRA CONTA (secao 8): o numero de pecas derivadas que o BANCO tem e
+   contado aqui, e comparado com quantas chegaram a frase. Sao dois caminhos
+   diferentes ate o mesmo fato — banco e gabarito —, e e isso que separa "as
+   duas metades concordam" de "as duas metades erram juntas". */
+$derivadas_no_banco = count( $derivada_por );
+$derivadas_no_gabarito = array();
+foreach ( $gabarito['respostas'] as $mid => $esperado ) {
+	foreach ( array( 'fabricante', 'terceiro' ) as $grupo ) {
+		foreach ( $esperado[ $grupo ] as $ref ) {
+			if ( isset( $derivada_por[ $ref['peca'] ] )
+				&& false === strpos( rbm_sem_acento( $ref['frase'] ), 'vem dentro do kit' ) ) {
+				$derivadas_no_gabarito[ $ref['peca'] ] = true;
+			}
+		}
+	}
+}
+rbm_ok( count( $derivadas_no_gabarito ) === $derivadas_no_banco,
+	'toda peca de funcao derivada do banco chegou a alguma frase da R1',
+	sprintf( '%d no banco, %d respondendo', $derivadas_no_banco,
+		count( $derivadas_no_gabarito ) ) );
+
+/* O RAMO DEFENSIVO DO SNIPPET, MEDIDO — e ele so existe porque o Sync entrega
+   dado e codigo em requisicoes separadas: um r1-respostas.json com origem de
+   funcao nova pode chegar ao site ANTES do snippet que sabe explica-la. Ate aqui
+   nenhum caminho do teste passava por ele, e "ramo defensivo nao medido e ramo
+   que pode mentir a vontade" (secao 8 do contrato, cicatriz da Aquametria em
+   13/09). O mundo e produzido aqui, no item, porque o banco nunca gravaria uma
+   origem fora do vocabulario — o validador o impede. */
+$item_origem_nova = null;
+foreach ( $dados['respostas'] as $mid => $r ) {
+	foreach ( array( 'fabricante', 'terceiro' ) as $grupo ) {
+		foreach ( $r[ $grupo ] as $it ) {
+			if ( isset( $derivada_por[ $it['peca'] ] ) && null === $item_origem_nova ) {
+				$item_origem_nova = $it;
+			}
+		}
+	}
+}
+if ( null !== $item_origem_nova ) {
+	$item_origem_nova['funcao_declarada_por'] = 'lido-num-forum';
+	$frase_nova = rbm_sem_acento( robometria_r1_frase( $item_origem_nova ) );
+	$tipo_nova  = $item_origem_nova['tipo'];
+	rbm_ok( false === stripos( $frase_nova, 'declara a ' . $tipo_nova )
+		&& false === stripos( $frase_nova, 'declara o ' . $tipo_nova ),
+		'origem de funcao que o snippet nao conhece nao vira atribuicao ao fabricante' );
+	rbm_ok( false !== stripos( $frase_nova, 'ainda nao temos a frase que explica' ),
+		'e a pagina diz que nao sabe explicar aquele caminho, em vez de calar' );
+} else {
+	rbm_ok( false, 'ha peca derivada para produzir o mundo da origem desconhecida' );
+}
 
 /* ---------------------------------------------------------------------------
  * Fecho

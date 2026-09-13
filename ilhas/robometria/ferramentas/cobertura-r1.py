@@ -139,6 +139,89 @@ GENERO_DO_TIPO = {
 }
 
 
+# --------------------------------------------- QUEM NOMEIA A FUNCAO DA PECA
+# Secao 26 do ARQUIPELAGO.md. O vocabulario desta ilha classifica pela FUNCAO
+# ('escova lateral' x 'escova principal'); o fabricante batiza pela POSICAO
+# ('Direita', 'Central', 'Frontal'). Quando a funcao NAO saiu do titulo, dizer
+# "a WAP declara a escova lateral X" empresta ao fabricante uma palavra que ele
+# nunca usou — e a unica coisa que esta ilha vende e a declaracao dele.
+#
+# A LISTA DE TIPOS MORA NO ESQUEMA (26.2), nunca aqui dentro: tipo novo que sofra
+# do mesmo mal entra numa linha do esquema e a frase passa a tratar o caso sem
+# uma linha de codigo. Por isso ela e lida, e por isso a leitura FALHA ALTO
+# quando a chave some — regua que cai para "nada a cobrar" no dia em que o dado
+# falta e regua que aprova tudo em silencio.
+if "tipos_que_exigem_funcao_declarada" not in esquema:
+    sys.stderr.write(
+        "ERRO: o esquema nao tem 'tipos_que_exigem_funcao_declarada'. Sem essa "
+        "lista a R1 nao sabe de quais tipos ela precisa declarar QUEM nomeou a "
+        "funcao, e escreveria a atribuicao ao fabricante para todos.\n"
+    )
+    sys.exit(1)
+
+TIPOS_COM_FUNCAO_DECLARADA = esquema["tipos_que_exigem_funcao_declarada"]["tipos"]
+FUNCAO_DECLARADA_POR = esquema["vocabularios"]["funcao_declarada_por"]
+
+# A ressalva de cada origem de funcao, no mesmo lugar das outras caudas da frase
+# (sem codigo publicado, divergencia entre canais, variante de hardware). Formato:
+# um %s, que recebe o nome do tipo. 'titulo' nao tem ressalva — ali o fabricante
+# escreveu a palavra, e a frase pode atribui-la a ele.
+#
+# E A RESSALVA DIZ SO O QUE VALE PARA TODOS OS CASOS QUE ELA COBRE. A primeira
+# versao dizia "o titulo dela nomeia a posicao, nao a funcao" — verdade na WAP
+# ("Escova Direita") e FALSA na Xiaomi, cujo titulo e so "Brush" e nao nomeia
+# posicao nenhuma. Afirmacao em bloco tem o escopo do que foi medido (secao 8 do
+# ARQUIPELAGO.md), e o que vale nos dois e mais curto: o titulo nao nomeia a
+# funcao. O detalhe de cada caso esta em funcao.declarado_como, no banco.
+RESSALVA_DA_FUNCAO = {
+    "contraste-no-catalogo": (
+        "Quem chama esta peca de %s e a Robometria, pelo contraste do catalogo do "
+        "proprio fabricante: o titulo dela nao nomeia a funcao."
+    ),
+    "canal-de-manutencao": (
+        "Quem chama esta peca de %s e o proprio fabricante, no canal de manutencao "
+        "dele: o titulo da peca nao nomeia a funcao."
+    ),
+}
+
+
+def atribuicao_da_funcao(peca):
+    """Quem nomeou a funcao desta peca: 'titulo', 'contraste-no-catalogo' ou
+    'canal-de-manutencao'. None quando o tipo nao exige a declaracao (filtro, mop,
+    bateria e reservatorio: o titulo do fabricante nomeia o que a peca E)."""
+    if peca["tipo"] not in TIPOS_COM_FUNCAO_DECLARADA:
+        return None
+    return (peca.get("funcao") or {}).get("declarada_por")
+
+
+# A FRASE PRECISA SABER A QUEM ATRIBUIR A FUNCAO ANTES DE SER ESCRITA. O
+# validar-banco.py ja cobra o campo; esta trava e da FRASE, e ela existe porque as
+# duas perguntas sao diferentes: la e "o registro esta completo", aqui e "eu sei
+# como escrever esta linha sem mentir". Peca publicavel que chegasse aqui sem o
+# campo sairia com a atribuicao ao fabricante por omissao, que e exatamente o
+# defeito de 13/09.
+for _peca in pecas:
+    if _peca["tipo"] not in TIPOS_COM_FUNCAO_DECLARADA:
+        continue
+    _declarada_por = atribuicao_da_funcao(_peca)
+    if _declarada_por not in FUNCAO_DECLARADA_POR:
+        sys.stderr.write(
+            "ERRO: a peca %r e do tipo %r e nao declara funcao.declarada_por "
+            "dentro do vocabulario (leu %r). A R1 nao tem como saber se a funcao "
+            "e palavra do fabricante ou leitura nossa, e escreveria a frase "
+            "atribuindo a ele.\n" % (_peca["id"], _peca["tipo"], _declarada_por)
+        )
+        sys.exit(1)
+    if _declarada_por != "titulo" and _declarada_por not in RESSALVA_DA_FUNCAO:
+        sys.stderr.write(
+            "ERRO: a peca %r declara a funcao por %r, que esta no vocabulario e "
+            "nao tem ressalva escrita em RESSALVA_DA_FUNCAO. Origem nova de "
+            "funcao entra com a frase que a explica ao leitor, nunca calada.\n"
+            % (_peca["id"], _declarada_por)
+        )
+        sys.exit(1)
+
+
 def identificar_peca(peca):
     """Como a peca e chamada na frase publicada.
 
@@ -185,6 +268,16 @@ def frase_declarada(peca, par, modelo, dentro_do_kit=None, existe_avulso=False):
     ("frase autossuficiente que sobrevive a ser citada fora de contexto").
     Toda frase de resposta da R1 nomeia o tipo de peca de que fala, e
     ferramentas/teste-r1.php cobra isso em TODA frase, com regua propria.
+
+    E A FRASE SO ATRIBUI AO FABRICANTE A FUNCAO QUE ELE ESCREVEU (13/09/2026,
+    secao 26.3 do ARQUIPELAGO.md). "A WAP declara a escova lateral 'Escova
+    Direita ...'" estava no ar e a WAP nunca usou a palavra "lateral": ela batiza
+    pela POSICAO, e quem leu a funcao no contraste do catalogo dela foi esta
+    ilha. Onde a funcao nao veio do titulo, o verbo 'declara' passa a recair
+    sobre o que o fabricante de fato declarou — o nome da peca e a lista de
+    modelos — e a atribuicao da funcao vai para uma ressalva propria. O campo
+    funcao{declarada_por} da secao 26.1 e o que tornou essa diferenca
+    mensuravel; antes dele, a frase nao tinha como saber.
     """
     fonte = peca["fontes"][par["fonte"]]
     publicador = fonte.get("publicador") or marcas[peca["marca"]]["nome"]
@@ -211,13 +304,35 @@ def frase_declarada(peca, par, modelo, dentro_do_kit=None, existe_avulso=False):
             % (publicador, artigo, dentro_do_kit, avulso, pronome, identificacao, lista,
                fonte.get("origem"), data)
         )
-    else:
+    elif atribuicao_da_funcao(peca) in (None, "titulo"):
+        # O fabricante escreveu a palavra do eixo no titulo ("Escova Lateral",
+        # "Side Brush", "Escova Central"), ou o tipo nem depende disso (filtro,
+        # mop, bateria, reservatorio). So aqui a frase pode dizer que ele
+        # DECLARA o tipo: e o que ele fez.
         artigo, _ = GENERO_DO_TIPO.get(peca["tipo"], ("o", "avulso"))
         frase = (
             "A %s declara %s %s %s compativel com %s (%s, verificado em %s)."
             % (publicador, artigo, peca["tipo"], identificacao, lista,
                fonte.get("origem"), data)
         )
+    else:
+        # A FUNCAO NAO VEIO DO TITULO (secao 26.3). O fabricante declarou duas
+        # coisas — o nome da peca e a compatibilidade dela — e a frase diz
+        # exatamente essas duas. O tipo abre a frase, para o leitor continuar
+        # sabendo de que peca se fala na primeira oracao, mas fora do escopo do
+        # verbo 'declara'. Quem nomeou a funcao vai na ressalva, logo abaixo.
+        frase = (
+            "%s: %s, que a %s declara compativel com %s (%s, verificado em %s)."
+            % (peca["tipo"][0].upper() + peca["tipo"][1:], identificacao, publicador,
+               lista, fonte.get("origem"), data)
+        )
+
+    # A RESSALVA VEM ANTES DAS OUTRAS CAUDAS porque ela qualifica a afirmacao
+    # principal — quem leu a funcao —, enquanto as de baixo qualificam detalhes
+    # do registro (sem codigo publicado, canais que discordam, variante).
+    _atribuicao = atribuicao_da_funcao(peca)
+    if _atribuicao and _atribuicao != "titulo":
+        frase += " " + RESSALVA_DA_FUNCAO[_atribuicao] % peca["tipo"]
 
     if sem_codigo:
         frase += (

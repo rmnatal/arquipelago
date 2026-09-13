@@ -144,6 +144,12 @@ def fato_do_item(item, modelo_id):
         "codigo": peca.get("codigo_fabricante"),
         "nome_na_fonte": peca["nome_na_fonte"],
         "tipo_da_peca": peca["tipo"],
+        # QUEM NOMEOU A FUNCAO (secao 26.3 do ARQUIPELAGO.md). E fato do banco,
+        # nao decisao do PHP: a frase so pode dizer "a WAP declara a escova
+        # lateral X" quando a WAP escreveu "lateral". Quando a funcao saiu do
+        # contraste do catalogo ou do canal de manutencao, o molde muda. null
+        # nos tipos que nao dependem disso (filtro, mop, bateria, reservatorio).
+        "funcao_declarada_por": ref.atribuicao_da_funcao(peca),
         "dentro_de_kit": peca["tipo"] == "kit",
         # Ver frase_declarada() na referencia: "a marca nao vende o filtro
         # avulso" e uma afirmacao sobre o catalogo inteiro do modelo, e so vale

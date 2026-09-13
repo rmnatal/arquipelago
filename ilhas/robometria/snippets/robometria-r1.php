@@ -1,5 +1,12 @@
 /**
  * Robometria R1 — Qual peça serve no meu robô aspirador
+ * Versão: 1.3.0 (13/09/2026) — a frase devolve a função a quem a leu (seção 26.3
+ * do ARQUIPELAGO.md). "A WAP declara a escova lateral 'Escova Direita ...'"
+ * estava no ar em cinco peças e a WAP nunca usou a palavra "lateral": ela batiza
+ * pela posição, e a Xiaomi nem isso — publica "Brush". Onde a função não veio do
+ * título, o verbo "declara" passa a recair sobre o que o fabricante de fato
+ * declarou (o nome da peça e a lista de modelos) e a atribuição da função vira
+ * ressalva própria. Nenhuma URL mudou e nenhuma peça saiu do banco.
  * Versão: 1.2.0 (11/09/2026) — a abertura fala com quem entrou e a procedência
  * desce um parágrafo, para a camada de prova; o catálogo da casca recebe o
  * título desta constante; e garantir_pagina() passou a reespelhar o post_title
@@ -373,6 +380,61 @@ function robometria_r1_porta_de_compra( $item ) {
  * divergirem.
  * ------------------------------------------------------------------------- */
 
+/**
+ * Quem nomeou a FUNÇÃO desta peça — seção 26.3 do ARQUIPELAGO.md.
+ *
+ * O vocabulário desta ilha classifica pela função ("escova lateral" x "escova
+ * principal"); o fabricante batiza pela posição ("Direita", "Central",
+ * "Frontal") ou nem isso (a Xiaomi publica só "Brush"). Enquanto a página
+ * escrevia "A WAP declara a escova lateral X", ela emprestava à WAP uma palavra
+ * que a WAP nunca usou — e a declaração do fabricante é a única coisa que esta
+ * ilha vende.
+ *
+ * O campo viaja como FATO em `funcao_declarada_por` (ferramentas/gerar-r1.py),
+ * lido do banco: vazio nos tipos que não dependem disso, "titulo" quando o
+ * fabricante escreveu a palavra, "contraste-no-catalogo" ou
+ * "canal-de-manutencao" quando quem leu a função foi outra pessoa.
+ */
+if ( ! function_exists( 'robometria_r1_funcao_derivada' ) ) {
+function robometria_r1_funcao_derivada( $item ) {
+	$d = isset( $item['funcao_declarada_por'] ) ? $item['funcao_declarada_por'] : null;
+	return ( null !== $d && '' !== $d && 'titulo' !== $d );
+}
+}
+
+/**
+ * A ressalva que devolve a função a quem a leu. Vazia quando a função veio do
+ * título — ali o fabricante escreveu a palavra, e a frase pode atribuí-la a ele.
+ *
+ * A ressalva diz só o que vale para TODOS os casos que ela cobre: "o título não
+ * nomeia a função". A primeira versão dizia "o título nomeia a posição, não a
+ * função" — verdade na WAP ("Escova Direita") e falsa na Xiaomi, cujo título é
+ * só "Brush". Afirmação em bloco tem o escopo do que foi medido (seção 8).
+ */
+if ( ! function_exists( 'robometria_r1_ressalva_da_funcao' ) ) {
+function robometria_r1_ressalva_da_funcao( $item, $tipo ) {
+	if ( ! robometria_r1_funcao_derivada( $item ) ) {
+		return '';
+	}
+	$ressalvas = array(
+		'contraste-no-catalogo' => 'Quem chama esta peça de %s é a Robometria, pelo contraste do catálogo do próprio fabricante: o título dela não nomeia a função.',
+		'canal-de-manutencao'   => 'Quem chama esta peça de %s é o próprio fabricante, no canal de manutenção dele: o título da peça não nomeia a função.',
+	);
+	$d = $item['funcao_declarada_por'];
+	/* Origem de função que chegue sem ressalva escrita não sai calada: a página
+	   diria a função sem dizer quem a leu, que é o defeito inteiro de volta. O
+	   gerador já para antes disso (cobertura-r1.py), e aqui a página avisa em
+	   vez de publicar a atribuição por omissão. */
+	if ( ! isset( $ressalvas[ $d ] ) ) {
+		return sprintf(
+			'A função desta peça foi lida em %s, e ainda não temos a frase que explica esse caminho — confira na fonte antes de comprar.',
+			$d
+		);
+	}
+	return sprintf( $ressalvas[ $d ], $tipo );
+}
+}
+
 if ( ! function_exists( 'robometria_r1_frase' ) ) {
 function robometria_r1_frase( $item ) {
 	list( $identificacao, $sem_codigo ) = robometria_r1_identificacao( $item );
@@ -406,13 +468,37 @@ function robometria_r1_frase( $item ) {
 			$item['publicador'], $artigo, $tipo, $avulso, $pronome,
 			$identificacao, $lista, $rotulo_origem, $data
 		);
-	} else {
+	} elseif ( ! robometria_r1_funcao_derivada( $item ) ) {
+		/* O fabricante escreveu a palavra do eixo no título ("Escova Lateral",
+		   "Side Brush", "Escova Central"), ou o tipo nem depende disso (filtro,
+		   mop, bateria, reservatório). Só aqui a frase pode dizer que ele
+		   DECLARA o tipo: é o que ele fez. */
 		list( $artigo ) = robometria_r1_genero( $item['tipo'] );
 		$frase = sprintf(
 			'A %1$s declara %2$s %3$s %4$s compatível com %5$s (%6$s, verificado em %7$s).',
 			$item['publicador'], $artigo, $tipo, $identificacao,
 			$lista, $rotulo_origem, $data
 		);
+	} else {
+		/* A FUNÇÃO NÃO VEIO DO TÍTULO (seção 26.3 do ARQUIPELAGO.md). O
+		   fabricante declarou duas coisas — o nome da peça e a compatibilidade
+		   dela — e a frase diz exatamente essas duas. O tipo abre a frase, para
+		   o leitor continuar sabendo de que peça se fala na primeira oração,
+		   mas fora do escopo do verbo "declara". Quem nomeou a função vai na
+		   ressalva logo abaixo. */
+		$frase = sprintf(
+			'%1$s: %2$s, que a %3$s declara compatível com %4$s (%5$s, verificado em %6$s).',
+			robometria_r1_maiuscula( $tipo ), $identificacao, $item['publicador'],
+			$lista, $rotulo_origem, $data
+		);
+	}
+
+	/* A RESSALVA VEM ANTES DAS OUTRAS CAUDAS porque ela qualifica a afirmação
+	   principal — quem leu a função —, enquanto as de baixo qualificam detalhes
+	   do registro (sem código publicado, canais que discordam, variante). */
+	$ressalva = robometria_r1_ressalva_da_funcao( $item, $tipo );
+	if ( '' !== $ressalva ) {
+		$frase .= ' ' . $ressalva;
 	}
 
 	if ( $sem_codigo ) {

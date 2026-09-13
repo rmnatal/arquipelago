@@ -4,7 +4,7 @@
   "nicho": "robo aspirador — compatibilidade de pecas e consumiveis, e dimensionamento de succao e autonomia",
   "dominio": "https://robometria.com.br",
   "versao_manifest": 1,
-  "revisao": 28,
+  "revisao": 29,
   "atualizado_em": "2026-09-13",
   "estado": "nascendo",
   "desembarque": {
@@ -31,8 +31,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "sha256": "716e5ad994ff42040ab9de036c107cdeac635d1bf37e3e33d50985f57002e5e3",
-      "descricao": "A R1 NA 1.2.0 — a abertura na voz e o titulo que envelhecia calado. A linha-mestra deixou de ser 'Esta ferramenta responde qual filtro... o fabricante declarou...' e passou a falar com quem entrou ('Diga a marca e o modelo do seu robo...'); a contagem e a regra de procedencia desceram para o paragrafo seguinte, marcado com rbm-prova (secao 15.2 do ARQUIPELAGO.md). O catalogo da casca passa a receber o titulo da constante deste snippet, entao o nome da pagina tem um dono so. E garantir_pagina() passou a REESPELHAR o post_title quando o nome muda: sem isso, renomear no repositorio trocava o og:title, o cartao e a trilha, e deixava o H1 e o <title> do ar com o nome antigo — duas fontes para o mesmo campo, que e a cicatriz da Aquametria de 11/09/2026.",
+      "sha256": "40e01ab10c254d291ec6a8d24a1263c9581f41e4f3975917b7d312a70c8c4f57",
+      "descricao": "A R1 NA 1.3.0 — a frase devolve a FUNCAO a quem a leu (secao 26.3 do ARQUIPELAGO.md). Estava no ar 'A WAP declara a escova lateral \"Escova Direita Para Robo Aspirador W300\"', e a WAP nunca usou a palavra 'lateral': ela batiza a peca pela POSICAO, e a Xiaomi nem isso — publica so 'Brush'. Quem leu a funcao no contraste do catalogo do fabricante foi esta ilha, e a frase emprestava a ele a unica coisa que a Robometria vende, que e a declaracao dele. Onde funcao.declarada_por nao e 'titulo', o verbo 'declara' passa a recair sobre o que o fabricante de fato declarou (o nome da peca e a lista de modelos) e a atribuicao vira ressalva propria, que nomeia quem classificou. Nenhum portao da ilha via o defeito porque todos comparavam a frase do PHP com a da referencia, e as duas diziam a mesma coisa errada: o portao 15 do teste-r1.php recomputa quem e derivada lendo dados/pecas.json e o esquema, sem chamar nenhuma das duas. Cinco pecas do banco mudaram de frase; nenhuma URL mudou e nenhuma peca saiu do banco. || A R1 NA 1.2.0 — a abertura na voz e o titulo que envelhecia calado. A linha-mestra deixou de ser 'Esta ferramenta responde qual filtro... o fabricante declarou...' e passou a falar com quem entrou ('Diga a marca e o modelo do seu robo...'); a contagem e a regra de procedencia desceram para o paragrafo seguinte, marcado com rbm-prova (secao 15.2 do ARQUIPELAGO.md). O catalogo da casca passa a receber o titulo da constante deste snippet, entao o nome da pagina tem um dono so. E garantir_pagina() passou a REESPELHAR o post_title quando o nome muda: sem isso, renomear no repositorio trocava o og:title, o cartao e a trilha, e deixava o H1 e o <title> do ar com o nome antigo — duas fontes para o mesmo campo, que e a cicatriz da Aquametria de 11/09/2026.",
       "versao": "1.3.0"
     },
     {
@@ -188,7 +188,7 @@
       "verificado_em": "2026-09-10",
       "registros": 28,
       "publicar": true,
-      "sha256": "aeff9d01855cba02b8a925fc5d37b0cca7129f6f8de76333f24d90f1fe8c89e0",
+      "sha256": "021320f8779e8382c7ab6ddfa3a256b722d31682cd62f0ac3a00cf3be3be94bf",
       "descricao": "O COMBUSTIVEL DA FERRAMENTA R1 NO SITE, e o primeiro item de dados desta ilha com publicar=true: o Sync o grava na option robometria_dados_r1-respostas e o snippet robometria-r1.php monta a pagina a partir dele. Para cada um dos 28 modelos publicaveis, os FATOS de cada peca que o fabricante declarou compativel — tipo respondido, codigo, publicador, conjunto declarado, endereco, data, se vem dentro de kit, se existe a peca avulsa, se ha divergencia registrada e se ainda espera link de afiliado. Traz tambem o seletor gerado da varredura (os 5 tipos que o banco consegue responder, sem 'reservatorio', que tem zero pecas), o modelo-ancora escolhido por regra, as 45 linhas da tabela de exemplos na ordem cross-marca da referencia, as duas divergencias com as duas declaracoes e as duas datas, a lista dos 12 modelos de entrada vazia e a tabela de rotulos da escada de fontes. SEM PROSA de proposito: a frase que o visitante le e montada pelo snippet, em portugues acentuado, e conferida contra a referencia por ferramentas/teste-r1.php."
     },
     {
@@ -200,7 +200,7 @@
       "verificado_em": "2026-09-10",
       "registros": 28,
       "publicar": false,
-      "sha256": "ba889cc9c1a90d842c0ac75624c792459a524b0e906f3d53373eb4f6811a8e46",
+      "sha256": "fa45e76748b757fb21800ac27b3acf765379b91c9f95fe5ade264cdadae10d14",
       "descricao": "GABARITO da R1: a resposta de cada modelo ja em frase, escrita pela implementacao de REFERENCIA. Nunca vai para o site (publicar=false) — existe para ferramentas/teste-r1.php provar, frase a frase e ignorando acento, que o PHP do snippet diz a MESMA coisa que a referencia, que e o que a especificacao exige. Sao 188 frases comparadas a cada rodada do teste: se alguem mexer no molde de um lado so, o teste reprova em vez de o site publicar duas versoes da mesma afirmacao."
     },
     {
@@ -415,6 +415,11 @@
       "id": "teste-voz",
       "arquivo": "ferramentas/teste-voz.php",
       "descricao": "Portao da voz (secao 15) e do nome unico da pagina: H1, <title>, og:title, degrau da trilha e rotulo do cartao derivando da mesma fonte, palavras proibidas lidas do VOZ.md, um processo por pagina. Bancada: nunca e publicada."
+    },
+    {
+      "id": "mutacoes-atribuicao-da-funcao",
+      "arquivo": "ferramentas/mutacoes-atribuicao-da-funcao.py",
+      "descricao": "Escreve de volta a atribuicao falsa da funcao da peca e exige REPROVACAO do teste-r1.php, numa copia da ilha por mutacao. Dez mutacoes: nove reprovam e a decima TEM de passar. Ela cobre os dois lados, porque proibir a atribuicao na peca derivada sozinho seria atendido por uma frase que nunca atribui nada a ninguem, e a ilha perderia de graca a autoridade que o titulo do fabricante lhe da: peca derivada nunca atribui e sempre traz a ressalva; peca de titulo sempre atribui e nunca traz ressalva. Tres PRODUZEM O MUNDO que o esquema permite e o banco nunca teve — funcao declarada pelo canal de manutencao do fabricante —, porque regua escrita para um caso que nunca aconteceu fica verde sem nunca ter podido falhar; a decima e o mesmo mundo INTACTO, e ela existe para provar que a regua nao e falso-positivo esperando a primeira peca de manual entrar no banco. A do ESQUEMA nao estraga registro nenhum: apaga a lista de tipos e mede se a regua cai para 'nada a cobrar' em silencio. Bancada: nunca e publicada."
     },
     {
       "id": "mutacoes-procedencia",
