@@ -3,7 +3,7 @@
   "ilha": "robometria",
   "entidade": "medicao",
   "gerado_por": "ferramentas/gerar-r2.py",
-  "banco_gerado_em": "2026-09-12",
+  "banco_gerado_em": "2026-09-13",
   "o_que_e": "Combustivel da ferramenta R2 no site: as 9 situacoes de piso x pelo com os limiares de Pa que cada fonte brasileira declara para elas, a classificacao dos modelos do banco em cada situacao, e os numeros de cada modelo de referencia. Sem prosa: a frase que o visitante le e montada pelo snippet, em portugues acentuado, e conferida contra a implementacao de referencia por ferramentas/teste-r2.php.",
   "entrada": {
     "area_minima": 10,
@@ -660,7 +660,7 @@
       ],
       "no_limiar": [],
       "nao_atendem": 5,
-      "sem_pa_declarado": 17
+      "sem_pa_declarado": 22
     },
     "liso|curto": {
       "elegiveis": [
@@ -674,7 +674,7 @@
         "xiaomi-s10"
       ],
       "nao_atendem": 5,
-      "sem_pa_declarado": 17
+      "sem_pa_declarado": 22
     },
     "liso|longo": {
       "elegiveis": [
@@ -688,7 +688,7 @@
         "xiaomi-s10"
       ],
       "nao_atendem": 5,
-      "sem_pa_declarado": 17
+      "sem_pa_declarado": 22
     },
     "tapete-fino|nao": {
       "elegiveis": [
@@ -702,7 +702,7 @@
         "xiaomi-s10"
       ],
       "nao_atendem": 5,
-      "sem_pa_declarado": 17
+      "sem_pa_declarado": 22
     },
     "tapete-fino|curto": {
       "elegiveis": [
@@ -716,7 +716,7 @@
         "xiaomi-s10"
       ],
       "nao_atendem": 5,
-      "sem_pa_declarado": 17
+      "sem_pa_declarado": 22
     },
     "tapete-fino|longo": {
       "elegiveis": [
@@ -730,7 +730,7 @@
         "xiaomi-s10"
       ],
       "nao_atendem": 5,
-      "sem_pa_declarado": 17
+      "sem_pa_declarado": 22
     },
     "carpete|nao": {
       "elegiveis": [
@@ -744,7 +744,7 @@
         "xiaomi-s10"
       ],
       "nao_atendem": 5,
-      "sem_pa_declarado": 17
+      "sem_pa_declarado": 22
     },
     "carpete|curto": {
       "elegiveis": [
@@ -758,7 +758,7 @@
         "xiaomi-s10"
       ],
       "nao_atendem": 5,
-      "sem_pa_declarado": 17
+      "sem_pa_declarado": 22
     },
     "carpete|longo": {
       "elegiveis": [
@@ -772,7 +772,7 @@
         "xiaomi-s10"
       ],
       "nao_atendem": 5,
-      "sem_pa_declarado": 17
+      "sem_pa_declarado": 22
     }
   },
   "rotulos_de_origem": {
@@ -1650,8 +1650,8 @@
       "dispersao_pct": 23
     },
     "funil": {
-      "sem_pa": 17,
-      "publicaveis": 28,
+      "sem_pa": 22,
+      "publicaveis": 33,
       "marcas_mudas": [
         "Electrolux",
         "Multi (ex-Multilaser)"
@@ -1667,7 +1667,7 @@
     }
   },
   "resumo": {
-    "modelos_publicaveis": 28,
+    "modelos_publicaveis": 33,
     "modelos_na_tela": 11,
     "modelos_esperando_link": 11,
     "modelos_com_link": 0,

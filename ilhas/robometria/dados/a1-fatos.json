@@ -6,12 +6,12 @@
   "nota": "Fatos do artigo-ancora A1, derivados do banco commitado por ferramentas/gerar-a1.py. Nenhum numero aqui e digitado: se o banco crescer e a tese do artigo deixar de valer, e este arquivo que muda, e ferramentas/teste-a1.php reprova a pagina antes de ela ir ao ar dizendo o que o banco nao sustenta.",
   "resumo": {
     "marcas": 5,
-    "modelos_publicaveis": 28,
+    "modelos_publicaveis": 33,
     "pecas_publicaveis": 25,
     "pares_declarados": 55,
     "pecas_que_atravessam_marca": 0,
-    "celulas_total": 168,
-    "celulas_sem_resposta": 112,
+    "celulas_total": 198,
+    "celulas_sem_resposta": 142,
     "pecas_esperando_link": 25
   },
   "maior_alcance": {
@@ -553,37 +553,37 @@
       "tipo": "escova lateral",
       "nome": "escova lateral",
       "modelos_com_declaracao": 17,
-      "modelos_publicaveis": 28
+      "modelos_publicaveis": 33
     },
     {
       "tipo": "mop",
       "nome": "mop",
       "modelos_com_declaracao": 15,
-      "modelos_publicaveis": 28
+      "modelos_publicaveis": 33
     },
     {
       "tipo": "filtro",
       "nome": "filtro",
       "modelos_com_declaracao": 13,
-      "modelos_publicaveis": 28
+      "modelos_publicaveis": 33
     },
     {
       "tipo": "escova principal",
       "nome": "escova principal",
       "modelos_com_declaracao": 10,
-      "modelos_publicaveis": 28
+      "modelos_publicaveis": 33
     },
     {
       "tipo": "bateria",
       "nome": "bateria",
       "modelos_com_declaracao": 1,
-      "modelos_publicaveis": 28
+      "modelos_publicaveis": 33
     },
     {
       "tipo": "reservatorio",
       "nome": "reservatorio",
       "modelos_com_declaracao": 0,
-      "modelos_publicaveis": 28
+      "modelos_publicaveis": 33
     }
   ],
   "vitrine": [

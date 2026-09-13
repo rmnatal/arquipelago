@@ -228,9 +228,33 @@
       "so_kit": false
     },
     {
+      "id": "wap-w100",
+      "marca": "wap",
+      "codigo": "W100",
+      "linha": null,
+      "responde": false,
+      "so_kit": false
+    },
+    {
       "id": "wap-w1000",
       "marca": "wap",
       "codigo": "W1000",
+      "linha": null,
+      "responde": false,
+      "so_kit": false
+    },
+    {
+      "id": "wap-w100c",
+      "marca": "wap",
+      "codigo": "W100C",
+      "linha": null,
+      "responde": false,
+      "so_kit": false
+    },
+    {
+      "id": "wap-w300",
+      "marca": "wap",
+      "codigo": "W300",
       "linha": null,
       "responde": false,
       "so_kit": false
@@ -247,6 +271,22 @@
       "id": "wap-w400",
       "marca": "wap",
       "codigo": "W400",
+      "linha": null,
+      "responde": false,
+      "so_kit": false
+    },
+    {
+      "id": "wap-w90",
+      "marca": "wap",
+      "codigo": "W90",
+      "linha": null,
+      "responde": false,
+      "so_kit": false
+    },
+    {
+      "id": "wap-wsmart",
+      "marca": "wap",
+      "codigo": "WSMART",
       "linha": null,
       "responde": false,
       "so_kit": false
@@ -2046,7 +2086,25 @@
       "terceiro": [],
       "kits_sem_composicao": []
     },
+    "wap-w100": {
+      "aviso_de_variante": null,
+      "fabricante": [],
+      "terceiro": [],
+      "kits_sem_composicao": []
+    },
     "wap-w1000": {
+      "aviso_de_variante": null,
+      "fabricante": [],
+      "terceiro": [],
+      "kits_sem_composicao": []
+    },
+    "wap-w100c": {
+      "aviso_de_variante": null,
+      "fabricante": [],
+      "terceiro": [],
+      "kits_sem_composicao": []
+    },
+    "wap-w300": {
       "aviso_de_variante": null,
       "fabricante": [],
       "terceiro": [],
@@ -2059,6 +2117,18 @@
       "kits_sem_composicao": []
     },
     "wap-w400": {
+      "aviso_de_variante": null,
+      "fabricante": [],
+      "terceiro": [],
+      "kits_sem_composicao": []
+    },
+    "wap-w90": {
+      "aviso_de_variante": null,
+      "fabricante": [],
+      "terceiro": [],
+      "kits_sem_composicao": []
+    },
+    "wap-wsmart": {
       "aviso_de_variante": null,
       "fabricante": [],
       "terceiro": [],
@@ -3422,18 +3492,23 @@
     "multi-ho243",
     "multi-ho411",
     "positivo-pra500",
+    "wap-w100",
     "wap-w1000",
+    "wap-w100c",
+    "wap-w300",
     "wap-w310",
     "wap-w400",
+    "wap-w90",
+    "wap-wsmart",
     "xiaomi-mop-2",
     "xiaomi-s10"
   ],
   "resumo": {
-    "modelos_publicaveis": 28,
+    "modelos_publicaveis": 33,
     "modelos_que_respondem": 20,
-    "modelos_com_entrada_vazia": 8,
-    "celulas": 168,
-    "celulas_sem_resposta": 112,
+    "modelos_com_entrada_vazia": 13,
+    "celulas": 198,
+    "celulas_sem_resposta": 142,
     "pares_declarados": 55,
     "pecas_publicaveis": 25,
     "marcas": 5,

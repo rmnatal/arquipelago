@@ -3,14 +3,14 @@
   "ilha": "robometria",
   "entidade": "modelo-robo",
   "esquema": "dados/esquema-banco.json",
-  "gerado_em": "2026-09-12",
-  "nota_de_procedencia": "Coleta de 09/09/2026. O egresso HTTP direto desta nuvem esta fechado: multilaser.com.br, suporte.multilaser.com.br, lamina.multilaser.com.br, arquivos.multilaser.com.br e mi.com devolveram EGRESS_BLOCKED nesta execucao. Todo campo abaixo saiu de busca restrita ao dominio da fonte, e o canal de coleta esta declarado campo a campo. A leitura direta dos manuais e laminas continua sendo coleta em aberto — e trabalho a fazer, nao dependencia humana. Bloco 3c (09/09/2026): 7 modelos novos e 4 atualizados, todos por busca restrita ao dominio oficial da marca — o egresso continua fechado para leitura direta. SEGUNDA LEVA DO BLOCO 3c (09/09/2026): coleta dirigida ao campo pa_declarado fora da Electrolux, por busca restrita a mi.com, wap.ind.br, positivocasainteligente.com.br e loja.meupositivo.com.br. Toda leitura direta continua devolvendo EGRESS_BLOCKED — inclusive os PDFs de manual da WAP (mais.conteudo.wap.ind.br) e o guia rapido da Positivo (static.positivocasainteligente.com.br), que ficaram registrados em fontes{} como alvo da releitura de nivel 2.",
+  "gerado_em": "2026-09-13",
+  "nota_de_procedencia": "Coleta de 09/09/2026. O egresso HTTP direto desta nuvem esta fechado: multilaser.com.br, suporte.multilaser.com.br, lamina.multilaser.com.br, arquivos.multilaser.com.br e mi.com devolveram EGRESS_BLOCKED nesta execucao. Todo campo abaixo saiu de busca restrita ao dominio da fonte, e o canal de coleta esta declarado campo a campo. A leitura direta dos manuais e laminas continua sendo coleta em aberto — e trabalho a fazer, nao dependencia humana. Bloco 3c (09/09/2026): 7 modelos novos e 4 atualizados, todos por busca restrita ao dominio oficial da marca — o egresso continua fechado para leitura direta. SEGUNDA LEVA DO BLOCO 3c (09/09/2026): coleta dirigida ao campo pa_declarado fora da Electrolux, por busca restrita a mi.com, wap.ind.br, positivocasainteligente.com.br e loja.meupositivo.com.br. Toda leitura direta continua devolvendo EGRESS_BLOCKED — inclusive os PDFs de manual da WAP (mais.conteudo.wap.ind.br) e o guia rapido da Positivo (static.positivocasainteligente.com.br), que ficaram registrados em fontes{} como alvo da releitura de nivel 2. QUINTA LEVA DO BLOCO 3c (13/09/2026, 13h): a WAP sai de 3 para 8 modelos — W90, W100, W100C, W300 e WSMART —, e o gargalo que o PROMPT.md nomeava ('a loja da WAP publica pagina de peca POR MODELO e NENHUM desses modelos esta no banco') deixa de existir do lado do modelo. Coleta por busca restrita a loja.wap.ind.br e a wap.ind.br, com DUAS passadas independentes por campo, nenhuma delas carregando o valor na consulta; o egresso direto segue fechado por politica (000 em loja.wap.ind.br e www.wap.ind.br, com robometria.com.br em 200 na mesma passada). Nenhum dos cinco declara Pa: a WAP publica Pa no W400 e nivel de succao no resto, entao esta leva NAO mexe na R2 e nao muda faixa nenhuma de cobertura_de_faixa_r2 — ela abre o lado do modelo para a coleta de PECA. DOIS NUMEROS FORAM RECUSADOS e a recusa esta escrita dentro dos registros (recarga e bateria do W90, vindas de artigo de familia que mistura o W90 com o W90 Perola; bateria e voltagem do W100, cuja frase a segunda passada negou na propria pagina do produto). E O DEGRAU DAS LOJAS OFICIAIS FOI CORRIGIDO: loja.wap.ind.br e loja.meupositivo.com.br estavam no nivel 3 (pagina do fabricante) enquanto loja.electrolux.com.br estava no 4 (loja oficial da marca) desde 09/09 — a mesma especie de fonte em dois degraus. Os quatro registros afetados desceram para 4, que e a direcao barata da assimetria de custo da secao 10 do ARQUIPELAGO.md.",
   "contagem": {
-    "total": 33,
-    "publicavel": 28,
+    "total": 38,
+    "publicavel": 33,
     "nao_publicavel": 1,
     "excluido_do_banco": 4,
-    "esperando_link_de_afiliado": 28,
+    "esperando_link_de_afiliado": 33,
     "com_pa_declarado": 11,
     "com_par_minutos_m2_declarado": 5,
     "marcas_que_declaram_pa": [
@@ -118,9 +118,9 @@
       "por_que": "CONTINUA SENDO A URGENCIA NUMERO 1, e a segunda leva do 3c mediu por que ela nao se resolve por esforco: Xiaomi, WAP, Multi e Positivo foram varridas e NENHUMA declara cobertura em m2 em canal nenhum. Quatro marcas medidas contra uma que declara (Electrolux). A taxa m2/min segue pendente e proibida em formula, e agora com a evidencia de que o dado quase nao existe no mercado brasileiro — o que muda a natureza do trabalho: nao e coletar mais, e a R2 nunca prometer area onde o fabricante so declarou minutos"
     },
     {
-      "codigo": "manual em PDF de qualquer WAP Robot (W400, W1000, W310, W95, W90, W100, W300)",
+      "codigo": "manual em PDF de qualquer WAP Robot (W400, W1000, W310, W90, W100, W100C, W300, WSMART)",
       "marca": "wap",
-      "por_que": "MAIOR CHANCE DE NIVEL 2 QUE A ILHA JA TEVE. A WAP publica um manual por modelo em endereco proprio e estavel, com revisao e data no nome do arquivo. Hoje o dominio devolve EGRESS_BLOCKED; no dia em que abrir, esses PDFs sobem o banco inteiro da marca de nivel 3 para nivel 2 de uma vez, e trazem Pa dos modelos que a loja declara so como 'tres modos de succao'"
+      "por_que": "MAIOR CHANCE DE NIVEL 2 QUE A ILHA JA TEVE, e ela cresceu na leva de 13/09: com oito modelos WAP no banco, sao oito manuais em endereco proprio e estavel, com revisao e data no nome do arquivo. Sete dos oito nao tem Pa declarado em loja nenhuma, entao o PDF nao e so um degrau melhor — e o unico lugar onde o numero pode estar. O WSMART e a excecao de endereco: a WAP guarda o manual dele no proprio blog, e nao em mais.conteudo. Hoje os dois dominios devolvem 000 na leitura direta"
     },
     {
       "codigo": "PRA1000, PRA100",
@@ -128,9 +128,9 @@
       "por_que": "completam a linha declarada em canal oficial; PRA500, PRA800 e PRA2000 ja estao no banco com Pa. O PRA100 apareceu nesta coleta como modelo de entrada e ainda nao foi lido"
     },
     {
-      "codigo": "W3000, W4000, W95, W90, W100, W300",
+      "codigo": "W90 Perola, W96, W3000, W4000, W2000, WConnect",
       "marca": "wap",
-      "por_que": "o resto da linha WAP, ja localizada com URL de produto e de manual. W3000 e W4000 declaram QUATRO modos de succao e navegacao a laser (LDS/SLAM), e o W4000 declara base autolimpante com esvaziamento a cada ~60 dias — o unico candidato a base_autoesvaziamento fora da Positivo"
+      "por_que": "O QUE SOBROU DA LINHA WAP depois da leva de 13/09, que gravou W90, W100, W100C, W300 e WSMART. Os seis foram LOCALIZADOS na mesma varredura e nao gravados por falta de duas passadas limpas so deles — nenhum esta bloqueado. O W90 Perola e o primeiro da fila e o unico com urgencia propria: ele tem pagina, manual (FW010263 REV00JAN24) e autonomia declarada DIFERENTE do W90 (1h20 contra 1h40), e e exatamente com ele que a fonte de familia confunde o W90 — foi essa confusao que fez a recarga e a bateria do W90 serem recusadas"
     },
     {
       "codigo": "Mop, Mop 2 Lite, S20+, S10+",
@@ -148,7 +148,7 @@
       "por_que": "citada no corpus do Bloco 1, sem nenhuma coleta ainda"
     }
   ],
-  "prioridade_de_coleta": "Atualizada na segunda leva do Bloco 3c. (1) A LACUNA DE Pa DEIXOU DE SER A URGENCIA: o campo passou de 2 para 11 modelos publicaveis, em 3 marcas (Xiaomi, Positivo e WAP), cobrindo de 1.400 Pa a 10.000 Pa numa escala continua. A R2 deixa de sair com lista vazia em qualquer entrada. (2) PARES (minutos, m2): a lacuna virou outra coisa. Xiaomi, WAP, Multi e Positivo foram varridas e NENHUMA declara area em m2 — so a Electrolux declara. Nao e mais 'coletar mais pares': e um fato de mercado, e a taxa m2/min continua pendente e PROIBIDA em formula publicada. (3) Pa dos modelos WAP sem numero, que depende dos manuais em PDF (egresso fechado) e e a melhor porta de entrada da ilha para o nivel 2 da escada de fontes. (4) pecas da Xiaomi e da WAP com codigo, que a R1 precisa e que a busca restrita ainda nao devolveu.",
+  "prioridade_de_coleta": "Atualizada na QUINTA leva do Bloco 3c (13/09/2026). (1) PECA DA WAP COM CODIGO passa a ser a urgencia numero 1 desta marca, e agora ela e executavel: os cinco modelos entraram, e as paginas de acessorio por modelo ja foram varridas (W300 com 9 acessorios em 7 categorias, WSMART com 9, W90 com escova rotativa e carregador). O que travou a gravacao HOJE foram duas coisas medidas, nao a rede: o codigo de referencia voltou em UMA passada e NAO voltou na segunda (FW006267 na escova direita do W300, FW008028 na escova central do WSMART, FW009132 na escova rotativa do W90), e a pagina de acessorio NAO declara a funcao da escova — 'Direita', 'Central', 'Frontal' e 'Rotativa' sao NOMES, e ler tipo_de_peca de um nome e a heuristica por vizinhanca que a secao 8 do ARQUIPELAGO.md proibe. (2) PARES (minutos, m2): inalterado e nao e mais coleta — cinco marcas medidas, so a Electrolux declara. (3) Pa dos modelos WAP sem numero: agora sao SETE dos oito, e continua dependendo dos manuais em PDF (egresso fechado), que seguem sendo a melhor porta da ilha para o nivel 2. (4) W90 PEROLA, W96, W3000, W4000, W2000 e WConnect: modelos WAP localizados nesta varredura e NAO gravados, cada um por falta de duas passadas limpas proprias. O W90 Perola e o mais urgente dos seis, porque e ele que a fonte de familia mistura com o W90.",
   "registros": [
     {
       "id": "multi-ho041",
@@ -2479,12 +2479,12 @@
       },
       "fontes": {
         "f-oficial": {
-          "nivel": 3,
-          "origem": "fabricante-via-busca",
-          "publicador": "Positivo Casa Inteligente",
+          "nivel": 4,
+          "origem": "varejo-oficial-da-marca",
+          "publicador": "Loja Positivo",
           "titulo_na_fonte": "Smart Robô Aspirador Wi-Fi+ PRA500 Positivo Casa Inteligente - Varre, Aspira, Passa Pano e Retorna base - App/Alexa",
           "url": "https://loja.meupositivo.com.br/smart-robo-aspirador-wi-fi-plus/p",
-          "canal_de_coleta": "busca web restrita aos dominios positivocasainteligente.com.br e meupositivo.com.br",
+          "canal_de_coleta": "busca web restrita aos dominios positivocasainteligente.com.br e meupositivo.com.br | DEGRAU CORRIGIDO EM 13/09/2026: esta e a loja oficial da propria marca, que e o degrau 4 da escada (varejo-oficial-da-marca), e nao o 3. O banco ja tratava loja.electrolux.com.br como 4 desde 09/09, entao a mesma especie de fonte estava em dois degraus ao mesmo tempo",
           "verificado_em": "2026-09-09"
         },
         "f-marca": {
@@ -3157,12 +3157,12 @@
       },
       "fontes": {
         "f-loja": {
-          "nivel": 3,
-          "origem": "fabricante-via-busca",
-          "publicador": "WAP",
+          "nivel": 4,
+          "origem": "varejo-oficial-da-marca",
+          "publicador": "Lojas WAP",
           "titulo_na_fonte": "Robô Aspirador de Pó WAP Robot W400 — Lojas WAP",
           "url": "https://loja.wap.ind.br/robo-aspirador-de-po-wap-robot-w400/p",
-          "canal_de_coleta": "busca web restrita ao dominio wap.ind.br; loja.wap.ind.br e mais.conteudo.wap.ind.br (onde ficam os manuais em PDF) devolveram EGRESS_BLOCKED na leitura direta em 09/09/2026",
+          "canal_de_coleta": "busca web restrita ao dominio wap.ind.br; loja.wap.ind.br e mais.conteudo.wap.ind.br (onde ficam os manuais em PDF) devolveram EGRESS_BLOCKED na leitura direta em 09/09/2026 | DEGRAU CORRIGIDO EM 13/09/2026: esta e a loja oficial da propria marca, que e o degrau 4 da escada (varejo-oficial-da-marca), e nao o 3. O banco ja tratava loja.electrolux.com.br como 4 desde 09/09, entao a mesma especie de fonte estava em dois degraus ao mesmo tempo",
           "verificado_em": "2026-09-09"
         },
         "f-manual": {
@@ -3259,12 +3259,12 @@
       },
       "fontes": {
         "f-loja": {
-          "nivel": 3,
-          "origem": "fabricante-via-busca",
-          "publicador": "WAP",
+          "nivel": 4,
+          "origem": "varejo-oficial-da-marca",
+          "publicador": "Lojas WAP",
           "titulo_na_fonte": "Robô Aspirador de Pó WAP Robot W1000 — Lojas WAP",
           "url": "https://loja.wap.ind.br/robo-aspirador-de-po-wap-robot-w1000/p",
-          "canal_de_coleta": "busca web restrita ao dominio wap.ind.br; loja.wap.ind.br e mais.conteudo.wap.ind.br (onde ficam os manuais em PDF) devolveram EGRESS_BLOCKED na leitura direta em 09/09/2026",
+          "canal_de_coleta": "busca web restrita ao dominio wap.ind.br; loja.wap.ind.br e mais.conteudo.wap.ind.br (onde ficam os manuais em PDF) devolveram EGRESS_BLOCKED na leitura direta em 09/09/2026 | DEGRAU CORRIGIDO EM 13/09/2026: esta e a loja oficial da propria marca, que e o degrau 4 da escada (varejo-oficial-da-marca), e nao o 3. O banco ja tratava loja.electrolux.com.br como 4 desde 09/09, entao a mesma especie de fonte estava em dois degraus ao mesmo tempo",
           "verificado_em": "2026-09-09"
         }
       },
@@ -3352,18 +3352,529 @@
       },
       "fontes": {
         "f-loja": {
-          "nivel": 3,
-          "origem": "fabricante-via-busca",
-          "publicador": "WAP",
+          "nivel": 4,
+          "origem": "varejo-oficial-da-marca",
+          "publicador": "Lojas WAP",
           "titulo_na_fonte": "Robô Aspirador WAP Robot W310 | Limpeza Automática — Lojas WAP",
           "url": "https://loja.wap.ind.br/robot-w310-1/p",
-          "canal_de_coleta": "busca web restrita ao dominio wap.ind.br; loja.wap.ind.br e mais.conteudo.wap.ind.br (onde ficam os manuais em PDF) devolveram EGRESS_BLOCKED na leitura direta em 09/09/2026",
+          "canal_de_coleta": "busca web restrita ao dominio wap.ind.br; loja.wap.ind.br e mais.conteudo.wap.ind.br (onde ficam os manuais em PDF) devolveram EGRESS_BLOCKED na leitura direta em 09/09/2026 | DEGRAU CORRIGIDO EM 13/09/2026: esta e a loja oficial da propria marca, que e o degrau 4 da escada (varejo-oficial-da-marca), e nao o 3. O banco ja tratava loja.electrolux.com.br como 4 desde 09/09, entao a mesma especie de fonte estava em dois degraus ao mesmo tempo",
           "verificado_em": "2026-09-09"
         }
       },
       "status": "publicavel",
       "observacao": "Maior reservatorio de po do banco (420 ml) e segunda maior autonomia (2h10). Sem Pa, como quase toda a linha WAP. Vale registrado porque o reservatorio e o campo que responde a segunda pergunta de quem tem casa grande — 'ele enche antes de terminar?' — e hoje nenhuma ferramenta da ilha usa esse campo. E lacuna de FERRAMENTA, nao de banco, e esta anotada como tal.",
       "verificado_em": "2026-09-09"
+    },
+    {
+      "id": "wap-w300",
+      "marca": "wap",
+      "linha": null,
+      "codigo_fabricante": "W300",
+      "nome_comercial": "Robô Aspirador de Pó WAP Robot W300",
+      "categoria": "robo",
+      "variantes_de_hardware": [],
+      "pa_declarado": {
+        "valor": null,
+        "unidade": "Pa",
+        "motivo_do_null": "MEDIDO nesta coleta: a pagina do produto declara a funcao SUPER, 'que regula a sua potencia', e cinco modos de limpeza, e NAO publica Pa. E a mesma escolha do W1000 — a WAP publica Pa em parte da linha e nivel de succao no resto"
+      },
+      "potencia_w_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (000 remedido em 13/09/2026)"
+      },
+      "autonomia_min_declarada": {
+        "valor": 45,
+        "unidade": "min",
+        "fonte": "f-loja",
+        "declarado_como": "autonomia de 45 min ate 1h15 (a autonomia podera variar conforme area, superficie, ciclos, modo de operacao e nivel de succao)"
+      },
+      "cobertura_m2_declarada": {
+        "valor": null,
+        "unidade": "m2",
+        "motivo_do_null": "a WAP NAO declara area coberta em m2 para nenhum modelo da linha — declara autonomia em horas e minutos e capacidade do reservatorio em ml. Este null e RESPOSTA, nao lacuna"
+      },
+      "recarga_min_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (000 remedido em 13/09/2026)"
+      },
+      "retoma_apos_recarga": {
+        "valor": null,
+        "motivo_do_null": "a fonte declara AUTORRECARGA — o robo volta sozinho a base quando a bateria cai — e voltar a base NAO e retomar a limpeza de onde parou. Sao duas afirmacoes diferentes e a fonte so faz a primeira"
+      },
+      "bateria_mah": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (000 remedido em 13/09/2026)"
+      },
+      "voltagem": {
+        "valor": "bivolt",
+        "unidade": "V",
+        "fonte": "f-loja",
+        "declarado_como": "Bivolt, possui bateria recarregavel e sistema de autorrecarga"
+      },
+      "base_autoesvaziamento": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (000 remedido em 13/09/2026)"
+      },
+      "navegacao": {
+        "valor": null,
+        "motivo_do_null": "a fonte declara MODOS DE LIMPEZA (cantos, aleatoria, espiral, zigue-zague conforme o modelo) e sensores infravermelho antiqueda e anticolisao, e NAO declara sistema de navegacao. Modo de limpeza nao e sistema de navegacao, e ler um do outro seria inferencia"
+      },
+      "reservatorio_po_ml": {
+        "valor": 300,
+        "unidade": "ml",
+        "fonte": "f-loja",
+        "declarado_como": "seu reservatorio possui capacidade para 300 ml e o coletor de po e lavavel"
+      },
+      "reservatorio_agua_ml": {
+        "valor": null,
+        "unidade": "ml",
+        "motivo_do_null": "nao declarado: a pagina descreve succao direta e cinco modos de limpeza e nao declara reservatorio de agua nem capacidade de mop"
+      },
+      "divergencias": [],
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso desta nuvem barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria"
+      },
+      "fontes": {
+        "f-loja": {
+          "nivel": 4,
+          "origem": "varejo-oficial-da-marca",
+          "publicador": "Lojas WAP",
+          "titulo_na_fonte": "Robô Aspirador de Pó WAP Robot W300 — Lojas WAP",
+          "url": "https://loja.wap.ind.br/robo-aspirador-de-po-wap-robot-w300/p",
+          "canal_de_coleta": "busca web restrita ao dominio loja.wap.ind.br, em DUAS passadas independentes que nao carregavam o valor na consulta; a leitura direta de loja.wap.ind.br e de www.wap.ind.br devolveu 000 na mesma passada, com robometria.com.br em 200 (egresso fechado por politica, remedido em 13/09/2026)",
+          "verificado_em": "2026-09-13"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "PRIMEIRO MODELO DO BANCO CUJA AUTONOMIA E DECLARADA COMO FAIXA, e nao como teto: 'de 45 min ate 1h15'. O campo guarda o PISO, 45, e a transcricao inteira fica em declarado_como para a frase publicada poder citar a faixa. A direcao sai da assimetria de custo da secao 10 do ARQUIPELAGO.md: a R2 divide a metragem pela autonomia, entao errar para CIMA promete a casa pronta num ciclo que nao existe, e errar para baixo custa uma frase mais fraca. O teto de 75 min NAO esta perdido: esta escrito na transcricao, e e de la que a pagina cita. E o modelo com a MAIOR lista de acessorios da marca no ar (9 produtos: filtro, escova, carregador, recipiente, mop, controle remoto e pincel), o que o torna o alvo numero 1 da coleta de PECA da WAP.",
+      "verificado_em": "2026-09-13"
+    },
+    {
+      "id": "wap-w90",
+      "marca": "wap",
+      "linha": null,
+      "codigo_fabricante": "W90",
+      "nome_comercial": "Robô Aspirador de Pó WAP Robot W90",
+      "categoria": "robo",
+      "variantes_de_hardware": [],
+      "pa_declarado": {
+        "valor": null,
+        "unidade": "Pa",
+        "motivo_do_null": "MEDIDO nesta coleta, em duas passadas: a pagina do produto declara 'alto poder de succao' e tres modos de limpeza, e NAO publica Pa"
+      },
+      "potencia_w_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (000 remedido em 13/09/2026)"
+      },
+      "autonomia_min_declarada": {
+        "valor": 100,
+        "unidade": "min",
+        "fonte": "f-loja",
+        "declarado_como": "sua autonomia de ate 1h40 de duracao e perfeita para limpar todos os cantos da sua casa"
+      },
+      "cobertura_m2_declarada": {
+        "valor": null,
+        "unidade": "m2",
+        "motivo_do_null": "a WAP NAO declara area coberta em m2 para nenhum modelo da linha — declara autonomia em horas e minutos e capacidade do reservatorio em ml. Este null e RESPOSTA, nao lacuna"
+      },
+      "recarga_min_declarada": {
+        "valor": null,
+        "motivo_do_null": "RECUSADO nesta coleta, e a recusa vale mais que o numero: a primeira passada devolveu '4 horas para uma carga completa' junto com '2.600mAh', e as duas frases vieram de um documento de FAMILIA — o artigo que compara o W90 com o W100 — que na mesma passada tambem mistura o W90 com o W90 Perola, produto diferente, de manual proprio (FW010263) e autonomia declarada de 1h20. A segunda passada, restrita a pagina do produto, NAO confirmou nenhum dos dois. E a mesma regua que derrubou a recarga dos cinco Electrolux em 12/09: quando um documento de familia traz dois numeros, o que voce ja conhece diz se o outro e do seu modelo"
+      },
+      "retoma_apos_recarga": {
+        "valor": null,
+        "motivo_do_null": "a fonte declara AUTORRECARGA — o robo volta sozinho a base quando a bateria cai — e voltar a base NAO e retomar a limpeza de onde parou. Sao duas afirmacoes diferentes e a fonte so faz a primeira"
+      },
+      "bateria_mah": {
+        "valor": null,
+        "unidade": "mAh",
+        "motivo_do_null": "RECUSADO na mesma frase da recarga, e por um motivo a mais: 2.600 mAh e exatamente a capacidade que o banco ja tem declarada para o W1000, de outra faixa. Numero que chega por artigo de familia e coincide com o do vizinho nao entra"
+      },
+      "voltagem": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (000 remedido em 13/09/2026)"
+      },
+      "base_autoesvaziamento": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (000 remedido em 13/09/2026)"
+      },
+      "navegacao": {
+        "valor": null,
+        "motivo_do_null": "a fonte declara MODOS DE LIMPEZA (cantos, aleatoria, espiral, zigue-zague conforme o modelo) e sensores infravermelho antiqueda e anticolisao, e NAO declara sistema de navegacao. Modo de limpeza nao e sistema de navegacao, e ler um do outro seria inferencia"
+      },
+      "reservatorio_po_ml": {
+        "valor": 250,
+        "unidade": "ml",
+        "fonte": "f-loja",
+        "declarado_como": "o reservatorio possui capacidade para 250ml de poeira e pode ser lavado facilmente"
+      },
+      "reservatorio_agua_ml": {
+        "valor": null,
+        "unidade": "ml",
+        "motivo_do_null": "nao declarado: a pagina declara que o robo varre, aspira e passa pano com mop em microfibra, e nao publica capacidade de agua"
+      },
+      "divergencias": [],
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso desta nuvem barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria"
+      },
+      "fontes": {
+        "f-loja": {
+          "nivel": 4,
+          "origem": "varejo-oficial-da-marca",
+          "publicador": "Lojas WAP",
+          "titulo_na_fonte": "Robô Aspirador de Pó WAP Robot W90 | Limpeza Prática",
+          "url": "https://loja.wap.ind.br/robo-aspirador-de-po-wap-robot-w90/p",
+          "canal_de_coleta": "busca web restrita ao dominio loja.wap.ind.br, em DUAS passadas independentes que nao carregavam o valor na consulta; a leitura direta de loja.wap.ind.br e de www.wap.ind.br devolveu 000 na mesma passada, com robometria.com.br em 200 (egresso fechado por politica, remedido em 13/09/2026)",
+          "verificado_em": "2026-09-13"
+        },
+        "f-manual": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "WAP",
+          "titulo_na_fonte": "Robot W90 - Manual",
+          "url": "https://mais.conteudo.wap.ind.br/wap/produtos/aspirador/robo/aspirador_robo_w90_fw009026/arquivos/manual/manual_aspirador_robo_w90.pdf",
+          "canal_de_coleta": "manual oficial LOCALIZADO por busca restrita ao dominio e NAO LIDO: o egresso barra o PDF (000 em 13/09/2026). Fica registrado como o alvo da releitura de nivel 2",
+          "verificado_em": "2026-09-13"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "O W90 TEM UM IRMAO QUE NAO E ELE: o W90 Perola e outro produto, com pagina propria, manual proprio (FW010263 REV00JAN24) e autonomia declarada de 1h20 contra 1h40 daqui. Ele NAO entrou no banco nesta leva de proposito — entra quando tiver duas passadas limpas so dele. Enquanto isso, a existencia dele esta escrita aqui, porque e ele quem explica por que a recarga e a bateria deste registro foram recusadas: os dois numeros vieram de um artigo que fala dos dois. A loja publica pagina de peca por modelo para o W90 (escova rotativa e carregador bivolt), e essa e a porta da coleta de peca.",
+      "verificado_em": "2026-09-13"
+    },
+    {
+      "id": "wap-w100",
+      "marca": "wap",
+      "linha": null,
+      "codigo_fabricante": "W100",
+      "nome_comercial": "Robô Aspirador de Pó WAP Robot W100",
+      "categoria": "robo",
+      "variantes_de_hardware": [],
+      "pa_declarado": {
+        "valor": null,
+        "unidade": "Pa",
+        "motivo_do_null": "MEDIDO nesta coleta, em duas passadas: a pagina do produto declara escovas laterais giratorias, mop e tres modos de limpeza, e NAO publica Pa"
+      },
+      "potencia_w_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (000 remedido em 13/09/2026)"
+      },
+      "autonomia_min_declarada": {
+        "valor": 100,
+        "unidade": "min",
+        "fonte": "f-loja",
+        "declarado_como": "com autonomia de ate 1h40, limpa as impurezas do piso, proporcionando um ambiente saudavel"
+      },
+      "cobertura_m2_declarada": {
+        "valor": null,
+        "unidade": "m2",
+        "motivo_do_null": "a WAP NAO declara area coberta em m2 para nenhum modelo da linha — declara autonomia em horas e minutos e capacidade do reservatorio em ml. Este null e RESPOSTA, nao lacuna"
+      },
+      "recarga_min_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (000 remedido em 13/09/2026)"
+      },
+      "retoma_apos_recarga": {
+        "valor": null,
+        "motivo_do_null": "a fonte declara AUTORRECARGA — o robo volta sozinho a base quando a bateria cai — e voltar a base NAO e retomar a limpeza de onde parou. Sao duas afirmacoes diferentes e a fonte so faz a primeira"
+      },
+      "bateria_mah": {
+        "valor": null,
+        "unidade": "mAh",
+        "motivo_do_null": "RECUSADO, e a recusa e MEDIDA e nao suposta: a primeira passada devolveu 'bateria recarregavel bivolt com capacidade de 1.800mAh' e a segunda, feita so na pagina do produto, respondeu que a capacidade em mAh NAO esta detalhada ali. A segunda passada nao ficou em silencio: ela negou o campo na mesma pagina de onde o numero teria vindo. Quando isso acontece, cai a frase inteira — e por isso a voltagem deste registro tambem esta null, embora 'bivolt' fosse a parte mais confortavel de acreditar"
+      },
+      "voltagem": {
+        "valor": null,
+        "unidade": "V",
+        "motivo_do_null": "cai junto com a capacidade da bateria: as duas afirmacoes sao a MESMA frase da primeira passada, e a segunda passada negou essa frase na pagina do produto. Aceitar metade de uma frase negada e escolher a metade que agrada"
+      },
+      "base_autoesvaziamento": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (000 remedido em 13/09/2026)"
+      },
+      "navegacao": {
+        "valor": null,
+        "motivo_do_null": "a fonte declara MODOS DE LIMPEZA (cantos, aleatoria, espiral, zigue-zague conforme o modelo) e sensores infravermelho antiqueda e anticolisao, e NAO declara sistema de navegacao. Modo de limpeza nao e sistema de navegacao, e ler um do outro seria inferencia"
+      },
+      "reservatorio_po_ml": {
+        "valor": 250,
+        "unidade": "ml",
+        "fonte": "f-loja",
+        "declarado_como": "seu reservatorio possui capacidade para 250ml com coletor de po lavavel"
+      },
+      "reservatorio_agua_ml": {
+        "valor": null,
+        "unidade": "ml",
+        "motivo_do_null": "nao declarado: a pagina declara que o mop pode ser umedecido antes de iniciar a limpeza e nao publica capacidade em ml"
+      },
+      "divergencias": [],
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso desta nuvem barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria"
+      },
+      "fontes": {
+        "f-loja": {
+          "nivel": 4,
+          "origem": "varejo-oficial-da-marca",
+          "publicador": "Lojas WAP",
+          "titulo_na_fonte": "Robô Aspirador de Pó WAP Robot W100 | Limpeza Automática",
+          "url": "https://loja.wap.ind.br/robo-aspirador-de-po-wap-robot-w100/p",
+          "canal_de_coleta": "busca web restrita ao dominio loja.wap.ind.br, em DUAS passadas independentes que nao carregavam o valor na consulta; a leitura direta de loja.wap.ind.br e de www.wap.ind.br devolveu 000 na mesma passada, com robometria.com.br em 200 (egresso fechado por politica, remedido em 13/09/2026)",
+          "verificado_em": "2026-09-13"
+        },
+        "f-manual": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "WAP",
+          "titulo_na_fonte": "MANUAL DE INSTRUÇÕES WAP ROBOT W100 FW007467 REV01OUT21",
+          "url": "https://mais.conteudo.wap.ind.br/wap/produtos/aspirador/robo/aspirador_robo_w100_fw007429/arquivos/manual/manual_aspirador_robo_w100.pdf",
+          "canal_de_coleta": "manual oficial LOCALIZADO por busca restrita ao dominio e NAO LIDO: o egresso barra o PDF (000 em 13/09/2026). Fica registrado como o alvo da releitura de nivel 2",
+          "verificado_em": "2026-09-13"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "Registro que nasceu com uma REGRA NOVA dentro, e ela e de coleta: segunda passada que NEGA o campo na mesma pagina nao e silencio, e desmentido — e derruba a frase inteira em que o numero vinha, nao so o numero. Sem isso, este registro teria entrado com 1.800 mAh e 'bivolt' lidos de uma frase que a propria fonte, relida, nao sustenta. Fica com dois campos a menos e sem nenhuma afirmacao que a segunda leitura desmente.",
+      "verificado_em": "2026-09-13"
+    },
+    {
+      "id": "wap-w100c",
+      "marca": "wap",
+      "linha": null,
+      "codigo_fabricante": "W100C",
+      "nome_comercial": "Robô Aspirador de Pó WAP Robot W100C",
+      "categoria": "robo",
+      "variantes_de_hardware": [],
+      "pa_declarado": {
+        "valor": null,
+        "unidade": "Pa",
+        "motivo_do_null": "MEDIDO nesta coleta, em duas passadas: a pagina do produto declara tres modos de limpeza e escovas laterais giratorias, e NAO publica Pa"
+      },
+      "potencia_w_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (000 remedido em 13/09/2026)"
+      },
+      "autonomia_min_declarada": {
+        "valor": 100,
+        "unidade": "min",
+        "fonte": "f-loja",
+        "declarado_como": "a autonomia e de ate 1h40, podendo variar conforme area, superficie, ciclos, modo de operacao e nivel de succao"
+      },
+      "cobertura_m2_declarada": {
+        "valor": null,
+        "unidade": "m2",
+        "motivo_do_null": "a WAP NAO declara area coberta em m2 para nenhum modelo da linha — declara autonomia em horas e minutos e capacidade do reservatorio em ml. Este null e RESPOSTA, nao lacuna"
+      },
+      "recarga_min_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (000 remedido em 13/09/2026)"
+      },
+      "retoma_apos_recarga": {
+        "valor": null,
+        "motivo_do_null": "a fonte declara AUTORRECARGA — o robo volta sozinho a base quando a bateria cai — e voltar a base NAO e retomar a limpeza de onde parou. Sao duas afirmacoes diferentes e a fonte so faz a primeira"
+      },
+      "bateria_mah": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (000 remedido em 13/09/2026)"
+      },
+      "voltagem": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (000 remedido em 13/09/2026)"
+      },
+      "base_autoesvaziamento": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (000 remedido em 13/09/2026)"
+      },
+      "navegacao": {
+        "valor": null,
+        "motivo_do_null": "a fonte declara MODOS DE LIMPEZA (cantos, aleatoria, espiral, zigue-zague conforme o modelo) e sensores infravermelho antiqueda e anticolisao, e NAO declara sistema de navegacao. Modo de limpeza nao e sistema de navegacao, e ler um do outro seria inferencia"
+      },
+      "reservatorio_po_ml": {
+        "valor": 250,
+        "unidade": "ml",
+        "fonte": "f-loja",
+        "declarado_como": "o reservatorio possui capacidade para 250ml com coletor de po lavavel"
+      },
+      "reservatorio_agua_ml": {
+        "valor": null,
+        "unidade": "ml",
+        "motivo_do_null": "nao declarado em ml: a pagina declara que o robo aspira e passa o mop umido e perfuma o ambiente — funcao declarada, capacidade nao"
+      },
+      "divergencias": [],
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso desta nuvem barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria"
+      },
+      "fontes": {
+        "f-loja": {
+          "nivel": 4,
+          "origem": "varejo-oficial-da-marca",
+          "publicador": "Lojas WAP",
+          "titulo_na_fonte": "Robô Aspirador de Pó WAP Robot W100C",
+          "url": "https://loja.wap.ind.br/robo-aspirador-de-po-wap-robot-w100c/p",
+          "canal_de_coleta": "busca web restrita ao dominio loja.wap.ind.br, em DUAS passadas independentes que nao carregavam o valor na consulta; a leitura direta de loja.wap.ind.br e de www.wap.ind.br devolveu 000 na mesma passada, com robometria.com.br em 200 (egresso fechado por politica, remedido em 13/09/2026)",
+          "verificado_em": "2026-09-13"
+        },
+        "f-manual": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "WAP",
+          "titulo_na_fonte": "MANUAL DE INSTRUÇÕES WAP ROBOT W100C FW008617 REV00SET21",
+          "url": "https://mais.conteudo.wap.ind.br/wap/produtos/aspirador/robo/aspirador_robo_w100c_fw008615/arquivos/manual/manual_aspirador_w100c.pdf",
+          "canal_de_coleta": "manual oficial LOCALIZADO por busca restrita ao dominio e NAO LIDO: o egresso barra o PDF (000 em 13/09/2026). Fica registrado como o alvo da releitura de nivel 2",
+          "verificado_em": "2026-09-13"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "O C do nome e a diferenca que a propria WAP publica num artigo dedicado ('Qual a diferenca entre o WAP Robot W100C e WAP Robot W100'): mesmo reservatorio, mesma autonomia declarada, e o W100C perfuma o ambiente enquanto passa o mop. Entrou com os mesmos dois numeros do W100 porque foi isso que as duas passadas devolveram para os DOIS — e nao por copia: cada um foi perguntado no seu proprio endereco. Par de modelos com ficha identica e exatamente o caso em que a R1 nao pode herdar peca de um para o outro sem declaracao do fabricante.",
+      "verificado_em": "2026-09-13"
+    },
+    {
+      "id": "wap-wsmart",
+      "marca": "wap",
+      "linha": null,
+      "codigo_fabricante": "WSMART",
+      "nome_comercial": "Robô Aspirador de Pó WAP Robot WSMART",
+      "categoria": "robo",
+      "variantes_de_hardware": [],
+      "pa_declarado": {
+        "valor": null,
+        "unidade": "Pa",
+        "motivo_do_null": "MEDIDO nesta coleta, em duas passadas: o fabricante declara filtro HEPA, mop e sistema antichoque, e NAO publica Pa"
+      },
+      "potencia_w_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (000 remedido em 13/09/2026)"
+      },
+      "autonomia_min_declarada": {
+        "valor": 120,
+        "unidade": "min",
+        "fonte": "f-blog",
+        "declarado_como": "com duas horas de autonomia e sistema de auto recarga voce ganha muito mais liberdade na limpeza"
+      },
+      "cobertura_m2_declarada": {
+        "valor": null,
+        "unidade": "m2",
+        "motivo_do_null": "a WAP NAO declara area coberta em m2 para nenhum modelo da linha — declara autonomia em horas e minutos e capacidade do reservatorio em ml. Este null e RESPOSTA, nao lacuna"
+      },
+      "recarga_min_declarada": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (000 remedido em 13/09/2026)"
+      },
+      "retoma_apos_recarga": {
+        "valor": null,
+        "motivo_do_null": "a fonte declara AUTORRECARGA — o robo volta sozinho a base quando a bateria cai — e voltar a base NAO e retomar a limpeza de onde parou. Sao duas afirmacoes diferentes e a fonte so faz a primeira"
+      },
+      "bateria_mah": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (000 remedido em 13/09/2026)"
+      },
+      "voltagem": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (000 remedido em 13/09/2026)"
+      },
+      "base_autoesvaziamento": {
+        "valor": null,
+        "motivo_do_null": "nao declarado na fonte coletada: a busca restrita ao dominio do fabricante nao devolveu este campo e a leitura direta da pagina continua bloqueada pelo egresso (000 remedido em 13/09/2026)"
+      },
+      "navegacao": {
+        "valor": null,
+        "motivo_do_null": "a fonte declara sistema antichoque e anticolisao e sensores que redirecionam o trajeto diante do obstaculo, e NAO declara sistema de navegacao. Desviar de obstaculo e o que todo robo desta faixa faz; navegar e outra afirmacao"
+      },
+      "reservatorio_po_ml": {
+        "valor": 450,
+        "unidade": "ml",
+        "fonte": "f-blog",
+        "declarado_como": "o reservatorio do aspirador de po robo possui capacidade para 450 ml com coletor de po lavavel"
+      },
+      "reservatorio_agua_ml": {
+        "valor": null,
+        "unidade": "ml",
+        "motivo_do_null": "nao declarado em ml: a fonte declara que o recipiente de agua ou produto de limpeza umedece o mop automaticamente, e nao publica a capacidade"
+      },
+      "divergencias": [],
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso desta nuvem barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "plataforma": null,
+        "coletado_em": null,
+        "sub_id_1": "robometria"
+      },
+      "fontes": {
+        "f-blog": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "WAP",
+          "titulo_na_fonte": "Lançamento Robô Aspirador WAP ROBOT WSMART — WAP Blog",
+          "url": "https://blog.wap.ind.br/lancamento-robo-aspirador-wap-robot-wsmart/",
+          "canal_de_coleta": "busca web restrita ao dominio wap.ind.br, em DUAS passadas independentes que nao carregavam o valor na consulta. A loja da marca NAO publica pagina de produto deste modelo hoje — so paginas de categoria e de acessorio —, entao quem declara e o proprio fabricante no blog dele",
+          "verificado_em": "2026-09-13"
+        },
+        "f-manual": {
+          "nivel": 3,
+          "origem": "fabricante-via-busca",
+          "publicador": "WAP",
+          "titulo_na_fonte": "MANUAL DE INSTRUÇÕES WAP ROBOT WSMART FW007881 REV. 00_ABRIL/2020",
+          "url": "https://blog.wap.ind.br/wp-content/uploads/2020/08/WAP-ROBOT-WSMART-Manual-Rev.-00.pdf",
+          "canal_de_coleta": "manual oficial LOCALIZADO por busca restrita ao dominio e NAO LIDO: o egresso barra o PDF (000 em 13/09/2026). Este e o unico manual da marca que NAO mora em mais.conteudo.wap.ind.br — a WAP o hospeda no proprio blog",
+          "verificado_em": "2026-09-13"
+        }
+      },
+      "status": "publicavel",
+      "observacao": "O UNICO WAP DO BANCO QUE NAO ENTRA PELA LOJA DA MARCA: a loja publica hoje as paginas de ACESSORIO do WSMART (nove produtos) e nenhuma pagina do produto em si. Quem declara os dois campos deste registro e o proprio fabricante, no blog dele, e por isso a fonte e nivel 3 (pagina do fabricante) e nao 4 (loja oficial da marca) — os outros quatro desta leva sao o contrario. O maior reservatorio da linha WAP no banco, 450 ml, e a maior autonomia declarada depois do W1000. E o modelo cuja pagina de acessorio publica 'Escova Central', que seria a primeira escova principal da marca no banco.",
+      "verificado_em": "2026-09-13"
     }
   ]
 }

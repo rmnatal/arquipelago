@@ -56,15 +56,15 @@
       "id": "wap",
       "nome": "WAP",
       "site_oficial": "https://www.wap.ind.br/",
-      "canal_de_pecas": null,
+      "canal_de_pecas": "https://loja.wap.ind.br/acessorios/para-aspiradores",
       "sameAs": [
         "https://www.wap.ind.br/",
         "https://loja.wap.ind.br/",
         "https://ajuda.wap.ind.br/",
         "https://blog.wap.ind.br/"
       ],
-      "observacao": "Quinta marca do banco, aberta na segunda leva do Bloco 3c. E a UNICA marca da coleta que publica o manual de instrucoes em PDF num endereco proprio e estavel (mais.conteudo.wap.ind.br, um PDF por modelo, com revisao e data no nome do arquivo). Isso a torna a candidata mais provavel a primeira fonte de NIVEL 2 desta ilha — manual-fabricante lido direto — no dia em que o egresso abrir: hoje o dominio dos manuais devolve EGRESS_BLOCKED. Declara Pa em parte da linha e NAO declara cobertura em m2 em nenhum modelo, o que reforca o achado da Xiaomi. canal_de_pecas ainda null: a busca restrita ao dominio nao devolveu pagina de peca de reposicao com codigo, e a R1 precisa dela.",
-      "verificado_em": "2026-09-09"
+      "observacao": "Quinta marca do banco, aberta na segunda leva do Bloco 3c. E a UNICA marca da coleta que publica o manual de instrucoes em PDF num endereco proprio e estavel (mais.conteudo.wap.ind.br, um PDF por modelo, com revisao e data no nome do arquivo; o WSMART e a excecao — esse mora no blog da marca). Isso a torna a candidata mais provavel a primeira fonte de NIVEL 2 desta ilha no dia em que o egresso abrir: hoje o dominio dos manuais devolve 000. Declara Pa em UM dos oito modelos do banco (W400) e NAO declara cobertura em m2 em nenhum, o que reforca o achado da Xiaomi. canal_de_pecas PREENCHIDO em 13/09/2026, e a frase que estava aqui antes ('a busca restrita ao dominio nao devolveu pagina de peca de reposicao com codigo') estava errada pela metade: a loja publica pagina de peca POR MODELO e ela TEM codigo de referencia WAP na ficha. O que falta para a R1 nao e mais achar a pagina — e que o codigo volte em duas passadas independentes e que a funcao da escova seja DECLARADA, e nao lida do nome do produto.",
+      "verificado_em": "2026-09-13"
     }
   ]
 }

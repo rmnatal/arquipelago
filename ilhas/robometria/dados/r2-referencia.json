@@ -2641,7 +2641,7 @@
   },
   "contexto": {
     "conversao": "Esta ferramenta nao converte minutos em metros quadrados. Das 5 marcas publicaveis do banco, 4 nao declaram area coberta por carga em canal nenhum (Multi (ex-Multilaser), Positivo Casa Inteligente, WAP, Xiaomi) — declaram minutos, e algumas nem isso. Entre os pares declarados a taxa vai de 1,35 a 1,66 m2 por minuto — 23% de diferenca dentro do MESMO fabricante. Uma taxa geral de m2 por minuto nao existe publicada, e inventa-la seria dar ao leitor um numero que nenhum fabricante sustenta.",
-    "funil": "17 dos 28 modelos publicaveis do banco nao entram em lista nenhuma desta ferramenta: Electrolux, Multi (ex-Multilaser) nao declaram succao em pascal em modelo nenhum; WAP declara em parte da linha e cala no resto. Sao, em boa parte, exatamente os modelos que a outra ferramenta desta ilha responde melhor — quem publica codigo de peca costuma nao publicar pascal, e vice-versa.",
+    "funil": "22 dos 33 modelos publicaveis do banco nao entram em lista nenhuma desta ferramenta: Electrolux, Multi (ex-Multilaser) nao declaram succao em pascal em modelo nenhum; WAP declara em parte da linha e cala no resto. Sao, em boa parte, exatamente os modelos que a outra ferramenta desta ilha responde melhor — quem publica codigo de peca costuma nao publicar pascal, e vice-versa.",
     "classe_de_fonte": "Os limiares de Pa desta pagina NAO sao especificacao de fabricante: sao recomendacao publicada por veiculo brasileiro, e cada uma sai com o nome de quem a recomenda. O Pa de cada robo, esse sim, e declarado pelo fabricante."
   }
 }

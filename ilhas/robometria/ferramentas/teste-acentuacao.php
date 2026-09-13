@@ -42,7 +42,18 @@
  *
  * E A VARREDURA E DA ENTRADA INTEIRA. Renderizar so as nove paginas fixas mede
  * o caso-ancora da R1 e mais nada: "Aspirador Robo" e "Versao A" so aparecem
- * quando alguem escolhe um modelo da Multi. Sao 72 estados.
+ * quando alguem escolhe um modelo da Multi. Eram 72 estados quando isto foi
+ * escrito; hoje sao quantos o banco pedir.
+ *
+ * O PISO DESTA VARREDURA NASCE CONTADO, E ISSO CUSTOU UMA LINHA ERRADA (13/09/2026).
+ * As duas afirmacoes abaixo diziam ">= 70 estados" e ">= 28 estados de R1 — um por
+ * modelo do banco", com os dois numeros DIGITADOS. Eram exatos no dia em que foram
+ * escritos e envelheceram calados: a leva WAP levou o banco a 33 publicaveis, e a
+ * regua continuou aprovando 28 — cinco modelos podiam sumir da varredura inteira
+ * sem uma falha. E a mesma cicatriz do "numero de tela nasce contado, nunca
+ * digitado" (secao 8 do ARQUIPELAGO.md), agora dentro da bancada. Agora a regua LE
+ * o banco e cobra um estado para CADA modelo publicavel, pelo id: nao ha mais numero
+ * para envelhecer, e quem apagar um modelo da varredura reprova nomeando qual.
  */
 
 $raiz = isset( $argv[1] ) ? rtrim( $argv[1], '/' ) : '.';
@@ -162,13 +173,21 @@ foreach ( $saida as $linha ) {
 	}
 }
 
-rbm_ok( count( $estados ) >= 70, 'a varredura monta 70 estados ou mais', count( $estados ) . ' estados' );
-$com_r1 = 0;
-foreach ( array_keys( $estados ) as $rotulo ) {
-	if ( 0 === strpos( $rotulo, 'r1:' ) ) { $com_r1++; }
+/* O piso vem do BANCO, nao de um numero digitado aqui — ver o cabecalho. */
+$banco = json_decode( file_get_contents( $raiz . '/dados/modelos-robo.json' ), true );
+$publicaveis = array();
+foreach ( $banco['registros'] as $reg ) {
+	if ( 'publicavel' === $reg['status'] ) { $publicaveis[] = $reg['id']; }
 }
-rbm_ok( $com_r1 >= 28, 'a R1 e medida em pelo menos 28 estados — um por modelo do banco',
-	$com_r1 . ' estados de R1' );
+rbm_ok( count( $estados ) >= count( $publicaveis ) * 2, 'a varredura monta pelo menos dois estados por modelo publicavel do banco',
+	count( $estados ) . ' estados para ' . count( $publicaveis ) . ' modelos' );
+$sem_estado = array();
+foreach ( $publicaveis as $id ) {
+	if ( ! isset( $estados[ 'r1:' . $id ] ) ) { $sem_estado[] = $id; }
+}
+rbm_ok( empty( $sem_estado ), 'todo modelo publicavel do banco tem o seu estado de R1 na varredura',
+	empty( $sem_estado ) ? count( $publicaveis ) . ' de ' . count( $publicaveis )
+		: 'faltam ' . implode( ', ', $sem_estado ) );
 $bytes = array_sum( array_map( 'strlen', $estados ) );
 rbm_ok( $bytes > 400000, 'o corpo somado tem tamanho de pagina inteira, nao de meia pagina',
 	number_format( $bytes ) . ' bytes' );
