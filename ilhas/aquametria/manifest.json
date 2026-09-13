@@ -806,6 +806,13 @@
       "publicar": false,
       "descricao": "Quatorze mutacoes contra os DOIS portoes da dimensao de imagem — o do HTML servido e o do banco (V19 do validar-produtos.py) —, 14 de 14 reprovadas, cada uma pelo portao que ela NOMEIA: defeito de dado pego por sorte pelo portao do HTML nao prova que a regra do banco existe. A quarta e o conserto tentador, deixar de servir a foto quando falta a medida.",
       "sha256": "78aaeec111b85730233a79f5fd4cf7eb942b26fb9e41718376bcd4846510e7f8"
+    },
+    {
+      "id": "conferir-datas-e-voz-no-ar",
+      "arquivo": "ferramentas/conferir-datas-e-voz-no-ar.py",
+      "publicar": false,
+      "descricao": "Confere NO AR as quatro frentes do despacho da Sentinela de 13/09/2026, e mede o que a bancada NAO PODE medir: o criterio de pronto do item 1 compara o dateModified do JSON-LD com o lastmod que o wp-sitemap declara para a MESMA URL, e sitemap so existe no ar. Mede tambem a editora das onze fichas contra a dos tres artigos (item 2), o par width/height das oito fotos contra o banco (item 3) e a abertura das onze — title, H1 e primeiro paragrafo — pela regra de estrutura da atribuicao (item 4). Lista de URLs vinda do sitemap, nunca digitada; ?v=<hora> em toda requisicao por causa do cache duplo da secao 4.",
+      "sha256": "5e5fc2ddbd08d1bfc630265349b69565b66df373b18394c8238399557d91f594"
     }
   ]
 }

@@ -4,6 +4,219 @@ Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e
 o proximo passo desbloqueado, e espelha o mesmo resumo em
 `/areas/projeto-aquametria.md` na memoria.
 
+## 2026-09-13 15h16Z — O DESPACHO DA SENTINELA DE 13/09 SAI INTEIRO: as datas do schema passam a sair de onde já são verdade, e a ficha de peixe para de abrir pela prova (casca 1.8.0, artigos 1.3.0, peixes 1.4.0, os quatro catálogos regerados, manifest revisão 66, `/status` conferido às 15h50Z em UM disparo)
+
+**Nenhuma URL nova. Nada na fila de construção foi tocado:** a 18.5 manda fechar
+despacho antes de começar bloco, a 18.2 manda o despacho sair INTEIRO, e ele
+tinha quatro itens. Os quatro estão cumpridos e **verificados no ar**, que é o que
+a 18.4 exige para um item morrer. Os itens 1 e 2 eram o mesmo defeito visto de dois
+lados; o 3 era falta de DADO, não de código; o 4 era voz. Nenhum deles é opinião:
+os quatro eram medições da ronda.
+
+### 1 e 2. A DATA SAI DE `post_modified_gmt`, E NÃO DE UM LITERAL
+
+O snippet dos artigos declarava `'dateModified' => '2026-09-10'`, escrito à mão, e
+o `wp-sitemap-posts-post-1.xml` declarava `2026-09-13T13:38:10+00:00` para as
+MESMAS três URLs. **Duas datas da mesma página**, e a do schema envelhecia sozinha
+a cada Sync — trocar o literal por um literal novo só reagendaria o defeito para a
+semana seguinte.
+
+**Onde o conserto mora, e por que não em cada snippet:** nasceu
+`aquametria_casca_data_da_pagina()`, na casca 1.8.0. A data de modificação não é
+propriedade do artigo nem da ficha de peixe: é propriedade da **página**, e a
+casca é a única camada que toda página tem. Dois snippets com a mesma função
+copiada divergiriam no dia em que um fosse corrigido — a forma de defeito que este
+contrato paga mais caro. Os dois chamadores guardam `function_exists()`, porque o
+Sync aplica um arquivo por vez e o snippet pode chegar minutos antes da casca.
+
+A função lê `post_modified_gmt` (ou `post_date_gmt`) do post servido e formata em
+W3C no fuso UTC — **a mesma leitura que o sitemap do núcleo faz**. As duas datas
+não podem discordar, e não porque alguém as comparou: são a mesma leitura.
+
+**AS DUAS GUARDAS DA FUNÇÃO SÃO CARREGADAS, e isso foi medido e não suposto.**
+`strtotime(' UTC')` devolve **AGORA** e `strtotime('0000-00-00 00:00:00 UTC')`
+devolve o **ano zero**. Sem a guarda de vazio, uma página que o WordPress diz não
+saber quando mudou passaria a jurar que mudou hoje — data inventada em nó de
+schema, que é a mentira que a seção 10 proíbe. Data ausente devolve `''` e quem
+chama **omite o campo**: não existe data de reserva.
+
+**A ASSIMETRIA DOS ARTIGOS FICOU, E AGORA ESTÁ DECLARADA NO PORTÃO.** O
+`datePublished` dos três continua sendo a data editorial do registro
+(`2026-09-08`, que o próprio endereço carrega) e **não** a do post. Consertar isso
+"por simetria" moveria a data de publicação de três URLs indexadas, então o portão
+reprova quem tentar, nomeando o motivo.
+
+O item 2 é o mesmo conserto na página que mais dependia dele: o `Article` das onze
+fichas trazia `headline`, `about`, `inLanguage`, `isAccessibleForFree` e
+`mainEntityOfPage`, **e nada mais** — enquanto o `Article` dos três artigos já
+declarava os quatro campos. Agora as onze declaram `datePublished`,
+`dateModified`, `author` e `publisher`, com a **mesma** editora, e o
+`datePublished` vem de `post_date_gmt` porque nenhuma das onze declara data de
+publicação em lugar nenhum do repositório: o post é a única coisa que sabe.
+Escrever a data da leva à mão seria a constante do item 1 renascendo na página
+vizinha.
+
+**O QUE SOBROU DISSO, e não é dívida: é uma coisa que ninguém tinha percebido.**
+Para as onze fichas, `post_modified` só se move quando o **conteúdo da página**
+muda — e o corpo delas é um shortcode. Este bloco reescreveu a abertura das onze,
+a tela mudou, e as onze continuam declarando `2026-09-13T02:37:08+00:00`, que é
+quando a casca criou as páginas. **O critério do item 1 está cumprido** — schema e
+sitemap declaram a mesma coisa, url por url, e foi isso que a Sentinela pediu —,
+mas quem decidir um dia fazer o Sync tocar as páginas cujo snippet mudou decide
+junto o que dizer ao Google. É bloco, não conserto, e está nomeado no `ESTADO.md`.
+
+Para os três artigos o critério foi medido nas duas metades: o sitemap dizia
+`13:38:10` no começo desta execução, e depois do Sync **as duas** dizem
+`15:50:1x`. **Um Sync novo moveu as duas juntas**, que era a segunda metade do
+"pronto quando".
+
+### 3. AS OITO FOTOS GANHAM `width` E `height` — e o que faltava era DADO
+
+O renderizador já estava certo: ele só emite o par quando o registro tem os dois
+campos. Os oito registros não tinham. A Sentinela mediu as oito no Chrome
+(`naturalWidth` × `naturalHeight`) e deixou os números no despacho; a nuvem **não
+alcança** `down-bs-br.img.susercontent.com` (`connect_rejected` por política,
+reconferido por `curl` em duas passadas hoje, com a ilha em 200 na mesma passada),
+então a medida vem de quem tem navegador. Os oito entraram no banco com
+`verificado_em: 2026-09-13` — a ronda abriu a URL e viu a imagem carregar, que é
+exatamente o que aquele campo significa — e os quatro catálogos embutidos foram
+regerados.
+
+**UMA CORREÇÃO DE PREMISSA, e ela diminui o tamanho do defeito sem diminuir o
+conserto:** o despacho dizia que as oito "reservam zero espaço no layout". Não
+reservavam **pelo atributo**, mas a caixa da foto é reservada pelo CSS
+(`aspect-ratio:1/1;width:100%`), então não havia salto de layout. O defeito da
+22.7 é real e foi consertado; o custo dele era menor do que o escrito. Este portão
+passou a **medir a regra de CSS no que é servido**, para essa afirmação não
+envelhecer calada.
+
+**A DECISÃO QUE O DESPACHO MANDOU TOMAR — o que acontece quando o campo falta.** A
+foto **continua** sendo servida, sem o par. Deixar de servi-la seria perder a
+recomendação técnica certa por falta de uma medida, com a caixa já reservada do
+mesmo jeito. O que fica proibido é o **silêncio**: registro com imagem sem
+dimensão declara `motivo_sem_medida`, e registro com dimensão declara `medida_em` e
+`medida_como` — campos novos no esquema. **Número sem data de leitura é chute com
+cara de dado**, e `800x800` digitado porque foto de e-commerce costuma ser
+quadrada passaria por qualquer regra que olhasse só o valor.
+
+**UM BURACO ANTIGO FECHADO DE PASSAGEM:** a V19 do validador olhava só a
+`largura`. Um registro com largura e sem altura passava, e o cartão serviria
+`width` sozinho — que dá ao navegador uma **proporção errada** em vez de nenhuma, e
+é pior que omitir as duas. Agora é o par inteiro ou nenhum.
+
+### 4. A FICHA DE PEIXE PARA DE ABRIR PELA CAMADA DE PROVA
+
+As onze começavam por *"Para os N \<peixe\> que **a fonte declara** como cardume
+mínimo ... e **a fonte declara** a BASE, não o litro"* — duas menções à fonte na
+primeira frase, contra a 15.2 e contra a régua que o bloco de 11/09 fixou,
+"procedência não abre página". A prova não foi apagada: ela já estava duas telas
+abaixo, na tabela "O que as fontes declaram", com o corpo e a data de cada linha.
+
+Agora: *"Para um cardume mínimo de 5 tetra neon, o seu aquário precisa de 60 cm de
+frente por 30 cm de fundo. O que manda é a BASE do aquário, não o litro."*
+
+**A DISTINÇÃO QUE A REESCRITA TINHA DE PRESERVAR era a decisão 7 do snippet, e ela
+custou uma leva inteira:** 14 dos 36 registros declaram COMPRIMENTO e não BASE.
+Enquanto a abertura citava a fonte, era a palavra "fonte" que carregava a
+diferença. Agora ela viaja na **estrutura** da frase, em dois lugares ao mesmo
+tempo: o trecho "por Y cm de fundo" só existe quando há fundo declarado, e a
+palavra final é BASE ou COMPRIMENTO. Quem tem só o comprimento diz que o fundo
+**fica em aberto** — o que um aquarista diria, e não um buraco escondido. E porque
+a diferença deixou de morar numa palavra, ela ganhou régua: **exatamente um** dos
+dois formatos, cobrado nas onze.
+
+**A RÉGUA QUE O DESPACHO PEDIU REPROVAVA TRÊS PÁGINAS CERTAS, e isto é medição.**
+Ele nomeava quatro termos — "a fonte declara", "declarado por", "conforme" e
+"segundo" — para reprovar no `<title>`, no `h1` e no primeiro parágrafo. Escritos
+como estão e medidos nas 27 páginas, "conforme" e "segundo" reprovaram **três
+primeiros parágrafos corretos**: *"iluminação baixa pode querer dizer 1.000 lúmens
+ou 2.000, **conforme** a régua que você abrir"*, *"vai de 125 mililitros a 1,25
+litro, **conforme** a marca que você abrir"*. Ali "conforme" é **dependendo de**, e
+é justamente a frase que publica a divergência entre fontes — a tese da ilha. Uma
+lista literal teria silenciado a tese para proibir a atribuição.
+
+A saída não é heurística de vizinhança: a seção 8 já pagou por isso duas vezes, e
+na segunda a heurística **aprovou** a frase errada. A saída é que **atribuição
+precisa de um atribuído**: "conforme" e "segundo" só contam quando o que vem depois
+**nomeia** alguém — uma marca da lista de fontes da ilha, ou "a fonte", "o
+fabricante", "o compêndio", "o manual". `marca` e `régua` de propósito **não** são
+atribuídos: "conforme a marca que você abrir" fala de uma marca qualquer, não
+daquela marca. E a régua mede a si mesma em duas frases produzidas, para quem um
+dia achar mais simples pôr "conforme" de volta na lista literal reprovar **ali**,
+antes de reprovar dez páginas.
+
+O `teste-voz.mjs` já media as onze fichas, ao contrário do que o despacho supunha
+("hoje ele mede 13 páginas e nenhuma delas é ficha de peixe" era verdade em 11/09;
+as levas 1 a 3 as acrescentaram em 12/09). O que faltava era a régua, não o
+alcance: 27 páginas, 752 afirmações.
+
+### VERIFICAÇÃO
+
+**Portões novos:** `ferramentas/teste-datas-schema.py` (78 afirmações) e
+`ferramentas/mutacoes-datas.py` (**12 de 12** reprovadas);
+`ferramentas/teste-dimensao-imagem.py` (36) e `ferramentas/mutacoes-dimensao.py`
+(**14 de 14**, cada uma pelo portão que ela **nomeia** — defeito de dado pego por
+sorte pelo portão do HTML não prova que a regra do banco existe).
+
+**OS DOIS PORTÕES PRODUZEM MUNDO, e um deles só ficou honesto na segunda
+tentativa.** A primeira rodada de mutações das datas teve **uma que PASSOU**: "sem
+data, a casca devolve a data de HOJE". O ramo existia, e as duas guardas de cima
+interceptavam os dois mundos que o portão produzia — o ramo **nunca rodava**. Ramo
+defensivo não medido é ramo que pode mentir à vontade, então nasceu o terceiro
+mundo, o campo com texto que não se lê como data: o esquema permite (o campo é uma
+string), o WordPress nunca grava, e a régua trata hoje.
+
+**Bancada, 0 falha:** `teste-peixes.py` **1222**, `teste-voz.mjs` **752** (era
+749), `teste-dimensao-imagem.py` 36, `teste-datas-schema.py` 78,
+`teste-seo-tecnico.php` 330, `teste-ga4.py` 440, `teste-apelidos.php` 59,
+`validar-especies.py` 36 registros com o mesmo aviso E15 do guppy,
+`testar-validador-especies.py` 22, `validar-produtos.py` 78 produtos 0 erro,
+`teste-arvore.mjs`, `conferir-entidades.mjs`, `conferir-slugs.py`,
+`conferir-protecao-funcoes.py`, conversor 17, escape, atualizador 9, `php -l` em
+tudo. **Navegador:** `teste-navegador-arvore.mjs` com **498 medições** em 27
+páginas × 6 larguras, 0 px de rolagem, console limpo. **Mutações antigas rodadas
+inteiras:** peixes **39 de 39** e voz **27 de 27** (era 20) — e uma das antigas
+tinha virado **INERTE** com a reescrita da abertura; o próprio mutador avisou,
+porque ele conta as ocorrências em vez de substituir em silêncio, e o alvo foi
+reapontado.
+
+**NO AR às 15h50Z, em UM disparo.** `/status` na **revisão 66**, igual à do
+`manifest.json`, 19 aplicados. E a conferência que **só o ar pode fazer**, porque
+o critério de pronto compara com o sitemap: `conferir-datas-e-voz-no-ar.py`, **170
+afirmações, 0 falha** às 16h11Z — as 14 URLs com `dateModified` do schema **igual**
+ao `lastmod` do sitemap, as 11 fichas com os quatro campos e a editora igual à dos
+artigos, as 8 fotos com o par do banco, e as 33 superfícies de abertura das onze
+sem atribuição.
+
+**REDE (20.2):** a ilha em 200 na home e no `/status`.
+`down-bs-br.img.susercontent.com` em `connect_rejected` por política, duas
+passadas, com a ilha em 200 na mesma passada — é o que manda a medida da imagem
+vir do Chrome da Sentinela.
+
+**RECEITA (item 5 do despacho, que fica aberto por desenho):** **39 dos 78**
+produtos esperam link de afiliado, e destes **9 não têm loja possível hoje** — 7
+sem anúncio na plataforma, 1 cujo único anúncio é outro produto
+(`aquarios-do-rio-led-60cm`) e 1 cujo único anúncio é outra variante
+(`ista-il-401-60`). Os outros **30** têm anúncio e esperam a geração manual do
+link curto no painel, que é a metade do Raphael. Este bloco não tocou catálogo de
+produto. **Pauta da seção 17:** `pauta.md` ainda não existe — 0 escritos, 0 na
+fila, 0 recusados.
+
+**O ACHADO QUE NÃO ERA DESTA ILHA foi para o canal certo:** a ronda escreveu no
+`PROMPT.md` daqui, "porque não há outro canal", que o `PROMPT.md` da
+clubedomosaico não documenta o parâmetro de autenticação do endpoint de peças da
+24.2. A seção 3 proíbe editar arquivo de ilha que não se reservou, então ele foi
+copiado para `dados/despachos.md` na raiz, endereçado a quem reservar aquela ilha.
+
+**PRÓXIMO, com ordem e motivo:** (1) **LEVA 4** = `/peixes/bettas/` com as três
+fichas (betta, colisa-anão, gurami mel), que **já pode nascer na semana que começa
+em 14/09**, quando o teto da 21.4 virar — nada falta antes de escrever, e as
+quatro páginas nascem declarando `'serp_em' => '13/09/2026'`; (2) **BANCO**:
+`/peixes/vivaparos/` está a DOIS campos de ter 4 fichas (guppy e molly) e a UM de
+ter 3, e os dois dependem de leitura direta da ficha ou de um terceiro corpo; (3)
+a leitura de 16/09 continua tendo o que responder sobre a leva de 08/09 e continua
+**não** travando leva nenhuma — 27 URLs, abaixo do piso de 40 da seção 21.
+
 ## 2026-09-13 13h17Z — A DATA DA SERP VIRA CAMPO E A BETTAS GANHA CRITERIO: a leva 4 fica pronta para nascer (snippet aquametria-peixes 1.3.0, manifest revisao 65, /status conferido as 13h38Z em UM disparo)
 
 **Nenhuma URL nova, e isso e regra e nao escolha:** o teto da 21.4 e de tres levas

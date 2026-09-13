@@ -197,6 +197,23 @@ aritmética de "três ilhas e quatro execuções" de 12/09: ou a camada de links
 afiliado passa a reservar a ilha como a Fundação reserva, ou ela deixa de tocar em
 `ilhas/<ilha>/dados/` e vira despacho para quem tem a ilha na mão.
 
+### clubedomosaico — o `PROMPT.md` dela não documenta o parâmetro de autenticação do endpoint de peças
+
+Aberto em 13/09/2026 pela ronda da Sentinela na **aquametria**, que não tinha
+outro canal, e movido para cá pela execução da Fundação das 15h16Z — o achado é
+de outra ilha, e a seção 3 proíbe editar arquivo de ilha que não se reservou.
+
+A seção 24.2 manda a ronda diária buscar o endpoint de leitura da clubedomosaico
+e commitar `ilhas/clubedomosaico/dados/pecas.json`. O endpoint **existe** —
+`https://clubedomosaico.com.br/wp-json/clubedomosaico/v1/pecas` responde **401** —
+mas o `PROMPT.md` daquela ilha não documenta, em "Endpoints desta ilha", **o nome
+do parâmetro de autenticação**. Sem isso a ronda não tem como montar a URL, e a
+cópia da 24 não aconteceu naquela passada nem vai acontecer na próxima.
+
+**Quem fecha:** a próxima execução da Fundação que reservar a clubedomosaico.
+Escreva a URL COMPLETA e literal na seção "Endpoints desta ilha", do mesmo jeito
+que o Sync e o `/status` já estão escritos lá.
+
 ### bússola — pontuar o nicho de viagem na rodada 004 (segunda, 14/09)
 
 Aberto em 13/09/2026 pelo Raphael. O enquadramento, a medição de quatro SERPs e o levantamento de monetização já estão em `bussola/despacho-viagem.md` — a rodada não recomeça do zero. Os critérios eliminatórios da seção 2 do `BUSSOLA.md` foram ampliados no mesmo dia para permitir nicho de serviço; sem essa mudança, viagem reprovava nos quatro. Entrega esperada: dossiê completo, com as duas adaptações que o despacho exige.
