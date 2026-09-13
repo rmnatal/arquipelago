@@ -9,6 +9,7 @@
   {
    "id": "multi",
    "nome": "Multi (ex-Multilaser)",
+   "nome_de_busca": "Multilaser",
    "site_oficial": "https://www.multilaser.com.br/",
    "canal_de_pecas": "https://www.multilaser.com.br/multilaser/pecas-de-reposicao/eletroportateis/acessorios-p--aspirador-robo-po",
    "sameAs": [
@@ -22,6 +23,7 @@
   {
    "id": "electrolux",
    "nome": "Electrolux",
+   "nome_de_busca": "Electrolux",
    "site_oficial": "https://loja.electrolux.com.br/",
    "canal_de_pecas": "https://loja.electrolux.com.br/pecas-e-acessorios/pecas-para-aspirador-de-po",
    "sameAs": [
@@ -33,6 +35,7 @@
   {
    "id": "xiaomi",
    "nome": "Xiaomi",
+   "nome_de_busca": "Xiaomi",
    "site_oficial": "https://www.mi.com/br/",
    "canal_de_pecas": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s20-accessories/",
    "sameAs": [
@@ -44,6 +47,7 @@
   {
    "id": "positivo",
    "nome": "Positivo Casa Inteligente",
+   "nome_de_busca": "Positivo",
    "site_oficial": "https://www.positivocasainteligente.com.br/",
    "canal_de_pecas": "https://www.positivocasainteligente.com.br/acessorios/robo-aspirador",
    "sameAs": [
@@ -55,6 +59,7 @@
   {
    "id": "wap",
    "nome": "WAP",
+   "nome_de_busca": "WAP",
    "site_oficial": "https://www.wap.ind.br/",
    "canal_de_pecas": "https://loja.wap.ind.br/acessorios/para-aspiradores",
    "sameAs": [
@@ -66,5 +71,6 @@
    "observacao": "Quinta marca do banco, aberta na segunda leva do Bloco 3c. E a UNICA marca da coleta que publica o manual de instrucoes em PDF num endereco proprio e estavel (mais.conteudo.wap.ind.br, um PDF por modelo, com revisao e data no nome do arquivo; o WSMART e a excecao — esse mora no blog da marca). Isso a torna a candidata mais provavel a primeira fonte de NIVEL 2 desta ilha no dia em que o egresso abrir: hoje o dominio dos manuais devolve 000. Declara Pa em UM dos oito modelos do banco (W400) e NAO declara cobertura em m2 em nenhum, o que reforca o achado da Xiaomi. canal_de_pecas PREENCHIDO em 13/09/2026, e a frase que estava aqui antes ('a busca restrita ao dominio nao devolveu pagina de peca de reposicao com codigo') estava errada pela metade: a loja publica pagina de peca POR MODELO e ela TEM codigo de referencia WAP na ficha. MEDIDO NA SEGUNDA LEVA DE 13/09, e corrige a frase anterior pela metade: a ficha TEM codigo, e a BUSCA nao o alcanca — ela devolve a pagina e o titulo, nunca o campo. As quatro primeiras pecas WAP entraram pelo titulo, com codigo null. E a WAP e a marca que provou a regra da secao 26 do ARQUIPELAGO.md: 'giratoria' nomeia o par LATERAL no conteudo declarado do W300 e a PRINCIPAL no artigo de limpeza do W90, no mesmo canal. O blog (blog.wap.ind.br) e a descoberta de processo desta leva: e nele que a marca nomeia a FUNCAO das pecas, por modelo, coisa que a loja nunca faz.",
    "verificado_em": "2026-09-13"
   }
- ]
+ ],
+ "nota_do_nome_de_busca": "nome_de_busca nasceu em 13/09/2026 com a escada de compra da secao 25. Ele NAO e o nome de tela e NAO e o id: e o token que entra na palavra-chave da busca de afiliado. Tres das cinco escolhas tem motivo escrito, porque nenhuma delas e a obvia. (1) multi -> 'Multilaser', e nao 'Multi': 'multi' e prefixo do portugues e traz qualquer coisa, o proprio dominio do fabricante ainda e multilaser.com.br e e assim que a peca de reposicao dele e anunciada; e o campo `nome` nao serve porque levaria '(ex-Multilaser)' com parenteses para dentro da consulta. (2) positivo -> 'Positivo', e nao 'Positivo Casa Inteligente': tres tokens onde um basta, e o termo de contexto da escada ja desfaz a ambiguidade da palavra comum. (3) wap -> 'WAP', que e sigla de outra coisa em ingles e so sobrevive acompanhada do termo de contexto — mais uma razao para o contexto ser obrigatorio nas duas entidades."
 }

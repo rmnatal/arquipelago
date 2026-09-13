@@ -3081,3 +3081,137 @@ com zero peça, então a primeira devolve o tipo ao seletor da R1 de graça. (3)
 W2000 e WConnect, localizados e não gravados por falta de duas passadas limpas próprias. (4) o S10 e o Mop 2
 seguem sendo os dois Xiaomi vazios. (5) o reenvio do sitemap no Search Console, metade humana do despacho de
 10/09, segue travando a leva de malha 5b.
+
+## 2026-09-13 (19h16Z) — O PISO DA 25.2 NASCE NO ESQUEMA E NO BANCO: 62 itens saem de "esperando link" para "com palavra-chave escrita"
+
+Era o item (a) que a execução das 17h22Z deixou nomeado, e ela mesma disse que
+era "o maior buraco desta ilha e agora não tem mais nada na frente". Continuava
+sendo: `url_busca` não existia em NENHUM arquivo do banco, e os 62 itens
+publicáveis (33 modelos + 29 peças) estavam no ar com "Link de loja em breve"
+em todo cartão. **Nenhuma URL nova, nenhuma página servida mudou, nenhum
+snippet tocado** — este bloco é banco, esquema e portões.
+
+**MEDIDO ANTES DE ESCOLHER O BLOCO.** Rede remedida às 19h16Z como manda a
+20.2: robometria.com.br em 200 na home e no `/status`; `shopee.com.br/search`
+em 200 servindo casca de JavaScript com **zero** ocorrência de
+`shopee.com.br/`; `affiliate.shopee.com.br/offer/custom_link` em 200 servindo
+casca com **zero** ocorrência de `custom_link`; `mercadolivre.com.br` em 403.
+Ou seja: o encurtamento continua fora do alcance desta nuvem, e a Aquametria
+mediu a mesma coisa duas horas antes. As duas ilhas estão na mesma posição, e
+viram a chave no mesmo dia.
+
+**A CORRENTE TEM DOIS ELOS E ESTE BLOCO SEPARA OS DOIS.** Escolher a
+palavra-chave não depende de sessão de ninguém; encurtá-la num link de
+afiliado depende. O que estava na fila esperando o Raphael não era a escolha —
+era o encurtamento. Nasce `ferramentas/gerar-busca-de-produto.py`, que escreve
+`afiliado.url_busca_produto` nos 62 publicáveis. **No dia em que houver sessão
+são 62 colagens e NENHUMA LINHA DE CÓDIGO MUDA.**
+
+**A FRASE DO PRÓPRIO ESQUEMA QUE CONTRADIZIA O CONTRATO FOI REESCRITA, NÃO
+ACRESCENTADA.** O campo `afiliado` dizia, com todas as letras, que "quem gera o
+link é a Sentinela estratégica, no navegador do Raphael, com teto de
+calendário" — e a 25.2 decide o contrário com a palavra do dono citada: "deve
+ser 100% automático sem eu tocar" e "nada, nunca, fica na fila esperando o
+Raphael". Duas frases em desacordo no mesmo arquivo não são história, são
+armadilha: a próxima execução acredita na que ler primeiro.
+
+**O ACHADO DO BLOCO NÃO É DO DADO, É DA MARCA — e ele é desta ilha e de mais
+nenhuma.** A 25.3 proíbe escolher produto só por marca porque "marca sem
+contexto é armadilha". Ao compor a primeira chave apareceu que **nem o `id` nem
+o `nome` das marcas desta ilha serviam para buscar**: o `id` de duas das cinco
+é palavra comum do português (`multi`, `positivo`), e o `nome` de duas carrega
+texto que envenena consulta de marketplace — "Multi (ex-Multilaser)" levaria
+**parêntese** para dentro da busca, e "Positivo Casa Inteligente" gasta três
+tokens onde um basta. Nasce `nome_de_busca` em `marcas.json`, obrigatório, para
+que marca nova não entre muda. E a armadilha da 25.3 tem aqui uma **segunda
+forma, que é do CÓDIGO**: `S20` sozinho é um celular de outra marca, `E10` e
+`H40` são código de qualquer coisa, `W90` não diz nada. Por isso o termo de
+contexto entra nas DUAS entidades, e não só onde a marca é fraca.
+
+**A ASSIMETRIA ENTRE MODELO E PEÇA É DECISÃO DECLARADA, COM A MEDIÇÃO QUE FALTA
+NOMEADA.** Modelo leva o código (`Electrolux ERB60 robo aspirador`) porque o
+código do modelo É o nome comercial: ninguém vende "Electrolux robô aspirador".
+Peça NÃO leva (`WAP escova lateral robo aspirador`), porque código de peça é SKU
+interno de fabricante e o vendedor de marketplace não o digita no título — e
+chave com token que ninguém usa traz zero resultado, que é o beco sem saída que
+o piso existe para impedir. **O lado que não dá para medir daqui está escrito
+em vez de escondido:** a busca da Shopee serve casca de JavaScript, então esta
+nuvem não consegue CONTAR resultado nenhum. Entre uma escolha que falha em
+"resultado menos relevante" e outra que falha em "beco sem saída", com a
+medição indisponível, a seção 8 manda ficar com a que falha conhecido. O
+estreitamento é melhoria e já tem dono: a Open API da 25.6, cujo primeiro uso
+escrito no contrato é "buscar produto por palavra-chave COM ESTOQUE".
+
+**O QUE ENTROU.** Esquema na versão 5: seis campos novos em `afiliado`
+(`url_produto`, `motivo_sem_url_produto`, `degrau`, `url_busca`,
+`url_busca_produto`, `motivo_sem_url_busca`) e o bloco `escada_de_compra` com
+os quatro degraus da 25.1 nomeados, a base da busca, o termo de contexto por
+entidade e a regra de composição. Sete invariantes novas. `nome_de_busca` nas
+cinco marcas. 62 chaves escritas, **50 distintas** — 7 chaves cobrem 19 itens,
+e essa é a largura medida da escolha de não pôr o código da peça, publicada em
+vez de escondida.
+
+**VERIFICAÇÃO NA BANCADA, 0 falha.** `teste-escada-compra.py` nasce com **487
+afirmações** e régua própria: ele não importa o gerador nem o validador, porque
+duas metades que erram juntas ficam verdes — foi exatamente assim que a
+atribuição da função da R1 passou por todos os portões até hoje de manhã. Dez
+chaves-âncora escritas à mão, cada uma uma borda (a marca cujo nome de tela tem
+parêntese, o modelo cujo código sozinho é um celular, a peça sem
+`codigo_fabricante`, a peça que o fabricante batiza pela POSIÇÃO). E duas
+afirmações que existem para a régua não envelhecer calada: **o conjunto de
+marcas e o de entidades que ela conhece tem de ser igual ao do banco e ao do
+esquema**, então marca nova REPROVA em vez de passar por cima. `validar-banco`
+APROVADO com a versão 5. Resto da bancada rodado inteiro: teste-r1 106,
+teste-r2 92, teste-a1 56, teste-a2 73, casca 200, voz 155, acentuação 17,
+árvore 213; `php -l` limpo.
+
+**MUTAÇÕES: 143 em 13 baterias, 0 INERTES.** As 126 antigas rodadas inteiras
+porque este bloco reordenou o campo `afiliado` nos dois arquivos de banco — e
+todas seguem reprovando. A bateria nova, `mutacoes-escada.py`, tem 17 e é mais
+dura que as irmãs em duas coisas. (1) **Cada mutação declara qual portão tem de
+reprová-la e com que palavra**, e o runner confere a palavra na saída: defeito
+pego pela regra vizinha prova que ALGUMA trava existe, não que ESTA existe.
+(2) **A maioria PRODUZ O MUNDO**, porque a ilha tem 62 publicáveis e ZERO ficha
+de produto — as travas de `degrau`, de `url_produto` e de "degrau 3 sem piso"
+nasceram hoje sobre um banco que nunca as exercita, que é a "régua escrita para
+um mundo que nunca aconteceu" da seção 8. As quatro últimas criam o **primeiro
+link de afiliado desta ilha** dentro da cópia e só depois quebram a regra nele;
+a última entrega esse mundo INTACTO e **tem de passar**, senão a régua seria
+falso-positivo esperando o dia da monetização.
+
+**UMA MUTAÇÃO NASCEU INERTE E QUEM MOSTROU FOI A PRÓPRIA BATERIA.** A que faz a
+marca voltar a ser buscada pelo nome de tela só editava `marcas.json`, e o
+portão seguia verde — porque a chave já gravada no banco não muda sozinha.
+Mutação que não regera mede a intenção de quem a escreveu, não o que a máquina
+produz. O conserto rendeu **duas** mutações em vez de uma, e a segunda vale por
+si: com o `marcas.json` mudado e o banco NÃO regerado, as duas cópias do mesmo
+fato ficam em desacordo — e quem vê isso é o **validador**, que lê a marca do
+arquivo, nunca o portão, que tem o token escrito à mão. Sem ela ninguém saberia
+que o portão sozinho não enxerga essa divergência.
+
+**A DÍVIDA DEIXOU DE SER PROSA E VIROU NÚMERO CONTADO**, recomputado do arquivo
+pelo validador e nunca digitado: `itens_com_ficha` 0 de 62, `itens_sem_piso` 62
+de 62, `links_sem_degrau` 0 de 0. Enquanto era prosa, o cabeçalho dizia "nenhum
+link de loja em nenhum cartão" e **não dizia que 62 estavam sem PISO**, que é
+outra coisa e é a que a 25.2 chama de defeito.
+
+**O QUE ESTE BLOCO NÃO FEZ, COM NOME E MOTIVO.** A escada NÃO CHEGOU À TELA, e
+é escolha declarada, igual à que a Aquametria fez às 17h20Z sobre a mesma
+cláusula. Com `url_busca` vazia nos 62, o estado em que a busca vira botão
+**nunca acontece**, e a linha discreta do outro estado não tem para onde
+apontar: seria refatoração em quatro superfícies (R1, R2, A1, A2) provadamente
+dormente, e meia refatoração em quatro superfícies que discordam em silêncio é
+pior que nenhuma. O cartão continua dizendo "Link de loja em breve" — que é
+verdade hoje e deixa de ser no minuto em que houver sessão.
+
+**NO AR:** manifest na revisão 30; nenhum arquivo `publicar: true` mudou um
+byte (os quatro geradores e o de casca foram rodados e os nove derivados
+saíram com o mesmo sha256), então o desembarque aplicou 0 itens e serve para
+uma coisa só: `/status` voltar a bater com o manifest. Os três portões novos
+ENTRARAM no manifest, então a dívida de arquivo fora dele não cresceu com este
+bloco.
+
+**Próximo passo desbloqueado:** o RECIPIENTE DE PÓ do W300 e do WSMART — a
+coleta mais barata que existe hoje, com a página já localizada, e
+`reservatorio` é o único tipo do vocabulário com zero peça, então a primeira
+devolve o tipo ao seletor da R1 de graça.

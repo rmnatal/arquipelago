@@ -21,7 +21,10 @@
     "marcas_medidas_que_NAO_declaram_pa": [
       "electrolux",
       "multi"
-    ]
+    ],
+    "itens_com_ficha": 0,
+    "itens_sem_piso": 33,
+    "links_sem_degrau": 0
   },
   "cobertura_de_faixa_r2": {
     "o_que_e": "Medicao exigida pela secao 14.3 do ARQUIPELAGO.md: varredura da faixa de entrada da R2 de ponta a ponta, contando quantos modelos do banco passam na elegibilidade de cada faixa. O criterio NAO e numero redondo de itens — e que nenhuma faixa que a ferramenta consegue produzir saia com menos de 3 elegiveis.",
@@ -238,6 +241,12 @@
       },
       "afiliado": {
         "url": "",
+        "url_produto": null,
+        "motivo_sem_url_produto": null,
+        "degrau": null,
+        "url_busca": "",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Multilaser%20HO041%20robo%20aspirador",
+        "motivo_sem_url_busca": "falta o ENCURTAMENTO, nao a escolha: gerar o link de afiliado da busca exige a sessao logada do painel da Shopee (25.6). A palavra-chave ja esta escrita em url_busca_produto, e no dia da sessao e colar.",
         "plataforma": null,
         "coletado_em": null,
         "sub_id_1": "robometria"
@@ -354,6 +363,12 @@
       },
       "afiliado": {
         "url": "",
+        "url_produto": null,
+        "motivo_sem_url_produto": null,
+        "degrau": null,
+        "url_busca": "",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Multilaser%20HO400%20robo%20aspirador",
+        "motivo_sem_url_busca": "falta o ENCURTAMENTO, nao a escolha: gerar o link de afiliado da busca exige a sessao logada do painel da Shopee (25.6). A palavra-chave ja esta escrita em url_busca_produto, e no dia da sessao e colar.",
         "plataforma": null,
         "coletado_em": null,
         "sub_id_1": "robometria"
@@ -440,6 +455,12 @@
       },
       "afiliado": {
         "url": "",
+        "url_produto": null,
+        "motivo_sem_url_produto": null,
+        "degrau": null,
+        "url_busca": "",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Multilaser%20HO407%20robo%20aspirador",
+        "motivo_sem_url_busca": "falta o ENCURTAMENTO, nao a escolha: gerar o link de afiliado da busca exige a sessao logada do painel da Shopee (25.6). A palavra-chave ja esta escrita em url_busca_produto, e no dia da sessao e colar.",
         "plataforma": null,
         "coletado_em": null,
         "sub_id_1": "robometria"
@@ -527,6 +548,12 @@
       },
       "afiliado": {
         "url": "",
+        "url_produto": null,
+        "motivo_sem_url_produto": null,
+        "degrau": null,
+        "url_busca": "",
+        "url_busca_produto": "",
+        "motivo_sem_url_busca": null,
         "plataforma": null,
         "coletado_em": null,
         "sub_id_1": "robometria"
@@ -616,6 +643,12 @@
       },
       "afiliado": {
         "url": "",
+        "url_produto": null,
+        "motivo_sem_url_produto": null,
+        "degrau": null,
+        "url_busca": "",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Multilaser%20OB010%20robo%20aspirador",
+        "motivo_sem_url_busca": "falta o ENCURTAMENTO, nao a escolha: gerar o link de afiliado da busca exige a sessao logada do painel da Shopee (25.6). A palavra-chave ja esta escrita em url_busca_produto, e no dia da sessao e colar.",
         "plataforma": null,
         "coletado_em": null,
         "sub_id_1": "robometria"
@@ -708,6 +741,12 @@
       },
       "afiliado": {
         "url": "",
+        "url_produto": null,
+        "motivo_sem_url_produto": null,
+        "degrau": null,
+        "url_busca": "",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Multilaser%20HO243%20robo%20aspirador",
+        "motivo_sem_url_busca": "falta o ENCURTAMENTO, nao a escolha: gerar o link de afiliado da busca exige a sessao logada do painel da Shopee (25.6). A palavra-chave ja esta escrita em url_busca_produto, e no dia da sessao e colar.",
         "plataforma": null,
         "coletado_em": null,
         "sub_id_1": "robometria"
@@ -795,6 +834,12 @@
       },
       "afiliado": {
         "url": "",
+        "url_produto": null,
+        "motivo_sem_url_produto": null,
+        "degrau": null,
+        "url_busca": "",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Multilaser%20HO411%20robo%20aspirador",
+        "motivo_sem_url_busca": "falta o ENCURTAMENTO, nao a escolha: gerar o link de afiliado da busca exige a sessao logada do painel da Shopee (25.6). A palavra-chave ja esta escrita em url_busca_produto, e no dia da sessao e colar.",
         "plataforma": null,
         "coletado_em": null,
         "sub_id_1": "robometria"
@@ -891,6 +936,12 @@
       },
       "afiliado": {
         "url": "",
+        "url_produto": null,
+        "motivo_sem_url_produto": null,
+        "degrau": null,
+        "url_busca": "",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Electrolux%20ERB44%20robo%20aspirador",
+        "motivo_sem_url_busca": "falta o ENCURTAMENTO, nao a escolha: gerar o link de afiliado da busca exige a sessao logada do painel da Shopee (25.6). A palavra-chave ja esta escrita em url_busca_produto, e no dia da sessao e colar.",
         "plataforma": null,
         "coletado_em": null,
         "sub_id_1": "robometria"
@@ -981,6 +1032,12 @@
       },
       "afiliado": {
         "url": "",
+        "url_produto": null,
+        "motivo_sem_url_produto": null,
+        "degrau": null,
+        "url_busca": "",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Electrolux%20ERB10%20robo%20aspirador",
+        "motivo_sem_url_busca": "falta o ENCURTAMENTO, nao a escolha: gerar o link de afiliado da busca exige a sessao logada do painel da Shopee (25.6). A palavra-chave ja esta escrita em url_busca_produto, e no dia da sessao e colar.",
         "plataforma": null,
         "coletado_em": null,
         "sub_id_1": "robometria"
@@ -1083,6 +1140,12 @@
       },
       "afiliado": {
         "url": "",
+        "url_produto": null,
+        "motivo_sem_url_produto": null,
+        "degrau": null,
+        "url_busca": "",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Electrolux%20ERB11%20robo%20aspirador",
+        "motivo_sem_url_busca": "falta o ENCURTAMENTO, nao a escolha: gerar o link de afiliado da busca exige a sessao logada do painel da Shopee (25.6). A palavra-chave ja esta escrita em url_busca_produto, e no dia da sessao e colar.",
         "plataforma": null,
         "coletado_em": null,
         "sub_id_1": "robometria"
@@ -1183,6 +1246,12 @@
       },
       "afiliado": {
         "url": "",
+        "url_produto": null,
+        "motivo_sem_url_produto": null,
+        "degrau": null,
+        "url_busca": "",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Electrolux%20ERB20%20robo%20aspirador",
+        "motivo_sem_url_busca": "falta o ENCURTAMENTO, nao a escolha: gerar o link de afiliado da busca exige a sessao logada do painel da Shopee (25.6). A palavra-chave ja esta escrita em url_busca_produto, e no dia da sessao e colar.",
         "plataforma": null,
         "coletado_em": null,
         "sub_id_1": "robometria"
@@ -1282,6 +1351,12 @@
       },
       "afiliado": {
         "url": "",
+        "url_produto": null,
+        "motivo_sem_url_produto": null,
+        "degrau": null,
+        "url_busca": "",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20S20%20robo%20aspirador",
+        "motivo_sem_url_busca": "falta o ENCURTAMENTO, nao a escolha: gerar o link de afiliado da busca exige a sessao logada do painel da Shopee (25.6). A palavra-chave ja esta escrita em url_busca_produto, e no dia da sessao e colar.",
         "plataforma": null,
         "coletado_em": null,
         "sub_id_1": "robometria"
@@ -1378,6 +1453,12 @@
       },
       "afiliado": {
         "url": "",
+        "url_produto": null,
+        "motivo_sem_url_produto": null,
+        "degrau": null,
+        "url_busca": "",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Positivo%20PRA800%20robo%20aspirador",
+        "motivo_sem_url_busca": "falta o ENCURTAMENTO, nao a escolha: gerar o link de afiliado da busca exige a sessao logada do painel da Shopee (25.6). A palavra-chave ja esta escrita em url_busca_produto, e no dia da sessao e colar.",
         "plataforma": null,
         "coletado_em": null,
         "sub_id_1": "robometria"
@@ -1469,6 +1550,12 @@
       },
       "afiliado": {
         "url": "",
+        "url_produto": null,
+        "motivo_sem_url_produto": null,
+        "degrau": null,
+        "url_busca": "",
+        "url_busca_produto": "",
+        "motivo_sem_url_busca": null,
         "plataforma": null,
         "coletado_em": null,
         "sub_id_1": "robometria"
@@ -1560,6 +1647,12 @@
       },
       "afiliado": {
         "url": "",
+        "url_produto": null,
+        "motivo_sem_url_produto": null,
+        "degrau": null,
+        "url_busca": "",
+        "url_busca_produto": "",
+        "motivo_sem_url_busca": null,
         "plataforma": null,
         "coletado_em": null,
         "sub_id_1": "robometria"
@@ -1647,6 +1740,12 @@
       },
       "afiliado": {
         "url": "",
+        "url_produto": null,
+        "motivo_sem_url_produto": null,
+        "degrau": null,
+        "url_busca": "",
+        "url_busca_produto": "",
+        "motivo_sem_url_busca": null,
         "plataforma": null,
         "coletado_em": null,
         "sub_id_1": "robometria"
@@ -1734,6 +1833,12 @@
       },
       "afiliado": {
         "url": "",
+        "url_produto": null,
+        "motivo_sem_url_produto": null,
+        "degrau": null,
+        "url_busca": "",
+        "url_busca_produto": "",
+        "motivo_sem_url_busca": null,
         "plataforma": null,
         "coletado_em": null,
         "sub_id_1": "robometria"
@@ -1834,6 +1939,12 @@
       },
       "afiliado": {
         "url": "",
+        "url_produto": null,
+        "motivo_sem_url_produto": null,
+        "degrau": null,
+        "url_busca": "",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Electrolux%20ERB60%20robo%20aspirador",
+        "motivo_sem_url_busca": "falta o ENCURTAMENTO, nao a escolha: gerar o link de afiliado da busca exige a sessao logada do painel da Shopee (25.6). A palavra-chave ja esta escrita em url_busca_produto, e no dia da sessao e colar.",
         "plataforma": null,
         "coletado_em": null,
         "sub_id_1": "robometria"
@@ -1934,6 +2045,12 @@
       },
       "afiliado": {
         "url": "",
+        "url_produto": null,
+        "motivo_sem_url_produto": null,
+        "degrau": null,
+        "url_busca": "",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Electrolux%20ERB61%20robo%20aspirador",
+        "motivo_sem_url_busca": "falta o ENCURTAMENTO, nao a escolha: gerar o link de afiliado da busca exige a sessao logada do painel da Shopee (25.6). A palavra-chave ja esta escrita em url_busca_produto, e no dia da sessao e colar.",
         "plataforma": null,
         "coletado_em": null,
         "sub_id_1": "robometria"
@@ -2034,6 +2151,12 @@
       },
       "afiliado": {
         "url": "",
+        "url_produto": null,
+        "motivo_sem_url_produto": null,
+        "degrau": null,
+        "url_busca": "",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Electrolux%20ERB62%20robo%20aspirador",
+        "motivo_sem_url_busca": "falta o ENCURTAMENTO, nao a escolha: gerar o link de afiliado da busca exige a sessao logada do painel da Shopee (25.6). A palavra-chave ja esta escrita em url_busca_produto, e no dia da sessao e colar.",
         "plataforma": null,
         "coletado_em": null,
         "sub_id_1": "robometria"
@@ -2134,6 +2257,12 @@
       },
       "afiliado": {
         "url": "",
+        "url_produto": null,
+        "motivo_sem_url_produto": null,
+        "degrau": null,
+        "url_busca": "",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Electrolux%20ERB80%20robo%20aspirador",
+        "motivo_sem_url_busca": "falta o ENCURTAMENTO, nao a escolha: gerar o link de afiliado da busca exige a sessao logada do painel da Shopee (25.6). A palavra-chave ja esta escrita em url_busca_produto, e no dia da sessao e colar.",
         "plataforma": null,
         "coletado_em": null,
         "sub_id_1": "robometria"
@@ -2230,6 +2359,12 @@
       },
       "afiliado": {
         "url": "",
+        "url_produto": null,
+        "motivo_sem_url_produto": null,
+        "degrau": null,
+        "url_busca": "",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Electrolux%20ERB30%20robo%20aspirador",
+        "motivo_sem_url_busca": "falta o ENCURTAMENTO, nao a escolha: gerar o link de afiliado da busca exige a sessao logada do painel da Shopee (25.6). A palavra-chave ja esta escrita em url_busca_produto, e no dia da sessao e colar.",
         "plataforma": null,
         "coletado_em": null,
         "sub_id_1": "robometria"
@@ -2334,6 +2469,12 @@
       },
       "afiliado": {
         "url": "",
+        "url_produto": null,
+        "motivo_sem_url_produto": null,
+        "degrau": null,
+        "url_busca": "",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Positivo%20PRA2000%20robo%20aspirador",
+        "motivo_sem_url_busca": "falta o ENCURTAMENTO, nao a escolha: gerar o link de afiliado da busca exige a sessao logada do painel da Shopee (25.6). A palavra-chave ja esta escrita em url_busca_produto, e no dia da sessao e colar.",
         "plataforma": null,
         "coletado_em": null,
         "sub_id_1": "robometria"
@@ -2473,6 +2614,12 @@
       },
       "afiliado": {
         "url": "",
+        "url_produto": null,
+        "motivo_sem_url_produto": null,
+        "degrau": null,
+        "url_busca": "",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Positivo%20PRA500%20robo%20aspirador",
+        "motivo_sem_url_busca": "falta o ENCURTAMENTO, nao a escolha: gerar o link de afiliado da busca exige a sessao logada do painel da Shopee (25.6). A palavra-chave ja esta escrita em url_busca_produto, e no dia da sessao e colar.",
         "plataforma": null,
         "coletado_em": null,
         "sub_id_1": "robometria"
@@ -2575,6 +2722,12 @@
       },
       "afiliado": {
         "url": "",
+        "url_produto": null,
+        "motivo_sem_url_produto": null,
+        "degrau": null,
+        "url_busca": "",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20S10%20robo%20aspirador",
+        "motivo_sem_url_busca": "falta o ENCURTAMENTO, nao a escolha: gerar o link de afiliado da busca exige a sessao logada do painel da Shopee (25.6). A palavra-chave ja esta escrita em url_busca_produto, e no dia da sessao e colar.",
         "plataforma": null,
         "coletado_em": null,
         "sub_id_1": "robometria"
@@ -2669,6 +2822,12 @@
       },
       "afiliado": {
         "url": "",
+        "url_produto": null,
+        "motivo_sem_url_produto": null,
+        "degrau": null,
+        "url_busca": "",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20E10%20robo%20aspirador",
+        "motivo_sem_url_busca": "falta o ENCURTAMENTO, nao a escolha: gerar o link de afiliado da busca exige a sessao logada do painel da Shopee (25.6). A palavra-chave ja esta escrita em url_busca_produto, e no dia da sessao e colar.",
         "plataforma": null,
         "coletado_em": null,
         "sub_id_1": "robometria"
@@ -2763,6 +2922,12 @@
       },
       "afiliado": {
         "url": "",
+        "url_produto": null,
+        "motivo_sem_url_produto": null,
+        "degrau": null,
+        "url_busca": "",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20S40%20robo%20aspirador",
+        "motivo_sem_url_busca": "falta o ENCURTAMENTO, nao a escolha: gerar o link de afiliado da busca exige a sessao logada do painel da Shopee (25.6). A palavra-chave ja esta escrita em url_busca_produto, e no dia da sessao e colar.",
         "plataforma": null,
         "coletado_em": null,
         "sub_id_1": "robometria"
@@ -2853,6 +3018,12 @@
       },
       "afiliado": {
         "url": "",
+        "url_produto": null,
+        "motivo_sem_url_produto": null,
+        "degrau": null,
+        "url_busca": "",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20S40C%20robo%20aspirador",
+        "motivo_sem_url_busca": "falta o ENCURTAMENTO, nao a escolha: gerar o link de afiliado da busca exige a sessao logada do painel da Shopee (25.6). A palavra-chave ja esta escrita em url_busca_produto, e no dia da sessao e colar.",
         "plataforma": null,
         "coletado_em": null,
         "sub_id_1": "robometria"
@@ -2967,6 +3138,12 @@
       },
       "afiliado": {
         "url": "",
+        "url_produto": null,
+        "motivo_sem_url_produto": null,
+        "degrau": null,
+        "url_busca": "",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20H40%20robo%20aspirador",
+        "motivo_sem_url_busca": "falta o ENCURTAMENTO, nao a escolha: gerar o link de afiliado da busca exige a sessao logada do painel da Shopee (25.6). A palavra-chave ja esta escrita em url_busca_produto, e no dia da sessao e colar.",
         "plataforma": null,
         "coletado_em": null,
         "sub_id_1": "robometria"
@@ -3059,6 +3236,12 @@
       },
       "afiliado": {
         "url": "",
+        "url_produto": null,
+        "motivo_sem_url_produto": null,
+        "degrau": null,
+        "url_busca": "",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20Mop%202%20robo%20aspirador",
+        "motivo_sem_url_busca": "falta o ENCURTAMENTO, nao a escolha: gerar o link de afiliado da busca exige a sessao logada do painel da Shopee (25.6). A palavra-chave ja esta escrita em url_busca_produto, e no dia da sessao e colar.",
         "plataforma": null,
         "coletado_em": null,
         "sub_id_1": "robometria"
@@ -3151,6 +3334,12 @@
       },
       "afiliado": {
         "url": "",
+        "url_produto": null,
+        "motivo_sem_url_produto": null,
+        "degrau": null,
+        "url_busca": "",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20W400%20robo%20aspirador",
+        "motivo_sem_url_busca": "falta o ENCURTAMENTO, nao a escolha: gerar o link de afiliado da busca exige a sessao logada do painel da Shopee (25.6). A palavra-chave ja esta escrita em url_busca_produto, e no dia da sessao e colar.",
         "plataforma": null,
         "coletado_em": null,
         "sub_id_1": "robometria"
@@ -3253,6 +3442,12 @@
       },
       "afiliado": {
         "url": "",
+        "url_produto": null,
+        "motivo_sem_url_produto": null,
+        "degrau": null,
+        "url_busca": "",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20W1000%20robo%20aspirador",
+        "motivo_sem_url_busca": "falta o ENCURTAMENTO, nao a escolha: gerar o link de afiliado da busca exige a sessao logada do painel da Shopee (25.6). A palavra-chave ja esta escrita em url_busca_produto, e no dia da sessao e colar.",
         "plataforma": null,
         "coletado_em": null,
         "sub_id_1": "robometria"
@@ -3346,6 +3541,12 @@
       },
       "afiliado": {
         "url": "",
+        "url_produto": null,
+        "motivo_sem_url_produto": null,
+        "degrau": null,
+        "url_busca": "",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20W310%20robo%20aspirador",
+        "motivo_sem_url_busca": "falta o ENCURTAMENTO, nao a escolha: gerar o link de afiliado da busca exige a sessao logada do painel da Shopee (25.6). A palavra-chave ja esta escrita em url_busca_produto, e no dia da sessao e colar.",
         "plataforma": null,
         "coletado_em": null,
         "sub_id_1": "robometria"
@@ -3442,6 +3643,12 @@
       },
       "afiliado": {
         "url": "",
+        "url_produto": null,
+        "motivo_sem_url_produto": null,
+        "degrau": null,
+        "url_busca": "",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20W300%20robo%20aspirador",
+        "motivo_sem_url_busca": "falta o ENCURTAMENTO, nao a escolha: gerar o link de afiliado da busca exige a sessao logada do painel da Shopee (25.6). A palavra-chave ja esta escrita em url_busca_produto, e no dia da sessao e colar.",
         "plataforma": null,
         "coletado_em": null,
         "sub_id_1": "robometria"
@@ -3537,6 +3744,12 @@
       },
       "afiliado": {
         "url": "",
+        "url_produto": null,
+        "motivo_sem_url_produto": null,
+        "degrau": null,
+        "url_busca": "",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20W90%20robo%20aspirador",
+        "motivo_sem_url_busca": "falta o ENCURTAMENTO, nao a escolha: gerar o link de afiliado da busca exige a sessao logada do painel da Shopee (25.6). A palavra-chave ja esta escrita em url_busca_produto, e no dia da sessao e colar.",
         "plataforma": null,
         "coletado_em": null,
         "sub_id_1": "robometria"
@@ -3642,6 +3855,12 @@
       },
       "afiliado": {
         "url": "",
+        "url_produto": null,
+        "motivo_sem_url_produto": null,
+        "degrau": null,
+        "url_busca": "",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20W100%20robo%20aspirador",
+        "motivo_sem_url_busca": "falta o ENCURTAMENTO, nao a escolha: gerar o link de afiliado da busca exige a sessao logada do painel da Shopee (25.6). A palavra-chave ja esta escrita em url_busca_produto, e no dia da sessao e colar.",
         "plataforma": null,
         "coletado_em": null,
         "sub_id_1": "robometria"
@@ -3745,6 +3964,12 @@
       },
       "afiliado": {
         "url": "",
+        "url_produto": null,
+        "motivo_sem_url_produto": null,
+        "degrau": null,
+        "url_busca": "",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20W100C%20robo%20aspirador",
+        "motivo_sem_url_busca": "falta o ENCURTAMENTO, nao a escolha: gerar o link de afiliado da busca exige a sessao logada do painel da Shopee (25.6). A palavra-chave ja esta escrita em url_busca_produto, e no dia da sessao e colar.",
         "plataforma": null,
         "coletado_em": null,
         "sub_id_1": "robometria"
@@ -3848,6 +4073,12 @@
       },
       "afiliado": {
         "url": "",
+        "url_produto": null,
+        "motivo_sem_url_produto": null,
+        "degrau": null,
+        "url_busca": "",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=WAP%20WSMART%20robo%20aspirador",
+        "motivo_sem_url_busca": "falta o ENCURTAMENTO, nao a escolha: gerar o link de afiliado da busca exige a sessao logada do painel da Shopee (25.6). A palavra-chave ja esta escrita em url_busca_produto, e no dia da sessao e colar.",
         "plataforma": null,
         "coletado_em": null,
         "sub_id_1": "robometria"

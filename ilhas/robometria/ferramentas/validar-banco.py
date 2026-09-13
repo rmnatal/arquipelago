@@ -19,6 +19,7 @@ transforma as regras escritas do esquema em algo que falha alto.
 import json
 import os
 import sys
+from urllib.parse import unquote
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DADOS = os.path.join(BASE, "dados")
@@ -63,7 +64,54 @@ CHAVES_IMAGEM = {"url", "largura", "altura", "fonte", "coletado_em", "alt"}
 # por isso cada gerador carimba o proprio codigo. Campo que parece a regra e nao
 # e, num arquivo publicado, e o mesmo defeito da funcao morta no snippet: um dia
 # alguem o usa.
-CHAVES_AFILIADO = {"url", "plataforma", "coletado_em", "sub_id_1"}
+CHAVES_AFILIADO = {"url", "url_produto", "motivo_sem_url_produto", "degrau",
+                   "url_busca", "url_busca_produto", "motivo_sem_url_busca",
+                   "plataforma", "coletado_em", "sub_id_1"}
+
+# ---------------------------------------------------- A ESCADA DE COMPRA (25)
+# Seis chaves entraram no campo afiliado na versao 5 do esquema, em 13/09/2026,
+# e elas nao sao enfeite: a 25.2 diz que item publicavel SEM PISO e defeito da
+# 19.1, sempre, em qualquer degrau. Ate hoje esta ilha tinha 62 itens publicaveis
+# e ZERO piso, com a tela dizendo "link de loja em breve" em todo cartao.
+#
+# A REGUA DAQUI E PROPRIA E MAIS FRACA QUE A DO GERADOR, DE PROPOSITO. Ela NAO
+# recompoe a palavra-chave chamando ferramentas/gerar-busca-de-produto.py: se
+# chamasse, as duas metades errariam juntas e o portao ficaria verde sobre a mesma
+# frase errada — foi exatamente assim que a atribuicao da funcao da R1 passou por
+# todos os portoes ate hoje de manha. O que ela afirma, lendo o esquema e o
+# marcas.json por conta propria, e o que precisa ser verdade seja qual for a
+# composicao: a busca sai da base declarada, carrega a MARCA e carrega o TERMO DE
+# CONTEXTO. As duas ultimas sao a 25.3 escrita em codigo — marca sem contexto e
+# armadilha, e nesta ilha o CODIGO sem contexto tambem e ("S20" sozinho e um
+# celular Samsung).
+ESCADA = esquema["tipos_compostos"]["afiliado"].get("escada_de_compra")
+if not isinstance(ESCADA, dict):
+    erro("esquema-banco.json/tipos_compostos/afiliado: sem escada_de_compra. Sem ela "
+         "nenhuma trava do piso da 25.2 tem regua, e todas aprovariam tudo")
+    ESCADA = {"base_da_busca": "", "termo_de_contexto_por_entidade": {}, "degraus": []}
+
+BASE_DA_BUSCA = ESCADA.get("base_da_busca") or ""
+TERMOS_DE_CONTEXTO = ESCADA.get("termo_de_contexto_por_entidade") or {}
+DEGRAUS = {d.get("degrau") for d in ESCADA.get("degraus", [])}
+
+if not BASE_DA_BUSCA:
+    erro("esquema-banco.json/escada_de_compra: sem base_da_busca")
+if DEGRAUS != {1, 2, 3, 4}:
+    erro("esquema-banco.json/escada_de_compra: os degraus declarados sao %s e a "
+         "secao 25.1 tem exatamente 1, 2, 3 e 4" % sorted(d for d in DEGRAUS if d))
+for _d in ESCADA.get("degraus", []):
+    if not (_d.get("nome") or "").strip():
+        erro("esquema-banco.json/escada_de_compra: degrau %r sem nome" % _d.get("degrau"))
+
+# As duas entidades que geram busca. A lista mora aqui porque quem confere escreve a
+# propria regua; o que ela cobra e que o ESQUEMA declare termo para cada uma, e nao
+# o contrario.
+ENTIDADE_DO_ARQUIVO = {"modelos-robo.json": "modelo_robo", "pecas.json": "peca"}
+for _arq, _ent in ENTIDADE_DO_ARQUIVO.items():
+    if not (TERMOS_DE_CONTEXTO.get(_ent) or "").strip():
+        erro("esquema-banco.json/escada_de_compra: entidade %r (de %s) sem termo de "
+             "contexto. Entidade muda faria a busca sair so com a marca, que e a "
+             "armadilha que a 25.3 nomeia" % (_ent, _arq))
 
 # Os tipos que o titulo do fabricante NAO separa. Lidos do esquema de proposito:
 # ver tipos_que_exigem_funcao_declarada la, e o principio "FUNCAO NAO SE LE DO NOME
@@ -209,9 +257,94 @@ for m in marcas["registros"]:
     if m["id"] in ids_marca:
         erro("marcas.json: id duplicado %r" % m["id"])
     ids_marca.add(m["id"])
-    for c in ("nome", "site_oficial", "sameAs", "verificado_em"):
+    for c in ("nome", "nome_de_busca", "site_oficial", "sameAs", "verificado_em"):
         if not m.get(c):
             erro("marcas.json/%s: campo obrigatorio %s vazio" % (m["id"], c))
+
+NOME_DE_BUSCA = {m["id"]: (m.get("nome_de_busca") or "").strip()
+                 for m in marcas["registros"]}
+
+
+def checar_escada_de_compra(reg, onde, arquivo):
+    """O PISO da secao 25.2, item por item.
+
+    Tres coisas diferentes sao cobradas aqui, e vale separar porque elas falham por
+    motivos diferentes:
+
+    1. PISO. Registro publicavel tem url_busca_produto, e ela carrega marca e
+       contexto. Registro NAO publicavel tem que estar VAZIO: ele nao tem pagina,
+       entao nao tem piso a cumprir, e escrever "robo aspirador" na busca de um
+       aspirador vertical seria afirmacao falsa dentro do banco.
+    2. HONESTIDADE DO QUE FALTA. Piso sem o link encurtado exige motivo escrito, e
+       motivo escrito COM o link seria mentira sobrando.
+    3. DEGRAU. Ficha de produto sem degrau e link cuja durabilidade ninguem sabe: o
+       mesmo encurtador serve loja oficial e anuncio de vendedor com a MESMA cara, e
+       os dois apodrecem de forma oposta. E degrau 3 sem busca e o beco sem saida que
+       quebrou quatro links em doze horas no Clube do Mosaico.
+    """
+    a = reg.get("afiliado") or {}
+    publicavel = reg.get("status") == "publicavel"
+    entidade = ENTIDADE_DO_ARQUIVO.get(arquivo, "")
+    termo = (TERMOS_DE_CONTEXTO.get(entidade) or "").strip()
+    busca = a.get("url_busca_produto") or ""
+
+    if publicavel:
+        if not busca:
+            erro("%s: publicavel sem afiliado.url_busca_produto. A 25.2 e explicita — "
+                 "item publicavel sem PISO e defeito da 19.1, em qualquer degrau. "
+                 "Rode ferramentas/gerar-busca-de-produto.py --gravar" % onde)
+        else:
+            if not busca.startswith(BASE_DA_BUSCA):
+                erro("%s: url_busca_produto nao comeca pela base declarada no esquema "
+                     "(%r)" % (onde, BASE_DA_BUSCA))
+            legivel = unquote(busca[len(BASE_DA_BUSCA):]) if \
+                busca.startswith(BASE_DA_BUSCA) else unquote(busca)
+            marca = NOME_DE_BUSCA.get(reg.get("marca"), "")
+            if marca and marca.lower() not in legivel.lower():
+                erro("%s: a busca %r nao carrega o nome_de_busca da marca (%r)"
+                     % (onde, legivel, marca))
+            if termo and termo.lower() not in legivel.lower():
+                erro("%s: a busca %r nao carrega o termo de contexto %r. Marca sem "
+                     "contexto e armadilha (25.3), e nesta ilha o codigo sem contexto "
+                     "tambem e: 'S20' sozinho e um celular de outra marca"
+                     % (onde, legivel, termo))
+    elif busca:
+        erro("%s: registro %r com url_busca_produto escrita. Registro sem pagina nao "
+             "tem piso a cumprir, e a busca diria 'robo aspirador' sobre um aparelho "
+             "que o portao da categoria ja recusou" % (onde, reg.get("status")))
+
+    tem_busca_encurtada = bool(a.get("url_busca"))
+    motivo_busca = a.get("motivo_sem_url_busca")
+    if publicavel and not tem_busca_encurtada and not (motivo_busca or "").strip():
+        erro("%s: sem afiliado.url_busca e sem motivo_sem_url_busca. Piso que falta "
+             "sem motivo escrito e divida que a proxima execucao nao sabe medir" % onde)
+    if tem_busca_encurtada and motivo_busca:
+        erro("%s: tem url_busca E motivo_sem_url_busca. O motivo explica uma ausencia "
+             "que nao existe mais" % onde)
+
+    tem_ficha = bool(a.get("url"))
+    degrau = a.get("degrau")
+    if tem_ficha:
+        if degrau not in {1, 2, 3, 4}:
+            erro("%s: tem ficha de produto e degrau %r. Degrau nao se le do link curto "
+                 "— s.shopee.com.br encurta a loja oficial e o anuncio de vendedor com "
+                 "a MESMA cara, e os dois apodrecem de forma oposta" % (onde, degrau))
+        if not a.get("url_produto") and not (a.get("motivo_sem_url_produto") or "").strip():
+            erro("%s: tem ficha e nao tem url_produto nem motivo_sem_url_produto. Sem a "
+                 "URL crua a ronda nao consegue abrir a pagina para ler 'O produto nao "
+                 "existe' — e item que ninguem consegue conferir e defeito da 19.1 com "
+                 "outro nome (25.4-b)" % onde)
+        if degrau == 3 and not tem_busca_encurtada:
+            erro("%s: degrau 3 (anuncio de vendedor) sem url_busca. A 25.1 exige a busca "
+                 "justamente neste degrau, que e o que apodrece" % onde)
+    else:
+        if degrau is not None:
+            erro("%s: degrau %r sem ficha de produto. Degrau descreve ONDE a ficha "
+                 "parou, e ficha que nao existe nao parou em lugar nenhum"
+                 % (onde, degrau))
+        if a.get("url_produto"):
+            erro("%s: url_produto sem url. A URL crua existe para conferir a ficha que "
+                 "foi escolhida, e nao ha ficha" % onde)
 
 # ---------------------------------------------------------- MODELOS DE ROBO
 ids_modelo = {}
@@ -250,6 +383,7 @@ for r in modelos["registros"]:
         erro("%s: afiliado{} fora da forma do esquema" % onde)
     elif r["afiliado"]["sub_id_1"] != "robometria":
         erro("%s: sub_id_1 tem que ser 'robometria'" % onde)
+    checar_escada_de_compra(r, onde, "modelos-robo.json")
 
     for var in r.get("variantes_de_hardware", []):
         if var.get("fonte") not in r.get("fontes", {}):
@@ -374,6 +508,7 @@ for p in pecas["registros"]:
              "mesma peca aparece em mais de uma" % onde)
     elif set(p.get("afiliado", {})) != CHAVES_AFILIADO:
         erro("%s: afiliado{} fora da forma do esquema" % onde)
+    checar_escada_de_compra(p, onde, "pecas.json")
 
     if not p.get("compatibilidade"):
         erro("%s: peca sem nenhum par de compatibilidade" % onde)
@@ -437,6 +572,22 @@ conferir_contagem(modelos, "modelos-robo.json", "marcas_que_declaram_pa",
 conferir_contagem(modelos, "modelos-robo.json", "esperando_link_de_afiliado",
                   sum(1 for r in _pub if not r["afiliado"]["url"]))
 conferir_contagem(pecas, "pecas.json", "total", len(pecas["registros"]))
+
+# A DIVIDA DO PISO DEIXA DE SER PROSA E VIRA NUMERO CONTADO, em 13/09/2026. Enquanto
+# ela morava no ESTADO.md em forma de frase, a divida nao tinha tamanho: o cabecalho
+# dizia "nenhum link de loja em nenhum cartao" e NAO dizia quantos itens estavam sem
+# PISO, que e outra coisa e e a que a 25.2 chama de defeito. Vale a mesma regra que a
+# casca aprendeu com o cartao que dizia zero: numero de tela nasce contado, nunca
+# digitado — e numero de cabecalho de banco tambem.
+for _doc, _arq in ((modelos, "modelos-robo.json"), (pecas, "pecas.json")):
+    _p = [r for r in _doc["registros"] if r["status"] == "publicavel"]
+    conferir_contagem(_doc, _arq, "itens_com_ficha",
+                      sum(1 for r in _p if r["afiliado"]["url"]))
+    conferir_contagem(_doc, _arq, "itens_sem_piso",
+                      sum(1 for r in _p if not r["afiliado"]["url_busca"]))
+    conferir_contagem(_doc, _arq, "links_sem_degrau",
+                      sum(1 for r in _p if r["afiliado"]["url"]
+                          and r["afiliado"]["degrau"] is None))
 conferir_contagem(pecas, "pecas.json", "pares_peca_x_modelo_declarados", pares)
 
 esperando = ([r["id"] for r in modelos["registros"]
@@ -458,6 +609,16 @@ print("  pecas ................ %d (%d publicaveis)"
          sum(1 for p in pecas["registros"] if p["status"] == "publicavel")))
 print("  pares peca x modelo .. %d, todos DECLARADOS pelo fabricante" % pares)
 print("  esperando link de afiliado ... %d" % len(esperando))
+_sem_piso = [r["id"] for _doc in (modelos, pecas) for r in _doc["registros"]
+             if r["status"] == "publicavel" and not r["afiliado"]["url_busca"]]
+_sem_chave = [r["id"] for _doc in (modelos, pecas) for r in _doc["registros"]
+              if r["status"] == "publicavel" and not r["afiliado"]["url_busca_produto"]]
+print("  SEM PISO (25.2) ............. %d de %d publicaveis, e %d deles sem nem a "
+      "palavra-chave escrita"
+      % (len(_sem_piso),
+         sum(1 for _doc in (modelos, pecas) for r in _doc["registros"]
+             if r["status"] == "publicavel"),
+         len(_sem_chave)))
 
 if avisos:
     print("\nAvisos (%d) — nao reprovam, sao lista de trabalho:" % len(avisos))
