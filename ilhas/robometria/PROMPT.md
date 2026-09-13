@@ -432,16 +432,45 @@ qualquer página nova:
   e nunca tinha sido testada nele. **Quando o canal falhar, confira o endereço
   contra o BANCO**, que é quem guarda a fonte, e não contra a prosa que descreve o
   bloqueio.
-  **O PRÓXIMO PASSO AGORA é a WAP, e o alvo TROCOU: lá o gargalo é MODELO, não
-  peça.** A busca alcança `wap.ind.br`, `loja.wap.ind.br` e
-  `mais.conteudo.wap.ind.br` — inclusive os **manuais em PDF**, que voltaram
-  nomeados com revisão e data (W400 "FW009293 REV00MAI23", W1000 "FW010143
-  REV03ABR25", W90 "FW010263 REV00JAN24"); só o `WebFetch` do PDF segue
-  `EGRESS_BLOCKED`. E a loja da WAP publica página de peça **por modelo** ("Escova
-  Direita Para Robô Aspirador de Pó WAP Robot W300", "Escova Rotativa … W90",
-  "Escova Central … WSMART") — e **nenhum** desses modelos está em
-  `modelos-robo.json`, enquanto os três que estão (W400, W1000, W310) não têm
-  página de peça própria. Modelo antes de peça.
+  ~~**O PRÓXIMO PASSO AGORA é a WAP, e o alvo TROCOU: lá o gargalo é MODELO, não
+  peça.**~~ **O LADO DO MODELO FOI CUMPRIDO em 13/09/2026** (manifest revisão 26,
+  `/status` conferido em UM disparo): **W90, W100, W100C, W300 e WSMART** entraram,
+  e a WAP passou de 3 para **8** modelos. Nenhum dos cinco declara Pa — a marca
+  publica Pa no W400 e nível de sucção no resto —, então a leva **não move a R2**:
+  ela existe para abrir o lado do modelo, que era o que travava a peça. O preço
+  está medido e é honesto: a R1 continua respondendo em 20 modelos e passa a sair
+  **vazia em 13** (era 8), e a página de metodologia publica os dois números
+  contados. Ordem "modelo antes de peça" cumprida.
+  **O PRÓXIMO PASSO AGORA é a PEÇA da WAP, e ela está a DUAS medições de
+  distância — não de rede.** A varredura de 13/09 já abriu as páginas de acessório
+  por modelo (W300 com 9 acessórios em 7 categorias — filtro, escova, carregador,
+  recipiente, mop, controle remoto e pincel; WSMART com 9; W90 com escova rotativa
+  e carregador) e `marcas.json` já tem o `canal_de_pecas` da marca. **O que
+  impediu a gravação hoje foram duas coisas, e as duas são de método:**
+  1. **O código voltou em UMA passada e não voltou na segunda.** `FW006267` na
+     escova direita do W300, `FW008028` na escova central do WSMART e `FW009132`
+     na escova rotativa do W90 — nas três, a segunda passada limpa não devolveu o
+     código. Um código de peça é o que a pessoa digita na busca da loja: entrar com
+     ele meio confirmado é pior que não entrar.
+  2. **A página de acessório NÃO declara a função da escova.** "Direita",
+     "Esquerda", "Central", "Frontal" e "Rotativa" são **nomes**, e ler
+     `tipo_de_peca` de um nome é a heurística por vizinhança que a seção 8 do
+     contrato proíbe — a mesma que fez a Xiaomi publicar um catálogo de variantes
+     como kit. Quem for pegar isto decide primeiro **onde** a função está
+     declarada (a ficha do próprio robô lista o que vem na caixa, e é candidata),
+     e só então grava.
+  **E existe um terceiro alvo barato que apareceu junto:** o W300 e o WSMART
+  publicam acessório na categoria **Recipiente**, e `reservatorio` é justamente o
+  único tipo do vocabulário sem NENHUMA peça no banco inteiro — é o tipo que saiu
+  do seletor da R1 por isso. Uma peça de reservatório com função declarada devolve
+  o tipo ao seletor.
+  **Os manuais em PDF continuam sendo a porta do nível 2** e agora são oito, um por
+  modelo WAP do banco, com revisão e data no nome do arquivo (W400 "FW009293
+  REV00MAI23", W1000 "FW010143 REV03ABR25", W90 "FW010263 REV00JAN24", W100
+  "FW007467 REV01OUT21", W100C "FW008617 REV00SET21", WSMART "FW007881 REV. 00
+  ABRIL/2020"). Só o `WebFetch` do PDF segue bloqueado; **o WSMART é a exceção de
+  endereço** — a WAP guarda o manual dele no próprio blog, e não em
+  `mais.conteudo.wap.ind.br`.
   **E há alvos de CATEGORIA DESCOBERTA que o vocabulário não comporta — dois
   agora, porque a leva da Xiaomi acrescentou a tampa de escova `D106-BZSZ` do S20
   ao lado do saco descartável do ERB80. Os dois ficam fora pela mesma régua:**
@@ -454,7 +483,7 @@ qualquer página nova:
   descoberta, não número redondo). Na mesma varredura apareceu também um **ERB40**
   com Kit Performance próprio, e ele não está em `modelos-robo.json`.
   **A leva de malha (5b) continua travada** pela metade humana do despacho: o sitemap precisa ser reenviado no Search Console, e isso exige o navegador do Raphael.
-- **Antes de mexer em qualquer snippet, rode os OITO testes de bancada:** `php ferramentas/teste-casca.php .` (149 verificações), `php ferramentas/teste-r1.php .` (90), `php ferramentas/teste-a1.php .` (55), `php ferramentas/teste-r2.php .` (86), `php ferramentas/teste-a2.php .` (63), `php ferramentas/teste-acentuacao.php .` (17), `php ferramentas/teste-arvore.php .` (213) e `php ferramentas/teste-voz.php .` (155). Em 12/09/2026 são **901 afirmações**, com o `teste-r1` em 96 (a seção 14, "toda frase nomeia o tipo de que fala", nasceu na segunda execução do dia). Depois do desembarque, `python3 ferramentas/conferir-no-ar.py` mede as nove URLs no ar com régua própria — **e `python3 ferramentas/conferir-kits-no-ar.py` (71) mede a ENTRADA da R1 no ar, 14 estados de modelo × tipo, porque o primeiro mede o caso-âncora e bloco que muda resposta de consulta não aparece lá** — os endereços e os nomes estão escritos literalmente dentro dele, e não lidos do código, para as duas metades não errarem juntas. Eles são a única verificação da seção 8 que roda sem depender do site. **O sexto é o único que varre a ENTRADA INTEIRA** — 72 estados, um processo por estado, via `ferramentas/varrer-corpo.php`: os outros medem o caso-âncora, e foi por isso que "Aspirador Robo" e "Versao A" ficaram invisíveis para cinco testes verdes. O segundo compara as 188 frases publicadas contra a implementação de referência; o terceiro **recalcula a tese do artigo em PHP, direto do banco, sem olhar para o que o gerador em Python escreveu** — duas contas independentes que batem são medição, uma conta sozinha é o que o autor achou.
+- **Antes de mexer em qualquer snippet, rode os OITO testes de bancada:** `teste-casca.php`, `teste-r1.php`, `teste-a1.php`, `teste-r2.php`, `teste-a2.php`, `teste-acentuacao.php`, `teste-arvore.php` e `teste-voz.php`, todos com a raiz da ilha como argumento (`php ferramentas/teste-casca.php .`). **A contagem de afirmações de cada um NÃO está escrita aqui de propósito** — em 13/09/2026 eram 902 no total, e a lista que ficava nesta linha já tinha cinco números vencidos ao mesmo tempo. Quem quiser o número de hoje roda e lê a última linha; quem escreve número derivado em prosa assina um cheque contra o banco de amanhã, e esta ilha já pagou esse cheque dentro da própria bancada (ver `mutacoes-varredura-por-modelo.py`). Depois do desembarque, `python3 ferramentas/conferir-no-ar.py` mede as nove URLs no ar com régua própria — **e `python3 ferramentas/conferir-kits-no-ar.py` (71) mede a ENTRADA da R1 no ar, 14 estados de modelo × tipo, porque o primeiro mede o caso-âncora e bloco que muda resposta de consulta não aparece lá** — os endereços e os nomes estão escritos literalmente dentro dele, e não lidos do código, para as duas metades não errarem juntas. Eles são a única verificação da seção 8 que roda sem depender do site. **O sexto é o único que varre a ENTRADA INTEIRA** — um estado por página fixa, um por modelo publicável do banco, um por tipo de peça e as bordas da R2, um processo por estado (eram 72 quando isto nasceu; hoje são quantos o banco pedir, e o próprio portão cobra um estado para CADA modelo, por id), via `ferramentas/varrer-corpo.php`: os outros medem o caso-âncora, e foi por isso que "Aspirador Robo" e "Versao A" ficaram invisíveis para cinco testes verdes. O segundo compara as 188 frases publicadas contra a implementação de referência; o terceiro **recalcula a tese do artigo em PHP, direto do banco, sem olhar para o que o gerador em Python escreveu** — duas contas independentes que batem são medição, uma conta sozinha é o que o autor achou.
 - **A PORTA DE COMPRA TEM UM DONO SÓ, e ele é a casca.** `robometria_casca_porta_de_compra`, `robometria_casca_rotulo_da_loja`, `robometria_casca_fonte_link` e `robometria_casca_css_vitrine` valem para toda página desta ilha que recomenda item; a R1 delega para elas. Página nova que recomenda produto **chama estas funções**, nunca escreve as suas. Os pesos visuais do botão de compra e do link de procedência são regra do Arquipélago (seção 7), não estilo local: com uma cópia por página, bastaria alguém ajustar uma delas para a ilha voltar — numa página só, e sem ninguém notar — ao defeito de 10/09/2026.
 - **Página nova entra no catálogo da casca pelo FILTRO dela**, `robometria_ferramentas` para ferramenta e `robometria_artigos` para artigo. A casca nunca ganha uma cópia da página dentro; é assim que a home e o hub listam qualquer coisa nova sem serem editados de novo, e é o que garante as duas listagens que a seção 9 exige.
 - ~~**O BANCO ESTÁ EM ASCII, E AGORA ISSO APARECE NA TELA.**~~ **CUMPRIDO em 11/09/2026.** 121 strings restauradas nos nove campos que a varredura mediu chegando ao corpo servido, e a operação é **provada diacrítico-only**: reduzido a sem-diacrítico, o banco de hoje é byte a byte o de ontem (`dados/acentuacao-restaurada.json`, conferido linha a linha por `teste-acentuacao.php` com régua própria). **A restauração não é releitura:** o acento foi reposto pela ilha, não lido no fabricante — e é por isso que o livro-razão existe, como lista de conferência de quem reler os manuais quando a rede abrir.

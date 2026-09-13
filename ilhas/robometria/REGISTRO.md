@@ -2669,3 +2669,171 @@ recusados.
    `modelos-robo.json`** — modelo antes de peça.
 5. A leva de malha (5b) **continua travada** pela metade humana do despacho de
    10/09 — o reenvio do sitemap no Search Console, que é do Raphael.
+
+## 2026-09-13, 13h32Z — bloco 3c, leva 5: os cinco modelos WAP que faltavam, e o degrau da loja oficial corrigido
+
+**Bloco de BANCO, zero URL nova.** Manifest na revisão **26**, `/status` conferido
+às 13h32Z em **um** disparo (10 aplicados), nenhum snippet reescrito além do que o
+Sync atualiza por mudança de dado.
+
+### O QUE ENTROU
+
+A WAP sai de **3 para 8 modelos**: `wap-w90`, `wap-w100`, `wap-w100c`,
+`wap-w300` e `wap-wsmart`. Com eles o banco vai a **38 registros, 33
+publicáveis**. Era exatamente o gargalo que o `PROMPT.md` nomeava desde 12/09: a
+loja da WAP publica página de peça **por modelo**, e nenhum desses modelos estava
+no banco. Ordem da ilha cumprida — **modelo antes de peça**.
+
+**Nenhum dos cinco declara Pa**, e isso é medição, não falta de procura: a WAP
+publica Pa no W400 (1.400, o piso da faixa do banco) e declara "modos" ou "níveis"
+de sucção no resto da linha. Logo a **R2 não muda**: nenhuma faixa de
+`cobertura_de_faixa_r2` ganhou ou perdeu elegível. O que esta leva abre é o lado do
+modelo.
+
+**O preço está medido e publicado:** a R1 continua respondendo em **20** modelos e
+passa a sair vazia em **13** (era 8). A página de metodologia serve os dois
+números contados, e mais: 33 modelos publicáveis, 25 peças, 48 pares, 142 de 198
+combinações sem declaração localizada. Um bloco que piora um número publicado e o
+publica assim mesmo é o desenho da seção 4 do `ARQUIPELAGO.md` funcionando —
+cobertura é razão, e o denominador cresceu de propósito, para o numerador poder
+crescer na leva seguinte.
+
+### AS DUAS RECUSAS, e elas valem mais que os campos que entraram
+
+1. **Recarga e bateria do W90.** A primeira passada devolveu "4 horas para uma
+   carga completa" e "2.600mAh" — os dois de um artigo de **família**, o que
+   compara o W90 com o W100, que na mesma passada mistura o W90 com o **W90
+   Pérola**: produto diferente, manual próprio (`FW010263 REV00JAN24`) e autonomia
+   declarada de 1h20 contra 1h40. A segunda passada, restrita à página do produto,
+   não confirmou nenhum dos dois. É a régua que fechou a recarga dos cinco
+   Electrolux em 12/09, aplicada de novo: **quando um documento de família traz
+   dois números, o que você já conhece diz se o outro é do seu modelo**. E havia
+   um segundo sinal no 2.600 mAh: é exatamente a capacidade que o banco já declara
+   para o **W1000**, de outra faixa.
+2. **Bateria e voltagem do W100, e aqui nasceu regra nova.** A primeira passada
+   devolveu "bateria recarregável bivolt com capacidade de 1.800mAh". A segunda,
+   feita **só na página do produto**, respondeu que a capacidade em mAh **não está
+   detalhada ali**. Isso não é silêncio — é **desmentido**, na própria página de
+   onde o número teria vindo. **Segunda passada que nega o campo derruba a FRASE
+   INTEIRA, e não só o número**: por isso a voltagem caiu junto, embora "bivolt"
+   fosse a metade confortável de acreditar. Aceitar metade de uma frase negada é
+   escolher a metade que agrada.
+
+E uma terceira, de método, que a execução cometeu contra si mesma e corrigiu:
+**uma das consultas de confirmação do WSMART levava o valor dentro da pergunta**
+("reservatório 450 ml?"). A resposta voltou confirmando 450 ml — eco, exatamente a
+armadilha que a seção 8 do contrato registra. A passada foi descartada como
+verificação e o campo só entrou depois de uma pergunta limpa ("quantos ml tem o
+coletor de pó deste robô") devolver o mesmo número. Fica registrado porque a
+armadilha é fácil de cair justamente na hora de **confirmar**, e não na de colher.
+
+### O DEGRAU DA LOJA OFICIAL ESTAVA EM DOIS LUGARES AO MESMO TEMPO
+
+Achado ao escrever a fonte do primeiro registro novo: `loja.wap.ind.br` estava
+declarada **nível 3 — página do fabricante** nos três registros WAP antigos, e
+`loja.electrolux.com.br` estava **nível 4 — loja oficial da marca** desde 09/09. A
+mesma espécie de fonte em dois degraus, e a escada tem uma linha só para cada. O
+`loja.meupositivo.com.br` do PRA500 estava no mesmo erro.
+
+**A direção saiu da assimetria de custo (seção 10), como toda decisão de fonte:**
+errar para baixo custa uma ressalva mais dura na tela ("confira a embalagem" em vez
+de "a confirmar no manual"); errar para cima faz a metodologia declarar um rigor
+que a ilha não tem — e é o defeito mais caro que existe numa ilha cujo produto é
+procedência. **Quatro fontes desceram para 4**, e o efeito está no ar: a coluna
+"Temos hoje" da escada, que é contada e não digitada, foi de 64/24 para **60 no
+nível 3 e 28 no nível 4**.
+
+Não é correção cosmética: `wap-w400` sustenta com essa fonte o **Pa de 1.400**, que
+é o piso da faixa inteira da R2.
+
+### O PISO DIGITADO DA VARREDURA, e ele estava DENTRO da bancada
+
+O `teste-acentuacao.php` é o portão que garante que a ilha não serve português sem
+acento, e ele mede o corpo de **um estado de R1 por modelo** — palavra vinda do
+banco só chega à tela quando alguém escolhe aquele modelo. Duas afirmações
+seguravam essa cobertura com o número **digitado**:
+
+```
+rbm_ok( count( $estados ) >= 70, 'a varredura monta 70 estados ou mais', ... );
+rbm_ok( $com_r1 >= 28, 'a R1 e medida em pelo menos 28 estados — um por modelo do banco', ... );
+```
+
+Os dois eram exatos no dia em que foram escritos e envelheceram calados. Com o
+banco em 33, **cinco modelos inteiros podiam sumir da varredura sem uma única
+falha** — e a frase "um por modelo do banco" continuava ali, afirmando a cobertura
+que a régua tinha parado de cobrar. É a cicatriz do "número de tela nasce contado,
+nunca digitado", agora na bancada em vez da página.
+
+A régua passou a **ler `dados/modelos-robo.json`** e a cobrar, **por id**, um
+estado para cada modelo publicável. Não há mais número para envelhecer, e quem
+apagar um modelo da varredura reprova **nomeando qual**.
+`ferramentas/mutacoes-varredura-por-modelo.py`, **3 de 3 reprovadas**: (1) um
+modelo some da varredura; (2) a varredura para nos 28 primeiros, que é o defeito
+como ele estava vivo; (3) **produz o mundo pelo dado** — um modelo entra no banco e
+`r1-respostas.json` continua o de ontem, sem uma linha de código errada, e o modelo
+novo não chega a medição nenhuma. A terceira é o caso que a régua antiga não podia
+pegar nem em princípio, porque comparava a varredura com um número e nunca com o
+banco.
+
+### VERIFICAÇÃO
+
+**Bancada, 0 falha:** `teste-casca` 200, `teste-r1` 96, `teste-a1` 56, `teste-r2`
+92, `teste-a2` 73, `teste-acentuacao` 17, `teste-arvore` 213, `teste-voz` 155 —
+**902 afirmações**. `validar-banco.py` **APROVADO**, e foi ele que pegou, de novo,
+as três contagens digitadas do cabeçalho (total, publicáveis, esperando link) antes
+de qualquer outra coisa. **Mutações: 109 em 10 baterias, 109 reprovadas, 0
+passaram** — as 106 antigas rodadas inteiras para provar que nenhuma virou inerte
+com o banco maior.
+
+**No ar às 13h32Z, em UM disparo:** `/status` na revisão **26**, igual à do
+manifest; `conferir-no-ar.py` **149** afirmações e `conferir-kits-no-ar.py`
+**163**, zero falha nos dois. E a metade que só este bloco tinha para provar, no
+HTML **servido**: os cinco modelos novos no seletor da R1; a resposta de
+`?modelo=wap-w300` dizendo, tipo por tipo, "não localizamos declaração do
+fabricante … não vamos supor" e **sem bloco de compra**; e a página de metodologia
+com os seis números da cobertura e a coluna da escada em 60/28.
+
+**UMA ARMADILHA DE MEDIÇÃO PARA QUEM VIER DEPOIS:** a primeira leitura da
+metodologia logo após o desembarque veio do **cache de página** e serviu os números
+de 10/09 — 28 publicáveis, 15 respondendo, 116 de 168. Nada estava errado no site:
+a mesma URL com um parâmetro qualquer (`?nocache=…`) devolveu os números de hoje no
+mesmo minuto. **Conferência no ar logo depois do Sync passa por um parâmetro**, ou
+mede a página de antes do desembarque e se chama de defeito.
+
+**BANCO:** 38 modelos (33 publicáveis, 33 esperando link de afiliado), 28 peças (25
+publicáveis), 48 pares declarados. `marcas.json`: a WAP ganhou `canal_de_pecas`
+(`loja.wap.ind.br/acessorios/para-aspiradores`) — a frase que estava lá, "a busca
+não devolveu página de peça de reposição com código", estava errada pela metade.
+Pauta da seção 17: `pauta.md` ainda não existe — 0 escritos, 0 na fila, 0
+recusados.
+
+**REDE (20.2), remedida hoje:** `loja.wap.ind.br` e `www.wap.ind.br` em **000** na
+leitura direta, com `robometria.com.br` em **200** na mesma passada — política de
+egresso, não intermitência. A **busca** alcança os dois, e é por ela que esta leva
+inteira saiu.
+
+### PROXIMO PASSO
+
+1. **A PEÇA da WAP, e ela está a duas medições de distância — não de rede.** As
+   páginas de acessório por modelo já foram varridas (W300 com 9 acessórios em 7
+   categorias; WSMART com 9; W90 com escova rotativa e carregador). O que impediu a
+   gravação hoje: **(a)** o código voltou em UMA passada e não na segunda
+   (`FW006267` escova direita do W300, `FW008028` escova central do WSMART,
+   `FW009132` escova rotativa do W90) — e código de peça é o que a pessoa digita na
+   busca da loja, então meio confirmado é pior que ausente; **(b)** a página de
+   acessório **não declara a função** da escova, e "Direita", "Central", "Frontal"
+   e "Rotativa" são nomes — ler `tipo_de_peca` de um nome é a heurística por
+   vizinhança que a seção 8 proíbe, a mesma que fez a Xiaomi publicar catálogo de
+   variantes como kit. Decida **onde** a função está declarada antes de gravar.
+2. **O tipo `reservatorio` pode voltar ao seletor da R1 de graça:** o W300 e o
+   WSMART publicam acessório na categoria **Recipiente**, e `reservatorio` é o
+   único tipo do vocabulário sem nenhuma peça no banco inteiro — foi por isso que
+   ele saiu do seletor.
+3. **W90 Pérola, W96, W3000, W4000, W2000 e WConnect** — localizados nesta
+   varredura e não gravados, cada um por falta de duas passadas limpas próprias.
+   O **W90 Pérola é o mais urgente**: é ele que a fonte de família confunde com o
+   W90, e é por causa dessa confusão que dois campos do W90 estão null.
+4. **O S10 e o Mop 2** seguem sendo os dois Xiaomi vazios, com o caminho já escrito
+   na leva 4.
+5. A leva de malha (5b) **continua travada** pela metade humana do despacho de
+   10/09 — o reenvio do sitemap no Search Console, que é do Raphael.
