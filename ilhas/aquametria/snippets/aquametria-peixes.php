@@ -105,7 +105,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_PEIXES_VERSAO' ) ) {
-	define( 'AQUAMETRIA_PEIXES_VERSAO', '1.2.0' );
+	define( 'AQUAMETRIA_PEIXES_VERSAO', '1.2.1' );
 }
 
 /* A data em que a SERP das consultas foi classificada (seção 14.9). Está aqui
@@ -2159,6 +2159,70 @@ function aquametria_peixes_catalogo() {
 					'tratamento' => 'publicar-os-dois',
 				),
 			),
+		),
+		'trichogaster-chuna' => array(
+			'id' => 'trichogaster-chuna',
+			'cientifico' => 'Trichogaster chuna',
+			'sinonimos' => array(
+				'Colisa chuna',
+			),
+			'populares' => array(
+				'gurami mel',
+				'colisa mel',
+				'gourami mel',
+			),
+			'familia' => 'Osphronemidae',
+			'origem' => 'Asia: India e Bangladesh',
+			'porte_cm' => 5.5,
+			'porte_medida' => 'SL',
+			'cardume' => 4,
+			'convivencia' => 'grupo',
+			'comportamento' => '',
+			'frente_cm' => 60,
+			'base_comprimento' => 60,
+			'base_largura' => 30,
+			'temp_min' => 22,
+			'temp_max' => 28,
+			'status' => 'completo',
+			'fontes' => array(
+				array(
+					'corpo' => 'FishBase',
+					'url' => 'https://www.fishbase.se/summary/11201',
+					'em' => '2026-09-09',
+					'campos' => array(
+						'familia',
+						'origem_geografica',
+						'temperatura_C',
+						'ph',
+						'dureza_dgh',
+					),
+					'referencia' => 'FishBase - ficha da especie: 22 a 28 C; pH 6,0 a 8,0; dH 5 a 19; familia Osphronemidae; Asia, India e Bangladesh; secao de aquario: tamanho minimo de aquario 60 cm.',
+				),
+				array(
+					'corpo' => 'Seriously Fish',
+					'url' => 'https://www.seriouslyfish.com/species/trichogaster-chuna',
+					'em' => '2026-09-09',
+					'campos' => array(
+						'comprimento_minimo_aquario_cm',
+						'base_minima_cm',
+						'convivencia',
+					),
+					'referencia' => 'Seriously Fish - ficha da especie: um aquario com base de 60 x 30 cm (24 x 12 pol) ou equivalente e suficiente para abrigar um casal ou grupo pequeno.',
+				),
+				array(
+					'corpo' => 'Seriously Fish',
+					'url' => 'https://www.seriouslyfish.com/species/trichogaster-chuna',
+					'em' => '2026-09-13',
+					'campos' => array(
+						'porte_adulto_cm',
+						'porte_medida',
+						'cardume_minimo',
+						'convivencia',
+					),
+					'referencia' => 'Seriously Fish - ficha da especie: comprimento padrao maximo de 55 mm SL, ou 5,5 cm; a especie nao e gregaria no sentido dos peixes de cardume, mas parece precisar da interacao com os seus e mostra comportamento mais interessante quando mantida em numero, de modo que a compra de nao menos que 4 a 6 exemplares e recomendada; o grupo desenvolve hierarquia visivel, com os dominantes enxotando os rivais na hora da comida e no ponto preferido do aquario; as femeas adultas sao visivelmente maiores que os machos.',
+				),
+			),
+			'conflitos' => array(),
 		),
 	);
 	return $catalogo;

@@ -4,8 +4,8 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 63,
-  "atualizado_em": "2026-09-12",
+  "revisao": 64,
+  "atualizado_em": "2026-09-13",
   "estado": "fundacao",
   "desembarque": {
     "aprovado": true,
@@ -128,10 +128,10 @@
       "arquivo": "snippets/aquametria-peixes.php",
       "escopo": "front-end",
       "ativo": true,
-      "versao": "1.2.0",
+      "versao": "1.2.1",
       "publicar": true,
-      "sha256": "2dbcebab68c6de7adf9733ea1c5776cab6f475b1de5af370fad716a5f6ebfe8c",
-      "descricao": "T4, levas 1, 2 e 3 da malha: QUATORZE URLs no eixo que a Bussola verificou ABERTO e que e o de maior volume de busca da ilha. Nivel 1 /peixes/, DUAS categorias de nivel 2 (/peixes/tetras/ com 7 fichas e /peixes/corydoras/ com 4) e as doze fichas de especie, todas com base minima declarada por fonte com nome e data ao lado das duas reguas brasileiras de lotacao. A leva 3 tirou do codigo o que era digitado enquanto houve uma categoria so: o substantivo da abertura (a pagina das coridoras chegou a servir 'Sao 4 tetras'), o rotulo e a frase mestra passam a vir declarados por categoria em aquametria_peixes_categorias(), junto do criterio."
+      "sha256": "9bd306199cbd5c9bff3e994b83a06379ca448b6a752be2726d1ced69a5fc02ec",
+      "descricao": "T4, levas 1, 2 e 3 da malha: QUATORZE URLs no eixo que a Bussola verificou ABERTO e que e o de maior volume de busca da ilha. Nivel 1 /peixes/, DUAS categorias de nivel 2 (/peixes/tetras/ com 7 fichas e /peixes/corydoras/ com 4) e as doze fichas de especie, todas com base minima declarada por fonte com nome e data ao lado das duas reguas brasileiras de lotacao. A leva 3 tirou do codigo o que era digitado enquanto houve uma categoria so: o substantivo da abertura (a pagina das coridoras chegou a servir 'Sao 4 tetras'), o rotulo e a frase mestra passam a vir declarados por categoria em aquametria_peixes_categorias(), junto do criterio. A 1.2.1 nao mexeu em uma linha de codigo: o banco ganhou o porte e o cardume do gurami mel em 13/09/2026 e o catalogo embutido foi regerado, de 27 para 28 especies. Nove paginas publicadas mudam por consequencia — oito ganham o gurami mel na tabela de quem divide a faixa de temperatura, e a do mato-grosso conta agora 28 especies no banco em vez de 27."
     }
   ],
   "conteudo": [
@@ -448,11 +448,11 @@
       "formato": "json",
       "entidade": "especie",
       "fonte": "ver fontes[] de cada registro: FishBase (base-cientifica-via-busca) e Seriously Fish (compendio-via-busca), os dois colhidos por busca restrita ao dominio porque o egresso bloqueia leitura direta",
-      "verificado_em": "2026-09-12",
+      "verificado_em": "2026-09-13",
       "registros": 36,
       "publicar": false,
-      "sha256": "fcbc5030b55a2e702dd1e5156ee377131d73624752b5f50324b90706a281fd09",
-      "descricao": "Banco de especies: 36 peixes do varejo brasileiro, de 2,0 cm (tetra ember) a 48,0 cm (kinguio), com porte, faixa termica, pH, dureza, cardume minimo, frente e base minimas de aquario, familia e convivencia, cada campo atribuido a uma fonte com url e data. Frentes minimas declaradas de 45 a 180 cm, em dez degraus — e a malha de pagina de volume sem repetir numero. 27 dos 36 passam no portao de pagina de especie e 29 alimentam a C8; os 9 barrados dizem no proprio registro qual campo falta e por que nao foi estimado, e um deles (gurami mel) tem o porte RECUSADO por implausibilidade, com o motivo escrito. A leva 4 (11/09/2026) nao acrescentou especie: foi de profundidade, fechando campos que barravam registros ja existentes, e o tetra ember passou a ser ao mesmo tempo o menor peixe e a menor frente declarada do banco (45 cm), o piso util do eixo. Existe para destravar o eixo aberto 'quantos litros para X peixes' com dado em vez da regra de bolso de 1 cm por litro."
+      "sha256": "100523a651c577578db7923a19c54f5c929b5b42403a55da21189e4e6f009f44",
+      "descricao": "Banco de especies: 36 peixes do varejo brasileiro, de 2,0 cm (tetra ember) a 48,0 cm (kinguio), com porte, faixa termica, pH, dureza, cardume minimo, frente e base minimas de aquario, familia e convivencia, cada campo atribuido a uma fonte com url e data. Frentes minimas declaradas de 45 a 180 cm, em dez degraus — e a malha de pagina de volume sem repetir numero. 28 dos 36 passam no portao de pagina de especie e 32 alimentam a C8; os 8 barrados dizem no proprio registro qual campo falta e por que nao foi estimado. Em 13/09/2026 o gurami mel saiu dos barrados: o porte que a FishBase declara (13,7 cm TL) segue RECUSADO pela contradicao interna da propria ficha, e quem sustenta o campo agora e a ficha da mesma especie no compendio, com 55 mm SL colhidos em duas passadas independentes — mais o cardume de 4 a 6 que a mesma ficha declara. Os dois guramis grandes (perola e tricogaster) continuam sem convivencia depois de quatro passadas em dois corpos, e a ausencia esta medida, nao presumida. Existe para destravar o eixo aberto \"quantos litros para X peixes\" com dado em vez da regra de bolso de 1 cm por litro."
     },
     {
       "id": "cobertura-de-faixa",

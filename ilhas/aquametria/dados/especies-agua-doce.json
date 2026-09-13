@@ -2827,7 +2827,7 @@
    "conflitos": [],
    "verificado_em": "2026-09-09",
    "status_registro": "parcial",
-   "observacao": "Falta convivencia: nenhuma das duas fontes declarou se a especie se mantem em cardume, grupo, casal ou sozinha, e temperamento nao substitui essa declaracao. Por isso o registro e parcial e nao passa no portao de pagina. A expectativa de 8 anos e um PISO ('8 anos ou mais' na fonte), nao um valor central. O pacifico vale para o aquario comunitario: entre machos a propria fonte declara territorialidade, e a ficha precisa dizer isso."
+   "observacao": "Falta convivencia: nenhuma das duas fontes declarou se a especie se mantem em cardume, grupo, casal ou sozinha, e temperamento nao substitui essa declaracao. Por isso o registro e parcial e nao passa no portao de pagina. A expectativa de 8 anos e um PISO ('8 anos ou mais' na fonte), nao um valor central. O pacifico vale para o aquario comunitario: entre machos a propria fonte declara territorialidade, e a ficha precisa dizer isso. TERCEIRA RECUSA, MEDIDA EM 13/09/2026 E EM DOIS CORPOS: a ficha da propria especie no compendio, perguntada duas vezes com formulacoes diferentes (como manter, e manter sozinho, em casal ou com varias femeas), declara pacifismo, territorialidade entre machos, longevidade e montagem plantada - e nao declara o arranjo social. A FishBase, perguntada pela secao de aquario, declara os 120 cm que o registro ja guarda, o ar obrigatorio e o macho guardando o ninho de bolhas, e tambem nao declara convivencia. A TENTACAO VEIO NOMEADA E FOI RECUSADA: a propria busca ofereceu, sem ser perguntada, o numero das CONGENERES - \"nao menos que 4 a 6\" do Trichogaster chuna e \"nao menos que 6\" do Sphaerichthys osphromenoides - dizendo com todas as letras que a pagina do T. leerii nao traz isso. E o mesmo numero de outra especie que a coridora sterbai recusou duas vezes, e vale aqui exatamente pelo mesmo motivo. Convivencia fica null e o registro fica parcial: a ficha dele nao nasce nesta leva, e nao vai nascer por emprestimo."
   },
   {
    "id": "symphysodon-aequifasciatus",
@@ -3083,7 +3083,7 @@
     "tricogaster-três-pintas"
    ],
    "familia": "Osphronemidae",
-   "origem_geografica": null,
+   "origem_geografica": "Asia: bacia do Mekong no Laos, em Yunnan (China), na Tailandia, no Camboja e no Vietna",
    "porte_adulto_cm": 15.0,
    "porte_medida": "SL",
    "porte_sexo": "nao-sexado",
@@ -3142,6 +3142,17 @@
       "comportamento"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED, reconfirmado nesta data com WebFetch. A confirmar na ficha."
+    },
+    {
+     "origem": "base-cientifica-via-busca",
+     "status": "base-cientifica-via-busca",
+     "referencia": "FishBase - ficha da especie: distribuicao na Asia, bacia do Mekong, no Laos, em Yunnan, na Tailandia, no Camboja e no Vietna; ocorre em florestas sazonalmente alagadas do medio e do baixo Mekong e faz migracao lateral do leito principal para as areas alagadas na cheia, voltando aos corpos d agua permanentes no inicio da seca.",
+     "url": "https://www.fishbase.se/summary/Trichopodus-trichopterus",
+     "verificado_em": "2026-09-13",
+     "campos": [
+      "origem_geografica"
+     ],
+     "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org em 13/09/2026, na mesma passada que foi atras da convivencia e nao a achou. O egresso da nuvem devolve connect_rejected por politica para fishbase.se, reconferido nesta data com curl. A confirmar na ficha."
     }
    ],
    "conflitos": [
@@ -3176,9 +3187,9 @@
      "derivacao": null
     }
    ],
-   "verificado_em": "2026-09-09",
+   "verificado_em": "2026-09-13",
    "status_registro": "parcial",
-   "observacao": "Falta convivencia: nenhuma das fontes declara cardume, grupo, casal ou harem para a especie — o compendio fala em territorialidade entre machos, que e outra coisa, e inventar o arranjo social e exatamente o que a fazenda de conteudo faz. Sem convivencia o registro nao alimenta a C8. Entra no banco assim mesmo porque e o unico gurami grande do lote (15 cm SL, 100 cm de frente) e porque a frase do compendio sobre 'peixe comunitario que nem sempre e' e conteudo de pagina por si so. RECONFERIDO em 11/09/2026 por coleta independente, com a mesma recusa e um detalhe a mais que vale guardar: a busca ofereceu um arranjo de 'um macho para 2 ou 3 femeas', e ele foi recusado porque a propria fonte o apresenta como arranjo de REPRODUCAO, nao de manutencao. Harem de desova nao e convivencia de aquario comunitario, e essa e a distincao que faria a diferenca entre publicar um numero de lotacao certo e um errado."
+   "observacao": "Falta convivencia: nenhuma das fontes declara cardume, grupo, casal ou harem para a especie — o compendio fala em territorialidade entre machos, que e outra coisa, e inventar o arranjo social e exatamente o que a fazenda de conteudo faz. Sem convivencia o registro nao alimenta a C8. Entra no banco assim mesmo porque e o unico gurami grande do lote (15 cm SL, 100 cm de frente) e porque a frase do compendio sobre 'peixe comunitario que nem sempre e' e conteudo de pagina por si so. RECONFERIDO em 11/09/2026 por coleta independente, com a mesma recusa e um detalhe a mais que vale guardar: a busca ofereceu um arranjo de 'um macho para 2 ou 3 femeas', e ele foi recusado porque a propria fonte o apresenta como arranjo de REPRODUCAO, nao de manutencao. Harem de desova nao e convivencia de aquario comunitario, e essa e a distincao que faria a diferenca entre publicar um numero de lotacao certo e um errado. QUARTA PASSADA EM 13/09/2026, MESMA RECUSA E UM CAMPO A MAIS: a ficha da propria especie no compendio, perguntada pela manutencao (um macho com femeas, montagem comunitaria), devolveu forma de cor, rusticidade e a ressalva de temperamento que o registro ja guardava, e NADA sobre arranjo social; a FishBase, perguntada na mesma passada, declara distribuicao e nao declara convivencia. Entao convivencia continua null pelo quarto dia seguido, e a ausencia agora esta medida em dois corpos e em quatro passadas - nao e falta de tentativa. O que a passada trouxe foi origem_geografica, que estava null desde 09/09 e agora vem da base cientifica, que e quem manda em campo de biologia. A licao de fila e a mesma que o pano de microfibra da Robometria escreveu ontem: varredura feita para UM alvo devolve vizinhos, e o vizinho pode ser mais barato que o alvo."
   },
   {
    "id": "xiphophorus-hellerii",
@@ -3583,8 +3594,8 @@
    ],
    "familia": "Osphronemidae",
    "origem_geografica": "Asia: India e Bangladesh",
-   "porte_adulto_cm": null,
-   "porte_medida": null,
+   "porte_adulto_cm": 5.5,
+   "porte_medida": "SL",
    "porte_sexo": null,
    "expectativa_vida_anos": null,
    "temperatura_C": {
@@ -3600,7 +3611,7 @@
     "min": 5,
     "max": 19
    },
-   "cardume_minimo": null,
+   "cardume_minimo": 4,
    "comprimento_minimo_aquario_cm": 60,
    "base_minima_cm": {
     "comprimento": 60,
@@ -3643,15 +3654,29 @@
       "convivencia"
      ],
      "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 09/09/2026. A pagina nao foi lida direto: seriouslyfish.com devolve EGRESS_BLOCKED, reconfirmado nesta data. A confirmar na ficha."
+    },
+    {
+     "origem": "compendio-via-busca",
+     "status": "compendio-via-busca",
+     "referencia": "Seriously Fish - ficha da especie: comprimento padrao maximo de 55 mm SL, ou 5,5 cm; a especie nao e gregaria no sentido dos peixes de cardume, mas parece precisar da interacao com os seus e mostra comportamento mais interessante quando mantida em numero, de modo que a compra de nao menos que 4 a 6 exemplares e recomendada; o grupo desenvolve hierarquia visivel, com os dominantes enxotando os rivais na hora da comida e no ponto preferido do aquario; as femeas adultas sao visivelmente maiores que os machos.",
+     "url": "https://www.seriouslyfish.com/species/trichogaster-chuna",
+     "verificado_em": "2026-09-13",
+     "campos": [
+      "porte_adulto_cm",
+      "porte_medida",
+      "cardume_minimo",
+      "convivencia"
+     ],
+     "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 13/09/2026, em DUAS passadas independentes para cada um dos dois numeros, nenhuma delas carregando o numero dentro da consulta - a cicatriz da sterbai. O porte voltou igual nas duas (55 mm), e a frase do grupo voltou igual nas duas, a segunda com a hierarquia de quebra. E a MESMA ficha da fonte de 09/09, outras sentencas dela. Segue sem leitura direta: o egresso da nuvem devolve connect_rejected por politica para seriouslyfish.com e fishbase.se, reconferido nesta data com curl. A confirmar na ficha."
     }
    ],
    "conflitos": [],
-   "verificado_em": "2026-09-09",
-   "status_registro": "parcial",
-   "observacao": "PORTE RECUSADO, e este e o motivo escrito: a busca restrita a FishBase devolveu 13,7 cm TL em DUAS formulacoes independentes em 09/09/2026, numero que nao descreve o gurami mel que o comercio brasileiro vende a 4 a 5 cm e que a propria ficha contradiz ao recomendar aquario minimo de 60 cm. Numero implausivel nao entra so porque veio atribuido - porte_adulto_cm fica null ate a ficha ser lida direto. TERCEIRA REPRODUCAO em 11/09/2026, por uma execucao que nao sabia desta nota e chegou a mesma recusa pelo mesmo caminho: o mesmo 13,7 cm TL voltou em duas formulacoes de busca, e o que o derruba de novo e a contradicao interna da propria fonte - a FishBase que declara 13,7 cm declara, na mesma ficha, aquario minimo de 60 cm, enquanto para o T. leerii, de 12,0 cm, a mesma base declara 120 cm. Reproduzir nao e conferir. Sem porte o registro nao passa no portao de pagina nem na C8, e e exatamente isso que ele deve fazer."
+   "verificado_em": "2026-09-13",
+   "status_registro": "completo",
+   "observacao": "PORTE COLHIDO EM 13/09/2026 NO COMPENDIO, E O NUMERO DA FISHBASE SEGUE RECUSADO - a decisao e esta e o motivo esta escrito. A busca restrita a FishBase devolveu 13,7 cm TL pela QUARTA vez (09/09 em duas formulacoes, 11/09 em outras duas, 13/09 mais uma), e o que o derruba nao e implausibilidade de quem le: e a contradicao interna da propria ficha, que declara aquario minimo de 60 cm para este peixe enquanto a MESMA base declara 120 cm para o T. leerii, de 12,0 cm. Reproduzir nao e conferir. O que mudou hoje e que a recusa deixou de ser leitura solitaria: a ficha da PROPRIA especie no compendio declara 55 mm SL, e o numero voltou identico em duas passadas independentes que nao o carregavam na consulta. A tabela dominio_por_campo poe a base cientifica na frente em campo de biologia, e ela continua na frente - mas a ordem dela nao termina na base: quando o valor da base e RECUSADO, quem sustenta o campo e o proximo corpo que o declara, e aqui e o compendio. POR QUE ISTO NAO VIROU UM CONFLITO DECLARADO, que era o caminho obvio: conflitos[] e a estrutura dos valores que o banco ACEITA como declarados, e aquametria_peixes_porte_faixa() consome TODO valor de conflito como utilizavel - o maior deles vira o porte que a lotacao usa. Registrar 13,7 ali publicaria na tela um gurami-mel de 13,7 cm, que e exatamente o numero que quatro passadas recusaram. Numero recusado nao e divergencia: e numero que nao entrou. A divergencia fica escrita aqui, com atribuicao e com o porque. PORTE_SEXO FICA NULL: o compendio declara o maximo da especie sem separar sexo, e diz na mesma ficha que as femeas adultas sao visivelmente maiores que os machos - sem o numero delas, escolher um rotulo de sexo seria inventar a metade que falta. CARDUME_MINIMO 4, E A FAIXA DECLARADA E 4 A 6: a fonte escreve \"nao menos que 4 a 6 exemplares\", entao o piso que ela declara e 4 e e ele que o campo guarda; a ficha que nascer daqui serve a FAIXA, nunca o piso sozinho, e tem material proprio para isso - a mesma fonte diz que a especie nao e de cardume no sentido dos lambaris, precisa da companhia dos seus e forma hierarquia com dominante enxotando rival na hora da comida. Faixa termica de 22 a 28 C e frente de 60 cm continuam como estavam desde 09/09."
   }
  ],
- "atualizado_em": "2026-09-11",
+ "atualizado_em": "2026-09-13",
  "nota_taxonomia": "Colhido em 09/09/2026, a taxonomia das fichas esta em revisao e o banco publica o que a fonte publicou, sem uniformizar: os Paracheirodon, o Gymnocorymbus ternetzi e o Hemigrammus erythrozonus vieram como Acestrorhamphidae (tetras americanos), enquanto o Hyphessobrycon eques e o Hemigrammus rhodostomus vieram como Characidae na mesma base e no mesmo dia. Tres registros ja aparecem na fonte sob genero novo — Corydoras aeneus como Osteogaster aenea, Corydoras panda como Hoplisoma panda e Hemigrammus rhodostomus como Petitella rhodostoma. O id do banco segue o nome com que o comercio brasileiro vende, e o nome novo entra em sinonimos_cientificos: e assim que a busca do leitor casa com a ficha. Consequencia pratica: este banco envelhece por revisao taxonomica, nao por preco, e por isso o prazo de revalidacao dele e de 365 dias e nao dos 180 do banco de produtos.",
  "especies_recusadas": [
   {
