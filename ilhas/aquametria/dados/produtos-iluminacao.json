@@ -1468,14 +1468,16 @@
       "volume_atendido_declarado_L": null,
       "imagem": {
         "url": "https://down-bs-br.img.susercontent.com/sg-11134201-7rd3v-lvuh440s5u5jc3.webp",
-        "largura": null,
-        "altura": null,
+        "largura": 692,
+        "altura": 692,
         "fonte": "anuncio-shopee",
         "coletado_em": "2026-09-09",
-        "verificado_em": null,
-        "motivo_sem_verificacao": "ninguem abriu a URL para ver a imagem carregar: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026), como barra todo dominio de loja. A URL veio do painel de afiliados da Shopee, aberto no navegador do Raphael em 09/09/2026, e continua valendo. Quem confere e a Sentinela Tecnica, que roda no Chrome.",
+        "verificado_em": "2026-09-13",
+        "motivo_sem_verificacao": null,
         "alt": "Luminária LED Chihiros A-Series A901, barra de alumínio anodizado de 90 cm com LEDs brancos de espectro completo acesos",
-        "motivo_sem_medida": "largura e altura nao foram medidas: o egresso da nuvem barra down-bs-br.img.susercontent.com (EGRESS_BLOCKED em 09/09/2026) e a Aquametria nao grava dimensao que nao mediu. O cartao reserva o espaco com aspect-ratio 1/1 e object-fit contain, que nao salta o layout qualquer que seja a proporcao real."
+        "motivo_sem_medida": null,
+        "medida_em": "2026-09-13",
+        "medida_como": "naturalWidth x naturalHeight da imagem JA CARREGADA, lidos no Chrome do Raphael pela ronda da Sentinela de 13/09/2026. A nuvem nao consegue ler o arquivo — o egresso barra down-bs-br.img.susercontent.com, reconferido por curl em 13/09/2026 —, e por isso a medida vem de quem tem navegador. Numero lido, nunca deduzido do formato do anuncio."
       },
       "afiliado": {
         "plataforma": "shopee",

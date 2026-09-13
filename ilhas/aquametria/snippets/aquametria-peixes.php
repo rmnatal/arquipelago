@@ -1,5 +1,34 @@
 /**
  * Aquametria Peixes — a malha do eixo /peixes/
+ * Versão: 1.4.0 (13/09/2026) — A FICHA PARA DE ABRIR PELA PROVA, E O `Article`
+ * GANHA DATA, AUTOR E PUBLICADOR. Itens 2 e 4 do despacho da Sentinela de
+ * 13/09/2026, e os dois eram o mesmo defeito visto de dois lados: a página que
+ * mais depende de procedência com data era a que citava a fonte onde não devia e
+ * a que não declarava data onde devia.
+ *
+ *   ITEM 4, a VOZ. As onze fichas começavam por "Para os N <peixe> que A FONTE
+ *   DECLARA como cardume mínimo ... e A FONTE DECLARA a BASE, não o litro" — duas
+ *   menções à fonte na primeira frase, contra a 15.2 e contra a régua que o bloco
+ *   de 11/09 fixou, "procedência não abre página". A prova não foi apagada: ela
+ *   já estava duas telas abaixo, na tabela "O que as fontes declaram", com o
+ *   corpo e a data de cada linha. O que a reescrita tinha de preservar é a
+ *   decisão 7 deste cabeçalho, e ela continua inteira sem a palavra "fonte" —
+ *   ver a atualização escrita ali.
+ *
+ *   ITEM 2, o SCHEMA. O `Article` das onze trazia `headline`, `about`,
+ *   `inLanguage`, `isAccessibleForFree` e `mainEntityOfPage`, e nada mais — sem
+ *   `datePublished`, `dateModified`, `author` nem `publisher`, que o `Article`
+ *   dos três artigos já declarava. As duas datas vêm de
+ *   `aquametria_casca_data_da_pagina()` (casca 1.8.0), do post servido, e não de
+ *   um campo novo do registro: nenhuma das onze declara data de publicação em
+ *   lugar nenhum do repositório, então o post é a única coisa que sabe — e
+ *   escrever a data da leva à mão seria a constante do item 1 renascendo na
+ *   página vizinha.
+ *
+ * Medem isso `ferramentas/teste-datas-schema.py`, `ferramentas/mutacoes-datas.py`
+ * (12 de 12), a régua de atribuição nova do `ferramentas/teste-voz.mjs` e as
+ * duas afirmações de estrutura que ele passou a fazer sobre a abertura da ficha.
+ *
  * Versão: 1.3.0 (13/09/2026)
  *
  * T4 do PROMPT.md, leva 1: cinco URLs novas no eixo que a Bússola verificou
@@ -83,10 +112,19 @@
  *      Sumiço silencioso de tabela é a forma disfarçada do "silêncio parece
  *      defeito" da seção 7: quem lê não tem como saber se a ilha não sabe ou
  *      se esqueceu.
+ *      ATUALIZADO EM 13/09/2026 (item 4 do despacho da Sentinela): a distinção
+ *      continua inteira e mudou de palavras. A frase não diz mais QUEM
+ *      declarou — a 15.2 proíbe procedência no primeiro parágrafo, e a tabela
+ *      "O que as fontes declaram" já traz cardume e base com o corpo e a data
+ *      de cada um. O que distingue os dois casos na tela agora são duas coisas
+ *      que não precisam da palavra "fonte": o trecho "por Y cm de fundo", que
+ *      só existe quando há fundo declarado, e a palavra final, BASE ou
+ *      COMPRIMENTO. Quem tem só o comprimento diz que o fundo FICA EM ABERTO.
  *
  *   8. ESPÉCIE DE CARDUME SEM O NÚMERO DO CARDUME NÃO VIRA FICHA. O título
  *      deste eixo é "quantos litros para um cardume de X" e a linha mestra
- *      abre por "para os N X que a fonte declara como cardume mínimo". Sem N a
+ *      abre por "para um cardume mínimo de N X" (até 13/09/2026, "para os N X
+ *      que a fonte declara como cardume mínimo" — ver a nota 7). Sem N a
  *      página caía num ramo que escrevia a frase sem o número e abria a tabela
  *      pré-renderizada em UM exemplar — numa página que, duas telas abaixo,
  *      diz que a espécie só vive em grupo. O esquema já cobrava esse número no
@@ -105,7 +143,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_PEIXES_VERSAO' ) ) {
-	define( 'AQUAMETRIA_PEIXES_VERSAO', '1.3.0' );
+	define( 'AQUAMETRIA_PEIXES_VERSAO', '1.4.0' );
 }
 
 /* A data em que a SERP das consultas foi classificada (seção 14.9).
@@ -2865,9 +2903,26 @@ function aquametria_peixes_ficha_html( $slug ) {
 	   autossuficiente: sobrevive a ser citada fora de contexto. --- */
 	$html .= '<div class="aqm-px-direta">';
 	$html .= '<p class="aqm-px-linha-mestra">';
+	/* A ABERTURA NÃO CITA QUEM DECLAROU — item 4 do despacho da Sentinela de
+	   13/09/2026. Até aqui as 11 fichas começavam por "Para os N <peixe> que A
+	   FONTE DECLARA como cardume mínimo ... e A FONTE DECLARA a BASE, não o
+	   litro": duas menções à fonte na primeira frase da página, e a 15.2 manda a
+	   procedência morar na tabela, no "como sabemos" e no JSON-LD. A prova não
+	   foi apagada, foi só deixada onde ela já estava — duas telas abaixo, a
+	   tabela "O que as fontes declaram sobre o <peixe>" traz cada linha com o
+	   corpo que a sustenta e a data da coleta, cardume e base inclusive.
+
+	   O QUE A REESCRITA TINHA DE PRESERVAR, e é a decisão 7 deste snippet: 14
+	   dos 36 registros do banco declaram COMPRIMENTO e não BASE, e esta frase é
+	   o lugar onde a diferença aparece na tela. Ela continua aparecendo em dois
+	   lugares ao mesmo tempo, e nenhum deles precisa da palavra "fonte": o
+	   trecho "por Y cm de fundo" só existe quando há fundo declarado, e a
+	   palavra final é BASE ou COMPRIMENTO. Quem tem só o comprimento diz que o
+	   fundo FICA EM ABERTO — que é o que um aquarista diria, e não um buraco
+	   escondido. */
 	if ( $card ) {
-		$html .= 'Para os ' . esc_html( $card ) . ' ' . esc_html( $nome )
-			. ' que a fonte declara como cardume mínimo, o seu aquário precisa de '
+		$html .= 'Para um cardume mínimo de ' . esc_html( $card ) . ' '
+			. esc_html( $nome ) . ', o seu aquário precisa de '
 			. esc_html( aquametria_peixes_num( $frente[1] ) ) . ' cm de frente';
 	} else {
 		$html .= 'Para o ' . esc_html( $nome ) . ', o seu aquário precisa de '
@@ -2875,13 +2930,10 @@ function aquametria_peixes_ficha_html( $slug ) {
 	}
 	if ( $larg ) {
 		$html .= ' por ' . esc_html( aquametria_peixes_num( $larg ) )
-			. ' cm de fundo — e a fonte declara a BASE, não o litro.</p>';
+			. ' cm de fundo. O que manda é a BASE do aquário, não o litro.</p>';
 	} else {
-		/* Decisão 7: a frase tem o escopo do que foi medido. Aqui a fonte
-		   declarou o comprimento e não disse uma palavra sobre o fundo, então
-		   a página não pode dizer "base" — em 14 dos 36 registros do banco é
-		   exatamente esse o caso. */
-		$html .= ' — e a fonte declara o COMPRIMENTO do aquário, não o litro.</p>';
+		$html .= ', e o fundo fica em aberto. O que manda é o COMPRIMENTO do '
+			. 'aquário, não o litro.</p>';
 	}
 
 	$alturas = aquametria_peixes_alturas();
@@ -3773,6 +3825,15 @@ function aquametria_peixes_jsonld_dados( $slug ) {
 			);
 		}
 
+		/* A MESMA editora que os três artigos já declaram. Escrita aqui e não
+		   importada do outro snippet porque o Sync desembarca um sem o outro, e
+		   o nó de schema não pode depender de quem chegou primeiro. */
+		$editora = array(
+			'@type' => 'Organization',
+			'name'  => 'Aquametria',
+			'url'   => home_url( '/' ),
+		);
+
 		$artigo = array(
 			'@type'         => 'Article',
 			'headline'      => $def['titulo'],
@@ -3783,9 +3844,38 @@ function aquametria_peixes_jsonld_dados( $slug ) {
 			),
 			'inLanguage'    => 'pt-BR',
 			'isAccessibleForFree' => true,
+			'author'        => $editora,
+			'publisher'     => $editora,
 		);
 		if ( '' !== $url ) {
 			$artigo['mainEntityOfPage'] = $url;
+		}
+
+		/* AS DUAS DATAS, da mesma fonte que o sitemap: item 2 do despacho da
+		   Sentinela de 13/09/2026. As 11 fichas serviam `Article` sem data, sem
+		   autor e sem publicador, enquanto o `Article` dos três artigos trazia os
+		   quatro campos — e a assimetria era a prova de que faltava, não de que
+		   alguém escolheu. Numa ilha cuja tese é procedência COM DATA, a ficha de
+		   espécie é a página que mais depende disso.
+
+		   `datePublished` sai de `post_date_gmt` e não de um campo do registro
+		   das páginas: nenhuma das 11 declara data de publicação em lugar nenhum
+		   do repositório, então o post é a única coisa que sabe. Escrever à mão a
+		   data da leva seria a constante do item 1 renascendo na página vizinha.
+
+		   Sem casca ou sem data, os campos não saem — a regra está no cabeçalho
+		   de `aquametria_casca_data_da_pagina()`. */
+		$publicado = function_exists( 'aquametria_casca_data_da_pagina' )
+			? aquametria_casca_data_da_pagina( 'publicado' )
+			: '';
+		if ( '' !== $publicado ) {
+			$artigo['datePublished'] = $publicado;
+		}
+		$modificado = function_exists( 'aquametria_casca_data_da_pagina' )
+			? aquametria_casca_data_da_pagina( 'modificado' )
+			: '';
+		if ( '' !== $modificado ) {
+			$artigo['dateModified'] = $modificado;
 		}
 		$nos[] = $artigo;
 		$nos[] = array( '@type' => 'FAQPage', 'mainEntity' => $faq );

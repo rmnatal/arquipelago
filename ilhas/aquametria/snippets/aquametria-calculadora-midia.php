@@ -1,5 +1,14 @@
 /**
  * Aquametria Calculadora de Mídia Filtrante — C12
+ * Versão: 1.3.1 (13/09/2026) — só o catálogo embutido mudou: a única foto de produto
+ * desta página passou a viajar com `largura` e `altura`, medidas no Chrome pela
+ * ronda da Sentinela de 13/09/2026 (`naturalWidth` x `naturalHeight`) — o egresso
+ * desta nuvem barra o CDN do anúncio e continua barrando, reconferido por curl.
+ * Item 3 do despacho daquela ronda: o renderizador já emitia o par quando ele
+ * existia, e o que faltava era DADO. Medem isso
+ * `ferramentas/teste-dimensao-imagem.py`, no HTML servido, e
+ * `ferramentas/validar-produtos.py` (V19), no banco.
+ *
  * Versão: 1.3.0 (11/09/2026) — BLOCO T8: a VITRINE de produto chega à C12, a última das quatro
  *   calculadoras que recomendam produto (a C1 não recebe: litragem é geometria, e geometria não
  *   escolhe produto). Mesmo desenho da C3, da C5 e da C15 — uma função de cartão em PHP e o
@@ -98,7 +107,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_C12_VERSAO' ) ) {
-	define( 'AQUAMETRIA_C12_VERSAO', '1.3.0' );
+	define( 'AQUAMETRIA_C12_VERSAO', '1.3.1' );
 	define( 'AQUAMETRIA_C12_SLUG', 'calculadora-de-midia-filtrante' );
 	define( 'AQUAMETRIA_C12_VERIFICADO_EM', '08/09/2026' );
 	define( 'AQUAMETRIA_C12_ARTIGO', 'quanta-midia-biologica-o-aquario-precisa' );
@@ -245,9 +254,9 @@ function aquametria_c12_catalogo_midias() {
 			'imagem' => array(
 				'url' => 'https://down-bs-br.img.susercontent.com/sg-11134201-8262j-ml3uq5wz57gh0d.webp',
 				'alt' => 'Mídia biológica Seachem Matrix, saco de 1 litro de granulado cerâmico poroso claro com a bolsa de tela inclusa',
-				'largura' => null,
-				'altura' => null,
-				'verificado_em' => null,
+				'largura' => 1024,
+				'altura' => 1024,
+				'verificado_em' => '2026-09-13',
 			),
 			'preco' => array(
 				'min' => 73.9,

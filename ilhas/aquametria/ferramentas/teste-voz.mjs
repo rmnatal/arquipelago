@@ -51,6 +51,72 @@ const PROIBIDOS = [
   'instrumento de medida',
 ];
 
+/* A RÉGUA DA ATRIBUIÇÃO, e ela vale SÓ para três superfícies: <title>, H1 e
+   primeiro parágrafo. Item 4 do despacho da Sentinela de 13/09/2026 — as onze
+   fichas de peixe abriam por "Para os N <peixe> que A FONTE DECLARA como cardume
+   mínimo ... e A FONTE DECLARA a BASE, não o litro", duas menções à fonte na
+   primeira frase da página, contra a 15.2 e contra a régua que o bloco de 11/09
+   fixou: procedência não abre página.
+
+   A LISTA É DE DUAS METADES, E A SEGUNDA PRECISA DE ESTRUTURA. Os três primeiros
+   termos são atribuição em qualquer frase. "Conforme" e "segundo", que o despacho
+   também nomeia, NÃO são: escritos como estão no despacho e medidos no primeiro
+   parágrafo das 27 páginas, eles reprovaram TRÊS PÁGINAS CERTAS de uma vez —
+   "iluminação baixa pode querer dizer 1.000 lúmens ou 2.000, CONFORME a régua que
+   você abrir", "vai de 125 mililitros a 1,25 litro, CONFORME a marca que você
+   abrir". Ali "conforme" é "dependendo de", e é justamente a frase que publica a
+   divergência entre fontes, que é a tese da ilha. Uma lista literal teria
+   silenciado a tese para proibir a atribuição.
+
+   A saída não é uma heurística de vizinhança — a seção 8 já pagou por isso duas
+   vezes, e a segunda APROVOU a frase errada. A saída é que ATRIBUIÇÃO PRECISA DE
+   UM ATRIBUÍDO: "conforme" e "segundo" só são atribuição quando o que vem depois
+   NOMEIA alguém — uma marca da lista de fontes da ilha, ou "a fonte", "o
+   fabricante", "o compêndio", "o manual". "Conforme a régua que você abrir" não
+   nomeia ninguém, e por isso não é procedência. A estrutura decide, não a
+   vizinhança.
+
+   E A LISTA NÃO VALE PARA O CORPO INTEIRO: as nove fichas com base declarada
+   dizem, no segundo parágrafo, "Essa base dá de 54 a 72 litros de lâmina,
+   CONFORME a altura do aquário ser 30 ou 40 cm". A 15.2 nomeia as superfícies da
+   voz uma por uma — título, primeiro parágrafo, rótulos e chamadas —, e é isso
+   que este portão mede. */
+const ATRIBUICAO_SEMPRE = [
+  'a fonte declara',
+  'as fontes declaram',
+  'declarado por',
+  'declarada por',
+  'declarados por',
+];
+
+const ATRIBUICAO_SE_NOMEIA = ['conforme', 'segundo', 'de acordo com'];
+
+/* Quem pode ser atribuído: as fontes com nome da ilha, mais os quatro jeitos de
+   dizer "fonte" sem dizer qual. `marca` e `régua` de propósito NÃO estão aqui —
+   "conforme a marca que você abrir" fala de uma marca qualquer, não daquela
+   marca, e a diferença entre as duas coisas é o que esta régua existe para não
+   confundir. */
+const ATRIBUIDOS_GENERICOS = [
+  'a fonte', 'as fontes', 'o fabricante', 'os fabricantes',
+  'o compendio', 'o manual', 'a ficha do', 'o boletim',
+];
+
+/* Fabricantes e fontes citadas pela ilha. Escrita À MÃO aqui, como a lista de
+   proibidos: se viesse de dados/produtos-*.json, apagar a marca do banco
+   apagaria a régua junto e o teste continuaria verde.
+
+   Fica no alto do arquivo desde 13/09/2026: as duas réguas que a usam — a da
+   atribuição, que vale para as 27 páginas, e a de "o primeiro parágrafo não
+   nomeia fabricante", que vale para as 23 de conteudo/ — rodam em momentos
+   diferentes do arquivo, e `const` declarado no meio explodiria na primeira. */
+const MARCAS = [
+  'eheim', 'seachem', 'jbl', 'ocean tech', 'atman', 'chihiros', 'ista',
+  'sunsun', 'sicce', 'hopar', 'roxin', 'soma', 'maxxi', 'wfish', 'aquaverso',
+  'reefflow', 'casa da ada', 'ehow', 'peixeseaquarismo', 'aquarioturbinado',
+  'aquariosplantados', 'my-best', 'aquarismo paulista', 'aquaonline',
+  'fishbase', 'seriously fish', 'seriouslyfish',
+];
+
 /* Título que começa assim é proibido pelo VOZ.md quando o que vem depois é
    termo técnico. A régua aqui é mais dura de propósito: nenhum título de página
    nem de cartão da casca começa com isto. As páginas de conteudo/ têm as suas,
@@ -134,7 +200,61 @@ function acharProibidos(t) {
   return PROIBIDOS.filter((termo) => plano.includes(termo));
 }
 
+/* Atribuição achada no texto. Os termos de sempre valem sozinhos; "conforme" e
+   "segundo" só contam quando o que vem depois NOMEIA quem declarou — e o "depois"
+   é uma janela curta, porque atribuição encosta no atribuído. */
+const JANELA_ATRIBUIDO = 40;
+
+function acharAtribuicao(t) {
+  const plano = semAcento(t);
+  const achados = ATRIBUICAO_SEMPRE.filter((termo) => plano.includes(termo));
+
+  for (const termo of ATRIBUICAO_SE_NOMEIA) {
+    let i = plano.indexOf(termo);
+    while (i !== -1) {
+      const depois = plano.slice(i + termo.length, i + termo.length + JANELA_ATRIBUIDO);
+      const nomeado = [...MARCAS, ...ATRIBUIDOS_GENERICOS].find((n) => depois.includes(n));
+      if (nomeado) { achados.push(`${termo} + ${nomeado}`); break; }
+      i = plano.indexOf(termo, i + 1);
+    }
+  }
+  return achados;
+}
+
+/* As três superfícies de abertura, medidas com a mesma régua e numa função só —
+   senão a próxima superfície nasce sem a regra, que é como o <title> ficou de
+   fora até 11/09/2026. */
+function medirAbertura(rotulo, aba, h1, p1) {
+  for (const [onde, t] of [['<title>', aba], ['H1', h1], ['primeiro parágrafo', p1]]) {
+    const achados = acharAtribuicao(t);
+    ok(`${rotulo}${onde} sem atribuição de fonte`, achados.length === 0,
+      achados.join(', ') + (achados.length ? ` — em "${t.slice(0, 90)}"` : ''));
+  }
+}
+
 /* ---------------------------------------------------------------------- */
+
+/* ----------------------------------------------------------------------
+ * A RÉGUA DA ATRIBUIÇÃO MEDIDA CONTRA SI MESMA, em duas frases produzidas.
+ *
+ * Não é zelo: a primeira versão desta régua, com "conforme" na lista literal,
+ * reprovou três páginas certas da ilha. As duas frases abaixo travam a
+ * distinção que custou aquela rodada — quem um dia achar mais simples pôr
+ * "conforme" de volta na lista de sempre reprova AQUI, antes de reprovar dez
+ * páginas. E a segunda frase existe para a régua não afrouxar até deixar de
+ * pegar o defeito que ela nasceu para pegar.
+ * ------------------------------------------------------------------- */
+console.log('\nRÉGUA DA ATRIBUIÇÃO — duas frases produzidas');
+{
+  const dependencia = 'Iluminação baixa pode querer dizer 1.000 lúmens ou 2.000, conforme a régua que você abrir.';
+  const atribuicao  = 'Iluminação baixa é 1.000 lúmens, conforme o compêndio, e 2.000 segundo a Chihiros.';
+  ok('"conforme" de dependência NÃO é atribuição', acharAtribuicao(dependencia).length === 0,
+    acharAtribuicao(dependencia).join(', '));
+  ok('"conforme" com fonte nomeada É atribuição', acharAtribuicao(atribuicao).length >= 2,
+    acharAtribuicao(atribuicao).join(', '));
+  ok('"a fonte declara" é atribuição sozinha, sem precisar de nome',
+    acharAtribuicao('Para os 5 tetra neon que a fonte declara como cardume mínimo.').length === 1);
+}
 
 console.log('\nPORTÃO DA VOZ — ' + PAGINAS.length + ' páginas da casca, um processo cada');
 
@@ -167,6 +287,8 @@ for (const slug of PAGINAS) {
 
   ok('tem primeiro parágrafo', p1.length > 0);
   ok('primeiro parágrafo sem termo proibido', acharProibidos(p1).length === 0, acharProibidos(p1).join(', '));
+
+  medirAbertura('', aba, h1, p1);
 
   // O corpo inteiro, TIRANDO a camada de prova declarada.
   const achados = acharProibidos(texto(voz));
@@ -345,15 +467,27 @@ const CONTEUDO = [
   'quantos-litros-para-coridora-sterbai',
 ];
 
-/* Fabricantes e fontes citadas pela ilha. Escrita À MÃO aqui, como a lista de
-   proibidos: se viesse de dados/produtos-*.json, apagar a marca do banco
-   apagaria a régua junto e o teste continuaria verde. */
-const MARCAS = [
-  'eheim', 'seachem', 'jbl', 'ocean tech', 'atman', 'chihiros', 'ista',
-  'sunsun', 'sicce', 'hopar', 'roxin', 'soma', 'maxxi', 'wfish', 'aquaverso',
-  'reefflow', 'casa da ada', 'ehow', 'peixeseaquarismo', 'aquarioturbinado',
-  'aquariosplantados', 'my-best', 'aquarismo paulista', 'aquaonline',
-];
+/* As onze fichas de espécie, separadas do resto do CONTEUDO porque têm duas
+   exigências que só elas têm (a abertura pelo número e a distinção
+   BASE/COMPRIMENTO). O conjunto está escrito À MÃO, e não filtrado por prefixo
+   do slug: a próxima leva vai acrescentar fichas com outro prefixo, e um filtro
+   esperto deixaria as novas fora da régua sem uma falha para avisar. */
+const FICHAS_PEIXE = new Set([
+  'quantos-litros-para-tetra-neon',
+  'quantos-litros-para-tetra-cardinal',
+  'quantos-litros-para-mato-grosso',
+  'quantos-litros-para-tetra-ember',
+  'quantos-litros-para-tetra-brilhante',
+  'quantos-litros-para-rodostomo',
+  'quantos-litros-para-tetra-negro',
+  'quantos-litros-para-coridora-bronze',
+  'quantos-litros-para-coridora-pimenta',
+  'quantos-litros-para-coridora-panda',
+  'quantos-litros-para-coridora-sterbai',
+]);
+
+/* A lista de MARCAS subiu para o alto do arquivo em 13/09/2026 — ver o bloco
+   da régua de atribuição, que passou a usá-la também. */
 const DATA_DE_LEITURA = /\b\d{2}\/\d{2}\/\d{4}\b/;
 
 const TITULO_MAXIMO = 65;   // o que o Google mostra antes de cortar
@@ -429,6 +563,34 @@ for (const slug of CONTEUDO) {
      julga manifesto é a ronda (15.4); esta linha é o piso mecânico. */
   ok('o primeiro parágrafo fala com a pessoa, na segunda pessoa',
     /\b(voce|seu|sua|seus|suas)\b/.test(semAcento(p1)), p1.slice(0, 70));
+
+  medirAbertura('', aba, h1, p1);
+
+  /* --- a ficha de peixe: a abertura responde COM O NÚMERO, e diz qual dos dois
+         mundos ela é ---
+
+     É a outra metade do item 4 do despacho, e a que protege a decisão 7 do
+     snippet: 14 dos 36 registros do banco declaram só o COMPRIMENTO mínimo e
+     nunca disseram uma palavra sobre o fundo. Enquanto a abertura citava a
+     fonte, era a palavra "fonte" que carregava a diferença; agora ela viaja na
+     ESTRUTURA da frase, e por isso precisa de régua: a ficha com fundo diz "por
+     Y cm de fundo" e termina em BASE, a ficha sem fundo diz que ele FICA EM
+     ABERTO e termina em COMPRIMENTO. EXATAMENTE UM dos dois — a reescrita que
+     colapsasse os dois casos num só publicaria um fundo que ninguém declarou
+     (ou esconderia o que foi declarado), e passaria por qualquer régua que só
+     proibisse palavra. */
+  if (FICHAS_PEIXE.has(slug)) {
+    const plano = semAcento(p1);
+    ok('a ficha abre pelo número, com a frente em centímetros',
+      /\d+(,\d+)? cm de frente/.test(plano), p1.slice(0, 90));
+
+    const comBase = / cm de fundo/.test(plano) && /\bbase\b/.test(plano);
+    const semBase = /fica em aberto/.test(plano) && /\bcomprimento\b/.test(plano);
+    ok('a ficha declara a BASE ou o COMPRIMENTO, e exatamente um dos dois',
+      comBase !== semBase, `base=${comBase} comprimento=${semBase} — "${p1.slice(0, 110)}"`);
+    ok('a ficha não fala de litro como se fosse a medida que manda',
+      /nao o litro/.test(plano), p1.slice(-60));
+  }
 
   /* --- as chamadas --- */
   ok('nenhum h2 tem termo proibido',

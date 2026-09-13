@@ -72,7 +72,28 @@ function get_queried_object(){ return get_post(); }
    post_name, e sem poder trocar esse valor nao havia como renderizar um artigo
    aqui. Quem nao mexe no global continua vendo 'pagina-de-teste'. */
 function aquametria_teste_slug(){ return isset($GLOBALS['__slug_pagina']) ? $GLOBALS['__slug_pagina'] : 'pagina-de-teste'; }
-function get_post($p=null){ return (object) array('ID'=>1,'post_content'=>$GLOBALS['__conteudo_pagina'],'post_status'=>'publish','post_name'=>aquametria_teste_slug()); }
+/* AS DUAS DATAS DO POST, que e de onde o sitemap do nucleo tira o lastmod e de
+   onde o JSON-LD passou a tirar dateModified/datePublished em 13/09/2026 (item 1
+   e item 2 do despacho da Sentinela). Ficam em global pela mesma razao do
+   __slug_pagina: sem poder trocar o valor nao ha como medir o campo, e sem poder
+   APAGAR o valor nao ha como medir a pagina que o WordPress diz nao saber quando
+   mudou — que e o caso em que a regra manda o campo NAO SAIR. Quem nao mexe nos
+   globais ve as duas datas padrao abaixo, que sao plausiveis e diferentes uma da
+   outra de proposito: data de publicacao igual a de modificacao nao separa os
+   dois campos, e o portao que medisse isso ficaria verde com os dois trocados. */
+function aquametria_teste_data($qual){
+	$g = '__data_' . $qual . '_gmt';
+	if (array_key_exists($g, $GLOBALS)) { return $GLOBALS[$g]; }
+	/* Tambem por ambiente, porque quem monta o mundo e um processo de fora: o
+	   portao roda `render-pagina-completa.php` como comando e nao tem onde
+	   escrever um global. `getenv` devolve false quando a variavel nao existe e
+	   '' quando existe vazia, e e essa diferenca que deixa o portao produzir o
+	   mundo em que o WordPress NAO SABE a data. */
+	$env = getenv('AQM_TESTE_DATA_' . strtoupper($qual));
+	if (false !== $env) { return $env; }
+	return ('publicado' === $qual) ? '2026-09-12 10:20:30' : '2026-09-13 13:38:10';
+}
+function get_post($p=null){ return (object) array('ID'=>1,'post_content'=>$GLOBALS['__conteudo_pagina'],'post_status'=>'publish','post_name'=>aquametria_teste_slug(),'post_date_gmt'=>aquametria_teste_data('publicado'),'post_modified_gmt'=>aquametria_teste_data('modificado')); }
 /* Paginas que 'existem' no site de teste: mapa slug => true em __paginas.
    Vazio por padrao, entao quem nao mexe nele continua vendo o que via.
 

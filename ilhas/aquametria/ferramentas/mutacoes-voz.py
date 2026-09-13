@@ -30,6 +30,7 @@ from pathlib import Path
 RAIZ = Path(__file__).resolve().parent.parent
 CASCA = 'snippets/aquametria-casca.php'
 ARTIGOS = 'snippets/aquametria-artigos.php'
+PEIXES = 'snippets/aquametria-peixes.php'
 C5_SNIPPET = 'snippets/aquametria-calculadora-aquecedor.php'
 C12_MD = 'conteudo/calculadora-de-midia-filtrante.md'
 AFILIADOS_MD = 'conteudo/divulgacao-de-afiliados.md'
@@ -219,6 +220,56 @@ MUTACOES = [
         troca(C12_MD,
               'Num aquário de 100 litros, a mídia biológica que o seu filtro pede vai de **125 mililitros a 1,25 litro** — dez vezes de diferença, conforme a marca que você abrir. Não é erro de leitura: as dosagens que existem discordam nessa ordem de grandeza, e ninguém as coloca lado a lado.',
               'Pergunte na internet brasileira quanta mídia biológica um aquário de 100 litros precisa e não virá um número. Virão conselhos: encha o cesto, quanto mais melhor, cerâmica embaixo e perlon em cima. Todos verdadeiros, nenhum quantificado.'),
+    ),
+
+    # ------------------------------------------------------------------
+    # A ABERTURA DAS 11 FICHAS DE PEIXE — item 4 do despacho da Sentinela de
+    # 13/09/2026. As duas primeiras sao o defeito do despacho escrito de volta,
+    # metade por metade: eram DUAS mencoes a fonte na mesma primeira frase, e
+    # cada uma tinha de ser reprovada sozinha, senao consertar uma devolveria o
+    # verde com a outra no ar.
+    # ------------------------------------------------------------------
+    (
+        'O DEFEITO DE 13/09, primeira metade: a fonte volta a declarar o cardume na abertura',
+        troca(PEIXES,
+              "\t\t$html .= 'Para um cardume mínimo de ' . esc_html( $card ) . ' '\n\t\t\t. esc_html( $nome ) . ', o seu aquário precisa de '",
+              "\t\t$html .= 'Para os ' . esc_html( $card ) . ' ' . esc_html( $nome )\n\t\t\t. ' que a fonte declara como cardume mínimo, o seu aquário precisa de '"),
+    ),
+    (
+        'O DEFEITO DE 13/09, segunda metade: a fonte volta a declarar a BASE na abertura',
+        troca(PEIXES,
+              "\t\t\t. ' cm de fundo. O que manda é a BASE do aquário, não o litro.</p>';",
+              "\t\t\t. ' cm de fundo — e a fonte declara a BASE, não o litro.</p>';"),
+    ),
+    (
+        'a abertura troca a fonte por um compendio nomeado, que e a mesma procedencia',
+        troca(PEIXES,
+              "\t\t\t. ' cm de fundo. O que manda é a BASE do aquário, não o litro.</p>';",
+              "\t\t\t. ' cm de fundo, conforme o compêndio. O que manda é a BASE.</p>';"),
+    ),
+    (
+        'A DISTINCAO COLAPSA: a ficha sem fundo declarado passa a falar de BASE',
+        troca(PEIXES,
+              "\t\t$html .= ', e o fundo fica em aberto. O que manda é o COMPRIMENTO do '\n\t\t\t. 'aquário, não o litro.</p>';",
+              "\t\t$html .= '. O que manda é a BASE do aquário, não o litro.</p>';"),
+    ),
+    (
+        'a abertura perde o numero e vira conselho sem medida',
+        troca(PEIXES,
+              "\t\t$html .= 'Para um cardume mínimo de ' . esc_html( $card ) . ' '\n\t\t\t. esc_html( $nome ) . ', o seu aquário precisa de '\n\t\t\t. esc_html( aquametria_peixes_num( $frente[1] ) ) . ' cm de frente';",
+              "\t\t$html .= 'Para um cardume mínimo de ' . esc_html( $nome )\n\t\t\t. ', o seu aquário precisa de uma base generosa de frente';"),
+    ),
+    (
+        'a abertura deixa de dizer que o litro nao e a medida que manda',
+        troca(PEIXES,
+              "\t\t\t. ' cm de fundo. O que manda é a BASE do aquário, não o litro.</p>';",
+              "\t\t\t. ' cm de fundo. O que manda é a BASE do aquário.</p>';"),
+    ),
+    (
+        'A PORTA DOS FUNDOS DA REGUA: "conforme" volta para a lista literal e reprova pagina certa',
+        troca('ferramentas/teste-voz.mjs',
+              "const ATRIBUICAO_SE_NOMEIA = ['conforme', 'segundo', 'de acordo com'];",
+              "const ATRIBUICAO_SE_NOMEIA = [];\nATRIBUICAO_SEMPRE.push('conforme', 'segundo');"),
     ),
 ]
 

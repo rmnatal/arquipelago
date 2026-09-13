@@ -165,10 +165,15 @@ MUTACOES = [
     # frase, a lista que devia crescer junto com o eixo, ou a regra que so morde
     # numa borda que o mundo acabou de produzir.
 
-    ("BASE VIRA FRENTE: a ficha sem fundo declarado volta a dizer que a fonte declara a BASE",
+    # O ALVO FOI REAPONTADO EM 13/09/2026: a abertura deixou de citar a fonte
+    # (item 4 do despacho) e esta mutacao ficou INERTE na primeira rodada depois
+    # da mudanca — o proprio mutador avisou, e e por isso que ele conta as
+    # ocorrencias em vez de substituir em silencio. Mutacao que nao morde e teste
+    # verde com outro nome.
+    ("BASE VIRA FRENTE: a ficha sem fundo declarado passa a falar da BASE do aquario",
      troca(PEIXES,
-           "\t\t$html .= ' — e a fonte declara o COMPRIMENTO do aquário, não o litro.</p>';",
-           "\t\t$html .= ' — e a fonte declara a BASE, não o litro.</p>';")),
+           "\t\t$html .= ', e o fundo fica em aberto. O que manda é o COMPRIMENTO do '\n\t\t\t. 'aquário, não o litro.</p>';",
+           "\t\t$html .= '. O que manda é a BASE do aquário, não o litro.</p>';")),
 
     ("O SUMICO SILENCIOSO VOLTA: a pagina sem fundo declarado para de dizer que as tabelas nao saem",
      troca(PEIXES,

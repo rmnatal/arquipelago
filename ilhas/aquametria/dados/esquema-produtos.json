@@ -229,12 +229,12 @@
         {
           "campo": "largura",
           "tipo": "numero|null",
-          "observacao": "Pixels. null quando a Aquametria nao mediu — o egresso da nuvem barra o CDN do marketplace. Nao se chuta dimensao."
+          "observacao": "Pixels, LIDOS. Vem de uma medicao real — naturalWidth da imagem carregada no navegador, ou o cabecalho do proprio arquivo — e nunca de deducao a partir do formato do anuncio: 800x800 digitado porque foto de e-commerce costuma ser quadrada passaria por qualquer validador e reservaria a caixa errada. null quando ninguem mediu, e nesse caso motivo_sem_medida diz por que. Quando largura existe, altura e medida_em existem: numero sem data de leitura e chute com cara de dado (V19)."
         },
         {
           "campo": "altura",
           "tipo": "numero|null",
-          "observacao": "Idem largura."
+          "observacao": "Idem largura, e sempre no mesmo par: uma sem a outra da ao navegador uma proporcao errada, que e pior do que nao declarar nenhuma."
         },
         {
           "campo": "fonte",
@@ -270,6 +270,16 @@
           "campo": "motivo_sem_medida",
           "tipo": "string|null",
           "observacao": "Por que largura e altura estao null."
+        },
+        {
+          "campo": "medida_em",
+          "tipo": "data ISO|null",
+          "observacao": "Data da leitura que produziu largura e altura. Obrigatorio quando o par existe (V19). Separado de coletado_em (quando a URL foi colhida) e de verificado_em (quando alguem viu a imagem carregar) porque sao tres atos diferentes e podem ser de dias diferentes — no caso das oito primeiras medidas, de 13/09/2026, a leitura e a verificacao foram o mesmo ato da Sentinela e por isso as duas datas coincidem."
+        },
+        {
+          "campo": "medida_como",
+          "tipo": "string|null",
+          "observacao": "Como a dimensao foi lida, com quem leu. Existe porque 'numero lido' e 'numero plausivel' sao indistinguiveis depois de gravados, e esta ilha publica dimensao de arquivo que a propria nuvem nao alcanca."
         }
       ],
       "regras_de_tela": [

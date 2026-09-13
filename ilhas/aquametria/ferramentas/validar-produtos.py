@@ -406,9 +406,38 @@ def valida_produto(esquema, entidade, produto, vistos):
             valor = img.get(lado)
             if valor is not None and valor <= 0:
                 erro("V19", pid, "imagem com %s igual a %r" % (lado, valor))
-        if img.get("largura") is None and not preenchido(img.get("motivo_sem_medida")):
-            erro("V19", pid, "imagem sem largura e sem motivo_sem_medida: dimensao que nao foi "
+        # A DIMENSAO ANDA EM PAR, e antes de 13/09/2026 esta regra olhava so a
+        # largura: um registro com largura e sem altura passava, e o cartao
+        # servia `width` sozinho — que da ao navegador uma PROPORCAO errada em
+        # vez de nenhuma, e e pior do que omitir as duas. Buraco achado ao
+        # gravar as oito primeiras medidas.
+        tem_l = img.get("largura") is not None
+        tem_a = img.get("altura") is not None
+        if tem_l != tem_a:
+            erro("V19", pid, "imagem com metade do par de dimensao (largura=%r altura=%r): "
+                             "as duas juntas ou nenhuma" % (img.get("largura"), img.get("altura")))
+        if not tem_l and not tem_a and not preenchido(img.get("motivo_sem_medida")):
+            erro("V19", pid, "imagem sem dimensao e sem motivo_sem_medida: dimensao que nao foi "
                              "medida precisa dizer por que")
+        # NUMERO SEM DATA DE LEITURA E CHUTE COM CARA DE DADO. A ilha publica
+        # dimensao de arquivo que a propria nuvem nao alcanca, entao "de onde
+        # veio este numero" nao pode ficar implicito: 800x800 digitado porque
+        # foto de e-commerce costuma ser quadrada reservaria a caixa errada e
+        # passaria por qualquer regra que olhasse so o valor.
+        if tem_l and tem_a:
+            if not preenchido(img.get("medida_em")):
+                erro("V19", pid, "imagem com dimensao e sem medida_em: numero sem data de leitura")
+            else:
+                try:
+                    datetime.strptime(img.get("medida_em"), "%Y-%m-%d")
+                except (ValueError, TypeError):
+                    erro("V19", pid, "imagem com medida_em fora de AAAA-MM-DD")
+            if not preenchido(img.get("medida_como")):
+                erro("V19", pid, "imagem com dimensao e sem medida_como: quem publica numero lido "
+                                 "diz como leu")
+            if preenchido(img.get("motivo_sem_medida")):
+                erro("V19", pid, "imagem com dimensao E com motivo_sem_medida: o motivo explica a "
+                                 "ausencia, e ela nao existe mais")
         for fonte in fontes:
             if "imagem" in (fonte.get("campos") or []):
                 erro("V19", pid, "fonte sustentando 'imagem': imagem e dado comercial e nao "

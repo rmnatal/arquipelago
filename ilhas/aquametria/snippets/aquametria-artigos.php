@@ -1,5 +1,17 @@
 /**
  * Aquametria Artigos — visibilidade em IA
+ * Versão: 1.3.0 (13/09/2026) — O `dateModified` SAI DE ONDE ELE JÁ É VERDADE.
+ * Item 1 do despacho da Sentinela de 13/09/2026: o nó `Article` dos três artigos
+ * declarava `'dateModified' => '2026-09-10'`, um literal digitado, e o sitemap
+ * declarava 13/09 para as mesmas três URLs. Agora a data vem de
+ * `aquametria_casca_data_da_pagina()`, que lê o `post_modified_gmt` do post — a
+ * mesma fonte do `lastmod`. Sem a casca ou sem data no post, o campo NÃO SAI: não
+ * existe data de reserva, porque `date('Y-m-d')` daria a data de hoje a uma página
+ * que o WordPress diz não saber quando mudou. O `datePublished` continua sendo a
+ * data EDITORIAL do registro, e a assimetria é deliberada: ela está declarada no
+ * portão, que reprova quem "consertar" isso por simetria e mover a data de
+ * publicação de três URLs indexadas.
+ *
  * Versão: 1.2.0 (11/09/2026) — A VOZ CHEGA AOS TRÊS ARTIGOS. A caixa da resposta
  * direta passa a ter duas camadas: o primeiro parágrafo responde à pessoa na
  * língua dela, e a procedência (fabricante, fonte, data de leitura) desce um
@@ -57,7 +69,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_ARTIGOS_VERSAO' ) ) {
-	define( 'AQUAMETRIA_ARTIGOS_VERSAO', '1.2.0' );
+	define( 'AQUAMETRIA_ARTIGOS_VERSAO', '1.3.0' );
 }
 
 /* Data de verificação declarada no front matter dos três artigos. Está aqui
@@ -588,7 +600,6 @@ function aquametria_artigos_jsonld_dados( $slug ) {
 		'description'        => $a['resumo'],
 		'inLanguage'         => 'pt-BR',
 		'datePublished'      => $a['publicado'],
-		'dateModified'       => '2026-09-10',
 		'author'             => $editora,
 		'publisher'          => $editora,
 		'about'              => $assuntos,
@@ -604,6 +615,24 @@ function aquametria_artigos_jsonld_dados( $slug ) {
 			),
 		),
 	);
+
+	/* dateModified vem de `post_modified_gmt`, pela casca — a MESMA leitura que
+	   o `wp-sitemap-posts-post-1.xml` faz para estas mesmas três URLs. Era um
+	   literal '2026-09-10' escrito à mão, e em 13/09/2026 o sitemap declarava
+	   13/09 e o schema 10/09: o Google recebia duas datas da mesma página, e a
+	   do schema envelhecia sozinha a cada Sync. Item 1 do despacho da Sentinela.
+
+	   A GUARDA DE function_exists É A ORDEM DO DESEMBARQUE, não zelo: o Sync
+	   aplica um arquivo por vez e este snippet pode chegar minutos antes da
+	   casca 1.8.0. Sem data, o campo NÃO SAI — `datePublished` continua, porque
+	   ele é data editorial declarada no registro e o próprio endereço a carrega,
+	   enquanto "quando esta página mudou" só o WordPress sabe. */
+	$modificado = function_exists( 'aquametria_casca_data_da_pagina' )
+		? aquametria_casca_data_da_pagina( 'modificado' )
+		: '';
+	if ( '' !== $modificado ) {
+		$artigo['dateModified'] = $modificado;
+	}
 
 	$perguntas = array();
 	foreach ( $a['faq'] as $q ) {

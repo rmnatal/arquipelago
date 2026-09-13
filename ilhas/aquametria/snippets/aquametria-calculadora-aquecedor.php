@@ -1,5 +1,14 @@
 /**
  * Aquametria Calculadora de Potência do Aquecedor — C5
+ * Versão: 1.5.1 (13/09/2026) — só o catálogo embutido mudou: a única foto de produto
+ * desta página passou a viajar com `largura` e `altura`, medidas no Chrome pela
+ * ronda da Sentinela de 13/09/2026 (`naturalWidth` x `naturalHeight`) — o egresso
+ * desta nuvem barra o CDN do anúncio e continua barrando, reconferido por curl.
+ * Item 3 do despacho daquela ronda: o renderizador já emitia o par quando ele
+ * existia, e o que faltava era DADO. Medem isso
+ * `ferramentas/teste-dimensao-imagem.py`, no HTML servido, e
+ * `ferramentas/validar-produtos.py` (V19), no banco.
+ *
  * Versão: 1.5.0 (10/09/2026) — BLOCO T8: a VITRINE de produto nasce na C5, a
  *   segunda do Arquipélago depois da C3. Carrossel de cartões em scroll-snap de
  *   CSS puro, sem biblioteca, com foto, marca, modelo, a especificação que fez o
@@ -139,7 +148,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_C5_VERSAO' ) ) {
-	define( 'AQUAMETRIA_C5_VERSAO', '1.5.0' );
+	define( 'AQUAMETRIA_C5_VERSAO', '1.5.1' );
 	define( 'AQUAMETRIA_C5_SLUG', 'calculadora-de-potencia-do-aquecedor' );
 	define( 'AQUAMETRIA_C5_VERIFICADO_EM', '08/09/2026' );
 	define( 'AQUAMETRIA_C5_ARTIGO', 'quantos-watts-de-aquecedor-para-aquario' );
@@ -1108,9 +1117,9 @@ function aquametria_c5_catalogo() {
 			'imagem' => array(
 				'url' => 'https://down-bs-br.img.susercontent.com/2bb44a02215e58113eb2e28a852f5552.webp',
 				'alt' => 'Termostato aquecedor Ocean Tech Warmer X-5 de 150 W, tubo de quartzo submersível com escala de temperatura e dial de ajuste no topo',
-				'largura' => null,
-				'altura' => null,
-				'verificado_em' => null,
+				'largura' => 265,
+				'altura' => 265,
+				'verificado_em' => '2026-09-13',
 			),
 			'preco' => array(
 				'min' => 159.9,

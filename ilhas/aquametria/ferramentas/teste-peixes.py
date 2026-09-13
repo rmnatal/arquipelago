@@ -407,9 +407,19 @@ def medir_ficha(slug, ident, banco):
     ok("%s: o banco concorda com a lista escrita a mao (fundo declarado: %s)"
        % (slug, "nao" if sem_fundo else "sim"),
        sem_fundo == ((e.get("base_minima_cm") or {}).get("largura") in (None, "")))
+    # A FRASE MUDOU EM 13/09/2026 (item 4 do despacho da Sentinela) e a DISTINCAO
+    # NAO: a abertura nao cita mais quem declarou — "a fonte declara a BASE" virou
+    # "O que manda é a BASE do aquário" —, porque a 15.2 proibe procedencia no
+    # primeiro paragrafo. A regua continua sendo a mesma pergunta: a ficha com
+    # fundo declarado fala de BASE e mostra o fundo; a ficha sem fundo fala de
+    # COMPRIMENTO e diz que o fundo FICA EM ABERTO. Esta e a SEGUNDA regua desta
+    # invariante, independente da do teste-voz.mjs, e as duas foram escritas em
+    # arquivos diferentes de proposito.
     if sem_fundo:
         ok("%s: a frase mestra diz COMPRIMENTO, nunca BASE" % slug,
-           "declara o COMPRIMENTO do aquário" in t and "declara a BASE" not in t)
+           "O que manda é o COMPRIMENTO do aquário" in t
+           and "o fundo fica em aberto" in t
+           and "é a BASE do aquário" not in t)
         ok("%s: declara a ausencia do fundo em vez de encolher calada" % slug,
            'class="aqm-px-sem-fundo"' in c and "não há largura declarada por ninguém" in t)
         ok("%s: e diz quais tabelas nao saem por causa disso" % slug,
@@ -418,7 +428,9 @@ def medir_ficha(slug, ident, banco):
            "Quem declara esse comprimento é o" in t and "Quem declara essa base é o" not in t)
     else:
         ok("%s: a frase mestra diz BASE, porque a fonte declarou os dois lados" % slug,
-           "declara a BASE" in t and "declara o COMPRIMENTO do aquário" not in t)
+           "O que manda é a BASE do aquário" in t
+           and "O que manda é o COMPRIMENTO do aquário" not in t
+           and "o fundo fica em aberto" not in t)
         ok("%s: nao declara ausencia de fundo que nao existe" % slug,
            'class="aqm-px-sem-fundo"' not in c)
 

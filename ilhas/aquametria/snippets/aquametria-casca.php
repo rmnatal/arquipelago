@@ -1,5 +1,24 @@
 /**
  * Aquametria Casca — identidade e estrutura do site
+ * Versão: 1.8.0 (13/09/2026) — A CASCA PASSA A SABER A DATA DA PÁGINA, e é dela
+ * que o JSON-LD de toda a ilha tira `dateModified`. Itens 1 e 2 do despacho da
+ * Sentinela de 13/09/2026: os três artigos serviam `'dateModified' => '2026-09-10'`
+ * escrito à mão, enquanto o `wp-sitemap-posts-post-1.xml` declarava
+ * `2026-09-13T13:38:10+00:00` para as MESMAS três URLs — duas datas da mesma
+ * página, e a do schema envelhecia sozinha a cada Sync. Trocar o literal por outro
+ * literal só reagendaria o defeito, então nasceu
+ * `aquametria_casca_data_da_pagina()`, que lê `post_modified_gmt` e
+ * `post_date_gmt` do post servido e formata em W3C no fuso UTC — a MESMA leitura
+ * que o sitemap do núcleo faz, o que torna as duas datas incapazes de discordar.
+ * Mora na casca porque a data é propriedade da PÁGINA, não do artigo nem da ficha
+ * de peixe, e a casca é a única camada que toda página tem; dois snippets com a
+ * função copiada divergiriam no dia em que um fosse corrigido. DATA AUSENTE
+ * DEVOLVE VAZIO e quem chama omite o campo: `strtotime(' UTC')` devolve AGORA e
+ * `strtotime('0000-00-00 00:00:00 UTC')` devolve o ano zero, então as duas guardas
+ * da função são carregadas — sem elas a página juraria ter mudado hoje. Medem isso
+ * `ferramentas/teste-datas-schema.py` (78 afirmações, três mundos produzidos) e
+ * `ferramentas/mutacoes-datas.py` (12 de 12).
+ *
  * Versão: 1.7.3 (12/09/2026) — A RODA DAS IRMÃS. Achado NO AR, na conferência da
  * leva 2: com sete filhas em /peixes/tetras/ e um teto de quatro irmãs, toda
  * página escolhia as mesmas quatro do topo do mapa, e as duas últimas da
@@ -187,7 +206,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_CASCA_VERSAO' ) ) {
-	define( 'AQUAMETRIA_CASCA_VERSAO', '1.7.3' );
+	define( 'AQUAMETRIA_CASCA_VERSAO', '1.8.0' );
 	/* A tagline é a primeira frase que um visitante lê no rodapé de toda página.
 	   Até a 1.3.1 ela era a descrição interna do produto ("Calculadoras e dados
 	   técnicos para dimensionar o seu aquário"); agora fala com quem chegou. */
@@ -562,6 +581,68 @@ function aquametria_casca_url_pagina( $slug ) {
 	/* Último recurso, só para não devolver href vazio a quem ainda chama isto
 	   direto. Quem publica link novo deve usar aquametria_casca_link_html(). */
 	return home_url( '/' . sanitize_title( $slug ) . '/' );
+}
+}
+
+/**
+ * 1a-bis. A DATA DA PÁGINA SERVIDA, no mesmo formato e da MESMA FONTE que o
+ * sitemap usa. Devolve '' quando o WordPress não tem a data.
+ *
+ * $qual: 'modificado' (padrão) ou 'publicado'.
+ *
+ * POR QUE ISTO MORA NA CASCA, e não em cada snippet que publica JSON-LD: a data
+ * de modificação não é propriedade do artigo nem da ficha de peixe, é
+ * propriedade da PÁGINA — e a casca é a única camada que toda página tem. Dois
+ * snippets com a mesma função copiada divergiriam no dia em que um fosse
+ * corrigido, que é a forma de defeito que este contrato paga mais caro.
+ *
+ * POR QUE `post_modified_gmt` E NÃO UMA CONSTANTE: até 13/09/2026 o JSON-LD dos
+ * três artigos declarava `'dateModified' => '2026-09-10'`, escrito à mão, e o
+ * `wp-sitemap-posts-post-1.xml` declarava `2026-09-13T13:38:10+00:00` para as
+ * MESMAS três URLs. Duas datas da mesma página, e a do schema envelhecia sozinha
+ * a cada Sync — trocar o literal por um literal novo só reagenda o defeito para
+ * a semana que vem. O sitemap do núcleo lê `post_modified_gmt` e formata em W3C
+ * no fuso UTC; esta função lê o MESMO campo do MESMO post e formata igual, então
+ * as duas datas não podem discordar — não porque alguém as comparou, mas porque
+ * são a mesma leitura. Item 1 do despacho da Sentinela de 13/09/2026.
+ *
+ * POR QUE A PÁGINA CORRENTE, e não um slug: quem chama isto imprime JSON-LD no
+ * `wp_head` da própria página, então o post correto é o que o WordPress já tem
+ * na mão. Aceitar slug obrigaria a resolver a página de novo por três vias e
+ * abriria a porta para uma página servir a data de outra — que é exatamente o
+ * defeito que estamos fechando, com outro nome.
+ *
+ * DATA AUSENTE DEVOLVE '' E QUEM CHAMA OMITE O CAMPO. Não existe data de
+ * reserva: `date('Y-m-d')` daria a data de HOJE a uma página que o WordPress diz
+ * não saber quando mudou, e data inventada em nó de schema é a mentira que a
+ * seção 10 do ARQUIPELAGO.md proíbe. Campo ausente é honesto; campo com a data
+ * errada não tem conserto do lado de quem lê.
+ */
+if ( ! function_exists( 'aquametria_casca_data_da_pagina' ) ) {
+function aquametria_casca_data_da_pagina( $qual = 'modificado' ) {
+	$pagina = get_post();
+	if ( ! $pagina ) {
+		return '';
+	}
+
+	$campo = ( 'publicado' === $qual ) ? 'post_date_gmt' : 'post_modified_gmt';
+	if ( ! isset( $pagina->$campo ) ) {
+		return '';
+	}
+
+	$cru = (string) $pagina->$campo;
+	/* '0000-00-00 00:00:00' é como o WordPress diz "não sei" — e é o valor que
+	   post_date_gmt carrega em rascunho. Vazio pelo mesmo motivo. */
+	if ( '' === $cru || 0 === strpos( $cru, '0000-00-00' ) ) {
+		return '';
+	}
+
+	$momento = strtotime( $cru . ' UTC' );
+	if ( ! $momento ) {
+		return '';
+	}
+
+	return gmdate( DATE_W3C, $momento );
 }
 }
 

@@ -1,5 +1,14 @@
 /**
  * Aquametria Calculadora de Vazão do Filtro — C3
+ * Versão: 1.5.1 (13/09/2026) — só o catálogo embutido mudou: as 5 fotos de produto
+ * desta página passou a viajar com `largura` e `altura`, medidas no Chrome pela
+ * ronda da Sentinela de 13/09/2026 (`naturalWidth` x `naturalHeight`) — o egresso
+ * desta nuvem barra o CDN do anúncio e continua barrando, reconferido por curl.
+ * Item 3 do despacho daquela ronda: o renderizador já emitia o par quando ele
+ * existia, e o que faltava era DADO. Medem isso
+ * `ferramentas/teste-dimensao-imagem.py`, no HTML servido, e
+ * `ferramentas/validar-produtos.py` (V19), no banco.
+ *
  * Versão: 1.5.0 (10/09/2026) — BLOCO T8, a VITRINE. A primeira do Arquipélago,
  *   e a C3 é a primeira porque é a que tem mais itens com foto e link. O que
  *   muda, em uma frase: até aqui a página vendia por ficha técnica, e ficha é o
@@ -134,7 +143,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_C3_VERSAO' ) ) {
-	define( 'AQUAMETRIA_C3_VERSAO', '1.5.0' );
+	define( 'AQUAMETRIA_C3_VERSAO', '1.5.1' );
 	define( 'AQUAMETRIA_C3_SLUG', 'calculadora-de-vazao-do-filtro' );
 	define( 'AQUAMETRIA_C3_VERIFICADO_EM', '09/09/2026' );
 	/* Constante 'eheim-classic-250-2213' (dados/constantes-calculadoras.json):
@@ -232,9 +241,9 @@ function aquametria_c3_catalogo() {
 			'imagem' => array(
 				'url' => 'https://down-bs-br.img.susercontent.com/br-11134207-7r98o-m8eusegtvu9dea.webp',
 				'alt' => 'Filtro canister Eheim classic 250 (2213) verde-escuro, corpo cilíndrico com cabeçote e torneiras duplas de mangueira',
-				'largura' => null,
-				'altura' => null,
-				'verificado_em' => null,
+				'largura' => 726,
+				'altura' => 726,
+				'verificado_em' => '2026-09-13',
 			),
 			'preco' => array(
 				'min' => 1600.0,
@@ -369,9 +378,9 @@ function aquametria_c3_catalogo() {
 			'imagem' => array(
 				'url' => 'https://down-bs-br.img.susercontent.com/sg-11134201-8259a-mfv658qccpho62.webp',
 				'alt' => 'Filtro externo hang-on Seachem Tidal 55 preto, caixa retangular com bomba interna e cesto de mídia visível pela tampa',
-				'largura' => null,
-				'altura' => null,
-				'verificado_em' => null,
+				'largura' => 1000,
+				'altura' => 1000,
+				'verificado_em' => '2026-09-13',
 			),
 			'preco' => array(
 				'min' => 1041.0,
@@ -406,9 +415,9 @@ function aquametria_c3_catalogo() {
 			'imagem' => array(
 				'url' => 'https://down-bs-br.img.susercontent.com/sg-11134201-825af-mgfepyprq7m0f6.webp',
 				'alt' => 'Filtro canister SunSun HW-702B, corpo cilíndrico branco e azul com cabeçote escuro e módulo UV, mangueiras e conexões ao lado',
-				'largura' => null,
-				'altura' => null,
-				'verificado_em' => null,
+				'largura' => 1001,
+				'altura' => 1001,
+				'verificado_em' => '2026-09-13',
 			),
 			'preco' => array(
 				'min' => 699.0,
@@ -443,9 +452,9 @@ function aquametria_c3_catalogo() {
 			'imagem' => array(
 				'url' => 'https://down-bs-br.img.susercontent.com/sg-11134201-7rd58-m7bniamcy29b62.webp',
 				'alt' => 'Filtro canister Eheim classic 600 (2217) em 220 V, corpo cilíndrico verde-escuro com cabeçote e torneiras duplas de mangueira',
-				'largura' => null,
-				'altura' => null,
-				'verificado_em' => null,
+				'largura' => 1024,
+				'altura' => 1024,
+				'verificado_em' => '2026-09-13',
 			),
 			'preco' => array(
 				'min' => 2700.76,
@@ -480,9 +489,9 @@ function aquametria_c3_catalogo() {
 			'imagem' => array(
 				'url' => 'https://down-bs-br.img.susercontent.com/sg-11134201-7rdvk-m192mqgywnem2a.webp',
 				'alt' => 'Filtro canister Eheim classic 600 (2217) em 127 V, corpo cilíndrico verde-escuro com cabeçote e torneiras duplas de mangueira',
-				'largura' => null,
-				'altura' => null,
-				'verificado_em' => null,
+				'largura' => 1024,
+				'altura' => 1024,
+				'verificado_em' => '2026-09-13',
 			),
 			'preco' => array(
 				'min' => 2700.76,

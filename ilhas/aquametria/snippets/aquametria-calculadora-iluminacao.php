@@ -1,5 +1,14 @@
 /**
  * Aquametria Calculadora de Iluminação e Fotoperíodo — C15
+ * Versão: 1.4.1 (13/09/2026) — só o catálogo embutido mudou: a única foto de produto
+ * desta página passou a viajar com `largura` e `altura`, medidas no Chrome pela
+ * ronda da Sentinela de 13/09/2026 (`naturalWidth` x `naturalHeight`) — o egresso
+ * desta nuvem barra o CDN do anúncio e continua barrando, reconferido por curl.
+ * Item 3 do despacho daquela ronda: o renderizador já emitia o par quando ele
+ * existia, e o que faltava era DADO. Medem isso
+ * `ferramentas/teste-dimensao-imagem.py`, no HTML servido, e
+ * `ferramentas/validar-produtos.py` (V19), no banco.
+ *
  * Versão: 1.4.0 (12/09/2026) — BLOCO T3a: A PRATELEIRA VAZIA ERA UM SINÔNIMO.
  *
  *   O mesmo banco escrevia o mesmo fato de duas maneiras. Seis registros da família
@@ -147,7 +156,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_C15_VERSAO' ) ) {
-	define( 'AQUAMETRIA_C15_VERSAO', '1.4.0' );
+	define( 'AQUAMETRIA_C15_VERSAO', '1.4.1' );
 	define( 'AQUAMETRIA_C15_SLUG', 'calculadora-de-iluminacao' );
 	define( 'AQUAMETRIA_C15_VERIFICADO_EM', '08/09/2026' );
 	define( 'AQUAMETRIA_C15_PAGINA_AFILIADOS', 'divulgacao-de-afiliados' );
@@ -593,9 +602,9 @@ function aquametria_c15_catalogo() {
 			'imagem' => array(
 				'url' => 'https://down-bs-br.img.susercontent.com/sg-11134201-7rd3v-lvuh440s5u5jc3.webp',
 				'alt' => 'Luminária LED Chihiros A-Series A901, barra de alumínio anodizado de 90 cm com LEDs brancos de espectro completo acesos',
-				'largura' => null,
-				'altura' => null,
-				'verificado_em' => null,
+				'largura' => 692,
+				'altura' => 692,
+				'verificado_em' => '2026-09-13',
 			),
 			'preco' => array(
 				'min' => 768.6,
