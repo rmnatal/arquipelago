@@ -125,6 +125,15 @@ dizia "39 esperam link" e **não dizia que 78 estavam sem piso**, que é outra
 coisa e é a que a 25.2 chama de defeito. Uma das mutações troca a contagem por um
 `78` digitado no lugar certo, e o portão pega.
 
+### No ar às 17h38Z, em UM disparo
+
+`/status` na **revisão 68**, igual à do `manifest.json`, 19 aplicados. E a
+conferência que só o ar faz, rodada **depois** do Sync: `conferir-peixes-no-ar`
+**356** afirmações e `conferir-datas-e-voz-no-ar` **170**, 0 falha nas duas, com
+a home em 200. Este bloco não mudou uma linha do que o site serve, e é
+exatamente por isso que as duas baterias no ar valem aqui: elas provam que a
+revisão andou **sem** a tela andar junto, que era o desenho.
+
 ### Verificação na bancada, 0 falha
 
 `teste-escada-compra.py` **522** afirmações (novo) · `mutacoes-escada.py`
