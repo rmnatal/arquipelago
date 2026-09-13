@@ -141,25 +141,23 @@ despacho do GA4 registra ter caído — resumo velho lido como fato.
 
 Aberto em 13/09/2026 pela seção 25. O banco já tem `afiliado.url_busca` e `afiliado.degrau` nos dez materiais, e `afiliado.imagem.url` em três deles (Cascorez, silicone acético e rejunte acrílico, vindos do feed da Shopee). Falta a casca e as fichas **usarem**: o botão de compra aponta para `url`, e logo abaixo, em texto discreto com `rel="sponsored nofollow noopener"`, a linha "Veja todos disponíveis aqui" apontando para `url_busca`. Onde houver `imagem.url`, mostre a foto com `width` e `height` (regra 22.4) e o `alt` que está no banco. **Item de `degrau` 3 sem `url_busca` não pode ir ao ar** — portão novo para o `teste-casca.php`.
 
-### aquametria — 39 links de afiliado nunca foram conferidos, e não dá para conferir
+### aquametria — piso de busca em todos os 78 itens, e os 39 links velhos sob suspeita
 
-Aberto em 13/09/2026 pela seção 25. **Prioridade alta, e a razão é um número:** no Clube do Mosaico, **quatro de nove links da Shopee morreram em menos de doze horas** — dois com "O produto não existe", dois esgotados. Os 39 links da Aquametria foram gerados pelo mesmo método (anúncio de vendedor comum, degrau 3 da escada) e são **muito mais velhos**. A taxa de morte esperada é pior, não melhor.
+Reescrito em 13/09/2026 pela decisão de 25.2 ("100% automático, sem tocar").
 
-E não dá para medir: o banco guarda só o `s.shopee.com.br/XXXX`, sem `url_produto` (ver 25.4-b). A URL da página se perdeu.
+**Passo único e inteiramente de máquina: gere `url_busca` para os 78 itens do banco**, pelo gerador da Shopee, que aceita clique de script — 5 URLs por lote, Sub_id 1 = `aquametria`, Sub_id 2 = o código da ferramenta de origem. A partir daí **nenhum item da ilha fica sem porta de compra**, e a ilha para de depender de qualquer pessoa.
 
-**O que fazer, e a ordem importa.** O feed oficial foi medido em 13/09 e **não serve para esta ilha** (ver 25.3): a categoria de aquário dele é quase toda pesca. Então o caminho é o **degrau 2**, catálogo `/p/` do Mercado Livre, onde Eheim, Chihiros e Seachem existem de verdade e a página não morre. **Antes de gerar um link sequer, meça quantos produtos distintos as páginas PUBLICADAS realmente citam** — o banco tem 78 itens, mas só os que aparecem em página no ar custam venda hoje, e gerar link para os outros é trabalho sem retorno. Gere primeiro a lista curta, em lote, para um clique só do Raphael no gerador do Mercado Livre. Cada item sai com `url_produto`, `url_busca`, `degrau` e `conferido_em`.
+Os 39 links antigos ficam onde estão **e sob suspeita declarada**: nasceram do degrau 3, são velhos, e o banco não guarda `url_produto`, então não há como conferi-los (25.4-b). Não os apague — com a 25.2 no ar, a página tem piso mesmo se algum estiver morto. Quando qualquer um for reescolhido, o novo sai com `url_produto`, `degrau` e `conferido_em`.
 
-**Os 39 itens que hoje NÃO têm link continuam sem link até isso acontecer** — não adianta encher o cano com mais links do degrau 3; seria repetir o erro em escala maior. Consertar os 39 existentes vem antes de gerar os 39 que faltam.
+**Não espere feed. Não espere clique.** O feed oficial foi medido e não cobre aquarismo (25.3); o Mercado Livre daria links melhores mas exige o clique dele, e por 25.2 isso é oportunidade, não plano. Se sobrar folga numa execução, monte a lista de candidatos `/p/` do Mercado Livre e deixe pronta em `dados/links-afiliado-pendentes.md` — ele gera quando quiser, sem que nada dependa disso.
 
-O feed só é baixável pelo navegador logado do Raphael (a nuvem recebe 401 e a extensão bloqueia o redirecionamento). Ou seja: **este despacho precisa do arquivo dele.** Peça na Pauta.
+### robometria — a ilha recomenda peça e não tem UMA porta de compra. Piso de busca agora.
 
-### robometria — a ilha está no ar recomendando peça e não tem UM link de compra
+Reescrito em 13/09/2026 pela decisão de 25.2. **Prioridade alta: esta é a única ilha no ar com ZERO link**, e é a cicatriz da seção 8 aberta na ilha que a gerou — ela faz o trabalho caro da compatibilidade e entrega o clique de graça.
 
-Aberto em 13/09/2026. As 44 respostas do banco (`r1-respostas.json` com 33, `r2-respostas.json` com 11) têm **zero** links de afiliado e **zero** fotos. Isto não é pendência nova: é a cicatriz de 10/09 registrada na seção 8 do contrato — "PROCEDÊNCIA NUNCA É A ÚNICA PORTA DE COMPRA" — ainda aberta na ilha que a gerou.
+**Passo único e de máquina: `url_busca` nas 44 respostas** (`r1-respostas.json` 33, `r2-respostas.json` 11), pelo gerador da Shopee. A chave de busca é o nome da peça mais o modelo do robô, que é exatamente como a pessoa procura. Sub_id 1 = `robometria`, Sub_id 2 = R1 ou R2 conforme a ferramenta.
 
-A ilha responde "qual peça serve no seu robô", a pessoa descobre a peça certa, e **não tem onde comprar**. É o pior estado possível para uma ilha de afiliado: ela faz o trabalho caro (a compatibilidade) e entrega o clique de graça para outro.
-
-O recorte do feed oficial já está em `ilhas/robometria/dados/feed-shopee-oficial.json`, e ele **prova que o degrau 1 não resolve esta ilha**: das 27 linhas, só três são peça de reposição. Use as três, e para o resto vá direto ao **degrau 2**, catálogo `/p/` do Mercado Livre, que é onde peça de robô aspirador existe com nome e código. Mesma disciplina da Aquametria: **meça primeiro quantas peças as 9 páginas publicadas citam**, gere só essas, em um lote só, e deixe o resto do banco esperando. `url_produto`, `url_busca`, `degrau` e `conferido_em` em todos.
+Três itens do `dados/feed-shopee-oficial.json` são peça de verdade (controle remoto Electrolux, pano mop Dreame, bateria WAP K21) — esses podem virar ficha de produto no degrau 1, com `url_produto` e foto. O resto fica no piso. **O recorte do feed já provou que loja oficial não vende reposição; não gaste execução procurando mais lá.**
 
 ---
 

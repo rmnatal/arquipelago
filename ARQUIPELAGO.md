@@ -660,9 +660,19 @@ Toda escolha de link de compra desce esta escada e **para no primeiro degrau que
 3. **Anúncio de vendedor comum na Shopee.** Último recurso. Foi o degrau que quebrou quatro em doze horas. Quem usa este degrau **tem de** ter `url_busca` preenchida.
 4. **Link de busca** — `shopee.com.br/search?keyword=...`, transformado em link de afiliado pelo gerador normal. Página de busca não esgota e não some. Converte pior que ficha de produto, mas é o que separa "ver outras ofertas" de beco sem saída.
 
-### 25.2 Na página, dois links e um só botão
+### 25.2 O PISO É A BUSCA, E O PISO NUNCA DEPENDE DE NINGUÉM
 
-O **botão** é o degrau mais alto que serviu. Abaixo dele, discreto e em texto, **"Veja todos disponíveis aqui"** apontando para a `url_busca`. Isso é do Raphael, 13/09, e é melhor do que trocar o botão quando o link morre — porque não depende de a máquina ter medido a morte a tempo. Item sem `url_busca` não vai ao ar no degrau 3.
+**Decisão do Raphael, 13/09/2026, textual: "deve ser 100% automático sem eu tocar."** Isto manda na seção inteira e desempata todo conflito abaixo.
+
+A consequência é dura e tem de ser dita: **o link de busca deixa de ser plano B e passa a ser o PISO GARANTIDO de todo item.** Ele é o único elo da corrente que a máquina fabrica sozinha, do começo ao fim, sem clique de ninguém — o gerador da Shopee aceita página de busca e responde a clique de script (medido em 13/09, nove links numa sessão). Ficha de produto converte melhor, mas ficha de produto ou depende de escolha verificável ou apodrece; **busca não apodrece e não espera.**
+
+Portanto:
+
+- **Todo item ganha `url_busca` ANTES de qualquer outra coisa.** Item sem `url_busca` é defeito da 19.1, sempre, em qualquer degrau. Não existe item publicável sem piso.
+- **A ficha de produto (`url`) é BÔNUS, não requisito.** Quando existir e estiver viva, ela vira o botão e a busca desce para a linha discreta "Veja todos disponíveis aqui" logo abaixo. Quando não existir, ou quando a ronda marcar como morta, **a busca sobe e vira o botão** — sem esperar decisão humana, sem página ficar com "link de loja em breve".
+- **Nada, nunca, fica na fila esperando o Raphael.** Se um degrau melhor exige clique dele, aquele degrau é oportunidade, não plano: a página já está monetizada pelo piso enquanto isso.
+
+**O que isso custa, dito sem maquiar:** busca converte menos que ficha. Estamos trocando alguns pontos de conversão por uma máquina que não para e não acumula dívida na mesa de ninguém. Foi escolha consciente do dono.
 
 ### 25.3 Os dois feeds da Shopee, e o que cada um é
 
@@ -711,3 +721,18 @@ A mesma regra vale para `url_busca`: guarde a URL crua da busca em `afiliado.url
 ### 25.5 O que isto custa, dito na cara
 
 Subir a qualidade empurra itens para o degrau 2, e o gerador do Mercado Livre tem reCAPTCHA. Ou seja: **menos link morto, mais clique do Raphael.** É troca consciente. A ilha prefere depender de um clique dele a mandar a mãe de alguém para "produto não existe".
+
+### 25.6 O QUE É AUTOMÁTICO HOJE, E O QUE SÓ SERIA COM CREDENCIAL
+
+Medido em 13/09/2026. Escrito aqui para ninguém replanejar em cima de suposição.
+
+**Automático, sem humano, hoje:**
+- Gerar link de afiliado da Shopee (produto, busca, loja ou categoria), com Sub_id, pelo `affiliate.shopee.com.br/offer/custom_link`. Até 5 URLs por vez, saída na ordem de entrada. **Responde a clique de script.**
+- Ler a página de um produto da Shopee e decidir se está viva (25.4).
+
+**NÃO automático, e por quê:**
+- **Gerador do Mercado Livre** — reCAPTCHA. Clique de script não dispara nem requisição de rede. Os links `/p/` já gerados continuam valendo e são ótimos; **novos, só com clique do Raphael.** Por 25.2, isso nunca bloqueia página: é oportunidade.
+- **Baixar o feed da Shopee** — exige a sessão logada dele (401 de fora; a extensão bloqueia o redirecionamento de dentro). **O feed sai do caminho crítico:** é insumo oportunista, aproveitado quando ele mandar um, nunca esperado. Nenhum bloco pode ter "esperar o feed" como passo.
+- **Open API da Shopee** — `AppID` e `Senha` vazios; acesso não concedido. Pedido aberto pelo formulário de afiliado em 13/09. Ela é **GraphQL**, não REST: quando a credencial chegar, a consulta é um POST com `{"query": "..."}` no corpo, e não é preciso biblioteca nenhuma — `requests` basta, como em `ferramentas/ga4.py`. **Enquanto não chegar, nada depende dela.**
+
+**A aposta e o piso são coisas diferentes.** A API é aposta: se vier, o degrau 1 vira automático e verificado com estoque. O piso é a busca, e o piso já está de pé.
