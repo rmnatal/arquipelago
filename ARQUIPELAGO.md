@@ -6,7 +6,7 @@ Este contrato tem mais de 500 linhas e continua crescendo. **Ninguém lê tudo.*
 
 | Papel | Seções |
 |---|---|
-| **Fundação** | 1 a 11, 13 a 18, 20, 21, 22, 24 |
+| **Fundação** | 1 a 11, 13 a 18, 20, 21, 22, 24, 26 |
 | **Sentinela — ronda diária** | 2, 3, 4, 10, 12, 15, 16, 18, 19, 21, 22, 23, 24 |
 | **Painel** | quem escreve é a ronda diária, pela seção 23. Quem quiser saber o estado do Arquipélago lê `dados/PAINEL.md` e não precisa de seção nenhuma |
 | **Sentinela — leitura semanal** | 2, 3, 4, 10, 12, 12.1, 14, 18, 21 |
@@ -738,3 +738,31 @@ Medido em 13/09/2026. Escrito aqui para ninguém replanejar em cima de suposiç�
   **E o que a API muda, para ninguém superdimensionar:** ela deixa o **degrau 1 automático e verificado com estoque**, o que hoje depende do feed que só o Raphael baixa. Ela **não** substitui o piso da 25.2 — a busca continua sendo o piso, porque é o único elo que não depende de concessão de terceiro. Se a Shopee negar ou demorar, **nenhum bloco trava**.
 
 **A aposta e o piso são coisas diferentes.** A API é aposta: se vier, o degrau 1 vira automático e verificado com estoque. O piso é a busca, e o piso já está de pé.
+
+---
+
+## 26. O VOCABULÁRIO DA ILHA CLASSIFICA PELA FUNÇÃO; O FABRICANTE BATIZA PELA POSIÇÃO (13/09/2026)
+
+**Medido na Robometria, em 13/09/2026, colhendo peça da WAP.** O banco daquela ilha separa `escova lateral` de `escova principal` — são **funções**, e é a função que decide se a peça encaixa. O fabricante não nomeia função nenhuma: ele batiza pela **posição** ou pelo marketing. A mesma marca publica "Escova Direita", "Escova Esquerda", "Escova Central", "Escova Frontal" e "Escova Rotativa", e nenhuma dessas cinco palavras está no vocabulário da ilha.
+
+**A prova de que ler a função do nome é chute, e ela é da própria fonte:** o conteúdo declarado do WAP Robot W300 chama de "escovas **giratórias** direita e esquerda" o par **LATERAL**; o artigo de limpeza do WAP Robot W90, no blog da mesma marca, chama de "Escova Principal (Escova **giratória**)" a **PRINCIPAL**. Mesma palavra, mesmo fabricante, funções opostas. Quem tivesse lido "Escova Rotativa para o W90" e gravado `escova lateral` porque "rotativa parece lateral" acertaria ou erraria por sorte — e a ferramenta publicaria o palpite com cara de declaração do fabricante, que é a única coisa que a ilha vende.
+
+### 26.1 A regra
+
+**Todo campo de vocabulário controlado que o título da fonte não declara literalmente nasce com o registro de ONDE ele foi lido.** Não é um comentário: é campo, e o validador do banco o exige. São três origens legítimas, e só três:
+
+1. **No título** — a palavra do eixo está publicada ("Escova Lateral", "Side Brush", "Escova Central"). É o caso barato e o mais comum.
+2. **No contraste do catálogo do próprio fabricante, para aquele modelo** — o título não tem a palavra, mas a fonte publica a vizinha que tem. A Xiaomi chama uma peça de "Brush" e a outra de "Side Brush": a que não é "Side" é a principal, e quem declarou isso foi ela, não a ilha. Vale **dentro do catálogo daquele modelo** — contraste emprestado de outro modelo é herança, e compatibilidade não se herda.
+3. **No canal de manutenção do fabricante** — o manual ou o artigo de suporte daquele modelo nomeia a função.
+
+**Sem nenhuma das três, o registro NÃO nasce.** Foi o que aconteceu com a escova do W90: o catálogo daquele modelo publica **uma** escova, sem vizinha para contrastar, enquanto o canal de manutenção da própria WAP declara que o W90 tem **duas**. Não havia de onde ler, e a peça ficou de fora com a causa escrita. Lacuna com causa nomeada é dado; lacuna preenchida por semelhança é defeito que ninguém vê até alguém comprar a peça errada.
+
+### 26.2 Onde a lista mora, e por quê
+
+**Quais campos exigem essa declaração é decisão do esquema da ilha, escrita no esquema — nunca dentro do validador.** Na Robometria é `tipos_que_exigem_funcao_declarada`, com os dois tipos que o título do fabricante não separa; filtro, mop e bateria ficam de fora porque o título nomeia o que a peça é. Lista digitada dentro da régua envelhece calada: o dia em que um tipo novo sofrer do mesmo mal, ele entra numa linha do esquema e a trava passa a cobrá-lo sem uma linha de código.
+
+**E a trava tem de reprovar quando a lista some.** Régua que lê a própria lista de um arquivo de dados aprova tudo, em silêncio, no dia em que o arquivo perder a chave — o banco de hoje continua verde e o registro seguinte entra sem o campo. A mutação que prova isso não estraga registro nenhum: ela apaga a chave do esquema.
+
+### 26.3 A frase da tela é a outra metade, e ela é mais difícil
+
+Quando a função veio do **contraste** e não do título, a página **não pode dizer que o fabricante declarou a função** — ele declarou a compatibilidade e o nome; a classificação é da ilha. "A marca declara a escova lateral X compatível com o modelo Y" está certo no caso 1 e empresta autoridade no caso 2. O campo de 26.1 é o que torna essa diferença mensurável pela primeira vez: quem monta a frase lê `declarada_por` e escolhe a atribuição. Ilha que já tenha o campo e ainda não a frase escreve isso no `ESTADO.md` como dívida nomeada, nunca como detalhe.

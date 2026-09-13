@@ -4,7 +4,7 @@
   "nicho": "robo aspirador — compatibilidade de pecas e consumiveis, e dimensionamento de succao e autonomia",
   "dominio": "https://robometria.com.br",
   "versao_manifest": 1,
-  "revisao": 27,
+  "revisao": 28,
   "atualizado_em": "2026-09-13",
   "estado": "nascendo",
   "desembarque": {
@@ -128,7 +128,7 @@
       "verificado_em": "2026-09-09",
       "registros": 5,
       "publicar": false,
-      "sha256": "e51d6071f4cb86fc8800eaeb8e046d9106fbc79bbb8f6019a61c1f4aefa5cf7e",
+      "sha256": "c0d2c2bff958d37ba58799d356d9fceacd661c2b45e8afa3e5f936d2758cf2b9",
       "descricao": "Cinco marcas com site oficial, canal de pecas e sameAs[] para o JSON-LD Organization: Multi (ex-Multilaser), Electrolux, Xiaomi, Positivo Casa Inteligente e WAP. A WAP entrou na segunda leva do Bloco 3c e e a unica da coleta que publica manual em PDF por modelo em endereco proprio e estavel — e portanto a candidata a primeira fonte de NIVEL 2 desta ilha no dia em que o egresso abrir."
     },
     {
@@ -152,7 +152,7 @@
       "verificado_em": "2026-09-09",
       "registros": 18,
       "publicar": false,
-      "sha256": "f02f6c3877a6212b5049d0b2583ab53d58108353f71a825cf00123c78443ada6",
+      "sha256": "200d32c341bbd756da012293e0c2c1a49114991c072639d9b76b066a09c1c192",
       "descricao": "18 pecas com 33 pares peca x modelo, TODOS declarados pelo fabricante e nenhum inferido. O Bloco 3c acrescentou 10: o Kit Performance KPCEL01 (que finalmente da dono a vida util de 6 meses do manual da Electrolux), o filtro HEPA com espuma do ERB44/60/61/62, o kit do ERB60/61/62, a escova rotativa central do ERB60/61/62/80, os kits do ERB44 e do ERB30, as tres pecas da Positivo para PRA800/PRA2000 e os acessorios do Xiaomi S20. Duas divergencias seguem resolvidas pelo conjunto mais estreito, com as duas declaracoes publicadas."
     },
     {

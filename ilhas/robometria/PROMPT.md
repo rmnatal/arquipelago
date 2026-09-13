@@ -176,6 +176,15 @@ menor:**
 
 (a) **PEÇAS COM CÓDIGO DA XIAOMI E DA WAP — a urgência número 1, e ela só apareceu no
 cruzamento das duas varreduras.** Esta linha estava em ÚLTIMO lugar até 10/09/2026.
+**ATUALIZAÇÃO 13/09/2026, segunda leva do dia — o lado WAP foi aberto e a linha MUDOU DE
+NATUREZA.** A R1 saiu de 20 para **22** modelos que respondem e o vazio caiu de 13 para
+**11**: W300 e WSMART entraram com 4 escovas. O que falta **não é mais achar a página** e
+**não é rede** — a busca alcança a loja e o blog da WAP. Falta (i) o **código** da ficha,
+que a busca não devolve (só o título e a URL), e (ii) a **função** da escova nos modelos de
+escova única, que a seção 26 do `ARQUIPELAGO.md` proíbe ler do nome. Os dois se resolvem
+pelo mesmo lugar: os manuais em PDF do item (c). Detalhe por alvo em
+`dados/pecas.json` → `lista_de_compras`. **Sobram W400, W1000, W310 e W90 no vazio da
+marca**, e o W90 é recusa medida, não lacuna de procura.
 Medido: das 28 entradas publicáveis, só **3** são atendidas pelas DUAS ferramentas da
 ilha. A R2 atende 8 modelos (Xiaomi, WAP, PRA500) em que a R1 sai **vazia**; a R1 atende
 12 (Electrolux, Multi) em que a R2 sai vazia. **O funil está partido na emenda:** a ilha

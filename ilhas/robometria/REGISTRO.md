@@ -2837,3 +2837,138 @@ inteira saiu.
    na leva 4.
 5. A leva de malha (5b) **continua travada** pela metade humana do despacho de
    10/09 — o reenvio do sitemap no Search Console, que é do Raphael.
+
+---
+
+## 2026-09-13, 15h32Z — bloco 3c, leva 6: as primeiras peças da WAP, e a função da escova vira campo porque o título do fabricante não a declara
+
+**Bloco de BANCO, zero URL nova.** Esquema do banco na **versão 4**, manifest na
+revisão **27**, `/status` conferido às 15h29Z em **um** disparo (10 aplicados).
+
+**O número que mede o bloco:** a R1 sai de **20 para 22** modelos que respondem e
+o vazio cai de **13 para 11**. W300 e WSMART saem da lacuna que a varredura de
+10/09 apontou como urgência número 1 — o lado da emenda que dava para colher.
+Banco: **32 peças, 29 publicáveis, 59 pares**.
+
+### QUATRO PEÇAS ENTRAM, UMA É RECUSADA — e a recusa é o achado
+
+| peça | tipo | modelo | função declarada por |
+|---|---|---|---|
+| Escova Direita Para Robô Aspirador de Pó Robot W300 | escova lateral | W300 | contraste no catálogo |
+| Escova Esquerda Para Robô Aspirador WAP Robot W300 | escova lateral | W300 | contraste no catálogo |
+| Escova Central Para Robô Aspirador de Pó WAP Robot WSMART | escova principal | WSMART | título |
+| Escova Frontal Para Robô Aspirador de Pó WAP Robot WSmart | escova lateral | WSMART | contraste no catálogo |
+
+### A FUNÇÃO NÃO SE LÊ DO NOME DO PRODUTO
+
+O vocabulário desta ilha separa `escova lateral` de `escova principal` — são
+**funções**, e é a função que decide se a peça encaixa. O fabricante não nomeia
+função nenhuma: batiza pela **posição**. A WAP publica "Escova Direita", "Escova
+Esquerda", "Escova Central", "Escova Frontal" e "Escova Rotativa", e nenhuma
+dessas cinco palavras está no vocabulário.
+
+**A prova de que ler a função do nome é chute veio da própria fonte, e é o
+parágrafo mais importante desta entrada:**
+
+- o conteúdo declarado do **W300** chama de "escovas **giratórias** direita e
+  esquerda" o par **LATERAL**;
+- o artigo de limpeza do **W90**, no blog da **mesma marca**, chama de "Escova
+  Principal (Escova **giratória**)" a **PRINCIPAL**.
+
+Mesma palavra, mesmo fabricante, funções opostas. Quem lesse "Escova Rotativa
+para o W90" e gravasse `escova lateral` porque "rotativa parece lateral"
+acertaria ou erraria por sorte — e a R1 publicaria o palpite com cara de
+declaração do fabricante, que é a única coisa que esta ilha vende.
+
+**Por isso a escova do W90 não entrou.** O catálogo daquele modelo publica **uma**
+escova, sem vizinha para contrastar, enquanto o canal de manutenção da própria WAP
+declara que o W90 tem **duas**. Não há de onde ler. O que destrava é o manual
+`FW010263 REV00JAN24`, nomeado na busca e atrás do egresso fechado — **não é falta
+de procura**.
+
+### A SEGUNDA RECUSA: O CÓDIGO, NAS QUATRO
+
+`FW006267`, `FW008028` e `FW009132` voltaram em **uma** passada e **sempre** em
+título de marketplace ou de varejista (níveis 5 e 6), **nunca** num canal da WAP.
+A segunda passada restrita à loja oficial devolve a página e o título, e **não o
+campo da ficha**. Os quatro registros entraram com `codigo_fabricante: null` e
+motivo, pela mesma regra que já vale para a Electrolux; o par com o modelo é
+declarado pelo **título publicado**, que é a régua escrita na leva Xiaomi de hoje
+mais cedo.
+
+Isso corrige pela metade a frase que estava em `marcas.json`: **a ficha tem
+código — a busca é que não o alcança.**
+
+### O CAMPO NOVO, E ONDE A LISTA MORA
+
+`funcao{declarada_por, fonte, declarado_como}`, obrigatório nos tipos que o título
+do fabricante não separa. Três origens legítimas e só três: o **título**, o
+**contraste** do catálogo do fabricante para **aquele** modelo, e o **canal de
+manutenção**. As 8 escovas que já estavam no banco foram preenchidas — 5 pelo
+título, 3 pelo contraste (as duas Xiaomi "Brush", que só significam "principal"
+porque a vizinha se chama "Side Brush", e a Escova Frontal do WSMART).
+
+A lista de tipos mora no **esquema** (`tipos_que_exigem_funcao_declarada`), não
+dentro da régua, pelo mesmo motivo que matou o piso digitado do `teste-acentuacao`
+ontem: **lista dentro da régua envelhece calada.**
+
+**A mutação que importa é a (6), e ela não estraga registro nenhum.** Tira do
+esquema a lista de tipos. Sem a trava que **exige** a chave, o validador passaria a
+aprovar tudo em silêncio — banco de hoje verde, peça seguinte entrando sem o campo,
+e a falha só aparecendo no dia em que alguém comprasse a peça errada.
+
+**A regra subiu para o contrato como seção 26 do `ARQUIPELAGO.md`**, porque não é
+da Robometria: toda ilha com vocabulário controlado classifica pela função e lê
+título escrito pelo marketing de outra pessoa.
+
+### DESCOBERTA DE PROCESSO
+
+`blog.wap.ind.br` é **onde a WAP nomeia a função das peças, por modelo** — a loja
+nunca faz isso. Até hoje só `wap.ind.br`, `loja.wap.ind.br` e
+`mais.conteudo.wap.ind.br` tinham sido testados. Foi o blog que sustentou a recusa
+do W90 e o contraste do W300.
+
+### VERIFICAÇÃO
+
+**Bancada, 0 falha:** `validar-banco` APROVADO; **902 afirmações** em 8 portões
+(casca 200, r1 96, a1 56, r2 92, a2 73, acentuação 17, árvore 213, voz 155);
+`php -l` limpo. **Mutações: 116 em 11 baterias, 116 reprovadas, 0 passaram, 0
+inertes** — as 109 antigas rodadas inteiras para provar que nenhuma morreu com o
+banco maior. `mutacoes-funcao-da-escova.py`: 7 de 7.
+
+**No ar às 15h29Z, em um disparo:** `/status` na revisão 27 igual à do manifest;
+`conferir-no-ar` 149 e `conferir-kits-no-ar` 163, zero falha. E a medição que só
+este bloco tinha para fazer, **no HTML servido** e com parâmetro anti-cache (a
+armadilha que o bloco das 13h32Z nomeou):
+
+- `?modelo=wap-w300` serve *"declara a **escova lateral** «Escova Direita…»"* e
+  *"a **escova lateral** «Escova Esquerda…»"*, e **não** serve Central nem Frontal;
+- `?modelo=wap-wsmart` serve *"a **escova principal** «Escova Central…»"* e
+  *"a **escova lateral** «Escova Frontal…»"*, e **não** serve Direita nem Esquerda;
+- `?modelo=wap-w90` **não serve nenhuma das cinco** — a recusa vale em produção, e
+  não só na bancada;
+- a página passou a servir *"Em **11** dos 33 modelos"* onde servia 13.
+
+**Rede (20.2), remedida às 15h17Z:** `robometria.com.br` em **200** na home e no
+`/status`; `wap.ind.br`, `loja.wap.ind.br` e `blog.wap.ind.br` em **000** por
+`connect_rejected` (política de egresso) **na mesma passada**, e o WebFetch de
+`loja.wap.ind.br` devolveu `EGRESS_BLOCKED`. Por isso a coleta inteira saiu por
+busca restrita e todas as fontes desta leva são **nível 4**.
+
+### O QUE ESTE BLOCO ABRIU E NÃO FECHOU
+
+1. **A ilha não cumpre a seção 25.2 do contrato**, escrita ontem: *"todo item ganha
+   `url_busca` ANTES de qualquer outra coisa; item sem `url_busca` é defeito da
+   19.1, sempre."* Medido: `url_busca` **não existe em nenhum arquivo** do banco
+   desta ilha, e são **62 itens publicáveis** (33 modelos + 29 peças) sem piso de
+   monetização — a ilha está no ar com "link de loja em breve" em todo cartão. Não
+   foi consertado aqui porque é esquema + dois geradores + snippet, com portão
+   próprio, e não cabe na cauda de um bloco de coleta. **É o maior buraco nomeado
+   desta ilha hoje.**
+2. **A frase da tela atribui ao fabricante a função que a ilha derivou.** *"A WAP
+   declara a escova lateral «Escova Direita…»"* está certo quando a função veio do
+   título e **empresta autoridade** quando veio do contraste (3 das 8 escovas). O
+   defeito é **anterior** a este bloco — já estava no ar nas duas Xiaomi "Brush";
+   o que mudou é que agora ele é **mensurável**, porque `declarada_por` existe.
+   Está escrito na seção 26.3 do contrato.
+
