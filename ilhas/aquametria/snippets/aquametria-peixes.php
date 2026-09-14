@@ -1,6 +1,95 @@
 /**
  * Aquametria Peixes — a malha do eixo /peixes/
- * Versão: 1.6.0 (13/09/2026) — A PRESTAÇÃO DE CONTAS DA SEÇÃO 7 ALCANÇA QUEM
+ * Versão: 1.7.0 (14/09/2026) — LEVA 4: A TERCEIRA CATEGORIA DO EIXO, E O EIXO
+ * APRENDE QUE PEIXE NEM SEMPRE VIVE EM CARDUME. Quatro URLs novas:
+ * /peixes/bettas/ e as fichas do betta, da colisa-anão e do gurami mel.
+ *
+ *   O QUE A CATEGORIA CUSTOU EM CÓDIGO, e não era o que parecia. Preencher a
+ *   lista de espécies da `bettas` é uma linha; o que esta leva pagou foi outra
+ *   coisa. Até 13/09/2026 as ONZE fichas no ar eram `convivencia: cardume`, sem
+ *   exceção — e por isso a palavra "cardume" estava DIGITADA em sete lugares do
+ *   corpo da ficha: a abertura, a legenda da tabela de lotação, o contraexemplo
+ *   do cubo, a chamada do filtro, o bloco da espécie agressiva, a linha da
+ *   tabela de fontes e o rabicho do JSON-LD. Era verdade em toda página
+ *   publicada e é FALSA em três das quatro desta leva: o betta vive sozinho, a
+ *   colisa-anão vive em casal e o gurami mel vive em grupo — e a fonte dele
+ *   escreve, com todas as letras, que a espécie NÃO é gregária no sentido dos
+ *   peixes de cardume.
+ *
+ *   É a cicatriz da seção 8 do ARQUIPELAGO.md em estado puro, no lado que ela
+ *   chama de "régua escrita para um mundo que nunca aconteceu": o esquema desta
+ *   ilha permite `solitario`, `casal`, `harem` e `grupo` desde o primeiro dia —
+ *   `aquametria_peixes_pode_virar_ficha()` cita os três primeiros PELO NOME — e
+ *   o banco nunca tinha produzido um. Nenhum portão podia falhar, e nenhum
+ *   falhou.
+ *
+ *   O VOCABULÁRIO É FECHADO e mora num mapa só, `aquametria_peixes_arranjo()`.
+ *   Termo fora dele devolve null e a espécie não vira ficha: inventar coletivo
+ *   para valor novo é pior que não publicar.
+ *
+ *   DUAS RECUSAS QUE A LEVA ESCREVEU:
+ *
+ *   1. A ESCADA DE LOTAÇÃO SÓ SOBE ONDE A FONTE DEIXA. No betta, a fonte
+ *      declara um por aquário; a tabela pré-renderizada de "N exemplares"
+ *      subiria até 20, oferecendo com cara de tabela exatamente o número que a
+ *      fonte recusa — e a tabela é a metade que um modelo de linguagem lê. Onde
+ *      o arranjo FIXA o número (solitário 1, casal 2) a escada tem um degrau e
+ *      a página diz por quê; onde a fonte declara um número de grupo, começa
+ *      nele; onde declara o arranjo e não o número (harém), a escada é a de
+ *      leitura e NENHUMA linha se chama mínima.
+ *
+ *   2. O CONSELHO DO BLOCO DA ESPÉCIE AGRESSIVA SE INVERTE COM O ARRANJO. "Quanto
+ *      maior o cardume, menos a agressão se concentra num alvo só" é certo para
+ *      o mato-grosso e é o CONTRÁRIO do que a fonte diz do betta, que é
+ *      agressivo E solitário: ali ela manda um por aquário. E a frase antiga
+ *      ainda iria ao ar quebrada, porque `$card` é nulo nessa espécie —
+ *      "cardume mínimo de  e não de dois".
+ *
+ *   O DEFEITO QUE JÁ ESTAVA NO AR, e saiu junto: `/peixes/corydoras/` servia
+ *   "fechada quer dizer que todo TETRA que o banco desta ilha sustenta já tem a
+ *   página dele". Medido no HTML servido em 14/09/2026. É a mesma cicatriz do
+ *   "São 4 tetras" que a leva 3 pegou ANTES de publicar, escondida um nível mais
+ *   fundo: ela mora num ramo que só é alcançado quando a categoria FECHA, e até
+ *   12/09 só os tetras tinham fechado. Ramo novo herda o texto do mundo antigo.
+ *   O sujeito agora vem declarado por categoria, como o `plural`; e o exemplo da
+ *   pergunta do nível 2, que era "quantos litros para dez neons" digitado em
+ *   toda categoria, passa a ser a consulta da própria página.
+ *
+ *   A FAIXA DO GRUPO, e ela custou um campo de esquema (versão 4). O compêndio
+ *   recomenda, do gurami mel, "não menos que 4 a 6 exemplares". O piso morava em
+ *   `cardume_minimo` desde 13/09 e o teto não tinha onde morar — a ficha
+ *   publicaria metade da recomendação, e completá-la de cabeça seria inventar a
+ *   metade que falta. Nasceu `cardume_recomendado_ate`, o número sai da MESMA
+ *   sentença já transcrita em `fontes[]` (sem passada nova de coleta) e o
+ *   validador ganhou a regra E18. O teto declarado é DEGRAU da tabela, sempre: a
+ *   escada de leitura (6, 8, 10…) só por acaso carrega o segundo número de "4 a
+ *   6", e numa faixa "5 a 7" o 7 não apareceria em linha nenhuma.
+ *
+ *   A CATEGORIA DECLARA AS CINCO OSPHRONEMIDAE, e não só as três que passam.
+ *   Esse é o primeiro mundo REAL do ramo de barrados que a 1.6.0 escreveu em
+ *   13/09 sem ter caso no banco para exercitá-lo: os dois guramis grandes têm
+ *   duas fontes cada e o portão os barra por `convivencia`, então saem na página
+ *   com nome e causa. Sem declará-los, a frase de lista fechada diria que todo
+ *   betta e todo gurami que o banco sustenta já tem página — e o banco sustenta
+ *   os dois. As quatro mutações que PRODUZIAM aquele mundo continuam, porque
+ *   agora elas provam o ramo VAZIO da mesma régua.
+ *
+ *   AS QUATRO PÁGINAS DECLARAM `serp_em` => '13/09/2026', que é o primeiro uso
+ *   real do campo nascido na 1.3.0: quem não declara herda 12/09/2026, e isso
+ *   seria mentira nestas quatro.
+ *
+ *   E UMA TROCA DE TELA NO BANCO, declarada: os nomes populares da colisa foram
+ *   reordenados para pôr "colisa-anão" na frente. `aquametria_peixes_nome()` é
+ *   documentada como "o nome que a pessoa digita" e lê o PRIMEIRO do campo — e a
+ *   classificação de SERP de 13/09 mediu que a consulta brasileira é "quantos
+ *   litros para colisa anão". Com "colisa" na frente, o título da ficha e o corpo
+ *   dela serviriam nomes diferentes a uma linha de distância.
+ */
+
+
+/**
+ * Aquametria Peixes — a malha do eixo /peixes/
+ * HISTÓRICO — versão 1.6.0 (13/09/2026): A PRESTAÇÃO DE CONTAS DA SEÇÃO 7 ALCANÇA QUEM
  * NÃO ESTÁ NA TABELA. Nenhuma URL nova, nenhuma página criada: o que muda é o
  * que a seção e as categorias conseguem dizer sobre o próprio banco.
  *
@@ -211,7 +300,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_PEIXES_VERSAO' ) ) {
-	define( 'AQUAMETRIA_PEIXES_VERSAO', '1.6.0' );
+	define( 'AQUAMETRIA_PEIXES_VERSAO', '1.7.0' );
 }
 
 /* A data em que a SERP das consultas foi classificada (seção 14.9).
@@ -3236,6 +3325,47 @@ function aquametria_peixes_arranjo_curto( $e ) {
 }
 
 /**
+ * A RÉGUA DE LOTAÇÃO CONTRA A BASE DECLARADA, comparada e nunca afirmada.
+ *
+ * Nasceu de um defeito medido em bancada em 14/09/2026, antes de a leva ir ao
+ * ar, e ele é o retrato do que esta leva inteira persegue: a primeira escrita
+ * do ramo do arranjo fixo dizia, de frase pronta, que "as duas réguas ficam bem
+ * abaixo da base que a fonte declara". Era VERDADE no betta — 6,5 a 26 litros
+ * contra 47,3 da base — e FALSA na página do lado: no casal de colisa-anão o
+ * critério conservador pede 76 litros e a base dá 63. A afirmação nasceu certa
+ * na primeira página em que foi escrita e foi ao HTML errada na segunda, que é
+ * exatamente a forma do "número de tela digitado" desta fábrica, com uma
+ * agravante: ela também ia dentro do JSON-LD, onde um modelo de linguagem a
+ * cita sem ter como conferir.
+ *
+ * Devolve os três números e a comparação JÁ RESOLVIDA, para que as duas
+ * superfícies que a publicam — o corpo e o FAQ — nunca possam discordar.
+ */
+if ( ! function_exists( 'aquametria_peixes_lotacao_contra_base' ) ) {
+function aquametria_peixes_lotacao_contra_base( $e, $frente, $porte, $larg, $n ) {
+	$l = aquametria_peixes_litros_por_criterio( $n * $porte[1] );
+	$alturas = aquametria_peixes_alturas();
+	$altura  = $alturas[1];
+	$base    = aquametria_peixes_volume_bruto( $frente[1], $larg, $altura );
+	if ( null === $base ) {
+		/* Sem o fundo declarado não existe litro da base, e comparar com um
+		   fundo inventado seria o atalho que a decisão 7 deste snippet recusa. */
+		return array( 'base' => null, 'litros' => $l, 'altura' => $altura, 'frase' => '' );
+	}
+	if ( $l['conservadora'] < $base ) {
+		$frase = 'as duas ficam abaixo dos ';
+	} elseif ( $l['classica'] >= $base ) {
+		$frase = 'as duas ficam acima dos ';
+	} else {
+		$frase = 'uma delas fica abaixo e a outra acima dos ';
+	}
+	$frase .= aquametria_peixes_num( $base ) . ' litros que essa base dá num aquário de '
+		. aquametria_peixes_num( $altura ) . ' cm de altura';
+	return array( 'base' => $base, 'litros' => $l, 'altura' => $altura, 'frase' => $frase );
+}
+}
+
+/**
  * Os degraus que a tabela pré-renderizada varre.
  *
  * Três mundos, e o do meio é o único que existia até a leva 3:
@@ -3642,9 +3772,12 @@ function aquametria_peixes_ficha_html( $slug ) {
 	   a régua de lotação e a base declarada. */
 	if ( $arranjo && null !== $arranjo['fixo'] ) {
 		$html .= '<h2>Quantos litros para ' . esc_html( $arranjo['de'] ) . ' ' . esc_html( $nome ) . '</h2>';
+		$contra = aquametria_peixes_lotacao_contra_base( $e, $frente, $porte, $larg, $arranjo['fixo'] );
 		$html .= '<p>A base declarada é o piso do aquário, e aqui ela não vira escada: a fonte declara '
 			. ( 1 === $arranjo['fixo'] ? 'um por aquário' : 'um casal' )
-			. ', então não existe "e para dez?" a responder. O que a tabela abaixo mostra é o que as duas réguas de lotação que circulam no aquarismo brasileiro devolvem para esse número — elas discordam em quatro vezes entre si, e as duas ficam bem abaixo da base que a fonte declara. É por isso que régua de lotação não responde sozinha a esta pergunta.</p>';
+			. ', então não existe "e para dez?" a responder. O que a tabela abaixo mostra é o que as duas réguas de lotação que circulam no aquarismo brasileiro devolvem para esse número — elas discordam em quatro vezes entre si'
+			. ( '' !== $contra['frase'] ? ', e ' . esc_html( $contra['frase'] ) : '' )
+			. '. É por isso que régua de lotação não responde sozinha a esta pergunta.</p>';
 	} else {
 		$html .= '<h2>Quantos litros para N ' . esc_html( $nome ) . '</h2>';
 		$html .= '<p>A base declarada é o piso do aquário; quem responde "e para dez?" são as duas réguas de lotação que circulam no aquarismo brasileiro. Elas discordam em quatro vezes, e a Aquametria publica as duas com o nome de quem disse cada uma em vez de tirar média.</p>';
@@ -3702,7 +3835,24 @@ function aquametria_peixes_ficha_html( $slug ) {
 		}
 		$html .= '</tbody></table></div>';
 		$meio_altura = $alturas[1];
-		if ( isset( $litros_alturas[ $meio_altura ] ) ) {
+		if ( isset( $litros_alturas[ $meio_altura ] ) && $arranjo && null !== $arranjo['fixo'] ) {
+			/* NO ARRANJO FIXO ESTA TABELA RESPONDE À PERGUNTA ERRADA, e a página
+			   tem de dizer isso na mesma tela. A frase antiga saía igual para
+			   todo mundo — "cabem 1 pelo critério apertado e 6 pelo folgado" —,
+			   e numa ficha que acabou de declarar um casal por aquário ela
+			   oferece SEIS. A régua de lotação conta centímetro de peixe e não
+			   sabe de comportamento; deixá-la falar sozinha aqui é publicar o
+			   número que a fonte recusa, com a autoridade de uma tabela. */
+			$q = aquametria_peixes_quantos_cabem( $litros_alturas[ $meio_altura ], $porte[1] );
+			$html .= '<p>Traduzindo a linha do meio: pelas duas réguas de lotação caberiam de '
+				. esc_html( $q['conservadora'] ) . ' a ' . esc_html( $q['classica'] ) . ' '
+				. esc_html( $nome ) . ' no aquário mínimo com '
+				. esc_html( aquametria_peixes_num( $meio_altura ) )
+				. ' cm de altura — e é aqui que a régua responde à pergunta errada. '
+				. 'Ela conta centímetros de peixe e não sabe de comportamento: a fonte declara '
+				. ( 1 === $arranjo['fixo'] ? 'um por aquário' : 'um casal' )
+				. ', e esse limite não sai de conta de litro nenhuma.</p>';
+		} elseif ( isset( $litros_alturas[ $meio_altura ] ) ) {
 			$q = aquametria_peixes_quantos_cabem( $litros_alturas[ $meio_altura ], $porte[1] );
 			$html .= '<p>Traduzindo a linha do meio: no aquário mínimo com '
 				. esc_html( aquametria_peixes_num( $meio_altura ) ) . ' cm de altura cabem '
@@ -4651,18 +4801,27 @@ function aquametria_peixes_jsonld_dados( $slug ) {
 			   consulta publica sem perceber. Sem este ramo a ficha do betta
 			   serviria UMA pergunta no FAQPage, e a única que ela tem de
 			   responder — "quantos litros para um betta" — ficaria de fora. */
+			/* A PERGUNTA NÃO PODE SER A DO TÍTULO. A primeira escrita deste ramo
+			   repetia o `titulo` da página palavra por palavra, e o FAQPage ia
+			   ao ar com duas Question de MESMO nome e respostas diferentes —
+			   duplicata que o Google trata como o que é. A pergunta distinta é
+			   a que esta página responde e as outras onze não: se a régua de
+			   lotação serve para um peixe cujo número a fonte fixa. */
 			$n = $arranjo['fixo'];
-			$l = aquametria_peixes_litros_por_criterio( $n * $porte[1] );
+			$contra_faq = aquametria_peixes_lotacao_contra_base( $e, $frente, $porte, $larg, $n );
+			$l = $contra_faq['litros'];
 			$perguntas[] = array(
-				'Quantos litros para ' . $arranjo['de'] . ' ' . $nome . '?',
-				'A fonte declara ' . $arranjo['de'] . ' ' . $nome . ' por aquário, e o que ela declara é a BASE: '
+				'A regra de 1 cm de peixe por litro serve para o ' . $nome . '?',
+				'Não sozinha. A fonte declara ' . $arranjo['de'] . ' ' . $nome
+					. ' por aquário, e o que ela declara é a BASE: '
 					. aquametria_peixes_num( $frente[1] ) . ' cm de frente'
 					. ( $larg ? ' por ' . aquametria_peixes_num( $larg ) . ' cm de fundo' : '' ) . '. '
 					. 'As duas réguas brasileiras de lotação, aplicadas a ' . $n . ' exemplar'
 					. ( $n > 1 ? 'es' : '' ) . ' de ' . aquametria_peixes_num( $porte[1] )
 					. ' cm, dariam de ' . aquametria_peixes_num( $l['classica'] ) . ' a '
-					. aquametria_peixes_num( $l['conservadora'] )
-					. ' litros — bem abaixo dessa base, e é por isso que régua de lotação não responde sozinha a esta pergunta.',
+					. aquametria_peixes_num( $l['conservadora'] ) . ' litros'
+					. ( '' !== $contra_faq['frase'] ? ', e ' . $contra_faq['frase'] : '' )
+					. '. Elas contam centímetros de peixe e não sabem de comportamento.',
 			);
 		} elseif ( $card ) {
 			$l = aquametria_peixes_litros_por_criterio( $card * $porte[1] );

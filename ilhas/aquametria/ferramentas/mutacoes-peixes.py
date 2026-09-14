@@ -643,10 +643,23 @@ MUTACOES = [
            "\t\t\t. ( ! empty( $e['cardume_ate'] ) ? ' a ' . esc_html( (int) $e['cardume_ate'] ) : '' ) . ' '",
            "\t\t\t. ' a ' . esc_html( (int) $card * 2 ) . ' '")),
 
-    ("O TETO SAI DA ESCADA: a faixa e publicada e a conta do outro extremo dela nao",
-     troca(PEIXES,
-           "\tif ( ! empty( $e['cardume_ate'] ) ) {\n\t\t$degraus[] = (int) $e['cardume_ate'];\n\t}",
-           "\tif ( false ) {\n\t\t$degraus[] = (int) $e['cardume_ate'];\n\t}")),
+    # MUNDO PRODUZIDO, e ele nasceu de uma mutacao que PASSOU em 14/09/2026.
+    # A primeira escrita desta mutacao so tirava o teto da escada, e passou
+    # limpa — porque o teto do gurami mel e 6, e o 6 ja esta na escada de
+    # leitura (6, 8, 10, 12, 15, 20) por conta propria. A mutacao media a
+    # coincidencia do banco de hoje, nao a regra. O comentario do proprio codigo
+    # tinha previsto: "a escada de leitura so por ACASO carrega o segundo numero
+    # de 4 a 6, e numa faixa 5 a 7 o 7 nao apareceria em linha nenhuma". Entao
+    # esta mutacao PRODUZ a faixa impar nos dois lados — banco e catalogo — e so
+    # depois tira o teto da escada.
+    ("MUNDO PRODUZIDO: a faixa vira 4 a 7 e o teto sai da escada — a conta do outro extremo some",
+     varias(
+         banco_json(lambda d: mut_campo(d, "trichogaster-chuna", "cardume_recomendado_ate", 7)),
+         troca(PEIXES, "\t\t\t'cardume_ate' => 6,", "\t\t\t'cardume_ate' => 7,"),
+         troca(PEIXES,
+               "\tif ( ! empty( $e['cardume_ate'] ) ) {\n\t\t$degraus[] = (int) $e['cardume_ate'];\n\t}",
+               "\tif ( false ) {\n\t\t$degraus[] = (int) $e['cardume_ate'];\n\t}"),
+     )),
 
     ("O ROTULO DA TABELA DE FONTES VOLTA A SER DIGITADO: o grupo do gurami mel e chamado de cardume",
      troca(PEIXES,
@@ -665,6 +678,33 @@ MUTACOES = [
 
     ("O BANCO PERDE O TETO DECLARADO e a pagina nao percebe que a faixa encolheu",
      banco_json(lambda d: mut_campo(d, "trichogaster-chuna", "cardume_recomendado_ate", None))),
+
+    # --- a comparacao com a base, que a leva 4 escreveu ERRADA na primeira vez
+
+    ("A COMPARACAO COM A BASE VOLTA A SER FRASE PRONTA: 'bem abaixo' em toda ficha de arranjo fixo",
+     troca(PEIXES,
+           "\t\t\t. ( '' !== $contra['frase'] ? ', e ' . esc_html( $contra['frase'] ) : '' )",
+           "\t\t\t. ', e as duas ficam bem abaixo da base que a fonte declara'")),
+
+    ("A COMPARACAO ERRA O LADO: o ramo do meio some e a faixa que cruza a base vira 'abaixo'",
+     troca(PEIXES,
+           "\t} elseif ( $l['classica'] >= $base ) {\n\t\t$frase = 'as duas ficam acima dos ';\n\t} else {\n\t\t$frase = 'uma delas fica abaixo e a outra acima dos ';\n\t}",
+           "\t} else {\n\t\t$frase = 'as duas ficam abaixo dos ';\n\t}")),
+
+    ("A COMPARACAO USA O EXTREMO ERRADO: o conservador sai da conta e so o classico decide",
+     troca(PEIXES,
+           "\tif ( $l['conservadora'] < $base ) {",
+           "\tif ( $l['classica'] < $base ) {")),
+
+    ("O FAQ VOLTA A REPETIR A PERGUNTA DO TITULO: duas Question de mesmo nome no mesmo FAQPage",
+     troca(PEIXES,
+           "\t\t\t\t'A regra de 1 cm de peixe por litro serve para o ' . $nome . '?',",
+           "\t\t\t\t$def['titulo'],")),
+
+    ("A TABELA INVERSA CALA SOBRE O LIMITE: a ficha do betta volta a dizer quantos 'cabem' e nada mais",
+     troca(PEIXES,
+           "\t\tif ( isset( $litros_alturas[ $meio_altura ] ) && $arranjo && null !== $arranjo['fixo'] ) {",
+           "\t\tif ( false ) {")),
 ]
 
 

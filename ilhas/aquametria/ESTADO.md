@@ -3,7 +3,7 @@ ilha: aquametria
 estado: viva
 prioridade: 2
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
-urls_publicadas: 28
+urls_publicadas: 32
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
 ultima_execucao: 2026-09-13T23:19Z
 executando_desde: 2026-09-14T11:50Z
@@ -25,7 +25,8 @@ bloco_atual: |
 ultima_ronda: 2026-09-13T14:47Z
 bloqueada_por: null
 congelamento: |
-  suspenso em 12/09/2026 — seção 21 (piso da rampa). A ilha tem 28 URLs publicadas (13 + 14 do eixo /peixes/ + /politica-de-privacidade/), está abaixo do piso de 40 URLs; abaixo do piso zero impressão não é informação e não trava leva. Teto da 21.4 NESTA semana: 3 de 3 levas USADAS (levas 1, 2 e 3 do T4, todas em 12/09), e a semana vira em 14/09 — a leva 4 nasce a partir de amanhã. A execução das 23h19Z de 13/09 NÃO gastou leva e não criou URL: é bloco de prestação de contas dentro de páginas que já existem. Sete execuções de 13/09/2026 respeitaram o teto: 11h40Z (banco), 13h17Z (SERP e critério da bettas), 15h16Z (despacho da Sentinela), 17h20Z (escada da seção 25 no esquema e no banco), 19h35Z (página de privacidade, fora do teto pela 21.7), 21h21Z (o plati variatus e o critério dos vivíparos) e 23h19Z (os barrados na tela) — nenhuma criou URL de malha.
+  suspenso em 12/09/2026 — seção 21 (piso da rampa). A ilha tem 32 URLs publicadas (13 + 18 do eixo /peixes/ + /politica-de-privacidade/), está abaixo do piso de 40 URLs; abaixo do piso zero impressão não é informação e não trava leva. Teto da 21.4 NESTA semana, que começou em 14/09: 1 de 3 levas usadas — a leva 4 (`/peixes/bettas/` e as três fichas, 4 URLs) saiu às 11h25Z de 14/09, e é a primeira URL nova desde 12/09. A semana anterior fechou com 3 de 3 (levas 1, 2 e 3 do T4, todas em 12/09) e SETE execuções de 13/09 respeitaram o teto sem criar URL de malha: 11h40Z (banco), 13h17Z (SERP e critério da bettas), 15h16Z (despacho da Sentinela), 17h20Z (escada da seção 25 no esquema e no banco), 19h35Z (página de privacidade, fora do teto pela 21.7), 21h21Z (o plati variatus e o critério dos vivíparos) e 23h19Z (os barrados na tela).
+
 ---
 
 # ESTADO da ilha Aquametria — cópia da memória para sessões SEM ferramenta de memória

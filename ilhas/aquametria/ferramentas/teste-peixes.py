@@ -560,6 +560,35 @@ def medir_ficha(slug, ident, banco):
            if e.get("comportamento") == "agressivo" else True)
         ok("%s: nao sugere aumentar o numero de exemplares" % slug,
            "quanto maior o" not in t)
+
+        # A COMPARACAO COM A BASE E DERIVADA, NUNCA AFIRMADA. Recomputada aqui do
+        # banco, e o motivo tem nome: a primeira escrita deste ramo dizia de
+        # frase pronta que "as duas reguas ficam bem abaixo da base declarada".
+        # E verdade no betta (6,5 a 26 L contra 47,3 da base) e FALSA no casal de
+        # colisa-anao, onde o criterio conservador pede 76 L e a base da 63 — a
+        # afirmacao nasce certa na primeira pagina e vai errada para a do lado.
+        largura_f = (e.get("base_minima_cm") or {}).get("largura")
+        if largura_f:
+            base35 = frente[1] * float(largura_f) * ALTURAS[1] / 1000.0
+            soma_f = quantos * porte[1]
+            if soma_f * CONSERVADORA < base35:
+                esperado_cmp = "as duas ficam abaixo dos "
+            elif soma_f * CLASSICA >= base35:
+                esperado_cmp = "as duas ficam acima dos "
+            else:
+                esperado_cmp = "uma delas fica abaixo e a outra acima dos "
+            esperado_cmp += "%s litros que essa base dá num aquário de %s cm de altura" % (
+                numero_br(base35), numero_br(ALTURAS[1]))
+            ok("%s: compara as duas reguas com a base e acerta o lado" % slug,
+               esperado_cmp in t, esperado_cmp)
+            ok("%s: nao afirma 'bem abaixo' sem ter comparado" % slug,
+               "bem abaixo" not in t)
+            # E A TABELA INVERSA DIZ QUE RESPONDE A PERGUNTA ERRADA. Sem isto a
+            # ficha do betta publica "cabem 7 bettas" duas telas depois de
+            # declarar um por aquario.
+            ok("%s: a tabela de quantos cabem declara que a regua nao decide aqui" % slug,
+               "é aqui que a régua responde à pergunta errada" in t
+               and "esse limite não sai de conta de litro nenhuma" in t)
     else:
         # O NUMERO DA ABERTURA E A FAIXA, quando a fonte declarou uma. Recomputado
         # aqui do banco: o piso sozinho publica metade da recomendacao, e o piso
@@ -572,8 +601,17 @@ def medir_ficha(slug, ident, banco):
            ("Para um %s de %s %s" % (rotulo, quantos, nome)) in t,
            t[:120])
         if conviv == "grupo":
+            # CASE-INSENSITIVE, e a minuscula sozinha era um buraco medido: a
+            # abertura escreve "grupo mínimo" em minuscula e a LINHA da tabela de
+            # fontes escreve "Grupo mínimo" com maiuscula. A mutacao que devolve
+            # o rotulo digitado aa tabela passou LIMPA pela regua de minuscula —
+            # a pagina do gurami mel chamava o peixe de cardume numa superficie e
+            # nao na outra, e o portao so olhava uma.
             ok("%s: e nao chama de cardume o peixe que a fonte diz nao ser de cardume" % slug,
-               "cardume mínimo" not in t)
+               "cardume mínimo" not in t.lower(),
+               t.lower()[max(0, t.lower().find("cardume mínimo") - 60):][:140])
+        ok("%s: a linha da tabela de fontes se chama %r" % (slug, rotulo.capitalize()),
+           rotulo.capitalize() in t)
         ok("%s: a tabela de fontes traz a faixa declarada, nao o piso sozinho" % slug,
            ("%s exemplares" % quantos) in t, quantos)
 
@@ -730,6 +768,15 @@ def medir_ficha(slug, ident, banco):
     for no in jsonlds(pagina):
         if no.get("@type") != "FAQPage":
             continue
+        # DUAS Question DE MESMO NOME E UM FAQPage QUEBRADO, e a leva 4 escreveu
+        # uma sem querer: a pergunta do ramo do arranjo fixo repetia o `titulo`
+        # da pagina palavra por palavra, entao a ficha do betta ia ao ar com
+        # "Quantos litros para um betta?" duas vezes, com respostas diferentes.
+        # A afirmacao e geral porque o defeito e geral — nenhuma das onze fichas
+        # antigas podia produzi-lo, e por isso ninguem tinha medido.
+        nomes = [q["name"] for q in no["mainEntity"]]
+        ok("%s: nenhuma pergunta do FAQ se repete" % slug,
+           len(nomes) == len(set(nomes)), " | ".join(nomes))
         for q in no["mainEntity"]:
             resposta = q["acceptedAnswer"]["text"]
             for numero in re.findall(r"\d+(?:,\d+)?", resposta):
