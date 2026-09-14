@@ -4,7 +4,7 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 32,
+  "revisao": 33,
   "atualizado_em": "2026-09-14",
   "estado": "nascendo",
   "desembarque": {
@@ -20,8 +20,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.10.0",
-      "sha256": "daddc1213212a1acfec5a2a5ed39be22866963273e40a2cb72cf5e621059870b",
+      "versao": "1.10.1",
+      "sha256": "10505865a7f982daf72c9397a06f05811787650f0511a51a2ca98e3baa095c02",
       "descricao": "Casca 1.9.1 — TRES NUMEROS DA TELA ENTRARAM NA VIA VIVA. `celulas_matriz`, `celulas_com_saida` e `celulas_sem_saida` eram os unicos do instantaneo de `cdm_casca_numeros()` que nenhuma linha recontava do repositorio, e em 13/09/2026 os dois produtos novos da categoria cola fecharam as duas ultimas combinacoes sem saida — com a pagina de metodologia, cujo unico produto e o rigor, continuando a publicar que a ilha tinha duas. Agora elas saem contadas do `matriz_esperada_da_F2` gravado nas options, como as contagens de banco ja saiam. A frase da metodologia tambem ganhou o ESCOPO do que ela mede: os numeros sao de base x ambiente, e desde a f2 1.3.0 a ferramenta decide tambem pelo caquinho — sem essa linha, o numero certo virava promessa errada. Nada mais foi tocado."
     },
     {
@@ -232,7 +232,7 @@
     {
       "id": "conferir-no-ar",
       "arquivo": "ferramentas/conferir-no-ar.py",
-      "sha256": "aea1b84cee63968b3953283e730309476096ac192a84ab2cb6597a736da8e1dd",
+      "sha256": "3ac9c733d95c72beaba204e994556f9387a750e84d75f2f133e89b5bb87f779f",
       "descricao": "Mede o que o SITE serve, nao o que o repositorio guarda: abre as nove URLs com curl e afirma sobre o HTML SERVIDO. Existe porque 'aplicado com sucesso' no log do Sync nao e evidencia de nada (secao 8) e commit sem verificacao no ar nao e entrega (secoes 4 e 18.4). 102 afirmacoes: HTTP 200, a marca no HTML, o src igual ao arquivo que o Raphael subiu, zero texto ao lado do logo, alt com o nome, medida 78x52 declarada, o logo uma vez por pagina, o wordmark em texto de 1.2.0 fora de toda pagina, zero &#038; dentro de <script>, a folha servida mandando 52 px, o cabecalho ainda claro, e as tres URLs da imagem respondendo PNG. REGUA PROPRIA: a URL e a medida estao literais no arquivo, copiadas do despacho, e nao lidas da constante da casca — senao as duas metades errariam juntas. Todo endereco leva ?v= porque o cache de borda faz concluir que nada mudou. NUNCA e publicada no site."
     },
     {

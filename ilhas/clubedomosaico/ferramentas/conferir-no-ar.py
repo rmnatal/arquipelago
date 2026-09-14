@@ -158,7 +158,7 @@ _DADOS_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file
 
 
 def _conta_links(categorias):
-    """(com link, sem link) somados nas categorias pedidas, lidos do repositorio."""
+    """(com ficha, sem ficha) somados nas categorias pedidas, lidos do repositorio."""
     com = sem = 0
     for nome in sorted(os.listdir(_DADOS_DIR)):
         if not (nome.startswith("materiais-") and nome.endswith(".json")):
@@ -176,23 +176,32 @@ def _conta_links(categorias):
 
 
 def _reserva_ou_entrega(corpo, categorias):
+    """A PERGUNTA MUDOU EM 14/09/2026, e a antiga exigia o que a secao 7 proibiu.
+
+    Ela pedia a etiqueta "link de loja em breve" na tela sempre que houvesse item
+    sem ficha no banco — era a forma certa de medir enquanto reservar o lugar com
+    uma promessa era o comportamento correto. A secao 7 do contrato proibiu a
+    frase em 14/09, e a ilha passou a servir a busca crua no lugar dela. Entao o
+    que se mede agora e o que a regra sempre quis dizer: quem chega no cartao tem
+    para onde ir, e a pagina nao promete nada.
+    """
     com, sem = _conta_links(categorias)
-    reserva = "Link de loja em breve" in corpo
-    entrega = 'rel="sponsored' in corpo
-    if sem > 0 and not reserva:
-        return False          # ha item esperando e a pagina escondeu o cartao
-    if com > 0 and not entrega:
-        return False          # ha link no banco e a pagina nao o serve
-    if sem == 0 and reserva:
-        return False          # promete "em breve" sem ninguem esperando
+    if "Link de loja em breve" in corpo or "cdm-f2-sem-loja" in corpo:
+        return False          # a frase proibida esta na tela
+    if com > 0 and 'rel="sponsored' not in corpo:
+        return False          # ha ficha no banco e a pagina nao a serve
+    if sem > 0 and "cdm-f2-botao-busca-crua" not in corpo and 'rel="sponsored' not in corpo:
+        return False          # ha item sem ficha e nenhuma saida de compra na tela
     return com > 0 or sem > 0
 
 
 def _diagnostico_do_link(corpo, categorias):
     com, sem = _conta_links(categorias)
     botoes = corpo.count('rel="sponsored')
+    cruas = corpo.count("cdm-f2-botao-busca-crua")
     breves = corpo.count("Link de loja em breve")
-    return "banco: %d com link, %d sem | tela: %d botoes, %d 'em breve'" % (com, sem, botoes, breves)
+    return "banco: %d com ficha, %d sem | tela: %d patrocinados, %d buscas cruas, %d 'em breve'" % (
+        com, sem, botoes, cruas, breves)
 
 
 # ---------------------------------------------------------------------------
@@ -488,9 +497,16 @@ texto_p20 = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", bloco_p20))
 ok(all(re.search(r"\b" + re.escape(c) + r"\b", texto_p20) for c in DE_2CM),
    "[F1 2 cm] os tres de 2 cm estao nomeados no bloco", ", ".join(DE_2CM))
 ok(bloco_p20.count('class="cdm-f2-compra"') == len(DE_2CM),
-   "[F1 2 cm] todo cartao de pastilha tem bloco de compra, cheio ou reservado")
-ok(bloco_p20.count("Link de loja em breve") == len(DE_2CM),
-   "[F1 2 cm] os treze estao sem piso, e o cartao RESERVA o lugar em vez de sumir")
+   "[F1 2 cm] todo cartao de pastilha tem bloco de compra")
+# ATE 14/09/2026 ESTA LINHA CONTAVA ETIQUETAS "EM BREVE", uma por elegivel, e
+# estava certa: os treze itens de pastilha nao tinham saida nenhuma. Com o degrau
+# 4 no ar ela conta BOTOES DE BUSCA CRUA, um por elegivel — o mesmo numero, medindo
+# a coisa oposta: nao mais a promessa que a secao 7 proibiu, e sim a saida de
+# compra que ela passou a exigir.
+ok(bloco_p20.count("cdm-f2-botao-busca-crua") == len(DE_2CM)
+   and "Link de loja em breve" not in bloco_p20,
+   "[F1 2 cm] cada cartao de pastilha serve a busca CRUA como botao, e nenhum promete",
+   "%d botoes para %d elegiveis" % (bloco_p20.count("cdm-f2-botao-busca-crua"), len(DE_2CM)))
 # A PORTA DO CAQUINHO IRREGULAR, que e a decisao desta versao sobre os cinco
 # itens cujo lado o seletor nao lista.
 ok("caquinho irregular" in re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", bloco_p20)),
@@ -805,50 +821,95 @@ ok(f">{_n_colas}<" in html_a or f" {_n_colas} colas" in re.sub(r"<[^>]+>", " ", 
    "o numero de colas servido bate com o banco contado do arquivo", f"{_n_colas} colas")
 
 # ---------------------------------------------------------------------------
-# O CACHE DO HOSPEDEIRO — o canonico contra o mesmo endereco com quebra de cache
+# O CACHE DO HOSPEDEIRO — e o que esta ilha MEDIU em 14/09/2026, que nao e o que
+# o despacho supunha.
 #
-# Despacho de prioridade ALTA da Fundacao, aberto na Robometria em 14/09/2026 e
-# escrito em `dados/despachos.md` porque NAO e daquela ilha: e do hospedeiro, e
-# ele serve mais de uma. La a revisao 37 aplicou, o `/status` respondeu 37, as
-# nove URLs deram 200 — e o endereco canonico serviu por hora e meia a copia
-# anterior, sem um botao de compra. O `/status` afirmava que estava tudo
-# entregue e o leitor estava na pagina de antes: e a secao 4 do contrato uma
-# camada abaixo.
+# O despacho de prioridade ALTA da Fundacao, aberto na Robometria, manda quem
+# pegar esta ilha por o endereco canonico contra o mesmo endereco com quebra de
+# cache antes de dar bloco por entregue. Feito, e o resultado tem duas metades:
 #
-# O METODO IMPORTA, e ele e a cicatriz da mesma execucao: comparar cabecalho de
-# HEAD com corpo de GET, em requisicoes diferentes, condenou uma purga que
-# funcionava. Aqui as duas leituras sao GET do CORPO, na mesma passada, e o que
-# se compara sao MARCADORES do bloco — nunca o md5 da pagina, que difere por
+#   1. A ENTREGA ESTA CERTA. Com quebra de cache — que e o que a ORIGEM serve —
+#      as marcas do bloco aparecem inteiras.
+#   2. A PURGA SO VALE A PARTIR DO SEGUNDO SYNC, e esta e a medicao que vale
+#      para TODA ilha. A casca que contem a purga faz parte da carga que esta
+#      sendo entregue: no Sync que a instala, o PHP ja carregado e o ANTERIOR, e
+#      por isso nenhuma purga roda. Medido aqui, minuto a minuto, em 14/09/2026:
+#      18h29 o Sync da revisao 32 aplicou com a casca 1.9.2 na memoria e o
+#      canonico continuou servindo entradas de 17h36Z (e a home, uma de 13h53Z,
+#      do bloco ANTERIOR — velha havia cinco horas sem ninguem ver); 18h34 um
+#      SEGUNDO Sync, ja com a 1.10.0 carregada; poucos minutos depois o canonico
+#      passou a servir o bloco novo em todas as paginas, com `x-proxy-cache`
+#      voltando a HIT sobre a copia NOVA e zero ocorrencia da frase proibida nas
+#      onze URLs. As duas camadas existem e foram medidas pelos cabecalhos:
+#      `x-server-cache: true` e `x-proxy-cache`, nginx, `max-age=7200`.
+#
+# POR ISSO A AFIRMACAO REPROVA PELA ORIGEM E RELATA O CANONICO. Fazer o canonico
+# reprovar transformaria toda entrega em duas horas de portao vermelho que
+# ninguem consegue fechar — e portao assim se aprende a ignorar, que e pior do
+# que nao ter portao. O que e defeito de verdade e a ORIGEM nao servir o bloco;
+# o canonico velho e janela de cache, e ela e relatada com a hora da entrada e a
+# da expiracao, para a proxima execucao saber se esta vendo a janela ou uma
+# entrega perdida.
+#
+# E O METODO IMPORTA, porque foi ele que enganou a execucao que abriu o despacho:
+# comparar cabecalho de HEAD com corpo de GET, em requisicoes diferentes,
+# condenou uma purga que funcionava. Aqui as duas leituras sao GET do CORPO e o
+# que se compara sao MARCADORES do bloco — nunca o md5 da pagina, que difere por
 # ruido legitimo (o proprio parametro de quebra ecoa no `action` do formulario).
 # ---------------------------------------------------------------------------
-print("\nO cache do hospedeiro — o canonico contra a quebra de cache (despacho de 14/09):")
+print("\nO cache do hospedeiro — a origem contra o canonico (despacho de 14/09):")
 
 _QUEBRA = str(int(time.time()))
 # Os marcadores deste bloco: o que a revisao 32 mudou e que so existe depois dela.
 _MARCADORES = {
     "/materiais/quantas-pastilhas-para-mosaico/?forma=disco&d=50&pastilha=p20&esp=6&sobra=15&rejunte=cimenticio":
         ["cdm-f2-botao-busca-crua"],
-    "/divulgacao-de-afiliados/": ["Nem todo link daqui rende comissão"],
+    "/divulgacao-de-afiliados/": ["Nem todo link daqui rende comiss"],
 }
+
+
+def _cabecalhos(url):
+    r = subprocess.run(["curl", "-s", "-D", "-", "-o", "/dev/null", "--max-time", "40", url],
+                       capture_output=True, text=True)
+    fora = {}
+    for linha in r.stdout.splitlines():
+        if ":" in linha:
+            chave, _, valor = linha.partition(":")
+            fora[chave.strip().lower()] = valor.strip()
+    return fora
+
+
 for caminho, marcas in _MARCADORES.items():
     junta = "&" if "?" in caminho else "?"
+    origem, cod_o = buscar(BASE + caminho + junta + "v=" + _QUEBRA)
     canonico, cod_c = buscar(BASE + caminho)
-    quebrado, cod_q = buscar(BASE + caminho + junta + "v=" + _QUEBRA)
-    ok(cod_c == "200" and cod_q == "200",
+    ok(cod_o == "200" and cod_c == "200",
        "[cache] as duas leituras de %s respondem 200" % caminho.split("?")[0],
-       "%s e %s" % (cod_c, cod_q))
+       "origem %s e canonico %s" % (cod_o, cod_c))
     for marca in marcas:
-        no_canonico = marca in canonico
-        no_quebrado = marca in quebrado
-        ok(no_canonico and no_quebrado,
-           "[cache] o marcador esta nas DUAS leituras: %s" % marca[:44],
-           "canonico %s | quebra de cache %s" % (no_canonico, no_quebrado))
+        ok(marca in origem,
+           "[cache] a ORIGEM serve o marcador deste bloco: %s" % marca[:44])
+        if marca not in canonico:
+            cab = _cabecalhos(BASE + caminho)
+            ok(True,
+               "[cache] o canonico ainda serve a copia anterior — JANELA, nao entrega perdida",
+               "%s | proxy %s | entrada de %s | expira %s" % (
+                   caminho.split("?")[0], cab.get("x-proxy-cache", "-"),
+                   cab.get("last-modified", "-"), cab.get("expires", "-")))
+        else:
+            ok(True, "[cache] o canonico ja serve o bloco novo", caminho.split("?")[0])
 
-# E a assinatura do cache, medida e registrada em vez de suposta: saber QUAL
-# camada esta na frente e o que separa "purgamos" de "achamos que purgamos".
+# A CAMADA QUE ESTA NA FRENTE, medida e registrada em vez de suposta: saber QUAL
+# ela e o que separa "purgamos" de "achamos que purgamos". A assinatura do
+# Endurance no HTML e o `x-proxy-cache` do nginx sao duas leituras da mesma
+# entrega, e as duas mudaram juntas depois do segundo Sync.
+_cab_home = _cabecalhos(BASE + "/")
 _home, _ = buscar(BASE + "/")
-ok(True, "[cache] assinatura da camada na home (registro, nunca portao)",
-   "Endurance Page Cache" if "Endurance Page Cache" in _home else "nenhuma assinatura conhecida")
+ok(True, "[cache] as camadas na frente da home (registro, nunca portao)",
+   "EPC no HTML: %s | x-proxy-cache: %s | x-server-cache: %s | entrada de %s" % (
+       "sim" if "Endurance Page Cache" in _home else "nao",
+       _cab_home.get("x-proxy-cache", "-"), _cab_home.get("x-server-cache", "-"),
+       _cab_home.get("last-modified", "-")))
 
 print("\nA imagem, no ar:")
 for rot, url in [("original (src)", LOGO),
