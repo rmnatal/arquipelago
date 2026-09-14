@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 0
 primeira_indexacao: null
 ultima_execucao: null
-executando_desde: null
+executando_desde: 2026-09-14T17:17Z
 bloco_atual: |
   NASCEU EM 14/09/2026 pela aprovação do Raphael, sobre o dossiê da rodada 004 da Bússola (`bussola/dossies/som-automotivo/`), índice 4,00 — 1º da fila.
   NENHUM BLOCO EXECUTADO AINDA. O próximo é o BLOCO 1 (levantamento de buscas paramétricas), que **não depende de domínio nem de site** e pode rodar hoje.
