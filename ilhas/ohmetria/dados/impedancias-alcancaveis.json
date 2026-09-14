@@ -1,6 +1,7 @@
 {
  "ilha": "ohmetria",
  "bloco": "2",
+ "corrigido_no_bloco": 3,
  "titulo": "Impedancias alcancaveis por ligacao simetrica",
  "gerado_por": "ferramentas/impedancias.py",
  "gerado_em": "2026-09-14",
@@ -8,13 +9,14 @@
  "o_que_este_arquivo_e": "Dominio de saida da F1, enumerado. Nao e banco de produto e nao tem fonte de fabricante: e aritmetica de associacao em serie e paralelo, derivada no proprio arquivo do gerador. Serve a especificacao para que a resposta 'nao fecha' seja calculada, nunca opinada.",
  "modelo": "K bobinas iguais de Z ohms, partidas em g grupos iguais de K/g em serie, os g grupos em paralelo: Z_final = Z * K / g^2, com g dividindo K. g=1 e tudo em serie, g=K e tudo em paralelo.",
  "recusa_declarada": "Ligacao assimetrica nao entra. Ela fecha valores intermediarios e faz bobinas identicas receberem potencia diferente; a F1 diz isso na tela em vez de omitir.",
- "impedancias_de_modulo_consideradas": [
+ "impedancias_de_modulo_do_esquema": [
   "0,5",
   "1",
   "2",
   "4",
   "8"
  ],
+ "o_que_esta_lista_e_e_o_que_ela_NAO_e": "Vocabulario impedancia_de_modulo de dados/esquema-banco.json, lido dali e nunca copiado para dentro deste gerador. E EXPECTATIVA DECLARADA, nao medicao de mercado: ela veio da leitura de SERP do bloco 1 e nenhum registro de banco a sustenta ainda. Portanto o campo alcancavel_e_fora_do_vocabulario_de_modulo autoriza a F1 a dizer 'nenhum modulo do nosso banco atende essa impedancia' e NUNCA 'nao existe modulo para isso' -- a segunda e afirmacao sobre o mercado e esta ilha nao a mediu. Ate o bloco 3 este campo se chamava 'alcancavel_mas_sem_modulo_no_mercado' e afirmava exatamente o que nao podia.",
  "total_de_casos": 24,
  "casos": [
   {
@@ -30,7 +32,7 @@
    "fecha_com_modulo_de": [
     "1"
    ],
-   "alcancavel_mas_sem_modulo_no_mercado": [],
+   "alcancavel_e_fora_do_vocabulario_de_modulo": [],
    "pedidos_que_nao_fecham": [
     {
      "impedancia_de_modulo_pedida": "0,5",
@@ -80,7 +82,7 @@
     "0,5",
     "2"
    ],
-   "alcancavel_mas_sem_modulo_no_mercado": [],
+   "alcancavel_e_fora_do_vocabulario_de_modulo": [],
    "pedidos_que_nao_fecham": [
     {
      "impedancia_de_modulo_pedida": "1",
@@ -120,7 +122,7 @@
     }
    ],
    "fecha_com_modulo_de": [],
-   "alcancavel_mas_sem_modulo_no_mercado": [
+   "alcancavel_e_fora_do_vocabulario_de_modulo": [
     "0,333",
     "3"
    ],
@@ -184,7 +186,7 @@
     "1",
     "4"
    ],
-   "alcancavel_mas_sem_modulo_no_mercado": [
+   "alcancavel_e_fora_do_vocabulario_de_modulo": [
     "0,25"
    ],
    "pedidos_que_nao_fecham": [
@@ -224,7 +226,7 @@
    "fecha_com_modulo_de": [
     "2"
    ],
-   "alcancavel_mas_sem_modulo_no_mercado": [],
+   "alcancavel_e_fora_do_vocabulario_de_modulo": [],
    "pedidos_que_nao_fecham": [
     {
      "impedancia_de_modulo_pedida": "0,5",
@@ -274,7 +276,7 @@
     "1",
     "4"
    ],
-   "alcancavel_mas_sem_modulo_no_mercado": [],
+   "alcancavel_e_fora_do_vocabulario_de_modulo": [],
    "pedidos_que_nao_fecham": [
     {
      "impedancia_de_modulo_pedida": "0,5",
@@ -314,7 +316,7 @@
     }
    ],
    "fecha_com_modulo_de": [],
-   "alcancavel_mas_sem_modulo_no_mercado": [
+   "alcancavel_e_fora_do_vocabulario_de_modulo": [
     "0,667",
     "6"
    ],
@@ -379,7 +381,7 @@
     "2",
     "8"
    ],
-   "alcancavel_mas_sem_modulo_no_mercado": [],
+   "alcancavel_e_fora_do_vocabulario_de_modulo": [],
    "pedidos_que_nao_fecham": [
     {
      "impedancia_de_modulo_pedida": "1",
@@ -410,7 +412,7 @@
    "fecha_com_modulo_de": [
     "4"
    ],
-   "alcancavel_mas_sem_modulo_no_mercado": [],
+   "alcancavel_e_fora_do_vocabulario_de_modulo": [],
    "pedidos_que_nao_fecham": [
     {
      "impedancia_de_modulo_pedida": "0,5",
@@ -460,7 +462,7 @@
     "2",
     "8"
    ],
-   "alcancavel_mas_sem_modulo_no_mercado": [],
+   "alcancavel_e_fora_do_vocabulario_de_modulo": [],
    "pedidos_que_nao_fecham": [
     {
      "impedancia_de_modulo_pedida": "0,5",
@@ -500,7 +502,7 @@
     }
    ],
    "fecha_com_modulo_de": [],
-   "alcancavel_mas_sem_modulo_no_mercado": [
+   "alcancavel_e_fora_do_vocabulario_de_modulo": [
     "1,333",
     "12"
    ],
@@ -564,7 +566,7 @@
     "1",
     "4"
    ],
-   "alcancavel_mas_sem_modulo_no_mercado": [
+   "alcancavel_e_fora_do_vocabulario_de_modulo": [
     "16"
    ],
    "pedidos_que_nao_fecham": [
@@ -587,417 +589,6 @@
      "alcancavel": false,
      "mais_perto_que_fecha": "4",
      "abaixo_do_pedido": true,
-     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
-    }
-   ]
-  },
-  {
-   "bobina": "2+2 ohms",
-   "alto_falantes": 1,
-   "total_de_bobinas": 2,
-   "impedancias_alcancaveis": [
-    {
-     "ohms": "1",
-     "ligacao": "todas as 2 bobinas em paralelo"
-    },
-    {
-     "ohms": "4",
-     "ligacao": "todas as 2 bobinas em serie"
-    }
-   ],
-   "fecha_com_modulo_de": [
-    "1",
-    "4"
-   ],
-   "alcancavel_mas_sem_modulo_no_mercado": [],
-   "pedidos_que_nao_fecham": [
-    {
-     "impedancia_de_modulo_pedida": "0,5",
-     "alcancavel": false,
-     "mais_perto_que_fecha": "1",
-     "abaixo_do_pedido": false,
-     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
-    },
-    {
-     "impedancia_de_modulo_pedida": "2",
-     "alcancavel": false,
-     "mais_perto_que_fecha": "4",
-     "abaixo_do_pedido": false,
-     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
-    },
-    {
-     "impedancia_de_modulo_pedida": "8",
-     "alcancavel": false,
-     "mais_perto_que_fecha": "4",
-     "abaixo_do_pedido": true,
-     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
-    }
-   ]
-  },
-  {
-   "bobina": "2+2 ohms",
-   "alto_falantes": 2,
-   "total_de_bobinas": 4,
-   "impedancias_alcancaveis": [
-    {
-     "ohms": "0,5",
-     "ligacao": "todas as 4 bobinas em paralelo"
-    },
-    {
-     "ohms": "2",
-     "ligacao": "2 grupos de 2 bobinas em serie, os grupos em paralelo"
-    },
-    {
-     "ohms": "8",
-     "ligacao": "todas as 4 bobinas em serie"
-    }
-   ],
-   "fecha_com_modulo_de": [
-    "0,5",
-    "2",
-    "8"
-   ],
-   "alcancavel_mas_sem_modulo_no_mercado": [],
-   "pedidos_que_nao_fecham": [
-    {
-     "impedancia_de_modulo_pedida": "1",
-     "alcancavel": false,
-     "mais_perto_que_fecha": "2",
-     "abaixo_do_pedido": false,
-     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
-    },
-    {
-     "impedancia_de_modulo_pedida": "4",
-     "alcancavel": false,
-     "mais_perto_que_fecha": "8",
-     "abaixo_do_pedido": false,
-     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
-    }
-   ]
-  },
-  {
-   "bobina": "2+2 ohms",
-   "alto_falantes": 3,
-   "total_de_bobinas": 6,
-   "impedancias_alcancaveis": [
-    {
-     "ohms": "0,333",
-     "ligacao": "todas as 6 bobinas em paralelo"
-    },
-    {
-     "ohms": "1,333",
-     "ligacao": "3 grupos de 2 bobinas em serie, os grupos em paralelo"
-    },
-    {
-     "ohms": "3",
-     "ligacao": "2 grupos de 3 bobinas em serie, os grupos em paralelo"
-    },
-    {
-     "ohms": "12",
-     "ligacao": "todas as 6 bobinas em serie"
-    }
-   ],
-   "fecha_com_modulo_de": [],
-   "alcancavel_mas_sem_modulo_no_mercado": [
-    "0,333",
-    "1,333",
-    "3",
-    "12"
-   ],
-   "pedidos_que_nao_fecham": [
-    {
-     "impedancia_de_modulo_pedida": "0,5",
-     "alcancavel": false,
-     "mais_perto_que_fecha": null,
-     "abaixo_do_pedido": null,
-     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
-    },
-    {
-     "impedancia_de_modulo_pedida": "1",
-     "alcancavel": false,
-     "mais_perto_que_fecha": null,
-     "abaixo_do_pedido": null,
-     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
-    },
-    {
-     "impedancia_de_modulo_pedida": "2",
-     "alcancavel": false,
-     "mais_perto_que_fecha": null,
-     "abaixo_do_pedido": null,
-     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
-    },
-    {
-     "impedancia_de_modulo_pedida": "4",
-     "alcancavel": false,
-     "mais_perto_que_fecha": null,
-     "abaixo_do_pedido": null,
-     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
-    },
-    {
-     "impedancia_de_modulo_pedida": "8",
-     "alcancavel": false,
-     "mais_perto_que_fecha": null,
-     "abaixo_do_pedido": null,
-     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
-    }
-   ]
-  },
-  {
-   "bobina": "2+2 ohms",
-   "alto_falantes": 4,
-   "total_de_bobinas": 8,
-   "impedancias_alcancaveis": [
-    {
-     "ohms": "0,25",
-     "ligacao": "todas as 8 bobinas em paralelo"
-    },
-    {
-     "ohms": "1",
-     "ligacao": "4 grupos de 2 bobinas em serie, os grupos em paralelo"
-    },
-    {
-     "ohms": "4",
-     "ligacao": "2 grupos de 4 bobinas em serie, os grupos em paralelo"
-    },
-    {
-     "ohms": "16",
-     "ligacao": "todas as 8 bobinas em serie"
-    }
-   ],
-   "fecha_com_modulo_de": [
-    "1",
-    "4"
-   ],
-   "alcancavel_mas_sem_modulo_no_mercado": [
-    "0,25",
-    "16"
-   ],
-   "pedidos_que_nao_fecham": [
-    {
-     "impedancia_de_modulo_pedida": "0,5",
-     "alcancavel": false,
-     "mais_perto_que_fecha": "1",
-     "abaixo_do_pedido": false,
-     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
-    },
-    {
-     "impedancia_de_modulo_pedida": "2",
-     "alcancavel": false,
-     "mais_perto_que_fecha": "4",
-     "abaixo_do_pedido": false,
-     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
-    },
-    {
-     "impedancia_de_modulo_pedida": "8",
-     "alcancavel": false,
-     "mais_perto_que_fecha": "4",
-     "abaixo_do_pedido": true,
-     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
-    }
-   ]
-  },
-  {
-   "bobina": "4+4 ohms",
-   "alto_falantes": 1,
-   "total_de_bobinas": 2,
-   "impedancias_alcancaveis": [
-    {
-     "ohms": "2",
-     "ligacao": "todas as 2 bobinas em paralelo"
-    },
-    {
-     "ohms": "8",
-     "ligacao": "todas as 2 bobinas em serie"
-    }
-   ],
-   "fecha_com_modulo_de": [
-    "2",
-    "8"
-   ],
-   "alcancavel_mas_sem_modulo_no_mercado": [],
-   "pedidos_que_nao_fecham": [
-    {
-     "impedancia_de_modulo_pedida": "0,5",
-     "alcancavel": false,
-     "mais_perto_que_fecha": "2",
-     "abaixo_do_pedido": false,
-     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
-    },
-    {
-     "impedancia_de_modulo_pedida": "1",
-     "alcancavel": false,
-     "mais_perto_que_fecha": "2",
-     "abaixo_do_pedido": false,
-     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
-    },
-    {
-     "impedancia_de_modulo_pedida": "4",
-     "alcancavel": false,
-     "mais_perto_que_fecha": "8",
-     "abaixo_do_pedido": false,
-     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
-    }
-   ]
-  },
-  {
-   "bobina": "4+4 ohms",
-   "alto_falantes": 2,
-   "total_de_bobinas": 4,
-   "impedancias_alcancaveis": [
-    {
-     "ohms": "1",
-     "ligacao": "todas as 4 bobinas em paralelo"
-    },
-    {
-     "ohms": "4",
-     "ligacao": "2 grupos de 2 bobinas em serie, os grupos em paralelo"
-    },
-    {
-     "ohms": "16",
-     "ligacao": "todas as 4 bobinas em serie"
-    }
-   ],
-   "fecha_com_modulo_de": [
-    "1",
-    "4"
-   ],
-   "alcancavel_mas_sem_modulo_no_mercado": [
-    "16"
-   ],
-   "pedidos_que_nao_fecham": [
-    {
-     "impedancia_de_modulo_pedida": "0,5",
-     "alcancavel": false,
-     "mais_perto_que_fecha": "1",
-     "abaixo_do_pedido": false,
-     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
-    },
-    {
-     "impedancia_de_modulo_pedida": "2",
-     "alcancavel": false,
-     "mais_perto_que_fecha": "4",
-     "abaixo_do_pedido": false,
-     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
-    },
-    {
-     "impedancia_de_modulo_pedida": "8",
-     "alcancavel": false,
-     "mais_perto_que_fecha": "4",
-     "abaixo_do_pedido": true,
-     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
-    }
-   ]
-  },
-  {
-   "bobina": "4+4 ohms",
-   "alto_falantes": 3,
-   "total_de_bobinas": 6,
-   "impedancias_alcancaveis": [
-    {
-     "ohms": "0,667",
-     "ligacao": "todas as 6 bobinas em paralelo"
-    },
-    {
-     "ohms": "2,667",
-     "ligacao": "3 grupos de 2 bobinas em serie, os grupos em paralelo"
-    },
-    {
-     "ohms": "6",
-     "ligacao": "2 grupos de 3 bobinas em serie, os grupos em paralelo"
-    },
-    {
-     "ohms": "24",
-     "ligacao": "todas as 6 bobinas em serie"
-    }
-   ],
-   "fecha_com_modulo_de": [],
-   "alcancavel_mas_sem_modulo_no_mercado": [
-    "0,667",
-    "2,667",
-    "6",
-    "24"
-   ],
-   "pedidos_que_nao_fecham": [
-    {
-     "impedancia_de_modulo_pedida": "0,5",
-     "alcancavel": false,
-     "mais_perto_que_fecha": null,
-     "abaixo_do_pedido": null,
-     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
-    },
-    {
-     "impedancia_de_modulo_pedida": "1",
-     "alcancavel": false,
-     "mais_perto_que_fecha": null,
-     "abaixo_do_pedido": null,
-     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
-    },
-    {
-     "impedancia_de_modulo_pedida": "2",
-     "alcancavel": false,
-     "mais_perto_que_fecha": null,
-     "abaixo_do_pedido": null,
-     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
-    },
-    {
-     "impedancia_de_modulo_pedida": "4",
-     "alcancavel": false,
-     "mais_perto_que_fecha": null,
-     "abaixo_do_pedido": null,
-     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
-    },
-    {
-     "impedancia_de_modulo_pedida": "8",
-     "alcancavel": false,
-     "mais_perto_que_fecha": null,
-     "abaixo_do_pedido": null,
-     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
-    }
-   ]
-  },
-  {
-   "bobina": "4+4 ohms",
-   "alto_falantes": 4,
-   "total_de_bobinas": 8,
-   "impedancias_alcancaveis": [
-    {
-     "ohms": "0,5",
-     "ligacao": "todas as 8 bobinas em paralelo"
-    },
-    {
-     "ohms": "2",
-     "ligacao": "4 grupos de 2 bobinas em serie, os grupos em paralelo"
-    },
-    {
-     "ohms": "8",
-     "ligacao": "2 grupos de 4 bobinas em serie, os grupos em paralelo"
-    },
-    {
-     "ohms": "32",
-     "ligacao": "todas as 8 bobinas em serie"
-    }
-   ],
-   "fecha_com_modulo_de": [
-    "0,5",
-    "2",
-    "8"
-   ],
-   "alcancavel_mas_sem_modulo_no_mercado": [
-    "32"
-   ],
-   "pedidos_que_nao_fecham": [
-    {
-     "impedancia_de_modulo_pedida": "1",
-     "alcancavel": false,
-     "mais_perto_que_fecha": "2",
-     "abaixo_do_pedido": false,
-     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
-    },
-    {
-     "impedancia_de_modulo_pedida": "4",
-     "alcancavel": false,
-     "mais_perto_que_fecha": "8",
-     "abaixo_do_pedido": false,
      "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
     }
    ]
@@ -1020,7 +611,7 @@
     "0,5",
     "2"
    ],
-   "alcancavel_mas_sem_modulo_no_mercado": [],
+   "alcancavel_e_fora_do_vocabulario_de_modulo": [],
    "pedidos_que_nao_fecham": [
     {
      "impedancia_de_modulo_pedida": "1",
@@ -1067,7 +658,7 @@
     "1",
     "4"
    ],
-   "alcancavel_mas_sem_modulo_no_mercado": [
+   "alcancavel_e_fora_do_vocabulario_de_modulo": [
     "0,25"
    ],
    "pedidos_que_nao_fecham": [
@@ -1117,7 +708,7 @@
     }
    ],
    "fecha_com_modulo_de": [],
-   "alcancavel_mas_sem_modulo_no_mercado": [
+   "alcancavel_e_fora_do_vocabulario_de_modulo": [
     "0,167",
     "0,667",
     "1,5",
@@ -1188,8 +779,419 @@
     "2",
     "8"
    ],
-   "alcancavel_mas_sem_modulo_no_mercado": [
+   "alcancavel_e_fora_do_vocabulario_de_modulo": [
     "0,125"
+   ],
+   "pedidos_que_nao_fecham": [
+    {
+     "impedancia_de_modulo_pedida": "1",
+     "alcancavel": false,
+     "mais_perto_que_fecha": "2",
+     "abaixo_do_pedido": false,
+     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
+    },
+    {
+     "impedancia_de_modulo_pedida": "4",
+     "alcancavel": false,
+     "mais_perto_que_fecha": "8",
+     "abaixo_do_pedido": false,
+     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
+    }
+   ]
+  },
+  {
+   "bobina": "2+2 ohms",
+   "alto_falantes": 1,
+   "total_de_bobinas": 2,
+   "impedancias_alcancaveis": [
+    {
+     "ohms": "1",
+     "ligacao": "todas as 2 bobinas em paralelo"
+    },
+    {
+     "ohms": "4",
+     "ligacao": "todas as 2 bobinas em serie"
+    }
+   ],
+   "fecha_com_modulo_de": [
+    "1",
+    "4"
+   ],
+   "alcancavel_e_fora_do_vocabulario_de_modulo": [],
+   "pedidos_que_nao_fecham": [
+    {
+     "impedancia_de_modulo_pedida": "0,5",
+     "alcancavel": false,
+     "mais_perto_que_fecha": "1",
+     "abaixo_do_pedido": false,
+     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
+    },
+    {
+     "impedancia_de_modulo_pedida": "2",
+     "alcancavel": false,
+     "mais_perto_que_fecha": "4",
+     "abaixo_do_pedido": false,
+     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
+    },
+    {
+     "impedancia_de_modulo_pedida": "8",
+     "alcancavel": false,
+     "mais_perto_que_fecha": "4",
+     "abaixo_do_pedido": true,
+     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
+    }
+   ]
+  },
+  {
+   "bobina": "2+2 ohms",
+   "alto_falantes": 2,
+   "total_de_bobinas": 4,
+   "impedancias_alcancaveis": [
+    {
+     "ohms": "0,5",
+     "ligacao": "todas as 4 bobinas em paralelo"
+    },
+    {
+     "ohms": "2",
+     "ligacao": "2 grupos de 2 bobinas em serie, os grupos em paralelo"
+    },
+    {
+     "ohms": "8",
+     "ligacao": "todas as 4 bobinas em serie"
+    }
+   ],
+   "fecha_com_modulo_de": [
+    "0,5",
+    "2",
+    "8"
+   ],
+   "alcancavel_e_fora_do_vocabulario_de_modulo": [],
+   "pedidos_que_nao_fecham": [
+    {
+     "impedancia_de_modulo_pedida": "1",
+     "alcancavel": false,
+     "mais_perto_que_fecha": "2",
+     "abaixo_do_pedido": false,
+     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
+    },
+    {
+     "impedancia_de_modulo_pedida": "4",
+     "alcancavel": false,
+     "mais_perto_que_fecha": "8",
+     "abaixo_do_pedido": false,
+     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
+    }
+   ]
+  },
+  {
+   "bobina": "2+2 ohms",
+   "alto_falantes": 3,
+   "total_de_bobinas": 6,
+   "impedancias_alcancaveis": [
+    {
+     "ohms": "0,333",
+     "ligacao": "todas as 6 bobinas em paralelo"
+    },
+    {
+     "ohms": "1,333",
+     "ligacao": "3 grupos de 2 bobinas em serie, os grupos em paralelo"
+    },
+    {
+     "ohms": "3",
+     "ligacao": "2 grupos de 3 bobinas em serie, os grupos em paralelo"
+    },
+    {
+     "ohms": "12",
+     "ligacao": "todas as 6 bobinas em serie"
+    }
+   ],
+   "fecha_com_modulo_de": [],
+   "alcancavel_e_fora_do_vocabulario_de_modulo": [
+    "0,333",
+    "1,333",
+    "3",
+    "12"
+   ],
+   "pedidos_que_nao_fecham": [
+    {
+     "impedancia_de_modulo_pedida": "0,5",
+     "alcancavel": false,
+     "mais_perto_que_fecha": null,
+     "abaixo_do_pedido": null,
+     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
+    },
+    {
+     "impedancia_de_modulo_pedida": "1",
+     "alcancavel": false,
+     "mais_perto_que_fecha": null,
+     "abaixo_do_pedido": null,
+     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
+    },
+    {
+     "impedancia_de_modulo_pedida": "2",
+     "alcancavel": false,
+     "mais_perto_que_fecha": null,
+     "abaixo_do_pedido": null,
+     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
+    },
+    {
+     "impedancia_de_modulo_pedida": "4",
+     "alcancavel": false,
+     "mais_perto_que_fecha": null,
+     "abaixo_do_pedido": null,
+     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
+    },
+    {
+     "impedancia_de_modulo_pedida": "8",
+     "alcancavel": false,
+     "mais_perto_que_fecha": null,
+     "abaixo_do_pedido": null,
+     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
+    }
+   ]
+  },
+  {
+   "bobina": "2+2 ohms",
+   "alto_falantes": 4,
+   "total_de_bobinas": 8,
+   "impedancias_alcancaveis": [
+    {
+     "ohms": "0,25",
+     "ligacao": "todas as 8 bobinas em paralelo"
+    },
+    {
+     "ohms": "1",
+     "ligacao": "4 grupos de 2 bobinas em serie, os grupos em paralelo"
+    },
+    {
+     "ohms": "4",
+     "ligacao": "2 grupos de 4 bobinas em serie, os grupos em paralelo"
+    },
+    {
+     "ohms": "16",
+     "ligacao": "todas as 8 bobinas em serie"
+    }
+   ],
+   "fecha_com_modulo_de": [
+    "1",
+    "4"
+   ],
+   "alcancavel_e_fora_do_vocabulario_de_modulo": [
+    "0,25",
+    "16"
+   ],
+   "pedidos_que_nao_fecham": [
+    {
+     "impedancia_de_modulo_pedida": "0,5",
+     "alcancavel": false,
+     "mais_perto_que_fecha": "1",
+     "abaixo_do_pedido": false,
+     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
+    },
+    {
+     "impedancia_de_modulo_pedida": "2",
+     "alcancavel": false,
+     "mais_perto_que_fecha": "4",
+     "abaixo_do_pedido": false,
+     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
+    },
+    {
+     "impedancia_de_modulo_pedida": "8",
+     "alcancavel": false,
+     "mais_perto_que_fecha": "4",
+     "abaixo_do_pedido": true,
+     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
+    }
+   ]
+  },
+  {
+   "bobina": "4+4 ohms",
+   "alto_falantes": 1,
+   "total_de_bobinas": 2,
+   "impedancias_alcancaveis": [
+    {
+     "ohms": "2",
+     "ligacao": "todas as 2 bobinas em paralelo"
+    },
+    {
+     "ohms": "8",
+     "ligacao": "todas as 2 bobinas em serie"
+    }
+   ],
+   "fecha_com_modulo_de": [
+    "2",
+    "8"
+   ],
+   "alcancavel_e_fora_do_vocabulario_de_modulo": [],
+   "pedidos_que_nao_fecham": [
+    {
+     "impedancia_de_modulo_pedida": "0,5",
+     "alcancavel": false,
+     "mais_perto_que_fecha": "2",
+     "abaixo_do_pedido": false,
+     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
+    },
+    {
+     "impedancia_de_modulo_pedida": "1",
+     "alcancavel": false,
+     "mais_perto_que_fecha": "2",
+     "abaixo_do_pedido": false,
+     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
+    },
+    {
+     "impedancia_de_modulo_pedida": "4",
+     "alcancavel": false,
+     "mais_perto_que_fecha": "8",
+     "abaixo_do_pedido": false,
+     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
+    }
+   ]
+  },
+  {
+   "bobina": "4+4 ohms",
+   "alto_falantes": 2,
+   "total_de_bobinas": 4,
+   "impedancias_alcancaveis": [
+    {
+     "ohms": "1",
+     "ligacao": "todas as 4 bobinas em paralelo"
+    },
+    {
+     "ohms": "4",
+     "ligacao": "2 grupos de 2 bobinas em serie, os grupos em paralelo"
+    },
+    {
+     "ohms": "16",
+     "ligacao": "todas as 4 bobinas em serie"
+    }
+   ],
+   "fecha_com_modulo_de": [
+    "1",
+    "4"
+   ],
+   "alcancavel_e_fora_do_vocabulario_de_modulo": [
+    "16"
+   ],
+   "pedidos_que_nao_fecham": [
+    {
+     "impedancia_de_modulo_pedida": "0,5",
+     "alcancavel": false,
+     "mais_perto_que_fecha": "1",
+     "abaixo_do_pedido": false,
+     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
+    },
+    {
+     "impedancia_de_modulo_pedida": "2",
+     "alcancavel": false,
+     "mais_perto_que_fecha": "4",
+     "abaixo_do_pedido": false,
+     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
+    },
+    {
+     "impedancia_de_modulo_pedida": "8",
+     "alcancavel": false,
+     "mais_perto_que_fecha": "4",
+     "abaixo_do_pedido": true,
+     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
+    }
+   ]
+  },
+  {
+   "bobina": "4+4 ohms",
+   "alto_falantes": 3,
+   "total_de_bobinas": 6,
+   "impedancias_alcancaveis": [
+    {
+     "ohms": "0,667",
+     "ligacao": "todas as 6 bobinas em paralelo"
+    },
+    {
+     "ohms": "2,667",
+     "ligacao": "3 grupos de 2 bobinas em serie, os grupos em paralelo"
+    },
+    {
+     "ohms": "6",
+     "ligacao": "2 grupos de 3 bobinas em serie, os grupos em paralelo"
+    },
+    {
+     "ohms": "24",
+     "ligacao": "todas as 6 bobinas em serie"
+    }
+   ],
+   "fecha_com_modulo_de": [],
+   "alcancavel_e_fora_do_vocabulario_de_modulo": [
+    "0,667",
+    "2,667",
+    "6",
+    "24"
+   ],
+   "pedidos_que_nao_fecham": [
+    {
+     "impedancia_de_modulo_pedida": "0,5",
+     "alcancavel": false,
+     "mais_perto_que_fecha": null,
+     "abaixo_do_pedido": null,
+     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
+    },
+    {
+     "impedancia_de_modulo_pedida": "1",
+     "alcancavel": false,
+     "mais_perto_que_fecha": null,
+     "abaixo_do_pedido": null,
+     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
+    },
+    {
+     "impedancia_de_modulo_pedida": "2",
+     "alcancavel": false,
+     "mais_perto_que_fecha": null,
+     "abaixo_do_pedido": null,
+     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
+    },
+    {
+     "impedancia_de_modulo_pedida": "4",
+     "alcancavel": false,
+     "mais_perto_que_fecha": null,
+     "abaixo_do_pedido": null,
+     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
+    },
+    {
+     "impedancia_de_modulo_pedida": "8",
+     "alcancavel": false,
+     "mais_perto_que_fecha": null,
+     "abaixo_do_pedido": null,
+     "criterio": "menor alcancavel >= o pedido; nunca a menor distancia em ohms"
+    }
+   ]
+  },
+  {
+   "bobina": "4+4 ohms",
+   "alto_falantes": 4,
+   "total_de_bobinas": 8,
+   "impedancias_alcancaveis": [
+    {
+     "ohms": "0,5",
+     "ligacao": "todas as 8 bobinas em paralelo"
+    },
+    {
+     "ohms": "2",
+     "ligacao": "4 grupos de 2 bobinas em serie, os grupos em paralelo"
+    },
+    {
+     "ohms": "8",
+     "ligacao": "2 grupos de 4 bobinas em serie, os grupos em paralelo"
+    },
+    {
+     "ohms": "32",
+     "ligacao": "todas as 8 bobinas em serie"
+    }
+   ],
+   "fecha_com_modulo_de": [
+    "0,5",
+    "2",
+    "8"
+   ],
+   "alcancavel_e_fora_do_vocabulario_de_modulo": [
+    "32"
    ],
    "pedidos_que_nao_fecham": [
     {

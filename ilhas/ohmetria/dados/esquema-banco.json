@@ -1,0 +1,734 @@
+{
+  "id": "esquema-banco",
+  "ilha": "ohmetria",
+  "bloco": 3,
+  "gerado_em": "2026-09-14",
+  "versao_esquema": 1,
+  "publicar": false,
+  "descricao": "Modelo do banco da Ohmetria: as entidades MODULO, ALTO_FALANTE, CAIXA, CABO e CAPACITOR, mais FONTE e AFILIADO, que sao embutidas dentro de cada registro. Define campo a campo o tipo, a unidade, a obrigatoriedade, o vocabulario controlado e a ORIGEM esperada do dado. Este arquivo e o contrato que os arquivos de banco desta pasta cumprem e que ferramentas/validar-banco.py verifica. Nenhum numero de fabricante entra no banco sem data_leitura, sem canal de leitura declarado e sem uma entrada correspondente em fonte.",
+  "depende_de": [
+    "dados/especificacao-calculadoras.md",
+    "dados/constantes.json",
+    "dados/corpus-buscas.md",
+    "dados/impedancias-alcancaveis.json"
+  ],
+  "principios": [
+    "MODULO NAO TEM UM RMS. TEM UM RMS POR IMPEDANCIA, E E ISSO QUE A ILHA VENDE. O defeito que o bloco 1 mediu na SERP e um numero de potencia solto, sem dizer em que impedancia ele vale nem se e RMS ou musical -- e o achado 0.1 do bloco 2 mostrou que o desacordo de 2,7 vezes entre as paginas de topo era UMA confusao de unidade, nao tres opinioes. Um banco que deixe entrar um campo rms escalar publica a ilha inteira cometendo o defeito que ela existe para corrigir. Por isso rms_por_impedancia e obrigatorio, impedancias_estaveis tem de ser exatamente as chaves dele, e nao existe campo rms de modulo neste esquema.",
+    "A UNIDADE DA POTENCIA E O CAMPO QUE NINGUEM DECLARA, E E ELE QUE DECIDE A CONTA. Aplicacao da secao 26 do ARQUIPELAGO.md ao campo que doi NESTA ilha: la o fabricante batiza a peca pela posicao e o banco classifica pela funcao; aqui o fabricante estampa um NUMERO de watt na caixa do produto e quem le tem de adivinhar se aquilo e RMS, musical ou pico. Por isso potencia.unidade_declarada nasce ao lado de potencia.unidade_declarada_por, com tres origens legitimas e nenhuma quarta. Registro sem uma das tres NAO nasce.",
+    "A MONOTONIA E FISICA, E E O PORTAO MAIS BARATO QUE ESTA ILHA TEM. Modulo entrega MAIS potencia quando a impedancia CAI: a mesma tensao sobre menos ohm da mais corrente. Entao rms_por_impedancia tem de ser nao-crescente da impedancia menor para a maior. Quando a leitura devolve o contrario, ou o numero foi transcrito errado, ou dois numeros de UNIDADES diferentes foram postos na mesma tabela -- que e exatamente o defeito do principio anterior, aparecendo dentro de um unico registro. Recusar custa um modelo a menos no banco; aceitar faz a F1 recomendar um modulo pela potencia errada.",
+    "O QUE O BANCO NAO TEM, O BANCO NAO AFIRMA. A F1 diz, para cada impedancia alcancavel, se existe modulo que a atenda. Com o banco vazio, a unica frase verdadeira e 'nenhum modulo do nosso banco', nunca 'nao existe modulo para isso' -- a segunda e uma afirmacao sobre o MERCADO e nenhuma medicao desta ilha a sustenta. O vocabulario impedancia_de_modulo deste esquema e EXPECTATIVA declarada, e o validador cobra os dois sentidos: modulo do banco fora do vocabulario faz o vocabulario crescer (nunca some o modulo), e entrada do vocabulario sem modulo no banco e divida contada, nunca silencio.",
+    "O NIVEL DE UM DADO E O DO ELO MAIS FRACO, E A LEITURA E UM ELO. Regra herdada de dados/constantes.json e da secao 10 do ARQUIPELAGO.md: documento oficial do fabricante colhido por BUSCA continua sendo busca, nao manual lido. O campo fonte.leitura e obrigatorio em todo registro, e registro com leitura por busca nasce com publicavel false. E por isso, e so por isso, que os dois bancos desta ilha nascem com ZERO registros: o egresso desta nuvem esta fechado para todo dominio de terceiro, medido pelas duas portas em 14/09/2026, e nenhum numero de fabricante foi lido."
+  ],
+  "escada_de_fontes": {
+    "o_que_e": "Nivel da fonte de um numero de fabricante, do mais forte ao mais fraco. O nivel efetivo do registro e o do ELO MAIS FRACO entre autoria, custodia e leitura.",
+    "niveis": [
+      {
+        "nivel": 1,
+        "fonte_tipo": "manual_do_fabricante",
+        "descricao": "manual ou datasheet em PDF no dominio oficial do fabricante, com codigo de revisao"
+      },
+      {
+        "nivel": 1,
+        "fonte_tipo": "pagina_oficial_do_fabricante",
+        "descricao": "ficha do produto em HTML no dominio oficial"
+      },
+      {
+        "nivel": 2,
+        "fonte_tipo": "sac_do_fabricante",
+        "descricao": "artigo de suporte publicado pelo proprio fabricante; e do fabricante mas nao e a ficha do produto"
+      },
+      {
+        "nivel": 3,
+        "fonte_tipo": "catalogo_de_loja",
+        "descricao": "ficha de loja ou marketplace. Copia a ficha do fabricante e erra copiando"
+      },
+      {
+        "nivel": 4,
+        "fonte_tipo": "veiculo_editorial",
+        "descricao": "blog, portal ou canal com autor nomeado. Nao e especificacao"
+      },
+      {
+        "nivel": 5,
+        "fonte_tipo": "forum",
+        "descricao": "resposta de pessoa para pessoa. Nunca entra no banco; entra no corpus como evidencia de demanda"
+      }
+    ],
+    "canais_de_leitura": {
+      "documento_aberto": "o PDF ou a pagina foi aberta e o numero foi transcrito dela. Unico canal que sustenta publicavel true",
+      "pagina_html_aberta": "a pagina HTML do fabricante foi aberta e o numero foi transcrito dela. Sustenta publicavel true",
+      "busca_web": "o numero veio da resposta de um buscador, com ou sem citacao da URL. NAO sustenta publicavel true, por mais forte que seja a autoria",
+      "documento_do_repositorio": "o numero foi lido de um arquivo deste repositorio que ja declarava procedencia. Herda o nivel e o canal daquele arquivo, nunca os melhora"
+    },
+    "regra": "publicavel true exige fonte_tipo de nivel 1 ou 2 E leitura em documento_aberto ou pagina_html_aberta. Qualquer outra combinacao nasce publicavel false, com motivo_nao_publicavel preenchido."
+  },
+  "vocabularios": {
+    "impedancia_de_bobina": {
+      "valores": [
+        "1",
+        "2",
+        "4",
+        "1+1",
+        "2+2",
+        "4+4"
+      ],
+      "o_que_e": "Impedancia nominal da bobina do alto-falante, como os fabricantes do nicho publicam. N+N e bobina dupla, e cada metade tem N ohms.",
+      "usado_por": [
+        "ALTO_FALANTE.impedancia_bobinas",
+        "entrada da F1"
+      ]
+    },
+    "impedancia_de_modulo": {
+      "valores": [
+        "0,5",
+        "1",
+        "2",
+        "4",
+        "8"
+      ],
+      "o_que_e": "Impedancias em que um modulo do nicho declara estabilizar. E EXPECTATIVA DECLARADA, nao medicao de mercado: ela veio da leitura de SERP do bloco 1 e nenhum registro de banco a sustenta ainda.",
+      "os_dois_sentidos_que_o_validador_cobra": [
+        "modulo do banco que estabilize fora desta lista e ERRO DURO do ESQUEMA, nunca do modulo: a lista cresce numa linha deste arquivo e o modulo entra. Somer o modulo seria o banco escondendo o que mediu.",
+        "entrada desta lista sem nenhum modulo do banco por tras e DIVIDA CONTADA, reportada em vocabulario_sem_lastro. Enquanto ela nao for zero, nenhuma frase da ilha pode dizer que uma impedancia 'nao existe no mercado'."
+      ],
+      "usado_por": [
+        "MODULO.impedancias_estaveis",
+        "ferramentas/impedancias.py",
+        "entrada opcional da F1"
+      ]
+    },
+    "unidade_de_potencia": {
+      "valores": [
+        "rms",
+        "musical",
+        "pico"
+      ],
+      "o_que_e": "Como o fabricante declarou o numero de watt. A ilha so PUBLICA rms; as outras duas existem para o registro poder dizer honestamente que o numero que ele tem nao serve.",
+      "usado_por": [
+        "MODULO.potencia.unidade_declarada",
+        "ALTO_FALANTE.potencia.unidade_declarada"
+      ]
+    },
+    "tipo_de_caixa": {
+      "valores": [
+        "selada",
+        "dutada",
+        "bandpass"
+      ],
+      "usado_por": [
+        "CAIXA.tipo_caixa",
+        "entrada da F2"
+      ]
+    },
+    "programa_afiliado": {
+      "valores": [
+        "shopee",
+        "mercadolivre"
+      ],
+      "o_que_e": "Amazon esta fora de tudo (secao 7 do ARQUIPELAGO.md): nao e ancora de comissao, nao e evidencia de cobertura, nao e categoria de referencia.",
+      "usado_por": [
+        "AFILIADO.programa"
+      ]
+    },
+    "fonte_tipo": {
+      "valores": [
+        "manual_do_fabricante",
+        "pagina_oficial_do_fabricante",
+        "sac_do_fabricante",
+        "catalogo_de_loja",
+        "veiculo_editorial",
+        "forum"
+      ],
+      "usado_por": [
+        "FONTE.tipo"
+      ]
+    },
+    "canal_de_leitura": {
+      "valores": [
+        "documento_aberto",
+        "pagina_html_aberta",
+        "busca_web",
+        "documento_do_repositorio"
+      ],
+      "usado_por": [
+        "FONTE.leitura"
+      ]
+    }
+  },
+  "campos_que_exigem_declaracao_de_origem": {
+    "por_que_esta_lista_mora_AQUI": "Secao 26.2 do ARQUIPELAGO.md: quais campos exigem a declaracao e decisao do ESQUEMA da ilha, escrita no esquema, nunca dentro do validador. Lista digitada dentro da regua envelhece calada. O dia em que um campo novo sofrer do mesmo mal, ele entra numa linha daqui e a trava passa a cobra-lo sem uma linha de codigo nova. E a trava tem de REPROVAR quando esta chave sumir: regua que le a propria lista de um arquivo de dados aprova tudo, em silencio, no dia em que o arquivo perder a chave.",
+    "campos": [
+      {
+        "campo": "potencia.unidade_declarada",
+        "vale_para": [
+          "MODULO",
+          "ALTO_FALANTE"
+        ],
+        "campo_da_origem": "potencia.unidade_declarada_por",
+        "por_que": "O fabricante estampa o watt e quase nunca diz se e RMS, musical ou pico. Ler a unidade do texto e chute com cara de dado, e foi essa confusao que produziu o desacordo de 2,7 vezes que o bloco 1 mediu."
+      },
+      {
+        "campo": "impedancias_estaveis",
+        "vale_para": [
+          "MODULO"
+        ],
+        "campo_da_origem": "impedancias_estaveis_declarada_por",
+        "por_que": "Ha fabricante que publica a lista de impedancias estaveis em prosa e ha fabricante que so publica a TABELA de potencia por impedancia, de onde a lista e inferida por quem le. As duas dao a mesma lista e nao dao a mesma autoridade: no segundo caso a tela nao pode dizer que o fabricante declarou estabilidade, porque o que ele declarou foi potencia."
+      }
+    ],
+    "origens_legitimas": {
+      "no_titulo_ou_na_prosa_do_fabricante": "a palavra esta publicada pelo fabricante, literalmente, para aquele modelo",
+      "na_tabela_de_potencia_por_impedancia": "o fabricante nao escreveu a lista nem a unidade em prosa, mas a tabela dele so admite uma leitura para aquele modelo",
+      "no_manual_do_modelo": "o manual ou o canal de manutencao daquele modelo declara"
+    },
+    "regra": "Sem uma das tres origens, o registro NAO nasce. Lacuna com causa nomeada e dado; lacuna preenchida por semelhanca e defeito que ninguem ve ate alguem queimar um modulo."
+  },
+  "entidades": {
+    "MODULO": {
+      "arquivo_de_banco": "dados/modulos.json",
+      "chave": "id",
+      "serve": [
+        "F1",
+        "F3"
+      ],
+      "campos": {
+        "id": {
+          "tipo": "slug",
+          "obrigatorio": true,
+          "molde": "marca-modelo em minusculas, sem acento, separado por hifen"
+        },
+        "marca": {
+          "tipo": "texto",
+          "obrigatorio": true
+        },
+        "modelo": {
+          "tipo": "texto",
+          "obrigatorio": true,
+          "nota": "exatamente como o fabricante escreve, com espaco e ponto"
+        },
+        "canais": {
+          "tipo": "inteiro",
+          "obrigatorio": true,
+          "dominio": [
+            1,
+            2,
+            4,
+            5,
+            6
+          ]
+        },
+        "impedancias_estaveis": {
+          "tipo": "lista de texto",
+          "obrigatorio": true,
+          "vocabulario": "impedancia_de_modulo",
+          "minimo_de_itens": 1,
+          "nota": "Tem de ser EXATAMENTE o conjunto de chaves de rms_por_impedancia. As duas metades contam a mesma coisa e o validador as compara nos dois sentidos -- e a cicatriz da secao 8: quando duas metades contam a mesma coisa, a afirmacao que as compara fica verde quando as duas erram juntas, entao a comparacao e obrigatoria e nao basta."
+        },
+        "impedancias_estaveis_declarada_por": {
+          "tipo": "texto",
+          "obrigatorio": true,
+          "vocabulario": "origens_legitimas"
+        },
+        "rms_por_impedancia": {
+          "tipo": "objeto",
+          "obrigatorio": true,
+          "chave": "impedancia do vocabulario impedancia_de_modulo",
+          "valor": "watt RMS declarado NAQUELA impedancia, inteiro",
+          "invariante": "nao-crescente da impedancia menor para a maior (ver principio da monotonia)"
+        },
+        "potencia": {
+          "tipo": "objeto",
+          "obrigatorio": true,
+          "campos": {
+            "unidade_declarada": {
+              "tipo": "texto",
+              "obrigatorio": true,
+              "vocabulario": "unidade_de_potencia"
+            },
+            "unidade_declarada_por": {
+              "tipo": "texto",
+              "obrigatorio": true,
+              "vocabulario": "origens_legitimas"
+            }
+          }
+        },
+        "tensao_alimentacao_v": {
+          "tipo": "numero",
+          "obrigatorio": false,
+          "unidade": "V",
+          "nota": "12,6 ou 14,4 conforme o fabricante declara. Entra na F3"
+        },
+        "consumo_musical_a": {
+          "tipo": "numero",
+          "obrigatorio": false,
+          "unidade": "A",
+          "nota": "so quando o FABRICANTE publica o numero. Consumo calculado por divisor e conta da F3, nunca campo de banco"
+        },
+        "fonte": {
+          "tipo": "FONTE",
+          "obrigatorio": true
+        },
+        "afiliado": {
+          "tipo": "AFILIADO",
+          "obrigatorio": true
+        },
+        "imagem": {
+          "tipo": "IMAGEM",
+          "obrigatorio": false,
+          "nota": "produto sem imagem NAO some do resultado; aparece com espaco reservado neutro (secao 6)"
+        },
+        "publicavel": {
+          "tipo": "booleano",
+          "obrigatorio": true,
+          "derivado": "escada_de_fontes.regra"
+        },
+        "motivo_nao_publicavel": {
+          "tipo": "texto",
+          "obrigatorio_quando": "publicavel e false"
+        }
+      }
+    },
+    "ALTO_FALANTE": {
+      "arquivo_de_banco": "dados/alto-falantes.json",
+      "chave": "id",
+      "serve": [
+        "F1",
+        "F2"
+      ],
+      "campos": {
+        "id": {
+          "tipo": "slug",
+          "obrigatorio": true
+        },
+        "marca": {
+          "tipo": "texto",
+          "obrigatorio": true
+        },
+        "modelo": {
+          "tipo": "texto",
+          "obrigatorio": true
+        },
+        "polegadas": {
+          "tipo": "numero",
+          "obrigatorio": true
+        },
+        "impedancia_bobinas": {
+          "tipo": "texto",
+          "obrigatorio": true,
+          "vocabulario": "impedancia_de_bobina"
+        },
+        "bobinas": {
+          "tipo": "inteiro",
+          "obrigatorio": true,
+          "derivado": "2 quando impedancia_bobinas tem o sinal de mais, 1 quando nao tem",
+          "nota": "campo derivado E gravado, para que o validador possa compara-lo com a string e pegar a transcricao errada"
+        },
+        "ohms_por_bobina": {
+          "tipo": "numero",
+          "obrigatorio": true,
+          "derivado": "o numero antes do sinal de mais em impedancia_bobinas"
+        },
+        "potencia": {
+          "tipo": "objeto",
+          "obrigatorio": true,
+          "campos": {
+            "rms_w": {
+              "tipo": "inteiro",
+              "obrigatorio": true,
+              "unidade": "W"
+            },
+            "unidade_declarada": {
+              "tipo": "texto",
+              "obrigatorio": true,
+              "vocabulario": "unidade_de_potencia"
+            },
+            "unidade_declarada_por": {
+              "tipo": "texto",
+              "obrigatorio": true,
+              "vocabulario": "origens_legitimas"
+            }
+          }
+        },
+        "thiele_small": {
+          "tipo": "objeto",
+          "obrigatorio": false,
+          "nota": "obrigatorio para entrar na F2; opcional para entrar na F1, que so precisa da impedancia e do RMS",
+          "campos": {
+            "fs_hz": {
+              "tipo": "numero",
+              "unidade": "Hz"
+            },
+            "vas_l": {
+              "tipo": "numero",
+              "unidade": "L"
+            },
+            "qts": {
+              "tipo": "numero",
+              "unidade": "adimensional"
+            },
+            "xmax_mm": {
+              "tipo": "numero",
+              "unidade": "mm",
+              "obrigatorio": false
+            },
+            "sd_cm2": {
+              "tipo": "numero",
+              "unidade": "cm2",
+              "obrigatorio": false
+            }
+          },
+          "portao_de_entrada": {
+            "constante": "faixa-de-validacao-thiele-small",
+            "mora_em": "dados/constantes.json",
+            "regra": "O validador LE a faixa daquela constante e nunca a digita. Valor fora da faixa e RECUSADO na entrada, nunca corrigido: a extracao automatica de PDF ja produziu Fs de 4 Hz e Vas em cm3 no lugar de litro, e litragem absurda com cara de numero exato e o pior defeito possivel nesta ilha."
+          }
+        },
+        "litragem_recomendada_pelo_fabricante": {
+          "tipo": "lista de objetos",
+          "obrigatorio": false,
+          "campos": {
+            "litragem_l": "numero",
+            "litragem_tipo": "texto do vocabulario tipo_de_caixa"
+          },
+          "nota": "Trava 3 do bloco 3 no PROMPT.md: e conjunto de validacao de graca. A formula da F2 tem de bater com o que o fabricante recomenda, e onde nao bater o erro e nosso."
+        },
+        "fonte": {
+          "tipo": "FONTE",
+          "obrigatorio": true
+        },
+        "afiliado": {
+          "tipo": "AFILIADO",
+          "obrigatorio": true
+        },
+        "imagem": {
+          "tipo": "IMAGEM",
+          "obrigatorio": false
+        },
+        "publicavel": {
+          "tipo": "booleano",
+          "obrigatorio": true,
+          "derivado": "escada_de_fontes.regra"
+        },
+        "motivo_nao_publicavel": {
+          "tipo": "texto",
+          "obrigatorio_quando": "publicavel e false"
+        }
+      }
+    },
+    "CAIXA": {
+      "arquivo_de_banco": null,
+      "motivo_de_nao_ter_banco_ainda": "A CAIXA e primeiro uma SAIDA da F2 (litro calculado), e so depois um produto. Caixa pronta so vira registro quando houver alto-falante no banco para casar com ela; banco de caixa antes de banco de falante e arquivo que a tela nunca usa.",
+      "serve": [
+        "F2"
+      ],
+      "campos": {
+        "id": {
+          "tipo": "slug",
+          "obrigatorio": true
+        },
+        "marca": {
+          "tipo": "texto",
+          "obrigatorio": true
+        },
+        "modelo": {
+          "tipo": "texto",
+          "obrigatorio": true
+        },
+        "tipo_caixa": {
+          "tipo": "texto",
+          "obrigatorio": true,
+          "vocabulario": "tipo_de_caixa"
+        },
+        "litragem_l": {
+          "tipo": "numero",
+          "obrigatorio": true,
+          "unidade": "L"
+        },
+        "litragem_tipo": {
+          "tipo": "texto",
+          "obrigatorio": true,
+          "dominio": [
+            "interna_liquida",
+            "externa_bruta"
+          ],
+          "nota": "Heranca explicita do bloco 2: a razao entre liquido e bruto e constante em DESACORDO publicado (0,8 a 0,88) e pendente. Litragem sem dizer qual das duas e nao serve para comparar com nada."
+        },
+        "duto": {
+          "tipo": "objeto",
+          "obrigatorio": false,
+          "campos": {
+            "diametro_mm": "numero",
+            "comprimento_cm": "numero",
+            "sintonia_hz": "numero"
+          }
+        },
+        "fonte": {
+          "tipo": "FONTE",
+          "obrigatorio": true
+        },
+        "afiliado": {
+          "tipo": "AFILIADO",
+          "obrigatorio": true
+        },
+        "publicavel": {
+          "tipo": "booleano",
+          "obrigatorio": true
+        }
+      }
+    },
+    "CABO": {
+      "arquivo_de_banco": null,
+      "motivo_de_nao_ter_banco_ainda": "O CABO serve a F3, e a F3 e a ULTIMA da ordem obrigatoria por decisao do PROMPT.md -- e a unica que entra contra um concorrente que ja tem a ferramenta pronta. Alem disso duas das constantes que ela precisa estao pendentes por egresso fechado.",
+      "serve": [
+        "F3"
+      ],
+      "campos": {
+        "id": {
+          "tipo": "slug",
+          "obrigatorio": true
+        },
+        "marca": {
+          "tipo": "texto",
+          "obrigatorio": true
+        },
+        "modelo": {
+          "tipo": "texto",
+          "obrigatorio": true
+        },
+        "secao_mm2": {
+          "tipo": "numero",
+          "obrigatorio": true,
+          "unidade": "mm2"
+        },
+        "secao_declarada_ou_medida": {
+          "tipo": "texto",
+          "obrigatorio": true,
+          "dominio": [
+            "declarada_pelo_fabricante",
+            "medida_por_terceiro"
+          ],
+          "nota": "Cabo automotivo brasileiro tem historico de secao nominal acima da real. A ilha nao mede cabo; ela declara de quem e o numero."
+        },
+        "material": {
+          "tipo": "texto",
+          "obrigatorio": true,
+          "dominio": [
+            "cobre",
+            "cca",
+            "nao_declarado"
+          ]
+        },
+        "fonte": {
+          "tipo": "FONTE",
+          "obrigatorio": true
+        },
+        "afiliado": {
+          "tipo": "AFILIADO",
+          "obrigatorio": true
+        },
+        "publicavel": {
+          "tipo": "booleano",
+          "obrigatorio": true
+        }
+      }
+    },
+    "CAPACITOR": {
+      "arquivo_de_banco": null,
+      "motivo_de_nao_ter_banco_ainda": "Nenhuma das tres ferramentas do bloco 4 ao 6 recomenda capacitor. Ele esta no esquema porque o despacho o nomeia; banco dele nasce quando existir ferramenta que o decida.",
+      "serve": [],
+      "campos": {
+        "id": {
+          "tipo": "slug",
+          "obrigatorio": true
+        },
+        "marca": {
+          "tipo": "texto",
+          "obrigatorio": true
+        },
+        "modelo": {
+          "tipo": "texto",
+          "obrigatorio": true
+        },
+        "farads": {
+          "tipo": "numero",
+          "obrigatorio": true,
+          "unidade": "F"
+        },
+        "fonte": {
+          "tipo": "FONTE",
+          "obrigatorio": true
+        },
+        "afiliado": {
+          "tipo": "AFILIADO",
+          "obrigatorio": true
+        },
+        "publicavel": {
+          "tipo": "booleano",
+          "obrigatorio": true
+        }
+      }
+    },
+    "FONTE": {
+      "arquivo_de_banco": null,
+      "embutida": true,
+      "o_que_e": "Embutida dentro de cada registro, nunca em arquivo separado. Um registro so tem um numero porque alguem publicou aquele numero em algum lugar, em alguma data, lido por algum canal.",
+      "campos": {
+        "tipo": {
+          "tipo": "texto",
+          "obrigatorio": true,
+          "vocabulario": "fonte_tipo"
+        },
+        "url": {
+          "tipo": "url",
+          "obrigatorio": true
+        },
+        "titulo_ou_codigo": {
+          "tipo": "texto",
+          "obrigatorio": true,
+          "nota": "titulo da pagina, ou o codigo de revisao do manual quando houver. E o que permite reabrir o mesmo documento anos depois"
+        },
+        "leitura": {
+          "tipo": "texto",
+          "obrigatorio": true,
+          "vocabulario": "canal_de_leitura"
+        },
+        "data_leitura": {
+          "tipo": "data",
+          "obrigatorio": true,
+          "formato": "AAAA-MM-DD"
+        },
+        "nivel": {
+          "tipo": "inteiro",
+          "obrigatorio": true,
+          "derivado": "do fonte_tipo pela escada_de_fontes"
+        }
+      }
+    },
+    "AFILIADO": {
+      "arquivo_de_banco": null,
+      "embutida": true,
+      "o_que_e": "Embutida dentro de cada registro. Nasce PRESENTE em todo item, mesmo vazia -- seccao 25.2: o piso e a busca e o piso nunca espera ninguem.",
+      "campos": {
+        "programa": {
+          "tipo": "texto",
+          "obrigatorio": true,
+          "vocabulario": "programa_afiliado"
+        },
+        "palavra_chave_busca": {
+          "tipo": "texto",
+          "obrigatorio": true,
+          "nota": "a consulta que encontra ESTE produto na loja. Nasce de marca + modelo, e e o unico campo digitado do piso"
+        },
+        "url_busca_produto": {
+          "tipo": "url",
+          "obrigatorio": true,
+          "derivado": "molde do piso_de_compra com a palavra_chave_busca",
+          "nota": "URL CRUA da busca. O validador a FABRICA do molde e compara com a gravada; URL de piso digitada a mao envelhece calada no dia em que o molde mudar"
+        },
+        "url_busca": {
+          "tipo": "url",
+          "obrigatorio": false,
+          "nota": "a busca ja transformada em link de afiliado. Quando falta, o item tem saida de compra e nao tem comissao -- e divida de comissao, nunca defeito de pagina"
+        },
+        "url_produto": {
+          "tipo": "url",
+          "obrigatorio": false,
+          "nota": "URL crua da ficha do produto. OBRIGATORIA sempre que url existir (25.4-b): sem ela o teste de vida e impossivel, porque a 25.4 proibe clicar no proprio link de afiliado para chegar la. A Aquametria carrega 39 itens sem ela como divida herdada; esta ilha nasceu DEPOIS da regra e nao herda nada, entao aqui e ERRO e nao divida."
+        },
+        "url": {
+          "tipo": "url",
+          "obrigatorio": false,
+          "nota": "o link de afiliado da ficha, que e o que vai para o leitor quando existir"
+        },
+        "degrau": {
+          "tipo": "inteiro",
+          "obrigatorio": true,
+          "dominio": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "nota": "o degrau da escada 25.1 em que a escolha parou"
+        },
+        "intestavel": {
+          "tipo": "booleano",
+          "obrigatorio": true,
+          "derivado": "true quando url existe e url_produto nao existe",
+          "nota": "true quando url existe e url_produto nao existe. A divida sai de dentro da prosa e vira contagem -- prosa nao se conta. Nesta ilha a contagem tem de ser ZERO, e o validador reprova quando nao for."
+        }
+      }
+    },
+    "IMAGEM": {
+      "arquivo_de_banco": null,
+      "embutida": true,
+      "campos": {
+        "url": {
+          "tipo": "url",
+          "obrigatorio": true
+        },
+        "largura": {
+          "tipo": "inteiro",
+          "obrigatorio": true
+        },
+        "altura": {
+          "tipo": "inteiro",
+          "obrigatorio": true
+        },
+        "fonte": {
+          "tipo": "texto",
+          "obrigatorio": true
+        },
+        "coletado_em": {
+          "tipo": "data",
+          "obrigatorio": true
+        },
+        "alt": {
+          "tipo": "texto",
+          "obrigatorio": true
+        }
+      },
+      "o_que_e": "Embutida dentro de cada registro. Produto sem imagem NAO some do resultado: aparece com espaco reservado neutro (secao 6). Perder a recomendacao tecnica certa por falta de foto e trocar o certo pelo bonito."
+    }
+  },
+  "piso_de_compra": {
+    "regra": "Secao 25.2 do ARQUIPELAGO.md: todo item ganha o link de BUSCA antes de qualquer outra coisa, e o piso nunca depende de ninguem. Item sem url_busca_produto nao e publicavel, em nenhum degrau.",
+    "moldes": {
+      "shopee": "https://shopee.com.br/search?keyword={palavra_chave}",
+      "mercadolivre": "https://lista.mercadolivre.com.br/{palavra_chave_hifen}"
+    },
+    "como_a_palavra_chave_nasce": "marca + modelo, em minusculas e sem acento, com o termo de contexto do nicho quando marca ou modelo forem ambiguos. NUNCA filtre so por marca: JBL e som e e aquario, Bomber e som e e outra coisa, e um recorte errado no repositorio e pior que recorte nenhum porque parece dado.",
+    "escolha_de_programa": "Quando o produto existe nos dois, o link e o da Shopee (secao 7).",
+    "rel_do_link": "sponsored em link que paga comissao; nofollow em busca CRUA, que nao paga. Chamar de patrocinado um link que nao rende nada seria mentir para o leitor sobre a unica coisa que ele tem o direito de saber sobre nos."
+  },
+  "criterio_de_entrada": {
+    "MODULO": "canais, impedancias_estaveis com pelo menos uma impedancia, rms_por_impedancia com a MESMA chave para cada uma, potencia.unidade_declarada e a origem dela, fonte completa e o piso de busca. Sem rms_por_impedancia o modulo nao serve a F1, que e a razao dele existir no banco.",
+    "ALTO_FALANTE": "impedancia_bobinas do vocabulario, bobinas e ohms_por_bobina coerentes com ela, potencia RMS com unidade declarada, fonte completa e o piso de busca. Thiele-Small e opcional; quando vier, passa pela faixa de validacao ANTES de entrar.",
+    "recusa_e_barata": "Registro recusado volta para a fila de coleta com a causa escrita. Registro aceito errado vai para a tela com cara de declaracao do fabricante, que e a unica coisa que esta ilha vende."
+  },
+  "bancos": {
+    "o_que_e": "Quais entidades ja tem arquivo de banco nesta pasta hoje. O validador cobra os DOIS sentidos: entidade que declara arquivo_de_banco tem de ter o arquivo, e arquivo de banco nesta pasta tem de estar declarado por alguma entidade. Numero de tela nasce contado, nunca digitado -- e arquivo de banco sem entidade que o mostre e dado colhido que a tela nunca usa.",
+    "existem_hoje": [
+      "dados/modulos.json",
+      "dados/alto-falantes.json"
+    ],
+    "nascem_vazios_porque": "O egresso HTTP desta nuvem esta fechado para todo dominio de terceiro, medido pelas duas portas em 14/09/2026 (curl em www.lojadesomautomotivo.com.br no bloco 1, WebFetch em sac.taramps.com.br no bloco 2). Pela escada_de_fontes desta ilha, numero de fabricante colhido por busca nasce publicavel false -- entao carregar o banco hoje produziria registros que nenhuma ferramenta pode usar. O bloco 3 entrega o MODELO; a carga e o bloco 3c e ela espera o canal, nao a decisao."
+  },
+  "o_que_o_esquema_permite_e_o_banco_ainda_nao_tem": {
+    "por_que_essa_lista_existe": "Secao 8 do ARQUIPELAGO.md: todo caso que o ESQUEMA permite e o banco ainda nao tem e um caso que a regua precisa tratar HOJE, nao no dia em que aparecer. Verde sobre um banco de zero elementos nao e medicao, e ausencia de contraexemplo confundida com prova. Cada linha desta lista tem uma mutacao em ferramentas/mutacoes-banco.py que PRODUZ o mundo, e a mutacao diz se ele tem de passar ou de reprovar.",
+    "mundos": [
+      "banco com ZERO registros -- e o mundo de hoje, e o validador tem de passar nele sem afirmar nada sobre o mercado",
+      "modulo que estabiliza numa impedancia FORA do vocabulario (um 16 ohms, por exemplo): tem de reprovar o ESQUEMA e nomear que a lista cresce, nunca somer o modulo",
+      "modulo cujo rms_por_impedancia CRESCE quando a impedancia sobe: tem de reprovar pela monotonia",
+      "modulo com impedancias_estaveis e rms_por_impedancia discordando em qualquer um dos dois sentidos",
+      "modulo com unidade_declarada musical: entra no banco, NAO e publicavel, e o motivo fica escrito",
+      "registro com fonte de nivel 1 lida por busca_web: tem de nascer publicavel false, porque o elo mais fraco e a leitura",
+      "item com url e sem url_produto: intestavel derivado true, contado E reprovado -- esta ilha nasceu depois da 25.4-b",
+      "item sem url_busca_produto: erro duro, em qualquer degrau",
+      "alto-falante com Thiele-Small fora da faixa da constante: recusado na entrada",
+      "alto-falante cuja string de impedancia discorda de bobinas ou de ohms_por_bobina",
+      "alto-falante cujo par (bobinas, ohms) o gerador da F1 nao enumera: o banco nao pode ter falante que a ferramenta nao sabe responder",
+      "a chave campos_que_exigem_declaracao_de_origem some do esquema: a trava tem de REPROVAR, nao aprovar tudo em silencio",
+      "a constante faixa-de-validacao-thiele-small some de constantes.json: idem"
+    ]
+  }
+}

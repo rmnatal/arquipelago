@@ -1,0 +1,19 @@
+{
+  "ilha": "ohmetria",
+  "bloco": "3",
+  "versao": 1,
+  "gerado_em": "2026-09-14",
+  "publicar": false,
+  "cumpre_o_esquema": "dados/esquema-banco.json",
+  "entidade": "ALTO_FALANTE",
+  "titulo": "Alto-falantes e subwoofers - banco da Ohmetria",
+  "serve": [
+    "F1",
+    "F2"
+  ],
+  "o_que_este_arquivo_e": "Os alto-falantes que a F1 casa com modulo e que a F2 dimensiona. Thiele-Small e opcional para a F1 e obrigatorio para a F2, e passa pela faixa de validacao da constante faixa-de-validacao-thiele-small ANTES de entrar.",
+  "motivo_de_estar_vazio": "O banco nasce com ZERO registros, e isso e cumprimento de regra, nao atraso. O egresso HTTP desta nuvem esta fechado para todo dominio de terceiro -- medido pelas DUAS portas: curl em www.lojadesomautomotivo.com.br no bloco 1 e WebFetch em sac.taramps.com.br no bloco 2, em 14/09/2026. A busca web funciona e resolve levantamento e atribuicao; leitura de documento, nao. E a escada_de_fontes desta ilha (esquema-banco.json) diz que numero de fabricante colhido por BUSCA nasce publicavel false, por mais forte que seja a autoria -- a mesma regra do elo mais fraco que fez 8 das 18 constantes do bloco 2 nascerem pendentes. Carregar o banco hoje produziria registros que nenhuma ferramenta pode usar e que teriam de ser recolhidos depois. A carga e o bloco 3c e ela espera o CANAL, nunca a decisao: o que falta esta listado em constantes.json -> pendencias_de_leitura. Vale aqui com um agravante medido: os valores de Thiele-Small que o dossie desta ilha cita (Bomber, JBL/Selenium, Eros, Ultravox, Hinor, Triton, Pioneer) estao no repositorio SEM a URL do documento de onde sairam. Grava-los criaria registros sem fonte.url, que o esquema recusa -- e inventar a URL seria pior que a lacuna.",
+  "itens_esperando_link": "0 itens esperam link de afiliado, porque ha 0 itens. Quando o primeiro registro entrar, esta contagem e reportada em todo bloco (secao 7 do ARQUIPELAGO.md, cicatriz da Robometria) e ela e CONTADA por ferramentas/validar-banco.py, nunca digitada aqui.",
+  "primeira_carga": "Ordem obrigatoria do PROMPT.md: Bomber, JBL/Selenium, Eros e Pioneer primeiro; Triton, Ultravox e Hinor na segunda leva; Oversound quando alguem abrir os PDFs manualmente. A Pioneer BR e a unica em HTML raspavel.",
+  "itens": []
+}

@@ -135,8 +135,22 @@ endereço da declaração. As três coisas faltam em todos os nove resultados ac
    dão 0,5 Ω." Ou: **"Não fecha. Esse par não alcança 1 Ω de jeito nenhum — o mais perto
    que fecha é 2 Ω."**
 2. **Todas as impedâncias alcançáveis**, com a ligação escrita de cada uma, e marcando
-   as que **existem como módulo** e as que **não existem** ("0,125 Ω é alcançável e não
-   existe módulo para isso").
+   as que **o banco atende** e as que **o banco não atende** ("0,125 Ω é alcançável e
+   **nenhum módulo do nosso banco** estabiliza aí").
+   **CORRIGIDO NO BLOCO 3, e a diferença é a única que importa nesta linha:** até
+   14/09/2026 esta frase era *"0,125 Ω é alcançável e não existe módulo para isso"*, que
+   é uma afirmação sobre o **mercado** — e a única coisa que a sustentava era uma lista
+   de cinco impedâncias digitada à mão dentro de `ferramentas/impedancias.py`, com o
+   comentário dizendo, com todas as letras, que ela era "o conjunto de valores que o
+   mercado de módulos oferece". Nenhum registro de banco podia contradizê-la, porque não
+   havia banco. É a família da seção 8 do contrato: número de tela nasce **contado**,
+   nunca digitado, e régua escrita para um mundo que nunca aconteceu nasce sem poder
+   falhar. A lista mudou de casa (`esquema-banco.json` → `vocabularios.impedancia_de_modulo`,
+   pela 26.2), o campo do JSON mudou de nome
+   (`alcancavel_e_fora_do_vocabulario_de_modulo`) e `ferramentas/validar-banco.py` passou
+   a cobrar os dois sentidos entre a lista e o banco. **Enquanto `vocabulario_sem_lastro`
+   não for vazio — hoje ele é 5 de 5, porque o banco está vazio — a F1 não pode publicar
+   nenhuma frase sobre o que existe ou não existe no mercado.**
 3. **Os módulos do banco** que estabilizam na impedância escolhida, com o RMS declarado
    naquela impedância.
 4. **Bloco de compra**, com link de afiliado, **antes** da prova de procedência (seção 7
@@ -468,3 +482,39 @@ MD1200.1, TS 1200X4 foram vistas). Se o egresso abrir, a carga do lado **MÓDULO
 não precisar de PDF nenhum — o que muda a trava 1 do bloco 3 de "extração de PDF" para
 "leitura de página" **na metade que sustenta a F1**. Não conferido: a página não foi
 aberta.
+
+---
+
+## 6. O QUE O BLOCO 3 ENTREGOU, E ONDE A F1 VAI BUSCAR CADA COISA (14/09/2026)
+
+Esta seção foi acrescentada pelo **bloco 3**, que é o modelo do banco. Ela existe para
+que quem escrever a F1 no bloco 4 não precise reler os dois arquivos inteiros.
+
+| O que a F1 precisa | Onde está |
+|---|---|
+| domínio de saída enumerado (24 montagens) | `dados/impedancias-alcancaveis.json`, gerado por `ferramentas/impedancias.py` |
+| o contrato do banco, campo a campo | `dados/esquema-banco.json` |
+| os módulos que estabilizam em cada impedância | `dados/modulos.json` — **hoje com 0 registros** |
+| os alto-falantes | `dados/alto-falantes.json` — **hoje com 0 registros** |
+| o portão que decide se um registro pode entrar | `ferramentas/validar-banco.py` |
+| a prova de que esse portão pode falhar | `ferramentas/mutacoes-banco.py` |
+
+**As três coisas do esquema que mudam o que a F1 escreve na tela, e não só o que ela lê:**
+
+1. **Módulo não tem "um RMS": tem `rms_por_impedancia`.** Não existe campo `rms` escalar
+   de módulo neste esquema, de propósito. A F1 imprime o RMS **naquela** impedância, que
+   é a metade que nenhum dos nove resultados medidos na SERP entrega.
+2. **`potencia.unidade_declarada` vem sempre com `unidade_declarada_por`** (seção 26 do
+   contrato). É o que separa *"a Taramps declara 3.000 W RMS"* de *"a página do produto
+   estampa 3.000 W e nós lemos como RMS"*. A primeira frase é permitida quando a origem
+   for `no_titulo_ou_na_prosa_do_fabricante`; a segunda é a única honesta quando a origem
+   for `na_tabela_de_potencia_por_impedancia`.
+3. **A F1 fala do BANCO, nunca do mercado** (ver a correção na seção 1.3). O validador
+   publica `vocabulario_sem_lastro` a cada passada, e enquanto ele não for vazio, toda
+   frase de inexistência está proibida.
+
+**E a trava de potência que a F1 herda pronta, sem ter de pensar nela:** o validador
+recusa `rms_por_impedancia` que **cresça** quando a impedância sobe. Módulo entrega mais
+watt quando a impedância cai — é física, não convenção — então a tabela invertida é
+sinal de transcrição errada ou de dois números de unidades diferentes na mesma tabela,
+que é o achado 0.1 deste arquivo aparecendo dentro de um único registro.

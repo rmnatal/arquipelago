@@ -35,31 +35,84 @@ Uso:
     python3 ferramentas/impedancias.py --conferir     # regua propria, so afirma e sai
 """
 
+import io
 import json
+import os
 import sys
 from fractions import Fraction
 
-# Entradas que a F1 declara aceitar, pela especificacao (dados/especificacao-calculadoras.md).
-# Cada item e (rotulo da bobina, bobinas por falante, impedancia de cada bobina).
-BOBINAS = [
-    ("1 ohm", 1, Fraction(1)),
-    ("2 ohms", 1, Fraction(2)),
-    ("4 ohms", 1, Fraction(4)),
-    ("2+2 ohms", 2, Fraction(2)),
-    ("4+4 ohms", 2, Fraction(4)),
-    ("1+1 ohms", 2, Fraction(1)),
-]
+# ---------------------------------------------------------------------------
+# AS DUAS LISTAS DESTE GERADOR MORAM NO ESQUEMA, NAO AQUI (bloco 3, 14/09/2026).
+#
+# Ate o bloco 3 elas eram literais deste arquivo, e a de impedancia de modulo
+# vinha com um comentario dizendo que era "o conjunto de valores que o mercado de
+# modulos oferece". Isso era uma afirmacao sobre o MERCADO, digitada a mao, contra
+# a qual nenhum registro de banco podia falar -- e o campo que ela alimentava se
+# chamava "alcancavel_mas_sem_modulo_no_mercado", quer dizer: a F1 ia publicar
+# "nao existe modulo para 0,125 ohm" com base numa lista que alguem escreveu.
+# E a familia da secao 8 do ARQUIPELAGO.md: numero de tela nasce CONTADO, nunca
+# digitado, e regua escrita para um mundo que nunca aconteceu nasce sem poder falhar.
+#
+# Agora as duas saem de dados/esquema-banco.json (secao 26.2: a lista mora no
+# esquema, nunca dentro da regua) e ferramentas/validar-banco.py cobra os dois
+# sentidos entre a lista e o banco. Enquanto o banco estiver vazio, a unica frase
+# verdadeira e "nenhum modulo do nosso banco" -- e e por isso que o campo mudou de
+# nome. Se a chave sumir do esquema, este gerador MORRE em vez de cair num literal.
+# ---------------------------------------------------------------------------
+
+AQUI = os.path.dirname(os.path.abspath(__file__))
+ESQUEMA = os.path.join(os.path.dirname(AQUI), "dados", "esquema-banco.json")
+
+
+def _vocabulario(nome):
+    esquema = json.load(io.open(ESQUEMA, encoding="utf-8"))
+    valores = esquema.get("vocabularios", {}).get(nome, {}).get("valores")
+    if not valores:
+        raise SystemExit(
+            "esquema-banco.json nao tem o vocabulario %s, ou ele esta vazio.\n"
+            "Este gerador NAO tem copia dessa lista de proposito: uma copia envelheceria "
+            "calada e a F1 voltaria a afirmar sobre o mercado a partir de um literal." % nome)
+    return valores
+
+
+def _rotulo(token):
+    """'1' -> '1 ohm'; '2' -> '2 ohms'; '2+2' -> '2+2 ohms'."""
+    return "%s ohm%s" % (token, "" if token == "1" else "s")
+
+
+def _bobinas_do_esquema():
+    """(rotulo, bobinas por falante, impedancia de cada bobina), lido do vocabulario."""
+    saida = []
+    for token in _vocabulario("impedancia_de_bobina"):
+        partes = token.split("+")
+        saida.append((_rotulo(token), len(partes), Fraction(partes[0])))
+    return saida
+
+
+def _impedancias_de_modulo_do_esquema():
+    saida = []
+    for token in _vocabulario("impedancia_de_modulo"):
+        inteiro, _, decimal = token.partition(",")
+        if decimal:
+            saida.append(Fraction(int(inteiro + decimal), 10 ** len(decimal)))
+        else:
+            saida.append(Fraction(int(inteiro)))
+    return sorted(saida)
+
+
+# Entradas que a F1 declara aceitar, pela especificacao (dados/especificacao-calculadoras.md)
+# e pelo vocabulario impedancia_de_bobina do esquema.
+BOBINAS = _bobinas_do_esquema()
 
 # Quantidade de alto-falantes que a F1 aceita. Acima de 4 a instalacao vira
 # projeto e nao cabe numa resposta de duas linhas -- teto declarado, nao omissao.
+# Esta continua aqui porque e recusa de PRODUTO desta ferramenta, nao vocabulario
+# de banco: nenhum registro de banco pode contradize-la.
 QUANTIDADES = [1, 2, 3, 4]
 
-# As impedancias em que modulo de 12 V estabiliza, que e o conjunto contra o
-# qual a F1 decide "fecha" ou "nao fecha". Sai do que os fabricantes do nicho
-# publicam como linha de produto (1, 2 e 4 ohms), e 0,5 ohm existe em linha
-# especial. NAO e constante de engenharia: e o conjunto de valores que o
-# mercado de modulos oferece, e por isso mora aqui e nao em constantes.json.
-IMPEDANCIAS_DE_MODULO = [Fraction(1, 2), Fraction(1), Fraction(2), Fraction(4), Fraction(8)]
+# O conjunto contra o qual a F1 decide "fecha" ou "nao fecha". EXPECTATIVA declarada
+# no esquema, cobrada nos dois sentidos contra o banco pelo validador.
+IMPEDANCIAS_DE_MODULO = _impedancias_de_modulo_do_esquema()
 
 TOLERANCIA = Fraction(0)  # "fecha" e igualdade exata. Nao existe quase-fecha.
 
@@ -142,7 +195,7 @@ def banco_de_casos():
                     {"ohms": fmt(v), "ligacao": alc[v]} for v in valores
                 ],
                 "fecha_com_modulo_de": fecha_em,
-                "alcancavel_mas_sem_modulo_no_mercado": nao_ha_modulo,
+                "alcancavel_e_fora_do_vocabulario_de_modulo": nao_ha_modulo,
                 "pedidos_que_nao_fecham": faltantes,
             })
     return casos
@@ -206,7 +259,7 @@ def conferir(casos):
     c = caso("4+4 ohms", 2)
     ohms = [x["ohms"] for x in c["impedancias_alcancaveis"]]
     afirma(ohms == ["1", "4", "16"], "dois subs 4+4 deveriam dar 1 / 4 / 16, deu %s" % ohms)
-    afirma("16" in c["alcancavel_mas_sem_modulo_no_mercado"], "16 ohms nao tem modulo e isso tem de estar dito")
+    afirma("16" in c["alcancavel_e_fora_do_vocabulario_de_modulo"], "16 ohms esta fora do vocabulario de impedancia de modulo e isso tem de estar dito")
 
     # 4. TRES falantes de 4 ohms bobina simples: 3 bobinas. Divisores de 3: 1 e 3.
     #    Serie 12, paralelo 4/3 = 1,333. Nenhum dos dois e impedancia de modulo.
@@ -222,12 +275,12 @@ def conferir(casos):
 
     # 6. Caso que o ESQUEMA permite e que a prosa nunca cita (secao 8 do contrato):
     #    QUATRO falantes 1+1 ohms = 8 bobinas de 1 ohm. Divisores de 8: 1,2,4,8.
-    #    8, 2, 0,5, 0,125. O ultimo e alcancavel e nao existe modulo para ele.
+    #    8, 2, 0,5, 0,125. O ultimo e alcancavel e esta FORA do vocabulario de modulo.
     c = caso("1+1 ohms", 4)
     ohms = [x["ohms"] for x in c["impedancias_alcancaveis"]]
     afirma(ohms == ["0,125", "0,5", "2", "8"], "quatro 1+1 deveriam dar 0,125 / 0,5 / 2 / 8, deu %s" % ohms)
-    afirma("0,125" in c["alcancavel_mas_sem_modulo_no_mercado"],
-           "0,125 ohm e alcancavel e NAO tem modulo; a F1 tem de recusar em vez de recomendar")
+    afirma("0,125" in c["alcancavel_e_fora_do_vocabulario_de_modulo"],
+           "0,125 ohm e alcancavel e esta fora do vocabulario; a F1 recusa em vez de recomendar")
 
     # 6b. O VEREDITO QUE SAIU DA ENUMERACAO e que nenhuma pagina medida publica:
     #     TRES alto-falantes iguais nao fecham em impedancia de modulo NENHUMA, seja
@@ -272,6 +325,7 @@ def main():
     doc = {
         "ilha": "ohmetria",
         "bloco": "2",
+        "corrigido_no_bloco": 3,
         "titulo": "Impedancias alcancaveis por ligacao simetrica",
         "gerado_por": "ferramentas/impedancias.py",
         "gerado_em": "2026-09-14",
@@ -291,7 +345,17 @@ def main():
             "Ligacao assimetrica nao entra. Ela fecha valores intermediarios e faz bobinas "
             "identicas receberem potencia diferente; a F1 diz isso na tela em vez de omitir."
         ),
-        "impedancias_de_modulo_consideradas": [fmt(z) for z in IMPEDANCIAS_DE_MODULO],
+        "impedancias_de_modulo_do_esquema": [fmt(z) for z in IMPEDANCIAS_DE_MODULO],
+        "o_que_esta_lista_e_e_o_que_ela_NAO_e": (
+            "Vocabulario impedancia_de_modulo de dados/esquema-banco.json, lido dali e nunca "
+            "copiado para dentro deste gerador. E EXPECTATIVA DECLARADA, nao medicao de mercado: "
+            "ela veio da leitura de SERP do bloco 1 e nenhum registro de banco a sustenta ainda. "
+            "Portanto o campo alcancavel_e_fora_do_vocabulario_de_modulo autoriza a F1 a dizer "
+            "'nenhum modulo do nosso banco atende essa impedancia' e NUNCA "
+            "'nao existe modulo para isso' -- a segunda e afirmacao sobre o mercado e esta ilha "
+            "nao a mediu. Ate o bloco 3 este campo se chamava "
+            "'alcancavel_mas_sem_modulo_no_mercado' e afirmava exatamente o que nao podia."
+        ),
         "total_de_casos": len(casos),
         "casos": casos,
     }

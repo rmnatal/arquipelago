@@ -376,3 +376,123 @@ módulo** (TS 400X4, TL1500, MD1200.1, TS 1200X4 foram vistas em resultado). Se 
 egresso abrir, a carga do lado **MÓDULO** pode não precisar de PDF nenhum — o que
 mudaria a trava 1 do bloco 3 de "extração de PDF" para "leitura de página" na
 metade que sustenta a F1. A página não foi aberta; está escrito como hipótese.
+
+---
+
+## 2026-09-14, 21h20Z–22h05Z — BLOCO 3: o modelo do banco, e a frase que a F1 ia publicar sobre o mercado
+
+**Entregue:** `dados/esquema-banco.json`, `dados/modulos.json`, `dados/alto-falantes.json`,
+`ferramentas/validar-banco.py`, `ferramentas/mutacoes-banco.py`. Corrigidos:
+`ferramentas/impedancias.py`, `dados/impedancias-alcancaveis.json` e a seção 1.3 de
+`dados/especificacao-calculadoras.md` (mais uma seção 6 nova nela).
+**Nada foi ao ar, e não havia como ir:** esta ilha não tem site, não tem Sync e não tem
+`/status`. Dizer que verificou no ar seria inventar a medição.
+
+### A escolha da ilha, e a corrida que eu perdi
+
+Os cinco `ESTADO.md` do `main` real passam em `yaml.safe_load` e os cinco estavam com
+`executando_desde: null` — o que, pela 1.1, **já significa** que não há bloco da Fundação
+vivo, porque a reserva é escrita ANTES do trabalho. Não houve reserva vencida para o git
+desempatar. Pela 18.1, **três** ilhas tinham despacho aberto do Raphael de 14/09, e como a
+regra manda pegar o mais antigo entre dois dele, o desempate foi por **hora de abertura**:
+clubedomosaico (antes das 14h03Z), ohmetria (14h46Z), jornadafly (14h49Z). Meu push da
+reserva da clubedomosaico foi **recusado por cerca de um minuto** — outra execução a
+reservou às 21h17Z, e uma terceira reservou a aquametria às 21h18Z. Voltei ao passo 2 sem
+force push, e a ohmetria foi aceita às 21h20Z. Nenhum branch `claude/*` e nenhum PR aberto
+para mesclar.
+
+**Rede pela 20.2, retestada e não herdada:** três passadas, `ohmetria.com.br` e
+`www.ohmetria.com.br` em `000` nas três, com `aquametria.com.br` e `robometria.com.br` em
+`200` nas mesmas três. Seis medições de bloqueio contra seis de controle verde — igual às
+duas execuções anteriores. Segue bloqueada, e `bloqueada_por` segue `null` de propósito: o
+que a rede trava é o 3b em diante, não bloco de arquivo.
+
+### O banco nasce com ZERO registros, e isso é a regra desta ilha sendo cumprida
+
+O egresso HTTP continua fechado para todo domínio de terceiro, medido pelas duas portas nos
+blocos 1 e 2. A **escada de fontes** que este esquema escreve diz que número de fabricante
+colhido por **busca** nasce `publicavel: false`, por mais forte que seja a autoria — é a
+mesma regra do elo mais fraco que fez 8 das 18 constantes do bloco 2 nascerem pendentes.
+Carregar o banco hoje produziria registros que nenhuma ferramenta pode usar e que teriam de
+ser recolhidos depois.
+
+**E há um segundo motivo, que é mais específico e mais duro:** os valores de Thiele-Small
+que o dossiê desta ilha cita — Bomber Bicho Papão, JBL Bass 10SW17A, Eros E-12 MB 2.2K,
+Ultravox Ultra 700+, Hinor 12 EVO 550, Triton AK 6.1, Pioneer TS-W3090BR — estão no
+repositório **sem a URL do documento de onde saíram**. Gravá-los criaria registro sem
+`fonte.url`, que o próprio esquema recusa; e inventar a URL seria pior que a lacuna. Lacuna
+com causa nomeada é dado.
+
+### O achado do bloco, e ele estava numa frase que a F1 ia publicar
+
+`ferramentas/impedancias.py` afirmava sobre o **mercado** a partir de uma lista de cinco
+impedâncias **digitada dentro dele**. O comentário dizia, com todas as letras, que aquilo
+era *"o conjunto de valores que o mercado de módulos oferece"*; o campo que ela alimentava
+no JSON se chamava `alcancavel_mas_sem_modulo_no_mercado`; e a saída 2 da F1, na
+especificação, dizia *"0,125 Ω é alcançável e não existe módulo para isso"*.
+
+**Nenhum registro de banco podia contradizer isso, porque não havia banco.** É a família da
+seção 8: número de tela nasce **contado**, nunca digitado, e régua escrita para um mundo que
+nunca aconteceu nasce sem poder falhar — ela passaria por todos os blocos parecendo saudável
+até o dia em que alguém gravasse um módulo de 16 Ω e a página continuasse dizendo que ele
+não existe.
+
+O conserto tem quatro partes e nenhuma delas é encurtar a prosa:
+
+1. **A lista mudou de casa.** `vocabularios.impedancia_de_modulo` e
+   `vocabularios.impedancia_de_bobina` moram agora em `dados/esquema-banco.json`, e o
+   gerador as lê de lá (seção 26.2: a lista mora no esquema, nunca dentro da régua). Se a
+   chave sumir, **o gerador morre** em vez de cair num literal — medido nesta execução:
+   apagando a chave, ele sai com código 1 e diz por quê.
+2. **O campo mudou de nome**, para `alcancavel_e_fora_do_vocabulario_de_modulo`, e o JSON
+   carrega, ao lado, a frase que a F1 **pode** e a que ela **não pode** dizer.
+3. **O validador cobra os dois sentidos.** Módulo do banco fora do vocabulário é **erro duro
+   do ESQUEMA**, não do módulo — a lista cresce numa linha e o módulo entra; sumir com o
+   módulo seria o banco escondendo o que mediu. E entrada do vocabulário sem módulo por trás
+   é **dívida contada**, em `vocabulario_sem_lastro`, hoje **5 de 5**.
+4. **A frase da tela virou "nenhum módulo do nosso banco"**, e a especificação ficou com a
+   proibição escrita: enquanto `vocabulario_sem_lastro` não for vazio, nenhuma frase de
+   inexistência de mercado é publicável.
+
+### As três decisões do esquema que vão para a tela, não só para o disco
+
+- **Módulo não tem "um RMS": tem `rms_por_impedancia`.** Não existe campo `rms` escalar de
+  módulo neste esquema, de propósito — um número de watt solto é exatamente o defeito que o
+  bloco 1 mediu na SERP.
+- **`potencia.unidade_declarada` nasce com `unidade_declarada_por`** (seção 26 do contrato,
+  aplicada ao campo que dói nesta ilha). Lá o fabricante batiza a peça pela posição e o banco
+  classifica pela função; aqui ele estampa um **número** e ninguém declara a **unidade**. É o
+  que separa *"a Taramps declara 3.000 W RMS"* de *"a página estampa 3.000 W e nós lemos como
+  RMS"*.
+- **A monotonia, que é o portão mais barato desta ilha.** Módulo entrega **mais** watt quando
+  a impedância **cai**. Tabela que cresce com a impedância é transcrição errada ou dois
+  números de unidades diferentes na mesma tabela — o achado 0.1 do bloco 2 aparecendo dentro
+  de **um único registro**, em vez de entre duas páginas da SERP.
+
+### O portão, e a conferência que ele ganhou porque "reprovou" não bastava
+
+`ferramentas/mutacoes-banco.py`: **39 mutações, 39 decidiram certo**, nos dois lados da
+fronteira — **6 mundos que têm de PASSAR** (o banco vazio de hoje; um módulo e um alto-falante
+corretos, que o banco não tem; o registro que entra sem ser publicável, com o motivo escrito)
+e **33 quebras que têm de REPROVAR**, uma por linha de
+`o_que_o_esquema_permite_e_o_banco_ainda_nao_tem`.
+
+Os registros de bancada são **ficção**, moram no arquivo de mutações e nunca em `dados/`:
+fixture dentro do arquivo de dados seria a ilha inventando produto.
+
+**E cada quebra declara a FRASE que espera ouvir de volta.** "Reprovou" não é a mesma coisa
+que "reprovou pelo motivo certo": uma mutação pode quebrar o registro de um jeito que dispara
+**outra** trava e voltar verde sem nunca ter medido a sua — é a cicatriz da mutação inerte que
+a Robometria pagou em 14/09. Quebra sem linha em `ESPERA_OUVIR` é erro da própria bancada, e
+ela reprova por isso. **Provado que essa conferência morde:** trocando uma frase esperada por
+outra trava real do validador, a bancada acusa a linha e sai com código 1.
+
+### Próximo passo desbloqueado
+
+**Bloco 4 — a F1**, parcialmente travada por banco vazio. A metade aritmética publica hoje
+(24 montagens, veredito, a impedância mais perto que fecha); a lista de módulos que
+estabilizam precisa de pelo menos um registro em `dados/modulos.json`, e isso é o **3c**, que
+espera o canal, não a decisão. A seção 14 do contrato (indexação é prioridade máxima de ilha
+nova) puxa para construir a F1 com a lista vazia **declarada na tela**. A seção 6 nova da
+especificação diz onde cada coisa está, para quem pegar o bloco 4 não ter de reler dois
+arquivos inteiros.
