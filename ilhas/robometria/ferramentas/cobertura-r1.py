@@ -50,18 +50,14 @@ DADOS = os.path.join(BASE, "dados")
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import publicadores as pub  # noqa: E402
 
-# Vocabulario de tipo_de_peca do esquema, menos 'kit': kit nao e uma pergunta que a
-# pessoa faz. Ninguem busca "kit para o meu ERB10" — busca "filtro para o meu ERB10"
-# e descobre, na resposta, que o fabricante so vende dentro do kit. Por isso o kit
-# entra na varredura como CAMINHO ate um tipo, nunca como tipo consultavel.
-TIPOS_CONSULTAVEIS = [
-    "filtro",
-    "escova lateral",
-    "escova principal",
-    "mop",
-    "bateria",
-    "reservatorio",
-]
+# TIPOS_CONSULTAVEIS e DERIVADO do esquema, logo abaixo da carga. Ate 14/09/2026
+# ele era uma lista digitada aqui, com um comentario que dizia "vocabulario de
+# tipo_de_peca do esquema, menos 'kit'" — ou seja, o arquivo DESCREVIA a derivacao
+# e IMPLEMENTAVA uma copia. Copia de lista dentro de regua e o defeito que a 26.2
+# nomeia, e aqui ele tinha um segundo andar: a descricao em JSON-LD da R1 trazia
+# uma TERCEIRA copia, digitada em portugues dentro do snippet, e essa estava
+# VELHA no ar — nomeava cinco tipos enquanto a ferramenta respondia seis.
+# A derivacao mora em tipos_consultaveis_na_r1, no esquema. Ver logo apos a CARGA.
 
 # Os tres estados possiveis de uma celula (modelo x tipo) da varredura.
 DECLARADA = "declarada"
@@ -92,13 +88,46 @@ modelos = {m["id"]: m for m in doc_modelos["registros"]}
 pecas = doc_pecas["registros"]
 
 VOC_TIPO = esquema["vocabularios"]["tipo_de_peca"]
-for t in TIPOS_CONSULTAVEIS:
+
+# A DERIVACAO DOS TIPOS CONSULTAVEIS, e ela FALHA ALTO quando a chave some — pela
+# mesma razao que a de tipos_que_exigem_funcao_declarada, algumas linhas abaixo:
+# regua que cai para "nada a cobrar" no dia em que o dado falta e regua que aprova
+# tudo em silencio. Aqui seria pior que aprovar: sem a chave, a varredura mediria
+# ZERO faixa e imprimiria uma cobertura vazia com cara de banco vazio.
+if "tipos_consultaveis_na_r1" not in esquema:
+    sys.stderr.write(
+        "ERRO: o esquema nao tem 'tipos_consultaveis_na_r1'. Sem essa regra de "
+        "derivacao a R1 nao sabe quais faixas ela consegue produzir, e a "
+        "varredura mediria cobertura de nenhuma.\n"
+    )
+    sys.exit(1)
+
+_regra_tipos = esquema["tipos_consultaveis_na_r1"]
+if _regra_tipos.get("derivado_de") != "vocabularios.tipo_de_peca":
+    sys.stderr.write(
+        "ERRO: 'tipos_consultaveis_na_r1.derivado_de' aponta para %r, e esta "
+        "referencia so sabe derivar de 'vocabularios.tipo_de_peca'.\n"
+        % _regra_tipos.get("derivado_de")
+    )
+    sys.exit(1)
+
+_excluidos = list(_regra_tipos.get("excluidos", []))
+for t in _excluidos:
     if t not in VOC_TIPO:
         sys.stderr.write(
-            "ERRO: o tipo %r nao existe no vocabulario do esquema. A varredura "
-            "mediria uma faixa que a ferramenta nao consegue produzir.\n" % t
+            "ERRO: 'tipos_consultaveis_na_r1.excluidos' nomeia %r, que nao esta "
+            "no vocabulario tipo_de_peca. Exclusao de tipo inexistente e "
+            "exclusao que nao exclui nada, e ninguem percebe.\n" % t
         )
         sys.exit(1)
+
+TIPOS_CONSULTAVEIS = [t for t in VOC_TIPO if t not in _excluidos]
+if not TIPOS_CONSULTAVEIS:
+    sys.stderr.write(
+        "ERRO: a derivacao de 'tipos_consultaveis_na_r1' deixou ZERO tipos. A "
+        "R1 nao teria nenhuma faixa para varrer.\n"
+    )
+    sys.exit(1)
 
 
 # ------------------------------------------------- A REGRA DA R1, EM UM LUGAR SO

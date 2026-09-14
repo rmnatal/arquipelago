@@ -717,5 +717,13 @@
    "pronome_possessivo": "deles",
    "pronome_sujeito": "eles"
   }
+ },
+ "tipos_consultaveis_na_r1": {
+  "derivado_de": "vocabularios.tipo_de_peca",
+  "excluidos": [
+   "kit"
+  ],
+  "por_que": "A R1 pergunta 'qual PECA desta funcao serve neste modelo', e cada tipo consultavel e uma coluna do seletor e uma faixa da varredura de cobertura. Kit fica de fora porque nao e pergunta que alguem faz: ninguem busca 'kit para o meu ERB10', busca 'filtro para o meu ERB10' e descobre na resposta que o fabricante so vende dentro do kit — o kit e CAMINHO ate um tipo, nunca tipo consultavel. ESTA CHAVE E UMA REGRA DE DERIVACAO, NAO UMA SEGUNDA COPIA DA LISTA: quem quiser os tipos consultaveis subtrai 'excluidos' de 'derivado_de' e pronto. Copia envelhece calada mesmo dentro do esquema, e foi exatamente isso que custou o defeito de 14/09/2026 — a lista digitada dentro de ferramentas/cobertura-r1.py e a frase digitada dentro do snippet da R1 descreviam SEIS e CINCO tipos enquanto o banco declarava seis, e a descricao em JSON-LD servia 'filtro, escova lateral, escova principal, mop e bateria' ao lado de um numero de pares que era computado do banco. Numero computado ao lado de lista digitada faz a lista parecer medida.",
+  "tipo_novo_nasce_assim": "Acrescente o tipo em vocabularios.tipo_de_peca e mais nada de codigo: a varredura, o seletor, a tabela de exemplos e a descricao em JSON-LD passam a conta-lo sozinhos. Se o titulo do fabricante nao separar a funcao desse tipo, acrescente-o tambem em tipos_que_exigem_funcao_declarada.tipos. Genero e artigo do tipo novo, para a frase da R1, vivem em robometria_r1_genero() no snippet, com queda para masculino."
  }
 }

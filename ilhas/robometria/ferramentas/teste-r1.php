@@ -1745,6 +1745,112 @@ rbm_ok( false !== strpos( $sec_exemplos, 'perguntas do tipo' ),
 	'a frase da tabela fala do que a FERRAMENTA responde, nao do que o banco declara' );
 
 /* ---------------------------------------------------------------------------
+ * 20. A DESCRICAO EM JSON-LD NOMEIA OS TIPOS QUE A FERRAMENTA RESPONDE — e
+ *     nem um a mais, nem um a menos (14/09/2026).
+ *
+ * Achado por medicao no ar: a descricao servia "filtro, escova lateral, escova
+ * principal, mop e bateria" enquanto o seletor oferecia SEIS tipos, com o
+ * reservatorio respondendo desde 13/09 em quatro pecas. A lista estava digitada
+ * dentro do sprintf, e digitada AO LADO de dois numeros — pares e marcas — que
+ * sempre foram computados do banco. E ai esta o defeito de verdade: numero
+ * computado ao lado de lista digitada faz a lista parecer medida, e ninguem
+ * reconfere o que parece medido. A frase ficou um dia inteiro errada na
+ * superficie que a secao 5 chama de primeira classe — a que um modelo de
+ * linguagem le para saber o que esta ferramenta faz.
+ *
+ * A regua e de igualdade de CONJUNTO, nao de presenca: conferir so que cada
+ * tipo ofertado aparece deixaria passar a lista que nomeia um tipo a mais (o
+ * caso simetrico, e o mais perigoso, porque promete faixa que a pagina recusa).
+ * E a comparacao e feita contra $dados['tipos'], que sai da varredura, nunca
+ * contra uma lista escrita aqui — senao esta regua seria a quarta copia.
+ * ------------------------------------------------------------------------- */
+echo "\n20. A descricao em JSON-LD nomeia exatamente os tipos do seletor\n";
+
+/* A SEGUNDA TESTEMUNHA, e ela olha uma camada abaixo da frase.
+ *
+ * As afirmacoes sobre a descricao comparam a frase com $dados['tipos'] — e as
+ * duas saem da MESMA varredura. Se a lista de tipos consultaveis encolher
+ * DENTRO da referencia (era uma lista digitada em cobertura-r1.py ate hoje),
+ * tudo fica internamente coerente: a varredura mede cinco faixas, o seletor
+ * oferece cinco, a descricao deriva cinco, e nenhuma peca saiu do banco. Duas
+ * metades que erram juntas ficam verdes — foi a bateria de mutacoes que
+ * mostrou este buraco, e e por isso que ela existe.
+ *
+ * Entao aqui a lista e REDERIVADA do esquema, por um caminho que nao passa pela
+ * referencia nem pelo gerador: vocabulario de tipo_de_peca menos os excluidos.
+ * O conjunto tem de bater com os tipos que a R1 conhece — os ofertados mais os
+ * que hoje nao tem peca nenhuma. */
+$regra_tipos = isset( $esquema_b['tipos_consultaveis_na_r1'] )
+	? $esquema_b['tipos_consultaveis_na_r1'] : null;
+rbm_ok( null !== $regra_tipos,
+	'o esquema declara a regra de derivacao dos tipos consultaveis (26.2)' );
+
+if ( null !== $regra_tipos ) {
+	$excluidos_esq = (array) $regra_tipos['excluidos'];
+	$fora_do_voc   = array_diff( $excluidos_esq, $esquema_b['vocabularios']['tipo_de_peca'] );
+	rbm_ok( empty( $fora_do_voc ),
+		'todo tipo excluido existe no vocabulario — exclusao que nao exclui nada e silenciosa',
+		empty( $fora_do_voc ) ? implode( ', ', $excluidos_esq ) : 'fora: ' . implode( ', ', $fora_do_voc ) );
+
+	$derivados = array_values( array_diff(
+		$esquema_b['vocabularios']['tipo_de_peca'], $excluidos_esq ) );
+	$conhecidos = array_merge(
+		(array) $dados['tipos'], (array) $dados['tipos_sem_nenhuma_peca_no_banco'] );
+	sort( $derivados );
+	sort( $conhecidos );
+	rbm_ok( $derivados === $conhecidos,
+		'os tipos que a R1 conhece sao os DERIVADOS do esquema, nem mais nem menos',
+		implode( ', ', $conhecidos ) . ' contra ' . implode( ', ', $derivados ) );
+}
+
+$desc_ld = null;
+if ( is_array( $ld ) && isset( $ld['@graph'] ) ) {
+	foreach ( $ld['@graph'] as $no ) {
+		if ( 'WebApplication' === $no['@type'] && isset( $no['description'] ) ) {
+			$desc_ld = $no['description'];
+		}
+	}
+}
+rbm_ok( null !== $desc_ld, 'a descricao do WebApplication existe no JSON-LD servido' );
+
+if ( null !== $desc_ld ) {
+	/* Os tipos como a tela os escreve: acentuados, pela mesma funcao do snippet. */
+	$tipos_na_tela = array_map( 'robometria_r1_nome_do_tipo', (array) $dados['tipos'] );
+
+	$ausentes = array();
+	foreach ( $tipos_na_tela as $t ) {
+		if ( false === mb_strpos( $desc_ld, $t ) ) { $ausentes[] = $t; }
+	}
+	rbm_ok( empty( $ausentes ), 'a descricao nomeia TODO tipo que o seletor oferece',
+		empty( $ausentes ) ? count( $tipos_na_tela ) . ' tipo(s)' : 'faltam: ' . implode( ', ', $ausentes ) );
+
+	/* O lado simetrico: tipo do vocabulario que o seletor NAO oferece hoje (zero
+	   pecas no banco) nao pode ser prometido pela descricao. "kit" idem — ele
+	   nunca e consultavel, e a 26.2 diz por que. */
+	$nao_ofertados = array();
+	foreach ( (array) $dados['tipos_sem_nenhuma_peca_no_banco'] as $t ) {
+		$nao_ofertados[] = robometria_r1_nome_do_tipo( $t );
+	}
+	$prometidos_a_mais = array();
+	foreach ( $nao_ofertados as $t ) {
+		if ( false !== mb_strpos( $desc_ld, $t ) ) { $prometidos_a_mais[] = $t; }
+	}
+	rbm_ok( empty( $prometidos_a_mais ),
+		'a descricao NAO promete tipo que o seletor nao oferece',
+		empty( $prometidos_a_mais ) ? 'nenhum' : implode( ', ', $prometidos_a_mais ) );
+
+	/* E A TRAVA QUE PEGA A LISTA DIGITADA MESMO QUANDO ELA ESTA CERTA HOJE: a
+	   frase da descricao tem de ser IDENTICA a que se remonta agora a partir de
+	   $dados['tipos']. Uma lista digitada que por sorte coincida com o banco
+	   passa nas duas afirmacoes acima e reprova nesta — que e o estado em que a
+	   descricao viveu ate 13/09, um dia antes de o reservatorio entrar. */
+	$lista_remontada = robometria_r1_lista( $tipos_na_tela );
+	rbm_ok( false !== mb_strpos( $desc_ld, ': ' . $lista_remontada . ',' ),
+		'a lista da descricao e a remontada do banco, na mesma ordem e pontuacao',
+		$lista_remontada );
+}
+
+/* ---------------------------------------------------------------------------
  * Fecho
  * ------------------------------------------------------------------------- */
 

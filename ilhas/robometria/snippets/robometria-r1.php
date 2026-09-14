@@ -1,5 +1,17 @@
 /**
  * Robometria R1 — Qual peça serve no meu robô aspirador
+ * Versão: 1.9.0 (14/09/2026) — A DESCRIÇÃO EM JSON-LD PARA DE ENUMERAR OS TIPOS
+ * DE CABEÇA, e ela estava VELHA no ar. A frase que um modelo de linguagem lê
+ * para saber o que esta ferramenta faz dizia "filtro, escova lateral, escova
+ * principal, mop e bateria" — cinco tipos — enquanto o seletor oferecia SEIS
+ * desde 13/09, quando o reservatório entrou com quatro peças declaradas. A
+ * lista estava digitada dentro do sprintf, colada a dois números (pares e
+ * marcas) que sempre foram computados do banco: é isso que faz uma lista velha
+ * passar por medida e ninguém reconferir. Agora ela sai de $d['tipos'], que já
+ * era gerado da varredura. Nenhuma URL mudou, nenhuma peça entrou ou saiu, e o
+ * único texto servido que muda é essa frase. A mesma cópia existia em
+ * ferramentas/cobertura-r1.py e também morreu: a lista de tipos consultáveis
+ * passou a ser DERIVADA do esquema (tipos_consultaveis_na_r1), pela 26.2.
  * Versão: 1.8.0 (14/09/2026) — AS TRÊS CONTAS DA TABELA GANHAM NOME (item 2 do
  * despacho da Sentinela). A página dizia "63 pares peça × modelo" no alto e "73
  * pares peça × modelo" duas telas abaixo: dois números certos contando coisas
@@ -142,7 +154,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_R1_VERSAO' ) ) {
-	define( 'ROBOMETRIA_R1_VERSAO', '1.8.0' );
+	define( 'ROBOMETRIA_R1_VERSAO', '1.9.0' );
 	define( 'ROBOMETRIA_R1_SLUG', 'qual-peca-serve-no-meu-robo-aspirador' );
 	define( 'ROBOMETRIA_R1_TITULO', 'Qual peça serve no meu robô aspirador' );
 	define( 'ROBOMETRIA_R1_DADOS', 'robometria_dados_r1-respostas' );
@@ -1522,8 +1534,20 @@ add_action( 'wp_head', function () {
 		'operatingSystem'    => 'Web',
 		'inLanguage'         => 'pt-BR',
 		'isAccessibleForFree' => true,
+		/* A LISTA DE TIPOS SAI DO BANCO, NUNCA DIGITADA AQUI (14/09/2026).
+		   Esta frase é o que um modelo de linguagem lê para saber o que a
+		   ferramenta faz — seção 5 do ARQUIPELAGO.md, visibilidade em IA é
+		   regra de primeira classe. Até hoje ela vinha digitada, nomeando
+		   "filtro, escova lateral, escova principal, mop e bateria": CINCO
+		   tipos, enquanto o seletor oferecia SEIS desde 13/09, quando o
+		   reservatório entrou com quatro peças declaradas. E o pior não era a
+		   lista velha: era ela estar colada em dois números — pares e marcas —
+		   que SEMPRE foram computados do banco. Número computado ao lado de
+		   lista digitada faz a lista parecer medida, e ninguém reconfere o que
+		   parece medido. Agora as três partes saem do mesmo lugar. */
 		'description'        => sprintf(
-			'Localiza a peça de reposição que o fabricante declarou compatível com um modelo de robô aspirador: filtro, escova lateral, escova principal, mop e bateria, com o código do fabricante, o endereço da declaração e a data da verificação. Cobre %d pares peça × modelo em %d marcas.',
+			'Localiza a peça de reposição que o fabricante declarou compatível com um modelo de robô aspirador: %s, com o código do fabricante, o endereço da declaração e a data da verificação. Cobre %d pares peça × modelo em %d marcas.',
+			robometria_r1_lista( array_map( 'robometria_r1_nome_do_tipo', (array) $d['tipos'] ) ),
 			isset( $r['pares_declarados'] ) ? $r['pares_declarados'] : 0,
 			isset( $r['marcas'] ) ? $r['marcas'] : 0
 		),
