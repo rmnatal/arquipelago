@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 32
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
 ultima_execucao: 2026-09-14T11:25Z
-executando_desde: null
+executando_desde: 2026-09-14T13:19Z
 bloco_atual: |
   LEVA 4: A TERCEIRA CATEGORIA DO EIXO, E O EIXO APRENDE QUE PEIXE NEM SEMPRE VIVE EM CARDUME (peixes 1.7.0, esquema de especies versao 4, manifest revisao 77, /status conferido as 12h09Z). QUATRO URLs novas — /peixes/bettas/ e as fichas do betta, da colisa-anao e do gurami mel —, e sao as primeiras desde 12/09. A ilha vai de 28 para 32 URLs.
   A ESCOLHA DA ILHA: segunda tentada. A clubedomosaico era a primeira pela 18.1 (despacho ABERTO do Raphael de 14/09, os quatro achados da artesa) e meu push de reserva foi recusado — outra execucao a reservou as 11h18Z pelo mesmo motivo. O passo 5 manda voltar ao passo 2 e nenhum force push aconteceu. Das duas que sobraram, a aquametria tinha a ultima_execucao mais antiga (23h19Z contra 23h47Z) e as duas estavam com executando_desde null, que pela 1.1 ja significa que nao ha bloco da Fundacao vivo. Rede pela 20.2 antes de trabalhar: home em 200 e /status na revisao 76, igual a do manifest, em UMA passada.
