@@ -176,7 +176,10 @@ $pos_js     = mb_strpos( $ancora, 'id="cdm-f2-js"' );
 f2_ok( false !== $pos_css && $pos_css > $pos_corpo, 'a folha da F2 sai depois do corpo (wp_footer)' );
 f2_ok( false !== $pos_js && $pos_js > $pos_corpo, 'o script da F2 sai depois do corpo (wp_footer)' );
 
-/* A tabela pre-renderizada: as 18 + 9 linhas, no HTML servido. */
+/* A tabela pre-renderizada: as linhas de cola e as de rejunte, no HTML servido.
+   Quantas sao NAO se digita aqui — sai do esquema, logo abaixo. A cola foi de 18
+   para 45 em 13/09/2026 e este portao acompanhou sozinho, que e o que ele existe
+   para fazer. */
 $linhas_tabela = preg_match_all( '#<table class="cdm-f2-tabela">.*?</table>#is', $corpo_ancora, $mt );
 f2_ok( 2 === $linhas_tabela, 'as duas tabelas pre-renderizadas estao no HTML servido', $linhas_tabela . ' tabelas' );
 $esperadas_cola    = count( $esquema['matriz_esperada_da_F2']['celulas'] );
@@ -532,6 +535,16 @@ foreach ( $esquema['matriz_esperada_da_F2']['celulas'] as $c ) {
 	   e a afirmacao em bloco com escopo maior do que o medido. */
 	if ( ! $sobreviventes ) {
 		$t_corpo = f2_texto( $corpo );
+		/* A TERCEIRA CAUSA entrou aqui em 13/09/2026, junto com as 27 celulas
+		   novas, e ela e a razao de esta secao ter valido o bloco: as 18 celulas
+		   antigas TODAS tinham recomendacao, entao a regua escrita a mao nunca
+		   tinha pisado numa faixa descoberta, e o ramo de baixo so cobrava a
+		   PRESENCA da frase — nunca qual causa ela nomeia. No ar, em quatro
+		   estados (vidro, madeira, alvenaria e metal dentro da agua), a pagina
+		   dizia "nenhum dos adesivos e declarado" e duas secoes abaixo imprimia
+		   "existe mencao a Loctite Durepoxi". Quem manda aqui e a MATRIZ, nao o
+		   que a tela devolveu: `mencionados_com_ressalva` e escrito a mao. */
+		$ressalva_da_matriz = isset( $c['mencionados_com_ressalva'] ) ? $c['mencionados_com_ressalva'] : array();
 		if ( $caidos_pela_condicao ) {
 			if ( false === mb_strpos( $t_corpo, 'o motivo não é falta de declaração' ) ) {
 				$erros_celula[] = $chave . ': caiu pela condicao e a recusa nao nomeia a causa medida';
@@ -539,8 +552,43 @@ foreach ( $esquema['matriz_esperada_da_F2']['celulas'] as $c ) {
 			if ( false !== mb_strpos( $t_corpo, 'Nenhum dos adesivos do nosso banco é declarado' ) ) {
 				$graves[] = $chave . ': a pagina nega que exista declaracao e ela mesma cita a declaracao';
 			}
+		} elseif ( $ressalva_da_matriz ) {
+			if ( false !== mb_strpos( $t_corpo, 'Nenhum dos adesivos do nosso banco é declarado' ) ) {
+				$graves[] = $chave . ': faixa descoberta com mencao de nivel 4, e a pagina nega que exista declaracao';
+			}
+			if ( false === mb_strpos( $t_corpo, 'o motivo não é falta de declaração' ) ) {
+				$erros_celula[] = $chave . ': faixa descoberta por procedencia, e a recusa nao nomeia essa causa';
+			}
+			/* A causa medida se nomeia com o PRODUTO e com o TIPO DO DOCUMENTO,
+			   e o tipo sai do banco em disco — digitar "material de imprensa"
+			   aqui mediria a frase contra ela mesma. */
+			foreach ( $ressalva_da_matriz as $id ) {
+				$nome = f2_nome_esperado( $por_id[ $id ] );
+				if ( false === mb_strpos( $t_corpo, $nome ) ) {
+					$erros_celula[] = $chave . ': a recusa por procedencia nao nomeia "' . $nome . '"';
+				}
+				$fonte = null;
+				foreach ( (array) $por_id[ $id ]['fontes'] as $f ) {
+					if ( null === $fonte || (int) $f['nivel'] < (int) $fonte['nivel'] ) {
+						$fonte = $f;
+					}
+				}
+				if ( $fonte && false === mb_strpos( $t_corpo, $fonte['tipo'] ) ) {
+					$erros_celula[] = $chave . ': a recusa por procedencia nao cita o documento ("' . $fonte['tipo'] . '")';
+				}
+			}
+			/* E a vitrine vazia tem de contar a MESMA historia da resposta: era
+			   ela que repetia a frase errada uma secao abaixo. */
+			if ( false !== mb_strpos( $t_corpo, 'nenhum produto do nosso banco passa no que o fabricante declara' ) ) {
+				$graves[] = $chave . ': a vitrine vazia nega a declaracao que a resposta acabou de citar';
+			}
 		} elseif ( false === mb_strpos( $t_corpo, 'Não temos cola para indicar' ) ) {
 			$erros_celula[] = $chave . ': faixa descoberta sem a frase que a declara';
+		} elseif ( false === mb_strpos( $t_corpo, 'Nenhum dos adesivos do nosso banco é declarado' ) ) {
+			/* O outro lado da mesma moeda: silencio de verdade tem de dizer que
+			   e silencio. Sem esta linha, a frase da procedencia poderia vazar
+			   para as sete celulas em que ninguem declarou nada. */
+			$erros_celula[] = $chave . ': silencio de verdade, e a pagina nao diz que ninguem declara';
 		}
 	}
 }
@@ -987,12 +1035,16 @@ f2_ok( '' !== $texto_faltas, 'a pagina serve a secao do que ela ainda nao respon
  *
  * O QUE ISTO NAO MEDE, dito em vez de escondido: as duas metades leem a mesma
  * implementacao de elegibilidade, entao esta recontagem NAO e regua independente
- * para as cinco regras — quem faz esse papel sao as 18 celulas escritas a mao no
- * esquema e as 5 ancoras da regra 6 no validador. A independencia que falta tem
- * nome e tamanho: a matriz escrita a mao cobre 18 das 45 celulas de base x
- * lugar, e as outras 27 so passam por aqui. Esta escrito no ESTADO.md como
- * divida nomeada, e o conserto e a matriz chegar a 45 — nunca o portao fingir
- * que ja mede o que nao mede.
+ * para as cinco regras — quem faz esse papel sao as celulas escritas a mao no
+ * esquema e as 5 ancoras da regra 6 no validador.
+ *
+ * A DIVIDA QUE ESTE COMENTARIO DECLARAVA FOI PAGA EM 13/09/2026: ate aquela data
+ * a matriz escrita a mao cobria 18 das 45 celulas de base x lugar, e as outras 27
+ * so passavam por aqui — portao verde que media a AGREGACAO e nao a decisao. Agora
+ * a matriz tem as 45, derivadas a mao das declaracoes ANTES de o validador rodar, e
+ * o bloco 5 acima varre TODAS elas contra o que a tela diz. A recontagem desta secao
+ * continua nao sendo regua independente, e continua escrita aqui por isso: ela mede
+ * outra coisa (o laco que agrega), e quem mede a decisao esta uma secao acima.
  */
 $total_combinacoes = count( $esquema['vocabularios']['base'] )
 	* count( $esquema['vocabularios']['ambiente'] )

@@ -1271,8 +1271,8 @@
     }
   },
   "matriz_esperada_da_F2": {
-    "descricao": "As 18 celulas base x ambiente que a F2 publica, RECOMPUTADAS neste bloco a partir das declaracoes de dados/materiais-colas.json pelas cinco regras_de_elegibilidade. ferramentas/validar-banco.py recalcula cada uma e falha se o resultado divergir — e o que impede o banco e a pagina de se separarem em silencio. Onde o resultado computado difere da matriz escrita a mao na secao 1.3 de dados/especificacao-calculadoras.md, a diferenca esta anotada em `divergencia_com_a_especificacao`: quem manda e esta tabela, porque ela sai da declaracao e a outra saiu da leitura. ATUALIZADA em 13/09/2026 pelo bloco 3e, com os dois produtos novos. ESTA MATRIZ E A CAMADA DE DECLARACAO — regras 1 a 5, que decidem sobre BASE e AMBIENTE. A regra 6 (condicao de superficie) roda DEPOIS dela, olha a TESSELA, e tem matriz propria: matriz_esperada_da_condicao_de_superficie. Separar as duas nao e organizacao, e o que permite que estas 18 celulas continuem escritas a mao: cruzar tessela aqui daria 108.",
-    "leitura": "`recomendados_topo` e um CONJUNTO, nao uma ordem: quando mais de um produto empata no score, a pagina lista os dois como equivalentes. `eliminados_por_proibicao` sao os que o fabricante proibe naquela base ou ambiente; `eliminados_por_silencio` sao os que ele simplesmente nao declara — as duas listas vao para a tela em secoes DIFERENTES, com frases diferentes.",
+    "descricao": "As 45 celulas base x ambiente que a F2 publica — a grade INTEIRA, 9 bases x 5 ambientes —, escritas A MAO a partir das declaracoes de dados/materiais-colas.json pelas regras_de_elegibilidade. ferramentas/validar-banco.py recalcula cada uma e falha se o resultado divergir — e o que impede o banco e a pagina de se separarem em silencio. Onde o resultado difere da matriz escrita a mao na secao 1.3 de dados/especificacao-calculadoras.md, a diferenca esta anotada em `divergencia_com_a_especificacao`: quem manda e esta tabela, porque ela sai da declaracao e a outra saiu da leitura. ESTA MATRIZ E A CAMADA DE DECLARACAO — regras 1 a 5, que decidem sobre BASE e AMBIENTE. A regra 6 (condicao de superficie) roda DEPOIS dela, olha a TESSELA, e tem matriz propria: matriz_esperada_da_condicao_de_superficie. Separar as duas e o que permite que estas 45 celulas continuem escritas a mao: cruzar tessela aqui daria 270. DE 18 PARA 45 EM 13/09/2026, e o motivo e o que este campo dizia antes: ate esta data a matriz cobria 18 celulas e as outras 27 passavam so pela varredura das paginas servidas, que mede a AGREGACAO e le a MESMA implementacao de elegibilidade dos dois lados — portao verde que nao e regua independente. A divida estava nomeada no ESTADO.md e o conserto era este, nunca o portao fingir que ja media o que nao media. As 27 novas foram DERIVADAS A MAO das declaracoes ANTES de o validador rodar uma vez, e as cinco listas das 27 bateram com a recomputacao sem uma divergencia; o que o validador cobrou foram 9 observacoes que faltavam em celula sem recomendacao.",
+    "leitura": "`recomendados_topo` e um CONJUNTO, nao uma ordem: quando mais de um produto empata no score, a pagina lista os dois como equivalentes. `eliminados_por_proibicao` sao os que o fabricante proibe naquela base ou ambiente; `eliminados_por_silencio` sao os que ele simplesmente nao declara — as duas listas vao para a tela em secoes DIFERENTES, com frases diferentes. CELULA SEM `recomendados_topo` E FAIXA DESCOBERTA, e o validador exige `observacao` nela dizendo POR QUE — as causas sao tres e nao se misturam: SILENCIO (ninguem declara a base), NIVEL DE FONTE (alguem declara as duas metades e a fonte e nivel 4, entao sai como mencao com ressalva) e AMBIENTE DELIMITADO (o fabricante declarou a base e delimitou o uso a um ambiente que nao e este). Trocar uma pela outra e afirmacao com escopo maior do que o medido.",
     "celulas": [
       {
         "base": "ceramica_esmaltada_porcelana",
@@ -1352,6 +1352,27 @@
         "divergencia_com_a_especificacao": "A secao 1.3 deixa o acetico 'em segundo lugar'. Pela regra 4 ele nao fica em lugar nenhum da lista de recomendados: sol e chuva exigem declaracao explicita, e so o neutro declara chuva e raios UV."
       },
       {
+        "base": "ceramica_esmaltada_porcelana",
+        "ambiente": "contato_permanente_agua",
+        "recomendados_topo": [
+          "tekbond-silicone-acetico-maxx"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "cascola-pl500-adesivo-de-montagem",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-neutro"
+        ],
+        "mencionados_com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "divergencia_com_a_especificacao": null,
+        "observacao": "A FAIXA DEIXOU DE SER DESCOBERTA EM 13/09/2026. Era a celula que a regra 5 mantinha descoberta de proposito: o Durepoxi declara secar debaixo d'agua, mas a fonte e press release de 2018 (nivel 4) e o minimo para recomendacao primaria e 3. Quem abriu foi o Silicone Acetico Maxx, cuja declaracao de aquario e piscina esta na pagina de produto do fabricante (nivel 3). O Durepoxi continua onde estava, como mencao com ressalva. As outras OITO bases seguem descobertas neste ambiente, porque 'ceramicas vitrificadas' e a unica superficie que o Maxx nomeia."
+      },
+      {
         "base": "vidro",
         "ambiente": "interno_seco",
         "recomendados_topo": [
@@ -1371,6 +1392,25 @@
           "tekbond-silicone-acetico-construcao",
           "tekbond-silicone-neutro"
         ]
+      },
+      {
+        "base": "vidro",
+        "ambiente": "interno_molhado",
+        "recomendados_topo": [
+          "tekbond-silicone-acetico-construcao",
+          "tekbond-silicone-neutro"
+        ],
+        "eliminados_por_proibicao": [],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-acetico-maxx",
+          "cascola-pl500-adesivo-de-montagem"
+        ],
+        "mencionados_com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "divergencia_com_a_especificacao": "Celula que a secao 1.3 nao tinha: ela junta 'interno, externo abrigado' numa linha so e nao separa seco de molhado. Nenhum dos dois silicones delimita ambiente, entao molhado le igual a seco — e o empate entre acetico e neutro e o mesmo das celulas de ceramica."
       },
       {
         "base": "vidro",
@@ -1410,6 +1450,26 @@
         "divergencia_com_a_especificacao": "Celula que a secao 1.3 nao tinha: ela trata vidro so em 'interno, externo abrigado'. Vidro em sol e chuva existe (mesa de jardim, placa de numero) e agora tem resposta."
       },
       {
+        "base": "vidro",
+        "ambiente": "contato_permanente_agua",
+        "recomendados_topo": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "tekbond-silicone-neutro",
+          "cascola-cascorez-extra",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-acetico-maxx",
+          "cascola-pl500-adesivo-de-montagem"
+        ],
+        "mencionados_com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "divergencia_com_a_especificacao": "Concorda com a ultima linha da 1.3 ('as outras oito bases: faixa descoberta'), e o motivo e mais estreito do que aquela linha diz: aqui existe declaracao de vidro E de uso submerso, as duas no Durepoxi. O que a segura e a regra 5, nao a falta de declaracao — press release de 2018 e nivel 4. E a mesma posicao em que a ceramica ficou ate o Maxx entrar em 13/09/2026.",
+        "observacao": "FAIXA DESCOBERTA por NIVEL DE FONTE, nao por falta de declaracao — e a distincao e a propria celula. Existe um produto que declara as duas metades: o Loctite Durepoxi lista vidro entre os substratos e declara secar em condicao submersa. O que o segura e a regra 5: a unica fonte dessa declaracao e press release de 2018, nivel 4 da escada, e recomendacao primaria exige nivel 3 ou melhor. Ele aparece na pagina como mencao com ressalva, citando o tipo do documento e o ano. E a mesma posicao em que a ceramica ficou ate o Tekbond Silicone Acetico Maxx entrar em 13/09/2026, e o desbloqueio desta celula tem a mesma forma: uma ficha tecnica do proprio fabricante substituindo o press release."
+      },
+      {
         "base": "vidro_laminado",
         "ambiente": "interno_seco",
         "recomendados_topo": [
@@ -1427,6 +1487,80 @@
         ],
         "mencionados_com_ressalva": [],
         "divergencia_com_a_especificacao": null
+      },
+      {
+        "base": "vidro_laminado",
+        "ambiente": "interno_molhado",
+        "recomendados_topo": [
+          "tekbond-silicone-neutro"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "cascola-pl500-adesivo-de-montagem",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-acetico-maxx"
+        ],
+        "mencionados_com_ressalva": [],
+        "observacao": "As tres celulas de vidro laminado que nascem aqui repetem a de interno_seco linha por linha, e isso e informacao: nenhum dos sete produtos muda de situacao entre seco, molhado e abrigado nesta base. Quem decide tudo e a proibicao declarada do acetico e a indicacao do neutro, e nenhuma das duas fala de ambiente."
+      },
+      {
+        "base": "vidro_laminado",
+        "ambiente": "externo_abrigado",
+        "recomendados_topo": [
+          "tekbond-silicone-neutro"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "cascola-pl500-adesivo-de-montagem",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-acetico-maxx"
+        ],
+        "mencionados_com_ressalva": []
+      },
+      {
+        "base": "vidro_laminado",
+        "ambiente": "externo_exposto",
+        "recomendados_topo": [
+          "tekbond-silicone-neutro"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "cascola-pl500-adesivo-de-montagem",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-acetico-maxx"
+        ],
+        "mencionados_com_ressalva": []
+      },
+      {
+        "base": "vidro_laminado",
+        "ambiente": "contato_permanente_agua",
+        "recomendados_topo": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "tekbond-silicone-neutro",
+          "cascola-cascorez-extra",
+          "cascola-pl500-adesivo-de-montagem",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-acetico-maxx"
+        ],
+        "mencionados_com_ressalva": [],
+        "divergencia_com_a_especificacao": "DIVERGENCIA: a 1.3 escreve 'vidro laminado | qualquer | silicone neutro', e 'qualquer' lido ao pe da letra poe o neutro debaixo d'agua. Ele nao declara imersao — declara chuva e raios UV, que e outra coisa — entao pela regra 4 a faixa e DESCOBERTA. A palavra 'qualquer' da especificacao foi escrita quando a matriz tinha tres ambientes na cabeca de quem escrevia, nao cinco no vocabulario.",
+        "observacao": "FAIXA DESCOBERTA por SILENCIO, que e a outra causa e nao se confunde com a anterior: aqui nenhum dos sete produtos declara a base. O Silicone Neutro Tekbond, que e quem responde por vidro laminado nos outros quatro ambientes, declara chuva e raios UV e nao declara imersao — e a regra 4 nao aceita resistencia a intemperie como se fosse resistencia a agua parada. O Durepoxi, que declara submersao, nao declara vidro laminado: o mapa traduz 'vidro' de forma restritiva, e laminado so entra quando o fabricante escreve laminado."
       },
       {
         "base": "espelho",
@@ -1447,6 +1581,80 @@
         "mencionados_com_ressalva": [],
         "divergencia_com_a_especificacao": null,
         "observacao": "A celula mais importante da ilha: caco de espelho e um dos tutoriais-ancora, e a ficha BRSA004 proibe o acetico em espelho — que e exatamente o que o blog manda usar."
+      },
+      {
+        "base": "espelho",
+        "ambiente": "interno_molhado",
+        "recomendados_topo": [
+          "tekbond-silicone-neutro"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "cascola-pl500-adesivo-de-montagem",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-acetico-maxx"
+        ],
+        "mencionados_com_ressalva": []
+      },
+      {
+        "base": "espelho",
+        "ambiente": "externo_abrigado",
+        "recomendados_topo": [
+          "tekbond-silicone-neutro"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "cascola-pl500-adesivo-de-montagem",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-acetico-maxx"
+        ],
+        "mencionados_com_ressalva": []
+      },
+      {
+        "base": "espelho",
+        "ambiente": "externo_exposto",
+        "recomendados_topo": [
+          "tekbond-silicone-neutro"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "cascola-pl500-adesivo-de-montagem",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-acetico-maxx"
+        ],
+        "mencionados_com_ressalva": [],
+        "observacao": "Espelho ao tempo continua com resposta porque o neutro declara as duas coisas de que esta celula precisa: espelhos entre os substratos e chuva e raios UV entre as resistencias. E a unica base 'dificil' que atravessa o ambiente critico sem ficar descoberta."
+      },
+      {
+        "base": "espelho",
+        "ambiente": "contato_permanente_agua",
+        "recomendados_topo": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "tekbond-silicone-neutro",
+          "cascola-cascorez-extra",
+          "cascola-pl500-adesivo-de-montagem",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-acetico-maxx"
+        ],
+        "mencionados_com_ressalva": [],
+        "divergencia_com_a_especificacao": "DIVERGENCIA, mesma do vidro laminado: a 1.3 escreve 'espelho | qualquer | silicone neutro'. Em contato permanente com agua ninguem declara, e caco de espelho submerso e justamente onde a peca descola. Faixa descoberta.",
+        "observacao": "FAIXA DESCOBERTA por silencio, e e a celula em que o silencio protege mais. O acetico e proibido em espelho pela ficha BRSA004 E proibido em imersao pela mesma ficha, duas declaracoes independentes do mesmo fabricante. O neutro declara espelhos e para na chuva. O Durepoxi declara submersao e nao declara espelho. Caco de espelho e um dos tutoriais-ancora da ilha, e a pergunta 'posso fazer um espelho de mosaico para dentro do chuveiro' nao tem resposta no banco — a pagina diz isso."
       },
       {
         "base": "mdf_madeira",
@@ -1493,6 +1701,25 @@
       },
       {
         "base": "mdf_madeira",
+        "ambiente": "externo_abrigado",
+        "recomendados_topo": [
+          "tekbond-silicone-neutro"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "cascola-pl500-adesivo-de-montagem",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-acetico-maxx"
+        ],
+        "mencionados_com_ressalva": [
+          "loctite-durepoxi"
+        ]
+      },
+      {
+        "base": "mdf_madeira",
         "ambiente": "externo_exposto",
         "recomendados_topo": [
           "tekbond-silicone-neutro"
@@ -1509,6 +1736,25 @@
         ],
         "mencionados_com_ressalva": [],
         "divergencia_com_a_especificacao": "Mesma correcao: o neutro declara madeira e declara chuva e raios UV, entao passa ate na regra do ambiente critico. Continua valendo o aviso de que MDF ao tempo e problema de BASE, nao de cola — e isso e texto da pagina, nao campo do banco."
+      },
+      {
+        "base": "mdf_madeira",
+        "ambiente": "contato_permanente_agua",
+        "recomendados_topo": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "tekbond-silicone-neutro",
+          "cascola-cascorez-extra",
+          "cascola-pl500-adesivo-de-montagem",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-acetico-maxx"
+        ],
+        "mencionados_com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "observacao": "MDF submerso e a celula em que a resposta honesta e a mais util: nenhuma cola recomendada, e a mencao com ressalva do Durepoxi existe para quem insistir saber que a unica declaracao que existe e um press release de 2018. A pagina nao transforma isso em indicacao."
       },
       {
         "base": "cimento_concreto",
@@ -1533,6 +1779,42 @@
       },
       {
         "base": "cimento_concreto",
+        "ambiente": "interno_molhado",
+        "recomendados_topo": [
+          "tekbond-silicone-neutro"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "cascola-pl500-adesivo-de-montagem",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-acetico-maxx"
+        ],
+        "mencionados_com_ressalva": []
+      },
+      {
+        "base": "cimento_concreto",
+        "ambiente": "externo_abrigado",
+        "recomendados_topo": [
+          "tekbond-silicone-neutro"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "cascola-pl500-adesivo-de-montagem",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-acetico-maxx"
+        ],
+        "mencionados_com_ressalva": []
+      },
+      {
+        "base": "cimento_concreto",
         "ambiente": "externo_exposto",
         "recomendados_topo": [
           "tekbond-silicone-neutro"
@@ -1549,6 +1831,83 @@
         ],
         "mencionados_com_ressalva": [],
         "divergencia_com_a_especificacao": "Mesmo achado da linha anterior."
+      },
+      {
+        "base": "cimento_concreto",
+        "ambiente": "contato_permanente_agua",
+        "recomendados_topo": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "tekbond-silicone-neutro",
+          "cascola-cascorez-extra",
+          "cascola-pl500-adesivo-de-montagem",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-acetico-maxx"
+        ],
+        "mencionados_com_ressalva": [],
+        "divergencia_com_a_especificacao": "DIVERGENCIA: a 1.3 escreve 'cimento / concreto | qualquer | cimentcola AC-II ou silicone neutro'. As duas metades caem — a AC-II nao declara substrato nenhum (achado do bloco 3) e o neutro nao declara imersao. Faixa descoberta, e a propria 1.3 ja anotava ao lado que 'em piscina, a cimentcola AC-II so recebe agua 7 dias depois'.",
+        "observacao": "FAIXA DESCOBERTA por silencio, com as duas candidatas obvias caindo por motivos diferentes: a cimentcola AC-II, que o senso comum poria aqui, nao declara SUBSTRATO nenhum (achado do bloco 3, e por isso ela e silencio nas 45 celulas), e o silicone neutro declara concreto e alvenaria mas nao declara imersao. O Durepoxi declara submersao e nao declara cimento nem concreto — declara pedra e marmore, que sao outra base neste vocabulario."
+      },
+      {
+        "base": "alvenaria_tijolo",
+        "ambiente": "interno_seco",
+        "recomendados_topo": [
+          "tekbond-silicone-neutro"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "cascola-pl500-adesivo-de-montagem",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-acetico-maxx"
+        ],
+        "mencionados_com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "divergencia_com_a_especificacao": "DIVERGENCIA: a 1.3 escreve 'alvenaria / tijolo | qualquer | cimentcola AC-II ou silicone neutro'. A AC-II sai por nao declarar substrato (mesmo achado do bloco 3 que ja esta nas celulas de cimento), e sobra o neutro sozinho. O Durepoxi declara pedra e marmore, que o mapa traduz para esta base, mas e nivel 4 e sai como mencao com ressalva."
+      },
+      {
+        "base": "alvenaria_tijolo",
+        "ambiente": "interno_molhado",
+        "recomendados_topo": [
+          "tekbond-silicone-neutro"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "cascola-pl500-adesivo-de-montagem",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-acetico-maxx"
+        ],
+        "mencionados_com_ressalva": [
+          "loctite-durepoxi"
+        ]
+      },
+      {
+        "base": "alvenaria_tijolo",
+        "ambiente": "externo_abrigado",
+        "recomendados_topo": [
+          "tekbond-silicone-neutro"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "cascola-pl500-adesivo-de-montagem",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-acetico-maxx"
+        ],
+        "mencionados_com_ressalva": [
+          "loctite-durepoxi"
+        ]
       },
       {
         "base": "alvenaria_tijolo",
@@ -1568,6 +1927,26 @@
         ],
         "mencionados_com_ressalva": [],
         "divergencia_com_a_especificacao": "Mesmo achado da cimentcola."
+      },
+      {
+        "base": "alvenaria_tijolo",
+        "ambiente": "contato_permanente_agua",
+        "recomendados_topo": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "tekbond-silicone-neutro",
+          "cascola-cascorez-extra",
+          "cascola-pl500-adesivo-de-montagem",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-acetico-maxx"
+        ],
+        "mencionados_com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "divergencia_com_a_especificacao": "DIVERGENCIA: o 'qualquer' da 1.3 outra vez. Faixa descoberta — o neutro nao declara imersao e a unica declaracao de uso submerso sobre pedra e a do Durepoxi, nivel 4.",
+        "observacao": "FAIXA DESCOBERTA por nivel de fonte, como a de vidro: o Durepoxi declara pedra e marmore, que o mapa traduz para esta base, e declara condicao submersa. Nivel 4, entao mencao com ressalva e nunca recomendacao. O neutro declara pedras e alvenaria e para na chuva."
       },
       {
         "base": "metal",
@@ -1593,6 +1972,85 @@
         ]
       },
       {
+        "base": "metal",
+        "ambiente": "interno_molhado",
+        "recomendados_topo": [
+          "tekbond-silicone-neutro"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "cascola-pl500-adesivo-de-montagem",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-acetico-maxx"
+        ],
+        "mencionados_com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "divergencia_com_a_especificacao": "Celula que a secao 1.3 nao tinha: ela trata metal so em 'interno'. O neutro nao delimita ambiente, entao molhado le igual a seco."
+      },
+      {
+        "base": "metal",
+        "ambiente": "externo_abrigado",
+        "recomendados_topo": [
+          "tekbond-silicone-neutro"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "cascola-pl500-adesivo-de-montagem",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-acetico-maxx"
+        ],
+        "mencionados_com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "divergencia_com_a_especificacao": "Celula que a secao 1.3 nao tinha, mesmo motivo da anterior."
+      },
+      {
+        "base": "metal",
+        "ambiente": "externo_exposto",
+        "recomendados_topo": [
+          "tekbond-silicone-neutro"
+        ],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "cascola-cascorez-extra",
+          "cascola-pl500-adesivo-de-montagem",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-acetico-maxx"
+        ],
+        "mencionados_com_ressalva": [],
+        "divergencia_com_a_especificacao": "Celula que a secao 1.3 nao tinha. Aqui o Durepoxi CAI para o silencio, e nao por falta de base: ele declara metal, aluminio, ferro, cobre e latao. O que falta e a declaracao de sol e chuva, que a regra 4 exige — a mesma razao que tira o acetico de externo exposto nas celulas de ceramica."
+      },
+      {
+        "base": "metal",
+        "ambiente": "contato_permanente_agua",
+        "recomendados_topo": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "tekbond-silicone-neutro",
+          "cascola-cascorez-extra",
+          "cascola-pl500-adesivo-de-montagem",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-acetico-maxx"
+        ],
+        "mencionados_com_ressalva": [
+          "loctite-durepoxi"
+        ],
+        "divergencia_com_a_especificacao": "Celula que a secao 1.3 nao tinha. Faixa descoberta com declaracao existindo dos dois lados no MESMO produto (o Durepoxi declara metal e declara secar submerso) e segurada so pela regra 5. E a celula que mais barato ficaria coberta no dia em que uma ficha tecnica do Durepoxi, de nivel 2 ou 3, substituir o press release de 2018.",
+        "observacao": "FAIXA DESCOBERTA por nivel de fonte, e e a mais barata de fechar do banco inteiro: o Durepoxi declara metal, aluminio, ferro, cobre e latao E declara secar submerso — as duas metades no mesmo produto e no mesmo documento. So o nivel 4 o segura. Uma ficha tecnica do fabricante, de nivel 2 ou 3, cobriria esta celula e mais tres (vidro, madeira e alvenaria em contato permanente com agua) sem mudar uma linha de codigo."
+      },
+      {
         "base": "plastico",
         "ambiente": "interno_seco",
         "recomendados_topo": [
@@ -1613,25 +2071,78 @@
         "observacao": "A FAIXA DEIXOU DE SER DESCOBERTA EM 13/09/2026, e o registro do que ela era fica: o acetico proibe acrilico e desaconselha PE, PP e PC; neutro e Durepoxi dizem 'certos/alguns tipos de plastico', que nao nomeia tipo nenhum e por isso nunca virou indicacao. Quem abriu foi o Cascola PL500, que lista 'plasticos' sem qualificador. ATENCAO AO QUE ESTA CELULA NAO DIZ: ela e a matriz de DECLARACAO, regras 1 a 5. A regra 6 roda depois dela e tira o PL500 deste caso quando o caquinho tambem for liso — sobre plastico, quem tem de ser poroso e a tessela. Ver matriz_esperada_da_condicao_de_superficie."
       },
       {
-        "base": "ceramica_esmaltada_porcelana",
-        "ambiente": "contato_permanente_agua",
-        "recomendados_topo": [
-          "tekbond-silicone-acetico-maxx"
-        ],
+        "base": "plastico",
+        "ambiente": "interno_molhado",
+        "recomendados_topo": [],
         "eliminados_por_proibicao": [
           "tekbond-silicone-acetico-construcao"
         ],
         "eliminados_por_silencio": [
+          "tekbond-silicone-neutro",
           "cascola-cascorez-extra",
           "cascola-pl500-adesivo-de-montagem",
+          "loctite-durepoxi",
           "quartzolit-cimentcola-externo-acii",
-          "tekbond-silicone-neutro"
+          "tekbond-silicone-acetico-maxx"
         ],
-        "mencionados_com_ressalva": [
-          "loctite-durepoxi"
+        "mencionados_com_ressalva": [],
+        "divergencia_com_a_especificacao": "Concorda com a 1.3 ('os outros 26 dos 30 casos: faixa descoberta'), e o motivo desta linha e um so: o PL500 declara plasticos e declara USO INTERNO, que o mapa traduz de forma restritiva para interno_seco. Banheiro e cozinha sao internos e sao onde um adesivo que cura por evaporacao de agua falha primeiro.",
+        "observacao": "FAIXA DESCOBERTA por AMBIENTE DELIMITADO, que e uma terceira causa e vale distingui-la: nao e silencio sobre a base e nao e nivel de fonte. O Cascola PL500 declara plasticos entre os materiais em que adere — e a unica indicacao de plastico que este banco aceita, porque 'certos tipos' e 'alguns tipos' nao nomeiam tipo nenhum — mas o mesmo fabricante escreve USO INTERNO, e o mapa traduz isso de forma restritiva para interno seco. Banheiro e cozinha sao internos e sao exatamente onde um adesivo que cura por evaporacao de agua falha primeiro; ampliar aqui seria o erro caro da secao 10 do contrato."
+      },
+      {
+        "base": "plastico",
+        "ambiente": "externo_abrigado",
+        "recomendados_topo": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
         ],
-        "divergencia_com_a_especificacao": null,
-        "observacao": "A FAIXA DEIXOU DE SER DESCOBERTA EM 13/09/2026. Era a celula que a regra 5 mantinha descoberta de proposito: o Durepoxi declara secar debaixo d'agua, mas a fonte e press release de 2018 (nivel 4) e o minimo para recomendacao primaria e 3. Quem abriu foi o Silicone Acetico Maxx, cuja declaracao de aquario e piscina esta na pagina de produto do fabricante (nivel 3). O Durepoxi continua onde estava, como mencao com ressalva. As outras OITO bases seguem descobertas neste ambiente, porque 'ceramicas vitrificadas' e a unica superficie que o Maxx nomeia."
+        "eliminados_por_silencio": [
+          "tekbond-silicone-neutro",
+          "cascola-cascorez-extra",
+          "cascola-pl500-adesivo-de-montagem",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-acetico-maxx"
+        ],
+        "mencionados_com_ressalva": [],
+        "observacao": "FAIXA DESCOBERTA pela mesma delimitacao de ambiente da celula anterior: o PL500 e o unico que declara plastico de verdade e e declarado para uso interno. Varanda coberta nao e interno, e a ilha nao alarga a palavra do fabricante para caber a peca."
+      },
+      {
+        "base": "plastico",
+        "ambiente": "externo_exposto",
+        "recomendados_topo": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "tekbond-silicone-neutro",
+          "cascola-cascorez-extra",
+          "cascola-pl500-adesivo-de-montagem",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-acetico-maxx"
+        ],
+        "mencionados_com_ressalva": [],
+        "observacao": "Duas razoes independentes deixam esta celula descoberta, e vale registrar as duas porque a primeira sozinha ja bastaria: o unico produto que declara plastico de verdade (PL500) e delimitado a uso interno, e o unico que declara sol e chuva (neutro) so fala de 'certos tipos de plastico', que nao nomeia tipo nenhum."
+      },
+      {
+        "base": "plastico",
+        "ambiente": "contato_permanente_agua",
+        "recomendados_topo": [],
+        "eliminados_por_proibicao": [
+          "tekbond-silicone-acetico-construcao"
+        ],
+        "eliminados_por_silencio": [
+          "tekbond-silicone-neutro",
+          "cascola-cascorez-extra",
+          "cascola-pl500-adesivo-de-montagem",
+          "loctite-durepoxi",
+          "quartzolit-cimentcola-externo-acii",
+          "tekbond-silicone-acetico-maxx"
+        ],
+        "mencionados_com_ressalva": [],
+        "divergencia_com_a_especificacao": "Concorda com a 1.3. Aqui nem o Durepoxi entra com ressalva: 'alguns tipos de plastico' nao nomeia tipo nenhum e por isso nao e indicacao, entao ele cai no silencio e nao na ressalva.",
+        "observacao": "FAIXA DESCOBERTA por silencio, e aqui nem a mencao com ressalva existe: o Durepoxi declara condicao submersa mas escreve 'alguns tipos de plastico', que nao nomeia tipo nenhum e por isso nao e indicacao — ele cai no silencio, nao na ressalva. O PL500 declara plasticos e e de uso interno. O acetico e proibido nas duas pontas, acrilico como base e aquario como ambiente."
       }
     ],
     "categoria_considerada": "cola",

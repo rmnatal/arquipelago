@@ -77,7 +77,10 @@ def m_silencio_vira_pode(raiz):
 
 def m_ambiente_critico_aceita_silencio(raiz):
     """A regra 4 cai so no ambiente critico — sol, chuva e imersao passam a
-    aceitar silencio. E a mutacao sutil: 16 das 18 celulas continuam certas."""
+    aceitar silencio. E a mutacao sutil: a grande maioria das celulas continua
+    certa, e so as de sol, chuva e agua parada mudam (eram 2 das 18 ate
+    12/09/2026; com a matriz em 45 sao 18 das 45, porque dois dos cinco
+    ambientes do vocabulario sao criticos)."""
     editar(raiz, SNIPPET,
            "\tif ( isset( $criticos[ $ambiente ] ) && ! isset( $p['ambientes_cobertos'][ $ambiente ] ) ) {\n\t\treturn array( 'silencio', 0 );",
            "\tif ( false && isset( $criticos[ $ambiente ] ) ) {\n\t\treturn array( 'silencio', 0 );")
@@ -544,6 +547,73 @@ def m_proibido_com_condicao_cai_no_bloco_errado(raiz):
            "\t\t\t&& true")
 
 
+def m_faixa_descoberta_nega_a_declaracao(raiz):
+    """A faixa descoberta volta a dizer que ninguem declarou, e o defeito estava
+    NO AR ate 13/09/2026 em quatro estados.
+
+    E a mutacao que mede o conserto deste bloco. Em vidro, madeira, alvenaria e
+    metal dentro da agua, o Loctite Durepoxi E declarado pelo proprio fabricante
+    para a base E para uso submerso; quem o segura e a regua de PROCEDENCIA da
+    ilha, que e nossa. A pagina dizia "nenhum dos adesivos do nosso banco e
+    declarado pelo proprio fabricante para esse caso" e duas secoes abaixo
+    imprimia "existe mencao a Loctite Durepoxi" — uma frase negando o que a
+    outra afirma, dentro da mesma pagina.
+
+    Ninguem tinha visto porque as 18 celulas escritas a mao de ontem TODAS
+    tinham recomendacao: a regua independente nunca tinha pisado numa faixa
+    descoberta, e o portao so cobrava a PRESENCA da frase, nunca qual causa ela
+    nomeia."""
+    editar(raiz, SNIPPET,
+           "\t} elseif ( $celula['mencionados_com_ressalva'] ) {\n"
+           "\t\t/* A QUINTA CAUSA",
+           "\t} elseif ( false ) {\n"
+           "\t\t/* A QUINTA CAUSA")
+
+
+def m_vitrine_vazia_nega_a_declaracao(raiz):
+    """A metade do mesmo defeito que mora uma secao abaixo da resposta.
+
+    Consertar so a frase-resposta deixaria a vitrine vazia repetindo "nenhum
+    produto do nosso banco passa no que o fabricante declara" — e ele passa: o
+    que ele nao passa e a nossa regua de fonte. Defeito pego pela regra VIZINHA
+    prova que ALGUMA trava existe, nunca que ESTA existe, entao ela tem mutacao
+    propria."""
+    editar(raiz, SNIPPET,
+           "\t\t} elseif ( $celula['mencionados_com_ressalva'] ) {\n"
+           "\t\t\t$html .= '<p>Não há o que listar aqui. Não é que ninguém declare",
+           "\t\t} elseif ( false ) {\n"
+           "\t\t\t$html .= '<p>Não há o que listar aqui. Não é que ninguém declare")
+
+
+def m_mapa_perde_a_pedra_do_epoxi(raiz):
+    """A UNICA MUTACAO DESTE ARQUIVO QUE AS 18 CELULAS DE ONTEM NAO PEGAVAM, e
+    ela existe para medir o que o bloco de 13/09/2026 comprou.
+
+    O mapa perde os termos 'pedra' e 'marmore' — e SO esses dois, escolhidos a
+    dedo: sao os que o Loctite Durepoxi usa para alvenaria e que o Silicone
+    Neutro NAO usa (ele diz 'pedras' e 'alvenaria'). Assim o neutro continua
+    respondendo por alvenaria e o unico efeito visivel do defeito e o Durepoxi
+    cair de mencao com ressalva para silencio nas QUATRO celulas de alvenaria
+    que nasceram neste bloco.
+
+    MEDIDO NOS DOIS MUNDOS, antes de esta funcao ser escrita: com a matriz de 45
+    o validador acusa 8 erros; com as 18 celulas de ontem ele fecha em OK e o
+    teste-f2 fecha em 107 afirmacoes e 0 falha — o defeito passava inteiro,
+    deixando so um AVISO de termo sem traducao, que nao reprova nada. E o que
+    justifica a matriz ter ido a 45: cobertura que nao existe nao e cobertura
+    que esta verde, e uma regua com buraco fica verde exatamente dentro do
+    buraco."""
+    esquema = carregar(raiz, "esquema-banco.json")
+    termos = esquema["mapa_de_termos_do_fabricante"]["termos"]
+    ficam = [t for t in termos if t["literal"] not in ("pedra", "marmore")]
+    if len(ficam) != len(termos) - 2:
+        raise AssertionError(
+            "mutacao INERTE: esperava remover 2 termos do mapa, removeu %d"
+            % (len(termos) - len(ficam)))
+    esquema["mapa_de_termos_do_fabricante"]["termos"] = ficam
+    gravar(raiz, "esquema-banco.json", esquema)
+
+
 MUTACOES = [
     ("proibicao do fabricante deixa de vencer", m_proibicao_deixa_de_vencer),
     ("silencio do fabricante vira 'pode'", m_silencio_vira_pode),
@@ -594,6 +664,10 @@ MUTACOES = [
     ("PRODUZ O MUNDO: um segundo produto ganha a condicao, mudo", m_segundo_produto_com_condicao, "banco"),
     ("no VALIDADOR, a condicao roda antes das cinco", m_validador_condicao_antes_das_cinco, "banco"),
     ("PRODUZ O MUNDO: proibido COM condicao sai no bloco errado", m_proibido_com_condicao_cai_no_bloco_errado, "tela"),
+    # --- a matriz escrita a mao de 18 para 45 celulas (13/09/2026)
+    ("a faixa descoberta volta a negar a declaracao que a pagina cita", m_faixa_descoberta_nega_a_declaracao, "tela"),
+    ("a vitrine vazia volta a negar a mesma declaracao", m_vitrine_vazia_nega_a_declaracao, "tela"),
+    ("SO AS 27 CELULAS NOVAS PEGAM: o mapa perde a pedra do epoxi", m_mapa_perde_a_pedra_do_epoxi, "banco"),
 ]
 
 

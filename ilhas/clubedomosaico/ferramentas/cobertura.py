@@ -12,10 +12,19 @@ quantos itens do banco passam em TODAS as condicoes declaradas. O que falta ness
 varredura e a lista de compras do banco — e o numero final aparece sozinho."
 
 Esta ilha nunca tinha feito essa varredura. O que existia era a matriz escrita a mao do
-esquema: 18 celulas de cola e 9 de rejunte, que sao AMOSTRA com nome de grade para uma
+esquema: 18 celulas de cola e 9 de rejunte, que eram AMOSTRA com nome de grade para uma
 ferramenta que serve 45 e 60. A amostra foi escolhida com cuidado — as celulas do rejunte
 pisam de proposito nas bordas declaradas — mas amostra nao responde "quantas faixas saem
 sem 3 elegiveis", porque a resposta e uma contagem sobre a entrada INTEIRA.
+
+EM 13/09/2026 A METADE DA COLA DEIXOU DE SER AMOSTRA: a matriz foi a 45 celulas, que e a
+grade inteira de base x lugar. Isto NAO torna este arquivo dispensavel, e vale dizer por
+que: a matriz decide sobre base x ambiente e nao olha o caquinho, entao a entrada da
+ferramenta continua tendo 270 estados e nao 45 — e a pergunta desta varredura ("quantas
+faixas saem sem 3 elegiveis") continua sendo uma contagem sobre os 270. O que mudou e o
+tamanho do buraco: a decisao agora tem regua independente nas 45, e esta varredura mede a
+AGREGACAO, que e outra coisa. A metade do rejunte segue sendo amostra de borda, de
+proposito.
 
 AS TRES FONTES, E POR QUE SAO TRES:
 

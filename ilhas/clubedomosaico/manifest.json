@@ -4,7 +4,7 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 26,
+  "revisao": 27,
   "atualizado_em": "2026-09-13",
   "estado": "nascendo",
   "desembarque": {
@@ -31,8 +31,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.3.0",
-      "sha256": "3993cfc9675e4d28b6e73018d962c95ed5abdd3b783df8c7b7d08427b3b5ed53",
+      "versao": "1.4.0",
+      "sha256": "a0eeb1ec3451063023ef36f1c754019b5c31b1b051df546a2870d0f26124678b",
       "descricao": "F2 1.3.0 — A REGRA 6 NASCE, E AS DUAS FAIXAS QUE ESTA PAGINA DECLARAVA NAO SABER RESPONDER DEIXAM DE SER BURACO. Entraram no banco o Silicone Acetico Maxx (BRSA005), primeiro produto da ilha que pode ser recomendado em contato permanente com agua por fonte de nivel 3, e o Cascola Adesivo de Montagem PL500, primeiro indicado sobre PLASTICO. O PL500 trouxe junto a condicao que obrigou a regra: 'ao menos uma das superficies deve ser porosa, ja que o produto seca por evaporacao da agua' — isso nao e base e nao e ambiente, e o PAR de superficies coladas. A regra 6 e a primeira regua de cola que olha o CAQUINHO, entrada que a ferramenta coleta desde a 1.0.0 e que nenhuma regua de cola lia. Ela roda DEPOIS das cinco e ANTES da ordenacao por score, e quem cai por ela vai para um QUINTO grupo, com frase propria: nao e proibicao (o fabricante nao proibe) e nao e silencio (ele falou). A atribuicao sai dividida ao meio pela secao 26.3 — a condicao e dele, a classificacao de quais superficies sao porosas e nossa, e a pagina diz isso com essas palavras. A secao 'o que a gente ainda nao responde' deixou de ser duas frases escritas a mao (as duas viraram mentira no mesmo dia em que os produtos entraram) e passou a ser CONTADA a cada requisicao: 270 combinacoes de base, lugar e caquinho, 68 delas ainda sem resposta. A tabela pre-renderizada ganhou a coluna da condicao, porque ela e a metade que um modelo de linguagem le sem preencher formulario e era onde 'use PL500 em plastico' sairia sem escopo."
     },
     {
@@ -132,7 +132,7 @@
       "verificado_em": "2026-09-11",
       "registros": 4,
       "publicar": true,
-      "sha256": "0c919137cb6824bd2079011c4f3c8858a503b3e549bccf07630e0527f206a4c2",
+      "sha256": "4de7dd464c68549752ef69e82f3322f3373545e39a18c59c6fe1aa60c3e28fbb",
       "descricao": "Modelo do banco: entidades MATERIAL, PECA (CPT no WordPress, nunca arquivo), TECNICA e a serie temporal COTACAO, campo a campo, com vocabulario controlado, escada de fontes de 7 niveis e o mapa que traduz o termo LITERAL do fabricante para a base e o ambiente da ilha. O que este esquema tem de proprio: o campo que decide a recomendacao e NEGATIVO (a lista de restricoes da ficha BRSA004), existem TRES estados de declaracao e nao dois (silencio nao e proibicao), e cinco regras de elegibilidade executaveis recomputam as 18 celulas da matriz da F2 a partir das declaracoes — quatro delas divergindo da matriz que o bloco 2 tinha escrito a mao. ATUALIZADO NO BLOCO 3c (versao_esquema 2): o esquema passou a ter DUAS reguas, porque as duas categorias nao respondem a mesma pergunta. A matriz_esperada_da_F2 declara agora que so olha categoria == cola, e o validador confere isso — ate aqui a regra existia so na cabeca de quem escreveu, e o primeiro rejunte gravado fez as 18 celulas falharem de uma vez acusando os cinco rejuntes como 'eliminados por silencio', frase sem sentido para um produto que nunca foi candidato a colar nada. Ao lado dela nasceram mapa_de_termos_do_rejunte (que traduz para ambiente e TESSELA, nunca para base), regras_de_elegibilidade_do_rejunte (a junta manda e precisa das duas pontas; ambiente critico do rejunte tem TRES ambientes e nao dois, porque o rejunte e a superficie exposta e a cola fica escondida atras da tessela), perfis_esperados_do_rejunte e matriz_esperada_do_rejunte, cuja grade pisa de proposito em 1, 2, 4, 5 e 10 mm — as bordas declaradas — e em 6 e 11, logo depois da ultima."
     },
     {
@@ -244,7 +244,7 @@
     {
       "id": "mutacoes-f2",
       "arquivo": "ferramentas/mutacoes-f2.py",
-      "sha256": "5fdc13d52b3714d105b03d1cafd547c2cd6af588bc0d7732ed1e690ef66fbffe",
+      "sha256": "996a5e60bda2b3f301aca8becc0194089db3ee1d5261f4410e5f327f7999b589",
       "descricao": "Quebra a F2 de proposito, uma mutacao por vez, e exige que teste-f2.php reprove cada uma. Bancada."
     },
     {
@@ -298,7 +298,7 @@
     {
       "id": "teste-f2",
       "arquivo": "ferramentas/teste-f2.php",
-      "sha256": "bfa7d64e35de90a5f8a95ce4f8e61df3166d85b730dad57552f3eddf2a5035da",
+      "sha256": "58d56789e60b1e282fc0518adfb6c1f576d157050612cbe2d9e33a3cfabeb8b7",
       "descricao": "Verificacao medida da F2: varre os 45 estados de cola e os 60 de rejunte, um processo cada, com regua lida do esquema e nao do snippet. Bancada."
     },
     {
@@ -328,7 +328,7 @@
     {
       "id": "cobertura",
       "arquivo": "ferramentas/cobertura.py",
-      "sha256": "c10283bfd23170c95dbb1194f0747e53ed547b29e52a598628b0172e224c3831",
+      "sha256": "366b5737c9d881d3d341e5ec718f6936928c47d360427c3668a8e648e4da3345",
       "descricao": "A varredura da secao 14.3: para CADA estado que a F2 serve, conta quantos produtos do banco sao elegiveis, e escreve dados/cobertura.json. A faixa vem de faixa-da-f2.php (medida no snippet); a regua vem de validar-banco.py, importada — ela recompoe a elegibilidade das DECLARACOES pelas regras do esquema e foi escrita antes de existir o snippet PHP, entao reimplementa-la aqui uma terceira vez nao acrescentaria independencia, so uma copia para envelhecer calada. Mencao com ressalva NAO conta como elegivel (regra 5: fonte fraca demais). O arquivo gerado NAO leva carimbo de relogio, de proposito: ele e funcao das entradas, e com timestamp dentro o modo --conferir acusaria 'velho' a cada execucao ate alguem desligar o portao. Bancada: nunca vai para o site."
     },
     {

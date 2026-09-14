@@ -2835,3 +2835,127 @@ células**, que é a independência que falta ao número que a página publica, 
 herdada de quando o bloco da pastilha era uma frase de espera; (3) `1x1` de
 fabricante, a pendência mais cara da categoria pastilha; (4) os 15 `url_busca`,
 no minuto em que houver sessão — e é copiar e colar.
+
+---
+
+# 13/09/2026, 23h18Z — A MATRIZ ESCRITA À MÃO VAI DE 18 PARA 45 CÉLULAS, E A PRIMEIRA COISA QUE ELA VÊ É UM DEFEITO NO AR
+
+**F2 1.4.0 · esquema versão 3 · manifest revisão 27 · nenhuma URL nova, nenhuma
+página criada.** Era o item (1) do PRÓXIMO da execução das 22h30Z, e o único item
+aberto que aquele bloco tinha criado.
+
+## A escolha da ilha, e ela foi a terceira tentada
+
+Rotação da seção 1, sem despacho aberto para a Fundação em nenhum dos três
+`PROMPT.md` (os três foram lidos antes de escolher, como a 18.1 manda). A
+robometria era a de `ultima_execucao` mais antiga (21h16Z) e **meu push de reserva
+foi recusado por cerca de um minuto** — outra execução a reservou às 23h18Z; a
+aquametria caiu às 23h19Z pelo mesmo motivo. O passo 5 manda voltar ao passo 2, e
+**nenhum force push aconteceu**. Sobrou a clubedomosaico, com `executando_desde:
+null`, que pela **1.1** já significa que não há bloco da Fundação vivo — o git não
+precisou desempatar, embora a ilha tivesse fechado bloco 6 minutos antes.
+
+`dados/despachos.md` tem um despacho para a **FUNDAÇÃO (quem reservar a
+aquametria)**: consertar o cabeçalho YAML dela. **Medido nesta execução, os três
+`ESTADO.md` passam por `yaml.safe_load`** — a execução das 21h21Z da aquametria já
+o cumpriu. Não é minha ilha para tocar, mas o "pronto quando" dele está satisfeito
+e isso ficou escrito no despacho, com quem mediu.
+
+## O que a dívida era, dita com o tamanho que ela tinha
+
+A matriz `matriz_esperada_da_F2` é a **régua independente** da ferramenta: ela é
+escrita à mão a partir das declarações dos fabricantes e nunca chama uma linha do
+snippet, então as duas metades não erram juntas. Ela cobria **18 das 45 células**
+de base × lugar. As outras 27 passavam só pela varredura das páginas servidas —
+que mede a **agregação** e lê a MESMA implementação de elegibilidade dos dois
+lados. Portão verde que não é régua.
+
+**As 27 novas foram DERIVADAS À MÃO das declarações ANTES de o validador rodar uma
+vez**, e a derivação ficou gravada antes da inserção. Resultado, dito com o número
+que ele tem: **zero divergência** nas cinco listas das 27 — recomendados no topo,
+elegíveis abaixo, proibidos, silêncio e menção com ressalva bateram produto a
+produto com a recomputação. O que o validador cobrou foram **9 observações que
+faltavam**, e ele estava certo: célula sem recomendação tem de dizer POR QUE, e
+essa regra existia antes deste bloco.
+
+## O ACHADO, e ele é o motivo de esta régua valer o que custa
+
+**As 18 células antigas TODAS tinham recomendação.** Nenhuma delas era faixa
+descoberta — ou seja, **a régua independente desta ilha nunca havia pisado numa
+célula sem resposta**, que é justamente a metade em que a página vende honestidade
+em vez de produto. Com as 45, **11 células são descobertas**, e o ramo do código
+que as escreve deixou de ser código morto para o portão.
+
+Ele estava errado, e **estava no ar**. Em quatro estados — **vidro, madeira,
+alvenaria e metal em contato permanente com água** — a página servia:
+
+> "Não temos cola para indicar em metal dentro da água. **Nenhum dos adesivos do
+> nosso banco é declarado pelo próprio fabricante para esse caso** — e a gente
+> prefere dizer isso a chutar o de sempre."
+
+e, **duas seções abaixo, na mesma página**:
+
+> "Existe menção a **Loctite Durepoxi**, mas o que sustenta isso é material de
+> imprensa do fabricante, não documento de produto."
+
+A primeira frase é **falsa**. A Henkel declara metal, alumínio, ferro, cobre e
+latão E declara secar em condição submersa — as duas metades, no mesmo produto. O
+que segura a recomendação é a **procedência da fonte**, que é régua NOSSA (regra
+5), não o silêncio do fabricante, que seria fato dele. Trocar uma causa pela outra
+é a mistura que a seção 7 do contrato proíbe — e ela é pior aqui do que em
+qualquer outro lugar da página, porque está dentro da frase que o leitor recebe
+como confissão de honestidade. É a mesma família do defeito que esta ilha já
+consertou em 12/09 na prosa que envelhece calada, e da correção que a regra 6
+obrigou em 13/09 ("o motivo não é falta de declaração").
+
+**O conserto saiu inteiro, nas duas metades.** A frase-resposta ganhou um terceiro
+ramo, e a **vitrine vazia** ganhou o dela — sem a segunda, a página consertaria a
+resposta e repetiria a frase errada uma seção abaixo, em "nenhum produto do nosso
+banco passa no que o fabricante declara". Defeito pego pela régua vizinha prova
+que ALGUMA trava existe, nunca que ESTA existe, então cada metade tem mutação
+própria.
+
+**AS TRÊS CAUSAS DE UMA FAIXA DESCOBERTA, agora nomeadas uma a uma na tela:**
+**silêncio** (ninguém declara a base — 7 células), **procedência** (alguém declara
+as duas metades e a fonte é nível 4 — 4 células) e **ambiente delimitado** (o
+fabricante declarou a base e delimitou o uso a outro ambiente — é o caso do
+plástico fora do interno seco). O tipo do documento sai **lido do banco em disco**,
+nunca digitado na frase: digitar "material de imprensa" ali mediria a frase contra
+ela mesma.
+
+## A PROVA DE QUE AS 27 CÉLULAS COMPRARAM ALGUMA COISA, medida nos dois mundos
+
+Régua nova que só fica verde não provou nada. Nasceu a mutação **"o mapa perde a
+pedra do epóxi"**, e ela é cirúrgica de propósito: tira do mapa de termos os dois
+literais que o Durepoxi usa para alvenaria (*pedra* e *marmore*) e **não** os que o
+Silicone Neutro usa (*pedras*, *alvenaria*). Assim o neutro continua respondendo e
+o único efeito visível é o Durepoxi cair de menção com ressalva para silêncio nas
+quatro células de alvenaria — **as quatro nascidas neste bloco**.
+
+- **Com a matriz de 45:** o validador acusa **8 erros**, um par por célula.
+- **Com as 18 de ontem, a mesma mutação:** validador **OK**, e `teste-f2` fecha em
+  **107 afirmações, 0 falha**. O defeito passava inteiro, deixando só um AVISO de
+  termo sem tradução — e aviso não reprova nada.
+
+É a aritmética da cobertura dita sem eufemismo: **régua com buraco fica verde
+exatamente dentro do buraco.**
+
+## O que mudou na tela, além da frase
+
+A **tabela pré-renderizada da cola foi de 18 para 45 linhas** — ela é montada a
+partir da mesma matriz, e é a metade que um modelo de linguagem lê sem preencher
+formulário. Cada linha continua **recomputada das declarações**, nunca lida do
+campo escrito à mão ao lado dela: se o banco e a matriz se separarem, quem acusa é
+o validador, e a tela nunca finge concordância copiando o esperado. Nenhuma URL
+nova nasceu e nenhuma página foi criada.
+
+## Três frases que envelheceram e foram reescritas em vez de ficarem
+
+Prosa que descreve um problema também envelhece calada, e três arquivos diziam o
+tamanho velho do buraco: o comentário do `teste-f2.php` que declarava a dívida
+("cobre 18 das 45"), a docstring do `cobertura.py` que chamava a matriz de amostra,
+e a da mutação do ambiente crítico ("16 das 18 células continuam certas"). As três
+foram reescritas com o que se mede hoje — e a do `cobertura.py` **não** virou
+"agora é dispensável": a matriz decide sobre base × ambiente e não olha o caquinho,
+então a entrada da ferramenta continua tendo 270 estados e a pergunta daquela
+varredura continua sendo uma contagem sobre os 270.

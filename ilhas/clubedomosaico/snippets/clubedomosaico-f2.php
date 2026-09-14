@@ -1,5 +1,13 @@
 /**
  * Clube do Mosaico F2 — Qual cola usar no mosaico, e qual rejunte
+ * Versão 1.4.0 (13/09/2026) — a matriz escrita à mão do esquema vai de 18 para
+ * 45 células, a grade inteira de base x lugar, e a tabela pré-renderizada desta
+ * página passa a servir as 45 linhas. Foi essa régua independente que achou o
+ * defeito no ar: em quatro estados (vidro, madeira, alvenaria e metal dentro da
+ * água) a página negava, na frase-resposta e na vitrine vazia, a mesma declaração
+ * de nível 4 que ela imprimia duas seções abaixo. A faixa descoberta agora nomeia
+ * qual das três causas a segura: silêncio, procedência da fonte, ou ambiente
+ * delimitado pelo próprio fabricante.
  * Versão 1.3.0 (13/09/2026) — a REGRA 6 nasce, e com ela as duas faixas que esta
  * página declarava não saber responder deixam de ser buracos. A regra 6 é a
  * primeira regra de cola que olha o CAQUINHO: o Cascola PL500 declara que "ao
@@ -80,7 +88,7 @@
  */
 
 if ( ! defined( 'CDM_F2_VERSAO' ) ) {
-	define( 'CDM_F2_VERSAO', '1.3.0' );
+	define( 'CDM_F2_VERSAO', '1.4.0' );
 }
 if ( ! defined( 'CDM_F2_SLUG' ) ) {
 	/* Nível 3 com mãe /materiais/ direto — dois níveis em vez de três, estado de
@@ -1079,6 +1087,45 @@ function cdm_f2_resposta_cola_html( $base, $ambiente, $tessela ) {
 			. ( 1 === $quantos ? 'é declarado' : 'são declarados' ) . ' pelo fabricante para <strong>'
 			. esc_html( $nb ) . '</strong>, mas ' . ( 1 === $quantos ? 'exige' : 'exigem' )
 			. ' uma condição que este caso não cumpre. Logo abaixo está qual é, e o que mudaria.</p>';
+	} elseif ( $celula['mencionados_com_ressalva'] ) {
+		/* A QUINTA CAUSA, e ela é a MESMA cicatriz da anterior aparecendo noutro
+		   lugar — achada em 13/09/2026 pela matriz escrita à mão indo de 18 para
+		   45 células. As 18 antigas TODAS tinham recomendação, então nenhuma
+		   régua independente jamais pisou numa faixa descoberta, e o `else` aqui
+		   embaixo era código morto para o portão. Ele estava no ar em quatro
+		   estados: vidro, madeira, alvenaria e metal em contato permanente com
+		   água. Nos quatro a página dizia "nenhum dos adesivos do nosso banco é
+		   declarado pelo próprio fabricante para esse caso" — e duas seções
+		   abaixo, na mesma página, imprimia "existe menção a Loctite Durepoxi".
+		   A frase era FALSA: a Henkel declara metal e declara secar submerso, as
+		   duas coisas. O que segura a recomendação é a PROCEDÊNCIA da fonte, que
+		   é régua nossa (regra 5), não o silêncio do fabricante, que é fato dele.
+		   Trocar uma causa pela outra é a mistura que a seção 7 do contrato
+		   proíbe, e ela é pior aqui do que em qualquer outro lugar da página:
+		   está dentro da frase que o leitor recebe como confissão de honestidade.
+
+		   A ATRIBUIÇÃO SAI DIVIDIDA, como na regra 6 (seção 26.3): a declaração
+		   é do fabricante e o nível do documento é classificação da ilha — duas
+		   orações separadas, e o tipo do documento é LIDO do banco, nunca
+		   digitado aqui. */
+		$nomes = array();
+		$tipos = array();
+		foreach ( $celula['mencionados_com_ressalva'] as $id ) {
+			$banco   = cdm_f2_banco();
+			$m       = $banco['materiais'][ $id ];
+			$fonte   = cdm_f2_fonte_principal( $m );
+			$nomes[] = cdm_f2_nome( $id );
+			$tipos[] = $fonte ? $fonte['tipo'] : 'fonte não registrada';
+		}
+		$quantos = count( $nomes );
+		$html   .= '<p class="cdm-f2-frase cdm-f2-faixa">Não temos cola para indicar em <strong>'
+			. esc_html( $nb ) . '</strong> ' . esc_html( $na ) . ', e o motivo não é falta de declaração: '
+			. '<strong>' . esc_html( cdm_f2_lista_humana( $nomes ) ) . '</strong> '
+			. ( 1 === $quantos ? 'é declarado' : 'são declarados' ) . ' pelo próprio fabricante para esse caso. '
+			. 'O que segura a recomendação é a procedência, e essa régua é nossa: '
+			. ( 1 === $quantos ? 'o que sustenta essa declaração é ' : 'o que sustenta essas declarações são ' )
+			. esc_html( cdm_f2_lista_humana( $tipos ) ) . '. '
+			. 'Em cima disso a gente não publica recomendação — a menção fica logo abaixo, com o documento.</p>';
 	} else {
 		$html .= '<p class="cdm-f2-frase cdm-f2-faixa">Não temos cola para indicar em <strong>' . esc_html( $nb )
 			. '</strong> ' . esc_html( $na ) . '. Nenhum dos adesivos do nosso banco é declarado pelo próprio fabricante para esse caso — e a gente prefere dizer isso a chutar o de sempre.</p>';
@@ -1169,10 +1216,18 @@ function cdm_f2_vitrine_html( $base, $ambiente, $tessela ) {
 		/* Mesma correção de escopo da frase de recusa: onde quem caiu foi a
 		   condição, "nenhum produto passa no que o fabricante declara" é falso —
 		   ele passa no que o fabricante declara e não passa na condição que o
-		   mesmo fabricante põe. */
-		$html .= $celula['eliminados_por_condicao']
-			? '<p>Não há o que listar aqui. Não é que ninguém sirva para esta base: é que quem serve põe uma condição que este caso não cumpre, e ela está explicada logo abaixo. Vender assim mesmo seria o contrário do que esta página existe para fazer.</p>'
-			: '<p>Não há o que listar aqui: nesta combinação nenhum produto do nosso banco passa no que o fabricante declara. Listar assim mesmo seria o contrário do que esta página existe para fazer.</p>';
+		   mesmo fabricante põe. E o terceiro ramo nasceu junto com a matriz de 45
+		   em 13/09/2026, pelo mesmo motivo e no mesmo lugar: quando existe menção
+		   de nível 4, o produto TAMBÉM passa no que o fabricante declara, e quem
+		   o segura é a régua de procedência da ilha. A vitrine vazia repetia a
+		   frase errada da resposta, uma seção acima dela. */
+		if ( $celula['eliminados_por_condicao'] ) {
+			$html .= '<p>Não há o que listar aqui. Não é que ninguém sirva para esta base: é que quem serve põe uma condição que este caso não cumpre, e ela está explicada logo abaixo. Vender assim mesmo seria o contrário do que esta página existe para fazer.</p>';
+		} elseif ( $celula['mencionados_com_ressalva'] ) {
+			$html .= '<p>Não há o que listar aqui. Não é que ninguém declare esta combinação: é que a única declaração que existe está apoiada em documento fraco demais para virar recomendação, e ela está nomeada logo abaixo. Vender assim mesmo seria o contrário do que esta página existe para fazer.</p>';
+		} else {
+			$html .= '<p>Não há o que listar aqui: nesta combinação nenhum produto do nosso banco passa no que o fabricante declara. Listar assim mesmo seria o contrário do que esta página existe para fazer.</p>';
+		}
 		$html .= '</div>';
 
 		return $html;
