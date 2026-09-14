@@ -313,6 +313,72 @@ for consulta, tem_que_recomendar, nao_pode_recomendar in F2_CASOS:
     ok(fora is not None and nao_pode_recomendar in fora.group(1),
        f"[F2 {consulta}] o proibido aparece na secao do que nao usar")
 
+# ---------------------------------------------------------------------------
+# A FAIXA DESCOBERTA NO AR — 13/09/2026, e ela nasce porque as 390 afirmacoes
+# desta ferramenta passaram VERDES depois do desembarque sem tocar uma linha do
+# que mudou. E a cicatriz da robometria de 13/09 ("331 afirmacoes verdes que nao
+# medem a mudanca") acontecendo aqui: nenhum dos F2_CASOS acima e uma celula SEM
+# recomendacao, entao nenhum deles nunca leu a frase que este bloco consertou.
+#
+# A REGUA E DESTE ARQUIVO. O nome do produto e o tipo do documento estao
+# escritos LITERAIS abaixo, copiados da fonte do Loctite Durepoxi — ler o banco
+# aqui seria conferir a pagina com o mesmo arquivo que a monta.
+#
+# OS QUATRO ESTADOS, e por que sao quatro e nao um: as tres primeiras linhas sao
+# as bases em que o epoxi declara a base E a imersao (procedencia), e a quarta e
+# o estado NEGATIVO, sem o qual as outras tres tem porta dos fundos — em espelho
+# dentro da agua ninguem declarou nada, e ali a pagina TEM de dizer que ninguem
+# declarou. Sem o negativo, uma pagina que servisse a frase da procedencia em
+# TODA faixa descoberta passaria nas tres primeiras.
+DUREPOXI = "Loctite Durepoxi"
+DOC_DUREPOXI = "material de imprensa do fabricante (2018)"
+NEGA_A_DECLARACAO = "Nenhum dos adesivos do nosso banco é declarado"
+NEGA_NA_VITRINE = "nenhum produto do nosso banco passa no que o fabricante declara"
+POR_PROCEDENCIA = "o motivo não é falta de declaração"
+
+F2_DESCOBERTAS = [
+    ("base=vidro&onde=contato_permanente_agua&caco=pastilha_vidro", "procedencia"),
+    ("base=metal&onde=contato_permanente_agua&caco=pastilha_vidro", "procedencia"),
+    ("base=alvenaria_tijolo&onde=contato_permanente_agua&caco=pastilha_vidro", "procedencia"),
+    ("base=espelho&onde=contato_permanente_agua&caco=pastilha_vidro", "silencio"),
+]
+
+print("\nA faixa descoberta no ar — a pagina nomeia QUAL causa a segura:")
+for consulta, causa in F2_DESCOBERTAS:
+    html_d, codigo_d = buscar(BASE + F2 + "?" + consulta)
+    ok("200" == codigo_d, f"[F2 {consulta}] responde 200", codigo_d)
+    corpo_d = re.search(r"<main.*?</main>", html_d, re.S)
+    corpo_d = corpo_d.group(0) if corpo_d else html_d
+    texto_d = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", corpo_d))
+    ok("Não temos cola para indicar" in texto_d,
+       f"[F2 {consulta}] a faixa descoberta e declarada, nunca deixada em branco")
+    if causa == "procedencia":
+        ok(NEGA_A_DECLARACAO not in texto_d,
+           f"[F2 {consulta}] a resposta NAO nega a declaracao que a propria pagina cita")
+        ok(NEGA_NA_VITRINE not in texto_d,
+           f"[F2 {consulta}] a vitrine vazia tambem NAO nega essa declaracao")
+        ok(POR_PROCEDENCIA in texto_d,
+           f"[F2 {consulta}] a recusa nomeia a causa medida: procedencia, nao silencio")
+        ok(DUREPOXI in texto_d, f"[F2 {consulta}] a recusa nomeia o produto que declarou")
+        ok(DOC_DUREPOXI in texto_d,
+           f"[F2 {consulta}] e cita o documento que a sustenta, com o ano")
+    else:
+        ok(NEGA_A_DECLARACAO in texto_d,
+           f"[F2 {consulta}] silencio de verdade: a pagina diz que ninguem declara")
+        ok(POR_PROCEDENCIA not in texto_d,
+           f"[F2 {consulta}] e NAO usa a frase da procedencia, que aqui seria falsa")
+
+# A tabela pre-renderizada da cola serve a grade INTEIRA de base x lugar. O 45
+# nao e digitado: e o produto dos dois vocabularios, contado do esquema em disco.
+_esq = json.load(open(os.path.join(os.path.dirname(os.path.dirname(
+    os.path.abspath(__file__))), "dados", "esquema-banco.json"), encoding="utf-8"))
+_grade_inteira = len(_esq["vocabularios"]["base"]) * len(_esq["vocabularios"]["ambiente"])
+_tab_cola = re.search(r'<table class="cdm-f2-tabela">(.*?)</table>', corpo_f2, re.S)
+_linhas_cola = len(re.findall(r"<tr>", _tab_cola.group(1))) - 1 if _tab_cola else 0
+ok(_linhas_cola == _grade_inteira,
+   f"[F2] a tabela pre-renderizada serve a grade inteira de base x lugar ({_grade_inteira} linhas)",
+   f"{_linhas_cola} linhas no HTML servido")
+
 # A F1, medida no ar com regua ARITMETICA escrita aqui. Os pares sao (consulta,
 # area em cm2, pastilhas, gramas) e foram calculados A MAO no bloco da F1 — sao
 # as mesmas contas que dados/pecas-tipicas.json guarda por extenso. Nenhum deles

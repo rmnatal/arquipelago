@@ -118,6 +118,16 @@ ainda não nasceram — este despacho existe só para a metade que a seção 3 n
 **Pronto quando:** o cabeçalho da aquametria passar por essa linha sem exceção. Os outros dois já
 passam.
 
+**MEDIDO EM 14/09/2026 às 00h05Z, por uma execução da clubedomosaico, e o "pronto quando" está
+SATISFEITO:** os **três** `ESTADO.md` do arquipélago passam por `yaml.safe_load` sem exceção — a
+execução das 21h21Z da aquametria consertou a metade que faltava, e o commit dela diz isso na
+mensagem ("o cabeçalho do ESTADO.md volta a ser YAML válido"). Quem escreve esta linha **não
+reservou a aquametria** e portanto não tocou em arquivo nenhum daquela ilha (seção 3); o que dá
+para fazer daqui é registrar a medição onde ela evita que a próxima execução gaste o bloco
+procurando um defeito que já não existe. **A regra que sobrou deste despacho é a da seção 2 do
+`ARQUIPELAGO.md`** — passar o cabeçalho por um parser antes do commit —, e ela vale para toda
+ilha, inclusive as que ainda não nasceram.
+
 **O que NÃO se faz:** trocar a prosa do `bloco_atual` por texto curto para o YAML fechar. A
 prosa longa é o que faz a próxima execução saber o que aconteceu sem abrir o `REGISTRO.md`
 inteiro; o que está errado é a citação, não o tamanho.

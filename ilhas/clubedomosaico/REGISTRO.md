@@ -2959,3 +2959,80 @@ foram reescritas com o que se mede hoje — e a do `cobertura.py` **não** virou
 "agora é dispensável": a matriz decide sobre base × ambiente e não olha o caquinho,
 então a entrada da ferramenta continua tendo 270 estados e a pergunta daquela
 varredura continua sendo uma contagem sobre os 270.
+
+## A conferência no ar precisou nascer, e os 390 verdes mostram por quê
+
+Depois do Sync, `conferir-no-ar.py` passou com **390 afirmações, 0 falha** —
+**sem tocar uma linha do que mudou**. Nenhum dos casos que ela media era uma
+célula SEM recomendação, então ela nunca tinha lido a frase que este bloco
+consertou. É a cicatriz da robometria de 13/09 acontecendo aqui: verde que não
+morde.
+
+Nasceram **26 afirmações novas no ar**, em quatro estados e com régua escrita
+literal no próprio arquivo (o nome do produto e o tipo do documento copiados da
+fonte, nunca lidos do banco que monta a página): os **três** estados que
+respondem por procedência (vidro, metal e alvenaria dentro da água) e o estado
+**negativo**, sem o qual os outros três têm porta dos fundos — em espelho dentro
+da água ninguém declarou nada, e ali a página TEM de dizer que ninguém declarou.
+Sem ele, uma página que servisse a frase da procedência em toda faixa descoberta
+passaria nos três primeiros. Mais a linha que conta as **45** da tabela servida,
+com o 45 saindo do produto dos dois vocabulários, nunca digitado.
+
+## A verificação, em números
+
+- **`validar-banco`**: APROVADO — 25 materiais, **45 células da F2** (eram 18), 9
+  do rejunte, 54 pares da regra 6 com 5 âncoras ponta a ponta.
+- **Bancada, 0 falha:** `teste-casca` 546 · `teste-f2` **107** (eram 102, e agora
+  varrendo 45 células em vez de 18) · `teste-f1` 182 · `teste-loja` 147 (72
+  estados) · `teste-leads` 211 · `teste-atelie` aprovado · `teste-prestacao-rejunte`
+  5 afirmações sobre 540 estados da F2 e 180 da F1 · `conferir-cobertura` 353 ·
+  `validar-pastilhas` aprovado · `php -l` limpo em ferramentas e snippets.
+- **Mutações:** `mutacoes-f2` de 44 para **47, com 47 reprovadas, 0 passaram e 0
+  inertes** — a bateria inteira, rodada do zero sobre o estado final. As três
+  novas são as deste bloco: a faixa descoberta voltando a negar a declaração, a
+  vitrine vazia fazendo o mesmo uma seção abaixo, e a que só as 27 células novas
+  pegam.
+- **UMA PASSADA DA BATERIA FOI DESCARTADA E REFEITA, e o motivo fica escrito:**
+  a primeira rodada aconteceu enquanto um `git stash` reverteu a árvore de
+  trabalho por alguns segundos, para o commit de renovação da reserva. A bateria
+  copia a pasta da ilha **a cada mutação**, então qualquer cópia feita naquela
+  janela leu a ilha de ontem. Nenhum resultado dela foi aproveitado. Número que
+  saiu de uma árvore que mudou no meio não é número medido.
+- **No ar, depois do Sync:** `/status` na **revisão 27**, igual à do
+  `manifest.json`, em UM disparo com 10 aplicados. `conferir-no-ar` de 390 para
+  **416 afirmações, 0 falha**.
+
+## Receita e dívida, contadas do arquivo
+
+Nada mudou de receita neste bloco, e isso é a informação: **7 colas no banco, 25
+itens de fabricante, 15 esperando link, 15 sem piso, 22 sem imagem**. Os 15
+`url_busca` continuam dependendo de uma sessão do painel da Shopee — a
+palavra-chave já está escrita em `afiliado.url_busca_produto` nos 15, e no dia da
+sessão são 15 colagens e nenhuma linha de código. Pauta da seção 17: `pauta.md`
+ainda não existe — 0 escritos, 0 na fila, 0 recusados.
+
+## Aberto e nomeado
+
+- (a) **A dívida que este bloco fecha era a única que o bloco anterior tinha
+  criado**, e ele não criou nenhuma no lugar dela. O que sobra da família é a
+  metade do **rejunte**: `matriz_esperada_do_rejunte` tem 9 células de junta ×
+  ambiente e continua sendo **amostra de borda**, escolhida para pisar nas faixas
+  declaradas. É amostra de propósito e não é o mesmo caso da cola — lá a grade
+  inteira é finita e pequena (45), aqui a junta é contínua.
+- (b) Os 15 `url_busca` dependem de uma sessão do painel da Shopee.
+- (c) O egresso a fabricante segue fechado; a ficha BRSA005 segue localizada e não
+  lida, com o endereço guardado em `fonte_localizada_nao_lida`.
+- (d) `1x1` de fabricante segue com zero elegível, e é o tamanho de 7 das 12
+  linhas da tabela da F1.
+- (e) A ilha não tem peça publicada, então ficha, formulário no ar e feed do
+  Merchant Center esperam a artesã.
+- (f) `contato@clubedomosaico.com.br` ainda não existe como caixa.
+
+**PRÓXIMO, com ordem e motivo:** (1) **a ordem das duas vitrines na F1**, hoje
+herdada de quando o bloco da pastilha era uma frase de espera — é o item mais
+antigo da fila e o único que mexe em como a página apresenta produto; (2) **`1x1`
+de fabricante**, a pendência mais cara da categoria pastilha, e a que sozinha
+muda 7 das 12 linhas da tabela da F1; (3) **a matriz do rejunte de amostra para
+grade**, se e quando a junta virar um vocabulário fechado — hoje ela é contínua e
+a amostra de borda é a escolha certa, então isto é pergunta antes de bloco; (4)
+os 15 `url_busca`, no minuto em que houver sessão — e é copiar e colar.
