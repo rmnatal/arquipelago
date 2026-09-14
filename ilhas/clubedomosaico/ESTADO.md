@@ -70,7 +70,7 @@ Espelho legível do estado do projeto. **Nunca guarde credencial aqui.**
   WordPress. No lugar do 404 há faixa de "Peça publicada!" com "Ver no site" (só quando a
   peça está mesmo no ar) e "Cadastrar outra peça".
   Mais: `Selecione…` no lugar de `Escolha` em toda lista, com `required` nas duas que ligam
-  a peça ao site e `formnovalidate` no rascunho; a técnica **pica-sete** na lista (a rota
+  a peça ao site e `formnovalidate` no rascunho; a técnica **Picassiete** na lista (a rota
   dizia `tecnica: 4` e diz **5** — o que faltava era a versão da Loja subir, não a linha);
   e a **galeria** da ficha com miniatura quadrada, seta, ampliar em `<dialog>` e zoom, sem
   uma linha de biblioteca.
@@ -80,7 +80,7 @@ Espelho legível do estado do projeto. **Nunca guarde credencial aqui.**
   fronteira de parágrafo e `button` não é bloco. A régua do `teste-loja` olhava só um lado
   e passou verde. Agora ela olha os dois, nomeia qual apareceu, e o `conferir-atelie-no-ar`
   procura as cinco marcas do estrago no HTML servido.
-  **O que ficou aberto, e não é conserto:** `/tecnicas/pica-sete/` não nasceu porque
+  **O que ficou aberto, e não é conserto:** `/tecnicas/Picassiete/` não nasceu porque
   **nenhuma** técnica desta ilha tem página — as taxonomias são `public => false` por
   orçamento de rastreamento. É bloco de malha, e está na frente da fila.
   **O que só uma pessoa mede:** o dedo dela na galeria, num telefone.

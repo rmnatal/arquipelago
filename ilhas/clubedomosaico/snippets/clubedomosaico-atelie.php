@@ -1539,15 +1539,15 @@ if ( ! function_exists( 'cdm_atelie_ajuda_taxonomia' ) ) {
  * A frase embaixo das duas escolhas que ligam a peça ao site.
  *
  * A da TÉCNICA carrega a distinção que o item 3 do despacho de 14/09 pediu por
- * escrito, e ela não é enfeite: trincadís e pica-sete são as duas técnicas de caco
+ * escrito, e ela não é enfeite: trincadís e Picassiete são as duas técnicas de caco
  * desta lista, e quem não sabe a diferença marca a primeira. Foi o que aconteceu —
  * a peça que ela cadastrou tem "Picassiette" escrito na descrição por ela mesma e
- * "Trencadís" no campo, porque pica-sete não existia na lista.
+ * "Trencadís" no campo, porque Picassiete não existia na lista.
  */
 function cdm_atelie_ajuda_taxonomia( $taxonomia ) {
 	if ( 'tecnica' === $taxonomia ) {
 		return 'Precisa escolher para a peça poder ir ao site. Trincadís é caquinho de azulejo ou cerâmica, '
-			. 'sem dar para reconhecer de onde veio; pica-sete é caco de louça em que dá para reconhecer a peça '
+			. 'sem dar para reconhecer de onde veio; Picassiete é caco de louça em que dá para reconhecer a peça '
 			. 'original — alça, bico, estampa. Também chamada pique-assiette.';
 	}
 

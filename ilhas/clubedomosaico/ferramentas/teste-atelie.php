@@ -474,13 +474,13 @@ cdm_ok( 0 === preg_match_all( '#value="publicar"[^>]*formnovalidate#', $corpo_fo
 	'e o de publicar NAO pula a trava' );
 
 /* A TECNICA NOVA — item 3 do despacho de 14/09. */
-cdm_ok( false !== strpos( $corpo_form, 'value="picassiette"' ), 'a lista oferece o pica-sete' );
-cdm_ok( false !== strpos( $corpo_form, 'Pica-sete' ), 'e o rotulo dele e a palavra que a artesa usa' );
+cdm_ok( false !== strpos( $corpo_form, 'value="picassiette"' ), 'a lista oferece o Picassiete' );
+cdm_ok( false !== strpos( $corpo_form, 'Picassiete' ), 'e o rotulo dele e a palavra que a artesa usa' );
 cdm_ok( false !== strpos( $corpo_form, 'value="trencadis"' ), 'o trincadis continua na lista (esclarecimento de 14/09)' );
 cdm_ok( false !== strpos( $corpo_form, 'pique-assiette' ),
 	'a ajuda da tecnica traz a outra grafia' );
 cdm_ok( false !== strpos( $corpo_form, 'reconhecer a peça' ),
-	'e a ajuda diz o que separa pica-sete de trincadis' );
+	'e a ajuda diz o que separa Picassiete de trincadis' );
 
 /* O FORMULARIO DE EDITAR TRAZ O QUE ELA JA TINHA ESCRITO. */
 $corpo_edit = cdm_corpo( $html_por_tela['formulario editar'] );

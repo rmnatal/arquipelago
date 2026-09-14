@@ -281,11 +281,11 @@ def main():
     ok("200" == at_cod and ".cdm-at-faixa{" in at_html,
        "[/atelie/] a folha traz .cdm-at-faixa (so existe no Atelie 1.3.0)", at_cod)
 
-    # ITEM 3. A tecnica pica-sete so chega a lista dela se a versao da Loja subir:
+    # ITEM 3. A tecnica Picassiete so chega a lista dela se a versao da Loja subir:
     # `cdm_loja_termos_iniciais()` e percorrida uma vez por versao. Antes deste
     # bloco a rota publica dizia 4.
     tecnicas = int(((dados.get("termos") or {}).get("tecnica", -1))) if dados else -1
-    ok(tecnicas == 5, "[rota] a Loja declara 5 tecnicas (o pica-sete chegou ao site)",
+    ok(tecnicas == 5, "[rota] a Loja declara 5 tecnicas (o Picassiete chegou ao site)",
        f"{tecnicas} tecnicas")
 
     print("\n5. A ficha de cada peca publicada")

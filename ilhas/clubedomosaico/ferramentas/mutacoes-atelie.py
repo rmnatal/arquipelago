@@ -447,16 +447,16 @@ def m46(r):
 
 
 def m47(r):
-    """O pica-sete sai da lista de tecnicas. Volta o estado em que ela cadastrou uma
+    """O Picassiete sai da lista de tecnicas. Volta o estado em que ela cadastrou uma
     peca picassiette marcando "trencadis" porque nao havia o que marcar."""
-    trocar(r, LOJA, "\t\t\t'picassiette' => 'Pica-sete (louça quebrada)',\n", "")
+    trocar(r, LOJA, "\t\t\t'picassiette' => 'Picassiete (louça quebrada)',\n", "")
 
 
 def m48(r):
-    """A ajuda da tecnica perde a distincao entre trincadis e pica-sete. As duas sao
+    """A ajuda da tecnica perde a distincao entre trincadis e Picassiete. As duas sao
     tecnicas de caco e ficam uma embaixo da outra na lista; sem a frase, quem nao
     sabe a diferenca marca a primeira."""
-    trocar(r, SNIPPET, "sem dar para reconhecer de onde veio; pica-sete é caco de louça em que dá para reconhecer a peça '",
+    trocar(r, SNIPPET, "sem dar para reconhecer de onde veio; Picassiete é caco de louça em que dá para reconhecer a peça '",
            "'")
 
 
@@ -507,8 +507,8 @@ MUTACOES = [
     ("44 a linha vazia volta a dizer Escolha", m44),
     ("45 colecao e tecnica perdem o required", m45),
     ("46 o botao de publicar fura a trava do cliente", m46),
-    ("47 o pica-sete sai da lista de tecnicas", m47),
-    ("48 a ajuda perde a distincao trincadis x pica-sete", m48),
+    ("47 o Picassiete sai da lista de tecnicas", m47),
+    ("48 a ajuda perde a distincao trincadis x Picassiete", m48),
 ]
 
 

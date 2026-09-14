@@ -1,15 +1,15 @@
 /**
  * Clube do Mosaico Loja — peças e vitrine
  * Versão 1.2.0 (14/09/2026) — A TÉCNICA PICA-SETE ENTRA NA LISTA. Item 3 do
- * despacho do Raphael de 14/09: "tem uma técnica chamada mosaico pica-sete,
+ * despacho do Raphael de 14/09: "tem uma técnica chamada mosaico Picassiete,
  * precisa adicionar". A lista de técnicas tinha quatro e nenhuma delas é a que a
  * artesã usou de fato — a peça que ela cadastrou tem "Picassiette" escrito na
- * descrição por ela e "Trencadís" marcado no campo, porque pica-sete não existia
+ * descrição por ela e "Trencadís" marcado no campo, porque Picassiete não existia
  * para marcar. É o caso literal do campo que a obriga a mentir.
  *
  * PICA-SETE E TRINCADÍS SÃO DUAS, e o esclarecimento do Raphael do mesmo dia é
  * explícito em que o trincadís FICA: trincadís é caco de azulejo ou cerâmica sem
- * identidade do objeto; pica-sete é caco de louça em que se reconhece de onde veio
+ * identidade do objeto; Picassiete é caco de louça em que se reconhece de onde veio
  * — alça de xícara, bico de bule, fundo de prato com estampa. A distinção não mora
  * só aqui: ela está escrita na ajuda do campo, no painel, que é onde ela decide.
  *
@@ -19,12 +19,12 @@
  * Medido no ar antes deste bloco: a rota pública `/v1/loja` dizia `tecnica: 4`.
  *
  * O SLUG GRAVADO É `picassiette`, e isto é escolha registrada. O despacho pediu
- * `pica-sete`; o esclarecimento do mesmo dia diz que "entrou como `picassiette`" e
+ * `Picassiete`; o esclarecimento do mesmo dia diz que "entrou como `picassiette`" e
  * não o desfaz. As duas taxonomias desta ilha são registradas com `rewrite` false
  * (decisão 4 deste arquivo), então o slug do TERMO não decide endereço nenhum
- * hoje: no dia em que houver página de técnica, `/tecnicas/pica-sete/` continua
+ * hoje: no dia em que houver página de técnica, `/tecnicas/Picassiete/` continua
  * inteiramente disponível, e quem decide o endereço é a malha, não este campo.
- * Na tela, onde a artesã lê, o nome é "Pica-sete" — o VOZ.md manda na palavra.
+ * Na tela, onde a artesã lê, o nome é "Picassiete" — o VOZ.md manda na palavra.
  *
  * Versão 1.1.0 (13/09/2026) — UMA mudança sobre a 1.0.0, e ela é de tomada e não
  * de comportamento: o bloco de ação da ficha (preço, disponibilidade, botão)
@@ -218,7 +218,7 @@ function cdm_loja_termos_iniciais() {
 			'indireto'  => 'Indireto',
 			'bizantino' => 'Bizantino',
 			'trencadis' => 'Trencadís (caquinho)',
-			'picassiette' => 'Pica-sete (louça quebrada)',
+			'picassiette' => 'Picassiete (louça quebrada)',
 		),
 	);
 }

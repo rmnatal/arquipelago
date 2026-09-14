@@ -3124,10 +3124,10 @@ navegador, que é seca mas trava do mesmo jeito, e travar é o que protege a pe�
 órfã. No servidor a régua já existia e não foi duplicada:
 `cdm_loja_peca_publicavel()` recusa publicar sem coleção e sem técnica desde 12/09.
 
-## ITEM 3 — pica-sete, e a prova de que o campo obrigava a mentir
+## ITEM 3 — Picassiete, e a prova de que o campo obrigava a mentir
 
 A peça que ela cadastrou tem **"Picassiette" escrito na descrição por ela mesma** e
-**"Trencadís" marcado no campo** — porque pica-sete não existia para marcar. É o
+**"Trencadís" marcado no campo** — porque Picassiete não existia para marcar. É o
 caso literal do campo que obriga a pessoa a responder o que não é.
 
 A técnica entrou. **E a versão da Loja subiu com ela, que é a metade que faltava:**
@@ -3138,17 +3138,17 @@ dizia `tecnica: 4`; depois do Sync diz **5**.
 
 A distinção que o despacho mandou escrever está na **ajuda do campo**, que é onde ela
 decide: *"Trincadís é caquinho de azulejo ou cerâmica, sem dar para reconhecer de
-onde veio; pica-sete é caco de louça em que dá para reconhecer a peça original —
+onde veio; Picassiete é caco de louça em que dá para reconhecer a peça original —
 alça, bico, estampa. Também chamada pique-assiette."* O trincadís **fica**, como o
 esclarecimento do mesmo dia manda.
 
 **O slug gravado é `picassiette`, e isto é escolha registrada, não descuido.** O
-despacho pediu `pica-sete`; o esclarecimento do mesmo dia diz que "entrou como
+despacho pediu `Picassiete`; o esclarecimento do mesmo dia diz que "entrou como
 `picassiette`" e não o desfaz. As duas taxonomias desta ilha são registradas com
 `rewrite` false, então o slug do TERMO não decide endereço nenhum hoje: no dia em
-que houver página de técnica, `/tecnicas/pica-sete/` continua inteiramente
+que houver página de técnica, `/tecnicas/Picassiete/` continua inteiramente
 disponível, e quem decide o endereço é a malha, não este campo. Na tela, onde ela
-lê, o nome é **"Pica-sete"** — o `VOZ.md` manda na palavra.
+lê, o nome é **"Picassiete"** — o `VOZ.md` manda na palavra.
 
 ## ITEM 4 — o comportamento do Real 21, com código nosso
 
@@ -3279,12 +3279,12 @@ própria do Arquipélago inteiro.
 
 ## Aberto e nomeado
 
-- **(a) A página `/tecnicas/pica-sete/` NÃO nasceu, e o item 3 pedia.** Não é
+- **(a) A página `/tecnicas/Picassiete/` NÃO nasceu, e o item 3 pedia.** Não é
   esquecimento e não é conserto: **nenhuma** técnica desta ilha tem página. As duas
   taxonomias são registradas `public => false` por decisão medida de orçamento de
   rastreamento (decisão 4 do snippet da Loja, 12/09) — taxonomia pública nasce com
   arquivo e põe de sete a doze URLs finas no sitemap de um domínio de quatro dias.
-  Criar a página do pica-sete sozinha seria criar a família inteira por uma porta
+  Criar a página do Picassiete sozinha seria criar a família inteira por uma porta
   lateral. **Isto é bloco de malha, não item de despacho**, e ficou reescrito no
   `PROMPT.md` como o que falta.
 - **(b) A metade humana do item 4 continua aberta:** o dedo dela na galeria, num
@@ -3299,7 +3299,7 @@ própria do Arquipélago inteiro.
 - (f) `contato@clubedomosaico.com.br` ainda não existe como caixa.
 - (g) A dívida de modelagem que o esclarecimento do Raphael registrou e mandou NÃO
   mexer agora: o campo "técnica" mistura MÉTODO (direto, indireto) com ESTILO
-  (bizantino, trincadís, pica-sete), e ela pode marcar um achando que marcou o
+  (bizantino, trincadís, Picassiete), e ela pode marcar um achando que marcou o
   outro.
 
 **PRÓXIMO, com ordem e motivo:** (1) **a família `/tecnicas/<slug>/`**, que é o que

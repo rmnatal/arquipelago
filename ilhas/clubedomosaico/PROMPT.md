@@ -332,10 +332,10 @@ execução. **Um resumo de uma linha por item, e só para não voltarem a eles:*
    técnica ganharam `required`, com frase do painel e não do navegador; o botão de
    rascunho ganhou `formnovalidate`, senão guardar o que ela digitou passaria a
    depender de ela ter decidido a coleção. No servidor a régua já existia.
-3. **Pica-sete — CUMPRIDO na lista.** A rota pública `/v1/loja` dizia `tecnica: 4` e
+3. **Picassiete — CUMPRIDO na lista.** A rota pública `/v1/loja` dizia `tecnica: 4` e
    agora diz **5**. O que faltava não era a linha: era a **versão da Loja**, que é
    quem manda criar os termos. Trincadís fica. A distinção entre os dois está na
-   ajuda do campo. **A página `/tecnicas/pica-sete/` NÃO nasceu — veja abaixo.**
+   ajuda do campo. **A página `/tecnicas/Picassiete/` NÃO nasceu — veja abaixo.**
 4. **O carrossel — CUMPRIDO, com código nosso.** Miniaturas quadradas por
    `aspect-ratio`, foto grande em 4:5, setas de 44 px com `aria-label`, ampliar em
    `<dialog>` nativo com X, `Esc` e clique fora, e zoom por `transform`. Zero
@@ -344,11 +344,11 @@ execução. **Um resumo de uma linha por item, e só para não voltarem a eles:*
 
 **O QUE FICA ABERTO DESTE DESPACHO, e é UMA coisa só:**
 
-- **A página `/tecnicas/pica-sete/` não nasceu, e isso não é esquecimento.**
+- **A página `/tecnicas/Picassiete/` não nasceu, e isso não é esquecimento.**
   **Nenhuma** técnica desta ilha tem página: as duas taxonomias são registradas
   `public => false` por decisão medida de orçamento de rastreamento (decisão 4 do
   snippet da Loja, 12/09) — taxonomia pública nasce com arquivo próprio e põe de
-  sete a doze URLs finas no `wp-sitemap.xml`. Criar a do pica-sete sozinha seria
+  sete a doze URLs finas no `wp-sitemap.xml`. Criar a do Picassiete sozinha seria
   abrir a família inteira por uma porta lateral, e isso é **bloco de malha com o
   orçamento de rastreamento na mesa**, não item de conserto. Entrou na fila como o
   próximo item, e agora há peça publicada para a página linkar.
@@ -363,7 +363,8 @@ ateliê, e pela mesma razão.
 com a peça de verdade dentro (seção 24). O campo `gerado_em` da rota fica de fora da
 cópia de propósito — com ele dentro, toda passada da ronda viraria um commit, e a
 24.2 manda commitar só quando o JSON mudou.
-## ESCLARECIMENTO DO RAPHAEL — 14/09/2026 — TRINCADÍS FICA; PICA-SETE É ADIÇÃO
+## ESCLARECIMENTO DO RAPHAEL — 14/09/2026 — TRINCADÍS FICA; PICASSIETE É ADIÇÃO
 O trincadís é o mosaico tradicional de caquinho, quebrado com torquês. Nunca foi para sair da lista.
-O pica-sete usa louça quebrada (pratos, xícaras) misturada ao caquinho. É técnica própria, entrou como `picassiette`.
-Observação registrada para decisão futura: o campo "técnica" hoje mistura MÉTODO (direto, indireto) com ESTILO (bizantino, trincadís, pica-sete). São dois eixos diferentes, e a artesã pode marcar um e achar que marcou o outro. Não mexer agora; anotar como dívida de modelagem.
+O Picassiete usa louça quebrada (pratos, xícaras) misturada ao caquinho. É técnica própria, entrou como `picassiette`.
+Observação registrada para decisão futura: o campo "técnica" hoje mistura MÉTODO (direto, indireto) com ESTILO (bizantino, trincadís, Picassiete). São dois eixos diferentes, e a artesã pode marcar um e achar que marcou o outro. Não mexer agora; anotar como dívida de modelagem.
+Grafia definida pelo Raphael em 14/09/2026: **Picassiete**, palavra única, sem hífen. A chave interna continua `picassiette`; só o rótulo visível mudou.

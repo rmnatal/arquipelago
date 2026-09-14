@@ -320,6 +320,6 @@ Aberto em 13/09/2026. A Shopee **aprovou** o acesso à Open API no mesmo dia do 
 
 ### clubedomosaico — PRIORIDADE ALTA: quatro achados da artesã usando o ateliê (14/09)
 
-A mãe do Raphael entrou, criou a senha e cadastrou a primeira peça em 13–14/09/2026. Achou quatro coisas, detalhadas no fim do `PROMPT.md` da ilha: (1) **404 depois de publicar** — o pior, porque ela lê como "deu errado"; (2) o `<option value="">Escolha</option>` selecionável, que deixa peça fora de categoria; (3) falta a técnica **pica-sete**; (4) o carrossel da ficha precisa de forma — miniatura quadrada, setas, ampliar com X e zoom.
+A mãe do Raphael entrou, criou a senha e cadastrou a primeira peça em 13–14/09/2026. Achou quatro coisas, detalhadas no fim do `PROMPT.md` da ilha: (1) **404 depois de publicar** — o pior, porque ela lê como "deu errado"; (2) o `<option value="">Escolha</option>` selecionável, que deixa peça fora de categoria; (3) falta a técnica **Picassiete**; (4) o carrossel da ficha precisa de forma — miniatura quadrada, setas, ampliar com X e zoom.
 
 **Defeito achado por quem usa vale mais que defeito achado por teste, e por isso este despacho fura a fila de banco.** O item 4 tem uma armadilha: a referência que o Raphael deu (galeria do Real 21) é Elementor + Swiper, proibido pela 22.3 — **copie o comportamento, nunca o código**.
