@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 0
 primeira_indexacao: null
 ultima_execucao: null
-executando_desde: null
+executando_desde: 2026-09-14T15:19Z
 bloco_atual: |
   NASCEU EM 14/09/2026 pela aprovação do Raphael, sobre o dossiê das rodadas 004 e 005 da Bússola (`bussola/dossies/viagem-experiencia-icone/`), índice 3,92 — 2º da fila.
   NENHUM BLOCO EXECUTADO AINDA. O próximo é o BLOCO 1 (levantamento de buscas paramétricas), que não depende de site.
