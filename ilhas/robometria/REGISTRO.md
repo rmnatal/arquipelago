@@ -3929,7 +3929,7 @@ ainda nao existe — 0 escritos, 0 na fila, 0 recusados.
 
 **Bloco:** o DESPACHO DO RAPHAEL de 14/09 (o piso de busca), inteiro, mais os
 itens 1, 2 e 3 do DESPACHO DA SENTINELA de 14/09. Casca 1.6.2, R1 1.8.0, R2
-1.6.0, A1 1.3.0, A2 1.3.0, esquema do banco versão 7, manifest na revisão 41.
+1.6.0, A1 1.3.0, A2 1.3.0, esquema do banco versão 7, manifest na revisão 42.
 Nenhuma URL nova, nenhuma URL mudou, nenhum modelo ou peça entrou ou saiu do
 banco.
 
@@ -4046,25 +4046,42 @@ quebra de cache, e a **seção 11** conta o piso da 25.2 no HTML servido e cobra
 AUSÊNCIA da frase proibida. As duas reprovaram na hora, nomeando as quatro
 páginas e a diferença (3 contra 15).
 
-**E NENHUMA DAS DUAS PURGAS PEGOU — este bloco NÃO chegou ao leitor.** As ações
-do EPC foram ao ar na revisão 39; o esvaziamento da pasta `endurance-page-cache`,
-que é o que o `purge_all()` do próprio plugin faz, foi ao ar na revisão 40 e foi
-**RETIRADO na 41** — código que apaga arquivo é o mais arriscado desta ilha, e não
-dá para guardar o risco sem o benefício. Medido às 16h01Z, lado a lado na mesma
-URL: canônico com **137.943 bytes, zero saídas de compra, a frase proibida em
-quatro cartões e "73 pares" na tabela**; com `?v=<agora>`, **138.832 bytes, quatro
-saídas, nenhuma frase proibida e "73 linhas"**. Depois da purga o canônico passou
-a responder `cache-control: no-store` e **sem** `last-modified` — cabeçalho de
-página não cacheada — e ainda assim com o corpo antigo: **a camada está à frente
-do Apache e nenhuma linha de PHP a alcança.** Os ganchos ficam, porque são baratos
-e não apagam nada.
+**A PURGA DEMOROU E EU LI ERRADO O MEIO DO CAMINHO — o bloco ESTÁ no ar.** As
+ações do EPC foram ao ar na revisão 39; o esvaziamento da pasta
+`endurance-page-cache`, que é o que o `purge_all()` do próprio plugin faz, na 40.
+Medindo logo depois, o canônico continuava velho (137.943 bytes, zero saídas de
+compra, a frase proibida em quatro cartões, "73 pares") enquanto o mesmo endereço
+com `?v=` servia a nova (138.832 bytes, quatro saídas, "73 linhas"). Concluí que a
+camada estava à frente do Apache e **retirei a purga por arquivo na revisão 41**.
 
-**A ILHA ESTÁ PUBLICANDO PARA NINGUÉM, e isto é o estado honesto do bloco:** o
-trabalho está commitado, aplicado, medido e correto — e o leitor continua na
-página de antes. Há despacho de prioridade ALTA aberto para o Raphael em
-`dados/despachos.md` pedindo a purga no painel do hospedeiro ou a chave de uma
-purga por API, e um segundo despacho para a Fundação, porque a clubedomosaico
-serve a mesma assinatura de cache e pode estar na mesma situação.
+**A MEDIÇÃO QUE ME CONVENCEU DISSO ESTAVA ERRADA, e o erro tem nome:** eu
+comparava cabeçalhos obtidos com `curl -I` (HEAD) com o corpo obtido num GET
+feito segundos depois — **duas requisições, dois estados do cache** —, e o
+`no-store` sem `last-modified` que parecia provar "isto não é arquivo local" era o
+retrato de um arquivo que estava justamente sendo apagado. Medidos JUNTOS
+(`curl -D - -o /dev/null`), HEAD e GET concordam. **Fica a regra de método:
+cabeçalho e corpo da mesma URL se medem na MESMA requisição, senão a comparação
+descreve dois instantes e conclui sobre um.**
+
+**E o relógio desfaz a outra metade.** A entrada de cache presa era de **14h40:01**
+com `max-age` de 7200 s, portanto só venceria sozinha às **16h40**. Ela foi
+**recriada às 16h05:59**, durante o Sync da revisão 41, com a purga por arquivo
+sendo o código que rodava. Não é prova de causa; é a única causa identificada, com
+o vencimento por tempo descartado pelo relógio. **A purga foi RESTAURADA na
+revisão 42 (casca 1.6.4)**, com a atribuição dita como inferência e com o teste que
+a decide escrito no próprio código.
+
+**ESTADO REAL DO BLOCO, medido às 16h07Z no endereço canônico:** quatro saídas de
+compra pela busca, **zero** ocorrências da frase proibida, "73 linhas" na tabela, a
+`/divulgacao-de-afiliados/` limpa, e a frase da R2 nomeando duas fontes distintas.
+`conferir-no-ar.py`: **220 afirmações, 0 falha**, incluindo as seções 9, 10 e 11 que
+nasceram hoje. **O bloco está entregue.**
+
+**O que sobra, e não bloqueia nada:** entre o Sync e a purga o `/status` afirma que
+está tudo aplicado enquanto o leitor pode estar na página de antes — hoje isso
+custou quatro revisões de diagnóstico. O despacho para o Raphael foi **rebaixado de
+ALTA para NORMAL** e pede, como oportunidade, uma purga por API do painel, para a
+entrega deixar de depender de uma função nossa apagando arquivo.
 
 **VERIFICAÇÃO, BANCADA, 0 falha:** teste-r1 216 (eram 202, nasceu a seção 19),
 teste-r2 107 (eram 100, nasceu a seção 12), teste-casca 205, teste-a1 68,
@@ -4083,11 +4100,12 @@ exato que a bateria existe para pegar.
 com `degrau: 4`, 65 com `conferido_em`, **0 sem saída de compra**, 65 com saída
 que não rastreia, 0 com ficha de produto, 0 intestáveis, 0 com `url_produto`.
 
-**PRÓXIMO PASSO — e ele é uma MEDIÇÃO, não construção:** rodar
-`python3 ferramentas/conferir-no-ar.py` e olhar as seções 9, 10 e 11 **antes de
-qualquer outra coisa**. A seção 10 é a que diz se o cache passou a entregar; hoje
-ela reprova, nomeando as quatro páginas e a diferença (3 contra 15). Enquanto ela
-reprovar, **construir continua permitido e dar por entregue não** — e o que
-destrava não é código, é o despacho aberto para o Raphael. Quando ela passar, a
-fila normal volta: o item (2) do estado anterior segue atrás do egresso fechado
-aos domínios da WAP.
+**PRÓXIMO PASSO:** a fila normal volta — o item (2) do estado anterior segue
+atrás do egresso fechado aos domínios da WAP. **E a primeira coisa de toda
+execução desta ilha passa a ser `python3 ferramentas/conferir-no-ar.py`, olhando
+as seções 9, 10 e 11**, que hoje passam. A seção 10 é a que diz se a purga do
+cache continua entregando; se ela reprovar, o bloco anterior não chegou ao leitor
+e isso vem antes de construir qualquer coisa. **É também o teste que decide a
+atribuição da purga:** publicar uma revisão que mude texto servido e ver se o
+canônico muda em minutos com a função presente. Se mudar com ela e parar sem ela,
+a inferência de hoje vira medição.
