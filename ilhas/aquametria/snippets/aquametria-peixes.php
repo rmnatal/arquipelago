@@ -295,6 +295,7 @@ function aquametria_peixes_catalogo() {
 			'porte_cm' => 2,
 			'porte_medida' => 'SL',
 			'cardume' => 8,
+			'cardume_ate' => null,
 			'convivencia' => 'cardume',
 			'comportamento' => 'pacifico',
 			'frente_cm' => 45,
@@ -373,6 +374,7 @@ function aquametria_peixes_catalogo() {
 			'porte_cm' => 2.2,
 			'porte_medida' => 'SL',
 			'cardume' => 5,
+			'cardume_ate' => null,
 			'convivencia' => 'cardume',
 			'comportamento' => '',
 			'frente_cm' => 60,
@@ -438,6 +440,7 @@ function aquametria_peixes_catalogo() {
 			'porte_cm' => 3,
 			'porte_medida' => 'SL',
 			'cardume' => 8,
+			'cardume_ate' => null,
 			'convivencia' => 'cardume',
 			'comportamento' => '',
 			'frente_cm' => 60,
@@ -519,6 +522,7 @@ function aquametria_peixes_catalogo() {
 			'porte_cm' => 3.3,
 			'porte_medida' => 'TL',
 			'cardume' => 6,
+			'cardume_ate' => null,
 			'convivencia' => 'cardume',
 			'comportamento' => 'pacifico',
 			'frente_cm' => 60,
@@ -617,6 +621,7 @@ function aquametria_peixes_catalogo() {
 			'porte_cm' => 3.3,
 			'porte_medida' => 'TL',
 			'cardume' => 6,
+			'cardume_ate' => null,
 			'convivencia' => 'grupo',
 			'comportamento' => '',
 			'frente_cm' => 45,
@@ -681,6 +686,7 @@ function aquametria_peixes_catalogo() {
 			'porte_cm' => 3.8,
 			'porte_medida' => 'SL',
 			'cardume' => 6,
+			'cardume_ate' => null,
 			'convivencia' => 'cardume',
 			'comportamento' => '',
 			'frente_cm' => 45,
@@ -737,6 +743,7 @@ function aquametria_peixes_catalogo() {
 			'porte_cm' => 3.8,
 			'porte_medida' => 'SL',
 			'cardume' => 5,
+			'cardume_ate' => null,
 			'convivencia' => 'cardume',
 			'comportamento' => 'pacifico',
 			'frente_cm' => 90,
@@ -821,6 +828,7 @@ function aquametria_peixes_catalogo() {
 			'porte_cm' => 4,
 			'porte_medida' => 'SL',
 			'cardume' => 5,
+			'cardume_ate' => null,
 			'convivencia' => 'cardume',
 			'comportamento' => 'agressivo',
 			'frente_cm' => 80,
@@ -917,6 +925,7 @@ function aquametria_peixes_catalogo() {
 			'porte_cm' => 4,
 			'porte_medida' => 'TL',
 			'cardume' => 10,
+			'cardume_ate' => null,
 			'convivencia' => 'cardume',
 			'comportamento' => 'pacifico',
 			'frente_cm' => 60,
@@ -1019,6 +1028,7 @@ function aquametria_peixes_catalogo() {
 			'porte_cm' => 4.2,
 			'porte_medida' => 'SL',
 			'cardume' => null,
+			'cardume_ate' => null,
 			'convivencia' => 'casal',
 			'comportamento' => 'territorial',
 			'frente_cm' => 60,
@@ -1074,6 +1084,7 @@ function aquametria_peixes_catalogo() {
 			'porte_cm' => 5,
 			'porte_medida' => 'TL',
 			'cardume' => 10,
+			'cardume_ate' => null,
 			'convivencia' => 'cardume',
 			'comportamento' => '',
 			'frente_cm' => 90,
@@ -1165,6 +1176,7 @@ function aquametria_peixes_catalogo() {
 			'porte_cm' => 5,
 			'porte_medida' => 'TL',
 			'cardume' => 5,
+			'cardume_ate' => null,
 			'convivencia' => 'cardume',
 			'comportamento' => '',
 			'frente_cm' => 60,
@@ -1252,6 +1264,7 @@ function aquametria_peixes_catalogo() {
 			'porte_cm' => 6,
 			'porte_medida' => 'TL',
 			'cardume' => null,
+			'cardume_ate' => null,
 			'convivencia' => 'harem',
 			'comportamento' => 'pacifico',
 			'frente_cm' => 60,
@@ -1314,6 +1327,7 @@ function aquametria_peixes_catalogo() {
 			'porte_cm' => 6.5,
 			'porte_medida' => 'TL',
 			'cardume' => null,
+			'cardume_ate' => null,
 			'convivencia' => 'solitario',
 			'comportamento' => 'agressivo',
 			'frente_cm' => 45,
@@ -1378,6 +1392,7 @@ function aquametria_peixes_catalogo() {
 			'porte_cm' => 6.5,
 			'porte_medida' => 'SL',
 			'cardume' => 5,
+			'cardume_ate' => null,
 			'convivencia' => 'cardume',
 			'comportamento' => '',
 			'frente_cm' => 60,
@@ -1433,6 +1448,7 @@ function aquametria_peixes_catalogo() {
 			'porte_cm' => 6.6,
 			'porte_medida' => 'SL',
 			'cardume' => 5,
+			'cardume_ate' => null,
 			'convivencia' => 'cardume',
 			'comportamento' => '',
 			'frente_cm' => 61,
@@ -1506,6 +1522,7 @@ function aquametria_peixes_catalogo() {
 			'porte_cm' => 6.8,
 			'porte_medida' => 'SL',
 			'cardume' => 6,
+			'cardume_ate' => null,
 			'convivencia' => 'cardume',
 			'comportamento' => '',
 			'frente_cm' => 45,
@@ -1574,6 +1591,7 @@ function aquametria_peixes_catalogo() {
 			'porte_cm' => 7,
 			'porte_medida' => 'TL',
 			'cardume' => 8,
+			'cardume_ate' => null,
 			'convivencia' => 'cardume',
 			'comportamento' => 'semi-agressivo',
 			'frente_cm' => 80,
@@ -1658,6 +1676,7 @@ function aquametria_peixes_catalogo() {
 			'porte_cm' => 7.5,
 			'porte_medida' => 'SL',
 			'cardume' => 6,
+			'cardume_ate' => null,
 			'convivencia' => 'cardume',
 			'comportamento' => '',
 			'frente_cm' => 80,
@@ -1756,6 +1775,7 @@ function aquametria_peixes_catalogo() {
 			'porte_cm' => 7.5,
 			'porte_medida' => 'SL',
 			'cardume' => 5,
+			'cardume_ate' => null,
 			'convivencia' => 'cardume',
 			'comportamento' => 'pacifico',
 			'frente_cm' => 75,
@@ -1837,6 +1857,7 @@ function aquametria_peixes_catalogo() {
 			'porte_cm' => 9,
 			'porte_medida' => 'SL',
 			'cardume' => 6,
+			'cardume_ate' => null,
 			'convivencia' => 'cardume',
 			'comportamento' => '',
 			'frente_cm' => 120,
@@ -1928,6 +1949,7 @@ function aquametria_peixes_catalogo() {
 			'porte_cm' => 9.5,
 			'porte_medida' => 'TL',
 			'cardume' => null,
+			'cardume_ate' => null,
 			'convivencia' => 'casal',
 			'comportamento' => '',
 			'frente_cm' => 60,
@@ -1981,6 +2003,7 @@ function aquametria_peixes_catalogo() {
 			'porte_cm' => 15,
 			'porte_medida' => 'TL',
 			'cardume' => 5,
+			'cardume_ate' => null,
 			'convivencia' => 'grupo',
 			'comportamento' => 'semi-agressivo',
 			'frente_cm' => 100,
@@ -2048,6 +2071,7 @@ function aquametria_peixes_catalogo() {
 			'porte_cm' => 16,
 			'porte_medida' => 'TL',
 			'cardume' => null,
+			'cardume_ate' => null,
 			'convivencia' => 'harem',
 			'comportamento' => '',
 			'frente_cm' => 120,
@@ -2104,6 +2128,7 @@ function aquametria_peixes_catalogo() {
 			'porte_cm' => 30.5,
 			'porte_medida' => 'TL',
 			'cardume' => 5,
+			'cardume_ate' => null,
 			'convivencia' => 'cardume',
 			'comportamento' => '',
 			'frente_cm' => 180,
@@ -2179,6 +2204,7 @@ function aquametria_peixes_catalogo() {
 			'porte_cm' => 45.7,
 			'porte_medida' => 'TL',
 			'cardume' => null,
+			'cardume_ate' => null,
 			'convivencia' => 'solitario',
 			'comportamento' => '',
 			'frente_cm' => 150,
@@ -2232,6 +2258,7 @@ function aquametria_peixes_catalogo() {
 			'porte_cm' => 48,
 			'porte_medida' => 'TL',
 			'cardume' => 5,
+			'cardume_ate' => null,
 			'convivencia' => 'grupo',
 			'comportamento' => '',
 			'frente_cm' => 100,
@@ -2313,6 +2340,7 @@ function aquametria_peixes_catalogo() {
 			'porte_cm' => 5.5,
 			'porte_medida' => 'SL',
 			'cardume' => 4,
+			'cardume_ate' => 6,
 			'convivencia' => 'grupo',
 			'comportamento' => '',
 			'frente_cm' => 60,
@@ -2354,6 +2382,7 @@ function aquametria_peixes_catalogo() {
 						'porte_adulto_cm',
 						'porte_medida',
 						'cardume_minimo',
+						'cardume_recomendado_ate',
 						'convivencia',
 					),
 					'referencia' => 'Seriously Fish - ficha da especie: comprimento padrao maximo de 55 mm SL, ou 5,5 cm; a especie nao e gregaria no sentido dos peixes de cardume, mas parece precisar da interacao com os seus e mostra comportamento mais interessante quando mantida em numero, de modo que a compra de nao menos que 4 a 6 exemplares e recomendada; o grupo desenvolve hierarquia visivel, com os dominantes enxotando os rivais na hora da comida e no ponto preferido do aquario; as femeas adultas sao visivelmente maiores que os machos.',
@@ -2374,6 +2403,7 @@ function aquametria_peixes_catalogo() {
 			'porte_cm' => 7,
 			'porte_medida' => 'TL',
 			'cardume' => null,
+			'cardume_ate' => null,
 			'convivencia' => 'harem',
 			'comportamento' => 'pacifico',
 			'frente_cm' => 60,
@@ -2886,7 +2916,7 @@ function aquametria_peixes_categorias() {
 			   a regra da congênere que esta ilha recusa desde a leva 1. O que a
 			   categoria tem para dizer, e paga na tabela linha a linha, é o
 			   arranjo social: é o que o próprio critério dela já declarava. */
-			'linha_mestra' => 'Betta, colisa-anão e gurami mel dividem a mesma prateleira da loja e não vivem do mesmo jeito: um vive sozinho, um vive em casal e um vive em grupo com hierarquia — e é o arranjo, e não o litro, que decide o aquário de cada um.',
+			'linha_mestra' => 'Betta, colisa-anão e gurami mel dividem a mesma prateleira da loja e não vivem do mesmo jeito: um vive sozinho, um vive em casal e um vive em grupo com hierarquia — e é esse arranjo, e não o litro, que decide o seu aquário.',
 			'criterio' => 'Os anabantídeos da família Osphronemidae que a loja brasileira vende como betta, colisa e gurami. Aqui o posto taxonômico SERVE de critério, e é a primeira categoria deste eixo em que ele serve: nos tetras a família não servia (a revisão dos caracídeos deixou tetra em duas famílias e Characidae carrega peixe que ninguém vende como tetra) e nas coridoras o gênero não servia (a revisão da subfamília tirou as quatro do gênero Corydoras na própria fonte). Nesta, as cinco espécies do banco são Osphronemidae e todas as cinco são vendidas com um desses três nomes — não há uma sexta que a família traga de brinde nem uma que ela deixe de fora. O que a família NÃO decide é o arranjo social, e é ele que muda a resposta: dentro do mesmo rótulo estão um peixe que vive sozinho (o betta), um que vive em casal (a colisa-anão) e um que vive em grupo com hierarquia (o gurami mel). Categoria que junta os três tem de dizer isso na primeira linha, em vez de publicar um mínimo só.',
 			/* A LEVA 4, 14/09/2026: a lista sai do vazio. As três são as que
 			   passam no portão de página do esquema, e a categoria nasce no
@@ -3112,6 +3142,7 @@ function aquametria_peixes_arranjo( $e ) {
 			'acao'     => 'nadar em cardume',
 			'curto'    => 'em cardume',
 			'vive'     => 'vive em cardume',
+			'abertura' => '',
 			'de'       => 'um cardume de',
 			'este'     => 'este cardume',
 			'minimo'   => 'cardume mínimo',
@@ -3122,6 +3153,7 @@ function aquametria_peixes_arranjo( $e ) {
 			'acao'     => 'viver em grupo',
 			'curto'    => 'em grupo',
 			'vive'     => 'vive em grupo',
+			'abertura' => '',
 			'de'       => 'um grupo de',
 			'este'     => 'este grupo',
 			'minimo'   => 'grupo mínimo',
@@ -3132,6 +3164,7 @@ function aquametria_peixes_arranjo( $e ) {
 			'acao'     => 'viver em harém',
 			'curto'    => 'em harém',
 			'vive'     => 'vive em harém',
+			'abertura' => '',
 			'de'       => 'um harém de',
 			'este'     => 'este harém',
 			'minimo'   => '',
@@ -3142,6 +3175,7 @@ function aquametria_peixes_arranjo( $e ) {
 			'acao'     => 'viver sozinho',
 			'curto'    => 'sozinho',
 			'vive'     => 'vive sozinho',
+			'abertura' => 'e é um por aquário, não dois',
 			'de'       => 'um',
 			'este'     => 'este peixe',
 			'minimo'   => '',
@@ -3152,6 +3186,7 @@ function aquametria_peixes_arranjo( $e ) {
 			'acao'     => 'viver em casal',
 			'curto'    => 'em casal',
 			'vive'     => 'vive em casal',
+			'abertura' => 'e são dois, não um macho sozinho',
 			'de'       => 'um casal de',
 			'este'     => 'este casal',
 			'minimo'   => '',
@@ -3192,7 +3227,9 @@ function aquametria_peixes_arranjo_curto( $e ) {
 		return $a['curto'] . ', ' . $a['fixo'] . ' por aquário';
 	}
 	if ( ! empty( $e['cardume'] ) ) {
-		return $a['curto'] . ', ' . (int) $e['cardume'] . ' ou mais';
+		return ! empty( $e['cardume_ate'] )
+			? $a['curto'] . ', ' . (int) $e['cardume'] . ' a ' . (int) $e['cardume_ate']
+			: $a['curto'] . ', ' . (int) $e['cardume'] . ' ou mais';
 	}
 	return $a['curto'] . ', número não declarado';
 }
@@ -3217,7 +3254,14 @@ function aquametria_peixes_degraus_de_cardume( $e ) {
 		return $escada;
 	}
 	$minimo  = (int) $e['cardume'];
+	/* O TETO DECLARADO É DEGRAU, sempre: a fonte que recomenda "4 a 6" nomeou
+	   os dois números, e a escada de leitura (6, 8, 10...) só por acaso teria o
+	   segundo deles. Num peixe cuja faixa fosse "5 a 7" o 7 não apareceria em
+	   linha nenhuma, e a página publicaria uma recomendação sem a conta dela. */
 	$degraus = array( $minimo );
+	if ( ! empty( $e['cardume_ate'] ) ) {
+		$degraus[] = (int) $e['cardume_ate'];
+	}
 	foreach ( $escada as $n ) {
 		if ( $n > $minimo ) {
 			$degraus[] = $n;
@@ -3497,12 +3541,24 @@ function aquametria_peixes_ficha_html( $slug ) {
 	   cardume. Agora são quatro, um por forma de viver, e o rótulo do número sai
 	   do mapa do arranjo em vez de sair digitado. */
 	if ( $arranjo && null !== $arranjo['fixo'] ) {
+		/* A ABERTURA NÃO CITA QUEM DECLAROU — 15.2, e é a mesma régua que o item 4
+		   do despacho da Sentinela de 13/09/2026 cobrou nas onze fichas. A
+		   primeira escrita deste ramo dizia "que é o que a fonte declara por
+		   aquário" e o portão da voz reprovou antes de a página existir: a
+		   distinção que importa é O NÚMERO, não quem o disse, e quem o disse
+		   está um parágrafo abaixo, na camada de prova. A frase de cada arranjo
+		   vem declarada no mapa, junto do resto do vocabulário. */
 		$html .= 'Para ' . esc_html( $arranjo['de'] ) . ' ' . esc_html( $nome )
-			. ', que é o que a fonte declara por aquário, o seu aquário precisa de '
+			. ' — ' . esc_html( $arranjo['abertura'] ) . ' —, o seu aquário precisa de '
 			. esc_html( aquametria_peixes_num( $frente[1] ) ) . ' cm de frente';
 	} elseif ( $card ) {
+		/* A FAIXA, quando a fonte declarou uma: o compêndio do gurami mel
+		   recomenda "não menos que 4 a 6 exemplares", e abrir a página em 4 é
+		   publicar metade da recomendação. O teto vem do banco (esquema versão
+		   4) e nunca de aritmética sobre o piso. */
 		$html .= 'Para um ' . esc_html( $arranjo ? $arranjo['minimo'] : 'cardume mínimo' ) . ' de '
-			. esc_html( $card ) . ' '
+			. esc_html( $card )
+			. ( ! empty( $e['cardume_ate'] ) ? ' a ' . esc_html( (int) $e['cardume_ate'] ) : '' ) . ' '
 			. esc_html( $nome ) . ', o seu aquário precisa de '
 			. esc_html( aquametria_peixes_num( $frente[1] ) ) . ' cm de frente';
 	} else {
@@ -3672,7 +3728,18 @@ function aquametria_peixes_ficha_html( $slug ) {
 		array( 'Como vive', esc_html( aquametria_peixes_como_vive( $e ) ), 'convivencia' ),
 	);
 	if ( $card ) {
-		$linhas[] = array( 'Cardume mínimo', esc_html( $card ) . ' exemplares', 'cardume_minimo' );
+		/* O RÓTULO SAI DO ARRANJO, não digitado: "Cardume mínimo" numa espécie
+		   cuja fonte escreve que ela NÃO é gregária no sentido dos peixes de
+		   cardume é a fonte sendo contrariada na tabela que a cita. E o valor
+		   serve a FAIXA quando a fonte declarou uma — o piso sozinho é menos do
+		   que ela disse. */
+		$rotulo_linha = ( $arranjo && '' !== $arranjo['minimo'] )
+			? ucfirst( $arranjo['minimo'] )
+			: 'Cardume mínimo';
+		$valor_linha = ! empty( $e['cardume_ate'] )
+			? esc_html( $card ) . ' a ' . esc_html( (int) $e['cardume_ate'] ) . ' exemplares'
+			: esc_html( $card ) . ' exemplares';
+		$linhas[] = array( $rotulo_linha, $valor_linha, 'cardume_minimo' );
 	}
 	if ( $e['origem'] ) {
 		$linhas[] = array( 'De onde vem', esc_html( $e['origem'] ), 'origem_geografica' );
@@ -4552,7 +4619,9 @@ function aquametria_peixes_jsonld_dados( $slug ) {
 			$rabicho = ', para ' . $arranjo['de'] . ' ' . $nome
 				. ', que é o que a fonte declara por aquário';
 		} elseif ( $card && $arranjo && '' !== $arranjo['minimo'] ) {
-			$rabicho = ', para o ' . $arranjo['minimo'] . ' de ' . $card . ' exemplares';
+			$rabicho = ', para o ' . $arranjo['minimo'] . ' de ' . $card
+				. ( ! empty( $e['cardume_ate'] ) ? ' a ' . (int) $e['cardume_ate'] : '' )
+				. ' exemplares';
 		}
 		$resposta = 'O aquário mínimo declarado para o ' . $nome . ' é de '
 			. aquametria_peixes_num( $frente[1] ) . ' cm de frente'

@@ -70,6 +70,14 @@ const PAGINAS = [
   'quantos-litros-para-coridora-pimenta',
   'quantos-litros-para-coridora-panda',
   'quantos-litros-para-coridora-sterbai',
+  /* A leva 4 (14/09/2026): a categoria /peixes/bettas/ e as tres fichas. A
+     tabela da categoria ganhou uma coluna de TEXTO no lugar de um numero — "em
+     grupo, 4 a 6" onde antes havia "4" —, e coluna de texto e a que empurra
+     tabela larga para fora do contentor a 360 px. */
+  'bettas',
+  'quantos-litros-para-betta',
+  'quantos-litros-para-colisa-anao',
+  'quantos-litros-para-gurami-mel',
 ];
 const LARGURAS = [360, 390, 781, 782, 783, 1200];
 

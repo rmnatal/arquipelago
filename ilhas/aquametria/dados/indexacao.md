@@ -14,9 +14,14 @@ A seção 14.9 manda cada página nascer com duas promessas escritas: a consulta
 |---|---|---|---|---|---|
 | malha 1 — eixo `/peixes/` | 2026-09-12 | `/peixes/` · `/peixes/tetras/` · 3 fichas de tetra | "quantos litros por peixe aquário" · "quantos litros para tetras" · "quantos litros para tetra neon" · "quantos litros para neon cardinal" · "quantos litros para mato grosso peixe" | **ALVO nas três fichas** (12/09/2026): top 7 a 9 de blog de nicho, loja e portal; nenhum domínio forte, nenhum número atribuído a fonte nomeada, e eles se contradizem entre si (40 L para 8 a 10 neons contra 20 L para 6 a 8; cardume de 3 contra cardume de 6 no mato-grosso) | ainda não — nasceram hoje |
 | malha 2 e 3 — `/peixes/tetras/` e `/peixes/corydoras/` | 2026-09-12 | 4 fichas de tetra · a categoria coridoras + 4 fichas | "quantos litros para tetra ember" · "...tetra brilhante" · "...rodostomo" · "...tetra negro" · "quantos litros para coridoras" · "...coridora bronze" · "...coridora pimenta" · "...coridora panda" · "...coridora sterbai" | **ALVO**, classificadas na MESMA data da leva 1 (12/09/2026) — a constante `AQUAMETRIA_PEIXES_SERP_EM` do snippet, e o `porque` de cada ficha traz a leitura dela. A do rodóstomo é a única do eixo em que alguém do top publica a base (80 × 30 × 40 cm), e publica sem dizer de onde tirou | ainda não |
-| **malha 4 — `/peixes/bettas/` (AINDA NÃO PUBLICADA)** | classificada em **2026-09-13**, leva prevista para a semana de 14/09 | `/peixes/bettas/` + 3 fichas: betta · colisa-anão · gurami mel | "quantos litros para gourami" (categoria) · "quantos litros para um betta" · "quantos litros para colisa anão" · "quantos litros para gurami mel" | **ALVO nas quatro.** Ver a leitura inteira embaixo desta tabela | — |
+| **malha 4 — `/peixes/bettas/`** | classificada em **2026-09-13**, **publicada em 2026-09-14** | `/peixes/bettas/` + 3 fichas: betta · colisa-anão · gurami mel | "quantos litros para gourami" (categoria) · "quantos litros para um betta" · "quantos litros para colisa anão" · "quantos litros para gurami mel" | **ALVO nas quatro.** Ver a leitura inteira embaixo desta tabela | a medir |
 
 ## A classificação de SERP da leva 4 — `/peixes/bettas/`, medida em 13/09/2026
+
+> **A leva saiu em 14/09/2026**, com as quatro URLs e as quatro declarando
+> `serp_em: 13/09/2026` no registro — quem não declarasse herdaria 12/09/2026,
+> que seria mentira nestas quatro. Esta seção fica como foi escrita, um dia
+> antes das páginas: é a prova de que a classificação veio antes, e não depois.
 
 Escrita ANTES de a leva existir, que é o que a seção 14.9 manda e a 21.3 mantém
 de pé abaixo do piso. **As quatro consultas são ALVO**, e nenhuma delas tem no

@@ -114,6 +114,22 @@ def serp_declarada_no_registro(slug):
     return achado.group(1)
 
 
+def nota_serp_no_registro(slug):
+    """O `serp_nota` que o registro do snippet declara para este slug, ou None.
+
+    Lido em TEXTO, como o `serp_em`: a afirmacao e que a pagina serve o que o
+    registro declara, entao perguntar a funcao do snippet faria as duas metades
+    errarem juntas.
+    """
+    snippet = open(os.path.join(RAIZ, "snippets", "aquametria-peixes.php"),
+                   encoding="utf-8").read()
+    bloco = re.search(r"'%s' => array\((.*?)\n\t\t\),\n" % re.escape(slug), snippet, re.S)
+    if bloco is None:
+        return None
+    achado = re.search(r"'serp_nota'\s*=>\s*'([^']*)'", bloco.group(1))
+    return achado.group(1) if achado and achado.group(1) else None
+
+
 def serp_esperada(slug):
     declarada = serp_declarada_no_registro(slug)
     return declarada if declarada is not None else SERP_PADRAO
@@ -270,6 +286,9 @@ def arranjo_curto(e):
     chave = e.get("convivencia")
     if chave in ARRANJO_FIXO:
         return "%s, %d por aquário" % (ARRANJO_CURTO[chave], ARRANJO_FIXO[chave])
+    if e.get("cardume_minimo") and e.get("cardume_recomendado_ate"):
+        return "%s, %d a %d" % (ARRANJO_CURTO[chave], int(e["cardume_minimo"]),
+                                int(e["cardume_recomendado_ate"]))
     if e.get("cardume_minimo"):
         return "%s, %d ou mais" % (ARRANJO_CURTO[chave], int(e["cardume_minimo"]))
     return "%s, número não declarado" % ARRANJO_CURTO[chave]
@@ -282,7 +301,12 @@ def degraus(e):
     if not e.get("cardume_minimo"):
         return list(DEGRAUS_EXTRA)
     minimo = int(e["cardume_minimo"])
-    return sorted({minimo} | {n for n in DEGRAUS_EXTRA if n > minimo})
+    # O TETO DECLARADO E DEGRAU (esquema versao 4). A escada de leitura so por
+    # ACASO carrega o segundo numero da faixa: "4 a 6" cai em cima do 6 dela e
+    # "5 a 7" nao cairia em lugar nenhum. Sem esta linha a regua ficaria verde
+    # com o banco de hoje e reprovaria a primeira faixa de numeros impares.
+    teto = {int(e["cardume_recomendado_ate"])} if e.get("cardume_recomendado_ate") else set()
+    return sorted({minimo} | teto | {n for n in DEGRAUS_EXTRA if n > minimo})
 
 
 def meio_para_cima(v, casas):
@@ -509,19 +533,49 @@ def medir_ficha(slug, ident, banco):
     if conviv in ARRANJO_FIXO:
         quantos = ARRANJO_FIXO[conviv]
         de = "um" if conviv == "solitario" else "um casal de"
-        ok("%s: a abertura diz o arranjo que a fonte declara, nao um cardume" % slug,
-           ("Para %s %s, que é o que a fonte declara por aquário" % (de, nome)) in t)
+        abertura = ("e é um por aquário, não dois" if conviv == "solitario"
+                    else "e são dois, não um macho sozinho")
+        ok("%s: a abertura diz o arranjo declarado, nao um cardume" % slug,
+           ("Para %s %s — %s —, o seu aquário precisa de" % (de, nome, abertura)) in t,
+           t[:130])
+        # 15.2: a procedencia NAO abre pagina. A primeira escrita deste ramo
+        # citava a fonte na primeira frase, e e exatamente o que o item 4 do
+        # despacho da Sentinela de 13/09 tirou das onze fichas antigas.
+        direta_p1 = texto(re.search(r'<p class="aqm-px-linha-mestra">(.*?)</p>', c, re.S).group(1))
+        ok("%s: a abertura nao cita quem declarou" % slug,
+           "fonte" not in direta_p1.lower(), direta_p1[:120])
         ok("%s: a escada tem um degrau so (%d) e a pagina diz por que" % (slug, quantos),
            'não existe "e para dez?" a responder' in t)
         ok("%s: a palavra cardume nao aparece no corpo" % slug,
            "cardume" not in t.lower(), t.lower()[max(0, t.lower().find("cardume") - 60):][:160])
-    elif conviv == "grupo":
-        ok("%s: a abertura diz GRUPO minimo, nunca cardume minimo" % slug,
-           ("Para um grupo mínimo de %s %s" % (e["cardume_minimo"], nome)) in t
-           and "cardume mínimo" not in t)
+        # E A FICHA DE ARRANJO FIXO NUNCA SUGERE MAIS UM EXEMPLAR. A frase do
+        # bloco da especie agressiva dizia "quanto maior o cardume, menos a
+        # agressao se concentra num alvo so": conselho certo para peixe de
+        # cardume e o CONTRARIO do que a fonte diz do betta, que e agressivo E
+        # solitario. Sem esta afirmacao, desligar o ramo do arranjo devolve a
+        # frase antiga com `$card` nulo — e a pagina vai ao ar recomendando o
+        # segundo exemplar que a fonte proibe, com um buraco no meio da frase.
+        ok("%s: a pagina diz que o numero declarado e o limite" % slug,
+           "não é uma sugestão de companhia — é o limite" in t
+           if e.get("comportamento") == "agressivo" else True)
+        ok("%s: nao sugere aumentar o numero de exemplares" % slug,
+           "quanto maior o" not in t)
     else:
-        ok("%s: a abertura diz cardume minimo, que e o que a fonte declara" % slug,
-           ("Para um cardume mínimo de %s %s" % (e["cardume_minimo"], nome)) in t)
+        # O NUMERO DA ABERTURA E A FAIXA, quando a fonte declarou uma. Recomputado
+        # aqui do banco: o piso sozinho publica metade da recomendacao, e o piso
+        # com um teto derivado do piso publicaria um numero que ninguem disse.
+        quantos = str(e["cardume_minimo"])
+        if e.get("cardume_recomendado_ate"):
+            quantos += " a %d" % int(e["cardume_recomendado_ate"])
+        rotulo = ARRANJO_ROTULO_MINIMO[conviv]
+        ok("%s: a abertura diz %r, que e o arranjo que a fonte declara" % (slug, rotulo),
+           ("Para um %s de %s %s" % (rotulo, quantos, nome)) in t,
+           t[:120])
+        if conviv == "grupo":
+            ok("%s: e nao chama de cardume o peixe que a fonte diz nao ser de cardume" % slug,
+               "cardume mínimo" not in t)
+        ok("%s: a tabela de fontes traz a faixa declarada, nao o piso sozinho" % slug,
+           ("%s exemplares" % quantos) in t, quantos)
 
     # --- BASE nao e FRENTE: a frase tem o escopo do que a fonte declarou
     #
@@ -724,6 +778,19 @@ def medir_ficha(slug, ident, banco):
        'rel="sponsored"' not in pagina)
     ok("%s: explica a ausencia do link em vez de calar" % slug,
        "não tem link de loja" in t)
+
+    # --- A NOTA DA SERP, quando o registro declara uma. E leitura do mundo la
+    #     fora, com data, e so existe onde a medicao achou algo que so aquela
+    #     pagina tem para dizer — na colisa-anao, os quatro numeros que a busca
+    #     publica para a MESMA especie. A regua cobra as duas direcoes: quem
+    #     declara serve, quem nao declara nao serve bloco nenhum.
+    nota = nota_serp_no_registro(slug)
+    if nota:
+        ok("%s: serve a nota da SERP declarada no registro" % slug,
+           'class="aqm-px-serp-nota"' in c and nota[:60] in t, nota[:60])
+    else:
+        ok("%s: sem nota declarada, a pagina nao serve bloco de nota" % slug,
+           'class="aqm-px-serp-nota"' not in c)
 
     # --- a consulta-alvo e a classificacao da SERP, no corpo
     ok("%s: publica a consulta-alvo" % slug, 'class="aqm-px-consulta"' in c)

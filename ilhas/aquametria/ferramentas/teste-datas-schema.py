@@ -74,6 +74,10 @@ FICHAS = [
     "quantos-litros-para-coridora-pimenta",
     "quantos-litros-para-coridora-panda",
     "quantos-litros-para-coridora-sterbai",
+    # leva 4, 14/09/2026
+    "quantos-litros-para-betta",
+    "quantos-litros-para-colisa-anao",
+    "quantos-litros-para-gurami-mel",
 ]
 
 # A data editorial que os tres artigos declaram no registro, e que o endereco

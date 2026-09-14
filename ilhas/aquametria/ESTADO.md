@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 28
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
 ultima_execucao: 2026-09-13T23:19Z
-executando_desde: 2026-09-14T11:25Z
+executando_desde: 2026-09-14T11:50Z
 bloco_atual: |
   A PRESTACAO DE CONTAS DA SECAO 7 ALCANCA QUEM NAO ESTA NA TABELA (peixes 1.6.0, manifest revisao 76, /status conferido as 23h38Z em UM disparo com 20 aplicados; NENHUMA URL nova, NENHUMA pagina criada, NENHUMA leva consumida).
   POR QUE ESTE BLOCO: era o item (3) do PROXIMO da execucao das 21h21Z, e o unico dos quatro que nao dependia de calendario nem de sessao. A leva 4 e a seguinte esperam 14/09 pelo teto da 21.4, que segue em 3 de 3 gastas — esta execucao rodou as 23h19Z de domingo, dia 13, e nada aqui consome leva. A escada segue dormente com url_busca null nos 78.

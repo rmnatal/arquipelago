@@ -3,7 +3,7 @@
  "descricao": "Contrato formal do banco de especies de agua doce da Aquametria: campos, tipos, unidades, vocabulario controlado, origem esperada por campo e as regras de validacao E1 a E16 que ferramentas/validar-especies.py executa. E o irmao de esquema-produtos.json para a entidade especie, e existe para destravar o eixo aberto 'quantos litros para X peixes' com dado real por tras, nunca com regra de bolso.",
  "gerado_em": "2026-09-09",
  "bloco": "4b(c) leva 1; revisado na leva 3 (E15 e a emenda do E10); revisado na leva 4 (T3d, 11/09/2026): regra da congenere e E16",
- "versao_esquema": 3,
+ "versao_esquema": 4,
  "depende_de": [
   "dados/esquema-produtos.json",
   "dados/especificacao-calculadoras.md"
@@ -101,6 +101,7 @@
     "ph",
     "dureza_dgh",
     "cardume_minimo",
+    "cardume_recomendado_ate",
     "comprimento_minimo_aquario_cm",
     "base_minima_cm",
     "nivel_natacao",
@@ -248,6 +249,14 @@
    "obrigatorio": false,
    "dominio": "manutencao",
    "nota": "Quantidade minima da propria especie para o comportamento normal. null quando a especie nao e de cardume; nesse caso convivencia diz o que ela e."
+  },
+  {
+   "campo": "cardume_recomendado_ate",
+   "tipo": "integer",
+   "unidade": "individuos",
+   "obrigatorio": false,
+   "dominio": "manutencao",
+   "nota": "O TETO da faixa quando a fonte recomenda uma FAIXA e nao um piso. O compendio escreve, do gurami mel, 'nao menos que 4 a 6 exemplares': o piso e 4 e mora em cardume_minimo, e o 6 e o outro lado da mesma recomendacao. Sem este campo a ficha publica o piso sozinho, que e menos do que a fonte declarou — e completar a faixa de cabeca seria inventar a metade que falta. null quando a fonte declara um numero so."
   },
   {
    "campo": "comprimento_minimo_aquario_cm",
@@ -510,6 +519,14 @@
   {
    "id": "E16",
    "regra": "Todo valor NUMERICO de campo tem de aparecer no texto de pelo menos uma das fontes que declaram aquele campo, em algarismo ou por extenso. O campo e o numero que a maquina usa; a referencia e a transcricao do que a fonte disse. Sao duas escritas independentes do mesmo fato, e quando divergem alguem transcreveu errado, digitou errado ou editou um lado so. E a mesma familia de defeito que a Robometria achou ao comparar duas copias da mesma regua, so que aqui as duas copias sao mesmo independentes - por isso a comparacao vale. Vale para intervalo (min e max contam separados) e para objeto de base (comprimento e largura). Erro, nao aviso."
+  },
+  {
+   "id": "E17",
+   "regra": "Nome popular com acento que o portugues exige sai ACENTUADO: nomes_populares_br e o unico campo deste banco que vai inteiro para a tela. A tabela de acentuacao mora neste esquema e e declarada, nunca adivinhada por vizinhanca. REGRA JA IMPLEMENTADA EM validar-especies.py DESDE 12/09/2026 e que faltava nesta lista — a lista parava em E16 enquanto o codigo ja cobrava E17, e foi por pouco que a regra de 14/09 nao nasceu com o mesmo id."
+  },
+  {
+   "id": "E18",
+   "regra": "cardume_recomendado_ate so existe com cardume_minimo preenchido e tem de ser MAIOR que ele. Teto sem piso nao e faixa, e teto igual ou menor que o piso e faixa invertida — as duas publicariam na ficha uma recomendacao que a fonte nao fez."
   }
  ],
  "o_que_nao_entra": [

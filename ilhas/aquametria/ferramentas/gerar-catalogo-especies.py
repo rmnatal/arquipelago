@@ -392,6 +392,11 @@ def main():
             "porte_cm": e["porte_adulto_cm"],
             "porte_medida": e["porte_medida"],
             "cardume": e.get("cardume_minimo"),
+            # O TETO DA FAIXA (esquema versao 4, 14/09/2026). Viaja junto do
+            # piso porque a ficha publica os DOIS: o compendio do gurami mel
+            # recomenda "nao menos que 4 a 6 exemplares", e servir so o 4 e
+            # publicar menos do que a fonte declarou.
+            "cardume_ate": e.get("cardume_recomendado_ate"),
             "convivencia": e["convivencia"],
             "comportamento": e.get("comportamento") or "",
             "frente_cm": e["comprimento_minimo_aquario_cm"],

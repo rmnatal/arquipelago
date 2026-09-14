@@ -298,20 +298,19 @@ MUTACOES = [
     # ficha que sobrou apontando para especie que nao passa mais), a outra tira
     # do CATALOGO DO SNIPPET (o site serve a tabela abrindo em UM exemplar, e
     # quem tem de acusar e a pagina).
+    # A EDICAO E ESTRUTURAL E NAO DE TEXTO, e a troca aconteceu em 14/09/2026
+    # depois de esta mutacao MORRER. Ela estava ancorada num bloco de dez linhas
+    # do JSON — campos vizinhos inteiros, escolhidos para nao atingir a coridora
+    # panda, que tem o mesmo cardume e a mesma frente. O esquema ganhou UM campo
+    # (`cardume_recomendado_ate`, versao 4) entre `cardume_minimo` e o vizinho
+    # de baixo, e a ancora deixou de existir em TODOS os registros de uma vez.
+    # `banco_json` + `mut_campo` fazem a mesma mudanca pelo id do registro, e o
+    # id nao se move quando o esquema cresce.
     ("O BANCO PERDE O CARDUME DE QUEM JA TEM FICHA NO AR: a sterbai volta a 'grupo' sem numero",
-     lambda base: (
-         troca(BANCO,
-               '"cardume_minimo": 6,\n   "comprimento_minimo_aquario_cm": 45,\n'
-               '   "base_minima_cm": {\n    "comprimento": 45,\n    "largura": 30\n   },\n'
-               '   "altura_minima_cm": null,\n   "volume_minimo_declarado_L": null,\n'
-               '   "nivel_natacao": "fundo",\n   "comportamento": null,\n'
-               '   "convivencia": "cardume",',
-               '"cardume_minimo": null,\n   "comprimento_minimo_aquario_cm": 45,\n'
-               '   "base_minima_cm": {\n    "comprimento": 45,\n    "largura": 30\n   },\n'
-               '   "altura_minima_cm": null,\n   "volume_minimo_declarado_L": null,\n'
-               '   "nivel_natacao": "fundo",\n   "comportamento": null,\n'
-               '   "convivencia": "grupo",')(base),
-     )),
+     banco_json(lambda d: (
+         mut_campo(d, "corydoras-sterbai", "cardume_minimo", None),
+         mut_campo(d, "corydoras-sterbai", "convivencia", "grupo"),
+     ))),
 
     ("O CATALOGO DO SNIPPET PERDE O CARDUME: a ficha da sterbai abre a tabela em UM exemplar",
      troca(PEIXES,
@@ -320,8 +319,9 @@ MUTACOES = [
            # frente (45) e a mesma convivencia. A trava anti-inercia recusou na
            # primeira escrita desta mutacao, e estava certa — mutar as duas de
            # uma vez mediria outra coisa com o mesmo placar verde.
-           "\t\t\t'porte_cm' => 6.8,\n\t\t\t'porte_medida' => 'SL',\n\t\t\t'cardume' => 6,\n\t\t\t'convivencia' => 'cardume',\n\t\t\t'comportamento' => '',\n\t\t\t'frente_cm' => 45,",
+           "\t\t\t'porte_cm' => 6.8,\n\t\t\t'porte_medida' => 'SL',\n\t\t\t'cardume' => 6,\n\t\t\t'cardume_ate' => null,\n\t\t\t'convivencia' => 'cardume',\n\t\t\t'comportamento' => '',\n\t\t\t'frente_cm' => 45,",
            "\t\t\t'porte_cm' => 6.8,\n\t\t\t'porte_medida' => 'SL',\n\t\t\t'cardume' => null,\n"
+           "\t\t\t'cardume_ate' => null,\n"
            "\t\t\t'convivencia' => 'grupo',\n\t\t\t'comportamento' => '',\n"
            "\t\t\t'frente_cm' => 45,")),
 
@@ -556,6 +556,115 @@ MUTACOES = [
                "        \"rotulo\": \"tetras\",\n        \"barradas\": [],",
                "        \"rotulo\": \"tetras\",\n        \"barradas\": [\"hyphessobrycon-serpae\"],"),
      )),
+
+    # ------------------------------------------------------------------
+    # 4. O ARRANJO SOCIAL — a leva 4, 14/09/2026.
+    #
+    # Nenhuma destas PRODUZ o mundo, e e a primeira familia desta ilha em que
+    # isso e verdade por um motivo bom: ate 13/09 as onze fichas no ar eram
+    # todas `convivencia: cardume` e cada uma destas mutacoes teria passado
+    # LIMPA, porque nao havia pagina que a palavra "cardume" pudesse traduzir
+    # errado. O mundo chegou; o que estas medem e se a regua chegou junto.
+    # ------------------------------------------------------------------
+
+    ("O ARRANJO FIXO GANHA A ESCADA DE VOLTA: a ficha do betta volta a oferecer 20 bettas num aquario",
+     troca(PEIXES,
+           "\tif ( $arranjo && null !== $arranjo['fixo'] ) {\n\t\treturn array( $arranjo['fixo'] );\n\t}",
+           "\tif ( false ) {\n\t\treturn array( $arranjo['fixo'] );\n\t}")),
+
+    ("O NUMERO QUE A FONTE FIXA ESCORREGA: o casal da colisa vira um exemplar so",
+     troca(PEIXES,
+           "\t\t'casal' => array(\n\t\t\t'fixo'     => 2,",
+           "\t\t'casal' => array(\n\t\t\t'fixo'     => 1,")),
+
+    ("O SOLITARIO VIRA CASAL: a fonte diz um por aquario e a pagina oferece dois",
+     troca(PEIXES,
+           "\t\t'solitario' => array(\n\t\t\t'fixo'     => 1,",
+           "\t\t'solitario' => array(\n\t\t\t'fixo'     => 2,")),
+
+    ("O GRUPO VOLTA A SER CARDUME NA PRIMEIRA LINHA: o gurami mel, que a fonte declara NAO gregario, abre como peixe de cardume",
+     troca(PEIXES,
+           "\t\t\t'minimo'   => 'grupo mínimo',", "\t\t\t'minimo'   => 'cardume mínimo',")),
+
+    ("A PALAVRA VAZA PELA LEGENDA: a tabela de lotacao do betta volta a se chamar 'um cardume de'",
+     troca(PEIXES,
+           "esc_html( $arranjo ? $arranjo['de'] : 'um cardume de' )",
+           "esc_html( 'um cardume de' )")),
+
+    ("O CONSELHO DO AGRESSIVO SE INVERTE: a ficha do betta volta a mandar diluir agressao em numero",
+     troca(PEIXES,
+           "\t\tif ( $arranjo && null !== $arranjo['fixo'] ) {\n\t\t\t$html .= '<p class=\"aqm-px-fora\">O que dá para dizer com o que está medido: a fonte declara '",
+           "\t\tif ( false ) {\n\t\t\t$html .= '<p class=\"aqm-px-fora\">O que dá para dizer com o que está medido: a fonte declara '")),
+
+    ("A LINHA UNICA DO ARRANJO FIXO SE CHAMA MINIMA: o teto que a fonte declara vira piso na tela",
+     troca(PEIXES,
+           "\t$rotulo_minimo = ( $arranjo && '' !== $arranjo['minimo'] && $card ) ? $arranjo['minimo'] : '';",
+           "\t$rotulo_minimo = 'cardume mínimo';")),
+
+    ("A COLUNA DA CATEGORIA MISTA VOLTA A SER UM NUMERO: betta e colisa aparecem como 'nao declarado'",
+     troca(PEIXES,
+           "\t\t? ucfirst( reset( $arranjos )['minimo'] )\n\t\t: 'Como vive';",
+           "\t\t? ucfirst( reset( $arranjos )['minimo'] )\n\t\t: 'Cardume mínimo';")),
+
+    ("O SUBSTANTIVO DA LISTA FECHADA VOLTA A SER DIGITADO: a pagina de qualquer categoria diz 'todo tetra'",
+     troca(PEIXES,
+           "\t\t\t. esc_html( $cat['singular'] ) . ' que o banco desta ilha sustenta com duas fontes já tem a página dele. '",
+           "\t\t\t. 'todo tetra que o banco desta ilha sustenta com duas fontes já tem a página dele. '")),
+
+    ("O EXEMPLO DA PERGUNTA VOLTA A SER DIGITADO: a categoria das coridoras pergunta por dez neons",
+     troca(PEIXES,
+           "\t$html .= '<p>Quem pergunta \"' . esc_html( $registro[ $slug ]['consulta'] ) . '\" quer um número, e a resposta honesta tem duas partes. '",
+           "\t$html .= '<p>Quem pergunta \"quantos litros para dez neons\" quer um número, e a resposta honesta tem duas partes. '")),
+
+    ("A CELULA DO ARRANJO PERDE O NUMERO: 'sozinho, 1 por aquario' vira so 'sozinho'",
+     troca(PEIXES,
+           "\t\treturn $a['curto'] . ', ' . $a['fixo'] . ' por aquário';",
+           "\t\treturn $a['curto'];")),
+
+    ("O ARRANJO DE UMA ESPECIE E LIDO PELO DA VIZINHA: o mapa devolve sempre o primeiro",
+     troca(PEIXES,
+           "\t$chave = isset( $e['convivencia'] ) ? $e['convivencia'] : '';",
+           "\t$chave = 'cardume';")),
+
+    ("A NOTA DA SERP SOME DA FICHA DA COLISA: os quatro numeros medidos por fora da ilha deixam de sair",
+     troca(PEIXES,
+           "\tif ( ! empty( $registro[ $slug ]['serp_nota'] ) ) {",
+           "\tif ( false ) {")),
+
+    # --- o teto da faixa de grupo (esquema versao 4, 14/09/2026)
+
+    ("O TETO DA FAIXA SOME DA ABERTURA: a ficha do gurami mel volta a publicar o piso sozinho",
+     troca(PEIXES,
+           "\t\t\t. ( ! empty( $e['cardume_ate'] ) ? ' a ' . esc_html( (int) $e['cardume_ate'] ) : '' ) . ' '",
+           "\t\t\t. ' '")),
+
+    ("O TETO VIRA ARITMETICA SOBRE O PISO: a pagina publica 4 a 8 porque dobrou o minimo",
+     troca(PEIXES,
+           "\t\t\t. ( ! empty( $e['cardume_ate'] ) ? ' a ' . esc_html( (int) $e['cardume_ate'] ) : '' ) . ' '",
+           "\t\t\t. ' a ' . esc_html( (int) $card * 2 ) . ' '")),
+
+    ("O TETO SAI DA ESCADA: a faixa e publicada e a conta do outro extremo dela nao",
+     troca(PEIXES,
+           "\tif ( ! empty( $e['cardume_ate'] ) ) {\n\t\t$degraus[] = (int) $e['cardume_ate'];\n\t}",
+           "\tif ( false ) {\n\t\t$degraus[] = (int) $e['cardume_ate'];\n\t}")),
+
+    ("O ROTULO DA TABELA DE FONTES VOLTA A SER DIGITADO: o grupo do gurami mel e chamado de cardume",
+     troca(PEIXES,
+           "\t\t$rotulo_linha = ( $arranjo && '' !== $arranjo['minimo'] )\n\t\t\t? ucfirst( $arranjo['minimo'] )\n\t\t\t: 'Cardume mínimo';",
+           "\t\t$rotulo_linha = 'Cardume mínimo';")),
+
+    ("O VALOR DA TABELA DE FONTES PERDE A FAIXA: a linha diz 4 exemplares onde a fonte diz 4 a 6",
+     troca(PEIXES,
+           "\t\t$valor_linha = ! empty( $e['cardume_ate'] )\n\t\t\t? esc_html( $card ) . ' a ' . esc_html( (int) $e['cardume_ate'] ) . ' exemplares'\n\t\t\t: esc_html( $card ) . ' exemplares';",
+           "\t\t$valor_linha = esc_html( $card ) . ' exemplares';")),
+
+    ("O TETO SOME DA CELULA DA CATEGORIA: a tabela da bettas diz '4 ou mais' onde a fonte diz 4 a 6",
+     troca(PEIXES,
+           "\t\treturn ! empty( $e['cardume_ate'] )\n\t\t\t? $a['curto'] . ', ' . (int) $e['cardume'] . ' a ' . (int) $e['cardume_ate']\n\t\t\t: $a['curto'] . ', ' . (int) $e['cardume'] . ' ou mais';",
+           "\t\treturn $a['curto'] . ', ' . (int) $e['cardume'] . ' ou mais';")),
+
+    ("O BANCO PERDE O TETO DECLARADO e a pagina nao percebe que a faixa encolheu",
+     banco_json(lambda d: mut_campo(d, "trichogaster-chuna", "cardume_recomendado_ate", None))),
 ]
 
 

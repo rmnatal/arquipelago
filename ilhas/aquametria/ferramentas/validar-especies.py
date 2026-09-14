@@ -4,7 +4,7 @@
 
 Uso (a partir de ilhas/aquametria/):  python3 ferramentas/validar-especies.py [arquivo]
 
-As regras E1 a E16 estao descritas em dados/esquema-especies.json. Este arquivo e a
+As regras E1 a E18 estao descritas em dados/esquema-especies.json. Este arquivo e a
 versao executavel delas, pelo mesmo motivo do validador de produtos: regra que nao
 roda vira decoracao. Imprime tambem quem passa no minimo_para_sugerir de cada
 consumidor, que e a resposta pratica para "esta especie ja pode virar pagina?".
@@ -283,6 +283,21 @@ def main():
             erro("E12", rid, "cardume_minimo %s com convivencia '%s'" % (card, conv))
         if conv == "solitario" and preenchido(card):
             erro("E12", rid, "convivencia solitario com cardume_minimo preenchido")
+
+        # E18 - o teto da faixa de grupo (esquema versao 4, 14/09/2026)
+        #
+        # A fonte do gurami mel escreve "nao menos que 4 a 6 exemplares": o piso
+        # mora em cardume_minimo e o teto neste campo. Teto SEM piso nao e faixa
+        # e teto <= piso e faixa invertida — as duas fariam a ficha publicar uma
+        # recomendacao que a fonte nao fez, que e o mesmo defeito do numero de
+        # tela digitado, so que gravado no banco.
+        teto = r.get("cardume_recomendado_ate")
+        if preenchido(teto):
+            if not preenchido(card):
+                erro("E18", rid, "cardume_recomendado_ate sem cardume_minimo: teto sem piso nao e faixa")
+            elif teto <= card:
+                erro("E18", rid, "cardume_recomendado_ate %s nao e maior que o cardume_minimo %s"
+                     % (teto, card))
 
         # E17 - acentuacao de texto de tela
         #

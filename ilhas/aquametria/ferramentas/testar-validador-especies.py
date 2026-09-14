@@ -94,6 +94,16 @@ def c_e12(b):
     r["cardume_minimo"] = 4  # solitario com cardume preenchido
 
 
+def c_e18_sem_piso(b):
+    r = pega(b, "astronotus-ocellatus")   # solitario, cardume_minimo null
+    r["cardume_recomendado_ate"] = 6
+
+
+def c_e18_invertida(b):
+    r = pega(b, "trichogaster-chuna")
+    r["cardume_recomendado_ate"] = r["cardume_minimo"]
+
+
 def c_e13(b):
     r = pega(b, "trichopodus-trichopterus")
     r["temperatura_C"] = {"min": 5, "max": 35}
@@ -173,6 +183,8 @@ TESTES = [
     ("E16", "um lado do intervalo fora do texto da fonte", c_e16_intervalo, "erro"),
     ("E16", "largura da base fora do texto da fonte", c_e16_base, "erro"),
     ("E16", "numero por extenso na fonte, campo trocado", c_e16_extenso, "erro"),
+    ("E18", "teto de faixa sem piso: cardume_recomendado_ate sem cardume_minimo", c_e18_sem_piso, "erro"),
+    ("E18", "faixa invertida: teto igual ao piso", c_e18_invertida, "erro"),
     ("E17", "nome de tela sem acento (o nome que vira titulo)", c_e17_acento, "erro"),
     ("E17", "nome de tela sem acento depois do hifen", c_e17_acento_no_meio, "erro"),
     ("E17", "nome de tela sem acento em token separado por espaco", c_e17_acento_token_solto, "erro"),

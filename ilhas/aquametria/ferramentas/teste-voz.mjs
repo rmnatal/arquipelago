@@ -471,6 +471,16 @@ const CONTEUDO = [
   'quantos-litros-para-coridora-pimenta',
   'quantos-litros-para-coridora-panda',
   'quantos-litros-para-coridora-sterbai',
+  /* A leva 4 (14/09/2026): a categoria /peixes/bettas/ e as tres fichas. Aqui a
+     voz corre um risco novo: a ficha de peixe solitario e de casal tem frases
+     que nenhuma das onze anteriores tinha, e as duas nascem DENTRO de um mapa
+     de configuracao — o vocabulario do arranjo —, que e o mesmo lugar onde a
+     abertura de categoria escapou na leva 3. Texto declarado em array nao passa
+     por revisao de pagina; passa por revisao de dado, e quase ninguem o le. */
+  'bettas',
+  'quantos-litros-para-betta',
+  'quantos-litros-para-colisa-anao',
+  'quantos-litros-para-gurami-mel',
 ];
 
 /* As onze fichas de espécie, separadas do resto do CONTEUDO porque têm duas
@@ -490,6 +500,9 @@ const FICHAS_PEIXE = new Set([
   'quantos-litros-para-coridora-pimenta',
   'quantos-litros-para-coridora-panda',
   'quantos-litros-para-coridora-sterbai',
+  'quantos-litros-para-betta',
+  'quantos-litros-para-colisa-anao',
+  'quantos-litros-para-gurami-mel',
 ]);
 
 /* A lista de MARCAS subiu para o alto do arquivo em 13/09/2026 — ver o bloco
