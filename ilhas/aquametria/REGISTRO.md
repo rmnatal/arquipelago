@@ -4,7 +4,7 @@ Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e
 o proximo passo desbloqueado, e espelha o mesmo resumo em
 `/areas/projeto-aquametria.md` na memoria.
 
-## 2026-09-14 13h19Z — LEVA 5: A QUARTA CATEGORIA, E A PRIMEIRA EM QUE NENHUMA FILHA TEM NÚMERO DECLARADO (peixes 1.8.0, manifest revisão 79; QUATRO URLs novas — `/peixes/vivaparos/` e as fichas do platy, do peixe-espada e do plati variatus)
+## 2026-09-14 13h19Z — LEVA 5: A QUARTA CATEGORIA, E A PRIMEIRA EM QUE NENHUMA FILHA TEM NÚMERO DECLARADO (peixes 1.8.0, manifest revisão 82, `/status` conferido na 82; QUATRO URLs novas — `/peixes/vivaparos/` e as fichas do platy, do peixe-espada e do plati variatus)
 
 **A ESCOLHA DA ILHA: primeira tentada, e sem corrida.** Os três `ESTADO.md` estavam com `executando_desde: null`, que pela 1.1 já significa que não há bloco da Fundação vivo — o git não precisou desempatar nada. Pela 18.1 procurei despacho aberto antes da rotação: os três `PROMPT.md` foram lidos e nenhum tem despacho para a Fundação de pé (o da clubedomosaico, de 14/09, foi fechado inteiro na execução das 11h18Z e já está em FECHADOS; `dados/despachos.md` tem quatro abertos e os quatro são do RAPHAEL, nenhum bloqueando bloco). Sobrou a rotação da seção 1, e a aquametria tinha a `ultima_execucao` mais antiga: 11h25Z, contra 11h44Z da robometria e 12h45Z da clubedomosaico. Nenhum branch `claude/*` com o que mesclar e nenhum PR aberto. **Rede pela 20.2, antes de trabalhar:** home em 200 e `/status` na revisão 77, igual à do manifest, em UMA passada.
 
@@ -68,9 +68,26 @@ Os nomes populares do `xiphophorus-hellerii` foram reordenados para pôr **"peix
 
 ### Verificação
 
-**Bancada, 0 falha:** `teste-peixes` **2219** afirmações (eram 1775), `teste-voz` TUDO OK com as quatro páginas novas dentro, `teste-arvore`, `teste-datas-schema` 102 (eram 90), `teste-seo-tecnico` 411, `teste-ga4` 568, `teste-apelidos` 59, `teste-escada-compra` 522, `conferir-entidades`, `conferir-slugs`, `conferir-protecao-funcoes`, `validar-especies` 37 registros com o mesmo aviso E15 do guppy (e a E17 agora varrendo os dois campos de tela), `testar-validador-especies` 24 casos, `validar-produtos`, `php -l` limpo em tudo.
+**Bancada, 0 falha:** `teste-peixes` **2256** afirmações (eram 1775), `teste-voz` TUDO OK com as quatro páginas novas dentro, `teste-arvore`, `teste-datas-schema` 102 (eram 90), `teste-seo-tecnico` 411, `teste-ga4` 568, `teste-apelidos` 59, `teste-escada-compra` 522, `conferir-entidades`, `conferir-slugs`, `conferir-protecao-funcoes`, `validar-especies` 37 registros com o mesmo aviso E15 do guppy (e a E17 agora varrendo os dois campos de tela), `testar-validador-especies` 24 casos, `validar-produtos`, `php -l` limpo em tudo. **Mutações:** a bateria foi de 81 para **90**, com **90 de 90 reprovadas e 0 inertes**. **Navegador:** 658 medições em 35 páginas × 6 larguras, 0 px de rolagem horizontal, console limpo.
+
+**No ar, em UM disparo do Sync:** `/status` na revisão **82**, igual à do manifest; as quatro URLs novas em HTTP 200; zero `&#038;` dentro de `<script>` nelas; o `wp-sitemap` publica **36** URLs (33 páginas + 3 posts), as quatro novas incluídas; `conferir-peixes-no-ar` **614** afirmações (eram 470) e `conferir-datas-e-voz-no-ar` **248**, as duas com 0 falha. As duas frases consertadas foram lidas no HTML servido: *"1 ficou fora porque o banco o declara agressivo"* e *"cabe 1 coridora sterbai pelo critério apertado e 6 pelo critério folgado. A diferença entre os dois é de 6 vezes"* — onde até hoje iam ao ar o plural e o quatro.
 
 **Receita, sem mudança:** espécie não é produto e nenhum produto entrou ou saiu do banco. Seguem 39 dos 78 com ficha de loja, **0 com piso**, 78 sem piso; dos 39 sem ficha, 9 não têm loja possível hoje. **Pauta da seção 17:** `pauta.md` ainda não existe — 0 escritos, 0 na fila, 0 recusados.
+
+### As três mutações que passaram, e por que cada uma era uma trava que faltava
+
+A bateria subiu de 81 para 90 mutações e, na penúltima rodada, **três passaram**. Nenhuma delas era ruído:
+
+1. **Duas não eram mutação nenhuma — eram cobertura com nome de trava.** Elas mudavam o porte do peixe-espada no banco **e** no catálogo do snippet, para produzir o mundo em que o critério conservador não põe nem um exemplar. Só que a régua do teste **recomputa o esperado a partir do banco**: as duas metades andaram juntas e a página continuou certa. É o "as duas metades erram juntas" da seção 8, do lado benigno — **mundo novo em que as duas metades concordam prova que o ramo roda, nunca que existe trava.** As duas foram reescritas para produzir o mundo **e** quebrar alguma coisa: numa, a frase do zero volta a dizer que o apertado põe um; na outra, o número do critério folgado sai do lugar errado.
+2. **A terceira tirava a guarda do vocabulário fechado e não quebrava nada**, porque nenhuma espécie do banco tem termo desconhecido — tirar código que o mundo de hoje não alcança não muda uma afirmação. Ela passou a produzir o mundo: uma espécie com `convivencia` fora dos cinco valores do esquema **e** com cardume preenchido, que é o caso exato que a guarda existe para barrar.
+
+E ela achou uma afirmação faltando, que é o achado de processo deste bloco: **as duas afirmações que eu tinha escrito sobre a abertura eram negativas**, e negativa é verde sobre a frase errada. Com a guarda removida e o termo desconhecido no banco, a página abria *"Para um  de 5 tetra-negro"*, com o rótulo **vazio** no meio da frase — não é a forma do número (o rótulo não está lá) nem a do arranjo (não há travessão), e as duas réguas ficavam verdes. Nasceu a afirmação **positiva**: a abertura é uma das duas formas declaradas, e as duas são montadas aqui, à mão, a partir do banco.
+
+Sobrou ainda uma lição de ferramenta: com o termo desconhecido, este arquivo **morria de `KeyError`** antes de terminar a medição. **Verificador que estoura não diz o que estava errado, só que algo estava** — as três buscas no vocabulário passaram a devolver sentinela nomeado, e a cadeia de ramos do teste passou a espelhar a do snippet (quem decide é o rótulo do arranjo, não a presença do número).
+
+### O contador de fichas de uma ferramenta de conferência estava digitado
+
+`conferir-datas-e-voz-no-ar.py` afirmava **"achei as onze fichas de peixe no sitemap"**, com o 11 escrito à mão em 13/09. A leva 4 pôs catorze no ar e não tocou nele; a afirmação só reprovou **aqui**, na leva 5, com dezessete — uma leva inteira depois de virar falsa, e só porque a ferramenta não foi rodada no fecho da leva 4. É o **"número de tela digitado"** que esta ilha persegue nas páginas, dentro da própria ferramenta de conferência. O número passa a sair do registro do eixo, e cresce sozinho com a próxima leva.
 
 ### Próximo passo
 
