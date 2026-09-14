@@ -7,6 +7,13 @@
  * 11/09; o cabeçalho, que é a primeira coisa que alguém lê neste arquivo, não
  * tinha nenhuma. Agora tem, na seção 16 do teste-casca.php, e a constante sobe
  * para 1.5.1 sem que uma linha de comportamento mude.
+ * Versão: 1.6.2 (14/09/2026) — a purga por GANCHO não pegou. As duas ações do
+ * Endurance Page Cache foram disparadas na revisão 39 e o endereço canônico
+ * continuou servindo a página das 14h40 — medido, não suposto. O EPC guarda a
+ * página em arquivo e o Apache a serve por mod_rewrite ANTES de o PHP rodar, que
+ * é por que a mesma URL com chave de quebra de cache mostra a página nova. A
+ * purga passou a esvaziar a pasta do cache, que é o que o purge_all() do próprio
+ * plugin faz, com três guardas de caminho e sem seguir link simbólico.
  * Versão: 1.6.1 (14/09/2026) — O DESEMBARQUE PARAVA NO CACHE DO HOST. A revisão
  * 37 aplicou, o /status confirmou, e o endereço canônico continuou servindo a
  * cópia das 14h40 — sem um botão de compra, com a frase proibida em quatro
@@ -143,7 +150,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_CASCA_VERSAO' ) ) {
-	define( 'ROBOMETRIA_CASCA_VERSAO', '1.6.1' );
+	define( 'ROBOMETRIA_CASCA_VERSAO', '1.6.2' );
 	define( 'ROBOMETRIA_CASCA_TAGLINE', 'Qual peça o fabricante declarou para o seu robô aspirador — com código, endereço e data' );
 
 	/* GA4 DESTA ILHA — robometria, propriedade 553889920 da conta Arquipélago.
@@ -2880,11 +2887,32 @@ function robometria_casca_purgar_cache() {
 	   que ele deixa no HTML servido. As duas formas: a ação que as versões
 	   novas escutam e o método da classe, para as antigas. */
 	do_action( 'epc_purge' );
+	do_action( 'epc_purge_request' );
 	if ( class_exists( 'Endurance_Page_Cache' ) ) {
 		$epc = new Endurance_Page_Cache();
 		if ( method_exists( $epc, 'purge_all' ) ) {
 			$epc->purge_all();
 		}
+	}
+
+	/* E A PURGA QUE NÃO DEPENDE DO NOME DO GANCHO, porque as duas acima foram
+	   disparadas na revisão 39 e o endereço canônico continuou servindo a página
+	   das 14h40 — medido, não suposto.
+
+	   O EPC guarda a página em ARQUIVO, em `wp-content/endurance-page-cache/`, e
+	   o Apache a serve por mod_rewrite ANTES de o PHP rodar — é por isso que a
+	   mesma URL com uma chave de quebra de cache mostra a página nova: com query
+	   string a regra não casa. Apagar aquele diretório é exatamente o que o
+	   `purge_all()` do próprio plugin faz, e é reversível por definição: a
+	   próxima visita regenera o arquivo.
+
+	   AS TRÊS GUARDAS, e nenhuma é decoração: o caminho é montado a partir de
+	   WP_CONTENT_DIR e nunca de entrada de requisição; o nome da pasta é
+	   comparado inteiro; e a recursão se recusa a seguir link simbólico, para
+	   não sair da pasta por um atalho que alguém tenha deixado lá. */
+	$pasta = defined( 'WP_CONTENT_DIR' ) ? WP_CONTENT_DIR . '/endurance-page-cache' : '';
+	if ( '' !== $pasta && is_dir( $pasta ) && ! is_link( $pasta ) ) {
+		robometria_casca_esvaziar_pasta( $pasta, $pasta );
 	}
 
 	/* Os outros, cada um só se estiver lá. Nenhum é esperado neste host. */
@@ -2898,6 +2926,48 @@ function robometria_casca_purgar_cache() {
 		w3tc_flush_all();
 	}
 	do_action( 'litespeed_purge_all' );                  // LiteSpeed Cache
+}
+}
+
+/**
+ * Apaga o conteúdo de uma pasta de cache, e NUNCA sai dela.
+ *
+ * `$raiz` viaja em toda chamada e é conferida a cada nível: antes de apagar
+ * qualquer coisa, o caminho real tem de começar pelo caminho real da raiz. É o
+ * que impede um link simbólico, um `..` ou uma pasta montada de virarem uma
+ * exclusão em outro lugar do disco. A pasta raiz em si não é removida — só
+ * esvaziada —, porque o plugin a recria e não é desta ilha o direito de sumir
+ * com ela.
+ */
+if ( ! function_exists( 'robometria_casca_esvaziar_pasta' ) ) {
+function robometria_casca_esvaziar_pasta( $pasta, $raiz ) {
+	$real_raiz = realpath( $raiz );
+	$real      = realpath( $pasta );
+	if ( ! $real_raiz || ! $real || 0 !== strpos( $real . DIRECTORY_SEPARATOR,
+		rtrim( $real_raiz, DIRECTORY_SEPARATOR ) . DIRECTORY_SEPARATOR ) ) {
+		return;
+	}
+
+	$itens = @scandir( $real );
+	if ( ! is_array( $itens ) ) {
+		return;
+	}
+	foreach ( $itens as $item ) {
+		if ( '.' === $item || '..' === $item ) {
+			continue;
+		}
+		$caminho = $real . DIRECTORY_SEPARATOR . $item;
+		if ( is_link( $caminho ) ) {
+			/* Link simbólico não é seguido: apagar o link é seguro, apagar o que
+			   ele aponta seria sair da pasta sem perceber. */
+			@unlink( $caminho );
+		} elseif ( is_dir( $caminho ) ) {
+			robometria_casca_esvaziar_pasta( $caminho, $real_raiz );
+			@rmdir( $caminho );
+		} else {
+			@unlink( $caminho );
+		}
+	}
 }
 }
 
