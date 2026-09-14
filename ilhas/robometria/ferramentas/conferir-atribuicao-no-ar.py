@@ -107,6 +107,11 @@ def main(raiz):
         registros = json.load(f)['registros']
     with open(os.path.join(dados, 'r1-referencia.json'), encoding='utf-8') as f:
         gabarito = json.load(f)['respostas']
+    # O gabarito guarda so tipo, peca e frase. Quem publicou e de que degrau veio
+    # moram no COMBUSTIVEL, que e o mesmo arquivo que o Sync leva para a option —
+    # ou seja, o que a pagina tinha na mao quando escreveu a frase medida.
+    with open(os.path.join(dados, 'r1-respostas.json'), encoding='utf-8') as f:
+        fatos = json.load(f)['respostas']
 
     tipos = esquema['tipos_que_exigem_funcao_declarada']['tipos']
     derivada, de_titulo = {}, {}
@@ -202,7 +207,7 @@ def main(raiz):
     # defeito era invisivel justamente por degrau, e medir so um deles seria
     # medir metade da regra.
     por_degrau = {}
-    for mid, resposta in gabarito.items():
+    for mid, resposta in fatos.items():
         for item in resposta['fabricante']:
             por_degrau.setdefault(item['origem'], set()).add(mid)
     ok(len(por_degrau) > 1, 'o ar serve item de MAIS DE UM degrau da escada',
@@ -219,7 +224,7 @@ def main(raiz):
            % (origem, mid), '%d cartao(oes)' % len(cartoes))
 
         publicadores = sorted({i['publicador']
-                               for i in gabarito[mid]['fabricante']})
+                               for i in fatos[mid]['fabricante']})
         juntos = sem_acento(re.sub(r'<[^>]+>', ' ', ' '.join(cartoes)))
         faltou = [p for p in publicadores if sem_acento(p) not in juntos]
         ok(not faltou, '[%s] %s: todo cartao nomeia QUEM publicou' % (origem, mid),
@@ -238,7 +243,7 @@ def main(raiz):
         # A CAUDA DA DIVERGENCIA CONTINUA PODENDO FALAR DO FABRICANTE, e sem
         # esta afirmacao a regua de cima seria satisfeita por uma pagina que
         # tivesse simplesmente parado de atribuir qualquer coisa a alguem.
-        if any(i.get('divergencia') for i in gabarito[mid]['fabricante']):
+        if any(i.get('divergencia') for i in fatos[mid]['fabricante']):
             ok('do fabricante' in texto,
                '[%s] %s: e a cauda da divergencia segue nomeando o fabricante'
                % (origem, mid))

@@ -3545,3 +3545,203 @@ bloco não virar dois.
 2. **A atribuição do cartão lida do degrau**, que é a dívida acima.
 3. A página de privacidade, com o molde da aquametria.
 4. A escada na tela, no minuto em que houver `url_busca`.
+
+---
+
+## 2026-09-14, 11h44Z — QUEM DECLARA É O PUBLICADOR, E NUNCA O RÓTULO DO LADO
+
+R1 **1.5.0**, casca **1.5.1**, manifest na revisão **35**, `/status` conferido às
+11h36Z em **um** disparo com 10 aplicados e a revisão batendo com o manifest.
+**Nenhuma URL nova, nenhuma URL mudou, nenhuma peça entrou ou saiu do banco.**
+
+Era a dívida **(a)** do estado anterior — a única que aquele bloco criou e não
+consertou — e pela 18.5 ilha com defeito no ar não recebe página nova.
+
+### A escolha da ilha, e ela foi a terceira tentada
+
+A **clubedomosaico** tinha despacho aberto do Raphael de 14/09 e, pela 18.1, era a
+primeira da ordem; o push de reserva desta execução foi recusado e outra a tomou
+às 11h18Z. A **aquametria** caiu pelo mesmo motivo, reservada às 11h25Z. A
+**robometria** estava com `executando_desde: null`, que pela 1.1 já significa que
+não há bloco da Fundação vivo — o git não precisou desempatar. Os três `PROMPT.md`
+foram lidos antes de escolher. Nenhum force push.
+
+E o passo 1 da seção 1 foi cumprido de verdade: os **63 branches `claude/*`** do
+repositório foram conferidos arquivo a arquivo contra o `main`. Todos estão
+contidos nele; o único arquivo que quatro deles têm e o `main` não é um `.gitkeep`
+de uma pasta que não existe mais. Não havia PR aberto. Nada a mesclar — e isso é
+medição, não suposição.
+
+### O defeito, em duas superfícies da mesma tela
+
+O cartão da vitrine escrevia **"o fabricante declara esta peça"**, digitado, para
+qualquer degrau. E a frase do kit sem avulso escrevia "que **o fabricante**
+declara" numa oração que já abria com "A **Electrolux (loja oficial)** não
+vende…" — uma frase, duas atribuições, em **18 itens** que estavam no ar. O cartão
+errava para **52 dos 73** itens de resposta, que é quanto o banco tem no degrau 4.
+
+Medido no ar antes de tocar em uma linha, em
+`/qual-peca-serve-no-meu-robo-aspirador/?modelo=wap-w100`:
+
+> **porque:** o fabricante declara esta peça (reservatório) compatível com o seu WAP W100
+> **fonte:** Como sabemos — loja oficial da marca
+
+As duas linhas do mesmo cartão, uma embaixo da outra, discordando sobre quem
+declarou.
+
+### A distinção que o conserto desfez, e ela já estava escrita
+
+O degrau 4 tem `fala_pela_marca` **verdadeiro** — é por isso que o item cai do
+lado do fabricante na divisão da página — e o **mesmo degrau** declara
+`quem_declara` como *"pela loja oficial da marca"*, com a razão escrita ao lado
+desde 11/09: *"porque quem transcreveu foi a loja"*.
+
+**Falar pela marca não é ser a marca.** O rótulo do LADO responde "de que lado
+está este item"; ele nunca responde "quem declarou".
+
+### O conserto NÃO foi o que estava desenhado, e o porquê fica escrito
+
+A dívida (a) previa dar um **artigo** a cada degrau, para a frase sair composta do
+rótulo. Reconferido antes de executar, isso publicaria o **canal como autor** ("a
+página do fabricante declara"), que é uma terceira coisa — e apagaria justamente a
+separação entre **autoria** e **canal** que a escada tomou de propósito, porque o
+degrau 3 é "pelo fabricante" (a autoria é dele) e o 4 é "pela loja oficial".
+
+Quem declara é o **publicador do item**, que já viaja no banco, e que as outras
+três frases de resposta da R1 e o cartão do A1 **já citavam**. O cartão da R1 era o
+único que não citava. Zero campo novo, zero mudança de dado.
+
+Saiu junto a nota que justifica a **ordem comercial** da lista — *"ela é decidida
+pela declaração do fabricante, e só ela"* —, que é a mesma atribuição digitada no
+lugar mais caro da página para emprestá-la: logo acima dos botões de afiliado.
+
+### Nenhum portão via o defeito, e o porquê importa
+
+A **seção 3** do `teste-r1.php` compara cada frase do PHP com a da implementação
+de referência — as duas erravam **igual**, então ela ficava verde. A **seção 16**
+media o **lado**, que estava certo. Trava vizinha verde prova que ALGUMA trava
+existe, nunca que ESTA existe.
+
+### A régua nova precisou de uma fronteira com nome
+
+Escrita contra a frase inteira, a seção 17 reprovou **três itens por falso
+positivo**: a cauda da divergência diz *"Um canal do fabricante declara alcance
+diferente"* e está **certa**. O conserto não foi afinar a lista de palavras — foi
+dar **nome** à oração de atribuição, nos dois lados
+(`robometria_r1_atribuicao_do_item` no snippet, `atribuicao_do_item` na
+referência), e medir ali. Fronteira de teste é **marcador escrito**, nunca "a
+primeira coisa parecida com" — a cicatriz que a tabela de exemplos deixou em
+13/09. E a fronteira tem régua própria: a frase publicada tem de **começar** pela
+oração, senão a seção inteira viraria medição de código morto.
+
+### Uma hipótese deste bloco foi medida e estava errada
+
+A previsão era que citar a **marca** em vez de quem publicou passaria limpa no
+banco de hoje — porque todo publicador do degrau 4 carrega a marca dentro do nome
+— e que portanto só uma assistência autorizada separaria as duas medições. Rodada,
+a mutação **reprovou**: a régua cobra o publicador **inteiro**, e o parêntese que a
+coleta transcreveu já separa `Electrolux` de `Electrolux (loja oficial)`. O mundo
+da assistência ficou na bateria porque cobre o caso em que o publicador não divide
+uma letra com a marca, mas **não é mais o que sustenta a régua**, e dizer o
+contrário seria vender cobertura que a medição não comprou.
+
+### O achado de processo, e ele veio de uma trava nova
+
+A versão de um snippet tem **três** cópias: a constante, o manifest e o **cabeçalho
+do arquivo**. Só as duas primeiras tinham régua entre si, desde 11/09. A R1 passou
+de 13/09 a 14/09 com o cabeçalho em 1.4.0 e a constante em **1.3.0**, e este
+manifest **nunca registrou a 1.4.0**.
+
+A trava nova, na seção 16 do `teste-casca.php`, achou na primeira rodada a **mesma
+drenagem na casca**: cabeçalho 1.5.1 contra constante 1.5.0. **Duas de cinco, do
+mesmo dia.** Sem efeito no ar nas duas — a constante só decide se a **estrutura**
+da página é refeita, e nenhuma das duas mexeu em título, slug ou shortcode —, e é
+exatamente por isso que ninguém veria: defeito sem sintoma só aparece quando
+alguma coisa o mede. As duas constantes subiram sem uma linha de comportamento
+mudar.
+
+### A verificação, em números
+
+- **`validar-banco`**: APROVADO — nenhuma invariante violada.
+- **Bancada, 0 falha:** `teste-casca` **205** (eram 200) · `teste-r1` **175**
+  (eram 138) · `teste-a1` 56 · `teste-r2` 92 · `teste-a2` 73 ·
+  `teste-acentuacao` 17 · `teste-arvore` 219 · `teste-voz` 155 ·
+  `teste-escada-compra` 511 · `php -l` limpo em snippets e ferramentas.
+- **Mutações: 16 baterias, 0 inertes.** Nasce
+  `mutacoes-atribuicao-do-cartao.py` com **10**: as duas superfícies voltando à
+  frase digitada, o cartão trocando o publicador pelo **rótulo do degrau**, a nota
+  da ordem, a oração deixando de ser o começo da frase, **a referência e o snippet
+  errando JUNTOS** (que é literalmente por que a seção 3 não pegou nada), o cartão
+  citando a marca, e duas que **produzem o mundo** em que quem publica no degrau 4
+  não divide uma letra com o nome da marca. As duas últimas são mundos sadios e
+  passam.
+- **Navegador:** 258 medições nas nove páginas × seis larguras, 0 falha, console
+  limpo — mais **duas passadas inteiras com a R1 no estado de CONSULTA**
+  (`wap-w100`, degrau 4; `multi-ho041`, degrau 3 com quatro cartões). Sem elas o
+  cartão não seria medido em navegador nenhum, porque a página sem consulta não
+  tem vitrine.
+- **No ar, depois do Sync:** `conferir-atribuicao-no-ar` de 19 para **33**
+  afirmações · `conferir-no-ar` 149 · `conferir-kits-no-ar` 163 ·
+  `conferir-reservatorio-no-ar` 48 — **0 falha nas quatro**. As 14 afirmações
+  novas medem **dentro da classe do cartão servido**, um modelo por **degrau**
+  escolhido do combustível e nunca digitado; e trazem a metade sem a qual todas
+  teriam porta dos fundos: a cauda da divergência **continua** nomeando o
+  fabricante, senão uma página que tivesse simplesmente parado de atribuir
+  qualquer coisa a alguém passaria limpa.
+
+E o mesmo cartão, remedido no ar depois do Sync:
+
+> **porque:** a WAP (loja oficial) declara esta peça (reservatório) compatível com o seu WAP W100
+> **fonte:** Como sabemos — loja oficial da marca
+
+### Receita e dívida, contadas do arquivo
+
+Nada mudou de receita, e isso é a informação: este bloco **não tocou o banco**.
+**35 registros de peça, 32 publicáveis, 63 pares declarados; 32 esperando link, 32
+sem piso, 0 com ficha.** Pauta da seção 17: `pauta.md` ainda não existe — 0
+escritos, 0 na fila, 0 recusados.
+
+### Uma imprecisão desta execução, dita porque a 1.1 depende do relógio
+
+Os dois carimbos de `executando_desde` deste bloco (11h28Z e 11h50Z) foram
+escritos **adiantados** em cerca de nove e vinte minutos em relação ao relógio real
+da máquina. Nenhuma outra execução foi prejudicada — carimbo adiantado só faz a
+reserva parecer mais **nova**, então ele protege demais em vez de liberar cedo —,
+mas fica escrito, e o `ultima_execucao` do cabeçalho é a hora **medida**.
+
+### Aberto e nomeado
+
+- (a) **A dívida (a) do estado anterior está paga** — era exatamente esta — e este
+  bloco **não criou nenhuma no lugar dela**.
+- (b) A **divisão da página** continua chamando de "o que o fabricante declara" o
+  lado que inclui a loja oficial. Isso é outra pergunta e **não é defeito hoje**:
+  ali o rótulo descreve o LADO (`fala_pela_marca`), que é o que ele deve
+  descrever, e não atribui item nenhum. É o lugar onde um defeito nasceria se
+  alguém lesse o título do lado como atribuição.
+- (c) **O artigo antes do publicador é digitado** (`'A %s declara'`) e funciona
+  porque todo publicador do banco de hoje é feminino — "a WAP", "a Xiaomi", "a
+  Multi", "a Electrolux". É verdadeiro **por acidente do banco**, da mesma família
+  do que este bloco consertou, e o primeiro publicador masculino quebra a
+  concordância nas quatro frases de uma vez.
+- (d) A matriz de divergência dos **modelos** (`modelos-robo.json`) segue sem
+  origem: lá a divergência é de campo e valor, não de conjunto de modelos.
+- (e) Os 32 `url_busca` dependem de **uma** sessão do painel da Shopee.
+- (f) O reenvio do sitemap no Search Console, metade humana do despacho de 10/09,
+  segue travando a leva de malha 5b e a categoria de reservatórios.
+- (g) 13 arquivos seguem fora do manifest — **a bateria nova entrou**, então a
+  dívida não cresceu.
+- (h) A ilha **não tem página de privacidade**, com GA4 no ar.
+- (i) As quatro escovas WAP seguem sem código, e o egresso direto aos três
+  domínios da WAP segue em `000`, remedido nesta execução com
+  `robometria.com.br` em 200 na mesma passada.
+
+### Próximo passo, com ordem e motivo
+
+1. **O artigo do publicador**, que é a dívida (c): o mesmo defeito desta execução
+   um degrau acima, e cabe num bloco pequeno. O gênero tem de sair **declarado ao
+   lado do publicador no banco**, nunca adivinhado do nome.
+2. **O recipiente dos outros quatro modelos WAP** (W400, W1000, W310 e W100C), que
+   hoje depende de decidir se a vista explodida de cada modelo sustenta o par — e
+   ela está atrás do egresso fechado.
+3. A página de privacidade, com o molde da aquametria.
+4. A escada na tela, no minuto em que houver `url_busca`.
