@@ -448,14 +448,24 @@ MUTACOES = [
            "\t\t\t'linha_mestra' => 'Vivíparo não tem um número: destes três está declarado com quem cada um vive — mais fêmeas do que machos — e nunca quantos. O que decide o seu aquário é a frente, e entre dois peixes do mesmo gênero, vendidos na mesma prateleira, ela varia em duas vezes.',\n",
            "")),
 
-    ("A LISTA DE ESPECIES E PREENCHIDA ANTES DA LEVA: a categoria sem URL ja nomeia as tres",
+    # MUNDO PRODUZIDO, e ele MUDOU DE ENDERECO em 14/09/2026. Ate a leva 5 esta
+    # mutacao preenchia a lista da `vivaparos`, que era a categoria preparada e
+    # sem URL do repositorio; com ela no ar, o alvo antigo virou MUTACAO INERTE —
+    # o estado que ela quebrava deixou de existir. O que ela mede continua o
+    # mesmo e continua valendo: categoria que declara especie e nao esta no
+    # registro do eixo vira cartao com link para pagina que nao existe, que e a
+    # pagina fina que o 16.5 existe para nao deixar entrar no indice. O alvo
+    # passa a ser a `plecos-e-limpa-vidros`, que e uma das duas que hoje estao na
+    # primeira vida, e o mundo e produzido inteiro: criterio, linha mestra e uma
+    # especie do banco que a categoria sustenta.
+    ("MUNDO PRODUZIDO: a categoria sem URL ganha criterio, linha mestra e uma especie",
      troca(PEIXES,
-           " Quantas estão dentro e quantas esperam está contado logo abaixo da tabela, nunca escrito aqui.',\n\t\t\t'especies' => array(),",
-           " Quantas estão dentro e quantas esperam está contado logo abaixo da tabela, nunca escrito aqui.',\n"
+           "\t\t\t'singular' => 'todo pleco e todo limpa-vidros',\n\t\t\t'criterio' => '',\n\t\t\t'especies' => array(),",
+           "\t\t\t'singular' => 'todo pleco e todo limpa-vidros',\n"
+           "\t\t\t'linha_mestra' => 'Limpa-vidros não é faxineiro: o que decide o seu aquário é o chão que ele tem para raspar.',\n"
+           "\t\t\t'criterio' => 'Os peixes de fundo que a loja brasileira vende como limpa-vidros.',\n"
            "\t\t\t'especies' => array(\n"
-           "\t\t\t\t'xiphophorus-maculatus',\n"
-           "\t\t\t\t'xiphophorus-hellerii',\n"
-           "\t\t\t\t'xiphophorus-variatus',\n"
+           "\t\t\t\t'otocinclus-vittatus',\n"
            "\t\t\t),")),
 
     ("O CRITERIO PARA DE NOMEAR A FAMILIA QUE ELE MESMO DECLARA COMO CRITERIO",

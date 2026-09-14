@@ -4,7 +4,7 @@ Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e
 o proximo passo desbloqueado, e espelha o mesmo resumo em
 `/areas/projeto-aquametria.md` na memoria.
 
-## 2026-09-14 13h19Z — LEVA 5: A QUARTA CATEGORIA, E A PRIMEIRA EM QUE NENHUMA FILHA TEM NÚMERO DECLARADO (peixes 1.8.0, manifest revisão 78; QUATRO URLs novas — `/peixes/vivaparos/` e as fichas do platy, do peixe-espada e do plati variatus)
+## 2026-09-14 13h19Z — LEVA 5: A QUARTA CATEGORIA, E A PRIMEIRA EM QUE NENHUMA FILHA TEM NÚMERO DECLARADO (peixes 1.8.0, manifest revisão 79; QUATRO URLs novas — `/peixes/vivaparos/` e as fichas do platy, do peixe-espada e do plati variatus)
 
 **A ESCOLHA DA ILHA: primeira tentada, e sem corrida.** Os três `ESTADO.md` estavam com `executando_desde: null`, que pela 1.1 já significa que não há bloco da Fundação vivo — o git não precisou desempatar nada. Pela 18.1 procurei despacho aberto antes da rotação: os três `PROMPT.md` foram lidos e nenhum tem despacho para a Fundação de pé (o da clubedomosaico, de 14/09, foi fechado inteiro na execução das 11h18Z e já está em FECHADOS; `dados/despachos.md` tem quatro abertos e os quatro são do RAPHAEL, nenhum bloqueando bloco). Sobrou a rotação da seção 1, e a aquametria tinha a `ultima_execucao` mais antiga: 11h25Z, contra 11h44Z da robometria e 12h45Z da clubedomosaico. Nenhum branch `claude/*` com o que mesclar e nenhum PR aberto. **Rede pela 20.2, antes de trabalhar:** home em 200 e `/status` na revisão 77, igual à do manifest, em UMA passada.
 
@@ -54,13 +54,21 @@ São o **guppy** e o **molly**, os dois vivíparos mais vendidos do Brasil, cada
 
 **A parede do molly não mudou nesta execução e continua sendo a mesma:** os dois corpos já foram perguntados em 13/09 — o compêndio publica a seção de dimensões vazia e a base científica, em duas passadas limpas, devolveu o número da espécie vizinha. O desbloqueio depende da leitura direta, que é o **despacho de egresso aberto para o Raphael** em `dados/despachos.md`. Nada foi tentado de novo aqui, e nada foi completado por vizinhança.
 
-### 6. UMA TROCA DE TELA NO BANCO, declarada
+### 6. UM TERCEIRO DEFEITO NO AR, ACHADO LENDO A FICHA NOVA COMO UM LEITOR LERIA — e ele era total
+
+A linha **"De onde vem"** da tabela de fontes da ficha do plati variatus servia *"bacias que drenam para o Golfo do **Mexico**, do sul de Tamaulipas ao norte de Veracruz (**Mexico**)"*. Medido no banco inteiro: **15 de 15** registros que declaram `origem_geografica` estavam sem **um** acento — "America do Sul: bacia do rio Parana", "Asia: Paquistao, India e Bangladesh", "Sudeste asiatico: Malasia, Singapura e Indonesia". Está no ar desde 12/09/2026, em onze fichas, e foi conferido com `curl` na página do tetra ember antes de qualquer conserto.
+
+É a **mesma cicatriz de 12/09**, no campo vizinho. Aquela correção acentuou `nomes_populares_br`, criou a tabela declarada de forma-errada → forma-certa no esquema e a regra **E17** no validador. O que ela não fez foi perguntar **quais outros campos vão inteiros para a tela** — e `origem_geografica` vai, na linha "De onde vem" de toda ficha. Regra que nomeia um campo não protege o campo vizinho, e o vizinho aqui nasceu do mesmo arrasto: o resto do arquivo é nota interna e por isso é escrito sem acento.
+
+Os 15 foram acentuados e **a régua foi ampliada em vez de repetida**: a lista de campos de tela passou a morar no esquema, ao lado da tabela, e a E17 varre os dois. Os 21 topônimos entraram na tabela declarada — que continua sendo declarada e nunca adivinhada por vizinhança, como o próprio esquema diz. A régua foi exercitada desacentuando um registro de propósito: reprova com os dois tokens nomeados.
+
+### 7. UMA TROCA DE TELA NO BANCO, declarada
 
 Os nomes populares do `xiphophorus-hellerii` foram reordenados para pôr **"peixe-espada"** na frente de "espada". É o precedente da colisa-anão, de 14/09 de manhã, aplicado pelo mesmo motivo: `aquametria_peixes_nome()` lê o PRIMEIRO do campo e é ele que vai para o título, para o corpo e para a tabela da categoria; a consulta classificada é "quantos litros para peixe espada", e "espada" sozinho é ambíguo fora do aquarismo. Nenhum número mudou, e a troca está escrita na observação do registro.
 
 ### Verificação
 
-**Bancada, 0 falha:** `teste-peixes` **2219** afirmações (eram 1775), `teste-voz` TUDO OK com as quatro páginas novas dentro, `teste-arvore`, `teste-datas-schema` 102 (eram 90), `teste-seo-tecnico` 411, `teste-ga4` 568, `teste-apelidos` 59, `teste-escada-compra` 522, `conferir-entidades`, `conferir-slugs`, `conferir-protecao-funcoes`, `validar-especies` 37 registros com o mesmo aviso E15 do guppy, `testar-validador-especies` 24 casos, `validar-produtos`, `php -l` limpo em tudo.
+**Bancada, 0 falha:** `teste-peixes` **2219** afirmações (eram 1775), `teste-voz` TUDO OK com as quatro páginas novas dentro, `teste-arvore`, `teste-datas-schema` 102 (eram 90), `teste-seo-tecnico` 411, `teste-ga4` 568, `teste-apelidos` 59, `teste-escada-compra` 522, `conferir-entidades`, `conferir-slugs`, `conferir-protecao-funcoes`, `validar-especies` 37 registros com o mesmo aviso E15 do guppy (e a E17 agora varrendo os dois campos de tela), `testar-validador-especies` 24 casos, `validar-produtos`, `php -l` limpo em tudo.
 
 **Receita, sem mudança:** espécie não é produto e nenhum produto entrou ou saiu do banco. Seguem 39 dos 78 com ficha de loja, **0 com piso**, 78 sem piso; dos 39 sem ficha, 9 não têm loja possível hoje. **Pauta da seção 17:** `pauta.md` ainda não existe — 0 escritos, 0 na fila, 0 recusados.
 

@@ -27,7 +27,7 @@
     "ember tetra"
    ],
    "familia": "Acestrorhamphidae",
-   "origem_geografica": "America do Sul: bacia do rio Araguaia",
+   "origem_geografica": "América do Sul: bacia do rio Araguaia",
    "porte_adulto_cm": 2.0,
    "porte_medida": "SL",
    "porte_sexo": "nao-sexado",
@@ -307,7 +307,7 @@
     "cardinal"
    ],
    "familia": "Acestrorhamphidae",
-   "origem_geografica": "Alto Orinoco e bacia do rio Negro, America do Sul",
+   "origem_geografica": "Alto Orinoco e bacia do rio Negro, América do Sul",
    "porte_adulto_cm": 3.0,
    "porte_medida": "SL",
    "porte_sexo": "nao-sexado",
@@ -999,7 +999,7 @@
     "tanictis"
    ],
    "familia": "Tanichthyidae",
-   "origem_geografica": "Asia: China e Vietna",
+   "origem_geografica": "Ásia: China e Vietnã",
    "porte_adulto_cm": 4.0,
    "porte_medida": "TL",
    "porte_sexo": "nao-sexado",
@@ -1429,7 +1429,7 @@
     "rasbora"
    ],
    "familia": "Danionidae",
-   "origem_geografica": "Sudeste asiatico: Malasia, Singapura e Indonesia",
+   "origem_geografica": "Sudeste asiático: Malásia, Singapura e Indonésia",
    "porte_adulto_cm": 5.0,
    "porte_medida": "TL",
    "porte_sexo": "nao-sexado",
@@ -1931,7 +1931,7 @@
     "cory sterbai"
    ],
    "familia": "Callichthyidae",
-   "origem_geografica": "America do Sul: Brasil central e Bolivia",
+   "origem_geografica": "América do Sul: Brasil central e Bolívia",
    "porte_adulto_cm": 6.8,
    "porte_medida": "SL",
    "porte_sexo": "nao-sexado",
@@ -2151,7 +2151,7 @@
     "cascudinho"
    ],
    "familia": "Callichthyidae",
-   "origem_geografica": "America do Sul, da Colombia e Trinidad ate a bacia do Prata, a leste dos Andes",
+   "origem_geografica": "América do Sul, da Colômbia e Trinidad até a bacia do Prata, a leste dos Andes",
    "porte_adulto_cm": 7.5,
    "porte_medida": "SL",
    "porte_sexo": "nao-sexado",
@@ -2406,7 +2406,7 @@
     "cascudo-barbudo"
    ],
    "familia": "Loricariidae",
-   "origem_geografica": "America do Sul: bacia do rio Parana",
+   "origem_geografica": "América do Sul: bacia do rio Paraná",
    "porte_adulto_cm": 8.9,
    "porte_medida": "SL",
    "porte_sexo": "nao-sexado",
@@ -2477,7 +2477,7 @@
     "arco-íris de boeseman"
    ],
    "familia": "Melanotaeniidae",
-   "origem_geografica": "Asia/Oceania: lagos Ajamaru, peninsula de Vogelkop, Irian Jaya, Indonesia",
+   "origem_geografica": "Ásia/Oceania: lagos Ajamaru, península de Vogelkop, Irian Jaya, Indonésia",
    "porte_adulto_cm": 9.0,
    "porte_medida": "SL",
    "porte_sexo": "macho",
@@ -2600,7 +2600,7 @@
     "gurami-anão"
    ],
    "familia": "Osphronemidae",
-   "origem_geografica": "Asia: Paquistao, India e Bangladesh",
+   "origem_geografica": "Ásia: Paquistão, Índia e Bangladesh",
    "porte_adulto_cm": 9.5,
    "porte_medida": "TL",
    "porte_sexo": "nao-sexado",
@@ -2784,7 +2784,7 @@
     "trichogaster pérola"
    ],
    "familia": "Osphronemidae",
-   "origem_geografica": "Asia: peninsula Malaia, Tailandia, Sumatra e Borneo",
+   "origem_geografica": "Ásia: península Malaia, Tailândia, Sumatra e Bornéu",
    "porte_adulto_cm": 12.0,
    "porte_medida": "TL",
    "porte_sexo": "nao-sexado",
@@ -2867,7 +2867,7 @@
     "disco azul"
    ],
    "familia": "Cichlidae",
-   "origem_geografica": "America do Sul: baixo Amazonas e afluentes a leste da confluencia do Negro com o Solimoes",
+   "origem_geografica": "América do Sul: baixo Amazonas e afluentes a leste da confluência do Negro com o Solimões",
    "porte_adulto_cm": 13.7,
    "porte_medida": "SL",
    "porte_sexo": "nao-sexado",
@@ -2942,7 +2942,7 @@
     "puntius rosado"
    ],
    "familia": "Cyprinidae",
-   "origem_geografica": "Asia: Afeganistao, Paquistao, India, Nepal e Bangladesh",
+   "origem_geografica": "Ásia: Afeganistão, Paquistão, Índia, Nepal e Bangladesh",
    "porte_adulto_cm": 14.0,
    "porte_medida": "TL",
    "porte_sexo": "nao-sexado",
@@ -3113,7 +3113,7 @@
     "tricogaster-três-pintas"
    ],
    "familia": "Osphronemidae",
-   "origem_geografica": "Asia: bacia do Mekong no Laos, em Yunnan (China), na Tailandia, no Camboja e no Vietna",
+   "origem_geografica": "Ásia: bacia do Mekong no Laos, em Yunnan (China), na Tailândia, no Camboja e no Vietnã",
    "porte_adulto_cm": 15.0,
    "porte_medida": "SL",
    "porte_sexo": "nao-sexado",
@@ -3628,7 +3628,7 @@
     "gourami mel"
    ],
    "familia": "Osphronemidae",
-   "origem_geografica": "Asia: India e Bangladesh",
+   "origem_geografica": "Ásia: Índia e Bangladesh",
    "porte_adulto_cm": 5.5,
    "porte_medida": "SL",
    "porte_sexo": null,
@@ -3722,7 +3722,7 @@
     "platy variatus"
    ],
    "familia": "Poeciliidae",
-   "origem_geografica": "bacias que drenam para o Golfo do Mexico, do sul de Tamaulipas ao norte de Veracruz (Mexico)",
+   "origem_geografica": "bacias que drenam para o Golfo do México, do sul de Tamaulipas ao norte de Veracruz (México)",
    "porte_adulto_cm": 7.0,
    "porte_medida": "TL",
    "porte_sexo": "nao-sexado",

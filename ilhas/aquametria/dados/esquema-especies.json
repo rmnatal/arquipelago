@@ -560,7 +560,7 @@
   "rascunho": "registro aberto sem fonte suficiente. Nunca sai na tela."
  },
  "acentuacao_de_texto_de_tela": {
-  "descricao": "nomes_populares_br e TEXTO DE TELA: e o nome que a ficha, a tabela da categoria e a lista de quem divide a mesma agua imprimem, e o que o leitor de tela le. O resto deste arquivo e escrito sem acento de proposito - e nota interna -, e por isso o campo nasceu sem acento junto com tudo, em 09/09/2026. Ninguem viu durante tres levas porque as tres primeiras fichas (tetra neon, neon cardinal, mato-grosso) sao nomes que o portugues nao acentua. A leva 2 abriu a ficha do rodostomo e o defeito apareceu quinze vezes na mesma pagina, com o titulo dizendo rodostomo e o corpo dizendo rodostomo.",
+  "descricao": "nomes_populares_br e origem_geografica sao TEXTO DE TELA: e o nome que a ficha, a tabela da categoria e a lista de quem divide a mesma agua imprimem, e o que o leitor de tela le. O resto deste arquivo e escrito sem acento de proposito - e nota interna -, e por isso o campo nasceu sem acento junto com tudo, em 09/09/2026. Ninguem viu durante tres levas porque as tres primeiras fichas (tetra neon, neon cardinal, mato-grosso) sao nomes que o portugues nao acentua. A leva 2 abriu a ficha do rodostomo e o defeito apareceu quinze vezes na mesma pagina, com o titulo dizendo rodostomo e o corpo dizendo rodostomo.",
   "medido_em_12_09_2026": "No ar, na pagina do tetra neon, ja estavam servidos sem acento: coridora-panda (certo, e paroxitona), peixe-lapis, acara-bandeira e outros vindos da tabela de companheiros. 24 nomes em 15 dos 36 registros foram acentuados.",
   "como_a_regra_morde": "Tabela declarada de forma-errada -> forma-certa, aplicada TOKEN a token (separando por espaco e por hifen) sobre nomes_populares_br. Registro com token da coluna errada reprova no validar-especies.py (regra E17).",
   "o_que_ela_NAO_pega": "Palavra nova que ninguem errou ainda. E deliberado: heuristica de 'parece que falta acento' seria adivinhacao, e a secao 8 do contrato proibe perdoar ou reprovar por vizinhanca. Esta tabela e uma cicatriz que virou portao: cada erro achado entra aqui e nunca mais volta.",
@@ -584,7 +584,34 @@
    "acara-acu": "acará-açu",
    "tricogaster-tres-pintas": "tricogaster-três-pintas",
    "botia-palhaco": "botia-palhaço",
-   "japones": "japonês"
-  }
+   "japones": "japonês",
+   "America": "América",
+   "america": "américa",
+   "Asia": "Ásia",
+   "asiatico": "asiático",
+   "Africa": "África",
+   "Mexico": "México",
+   "(Mexico)": "(México)",
+   "Parana": "Paraná",
+   "Bolivia": "Bolívia",
+   "Colombia": "Colômbia",
+   "Indonesia": "Indonésia",
+   "Malasia": "Malásia",
+   "Vietna": "Vietnã",
+   "Tailandia": "Tailândia",
+   "India": "Índia",
+   "Paquistao": "Paquistão",
+   "Afeganistao": "Afeganistão",
+   "peninsula": "península",
+   "Borneu": "Bornéu",
+   "confluencia": "confluência",
+   "Solimoes": "Solimões",
+   "ate": "até"
+  },
+  "campos": [
+   "nomes_populares_br",
+   "origem_geografica"
+  ],
+  "medido_em_14_09_2026": "A leva 5 achou a MESMA cicatriz no outro campo de tela, e ali ela era total: origem_geografica ia para a linha 'De onde vem' da tabela de fontes em 15 de 15 registros que a declaram, e os 15 estavam sem UM acento — 'America do Sul: bacia do rio Parana', 'Asia: Paquistao, India e Bangladesh'. Estava no ar desde 12/09 em onze fichas. O campo nasceu do mesmo arrasto que o dos nomes populares e sobreviveu a correcao de 12/09 porque a regra E17 nomeava um campo so. Os 15 foram acentuados e os toponimos entraram na tabela."
  }
 }

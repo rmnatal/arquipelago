@@ -4,7 +4,7 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 78,
+  "revisao": 79,
   "atualizado_em": "2026-09-14",
   "estado": "fundacao",
   "desembarque": {
@@ -130,7 +130,7 @@
       "ativo": true,
       "versao": "1.8.0",
       "publicar": true,
-      "sha256": "0753f3bd7cf3dea0f2b95cf3f02393c6531db5428aa06b11d87040c12fe43cb6",
+      "sha256": "f638cb95c49443d158c990988926de1ff4a637f706886310e7d5a2034dbcedf4",
       "descricao": "T4, levas 1 a 5 da malha: VINTE E DUAS URLs no eixo que a Bussola verificou ABERTO e que e o de maior volume de busca da ilha. Nivel 1 /peixes/, QUATRO categorias de nivel 2 (/peixes/tetras/ com 7 fichas, /peixes/corydoras/ com 4, /peixes/bettas/ com 3 e /peixes/vivaparos/ com 3) e as dezessete fichas de especie. v1.8.0 (14/09/2026), LEVA 5: a quarta categoria, e a primeira em que NENHUMA filha tem numero declarado — as tres vivem em harem, que e o unico valor do vocabulario fechado em que a fonte descreve a proporcao entre os sexos e nunca o tamanho do grupo. A leva 4 escreveu os tres mundos da escada de lotacao e publicou dois; o terceiro ficou como ramo de RESGATE e estava errado: abria pela traducao de como_vive(), que carrega a oracao do temperamento, e a primeira frase da ficha citaria quem declarou, contra a 15.2. O ramo virou branch com nome e o resgate deixou de existir — pode_virar_ficha() passa a exigir que o termo esteja no vocabulario fechado, que e o que o cabecalho da 1.7.0 ja afirmava e o codigo nao fazia. DOIS DEFEITOS QUE JA ESTAVAM NO AR sairam junto, os dois de concordancia e os dois medidos no HTML servido: '1 ficaram fora porque o banco os declara agressivos', com um unico peixe agressivo no banco; e 'cabem 1 coridora sterbai ... a diferenca entre os dois e de 4 vezes', em que o verbo estava no plural e o numero saia das CONSTANTES em vez dos dois numeros impressos — ele errava em DEZ das quatorze fichas no ar e erra por SETE vezes no peixe-espada, o maior peixe com ficha da ilha. A linha mestra e o criterio da categoria foram reescritos na leva que os publicou: a versao de 13/09 prometia numero de reproducao que nenhuma fonte declara e dizia que manda o macho enquanto o criterio dizia que manda a femea. A categoria declara as CINCO Poeciliidae e o portao barra duas — o guppy e o molly, os dois viviparos mais vendidos do Brasil, cada um a um campo de entrar —, com nome e causa na pagina. SERP da MAE classificada em 14/09/2026, a unica do eixo em que o top 7 nao fala do assunto; as tres fichas seguem com serp_em 13/09/2026."
     }
   ],
@@ -456,7 +456,7 @@
       "verificado_em": "2026-09-11",
       "registros": 0,
       "publicar": false,
-      "sha256": "fe01c92c774ce16983d256338a07ff02eb328d6146e2117729f8cebad1e2efa4",
+      "sha256": "a14ba980ea3f18c9881457592d46881fc750b105591892a7886c6c749fbb0240",
       "descricao": "Contrato formal do banco de especies (versao 3): campos, unidades, vocabulario controlado, a escada de 6 niveis de fonte para especie (nao existe fabricante de peixe: existem base cientifica e compendio de aquarismo), a tabela dominio_por_campo — que diz qual escada manda em qual campo, porque FishBase e melhor em biologia e o compendio e melhor em manutencao — e as regras E1 a E16. Tres decisoes valem para sempre: em conflito de campo de BEM-ESTAR o conservador e o MAIOR (o oposto do banco de produtos), volume minimo em litro nunca se grava porque e derivado da base com a altura do usuario, e espelho nao confere espelho (fishbase.se e fishbase.org sao uma fonte so, regra E15). A versao 3 acrescentou as duas regras que este canal de coleta cobrou: a REGRA DA CONGENERE (o resumo de busca oferece o numero da especie irma quando a ficha da alvo nao publica o campo, e numero sem o nome da especie do lado e recusa, nao dado; reproduzir tambem nao e conferir) e o E16, que cobra que todo numero de campo apareca no texto da fonte citada."
     },
     {
@@ -465,11 +465,11 @@
       "formato": "json",
       "entidade": "especie",
       "fonte": "ver fontes[] de cada registro: FishBase (base-cientifica-via-busca) e Seriously Fish (compendio-via-busca), os dois colhidos por busca restrita ao dominio porque o egresso bloqueia leitura direta",
-      "verificado_em": "2026-09-13",
+      "verificado_em": "2026-09-14",
       "registros": 37,
       "publicar": false,
-      "sha256": "988b1d59eb95836cd974f43b24f266060895429f821f5d7767d55f115c3ef0fe",
-      "descricao": "Banco de especies: 36 peixes do varejo brasileiro, de 2,0 cm (tetra ember) a 48,0 cm (kinguio), com porte, faixa termica, pH, dureza, cardume minimo, frente e base minimas de aquario, familia e convivencia, cada campo atribuido a uma fonte com url e data. Frentes minimas declaradas de 45 a 180 cm, em dez degraus — e a malha de pagina de volume sem repetir numero. 28 dos 36 passam no portao de pagina de especie e 32 alimentam a C8; os 8 barrados dizem no proprio registro qual campo falta e por que nao foi estimado. Em 13/09/2026 o gurami mel saiu dos barrados: o porte que a FishBase declara (13,7 cm TL) segue RECUSADO pela contradicao interna da propria ficha, e quem sustenta o campo agora e a ficha da mesma especie no compendio, com 55 mm SL colhidos em duas passadas independentes — mais o cardume de 4 a 6 que a mesma ficha declara. Os dois guramis grandes (perola e tricogaster) continuam sem convivencia depois de quatro passadas em dois corpos, e a ausencia esta medida, nao presumida. Existe para destravar o eixo aberto \"quantos litros para X peixes\" com dado em vez da regra de bolso de 1 cm por litro."
+      "sha256": "51dca6440444b7026fc9c2c185c5c0134ef790e38a638946c8b780070e7eb5ba",
+      "descricao": "Banco de especies: 37 peixes do varejo brasileiro, de 2,0 cm (tetra ember) a 48,0 cm (kinguio), com porte, faixa termica, pH, dureza, cardume minimo, frente e base minimas de aquario, familia e convivencia, cada campo atribuido a uma fonte com url e data. Frentes minimas declaradas de 45 a 180 cm, em dez degraus — e a malha de pagina de volume sem repetir numero. 29 dos 37 passam no portao de pagina de especie; os 8 barrados dizem no proprio registro qual campo falta e por que nao foi estimado. Em 13/09/2026 o gurami mel saiu dos barrados (o porte que a FishBase declara segue RECUSADO pela contradicao interna da propria ficha, e quem sustenta o campo e o compendio, com 55 mm SL em duas passadas independentes) e o plati variatus entrou como 37o registro, levando /peixes/vivaparos/ ao minimo do 16.5. Os dois guramis grandes continuam sem convivencia depois de quatro passadas em dois corpos, e a ausencia esta medida, nao presumida. Em 14/09/2026, na leva 5: origem_geografica foi ACENTUADO nos 15 registros que o declaram — o campo vai para a linha 'De onde vem' da tabela de fontes de toda ficha, estava sem UM acento em 15 de 15 e no ar desde 12/09, porque a correcao de acentuacao de 12/09 nomeava so nomes_populares_br. A regra E17 passou a nomear os dois campos, com a lista morando no esquema ao lado da tabela. E a ordem dos nomes populares do xiphophorus-hellerii mudou, para por 'peixe-espada' na frente: o primeiro do campo e o que vai para a tela, e a consulta classificada e 'quantos litros para peixe espada'. Existe para destravar o eixo aberto \"quantos litros para X peixes\" com dado em vez da regra de bolso de 1 cm por litro."
     },
     {
       "id": "cobertura-de-faixa",
@@ -640,7 +640,7 @@
       "arquivo": "ferramentas/validar-especies.py",
       "publicar": false,
       "descricao": "Valida o banco de especies contra dados/esquema-especies.json (regras E1 a E16) e imprime quem ja passa no minimo_para_sugerir de cada consumidor (pagina de especie, C8 lotacao, C5 aquecedor), mais a faixa de porte e as frentes minimas cobertas. Aceita um caminho no argv, o que permite roda-lo contra bancos de teste. Rodar antes de todo commit que toque dados/especies-*.json. Ferramenta do repositorio: nao vai para o WordPress.",
-      "sha256": "f43e81781c76e99f090a2090bb5a489233d09db9088f8313f17387f3e07db690"
+      "sha256": "ed78d712cd908700497e4d43447dc71add6222b770675bf897ba6af7d00ccb82"
     },
     {
       "id": "testar-validador-especies",
@@ -779,7 +779,7 @@
       "id": "mutacoes-peixes",
       "arquivo": "ferramentas/mutacoes-peixes.py",
       "publicar": false,
-      "sha256": "0b5539ee5a6ce368328c2ab2af248920266005f32ec648bda0711c7d679ad384",
+      "sha256": "6e76976b396ba6a537182e434b6cbfb3ced44260f414e7521c150c36e0421522",
       "descricao": "24 mutacoes deliberadas contra o portao do eixo /peixes/, em tres familias: o numero muda (regua de lotacao trocada, extremo errado de conflito declarado, borda da tabela que desaparece); o numero fica e a ESTRUTURA quebra (a especie agressiva ganha lista de companheiro, o derivado per capita volta a ser multiplicado, categoria vazia registrada como pagina, Product no JSON-LD); e a regua perde o chao (o catalogo do snippet envelhece em relacao ao banco, a colisao de slug volta). 24 de 24 reprovadas — duas delas so depois de o portao passar a comparar celula, e nao texto da pagina."
     },
     {

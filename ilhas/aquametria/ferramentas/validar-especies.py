@@ -136,8 +136,14 @@ def main():
     campos_manutencao = set(dominio["manutencao"]["campos"])
     campos_bem_estar = {"cardume_minimo", "comprimento_minimo_aquario_cm", "base_minima_cm",
                         "altura_minima_cm"}
-    global ACENTUACAO
+    global ACENTUACAO, ACENTUACAO_CAMPOS
     ACENTUACAO = dict(esquema["acentuacao_de_texto_de_tela"]["tabela"])
+    # A LISTA DE CAMPOS DE TELA MORA NO ESQUEMA, ao lado da tabela, desde
+    # 14/09/2026. Ate ali ela estava DIGITADA aqui num campo so, e o campo
+    # vizinho — origem_geografica, que vai para a linha "De onde vem" de toda
+    # ficha — ficou tres dias no ar sem UM acento em 15 de 15 registros, porque
+    # a correcao de 12/09 acentuou o que a regra nomeava e mais nada.
+    ACENTUACAO_CAMPOS = list(esquema["acentuacao_de_texto_de_tela"]["campos"])
 
     banco = carregar(ARQUIVO)
     registros = banco["especies"]
@@ -312,12 +318,27 @@ def main():
         # falta acento" seria a heuristica por vizinhanca que a secao 8 do
         # contrato proibe. O que esta regra pega e o erro que ja foi achado uma
         # vez; o que ela nao pega esta escrito no proprio esquema.
-        for nome in r.get("nomes_populares_br") or []:
-            for token in str(nome).split(" "):
-                for pedaco in sorted(set([token] + token.split("-"))):
-                    if pedaco in ACENTUACAO:
-                        erro("E17", rid, "nome popular '%s' com '%s' sem acento; na tela e '%s'"
-                             % (nome, pedaco, ACENTUACAO[pedaco]))
+        #
+        # OS CAMPOS DE TELA SAO DOIS DESDE 14/09/2026, e ate ali esta regra
+        # nomeava um so. `origem_geografica` vai para a linha "De onde vem" da
+        # tabela de fontes de toda ficha, e estava sem UM acento em 15 de 15
+        # registros que a declaram — no ar desde 12/09, em onze paginas. Regra
+        # que nomeia um campo nao protege o campo vizinho, e o vizinho aqui
+        # nasceu do mesmo arrasto: o resto do arquivo e nota interna e por isso
+        # e escrito sem acento. A lista de campos mora no ESQUEMA, ao lado da
+        # tabela, para as duas crescerem juntas.
+        for campo in ACENTUACAO_CAMPOS:
+            valores = r.get(campo)
+            if valores is None:
+                continue
+            if not isinstance(valores, list):
+                valores = [valores]
+            for valor in valores:
+                for token in str(valor).replace(",", " ").split(" "):
+                    for pedaco in sorted(set([token] + token.split("-"))):
+                        if pedaco in ACENTUACAO:
+                            erro("E17", rid, "%s '%s' com '%s' sem acento; na tela e '%s'"
+                                 % (campo, valor, pedaco, ACENTUACAO[pedaco]))
 
         # E13 - tolerancia disfarcada de recomendacao
         t = r.get("temperatura_C")
