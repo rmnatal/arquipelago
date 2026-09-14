@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 9
 primeira_indexacao: desconhecida
 ultima_execucao: 2026-09-14T11:44Z
-executando_desde: null
+executando_desde: 2026-09-14T13:20Z
 bloco_atual: |
   QUEM DECLARA E O PUBLICADOR, E NUNCA O ROTULO DO LADO (R1 1.5.0, casca 1.5.1, manifest revisao 35, /status conferido as 11h36Z em UM disparo com 10 aplicados e a revisao batendo com o manifest; NENHUMA URL nova, NENHUMA URL mudou, NENHUMA peca entrou ou saiu do banco).
   POR QUE ESTE BLOCO: era a divida (a) do estado anterior — a unica que aquele bloco criou e nao consertou — e pela 18.5 ilha com defeito no ar nao recebe pagina nova. O item (1) do PROXIMO daquela execucao (o recipiente dos outros quatro modelos WAP) depende do egresso fechado aos dominios da WAP, que segue em 000.
