@@ -104,7 +104,7 @@ ATUALIZAÇÃO 11/09 (Pauta): quando existir `pauta.md` nesta pasta (seção 17 d
 
 ---
 
-### 1. O CACHE DO HOSPEDEIRO — **a causa foi afiada, o desembarque foi consertado, e SOBRA UMA MEDIÇÃO** (execução das 15h17Z de 14/09)
+### 1. O CACHE DO HOSPEDEIRO — **CUMPRIDO, e a medição que faltava foi feita às 19h33Z de 14/09: a purga entrega em 166 s, e a régua que decidia isso era cega para texto**
 
 **O que esta ronda achou está certo e era o topo de um defeito maior.** A causa não é "sem `gzip`": é **sem cabeçalho `Accept-Encoding` nenhum**. Medido nas mesmas URLs, em `/metodologia/`, às 15h20Z: `gzip` → página de hoje; `identity` → página de hoje; `br` → página de hoje; **nenhum cabeçalho → cópia de 11/09**. `curl -s` cru não manda o cabeçalho; navegador e Googlebot mandam. **As três ferramentas `conferir-*-no-ar.py` passaram a mandar `Accept-Encoding: identity`** — e a régua que mede a variante quebrada continua existindo, na seção 9 do `conferir-no-ar.py`, exatamente como esta ronda exigiu.
 
@@ -120,7 +120,13 @@ A casca 1.6.1 passou a purgar o cache na gravação das options da ilha, e **nas
 
 **ESTADO REAL, medido às 16h07Z no endereço canônico:** quatro saídas de compra pela busca, **zero** ocorrências da frase proibida, "73 linhas" na tabela, a `/divulgacao-de-afiliados/` limpa. `conferir-no-ar.py`: **220 afirmações, 0 falha**, seções 9, 10 e 11 incluídas. **Este item está CUMPRIDO.**
 
-**O QUE FICA, e não bloqueia nada:** (a) o despacho para o Raphael foi **rebaixado de ALTA para NORMAL** e pede, como oportunidade, uma purga por API do painel, para a entrega deixar de depender de uma função nossa apagando arquivo; (b) **o teste que transforma a inferência em medição**, para a próxima execução: publicar uma revisão que mude texto servido e ver se o canônico muda em minutos com a purga presente. (c) A reconferência que esta ronda pediu — *"medir de novo duas horas depois"* — segue de pé, e quem pegar esta ilha roda `conferir-no-ar.py` e olha as seções 9, 10 e 11 **antes de qualquer outra coisa**.
+**OS ITENS (b) E (c) FORAM EXECUTADOS NA EXECUÇÃO DAS 19h17Z DE 14/09, e o (b) devolveu DUAS coisas — uma esperada e uma que ninguém procurava.**
+
+- **(c) A reconferência "duas horas depois": PASSOU.** `conferir-no-ar.py` às 19h20Z, antes de qualquer trabalho: **220 afirmações, 0 falha**, seções 9, 10 e 11 incluídas. A purga continuava entregando três horas depois de restaurada.
+- **(b) A inferência virou medição, e a purga PEGA — só que não na hora.** A revisão 43 (a leva do Xiaomi S10) mudou texto servido de verdade: o artigo-âncora passou a nomear `S20, S10, E10, S12, E12, X20` no lugar de `HO041, HO400, HO401, HO407, OB010`. Sync às **19h30:50Z**; canônico ainda VELHO às **19h33:30Z** (com a quebra de cache já servindo o novo, medido a um segundo de distância); canônico NOVO às **19h33:36Z**, com a entrada de cache nova criada às 19h33:35Z (`expires` 21h33:35, `max-age` 7200 s). **166 segundos**, e não os 7200 do vencimento por tempo: a atribuição de 14/09 está certa, e ganha um número.
+- **E O ACHADO QUE O TESTE NÃO PROCURAVA: a seção 10 era CEGA para mudança de texto.** Ela comparava três contagens de marcador — saídas de compra, degraus de trilha e blocos de compra — enquanto o docstring prometia comparar "a revisão servida", que **não existe no HTML e nunca foi implementada**. Nenhuma das três se move quando o desembarque troca uma palavra, que é o desembarque mais comum desta ilha. Às 19h33:30Z ela teria aprovado, item por item, a página velha que o leitor estava recebendo. Consertado na mesma passada: a afirmação passa a ser sobre **a impressão do leitor** (o texto servido, sem marcação e sem a chave de quebra de cache), e ela repete dentro de um orçamento **declarado** de 360 s, imprimindo o atraso que mediu — janela conhecida vira número em vez de alarme falso, que é o erro que custou quatro revisões de diagnóstico às 15h17Z. A prova de que a trava morde está em `ferramentas/mutacoes-canonico-velho.py`, que reconstrói o par velho/novo de hoje e mostra as contagens empatando enquanto a impressão separa. `conferir-no-ar.py` foi de 220 para **229 afirmações**.
+
+**O QUE FICA, e não bloqueia nada:** (a) o despacho para o Raphael segue **NORMAL** — a medição de hoje confirma que a purga entrega, então a purga por API do painel continua sendo oportunidade e não conserto. **A primeira coisa de toda execução desta ilha continua sendo rodar `conferir-no-ar.py` e olhar as seções 9, 10 e 11**; o que mudou é que agora a 10 vê texto, e um atraso impresso em segundos é informação, não defeito.
 
 ### 2. OS DOIS NÚMEROS DA R1 — **CUMPRIDO E CONFERIDO NO AR** (R1 1.8.0, 14/09/2026)
 
@@ -559,8 +565,23 @@ qualquer página nova:
   está medido e é honesto: a R1 continua respondendo em 20 modelos e passa a sair
   **vazia em 13** (era 8), e a página de metodologia publica os dois números
   contados. Ordem "modelo antes de peça" cumprida.
-  **O PRÓXIMO PASSO AGORA é a PEÇA da WAP, e ela está a DUAS medições de
-  distância — não de rede.** A varredura de 13/09 já abriu as páginas de acessório
+  ~~**O PRÓXIMO PASSO AGORA é a PEÇA da WAP.**~~ **REMEDIDO EM 14/09/2026, 19h25Z,
+  e o resultado foi NEGATIVO — o que muda a ordem da fila, não o diagnóstico.** A
+  peça da WAP foi o primeiro alvo desta execução, e as duas medições pedidas abaixo
+  foram feitas: (i) o egresso direto a `loja.wap.ind.br`, `blog.wap.ind.br` e
+  `www.wap.ind.br` devolveu `000` nos três, com `connect_rejected` do proxy, e o
+  `WebFetch` devolveu `EGRESS_BLOCKED`; (ii) **a passada limpa não devolve o
+  código**. Buscando com `FW006267` na consulta, ele volta — o que é circular e não
+  vale; buscando pelo título do produto, restrito a `loja.wap.ind.br`, a página
+  aparece e **o campo da ficha não**, com a própria busca dizendo que o número não
+  estava no conteúdo recuperado. É a terceira passada limpa a falhar no mesmo
+  ponto, em execuções diferentes: **não é teimosia da busca, é o canal.** E os
+  quatro modelos WAP que continuam no vazio da R1 (W400, W1000, W310, W100C) não
+  têm página de peça de reposição na loja — duas passadas devolveram só a página do
+  próprio robô e categorias genéricas. Fica valendo: quem destrava é o egresso
+  abrindo, ou alguém lendo a ficha no navegador. **Por isso o alvo desta execução
+  passou a ser o Xiaomi, que é o canal que funciona** — e a leva B106GL tirou o S10
+  do vazio. A varredura de 13/09 já abriu as páginas de acessório
   por modelo (W300 com 9 acessórios em 7 categorias — filtro, escova, carregador,
   recipiente, mop, controle remoto e pincel; WSMART com 9; W90 com escova rotativa
   e carregador) e `marcas.json` já tem o `canal_de_pecas` da marca. **O que

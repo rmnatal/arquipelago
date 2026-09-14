@@ -4118,3 +4118,145 @@ e isso vem antes de construir qualquer coisa. **É também o teste que decide a
 atribuição da purga:** publicar uma revisão que mude texto servido e ver se o
 canônico muda em minutos com a função presente. Se mudar com ela e parar sem ela,
 a inferência de hoje vira medição.
+
+---
+
+## 14/09/2026, 19h17Z — A família B106GL do Xiaomi S10, e a régua do desembarque que era cega para texto
+
+**Ilha escolhida pela 18.1 e pela 18.5, não pela rotação.** Os cinco `ESTADO.md`
+estavam com `executando_desde: null`, o que pela 1.1 já basta para dizer que não
+há bloco da Fundação vivo — o git só desempata reserva VENCIDA. Pela rotação a
+aquametria era a mais antiga (15h52Z contra 16h05Z); a robometria veio na frente
+porque o despacho da Sentinela de 14/09 tinha item **endereçado à próxima
+execução desta ilha**, e verificação vem antes de construção. Reserva ganha sem
+corrida. Rede pela 20.2 antes de trabalhar: home 200, `/status` na revisão 42,
+igual à do `manifest.json`.
+
+### O item (c): a reconferência passou
+
+`conferir-no-ar.py` às 19h20Z, antes de tocar em qualquer coisa: **220
+afirmações, 0 falha**, seções 9, 10 e 11 incluídas. Três horas depois de a purga
+ser restaurada, ela continuava entregando.
+
+### O item (b): a inferência virou medição, e a purga PEGA — em 166 segundos
+
+A revisão 43 mudou texto servido de verdade, que era a condição do teste: o
+artigo-âncora passou a nomear `S20, S10, E10, S12, E12, X20` no lugar de
+`HO041, HO400, HO401, HO407, OB010`, porque a peça de maior alcance do banco
+trocou de dono. A linha do tempo, medida:
+
+- **19h30:50Z** — Sync aplica a revisão 43 ("10 aplicado(s)"), `/status` responde 43.
+- **19h33:30Z** — canônico serve o texto **VELHO**; a mesma URL com quebra de cache serve o **NOVO**, medido a um segundo de distância.
+- **19h33:35Z** — entrada de cache nova criada (`expires` 21h33:35, `max-age` 7200 s).
+- **19h33:36Z** — canônico serve o texto **NOVO**.
+
+**166 segundos**, e não as duas horas do vencimento por tempo. A atribuição
+escrita como inferência em 14/09 está certa e agora tem número: a purga entrega,
+e não entrega na hora.
+
+### E o achado que o teste não procurava, que é maior que o teste
+
+**A seção 10 do `conferir-no-ar.py` era cega para mudança de texto.** Ela
+comparava **três contagens de marcador** — saídas de compra, degraus de trilha,
+blocos de compra — e mais nada, enquanto o próprio docstring prometia comparar
+"a revisão servida": uma marca de versão que **não existe no HTML e nunca foi
+implementada**. Duas metades do mesmo arquivo em desacordo, e a que valia era a
+pior.
+
+O custo não é hipotético: às 19h33:30Z, com o leitor recebendo a página velha,
+essa função aprovaria as nove páginas item por item. A leva mudou **qual código**
+o artigo nomeia e **quantos pares** a ferramenta cobre — nenhuma das três
+contagens se move com isso, e mudar palavra é o desembarque mais comum desta
+ilha.
+
+Consertado na mesma passada. A afirmação passou a ser sobre a **impressão do
+leitor**: o texto servido, sem marcação, sem `script`, sem a chave de quebra de
+cache (que aparece em link interno e no canonical, e compará-la garantiria
+desacordo). E, porque a janela de 166 s agora é conhecida, a comparação
+**repete dentro de um orçamento DECLARADO de 360 s e imprime o atraso que
+mediu** — janela conhecida vira número em vez de alarme falso. Alarme falso lido
+como falha foi exatamente o que custou quatro revisões de diagnóstico às 15h17Z,
+e chegou a fazer a execução **retirar a purga que funcionava**.
+
+`ferramentas/mutacoes-canonico-velho.py` nasceu para provar que a trava morde:
+reconstrói o par velho/novo de hoje e mostra as três contagens **empatando**
+enquanto a impressão do leitor **separa**. `conferir-no-ar.py` foi de 220 para
+**229 afirmações**, 0 falha.
+
+### O alvo de coleta trocou por medição, não por gosto
+
+A peça da WAP era o próximo passo escrito, e foi remedida primeiro:
+
+- **Egresso direto** a `loja.wap.ind.br`, `blog.wap.ind.br` e `www.wap.ind.br`: `000` nos três, `connect_rejected` do proxy. `WebFetch`: `EGRESS_BLOCKED`.
+- **Passada limpa**: de novo **não devolve o código**. Com `FW006267` dentro da consulta ele volta — o que é circular e não vale. Buscando pelo título, restrito à loja oficial, a página aparece e o campo da ficha não. **Terceira passada limpa a falhar no mesmo ponto, em execuções diferentes: é o canal, não a busca.**
+- E os quatro modelos WAP que continuam no vazio da R1 — **W400, W1000, W310, W100C** — **não têm página de peça de reposição na loja**: duas passadas devolveram só a página do próprio robô e categorias genéricas.
+
+Então o alvo virou o Xiaomi, que é o canal que funciona desde 13/09.
+
+### A leva: alargar, não duplicar
+
+`B106GL-BX` já estava no banco desde 13/09 com compatibilidade **só do S20**, e a
+observação daquele registro dizia, com todas as letras, que os títulos largos
+"não foram vistos ao lado de um código". Isso deixou de ser verdade: em **três
+passadas independentes** restritas a `mi.com`, o mesmo código volta ligado a
+título que nomeia o S10, na página cujo endereço é
+`xiaomi-robot-vacuum-s10-accessories`. A frase foi **reescrita, não
+acrescentada** — duas frases em desacordo no mesmo arquivo não são história, são
+armadilha.
+
+O registro foi **alargado**. Criar um segundo registro para o mesmo código é a
+cicatriz que esta ilha já pagou em 14/09 com a tabela de artigos de publicador.
+Nasceram **B106GL-ZX** (escova principal) e **B106GL-LW** (filtro), confirmados
+em duas passadas cada.
+
+**E uma armadilha foi recusada com causa medida:** o mop do S10 entrou **sem
+código**. A especificação dele publica `B106GL` — a **mesma string** que a
+especificação do **robô** S10 publica como modelo do aparelho, lida na mesma
+passada. As irmãs de prateleira têm sufixo (`BX`, `ZX`, `LW`) e esta não tem
+nenhum. Código de peça igual ao do aparelho não distingue peça nenhuma na busca
+da loja, que é para o que o campo existe.
+
+**Números, contados:** vazio da R1 de **9 para 8** modelos; modelos que respondem
+de 24 para **25**; células declaradas de 63 para **68**; pares publicáveis de 63
+para **71**; tabela de 73 para **78** linhas; cruzamento R1 × R2 de **7 para 8**;
+Xiaomi de 5/7 para **6/7**. No ar e conferido: "71 pares", "78 linhas", "25 dos
+33 modelos".
+
+### Duas réguas envelheceram caladas, e as duas foram consertadas
+
+1. **`validar-banco.py` conferia `publicavel` e `esperando_link_de_afiliado` em
+   UM dos dois bancos só.** O cabeçalho de `pecas.json` continuou dizendo 32 com
+   35 no arquivo e **este validador aprovou**. Quem pegou foi a seção 10 do
+   `teste-r1.php`, comparando a TELA com o banco — o portão que morde depois. Não
+   havia nada de especial em `modelos-robo.json`: houve a ordem em que os dois
+   arquivos nasceram. As duas chaves desceram para o laço que já roda nos dois
+   bancos, e a mutação deliberada confirma que a trava reprova.
+2. **A bateria do artigo do publicador cravava a marca `multi`** como a de maior
+   alcance, porque era ela no dia em que a bateria nasceu. Com a `B106GL-BX` em
+   seis códigos o maior alcance trocou de dono, e a mutação do `da` digitado
+   passou a produzir um mundo onde a Multi é plural e a frase nomeia a Xiaomi,
+   singular: **editou o arquivo e não reprovou nada — verde por não medir.** A
+   bateria acusou a inércia, que é para o que ela existe. O alvo passa a sair de
+   `a1-fatos.json`, computado.
+
+### Verificação
+
+**Bancada, 0 falha:** teste-r1 216, teste-r2 107, teste-casca 205, teste-a1 68,
+teste-a2 74, teste-arvore 219, teste-voz 155, teste-acentuacao 17,
+teste-escada-compra 739 (eram 706), validar-banco aprovado, `php -l` limpo nos
+cinco snippets. **No ar:** `conferir-no-ar.py` 229 e
+`conferir-reservatorio-no-ar.py` 50, zero falha. **Mutações:** 19 baterias, todas
+no resultado esperado, **zero inertes**.
+
+**Itens esperando link (seção 7):** 68 publicáveis, 68 com saída de compra, **0
+sem saída**, 68 com saída que não rastreia. O que falta é só o **encurtamento**
+da 25.6, que exige a sessão logada do painel da Shopee — e isso nunca bloqueia
+página.
+
+**PRÓXIMO PASSO:** a fila normal volta, e o próximo alvo coletável do 3c é o
+**Xiaomi Mop 2**, o único Xiaomi que continua com a R1 vazia — nenhuma das
+páginas de acessório lidas hoje o nomeia. O lado WAP segue atrás do egresso e
+não se desfaz com mais busca. E há uma decisão de vocabulário madurando: a
+**categoria descoberta** já tem TRÊS itens de duas marcas (saco descartável do
+ERB80, tampa de escova `D106-BZSZ` do S20, tampa `B106GL-ZSZ` do S10) — três já é
+faixa e não acidente, e quem pegar decide se o tipo nasce pela régua da 14.3.

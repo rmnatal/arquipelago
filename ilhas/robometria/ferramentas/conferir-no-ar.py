@@ -123,6 +123,30 @@ def texto_da_tag(corpo, padrao):
     return html.unescape(re.sub(r'<[^>]+>', '', m.group(1))).strip()
 
 
+# O ORCAMENTO DA PURGA, declarado e nao adivinhado. A unica medicao que esta
+# ilha tem e de 166 s (Sync da revisao 43 as 19h30:50Z, canonico virado as
+# 19h33:36Z, 14/09/2026). O teto e o dobro arredondado: largo o bastante para a
+# janela medida nao virar alarme falso, estreito o bastante para "o leitor ficou
+# na pagina de antes" continuar reprovando. Quem medir um atraso maior sobe
+# ESTE numero e escreve a medicao ao lado — nunca apaga a afirmacao.
+PURGA_ORCAMENTO_S = 360
+PURGA_INTERVALO_S = 15
+
+
+def _impressao_do_leitor(corpo, chave):
+    """O QUE O LEITOR VE, reduzido a uma string comparavel.
+
+    Tira marcacao, desfaz entidade e junta espaco: o que sobra e a palavra na
+    tela. A CHAVE DE QUEBRA DE CACHE SAI ANTES, porque ela aparece dentro de
+    link interno e do canonical da propria pagina — compara-la seria garantir
+    desacordo e chamar isso de defeito.
+    """
+    corpo = corpo.replace('?' + chave, '').replace('&' + chave, '')
+    texto = re.sub(r'(?is)<(script|style)[^>]*>.*?</\1>', ' ', corpo)
+    texto = re.sub(r'<[^>]+>', ' ', texto)
+    return re.sub(r'\s+', ' ', html.unescape(texto)).strip()
+
+
 # O QUE O CARTAO DA R2 TEM QUE DIZER, escrito LITERALMENTE aqui.
 #
 # Nao e lido do banco nem do arquivo de dados de proposito: se esta conferencia
@@ -440,8 +464,31 @@ def conferir_cache_do_host():
     ser cacheada, entao ela e o que o WordPress produz AGORA; a limpa e o que o
     leitor recebe. As duas tem que dizer a mesma coisa. Comparar bytes daria
     falso alarme (a chave aparece em link interno e em canonical), entao a
-    afirmacao e sobre a REVISAO SERVIDA: a marca de versao da casca, que muda a
-    cada desembarque, e a contagem dos marcadores que este bloco publica.
+    comparacao e sobre o que o LEITOR ve.
+
+    ESTA REGUA ERA CEGA PARA MUDANCA DE TEXTO, E ISSO FOI MEDIDO EM 14/09/2026,
+    19h33Z, pelo teste que o item (b) do despacho da Sentinela pedia. Ela
+    comparava TRES CONTAGENS DE MARCADOR e mais nada — enquanto o docstring
+    prometia comparar "a revisao servida", que nao existe no HTML e nunca foi
+    implementada. A leva do Xiaomi S10 mudou QUAL codigo o artigo-ancora nomeia
+    ("HO041, HO400, HO401, HO407, OB010" virou "S20, S10, E10, S12, E12, X20") e
+    os numeros contados da ferramenta (63 pares para 71, 73 linhas para 78).
+    NENHUMA das tres contagens se move com isso. Medido no ar as 19h33:30Z: o
+    canonico servia o texto VELHO, a quebra de cache servia o NOVO, um segundo
+    de distancia — e esta funcao aprovaria as duas paginas. Regua que so conta
+    estrutura aprova pagina velha sempre que o desembarque mudou palavra.
+
+    ENTAO A AFIRMACAO PASSA A SER SOBRE O TEXTO, e com ela vem a segunda metade
+    do que aquele teste mediu: a purga NAO e instantanea. O Sync da revisao 43
+    aplicou as 19h30:50Z e o canonico so virou as 19h33:36Z — 166 segundos, com
+    a entrada de cache nova criada as 19h33:35Z (`expires` de 21h33:35 com
+    `max-age` de 7200 s). Ou seja: a purga pega, e nao pega na hora. Reprovar no
+    primeiro segundo transformaria essa janela conhecida em alarme falso — foi
+    lendo essa mesma janela como falha que a execucao das 15h17Z gastou quatro
+    revisoes de diagnostico e chegou a RETIRAR a purga que funcionava. Por isso
+    a comparacao de texto REPETE dentro de um orcamento declarado e IMPRIME o
+    atraso que mediu: janela conhecida vira numero, e so o que passa dela
+    reprova.
     """
     print('\n10. O ENDERECO CANONICO ESTA SERVINDO O QUE FOI PUBLICADO?')
     chave = 'rbm_quebra_de_cache=%d' % int(time.time())
@@ -458,6 +505,23 @@ def conferir_cache_do_host():
             ok(n_limpa == n_agora,
                '%s: %s iguais no canonico e no recem-gerado' % (caminho or '/', rotulo),
                '%d contra %d' % (n_limpa, n_agora))
+
+        alvo = _impressao_do_leitor(agora, chave)
+        atraso = 0
+        if _impressao_do_leitor(limpa, chave) != alvo:
+            # A JANELA DA PURGA, gasta so quando ha desacordo — o caso comum
+            # nao paga nada. `PURGA_ORCAMENTO_S` e DECLARADO: janela que cresce
+            # sozinha vira "espera ate passar", que e o contrario de medir.
+            inicio = time.time()
+            while time.time() - inicio < PURGA_ORCAMENTO_S:
+                time.sleep(PURGA_INTERVALO_S)
+                limpa, _c = buscar(url)
+                atraso = int(time.time() - inicio)
+                if _impressao_do_leitor(limpa, chave) == alvo:
+                    break
+        ok(_impressao_do_leitor(limpa, chave) == alvo,
+           '%s: o TEXTO do canonico e o do recem-gerado' % (caminho or '/'),
+           'igual na hora' if not atraso else 'igual depois de %d s' % atraso)
 
 
 def conferir_piso_no_ar():
