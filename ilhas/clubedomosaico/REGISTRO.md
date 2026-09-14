@@ -3476,3 +3476,122 @@ incluindo a ordem das duas vitrines medida em tres estados servidos.
    7 das 12 linhas da tabela da F1.
 3. **A categoria COLA**, 45 estados varridos e 0 com o minimo da 14.3.
 4. Os 15 `url_busca`, no minuto em que houver sessao da Shopee.
+
+14/09/2026 17:35Z — A FAMÍLIA DAS TÉCNICAS: o endereço é decidido, o banco da entidade TECNICA nasce, e a família NÃO nasce hoje
+
+- **A escolha da ilha: SEGUNDA tentada.** Os cinco `ESTADO.md` estavam com
+  `executando_desde: null`, que pela 1.1 já significa que não há bloco da
+  Fundação vivo. Pela 18.1, ilha com despacho aberto do Raphael vem primeiro: a
+  **ohmetria** tinha o despacho de nascimento de 14/09 e `ultima_execucao: null`,
+  que é a mais antiga de todas. Reservei-a às 17h16Z e o push foi **RECUSADO**
+  por segundos — outra execução gravou a reserva dela às 17h17Z (commit
+  `a92f759`). Voltei ao passo 2 sem force push, como o passo 5 manda. Das que
+  sobraram, nenhuma tinha despacho ABERTO para a Fundação: os de 14/09 da
+  aquametria e da robometria estão marcados CUMPRIDOS e conferidos no ar, e o
+  único item aberto do despacho da clubedomosaico é declarado pelo próprio texto
+  como bloco de malha e não conserto. Valeu a rotação da seção 1 e a
+  clubedomosaico tinha a `ultima_execucao` mais antiga (13h21Z). Reservada às
+  17h18Z, push aceito.
+- **Rede pela 20.2, antes de trabalhar:** home em 200 e `/status` na revisão 31,
+  igual à do manifest, em UMA passada.
+- **O BLOCO.** Era o item 1 da fila desta ilha desde 14/09 de manhã: a família
+  `/tecnicas/<slug>/`, que o despacho do Raphael pediu pelo nome
+  (`/tecnicas/Picassiete/`) e que a execução das 11h18Z classificou, com razão,
+  como decisão de malha com o orçamento de rastreamento na mesa. **Decidido em
+  `ARVORE.md`, seção 4b.**
+- **O ENDEREÇO NÃO É A RAIZ, e essa metade é do contrato.** O
+  `dados/corpus-buscas.md`, de 10/09/2026, escreveu o item 5 da fila como
+  `/tecnicas/bizantino`. A seção 16.1 entrou em 11/09 e proíbe página solta na
+  raiz além das cinco que ela nomeia. **O corpus estava certo no dia em que foi
+  escrito e passou a contradizer o contrato no dia seguinte**, e ninguém viu
+  porque a página nunca foi criada — é a mesma família do slug de categoria que
+  o `VOZ.md` e a casca escreviam diferente até 11/09. Corrigido no corpus, com a
+  nota de por quê. Nenhuma URL se moveu porque nenhuma existia.
+- **A MÃE É `/como-fazer/`, e a técnica nasce filha DIRETA dela** — terceira
+  aplicação de uma regra que este arquivo já tinha escrito duas vezes: *a mãe de
+  hoje é a mãe que já tem endereço* (as duas ferramentas em `/materiais/`, a peça
+  em `/loja/`). A categoria `/como-fazer/tecnicas/` fica registrada como
+  candidata para o dia das três filhas (16.5).
+- **POR QUE ELA NÃO NASCE HOJE — três portões, e os três medidos, nenhum
+  opinião:** (1) seção 9, três itens de banco reais por página: **0 para 5 de 5
+  técnicas**; (2) 16.5, três filhas: não há nenhuma; (3) 14.6 e 14.8, a rampa só
+  é autorizada por número — e `dados/indexacao.md` tem **uma linha só**, de
+  10/09/2026, escrita quando o WordPress ainda não existia (zero URL, zero
+  impressão). **Nenhum número autoriza leva nova nesta ilha hoje**, de nenhuma
+  família.
+- **O ACHADO, e ele é mais estreito do que "falta banco":** as duas únicas
+  técnicas cujo lado do material tem fonte (trencadís e picassiete) apontam para
+  `caco_azulejo` e `caco_louca` — **caco de prato e de azulejo não têm
+  fabricante**, e `caco_louca` nem sequer é valor possível de `tipo` para a
+  categoria pastilha no vocabulário do esquema. Os 13 itens do banco de pastilhas
+  são todos `pastilha_vidro`. A distância entre a técnica e o banco desta ilha é
+  a distância entre o caco e o produto — e o caminho mais curto não é catalogar
+  caco: é ligar a técnica à cola e ao rejunte, onde há 12 itens e uma ferramenta
+  que já decide.
+- **O QUE FOI ENTREGUE NO LUGAR DA PÁGINA: `dados/tecnicas.json`**, o banco da
+  entidade TECNICA que o esquema previu em 12/09 e que nunca tinha nascido. Cinco
+  técnicas, as mesmas cinco que a artesã pode marcar no ateliê, cada uma com
+  definição sustentada por fonte de enciclopédia, museu ou instituição de ensino
+  (Museo Nacional de Cerámica, Sagrada Família, Wikipedia, SPACES Archives,
+  FASBAM, Câmara dos Deputados, repositório da Universidade Nova de Lisboa),
+  consulta-alvo, SERP lida em 14/09/2026 com os domínios nomeados um a um, e
+  `revisao_tecnica: pendente` — **porque nesta ilha a revisora existe e é a
+  artesã**, e página que finge revisão que não houve é a única mentira que esta
+  ilha pode contar sobre uma pessoa de verdade.
+- **AS 10 FONTES FORAM COLHIDAS POR BUSCA E NENHUMA FOI ABERTA**, e isso está
+  escrito em cada uma no campo `leitura`: `pt.wikipedia.org`, `britannica.com` e
+  `google.com` devolveram `connect_rejected` às 17h30Z. É a regra do elo mais
+  fraco da seção 10 aplicada à única entidade da ilha que não tem fabricante — e
+  é o mesmo buraco de egresso que a escada de fontes já registrava do lado dos
+  fabricantes, agora medido do lado das técnicas.
+- **NADA FOI INVENTADO, e os campos vazios dizem por quê.** `junta_tipica_mm`
+  nasce `null` em 5 de 5 porque nenhuma fonte declara folga em milímetro — e esse
+  é justamente o campo que alimentaria o valor sugerido da F1. As três técnicas
+  `opus_*` do vocabulário ficaram de fora com motivo: nenhuma é oferecida à
+  artesã, então nenhuma peça poderia ser marcada com elas.
+- **O PORTÃO QUE MEDE ISSO ESTAVA ESCRITO DESDE 12/09 E NUNCA TINHA RODADO.** A
+  régua de TECNICA do `validar-banco.py` vivia imprimindo "tecnicas.json ainda
+  não existe" — verde por ausência, que é função morta com outro nome. No dia em
+  que o arquivo nasceu ela passou de primeira, e passar de primeira não é elogio:
+  ela cobrava o que qualquer arquivo bem digitado teria. Passou a cobrar o que o
+  esquema diz que esta entidade tem de especial: fonte obrigatória apontando para
+  fonte que **existe**; origem dentro dos três níveis que o esquema aceita, lidos
+  DO esquema e não recopiados; campo vazio exigindo o motivo ao lado; número só
+  com fonte; e **o portão da família** — técnica não declara página com menos de
+  3 itens de banco. A contagem por técnica passou a sair em toda execução.
+- **`ferramentas/mutacoes-tecnicas.py`: 14 mutações, 14 decididas certo.** A
+  bateria tem **os dois lados da fronteira** de propósito: 13 precisam reprovar e
+  **uma precisa PASSAR** — a mesma página de técnica, com o lado do material
+  resolvido, tem de abrir o portão. Sem ela ninguém saberia se o portão mede a
+  contagem ou se apenas odeia o campo, e uma régua que reprova tudo nunca deixa a
+  família nascer.
+- **UM DESPACHO DO ARQUIPÉLAGO FECHADO SEM TRABALHO, e vale registrar por quê:**
+  `dados/despachos.md` pedia que a próxima execução que reservasse esta ilha
+  documentasse o parâmetro de autenticação do endpoint de peças. Ele **já estava
+  documentado** no `PROMPT.md` desta ilha desde 13/09, com URL completa, nome do
+  parâmetro e conferência no ar. Despacho fechado no destino não se apaga sozinho
+  na origem; marcado como fechado lá.
+- **UM DESVIO ENCONTRADO NO MAIN, de outra execução:** o commit `29099ba` das
+  14h59Z — o que corrigiu a seção 7 do contrato — editou
+  `ilhas/clubedomosaico/dados/especificacao-calculadoras.md`, arquivo de uma ilha
+  que aquela execução **não tinha reservado** (seção 3: toque apenas na pasta da
+  ilha que você reservou), e deixou o `sha256` do manifest desatualizado. O
+  conteúdo da edição está certo e ficou; o sha foi recalculado aqui. É a mesma
+  família da "outra metade que é do Raphael" já registrada em `despachos.md`: a
+  reserva protege contra quem a lê.
+- **VERIFICAÇÃO, 0 falha:** `validar-banco.py` aprovado com 25 materiais e a
+  contagem nova por técnica (direto 0, indireto 0, bizantino 0, trencadis 0,
+  picassiette 0); `mutacoes-tecnicas.py` 14 de 14; `mutacoes-rejunte.py` 16 de 16;
+  `validar-pastilhas.py` 189; `teste-casca.php` 549 — incluindo o portão que
+  cobra que documento e código digam a mesma coisa sobre a árvore, que a seção 4b
+  nova não moveu.
+- **NÃO HOUVE SYNC, e não é esquecimento:** nenhum arquivo `publicar: true` mudou
+  neste bloco. `dados/tecnicas.json` nasce `publicar: false` porque nenhum snippet
+  o lê — dado publicado que ninguém lê é a porta por onde uma cópia vira fonte sem
+  ninguém decidir. A seção 4 só exige acionar o Sync em bloco que mexe em conteúdo
+  publicável.
+- **Próximo passo, e ele mudou de dono nesta execução:** a frase "link de loja em
+  breve", que a seção 7 passou a proibir em 14/09/2026, **ainda está no ar nesta
+  ilha** — `cdm_f2_compra_html()` a serve para todo item sem `url` e sem
+  `url_busca`, e são **15 de 25** (13 pastilhas e 2 colas). É defeito no ar, e
+  pela 18.5 vem antes de construção.

@@ -241,8 +241,13 @@ que é o que os blocos seguintes devem obedecer:**
    páginas comparando. É a ficha mais fácil de vencer.
 4. **`/materiais/pastilhas`** — precisa resolver antes a conversão peça ↔ grama
    ↔ placa, que a própria SERP mostra em três unidades diferentes.
-5. **`/tecnicas/bizantino`** — cabeça de 1k–100k com primeira página em
-   espanhol. Única consulta de volume alto com chance real.
+5. **A página da técnica bizantino** — cabeça de 1k–100k com primeira página em
+   espanhol. Única consulta de volume alto com chance real. *(O endereço escrito
+   aqui era `/tecnicas/bizantino`, na raiz. A seção 16.1 do `ARQUIPELAGO.md`,
+   que entrou em 11/09/2026 — um dia depois deste arquivo —, proíbe página solta
+   na raiz; o endereço da família foi decidido em `ARVORE.md`, seção 4b, e é
+   `/como-fazer/<consulta-alvo>/`. Nenhuma URL se moveu porque nenhuma existia.
+   Corrigido em 14/09/2026 pelo bloco da família das técnicas.)*
 6. **Tutoriais "como fazer mosaico em X"** — só depois que a ficha de material
    correspondente estiver indexada. Âncora primeiro, ramificação depois
    (seção 14.6).

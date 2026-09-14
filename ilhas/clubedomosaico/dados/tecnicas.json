@@ -1,0 +1,256 @@
+{
+  "id": "tecnicas",
+  "ilha": "clubedomosaico",
+  "categoria": "tecnica",
+  "bloco": "malha — a familia das tecnicas",
+  "gerado_em": "2026-09-14",
+  "esquema": "dados/esquema-banco.json, entidade TECNICA",
+  "o_que_este_arquivo_e": "O banco da entidade TECNICA, que o esquema do bloco 3 previu e que nunca tinha nascido. Ele existe porque a familia de paginas de tecnica estava travada por uma coisa que ninguem tinha nomeado com numero: NAO era falta de pagina, era falta de DADO. Antes deste arquivo, os 25 materiais dos tres bancos da ilha (13 pastilhas, 7 colas, 5 rejuntes) mencionavam tecnica em ZERO campos — medido varrendo o JSON inteiro de cada um em 14/09/2026 — e a unica ligacao tecnica x mundo que a ilha tinha era o rotulo que a artesa marca na peca dela.",
+  "o_que_este_arquivo_NAO_e": "Nao e pagina, e nao autoriza nenhuma. O portao da secao 9 do ARQUIPELAGO.md (3 itens de banco reais e um numero calculado proprio) e o da 16.5 continuam valendo e sao medidos em `ARVORE.md`, secao 4b. Este arquivo e o primeiro dos dois lados; o outro e o banco de material declarando a que tecnica ele serve, e ele NAO existe.",
+  "metodo_de_coleta": {
+    "definicao_e_origem": "Busca web da nuvem, em 14/09/2026, no mesmo canal em que o bloco 1 colheu a SERP deste corpus. NENHUM documento foi aberto: o egresso da nuvem barra pt.wikipedia.org, britannica.com e google.com por politica da organizacao (medido as 17h30Z de 14/09/2026, connect_rejected nos tres). Portanto a LEITURA e o elo mais fraco de toda fonte deste arquivo, e cada uma declara isso no campo `leitura` — e a regra do elo mais fraco da secao 10 do contrato, aplicada a uma entidade que nao tem fabricante.",
+    "o_que_isso_proibe": "Nenhum campo deste arquivo entra em formula publicada, e o esquema ja dizia isso antes de existir dado: `junta_tipica_mm` seria valor sugerido de campo de entrada da F1 e mesmo assim nasce null em 5 de 5 registros, porque nenhuma fonte colhida declara folga em milimetro.",
+    "serp": "Leitura propria, busca web da nuvem, 14/09/2026, uma consulta por tecnica, em portugues do Brasil. Cada registro cita quem apareceu, por dominio. NAO e a SERP do navegador do Raphael e nao substitui a leitura semanal: e o mesmo canal e a mesma ressalva que o `dados/corpus-buscas.md` carrega desde 10/09/2026."
+  },
+  "publicacao": {
+    "publicar": false,
+    "por_que": "Nenhum snippet le este arquivo. Enquanto a familia nao nascer, publica-lo gravaria uma option no site que nada leria — e dado publicado que ninguem le e a porta por onde uma copia vira fonte sem ninguem decidir (a mesma razao escrita para `dados/pecas.json` no validador)."
+  },
+  "tecnicas": [
+    {
+      "id": "direto",
+      "nome": "Direto",
+      "nomes_alternativos": ["metodo direto", "tecnica direta"],
+      "definicao": "A peca e montada com a face de cima virada para cima, colada direto na base em que ela vai ficar. O que a pessoa ve enquanto trabalha e o que fica pronto no fim.",
+      "definicao_fonte_id": "run-unl-santos-2025",
+      "como_se_executa": null,
+      "motivo_sem_como_se_executa": "O esquema exige fonte para este campo e nenhuma das fontes colhidas foi ABERTA. Passo a passo escrito a partir de resumo de busca seria paráfrase, nao fonte — e passo a passo errado nesta ilha faz a peca da pessoa descolar.",
+      "bases_compativeis": null,
+      "motivo_sem_bases": "Metodo nao escolhe base: o que decide a base e a cola, e isso ja tem banco e ja tem ferramenta (F2). Preencher aqui criaria uma segunda regua para a mesma pergunta.",
+      "materiais_tipicos": null,
+      "motivo_sem_materiais": "Idem: o metodo direto aceita qualquer tessela. Nenhuma fonte colhida restringe.",
+      "junta_tipica_mm": null,
+      "motivo_sem_junta": "Nenhuma fonte colhida declara folga em milimetro para o metodo.",
+      "dificuldade": null,
+      "consulta_alvo": "mosaico tecnica direta",
+      "por_que_chega_ao_top_10": "SERP lida em 14/09/2026: o topo e video do YouTube, blog de decoracao (suadecoracao, chaledemadeira, cidesp), pagina de curso (onomosaicos) e uma pagina de resumo escolar (lucidarium). Nenhuma define o metodo nomeando a fonte, e nenhuma diz o que muda na pratica entre direto e indireto. E a resposta generica sem numero da secao 14.9.",
+      "serp_lida_em": "2026-09-14",
+      "serp_classe": "ABERTA",
+      "serp_quem_apareceu": ["youtube.com", "suadecoracao.com", "historiadasartes.com", "varivetri.com", "cidesp.com.br", "onomosaicos.com", "chaledemadeira.com", "lucidarium.com.br"],
+      "imagem": null,
+      "fontes": {
+        "run-unl-santos-2025": {
+          "url": "https://run.unl.pt/bitstream/10362/187739/1/Santos_2025.pdf",
+          "origem": "instituicao-de-ensino-ou-museu",
+          "o_que_e": "Dissertacao depositada no repositorio da Universidade Nova de Lisboa (RUN), 2025, que trata dos metodos direto e indireto de assentamento de mosaico.",
+          "leitura": "colhido por busca; documento NAO aberto (egresso da nuvem barra o dominio)",
+          "data_leitura": "2026-09-14"
+        },
+        "faecpr-manual-assentamento": {
+          "url": "https://www.faecpr.edu.br/site/documentos/assentamento_de_ceramica/assentamento_de_azulejos_e_mosaicos.pdf",
+          "origem": "instituicao-de-ensino-ou-museu",
+          "o_que_e": "Manual de assentamento de azulejos e mosaicos hospedado por instituicao de ensino.",
+          "leitura": "colhido por busca; documento NAO aberto",
+          "data_leitura": "2026-09-14"
+        }
+      },
+      "revisao_tecnica": "pendente",
+      "observacao": "DIVIDA DE MODELAGEM, E ELA TEM FONTE AGORA. Parte do material colhido chama o metodo direto de 'bizantino' ou 'ravenate' e o indireto de 'veneziano' — isto e, usa nome de ESTILO para nomear METODO. E exatamente a divida que o ESTADO.md desta ilha registrou em 14/09/2026 ('o campo tecnica hoje mistura METODO com ESTILO') e que o Raphael mandou NAO mexer agora. Fica aqui com fonte para o dia em que for mexida, e nao muda nada hoje."
+    },
+    {
+      "id": "indireto",
+      "nome": "Indireto",
+      "nomes_alternativos": ["metodo indireto", "tecnica indireta", "veneziano"],
+      "definicao": "A peca e montada ao contrario: as tesselas sao coladas com a face de cima para baixo sobre papel ou tela, com cola que sai com agua. Depois o conjunto inteiro e transferido para a base e o papel e removido.",
+      "definicao_fonte_id": "camara-ciranda-do-mosaico",
+      "como_se_executa": null,
+      "motivo_sem_como_se_executa": "Mesmo motivo do direto: nenhuma fonte foi aberta.",
+      "bases_compativeis": null,
+      "motivo_sem_bases": "Metodo nao escolhe base (ver o registro do direto).",
+      "materiais_tipicos": null,
+      "motivo_sem_materiais": "Nenhuma fonte colhida restringe a tessela pelo metodo.",
+      "junta_tipica_mm": null,
+      "motivo_sem_junta": "Nenhuma fonte colhida declara folga em milimetro para o metodo.",
+      "dificuldade": null,
+      "consulta_alvo": "mosaico metodo indireto",
+      "por_que_chega_ao_top_10": "SERP lida em 14/09/2026: uma pagina institucional de exposicao (Camara dos Deputados), dois sites de atelie (houdelier, sarasa), um blogspot de 2017, um video e duas paginas de artesanato generico. Nenhuma pagina brasileira explica o metodo E diz qual cola e qual papel comprar — que e a metade que esta ilha tem banco para responder.",
+      "serp_lida_em": "2026-09-14",
+      "serp_classe": "ABERTA",
+      "serp_quem_apareceu": ["camara.leg.br", "mg-perez.blogspot.com", "artesanatopassoapassoja.com.br", "houdelier.com", "youtube.com", "onomosaicos.com", "lucidarium.com.br", "sarasa.com.br"],
+      "imagem": null,
+      "fontes": {
+        "camara-ciranda-do-mosaico": {
+          "url": "https://www2.camara.leg.br/a-camara/visiteacamara/cultura-na-camara/exposicoes-2014/ate-2012/exposicoes-artisticas/dialogo-entre-tesselas-grupo-ciranda-do-mosaico",
+          "origem": "instituicao-de-ensino-ou-museu",
+          "o_que_e": "Pagina da exposicao 'Dialogo entre tesselas' no portal da Camara dos Deputados, que descreve o metodo indireto ('veneziano') como composicao preparada sobre papel, as avessas.",
+          "leitura": "colhido por busca; pagina NAO aberta",
+          "data_leitura": "2026-09-14"
+        },
+        "sarasa-metodo-indireto": {
+          "url": "https://sarasa.com.br/article.php?recid=50",
+          "origem": "editorial-da-ilha",
+          "o_que_e": "Atelier Artistico Sarasa, pagina 'Tecnicas de Mosaico: Metodo Indireto'. NAO e enciclopedia nem instituicao: e atelie, e por isso entra como apoio e nunca sozinha.",
+          "leitura": "colhido por busca; pagina NAO aberta",
+          "data_leitura": "2026-09-14"
+        }
+      },
+      "revisao_tecnica": "pendente",
+      "observacao": "A cola hidrossoluvel que o metodo pede NAO esta no banco de colas desta ilha (7 itens, nenhum declarado hidrossoluvel para retirada com agua). E faixa descoberta com nome, e do tipo que a secao 14.3 chama de unica urgencia de catalogo."
+    },
+    {
+      "id": "bizantino",
+      "nome": "Bizantino",
+      "nomes_alternativos": ["mosaico bizantino"],
+      "definicao": "Mosaico de tesselas pequenas e regulares, cortadas em cubo e assentadas uma a uma sobre argamassa ainda fresca. A marca da tecnica e o vidro colorido e a tessela de folha de ouro ou prata prensada entre duas camadas de vidro.",
+      "definicao_fonte_id": "wikipedia-mosaicos-bizantinos",
+      "como_se_executa": null,
+      "motivo_sem_como_se_executa": "Nenhuma fonte aberta.",
+      "bases_compativeis": null,
+      "motivo_sem_bases": "As fontes falam de parede e abobada de igreja, que nao e nenhuma das bases do vocabulario desta ilha (vaso, quadro, tampo). Traduzir uma para a outra seria inventar.",
+      "materiais_tipicos": null,
+      "motivo_sem_materiais": "E O CAMPO MAIS TENTADOR DO ARQUIVO E ELE FICA VAZIO DE PROPOSITO. A fonte fala de tessela de vidro cortada em cubo e de folha de ouro; o banco desta ilha tem `pastilha_vidro`, que e produto de loja de revestimento, de 1,2 a 3 cm e vendido em placa. Dizer que uma e a outra seria traduzir documento historico em produto de prateleira, e nenhuma fonte colhida sustenta a traducao. E esta ausencia e o que trava a pagina: sem ela, bizantino tem ZERO itens de banco e nao passa no portao de 3 da secao 9.",
+      "junta_tipica_mm": null,
+      "motivo_sem_junta": "Nenhuma fonte colhida declara folga em milimetro.",
+      "dificuldade": null,
+      "consulta_alvo": "mosaico bizantino",
+      "por_que_chega_ao_top_10": "E a unica consulta de cabeca do corpus desta ilha que passa nos DOIS criterios da secao 14.9 ao mesmo tempo, e isso foi medido duas vezes: em 10/09/2026 o bloco 1 achou faixa de 1k a 100k com a primeira pagina em ESPANHOL (laguia2000, blogs de historia da arte) e quase nada em pt-BR; em 14/09/2026, na leitura desta execucao, o topo em portugues e um portal de vestibular, um blog de revista, um wordpress de disciplina e a Wikipedia — historia da arte, nenhuma pagina que diga a quem quer FAZER o que comprar.",
+      "serp_lida_em": "2026-09-14",
+      "serp_classe": "ABERTA",
+      "serp_quem_apareceu": ["vestibulares.estrategia.com", "pt.wikipedia.org", "fasbam.edu.br", "revistaarqdesign.com.br", "haac1.wordpress.com", "repositorio.pgsscogna.com.br"],
+      "imagem": null,
+      "fontes": {
+        "wikipedia-mosaicos-bizantinos": {
+          "url": "https://pt.wikipedia.org/wiki/Mosaicos_bizantinos",
+          "origem": "enciclopedico",
+          "o_que_e": "Verbete 'Mosaicos bizantinos' da Wikipedia em portugues.",
+          "leitura": "colhido por busca; verbete NAO aberto (egresso barra pt.wikipedia.org)",
+          "data_leitura": "2026-09-14"
+        },
+        "fasbam-mosaicos-bizantinos": {
+          "url": "https://fasbam.edu.br/2019/10/09/a-beleza-de-tirar-o-folego-dos-mosaicos-bizantinos/",
+          "origem": "instituicao-de-ensino-ou-museu",
+          "o_que_e": "Faculdade Sao Basilio Magno, texto sobre mosaicos bizantinos.",
+          "leitura": "colhido por busca; pagina NAO aberta",
+          "data_leitura": "2026-09-14"
+        }
+      },
+      "revisao_tecnica": "pendente",
+      "observacao": "E a tecnica de maior valor de indexacao da ilha e a que esta MAIS LONGE de virar pagina, e as duas coisas nao se contradizem: falta o lado do material, nao o lado do texto."
+    },
+    {
+      "id": "trencadis",
+      "nome": "Trencadis (caquinho)",
+      "nomes_alternativos": ["caquinho", "trincadis", "trencadis"],
+      "definicao": "Mosaico de cacos irregulares de azulejo, louca ou vidro, quebrados a martelo e encaixados um a um. O nome vem do catalao `trencar`, quebrar, e a tecnica e a marca da obra de Antoni Gaudi.",
+      "definicao_fonte_id": "mnceramica-gaudi-trencadis",
+      "como_se_executa": null,
+      "motivo_sem_como_se_executa": "Nenhuma fonte aberta.",
+      "bases_compativeis": null,
+      "motivo_sem_bases": "As fontes falam de superficie curva de arquitetura; nenhuma nomeia base do vocabulario desta ilha.",
+      "materiais_tipicos": ["caco_azulejo", "caco_louca"],
+      "materiais_tipicos_fonte_id": "mnceramica-gaudi-trencadis",
+      "junta_tipica_mm": null,
+      "motivo_sem_junta": "As fontes dizem 'o espaco minimo entre as pecas' e nenhuma da milimetro. Frase nao e numero.",
+      "dificuldade": null,
+      "consulta_alvo": "o que e trencadis",
+      "por_que_chega_ao_top_10": "SERP lida em 14/09/2026, e ela repete o padrao do bizantino num idioma diferente: de sete resultados, CINCO estao em espanhol (rubi.com/es, batallon.es, antictiles.com, spain.info, trencadisenbarcelona) e apenas um esta em portugues do Brasil — e esse fala de PISO de caquinho, que e arquitetura e nao artesanato. A pergunta de quem tem um vaso na mao nao tem resposta em pt-BR.",
+      "serp_lida_em": "2026-09-14",
+      "serp_classe": "ABERTA",
+      "serp_quem_apareceu": ["blog.archtrends.com", "rubi.com", "spain.info", "batallon.es", "antictiles.com", "trencadisenbarcelona.wordpress.com"],
+      "imagem": null,
+      "fontes": {
+        "mnceramica-gaudi-trencadis": {
+          "url": "https://www.cultura.gob.es/mnceramica/exposiciones/historico/2020/gaudi-trencadis.html",
+          "origem": "instituicao-de-ensino-ou-museu",
+          "o_que_e": "Museo Nacional de Ceramica y Artes Suntuarias Gonzalez Marti (Ministerio de Cultura da Espanha), exposicao 'Gaudi & trencadis'.",
+          "leitura": "colhido por busca; pagina NAO aberta",
+          "data_leitura": "2026-09-14"
+        },
+        "sagrada-familia-trencadis": {
+          "url": "https://blog.sagradafamilia.org/en/trencadis-mosaic-hallmark-of-gaudi/",
+          "origem": "instituicao-de-ensino-ou-museu",
+          "o_que_e": "Blog oficial da Basilica da Sagrada Familia sobre o trencadis de Gaudi.",
+          "leitura": "colhido por busca; pagina NAO aberta",
+          "data_leitura": "2026-09-14"
+        }
+      },
+      "revisao_tecnica": "pendente",
+      "observacao": "DUAS COISAS PARA QUEM ESCREVER A PAGINA. (1) O rotulo que a artesa marca no atelie e 'Trencadis (caquinho)', e caquinho e a palavra que a pessoa usa no Brasil — a fonte brasileira que apareceu na SERP e sobre 'piso de caquinho' das decadas de 1940 e 1950, inspirado no trencadis. (2) As fontes tambem citam VIDRO entre os cacos, e o vocabulario `material_tessela` desta ilha nao tem valor para caco de vidro comum: tem `caco_espelho` e nao tem `caco_vidro`. Por isso o vidro ficou FORA de `materiais_tipicos` — falta de valor no vocabulario nao se resolve escolhendo o valor mais parecido."
+    },
+    {
+      "id": "picassiette",
+      "nome": "Picassiete (louca quebrada)",
+      "nomes_alternativos": ["picassiette", "pique-assiette", "pique assiette"],
+      "definicao": "Mosaico feito com caco de louca de mesa — prato, xicara, bule — em que ainda se reconhece de onde o caco veio. O nome vem de Raymond Isidore, apelidado Picassiette em Chartres, que revestiu a propria casa com louca quebrada; a casa e monumento historico e hoje e museu aberto ao publico.",
+      "definicao_fonte_id": "wikipedia-maison-picassiette",
+      "como_se_executa": null,
+      "motivo_sem_como_se_executa": "Nenhuma fonte aberta.",
+      "bases_compativeis": null,
+      "motivo_sem_bases": "As fontes falam de parede, piso, teto e movel de uma casa inteira; nenhuma nomeia base do vocabulario desta ilha.",
+      "materiais_tipicos": ["caco_louca"],
+      "materiais_tipicos_fonte_id": "wikipedia-maison-picassiette",
+      "junta_tipica_mm": null,
+      "motivo_sem_junta": "Nenhuma fonte colhida declara folga em milimetro.",
+      "dificuldade": null,
+      "consulta_alvo": "o que e mosaico picassiete",
+      "por_que_chega_ao_top_10": "SERP lida em 14/09/2026: o topo em pt-BR e blog de decoracao e de artesanato (praquemtemestilo, defrenteparaomar, patiohype), Pinterest, e um resultado de outra intencao (kintsukuroi, que e conserto de ceramica com ouro e nao mosaico). Nenhuma pagina brasileira liga a tecnica a origem dela nem diz com que cola se prende caco de louca vitrificada — e a segunda metade e exatamente o que a F2 desta ilha responde.",
+      "serp_lida_em": "2026-09-14",
+      "serp_classe": "ABERTA",
+      "serp_quem_apareceu": ["dwsemanadedesign.com.br", "pt.mozaico.com", "pinterest.com", "praquemtemestilo.com.br", "defrenteparaomar.com", "patiohype.com.br"],
+      "imagem": null,
+      "fontes": {
+        "wikipedia-maison-picassiette": {
+          "url": "https://en.wikipedia.org/wiki/Maison_Picassiette",
+          "origem": "enciclopedico",
+          "o_que_e": "Verbete 'Maison Picassiette' da Wikipedia em ingles, sobre a casa de Raymond Isidore em Chartres.",
+          "leitura": "colhido por busca; verbete NAO aberto",
+          "data_leitura": "2026-09-14"
+        },
+        "spaces-maison-picassiette": {
+          "url": "https://spacesarchives.org/explore/search-the-online-collection/la-maison-de-picassiette/",
+          "origem": "instituicao-de-ensino-ou-museu",
+          "o_que_e": "SPACES Archives, acervo dedicado a ambientes de arte construidos; ficha da Maison Picassiette.",
+          "leitura": "colhido por busca; pagina NAO aberta",
+          "data_leitura": "2026-09-14"
+        }
+      },
+      "revisao_tecnica": "pendente",
+      "observacao": "A GRAFIA E DECISAO DO RAPHAEL, de 14/09/2026: na tela le-se 'Picassiete', palavra unica e sem hifen; a chave interna e `picassiette`, que e o valor do vocabulario e o slug do termo no WordPress. Os dois convivem de proposito e nenhum dos dois se corrige sozinho."
+    }
+  ],
+  "o_que_ficou_de_fora_e_por_que": [
+    {
+      "ids": ["opus_palladianum", "opus_tesselatum", "opus_vermiculatum"],
+      "motivo": "Os tres estao no vocabulario `tecnica` do esquema e NENHUM e oferecido a artesa no formulario do atelie (a lista dela tem cinco: direto, indireto, bizantino, trencadis, picassiette). Peca nenhuma pode ser marcada com eles, entao pagina nenhuma teria peca para listar. Alem disso os tres sao padrao de ASSENTAMENTO e nao metodo de execucao, o que joga a decisao para dentro da divida METODO x ESTILO que o Raphael mandou nao mexer agora.",
+      "o_que_falta": "A decisao de modelagem do campo `tecnica`, que e do Raphael, e so depois a coleta."
+    }
+  ],
+  "pendencias_desta_categoria": [
+    {
+      "id": "tecnica-sem-lado-do-material",
+      "estado": "ABERTA, e e a que trava a familia inteira",
+      "o_que_falta": "O banco de material declarando a que tecnica cada item serve — hoje sao 0 mencoes em 25 itens.",
+      "o_que_este_bloco_apurou": "Duas das cinco tecnicas conseguiram `materiais_tipicos` com fonte (trencadis e picassiette, as duas de caco), e as outras tres nao. Mas `materiais_tipicos` e vocabulario de TIPO de tessela, nao item de banco: `caco_azulejo` e `caco_louca` nao correspondem a NENHUM dos 13 itens do banco de pastilhas, que sao todos `pastilha_vidro` de fabricante. Pior no caso do picassiete: `caco_louca` nem sequer e um valor possivel de `tipo` para a categoria pastilha no vocabulario do esquema (`tipo_por_categoria.pastilha` tem vidro, ceramica, pedra, caco_azulejo, caco_espelho e resina), entao nenhum item de banco poderia ser marcado assim nem se alguem quisesse. As duas unicas tecnicas com lado de material declarado apontam para um tipo de tessela que esta ilha nao vende nem cataloga — porque caco de prato nao tem fabricante. O portao de 3 itens da secao 9 fica em ZERO para 5 de 5 tecnicas.",
+      "quem_fecha": "O bloco que ligar tecnica a COLA e a REJUNTE, que e onde esta ilha tem banco de verdade (7 colas, 5 rejuntes) e ferramenta que ja decide (F2). O caminho e a tecnica declarar a BASE e o MATERIAL do caco, e a F2 dizer qual cola serve — nao um campo `tecnica` dentro da ficha de cola."
+    },
+    {
+      "id": "tecnica-vocabulario-sem-caco-de-vidro",
+      "estado": "ABERTA, e e do esquema, nao do mundo",
+      "o_que_falta": "Um valor de `material_tessela` para caco de vidro comum.",
+      "o_que_este_bloco_apurou": "O vocabulario tem `caco_azulejo`, `caco_louca` e `caco_espelho`, e nao tem caco de vidro. As fontes do trencadis citam vidro entre os cacos, e por isso o vidro ficou de fora de `materiais_tipicos` daquele registro. Escolher `caco_espelho` porque e o mais parecido seria a heuristica por vizinhanca que a secao 8 do contrato proibe."
+    },
+    {
+      "id": "tecnica-fonte-nunca-aberta",
+      "estado": "ABERTA, e ela nao e desta ilha: e de rede",
+      "o_que_falta": "Abrir ao menos uma fonte por tecnica.",
+      "o_que_este_bloco_apurou": "Os 5 registros tem 10 fontes e as 10 foram colhidas por busca, sem o documento ser aberto: pt.wikipedia.org, britannica.com e google.com devolveram connect_rejected as 17h30Z de 14/09/2026. E o mesmo buraco que a escada de fontes ja registra para os fabricantes (nivel 1 bloqueado), agora medido do lado das tecnicas. Se o Raphael acrescentar pt.wikipedia.org e os dominios de museu a rede Personalizada do ambiente, as 10 fontes sobem de leitura por busca para leitura direta sem coleta nova."
+    },
+    {
+      "id": "tecnica-revisao-da-artesa",
+      "estado": "ABERTA por desenho, e ela e humana",
+      "o_que_falta": "A artesa ler os 5 registros e marcar `revisao_tecnica: revisada` no que estiver certo.",
+      "o_que_este_bloco_apurou": "Os 5 nascem `pendente`, como o esquema manda. A pagina publica com o estado declarado e nunca finge revisao que nao houve — e nesta ilha, ao contrario de todas as outras do arquipelago, a revisora existe e e a melhor fonte que ha sobre a pratica."
+    }
+  ],
+  "o_que_este_bloco_deixa_desbloqueado": "O portao que decide a familia deixou de ser opiniao e virou contagem: `python3 ferramentas/validar-banco.py .` reprova qualquer registro fora do esquema, e a secao 4b do ARVORE.md diz, com os numeros deste arquivo, quantas tecnicas passam no portao da secao 9 hoje (zero) e o que exatamente muda esse numero."
+}

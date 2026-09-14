@@ -94,6 +94,90 @@ Nível 3 = o tutorial, com a lista de materiais ligada ao Guia e o "prefere pron
 
 **Nenhum tutorial existe hoje.** A `pauta.md` da seção 17 ainda não chegou a esta pasta; quando chegar, os guias entram por cluster (16.6), não um de cada categoria.
 
+**A família das técnicas também mora aqui, e não na raiz.** Ver a seção 4b.
+
+### 4b. A FAMÍLIA DAS TÉCNICAS — o endereço é decidido, e ela NÃO nasce hoje (14/09/2026)
+
+Esta seção fecha o item que estava aberto desde 14/09/2026, quando o despacho do
+Raphael pediu a página `/tecnicas/Picassiete/` e a execução daquele dia respondeu
+que criar uma técnica sozinha seria abrir a família inteira por uma porta lateral,
+e que isso era **bloco de malha com o orçamento de rastreamento na mesa**. Este é
+o bloco. Ele decide três coisas — **onde a família mora**, **o que abre o portão
+dela** e **quanto falta, em número** — e conclui que ela não nasce hoje.
+
+**1. O ENDEREÇO NÃO É A RAIZ, e essa parte é do contrato, não desta ilha.** O
+`dados/corpus-buscas.md` desta ilha, escrito em 10/09/2026, colocou o item 5 da
+fila como `/tecnicas/bizantino`. A seção 16.1 do `ARQUIPELAGO.md` entrou em
+11/09/2026 e é literal: **sem página solta na raiz além de home, sobre, contato,
+divulgação de afiliados e privacidade.** O corpus estava certo no dia em que foi
+escrito e passou a contradizer o contrato no dia seguinte — ninguém percebeu
+porque a página nunca foi criada. O corpus foi corrigido nesta execução, com a
+nota de por quê.
+
+**2. A MÃE É `/como-fazer/`, e a técnica nasce filha DIRETA dela.** Não é decisão
+nova: é a terceira aplicação de uma regra que este arquivo já escreveu duas vezes
+— **a mãe de hoje é a mãe que já tem endereço** (seção 2, para as duas
+ferramentas; seção 3b, para a peça). A categoria de nível 2 (`tecnicas`) só pode
+nascer com três filhas de dado real (16.5), e criar a categoria antes das filhas
+poria um degrau de trilha sem endereço na tela e obrigaria a mover a URL depois,
+o que a 12.1 proíbe para página com impressão registrada.
+
+| o que | endereço | nível | mãe |
+|---|---|---|---|
+| a técnica, hoje | `/como-fazer/<consulta-alvo>/` | 2 | `/como-fazer/` |
+| a categoria, quando tiver 3 filhas | `/como-fazer/tecnicas/` | 2 | `/como-fazer/` |
+| a técnica, depois disso | `/como-fazer/tecnicas/<consulta-alvo>/` | 3 | `/como-fazer/tecnicas/` |
+
+O slug de cada página é a consulta que ela mira, e quem o escolhe é o bloco que a
+publica — do mesmo jeito que a seção 2 registra para as duas ferramentas. O banco
+já guarda a consulta-alvo de cada técnica (`dados/tecnicas.json`), então a escolha
+não nascerá do zero.
+
+**3. POR QUE ELA NÃO NASCE HOJE — três portões em série, e os três estão
+fechados.** Nenhum é opinião:
+
+- **Seção 9 e 13 — 3 itens de banco reais e um número calculado próprio por
+  página.** Medido: **0 para 5 de 5 técnicas**, e o `validar-banco.py` passou a
+  imprimir essa contagem a cada execução. O motivo é mais estreito do que
+  "falta banco", e é o achado deste bloco: as duas únicas técnicas com lado de
+  material declarado por fonte (trencadís e picassiete) apontam para
+  `caco_azulejo` e `caco_louca` — **caco de prato e de azulejo não têm
+  fabricante**, e `caco_louca` nem sequer é um valor de `tipo` de pastilha no
+  vocabulário do esquema. Os 13 itens do banco de pastilhas são todos
+  `pastilha_vidro` de fabricante. **A distância entre a técnica e o banco desta
+  ilha é a distância entre o caco e o produto.**
+- **16.5 — categoria só nasce com 3 filhas.** Sem as filhas, não há o que listar.
+- **14.6 e 14.8 — a rampa é autorizada por número, nunca por vontade.** O
+  `dados/indexacao.md` desta ilha tem **uma linha só**, de 10/09/2026, escrita
+  quando o WordPress ainda não existia: zero URL no sitemap, zero impressão,
+  rampa "nada a decidir". **Nenhum número autoriza leva nova de página nesta
+  ilha hoje** — nem desta família, nem de nenhuma outra. Publicar cinco páginas
+  de técnica agora seria gastar o orçamento de rastreamento de um domínio de
+  quatro dias em páginas que ninguém mediu (14.1).
+
+**4. O QUE ESTE BLOCO ENTREGOU NO LUGAR DA PÁGINA.** O banco da entidade TECNICA,
+que o esquema do bloco 3 previu em 12/09 e que nunca tinha nascido:
+`dados/tecnicas.json`, com as **cinco** técnicas que a artesã pode marcar no
+ateliê, cada uma com definição sustentada por fonte de enciclopédia, museu ou
+instituição de ensino, a consulta-alvo, a SERP lida em 14/09/2026 e
+`revisao_tecnica: pendente` — porque a revisora existe, é a artesã, e esta ilha
+não finge revisão que não houve. **As três técnicas `opus_*` do vocabulário
+ficaram de fora com motivo escrito:** nenhuma é oferecida a ela, então nenhuma
+peça pode ser marcada com elas.
+
+**5. A TAXONOMIA `tecnica` CONTINUA `public => false`**, e agora por uma razão
+medida em vez de herdada: enquanto o portão de 3 itens estiver em zero, o arquivo
+de taxonomia nasceria com página vazia. O dia em que ele abrir, o que muda é uma
+linha no snippet da Loja e o texto editorial aqui — como a decisão 4 daquele
+arquivo já dizia.
+
+**6. O QUE ABRE O PORTÃO, na ordem, e nada disso é opinião.** O caminho mais curto
+**não** é catalogar caco: é ligar a técnica à **cola** e ao **rejunte**, que é
+onde esta ilha tem banco de verdade (7 colas, 5 rejuntes) e uma ferramenta que já
+decide (F2). A técnica declara a base e o material do caco; a F2 diz qual cola
+serve. Isso é número calculado próprio, e é a resposta que nenhuma das páginas
+lidas na SERP de 14/09 dá.
+
 ---
 
 ## 5. Onde mora cada página que existe HOJE

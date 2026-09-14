@@ -890,19 +890,140 @@ if rejuntes:
 
 # ---------------------------------------------------------------- TECNICA
 
+# ESTA REGUA FOI ESCRITA EM 12/09 E NUNCA RODOU ATE 14/09/2026, porque o arquivo
+# que ela mede nao existia — ela vivia imprimindo a `nota` de baixo. Portao que
+# nunca rodou e funcao morta, e este passou tres dias assim. No dia em que o
+# arquivo nasceu, o que ela cobrava (id no vocabulario, campo obrigatorio
+# presente, enum do estado da revisao) passou de primeira, e passar de primeira
+# nao e elogio: e o sinal de que ela cobrava o que qualquer arquivo bem digitado
+# teria. O que ela NAO cobrava era tudo o que o esquema diz que esta entidade
+# tem de especial, e e isso que entrou agora:
+#
+#   1. FONTE OBRIGATORIA TEM DE APONTAR PARA UMA FONTE QUE EXISTE. O esquema
+#      marca `definicao` com fonte_obrigatoria; sem esta afirmacao, "tem o campo
+#      definicao" e "a definicao tem de onde vir" eram a mesma linha, e nao sao.
+#   2. O NIVEL DA FONTE E O DO ELO MAIS FRACO (secao 10 do contrato). TECNICA e a
+#      unica entidade da ilha sem fabricante, e o esquema lista as origens que
+#      ela aceita. A regua le a lista DO ESQUEMA — escrever os tres nomes aqui
+#      seria a segunda copia da mesma decisao.
+#   3. SILENCIO NUNCA PROMOVE: campo opcional vazio exige o `motivo_sem_<campo>`
+#      ao lado. E a mesma regra do `motivo_declaracoes_vazias` do banco de
+#      material, e ela existe porque campo vazio sem motivo e indistinguivel de
+#      campo esquecido.
+#   4. NUMERO SO EXISTE COM FONTE. `junta_tipica_mm` e o unico numero desta
+#      entidade e o esquema diz que ele alimenta o valor sugerido da F1. Numero
+#      que chega a um campo de entrada de ferramenta sem fonte e o defeito que a
+#      secao 13 chama de pior que nao ter o campo.
+#   5. O PORTAO DA FAMILIA, e ele e o que decide pagina: uma tecnica so pode
+#      declarar pagina depois de reunir 3 itens de banco reais (secao 9). A
+#      contagem e feita aqui, item a item, traduzindo categoria+tipo do banco de
+#      material para o vocabulario `material_tessela` — nunca comparando texto.
+
 tecnicas = carregar("tecnicas.json")
 if tecnicas is None:
     nota("dados/tecnicas.json ainda nao existe: entidade TECNICA vazia.")
 else:
+    ESQ_TECNICA = esquema.get("entidades", {}).get("TECNICA", {})
+    ORIGENS_ACEITAS = ESQ_TECNICA.get("natureza_da_fonte", {}).get("niveis_aceitos", [])
+    if not ORIGENS_ACEITAS:
+        erro("esquema-banco.json: a entidade TECNICA nao lista niveis_aceitos de fonte, "
+             "e sem essa lista a regua de fonte desta entidade nao tem contra o que medir")
+
+    # Traducao categoria+tipo do banco de MATERIAL -> vocabulario material_tessela.
+    # So a categoria `pastilha` produz tessela; cola, rejunte e alicate nao sao
+    # material de superficie e por isso nao contam para o portao de 3.
+    TESSELA_POR_TIPO = {
+        "vidro": "pastilha_vidro",
+        "ceramica": "pastilha_ceramica",
+        "pedra": "pedra",
+        "caco_azulejo": "caco_azulejo",
+        "caco_espelho": "caco_espelho",
+    }
+    tesselas_do_banco = {}
+    for mid, m in materiais.items():
+        if m.get("categoria") != "pastilha":
+            continue
+        alvo = TESSELA_POR_TIPO.get(m.get("tipo"))
+        if alvo:
+            tesselas_do_banco.setdefault(alvo, []).append(mid)
+
+    vistos = set()
     for t in tecnicas.get("tecnicas", []):
-        onde = "tecnicas.json / %s" % t.get("id")
-        if t.get("id") not in VOC["tecnica"]:
+        tid = t.get("id")
+        onde = "tecnicas.json / %s" % tid
+        if tid not in VOC["tecnica"]:
             erro("%s: id fora do vocabulario de tecnica" % onde)
+        if tid in vistos:
+            erro("%s: id repetido — duas tecnicas com o mesmo id publicam a mesma pagina duas vezes" % onde)
+        vistos.add(tid)
+
         for campo in ("nome", "definicao", "consulta_alvo", "por_que_chega_ao_top_10", "fontes", "revisao_tecnica"):
             if not t.get(campo):
                 erro("%s: falta %s" % (onde, campo))
         if t.get("revisao_tecnica") not in ("pendente", "revisada"):
             erro("%s: revisao_tecnica invalida" % onde)
+        if "imagem" not in t:
+            erro("%s: falta o campo imagem (o esquema o marca obrigatorio, e `null` e resposta)" % onde)
+
+        fontes = t.get("fontes") or {}
+        if not isinstance(fontes, dict):
+            erro("%s: fontes tem de ser objeto id -> fonte" % onde)
+            fontes = {}
+        for fid, f in fontes.items():
+            for campo in ("url", "origem", "o_que_e", "leitura", "data_leitura"):
+                if not (isinstance(f, dict) and f.get(campo)):
+                    erro("%s / fonte %s: falta %s" % (onde, fid, campo))
+            if isinstance(f, dict) and ORIGENS_ACEITAS and f.get("origem") not in ORIGENS_ACEITAS:
+                erro("%s / fonte %s: origem %r fora das aceitas pelo esquema para TECNICA (%s)"
+                     % (onde, fid, f.get("origem"), ", ".join(ORIGENS_ACEITAS)))
+
+        # (1) e (4): todo campo com fonte obrigatoria aponta para uma fonte que existe.
+        for campo, chave in (("definicao", "definicao_fonte_id"),
+                             ("materiais_tipicos", "materiais_tipicos_fonte_id"),
+                             ("junta_tipica_mm", "junta_tipica_mm_fonte_id")):
+            valor = t.get(campo)
+            if valor in (None, [], ""):
+                continue
+            fid = t.get(chave)
+            if not fid:
+                erro("%s: %s esta preenchido e nao diz de qual fonte veio (falta %s)" % (onde, campo, chave))
+            elif fid not in fontes:
+                erro("%s: %s aponta para a fonte %r, que nao existe em fontes" % (onde, chave, fid))
+
+        # (3) silencio nunca promove.
+        for campo, motivo in (("como_se_executa", "motivo_sem_como_se_executa"),
+                              ("bases_compativeis", "motivo_sem_bases"),
+                              ("materiais_tipicos", "motivo_sem_materiais"),
+                              ("junta_tipica_mm", "motivo_sem_junta")):
+            if t.get(campo) in (None, [], "") and not t.get(motivo):
+                erro("%s: %s esta vazio e nao ha %s — campo vazio sem motivo e "
+                     "indistinguivel de campo esquecido" % (onde, campo, motivo))
+
+        for campo, voc in (("bases_compativeis", "base"), ("materiais_tipicos", "material_tessela")):
+            for valor in (t.get(campo) or []):
+                if valor not in VOC.get(voc, []):
+                    erro("%s: %s tem %r, fora do vocabulario %s" % (onde, campo, valor, voc))
+
+        junta = t.get("junta_tipica_mm")
+        if junta is not None and not isinstance(junta, (int, float)):
+            erro("%s: junta_tipica_mm tem de ser numero ou null" % onde)
+
+        # (5) O PORTAO DA FAMILIA.
+        itens = []
+        for valor in (t.get("materiais_tipicos") or []):
+            itens.extend(tesselas_do_banco.get(valor, []))
+        t["__itens_de_banco"] = len(set(itens))
+        if t.get("pagina_publicada") and len(set(itens)) < 3:
+            erro("%s: declara pagina publicada com %d itens de banco. O portao da secao 9 "
+                 "pede 3 itens reais e um numero calculado proprio, e a 16.5 pede 3 filhas "
+                 "antes da categoria — pagina de tecnica sem material que a sustente e "
+                 "pagina fina em dominio que ainda nao indexou nada (14.1)"
+                 % (onde, len(set(itens))))
+
+    if tecnicas.get("tecnicas"):
+        resumo = ", ".join("%s %d" % (t.get("id"), t.get("__itens_de_banco", 0))
+                           for t in tecnicas["tecnicas"])
+        nota("tecnicas: itens de banco por tecnica (portao de 3 da secao 9) — %s" % resumo)
 
 
 # ---------------------------------------------------------------- COTACAO

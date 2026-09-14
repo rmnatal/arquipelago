@@ -360,6 +360,18 @@ afiliado passa a reservar a ilha como a Fundação reserva, ou ela deixa de toca
 
 ### clubedomosaico — o `PROMPT.md` dela não documenta o parâmetro de autenticação do endpoint de peças
 
+> **FECHADO, e já estava fechado antes de alguém riscar esta linha.** A execução
+> da Fundação de 14/09/2026 às 17h18Z reservou a clubedomosaico, veio fechar este
+> despacho e encontrou a seção "Endpoints desta ilha" do `PROMPT.md` daquela ilha
+> **já com a URL completa e literal**, o nome do parâmetro (`token`), a nota de
+> que o valor é o mesmo token do Sync e a conferência no ar de 13/09/2026 às
+> 15h21Z (HTTP 200, `{"total":0,"pecas":[]}`). Foi fechado no mesmo dia em que foi
+> aberto, por quem tinha a ilha na mão — e ficou aqui em aberto por um dia porque
+> **despacho fechado no destino não se apaga sozinho na origem**. Nada a fazer:
+> a cópia da seção 24 já existe e tem a primeira peça dentro
+> (`ilhas/clubedomosaico/dados/pecas.json`, `total: 1`). O texto original fica
+> abaixo, como a 18.4 manda.
+
 Aberto em 13/09/2026 pela ronda da Sentinela na **aquametria**, que não tinha
 outro canal, e movido para cá pela execução da Fundação das 15h16Z — o achado é
 de outra ilha, e a seção 3 proíbe editar arquivo de ilha que não se reservou.
