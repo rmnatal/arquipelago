@@ -3461,4 +3461,18 @@ volta — cópia publicada, snippet lendo a cópia, total digitado, peça sem id
   107, **`teste-loja.php`** 178, **`teste-atelie.php`** aprovado, **`teste-leads.php`**
   211, **`conferir-cobertura.php`** 353, **`php -l`** limpo em tudo.
 
-O QUE FALTA (o desembarque no ar): registrado abaixo ao fim do Sync.
+## NO AR (o desembarque)
+Sync disparado UMA vez, revisao 31 com 10 aplicados; `/status` na revisao 31, igual
+a do manifest. A F1 serve, no HTML servido, a vitrine da **pastilha antes** da do
+rejunte, com os marcadores `cdm-f1-vitrine-pastilha` e `cdm-f1-vitrine-rejunte` e os
+titulos **"Onde comprar a pastilha"** e **"Qual rejunte cabe nessa folga"** — nenhum
+abrindo com conector. `conferir-no-ar.py`: **437 afirmacoes** (eram 416), 0 falha,
+incluindo a ordem das duas vitrines medida em tres estados servidos.
+
+## PROXIMO, com ordem e motivo
+1. **A familia `/tecnicas/<slug>/`**, decisao de malha com o orcamento de rastreamento
+   na mesa, e agora com peca publicada para linkar.
+2. **`1x1` de fabricante**, a pendencia mais cara da categoria pastilha — sozinha muda
+   7 das 12 linhas da tabela da F1.
+3. **A categoria COLA**, 45 estados varridos e 0 com o minimo da 14.3.
+4. Os 15 `url_busca`, no minuto em que houver sessao da Shopee.
