@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 0
 primeira_indexacao: null
 ultima_execucao: 2026-09-14T19:16Z
-executando_desde: null
+executando_desde: 2026-09-14T21:20Z
 rede: bloqueada em 2026-09-14   # 20.1: o dominio nao esta na lista de Dominios permitidos. RETESTADA as 19h18Z desta execucao, nao herdada. Despacho ALTO para o Raphael em dados/despachos.md
 bloco_atual: |
   BLOCO 2 ENTREGUE — a especificacao das tres ferramentas e o constantes.json. dados/especificacao-calculadoras.md (as tres com consulta-alvo, classificacao de SERP pela 14.9, entradas, saidas, portao da secao 7, e o que cada uma se RECUSA a responder) e dados/constantes.json (18 constantes: 6 publicaveis, 3 publicaveis como desacordo, 1 aguardando validacao e 8 PENDENTES). Nada foi publicado: esta ilha nao tem site.
