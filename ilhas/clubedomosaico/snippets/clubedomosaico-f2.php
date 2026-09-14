@@ -1,5 +1,16 @@
 /**
  * Clube do Mosaico F2 — Qual cola usar no mosaico, e qual rejunte
+ * Versão 1.5.0 (14/09/2026) — A FRASE PROIBIDA SAI DA ILHA, E O QUE FALTAVA NÃO
+ * ERA DECISÃO: ERA A TELA LER O CAMPO. A seção 7 do contrato passou a proibir
+ * "link de loja em breve" em 14/09/2026, e esta ilha ainda a servia em 15 dos 25
+ * itens do banco — 13 pastilhas e 2 colas —, nos cartões da F2 e na vitrine de
+ * pastilha da F1, que chama esta mesma função. A escada de `cdm_f2_compra_html()`
+ * ganhou o degrau 4 da seção 25.1: a busca CRUA (`afiliado.url_busca_produto`)
+ * vira o botão quando não há ficha nem busca encurtada. Ela sai
+ * `rel="nofollow noopener"` e não `sponsored`, porque não rende comissão — o
+ * atributo declara a relação paga, e chamar de patrocinado um link que não paga
+ * seria mentir ao leitor sobre a única coisa que ele tem o direito de saber sobre
+ * nós. Dois dos 15 já tinham a palavra-chave escrita no banco desde 13/09.
  * Versão 1.4.0 (13/09/2026) — a matriz escrita à mão do esquema vai de 18 para
  * 45 células, a grade inteira de base x lugar, e a tabela pré-renderizada desta
  * página passa a servir as 45 linhas. Foi essa régua independente que achou o
@@ -51,10 +62,11 @@
  *
  * 3. O BLOCO DE COMPRA VEM ANTES DA PROVA DE PROCEDÊNCIA (seção 7, cicatriz da
  *    Robometria de 10/09/2026), e desde a 1.2.0 ele DESCE A ESCADA DA SEÇÃO 25:
- *    ficha de produto no botão, busca na linha discreta abaixo; sem ficha, a
- *    busca sobe e vira o botão; "link de loja em breve" só sobra para quem não
- *    tem nem piso, e esse caso é defeito contado, não estado de espera. A régua
- *    inteira está em `cdm_f2_compra_html()`. O link de procedência continua
+ *    ficha de produto no botão, busca encurtada na linha discreta abaixo; sem
+ *    ficha, a busca encurtada sobe e vira o botão; sem ela, a busca CRUA vira o
+ *    botão (desde a 1.5.0). Item sem nenhuma das três não chega ao ar: é falha
+ *    dura do `validar-banco.py`, não etiqueta na tela. A régua inteira está em
+ *    `cdm_f2_compra_html()`. O link de procedência continua
  *    sendo texto pequeno, `rel="nofollow noopener"`, nunca botão.
  *
  * 4. A CATEGORIA É PARTE DA PERGUNTA. A régua da cola decide sobre BASE; a do
@@ -88,7 +100,7 @@
  */
 
 if ( ! defined( 'CDM_F2_VERSAO' ) ) {
-	define( 'CDM_F2_VERSAO', '1.4.0' );
+	define( 'CDM_F2_VERSAO', '1.5.0' );
 }
 if ( ! defined( 'CDM_F2_SLUG' ) ) {
 	/* Nível 3 com mãe /materiais/ direto — dois níveis em vez de três, estado de
@@ -909,25 +921,42 @@ if ( ! function_exists( 'cdm_f2_compra_html' ) ) {
  *    abre uma LISTA, não um produto, e prometer "Ver na loja" ali seria o leitor
  *    clicar esperando a ficha do que a página acabou de recomendar. A 25.2 manda
  *    que este caso nunca diga "em breve" — a página está monetizada.
- * 3. NÃO TEM NADA — sobra a etiqueta "Link de loja em breve", que é a única
- *    forma legítima que restou, e ela é DEFEITO DECLARADO: pela 25.2 item sem
- *    `url_busca` é defeito da 19.1, sempre, em qualquer degrau. O `validar-banco.py`
- *    conta esses itens e o cabeçalho de cada banco declara o número, do mesmo
- *    jeito que já declara `itens_esperando_link` — número contado, nunca digitado.
+ * 3. SÓ TEM A BUSCA CRUA — nasceu em 14/09/2026 e é o degrau que fez a etiqueta
+ *    "Link de loja em breve" SUMIR desta ilha. A busca crua
+ *    (`afiliado.url_busca_produto`, `shopee.com.br/search?keyword=…`) vira o
+ *    botão, com o MESMO texto do estado 2, porque para quem lê os dois abrem a
+ *    mesma coisa: uma lista na loja. O que muda é o `rel`, e essa parte não é
+ *    estética — ver abaixo.
+ * 4. NÃO TEM NADA — a etiqueta sumiu e no lugar dela ficou uma FALHA DURA do
+ *    `validar-banco.py`. Este ramo não imprime mais promessa nenhuma: ele
+ *    devolve o bloco vazio, porque item sem nenhuma saída de compra não pode
+ *    chegar ao ar (seção 7, 14/09/2026: a frase "link de loja em breve" está
+ *    proibida e item que chegaria a ela é defeito, não estado de espera).
+ *
+ * O QUE ESTE BLOCO CORRIGIU, e ele vale mais do que a frase que saiu: os 15
+ * itens que caíam na etiqueta JÁ TINHAM a palavra-chave da busca escrita no
+ * banco — dois em `url_busca_produto` desde 13/09, e os treze da pastilha foram
+ * escritos agora. Em nenhum momento faltou decisão; faltava a TELA ler o campo.
+ * É a mesma distância entre repositório e ar que a seção 4 do contrato paga mais
+ * caro, uma camada abaixo.
  *
  * POR QUE ISTO É FUNÇÃO PRÓPRIA, e não um `if` dentro do cartão: a escada é
  * regra do Arquipélago e o cartão é desenho desta ilha. Quem for servir a escada
  * na ficha do Guia, na vitrine de pastilha da F1 ou na página da peça chama esta
- * função em vez de reescrever os três estados — e três cópias de uma escada de
+ * função em vez de reescrever os quatro estados — e três cópias de uma escada de
  * quatro degraus é o jeito mais curto de dois degraus discordarem em silêncio.
  *
- * `rel="sponsored"` vale para os dois links: link de busca de afiliado é link de
- * afiliado, e o que o atributo declara é a relação comercial, não o formato da
- * página de destino.
+ * O `rel` SAI DO QUE O LINK É, NUNCA DO FORMATO DA PÁGINA DE DESTINO.
+ * `rel="sponsored"` é a declaração de uma relação PAGA: vale para a ficha e para
+ * a busca ENCURTADA, que são links de afiliado e rendem comissão. A busca CRUA
+ * não rende nada — ninguém paga por aquele clique —, então ela sai
+ * `rel="nofollow noopener"`. Chamar de patrocinado um link que não paga seria
+ * mentir ao leitor sobre a única coisa que ele tem o direito de saber sobre nós.
  */
 function cdm_f2_compra_html( $afiliado ) {
 	$ficha = ( is_array( $afiliado ) && ! empty( $afiliado['url'] ) ) ? $afiliado['url'] : '';
 	$busca = ( is_array( $afiliado ) && ! empty( $afiliado['url_busca'] ) ) ? $afiliado['url_busca'] : '';
+	$crua  = ( is_array( $afiliado ) && ! empty( $afiliado['url_busca_produto'] ) ) ? $afiliado['url_busca_produto'] : '';
 
 	$html = '<span class="cdm-f2-compra">';
 
@@ -941,8 +970,9 @@ function cdm_f2_compra_html( $afiliado ) {
 	} elseif ( '' !== $busca ) {
 		$html .= '<a class="cdm-f2-botao cdm-f2-botao-busca" href="' . esc_url( $busca ) . '"'
 			. ' rel="sponsored noopener" target="_blank">Ver as opções na loja</a>';
-	} else {
-		$html .= '<span class="cdm-f2-sem-loja">Link de loja em breve</span>';
+	} elseif ( '' !== $crua ) {
+		$html .= '<a class="cdm-f2-botao cdm-f2-botao-busca cdm-f2-botao-busca-crua" href="' . esc_url( $crua ) . '"'
+			. ' rel="nofollow noopener" target="_blank">Ver as opções na loja</a>';
 	}
 
 	$html .= '</span>';
@@ -2185,7 +2215,6 @@ add_action( 'wp_footer', function () {
    compra do cartão, e esconder o único caminho é o "em breve" com outro nome. */
 .cdm-f2-botao-busca{background:var(--cdm-rubi);}
 .cdm-f2-botao-busca:hover{background:var(--cdm-vinho);}
-.cdm-f2-sem-loja{display:inline-block;font-size:.85rem;color:var(--cdm-legenda);border:1px dashed var(--cdm-traco);border-radius:2px;padding:.45rem .7rem;}
 .cdm-f2-fonte{font-size:.8rem;color:var(--cdm-legenda);}
 .cdm-f2-aviso{font-size:.88rem;color:var(--cdm-legenda);margin:.8rem 0 0;}
 .cdm-f2-lista-fora{margin:.6rem 0 0;padding-left:1.1rem;}

@@ -315,11 +315,50 @@ def m_cartao_sem_compra_some(raiz):
     a recomendacao passa a depender do link de afiliado existir. E a inversao que
     a secao 7 do contrato proibe — o que a pagina recomenda nao pode ser decidido
     pelo que da para monetizar."""
+    # A CONDICAO FOI REESCRITA EM 14/09/2026 PORQUE A MUTACAO TINHA FICADO INERTE.
+    # Ela procurava `cdm-f2-sem-loja`, a classe da etiqueta proibida, que deixou de
+    # ser emitida na f2 1.5.0 — entao ela editava o snippet, o `if` nunca era
+    # verdadeiro, nenhum cartao sumia e a bateria ficava VERDE sem medir nada. E o
+    # mesmo defeito que a Robometria nomeou em 14/09 com duas mutacoes suas: a
+    # mutacao que deixa de achar o alvo edita NADA e passa. O estado sem nenhuma
+    # saida hoje produz bloco de compra VAZIO, e e isso que ela passa a procurar.
     editar(raiz, SNIPPET,
            "\t$html .= cdm_f2_compra_html( isset( $m['afiliado'] ) ? $m['afiliado'] : array() );",
            "\t$bloco_compra = cdm_f2_compra_html( isset( $m['afiliado'] ) ? $m['afiliado'] : array() );\n"
-           "\tif ( false !== strpos( $bloco_compra, 'cdm-f2-sem-loja' ) ) {\n\t\treturn '';\n\t}\n"
+           "\tif ( '<span class=\"cdm-f2-compra\"></span>' === $bloco_compra ) {\n\t\treturn '';\n\t}\n"
            "\t$html .= $bloco_compra;")
+
+
+def m_busca_crua_com_sponsored(raiz):
+    """A busca CRUA passa a declarar `rel=sponsored`. E a mentira mais barata de
+    escrever e a mais dificil de ver: o link continua funcionando, leva a mesma
+    loja, e a pagina passa a dizer ao leitor que ganha comissao por um clique que
+    nao paga nada. O atributo declara a relacao PAGA, nao o formato do destino."""
+    editar(raiz, SNIPPET,
+           "$html .= '<a class=\"cdm-f2-botao cdm-f2-botao-busca cdm-f2-botao-busca-crua\" href=\"' . esc_url( $crua ) . '\"'\n"
+           "\t\t\t. ' rel=\"nofollow noopener\"",
+           "$html .= '<a class=\"cdm-f2-botao cdm-f2-botao-busca cdm-f2-botao-busca-crua\" href=\"' . esc_url( $crua ) . '\"'\n"
+           "\t\t\t. ' rel=\"sponsored noopener\"")
+
+
+def m_busca_crua_deixa_de_ser_lida(raiz):
+    """O degrau 4 some e a tela volta a nao ler `url_busca_produto` — que e
+    exatamente o estado em que esta ilha estava ate 14/09/2026, com o dado no
+    banco e nenhuma linha de codigo o lendo. Os quinze itens voltam a ficar sem
+    saida de compra, sem nenhuma promessa no lugar."""
+    editar(raiz, SNIPPET,
+           "\t$crua  = ( is_array( $afiliado ) && ! empty( $afiliado['url_busca_produto'] ) ) ? $afiliado['url_busca_produto'] : '';",
+           "\t$crua  = '';")
+
+
+def m_busca_crua_passa_na_frente_da_ficha(raiz):
+    """A busca crua sobe para antes da ficha na escada. O leitor que tinha o
+    endereco do produto recomendado passa a cair numa lista de busca — e a ilha
+    troca um clique que paga por um que nao paga."""
+    editar(raiz, SNIPPET,
+           "\tif ( '' !== $ficha ) {",
+           "\tif ( '' !== $crua ) {\n\t\t$html .= '<a class=\"cdm-f2-botao cdm-f2-botao-busca cdm-f2-botao-busca-crua\" href=\"' . esc_url( $crua ) . '\"'\n"
+           "\t\t\t. ' rel=\"nofollow noopener\" target=\"_blank\">Ver as opções na loja</a>';\n\t} elseif ( '' !== $ficha ) {")
 
 
 
@@ -642,6 +681,9 @@ MUTACOES = [
     ("o botao de busca promete a ficha do produto", m_botao_de_busca_promete_ficha),
     ("o link de busca perde o rel=sponsored", m_busca_sem_sponsored),
     ("cartao sem nenhum degrau some em vez de reservar o lugar", m_cartao_sem_compra_some),
+    ("a busca CRUA declara sponsored — comissao que nao existe", m_busca_crua_com_sponsored),
+    ("a tela volta a NAO ler url_busca_produto (o estado ate 14/09)", m_busca_crua_deixa_de_ser_lida),
+    ("a busca crua passa na frente da ficha na escada", m_busca_crua_passa_na_frente_da_ficha),
     # --- regra 6, bloco 3e. A terceira coluna diz QUAL portao tem de reprovar:
     #     "tela" = ferramentas/teste-f2.php; "banco" = ferramentas/validar-banco.py.
     #     Sem ela, uma mutacao reprovada pela trava VIZINHA passaria por prova de

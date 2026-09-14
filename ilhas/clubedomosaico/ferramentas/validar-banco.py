@@ -144,7 +144,8 @@ if not arquivos_material:
 materiais = {}
 esperando_link = 0
 sem_imagem = 0
-sem_piso = 0          # secao 25.2: item sem `url_busca` — sem piso de compra
+sem_saida = 0            # secao 7 e 25.2: item sem NENHUMA saida de compra — erro duro
+piso_nao_rastreavel = 0  # 25.6: tem busca CRUA e nao tem a encurtada — divida de comissao
 sem_busca_crua = 0    # secao 25.4-b: tem busca e nao guarda o endereco cru dela
 
 for nome in arquivos_material:
@@ -272,8 +273,30 @@ for nome in arquivos_material:
         # que foi o que fez os dez links serem gerados em 13/09. No dia em que o
         # numero chegar a zero em todos os bancos, esta linha vira `erro()` e o
         # portao passa a impedir a divida de voltar.
-        if not af.get("url_busca"):
-            sem_piso += 1
+        # A CONTAGEM MUDOU EM 14/09/2026, E ELA ESTAVA MEDINDO A COISA ERRADA.
+        #
+        # Ate aqui `sem_piso` contava quem nao tinha `url_busca` — o piso
+        # ENCURTADO, o que rende comissao — e chamava isso de "sem piso". Sao duas
+        # perguntas diferentes coladas numa so, e elas so davam o mesmo numero
+        # enquanto nenhum item tinha saida CRUA:
+        #
+        #   1. O leitor tem para onde ir? (secao 7: nenhum item fica sem saida de
+        #      compra, e a frase "link de loja em breve" esta proibida)
+        #   2. Esse clique rende comissao? (25.6: o encurtamento depende de uma
+        #      sessao do painel da Shopee, que nenhuma rotina alcanca)
+        #
+        # A primeira e defeito no ar e agora e ERRO DURO: com `url_busca_produto`
+        # escrito, ela e fechavel sem depender de ninguem, e portao fechavel que
+        # fica sendo aviso e portao que se aprende a ignorar. A segunda e divida
+        # de receita, continua CONTADA, e nao e defeito de pagina: o leitor
+        # chegou na loja.
+        if not af.get("url") and not af.get("url_busca") and not af.get("url_busca_produto"):
+            sem_saida += 1
+            erro("%s: sem NENHUMA saida de compra — sem ficha, sem busca encurtada e sem busca "
+                 "crua. E o item que chegaria a frase 'link de loja em breve', proibida pela "
+                 "secao 7 desde 14/09/2026, e defeito da 19.1 pela 25.2" % onde)
+        if af.get("url_busca_produto") and not af.get("url_busca"):
+            piso_nao_rastreavel += 1
         # 25.4-b: o endereco CRU da busca, que e o que a ronda abre para conferir
         # se a palavra-chave ainda traz resultado. Do link encurtado nao se chega
         # la sem clicar, e clicar o proprio link de afiliado e o que a 25.4 proibe.
@@ -341,20 +364,39 @@ for nome in arquivos_material:
     if dec_img is not None and dec_img != conta_img:
         erro("%s: cabecalho declara %s itens sem imagem, o arquivo tem %s" % (nome, dec_img, conta_img))
 
-    # O PISO DA 25.2 TAMBEM E NUMERO DE CABECALHO, e pela mesma razao que o link:
-    # numero que o arquivo declara e a regua reconta nao envelhece calado. Este e
-    # OBRIGATORIO desde 13/09/2026 — `itens_esperando_link` pode faltar num banco
-    # antigo, mas nenhum banco nasce depois da 25.2 sem dizer quantos itens seus
-    # estao sem piso, porque e exatamente o numero que a ilha tem de reportar em
-    # todo bloco.
-    dec_piso = (arq.get("afiliado") or {}).get("itens_sem_piso")
-    conta_piso = sum(1 for m in arq.get("materiais", [])
-                     if not (m.get("afiliado") or {}).get("url_busca"))
-    if dec_piso is None:
-        erro("%s: o cabecalho nao declara `afiliado.itens_sem_piso` (secao 25.2); "
-             "o arquivo tem %s item(ns) sem piso" % (nome, conta_piso))
-    elif dec_piso != conta_piso:
-        erro("%s: cabecalho declara %s itens sem piso, o arquivo tem %s" % (nome, dec_piso, conta_piso))
+    # O PISO TAMBEM E NUMERO DE CABECALHO, e pela mesma razao que o link: numero
+    # que o arquivo declara e a regua reconta nao envelhece calado.
+    #
+    # O NOME DO CAMPO MUDOU EM 14/09/2026 E O CAMPO VELHO E RECUSADO DE PROPOSITO.
+    # `itens_sem_piso` contava quem nao tinha a busca ENCURTADA e chamava isso de
+    # "sem piso" — duas perguntas coladas numa so, que davam o mesmo numero
+    # enquanto nenhum item tinha busca crua. Deixar o nome velho conviver com o
+    # significado novo seria a pior das saidas: o numero continuaria batendo e
+    # diria outra coisa. Entao o cabecalho declara os DOIS numeros, com os nomes
+    # que dizem o que eles sao, e quem deixar o campo velho para tras e avisado.
+    afh = arq.get("afiliado") or {}
+    if "itens_sem_piso" in afh:
+        erro("%s: o cabecalho ainda declara `itens_sem_piso`, campo aposentado em 14/09/2026 "
+             "porque media quem nao tinha a busca ENCURTADA e chamava isso de sem piso. "
+             "Declare `itens_sem_saida_de_compra` e `itens_com_piso_nao_rastreavel`" % nome)
+
+    def _sem_saida(m):
+        af = m.get("afiliado") or {}
+        return not af.get("url") and not af.get("url_busca") and not af.get("url_busca_produto")
+
+    def _nao_rastreavel(m):
+        af = m.get("afiliado") or {}
+        return bool(af.get("url_busca_produto")) and not af.get("url_busca")
+
+    for campo, conta in (("itens_sem_saida_de_compra", sum(1 for m in arq.get("materiais", []) if _sem_saida(m))),
+                         ("itens_com_piso_nao_rastreavel", sum(1 for m in arq.get("materiais", []) if _nao_rastreavel(m)))):
+        declarado = afh.get(campo)
+        if declarado is None:
+            erro("%s: o cabecalho nao declara `afiliado.%s`; o arquivo tem %s"
+                 % (nome, campo, conta))
+        elif declarado != conta:
+            erro("%s: cabecalho declara %s em `%s`, o arquivo tem %s"
+                 % (nome, declarado, campo, conta))
 
 
 # ------------------------------------------- as cinco regras de elegibilidade
@@ -1156,7 +1198,8 @@ print("  celulas do rejunte ......... %d" % celulas_rejunte_conferidas)
 print("  pares da condicao (regra 6) . %d  (%d ancoras ponta a ponta)"
       % (pares_conferidos, ancoras_conferidas))
 print("  itens esperando link ....... %d" % esperando_link)
-print("  itens SEM PISO (25.2) ...... %d" % sem_piso)
+print("  itens SEM SAIDA de compra .. %d  (secao 7 — tem de ser 0)" % sem_saida)
+print("  piso NAO rastreavel ........ %d  (25.6 — divida de comissao, nao defeito)" % piso_nao_rastreavel)
 print("  busca sem endereco cru ..... %d  (25.4-b)" % sem_busca_crua)
 print("  itens sem imagem ........... %d" % sem_imagem)
 for n in notas:

@@ -209,8 +209,15 @@ def _diagnostico_do_link(corpo, categorias):
 # tela pelo mesmo numero. Numero digitado envelheceria calado no dia em que um
 # link fosse gerado ou morresse.
 def _conta_escada(categorias):
-    """(com ficha e piso, so piso, sem nada) lidos do repositorio."""
-    ficha_e_piso = so_piso = sem_nada = 0
+    """(com ficha e piso, so piso, so busca crua, sem nada) lidos do repositorio.
+
+    O QUARTO NUMERO NASCEU EM 14/09/2026 e o quarto degrau com ele: `sem_nada`
+    contava, junto, quem nao tinha NADA e quem tinha a busca CRUA. Enquanto a
+    tela nao lia `url_busca_produto` os dois eram a mesma coisa na pratica — os
+    dois viam a etiqueta proibida. Deixados juntos depois da f2 1.5.0, a regua
+    aprovaria uma pagina sem saida de compra por engano.
+    """
+    ficha_e_piso = so_piso = so_crua = sem_nada = 0
     for nome in sorted(os.listdir(_DADOS_DIR)):
         if not (nome.startswith("materiais-") and nome.endswith(".json")):
             continue
@@ -224,9 +231,11 @@ def _conta_escada(categorias):
                 ficha_e_piso += 1
             elif af.get("url_busca"):
                 so_piso += 1
+            elif af.get("url_busca_produto") and not af.get("url"):
+                so_crua += 1
             elif not af.get("url"):
                 sem_nada += 1
-    return ficha_e_piso, so_piso, sem_nada
+    return ficha_e_piso, so_piso, so_crua, sem_nada
 
 
 def _escada_na_tela(corpo, categorias, rotulo):
@@ -244,7 +253,7 @@ def _escada_na_tela(corpo, categorias, rotulo):
     tela NAO pode ter (cartao a mais do que o banco sustenta) e se a etiqueta
     "em breve" tem direito de existir.
     """
-    ficha_e_piso, so_piso, sem_nada = _conta_escada(categorias)
+    ficha_e_piso, so_piso, so_crua, sem_nada = _conta_escada(categorias)
     cartoes = re.findall(r'<li class="cdm-f2-cartao[^"]*">.*?</li>', corpo, re.S)
     ok(len(cartoes) > 0, "[%s] a varredura acha os cartoes servidos" % rotulo, len(cartoes))
 
@@ -259,13 +268,33 @@ def _escada_na_tela(corpo, categorias, rotulo):
        "[%s] 25.2: nenhum cartao serve a busca COMO BOTAO tendo ficha" % rotulo,
        "%d cartoes com a busca no botao" % len(so_busca))
 
-    sem_compra = [c for c in cartoes if "cdm-f2-sem-loja" in c]
-    ok(not sem_compra or sem_nada > 0,
-       "[%s] 25.2: 'em breve' na tela exige item sem piso nenhum no banco" % rotulo,
-       "banco: %d sem piso | tela: %d cartoes 'em breve'" % (sem_nada, len(sem_compra)))
-    ok(len(cartoes) <= ficha_e_piso + so_piso + sem_nada,
+    # A SECAO 7 PROIBIU A FRASE EM 14/09/2026, e a afirmacao virou absoluta: ela
+    # nao pode existir com banco nenhum, em pagina nenhuma. O que sobrou da
+    # pergunta antiga — todo cartao tem para onde mandar quem quer comprar? — se
+    # mede contando LINKS dentro do bloco de compra, nunca promessas.
+    ok("Link de loja em breve" not in corpo and "cdm-f2-sem-loja" not in corpo,
+       "[%s] secao 7: a frase 'link de loja em breve' NAO esta na tela" % rotulo)
+    sem_saida_na_tela = []
+    for c in cartoes:
+        bloco = re.search(r'<span class="cdm-f2-compra">(.*?)</span>\s*<span class="cdm-f2-fonte"', c, re.S)
+        if not bloco or not re.search(r"<a\b", bloco.group(1)):
+            sem_saida_na_tela.append(c[:80])
+    ok(not sem_saida_na_tela,
+       "[%s] secao 7: TODO cartao servido tem uma saida de compra clicavel" % rotulo,
+       "%d cartoes, %d sem saida" % (len(cartoes), len(sem_saida_na_tela)))
+    ok(sem_nada == 0,
+       "[%s] o banco desta pagina nao tem item sem NENHUMA saida de compra" % rotulo,
+       "%d sem saida no banco" % sem_nada)
+    # O REL SAI DO QUE O LINK E: a busca crua nao rende comissao, entao ela e
+    # nofollow e nunca sponsored. Medido no HTML servido, nao no codigo.
+    cruas = re.findall(r'<a\b[^>]*cdm-f2-botao-busca-crua[^>]*>', corpo)
+    erradas = [t for t in cruas if 'rel="nofollow' not in t or "sponsored" in t]
+    ok(not erradas,
+       "[%s] a busca CRUA servida sai nofollow e nunca sponsored" % rotulo,
+       "%d cruas na tela, %d erradas" % (len(cruas), len(erradas)))
+    ok(len(cartoes) <= ficha_e_piso + so_piso + so_crua + sem_nada,
        "[%s] a tela nao serve mais cartao do que o banco sustenta" % rotulo,
-       "%d na tela, %d no banco" % (len(cartoes), ficha_e_piso + so_piso + sem_nada))
+       "%d na tela, %d no banco" % (len(cartoes), ficha_e_piso + so_piso + so_crua + sem_nada))
 
     # A MARCA DO CODIGO NOVO NO CORPO SERVIDO. E a diferenca entre "o manifest
     # diz que subiu" e "o site esta servindo": `cdm-f2-busca` so existe a partir
@@ -774,6 +803,52 @@ _colas = json.load(open(os.path.join(os.path.dirname(os.path.dirname(os.path.abs
 _n_colas = len([m for m in _colas["materiais"] if m.get("status") == "ativo"])
 ok(f">{_n_colas}<" in html_a or f" {_n_colas} colas" in re.sub(r"<[^>]+>", " ", html_a),
    "o numero de colas servido bate com o banco contado do arquivo", f"{_n_colas} colas")
+
+# ---------------------------------------------------------------------------
+# O CACHE DO HOSPEDEIRO — o canonico contra o mesmo endereco com quebra de cache
+#
+# Despacho de prioridade ALTA da Fundacao, aberto na Robometria em 14/09/2026 e
+# escrito em `dados/despachos.md` porque NAO e daquela ilha: e do hospedeiro, e
+# ele serve mais de uma. La a revisao 37 aplicou, o `/status` respondeu 37, as
+# nove URLs deram 200 — e o endereco canonico serviu por hora e meia a copia
+# anterior, sem um botao de compra. O `/status` afirmava que estava tudo
+# entregue e o leitor estava na pagina de antes: e a secao 4 do contrato uma
+# camada abaixo.
+#
+# O METODO IMPORTA, e ele e a cicatriz da mesma execucao: comparar cabecalho de
+# HEAD com corpo de GET, em requisicoes diferentes, condenou uma purga que
+# funcionava. Aqui as duas leituras sao GET do CORPO, na mesma passada, e o que
+# se compara sao MARCADORES do bloco — nunca o md5 da pagina, que difere por
+# ruido legitimo (o proprio parametro de quebra ecoa no `action` do formulario).
+# ---------------------------------------------------------------------------
+print("\nO cache do hospedeiro — o canonico contra a quebra de cache (despacho de 14/09):")
+
+_QUEBRA = str(int(time.time()))
+# Os marcadores deste bloco: o que a revisao 32 mudou e que so existe depois dela.
+_MARCADORES = {
+    "/materiais/quantas-pastilhas-para-mosaico/?forma=disco&d=50&pastilha=p20&esp=6&sobra=15&rejunte=cimenticio":
+        ["cdm-f2-botao-busca-crua"],
+    "/divulgacao-de-afiliados/": ["Nem todo link daqui rende comissão"],
+}
+for caminho, marcas in _MARCADORES.items():
+    junta = "&" if "?" in caminho else "?"
+    canonico, cod_c = buscar(BASE + caminho)
+    quebrado, cod_q = buscar(BASE + caminho + junta + "v=" + _QUEBRA)
+    ok(cod_c == "200" and cod_q == "200",
+       "[cache] as duas leituras de %s respondem 200" % caminho.split("?")[0],
+       "%s e %s" % (cod_c, cod_q))
+    for marca in marcas:
+        no_canonico = marca in canonico
+        no_quebrado = marca in quebrado
+        ok(no_canonico and no_quebrado,
+           "[cache] o marcador esta nas DUAS leituras: %s" % marca[:44],
+           "canonico %s | quebra de cache %s" % (no_canonico, no_quebrado))
+
+# E a assinatura do cache, medida e registrada em vez de suposta: saber QUAL
+# camada esta na frente e o que separa "purgamos" de "achamos que purgamos".
+_home, _ = buscar(BASE + "/")
+ok(True, "[cache] assinatura da camada na home (registro, nunca portao)",
+   "Endurance Page Cache" if "Endurance Page Cache" in _home else "nenhuma assinatura conhecida")
 
 print("\nA imagem, no ar:")
 for rot, url in [("original (src)", LOGO),

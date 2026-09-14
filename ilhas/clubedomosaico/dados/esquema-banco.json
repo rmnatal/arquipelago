@@ -890,7 +890,7 @@
         "afiliado": {
           "tipo": "objeto",
           "obrigatorio": true,
-          "observacao": "OBRIGATORIO E PRESENTE MESMO VAZIO (secao 7 do ARQUIPELAGO.md): a pagina reserva o lugar, e a ilha reporta em todo bloco quantos itens esperam link e quantos estao SEM PISO. REESCRITO EM 13/09/2026 PELA SECAO 25. A frase anterior dizia que a pagina 'mostra link de loja em breve' e que o preenchimento 'e da Sentinela estrategica, no navegador, e nunca da Fundacao' — as duas caem com a 25.2, que e decisao do Raphael e diz, textual, 'deve ser 100% automatico sem eu tocar'. O que vale agora: o PISO de todo item e `url_busca`, item sem ele e defeito da 19.1 em qualquer degrau, e 'link de loja em breve' e o que sobra para quem nao tem nem piso — estado de defeito contado, nunca estado de espera.",
+          "observacao": "OBRIGATORIO E PRESENTE MESMO VAZIO (secao 7 do ARQUIPELAGO.md). REESCRITO EM 14/09/2026, e a mudanca e de CONTA e nao de campo: ate aqui a ilha reportava `itens_sem_piso`, que media quem nao tinha a busca ENCURTADA e chamava isso de sem piso. Sao duas perguntas diferentes, e elas so davam o mesmo numero enquanto nenhum item tinha busca crua na tela — (1) o leitor tem para onde ir? e (2) esse clique rende comissao? A primeira e defeito da secao 7 e agora e ERRO DURO do validador, porque virou fechavel sem depender de ninguem; a segunda e divida de comissao (25.6) e continua contada. O cabecalho de cada banco declara `itens_sem_saida_de_compra` e `itens_com_piso_nao_rastreavel`, os dois recontados pela regua.",
           "subcampos": {
             "programa": {
               "tipo": "enum|null",
@@ -908,13 +908,13 @@
             },
             "url_busca": {
               "tipo": "string|null",
-              "obrigatorio": "O PISO. 25.2: todo item ganha `url_busca` ANTES de qualquer outra coisa; item sem ele e defeito da 19.1, sempre, em qualquer degrau.",
+              "obrigatorio": "O PISO QUE RENDE COMISSAO. 25.2: todo item ganha piso ANTES de qualquer outra coisa. Item sem NENHUM piso — nem `url_busca` nem `url_busca_produto` — e defeito da 19.1 e reprova o validador. Item com busca crua e sem a encurtada nao e defeito de pagina: e divida de comissao, contada em `itens_com_piso_nao_rastreavel`.",
               "observacao": "Link de afiliado de uma pagina de BUSCA (`shopee.com.br/search?keyword=...`). Busca nao esgota e nao apodrece, e e o unico elo que a maquina fabrica do comeco ao fim. Quando nao ha ficha, e ele que vira o botao do cartao."
             },
             "url_busca_produto": {
               "tipo": "string|null",
               "obrigatorio_quando": "`url_busca` estiver preenchida",
-              "observacao": "25.4-b, a mesma regra do `url_produto` aplicada a busca: o endereco CRU da busca. Busca nao esgota, mas MUDA DE NOME — palavra-chave que deixou de trazer resultado e defeito silencioso, e so se confere abrindo a busca crua."
+              "observacao": "25.4-b, a mesma regra do `url_produto` aplicada a busca: o endereco CRU da busca. Busca nao esgota, mas MUDA DE NOME — palavra-chave que deixou de trazer resultado e defeito silencioso, e so se confere abrindo a busca crua. DESDE 14/09/2026 ELE TAMBEM VAI PARA A TELA: enquanto `url_busca` (o piso encurtado, que rende comissao) nao existir, e ele que vira o botao do cartao, com rel nofollow. Foi assim que os 15 itens desta ilha que caiam na frase proibida ganharam saida de compra sem depender de nenhuma sessao de painel."
             },
             "sub_id_1": {
               "tipo": "string",
@@ -957,7 +957,7 @@
               "3": "Anuncio de vendedor comum na Shopee. Ultimo recurso — foi o degrau que quebrou quatro links em doze horas em 13/09/2026. Quem usa este degrau TEM DE ter `url_busca`.",
               "4": "Link de busca. Pagina de busca nao esgota e nao some. Converte pior que ficha, e e o que separa 'ver outras ofertas' de beco sem saida."
             },
-            "como_a_tela_serve_isto": "`cdm_f2_compra_html()` no snippet da F2, desde a versao 1.2.0: com ficha, a ficha e o botao e a busca e a linha discreta abaixo; sem ficha, a busca sobe e vira o botao; sem nenhum dos dois, a etiqueta 'em breve'."
+            "como_a_tela_serve_isto": "`cdm_f2_compra_html()` no snippet da F2, desde a versao 1.5.0 (14/09/2026), com QUATRO degraus: com ficha, a ficha e o botao e a busca ENCURTADA e a linha discreta abaixo; sem ficha, a busca encurtada sobe e vira o botao; sem ela, a busca CRUA (`url_busca_produto`) vira o botao, com rel nofollow e NUNCA sponsored, porque ela nao rende comissao; sem nenhuma das tres, o bloco sai VAZIO e o item nao pode chegar ao ar — e falha dura do validador. A etiqueta 'link de loja em breve' deixou de existir nesta ilha em 14/09/2026, quando a secao 7 do contrato a proibiu."
           }
         },
         "imagem": {

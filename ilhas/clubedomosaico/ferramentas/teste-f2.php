@@ -885,8 +885,27 @@ f2_ok( empty( $sem_segunda_porta ), 'cartao com ficha leva TAMBEM a busca, na li
 	empty( $sem_segunda_porta ) ? $com_ficha . ' com as duas portas' : count( $sem_segunda_porta ) . ' so com o botao' );
 f2_ok( false !== mb_strpos( $corpo_ancora, 'Veja todos disponíveis aqui' ),
 	'a linha discreta usa a frase que a 25.2 escreve, palavra por palavra' );
-f2_ok( false === mb_strpos( $corpo_ancora, 'cdm-f2-botao cdm-f2-botao-busca' ),
-	'com ficha viva, a busca NAO vira botao — ela e a segunda porta, nao a primeira' );
+/* A AFIRMACAO ERA SOBRE A PAGINA INTEIRA E PASSOU A SER SOBRE O CARTAO, em
+   14/09/2026, e a mudanca e de ESCOPO e nao de rigor. Ate a f2 1.4.0 nenhum
+   cartao servia busca como botao, entao "a pagina nao tem esta classe" e "cartao
+   com ficha nao promove a busca" eram a mesma frase. Com o degrau 4 no ar, dois
+   cartoes de cola LEGITIMAMENTE servem busca como botao — eles nao tem ficha —, e
+   a frase antiga passou a reprovar a pagina certa. E a mesma familia da afirmacao
+   em bloco com escopo maior do que o que foi medido, que a secao 7 do contrato
+   nomeia: o que se quer dizer e sobre o cartao COM ficha, entao e nele que se
+   mede. */
+$ficha_com_busca_de_botao = array();
+foreach ( $mc[1] as $cartao ) {
+	if ( false === mb_strpos( $cartao, 'class="cdm-f2-botao" href' ) ) {
+		continue;
+	}
+	if ( false !== mb_strpos( $cartao, 'cdm-f2-botao cdm-f2-botao-busca' ) ) {
+		$ficha_com_busca_de_botao[] = trim( f2_texto( $cartao ) );
+	}
+}
+f2_ok( empty( $ficha_com_busca_de_botao ),
+	'com ficha viva, a busca NAO vira botao — ela e a segunda porta, nao a primeira',
+	empty( $ficha_com_busca_de_botao ) ? $com_ficha . ' cartoes com ficha conferidos' : count( $ficha_com_busca_de_botao ) . ' promovem a busca' );
 
 /* TODO link do bloco de compra e link comercial, e os DOIS tem de declarar isso.
    A afirmacao antiga ("quando existir, leva rel=sponsored") olhava a pagina
@@ -895,10 +914,30 @@ f2_ok( false === mb_strpos( $corpo_ancora, 'cdm-f2-botao cdm-f2-botao-busca' ),
    afiliado e link de afiliado: o atributo declara a relacao comercial, nao o
    formato da pagina de destino. */
 $links_sem_sponsored = array();
+$crua_com_sponsored  = array();
+$cruas               = 0;
 if ( preg_match_all( '#<span class="cdm-f2-compra">(.*?)</span>\s*<span class="cdm-f2-fonte"#is', $corpo_ancora, $mb ) ) {
 	foreach ( $mb[1] as $bloco ) {
 		if ( preg_match_all( '#<a\b[^>]*>#i', $bloco, $ml ) ) {
 			foreach ( $ml[0] as $tag ) {
+				/* O REL SAI DO QUE O LINK E, NUNCA DO FORMATO DA PAGINA DE DESTINO.
+				   Ficha e busca ENCURTADA sao links de afiliado e rendem comissao:
+				   `sponsored`. A busca CRUA nao rende nada — ninguem paga por aquele
+				   clique —, entao ela e `nofollow` e NAO pode ser `sponsored`. As duas
+				   direcoes sao medidas: chamar de patrocinado o que nao paga e mentir
+				   ao leitor sobre a unica coisa que ele tem o direito de saber sobre
+				   nos, e deixar de marcar o que paga e o defeito oposto. */
+				$e_crua = ( false !== mb_strpos( $tag, 'cdm-f2-botao-busca-crua' ) );
+				if ( $e_crua ) {
+					$cruas++;
+					if ( false !== mb_strpos( $tag, 'rel="sponsored' ) ) {
+						$crua_com_sponsored[] = $tag;
+					}
+					if ( false === mb_strpos( $tag, 'rel="nofollow' ) ) {
+						$crua_com_sponsored[] = $tag;
+					}
+					continue;
+				}
 				if ( false === mb_strpos( $tag, 'rel="sponsored' ) ) {
 					$links_sem_sponsored[] = $tag;
 				}
@@ -908,8 +947,12 @@ if ( preg_match_all( '#<span class="cdm-f2-compra">(.*?)</span>\s*<span class="c
 }
 f2_ok( ! empty( $mb[1] ), 'a varredura acha os blocos de compra para conferir link por link',
 	count( $mb[1] ) . ' blocos' );
-f2_ok( empty( $links_sem_sponsored ), 'TODO link do bloco de compra declara rel="sponsored" — a busca tambem',
+f2_ok( empty( $links_sem_sponsored ), 'TODO link que RENDE comissao declara rel="sponsored" — a busca encurtada tambem',
 	empty( $links_sem_sponsored ) ? 'todos marcados' : implode( ' | ', array_slice( $links_sem_sponsored, 0, 2 ) ) );
+f2_ok( $cruas > 0, 'a pagina de hoje SERVE busca crua — senao a afirmacao abaixo nao mede nada',
+	$cruas . ' botoes de busca crua' );
+f2_ok( empty( $crua_com_sponsored ), 'a busca CRUA sai nofollow e NUNCA sponsored — ela nao rende comissao',
+	empty( $crua_com_sponsored ) ? $cruas . ' conferidos' : implode( ' | ', array_slice( $crua_com_sponsored, 0, 2 ) ) );
 
 /* (b) SEM FICHA, COM BUSCA: a busca SOBE e vira o botao. `sem_links=1` apaga a
       ficha e deixa o piso de pe, que e o estado 2 da escada. */
@@ -919,58 +962,64 @@ f2_ok( $botoes_busca > 0, 'PRODUZ O MUNDO: sem ficha, a busca sobe e vira o bota
 	$botoes_busca . ' botoes de busca' );
 f2_ok( false !== mb_strpos( $mundo_so_busca, 'Ver as opções na loja' ),
 	'o botao de busca tem texto PROPRIO — ele abre uma lista, nao a ficha do produto' );
-/* A AFIRMACAO ERA "NUNCA DIZ EM BREVE", E ELA MORREU NO DIA EM QUE O BANCO
-   CRESCEU — de um jeito que vale escrever, porque e a forma disfarcada do
-   numero digitado. Ela nasceu em 13/09/2026 de manha, quando os CINCO itens de
-   cola tinham piso, e naquele mundo ela era exata. Ao entrarem dois produtos
-   sem piso, no mesmo dia a tarde, ela passou a reprovar uma pagina CERTA: a
-   25.2 manda o cartao reservar o lugar de quem nao tem nem piso, e era isso que
-   a tela estava fazendo. O conserto nao e afrouxar — e contar. O numero de
-   "em breve" na tela tem de ser IGUAL ao numero de cartoes cujo produto o BANCO
-   diz estar sem piso, e essa versao e mais dura que a antiga nas duas direcoes:
-   ela reprova o "em breve" a mais (o defeito original) E o "em breve" a menos,
-   que seria a pagina escondendo do leitor que aquele produto nao tem para onde
-   mandar. A antiga ficaria verde de graca no dia em que todo item tivesse piso
-   de novo; esta continua medindo. */
-$cartoes_sem_piso_no_banco = 0;
+/* A CONTAGEM DE "EM BREVE" MORREU EM 14/09/2026, E ELA ESTAVA CERTA ATE MORRER.
+   A historia inteira vale, porque e a terceira vida desta mesma afirmacao. Ela
+   nasceu em 13/09 de manha como "a tela NUNCA diz em breve", quando os cinco
+   itens de cola tinham piso; ao entrarem dois sem piso na mesma tarde, ela
+   passou a reprovar uma pagina certa e virou uma CONTAGEM — "em breve" na tela
+   tem de ser igual ao numero de cartoes que o banco diz sem piso. Em 14/09 a
+   secao 7 do contrato proibiu a frase, e a contagem certa passou a ser ZERO em
+   qualquer mundo. O que sobra nao e a frase: e a pergunta que ela sempre tentou
+   responder — TODO cartao servido tem para onde mandar quem quer comprar? — e
+   essa se mede contando LINKS, nao promessas. */
+$em_breve_na_tela = substr_count( $mundo_so_busca, 'Link de loja em breve' );
+f2_ok( 0 === $em_breve_na_tela,
+	'secao 7: a frase "link de loja em breve" NAO existe na tela, em mundo nenhum',
+	$em_breve_na_tela . ' ocorrencias' );
+
+$cartoes_sem_saida = array();
 if ( preg_match_all( '#<li class="cdm-f2-cartao[^"]*">(.*?)</li>#is', $mundo_so_busca, $mcb ) ) {
 	foreach ( $mcb[1] as $cartao ) {
-		/* O nome sai do <h3> do cartao, que e onde a tela o escreve, e nao de uma
-		   busca por substring no cartao inteiro: `strip_tags` cola a marca no
-		   nome ("TekbondSilicone Acetico Maxx") e a comparacao ingenua nunca
-		   casa. Errar isso deixaria o contador em zero e o portao verde por
-		   vacuidade, que e o defeito que este portao existe para pegar. */
-		if ( ! preg_match( '#<h3>(.*?)</h3>#is', $cartao, $mh ) ) {
+		if ( ! preg_match( '#<span class="cdm-f2-compra">(.*?)</span>#is', $cartao, $mcp ) ) {
+			$cartoes_sem_saida[] = 'cartao sem bloco de compra nenhum';
 			continue;
 		}
-		$nome_no_cartao = f2_texto( $mh[1] );
-		foreach ( $por_id as $m ) {
-			if ( ! empty( $m['afiliado']['url_busca'] ) ) {
-				continue;
-			}
-			if ( $nome_no_cartao === (string) $m['nome_comercial'] ) {
-				$cartoes_sem_piso_no_banco++;
-				break;
-			}
+		if ( 0 === preg_match_all( '#<a\b[^>]*>#i', $mcp[1], $mla ) ) {
+			$nome = preg_match( '#<h3>(.*?)</h3>#is', $cartao, $mh ) ? f2_texto( $mh[1] ) : '?';
+			$cartoes_sem_saida[] = $nome;
 		}
 	}
 	f2_ok( count( $mcb[1] ) > 0, 'a varredura do mundo sem ficha acha os cartoes para contar',
 		count( $mcb[1] ) . ' cartoes' );
 }
-$em_breve_na_tela = substr_count( $mundo_so_busca, 'Link de loja em breve' );
-f2_ok( $em_breve_na_tela === $cartoes_sem_piso_no_banco,
-	'25.2: a tela diz "em breve" exatamente para quem o BANCO diz estar sem piso',
-	$em_breve_na_tela . ' na tela, ' . $cartoes_sem_piso_no_banco . ' contados no banco' );
+f2_ok( empty( $cartoes_sem_saida ),
+	'25.2: sem ficha, TODO cartao servido continua com uma saida de compra clicavel',
+	empty( $cartoes_sem_saida ) ? count( $mcb[1] ) . ' cartoes, todos com link' : implode( ' | ', $cartoes_sem_saida ) );
 f2_ok( false === mb_strpos( $mundo_so_busca, 'Ver na loja</a>' ),
 	'sem ficha, nenhum cartao promete "Ver na loja" — a promessa segue o link que existe' );
 
-/* (c) SEM NADA: "em breve" e a resposta certa, e so aqui. */
+/* (c) SEM NADA — E AGORA ESTE MUNDO NAO PODE CHEGAR AO AR.
+   Ate 14/09 ele era o unico lugar onde "em breve" era a resposta certa. Com a
+   frase proibida, o que a tela faz aqui e NAO PROMETER: o bloco de compra sai
+   vazio, e quem impede o mundo de existir e o `validar-banco.py`, que reprova
+   item sem nenhuma das tres saidas. A afirmacao mede as duas metades — a tela
+   nao inventa promessa, e o cartao continua sendo servido, porque a recomendacao
+   nunca dependeu do link. */
 $mundo_sem_piso = f2_corpo( f2_render( $raiz, 'sem_piso=1' ) );
-$sem_loja       = substr_count( $mundo_sem_piso, 'Link de loja em breve' );
-f2_ok( $sem_loja > 0, 'PRODUZ O MUNDO: sem ficha E sem piso, o cartao reserva o lugar em vez de sumir',
-	$sem_loja . ' cartoes' );
-f2_ok( 0 === substr_count( $mundo_sem_piso, 'rel="sponsored' ),
-	'sem piso nenhum, nao sobra link de afiliado nenhum na pagina' );
+f2_ok( 0 === substr_count( $mundo_sem_piso, 'Link de loja em breve' ),
+	'PRODUZ O MUNDO: sem ficha, sem busca e sem busca crua, a tela nao promete nada' );
+$blocos_vazios = 0;
+if ( preg_match_all( '#<span class="cdm-f2-compra">(.*?)</span>#is', $mundo_sem_piso, $mcv ) ) {
+	foreach ( $mcv[1] as $bloco ) {
+		if ( '' === trim( $bloco ) ) {
+			$blocos_vazios++;
+		}
+	}
+}
+f2_ok( $blocos_vazios > 0, 'PRODUZ O MUNDO: o bloco de compra fica VAZIO em vez de reservar o lugar com promessa',
+	$blocos_vazios . ' blocos vazios' );
+f2_ok( 0 === substr_count( $mundo_sem_piso, 'rel="sponsored' ) && 0 === substr_count( $mundo_sem_piso, 'cdm-f2-botao-busca-crua' ),
+	'sem saida nenhuma, nao sobra link de compra nenhum na pagina' );
 $cartoes_sem_piso = preg_match_all( '#<li class="cdm-f2-cartao[^"]*">#is', $mundo_sem_piso );
 f2_ok( $cartoes_sem_piso === $cartoes,
 	'o cartao sem compra continua sendo servido: a recomendacao nao depende do link',
@@ -983,19 +1032,37 @@ f2_ok( $cartoes_sem_piso === $cartoes,
    legivel aparece tambem em comentario, e contar a frase mediria o quanto os
    comentarios falam dela. A primeira versao desta linha cometeu esse erro e
    reprovou o proprio comentario que explica a regra. */
-$emissoes = array();
+/* E A SOMA FOI PARTIDA EM 14/09/2026, porque ela sobreviveu a mudanca dando o
+   mesmo numero por OUTRA composicao — que e a forma mais silenciosa de um portao
+   parar de medir. Antes: 1 etiqueta "sem loja" + 1 botao de busca + 1 linha
+   discreta = 3. Depois da f2 1.5.0: 0 etiquetas + 2 botoes de busca (encurtada e
+   crua) + 1 linha discreta = 3 de novo. A soma ficou verde enquanto um degrau
+   inteiro sumia e outro nascia. Agora cada degrau e contado pelo proprio
+   marcador, e o esperado e escrito degrau a degrau. */
+$por_degrau = array();
 foreach ( glob( dirname( __DIR__ ) . '/snippets/*.php' ) as $arquivo ) {
 	$fonte = file_get_contents( $arquivo );
-	$n     = substr_count( $fonte, 'class="cdm-f2-sem-loja"' )
-		+ substr_count( $fonte, 'cdm-f2-botao cdm-f2-botao-busca' )
-		+ substr_count( $fonte, 'class="cdm-f2-busca"' );
-	if ( $n ) {
-		$emissoes[ basename( $arquivo ) ] = $n;
+	$conta = array(
+		'ficha'          => substr_count( $fonte, 'class="cdm-f2-botao" href' ),
+		'linha_discreta' => substr_count( $fonte, 'class="cdm-f2-busca"' ),
+		'busca_encurtada' => substr_count( $fonte, 'cdm-f2-botao cdm-f2-botao-busca" href' ),
+		'busca_crua'     => substr_count( $fonte, 'cdm-f2-botao-busca-crua' ),
+	);
+	if ( array_sum( $conta ) ) {
+		$por_degrau[ basename( $arquivo ) ] = $conta;
 	}
 }
-f2_ok( array( 'clubedomosaico-f2.php' => 3 ) === $emissoes,
-	'os tres degraus sao emitidos por UM snippet so, um lugar cada, nunca copiados',
-	json_encode( $emissoes ) );
+$esperado_degraus = array(
+	'clubedomosaico-f2.php' => array(
+		'ficha'           => 1,
+		'linha_discreta'  => 1,
+		'busca_encurtada' => 1,
+		'busca_crua'      => 1,
+	),
+);
+f2_ok( $esperado_degraus === $por_degrau,
+	'os QUATRO degraus sao emitidos por UM snippet so, um lugar cada, nunca copiados',
+	json_encode( $por_degrau ) );
 
 /* ---------------------------------------------------------------------------
  * 8. As duas faixas descobertas, declaradas em vez de preenchidas no chute

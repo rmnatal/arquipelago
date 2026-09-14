@@ -578,11 +578,24 @@ f1_ok( false !== mb_stripos( $so_busca, 'cdm-f2-botao cdm-f2-botao-busca' ),
 f1_ok( false === mb_stripos( $so_busca, 'Link de loja em breve' ),
 	'25.2: com piso no banco, a F1 NUNCA diz "em breve"' );
 
+/* E DESDE 14/09/2026 SAO QUATRO DEGRAUS, e o ultimo deles APAGOU a etiqueta.
+   A secao 7 do contrato passou a proibir "link de loja em breve" e a f2 1.5.0
+   serve a busca CRUA (`url_busca_produto`) como botao no lugar dela. O mundo
+   `sem_piso=1` agora apaga tambem a busca crua, senao ele deixaria de produzir o
+   vazio que o nome dele promete. O que se mede aqui mudou junto: nao e mais "a
+   pagina diz que esta vazio" — e "a pagina NAO promete nada e nao inventa link". */
 $sem_link = f1_corpo( f1_render( $raiz, 'sem_piso=1' ) );
-f1_ok( false !== mb_stripos( $sem_link, 'Link de loja em breve' ),
-	'PRODUZ O MUNDO: sem ficha E sem piso, o lugar fica reservado e a pagina diz que esta vazio' );
-f1_ok( false === mb_stripos( $sem_link, 'rel="sponsored' ),
-	'PRODUZ O MUNDO: sem piso nenhum, nao sai botao de compra nenhum' );
+f1_ok( false === mb_stripos( $sem_link, 'Link de loja em breve' ),
+	'PRODUZ O MUNDO: sem saida nenhuma, a F1 nao promete "em breve" (secao 7)' );
+f1_ok( false === mb_stripos( $sem_link, 'rel="sponsored' )
+	&& false === mb_stripos( $sem_link, 'cdm-f2-botao-busca-crua' ),
+	'PRODUZ O MUNDO: sem saida nenhuma, nao sai botao de compra nenhum' );
+/* ONDE O DEGRAU 4 E MEDIDO, e por que NAO aqui: a vitrine de pastilha so serve
+   cartao quando ha tamanho escolhido, entao no estado inicial da ancora nao ha
+   cartao de pastilha nenhum e contar botao aqui daria zero contra uma pagina
+   certa. A afirmacao do degrau 4 no ar mora na secao da pastilha, mais abaixo,
+   sobre o estado `pastilha=p20`. Esta nota fica no lugar da linha que tentou
+   medir aqui e reprovou por escopo, na propria execucao que a escreveu. */
 f1_ok( false !== mb_stripos( $corpo_ancora, 'rel="sponsored' ),
 	'com link no banco, o cartao serve o botao de verdade, marcado como patrocinado' );
 f1_ok( false === mb_stripos( $corpo_ancora, 'Link de loja em breve' ),
@@ -904,23 +917,38 @@ f1_ok( false === mb_stripos( $com_1cm, 'não aparece em catálogo de fabricante'
 $p20        = f1_bloco_pastilha( f1_corpo( f1_render( $raiz, 'pastilha=p20' ) ) );
 $p20_piso   = f1_bloco_pastilha( f1_corpo( f1_render( $raiz, 'pastilha=p20&com_piso=1' ) ) );
 $p20_sem    = f1_bloco_pastilha( f1_corpo( f1_render( $raiz, 'pastilha=p20&sem_piso=1' ) ) );
-$sem_piso_no_banco = 0;
+/* A CONTAGEM VIROU A DO DEGRAU 4, e a virada e de 14/09/2026. Ate aqui os treze
+   itens de pastilha nao tinham NADA e a afirmacao contava etiquetas "em breve".
+   Hoje os treze tem `url_busca_produto` escrito no banco, entao o que o cartao
+   serve e a busca crua — e o que se conta e ela, um botao por recomendado. O
+   numero esperado continua saindo da classificacao recomputada aqui, nunca da
+   tela: a regua e propria dos dois lados. */
+$sem_saida_no_banco = 0;
+$so_busca_crua      = 0;
 foreach ( $p_itens as $m ) {
-	if ( empty( $m['afiliado']['url'] ) && empty( $m['afiliado']['url_busca'] ) ) {
-		$sem_piso_no_banco++;
+	$af = isset( $m['afiliado'] ) ? $m['afiliado'] : array();
+	if ( empty( $af['url'] ) && empty( $af['url_busca'] ) && empty( $af['url_busca_produto'] ) ) {
+		$sem_saida_no_banco++;
+	}
+	if ( empty( $af['url'] ) && empty( $af['url_busca'] ) && ! empty( $af['url_busca_produto'] ) ) {
+		$so_busca_crua++;
 	}
 }
-f1_ok( $sem_piso_no_banco === $total_do_banco
-	&& preg_match_all( '#Link de loja em breve#', $p20 ) === count( f1_classificar( $p_itens, 20, $p_teto )['rec'] ),
-	'hoje os itens de pastilha estao sem piso, e o cartao RESERVA o lugar em vez de sumir',
-	$sem_piso_no_banco . ' de ' . $total_do_banco . ' sem piso' );
+f1_ok( 0 === $sem_saida_no_banco && $so_busca_crua === $total_do_banco,
+	'secao 7: nenhum item de pastilha ficou sem saida de compra, e os treze estao no degrau 4',
+	$sem_saida_no_banco . ' sem saida, ' . $so_busca_crua . ' de ' . $total_do_banco . ' so com busca crua' );
+f1_ok( preg_match_all( '#cdm-f2-botao-busca-crua#', $p20 ) === count( f1_classificar( $p_itens, 20, $p_teto )['rec'] )
+	&& 0 === preg_match_all( '#Link de loja em breve#', $p20 ),
+	'o cartao de pastilha serve a busca CRUA como botao, um por recomendado, e nao promete nada',
+	preg_match_all( '#cdm-f2-botao-busca-crua#', $p20 ) . ' botoes para ' . count( f1_classificar( $p_itens, 20, $p_teto )['rec'] ) . ' recomendados' );
 f1_ok( preg_match_all( '#cdm-f2-botao cdm-f2-botao-busca#', $p20_piso ) === count( f1_classificar( $p_itens, 20, $p_teto )['rec'] ),
 	'PRODUZ O MUNDO: com piso no banco, o cartao de pastilha serve a busca como botao' );
 f1_ok( false === mb_stripos( $p20_piso, 'Link de loja em breve' ),
 	'PRODUZ O MUNDO: e nesse mundo a pastilha NUNCA diz "em breve" (25.2)' );
-f1_ok( false !== mb_stripos( $p20_sem, 'Link de loja em breve' )
-	&& false === mb_stripos( $p20_sem, 'rel="sponsored' ),
-	'PRODUZ O MUNDO: sem ficha e sem piso, nenhum botao de compra sai do cartao de pastilha' );
+f1_ok( false === mb_stripos( $p20_sem, 'Link de loja em breve' )
+	&& false === mb_stripos( $p20_sem, 'rel="sponsored' )
+	&& false === mb_stripos( $p20_sem, 'cdm-f2-botao-busca-crua' ),
+	'PRODUZ O MUNDO: sem saida nenhuma, o cartao de pastilha nao serve botao nem promessa' );
 
 /* A MARCA EM DOBRO, agora tambem na pastilha (o teste antigo so varria rejunte). */
 $dobradas_p = array();

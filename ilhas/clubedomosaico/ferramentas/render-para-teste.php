@@ -950,6 +950,13 @@ if (isset($argv[1]) && basename(__FILE__) === basename($argv[0])) {
 					$GLOBALS['__options'][$chave][$lista][$i]['afiliado']['url'] = '';
 					$GLOBALS['__options'][$chave][$lista][$i]['afiliado']['programa'] = '';
 					$GLOBALS['__options'][$chave][$lista][$i]['afiliado']['url_busca'] = '';
+					/* DESDE 14/09/2026 ELE APAGA TAMBEM A BUSCA CRUA. Sem esta linha,
+					   `sem_piso=1` deixou de produzir o mundo que o seu nome promete no
+					   minuto em que a f2 1.5.0 passou a servir `url_busca_produto` como
+					   botao: ele produziria o degrau 4, nao o vazio, e a afirmacao que
+					   mede o vazio ficaria verde medindo outra coisa. Mutacao inerte tem
+					   irma, e e esta: mundo produzido que deixou de produzir o mundo. */
+					$GLOBALS['__options'][$chave][$lista][$i]['afiliado']['url_busca_produto'] = '';
 				}
 			}
 			if (isset($valor['afiliado']['itens_esperando_link'])) {
@@ -986,8 +993,11 @@ if (isset($argv[1]) && basename(__FILE__) === basename($argv[0])) {
 					$GLOBALS['__options'][$chave][$lista][$i]['afiliado']['programa'] = 'shopee';
 				}
 			}
-			if (isset($valor['afiliado']['itens_sem_piso'])) {
-				$GLOBALS['__options'][$chave]['afiliado']['itens_sem_piso'] = 0;
+			if (isset($valor['afiliado']['itens_com_piso_nao_rastreavel'])) {
+				$GLOBALS['__options'][$chave]['afiliado']['itens_com_piso_nao_rastreavel'] = 0;
+			}
+			if (isset($valor['afiliado']['itens_sem_saida_de_compra'])) {
+				$GLOBALS['__options'][$chave]['afiliado']['itens_sem_saida_de_compra'] = 0;
 			}
 		}
 		unset($_GET['com_piso']);

@@ -8,9 +8,9 @@
   "o_que_este_arquivo_e": "A categoria COLA do banco MATERIAL, escrita no formato do esquema do bloco 3. NENHUM dado novo foi coletado nesta execucao: cada declaracao abaixo e a transposicao campo a campo do que o bloco 2 ja tinha colhido em dados/constantes.json, com a mesma fonte, o mesmo tipo de documento e a mesma data. O que este arquivo acrescenta e ESTRUTURA — a lista literal do fabricante virou campo com peso (indicado, proibido, nao recomendado, delimita, resiste), e por isso a matriz da F2 pode ser recomputada em vez de lida.",
   "afiliado": {
     "itens_esperando_link": 2,
-    "itens_sem_piso": 2,
-    "observacao": "Cinco dos sete tem link vivo e conferido em 13/09/2026. Os DOIS que entraram em 13/09/2026 as 21h — Silicone Acetico Maxx e Cascola PL500 — nascem SEM PISO, e isso e divida contada, nao estado de espera: a palavra-chave de busca dos dois esta escrita em `afiliado.url_busca_produto`, e o que falta e o encurtamento, que exige a sessao logada do painel de afiliado (medido nesta execucao). No dia da sessao sao duas colagens e nenhuma linha de codigo muda. Todos os cinco com link vivo e conferido em 13/09/2026, depois de uma varredura que achou QUATRO dos nove links da Shopee mortos em menos de doze horas (dois com 'O produto nao existe', dois esgotados). O campo `degrau` diz de que degrau da escada da secao 25 o link veio; `url_busca` e o link de busca que nunca morre. Cascorez esta na loja oficial da Henkel (degrau 1). Silicone acetico caiu para o degrau 3 e e casamento parcial: o anuncio e Tekbond acetico BRANCO 256 g, nao o incolor da linha Construcao — a F2 recomenda por tipo, nao por SKU, mas isso e para trocar quando aparecer melhor.",
-    "observacao_sobre_o_piso": "Os cinco tem ficha de produto E piso de busca: `url` vira o botao e `url_busca` vira a linha discreta abaixo dele, servidas pela `cdm_f2_compra_html()` desde a f2 1.2.0 (13/09/2026). Zero item sem piso."
+    "itens_sem_saida_de_compra": 0,
+    "itens_com_piso_nao_rastreavel": 2,
+    "observacao": "Cinco dos sete tem ficha de produto com link vivo e conferido em 13/09/2026. Os DOIS que entraram em 13/09 as 21h — Silicone Acetico Maxx e Cascola PL500 — continuam sem ficha e sem busca encurtada, e desde 14/09/2026 a busca CRUA dos dois VAI PARA A TELA: o leitor tem saida de compra, e o que falta e a comissao. A palavra-chave do Silicone Maxx estava ERRADA ate hoje — dizia 'silicone maxx tekbond aquario', com o nicho da Aquametria dentro, copiada de la; trocada por 'silicone acetico maxx tekbond'."
   },
   "imagens": {
     "itens_sem_imagem": 5,
@@ -608,9 +608,10 @@
         "etiqueta_ml": "clubedomosaicof2",
         "gerado_em": null,
         "url_busca": "",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=silicone%20maxx%20tekbond%20aquario",
+        "url_busca_produto": "https://shopee.com.br/search?keyword=silicone%20acetico%20maxx%20tekbond",
         "motivo_sem_url_busca": "O encurtador de afiliado da Shopee (affiliate.shopee.com.br/offer/custom_link) exige a sessao logada: medido em 13/09/2026 as 19h16Z, ele serve casca de JavaScript com zero ocorrencia de 'custom_link' para quem chega sem sessao. A PALAVRA-CHAVE esta escrita aqui; no dia da sessao e uma colagem e nenhuma linha de codigo muda.",
-        "degrau": null
+        "degrau": 4,
+        "motivo_da_troca_da_palavra_chave": "A palavra-chave era 'silicone maxx tekbond AQUARIO', e aquario e o nicho da Aquametria: a chave veio copiada de la e mandaria quem faz mosaico para a prateleira de aquario. Trocada em 14/09/2026 por 'silicone acetico maxx tekbond'. O que esta errado e a chave, nunca o metodo: chave de busca se confere abrindo a busca crua, e e por isso que a 25.4-b manda guardar a URL crua."
       },
       "imagem": null,
       "fontes": {
@@ -715,7 +716,7 @@
         "url_busca": "",
         "url_busca_produto": "https://shopee.com.br/search?keyword=cascola%20adesivo%20de%20montagem%20pl500",
         "motivo_sem_url_busca": "Mesmo motivo do Silicone Maxx, medido na mesma execucao: o encurtador da Shopee exige sessao logada. A palavra-chave esta escrita; falta o encurtamento.",
-        "degrau": null
+        "degrau": 4
       },
       "imagem": null,
       "fontes": {

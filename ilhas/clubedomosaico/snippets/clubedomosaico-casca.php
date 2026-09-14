@@ -1,6 +1,26 @@
 /**
  * Clube do Mosaico Casca — identidade e estrutura do site
  *
+ * Versão 1.10.0 (14/09/2026) — O DESEMBARQUE DESTA ILHA DEIXA DE DEPENDER DO
+ *   CACHE DO HOSPEDEIRO, e a página de divulgação passa a ter DUAS contas.
+ *   Duas metades, e a segunda é consequência da primeira:
+ *   (a) A PURGA. Despacho de prioridade ALTA da Fundação, aberto na Robometria
+ *       em 14/09/2026: o Sync grava options e atualiza snippets, e o cache em
+ *       arquivo do hospedeiro só purga quando um POST é salvo no wp-admin — lá
+ *       o endereço canônico serviu por hora e meia uma página velha com o
+ *       `/status` dizendo que estava tudo aplicado. Medido nesta ilha antes de
+ *       escrever: as 11 URLs do sitemap servem a mesma assinatura do Endurance
+ *       Page Cache, e hoje o canônico e o endereço com quebra de cache
+ *       CONCORDAM — o risco é a janela de `max-age=7200`, não uma divergência
+ *       em curso. Ver `cdm_casca_purgar_cache()` e a seção 12 do
+ *       `conferir-no-ar.py`.
+ *   (b) AS DUAS CONTAS DO PISO. Com a f2 1.5.0 servindo a busca crua como botão,
+ *       "quantos itens têm link" deixou de responder "quantos itens têm para
+ *       onde mandar quem quer comprar". São duas perguntas, e elas só davam o
+ *       mesmo número enquanto nenhum item tinha saída crua. A página de
+ *       divulgação passou a dizer qual link rende comissão e qual não rende —
+ *       é a única coisa que o leitor tem o direito de saber sobre nós.
+ *
  * Versão 1.8.0 (12/09/2026) — A TERCEIRA CATEGORIA DO BANCO ENTRA NA CONTA.
  *   `materiais-pastilhas` passa a ser lido por `cdm_casca_numeros()` junto de
  *   colas e rejuntes, e o cartão "Pastilhas e tesselas" do Guia deixa de servir
@@ -202,7 +222,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'CDM_CASCA_VERSAO' ) ) {
-	define( 'CDM_CASCA_VERSAO', '1.9.2' );
+	define( 'CDM_CASCA_VERSAO', '1.10.0' );
 	/* O nome do site e a linha que o WordPress serve no <title> da home. A
 	   Aquametria descobriu em 11/09/2026 que a tagline nunca tocada desde o
 	   nascimento da ilha continuava sendo a linha mais lida do site — a do
@@ -1113,6 +1133,14 @@ function cdm_casca_numeros() {
 		'bases'              => 9,
 		'ambientes'          => 5,
 		'esperando_link'     => 20,
+		/* AS DUAS CONTAS DO PISO, e elas nasceram em 14/09/2026 porque ERAM UMA SO
+		   enquanto nenhum item tinha saida crua. `sem_saida_de_compra` e defeito da
+		   secao 7 e tem de ser zero; `piso_nao_rastreavel` e divida de comissao e nao
+		   e defeito de pagina — o leitor chegou na loja, a ilha e que nao ganha
+		   nada. Somar as duas num numero so era o que fazia a pagina de divulgacao
+		   dizer "esperando link" sobre gente que ja tinha para onde mandar. */
+		'sem_saida_de_compra' => 0,
+		'piso_nao_rastreavel' => 15,
 		'sem_imagem'         => 20,
 		'pecas_na_loja'      => 0,
 	);
@@ -1126,9 +1154,11 @@ function cdm_casca_numeros() {
 		'materiais-pastilhas' => 'materiais_pastilha',
 	);
 
-	$link_vivo = 0;
-	$img_viva  = 0;
-	$lidos     = 0;
+	$link_vivo           = 0;
+	$img_viva            = 0;
+	$lidos               = 0;
+	$sem_saida_viva      = 0;
+	$nao_rastreavel_vivo = 0;
 	foreach ( $bancos as $arquivo => $chave ) {
 		$banco = get_option( 'clubedomosaico_dados_' . $arquivo );
 		if ( ! is_array( $banco ) || ! isset( $banco['materiais'] ) || ! is_array( $banco['materiais'] ) ) {
@@ -1139,6 +1169,12 @@ function cdm_casca_numeros() {
 		if ( isset( $banco['afiliado']['itens_esperando_link'] ) ) {
 			$link_vivo += (int) $banco['afiliado']['itens_esperando_link'];
 		}
+		if ( isset( $banco['afiliado']['itens_sem_saida_de_compra'] ) ) {
+			$sem_saida_viva += (int) $banco['afiliado']['itens_sem_saida_de_compra'];
+		}
+		if ( isset( $banco['afiliado']['itens_com_piso_nao_rastreavel'] ) ) {
+			$nao_rastreavel_vivo += (int) $banco['afiliado']['itens_com_piso_nao_rastreavel'];
+		}
 		if ( isset( $banco['imagens']['itens_sem_imagem'] ) ) {
 			$img_viva += (int) $banco['imagens']['itens_sem_imagem'];
 		}
@@ -1148,8 +1184,10 @@ function cdm_casca_numeros() {
 	   metade das categorias daria um total menor e com cara de verdadeiro — melhor o
 	   instantaneo inteiro, que ao menos diz a data em que foi medido. */
 	if ( $lidos === count( $bancos ) ) {
-		$n['esperando_link'] = $link_vivo;
-		$n['sem_imagem']     = $img_viva;
+		$n['esperando_link']       = $link_vivo;
+		$n['sem_imagem']           = $img_viva;
+		$n['sem_saida_de_compra']  = $sem_saida_viva;
+		$n['piso_nao_rastreavel']  = $nao_rastreavel_vivo;
 	}
 
 	/* AS CÉLULAS DA MATRIZ ENTRAM NA VIA VIVA, e a razão tem data: em 13/09/2026
@@ -2157,12 +2195,26 @@ add_shortcode( 'cdm_afiliados', function () {
 	$html .= '<div class="cdm-secao"><h2>Preço</h2>';
 	$html .= '<p>Nenhum preço de material aqui é apresentado como o preço de agora. Ou a página não traz preço, ou traz a faixa com a data em que ela foi coletada. Preço muda mais rápido do que qualquer página estática consegue acompanhar, e fingir o contrário seria enganar. O preço das peças do ateliê é outra coisa: esse é o preço real, definido por quem faz.</p></div>';
 
+	/* A SEÇÃO NASCEU EM 14/09/2026, e ela existe porque a página passou a servir
+	   DOIS tipos de link que o leitor não distingue olhando. Dizer só "os links
+	   daqui são de afiliado" virou meia verdade no dia em que a busca crua subiu
+	   para o botão: ela leva à mesma loja e não rende nada. Quem lê tem direito de
+	   saber qual é qual, e essa é a única coisa que ele tem o direito de saber
+	   sobre nós. */
+	$html .= '<div class="cdm-secao"><h2>Nem todo link daqui rende comissão</h2>';
+	$html .= '<p>Quando existe um link de afiliado para o produto, ele é o botão do cartão e está marcado como patrocinado — é dele que pode vir comissão. Quando ainda não existe, o botão leva você para a <strong>busca daquele produto na loja</strong>, e essa busca <strong>não é link de afiliado</strong>: ninguém nos paga por aquele clique. Ela está ali por um motivo simples — é melhor você chegar à prateleira do que encontrar uma promessa de que o link vem depois.</p></div>';
+
 	/* A frase "não há nenhum link no ar" era digitada, e frase digitada sobre o
 	   próprio banco passa a mentir em silêncio no dia em que o banco muda. Agora
 	   ela é a SUBTRAÇÃO entre o que existe e o que espera link: no dia em que o
-	   primeiro link entrar, esta página muda sozinha. */
+	   primeiro link entrar, esta página muda sozinha.
+
+	   E DESDE 14/09/2026 SÃO DUAS CONTAS, porque eram duas perguntas coladas numa
+	   só enquanto nenhum item tinha saída crua: quantos têm PARA ONDE MANDAR quem
+	   quer comprar (e isso tem de ser todos), e quantos desses cliques rendem
+	   comissão. */
 	$com_link = (int) $n['itens_no_banco'] - (int) $n['esperando_link'];
-	$html    .= '<p class="cdm-nota"><strong>Estado de hoje:</strong> dos ' . cdm_casca_num( $n['itens_no_banco'] ) . ' materiais do banco, ' . cdm_casca_num( $com_link ) . ' têm link de loja e ' . cdm_casca_num( $n['esperando_link'] ) . ' estão com o lugar do link reservado e vazio. Esta página existe desde o primeiro dia porque a divulgação precisa estar publicada <em>antes</em> do primeiro link, não depois.</p>';
+	$html    .= '<p class="cdm-nota"><strong>Estado de hoje:</strong> os ' . cdm_casca_num( $n['itens_no_banco'] ) . ' materiais do banco têm, todos, um caminho de compra na página. Em ' . cdm_casca_num( $com_link ) . ' deles esse caminho é um link de afiliado, que pode render comissão; em ' . cdm_casca_num( $n['piso_nao_rastreavel'] ) . ' ele é a busca na loja, que não rende nada. Esta página existe desde o primeiro dia porque a divulgação precisa estar publicada <em>antes</em> do primeiro link, não depois.</p>';
 	$html .= '</div>';
 
 	return $html;
@@ -2639,6 +2691,138 @@ function cdm_casca_boot() {
 }
 
 add_action( 'init', 'cdm_casca_boot', 20 );
+
+/**
+ * O DESEMBARQUE PODE PARAR NO CACHE DO HOSPEDEIRO, E NINGUÉM VERIA.
+ *
+ * Isto não foi achado nesta ilha: foi achado na Robometria em 14/09/2026, virou
+ * despacho de prioridade ALTA para a Fundação em `dados/despachos.md` porque
+ * **não é da Robometria, é do hospedeiro**, e o despacho manda quem pegar esta
+ * ilha conferir antes de dar bloco por entregue. Lá a revisão 37 aplicou, o
+ * `/status` respondeu 37, as nove URLs deram 200 — e o endereço canônico
+ * continuou servindo por hora e meia a cópia anterior, sem um botão de compra.
+ *
+ * O QUE FOI MEDIDO AQUI, às 17h40Z de 14/09/2026, antes de escrever uma linha:
+ * as **11** URLs do sitemap desta ilha servem `<!--Generated by Endurance Page
+ * Cache-->`, a mesma assinatura; e, comparando o endereço canônico com o mesmo
+ * endereço com quebra de cache, os dois **concordavam** — o corpo era idêntico,
+ * fora o parâmetro ecoado no `action` do formulário. Ou seja: a assinatura está
+ * cá, a divergência não estava. O que existe é a janela: `max-age=7200`, duas
+ * horas em que um bloco publicado pode não ter chegado ao leitor enquanto o
+ * `/status` já diz que está tudo aplicado.
+ *
+ * POR QUE A PURGA MORA NA CASCA e não no Sync: o Sync se pula a si mesmo por
+ * desenho, então correção nele não chega ao site por ele mesmo. A casca é
+ * publicada a cada revisão e já está carregada durante a requisição do Sync — e
+ * o gatilho é a própria gravação das options da ilha.
+ *
+ * A LISTA É DEFENSIVA DE PROPÓSITO: a ilha não escolhe o hospedeiro nem pode
+ * medir daqui qual cache estará instalado amanhã. O que NÃO é defensivo é a
+ * verificação: quem confere é `ferramentas/conferir-no-ar.py`, que põe o
+ * canônico contra o mesmo endereço com quebra de cache e reprova quando os dois
+ * discordam. Purga que ninguém mede é purga que envelhece calada.
+ */
+if ( ! function_exists( 'cdm_casca_purgar_cache' ) ) {
+function cdm_casca_purgar_cache() {
+	static $ja = false;
+	if ( $ja ) {
+		return;
+	}
+	$ja = true;
+
+	/* Endurance Page Cache — o que este site serve hoje, medido pela assinatura
+	   que ele deixa no HTML. As duas formas: a ação que as versões novas escutam
+	   e o método da classe, para as antigas. */
+	do_action( 'epc_purge' );
+	do_action( 'epc_purge_request' );
+	if ( class_exists( 'Endurance_Page_Cache' ) ) {
+		$epc = new Endurance_Page_Cache();
+		if ( method_exists( $epc, 'purge_all' ) ) {
+			$epc->purge_all();
+		}
+	}
+
+	/* A PURGA QUE NÃO DEPENDE DO NOME DO GANCHO: esvazia
+	   `wp-content/endurance-page-cache/`, que é o que o `purge_all()` do próprio
+	   plugin faz. As três guardas não são decoração e são as mesmas da Robometria:
+	   o caminho é montado de `WP_CONTENT_DIR` e nunca de entrada de requisição; o
+	   caminho real é conferido contra a raiz a cada nível da recursão; e link
+	   simbólico não é seguido, para não sair da pasta por um atalho. */
+	$pasta = defined( 'WP_CONTENT_DIR' ) ? WP_CONTENT_DIR . '/endurance-page-cache' : '';
+	if ( '' !== $pasta && is_dir( $pasta ) && ! is_link( $pasta ) ) {
+		cdm_casca_esvaziar_pasta( $pasta, $pasta );
+	}
+
+	/* Os outros, cada um só se estiver lá. Nenhum é esperado neste host. */
+	if ( function_exists( 'wp_cache_clear_cache' ) ) {   // WP Super Cache
+		wp_cache_clear_cache();
+	}
+	if ( function_exists( 'rocket_clean_domain' ) ) {    // WP Rocket
+		rocket_clean_domain();
+	}
+	if ( function_exists( 'w3tc_flush_all' ) ) {         // W3 Total Cache
+		w3tc_flush_all();
+	}
+	do_action( 'litespeed_purge_all' );                  // LiteSpeed Cache
+}
+}
+
+/**
+ * Apaga o conteúdo de uma pasta de cache, e NUNCA sai dela.
+ *
+ * `$raiz` viaja em toda chamada e é conferida a cada nível: antes de apagar
+ * qualquer coisa, o caminho real tem de começar pelo caminho real da raiz. A
+ * pasta raiz em si não é removida — só esvaziada —, porque o plugin a recria e
+ * não é desta ilha o direito de sumir com ela.
+ */
+if ( ! function_exists( 'cdm_casca_esvaziar_pasta' ) ) {
+function cdm_casca_esvaziar_pasta( $pasta, $raiz ) {
+	$real_raiz = realpath( $raiz );
+	$real      = realpath( $pasta );
+	if ( ! $real_raiz || ! $real || 0 !== strpos( $real . DIRECTORY_SEPARATOR,
+		rtrim( $real_raiz, DIRECTORY_SEPARATOR ) . DIRECTORY_SEPARATOR ) ) {
+		return;
+	}
+
+	$itens = @scandir( $real );
+	if ( ! is_array( $itens ) ) {
+		return;
+	}
+	foreach ( $itens as $item ) {
+		if ( '.' === $item || '..' === $item ) {
+			continue;
+		}
+		$caminho = $real . DIRECTORY_SEPARATOR . $item;
+		if ( is_link( $caminho ) ) {
+			@unlink( $caminho );
+		} elseif ( is_dir( $caminho ) ) {
+			cdm_casca_esvaziar_pasta( $caminho, $real_raiz );
+			@rmdir( $caminho );
+		} else {
+			@unlink( $caminho );
+		}
+	}
+}
+}
+
+/**
+ * O GATILHO: a ilha acabou de gravar dado no site.
+ *
+ * O Sync escreve `clubedomosaico_dados_*` e o estado dele a cada aplicação, então
+ * uma revisão que muda QUALQUER coisa passa por aqui. O prefixo é conferido para
+ * a purga não disparar em gravação de option de terceiro — e o `static` da função
+ * acima faz a purga acontecer UMA vez por requisição, mesmo quando a revisão
+ * grava dez options.
+ */
+if ( ! function_exists( 'cdm_casca_purgar_ao_gravar' ) ) {
+function cdm_casca_purgar_ao_gravar( $opcao ) {
+	if ( 0 === strpos( (string) $opcao, 'clubedomosaico_' ) ) {
+		cdm_casca_purgar_cache();
+	}
+}
+}
+add_action( 'updated_option', 'cdm_casca_purgar_ao_gravar', 10, 1 );
+add_action( 'added_option', 'cdm_casca_purgar_ao_gravar', 10, 1 );
 
 if ( did_action( 'init' ) ) {
 	cdm_casca_boot();
