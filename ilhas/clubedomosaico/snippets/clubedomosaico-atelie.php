@@ -1,5 +1,48 @@
 /**
  * Clube do Mosaico Ateliê — painel da artesã
+ * Versão 1.3.0 (14/09/2026) — O 404 DEPOIS DE PUBLICAR, e a faixa que devia estar
+ * no lugar dele. Item 1 do despacho do Raphael de 14/09/2026, o primeiro achado de
+ * uma pessoa de verdade usando o painel: "assim que ela cadastra o produto, vai
+ * pra uma página de página não encontrada, com uma foto preto e branca do
+ * WordPress, nada a ver".
+ *
+ * A CAUSA NÃO ERA A QUE O DESPACHO SUPÔS, e por isso ele mandava confirmar antes
+ * de consertar. A hipótese escrita era regra de reescrita do CPT não descarregada;
+ * medido no ar em 14/09/2026 às 11h19Z, `/loja/quadro-flores-do-campo/` — a peça
+ * que ela publicou — responde 200. A regra de reescrita está de pé e nasce sozinha
+ * desde a Loja 1.0.0.
+ *
+ * A CAUSA MEDIDA É COLISÃO DE NOME. O painel carregava o id da peça na URL como
+ * `peca`, e `peca` é o nome do TIPO DE CONTEÚDO — registrado com `query_var` true,
+ * ele é uma variável pública do WordPress. Então `/atelie/?peca=24` não é "o painel
+ * com a peça 24": para o núcleo é "me dê a peça de slug 24", que não existe, e o
+ * tema serve o 404 dele. Medido nos dois lados, no ar, antes de uma linha mudar:
+ *
+ *     /atelie/                          200
+ *     /atelie/?aviso=publicada          200
+ *     /atelie/?peca=24                  404   <- e o corpo do 404 é o
+ *     /atelie/?estado=editar&peca=24    404      404-image.webp do tema
+ *     /atelie/?estado=editar&cdm_peca=24  200    Twenty Twenty-Five, que é a
+ *                                                foto em preto e branco que ele viu
+ *
+ * O conserto é o nome: o parâmetro passa a ser `cdm_peca`, o mesmo prefixo que os
+ * campos do POST deste painel já usam. Nada de filtro tirando variável do núcleo no
+ * meio do caminho — a colisão se resolve não colidindo. Como isso é uma regra que
+ * ninguém enxerga lendo a linha ("por que cdm_peca e não peca?"), ela virou portão:
+ * `teste-atelie.php` mede que NENHUMA URL que este painel constrói usa nome de
+ * variável pública do WordPress, e reprova a lista inteira de uma vez.
+ *
+ * E ISSO ATINGIA MAIS QUE O PUBLICAR, o que o despacho não sabia: as SEIS voltas do
+ * painel que carregam o id — publicar, salvar rascunho, pausar, faltou-um-campo,
+ * fotos atualizadas — e o link "Editar" da lista, todas caíam no mesmo 404. Publicar
+ * era só o caminho em que ela chegou primeiro.
+ *
+ * A SEGUNDA METADE DO ITEM 1 é o que ela devia ver no lugar do 404: a volta para
+ * `/atelie/` já era PRG desde a 1.0.0 e continua sendo, agora com faixa de "Peça
+ * publicada!", botão "Ver no site" e botão "Cadastrar outra peça". O "Ver no site"
+ * só aparece quando a peça existe, está publicada e tem endereço de verdade — link
+ * que promete e não abre é a mesma família do defeito que este bloco conserta.
+ *
  * Versão 1.2.0 (13/09/2026) — "MEUS DADOS", a aba onde ela manda no que hoje só
  * existe em código. Fecha o último pedaço do adendo 3 que ficou por fazer, e
  * cumpre a linha do `PROMPT.md` que promete desde 10/09 que "ela troca a senha
@@ -130,7 +173,7 @@
  */
 
 if ( ! defined( 'CDM_ATELIE_VERSAO' ) ) {
-	define( 'CDM_ATELIE_VERSAO', '1.2.0' );
+	define( 'CDM_ATELIE_VERSAO', '1.3.0' );
 }
 if ( ! defined( 'CDM_ATELIE_SLUG' ) ) {
 	define( 'CDM_ATELIE_SLUG', 'atelie' );
@@ -141,6 +184,17 @@ if ( ! defined( 'CDM_ATELIE_ABA_DADOS' ) ) {
 	   redirecionamentos — e um deles divergindo dos outros é uma aba que existe
 	   no menu e cai na lista de peças sem dizer por quê. */
 	define( 'CDM_ATELIE_ABA_DADOS', 'meus-dados' );
+}
+if ( ! defined( 'CDM_ATELIE_PARAM_PECA' ) ) {
+	/* O NOME DO PARÂMETRO DE PEÇA NA URL, E ELE NÃO PODE SER `peca`. O tipo de
+	   conteúdo `peca` é registrado com `query_var` true, o que faz de `peca` uma
+	   variável pública do núcleo: `/atelie/?peca=24` vira "a peça de slug 24",
+	   não acha nada, e o tema serve o 404 dele. Foi o primeiro defeito que a
+	   artesã encontrou usando o painel (despacho de 14/09). Constante porque o
+	   nome aparece em sete lugares — as seis voltas de ação e a leitura da tela —
+	   e porque é ela que o portão do `teste-atelie.php` compara com a lista de
+	   variáveis públicas do WordPress. */
+	define( 'CDM_ATELIE_PARAM_PECA', 'cdm_peca' );
 }
 if ( ! defined( 'CDM_ATELIE_SENHA_MINIMA' ) ) {
 	/* O mesmo piso da tela de criar senha. Escrito uma vez: se um dia subir, as
@@ -998,15 +1052,15 @@ function cdm_atelie_agir() {
 			$motivos = cdm_loja_peca_publicavel( $id );
 			if ( $motivos ) {
 				update_post_meta( $id, '_cdm_recusa', $motivos );
-				wp_safe_redirect( cdm_atelie_url( array( 'estado' => 'editar', 'peca' => $id, 'aviso' => 'falta' ) ) );
+				wp_safe_redirect( cdm_atelie_url( array( 'estado' => 'editar', CDM_ATELIE_PARAM_PECA => $id, 'aviso' => 'falta' ) ) );
 				exit;
 			}
 			wp_update_post( array( 'ID' => $id, 'post_status' => 'publish' ) );
-			wp_safe_redirect( cdm_atelie_url( array( 'aviso' => 'publicada', 'peca' => $id ) ) );
+			wp_safe_redirect( cdm_atelie_url( array( 'aviso' => 'publicada', CDM_ATELIE_PARAM_PECA => $id ) ) );
 			exit;
 		}
 
-		wp_safe_redirect( cdm_atelie_url( array( 'estado' => 'editar', 'peca' => $id, 'aviso' => 'salva' ) ) );
+		wp_safe_redirect( cdm_atelie_url( array( 'estado' => 'editar', CDM_ATELIE_PARAM_PECA => $id, 'aviso' => 'salva' ) ) );
 		exit;
 	}
 
@@ -1026,11 +1080,11 @@ function cdm_atelie_agir() {
 		$motivos = cdm_loja_peca_publicavel( $id );
 		if ( $motivos ) {
 			update_post_meta( $id, '_cdm_recusa', $motivos );
-			wp_safe_redirect( cdm_atelie_url( array( 'estado' => 'editar', 'peca' => $id, 'aviso' => 'falta' ) ) );
+			wp_safe_redirect( cdm_atelie_url( array( 'estado' => 'editar', CDM_ATELIE_PARAM_PECA => $id, 'aviso' => 'falta' ) ) );
 			exit;
 		}
 		wp_update_post( array( 'ID' => $id, 'post_status' => 'publish' ) );
-		wp_safe_redirect( cdm_atelie_url( array( 'aviso' => 'publicada', 'peca' => $id ) ) );
+		wp_safe_redirect( cdm_atelie_url( array( 'aviso' => 'publicada', CDM_ATELIE_PARAM_PECA => $id ) ) );
 		exit;
 	}
 
@@ -1040,7 +1094,7 @@ function cdm_atelie_agir() {
 			exit;
 		}
 		wp_update_post( array( 'ID' => $id, 'post_status' => 'draft' ) );
-		wp_safe_redirect( cdm_atelie_url( array( 'aviso' => 'pausada', 'peca' => $id ) ) );
+		wp_safe_redirect( cdm_atelie_url( array( 'aviso' => 'pausada', CDM_ATELIE_PARAM_PECA => $id ) ) );
 		exit;
 	}
 
@@ -1090,7 +1144,7 @@ function cdm_atelie_agir() {
 				delete_post_thumbnail( $id );
 			}
 		}
-		wp_safe_redirect( cdm_atelie_url( array( 'estado' => 'editar', 'peca' => $id, 'aviso' => 'fotos' ) ) );
+		wp_safe_redirect( cdm_atelie_url( array( 'estado' => 'editar', CDM_ATELIE_PARAM_PECA => $id, 'aviso' => 'fotos' ) ) );
 		exit;
 	}
 }
@@ -1112,7 +1166,11 @@ function cdm_atelie_avisos() {
 	return array(
 		'bemvinda'  => array( 'bom', 'Pronto! Sua senha está criada e você já está no seu ateliê.' ),
 		'salva'     => array( 'bom', 'Salvo. A peça está guardada como rascunho — ela ainda não aparece no site.' ),
-		'publicada' => array( 'bom', 'Publicada! A peça já está no site.' ),
+		/* O TÍTULO DESTE AVISO É A FAIXA, e por isso a frase não repete "Publicada":
+		   `cdm_atelie_faixa_publicada_html()` já diz isso em letra grande, e um
+		   texto que repete o título é linha que ela lê duas vezes para saber o
+		   mesmo. */
+		'publicada' => array( 'bom', 'Ela já está no site, com as fotos, o preço e o texto que você escreveu.' ),
 		'pausada'   => array( 'bom', 'Pausada. A peça saiu do site e continua guardada aqui.' ),
 		'apagada'   => array( 'bom', 'A peça foi apagada.' ),
 		'fotos'     => array( 'bom', 'Fotos atualizadas.' ),
@@ -1140,6 +1198,44 @@ function cdm_atelie_avisos() {
 }
 }
 
+if ( ! function_exists( 'cdm_atelie_faixa_publicada_html' ) ) {
+/**
+ * A FAIXA DE "PEÇA PUBLICADA!", com os dois caminhos que ela quer nesse instante.
+ *
+ * Segunda metade do item 1 do despacho de 14/09. O que ela via ao publicar era o
+ * 404 do tema; o que ela vê agora é a confirmação e duas saídas — "Ver no site",
+ * para conferir o que acabou de fazer, e "Cadastrar outra peça", que é o que a
+ * pessoa que gostou do resultado faz em seguida.
+ *
+ * O "Ver no site" NÃO É INCONDICIONAL, e é aqui que mora a régua: ele só nasce se
+ * a peça existe, é dela, está PUBLICADA de verdade e tem endereço. A trava do
+ * núcleo (`transition_post_status` na Loja) devolve ao rascunho uma peça que não
+ * cumpre a regra de qualidade, então "publiquei" e "está no ar" são duas coisas — e
+ * um botão que promete o site e cai num 404 é exatamente o defeito que este bloco
+ * está consertando, na mesma tela.
+ */
+function cdm_atelie_faixa_publicada_html( $texto ) {
+	$peca = cdm_atelie_minha_peca( (int) cdm_atelie_get( CDM_ATELIE_PARAM_PECA, '0' ) );
+	$url  = '';
+	if ( $peca && 'publish' === $peca->post_status && function_exists( 'get_permalink' ) ) {
+		$endereco = get_permalink( $peca );
+		$url      = is_string( $endereco ) ? $endereco : '';
+	}
+
+	$h  = '<div class="cdm-at-aviso cdm-at-aviso-bom cdm-at-faixa" role="status">';
+	$h .= '<p class="cdm-at-faixa-titulo">Peça publicada!</p>';
+	$h .= '<p class="cdm-at-faixa-texto">' . esc_html( $texto ) . '</p>';
+	$h .= '<p class="cdm-at-faixa-botoes">';
+	if ( '' !== $url ) {
+		$h .= '<a class="cdm-at-botao-fraco" href="' . esc_url( $url ) . '">Ver no site</a>';
+	}
+	$h .= '<a class="cdm-botao cdm-at-botao" href="' . esc_url( cdm_atelie_url( array( 'estado' => 'nova' ) ) ) . '">Cadastrar outra peça</a>';
+	$h .= '</p></div>';
+
+	return $h;
+}
+}
+
 if ( ! function_exists( 'cdm_atelie_aviso_html' ) ) {
 function cdm_atelie_aviso_html() {
 	$chave  = cdm_atelie_get( 'aviso' );
@@ -1148,6 +1244,13 @@ function cdm_atelie_aviso_html() {
 		return '';
 	}
 	list( $tom, $texto ) = $avisos[ $chave ];
+
+	/* UM aviso tem faixa em vez de linha, e é o único momento do painel em que
+	   ela terminou alguma coisa. Os outros dezenove continuam sendo uma frase:
+	   faixa em tudo é faixa em nada. */
+	if ( 'publicada' === $chave ) {
+		return cdm_atelie_faixa_publicada_html( $texto );
+	}
 
 	return '<p class="cdm-at-aviso cdm-at-aviso-' . esc_attr( $tom ) . '" role="status">' . esc_html( $texto ) . '</p>';
 }
@@ -1378,7 +1481,7 @@ function cdm_atelie_tela_lista( $usuaria ) {
 		}
 
 		$h .= '<p class="cdm-at-item-acoes">';
-		$h .= '<a href="' . esc_url( cdm_atelie_url( array( 'estado' => 'editar', 'peca' => $id ) ) ) . '">Editar</a>';
+		$h .= '<a href="' . esc_url( cdm_atelie_url( array( 'estado' => 'editar', CDM_ATELIE_PARAM_PECA => $id ) ) ) . '">Editar</a>';
 		if ( 'publish' === $p->post_status ) {
 			$h .= ' <a href="' . esc_url( get_permalink( $p ) ) . '">Ver no site</a>';
 		}
@@ -1402,6 +1505,53 @@ function cdm_atelie_tela_lista( $usuaria ) {
 	$h .= '</ul></div>';
 
 	return $h;
+}
+}
+
+if ( ! function_exists( 'cdm_atelie_opcao_vazia_html' ) ) {
+/**
+ * A PRIMEIRA LINHA DE TODA LISTA DE ESCOLHA — item 2 do despacho de 14/09.
+ *
+ * Ela era `<option value="">Escolha</option>`, selecionável e inicial. Palavras do
+ * Raphael: "o que seria 'escolha'? Não tem nada. Aí fica fora de categoria, não
+ * adianta." Duas coisas erradas na mesma linha, e são independentes:
+ *
+ *   A PALAVRA. "Escolha" nomeia uma opção que não existe — lida por quem não sabe
+ *   o que é uma lista, é um item como os outros. "Selecione…" com reticências é
+ *   instrução, não item, e é a forma que a tela usa para pedir sem mandar.
+ *
+ *   O ESTADO. `disabled hidden` tira a linha da lista depois que ela escolhe: some
+ *   do menu no celular e o navegador recusa voltar a ela. `selected` só enquanto
+ *   não há valor, senão o campo preenchido abriria mostrando o pedido em vez da
+ *   resposta — que é como a tela de editar perderia o que ela já tinha respondido.
+ *
+ * Uma função só porque a régua tem de ser a mesma nos dois tipos de lista (os
+ * campos da Loja e as duas taxonomias): foi exatamente dois lugares escrevendo a
+ * mesma linha à mão que deixou "Escolha" sobreviver nos dois.
+ */
+function cdm_atelie_opcao_vazia_html( $vazio ) {
+	return '<option value="" disabled hidden' . ( $vazio ? ' selected' : '' ) . '>Selecione…</option>';
+}
+}
+
+if ( ! function_exists( 'cdm_atelie_ajuda_taxonomia' ) ) {
+/**
+ * A frase embaixo das duas escolhas que ligam a peça ao site.
+ *
+ * A da TÉCNICA carrega a distinção que o item 3 do despacho de 14/09 pediu por
+ * escrito, e ela não é enfeite: trincadís e pica-sete são as duas técnicas de caco
+ * desta lista, e quem não sabe a diferença marca a primeira. Foi o que aconteceu —
+ * a peça que ela cadastrou tem "Picassiette" escrito na descrição por ela mesma e
+ * "Trencadís" no campo, porque pica-sete não existia na lista.
+ */
+function cdm_atelie_ajuda_taxonomia( $taxonomia ) {
+	if ( 'tecnica' === $taxonomia ) {
+		return 'Precisa escolher para a peça poder ir ao site. Trincadís é caquinho de azulejo ou cerâmica, '
+			. 'sem dar para reconhecer de onde veio; pica-sete é caco de louça em que dá para reconhecer a peça '
+			. 'original — alça, bico, estampa. Também chamada pique-assiette.';
+	}
+
+	return 'Precisa escolher para a peça poder ir ao site.';
 }
 }
 
@@ -1511,7 +1661,7 @@ function cdm_atelie_tela_form( $peca ) {
 
 		if ( 'escolha' === $def['tipo'] ) {
 			$h .= '<select id="' . esc_attr( $idhtml ) . '" name="' . esc_attr( $campo ) . '">';
-			$h .= '<option value="">' . esc_html( 'Selecione: ' . $def['rotulo'] ) . '</option>';
+			$h .= cdm_atelie_opcao_vazia_html( '' === $valor );
 			foreach ( $def['opcoes'] as $ov => $or ) {
 				$h .= '<option value="' . esc_attr( $ov ) . '"' . ( $valor === $ov ? ' selected' : '' ) . '>';
 				$h .= esc_html( $or ) . '</option>';
@@ -1539,18 +1689,29 @@ function cdm_atelie_tela_form( $peca ) {
 	foreach ( array( 'colecao' => 'Onde ela se encaixa', 'tecnica' => 'Técnica que você usou' ) as $tax => $rotulo ) {
 		$atual = $id > 0 ? cdm_loja_termo_da_peca( $id, $tax ) : null;
 		$h    .= '<p class="cdm-at-campo"><label for="cdm-' . esc_attr( $tax ) . '">' . esc_html( $rotulo ) . '</label>';
-		$h    .= '<select id="cdm-' . esc_attr( $tax ) . '" name="cdm_' . esc_attr( $tax ) . '">';
-		$h    .= '<option value="">' . ( 'tecnica' === $tax ? 'Selecione a técnica' : 'Selecione a coleção' ) . '</option>';
+		/* `required` NAS DUAS, e é a metade de cliente do item 2 do despacho de
+		   14/09. Ela vale só para Publicar: o botão de rascunho leva
+		   `formnovalidate`, porque guardar o que ela já digitou nunca pode depender
+		   de ela ter decidido a coleção. A frase amigável quem troca é o script do
+		   rodapé; com o JavaScript desligado sobra a do navegador, que é seca mas
+		   trava do mesmo jeito — e travar é o que protege a peça órfã. */
+		$h    .= '<select id="cdm-' . esc_attr( $tax ) . '" name="cdm_' . esc_attr( $tax ) . '" required';
+		$h    .= ' data-cdm-falta="' . esc_attr( 'tecnica' === $tax ? 'Escolha a técnica que você usou nesta peça.' : 'Escolha onde esta peça se encaixa.' ) . '">';
+		$h    .= cdm_atelie_opcao_vazia_html( ! $atual );
 		foreach ( cdm_loja_termos_iniciais()[ $tax ] as $slug => $nome ) {
 			$sel = ( $atual && $atual->slug === $slug ) ? ' selected' : '';
 			$h  .= '<option value="' . esc_attr( $slug ) . '"' . $sel . '>' . esc_html( $nome ) . '</option>';
 		}
 		$h .= '</select>';
-		$h .= '<span class="cdm-at-ajuda">Precisa escolher para a peça poder ir ao site.</span></p>';
+		$h .= '<span class="cdm-at-ajuda">' . esc_html( cdm_atelie_ajuda_taxonomia( $tax ) ) . '</span></p>';
 	}
 
 	$h .= '<div class="cdm-at-acao cdm-at-acao-dupla">';
-	$h .= '<button class="cdm-at-botao-fraco" type="submit" name="cdm_destino" value="rascunho">Salvar e terminar depois</button>';
+	/* `formnovalidate` NO BOTÃO DE RASCUNHO, e ele é o que faz o `required` das duas
+	   escolhas caber aqui. A decisão 5 deste arquivo diz que salvar nunca perde o que
+	   ela digitou; sem esta palavra, o campo que ela ainda não decidiu passaria a
+	   trancar o "terminar depois", e ela perderia o texto por causa de uma lista. */
+	$h .= '<button class="cdm-at-botao-fraco" type="submit" name="cdm_destino" value="rascunho" formnovalidate>Salvar e terminar depois</button>';
 	$h .= '<button class="cdm-botao cdm-at-botao" type="submit" name="cdm_destino" value="publicar">Publicar no site</button>';
 	$h .= '</div>';
 	$h .= '<p class="cdm-at-ajuda">Se faltar alguma coisa para publicar, a gente guarda como rascunho e diz o que falta.</p>';
@@ -1699,7 +1860,7 @@ add_shortcode( 'cdm_atelie', function () {
 		return cdm_atelie_tela_form( null );
 	}
 	if ( 'editar' === $estado ) {
-		$peca = cdm_atelie_minha_peca( (int) cdm_atelie_get( 'peca', '0' ) );
+		$peca = cdm_atelie_minha_peca( (int) cdm_atelie_get( CDM_ATELIE_PARAM_PECA, '0' ) );
 		if ( $peca ) {
 			return cdm_atelie_tela_form( $peca );
 		}
@@ -1764,6 +1925,15 @@ add_action( 'wp_footer', function () {
 .cdm-at-aviso{margin:0 0 1.2rem;padding:.9rem 1rem;border-radius:8px;font-size:1rem;line-height:1.5;}
 .cdm-at-aviso-bom{background:#F3F8F3;border:1px solid #CBE3CB;color:#1F1715;}
 .cdm-at-aviso-atencao{background:#FDF6EA;border:1px solid #E8D2A8;color:#1F1715;}
+/* A FAIXA DE PUBLICADA. Mesmo verde do aviso bom — cor nova nao nasce em
+   conserto (secao 22.6) — com titulo, frase e os dois botoes empilhados no
+   telefone. Botao de 3rem de altura minima porque quem toca isso e um dedo. */
+.cdm-at-faixa{padding:1.1rem 1rem 1.2rem;}
+.cdm-at-faixa-titulo{margin:0 0 .3rem;font-family:var(--cdm-display);font-size:1.3125rem;font-weight:700;line-height:1.3;}
+.cdm-at-faixa-texto{margin:0 0 1rem;font-size:1rem;line-height:1.6;}
+.cdm-at-faixa-botoes{display:flex;flex-direction:column;gap:.7rem;margin:0;}
+.cdm-at-faixa-botoes>*{width:100%;}
+.cdm-at-faixa .cdm-at-botao-fraco{background:#FFFFFF;}
 .cdm-at-faltas{margin:0 0 1.2rem;padding:.9rem 1rem .9rem 2.1rem;border:1px solid var(--cdm-coral);border-radius:8px;color:var(--cdm-tinta);font-size:1rem;}
 .cdm-at-faltas li{margin:0 0 .3rem;}
 .cdm-at-faltas li:last-child{margin-bottom:0;}
@@ -1825,6 +1995,8 @@ add_action( 'wp_footer', function () {
 .cdm-at-previa img{display:block;width:88px;height:88px;object-fit:cover;border-radius:8px;background:var(--cdm-traco);}
 @media (min-width:34rem){
 .cdm-at-acao-dupla{flex-direction:row-reverse;justify-content:flex-end;}
+.cdm-at-faixa-botoes{flex-direction:row-reverse;justify-content:flex-end;}
+.cdm-at-faixa-botoes>*{width:auto;}
 }
 CSS;
 	echo '<style id="cdm-atelie-css">' . $css . '</style>' . "\n";
@@ -1861,6 +2033,21 @@ CSS;
         ev.preventDefault();
       }
     });
+  }
+  /* A FRASE DA LISTA QUE FALTA PREENCHER. O `required` e do HTML e trava sem
+     JavaScript nenhum; o que esta parte troca e o TEXTO, porque o do navegador e
+     "Selecione um item da lista" e este painel nao fala assim com ela. Some no
+     instante em que ela escolhe, senao a frase velha ficaria presa no campo certo. */
+  var listas = document.querySelectorAll('[data-cdm-falta]');
+  for (var k = 0; k < listas.length; k++) {
+    (function(lista){
+      var dizer = function(){
+        lista.setCustomValidity(lista.value ? '' : lista.getAttribute('data-cdm-falta'));
+      };
+      lista.addEventListener('invalid', dizer);
+      lista.addEventListener('change', dizer);
+      dizer();
+    })(listas[k]);
   }
 })();
 JS;

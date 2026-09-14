@@ -248,6 +248,101 @@ def m24(r):
            "	$html .= ' fetchpriority=\"high\" decoding=\"async\"';")
 
 
+# --------------------------------- a galeria da ficha (item 4 do despacho 14/09)
+#
+# "Nao esta padronizada as imagens quadradinhas, nao esta um carrossel bonito com
+# setas, esta muito feio." A forma virou codigo NOSSO — o Real 21, que foi a
+# referencia, e Elementor + Swiper, que a 22.3 proibe na pagina publica. Estas
+# mutacoes existem para que nem a forma nem o portao 22.8 possam voltar calados.
+
+
+def m25(r):
+    """A foto grande perde a proporcao fixa: a pagina volta a saltar de altura
+    entre uma peca e outra, que e metade do "esta muito feio"."""
+    trocar(r, SNIPPET, "width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:14px",
+           "width:100%;height:auto;border-radius:14px")
+
+
+def m26(r):
+    """A miniatura deixa de ser quadrada — o pedido literal dele."""
+    trocar(r, SNIPPET, ".cdm-gal-mini img{display:block;width:100%;height:100%;aspect-ratio:1/1;object-fit:cover;background:var(--cdm-traco);}",
+           ".cdm-gal-mini img{display:block;width:100%;height:auto;background:var(--cdm-traco);}")
+
+
+def m27(r):
+    """As setas perdem o nome. Ficam dois simbolos que so quem enxerga entende."""
+    trocar(r, SNIPPET, " aria-label=\"Foto anterior\" aria-controls=", " aria-controls=")
+
+
+def m28(r):
+    """A miniatura deixa de ser ancora e vira <span>: com o JavaScript desligado a
+    tira passa a ser enfeite que nao leva a lugar nenhum (portao 22.8)."""
+    trocar(r, SNIPPET, "'<li><a class=\"cdm-gal-mini\" href=\"#cdm-foto-' . (int) $n . '\" data-cdm-mini=\"' . (int) $n . '\">'",
+           "'<li><span class=\"cdm-gal-mini\" data-cdm-mini=\"' . (int) $n . '\">'")
+
+
+def m29(r):
+    """A lupa nasce ABERTA. Sem JavaScript ela vira um retangulo escuro por cima da
+    ficha, e o Google passa a ver a peca com uma caixa vazia na frente."""
+    trocar(r, SNIPPET, "echo '<dialog class=\"cdm-gal-lupa\" id=\"cdm-lupa-'",
+           "echo '<dialog open class=\"cdm-gal-lupa\" id=\"cdm-lupa-'")
+
+
+def m35(r):
+    """A lupa volta para dentro do `the_content`. O `wpautop` nao conhece `<dialog>`
+    e parte a etiqueta ao meio: a abertura vai para dentro de um `<p>` e o
+    fechamento vira paragrafo sozinho, na pagina que mais precisa estar inteira."""
+    trocar(r, SNIPPET, "\t\t$html .= '</div>';\n\t}\n\n\t/* 2. A RESPOSTA",
+           "\t\t$html .= '<dialog class=\"cdm-gal-lupa\"><div class=\"cdm-gal-lupa-palco\" data-cdm-lupa-palco></div></dialog>';\n\t\t$html .= '</div>';\n\t}\n\n\t/* 2. A RESPOSTA")
+
+
+def m36(r):
+    """A seta volta a nascer DEPOIS do fechamento da faixa. Ela continua sendo um
+    botao certo, com nome certo — e o `wpautop` a embrulha num paragrafo que
+    ninguem escreveu, cuja margem empurra a foto para baixo. E o defeito que so
+    aparece como "esta feio"."""
+    trocar(r, SNIPPET, "\t\t\t$html .= '<button class=\"cdm-gal-seta cdm-gal-seta-prox\" type=\"button\" data-cdm-rolar=\"1\" aria-label=\"Próxima foto\" aria-controls=\"cdm-carrossel-' . $id . '\">&#8250;</button>';\n\t\t}",
+           "\t\t}")
+    trocar(r, SNIPPET, "\t\t$html .= '</div></div>';",
+           "\t\t$html .= '</div>';\n\t\tif ( $varias ) {\n\t\t\t$html .= '<button class=\"cdm-gal-seta cdm-gal-seta-prox\" type=\"button\" data-cdm-rolar=\"1\" aria-label=\"Próxima foto\" aria-controls=\"cdm-carrossel-' . $id . '\">&#8250;</button>';\n\t\t}\n\t\t$html .= '</div>';")
+
+
+def m30(r):
+    """A foto grande deixa de viajar no HTML: o zoom passaria a ser a foto pequena
+    esticada, ou o script teria de BUSCAR o arquivo — e busca em JavaScript e
+    exatamente o que a 22.3 proibe."""
+    trocar(r, SNIPPET, "\t$html .= ' data-cdm-grande=\"' . esc_url( $url_grande ) . '\"';\n", "")
+
+
+def m31(r):
+    """A miniatura ganha `alt` descritivo: o leitor de tela passa a ler a peca
+    inteira duas vezes, uma por foto e outra por miniatura."""
+    trocar(r, SNIPPET, "\t\t$html .= ' alt=\"\" loading=\"lazy\" decoding=\"async\">';",
+           "\t\t$html .= ' alt=\"' . esc_attr( $titulo ) . '\" loading=\"lazy\" decoding=\"async\">';")
+
+
+def m32(r):
+    """As miniaturas param de ser preguicosas: a ficha baixa oito arquivos a mais
+    antes da primeira rolagem, contra o orcamento da 22.4."""
+    trocar(r, SNIPPET, "\t\t$html .= ' alt=\"\" loading=\"lazy\" decoding=\"async\">';",
+           "\t\t$html .= ' alt=\"\" decoding=\"async\">';")
+
+
+def m33(r):
+    """O script sai do rodape e entra no retorno da ficha — o `the_content` escapa
+    o que ele nao entende e o script vai ao ar quebrado, que e a cicatriz de 08/09
+    desta ilha."""
+    trocar(r, SNIPPET, "\t\t$html .= '<div class=\"cdm-gal-lupa-palco\" data-cdm-lupa-palco></div>';",
+           "\t\t$html .= '<div class=\"cdm-gal-lupa-palco\" data-cdm-lupa-palco></div><script>var x=1;</script>';")
+
+
+def m34(r):
+    """O script passa a BUSCAR a foto grande em vez de ler a que ja esta no HTML.
+    Uma linha, e a ficha deixa de cumprir a 22.3."""
+    trocar(r, SNIPPET, "          grande.src = img.getAttribute('data-cdm-grande') || img.currentSrc || img.src;",
+           "          fetch(img.getAttribute('data-cdm-grande')).then(function(r){ return r.blob(); }).then(function(b){ grande.src = URL.createObjectURL(b); });")
+
+
 MUTACOES = [
     ("01 o tipo peca volta a aparecer no wp-admin", m01),
     ("02 o CPT disputa /loja/ com a pagina", m02),
@@ -272,6 +367,18 @@ MUTACOES = [
     ("21 a description perde o teto de 160", m21),
     ("22 o telefone aceita numero curto", m22),
     ("24 toda foto vira prioritaria", m24),
+    ("25 a foto grande perde a proporcao fixa", m25),
+    ("26 a miniatura deixa de ser quadrada", m26),
+    ("27 as setas perdem o nome", m27),
+    ("28 a miniatura deixa de ser ancora (morre sem JS)", m28),
+    ("29 a lupa nasce aberta", m29),
+    ("30 a foto grande nao viaja mais no HTML", m30),
+    ("31 a miniatura ganha alt descritivo (leitura dobrada)", m31),
+    ("32 as miniaturas param de ser preguicosas", m32),
+    ("33 o script entra no retorno da ficha", m33),
+    ("34 o script passa a BUSCAR a foto grande (22.3)", m34),
+    ("35 a lupa volta para dentro do the_content (wpautop)", m35),
+    ("36 a seta nasce depois do fechamento da faixa (wpautop)", m36),
 ]
 
 

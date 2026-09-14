@@ -38,6 +38,13 @@ Papel `--papel`, borda inferior de 1 px em `--traco`, sem sombra, altura ~96 px.
 ## Componentes
 - **Cartão de peça** — a foto manda: proporção 4:5, `width`/`height` no HTML, `--r-md`. Nome em Outfit `--t-lg`, preço em Outfit 700 `--coral`, medida e prazo em `--legenda` `--t-sm`. Disponibilidade em texto, nunca contagem regressiva, nunca "mais vendido" inventado.
 - **Vitrine** — carrossel permitido **abaixo da dobra**, sem autoplay, com os itens todos no HTML (seção 22.3).
+- **Galeria da ficha da peça** — nasceu do item 4 do despacho de 14/09, e a forma é a que ele descreveu; o mecanismo é nosso, nunca biblioteca (22.3).
+  - **Foto grande em proporção fixa 4:5**, `object-fit: cover`, raio `--r-md`. A mesma proporção do cartão, e pelo mesmo motivo: foto de celular vem em pé e deitada, e sem proporção fixa a página salta de altura entre uma peça e outra.
+  - **Miniaturas quadradas de verdade**: `aspect-ratio: 1/1`, `object-fit: cover`, raio `--r-sm`, lado de **64 px** no celular e **72 px** no desktop, fila com rolagem horizontal. A da foto que está na tela leva borda de 2 px em `--coral` — é o único uso forte de coral da tira.
+  - **Setas** ← → de 44 px, `--papel` com borda `--traco` e raio 999 px, sobre a foto grande, a meia altura. **Só no ponteiro**: somem no toque, onde o dedo já arrasta.
+  - **Foto ampliada**: `<dialog>` nativo sobre fundo `rgba(31,23,21,.86)` — escuro para a foto mandar, e é a única superfície escura fora do rodapé, porque aqui não há logo para sumir. X de 44 px no canto, em `--papel`.
+  - **Zoom** na ampliada: `transform: scale(2)` no clique, origem no ponto tocado. Sem biblioteca, sem `will-change`.
+  - Nada disto é necessário para ver as fotos: com o JavaScript desligado a ficha serve todas as `<img>` com `alt`, `width` e `height`, e a fila rola com o dedo.
 - **Caixa de resposta das ferramentas** — `--papel` com borda de 2 px em `--coral`, quantidade em Mono `--t-xl`, a frase em linguagem de ateliê logo abaixo.
 - **Bloco de compra do material** — abaixo da resposta, botão em `--coral`, aviso de comissão dentro do bloco.
 - **"Como sabemos"** — no fim da página, `--t-sm`, fabricante e data em `--legenda`, link "fonte" como texto com `rel="nofollow noopener"`. Nunca na home, nunca no primeiro parágrafo.

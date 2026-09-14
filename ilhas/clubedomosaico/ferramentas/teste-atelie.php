@@ -309,7 +309,7 @@ $telas = array(
 	'artesa com peca'   => 'quem_sou=artesa&com_peca=1&fotos=2&zap=1',
 	'artesa rascunho'   => 'quem_sou=artesa&com_peca=1&fotos=2&estado_peca=draft',
 	'formulario novo'   => 'quem_sou=artesa&estado=nova',
-	'formulario editar' => 'quem_sou=artesa&com_peca=1&fotos=2&estado=editar&peca=777',
+	'formulario editar' => 'quem_sou=artesa&com_peca=1&fotos=2&estado=editar&cdm_peca=777',
 	'criar senha'       => 'criar-senha=CHAVE-DE-TESTE&quem=artesa',
 	'chave gasta'       => 'criar-senha=CHAVE-VELHA&quem=artesa',
 	'logada sem acesso' => 'quem_sou=estranha',
@@ -436,6 +436,52 @@ cdm_ok( false !== strpos( $corpo_form, 'inputmode="numeric"' ), 'peso e prazo ab
 cdm_ok( false === strpos( $corpo_form, 'type="number"' ),
 	'nenhum campo e type=number (recusaria 180,50, que e como se escreve preco em portugues)' );
 
+/* A PRIMEIRA LINHA DAS LISTAS — item 2 do despacho de 14/09. Palavras dele: "o que
+   seria 'escolha'? Nao tem nada. Ai fica fora de categoria, nao adianta." */
+cdm_ok( false === strpos( $corpo_form, '>Escolha<' ),
+	'nenhuma lista abre com a palavra "Escolha", que nomeava opcao que nao existe' );
+preg_match_all( '#<option value=""[^>]*>([^<]*)</option>#', $corpo_form, $vazias );
+cdm_ok( count( $vazias[0] ) >= 4, 'o formulario tem as quatro listas com linha vazia',
+	count( $vazias[0] ) . ' lista(s)' );
+$vazias_ok = 0;
+foreach ( $vazias[0] as $i => $tag ) {
+	if ( false !== strpos( $tag, 'disabled' ) && false !== strpos( $tag, 'hidden' )
+		&& false !== strpos( $tag, 'selected' ) && 'Selecione…' === $vazias[1][ $i ] ) {
+		$vazias_ok++;
+	}
+}
+cdm_ok( $vazias_ok === count( $vazias[0] ),
+	'toda linha vazia diz "Selecione…" e e disabled, hidden e selected',
+	$vazias_ok . ' de ' . count( $vazias[0] ) );
+
+/* AS DUAS QUE LIGAM A PECA AO SITE SAO OBRIGATORIAS — e a peca orfa e o que o
+   despacho teme: sem colecao e sem tecnica a malha da secao 9 nao acontece. */
+cdm_ok( 2 === preg_match_all( '#<select[^>]*name="cdm_(colecao|tecnica)"[^>]*required#', $corpo_form ),
+	'colecao e tecnica sao required no cliente' );
+cdm_ok( 0 === preg_match_all( '#<select[^>]*name="cdmcdm_[a-z_]+"[^>]*required#', $corpo_form ),
+	'e os campos que a Loja nao cobra continuam sem required' );
+cdm_ok( 2 === preg_match_all( '#data-cdm-falta="[^"]{10,}"#', $corpo_form ),
+	'as duas carregam a frase amigavel que troca a do navegador' );
+cdm_ok( false === strpos( $corpo_form, 'data-cdm-falta="Campo obrigat' ),
+	'a frase nao e "campo obrigatorio" seco' );
+
+/* E O RASCUNHO CONTINUA PASSANDO POR CIMA DA TRAVA. Sem isto, o `required` de
+   cima transformaria "Salvar e terminar depois" em refem de uma lista, e ela
+   perderia o texto que ja tinha escrito (decisao 5 do snippet). */
+cdm_ok( 1 === preg_match_all( '#value="rascunho"[^>]*formnovalidate#', $corpo_form ),
+	'o botao de rascunho salva mesmo com as listas em branco' );
+cdm_ok( 0 === preg_match_all( '#value="publicar"[^>]*formnovalidate#', $corpo_form ),
+	'e o de publicar NAO pula a trava' );
+
+/* A TECNICA NOVA — item 3 do despacho de 14/09. */
+cdm_ok( false !== strpos( $corpo_form, 'value="picassiette"' ), 'a lista oferece o pica-sete' );
+cdm_ok( false !== strpos( $corpo_form, 'Pica-sete' ), 'e o rotulo dele e a palavra que a artesa usa' );
+cdm_ok( false !== strpos( $corpo_form, 'value="trencadis"' ), 'o trincadis continua na lista (esclarecimento de 14/09)' );
+cdm_ok( false !== strpos( $corpo_form, 'pique-assiette' ),
+	'a ajuda da tecnica traz a outra grafia' );
+cdm_ok( false !== strpos( $corpo_form, 'reconhecer a peça' ),
+	'e a ajuda diz o que separa pica-sete de trincadis' );
+
 /* O FORMULARIO DE EDITAR TRAZ O QUE ELA JA TINHA ESCRITO. */
 $corpo_edit = cdm_corpo( $html_por_tela['formulario editar'] );
 cdm_ok( false !== strpos( $corpo_edit, 'value="Vaso azul com flores"' ), 'editar traz o nome preenchido' );
@@ -549,7 +595,7 @@ $destino = cdm_acao( array(
 cdm_ok( false !== strpos( $destino, 'aviso=salva' ), 'salvar rascunho redireciona com o aviso certo', $destino );
 cdm_ok( cdm_pecas_inseridas() > $antes_inserts, 'o primeiro salvar cria a peca',
 	cdm_pecas_inseridas() . ' peca(s) inserida(s)' );
-preg_match( '#peca=(\d+)#', $destino, $mid );
+preg_match( '#[?&]cdm_peca=(\d+)#', $destino, $mid );
 $nova_id = (int) ( $mid[1] ?? 0 );
 cdm_ok( $nova_id > 0, 'o redirecionamento leva o id da peca nova', (string) $nova_id );
 cdm_ok( 'draft' === ( $GLOBALS['__pecas_por_id'][ $nova_id ]->post_status ?? '' ),
@@ -941,6 +987,122 @@ foreach ( $avisos_esperados as $chave => $trecho ) {
 	cdm_ok( false !== strpos( cdm_atelie_aviso_html(), $trecho ),
 		"o aviso '$chave' fala em portugues de gente", $trecho );
 }
+$_GET = array();
+
+/* ---------------------------------------------------------------------------
+ * 9. O NOME DOS PARAMETROS DA URL — o portao que nasceu do 404 de 14/09
+ *
+ * A artesa publicou a primeira peca da ilha e caiu num 404 com a foto em preto e
+ * branco do tema. A causa nao era regra de reescrita: o painel carregava o id em
+ * `?peca=`, e `peca` e o nome do TIPO DE CONTEUDO, registrado com `query_var`
+ * true. Para o nucleo `/atelie/?peca=24` e "a peca de slug 24", que nao existe.
+ *
+ * Nada no codigo denuncia isso lendo a linha — `'peca' => $id` parece certo, e o
+ * painel inteiro continua montando. Entao a regra vira medicao: NENHUM parametro
+ * que este painel poe numa URL pode ter nome de variavel publica do WordPress.
+ *
+ * A lista abaixo e ESCRITA A MAO (secao 8): sao as variaveis publicas do nucleo,
+ * copiadas de `WP::$public_query_vars`, mais as dos mapas e do REST, mais a do
+ * tipo `peca` desta ilha. Ler a lista do WordPress de dentro da bancada seria o
+ * teste medindo a si mesmo — e aqui a bancada nem tem WordPress.
+ *
+ * E os parametros sao LIDOS DO SNIPPET, nao digitados aqui: quem escrever uma
+ * chamada nova de `cdm_atelie_url()` amanha cai neste portao sem precisar lembrar
+ * dele.
+ * ------------------------------------------------------------------------- */
+
+echo "\n9. O nome dos parametros da URL nao colide com o WordPress\n";
+
+$reservadas = array(
+	/* WP::$public_query_vars */
+	'm', 'p', 'posts', 'w', 'cat', 'withcomments', 'withoutcomments', 's', 'search',
+	'exact', 'sentence', 'calendar', 'page', 'paged', 'more', 'tb', 'pb', 'author',
+	'order', 'orderby', 'year', 'monthnum', 'day', 'hour', 'minute', 'second',
+	'name', 'category_name', 'tag', 'feed', 'author_name', 'pagename', 'page_id',
+	'error', 'attachment', 'attachment_id', 'subpost', 'subpost_id', 'preview',
+	'robots', 'favicon', 'taxonomy', 'term', 'cpage', 'post_type', 'embed', 'title',
+	/* mapa do site, REST e busca de anexo */
+	'sitemap', 'sitemap-subtype', 'sitemap-stylesheet', 'rest_route',
+	/* DESTA ILHA: o tipo e as duas taxonomias da Loja. `peca` e a que mordeu. */
+	'peca', 'colecao', 'tecnica',
+);
+
+$fonte = file_get_contents( $raiz . '/snippets/clubedomosaico-atelie.php' );
+cdm_ok( is_string( $fonte ) && '' !== $fonte, 'o snippet do atelie foi lido para a varredura',
+	strlen( (string) $fonte ) . ' bytes' );
+
+/* Toda chave literal passada a `cdm_atelie_url( array( ... ) )`, mais a constante
+   do parametro de peca resolvida para o valor que ela tem de verdade. */
+preg_match_all( "#cdm_atelie_url\(\s*array\((.*?)\)\s*\)#s", (string) $fonte, $blocos );
+$chaves = array();
+foreach ( $blocos[1] as $bloco ) {
+	preg_match_all( "#'([^']+)'\s*=>#", $bloco, $m );
+	foreach ( $m[1] as $k ) {
+		$chaves[ $k ] = true;
+	}
+	if ( false !== strpos( $bloco, 'CDM_ATELIE_PARAM_PECA' ) ) {
+		$chaves[ CDM_ATELIE_PARAM_PECA ] = true;
+	}
+}
+$chaves = array_keys( $chaves );
+sort( $chaves );
+
+cdm_ok( count( $chaves ) >= 6, 'a varredura achou os parametros do painel', implode( ' ', $chaves ) );
+cdm_ok( in_array( CDM_ATELIE_PARAM_PECA, $chaves, true ),
+	'o parametro da peca esta entre os varridos', CDM_ATELIE_PARAM_PECA );
+cdm_ok( 'peca' !== CDM_ATELIE_PARAM_PECA,
+	'o parametro da peca NAO se chama peca (a cicatriz de 14/09)', CDM_ATELIE_PARAM_PECA );
+
+foreach ( $chaves as $k ) {
+	cdm_ok( ! in_array( $k, $reservadas, true ),
+		"o parametro '$k' nao e variavel publica do WordPress" );
+}
+
+/* E o outro lado da mesma regra: a tela de editar so abre pelo nome novo. Ler
+   `?peca=` de volta seria consertar a ida e deixar a volta. */
+cdm_ok( false === strpos( (string) $fonte, "cdm_atelie_get( 'peca'" ),
+	'nenhuma tela le a peca pelo nome antigo' );
+
+/* A FAIXA DE PUBLICADA, que e a segunda metade do item 1. */
+echo "\n10. A faixa de 'Peca publicada!'\n";
+
+/* A PECA TEM DE EXISTIR AQUI, e isto e afirmacao e nao preparo: se o
+   redirecionamento de publicar parou de carregar o id — que e exatamente a
+   cicatriz de 14/09 — `$nova_id` volta zero, e sem esta linha a bancada MORRE de
+   fatal em vez de reprovar. Teste que morre nao e teste que pega. */
+$peca_da_faixa = $GLOBALS['__pecas_por_id'][ $nova_id ] ?? null;
+cdm_ok( is_object( $peca_da_faixa ), 'a peca do fluxo chegou inteira ate a faixa', (string) $nova_id );
+if ( is_object( $peca_da_faixa ) ) {
+	$peca_da_faixa->post_status = 'publish';
+}
+$_GET  = array( 'aviso' => 'publicada', CDM_ATELIE_PARAM_PECA => (string) $nova_id );
+$faixa = cdm_atelie_aviso_html();
+cdm_ok( false !== strpos( $faixa, 'Peça publicada!' ), 'a faixa diz "Peca publicada!"' );
+cdm_ok( false !== strpos( $faixa, 'cdm-at-aviso-bom' ), 'a faixa usa o verde de aviso bom' );
+cdm_ok( false !== strpos( $faixa, '>Ver no site<' ), 'a faixa oferece "Ver no site"' );
+cdm_ok( false !== strpos( $faixa, '>Cadastrar outra peça<' ), 'a faixa oferece "Cadastrar outra peca"' );
+cdm_ok( false !== strpos( $faixa, '/loja/' ), 'o "Ver no site" aponta para /loja/<slug>/',
+	preg_match( '#href="([^"]*loja[^"]*)"#', $faixa, $mh ) ? $mh[1] : '' );
+cdm_ok( false !== strpos( $faixa, 'estado=nova' ), 'o "Cadastrar outra" abre o formulario vazio' );
+cdm_ok( false === strpos( $faixa, 'Publicada! A peça' ), 'a frase antiga nao ficou embaixo do titulo' );
+
+/* PECA QUE NAO FOI AO AR NAO GANHA BOTAO PARA O AR. A trava do nucleo devolve ao
+   rascunho a peca que nao cumpre a regra de qualidade; nesse caso "publiquei" e
+   "esta no ar" sao coisas diferentes, e um botao que cai em 404 e o mesmo defeito
+   que este bloco conserta. */
+if ( is_object( $peca_da_faixa ) ) { $peca_da_faixa->post_status = 'draft'; }
+$faixa_rascunho = cdm_atelie_aviso_html();
+cdm_ok( false === strpos( $faixa_rascunho, '>Ver no site<' ),
+	'peca em rascunho NAO ganha o botao "Ver no site"' );
+cdm_ok( false !== strpos( $faixa_rascunho, '>Cadastrar outra peça<' ),
+	'e a faixa continua oferecendo cadastrar outra' );
+
+/* SEM ID NENHUM na URL — a faixa nao pode quebrar nem inventar endereco. */
+$_GET        = array( 'aviso' => 'publicada' );
+$faixa_sem_id = cdm_atelie_aviso_html();
+cdm_ok( '' !== $faixa_sem_id && false === strpos( $faixa_sem_id, '>Ver no site<' ),
+	'sem id na URL a faixa sai inteira e sem botao para o site' );
+if ( is_object( $peca_da_faixa ) ) { $peca_da_faixa->post_status = 'publish'; }
 $_GET = array();
 
 echo "\n" . str_repeat( '-', 78 ) . "\n";

@@ -283,12 +283,12 @@ def m26(r):
     dizer o que falta. E a diferenca entre "o botao nao funciona" e "falta a foto"."""
     trocar(r, SNIPPET, """			if ( $motivos ) {
 				update_post_meta( $id, '_cdm_recusa', $motivos );
-				wp_safe_redirect( cdm_atelie_url( array( 'estado' => 'editar', 'peca' => $id, 'aviso' => 'falta' ) ) );
+				wp_safe_redirect( cdm_atelie_url( array( 'estado' => 'editar', CDM_ATELIE_PARAM_PECA => $id, 'aviso' => 'falta' ) ) );
 				exit;
 			}""",
         """			if ( $motivos ) {
 				delete_post_meta( $id, '_cdm_recusa' );
-				wp_safe_redirect( cdm_atelie_url( array( 'estado' => 'editar', 'peca' => $id, 'aviso' => 'falta' ) ) );
+				wp_safe_redirect( cdm_atelie_url( array( 'estado' => 'editar', CDM_ATELIE_PARAM_PECA => $id, 'aviso' => 'falta' ) ) );
 				exit;
 			}""")
 
@@ -377,6 +377,89 @@ def m37(r):
            "")
 
 
+# ------------------------------------- familia 3: o despacho de 14/09 (itens 1 a 3)
+#
+# A artesa usou o painel e achou tres coisas que nenhuma bancada tinha achado. As
+# mutacoes daqui para baixo existem para que NENHUMA das tres possa voltar calada.
+
+LOJA = os.path.join("snippets", "clubedomosaico-loja.php")
+
+
+def m38(r):
+    """O parametro da peca volta a se chamar `peca` — a cicatriz exata de 14/09.
+    Todo redirecionamento do painel volta a cair no 404 do tema, e o codigo
+    continua montando sem uma reclamacao."""
+    trocar(r, SNIPPET, "define( 'CDM_ATELIE_PARAM_PECA', 'cdm_peca' );",
+           "define( 'CDM_ATELIE_PARAM_PECA', 'peca' );")
+
+
+def m39(r):
+    """UM lugar so volta a escrever o nome antigo a mao. E a forma mais provavel de
+    a cicatriz voltar: a constante fica certa e uma chamada nova diverge."""
+    trocar(r, SNIPPET, "cdm_atelie_url( array( 'estado' => 'editar', CDM_ATELIE_PARAM_PECA => $id ) ) ) . '\">Editar</a>'",
+           "cdm_atelie_url( array( 'estado' => 'editar', 'peca' => $id ) ) ) . '\">Editar</a>'")
+
+
+def m40(r):
+    """A faixa de publicada perde o "Ver no site" — ela publica e nao tem como
+    conferir o que fez sem sair procurando."""
+    trocar(r, SNIPPET, "\t\t$h .= '<a class=\"cdm-at-botao-fraco\" href=\"' . esc_url( $url ) . '\">Ver no site</a>';\n", "")
+
+
+def m41(r):
+    """A faixa perde o "Cadastrar outra peca" — o caminho que a pessoa que gostou do
+    resultado toma em seguida vira um beco."""
+    trocar(r, SNIPPET, "\t$h .= '<a class=\"cdm-botao cdm-at-botao\" href=\"' . esc_url( cdm_atelie_url( array( 'estado' => 'nova' ) ) ) . '\">Cadastrar outra peça</a>';\n", "")
+
+
+def m42(r):
+    """O "Ver no site" passa a aparecer para peca que a trava do nucleo devolveu ao
+    rascunho: um botao que promete o site e cai em 404, dentro da tela que conserta
+    exatamente esse defeito."""
+    trocar(r, SNIPPET, "if ( $peca && 'publish' === $peca->post_status && function_exists( 'get_permalink' ) ) {",
+           "if ( $peca && function_exists( 'get_permalink' ) ) {")
+
+
+def m43(r):
+    """A linha vazia volta a ser selecionavel. Ela pode escolher "nada" de novo, e a
+    peca nasce fora de colecao."""
+    trocar(r, SNIPPET, "return '<option value=\"\" disabled hidden'",
+           "return '<option value=\"\"'")
+
+
+def m44(r):
+    """A palavra volta a ser "Escolha" — "o que seria 'escolha'? Nao tem nada"."""
+    trocar(r, SNIPPET, ">Selecione…</option>'", ">Escolha</option>'")
+
+
+def m45(r):
+    """As duas listas que ligam a peca ao site perdem o `required`: publicar deixa de
+    cobrar colecao e tecnica no cliente, e sobra so a recusa do servidor — que ela
+    le depois de ter apertado o botao achando que acabou."""
+    trocar(r, SNIPPET, "' . esc_attr( $tax ) . '\" name=\"cdm_' . esc_attr( $tax ) . '\" required",
+           "' . esc_attr( $tax ) . '\" name=\"cdm_' . esc_attr( $tax ) . '\"")
+
+
+def m46(r):
+    """O botao de PUBLICAR ganha `formnovalidate` e fura a trava do cliente."""
+    trocar(r, SNIPPET, "name=\"cdm_destino\" value=\"publicar\">Publicar no site",
+           "name=\"cdm_destino\" value=\"publicar\" formnovalidate>Publicar no site")
+
+
+def m47(r):
+    """O pica-sete sai da lista de tecnicas. Volta o estado em que ela cadastrou uma
+    peca picassiette marcando "trencadis" porque nao havia o que marcar."""
+    trocar(r, LOJA, "\t\t\t'picassiette' => 'Pica-sete (louça quebrada)',\n", "")
+
+
+def m48(r):
+    """A ajuda da tecnica perde a distincao entre trincadis e pica-sete. As duas sao
+    tecnicas de caco e ficam uma embaixo da outra na lista; sem a frase, quem nao
+    sabe a diferenca marca a primeira."""
+    trocar(r, SNIPPET, "sem dar para reconhecer de onde veio; pica-sete é caco de louça em que dá para reconhecer a peça '",
+           "'")
+
+
 MUTACOES = [
     ("01 o bloqueio do wp-admin para de bloquear", m01),
     ("02 a barra do WordPress volta para ela", m02),
@@ -415,6 +498,17 @@ MUTACOES = [
     ("35 o e-mail da conta vira campo editavel", m35),
     ("36 secao registrada sem miolo entra na tela", m36),
     ("37 a aba Meus dados cai na lista de pecas", m37),
+    ("38 o parametro da peca volta a se chamar peca (404 de 14/09)", m38),
+    ("39 uma chamada so volta a escrever peca a mao", m39),
+    ("40 a faixa de publicada perde o Ver no site", m40),
+    ("41 a faixa perde o Cadastrar outra peca", m41),
+    ("42 peca em rascunho ganha botao para o site (404)", m42),
+    ("43 a linha vazia volta a ser selecionavel", m43),
+    ("44 a linha vazia volta a dizer Escolha", m44),
+    ("45 colecao e tecnica perdem o required", m45),
+    ("46 o botao de publicar fura a trava do cliente", m46),
+    ("47 o pica-sete sai da lista de tecnicas", m47),
+    ("48 a ajuda perde a distincao trincadis x pica-sete", m48),
 ]
 
 

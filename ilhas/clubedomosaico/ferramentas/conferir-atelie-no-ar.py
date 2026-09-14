@@ -251,6 +251,43 @@ def main():
         ok(vazamento not in md_html,
            f"[/atelie/?estado=meus-dados] deslogada NAO ve '{vazamento}'")
 
+    # ------------------------------------ o despacho do Raphael de 14/09/2026
+    #
+    # A ARTESA USOU O PAINEL E ACHOU O QUE NENHUMA BANCADA ACHOU. Estas medicoes
+    # sao no AR de proposito: as tres primeiras coisas do despacho so existem
+    # como defeito no site servido — a bancada nao tem WordPress, e foi
+    # justamente o WordPress que mordeu.
+    #
+    # A REGUA E DAQUI: o nome do parametro, o texto da faixa e a contagem de
+    # tecnicas estao escritos nesta secao, nunca lidos dos snippets.
+    print("\n4d. O despacho de 14/09 — o 404 ao publicar, a lista e a tecnica nova")
+
+    # ITEM 1. `/atelie/?peca=24` caia no 404 do tema porque `peca` e o nome do
+    # tipo de conteudo, registrado com `query_var`. O parametro virou `cdm_peca`.
+    # Medido com um id que NAO existe de proposito: o que se mede e o roteamento,
+    # nao a peca — se o nome colidir de novo, o 404 volta para qualquer numero.
+    _, cod_novo = buscar(BASE + "/atelie/?cdm_peca=999999")
+    ok("200" == cod_novo,
+       "[/atelie/?cdm_peca=] o painel responde 200 com o parametro de peca na URL", cod_novo)
+    _, cod_velho = buscar(BASE + "/atelie/?peca=999999")
+    print(f"     -> e a causa medida: /atelie/?peca=999999 responde {cod_velho}"
+          " (variavel publica do WordPress; era este o 404 dela)")
+    ok('href="' + BASE + '/atelie/?peca=' not in at_html and "'peca' =>" not in at_html,
+       "[/atelie/] nenhum link do painel servido usa o nome antigo")
+
+    # ITEM 1, segunda metade: a faixa de "Peca publicada!". Ela so aparece depois
+    # de publicar, entao o que da para medir da nuvem e que o CODIGO dela esta
+    # servindo — a folha do painel traz a classe, que so existe no Atelie 1.3.0.
+    ok("200" == at_cod and ".cdm-at-faixa{" in at_html,
+       "[/atelie/] a folha traz .cdm-at-faixa (so existe no Atelie 1.3.0)", at_cod)
+
+    # ITEM 3. A tecnica pica-sete so chega a lista dela se a versao da Loja subir:
+    # `cdm_loja_termos_iniciais()` e percorrida uma vez por versao. Antes deste
+    # bloco a rota publica dizia 4.
+    tecnicas = int(((dados.get("termos") or {}).get("tecnica", -1))) if dados else -1
+    ok(tecnicas == 5, "[rota] a Loja declara 5 tecnicas (o pica-sete chegou ao site)",
+       f"{tecnicas} tecnicas")
+
     print("\n5. A ficha de cada peca publicada")
     if publicadas <= 0:
         pular("a ficha da peca", "nenhuma peca publicada ainda — e o estado normal hoje")

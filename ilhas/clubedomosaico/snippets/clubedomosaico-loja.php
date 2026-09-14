@@ -1,5 +1,31 @@
 /**
  * Clube do Mosaico Loja — peças e vitrine
+ * Versão 1.2.0 (14/09/2026) — A TÉCNICA PICA-SETE ENTRA NA LISTA. Item 3 do
+ * despacho do Raphael de 14/09: "tem uma técnica chamada mosaico pica-sete,
+ * precisa adicionar". A lista de técnicas tinha quatro e nenhuma delas é a que a
+ * artesã usou de fato — a peça que ela cadastrou tem "Picassiette" escrito na
+ * descrição por ela e "Trencadís" marcado no campo, porque pica-sete não existia
+ * para marcar. É o caso literal do campo que a obriga a mentir.
+ *
+ * PICA-SETE E TRINCADÍS SÃO DUAS, e o esclarecimento do Raphael do mesmo dia é
+ * explícito em que o trincadís FICA: trincadís é caco de azulejo ou cerâmica sem
+ * identidade do objeto; pica-sete é caco de louça em que se reconhece de onde veio
+ * — alça de xícara, bico de bule, fundo de prato com estampa. A distinção não mora
+ * só aqui: ela está escrita na ajuda do campo, no painel, que é onde ela decide.
+ *
+ * A VERSÃO SOBE PORQUE É ELA QUEM CRIA O TERMO. `cdm_loja_termos_iniciais()` só é
+ * percorrida quando `CDM_LOJA_VERSAO` difere da option `cdm_loja_termos`; termo
+ * novo sem versão nova é linha no repositório que nunca vira linha na lista dela.
+ * Medido no ar antes deste bloco: a rota pública `/v1/loja` dizia `tecnica: 4`.
+ *
+ * O SLUG GRAVADO É `picassiette`, e isto é escolha registrada. O despacho pediu
+ * `pica-sete`; o esclarecimento do mesmo dia diz que "entrou como `picassiette`" e
+ * não o desfaz. As duas taxonomias desta ilha são registradas com `rewrite` false
+ * (decisão 4 deste arquivo), então o slug do TERMO não decide endereço nenhum
+ * hoje: no dia em que houver página de técnica, `/tecnicas/pica-sete/` continua
+ * inteiramente disponível, e quem decide o endereço é a malha, não este campo.
+ * Na tela, onde a artesã lê, o nome é "Pica-sete" — o VOZ.md manda na palavra.
+ *
  * Versão 1.1.0 (13/09/2026) — UMA mudança sobre a 1.0.0, e ela é de tomada e não
  * de comportamento: o bloco de ação da ficha (preço, disponibilidade, botão)
  * passou a sair por `apply_filters( 'cdm_peca_acao', $padrao, $peca, $dados )`.
@@ -89,7 +115,7 @@
  */
 
 if ( ! defined( 'CDM_LOJA_VERSAO' ) ) {
-	define( 'CDM_LOJA_VERSAO', '1.1.0' );
+	define( 'CDM_LOJA_VERSAO', '1.2.0' );
 }
 if ( ! defined( 'CDM_LOJA_BASE' ) ) {
 	/* O primeiro segmento da URL da peça. É o mesmo slug da página /loja/ de
@@ -645,15 +671,71 @@ function cdm_loja_foto_html( $anexo_id, $titulo, $base_rotulo, $n, $capa ) {
 	}
 	$alt = $titulo . ', mosaico em ' . $base_rotulo . ', foto ' . (int) $n;
 
+	/* O ENDEREÇO DA FOTO GRANDE VIAJA NO HTML, e é o que faz o zoom não ser
+	   enfeite: a ampliada não é a mesma imagem esticada, é o arquivo maior. Sai
+	   como atributo de dado porque o `<img>` do carrossel tem de continuar sendo
+	   a versão leve — a ficha inteira pesa o orçamento da 22.4, e a foto grande
+	   só é buscada quando alguém abre a lupa. */
+	$grande = wp_get_attachment_image_src( (int) $anexo_id, 'full' );
+	$url_grande = ( $grande && ! empty( $grande[0] ) ) ? $grande[0] : $src[0];
+
 	$html  = '<figure class="cdm-foto' . ( $capa ? ' cdm-foto-capa' : '' ) . '" id="cdm-foto-' . (int) $n . '">';
 	$html .= '<img src="' . esc_url( $src[0] ) . '"';
 	if ( ! empty( $src[1] ) && ! empty( $src[2] ) ) {
 		$html .= ' width="' . (int) $src[1] . '" height="' . (int) $src[2] . '"';
 	}
 	$html .= ' alt="' . esc_attr( $alt ) . '"';
+	$html .= ' data-cdm-grande="' . esc_url( $url_grande ) . '"';
 	$html .= $capa ? ' fetchpriority="high" decoding="async"' : ' loading="lazy" decoding="async"';
 	$html .= '>';
 	$html .= '</figure>';
+
+	return $html;
+}
+}
+
+if ( ! function_exists( 'cdm_loja_miniaturas_html' ) ) {
+/**
+ * A TIRA DE MINIATURAS QUADRADAS — item 4 do despacho de 14/09.
+ *
+ * Palavras do Raphael: "não está padronizada as imagens quadradinhas". A tira
+ * resolve isso no CSS (`aspect-ratio` 1/1 e `object-fit: cover`), nunca cortando
+ * arquivo: foto de celular vem em pé e deitada e as duas têm de ficar iguais na
+ * fila.
+ *
+ * CADA MINIATURA É UM LINK PARA A ÂNCORA DA FOTO, e é por isso que ela funciona
+ * com o JavaScript desligado: `#cdm-foto-3` rola o contêiner de `scroll-snap` sem
+ * uma linha de script — o navegador rola o ancestral rolável mais próximo. O
+ * JavaScript só acrescenta a marcação de qual está na tela.
+ *
+ * Uma foto só não ganha tira: uma miniatura de uma foto é ruído que ocupa altura.
+ */
+function cdm_loja_miniaturas_html( $galeria, $titulo ) {
+	if ( count( $galeria ) < 2 ) {
+		return '';
+	}
+
+	$html = '<ul class="cdm-gal-tira" aria-label="Escolher qual foto ver">';
+	$n    = 0;
+	foreach ( $galeria as $anexo ) {
+		$n++;
+		$mini = wp_get_attachment_image_src( (int) $anexo, 'thumbnail' );
+		if ( ! $mini || empty( $mini[0] ) ) {
+			continue;
+		}
+		$html .= '<li><a class="cdm-gal-mini" href="#cdm-foto-' . (int) $n . '" data-cdm-mini="' . (int) $n . '">';
+		$html .= '<img src="' . esc_url( $mini[0] ) . '"';
+		if ( ! empty( $mini[1] ) && ! empty( $mini[2] ) ) {
+			$html .= ' width="' . (int) $mini[1] . '" height="' . (int) $mini[2] . '"';
+		}
+		/* `alt` VAZIO DE PROPÓSITO: a miniatura é o mesmo conteúdo da foto grande,
+		   que já tem o `alt` descritivo. Repetir a descrição N vezes faz o leitor
+		   de tela ler a peça inteira duas vezes; o nome do controle está no `a`. */
+		$html .= ' alt="" loading="lazy" decoding="async">';
+		$html .= '<span class="cdm-gal-so-leitor">Foto ' . (int) $n . ' de ' . esc_html( $titulo ) . '</span>';
+		$html .= '</a></li>';
+	}
+	$html .= '</ul>';
 
 	return $html;
 }
@@ -690,15 +772,31 @@ function cdm_loja_ficha_html( $peca ) {
 	/* 1. AS FOTOS. Carrossel com scroll-snap: todas as fotos estão no HTML
 	   servido (22.3), sem autoplay, e a navegação é o dedo ou a tecla. */
 	if ( $galeria ) {
-		$html .= '<div class="cdm-peca-fotos">';
-		$html .= '<div class="cdm-carrossel" role="group" aria-label="Fotos da peça ' . esc_attr( $titulo ) . '">';
+		$varias = count( $galeria ) > 1;
+		$html  .= '<div class="cdm-peca-fotos" data-cdm-galeria>';
+		/* AS DUAS SETAS VÊM COLADAS NA ABERTURA DO PALCO, e isto não é gosto: o
+		   retorno deste filtro passa pelo `wpautop`, que põe uma quebra ANTES de
+		   toda etiqueta de bloco e duas DEPOIS de todo fechamento — e o que sobra
+		   solto entre duas quebras vira parágrafo. Botão não é bloco para o
+		   `wpautop`. Com a seta depois de `</div>` ela nasceria dentro de um `<p>`
+		   que ninguém escreveu, com a margem dele empurrando a foto para baixo.
+		   Coladas aqui, as duas ficam no mesmo pedaço da abertura do palco e nada
+		   é embrulhado. Ordem de foco: anterior, próxima, fotos — e a posição na
+		   tela é do CSS, que as ancora nas duas beiradas. */
+		$html  .= '<div class="cdm-gal-palco">';
+		if ( $varias ) {
+			$html .= '<button class="cdm-gal-seta cdm-gal-seta-ant" type="button" data-cdm-rolar="-1" aria-label="Foto anterior" aria-controls="cdm-carrossel-' . $id . '">&#8249;</button>';
+			$html .= '<button class="cdm-gal-seta cdm-gal-seta-prox" type="button" data-cdm-rolar="1" aria-label="Próxima foto" aria-controls="cdm-carrossel-' . $id . '">&#8250;</button>';
+		}
+		$html .= '<div class="cdm-carrossel" id="cdm-carrossel-' . $id . '" role="group" aria-label="Fotos da peça ' . esc_attr( $titulo ) . '">';
 		$n = 0;
 		foreach ( $galeria as $anexo ) {
 			$n++;
 			$html .= cdm_loja_foto_html( $anexo, $titulo, $base_rotulo, $n, 1 === $n );
 		}
-		$html .= '</div>';
-		if ( count( $galeria ) > 1 ) {
+		$html .= '</div></div>';
+		$html .= cdm_loja_miniaturas_html( $galeria, $titulo );
+		if ( $varias ) {
 			$html .= '<p class="cdm-carrossel-conta">' . count( $galeria ) . ' fotos desta peça. Arraste para o lado.</p>';
 		}
 		$html .= '</div>';
@@ -1135,10 +1233,46 @@ add_action( 'wp_footer', function () {
 .cdm-peca-fotos{margin:0 0 1.6rem;}
 /* A FAIXA DE FOTOS. Uma foto por tela no celular, duas no desktop, todas no HTML
    servido. Sem autoplay e sem JavaScript: quem decide qual foto ver e o dedo. */
-.cdm-carrossel{display:flex;gap:.75rem;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:0 0 .5rem;margin:0;}
+.cdm-carrossel{display:flex;gap:.75rem;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:0 0 .5rem;margin:0;scrollbar-width:none;}
+.cdm-carrossel::-webkit-scrollbar{display:none;}
 .cdm-carrossel .cdm-foto{flex:0 0 100%;scroll-snap-align:start;margin:0;}
-.cdm-carrossel img{display:block;width:100%;height:auto;border-radius:14px;background:var(--cdm-traco);}
+/* PROPORCAO FIXA 4:5 na foto grande (DESIGN.md, Galeria da ficha da peca). Sem
+   ela a pagina saltava de altura entre uma peca e outra, que foi metade do "esta
+   muito feio" do despacho de 14/09: foto de celular vem em pe e deitada. */
+.cdm-carrossel img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:14px;background:var(--cdm-traco);}
 .cdm-carrossel-conta{margin:.4rem 0 0;font-size:.85rem;color:var(--cdm-legenda);}
+/* O PALCO segura as setas sobre a foto. `position:relative` e so isso: a faixa
+   continua sendo o carrossel de scroll-snap que sempre foi. */
+.cdm-gal-palco{position:relative;}
+.cdm-gal-seta{display:none;position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:44px;height:44px;align-items:center;justify-content:center;padding:0;font-family:var(--cdm-display);font-size:1.6rem;line-height:1;color:var(--cdm-tinta);background:var(--cdm-papel);border:1px solid var(--cdm-traco);border-radius:999px;box-shadow:0 2px 8px rgba(31,23,21,.06);cursor:pointer;}
+.cdm-gal-seta-ant{left:.6rem;}
+.cdm-gal-seta-prox{right:.6rem;}
+.cdm-gal-seta:hover{border-color:var(--cdm-coral);color:var(--cdm-coral);}
+/* SO NO PONTEIRO, e so com o script de pe: no toque o dedo ja arrasta, e sem
+   JavaScript a seta nao rola nada e por isso nao aparece. */
+@media (hover:hover) and (pointer:fine){
+.cdm-gal-palco[data-cdm-setas] .cdm-gal-seta{display:flex;}
+}
+/* A TIRA DE MINIATURAS QUADRADAS. `aspect-ratio` 1/1 mais `object-fit:cover`: o
+   quadrado e do CSS, o arquivo nunca e cortado. */
+.cdm-gal-tira{display:flex;gap:.5rem;overflow-x:auto;list-style:none;margin:.6rem 0 0;padding:0 0 .3rem;scrollbar-width:none;}
+.cdm-gal-tira::-webkit-scrollbar{display:none;}
+.cdm-gal-tira li{margin:0;}
+.cdm-gal-mini{display:block;width:64px;height:64px;border-radius:8px;overflow:hidden;border:2px solid transparent;line-height:0;}
+.cdm-gal-mini img{display:block;width:100%;height:100%;aspect-ratio:1/1;object-fit:cover;background:var(--cdm-traco);}
+.cdm-gal-mini[aria-current="true"]{border-color:var(--cdm-coral);}
+.cdm-gal-mini:hover{border-color:var(--cdm-salmao);}
+.cdm-gal-so-leitor{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+/* A LUPA. A unica superficie escura fora do rodape, e aqui nao ha logo para
+   sumir: o escuro existe para a foto mandar. */
+.cdm-gal-lupa{width:100%;max-width:100%;max-height:100%;height:100%;margin:0;padding:0;border:0;background:transparent;overflow:hidden;}
+.cdm-gal-lupa::backdrop{background:rgba(31,23,21,.86);}
+.cdm-gal-lupa-palco{display:flex;align-items:center;justify-content:center;width:100%;height:100%;overflow:auto;background:rgba(31,23,21,.86);}
+.cdm-gal-lupa-palco img{display:block;max-width:100%;max-height:100%;transition:transform .18s ease;cursor:zoom-in;}
+.cdm-gal-lupa-palco img[data-cdm-zoom]{transform:scale(2);cursor:zoom-out;}
+.cdm-gal-fechar{position:fixed;top:.8rem;right:.8rem;z-index:3;width:44px;height:44px;display:flex;align-items:center;justify-content:center;padding:0;font-size:1.8rem;line-height:1;color:var(--cdm-tinta);background:var(--cdm-papel);border:1px solid var(--cdm-traco);border-radius:999px;cursor:pointer;}
+.cdm-gal-fechar:hover{border-color:var(--cdm-coral);color:var(--cdm-coral);}
+[data-cdm-galeria][data-cdm-lupa] .cdm-carrossel img{cursor:zoom-in;}
 .cdm-peca-topo{margin:0 0 1.6rem;}
 .cdm-peca-preco{margin:0 0 .3rem;}
 .cdm-peca-preco .cdm-preco{font-size:2rem;line-height:1.1;}
@@ -1163,10 +1297,149 @@ add_action( 'wp_footer', function () {
 @media (min-width:52rem){
 .cdm-carrossel .cdm-foto{flex:0 0 calc(50% - .375rem);}
 .cdm-peca-fotos{margin-bottom:2rem;}
+.cdm-gal-mini{width:72px;height:72px;}
+}
+@media (prefers-reduced-motion:reduce){
+.cdm-gal-lupa-palco img{transition:none;}
 }
 CSS;
 	echo '<style id="cdm-loja-css">' . $css . '</style>' . "\n";
 }, 21 );
+
+/* ---------------------------------------------------------------------------
+ * 7b. O ÚNICO SCRIPT DESTE SNIPPET — item 4 do despacho de 14/09
+ *
+ * NADA AQUI É NECESSÁRIO, e isso é o portão 22.8, não uma promessa. Com o
+ * JavaScript desligado a ficha serve todas as fotos, com `alt`, `width` e
+ * `height`; a fila rola com o dedo e com a barra; as miniaturas são âncoras e
+ * levam à foto; a lupa é um `<dialog>` fechado, que o navegador não desenha.
+ * O que o script acrescenta são três gestos: rolar pela seta, abrir a ampliada e
+ * fechá-la. É o que o Raphael pediu do Real 21 sem uma linha do Real 21 — lá é
+ * Elementor + Swiper, que a 22.3 proíbe na página pública e a 11.7 proíbe
+ * instalar.
+ *
+ * Ele também nunca BUSCA nada: a foto da lupa é o arquivo que a própria `<figure>`
+ * já carrega em `data-cdm-grande`, então não há chamada de rede montada em
+ * JavaScript — outra coisa que a 22.3 cobra.
+ * ------------------------------------------------------------------------- */
+
+add_action( 'wp_footer', function () {
+	$peca = cdm_loja_e_peca();
+	if ( ! $peca ) {
+		return;
+	}
+
+	/* A LUPA MORA NO RODAPÉ, E NÃO DENTRO DA FICHA, por duas razões que apontam
+	   para o mesmo lugar. A primeira é o `wpautop`: `<dialog>` não está na lista
+	   de blocos dele, então dentro do `the_content` a etiqueta de abertura seria
+	   embrulhada num `<p>` e o `</dialog>` viraria um parágrafo sozinho — HTML
+	   remendado pelo navegador, no meio da página que mais precisa estar inteira.
+	   A segunda é que janela modal é do fim do documento: é onde ela não herda
+	   `overflow`, `transform` nem empilhamento de nada.
+
+	   ELA NASCE VAZIA E FECHADA. `<dialog>` sem `open` o próprio navegador não
+	   desenha, então com o JavaScript desligado ela não existe para ninguém — nem
+	   para o leitor de tela, nem para o Google. Quem põe a foto dentro é o clique,
+	   e a foto que entra é a que já está no HTML, no arquivo grande que cada
+	   `<figure>` carrega em `data-cdm-grande`. */
+	if ( cdm_loja_galeria( (int) $peca->ID ) ) {
+		echo '<dialog class="cdm-gal-lupa" id="cdm-lupa-' . (int) $peca->ID . '"'
+			. ' aria-label="Foto ampliada de ' . esc_attr( (string) $peca->post_title ) . '">'
+			. '<button class="cdm-gal-fechar" type="button" data-cdm-fechar aria-label="Fechar a foto ampliada">&#215;</button>'
+			. '<div class="cdm-gal-lupa-palco" data-cdm-lupa-palco></div>'
+			. '</dialog>' . "\n";
+	}
+
+	$js = <<<'JS'
+(function(){
+  var caixas = document.querySelectorAll('[data-cdm-galeria]');
+  for (var i = 0; i < caixas.length; i++) { montar(caixas[i]); }
+
+  function montar(caixa){
+    var faixa = caixa.querySelector('.cdm-carrossel');
+    /* A LUPA ESTA NO RODAPE, fora desta caixa: o `wpautop` nao deixa `<dialog>`
+       viver dentro do conteudo. Uma ficha, uma lupa. */
+    var lupa  = document.querySelector('dialog.cdm-gal-lupa');
+    var palco = caixa.querySelector('.cdm-gal-palco');
+    if (!faixa) { return; }
+    var fotos = faixa.querySelectorAll('.cdm-foto');
+    var minis = caixa.querySelectorAll('[data-cdm-mini]');
+
+    /* AS SETAS. Elas so passam a existir para o olho depois desta marca: no HTML
+       servido o CSS as esconde, porque sem script elas nao rolariam nada. */
+    var setas = caixa.querySelectorAll('[data-cdm-rolar]');
+    if (palco && setas.length) { palco.setAttribute('data-cdm-setas', ''); }
+    for (var s = 0; s < setas.length; s++) {
+      (function(botao){
+        botao.addEventListener('click', function(){
+          var passo = (fotos.length ? fotos[0].getBoundingClientRect().width + 12 : faixa.clientWidth);
+          faixa.scrollBy({ left: passo * Number(botao.getAttribute('data-cdm-rolar')), behavior: 'smooth' });
+        });
+      })(setas[s]);
+    }
+
+    /* QUAL MINIATURA ESTA NA TELA. Sem isto a tira mostra as fotos e nao diz onde
+       a pessoa esta — que e a metade do "nao esta um carrossel bonito". */
+    function marcar(){
+      var meio = faixa.scrollLeft + faixa.clientWidth / 2;
+      var qual = 0;
+      for (var f = 0; f < fotos.length; f++) {
+        if (fotos[f].offsetLeft <= meio) { qual = f; }
+      }
+      for (var m = 0; m < minis.length; m++) {
+        if (m === qual) { minis[m].setAttribute('aria-current', 'true'); }
+        else { minis[m].removeAttribute('aria-current'); }
+      }
+    }
+    faixa.addEventListener('scroll', function(){
+      window.clearTimeout(faixa.__cdmT);
+      faixa.__cdmT = window.setTimeout(marcar, 80);
+    });
+    marcar();
+
+    if (!lupa || typeof lupa.showModal !== 'function') { return; }
+    var dentro = lupa.querySelector('[data-cdm-lupa-palco]');
+    if (!dentro) { return; }
+    caixa.setAttribute('data-cdm-lupa', '');
+
+    for (var g = 0; g < fotos.length; g++) {
+      (function(figura){
+        var img = figura.querySelector('img');
+        if (!img) { return; }
+        img.addEventListener('click', function(){
+          var grande = document.createElement('img');
+          grande.src = img.getAttribute('data-cdm-grande') || img.currentSrc || img.src;
+          grande.alt = img.getAttribute('alt') || '';
+          /* ZOOM no clique, com a origem no ponto tocado — sem biblioteca e sem
+             gesto proprio: quem ja sabe pinçar continua pinçando. */
+          grande.addEventListener('click', function(ev){
+            if (grande.hasAttribute('data-cdm-zoom')) { grande.removeAttribute('data-cdm-zoom'); return; }
+            var r = grande.getBoundingClientRect();
+            grande.style.transformOrigin = (((ev.clientX - r.left) / r.width) * 100) + '% ' + (((ev.clientY - r.top) / r.height) * 100) + '%';
+            grande.setAttribute('data-cdm-zoom', '');
+          });
+          dentro.textContent = '';
+          dentro.appendChild(grande);
+          lupa.showModal();
+        });
+      })(fotos[g]);
+    }
+
+    var fechar = lupa.querySelector('[data-cdm-fechar]');
+    if (fechar) { fechar.addEventListener('click', function(){ lupa.close(); }); }
+    /* CLIQUE FORA. O `<dialog>` recebe o clique do fundo nele mesmo, entao o alvo
+       ser o proprio dialog (ou o palco, que e o fundo escuro) e o "fora". */
+    lupa.addEventListener('click', function(ev){
+      if (ev.target === lupa || ev.target === dentro) { lupa.close(); }
+    });
+    /* O Esc ja e do navegador; o que falta e limpar o que ficou aberto, para a
+       proxima foto nao abrir com o zoom da anterior. */
+    lupa.addEventListener('close', function(){ dentro.textContent = ''; });
+  }
+})();
+JS;
+	echo '<script id="cdm-loja-js">' . $js . '</script>' . "\n";
+}, 22 );
 
 if ( ! function_exists( 'cdm_loja_pagina_com_vitrine' ) ) {
 /** A home e a /loja/ são as duas páginas onde o cartão de peça aparece. */

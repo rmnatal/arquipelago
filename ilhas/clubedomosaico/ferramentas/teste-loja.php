@@ -523,17 +523,108 @@ cdm_ok( false === stripos( $ficha_crua, '<script' ), 'a ficha nao carrega <scrip
 cdm_ok( false === stripos( $ficha_crua, '<style' ), 'a ficha nao carrega <style>' );
 cdm_ok( false !== strpos( $html, 'id="cdm-loja-css"' ), 'a folha da Loja vem do rodape' );
 
-/* SEM UMA LINHA DE JAVASCRIPT NA LOJA (22.8): o carrossel e scroll-snap puro. */
-cdm_ok( false === strpos( $html, 'id="cdm-loja-js"' ), 'a Loja nao serve JavaScript nenhum' );
-cdm_ok( false !== strpos( $html, 'scroll-snap-type' ), 'o carrossel e CSS puro (funciona com JS desligado)' );
+/* A LOJA PASSOU A SERVIR UM SCRIPT, E SO UM — item 4 do despacho de 14/09.
+   Ate 13/09 esta linha media "nenhum", e ela media a coisa certa pelo motivo
+   errado: o que a 22.8 protege nao e a ausencia de JavaScript, e a pagina
+   FUNCIONAR sem ele. O Raphael pediu setas, ampliar e zoom; isso nao existe em
+   CSS puro. Entao a regua muda de forma e ENDURECE — o que ela cobra agora e o
+   que a 22.3 cobra de verdade: script so no rodape, um so, e nada do que ele faz
+   pode ser o que faz a foto aparecer. */
+cdm_ok( 1 === substr_count( $html, 'id="cdm-loja-js"' ), 'a Loja serve UM script, e ele e do rodape' );
+cdm_ok( strpos( $html, 'id="cdm-loja-js"' ) > strpos( $html, 'id="cdm-peca-jsonld"' ),
+	'o script vem depois do conteudo, nunca no meio da ficha' );
+cdm_ok( false !== strpos( $html, 'scroll-snap-type' ), 'a faixa continua sendo scroll-snap (rola com JS desligado)' );
+$so_o_script = substr( $html, (int) strpos( $html, 'id="cdm-loja-js"' ) );
+foreach ( array( 'fetch(', 'XMLHttpRequest', 'import(', 'document.write', 'cdn.', 'swiper', 'elementor' ) as $proibido ) {
+	cdm_ok( false === stripos( $so_o_script, $proibido ),
+		"o script nao usa '$proibido' (22.3: nada de biblioteca nem busca em JavaScript)" );
+}
 
 /* TODAS AS FOTOS NO HTML SERVIDO (22.3), nunca carregadas depois. */
 list( $html_3 ) = cdm_render_peca( $raiz, 'base=ceramica&disp=pronta_entrega&fotos=3&zap=1' );
 preg_match_all( '#peca-([0-9])\.jpg#', cdm_corpo( $html_3 ), $mf );
 cdm_ok( 3 === count( array_unique( $mf[1] ) ), 'as 3 fotos estao no HTML servido', count( array_unique( $mf[1] ) ) . ' fotos' );
-/* A CAPA CARREGA PRIMEIRO e as outras sao preguicosas — orcamento da 22.4. */
+/* A CAPA CARREGA PRIMEIRO e as outras sao preguicosas — orcamento da 22.4. A
+   contagem e DENTRO DA FAIXA: a tira de miniaturas nasceu em 14/09 e tambem e
+   preguicosa, e somar as duas faria este numero dizer outra coisa. */
+$faixa_3 = preg_match( '#<div class="cdm-carrossel"[^>]*>(.*?)</div>\s*</div>#s', cdm_corpo( $html_3 ), $mfx ) ? $mfx[1] : '';
+cdm_ok( '' !== $faixa_3, 'a faixa de fotos foi isolada para a contagem', strlen( $faixa_3 ) . ' bytes' );
 cdm_ok( 1 === preg_match_all( '#fetchpriority="high"#', cdm_corpo( $html_3 ) ), 'exatamente uma foto e prioritaria (a capa)' );
-cdm_ok( 2 === preg_match_all( '#loading="lazy"#', cdm_corpo( $html_3 ) ), 'as outras duas sao preguicosas' );
+cdm_ok( 2 === preg_match_all( '#loading="lazy"#', $faixa_3 ), 'as outras duas da faixa sao preguicosas' );
+cdm_ok( 3 === preg_match_all( '#<a class="cdm-gal-mini"#', cdm_corpo( $html_3 ) ), 'a tira tem uma miniatura por foto' );
+cdm_ok( 3 === preg_match_all( '#class="cdm-gal-mini"[^>]*>\s*<img[^>]*loading="lazy"#', cdm_corpo( $html_3 ) ),
+	'e as tres miniaturas tambem sao preguicosas' );
+
+echo "\n6b. A galeria da ficha — item 4 do despacho de 14/09\n";
+
+$corpo_3 = cdm_corpo( $html_3 );
+/* AS SETAS: botoes de verdade, com nome, e apontando para a faixa. */
+cdm_ok( 2 === preg_match_all( '#<button class="cdm-gal-seta[^"]*" type="button" data-cdm-rolar="(-?1)"#', $corpo_3 ),
+	'ha duas setas, e as duas sao <button type=button>' );
+cdm_ok( false !== strpos( $corpo_3, 'aria-label="Foto anterior"' ) && false !== strpos( $corpo_3, 'aria-label="Próxima foto"' ),
+	'cada seta diz o que faz para quem nao ve o simbolo' );
+cdm_ok( 2 === preg_match_all( '#aria-controls="cdm-carrossel-#', $corpo_3 ),
+	'as duas declaram qual faixa elas rolam' );
+/* O QUADRADO E DO CSS, nao do arquivo: `aspect-ratio` mais `object-fit`.
+   A REGRA TEM DE ESTAR DENTRO DA DECLARACAO CERTA, e isto nao e preciosismo: a
+   primeira versao desta afirmacao procurava `aspect-ratio:4/5` no documento
+   inteiro, e o cartao da vitrine tambem tem essa linha — a mutacao 25 tirou a
+   proporcao da foto grande e o portao passou verde. Regua que procura no
+   documento inteiro mede a existencia da palavra, nao a do comportamento. */
+$regra = function ( $folha, $seletor ) {
+	return preg_match( '#' . preg_quote( $seletor, '#' ) . '\{([^}]*)\}#', $folha, $m ) ? $m[1] : '';
+};
+$css_mini  = $regra( $html_3, '.cdm-gal-mini img' );
+$css_foto  = $regra( $html_3, '.cdm-carrossel img' );
+cdm_ok( false !== strpos( $css_mini, 'aspect-ratio:1/1' ) && false !== strpos( $css_mini, 'object-fit:cover' ),
+	'a miniatura e quadrada por aspect-ratio + object-fit, sem cortar arquivo', $css_mini );
+cdm_ok( false !== strpos( $css_foto, 'aspect-ratio:4/5' ) && false !== strpos( $css_foto, 'object-fit:cover' ),
+	'a foto grande tem proporcao fixa (a pagina nao salta entre pecas)', $css_foto );
+/* A LUPA NASCE FECHADA E MORA NO RODAPE: `<dialog>` sem `open` o navegador nao
+   desenha, entao com o JavaScript desligado ela nao existe para ninguem — nem
+   para o Google. E ela NAO passa pelo `the_content`, pelo motivo da regua logo
+   abaixo. */
+cdm_ok( 1 === preg_match_all( '#<dialog class="cdm-gal-lupa"#', $html_3 ), 'a pagina da peca traz uma lupa' );
+cdm_ok( 0 === preg_match_all( '#<dialog[^>]*\bopen\b#', $html_3 ), 'e ela nasce FECHADA' );
+cdm_ok( false === strpos( $corpo_3, '<dialog' ), 'a lupa NAO esta dentro do conteudo (o wpautop a quebraria)' );
+cdm_ok( false !== strpos( $html_3, 'aria-label="Fechar a foto ampliada"' ), 'o X tem nome' );
+cdm_ok( false === strpos( $html_3, '<img src=""' ), 'a lupa nao serve img de src vazio' );
+
+/* O QUE O `the_content` FAZ COM ETIQUETA QUE NAO E BLOCO — regua nascida em
+   14/09 junto com a galeria, e ela vale para tudo que esta ficha imprimir daqui
+   para a frente.
+   O `wpautop` poe UMA quebra antes de toda etiqueta de bloco e DUAS depois de
+   todo fechamento, e depois embrulha em `<p>` o que sobrou solto entre duas
+   quebras. `button` e `dialog` NAO sao blocos para ele. Entao um `<button>` logo
+   depois de um `</div>` nasce dentro de um paragrafo que ninguem escreveu, com a
+   margem dele empurrando a pagina — e um `<dialog>` sai partido ao meio.
+   Isto nao aparece na tela como erro: aparece como "esta feio". */
+$fora_de_bloco = array();
+if ( preg_match_all( '#</(?:div|p|figure|figcaption|ul|ol|li|table|tbody|tr|td|th|form|section|article|aside|header|footer|nav|details|summary|blockquote|h[1-6])>\s*<(button|dialog|span|a|img|input|select|label)\b#', $ficha_crua, $mb, PREG_SET_ORDER ) ) {
+	foreach ( $mb as $achado ) {
+		$fora_de_bloco[] = $achado[1];
+	}
+}
+cdm_ok( ! $fora_de_bloco,
+	'nenhuma etiqueta de linha da ficha vem logo depois de um fechamento de bloco (o wpautop a embrulharia)',
+	$fora_de_bloco ? implode( ', ', array_unique( $fora_de_bloco ) ) : 'nenhuma' );
+cdm_ok( false === strpos( $ficha_crua, '<dialog' ),
+	'e a ficha nao devolve <dialog> nenhum (ele nao e bloco para o wpautop)' );
+/* O ARQUIVO GRANDE VIAJA NO HTML: o zoom nao e a foto pequena esticada, e o
+   script nao precisa buscar nada (22.3). */
+cdm_ok( 3 === preg_match_all( '#data-cdm-grande="http#', $corpo_3 ), 'cada foto carrega o endereco da versao grande' );
+/* AS MINIATURAS SAO ANCORAS: sem JavaScript elas continuam levando a foto. */
+cdm_ok( 3 === preg_match_all( '#<a class="cdm-gal-mini" href="\#cdm-foto-[0-9]+"#', $corpo_3 ),
+	'cada miniatura e um link para a ancora da foto (funciona sem JavaScript)' );
+cdm_ok( 3 === preg_match_all( '#id="cdm-foto-[0-9]+"#', $corpo_3 ), 'e a ancora existe em cada figure' );
+cdm_ok( 3 === preg_match_all( '#<img[^>]*alt=""[^>]*>#', $corpo_3 ),
+	'a miniatura tem alt vazio (a foto grande ja descreve a peca)' );
+/* UMA FOTO SO NAO GANHA TIRA NEM SETA: controle para escolher entre uma coisa. */
+list( $html_1 ) = cdm_render_peca( $raiz, 'base=ceramica&disp=pronta_entrega&fotos=1&zap=1' );
+$corpo_1 = cdm_corpo( $html_1 );
+cdm_ok( false === strpos( $corpo_1, 'cdm-gal-mini' ), 'peca de uma foto nao ganha tira de miniatura' );
+cdm_ok( false === strpos( $corpo_1, 'cdm-gal-seta' ), 'nem setas' );
+cdm_ok( false !== strpos( $html_1, 'cdm-gal-lupa' ), 'mas a lupa continua (ampliar uma foto tambem vale)' );
 
 echo "\n7. A peca SEM foto: a ficha nao quebra e nao mente\n";
 

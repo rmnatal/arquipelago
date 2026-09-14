@@ -1,0 +1,53 @@
+{
+  "ilha": "clubedomosaico",
+  "versao_loja": "1.1.0",
+  "total": 1,
+  "pecas": [
+    {
+      "id": 24,
+      "titulo": "Quadro flores do campo",
+      "slug": "quadro-flores-do-campo",
+      "estado": "publish",
+      "criada_em": "2026-09-13 16:46:13",
+      "url": "https://clubedomosaico.com.br/loja/quadro-flores-do-campo/",
+      "descricao": "Flores em Mosaico Picassiette\r\n\r\nEsta obra foi totalmente confeccionada à mão, utilizando a técnica do mosaico Picassiette, que valoriza o reaproveitamento de fragmentos de cerâmica e transforma cada pequeno pedaço em parte de uma composição única.\r\n\r\nO trabalho retrata um delicado vaso com flores em tons vibrantes de laranja e folhas em diferentes nuances de verde. Cada fragmento foi cuidadosamente selecionado e aplicado artesanalmente, resultando em uma peça exclusiva, cheia de textura, cor e personalidade.\r\n\r\nA moldura também foi produzida artesanalmente, especialmente para esta obra, completando e valorizando toda a composição.\r\n\r\nTécnica: Mosaico Picassiette\r\nMedidas: 46 x 37 cm\r\nTempo de execução: 84 horas de trabalho\r\nExecução: 100% artesanal, incluindo a moldura.\r\n\r\nUma obra única, criada com dedicação, criatividade e amor pela arte do mosaico.",
+      "campos": {
+        "cdm_preco": "500",
+        "cdm_disponibilidade": "pronta_entrega",
+        "cdm_prazo_dias": "",
+        "cdm_medidas": "46x37cm",
+        "cdm_peso_g": "2200",
+        "cdm_base": "mdf",
+        "cdm_cores": "Laranja, verde, marrom",
+        "cdm_quantidade": "1"
+      },
+      "colecao": {
+        "slug": "parede",
+        "nome": "Parede e quadros"
+      },
+      "tecnica": {
+        "slug": "trencadis",
+        "nome": "Trencadís (caquinho)"
+      },
+      "fotos": [
+        {
+          "id": 25,
+          "url": "https://clubedomosaico.com.br/wp-content/uploads/2026/09/20260913_102216.jpg"
+        },
+        {
+          "id": 26,
+          "url": "https://clubedomosaico.com.br/wp-content/uploads/2026/09/20260913_101748-scaled.jpg"
+        },
+        {
+          "id": 27,
+          "url": "https://clubedomosaico.com.br/wp-content/uploads/2026/09/20260913_101528-scaled.jpg"
+        },
+        {
+          "id": 28,
+          "url": "https://clubedomosaico.com.br/wp-content/uploads/2026/09/20260913_101514-scaled.jpg"
+        }
+      ]
+    }
+  ],
+  "copiado_de": "/wp-json/clubedomosaico/v1/pecas (secao 24.2; o token nao entra no repositorio)"
+}
