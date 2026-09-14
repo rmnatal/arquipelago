@@ -70,6 +70,11 @@ FICHAS = {
     "quantos-litros-para-coridora-pimenta": "corydoras-paleatus",
     "quantos-litros-para-coridora-panda": "corydoras-panda",
     "quantos-litros-para-coridora-sterbai": "corydoras-sterbai",
+    # leva 4, 14/09/2026 — a categoria bettas inteira, e a PRIMEIRA em que as
+    # filhas nao vivem todas do mesmo jeito
+    "quantos-litros-para-betta": "betta-splendens",
+    "quantos-litros-para-colisa-anao": "trichogaster-lalius",
+    "quantos-litros-para-gurami-mel": "trichogaster-chuna",
 }
 
 # As especies do catalogo que NAO declaram o fundo do aquario: a fonte publica o
@@ -159,7 +164,41 @@ CATEGORIAS = {
             "corydoras-sterbai",
         ],
     },
+    # leva 4, 14/09/2026. E a PRIMEIRA categoria com `barradas` cheia: os dois
+    # guramis grandes sao Osphronemidae, tem duas fontes cada e o portao os barra
+    # por `convivencia`. Ate aqui esse ramo do snippet so era medido por mutacao
+    # que PRODUZIA o mundo; agora o mundo existe, e as mutacoes continuam porque
+    # elas provam o ramo VAZIO da mesma regua.
+    "bettas": {
+        "rotulo": "bettas e gouramis",
+        "barradas": [
+            "trichopodus-leerii",
+            "trichopodus-trichopterus",
+        ],
+        "especies": [
+            "betta-splendens",
+            "trichogaster-lalius",
+            "trichogaster-chuna",
+        ],
+    },
 }
+# O SUJEITO DA FRASE DE LISTA FECHADA e A CONSULTA DE CADA CATEGORIA, escritos
+# aqui a mao como tudo o mais deste arquivo. Os dois eram texto DIGITADO dentro
+# do gerador ate 14/09/2026 — "todo tetra" e "quantos litros para dez neons" —,
+# e o primeiro foi ao ar errado na pagina das coridoras. Cobrar que o snippet
+# declare nao basta: o teste tem de saber qual e a palavra certa de cada uma,
+# senao mede o snippet contra ele mesmo.
+SINGULAR_DA_CATEGORIA = {
+    "tetras": "todo tetra",
+    "corydoras": "toda coridora",
+    "bettas": "todo betta e todo gurami",
+}
+CONSULTA_DA_CATEGORIA = {
+    "tetras": "quantos litros para tetras",
+    "corydoras": "quantos litros para coridoras",
+    "bettas": "quantos litros para gourami",
+}
+
 PAGINAS = [SECAO] + list(CATEGORIAS) + list(FICHAS)
 
 # A qual categoria cada ficha pertence, derivado da regua acima e nao do
@@ -207,8 +246,42 @@ def faixa_do_campo(e, campo):
     return [min(valores), max(valores)] if valores else [None, None]
 
 
+# O ARRANJO QUE A FONTE DECLARA, e a regua esta ESCRITA AQUI (decisao 1 do
+# cabecalho). O snippet tem um mapa equivalente e este arquivo NAO o le: se
+# lesse, mover o `fixo` do solitario de 1 para 2 faria as duas metades errarem
+# juntas e a escada de lotacao do betta ganharia uma linha que a fonte recusa.
+#
+# `fixo` e o numero que a propria forma de viver fecha — um por aquario no
+# solitario, dois no casal. Onde a fonte declara um numero de grupo, a escada
+# comeca nele; onde declara o arranjo e nao o numero (harem), a escada e a de
+# leitura inteira e NENHUMA linha se chama minima.
+ARRANJO_FIXO = {"solitario": 1, "casal": 2}
+ARRANJO_ROTULO_MINIMO = {"cardume": "cardume mínimo", "grupo": "grupo mínimo"}
+ARRANJO_CURTO = {
+    "cardume": "em cardume",
+    "grupo": "em grupo",
+    "harem": "em harém",
+    "solitario": "sozinho",
+    "casal": "em casal",
+}
+
+
+def arranjo_curto(e):
+    chave = e.get("convivencia")
+    if chave in ARRANJO_FIXO:
+        return "%s, %d por aquário" % (ARRANJO_CURTO[chave], ARRANJO_FIXO[chave])
+    if e.get("cardume_minimo"):
+        return "%s, %d ou mais" % (ARRANJO_CURTO[chave], int(e["cardume_minimo"]))
+    return "%s, número não declarado" % ARRANJO_CURTO[chave]
+
+
 def degraus(e):
-    minimo = int(e["cardume_minimo"]) if e.get("cardume_minimo") else 1
+    chave = e.get("convivencia")
+    if chave in ARRANJO_FIXO:
+        return [ARRANJO_FIXO[chave]]
+    if not e.get("cardume_minimo"):
+        return list(DEGRAUS_EXTRA)
+    minimo = int(e["cardume_minimo"])
     return sorted({minimo} | {n for n in DEGRAUS_EXTRA if n > minimo})
 
 
@@ -406,6 +479,49 @@ def medir_ficha(slug, ident, banco):
                linha[1:] == esperado, " | ".join(linha[1:]))
             ok("%s: a linha de %d exemplares e rotulada pelo numero" % (slug, n),
                linha[0].startswith(str(n)), linha[0])
+        # QUAL LINHA SE CHAMA MINIMA, e a regua e a daqui. Ate a leva 3 toda
+        # ficha tinha uma linha "(cardume mínimo)" e a afirmacao nao existia:
+        # era invariante do banco de entao, nao do codigo. No arranjo FIXO nao
+        # ha piso a marcar (o degrau unico e o TETO que a fonte declara) e no
+        # harem a fonte declara o arranjo e nunca o numero — marcar qualquer
+        # linha ali seria publicar um numero que ninguem declarou.
+        rotulo_min = ARRANJO_ROTULO_MINIMO.get(e.get("convivencia"), "")
+        if rotulo_min and e.get("cardume_minimo"):
+            ok("%s: a linha do %s e a do numero declarado (%s)"
+               % (slug, rotulo_min, e["cardume_minimo"]),
+               ("%s (%s)" % (e["cardume_minimo"], rotulo_min)) in " ".join(
+                   l[0] for l in tab["linhas"]),
+               " | ".join(l[0] for l in tab["linhas"]))
+        else:
+            ok("%s: nenhuma linha da tabela se chama minima" % slug,
+               not any("mínim" in l[0] for l in tab["linhas"]),
+               " | ".join(l[0] for l in tab["linhas"]))
+
+    # --- O ARRANJO SOCIAL MANDA NA FRASE, e esta e a regua que a leva 4 trouxe.
+    #
+    # Ate a leva 3 as ONZE fichas no ar eram `convivencia: cardume`, e a palavra
+    # "cardume" estava digitada em sete lugares do corpo. Era verdade em todas
+    # as paginas publicadas e e FALSA em tres das quatro desta leva. A regua e
+    # negativa de proposito: a ficha de um peixe que a fonte NAO declara de
+    # cardume nao pode servir a palavra em lugar nenhum do corpo. Afirmacao
+    # positiva ("diz sozinho") passaria com a frase errada logo ao lado.
+    conviv = e.get("convivencia")
+    if conviv in ARRANJO_FIXO:
+        quantos = ARRANJO_FIXO[conviv]
+        de = "um" if conviv == "solitario" else "um casal de"
+        ok("%s: a abertura diz o arranjo que a fonte declara, nao um cardume" % slug,
+           ("Para %s %s, que é o que a fonte declara por aquário" % (de, nome)) in t)
+        ok("%s: a escada tem um degrau so (%d) e a pagina diz por que" % (slug, quantos),
+           'não existe "e para dez?" a responder' in t)
+        ok("%s: a palavra cardume nao aparece no corpo" % slug,
+           "cardume" not in t.lower(), t.lower()[max(0, t.lower().find("cardume") - 60):][:160])
+    elif conviv == "grupo":
+        ok("%s: a abertura diz GRUPO minimo, nunca cardume minimo" % slug,
+           ("Para um grupo mínimo de %s %s" % (e["cardume_minimo"], nome)) in t
+           and "cardume mínimo" not in t)
+    else:
+        ok("%s: a abertura diz cardume minimo, que e o que a fonte declara" % slug,
+           ("Para um cardume mínimo de %s %s" % (e["cardume_minimo"], nome)) in t)
 
     # --- BASE nao e FRENTE: a frase tem o escopo do que a fonte declarou
     #
@@ -643,11 +759,58 @@ def medir_categoria(slug, banco):
         ok("%s: diz quantas ja tem ficha (%d) e quantas faltam (%d)" % (slug, len(FICHAS), na_fila),
            ("%d já têm a conta inteira" % len(com_ficha)) in t and ("%d estão na fila" % na_fila) in t)
         ok("%s: nao diz que a lista esta fechada" % slug, "esta lista está fechada" not in t)
+    elif CATEGORIAS[slug]["barradas"]:
+        # FECHADA SO VALE SEM NINGUEM ESPERANDO DO LADO DE FORA. Com a fila
+        # vazia E barrada declarada, a frase tem de mudar de forma: "fechada"
+        # ali seria falsa sem mudar uma letra no dia em que a primeira barrada
+        # fosse declarada — que e exatamente o que a leva 4 fez.
+        ok("%s: com barrada declarada, a pagina NAO se diz fechada" % slug,
+           ("As %d espécies da tabela têm a conta inteira" % len(ESPECIES)) in t
+           and "a lista NÃO está fechada" in t
+           and "esta lista está fechada" not in t)
+        ok("%s: nao promete leva nenhuma com a fila vazia" % slug, "estão na fila" not in t)
     else:
         ok("%s: a categoria esta fechada e a pagina diz isso" % slug,
            ("As %d espécies da tabela têm a conta inteira" % len(ESPECIES)) in t
            and "esta lista está fechada" in t)
         ok("%s: nao promete leva nenhuma com a fila vazia" % slug, "estão na fila" not in t)
+        # O SUBSTANTIVO DESTA FRASE ESTAVA DIGITADO E FOI AO AR ERRADO: ate
+        # 14/09/2026 `/peixes/corydoras/` servia "fechada quer dizer que todo
+        # TETRA...". A regua e o mapa escrito aqui, nao o snippet.
+        ok("%s: o sujeito da frase de lista fechada e o desta categoria" % slug,
+           ("fechada quer dizer que %s que o banco desta ilha sustenta"
+            % SINGULAR_DA_CATEGORIA[slug]) in t)
+        for outro, palavra in SINGULAR_DA_CATEGORIA.items():
+            if outro == slug:
+                continue
+            ok("%s: e nao o de %s" % (slug, outro),
+               ("fechada quer dizer que %s" % palavra) not in t)
+
+    # --- A COLUNA DO ARRANJO. Onde todas declaram o mesmo tipo de numero, ela e
+    #     o rotulo daquele arranjo; onde os arranjos sao diferentes, ela deixa de
+    #     ser numero e passa a ser a forma de viver. A regua e recomputada aqui do
+    #     banco, e a lista de rotulos tambem — o snippet nao e consultado.
+    chaves = {banco[i].get("convivencia") for i in ESPECIES}
+    tem_numero = all(banco[i].get("cardume_minimo") for i in ESPECIES)
+    if len(chaves) == 1 and tem_numero:
+        coluna = ARRANJO_ROTULO_MINIMO[list(chaves)[0]].capitalize()
+    else:
+        coluna = "Como vive"
+    ok("%s: a coluna do arranjo se chama %r" % (slug, coluna),
+       ("<th scope=\"col\">%s</th>" % coluna) in c, coluna)
+    ok("%s: a legenda da tabela nomeia a mesma coluna" % slug,
+       ("Porte adulto, %s e frente mínima declarada" % coluna.lower()) in t)
+    if coluna == "Como vive":
+        for ident in ESPECIES:
+            ok("%s: a celula de arranjo de %s diz %r"
+               % (slug, ident, arranjo_curto(banco[ident])),
+               arranjo_curto(banco[ident]) in t)
+
+    # --- O EXEMPLO DA PERGUNTA SAI DA CONSULTA DESTA PAGINA, nunca digitado.
+    #     "quantos litros para dez neons" era a consulta dos tetras servida na
+    #     pagina das coridoras — mesma familia do substantivo acima.
+    ok("%s: o exemplo da pergunta e a consulta desta pagina" % slug,
+       ('Quem pergunta "%s" quer um número' % CONSULTA_DA_CATEGORIA[slug]) in t)
 
     # --- o criterio da listagem, na frente dela (14.4)
     ok("%s: publica o criterio da lista" % slug, "O critério desta lista" in t)

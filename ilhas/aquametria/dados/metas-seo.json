@@ -98,6 +98,26 @@
    "titulo": "Quantos litros para um cardume de coridora sterbai?",
    "url": "https://aquametria.com.br/peixes/corydoras/quantos-litros-para-coridora-sterbai/",
    "meta_descricao": "Quantos litros para um cardume de coridora sterbai? A base e o cardume mínimo que a ficha da espécie declara, com nome da fonte e data."
+  },
+  "bettas": {
+   "titulo": "Bettas e gouramis: quantos litros cada um pede",
+   "url": "https://aquametria.com.br/peixes/bettas/",
+   "meta_descricao": "Betta, colisa-anão e gurami mel não vivem do mesmo jeito: o arranjo que a fonte declara ao lado da frente mínima de cada um, com nome e data."
+  },
+  "quantos-litros-para-betta": {
+   "titulo": "Quantos litros para um betta?",
+   "url": "https://aquametria.com.br/peixes/bettas/quantos-litros-para-betta/",
+   "meta_descricao": "Quantos litros para um betta? A base de 45 × 30 cm que a ficha da espécie declara, com nome da fonte e data — e por que o litro sozinho engana."
+  },
+  "quantos-litros-para-colisa-anao": {
+   "titulo": "Quantos litros para um casal de colisa-anão?",
+   "url": "https://aquametria.com.br/peixes/bettas/quantos-litros-para-colisa-anao/",
+   "meta_descricao": "Quantos litros para um casal de colisa-anão? A base que a ficha da espécie declara, com nome e data, e os quatro números que a busca publica."
+  },
+  "quantos-litros-para-gurami-mel": {
+   "titulo": "Quantos litros para um grupo de gurami mel?",
+   "url": "https://aquametria.com.br/peixes/bettas/quantos-litros-para-gurami-mel/",
+   "meta_descricao": "Quantos litros para um grupo de gurami mel? A base e o grupo mínimo de 4 a 6 que a ficha da espécie declara, com nome da fonte e data."
   }
  }
 }

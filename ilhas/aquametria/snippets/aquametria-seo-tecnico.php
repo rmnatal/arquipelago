@@ -270,6 +270,10 @@ function aquametria_seo_metas_por_slug() {
 			'titulo'    => 'Quantos lúmens por litro o aquário plantado precisa',
 			'descricao' => 'Três fontes brasileiras chamam a mesma faixa de lúmens por litro com o dobro do número. De onde vem a regra e por que o lúmen é a unidade errada.',
 		),
+		'bettas' => array(
+			'titulo'    => 'Bettas e gouramis: quantos litros cada um pede',
+			'descricao' => 'Betta, colisa-anão e gurami mel não vivem do mesmo jeito: o arranjo que a fonte declara ao lado da frente mínima de cada um, com nome e data.',
+		),
 		'corydoras' => array(
 			'titulo'    => 'Coridoras: quanto chão o grupo pede',
 			'descricao' => 'Coridora se dimensiona pelo chão, não pelo litro: porte, cardume mínimo e base mínima das quatro espécies, com a fonte de cada linha.',
@@ -277,6 +281,14 @@ function aquametria_seo_metas_por_slug() {
 		'peixes' => array(
 			'titulo'    => 'Quanto espaço cada peixe pede',
 			'descricao' => 'Quanto espaço cada peixe pede, em centímetros de chão e não em litros: o mínimo declarado por fonte com nome e data, espécie por espécie.',
+		),
+		'quantos-litros-para-betta' => array(
+			'titulo'    => 'Quantos litros para um betta?',
+			'descricao' => 'Quantos litros para um betta? A base de 45 × 30 cm que a ficha da espécie declara, com nome da fonte e data — e por que o litro sozinho engana.',
+		),
+		'quantos-litros-para-colisa-anao' => array(
+			'titulo'    => 'Quantos litros para um casal de colisa-anão?',
+			'descricao' => 'Quantos litros para um casal de colisa-anão? A base que a ficha da espécie declara, com nome e data, e os quatro números que a busca publica.',
 		),
 		'quantos-litros-para-coridora-bronze' => array(
 			'titulo'    => 'Quantos litros para um cardume de coridora bronze?',
@@ -293,6 +305,10 @@ function aquametria_seo_metas_por_slug() {
 		'quantos-litros-para-coridora-sterbai' => array(
 			'titulo'    => 'Quantos litros para um cardume de coridora sterbai?',
 			'descricao' => 'Quantos litros para um cardume de coridora sterbai? A base e o cardume mínimo que a ficha da espécie declara, com nome da fonte e data.',
+		),
+		'quantos-litros-para-gurami-mel' => array(
+			'titulo'    => 'Quantos litros para um grupo de gurami mel?',
+			'descricao' => 'Quantos litros para um grupo de gurami mel? A base e o grupo mínimo de 4 a 6 que a ficha da espécie declara, com nome da fonte e data.',
 		),
 		'quantos-litros-para-mato-grosso' => array(
 			'titulo'    => 'Quantos litros para um cardume de mato-grosso?',

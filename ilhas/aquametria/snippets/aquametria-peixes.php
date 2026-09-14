@@ -1919,8 +1919,8 @@ function aquametria_peixes_catalogo() {
 				'Colisa lalia',
 			),
 			'populares' => array(
-				'colisa',
 				'colisa-anão',
+				'colisa',
 				'gurami-anão',
 			),
 			'familia' => 'Osphronemidae',
@@ -2775,6 +2775,56 @@ function aquametria_peixes_registro() {
 			'consulta' => 'quantos litros para coridora sterbai',
 			'porque'   => 'Medido em 12/09/2026: o top 10 é o aquaonline, o blogdopescador, duas fichas de aquarismo e seis lojas (fazendasubmersa duas vezes, rsdiscus, proaquarista, myaquarium). Nenhum domínio forte, e é a SERP mais contraditória das cinco: a mesma página de resultados dá 54 L, 90 L "para um grupo de seis" e "70 litros comportam com folga cinco" — três respostas para uma pergunta só, nenhuma com fonte. É também a ficha que esta leva destravou: até 12/09 o cardume mínimo desta espécie era null no banco e ela não podia virar página, porque ficha que se chama "quantos litros para um cardume" e não sabe o cardume abre a tabela em um exemplar. O número veio da ficha da própria espécie no compêndio, por busca restrita, e o registro guarda a recusa da alternativa fácil ao lado dele.',
 		),
+
+		/* --- LEVA 4, 14/09/2026: a TERCEIRA categoria do eixo, e a primeira em
+		   que as filhas não vivem todas do mesmo jeito. A mãe e as três filhas
+		   saem juntas, que é o 16.6. Nenhuma URL das levas 1, 2 e 3 muda.
+
+		   AS QUATRO DECLARAM `serp_em`, e é a primeira vez que o campo nascido
+		   na 1.3.0 tem para quem servir: as quatro consultas foram classificadas
+		   em 13/09/2026 e as doze páginas no ar continuam em 12/09/2026. Quem
+		   não declarar herda o padrão, que seria mentira nestas quatro. --- */
+
+		'bettas' => array(
+			'nivel'    => 2,
+			'pai'      => 'peixes',
+			'titulo'   => 'Bettas e gouramis: quantos litros cada um pede',
+			'conteudo' => '[aquametria_peixes_categoria]',
+			'consulta' => 'quantos litros para gourami',
+			'serp_em'  => '13/09/2026',
+			'porque'   => 'Medido em 13/09/2026: o top é quase só página de produto de loja, mais um agregador, e os números que eles publicam são 40, 54, 60 e 70 L — cada um de uma espécie diferente, sem dizer de qual. É a SERP que mais pede a página de categoria em vez de três fichas soltas: "gourami" é um balcão inteiro, não um peixe, e responder com um número só é responder à pergunta errada. A vantagem desta página não é o número: é o arranjo social. Sob o mesmo rótulo estão um peixe que vive sozinho, um que vive em casal e um que vive em grupo com hierarquia, e nenhuma das quatro SERPs desta leva distingue isso.',
+		),
+		'quantos-litros-para-betta' => array(
+			'nivel'    => 3,
+			'pai'      => 'bettas',
+			'especie'  => 'betta-splendens',
+			'titulo'   => 'Quantos litros para um betta?',
+			'conteudo' => '[aquametria_peixes_ficha]',
+			'consulta' => 'quantos litros para um betta',
+			'serp_em'  => '13/09/2026',
+			'porque'   => 'Medido em 13/09/2026: o top é um blog de loja grande (Cobasi) e cinco blogs de nicho e portais (peixeseaquarismo, aquariovivo, vigopeixe, manualdoagora, guiadoaquarismo). Eles publicam 20 L, 18 L e 40 L — e o MESMO texto que diz "mínimo 18" diz "recomendado 40", que é a contradição dentro de uma página só. Nenhum atribui o número a fonte nomeada. É ALVO, e esta é a ficha em que a distância entre o que a fonte declara e o que o mercado pratica é a maior do banco: o compêndio declara base de 45 × 30 cm para UM macho, e o varejo brasileiro vende o peixe em pote de menos de 2 L.',
+		),
+		'quantos-litros-para-colisa-anao' => array(
+			'nivel'    => 3,
+			'pai'      => 'bettas',
+			'especie'  => 'trichogaster-lalius',
+			'titulo'   => 'Quantos litros para um casal de colisa-anão?',
+			'conteudo' => '[aquametria_peixes_ficha]',
+			'consulta' => 'quantos litros para colisa anão',
+			'serp_em'  => '13/09/2026',
+			'serp_nota' => 'Esta espécie é a medição mais forte desta leva, e ela não veio de uma consulta: veio de duas. O Trichogaster lalius aparece com 56 L numa das consultas classificadas em 13/09/2026 e com 70 L na outra, no mesmo dia, além dos 40 L e dos 36 L que já discordavam entre si. São quatro números para o mesmo peixe, nenhum atribuído a fonte nomeada, dois deles na primeira página. Nesta página o número é um só, e vem com o nome de quem o declarou e a data em que foi colhido.',
+			'porque'   => 'Medido em 13/09/2026: o top é três fichas de aquarismo e cinco páginas de produto de loja (Pró-Aquarista, Fazenda Submersa, Solaqua), com 56 L, 40 L, 36 L e "40 a 44 L é o mínimo aceitável". É ALVO, e é a única das quatro consultas desta leva em que a tese da ilha foi medida POR FORA dela: a mesma espécie se contradiz em duas buscas do mesmo dia. Nas levas 1 a 3 a discordância era entre páginas diferentes sobre espécies diferentes; aqui é o mesmo peixe.',
+		),
+		'quantos-litros-para-gurami-mel' => array(
+			'nivel'    => 3,
+			'pai'      => 'bettas',
+			'especie'  => 'trichogaster-chuna',
+			'titulo'   => 'Quantos litros para um grupo de gurami mel?',
+			'conteudo' => '[aquametria_peixes_ficha]',
+			'consulta' => 'quantos litros para gurami mel',
+			'serp_em'  => '13/09/2026',
+			'porque'   => 'Medido em 13/09/2026: o top é seis fichas de aquarismo e três páginas de produto de loja, com 40 L, 36 L para um exemplar sozinho e 56 L para um grupo de três — e um deles chega a declarar a BASE, 60 × 30 × 30 cm, que é o número que esta ilha publica com o nome da fonte do lado. É ALVO, e a vantagem daqui é a outra metade: o compêndio declara que a espécie NÃO é de cardume no sentido dos lambaris, que a compra recomendada é de 4 a 6 exemplares e que o grupo forma hierarquia, com o dominante enxotando o rival na hora da comida. Nenhuma resposta do top publica o arranjo ao lado do espaço.',
+		),
 	);
 }
 }
@@ -2792,6 +2842,11 @@ function aquametria_peixes_categorias() {
 		'tetras' => array(
 			'rotulo'  => 'Tetras',
 			'plural'  => 'tetras',
+			/* `singular` é o sujeito da frase de lista fechada, com o artigo
+			   dentro porque o gênero muda com a categoria. Declarado e nunca
+			   derivado do `plural`: foi exatamente a derivação de cabeça que pôs
+			   "todo tetra" na página das coridoras. */
+			'singular' => 'todo tetra',
 			'linha_mestra' => 'Tetra pequeno não quer dizer aquário pequeno: o que decide o mínimo do seu aquário é o cardume, e não o tamanho do peixe.',
 			'criterio' => 'As espécies que a loja brasileira vende como tetra: os Paracheirodon, os Hemigrammus, os Hyphessobrycon e o Gymnocorymbus. A família não serve de critério aqui — a revisão recente dos caracídeos deixou o banco com tetra em duas famílias diferentes, e Characidae carrega peixe que ninguém vende como tetra.',
 			'especies' => array(
@@ -2807,6 +2862,7 @@ function aquametria_peixes_categorias() {
 		'corydoras' => array(
 			'rotulo'   => 'Corydoras',
 			'plural'   => 'coridoras',
+			'singular' => 'toda coridora',
 			'linha_mestra' => 'Coridora é peixe de fundo, e peixe de fundo se mede pelo chão: o que decide o mínimo do seu aquário é quantos centímetros de base o grupo tem para vasculhar, não quantos litros cabem em cima.',
 			'criterio' => 'Os peixes de fundo que a loja brasileira vende como coridora, da subfamília Corydoradinae. O gênero Corydoras não serve de critério, e aqui pelo motivo oposto ao dos tetras: a revisão recente da subfamília tirou as quatro do gênero na própria fonte — a ficha já publica Hoplisoma panda, Hoplisoma paleatum, Hoplisoma sterbai e Osteogaster aenea —, então filtrar por Corydoras devolveria lista vazia para uma categoria que o aquarista brasileiro compra pelo nome todo dia. O banco guarda os dois nomes de cada uma e esta página serve os dois.',
 			'especies' => array(
@@ -2818,22 +2874,59 @@ function aquametria_peixes_categorias() {
 		),
 		'bettas' => array(
 			'rotulo'   => 'Bettas e gouramis',
-			'linha_mestra' => 'Estes peixes respiram ar da superfície, e por isso o número que quase ninguém publica não é o litro nem a base: é quanto da superfície do aquário fica livre para eles subirem — e quantos deles cabem juntos sem um enxotar o outro da comida.',
+			'plural'   => 'bettas e gouramis',
+			'singular' => 'todo betta e todo gurami',
+			/* A LINHA MESTRA FOI REESCRITA EM 14/09/2026, na leva que a publicou.
+			   A de 13/09 prometia um número que esta página não paga: "quanto da
+			   superfície do aquário fica livre para eles subirem". A superfície
+			   até sairia da aritmética (frente × fundo), mas a AFIRMAÇÃO de que
+			   é ela que decide em vez do litro está declarada por fonte para UMA
+			   das três — o compêndio diz do betta que a espécie precisa de acesso
+			   à camada de ar úmido acima da água — e estendê-la às outras duas é
+			   a regra da congênere que esta ilha recusa desde a leva 1. O que a
+			   categoria tem para dizer, e paga na tabela linha a linha, é o
+			   arranjo social: é o que o próprio critério dela já declarava. */
+			'linha_mestra' => 'Betta, colisa-anão e gurami mel dividem a mesma prateleira da loja e não vivem do mesmo jeito: um vive sozinho, um vive em casal e um vive em grupo com hierarquia — e é o arranjo, e não o litro, que decide o aquário de cada um.',
 			'criterio' => 'Os anabantídeos da família Osphronemidae que a loja brasileira vende como betta, colisa e gurami. Aqui o posto taxonômico SERVE de critério, e é a primeira categoria deste eixo em que ele serve: nos tetras a família não servia (a revisão dos caracídeos deixou tetra em duas famílias e Characidae carrega peixe que ninguém vende como tetra) e nas coridoras o gênero não servia (a revisão da subfamília tirou as quatro do gênero Corydoras na própria fonte). Nesta, as cinco espécies do banco são Osphronemidae e todas as cinco são vendidas com um desses três nomes — não há uma sexta que a família traga de brinde nem uma que ela deixe de fora. O que a família NÃO decide é o arranjo social, e é ele que muda a resposta: dentro do mesmo rótulo estão um peixe que vive sozinho (o betta), um que vive em casal (a colisa-anão) e um que vive em grupo com hierarquia (o gurami mel). Categoria que junta os três tem de dizer isso na primeira linha, em vez de publicar um mínimo só.',
-			'especies' => array(),
+			/* A LEVA 4, 14/09/2026: a lista sai do vazio. As três são as que
+			   passam no portão de página do esquema, e a categoria nasce no
+			   mínimo exato do 16.5. Os dois guramis grandes do banco — pérola e
+			   tricogaster — continuam fora por não terem `convivencia`
+			   declarada, medida em quatro passadas e dois corpos. */
+			'especies' => array(
+				'betta-splendens',
+				'trichogaster-lalius',
+				'trichogaster-chuna',
+				/* OS DOIS GURAMIS GRANDES SÃO DECLARADOS AQUI E O PORTÃO OS BARRA,
+				   que é exatamente o ramo que a 1.6.0 escreveu em 13/09/2026 sem
+				   ter um caso no banco para exercitá-lo. Sem declará-los, a frase
+				   de lista fechada desta página diria que todo betta e todo gurami
+				   que o banco sustenta já tem página — e o banco sustenta estes
+				   dois, com duas fontes cada; o que falta neles é `convivencia`.
+				   Declarados, eles saem da tabela e entram na lista de fora, com
+				   nome e causa, e a frase de fechamento muda de forma sozinha. */
+				'trichopodus-leerii',
+				'trichopodus-trichopterus',
+			),
 		),
 		'ciclideos-anoes' => array(
 			'rotulo'   => 'Ciclídeos anões',
+			'plural'   => 'ciclídeos anões',
+			'singular' => 'todo ciclídeo anão',
 			'criterio' => '',
 			'especies' => array(),
 		),
 		'plecos-e-limpa-vidros' => array(
 			'rotulo'   => 'Plecos e limpa-vidros',
+			'plural'   => 'plecos e limpa-vidros',
+			'singular' => 'todo pleco e todo limpa-vidros',
 			'criterio' => '',
 			'especies' => array(),
 		),
 		'vivaparos' => array(
 			'rotulo'   => 'Vivíparos',
+			'plural'   => 'vivíparos',
+			'singular' => 'todo vivíparo',
 			'linha_mestra' => 'Estes peixes não põem ovo: nascem nadando, e nascem muitos — então o número que decide o seu aquário não é quantos você comprou, é quantos vão existir daqui a três meses, e o macho é quem manda nessa conta.',
 			'criterio' => 'Os vivíparos da família Poeciliidae que a loja brasileira vende como plati, espada, molinésia e lebiste. A família serve de critério e o gênero não, e por um motivo que o aquarista reconhece na prateleira: plati e espada são o mesmo gênero e pedem frentes de aquário que diferem em duas vezes, enquanto plati e molinésia são gêneros diferentes e pedem água da mesma dureza. Quem decide a resposta aqui é o tamanho adulto da fêmea, porque nesta família é ela que carrega a carga — e é ela que o vendedor não separa na hora de vender. O que esta tabela publica é o vivíparo cujos sete campos os dois corpos de fonte sustentam; espécie a um campo de distância fica de fora e a frente mínima dela NÃO é completada pela da espécie vizinha, que é o atalho que faria esta lista crescer hoje e mentir amanhã. Quantas estão dentro e quantas esperam está contado logo abaixo da tabela, nunca escrito aqui.',
 			'especies' => array(),
@@ -2982,12 +3075,150 @@ function aquametria_peixes_quantos_cabem( $litros, $porte_cm ) {
 }
 }
 
-/** Os cardumes que a tabela pré-renderizada varre, sempre incluindo o mínimo declarado. */
+/**
+ * O ARRANJO SOCIAL DECLARADO, e ele decide a frase E a tabela (1.7.0, leva 4).
+ *
+ * Até a leva 3 as ONZE fichas no ar eram `convivencia: cardume`, sem exceção, e
+ * por isso a palavra "cardume" estava DIGITADA em sete lugares do corpo da
+ * ficha: na abertura, na legenda da tabela de lotação, no contraexemplo do
+ * cubo, na chamada do filtro, no bloco da espécie agressiva e no JSON-LD. Era
+ * verdade em todas as páginas publicadas e é FALSA em três das quatro que a
+ * leva 4 traz: o betta vive sozinho, a colisa-anão vive em casal e o gurami mel
+ * vive em grupo — e a fonte deste último escreve, com todas as letras, que a
+ * espécie NÃO é gregária no sentido dos peixes de cardume.
+ *
+ * É a cicatriz da seção 8 do `ARQUIPELAGO.md` em estado puro: o esquema desta
+ * ilha permite `solitario`, `casal`, `harem` e `grupo` desde o primeiro dia —
+ * `aquametria_peixes_pode_virar_ficha()` cita os três primeiros pelo nome —, e
+ * o banco nunca tinha produzido um. Régua escrita para um mundo que nunca
+ * aconteceu nasce errada sem poder falhar.
+ *
+ * O VOCABULÁRIO É FECHADO e a tradução mora neste mapa, num lugar só. Termo que
+ * não estiver aqui devolve `null`, e quem chama trata isso como espécie que não
+ * vira ficha — inventar um coletivo para valor novo é pior que não publicar.
+ *
+ * `fixo` é a chave da tabela: quando a fonte declara um arranjo que FECHA o
+ * número (um por aquário, um casal), a escada de lotação tem um degrau só e
+ * nada acima dele, porque acima dele a fonte diz não. Onde a fonte declara um
+ * número de grupo, a escada começa nele. Onde declara o arranjo e não o número
+ * (harém), a escada é a de leitura e NENHUMA linha se chama mínimo.
+ */
+if ( ! function_exists( 'aquametria_peixes_arranjo' ) ) {
+function aquametria_peixes_arranjo( $e ) {
+	$mapa = array(
+		'cardume' => array(
+			'fixo'     => null,
+			'coletivo' => 'cardume',
+			'acao'     => 'nadar em cardume',
+			'curto'    => 'em cardume',
+			'vive'     => 'vive em cardume',
+			'de'       => 'um cardume de',
+			'este'     => 'este cardume',
+			'minimo'   => 'cardume mínimo',
+		),
+		'grupo' => array(
+			'fixo'     => null,
+			'coletivo' => 'grupo',
+			'acao'     => 'viver em grupo',
+			'curto'    => 'em grupo',
+			'vive'     => 'vive em grupo',
+			'de'       => 'um grupo de',
+			'este'     => 'este grupo',
+			'minimo'   => 'grupo mínimo',
+		),
+		'harem' => array(
+			'fixo'     => null,
+			'coletivo' => 'harém',
+			'acao'     => 'viver em harém',
+			'curto'    => 'em harém',
+			'vive'     => 'vive em harém',
+			'de'       => 'um harém de',
+			'este'     => 'este harém',
+			'minimo'   => '',
+		),
+		'solitario' => array(
+			'fixo'     => 1,
+			'coletivo' => 'peixe',
+			'acao'     => 'viver sozinho',
+			'curto'    => 'sozinho',
+			'vive'     => 'vive sozinho',
+			'de'       => 'um',
+			'este'     => 'este peixe',
+			'minimo'   => '',
+		),
+		'casal' => array(
+			'fixo'     => 2,
+			'coletivo' => 'casal',
+			'acao'     => 'viver em casal',
+			'curto'    => 'em casal',
+			'vive'     => 'vive em casal',
+			'de'       => 'um casal de',
+			'este'     => 'este casal',
+			'minimo'   => '',
+		),
+	);
+	$chave = isset( $e['convivencia'] ) ? $e['convivencia'] : '';
+	if ( ! isset( $mapa[ $chave ] ) ) {
+		return null;
+	}
+	$a           = $mapa[ $chave ];
+	$a['chave']  = $chave;
+	$a['numero'] = ! empty( $e['cardume'] ) ? (int) $e['cardume'] : null;
+	/* O número que a fonte fixa vence o campo de contagem: espécie solitária com
+	   `cardume` gravado seria contradição do banco, e a tela não é o lugar de
+	   desempatar isso em silêncio — o validador do banco é. */
+	if ( null !== $a['fixo'] ) {
+		$a['numero'] = $a['fixo'];
+	}
+	return $a;
+}
+}
+
+/**
+ * O arranjo em uma célula de tabela: a forma de viver mais o número, quando há.
+ *
+ * É o que substitui a coluna "Cardume mínimo" na categoria que mistura
+ * arranjos. Ali "não declarado" seria a resposta errada para dois dos três — a
+ * fonte DECLARA quantos cabem no betta e na colisa, e o que ela não declara é
+ * um cardume, que é outra coisa.
+ */
+if ( ! function_exists( 'aquametria_peixes_arranjo_curto' ) ) {
+function aquametria_peixes_arranjo_curto( $e ) {
+	$a = aquametria_peixes_arranjo( $e );
+	if ( ! $a ) {
+		return 'não declarado';
+	}
+	if ( null !== $a['fixo'] ) {
+		return $a['curto'] . ', ' . $a['fixo'] . ' por aquário';
+	}
+	if ( ! empty( $e['cardume'] ) ) {
+		return $a['curto'] . ', ' . (int) $e['cardume'] . ' ou mais';
+	}
+	return $a['curto'] . ', número não declarado';
+}
+}
+
+/**
+ * Os degraus que a tabela pré-renderizada varre.
+ *
+ * Três mundos, e o do meio é o único que existia até a leva 3:
+ *   - arranjo FIXO pela fonte (solitário, casal): um degrau só, o da fonte;
+ *   - número declarado (cardume, grupo): começa nele e sobe pela escada;
+ *   - arranjo sem número (harém): a escada de leitura inteira, sem mínimo.
+ */
 if ( ! function_exists( 'aquametria_peixes_degraus_de_cardume' ) ) {
 function aquametria_peixes_degraus_de_cardume( $e ) {
-	$minimo = ! empty( $e['cardume'] ) ? (int) $e['cardume'] : 1;
+	$escada  = array( 6, 8, 10, 12, 15, 20 );
+	$arranjo = aquametria_peixes_arranjo( $e );
+	if ( $arranjo && null !== $arranjo['fixo'] ) {
+		return array( $arranjo['fixo'] );
+	}
+	if ( empty( $e['cardume'] ) ) {
+		return $escada;
+	}
+	$minimo  = (int) $e['cardume'];
 	$degraus = array( $minimo );
-	foreach ( array( 6, 8, 10, 12, 15, 20 ) as $n ) {
+	foreach ( $escada as $n ) {
 		if ( $n > $minimo ) {
 			$degraus[] = $n;
 		}
@@ -3087,7 +3318,7 @@ function aquametria_peixes_como_vive( $e ) {
 		'grupo'     => 'em grupo',
 		'solitario' => 'sozinho',
 		'casal'     => 'em casal',
-		'harem'     => 'em harém, uma macho para várias fêmeas',
+		'harem'     => 'em harém, um macho para várias fêmeas',
 	);
 	$comportamento = array(
 		'pacifico'  => 'pacífico',
@@ -3232,8 +3463,9 @@ function aquametria_peixes_ficha_html( $slug ) {
 	$nome   = aquametria_peixes_nome( $e );
 	$porte  = aquametria_peixes_porte_faixa( $e );
 	$frente = aquametria_peixes_frente_faixa( $e );
-	$larg   = $e['base_largura'] ? (float) $e['base_largura'] : null;
-	$card   = ! empty( $e['cardume'] ) ? (int) $e['cardume'] : null;
+	$larg    = $e['base_largura'] ? (float) $e['base_largura'] : null;
+	$card    = ! empty( $e['cardume'] ) ? (int) $e['cardume'] : null;
+	$arranjo = aquametria_peixes_arranjo( $e );
 
 	$html = '<div class="aqm-px aqm-px-ficha">';
 
@@ -3258,12 +3490,25 @@ function aquametria_peixes_ficha_html( $slug ) {
 	   palavra final é BASE ou COMPRIMENTO. Quem tem só o comprimento diz que o
 	   fundo FICA EM ABERTO — que é o que um aquarista diria, e não um buraco
 	   escondido. */
-	if ( $card ) {
-		$html .= 'Para um cardume mínimo de ' . esc_html( $card ) . ' '
+	/* A ABERTURA SEGUE O ARRANJO QUE A FONTE DECLARA (1.7.0). Até a leva 3 havia
+	   dois caminhos aqui, e o primeiro dizia "cardume mínimo" para qualquer
+	   espécie com número — o que teria posto a palavra "cardume" na primeira
+	   linha da ficha do gurami mel, cuja fonte escreve que ele NÃO é peixe de
+	   cardume. Agora são quatro, um por forma de viver, e o rótulo do número sai
+	   do mapa do arranjo em vez de sair digitado. */
+	if ( $arranjo && null !== $arranjo['fixo'] ) {
+		$html .= 'Para ' . esc_html( $arranjo['de'] ) . ' ' . esc_html( $nome )
+			. ', que é o que a fonte declara por aquário, o seu aquário precisa de '
+			. esc_html( aquametria_peixes_num( $frente[1] ) ) . ' cm de frente';
+	} elseif ( $card ) {
+		$html .= 'Para um ' . esc_html( $arranjo ? $arranjo['minimo'] : 'cardume mínimo' ) . ' de '
+			. esc_html( $card ) . ' '
 			. esc_html( $nome ) . ', o seu aquário precisa de '
 			. esc_html( aquametria_peixes_num( $frente[1] ) ) . ' cm de frente';
 	} else {
-		$html .= 'Para o ' . esc_html( $nome ) . ', o seu aquário precisa de '
+		$html .= 'Para o ' . esc_html( $nome ) . ', que vive '
+			. esc_html( aquametria_peixes_como_vive( $e ) )
+			. ', o seu aquário precisa de '
 			. esc_html( aquametria_peixes_num( $frente[1] ) ) . ' cm de frente';
 	}
 	if ( $larg ) {
@@ -3299,7 +3544,8 @@ function aquametria_peixes_ficha_html( $slug ) {
 			. esc_html( aquametria_peixes_num( $litros_alturas[ $ultima ] ) ) . ' litros tem '
 			. esc_html( aquametria_peixes_num( $cubo ) ) . ' cm de lado — o litro certo e '
 			. esc_html( aquametria_peixes_num( $frente[1] - $cubo ) )
-			. ' cm de frente a menos do que este cardume pede.</p>';
+			. ' cm de frente a menos do que ' . esc_html( $arranjo ? $arranjo['este'] : 'este cardume' )
+			. ' pede.</p>';
 	} else {
 		/* Decisão 7, a outra metade: sem o fundo declarado, as duas tabelas que
 		   dependem dele não saem — e a página DIZ que não saíram e por quê. A
@@ -3308,7 +3554,7 @@ function aquametria_peixes_ficha_html( $slug ) {
 		$html .= '<p class="aqm-px-sem-fundo"><strong>O fundo do aquário, esta página não tem como dizer — e isso é o que a fonte declarou, não um buraco nosso.</strong> '
 			. 'Para o ' . esc_html( $nome ) . ' a fonte publica o comprimento mínimo e para aí: não há largura declarada por ninguém. '
 			. 'Sem os dois lados do chão não existe litro, então aqui não sai a tabela de litros por altura nem a de quantos cabem no aquário mínimo — elas sairiam de um fundo que a gente teria inventado. '
-			. 'O que a página responde com o que está medido é a outra metade, e ela está logo abaixo: quantos litros o cardume pede pelas duas réguas brasileiras de lotação, que partem do comprimento dos peixes e não do chão do aquário.</p>';
+			. 'O que a página responde com o que está medido é a outra metade, e ela está logo abaixo: quantos litros o ' . esc_html( $arranjo ? $arranjo['coletivo'] : 'cardume' ) . ' pede pelas duas réguas brasileiras de lotação, que partem do comprimento dos peixes e não do chão do aquário.</p>';
 	}
 
 	/* A camada de prova: fonte pelo nome e data, um parágrafo abaixo (15.2). */
@@ -3331,10 +3577,25 @@ function aquametria_peixes_ficha_html( $slug ) {
 	/* --- 5.2 Quantos litros para N exemplares: a tabela pré-renderizada
 	   (seção 5, item 1). É o que um modelo de linguagem lê sem preencher
 	   formulário, e é a metade em que o erro é mais caro (seção 7). --- */
-	$html .= '<h2>Quantos litros para N ' . esc_html( $nome ) . '</h2>';
-	$html .= '<p>A base declarada é o piso do aquário; quem responde "e para dez?" são as duas réguas de lotação que circulam no aquarismo brasileiro. Elas discordam em quatro vezes, e a Aquametria publica as duas com o nome de quem disse cada uma em vez de tirar média.</p>';
+	/* O TÍTULO E A PERGUNTA DE ABERTURA SEGUEM O ARRANJO (1.7.0). "Quantos
+	   litros para N betta" e "quem responde 'e para dez?'" são a pergunta
+	   ERRADA para um peixe cuja fonte declara um por aquário: a página estaria
+	   oferecendo, com cara de tabela, o número que a fonte recusa. Onde a fonte
+	   fixa o arranjo, a escada tem um degrau e o texto diz por quê — e o que a
+	   página ganha em troca é o achado desta categoria, que é a distância entre
+	   a régua de lotação e a base declarada. */
+	if ( $arranjo && null !== $arranjo['fixo'] ) {
+		$html .= '<h2>Quantos litros para ' . esc_html( $arranjo['de'] ) . ' ' . esc_html( $nome ) . '</h2>';
+		$html .= '<p>A base declarada é o piso do aquário, e aqui ela não vira escada: a fonte declara '
+			. ( 1 === $arranjo['fixo'] ? 'um por aquário' : 'um casal' )
+			. ', então não existe "e para dez?" a responder. O que a tabela abaixo mostra é o que as duas réguas de lotação que circulam no aquarismo brasileiro devolvem para esse número — elas discordam em quatro vezes entre si, e as duas ficam bem abaixo da base que a fonte declara. É por isso que régua de lotação não responde sozinha a esta pergunta.</p>';
+	} else {
+		$html .= '<h2>Quantos litros para N ' . esc_html( $nome ) . '</h2>';
+		$html .= '<p>A base declarada é o piso do aquário; quem responde "e para dez?" são as duas réguas de lotação que circulam no aquarismo brasileiro. Elas discordam em quatro vezes, e a Aquametria publica as duas com o nome de quem disse cada uma em vez de tirar média.</p>';
+	}
 	$html .= '<div class="aqm-px-rolagem"><table class="aqm-px-tabela">';
-	$html .= '<caption>Litros para um cardume de ' . esc_html( $nome )
+	$html .= '<caption>Litros para ' . esc_html( $arranjo ? $arranjo['de'] : 'um cardume de' ) . ' '
+		. esc_html( $nome )
 		. ', pelas duas réguas brasileiras. O porte adulto usado é '
 		. esc_html( aquametria_peixes_faixa_texto( $porte ) )
 		. ( abs( $porte[0] - $porte[1] ) > 0.01 ? ' — a coluna usa o extremo maior, porque errar carga para cima é o lado seguro' : '' )
@@ -3342,12 +3603,19 @@ function aquametria_peixes_ficha_html( $slug ) {
 	$html .= '<thead><tr><th scope="col">Exemplares</th><th scope="col">Soma dos comprimentos</th>'
 		. '<th scope="col">Regra clássica (1 cm/L)</th><th scope="col">Critério intermediário (1,5 L/cm)</th>'
 		. '<th scope="col">Critério conservador (4 L/cm)</th></tr></thead><tbody>';
+	/* QUAL LINHA SE CHAMA MÍNIMA, e o rótulo sai do mapa do arranjo. Vazio em
+	   solitário, casal e harém: nos dois primeiros o degrau único não é um piso
+	   (é o teto que a fonte declara) e no terceiro a fonte declara o arranjo e
+	   nunca o número — chamar qualquer linha de "mínimo" ali seria publicar um
+	   número que ninguém declarou. */
+	$rotulo_minimo = ( $arranjo && '' !== $arranjo['minimo'] && $card ) ? $arranjo['minimo'] : '';
 	foreach ( aquametria_peixes_degraus_de_cardume( $e ) as $n ) {
 		$soma = $n * $porte[1];
 		$l    = aquametria_peixes_litros_por_criterio( $soma );
-		$marca = ( $card && $n === $card ) ? ' class="aqm-px-linha-minima"' : '';
+		$e_minima = ( '' !== $rotulo_minimo && $n === $card );
+		$marca = $e_minima ? ' class="aqm-px-linha-minima"' : '';
 		$html .= '<tr' . $marca . '><th scope="row">' . esc_html( $n )
-			. ( ( $card && $n === $card ) ? ' (cardume mínimo)' : '' ) . '</th>';
+			. ( $e_minima ? ' (' . esc_html( $rotulo_minimo ) . ')' : '' ) . '</th>';
 		$html .= '<td>' . esc_html( aquametria_peixes_num( $soma ) ) . ' cm</td>';
 		$html .= '<td>' . esc_html( aquametria_peixes_num( $l['classica'] ) ) . ' L</td>';
 		$html .= '<td>' . esc_html( aquametria_peixes_num( $l['meio'] ) ) . ' L</td>';
@@ -3423,10 +3691,13 @@ function aquametria_peixes_ficha_html( $slug ) {
 
 	$por_individuo = aquametria_peixes_frente_por_individuo( $e );
 	if ( null !== $por_individuo ) {
-		$html .= '<p>Dividindo o mínimo declarado pelo cardume mínimo dá '
+		$html .= '<p>Dividindo o mínimo declarado pelo '
+			. esc_html( $arranjo ? $arranjo['minimo'] : 'cardume mínimo' ) . ' dá '
 			. esc_html( aquametria_peixes_num( $por_individuo ) )
 			. ' cm de frente por exemplar — e esse número serve para comparar espécies, não para multiplicar. '
-			. 'Os ' . esc_html( aquametria_peixes_num( $frente[1] ) ) . ' cm que a fonte declara são o espaço de onde o cardume consegue nadar em cardume, não o preço de '
+			. 'Os ' . esc_html( aquametria_peixes_num( $frente[1] ) ) . ' cm que a fonte declara são o espaço de onde o '
+			. esc_html( $arranjo ? $arranjo['coletivo'] : 'cardume' ) . ' consegue '
+			. esc_html( $arranjo ? $arranjo['acao'] : 'nadar em cardume' ) . ', não o preço de '
 			. esc_html( $card ) . ' peixes: multiplicar diria que dez ' . esc_html( $nome ) . ' precisam de '
 			. esc_html( aquametria_peixes_num( $por_individuo * 10 ) ) . ' cm, o que nenhuma fonte sustenta.</p>';
 	}
@@ -3488,15 +3759,37 @@ function aquametria_peixes_ficha_html( $slug ) {
 	   banco dividem a faixa) e diz por que não recomenda nenhuma. */
 	if ( 'agressivo' === $e['comportamento'] ) {
 		$total_faixa = count( $vizinhos['dentro'] ) + count( $vizinhos['maior'] ) + count( $vizinhos['agressivos'] );
-		$html .= '<h2>Com quem esse cardume divide o aquário</h2>';
+		$html .= '<h2>Com quem ' . esc_html( $arranjo ? $arranjo['este'] : 'esse cardume' ) . ' divide o aquário</h2>';
 		$html .= '<p>Esta ficha <strong>não publica lista de companheiro</strong>, e a razão está duas tabelas acima: a fonte declara o '
 			. esc_html( $nome ) . ' <strong>agressivo</strong>. '
 			. esc_html( $total_faixa ) . ' das ' . esc_html( count( aquametria_peixes_catalogo() ) )
 			. ' espécies do banco dividem faixa de temperatura com ele, e nenhuma delas vira recomendação por causa disso: '
 			. 'temperatura é o que a gente mediu, e convivência com peixe agressivo depende do volume, do layout e da ordem em que os peixes entram no aquário — nada disso cabe numa tabela, e o banco desta ilha não guarda compatibilidade como campo justamente por isso.</p>';
-		$html .= '<p class="aqm-px-fora">O que dá para dizer com o que está medido: quanto mais espaço além dos '
-			. esc_html( aquametria_peixes_num( $frente[1] ) ) . ' cm mínimos, e quanto maior o cardume, menos a agressão se concentra num alvo só — '
-			. 'é a mesma razão por que a fonte declara cardume mínimo de ' . esc_html( $card ) . ' e não de dois.</p>';
+		/* O CONSELHO SE INVERTE COM O ARRANJO, e este é o ramo que a leva 4
+		   descobriu sem nenhum portão reprovar. A frase antiga — "quanto maior o
+		   cardume, menos a agressão se concentra num alvo só ... por isso a fonte
+		   declara cardume mínimo de N e não de dois" — era verdadeira para a
+		   única espécie agressiva publicada até aqui (o mato-grosso, cardume 5) e
+		   é o CONTRÁRIO do que a fonte diz do betta, que é agressivo E solitário:
+		   ali a fonte manda um por aquário. Pior: `$card` é nulo nessa espécie, e
+		   a frase iria ao ar com um buraco no meio ("cardume mínimo de  e não de
+		   dois"). Diluir agressão em número é conselho de peixe de cardume, e
+		   aplicá-lo a um peixe solitário seria mandar o leitor comprar o segundo
+		   exemplar que a fonte proíbe. */
+		if ( $arranjo && null !== $arranjo['fixo'] ) {
+			$html .= '<p class="aqm-px-fora">O que dá para dizer com o que está medido: a fonte declara '
+				. ( 1 === $arranjo['fixo'] ? 'um por aquário' : 'um casal' )
+				. ' para o ' . esc_html( $nome ) . ', e esse número não é uma sugestão de companhia — é o limite. '
+				. 'Espaço além dos ' . esc_html( aquametria_peixes_num( $frente[1] ) ) . ' cm mínimos ajuda, '
+				. 'mas aqui ele não compra um segundo exemplar: num peixe que a fonte declara agressivo e manda '
+				. esc_html( $arranjo['acao'] ) . ', mais espaço é folga para o mesmo habitante, não vaga para outro.</p>';
+		} else {
+			$html .= '<p class="aqm-px-fora">O que dá para dizer com o que está medido: quanto mais espaço além dos '
+				. esc_html( aquametria_peixes_num( $frente[1] ) ) . ' cm mínimos, e quanto maior o '
+				. esc_html( $arranjo ? $arranjo['coletivo'] : 'cardume' ) . ', menos a agressão se concentra num alvo só — '
+				. 'é a mesma razão por que a fonte declara ' . esc_html( $arranjo ? $arranjo['minimo'] : 'cardume mínimo' )
+				. ' de ' . esc_html( $card ) . ' e não de dois.</p>';
+		}
 	} elseif ( $vizinhos['dentro'] ) {
 		$html .= '<h2>Quem divide a mesma faixa de temperatura</h2>';
 		$html .= '<p>Isto não é veredito de convivência, e a diferença importa: o que está medido aqui é a <strong>interseção das faixas de temperatura declaradas</strong>, com dois filtros a mais — o aquário mínimo do companheiro cabe nos '
@@ -3555,7 +3848,7 @@ function aquametria_peixes_ficha_html( $slug ) {
 		$html .= '</p>';
 	}
 
-	/* --- 5.7 O equipamento que este cardume pede — o 16.4(d), e o caminho do
+	/* --- 5.7 O equipamento que este aquário pede — o 16.4(d), e o caminho do
 	   dinheiro. A vitrine não mora aqui: mora na calculadora. --- */
 	$html .= '<h2>O equipamento que esse aquário pede</h2>';
 	$html .= '<p>';
@@ -3574,7 +3867,7 @@ function aquametria_peixes_ficha_html( $slug ) {
 			. '<a href="' . esc_url( $url_c5 ) . '">conta dos watts</a>. ';
 	}
 	if ( '' !== $url_c3 ) {
-		$html .= 'Cardume come e cardume suja, então a vazão do filtro sai da '
+		$html .= 'Peixe come e peixe suja, então a vazão do filtro sai da '
 			. '<a href="' . esc_url( $url_c3 ) . '">conta do filtro</a>, com a faixa que os fabricantes declaram.';
 	}
 	$html .= '</p>';
@@ -3590,6 +3883,15 @@ function aquametria_peixes_ficha_html( $slug ) {
 	$html .= '<p class="aqm-px-consulta">Esta página mira a consulta <strong>“'
 		. esc_html( $registro[ $slug ]['consulta'] ) . '”</strong>. A SERP dessa consulta foi classificada em '
 		. esc_html( aquametria_peixes_serp_em( $slug ) ) . ' antes de a página nascer, como manda o critério da ilha, e a classificação está escrita no snippet que serve esta página.</p>';
+
+	/* O QUE A MEDIÇÃO DA SERP ACHOU E SÓ ESTA PÁGINA TEM PARA DIZER. Campo
+	   opcional do registro, servido aqui e em nenhum outro lugar: é leitura do
+	   mundo lá fora, com a data da medição, e não afirmação sobre o banco. Sem
+	   ele a única saída seria escrever a frase dentro do gerador com um `if` por
+	   slug, que é o número de tela digitado com outro nome. */
+	if ( ! empty( $registro[ $slug ]['serp_nota'] ) ) {
+		$html .= '<p class="aqm-px-serp-nota">' . esc_html( $registro[ $slug ]['serp_nota'] ) . '</p>';
+	}
 
 	$html .= '</div>';
 
@@ -3714,18 +4016,59 @@ function aquametria_peixes_categoria_html( $slug ) {
 		. ' com aquário mínimo declarado por fonte com nome e data, e o mínimo vai de '
 		. esc_html( aquametria_peixes_num( aquametria_peixes_menor_frente( $dentro ) ) ) . ' a '
 		. esc_html( aquametria_peixes_num( aquametria_peixes_maior_frente( $dentro ) ) )
-		. ' cm de frente — com o cardume mínimo indo de '
-		. esc_html( aquametria_peixes_menor_cardume( $dentro ) ) . ' a '
-		. esc_html( aquametria_peixes_maior_cardume( $dentro ) )
-		. ' exemplares. A tabela abaixo põe os dois números lado a lado, que é a comparação que nenhuma das respostas de busca desta consulta publica.</p>';
+		. ' cm de frente';
+
+	/* A SEGUNDA METADE DA ABERTURA MUDA DE ASSUNTO QUANDO A CATEGORIA MISTURA
+	   ARRANJOS (1.7.0). Até a leva 3 as duas categorias no ar eram inteiramente
+	   de peixe de cardume, e a frase dizia "com o cardume mínimo indo de X a Y
+	   exemplares" — derivada, mas derivada de um mundo de um tipo só. Numa
+	   categoria em que só uma das espécies declara número, `menor_cardume()` e
+	   `maior_cardume()` devolvem o MESMO valor e a frase sai dizendo "de 4 a 4",
+	   com cara de faixa medida, escondendo que as outras duas não têm cardume
+	   nenhum a declarar. O que essa categoria tem para dizer é outra coisa — e é
+	   justamente o que o critério dela declara: o arranjo social. */
+	$arranjos = array();
+	foreach ( $dentro as $x ) {
+		$a = aquametria_peixes_arranjo( $x );
+		if ( $a ) {
+			$arranjos[ $a['chave'] ] = $a;
+		}
+	}
+	if ( 1 === count( $arranjos ) && null === aquametria_peixes_menor_cardume( $dentro ) ) {
+		$html .= '. A tabela abaixo põe porte e espaço lado a lado, que é a comparação que nenhuma das respostas de busca desta consulta publica.</p>';
+	} elseif ( 1 === count( $arranjos ) ) {
+		$unico = reset( $arranjos );
+		$html .= ' — com o ' . esc_html( $unico['minimo'] ? $unico['minimo'] : $unico['coletivo'] ) . ' indo de '
+			. esc_html( aquametria_peixes_menor_cardume( $dentro ) ) . ' a '
+			. esc_html( aquametria_peixes_maior_cardume( $dentro ) )
+			. ' exemplares. A tabela abaixo põe os dois números lado a lado, que é a comparação que nenhuma das respostas de busca desta consulta publica.</p>';
+	} else {
+		$formas = array();
+		foreach ( $arranjos as $a ) {
+			$formas[] = 'peixe que ' . $a['vive'];
+		}
+		$ultima = array_pop( $formas );
+		$html .= '. E a fonte não declara o mesmo arranjo para todos: aqui tem '
+			. esc_html( $formas ? implode( ', ', $formas ) . ' e ' . $ultima : $ultima )
+			. '. É essa diferença que decide a resposta, e é ela que nenhuma das respostas de busca desta consulta distingue — '
+			. 'a tabela abaixo põe o arranjo ao lado do espaço, um a um.</p>';
+	}
 	$html .= '</div>';
 
 	$html .= '<h2>' . esc_html( ucfirst( $cat['plural'] ) ) . ' do banco, com o mínimo declarado de cada um</h2>';
 	$html .= '<p class="aqm-px-criterio"><strong>O critério desta lista:</strong> ' . esc_html( $cat['criterio'] ) . '</p>';
+	/* A COLUNA MUDA DE NOME QUANDO A CATEGORIA MUDA DE MUNDO (1.7.0): onde todas
+	   declaram o mesmo tipo de número, ela é o rótulo daquele arranjo; onde os
+	   arranjos são diferentes, ela deixa de ser um número e passa a ser a forma
+	   de viver, com o número dentro de quem tem um. */
+	$coluna_arranjo = ( 1 === count( $arranjos ) && null !== aquametria_peixes_menor_cardume( $dentro ) )
+		? ucfirst( reset( $arranjos )['minimo'] )
+		: 'Como vive';
 	$html .= '<div class="aqm-px-rolagem"><table class="aqm-px-tabela">';
-	$html .= '<caption>Porte adulto, cardume mínimo e frente mínima declarada. Onde as fontes discordam, a coluna traz os dois extremos.</caption>';
+	$html .= '<caption>Porte adulto, ' . esc_html( mb_strtolower( $coluna_arranjo, 'UTF-8' ) )
+		. ' e frente mínima declarada. Onde as fontes discordam, a coluna traz os dois extremos.</caption>';
 	$html .= '<thead><tr><th scope="col">Espécie</th><th scope="col">Porte adulto</th>'
-		. '<th scope="col">Cardume mínimo</th><th scope="col">Frente mínima</th>'
+		. '<th scope="col">' . esc_html( $coluna_arranjo ) . '</th><th scope="col">Frente mínima</th>'
 		. '<th scope="col">Temperatura</th><th scope="col">A conta inteira</th></tr></thead><tbody>';
 
 	/* Ordem: frente mínima crescente, e entre iguais o peixe menor antes. Quem
@@ -3746,7 +4089,9 @@ function aquametria_peixes_categoria_html( $slug ) {
 		$html .= '<tr><th scope="row">' . esc_html( aquametria_peixes_nome( $e ) )
 			. ' <span class="aqm-px-cientifico">' . esc_html( $e['cientifico'] ) . '</span></th>';
 		$html .= '<td>' . esc_html( aquametria_peixes_faixa_texto( aquametria_peixes_porte_faixa( $e ) ) ) . '</td>';
-		$html .= '<td>' . ( $e['cardume'] ? esc_html( $e['cardume'] ) : 'não declarado' ) . '</td>';
+		$html .= '<td>' . esc_html( 'Como vive' === $coluna_arranjo
+			? aquametria_peixes_arranjo_curto( $e )
+			: ( $e['cardume'] ? $e['cardume'] : 'não declarado' ) ) . '</td>';
 		$html .= '<td>' . esc_html( aquametria_peixes_faixa_texto( aquametria_peixes_frente_faixa( $e ) ) ) . '</td>';
 		$html .= '<td>' . esc_html( aquametria_peixes_num( $e['temp_min'] ) ) . ' a '
 			. esc_html( aquametria_peixes_num( $e['temp_max'] ) ) . ' °C</td>';
@@ -3791,9 +4136,20 @@ function aquametria_peixes_categoria_html( $slug ) {
 			. ' desta mesma categoria que o portão ainda barra, e o que falta em cada uma está logo abaixo. '
 			. 'A lista cresce quando o banco crescer, não quando der vontade de escrever.';
 	} else {
+		/* O SUBSTANTIVO DESTA FRASE ESTAVA DIGITADO, E ESTAVA NO AR ERRADO. É a
+		   mesma cicatriz do "São 4 tetras" que a leva 3 pegou antes de publicar,
+		   numa forma que escapou porque mora num RAMO: este `else` só é
+		   alcançado quando a categoria fecha (zero na fila e zero barrados), e
+		   até 12/09 só os tetras tinham fechado. No dia em que `/peixes/
+		   corydoras/` fechou, a página passou a servir "fechada quer dizer que
+		   todo TETRA que o banco desta ilha sustenta já tem a página dele" — na
+		   página das coridoras, medido no HTML servido em 14/09/2026. Ramo novo
+		   herda o texto do mundo antigo, e nenhuma contagem estava errada: só a
+		   palavra. Agora ela vem declarada por categoria, como o `plural`. */
 		$html .= 'As ' . esc_html( count( $dentro ) )
-			. ' espécies da tabela têm a conta inteira numa página própria — esta lista está fechada, e fechada quer dizer que todo tetra que o banco desta ilha sustenta com duas fontes já tem a página dele. '
-			. 'A lista cresce quando o banco crescer, não quando der vontade de escrever: espécie sem duas fontes de corpos distintos não entra na tabela, e espécie de cardume sem o número do cardume declarado não ganha página, porque a página começa justamente por esse número.';
+			. ' espécies da tabela têm a conta inteira numa página própria — esta lista está fechada, e fechada quer dizer que '
+			. esc_html( $cat['singular'] ) . ' que o banco desta ilha sustenta com duas fontes já tem a página dele. '
+			. 'A lista cresce quando o banco crescer, não quando der vontade de escrever: espécie sem duas fontes de corpos distintos não entra na tabela, e espécie que vive em cardume sem o número do cardume declarado não ganha página, porque a página começa justamente por esse número.';
 	}
 	$html .= '</p>';
 
@@ -3806,9 +4162,14 @@ function aquametria_peixes_categoria_html( $slug ) {
 		$html .= aquametria_peixes_barrados_lista_html( $barradas_daqui );
 	}
 
+	/* O EXEMPLO DA PERGUNTA SAI DA CONSULTA DESTA PÁGINA, e não de uma frase
+	   digitada (1.7.0). "Quem pergunta 'quantos litros para dez neons'" é a
+	   consulta da categoria dos tetras escrita na página das coridoras e, a
+	   partir da leva 4, na dos bettas — a mesma família do substantivo herdado
+	   logo acima, só que aqui nunca chegou a ser falso, só estranho. */
 	$html .= '<h2>Por que a gente responde em centímetros antes de responder em litros</h2>';
-	$html .= '<p>Quem pergunta "quantos litros para dez neons" quer um número, e a resposta honesta tem duas partes. '
-		. 'A primeira é a base: as fontes de aquarismo declaram o tamanho do <strong>chão</strong> do aquário, porque é ele que decide se o cardume nada em cardume ou fica encolhido num canto. '
+	$html .= '<p>Quem pergunta "' . esc_html( $registro[ $slug ]['consulta'] ) . '" quer um número, e a resposta honesta tem duas partes. '
+		. 'A primeira é a base: as fontes de aquarismo declaram o tamanho do <strong>chão</strong> do aquário, porque é ele que decide se o peixe nada à vontade ou fica encolhido num canto. '
 		. 'A segunda é a lotação, e aí entram as duas réguas brasileiras que discordam em quatro vezes. '
 		. 'Um aquário alto e estreito pode ter o litro certo e o chão errado — e é por isso que a tabela acima tem a coluna em centímetros.</p>';
 
@@ -4102,10 +4463,11 @@ background:var(--px-papel);}
 .aqm-px-linha-minima td,.aqm-px-linha-minima th{background:var(--px-papel);}
 .aqm-px-cientifico{display:block;font-family:var(--px-mono);font-size:.72rem;
 font-style:italic;color:var(--px-legenda);}
-.aqm-px-criterio,.aqm-px-fora,.aqm-px-sem-loja{font-size:.86rem;
+.aqm-px-criterio,.aqm-px-fora,.aqm-px-sem-loja,.aqm-px-serp-nota{font-size:.86rem;
 color:var(--px-legenda);border-left:2px solid var(--px-traco);
 padding:.1rem 0 .1rem .7rem;}
 .aqm-px-sem-loja{border-left-color:var(--px-alerta);}
+.aqm-px-serp-nota{border-left-color:var(--px-lamina);margin:.4rem 0 0;}
 .aqm-px-razao{display:block;font-size:.84rem;color:var(--px-legenda);margin:.2rem 0 0;}
 .aqm-px-consulta{font-family:var(--px-mono);font-size:.76rem;color:var(--px-legenda);
 border-top:1px solid var(--px-traco);margin:1.4rem 0 0;padding:.6rem 0 0;}
@@ -4177,13 +4539,25 @@ function aquametria_peixes_jsonld_dados( $slug ) {
 		$nome   = aquametria_peixes_nome( $e );
 		$porte  = aquametria_peixes_porte_faixa( $e );
 		$frente = aquametria_peixes_frente_faixa( $e );
-		$card   = ! empty( $e['cardume'] ) ? (int) $e['cardume'] : null;
-		$larg   = $e['base_largura'] ? (float) $e['base_largura'] : null;
+		$card    = ! empty( $e['cardume'] ) ? (int) $e['cardume'] : null;
+		$larg    = $e['base_largura'] ? (float) $e['base_largura'] : null;
+		$arranjo = aquametria_peixes_arranjo( $e );
 
+		/* O RABICHO DA RESPOSTA SEGUE O ARRANJO (1.7.0), pelo mesmo motivo do
+		   corpo: "para o cardume mínimo de N exemplares" é a frase que o modelo
+		   de linguagem cita, e citá-la sobre um peixe solitário publicaria a
+		   negação do que a fonte declara — com a autoridade do schema. */
+		$rabicho = '';
+		if ( $arranjo && null !== $arranjo['fixo'] ) {
+			$rabicho = ', para ' . $arranjo['de'] . ' ' . $nome
+				. ', que é o que a fonte declara por aquário';
+		} elseif ( $card && $arranjo && '' !== $arranjo['minimo'] ) {
+			$rabicho = ', para o ' . $arranjo['minimo'] . ' de ' . $card . ' exemplares';
+		}
 		$resposta = 'O aquário mínimo declarado para o ' . $nome . ' é de '
 			. aquametria_peixes_num( $frente[1] ) . ' cm de frente'
 			. ( $larg ? ' por ' . aquametria_peixes_num( $larg ) . ' cm de fundo' : '' )
-			. ( $card ? ', para o cardume mínimo de ' . $card . ' exemplares' : '' ) . '.';
+			. $rabicho . '.';
 		$v35 = aquametria_peixes_volume_bruto( $frente[1], $larg, 35 );
 		if ( null !== $v35 ) {
 			$resposta .= ' Com 35 cm de altura isso dá ' . aquametria_peixes_num( $v35 )
@@ -4201,7 +4575,27 @@ function aquametria_peixes_jsonld_dados( $slug ) {
 		$perguntas = array(
 			array( $def['titulo'], $resposta ),
 		);
-		if ( $card ) {
+		if ( $arranjo && null !== $arranjo['fixo'] ) {
+			/* A SEGUNDA PERGUNTA EXISTE NOS DOIS MUNDOS, e no arranjo fixo ela é
+			   a mais importante da página: é onde a régua de lotação e a base
+			   declarada se contradizem, e é a contradição que a SERP desta
+			   consulta publica sem perceber. Sem este ramo a ficha do betta
+			   serviria UMA pergunta no FAQPage, e a única que ela tem de
+			   responder — "quantos litros para um betta" — ficaria de fora. */
+			$n = $arranjo['fixo'];
+			$l = aquametria_peixes_litros_por_criterio( $n * $porte[1] );
+			$perguntas[] = array(
+				'Quantos litros para ' . $arranjo['de'] . ' ' . $nome . '?',
+				'A fonte declara ' . $arranjo['de'] . ' ' . $nome . ' por aquário, e o que ela declara é a BASE: '
+					. aquametria_peixes_num( $frente[1] ) . ' cm de frente'
+					. ( $larg ? ' por ' . aquametria_peixes_num( $larg ) . ' cm de fundo' : '' ) . '. '
+					. 'As duas réguas brasileiras de lotação, aplicadas a ' . $n . ' exemplar'
+					. ( $n > 1 ? 'es' : '' ) . ' de ' . aquametria_peixes_num( $porte[1] )
+					. ' cm, dariam de ' . aquametria_peixes_num( $l['classica'] ) . ' a '
+					. aquametria_peixes_num( $l['conservadora'] )
+					. ' litros — bem abaixo dessa base, e é por isso que régua de lotação não responde sozinha a esta pergunta.',
+			);
+		} elseif ( $card ) {
 			$l = aquametria_peixes_litros_por_criterio( $card * $porte[1] );
 			$perguntas[] = array(
 				'Quantos litros para ' . $card . ' ' . $nome . '?',

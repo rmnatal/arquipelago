@@ -2571,8 +2571,8 @@
     "Colisa lalia"
    ],
    "nomes_populares_br": [
-    "colisa",
     "colisa-anão",
+    "colisa",
     "gurami-anão"
    ],
    "familia": "Osphronemidae",
@@ -2643,9 +2643,9 @@
     }
    ],
    "conflitos": [],
-   "verificado_em": "2026-09-09",
+   "verificado_em": "2026-09-13",
    "status_registro": "completo",
-   "observacao": "O registro existe para dizer, com fonte, que os 60 cm de frente sao para UM CASAL, e nao para uma colecao de machos coloridos: a loja vende o macho isolado porque so ele tem cor. Faixa termica de 25 a 28 C, das mais quentes e mais estreitas do banco, o que faz dele um dos poucos que puxa aquecedor mesmo em cidade quente."
+   "observacao": "O registro existe para dizer, com fonte, que os 60 cm de frente sao para UM CASAL, e nao para uma colecao de machos coloridos: a loja vende o macho isolado porque so ele tem cor. Faixa termica de 25 a 28 C, das mais quentes e mais estreitas do banco, o que faz dele um dos poucos que puxa aquecedor mesmo em cidade quente. ORDEM DOS NOMES POPULARES TROCADA EM 14/09/2026, na leva 4, e a troca e de TELA e nao de dado: aquametria_peixes_nome() e documentada como 'o nome que a pessoa digita' e le o PRIMEIRO deste campo, entao a ordem aqui e uma decisao editorial e nao um fato da especie. A classificacao de SERP de 13/09/2026 mediu a consulta brasileira desta especie e ela e 'quantos litros para colisa anao'; com 'colisa' na frente, o titulo da ficha e o corpo dela serviriam nomes diferentes a uma linha de distancia, que e o defeito que o item 4 do despacho da Sentinela de 13/09 ja pagou nas nove paginas de conteudo. Nenhum nome saiu da lista e nenhum campo de biologia foi tocado."
   },
   {
    "id": "poecilia-sphenops",

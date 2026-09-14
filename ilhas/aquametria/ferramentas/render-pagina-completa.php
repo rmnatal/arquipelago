@@ -103,6 +103,15 @@ $GLOBALS['__paginas'] = array(
 	'quantos-litros-para-coridora-pimenta'      => true,
 	'quantos-litros-para-coridora-panda'        => true,
 	'quantos-litros-para-coridora-sterbai'      => true,
+	/* A leva 4 (14/09/2026): a TERCEIRA categoria, e a primeira em que as filhas
+	   nao vivem todas do mesmo jeito — um peixe solitario, um casal e um grupo.
+	   Ate aqui todas as onze fichas no ar eram `convivencia: cardume`, entao o
+	   caminho do arranjo nao tinha como ser medido por pagina nenhuma desta
+	   bancada: era mundo que o esquema permitia e o banco nunca tinha produzido. */
+	'bettas'                                    => true,
+	'quantos-litros-para-betta'                 => true,
+	'quantos-litros-para-colisa-anao'           => true,
+	'quantos-litros-para-gurami-mel'            => true,
 );
 
 aquametria_teste_carregar( $raiz );
