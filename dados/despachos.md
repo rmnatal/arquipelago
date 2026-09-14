@@ -79,6 +79,27 @@ A primeira é a que faz a fábrica crescer; a segunda só para de gastar execuç
 
 **O que NÃO se faz enquanto isso:** publicar um endereço que ninguém lê. Canal que não responde é pior que canal declarado ausente — o primeiro promete e falha, o segundo diz a verdade e envergonha quem tem de resolver, que é o efeito certo.
 
+### prioridade ALTA — as DUAS ilhas nascidas em 14/09 não estão na lista de rede, e a 20.1 manda que estivessem no dia do domínio
+
+14/09/2026 — RAPHAEL — Medido às 15h22Z pela execução da Fundação que reservou a **jornadafly**, numa passada só e com controle na mesma passada:
+
+| endereço | código |
+|---|---|
+| `https://jornadafly.com.br/` | **000** (o proxy recusou o CONNECT — política da organização) |
+| `https://www.jornadafly.com.br/` | **000**, mesma causa |
+| `https://aquametria.com.br/` | 200 |
+| `https://robometria.com.br/` | 200 |
+
+**Não é o túnel, e é por isso que este despacho existe em vez de uma linha de "repetir depois".** A seção 20.2 manda repetir antes de chamar de bloqueio: foram quatro tentativas, duas em cada endereço da jornadafly, e **duas ilhas responderam 200 na mesma passada**. Falha em dois endereços com controle verde ao lado é rede, não intermitência.
+
+**A causa tem nome e está no contrato:** a 20.1 manda acrescentar `<ilha>.com.br` e `*.<ilha>.com.br` à lista "Domínios permitidos" dos ambientes de nuvem **no mesmo dia em que o domínio é comprado**. O domínio da jornadafly está pago desde **13/09/2026** e a ilha nasceu em **14/09**; o passo não foi feito. A **ohmetria** nasceu no mesmo dia e o domínio dela ainda nem foi registrado — quando for, cai no mesmo buraco se o passo não sair junto.
+
+**O que fazer:** em `claude.ai/code` → seletor de ambiente → Nuvem → engrenagem → "Domínios permitidos", acrescentar `jornadafly.com.br` e `*.jornadafly.com.br`. E, quando `ohmetria.com.br` for registrado, `ohmetria.com.br` e `*.ohmetria.com.br` no mesmo gesto.
+
+**Pronto quando:** de dentro de uma rotina, `curl -s -o /dev/null -w "%{http_code}" https://jornadafly.com.br/` devolver qualquer código HTTP de verdade — inclusive 404, que já prova que a conexão sai. **000 não é resposta do site: é o proxy recusando antes de chegar nele.**
+
+**O que isto bloqueia hoje, e o que NÃO bloqueia.** Não bloqueia os blocos 1, 2 e 3 da jornadafly — corpus de buscas, especificação e modelo do banco são arquivo no repositório e não tocam o site. O bloco 1 saiu hoje, com a rede já medida e registrada. **Bloqueia o 3b em diante**: casca no ar que a Fundação não consegue abrir é exatamente o que a 20.1 existe para impedir, e a ilha tem 0 URL publicada com o relógio do Google correndo desde 13/09.
+
 ## FECHADOS
 
 ### prioridade NORMAL — O CABEÇALHO DE ESTADO DE UMA ILHA PODE NÃO SER YAML VÁLIDO, E NADA MEDE ISSO
