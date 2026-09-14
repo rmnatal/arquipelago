@@ -25,7 +25,7 @@ Os nomes dos níveis são os do `VOZ.md` — é a pessoa que decide como a seç�
 
 Sem quarto nível. Fora da árvore ficam só a home, `/sobre/`, `/metodologia/`, `/divulgacao-de-afiliados/` e `/politica-de-privacidade/`.
 
-**`/politica-de-privacidade/` nasceu em 13/09/2026** e é a quinta e última página da família institucional que o 16.1 nomeia. Ela fica na raiz pelo mesmo veredito que pôs `/metodologia/` lá: o 16.1 lista essa família por nome, e página institucional não é filha de um assunto. Não tem mãe, não tem irmã e não entra em cluster nenhum — o que a tira de ser órfã pelo 16.4(f) é o **rodapé**, que a linka das 28 páginas do site.
+**`/politica-de-privacidade/` nasceu em 13/09/2026** e é a quinta e última página da família institucional que o 16.1 nomeia. Ela fica na raiz pelo mesmo veredito que pôs `/metodologia/` lá: o 16.1 lista essa família por nome, e página institucional não é filha de um assunto. Não tem mãe, não tem irmã e não entra em cluster nenhum — o que a tira de ser órfã pelo 16.4(f) é o **rodapé**, que a linka de **todas as páginas** do site (36 em 14/09/2026, pelo `urls_publicadas` do `ESTADO.md`). *(Dizia "das 28 páginas", contado antes das levas 4 e 5. Número de tela nasce contado, não digitado — este é digitado e vai envelhecer de novo. Corrigido pelo Pente Fino em 14/09/2026.)*
 
 ---
 

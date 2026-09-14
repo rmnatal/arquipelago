@@ -10,17 +10,20 @@ Rodada 3. As rodadas 1 e 2 falharam por falta de repositório e entregaram vazio
 `dados/consertos.md`, os 4 `PROMPT.md` (três ilhas + `_modelo`), os 3 `VOZ.md`, os 3 `DESIGN.md`,
 os 4 arquivos dos dois dossiês (`som-automotivo/` e `viagem-experiencia-icone/`, DOSSIE + VOZ).
 
-**Os 3 `ESTADO.md`:** cabeçalho YAML inteiro, passado por `yaml.safe_load` (os três parseiam) e conferido
-campo a campo contra a seção 2; corpo lido em varredura dirigida.
+**Os 3 `ESTADO.md` e os 3 `ARVORE.md`, inteiros:** cabeçalho YAML passado por `yaml.safe_load` (os três
+parseiam) e conferido campo a campo contra a seção 2, e o corpo lido linha a linha numa segunda varredura —
+519 + 511 + 377 linhas de `ESTADO.md` e 135 + 119 + 171 de `ARVORE.md`. Os `ARVORE.md` não estavam na lista
+de leitura da rotina e **deviam estar**: sozinhos deram 9 achados, e são lei de ilha como o `DESIGN.md`.
 
 **24 arquivos `ilhas/*/dados/*.json`** varridos por estrutura, e **10 bancos de produto medidos item a item**
 (133 registros) para os campos que a seção 25 exige. **Os 296 arquivos versionados** varridos por padrão de
 segredo. `git log --since="7 days ago"` usado para começar pelo que mudou na semana.
 
-**Achados: 4 GRAVE · 7 MÉDIO · 3 BAIXO = 14.** **Sete corrigidos** (seis MÉDIO + o GRAVE G3), **um resolvido
-pela própria Bússola durante a auditoria** (M7) e **seis com PRECISA DO RAPHAEL** (G1, G2, G4, a metade de G3
-que é o dossiê de viagem, os dois BAIXO de dossiê e fila, e o dado pessoal da artesã). Nenhum achado ficou
-"não verificado".
+**Achados: 30 no total** — 14 na primeira varredura (4 GRAVE · 7 MÉDIO · 3 BAIXO) e **16 na segunda**, que leu
+o corpo inteiro dos `ESTADO.md` e os três `ARVORE.md`. **16 corrigidos**, **1 resolvido pela própria Bússola
+durante a auditoria** (M7) e **13 registrados** — os quatro GRAVE, a metade de G3 que é o dossiê de viagem, e
+os sete da segunda varredura em que corrigir seria decidir. Um único item ficou com **"não verificado"**, e
+está nomeado como tal.
 
 > **Nota de ordem, e ela é achado por si só:** este Pente Fino deveria rodar **antes** da Bússola. Hoje não
 > rodou: a rodada 005 fechou às 14h10Z e uma segunda execução dela entrou às **14h22Z**, no meio desta
@@ -272,6 +275,74 @@ Bússola: enquanto ele copiar índice de fila, ele envelhece toda segunda de man
 
 ---
 
+## SEGUNDA VARREDURA — o corpo dos `ESTADO.md` e os três `ARVORE.md`
+
+A primeira passada leu os `ESTADO.md` só pelo cabeçalho. Uma segunda varredura leu o **corpo inteiro** dos
+três (519 + 511 + 377 linhas) e os três `ARVORE.md` (135 + 119 + 171), que não estavam na lista original e
+são lei de ilha do mesmo jeito. **Mais 16 achados; 9 corrigidos, 7 registrados.** Todos conferidos por mim
+na fonte antes de qualquer edição.
+
+### Corrigidos nesta segunda passada
+
+| # | onde | o que dizia | por que caiu |
+|---|---|---|---|
+| S1 | `aquametria/ESTADO.md`, "Stack e infra" | *"o container da nuvem **NÃO alcança o site** por HTTP — só GitHub"* | Mesma família de M1/M3. Falso desde 10/09, e contradito **pelo próprio cabeçalho deste arquivo, escrito hoje**: *"Rede pela 20.2 antes de trabalhar: home em 200 e `/status` na revisão 77, em UMA passada"*. Mantive o que continua verdadeiro: o egresso a **domínio de fabricante** segue fechado, que é outra coisa |
+| S2 | `aquametria/ESTADO.md` | *"Produto sem link **não entra** no bloco de produto — a regra **V15** do validador executa isso"* | Duas coisas erradas numa frase. `dados/esquema-produtos.json` **já tinha reescrito essa mesma frase em 13/09** — *"isso era falso desde a V16 … o que falta a ele não é presença, é PISO (25.2)"* — e a cópia no ESTADO ficou de pé. E a régua citada é a errada: a V15 confere se o campo `afiliado` está bem formado; quem manda é a **V16**, uma linha abaixo no próprio arquivo |
+| S3 | `aquametria/ARVORE.md` | *"o rodapé, que a linka **das 28 páginas** do site"* | A ilha tem **36** (`urls_publicadas`, e a própria árvore soma 36). Contado antes das levas 4 e 5 |
+| S4 | `clubedomosaico/ESTADO.md` | *"Cabeçalho e rodapé **pretos** com miolo branco"* | M4 de novo, em outro arquivo. E a cicatriz está escrita **140 linhas abaixo, no mesmo arquivo**: *"o logo sumiu em 1.1.0 porque o **cabeçalho era preto** e o wordmark dentro do arquivo é vinho `#69030C`"* |
+| S5 | `clubedomosaico/ESTADO.md` | *"a **linha 178** do `PROMPT.md` manda tratar queda em spam como bloqueio da ilha"* | A linha 178 trata de outro assunto; a regra do spam está na 205. **Número de linha envelhece a cada edição** — a referência passa a ser pela frase |
+| S6 | `clubedomosaico/ARVORE.md` (3 lugares) | *"peça publicada pela artesã, que hoje são **zero**"*, *"porque hoje **não há peça**"*, *"hoje **não existe peça nenhuma** — a artesã ainda não publicou a primeira"* | **Existe uma desde hoje:** "Quadro flores do campo", `dados/pecas.json` com `total: 1`, e o `ESTADO.md` registra *"A ILHA TEM A PRIMEIRA PEÇA DE VERDADE"*. Corrigi a premissa e **deixei a decisão aberta**: a escolha entre as duas saídas de URL continua de quem tiver o número, e acrescentar a linha da peça à tabela é do próximo bloco, porque o portão da casca cobra que toda linha dela exista no código |
+| S7 | `clubedomosaico/ARVORE.md`, tabela do Guia | "Colas **5 itens**" · "Pastilhas **0**" | Contados: **7** colas e **13** pastilhas. Tabela digitada, e vai envelhecer de novo — é o "número de tela nasce contado" da seção 8 aplicado a documento |
+| S8 | `clubedomosaico/ARVORE.md` | *"As **cinco** categorias do vocabulário sem um único item (`pastilha`, `alicate`, …)"* | São **quatro**; o `ESTADO.md` já dizia *"caíram de 5 para 4"* |
+| S9 | `clubedomosaico/ARVORE.md` | *"Fora da árvore ficam **só** a home, `/sobre/`, `/contato/`, `/divulgacao-de-afiliados/` e `/privacidade/`"* | A seção 3c do **mesmo arquivo** chama `/atelie/` de *"a segunda exceção"* e o põe fora da árvore pela camada `privada`. Cai o "só" |
+
+### Registrados, não corrigidos
+
+- **`executando_desde` da aquametria ficou preenchido depois do bloco fechar** — MÉDIO, **PRECISA DA
+  FUNDAÇÃO**. O cabeçalho diz `executando_desde: 2026-09-14T14:03Z` **e** `ultima_execucao: 14:05Z`, o que a
+  seção 1 passo 7 proíbe (ao terminar, limpe a reserva). O commit que fechou o bloco (`c088dde`, "LEVA 5 NO
+  AR — revisão 80 aplicada", 14h15Z) **não tocou o cabeçalho**. **Não limpei de propósito:** limpar reserva é
+  o passo 7 da Fundação, e se eu estiver errado sobre a execução ter terminado eu entrego ilha viva a uma
+  segunda execução — exatamente o dano que a 1.1 existe para impedir. É uma linha para a próxima execução.
+  *(Não verificado: se há execução realmente em curso.)*
+- **`aquametria/ARVORE.md` atribui à 16.1 a permanência de `/metodologia/` na raiz** — BAIXO, **PRECISA DO
+  RAPHAEL**. O trecho diz *"o 16.1 lista essa família por nome"*, e `/metodologia/` **não está** nessa lista
+  (home, sobre, contato, divulgação, privacidade) — a 21.7 diz o oposto com todas as letras: *"o que a
+  exceção NÃO cobre … qualquer outra página da raiz, `/metodologia/` **incluída**"*. A mesma lista troca
+  `/contato/` por `/metodologia/` e ainda chama a privacidade de "a quinta". **A colocação pode estar certa**
+  — a robometria resolveu o mesmo caso como **veredito da ilha**, não como lista da 16.1, e escreveu isso —;
+  o que não fecha é a atribuição. Corrigir a atribuição é escolher qual regra licencia a página, e isso é
+  decisão, não coerência.
+- **Logo do Clube do Mosaico: 52 px no `ESTADO.md`, no `VOZ.md` e no código; 64 px no `DESIGN.md`** (e barra
+  de 84 px contra ~96 px) — MÉDIO, **PRECISA DO RAPHAEL**. A contradição é inequívoca, **o lado a corrigir
+  não é**: pela 22.6 o `DESIGN.md` é o dono dos tokens e a casca deveria renderizar dele, mas quem está
+  sozinho é justamente ele. Ou o código sobe para 64/96, ou o `DESIGN.md` desce para 52/84 — e o próprio
+  registro de 11/09 já anotou que "52 px é pequeno para ler" e que subir para ~64 px **não é decisão da
+  Fundação**. É a mesma pergunta, ainda aberta.
+- **`robometria/ESTADO.md`: "o tipo `reservatório` tem zero peças no banco inteiro"** — BAIXO. O banco tem
+  **3**, e o `ARVORE.md` registra a terceira entrando em 13/09. É seção datada de 10/09 sem linha de
+  correção. Não corrigi: seção datada é registro histórico, e o conserto certo é a linha de atualização que
+  o `ARVORE.md` escreveu e o `ESTADO.md` não.
+- **`robometria/ESTADO.md` ainda lista como pendência aberta *"uma fonte está no nível 2 e a escada diz que o
+  nível 2 não existe … é bloco de dados para a Fundação"*** — BAIXO. O **mesmo arquivo**, com data posterior
+  (11/09), já responde: *"A regra do nível 2, **decidida**: não é nível 2, é nível 3"*. Mesma família do
+  anterior: falta a linha que fecha o item.
+- **`aquametria/ARVORE.md`: "37 registros" numa linha e "14 dos 36 registros" noutra** — BAIXO. O arquivo tem
+  37; o 36 é medição de 12/09. Não é erro, é **número sem data ao lado** — a 23.4 já decidiu como se escreve
+  isso, e vale para documento também.
+- **`aquametria/ARVORE.md`: "a Pauta entra na fila desta ilha antes de qualquer leva de malha nova"** —
+  BAIXO. As levas 4 e 5 saíram hoje sem pauta, `pauta.md` não existe em ilha nenhuma, e pela 17.1 quem a
+  escreve é uma rotina **no computador do Raphael** — a Fundação não pode produzi-la. O `PROMPT.md` põe a
+  Pauta antes **dos guias**, não da malha. Lido ao pé da letra, este trecho congela a malha da ilha à espera
+  de um arquivo que a nuvem não pode criar — é a família da 21 (regra boa lida ao pé da letra travando a
+  ilha). Provavelmente quis dizer "leva de `/guias/`", e por isso é proposta, não conserto.
+
+**Não houve achado em `robometria/ARVORE.md`** — as contagens fecham (4 + 14 = 18 URLs novas, 9 páginas) e o
+"de 2 a 4 irmãs" bate com o 16.4(c). É o único dos seis limpo, e vale dizer por quê: é o que mais escreve
+linha de correção datada em cima do próprio texto, em vez de deixar a frase velha de pé.
+
+---
+
 ## Pendências do Pente Fino anterior
 
 **Não há relatório de Pente Fino anterior no repositório.** As rodadas 1 e 2 não tinham o repositório
@@ -313,6 +384,15 @@ O caminho barato seria o e-mail virar option do site (`cdm_email_leads` já exis
    nome e data, e o arquivo que a causou fica intacto (M2 é o caso puro: a seção 4 cita o texto, o texto
    continua lá).
 5. **O portão que existe mede a forma, não o conteúdo** (M6: o YAML parseia sem os campos obrigatórios).
+6. **A segunda varredura confirmou os cinco pontos e acrescentou um sexto: o defeito viaja em CÓPIA.** A
+   mesma frase falsa mora em dois arquivos, alguém corrige um, e o outro continua servindo a versão velha —
+   S2 é o caso puro (o `esquema-produtos.json` reescreveu a frase em 13/09 nomeando que era falsa; a cópia no
+   `ESTADO.md` ficou intacta), e S4 e S1 são o mesmo movimento. **O contrato já proíbe isso para regra**
+   ("regra nova se escreve AQUI, uma vez — nunca copiada para dentro dos prompts das ilhas") e não proíbe
+   para **fato medido**, que é o que mais se copia.
+7. **Quem escreve linha de correção datada em cima do próprio texto não acumula dívida.** O
+   `robometria/ARVORE.md` é o único dos seis arquivos da segunda varredura sem nenhum achado, e é
+   justamente o que mais faz isso. Não é sorte: é o hábito.
 
 **A regra de processo que evitaria a próxima**, escrita para caber no `ARQUIPELAGO.md`. **Proposta, NÃO
 inserida** — é regra nova de política e a decisão é do Raphael:

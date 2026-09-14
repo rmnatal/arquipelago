@@ -24,7 +24,7 @@ Esta ilha nasce com vantagem sobre as duas primeiras: na Aquametria e na Robomet
 
 **Nível 3 — a pergunta, a ficha ou a peça**, com as palavras que a pessoa digita.
 
-Sem quarto nível. Fora da árvore ficam só a home, `/sobre/`, `/contato/`, `/divulgacao-de-afiliados/` e `/privacidade/` — exatamente a lista que a 16.1 admite na raiz.
+Sem quarto nível. Fora da árvore ficam a home, `/sobre/`, `/contato/`, `/divulgacao-de-afiliados/` e `/privacidade/` — exatamente a lista que a 16.1 admite na raiz — **e mais `/atelie/`, pela camada `privada` da seção 3c deste arquivo**. *(Esta linha dizia "ficam só" e contradizia a 3c, que chama o ateliê de "a segunda exceção". Corrigido pelo Pente Fino em 14/09/2026.)*
 
 ---
 
@@ -32,9 +32,9 @@ Sem quarto nível. Fora da árvore ficam só a home, `/sobre/`, `/contato/`, `/d
 
 | nível 2 | slug | banco hoje | existe |
 |---|---|---|---|
-| Colas e adesivos | `/materiais/colas-e-adesivos/` | 5 itens | não |
+| Colas e adesivos | `/materiais/colas-e-adesivos/` | 7 itens | não |
 | Rejuntes | `/materiais/rejuntes/` | 5 itens | não |
-| Pastilhas e tesselas | `/materiais/pastilhas/` | 0 | não |
+| Pastilhas e tesselas | `/materiais/pastilhas/` | 13 itens | não |
 | Alicates e corte | `/materiais/alicates-e-corte/` | 0 | não |
 | Bases | `/materiais/bases/` | 0 | não |
 | Acabamento | `/materiais/acabamento/` | 0 | não |
@@ -67,9 +67,9 @@ Nível 3 = a peça, com `Product` + `Offer`, preço real e prazo. Peça própria
 
 ### 3b. A PEÇA NASCE EM `/loja/<slug>/`, nível 2, e é estado de transição declarado (12/09/2026)
 
-O bloco 4d publicou o modelo, e a peça **não** nasceu em três níveis: ela nasce filha direta de `/loja/`, do mesmo jeito e pelo mesmo motivo que as duas ferramentas nasceram filhas diretas de `/materiais/`. A coleção de nível 2 (`vasos`, `colares`…) só pode nascer com três filhas de dado real — e "dado real" aqui é peça publicada pela artesã, que hoje são zero. **A mãe de hoje é a mãe que já tem endereço**, que é a regra que a seção 2 deste arquivo já tinha escrito para a F2.
+O bloco 4d publicou o modelo, e a peça **não** nasceu em três níveis: ela nasce filha direta de `/loja/`, do mesmo jeito e pelo mesmo motivo que as duas ferramentas nasceram filhas diretas de `/materiais/`. A coleção de nível 2 (`vasos`, `colares`…) só pode nascer com três filhas de dado real — e "dado real" aqui é peça publicada pela artesã, que hoje são **1** — "Quadro flores do campo", publicada por ela em 14/09/2026 (`dados/pecas.json`, `total: 1`). *(Dizia "zero". Corrigido pelo Pente Fino em 14/09/2026.)* Ainda faltam duas para o mínimo de três do 16.5, então nenhuma coleção nasce hoje. **A mãe de hoje é a mãe que já tem endereço**, que é a regra que a seção 2 deste arquivo já tinha escrito para a F2.
 
-O que isso custa e onde ele será pago: no dia em que uma coleção tiver três peças, mover `/loja/vaso-azul/` para `/loja/vasos/vaso-azul/` seria mexer em URL publicada, o que a 12.1 proíbe para página com impressão registrada. Então há duas saídas, e a escolha é da leitura que tiver número: ou a peça fica em dois níveis para sempre (e a coleção é uma página de listagem que aponta para as filhas sem ser mãe delas na URL), ou as peças que ainda não tiverem impressão nenhuma se movem com 301 na mesma passada em que a coleção nasce. **Nenhuma das duas se decide hoje**, porque hoje não há peça — e decidir sem peça é decidir sem o único dado que importa.
+O que isso custa e onde ele será pago: no dia em que uma coleção tiver três peças, mover `/loja/vaso-azul/` para `/loja/vasos/vaso-azul/` seria mexer em URL publicada, o que a 12.1 proíbe para página com impressão registrada. Então há duas saídas, e a escolha é da leitura que tiver número: ou a peça fica em dois níveis para sempre (e a coleção é uma página de listagem que aponta para as filhas sem ser mãe delas na URL), ou as peças que ainda não tiverem impressão nenhuma se movem com 301 na mesma passada em que a coleção nasce. **Nenhuma das duas se decide hoje** — mas o motivo MUDOU e quem ler isto precisa saber: a frase dizia "porque hoje não há peça", e **desde 14/09/2026 há uma**. O que ainda falta é a coleção chegar às três filhas do 16.5, e uma peça sem impressão registrada ainda pode se mover com 301. *(Premissa corrigida pelo Pente Fino em 14/09/2026; a escolha entre as duas saídas continua aberta e é de quem tiver o número.)*
 
 As **taxonomias existem, as páginas delas não.** `colecao` e `tecnica` são registradas desde 12/09 para o dado existir desde a primeira peça (é por elas que a peça se liga ao resto do site, e o formulário as cobra), mas com `public => false`: taxonomia pública nasce com arquivo próprio e entra no `wp-sitemap.xml`, e seriam de sete a doze URLs finas pedindo rastreamento num domínio de dois dias (14.1). O dia em que elas virarem página é o dia em que tiverem peça para listar.
 
@@ -113,7 +113,7 @@ Nível 3 = o tutorial, com a lista de materiais ligada ao Guia e o "prefere pron
 | `/privacidade/` | raiz | — | Início › Privacidade |
 | `/atelie/` | **fora da árvore** | — | nenhuma — camada `privada` (ver 3c) |
 
-**A peça NÃO está nesta tabela, e a ausência é literal:** o título dela diz "cada página que existe HOJE", e hoje não existe peça nenhuma — a artesã ainda não publicou a primeira. O molde do endereço está na seção 3b (`/loja/<slug>/`, nível 2, mãe `/loja/`), e ele entra aqui como linha de verdade no dia em que houver peça. Pôr o molde na tabela foi tentado e o portão da casca reprovou na hora, e com razão: ele cobra que **toda linha desta tabela exista no código**, e molde não é página. A trava é a mesma que impede o documento e o código de divergirem em silêncio — e ela funcionou contra quem a escreveu.
+**A peça NÃO está nesta tabela, e a ausência DEIXOU DE SER literal em 14/09/2026:** o título dela diz "cada página que existe HOJE", e desde 14/09 existe **uma** peça publicada pela artesã ("Quadro flores do campo", `/loja/quadro-flores-do-campo/`, conferida em 200 no ar). *(Esta linha dizia "hoje não existe peça nenhuma — a artesã ainda não publicou a primeira". Corrigido pelo Pente Fino em 14/09/2026; **acrescentar a linha da peça à tabela é do próximo bloco desta ilha**, não do Pente Fino, porque o portão da casca cobra que toda linha desta tabela exista no código e eu não meço o código no ar.)* O molde do endereço está na seção 3b (`/loja/<slug>/`, nível 2, mãe `/loja/`), e ele vira linha de verdade nesta tabela no próximo bloco que puder medir a página no código — a condição "no dia em que houver peça", que ficava aqui, **já foi cumprida**. Pôr o molde na tabela foi tentado e o portão da casca reprovou na hora, e com razão: ele cobra que **toda linha desta tabela exista no código**, e molde não é página. A trava é a mesma que impede o documento e o código de divergirem em silêncio — e ela funcionou contra quem a escreveu.
 
 **Nenhuma página mudou de endereço neste bloco, e nenhuma precisou mudar** — as três seções já eram nível 1, a única página de nível 2 já nascera com mãe em 1.2.0, e as quatro da raiz são as que a 16.1 admite ali. Por isso este bloco não tem 301 nenhum e o sitemap não muda: a árvore desta ilha estava certa na estrutura e faltava ficar **visível** (breadcrumb, schema, cluster), que é o que a 16.3 e a 16.4 pedem.
 
@@ -154,7 +154,7 @@ O segundo portão é o que decide, e ele é mais duro do que parece: **uma filha
 
 **O que destrava, na ordem, e nada disso é opinião:**
 
-- **Banco.** As cinco categorias do vocabulário sem um único item (`pastilha`, `alicate`, `base`, `acabamento`, `apoio`) não são fechadas por coleta nenhuma de cola ou de rejunte. E mesmo em cola, o teto de 2 elegíveis por estado diz que faltam produtos, não texto.
+- **Banco.** As **quatro** categorias do vocabulário sem um único item (`alicate`, `base`, `acabamento`, `apoio`) — *eram cinco; `pastilha` saiu da lista com 13 materiais no banco, como o `ESTADO.md` já registrava ("caíram de 5 para 4"). Corrigido pelo Pente Fino em 14/09/2026* — não são fechadas por coleta nenhuma de cola ou de rejunte. E mesmo em cola, o teto de 2 elegíveis por estado diz que faltam produtos, não texto.
 - **Só então as filhas de nível 3**, por cluster (16.6), começando pelo cluster cuja resposta termina em produto do banco (seção 9).
 - **Só então a mãe de nível 2**, que é o 4c.
 

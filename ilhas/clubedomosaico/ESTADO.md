@@ -114,8 +114,11 @@ Espelho legível do estado do projeto. **Nunca guarde credencial aqui.**
   `/wp-json/clubedomosaico/v1/atelie` (protegida pelo token do Sync) devolve o relato que
   o `init` gravou, com a hora em UTC e o que o `wp_mail` respondeu. Uma tentativa, sem
   erro. **O que `wp_mail` true significa e o que não significa:** o servidor aceitou a
-  mensagem. Ele **não** diz que ela passou do filtro de spam da Hotmail — e a linha 178 do
-  `PROMPT.md` manda tratar queda em spam como **bloqueio da ilha**, não como detalhe.
+  mensagem. Ele **não** diz que ela passou do filtro de spam da Hotmail — e o `PROMPT.md`
+  manda tratar queda em spam como **bloqueio da ilha**, não como detalhe (adendo 3, na linha que
+  começa por "Enviar por `wp_mail` com `From:`"). *(A citação era "a linha 178", que já apontava
+  para outro assunto: número de linha envelhece a cada edição do arquivo, então a referência passa
+  a ser pela frase. Corrigido pelo Pente Fino em 14/09/2026.)*
 
   **A senha dela não existe para a Fundação, e isso é desenho.** O snippet gera uma senha
   aleatória e a **descarta sem imprimir** em log, e-mail ou option; o que chega a ela é o
@@ -176,8 +179,11 @@ Espelho legível do estado do projeto. **Nunca guarde credencial aqui.**
   página com exatamente uma irmã. `teste-casca.php` foi de 198 para 327 afirmações.
 - 11/09/2026 — **Bloco 3b: a casca da ilha**, em `snippets/clubedomosaico-casca.php` v1.0.0
   (manifest na revisão 4, `publicar: true`, `ativo: true`). Oito páginas por shortcode: início,
-  loja, materiais, como-fazer, sobre, contato, divulgação de afiliados e privacidade. Cabeçalho e
-  rodapé pretos com miolo branco, menu sanfona acessível, favicon próprio embutido a partir do PNG
+  loja, materiais, como-fazer, sobre, contato, divulgação de afiliados e privacidade. ~~Cabeçalho e
+  rodapé pretos~~ **Cabeçalho CLARO e rodapé escuro** com miolo branco *(esta linha dizia "cabeçalho
+  e rodapé pretos", que é o mundo anterior a 11/09 e é exatamente a causa que a seção logo abaixo
+  deste arquivo nomeia: "o logo sumiu em 1.1.0 porque o cabeçalho era preto e o wordmark dentro do
+  arquivo é vinho #69030C". Corrigido pelo Pente Fino em 14/09/2026)*, menu sanfona acessível, favicon próprio embutido a partir do PNG
   entregue, JSON-LD Organization + WebSite. Vieram junto quatro ferramentas de bancada:
   `gerar-favicon.php`, `render-para-teste.php`, `teste-casca.php` (127 afirmações) e
   `teste-navegador-casca.mjs` (33 medições em Chromium).
