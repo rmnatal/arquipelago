@@ -185,6 +185,18 @@ A primeira é a que faz a fábrica crescer; a segunda só para de gastar execuç
 
 **O que isto bloqueia:** **nada trava por causa disso** — a F1 e a F2 nascem publicando na moeda que o operador cobra, que é a que não muda, e dizem isso ao leitor. O que se perde é **uma linha por resultado**, o valor em real, que é a moeda em que o leitor brasileiro pensa. É oportunidade, não plano (25.2).
 
+**ACRESCENTADO ÀS 20h00Z DE 14/09 PELA EXECUÇÃO DO BLOCO 2 DA OHMETRIA — o que estava escrito acima como "não é pedido ainda" VIROU pedido, e com número.** O item de 17h28Z registrou o egresso fechado para domínio de terceiro e disse, com todas as letras, que não pediria nada até a Fundação tentar o bloco que depende dele. O bloco 2 da ohmetria tentou e mediu: **8 das 18 constantes daquela ilha estão `pendente` SÓ por falta de leitura**, e a **F3 inteira** (bitola, fusível e queda de tensão) não pode nascer por isso. `sac.taramps.com.br` devolveu `EGRESS_BLOCKED` pelo **WebFetch** às 19h30Z — no bloco 1 quem havia recusado era o `curl`, em outro domínio, então **as duas portas estão medidas e as duas estão fechadas**.
+
+**E o pedido encolheu, o que o torna mais fácil de atender do que o item de 17h28Z sugeria.** Não é a lista dos cinco fabricantes de alto-falante: é **UM domínio**, `sac.taramps.com.br`, e ele sozinho promove **quatro** constantes de fabricante (o divisor de consumo musical, a regra de fusível, o critério de casamento de RMS e a razão entre potência musical e RMS) — todas com a URL exata já gravada em `ilhas/ohmetria/dados/constantes.json`, no bloco `pendencias_de_leitura`, com o que transcrever de cada documento.
+
+**E há um segundo ganho, medido por busca e NÃO conferido, que é o motivo de este domínio vir antes dos outros:** a busca devolveu, nesse mesmo SAC, páginas de **descrições técnicas em HTML por modelo de módulo** (TS 400X4, TL1500, MD1200.1, TS 1200X4 apareceram em resultado). Se elas forem o que parecem, a carga do lado **MÓDULO** do banco da ohmetria **não precisa de PDF nenhum** — o que muda a trava 1 do bloco 3 daquela ilha de "extração de PDF" para "leitura de página" exatamente na metade que sustenta a F1, que é a primeira ferramenta da ordem. Dito como hipótese porque a página não foi aberta.
+
+**O que fazer, no mesmo lugar dos dois itens acima:** acrescentar `sac.taramps.com.br` e `*.taramps.com.br` à lista "Domínios permitidos". É o fabricante que o `PROMPT.md` da ohmetria já nomeia como o único do nicho que publica **tabela de decisão pronta**, e não só ficha.
+
+**Pronto quando:** de dentro de uma rotina, `curl -s -o /dev/null -w "%{http_code}" https://sac.taramps.com.br/hc/pt-br/articles/28740499560212-Consumo-do-amplificador-12-volts` devolver qualquer código HTTP de verdade.
+
+**O que isto bloqueia hoje, e o que NÃO bloqueia.** Não bloqueia os blocos 3 e 4 da ohmetria na parte que importa: a **F1 tem uma metade que é aritmética pura** (`ilhas/ohmetria/ferramentas/impedancias.py`, 24 montagens enumeradas, 73 afirmações de régua própria) e publica sem constante nenhuma. **Bloqueia a F3 inteira** e bloqueia a promoção das 8 pendentes — inclusive a única que não é de rede: `queda-de-tensao-maxima-aceitavel` foi procurada e **não existe em fonte nenhuma** que a busca tenha alcançado, e sem ela a F3 calcula a queda e não pode dar veredito sobre ela.
+
 ## FECHADOS
 
 ### prioridade NORMAL — O CABEÇALHO DE ESTADO DE UMA ILHA PODE NÃO SER YAML VÁLIDO, E NADA MEDE ISSO
