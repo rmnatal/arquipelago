@@ -3929,7 +3929,7 @@ ainda nao existe — 0 escritos, 0 na fila, 0 recusados.
 
 **Bloco:** o DESPACHO DO RAPHAEL de 14/09 (o piso de busca), inteiro, mais os
 itens 1, 2 e 3 do DESPACHO DA SENTINELA de 14/09. Casca 1.6.2, R1 1.8.0, R2
-1.6.0, A1 1.3.0, A2 1.3.0, esquema do banco versão 7, manifest na revisão 40.
+1.6.0, A1 1.3.0, A2 1.3.0, esquema do banco versão 7, manifest na revisão 41.
 Nenhuma URL nova, nenhuma URL mudou, nenhum modelo ou peça entrou ou saiu do
 banco.
 
