@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 36
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
 ultima_execucao: 2026-09-14T15:52Z
-executando_desde: null
+executando_desde: 2026-09-14T21:18Z
 bloco_atual: |
   O PISO DE BUSCA CHEGA NA TELA — despacho do Raphael de 14/09 fechado INTEIRO numa execucao so (18.2), conferido no ar pela 18.4 (c3 1.6.0, c5 1.6.0, c12 1.4.0, c15 1.5.0, manifest revisao 84, /status conferido na 84 em UM disparo com 20 aplicados; NENHUMA URL nova, NENHUM produto entrou ou saiu do banco).
   A ESCOLHA DA ILHA: SEGUNDA TENTADA. Pela 18.1 duas ilhas tinham o MESMO despacho do Raphael de 14/09 aberto no topo do PROMPT.md, aberto as 14h59Z pelo commit que corrigiu a secao 7 — aquametria e robometria. Empate de destinatario e de data, entao valeu o desempate da secao 1: a robometria tinha ultima_execucao mais antiga (13h54Z contra 14h34Z) e meu push de reserva foi RECUSADO por cerca de um minuto, outra execucao a reservou as 15h17Z. Voltei ao passo 2 como manda o passo 5, sem force push, e peguei a aquametria. Nenhum branch claude e nenhum PR aberto para mesclar. Rede pela 20.2 antes de trabalhar: home em 200 e /status na revisao 82, igual a do manifest, em UMA passada.
