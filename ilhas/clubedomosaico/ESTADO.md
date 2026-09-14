@@ -3,27 +3,30 @@ ilha: clubedomosaico
 estado: nascendo
 prioridade: 1
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
-urls_publicadas: 11
+urls_publicadas: 12
 primeira_indexacao: desconhecida
-ultima_execucao: 2026-09-14T18:45Z
-executando_desde: 2026-09-14T21:50Z
+ultima_execucao: 2026-09-14T21:17Z
+executando_desde: null
 bloco_atual: |
-  DOIS BLOCOS NUMA EXECUCAO (mutirao da secao 13, cada um verificado inteiro antes do seguinte). NENHUMA URL nova, NENHUMA pagina criada, NENHUMA peca entrou ou saiu.
+  A PAGINA DO PICASSIETE NASCE E O DESPACHO DO RAPHAEL DE 14/09 FECHA (casca 1.11.0, tecnicas 1.0.0, manifest revisao 34, /status conferido na 34 em UM disparo com 12 aplicados). UMA URL nova: /como-fazer/o-que-e-mosaico-picassiete/, a primeira filha da Escola. Nenhuma peca entrou ou saiu. Dois blocos numa execucao, pelo mutirao da secao 13, o primeiro verificado inteiro antes do segundo.
 
-  BLOCO A — A FAMILIA DAS TECNICAS: endereco decidido, e ela NAO nasce hoje (ARVORE.md secao 4b). O despacho do Raphael de 14/09 pediu a pagina '/tecnicas/Picassiete/'; o endereco NAO e a raiz, porque a 16.1 proibe pagina solta la desde 11/09 — o corpus desta ilha, de 10/09, contradizia o contrato desde o dia seguinte e ninguem viu porque a pagina nunca foi criada. A mae e '/como-fazer/' e a tecnica nasce filha DIRETA dela, terceira aplicacao da regra 'a mae de hoje e a mae que ja tem endereco'. NAO NASCE por tres portoes medidos: 0 de 3 itens de banco em 5 de 5 tecnicas; nenhuma filha para a 16.5; e a serie de indexacao com UMA linha so, de 10/09, de antes de o WordPress existir — nenhum numero autoriza leva nova nesta ilha hoje.
-  O ACHADO DO BLOCO A: as duas unicas tecnicas com lado de material declarado por fonte (trencadis e picassiete) apontam para caco de azulejo e caco de louca, que nao tem fabricante; 'caco_louca' nem e valor possivel de tipo de pastilha no vocabulario. A distancia entre a tecnica e o banco desta ilha e a distancia entre o caco e o produto — e o caminho mais curto e ligar tecnica a COLA e REJUNTE, onde ha 12 itens e uma ferramenta que ja decide.
-  ENTREGUE NO LUGAR DA PAGINA: dados/tecnicas.json, o banco da entidade TECNICA que o esquema previu em 12/09 e nunca nasceu. Cinco tecnicas com definicao sustentada por fonte de enciclopedia, museu ou instituicao de ensino, consulta-alvo, SERP lida em 14/09 com os dominios nomeados, e revisao_tecnica pendente — a revisora existe e e a artesa. AS 10 FONTES FORAM COLHIDAS POR BUSCA E NENHUMA FOI ABERTA (o egresso barra wikipedia, britannica e google), e cada uma declara isso no campo leitura.
-  A regua de TECNICA do validar-banco estava escrita desde 12/09 e NUNCA TINHA RODADO — verde por ausencia do arquivo que ela media. Passou a cobrar fonte que existe, origem dentro do que o esquema aceita, motivo ao lado de campo vazio, numero so com fonte, e o portao da familia. mutacoes-tecnicas.py: 14 de 14 decididas certo, com os DOIS lados da fronteira (13 reprovam, 1 tem de PASSAR).
+  A ESCOLHA DA ILHA: SEGUNDA TENTADA. Os cinco ESTADO.md parseiam e os cinco tinham executando_desde null, que pela 1.1 ja significa que nao ha bloco da Fundacao vivo. Pela 18.1, TRES ilhas tinham despacho aberto do Raphael de 14/09 (clubedomosaico, ohmetria e jornadafly), empate de data, e a rotacao da secao 1 desempatou: clubedomosaico com ultima_execucao 18h45Z, a mais antiga das tres. O primeiro push de reserva foi RECUSADO, mas NAO porque alguem pegou esta ilha: outra execucao reservou a aquametria as 21h18Z e o main andou. Voltei ao passo 2 sem force push e a reserva foi aceita. Nenhum branch claude e nenhum PR aberto para mesclar. Rede pela 20.2: home 200 e /status na revisao 33, igual a do manifest, em TRES passadas.
 
-  BLOCO B — A FRASE PROIBIDA SAI DA ILHA (casca 1.10.1, f2 1.5.0, manifest revisao 33, /status conferido na 33). A secao 7 proibiu 'link de loja em breve' em 14/09 e esta ilha ainda a servia em 15 dos 25 itens, nos cartoes da F2 e na vitrine de pastilha da F1. O QUE FALTAVA NAO ERA DECISAO: dois dos 15 ja tinham a palavra-chave escrita no banco desde 13/09 e nenhuma linha de codigo a lia. A escada ganhou o degrau 4 — a busca CRUA vira o botao, com rel nofollow e NUNCA sponsored, porque nao rende comissao.
-  UMA PALAVRA-CHAVE ESTAVA ERRADA E MANDAVA PARA OUTRA ILHA: o Silicone Maxx buscava 'silicone maxx tekbond aquario', com o nicho da Aquametria dentro, copiado de la.
-  itens_sem_piso MORREU: contava quem nao tinha o link ENCURTADO e chamava isso de sem piso. Viraram duas contas — itens_sem_saida_de_compra, que agora e ERRO DURO do validador e esta em 0, e itens_com_piso_nao_rastreavel, divida de comissao, em 15. A pagina de divulgacao passou a dizer ao leitor qual link rende comissao e qual nao rende.
-  A PURGA SO VALE A PARTIR DO SEGUNDO SYNC, e isso foi medido minuto a minuto: a casca que contem a purga faz parte da carga entregue, entao no Sync que a instala o PHP carregado e o anterior. As 18h29 a revisao 32 aplicou com a 1.9.2 na memoria e o canonico ficou para tras — a home servindo uma entrada de 13h53Z, do bloco ANTERIOR, velha havia cinco horas sem ninguem ver. As 18h34 um segundo Sync; minutos depois as onze URLs serviam o bloco novo. Duas camadas, nomeadas pelos cabecalhos: x-server-cache e x-proxy-cache, nginx, max-age 7200. Fecha o despacho ALTA do cache para esta ilha; falta a aquametria.
-  DUAS REGUAS TINHAM PARADO DE MEDIR SEM FICAR VERMELHAS: uma mutacao da f2 procurava a classe da etiqueta proibida, que deixou de ser emitida — editava NADA e passava; e a soma dos degraus emitidos sobreviveu a mudanca dando o MESMO numero por outra composicao (0+2+1 no lugar de 1+1+1). As duas foram partidas por degrau.
+  BLOCO A — O PORTAO DA FAMILIA DAS TECNICAS CONTAVA A CATEGORIA QUE A PAGINA NAO RECOMENDA, e por isso lia ZERO com cinco itens atras dele. Ele contava so TESSELA: quantos produtos da categoria pastilha o banco tem com o tipo que a tecnica cita. As duas unicas tecnicas com material declarado apontam para caco de azulejo e caco de louca, e caco de prato NAO TEM FABRICANTE — o portao leria zero para sempre, por mais coleta que acontecesse. So que a pagina de uma tecnica nao recomenda caquinho: ela responde COM O QUE COLAR o caquinho, que e o eixo desta ilha e e produto com fabricante, declaracao datada e link.
+  A conta passou a ser as pastilhas da tessela declarada MAIS as colas que o fabricante declara elegiveis para ela, medida pela regua da F2 que ja existia no validar-banco. Trencadis 5, Picassiete 5, e direto, indireto e bizantino seguem em ZERO, cada um com o motivo escrito — regua que abre tudo nao mede nada.
+  AS DUAS METADES DA MESMA SECAO DISCORDAVAM, E QUEM DECIDIA ERA A QUE TINHA NUMERO: o item 6 da ARVORE 4b ja dizia, desde as 18h45Z, que o caminho era ligar a tecnica a cola; o item 3 da MESMA secao contava caco. E a familia da V24 da aquametria, consertada poucas horas antes no mesmo dia — regua amarrada a um campo que o caso certo nunca preenche reprova o mundo inteiro e parece rigor.
+  NASCEU tecnica-x-material.py, que deriva o arquivo IMPORTANDO a conta do validar-banco em vez de reescreve-la, e mutacoes-tecnica-x-material.py, que afirma o NUMERO e nao o veredito — porque a mutacao mais perigosa desta familia e a que INFLA a conta e fica verde por ter aberto. 9 mutacoes, 9 certas. UMA EXPECTATIVA MINHA ESTAVA ERRADA e a bancada corrigiu: previ 5 colas e 2 estados onde eram 4 e 6. Ficou registrada no arquivo, porque e o proprio argumento a favor de afirmar numero em vez de veredito.
+  OS OUTROS DOIS PORTOES TAMBEM DECIDIAM ERRADO. A 16.5 nao se aplica a uma pagina que nasce filha DIRETA de /como-fazer/. E 'nenhum numero autoriza leva nova' e o OPOSTO do que a secao 21.1 manda para ilha abaixo do piso — esta tem 11 URLs e piso abaixo escrito no cabecalho. Virou a 21.8 do contrato: e a SEGUNDA ilha a ler a 21 ao contrario, depois da aquametria em 12/09, e a armadilha e que 'a serie nao autoriza' e 'a serie proibe' nao sao a mesma frase.
 
-  VERIFICACAO, 0 falha. BANCADA: teste-casca 549, teste-f2 111, teste-f1 195, teste-loja 178, teste-atelie, teste-leads 211, teste-prestacao-rejunte 5 sobre 540 e 180 estados, conferir-cobertura 353, validar-banco aprovado com 25 materiais e a contagem nova por tecnica, validar-pastilhas 189, php -l limpo. MUTACOES: f1 46 de 46, f2 50 de 50 (tres novas), rejunte 16 de 16, tecnicas 14 de 14, pastilhas 14 de 14, cobertura 14 de 14, prestacao 11 de 11. NO AR: conferir-no-ar 450 afirmacoes (eram 437), 0 falha; as 11 URLs em 200 e ZERO ocorrencia da frase proibida.
+  BLOCO B — A PAGINA. /como-fazer/o-que-e-mosaico-picassiete/, nivel 3 com mae de nivel 1 direto, o mesmo estado de transicao das duas ferramentas. NAO e /tecnicas/Picassiete/ como o despacho pediu, e a 16.1 proibe pagina solta na raiz desde 11/09.
+  ELA NAO DECIDE NADA: quem escolhe a cola e cdm_f2_celula_cola, chamada para o caquinho de louca. 45 celulas de 9 superficies por 5 lugares, servidas no HTML e recalculadas a cada requisicao, sem uma segunda copia da decisao. Texto, definicao e fontes saem do banco, que passou a publicar.
+  A PRESTACAO DE CONTAS FECHA COM O BANCO: das 7 colas, 5 entram na vitrine e as 2 que ficam de fora sao nomeadas com TODAS as causas que o calculo separou. Isso foi conserto dentro do proprio bloco: a primeira versao escrevia so o balde maior, e o Durepoxi cai por silencio em 25 celulas E entra com ressalva em 20 — dizer so o silencio seria afirmar algo falso em 20 delas.
+  E ELA SE RECUSA A RESPONDER O REJUNTE, com a causa medida: ele se decide pela largura da junta em milimetro e nenhuma fonte colhida sobre Picassiete declara essa folga. Onze das 45 celulas dizem, com todas as letras, que nao ha cola que o fabricante sustente.
+  A CASCA SUBIU PARA 1.11.0 POR UM MOTIVO DE MALHA, nao de vitrine: com um link so, vindo da mae, a pagina nasceria ORFA pela 16.4-f e o portao pegou isso. A Escola e a home passaram a listar as tecnicas em bloco proprio, separado dos tutoriais — tecnica e 'o que e isso', tutorial e 'como se faz', e junta-las faria a Escola prometer um passo a passo que a pagina nao entrega.
+  O BANCO DE TECNICAS GANHOU ACENTOS, e isso so virou defeito no dia em que uma PAGINA passou a servi-lo: 'louca', 'xicara', 'monumento historico'. Vieram junto as aspas tipograficas, porque aspa reta vira entidade e o filtro do WordPress a escapa de novo, servindo a entidade crua na tela. A troca tem prova: reduzido a sem-diacritico, o arquivo e identico fora de 10 frases do campo leitura, reescritas de proposito e declaradas uma a uma.
 
-  ABERTO E NOMEADO: (a) a familia das tecnicas espera o lado do material — bloco que liga tecnica a cola e rejunte; (b) 1x1 de fabricante, 7 das 12 linhas da tabela da F1; (c) a categoria COLA, 45 estados e 0 com o minimo da 14.3; (d) os 15 url_busca encurtados dependem de UMA sessao do painel da Shopee (25.6) — o piso ja esta na tela sem eles; (e) a metade humana da galeria da artesa; (f) o egresso a fabricante segue fechado; (g) contato@clubedomosaico.com.br ainda nao existe como caixa; (h) a divida METODO x ESTILO do campo tecnica, mandada NAO mexer agora, agora com fonte registrada em dados/tecnicas.json; (i) pauta.md da secao 17 ainda nao existe.
+  VERIFICACAO, 0 falha. BANCADA: teste-tecnicas 52 afirmacoes com o esperado das 45 celulas vindo de cobertura.json (a regua em Python — duas metades independentes, em linguagens diferentes), teste-casca 549, teste-f2 111, teste-f1, teste-loja, teste-atelie, teste-leads, teste-prestacao-rejunte, validar-banco, validar-pastilhas, cobertura --conferir, tecnica-x-material --conferir, php -l limpo nos sete snippets. MUTACOES: 9 da pagina, 9 da conta e as 14 do banco de tecnicas, todas decididas certo. NO AR: conferir-tecnica-no-ar.py, 23 afirmacoes sobre o HTML SERVIDO, incluindo o endereco canonico comparado com o mesmo endereco sem cache nos marcadores deste bloco — a trava do cache do hospedeiro, que o /status nao enxerga.
+  UMA SECAO DO TESTE FOI APAGADA PELO PROPRIO AUTOR: a primeira versao do teste-tecnicas tinha uma secao 8 que imprimia ok sem medir nada. Ela virou a nona mutacao da pagina, que produz o mundo sem banco e exige a pagina HONESTA — dizendo que nao mediu e sem servir a grade.
 ultima_ronda: 2026-09-12T14:43Z
 bloqueada_por: null
 ---
@@ -71,6 +74,32 @@ Espelho legível do estado do projeto. **Nunca guarde credencial aqui.**
   11/09/2026. Agora os números da tela vêm do banco servido, não do instantâneo digitado.
 
 ## O que já foi entregue
+- 14/09/2026 21h17Z — **A ESCOLA GANHA A PRIMEIRA FILHA, E O DESPACHO DO RAPHAEL DE
+  14/09 FECHA INTEIRO.** Casca **1.11.0**, snippet novo `clubedomosaico-tecnicas`
+  **1.0.0**, manifest na revisão **34**, `/status` com revisão 34 em UM disparo
+  com 12 aplicados. **Uma URL nova:** `/como-fazer/o-que-e-mosaico-picassiete/` —
+  a ilha vai de 11 para **12** URLs publicadas, e 12 estão no sitemap (11 páginas
+  mais a peça; `/atelie/` e `/materiais/como-sabemos/` seguem `noindex` e fora).
+  **O endereço não é o que o despacho pediu**, e a diferença tem regra: a 16.1
+  proíbe página solta na raiz, e o slug é a consulta que a pessoa digita.
+  **O QUE DUAS EXECUÇÕES TINHAM DADO COMO IMPOSSÍVEL ERA ERRO DE LEITURA DE RÉGUA,
+  não falta de dado.** Os três portões que elas mediram decidiam errado: um
+  contava caco de prato — que não tem fabricante — quando o que a página
+  recomenda é a **cola** do caco, e são cinco; outro cobrava a 16.5 de uma página
+  que nasce filha direta; o terceiro dizia que nenhum número autoriza leva nova,
+  o oposto do que a 21.1 manda para ilha abaixo do piso. Esse virou a **21.8** do
+  contrato, porque é a segunda ilha a lê-lo ao contrário.
+  **A página não decide nada:** quem escolhe a cola é a régua da F2, chamada para
+  o caquinho de louça — 45 células servidas no HTML e recalculadas a cada
+  requisição. Onze delas dizem que não há cola que o fabricante sustente, e a
+  página **se recusa** a responder o rejunte, com a causa medida.
+  **Duas dívidas de texto do banco viraram defeito no ar e foram pagas no mesmo
+  bloco:** o banco de técnicas estava sem acento (era lido só por ferramenta até
+  hoje) e com aspa reta, que o filtro do WordPress escapa duas vezes e serve como
+  entidade na tela. A troca dos acentos tem prova de que foi só de diacrítico.
+  **O que só uma pessoa mede:** se a tabela de 9 × 5 se lê bem num telefone. A
+  Fundação mediu o HTML servido, a rolagem horizontal declarada e os cabeçalhos
+  de linha e coluna; **ninguém tocou a tela.**
 - 14/09/2026 11h18Z — **O DESPACHO DO RAPHAEL DE 14/09 SAIU INTEIRO, MENOS UMA COISA QUE
   NÃO É CONSERTO.** Ateliê **1.3.0**, loja **1.2.0**, casca **1.9.2**, manifest na revisão **30**, `/status`
   com revisão 30. **Nenhuma URL nova, nenhuma página criada.**

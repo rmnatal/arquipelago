@@ -235,6 +235,13 @@ Nada mais nesta ronda.
 
 **Leia a seção 14 do `ARQUIPELAGO.md` antes de montar a fila: tudo existe para indexar e chegar à primeira página.** A ordem abaixo já aplica a regra de intenção de compra (seção 9): fichas de material e peças antes de tutorial genérico.
 
+### O QUE ESTÁ DESBLOQUEADO AGORA, em 14/09/2026 às 21h17Z — leia antes de escolher bloco
+
+1. **A SEGUNDA PÁGINA DE TÉCNICA: o trencadís.** É a que está mais perto de tudo, e não sobrou nenhum portão: ela reúne **5 itens de banco** pelo mesmo caminho do Picassiete (`dados/tecnica-x-material.json` conta), a SERP dela está classificada como ABERTA desde 14/09, e a máquina inteira já existe — o snippet `clubedomosaico-tecnicas.php` recebe o segundo slug, a casca já lista, o `teste-tecnicas.php` e o `conferir-tecnica-no-ar.py` já medem. **Atenção a uma coisa que o Picassiete não tinha:** o trencadís declara DUAS tesselas (`caco_azulejo` e `caco_louca`) e a página de hoje resolve a primeira — quem escrever decide se serve duas grades ou uma, e diz qual na tela. O teto da 21.4 (10 URLs por leva, 3 levas por semana) está longe: esta leva teve **uma**.
+2. **AS TRÊS TÉCNICAS QUE SEGUEM EM ZERO** (direto, indireto, bizantino) **não são trabalho de texto, e sim de FONTE.** Cada uma tem o `motivo_sem_materiais` escrito dizendo por que não declara material. O bizantino é o de maior valor de indexação da ilha e o mais distante; o indireto tem uma faixa de banco descoberta com nome próprio: **a cola hidrossolúvel que o método exige não existe nos 7 itens do banco de colas.**
+3. **A COLETA DAS QUATRO CATEGORIAS VAZIAS** (`alicate`, `base`, `acabamento`, `apoio`) continua sendo o que destrava o bloco **4c**, e nenhuma coleta de cola ou de rejunte a fecha. Está medido em `dados/cobertura.json` e explicado na seção 7b do `ARVORE.md`. O canal de busca alcança; o egresso direto aos domínios de fabricante, não.
+4. **A LINHA DA PEÇA NA TABELA DO `ARVORE.md`** — seção 5 daquele arquivo diz exatamente o que falta, e é conserto de TESTE, não de documento.
+
 **1. CORPUS DE BUSCAS.** `dados/corpus-buscas.md` com os três clusters (materiais/ferramentas · peças prontas · aprender), faixa, concorrência, CPC e a classificação de SERP por consulta (aberta / tomada / armadilha). A base já está na memória; complete com autocomplete e buscas relacionadas. Não depende de infraestrutura.
 
 **2. ESPECIFICAÇÃO DAS DUAS FERRAMENTAS.** `dados/especificacao-calculadoras.md` + `dados/constantes.json`:
@@ -309,7 +316,7 @@ Antes de dar por pronto: entre em `/atelie/` como `artesa`, **numa janela de 360
 A hora do envio do e-mail para `mina196@hotmail.com`, o que dos cinco itens saiu, o que ficou de fora, e **uma frase que o Raphael possa ler no domingo de manhã dizendo se ele pode ou não ensinar a mãe hoje**. Se não deu, diga que não deu — ele prefere saber antes de chegar lá do que descobrir na frente dela.
 
 ## DESPACHO DO RAPHAEL — 14/09/2026 — A ARTESÃ USOU O ATELIÊ, E ACHOU QUATRO COISAS
-### REESCRITO PELA 18.3 NA EXECUÇÃO DAS 11h18Z: OS QUATRO ITENS SAÍRAM; SOBRA UMA COISA, E ELA NÃO É CONSERTO
+### FECHADO ÀS 21h17Z DE 14/09/2026 — os quatro itens saíram às 11h18Z e a página do Picassiete, que era o que sobrava, foi ao ar e foi conferida
 
 **A mãe do Raphael recebeu o e-mail, criou a senha, entrou e cadastrou a primeira
 peça do Arquipélago** — "Quadro flores do campo", quatro fotos, R$ 500, pronta
@@ -342,16 +349,44 @@ execução. **Um resumo de uma linha por item, e só para não voltarem a eles:*
    biblioteca, zero busca em JavaScript, tudo sobre o HTML já servido. Os tokens
    nasceram no `DESIGN.md` antes do código, como a 22.6 manda.
 
-**O QUE FICA ABERTO DESTE DESPACHO, e é UMA coisa só:**
+**O QUINTO ITEM — a página do Picassiete — SAIU ÀS 21h17Z DE 14/09/2026, e o
+despacho está FECHADO.** Conferido pela 18.4, abrindo a URL no ar e não o
+repositório: `https://clubedomosaico.com.br/como-fazer/o-que-e-mosaico-picassiete/`
+responde 200, manifest na revisão 34, `/status` na 34 em UM disparo com 12
+aplicados, e `ferramentas/conferir-tecnica-no-ar.py` aprova com 23 afirmações
+sobre o HTML servido — inclusive a comparação do endereço canônico com o mesmo
+endereço sem cache, que é a trava do cache do hospedeiro.
 
-- **A página `/tecnicas/Picassiete/` não nasceu, e isso não é esquecimento.**
-  **Nenhuma** técnica desta ilha tem página: as duas taxonomias são registradas
-  `public => false` por decisão medida de orçamento de rastreamento (decisão 4 do
-  snippet da Loja, 12/09) — taxonomia pública nasce com arquivo próprio e põe de
-  sete a doze URLs finas no `wp-sitemap.xml`. Criar a do Picassiete sozinha seria
-  abrir a família inteira por uma porta lateral, e isso é **bloco de malha com o
-  orçamento de rastreamento na mesa**, não item de conserto. Entrou na fila como o
-  próximo item, e agora há peça publicada para a página linkar.
+**O ENDEREÇO NÃO É O QUE O DESPACHO PEDIU, e a diferença tem regra por trás.**
+Você escreveu `/tecnicas/Picassiete/`; a página nasceu em
+`/como-fazer/o-que-e-mosaico-picassiete/`. Dois motivos, nenhum de gosto: a
+seção 16.1 do contrato proíbe página solta na raiz desde 11/09 (só home, sobre,
+contato, divulgação de afiliados e privacidade moram lá), e o slug é a **consulta
+que a pessoa digita** — é assim que as duas ferramentas desta ilha já vivem. A
+categoria `/como-fazer/tecnicas/` só nasce com três filhas (16.5) e mover a URL
+depois de a página posicionar é proibido pela 12.1, então o endereço de hoje
+pendura na mãe que já existe. Está tudo na `ARVORE.md`, seção 4b.
+
+**E O QUE DUAS EXECUÇÕES TINHAM DADO COMO IMPOSSÍVEL ERA ERRO DE LEITURA, NÃO
+FALTA DE DADO.** As execuções de 11h18Z e 18h45Z de 14/09 responderam que a
+página não podia nascer, cada uma com número na mão, e os **três** portões que
+elas mediram decidiam errado: um contava caco de prato (que não tem fabricante)
+quando o que a página recomenda é a **cola** do caco — são cinco, com link e
+declaração datada; outro cobrava a 16.5 de uma página que nasce filha direta; e
+o terceiro dizia que "nenhum número autoriza leva nova", que é o **oposto** do
+que a seção 21.1 manda para ilha abaixo do piso. Esse terceiro virou regra nova
+do Arquipélago (21.8), porque é a segunda ilha a lê-lo ao contrário.
+
+**O que a página entrega, e é o que faltava na fila da Escola:** a resposta de
+"com o que colar caquinho de louça" nas 45 combinações de superfície e lugar,
+servida no HTML e recalculada da declaração dos fabricantes a cada
+carregamento — 11 delas dizendo, com todas as letras, que não há resposta. E ela
+se **recusa** a responder o rejunte, dizendo a causa que mediu.
+
+**A taxonomia `tecnica` continua `public => false`**, e agora por uma razão que
+não é mais o portão de dado: é o orçamento de rastreamento (decisão 4 do snippet
+da Loja, 12/09). A página da técnica não é o arquivo da taxonomia — é página de
+conteúdo, escrita e medida uma a uma.
 
 **E O QUE SÓ UMA PESSOA PODE MEDIR, que fica escrito como o que falta e nunca como
 conferido:** o **dedo dela na galeria nova**, num telefone. A Fundação mediu o HTML

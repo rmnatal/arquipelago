@@ -3686,3 +3686,184 @@ incluindo a ordem das duas vitrines medida em tres estados servidos.
   F1; (3) a categoria COLA, 45 estados varridos e 0 com o mínimo da 14.3; (4) os 15
   `url_busca` encurtados, no minuto em que houver sessão do painel da Shopee — o
   piso já está na tela sem eles.
+
+---
+
+## 14/09/2026, 21h17Z — A PÁGINA DO PICASSIETE NASCE, e o que a impedia eram TRÊS RÉGUAS MAL LIDAS
+
+**Ilha escolhida pela 18.1, segunda tentada.** Os cinco `ESTADO.md` parseavam em
+`yaml.safe_load` e os cinco tinham `executando_desde: null`, que pela 1.1 já
+significa que não há bloco da Fundação vivo — não houve reserva vencida para o
+git desempatar. Três ilhas tinham despacho aberto do Raphael de 14/09
+(clubedomosaico, ohmetria e jornadafly), empate de data, e a rotação da seção 1
+desempatou: clubedomosaico com `ultima_execucao` 18h45Z, a mais antiga das três.
+O primeiro push da reserva foi **recusado**, e não porque alguém pegou esta ilha:
+outra execução reservou a aquametria às 21h18Z e o `main` andou. Voltei ao passo
+2 sem force push, confirmei que a clubedomosaico seguia livre, e a reserva
+passou. Rede pela 20.2, retestada e não herdada: home 200 e `/status` na revisão
+33 — igual à do manifest — em três passadas.
+
+### BLOCO A — o portão contava uma categoria que a página não recomenda
+
+O despacho do Raphael de 14/09 tinha um item aberto: a página do Picassiete. Duas
+execuções daquele dia responderam que ela não podia nascer, e a segunda delas
+escreveu **três portões medidos** na `ARVORE.md` seção 4b. Os três decidiam
+errado, e nenhum dos três erros era de dado — eram de leitura de régua:
+
+**1. O portão de 3 itens de banco da seção 9 contava só TESSELA.** Ele perguntava
+quantos produtos da categoria `pastilha` o banco tem com o tipo que a técnica
+cita. As duas únicas técnicas com material declarado por fonte — trencadís e
+Picassiete — apontam para `caco_azulejo` e `caco_louca`, e **caco de prato e de
+azulejo não têm fabricante e nunca terão ficha de produto nesta ilha**. O portão
+lia zero, e leria zero para sempre, por mais coleta que acontecesse.
+
+Só que **a página de uma técnica não recomenda caquinho**. Ela responde *o que
+comprar para colar aquele caquinho*, que é o eixo desta ilha escrito no
+`PROMPT.md` — e isso é produto com fabricante, declaração datada e link de
+afiliado. O item 6 da mesma seção 4b já dizia isso com todas as letras ("o
+caminho mais curto não é catalogar caco: é ligar a técnica à cola e ao rejunte"),
+enquanto o item 3 contava caco. **As duas metades da mesma seção discordavam, e
+quem decidia era a que tinha número.**
+
+É a mesma família da V24 da Aquametria, consertada poucas horas antes no mesmo
+dia: uma régua que amarra o portão a um campo que o caso certo nunca preenche
+reprova o mundo inteiro e **parece rigor**.
+
+A conta passou a ser, escrita uma vez só, em `itens_de_banco_da_tecnica()` do
+`validar-banco.py`: as pastilhas do banco cujo tipo é a tessela que a técnica
+declara, **mais** as colas que o fabricante declara elegíveis para aquela tessela
+em algum par base × ambiente do vocabulário. Resultado medido: trencadís **5**,
+Picassiete **5**, e direto, indireto e bizantino seguem em **zero**, cada um com
+o `motivo_sem_materiais` escrito dizendo por que não declara material. **Régua que
+abre para todo mundo não mede nada** — é por isso que três das cinco continuam
+fechadas, e é isso que separa conserto de porta dos fundos.
+
+Três coisas ficaram deliberadamente fora da conta, e estão escritas no código:
+menção com ressalva (fonte fraca demais para virar recomendação), o rejunte (a
+régua dele decide por junta em milímetro e não olha a tessela; as cinco técnicas
+têm `junta_tipica_mm` null) e qualquer comparação por texto.
+
+**O que nasceu:** `ferramentas/tecnica-x-material.py`, que deriva
+`dados/tecnica-x-material.json` **importando** a conta do validador em vez de
+reescrevê-la — uma conta, dois leitores —, e
+`ferramentas/mutacoes-tecnica-x-material.py`, com 9 mutações. Ela afirma o
+**número**, não o veredito, e a razão é a mutação mais perigosa desta família: a
+que **infla** a conta, faz o portão abrir mais cedo e continua verde porque
+"abriu". Duas mutações inflam de propósito (contar ressalva; varrer todas as
+tesselas em vez das declaradas) e são pegas pelo número.
+
+**Uma expectativa minha estava errada e a bancada me corrigiu.** Na mutação que
+encolhe a varredura para uma base só, previ que a união de colas ficaria em 5 e
+os estados com o mínimo cairiam para 2 e 1; a medição devolveu 4, 6 e 3, e ela
+estava certa. Ficou registrada dentro do arquivo, porque é o próprio argumento a
+favor de afirmar número em vez de veredito: uma bateria que só perguntasse
+"abriu ou fechou" teria passado nas duas contas, a minha e a certa.
+
+**2. A 16.5 não se aplica.** Ela pede três filhas antes de a categoria nascer — e
+a técnica de hoje nasce **filha direta** de `/como-fazer/`, não dentro de uma
+categoria. A própria tabela do item 2 daquela seção já dizia isso.
+
+**3. "Nenhum número autoriza leva nova" é o oposto do que a seção 21 manda.** A
+21.1 é literal: abaixo do piso — 40 URLs publicadas e 21 dias desde a primeira
+indexada —, zero impressão **não é informação** e **nunca** trava leva nenhuma.
+Esta ilha tem 11 URLs e `piso: abaixo` escrito no cabeçalho, que é o campo que a
+21.6 manda ler em vez de recalcular de cabeça. A armadilha é fina e por isso se
+repete: quem lê a 14.8 ("é essa série que autoriza dobrar, manter ou parar") e
+olha uma série de uma linha conclui corretamente que ela não autoriza nada — só
+que **"não autoriza" e "proíbe" não são a mesma frase**. A Aquametria pagou isto
+em 12/09 e a Clube do Mosaico em 14/09: duas ilhas, três dias. Virou a **21.8**
+do `ARQUIPELAGO.md`, com a régua em duas perguntas na ordem.
+
+### BLOCO B — a página, e ela não decide nada
+
+`/como-fazer/o-que-e-mosaico-picassiete/`, nível 3 com a mãe de nível 1 direto —
+o mesmo estado de transição em que a F2 e a F1 vivem desde o bloco 4. **Não é
+`/tecnicas/Picassiete/`**, que foi o endereço que o despacho pediu: a 16.1 proíbe
+página solta na raiz desde 11/09, e o slug é a consulta-alvo do banco.
+
+**Nenhuma linha do snippet escolhe cola.** Quem escolhe é `cdm_f2_celula_cola()`,
+a régua da F2 que está no ar desde 11/09, chamada aqui para o caquinho de louça.
+A grade tem 45 células — 9 superfícies × 5 lugares —, é servida no HTML e é
+recalculada a cada requisição. É a tabela pré-renderizada da seção 5 do contrato:
+um modelo de linguagem lê os 45 casos sem preencher formulário nenhum. O texto, a
+definição e as fontes saem de `dados/tecnicas.json`, que passou a `publicar: true`
+porque agora existe snippet que o lê.
+
+**A prestação de contas da seção 7 fecha com o banco:** das 7 colas, 5 entram na
+vitrine e as 2 que ficam de fora são nomeadas em linha própria. **E isso virou
+conserto dentro do próprio bloco:** a primeira versão escrevia só o balde de maior
+contagem, e o Durepoxi cai por silêncio em 25 células **e** entra com ressalva em
+20 — dizer só o silêncio faria a página afirmar que o fabricante nunca nomeia uma
+daquelas superfícies, o que é falso em 20 delas. A seção 7 é explícita desde
+12/09: causa que o código separa, o texto separa. Agora o código separa quatro
+baldes e o texto separa quatro.
+
+**A recusa:** a página não responde o rejunte, e diz por quê — ele se decide pela
+largura da junta em milímetro, e nenhuma fonte colhida sobre Picassiete declara
+essa folga. Onze das 45 células dizem, com todas as letras, que não há cola que o
+fabricante sustente.
+
+**A casca subiu para 1.11.0 por um motivo de malha, não de vitrine.** Com um link
+só, vindo da mãe, a página nasceria **órfã** pela 16.4(f), e o portão do
+`teste-casca` pegou isso na hora. A Escola e a home passaram a listar as técnicas
+em **bloco próprio**, separado dos tutoriais: técnica é "o que é isso", tutorial é
+"como se faz", e juntá-las faria a Escola prometer um passo a passo que a página
+de técnica não entrega.
+
+**Duas dívidas de texto do banco viraram defeito no ar e foram pagas aqui.** O
+`dados/tecnicas.json` nasceu sem acento — "louca", "xicara", "monumento historico"
+— porque até hoje só era lido por ferramenta; no dia em que uma **página** passou
+a servi-lo, virou português errado na tela, que é exatamente a cicatriz que o
+`restaurar-acentos.py` desta ilha existe para lembrar. Vieram junto as aspas
+tipográficas: aspa reta vira `&#039;` no `esc_html` e o filtro de conteúdo do
+WordPress escapa o `&` de novo, servindo a entidade crua ao leitor. A troca dos
+acentos tem **prova**: reduzido a sem-diacrítico, o arquivo é idêntico ao de
+antes, fora de 10 frases do campo `leitura` reescritas de propósito e declaradas
+uma a uma.
+
+### Verificação
+
+**Bancada, 0 falha:** `teste-tecnicas.php` com **52** afirmações — e o esperado
+das 45 células **não vem do snippet**: vem de `dados/cobertura.json`, gerado pela
+régua em Python, que é implementação independente em outra linguagem, escrita no
+bloco 3 antes de existir uma linha do PHP. Ele começa rodando
+`cobertura.py --conferir`, porque régua velha aprova a página de ontem. Mais:
+`teste-casca` 549, `teste-f2` 111, `teste-f1`, `teste-loja`, `teste-atelie`,
+`teste-leads`, `teste-prestacao-rejunte`, `validar-banco`, `validar-pastilhas`,
+`tecnica-x-material --conferir`, `php -l` limpo nos sete snippets.
+
+**Mutações:** 9 da página, 9 da conta e as 14 do banco de técnicas — 32 no total,
+todas decididas certo. A nona da página **não reprova por reprovar**: com o banco
+fora do ar ela exige a página **honesta**, dizendo que não mediu e sem servir a
+grade.
+
+**Uma seção do teste foi apagada pelo próprio autor.** A primeira versão do
+`teste-tecnicas.php` tinha uma seção 8 que imprimia `ok` sem medir nada — o
+caminho sem banco não cabe num teste cuja bancada carrega as options na entrada do
+processo. Ela virou aquela nona mutação, e o motivo de ter saído ficou escrito no
+cabeçalho do arquivo: afirmação que não pode falhar é pior que afirmação ausente.
+
+**No ar:** `ferramentas/conferir-tecnica-no-ar.py`, **23 afirmações sobre o HTML
+que o site serve**. Ele reconta as 45 células contra o banco commitado, refaz a
+prestação de contas na tela, confere a escada de compra e o `rel` de cada link, os
+dois links internos que tiram a página da condição de órfã, o sitemap e o JSON-LD
+servido. A seção 4 dele compara o **endereço canônico** com o mesmo endereço com
+quebra de cache, por marcador e nunca por bytes — é a trava do cache do
+hospedeiro, que o `/status` não enxerga. Sync da revisão 34 às 21h51Z, 12
+aplicados em **um** disparo; canônico e versão sem cache iguais nos cinco
+marcadores deste bloco.
+
+### Próximo passo desbloqueado
+
+**A segunda página de técnica: o trencadís.** Não sobrou portão — ela reúne os
+mesmos 5 itens de banco, a SERP dela está classificada como ABERTA, e a máquina
+inteira já existe. **Uma diferença que o Picassiete não tinha:** o trencadís
+declara **duas** tesselas (`caco_azulejo` e `caco_louca`), e a página de hoje
+resolve a primeira da lista — quem escrever decide se serve duas grades ou uma, e
+diz qual na tela. O teto da 21.4 está longe: esta leva teve **uma** URL.
+
+Depois dela, na ordem: a coleta das quatro categorias vazias do vocabulário
+(`alicate`, `base`, `acabamento`, `apoio`), que é o que destrava o bloco 4c e que
+nenhuma coleta de cola ou rejunte fecha; e a linha da peça na tabela da seção 5 do
+`ARVORE.md`, que é conserto de **teste** e não de documento — o que falta está
+escrito lá.

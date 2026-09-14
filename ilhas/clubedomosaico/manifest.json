@@ -479,6 +479,12 @@
       "arquivo": "ferramentas/mutacoes-tecnicas-pagina.py",
       "sha256": "5b63d1a9e90444de152fdfee6c2c8fc8decafe44595faba6f8affbd7c1615c7e",
       "descricao": "Quebra a PAGINA de tecnica de proposito, uma mutacao por vez. 9 mutacoes: tessela digitada no snippet contra banco que diz outra, celula da grade cravada a mao, cartao que some da vitrine que a frase nomeia, recusa que volta a nomear so a causa maior, busca CRUA se declarando patrocinada, FAQPage prometendo pergunta que a tela nao responde, numero da frase digitado, pagina sumindo da listagem da mae (reprova no teste-casca, nao no proprio). A nona NAO reprova por reprovar: com o banco fora do ar a pagina tem de ficar HONESTA — dizer que nao mediu e NAO servir a grade. Bancada."
+    },
+    {
+      "id": "conferir-tecnica-no-ar",
+      "arquivo": "ferramentas/conferir-tecnica-no-ar.py",
+      "sha256": "2081736164e2817e9692ea35d6f0f1f4d3c2d7149d224c8785ed464bbe9a91b0",
+      "descricao": "O irmao no ar do teste-tecnicas: abre a pagina de tecnica com curl e afirma sobre o HTML que o SITE serve. 23 afirmacoes. Reconta as 45 celulas da grade contra dados/cobertura.json (o banco commitado), refaz a prestacao de contas da secao 7 na tela, confere a escada de compra e o rel de cada link, os dois links internos que tiram a pagina da condicao de orfa, o sitemap, e o JSON-LD servido. A secao 4 compara o endereco CANONICO com o mesmo endereco com quebra de cache, por MARCADOR e nunca por bytes — e a trava do cache do hospedeiro, que o /status nao enxerga. O endereco esta literal no arquivo, copiado a mao: ler a constante do snippet seria conferir a pagina com a propria pagina. Accept-Encoding identity em toda requisicao. Bancada."
     }
   ],
   "esquema": {
