@@ -2,7 +2,7 @@
  "id": "especies-agua-doce",
  "entidade": "especie",
  "esquema": "dados/esquema-especies.json",
- "descricao": "Banco de especies de agua doce da Aquametria. Leva 1 (bloco 4b(c), 09/09/2026): 12 especies. Leva 2 (bloco 4b leva 3, 09/09/2026): mais 13 especies. Leva 3 (T3(a), 09/09/2026): mais 11 especies, fechando 36 registros de 2,0 cm (tetra ember) a 48,0 cm (kinguio), com frente minima declarada de 45 a 180 cm. Existe para destravar o eixo aberto 'quantos litros para X peixes', que a Bussola verificou livre na SERP, com dado atribuido em vez da regra de bolso de 1 cm por litro. Nenhum registro tem link de afiliado: especie nao e produto. Leva 4 (T3d, 11/09/2026): nenhuma especie nova; a leva foi de PROFUNDIDADE, fechando os campos que barravam registros ja existentes no portao de pagina e na C8.",
+ "descricao": "Banco de especies de agua doce da Aquametria. Leva 1 (bloco 4b(c), 09/09/2026): 12 especies. Leva 2 (bloco 4b leva 3, 09/09/2026): mais 13 especies. Leva 3 (T3(a), 09/09/2026): mais 11 especies, fechando 36 registros de 2,0 cm (tetra ember) a 48,0 cm (kinguio), com frente minima declarada de 45 a 180 cm. Existe para destravar o eixo aberto 'quantos litros para X peixes', que a Bussola verificou livre na SERP, com dado atribuido em vez da regra de bolso de 1 cm por litro. Nenhum registro tem link de afiliado: especie nao e produto. Leva 4 (T3d, 11/09/2026): nenhuma especie nova; a leva foi de PROFUNDIDADE, fechando os campos que barravam registros ja existentes no portao de pagina e na C8. Leva 5 (T3d, 14/09/2026): mais 2 especies, os dois ciclideos anoes que faltavam para a categoria /peixes/ciclideos-anoes/ alcancar o minimo de tres do 16.5 — Apistogramma agassizii e Mikrogeophagus altispinosus —, fechando 39 registros.",
  "gerado_em": "2026-09-09",
  "bloco": "4b(c) leva 1 + 4b leva 3 + T3(a) leva 3 + T3d leva 4 (profundidade)",
  "publicar": false,
@@ -3782,6 +3782,168 @@
    "verificado_em": "2026-09-13",
    "status_registro": "completo",
    "observacao": "TERCEIRO VIVIPARO ELEGIVEL DA ILHA, e e ele que faz /peixes/vivaparos/ alcancar o minimo do 16.5: a categoria tinha platy e espada, e com este passa a ter tres. NAO FOI ESCOLHIDO POR SER FACIL: o molly e o guppy estao a um campo cada e os dois foram recusados de novo em 13/09/2026, cada um pelo seu motivo, e as duas recusas estao escritas nos registros deles. PORTE SEM SEXO DECLARADO, E ISSO IMPORTA NESTA FAMILIA: a base publica 7,0 cm TL para macho/nao sexado e nao separa os sexos para esta especie, entao porte_sexo e 'nao-sexado'. Em vivipara a femea e maior e e ela que carrega a carga, logo este numero erra para MENOS - o lado que lota demais -, e a ficha que nascer daqui tem de dizer que a fonte nao separou os sexos, em vez de deixar o leitor supor que 7,0 cm e o maximo do peixe. O varejo brasileiro diz 6 a 7 cm 'principalmente as femeas', o que e coerente com o numero e NAO o substitui: porte e campo de biologia e varejo nao manda nele. pH E DUREZA FICARAM NULOS DE PROPOSITO, e a causa e a que este bloco mediu: os dois voltaram em UMA passada so e com valores IDENTICOS aos do congenere ja gravado (pH 7,0 a 8,0 e dH 9 a 19 do X. maculatus). Uma passada nao e confirmacao, e valor igual ao do vizinho colhido numa busca que traz a pagina do vizinho e exatamente o caso em que nao se distingue leitura de eco. Nenhum dos dois esta no portao, entao a ausencia nao custa pagina - e gravar custaria a procedencia. A FRENTE MINIMA VEM DA BASE CIENTIFICA E PODE SER SUPERADA, dito aqui porque o dominio_por_campo poe o compendio na frente neste campo: a ficha do Seriously Fish desta especie TEM secao de dimensoes de aquario, e tres formulacoes de busca restrita nao alcancaram os valores dela. Nao e buraco da fonte (o caso do molly, cuja secao a propria fonte publica vazia): e buraco da NOSSA leitura. Enquanto isso, quem sustenta o campo e o proximo corpo que o declara, que e a base - e no dia em que a leitura direta abrir, este numero e o primeiro a reconferir. O CONTROLE QUE AUTORIZOU GRAVAR OS 60 cm, porque 'especie vizinha tambem tem 60' seria motivo para recusar: na mesma sessao, o resumo de busca atribuiu 'aquario minimo de 60 cm' a TRES especies diferentes em passadas diferentes (P. sphenops, P. velifera e esta), o que e impressao digital de vazamento. O que separou os casos foi perguntar pelo campo de uma especie cuja verdade a ilha ja tem: o espada (X. hellerii), que a base declara com 80 cm e o compendio com 120 x 30 cm - numero DIFERENTE de 60, devolvido na hora. Ou seja a fonte publica valor por especie e a busca o distingue; e a passada que devolveu os 60 cm desta especie devolveu, na mesma resposta, a faixa de 15 a 25 C, que NAO e a do congenere (18 a 25 C), provando que estava lendo a secao de aquario desta ficha e nao da vizinha. O ACHADO DA CLASSIFICACAO DE SERP, e ele e o angulo da ficha: a consulta 'quantos litros para plati variatus' e respondida no Brasil por paginas do OUTRO peixe - o terceiro resultado editorial e a ficha do X. maculatus, e o resumo mistura os numeros dos dois. A SERP brasileira trata as duas especies como uma, e a mesma fonte que sustenta este banco as separa em dois campos ao mesmo tempo (7,0 contra 6,0 cm TL, e 15 a 25 contra 18 a 25 C). E o buraco mais limpo que esta categoria tem para ocupar."
+  },
+  {
+   "id": "apistogramma-agassizii",
+   "entidade": "especie",
+   "nome_cientifico": "Apistogramma agassizii",
+   "sinonimos_cientificos": [],
+   "nomes_populares_br": [
+    "apistogramma agassizi",
+    "apistograma agassizi"
+   ],
+   "familia": "Cichlidae",
+   "origem_geografica": "América do Sul: bacia do rio Amazonas, ao longo do Amazonas-Solimões, do Peru, passando pelo Brasil, até a bacia do rio Capim",
+   "porte_adulto_cm": 4.2,
+   "porte_medida": "SL",
+   "porte_sexo": "nao-sexado",
+   "expectativa_vida_anos": null,
+   "temperatura_C": {
+    "min": 26,
+    "max": 29
+   },
+   "temperatura_e_tolerancia": false,
+   "ph": {
+    "min": 5.0,
+    "max": 7.0
+   },
+   "dureza_dgh": {
+    "min": 0,
+    "max": 12
+   },
+   "cardume_minimo": null,
+   "cardume_recomendado_ate": null,
+   "comprimento_minimo_aquario_cm": 60,
+   "base_minima_cm": {
+    "comprimento": 60,
+    "largura": 30
+   },
+   "altura_minima_cm": null,
+   "volume_minimo_declarado_L": null,
+   "nivel_natacao": null,
+   "comportamento": null,
+   "convivencia": "harem",
+   "alimentacao": null,
+   "dificuldade": null,
+   "exige_aquario_maduro": null,
+   "disponibilidade_br": null,
+   "fontes": [
+    {
+     "origem": "base-cientifica-via-busca",
+     "status": "base-cientifica-via-busca",
+     "referencia": "FishBase - ficha da especie: Teleostei > Cichliformes > Cichlidae (Cichlids) > Geophaginae; max 4,2 cm SL macho/nao sexado; America do Sul, bacia do rio Amazonas, ao longo do Amazonas-Solimoes, do Peru, passando pelo Brasil, ate a bacia do rio Capim; agua doce, bentopelagica; tropical, 26 a 29 C; pH 5,0 a 7,0; dH 0 a 12; secao de aquario: varias femeas para um macho, aquario minimo de 60 cm.",
+     "url": "https://www.fishbase.se/summary/Apistogramma-agassizii",
+     "verificado_em": "2026-09-14",
+     "campos": [
+      "familia",
+      "origem_geografica",
+      "porte_adulto_cm",
+      "porte_medida",
+      "porte_sexo",
+      "temperatura_C",
+      "ph",
+      "dureza_dgh",
+      "comprimento_minimo_aquario_cm",
+      "convivencia"
+     ],
+     "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org/fishbase.us em 14/09/2026. A pagina nao foi lida direto: o egresso da nuvem barra a base, e e a mesma politica registrada desde 09/09/2026 na nota de procedencia deste arquivo. A confirmar na ficha. CADA NUMERO DESTE REGISTRO VOLTOU EM DUAS PASSADAS INDEPENDENTES, nenhuma delas carregando o valor dentro da consulta (secao 8 do contrato): o porte e a faixa de manutencao em duas, a frente minima em duas, e o pH e a dureza em duas. A CONSULTA QUE DEVOLVEU A FRENTE MINIMA NAO PERGUNTAVA POR ESTA ESPECIE: ela perguntava pela A. cacatuoides, e a resposta ofereceu o valor desta como referencia para a congenere — o sentido do vazamento foi o inverso do perigoso, e foi recusado do lado da cacatuoides (ver a observacao do registro)."
+    },
+    {
+     "origem": "compendio-via-busca",
+     "status": "compendio-via-busca",
+     "referencia": "Seriously Fish - ficha da especie: base de 60 x 30 cm ou mais e aceitavel para UM casal, com o grupo exigindo espaco maior; exemplares nascidos em cativeiro sao a escolha recomendada para o aquario comunitario geral, enquanto os selvagens ficam melhor sozinhos ou com pequenos peixes de companhia como os Nannostomus, e idealmente nao devem ser misturados com outros Apistogramma; desovador de substrato, que deposita os ovos em frestas e cavidades da decoracao; o macho e maior, mais colorido e desenvolve nadadeiras mais extensas que a femea.",
+     "url": "https://www.seriouslyfish.com/species/apistogramma-agassizii/",
+     "verificado_em": "2026-09-14",
+     "campos": [
+      "comprimento_minimo_aquario_cm",
+      "base_minima_cm"
+     ],
+     "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 14/09/2026, sem leitura da pagina, pelo mesmo egresso. A confirmar na ficha. A BASE VOLTOU EM UMA PASSADA SO, e o que autoriza grava-la e o outro corpo: a base cientifica declara 60 cm de frente para esta especie, o mesmo numero, colhido em duas passadas independentes desta. Os dois lados do chao (60 x 30) sao deste compendio."
+    }
+   ],
+   "conflitos": [],
+   "verificado_em": "2026-09-14",
+   "status_registro": "completo",
+   "observacao": "SEGUNDO CICLIDEO ANAO ELEGIVEL DA ILHA. A categoria /peixes/ciclideos-anoes/ tinha UM (o ramirezi) e ficava a duas espécies do minimo de tres do 16.5; com este e o papilocromis ela alcanca o minimo exato, sem folga — a mesma posicao em que a bettas e a vivaparos nasceram. OS DOIS CORPOS DECLARAM O MESMO 60 cm PARA ARRANJOS DIFERENTES, e isso e o que a ficha tem de dizer em vez de esconder: a base cientifica atribui os 60 cm a 'varias femeas para um macho', que e harem; o compendio atribui a base de 60 x 30 cm a UM CASAL e diz que o grupo exige espaco maior SEM dar o numero desse espaco. As duas frases nao sao a mesma afirmacao e nao se somam: o campo convivencia fica 'harem' porque e o UNICO dos dois corpos que declara a proporcao entre os sexos, e o compendio, ao falar de casal, esta dimensionando um cenario e nao declarando como a especie vive. NAO VIROU CONFLITO DECLARADO de proposito: conflito no esquema desta ilha e valor DIFERENTE para o mesmo campo, e aqui o numero e o mesmo nos dois lados. O QUE A FICHA NAO PODE FAZER, e fica escrito para quem a escrever: prometer que 60 x 30 cm serve ao harem. Serve ao casal por declaracao do compendio; para o harem, os 60 cm de FRENTE sao o que a base declara, e o fundo nao esta declarado para esse arranjo. COMPORTAMENTO FICOU NULO, e nao por falta de texto: o compendio fala de compatibilidade (selvagem melhor sozinho ou com peixe de companhia; nao misturar com outro Apistogramma) e nao entrega uma palavra do vocabulario fechado. O varejo brasileiro chama a especie de pacifica, e varejo nao sustenta campo de manutencao (E5). O VAREJO BRASILEIRO TAMBEM DIVERGE NO PORTE, e o registro fica com a base: cinco lojas e portais brasileiros publicam 6 cm de adulto (comum 4 cm) e a base declara 4,2 cm SL. Porte e campo de biologia e varejo nao manda nele — mas a divergencia fica escrita aqui porque ela aparece na tela do comprador, e a ficha que nascer daqui responde a quem leu 6 cm na loja. Vale notar que os 60 x 30 x 30 que o varejo publica para um casal batem com a base do compendio, o que e coerencia e nao fonte."
+  },
+  {
+   "id": "mikrogeophagus-altispinosus",
+   "entidade": "especie",
+   "nome_cientifico": "Mikrogeophagus altispinosus",
+   "sinonimos_cientificos": [],
+   "nomes_populares_br": [
+    "papilocromis",
+    "papilocromis boliviano",
+    "altispinosa"
+   ],
+   "familia": "Cichlidae",
+   "origem_geografica": "América do Sul: bacia do rio Amazonas, na drenagem do rio Guaporé no Brasil e na Bolívia, e na drenagem do rio Mamoré na Bolívia",
+   "porte_adulto_cm": 5.6,
+   "porte_medida": "SL",
+   "porte_sexo": "nao-sexado",
+   "expectativa_vida_anos": null,
+   "temperatura_C": {
+    "min": 22,
+    "max": 26
+   },
+   "temperatura_e_tolerancia": false,
+   "ph": {
+    "min": null,
+    "max": null
+   },
+   "dureza_dgh": {
+    "min": null,
+    "max": null
+   },
+   "cardume_minimo": 6,
+   "cardume_recomendado_ate": 8,
+   "comprimento_minimo_aquario_cm": 120,
+   "base_minima_cm": null,
+   "altura_minima_cm": null,
+   "volume_minimo_declarado_L": null,
+   "nivel_natacao": null,
+   "comportamento": null,
+   "convivencia": "grupo",
+   "alimentacao": null,
+   "dificuldade": null,
+   "exige_aquario_maduro": null,
+   "disponibilidade_br": null,
+   "fontes": [
+    {
+     "origem": "base-cientifica-via-busca",
+     "status": "base-cientifica-via-busca",
+     "referencia": "FishBase - ficha da especie: Teleostei > Cichliformes > Cichlidae (Cichlids) > Cichlinae; max 5,6 cm SL macho/nao sexado; America do Sul, bacia do rio Amazonas, na drenagem do rio Guapore no Brasil e na Bolivia, e na drenagem do rio Mamore na Bolivia; agua doce, bentopelagica; tropical, 22 a 26 C.",
+     "url": "https://www.fishbase.se/summary/mikrogeophagus-altispinosus.html",
+     "verificado_em": "2026-09-14",
+     "campos": [
+      "familia",
+      "origem_geografica",
+      "porte_adulto_cm",
+      "porte_medida",
+      "porte_sexo",
+      "temperatura_C"
+     ],
+     "observacao": "Colhido por busca RESTRITA ao dominio fishbase.se/fishbase.org/fishbase.us em 14/09/2026, sem leitura da pagina, pelo mesmo egresso da nota de procedencia. A confirmar na ficha. O PORTE E A FAIXA DE MANUTENCAO VOLTARAM EM DUAS PASSADAS INDEPENDENTES, nenhuma carregando o valor na consulta. O CONTROLE DE VAZAMENTO ERA OBRIGATORIO AQUI: as duas passadas trouxeram, na mesma lista de resultados, a ficha do congenere M. ramirezi, que ESTA no banco desta ilha desde 09/09/2026 com 27 a 30 C e 4,2 cm SL. Os numeros devolvidos para esta especie sao DIFERENTES dos do vizinho nos dois campos (22 a 26 C e 5,6 cm SL), o que e a prova de que a leitura era desta ficha e nao da que veio junto."
+    },
+    {
+     "origem": "compendio-via-busca",
+     "status": "compendio-via-busca",
+     "referencia": "Seriously Fish - ficha da especie: ciclideo relativamente gregario, que idealmente se mantem em grupo misto de machos e femeas de 6 a 8 ou mais, desde que o aquario seja espacoso, de 120 cm de comprimento ou maior; em espaco confinado os machos ficam com frequencia mais agressivos na defesa do proprio territorio; apesar de ser normalmente vendido como tal, nao e recomendado para o aquario comunitario geral, porque exige agua de qualidade impecavel e e mau competidor, o que nao quer dizer que precise ser mantido sozinho; desovador de substrato biparental.",
+     "url": "https://www.seriouslyfish.com/species/mikrogeophagus-altispinosus",
+     "verificado_em": "2026-09-14",
+     "campos": [
+      "cardume_minimo",
+      "cardume_recomendado_ate",
+      "comprimento_minimo_aquario_cm",
+      "convivencia"
+     ],
+     "observacao": "Colhido por busca RESTRITA ao dominio seriouslyfish.com em 14/09/2026, sem leitura da pagina. A confirmar na ficha. A FRASE VOLTOU PRATICAMENTE PALAVRA POR PALAVRA EM DUAS PASSADAS INDEPENDENTES, com formulacoes de consulta diferentes e sem nenhum dos tres numeros dentro da pergunta. O NUMERO DO GRUPO E O DO AQUARIO SAO A MESMA FRASE, e e por isso que os tres campos saem desta unica fonte: o compendio nao publica 'aquario minimo' solto, publica 'grupo de 6 a 8 ou mais DESDE QUE o aquario tenha 120 cm ou mais'. Separar os dois numeros seria publicar uma frente minima que a fonte nunca declarou sozinha."
+    }
+   ],
+   "conflitos": [],
+   "verificado_em": "2026-09-14",
+   "status_registro": "completo",
+   "observacao": "TERCEIRO CICLIDEO ANAO ELEGIVEL DA ILHA, e e ele que faz /peixes/ciclideos-anoes/ alcancar o minimo do 16.5: a categoria tinha o ramirezi sozinho e passa a ter tres. E O PRIMEIRO REGISTRO DO BANCO EM QUE A FRENTE MINIMA E CONDICIONAL AO GRUPO, e quem escrever a ficha nao pode quebrar a frase em duas: o compendio declara 'grupo misto de 6 a 8 ou mais DESDE QUE o aquario seja espacoso, de 120 cm de comprimento ou maior'. Os 120 cm nao sao o minimo para um exemplar nem para um casal — sao o chao do arranjo que a fonte recomenda. Publicar '120 cm' sem o 'para o grupo de 6 a 8' seria o mesmo defeito da leva 2 ao trocar BASE por FRENTE: numero certo, escopo errado. E O MAIOR NUMERO DE FRENTE DO EIXO ATE AQUI entre os ciclideos anoes, e ele contradiz a intuicao do comprador — o peixe tem 5,6 cm e pede 120 cm de aquario, enquanto o ramirezi, de 4,2 cm, pede 60. A diferenca nao esta no tamanho do peixe e sim no arranjo: um vive em casal e o outro em grupo gregario. E exatamente a tese da linha mestra do eixo, e esta categoria a paga dentro de um grupo so de peixes. COMPORTAMENTO FICOU NULO, e a frase do compendio explica por que: os machos ficam 'com frequencia mais agressivos' EM ESPACO CONFINADO, que e temperamento condicionado a manutencao e nao um valor do vocabulario fechado. Gravar 'territorial' a partir dai seria transformar uma ressalva em atributo. pH E DUREZA FICARAM NULOS: a base devolveu os dois com um lado so do intervalo (pH a partir de 7,0 e dH a partir de 10), e intervalo sem os dois lados nao e faixa de manutencao — o campo fica vazio em vez de virar um minimo com cara de recomendacao. NOME POPULAR: o varejo brasileiro vende esta especie como PAPILOCROMIS, nome que cinco lojas e portais brasileiros usam (Kauar, Pro-Aquarista, Fazenda Submersa, MyAquarium, Aquarismo Paulista), e nunca como 'ramirezi boliviano' — o que importa porque o registro do M. ramirezi, ja no banco, carrega 'borboleta-boliviana' entre os nomes populares dele. Sao dois peixes diferentes e o comercio brasileiro os separa pelo nome; a ficha tem de separar tambem."
   }
  ],
  "atualizado_em": "2026-09-13",

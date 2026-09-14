@@ -1,5 +1,31 @@
 /**
  * Aquametria Peixes — a malha do eixo /peixes/
+ * Versão: 1.9.0 (14/09/2026) — PREPARAÇÃO DA LEVA 6: A QUINTA CATEGORIA GANHA
+ * BANCO, CRITÉRIO E LINHA MESTRA, E NENHUMA URL NASCE. Duas espécies novas no
+ * banco (Apistogramma agassizii e Mikrogeophagus altispinosus) levam
+ * `/peixes/ciclideos-anoes/` de UM elegível para TRÊS, que é o mínimo exato do
+ * 16.5. A categoria continua FORA de `aquametria_peixes_registro()`, então
+ * nenhuma URL foi criada e nenhuma leva do teto da 21.4 foi gasta: o que muda
+ * na tela é a contagem do catálogo, de 29 para 31, que a seção e as categorias
+ * imprimem na hora.
+ *
+ *   É A PRIMEIRA CATEGORIA DO EIXO EM QUE NEM A FAMÍLIA NEM O GÊNERO SERVEM
+ *   de critério. Nos tetras a família não servia e o gênero resolvia; nas
+ *   coridoras o gênero não servia e a subfamília resolvia; nas bettas e nos
+ *   vivíparos a família serviu. Aqui Cichlidae carrega o oscar, o disco e a
+ *   bandeira — deste mesmo banco — e o gênero Mikrogeophagus põe as duas
+ *   PONTAS da tabela lado a lado. Quem separa é a prateleira brasileira, que
+ *   tem endereço próprio em três lojas, e o porte declarado explica a
+ *   prateleira: os três desta lista têm menos de 6 cm e o menor dos outros
+ *   Cichlidae do banco tem 13,7 cm.
+ *
+ *   E A TABELA DESTA CATEGORIA PROVA A TESE DO EIXO COM DOIS PEIXES DE PORTE
+ *   IDÊNTICO, coisa que nenhuma das outras quatro pode fazer: o ramirezi e o
+ *   apistogramma agassizi têm os mesmos 4,2 cm SL na mesma base científica e
+ *   pedem os mesmos 60 cm; o papilocromis tem 5,6 cm — 1,4 cm a mais — e pede
+ *   120. O que dobra o aquário é o ARRANJO (casal, harém e grupo de 6 a 8),
+ *   não o tamanho do peixe.
+ *
  * Versão: 1.8.0 (14/09/2026) — LEVA 5: A QUARTA CATEGORIA, E A PRIMEIRA EM QUE
  * NENHUMA FILHA TEM NÚMERO DECLARADO. Quatro URLs novas: /peixes/vivaparos/ e as
  * fichas do platy, do peixe-espada e do plati variatus. A ilha vai de 32 para
@@ -376,7 +402,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_PEIXES_VERSAO' ) ) {
-	define( 'AQUAMETRIA_PEIXES_VERSAO', '1.8.0' );
+	define( 'AQUAMETRIA_PEIXES_VERSAO', '1.9.0' );
 }
 
 /* A data em que a SERP das consultas foi classificada (seção 14.9).
@@ -2606,6 +2632,113 @@ function aquametria_peixes_catalogo() {
 			),
 			'conflitos' => array(),
 		),
+		'apistogramma-agassizii' => array(
+			'id' => 'apistogramma-agassizii',
+			'cientifico' => 'Apistogramma agassizii',
+			'sinonimos' => array(),
+			'populares' => array(
+				'apistogramma agassizi',
+				'apistograma agassizi',
+			),
+			'familia' => 'Cichlidae',
+			'origem' => 'América do Sul: bacia do rio Amazonas, ao longo do Amazonas-Solimões, do Peru, passando pelo Brasil, até a bacia do rio Capim',
+			'porte_cm' => 4.2,
+			'porte_medida' => 'SL',
+			'cardume' => null,
+			'cardume_ate' => null,
+			'convivencia' => 'harem',
+			'comportamento' => '',
+			'frente_cm' => 60,
+			'base_comprimento' => 60,
+			'base_largura' => 30,
+			'temp_min' => 26,
+			'temp_max' => 29,
+			'status' => 'completo',
+			'fontes' => array(
+				array(
+					'corpo' => 'FishBase',
+					'url' => 'https://www.fishbase.se/summary/Apistogramma-agassizii',
+					'em' => '2026-09-14',
+					'campos' => array(
+						'familia',
+						'origem_geografica',
+						'porte_adulto_cm',
+						'porte_medida',
+						'porte_sexo',
+						'temperatura_C',
+						'ph',
+						'dureza_dgh',
+						'comprimento_minimo_aquario_cm',
+						'convivencia',
+					),
+					'referencia' => 'FishBase - ficha da especie: Teleostei > Cichliformes > Cichlidae (Cichlids) > Geophaginae; max 4,2 cm SL macho/nao sexado; America do Sul, bacia do rio Amazonas, ao longo do Amazonas-Solimoes, do Peru, passando pelo Brasil, ate a bacia do rio Capim; agua doce, bentopelagica; tropical, 26 a 29 C; pH 5,0 a 7,0; dH 0 a 12; secao de aquario: varias femeas para um macho, aquario minimo de 60 cm.',
+				),
+				array(
+					'corpo' => 'Seriously Fish',
+					'url' => 'https://www.seriouslyfish.com/species/apistogramma-agassizii/',
+					'em' => '2026-09-14',
+					'campos' => array(
+						'comprimento_minimo_aquario_cm',
+						'base_minima_cm',
+					),
+					'referencia' => 'Seriously Fish - ficha da especie: base de 60 x 30 cm ou mais e aceitavel para UM casal, com o grupo exigindo espaco maior; exemplares nascidos em cativeiro sao a escolha recomendada para o aquario comunitario geral, enquanto os selvagens ficam melhor sozinhos ou com pequenos peixes de companhia como os Nannostomus, e idealmente nao devem ser misturados com outros Apistogramma; desovador de substrato, que deposita os ovos em frestas e cavidades da decoracao; o macho e maior, mais colorido e desenvolve nadadeiras mais extensas que a femea.',
+				),
+			),
+			'conflitos' => array(),
+		),
+		'mikrogeophagus-altispinosus' => array(
+			'id' => 'mikrogeophagus-altispinosus',
+			'cientifico' => 'Mikrogeophagus altispinosus',
+			'sinonimos' => array(),
+			'populares' => array(
+				'papilocromis',
+				'papilocromis boliviano',
+				'altispinosa',
+			),
+			'familia' => 'Cichlidae',
+			'origem' => 'América do Sul: bacia do rio Amazonas, na drenagem do rio Guaporé no Brasil e na Bolívia, e na drenagem do rio Mamoré na Bolívia',
+			'porte_cm' => 5.6,
+			'porte_medida' => 'SL',
+			'cardume' => 6,
+			'cardume_ate' => 8,
+			'convivencia' => 'grupo',
+			'comportamento' => '',
+			'frente_cm' => 120,
+			'base_comprimento' => null,
+			'base_largura' => null,
+			'temp_min' => 22,
+			'temp_max' => 26,
+			'status' => 'completo',
+			'fontes' => array(
+				array(
+					'corpo' => 'FishBase',
+					'url' => 'https://www.fishbase.se/summary/mikrogeophagus-altispinosus.html',
+					'em' => '2026-09-14',
+					'campos' => array(
+						'familia',
+						'origem_geografica',
+						'porte_adulto_cm',
+						'porte_medida',
+						'porte_sexo',
+						'temperatura_C',
+					),
+					'referencia' => 'FishBase - ficha da especie: Teleostei > Cichliformes > Cichlidae (Cichlids) > Cichlinae; max 5,6 cm SL macho/nao sexado; America do Sul, bacia do rio Amazonas, na drenagem do rio Guapore no Brasil e na Bolivia, e na drenagem do rio Mamore na Bolivia; agua doce, bentopelagica; tropical, 22 a 26 C.',
+				),
+				array(
+					'corpo' => 'Seriously Fish',
+					'url' => 'https://www.seriouslyfish.com/species/mikrogeophagus-altispinosus',
+					'em' => '2026-09-14',
+					'campos' => array(
+						'cardume_minimo',
+						'cardume_recomendado_ate',
+						'comprimento_minimo_aquario_cm',
+						'convivencia',
+					),
+					'referencia' => 'Seriously Fish - ficha da especie: ciclideo relativamente gregario, que idealmente se mantem em grupo misto de machos e femeas de 6 a 8 ou mais, desde que o aquario seja espacoso, de 120 cm de comprimento ou maior; em espaco confinado os machos ficam com frequencia mais agressivos na defesa do proprio territorio; apesar de ser normalmente vendido como tal, nao e recomendado para o aquario comunitario geral, porque exige agua de qualidade impecavel e e mau competidor, o que nao quer dizer que precise ser mantido sozinho; desovador de substrato biparental.',
+				),
+			),
+			'conflitos' => array(),
+		),
 	);
 	return $catalogo;
 	/* CATALOGO-FIM */
@@ -3159,7 +3292,52 @@ function aquametria_peixes_categorias() {
 			'rotulo'   => 'Ciclídeos anões',
 			'plural'   => 'ciclídeos anões',
 			'singular' => 'todo ciclídeo anão',
-			'criterio' => '',
+			/* PREPARAÇÃO DA LEVA 6, 14/09/2026. O banco fechou em três elegíveis
+			   e a categoria ganhou critério e linha mestra — a página ainda NÃO
+			   está em `aquametria_peixes_registro()`, então nenhuma URL nasceu
+			   aqui e nenhuma leva foi consumida. É o mesmo passo que a `bettas`
+			   recebeu em 13/09 às 13h17Z e a `vivaparos` às 21h21Z: quem
+			   publicar a leva lê a linha mestra e o critério ANTES de tudo, pela
+			   regra que a leva 5 escreveu (texto de categoria escrito antes da
+			   leva é afirmação que ninguém mediu).
+
+			   A LINHA MESTRA SAI DA TABELA E DE MAIS NADA, e é o caso mais
+			   limpo do eixo inteiro: o ramirezi e o apistogramma agassizi têm
+			   EXATAMENTE o mesmo porte declarado (4,2 cm SL, os dois na mesma
+			   base científica) e o papilocromis tem 5,6 cm — 1,4 cm a mais. E o
+			   aquário dobra: 60 cm de frente para os dois primeiros, 120 para o
+			   terceiro. Nenhuma outra categoria deste eixo tem dois peixes de
+			   porte IDÊNTICO para provar que o porte não é o que decide. */
+			'linha_mestra' => 'Dois destes três têm o mesmo tamanho de corpo e pedem o mesmo aquário; o terceiro tem pouco mais de um centímetro a mais e pede o dobro de frente. O que dobra o aquário não é o peixe: é com quantos ele vive.',
+			/* O CRITÉRIO, e esta é a PRIMEIRA categoria do eixo em que nem a
+			   família nem o gênero servem — nas outras quatro sempre um dos dois
+			   serviu ou foi recusado por um motivo taxonômico. Aqui a família
+			   Cichlidae carrega, NESTE MESMO BANCO, o oscar (45,7 cm), o
+			   acará-disco e o acará-bandeira, que ninguém chama de anão; e os
+			   três desta lista estão em dois gêneros diferentes, com dois deles
+			   (ramirezi e papilocromis) no mesmo gênero e em pontas opostas da
+			   tabela. O que serve é a PRATELEIRA brasileira, e ela é verificável
+			   em vez de opinativa: "ciclídeos anões" é uma categoria de loja no
+			   Brasil, com endereço próprio na Kauar, na RSDiscus e na Fazenda
+			   Submersa, e as três põem os três desta lista lá dentro e nenhuma
+			   põe o oscar, o disco ou a bandeira. O porte declarado explica por
+			   quê sem precisar de régua nova: os três ficam abaixo de 6 cm e os
+			   outros três Cichlidae do banco começam em 13,7 cm. */
+			'criterio' => 'Os ciclídeos que a loja brasileira vende na prateleira de ciclídeo anão. A família NÃO serve de critério aqui, e é a primeira categoria deste eixo em que nem ela nem o gênero servem: Cichlidae é a família do oscar, do acará-disco e do acará-bandeira, que estão neste mesmo banco e que ninguém chama de anão; e o gênero também não, porque dois desta lista são Mikrogeophagus e ocupam as duas pontas da tabela, enquanto o terceiro é Apistogramma e cai em cima de um deles. Quem separa é a prateleira, e o porte declarado mostra por quê: os três desta página têm menos de 6 cm de adulto e o menor dos outros Cichlidae do banco tem 13,7 cm. O que esta tabela publica é o ciclídeo anão cujos campos os dois corpos de fonte sustentam, um por um; espécie a um campo de distância fica de fora, e o aquário mínimo dela NÃO é completado pelo da espécie vizinha — o que é regra desta ilha desde a leva 1 e aqui teria custado caro, porque foi exatamente o que uma das buscas ofereceu.',
+			/* A LISTA CONTINUA VAZIA, E ISSO É REGRA COM PORTÃO, não esquecimento:
+			   a lista de espécies é da LEVA e não da preparação (afirmação 3 do
+			   `teste-peixes.py`), porque preenchê-la antes faria a mãe publicar
+			   a contagem de uma categoria que o 16.5 ainda não deixou nascer.
+			   Esta execução tentou preenchê-la e o portão reprovou — é o caso
+			   de régua que PODE falhar, e falhou na bancada em vez de no ar.
+
+			   OS TRÊS QUE JÁ PASSAM NO PORTÃO DE PÁGINA, medidos em 14/09/2026
+			   pelo `validar-especies.py` (39 registros, 0 erro) e pelo
+			   `gerar-catalogo-especies.py` (31 no catálogo), e que a leva 6
+			   escreve aqui na hora de nascer: `mikrogeophagus-ramirezi` (no
+			   banco desde 09/09), `apistogramma-agassizii` e
+			   `mikrogeophagus-altispinosus` (colhidos nesta execução, para ESTA
+			   categoria alcançar o mínimo de três). */
 			'especies' => array(),
 		),
 		'plecos-e-limpa-vidros' => array(

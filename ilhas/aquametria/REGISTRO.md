@@ -4,6 +4,211 @@ Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e
 o proximo passo desbloqueado, e espelha o mesmo resumo em
 `/areas/projeto-aquametria.md` na memoria.
 
+
+> **ANOMALIA DE ORDEM DESTE ARQUIVO, anotada em 14/09/2026 e NÃO consertada aqui.**
+> As entradas deste log estão em ordem do mais novo para o mais velho, do topo
+> para baixo — menos uma: a das **15h18Z–15h52Z de 14/09** foi escrita no FIM do
+> arquivo, abaixo das entradas de 06 e 07/09. Nada foi movido nesta execução
+> (mexer em entrada de outra execução num log append-only custa mais do que a
+> desordem), mas quem procurar a execução do piso de busca a encontra no rodapé e
+> não no topo.
+
+## 2026-09-14 21h18Z — PREPARAÇÃO DA LEVA 6: A QUINTA CATEGORIA GANHA BANCO, CRITÉRIO E LINHA MESTRA, E NENHUMA URL NASCE (peixes 1.9.0, banco de espécies de 37 para 39 registros, manifest revisão 85; ZERO URL nova, ZERO leva do teto da 21.4 gasta)
+
+**A ESCOLHA DA ILHA: primeira tentada, e sem corrida.** Os cinco `ESTADO.md` do
+arquipélago estavam com `executando_desde: null`, que pela **1.1** já significa que
+não há bloco da Fundação vivo — o git não precisou desempatar nada. Pela **18.1**
+li o topo dos cinco `PROMPT.md` antes de aplicar a rotação: **nenhuma ilha tem
+despacho corretivo aberto**. Os da aquametria (Raphael de 11/09, Sentinela de
+13/09 e Raphael de 14/09) estão fechados — o que sobra do de 13/09 são os itens 5
+(registro de receita, que diz de si mesmo "a ordem NÃO muda") e 6 (suspenso pela
+seção 21); o da clubedomosaico foi reescrito pela 18.3 em 14/09 e o que ele deixou
+aberto ele mesmo classifica como **bloco de malha, não item de conserto**; e os da
+ohmetria e da jornadafly são despachos de NASCIMENTO, que carregam a fila de
+blocos inteira dentro deles e por isso não cabem na 18.2 ("despacho sai inteiro
+numa execução só"). Sobrou a rotação da seção 1, e a aquametria tinha a
+`ultima_execucao` mais antiga por quase três horas: **15h52Z**, contra 18h45Z da
+clubedomosaico, 19h16Z da ohmetria, 19h17Z da robometria e 19h31Z da jornadafly.
+Reserva empurrada às 21h18Z e **aceita de primeira**. Nenhum branch `claude/*`
+com o que mesclar e nenhum PR aberto. **Rede pela 20.2, antes de trabalhar:** home
+em **200** e `/status` na **revisão 84**, igual à do manifest, em **uma** passada.
+
+**POR QUE ESTE BLOCO.** O item (1) do PRÓXIMO da execução das 13h19Z e o item (2)
+da lista das 15h52Z nomeavam a mesma coisa: *"a próxima categoria do eixo, e ela é
+decisão de banco antes de ser de leva"*. O item (2) daquela última lista ("a lista
+dos barrados na tela") **já estava entregue** — a leva 5 escreveu, no seu próprio
+PRÓXIMO, que *"a lista dos barrados na tela da categoria já existe"*, e ela foi ao
+ar em 13/09 às 23h19Z. Era item copiado de uma lista anterior sem reconferência, e
+esta execução o fecha como cumprido em vez de refazê-lo. O item (1) da mesma lista
+(a `vivaparos` de 3 para 5 fichas) segue preso ao despacho de egresso do Raphael, e
+o (3) segue preso à Sentinela estratégica. O que sobrava sem bloqueio era o banco —
+e banco é trabalho, não bloqueio (seção 2).
+
+### 1. As duas categorias vazias tinham UM elegível cada, e a escolha entre elas foi medida
+
+`/peixes/ciclideos-anoes/` tinha o **ramirezi** e `/peixes/plecos-e-limpa-vidros/`
+tinha o **otocinclo** — as duas a duas espécies do mínimo de três do **16.5**. A
+escolha foi pelos plecos serem um beco: o segundo candidato natural, o
+`ancistrus-cirrhosus`, está **barrado por `temperatura_C`** desde 09/09 e o motivo
+escrito no registro dele não é falta de busca, é que **o cascudo do comércio
+brasileiro é *Ancistrus* sp. '3', espécie não descrita** — as faixas que aparecem
+na busca são das espécies irmãs e foram recusadas na coleta original. Coletar de
+novo devolveria a mesma recusa. Os ciclídeos anões não têm esse problema: o
+recorte é comercial, tem prateleira com endereço próprio nas lojas brasileiras, e
+os candidatos têm ficha nos dois corpos de fonte que este banco usa.
+
+### 2. Duas espécies novas, e cada número voltou em duas passadas independentes
+
+**`apistogramma-agassizii`** — porte **4,2 cm SL** macho/não sexado, **26 a 29 °C**,
+pH 5,0 a 7,0, dH 0 a 12, frente mínima **60 cm**, `convivencia: harem`. A base
+científica declara a seção de aquário como *"várias fêmeas para um macho, aquário
+mínimo de 60 cm"*; o compêndio declara *"base de 60 × 30 cm ou mais é aceitável
+para UM casal, com o grupo exigindo espaço maior"*.
+
+**`mikrogeophagus-altispinosus`** — porte **5,6 cm SL**, **22 a 26 °C**, frente
+mínima **120 cm**, `convivencia: grupo`, `cardume_minimo: 6`,
+`cardume_recomendado_ate: 8`. O compêndio publica os três números numa frase só:
+*"grupo misto de 6 a 8 ou mais, desde que o aquário seja espaçoso, de 120 cm de
+comprimento ou maior"*.
+
+**Banco: 39 registros, 0 erro, 1 aviso** — o mesmo aviso E15 do guppy, que já
+existia. O catálogo foi de **29 para 31** e o portão de página de 29 para 31.
+
+### 3. O VAZAMENTO QUE FOI RECUSADO, e ele custou uma espécie inteira
+
+A candidata mais óbvia da categoria não era nenhuma das duas: era a
+**`Apistogramma cacatuoides`**, que é o apistograma mais vendido do Brasil. Ela
+**ficou de fora**, e o motivo é o que esta ilha persegue desde a leva 1. A base
+científica publica dela o porte (5,0 cm SL), o pH, a dureza e a faixa de 24 a 25 °C
+— os quatro voltaram iguais em duas passadas —, e **não publica tamanho de
+aquário**. O que a busca ofereceu no lugar foi a frente da **congênere**, com a
+frase *"a espécie relacionada A. agassizii menciona aquário mínimo de 60 cm, o que
+pode servir de referência para espécies semelhantes de Apistogramma"*. É
+literalmente o atalho que a leva 2 proibiu: **parâmetro de espécie vizinha é chute
+com cara de dado**.
+
+E a segunda passada, no compêndio, deu o sinal mais forte ainda: o bloco de
+compatibilidade devolvido para a `cacatuoides` era **idêntico palavra por palavra**
+ao devolvido para a `agassizii` na passada anterior, e junto veio uma frase de
+cálculo de aquecedor que nenhuma ficha daquele compêndio publica. Duas fichas
+diferentes não devolvem o mesmo parágrafo; **resumo que repete parágrafo é resumo
+costurando páginas, não lendo uma**. A espécie fica como coleta em aberto para o
+dia em que a leitura direta abrir.
+
+**O sentido inverso do mesmo vazamento é o que autorizou a `agassizii`:** a
+passada que devolveu a frente dela **não estava perguntando por ela** — perguntava
+pela `cacatuoides`, e citou a `agassizii` como a que TEM o número. Foi confirmada
+depois por uma passada que perguntava pela `agassizii` e devolveu a mesma seção,
+com a mesma frase da proporção entre os sexos.
+
+### 4. Os dois corpos declaram o MESMO 60 cm para arranjos DIFERENTES, e a ficha vai ter de dizer isso
+
+Na `agassizii`, a base atribui os 60 cm a *várias fêmeas para um macho* (harém) e o
+compêndio atribui a base de 60 × 30 cm a *um casal*, dizendo que o grupo exige
+espaço maior **sem dar o número desse espaço**. O número é o mesmo nos dois lados,
+então **não é conflito** pelo vocabulário desta ilha — conflito é valor diferente
+para o mesmo campo. Mas também não é uma afirmação só, e o registro diz o que a
+ficha não pode fazer: **prometer que 60 × 30 cm serve ao harém**. Serve ao casal por
+declaração do compêndio; para o harém, o que está declarado são os 60 cm de
+FRENTE, e o fundo não está declarado para esse arranjo.
+
+### 5. A categoria ganha critério e linha mestra, e é a primeira em que nem a família nem o gênero servem
+
+Nos tetras a família não servia e o gênero resolvia; nas coridoras o gênero não
+servia e a subfamília resolvia; nas bettas e nos vivíparos a família serviu. **Aqui
+nenhum dos dois serve.** Cichlidae é a família do **oscar (45,7 cm)**, do
+**acará-disco (13,7 cm)** e do **acará-bandeira (15,0 cm)**, os três neste mesmo
+banco e nenhum deles anão; e o gênero também não, porque o **ramirezi** e o
+**papilocromis** são os dois `Mikrogeophagus` e ocupam as **duas pontas** da tabela,
+enquanto a `agassizii`, que é `Apistogramma`, cai exatamente em cima do ramirezi.
+
+Quem separa é a **prateleira brasileira**, e ela é verificável em vez de opinativa:
+"ciclídeos anões" é categoria de loja com endereço próprio na Kauar, na RSDiscus e
+na Fazenda Submersa, e as três põem estes três lá dentro e nenhuma põe o oscar, o
+disco ou a bandeira. O porte declarado explica a prateleira sem régua nova: **os
+três ficam abaixo de 6 cm e o menor dos outros Cichlidae do banco tem 13,7 cm.**
+
+**A linha mestra sai da tabela e de mais nada, e é o caso mais limpo do eixo
+inteiro:** o ramirezi e a agassizii têm **exatamente o mesmo porte declarado** —
+4,2 cm SL, os dois na mesma base — e pedem os mesmos 60 cm; o papilocromis tem
+5,6 cm, **1,4 cm a mais**, e pede **120**. Nenhuma outra categoria deste eixo tem
+dois peixes de porte IDÊNTICO para provar que não é o porte que decide. O que
+dobra o aquário é o arranjo: casal, harém e grupo de 6 a 8.
+
+### 6. O PORTÃO REPROVOU ESTA EXECUÇÃO, e é o motivo de ele existir
+
+A lista `especies` da categoria foi preenchida com os três, e o
+`teste-peixes.py` reprovou na hora: **"a lista de espécies é da LEVA, não da
+preparação"** — preenchê-la antes faria a mãe publicar a contagem de uma categoria
+que o 16.5 ainda não deixou nascer. A lista voltou a `array()` com o motivo escrito
+ao lado e com os três ids nomeados no comentário, para a leva 6 não precisar
+refazer a medição. **Régua que pode falhar falhou na bancada em vez de no ar**, que
+é o oposto da régua escrita para um mundo que nunca aconteceu.
+
+### 7. SERP das QUATRO consultas classificada em 14/09/2026, todas ALVO
+
+Pela **14.9**, e prontas para a leva 6 copiar para `aquametria_peixes_registro()`
+com `serp_em => '14/09/2026'`:
+
+- **`quantos litros para ciclídeo anão`** (a mãe, nível 2). Top 10 com um portal
+  europeu (zooplus.pt), um fórum português, dois blogs de pet shop, um Blogspot de
+  2012, uma loja, três blogs de aquarismo e **uma ficha de OUTRA espécie**
+  (*A. gephyra*). Os números se contradizem na mesma página de resultados: 54 L,
+  30 L para casal e 50 L para comunitário, 75 L, 100 L. Nenhum domínio forte,
+  nenhuma atribuição — e **o próprio resumo da busca termina mandando o leitor
+  pesquisar espécie por espécie**, que é exatamente a tabela que esta página é. É
+  a mesma assinatura da mãe dos vivíparos. **ALVO.**
+- **`quantos litros para ramirezi`** (ficha). Top 9 com **seis lojas**, uma ficha de
+  portal de aquarismo, um portal de conteúdo e um blog. Números: 30 L para casal e
+  50 L para comunitário, 40 L, 60 L, 50 L, mais a regra de bolso "um ramirezi para
+  cada 20 litros" — que é a conta per capita que esta ilha recusa desde a leva 1.
+  Nenhum publica a base em centímetros nem atribui o número. **ALVO.**
+- **`quantos litros para apistogramma agassizi`** (ficha). Top 9 com **oito páginas
+  de PRODUTO** (rsdiscus, myaquarium, proaquarista, fazendasubmersa, solaqua com
+  três anúncios, mais uma loja portuguesa) e uma ficha de portal. Elas vendem o
+  peixe e não respondem a pergunta: 30 L / 50 L, 50 L, 60 × 30 × 30 cm (54 L),
+  60 L. É a SERP mais frouxa das quatro. **ALVO.**
+- **`quantos litros para papilocromis`** (ficha). Top 8 e **só dois resultados
+  falam da espécie**: duas lojas. O resto é página genérica de "quantos peixes
+  cabem" (duas), ficha de kinguio fora do assunto, Blogspot de 2013, Blogspot de
+  2011 e um fórum. Números: 60 L para casal, 100 L para harém, 70 L para casal — e
+  **ninguém publica os 120 cm de frente que o compêndio declara para o grupo de 6 a
+  8**, que é o arranjo que a própria fonte recomenda. **ALVO, e é a consulta de
+  maior distância entre o que a SERP responde e o que a fonte declara.**
+
+### Verificação
+
+**Bancada:** `validar-especies` 39 registros, 0 erro, 1 aviso (o E15 do guppy, que
+já existia); `testar-validador-especies` 24 testes, 0 falha; `teste-peixes`
+**2255 afirmações, 0 falha**; **`mutacoes-peixes` 90 de 90 reprovadas**; `conferir-slugs`;
+`conferir-protecao-funcoes` (46 funções do snippet, todas dentro de
+`function_exists`); `php -l` limpo.
+
+### Receita, contada (item 5 do despacho da Sentinela de 13/09)
+
+Nada mudou nesta execução, e a contagem é a mesma das 15h52Z: **78 de 78** itens
+com piso escolhido; **39** com ficha de afiliado, os 39 marcados `intestavel`;
+**0 de 78** com `url_busca` encurtada, que segue sendo trabalho da Sentinela
+estratégica no navegador do Raphael e que pela 25.2 **nunca** bloqueia página.
+**Espécie não é produto e não tem link de afiliado** — os dois registros novos
+nascem sem campo de afiliado, como os outros 37.
+
+### Próximo passo
+
+1. **LEVA 6 = `/peixes/ciclideos-anoes/`** com as três fichas, e ela está pronta
+   para nascer: banco fechado em três elegíveis, critério e linha mestra escritos,
+   SERP das quatro consultas classificada. Falta escrever as quatro entradas em
+   `aquametria_peixes_registro()`, preencher a lista `especies` da categoria e as
+   metas de descrição. **O teto da 21.4 está em 2 de 3 nesta semana**, então a leva
+   cabe hoje.
+2. **A `vivaparos` de 3 para 5 fichas** continua sendo o maior salto disponível do
+   eixo e continua presa ao despacho de egresso do Raphael (molly e guppy).
+3. **A `plecos-e-limpa-vidros`** só nasce com coleta que hoje não existe: o
+   ancistrus do comércio é espécie não descrita, e o segundo elegível teria de vir
+   de outra família da prateleira.
+4. **A `cacatuoides`** fica como coleta em aberto, com a causa nomeada: a base não
+   publica o aquário dela e a busca ofereceu o da congênere.
+
 ## 2026-09-14 13h19Z — LEVA 5: A QUARTA CATEGORIA, E A PRIMEIRA EM QUE NENHUMA FILHA TEM NÚMERO DECLARADO (peixes 1.8.0, manifest revisão 82, `/status` conferido na 82; QUATRO URLs novas — `/peixes/vivaparos/` e as fichas do platy, do peixe-espada e do plati variatus)
 
 **A ESCOLHA DA ILHA: primeira tentada, e sem corrida.** Os três `ESTADO.md` estavam com `executando_desde: null`, que pela 1.1 já significa que não há bloco da Fundação vivo — o git não precisou desempatar nada. Pela 18.1 procurei despacho aberto antes da rotação: os três `PROMPT.md` foram lidos e nenhum tem despacho para a Fundação de pé (o da clubedomosaico, de 14/09, foi fechado inteiro na execução das 11h18Z e já está em FECHADOS; `dados/despachos.md` tem quatro abertos e os quatro são do RAPHAEL, nenhum bloqueando bloco). Sobrou a rotação da seção 1, e a aquametria tinha a `ultima_execucao` mais antiga: 11h25Z, contra 11h44Z da robometria e 12h45Z da clubedomosaico. Nenhum branch `claude/*` com o que mesclar e nenhum PR aberto. **Rede pela 20.2, antes de trabalhar:** home em 200 e `/status` na revisão 77, igual à do manifest, em UMA passada.
