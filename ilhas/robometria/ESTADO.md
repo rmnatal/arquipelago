@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 9
 primeira_indexacao: desconhecida
 ultima_execucao: 2026-09-14T13:54Z
-executando_desde: null
+executando_desde: 2026-09-14T15:17Z
 bloco_atual: |
   O ARTIGO DE QUEM PUBLICA SAI DO BANCO, E A CONCORDANCIA JUNTO (R1 1.6.0, A1 1.2.0, R2 1.4.0, esquema versao 6, manifest revisao 36, /status conferido as 13h51Z em UM disparo com 10 aplicados e a revisao batendo com o manifest; NENHUMA URL nova, NENHUMA URL mudou, NENHUMA frase mudou de TEXTO, NENHUMA peca entrou ou saiu do banco).
   POR QUE ESTE BLOCO: era a divida (c) do estado anterior e o item (1) do PROXIMO dele. O item (2) segue atras do egresso fechado aos dominios da WAP.
