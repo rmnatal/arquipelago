@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 0
 primeira_indexacao: null
 ultima_execucao: 2026-09-14T17:17Z
-executando_desde: null
+executando_desde: 2026-09-14T19:16Z
 rede: bloqueada em 2026-09-14   # 20.1: o dominio nao esta na lista de Dominios permitidos. Despacho ALTO para o Raphael em dados/despachos.md
 bloco_atual: |
   BLOCO 1 ENTREGUE — o primeiro da vida desta ilha. dados/corpus-buscas.md, com os TRES eixos do PROMPT.md medidos em 14/09/2026 entre 17h20Z e 17h45Z (casamento de carga, dimensionamento de caixa, instalacao eletrica), procedencia por consulta, ZERO numero de volume de busca (nao houve ferramenta de volume) e ZERO valor entrando em banco ou constante — a mesma disciplina do corpus da Robometria e do da JornadaFly.
