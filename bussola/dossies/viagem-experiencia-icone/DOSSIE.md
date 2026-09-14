@@ -100,10 +100,16 @@ link na bio.
 10. **Horizonte declarado pelo Raphael: ativo que compõe em 12 meses**, não renda em 60 dias — então o dossiê otimiza por posição orgânica que dure, não por monetização rápida da audiência.
 
 **Notas medidas:** **S_par 3,25 · S_com 2,25** (pela equivalência que o despacho fixou: julgamento = paramétrica, ingresso =
-comercial). P 5 (dias × pessoas × padrão é número que a pessoa dá). D **alta, não quantificada** (sem fonte de volume;
-"não verificado" é resposta válida). R 4 (o mesmo usuário volta para outro destino, outra temporada — recorrência anual conta).
-A **não verificado** (ver o portão). V 4 (preço e condição publicados por quem opera; a fonte primária existe e é datável).
-**M não calculável → índice não calculado.**
+comercial). P 5 (dias × pessoas × padrão é número que a pessoa dá). **D 4.** R 4 (o mesmo usuário volta para outro destino,
+outra temporada — recorrência anual conta). **A 4,5** (portão fechado na seção de monetização acima). V 4 (preço e condição
+publicados por quem opera; a fonte primária existe e é datável).
+**M 3,77 (R$ 55,37 por venda) → Facilidade 3,86 · Retorno 3,98 · ÍNDICE 3,92, 2º da fila.**
+
+*(Este bloco dizia "D alta, não quantificada · A não verificado (ver o portão) · **M não calculável → índice não
+calculado**", que é o estado da rodada 004. A 005 fechou o portão e o próprio cabeçalho deste dossiê e a seção de
+monetização acima já trazem 3,92 — só este bloco de notas tinha ficado para trás, do mesmo jeito que aconteceu no dossiê
+do som automotivo uma hora antes. Números recopiados daqui mesmo e de `fila.md`, sem recalcular. Corrigido pelo Pente
+Fino em 14/09/2026.)*
 
 **Correção que a rodada impõe ao recorte, e ela é honesta:** o recorte proposto em 13/09 **não é derrubado**, mas é **menos
 afiado** do que o registro sugeria. A distância entre as duas metades é de **um ponto, não de quatro**. O dossiê mantém o

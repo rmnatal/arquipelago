@@ -130,11 +130,21 @@ está nomeado como tal.
   **escritos no próprio arquivo**, então não houve recálculo nenhum: as cinco pontas velhas foram alinhadas à
   seção 1 e à seção 4 do mesmo dossiê, com a frase antiga nomeada em cada lugar. Conferi a aritmética por fora
   antes de copiar (Facilidade 4,64 · Retorno 3,51 · Índice 4,00, que é o que a `fila.md` também traz).
-- **O que fica PRECISA DO RAPHAEL:** o **dossiê de viagem não foi tocado por ninguém**. Linhas 4 e 50 ainda
-  abrem com *"índice não calculado — ver o portão aberto abaixo"* e *"M não calculável"*, enquanto a `fila.md`
-  e a rodada 005 fecharam o portão e trazem **índice 3,92 · M 3,77 · A 4,5 · D 4**. Ali eu não corrijo: os
-  números não estão escritos dentro do arquivo, e transportá-los da fila seria refazer nota, que é trabalho
-  da Bússola 006 — não do Pente Fino.
+- **E ACONTECEU UMA TERCEIRA VEZ, com o dossiê de viagem, meia hora depois.** Quando varri, ele abria com
+  *"índice não calculado — ver o portão aberto abaixo"*; registrei como PRECISA DO RAPHAEL porque os números
+  certos não estavam no arquivo. Às **14h27Z** entrou o commit `e1cd745` ("JornadaFly: portão de monetização
+  fechado, índice 3,92"), que corrigiu o cabeçalho para **índice 3,92** e escreveu uma seção nova de
+  monetização com M 3,77 — **e deixou o bloco "Notas medidas" dizendo `D alta, não quantificada · A não
+  verificado · M não calculável → índice não calculado`.** O mesmo movimento do dossiê do som automotivo,
+  uma hora antes, no dossiê irmão.
+  - **O que eu fiz: CORRIGIDO**, pelo mesmo motivo de antes — depois do `e1cd745` os números passaram a estar
+    escritos no próprio arquivo (cabeçalho, tabela de cenários e a linha "ÍNDICE: 3,92"), então foi
+    transcrição, não recálculo. Conferi a aritmética por fora: S 3,10 · Facilidade 3,86 · Retorno 3,98 ·
+    Índice **3,921**. Bate com a `fila.md`.
+  - **O que NÃO toquei, e é honestidade da própria Bússola:** a tabela de programas da seção (c) continua com
+    "não verificado na fonte" em dez linhas, e isso está **certo** — a seção nova declara explicitamente que
+    *"a lista de programas da seção (c) continua válida e é completada aqui pelos percentuais"*. Registro
+    datado que diz o que substitui não é contradição; é o hábito que falta em todo o resto.
 
 ### G4. O token do Sync está em texto puro no `PROMPT.md` das TRÊS ilhas, não só no Clube do Mosaico
 
@@ -375,8 +385,10 @@ O caminho barato seria o e-mail virar option do site (`cdm_email_leads` já exis
    de manhã**. Em G3 o padrão aconteceu **durante esta auditoria**: às 14h22Z uma execução da Bússola corrigiu
    o cabeçalho de um dossiê e a seção nova, e deixou o bloco de notas, o item 9, a seção de cesta e o próprio
    bloco "o que o Raphael precisa saber antes de dizer sim" dizendo o contrário — quatro pontas velhas, um
-   minuto antes do meu push. A fábrica está escrevendo lei mais rápido do que a relê, e a auditoria semanal
-   não alcança isso.
+   minuto antes do meu push. **E de novo às 14h27Z, no dossiê irmão**, com o mesmo formato: cabeçalho e seção
+   nova certos, bloco de notas dizendo "índice não calculado". **Três vezes em quarenta minutos, sempre a
+   mesma forma: o topo do documento é corrigido e o bloco de números lá embaixo não.** A fábrica está
+   escrevendo lei mais rápido do que a relê, e uma auditoria semanal não alcança isso.
 3. **Toda ponta velha que sobrou era uma FRASE OPERACIONAL — uma ordem, não uma explicação.** "Teste com
    curl", "cabeçalho preto", "etiqueta com hífen", "a nuvem não alcança". Prosa velha é inofensiva; **ordem
    velha é executada.**
@@ -413,3 +425,10 @@ inserida** — é regra nova de política e a decisão é do Raphael:
 > executada por quem chegar depois** — foi assim que três dias de coleta da Robometria se perderam testando
 > um domínio que o banco nunca citou. Por isso a varredura procura o imperativo: o comando, o hexadecimal, o
 > formato de campo, o endereço, a frase que vai para a tela.
+>
+> **E há um lugar que a varredura visita SEMPRE, porque é onde o defeito caiu três vezes em quarenta minutos
+> no dia em que esta regra foi escrita: o BLOCO DE NÚMEROS do próprio documento que você acabou de corrigir.**
+> Nota, índice, contagem, tabela de resumo, "o que o leitor precisa saber" — é o trecho que ninguém relê
+> porque parece derivado, e é justamente o que o leitor lê primeiro. Documento cujo cabeçalho e cujo bloco de
+> notas discordam não está meio corrigido: está pior do que estava, porque agora tem uma versão certa dando
+> crédito à errada.
