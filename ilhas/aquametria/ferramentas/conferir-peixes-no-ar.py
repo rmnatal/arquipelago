@@ -260,12 +260,26 @@ def main():
         # aqui porque o corpo da ficha e um shortcode, entao a mudanca que vem do
         # snippet nao move `post_modified` e nao aparece em log de desembarque
         # nenhum: a unica prova de que o conserto chegou e o HTML servido.
+        # A REGUA DAS DUAS ERA `in`, E `in` NAO SABE ONDE O NUMERO COMECA
+        # (medido em 14/09/2026, na preparacao da leva 6). As duas linhas abaixo
+        # nasceram como teste de substring — "1 estão na tabela" not in t — e
+        # isso REPROVA a ficha do peixe-espada no dia em que a contagem dela
+        # chega a 21, porque "21 estão na tabela" contem "1 estão na tabela".
+        # Foi exatamente o que aconteceu: duas especies novas no banco levaram a
+        # tabela de vizinhos de temperatura de 20 para 21 e a conferencia no ar
+        # acusou um defeito que a pagina nao tinha. E a mesma familia do numero
+        # de tela digitado que esta ilha persegue, do lado do portao: regua que
+        # falha ERRADO custa tanto quanto regua que nao falha.
+        #
+        # O `(?<![\d.,])` e o conserto inteiro: so casa o 1 que comeca o numero.
+        # A intencao nao mudou — pegar a concordancia agramatical com UM.
         if e.get("comportamento") != "agressivo":
+            um_ficaram = re.search(r"(?<![\d.,])1 ficaram fora", t)
             ok("%s: no ar, a prestacao de contas nunca diz '1 ficaram'" % slug,
-               "1 ficaram fora" not in t,
-               t[max(0, t.find("1 ficaram fora") - 90):][:180])
+               um_ficaram is None,
+               t[max(0, um_ficaram.start() - 90):][:180] if um_ficaram else "")
             ok("%s: no ar, a prestacao de contas nunca diz '1 estao'" % slug,
-               "1 estão na tabela" not in t)
+               re.search(r"(?<![\d.,])1 estão na tabela", t) is None)
         if largura and e.get("convivencia") not in TP.ARRANJO_FIXO:
             v_meio = frente[1] * float(largura) * TP.ALTURAS[1] / 1000.0
             classica = int(math.floor((v_meio / TP.CLASSICA) / porte[1]))

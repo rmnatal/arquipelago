@@ -13,7 +13,7 @@ o proximo passo desbloqueado, e espelha o mesmo resumo em
 > desordem), mas quem procurar a execução do piso de busca a encontra no rodapé e
 > não no topo.
 
-## 2026-09-14 21h18Z — PREPARAÇÃO DA LEVA 6: A QUINTA CATEGORIA GANHA BANCO, CRITÉRIO E LINHA MESTRA, E NENHUMA URL NASCE (peixes 1.9.0, banco de espécies de 37 para 39 registros, manifest revisão 85; ZERO URL nova, ZERO leva do teto da 21.4 gasta)
+## 2026-09-14 21h18Z — PREPARAÇÃO DA LEVA 6: A QUINTA CATEGORIA GANHA BANCO, CRITÉRIO E LINHA MESTRA, E NENHUMA URL NASCE (peixes 1.9.0, banco de espécies de 37 para 39 registros, manifest revisão 86; ZERO URL nova, ZERO leva do teto da 21.4 gasta)
 
 **A ESCOLHA DA ILHA: primeira tentada, e sem corrida.** Os cinco `ESTADO.md` do
 arquipélago estavam com `executando_desde: null`, que pela **1.1** já significa que
@@ -176,13 +176,58 @@ com `serp_em => '14/09/2026'`:
   8**, que é o arranjo que a própria fonte recomenda. **ALVO, e é a consulta de
   maior distância entre o que a SERP responde e o que a fonte declara.**
 
+### 8. A CONFERÊNCIA NO AR REPROVOU, E O DEFEITO ERA DELA: `in` não sabe onde o número começa
+
+`conferir-peixes-no-ar.py` acusou, na ficha do peixe-espada, *"a prestação de
+contas nunca diz '1 estão'"*. **A página estava certa.** Ela serve *"21 estão na
+tabela acima"* — e `"1 estão na tabela" not in t` é um teste de SUBSTRING, que
+casa dentro do 21. As duas espécies novas levaram a tabela de vizinhos de
+temperatura daquela ficha de 20 para **21**, e a régua acusou um defeito que não
+existia.
+
+**É a mesma família do número de tela digitado que esta ilha persegue nas
+páginas, do lado do portão** — com a diferença de que aqui o custo é o inverso:
+**régua que falha ERRADO custa tanto quanto régua que não falha.** A primeira
+manda consertar o que está certo; a segunda deixa passar o que está errado. As
+duas roubam a única coisa que o portão existe para dar, que é saber em qual das
+duas situações a ilha está.
+
+O conserto é `(?<![\d.,])` nas duas linhas — só casa o `1` que **começa** o
+número —, e a intenção não mudou: continuar pegando a concordância agramatical
+com UM, que foi o que a leva 5 consertou nas fichas. **Provado nos dois
+sentidos**, com oito casos: `"1 ficaram fora"` e `"1 estão na tabela"` continuam
+sendo pegos; `11`, `21`, `31` e `1,1` deixam de ser. Depois do conserto:
+`conferir-peixes-no-ar` com **614 afirmações, 0 falha**.
+
+A bancada não tinha esse defeito, e a diferença entre as duas diz por quê: no
+`teste-peixes.py` a frase inteira é **recomputada do banco** e comparada por
+igualdade; no ar ela tinha virado um atalho de substring. **Atalho de portão é
+portão com uma régua a menos.**
+
 ### Verificação
 
 **Bancada:** `validar-especies` 39 registros, 0 erro, 1 aviso (o E15 do guppy, que
 já existia); `testar-validador-especies` 24 testes, 0 falha; `teste-peixes`
 **2255 afirmações, 0 falha**; **`mutacoes-peixes` 90 de 90 reprovadas**; `conferir-slugs`;
 `conferir-protecao-funcoes` (46 funções do snippet, todas dentro de
-`function_exists`); `php -l` limpo.
+`function_exists`); `teste-seo-tecnico` 411; `teste-escada-compra` 644;
+`teste-datas-schema` 102; `teste-apelidos` 59; `validar-produtos` 78 produtos,
+0 erro; `php -l` limpo.
+
+**No ar:** Sync disparado às 21h45Z, `/status` na **revisão 86**, igual à do
+manifest, em **um** disparo com 20 aplicados. A seção `/peixes/` passou a servir
+**31 espécies no catálogo, 39 no banco, 8 fora** (era 29/37/8), e a checagem
+precisou de quebra-cache: o endereço limpo continuou servindo 29/37/8 depois do
+Sync, porque o corpo dessas páginas é um **shortcode** — mudança que vem do
+snippet não move `post_modified`, não invalida nada, e a hospedagem responde
+`cache-control: max-age=7200`. Não é defeito novo e não é surpresa: é o cache
+duplo que a seção 4 do contrato nomeia, e é por isso que o
+`conferir-peixes-no-ar.py` manda `?v=<hora e minuto>` em toda requisição desde
+que nasceu. **O que está no ar é o que a origem serve**; a cópia em cache vence
+sozinha (expirava às 23h51Z do mesmo dia). **`/peixes/ciclideos-anoes/` responde 404**,
+que é o critério de pronto desta preparação: a categoria tem critério, linha
+mestra e banco, e NÃO tem URL. `conferir-peixes-no-ar` com **614 afirmações, 0
+falha** depois do conserto do item 8.
 
 ### Receita, contada (item 5 do despacho da Sentinela de 13/09)
 
