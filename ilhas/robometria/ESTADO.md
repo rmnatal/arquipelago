@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 9
 primeira_indexacao: desconhecida
 ultima_execucao: 2026-09-14T19:17Z
-executando_desde: null
+executando_desde: 2026-09-14T23:16Z
 bloco_atual: |
   A FAMILIA B106GL DO XIAOMI S10 ENTRA, O S10 SAI DO VAZIO DA R1, E A REGUA QUE DECIDE SE O DESEMBARQUE CHEGOU AO LEITOR ERA CEGA PARA TEXTO (manifest revisao 43, conferir-no-ar de 220 para 229 afirmacoes). NENHUMA URL nova, NENHUMA URL mudou.
   O QUE SAIU: os itens (b) e (c) que o DESPACHO DA SENTINELA de 14/09 deixou para 'a proxima execucao', mais um bloco 3c de coleta.
