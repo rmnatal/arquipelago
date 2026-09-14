@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 9
 primeira_indexacao: desconhecida
 ultima_execucao: 2026-09-14T16:05Z
-executando_desde: null
+executando_desde: 2026-09-14T19:22Z
 bloco_atual: |
   O PISO DA 25.2 CHEGA A TELA, E O DESEMBARQUE DESTA ILHA PARAVA NO CACHE DO HOSPEDEIRO (casca 1.6.2, R1 1.8.0, R2 1.6.0, A1 e A2 1.3.0, esquema versao 7, manifest revisao 42). NENHUMA URL nova, NENHUMA URL mudou, NENHUMA peca ou modelo entrou ou saiu do banco.
   O QUE SAIU: o DESPACHO DO RAPHAEL de 14/09 INTEIRO (o piso de busca) e os itens 1, 2 e 3 do DESPACHO DA SENTINELA de 14/09. Os itens 4 e 5 da ronda nao eram para a Fundacao.
