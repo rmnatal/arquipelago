@@ -213,3 +213,166 @@ já nasce com três obrigações que saíram do bloco 1 e estão escritas no fim
 corpus: o critério de casamento de RMS **com fonte**, o veredito **"não fecha"**
 com a impedância mais próxima que fecha, e o **rendimento suposto + distância de
 ida e volta** declarados na tela da F3.
+
+---
+
+## 2026-09-14 19h16Z — Bloco 2: especificação das três ferramentas e `constantes.json`
+
+**A ESCOLHA DA ILHA: PRIMEIRA TENTADA, RESERVA ACEITA SEM CORRIDA.** Os cinco
+`ESTADO.md` do arquipélago passaram por `yaml.safe_load` (seção 2) e os cinco
+estavam com `executando_desde: null` — pela 1.1 isso já basta, porque a reserva é
+escrita **antes** do trabalho (passo 5), então não havia reserva vencida para o
+git desempatar. Pela **18.1**, **três** ilhas tinham despacho aberto do Raphael
+datado de 14/09 (ohmetria, jornadafly e o item que sobrou na clubedomosaico),
+empate de destinatário e de data; o desempate voltou para a rotação da seção 1 e
+a **ohmetria** tinha a `ultima_execucao` mais antiga das três (17h17Z, contra
+17h45Z e 18h45Z). Nenhuma branch `claude/*` e nenhum PR aberto para mesclar — a
+branch desta execução estava idêntica ao `main`. Reserva commitada e empurrada
+às 19h16Z, aceita na primeira tentativa.
+
+**A REDE FOI RETESTADA, NÃO HERDADA** (20.2, e o `ESTADO.md` já trazia
+`rede: bloqueada`): `ohmetria.com.br` e `www.ohmetria.com.br` em **000 nas três
+passadas**, com `aquametria.com.br` e `robometria.com.br` em **200 nas mesmas
+três**. Seis medições de bloqueio contra seis de controle verde, igual à
+execução anterior. `bloqueada_por` segue `null` de propósito: o que a rede trava
+é o 3b em diante, não bloco de arquivo.
+
+**E O EGRESSO DE TERCEIRO FOI MEDIDO PELA SEGUNDA PORTA.** No bloco 1 quem
+recusou foi o `curl`, em outro domínio. Aqui foi o **WebFetch em
+`sac.taramps.com.br`**, `EGRESS_BLOCKED` às 19h30Z. As duas portas estão medidas
+e as duas estão fechadas: **nenhum documento de fabricante foi lido**. A busca
+web funciona, e foi só dela que saiu tudo que segue.
+
+### O achado principal, e ele muda as três ferramentas
+
+O bloco 1 mediu, no eixo A, **três regras incompatíveis** para a mesma pergunta
+(100%, o dobro, 0,75–1,25×), amplitude de **2,7 vezes**, e escreveu que nenhuma
+delas diz de onde sai. **Esta execução achou de onde sai, e não são três
+opiniões: são duas declarações do mesmo fabricante, lidas em unidades
+diferentes.** A Taramps publica em artigo dedicado, **um por linha de produto**
+(DS, HD, TS, Amplayer), o critério de casamento — *a potência RMS do
+alto-falante tem de ser igual ou superior à do amplificador*, teto de **100%** —
+e publica em artigo próprio que **potência musical é cerca de 2× o RMS**. A
+regra "use o DOBRO" que ocupa a SERP tem o mesmo 2 da razão musical/RMS, e esse
+2 é a relação entre duas maneiras de medir o **mesmo** equipamento, não licença
+para dobrar a potência do amplificador. A fonte que o achado A1-b disse não
+existir **existe**, e ela aponta para 100%.
+
+**O mesmo aconteceu no eixo C, e vira o achado C1 do avesso.** O divisor 20
+("consumo musical") que o corpus atribuiu a um blog é, aparentemente, a conta do
+**próprio fabricante** — a Taramps declara o 20 como aproximação dos técnicos
+dela. Dos três divisores medidos, o de 20 é o único com autoria de fabricante;
+os outros dois são `W ÷ V`, que ignora o rendimento do módulo. E apareceu um
+segundo número que o corpus não tinha: **fusível a cerca de 10% acima do consumo
+musical**, contra os **125 a 150%** que os guias publicam — de **110 A a 250 A**
+para o mesmo módulo de 2000 W RMS, **2,3 vezes**, e o número do **fabricante é o
+mais BAIXO**, o contrário do que a intuição diz.
+
+### E tudo isso entrou como `pendente` — essa é a parte que importa
+
+Pela regra do **elo mais fraco** (seção 10), autoria forte com leitura por busca
+continua sendo leitura por busca. Há um segundo motivo, e é medição: **os
+exemplos que vieram junto com o divisor não fecham entre si.** Uma resposta deu
+*"3.000 W ÷ 20 = 135 A"*, e 3.000 ÷ 20 é **150**; outra deu *"TS400x4 consome
+16,5 A"*, enquanto 400 ÷ 20 é 20. A **regra** veio idêntica em duas consultas
+independentes, os **exemplos** não — sinal de paráfrase por cima do documento.
+Regra forte, exemplos fracos: nenhuma dessas quatro constantes de fabricante
+entra em fórmula publicada antes de alguém abrir a página.
+
+As consultas foram feitas com **pergunta limpa**, como a seção 8 manda: da forma
+*"qual é a conta que o fabricante publica"*, nunca *"o divisor é 20?"*. O 20
+apareceu sem ter sido plantado, e apareceu duas vezes.
+
+`dados/constantes.json` termina com **`pendencias_de_leitura`**: os quatro
+documentos que promovem cada constante, em ordem de quanto desbloqueiam, com **o
+que transcrever de cada um**. Promover é uma linha por constante, não um bloco.
+
+### A F1 não depende de nenhuma delas para a metade que importa
+
+`ferramentas/impedancias.py` enumera o domínio de saída inteiro e grava
+`dados/impedancias-alcancaveis.json` com **24 casos contados**. O modelo: K
+bobinas iguais de Z ohms partidas em **g grupos iguais** em série, os grupos em
+paralelo → **Z × K / g²**, com g dividindo K. É aritmética, publica hoje, e prova
+que **"não fecha" é calculável em vez de opinado**: dois subs 2+2 Ω alcançam
+**0,5, 2 e 8 Ω**, e **1 Ω não está no conjunto**.
+
+**A régua reprovou o próprio gerador, e o conserto virou regra da ilha.** A
+primeira versão respondia, para dois subs 2+2 pedindo módulo de 1 Ω, que o mais
+perto era **0,5 Ω** — por menor distância em ohms. Essa é a resposta que
+**queima** o módulo: menos ohm é mais corrente. Pela assimetria de custo da
+seção 10, errar para baixo custa hardware e errar para cima custa volume, então o
+critério passou a ser o **menor alcançável ≥ o pedido**, e a alternativa errada
+ficou **afirmada de propósito** na régua, para que trocar o critério volte a
+reprovar.
+
+**E a enumeração devolveu um veredito que este bloco não foi procurar: TRÊS
+alto-falantes iguais não fecham em impedância de módulo NENHUMA.** Nas **seis**
+montagens de três — uma por tipo de bobina — não existe ligação simétrica que
+caia em 0,5, 1, 2, 4 ou 8 Ω; três subs 2+2 dão **12 · 3 · 1,333 · 0,333 Ω**. Não
+é "ímpar nunca fecha": **um** falante de 2 Ω fecha em módulo de 2 Ω, e a régua
+guarda esse contraexemplo para a afirmação não se generalizar sozinha.
+
+### A F2 e a F3
+
+**F2** ganhou fórmula e dois portões: `Vb = Vas / ((Qtc/Qts)² − 1)`, alinhamento
+selado clássico, com status **`aguarda_validacao`** porque a trava 3 do
+`PROMPT.md` manda bater com a litragem que o fabricante recomenda e o banco do
+bloco 3 não existe. A **faixa de Qtc (0,7–1,1) é quem decide o tamanho da
+caixa** e não tem fonte de fabricante nem leitura direta → `pendente`. E
+enquanto a razão líquido/bruto estiver `pendente`, **a F2 não converte unidade**:
+compara só o que já estiver na mesma.
+
+**F3** está honestamente travada, e isso coincide com a ordem obrigatória do
+`PROMPT.md`. Quatro das oito pendentes são dela, inclusive
+`queda-de-tensao-maxima-aceitavel`, que foi **procurada e não encontrada em fonte
+nenhuma**. Mas **duas coisas dela publicam hoje**: a **distância de ida e volta**,
+que é derivação e é metade da vaga do achado C2; e a **direção do erro** — cabo
+pela corrente **maior**, fusível pela **menor**, fusível nunca acima do que o
+cabo aguenta, porque quem protege o cabo é o fusível e os dois erros baratos
+apontam para lados **opostos** da mesma divergência. Nenhuma página medida faz
+essa separação: todas escolhem um divisor e propagam para as duas saídas.
+
+### Verificação
+
+Nada foi ao ar e nada podia ir: esta ilha não tem site, não tem `manifest.json` e
+não tem endpoint de Sync. O que foi medido nesta execução:
+
+- **Cabeçalho do `ESTADO.md` por parser** (seção 2), `yaml.safe_load` aprovando
+  antes de cada commit; citação em aspas simples dentro do `bloco_atual`.
+- **O portão da F1: 73 afirmações, 0 falha**, com régua **própria** — as contas
+  da conferência estão escritas à mão, com os números por extenso, e não chamam
+  nenhuma função do gerador. Reproduzir com
+  `python3 ferramentas/impedancias.py --conferir`.
+- **Seis mutações deliberadas, seis reprovadas**: voltar ao critério de distância
+  absoluta (duas maneiras), aceitar ligação assimétrica, errar o expoente do
+  paralelo, encolher o teto de quantidade, e inventar um módulo de 1/3 ohm para
+  ver a afirmação sobre as montagens de três cair. Régua que não pode falhar é
+  teste verde com outro nome (seção 8).
+- **A rede em três passadas com controle na mesma passada** (20.2), e o egresso
+  de terceiro pela segunda porta (WebFetch).
+- **Os números da especificação conferidos contra o JSON gerado**, não contra a
+  memória de quem escreveu: 24 casos, o conjunto do par 2+2, as seis montagens
+  de três e o caso de 0,125 Ω sem módulo no mercado.
+- **A estrutura do `constantes.json` por script**, cobrando que nenhuma constante
+  de tipo `fabricante` ou `recomendacao_editorial` esteja `publicavel`, e que
+  todo item traga `fonte`, `canal_de_coleta`, `leitura`, `verificado_em` e
+  `usada_em`. Zero violações.
+
+### Próximo passo desbloqueado
+
+**BLOCO 3 — modelo do banco**: esquema das entidades **MÓDULO** (`impedancias_estaveis[]`,
+`rms_por_impedancia{}`, canais), **ALTO-FALANTE/SUBWOOFER** (`impedancia_bobinas`,
+`rms`, `vas_l`, `qts`, `fs_hz`, `xmax_mm`, `sd_cm2`), **CAIXA**, **CABO** e
+**CAPACITOR**. Não depende de site nem de rede. Já nasce com três obrigações
+escritas: `litragem_tipo` (`bruto | liquido | nao_declarado`) ao lado de
+`litragem_l`; a `faixa-de-validacao-thiele-small` como portão de **entrada**, que
+**recusa** valor fora de faixa em vez de corrigir; e
+`afiliado.url_busca_bruta` obrigatório em **todo** item antes de qualquer outra
+coisa (25.2), com `afiliado.url_produto` em todo item que tenha ficha (25.4-b).
+
+**Um achado de canal para esse bloco, e ele NÃO foi conferido:** a busca devolveu,
+no SAC da Taramps, páginas de **descrições técnicas em HTML por modelo de
+módulo** (TS 400X4, TL1500, MD1200.1, TS 1200X4 foram vistas em resultado). Se o
+egresso abrir, a carga do lado **MÓDULO** pode não precisar de PDF nenhum — o que
+mudaria a trava 1 do bloco 3 de "extração de PDF" para "leitura de página" na
+metade que sustenta a F1. A página não foi aberta; está escrito como hipótese.
