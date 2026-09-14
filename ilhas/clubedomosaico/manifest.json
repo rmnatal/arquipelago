@@ -4,7 +4,7 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 29,
+  "revisao": 30,
   "atualizado_em": "2026-09-14",
   "estado": "nascendo",
   "desembarque": {
@@ -20,8 +20,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.9.1",
-      "sha256": "f91816b753e35ed55ea638b5be8a5381c41dee502c074c03e3e927c3912989a3",
+      "versao": "1.9.2",
+      "sha256": "9a30a29c1e16d90335e17aaa6665939a17f1604f84e7b98440c413d3fd01a3bd",
       "descricao": "Casca 1.9.1 — TRES NUMEROS DA TELA ENTRARAM NA VIA VIVA. `celulas_matriz`, `celulas_com_saida` e `celulas_sem_saida` eram os unicos do instantaneo de `cdm_casca_numeros()` que nenhuma linha recontava do repositorio, e em 13/09/2026 os dois produtos novos da categoria cola fecharam as duas ultimas combinacoes sem saida — com a pagina de metodologia, cujo unico produto e o rigor, continuando a publicar que a ilha tinha duas. Agora elas saem contadas do `matriz_esperada_da_F2` gravado nas options, como as contagens de banco ja saiam. A frase da metodologia tambem ganhou o ESCOPO do que ela mede: os numeros sao de base x ambiente, e desde a f2 1.3.0 a ferramenta decide tambem pelo caquinho — sem essa linha, o numero certo virava promessa errada. Nada mais foi tocado."
     },
     {
@@ -54,7 +54,7 @@
       "ativo": true,
       "publicar": true,
       "versao": "1.2.0",
-      "sha256": "046129dc485b318df084ba19093fccd3b4d19ff9fa2804d319217db1586f35ef",
+      "sha256": "7fc40384442c9d5b1260763b96c8bac4491e881f933f4494edcadaa6b7b4029d",
       "descricao": "1.1.0 (13/09/2026): UMA mudanca, e ela e de tomada e nao de comportamento — o bloco de acao da ficha (preco, disponibilidade, botao) passou a sair por apply_filters('cdm_peca_acao', $padrao, $peca, $dados). Sem ninguem atendendo, a ficha serve exatamente o que servia ontem; quem atende e o snippet de Leads. Consequencia que vale registrar: a option `cdm_whatsapp` deixou de decidir se a peca tem como ser pedida. BLOCO 4d, O MODELO E O LADO PUBLICO — o CORTE do despacho do Raphael das 18h20 BRT de 12/09/2026 (itens 1 e 5). Registra o CPT `peca` e as taxonomias `colecao` e `tecnica`, serve a ficha publica da peca em /loja/<slug>/ e troca a vitrine da casca pela versao com foto. SEIS DECISOES. (1) O CPT NAO TEM ARQUIVO PROPRIO em /loja/, contra o que a especificacao de 10/09 pedia: /loja/ JA e uma pagina desta ilha, com o texto editorial do VOZ.md e a secao 'Como a compra vai funcionar', e ela ja lista as pecas; um arquivo de CPT no mesmo endereco disputaria a URL e o vencedor dependeria da ordem das regras de reescrita. has_archive false, rewrite slug `loja`: a peca nasce em dois segmentos e a pagina de um segmento continua dela. Nada foi perdido — quem lista e a pagina, que e MELHOR que o arquivo porque tem texto de verdade em volta. (2) A FICHA E MONTADA POR `the_content`, nao por template: a peca herda de graca tudo que a casca ja testou (logo, trilha, H1, Veja tambem, rodape, favicon, GA4), e escrever um template seria ficar com duas cascas divergindo em silencio. (3) A TRILHA E O BreadcrumbList SAEM DO MAPA DA CASCA, pelo filtro cdm_arvore, na hora em que a peca esta sendo servida — trilha de peca e a MESMA trilha do resto da ilha, e e por isso que ela nao pode ser um segundo codigo. (4) AS TAXONOMIAS EXISTEM, AS PAGINAS DELAS NAO: public=false, porque taxonomia publica nasce com arquivo e entra no wp-sitemap.xml, e seriam de sete a doze URLs finas pedindo rastreamento num dominio de dois dias (14.1); as paginas de colecao e tecnica estao no corte como o que NAO entra hoje. (5) O BOTAO E O WHATSAPP DA ARTESA, nao o formulario de lead do adendo 3, que esta explicitamente fora do corte; e enquanto a option cdm_whatsapp estiver vazia o botao NAO e inventado — a ficha diz que o contato nao foi publicado. (6) PECA SEM FOTO OU SEM PRECO NAO PUBLICA, e a regua e UMA: cdm_loja_peca_publicavel() devolve os MOTIVOS, o painel mostra os motivos, e a trava tambem esta no nucleo por transition_post_status — botao desabilitado e regra de tela, que some no dia em que alguem publicar por outro caminho. CONTEM O ENDPOINT DE COPIA DA SECAO 24 (/wp-json/clubedomosaico/v1/pecas, protegido pelo token do Sync): as pecas dela sao o UNICO dado do Arquipelago que nao existe fora do banco do WordPress, e sem isto nao ha de onde reconstruir. A contagem sai por rota PUBLICA separada (/v1/loja) e nao pelo /status, porque o /status mora no snippet do Sync, que se pula a si mesmo e nao aplica filtro nenhum — um add_filter ali seria portao que nunca roda. ZERO JavaScript: o carrossel e scroll-snap puro, portao 22.8."
     },
     {
@@ -65,7 +65,7 @@
       "ativo": true,
       "publicar": true,
       "versao": "1.3.0",
-      "sha256": "5a277adf1bfbec27caa8b6ca2d0127da78110652bc8a4dbe740b8634c40c863e",
+      "sha256": "76fcc2052d45b13d810561a0d4642e7de96c0f7977f8fa0a1a3423f25613e12f",
       "descricao": "1.1.0 (13/09/2026): O PAINEL GANHOU ABAS, e so isso — lista, formulario, login e criacao de senha continuam letra por letra. Entraram dois pontos de extensao, `cdm_atelie_abas` (quem quer uma aba) e `cdm_atelie_tela` (quem a desenha), mais a navegacao, que so aparece quando existe mais de uma aba, para o painel de ontem continuar sendo o de ontem se ninguem se registrar. A primeira aba de fora e Interessados, do snippet de Leads. O papel `artesa` NAO mudou: nenhuma capacidade nova. BLOCO 4d, A AREA DELA — itens 2, 3 e 4 do CORTE do despacho das 18h20 BRT de 12/09/2026. O Raphael vai a casa dos pais no domingo 13/09 ensinar a propria mae a cadastrar as pecas dela; tudo neste arquivo responde a uma pergunta so: ela consegue fazer isso sozinha, do telefone, sem nunca descobrir o que e WordPress? SETE DECISOES. (1) ELA NUNCA VE O wp-admin, e o bloqueio e DUPLO — admin_init devolve o papel `artesa` para /atelie/ antes de qualquer tela do WordPress ser montada, e show_admin_bar fica false; duas travas porque falham por motivos diferentes. (2) A SENHA DELA NAO EXISTE NESTE REPOSITORIO NEM EM LOG NENHUM: o snippet gera senha aleatoria e a DESCARTA sem imprimir, e o que chega a ela e um link de criacao de senha no e-mail dela (mina196@hotmail.com). O que a Fundacao consegue conferir e se o e-mail SAIU, e e so isso que ela precisa conferir. (3) A SENHA E CRIADA EM /atelie/, NAO NO wp-login.php — desvio consciente da especificacao de 10/09, e a favor dela: o fluxo nativo manda o link para uma tela com a marca do WordPress e um medidor de forca de senha, que e a definicao literal do que o portao deste despacho reprova. A CHAVE continua sendo a nativa (check_password_reset_key + reset_password, nada de criptografia caseira); a TELA e a nossa, com o logo dela, e ao terminar ela ja entra logada. Um passo menos para explicar no domingo. (4) TUDO FUNCIONA SEM UMA LINHA DE JAVASCRIPT (portao 22.8): login, cadastro, envio de foto, reordenar, remover, publicar, pausar e apagar sao formularios POST. E e por isso que reordenar foto e botao ◀ ▶ e nao arrastar-e-soltar, que era o que a especificacao pedia — arrastar depende de JavaScript e de precisao de dedo, e ela vai cadastrar de um celular. (5) O FORMULARIO E UMA TELA SO e salvar nunca perde o que ela digitou; POST seguido de redirecionamento, entao o botao Voltar do celular nao reenvia e nenhuma peca sai duplicada. (6) QUEM DECIDE SE A PECA PODE IR AO AR E A LOJA, nao este arquivo: uma segunda regua aqui deixaria publicar o que a loja recusa, e ela veria a peca sumir sem entender por que. (7) O PAINEL E `noindex` e fora do sitemap, declarado como camada `privada` na definicao de paginas — e a segunda razao para um noindex nesta ilha, diferente da camada de prova, e as duas exigem tratamentos OPOSTOS: a de prova tem de ser citada por outra pagina, e esta nao pode ser citada por nenhuma. FORA DO CORTE, por escrito e nao por esquecimento: o formulario 'Verificar disponibilidade' e o CPT `lead_peca` (adendo 3 de 11/09), a aba Interessados, a exportacao CSV dos leads, 'Meus dados', o feed do Merchant Center e as paginas de tecnica e colecao. CONTEM A ROTA DE CONFERENCIA /wp-json/clubedomosaico/v1/atelie (token do Sync) pela qual a Fundacao prova, da nuvem e sem senha, que a usuaria existe e a que hora o e-mail saiu — sem ela, 'o e-mail foi enviado' seria fe. O e-mail sai mascarado nessa rota. 1.0.1, NO MESMO DIA E DEPOIS DE JA ESTAR NO AR: os tres botoes de mover e remover foto foram de 38 para 44 px. Eles sao os menores do painel e os que ela mais vai apertar com o dedo, e 44 px e o minimo de alvo de toque. O defeito nao aparecia em leitura de codigo nem no HTML servido — so o motor de layout sabe o tamanho que o botao ficou tendo —, e quem o achou foi o teste-navegador-atelie.mjs a 360 px, que e a largura escrita dentro do proprio portao do despacho."
     },
     {
@@ -244,7 +244,7 @@
     {
       "id": "mutacoes-arvore",
       "arquivo": "ferramentas/mutacoes-arvore.py",
-      "sha256": "ce3c311633161f6ac612020b27bd8e2ff074f729788d6c10d2975fe2c5d6c85a",
+      "sha256": "d4119dda675a8d66eb72bd61dc04a1e556c270674918161cb8435751d4199ddd",
       "descricao": "Quebra a arvore da casca de proposito, uma mutacao por vez, e exige que teste-casca.php reprove cada uma. Bancada."
     },
     {
@@ -298,7 +298,7 @@
     {
       "id": "teste-casca",
       "arquivo": "ferramentas/teste-casca.php",
-      "sha256": "8694c6fe1337c0a249cbb392fce0a771c7307b9a9c6bf24a475499359541ef8a",
+      "sha256": "dac05ce71a749f746905b9601479c307105edaf2e57433cb965e483b2764fd8c",
       "descricao": "347 afirmacoes medidas sobre a casca, sem site e sem rede: script fora do retorno do shortcode, zero &#038; dentro de <script>, corpo que nao comeca por metadado, JSON-LD que decodifica, a arvore da secao 16 nas duas direcoes contra o ARVORE.md, a Loja nos dois estados, a camada de prova pela ESTRUTURA e nao pela vizinhanca da palavra, e o piso de 1.500 caracteres de corpo. UM PROCESSO POR PAGINA: o static que impede logotipo e rodape em dobro na mesma pagina faria a bancada medir oito paginas sem eles. SECAO 7 REESCRITA EM 1.4.0 — ate 1.3.0 ela afirmava o CONTRARIO do que o site tem que servir (que o logo nao podia entrar no cabecalho por ter fundo preto, o que era falso). Agora cobra o logo do Raphael em <img>, o src igual ao arquivo que ele subiu, ZERO texto dentro da marca, alt com o nome, width/height na proporcao 3:2, o srcset servindo so o MESMO arquivo menor, os 52 px no CSS, a folga da barra e o logo uma vez em CADA uma das nove paginas. A REGUA E DESTE ARQUIVO: a URL e a medida estao literais aqui, copiadas do despacho, nunca lidas da constante da casca."
     },
     {
@@ -376,7 +376,7 @@
     {
       "id": "teste-atelie",
       "arquivo": "ferramentas/teste-atelie.php",
-      "sha256": "907c35d74df9a0cbf0eb83e86a3bed12a4fbe67a594fdbe2a14feb0740d64fc8",
+      "sha256": "1e189712180f5a00c8f4853ee1c92321c6b12c59e8940b595175344b329808f9",
       "descricao": "Portao do painel da artesa (bloco 4d). 209 afirmacoes. EXISTE PORQUE O PORTAO DO DESPACHO NAO PODE SER CUMPRIDO PELA FUNDACAO, e isso esta escrito no cabecalho do arquivo em vez de subentendido: a senha da artesa nao existe em lugar nenhum a que a nuvem tenha acesso, por desenho, entao nao ha como entrar como `artesa` e fabricar um jeito seria quebrar o que protege a conta de uma pessoa de verdade. O portao se divide em duas metades declaradas — a que este arquivo mede (o caminho inteiro de dentro do painel, com uma pessoa logada de mentira que tem as capacidades que o SNIPPET criou: 9 telas em processo proprio, o formulario, salvar, publicar, pausar, apagar, as fotos, o nonce, o bloqueio duplo do wp-admin, e cada recusa com a frase que ela le) e a que so um humano mede (o toque no telefone dela e a chegada do e-mail na Hotmail). Cobra as 7 capacidades do papel e a AUSENCIA das 8 proibidas; que a senha aleatoria nao apareca em NENHUM e-mail nem em NENHUMA option (varredura de todas, nao de duas — a versao anterior nomeava onde procurar e a mutacao gravou numa terceira); que a rota de conferencia devolva o e-mail MASCARADO (afirmacao feita CHAMANDO a rota, porque a versao anterior conferia a funcao e nao a chamada); que nenhuma tela diga WordPress, wp-admin ou wp-login; e que tudo funcione por formulario POST, portao 22.8. Bancada."
     },
     {
@@ -388,13 +388,13 @@
     {
       "id": "mutacoes-atelie",
       "arquivo": "ferramentas/mutacoes-atelie.py",
-      "sha256": "3f8a0dff07a4289e06e584bbd297f12e7dbccef6c8b2dfc2aff7cdfb85fa7df2",
+      "sha256": "e7e50c5b6c33b61bd4ad8a641a625bbe9dd29443808a3b2874cb9f4f87d83eda",
       "descricao": "26 defeitos escritos de volta no snippet do Atelie, 26 reprovados, 23 SO o portao novo pegou. Tres familias: as que ABREM PORTA (o bloqueio do wp-admin que para de bloquear, o papel que ganha edit_others_pecas ou manage_options, o nonce que para de ser conferido, a dona da peca que para de ser conferida, a chave de redefinicao que para de ser validada, a rota que fica publica), as que VAZAM SEGREDO (a senha guardada em option, o link de senha no aviso do Raphael, o 'esqueci a senha' que revela quem tem conta, o e-mail que para de ser mascarado) e as que QUEBRAM PARA ELA (o preco em type=number recusando a virgula, a peca nascendo publicada, a recusa sem motivo, apagar sem lixeira). QUATRO PASSARAM NA PRIMEIRA PASSADA e as quatro eram lacuna real do portao: duas porque ele media telas e nunca DISPARAVA os ganchos (admin_init e show_admin_bar nao aparecem em HTML nenhum), uma porque a varredura da senha nomeava dois lugares, e uma porque conferia a funcao de mascarar sem conferir se a rota a chamava. A m22 e o defeito que este bloco REALMENTE teve, escrito de volta: a direcao da foto num campo escondido, que e enviado seja qual for o botao apertado. Bancada."
     },
     {
       "id": "conferir-atelie-no-ar",
       "arquivo": "ferramentas/conferir-atelie-no-ar.py",
-      "sha256": "004569b7ad8c8c666b93b6b20dc260afd5ab9a2de75d879f2312405cf6677410",
+      "sha256": "a83a767c0bcb1848b9aecd43f98ff872c62898eb109b1f9c07d7f57905763f35",
       "descricao": "Mede NO AR o bloco 4d. Separado do conferir-no-ar.py porque aquele mede as onze URLs no caso-ANCORA e este bloco trouxe uma pagina que muda conforme QUEM abre (o painel) e uma URL que so existe quando a artesa publica (a ficha) — a mesma razao do conferir-kits-no-ar.py da Robometria. PROVA: /atelie/ em 200 servindo a tela de entrar, com noindex, FORA do sitemap (varrendo o indice e os sub-mapas), e ZERO links para ela nas oito paginas publicas; que a vitrine da Loja mostre exatamente as pecas que a rota publica de contagem conta (duas metades lendo o mesmo banco: divergencia e cache velho, que e como o site fica para tras em silencio); que cada ficha publicada sirva description, og:, Product+Offer valido e trilha, e que o preco da TELA e o do SCHEMA sejam o mesmo numero; e, com o token do Sync, que o papel tenha as 7 capacidades e NENHUMA das proibidas, que a usuaria exista, e A HORA EM UTC em que o e-mail de acesso saiu — que e o que o despacho manda escrever no ESTADO.md. Mede a RECUSA da rota sem token antes de usar o token. Sem token, as afirmacoes que dependem dela sao contadas como PULADAS, nunca como aprovadas. NAO PROVA, e diz isso no fim: se o e-mail chegou na caixa da Hotmail (wp_mail true diz que o servidor aceitou, nao que passou do filtro de spam) e se o dedo dela funciona a 360 px."
     },
     {
