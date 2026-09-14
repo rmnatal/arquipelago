@@ -4,6 +4,69 @@ Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e
 o proximo passo desbloqueado, e espelha o mesmo resumo em
 `/areas/projeto-aquametria.md` na memoria.
 
+## 2026-09-14 11h25Z — LEVA 4: A TERCEIRA CATEGORIA DO EIXO, E O EIXO APRENDE QUE PEIXE NEM SEMPRE VIVE EM CARDUME (peixes 1.7.0, esquema de espécies versão 4, manifest revisão 77, `/status` conferido às 12h09Z; QUATRO URLs novas, a primeira leva desde 12/09)
+
+**A ESCOLHA DA ILHA: segunda tentada.** A clubedomosaico era a primeira pela 18.1 — tem despacho ABERTO do Raphael de 14/09, os quatro achados da artesã usando o ateliê — e o meu push de reserva foi recusado: outra execução a reservou às 11h18Z pelo mesmo motivo. O passo 5 da seção 1 manda voltar ao passo 2, e nenhum force push aconteceu. Das duas que sobraram, a aquametria tinha a `ultima_execucao` mais antiga (23h19Z contra 23h47Z da robometria), e as duas estavam com `executando_desde: null` — que pela 1.1 já significa que não há bloco da Fundação vivo, então o git não precisou desempatar. Os três `PROMPT.md` foram lidos antes de escolher. **Rede pela 20.2, antes de trabalhar:** home em 200 e `/status` na revisão 76, igual à do manifest, em UMA passada.
+
+**POR QUE ESTE BLOCO:** era o item (1) do PRÓXIMO da execução das 23h19Z, e o que o travava era calendário, não trabalho. O teto da 21.4 estava em 3 de 3 levas gastas na semana que terminou no domingo 13/09; a semana virou em 14/09 e a leva 4 nasceu com 0 de 3. A SERP das quatro consultas já estava classificada desde 13/09 e o critério da categoria já estava escrito.
+
+**O DESPACHO DE RAIZ QUE ERA MEU, FECHADO.** `dados/despachos.md` tinha um despacho endereçado a "FUNDAÇÃO (quem reservar a aquametria)": o `bloco_atual` do `ESTADO.md` desta ilha não era YAML válido. Reservei a ilha, então ele é meu pela letra dele. Passei os três `ESTADO.md` por `yaml.safe_load` **depois** de escrever a reserva no cabeçalho — que é o commit mais provável de quebrar o bloco, porque mexe numa linha dele — e os três passam. Fechado e movido para FECHADOS, com a medição escrita. A regra que sobrevive a ele é a da seção 2 do contrato, e ela não era dele.
+
+### 1. O QUE A CATEGORIA CUSTOU, E NÃO ERA PREENCHER A LISTA
+
+Preencher `especies` da `bettas` é uma linha. O que esta leva pagou é outra coisa: **até 13/09 as ONZE fichas no ar eram `convivencia: cardume`, sem exceção**, e por isso a palavra "cardume" estava DIGITADA em sete lugares do corpo da ficha — a abertura, a legenda da tabela de lotação, o contraexemplo do cubo, a chamada do filtro, o bloco da espécie agressiva, a linha da tabela de fontes e o rabicho do JSON-LD. Era verdade em toda página publicada e é **falsa em três das quatro** desta leva: o betta vive sozinho, a colisa-anão vive em casal e o gurami mel vive em grupo — e a fonte dele escreve, com todas as letras, que a espécie **não** é gregária no sentido dos peixes de cardume.
+
+É a cicatriz da seção 8 do contrato no lado que ela chama de **régua escrita para um mundo que nunca aconteceu**: o esquema desta ilha permite `solitario`, `casal`, `harem` e `grupo` desde o primeiro dia — `aquametria_peixes_pode_virar_ficha()` cita os três primeiros **pelo nome** — e o banco nunca tinha produzido um. Nenhum portão podia falhar, e nenhum falhou.
+
+O vocabulário agora é **fechado** e mora num mapa só, `aquametria_peixes_arranjo()`. Termo fora dele devolve `null` e a espécie não vira ficha.
+
+### 2. DUAS RECUSAS QUE A LEVA ESCREVEU, E A SEGUNDA ESTAVA LATENTE NO AR
+
+1. **A escada de lotação só sobe onde a fonte deixa.** No betta a fonte declara um por aquário; a tabela pré-renderizada de "N exemplares" subiria até 20, oferecendo com cara de tabela exatamente o número que a fonte recusa — e a tabela é a metade que um modelo de linguagem lê. Onde o arranjo FIXA o número (solitário 1, casal 2) a escada tem um degrau e a página diz por quê; onde a fonte declara um número de grupo, começa nele; onde declara o arranjo e não o número (harém, que é o mundo inteiro da próxima leva), a escada é a de leitura e NENHUMA linha se chama mínima.
+2. **O conselho do bloco da espécie agressiva se inverte com o arranjo.** "Quanto maior o cardume, menos a agressão se concentra num alvo só" é certo para o mato-grosso e é o CONTRÁRIO do que a fonte diz do betta, que é agressivo **e** solitário: ali ela manda um por aquário. E a frase antiga ainda iria ao ar **quebrada**, porque `$card` é nulo nessa espécie — "cardume mínimo de  e não de dois".
+
+### 3. O DEFEITO QUE JÁ ESTAVA NO AR, medido no HTML servido
+
+`/peixes/corydoras/` servia **"fechada quer dizer que todo TETRA que o banco desta ilha sustenta já tem a página dele"**. Medido com `curl` em 14/09/2026, na página das coridoras. É a mesma cicatriz do "São 4 tetras" que a leva 3 pegou ANTES de publicar, escondida um nível mais fundo: ela mora num ramo que só é alcançado quando a categoria **fecha**, e até 12/09 só os tetras tinham fechado. **Ramo novo herda o texto do mundo antigo**, e nenhuma contagem estava errada — só a palavra.
+
+O sujeito passa a vir declarado por categoria, como o `plural`. Na mesma família e na mesma passada: o exemplo da pergunta do nível 2, que era **"quantos litros para dez neons" digitado em toda categoria**, passa a ser a consulta da própria página.
+
+### 4. A FAIXA DO GRUPO, E ELA CUSTOU UM CAMPO DE ESQUEMA (versão 4)
+
+O compêndio recomenda, do gurami mel, **"não menos que 4 a 6 exemplares"**. O piso morava em `cardume_minimo` desde 13/09 e o teto não tinha onde morar — a ficha publicaria metade da recomendação, e completá-la de cabeça seria inventar a metade que falta. Nasceu `cardume_recomendado_ate`; **o número sai da MESMA sentença já transcrita em `fontes[]`**, sem passada nova de coleta, colhida em duas passadas independentes em 13/09. O validador ganhou a regra **E18** (teto sem piso não é faixa; teto menor ou igual ao piso é faixa invertida), com dois casos no auto-teste.
+
+**E a lista de regras do esquema parava em E16 enquanto o código já cobrava E17** (acentuação de nome de tela, implementada em 12/09). Foi por pouco que a regra de hoje não nasceu com o mesmo id. A E17 entrou na lista, com a nota de que ela já existia.
+
+### 5. A CATEGORIA DECLARA AS CINCO OSPHRONEMIDAE, E NÃO SÓ AS TRÊS QUE PASSAM
+
+Primeiro mundo REAL do ramo de barrados que a 1.6.0 escreveu em 13/09 sem ter caso no banco para exercitá-lo: os dois guramis grandes têm duas fontes cada e o portão os barra por `convivencia`, então saem na página com nome e causa. **Sem declará-los, a frase de lista fechada diria que todo betta e todo gurami que o banco sustenta já tem página — e o banco sustenta os dois.** As quatro mutações que PRODUZIAM aquele mundo continuam, porque agora elas provam o ramo VAZIO da mesma régua.
+
+### 6. UMA TROCA DE TELA NO BANCO, declarada
+
+Os nomes populares da colisa foram reordenados para pôr **"colisa-anão"** na frente. `aquametria_peixes_nome()` é documentada como "o nome que a pessoa digita" e lê o PRIMEIRO do campo — e a classificação de SERP de 13/09 mediu que a consulta brasileira é "quantos litros para colisa anão". Com "colisa" na frente, o título da ficha e o corpo dela serviriam nomes diferentes a uma linha de distância, que é o defeito que o item 4 do despacho da Sentinela de 13/09 já pagou nas nove páginas de conteúdo. Nenhum nome saiu da lista e nenhum campo de biologia foi tocado.
+
+### 7. TRÊS DEFEITOS QUE A PRÓPRIA BANCADA ACHOU ANTES DE QUALQUER URL NASCER
+
+Estes não estavam no ar e não chegaram lá — e valem mais escritos que escondidos, porque os três têm a mesma forma: **frase que nasce certa na primeira página em que é escrita e vai errada para a do lado.**
+
+1. **A comparação com a base era frase pronta.** O ramo do arranjo fixo dizia que "as duas réguas ficam bem abaixo da base que a fonte declara". Verdade no betta — 6,5 a 26 litros contra 47,3 da base —, **falsa na colisa-anão**, onde o critério conservador pede 76 litros e a base dá 63. Pior: ia também dentro do JSON-LD, onde um modelo de linguagem a cita sem ter como conferir. Agora a comparação é **derivada**, resolvida num lugar só (`aquametria_peixes_lotacao_contra_base()`), e as duas superfícies que a publicam leem dali — não podem discordar.
+2. **Duas `Question` de mesmo nome no mesmo `FAQPage`.** A pergunta do ramo do arranjo fixo repetia o `titulo` da página palavra por palavra. Nenhuma das onze fichas antigas podia produzir isso, e por isso ninguém tinha medido. A pergunta virou a que só esta página responde: se a régua de 1 cm por litro serve para um peixe cujo número a fonte fixa.
+3. **A tabela de "quantos cabem" respondia à pergunta errada em silêncio.** No aquário mínimo do betta ela dizia "cabem 7" — duas telas depois de a página declarar um por aquário. A régua de lotação conta centímetro de peixe e não sabe de comportamento; agora a página diz isso na mesma tela, e o limite da fonte aparece ao lado.
+
+**E o portão da voz reprovou a primeira escrita da abertura do arranjo fixo**, que dizia "que é o que a fonte declara por aquário": procedência não abre página (15.2), que é a régua que o item 4 do despacho da Sentinela de 13/09 cobrou nas onze fichas. A frase de cada arranjo passou a vir declarada no mapa, sem a palavra fonte.
+
+### VERIFICAÇÃO, 0 falha
+
+**Bancada:** `teste-peixes` **1775** afirmações (eram 1302); `teste-voz` TUDO OK, com as quatro páginas novas e as três fichas na régua da ficha de peixe; `teste-arvore`; `teste-datas-schema` 90; `teste-seo-tecnico` 375; `teste-escada-compra` 522; `teste-ga4` 504; `teste-apelidos` 59; `conferir-entidades`; `conferir-slugs`; `conferir-protecao-funcoes` (44 funções no snippet dos peixes, todas dentro de `function_exists`); `validar-especies` 37 registros, 0 erro e o mesmo aviso E15 do guppy; `testar-validador-especies` 24 casos; `validar-produtos` 78 produtos, 0 erro; `php -l` limpo.
+
+**MUTAÇÕES: **81 de 81 reprovadas, 0 INERTES**, rodadas do zero sobre a árvore final. A bateria foi de 56 para 81 mutações, e o valor delas não é o placar: **duas passaram na penúltima rodada, e cada uma era uma trava que faltava.** (1) *O rótulo da tabela de fontes volta a ser digitado* passou porque a régua da palavra "cardume" era minúscula e a LINHA da tabela escreve "Grupo mínimo" com maiúscula — a página do gurami mel chamava o peixe de cardume numa superfície e não na outra, e o portão só olhava uma. (2) *O teto sai da escada* passou porque o teto do gurami mel é 6 e o 6 já está na escada de leitura por conta própria: a mutação media a coincidência do banco de hoje, não a regra — e o comentário do próprio código tinha previsto isso. Ela virou **mundo produzido**, que fabrica a faixa ímpar de 4 a 7 nos dois lados antes de tirar o teto da escada..** 
+
+**Navegador:** **578 medições** em 31 páginas × 6 larguras, 0 px de rolagem horizontal, console limpo, em duas passadas — a segunda depois do conserto da comparação com a base.
+
+**AS TRÊS PÁGINAS JÁ NO AR QUE MUDAM, e só elas**, medido por diff do corpo servido contra o render local, frase a frase: `/peixes/corydoras/` (o substantivo digitado, o exemplo da pergunta, a cláusula que supunha cardume e a irmã nova no cluster), `/peixes/tetras/` (as três últimas) e `/peixes/` (a categoria `bettas` vira link com a contagem própria, e o total de fichas vai de 11 para 14, contado na hora). Nenhuma outra frase de nenhuma outra página se move.
+
+**NO AR:** `/status` na revisão **77**, igual à do manifest, em UM disparo com 20 aplicados. As quatro URLs novas em **200**, zero `&#038;` dentro de `<script>` nas quatro, e o sitemap publica **32** URLs (29 páginas + 3 posts), que é o número que o cabeçalho do `ESTADO.md` passa a declarar. `conferir-peixes-no-ar.py` **470** afirmações (eram 380), 0 falha — as 90 novas medem as quatro páginas no HTML SERVIDO, inclusive a frase de lista fechada das coridoras, que era o defeito. E a prova de que o conserto chegou: `/peixes/corydoras/` agora serve "fechada quer dizer que **toda coridora** que o banco desta ilha sustenta", lido com `curl`.
+
 ## 2026-09-13 23h19Z — A PRESTAÇÃO DE CONTAS DA SEÇÃO 7 ALCANÇA QUEM NÃO ESTÁ NA TABELA (peixes 1.6.0, manifest revisão 76, `/status` conferido às 23h38Z em UM disparo com 20 aplicados; NENHUMA URL nova, NENHUMA página criada, NENHUMA leva consumida)
 
 **POR QUE ESTE BLOCO, com a leva 4 escrita como próximo passo.** A leva 4 (`/peixes/bettas/`) espera o CALENDÁRIO e não trabalho: o teto da 21.4 segue em 3 de 3 levas gastas nesta semana e 13/09 é domingo — esta execução rodou às 23h19Z de domingo, então a leva 4 continua nascendo só a partir de 14/09, exatamente como a execução das 21h21Z já tinha medido. O item (2) da lista é a leva seguinte, e vale o mesmo. O (4), a escada na tela, segue provadamente dormente com `url_busca` null nos 78 produtos. Sobrou o **item (3)**, que a execução anterior nomeou como dívida NOVA no `ESTADO.md` e deixou marcada como "merece bloco próprio". É este.
