@@ -922,10 +922,108 @@ else:
 
 # ---------------------------------------------------------------- PECA
 
-if os.path.exists(os.path.join(DADOS, "pecas.json")):
-    erro("dados/pecas.json existe. PECA NAO vive no repositorio: o catalogo da Loja e "
-         "cadastrado pela artesa no painel /atelie/ e mora no CPT `peca` do WordPress. "
-         "Peca inventada e a unica mentira que esta ilha pode contar sobre uma pessoa real.")
+# A REGUA MUDOU EM 14/09/2026, E O MOTIVO E A SECAO 24 DO CONTRATO.
+#
+# Ate aqui esta regua dizia uma frase so: `dados/pecas.json` NAO PODE EXISTIR.
+# Ela nasceu certa em 12/09, quando o unico jeito de aquele arquivo aparecer era
+# alguem inventar o catalogo da artesa dentro do repositorio — que e a unica
+# mentira que esta ilha pode contar sobre uma pessoa de verdade. Depois disso a
+# secao 24 entrou no contrato e virou a mesa: dado que uma PESSOA digita dentro
+# do WordPress nasce com COPIA no repositorio, e o bloco nao fecha sem ela. Em
+# 14/09/2026 a artesa publicou a primeira peca, a execucao daquele dia tirou a
+# copia pelo endpoint como a 24.2 manda — e este portao passou a reprovar o
+# repositorio por cumprir o contrato. Proibicao que envelheceu vira reprovacao
+# de quem acertou.
+#
+# O QUE A REGUA PROTEGE NAO E A AUSENCIA DO ARQUIVO, e sim que ele seja COPIA e
+# nunca FONTE. Peca inventada so chega ao site se alguem SERVIR este arquivo; um
+# espelho que ninguem le nao pode mentir na tela. Sao tres afirmacoes, e a do
+# meio e a que carrega o sentido:
+#
+#   1. O manifest o declara com `publicar: false`. Com `true`, o Sync gravaria a
+#      copia numa option do site — o site lendo de volta o proprio espelho, que
+#      e como uma copia se promove a fonte sem ninguem decidir.
+#   2. NENHUM SNIPPET O LE. Este e o portao de verdade, e ele e medido no codigo
+#      que vai ao ar, nao na intencao: se um dia uma pagina passar a montar peca
+#      a partir deste arquivo, a peca da tela deixa de ser a que a artesa
+#      cadastrou, e e exatamente isso que a frase antiga queria impedir.
+#   3. O arquivo tem a FORMA da resposta do endpoint, com o `id` de post de cada
+#      peca e a `url` no dominio da ilha. Catalogo escrito a mao nao tem id de
+#      post nem URL que responde; e `total` tem de bater com o tamanho da lista,
+#      porque numero de copia tambem se conta e nunca se digita (secao 8).
+CAMINHO_PECAS = os.path.join(DADOS, "pecas.json")
+if os.path.exists(CAMINHO_PECAS):
+    try:
+        copia_pecas = json.load(open(CAMINHO_PECAS, encoding="utf-8"))
+    except ValueError as falha:
+        copia_pecas = None
+        erro("dados/pecas.json nao e JSON valido: %s" % falha)
+
+    manifest_pecas = None
+    try:
+        manifest_bruto = json.load(open(os.path.join(BASE, "manifest.json"), encoding="utf-8"))
+        for item in manifest_bruto.get("dados", []):
+            if item.get("arquivo") == "dados/pecas.json":
+                manifest_pecas = item
+    except (IOError, ValueError):
+        pass
+
+    if manifest_pecas is None:
+        erro("dados/pecas.json existe e o manifest nao o conhece: arquivo fora do manifest "
+             "nunca chega ao site, mas tambem nunca tem sha conferido (secao 3 do contrato).")
+    elif manifest_pecas.get("publicar") is not False:
+        erro("dados/pecas.json esta no manifest com publicar=%r. A copia da secao 24 e "
+             "COPIA DO SITE e nunca fonte dele: publicada, ela viraria option que o site "
+             "le de volta." % manifest_pecas.get("publicar"))
+
+    # (2) O PORTAO DE VERDADE: nenhum snippet le este arquivo, e nenhum le a
+    # option que ele teria se fosse publicado. Medido no codigo que vai ao ar.
+    leitores = []
+    pasta_snippets = os.path.join(BASE, "snippets")
+    if os.path.isdir(pasta_snippets):
+        for nome in sorted(os.listdir(pasta_snippets)):
+            if not nome.endswith(".php"):
+                continue
+            fonte_php = open(os.path.join(pasta_snippets, nome), encoding="utf-8").read()
+            # O comentario nao vai ao ar; quem decide e o codigo (a mesma regra do
+            # teste-f1, que descarta comentario antes de afirmar sobre o snippet).
+            sem_comentario = re.sub(r"/\*.*?\*/", " ", fonte_php, flags=re.S)
+            sem_comentario = re.sub(r"(?m)//.*$", " ", sem_comentario)
+            for alvo in ("pecas.json", "clubedomosaico_dados_pecas"):
+                if alvo in sem_comentario:
+                    leitores.append("%s cita %s" % (nome, alvo))
+    if leitores:
+        erro("A COPIA DA SECAO 24 VIROU FONTE: " + "; ".join(leitores) + ". A peca da tela "
+             "tem de ser a que a artesa cadastrou no painel, lida do CPT `peca` — nunca a "
+             "do espelho commitado. Peca servida do repositorio e peca que ninguem cadastrou.")
+
+    if isinstance(copia_pecas, dict):
+        for campo in ("ilha", "versao_loja", "total", "pecas"):
+            if campo not in copia_pecas:
+                erro("dados/pecas.json: falta o campo %s da resposta do endpoint — o arquivo "
+                     "nao tem a forma de uma copia" % campo)
+        lista_pecas = copia_pecas.get("pecas")
+        if not isinstance(lista_pecas, list):
+            erro("dados/pecas.json: `pecas` nao e lista")
+        else:
+            if copia_pecas.get("total") != len(lista_pecas):
+                erro("dados/pecas.json: total diz %r e a lista tem %d — numero de copia se "
+                     "conta, nunca se digita" % (copia_pecas.get("total"), len(lista_pecas)))
+            for peca in lista_pecas:
+                onde = "pecas.json / %s" % (peca.get("slug") or peca.get("titulo") or "?")
+                if not isinstance(peca.get("id"), int):
+                    erro("%s: sem `id` de post. Peca cadastrada no painel tem id do "
+                         "WordPress; catalogo escrito a mao nao tem." % onde)
+                url_peca = str(peca.get("url") or "")
+                if not url_peca.startswith("https://clubedomosaico.com.br/"):
+                    erro("%s: `url` nao e do dominio da ilha (%r)" % (onde, url_peca))
+        if copia_pecas.get("gerado_em"):
+            # NAO e erro de dado, e sim de RUIDO: com o carimbo de hora dentro,
+            # toda passada da ronda viraria commit, e a 24.2 manda commitar so
+            # quando o JSON mudou. Foi decisao escrita no bloco de 14/09/2026.
+            erro("dados/pecas.json carrega `gerado_em`: o carimbo de hora fica FORA da copia, "
+                 "senao toda passada da ronda vira commit (24.2 manda commitar so quando o "
+                 "JSON mudou).")
 
 
 # ---------------------------------------------------------------- relatorio

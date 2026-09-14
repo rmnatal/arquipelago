@@ -444,7 +444,7 @@ ok("não aparece em catálogo de fabricante" in texto_f1,
 # O estado de 2 cm: tres cartoes, e cada um com o lugar do link reservado.
 html_p20, codigo_p20 = buscar(BASE + F1 + "?forma=cilindro&d=15&h=20&pastilha=p20&junta=2&sobra=10&esp=4&rejunte=cimenticio")
 ok("200" == codigo_p20, "[F1 2 cm] responde 200", codigo_p20)
-bloco_p20 = re.search(r"<h2>E onde comprar a pastilha</h2>(.*?)</div>\s*<div class=\"cdm-f1-secao\">",
+bloco_p20 = re.search(r"<div class=\"cdm-f1-secao cdm-f1-vitrine-pastilha\">(.*?)(?=<div class=\"cdm-f1-secao|</main>)",
                       html_p20, re.S)
 bloco_p20 = bloco_p20.group(1) if bloco_p20 else ""
 ok(bloco_p20 != "", "[F1 2 cm] o bloco da pastilha sai no HTML servido")
@@ -467,7 +467,7 @@ ok(bloco_p20.count("Link de loja em breve") == len(DE_2CM),
 ok("caquinho irregular" in re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", bloco_p20)),
    "[F1 2 cm] a pagina manda ao caquinho irregular quem quer o lado que o seletor nao lista")
 html_ir, codigo_ir = buscar(BASE + F1 + "?forma=cilindro&d=15&h=20&pastilha=irregular&ladoeq=3&junta=2&sobra=10&esp=4&rejunte=cimenticio")
-bloco_ir = re.search(r"<h2>E onde comprar a pastilha</h2>(.*?)</div>\s*<div class=\"cdm-f1-secao\">",
+bloco_ir = re.search(r"<div class=\"cdm-f1-secao cdm-f1-vitrine-pastilha\">(.*?)(?=<div class=\"cdm-f1-secao|</main>)",
                      html_ir, re.S)
 bloco_ir = bloco_ir.group(1) if bloco_ir else ""
 ok("200" == codigo_ir, "[F1 irregular 3 cm] responde 200", codigo_ir)
@@ -478,6 +478,47 @@ ok(bloco_ir.count('<li class="cdm-f2-cartao"') == 3,
 ok('Veja também' in corpo_f1, "[F1] o bloco Veja tambem saiu (duas irmas no ar)")
 ok(BASE + "/materiais/qual-cola-usar-no-mosaico/" in corpo_f1,
    "[F1] a pagina linka a irma (a F2)")
+
+# A ORDEM DAS DUAS VITRINES NO HTML SERVIDO (f1 1.3.0).
+#
+# A bancada mede isto em quinze estados; aqui a medicao e outra e nao substitui
+# aquela: o que ela prova e que a ORDEM sobreviveu ao caminho — o Sync, o
+# the_content e o cache de borda —, no HTML que a pessoa e o modelo de linguagem
+# recebem. Foi por nao medir o HTML servido que esta ilha publicou um '</p>'
+# orfao na galeria em 14/09/2026 com o portao verde.
+#
+# O marcador e a fronteira, e nao o titulo: o titulo do rejunte muda no estado
+# degradado, e regua presa a texto de titulo morre calada no dia em que ele muda.
+for consulta_o, rotulo_o in [("", "ancora"),
+                             ("?pastilha=p20", "2 cm"),
+                             ("?rejunte=epoxi", "epoxi (a pagina recusa o grama)")]:
+    html_o, codigo_o = buscar(BASE + F1 + consulta_o)
+    corpo_o = re.search(r"<main.*?</main>", html_o, re.S)
+    corpo_o = corpo_o.group(0) if corpo_o else html_o
+    marca_o = f"[F1 ordem {rotulo_o}]"
+    ok("200" == codigo_o, f"{marca_o} responde 200", codigo_o)
+    n_past_o = corpo_o.count("cdm-f1-vitrine-pastilha")
+    n_rej_o = corpo_o.count("cdm-f1-vitrine-rejunte")
+    ok(n_past_o == 1 and n_rej_o == 1,
+       f"{marca_o} as duas vitrines declaram o marcador, uma vez cada",
+       f"pastilha {n_past_o}, rejunte {n_rej_o}")
+    if n_past_o == 1 and n_rej_o == 1:
+        p_past_o = corpo_o.index("cdm-f1-vitrine-pastilha")
+        p_rej_o = corpo_o.index("cdm-f1-vitrine-rejunte")
+        p_resp_o = corpo_o.find("cdm-f1-resposta")
+        p_prova_o = corpo_o.find("cdm-prova")
+        ok(p_past_o < p_rej_o,
+           f"{marca_o} a vitrine de PASTILHA vem antes da de rejunte no HTML servido")
+        ok(-1 < p_resp_o < p_past_o,
+           f"{marca_o} 22.2: a resposta continua antes das duas vitrines")
+        ok(p_prova_o > p_rej_o,
+           f"{marca_o} secao 7: as DUAS vitrines vem antes da camada de prova")
+    # O TITULO NAO DEPENDE DA POSICAO: o "E" de "E onde comprar a pastilha" era
+    # conector, e conector num titulo e uma frase que mente quando a ordem muda.
+    ok("<h2>Onde comprar a pastilha</h2>" in corpo_o,
+       f"{marca_o} o titulo da pastilha e autossuficiente, sem o conector")
+    ok("<h2>E onde comprar a pastilha</h2>" not in corpo_o,
+       f"{marca_o} e o titulo antigo, que dependia de vir em segundo lugar, sumiu do ar")
 
 for consulta, area, pastilhas, gramas in F1_CASOS:
     html_c, codigo_c = buscar(BASE + F1 + "?" + consulta)

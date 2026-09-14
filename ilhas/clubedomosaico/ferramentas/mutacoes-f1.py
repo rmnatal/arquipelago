@@ -450,6 +450,83 @@ def m_coluna_do_seletor_diz_sempre_sim(raiz):
            "		$html .= '<td>sim</td>';")
 
 
+# ------------------------------------- a ordem das duas vitrines (f1 1.3.0)
+#
+# Estas cinco existem porque a ordem errada VIVEU DOIS DIAS no ar sem que uma
+# unica afirmacao pudesse ve-la. Nenhuma delas quebra a pagina: as duas vitrines
+# continuam saindo, com os mesmos produtos e os mesmos numeros. O que muda e a
+# sequencia e o nome — e era exatamente disso que a bancada nao sabia falar.
+
+
+def m_vitrines_voltam_a_ordem_antiga(raiz):
+    """O rejunte volta a vir antes da pastilha, que e a ordem de ate a 1.2.0. A
+    pagina responde igual, com os mesmos cartoes; o que ela perde e o acordo
+    entre o que o titulo promete (pastilha) e o que ela oferece primeiro."""
+    editar(raiz, SNIPPET,
+           "\t$html .= cdm_f1_vitrine_pastilha_html( $e );\n\t$html .= cdm_f1_vitrine_html( $e );",
+           "\t$html .= cdm_f1_vitrine_html( $e );\n\t$html .= cdm_f1_vitrine_pastilha_html( $e );")
+
+
+def m_titulo_da_pastilha_volta_com_o_conector(raiz):
+    """O "E" volta ao titulo do bloco da pastilha. E o defeito de verdade, e ele
+    e invisivel para qualquer regua de ordem: a sequencia fica certa e o titulo
+    passa a prometer um bloco anterior que nao existe mais. Titulo e a frase que
+    um modelo de linguagem cita sozinho."""
+    editar(raiz, SNIPPET,
+           "<h2>Onde comprar a pastilha</h2>",
+           "<h2>E onde comprar a pastilha</h2>")
+
+
+def m_vitrine_da_pastilha_cai_depois_da_prova(raiz):
+    """A vitrine da pastilha desce para depois do "Como sabemos". A procedencia
+    passa a vir antes do bloco de compra, que e a cicatriz da Robometria de
+    10/09/2026 na secao 7 do contrato — e a secao 4 deste teste nao a veria,
+    porque ela mede a ordem DENTRO do cartao, nunca entre secoes."""
+    editar(raiz, SNIPPET,
+           "\t$html .= cdm_f1_vitrine_pastilha_html( $e );\n\t$html .= cdm_f1_vitrine_html( $e );",
+           "\t$html .= cdm_f1_vitrine_html( $e );")
+    editar(raiz, SNIPPET,
+           "\t$html .= cdm_f1_prova_html();",
+           "\t$html .= cdm_f1_prova_html();\n\t$html .= cdm_f1_vitrine_pastilha_html( $e );")
+
+
+def m_marcador_da_pastilha_some(raiz):
+    """O bloco da pastilha perde o proprio marcador. A tela nao muda em um pixel
+    — e toda afirmacao que depende da fronteira nomeada passa a medir vazio, que
+    e a forma mais silenciosa de teste verde que existe."""
+    editar(raiz, SNIPPET,
+           '<div class="cdm-f1-secao cdm-f1-vitrine-pastilha">',
+           '<div class="cdm-f1-secao">')
+
+
+def m_marcador_do_rejunte_some_so_na_saida_degradada(raiz):
+    """A mais fina das cinco: o marcador do rejunte sai APENAS da saida sem a F2
+    no ar. Nos treze estados normais nada muda, e a 4d passa inteira — quem
+    reprova e a afirmacao do estado degradado, que e o unico lugar onde aquela
+    saida e servida. Regua escrita so para o mundo de hoje nunca poderia falhar
+    aqui (secao 8 do ARQUIPELAGO.md)."""
+    editar(raiz, SNIPPET,
+           "return '<div class=\"cdm-f1-secao cdm-f1-vitrine-rejunte\"><h2>Onde comprar o rejunte</h2>'",
+           "return '<div class=\"cdm-f1-secao\"><h2>Onde comprar o rejunte</h2>'")
+
+
+def m_as_duas_vitrines_descem_para_depois_da_prova(raiz):
+    """AS DUAS descem juntas, na mesma ordem relativa. E a irma da mutacao acima,
+    e existe porque aquela reprovava pela afirmacao ERRADA: descer so a pastilha
+    tambem inverte a ordem das duas, entao a regua da ordem morde primeiro e a
+    afirmacao de 'as DUAS vitrines vem antes da camada de prova' ficaria sem
+    nunca ter sido vista reprovar. Aqui a ordem continua certa e o unico defeito
+    e a procedencia vindo antes do bloco de compra — a cicatriz da Robometria de
+    10/09/2026 na secao 7. Duas afirmacoes verdes por um motivo so e uma
+    afirmacao com duas etiquetas."""
+    editar(raiz, SNIPPET,
+           "\t$html .= cdm_f1_vitrine_pastilha_html( $e );\n\t$html .= cdm_f1_vitrine_html( $e );",
+           "")
+    editar(raiz, SNIPPET,
+           "\t$html .= cdm_f1_prova_html();",
+           "\t$html .= cdm_f1_prova_html();\n\t$html .= cdm_f1_vitrine_pastilha_html( $e );\n\t$html .= cdm_f1_vitrine_html( $e );")
+
+
 MUTACOES = [
     ("cilindro usa o raio no lugar do diametro", m_cilindro_usa_raio),
     ("cone usa a altura no lugar da geratriz", m_conico_usa_altura_em_vez_da_geratriz),
@@ -491,6 +568,12 @@ MUTACOES = [
     ("a tabela do banco de pastilhas some do HTML servido", m_tabela_do_banco_some),
     ("a tabela do banco pula os itens nao quadrados", m_tabela_do_banco_pula_os_nao_quadrados),
     ("a coluna 'esta no formulario?' diz sempre sim", m_coluna_do_seletor_diz_sempre_sim),
+    ("as duas vitrines voltam a ordem antiga (rejunte antes da pastilha)", m_vitrines_voltam_a_ordem_antiga),
+    ("o titulo da pastilha volta com o conector 'E'", m_titulo_da_pastilha_volta_com_o_conector),
+    ("a vitrine da pastilha desce para depois da camada de prova", m_vitrine_da_pastilha_cai_depois_da_prova),
+    ("o bloco da pastilha perde o proprio marcador", m_marcador_da_pastilha_some),
+    ("o marcador do rejunte sai SO na saida sem a F2 no ar", m_marcador_do_rejunte_some_so_na_saida_degradada),
+    ("as DUAS vitrines descem para depois da prova, na mesma ordem", m_as_duas_vitrines_descem_para_depois_da_prova),
 ]
 
 

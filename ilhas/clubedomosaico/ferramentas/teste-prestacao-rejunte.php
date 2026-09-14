@@ -93,9 +93,15 @@ function pr_bloco_f2( $corpo ) {
 		? $m[1] : '';
 }
 
-/** O bloco do rejunte da F1: do h2 dele ate o aviso de afiliado. */
+/** O bloco do rejunte da F1: do MARCADOR dele ate o aviso de afiliado.
+ *
+ * Era o <h2> ate a f1 1.3.0, e o titulo do bloco MUDA no estado degradado (sem a
+ * F2 no ar ele e "Onde comprar o rejunte"), entao a forma antiga nao extraia
+ * nada ali. A secao passou a declarar o que ela e na propria classe, em todas as
+ * saidas, e a fronteira le o marcador — cicatriz da Robometria de 13/09/2026:
+ * fronteira de teste e marcador escrito, nunca "a primeira coisa parecida com". */
 function pr_bloco_f1( $corpo ) {
-	return preg_match( '#<h2>Qual rejunte cabe nessa folga</h2>(.*?)(?=<p class="cdm-f1-aviso"|$)#is', $corpo, $m )
+	return preg_match( '#<div class="cdm-f1-secao cdm-f1-vitrine-rejunte">(.*?)(?=<p class="cdm-f1-aviso"|$)#is', $corpo, $m )
 		? $m[1] : '';
 }
 

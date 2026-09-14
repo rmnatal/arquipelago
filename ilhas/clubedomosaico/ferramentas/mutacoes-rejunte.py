@@ -172,6 +172,82 @@ def m_epoxi_perde_a_piscina_com_perfil_ajustado(raiz):
     gravar(raiz, "esquema-banco.json", e)
 
 
+# ---------------- a copia da secao 24: COPIA, e nunca fonte (14/09/2026)
+#
+# Estas quatro nasceram junto com a regua nova de `dados/pecas.json`. A regua
+# ANTIGA era uma linha — o arquivo nao pode existir — e uma proibicao nunca
+# precisou de mutacao: ela reprova ou nao reprova, e nao ha por baixo dela como
+# passar. A regua nova afirma algo bem mais fino (o arquivo e espelho e nunca
+# fonte), e afirmacao fina e exatamente o tipo que fica verde sem medir.
+
+
+def m_copia_das_pecas_publicada(raiz):
+    """A copia passa a `publicar: true` no manifest. Nada muda no arquivo e nada
+    muda na tela — e no proximo Sync a copia viraria option do site, que e o site
+    lendo de volta o proprio espelho. Uma copia se promove a fonte assim: por um
+    booleano, sem ninguem decidir."""
+    caminho = os.path.join(raiz, "manifest.json")
+    with open(caminho, encoding="utf-8") as fh:
+        m = json.load(fh)
+    achou = False
+    for item in m.get("dados", []):
+        if item.get("arquivo") == "dados/pecas.json":
+            item["publicar"] = True
+            achou = True
+    if not achou:
+        raise AssertionError("mutacao INERTE: dados/pecas.json nao esta no manifest")
+    with open(caminho, "w", encoding="utf-8") as fh:
+        json.dump(m, fh, ensure_ascii=False, indent=2)
+
+
+def m_snippet_passa_a_ler_a_copia_das_pecas(raiz):
+    """A DE VERDADE, e a unica que poe peca falsa na tela: a Loja passa a ler o
+    espelho commitado. A peca da pagina deixa de ser a que a artesa cadastrou no
+    painel e passa a ser a que estiver no repositorio — o defeito exato que a
+    proibicao antiga queria impedir, e que ela deixou de cobrir no dia em que a
+    secao 24 tornou o arquivo legitimo."""
+    caminho = os.path.join(raiz, "snippets", "clubedomosaico-loja.php")
+    with open(caminho, encoding="utf-8") as fh:
+        fonte = fh.read()
+    alvo = "if ( ! defined( 'CDM_LOJA_VERSAO' ) ) {"
+    if alvo not in fonte:
+        raise AssertionError("mutacao INERTE: nao achei o cabecalho de versao da Loja")
+    enxerto = ("if ( ! function_exists( 'cdm_loja_pecas_do_repositorio' ) ) {\n"
+               "function cdm_loja_pecas_do_repositorio() {\n"
+               "\t$bruto = get_option( 'clubedomosaico_dados_pecas', '' );\n"
+               "\treturn $bruto ? json_decode( $bruto, true ) : array();\n"
+               "}\n"
+               "}\n\n")
+    with open(caminho, "w", encoding="utf-8") as fh:
+        fh.write(fonte.replace(alvo, enxerto + alvo, 1))
+
+
+def m_total_da_copia_digitado(raiz):
+    """O `total` da copia deixa de bater com a lista. E o numero de tela digitado
+    da secao 8, agora dentro de um espelho: quem ler a copia acha que a loja tem
+    duas pecas, e a artesa cadastrou uma."""
+    caminho = os.path.join(raiz, "dados", "pecas.json")
+    with open(caminho, encoding="utf-8") as fh:
+        copia = json.load(fh)
+    copia["total"] = len(copia.get("pecas", [])) + 1
+    with open(caminho, "w", encoding="utf-8") as fh:
+        json.dump(copia, fh, ensure_ascii=False, indent=2)
+
+
+def m_peca_da_copia_sem_id_de_post(raiz):
+    """A peca perde o `id` de post. E o que separa espelho de catalogo escrito a
+    mao: peca cadastrada no painel tem id do WordPress e URL que responde; peca
+    inventada nao tem nem um nem outro."""
+    caminho = os.path.join(raiz, "dados", "pecas.json")
+    with open(caminho, encoding="utf-8") as fh:
+        copia = json.load(fh)
+    if not copia.get("pecas"):
+        raise AssertionError("mutacao INERTE: a copia esta vazia, nao ha peca para mutar")
+    copia["pecas"][0].pop("id", None)
+    with open(caminho, "w", encoding="utf-8") as fh:
+        json.dump(copia, fh, ensure_ascii=False, indent=2)
+
+
 MUTACOES = [
     ("junta com 1 mm a mais no acrilico", m_junta_um_milimetro_a_mais),
     ("faixa de junta pela metade", m_faixa_pela_metade),
@@ -185,6 +261,10 @@ MUTACOES = [
     ("fonte de blog (nivel 4) sustentando recomendacao", m_nivel_de_blog_vira_recomendacao),
     ("rejunte novo sem perfil esperado escrito", m_rejunte_sem_perfil_escrito),
     ("cabecalho mente sobre itens esperando link", m_cabecalho_mente_sobre_link),
+    ("a copia das pecas da secao 24 vai ao ar publicada", m_copia_das_pecas_publicada),
+    ("a Loja passa a LER a copia commitada em vez do CPT", m_snippet_passa_a_ler_a_copia_das_pecas),
+    ("o total da copia das pecas vira numero digitado", m_total_da_copia_digitado),
+    ("a peca da copia perde o id de post do WordPress", m_peca_da_copia_sem_id_de_post),
 ]
 
 

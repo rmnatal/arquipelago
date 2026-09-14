@@ -1046,6 +1046,21 @@ if (isset($argv[1]) && basename(__FILE__) === basename($argv[0])) {
 		unset($_GET['sem_leads']);
 	}
 
+	/* O MUNDO SEM O SNIPPET DA F2. `sem_f2=1` na consulta.
+	 *
+	 * A F1 chama a regua do rejunte da F2 em vez de escrever uma segunda (decisao
+	 * 4 do cabecalho dela), e por isso ela tem DUAS saidas degradadas escritas de
+	 * proposito — uma em cada vitrine — que dizem "a lista esta fora do ar" e
+	 * mantem a conta de pe. Ate a f1 1.3.0 esse mundo NUNCA foi produzido: as
+	 * duas saidas existiam desde 12/09/2026 sem uma unica afirmacao encostando
+	 * nelas, e a do rejunte serve um <h2> DIFERENTE do normal, que era justamente
+	 * o que fazia a extracao por titulo nao achar nada ali. Regua escrita para um
+	 * mundo que nunca acontece nasce errada sem poder falhar (secao 8). */
+	if (!empty($_GET['sem_f2'])) {
+		$fora[] = 'clubedomosaico-f2.php';
+		unset($_GET['sem_f2']);
+	}
+
 	cdm_teste_carregar($argv[1], $fora);
 	/* Depois de carregar a casca, porque o modo 'todas' le o registro dela. */
 	$GLOBALS['__paginas'] = cdm_teste_paginas_no_ar($modo);

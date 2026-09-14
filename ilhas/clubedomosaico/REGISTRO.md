@@ -3348,3 +3348,117 @@ o orçamento de rastreamento na mesa; (2) **a ordem das duas vitrines na F1**, o
 mais antigo da fila e o único que mexe em como a página apresenta produto; (3) `1x1`
 de fabricante, a pendência mais cara da categoria pastilha; (4) os 15 `url_busca`,
 no minuto em que houver sessão.
+
+---
+
+# 14/09/2026, 13h21Z — A ORDEM DAS DUAS VITRINES DA F1: A PASTILHA VEM PRIMEIRO, E O TÍTULO DEIXA DE DEPENDER DE ESTAR EM SEGUNDO LUGAR
+
+**F1 1.3.0, manifest revisão 31, `/status` conferido. NENHUMA URL nova, NENHUMA
+página criada, NENHUM produto entrou ou saiu do banco.** Este é o item mais antigo
+da fila desta ilha — o único que mexe em como a página apresenta produto — e foi o
+`PRÓXIMO (2)` do fecho anterior depois que o `(1)`, a família `/tecnicas/`, ficou
+nomeado como bloco de malha e não de conserto.
+
+**A ESCOLHA DA ILHA: TERCEIRA TENTADA.** Nenhuma ilha tinha despacho aberto para a
+Fundação no topo do `PROMPT.md` (os quatro achados da artesã de 14/09 saíram inteiros
+na execução das 11h18Z e o que restou é bloco de malha; a aquametria e a robometria
+não tinham despacho para a Fundação), então valeu a rotação da seção 1. A aquametria
+tinha a `ultima_execucao` mais antiga (11h25Z) e meu push de reserva foi recusado —
+outra execução a tomou às 13h19Z. A robometria (11h44Z) caiu do mesmo jeito,
+reservada às 13h20Z. A clubedomosaico estava com `executando_desde: null`, que pela
+1.1 já significa que não há bloco da Fundação vivo. Nenhum force push, e nada de
+execução anterior para mesclar: local e remoto batiam com o `main`. Rede pela 20.2
+antes de trabalhar: home em 200 e `/status` na revisão 30, igual à do manifest, em
+UMA passada.
+
+## O QUE ERA A ORDEM ERRADA, e por que ninguém a via
+Até a 1.2.0 o bloco de compra do **rejunte** vinha antes do da **pastilha**. Não era
+decisão: era herança. Quando a vitrine do rejunte nasceu, o lugar da pastilha era uma
+frase de espera (`"ainda não temos as pastilhas no nosso banco"`), então o rejunte
+era o único bloco de compra que a página tinha. A 1.2.0 encheu aquele lugar com treze
+produtos e **manteve a sequência de chamada** — que é como uma ordem provisória
+sobrevive a quem a tornou errada. Não havia régua nenhuma sobre ordem, e ordem que
+ninguém mede não pode nem ser corrigida com confiança.
+
+A pastilha vem primeiro porque as **três superfícies** que abrem a página falam dela:
+o `<title>`, o H1 e a primeira frase da resposta (`"leva cerca de N pastilhas de X
+cm"`, com o rejunte entrando como o segundo número). A seção 22.1 põe ranqueamento
+antes de conversão antes de beleza; aqui as três apontam para o mesmo lado, porque
+quem chega por "quantas pastilhas para mosaico" veio comprar pastilha, e o `VOZ.md`
+desta ilha diz "produto primeiro". **Nada da 22.2 se moveu:** a resposta continua
+antes da explicação, os DOIS blocos de compra continuam ANTES da camada de prova
+(seção 7), e nenhuma URL, trilha, âncora ou JSON-LD mudou.
+
+## O QUE A TROCA REVELOU, e é o que fez disto um bloco e não um swap
+O título do bloco da pastilha era **"E onde comprar a pastilha"**. Aquele "E" é
+conector: ele só faz sentido depois de outro bloco de compra, e é um título que
+**mente quando a ordem muda**. Pior, a seção 5 pede frase autossuficiente, que
+sobreviva a ser citada fora de contexto — e o título é justamente a frase que um
+modelo de linguagem cita sozinho. Os dois títulos passaram a ser autossuficientes:
+**"Onde comprar a pastilha"** e **"Qual rejunte cabe nessa folga"**, nenhum
+dependendo da posição em que foi servido. Uma mutação escreve o "E" de volta, e ela é
+o defeito de verdade: invisível para qualquer régua de ordem, porque a sequência fica
+certa e só o título passa a prometer um bloco anterior que não existe mais.
+
+## A FRONTEIRA DOS DOIS BLOCOS GANHOU NOME (cicatriz da Robometria de 13/09/2026)
+A bancada e a conferência no ar extraíam cada vitrine pelo **texto do H2** — régua que
+morre calada no dia em que o título muda, e que no estado degradado do rejunte (sem a
+F2 no ar, o título é `"Onde comprar o rejunte"`) **nunca conseguiu extrair nada**.
+Cada seção passou a declarar o que ela é na própria classe (`cdm-f1-vitrine-pastilha`
+e `cdm-f1-vitrine-rejunte`), em **todas** as saídas, inclusive as degradadas.
+Fronteira de teste é marcador escrito, nunca "a primeira coisa parecida com". As três
+réguas que extraíam pelo título — `teste-f1.php`, `teste-prestacao-rejunte.php` e
+`conferir-no-ar.py` — passaram a ler o marcador.
+
+## O MUNDO SEM A F2 FOI PRODUZIDO PELA PRIMEIRA VEZ
+A F1 chama a régua do rejunte da F2 em vez de escrever uma segunda (decisão 4 do
+cabeçalho dela), e por isso tem DUAS saídas degradadas escritas de propósito — uma em
+cada vitrine — que dizem "a lista está fora do ar" e mantêm a conta de pé. Elas
+existiam desde 12/09/2026 **sem uma única afirmação encostando nelas**, e a do rejunte
+serve um H2 diferente do normal, que era o que fazia a extração por título não achar
+nada ali. Régua escrita para um mundo que nunca acontece nasce errada sem poder
+falhar (seção 8). O render ganhou `sem_f2=1`, e a bancada agora mede esse mundo: a
+conta continua, as duas vitrines dizem que a lista está fora do ar (uma cada), e
+nenhum cartão de produto nem recusa é improvisado sem a régua que decide quem entra.
+
+## O PORTÃO VERMELHO QUE JÁ ESTAVA NO main — a cópia da seção 24
+Ao rodar a bancada inteira antes de fechar, `validar-banco.py` reprovava o
+`dados/pecas.json` que a execução das 11h18Z criou (a cópia da primeira peça de
+verdade, "Quadro flores do campo"). A régua era de 12/09 e dizia uma frase só: **o
+arquivo não pode existir** — verdadeira enquanto o único jeito de ele aparecer fosse
+alguém inventar o catálogo da artesã. Depois disso a **seção 24** entrou no contrato e
+virou a mesa: dado que uma pessoa digita no WordPress nasce com cópia no repositório,
+e o bloco não fecha sem ela. A proibição envelhecida passou a reprovar o repositório
+por cumprir o contrato. A régua foi trocada: o que ela protege não é a ausência do
+arquivo, é que ele seja **cópia e nunca fonte**. Três afirmações, e a do meio é a de
+verdade: (1) o manifest o declara `publicar: false`; (2) **nenhum snippet o lê** —
+medido no código que vai ao ar, com o comentário descartado —, porque peça inventada
+só chega à tela se alguém servir o arquivo; (3) o arquivo tem a **forma da resposta do
+endpoint** (id de post, URL no domínio da ilha, `total` que bate com a lista, e sem o
+carimbo `gerado_em`, que a 24.2 mantém fora da cópia para a ronda não commitar a cada
+passada). Quatro mutações novas na bateria do rejunte escrevem os quatro defeitos de
+volta — cópia publicada, snippet lendo a cópia, total digitado, peça sem id.
+
+## A VERIFICAÇÃO, EM NÚMEROS (bancada, 0 falha)
+- **`teste-f1.php`**: nasceu a seção **4d** (ordem das duas vitrines) com 15 estados,
+  um processo cada — marcador único, pastilha antes do rejunte, resposta antes das
+  duas, as duas antes da prova, e nenhum título abrindo com conector, medido em 6
+  títulos. Mais o mundo sem a F2 produzido. O arquivo foi de 190 para **211
+  afirmações**.
+- **`mutacoes-f1.py`**: de 40 para **46 mutações, 46 reprovadas, 0 passaram** — as
+  seis novas: ordem invertida, o "E" de volta no título, a vitrine descendo para
+  depois da prova (uma versão que reprova pela ordem, outra que preserva a ordem e só
+  inverte compra x procedência), o marcador da pastilha sumindo, e o do rejunte
+  sumindo SÓ na saída degradada.
+- **`teste-prestacao-rejunte.php`**: 5 afirmações, 540 estados da F2 e 180 da F1, a
+  extração do bloco do rejunte da F1 agora pelo marcador.
+- **`validar-banco.py`**: OK, 25 materiais, 45 células da F2; a régua nova da cópia da
+  seção 24 no ar.
+- **`mutacoes-rejunte.py`**: de 12 para **16 mutações, 16 reprovadas** (as quatro
+  novas da cópia da seção 24).
+- **`validar-pastilhas.py`** 189, **`mutacoes-prestacao.py`** 11 de 11,
+  **`mutacoes-cobertura.py`** 11 de 11, **`teste-casca.php`** 549, **`teste-f2.php`**
+  107, **`teste-loja.php`** 178, **`teste-atelie.php`** aprovado, **`teste-leads.php`**
+  211, **`conferir-cobertura.php`** 353, **`php -l`** limpo em tudo.
+
+O QUE FALTA (o desembarque no ar): registrado abaixo ao fim do Sync.

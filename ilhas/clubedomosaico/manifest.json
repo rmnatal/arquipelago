@@ -4,7 +4,7 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 30,
+  "revisao": 31,
   "atualizado_em": "2026-09-14",
   "estado": "nascendo",
   "desembarque": {
@@ -42,9 +42,9 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.2.0",
-      "sha256": "ace8ebe32958218b5df924fbe1e1251d81e9688477db297d43dfe1a13bd5736e",
-      "descricao": "BLOCO 4, SEGUNDA FERRAMENTA — /materiais/quantas-pastilhas-para-mosaico/. Responde 'quantas pastilhas e quanto rejunte' com a conta da pastilha de artesanato, e nao com a do azulejo de obra: o bloco 1 mediu que a primeira pagina inteira de 'rejunte para mosaico' responde a pergunta da OBRA (0,2 a 0,4 kg/m2, calculado com azulejo grande), e a mesma formula do fabricante aplicada a pastilha de 1x1 cm com junta de 2 mm da 2,8 kg/m2 — quatro vezes o do azulejo de 10 cm e duas vezes o do piso de 20. A pagina nao disputa aquelas; ela responde outra pergunta. COMO NA F2, A CONTA E DO SERVIDOR: o formulario e um GET para a propria pagina, nao ha uma linha de decisao em JavaScript, e o estado com parametro sai com noindex, follow. A GEOMETRIA E NOSSA E O CONSUMO E DO FABRICANTE: area por forma (cilindro, cone pela GERATRIZ e nunca pela altura, placa, disco, esfera e moldura com vao) e contagem pelo passo (lado + folga, arredondada sempre para CIMA, porque lote novo de pastilha muda de cor) sao aritmetica desta ilha e nao dependem de banco nenhum; ja os gramas saem da formula publicada pela Quartzolit com o coeficiente LIDO do registro do rejunte ceramicas — e quando ele nao chega, a pagina continua respondendo area e pastilhas e diz que nao publica os gramas. A CORRECAO DO BLOCO 3c ESTA NA TELA: o 1,75 vem de um exemplo de rejunte cimenticio EM PO, entao a ferramenta RECUSA calcular para acrilico (pronto uso em pote) e epoxi (bicomponente) e nomeia o que falta; e recusa tambem se o banco trouxer dois coeficientes diferentes, porque escolher um dos dois calado e a mesma invencao com outra roupa. A REGUA DO REJUNTE TEM DONO: quem decide qual produto cabe na folga e no lugar e cdm_f2_celula_rejunte(), chamada daqui em vez de reescrita — a F1 so filtra pelo tipo que a pessoa escolheu. A coluna de gramas de COLA nasce vazia com o motivo escrito (o fabricante do silicone declara rendimento por cordao, nao por area), e a pastilha, que ainda nao tem banco, tem o cartao de compra reservado dizendo que esta vazio."
+      "versao": "1.3.0",
+      "sha256": "d14d41af6a5aa5afa9ef97e2583e182eab1ca5dae0aaa820af5eb4f9a45dd79a",
+      "descricao": "F1 1.3.0 (14/09/2026) — A ORDEM DAS DUAS VITRINES, E O TITULO QUE DEPENDIA DE ESTAR EM SEGUNDO LUGAR. Ate a 1.2.0 o bloco de compra do REJUNTE vinha antes do da PASTILHA, e a ordem nao era decisao: era heranca de quando o lugar da pastilha era uma frase de espera ('ainda nao temos as pastilhas no nosso banco'). A 1.2.0 encheu aquele lugar com treze produtos e manteve a sequencia de chamada. A pastilha passa a vir primeiro, porque o title, o H1 e a primeira frase de resposta desta pagina falam de pastilha, e quem chega por 'quantas pastilhas para mosaico' veio comprar pastilha (secao 22.1, e o 'produto primeiro' do VOZ.md). Nada da 22.2 se move: resposta antes da explicacao, os DOIS blocos de compra antes da camada de prova (secao 7), nenhuma URL, trilha, ancora ou JSON-LD muda, nenhum produto entra ou sai. O QUE A TROCA REVELOU e o que fez disto bloco e nao um swap: o titulo era 'E onde comprar a pastilha', e aquele 'E' e conector — titulo que so e verdade em segundo lugar, e titulo e a frase que um modelo de linguagem cita sozinho (secao 5). Os dois titulos passam a ser autossuficientes. E A FRONTEIRA DOS DOIS BLOCOS GANHOU NOME: cada vitrine declara o que ela e na propria classe (cdm-f1-vitrine-pastilha e cdm-f1-vitrine-rejunte), em TODAS as saidas, inclusive as degradadas — a bancada e a conferencia no ar extraiam pelo TEXTO do h2, que muda, e que no estado degradado do rejunte NUNCA extraiu nada. Portao novo: secao 4d do teste-f1 (ordem, presenca unica do marcador, resposta antes das vitrines, vitrines antes da prova, e nenhum titulo abrindo com conector), 15 estados, um processo cada; cinco mutacoes novas; e o mundo sem a F2 no ar (sem_f2=1 no render) produzido pela primeira vez — as duas saidas degradadas existiam desde 12/09/2026 sem uma afirmacao encostando nelas."
     },
     {
       "id": "loja",
@@ -220,7 +220,7 @@
     {
       "id": "conferir-no-ar",
       "arquivo": "ferramentas/conferir-no-ar.py",
-      "sha256": "5ba5e16e0bcab1c5acdc2106ceb7ceb455afc09b42236a2eb84eb0f4d4ad4e35",
+      "sha256": "d8d2a4c73868f1405cec41e1753b1fd3f2b05c1a6dd1f83b1662b9519acd23a1",
       "descricao": "Mede o que o SITE serve, nao o que o repositorio guarda: abre as nove URLs com curl e afirma sobre o HTML SERVIDO. Existe porque 'aplicado com sucesso' no log do Sync nao e evidencia de nada (secao 8) e commit sem verificacao no ar nao e entrega (secoes 4 e 18.4). 102 afirmacoes: HTTP 200, a marca no HTML, o src igual ao arquivo que o Raphael subiu, zero texto ao lado do logo, alt com o nome, medida 78x52 declarada, o logo uma vez por pagina, o wordmark em texto de 1.2.0 fora de toda pagina, zero &#038; dentro de <script>, a folha servida mandando 52 px, o cabecalho ainda claro, e as tres URLs da imagem respondendo PNG. REGUA PROPRIA: a URL e a medida estao literais no arquivo, copiadas do despacho, e nao lidas da constante da casca — senao as duas metades errariam juntas. Todo endereco leva ?v= porque o cache de borda faz concluir que nada mudou. NUNCA e publicada no site."
     },
     {
@@ -250,7 +250,7 @@
     {
       "id": "mutacoes-f1",
       "arquivo": "ferramentas/mutacoes-f1.py",
-      "sha256": "9932b99292edc3ea58d1a5d45e4749c7a73105e5bfd5d56ebe60fbced49dfed4",
+      "sha256": "9fd4c70a5694ddbcd8fe5c065b8d61f77d600b7b453af70ddb7e25d94bfe5e4b",
       "descricao": "Quebra a F1 de proposito, uma mutacao por vez, e exige que teste-f1.php reprove cada uma. Bancada."
     },
     {
@@ -274,7 +274,7 @@
     {
       "id": "mutacoes-rejunte",
       "arquivo": "ferramentas/mutacoes-rejunte.py",
-      "sha256": "c67181f8adccfff17c56e5d8073103df32498a4627c8391a6abab859cd71494e",
+      "sha256": "faf7eaeb34ff5a0cf2bcf2c948b9769e754ce172f4acd90e23a3459b6d3ebae0",
       "descricao": "Quebra o banco de rejunte de proposito, uma mutacao por vez numa COPIA da pasta da ilha, e exige que validar-banco.py reprove cada uma. DOZE mutacoes, doze reprovadas. A que mais vale e a ultima: ela tira a declaracao de piscina do epoxi E ajusta o perfil esperado no esquema junto, que e como um editor de verdade mexeria nas duas metades — as duas passam a errar juntas e a conferencia de perfil deixa de ver. Quem viu foi a MATRIZ, que continuava esperando o epoxi no topo da celula de 3 mm submersa. E a prova de que a matriz nao e enfeite da conferencia de perfil, e a resposta local a cicatriz da secao 8 do contrato: teste que chama a regua de quem produziu o dado erra junto com ele. NUNCA e publicada no site."
     },
     {
@@ -286,7 +286,7 @@
     {
       "id": "render-para-teste",
       "arquivo": "ferramentas/render-para-teste.php",
-      "sha256": "798f81968b7fb80df43bfad6cff79d95d01c6a1aa4d9bb0eb408362b417ba642",
+      "sha256": "52aeeb72004182baca3379a660ddae16e8132c8eb4fc3e7d3e86c31e9d21fb9e",
       "descricao": "Monta uma pagina do site fora do WordPress para poder medir o HTML servido sem depender do site no ar — necessario porque o gateway da rede das rotinas respondeu 403 ao CONNECT para clubedomosaico.com.br em 11/09/2026. Imita de verdade os ganchos wp_head/wp_footer com prioridade, o escape de '&' que os filtros do the_content aplicam ao retorno do shortcode, e o remove_action casando gancho + funcao + prioridade. Carrega nas options o que o Sync carrega, pela cicatriz da bancada pela metade (secao 8). NUNCA e publicada no site."
     },
     {
@@ -304,7 +304,7 @@
     {
       "id": "teste-f1",
       "arquivo": "ferramentas/teste-f1.php",
-      "sha256": "32b727515f1a4156058e278145d80c2618df29856bec386a84dd08eb2e1fb9f3",
+      "sha256": "ceb3edff0f2908fde0366b34e55ba061dd8d00f53aab8ed6ee4dbbc47cc0ed58",
       "descricao": "Verificacao medida da F1: regua aritmetica propria, um processo por estado, varrendo forma x caquinho, folga x tipo, sobras, espessuras, lugares e as bordas. Bancada."
     },
     {
@@ -322,13 +322,13 @@
     {
       "id": "teste-prestacao-rejunte",
       "arquivo": "ferramentas/teste-prestacao-rejunte.php",
-      "sha256": "4f87e8efb43c7531641ed4f6c765928fd8a80b1bd39a3140fbd4e760368a2c27",
+      "sha256": "2b2f96fe31dbff486fbd62eed3bc5ac9cc9d3c6877f48321513db6031bfa2c6f",
       "descricao": "Portao do despacho da Sentinela de 12/09/2026: cobra que todo rejunte do banco seja nomeado uma vez em cada resposta — na frase que o recomenda ou numa linha que diz por que ele nao esta — e que a vitrine sirva exatamente o que a frase nomeia, nas duas ferramentas e na tabela pre-renderizada. Regua propria, recomputada dos perfis escritos a mao no esquema; 540 estados da F2, 180 da F1 e as 9 linhas da tabela, um processo por estado. Bancada: nunca vai para o site."
     },
     {
       "id": "validar-banco",
       "arquivo": "ferramentas/validar-banco.py",
-      "sha256": "d6df9c6b7efd228d37100d108f2ed2ee5802c12526d39baa60123a1e9db16659",
+      "sha256": "1797dde4f706a430caf4d79f695a16664be926da2d1bcc4c43544b94e91623ba",
       "descricao": "Verifica o banco contra dados/esquema-banco.json sem rede e sem dependencia: campos obrigatorios, vocabularios, fonte por campo tecnico, nivel de fonte, afiliado presente mesmo vazio, contagem declarada no cabecalho e passo de fabrica das pastilhas. O principal: RECOMPUTA as 18 celulas da matriz da F2 pelas cinco regras de elegibilidade e falha se o banco e a pagina se separarem. E a implementacao de referencia que o snippet PHP do bloco 4 tem que repetir. NUNCA e publicada no site. BLOCO 3c: ganhou a regua propria do REJUNTE, escrita sem reaproveitar perfil() nem avaliar() da cola — nao por cerimonia, mas porque as declaracoes nomeiam coisas diferentes nas duas categorias. Confere os cinco perfis e as nove celulas junta x ambiente contra o que esta escrito A MAO no esquema, exige que a grade pise em toda borda declarada e em pelo menos um valor acima da maior delas, reprova faixa de junta pela metade ou invertida, cobra perfil escrito para todo rejunte do banco, e guarda a regressao do defeito que o bloco corrigiu: rejunte que aparecer em qualquer lista da matriz da F2 e erro."
     },
     {

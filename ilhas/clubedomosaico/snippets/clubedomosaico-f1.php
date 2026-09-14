@@ -86,10 +86,51 @@
  * converte. Os treze também estão sem link e sem piso de busca, o que é defeito
  * declarado da 19.1: gerar o link exige a sessão do painel de afiliado, e o
  * cartão reserva o lugar em vez de sumir.
+ *
+ * ------------------------------------------------------------------------
+ * VERSÃO 1.3.0 (14/09/2026) — A ORDEM DAS DUAS VITRINES, E O FIM DO TÍTULO
+ * QUE DEPENDIA DE ESTAR EM SEGUNDO LUGAR
+ * ------------------------------------------------------------------------
+ * Até a 1.2.0 o bloco do REJUNTE vinha antes do bloco da PASTILHA, e a ordem
+ * não era uma decisão: era herança. Quando a vitrine de rejunte nasceu, o lugar
+ * da pastilha era uma frase de espera ("ainda não temos as pastilhas no nosso
+ * banco"), então o rejunte era o único bloco de compra que a página tinha. A
+ * 1.2.0 encheu o lugar da frase de espera com treze produtos e manteve a
+ * sequência de chamada, que é como uma ordem provisória sobrevive a quem a
+ * tornou errada.
+ *
+ * POR QUE A PASTILHA VEM PRIMEIRO, e a razão é a mesma em três superfícies: o
+ * `<title>`, o H1 e a frase de resposta desta página falam de PASTILHA — "leva
+ * cerca de N pastilhas de X cm" é a primeira coisa que a página afirma, e o
+ * rejunte entra nela como o segundo número. A seção 22.1 do ARQUIPELAGO.md põe
+ * ranqueamento antes de conversão e conversão antes de beleza; aqui as três
+ * apontam para o mesmo lado, porque quem chega por "quantas pastilhas para
+ * mosaico" veio comprar pastilha. O `VOZ.md` desta ilha diz "produto primeiro".
+ * Nada da seção 22.2 se move: a resposta continua antes da explicação, os dois
+ * blocos de compra continuam ANTES da camada de prova (seção 7), e nenhuma URL,
+ * trilha, âncora ou JSON-LD muda.
+ *
+ * O QUE A TROCA REVELOU, e é o que fez disto um bloco em vez de um `swap`: o
+ * título do bloco da pastilha era "E onde comprar a pastilha". Aquele "E" é
+ * conector — ele só faz sentido depois de outro bloco de compra, e é um título
+ * que MENTE quando a ordem muda. Pior: a seção 5 do contrato pede frase
+ * autossuficiente, que sobreviva a ser citada fora de contexto, e é justamente
+ * o título que um modelo de linguagem cita sozinho. Agora os dois títulos são
+ * autossuficientes — "Onde comprar a pastilha" e "Qual rejunte cabe nessa
+ * folga" —, e nenhum depende da posição em que foi servido.
+ *
+ * E A FRONTEIRA DOS DOIS BLOCOS PASSOU A TER NOME. A bancada e a conferência no
+ * ar extraíam cada vitrine pelo TEXTO do `<h2>` — régua que morre calada no dia
+ * em que o título muda, e que no estado degradado do rejunte (sem a F2 no ar, o
+ * título é outro) nunca conseguiu extrair nada. Cada seção agora declara o que
+ * ela é na própria classe: `cdm-f1-vitrine-pastilha` e `cdm-f1-vitrine-rejunte`,
+ * em TODAS as saídas, inclusive as degradadas. É a cicatriz da Robometria de
+ * 13/09/2026 escrita nesta ilha: fronteira de teste é marcador escrito, nunca
+ * "a primeira coisa parecida com".
  */
 
 if ( ! defined( 'CDM_F1_VERSAO' ) ) {
-	define( 'CDM_F1_VERSAO', '1.2.0' );
+	define( 'CDM_F1_VERSAO', '1.3.0' );
 }
 if ( ! defined( 'CDM_F1_SLUG' ) ) {
 	/* Mesma escolha da F2, pelo mesmo motivo (ARVORE.md, seção 2): nível 3 com
@@ -858,7 +899,7 @@ if ( ! function_exists( 'cdm_f1_vitrine_html' ) ) {
  */
 function cdm_f1_vitrine_html( $e ) {
 	if ( ! function_exists( 'cdm_f2_celula_rejunte' ) || ! function_exists( 'cdm_f2_cartao_html' ) ) {
-		return '<div class="cdm-f1-secao"><h2>Onde comprar o rejunte</h2>'
+		return '<div class="cdm-f1-secao cdm-f1-vitrine-rejunte"><h2>Onde comprar o rejunte</h2>'
 			. '<p class="cdm-f1-faixa">A lista de produtos está fora do ar neste momento. A conta acima continua de pé — ela não depende dela.</p></div>';
 	}
 
@@ -928,7 +969,7 @@ function cdm_f1_vitrine_html( $e ) {
 		: '';
 	$mm    = '<strong>' . cdm_casca_num( $e['junta'] ) . ' mm</strong>';
 
-	$html  = '<div class="cdm-f1-secao">';
+	$html  = '<div class="cdm-f1-secao cdm-f1-vitrine-rejunte">';
 	$html .= '<h2>Qual rejunte cabe nessa folga</h2>';
 
 	if ( $do_tipo ) {
@@ -1255,7 +1296,11 @@ if ( ! function_exists( 'cdm_f1_vitrine_pastilha_html' ) ) {
  * os lados nomeados, em vez de deixar a pessoa descobrir.
  */
 function cdm_f1_vitrine_pastilha_html( $e ) {
-	$html = '<div class="cdm-f1-secao"><h2>E onde comprar a pastilha</h2>';
+	/* O TÍTULO NÃO TEM CONECTOR, e isso é decisão da 1.3.0: ele já foi "E onde
+	   comprar a pastilha", e aquele "E" só era verdade enquanto este bloco vinha
+	   em segundo lugar. Título é a frase que um modelo de linguagem cita sozinho
+	   (seção 5), então ele não pode depender da posição em que foi servido. */
+	$html = '<div class="cdm-f1-secao cdm-f1-vitrine-pastilha"><h2>Onde comprar a pastilha</h2>';
 
 	/* Sem a F2 de pé não há escada de compra nem escada de fontes, e esta página
 	   não escreve uma segunda. Mesma saída do bloco do rejunte. */
@@ -1760,8 +1805,12 @@ add_shortcode( 'cdm_f1', function () {
 	$html .= cdm_f1_form_html( $e );
 	$html .= cdm_f1_resposta_html( $e );
 	$html .= cdm_f1_recusa_html( $e );
-	$html .= cdm_f1_vitrine_html( $e );
+	/* A ORDEM DOS DOIS BLOCOS DE COMPRA É DECISÃO, e o cabeçalho deste arquivo
+	   (versão 1.3.0) diz por quê: a pastilha primeiro, porque é dela que falam o
+	   título, o H1 e a primeira frase da resposta. Os dois continuam ANTES da
+	   camada de prova, que é o que a seção 7 do contrato manda. */
 	$html .= cdm_f1_vitrine_pastilha_html( $e );
+	$html .= cdm_f1_vitrine_html( $e );
 	$html .= cdm_f1_tabela_pecas_html();
 	$html .= cdm_f1_tabela_pastilhas_html();
 	$html .= cdm_f1_tabela_consumo_html();

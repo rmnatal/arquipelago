@@ -672,10 +672,28 @@ function f1_placas( $m, $area_cm2, $sobra ) {
 }
 
 /** SO o bloco da pastilha, que e onde estas afirmacoes valem. Medir na pagina
-    inteira acharia os codigos dentro da tabela do banco e passaria de graca. */
+    inteira acharia os codigos dentro da tabela do banco e passaria de graca.
+
+    A FRONTEIRA E O MARCADOR, E NAO O TITULO (f1 1.3.0). Ate 13/09 esta funcao
+    extraia o bloco pelo TEXTO do <h2> — "E onde comprar a pastilha". Duas coisas
+    erradas nisso, e a segunda e pior: o titulo mudou na 1.3.0 (o "E" era conector
+    de posicao e saiu), entao a regua morreria calada; e a mesma forma, aplicada ao
+    bloco do rejunte, NUNCA extraia nada no estado degradado, porque la o titulo e
+    outro. Agora cada vitrine declara o que ela e na propria classe, em todas as
+    saidas, e a fronteira le o marcador. Cicatriz da Robometria de 13/09/2026:
+    fronteira de teste e marcador escrito, nunca "a primeira coisa parecida com". */
+function f1_bloco_marcado( $corpo, $marcador ) {
+	$re = '#<div class="cdm-f1-secao ' . preg_quote( $marcador, '#' ) . '">(.*?)(?=<div class="cdm-f1-secao|$)#is';
+
+	return preg_match( $re, $corpo, $m ) ? $m[1] : '';
+}
+
 function f1_bloco_pastilha( $corpo ) {
-	return preg_match( '#<h2>E onde comprar a pastilha</h2>(.*?)</div>\s*<div class="cdm-f1-secao">#is', $corpo, $m )
-		? $m[1] : '';
+	return f1_bloco_marcado( $corpo, 'cdm-f1-vitrine-pastilha' );
+}
+
+function f1_bloco_rejunte( $corpo ) {
+	return f1_bloco_marcado( $corpo, 'cdm-f1-vitrine-rejunte' );
 }
 
 /** SO o CORPO da tabela pre-renderizada do banco de pastilhas — sem o cabecalho,
@@ -920,6 +938,152 @@ f1_ok( empty( $dobradas_p ), 'nenhum lugar repete a marca dentro do nome da past
 	empty( $dobradas_p ) ? count( $p_itens ) . ' pastilhas' : implode( ' | ', $dobradas_p ) );
 
 /* ---------------------------------------------------------------------------
+ * 4d. A ORDEM DAS DUAS VITRINES — a f1 1.3.0
+ *
+ * ATE 13/09/2026 A ORDEM NAO TINHA REGUA NENHUMA, e por isso ela ficou errada
+ * por dois dias sem que nada acusasse: o bloco do rejunte vinha antes do da
+ * pastilha porque, quando ele nasceu, o lugar da pastilha era uma frase de
+ * espera. Sequencia de chamada nao e decisao, e sequencia de chamada que
+ * ninguem mede nao pode nem ser corrigida com confianca.
+ *
+ * O QUE ESTA SECAO AFIRMA, e as quatro coisas sao independentes:
+ *   1. OS DOIS MARCADORES SAIEM, uma vez cada, em todo estado. Sem isso as
+ *      afirmacoes de ordem ficariam verdes sobre bloco ausente — e o bloco tem
+ *      saida degradada, que e exatamente onde ele costuma sumir calado.
+ *   2. A PASTILHA VEM ANTES DO REJUNTE. E o que o titulo, o H1 e a primeira
+ *      frase da resposta desta pagina prometem.
+ *   3. A RESPOSTA VEM ANTES DOS DOIS, e os DOIS vem antes da camada de prova.
+ *      A primeira e a secao 22.2 (resposta antes da explicacao, que o desenho
+ *      nao toca); a segunda e a cicatriz da Robometria na secao 7 (bloco de
+ *      compra antes da procedencia). A secao 4 deste arquivo ja mede a segunda
+ *      DENTRO do cartao; aqui ela e medida entre SECOES, que e outro lugar.
+ *   4. NENHUM DOS DOIS TITULOS ABRE COM CONECTOR. Esta e a regua que impede a
+ *      volta do defeito de verdade: "E onde comprar a pastilha" era um titulo
+ *      que dependia de vir em segundo lugar, e titulo e a frase que um modelo
+ *      de linguagem cita sozinho (secao 5). Ela mede a PROPRIEDADE — nao
+ *      depender da posicao —, e nao o texto de hoje.
+ *
+ * A GRADE VARRE OS ESTADOS EM QUE A PRESENCA DOS BLOCOS MUDA, nao a pagina
+ * ancora: cada lado do seletor, o caquinho irregular, os tres tipos de rejunte
+ * (dois deles caem na recusa e mudam o que vem antes da vitrine), os tres
+ * degraus da escada de compra, a folga que nenhum rejunte cobre e a medida que
+ * nao fecha. Um processo por estado.
+ * ------------------------------------------------------------------------- */
+
+echo "\n4d. A ordem das duas vitrines (a pastilha primeiro, e os titulos sem conector)\n";
+
+$estados_ordem = array(
+	''                                                              => 'ancora',
+	'pastilha=p10'                                                  => '1 cm (zero elegivel)',
+	'pastilha=p15'                                                  => '1,5 cm (so fonte fraca)',
+	'pastilha=p20'                                                  => '2 cm (tres elegiveis)',
+	'pastilha=p25'                                                  => '2,5 cm',
+	'pastilha=irregular&ladoeq=3'                                   => 'irregular 3 cm',
+	'pastilha=irregular&ladoeq=9'                                   => 'irregular 9 cm (lado que ninguem tem)',
+	'rejunte=acrilico'                                              => 'acrilico (a pagina recusa o grama)',
+	'rejunte=epoxi'                                                 => 'epoxi (idem)',
+	'junta=12&onde=contato_permanente_agua'                         => 'folga de 12 mm dentro da agua',
+	'sem_links=1'                                                   => 'sem ficha, so o piso de busca',
+	'sem_piso=1'                                                    => 'sem ficha e sem piso',
+	'com_piso=1&pastilha=p20'                                       => 'com piso no banco',
+	'forma=moldura&l=40&a=60&vl=50&va=70'                           => 'medida que NAO fecha',
+	/* PRODUZ O MUNDO SEM A F2, que e onde as DUAS vitrines saem pela porta
+	   degradada e a do rejunte serve outro <h2>. Ele nunca havia sido produzido
+	   antes da 1.3.0 — as duas saidas existiam desde 12/09/2026 sem uma
+	   afirmacao encostando nelas. */
+	'sem_f2=1'                                                      => 'sem a F2 no ar (as duas saidas degradadas)',
+);
+
+$sem_marcador   = array();
+$fora_de_ordem  = array();
+$antes_da_conta = array();
+$depois_da_prova = array();
+$duplicados     = array();
+
+foreach ( $estados_ordem as $consulta => $rotulo ) {
+	$corpo_o = f1_corpo( f1_render( $raiz, $consulta ) );
+
+	$n_past = substr_count( $corpo_o, 'cdm-f1-vitrine-pastilha' );
+	$n_rej  = substr_count( $corpo_o, 'cdm-f1-vitrine-rejunte' );
+	if ( 1 !== $n_past || 1 !== $n_rej ) {
+		if ( 0 === $n_past || 0 === $n_rej ) {
+			$sem_marcador[] = $rotulo . ' (pastilha ' . $n_past . ', rejunte ' . $n_rej . ')';
+		} else {
+			$duplicados[] = $rotulo . ' (pastilha ' . $n_past . ', rejunte ' . $n_rej . ')';
+		}
+		continue;
+	}
+
+	$p_past  = mb_strpos( $corpo_o, 'cdm-f1-vitrine-pastilha' );
+	$p_rej   = mb_strpos( $corpo_o, 'cdm-f1-vitrine-rejunte' );
+	$p_resp  = mb_strpos( $corpo_o, 'cdm-f1-resposta' );
+	$p_prova = mb_strpos( $corpo_o, 'cdm-prova' );
+
+	if ( $p_past > $p_rej ) {
+		$fora_de_ordem[] = $rotulo;
+	}
+	if ( false === $p_resp || $p_resp > $p_past ) {
+		$antes_da_conta[] = $rotulo;
+	}
+	if ( false === $p_prova || $p_prova < $p_rej ) {
+		$depois_da_prova[] = $rotulo;
+	}
+}
+
+f1_ok( empty( $sem_marcador ), 'as duas vitrines declaram o proprio marcador em TODO estado varrido',
+	empty( $sem_marcador ) ? count( $estados_ordem ) . ' estados' : implode( ' | ', $sem_marcador ) );
+f1_ok( empty( $duplicados ), 'e cada marcador sai UMA vez (marcador repetido faria a medida de posicao mentir)',
+	empty( $duplicados ) ? '' : implode( ' | ', $duplicados ) );
+f1_ok( empty( $fora_de_ordem ), 'a vitrine de PASTILHA vem antes da de rejunte em todo estado',
+	empty( $fora_de_ordem ) ? count( $estados_ordem ) . ' estados' : implode( ' | ', $fora_de_ordem ) );
+f1_ok( empty( $antes_da_conta ), '22.2: a resposta continua vindo antes das duas vitrines',
+	empty( $antes_da_conta ) ? count( $estados_ordem ) . ' estados' : implode( ' | ', $antes_da_conta ) );
+f1_ok( empty( $depois_da_prova ), 'secao 7: as DUAS vitrines vem antes da camada de prova',
+	empty( $depois_da_prova ) ? count( $estados_ordem ) . ' estados' : implode( ' | ', $depois_da_prova ) );
+
+/* O TITULO NAO PODE DEPENDER DA POSICAO. A lista e de conectores de abertura, e
+   a afirmacao e sobre a PRIMEIRA palavra do <h2> de cada vitrine — nao sobre o
+   texto de hoje. Vale para o estado degradado tambem, que e onde o titulo do
+   rejunte e outro. */
+$conectores = array( 'e', 'ea', 'tambem', 'também', 'depois', 'ainda', 'ja', 'já', 'agora' );
+$com_conector = array();
+foreach ( array( 'cdm-f1-vitrine-pastilha', 'cdm-f1-vitrine-rejunte' ) as $marcador ) {
+	foreach ( array( '' => 'hoje', 'sem_piso=1' => 'sem piso', 'sem_f2=1' => 'sem a F2' ) as $consulta => $qual ) {
+		$bloco = f1_bloco_marcado( f1_corpo( f1_render( $raiz, $consulta ) ), $marcador );
+		if ( ! preg_match( '#<h2[^>]*>(.*?)</h2>#is', $bloco, $mh ) ) {
+			$com_conector[] = $marcador . ' (' . $qual . '): sem <h2>';
+			continue;
+		}
+		$titulo   = f1_texto( $mh[1] );
+		$primeira = mb_strtolower( preg_replace( '#[^\p{L}]#u', '', mb_substr( $titulo, 0, mb_strpos( $titulo . ' ', ' ' ) ) ), 'UTF-8' );
+		if ( in_array( $primeira, $conectores, true ) ) {
+			$com_conector[] = $marcador . ' (' . $qual . '): "' . $titulo . '"';
+		}
+	}
+}
+f1_ok( empty( $com_conector ),
+	'nenhum titulo de vitrine abre com conector (o "E onde comprar" dependia da posicao)',
+	empty( $com_conector ) ? '6 titulos medidos' : implode( ' | ', $com_conector ) );
+
+/* O MUNDO SEM A F2, medido de perto: e a primeira vez que ele e produzido.
+   As duas saidas degradadas prometem a MESMA coisa — "a lista esta fora do ar" e
+   "a conta acima continua de pe" — e a unica maneira de saber se a promessa e
+   verdadeira e conferir que a conta esta la, e que nenhum produto foi inventado
+   sem a regua que decide quem entra. */
+$corpo_sem_f2 = f1_corpo( f1_render( $raiz, 'sem_f2=1' ) );
+$texto_sem_f2 = f1_texto( $corpo_sem_f2 );
+f1_ok( false !== mb_strpos( $texto_sem_f2, '720 pastilhas' ),
+	'PRODUZ O MUNDO: sem a F2, a conta de pastilhas CONTINUA de pe, como as duas saidas prometem' );
+f1_ok( 2 === preg_match_all( '#está fora do ar neste momento#u', $texto_sem_f2 ),
+	'e as DUAS vitrines dizem que a lista esta fora do ar, uma cada',
+	preg_match_all( '#está fora do ar neste momento#u', $texto_sem_f2 ) . ' de 2' );
+f1_ok( false === mb_stripos( $corpo_sem_f2, 'cdm-f2-cartao' ),
+	'sem a regua que decide quem entra, NENHUM cartao de produto e servido' );
+f1_ok( false === mb_stripos( $texto_sem_f2, 'Cobre folga de' )
+	&& false === mb_stripos( $texto_sem_f2, 'o que exclui' ),
+	'e nenhuma recomendacao nem recusa de produto e improvisada por esta pagina' );
+
+/* ---------------------------------------------------------------------------
  * 5. A BORDA MAIS DIFICIL: a pagina SEM o banco
  *
  * Ela existe porque o estado degradado e uma pagina VALIDA, com cabecalho,
@@ -962,6 +1126,15 @@ f1_ok( false !== mb_stripos( $texto_sem_banco, 'coeficiente' ),
 	'sem banco, a pagina diz POR QUE nao publica o rejunte' );
 f1_ok( false === mb_stripos( $texto_sem_banco, 'Cobre folga de' ),
 	'sem banco, nenhuma recomendacao de produto e inventada' );
+/* A ORDEM SOBREVIVE AO ESTADO DEGRADADO (f1 1.3.0). Aqui as duas vitrines saem
+   pela porta de tras — a do rejunte com OUTRO titulo —, e e o unico lugar em que
+   o marcador da 4d e a unica fronteira possivel. */
+$p_past_sb = mb_strpos( $corpo_sem_banco, 'cdm-f1-vitrine-pastilha' );
+$p_rej_sb  = mb_strpos( $corpo_sem_banco, 'cdm-f1-vitrine-rejunte' );
+f1_ok( false !== $p_past_sb && false !== $p_rej_sb,
+	'sem banco, as duas vitrines AINDA declaram o marcador (a saida degradada nao perde o nome)' );
+f1_ok( false !== $p_past_sb && false !== $p_rej_sb && $p_past_sb < $p_rej_sb,
+	'sem banco, a pastilha continua vindo antes do rejunte' );
 
 array_map( 'unlink', glob( $temp . '/snippets/*.php' ) );
 @unlink( $temp . '/manifest.json' );
