@@ -13,6 +13,95 @@ o proximo passo desbloqueado, e espelha o mesmo resumo em
 > desordem), mas quem procurar a execução do piso de busca a encontra no rodapé e
 > não no topo.
 
+
+## 2026-09-14 22h11Z — LEVA 6: A QUINTA CATEGORIA, E A PRIMEIRA EM QUE AS TRÊS FILHAS VIVEM DE TRÊS JEITOS DIFERENTES (peixes 1.10.0, manifest revisão 87, `/status` conferido na 87 em UM disparo; QUATRO URLs novas — `/peixes/ciclideos-anoes/` e as fichas do ramirezi, do apistogramma agassizi e do papilocromis)
+
+**MESMA EXECUÇÃO DAS 21h18Z**, seguindo no **modo mutirão** que esta ilha tem
+ligado desde 09/09 a pedido do Raphael ("entregue quantos blocos couberem na
+sessão, em sequência, na ordem da fila, verificando cada um pela seção 8 antes de
+começar o próximo"). O bloco anterior — a preparação — foi verificado no ar antes
+deste começar: `/status` na revisão 86, seção `/peixes/` servindo 31/39/8 e
+`/peixes/ciclideos-anoes/` respondendo **404**, que era o critério de pronto dele.
+O que o mutirão não cobre é "publicar a malha em massa", e uma leva de quatro
+URLs é a unidade normal da rampa, não massa.
+
+**A ILHA CHEGOU A 40 URLs, e é metade do piso da seção 21 — não o piso.** O
+`wp-sitemap` conta **40** (3 posts + 37 pages). A 21.1 pede **40 URLs E 21 dias
+desde a primeira URL indexada**, e `primeira_indexacao` é 09/09/2026: são **5
+dias**. A ilha segue **abaixo do piso**, e o campo `piso` do cabeçalho segue
+`abaixo` porque quem escreve esse campo é a leitura semanal da Sentinela (21.6) —
+a Fundação lê e não recalcula de cabeça. A metade do tempo fecha em **30/09/2026**.
+
+### 1. Três arranjos numa categoria só, pela primeira vez
+
+As quatro categorias anteriores tinham no máximo **dois** arranjos, e a
+`vivaparos` tinha **um** (as três em harém). Esta tem os três: o **ramirezi**
+vive em casal, a **apistogramma agassizi** em harém e o **papilocromis** em grupo
+de 6 a 8. É a primeira página desta ilha em que os três ramos da abertura da
+ficha aparecem lado a lado, na mesma tabela, e por isso a primeira em que trocar
+um ramo pelo outro mudaria a tela de uma categoria inteira.
+
+### 2. A frente mínima do papilocromis é a primeira do eixo que é CONDICIONAL
+
+O compêndio não publica "aquário mínimo" solto para ele. Publica *"grupo misto de
+6 a 8 ou mais **desde que** o aquário seja espaçoso, de 120 cm de comprimento ou
+maior"* — os três números na **mesma frase**. Separá-los daria uma frente mínima
+que a fonte nunca declarou sozinha, e é a mesma família do **BASE contra FRENTE**
+que a leva 2 consertou: número certo, escopo errado.
+
+A ficha dele também exercita o ramo do **comprimento sem fundo**: nenhuma das
+duas fontes declara a largura, então a página **não serve** a tabela de litros por
+altura nem a de quantos cabem — e diz por quê, com a frase que a leva 2 escreveu
+("elas sairiam de um fundo que a gente teria inventado"), em vez de encolher
+calada.
+
+### 3. O que a categoria prova, e nenhuma outra deste eixo pode provar
+
+O ramirezi e a apistogramma agassizi têm **exatamente o mesmo porte declarado** —
+4,2 cm SL, os dois na mesma base científica — e pedem os **mesmos 60 cm**. O
+papilocromis tem 5,6 cm, **1,4 cm a mais**, e pede **120**. A abertura da página
+sai contada na hora: *"São 3 ciclídeos anões com aquário mínimo declarado por
+fonte com nome e data, e o mínimo vai de 60 a 120 cm de frente."*
+
+### Verificação
+
+**Bancada, 0 falha:** `teste-peixes` **2683 afirmações** (eram 2255);
+`mutacoes-peixes` **90 de 90 reprovadas**; `mutacoes-arvore` 14 de 14;
+`teste-arvore` PASSOU; `teste-seo-tecnico` **447** (eram 411);
+`teste-datas-schema` 102; `conferir-slugs`; `conferir-protecao-funcoes`;
+`php -l` limpo nos dois snippets tocados. As quatro metas de descrição entre
+**140 e 147** caracteres, todas distintas.
+
+**A régua da bancada cresceu junto, e em quatro lugares escritos à mão** — é o
+desenho deste teste, que nunca pergunta ao snippet o que o snippet deveria
+provar: `FICHAS` (mais três), `CATEGORIAS` (a quinta, com `barradas` **vazia** e
+isso é afirmação: não existe um quarto ciclídeo anão no banco, nem passando nem
+barrado), `SEM_FUNDO_DECLARADO` (ramirezi e papilocromis) e o mapa de páginas do
+`render-pagina-completa.php`.
+
+**No ar:** Sync às 22h11Z, `/status` na **revisão 87**, igual à do manifest, em
+**um** disparo com 20 aplicados. As quatro URLs novas em **200**, as quatro no
+`wp-sitemap`, **40 URLs no total**. `conferir-peixes-no-ar` com **707
+afirmações, 0 falha** (eram 614) e `conferir-datas-e-voz-no-ar` com **287
+afirmações, 0 falha**. A categoria serve `CollectionPage + ItemList +
+BreadcrumbList`; as fichas servem `Article + FAQPage + BreadcrumbList`.
+
+### Próximo passo
+
+1. **NENHUMA LEVA DE MALHA ATÉ 15/09.** O teto da 21.4 fechou em **3 de 3** nesta
+   semana: leva 4 às 11h25Z, leva 5 às 13h19Z e leva 6 às 22h11Z, as três em
+   14/09. Não é bloqueio — é calendário, e ele zera em 21/09/2026.
+2. **BANCO**, que é o que destrava as próximas levas: a `vivaparos` de 3 para 5
+   fichas segue presa ao despacho de egresso do Raphael (molly e guppy) e é o
+   maior salto disponível do eixo; a `plecos-e-limpa-vidros` não nasce sem coleta
+   que hoje não existe, porque o ancistrus do comércio brasileiro é espécie não
+   descrita; e a `Apistogramma cacatuoides` fica como coleta em aberto, com a
+   causa nomeada acima.
+3. **T5, artigos-âncora**, e **T6, prospecção do widget** — os dois cabem sem
+   gastar leva, e o T6 é a única alavanca de backlink do projeto.
+4. **A pauta da seção 17** ainda não existe nesta ilha: `pauta.md` com 0 escritos,
+   0 na fila, 0 recusados.
+
 ## 2026-09-14 21h18Z — PREPARAÇÃO DA LEVA 6: A QUINTA CATEGORIA GANHA BANCO, CRITÉRIO E LINHA MESTRA, E NENHUMA URL NASCE (peixes 1.9.0, banco de espécies de 37 para 39 registros, manifest revisão 86; ZERO URL nova, ZERO leva do teto da 21.4 gasta)
 
 **A ESCOLHA DA ILHA: primeira tentada, e sem corrida.** Os cinco `ESTADO.md` do
