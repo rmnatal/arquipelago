@@ -349,6 +349,14 @@ ARRANJO_ABERTURA = {
 
 def arranjo_curto(e):
     chave = e.get("convivencia")
+    if chave not in ARRANJO_CURTO:
+        # TERMO FORA DO VOCABULARIO FECHADO. Nao existe forma de tela para ele, e
+        # e exatamente isso que a pagina precisa provar: a celula nao pode
+        # inventar uma. Devolver um sentinela que nenhuma pagina pode conter faz
+        # a afirmacao reprovar COM NOME, em vez de o teste morrer de KeyError —
+        # verificador que estoura nao diz o que estava errado, so que algo
+        # estava. Medido em 14/09/2026, na mutacao que produz esse mundo.
+        return "<termo fora do vocabulário fechado: %r>" % (chave,)
     if chave in ARRANJO_FIXO:
         return "%s, %d por aquário" % (ARRANJO_CURTO[chave], ARRANJO_FIXO[chave])
     if e.get("cardume_minimo") and e.get("cardume_recomendado_ate"):
@@ -606,6 +614,25 @@ def medir_ficha(slug, ident, banco):
     ok("%s: quem decide a forma da abertura e o rotulo do arranjo (%s)"
        % (slug, "número" if abre_pelo_numero else "arranjo"),
        abre_pelo_numero == (("Para um %s de" % ARRANJO_ROTULO_MINIMO.get(conviv, "\0")) in t))
+    # E A ABERTURA TEM DE SER UMA DAS DUAS FORMAS DECLARADAS, sempre. Afirmacao
+    # POSITIVA de proposito: a de cima e uma equivalencia, e equivalencia entre
+    # dois falsos passa limpa — foi o que aconteceu quando a guarda do
+    # vocabulario fechado saiu do portao de pagina com um termo desconhecido no
+    # banco. Ali a pagina abria "Para um  de 5 <peixe>", com o rotulo VAZIO no
+    # meio da frase: nao e a forma do numero (o rotulo nao esta la) nem a do
+    # arranjo (nao ha travessao), e as duas afirmacoes negativas ficavam verdes.
+    formas = []
+    if conviv in ARRANJO_ROTULO_MINIMO and e.get("cardume_minimo"):
+        quantos_f = str(e["cardume_minimo"])
+        if e.get("cardume_recomendado_ate"):
+            quantos_f += " a %d" % int(e["cardume_recomendado_ate"])
+        formas.append("Para um %s de %s %s, o seu aquário precisa de"
+                      % (ARRANJO_ROTULO_MINIMO[conviv], quantos_f, nome))
+    if conviv in ARRANJO_ABERTURA:
+        formas.append("Para %s %s — %s —, o seu aquário precisa de"
+                      % (ARRANJO_DE[conviv], nome, ARRANJO_ABERTURA[conviv]))
+    ok("%s: a abertura e uma das duas formas declaradas" % slug,
+       bool(formas) and any(f in t for f in formas), t[:150])
     if conviv in ARRANJO_FIXO:
         quantos = ARRANJO_FIXO[conviv]
         de = ARRANJO_DE[conviv]
@@ -664,7 +691,7 @@ def medir_ficha(slug, ident, banco):
             ok("%s: a tabela de quantos cabem declara que a regua nao decide aqui" % slug,
                "é aqui que a régua responde à pergunta errada" in t
                and "esse limite não sai de conta de litro nenhuma" in t)
-    elif not e.get("cardume_minimo"):
+    elif conviv not in ARRANJO_ROTULO_MINIMO:
         # O TERCEIRO MUNDO: o arranjo esta declarado e o NUMERO nao esta. E o
         # harem, e a leva 5 (14/09/2026) foi a primeira a publica-lo. A regua e
         # escrita aqui a mao, como todo o resto deste arquivo.
@@ -675,8 +702,15 @@ def medir_ficha(slug, ident, banco):
         # pagina voltaria a citar quem declarou, que e o que o item 4 do despacho
         # da Sentinela de 13/09 tirou das onze fichas antigas (15.2). Nenhuma das
         # 14 fichas no ar caia aqui, entao nenhum portao podia falhar.
-        de = ARRANJO_DE[conviv]
-        abertura = ARRANJO_ABERTURA[conviv]
+        # E O TERMO PRECISA ESTAR NO VOCABULARIO FECHADO para haver frase: sem
+        # isto, um termo desconhecido fazia este arquivo morrer de KeyError duas
+        # linhas abaixo, e verificador que estoura nao diz o que estava errado.
+        # A afirmacao e a que importa: nao existe abertura para termo que o
+        # esquema nao enumera, e a especie nao devia ter virado ficha.
+        ok("%s: o termo de convivencia esta no vocabulario fechado (%r)" % (slug, conviv),
+           conviv in ARRANJO_DE and conviv in ARRANJO_ABERTURA)
+        de = ARRANJO_DE.get(conviv, "<sem forma declarada>")
+        abertura = ARRANJO_ABERTURA.get(conviv, "<sem abertura declarada>")
         ok("%s: a abertura diz o arranjo declarado, sem numero" % slug,
            ("Para %s %s — %s —, o seu aquário precisa de" % (de, nome, abertura)) in t,
            t[:150])
@@ -696,6 +730,13 @@ def medir_ficha(slug, ident, banco):
         # O NUMERO DA ABERTURA E A FAIXA, quando a fonte declarou uma. Recomputado
         # aqui do banco: o piso sozinho publica metade da recomendacao, e o piso
         # com um teto derivado do piso publicaria um numero que ninguem disse.
+        # E A GUARDA DESTE RAMO E O ROTULO, nao o numero — igual a do snippet
+        # desde 14/09/2026. O ramo de cima passou a pegar TODO arranjo que nao
+        # declara rotulo de minimo, inclusive o termo desconhecido: com a guarda
+        # antiga (`not cardume_minimo`) uma especie de termo fora do vocabulario
+        # E com cardume caia aqui e o teste MORRIA de KeyError, em vez de dizer o
+        # que estava errado. Verificador que estoura nao mede: so avisa que algo
+        # aconteceu.
         quantos = str(e["cardume_minimo"])
         if e.get("cardume_recomendado_ate"):
             quantos += " a %d" % int(e["cardume_recomendado_ate"])

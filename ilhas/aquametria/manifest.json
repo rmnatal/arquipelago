@@ -4,7 +4,7 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 80,
+  "revisao": 82,
   "atualizado_em": "2026-09-14",
   "estado": "fundacao",
   "desembarque": {
@@ -772,14 +772,14 @@
       "id": "teste-peixes",
       "arquivo": "ferramentas/teste-peixes.py",
       "publicar": false,
-      "sha256": "d30b6ac30412210b162dd9473a92427f4e1e777e990600976cfdd2870e672f42",
+      "sha256": "60a49acddecae7f84014f40f41fb03005d099c0cbc940fe60eeae2b97026e73d",
       "descricao": "O portao da leva 1 do eixo /peixes/: 295 afirmacoes, um processo php por pagina, medidas no CORPO do que a bancada serve. Toda aritmetica e recomputada do dados/especies-agua-doce.json, do zero, e o mapa pagina->especie esta escrito no teste — ler o mapa do snippet seria perguntar ao snippet qual e a resposta certa, e a proxima leva vai copiar este registro. Compara CELULA POR CELULA, e nao 'o numero esta na pagina': duas mutacoes deliberadas passaram na primeira rodada porque o numero errado que elas produziam existia em outra tabela (o 28 de 'cabem 28 neons' foi achado dentro de '20 a 28 C'). Mede tambem o que nao e numero: especie agressiva sem lista de companheiro, categoria de nivel 2 com 3 filhas ou mais no registro (16.5), ancora que nao diz 'saiba mais', ausencia de Product no JSON-LD, resposta de FAQ citando so numero que a pagina serve, trilha de quatro degraus com os tres primeiros linkados, e a colisao de slug entre a secao /peixes/ e a categoria de calculadora."
     },
     {
       "id": "mutacoes-peixes",
       "arquivo": "ferramentas/mutacoes-peixes.py",
       "publicar": false,
-      "sha256": "b1954f48305d7013dae18997c33f8d8d5eb8bf4eb1577e6e16e9256c2560500a",
+      "sha256": "dc81b8b7c7a57901c0aad3057dd096a5768d83cd36906a9132aca9bda8b02571",
       "descricao": "24 mutacoes deliberadas contra o portao do eixo /peixes/, em tres familias: o numero muda (regua de lotacao trocada, extremo errado de conflito declarado, borda da tabela que desaparece); o numero fica e a ESTRUTURA quebra (a especie agressiva ganha lista de companheiro, o derivado per capita volta a ser multiplicado, categoria vazia registrada como pagina, Product no JSON-LD); e a regua perde o chao (o catalogo do snippet envelhece em relacao ao banco, a colisao de slug volta). 24 de 24 reprovadas — duas delas so depois de o portao passar a comparar celula, e nao texto da pagina."
     },
     {
@@ -836,7 +836,7 @@
       "arquivo": "ferramentas/conferir-datas-e-voz-no-ar.py",
       "publicar": false,
       "descricao": "Confere NO AR as quatro frentes do despacho da Sentinela de 13/09/2026, e mede o que a bancada NAO PODE medir: o criterio de pronto do item 1 compara o dateModified do JSON-LD com o lastmod que o wp-sitemap declara para a MESMA URL, e sitemap so existe no ar. Mede tambem a editora das onze fichas contra a dos tres artigos (item 2), o par width/height das oito fotos contra o banco (item 3) e a abertura das onze — title, H1 e primeiro paragrafo — pela regra de estrutura da atribuicao (item 4). Lista de URLs vinda do sitemap, nunca digitada; ?v=<hora> em toda requisicao por causa do cache duplo da secao 4.",
-      "sha256": "5e5fc2ddbd08d1bfc630265349b69565b66df373b18394c8238399557d91f594"
+      "sha256": "b2c22fbd8c8a87308c12c6f0a38c6a7dad3489b65970125077f17e6b16509f08"
     },
     {
       "id": "gerar-busca-de-produto",

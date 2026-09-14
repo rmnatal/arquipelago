@@ -750,10 +750,28 @@ MUTACOES = [
            "\t\t\t'abertura' => 'e harém quer dizer mais fêmeas do que machos, nunca um casal',",
            "\t\t\t'abertura' => 'e são dois, não um macho sozinho',")),
 
-    ("O PORTAO DE PAGINA VOLTA A ACEITAR TERMO FORA DO VOCABULARIO FECHADO",
-     troca(PEIXES,
-           "\tif ( null === aquametria_peixes_arranjo( $e ) ) {\n\t\treturn false;\n\t}\n",
-           "")),
+    # MUNDO PRODUZIDO, e ele precisou de TRES metades. A primeira escrita desta
+    # mutacao so tirava a guarda do portao, e PASSOU LIMPA: sem uma especie de
+    # termo desconhecido no banco, a guarda nunca morde, e tirar codigo que o
+    # mundo de hoje nao alcanca nao muda uma afirmacao. O mundo tem de ser
+    # produzido — uma especie com `convivencia` fora dos cinco valores do esquema
+    # e com cardume preenchido —, e so entao a guarda decide alguma coisa: com
+    # ela, a ficha nao nasce; sem ela, a pagina abre com o rotulo do arranjo VAZIO
+    # no meio da frase, chamando de nada um peixe que a fonte nao classificou.
+    ("MUNDO PRODUZIDO: termo fora do vocabulario fechado, com a guarda do portao removida",
+     varias(
+         banco_json(lambda d: mut_campo(d, "gymnocorymbus-ternetzi", "convivencia", "bando")),
+         troca(PEIXES,
+               "\t\t\t'cardume' => 5,\n\t\t\t'cardume_ate' => null,\n"
+               "\t\t\t'convivencia' => 'cardume',\n\t\t\t'comportamento' => 'pacifico',\n"
+               "\t\t\t'frente_cm' => 75,",
+               "\t\t\t'cardume' => 5,\n\t\t\t'cardume_ate' => null,\n"
+               "\t\t\t'convivencia' => 'bando',\n\t\t\t'comportamento' => 'pacifico',\n"
+               "\t\t\t'frente_cm' => 75,"),
+         troca(PEIXES,
+               "\tif ( null === aquametria_peixes_arranjo( $e ) ) {\n\t\treturn false;\n\t}\n",
+               ""),
+     )),
 
     ("A CONCORDANCIA DE NUMERO MORRE: a funcao devolve sempre o plural",
      troca(PEIXES,
@@ -765,24 +783,36 @@ MUTACOES = [
            "\t\t\t\t$vezes = $q['classica'] / $q['conservadora'];",
            "\t\t\t\t$vezes = AQUAMETRIA_PEIXES_LOTACAO_CONSERVADORA / AQUAMETRIA_PEIXES_LOTACAO_CLASSICA;")),
 
-    # O MUNDO QUE O BANCO NAO TEM, PRODUZIDO. Nenhum peixe com ficha e grande o
-    # bastante para o criterio conservador nao por nem UM no aquario minimo que a
-    # propria fonte declara. O maior e o peixe-espada, com 16 cm, e ele chega a
-    # um. Esta mutacao cria o mundo em vez de esperar por ele (secao 8): com
-    # 40 cm de porte, o conservador zera na base de 120 x 30 cm.
-    ("MUNDO PRODUZIDO: o peixe fica grande demais e o criterio apertado nao poe nem um",
+    # O MUNDO QUE O BANCO NAO TEM, PRODUZIDO — e as DUAS primeiras escritas destas
+    # passaram limpas, pelo motivo que a secao 8 do contrato chama de "as duas
+    # metades erram juntas": elas mudavam o porte no banco E no catalogo, e a
+    # regua do teste recomputa o esperado A PARTIR do banco. Mundo novo em que as
+    # duas metades concordam nao e mutacao, e COBERTURA — prova que o ramo roda,
+    # nunca que existe trava. Para virar mutacao, o mundo produzido tem de vir
+    # acompanhado de uma quebra.
+    #
+    # Nenhum peixe com ficha e grande o bastante para o criterio conservador nao
+    # por nem UM no aquario minimo que a propria fonte declara: o maior e o
+    # peixe-espada, com 16 cm, e ele chega a um. Com 40 cm de porte o conservador
+    # zera na base de 120 x 30 cm, e e nesse mundo que as duas abaixo mordem.
+    ("MUNDO PRODUZIDO: com o conservador em zero, a frase volta a dizer que ele poe um",
      varias(
          banco_json(lambda d: mut_campo(d, "xiphophorus-hellerii", "porte_adulto_cm", 40.0)),
          troca(PEIXES, "\t\t\t'porte_cm' => 16,", "\t\t\t'porte_cm' => 40,"),
+         troca(PEIXES,
+               "\t\t\t\t$html .= 'o critério apertado não põe nem um ' . esc_html( $nome )",
+               "\t\t\t\t$html .= 'o critério apertado põe um ' . esc_html( $nome )"),
      )),
 
-    # E O AVESSO: o mundo do UM, que hoje existe em duas fichas (coridora sterbai
-    # e peixe-espada) e que ate 14/09/2026 ia ao ar como "cabem 1".
-    ("MUNDO PRODUZIDO: o peixe encolhe e a linha do meio deixa de passar por UM",
+    ("MUNDO PRODUZIDO: com o conservador em zero, o numero do criterio folgado sai errado",
      varias(
-         banco_json(lambda d: mut_campo(d, "xiphophorus-hellerii", "porte_adulto_cm", 3.1)),
-         troca(PEIXES, "\t\t\t'porte_cm' => 16,", "\t\t\t'porte_cm' => 3.1,"),
+         banco_json(lambda d: mut_campo(d, "xiphophorus-hellerii", "porte_adulto_cm", 40.0)),
+         troca(PEIXES, "\t\t\t'porte_cm' => 16,", "\t\t\t'porte_cm' => 40,"),
+         troca(PEIXES,
+               "\t\t\t\t\t. ', e o folgado põe ' . esc_html( $q['classica'] )",
+               "\t\t\t\t\t. ', e o folgado põe ' . esc_html( $q['meio'] )"),
      )),
+
 ]
 
 

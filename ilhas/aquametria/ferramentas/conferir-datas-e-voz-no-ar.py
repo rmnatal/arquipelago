@@ -43,6 +43,7 @@ import glob
 import json
 import os
 import re
+import subprocess
 import sys
 import time
 import unicodedata
@@ -182,7 +183,20 @@ def main():
     artigos = sorted(u for u in mapa if re.search(r"/20\d\d/\d\d/\d\d/", u))
     fichas = sorted(u for u in mapa if "/peixes/" in u and "quantos-litros-para-" in u)
     ok("achei os tres artigos-ancora no sitemap", len(artigos) == 3, str(len(artigos)))
-    ok("achei as onze fichas de peixe no sitemap", len(fichas) == 11, str(len(fichas)))
+    # QUANTAS FICHAS SE CONTA, NUNCA SE DIGITA. Ate 14/09/2026 esta linha dizia
+    # "as onze fichas" com o 11 escrito a mao: a leva 4 pos catorze no ar e nao
+    # tocou aqui, e a afirmacao so foi reprovar aqui, na leva 5, com dezessete:
+    # uma leva inteira depois de virar falsa, e so porque esta ferramenta nao foi
+    # rodada no fecho da leva 4. E o mesmo "numero de tela digitado" que esta
+    # ilha persegue nas paginas, dentro da propria ferramenta de conferencia. O
+    # numero passa a sair do REGISTRO do eixo, que e quem sabe quantas fichas
+    # existem, e cresce sozinho com a proxima leva.
+    do_eixo = json.loads(subprocess.run(
+        ["php", os.path.join(RAIZ, "ferramentas", "listar-paginas-do-eixo.php"), RAIZ],
+        capture_output=True, text=True, check=True).stdout)
+    esperadas = sum(1 for d in do_eixo.values() if d.get("especie"))
+    ok("achei no sitemap as %d fichas de peixe que o registro do eixo declara" % esperadas,
+       len(fichas) == esperadas, str(len(fichas)))
 
     # ------------------------------------------------------------------
     # 1 e 2. AS DATAS DO SCHEMA
