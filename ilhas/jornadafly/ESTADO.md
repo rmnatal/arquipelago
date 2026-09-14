@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 0
 primeira_indexacao: null
 ultima_execucao: 2026-09-14T19:31Z
-executando_desde: null
+executando_desde: 2026-09-14T23:18Z
 rede: bloqueada em 2026-09-14   # 20.1: o dominio nao esta na lista de Dominios permitidos. Despacho ALTO para o Raphael em dados/despachos.md
 bloco_atual: |
   BLOCO 3 ENTREGUE — o MODELO DO BANCO. dados/esquema-banco.json (o contrato: entidades CIDADE, EXPERIENCIA, VERSAO, DECLARACAO, FONTE e AFILIADO, com escada de fontes, regra de divergencia e vocabularios), dados/experiencias.json (o banco, com UM registro) e a bancada que mede os dois: ferramentas/validar-banco.py e ferramentas/mutacoes-banco.py. NADA foi ao ar: esta ilha nao tem site, nao tem Sync e nao tem /status, e dizer que verificou no ar seria inventar.
