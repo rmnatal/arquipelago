@@ -1145,6 +1145,20 @@ $args_post = cdm_casca_sitemap_sem_noindex( array(), 'post' );
 cdm_ok( ! isset( $args_post['post__not_in'] ), 'o filtro nao mexe no sitemap de posts' );
 $args_ja = cdm_casca_sitemap_sem_noindex( array( 'post__not_in' => array( 7 ) ), 'page' );
 cdm_ok( in_array( 7, $args_ja['post__not_in'], true ), 'o filtro preserva exclusao de quem veio antes' );
+
+/* O ARQUIVO DE AUTOR FORA DO SITEMAP — defeito medido no ar em 14/09/2026.
+   Ele nasceu sozinho: o provedor `users` do nucleo so lista autor que TEM
+   conteudo publicado, e ate 13/09 esta ilha nao tinha peca nenhuma. No minuto em
+   que a artesa publicou a primeira, /author/artesa/ entrou no wp-sitemap.xml —
+   pagina fina que repete a /loja/, e um endereco que confirma o login dela.
+   A regua e escrita a mao: o nome do provedor e a resposta esperada estao nesta
+   linha, nao lidos do snippet. */
+cdm_ok( false === apply_filters( 'wp_sitemaps_add_provider', 'PROVEDOR', 'users' ),
+	'o provedor de autores e removido do sitemap (/author/ nao pede rastreamento)' );
+foreach ( array( 'posts', 'taxonomies' ) as $provedor_vivo ) {
+	cdm_ok( 'PROVEDOR' === apply_filters( 'wp_sitemaps_add_provider', 'PROVEDOR', $provedor_vivo ),
+		"e o provedor '$provedor_vivo' continua de pe (a remocao nao vazou)" );
+}
 unset( $GLOBALS['__options']['cdm_casca_paginas'] );
 
 /* ---------------------------------------------------------------------------

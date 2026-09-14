@@ -394,7 +394,7 @@
     {
       "id": "conferir-atelie-no-ar",
       "arquivo": "ferramentas/conferir-atelie-no-ar.py",
-      "sha256": "567c0676077301f92eddbf92f297873227eda7ad126360db99d2d9d69a0057ca",
+      "sha256": "004569b7ad8c8c666b93b6b20dc260afd5ab9a2de75d879f2312405cf6677410",
       "descricao": "Mede NO AR o bloco 4d. Separado do conferir-no-ar.py porque aquele mede as onze URLs no caso-ANCORA e este bloco trouxe uma pagina que muda conforme QUEM abre (o painel) e uma URL que so existe quando a artesa publica (a ficha) — a mesma razao do conferir-kits-no-ar.py da Robometria. PROVA: /atelie/ em 200 servindo a tela de entrar, com noindex, FORA do sitemap (varrendo o indice e os sub-mapas), e ZERO links para ela nas oito paginas publicas; que a vitrine da Loja mostre exatamente as pecas que a rota publica de contagem conta (duas metades lendo o mesmo banco: divergencia e cache velho, que e como o site fica para tras em silencio); que cada ficha publicada sirva description, og:, Product+Offer valido e trilha, e que o preco da TELA e o do SCHEMA sejam o mesmo numero; e, com o token do Sync, que o papel tenha as 7 capacidades e NENHUMA das proibidas, que a usuaria exista, e A HORA EM UTC em que o e-mail de acesso saiu — que e o que o despacho manda escrever no ESTADO.md. Mede a RECUSA da rota sem token antes de usar o token. Sem token, as afirmacoes que dependem dela sao contadas como PULADAS, nunca como aprovadas. NAO PROVA, e diz isso no fim: se o e-mail chegou na caixa da Hotmail (wp_mail true diz que o servidor aceitou, nao que passou do filtro de spam) e se o dedo dela funciona a 360 px."
     },
     {

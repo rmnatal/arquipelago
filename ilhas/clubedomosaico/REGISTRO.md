@@ -3247,8 +3247,18 @@ site.**
   Agora ela lê a declaração `.cdm-carrossel img{…}` isolada e imprime o conteúdo
   dela na medida. **Régua que procura no documento inteiro mede a existência da
   palavra, não a do comportamento.**
-- **No ar, `conferir-atelie-no-ar.py`:** 0 falha, 0 pulada, com a seção 4d nova
-  (o parâmetro, a faixa e a contagem de técnicas) e a galeria medida na ficha.
+- **No ar:** `conferir-atelie-no-ar.py` **78 afirmações** (eram 65), 0 falha, 0
+  pulada, com a seção 4d nova — o parâmetro, a faixa, a contagem de técnicas — e a
+  galeria medida na ficha servida. `conferir-no-ar.py` **416 afirmações, 0 falha**,
+  sem tocar uma linha do que mudou.
+- **A própria afirmação de ar nasceu errada uma vez, e vale escrever:** a primeira
+  versão procurava a FORMA `</button></p>` no HTML servido e reprovou a peça — só
+  que essa forma tem versão legítima aqui, no formulário de lead
+  (`<p class="cdm-lead-enviar"><button …></button></p>`), com a abertura escrita por
+  nós. **O que separa o certo do errado não é a forma, é o BALANÇO.** A afirmação
+  passou a contar `<p` e `</p>` dentro da região da galeria, onde a única abertura
+  que existe é a da contagem de fotos: 1 abre, 1 fecha. Procurar a forma teria
+  reprovado a página certa e, num dia com o formulário desligado, aprovado a errada.
 - **A régua do `teste-loja` mudou de forma numa linha, e ela ENDURECEU:** até 13/09
   a afirmação era "a Loja não serve JavaScript nenhum", e ela media a coisa certa
   pelo motivo errado — o que a 22.8 protege não é a ausência de JavaScript, é a

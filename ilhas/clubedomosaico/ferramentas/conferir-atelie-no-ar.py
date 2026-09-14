@@ -152,6 +152,13 @@ def main():
             urls_do_mapa.add(u.split("?")[0])
     ok(len(urls_do_mapa) > 0, "[sitemap] o sitemap tem URLs", f"{len(urls_do_mapa)} URLs")
     ok(BASE + PAINEL not in urls_do_mapa, "[sitemap] /atelie/ NAO esta no sitemap")
+    # O ARQUIVO DE AUTOR, medido em 14/09/2026 e achado DENTRO do sitemap. Ele nao
+    # foi escrito por ninguem: o provedor `users` do nucleo so lista autor que tem
+    # conteudo publicado, e ate 13/09 esta ilha nao tinha peca. Pagina fina que
+    # repete a /loja/, e um endereco que confirma o login dela.
+    autores = [u for u in urls_do_mapa if "/author/" in u]
+    ok(not autores, "[sitemap] nenhum arquivo de autor pede rastreamento",
+       "nenhum" if not autores else ", ".join(autores))
 
     print("\n3. Nenhuma pagina publica linka para o painel")
     citam = []
@@ -326,10 +333,26 @@ def main():
             ok('<dialog class="cdm-gal-lupa"' in h, f"[{curto}] a lupa esta na pagina")
             ok(not re.search(r"<dialog[^>]*\bopen\b", h), f"[{curto}] e nasce FECHADA")
             ok('id="cdm-loja-js"' in h, f"[{curto}] o script da galeria sai no rodape")
-            # O DEFEITO EXATO DE 14/09, nomeado: nenhum `<p>` em volta de botao,
-            # nenhum `</p>` orfao colado num `</button>`, e a lupa inteira.
-            for marca in ("<p><button", "</button></p>", "<p><dialog", "</dialog></p>", "<p></dialog>"):
+            # O DEFEITO EXATO DE 14/09, nomeado. As quatro marcas abaixo sao
+            # inequivocas: nenhuma delas tem versao legitima nesta ilha.
+            for marca in ("<p><button", "<p><dialog", "</dialog></p>", "<p></dialog>"):
                 ok(marca not in h, f"[{curto}] o wpautop NAO deixou '{marca}' na pagina")
+            # E O ORFAO PROPRIAMENTE DITO, que NAO se mede por `</button></p>`:
+            # essa forma tem versao legitima na pagina — o formulario de lead serve
+            # `<p class="cdm-lead-enviar"><button …></button></p>`, com a abertura
+            # escrita por nos. A primeira versao desta afirmacao procurava a forma e
+            # reprovou a peca por causa dela. O que separa o certo do errado nao e a
+            # forma, e o BALANCO: dentro da galeria a unica abertura de paragrafo
+            # que existe e a da contagem de fotos, entao abre e fecha tem de dar o
+            # mesmo numero. Foi assim que o `</p>` orfao das setas apareceu.
+            ini = h.find("data-cdm-galeria")
+            fim = h.find("</div>", h.find("cdm-carrossel-conta")) if "cdm-carrossel-conta" in h else -1
+            regiao = h[ini:fim] if (ini >= 0 and fim > ini) else ""
+            abre = len(re.findall(r"<p[ >]", regiao))
+            fecha = len(re.findall(r"</p>", regiao))
+            ok(regiao != "" and abre == fecha,
+               f"[{curto}] a galeria servida nao tem paragrafo orfao (o `</p>` das setas)",
+               f"{abre} abre / {fecha} fecha")
             # O Product tem de ser JSON valido — schema invalido e schema ignorado.
             mm = re.search(r'id="cdm-peca-jsonld">(.*?)</script>', h, re.S)
             valido = False

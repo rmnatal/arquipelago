@@ -274,6 +274,21 @@ def m_chave_de_remontagem_volta_a_ser_a_versao(raiz):
            "	return CDM_CASCA_VERSAO;")
 
 
+def m_provedor_de_autor_volta_ao_sitemap(raiz):
+    """O provedor `users` volta ao sitemap.
+
+    Defeito MEDIDO no ar em 14/09/2026, e ele nasceu sozinho: o provedor so lista
+    autor que TEM conteudo publicado, e ate 13/09 esta ilha nao tinha peca nenhuma.
+    No minuto em que a artesa publicou a primeira, /author/artesa/ entrou no
+    wp-sitemap.xml — pagina fina que repete a /loja/, e um endereco que confirma o
+    login dela. Nenhuma linha de codigo mudou para isso acontecer, e e por isso que
+    so uma regua pega.
+    """
+    trocar(raiz, CASCA,
+           "\treturn ( 'users' === $nome ) ? false : $provedor;",
+           "\treturn $provedor;")
+
+
 MUTACOES = [
     ("a chave de remontagem volta a ser so a versao da casca", m_chave_de_remontagem_volta_a_ser_a_versao),
     ("a home ganha trilha (16.3)", m_home_ganha_trilha),
@@ -295,6 +310,7 @@ MUTACOES = [
     ("cartao vira link para categoria inexistente", m_cartao_de_categoria_vira_link),
     ("dois slugs com o mesmo ultimo nivel", m_dois_slugs_com_o_mesmo_ultimo_nivel),
     ("a pagina fora do sitemap perde a citacao", m_pagina_de_prova_deixa_de_ser_citada),
+    ("o provedor de autor volta ao sitemap (/author/)", m_provedor_de_autor_volta_ao_sitemap),
 ]
 
 

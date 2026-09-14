@@ -202,7 +202,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'CDM_CASCA_VERSAO' ) ) {
-	define( 'CDM_CASCA_VERSAO', '1.9.1' );
+	define( 'CDM_CASCA_VERSAO', '1.9.2' );
 	/* O nome do site e a linha que o WordPress serve no <title> da home. A
 	   Aquametria descobriu em 11/09/2026 que a tagline nunca tocada desde o
 	   nascimento da ilha continuava sendo a linha mais lida do site — a do
@@ -2400,6 +2400,35 @@ function cdm_casca_sitemap_sem_noindex( $args, $tipo = 'page' ) {
 }
 
 add_filter( 'wp_sitemaps_posts_query_args', 'cdm_casca_sitemap_sem_noindex', 10, 2 );
+
+/* ---------------------------------------------------------------------------
+ * O ARQUIVO DE AUTOR SAI DO SITEMAP — defeito MEDIDO no ar em 14/09/2026
+ *
+ * Ele apareceu sozinho, e ninguém o escreveu: o provedor `users` do núcleo só
+ * lista autores que TÊM conteúdo publicado, e até 13/09 esta ilha não tinha peça
+ * nenhuma. No minuto em que a artesã publicou a primeira, `/author/artesa/`
+ * entrou no `wp-sitemap.xml` — uma de doze URLs de um domínio de quatro dias.
+ *
+ * Duas razões para tirar, e cada uma bastaria:
+ *   1. É PÁGINA FINA E REPETIDA. O arquivo do autor lista as peças publicadas, que
+ *      é o que `/loja/` já faz com texto editorial em volta. Sitemap é curadoria,
+ *      não inventário (14.1), e orçamento de rastreamento aqui é o recurso escasso.
+ *   2. ELE CONFIRMA O LOGIN DELA. O endereço carrega o `user_nicename`, que nesta
+ *      ilha é o mesmo `artesa` com que ela entra. Este snippet e o do ateliê gastam
+ *      trabalho para a conta de uma pessoa de verdade não ficar exposta; publicar
+ *      o nome de usuário num arquivo XML desfaz metade disso de graça.
+ *
+ * Devolver algo que não seja um `WP_Sitemaps_Provider` remove o provedor — é assim
+ * que o próprio núcleo documenta a remoção. Mesmo mecanismo que a Aquametria já
+ * media desde 10/09; aqui ele só não existia porque não havia autor com conteúdo.
+ */
+if ( ! function_exists( 'cdm_casca_provedor_de_sitemap' ) ) {
+function cdm_casca_provedor_de_sitemap( $provedor, $nome ) {
+	return ( 'users' === $nome ) ? false : $provedor;
+}
+}
+
+add_filter( 'wp_sitemaps_add_provider', 'cdm_casca_provedor_de_sitemap', 10, 2 );
 
 add_action( 'wp_head', function () {
 	$id = function_exists( 'get_queried_object_id' ) ? get_queried_object_id() : 0;
