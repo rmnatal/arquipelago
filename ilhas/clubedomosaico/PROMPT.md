@@ -361,3 +361,8 @@ Palavras dele: *"não está padronizada as imagens quadradinhas… não está um
 ### E uma consequência boa que ninguém pediu
 
 Com a primeira peça cadastrada, **a cópia da seção 24 deixa de ser hipótese**: o endpoint `/wp-json/clubedomosaico/v1/pecas?token=…` agora tem conteúdo para devolver, e a próxima ronda commita `ilhas/clubedomosaico/dados/pecas.json` com peça de verdade dentro. Confira que nasceu.
+
+## ESCLARECIMENTO DO RAPHAEL — 14/09/2026 — TRINCADÍS FICA; PICA-SETE É ADIÇÃO
+O trincadís é o mosaico tradicional de caquinho, quebrado com torquês. Nunca foi para sair da lista.
+O pica-sete usa louça quebrada (pratos, xícaras) misturada ao caquinho. É técnica própria, entrou como `picassiette`.
+Observação registrada para decisão futura: o campo "técnica" hoje mistura MÉTODO (direto, indireto) com ESTILO (bizantino, trincadís, pica-sete). São dois eixos diferentes, e a artesã pode marcar um e achar que marcou o outro. Não mexer agora; anotar como dívida de modelagem.

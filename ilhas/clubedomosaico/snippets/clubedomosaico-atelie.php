@@ -1511,7 +1511,7 @@ function cdm_atelie_tela_form( $peca ) {
 
 		if ( 'escolha' === $def['tipo'] ) {
 			$h .= '<select id="' . esc_attr( $idhtml ) . '" name="' . esc_attr( $campo ) . '">';
-			$h .= '<option value="">Escolha</option>';
+			$h .= '<option value="">' . esc_html( 'Selecione: ' . $def['rotulo'] ) . '</option>';
 			foreach ( $def['opcoes'] as $ov => $or ) {
 				$h .= '<option value="' . esc_attr( $ov ) . '"' . ( $valor === $ov ? ' selected' : '' ) . '>';
 				$h .= esc_html( $or ) . '</option>';
@@ -1540,7 +1540,7 @@ function cdm_atelie_tela_form( $peca ) {
 		$atual = $id > 0 ? cdm_loja_termo_da_peca( $id, $tax ) : null;
 		$h    .= '<p class="cdm-at-campo"><label for="cdm-' . esc_attr( $tax ) . '">' . esc_html( $rotulo ) . '</label>';
 		$h    .= '<select id="cdm-' . esc_attr( $tax ) . '" name="cdm_' . esc_attr( $tax ) . '">';
-		$h    .= '<option value="">Escolha</option>';
+		$h    .= '<option value="">' . ( 'tecnica' === $tax ? 'Selecione a técnica' : 'Selecione a coleção' ) . '</option>';
 		foreach ( cdm_loja_termos_iniciais()[ $tax ] as $slug => $nome ) {
 			$sel = ( $atual && $atual->slug === $slug ) ? ' selected' : '';
 			$h  .= '<option value="' . esc_attr( $slug ) . '"' . $sel . '>' . esc_html( $nome ) . '</option>';

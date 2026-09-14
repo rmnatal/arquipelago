@@ -131,7 +131,7 @@ echo "\n2. Os termos que o formulario oferece\n";
    as tecnicas sao o nome que a artesa usa. Esta lista e o esperado; ela nao vem
    de `cdm_loja_termos_iniciais()`. */
 $colecoes_esperadas = array( 'centro-de-mesa', 'presentes', 'jardim', 'parede', 'joias' );
-$tecnicas_esperadas = array( 'direto', 'indireto', 'bizantino', 'trencadis' );
+$tecnicas_esperadas = array( 'direto', 'indireto', 'bizantino', 'trencadis', 'picassiette' );
 
 foreach ( $colecoes_esperadas as $slug ) {
 	cdm_ok( isset( $GLOBALS['__termos']['colecao'][ $slug ] ), "a colecao $slug foi criada no init" );

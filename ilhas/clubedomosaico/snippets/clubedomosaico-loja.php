@@ -192,6 +192,7 @@ function cdm_loja_termos_iniciais() {
 			'indireto'  => 'Indireto',
 			'bizantino' => 'Bizantino',
 			'trencadis' => 'Trencadís (caquinho)',
+			'picassiette' => 'Pica-sete (louça quebrada)',
 		),
 	);
 }
