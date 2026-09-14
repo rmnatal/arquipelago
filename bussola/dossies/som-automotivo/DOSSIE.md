@@ -68,11 +68,15 @@ construído, é **como cluster dentro da Ohmetria**, nunca como domínio própri
 6. **A demanda é alta e pulverizada.** Uma loja de nicho construiu **uma URL por parâmetro** (`/qual-modulo-usar/subwoofer/400-rms.html`, `/woofer.html`) — ninguém faz isso sem busca própria em cada variação. D = 5.
 7. **Erro caro e irreversível.** Módulo de 2 ohms em sub de 4+4 queima; caixa com litragem errada estraga o grave. A pessoa procura antes de comprar, e procura com o número na mão.
 8. **A recompra é por etapas, não por consumo.** Falante → módulo → cabo de bitola certa → capacitor porque o farol pisca → bobina queimada. R = 4.
-9. **A fraqueza é o ticket, e ela está declarada:** R$ 202 no módulo típico (Soundigital SD400.4, dois espelhos de ML). **M = 2,59** — o mais baixo entre os quatro primeiros da fila. O índice 4,23 já é líquido disso.
+9. **A fraqueza é o ticket, e ela está declarada:** R$ 202 no módulo típico (Soundigital SD400.4, dois espelhos de ML). **M = 1,65** (R$ 6,06 por venda, a 3% da Shopee) — o mais baixo entre os quatro primeiros da fila. O índice 4,00 já é líquido disso. *(Dizia M 2,59 e índice 4,23, a régua da Amazon; ver seção 4.)*
 10. **É a Robometria de novo, num nicho maior.** Mesma forma (compatibilidade peça × parâmetro), mesma prova (ficha de fabricante), e desta vez com fórum e blogspot de 2009 no lugar de fazenda.
 
-**Notas:** S_par 5 · S_com 1 · S 4,40 · P 5 · D 5 · M 2,59 (R$ 16/venda, ticket R$ 202) · R 4 · A 5 · V 5
-→ Facilidade 4,64 · Retorno 3,89 · **Índice 4,23**
+**Notas:** S_par 5 · S_com 1 · S 4,40 · P 5 · D 5 · M **1,65** (R$ 6,06/venda, ticket R$ 202 × 3% da Shopee) · R 4 · A 5 · V 5
+→ Facilidade 4,64 · Retorno **3,51** · **Índice 4,00**
+
+*(Esta linha trazia M 2,59 · Retorno 3,89 · Índice 4,23, que é a régua da Amazon derrubada pela rodada 005 e pela
+seção 4 deste mesmo dossiê. Números recopiados da seção 4 e de `fila.md`, não recalculados de novo. Corrigido pelo
+Pente Fino em 14/09/2026.)*
 
 **As duas SERPs, descritas:**
 - **PARAMÉTRICA (a que decide, S_par 5).** Fórum em primeiro lugar em "qual módulo para 2 subwoofer de 2 ohms" (`corsaclube.com.br`), com `autoforum.com.br` e `forum.monzeiros.com` no mesmo top 10. Loja de nicho (`lojadesomautomotivo.com.br`) ocupando três posições com páginas que respondem em prosa, sem ferramenta. Blogspot de 2009 e de 2010 ainda posicionados em litragem de caixa. Uma única calculadora encontrada em toda a varredura: `infinitysom.com.br` (bitola de cabo) — **loja de nicho pequena, não grande varejista, e pela régua da seção 3 não zera o nicho**.
@@ -155,13 +159,13 @@ Livre entra onde a Shopee não tem — nunca pela comissão maior. Etiqueta do M
 
 **Leitura honesta da cobertura:** é a melhor da rodada em largura, e a pior em ticket. O produto que a ferramenta
 mais recomenda (módulo de 400 RMS) custa R$ 202. A regra da cesta de 7 dias da Shopee ajuda — quem compra módulo compra
-cabo, fusível e capacitor na mesma sessão — **mas isso não foi medido e não entrou no M.** O M de 2,59 é o número sem favor.
+cabo, fusível e capacitor na mesma sessão — **mas isso não foi medido e não entrou no M.** O M de 1,65 é o número sem favor. *(Dizia 2,59, a régua da Amazon; ver seção 4.)*
 
 ---
 
 ## (d) Naming
 
-**Restrição de ambiente, registrada:** `registro.br` **não foi alcançado** nesta rodada (403 CONNECT no proxy de saída).
+**Restrição de ambiente, registrada — e SUPERADA na rodada 005: ver a seção 1, que traz a resposta do `registro.br` com `status: 0`. O que segue vale como história do filtro, não como pendência.** `registro.br` **não foi alcançado** na rodada 004 (403 CONNECT no proxy de saída).
 O filtro abaixo é **DNS puro, que é negativo por natureza — ausência de DNS nunca prova que o domínio está livre**.
 **A confirmação em `https://registro.br/v2/ajax/avail/raw/ohmetria.com.br` (`status: 0` = livre) é pré-requisito
 obrigatório antes de qualquer pagamento** (pendência P5 da rodada 004).
@@ -306,7 +310,7 @@ Entregue como arquivo próprio nesta pasta: `bussola/dossies/som-automotivo/VOZ.
 
 ## O que o Raphael precisa saber antes de dizer sim
 
-1. **O domínio não foi confirmado no registro.br** — só o filtro de DNS, que é negativo. Confirmar `status: 0` antes de pagar.
-2. **O ticket é a fraqueza declarada** (R$ 202 típico, M 2,59). Este nicho ganha por volume de consulta e por cesta, não por venda cara.
+1. **O domínio ESTÁ livre, confirmado na fonte** — `registro.br` devolveu `status: 0` para `ohmetria.com.br` (seção 1 deste dossiê). *(Este item dizia "não foi confirmado — confirmar antes de pagar", que era verdade na rodada 004 e deixou de ser na 005.)*
+2. **O ticket é a fraqueza declarada** (R$ 202 típico, M **1,65**, R$ 6,06 por venda a 3% da Shopee). Este nicho ganha por volume de consulta e por cesta, não por venda cara. *(Dizia M 2,59, a régua da Amazon; ver seção 4.)*
 3. **A F3 entra contra alguém que já tem ferramenta.** Está na ordem certa por isso: terceira, e só se for melhor.
 4. **As etiquetas do Mercado Livre `ohmetriaf1/f2/f3` ainda não existem** na conta RMNATAL. Criar etiqueta funciona por script; **gerar o link, não** — o gerador tem reCAPTCHA e é trabalho dele (seção 7).

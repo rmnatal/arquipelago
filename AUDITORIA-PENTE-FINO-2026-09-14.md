@@ -17,9 +17,16 @@ campo a campo contra a seção 2; corpo lido em varredura dirigida.
 (133 registros) para os campos que a seção 25 exige. **Os 296 arquivos versionados** varridos por padrão de
 segredo. `git log --since="7 days ago"` usado para começar pelo que mudou na semana.
 
-**Achados: 4 GRAVE · 7 MÉDIO · 3 BAIXO = 14.** **Sete corrigidos** (os sete MÉDIO, todos no mesmo commit
-deste relatório) e **sete com PRECISA DO RAPHAEL** (os quatro GRAVE, os dois BAIXO de dossiê e fila, e o dado
-pessoal da artesã). Nenhum achado ficou "não verificado".
+**Achados: 4 GRAVE · 7 MÉDIO · 3 BAIXO = 14.** **Sete corrigidos** (seis MÉDIO + o GRAVE G3), **um resolvido
+pela própria Bússola durante a auditoria** (M7) e **seis com PRECISA DO RAPHAEL** (G1, G2, G4, a metade de G3
+que é o dossiê de viagem, os dois BAIXO de dossiê e fila, e o dado pessoal da artesã). Nenhum achado ficou
+"não verificado".
+
+> **Nota de ordem, e ela é achado por si só:** este Pente Fino deveria rodar **antes** da Bússola. Hoje não
+> rodou: a rodada 005 fechou às 14h10Z e uma segunda execução dela entrou às **14h22Z**, no meio desta
+> varredura. Duas consequências reais estão registradas em M7 e G3 — uma correção duplicada que tive de
+> retirar, e um dossiê que ficou se contradizendo em cinco lugares por uma hora. A régua da semana seguinte
+> continua correndo o risco que a rodada 004 pagou.
 
 ---
 
@@ -90,25 +97,41 @@ pessoal da artesã). Nenhum achado ficou "não verificado".
 - **O que eu fiz:** **PRECISA DO RAPHAEL.** Envolve sessão de conta dele e desempata o G1. Ou a 25.6 perde a
   linha "automático, sem humano, hoje" para a busca, ou uma sessão da Shopee destrava os 128 de uma vez.
 
-### G3. O dossiê do som automotivo — o que o Raphael assina — ainda está com a régua da Amazon
+### G3. O dossiê do som automotivo — o que o Raphael assina — carregava a régua da Amazon em cinco lugares — **CORRIGIDO, e o padrão aconteceu AO VIVO durante esta auditoria**
 
-- **Arquivo:** `bussola/dossies/som-automotivo/DOSSIE.md`, linhas 20-21 e 255.
-- **O trecho:** *"M **2,59** (R$ 16/venda, ticket R$ 202) … Retorno 3,89 · **Índice 4,23**"*. R$ 16 sobre
-  R$ 202 é ~7,9% — **a taxa da Amazon**.
-- **A contradição:** a rodada 005 declarou esse exato defeito ("a régua de dinheiro apontava para um programa
-  que nenhuma ilha usa"), corrigiu o `BUSSOLA.md` e a `fila.md`, e **não voltou nos dossiês**. A `fila.md`
-  linha 23 traz o mesmo nicho a 3% da Shopee: **M 1,65 (R$ 6,06) · índice 4,00**. O próprio dossiê, linha 97,
-  diz que "o link é o da Shopee".
+- **Arquivo:** `bussola/dossies/som-automotivo/DOSSIE.md`.
+- **O que eu encontrei ao varrer, às ~14h15Z:** o dossiê inteiro sobre a âncora da Amazon — *"M **2,59**
+  (R$ 16/venda, ticket R$ 202) … Retorno 3,89 · **Índice 4,23**"*. R$ 16 sobre R$ 202 é ~7,9%, **a taxa da
+  Amazon**, que a seção 7 do contrato proíbe em todas as ilhas e que a rodada 005 declarou como o defeito
+  central da régua.
+- **O que aconteceu enquanto eu escrevia:** às **14h22Z** entrou o commit `09cd6c6` ("Bússola 005 — dossiês
+  atualizados"). Ele **corrigiu o cabeçalho** do dossiê para índice 4,00 e **acrescentou uma seção 4 nova**
+  explicando a queda de 4,23 para 4,00 com o número certo (R$ 202 × 3% = R$ 6,06 → M 1,65). **E não releu o
+  resto do arquivo.** Um minuto antes do meu push, o mesmo documento passou a dizer as duas coisas:
+  | onde | o que dizia |
+  |---|---|
+  | linha 3 (cabeçalho, novo) | índice **4,00** |
+  | seção 4 (nova) | M **1,65** · R$ 6,06 por venda |
+  | item 9 | "M = **2,59** … o índice **4,23** já é líquido disso" |
+  | bloco **Notas** (a linha do scorecard) | "M **2,59** (R$ 16/venda) → Retorno 3,89 · **Índice 4,23**" |
+  | seção de cesta | "O M de **2,59** é o número sem favor" |
+  | "O que o Raphael precisa saber antes de dizer sim", item 2 | "R$ 202 típico, M **2,59**" |
+  - **E o mesmo com o domínio:** a seção 1 (nova) traz *"O DOMÍNIO ESTÁ LIVRE, confirmado na fonte"* com o
+    JSON literal do `registro.br` (`status: 0`); as linhas 164-166 e o item 1 do bloco de aprovação continuavam
+    dizendo *"o domínio **não foi confirmado** … confirmar `status: 0` **antes de pagar**"*.
 - **Por que é GRAVE:** `BUSSOLA.md` §5 — *"Dossiê é o que o Raphael aprova com um 'sim'; sem dossiê não há
-  decisão."* Ele aprovaria a ilha nº 4 lendo um índice 5,7% maior, calculado sobre um programa que a seção 7
-  do contrato proíbe. É a rodada 004 se repetindo dentro do artefato de aprovação.
-- **Também desatualizado no mesmo arquivo, pela mesma causa:** linhas 110 e 255 dizem *"o domínio **não foi
-  confirmado** no registro.br … confirmar `status: 0` antes de pagar"*, e a `fila.md` linha 23 registra
-  *"005: `ohmetria.com.br` **confirmado LIVRE** (`status:0`)"*.
-- **O que eu fiz:** **PRECISA DO RAPHAEL** (é da Bússola 006 reemitir). Não recalculei nota dentro de dossiê:
-  refazer nota é trabalho da Bússola, não do Pente Fino. O mesmo vale para o dossiê de viagem, onde as linhas
-  4, 13 e 47-50 ainda dizem *"índice não calculado"*, *"M não calculável"*, *"A não verificado"* enquanto a
-  fila e a rodada 005 já trazem índice 3,92 · M 3,77 · A 4,5.
+  decisão."* O bloco que ele lê antes de dizer sim chama-se literalmente **"O que o Raphael precisa saber
+  antes de dizer sim"**, e era exatamente ali que estavam o índice inflado em 5,7% e uma ordem para não pagar
+  um domínio que já foi confirmado livre.
+- **O que eu fiz: CORRIGIDO**, e agora era inequívoco — depois do `09cd6c6` os números certos passaram a estar
+  **escritos no próprio arquivo**, então não houve recálculo nenhum: as cinco pontas velhas foram alinhadas à
+  seção 1 e à seção 4 do mesmo dossiê, com a frase antiga nomeada em cada lugar. Conferi a aritmética por fora
+  antes de copiar (Facilidade 4,64 · Retorno 3,51 · Índice 4,00, que é o que a `fila.md` também traz).
+- **O que fica PRECISA DO RAPHAEL:** o **dossiê de viagem não foi tocado por ninguém**. Linhas 4 e 50 ainda
+  abrem com *"índice não calculado — ver o portão aberto abaixo"* e *"M não calculável"*, enquanto a `fila.md`
+  e a rodada 005 fecharam o portão e trazem **índice 3,92 · M 3,77 · A 4,5 · D 4**. Ali eu não corrijo: os
+  números não estão escritos dentro do arquivo, e transportá-los da fila seria refazer nota, que é trabalho
+  da Bússola 006 — não do Pente Fino.
 
 ### G4. O token do Sync está em texto puro no `PROMPT.md` das TRÊS ilhas, não só no Clube do Mosaico
 
@@ -202,17 +225,21 @@ pessoal da artesã). Nenhum achado ficou "não verificado".
   python3 -c "import io,yaml;d=yaml.safe_load(io.open('ilhas/<ilha>/ESTADO.md',encoding='utf-8').read().split('---')[1]);f=[k for k in ('ilha','estado','prioridade','ultima_execucao','executando_desde','bloco_atual','ultima_ronda','bloqueada_por') if k not in d];print('YAML ok' if not f else 'FALTAM: '+', '.join(f))"
   ```
 
-### M7. A rodada 005 declarou 23 fazendas novas "entram na lista do `BUSSOLA.md` nesta rodada" e elas não entraram — **CORRIGIDO**
+### M7. A rodada 005 declarou 23 fazendas novas "entram na lista do `BUSSOLA.md` nesta rodada" e elas não estavam lá — **RESOLVIDO PELA PRÓPRIA BÚSSOLA, minha cópia retirada**
 
 - **Arquivos:** `bussola/rodadas/005.md` seção 2.7 × `bussola/BUSSOLA.md` seção 3.
 - **O trecho:** a 005 mediu que *"a lista nomeada de 12 fazendas pegou **4 ocorrências**"* em 12 consultas,
   enquanto 23 fazendas fora da lista *"dominaram duas SERPs comerciais inteiras"*, e conclui: *"**Se a régua só
   olha os 12 nomes antigos, ela dá S_com alto para SERP que está fechada.** Os nomes acima entram na lista do
-  `BUSSOLA.md` nesta rodada."* O `BUSSOLA.md` continuava com as 12.
-- **Por que não é GRAVE:** as notas da 005 saíram de SERP lida, não desta lista, então nenhuma nota existente
-  está contaminada. Mas a 006 pontuaria com a régua velha.
-- **O que eu fiz: CORRIGIDO** — os 23 nomes transcritos para a seção 3, separados das 12 originais, sem
-  acrescentar nem tirar nome e sem recalcular nota nenhuma.
+  `BUSSOLA.md` nesta rodada."* Quando varri, o `BUSSOLA.md` continuava com as 12.
+- **O que aconteceu:** eu transcrevi os 23 nomes; sete minutos depois o commit `09cd6c6` da própria Bússola
+  fez a mesma coisa, num parágrafo próprio e **melhor que o meu** — ele acrescenta a régua de FORMA ("qualquer
+  domínio cujo título siga o molde 'As N Melhores X de 2026' conta como fazenda, esteja nomeado aqui ou não;
+  a lista é atalho de reconhecimento, nunca a definição"). **Retirei a minha cópia e mantive a da Bússola**,
+  restaurando a linha original das 12. Conferido: `techminuto` aparece **uma vez** no arquivo.
+- **Registro honesto:** este achado era real quando foi feito e deixou de ser durante a auditoria. Fica no
+  relatório porque duas execuções corrigirem a mesma coisa em sete minutos é informação sobre o processo — a
+  ordem "Pente Fino antes da Bússola" não foi respeitada nesta segunda-feira.
 
 ---
 
@@ -272,9 +299,13 @@ O caminho barato seria o e-mail virar option do site (`cdm_email_leads` já exis
 1. **O defeito não está em decidir errado. Está em decidir certo num lugar e não reler o vizinho.** Seis dos
    doze achados são o mesmo movimento: alguém corrigiu um ponto, escreveu a data, e deixou de pé a frase ao
    lado que descreve o mundo anterior.
-2. **A distância entre as duas pontas encolheu — e isso é o mais alarmante.** No caso Amazon foram semanas.
+2. **A distância entre as duas pontas encolheu, e isso é o mais alarmante.** No caso Amazon foram semanas.
    Em G1, as duas regras contraditórias nasceram **no mesmo commit**. Em M6, o campo caiu do cabeçalho **hoje
-   de manhã**. A fábrica está escrevendo lei mais rápido do que a relê.
+   de manhã**. Em G3 o padrão aconteceu **durante esta auditoria**: às 14h22Z uma execução da Bússola corrigiu
+   o cabeçalho de um dossiê e a seção nova, e deixou o bloco de notas, o item 9, a seção de cesta e o próprio
+   bloco "o que o Raphael precisa saber antes de dizer sim" dizendo o contrário — quatro pontas velhas, um
+   minuto antes do meu push. A fábrica está escrevendo lei mais rápido do que a relê, e a auditoria semanal
+   não alcança isso.
 3. **Toda ponta velha que sobrou era uma FRASE OPERACIONAL — uma ordem, não uma explicação.** "Teste com
    curl", "cabeçalho preto", "etiqueta com hífen", "a nuvem não alcança". Prosa velha é inofensiva; **ordem
    velha é executada.**
