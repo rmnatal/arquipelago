@@ -3595,3 +3595,94 @@ incluindo a ordem das duas vitrines medida em tres estados servidos.
   ilha** — `cdm_f2_compra_html()` a serve para todo item sem `url` e sem
   `url_busca`, e são **15 de 25** (13 pastilhas e 2 colas). É defeito no ar, e
   pela 18.5 vem antes de construção.
+
+14/09/2026 18:45Z — A FRASE PROIBIDA SAI DA ILHA, e o desembarque parava numa camada que a purga não alcançava no primeiro Sync
+
+- **Segundo bloco da mesma execução** (mutirão da seção 13: cada um passou pela
+  verificação inteira antes do seguinte). O primeiro está na entrada anterior.
+- **POR QUE ELE VEIO ANTES DE QUALQUER CONSTRUÇÃO NOVA (18.5):** fechando o bloco
+  da família das técnicas, o `grep` de rotina achou `Link de loja em breve` sendo
+  servido por `cdm_f2_compra_html()` — a frase que a **seção 7 do contrato passou
+  a proibir em 14/09/2026**, no mesmo dia, e que a aquametria (39 itens) e a
+  robometria (65 itens) tinham acabado de tirar das delas. Aqui eram **15 de 25**
+  itens: 13 pastilhas e 2 colas, nos cartões da F2 e na vitrine de pastilha da F1,
+  que chama a mesma função. Defeito no ar na ilha que eu tinha reservado.
+- **O QUE FALTAVA NÃO ERA DECISÃO, ERA A TELA LER O CAMPO.** Dois dos 15 já tinham
+  a palavra-chave da busca escrita em `afiliado.url_busca_produto` **desde 13/09**,
+  e nenhuma linha de código a lia. É a mesma distância entre repositório e ar que a
+  seção 4 do contrato paga mais caro, uma camada abaixo — e é literalmente o mesmo
+  defeito que a aquametria nomeou hoje de manhã, na ilha ao lado.
+- **A ESCADA DA SEÇÃO 25 GANHOU O DEGRAU 4** (f2 **1.5.0**): sem ficha e sem busca
+  encurtada, a busca **crua** vira o botão. Ela sai `rel="nofollow noopener"` e
+  **nunca** `sponsored`, e a decisão está registrada no código: `sponsored` é a
+  declaração de uma relação **paga**, e ninguém paga por aquele clique. Chamar de
+  patrocinado um link que não rende seria mentir ao leitor sobre a única coisa que
+  ele tem o direito de saber sobre nós. O quinto estado — sem nenhuma das três —
+  deixou de imprimir promessa: o bloco sai **vazio**, e quem impede esse item de
+  chegar ao ar é o validador, com falha dura.
+- **UMA PALAVRA-CHAVE ESTAVA ERRADA E MANDAVA PARA OUTRA ILHA.** O Silicone Acético
+  Maxx buscava `silicone maxx tekbond **aquario**` — o nicho da Aquametria, copiado
+  de lá junto com o padrão do campo. Quem faz mosaico chegaria na prateleira de
+  aquário. Trocada por `silicone acetico maxx tekbond`. As 13 palavras-chave novas
+  das pastilhas saíram de marca, código e o nome que a pessoa usa.
+- **`itens_sem_piso` MORREU, e ele media a coisa errada.** Contava quem não tinha a
+  busca **encurtada** e chamava isso de "sem piso" — duas perguntas coladas numa só,
+  que davam o mesmo número **enquanto nenhum item tinha saída crua**: (1) o leitor
+  tem para onde ir? e (2) esse clique rende comissão? Viraram duas contas:
+  `itens_sem_saida_de_compra`, que agora é **erro duro** do validador e está em
+  **0**, e `itens_com_piso_nao_rastreavel`, que é dívida de comissão e está em
+  **15**. O campo velho é **recusado** pela régua: deixar o nome antigo conviver com
+  o significado novo seria o pior dos mundos — o número continuaria batendo e
+  diria outra coisa.
+- **A PÁGINA DE DIVULGAÇÃO PASSOU A DIZER QUAL LINK PAGA E QUAL NÃO PAGA** (casca
+  1.10.0), com seção própria e o "Estado de hoje" em duas contas. A frase "os links
+  daqui são de afiliado" virou meia verdade no minuto em que a busca crua subiu
+  para o botão.
+- **O DESEMBARQUE E O CACHE: A PURGA SÓ VALE A PARTIR DO SEGUNDO SYNC.** Isto fecha
+  o despacho de prioridade ALTA aberto na robometria, e o achado é maior que o
+  despacho. A casca que **contém** a purga faz parte da carga que está sendo
+  entregue: no Sync que a instala, o PHP já carregado é o **anterior**, então
+  nenhuma purga roda. Medido minuto a minuto: às **17h40Z**, antes do bloco, as 11
+  URLs serviam a assinatura do Endurance e o canônico **concordava** com a quebra
+  de cache — não havia divergência, havia a janela. Às **18h29** o Sync da revisão
+  32 aplicou com a casca 1.9.2 na memória, e aí o canônico ficou para trás: as duas
+  páginas do bloco com entrada de 17h36Z e **a home com uma entrada de 13h53Z, do
+  bloco anterior, velha havia cinco horas sem ninguém ver**. Às **18h34** um segundo
+  Sync, já com a 1.10.0 carregada; poucos minutos depois o canônico servia o bloco
+  novo nas onze URLs. São **duas camadas** e os cabeçalhos as nomeiam:
+  `x-server-cache: true` e `x-proxy-cache` (nginx), com `max-age=7200`.
+- **A AFIRMAÇÃO DO CACHE REPROVA PELA ORIGEM E RELATA O CANÔNICO**, e a escolha é
+  deliberada: fazer o canônico reprovar transformaria toda entrega em duas horas de
+  portão vermelho que ninguém consegue fechar, e portão assim se aprende a ignorar —
+  que é pior do que não ter portão. Defeito de verdade é a **origem** não servir o
+  bloco; canônico velho é janela, relatada com a hora da entrada e a da expiração.
+- **DUAS RÉGUAS TINHAM PARADO DE MEDIR SEM FICAR VERMELHAS, e as duas foram
+  consertadas:** (1) a mutação "cartão sem nenhum degrau some" procurava a classe da
+  etiqueta proibida, que deixou de ser emitida — ela editava o snippet, o `if` nunca
+  era verdadeiro, **nada sumia e a bateria ficava verde**; é a mutação inerte que a
+  robometria nomeou hoje de manhã, aqui por outro caminho. (2) A soma dos degraus
+  emitidos por um snippet só sobreviveu à mudança **dando o mesmo número por outra
+  composição**: era 1 etiqueta + 1 botão de busca + 1 linha discreta = 3, virou 0 +
+  2 + 1 = 3. Um degrau inteiro sumiu e outro nasceu com o portão verde ao lado.
+  Agora cada degrau é contado pelo próprio marcador.
+- **E TRÊS AFIRMAÇÕES QUE REPROVARAM UMA PÁGINA CERTA** foram reescritas por
+  **escopo**, não afrouxadas: elas diziam da página inteira o que valia do cartão
+  com ficha. É a mesma família da "afirmação em bloco com escopo maior do que o que
+  foi medido" que a seção 7 do contrato nomeia.
+- **VERIFICAÇÃO, 0 falha.** BANCADA: `teste-casca` 549, `teste-f2` 111 (eram 107),
+  `teste-f1` 195, `teste-loja` 178, `teste-atelie`, `teste-leads` 211,
+  `teste-prestacao-rejunte` 5 sobre 540 e 180 estados, `conferir-cobertura` 353,
+  `validar-banco` aprovado, `validar-pastilhas` 189, `php -l` limpo.
+  MUTAÇÕES: f1 46/46, **f2 50/50** (três novas: a busca crua declarando sponsored,
+  a tela voltando a não ler o campo, e a crua passando na frente da ficha),
+  rejunte 16/16, técnicas 14/14, pastilhas 14/14, cobertura 14/14, prestação 11/11.
+- **NO AR:** revisão **33** no `/status`, igual à do manifest. `conferir-no-ar.py`
+  com **450 afirmações** (eram 437), 0 falha. As 11 URLs em 200 e **zero**
+  ocorrência da frase proibida; a vitrine de pastilha serve 3 botões de busca crua
+  para os 3 elegíveis de 2 cm; a página de divulgação serve as duas contas.
+- **Próximo passo, com ordem e motivo:** (1) o lado do material da família das
+  técnicas — ligar técnica a cola e rejunte, que é onde esta ilha tem banco e
+  ferramenta; (2) `1x1` de fabricante, que sozinho muda 7 das 12 linhas da tabela da
+  F1; (3) a categoria COLA, 45 estados varridos e 0 com o mínimo da 14.3; (4) os 15
+  `url_busca` encurtados, no minuto em que houver sessão do painel da Shopee — o
+  piso já está na tela sem eles.
