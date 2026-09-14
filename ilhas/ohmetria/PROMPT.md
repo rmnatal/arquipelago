@@ -31,6 +31,21 @@ O dossiê que aprovou esta ilha é `bussola/dossies/som-automotivo/DOSSIE.md` �
 
 ---
 
+## DESPACHO DO RAPHAEL — 14/09/2026 — ESTA ILHA NASCE AGORA
+
+Aprovada por ele na conversa em 14/09/2026. **Domínio ohmetria.com.br já registrado e pago** — o passo 1 da seção 11 está cumprido e ninguém precisa refazê-lo.
+
+O dossiê desta ilha é `bussola/dossies/som-automotivo/DOSSIE.md`. **Leia-o inteiro antes do primeiro bloco**: ele traz o porquê do nicho, as consultas paramétricas-alvo, a prova de cobertura de afiliado, a identidade e o plano das três primeiras ferramentas. O `VOZ.md` desta pasta veio dele e manda no tom de toda página (seção 15).
+
+**A infraestrutura dos passos 2 a 8 da seção 11 (domínio adicional no cPanel, nameservers, Search Console, WordPress, SSL, plugins) é trabalho de NAVEGADOR e está com o Raphael e a conversa dele — não é sua.** Enquanto o site não responde, você trabalha o que não depende de site: leitura do dossiê, corpus de buscas paramétricas, banco de dados da primeira ferramenta, árvore de URLs. **Não marque `bloqueada_por` por causa de propagação nem por falta de site** (seção 11, passo 4).
+
+Quando o site responder, siga a seção 11 do passo 9 em diante e a seção 14 (indexação é a prioridade máxima de ilha nova).
+
+**Regras que já estão valendo e que esta ilha nasce obedecendo, sem repetir a dívida das outras:**
+- **Seção 25.2 — o piso de busca vem antes de qualquer link de produto.** Nenhum item entra no banco sem `afiliado.url_busca_bruta`. A frase "link de loja em breve" está **proibida** (seção 7, corrigida em 14/09).
+- **Seção 25.4-b** — todo item com link de produto leva também `afiliado.url_produto` (URL crua), senão o teste de vida é impossível.
+- **Amazon está fora de tudo** (seção 7): não é âncora de comissão, não é evidência de cobertura, não é categoria de referência.
+
 ## FILA DE BLOCOS
 
 **Antes de montar a fila, leia a seção 14 do `ARQUIPELAGO.md`: a arquitetura inteira existe para indexar rápido.**
