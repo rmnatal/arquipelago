@@ -1,5 +1,15 @@
 /**
  * Robometria R2 — Quantos Pa o seu robô aspirador precisa
+ * Versão: 1.6.0 (14/09/2026) — A FRASE QUE PROMETIA DESACORDO E APRESENTAVA UMA
+ * FONTE SÓ (item 3 do despacho da Sentinela), e mais três defeitos que estavam
+ * no ar desde 09/09 na mesma família. A situação-âncora servia "as fontes
+ * brasileiras divergem: o Mundo Conectado recomenda 3.000 Pa e o Mundo Conectado
+ * trata até 1.500 Pa já basta como o piso do consenso" — divergência decidida
+ * comparando NÚMEROS e nunca perguntando quem os publicou, oração quebrada por
+ * um molde de um tamanho só, e a procedência repetindo o mesmo documento três
+ * vezes. Nasceu o quarto molde (dois números, um publicador), porque tirar esse
+ * caso do molde da divergência o jogaria no da "única recomendação", onde há
+ * duas. E a contração com "de" entrou no molde que servia "a de a Canaltech".
  * Versão: 1.5.0 (14/09/2026) — o cartão da vitrine ganha saída de compra que
  * CLICA. O lugar do botão era reservado com "Link de loja em breve", frase
  * proibida pela seção 7 em 14/09/2026; agora o modelo sem ficha de produto sai
@@ -111,7 +121,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_R2_VERSAO' ) ) {
-	define( 'ROBOMETRIA_R2_VERSAO', '1.5.0' );
+	define( 'ROBOMETRIA_R2_VERSAO', '1.6.0' );
 	define( 'ROBOMETRIA_R2_SLUG', 'quantos-pa-o-robo-aspirador-precisa' );
 	/* O NOME DA PÁGINA É A CONSULTA QUE A PESSOA DIGITA (seção 14.5), e ela está
 	   literalmente no endereço: "quantos pa o robô aspirador precisa". O nome
@@ -247,6 +257,37 @@ function robometria_r2_com_artigo( $limiar ) {
 }
 }
 
+/**
+ * A ORAÇÃO INTEIRA DO LIMIAR DE BAIXO — item 3 do despacho da Sentinela de
+ * 14/09/2026. O molde era um só ("%s trata %s como o piso do consenso") e o
+ * segundo %s recebia a saída de escrever_limiar(), que para a comparação
+ * "suficiente" devolve "até 1.500 Pa já basta". Encaixado no molde, a
+ * situação-âncora servia no ar, desde 09/09: "o Mundo Conectado trata até 1.500
+ * Pa já basta como o piso do consenso". Passar sujeito vazio dá a oração sem
+ * repetir quem publica, que é o que o quarto molde precisa.
+ */
+if ( ! function_exists( 'robometria_r2_escrever_piso' ) ) {
+function robometria_r2_escrever_piso( $l, $sujeito ) {
+	$s = '' === $sujeito ? '' : $sujeito . ' ';
+	if ( 'suficiente' === $l['comparacao'] ) {
+		return $s . 'escreve que até ' . robometria_r2_n( $l['valor'] ) . ' Pa já basta';
+	}
+	return $s . 'trata ' . robometria_r2_escrever_limiar( $l ) . ' como o piso do consenso';
+}
+}
+
+/** A contração com "de", lida do banco — "da Canaltech", "do Mundo Conectado". */
+if ( ! function_exists( 'robometria_r2_com_de' ) ) {
+function robometria_r2_com_de( $limiar ) {
+	/* O banco já entrega a forma inteira ("da Canaltech"), e não só a partícula:
+	   é pub.com_de() do lado de lá. Colar o nome de novo daria "da Canaltech
+	   Canaltech" — e foi o que a primeira escrita desta função fez. */
+	return isset( $limiar['com_de'] ) && '' !== $limiar['com_de']
+		? $limiar['com_de']
+		: trim( 'de ' . $limiar['publicador'] );
+}
+}
+
 /** Como cada limiar é escrito na frase, respeitando o operador da fonte. */
 if ( ! function_exists( 'robometria_r2_escrever_limiar' ) ) {
 function robometria_r2_escrever_limiar( $l ) {
@@ -368,18 +409,38 @@ function robometria_r2_frase_situacao( $s ) {
 
 	if ( ! empty( $s['ha_divergencia'] ) ) {
 		return sprintf(
-			'Para %s %s, as fontes brasileiras divergem: %s recomenda %s e %s trata %s como o piso do consenso (verificado em %s). Esta página trabalha com o MAIOR limiar citado, porque errar para baixo custa a compra inteira.',
+			'Para %s %s, as fontes brasileiras divergem: %s recomenda %s e %s (verificado em %s). Esta página trabalha com o MAIOR limiar citado, porque errar para baixo custa a compra inteira.',
 			$piso, $pelo,
 			robometria_r2_com_artigo( $seguro ), robometria_r2_escrever_limiar( $seguro ),
-			robometria_r2_com_artigo( $minimo ), robometria_r2_escrever_limiar( $minimo ),
+			robometria_r2_escrever_piso( $minimo, robometria_r2_com_artigo( $minimo ) ),
+			robometria_r2_data( $seguro['verificado_em'] )
+		);
+	}
+
+	/* O QUARTO MOLDE: dois números, um publicador só. Ele nasceu com o conserto
+	   da divergência, porque tirar esse caso do molde de cima o jogaria no de
+	   baixo — que diz "a ÚNICA recomendação" onde há duas. Trocar uma afirmação
+	   falsa por outra não é conserto: o que separa os dois casos é QUEM publica. */
+	if ( ! empty( $s['dois_numeros_do_mesmo_publicador'] ) ) {
+		return sprintf(
+			'Para %s %s, %s publica dois números: recomenda %s e %s (verificado em %s). Esta página trabalha com o MAIOR, porque errar para baixo custa a compra inteira.',
+			$piso, $pelo,
+			robometria_r2_com_artigo( $seguro ), robometria_r2_escrever_limiar( $seguro ),
+			/* SEM SUJEITO: o publicador acabou de ser nomeado, e repeti-lo produz
+			   exatamente o "o Mundo Conectado ... e o Mundo Conectado" que este
+			   item do despacho veio tirar do ar. */
+			robometria_r2_escrever_piso( $minimo, '' ),
 			robometria_r2_data( $seguro['verificado_em'] )
 		);
 	}
 
 	return sprintf(
-		'Para %s %s, a única recomendação brasileira deste banco é a de %s: %s (verificado em %s).',
+		/* "a de %s" com "a Canaltech" produzia "a de a Canaltech", no ar desde
+		   09/09 em carpete|nao. A contração vem do banco, como o artigo e o
+		   pronome (seção 26.2): nenhuma tabela de língua mora neste arquivo. */
+		'Para %s %s, a única recomendação brasileira deste banco é a %s: %s (verificado em %s).',
 		$piso, $pelo,
-		robometria_r2_com_artigo( $seguro ), robometria_r2_escrever_limiar( $seguro ),
+		robometria_r2_com_de( $seguro ), robometria_r2_escrever_limiar( $seguro ),
 		robometria_r2_data( $seguro['verificado_em'] )
 	);
 }
@@ -938,8 +999,23 @@ function robometria_r2_resposta( $c ) {
 
 	/* A procedência de cada limiar, logo abaixo da frase e em texto discreto —
 	   nunca um botão (seção 7). */
+	/* UMA ENTRADA POR DOCUMENTO, NÃO POR LIMIAR — item 3 do despacho da Sentinela
+	   de 14/09/2026. A lista era um item por limiar, e em liso|nao os três
+	   limiares saem do MESMO artigo do Mundo Conectado: a linha servia "Mundo
+	   Conectado · 09/09/2026 fonte" três vezes seguidas, na situação-âncora. Três
+	   vezes o mesmo endereço não é mais procedência do que uma; é a mesma
+	   procedência dita três vezes, e passa ao leitor a impressão de três apurações
+	   onde houve uma. A chave da deduplicação é o ENDEREÇO com a data, não o nome
+	   do publicador: o mesmo veículo pode publicar dois artigos, e aí são duas
+	   fontes de verdade e as duas têm de aparecer. */
 	$fontes = array();
+	$vistas = array();
 	foreach ( (array) $s['limiares'] as $l ) {
+		$chave = $l['url'] . '|' . $l['verificado_em'];
+		if ( isset( $vistas[ $chave ] ) ) {
+			continue;
+		}
+		$vistas[ $chave ] = 1;
 		$fontes[] = esc_html( $l['publicador'] . ' · ' . robometria_r2_data( $l['verificado_em'] ) )
 			. ' ' . ( function_exists( 'robometria_casca_fonte_link' )
 				? robometria_casca_fonte_link( $l['url'] ) : '' );

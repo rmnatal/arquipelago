@@ -514,6 +514,7 @@ def situacao(piso, pelo):
                 # acidente, porque o unico publicador com faixa confortavel no
                 # banco de hoje e o Mundo Conectado, que e masculino.
                 "pronome_possessivo": pub.pronome_possessivo(l["publicador"]),
+                "com_de": pub.com_de(l["publicador"]),
                 "url": l["url"],
                 "verificado_em": l["verificado_em"],
             }
@@ -525,7 +526,16 @@ def situacao(piso, pelo):
         "limiares": limiares,
         "limiar_seguro": seguro,
         "limiar_minimo": minimo,
-        "ha_divergencia": piso_efetivo(seguro) != piso_efetivo(minimo),
+        # DIVERGENCIA E ENTRE FONTES, NAO ENTRE NUMEROS (item 3 do despacho da
+        # Sentinela de 14/09/2026). Ate aqui bastava os dois limiares terem valores
+        # diferentes para a frase anunciar que "as fontes brasileiras divergem" — e
+        # em liso|nao os DOIS limiares sao do Mundo Conectado, entao a pagina
+        # prometia desacordo e apresentava uma fonte so, tres vezes, na situacao
+        # ANCORA: a que a pagina serve a quem chega sem preencher nada, e portanto a
+        # que o Google indexa e um modelo de linguagem le (secao 5). Dois numeros do
+        # MESMO publicador nao sao divergencia: sao uma faixa de uma fonte so.
+        "ha_divergencia": (piso_efetivo(seguro) != piso_efetivo(minimo)
+                           and seguro["publicador"] != minimo["publicador"]),
         "faixa_confortavel": faixa,
         "teto": teto,
         "por_ponte": por_ponte,
@@ -742,6 +752,22 @@ def escrever_limiar(l):
     return "%s Pa" % numero_br(l["valor"])
 
 
+def escrever_piso(l, publicador_com_artigo):
+    """A oracao inteira do limiar de BAIXO, e ela muda de verbo com a comparacao.
+
+    O molde antigo era um so — "%s trata %s como o piso do consenso" — e o segundo
+    %s recebia a saida de escrever_limiar(), que para a comparacao "suficiente"
+    devolve "ate 1.500 Pa ja basta". Encaixado no molde saia, no ar, desde 09/09:
+    "o Mundo Conectado trata ate 1.500 Pa ja basta como o piso do consenso" — uma
+    oracao quebrada dentro da situacao-ancora. O defeito nao era a gramatica
+    sozinha: era o molde supor que todo limiar de baixo se diz do mesmo jeito.
+    """
+    sujeito = ("%s " % publicador_com_artigo) if publicador_com_artigo else ""
+    if l["comparacao"] == "suficiente":
+        return "%sescreve que ate %s Pa ja basta" % (sujeito, numero_br(l["valor"]))
+    return "%strata %s como o piso do consenso" % (sujeito, escrever_limiar(l))
+
+
 def com_artigo(publicador):
     """"a Canaltech", "o Mundo Conectado" — o artigo vem do banco declarado.
 
@@ -781,19 +807,43 @@ def frase_da_situacao(sit):
 
     if sit["ha_divergencia"]:
         return (
-            "Para %s %s, as fontes brasileiras divergem: %s recomenda %s e %s trata "
-            "%s como o piso do consenso (verificado em %s). Esta pagina trabalha com "
+            "Para %s %s, as fontes brasileiras divergem: %s recomenda %s e %s "
+            "(verificado em %s). Esta pagina trabalha com "
             "o MAIOR limiar citado, porque errar para baixo custa a compra inteira."
             % (piso, pelo,
                com_artigo(seguro["publicador"]), escrever_limiar(seguro),
-               com_artigo(minimo["publicador"]), escrever_limiar(minimo),
+               escrever_piso(minimo, com_artigo(minimo["publicador"])),
                formatar_data(seguro["verificado_em"]))
         )
 
+    # O QUARTO MOLDE, e ele nasceu junto com o conserto da divergencia. Tirar
+    # liso|nao do molde da divergencia a jogaria neste ultimo, que diz "a UNICA
+    # recomendacao" — e ali ha DUAS, do mesmo publicador. Trocar uma afirmacao
+    # falsa por outra nao e conserto: o que muda entre os dois casos e quem
+    # publica, entao a frase diz exatamente isso.
+    if piso_efetivo(seguro) != piso_efetivo(minimo):
+        return (
+            "Para %s %s, %s publica dois numeros: recomenda %s e %s (verificado em "
+            "%s). Esta pagina trabalha com o MAIOR, porque errar para baixo custa a "
+            "compra inteira."
+            % (piso, pelo, com_artigo(seguro["publicador"]),
+               escrever_limiar(seguro),
+               # SEM SUJEITO: o publicador acabou de ser nomeado na oracao anterior,
+               # e repeti-lo produziria exatamente o "o Mundo Conectado ... e o Mundo
+               # Conectado" que este item do despacho veio tirar do ar.
+               escrever_piso(minimo, ""),
+               formatar_data(seguro["verificado_em"]))
+        )
+
+    # A CONTRACAO FALTAVA AQUI, e estava NO AR desde 09/09 em carpete|nao: o molde
+    # escrevia "a de %s" e com_artigo() devolve "a Canaltech", entao a pagina servia
+    # "a unica recomendacao brasileira deste banco e a de a Canaltech". A ilha ja
+    # tinha pub.com_de() desde a manha de 14/09 — a regra existia e este molde nao a
+    # usava, que e meia regra aplicada parecendo regra aplicada.
     return (
-        "Para %s %s, a unica recomendacao brasileira deste banco e a de %s: %s "
+        "Para %s %s, a unica recomendacao brasileira deste banco e a %s: %s "
         "(verificado em %s)."
-        % (piso, pelo, com_artigo(seguro["publicador"]), escrever_limiar(seguro),
+        % (piso, pelo, pub.com_de(seguro["publicador"]), escrever_limiar(seguro),
            formatar_data(seguro["verificado_em"]))
     )
 

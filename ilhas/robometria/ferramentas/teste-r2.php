@@ -1287,6 +1287,99 @@ $cobertura_r2_fonte = file_get_contents( $raiz . '/ferramentas/cobertura-r2.py' 
 rbm_ok( false === strpos( $cobertura_r2_fonte, 'ARTIGO_DO_PUBLICADOR = {' ),
 	'cobertura-r2.py nao volta a ter tabela propria de artigo' );
 
+/* ---------------------------------------------------------------------------
+ * A FRASE QUE PROMETE DESACORDO TEM DE APRESENTAR DUAS FONTES — item 3 do
+ * despacho da Sentinela de 14/09/2026, e o "pronto quando" dela pede esta régua
+ * com todas as letras: "some uma régua que reprove qualquer situação cuja frase
+ * diga 'divergem' e cite o mesmo publicador nos dois lados — hoje ela não
+ * existe, e é por isso que isto ficou no ar desde 09/09".
+ *
+ * A régua não lê `ha_divergencia`: ela lê a FRASE SERVIDA e os limiares, porque
+ * o defeito estava justamente em `ha_divergencia` dizer sim comparando números.
+ * Conferir a frase contra a bandeira que a produziu seria as duas metades
+ * errando juntas.
+ * ------------------------------------------------------------------------- */
+echo "\n12. Divergencia prometida e divergencia apresentada (despacho de 14/09)\n";
+
+$prometem = $repetem = $sem_dois = array();
+foreach ( $dados['situacoes'] as $chave => $sit ) {
+	$frase = robometria_r2_frase_situacao( $sit );
+	$publicadores = array();
+	foreach ( (array) $sit['limiares'] as $l ) {
+		$publicadores[ $l['publicador'] ] = 1;
+	}
+
+	if ( false !== strpos( $frase, 'divergem' ) ) {
+		$prometem[] = $chave;
+		/* Duas condicoes, e as duas tem de valer: a frase nomeia dois
+		   publicadores DIFERENTES, e o banco daquela situacao tem dois. */
+		if ( $sit['limiar_seguro']['publicador'] === $sit['limiar_minimo']['publicador'] ) {
+			$repetem[] = $chave . ' (' . $sit['limiar_seguro']['publicador'] . ')';
+		}
+		if ( count( $publicadores ) < 2 ) {
+			$sem_dois[] = $chave;
+		}
+	}
+}
+rbm_ok( empty( $repetem ),
+	'nenhuma situacao promete divergencia citando o MESMO publicador dos dois lados',
+	empty( $repetem ) ? count( $prometem ) . ' com divergencia, todas com dois nomes'
+		: implode( ', ', $repetem ) );
+rbm_ok( empty( $sem_dois ),
+	'toda frase que diz "divergem" tem duas fontes no banco daquela situacao',
+	empty( $sem_dois ) ? 'todas' : implode( ', ', $sem_dois ) );
+
+/* A ORACAO DO LIMIAR DE BAIXO ENCAIXA NO MOLDE, em toda situacao. O defeito era
+   "trata ate 1.500 Pa ja basta como o piso do consenso": a saida de
+   escrever_limiar() entrando num molde que esperava um sintagma nominal. */
+$quebradas = array();
+foreach ( $dados['situacoes'] as $chave => $sit ) {
+	$frase = robometria_r2_frase_situacao( $sit );
+	if ( false !== strpos( $frase, 'já basta como o piso' )
+		|| false !== strpos( $frase, 'Pa já basta como' ) ) {
+		$quebradas[] = $chave;
+	}
+}
+rbm_ok( empty( $quebradas ),
+	'nenhuma oracao quebrada do tipo "trata ate X Pa ja basta como o piso"',
+	empty( $quebradas ) ? 'nenhuma das ' . count( $dados['situacoes'] ) : implode( ', ', $quebradas ) );
+
+/* E A CONTRACAO: "a de a Canaltech" estava no ar desde 09/09 em carpete|nao. */
+$sem_contracao = array();
+foreach ( $dados['situacoes'] as $chave => $sit ) {
+	$frase = robometria_r2_frase_situacao( $sit );
+	if ( preg_match( '/\bé a de (a|o|as|os) /u', $frase )
+		|| false !== strpos( $frase, ' de a ' ) || false !== strpos( $frase, ' de o ' ) ) {
+		$sem_contracao[] = $chave;
+	}
+}
+rbm_ok( empty( $sem_contracao ),
+	'nenhuma frase serve "de a" ou "de o" onde o portugues contrai',
+	empty( $sem_contracao ) ? 'nenhuma' : implode( ', ', $sem_contracao ) );
+
+/* UMA ENTRADA POR DOCUMENTO na linha de procedencia, e nao uma por limiar. */
+$repetida = array();
+foreach ( $dados['situacoes'] as $chave => $sit ) {
+	$docs = $itens = array();
+	foreach ( (array) $sit['limiares'] as $l ) {
+		$itens[] = 1;
+		$docs[ $l['url'] . '|' . $l['verificado_em'] ] = 1;
+	}
+	$h = rbm_r2_pagina( 200, $sit['piso'], $sit['pelo'] );
+	if ( '' !== $h && preg_match( '#<p class="rbm-vitrine-fonte">(.*?)</p>#s', $h, $mf ) ) {
+		/* Uma entrada por documento: os itens sao separados por &middot;, entao
+		   o numero de entradas e o de separadores mais um. */
+		$entradas = substr_count( $mf[1], '&middot;' ) + 1;
+		if ( $entradas > count( $docs ) ) {
+			$repetida[] = $chave . ' (' . $entradas . ' entradas para '
+				. count( $docs ) . ' documento(s))';
+		}
+	}
+}
+rbm_ok( empty( $repetida ),
+	'a linha de procedencia nao repete o mesmo documento',
+	empty( $repetida ) ? 'nenhuma situacao repete' : implode( ', ', $repetida ) );
+
 /* ------------------------------------------------------------------ RESUMO */
 
 echo "\n";

@@ -450,7 +450,38 @@ def montar():
         if not (next(p for p in ref.pecas if p["id"] == pid).get("afiliado") or {}).get("url")
     }
 
+    # AS TRES CONTAS DA TABELA, E ELAS SAO TRES COISAS (item 2 do despacho da
+    # Sentinela de 14/09/2026).
+    #
+    # O ACHADO ERA MAIS FUNDO DO QUE A RONDA VIU. Ela mediu, certissima, que a
+    # pagina dizia "63 pares" no alto e "73 pares" na tabela, e supos que os 10 de
+    # diferenca fossem os kits abrindo uma linha por peca. Contado aqui, a conta e
+    # outra e a coincidencia e pior:
+    #
+    #   73 .. LINHAS da tabela — uma por (modelo, tipo, peca)
+    #   63 .. CELULAS respondidas — (modelo, tipo) distintos
+    #   56 .. PARES peca x modelo que a tabela de fato mostra
+    #   63 .. PARES declarados no banco (soma de len(compatibilidade))
+    #
+    # Ou seja: os DOIS 63 sao grandezas diferentes que hoje dao o mesmo numero por
+    # acidente do banco. Um conta celulas que a ferramenta responde; o outro conta
+    # pares que o fabricante declarou. Se alguem tivesse "consertado" a divergencia
+    # igualando os numeros, teria colado duas contas que nao sao a mesma — e no dia
+    # em que o banco as separasse, a pagina publicaria a igualdade como fato.
+    #
+    # Por isso nada foi igualado: cada numero ganhou NOME. O alto fala do BANCO, a
+    # tabela fala de si mesma, e as 10 linhas a mais sao ditas com a causa.
+    linhas_da_tabela = exemplos_estruturados(varredura, tipos_ofertados)
+    celulas_respondidas = len({(l["modelo"], l["tipo"]) for l in linhas_da_tabela})
+
     resumo = {
+        "linhas_da_tabela": len(linhas_da_tabela),
+        "celulas_respondidas": celulas_respondidas,
+        "pares_na_tabela": len({(l["modelo"], l["peca"]) for l in linhas_da_tabela}),
+        # Quantas linhas existem ALEM de uma por celula: sao as celulas em que o
+        # fabricante declara mais de uma peca para a mesma funcao do mesmo modelo,
+        # e a tabela mostra as duas em vez de escolher uma.
+        "linhas_de_segunda_peca": len(linhas_da_tabela) - celulas_respondidas,
         "modelos_publicaveis": len(publicaveis),
         "modelos_que_respondem": sum(1 for m in modelos if m["responde"]),
         "modelos_com_entrada_vazia": len(varredura["entrada_vazia"]),
@@ -487,7 +518,7 @@ def montar():
         "modelos": modelos,
         "respostas": respostas,
         "divergencias": divergencias_publicaveis(pecas_citadas),
-        "exemplos": exemplos_estruturados(varredura, tipos_ofertados),
+        "exemplos": linhas_da_tabela,
         "entrada_vazia": varredura["entrada_vazia"],
         "resumo": resumo,
     }, {

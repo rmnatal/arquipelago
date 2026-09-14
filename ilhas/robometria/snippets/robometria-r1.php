@@ -1,5 +1,13 @@
 /**
  * Robometria R1 — Qual peça serve no meu robô aspirador
+ * Versão: 1.8.0 (14/09/2026) — AS TRÊS CONTAS DA TABELA GANHAM NOME (item 2 do
+ * despacho da Sentinela). A página dizia "63 pares peça × modelo" no alto e "73
+ * pares peça × modelo" duas telas abaixo: dois números certos contando coisas
+ * diferentes com o mesmo nome. Contado, a diferença não é a que parecia — a
+ * tabela tem uma linha por (modelo, tipo, peça), responde 63 células e mostra 56
+ * pares, enquanto o banco declara 63. Os DOIS 63 são grandezas diferentes que
+ * hoje coincidem por acidente, e igualar os números teria colado duas contas que
+ * não são a mesma. A seção 19 do teste-r1.php recomputa as quatro do banco.
  * Versão: 1.7.0 (14/09/2026) — a cópia local da escada de compra MORREU. Esta
  * ferramenta repetia a porta de compra inteira para o caso de a casca não estar
  * carregada, com a frase "Link de loja em breve" que a seção 7 proibiu hoje —
@@ -134,7 +142,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_R1_VERSAO' ) ) {
-	define( 'ROBOMETRIA_R1_VERSAO', '1.7.0' );
+	define( 'ROBOMETRIA_R1_VERSAO', '1.8.0' );
 	define( 'ROBOMETRIA_R1_SLUG', 'qual-peca-serve-no-meu-robo-aspirador' );
 	define( 'ROBOMETRIA_R1_TITULO', 'Qual peça serve no meu robô aspirador' );
 	define( 'ROBOMETRIA_R1_DADOS', 'robometria_dados_r1-respostas' );
@@ -1280,8 +1288,32 @@ function robometria_r1_tabela_exemplos() {
 	   uma tabela publicada que nenhuma regua lia. Fronteira de teste tem de ser
 	   um marcador escrito, nunca "a primeira coisa parecida com uma tabela". */
 	$html  = '<div class="rbm-secao" id="rbm-exemplos"><h2>Tudo o que esta ferramenta responde hoje</h2>';
-	$html .= '<p>São <span class="rbm-num">' . esc_html( count( $d['exemplos'] ) )
-		. '</span> pares peça × modelo, cada um com o código, quem declarou, o endereço e a data. A tabela sai do mesmo banco que a ferramenta consulta: se ela mudar, esta lista muda junto.</p>';
+	/* A FRASE DIZIA "pares peça × modelo" E O NÚMERO ERA OUTRA COISA — item 2 do
+	   despacho da Sentinela de 14/09/2026, que mediu no ar "63 pares" no alto da
+	   página e "73 pares" duas telas abaixo. Os dois números estavam certos e
+	   contavam coisas diferentes com o mesmo nome, que é a forma mais cara de
+	   erro nesta ilha porque nenhuma régua consegue vê-lo.
+
+	   Contado, a diferença não é a que parecia: a tabela tem uma linha por
+	   (modelo, tipo, peça), responde 63 células (modelo, tipo) e mostra 56 pares
+	   peça × modelo — enquanto o banco declara 63 pares. Os DOIS 63 são
+	   grandezas diferentes que hoje dão o mesmo número por acidente. Igualar os
+	   números teria colado duas contas que não são a mesma; o conserto é cada
+	   uma dizer o que conta, e as 10 linhas a mais saírem com a causa escrita. */
+	$res     = isset( $d['resumo'] ) && is_array( $d['resumo'] ) ? $d['resumo'] : array();
+	$linhas  = isset( $res['linhas_da_tabela'] ) ? (int) $res['linhas_da_tabela'] : count( $d['exemplos'] );
+	$celulas = isset( $res['celulas_respondidas'] ) ? (int) $res['celulas_respondidas'] : 0;
+	$extras  = isset( $res['linhas_de_segunda_peca'] ) ? (int) $res['linhas_de_segunda_peca'] : 0;
+	$html .= '<p>São <span class="rbm-num">' . esc_html( number_format_i18n( $linhas ) )
+		. '</span> linhas, cada uma com o código, quem declarou, o endereço e a data. Elas respondem <span class="rbm-num">'
+		. esc_html( number_format_i18n( $celulas ) )
+		. '</span> perguntas do tipo "qual peça desta função serve neste modelo"';
+	if ( $extras > 0 ) {
+		$html .= ' — são mais linhas do que perguntas porque em <span class="rbm-num">'
+			. esc_html( number_format_i18n( $extras ) )
+			. '</span> delas o fabricante declara mais de uma peça para a mesma função do mesmo robô, e a tabela mostra as duas em vez de escolher uma';
+	}
+	$html .= '. A tabela sai do mesmo banco que a ferramenta consulta: se ela mudar, esta lista muda junto.</p>';
 
 	$html .= '<div class="rbm-tabela"><table class="rbm-quadro"><thead><tr>'
 		. '<th>Modelo</th><th>Peça</th><th>Código do fabricante</th><th>Como sabemos</th><th>Verificado em</th>'

@@ -4475,6 +4475,10 @@
     "xiaomi-s10"
   ],
   "resumo": {
+    "linhas_da_tabela": 73,
+    "celulas_respondidas": 63,
+    "pares_na_tabela": 56,
+    "linhas_de_segunda_peca": 10,
     "modelos_publicaveis": 33,
     "modelos_que_respondem": 24,
     "modelos_com_entrada_vazia": 9,

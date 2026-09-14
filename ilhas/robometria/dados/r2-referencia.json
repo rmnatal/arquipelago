@@ -11,7 +11,7 @@
   ],
   "situacoes": {
     "liso|nao": {
-      "frase": "Para piso liso sem animal que solta pelo, as fontes brasileiras divergem: o Mundo Conectado recomenda 3.000 Pa e o Mundo Conectado trata ate 1.500 Pa ja basta como o piso do consenso (verificado em 09/09/2026). Esta pagina trabalha com o MAIOR limiar citado, porque errar para baixo custa a compra inteira.",
+      "frase": "Para piso liso sem animal que solta pelo, o Mundo Conectado publica dois numeros: recomenda 3.000 Pa e escreve que ate 1.500 Pa ja basta (verificado em 09/09/2026). Esta pagina trabalha com o MAIOR, porque errar para baixo custa a compra inteira.",
       "frase_do_teto": "Acima de 6.000 Pa, o Mundo Conectado escreve que o resultado ja fica proximo do limite pratico percebido — dai para cima, mais succao deixa de comprar melhora que alguem note (verificado em 09/09/2026).",
       "frase_vazia": null,
       "no_limiar": []
@@ -92,7 +92,7 @@
       ]
     },
     "carpete|nao": {
-      "frase": "Para carpete sem animal que solta pelo, a unica recomendacao brasileira deste banco e a de a Canaltech: acima de 4.000 Pa (verificado em 09/09/2026).",
+      "frase": "Para carpete sem animal que solta pelo, a unica recomendacao brasileira deste banco e a da Canaltech: acima de 4.000 Pa (verificado em 09/09/2026).",
       "frase_do_teto": null,
       "frase_vazia": null,
       "no_limiar": [

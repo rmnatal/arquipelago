@@ -1665,6 +1665,86 @@ rbm_ok( count( $formas_vistas ) === 3,
 	implode( ' / ', array_keys( $formas_vistas ) ) );
 
 /* ---------------------------------------------------------------------------
+ * 19. AS TRES CONTAS DA TABELA — item 2 do despacho da Sentinela de 14/09/2026.
+ *
+ * Ela mediu no ar "63 pares peça × modelo" no alto e "73 pares peça × modelo"
+ * duas telas abaixo, os dois certos, contando coisas diferentes com o mesmo
+ * nome. E o "pronto quando" dela exige, com todas as letras, uma régua que
+ * quebre se eles voltarem a divergir sem explicação — derivando os dois do
+ * MESMO banco, nunca repetindo a constante.
+ *
+ * Então nada aqui é lido do resumo do r1-respostas.json: as três contas são
+ * refeitas A PARTIR das linhas da tabela e do banco, por um caminho que não é o
+ * do gerador. Se ele passar a contar de outro jeito, isto reprova — que é o que
+ * se quer de uma segunda testemunha.
+ *
+ * E A AFIRMAÇÃO MAIS IMPORTANTE É A ÚLTIMA: os dois 63 da página são grandezas
+ * DIFERENTES que hoje dão o mesmo número. A régua exige que a página continue
+ * chamando cada uma pelo seu nome mesmo enquanto forem iguais — porque é
+ * exatamente enquanto são iguais que ninguém percebe que foram confundidas.
+ * ------------------------------------------------------------------------- */
+echo "\n19. As tres contas da tabela de exemplos (despacho de 14/09, item 2)\n";
+
+$linhas_t = $dados['exemplos'];
+$cel = $par_tab = array();
+foreach ( $linhas_t as $l ) {
+	$cel[ $l['modelo'] . '|' . $l['tipo'] ] = 1;
+	$par_tab[ $l['modelo'] . '|' . $l['peca'] ] = 1;
+}
+$n_linhas  = count( $linhas_t );
+$n_celulas = count( $cel );
+$n_extras  = $n_linhas - $n_celulas;
+
+/* O quarto número, e ele vem de OUTRO arquivo: os pares que o BANCO declara. */
+$pares_no_banco = 0;
+foreach ( $pecas_b['registros'] as $p ) {
+	if ( 'publicavel' === $p['status'] ) {
+		$pares_no_banco += count( $p['compatibilidade'] );
+	}
+}
+
+rbm_ok( $dados['resumo']['linhas_da_tabela'] === $n_linhas,
+	'o resumo conta as linhas da tabela como elas sao',
+	$dados['resumo']['linhas_da_tabela'] . ' contra ' . $n_linhas . ' recontadas' );
+rbm_ok( $dados['resumo']['celulas_respondidas'] === $n_celulas,
+	'o resumo conta as celulas (modelo, tipo) como elas sao',
+	$dados['resumo']['celulas_respondidas'] . ' contra ' . $n_celulas . ' recontadas' );
+rbm_ok( $dados['resumo']['linhas_de_segunda_peca'] === $n_extras,
+	'as linhas a mais sao linhas menos celulas, e nao um numero digitado',
+	$dados['resumo']['linhas_de_segunda_peca'] . ' contra ' . $n_extras );
+rbm_ok( $dados['resumo']['pares_na_tabela'] === count( $par_tab ),
+	'o resumo conta os pares peca x modelo que a tabela mostra',
+	$dados['resumo']['pares_na_tabela'] . ' contra ' . count( $par_tab ) );
+rbm_ok( $dados['resumo']['pares_declarados'] === $pares_no_banco,
+	'o numero do alto da pagina e o do BANCO, recontado aqui',
+	$dados['resumo']['pares_declarados'] . ' contra ' . $pares_no_banco );
+
+/* A PAGINA: a tabela nao chama as linhas dela de "pares". Era esse o defeito. */
+$sec_exemplos = '';
+if ( preg_match( '#<div class="rbm-secao" id="rbm-exemplos">(.*?)</table>#s', $h_ancora, $mex ) ) {
+	$sec_exemplos = $mex[1];
+}
+rbm_ok( '' !== $sec_exemplos, 'a secao da tabela de exemplos foi encontrada na pagina' );
+rbm_ok( false !== strpos( $sec_exemplos, '>' . number_format_i18n( $n_linhas ) . '</span> linhas' ),
+	'a tabela chama de LINHAS o que sao linhas',
+	number_format_i18n( $n_linhas ) . ' linhas' );
+rbm_ok( false === strpos( $sec_exemplos, 'pares peça × modelo' ),
+	'a tabela NAO chama as proprias linhas de "pares peca x modelo"' );
+rbm_ok( $n_extras <= 0 || false !== strpos( $sec_exemplos, '>' . number_format_i18n( $n_extras ) . '</span> delas' ),
+	'a tabela diz quantas linhas sao a segunda peca da mesma funcao, com a causa',
+	$n_extras . ' linha(s) a mais' );
+
+/* E A TRAVA CONTRA A COINCIDENCIA: hoje celulas respondidas e pares do banco dao
+   63 os dois. Sao contas diferentes, e a pagina tem de continuar tratando-as como
+   duas ate no dia em que o banco as separar. Esta afirmacao NAO exige que sejam
+   iguais nem diferentes — exige que as duas frases existam, cada uma com o seu
+   numero, em lugares diferentes da pagina. */
+rbm_ok( false !== strpos( $h_ancora, 'pares peça × modelo declarados' ),
+	'a frase do alto continua falando do BANCO, e diz "declarados"' );
+rbm_ok( false !== strpos( $sec_exemplos, 'perguntas do tipo' ),
+	'a frase da tabela fala do que a FERRAMENTA responde, nao do que o banco declara' );
+
+/* ---------------------------------------------------------------------------
  * Fecho
  * ------------------------------------------------------------------------- */
 

@@ -146,6 +146,13 @@ def fato_do_limiar(l):
         # banco de hoje e masculino. A Canaltech chegando la sairia com "dele"
         # no ar, e nenhum portao veria. Mesma familia do artigo digitado.
         "pronome_possessivo": ref.pub.pronome_possessivo(l["publicador"]),
+        # E A CONTRACAO COM "DE" VIAJA DESDE 14/09/2026, pelo item 3 do despacho da
+        # Sentinela. O molde da recomendacao unica escrevia "a de %s" e recebia "a
+        # Canaltech": estava NO AR, em carpete|nao, "a unica recomendacao brasileira
+        # deste banco e a de a Canaltech". A ilha ganhou a regra de contracao na
+        # manha do mesmo dia e este molde nao a usava — meia regra aplicada parece
+        # regra aplicada, que e a licao que a R2 ja tinha dado sobre o pronome.
+        "com_de": ref.pub.com_de(l["publicador"]),
         "fonte": l["fonte"],
         "url": l["url"],
         "verificado_em": l["verificado_em"],
@@ -187,6 +194,16 @@ def montar():
                 "limiar_seguro": fato_do_limiar(sit["limiar_seguro"]),
                 "limiar_minimo": fato_do_limiar(sit["limiar_minimo"]),
                 "ha_divergencia": sit["ha_divergencia"],
+                # DOIS NUMEROS, UM PUBLICADOR SO — o quarto molde (item 3 do
+                # despacho de 14/09/2026). O fato viaja CARIMBADO em vez de o
+                # snippet redecidir comparando os dois limiares: comparar exige
+                # a regra de desempate do piso_efetivo(), e uma segunda copia
+                # dela no PHP seria combinar de divergir depois — a cicatriz da
+                # tabela ARTIGO_DO_PUBLICADOR, desta mesma ferramenta.
+                "dois_numeros_do_mesmo_publicador": bool(
+                    not sit["por_ponte"] and not sit["ha_divergencia"]
+                    and ref.piso_efetivo(sit["limiar_seguro"])
+                    != ref.piso_efetivo(sit["limiar_minimo"])),
                 "por_ponte": sit["por_ponte"],
                 "faixa_confortavel": sit["faixa_confortavel"],
                 "teto": fato_do_limiar(sit["teto"]) if sit["teto"] else None,
