@@ -7474,3 +7474,128 @@ categorias de uma vez: merece bloco próprio, e está na ordem do próximo passo
 3. **A lista dos barrados na tela** — a dívida acima.
 4. **A escada na tela**, quando houver `url_busca`, em bloco inteiro nas quatro
    calculadoras de uma vez.
+
+---
+
+## 2026-09-14 15h18Z–15h52Z — O PISO DE BUSCA CHEGA NA TELA (despacho do Raphael de 14/09, inteiro)
+
+**Versões:** C3 1.6.0, C5 1.6.0, C12 1.4.0, C15 1.5.0 · manifest **revisão 84** ·
+`/status` conferido na 84 em **um disparo**, 20 aplicados. Nenhuma URL nova,
+nenhuma URL mudou, nenhum produto entrou ou saiu do banco.
+
+### A escolha da ilha — segunda tentada
+
+Pela **18.1**, duas ilhas tinham o **mesmo** despacho do Raphael de 14/09 aberto
+no topo do `PROMPT.md`, escrito às 14h59Z pelo commit que corrigiu a seção 7:
+aquametria e robometria. Empate de destinatário e de data, então valeu o
+desempate da seção 1 — a robometria tinha `ultima_execucao` mais antiga (13h54Z
+contra 14h34Z) e **meu push de reserva foi recusado por cerca de um minuto**,
+outra execução a reservou às 15h17Z. Voltei ao passo 2 como manda o passo 5, sem
+force push, e reservei a aquametria às 15h18Z. Nenhum branch `claude/*` e nenhum
+PR aberto para mesclar. Rede pela **20.2** antes de trabalhar: home em 200 e
+`/status` na revisão 82, igual à do manifest, em **uma** passada.
+
+### O defeito, e por que ele vale para toda ilha
+
+**Não era falta de dado.** Os 78 itens dos quatro bancos tinham a palavra-chave
+da busca escrita desde 13/09, em `afiliado.url_busca_produto`, e **nenhum snippet
+a lia**. O piso da 25.2 existia no repositório e não existia na tela — a distância
+exata que a seção 4 do contrato paga mais caro. Trinta e nove produtos chegavam
+na página com **"link de loja em breve"** no lugar do botão, que é a frase que a
+seção 7 corrigida em 14/09 passou a proibir.
+
+### Os cinco itens do despacho
+
+1. **A busca crua já existia, com o nome que o contrato manda.** O despacho pediu
+   `afiliado.url_busca_bruta`; a 25.4-b batizou esse campo de
+   `afiliado.url_busca_produto` em 13/09. **Não nasceu um segundo campo** — duas
+   cópias da mesma decisão é o defeito que a Robometria pagou de manhã com a
+   tabela de artigos de publicador.
+2. **`degrau: 4` e `conferido_em: 2026-09-14` nos 39 itens que só têm piso.** Isso
+   exigiu **reescrever a V24**, e a correção é de régua, não de dado: ela amarrava
+   o degrau a `plataforma`, isto é, ao **anúncio próprio**, e por isso tornava
+   impossível gravar justamente o degrau que a 25.2 chama de piso — página de
+   busca não tem anúncio próprio por definição. Ela reprovou os 39 no minuto em
+   que o piso foi gravado, e reprovou **estando os 39 certos**.
+3. **`afiliado.intestavel` nasceu**, derivado de ter `url` e não ter `url_produto`:
+   **39 de 39**. Até hoje a dívida vivia dentro da prosa de
+   `motivo_sem_url_produto`, e prosa não se conta. O validador cobra a bandeira
+   nos dois sentidos.
+4. **As quatro calculadoras pararam de servir a frase proibida.** Todo cartão das
+   quatro vitrines é âncora: com anúncio escolhido aponta para a ficha e carrega a
+   busca numa **linha discreta embaixo**, fora da âncora (âncora dentro de âncora
+   não é HTML válido); sem anúncio, a busca sobe e vira o botão. O `rel` sai do
+   que o link **é** — `sponsored` para quem paga comissão, `nofollow` para a busca
+   **crua**, que não paga — e o selo do cartão diz qual é qual.
+5. **Os números deste relatório são contados**, e estão abaixo.
+
+### Três desvios de consolo morreram junto
+
+A célula da tabela da C3 e da C5, e a resposta do FAQ das duas, ofereciam **outro**
+produto quando o recomendado não tinha link ("Com link hoje, na mesma faixa: …").
+Era a única coisa nessas páginas em que a presença de link de afiliado mexia no
+que o leitor via — ou seja, **promover por link**, que a seção 7 proíbe com todas
+as letras. Com o piso, o caso que justificava o consolo deixou de existir, e as
+três saídas de cada célula viraram uma.
+
+### O portão que faltava media só o repositório
+
+`ferramentas/teste-escada-compra.py` ganhou a **seção 4**: renderiza as quatro
+calculadoras, arranca `<style>` e `<script>` e confere o `href` de cada cartão
+contra o **banco** — nunca contra o catálogo embutido no snippet, que é cópia do
+banco e erraria junto com ele. São **644 afirmações**, eram 522. E nasceu
+`ferramentas/conferir-escada-no-ar.py`, o irmão que faz a mesma medição no HTML
+que o site serve (**107 afirmações**).
+
+**Mutações: 23 de 23 reprovadas pela regra que as nomeia**, de 14 para 23. A
+primeira escrita da **mutação 18 PASSOU**, e o defeito era dela e não do portão:
+ela trocava o texto de um ramo que o banco de hoje nunca percorre. Mutação que não
+muda o HTML servido não mede nada, do mesmo jeito que régua escrita para um mundo
+que nunca aconteceu nasce sem poder falhar. Reescrita para **produzir o mundo**,
+ela reprova.
+
+### Verificação — 0 falha
+
+**Bancada:** teste-escada-compra 644, validar-produtos (78 produtos, 0 erro, 9
+avisos conhecidos), teste-peixes 2256, teste-seo-tecnico 411, teste-ga4 568,
+teste-datas-schema 102, teste-apelidos 59, teste-dimensao-imagem 36,
+validar-especies (37 registros, o mesmo aviso E15 do guppy),
+testar-validador-especies 24, conferir-slugs, conferir-protecao-funcoes,
+teste-conversor-markdown 18, teste-atualizador-sync 9, teste-escape-shortcode,
+`php -l` limpo nos cinco snippets.
+**Navegador:** teste-navegador-c3-vitrine, c5-vitrine, c12-vitrine, c15-vitrine e
+c3-dupla-condicao — todos **TUDO OK** depois de reescritos para a escada nova.
+**No ar:** `/status` na revisão 84 igual à do manifest, em um disparo. As quatro
+URLs em **200**, **zero `&#038;` dentro de `<script>`** nas quatro, **zero "link de
+loja em breve"** no corpo das quatro. `conferir-escada-no-ar` com **107 afirmações,
+0 falha**.
+
+### Receita, contada e nomeada (item 5 do despacho)
+
+- **78 de 78** itens com piso escolhido (`url_busca_produto`) e com
+  `conferido_em: 2026-09-14`.
+- **39 de 78** ganharam `degrau: 4` — são exatamente os que não têm ficha.
+- **39 de 78** têm ficha de afiliado (`url`), e os **39** estão marcados
+  `intestavel: true`: link encurtado sem a URL crua, inconferível pela 25.4-b.
+- **0 de 78** têm `url_busca` (o piso **encurtado**, que renderia comissão).
+  Continua sendo trabalho da Sentinela estratégica, em lotes de 5, no navegador
+  do Raphael — e pela 25.2 isso **nunca** bloqueia página.
+- **No ar, nas quatro vitrines servidas: 19 cartões — 9 pela ficha, 10 pelo piso,
+  0 sem saída de compra.**
+
+**Pauta da seção 17:** `pauta.md` ainda não existe — 0 escritos, 0 na fila, 0
+recusados.
+
+### Próximo passo
+
+1. **LEVA 5 do eixo `/peixes/` está entregue**; a próxima leva do eixo **não está
+   pronta**, e é decisão de banco: `/peixes/ciclideos-anoes/` tem 1 elegível e
+   `/peixes/plecos-e-limpa-vidros/` tem 1, longe do mínimo de três do 16.5. O salto
+   maior disponível é a própria `vivaparos` indo de 3 para 5 fichas, e ele depende
+   do despacho de egresso aberto para o Raphael (molly e guppy).
+2. **A lista dos barrados na tela** — a dívida nomeada no bloco anterior, que muda
+   a tela das três categorias de uma vez.
+3. **Quando houver `url_busca` encurtada**, nada precisa ser construído: o piso
+   troca de crua para afiliada sozinho, porque `aquametria_cN_compra()` já prefere
+   `url_busca` quando ela existe. O que muda é o selo do cartão, e ele já é
+   derivado.
