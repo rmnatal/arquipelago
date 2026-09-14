@@ -7,6 +7,15 @@
  * 11/09; o cabeçalho, que é a primeira coisa que alguém lê neste arquivo, não
  * tinha nenhuma. Agora tem, na seção 16 do teste-casca.php, e a constante sobe
  * para 1.5.1 sem que uma linha de comportamento mude.
+ * Versão: 1.6.3 (14/09/2026) — a purga por sistema de arquivos foi MEDIDA e
+ * RETIRADA. Ela foi ao ar na revisão 40 e não mudou nada: o canônico continuou
+ * servindo a página anterior enquanto o mesmo endereço com quebra de cache
+ * servia a nova. Depois dela, o canônico passou a responder no-store e sem
+ * last-modified — cabeçalho de página não cacheada — e ainda assim com o corpo
+ * antigo, o que diz que a camada está À FRENTE do Apache e nenhuma linha de PHP
+ * a alcança. Código que apaga arquivo é o mais arriscado desta ilha; mantê-lo
+ * sem que resolva o que prometia seria guardar o risco e perder o benefício. Os
+ * ganchos dos caches conhecidos ficam, porque são baratos e corretos.
  * Versão: 1.6.2 (14/09/2026) — a purga por GANCHO não pegou. As duas ações do
  * Endurance Page Cache foram disparadas na revisão 39 e o endereço canônico
  * continuou servindo a página das 14h40 — medido, não suposto. O EPC guarda a
@@ -150,7 +159,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_CASCA_VERSAO' ) ) {
-	define( 'ROBOMETRIA_CASCA_VERSAO', '1.6.2' );
+	define( 'ROBOMETRIA_CASCA_VERSAO', '1.6.3' );
 	define( 'ROBOMETRIA_CASCA_TAGLINE', 'Qual peça o fabricante declarou para o seu robô aspirador — com código, endereço e data' );
 
 	/* GA4 DESTA ILHA — robometria, propriedade 553889920 da conta Arquipélago.
@@ -2895,25 +2904,23 @@ function robometria_casca_purgar_cache() {
 		}
 	}
 
-	/* E A PURGA QUE NÃO DEPENDE DO NOME DO GANCHO, porque as duas acima foram
-	   disparadas na revisão 39 e o endereço canônico continuou servindo a página
-	   das 14h40 — medido, não suposto.
+	/* A PURGA POR SISTEMA DE ARQUIVOS FOI ESCRITA, MEDIDA E RETIRADA, em
+	   14/09/2026, e o motivo fica escrito para ninguém reescrevê-la achando que
+	   é a saída. Ela esvaziava `wp-content/endurance-page-cache/`, que é o que o
+	   `purge_all()` do próprio plugin faz. Foi ao ar na revisão 40 e **não
+	   mudou nada**: o endereço canônico continuou servindo a página anterior
+	   (137.943 bytes, a frase proibida em quatro cartões, "73 pares" na tabela)
+	   enquanto o mesmo endereço com quebra de cache servia a nova (138.832
+	   bytes, quatro saídas pela busca, "73 linhas").
 
-	   O EPC guarda a página em ARQUIVO, em `wp-content/endurance-page-cache/`, e
-	   o Apache a serve por mod_rewrite ANTES de o PHP rodar — é por isso que a
-	   mesma URL com uma chave de quebra de cache mostra a página nova: com query
-	   string a regra não casa. Apagar aquele diretório é exatamente o que o
-	   `purge_all()` do próprio plugin faz, e é reversível por definição: a
-	   próxima visita regenera o arquivo.
-
-	   AS TRÊS GUARDAS, e nenhuma é decoração: o caminho é montado a partir de
-	   WP_CONTENT_DIR e nunca de entrada de requisição; o nome da pasta é
-	   comparado inteiro; e a recursão se recusa a seguir link simbólico, para
-	   não sair da pasta por um atalho que alguém tenha deixado lá. */
-	$pasta = defined( 'WP_CONTENT_DIR' ) ? WP_CONTENT_DIR . '/endurance-page-cache' : '';
-	if ( '' !== $pasta && is_dir( $pasta ) && ! is_link( $pasta ) ) {
-		robometria_casca_esvaziar_pasta( $pasta, $pasta );
-	}
+	   O que a medição seguinte mostrou é que a camada não é a que se supunha:
+	   depois da purga, o canônico passou a responder `cache-control: no-store` e
+	   **sem** `last-modified` — cabeçalho de página não cacheada — e mesmo assim
+	   com o corpo antigo. Isso não é arquivo local sendo servido: é uma camada
+	   à frente do Apache, e nenhuma linha de PHP a alcança. Código que apaga
+	   arquivo é o mais arriscado desta ilha; mantê-lo sem que ele resolva o que
+	   prometia seria guardar o risco e perder o benefício. O que sobrou está no
+	   despacho aberto para o Raphael em `dados/despachos.md`. */
 
 	/* Os outros, cada um só se estiver lá. Nenhum é esperado neste host. */
 	if ( function_exists( 'wp_cache_clear_cache' ) ) {   // WP Super Cache
@@ -2926,48 +2933,6 @@ function robometria_casca_purgar_cache() {
 		w3tc_flush_all();
 	}
 	do_action( 'litespeed_purge_all' );                  // LiteSpeed Cache
-}
-}
-
-/**
- * Apaga o conteúdo de uma pasta de cache, e NUNCA sai dela.
- *
- * `$raiz` viaja em toda chamada e é conferida a cada nível: antes de apagar
- * qualquer coisa, o caminho real tem de começar pelo caminho real da raiz. É o
- * que impede um link simbólico, um `..` ou uma pasta montada de virarem uma
- * exclusão em outro lugar do disco. A pasta raiz em si não é removida — só
- * esvaziada —, porque o plugin a recria e não é desta ilha o direito de sumir
- * com ela.
- */
-if ( ! function_exists( 'robometria_casca_esvaziar_pasta' ) ) {
-function robometria_casca_esvaziar_pasta( $pasta, $raiz ) {
-	$real_raiz = realpath( $raiz );
-	$real      = realpath( $pasta );
-	if ( ! $real_raiz || ! $real || 0 !== strpos( $real . DIRECTORY_SEPARATOR,
-		rtrim( $real_raiz, DIRECTORY_SEPARATOR ) . DIRECTORY_SEPARATOR ) ) {
-		return;
-	}
-
-	$itens = @scandir( $real );
-	if ( ! is_array( $itens ) ) {
-		return;
-	}
-	foreach ( $itens as $item ) {
-		if ( '.' === $item || '..' === $item ) {
-			continue;
-		}
-		$caminho = $real . DIRECTORY_SEPARATOR . $item;
-		if ( is_link( $caminho ) ) {
-			/* Link simbólico não é seguido: apagar o link é seguro, apagar o que
-			   ele aponta seria sair da pasta sem perceber. */
-			@unlink( $caminho );
-		} elseif ( is_dir( $caminho ) ) {
-			robometria_casca_esvaziar_pasta( $caminho, $real_raiz );
-			@rmdir( $caminho );
-		} else {
-			@unlink( $caminho );
-		}
-	}
 }
 }
 

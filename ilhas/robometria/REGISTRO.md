@@ -4046,10 +4046,25 @@ quebra de cache, e a **seção 11** conta o piso da 25.2 no HTML servido e cobra
 AUSÊNCIA da frase proibida. As duas reprovaram na hora, nomeando as quatro
 páginas e a diferença (3 contra 15).
 
-**A purga por GANCHO não pegou** — as duas ações do EPC foram disparadas na
-revisão 39 e o canônico continuou velho —, então a casca passou a esvaziar a
-pasta do cache, que é o que o `purge_all()` do próprio plugin faz, com três
-guardas de caminho e sem seguir link simbólico.
+**E NENHUMA DAS DUAS PURGAS PEGOU — este bloco NÃO chegou ao leitor.** As ações
+do EPC foram ao ar na revisão 39; o esvaziamento da pasta `endurance-page-cache`,
+que é o que o `purge_all()` do próprio plugin faz, foi ao ar na revisão 40 e foi
+**RETIRADO na 41** — código que apaga arquivo é o mais arriscado desta ilha, e não
+dá para guardar o risco sem o benefício. Medido às 16h01Z, lado a lado na mesma
+URL: canônico com **137.943 bytes, zero saídas de compra, a frase proibida em
+quatro cartões e "73 pares" na tabela**; com `?v=<agora>`, **138.832 bytes, quatro
+saídas, nenhuma frase proibida e "73 linhas"**. Depois da purga o canônico passou
+a responder `cache-control: no-store` e **sem** `last-modified` — cabeçalho de
+página não cacheada — e ainda assim com o corpo antigo: **a camada está à frente
+do Apache e nenhuma linha de PHP a alcança.** Os ganchos ficam, porque são baratos
+e não apagam nada.
+
+**A ILHA ESTÁ PUBLICANDO PARA NINGUÉM, e isto é o estado honesto do bloco:** o
+trabalho está commitado, aplicado, medido e correto — e o leitor continua na
+página de antes. Há despacho de prioridade ALTA aberto para o Raphael em
+`dados/despachos.md` pedindo a purga no painel do hospedeiro ou a chave de uma
+purga por API, e um segundo despacho para a Fundação, porque a clubedomosaico
+serve a mesma assinatura de cache e pode estar na mesma situação.
 
 **VERIFICAÇÃO, BANCADA, 0 falha:** teste-r1 216 (eram 202, nasceu a seção 19),
 teste-r2 107 (eram 100, nasceu a seção 12), teste-casca 205, teste-a1 68,
@@ -4068,12 +4083,11 @@ exato que a bateria existe para pegar.
 com `degrau: 4`, 65 com `conferido_em`, **0 sem saída de compra**, 65 com saída
 que não rastreia, 0 com ficha de produto, 0 intestáveis, 0 com `url_produto`.
 
-**PRÓXIMO PASSO DESBLOQUEADO — e é uma MEDIÇÃO, não construção:** rodar
-`python3 ferramentas/conferir-no-ar.py` e olhar as seções 9, 10 e 11. A seção 10
-é a que diz se a purga do cache pegou; a ronda de 14/09 pediu, com todas as
-letras, que a reconferência do cache seja feita **mais de duas horas depois**,
-porque medição logo após o purge só prova que o purge aconteceu. **Se a seção 10
-reprovar, o item 1 do despacho vira pedido de acesso ao painel do hospedeiro, que
-é do Raphael, e nenhum bloco novo desta ilha chega ao leitor até lá.** Só depois
-disso a fila normal volta: o item (2) do estado anterior segue atrás do egresso
-fechado aos domínios da WAP.
+**PRÓXIMO PASSO — e ele é uma MEDIÇÃO, não construção:** rodar
+`python3 ferramentas/conferir-no-ar.py` e olhar as seções 9, 10 e 11 **antes de
+qualquer outra coisa**. A seção 10 é a que diz se o cache passou a entregar; hoje
+ela reprova, nomeando as quatro páginas e a diferença (3 contra 15). Enquanto ela
+reprovar, **construir continua permitido e dar por entregue não** — e o que
+destrava não é código, é o despacho aberto para o Raphael. Quando ela passar, a
+fila normal volta: o item (2) do estado anterior segue atrás do egresso fechado
+aos domínios da WAP.

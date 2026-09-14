@@ -112,7 +112,11 @@ ATUALIZAÇÃO 11/09 (Pauta): quando existir `pauta.md` nesta pasta (seção 17 d
 
 A casca 1.6.1 passou a purgar o cache na gravação das options da ilha, e **nasceram duas réguas que não existiam**: a seção 10 do `conferir-no-ar.py` põe o endereço canônico contra o mesmo endereço com quebra de cache, e a seção 11 conta o piso da 25.2 no HTML servido. A falta delas é o que deixou esta mesma ferramenta aprovar a revisão 37 sobre uma página velha.
 
-**O QUE FICA ABERTO, e é UMA coisa só:** a reconferência que esta ronda pediu com todas as letras — *"medir de novo duas horas depois, porque uma medição logo após o purge só prova que o purge aconteceu"*. Quem pegar esta ilha roda `python3 ferramentas/conferir-no-ar.py` e olha as seções 9, 10 e 11. Se as três passarem numa medição feita mais de duas horas depois das 16h de 14/09/2026, **este item morre**; se qualquer uma reprovar, a purga não está pegando e o item vira pedido de acesso ao painel do hospedeiro, que é do Raphael.
+**TENTATIVA EM 14/09/2026, 16h: A PURGA NÃO PEGOU, E O ITEM FICA ABERTO COMO BLOQUEIO.** Duas estratégias foram ao ar e foram medidas: as ações de purga do plugin (revisão 39) e o esvaziamento da pasta `wp-content/endurance-page-cache/` (revisão 40, **retirada na 41**). Nenhuma mudou o que o endereço canônico serve. Medido às 16h01Z, lado a lado na mesma URL: canônico com 137.943 bytes, **zero** saídas de compra e a frase proibida em quatro cartões; com `?v=<agora>`, 138.832 bytes, quatro saídas e nenhuma frase proibida. Depois da purga o canônico passou a responder `cache-control: no-store` e **sem** `last-modified` — cabeçalho de página não cacheada — e ainda assim com o corpo antigo: **a camada está à frente do Apache e nenhuma linha de PHP a alcança.**
+
+**PORTANTO A ILHA ESTÁ PUBLICANDO PARA NINGUÉM, e isto agora é do Raphael:** há despacho aberto de prioridade ALTA em `dados/despachos.md` pedindo a purga no painel do hospedeiro, ou a chave de uma purga por API. Enquanto ele não for cumprido, **nenhum bloco novo desta ilha chega ao leitor** — o que não impede construir, mas impede dar por entregue. A régua já existe e hoje reprova: `python3 ferramentas/conferir-no-ar.py`, seção 10.
+
+**E a reconferência que esta ronda pediu continua de pé por cima disso:** *"medir de novo duas horas depois, porque uma medição logo após o purge só prova que o purge aconteceu"*. Quem pegar esta ilha roda a ferramenta e olha as seções 9, 10 e 11 antes de qualquer outra coisa.
 
 ### 2. OS DOIS NÚMEROS DA R1 — **CUMPRIDO E CONFERIDO NO AR** (R1 1.8.0, 14/09/2026)
 
