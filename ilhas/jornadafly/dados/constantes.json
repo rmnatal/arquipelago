@@ -1,0 +1,123 @@
+{
+  "ilha": "jornadafly",
+  "bloco": "2",
+  "versao": 1,
+  "gerado_em": "2026-09-14",
+  "publicar": false,
+  "nota_de_procedencia": "Coleta de 14/09/2026, entre 17h25Z e 17h40Z. Tres canais foram tentados e dois estao fechados nesta nuvem: curl direto devolveu 000 com connect_rejected por politica da organizacao em economia.awesomeapi.com.br, open.er-api.com e api.bcb.gov.br; a leitura direta de fonte primaria devolveu EGRESS_BLOCKED em www.comune.venezia.it. Sobrou a busca web, e e dela que sai tudo abaixo. Pela regra do elo mais fraco (secao 10 do ARQUIPELAGO.md), NENHUMA constante deste arquivo e leitura direta da fonte primaria, mesmo quando o documento citado e oficial: o elo da leitura e fraco e e ele que da o nivel. A busca web sai dos Estados Unidos, entao o que esta garantido e a LINGUA da consulta, nao a geografia de quem busca.",
+  "regras": {
+    "preco_de_experiencia_nao_mora_aqui": "Preco de experiencia e BANCO, nasce no bloco 3 com data_leitura, e e o produto desta ilha. Este arquivo guarda so parametro que atravessa ferramenta e experiencia: imposto, cambio, faixa de gorjeta, validade de preco. A tarifa da gondola de Veneza e o caso-limite e fica de fora de proposito: ela esta na secao 2.2 de especificacao-calculadoras.md como exemplo trabalhado e vai para o banco UMA vez. Duas copias da mesma decisao em dois arquivos e o defeito que a Robometria pagou em 14/09.",
+    "status_pendente": "Constante com status pendente e PROIBIDA dentro de formula publicada (secao 10 do ARQUIPELAGO.md). Hoje isso alcanca as duas constantes de cambio, e a consequencia esta escrita na 2.5 da especificacao: a F1 publica na moeda que o operador cobra e NAO publica valor em real.",
+    "divergencia_com_autoridade": "Quando existe tarifa de poder publico, ela ganha de qualquer numero de blog, e a pagina publica as duas declaracoes com o nome de quem publicou cada uma.",
+    "divergencia_sem_autoridade": "Resolve para o valor MAIOR, e a direcao sai do erro caro: quem chega com dinheiro a menos perde a experiencia na porta; quem chega com dinheiro a mais volta com troco. E o oposto da regra da Robometria (peca que nao encaixa) e a mesma familia da Aquametria (espaco a mais para o peixe). Media e proibida: ela esconde exatamente o desacordo que faz a pagina valer.",
+    "recomendacao_editorial_nunca_vira_preco": "Faixa recomendada por veiculo tem autor e nao e cobranca. Nunca entra dentro de um total. Aparece como faixa, com o nome de quem recomenda cada numero.",
+    "fonte_com_interesse_comercial_e_declarada": "Quando quem publica o numero ganha se o numero for alto, isso vai escrito no registro da constante. Nao desqualifica a fonte; muda o que o leitor sabe sobre ela."
+  },
+  "tipos_de_constante": {
+    "oficial": "publicada em norma ou em canal de orgao publico",
+    "recomendacao_editorial": "recomendacao publicada por veiculo ou plataforma; tem autor, nao e cobranca",
+    "decisao_da_ilha": "regra que esta ilha escolheu, com o motivo escrito; nao e dado de terceiro",
+    "entrada_do_leitor": "nao tem valor unico no mundo; e campo que a pessoa informa ou que a pagina declara como variavel",
+    "pendente": "ainda nao tem base suficiente ou nao tem canal de leitura. Proibida em formula publicada"
+  },
+  "constantes": [
+    {
+      "id": "iof-compra-internacional-cartao-pessoa-fisica",
+      "descricao": "IOF sobre compra internacional com cartao de credito ou debito de pessoa fisica. E percentual, entao se aplica na moeda do operador e NAO precisa de taxa de cambio para entrar na conta.",
+      "valor": 3.5,
+      "unidade": "por cento",
+      "tipo": "oficial",
+      "fonte": "Decreto no 12.499, de 11 de junho de 2025, que altera o Decreto no 6.306/2007 (regulamento do IOF). A aliquota voltou a valer apos o Supremo Tribunal Federal restabelecer o decreto em julho de 2025.",
+      "url": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2025/decreto/d12499.htm",
+      "url_secundaria": "https://www.camara.leg.br/radio/programas/1182454-aumento-do-iof-para-cartao-internacional-volta-a-valer/",
+      "canal_de_coleta": "busca web em 14/09/2026; a pagina do Planalto NAO foi aberta diretamente (egresso fechado). Nivel pelo elo mais fraco: leitura por busca.",
+      "coleta_em_duas_passadas": "A PRIMEIRA consulta desta execucao carregava o numero dentro dela ('IOF ... aliquota 2026 3,5%'), o que a secao 8 do ARQUIPELAGO.md proibe. Ela foi DESCARTADA como fonte e a coleta refeita com pergunta limpa — 'qual a aliquota do IOF para compras internacionais no cartao de credito atualmente' —, que devolveu 3,5% por outros publicadores (Nubank, Wise, Afinz, Mercado Pago, Radio Camara) e ainda trouxe a historia da aliquota (3,38% em janeiro de 2025, depois 3,5%) que a pergunta plantada nao tinha trazido. O que sustenta esta constante e a SEGUNDA passada.",
+      "verificado_em": "2026-09-14",
+      "status": "publicavel",
+      "usada_em": ["F1", "F2", "F3"],
+      "por_que_importa": "Nenhuma das seis paginas de topo medidas em 14/09/2026 menciona IOF, e tres delas convertem para real sem declarar cambio nem data. E o diferencial mais barato desta ilha e o unico que nao depende de nada bloqueado.",
+      "revalidar": "aliquota de decreto muda por decreto. Reconferir a cada 90 dias e sempre que houver noticia de mudanca de IOF."
+    },
+    {
+      "id": "cambio-eur-brl",
+      "descricao": "Taxa de conversao euro para real, para a linha em reais da F1 e da F2.",
+      "valor": null,
+      "unidade": "BRL por EUR",
+      "tipo": "pendente",
+      "fonte": null,
+      "canal_de_coleta": "NENHUM ABERTO. Medido em 14/09/2026: economia.awesomeapi.com.br, open.er-api.com e api.bcb.gov.br devolveram 000, com o proxy declarando connect_rejected por politica da organizacao.",
+      "verificado_em": "2026-09-14",
+      "status": "pendente",
+      "usada_em": [],
+      "o_que_falta": "uma fonte de cambio datada e alcancavel da nuvem. Somar ao despacho de rede do bloco 1, que ja esta aberto para o dominio da ilha.",
+      "consequencia_declarada": "Enquanto estiver pendente, a F1 e a F2 publicam na moeda que o operador cobra e dizem ao leitor que o valor em real depende do cambio do dia do cartao dele. Nao e omissao: e a secao 10 sendo obedecida."
+    },
+    {
+      "id": "cambio-usd-brl",
+      "descricao": "Taxa de conversao dolar americano para real, para a linha em reais da F1 e da F2.",
+      "valor": null,
+      "unidade": "BRL por USD",
+      "tipo": "pendente",
+      "fonte": null,
+      "canal_de_coleta": "NENHUM ABERTO. Mesma medicao de 14/09/2026 do cambio-eur-brl.",
+      "verificado_em": "2026-09-14",
+      "status": "pendente",
+      "usada_em": [],
+      "o_que_falta": "igual ao cambio-eur-brl.",
+      "consequencia_declarada": "igual ao cambio-eur-brl. Pesa mais do que parece: das seis experiencias medidas em 14/09, quatro publicam em dolar (Petra, Angkor, Ha Long, Dubai)."
+    },
+    {
+      "id": "spread-do-emissor-do-cartao",
+      "descricao": "Spread que o banco ou a fintech emissora cobra por cima da taxa de cambio, em compra internacional.",
+      "valor": null,
+      "unidade": "por cento",
+      "tipo": "entrada_do_leitor",
+      "fonte": null,
+      "canal_de_coleta": "nao se aplica",
+      "verificado_em": "2026-09-14",
+      "status": "nao_publicavel_como_numero_unico",
+      "usada_em": [],
+      "por_que_nao_tem_valor": "Nao existe um numero: o spread e de cada emissor e muda entre cartoes do mesmo banco. Publicar uma media seria inventar o dado mais facil de conferir da pagina. Fica como campo que a pessoa informa, com o padrao AUSENTE, e a pagina diz que o IOF ela conhece e o spread do cartao dela, nao."
+    },
+    {
+      "id": "gorjeta-free-tour-por-pessoa-europa",
+      "descricao": "Faixa de gorjeta recomendada por pessoa ao fim de um free tour na Europa. NAO e preco: free tour nao cobra entrada, e a gorjeta e voluntaria e paga em especie ao guia.",
+      "valor": {"minimo": 5, "maximo": 20},
+      "unidade": "EUR por pessoa",
+      "tipo": "recomendacao_editorial",
+      "declaracoes": [
+        {"publicador": "Dicas da Italia (guia de gorjetas em Roma)", "url": "https://dicasdaitalia.com.br/roma/gorjetas-em-roma-quando-e-quanto-dar/", "diz": "geralmente 5 a 10 euros ao fim do passeio, e recomenda ao menos 10 euros por pessoa", "cidade": "Roma"},
+        {"publicador": "Visit Lisboa Blog", "url": "https://www.visitlisboablog.pt/2026/09/free-tour-lisboa-vale-a-pena.html", "diz": "a maioria paga entre 10 e 15 euros por pessoa", "cidade": "Lisboa"},
+        {"publicador": "Dica de Portugal", "url": "https://dicadeportugal.com/lisboa/free-walking-tour-lisboa-como-funciona-melhores-rotas/", "diz": "entre 10 e 15 euros por pessoa, conforme a satisfacao", "cidade": "Lisboa"},
+        {"publicador": "Civitatis Magazine", "url": "https://www.civitatis.com/blog/pt-br/que-e-free-tour/", "diz": "o normal na Europa e pagar entre 10 e 20 euros por pessoa", "cidade": "Europa", "interesse_comercial": "SIM — a Civitatis e a plataforma de reserva e e o elo que pagaria comissao a esta ilha. E tambem a fonte que publica a faixa MAIS ALTA das quatro. Isso nao a desqualifica; vai escrito ao lado do numero."}
+      ],
+      "canal_de_coleta": "busca web em 14/09/2026, quatro publicadores independentes",
+      "verificado_em": "2026-09-14",
+      "status": "publicavel_como_faixa_com_autores",
+      "usada_em": ["F1 (cluster free tour, bloco 5c)"],
+      "como_aparece_na_tela": "Faixa, com o nome de quem recomenda cada numero, NUNCA a media e NUNCA dentro de um total. Para uma familia de quatro, a conta que nenhuma pagina medida faz e 20 a 80 euros — e e essa conta, e nao o adjetivo gratuito, que e o produto da ilha aplicado a um passeio de graca.",
+      "revalidar": "a cada 180 dias"
+    },
+    {
+      "id": "validade-do-preco-antes-de-reler",
+      "descricao": "Por quantos dias um preco colhido continua publicavel antes de a ilha ter de rele-lo na fonte.",
+      "valor": {"operador_privado": 60, "tarifa_de_poder_publico": 180},
+      "unidade": "dias",
+      "tipo": "decisao_da_ilha",
+      "fonte": "decisao desta ilha, escrita no bloco 2",
+      "canal_de_coleta": "nao se aplica",
+      "verificado_em": "2026-09-14",
+      "status": "publicavel",
+      "usada_em": ["F1", "F2", "F3", "bloco 3", "ronda da Sentinela"],
+      "por_que_estes_numeros": "O corpus do bloco 1 mediu um resultado de topo com [2024] no proprio title e outro, de 2026, com diaria convertida sem cambio e sem data; em 14/09 o mesmo padrao apareceu em seis destinos novos. Preco de operador privado muda sem aviso — e o criterio de entrada de experiencia no banco justamente PREFERE operador privado —, entao ele envelhece rapido. Tarifa tabelada por poder publico muda por ato publicado e envelhece devagar.",
+      "o_que_a_regra_NAO_autoriza": "Preco vencido nao vira preco errado em silencio: a data de leitura aparece na tela SEMPRE, vencida ou nao, e item vencido e defeito de ronda, nunca item escondido."
+    }
+  ],
+  "resumo": {
+    "total": 6,
+    "publicaveis": 3,
+    "pendentes": 2,
+    "sem_valor_unico_por_natureza": 1,
+    "leitura_direta_de_fonte_primaria": 0
+  }
+}

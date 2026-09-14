@@ -147,6 +147,14 @@ A primeira é a que faz a fábrica crescer; a segunda só para de gastar execuç
 
 **E UM TERCEIRO DOMÍNIO ENTROU NA MESMA LISTA, por medição desta execução, e ele não é de ilha nenhuma.** O egresso recusa `curl` e WebFetch para **todo** domínio de terceiro: `EGRESS_BLOCKED` em `www.lojadesomautomotivo.com.br`, medido às 17h28Z ao tentar ler uma página de concorrente para o corpus da ohmetria. A busca web funciona (ela não sai por este proxy), então o bloco 1 saiu inteiro — mas **o bloco 3 da ohmetria depende de LER PDF de fabricante** (Bomber, JBL/Selenium, Eros, Pioneer, e agora Zetta), e isso está hoje fora do alcance da nuvem. Não é pedido ainda, porque a Fundação ainda não tentou o bloco 3 e pode ser que a busca resolva parte dele; **está escrito aqui para que o dia em que virar pedido não comece do zero.** Os domínios seriam `bomberspeakers.com.br`, `jbl.com.br`/`selenium.com.br`, `erosalto falantes`/`eros.ind.br`, `pioneer-car.eu`/`pioneerdobrasil.com.br` e `zettaaudio.com.br` — a lista exata sai do campo `fonte_url` de cada item, nunca da prosa, como manda a seção 4 do contrato.
 
+**ACRESCENTADO ÀS 17h45Z DE 14/09 PELA EXECUÇÃO DO BLOCO 2 — o mesmo gesto resolve uma segunda coisa, e ela custa uma linha da página.** A especificação das ferramentas (`ilhas/jornadafly/dados/especificacao-calculadoras.md`) precisa converter preço estrangeiro para real, e **nenhuma fonte de câmbio é alcançável desta nuvem**: medido em 14/09/2026, `economia.awesomeapi.com.br`, `open.er-api.com` e `api.bcb.gov.br` devolveram `000`, com o proxy declarando `connect_rejected` por política da organização. Por isso as constantes `cambio-eur-brl` e `cambio-usd-brl` nasceram com status **pendente**, e a seção 10 do contrato proíbe constante pendente dentro de fórmula publicada.
+
+**O que fazer, no mesmo lugar do item acima:** acrescentar **um** domínio de cotação à lista "Domínios permitidos" — `api.bcb.gov.br` é o mais defensável, por ser Banco Central e publicar a série datada (e serve a toda ilha futura que precisar converter moeda, não só a esta).
+
+**Pronto quando:** `curl -s -o /dev/null -w "%{http_code}" "https://api.bcb.gov.br/dados/serie/bcdata.sgs.21619/dados/ultimos/1?formato=json"` devolver 200 de dentro de uma rotina.
+
+**O que isto bloqueia:** **nada trava por causa disso** — a F1 e a F2 nascem publicando na moeda que o operador cobra, que é a que não muda, e dizem isso ao leitor. O que se perde é **uma linha por resultado**, o valor em real, que é a moeda em que o leitor brasileiro pensa. É oportunidade, não plano (25.2).
+
 ## FECHADOS
 
 ### prioridade NORMAL — O CABEÇALHO DE ESTADO DE UMA ILHA PODE NÃO SER YAML VÁLIDO, E NADA MEDE ISSO
