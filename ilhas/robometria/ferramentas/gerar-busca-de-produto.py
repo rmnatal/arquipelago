@@ -48,10 +48,34 @@ o vendedor nao usa traz ZERO resultado, e busca com zero resultado e o beco sem
 saida que o piso existe para impedir. O raciocinio inteiro, com a medicao que falta
 e com quem vai poder fazer ela um dia, esta em
 esquema-banco.json > afiliado > escada_de_compra > por_que_a_peca_nao_leva_o_codigo.
+
+O QUE O DESPACHO DO RAPHAEL DE 14/09/2026 ACRESCENTOU AQUI
+-----------------------------------------------------------
+Ate 14/09 este arquivo escrevia a PALAVRA-CHAVE e parava. O degrau ficava `null` em
+65 de 65 registros publicaveis, e `null` no degrau quer dizer "ninguem decidiu" —
+quando a verdade era o contrario: a decisao estava tomada havia um dia inteiro e so
+nao estava escrita. Degrau em branco num item que TEM piso e a mesma familia do
+numero de tela digitado: parece pendencia e e dado que ninguem gravou.
+
+Agora o degrau sai CONTADO do proprio campo, nunca digitado:
+
+  . tem `url` (ficha de produto) .... o degrau e 1, 2 ou 3 e quem o escolheu foi
+    quem escolheu a ficha. Este arquivo NAO o toca: ele nao sabe se a URL e loja
+    oficial, catalogo do Mercado Livre ou anuncio de vendedor, e adivinhar isso
+    pelo formato do link e exatamente o que o esquema proibe em `degrau`.
+  . nao tem ficha e tem piso ....... degrau 4, com `conferido_em` do dia. E a
+    leitura honesta da escada da 25.1: ela parou na busca.
+
+E o campo `intestavel` da 25.4-b nasce junto, pelo item 3 daquele despacho. Ele e
+DERIVADO, nunca opinado: ha link encurtado (`url`) e nao ha a URL crua do produto
+(`url_produto`) que a ronda precisaria abrir. Hoje ele e `false` em 65 de 65, porque
+nenhum item tem link encurtado — e e por isso que a mutacao que o mede PRODUZ o
+mundo em vez de esperar por ele (secao 8 do ARQUIPELAGO.md).
 """
 import json
 import os
 import sys
+from datetime import date
 from urllib.parse import quote
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -69,10 +93,17 @@ ARQUIVOS = {
 # historia, e campo que pula de lugar a cada passada faz o git mostrar dez linhas
 # onde uma mudou.
 ORDEM_AFILIADO = [
-    "url", "url_produto", "motivo_sem_url_produto", "degrau",
-    "url_busca", "url_busca_produto", "motivo_sem_url_busca",
+    "url", "url_produto", "motivo_sem_url_produto", "intestavel", "degrau",
+    "conferido_em", "url_busca", "url_busca_produto", "motivo_sem_url_busca",
     "plataforma", "coletado_em", "sub_id_1",
 ]
+
+# O degrau do PISO, com o nome que a 25.1 lhe deu. Escrito aqui a mao de proposito:
+# quem confere escreve a propria regua, e teste-escada-compra.py compara este numero
+# com o do esquema por outro caminho.
+DEGRAU_DO_PISO = 4
+
+HOJE = date.today().isoformat()
 
 MOTIVO_SEM_URL_BUSCA = (
     "falta o ENCURTAMENTO, nao a escolha: gerar o link de afiliado da busca exige a "
@@ -135,6 +166,8 @@ def afiliado_normalizado(atual):
             novo[chave] = ""
         elif chave == "sub_id_1":
             novo[chave] = "robometria"
+        elif chave == "intestavel":
+            novo[chave] = False
         else:
             novo[chave] = None
     # Chave que nao esta na forma do esquema NAO some em silencio: ela volta para o
@@ -199,6 +232,30 @@ def main():
                      reg.get("afiliado"))
             afil["url_busca_produto"] = nova_busca
             afil["motivo_sem_url_busca"] = novo_motivo
+
+            # O DEGRAU E O `intestavel` SAO DERIVADOS DO PROPRIO CAMPO, nunca
+            # digitados — item 2 e item 3 do despacho do Raphael de 14/09/2026.
+            tem_ficha = bool((afil.get("url") or "").strip())
+            afil["intestavel"] = bool(tem_ficha and not (afil.get("url_produto") or ""))
+            if tem_ficha:
+                # Ficha e degrau 1, 2 ou 3, e quem sabe qual e quem a escolheu. Ler o
+                # degrau pelo formato do link curto e o que o esquema proibe: o mesmo
+                # encurtador serve loja oficial e anuncio de vendedor com a mesma cara.
+                pass
+            elif nova_busca:
+                # `conferido_em` e o dia em que ESTE degrau foi decidido, e por isso
+                # so e escrito quando ele muda. Carimbar a data de hoje a cada passada
+                # faria o campo dizer "conferido hoje" sem que nada tivesse sido
+                # conferido — numero de tela digitado com outro nome — e encheria o
+                # diff de 65 linhas por execucao.
+                if afil.get("degrau") != DEGRAU_DO_PISO or not afil.get("conferido_em"):
+                    afil["conferido_em"] = HOJE
+                afil["degrau"] = DEGRAU_DO_PISO
+            else:
+                # Sem pagina nao ha piso a cumprir, entao nao ha degrau a declarar.
+                afil["degrau"] = None
+                afil["conferido_em"] = None
+
             depois = (nova_busca, novo_motivo, afil)
 
             if antes[0] == depois[0] and antes[1] == depois[1] and antes[2] == afil:

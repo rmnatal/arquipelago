@@ -64,7 +64,8 @@ CHAVES_IMAGEM = {"url", "largura", "altura", "fonte", "coletado_em", "alt"}
 # por isso cada gerador carimba o proprio codigo. Campo que parece a regra e nao
 # e, num arquivo publicado, e o mesmo defeito da funcao morta no snippet: um dia
 # alguem o usa.
-CHAVES_AFILIADO = {"url", "url_produto", "motivo_sem_url_produto", "degrau",
+CHAVES_AFILIADO = {"url", "url_produto", "motivo_sem_url_produto", "intestavel",
+                   "degrau", "conferido_em",
                    "url_busca", "url_busca_produto", "motivo_sem_url_busca",
                    "plataforma", "coletado_em", "sub_id_1"}
 
@@ -413,10 +414,11 @@ def checar_escada_de_compra(reg, onde, arquivo):
     tem_ficha = bool(a.get("url"))
     degrau = a.get("degrau")
     if tem_ficha:
-        if degrau not in {1, 2, 3, 4}:
-            erro("%s: tem ficha de produto e degrau %r. Degrau nao se le do link curto "
-                 "— s.shopee.com.br encurta a loja oficial e o anuncio de vendedor com "
-                 "a MESMA cara, e os dois apodrecem de forma oposta" % (onde, degrau))
+        if degrau not in {1, 2, 3}:
+            erro("%s: tem ficha de produto e degrau %r. Ficha para em 1, 2 ou 3, e o "
+                 "degrau nao se le do link curto — s.shopee.com.br encurta a loja "
+                 "oficial e o anuncio de vendedor com a MESMA cara, e os dois "
+                 "apodrecem de forma oposta" % (onde, degrau))
         if not a.get("url_produto") and not (a.get("motivo_sem_url_produto") or "").strip():
             erro("%s: tem ficha e nao tem url_produto nem motivo_sem_url_produto. Sem a "
                  "URL crua a ronda nao consegue abrir a pagina para ler 'O produto nao "
@@ -426,13 +428,50 @@ def checar_escada_de_compra(reg, onde, arquivo):
             erro("%s: degrau 3 (anuncio de vendedor) sem url_busca. A 25.1 exige a busca "
                  "justamente neste degrau, que e o que apodrece" % onde)
     else:
-        if degrau is not None:
-            erro("%s: degrau %r sem ficha de produto. Degrau descreve ONDE a ficha "
-                 "parou, e ficha que nao existe nao parou em lugar nenhum"
+        # A REGUA DESTE RAMO FOI INVERTIDA EM 14/09/2026, pelo item 2 do despacho do
+        # Raphael. Ela dizia "degrau sem ficha e degrau que nao parou em lugar nenhum"
+        # — e isso contradiz a propria 25.1, cujo degrau 4 e a BUSCA e por definicao
+        # nao tem ficha. Escrita quando o degrau descrevia so a ficha, a regra
+        # obrigava os 65 publicaveis desta ilha a ficarem com degrau `null` tendo piso
+        # escrito: decisao tomada e nao gravada, com cara de pendencia. Agora o ramo
+        # cobra o contrario, que e o que a secao 25 decidiu.
+        if publicavel and busca and degrau != 4:
+            erro("%s: publicavel com piso e degrau %r. A escada da 25.1 para no PRIMEIRO "
+                 "degrau que servir, e quem nao tem ficha parou na busca, que e o 4. "
+                 "Rode ferramentas/gerar-busca-de-produto.py --gravar" % (onde, degrau))
+        if degrau == 4 and not busca:
+            erro("%s: degrau 4 sem url_busca_produto. O degrau 4 E a busca: dize-lo sem "
+                 "ter a busca escrita e declarar um piso que nao existe" % onde)
+        if degrau not in (None, 4):
+            erro("%s: degrau %r sem ficha de produto. Os degraus 1 a 3 descrevem ONDE a "
+                 "ficha parou, e ficha que nao existe nao parou em lugar nenhum"
                  % (onde, degrau))
         if a.get("url_produto"):
             erro("%s: url_produto sem url. A URL crua existe para conferir a ficha que "
                  "foi escolhida, e nao ha ficha" % onde)
+
+    # O DEGRAU DECLARADO TEM DATA (item 2 do despacho). Degrau sem o dia em que foi
+    # decidido e degrau que ninguem consegue reconferir depois.
+    if degrau is not None and not (a.get("conferido_em") or "").strip():
+        erro("%s: degrau %r sem conferido_em. Degrau e uma decisao, e decisao sem data "
+             "e decisao que a proxima execucao nao sabe se ainda vale" % (onde, degrau))
+    if degrau is None and (a.get("conferido_em") or "").strip():
+        erro("%s: conferido_em sem degrau. A data existe para carimbar a decisao, e nao "
+             "ha decisao" % onde)
+
+    # INTESTAVEL E DERIVADO, NUNCA OPINADO (item 3 do despacho de 14/09/2026). Ele e
+    # a unica forma de a impossibilidade da 25.4-b ficar VISIVEL em vez de escondida:
+    # ha link para clicar e nao ha como conferir se ele esta vivo.
+    intestavel = a.get("intestavel")
+    if not isinstance(intestavel, bool):
+        erro("%s: afiliado.intestavel e %r, e ele e booleano. Rode "
+             "ferramentas/gerar-busca-de-produto.py --gravar" % (onde, intestavel))
+    else:
+        esperado = bool(tem_ficha and not a.get("url_produto"))
+        if intestavel != esperado:
+            erro("%s: intestavel diz %r e o campo diz %r. Ele e DERIVADO de ter ficha e "
+                 "nao ter a URL crua dela (25.4-b), nunca escrito a mao"
+                 % (onde, intestavel, esperado))
 
 # ---------------------------------------------------------- MODELOS DE ROBO
 ids_modelo = {}
@@ -684,8 +723,21 @@ for _doc, _arq in ((modelos, "modelos-robo.json"), (pecas, "pecas.json")):
     _p = [r for r in _doc["registros"] if r["status"] == "publicavel"]
     conferir_contagem(_doc, _arq, "itens_com_ficha",
                       sum(1 for r in _p if r["afiliado"]["url"]))
-    conferir_contagem(_doc, _arq, "itens_sem_piso",
-                      sum(1 for r in _p if not r["afiliado"]["url_busca"]))
+    # A CHAVE `itens_sem_piso` MORREU EM 14/09/2026, e o motivo e o proprio despacho
+    # do Raphael: ela contava itens sem `url_busca` — o link ENCURTADO — e chamava
+    # isso de "sem piso". Depois que a pagina passou a servir a busca CRUA, os 65
+    # publicaveis tem saida de compra e a chave afirmava o contrario, em arquivo
+    # publicado. E a mesma familia do achado 2 da Sentinela de hoje: dois numeros
+    # certos contando coisas diferentes com o mesmo nome. Viraram duas, cada uma
+    # dizendo o que conta.
+    conferir_contagem(_doc, _arq, "itens_sem_saida_de_compra",
+                      sum(1 for r in _p if not (r["afiliado"]["url"]
+                                                or r["afiliado"]["url_busca"]
+                                                or r["afiliado"]["url_busca_produto"])))
+    conferir_contagem(_doc, _arq, "itens_com_piso_nao_rastreavel",
+                      sum(1 for r in _p if not r["afiliado"]["url"]
+                          and not r["afiliado"]["url_busca"]
+                          and r["afiliado"]["url_busca_produto"]))
     conferir_contagem(_doc, _arq, "links_sem_degrau",
                       sum(1 for r in _p if r["afiliado"]["url"]
                           and r["afiliado"]["degrau"] is None))
@@ -715,17 +767,21 @@ print("  pecas ................ %d (%d publicaveis)"
       % (len(pecas["registros"]),
          sum(1 for p in pecas["registros"] if p["status"] == "publicavel")))
 print("  pares peca x modelo .. %d, todos DECLARADOS pelo fabricante" % pares)
-print("  esperando link de afiliado ... %d" % len(esperando))
-_sem_piso = [r["id"] for _doc in (modelos, pecas) for r in _doc["registros"]
-             if r["status"] == "publicavel" and not r["afiliado"]["url_busca"]]
-_sem_chave = [r["id"] for _doc in (modelos, pecas) for r in _doc["registros"]
-              if r["status"] == "publicavel" and not r["afiliado"]["url_busca_produto"]]
-print("  SEM PISO (25.2) ............. %d de %d publicaveis, e %d deles sem nem a "
-      "palavra-chave escrita"
-      % (len(_sem_piso),
-         sum(1 for _doc in (modelos, pecas) for r in _doc["registros"]
-             if r["status"] == "publicavel"),
-         len(_sem_chave)))
+print("  esperando ficha de produto ... %d" % len(esperando))
+_pub_total = sum(1 for _doc in (modelos, pecas) for r in _doc["registros"]
+                 if r["status"] == "publicavel")
+_sem_saida = [r["id"] for _doc in (modelos, pecas) for r in _doc["registros"]
+              if r["status"] == "publicavel" and not (r["afiliado"]["url"]
+                                                      or r["afiliado"]["url_busca"]
+                                                      or r["afiliado"]["url_busca_produto"])]
+_nao_rastreavel = [r["id"] for _doc in (modelos, pecas) for r in _doc["registros"]
+                   if r["status"] == "publicavel" and not r["afiliado"]["url"]
+                   and not r["afiliado"]["url_busca"]
+                   and r["afiliado"]["url_busca_produto"]]
+print("  SEM SAIDA DE COMPRA (25.2) .. %d de %d publicaveis — este e o defeito da 19.1"
+      % (len(_sem_saida), _pub_total))
+print("  saida crua, sem rastreio ..... %d de %d — clique que funciona e nao paga "
+      "comissao, esperando o ENCURTAMENTO (25.6)" % (len(_nao_rastreavel), _pub_total))
 
 if avisos:
     print("\nAvisos (%d) — nao reprovam, sao lista de trabalho:" % len(avisos))

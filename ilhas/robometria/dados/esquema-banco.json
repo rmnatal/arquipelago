@@ -3,7 +3,7 @@
  "ilha": "robometria",
  "bloco": 3,
  "gerado_em": "2026-09-09",
- "versao_esquema": 6,
+ "versao_esquema": 7,
  "descricao": "Modelo normalizado do banco da Robometria: entidades MARCA, MODELO_ROBO, PECA e COTACAO. Define campo a campo o tipo, a unidade, a obrigatoriedade, o vocabulario controlado e a ORIGEM esperada do dado. Nenhum numero entra no banco sem uma entrada correspondente em fontes{}. Este arquivo e o contrato que dados/marcas.json, dados/modelos-robo.json e dados/pecas.json cumprem e que ferramentas/validar-banco.py verifica.",
  "depende_de": [
   "dados/especificacao-calculadoras.md",
@@ -584,7 +584,9 @@
     "url": "string vazia enquanto nao houver link. E a FICHA do produto: degrau 1, 2 ou 3 da escada da secao 25.1. Bonus, nunca requisito",
     "url_produto": "string|null — a URL CRUA da pagina do produto, exatamente como ela foi escolhida, antes de virar link de afiliado. Nao vai para o leitor: existe para a ronda abrir a pagina e ler 'O produto nao existe' ou 'Esgotado' sem gastar um clique de afiliado (25.4-b)",
     "motivo_sem_url_produto": "texto|null — obrigatorio quando ha `url` e nao ha `url_produto`. Item sem url_produto e item que ninguem consegue conferir, e isso e defeito da 19.1 com outro nome",
-    "degrau": "inteiro 1 a 4 ou null — em qual degrau da escada da 25.1 o link parou. Nao se le do link curto: o mesmo encurtador serve loja oficial e anuncio de vendedor com a MESMA cara, e os dois apodrecem de forma oposta",
+    "intestavel": "booleano DERIVADO, nunca opinado: ha `url` (o link encurtado que vai para o leitor) e NAO ha `url_produto` (a URL crua). Item assim e intestavel pela 25.4-b — da para clicar e nao da para conferir, porque chegar a pagina do produto exigiria clicar no proprio link de afiliado, que a 25.4 proibe. Item 3 do despacho do Raphael de 14/09/2026, com a ordem escrita nele: nao inventar a URL crua, e deixar a impossibilidade VISIVEL em vez de escondida. Hoje e false em 65 de 65 porque nenhum item tem link encurtado; a mutacao que o mede PRODUZ esse mundo em vez de esperar por ele (secao 8).",
+    "degrau": "inteiro 1 a 4 ou null — em qual degrau da escada da 25.1 o link parou. Nao se le do link curto: o mesmo encurtador serve loja oficial e anuncio de vendedor com a MESMA cara, e os dois apodrecem de forma oposta. NULL QUER DIZER 'ninguem decidiu', e publicavel com piso e nunca null — ate 14/09/2026 os 65 publicaveis tinham piso escrito e degrau null, que e a decisao tomada e nao gravada, parecendo pendencia. Quem tem ficha (`url`) esta em 1, 2 ou 3 e o numero vem de quem escolheu a ficha; quem para na busca esta em 4, escrito pelo gerador.",
+    "conferido_em": "data ou null — o dia em que ESTE degrau foi decidido, nao o dia da ultima passada do gerador. Por isso gerar-busca-de-produto.py so o reescreve quando o degrau muda: carimbar hoje a cada execucao faria o campo dizer 'conferido hoje' sem que nada tivesse sido conferido. Item 2 do despacho de 14/09/2026.",
     "url_busca": "string vazia enquanto nao houver link de afiliado da BUSCA. E o PISO da 25.2 — o unico elo que a maquina fabrica sozinha do comeco ao fim no dia em que houver sessao",
     "url_busca_produto": "string — a URL crua da busca, escrita por ferramentas/gerar-busca-de-produto.py. Busca nao esgota, mas muda de nome: palavra-chave que deixou de trazer resultado e defeito silencioso, e sem a URL crua ninguem consegue reconferir",
     "motivo_sem_url_busca": "texto|null — obrigatorio quando `url_busca` esta vazia. Enquanto a sessao do painel nao existir, e a mesma frase em todos os itens, e ela e verdadeira",
@@ -667,10 +669,12 @@
   "Toda entidade que gera busca tem termo de contexto declarado no esquema. Entidade sem termo e ERRO, nunca busca so por marca.",
   "afiliado.url_busca vazia exige motivo_sem_url_busca escrito; afiliado.url preenchida exige degrau do vocabulario 1 a 4, e url_produto ou motivo_sem_url_produto.",
   "afiliado.degrau so existe com url preenchida, e degrau 3 (anuncio de vendedor) exige url_busca — a 25.1 manda, porque e o degrau que apodrece.",
-  "As contagens de divida do cabecalho dos dois arquivos de banco (itens_sem_piso, itens_com_ficha, links_sem_degrau) batem com o que o arquivo tem. Divida em prosa nao tem tamanho; contada, tem.",
+  "As contagens de divida do cabecalho dos dois arquivos de banco (itens_sem_saida_de_compra, itens_com_piso_nao_rastreavel, itens_com_ficha, links_sem_degrau) batem com o que o arquivo tem. Divida em prosa nao tem tamanho; contada, tem. A chave itens_sem_piso foi SUBSTITUIDA pelas duas primeiras em 14/09/2026: ela contava quem nao tinha o link ENCURTADO e chamava isso de 'sem piso', e no dia em que a pagina passou a servir a busca crua os 65 publicaveis ganharam saida de compra com a chave afirmando o contrario. Nao ter saida nenhuma e o defeito da 19.1; ter saida que nao rastreia e divida de comissao, e as duas sao coisas diferentes.",
   "Todo publicador citado no banco (fontes[].publicador de pecas.json e modelos-robo.json, e registros[].nome de marcas.json) tem registro em publicadores.json.",
   "Todo registro de publicadores.json declara um artigo que existe em artigos_de_publicador, e um motivo nao vazio.",
-  "Todo registro de publicadores.json e citado em algum lugar do banco (aviso, nao erro: publicador que so a R2 usa vive em constantes.json)."
+  "Todo registro de publicadores.json e citado em algum lugar do banco (aviso, nao erro: publicador que so a R2 usa vive em constantes.json).",
+  "Todo registro publicavel com piso declara degrau 4 e conferido_em, e todo registro com ficha declara degrau 1, 2 ou 3 — a escada da 25.1 para no PRIMEIRO degrau que servir, e degrau null quer dizer 'ninguem decidiu'. Item 2 do despacho do Raphael de 14/09/2026.",
+  "O campo afiliado.intestavel e DERIVADO: verdadeiro exatamente quando ha `url` e nao ha `url_produto` (25.4-b). Escrito a mao ele seria opiniao; derivado, ele e a impossibilidade de conferir ficando VISIVEL. Item 3 do mesmo despacho."
  ],
  "tipos_que_exigem_funcao_declarada": {
   "tipos": [

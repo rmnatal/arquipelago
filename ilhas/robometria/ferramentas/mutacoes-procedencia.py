@@ -50,10 +50,19 @@ LINHA_FONTE = """\t\t$html .= '<span class="rbm-vitrine-fonte">'
 \t\t\t. '</span>';
 """
 
+# O TEXTO ALVO ACOMPANHA O SNIPPET, SENAO A MUTACAO VIRA INERTE. Atualizado em
+# 14/09/2026, quando a saida degradada deixou de prometer "link de loja em breve"
+# (frase proibida pela secao 7) e passou a dizer o que e. Mutacao cujo alvo nao
+# existe mais edita NADA e o teste fica verde sem ter medido coisa alguma — foi
+# exatamente esse sintoma que a bateria acusou como "trava faltando" nesta passada.
 BLOCO_ACAO = """\t\t$html .= '<span class="rbm-vitrine-acao">'
 \t\t\t. ( function_exists( 'robometria_casca_porta_de_compra' )
 \t\t\t\t? robometria_casca_porta_de_compra( $m )
-\t\t\t\t: '<span class="rbm-sem-loja">Link de loja em breve</span>' )
+\t\t\t\t/* SAIDA DEGRADADA: a casca nao esta carregada, entao a escada da
+\t\t\t\t   25.1 nao existe neste processo. Ela diz o que E — a pagina esta
+\t\t\t\t   servindo menos do que serve — em vez de prometer um link que
+\t\t\t\t   ninguem vai trazer. Prometer era o defeito que 14/09 tirou do ar. */
+\t\t\t\t: '<span class="rbm-sem-saida">Saida de compra fora do ar agora</span>' )
 \t\t\t. '</span>';
 """
 
@@ -276,8 +285,8 @@ MUTACOES = [
         'a pagina acabou de recusar estes modelos; botao embaixo da recusa e recomendar assim mesmo',
         troca(R2,
               "\t\t\t$html .= '</li>';\n\t\t}\n\t\t$html .= '</ul></div>';",
-              "\t\t\t$html .= '<span class=\"rbm-vitrine-acao\"><span class=\"rbm-sem-loja\">"
-              "Link de loja em breve</span></span>';\n"
+              "\t\t\t$html .= '<span class=\"rbm-vitrine-acao\"><span class=\"rbm-sem-saida\">"
+              "Saida de compra fora do ar agora</span></span>';\n"
               "\t\t\t$html .= '</li>';\n\t\t}\n\t\t$html .= '</ul></div>';"),
     ),
     (

@@ -1,5 +1,11 @@
 /**
  * Robometria R1 — Qual peça serve no meu robô aspirador
+ * Versão: 1.7.0 (14/09/2026) — a cópia local da escada de compra MORREU. Esta
+ * ferramenta repetia a porta de compra inteira para o caso de a casca não estar
+ * carregada, com a frase "Link de loja em breve" que a seção 7 proibiu hoje —
+ * segunda cópia da mesma decisão é combinar de divergir depois, que é a cicatriz
+ * do artigo do publicador de manhã. Agora a saída degradada diz o que é e não
+ * promete nada, e quem serve o piso da 25.2 é a casca, num lugar só.
  * Versão: 1.6.0 (14/09/2026) — O ARTIGO DE QUEM PUBLICA SAI DO BANCO, e a
  * concordância junto. Até 1.5.0 o "A " que abre a frase e o "que a " do meio
  * dela eram DIGITADOS, em quatro moldes e no cartão da vitrine, e o verbo era
@@ -68,8 +74,9 @@
  * (1) o bloco de compra, com link de afiliado, vem ANTES da prova de
  * procedência, na mesma resposta; (2) o link de procedência é discreto, com o
  * texto "fonte" e rel="nofollow noopener", nunca um botão; (3) o bloco de
- * compra existe mesmo com `afiliado.url` vazio — reserva o lugar, diz "link de
- * loja em breve" e a página publica quantas peças esperam link.
+ * compra nunca fica vazio: sem ficha de produto ele desce a escada da 25.1 até a
+ * busca, que a máquina fabrica sozinha (14/09/2026). A página publica quantas
+ * peças ainda não têm link RASTREÁVEL — que é dívida de comissão, não de saída.
  *
  * A ferramenta de compatibilidade desta ilha: dado um modelo de robô, ela diz
  * qual filtro, escova, mop ou bateria o FABRICANTE declarou — com o código, o
@@ -127,7 +134,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_R1_VERSAO' ) ) {
-	define( 'ROBOMETRIA_R1_VERSAO', '1.6.0' );
+	define( 'ROBOMETRIA_R1_VERSAO', '1.7.0' );
 	define( 'ROBOMETRIA_R1_SLUG', 'qual-peca-serve-no-meu-robo-aspirador' );
 	define( 'ROBOMETRIA_R1_TITULO', 'Qual peça serve no meu robô aspirador' );
 	define( 'ROBOMETRIA_R1_DADOS', 'robometria_dados_r1-respostas' );
@@ -387,20 +394,14 @@ function robometria_r1_porta_de_compra( $item ) {
 		return robometria_casca_porta_de_compra( $item );
 	}
 
-	$a   = isset( $item['afiliado'] ) ? $item['afiliado'] : array();
-	$url = isset( $a['url'] ) ? $a['url'] : '';
-
-	if ( '' === $url ) {
-		return '<span class="rbm-sem-loja">Link de loja em breve</span>';
-	}
-
-	/* rel="sponsored" é a declaração que o Google pede para link pago, e vem
-	   junto de nofollow e noopener (seção 7 do contrato). */
-	return '<a class="rbm-comprar" href="' . esc_url( $url ) . '" target="_blank"'
-		. ' rel="sponsored nofollow noopener">'
-		. esc_html( 'Ver ' . robometria_r1_rotulo_da_loja(
-			isset( $a['programa'] ) ? $a['programa'] : null ) )
-		. '</a>';
+	/* A CÓPIA LOCAL DA ESCADA MORREU EM 14/09/2026, e o motivo é o que esta ilha
+	   acabou de pagar duas vezes no mesmo dia: metade de uma regra aplicada
+	   parece a regra aplicada. Esta função repetia a escada inteira para o caso
+	   de a casca não estar carregada, e uma segunda cópia da mesma decisão é
+	   combinar de divergir depois — foi exatamente assim que o artigo do
+	   publicador ficou certo por acidente em dois arquivos e errado nos outros
+	   quatro. A saída degradada diz o que é e não promete nada. */
+	return '<span class="rbm-sem-saida">Saída de compra fora do ar agora</span>';
 }
 }
 
@@ -873,9 +874,10 @@ function robometria_r1_itens( $lista, $tipo ) {
  *   - peça sem imagem NÃO some: aparece com espaço reservado neutro e o código
  *     em destaque. Perder a peça certa por falta de foto é trocar o certo pelo
  *     bonito;
- *   - peça sem link de loja mantém o lugar do bloco de compra e diz "link de
- *     loja em breve", em vez de sumir com o bloco — sumir devolveria a
- *     procedência ao papel de única porta clicável;
+ *   - peça sem ficha de produto NÃO fica sem saída: o bloco de compra desce a
+ *     escada da 25.1 e serve a busca. Sumir com o bloco devolveria a procedência
+ *     ao papel de única porta clicável; reservá-lo com uma promessa, que foi o
+ *     que esta ilha fez até 14/09/2026, é a mesma coisa com educação;
  *   - o número de peças esperando link sai NA TELA, porque é trabalho pendente
  *     de verdade e não estatística interna.
  */

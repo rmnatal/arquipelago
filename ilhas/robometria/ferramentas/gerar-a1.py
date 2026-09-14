@@ -243,6 +243,14 @@ def afiliado_do_item(registro, codigo_da_pagina):
     a = registro.get("afiliado") or {}
     return {
         "url": a.get("url") or "",
+        # O PISO DA 25.2 VIAJA JUNTO DESDE 14/09/2026 (item 4 do despacho do
+        # Raphael). Sem estes dois campos a tela nao tinha como servir saida de
+        # compra alguma antes do primeiro link encurtado, e escrevia a frase que a
+        # secao 7 proibiu hoje. `url_busca` e a busca JA encurtada, que rastreia e
+        # paga comissao; `url_busca_cru` e a mesma busca sem rastreio, que e o que
+        # a maquina fabrica sozinha e o que esta no ar nos 65 itens de hoje.
+        "url_busca": a.get("url_busca") or "",
+        "url_busca_cru": a.get("url_busca_produto") or "",
         "programa": a.get("plataforma") or None,
         "sub_id_1": "robometria",
         "sub_id_2": codigo_da_pagina,

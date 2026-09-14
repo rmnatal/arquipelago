@@ -201,6 +201,14 @@ def vitrine(med):
             "esperando_link": not a.get("url"),
             "afiliado": {
                 "url": a.get("url") or "",
+                # O PISO DA 25.2 VIAJA JUNTO DESDE 14/09/2026 (item 4 do despacho do
+                # Raphael). Sem estes dois campos a tela nao tinha como servir saida de
+                # compra alguma antes do primeiro link encurtado, e escrevia a frase que a
+                # secao 7 proibiu hoje. `url_busca` e a busca JA encurtada, que rastreia e
+                # paga comissao; `url_busca_cru` e a mesma busca sem rastreio, que e o que
+                # a maquina fabrica sozinha e o que esta no ar nos 65 itens de hoje.
+                "url_busca": a.get("url_busca") or "",
+                "url_busca_cru": a.get("url_busca_produto") or "",
                 "programa": a.get("plataforma") or None,
                 # O CODIGO DA PAGINA DE ORIGEM E CARIMBADO POR QUEM MONTA A PAGINA, e o
                 # banco nao opina. Ate 12/09/2026 este campo era LIDO do registro, e o

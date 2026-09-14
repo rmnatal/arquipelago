@@ -234,6 +234,37 @@ for rel, doc in bancos.items():
                "%s: sem o link encurtado da busca e sem motivo. Divida sem motivo "
                "escrito e divida que a proxima execucao nao sabe medir" % onde)
 
+        # O DEGRAU, MEDIDO POR REGUA PROPRIA (14/09/2026, item 2 do despacho do
+        # Raphael). O numero 4 esta escrito AQUI a mao, e este arquivo nao le o
+        # esquema nem chama o gerador: se lesse, trocar o degrau do piso num lugar
+        # so faria as duas metades errarem juntas — a terceira conta que a secao 8
+        # exige. A 25.1 diz que a escada para no PRIMEIRO degrau que servir, e quem
+        # nao tem ficha parou na busca.
+        degrau = a.get("degrau")
+        if (a.get("url") or "").strip():
+            ok(degrau in (1, 2, 3),
+               "%s: tem ficha de produto e degrau %r. Ficha nao para no degrau da "
+               "busca" % (onde, degrau))
+        else:
+            ok(degrau == 4,
+               "%s: publicavel sem ficha e degrau %r. A escada parou na busca, que e "
+               "o degrau 4 — e degrau null quer dizer 'ninguem decidiu', que era o "
+               "estado desta ilha ate 14/09/2026" % (onde, degrau))
+        ok((a.get("conferido_em") or "").strip(),
+           "%s: degrau sem conferido_em, a data em que ele foi decidido. Decisao sem "
+           "data nao da para reconferir" % onde)
+
+        # INTESTAVEL E DERIVADO (item 3 do despacho). A regua reescreve a derivacao
+        # a mao, em vez de comparar o campo com ele mesmo.
+        sem_url_crua = not (a.get("url_produto") or "").strip()
+        deveria = bool((a.get("url") or "").strip() and sem_url_crua)
+        ok(a.get("intestavel") is deveria,
+           "%s: intestavel diz %r e o item %s. Pela 25.4-b, item com link encurtado e "
+           "sem a URL crua do produto NAO da para conferir, e isso tem de ficar "
+           "visivel em vez de escondido"
+           % (onde, a.get("intestavel"),
+              "e intestavel" if deveria else "da para conferir"))
+
 print("Robometria — escada de compra da secao 25")
 print("  degraus conferidos ... 4, com os nomes da 25.1")
 print("  publicaveis .......... %d, todos com palavra-chave (%d distintas)"

@@ -885,6 +885,8 @@
       "esperando_link": true,
       "afiliado": {
         "url": "",
+        "url_busca": "",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20ERB44%20robo%20aspirador",
         "programa": null,
         "sub_id_1": "robometria",
         "sub_id_2": "R2"
@@ -907,6 +909,8 @@
       "esperando_link": true,
       "afiliado": {
         "url": "",
+        "url_busca": "",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20ERB60%20robo%20aspirador",
         "programa": null,
         "sub_id_1": "robometria",
         "sub_id_2": "R2"
@@ -929,6 +933,8 @@
       "esperando_link": true,
       "afiliado": {
         "url": "",
+        "url_busca": "",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20ERB61%20robo%20aspirador",
         "programa": null,
         "sub_id_1": "robometria",
         "sub_id_2": "R2"
@@ -951,6 +957,8 @@
       "esperando_link": true,
       "afiliado": {
         "url": "",
+        "url_busca": "",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20ERB62%20robo%20aspirador",
         "programa": null,
         "sub_id_1": "robometria",
         "sub_id_2": "R2"
@@ -973,6 +981,8 @@
       "esperando_link": true,
       "afiliado": {
         "url": "",
+        "url_busca": "",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20ERB80%20robo%20aspirador",
         "programa": null,
         "sub_id_1": "robometria",
         "sub_id_2": "R2"
@@ -1005,6 +1015,8 @@
       "esperando_link": true,
       "afiliado": {
         "url": "",
+        "url_busca": "",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20E10%20robo%20aspirador",
         "programa": null,
         "sub_id_1": "robometria",
         "sub_id_2": "R2"
@@ -1037,6 +1049,8 @@
       "esperando_link": true,
       "afiliado": {
         "url": "",
+        "url_busca": "",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20H40%20robo%20aspirador",
         "programa": null,
         "sub_id_1": "robometria",
         "sub_id_2": "R2"
@@ -1069,6 +1083,8 @@
       "esperando_link": true,
       "afiliado": {
         "url": "",
+        "url_busca": "",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20S10%20robo%20aspirador",
         "programa": null,
         "sub_id_1": "robometria",
         "sub_id_2": "R2"
@@ -1101,6 +1117,8 @@
       "esperando_link": true,
       "afiliado": {
         "url": "",
+        "url_busca": "",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20S20%20robo%20aspirador",
         "programa": null,
         "sub_id_1": "robometria",
         "sub_id_2": "R2"
@@ -1133,6 +1151,8 @@
       "esperando_link": true,
       "afiliado": {
         "url": "",
+        "url_busca": "",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20S40%20robo%20aspirador",
         "programa": null,
         "sub_id_1": "robometria",
         "sub_id_2": "R2"
@@ -1165,6 +1185,8 @@
       "esperando_link": true,
       "afiliado": {
         "url": "",
+        "url_busca": "",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20S40C%20robo%20aspirador",
         "programa": null,
         "sub_id_1": "robometria",
         "sub_id_2": "R2"

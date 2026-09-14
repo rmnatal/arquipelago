@@ -621,10 +621,20 @@ $botoes_de_fonte = preg_match_all( '#<a[^>]*class="rbm-comprar"[^>]*rel="[^"]*no
 rbm_ok( true, 'o link de procedencia usa a classe discreta da casca',
 	substr_count( $h_ancora, 'class="rbm-fonte"' ) . ' link(s) de fonte' );
 
-/* O BLOCO DE COMPRA EXISTE MESMO SEM LINK: reserva o lugar em vez de sumir. */
+/* O BLOCO DE COMPRA EXISTE E CLICA, MESMO SEM LINK DE AFILIADO. A regua foi
+   invertida em 14/09/2026: ela cobrava a frase "Link de loja em breve", que a
+   secao 7 do contrato proibiu no mesmo dia. Reservar o lugar com uma promessa era
+   a versao educada do beco sem saida, e o piso da 25.2 nao espera ninguem. */
 rbm_ok( false !== strpos( $h_ancora, 'Onde comprar estes' ), 'o bloco de compra existe na resposta' );
-rbm_ok( false !== strpos( $h_ancora, 'Link de loja em breve' ),
-	'o lugar do link fica reservado enquanto o cano de links enche' );
+rbm_ok( false === strpos( $h_ancora, 'em breve' ),
+	'a pagina nao serve a frase proibida pela secao 7' );
+rbm_ok( substr_count( $h_ancora, 'rbm-comprar-cru' ) > 0,
+	'todo modelo sem ficha sai pela busca — o bloco de compra nunca fica vazio',
+	substr_count( $h_ancora, 'rbm-comprar-cru' ) . ' saida(s) pela busca' );
+$cru_pago = preg_match_all( '#<a class="[^"]*rbm-comprar-cru[^"]*"[^>]*rel="[^"]*sponsored#i', $h_ancora );
+rbm_ok( 0 === $cru_pago,
+	'a busca crua nao se declara patrocinada: ninguem paga por aquele clique',
+	$cru_pago . ' carimbada(s) por engano' );
 
 /* E ele vem ANTES da prova de procedencia de cada modelo, na ordem do HTML. */
 $pos_compra = strpos( $h_ancora, 'Onde comprar estes' );
@@ -1056,7 +1066,7 @@ foreach ( array_keys( $dados['classificacao'] ) as $chave ) {
 
 	/* (d) NENHUMA PORTA DE COMPRA dentro dos itens, e a ausencia declarada. */
 	foreach ( $itens as $item ) {
-		if ( false !== strpos( $item, 'rbm-comprar' ) || false !== strpos( $item, 'rbm-sem-loja' ) ) {
+		if ( false !== strpos( $item, 'rbm-comprar' ) || false !== strpos( $item, 'rbm-sem-saida' ) ) {
 			$erros_nl[] = $chave . ': porta de compra dentro da secao do limiar';
 		}
 	}

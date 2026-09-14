@@ -404,8 +404,14 @@ rbm_ok( empty( $sobreviveu ), '[F] nenhum numero do banco de hoje ficou digitado
 echo "\n5. Porta de compra e vitrine (secao 7)\n";
 
 rbm_ok( false !== strpos( $pagina, 'rbm-vitrine' ), 'a pagina serve vitrine' );
-rbm_ok( false !== strpos( $pagina, 'Link de loja em breve' ),
-	'o lugar do link fica reservado enquanto o cano de links enche' );
+/* Invertida em 14/09/2026 pelo mesmo motivo da R2 e da R1: a frase que esta regua
+   cobrava esta proibida pela secao 7, e o que o artigo deve ao leitor e uma saida
+   que clica, nao um lugar reservado com promessa. */
+rbm_ok( false === strpos( $pagina, 'em breve' ),
+	'a pagina nao serve a frase proibida pela secao 7' );
+rbm_ok( substr_count( $pagina, 'rbm-comprar-cru' ) > 0,
+	'os modelos da vitrine saem pela busca enquanto nao ha link de afiliado',
+	substr_count( $pagina, 'rbm-comprar-cru' ) . ' saida(s) pela busca' );
 rbm_ok( false !== strpos( $texto, 'links de afiliado' ),
 	'o aviso de comissao aparece dentro do bloco de compra' );
 rbm_ok( false !== stripos( $texto, 'não é um ranking' ),

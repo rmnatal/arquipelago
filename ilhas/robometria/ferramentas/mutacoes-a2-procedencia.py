@@ -60,10 +60,17 @@ LINHA_FONTE = """\t\t$html .= '<span class="rbm-vitrine-fonte">'
 \t\t\t. '</span>';
 """
 
+# ALVO ATUALIZADO EM 14/09/2026, quando a saida degradada parou de prometer "link
+# de loja em breve" (frase proibida pela secao 7). Alvo que nao existe mais edita
+# NADA, e a mutacao vira verde sem ter medido nada.
 BLOCO_ACAO = """\t\t$html .= '<span class="rbm-vitrine-acao">'
 \t\t\t. ( function_exists( 'robometria_casca_porta_de_compra' )
 \t\t\t\t? robometria_casca_porta_de_compra( $i )
-\t\t\t\t: '<span class="rbm-sem-loja">Link de loja em breve</span>' )
+\t\t\t\t/* SAIDA DEGRADADA: a casca nao esta carregada, entao a escada da
+\t\t\t\t   25.1 nao existe neste processo. Ela diz o que E — a pagina esta
+\t\t\t\t   servindo menos do que serve — em vez de prometer um link que
+\t\t\t\t   ninguem vai trazer. Prometer era o defeito que 14/09 tirou do ar. */
+\t\t\t\t: '<span class="rbm-sem-saida">Saida de compra fora do ar agora</span>' )
 \t\t\t. '</span>';
 """
 

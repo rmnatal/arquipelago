@@ -1,5 +1,7 @@
 /**
  * Robometria A1 — Existe filtro universal de robô aspirador?
+ * Versão: 1.3.0 (14/09/2026) — a vitrine do artigo passa a servir o piso da
+ * 25.2 em vez da frase "Link de loja em breve", proibida pela seção 7 hoje.
  * Versão: 1.2.0 (14/09/2026) — o artigo de quem publica sai do banco. Três
  * lugares deste artigo escreviam o artigo à mão: " da " antes do nome no bloco
  * do maior alcance, "da %s" na resposta do FAQ (dentro do gerador) e "a %s
@@ -63,7 +65,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_A1_VERSAO' ) ) {
-	define( 'ROBOMETRIA_A1_VERSAO', '1.2.0' );
+	define( 'ROBOMETRIA_A1_VERSAO', '1.3.0' );
 	define( 'ROBOMETRIA_A1_SLUG', 'filtro-universal-de-robo-aspirador' );
 	/* O TÍTULO DEIXOU DE AFIRMAR A TESE, e este é o terceiro lugar da mesma
 	   família. A tese deste artigo é uma contagem do banco, e por isso a frase de
@@ -420,7 +422,11 @@ function robometria_a1_vitrine( $f ) {
 		$html .= '<span class="rbm-vitrine-acao">'
 			. ( function_exists( 'robometria_casca_porta_de_compra' )
 				? robometria_casca_porta_de_compra( $i )
-				: '<span class="rbm-sem-loja">Link de loja em breve</span>' )
+				/* SAIDA DEGRADADA: a casca nao esta carregada, entao a escada da
+				   25.1 nao existe neste processo. Ela diz o que E — a pagina esta
+				   servindo menos do que serve — em vez de prometer um link que
+				   ninguem vai trazer. Prometer era o defeito que 14/09 tirou do ar. */
+				: '<span class="rbm-sem-saida">Saida de compra fora do ar agora</span>' )
 			. '</span>';
 
 		/* DEPOIS A PROCEDÊNCIA, discreta. */

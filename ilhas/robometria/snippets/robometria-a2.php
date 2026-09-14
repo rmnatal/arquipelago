@@ -1,5 +1,7 @@
 /**
  * Robometria A2 — Quantos m² um robô aspirador limpa por carga
+ * Versão: 1.3.0 (14/09/2026) — a vitrine do artigo passa a servir o piso da
+ * 25.2 em vez da frase "Link de loja em breve", proibida pela seção 7 hoje.
  * Versão: 1.2.0 (12/09/2026) — a procedência da ÁREA POR CARGA chega ao cartão, e
  * a atribuição deixa de ser digitada. Esta página publicava "O fabricante declara
  * 166 m² por carga" nos cinco cartões, e a frase era FALSA no ar: os cinco modelos
@@ -67,7 +69,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_A2_VERSAO' ) ) {
-	define( 'ROBOMETRIA_A2_VERSAO', '1.2.0' );
+	define( 'ROBOMETRIA_A2_VERSAO', '1.3.0' );
 	define( 'ROBOMETRIA_A2_SLUG', 'quantos-m2-o-robo-aspirador-limpa-por-carga' );
 	define( 'ROBOMETRIA_A2_TITULO', 'Quantos m² um robô aspirador limpa por carga' );
 	define( 'ROBOMETRIA_A2_DADOS', 'robometria_dados_a2-fatos' );
@@ -475,7 +477,11 @@ function robometria_a2_vitrine() {
 		$html .= '<span class="rbm-vitrine-acao">'
 			. ( function_exists( 'robometria_casca_porta_de_compra' )
 				? robometria_casca_porta_de_compra( $i )
-				: '<span class="rbm-sem-loja">Link de loja em breve</span>' )
+				/* SAIDA DEGRADADA: a casca nao esta carregada, entao a escada da
+				   25.1 nao existe neste processo. Ela diz o que E — a pagina esta
+				   servindo menos do que serve — em vez de prometer um link que
+				   ninguem vai trazer. Prometer era o defeito que 14/09 tirou do ar. */
+				: '<span class="rbm-sem-saida">Saida de compra fora do ar agora</span>' )
 			. '</span>';
 
 		/* DEPOIS A PROCEDÊNCIA, discreta. A área por carga é o único número que

@@ -30,7 +30,7 @@ DUAS EXIGENCIAS MAIS DURAS QUE O DE COSTUME, E CADA UMA TEM CICATRIZ
 
 E UM CUIDADO QUE JA CUSTOU BLOCO NESTA CASA: mutacao que reprova PELO MOTIVO ERRADO
 e tao ruim quanto mutacao inerte. Dar ficha a um item muda `itens_com_ficha` e
-`itens_sem_piso` no cabecalho, e o validador confere as duas contagens — sem
+`itens_com_piso_nao_rastreavel` no cabecalho, e o validador confere as duas contagens — sem
 reescreve-las, toda mutacao do mundo novo reprovaria pela contagem e nenhuma delas
 tocaria a regra que nomeia. Por isso o helper que cria o link CONSERTA o cabecalho
 antes de entregar o mundo.
@@ -83,7 +83,12 @@ def _refazer_contagem(d):
     pub = [r for r in d['registros'] if r['status'] == 'publicavel']
     c = d['contagem']
     c['itens_com_ficha'] = sum(1 for r in pub if r['afiliado']['url'])
-    c['itens_sem_piso'] = sum(1 for r in pub if not r['afiliado']['url_busca'])
+    c['itens_sem_saida_de_compra'] = sum(
+        1 for r in pub if not (r['afiliado']['url'] or r['afiliado']['url_busca']
+                               or r['afiliado']['url_busca_produto']))
+    c['itens_com_piso_nao_rastreavel'] = sum(
+        1 for r in pub if not r['afiliado']['url'] and not r['afiliado']['url_busca']
+        and r['afiliado']['url_busca_produto'])
     c['links_sem_degrau'] = sum(1 for r in pub if r['afiliado']['url']
                                 and r['afiliado']['degrau'] is None)
     c['esperando_link_de_afiliado'] = sum(1 for r in pub if not r['afiliado']['url'])
@@ -107,7 +112,15 @@ def _dar_ficha(base, rel, ident, **campos):
     a['motivo_sem_url_busca'] = None
     a['plataforma'] = 'shopee'
     a['coletado_em'] = '2026-09-13'
+    a['conferido_em'] = '2026-09-13'
     a.update(campos)
+    # `intestavel` e DERIVADO no banco de verdade, entao o mundo de bancada tambem o
+    # deriva — DEPOIS do update, para a mutacao que estraga `url_produto` continuar
+    # reprovando pela regra que ela NOMEIA (a URL crua que falta) e nao por um campo
+    # derivado que ficou desatualizado de tabela. Mutacao que reprova pelo motivo
+    # errado e verde com outro nome: ela mede a trava que ninguem escreveu.
+    if 'intestavel' not in campos:
+        a['intestavel'] = bool(a['url'] and not a['url_produto'])
     _refazer_contagem(d)
     _gravar_json(base, rel, d)
 
@@ -267,7 +280,7 @@ def m12_contagem_mente(base):
     com o cartao dizendo zero enquanto a categoria tinha cinco produtos: numero de
     cabecalho nasce contado, nunca digitado."""
     d = _ler_json(base, MODELOS)
-    d['contagem']['itens_sem_piso'] = 0
+    d['contagem']['itens_com_piso_nao_rastreavel'] = 0
     _gravar_json(base, MODELOS, d)
 
 
@@ -305,6 +318,47 @@ def m16_mundo_do_link_intacto(base):
     falso-positivo esperando o dia em que a monetizacao comeca — e quem chegasse
     naquele dia aprenderia a ignora-las."""
     _dar_ficha(base, MODELOS, ALVO_MODELO)
+
+
+# ------------------- AS QUATRO DO DESPACHO DO RAPHAEL DE 14/09/2026 (itens 2 e 3)
+def m17_piso_sem_degrau(base):
+    """O ESTADO EM QUE A ILHA INTEIRA ESTAVA ATE HOJE, e e por isso que ele vale como
+    mutacao: 65 publicaveis com a palavra-chave escrita e o degrau em `null`. Null
+    quer dizer "ninguem decidiu", e a decisao estava tomada desde 13/09 — so nao
+    estava gravada. Divida escrita como pendencia e divida que ninguem paga."""
+    d = _ler_json(base, MODELOS)
+    a = _registro(d, ALVO_MODELO)['afiliado']
+    a['degrau'] = None
+    a['conferido_em'] = None
+    _gravar_json(base, MODELOS, d)
+
+
+def m18_degrau_sem_data(base):
+    """O degrau fica e a data some. Degrau e uma DECISAO, e decisao sem data nao da
+    para reconferir: a proxima execucao nao sabe se ela foi tomada sobre o banco de
+    hoje ou sobre um que nao existe mais."""
+    d = _ler_json(base, MODELOS)
+    _registro(d, ALVO_MODELO)['afiliado']['conferido_em'] = None
+    _gravar_json(base, MODELOS, d)
+
+
+def m19_piso_jura_degrau_1(base):
+    """O item sem ficha nenhuma se declara degrau 1, o da loja oficial do fabricante.
+    E a mentira mais cara da escada, porque o degrau 1 e o que a ilha usaria para
+    dizer ao leitor que aquele link nao apodrece."""
+    d = _ler_json(base, MODELOS)
+    _registro(d, ALVO_MODELO)['afiliado']['degrau'] = 1
+    _gravar_json(base, MODELOS, d)
+
+
+def m20_intestavel_mente(base):
+    """PRODUZ O MUNDO: o primeiro link encurtado da ilha, sem a URL crua — portanto
+    intestavel pela 25.4-b — com o campo dizendo que esta tudo bem. O item 3 do
+    despacho manda a impossibilidade ficar VISIVEL; um `false` ali a esconde, e a
+    ronda passaria por ele todo dia sem nunca saber que nao consegue confere-lo."""
+    _dar_ficha(base, MODELOS, ALVO_MODELO, url_produto=None,
+               motivo_sem_url_produto='link herdado sem a URL crua, de bancada',
+               intestavel=False)
 
 
 # nome, o que ela ensina, funcao, portao que tem de reprovar, palavra que tem de
@@ -348,7 +402,7 @@ MUTACOES = [
      m11_motivo_apagado, 'validar', 'motivo_sem_url_busca'),
     ('o cabecalho diz que nao ha divida',
      'numero de cabecalho nasce contado, nunca digitado',
-     m12_contagem_mente, 'validar', 'itens_sem_piso'),
+     m12_contagem_mente, 'validar', 'itens_com_piso_nao_rastreavel'),
     ('MUNDO NOVO: primeiro link da ilha, sem degrau',
      'degrau nao se le do link curto — a mesma cara esconde durabilidades opostas',
      m13_ficha_sem_degrau, 'validar', 'degrau'),
@@ -361,6 +415,34 @@ MUTACOES = [
     ('MUNDO NOVO: primeiro link da ilha, INTACTO — esta TEM de passar',
      'regua que reprova o mundo sem defeito e falso-positivo esperando a monetizacao',
      m16_mundo_do_link_intacto, None, None),
+    ('o item com piso volta a ter degrau nulo — o estado de ontem',
+     'degrau null quer dizer "ninguem decidiu", e a decisao estava tomada havia um dia',
+     m17_piso_sem_degrau, 'validar', 'publicavel com piso e degrau'),
+    ('o degrau do piso perde a data em que foi decidido',
+     'decisao sem data e decisao que a proxima execucao nao sabe se ainda vale',
+     m18_degrau_sem_data, 'validar', 'conferido_em'),
+    ('o piso jura ser degrau 1, o da loja oficial',
+     'sem ficha nenhuma a escada nao parou em lugar nenhum acima da busca',
+     m19_piso_jura_degrau_1, 'validar', 'sem ficha de produto'),
+    ('MUNDO NOVO: primeiro link da ilha, intestavel, e o campo diz que nao',
+     'a impossibilidade de conferir da 25.4-b ficaria escondida, que e o que o item 3 proibe',
+     m20_intestavel_mente, 'validar', 'intestavel'),
+
+    # AS MESMAS TRES MUTACOES, CONTRA O OUTRO PORTAO — e isto nao e repeticao.
+    # teste-escada-compra.py escreve a propria regua e nao le o esquema; o validador
+    # le. Duas travas que lessem a mesma fonte morreriam juntas no dia em que
+    # alguem editasse o esquema, e o portao ficaria verde sobre a decisao revogada
+    # em silencio. Provar que cada uma morde sozinha e o unico jeito de saber que
+    # sao duas testemunhas, e nao uma com eco.
+    ('o item com piso volta a ter degrau nulo — contra o portao da escada',
+     'a segunda testemunha da 25.1 tem de morder sozinha, sem o validador',
+     m17_piso_sem_degrau, 'escada', 'degrau'),
+    ('o degrau do piso perde a data — contra o portao da escada',
+     'a segunda testemunha tambem cobra a data da decisao',
+     m18_degrau_sem_data, 'escada', 'conferido_em'),
+    ('MUNDO NOVO: intestavel mente — contra o portao da escada',
+     'a segunda testemunha refaz a derivacao a mao, em vez de crer no campo',
+     m20_intestavel_mente, 'escada', 'intestavel'),
 ]
 
 COMANDO = {

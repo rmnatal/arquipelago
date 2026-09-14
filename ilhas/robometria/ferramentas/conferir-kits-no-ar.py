@@ -49,7 +49,13 @@ def ok(condicao, rotulo, medido=''):
 def buscar(url, tentativas=3):
     """Uma falha de rede so vira bloqueio depois de repetir (secao 20.2)."""
     for _ in range(tentativas):
-        r = subprocess.run(['curl', '-s', '-w', '\\n%{http_code}', '--max-time', '40', url],
+        # 'Accept-Encoding: identity' entrou em 14/09/2026, pelo item 1 do despacho
+        # da Sentinela: `curl` sem cabecalho nenhum recebe uma copia de 11/09 presa
+        # no cache, e esta ferramenta vinha conferindo uma pagina que nao existe mais.
+        # Quem MEDE o defeito e conferir-no-ar.py, que reprova enquanto ele estiver de
+        # pe; aqui o cabecalho existe so para a conferencia ler o que o leitor le.
+        r = subprocess.run(['curl', '-s', '-H', 'Accept-Encoding: identity',
+                            '-w', '\\n%{http_code}', '--max-time', '40', url],
                            capture_output=True, text=True)
         corpo = r.stdout
         codigo = corpo.rsplit('\n', 1)[-1].strip()

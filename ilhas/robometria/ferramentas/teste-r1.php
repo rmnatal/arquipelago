@@ -384,8 +384,19 @@ foreach ( $dados['respostas'] as $r ) {
 	}
 }
 $h_ancora = rbm_r1_pagina( $ancora, null );
-rbm_ok( $esperando > 0 && false !== strpos( $h_ancora, 'rbm-sem-loja' ),
-	'peca sem link de loja reserva o lugar do bloco, em vez de fingir um botao' );
+/* A REGUA FOI INVERTIDA EM 14/09/2026. Ela cobrava a PRESENCA de "rbm-sem-loja" —
+   o lugar reservado com a frase "link de loja em breve" —, e a secao 7 do contrato
+   proibiu essa frase hoje. Peca sem ficha de produto agora desce a escada da 25.1 e
+   sai pela busca; o que era estado aceitavel virou defeito da 19.1, e o que a regua
+   cobra e o contrario do que cobrava. */
+rbm_ok( $esperando > 0 && false === strpos( $h_ancora, 'em breve' ),
+	'a pagina nao serve a frase proibida pela secao 7, em nenhuma peca' );
+/* MEDIDO NO CORPO, nunca na pagina inteira: a folha de estilo cita a classe do
+   estado sem saida para poder estiliza-lo, e contar na pagina toda daria um a
+   mais sem que nada estivesse errado (secao 8 do ARQUIPELAGO.md). */
+preg_match( '#<main[^>]*>(.*?)</main>#is', $h_ancora, $m_ancora );
+rbm_ok( false === strpos( isset( $m_ancora[1] ) ? $m_ancora[1] : 'rbm-sem-saida', 'rbm-sem-saida' ),
+	'nenhuma peca fica sem saida de compra — o piso da 25.2 nao espera ninguem' );
 
 /* ---------------------------------------------------------------------------
  * 7. A vitrine (Bloco 4e, secao 6).
@@ -684,9 +695,22 @@ foreach ( $dados['respostas'][ $ancora ]['fabricante'] as $i ) {
 $esperando_ancora = count( array_filter( $pecas_no_ancora ) );
 /* Contado DENTRO da vitrine: a folha de estilo tambem cita a classe, e medir
    na pagina inteira daria um a mais sem que nada estivesse errado. */
-rbm_ok( substr_count( $vitrine, 'rbm-sem-loja' ) === $esperando_ancora,
-	'um lugar reservado por peca sem link, nem a mais nem a menos',
-	substr_count( $vitrine, 'rbm-sem-loja' ) . ' de ' . $esperando_ancora );
+/* UM BOTAO POR PECA, NEM A MAIS NEM A MENOS — e a conta que importa mudou de
+   sinal: antes se contavam os lugares RESERVADOS, agora se contam as SAIDAS. Peca
+   sem ficha sai pela busca crua, com a classe propria, e a soma tem de fechar com
+   o numero de pecas sem ficha na ancora. */
+rbm_ok( substr_count( $vitrine, 'rbm-comprar-cru' ) === $esperando_ancora,
+	'uma saida pela busca crua por peca sem ficha, nem a mais nem a menos',
+	substr_count( $vitrine, 'rbm-comprar-cru' ) . ' de ' . $esperando_ancora );
+rbm_ok( 0 === substr_count( $vitrine, 'rbm-sem-saida' ),
+	'nenhum cartao da vitrine fica sem saida de compra (25.2)' );
+/* O `sponsored` E A DECLARACAO DE RELACAO PAGA, e a busca crua nao paga nada. A
+   regua conta os dois de uma vez: todo `rbm-comprar-cru` sai SEM sponsored. */
+$cru_com_sponsored = preg_match_all(
+	'#<a class="[^"]*rbm-comprar-cru[^"]*"[^>]*rel="[^"]*sponsored#i', $vitrine );
+rbm_ok( 0 === $cru_com_sponsored,
+	'a busca crua nao se declara patrocinada: ninguem paga por aquele clique',
+	$cru_com_sponsored . ' carimbada(s) por engano' );
 rbm_ok( $esperando_ancora === 0 || false !== strpos( $cabeca_compra, (string) $esperando_ancora ),
 	'a pagina publica quantas pecas estao esperando link de loja',
 	$esperando_ancora . ' esperando' );
@@ -722,8 +746,9 @@ rbm_ok( 1 === preg_match( '#<a class="rbm-comprar"[^>]*rel="sponsored nofollow n
 	'o link de afiliado sai com rel="sponsored nofollow noopener" (secao 7)' );
 rbm_ok( false !== strpos( $vitrine_com_link, 'Ver na Shopee' ),
 	'o botao nomeia a loja para quem vai clicar' );
-rbm_ok( false === strpos( $vitrine_com_link, 'rbm-sem-loja' ),
-	'com link, o lugar reservado da vez ao botao' );
+rbm_ok( false === strpos( $vitrine_com_link, 'rbm-sem-saida' )
+	&& false === strpos( $vitrine_com_link, 'rbm-comprar-cru' ),
+	'com ficha de produto, a busca crua sai de cena: a escada para no primeiro degrau' );
 $pos_botao    = strpos( $vitrine_com_link, 'rbm-comprar' );
 $pos_fonte_cl = strpos( $vitrine_com_link, 'rbm-vitrine-fonte' );
 rbm_ok( false !== $pos_botao && false !== $pos_fonte_cl && $pos_botao < $pos_fonte_cl,

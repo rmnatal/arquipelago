@@ -7,6 +7,17 @@
  * 11/09; o cabeçalho, que é a primeira coisa que alguém lê neste arquivo, não
  * tinha nenhuma. Agora tem, na seção 16 do teste-casca.php, e a constante sobe
  * para 1.5.1 sem que uma linha de comportamento mude.
+ * Versão: 1.6.0 (14/09/2026) — A PORTA DE COMPRA DESCE A ESCADA DA 25.1 E PARA
+ * NO PRIMEIRO DEGRAU QUE SERVIR. Até aqui, item sem `afiliado.url` devolvia
+ * "Link de loja em breve" — a frase que a seção 7 do contrato proibiu em
+ * 14/09/2026 e que o despacho do Raphael mandou tirar do ar no mesmo dia. Em 65
+ * de 65 itens publicáveis, o leitor que decidia comprar não tinha para onde ir:
+ * reservar o lugar com uma promessa é a versão educada do beco sem saída. Sem
+ * ficha de produto, o botão passa a servir a BUSCA, cuja palavra-chave está no
+ * banco desde 13/09 — o que dependia da sessão do painel da Shopee nunca foi a
+ * escolha, e sim o ENCURTAMENTO (25.6). A busca crua sai SEM `rel="sponsored"`,
+ * porque ninguém paga por aquele clique, e a página de divulgação passou a dizer
+ * ao leitor qual link rende comissão e qual não rende.
  * Versão: 1.5.1 (13/09/2026) — a frase de método do rodapé descrevia só a
  * metade que o banco tinha no dia em que foi escrita ("quando dois canais do
  * MESMO FABRICANTE discordam"). Divergência de revendedor é outra coisa, e nela
@@ -123,7 +134,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_CASCA_VERSAO' ) ) {
-	define( 'ROBOMETRIA_CASCA_VERSAO', '1.5.1' );
+	define( 'ROBOMETRIA_CASCA_VERSAO', '1.6.0' );
 	define( 'ROBOMETRIA_CASCA_TAGLINE', 'Qual peça o fabricante declarou para o seu robô aspirador — com código, endereço e data' );
 
 	/* GA4 DESTA ILHA — robometria, propriedade 553889920 da conta Arquipélago.
@@ -1136,7 +1147,7 @@ function robometria_casca_css_vitrine() {
 .rbm-vitrine-acao{margin-top:auto;padding-top:.6rem;font-size:.88rem;}
 .rbm-comprar{display:block;text-align:center;padding:.6rem .9rem;border:1px solid var(--rbm-tinta);border-radius:2px;background:var(--rbm-tinta);color:var(--rbm-piso);font-family:var(--rbm-texto);font-weight:600;font-size:.9rem;text-decoration:none;}
 .rbm-comprar:hover,.rbm-comprar:focus-visible{background:var(--rbm-superficie);color:var(--rbm-tinta);}
-.rbm-sem-loja{display:block;text-align:center;padding:.6rem .9rem;border:1px dashed var(--rbm-traco);border-radius:2px;color:var(--rbm-legenda);font-size:.84rem;}
+.rbm-sem-saida{display:block;text-align:center;padding:.6rem .9rem;border:1px dashed var(--rbm-traco);border-radius:2px;color:var(--rbm-legenda);font-size:.84rem;}
 .rbm-vitrine-fonte{font-size:.78rem;color:var(--rbm-legenda);line-height:1.4;}
 .rbm-fonte{font-size:.78rem;color:var(--rbm-legenda);text-decoration:underline;}
 .rbm-aviso-comissao{font-size:.86rem;color:var(--rbm-legenda);line-height:1.5;margin:.2rem 0 0;}
@@ -1162,33 +1173,106 @@ function robometria_casca_rotulo_da_loja( $programa ) {
 }
 
 /**
- * A PORTA DE COMPRA de um item — presente mesmo quando o link ainda não existe.
- *
- * O lugar é RESERVADO em vez de escondido, e a diferença não é cosmética: bloco
- * que só nasce quando o link chega faz a página voltar, sozinha, ao defeito de
- * ter a procedência como única porta clicável durante todas as semanas em que o
- * cano de links está enchendo (seção 7 do ARQUIPELAGO.md).
+ * A PORTA DE COMPRA de um item — e ela CLICA, sempre.
  *
  * Mora na casca desde 10/09/2026 porque deixou de ser detalhe de uma ferramenta:
  * a partir do artigo-âncora, mais de uma página desta ilha recomenda item, e o
  * lugar de uma regra do Arquipélago é um lugar só.
+ *
+ * ---------------------------------------------------------------------------
+ * 14/09/2026 — A FRASE QUE OCUPAVA ESTE LUGAR ERA A PRÓPRIA DÍVIDA
+ * ---------------------------------------------------------------------------
+ * Até hoje, item sem `afiliado.url` devolvia "Link de loja em breve". A intenção
+ * era boa e está registrada: reservar o lugar era melhor do que esconder o bloco,
+ * porque esconder devolvia à procedência o papel de única porta clicável — o
+ * defeito que a 1.1.0 desta ferramenta tinha acabado de consertar.
+ *
+ * Só que reservar o lugar com uma promessa é outra forma de beco sem saída. Em 65
+ * de 65 itens publicáveis desta ilha, o leitor que decidia comprar não tinha para
+ * onde ir, e a página lhe pedia para voltar outro dia. A seção 25.2 já tinha
+ * decidido o contrário, com a palavra do dono: "nada, nunca, fica na fila
+ * esperando o Raphael". A seção 7 foi corrigida em 14/09/2026 e PROIBIU a frase
+ * com todas as letras; o despacho dele para esta ilha, no mesmo dia, mandou o
+ * bloco de compra mostrar o piso sempre.
+ *
+ * O que estava faltando nunca foi decisão: era o ELO. A palavra-chave de busca de
+ * cada item está escrita no banco desde 13/09; o que depende da sessão do painel
+ * da Shopee é só o ENCURTAMENTO (25.6). A escada abaixo desce até ela.
  */
 if ( ! function_exists( 'robometria_casca_porta_de_compra' ) ) {
 function robometria_casca_porta_de_compra( $item ) {
-	$a   = isset( $item['afiliado'] ) ? $item['afiliado'] : array();
-	$url = isset( $a['url'] ) ? $a['url'] : '';
+	$a     = isset( $item['afiliado'] ) ? $item['afiliado'] : array();
+	$ficha = isset( $a['url'] ) ? trim( (string) $a['url'] ) : '';
+	$busca = isset( $a['url_busca'] ) ? trim( (string) $a['url_busca'] ) : '';
+	$cru   = isset( $a['url_busca_cru'] ) ? trim( (string) $a['url_busca_cru'] ) : '';
 
-	if ( '' === $url ) {
-		return '<span class="rbm-sem-loja">Link de loja em breve</span>';
+	/* A ESCADA DA 25.1 DESCE AQUI, e para no PRIMEIRO degrau que servir. */
+	if ( '' !== $ficha ) {
+		return robometria_casca_botao_de_compra( $ficha, 'Ver ' . robometria_casca_rotulo_da_loja(
+			isset( $a['programa'] ) ? $a['programa'] : null ), true, '' );
+	}
+	if ( '' !== $busca ) {
+		return robometria_casca_botao_de_compra( $busca, 'Ver ofertas ' . robometria_casca_loja_da_url( $busca ),
+			true, ' rbm-comprar-busca' );
+	}
+	if ( '' !== $cru ) {
+		/* SEM `sponsored`, E A DIFERENÇA NÃO É DETALHE. `sponsored` é a declaração
+		   de relação PAGA, e este link não paga nada a esta ilha: ele é a busca
+		   crua, sem rastreio, porque o encurtamento exige a sessão do painel
+		   (25.6). Carimbar de patrocinado um clique que não rende comissão seria
+		   afirmar ao Google — e, pela página de divulgação, ao leitor — uma
+		   relação que não existe. No dia em que a Sentinela encurtar, o campo de
+		   cima assume e o `sponsored` vem junto com ele, sem tocar nesta linha. */
+		return robometria_casca_botao_de_compra( $cru, 'Ver ofertas ' . robometria_casca_loja_da_url( $cru ),
+			false, ' rbm-comprar-busca rbm-comprar-cru' );
 	}
 
-	/* rel="sponsored" é a declaração que o Google pede para link pago, e vem
-	   junto de nofollow e noopener (seção 7 do contrato). */
-	return '<a class="rbm-comprar" href="' . esc_url( $url ) . '" target="_blank"'
-		. ' rel="sponsored nofollow noopener">'
-		. esc_html( 'Ver ' . robometria_casca_rotulo_da_loja(
-			isset( $a['programa'] ) ? $a['programa'] : null ) )
-		. '</a>';
+	/* O ÚNICO ESTADO SEM SAÍDA, e ele é DEFEITO (25.2 e seção 7), não um estado
+	   aceitável de página no ar. O banco não o produz — validar-banco.py reprova
+	   publicável sem piso —, e o ramo existe porque todo caso que o esquema
+	   permite é caso que a régua trata hoje, não no dia em que aparecer (seção 8).
+	   Ele não promete nada: promessa era o que a frase proibida fazia. */
+	return '<span class="rbm-sem-saida">Sem saída de compra para este item</span>';
+}
+}
+
+/**
+ * O botão, numa forma só — porque duas marcações para o mesmo botão viram dois CSS.
+ *
+ * `$pago` decide o `rel`, e ele é a única diferença entre um link de afiliado e a
+ * busca crua que hoje ocupa o lugar dele em 65 de 65 itens.
+ */
+if ( ! function_exists( 'robometria_casca_botao_de_compra' ) ) {
+function robometria_casca_botao_de_compra( $url, $rotulo, $pago, $classe_extra ) {
+	$rel = $pago ? 'sponsored nofollow noopener' : 'nofollow noopener';
+	return '<a class="rbm-comprar' . esc_attr( $classe_extra ) . '" href="' . esc_url( $url )
+		. '" target="_blank" rel="' . $rel . '">' . esc_html( $rotulo ) . '</a>';
+}
+}
+
+/**
+ * A LOJA DA BUSCA SAI DO ENDEREÇO, não de um campo que pode estar vazio.
+ *
+ * `plataforma` no banco descreve a FICHA, e hoje ela é nula em 65 de 65 itens —
+ * usá-la para nomear a loja do piso escreveria "Ver ofertas na loja parceira" numa
+ * página cujo link vai, visivelmente, para a Shopee. O host É a loja: isto não é
+ * inferir, é ler o endereço que a própria página vai servir. Note que é o oposto do
+ * que o esquema proíbe em `degrau` — lá o link curto esconde a durabilidade, aqui o
+ * domínio declara o destino.
+ */
+if ( ! function_exists( 'robometria_casca_loja_da_url' ) ) {
+function robometria_casca_loja_da_url( $url ) {
+	$host = strtolower( (string) wp_parse_url( $url, PHP_URL_HOST ) );
+	$lojas = array(
+		'shopee.com.br'        => 'na Shopee',
+		'mercadolivre.com.br'  => 'no Mercado Livre',
+	);
+	foreach ( $lojas as $dominio => $nome ) {
+		if ( $host === $dominio || substr( $host, - ( strlen( $dominio ) + 1 ) ) === '.' . $dominio ) {
+			return $nome;
+		}
+	}
+	return 'na loja parceira';
 }
 }
 
@@ -2416,8 +2500,8 @@ add_shortcode( 'robometria_sobre', function () {
 
 add_shortcode( 'robometria_afiliados', function () {
 	$html  = '<div class="rbm-bloco">';
-	$html .= '<p class="rbm-linha-mestra">Quando houver link de loja aqui, ele será link de afiliado: se você comprar por ele, a gente recebe uma comissão da loja, sem custo nenhum para você.</p>';
-	$html .= '<p>Isso significa que, se você comprar por ele, a Robometria pode receber uma comissão da loja, sem custo adicional para você. Os programas usados são os de afiliados da Shopee e do Mercado Livre.</p>';
+	$html .= '<p class="rbm-linha-mestra">Parte dos links de compra desta ilha é link de afiliado: se você comprar por um deles, a gente recebe uma comissão da loja, sem custo nenhum para você. A outra parte não rende nada, e logo abaixo está escrito qual é qual.</p>';
+	$html .= '<p>Os programas usados são os de afiliados da Shopee e do Mercado Livre.</p>';
 
 	$html .= '<div class="rbm-secao"><h2>O que a comissão nunca muda</h2>';
 	$html .= '<ul class="rbm-lista">';
@@ -2429,9 +2513,10 @@ add_shortcode( 'robometria_afiliados', function () {
 	$html .= '<div class="rbm-secao"><h2>Preço</h2>';
 	$html .= '<p>Nenhum preço aqui é apresentado como o preço de agora. Ou a página não traz preço, ou traz a faixa com a data em que ela foi coletada. Preço muda mais rápido do que qualquer página estática consegue acompanhar, e fingir o contrário seria enganar.</p></div>';
 
-	$html .= '<div class="rbm-secao"><h2>O que quer dizer "link de loja em breve"</h2>';
-	$html .= '<p>Quando uma peça aparece no resultado sem botão de compra, o lugar dele fica reservado com esse aviso. Não é descuido: é o estado real daquele item. A peça entrou no banco porque o fabricante declarou que ela serve no seu robô, e é isso que a página promete responder — o link de loja vem depois, um a um, e leva tempo.</p>';
-	$html .= '<p>Esconder o bloco enquanto o link não existe seria pior. A página ficaria com um único endereço clicável, o da declaração do fabricante, e mandaria você comprar na loja da própria marca — onde a Robometria não ganha nada e você não compara preço com ninguém.</p>';
+	$html .= '<div class="rbm-secao"><h2>Quais links aqui rendem comissão, e quais não rendem</h2>';
+	$html .= '<p>Os botões de compra desta ilha levam, hoje, para uma <strong>busca</strong> na loja, com a marca e o tipo da peça já escritos. Essa busca é um endereço comum: se você comprar por ela, a Robometria <strong>não</strong> recebe comissão nenhuma. Ela está aí porque é a saída que funciona sem depender de ninguém — página de busca não esgota e não sai do ar, e mandar você para um beco sem saída seria pior do que não ganhar nada.</p>';
+	$html .= '<p>Quando o link de um item passar a ser link de afiliado, ele é marcado como patrocinado no próprio código da página, que é a declaração que o Google pede. É por isso que os dois casos não usam a mesma marcação: dizer que um clique é patrocinado quando ninguém nos paga por ele seria afirmar uma relação que não existe.</p>';
+	$html .= '<p>Esconder o botão enquanto o link de afiliado não chega seria pior ainda, e foi o que esta página fez até 14 de setembro de 2026, quando o lugar do botão ficava reservado com a frase "link de loja em breve". A página ficava com um único endereço clicável — o da declaração do fabricante — e mandava você comprar na loja da própria marca, onde não dá para comparar preço com ninguém.</p>';
 	$html .= '</div>';
 
 	$html .= '<div class="rbm-secao"><h2>Por que dois programas, e não um</h2>';
@@ -2465,11 +2550,18 @@ add_shortcode( 'robometria_afiliados', function () {
 	if ( ! robometria_casca_tem_numeros() ) {
 		$html .= robometria_casca_sem_medicao_html();
 	} else {
+		/* DUAS CONTAS, PORQUE SÃO DUAS COISAS. Até 14/09/2026 esta frase tinha uma
+		   só — "quantos itens têm link de loja" — e ela respondia, ao mesmo tempo,
+		   "quantos dão para clicar" e "quantos rendem comissão". Eram o mesmo
+		   número enquanto nenhum item tinha saída nenhuma; deixaram de ser no dia
+		   em que a busca subiu, e frase que conta duas coisas com um número só
+		   mente na primeira vez que elas divergem. */
 		$html .= '<p class="rbm-nota"><strong>Estado de hoje:</strong> ';
+		$html .= 'todos os ' . robometria_casca_num( $n['itens_publicaveis'] ) . ' itens do banco têm saída de compra na página. ';
 		if ( $n['com_link'] < 1 ) {
-			$html .= 'nenhum dos ' . robometria_casca_num( $n['itens_publicaveis'] ) . ' itens do banco tem link de loja ainda — os ' . robometria_casca_num( $n['esperando_link'] ) . ' estão esperando. ';
+			$html .= 'Nenhum deles é link de afiliado ainda: os ' . robometria_casca_num( $n['esperando_link'] ) . ' saem pela busca, e por eles a gente não recebe nada. ';
 		} else {
-			$html .= robometria_casca_num( $n['com_link'] ) . ' dos ' . robometria_casca_num( $n['itens_publicaveis'] ) . ' itens do banco já têm link de loja, e ' . robometria_casca_num( $n['esperando_link'] ) . ' ainda esperam. ';
+			$html .= robometria_casca_num( $n['com_link'] ) . ' já saem por link de afiliado, e ' . robometria_casca_num( $n['esperando_link'] ) . ' ainda saem pela busca, que não rende comissão. ';
 		}
 		$html .= 'Esta página existe desde o primeiro dia porque a divulgação precisa estar publicada <em>antes</em> do primeiro link, não depois.</p>';
 	}

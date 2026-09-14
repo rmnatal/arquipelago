@@ -64,6 +64,11 @@ function esc_url($u){ return htmlspecialchars($u, ENT_QUOTES); }
 function esc_html($t){ return htmlspecialchars($t, ENT_QUOTES); }
 function esc_attr($t){ return htmlspecialchars($t, ENT_QUOTES); }
 function wp_json_encode($v,$o=0){ return json_encode($v, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES|$o); }
+/* wp_parse_url e o parse_url do nucleo com as bordas de versao de PHP resolvidas;
+   para o que a casca pede dele — o host de uma URL absoluta — o do PHP e o mesmo.
+   Entrou em 14/09/2026, quando a porta de compra passou a nomear a loja pelo
+   endereco em vez de por um campo que esta nulo em 65 de 65 itens. */
+function wp_parse_url($u,$c=-1){ return parse_url($u,$c); }
 function number_format_i18n($n,$d=0){ return number_format($n,$d,',','.'); }
 function sanitize_title($t){ return strtolower(preg_replace('/[^a-z0-9]+/i','-',$t)); }
 function wp_kses_post($t){ return $t; }

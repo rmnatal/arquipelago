@@ -983,6 +983,8 @@
       },
       "afiliado": {
         "url": "",
+        "url_busca": "",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Multilaser%20escova%20lateral%20robo%20aspirador",
         "programa": null,
         "sub_id_1": "robometria",
         "sub_id_2": "A1"
@@ -1024,6 +1026,8 @@
       },
       "afiliado": {
         "url": "",
+        "url_busca": "",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20escova%20principal%20robo%20aspirador",
         "programa": null,
         "sub_id_1": "robometria",
         "sub_id_2": "A1"
@@ -1065,6 +1069,8 @@
       },
       "afiliado": {
         "url": "",
+        "url_busca": "",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20filtro%20robo%20aspirador",
         "programa": null,
         "sub_id_1": "robometria",
         "sub_id_2": "A1"
@@ -1106,6 +1112,8 @@
       },
       "afiliado": {
         "url": "",
+        "url_busca": "",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20mop%20robo%20aspirador",
         "programa": null,
         "sub_id_1": "robometria",
         "sub_id_2": "A1"

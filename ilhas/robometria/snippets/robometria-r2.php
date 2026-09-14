@@ -1,5 +1,9 @@
 /**
  * Robometria R2 — Quantos Pa o seu robô aspirador precisa
+ * Versão: 1.5.0 (14/09/2026) — o cartão da vitrine ganha saída de compra que
+ * CLICA. O lugar do botão era reservado com "Link de loja em breve", frase
+ * proibida pela seção 7 em 14/09/2026; agora o modelo sem ficha de produto sai
+ * pela busca, pelo piso da 25.2, que não espera a sessão de ninguém.
  * Versão: 1.4.0 (14/09/2026) — o PRONOME da faixa confortável sai do banco. O
  * artigo de cada limiar já vinha do dado desde 11/09, mas a frase terminava em
  * "a recomendação DELE fica folgada", digitado: certo por acidente, porque o
@@ -72,8 +76,8 @@
  *    domínio novo tem orçamento de rastreamento minúsculo (seção 14.1).
  *
  * 5. A PORTA DE COMPRA VEM ANTES DA PROVA DE PROCEDÊNCIA, e existe antes do
- *    link. O bloco nasce mesmo com afiliado.url vazio, reservando o lugar com
- *    "Link de loja em breve"; a procedência é link de texto "fonte", nunca um
+ *    link de afiliado. Sem ficha, o bloco desce a escada da 25.1 e serve a busca:
+ *    ele nunca fica vazio e nunca promete; a procedência é link de texto "fonte", nunca um
  *    botão. As funções são as da casca (robometria_casca_porta_de_compra e
  *    irmãs): os pesos visuais são regra do Arquipélago, não estilo local.
  *
@@ -107,7 +111,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_R2_VERSAO' ) ) {
-	define( 'ROBOMETRIA_R2_VERSAO', '1.4.0' );
+	define( 'ROBOMETRIA_R2_VERSAO', '1.5.0' );
 	define( 'ROBOMETRIA_R2_SLUG', 'quantos-pa-o-robo-aspirador-precisa' );
 	/* O NOME DA PÁGINA É A CONSULTA QUE A PESSOA DIGITA (seção 14.5), e ela está
 	   literalmente no endereço: "quantos pa o robô aspirador precisa". O nome
@@ -846,7 +850,11 @@ function robometria_r2_vitrine( $itens, $s ) {
 		$html .= '<span class="rbm-vitrine-acao">'
 			. ( function_exists( 'robometria_casca_porta_de_compra' )
 				? robometria_casca_porta_de_compra( $m )
-				: '<span class="rbm-sem-loja">Link de loja em breve</span>' )
+				/* SAIDA DEGRADADA: a casca nao esta carregada, entao a escada da
+				   25.1 nao existe neste processo. Ela diz o que E — a pagina esta
+				   servindo menos do que serve — em vez de prometer um link que
+				   ninguem vai trazer. Prometer era o defeito que 14/09 tirou do ar. */
+				: '<span class="rbm-sem-saida">Saida de compra fora do ar agora</span>' )
 			. '</span>';
 
 		/* DEPOIS A PROCEDÊNCIA, discreta. O Pa é o único número que decide esta

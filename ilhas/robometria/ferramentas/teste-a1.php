@@ -351,7 +351,11 @@ rbm_ok( false !== strpos( $bloco, 'rbm-aviso-comissao' ),
 
 /* O lugar reservado existe para toda peca sem link — esconder o bloco enquanto o
    cano de links enche devolveria a procedencia ao papel de unica porta. */
-$sem_link_na_tela = substr_count( $retorno, 'rbm-sem-loja' );
+/* A CONTA MUDOU DE SINAL EM 14/09/2026: antes se contavam os lugares RESERVADOS
+   com a frase que a secao 7 proibiu, agora se contam as SAIDAS pela busca crua. O
+   numero esperado e o mesmo — um por item sem ficha de produto —, e e essa
+   igualdade que impede a vitrine de perder um cartao pelo caminho. */
+$sem_link_na_tela = substr_count( $retorno, 'rbm-comprar-cru' );
 $sem_link_nos_fatos = 0;
 foreach ( $fatos['vitrine'] as $v ) {
 	if ( empty( $v['afiliado']['url'] ) ) {
@@ -359,7 +363,7 @@ foreach ( $fatos['vitrine'] as $v ) {
 	}
 }
 rbm_ok( $sem_link_na_tela === $sem_link_nos_fatos,
-	'um lugar reservado por item sem link, nem a mais nem a menos',
+	'uma saida pela busca por item sem ficha, nem a mais nem a menos',
 	$sem_link_na_tela . ' de ' . count( $fatos['vitrine'] ) );
 
 /* A procedencia e discreta por regra: texto "fonte", nunca rotulo de botao. */

@@ -74,10 +74,39 @@ def ok(condicao, rotulo, medido=''):
     return condicao
 
 
+# O CABECALHO QUE FALTAVA, E ELE DECIDIA QUAL PAGINA ESTA FERRAMENTA LIA.
+#
+# Medido em 14/09/2026, fechando o item 1 do despacho da Sentinela do mesmo dia.
+# Ela achou o sintoma — "a ilha serve HTML de 11/09 a quem nao pede gzip" — e a
+# medicao seguinte afinou a CAUSA, que e mais estreita e mais perigosa: o que
+# devolve a copia velha nao e pedir sem compressao, e pedir SEM CABECALHO NENHUM.
+# Medido nas mesmas URLs, em /metodologia/:
+#
+#   Accept-Encoding: gzip ....... pagina de hoje
+#   Accept-Encoding: identity ... pagina de hoje
+#   Accept-Encoding: br ......... pagina de hoje
+#   (nenhum cabecalho) .......... copia de 11/09, sem trilha e sem BreadcrumbList
+#
+# `curl -s` cru nao manda o cabecalho; navegador e Googlebot mandam. Ou seja: o
+# leitor e o Google estavam certos e ERA ESTA FERRAMENTA que vinha conferindo,
+# havia tres dias, uma pagina que nao existe mais — e passando, porque a de 11/09
+# tambem era valida. E a familia do "parece conferido" que o contrato ja nomeou
+# duas vezes.
+#
+# `identity` e nao `gzip` de proposito: pede a pagina de hoje SEM compressao, entao
+# o corpo chega legivel sem o subprocesso precisar descomprimir nada. E a correcao
+# NAO fecha o defeito por baixo do pano — a Sentinela proibiu isso com todas as
+# letras ("nao feche este item ampliando a regua"). Quem mede a variante quebrada
+# e conferir_variante_sem_cabecalho(), abaixo, e ela REPROVA enquanto o cache velho
+# estiver de pe.
+ACCEPT_ENCODING = 'Accept-Encoding: identity'
+
+
 def buscar(url, tentativas=3):
     """Uma falha de rede so vira bloqueio depois de repetir (secao 20.2)."""
     for n in range(tentativas):
-        r = subprocess.run(['curl', '-s', '-w', '\\n%{http_code}', '--max-time', '40', url],
+        r = subprocess.run(['curl', '-s', '-H', ACCEPT_ENCODING,
+                            '-w', '\\n%{http_code}', '--max-time', '40', url],
                            capture_output=True, text=True)
         corpo = r.stdout
         codigo = corpo.rsplit('\n', 1)[-1].strip()
@@ -264,7 +293,7 @@ def conferir_secao_do_limiar(carimbo):
     # A SECAO NAO VENDE, e a falta esta dita. Medir so a ausencia do botao
     # aprovaria o silencio que estava la antes — e silencio e o defeito.
     com_botao = [i for i, c in enumerate(itens)
-                 if 'rbm-comprar' in c or 'rbm-sem-loja' in c]
+                 if 'rbm-comprar' in c or 'rbm-sem-saida' in c]
     ok(not com_botao, 'nenhum item da secao tem porta de compra',
        'nenhum dos %d' % len(itens) if not com_botao else 'item(ns) %s' % com_botao)
 
@@ -381,6 +410,7 @@ def main():
     conferir_procedencia_da_r2(carimbo)
     conferir_secao_do_limiar(carimbo)
     conferir_procedencia_do_a2(carimbo)
+    conferir_variante_sem_cabecalho()
 
     print('\n' + '=' * 78)
     if falhas:
@@ -388,6 +418,48 @@ def main():
         return 1
     print('APROVADO NO AR: %d afirmacoes, 0 falha(s).' % feitos)
     return 0
+
+
+def conferir_variante_sem_cabecalho():
+    """O ITEM 1 DO DESPACHO DA SENTINELA DE 14/09/2026, medido e nao fechado por cima.
+
+    A correcao obvia — mandar um Accept-Encoding e seguir a vida — conserta a
+    LEITURA desta ferramenta e apaga o defeito da vista, e a Sentinela proibiu
+    isso com todas as letras: "nao feche este item ampliando a regua. Isso troca o
+    defeito por uma regua que nao o enxerga. A regua tem de continuar medindo a
+    variante que hoje esta errada."
+
+    Entao ela e medida AQUI, de proposito, como a unica parte desta ferramenta que
+    pede a pagina do jeito errado. Enquanto o cache guardar a copia de 11/09 para
+    quem chega sem cabecalho, esta funcao REPROVA e a conferencia no ar da ilha
+    inteira fica vermelha — que e o estado honesto: metade dos clientes que nao
+    negociam compressao le uma pagina de tres dias atras, sem trilha e sem
+    BreadcrumbList, e a secao 5 chama visibilidade em IA de regra de primeira
+    classe.
+
+    O CRITERIO E O QUE A PROPRIA SENTINELA ESCREVEU: para cada URL do sitemap, o
+    numero de ocorrencias da trilha e o <title> servido tem de ser IGUAIS nas duas
+    variantes. Nao se mede tamanho em bytes: compressao muda o tamanho e nao muda a
+    pagina.
+    """
+    print('\n9. A VARIANTE QUE O CACHE CONGELOU (item 1 do despacho de 14/09)')
+    for caminho, _nome in PAGINAS:
+        url = DOMINIO + caminho
+        com, _c1 = buscar(url)
+        r = subprocess.run(['curl', '-s', '--max-time', '40', url],
+                           capture_output=True, text=True)
+        sem = r.stdout
+
+        t_com = texto_da_tag(com, r'<title[^>]*>(.*?)</title>')
+        t_sem = texto_da_tag(sem, r'<title[^>]*>(.*?)</title>')
+        ok(t_com == t_sem,
+           'mesmo <title> com e sem cabecalho em %s' % (caminho or '/'),
+           'com: %r | sem: %r' % (t_com[:34], t_sem[:34]))
+
+        n_com, n_sem = com.count('rbm-trilha'), sem.count('rbm-trilha')
+        ok(n_com == n_sem,
+           'mesma trilha com e sem cabecalho em %s' % (caminho or '/'),
+           '%d contra %d' % (n_com, n_sem))
 
 
 if __name__ == '__main__':

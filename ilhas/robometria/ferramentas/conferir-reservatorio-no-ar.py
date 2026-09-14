@@ -83,7 +83,13 @@ def ok(condicao, rotulo, medido=''):
 def buscar(url, tentativas=3):
     """Uma falha de rede so vira bloqueio depois de repetir (secao 20.2)."""
     for _ in range(tentativas):
-        r = subprocess.run(['curl', '-s', '-w', '\\n%{http_code}', '--max-time', '40', url],
+        # 'Accept-Encoding: identity' entrou em 14/09/2026, pelo item 1 do despacho
+        # da Sentinela: `curl` sem cabecalho nenhum recebe uma copia de 11/09 presa
+        # no cache, e esta ferramenta vinha conferindo uma pagina que nao existe mais.
+        # Quem MEDE o defeito e conferir-no-ar.py, que reprova enquanto ele estiver de
+        # pe; aqui o cabecalho existe so para a conferencia ler o que o leitor le.
+        r = subprocess.run(['curl', '-s', '-H', 'Accept-Encoding: identity',
+                            '-w', '\\n%{http_code}', '--max-time', '40', url],
                            capture_output=True, text=True)
         corpo = r.stdout
         codigo = corpo.rsplit('\n', 1)[-1].strip()
@@ -325,12 +331,18 @@ ok('w100c' not in antes_da_divergencia,
 
 # ------------------------------------------------------------- 5. A RECEITA DITA
 print('\n5. A receita, dita como ela e (secao 7 e escada da 25)')
-ok('link de loja em breve' in w300,
-   'o recipiente do W300 reserva o lugar do botao, sem prometer link',
-   'presente' if 'link de loja em breve' in w300 else 'AUSENTE')
-ok('link de loja em breve' in wsmart,
-   'o recipiente do WSMART reserva o lugar do botao, sem prometer link',
-   'presente' if 'link de loja em breve' in wsmart else 'AUSENTE')
+# AS DUAS AFIRMACOES FORAM INVERTIDAS EM 14/09/2026. Elas cobravam a PRESENCA de
+# "link de loja em breve", que era o estado aceitavel de ontem e virou defeito hoje:
+# a secao 7 do contrato proibiu a frase, e o despacho do Raphael mandou o bloco de
+# compra servir o piso da 25.2 sempre. Reservar o lugar com uma promessa e a versao
+# educada do beco sem saida — quem decidia comprar nao tinha para onde ir.
+for _rot, _pag in (('W300', w300), ('WSMART', wsmart)):
+    ok('em breve' not in _pag.lower(),
+       'o recipiente do %s nao serve a frase proibida pela secao 7' % _rot,
+       'ausente' if 'em breve' not in _pag.lower() else 'AINDA NO AR')
+    ok('rbm-comprar' in _pag,
+       'o recipiente do %s tem saida de compra que clica (25.2)' % _rot,
+       'presente' if 'rbm-comprar' in _pag else 'AUSENTE')
 
 print('\n' + '=' * 78)
 if falhas:
