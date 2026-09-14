@@ -30,7 +30,7 @@ Escala de 4: `4 · 8 · 12 · 16 · 24 · 32 · 48 · 64`. Raio: `--r-sm 6px` (c
 
 ## Componentes
 - **Caixa de resultado** — o elemento mais importante da ilha. Sempre acima da dobra, `--superficie`, borda de 2 px `--lamina`, número em Mono `--t-2xl`, unidade em `--t-lg`, a frase de leitura logo abaixo em `--t-base`. Nasce pré-renderizada com o caso padrão (seção 22.3).
-- **Bloco de compra** — imediatamente abaixo da caixa de resultado, antes de qualquer explicação. Botão em `--lamina`, aviso de comissão dentro do bloco em `--t-sm` `--legenda`. Nasce mesmo sem link, dizendo "link de loja em breve".
+- **Bloco de compra** — imediatamente abaixo da caixa de resultado, antes de qualquer explicação. Botão em `--lamina`, aviso de comissão dentro do bloco em `--t-sm` `--legenda`. Nasce mesmo sem link, dizendo "piso de busca da 25.2".
 - **Tabela de prova** — `--superficie`, cabeçalho em `--legenda` `--t-sm` maiúsculas com espaçamento, números em Mono alinhados à direita, linhas zebradas com `--papel`. No celular vira rolagem horizontal dentro do próprio contêiner, nunca some.
 - **"Como sabemos"** — no fim da página, `--t-sm`, fonte e data em `--legenda`, o link da fonte como texto com `rel="nofollow noopener"`, nunca botão.
 - **Cartão de calculadora** — a pergunta na linguagem da pessoa como título, uma linha de explicação, sem ícone decorativo.

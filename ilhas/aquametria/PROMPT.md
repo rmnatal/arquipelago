@@ -78,6 +78,22 @@ Quem quiser reconferir as quatro frentes de uma vez, no ar e sem navegador: `pyt
 
 **O ACHADO QUE NÃO ERA DESTA ILHA FOI MOVIDO PARA O CANAL CERTO.** A ronda de 13/09 escreveu aqui, "porque não há outro canal", que o `PROMPT.md` da clubedomosaico não documenta o parâmetro de autenticação do endpoint de peças da 24.2 — e a execução das 15h16Z o levou para `dados/despachos.md`, na raiz, que é o canal do arquipélago para o que atravessa ilha. A seção 3 proíbe editar arquivo de ilha que não se reservou, então o conserto é de quem reservar aquela ilha; o que dá para fazer daqui é a instrução chegar onde ela vai ser lida.
 
+## DESPACHO DO RAPHAEL — 14/09/2026 — O PISO DE BUSCA NÃO EXISTE NESTA ILHA
+
+O Pente Fino mediu, item a item, e o resultado é este: **os itens desta ilha não têm `afiliado.url_busca`**. Na aquametria foram 78 de 78, em quatro bancos (aquecedor 27, filtro 19, iluminação 26, mídia 6), todos também sem `url_produto` e sem `degrau`. A seção 25.2 é de 13/09 e diz que o piso sobe ANTES de qualquer outra coisa; a ilha está no ar desde antes disso e nunca recebeu o piso. Cada item sem piso é uma página que fica sem saída de compra no dia em que o produto morre — e 4 de 9 morreram em 12 horas no Clube do Mosaico, medido.
+
+Este bloco vem antes da fila normal (seção 18.1) e sai INTEIRO numa execução só.
+
+**O que fazer, item por item, em todos os bancos de `dados/` que tenham produto recomendado:**
+
+1. Grave `afiliado.url_busca_bruta`: a URL de busca crua da Shopee para aquele item, no formato `https://shopee.com.br/search?keyword=<termo>`, com o termo URL-encoded. O termo é o nome do produto como um comprador digitaria — marca + tipo + medida quando a medida importa (ex.: `termostato aquario 100w`), sem código interno, sem palavra de catálogo, sem adjetivo de review.
+2. Grave `afiliado.degrau: 4` e `afiliado.conferido_em: <data desta execução>` nos itens que só tiverem o piso.
+3. Onde o item JÁ tiver link de produto encurtado mas não tiver `url_produto`, **não invente a URL crua** — grave `afiliado.url_produto: null` e `afiliado.intestavel: true`. Sem a URL crua o teste de vida da 25.4-b é impossível, e isso precisa ficar visível, não escondido.
+4. Na página pública, o bloco de compra passa a mostrar o piso sempre. Nenhuma página pode ficar com "link de loja em breve" — essa frase está proibida pela seção 7 corrigida hoje.
+5. Reporte, no REGISTRO.md, quantos itens ganharam piso e quantos continuam sem `url_produto`. **Contado e nomeado, nunca estimado.**
+
+**O que você NÃO faz:** não gera link de afiliado encurtado. O gerador da Shopee mora no navegador do Raphael e é da Sentinela (leitura semanal, passo 4) — ela converte as `url_busca_bruta` em `url_busca` rastreável em lotes de 5. Você prepara o campo; ela encurta. Nunca clique em link de afiliado nosso para testar nada.
+
 ## FILA DE BLOCOS — reordenada em 09/09/2026 pela meta de tráfego
 
 **MODO MUTIRÃO, ligado em 09/09/2026 a pedido do Raphael:** ele quer a ilha fechada o quanto antes e tirou a regra de um bloco por execução PARA ESTA ILHA. Entregue quantos blocos couberem na sessão, em sequência, na ordem da fila — **verificando cada um pela seção 8 do `ARQUIPELAGO.md` antes de começar o próximo**, e respeitando integralmente a seção 13. O que **não** entra no mutirão: publicar a malha em massa. A malha continua saindo em leva de 5 a 10 páginas com medição no meio, porque é justamente o que protege a indexação — e indexação é a meta desta ilha.

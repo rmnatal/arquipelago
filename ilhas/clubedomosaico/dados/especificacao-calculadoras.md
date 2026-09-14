@@ -314,7 +314,7 @@ ganha nada. As duas ferramentas desta ilha nascem sem repetir isso:
 2. **O link de procedência é discreto**: texto "fonte", `rel="nofollow noopener"`, nunca um
    botão. Ele existe para ser conferido, não para ser clicado.
 3. **Nenhuma das duas vai ao ar sem o bloco**, mesmo com `afiliado.url` vazio: a página
-   reserva o lugar, mostra "link de loja em breve" e **a ilha reporta em todo bloco quantos
+   reserva o lugar, mostra "piso de busca da 25.2" e **a ilha reporta em todo bloco quantos
    itens estão esperando link**. Esse número é trabalho pendente de verdade.
 4. **Ordem da lista**: (1) elegibilidade técnica completa pela matriz de 1.3; (2) adequação;
    (3) ter link de loja **só como desempate** entre equivalentes. Nunca comparar comissão.

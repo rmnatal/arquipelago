@@ -231,6 +231,22 @@ no ar e que nenhuma ronda tinha procurado.
 1. ~~**Os sitemaps respondem HTTP 404 com XML válido no corpo.**~~ **METADE DE CÓDIGO CUMPRIDA em 10/09/2026, 15h49Z** (casca 1.0.1, manifest revisão 9). A causa era a própria casca mandar "Hello world!" para a lixeira: sem nenhum post publicado, a consulta principal das rotas `index.php?sitemap=…` volta vazia e o `handle_404()` do núcleo carimba 404 antes de o XML sair. Consertado pelo filtro `pre_handle_404`, que só age em requisição de sitemap. **Medido no ar:** `wp-sitemap.xml` e `wp-sitemap-posts-page-1.xml` devolvem **200**, `/pagina-que-nao-existe-mesmo/` continua **404** (o conserto não vazou), e `wp-sitemap-posts-post-1.xml` segue 404 porque esta ilha não tem post nenhum — de propósito, e ele não está no índice.
    **FALTA A METADE HUMANA, e ela não é da Fundação:** reenviar o sitemap no Search Console (Sitemaps → enviar `https://robometria.com.br/wp-sitemap.xml`) para ele sair de "Não foi possível buscar". Exige o navegador do Raphael ou credencial de conta de serviço que este ambiente ainda não tem. **Enquanto isso não acontecer, nenhuma leva de malha (bloco 5b) nasce** — a rampa da seção 14 é inexecutável sem medição.
 
+## DESPACHO DO RAPHAEL — 14/09/2026 — O PISO DE BUSCA NÃO EXISTE NESTA ILHA
+
+O Pente Fino mediu, item a item, e o resultado é este: **os itens desta ilha não têm `afiliado.url_busca`**. Na aquametria foram 78 de 78, em quatro bancos (aquecedor 27, filtro 19, iluminação 26, mídia 6), todos também sem `url_produto` e sem `degrau`. A seção 25.2 é de 13/09 e diz que o piso sobe ANTES de qualquer outra coisa; a ilha está no ar desde antes disso e nunca recebeu o piso. Cada item sem piso é uma página que fica sem saída de compra no dia em que o produto morre — e 4 de 9 morreram em 12 horas no Clube do Mosaico, medido.
+
+Este bloco vem antes da fila normal (seção 18.1) e sai INTEIRO numa execução só.
+
+**O que fazer, item por item, em todos os bancos de `dados/` que tenham produto recomendado:**
+
+1. Grave `afiliado.url_busca_bruta`: a URL de busca crua da Shopee para aquele item, no formato `https://shopee.com.br/search?keyword=<termo>`, com o termo URL-encoded. O termo é o nome do produto como um comprador digitaria — marca + tipo + medida quando a medida importa (ex.: `termostato aquario 100w`), sem código interno, sem palavra de catálogo, sem adjetivo de review.
+2. Grave `afiliado.degrau: 4` e `afiliado.conferido_em: <data desta execução>` nos itens que só tiverem o piso.
+3. Onde o item JÁ tiver link de produto encurtado mas não tiver `url_produto`, **não invente a URL crua** — grave `afiliado.url_produto: null` e `afiliado.intestavel: true`. Sem a URL crua o teste de vida da 25.4-b é impossível, e isso precisa ficar visível, não escondido.
+4. Na página pública, o bloco de compra passa a mostrar o piso sempre. Nenhuma página pode ficar com "link de loja em breve" — essa frase está proibida pela seção 7 corrigida hoje.
+5. Reporte, no REGISTRO.md, quantos itens ganharam piso e quantos continuam sem `url_produto`. **Contado e nomeado, nunca estimado.**
+
+**O que você NÃO faz:** não gera link de afiliado encurtado. O gerador da Shopee mora no navegador do Raphael e é da Sentinela (leitura semanal, passo 4) — ela converte as `url_busca_bruta` em `url_busca` rastreável em lotes de 5. Você prepara o campo; ela encurta. Nunca clique em link de afiliado nosso para testar nada.
+
 ## FILA DE BLOCOS
 
 **1. LEVANTAMENTO DE BUSCAS PARAMÉTRICAS.** Consultas reais do nicho no Brasil, agrupadas em clusters de ferramenta, com procedência marcada consulta a consulta (autocomplete, buscas relacionadas, fórum, YouTube). Grave em `dados/corpus-buscas.md`. Separe explicitamente o eixo de **compatibilidade** (peça × modelo) do de **dimensionamento** (Pa, m², autonomia). Não depende de site nem de domínio.

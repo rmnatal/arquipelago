@@ -31,7 +31,7 @@ Escala de 4: `4 · 8 · 12 · 16 · 24 · 32 · 48 · 64`. Raio `--r-sm 4px` · 
 ## Componentes
 - **Veredito** — o elemento mais importante. Três estados, e o estado é visível antes de ler: **serve** (borda esquerda de 4 px em `--varredura`, palavra em Archivo 700 `--t-xl`), **não serve** (borda em `--legenda`, mesma forma), **serve se** (borda em `--alerta`, com a condição na linha seguinte). Acima da dobra, sempre.
 - **Seletor "Qual é o seu robô?"** — marca e modelo, na home, acima de tudo. Os três atalhos (filtro · escova · bateria) logo abaixo, como links de verdade para as páginas, não como filtros de JS (seção 22.3).
-- **Bloco de compra** — imediatamente abaixo do veredito, antes de qualquer explicação. Aviso de comissão dentro do bloco. Nasce mesmo sem link, reservando o lugar com "link de loja em breve".
+- **Bloco de compra** — imediatamente abaixo do veredito, antes de qualquer explicação. Aviso de comissão dentro do bloco. Nasce mesmo sem link, reservando o lugar com "piso de busca da 25.2".
 - **Tabela de compatibilidade** — `--superficie`, código do fabricante em Mono, cabeçalho em `--legenda` `--t-sm` maiúsculas, rolagem horizontal no celular dentro do contêiner.
 - **"Como sabemos"** — nota discreta no fim, `--t-sm`, link "fonte" como texto com `rel="nofollow noopener"`, nunca botão, sem fundo.
 - **Trilha (breadcrumb)** — `--t-sm` `--legenda`, abaixo do cabeçalho, degrau atual igual ao H1.
