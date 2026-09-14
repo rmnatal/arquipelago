@@ -81,6 +81,13 @@ FICHAS = {
     "quantos-litros-para-platy": "xiphophorus-maculatus",
     "quantos-litros-para-peixe-espada": "xiphophorus-hellerii",
     "quantos-litros-para-plati-variatus": "xiphophorus-variatus",
+    # leva 6, 14/09/2026 — a categoria ciclideos-anoes inteira, e a PRIMEIRA
+    # em que as tres filhas vivem de tres jeitos DIFERENTES: casal, harem e
+    # grupo com numero declarado. As quatro anteriores tinham no maximo dois
+    # arranjos por categoria, e a vivaparos tinha um so.
+    "quantos-litros-para-ramirezi": "mikrogeophagus-ramirezi",
+    "quantos-litros-para-apistogramma-agassizi": "apistogramma-agassizii",
+    "quantos-litros-para-papilocromis": "mikrogeophagus-altispinosus",
 }
 
 # As especies do catalogo que NAO declaram o fundo do aquario: a fonte publica o
@@ -97,6 +104,13 @@ SEM_FUNDO_DECLARADO = {
     # so o compendio, e so para o peixe-espada (120 x 30 cm).
     "xiphophorus-maculatus",
     "xiphophorus-variatus",
+    # leva 6, 14/09/2026: DUAS das tres filhas dos ciclideos anoes entram
+    # aqui. A base cientifica declara "aquario minimo de 60 cm" para o
+    # ramirezi e o compendio declara 120 cm para o papilocromis, e nenhum
+    # dos dois diz uma palavra sobre o fundo. Quem tem os dois lados do
+    # chao e so a agassizii (60 x 30 cm, compendio).
+    "mikrogeophagus-ramirezi",
+    "mikrogeophagus-altispinosus",
 }
 SECAO = "peixes"
 
@@ -228,6 +242,20 @@ CATEGORIAS = {
             "xiphophorus-variatus",
         ],
     },
+    # leva 6, 14/09/2026. `barradas` nasce VAZIA aqui e isso e uma afirmacao,
+    # nao um descuido: nao existe um quarto ciclideo anao no banco, nem passando
+    # nem barrado. A candidata que faltaria e a Apistogramma cacatuoides, e ela
+    # esta fora por RECUSA DE COLETA e nao por portao — a base nao publica o
+    # aquario dela e a busca ofereceu o da congenere.
+    "ciclideos-anoes": {
+        "rotulo": "ciclídeos anões",
+        "barradas": [],
+        "especies": [
+            "mikrogeophagus-ramirezi",
+            "apistogramma-agassizii",
+            "mikrogeophagus-altispinosus",
+        ],
+    },
 }
 # O SUJEITO DA FRASE DE LISTA FECHADA e A CONSULTA DE CADA CATEGORIA, escritos
 # aqui a mao como tudo o mais deste arquivo. Os dois eram texto DIGITADO dentro
@@ -240,12 +268,14 @@ SINGULAR_DA_CATEGORIA = {
     "corydoras": "toda coridora",
     "bettas": "todo betta e todo gurami",
     "vivaparos": "todo vivíparo",
+    "ciclideos-anoes": "todo ciclídeo anão",
 }
 CONSULTA_DA_CATEGORIA = {
     "tetras": "quantos litros para tetras",
     "corydoras": "quantos litros para coridoras",
     "bettas": "quantos litros para gourami",
     "vivaparos": "quantos litros para peixes vivíparos",
+    "ciclideos-anoes": "quantos litros para ciclídeo anão",
 }
 
 PAGINAS = [SECAO] + list(CATEGORIAS) + list(FICHAS)

@@ -1,5 +1,28 @@
 /**
  * Aquametria Peixes — a malha do eixo /peixes/
+ * Versão: 1.10.0 (14/09/2026) — LEVA 6: A QUINTA CATEGORIA, E A PRIMEIRA EM QUE
+ * AS TRÊS FILHAS VIVEM DE TRÊS JEITOS DIFERENTES. Quatro URLs novas:
+ * /peixes/ciclideos-anoes/ e as fichas do ramirezi (casal), do apistogramma
+ * agassizi (harém) e do papilocromis (grupo de 6 a 8). A ilha vai de 36 para
+ * 40 URLs — que é o PISO DA RAMPA da seção 21.
+ *
+ *   AS QUATRO CATEGORIAS ANTERIORES TINHAM NO MÁXIMO DOIS ARRANJOS, e a
+ *   `vivaparos` tinha um só. Esta tem os três que o vocabulário fechado
+ *   permite numa categoria só, e por isso é a primeira em que a tabela de
+ *   lotação percorre os três ramos da abertura lado a lado, na mesma tela.
+ *
+ *   E A FRENTE MÍNIMA DO PAPILOCROMIS É A PRIMEIRA DO EIXO QUE É CONDICIONAL:
+ *   o compêndio não publica "aquário mínimo" solto, publica "grupo misto de 6
+ *   a 8 ou mais DESDE QUE o aquário tenha 120 cm ou mais". Quebrar a frase em
+ *   dois números seria publicar uma frente que a fonte nunca declarou sozinha
+ *   — a mesma família do BASE contra FRENTE que a leva 2 consertou.
+ *
+ *   O BANCO, O CRITÉRIO, A LINHA MESTRA E A SERP desta categoria vieram da
+ *   preparação de 1.9.0, na execução das 21h18Z do mesmo dia. Esta versão
+ *   publica: preenche a lista `especies` da categoria e escreve as quatro
+ *   entradas em `aquametria_peixes_registro()`. Nenhuma URL das levas 1 a 5
+ *   muda, nenhum endereço se move.
+ *
  * Versão: 1.9.0 (14/09/2026) — PREPARAÇÃO DA LEVA 6: A QUINTA CATEGORIA GANHA
  * BANCO, CRITÉRIO E LINHA MESTRA, E NENHUMA URL NASCE. Duas espécies novas no
  * banco (Apistogramma agassizii e Mikrogeophagus altispinosus) levam
@@ -402,7 +425,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_PEIXES_VERSAO' ) ) {
-	define( 'AQUAMETRIA_PEIXES_VERSAO', '1.9.0' );
+	define( 'AQUAMETRIA_PEIXES_VERSAO', '1.10.0' );
 }
 
 /* A data em que a SERP das consultas foi classificada (seção 14.9).
@@ -3204,6 +3227,54 @@ function aquametria_peixes_registro() {
 			'serp_em'  => '13/09/2026',
 			'porque'   => 'Medido em 13/09/2026: a SERP responde com páginas do OUTRO peixe — o resultado editorial do topo é a ficha do Xiphophorus maculatus e o resumo mistura os números dos dois. A SERP trata as duas espécies como uma, e a mesma base que sustenta este banco as separa em DOIS campos ao mesmo tempo: 7,0 contra 6,0 cm TL de porte e 15 a 25 contra 18 a 25 °C de faixa. É o buraco mais limpo que esta categoria tem para ocupar, e a página ganha por publicar a diferença entre os dois em vez de repeti-los como um só.',
 		),
+
+		/* --- LEVA 6, 14/09/2026: a QUINTA categoria do eixo e as três fichas dela.
+		   `/peixes/ciclideos-anoes/` sai do vazio com o mínimo exato do 16.5, e a
+		   ilha vai de 36 para 40 URLs — que é o piso da rampa da seção 21. O banco,
+		   o critério e a linha mestra desta categoria foram preparados na execução
+		   das 21h18Z do mesmo dia, e a SERP das quatro consultas foi classificada
+		   lá; esta leva publica. Nenhuma URL das levas 1 a 5 muda, nenhum endereço
+		   se move. --- */
+
+		'ciclideos-anoes' => array(
+			'nivel'    => 2,
+			'pai'      => 'peixes',
+			'titulo'   => 'Ciclídeos anões: quantos litros, do casal ao grupo',
+			'conteudo' => '[aquametria_peixes_categoria]',
+			'consulta' => 'quantos litros para ciclídeo anão',
+			'serp_em'  => '14/09/2026',
+			'porque'   => 'Medido em 14/09/2026: o top 10 não tem um domínio forte e tem um portal europeu (zooplus.pt), um fórum português, dois blogs de pet shop, um Blogspot de 2012, uma loja, três blogs de aquarismo e uma ficha de OUTRA espécie do gênero. Os números se contradizem na mesma página de resultados — 54 L, 30 L para um casal e 50 L para comunitário, 75 L, 100 L —, nenhum é atribuído e nenhum publica a base em centímetros. E o próprio resumo da busca termina mandando o leitor pesquisar espécie por espécie, que é exatamente a tabela que esta página é. ALVO, e a categoria vale mais do que a soma das fichas: é aqui que se vê que o mesmo porte pede o mesmo aquário e que é o arranjo que dobra o número.',
+		),
+		'quantos-litros-para-ramirezi' => array(
+			'nivel'    => 3,
+			'pai'      => 'ciclideos-anoes',
+			'especie'  => 'mikrogeophagus-ramirezi',
+			'titulo'   => 'Quantos litros para um casal de ramirezi?',
+			'conteudo' => '[aquametria_peixes_ficha]',
+			'consulta' => 'quantos litros para ramirezi',
+			'serp_em'  => '14/09/2026',
+			'porque'   => 'Medido em 14/09/2026: o top 9 tem SEIS lojas, uma ficha de portal de aquarismo, um portal de conteúdo e um blog — nenhum domínio forte. Os números da mesma página de resultados vão de 30 L para um casal a 60 L, passando por 40 e 50, e nenhum é atribuído a fonte nomeada; junto vem a regra de bolso de "um ramirezi para cada 20 litros", que é a conta per capita que esta ilha recusa desde a leva 1. Nenhum publica a base em centímetros, que é o que a nossa fonte declara. ALVO. É a espécie mais vendida da categoria e a que mais aparece em aquário pequeno demais.',
+		),
+		'quantos-litros-para-apistogramma-agassizi' => array(
+			'nivel'    => 3,
+			'pai'      => 'ciclideos-anoes',
+			'especie'  => 'apistogramma-agassizii',
+			'titulo'   => 'Quantos litros para apistogramma agassizi?',
+			'conteudo' => '[aquametria_peixes_ficha]',
+			'consulta' => 'quantos litros para apistogramma agassizi',
+			'serp_em'  => '14/09/2026',
+			'porque'   => 'Medido em 14/09/2026, e é a SERP mais frouxa das quatro: OITO dos nove primeiros são páginas de PRODUTO — elas vendem o peixe e não respondem a pergunta —, mais uma ficha de portal. O que aparece de número está espalhado entre 30 L, 50 L, 60 × 30 × 30 cm e 60 L, sem atribuição. ALVO com uma vantagem que as outras três não têm: aqui os dois corpos de fonte declaram o MESMO 60 cm para arranjos diferentes (o compêndio para um casal, a base para várias fêmeas por macho), e a página ganha por publicar essa diferença em vez de escolher uma e calar a outra.',
+		),
+		'quantos-litros-para-papilocromis' => array(
+			'nivel'    => 3,
+			'pai'      => 'ciclideos-anoes',
+			'especie'  => 'mikrogeophagus-altispinosus',
+			'titulo'   => 'Quantos litros para um grupo de papilocromis?',
+			'conteudo' => '[aquametria_peixes_ficha]',
+			'consulta' => 'quantos litros para papilocromis',
+			'serp_em'  => '14/09/2026',
+			'porque'   => 'Medido em 14/09/2026: dos oito primeiros, só DOIS falam da espécie, e os dois são lojas. O resto é página genérica de "quantos peixes cabem" (duas), uma ficha de kinguio fora do assunto, um Blogspot de 2013, um de 2011 e um fórum. Os números são 60 L para um casal, 100 L para um harém e 70 L para um casal — e NINGUÉM publica os 120 cm de frente que o compêndio declara para o grupo de 6 a 8, que é o arranjo que a própria fonte recomenda. É a maior distância do eixo inteiro entre o que a SERP responde e o que a fonte declara, e por isso a página de maior valor desta leva.',
+		),
 	);
 }
 }
@@ -3337,8 +3408,22 @@ function aquametria_peixes_categorias() {
 			   escreve aqui na hora de nascer: `mikrogeophagus-ramirezi` (no
 			   banco desde 09/09), `apistogramma-agassizii` e
 			   `mikrogeophagus-altispinosus` (colhidos nesta execução, para ESTA
-			   categoria alcançar o mínimo de três). */
-			'especies' => array(),
+			   categoria alcançar o mínimo de três).
+
+			   LEVA 6, 14/09/2026: A LISTA SAI DO VAZIO, porque a página nasceu, e a
+			   categoria entra no mínimo EXATO do 16.5, sem folga — a mesma posição
+			   da `bettas` e da `vivaparos`. Nenhuma espécie declarada aqui é barrada
+			   pelo portão, então a lista de fora desta categoria nasce VAZIA: não
+			   existe um quarto ciclídeo anão no banco, nem passando nem barrado. A
+			   candidata que faltaria é a `Apistogramma cacatuoides`, e ela não está
+			   no banco por RECUSA DE COLETA e não por portão — a base não publica o
+			   aquário dela e a busca ofereceu o da congênere. A causa está no
+			   `REGISTRO.md` da execução das 21h18Z. */
+			'especies' => array(
+				'mikrogeophagus-ramirezi',
+				'apistogramma-agassizii',
+				'mikrogeophagus-altispinosus',
+			),
 		),
 		'plecos-e-limpa-vidros' => array(
 			'rotulo'   => 'Plecos e limpa-vidros',

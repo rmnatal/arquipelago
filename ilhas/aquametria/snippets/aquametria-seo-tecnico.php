@@ -274,6 +274,10 @@ function aquametria_seo_metas_por_slug() {
 			'titulo'    => 'Bettas e gouramis: quantos litros cada um pede',
 			'descricao' => 'Betta, colisa-anão e gurami mel não vivem do mesmo jeito: o arranjo que a fonte declara ao lado da frente mínima de cada um, com nome e data.',
 		),
+		'ciclideos-anoes' => array(
+			'titulo'    => 'Ciclídeos anões: quantos litros, do casal ao grupo',
+			'descricao' => 'Ciclídeo anão pede aquário pelo arranjo, não pelo tamanho: dois do mesmo porte pedem 60 cm e o terceiro pede 120, com a fonte de cada linha.',
+		),
 		'corydoras' => array(
 			'titulo'    => 'Coridoras: quanto chão o grupo pede',
 			'descricao' => 'Coridora se dimensiona pelo chão, não pelo litro: porte, cardume mínimo e base mínima das quatro espécies, com a fonte de cada linha.',
@@ -281,6 +285,10 @@ function aquametria_seo_metas_por_slug() {
 		'peixes' => array(
 			'titulo'    => 'Quanto espaço cada peixe pede',
 			'descricao' => 'Quanto espaço cada peixe pede, em centímetros de chão e não em litros: o mínimo declarado por fonte com nome e data, espécie por espécie.',
+		),
+		'quantos-litros-para-apistogramma-agassizi' => array(
+			'titulo'    => 'Quantos litros para apistogramma agassizi?',
+			'descricao' => 'Quantos litros para apistogramma agassizi? Os 60 cm que as duas fontes declaram, uma para casal e outra para harém, e quantos cabem no seu aquário.',
 		),
 		'quantos-litros-para-betta' => array(
 			'titulo'    => 'Quantos litros para um betta?',
@@ -314,6 +322,10 @@ function aquametria_seo_metas_por_slug() {
 			'titulo'    => 'Quantos litros para um cardume de mato-grosso?',
 			'descricao' => 'Quantos litros para um cardume de mato-grosso? As duas fontes discordam da frente mínima, e esta página publica as duas com o nome de cada uma.',
 		),
+		'quantos-litros-para-papilocromis' => array(
+			'titulo'    => 'Quantos litros para um grupo de papilocromis?',
+			'descricao' => 'Quantos litros para um grupo de papilocromis? Os 120 cm que a fonte declara para o grupo de 6 a 8, e quantos cabem no aquário que você já tem.',
+		),
 		'quantos-litros-para-peixe-espada' => array(
 			'titulo'    => 'Quantos litros para um peixe-espada?',
 			'descricao' => 'Quantos litros para um peixe-espada? Os 120 × 30 cm de base que a ficha da espécie declara, com nome da fonte e data: o dobro da frente do platy.',
@@ -325,6 +337,10 @@ function aquametria_seo_metas_por_slug() {
 		'quantos-litros-para-platy' => array(
 			'titulo'    => 'Quantos litros para platy?',
 			'descricao' => 'Quantos litros para platy? Os 60 cm de frente que a ficha da espécie declara, com nome da fonte e data — e por que o litro sozinho engana aqui.',
+		),
+		'quantos-litros-para-ramirezi' => array(
+			'titulo'    => 'Quantos litros para um casal de ramirezi?',
+			'descricao' => 'Quantos litros para um casal de ramirezi? A frente mínima que a fonte declara, a conta pelas duas réguas de lotação e quantos cabem no seu aquário.',
 		),
 		'quantos-litros-para-rodostomo' => array(
 			'titulo'    => 'Quantos litros para um cardume de rodóstomo?',

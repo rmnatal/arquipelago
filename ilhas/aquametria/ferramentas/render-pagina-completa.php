@@ -122,6 +122,17 @@ $GLOBALS['__paginas'] = array(
 	'quantos-litros-para-platy'                 => true,
 	'quantos-litros-para-peixe-espada'          => true,
 	'quantos-litros-para-plati-variatus'        => true,
+	/* A leva 6 (14/09/2026): a QUINTA categoria, e a primeira em que as tres
+	   filhas vivem de tres jeitos DIFERENTES — casal, harem e grupo com numero
+	   declarado. As quatro anteriores tinham no maximo dois arranjos por
+	   categoria e a vivaparos tinha um so, entao nenhuma pagina desta bancada
+	   exercitava os tres ramos da abertura da ficha NA MESMA categoria. E os
+	   120 cm do papilocromis sao a primeira frente minima do eixo que e
+	   CONDICIONAL ao grupo que a fonte recomenda. */
+	'ciclideos-anoes'                           => true,
+	'quantos-litros-para-ramirezi'              => true,
+	'quantos-litros-para-apistogramma-agassizi' => true,
+	'quantos-litros-para-papilocromis'          => true,
 );
 
 aquametria_teste_carregar( $raiz );
