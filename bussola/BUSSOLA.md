@@ -60,9 +60,22 @@ Três regras que nasceram da autocrítica da própria rodada 004, e valem da 005
 - **Valor neutro é invenção.** Preencher P, D, R, A ou V com um valor médio porque o componente não foi recuperado é fabricar índice. Se falta componente, **não calcule o índice** — `pendente`, fora do ranking, motivo escrito.
 - **V é por ferramenta, não por nicho.** A verificabilidade tem que ser medida na fonte de CADA uma das três primeiras ferramentas do plano (seção 5, item f), não na fonte mais fácil do nicho. Fabricante que publica o dado da ferramenta 1 não prova nada sobre a ferramenta 2. No dossiê, escreva V ferramenta por ferramenta, com o fabricante e o documento que sustentam cada uma; **ferramenta cujo dado não foi encontrado não entra no plano**.
 
-Fazendas programáticas conhecidas no Brasil (presença delas na paramétrica derruba S_par): guiaomelhor, qualeamelhor,
-melhoresparacomprar, guiarecomenda, buscamelhores, recomenda360, br.my-best, analisamelhor, topavaliado, monitorcasa,
-qualmelhorcomprar, ositensdecasa. SERP paramétrica dominada por YouTube/TikTok é sinal FORTE de abertura.
+Fazendas programáticas conhecidas no Brasil (presença delas na paramétrica derruba S_par):
+
+- **As 12 originais (até a rodada 004):** guiaomelhor, qualeamelhor, melhoresparacomprar, guiarecomenda, buscamelhores,
+  recomenda360, br.my-best, analisamelhor, topavaliado, monitorcasa, qualmelhorcomprar, ositensdecasa.
+- **As 23 que a rodada 005 mediu e mandou entrar aqui** (seção 2.7 de `rodadas/005.md`; a lista antiga pegou só 4
+  ocorrências em 12 consultas enquanto estas dominavam duas SERPs comerciais inteiras — **régua que só olha os 12 nomes
+  antigos dá S_com alto para SERP que está fechada**): techminuto, casastech, focsfoto, guiadeferramenta, melhoresdotech,
+  envidracamentoemsacadas, santonela, techinter, amoprodutinhos, guiadosperifericos, avaliado.com.br, qualmelhorproduto,
+  radardacasa, topdezmelhores, achehoje, buscageral, buscasempre, osreviews, mecanie, gdm, cabemcasa, mastereview,
+  prosanacozinha.
+
+*(A rodada 005 escreveu "os nomes acima entram na lista do `BUSSOLA.md` nesta rodada" e a lista não foi atualizada;
+transcritos aqui pelo Pente Fino em 14/09/2026, sem acrescentar nem tirar nome. Nenhuma nota já dada foi recalculada —
+as notas da 005 saíram de SERP lida, não desta lista.)*
+
+SERP paramétrica dominada por YouTube/TikTok é sinal FORTE de abertura.
 
 **A LISTA FOI AMPLIADA EM 14/09/2026 (rodada 005), porque estava desatualizada e isso superestimava S_com.** Em doze
 consultas medidas, os doze nomes acima pegaram **quatro ocorrências** — enquanto fazendas do mesmo molde e **fora da

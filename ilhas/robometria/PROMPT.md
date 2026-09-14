@@ -149,8 +149,10 @@ de páginas lista início, ferramentas, metodologia, sobre e divulgação-de-afi
 de posts está vazio ("Hello world" saiu). Próximo bloco da fila é o 3c.
 
 **Antes de mexer na casca, rode `php ferramentas/teste-casca.php .`** — 59 medições, sem
-site e sem rede, e é a única verificação da seção 8 que esta ilha consegue executar sozinha
-(a nuvem não alcança robometria.com.br). Ele confere o que a seção 8 pede e mais a
+site e sem rede, e é a verificação da seção 8 que esta ilha consegue executar **sem** tocar o
+site. *(Esta linha dizia "a nuvem não alcança robometria.com.br" — falso desde 10/09/2026, e
+contradito pela própria seção "Endpoints desta ilha" acima e pelo bloco 3b logo abaixo, que
+registra o Sync acionado pela nuvem. Corrigido pelo Pente Fino em 14/09/2026.)* Ele confere o que a seção 8 pede e mais a
 identidade: paleta fechada, nenhum gradiente, a varredura ausente do corpo porque é cor de
 sinal, e **cada número da tela conferido contra o banco commitado** — quem expandir o banco
 e não atualizar o instantâneo da casca vê o teste reprovar em vez de o site publicar número
@@ -238,12 +240,24 @@ hoje sai pela metade, dizendo que o total depende de um número que ninguém
 publica. Não é lacuna de mercado como a dos m²: a recarga é dado de manual, e a
 Electrolux publica manual.
 
-**TODA a coleta acima depende de rede que hoje NÃO existe.** Medido em
+**O EGRESSO DIRETO A ESSES DOMÍNIOS SEGUE FECHADO, E ISSO NÃO BLOQUEIA O 3c.** Medido em
 11/09/2026: `mi.com.br`, `xiaomi.com.br`, `wap.ind.br` e
 `mais.conteudo.wap.ind.br` devolvem `000` — só os domínios das ilhas respondem.
-**Antes de escolher um alvo do 3c, teste a rede com `curl`.** Se ela continuar
-fechada, o 3c inteiro está bloqueado e a fila cai para o trabalho de repositório
-listado em "Específico desta ilha", que não depende de rede nenhuma.
+*(O texto que ficava aqui mandava testar esses endereços com `curl` e dar o 3c inteiro por
+bloqueado se eles falhassem. Foi exatamente isso que parou a coleta desta ilha por três dias:
+o banco sempre citou `www.mi.com/br`, e a busca alcança. A seção 4 do `ARQUIPELAGO.md` virou
+regra a partir deste caso — **o endereço que se testa sai do BANCO, do campo `url` da fonte
+que se quer reler, nunca da prosa que descreve o bloqueio** —, e o registro de 13/09 mais
+abaixo neste mesmo arquivo já dizia o contrário desta linha. Corrigido pelo Pente Fino em
+14/09/2026.)*
+**Antes de escolher um alvo do 3c:** abra o registro que você quer melhorar, copie o endereço
+do campo `url` dele, e teste **esse**. Teste também os **dois canais**, que são redes
+diferentes — egresso direto (`curl`/`WebFetch`) e canal de busca —, como manda o item
+"O EGRESSO DIRETO E O CANAL DE BUSCA SÃO DUAS REDES DIFERENTES" em "Específico desta ilha".
+Uma falha só vira bloqueio depois de repetir na mesma execução (seções 4 e 20.2), e bloqueio
+herdado do `ESTADO.md` é retestado antes de ser respeitado. Alvo cujo canal estiver
+comprovadamente fechado nos dois cai para o trabalho de repositório listado em "Específico
+desta ilha", que não depende de rede nenhuma — o 3c inteiro, não.
 
 **ANTES de colher qualquer coisa para o 3c, rode `python3 ferramentas/cobertura-r1.py` e
 `ferramentas/validar-banco.py`.** As duas varreduras são o que separa "acrescentei um

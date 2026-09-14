@@ -243,7 +243,7 @@ Nada mais nesta ronda.
 
 **3. MODELO DO BANCO.** Três entidades, todas com `imagem` desde já: **MATERIAL** (categoria, tipo, medida, material, embalagem, `afiliado.programa`/`afiliado.url` vazios até a Sentinela preencher) · **PEÇA** (CPT `peca` no WordPress, cadastrada pela artesã no painel `/atelie/`: nome, técnica, base, medidas, peso, cores, preço, disponibilidade, prazo, fotos — nunca inventada) · **TÉCNICA** (bizantino, direto, indireto, opus).
 
-**3b. CASCA DO SITE** — só depois que o WordPress existir. Seção 6 do contrato com a paleta acima. Páginas: início, loja, materiais, como-fazer, sobre, contato, divulgação de afiliados. Logo: ver regra no topo. Cabeçalho e rodapé pretos, miolo branco.
+**3b. CASCA DO SITE** — só depois que o WordPress existir. Seção 6 do contrato com a paleta acima. Páginas: início, loja, materiais, como-fazer, sobre, contato, divulgação de afiliados. Logo: ver regra no topo. **Cabeçalho CLARO (papel `#FFFFFF`) e rodapé escuro, miolo branco** — *esta linha dizia "cabeçalho e rodapé pretos", que é o mundo anterior a 11/09/2026 e contradizia a regra do topo deste arquivo, o `DESIGN.md` e o `VOZ.md`: o wordmark dentro do logo é vinho `#69030C` e some no preto, e foi isso que sumiu com o logo em 11/09. Corrigido pelo Pente Fino em 14/09/2026.*
 
 **4. FERRAMENTAS**, cada uma com JSON-LD, tabela pré-renderizada, resposta antes da explicação, procedência na frase e vitrine (4e) desde a primeira. **A ordem é F2 e depois F1** — quem mandou foi o bloco 1, e a razão está no `dados/especificacao-calculadoras.md`: quem busca cola está com o vaso na mão e a cola errada no carrinho.
 
@@ -265,7 +265,7 @@ Nada mais nesta ronda.
 
 ## Específico desta ilha
 - O dado que é o produto da ilha: a **compatibilidade cola × base × ambiente** e a **quantidade por peça**. Errar aí faz a peça descolar ou faltar material — é a confiança que separa a ilha da lojinha.
-- Programas de afiliado: **Shopee** (conta única do Arquipélago; Sub_id 1 = `clubedomosaico`, Sub_id 2 = código da página: `F1`, `F2`, `G-PASTILHAS`, `G-ALICATES`, `G-COLAS`, `T-VASO`…) e **Mercado Livre** (etiqueta `clubedomosaico-<código>`). Amazon só com tráfego.
+- Programas de afiliado: **Shopee** (conta única do Arquipélago; Sub_id 1 = `clubedomosaico`, Sub_id 2 = código da página: `F1`, `F2`, `G-PASTILHAS`, `G-ALICATES`, `G-COLAS`, `T-VASO`…) e **Mercado Livre** (etiqueta `clubedomosaico<codigo>`, tudo junto e em minúsculas: `clubedomosaicof1`, `clubedomosaicof2` — *a forma com hífen que ficava aqui é recusada pelo painel do ML, medido em 13/09/2026; ver seção 7 do `ARQUIPELAGO.md`. Corrigido pelo Pente Fino em 14/09/2026*). Amazon só com tráfego.
 - Enquanto falta infraestrutura: blocos 1, 2 e 3 não dependem de site. Não invente peça para preencher a Loja.
 
 ## DESPACHO DO RAPHAEL — 12/09/2026, 18h20 BRT — O ATELIÊ TEM DE ESTAR DE PÉ AMANHÃ

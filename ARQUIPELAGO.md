@@ -233,7 +233,7 @@ Decisão do Raphael, 08/09/2026: ser recomendado pelas IAs vale tanto quanto ran
 
 ## 10. Regras que valem sempre
 
-- **O repositório é a fonte da verdade.** A nuvem não alcança os sites por HTTP direto; o desenho é PULL. Para checar, WebFetch (GET), nunca curl.
+- **O repositório é a fonte da verdade.** O desenho é PULL: o site busca o `manifest.json` e aplica. **A nuvem ALCANÇA os sites desde 10/09/2026** — quem aciona o Sync e confere o `/status` é a própria Fundação, por `curl`, pela seção 4; a conferência barata de rede da 20.2 também é `curl`. O WebFetch continua servindo para ler página de fora, mas exige aprovação humana por URL e por isso não vale em rotina (seção 12). *(Esta linha dizia "a nuvem não alcança os sites; para checar, WebFetch, nunca curl", que era o mundo anterior a 10/09/2026 e contradizia as seções 4 e 20.2 — corrigida pelo Pente Fino em 14/09/2026.)*
 - **Desembarque automático**: ferramentas, páginas-âncora, artigos, páginas de entidade e snippets vão ao ar sem consulta. O portão humano fica só para publicação programática em escala.
 - **Nunca invente dado técnico.** Toda constante e toda especificação citam a fonte do fabricante e levam data. Constante com status `pendente` é proibida dentro de fórmula publicada.
 - **O NÍVEL DE UMA FONTE É O DO ELO MAIS FRACO — autoria, custódia e leitura são três coisas, e a escada guarda uma só.** Aprendido na Robometria em 11/09/2026. O banco declarava quatro fontes no nível 2 ("manual do fabricante"), e as quatro eram o mesmo manual da Electrolux hospedado em `manuals.plus`, colhido por busca, sem leitura direta. O documento era mesmo do fabricante — o elo da autoria era forte —, e foi por isso que alguém escreveu 2: a escada tem um número só e o instinto é preenchê-lo pelo elo mais forte. **Toda origem tem três: quem escreveu o documento, quem o guarda, e como nós o lemos. O nível é o do mais fraco, sempre.** A direção sai da assimetria de custo, como toda decisão de fonte: errar para baixo custa uma frase mais fraca na tela ("a confirmar no manual"); errar para cima faz a página de metodologia declarar um rigor que a ilha não tem — e metodologia é a página cujo único produto é o rigor. Numa fábrica que existe para substituir copy de anúncio por procedência, inflar o próprio nível de fonte é o defeito mais caro que existe. **E a regra só vale se for mecânica:** o validador de banco confere que a `origem` bate com a `origem` que a escada dá àquele `nivel` (era exatamente por aí que o defeito entrava — só o número era conferido), e os degraus de cima exigem um campo `leitura` **declarado**, porque silêncio nunca promove. Deduzir "foi lido direto" do texto do canal de coleta seria a heurística por vizinhança que a seção 8 proíbe.
@@ -349,7 +349,7 @@ A fonte é o Search Console (Desempenho → Consultas, últimos 28 dias, país B
 **O QUE ELA NÃO PODE FAZER, POR MAIS TENTADOR QUE SEJA:**
 - **Não mexer em página que está subindo.** Se a posição melhorou em relação à semana passada, a página fica como está por mais uma semana. Mexer no meio da subida troca um sinal que está funcionando por um palpite.
 - **Não trocar a URL de página posicionada.** Nunca. Nem para "melhorar o slug".
-- **Nada de link pago, troca de link, PBN ou diretório.** A única alavanca de link do Arquipélago é o widget nas lojas (seção 7).
+- **Nada de link pago, troca de link, PBN ou diretório.** A única alavanca de link do Arquipélago é o widget nas lojas (seção 14.7).
 - **Não inventar concorrente nem diagnóstico de SERP sem ter aberto a SERP.** Se não abriu, escreve "não verifiquei".
 - Toda correção desta seção obedece ao teto e às quatro regras de independência da seção 12 — inclusive a de que **quem corrige não aprova a própria correção na mesma execução**.
 
@@ -715,7 +715,7 @@ Em *Criativo → Feed de produto* do painel de afiliado. Atualizam sozinhos todo
 
 **Nunca filtre o feed só por marca.** Marca sem contexto é armadilha: JBL é som e é aquário; Aquário é roteador e é peixe; Betta é peixe e é móvel. Exija palavra de contexto no título **ou** categoria compatível, e **confira uma amostra com os olhos antes de gravar** — um recorte errado no repositório é pior que recorte nenhum, porque parece dado.
 
-**A foto do produto sai do feed** (`image_link`), e é a fonte legítima: a imagem do anúncio ao lado do link do anúncio é exatamente o que o feed existe para permitir. Produto fora do feed fica sem foto e aparece com espaço reservado neutro, pela regra da seção 4.
+**A foto do produto sai do feed** (`image_link`), e é a fonte legítima: a imagem do anúncio ao lado do link do anúncio é exatamente o que o feed existe para permitir. Produto fora do feed fica sem foto e aparece com espaço reservado neutro, pela regra da seção 6.
 
 ### 25.4 O teste de vida, que agora existe
 
