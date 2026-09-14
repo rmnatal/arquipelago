@@ -5,7 +5,7 @@ prioridade: 2
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 40
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
-ultima_execucao: 2026-09-14T21:18Z
+ultima_execucao: 2026-09-14T22:16Z
 executando_desde: null
 bloco_atual: |
   PREPARACAO DA LEVA 6 — a quinta categoria do eixo /peixes/ ganha BANCO, CRITERIO e LINHA MESTRA, e NENHUMA URL nasce (peixes 1.9.0, banco de especies de 37 para 39 registros, manifest revisao 86). ZERO URL nova, ZERO leva do teto da 21.4 gasta: a semana segue em 2 de 3.
