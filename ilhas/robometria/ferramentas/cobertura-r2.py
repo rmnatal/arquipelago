@@ -59,6 +59,14 @@ import sys
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DADOS = os.path.join(BASE, "dados")
 
+# A GRAMATICA DE QUEM PUBLICA VEM DE UM LUGAR SO (14/09/2026). Ate hoje ela morava
+# DUAS vezes: uma tabela digitada aqui embaixo (ARTIGO_DO_PUBLICADOR) e um "A %s"
+# digitado dentro das frases da R1. Duas copias do mesmo fato, cada uma certa no
+# seu lugar e nenhuma capaz de corrigir a outra — a forma exata do defeito dos
+# dois mapas de nome que a casca 1.2.0 pagou. Ver ferramentas/publicadores.py.
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import publicadores as pub  # noqa: E402
+
 # ------------------------------------------------------------------ ENTRADA
 # A faixa e a da especificacao (secao 2.4). O passo da varredura e de 10 m2:
 # e o que da uma grade densa o bastante para pegar todo salto de ciclo dos
@@ -182,10 +190,14 @@ VIZINHAS_DA_PONTE = {("tapete fino", "nao"): (("liso", "nao"), ("carpete", "nao"
 # Fica declarado, e nao adivinhado, pelo mesmo motivo que ROTULOS_DE_ORIGEM em
 # gerar-r1.py: publicador novo sem artigo declarado sairia na tela com o artigo
 # errado, em silencio, no meio de uma frase que a pagina afirma. Melhor parar.
-ARTIGO_DO_PUBLICADOR = {
-    "Canaltech": "a",
-    "Mundo Conectado": "o",
-}
+#
+# ATE 14/09/2026 ESTA TABELA ERA DIGITADA AQUI, com dois nomes dentro, enquanto a
+# R1 digitava "A %s" dentro de quatro frases e do cartao. Ou seja: a mesma decisao
+# de lingua morava em dois lugares que nunca se falavam — e cada um estava certo
+# so para os publicadores que passavam por ele. Agora ela e uma so, em
+# dados/publicadores.json, e o que se deriva do artigo (maiuscula, contracao com
+# "de", pronome possessivo e numero do verbo) vem de artigos_de_publicador, no
+# esquema.
 
 
 def carregar(nome):
@@ -497,6 +509,11 @@ def situacao(piso, pelo):
                 "de": int(l["faixa_confortavel"][0]),
                 "ate": int(l["faixa_confortavel"][1]),
                 "publicador": l["publicador"],
+                # A frase desta faixa termina em "a recomendacao DELE fica
+                # folgada", e o pronome era DIGITADO ate 14/09/2026 — certo por
+                # acidente, porque o unico publicador com faixa confortavel no
+                # banco de hoje e o Mundo Conectado, que e masculino.
+                "pronome_possessivo": pub.pronome_possessivo(l["publicador"]),
                 "url": l["url"],
                 "verificado_em": l["verificado_em"],
             }
@@ -726,14 +743,13 @@ def escrever_limiar(l):
 
 
 def com_artigo(publicador):
-    """"a Canaltech", "o Mundo Conectado" — o artigo vem da tabela declarada."""
-    if publicador not in ARTIGO_DO_PUBLICADOR:
-        sys.stderr.write(
-            "ERRO: o publicador %r nao tem artigo declarado em "
-            "ARTIGO_DO_PUBLICADOR. Declare antes de publicar a frase.\n" % publicador
-        )
-        sys.exit(1)
-    return "%s %s" % (ARTIGO_DO_PUBLICADOR[publicador], publicador)
+    """"a Canaltech", "o Mundo Conectado" — o artigo vem do banco declarado.
+
+    Quem nao tem registro derruba a execucao com o nome dentro da mensagem: e a
+    mesma recusa de antes, agora contra dados/publicadores.json em vez de contra
+    uma tabela local.
+    """
+    return pub.com_artigo(publicador)
 
 
 def plural(n, singular, plural_):

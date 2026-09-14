@@ -71,26 +71,31 @@ def _regerar(base):
         raise AssertionError('gerar-r1.py falhou depois da mutacao: %s' % saida.stderr[-200:])
 
 
-PRONOME_PY = ('"%s %s tambem vem dentro do kit %s, que a %s declara compativel com %s "\n'
+# REAPONTADAS EM 14/09/2026. O bloco do artigo de quem publica trocou o molde
+# desta frase — "que a %s declara" virou "que %s %s", com o artigo e o verbo
+# vindos do banco. As quatro mutacoes abaixo editavam o texto ANTIGO e viraram
+# INERTES na mesma hora: a bateria acusou "achei 0 ocorrencias" e nao mediu nada.
+# E a regra de corolario da secao 8 do ARQUIPELAGO.md — quando a bancada muda de
+# fonte, toda mutacao que editava a fonte antiga precisa ser reapontada, senao e
+# teste verde com outro nome.
+PRONOME_PY = ('"%s %s tambem vem dentro do kit %s, que %s %s compativel com %s "\n'
               '            "(%s, verificado em %s)."\n'
-              '            % (artigo.capitalize(), dentro_do_kit, identificacao, publicador, lista,\n'
+              '            % (artigo.capitalize(), dentro_do_kit, identificacao, quem, declara, lista,\n'
               '               fonte.get("origem"), data)')
 
-PRONOME_PY_DEFEITO = ('"%s tambem vem dentro do kit %s, que a %s declara compativel com %s "\n'
+PRONOME_PY_DEFEITO = ('"%s tambem vem dentro do kit %s, que %s %s compativel com %s "\n'
                       '            "(%s, verificado em %s)."\n'
                       '            % (("ele" if artigo == "o" else "ela").capitalize(), '
-                      'identificacao, publicador, lista,\n'
+                      'identificacao, quem, declara, lista,\n'
                       '               fonte.get("origem"), data)')
 
-PRONOME_PHP = ("'%1$s %2$s também vem dentro do kit %3$s, que a %4$s declara "
-               "compatível com %5$s (%6$s, verificado em %7$s).',\n"
-               "\t\t\trobometria_r1_maiuscula( $artigo ), $tipo, $identificacao, "
-               "$item['publicador'],")
+PRONOME_PHP = ("'%1$s %2$s também vem dentro do kit %3$s, que %4$s %5$s "
+               "compatível com %6$s (%7$s, verificado em %8$s).',\n"
+               "\t\t\trobometria_r1_maiuscula( $artigo ), $tipo, $identificacao, $quem, $declara,")
 
-PRONOME_PHP_DEFEITO = ("'%1$s também vem dentro do kit %2$s, que a %3$s declara "
-                       "compatível com %4$s (%5$s, verificado em %6$s).',\n"
-                       "\t\t\trobometria_r1_maiuscula( $pronome ), $identificacao, "
-                       "$item['publicador'],")
+PRONOME_PHP_DEFEITO = ("'%1$s também vem dentro do kit %2$s, que %3$s %4$s "
+                       "compatível com %5$s (%6$s, verificado em %7$s).',\n"
+                       "\t\t\trobometria_r1_maiuscula( $pronome ), $identificacao, $quem, $declara,")
 
 
 def _pronome_so_na_referencia(base):

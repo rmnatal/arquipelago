@@ -3,7 +3,7 @@
  "ilha": "robometria",
  "bloco": 3,
  "gerado_em": "2026-09-09",
- "versao_esquema": 5,
+ "versao_esquema": 6,
  "descricao": "Modelo normalizado do banco da Robometria: entidades MARCA, MODELO_ROBO, PECA e COTACAO. Define campo a campo o tipo, a unidade, a obrigatoriedade, o vocabulario controlado e a ORIGEM esperada do dado. Nenhum numero entra no banco sem uma entrada correspondente em fontes{}. Este arquivo e o contrato que dados/marcas.json, dados/modelos-robo.json e dados/pecas.json cumprem e que ferramentas/validar-banco.py verifica.",
  "depende_de": [
   "dados/especificacao-calculadoras.md",
@@ -536,6 +536,32 @@
      "obrigatorio": true
     }
    }
+  },
+  "PUBLICADOR": {
+   "arquivo": "dados/publicadores.json",
+   "chave": "id",
+   "campos": {
+    "id": {
+     "tipo": "slug",
+     "obrigatorio": true
+    },
+    "nome": {
+     "tipo": "texto",
+     "obrigatorio": true,
+     "descricao": "a string EXATA de quem publicou, como ela ja viaja no banco e como ela vai a tela: fontes[].publicador de pecas.json e modelos-robo.json, registros[].nome de marcas.json, e os limiares da R2. Nao e apelido nem slug: chave que nao bate letra por letra com o texto publicado e um segundo mapa de nomes, e dois mapas do mesmo fato nunca se corrigem."
+    },
+    "artigo": {
+     "tipo": "texto",
+     "obrigatorio": true,
+     "descricao": "uma das quatro chaves de artigos_de_publicador. E DECLARADO, nunca derivado das letras do nome: 'Mundo Conectado' leva 'o' e 'Lojas WAP' leva 'as', e nenhuma regra sobre a grafia acerta os dois. Publicador sem registro aqui faz o gerador PARAR — a alternativa e a tela publicar a concordancia errada em silencio, no meio de uma frase que a pagina afirma."
+    },
+    "motivo": {
+     "tipo": "texto",
+     "obrigatorio": true,
+     "descricao": "a frase que sustenta a escolha do artigo. Obrigatoria porque o artigo nao foi colhido de fonte externa: e decisao de lingua da ilha, e decisao sem motivo escrito envelhece como se fosse medicao."
+    }
+   },
+   "por_que": "Ate 13/09/2026 'publicador' era so um campo de texto dentro de fontes{}. Ele nunca foi so texto: e ele que a pagina poe como SUJEITO da frase que atribui a compatibilidade — a unica coisa que esta ilha vende. Sujeito precisa de artigo, e artigo precisa de numero; entao quem publica virou entidade, com a gramatica declarada ao lado do nome."
   }
  },
  "tipos_compostos": {
@@ -641,7 +667,10 @@
   "Toda entidade que gera busca tem termo de contexto declarado no esquema. Entidade sem termo e ERRO, nunca busca so por marca.",
   "afiliado.url_busca vazia exige motivo_sem_url_busca escrito; afiliado.url preenchida exige degrau do vocabulario 1 a 4, e url_produto ou motivo_sem_url_produto.",
   "afiliado.degrau so existe com url preenchida, e degrau 3 (anuncio de vendedor) exige url_busca — a 25.1 manda, porque e o degrau que apodrece.",
-  "As contagens de divida do cabecalho dos dois arquivos de banco (itens_sem_piso, itens_com_ficha, links_sem_degrau) batem com o que o arquivo tem. Divida em prosa nao tem tamanho; contada, tem."
+  "As contagens de divida do cabecalho dos dois arquivos de banco (itens_sem_piso, itens_com_ficha, links_sem_degrau) batem com o que o arquivo tem. Divida em prosa nao tem tamanho; contada, tem.",
+  "Todo publicador citado no banco (fontes[].publicador de pecas.json e modelos-robo.json, e registros[].nome de marcas.json) tem registro em publicadores.json.",
+  "Todo registro de publicadores.json declara um artigo que existe em artigos_de_publicador, e um motivo nao vazio.",
+  "Todo registro de publicadores.json e citado em algum lugar do banco (aviso, nao erro: publicador que so a R2 usa vive em constantes.json)."
  ],
  "tipos_que_exigem_funcao_declarada": {
   "tipos": [
@@ -649,5 +678,40 @@
    "escova principal"
   ],
   "por_que": "Sao os dois unicos tipos do vocabulario que o titulo do fabricante NAO separa. Filtro, mop, bateria e reservatorio o titulo nomeia pelo que a peca e; escova o titulo nomeia por onde ela fica. A lista mora AQUI e nao dentro do validador para nao envelhecer calada: tipo novo que sofra do mesmo mal entra nesta linha e a trava passa a cobra-lo sem uma linha de codigo."
+ },
+ "artigos_de_publicador": {
+  "por_que": "O artigo que vem antes do nome de quem publicou ('a Electrolux declara', 'o Mundo Conectado trata') era DIGITADO dentro das frases ate 14/09/2026, e estava certo por acidente: todo publicador que chegava aquelas frases e feminino singular. A lista de artigos permitidos mora AQUI, no esquema, pelo mesmo motivo que tipos_que_exigem_funcao_declarada (secao 26.2 do ARQUIPELAGO.md); QUAL deles cada publicador leva e dado, e mora em dados/publicadores.json, ao lado do nome. Quem monta frase deriva daqui tudo o que depende do artigo — maiuscula de comeco de frase, contracao com 'de', pronome possessivo e numero do verbo — e nada disso volta a ser tabela dentro de snippet.",
+  "a": {
+   "numero": "singular",
+   "genero": "feminino",
+   "maiuscula": "A",
+   "com_de": "da",
+   "pronome_possessivo": "dela",
+   "pronome_sujeito": "ela"
+  },
+  "o": {
+   "numero": "singular",
+   "genero": "masculino",
+   "maiuscula": "O",
+   "com_de": "do",
+   "pronome_possessivo": "dele",
+   "pronome_sujeito": "ele"
+  },
+  "as": {
+   "numero": "plural",
+   "genero": "feminino",
+   "maiuscula": "As",
+   "com_de": "das",
+   "pronome_possessivo": "delas",
+   "pronome_sujeito": "elas"
+  },
+  "os": {
+   "numero": "plural",
+   "genero": "masculino",
+   "maiuscula": "Os",
+   "com_de": "dos",
+   "pronome_possessivo": "deles",
+   "pronome_sujeito": "eles"
+  }
  }
 }

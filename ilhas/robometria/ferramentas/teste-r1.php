@@ -947,12 +947,27 @@ foreach ( $gabarito['respostas'] as $mid => $esperado ) {
 
 			foreach ( $lados as $lado => $frase ) {
 				$frases_15++;
-				$atribuicao = rbm_sem_acento( 'declara ' ) ;
-				/* O molde atribuidor, escrito aqui a mao nas duas formas que o
+				/* O molde atribuidor, escrito aqui a mao nas formas que o
 				   vocabulario tem hoje. Ele e legitimo — so nao na peca cuja
-				   funcao a ilha derivou. */
-				$atribui = ( false !== stripos( $frase, 'declara a ' . $tipo )
-					|| false !== stripos( $frase, 'declara o ' . $tipo ) );
+				   funcao a ilha derivou.
+
+				   O VERBO ENTRA NAS DUAS FLEXOES desde 14/09/2026, e a razao e
+				   uma regua que so o mundo produzido mostrou: ate aqui esta
+				   linha procurava "declara a <tipo>", cravado no singular,
+				   porque nenhum publicador do banco e plural. A bateria
+				   mutacoes-artigo-do-publicador.py produziu o mundo em que um e
+				   — "as Lojas WAP DECLARAM a escova lateral X" — e esta
+				   afirmacao reprovou 32 frases CERTAS, por nao reconhecer o
+				   verbo. Regua presa a uma flexao e regua escrita para um mundo
+				   de um elemento so (secao 8 do ARQUIPELAGO.md). */
+				$atribui = false;
+				foreach ( array( 'declara', 'declaram' ) as $flexao ) {
+					if ( false !== stripos( $frase, $flexao . ' a ' . $tipo )
+						|| false !== stripos( $frase, $flexao . ' o ' . $tipo ) ) {
+						$atribui = true;
+						break;
+					}
+				}
 
 				if ( isset( $derivada_por[ $pid ] ) ) {
 					$d = $derivada_por[ $pid ];
@@ -1430,6 +1445,199 @@ rbm_ok( false === strpos( $ancora_html, 'decidida pela declaracao do fabricante'
 	'a nota da ordem nao atribui o criterio a "o fabricante"' );
 rbm_ok( false !== strpos( $ancora_html, 'declaracao de compatibilidade publicada na fonte' ),
 	'a nota da ordem diz qual e o criterio de verdade' );
+
+/* ---------------------------------------------------------------------------
+ * 18. O ARTIGO E A CONCORDANCIA DE QUEM PUBLICA SAEM DO BANCO (14/09/2026).
+ *
+ * A secao 17 mede QUEM a frase nomeia. Esta mede COMO ela o nomeia, e e o
+ * degrau seguinte do mesmo defeito: ate hoje o "A " que abre a frase e o "que a "
+ * do meio dela eram DIGITADOS, em quatro moldes e no cartao, e o verbo era sempre
+ * singular. Estava certo por acidente do banco — todo publicador que chega a essas
+ * frases e feminino singular —, e o proprio banco ja tem os dois contraexemplos:
+ * "Mundo Conectado" e masculino (a R2 ja escrevia "o Mundo Conectado", por uma
+ * SEGUNDA tabela digitada, que este bloco tambem apagou) e "Lojas WAP" e PLURAL,
+ * citado em modelos-robo.json e em nenhuma frase.
+ *
+ * A REGUA E ESCRITA A MAO AQUI, e le dados/publicadores.json DIRETO — nunca o
+ * campo `gramatica_do_publicador` que o gerador gravou, e nunca a funcao do
+ * snippet. Se lesse o fato gerado, as duas metades errariam juntas no dia em que
+ * o gerador errasse, que e a cicatriz que a secao 3 deixou em 14/09. Esta e a
+ * TERCEIRA conta: banco -> gerador -> tela, medida contra o banco.
+ *
+ * E O MUNDO E PRODUZIDO AQUI DENTRO, em memoria, porque o banco da R1 nao tem
+ * publicador masculino nem plural. Verde sobre um mundo de um genero so nao e
+ * medicao; e a ausencia de contraexemplo confundida com prova (secao 8).
+ * ------------------------------------------------------------------------- */
+
+echo "\n18. O artigo e a concordancia de quem publica saem do banco (14/09/2026)\n";
+
+$banco_pub = json_decode( file_get_contents( $raiz . '/dados/publicadores.json' ), true );
+rbm_ok( is_array( $banco_pub ) && ! empty( $banco_pub['registros'] ),
+	'dados/publicadores.json existe e tem registros',
+	count( $banco_pub['registros'] ) . ' publicador(es)' );
+
+/* A tabela do esquema, lida a mao pelo teste. Sem ela nao ha como conferir a
+   maiuscula de "as" nem o numero do verbo. */
+$esquema_pub = json_decode( file_get_contents( $raiz . '/dados/esquema-banco.json' ), true );
+$formas      = $esquema_pub['artigos_de_publicador'];
+
+$artigo_de = array();
+foreach ( $banco_pub['registros'] as $reg ) {
+	$artigo_de[ $reg['nome'] ] = $reg['artigo'];
+}
+
+/* (1) TODO PUBLICADOR QUE CHEGA A UMA RESPOSTA TEM ARTIGO DECLARADO. Sem isto o
+   resto desta secao mediria so os que ja estao na lista. */
+$sem_artigo = array();
+$pubs_nas_respostas = array();
+foreach ( $dados['respostas'] as $resp ) {
+	foreach ( array( 'fabricante', 'terceiro' ) as $grupo ) {
+		foreach ( $resp[ $grupo ] as $item ) {
+			$pubs_nas_respostas[ $item['publicador'] ] = true;
+			if ( ! isset( $artigo_de[ $item['publicador'] ] ) ) {
+				$sem_artigo[ $item['publicador'] ] = true;
+			}
+		}
+	}
+}
+rbm_ok( empty( $sem_artigo ), 'todo publicador que chega a uma resposta tem artigo declarado no banco',
+	empty( $sem_artigo ) ? count( $pubs_nas_respostas ) . ' publicador(es)' : implode( ', ', array_keys( $sem_artigo ) ) );
+
+/* (2) O FATO GERADO BATE COM O BANCO. Esta e a afirmacao que separa "o gerador
+   copiou alguma coisa" de "o gerador copiou a coisa certa". */
+$fato_divergente = array();
+foreach ( $dados['respostas'] as $mid => $resp ) {
+	foreach ( array( 'fabricante', 'terceiro' ) as $grupo ) {
+		foreach ( $resp[ $grupo ] as $item ) {
+			$esperado = isset( $artigo_de[ $item['publicador'] ] ) ? $artigo_de[ $item['publicador'] ] : null;
+			$gravado  = isset( $item['gramatica_do_publicador']['artigo'] )
+				? $item['gramatica_do_publicador']['artigo'] : null;
+			if ( $esperado !== $gravado ) {
+				$fato_divergente[] = $mid . '/' . $item['peca'] . ' (banco ' . $esperado . ', fato ' . $gravado . ')';
+			}
+			$num_esperado = $formas[ $esperado ]['numero'];
+			$num_gravado  = isset( $item['gramatica_do_publicador']['numero'] )
+				? $item['gramatica_do_publicador']['numero'] : null;
+			if ( $num_esperado !== $num_gravado ) {
+				$fato_divergente[] = $mid . '/' . $item['peca'] . ' (numero ' . $num_esperado . ' x ' . $num_gravado . ')';
+			}
+		}
+	}
+}
+rbm_ok( empty( $fato_divergente ), 'a gramatica que viaja no fato e a MESMA que o banco declara',
+	empty( $fato_divergente ) ? 'todos' : implode( ', ', array_slice( $fato_divergente, 0, 3 ) ) );
+
+/* (3) A ORACAO PUBLICADA NUNCA ESCREVE O NOME SEM O ARTIGO DECLARADO ANTES.
+   Medido no CORPO da oracao, e o nome procurado e o do item — nao "alguma coisa
+   parecida com um publicador". */
+$artigo_errado = array();
+$itens_18      = 0;
+foreach ( $dados['respostas'] as $mid => $resp ) {
+	foreach ( array( 'fabricante', 'terceiro' ) as $grupo ) {
+		foreach ( $resp[ $grupo ] as $item ) {
+			$itens_18++;
+			$frase = rbm_sem_acento( robometria_r1_atribuicao_do_item( $item ) );
+			$pub   = rbm_sem_acento( $item['publicador'] );
+			$art   = $artigo_de[ $item['publicador'] ];
+			$mai   = $formas[ $art ]['maiuscula'];
+
+			/* Toda ocorrencia do nome tem de vir precedida do artigo declarado,
+			   em minuscula no meio da frase ou com a maiuscula do esquema no
+			   comeco dela. Uma unica ocorrencia solta ja reprova: e exatamente
+			   assim que o defeito chegaria — uma frase consertada e a do lado
+			   nao. */
+			$pos = 0;
+			while ( false !== ( $pos = strpos( $frase, $pub, $pos ) ) ) {
+				$antes_min = $art . ' ';
+				$antes_mai = $mai . ' ';
+				$ok_min = ( $pos >= strlen( $antes_min )
+					&& substr( $frase, $pos - strlen( $antes_min ), strlen( $antes_min ) ) === $antes_min );
+				$ok_mai = ( $pos >= strlen( $antes_mai )
+					&& substr( $frase, $pos - strlen( $antes_mai ), strlen( $antes_mai ) ) === $antes_mai );
+				if ( ! $ok_min && ! $ok_mai ) {
+					$artigo_errado[] = $mid . '/' . $item['peca'] . ' (esperava "' . $art . ' ' . $pub . '")';
+					break;
+				}
+				$pos += strlen( $pub );
+			}
+		}
+	}
+}
+rbm_ok( $itens_18 > 0, 'ha item para a secao 18 medir', $itens_18 . ' item(ns)' );
+rbm_ok( empty( $artigo_errado ), 'toda ocorrencia do publicador na oracao vem com o artigo DECLARADO',
+	empty( $artigo_errado ) ? $itens_18 . ' de ' . $itens_18 : implode( ', ', array_slice( $artigo_errado, 0, 3 ) ) );
+
+/* (4) O MUNDO PRODUZIDO: um publicador MASCULINO e um PLURAL, que a R1 nao tem.
+   Sem isto, tudo acima passaria com o artigo digitado de volta — e foi assim que
+   este defeito viveu tres blocos. */
+$item_18 = $dados['respostas'][ $dados['ancora'] ]['fabricante'][0];
+
+$mundos_de_genero = array(
+	'masculino singular' => array( 'Mundo Conectado', 'o',  'O',  'declara',  'vende' ),
+	'feminino plural'    => array( 'Lojas WAP',       'as', 'As', 'declaram', 'vendem' ),
+	'feminino singular'  => array( 'Xiaomi',          'a',  'A',  'declara',  'vende' ),
+);
+foreach ( $mundos_de_genero as $rotulo => $m ) {
+	list( $nome, $art, $mai, $verbo, $verbo_vender ) = $m;
+
+	/* A gramatica do mundo forjado sai do BANCO lido a mao, nao de uma tabela
+	   escrita nesta linha: assim a mutacao que estragar publicadores.json cai
+	   aqui tambem, em vez de esta secao seguir verde sobre a propria copia. */
+	rbm_ok( isset( $artigo_de[ $nome ] ) && $artigo_de[ $nome ] === $art,
+		'o banco declara "' . $art . '" para ' . $nome . ' (' . $rotulo . ')',
+		isset( $artigo_de[ $nome ] ) ? $artigo_de[ $nome ] : 'sem registro' );
+
+	foreach ( array( 'peca avulsa' => false, 'kit sem avulso' => true ) as $caso => $dentro_de_kit ) {
+		$forjado = $item_18;
+		$forjado['publicador'] = $nome;
+		$forjado['gramatica_do_publicador'] = array(
+			'artigo'    => $art,
+			'maiuscula' => $mai,
+			'numero'    => $formas[ $art ]['numero'],
+		);
+		$forjado['dentro_de_kit'] = $dentro_de_kit;
+		$forjado['existe_avulso'] = false;
+		$forjado['peca']          = '__forjada__';
+		$forjado['tipos']         = array( $forjado['tipo'] );
+
+		$onde  = $rotulo . ' [' . $caso . ']';
+		$frase = rbm_sem_acento( robometria_r1_atribuicao_do_item( $forjado ) );
+
+		rbm_ok( false !== strpos( $frase, $art . ' ' . rbm_sem_acento( $nome ) )
+				|| 0 === strpos( $frase, $mai . ' ' . rbm_sem_acento( $nome ) ),
+			'oracao: ' . $onde . ' escreve o artigo declarado antes do nome' );
+		rbm_ok( false !== strpos( $frase, ' ' . $verbo . ' ' )
+				|| false !== strpos( $frase, ' ' . $verbo_vender . ' ' ),
+			'oracao: ' . $onde . ' concorda o verbo com o numero declarado',
+			$verbo . ' / ' . $verbo_vender );
+
+		$cartao = rbm_sem_acento( robometria_r1_vitrine( array( $forjado ), $dados['ancora'] ) );
+		rbm_ok( false !== strpos( $cartao, $art . ' ' . rbm_sem_acento( $nome ) . ' ' . $verbo ),
+			'cartao: ' . $onde . ' escreve artigo e verbo declarados',
+			$art . ' ' . $nome . ' ' . $verbo );
+	}
+}
+
+/* (5) E A PROVA DE QUE OS TRES MUNDOS SAO DIFERENTES: se o snippet ignorasse a
+   gramatica e escrevesse sempre "a ... declara", o mundo masculino e o plural
+   sairiam identicos ao feminino singular. */
+$formas_vistas = array();
+foreach ( $mundos_de_genero as $m ) {
+	$forjado = $item_18;
+	$forjado['publicador'] = $m[0];
+	$forjado['gramatica_do_publicador'] = array(
+		'artigo' => $m[1], 'maiuscula' => $m[2], 'numero' => $formas[ $m[1] ]['numero'],
+	);
+	$forjado['dentro_de_kit'] = false;
+	$forjado['existe_avulso'] = false;
+	$f = rbm_sem_acento( robometria_r1_atribuicao_do_item( $forjado ) );
+	/* Guarda so as duas primeiras palavras: artigo + comeco do nome nao serve,
+	   porque os nomes ja diferem entre si. O que interessa e o ARTIGO. */
+	$formas_vistas[ strtok( $f, ' ' ) ] = true;
+}
+rbm_ok( count( $formas_vistas ) === 3,
+	'os tres mundos abrem a frase com artigos DIFERENTES — a gramatica muda a saida',
+	implode( ' / ', array_keys( $formas_vistas ) ) );
 
 /* ---------------------------------------------------------------------------
  * Fecho

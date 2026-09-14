@@ -1157,6 +1157,126 @@ rbm_ok( empty( $erros_nl ),
 rbm_ok( $itens_nl > 0, 'a secao do limiar tem item medido em alguma situacao',
 	$itens_nl . ' itens medidos' );
 
+/* ---------------------------------------------------------------------------
+ * 18. O ARTIGO E O PRONOME DE QUEM PUBLICA SAEM DO BANCO (14/09/2026).
+ *
+ * A R2 ja fazia metade certo: o artigo de cada limiar viaja no dado desde
+ * 11/09. Mas ele saia de uma tabela DIGITADA dentro de ferramentas/cobertura-r2.py
+ * com dois nomes — a segunda copia da mesma decisao de lingua que a R1 digitava
+ * dentro de quatro frases. E a frase da faixa confortavel terminava em "a
+ * recomendacao DELE fica folgada", com o pronome digitado: certo por acidente,
+ * porque o unico publicador com faixa confortavel no banco de hoje e o Mundo
+ * Conectado, que e masculino. A Canaltech chegando la publicaria "dele" sobre um
+ * nome feminino, e nenhum portao veria.
+ *
+ * A REGUA LE dados/publicadores.json A MAO, nunca a tabela do gerador.
+ * ------------------------------------------------------------------------- */
+
+echo "\n18. O artigo e o pronome de quem publica saem do banco (14/09/2026)\n";
+
+$banco_pub_r2 = json_decode( file_get_contents( $raiz . '/dados/publicadores.json' ), true );
+$esq_pub_r2   = json_decode( file_get_contents( $raiz . '/dados/esquema-banco.json' ), true );
+$formas_r2    = $esq_pub_r2['artigos_de_publicador'];
+$artigo_r2    = array();
+foreach ( $banco_pub_r2['registros'] as $reg ) {
+	$artigo_r2[ $reg['nome'] ] = $reg['artigo'];
+}
+
+$art_torto  = array();
+$pron_torto = array();
+$limiares_medidos = 0;
+$faixas_medidas   = 0;
+foreach ( $dados['situacoes'] as $s ) {
+	foreach ( (array) $s['limiares'] as $l ) {
+		$limiares_medidos++;
+		if ( ! isset( $artigo_r2[ $l['publicador'] ] ) ) {
+			$art_torto[] = $l['publicador'] . ' (sem registro)';
+		} elseif ( $l['artigo'] !== $artigo_r2[ $l['publicador'] ] ) {
+			$art_torto[] = $l['publicador'] . ' (banco ' . $artigo_r2[ $l['publicador'] ]
+				. ', fato ' . $l['artigo'] . ')';
+		}
+		$esperado_pron = $formas_r2[ $artigo_r2[ $l['publicador'] ] ]['pronome_possessivo'];
+		if ( ! isset( $l['pronome_possessivo'] ) || $l['pronome_possessivo'] !== $esperado_pron ) {
+			$pron_torto[] = $l['publicador'];
+		}
+	}
+	if ( ! empty( $s['faixa_confortavel'] ) ) {
+		$faixas_medidas++;
+		$f   = $s['faixa_confortavel'];
+		$esp = $formas_r2[ $artigo_r2[ $f['publicador'] ] ]['pronome_possessivo'];
+		if ( ! isset( $f['pronome_possessivo'] ) || $f['pronome_possessivo'] !== $esp ) {
+			$pron_torto[] = 'faixa/' . $f['publicador'];
+		}
+	}
+}
+rbm_ok( $limiares_medidos > 0, 'ha limiar para esta secao medir', $limiares_medidos . ' limiar(es)' );
+rbm_ok( empty( $art_torto ), 'o artigo de todo limiar e o que o BANCO declara',
+	empty( $art_torto ) ? $limiares_medidos . ' de ' . $limiares_medidos : implode( ', ', $art_torto ) );
+rbm_ok( $faixas_medidas > 0, 'ha faixa confortavel para medir o pronome', $faixas_medidas . ' faixa(s)' );
+rbm_ok( empty( $pron_torto ), 'o pronome possessivo tambem vem do banco, e nao digitado',
+	empty( $pron_torto ) ? 'todos' : implode( ', ', array_slice( $pron_torto, 0, 3 ) ) );
+
+/* O MUNDO PRODUZIDO: os DOIS generos existem no banco desta ferramenta, entao
+   aqui ele nao precisa ser forjado — precisa ser CONTADO, senao a afirmacao
+   acima poderia ser verdadeira sobre um genero so. */
+$generos_r2 = array();
+foreach ( $dados['situacoes'] as $s ) {
+	foreach ( (array) $s['limiares'] as $l ) {
+		$generos_r2[ $l['artigo'] ] = true;
+	}
+}
+rbm_ok( count( $generos_r2 ) > 1,
+	'os limiares da R2 citam publicadores de artigos DIFERENTES — a regua acima nao mede um genero so',
+	implode( ' + ', array_keys( $generos_r2 ) ) );
+
+/* NA TELA, E NAO SO NO FATO: a frase da faixa confortavel termina em "a
+   recomendacao <pronome> fica folgada". O fato certo com a frase digitada
+   passaria em silencio — foi exatamente assim que este defeito viveu desde que a
+   R2 nasceu, com o artigo ja vindo do dado e o pronome nao.
+
+   O que se mede e o CORPO renderizado, e nas duas direcoes: o pronome declarado
+   tem de aparecer, e nenhum dos outros tres pode aparecer. Sem a segunda metade,
+   uma frase que escrevesse os dois passaria. */
+$corpos_r2 = '';
+foreach ( $html_por_estado as $h ) {
+	$corpos_r2 .= ' ' . rbm_normalizar( strip_tags( $h ) );
+}
+$pronomes_certos = array();
+foreach ( $dados['situacoes'] as $s ) {
+	if ( ! empty( $s['faixa_confortavel'] ) ) {
+		$pronomes_certos[ $formas_r2[ $artigo_r2[ $s['faixa_confortavel']['publicador'] ] ]['pronome_possessivo'] ] = true;
+	}
+}
+$achou_certo = false;
+foreach ( array_keys( $pronomes_certos ) as $p ) {
+	if ( false !== strpos( $corpos_r2, 'recomendacao ' . $p . ' fica folgada' ) ) {
+		$achou_certo = true;
+	}
+}
+rbm_ok( $achou_certo, 'a frase da faixa servida usa o pronome DECLARADO de quem publica',
+	implode( ' / ', array_keys( $pronomes_certos ) ) );
+
+$pronome_errado = array();
+foreach ( $formas_r2 as $chave => $forma ) {
+	if ( ! is_array( $forma ) ) {
+		continue; /* a linha "por_que" da tabela */
+	}
+	if ( isset( $pronomes_certos[ $forma['pronome_possessivo'] ] ) ) {
+		continue;
+	}
+	if ( false !== strpos( $corpos_r2, 'recomendacao ' . $forma['pronome_possessivo'] . ' fica folgada' ) ) {
+		$pronome_errado[] = $forma['pronome_possessivo'];
+	}
+}
+rbm_ok( empty( $pronome_errado ), 'nenhum pronome que NAO e o declarado aparece na frase da faixa',
+	empty( $pronome_errado ) ? 'nenhum' : implode( ', ', $pronome_errado ) );
+
+/* E A SEGUNDA TABELA MORREU: nenhum arquivo de ferramenta volta a declarar
+   artigo de publicador por conta propria. */
+$cobertura_r2_fonte = file_get_contents( $raiz . '/ferramentas/cobertura-r2.py' );
+rbm_ok( false === strpos( $cobertura_r2_fonte, 'ARTIGO_DO_PUBLICADOR = {' ),
+	'cobertura-r2.py nao volta a ter tabela propria de artigo' );
+
 /* ------------------------------------------------------------------ RESUMO */
 
 echo "\n";

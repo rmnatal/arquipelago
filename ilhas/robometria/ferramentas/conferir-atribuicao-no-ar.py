@@ -248,6 +248,104 @@ def main(raiz):
                '[%s] %s: e a cauda da divergencia segue nomeando o fabricante'
                % (origem, mid))
 
+    # -------------------------------------------------------------------------
+    # O ARTIGO DE QUEM PUBLICA, NO AR (14/09/2026).
+    #
+    # A metade seguinte do mesmo defeito: tirado "o fabricante" do lugar de quem
+    # publicou, o que ficou digitado foi o ARTIGO — "A %s declara", "que a %s
+    # declara", "a %s declara esta peca" —, certo por acidente porque todo
+    # publicador que chega a essas frases e feminino singular.
+    #
+    # A REGUA LE dados/publicadores.json, que e o BANCO, e compara com o que o ar
+    # serve. Nao le a copia que o gerador gravou dentro de r1-respostas.json: se
+    # lesse, banco e tela poderiam errar juntos e esta medicao ficaria verde
+    # dentro do proprio buraco.
+    with open(os.path.join(dados, 'publicadores.json'), encoding='utf-8') as f:
+        artigo_de = {r['nome']: r['artigo'] for r in json.load(f)['registros']}
+    formas = esquema['artigos_de_publicador']
+
+    for origem in sorted(por_degrau):
+        mid = sorted(por_degrau[origem])[0]
+        texto, _tam, cru = pagina(mid)
+
+        cartoes = re.findall(r'<span class="rbm-vitrine-porque">(.*?)</span>', cru, re.S)
+        juntos = sem_acento(re.sub(r'<[^>]+>', ' ', ' '.join(cartoes)))
+
+        publicadores = sorted({i['publicador'] for i in fatos[mid]['fabricante']})
+        sem_registro = [p for p in publicadores if p not in artigo_de]
+        ok(not sem_registro,
+           '[%s] %s: todo publicador servido tem artigo declarado no banco' % (origem, mid),
+           '%d publicador(es)' % len(publicadores) if not sem_registro
+           else '; '.join(sem_registro))
+
+        # No CARTAO a oracao comeca pelo artigo em minuscula ("a Electrolux
+        # (loja oficial) declara esta peca...").
+        sem_artigo = []
+        verbo_torto = []
+        for p in publicadores:
+            if p not in artigo_de:
+                continue
+            art = artigo_de[p]
+            forma = formas[art]
+            esperado = '%s %s %s' % (art, sem_acento(p),
+                                     'declaram' if forma['numero'] == 'plural' else 'declara')
+            if esperado not in juntos:
+                sem_artigo.append(esperado)
+            # E a flexao ERRADA nao pode aparecer: sem esta metade, uma pagina
+            # que escrevesse as duas passaria.
+            errada = '%s %s %s' % (art, sem_acento(p),
+                                   'declara' if forma['numero'] == 'plural' else 'declaram')
+            if errada in juntos:
+                verbo_torto.append(errada)
+        ok(not sem_artigo,
+           '[%s] %s: todo cartao escreve o artigo DECLARADO e o verbo concordado'
+           % (origem, mid),
+           '%d publicador(es)' % len(publicadores) if not sem_artigo
+           else 'faltou: ' + '; '.join(sem_artigo))
+        ok(not verbo_torto,
+           '[%s] %s: e nenhum cartao serve a flexao errada do verbo' % (origem, mid),
+           '' if not verbo_torto else '; '.join(verbo_torto))
+
+        # NA ORACAO DA RESPOSTA, fora do cartao: o nome nunca aparece solto. A
+        # busca e pelo nome do publicador — nunca "alguma coisa parecida com um
+        # publicador" —, e a vizinhanca conferida e o artigo declarado, em
+        # minuscula ou com a maiuscula que o esquema declara.
+        solto = []
+        for p in publicadores:
+            if p not in artigo_de:
+                continue
+            art = artigo_de[p]
+            alvo = sem_acento(p)
+            antes_min = art + ' ' + alvo
+            antes_mai = formas[art]['maiuscula'] + ' ' + alvo
+            i = texto.find(alvo)
+            while i != -1:
+                trecho_min = texto[max(0, i - len(art) - 1):i + len(alvo)]
+                trecho_mai = texto[max(0, i - len(formas[art]['maiuscula']) - 1):i + len(alvo)]
+                if trecho_min != antes_min and trecho_mai != antes_mai:
+                    solto.append('%s em ...%s...' % (p, texto[max(0, i - 30):i + len(alvo)]))
+                    break
+                i = texto.find(alvo, i + len(alvo))
+        ok(not solto,
+           '[%s] %s: no corpo servido, o nome de quem publica nunca vem sem o artigo declarado'
+           % (origem, mid),
+           '%d publicador(es)' % len(publicadores) if not solto else solto[0][:90])
+
+    # E A PROVA DE QUE ESTA MEDICAO NAO E DE UM GENERO SO — dita como ela e, e
+    # nao mais forte do que e: hoje TODO publicador que chega a R1 e feminino
+    # singular, e por isso o ar nao consegue separar artigo derivado de artigo
+    # digitado. Quem separa e a bancada, que produz o mundo
+    # (ferramentas/mutacoes-artigo-do-publicador.py). O que o ar prova e que o
+    # que foi ao ar le o banco: a afirmacao acima quebra no minuto em que um
+    # publicador de outro genero entrar e a pagina nao acompanhar.
+    artigos_no_ar = sorted({artigo_de[p] for mid in por_degrau.values()
+                            for m in [sorted(mid)[0]]
+                            for p in {i['publicador'] for i in fatos[m]['fabricante']}
+                            if p in artigo_de})
+    ok(len(artigos_no_ar) >= 1,
+       'os artigos servidos hoje, ditos como sao (a bancada e quem mede os outros generos)',
+       ' + '.join(artigos_no_ar))
+
     # A NOTA QUE JUSTIFICA A ORDEM COMERCIAL, no ar.
     _t, _n, _c = pagina(sorted(por_degrau[sorted(por_degrau)[0]])[0])
     ok('decidida pela declaracao do fabricante' not in _t,

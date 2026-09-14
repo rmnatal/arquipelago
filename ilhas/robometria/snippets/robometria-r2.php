@@ -1,5 +1,12 @@
 /**
  * Robometria R2 — Quantos Pa o seu robô aspirador precisa
+ * Versão: 1.4.0 (14/09/2026) — o PRONOME da faixa confortável sai do banco. O
+ * artigo de cada limiar já vinha do dado desde 11/09, mas a frase terminava em
+ * "a recomendação DELE fica folgada", digitado: certo por acidente, porque o
+ * único publicador com faixa confortável no banco de hoje é masculino. Meia
+ * regra aplicada parece regra aplicada. Junto, a tabela ARTIGO_DO_PUBLICADOR
+ * saiu de ferramentas/cobertura-r2.py — era a segunda cópia da mesma decisão de
+ * língua, e agora as duas ferramentas leem dados/publicadores.json.
  * Versão: 1.3.0 (12/09/2026) — a procedência do Pa chega à seção "Exatamente no
  * limiar", o último lugar das duas ferramentas em que a página nomeava modelo e
  * número sem dizer de onde o número veio. A frase deixou de ter o modelo como
@@ -100,7 +107,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_R2_VERSAO' ) ) {
-	define( 'ROBOMETRIA_R2_VERSAO', '1.3.0' );
+	define( 'ROBOMETRIA_R2_VERSAO', '1.4.0' );
 	define( 'ROBOMETRIA_R2_SLUG', 'quantos-pa-o-robo-aspirador-precisa' );
 	/* O NOME DA PÁGINA É A CONSULTA QUE A PESSOA DIGITA (seção 14.5), e ela está
 	   literalmente no endereço: "quantos pa o robô aspirador precisa". O nome
@@ -933,9 +940,15 @@ function robometria_r2_resposta( $c ) {
 
 	if ( ! empty( $s['faixa_confortavel'] ) ) {
 		$f = $s['faixa_confortavel'];
+		/* O PRONOME VEM DO BANCO (14/09/2026). "a recomendação dele" era
+		   DIGITADO, e estava certo por acidente: o único publicador com faixa
+		   confortável no banco de hoje é o Mundo Conectado, que é masculino. A
+		   Canaltech chegando aqui publicaria "dele" sobre um nome feminino, e
+		   nenhum portão veria — a mesma família do "A %s declara" da R1. */
 		$html .= '<p class="rbm-frase">' . esc_html( sprintf(
-			'%s ainda descreve uma faixa confortável entre %s e %s Pa para esta situação — não é um limiar, é onde a recomendação dele fica folgada.',
-			$f['publicador'], robometria_r2_n( $f['de'] ), robometria_r2_n( $f['ate'] )
+			'%s ainda descreve uma faixa confortável entre %s e %s Pa para esta situação — não é um limiar, é onde a recomendação %s fica folgada.',
+			$f['publicador'], robometria_r2_n( $f['de'] ), robometria_r2_n( $f['ate'] ),
+			isset( $f['pronome_possessivo'] ) ? $f['pronome_possessivo'] : 'dela'
 		) ) . '</p>';
 	}
 

@@ -1,5 +1,15 @@
 /**
  * Robometria R1 — Qual peça serve no meu robô aspirador
+ * Versão: 1.6.0 (14/09/2026) — O ARTIGO DE QUEM PUBLICA SAI DO BANCO, e a
+ * concordância junto. Até 1.5.0 o "A " que abre a frase e o "que a " do meio
+ * dela eram DIGITADOS, em quatro moldes e no cartão da vitrine, e o verbo era
+ * sempre singular. Estava certo por acidente: todo publicador que chega a essas
+ * frases é feminino singular — e o mesmo banco já publica "Mundo Conectado"
+ * (masculino) e "Lojas WAP" (plural). Agora o artigo, a maiúscula de começo de
+ * frase e o número viajam como fato em `gramatica_do_publicador`, derivados de
+ * dados/publicadores.json e da tabela do esquema. Nenhuma tabela de língua mora
+ * neste arquivo. Ver a seção 18 de ferramentas/teste-r1.php e a bateria
+ * ferramentas/mutacoes-artigo-do-publicador.py.
  * Versão: 1.5.0 (14/09/2026) — QUEM DECLARA É O PUBLICADOR, E NUNCA O RÓTULO DO
  * LADO. O cartão da vitrine escrevia "o fabricante declara esta peça", digitado,
  * para qualquer degrau, e a frase do kit sem avulso escrevia "que o fabricante
@@ -117,7 +127,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_R1_VERSAO' ) ) {
-	define( 'ROBOMETRIA_R1_VERSAO', '1.5.0' );
+	define( 'ROBOMETRIA_R1_VERSAO', '1.6.0' );
 	define( 'ROBOMETRIA_R1_SLUG', 'qual-peca-serve-no-meu-robo-aspirador' );
 	define( 'ROBOMETRIA_R1_TITULO', 'Qual peça serve no meu robô aspirador' );
 	define( 'ROBOMETRIA_R1_DADOS', 'robometria_dados_r1-respostas' );
@@ -555,6 +565,63 @@ function robometria_r1_ressalva_da_funcao( $item, $tipo ) {
 }
 
 /**
+ * QUEM PUBLICA, COM O ARTIGO QUE O BANCO DECLARA — e nunca com o que o nome
+ * sugere (14/09/2026).
+ *
+ * Até hoje o "A " que abre a frase e o "que a " do meio dela eram DIGITADOS, em
+ * quatro moldes e no cartão da vitrine, e o verbo era sempre singular. Estava
+ * certo por acidente do banco: todo publicador que chega a essas frases é
+ * feminino singular. O mesmo banco já tem os dois contraexemplos — "Mundo
+ * Conectado", que é masculino e que a R2 já escrevia com "o" por uma segunda
+ * tabela digitada, e "Lojas WAP", que é PLURAL e que nenhuma frase cita ainda.
+ *
+ * O artigo, a maiúscula de começo de frase e o número do verbo viajam como FATO
+ * em `gramatica_do_publicador` (ferramentas/gerar-r1.py), derivados de
+ * `dados/publicadores.json` e da tabela `artigos_de_publicador` do esquema.
+ * Nenhuma tabela de língua mora aqui: snippet que decide concordância é a mesma
+ * família do mapa de nomes duplicado que a casca 1.2.0 pagou.
+ *
+ * A FALTA É EXPLÍCITA em vez de silenciosa: item sem a gramática cai no nome sem
+ * artigo nenhum ("Electrolux declara…"), que lê estranho e é visível, em vez de
+ * publicar a concordância errada com cara de frase pronta. O gerador já para
+ * antes disso; isto é a rede de baixo.
+ */
+if ( ! function_exists( 'robometria_r1_gramatica' ) ) {
+function robometria_r1_gramatica( $fonte ) {
+	$g = isset( $fonte['gramatica_do_publicador'] ) ? $fonte['gramatica_do_publicador'] : array();
+	return array(
+		'artigo'    => isset( $g['artigo'] ) ? $g['artigo'] : '',
+		'maiuscula' => isset( $g['maiuscula'] ) ? $g['maiuscula'] : '',
+		'numero'    => isset( $g['numero'] ) ? $g['numero'] : 'singular',
+	);
+}
+}
+
+/** "a Electrolux (loja oficial)", "o Mundo Conectado", "as Lojas WAP". */
+if ( ! function_exists( 'robometria_r1_quem_publica' ) ) {
+function robometria_r1_quem_publica( $fonte ) {
+	$g = robometria_r1_gramatica( $fonte );
+	return trim( $g['artigo'] . ' ' . $fonte['publicador'] );
+}
+}
+
+/** O mesmo, abrindo frase. A maiúscula vem do esquema: "as" vira "As". */
+if ( ! function_exists( 'robometria_r1_quem_publica_maiusculo' ) ) {
+function robometria_r1_quem_publica_maiusculo( $fonte ) {
+	$g = robometria_r1_gramatica( $fonte );
+	return trim( $g['maiuscula'] . ' ' . $fonte['publicador'] );
+}
+}
+
+/** "declara" ou "declaram", pelo número DECLARADO de quem publica. */
+if ( ! function_exists( 'robometria_r1_verbo' ) ) {
+function robometria_r1_verbo( $fonte, $singular, $plural ) {
+	$g = robometria_r1_gramatica( $fonte );
+	return ( 'plural' === $g['numero'] ) ? $plural : $singular;
+}
+}
+
+/**
  * A ORAÇÃO EM QUE ESTE ITEM ATRIBUI A COMPATIBILIDADE — e o nome dela é a
  * fronteira (14/09/2026).
  *
@@ -580,6 +647,12 @@ function robometria_r1_atribuicao_do_item( $item ) {
 	$data  = robometria_r1_data( $item['verificado_em'] );
 	$tipo  = robometria_r1_nome_do_tipo( $item['tipo'] );
 
+	/* O ARTIGO E O NÚMERO DE QUEM PUBLICA SAEM DO BANCO (14/09/2026). Ver
+	   robometria_r1_quem_publica() logo acima para o porquê inteiro. */
+	$quem           = robometria_r1_quem_publica( $item );
+	$quem_maiusculo = robometria_r1_quem_publica_maiusculo( $item );
+	$declara        = robometria_r1_verbo( $item, 'declara', 'declaram' );
+
 	if ( ! empty( $item['dentro_de_kit'] ) && ! empty( $item['existe_avulso'] ) ) {
 		/* Existe a peça avulsa para este modelo: o kit é um caminho A MAIS, e
 		   dizer "não vende avulso" seria negar, na mesma tela, a peça que a
@@ -593,8 +666,8 @@ function robometria_r1_atribuicao_do_item( $item ) {
 		   ferramentas/cobertura-r1.py, frase_declarada(). */
 		list( $artigo, $avulso, $pronome ) = robometria_r1_genero( $item['tipo'] );
 		$frase = sprintf(
-			'%1$s %2$s também vem dentro do kit %3$s, que a %4$s declara compatível com %5$s (%6$s, verificado em %7$s).',
-			robometria_r1_maiuscula( $artigo ), $tipo, $identificacao, $item['publicador'],
+			'%1$s %2$s também vem dentro do kit %3$s, que %4$s %5$s compatível com %6$s (%7$s, verificado em %8$s).',
+			robometria_r1_maiuscula( $artigo ), $tipo, $identificacao, $quem, $declara,
 			$lista, $rotulo_origem, $data
 		);
 	} elseif ( ! empty( $item['dentro_de_kit'] ) ) {
@@ -604,9 +677,10 @@ function robometria_r1_atribuicao_do_item( $item ) {
 			   já abria com o publicador certo — "A Electrolux (loja oficial)
 			   não vende…". Ver robometria_r1_vitrine() para o porquê inteiro:
 			   falar pela marca não é ser a marca. */
-			'A %1$s não vende %2$s %3$s %4$s para este modelo: %5$s vem dentro do kit %6$s, que a %7$s declara compatível com %8$s (%9$s, verificado em %10$s).',
-			$item['publicador'], $artigo, $tipo, $avulso, $pronome,
-			$identificacao, $item['publicador'], $lista, $rotulo_origem, $data
+			'%1$s não %2$s %3$s %4$s %5$s para este modelo: %6$s vem dentro do kit %7$s, que %8$s %9$s compatível com %10$s (%11$s, verificado em %12$s).',
+			$quem_maiusculo, robometria_r1_verbo( $item, 'vende', 'vendem' ),
+			$artigo, $tipo, $avulso, $pronome,
+			$identificacao, $quem, $declara, $lista, $rotulo_origem, $data
 		);
 	} elseif ( ! robometria_r1_funcao_derivada( $item ) ) {
 		/* O fabricante escreveu a palavra do eixo no título ("Escova Lateral",
@@ -615,8 +689,8 @@ function robometria_r1_atribuicao_do_item( $item ) {
 		   DECLARA o tipo: é o que ele fez. */
 		list( $artigo ) = robometria_r1_genero( $item['tipo'] );
 		$frase = sprintf(
-			'A %1$s declara %2$s %3$s %4$s compatível com %5$s (%6$s, verificado em %7$s).',
-			$item['publicador'], $artigo, $tipo, $identificacao,
+			'%1$s %2$s %3$s %4$s %5$s compatível com %6$s (%7$s, verificado em %8$s).',
+			$quem_maiusculo, $declara, $artigo, $tipo, $identificacao,
 			$lista, $rotulo_origem, $data
 		);
 	} else {
@@ -627,8 +701,8 @@ function robometria_r1_atribuicao_do_item( $item ) {
 		   mas fora do escopo do verbo "declara". Quem nomeou a função vai na
 		   ressalva logo abaixo. */
 		$frase = sprintf(
-			'%1$s: %2$s, que a %3$s declara compatível com %4$s (%5$s, verificado em %6$s).',
-			robometria_r1_maiuscula( $tipo ), $identificacao, $item['publicador'],
+			'%1$s: %2$s, que %3$s %4$s compatível com %5$s (%6$s, verificado em %7$s).',
+			robometria_r1_maiuscula( $tipo ), $identificacao, $quem, $declara,
 			$lista, $rotulo_origem, $data
 		);
 	}
@@ -676,8 +750,10 @@ if ( ! function_exists( 'robometria_r1_frase_kit' ) ) {
 function robometria_r1_frase_kit( $kit ) {
 	list( $rotulo_origem ) = robometria_r1_origem( $kit['origem'] );
 	return sprintf(
-		'A %1$s declara o %2$s compatível com este modelo (%3$s, verificado em %4$s), mas não transcrevemos ainda a lista do que vem dentro — então não afirmamos qual peça o kit cobre.',
-		$kit['publicador'], $kit['nome_na_fonte'], $rotulo_origem,
+		'%1$s %2$s o %3$s compatível com este modelo (%4$s, verificado em %5$s), mas não transcrevemos ainda a lista do que vem dentro — então não afirmamos qual peça o kit cobre.',
+		robometria_r1_quem_publica_maiusculo( $kit ),
+		robometria_r1_verbo( $kit, 'declara', 'declaram' ),
+		$kit['nome_na_fonte'], $rotulo_origem,
 		robometria_r1_data( $kit['verificado_em'] )
 	);
 }
@@ -910,11 +986,12 @@ function robometria_r1_vitrine( $itens, $modelo ) {
 		   divergência de 13/09, e a mesma do artigo A2 de 12/09. */
 		$html .= '<span class="rbm-vitrine-porque">' . esc_html( sprintf(
 			$i['dentro_de_kit']
-				? 'a %3$s declara este kit compatível com o seu %1$s, e é dentro dele que vem %2$s'
-				: 'a %3$s declara esta peça (%2$s) compatível com o seu %1$s',
+				? '%3$s %4$s este kit compatível com o seu %1$s, e é dentro dele que vem %2$s'
+				: '%3$s %4$s esta peça (%2$s) compatível com o seu %1$s',
 			robometria_r1_rotulo_modelo( $modelo ),
 			robometria_r1_lista( $tipos_do_cartao ),
-			$i['publicador']
+			robometria_r1_quem_publica( $i ),
+			robometria_r1_verbo( $i, 'declara', 'declaram' )
 		) ) . '</span>';
 
 		if ( ! empty( $i['vida_util'] ) && null !== $i['vida_util']['valor'] ) {

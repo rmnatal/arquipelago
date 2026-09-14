@@ -131,7 +131,13 @@ def fato_do_limiar(l):
         "valor": l["valor"],
         "comparacao": l["comparacao"],
         "publicador": l["publicador"],
-        "artigo": ref.ARTIGO_DO_PUBLICADOR[l["publicador"]],
+        "artigo": ref.pub.gramatica(l["publicador"])["artigo"],
+        # O PRONOME POSSESSIVO TAMBEM VIAJA desde 14/09/2026. A frase da faixa
+        # confortavel dizia "a recomendacao DELE fica folgada", digitado, e
+        # estava certa por acidente: o unico publicador com faixa confortavel no
+        # banco de hoje e masculino. A Canaltech chegando la sairia com "dele"
+        # no ar, e nenhum portao veria. Mesma familia do artigo digitado.
+        "pronome_possessivo": ref.pub.pronome_possessivo(l["publicador"]),
         "fonte": l["fonte"],
         "url": l["url"],
         "verificado_em": l["verificado_em"],

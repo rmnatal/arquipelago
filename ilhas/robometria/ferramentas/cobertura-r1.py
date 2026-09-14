@@ -44,6 +44,12 @@ import sys
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DADOS = os.path.join(BASE, "dados")
 
+# A GRAMATICA DE QUEM PUBLICA VEM DE UM LUGAR SO (14/09/2026). Ver o cabecalho de
+# ferramentas/publicadores.py: o artigo e dado do banco, e o que se deriva dele
+# mora no esquema. Nada disso volta para dentro desta referencia nem do snippet.
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import publicadores as pub  # noqa: E402
+
 # Vocabulario de tipo_de_peca do esquema, menos 'kit': kit nao e uma pergunta que a
 # pessoa faz. Ninguem busca "kit para o meu ERB10" — busca "filtro para o meu ERB10"
 # e descobre, na resposta, que o fabricante so vende dentro do kit. Por isso o kit
@@ -335,22 +341,30 @@ def atribuicao_do_item(peca, par, modelo, dentro_do_kit=None, existe_avulso=Fals
     identificacao, sem_codigo = identificar_peca(peca)
     data = formatar_data(fonte.get("verificado_em"))
 
+    # O ARTIGO E O NUMERO DE QUEM PUBLICA SAEM DO BANCO (14/09/2026). Ate hoje o
+    # "A " e o "que a " eram digitados aqui, e o verbo era sempre singular. Ver
+    # ferramentas/publicadores.py para o porque inteiro.
+    quem = pub.com_artigo(publicador)
+    quem_maiusculo = pub.com_artigo_maiusculo(publicador)
+    declara = pub.verbo(publicador, "declara", "declaram")
+
     if dentro_do_kit and existe_avulso:
         artigo, _avulso = GENERO_DO_TIPO.get(dentro_do_kit, ("o", "avulso"))
         frase = (
-            "%s %s tambem vem dentro do kit %s, que a %s declara compativel com %s "
+            "%s %s tambem vem dentro do kit %s, que %s %s compativel com %s "
             "(%s, verificado em %s)."
-            % (artigo.capitalize(), dentro_do_kit, identificacao, publicador, lista,
+            % (artigo.capitalize(), dentro_do_kit, identificacao, quem, declara, lista,
                fonte.get("origem"), data)
         )
     elif dentro_do_kit:
         artigo, avulso = GENERO_DO_TIPO.get(dentro_do_kit, ("o", "avulso"))
         pronome = "ele" if artigo == "o" else "ela"
+        vende = pub.verbo(publicador, "vende", "vendem")
         frase = (
-            "A %s nao vende %s %s %s para este modelo: %s vem dentro do kit %s, que a %s "
-            "declara compativel com %s (%s, verificado em %s)."
-            % (publicador, artigo, dentro_do_kit, avulso, pronome, identificacao,
-               publicador, lista, fonte.get("origem"), data)
+            "%s nao %s %s %s %s para este modelo: %s vem dentro do kit %s, que %s "
+            "%s compativel com %s (%s, verificado em %s)."
+            % (quem_maiusculo, vende, artigo, dentro_do_kit, avulso, pronome,
+               identificacao, quem, declara, lista, fonte.get("origem"), data)
         )
     elif atribuicao_da_funcao(peca) in (None, "titulo"):
         # O fabricante escreveu a palavra do eixo no titulo ("Escova Lateral",
@@ -359,8 +373,8 @@ def atribuicao_do_item(peca, par, modelo, dentro_do_kit=None, existe_avulso=Fals
         # DECLARA o tipo: e o que ele fez.
         artigo, _ = GENERO_DO_TIPO.get(peca["tipo"], ("o", "avulso"))
         frase = (
-            "A %s declara %s %s %s compativel com %s (%s, verificado em %s)."
-            % (publicador, artigo, peca["tipo"], identificacao, lista,
+            "%s %s %s %s %s compativel com %s (%s, verificado em %s)."
+            % (quem_maiusculo, declara, artigo, peca["tipo"], identificacao, lista,
                fonte.get("origem"), data)
         )
     else:
@@ -370,9 +384,9 @@ def atribuicao_do_item(peca, par, modelo, dentro_do_kit=None, existe_avulso=Fals
         # sabendo de que peca se fala na primeira oracao, mas fora do escopo do
         # verbo 'declara'. Quem nomeou a funcao vai na ressalva, logo abaixo.
         frase = (
-            "%s: %s, que a %s declara compativel com %s (%s, verificado em %s)."
-            % (peca["tipo"][0].upper() + peca["tipo"][1:], identificacao, publicador,
-               lista, fonte.get("origem"), data)
+            "%s: %s, que %s %s compativel com %s (%s, verificado em %s)."
+            % (peca["tipo"][0].upper() + peca["tipo"][1:], identificacao, quem,
+               declara, lista, fonte.get("origem"), data)
         )
 
     return frase
@@ -532,10 +546,14 @@ def responder_r1(modelo_id, tipo=None):
                     "codigo": peca.get("codigo_fabricante"),
                     "nome_na_fonte": peca["nome_na_fonte"],
                     "frase": (
-                        "A %s declara o %s compativel com este modelo (%s, verificado "
+                        "%s %s o %s compativel com este modelo (%s, verificado "
                         "em %s), mas nao transcrevemos ainda a lista do que vem dentro "
                         "— entao nao afirmamos qual peca o kit cobre."
-                        % (fonte.get("publicador") or marcas[peca["marca"]]["nome"],
+                        % (pub.com_artigo_maiusculo(
+                               fonte.get("publicador") or marcas[peca["marca"]]["nome"]),
+                           pub.verbo(
+                               fonte.get("publicador") or marcas[peca["marca"]]["nome"],
+                               "declara", "declaram"),
                            peca["nome_na_fonte"],
                            fonte.get("origem"),
                            formatar_data(fonte.get("verificado_em")))

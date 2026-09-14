@@ -256,6 +256,89 @@ def checar_campo_de_valor(reg, campo, arquivo):
                  "fabricante em vez de cita-lo" % onde)
 
 
+# ------------------------------------------------------------ PUBLICADORES
+#
+# QUEM PUBLICA E SUJEITO DE FRASE, E SUJEITO PRECISA DE ARTIGO (14/09/2026).
+#
+# Ate hoje o artigo era digitado dentro das frases ("A %s declara") e estava
+# certo por acidente: todo publicador que chegava aquelas frases e feminino
+# singular. O banco ja tinha os dois contraexemplos — "Mundo Conectado", que e
+# masculino, e "Lojas WAP", que e plural — e nenhum dos dois passava por uma
+# frase com artigo. Regua escrita para um mundo que nunca aconteceu nasce errada
+# sem poder falhar (secao 8 do ARQUIPELAGO.md); esta secao e o portao que faz o
+# banco falhar ALTO no dia em que um deles chegar la.
+#
+# As duas direcoes sao cobradas de proposito, e com pesos diferentes: publicador
+# CITADO sem registro e ERRO (a frase sairia com a concordancia errada, ou o
+# gerador pararia no meio de um bloco), registro sem citacao e AVISO (os dois
+# publicadores da R2 vivem em constantes.json, que este validador nao le).
+ARTIGOS = esquema["artigos_de_publicador"]
+
+publicadores = carregar("publicadores.json")
+
+nomes_declarados = {}
+for p in publicadores["registros"]:
+    onde = "publicadores.json/%s" % p.get("id", "(sem id)")
+    for campo in ("id", "nome", "artigo", "motivo"):
+        if not (p.get(campo) or "").strip():
+            erro("%s: campo obrigatorio %s vazio" % (onde, campo))
+    artigo = p.get("artigo")
+    if artigo not in ARTIGOS or not isinstance(ARTIGOS.get(artigo), dict):
+        erro("%s: artigo %r nao existe em artigos_de_publicador do esquema. "
+             "Artigo fora da lista declarada e artigo adivinhado." % (onde, artigo))
+    if p.get("nome") in nomes_declarados:
+        erro("%s: o nome %r ja foi declarado em %s. Dois registros para o mesmo "
+             "nome publicado sao dois artigos possiveis para a mesma frase."
+             % (onde, p.get("nome"), nomes_declarados[p["nome"]]))
+    else:
+        nomes_declarados[p.get("nome")] = onde
+
+ids_publicador = set()
+for p in publicadores["registros"]:
+    if p["id"] in ids_publicador:
+        erro("publicadores.json: id duplicado %r" % p["id"])
+    ids_publicador.add(p["id"])
+
+
+def publicadores_citados():
+    """Todo nome de quem publica que o banco escreve hoje, e onde ele aparece.
+
+    Le as tres fontes que este validador ja carrega. A varredura e por CAMPO
+    nomeado, nunca por "toda string que pareca um publicador": vizinhanca nao e
+    medicao (secao 8).
+    """
+    citados = {}
+
+    def marcar(nome, onde):
+        if isinstance(nome, str) and nome.strip():
+            citados.setdefault(nome, set()).add(onde)
+
+    for m in marcas["registros"]:
+        marcar(m.get("nome"), "marcas.json/%s.nome" % m["id"])
+    for doc, arq in ((modelos, "modelos-robo.json"), (pecas, "pecas.json")):
+        for r in doc["registros"]:
+            for fid, fonte in (r.get("fontes") or {}).items():
+                marcar((fonte or {}).get("publicador"),
+                       "%s/%s/fontes/%s" % (arq, r["id"], fid))
+    return citados
+
+
+CITADOS = publicadores_citados()
+
+for nome, lugares in sorted(CITADOS.items()):
+    if nome not in nomes_declarados:
+        erro("o publicador %r e citado em %s e NAO tem registro em "
+             "publicadores.json. Sem artigo declarado, a frase que o puser como "
+             "sujeito sai com a concordancia adivinhada do nome."
+             % (nome, ", ".join(sorted(lugares)[:3])))
+
+for nome, onde in sorted(nomes_declarados.items()):
+    if nome not in CITADOS:
+        aviso("%s declara o publicador %r, que nenhum registro de marcas.json, "
+              "modelos-robo.json ou pecas.json cita hoje (os da R2 vivem em "
+              "constantes.json e nao passam por aqui)." % (onde, nome))
+
+
 # ---------------------------------------------------------------- MARCAS
 ids_marca = set()
 for m in marcas["registros"]:
@@ -618,6 +701,12 @@ checar_escada_na_tela()
 # ------------------------------------------------------------------ SAIDA
 print("Robometria — verificacao do banco (esquema versao %s)" % esquema["versao_esquema"])
 print("  marcas ............... %d" % len(marcas["registros"]))
+print("  publicadores ......... %d declarados, %d citados pelo banco (%s)"
+      % (len(publicadores["registros"]), len(CITADOS),
+         ", ".join("%d com %r" % (
+             sum(1 for r in publicadores["registros"] if r["artigo"] == a), a)
+             for a in ("a", "o", "as", "os")
+             if any(r["artigo"] == a for r in publicadores["registros"]))))
 print("  modelos de robo ...... %d (%d publicaveis, %d excluidos por nao serem robo)"
       % (len(modelos["registros"]),
          sum(1 for r in modelos["registros"] if r["status"] == "publicavel"),

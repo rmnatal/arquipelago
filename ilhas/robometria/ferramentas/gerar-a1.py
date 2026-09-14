@@ -62,6 +62,26 @@ def _carregar_referencia():
 ref = _carregar_referencia()
 
 
+def gramatica_do(publicador):
+    """O artigo, a maiuscula, a contracao com "de" e o numero de quem publica.
+
+    VIAJA COMO FATO desde 14/09/2026, pelo mesmo motivo do `sub_id_2`: o artigo
+    nao e do nome, e da frase que o poe como sujeito — e ate hoje ele era
+    DIGITADO em tres lugares deste artigo (" da " antes do publicador no bloco do
+    maior alcance, "da %s" na resposta do FAQ, e "a %s declara" no cartao da
+    vitrine). Os tres estavam certos por acidente: as cinco marcas sao femininas
+    singulares. `com_de` entra aqui e nao no da R1 porque so este artigo escreve
+    a peca "da Multi"; ver ferramentas/publicadores.py.
+    """
+    g = ref.pub.gramatica(publicador)
+    return {
+        "artigo": g["artigo"],
+        "maiuscula": g["maiuscula"],
+        "com_de": g["com_de"],
+        "numero": g["numero"],
+    }
+
+
 # Nome legivel de cada tipo, no singular, como a frase publicada o escreve. O
 # banco e ASCII; o acento entra no PHP (fase 4b do playbook), entao aqui fica a
 # forma sem acento e o snippet tem a mesma tabela acentuada. teste-a1.php compara
@@ -135,6 +155,7 @@ def alcance_das_pecas():
             "tipo": p["tipo"],
             "marca": p["marca"],
             "publicador": ref.marcas[p["marca"]]["nome"],
+            "gramatica_do_publicador": gramatica_do(ref.marcas[p["marca"]]["nome"]),
             "identificacao": identificacao,
             "sem_codigo_publicado": sem_codigo,
             "nome_na_fonte": p["nome_na_fonte"],
@@ -181,6 +202,7 @@ def dispersao_por_marca(alcance):
         saida.append({
             "marca": marca,
             "publicador": ref.marcas[marca]["nome"],
+            "gramatica_do_publicador": gramatica_do(ref.marcas[marca]["nome"]),
             "pecas": b["pecas"],
             "conjuntos_distintos": len(b["conjuntos"]),
             "nenhuma_repete": len(b["conjuntos"]) == b["pecas"] and b["pecas"] > 1,
@@ -253,6 +275,7 @@ def vitrine(alcance, quantas=4):
             "tipo": p["tipo"],
             "nome_do_tipo": NOME_DO_TIPO.get(p["tipo"], p["tipo"]),
             "publicador": ref.marcas[p["marca"]]["nome"],
+            "gramatica_do_publicador": gramatica_do(ref.marcas[p["marca"]]["nome"]),
             "identificacao": l["identificacao"],
             "sem_codigo_publicado": l["sem_codigo_publicado"],
             "nome_na_fonte": p["nome_na_fonte"],
@@ -326,11 +349,15 @@ def perguntas(fatos):
         "pergunta": "Uma peça que serve num modelo da marca serve nos outros modelos dela?",
         "resposta": (
             "Nem sempre, e o próprio catálogo dos fabricantes mostra isso: as %d "
-            "peças da %s no banco formam %d conjuntos de modelos diferentes. "
+            "peças %s %s no banco formam %d conjuntos de modelos diferentes. "
             "Compatibilidade é declarada por código de peça, uma a uma, e não se "
             "herda de uma peça para a seguinte."
             % (
                 fatos["dispersao"][0]["pecas"],
+                # "da Multi (ex-Multilaser)" — a contração sai do banco, e não
+                # de um " da " digitado: "do Mundo Conectado" e "das Lojas WAP"
+                # existem no mesmo banco e quebrariam esta frase em silêncio.
+                fatos["dispersao"][0]["gramatica_do_publicador"]["com_de"],
                 fatos["dispersao"][0]["publicador"],
                 fatos["dispersao"][0]["conjuntos_distintos"],
             )

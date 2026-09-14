@@ -1,0 +1,161 @@
+{
+ "id": "publicadores",
+ "ilha": "robometria",
+ "entidade": "publicador",
+ "esquema": "dados/esquema-banco.json",
+ "gerado_em": "2026-09-14",
+ "nota_de_procedencia": "Nasceu em 14/09/2026 para pagar a divida (c) do bloco das 11h44Z: o artigo antes do publicador era DIGITADO nas frases publicadas ('A %s declara'), e funcionava porque todo publicador que chegava aquelas frases e feminino singular. Verdadeiro por acidente do banco. Aqui o artigo e DECLARADO ao lado do nome, com o motivo escrito, e quem monta frase le daqui — nunca adivinha do nome. O `nome` de cada registro e a string EXATA que ja viaja no banco (fontes[].publicador em pecas.json e modelos-robo.json, registros[].nome em marcas.json, e os limiares da R2), porque e ela que vai a tela: chave que nao bate letra por letra com o texto publicado nao e chave, e um segundo mapa de nomes — a cicatriz da casca 1.2.0. Nenhum artigo foi colhido de fonte externa: e decisao de lingua da ilha, e por isso cada registro carrega `motivo`, que e a frase que sustenta a escolha.",
+ "nota_do_alcance": "A lista cobre TODO publicador que existe no banco hoje, inclusive os que ainda nao chegam a nenhuma frase com artigo (as tabelas da R2 e da A2 imprimem o nome em celula, sem oracao ao redor). Cobrir so quem hoje precisa seria escrever regua para o mundo de hoje: o dia em que uma frase nova citar um desses nomes, ela ja tem de onde ler. ferramentas/validar-banco.py cobra as duas direcoes — publicador usado sem registro aqui e ERRO, registro aqui sem uso no banco e AVISO.",
+ "registros": [
+  {
+   "id": "canaltech",
+   "nome": "Canaltech",
+   "artigo": "a",
+   "motivo": "a ilha escreve 'a Canaltech' desde a primeira frase da R2 (11/09/2026); o nucleo do nome e tratado como feminino no uso corrente do veiculo."
+  },
+  {
+   "id": "electrolux",
+   "nome": "Electrolux",
+   "artigo": "a",
+   "motivo": "'a Electrolux' — nome de empresa, feminino singular no uso corrente."
+  },
+  {
+   "id": "electrolux-loja-oficial",
+   "nome": "Electrolux (loja oficial)",
+   "artigo": "a",
+   "motivo": "o parenteses qualifica o canal e nao muda o nucleo do nome, que e a marca; 'a Electrolux (loja oficial)'."
+  },
+  {
+   "id": "electrolux-manual-terceiro",
+   "nome": "Electrolux (manual hospedado por terceiro em manuals.plus)",
+   "artigo": "a",
+   "motivo": "mesmo nucleo da marca; o parenteses diz onde o manual esta hospedado, nao quem publica."
+  },
+  {
+   "id": "electrolux-pagina-institucional",
+   "nome": "Electrolux (pagina institucional do produto)",
+   "artigo": "a",
+   "motivo": "mesmo nucleo da marca; o parenteses diz qual pagina da propria marca foi lida."
+  },
+  {
+   "id": "electrolux-parceiros",
+   "nome": "Electrolux Parceiros",
+   "artigo": "a",
+   "motivo": "nome de canal formado pela marca mais um qualificador; quem governa o artigo e a marca ('a Electrolux'), e 'Parceiros' nao e o nucleo do nome. Escolha da ilha, registrada aqui exatamente porque o nome sozinho nao a entrega."
+  },
+  {
+   "id": "loja-positivo",
+   "nome": "Loja Positivo",
+   "artigo": "a",
+   "motivo": "o nucleo do nome e 'Loja', feminino singular: 'a Loja Positivo'."
+  },
+  {
+   "id": "lojas-wap",
+   "nome": "Lojas WAP",
+   "artigo": "as",
+   "motivo": "o nucleo do nome e 'Lojas', feminino PLURAL: 'as Lojas WAP declaram'. E o unico publicador plural do banco, e e ele que prova que a concordancia do verbo tambem tem de sair do dado — nenhuma frase o cita hoje, e o dia em que citar nao pode ser o dia em que se descobre isso."
+  },
+  {
+   "id": "multi-ex-multilaser",
+   "nome": "Multi (ex-Multilaser)",
+   "artigo": "a",
+   "motivo": "nome da marca como marcas.json o publica; 'a Multi'."
+  },
+  {
+   "id": "multi-lamina",
+   "nome": "Multi (lâmina.multilaser.com.br)",
+   "artigo": "a",
+   "motivo": "mesmo nucleo da marca; o parenteses diz de qual dominio da propria marca a leitura saiu."
+  },
+  {
+   "id": "multi-site",
+   "nome": "Multi (multilaser.com.br)",
+   "artigo": "a",
+   "motivo": "mesmo nucleo da marca; o parenteses diz de qual dominio da propria marca a leitura saiu."
+  },
+  {
+   "id": "multi-varejo",
+   "nome": "Multi (multilaser.com.br, canal varejo)",
+   "artigo": "a",
+   "motivo": "mesmo nucleo da marca; o parenteses diz o dominio e o canal."
+  },
+  {
+   "id": "multi-empresas-e-site",
+   "nome": "Multi (multilaserempresas.com.br e multilaser.com.br)",
+   "artigo": "a",
+   "motivo": "mesmo nucleo da marca; o parenteses diz que a declaracao aparece nos dois dominios dela."
+  },
+  {
+   "id": "multi-empresas",
+   "nome": "Multi (multilaserempresas.com.br)",
+   "artigo": "a",
+   "motivo": "mesmo nucleo da marca; o parenteses diz de qual dominio da propria marca a leitura saiu."
+  },
+  {
+   "id": "multi-suporte",
+   "nome": "Multi (suporte.multilaser.com.br)",
+   "artigo": "a",
+   "motivo": "mesmo nucleo da marca; o parenteses diz que a leitura saiu do canal de manutencao dela."
+  },
+  {
+   "id": "mundo-conectado",
+   "nome": "Mundo Conectado",
+   "artigo": "o",
+   "motivo": "o nucleo do nome e 'Mundo', masculino singular: 'o Mundo Conectado'. E o unico publicador masculino do banco, e o que torna mensuravel que o artigo nao pode ser digitado."
+  },
+  {
+   "id": "positivo-casa-inteligente",
+   "nome": "Positivo Casa Inteligente",
+   "artigo": "a",
+   "motivo": "a ilha escreve 'a Positivo' para a marca, e 'Casa Inteligente' e o nome da linha, nao o nucleo."
+  },
+  {
+   "id": "positivo-casa-inteligente-loja-oficial",
+   "nome": "Positivo Casa Inteligente (loja oficial)",
+   "artigo": "a",
+   "motivo": "mesmo nucleo da marca; o parenteses qualifica o canal."
+  },
+  {
+   "id": "wap",
+   "nome": "WAP",
+   "artigo": "a",
+   "motivo": "'a WAP' — a ilha trata a sigla como feminino singular, como a propria marca faz na comunicacao dela."
+  },
+  {
+   "id": "wap-loja-oficial",
+   "nome": "WAP (loja oficial)",
+   "artigo": "a",
+   "motivo": "mesmo nucleo da sigla; o parenteses qualifica o canal."
+  },
+  {
+   "id": "xiaomi",
+   "nome": "Xiaomi",
+   "artigo": "a",
+   "motivo": "'a Xiaomi' — nome de empresa, feminino singular no uso corrente."
+  },
+  {
+   "id": "xiaomi-suporte",
+   "nome": "Xiaomi (suporte)",
+   "artigo": "a",
+   "motivo": "mesmo nucleo da marca; o parenteses diz que a leitura saiu do canal de manutencao dela."
+  },
+  {
+   "id": "xiaomi-brasil",
+   "nome": "Xiaomi Brasil",
+   "artigo": "a",
+   "motivo": "mesmo nucleo da marca; 'Brasil' nomeia a subsidiaria e nao muda o artigo."
+  },
+  {
+   "id": "xiaomi-global",
+   "nome": "Xiaomi Global",
+   "artigo": "a",
+   "motivo": "mesmo nucleo da marca; 'Global' nomeia o canal internacional dela."
+  },
+  {
+   "id": "xiaomi-global-suporte",
+   "nome": "Xiaomi Global (suporte)",
+   "artigo": "a",
+   "motivo": "mesmo nucleo da marca; o parenteses diz que a leitura saiu do canal de manutencao do site global."
+  }
+ ]
+}

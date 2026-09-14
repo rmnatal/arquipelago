@@ -603,6 +603,102 @@ rbm_ok( empty( $tipos_divergentes ),
 rbm_ok( false === stripos( $retorno, '<form' ),
 	'o artigo nao tem formulario — a consulta e da ferramenta, nao dele' );
 
+/* ---------------------------------------------------------------------------
+ * O ARTIGO DE QUEM PUBLICA SAI DO BANCO, TAMBEM AQUI (14/09/2026).
+ *
+ * Tres lugares deste artigo escreviam o artigo a mao: " da " antes do nome no
+ * bloco do maior alcance, "da %s" na resposta do FAQ (dentro do gerador) e "a %s
+ * declara" no cartao da vitrine. Os tres estavam certos por acidente — as cinco
+ * marcas do banco sao femininas singulares —, e o mesmo banco ja publica "Mundo
+ * Conectado" (masculino) e "Lojas WAP" (plural).
+ *
+ * A REGUA LE dados/publicadores.json A MAO, nunca o fato que o gerador gravou:
+ * e a terceira conta, a que compara banco com tela sem passar pelo meio.
+ * ------------------------------------------------------------------------- */
+
+echo "\nO artigo de quem publica, lido do banco (14/09/2026)\n";
+
+$banco_pub_a1 = json_decode( file_get_contents( $raiz . '/dados/publicadores.json' ), true );
+$esq_pub_a1   = json_decode( file_get_contents( $raiz . '/dados/esquema-banco.json' ), true );
+$formas_a1    = $esq_pub_a1['artigos_de_publicador'];
+$artigo_a1    = array();
+foreach ( $banco_pub_a1['registros'] as $reg ) {
+	$artigo_a1[ $reg['nome'] ] = $reg['artigo'];
+}
+
+/* (1) Todo publicador que este artigo publica tem artigo declarado, e o fato
+   gravado bate com o banco. */
+$fora_do_banco = array();
+$fato_torto    = array();
+foreach ( array( 'vitrine', 'dispersao' ) as $bloco ) {
+	foreach ( (array) $fatos[ $bloco ] as $f ) {
+		if ( ! isset( $artigo_a1[ $f['publicador'] ] ) ) {
+			$fora_do_banco[ $f['publicador'] ] = true;
+			continue;
+		}
+		if ( $f['gramatica_do_publicador']['artigo'] !== $artigo_a1[ $f['publicador'] ] ) {
+			$fato_torto[] = $bloco . '/' . $f['publicador'];
+		}
+		$esperado_de = $formas_a1[ $artigo_a1[ $f['publicador'] ] ]['com_de'];
+		if ( $f['gramatica_do_publicador']['com_de'] !== $esperado_de ) {
+			$fato_torto[] = $bloco . '/' . $f['publicador'] . ' (com_de)';
+		}
+	}
+}
+rbm_ok( empty( $fora_do_banco ), 'todo publicador deste artigo tem artigo declarado em publicadores.json',
+	empty( $fora_do_banco ) ? 'todos' : implode( ', ', array_keys( $fora_do_banco ) ) );
+rbm_ok( empty( $fato_torto ), 'a gramatica que viaja nos fatos e a MESMA que o banco declara',
+	empty( $fato_torto ) ? 'artigo e contracao conferidos' : implode( ', ', $fato_torto ) );
+
+/* (2) NA TELA: o cartao da vitrine escreve o artigo declarado antes do nome, e
+   o bloco do maior alcance escreve a CONTRACAO declarada. Medido no corpo
+   visivel, nunca no HTML inteiro (secao 8). */
+$corpo_a1 = rbm_sem_acento( strip_tags( $retorno ) );
+$sem_artigo_na_tela = array();
+foreach ( (array) $fatos['vitrine'] as $v ) {
+	$esperado = $artigo_a1[ $v['publicador'] ] . ' ' . rbm_sem_acento( $v['publicador'] ) . ' declara';
+	if ( false === strpos( $corpo_a1, $esperado ) ) {
+		$sem_artigo_na_tela[] = $v['publicador'];
+	}
+}
+rbm_ok( empty( $sem_artigo_na_tela ), 'todo cartao escreve "<artigo declarado> <publicador> declara"',
+	empty( $sem_artigo_na_tela ) ? count( $fatos['vitrine'] ) . ' cartao(oes)' : implode( ', ', $sem_artigo_na_tela ) );
+
+$maior_pub = $fatos['maior_alcance']['publicador'];
+rbm_ok( false !== strpos( $corpo_a1,
+		$formas_a1[ $artigo_a1[ $maior_pub ] ]['com_de'] . ' ' . rbm_sem_acento( $maior_pub ) ),
+	'o bloco do maior alcance escreve a CONTRACAO declarada antes do nome',
+	$formas_a1[ $artigo_a1[ $maior_pub ] ]['com_de'] . ' ' . $maior_pub );
+
+/* (3) O MUNDO PRODUZIDO: um publicador masculino e um plural, que este artigo
+   nao tem. Sem eles, tudo acima passa com " da " e "a %s declara" digitados de
+   volta — foi assim que o defeito viveu desde que este artigo nasceu. */
+$item_a1 = $fatos['vitrine'][0];
+$mundos_a1 = array(
+	'masculino singular' => array( 'Mundo Conectado', 'o', 'do', 'declara' ),
+	'feminino plural'    => array( 'Lojas WAP', 'as', 'das', 'declaram' ),
+);
+foreach ( $mundos_a1 as $rotulo => $m ) {
+	list( $nome, $art, $com_de, $verbo ) = $m;
+	rbm_ok( isset( $artigo_a1[ $nome ] ) && $artigo_a1[ $nome ] === $art,
+		'o banco declara "' . $art . '" para ' . $nome . ' (' . $rotulo . ')' );
+
+	$forjado = $item_a1;
+	$forjado['publicador'] = $nome;
+	$forjado['gramatica_do_publicador'] = array(
+		'artigo' => $art, 'maiuscula' => $formas_a1[ $art ]['maiuscula'],
+		'com_de' => $com_de, 'numero' => $formas_a1[ $art ]['numero'],
+	);
+	rbm_ok( robometria_a1_quem_publica( $forjado ) === $art . ' ' . $nome,
+		'vitrine: ' . $rotulo . ' sai com o artigo declarado',
+		robometria_a1_quem_publica( $forjado ) );
+	rbm_ok( robometria_a1_quem_publica_com_de( $forjado ) === $com_de . ' ' . $nome,
+		'maior alcance: ' . $rotulo . ' sai com a contracao declarada',
+		robometria_a1_quem_publica_com_de( $forjado ) );
+	rbm_ok( robometria_a1_verbo( $forjado, 'declara', 'declaram' ) === $verbo,
+		'verbo: ' . $rotulo . ' concorda com o numero declarado', $verbo );
+}
+
 echo "\n";
 if ( $falhas ) {
 	printf( "REPROVADO: %d de %d verificacoes falharam.\n", $falhas, $feitos );

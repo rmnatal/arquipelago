@@ -19,6 +19,12 @@
     "tipo": "escova lateral",
     "marca": "multi",
     "publicador": "Multi (ex-Multilaser)",
+    "gramatica_do_publicador": {
+      "artigo": "a",
+      "maiuscula": "A",
+      "com_de": "da",
+      "numero": "singular"
+    },
     "identificacao": "PR10124",
     "sem_codigo_publicado": false,
     "nome_na_fonte": "Escova Lateral para Aspirador Robô Mars, Moon e Duster",
@@ -42,6 +48,12 @@
       "tipo": "escova lateral",
       "marca": "multi",
       "publicador": "Multi (ex-Multilaser)",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
       "identificacao": "PR10124",
       "sem_codigo_publicado": false,
       "nome_na_fonte": "Escova Lateral para Aspirador Robô Mars, Moon e Duster",
@@ -64,6 +76,12 @@
       "tipo": "escova principal",
       "marca": "electrolux",
       "publicador": "Electrolux",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
       "identificacao": "\"Escova Rotativa Central Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80\"",
       "sem_codigo_publicado": true,
       "nome_na_fonte": "Escova Rotativa Central Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80",
@@ -85,6 +103,12 @@
       "tipo": "filtro",
       "marca": "electrolux",
       "publicador": "Electrolux",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
       "identificacao": "\"Filtro HEPA com Espuma Electrolux para Robôs Aspiradores ERB44, ERB60, ERB61 e ERB62\"",
       "sem_codigo_publicado": true,
       "nome_na_fonte": "Filtro HEPA com Espuma Electrolux para Robôs Aspiradores ERB44, ERB60, ERB61 e ERB62",
@@ -106,6 +130,12 @@
       "tipo": "mop",
       "marca": "electrolux",
       "publicador": "Electrolux",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
       "identificacao": "\"Pano de Microfibra Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80\"",
       "sem_codigo_publicado": true,
       "nome_na_fonte": "Pano de Microfibra Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80",
@@ -127,6 +157,12 @@
       "tipo": "escova principal",
       "marca": "xiaomi",
       "publicador": "Xiaomi",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
       "identificacao": "B112-ZS",
       "sem_codigo_publicado": false,
       "nome_na_fonte": "Xiaomi Robot Vacuum E10/E12/E10C/S20 Brush",
@@ -148,6 +184,12 @@
       "tipo": "kit",
       "marca": "electrolux",
       "publicador": "Electrolux",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
       "identificacao": "\"Kit Performance Electrolux para Robôs Aspiradores ERB60, ERB61 e ERB62\"",
       "sem_codigo_publicado": true,
       "nome_na_fonte": "Kit Performance Electrolux para Robôs Aspiradores ERB60, ERB61 e ERB62",
@@ -168,6 +210,12 @@
       "tipo": "kit",
       "marca": "electrolux",
       "publicador": "Electrolux",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
       "identificacao": "KPCEL01",
       "sem_codigo_publicado": false,
       "nome_na_fonte": "Kit Performance para Robôs Aspiradores ERB10, ERB11 e ERB20 - Electrolux",
@@ -188,6 +236,12 @@
       "tipo": "filtro",
       "marca": "xiaomi",
       "publicador": "Xiaomi",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
       "identificacao": "B112-CH",
       "sem_codigo_publicado": false,
       "nome_na_fonte": "Xiaomi Robot Vacuum E10/E10C/S20 Filter",
@@ -208,6 +262,12 @@
       "tipo": "mop",
       "marca": "xiaomi",
       "publicador": "Xiaomi",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
       "identificacao": "B112-TB",
       "sem_codigo_publicado": false,
       "nome_na_fonte": "Xiaomi Robot Vacuum E10/E12/E10C Mop Pad",
@@ -228,6 +288,12 @@
       "tipo": "escova lateral",
       "marca": "xiaomi",
       "publicador": "Xiaomi",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
       "identificacao": "OV81GL-BS",
       "sem_codigo_publicado": false,
       "nome_na_fonte": "Xiaomi Robot Vacuum H40/ S40/ S40 Pro Anti-tangle Side Brush",
@@ -248,6 +314,12 @@
       "tipo": "escova lateral",
       "marca": "positivo",
       "publicador": "Positivo Casa Inteligente",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
       "identificacao": "11206518",
       "sem_codigo_publicado": false,
       "nome_na_fonte": "Escova Lateral para Smart Robô Aspirador PRA800/PRA2000 Positivo Casa Inteligente",
@@ -267,6 +339,12 @@
       "tipo": "escova principal",
       "marca": "positivo",
       "publicador": "Positivo Casa Inteligente",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
       "identificacao": "11206519",
       "sem_codigo_publicado": false,
       "nome_na_fonte": "Escova Central para Smart Robô Aspirador Laser PRA800 e Autolimpante PRA2000",
@@ -286,6 +364,12 @@
       "tipo": "mop",
       "marca": "positivo",
       "publicador": "Positivo Casa Inteligente",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
       "identificacao": "11206540",
       "sem_codigo_publicado": false,
       "nome_na_fonte": "Mop para Smart Robô Aspirador Laser PRA800/PRA2000 Positivo Casa Inteligente",
@@ -305,6 +389,12 @@
       "tipo": "reservatorio",
       "marca": "wap",
       "publicador": "WAP",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
       "identificacao": "FW008543",
       "sem_codigo_publicado": false,
       "nome_na_fonte": "Kit Recipiente de Pó Para Robôs Aspiradores de Pó WAP Robot W100 e WAP Robot W90",
@@ -324,6 +414,12 @@
       "tipo": "escova principal",
       "marca": "xiaomi",
       "publicador": "Xiaomi",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
       "identificacao": "\"Xiaomi Robot Vacuum H40/S40 Brush\"",
       "sem_codigo_publicado": true,
       "nome_na_fonte": "Xiaomi Robot Vacuum H40/S40 Brush",
@@ -343,6 +439,12 @@
       "tipo": "kit",
       "marca": "electrolux",
       "publicador": "Electrolux",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
       "identificacao": "\"Kit Performance para Robô Aspirador ERB30 - Electrolux\"",
       "sem_codigo_publicado": true,
       "nome_na_fonte": "Kit Performance para Robô Aspirador ERB30 - Electrolux",
@@ -361,6 +463,12 @@
       "tipo": "kit",
       "marca": "electrolux",
       "publicador": "Electrolux",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
       "identificacao": "\"Kit Performance Electrolux para Robô Aspirador ERB44\"",
       "sem_codigo_publicado": true,
       "nome_na_fonte": "Kit Performance Electrolux para Robô Aspirador ERB44",
@@ -379,6 +487,12 @@
       "tipo": "kit",
       "marca": "electrolux",
       "publicador": "Electrolux",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
       "identificacao": "\"Kit Performance Electrolux para Robô Aspirador ERB80\"",
       "sem_codigo_publicado": true,
       "nome_na_fonte": "Kit Performance Electrolux para Robô Aspirador ERB80",
@@ -397,6 +511,12 @@
       "tipo": "bateria",
       "marca": "multi",
       "publicador": "Multi (ex-Multilaser)",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
       "identificacao": "PR10127",
       "sem_codigo_publicado": false,
       "nome_na_fonte": "Bateria p/ Aspirador Robô Ho041 Versão A",
@@ -415,6 +535,12 @@
       "tipo": "filtro",
       "marca": "multi",
       "publicador": "Multi (ex-Multilaser)",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
       "identificacao": "PR10205",
       "sem_codigo_publicado": false,
       "nome_na_fonte": "Filtro para Aspirador Robô Mars, Moon e Duster",
@@ -433,6 +559,12 @@
       "tipo": "mop",
       "marca": "multi",
       "publicador": "Multi (ex-Multilaser)",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
       "identificacao": "PR10342",
       "sem_codigo_publicado": false,
       "nome_na_fonte": "Pano para Aspirador Robô p/ OB010",
@@ -451,6 +583,12 @@
       "tipo": "filtro",
       "marca": "multi",
       "publicador": "Multi (ex-Multilaser)",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
       "identificacao": "PR10343",
       "sem_codigo_publicado": false,
       "nome_na_fonte": "Filtro para Aspirador Robô OB010",
@@ -469,6 +607,12 @@
       "tipo": "bateria",
       "marca": "multi",
       "publicador": "Multi (ex-Multilaser)",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
       "identificacao": "PR8116",
       "sem_codigo_publicado": false,
       "nome_na_fonte": "Bateria Para Aspirador Robô Mars, Moon e Duster Multi",
@@ -487,6 +631,12 @@
       "tipo": "escova principal",
       "marca": "wap",
       "publicador": "WAP",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
       "identificacao": "\"Escova Central Para Robô Aspirador de Pó WAP Robot WSMART\"",
       "sem_codigo_publicado": true,
       "nome_na_fonte": "Escova Central Para Robô Aspirador de Pó WAP Robot WSMART",
@@ -505,6 +655,12 @@
       "tipo": "escova lateral",
       "marca": "wap",
       "publicador": "WAP",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
       "identificacao": "\"Escova Direita Para Robô Aspirador de Pó Robot W300\"",
       "sem_codigo_publicado": true,
       "nome_na_fonte": "Escova Direita Para Robô Aspirador de Pó Robot W300",
@@ -523,6 +679,12 @@
       "tipo": "escova lateral",
       "marca": "wap",
       "publicador": "WAP",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
       "identificacao": "\"Escova Esquerda Para Robô Aspirador WAP Robot W300\"",
       "sem_codigo_publicado": true,
       "nome_na_fonte": "Escova Esquerda Para Robô Aspirador WAP Robot W300",
@@ -541,6 +703,12 @@
       "tipo": "escova lateral",
       "marca": "wap",
       "publicador": "WAP",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
       "identificacao": "\"Escova Frontal Para Robô Aspirador de Pó WAP Robot WSmart\"",
       "sem_codigo_publicado": true,
       "nome_na_fonte": "Escova Frontal Para Robô Aspirador de Pó WAP Robot WSmart",
@@ -559,6 +727,12 @@
       "tipo": "reservatorio",
       "marca": "wap",
       "publicador": "WAP",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
       "identificacao": "FW008024",
       "sem_codigo_publicado": false,
       "nome_na_fonte": "Recipiente de Pó Para Robô Aspirador de Pó WAP Robot WSMART",
@@ -577,6 +751,12 @@
       "tipo": "reservatorio",
       "marca": "wap",
       "publicador": "WAP",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
       "identificacao": "\"Recipiente de Pó Para Robô Aspirador de Pó WAP Robot W300\"",
       "sem_codigo_publicado": true,
       "nome_na_fonte": "Recipiente de Pó Para Robô Aspirador de Pó WAP Robot W300",
@@ -595,6 +775,12 @@
       "tipo": "escova lateral",
       "marca": "xiaomi",
       "publicador": "Xiaomi",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
       "identificacao": "B106GL-BX",
       "sem_codigo_publicado": false,
       "nome_na_fonte": "Xiaomi Robot Vacuum S20 Side Brush",
@@ -613,6 +799,12 @@
       "tipo": "mop",
       "marca": "xiaomi",
       "publicador": "Xiaomi",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
       "identificacao": "D106-TB",
       "sem_codigo_publicado": false,
       "nome_na_fonte": "Xiaomi Robot Vacuum S20 Mop Pad",
@@ -631,6 +823,12 @@
       "tipo": "mop",
       "marca": "xiaomi",
       "publicador": "Xiaomi",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
       "identificacao": "E101-TB",
       "sem_codigo_publicado": false,
       "nome_na_fonte": "Xiaomi Robot Vacuum S40C Mop Pad",
@@ -649,6 +847,12 @@
     {
       "marca": "electrolux",
       "publicador": "Electrolux",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
       "pecas": 8,
       "conjuntos_distintos": 7,
       "nenhuma_repete": false
@@ -656,6 +860,12 @@
     {
       "marca": "xiaomi",
       "publicador": "Xiaomi",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
       "pecas": 8,
       "conjuntos_distintos": 7,
       "nenhuma_repete": false
@@ -663,6 +873,12 @@
     {
       "marca": "wap",
       "publicador": "WAP",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
       "pecas": 7,
       "conjuntos_distintos": 4,
       "nenhuma_repete": false
@@ -670,6 +886,12 @@
     {
       "marca": "multi",
       "publicador": "Multi (ex-Multilaser)",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
       "pecas": 6,
       "conjuntos_distintos": 3,
       "nenhuma_repete": false
@@ -677,6 +899,12 @@
     {
       "marca": "positivo",
       "publicador": "Positivo Casa Inteligente",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
       "pecas": 3,
       "conjuntos_distintos": 1,
       "nenhuma_repete": false
@@ -726,6 +954,12 @@
       "tipo": "escova lateral",
       "nome_do_tipo": "escova lateral",
       "publicador": "Multi (ex-Multilaser)",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
       "identificacao": "PR10124",
       "sem_codigo_publicado": false,
       "nome_na_fonte": "Escova Lateral para Aspirador Robô Mars, Moon e Duster",
@@ -762,6 +996,12 @@
       "tipo": "escova principal",
       "nome_do_tipo": "escova principal",
       "publicador": "Electrolux",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
       "identificacao": "\"Escova Rotativa Central Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80\"",
       "sem_codigo_publicado": true,
       "nome_na_fonte": "Escova Rotativa Central Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80",
@@ -797,6 +1037,12 @@
       "tipo": "filtro",
       "nome_do_tipo": "filtro",
       "publicador": "Electrolux",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
       "identificacao": "\"Filtro HEPA com Espuma Electrolux para Robôs Aspiradores ERB44, ERB60, ERB61 e ERB62\"",
       "sem_codigo_publicado": true,
       "nome_na_fonte": "Filtro HEPA com Espuma Electrolux para Robôs Aspiradores ERB44, ERB60, ERB61 e ERB62",
@@ -832,6 +1078,12 @@
       "tipo": "mop",
       "nome_do_tipo": "mop",
       "publicador": "Electrolux",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
       "identificacao": "\"Pano de Microfibra Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80\"",
       "sem_codigo_publicado": true,
       "nome_na_fonte": "Pano de Microfibra Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80",

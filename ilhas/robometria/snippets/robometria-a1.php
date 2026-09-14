@@ -1,5 +1,11 @@
 /**
  * Robometria A1 — Existe filtro universal de robô aspirador?
+ * Versão: 1.2.0 (14/09/2026) — o artigo de quem publica sai do banco. Três
+ * lugares deste artigo escreviam o artigo à mão: " da " antes do nome no bloco
+ * do maior alcance, "da %s" na resposta do FAQ (dentro do gerador) e "a %s
+ * declara" no cartão da vitrine. Os três estavam certos por acidente — as cinco
+ * marcas do banco são femininas singulares. Agora a gramática viaja como fato,
+ * inclusive a CONTRAÇÃO, que é o caso que menos parece artigo.
  * Versão: 1.1.0 (11/09/2026) — o título deixou de afirmar a tese. A tese tem duas
  * formas escolhidas pela contagem do banco; o título tinha uma só, digitada, e ia
  * junto para o headline do JSON-LD. Virou pergunta, que sobrevive às duas. O par
@@ -57,7 +63,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_A1_VERSAO' ) ) {
-	define( 'ROBOMETRIA_A1_VERSAO', '1.1.0' );
+	define( 'ROBOMETRIA_A1_VERSAO', '1.2.0' );
 	define( 'ROBOMETRIA_A1_SLUG', 'filtro-universal-de-robo-aspirador' );
 	/* O TÍTULO DEIXOU DE AFIRMAR A TESE, e este é o terceiro lugar da mesma
 	   família. A tese deste artigo é uma contagem do banco, e por isso a frase de
@@ -109,6 +115,56 @@ function robometria_a1_fatos() {
  * as duas ignorando acento — se uma ganhar um tipo que a outra não tem, ele
  * reprova em vez de a página publicar um rótulo vazio.
  * ------------------------------------------------------------------------- */
+
+/**
+ * QUEM PUBLICA, COM O ARTIGO QUE O BANCO DECLARA (14/09/2026).
+ *
+ * Três lugares deste artigo escreviam o artigo à mão — " da " antes do nome no
+ * bloco do maior alcance, "da %s" na resposta do FAQ (dentro do gerador) e "a %s
+ * declara" no cartão da vitrine — e os três estavam certos por acidente: as
+ * cinco marcas do banco são femininas singulares. O mesmo banco já publica
+ * "Mundo Conectado" (masculino) e "Lojas WAP" (plural), e qualquer um dos dois
+ * chegando aqui sairia com a concordância errada, em silêncio.
+ *
+ * O artigo, a maiúscula, a contração com "de" e o número viajam como FATO em
+ * `gramatica_do_publicador` (ferramentas/gerar-a1.py), derivados de
+ * `dados/publicadores.json`. Nenhuma tabela de língua mora neste arquivo.
+ */
+if ( ! function_exists( 'robometria_a1_gramatica' ) ) {
+function robometria_a1_gramatica( $fato ) {
+	$g = isset( $fato['gramatica_do_publicador'] ) ? $fato['gramatica_do_publicador'] : array();
+	return array(
+		'artigo'    => isset( $g['artigo'] ) ? $g['artigo'] : '',
+		'maiuscula' => isset( $g['maiuscula'] ) ? $g['maiuscula'] : '',
+		'com_de'    => isset( $g['com_de'] ) ? $g['com_de'] : 'de',
+		'numero'    => isset( $g['numero'] ) ? $g['numero'] : 'singular',
+	);
+}
+}
+
+/** "a Multi (ex-Multilaser)", "o Mundo Conectado", "as Lojas WAP". */
+if ( ! function_exists( 'robometria_a1_quem_publica' ) ) {
+function robometria_a1_quem_publica( $fato ) {
+	$g = robometria_a1_gramatica( $fato );
+	return trim( $g['artigo'] . ' ' . $fato['publicador'] );
+}
+}
+
+/** "da Multi (ex-Multilaser)", "do Mundo Conectado", "das Lojas WAP". */
+if ( ! function_exists( 'robometria_a1_quem_publica_com_de' ) ) {
+function robometria_a1_quem_publica_com_de( $fato ) {
+	$g = robometria_a1_gramatica( $fato );
+	return trim( $g['com_de'] . ' ' . $fato['publicador'] );
+}
+}
+
+/** "declara" ou "declaram", pelo número DECLARADO de quem publica. */
+if ( ! function_exists( 'robometria_a1_verbo' ) ) {
+function robometria_a1_verbo( $fato, $singular, $plural ) {
+	$g = robometria_a1_gramatica( $fato );
+	return ( 'plural' === $g['numero'] ) ? $plural : $singular;
+}
+}
 
 if ( ! function_exists( 'robometria_a1_nome_do_tipo' ) ) {
 function robometria_a1_nome_do_tipo( $tipo ) {
@@ -343,12 +399,13 @@ function robometria_a1_vitrine( $f ) {
 		   saem inteiros para o leitor achar o dele sem abrir mais nada. */
 		$html .= '<span class="rbm-vitrine-porque">' . esc_html( sprintf(
 			'kit' === $i['tipo']
-				? 'a %1$s declara este kit para %2$d código%3$s de modelo: %4$s'
-				: 'a %1$s declara esta peça para %2$d código%3$s de modelo: %4$s',
-			$i['publicador'],
+				? '%1$s %5$s este kit para %2$d código%3$s de modelo: %4$s'
+				: '%1$s %5$s esta peça para %2$d código%3$s de modelo: %4$s',
+			robometria_a1_quem_publica( $i ),
 			$i['codigos_declarados'],
 			1 === (int) $i['codigos_declarados'] ? '' : 's',
-			implode( ', ', (array) $i['codigos_na_fonte'] )
+			implode( ', ', (array) $i['codigos_na_fonte'] ),
+			robometria_a1_verbo( $i, 'declara', 'declaram' )
 		) ) . '</span>';
 
 		if ( ! empty( $i['tipos_do_kit'] ) ) {
@@ -465,8 +522,8 @@ add_shortcode( 'robometria_a1', function () {
 	$html .= '<h2>O maior alcance do banco tem ' . esc_html( $maior['codigos_declarados'] ) . ' modelos</h2>';
 	$html .= '<p>A peça que mais longe chega, entre todas as que a Robometria transcreveu, é '
 		. robometria_a1_identificacao( $maior ) . ', '
-		. esc_html( robometria_a1_nome_do_tipo( $maior['tipo'] ) ) . ' da '
-		. esc_html( $maior['publicador'] ) . ': o fabricante a declara para '
+		. esc_html( robometria_a1_nome_do_tipo( $maior['tipo'] ) ) . ' '
+		. esc_html( robometria_a1_quem_publica_com_de( $maior ) ) . ': o fabricante a declara para '
 		. esc_html( implode( ', ', (array) $maior['codigos_na_fonte'] ) )
 		. '. É o teto do que "universal" poderia significar neste nicho — e ele para dentro de uma marca só.</p>';
 	$html .= robometria_a1_tabela_alcance( $f );

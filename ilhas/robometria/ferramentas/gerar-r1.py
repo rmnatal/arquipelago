@@ -109,6 +109,24 @@ def _rotulos_de_origem():
 ROTULOS_DE_ORIGEM = _rotulos_de_origem()
 
 
+def gramatica_do(publicador):
+    """Os tres campos que a tela precisa para pegar o nome como SUJEITO.
+
+    `artigo` abre a oracao no meio da frase ("que a Electrolux..."), `maiuscula`
+    a abre no comeco dela ("A Electrolux...", "As Lojas WAP...") — e a maiuscula
+    vem declarada porque nenhuma funcao de string transforma "as" em "As" sabendo
+    o que esta fazendo —, e `numero` e o que concorda o verbo. Sai da mesma fonte
+    que a referencia le: publicador sem registro derruba o gerador aqui, antes de
+    virar pagina.
+    """
+    g = ref.pub.gramatica(publicador)
+    return {
+        "artigo": g["artigo"],
+        "maiuscula": g["maiuscula"],
+        "numero": g["numero"],
+    }
+
+
 # --------------------------------------------------------------- OS FATOS
 def fato_do_item(item, modelo_id):
     """Um item de resposta, reduzido ao que a tela precisa — e nada alem.
@@ -156,6 +174,14 @@ def fato_do_item(item, modelo_id):
         # quando nenhuma peca avulsa daquele tipo responde por ele.
         "existe_avulso": bool(item.get("existe_avulso")),
         "publicador": fonte.get("publicador") or ref.marcas[peca["marca"]]["nome"],
+        # A GRAMATICA DE QUEM PUBLICA VIAJA COMO FATO (14/09/2026), pelo mesmo
+        # motivo que ROTULOS_DE_ORIGEM: o snippet nao pode carregar tabela de
+        # lingua propria. Ate hoje o "A " antes do nome era digitado dentro de
+        # quatro frases e do cartao, e o verbo era sempre singular — certo por
+        # acidente, porque todo publicador que chega a essas frases e feminino
+        # singular. Ver ferramentas/publicadores.py.
+        "gramatica_do_publicador": gramatica_do(
+            fonte.get("publicador") or ref.marcas[peca["marca"]]["nome"]),
         "origem": fonte.get("origem"),
         "nivel_da_fonte": fonte.get("nivel"),
         "url": fonte.get("url"),
@@ -214,6 +240,8 @@ def fato_do_kit_fechado(kit, modelo_id):
         "codigo": peca.get("codigo_fabricante"),
         "nome_na_fonte": peca["nome_na_fonte"],
         "publicador": fonte.get("publicador") or ref.marcas[peca["marca"]]["nome"],
+        "gramatica_do_publicador": gramatica_do(
+            fonte.get("publicador") or ref.marcas[peca["marca"]]["nome"]),
         "origem": fonte.get("origem"),
         "url": fonte.get("url"),
         "verificado_em": fonte.get("verificado_em"),

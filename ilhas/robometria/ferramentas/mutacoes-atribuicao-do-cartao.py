@@ -54,6 +54,7 @@ RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SNIPPET = 'snippets/robometria-r1.php'
 REFERENCIA = 'ferramentas/cobertura-r1.py'
 PECAS = 'dados/pecas.json'
+PUBLICADORES = 'dados/publicadores.json'
 
 
 def trocar(arquivo, de, para, vezes=1):
@@ -105,6 +106,34 @@ def publicador_vira_assistencia(doc):
                              'mutacao nao pode ser produzido, e ela mediria nada')
 
 
+def declarar_a_assistencia(doc):
+    """A assistencia autorizada entra tambem em publicadores.json.
+
+    NASCEU EM 14/09/2026, com a trava do artigo de quem publica: desde ela,
+    publicador sem artigo declarado DERRUBA o gerador, de proposito. Entao o
+    mundo desta bateria — uma rede autorizada publicando no degrau 4 — passou a
+    exigir a declaracao junto, que e exatamente o que um bloco de verdade teria
+    de escrever. Sem isto a mutacao "o mundo sadio, sozinho, passa" reprovava
+    pela trava nova, e nao pelo que ela mede.
+    """
+    if any(r['nome'] == 'Rede Autorizada Sul Servicos' for r in doc['registros']):
+        raise AssertionError('a assistencia ja estava declarada: o mundo desta '
+                             'mutacao nao seria produzido')
+    doc['registros'].append({
+        'id': 'rede-autorizada-sul-servicos',
+        'nome': 'Rede Autorizada Sul Servicos',
+        'artigo': 'a',
+        'motivo': 'mundo produzido pela bateria de mutacoes: o nucleo do nome e '
+                  '"Rede", feminino singular.',
+    })
+
+
+def mundo_da_assistencia(base_dir):
+    """As duas metades do mesmo mundo: quem publica, e a gramatica dele."""
+    editar_json(PECAS, publicador_vira_assistencia)(base_dir)
+    editar_json(PUBLICADORES, declarar_a_assistencia)(base_dir)
+
+
 def intacto(base_dir):
     return None
 
@@ -116,8 +145,8 @@ MUTACOES = [
         'todo cartao de todo degrau',
         trocar(
             SNIPPET,
-            "				? 'a %3$s declara este kit compatível com o seu %1$s, e é dentro dele que vem %2$s'\n"
-            "				: 'a %3$s declara esta peça (%2$s) compatível com o seu %1$s',",
+            "				? '%3$s %4$s este kit compatível com o seu %1$s, e é dentro dele que vem %2$s'\n"
+            "				: '%3$s %4$s esta peça (%2$s) compatível com o seu %1$s',",
             "				? 'o fabricante declara este kit compatível com o seu %1$s, e é dentro dele que vem %2$s'\n"
             "				: 'o fabricante declara esta peça (%2$s) compatível com o seu %1$s',"),
         False,
@@ -129,11 +158,13 @@ MUTACOES = [
         'fabricante 15 palavras depois, dentro de UMA frase',
         trocar(
             SNIPPET,
-            "que a %7$s declara compatível com %8$s (%9$s, verificado em %10$s).',\n"
-            "			$item['publicador'], $artigo, $tipo, $avulso, $pronome,\n"
-            "			$identificacao, $item['publicador'], $lista, $rotulo_origem, $data",
-            "que o fabricante declara compatível com %7$s (%8$s, verificado em %9$s).',\n"
-            "			$item['publicador'], $artigo, $tipo, $avulso, $pronome,\n"
+            "que %8$s %9$s compatível com %10$s (%11$s, verificado em %12$s).',\n"
+            "			$quem_maiusculo, robometria_r1_verbo( $item, 'vende', 'vendem' ),\n"
+            "			$artigo, $tipo, $avulso, $pronome,\n"
+            "			$identificacao, $quem, $declara, $lista, $rotulo_origem, $data",
+            "que o fabricante declara compatível com %8$s (%9$s, verificado em %10$s).',\n"
+            "			$quem_maiusculo, robometria_r1_verbo( $item, 'vende', 'vendem' ),\n"
+            "			$artigo, $tipo, $avulso, $pronome,\n"
             "			$identificacao, $lista, $rotulo_origem, $data"),
         False,
     ),
@@ -146,10 +177,12 @@ MUTACOES = [
         trocar(
             SNIPPET,
             "			robometria_r1_lista( $tipos_do_cartao ),\n"
-            "			$i['publicador']\n"
+            "			robometria_r1_quem_publica( $i ),\n"
+            "			robometria_r1_verbo( $i, 'declara', 'declaram' )\n"
             "		) ) . '</span>';",
             "			robometria_r1_lista( $tipos_do_cartao ),\n"
-            "			$rotulo_origem\n"
+            "			$rotulo_origem,\n"
+            "			'declara'\n"
             "		) ) . '</span>';"),
         False,
     ),
@@ -183,22 +216,24 @@ MUTACOES = [
         lambda base: (
             trocar(
                 SNIPPET,
-                "que a %7$s declara compatível com %8$s (%9$s, verificado em %10$s).',\n"
-                "			$item['publicador'], $artigo, $tipo, $avulso, $pronome,\n"
-                "			$identificacao, $item['publicador'], $lista, $rotulo_origem, $data",
-                "que o fabricante declara compatível com %7$s (%8$s, verificado em %9$s).',\n"
-                "			$item['publicador'], $artigo, $tipo, $avulso, $pronome,\n"
+                "que %8$s %9$s compatível com %10$s (%11$s, verificado em %12$s).',\n"
+                "			$quem_maiusculo, robometria_r1_verbo( $item, 'vende', 'vendem' ),\n"
+                "			$artigo, $tipo, $avulso, $pronome,\n"
+                "			$identificacao, $quem, $declara, $lista, $rotulo_origem, $data",
+                "que o fabricante declara compatível com %8$s (%9$s, verificado em %10$s).',\n"
+                "			$quem_maiusculo, robometria_r1_verbo( $item, 'vende', 'vendem' ),\n"
+                "			$artigo, $tipo, $avulso, $pronome,\n"
                 "			$identificacao, $lista, $rotulo_origem, $data")(base),
             trocar(
                 REFERENCIA,
-                '"A %s nao vende %s %s %s para este modelo: %s vem dentro do kit %s, que a %s "\n'
-                '            "declara compativel com %s (%s, verificado em %s)."\n'
-                '            % (publicador, artigo, dentro_do_kit, avulso, pronome, identificacao,\n'
-                '               publicador, lista, fonte.get("origem"), data)',
-                '"A %s nao vende %s %s %s para este modelo: %s vem dentro do kit %s, que o "\n'
+                '"%s nao %s %s %s %s para este modelo: %s vem dentro do kit %s, que %s "\n'
+                '            "%s compativel com %s (%s, verificado em %s)."\n'
+                '            % (quem_maiusculo, vende, artigo, dentro_do_kit, avulso, pronome,\n'
+                '               identificacao, quem, declara, lista, fonte.get("origem"), data)',
+                '"%s nao %s %s %s %s para este modelo: %s vem dentro do kit %s, que o "\n'
                 '            "fabricante declara compativel com %s (%s, verificado em %s)."\n'
-                '            % (publicador, artigo, dentro_do_kit, avulso, pronome, identificacao,\n'
-                '               lista, fonte.get("origem"), data)')(base),
+                '            % (quem_maiusculo, vende, artigo, dentro_do_kit, avulso, pronome,\n'
+                '               identificacao, lista, fonte.get("origem"), data)')(base),
         ),
         False,
     ),
@@ -220,10 +255,12 @@ MUTACOES = [
         trocar(
             SNIPPET,
             "			robometria_r1_lista( $tipos_do_cartao ),\n"
-            "			$i['publicador']\n"
+            "			robometria_r1_quem_publica( $i ),\n"
+            "			robometria_r1_verbo( $i, 'declara', 'declaram' )\n"
             "		) ) . '</span>';",
             "			robometria_r1_lista( $tipos_do_cartao ),\n"
-            "			ucfirst( strtok( $i['peca'], '-' ) )\n"
+            "			ucfirst( strtok( $i['peca'], '-' ) ),\n"
+            "			'declara'\n"
             "		) ) . '</span>';"),
         False,
     ),
@@ -234,14 +271,16 @@ MUTACOES = [
         'nome dela. A regua tem de morder tambem aqui, e nao so quando sobra do '
         'publicador um pedaco que a marca nao cobre',
         lambda base: (
-            editar_json(PECAS, publicador_vira_assistencia)(base),
+            mundo_da_assistencia(base),
             trocar(
                 SNIPPET,
                 "			robometria_r1_lista( $tipos_do_cartao ),\n"
-                "			$i['publicador']\n"
+                "			robometria_r1_quem_publica( $i ),\n"
+                "			robometria_r1_verbo( $i, 'declara', 'declaram' )\n"
                 "		) ) . '</span>';",
                 "			robometria_r1_lista( $tipos_do_cartao ),\n"
-                "			ucfirst( strtok( $i['peca'], '-' ) )\n"
+                "			ucfirst( strtok( $i['peca'], '-' ) ),\n"
+                "			'declara'\n"
                 "		) ) . '</span>';")(base),
         ),
         False,
@@ -251,7 +290,7 @@ MUTACOES = [
         'o mundo produzido, sozinho, tem de continuar passando. Sem esta, a '
         'mutacao de cima poderia estar reprovando por causa do banco trocado, e '
         'nao por causa da troca do publicador — e a regua nao teria medido nada',
-        editar_json(PECAS, publicador_vira_assistencia),
+        mundo_da_assistencia,
         True,
     ),
     (

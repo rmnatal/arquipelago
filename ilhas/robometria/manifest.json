@@ -1,531 +1,553 @@
 {
-  "ilha": "robometria",
-  "nome": "Robometria",
-  "nicho": "robo aspirador — compatibilidade de pecas e consumiveis, e dimensionamento de succao e autonomia",
-  "dominio": "https://robometria.com.br",
-  "versao_manifest": 1,
-  "revisao": 35,
-  "atualizado_em": "2026-09-14",
-  "estado": "nascendo",
-  "desembarque": {
-    "aprovado": true,
-    "decidido_em": "2026-09-12",
-    "observacao": "Desembarque automatico por forca da secao 10 do ARQUIPELAGO.md. A revisao 22 fecha o ULTIMO lugar das duas ferramentas em que a pagina nomeava modelo e numero sem dizer de onde o numero veio: a secao \"Exatamente no limiar\" da R2 (snippet 1.3.0). Ate aqui a frase comecava por \"Xiaomi E10 declara exatamente 4.000 Pa\" — o modelo como sujeito do verbo declarar, que e o fabricante dito sem nome e sem degrau da escada de fontes. O cartao da vitrine fechou isso em 11/09 e esta secao ficou para tras justamente porque ninguem a le como recomendacao. Agora a atribuicao vem do degrau (procedencia_do_pa, na implementacao de referencia), cada item traz a ressalva do degrau e a linha \"Como sabemos\" com endereco e data, e a frase carrega DUAS procedencias porque publica DOIS numeros de origens diferentes — o Pa do modelo e o limiar da fonte editorial. A ausencia da porta de compra nesta secao deixou de ser silencio: a pagina diz que nao recomenda estes modelos e por isso nao vende, em vez de deixar o link de fonte como unica coisa clicavel sem explicacao. NENHUMA URL MUDA e nenhum numero muda. Junto vai uma correcao que nao aparece na tela e so viraria numero no dia do primeiro link de afiliado: o afiliado.sub_id_2 SAIU DO BANCO e passou a ser carimbado por cada gerador. Ele nomeia a PAGINA que levou o clique, e o banco so sabe dizer um valor por registro — os 33 modelos traziam 'R2' e as 18 pecas 'R1' —, entao o artigo A2 publicava a vitrine dele como se o clique fosse da ferramenta R2, e o A1 como se fosse da R1. QUEM ACIONA O SYNC E A PROPRIA FUNDACAO, por curl, ao fim do bloco; so o /status prova que a revisao esta no ar."
+ "ilha": "robometria",
+ "nome": "Robometria",
+ "nicho": "robo aspirador — compatibilidade de pecas e consumiveis, e dimensionamento de succao e autonomia",
+ "dominio": "https://robometria.com.br",
+ "versao_manifest": 1,
+ "revisao": 36,
+ "atualizado_em": "2026-09-14",
+ "estado": "nascendo",
+ "desembarque": {
+  "aprovado": true,
+  "decidido_em": "2026-09-12",
+  "observacao": "Desembarque automatico por forca da secao 10 do ARQUIPELAGO.md. A revisao 22 fecha o ULTIMO lugar das duas ferramentas em que a pagina nomeava modelo e numero sem dizer de onde o numero veio: a secao \"Exatamente no limiar\" da R2 (snippet 1.3.0). Ate aqui a frase comecava por \"Xiaomi E10 declara exatamente 4.000 Pa\" — o modelo como sujeito do verbo declarar, que e o fabricante dito sem nome e sem degrau da escada de fontes. O cartao da vitrine fechou isso em 11/09 e esta secao ficou para tras justamente porque ninguem a le como recomendacao. Agora a atribuicao vem do degrau (procedencia_do_pa, na implementacao de referencia), cada item traz a ressalva do degrau e a linha \"Como sabemos\" com endereco e data, e a frase carrega DUAS procedencias porque publica DOIS numeros de origens diferentes — o Pa do modelo e o limiar da fonte editorial. A ausencia da porta de compra nesta secao deixou de ser silencio: a pagina diz que nao recomenda estes modelos e por isso nao vende, em vez de deixar o link de fonte como unica coisa clicavel sem explicacao. NENHUMA URL MUDA e nenhum numero muda. Junto vai uma correcao que nao aparece na tela e so viraria numero no dia do primeiro link de afiliado: o afiliado.sub_id_2 SAIU DO BANCO e passou a ser carimbado por cada gerador. Ele nomeia a PAGINA que levou o clique, e o banco so sabe dizer um valor por registro — os 33 modelos traziam 'R2' e as 18 pecas 'R1' —, entao o artigo A2 publicava a vitrine dele como se o clique fosse da ferramenta R2, e o A1 como se fosse da R1. QUEM ACIONA O SYNC E A PROPRIA FUNDACAO, por curl, ao fim do bloco; so o /status prova que a revisao esta no ar."
+ },
+ "snippets": [
+  {
+   "id": "robometria-casca",
+   "nome": "Robometria Casca — identidade e estrutura do site",
+   "arquivo": "snippets/robometria-casca.php",
+   "escopo": "global",
+   "ativo": true,
+   "publicar": true,
+   "sha256": "445604b0482e830f844b48a5758fda84adf6320f11f4645d5796e5ca2acef8fe",
+   "descricao": "A CASCA NA 1.5.1 — a frase de metodo do rodape descrevia so a metade que o banco tinha no dia em que foi escrita ('quando dois canais do MESMO FABRICANTE discordam'), e divergencia de revendedor e outra coisa. A metodologia perdeu a contagem digitada de casos. O TEXTO ja estava no ar desde 13/09; o que faltava era a CONSTANTE, que ficou em 1.5.0 enquanto o cabecalho do arquivo dizia 1.5.1 — a mesma drenagem que a R1 teve no mesmo dia, duas de cinco. Corrigida em 14/09/2026, sem uma linha de comportamento mudar, e o cabecalho passou a ter portao proprio na secao 16 do teste-casca.php. || A CASCA NA 1.5.0 — A ILHA PASSA A SER MEDIDA (despacho da Fundacao de 12/09/2026). As tres ilhas ganharam propriedade GA4 e nenhuma tinha a tag no ar; sem ela a secao 5 do ARQUIPELAGO.md (visibilidade em IA) nao e mensuravel, porque referencia de chatgpt.com, perplexity.ai e gemini.google.com so aparece na medicao de audiencia. (1) O ID entra como CONSTANTE no topo do arquivo, ROBOMETRIA_CASCA_GA4, com o nome da ilha ao lado — nunca digitado no meio de uma funcao, porque e a unica coisa que muda de ilha para ilha nesta secao e e assim que a casca copiada nasce medindo a propriedade da anterior. (2) A tag sai no wp_head na PRIORIDADE 23, o primeiro degrau acima de tudo o que o despacho manda nao atrasar: o <title> em 1, a description em 4, o JSON-LD da entidade em 6, o das ferramentas e artigos em 7 e o BreadcrumbList em 22. (3) O script de terceiro vai com async e e o UNICO terceiro da pagina publica; o endereco tem um parametro so, de proposito, porque um segundo traria um & dentro de <script>. Nenhum banner de consentimento bloqueante (secao 22.4). (4) A pagina de divulgacao ganhou a secao que conta o que o site mede — esta ilha nao tem pagina de privacidade e o despacho pedia uma; quando /privacidade/ nascer, a secao muda de casa, e o corpo da pagina que a ronda de 11/09 achou fina (1.325 caracteres) cresceu junto. O PORTAO MEDE ORDEM, NAO PRESENCA: 'a tag esta na pagina' e a afirmacao facil e a que nao protege nada, porque um JSON-LD acrescentado acima de 23 quebra a regra sem tirar a tag do lugar — e foi essa a quinta das nove mutacoes. Continua valendo tudo da 1.4.1, 1.4.0, 1.3.0 e 1.2.0.",
+   "versao": "1.5.1"
   },
-  "snippets": [
-    {
-      "id": "robometria-casca",
-      "nome": "Robometria Casca — identidade e estrutura do site",
-      "arquivo": "snippets/robometria-casca.php",
-      "escopo": "global",
-      "ativo": true,
-      "publicar": true,
-      "sha256": "445604b0482e830f844b48a5758fda84adf6320f11f4645d5796e5ca2acef8fe",
-      "descricao": "A CASCA NA 1.5.1 — a frase de metodo do rodape descrevia so a metade que o banco tinha no dia em que foi escrita ('quando dois canais do MESMO FABRICANTE discordam'), e divergencia de revendedor e outra coisa. A metodologia perdeu a contagem digitada de casos. O TEXTO ja estava no ar desde 13/09; o que faltava era a CONSTANTE, que ficou em 1.5.0 enquanto o cabecalho do arquivo dizia 1.5.1 — a mesma drenagem que a R1 teve no mesmo dia, duas de cinco. Corrigida em 14/09/2026, sem uma linha de comportamento mudar, e o cabecalho passou a ter portao proprio na secao 16 do teste-casca.php. || A CASCA NA 1.5.0 — A ILHA PASSA A SER MEDIDA (despacho da Fundacao de 12/09/2026). As tres ilhas ganharam propriedade GA4 e nenhuma tinha a tag no ar; sem ela a secao 5 do ARQUIPELAGO.md (visibilidade em IA) nao e mensuravel, porque referencia de chatgpt.com, perplexity.ai e gemini.google.com so aparece na medicao de audiencia. (1) O ID entra como CONSTANTE no topo do arquivo, ROBOMETRIA_CASCA_GA4, com o nome da ilha ao lado — nunca digitado no meio de uma funcao, porque e a unica coisa que muda de ilha para ilha nesta secao e e assim que a casca copiada nasce medindo a propriedade da anterior. (2) A tag sai no wp_head na PRIORIDADE 23, o primeiro degrau acima de tudo o que o despacho manda nao atrasar: o <title> em 1, a description em 4, o JSON-LD da entidade em 6, o das ferramentas e artigos em 7 e o BreadcrumbList em 22. (3) O script de terceiro vai com async e e o UNICO terceiro da pagina publica; o endereco tem um parametro so, de proposito, porque um segundo traria um & dentro de <script>. Nenhum banner de consentimento bloqueante (secao 22.4). (4) A pagina de divulgacao ganhou a secao que conta o que o site mede — esta ilha nao tem pagina de privacidade e o despacho pedia uma; quando /privacidade/ nascer, a secao muda de casa, e o corpo da pagina que a ronda de 11/09 achou fina (1.325 caracteres) cresceu junto. O PORTAO MEDE ORDEM, NAO PRESENCA: 'a tag esta na pagina' e a afirmacao facil e a que nao protege nada, porque um JSON-LD acrescentado acima de 23 quebra a regra sem tirar a tag do lugar — e foi essa a quinta das nove mutacoes. Continua valendo tudo da 1.4.1, 1.4.0, 1.3.0 e 1.2.0.",
-      "versao": "1.5.1"
-    },
-    {
-      "id": "robometria-r1",
-      "nome": "Robometria R1 — Qual peca serve no meu robo aspirador",
-      "arquivo": "snippets/robometria-r1.php",
-      "escopo": "global",
-      "ativo": true,
-      "publicar": true,
-      "sha256": "9724405559ae5c7c0bc240ef957419f22e9a1251f85489a3443b0b128f179f50",
-      "descricao": "A R1 NA 1.5.0 — QUEM DECLARA E O PUBLICADOR, E NUNCA O ROTULO DO LADO. O cartao da vitrine escrevia 'o fabricante declara esta peca', DIGITADO, para qualquer degrau, e a frase do kit sem avulso escrevia 'que o fabricante declara' numa oracao que ja abria com 'A Electrolux (loja oficial) nao vende...' — uma frase, duas atribuicoes, em 18 itens no ar; e 52 dos 73 itens do banco vem do degrau 4, cujo publicador e a loja oficial da marca. O degrau 4 tem fala_pela_marca verdadeiro, e e por isso que o item cai do lado do fabricante na divisao da pagina, mas a escada de fontes ja decidia, com todas as letras, que a atribuicao dele e 'pela loja oficial da marca', porque quem transcreveu foi a loja: FALAR PELA MARCA NAO E SER A MARCA, e o rotulo do LADO nunca serve de sujeito para a frase de UM item. As quatro frases de resposta e o cartao passam a citar o publicador, lido do banco. Junto saiu a nota que justifica a ORDEM comercial da lista, que dizia 'decidida pela declaracao do fabricante' logo acima dos botoes de afiliado. NENHUM PORTAO VIA O DEFEITO: a secao 3 do teste-r1.php compara a frase do PHP com a da referencia e as duas erravam IGUAL; a secao 16 media o LADO, que estava certo. A regua nova e a secao 17, e ela mede a oracao de atribuicao — nao a frase inteira, porque a cauda da divergencia fala do fabricante com toda a razao. Para isso a oracao ganhou NOME nos dois lados (robometria_r1_atribuicao_do_item e atribuicao_do_item na referencia): fronteira de teste e marcador escrito, nunca 'a primeira coisa parecida com'. Nenhuma URL mudou e nenhuma peca entrou ou saiu. NOTA DE VERSAO: a constante do snippet ficou em 1.3.0 de 13/09 ate 14/09 enquanto o cabecalho ja dizia 1.4.0, e este manifest nunca registrou a 1.4.0 — o bloco daquele dia moveu o texto e nao a constante. Sem efeito no ar (a constante so decide se a ESTRUTURA da pagina e refeita). A 1.4.0 esta descrita abaixo, e a terceira copia da versao, o cabecalho do arquivo, ganhou portao na secao 16 do teste-casca.php. || A R1 NA 1.4.0 — QUEM DIVERGE DECIDE A FRASE (13/09/2026). A cauda da divergencia era fixa ('Dois canais do fabricante discordam') e o titulo do bloco dizia o mesmo; as duas eram verdadeiras por acidente do banco, porque toda divergencia de peca vinha de canal de fabricante. Com o primeiro registro cujos canais divergentes sao marketplace e varejista, elas passaram a emprestar a autoridade do FABRICANTE a quem so revende. O numero passou a sair CONTADO e o lado a ser LIDO do degrau (fala_pela_marca, no esquema). Nenhuma URL mudou. || A R1 NA 1.3.0 — a frase devolve a FUNCAO a quem a leu (secao 26.3 do ARQUIPELAGO.md). Estava no ar 'A WAP declara a escova lateral \"Escova Direita Para Robo Aspirador W300\"', e a WAP nunca usou a palavra 'lateral': ela batiza a peca pela POSICAO, e a Xiaomi nem isso — publica so 'Brush'. Quem leu a funcao no contraste do catalogo do fabricante foi esta ilha, e a frase emprestava a ele a unica coisa que a Robometria vende, que e a declaracao dele. Onde funcao.declarada_por nao e 'titulo', o verbo 'declara' passa a recair sobre o que o fabricante de fato declarou (o nome da peca e a lista de modelos) e a atribuicao vira ressalva propria, que nomeia quem classificou. Nenhum portao da ilha via o defeito porque todos comparavam a frase do PHP com a da referencia, e as duas diziam a mesma coisa errada: o portao 15 do teste-r1.php recomputa quem e derivada lendo dados/pecas.json e o esquema, sem chamar nenhuma das duas. Cinco pecas do banco mudaram de frase; nenhuma URL mudou e nenhuma peca saiu do banco. || A R1 NA 1.2.0 — a abertura na voz e o titulo que envelhecia calado. A linha-mestra deixou de ser 'Esta ferramenta responde qual filtro... o fabricante declarou...' e passou a falar com quem entrou ('Diga a marca e o modelo do seu robo...'); a contagem e a regra de procedencia desceram para o paragrafo seguinte, marcado com rbm-prova (secao 15.2 do ARQUIPELAGO.md). O catalogo da casca passa a receber o titulo da constante deste snippet, entao o nome da pagina tem um dono so. E garantir_pagina() passou a REESPELHAR o post_title quando o nome muda: sem isso, renomear no repositorio trocava o og:title, o cartao e a trilha, e deixava o H1 e o <title> do ar com o nome antigo — duas fontes para o mesmo campo, que e a cicatriz da Aquametria de 11/09/2026.",
-      "versao": "1.5.0"
-    },
-    {
-      "id": "robometria-a1",
-      "nome": "Robometria A1 — Por que nao existe filtro universal de robo aspirador",
-      "arquivo": "snippets/robometria-a1.php",
-      "escopo": "global",
-      "ativo": true,
-      "publicar": true,
-      "sha256": "13d1ffaffe067b9e36992e4c0e761d8dbd87bd44e769caeac008c51691e5a99c",
-      "versao": "1.1.0",
-      "descricao": "O A1 NA 1.1.0 — o TITULO deixou de afirmar a tese. A tese deste artigo e uma contagem do banco, e por isso a frase de abertura, a description do JSON-LD e a resposta do FAQPage tem DUAS formas, escolhidas pela contagem do dia. O titulo tinha uma so, digitada ('Por que nao existe filtro universal de robo aspirador'), e ia junto para o headline do JSON-LD: no dia em que uma peca do banco atravessar marca, ele seria a unica metade da pagina a continuar afirmando o que deixou de valer. Virou a pergunta, que sobrevive as duas formas e e o que a pessoa digita — e teste-a1.php cobra isso por estrutura. A abertura ganhou segunda pessoa nas duas formas, o par com a ferramenta passou a ser declarado por slug (nao por nome), e garantir_pagina() reespelha o post_title."
-    },
-    {
-      "id": "robometria-r2",
-      "nome": "Robometria R2 — Quantos Pa e quanto tempo o seu robo precisa",
-      "arquivo": "snippets/robometria-r2.php",
-      "escopo": "global",
-      "ativo": true,
-      "publicar": true,
-      "sha256": "e818774289b473767b7240b521f34ff56a3b3dbd35f3f14ae5caaabedc7bcf59",
-      "versao": "1.3.0",
-      "descricao": "A R2 NA 1.1.0 — o nome virou a consulta que a pessoa digita, e ela esta no proprio endereco: 'Quantos Pa o seu robo aspirador precisa'. O nome anterior prometia duas coisas no mesmo folego e nao batia com o og:title, que dizia outra; a segunda metade (o tempo) continua inteira na promessa acima do formulario e na resposta. A abertura passou a falar com quem entrou e a ressalva de que os limiares de Pa sao recomendacao editorial desceu para a camada de prova. Como na R1: o catalogo recebe o titulo da constante, e garantir_pagina() reespelha o post_title."
-    },
-    {
-      "id": "robometria-a2",
-      "nome": "Robometria A2 — Quantos m2 um robo aspirador limpa por carga",
-      "arquivo": "snippets/robometria-a2.php",
-      "escopo": "global",
-      "ativo": true,
-      "publicar": true,
-      "sha256": "7e650a097acfb270b95dd01013d73d63da5f3b4b50f1e3f740c94f6acedbfea8",
-      "versao": "1.2.0",
-      "descricao": "O A2 NA 1.1.0 — a tese passou a falar com quem entrou, e o NOME DA MARCA saiu da abertura. A forma antiga comecava 'Uma marca so declara... e os 5 sao da Electrolux': o numero e a resposta e fica, mas nome de fabricante e procedencia, e a secao 15.2 manda procedencia morar na camada de prova. Ele desceu um paragrafo, para robometria_a2_quem_declara(), dentro da mesma caixa — e continua derivado, como tudo nesta pagina. As duas mutacoes do proprio teste passaram a medir o PARAGRAFO certo em vez da pagina inteira: uma delas estava aprovando porque a frase procurada existia em outra secao do artigo. Par com a ferramenta por slug, e post_title reespelhado."
-    }
-  ],
-  "conteudo": [],
-  "dados": [
-    {
-      "id": "corpus-buscas",
-      "arquivo": "dados/corpus-buscas.md",
-      "formato": "md",
-      "entidade": "constante",
-      "fonte": "Bloco 1 da Fundacao: coleta de busca web em 09/09/2026 (paginas oficiais de fabricante, marketplaces, foruns, titulos de video), sem ferramenta de volume de busca disponivel nesta coleta",
-      "verificado_em": "2026-09-09",
-      "registros": 8,
-      "publicar": false,
-      "sha256": "7157ac0094994ee5a7eb3441bbca8585247ef02ff64e749b71b262181097fcca",
-      "descricao": "Levantamento de buscas parametricas do nicho robo aspirador, separado nos eixos compatibilidade (filtro, escova lateral, mop, bateria) e dimensionamento (Pa, cobertura em m2, autonomia por carga, pelo de pet), com procedencia por consulta e lista inicial de modelos/codigos de peca citados para o Bloco 3."
-    },
-    {
-      "id": "especificacao-calculadoras",
-      "arquivo": "dados/especificacao-calculadoras.md",
-      "formato": "md",
-      "entidade": "esquema",
-      "fonte": "Bloco 2 da Fundacao: especificacao das duas ferramentas ancora a partir do corpus do Bloco 1, com coleta de confirmacao por busca web restrita ao dominio em 09/09/2026 (Multilaser, Electrolux, Xiaomi Brasil, Positivo Casa Inteligente, Canaltech, Mundo Conectado)",
-      "verificado_em": "2026-09-09",
-      "registros": 2,
-      "publicar": false,
-      "sha256": "b8c6b91a024fda51c443638c3ea2c6b3407a7a73035f912e6eaaaa9f861358ed",
-      "descricao": "Especificacao das ferramentas R1 (localizador de peca compativel por modelo) e R2 (dimensionador de succao e autonomia por area, piso e pelo): entradas, saidas, os tres selos de certeza da compatibilidade, a regra de divergencia pelo conjunto mais estreito, a formula propria de ciclos e tempo real ate terminar, a classificacao de SERP de cada consulta-alvo (secao 14.9) e a lista de campos que o Bloco 3 tem que entregar."
-    },
-    {
-      "id": "constantes",
-      "arquivo": "dados/constantes.json",
-      "formato": "json",
-      "entidade": "constante",
-      "fonte": "Paginas oficiais de fabricante (Multilaser/Multi, Electrolux, Xiaomi Brasil, Positivo Casa Inteligente), manual do usuario Electrolux ERB10/ERB11/ERB20, e veiculos editoriais brasileiros (Canaltech, Mundo Conectado, Guia de Compras Brasil) para as recomendacoes de faixa de Pa, que NAO sao especificacao de fabricante Bloco 3c (09/09/2026): expansao do banco por busca web restrita aos dominios oficiais de Electrolux (loja, content, cuida e compraparceiros), Positivo Casa Inteligente/meupositivo e Xiaomi (mi.com). A leitura direta continua devolvendo EGRESS_BLOCKED e segue como coleta em aberto.",
-      "verificado_em": "2026-09-09",
-      "registros": 22,
-      "publicar": false,
-      "sha256": "918928d22c8513ae8a75cbbca0a6478965711e2e74e9883d72952b2ea9ae81c1",
-      "descricao": "22 constantes das ferramentas R1 e R2, cada uma com classe de fonte, URL, canal de coleta e data. A segunda leva do Bloco 3c reescreveu a taxa de cobertura m2/min: ela continua pendente e PROIBIDA em formula publicada, e agora por um motivo medido e mais forte — Xiaomi, WAP, Multi e Positivo foram varridas e NENHUMA declara area em m2 em canal nenhum. A lacuna deixou de ser de esforco e virou fato de mercado, o que transforma a recusa da R2 em conteudo publicavel."
-    },
-    {
-      "id": "esquema-banco",
-      "arquivo": "dados/esquema-banco.json",
-      "formato": "json",
-      "entidade": "esquema",
-      "fonte": "Bloco 3 da Fundacao: contrato do banco derivado da secao 4 da especificacao (Bloco 2) e das secoes 6, 7 e 10 do ARQUIPELAGO.md Bloco 3c (09/09/2026): expansao do banco por busca web restrita aos dominios oficiais de Electrolux (loja, content, cuida e compraparceiros), Positivo Casa Inteligente/meupositivo e Xiaomi (mi.com). A leitura direta continua devolvendo EGRESS_BLOCKED e segue como coleta em aberto.",
-      "verificado_em": "2026-09-09",
-      "registros": 4,
-      "publicar": false,
-      "sha256": "92d752c5da3ca2ae98f1eb2837bdd88aeb9047f52b922b97d225b0b931f77738",
-      "descricao": "Contrato do banco da Robometria, versao 3 do esquema (elevada na segunda leva do Bloco 3c). A versao 3 acrescenta divergencias[] e resolucao tambem em MODELO_ROBO — ate entao so PECA divergia, e o PRA500 declara 1600 Pa na ficha e 2000 Pa no texto de venda da MESMA pagina — e escreve a regra da FAIXA DECLARADA: faixa e tolerancia resolvem para o lado em que errar doi menos, nunca para o meio, com a faixa inteira preservada em declarado_como. Pa e autonomia resolvem para baixo; tempo de recarga resolve para cima."
-    },
-    {
-      "id": "marcas",
-      "arquivo": "dados/marcas.json",
-      "formato": "json",
-      "entidade": "marca",
-      "fonte": "Bloco 3 da Fundacao: modelagem a partir da secao 4 da especificacao (Bloco 2), mais coleta de confirmacao por busca web restrita ao dominio do fabricante em 09/09/2026 (multilaser.com.br, multilaserempresas.com.br, suporte.multilaser.com.br, lamina.multilaser.com.br). A leitura direta das paginas devolveu EGRESS_BLOCKED nesta execucao e continua sendo coleta em aberto — o canal esta declarado campo a campo. Bloco 3c (09/09/2026): expansao do banco por busca web restrita aos dominios oficiais de Electrolux (loja, content, cuida e compraparceiros), Positivo Casa Inteligente/meupositivo e Xiaomi (mi.com). A leitura direta continua devolvendo EGRESS_BLOCKED e segue como coleta em aberto.",
-      "verificado_em": "2026-09-09",
-      "registros": 5,
-      "publicar": false,
-      "sha256": "a391fa97a7d78c3df89d9f605d6d7b2b7a6a92218e67ad0c17b3ee006c7cb367",
-      "descricao": "Cinco marcas com site oficial, canal de pecas e sameAs[] para o JSON-LD Organization: Multi (ex-Multilaser), Electrolux, Xiaomi, Positivo Casa Inteligente e WAP. A WAP entrou na segunda leva do Bloco 3c e e a unica da coleta que publica manual em PDF por modelo em endereco proprio e estavel — e portanto a candidata a primeira fonte de NIVEL 2 desta ilha no dia em que o egresso abrir."
-    },
-    {
-      "id": "modelos-robo",
-      "arquivo": "dados/modelos-robo.json",
-      "formato": "json",
-      "entidade": "modelo-robo",
-      "fonte": "Bloco 3 da Fundacao: modelagem a partir da secao 4 da especificacao (Bloco 2), mais coleta de confirmacao por busca web restrita ao dominio do fabricante em 09/09/2026 (multilaser.com.br, multilaserempresas.com.br, suporte.multilaser.com.br, lamina.multilaser.com.br). A leitura direta das paginas devolveu EGRESS_BLOCKED nesta execucao e continua sendo coleta em aberto — o canal esta declarado campo a campo. Bloco 3c (09/09/2026): expansao do banco por busca web restrita aos dominios oficiais de Electrolux (loja, content, cuida e compraparceiros), Positivo Casa Inteligente/meupositivo e Xiaomi (mi.com). A leitura direta continua devolvendo EGRESS_BLOCKED e segue como coleta em aberto.",
-      "verificado_em": "2026-09-09",
-      "registros": 33,
-      "publicar": false,
-      "sha256": "800d48cb9d2c02d9a0cdbfc9d3ed19411846b94bf1e0988b5064e37212d2b616",
-      "descricao": "33 modelos: 28 publicaveis, 1 nao publicavel (HO401, categoria a confirmar) e 4 excluidos por NAO serem robo. A segunda leva do Bloco 3c acrescentou seis Xiaomi (S10, E10, S40, S40C, H40 e Mop 2) e tres WAP (W400, W1000, W310), e preencheu a ficha de PRA500 e PRA2000. O campo pa_declarado saiu de 2 para 11 modelos publicaveis, em 3 marcas, cobrindo de 1.400 a 10.000 Pa — a R2 deixa de sair com lista vazia. Traz a varredura cobertura_de_faixa_r2 exigida pela secao 14.3: cinco das seis faixas passam no portao de 3 itens, acima de 6.000 Pa a faixa esta DESCOBERTA, e toda faixa acima de 3.000 Pa e 100% Xiaomi."
-    },
-    {
-      "id": "pecas",
-      "arquivo": "dados/pecas.json",
-      "formato": "json",
-      "entidade": "peca",
-      "fonte": "Bloco 3 da Fundacao: modelagem a partir da secao 4 da especificacao (Bloco 2), mais coleta de confirmacao por busca web restrita ao dominio do fabricante em 09/09/2026 (multilaser.com.br, multilaserempresas.com.br, suporte.multilaser.com.br, lamina.multilaser.com.br). A leitura direta das paginas devolveu EGRESS_BLOCKED nesta execucao e continua sendo coleta em aberto — o canal esta declarado campo a campo. Bloco 3c (09/09/2026): expansao do banco por busca web restrita aos dominios oficiais de Electrolux (loja, content, cuida e compraparceiros), Positivo Casa Inteligente/meupositivo e Xiaomi (mi.com). A leitura direta continua devolvendo EGRESS_BLOCKED e segue como coleta em aberto.",
-      "verificado_em": "2026-09-09",
-      "registros": 18,
-      "publicar": false,
-      "sha256": "10bafcd377db4ab543a90386628612f333a233ef582f36ed39e8793806effc93",
-      "descricao": "18 pecas com 33 pares peca x modelo, TODOS declarados pelo fabricante e nenhum inferido. O Bloco 3c acrescentou 10: o Kit Performance KPCEL01 (que finalmente da dono a vida util de 6 meses do manual da Electrolux), o filtro HEPA com espuma do ERB44/60/61/62, o kit do ERB60/61/62, a escova rotativa central do ERB60/61/62/80, os kits do ERB44 e do ERB30, as tres pecas da Positivo para PRA800/PRA2000 e os acessorios do Xiaomi S20. Duas divergencias seguem resolvidas pelo conjunto mais estreito, com as duas declaracoes publicadas."
-    },
-    {
-      "id": "cobertura-r1",
-      "arquivo": "dados/cobertura-r1.json",
-      "formato": "json",
-      "entidade": "medicao",
-      "fonte": "Terceira leva do Bloco 3c da Fundacao (10/09/2026): medicao propria sobre o banco ja commitado, gerada por ferramentas/cobertura-r1.py. Nao houve coleta nesta execucao — a busca web devolveu 'unavailable' e o egresso HTTP devolveu EGRESS_BLOCKED em wap.ind.br, positivocasainteligente.com.br e roborock.com, entao nenhum dado tecnico novo entrou no banco. Nenhum numero deste arquivo vem de fora do repositorio.",
-      "verificado_em": "2026-09-10",
-      "registros": 28,
-      "publicar": false,
-      "sha256": "4b8944853b1250eb7ff4ee073ffcd99ba3769080e1da070f6979ff01a25867a3",
-      "descricao": "Varredura da entrada da R1 de ponta a ponta (secao 14.3 do ARQUIPELAGO.md), o equivalente para a R1 do que cobertura_de_faixa_r2 e para a R2. Mede as 168 celulas (28 modelos publicaveis x 6 tipos consultaveis) em tres estados: declarada, kit_sem_composicao e vazia. Resultado: a R1 responde em 15 dos 28 modelos e sai VAZIA em 12; 116 das 168 celulas nao tem o que responder; o tipo 'reservatorio' tem zero pecas no banco inteiro. O achado que so aparece no cruzamento com a R2: apenas 3 dos 28 modelos sao atendidos pelas DUAS ferramentas — Electrolux e Multi publicam peca e nao publicam Pa, Xiaomi e WAP publicam Pa e nao publicam peca com codigo. A cobertura das duas ferramentas da ilha e quase disjunta, e isso parte o funil na emenda entre elas."
-    },
-    {
-      "id": "tabela-exemplos-r1",
-      "arquivo": "dados/tabela-exemplos-r1.md",
-      "formato": "md",
-      "entidade": "medicao",
-      "fonte": "Terceira leva do Bloco 3c da Fundacao (10/09/2026): medicao propria sobre o banco ja commitado, gerada por ferramentas/cobertura-r1.py. Nao houve coleta nesta execucao — a busca web devolveu 'unavailable' e o egresso HTTP devolveu EGRESS_BLOCKED em wap.ind.br, positivocasainteligente.com.br e roborock.com, entao nenhum dado tecnico novo entrou no banco. Nenhum numero deste arquivo vem de fora do repositorio.",
-      "verificado_em": "2026-09-10",
-      "registros": 45,
-      "publicar": false,
-      "sha256": "e374323c8b6bf7dc659954bc76f8ef12b21dadac8325232795cdaacaa3eaf1ac",
-      "descricao": "Tabela de exemplos pre-renderizada da R1, exigida pela secao 5 do ARQUIPELAGO.md e pela secao 1.7 da especificacao — 45 linhas, contra um minimo de 8. GERADA por ferramentas/cobertura-r1.py --gravar e nunca editada a mao: cada linha carrega o codigo, o selo e a data que o banco tem, entao ela nao pode discordar do banco em silencio. A ordem alterna marcas de proposito, porque em ordem alfabetica as nove primeiras linhas seriam todas Electrolux e a promessa desta ilha e comparacao cross-marca. publicar=false porque ela nao e pagina: e a fonte que o snippet da R1 serve em HTML quando o Bloco 4 for escrito."
-    },
-    {
-      "id": "r1-respostas",
-      "arquivo": "dados/r1-respostas.json",
-      "formato": "json",
-      "entidade": "medicao",
-      "fonte": "Bloco 4 da Fundacao (10/09/2026): derivado por ferramentas/gerar-r1.py da implementacao de referencia ferramentas/cobertura-r1.py, sobre o banco ja commitado. Nao houve coleta nesta execucao — o egresso HTTP devolveu falha em wap.ind.br, mais.conteudo.wap.ind.br, mi.com e xiaomi.com.br. Nenhum numero deste arquivo vem de fora do repositorio.",
-      "verificado_em": "2026-09-10",
-      "registros": 28,
-      "publicar": true,
-      "sha256": "df96fddc29dc0d9cc3460ed76d0b92c3355780f68a84dfc61d40d85438affbc4",
-      "descricao": "O COMBUSTIVEL DA FERRAMENTA R1 NO SITE, e o primeiro item de dados desta ilha com publicar=true: o Sync o grava na option robometria_dados_r1-respostas e o snippet robometria-r1.php monta a pagina a partir dele. Para cada um dos 28 modelos publicaveis, os FATOS de cada peca que o fabricante declarou compativel — tipo respondido, codigo, publicador, conjunto declarado, endereco, data, se vem dentro de kit, se existe a peca avulsa, se ha divergencia registrada e se ainda espera link de afiliado. Traz tambem o seletor gerado da varredura (os 5 tipos que o banco consegue responder, sem 'reservatorio', que tem zero pecas), o modelo-ancora escolhido por regra, as 45 linhas da tabela de exemplos na ordem cross-marca da referencia, as duas divergencias com as duas declaracoes e as duas datas, a lista dos 12 modelos de entrada vazia e a tabela de rotulos da escada de fontes. SEM PROSA de proposito: a frase que o visitante le e montada pelo snippet, em portugues acentuado, e conferida contra a referencia por ferramentas/teste-r1.php."
-    },
-    {
-      "id": "r1-referencia",
-      "arquivo": "dados/r1-referencia.json",
-      "formato": "json",
-      "entidade": "medicao",
-      "fonte": "Bloco 4 da Fundacao (10/09/2026): saida direta de ferramentas/cobertura-r1.py, gravada por ferramentas/gerar-r1.py.",
-      "verificado_em": "2026-09-10",
-      "registros": 28,
-      "publicar": false,
-      "sha256": "2a64980566870075a602c111a94a55b112329b2d7df3065cf734990a0b4a301c",
-      "descricao": "GABARITO da R1: a resposta de cada modelo ja em frase, escrita pela implementacao de REFERENCIA. Nunca vai para o site (publicar=false) — existe para ferramentas/teste-r1.php provar, frase a frase e ignorando acento, que o PHP do snippet diz a MESMA coisa que a referencia, que e o que a especificacao exige. Sao 188 frases comparadas a cada rodada do teste: se alguem mexer no molde de um lado so, o teste reprova em vez de o site publicar duas versoes da mesma afirmacao."
-    },
-    {
-      "id": "a1-fatos",
-      "arquivo": "dados/a1-fatos.json",
-      "formato": "json",
-      "entidade": "medicao",
-      "fonte": "Bloco 5 da Fundacao (10/09/2026): derivado por ferramentas/gerar-a1.py do banco ja commitado, importando ferramentas/cobertura-r1.py para a varredura por tipo nao ser uma contagem paralela a da R1. Nao houve coleta nesta execucao; nenhum numero deste arquivo vem de fora do repositorio. CORRIGIDO em 10/09/2026, na execucao das 23h18Z: as tres respostas do FAQPage saiam em ASCII e iam INTEIRAS para o JSON-LD do snippet, entao o site publicava 'Nao. Nas 16 pecas de reposicao...' justamente no canal que a secao 5 do ARQUIPELAGO.md diz valer tanto quanto ranquear. O banco desta ilha e ASCII porque ele CITA fontes; o que a ilha ESCREVE sai acentuado (fase 4b do playbook). Achado ao escrever o A2, que nasceu com a trava que mede isso.",
-      "verificado_em": "2026-09-10",
-      "registros": 16,
-      "publicar": true,
-      "sha256": "a3549746897058859e78d79b1f239768af526b87e0ecd32b204f04b7b3e5fa34",
-      "descricao": "O COMBUSTIVEL DO ARTIGO-ANCORA A1: o Sync o grava na option robometria_dados_a1-fatos e o snippet robometria-a1.php escreve as frases a partir dele. Tres medicoes separadas de proposito. (1) ALCANCE: quantos codigos de modelo cada uma das 16 pecas publicaveis tem declarados, com os codigos como a fonte os escreve. (2) TRAVESSIA DE MARCA: quantas pecas sao declaradas para modelos de mais de uma marca — hoje zero, e e essa a tese do artigo. (3) DISPERSAO DENTRO DA MARCA: quantos conjuntos DISTINTOS de modelos as pecas de cada fabricante formam; quando o numero iguala o de pecas, nenhuma repete a lista de outra. Traz ainda a cobertura por tipo vinda da varredura da R1, a vitrine de 4 itens (ordenada por alcance declarado, com kit de composicao nao transcrita FORA, porque oferecer a compra de um produto cuja composicao a pagina diz nao saber e o defeito da secao 7) e as tres perguntas do FAQPage, derivadas dos mesmos numeros."
-    },
-    {
-      "id": "cobertura-r2",
-      "arquivo": "dados/cobertura-r2.json",
-      "formato": "json",
-      "entidade": "medicao",
-      "fonte": "Bloco 4 da Fundacao (10/09/2026): varredura da entrada da R2 de ponta a ponta, exigida pela secao 14.3 do ARQUIPELAGO.md, gerada por ferramentas/cobertura-r2.py sobre o banco ja commitado. Nao houve coleta nesta execucao — o egresso HTTP continua fechado para os dominios de fabricante — e nenhum numero deste arquivo vem de fora do repositorio.",
-      "verificado_em": "2026-09-10",
-      "registros": 9,
-      "publicar": false,
-      "sha256": "49082a33737613bbbe799b59511f5ea01dbd400a0037d25c9f78ce5a18715c41"
-    },
-    {
-      "id": "tabela-exemplos-r2",
-      "arquivo": "dados/tabela-exemplos-r2.md",
-      "formato": "md",
-      "entidade": "medicao",
-      "fonte": "Bloco 4 da Fundacao (10/09/2026): gerada por ferramentas/cobertura-r2.py do banco commitado. Tabela GERADA, nunca digitada.",
-      "verificado_em": "2026-09-10",
-      "registros": 63,
-      "publicar": false,
-      "sha256": "1d6008a2c826e2821b7e1015ba332435933d0f1b538edea610ac15ddd2e872b7"
-    },
-    {
-      "id": "r2-respostas",
-      "arquivo": "dados/r2-respostas.json",
-      "formato": "json",
-      "entidade": "medicao",
-      "fonte": "Bloco 4 da Fundacao (10/09/2026): combustivel da R2 no site, derivado por ferramentas/gerar-r2.py da implementacao de referencia ferramentas/cobertura-r2.py. Sem prosa: a frase que o visitante le e montada pelo snippet e conferida contra a referencia por ferramentas/teste-r2.php.",
-      "verificado_em": "2026-09-10",
-      "registros": 9,
-      "publicar": true,
-      "sha256": "0192d1823b4e8497ef5779623d1a49f8511a26345301b174f7e6218d60039016"
-    },
-    {
-      "id": "r2-referencia",
-      "arquivo": "dados/r2-referencia.json",
-      "formato": "json",
-      "entidade": "medicao",
-      "fonte": "Bloco 4 da Fundacao (10/09/2026): GABARITO da R2 — a grade de respostas ja em frase, escrita pela implementacao de referencia. Nao vai para o site; existe para o teste de bancada comparar as duas implementacoes caso a caso.",
-      "verificado_em": "2026-09-10",
-      "registros": 9,
-      "publicar": false,
-      "sha256": "585a8a496e1a4a2f22c3cd8f9e62f49c7943409a1c643cf5772ae4316612775e"
-    },
-    {
-      "id": "a2-fatos",
-      "arquivo": "dados/a2-fatos.json",
-      "formato": "json",
-      "entidade": "medicao",
-      "fonte": "Bloco 5 da Fundacao (10/09/2026, execucao das 23h18Z): derivado por ferramentas/gerar-a2.py do banco ja commitado, lendo o banco pela mesma implementacao de referencia que a R2 usa (ferramentas/cobertura-r2.py) para as duas paginas nunca publicarem contagens diferentes da mesma coisa. Nao houve coleta nesta execucao; nenhum numero deste arquivo vem de fora do repositorio. O campo `serp` registra que a SERP da consulta-alvo NAO foi verificada nesta execucao.",
-      "verificado_em": "2026-09-10",
-      "registros": 5,
-      "publicar": true,
-      "sha256": "46536a0135a06f7fd13e93b58bd1dea385629f1fa0f908b6317701cf50a50875"
-    },
-    {
-      "id": "casca-fatos",
-      "arquivo": "dados/casca-fatos.json",
-      "formato": "json",
-      "entidade": "medicao",
-      "fonte": "Bloco de dados da Fundacao (11/09/2026): derivado por ferramentas/gerar-casca-fatos.py de pecas.json, modelos-robo.json e constantes.json. E a coluna 'Temos hoje' da escada de fontes na pagina de metodologia — afirmacao da pagina sobre o proprio banco, que ate esta data estava DIGITADA no snippet e o contradizia.",
-      "publicar": true,
-      "verificado_em": "2026-09-11",
-      "registros": 7,
-      "descricao": "Fatos que a casca publica sobre o proprio banco, derivados por ferramentas/gerar-casca-fatos.py. Desde 11/09/2026 traz duas coisas: a coluna 'Temos hoje' da escada de fontes, e a MEDICAO da secao 4 da metodologia — os onze numeros que a ilha afirma sobre si mesma, com a regua de cada um escrita no proprio arquivo, em reguas_da_medicao. Contagem so de registro publicavel: a coluna fala do que a ilha PUBLICA, nao do que ela guarda, e e por isso que 'pares peca x modelo' conta 32 (as duas pontas publicaveis) onde o cabecalho de pecas.json conta 33 (tudo que o arquivo declara). O gerador RECUSA gravar quando cobertura-r1.json nao bate com o banco de hoje, para a ilha nunca publicar medicao de ontem com data de hoje.",
-      "sha256": "83f031838e2cec9c11745862e73c413f3ca142f888dc356bb78dd8bf13ad761d"
-    },
-    {
-      "id": "acentuacao-restaurada",
-      "arquivo": "dados/acentuacao-restaurada.json",
-      "formato": "json",
-      "entidade": "medicao",
-      "fonte": "Bloco de dados da Fundacao (11/09/2026): saida de ferramentas/acentuar-banco.py. Nenhuma coleta; nenhum numero vem de fora do repositorio.",
-      "verificado_em": "2026-09-11",
-      "registros": 121,
-      "publicar": false,
-      "descricao": "LIVRO-RAZAO da restauracao de acentos: as 121 strings do banco que a ilha PUBLICA e que estavam em ASCII, com arquivo, registro, campo, antes e depois. Serve para duas coisas. (1) PROVA que a operacao mexeu so em diacritico: reduzida a sem-diacritico, a coluna 'depois' e byte a byte igual a coluna 'antes', e ferramentas/teste-acentuacao.php confere isso linha a linha com uma regua propria. (2) E a LISTA DE CONFERENCIA de quem reler os manuais quando a rede abrir, porque diacritico restaurado pela ilha nao e diacritico lido na fonte — se alguma fonte de fato escrever sem acento, a linha correspondente volta atras e vira excecao declarada. Nao e publicado: e conferencia de bancada, o site nao precisa dele.",
-      "sha256": "a856444a11cd09c5c4f05ece9b29f5a317f78c154ee054ab1ee9e33bf37bebf7"
-    }
-  ],
-  "ferramentas": [
-    {
-      "id": "validar-banco",
-      "arquivo": "ferramentas/validar-banco.py",
-      "descricao": "Verifica se marcas.json, modelos-robo.json e pecas.json cumprem esquema-banco.json. Roda sem rede e sem dependencia (python3 ferramentas/validar-banco.py) e sai com codigo 1 quando qualquer invariante e violada: id duplicado, numero sem fonte, null sem motivo, registro publicavel com categoria que nao e robo, divergencia sem resolucao escrita, peca apontando para modelo inexistente ou excluido, e contagem de cabecalho que nao bate com o arquivo. O Bloco 3c acrescentou cinco invariantes da versao 2 do esquema: kit sem composicao, kit dentro de kit, tipo de composicao fora do vocabulario, item de composicao sem tipo e sem descricao, composicao em peca que nao e kit, e codigo_fabricante null sem motivo_sem_codigo. As cinco foram testadas quebrando o banco de proposito numa copia e conferindo que reprovam. Ferramenta de bancada: NUNCA e publicada no site. A segunda leva do Bloco 3c acrescentou tres invariantes da versao 3: modelo sem divergencias[], modelo com divergencias e sem resolucao escrita, e item de divergencia que nao nomeia um campo existente ou nao traz a transcricao do fabricante; mais a conferencia das contagens do cabecalho de modelos-robo.json (publicavel, com_pa_declarado, com_par_minutos_m2_declarado, marcas_que_declaram_pa e esperando_link_de_afiliado), para que nenhuma execucao futura acredite num numero de cobertura que o arquivo nao sustenta. Todas foram testadas quebrando o banco de proposito numa copia e conferindo que reprovam."
-    },
-    {
-      "id": "cobertura-r1",
-      "arquivo": "ferramentas/cobertura-r1.py",
-      "descricao": "Implementacao de REFERENCIA da R1 e varredura da entrada dela de ponta a ponta. Roda sem rede e sem dependencia: 'python3 ferramentas/cobertura-r1.py' imprime o relatorio, '--gravar' escreve dados/cobertura-r1.json e dados/tabela-exemplos-r1.md. Implementa num lugar so as regras que ate agora existiam apenas em prosa na especificacao: os tres selos da secao 1.3, o conjunto MAIS ESTREITO da secao 1.4, o aviso de variante de hardware, a recusa explicita do selo nao_declarada, e o kit que responde por uma peca que o fabricante nao vende avulsa. Existe para que o Bloco 4 nao escreva essas regras pela primeira vez direto em PHP, dentro de um snippet que so da para testar com o site no ar: a saida do PHP tem que BATER com a daqui. Ja rendeu: rodar a regra contra o banco de verdade pegou duas frases que iriam quebradas para a tela — 'vem dentro do sem codigo publicado', quando o fabricante nao publica codigo de peca, e 'nao vende escova lateral avulso', sem concordancia de genero. Ferramenta de bancada: NUNCA e publicada no site."
-    },
-    {
-      "id": "gerar-favicon",
-      "arquivo": "ferramentas/gerar-favicon.php",
-      "descricao": "Gera o icone do site a partir da MESMA geometria do logotipo (anel aberto de raio 15 com corte de 50 graus a direita, e a peca de lingueta entrando no corte) e grava as tres constantes dentro de snippets/robometria-casca.php, entre os marcadores FAVICON-INICIO e FAVICON-FIM. Existe porque desenho mantido em dois lugares diverge em silencio, e porque o apple-touch-icon PRECISA ser PNG (o iOS nao aceita SVG nesse rel) e a regra do projeto proibe subir arquivo para a biblioteca de midia — entao o PNG viaja como data URI base64. O SVG da aba tem canto arredondado; o PNG do iOS nao tem, porque o iOS aplica a propria mascara e canto arredondado por baixo dela vira borda dupla. Ferramenta de bancada: NUNCA e publicada no site."
-    },
-    {
-      "id": "render-para-teste",
-      "arquivo": "ferramentas/render-para-teste.php",
-      "descricao": "Monta uma pagina do site fora do WordPress, para MEDIR o HTML servido sem depender do site no ar. Imita de proposito o que muda a medicao: add_action com prioridade de verdade em wp_head/wp_footer, o escape de '&' que os filtros do the_content aplicam (foi ele que matou cinco calculadoras da Aquametria), e remove_action casando gancho, funcao e prioridade. Ganhou na casca 1.2.0: robometria_teste_carregar_options(), que era codigo solto no caminho de linha de comando e virou funcao quando o teste da casca passou a precisar dela; os atalhos de pagina atual (is_front_page, get_queried_object_id, get_post_meta do _robometria_id e get_post_field), que fazem a bancada IMITAR o caminho real pelo qual a casca escolhe a description da pagina — em vez de a casca ganhar um filtro que so o teste usa, que seria regua de teste dentro do codigo medido; e robometria_teste_slug_do_alvo(), que deriva o slug de cada shortcode da definicao de paginas da casca e das constantes de slug dos snippets, sem digitar nada duas vezes."
-    },
-    {
-      "id": "teste-casca",
-      "arquivo": "ferramentas/teste-casca.php",
-      "descricao": "A secao 8 do ARQUIPELAGO.md executada onde da para executa-la nesta ilha: 133 verificacoes medidas, sem site e sem rede, saindo com codigo 1 quando qualquer uma falha. Confere, entre outras: nenhum <script>/<style> dentro do retorno dos cinco shortcodes; ZERO &#038; dentro dos blocos <script> (contando so os blocos, nunca a pagina inteira, que e o teste ERRADO); o botao do menu com aria-expanded e um aria-controls cujo id existe mesmo, e os tres links como <a href> reais dentro de <nav>; o icone do WordPress removido e o proprio servido; JSON-LD que decodifica e traz Organization + WebSite em toda pagina, e nenhum sameAs inventado; corpo que nao comeca por metadado YAML; um unico rodape; nenhuma cor fora da paleta e nenhum gradiente no CSS; a varredura ausente do corpo, porque e cor de sinal de um uso por tela; cada numero da tela conferido contra o banco COMMITADO, com a conta feita aqui e nao lida da casca; o sitemap deixando de ser 404 sem que endereco inexistente passe a responder 200; e todo apelido apontando para pagina, ferramenta ou artigo que existe. ENTROU NA CASCA 1.2.0 (11/09/2026), e quase tudo veio de defeito medido: a CABECA DE PAGINA (uma description por pagina, com 110 a 160 caracteres, todas diferentes, sem digito nenhum, e o mapa cobrado nas DUAS DIRECOES — pagina publicada sem cabeca reprova e cabeca sobrando tambem, porque cobrar um lado so foi o defeito do Clube do Mosaico em 11/09); o NEGATIVO dela, que exige que pagina desconhecida NAO ganhe description generica; a VOZ (titulo da raiz e primeiro paragrafo da home sem termo da lista do VOZ.md, medidos por ESTRUTURA e nunca na pagina inteira, o seletor servido no HTML e os atalhos contados contra os tipos do banco); os BLOCOS DE RECUSA declarados no markup, poucos, contados, e com todo item ABRINDO com negacao, mais a proibicao do termo de escassez em todo o resto do corpo por RADICAL e nao por palavra inteira ('mais vendid', nao 'mais vendido' — foi assim que uma mutacao passou); PAGINA FINA, corpo abaixo de 1.500 caracteres reprova, e foi ele que pegou a pagina de divulgacao de afiliados com 1.325; e a folha do formulario existindo em UM arquivo so. Carrega as options do manifest como o Sync as grava, porque sem elas a home serve o aviso de 'seletor fora do ar', que e uma pagina valida — seria a terceira vez que esta ilha mede uma pagina pela metade sem ver."
-    },
-    {
-      "id": "gerar-r1",
-      "arquivo": "ferramentas/gerar-r1.py",
-      "descricao": "Deriva o combustivel da R1 da implementacao de referencia: 'python3 ferramentas/gerar-r1.py --gravar' escreve dados/r1-respostas.json (fatos, publicado) e dados/r1-referencia.json (gabarito, nao publicado). Importa ferramentas/cobertura-r1.py como modulo, entao as regras da R1 continuam tendo UM dono. Carrega tambem a tabela de rotulos da escada de fontes (como cada origem do banco e nomeada na tela e que ressalva ela obriga) e para com erro se alguma origem do banco nao tiver rotulo declarado — origem sem rotulo faria a tela imprimir o apelido de campo cru no meio de uma frase publicada, em silencio. Ferramenta de bancada: NUNCA e publicada no site."
-    },
-    {
-      "id": "teste-r1",
-      "arquivo": "ferramentas/teste-r1.php",
-      "descricao": "Verificacao MEDIDA da ferramenta R1, sem site e sem rede: 'php ferramentas/teste-r1.php .' — 70 medicoes, e o teste sai com codigo 1 quando qualquer uma falha. O que ele mede e o teste-casca.php nao mede: cada uma das 188 frases publicadas contra a frase da implementacao de referencia, modelo a modelo, ignorando acento e aplicando a mesma tabela de rotulos de origem. Mede tambem, em cinco estados da pagina (sem consulta, modelo que responde, modelo + tipo, modelo de entrada vazia e modelo inexistente): nenhum <script> nem <style> no retorno do shortcode; zero &#038; DENTRO dos blocos <script>; a resposta-ancora e as 45 linhas da tabela no HTML servido; a recusa explicita onde nao ha declaracao; o seletor sem o tipo que o banco nao responde; declaracao de terceiro nunca antes da do fabricante; um cartao de vitrine por peca, com espaco reservado onde nao ha imagem e sem botao de loja fingido; JSON-LD que decodifica, com toda resposta do FAQPage conferida contra o que a pagina serve; noindex e canonica so no endereco com consulta; paleta fechada, nenhum gradiente e nenhuma sombra colorida; e os numeros da tela contra o banco commitado. Ferramenta de bancada: NUNCA e publicada no site."
-    },
-    {
-      "id": "gerar-a1",
-      "arquivo": "ferramentas/gerar-a1.py",
-      "descricao": "Deriva os fatos do artigo-ancora do banco commitado: 'python3 ferramentas/gerar-a1.py --gravar' escreve dados/a1-fatos.json. Importa ferramentas/cobertura-r1.py como modulo, entao a varredura por tipo do artigo e a mesma da R1 e as duas paginas nunca publicam contagens diferentes da mesma coisa. Existe porque a tese do artigo E um numero, e numero de tese digitado dentro do HTML passa a mentir em silencio no dia em que o banco cresce. Ferramenta de bancada: NUNCA e publicada no site."
-    },
-    {
-      "id": "teste-a1",
-      "arquivo": "ferramentas/teste-a1.php",
-      "descricao": "53 medicoes sobre o artigo-ancora, sem site e sem rede. O que ele tem que os outros dois testes desta ilha nao tem: RECALCULA a tese em PHP, direto de dados/pecas.json e dados/modelos-robo.json, sem olhar para o que o gerador em Python escreveu — duas contas independentes que batem sao medicao, uma conta sozinha e o que o autor achou. Mede tambem a malha da secao 9 nos dois sentidos (duas listagens, tres irmas, e a R1 apontando de volta), a ordem da secao 7 na pagina e dentro de cada cartao, o aviso de comissao no bloco de compra, nofollow e noopener em todo link externo, o JSON-LD Article + FAQPage com as respostas conferidas contra os fatos, e a trava que impede a pagina de afirmar 'nenhuma peca atravessa marca' quando o banco deixar de sustentar isso. Ferramenta de bancada: NUNCA e publicada."
-    },
-    {
-      "id": "cobertura-r2",
-      "arquivo": "ferramentas/cobertura-r2.py",
-      "descricao": "Implementacao de REFERENCIA da R2 e varredura da entrada dela de ponta a ponta. Roda sem site e sem rede. Guarda a regra num lugar so: quais fontes brasileiras nomeiam cada situacao de piso x animal e com que palavras, qual limiar vale, quem passa na elegibilidade e em que ordem a lista sai. Tambem e onde mora a PONTE — a unica situacao (tapete fino sem animal) que fonte nenhuma nomeia, e que a ferramenta resolve para o limiar de cima dizendo que esta estendendo, em vez de fingir que citou alguem. A grade que ela varre inclui os multiplos EXATOS da cobertura declarada e os vizinhos deles, porque foi so ali que a quebra proposital de 10/09/2026 conseguiu separar ceil de floor+1: grade que nao cobre a borda e amostra com nome de grade."
-    },
-    {
-      "id": "gerar-r2",
-      "arquivo": "ferramentas/gerar-r2.py",
-      "descricao": "Deriva dados/r2-respostas.json (o que o site consome) e dados/r2-referencia.json (o gabarito do teste) da implementacao de referencia. A prova da R2 tem forma diferente da prova da R1 porque a entrada dela e continua: o que e REGRA sai apurado da referencia e viaja como fato; a ARITMETICA declarada dos ciclos o PHP faz, e a prova de que faz igual e uma grade que o teste percorre inteira."
-    },
-    {
-      "id": "teste-r2",
-      "arquivo": "ferramentas/teste-r2.php",
-      "descricao": "Verificacao MEDIDA da R2 sem site e sem rede: 86 medicoes. Percorre a GRADE inteira do gabarito — as 9 situacoes frase a frase, 114 cartoes de recomendacao com ordem e ressalvas, e a metragem varrida contra cada modelo de referencia, bordas incluidas — e mais a elegibilidade, o JSON-LD contra o que a tela diz, a porta de compra antes da procedencia, a malha e a higiene do snippet. As travas foram PROVADAS reprovando, quebrando o codigo de proposito numa copia, e duas delas so viraram medicao por causa disso: a regua da elegibilidade saiu do snippet (o teste conferia o dado com a regua de quem produziu o dado) e a busca das respostas do FAQPage passou a ser no corpo da pagina (no HTML inteiro ela achava o texto dentro do proprio JSON-LD e passava sempre)."
-    },
-    {
-      "id": "gerar-a2",
-      "arquivo": "ferramentas/gerar-a2.py",
-      "descricao": "Deriva dados/a2-fatos.json do banco commitado. A tese de um artigo que e um NUMERO nao pode estar digitada no HTML, porque no dia em que o banco crescer o texto passa a mentir em silencio — e ninguem rele artigo publicado. O texto publicavel que sai daqui (perguntas e respostas do FAQPage) sai ACENTUADO, diferente do que o A1 fez."
-    },
-    {
-      "id": "teste-a2",
-      "arquivo": "ferramentas/teste-a2.php",
-      "descricao": "Verificacao MEDIDA do A2 sem site e sem rede: 62 medicoes. A secao que justifica o arquivo PLANTA SEIS BANCOS ADULTERADOS num subprocesso, um por molde, e exige que o texto troque de forma E que os numeros de hoje sumam da tela — porque ler a pagina de hoje so prova que ela esta certa hoje, e a decisao 1 do bloco 5 e sobre amanha. Mede tambem que as respostas do FAQPage saem acentuadas e que todo numero que elas afirmam esta escrito no CORPO da pagina, nao so dentro do proprio JSON-LD."
-    },
-    {
-      "id": "varrer-corpo",
-      "arquivo": "ferramentas/varrer-corpo.php",
-      "descricao": "Monta os 72 estados que a ilha serve — a R1 modelo a modelo, a R2 situacao a situacao — UM PROCESSO POR ESTADO, e devolve o CORPO de cada um. O processo por estado nao e zelo: montados no mesmo processo, um static legitimo do snippet da marca fazia o cabecalho aparecer no primeiro estado e sumir nos 71 seguintes, e a varredura media 915 KB do que no ar tem 960 KB, sem erro nenhum. Desde a casca 1.2.0 passa o slug canonico de cada estado para a bancada, para o corpo medido incluir a cabeca de pagina que o site serve."
-    },
-    {
-      "id": "acentuar-banco",
-      "arquivo": "ferramentas/acentuar-banco.py",
-      "descricao": "Restaura os acentos dos campos do banco que vao para a TELA (nome_na_fonte, titulo_na_fonte, publicador, linha, nome, nome_comercial, o_que_muda, canal, conjunto_declarado). A operacao e deliberadamente pequena e PROVAVEL: so diacritico. Toda mudanca passa pela trava sem_acento(depois) == antes e o programa se recusa a gravar se alguma falhar, o que torna impossivel, por construcao, trocar palavra, codigo de peca, numero ou modelo. A borda das palavras inclui o hifen de proposito, para nao acentuar pedaco de URL citada. Cada mudanca vai para dados/acentuacao-restaurada.json, que e a lista de conferencia de quem reler os manuais quando a rede abrir — porque diacritico RESTAURADO nao e diacritico LIDO na fonte. Palavra ambigua (o 'e' que pode ser 'é') fica fora do mapa. Ferramenta de bancada: NUNCA e publicada no site."
-    },
-    {
-      "id": "gerar-casca-fatos",
-      "arquivo": "ferramentas/gerar-casca-fatos.py",
-      "descricao": "Deriva dados/casca-fatos.json: a coluna 'Temos hoje' da escada de fontes, que a pagina de metodologia publica. Existe porque ate 11/09/2026 essa coluna estava DIGITADA no snippet e contradizia o banco — dizia que a ilha nao tinha nenhuma fonte de nivel 2 enquanto quatro fontes se declaravam nivel 2, e as duas metades nunca se falavam. Conta so registro publicavel, e conta TRES arquivos: pecas.json, modelos-robo.json e constantes.json. A primeira versao lia so os dois primeiros e declarava, com ar de medicao, que a ilha nao tinha fonte editorial — quando tem sete, usadas pela R2 em toda resposta de Pa; trocar um numero digitado errado por um numero medido errado e pior, porque este parece conferido. A ponte tipo-de-constante para nivel mora no esquema, nao aqui. Recusa-se a gerar se alguma fonte declarar nivel e origem que nao batem com a escada. Ferramenta de bancada: NUNCA e publicada no site."
-    },
-    {
-      "id": "teste-acentuacao",
-      "arquivo": "ferramentas/teste-acentuacao.php",
-      "descricao": "16 medicoes que impedem a volta do portugues sem acento no que a ilha SERVE, e a coerencia da escada de fontes. Le o corpo dos 72 estados por ferramentas/varrer-corpo.php e reprova qualquer palavra da propria regua — escrita NO TESTE, a mao, sem importar a do corretor, porque regua compartilhada faz as duas metades errarem juntas. A excecao do wordmark (ROBO+METRIA colados, onde ROBO e a assinatura e nao a palavra) e declarada no markup pela classe rbm-wordmark, retirada pelo varredor e CONFERIDA uma a uma: exige um bloco por estado e que cada bloco seja exatamente a assinatura. Confere ainda o livro-razao da restauracao (todo 'depois', reduzido a sem-diacritico, e identico ao 'antes', e todo 'depois' esta no banco de hoje) e RECONTA a escada direto do banco, sem olhar para o que o gerador escreveu. Seis mutacoes deliberadas em 11/09/2026, e as seis reprovaram: devolver 'Robo' ao banco, marcar um paragrafo comum como wordmark para calar o teste, adulterar o livro-razao, repor uma fonte no nivel 2 sem declarar leitura, repor com leitura declarada (a confissao da pagina passa a mentir) e tirar a classe do wordmark — esta ultima faz 'ROBO' ser pego 72 vezes, que e a prova de que a excecao e carregada e nao decorativa. Ferramenta de bancada: NUNCA e publicada no site."
-    },
-    {
-      "id": "mutacoes-cabeca-e-voz",
-      "arquivo": "ferramentas/mutacoes-cabeca-e-voz.py",
-      "descricao": "A PROVA DE QUE AS TRAVAS DA CASCA 1.2.0 REPROVAM. Quinze mutacoes deliberadas, cada uma numa copia da arvore inteira num diretorio temporario, exigindo que teste-casca.php saia com codigo diferente de zero: a tag de description sumindo do wp_head, duas paginas com a mesma description, um numero dentro de uma description, uma description acima de 160 caracteres, uma pagina publicada sem cabeca, uma cabeca sobrando sem pagina, o H1 da raiz voltando a ser 'Inicio', termo de dentro da fabrica no primeiro paragrafo da home, a home perdendo o seletor, os atalhos deixando de ser contados, escassez inventada fora do bloco de recusa, uma promessa escondida dentro do bloco de recusa, uma pagina voltando a ser fina, description generica de reserva para pagina desconhecida, e a folha do formulario voltando a ser copiada na R1. DUAS PASSARAM NA PRIMEIRA RODADA e as duas viraram conserto: a regua de escassez listava 'mais vendido' e deixou passar 'a peca mais vendida da categoria' — genero e numero em portugues sao o buraco por onde a frase proibida entra inteira, e a regua passou a usar radical; e a mutacao de pagina fina era fraca demais, cortando 409 caracteres de uma pagina que tinha 522 de folga. Toda substituicao e obrigada a acertar um alvo UNICO: mutacao que nao encontra o alvo edita nada e o teste passa, e teste verde por mutacao que nao aconteceu e a mesma ilusao que este arquivo existe para desfazer."
-    },
-    {
-      "id": "teste-arvore",
-      "arquivo": "ferramentas/teste-arvore.php",
-      "descricao": "Portao da arvore e do cluster (secao 16 do ARQUIPELAGO.md): trilha, BreadcrumbList e 'Veja tambem' nas nove paginas, um processo por pagina, lendo o ARVORE.md para cobrar que documento e codigo digam a mesma coisa. Bancada: nunca e publicada."
-    },
-    {
-      "id": "mutacoes-arvore",
-      "arquivo": "ferramentas/mutacoes-arvore.py",
-      "descricao": "Quebra de proposito a arvore da casca e exige que teste-arvore.php e teste-casca.php reprovem. Bancada: nunca e publicada."
-    },
-    {
-      "id": "mutacoes-ga4",
-      "arquivo": "ferramentas/mutacoes-ga4.py",
-      "descricao": "A PROVA DE QUE A TRAVA DA TAG DE MEDICAO REPROVA (casca 1.5.0). Nove mutacoes deliberadas, cada uma numa copia da arvore inteira, exigindo que teste-casca.php saia com codigo diferente de zero. A tag de medicao e o alvo mais facil que existe para uma trava que mede a si mesma: ela nao muda NADA na tela, entao nenhum leitor, nenhuma ronda e nenhum olho humano separa medir a propriedade certa de medir a errada. A mutacao 5 e a razao de o portao medir ORDEM e nao presenca — um JSON-LD novo nascendo na prioridade 24 deixa a tag na pagina e a poe antes do bloco que ela nao pode preceder, e uma trava de presenca aprova isso com folga. A mutacao 2 e a que acontece de verdade: o ID trocado pelo da Aquametria, que e o que sobra quando alguem copia esta casca para a ilha seguinte como esta foi copiada da Aquametria em 10/09/2026 — e e por isso que o ID desta ilha esta ESCRITO na regua do teste. As outras sete: a tag sumindo, o config medindo outra propriedade com o src certo, o async caindo, a prioridade subindo para 3, o ID voltando a ser digitado no meio do codigo, um segundo script de terceiro entrando na pagina publica, e a pagina parando de contar o que o site mede. Ferramenta de bancada: NUNCA e publicada no site."
-    },
-    {
-      "id": "teste-navegador-arvore",
-      "arquivo": "ferramentas/teste-navegador-arvore.mjs",
-      "descricao": "Medicao em Chromium das nove paginas em seis larguras: rolagem horizontal e a trilha visivel. Bancada: nunca e publicada."
-    },
-    {
-      "id": "teste-voz",
-      "arquivo": "ferramentas/teste-voz.php",
-      "descricao": "Portao da voz (secao 15) e do nome unico da pagina: H1, <title>, og:title, degrau da trilha e rotulo do cartao derivando da mesma fonte, palavras proibidas lidas do VOZ.md, um processo por pagina. Bancada: nunca e publicada."
-    },
-    {
-      "id": "mutacoes-atribuicao-da-funcao",
-      "arquivo": "ferramentas/mutacoes-atribuicao-da-funcao.py",
-      "descricao": "Escreve de volta a atribuicao falsa da funcao da peca e exige REPROVACAO do teste-r1.php, numa copia da ilha por mutacao. Dez mutacoes: nove reprovam e a decima TEM de passar. Ela cobre os dois lados, porque proibir a atribuicao na peca derivada sozinho seria atendido por uma frase que nunca atribui nada a ninguem, e a ilha perderia de graca a autoridade que o titulo do fabricante lhe da: peca derivada nunca atribui e sempre traz a ressalva; peca de titulo sempre atribui e nunca traz ressalva. Tres PRODUZEM O MUNDO que o esquema permite e o banco nunca teve — funcao declarada pelo canal de manutencao do fabricante —, porque regua escrita para um caso que nunca aconteceu fica verde sem nunca ter podido falhar; a decima e o mesmo mundo INTACTO, e ela existe para provar que a regua nao e falso-positivo esperando a primeira peca de manual entrar no banco. A do ESQUEMA nao estraga registro nenhum: apaga a lista de tipos e mede se a regua cai para 'nada a cobrar' em silencio. Bancada: nunca e publicada."
-    },
-    {
-      "id": "mutacoes-procedencia",
-      "arquivo": "ferramentas/mutacoes-procedencia.py",
-      "descricao": "Quebra de proposito a procedencia do Pa no cartao da R2 (linha de fonte, ordem, ressalva do degrau, atribuicao digitada, escada mutilada) e exige que teste-r2.php reprove as onze. Bancada: nunca e publicada."
-    },
-    {
-      "id": "mutacoes-a2-procedencia",
-      "arquivo": "ferramentas/mutacoes-a2-procedencia.py",
-      "descricao": "Quebra de proposito a procedencia da area por carga no cartao do A2 e exige REPROVACAO da bancada, numa copia da ilha por mutacao. Quinze mutacoes, quinze reprovadas. O que ele tem de diferente do irmao da R2 e o achado do bloco: la, 'a atribuicao volta a ser digitada' era INERTE com o banco de hoje e precisava PRODUZIR o mundo em que o defeito aparece; aqui esse mundo ja era o mundo — os cinco modelos que declaram area por carga declaram pela loja oficial da marca (degrau 4), e a frase 'O fabricante declara' que estava no ar era falsa, entao a mutacao reprova sem tocar no banco. O banco mutado continua sendo necessario para as duas travas LATENTES, que sao as escritas de olho no amanha: a atribuicao do SEGUNDO numero do cartao (a autonomia, hoje da mesma fonte nos cinco) e o titulo da secao quando os degraus se misturam. Tres mutacoes passaram na primeira rodada e viraram trava nova: a ressalva empurrada para depois do botao de compra (o teste media que ela existisse, nunca onde), a tabela rotulos_de_origem divergindo da escada no lado que o site consome, e uma que nao era trava faltando e sim bancada incompleta — mutacao no BANCO julgada so pelo teste da pagina, sem chamar validar-banco.py, que ja tinha a trava desde 11/09/2026."
-    },
-    {
-      "id": "conferir-no-ar",
-      "arquivo": "ferramentas/conferir-no-ar.py",
-      "descricao": "Mede no HTML SERVIDO, depois do desembarque, o que a bancada so consegue medir no repositorio: as nove URLs em 200, o nome unico em cada superficie e zero entidade dentro de <script>. Os enderecos e os nomes estao escritos literalmente dentro dele, para as duas metades nao errarem juntas. Bancada: nunca e publicada. GANHOU NA CASCA 1.5.0 a conferencia da TAG DE MEDICAO no ar, e o que ela mede e ORDEM, nao presenca: o ID desta ilha escrito literalmente aqui (a copia cega para a ilha seguinte vai ao ar funcionando e grava na propriedade da anterior — nenhuma comparacao com a constante do snippet pegaria isso), o async no script de terceiro, o gtag('config') na propriedade certa, a tag depois do <title> e depois do ULTIMO JSON-LD, um unico script de terceiro na pagina publica, e a frase que conta o que o site mede medida no CORPO da pagina de divulgacao — no <head> a palavra googletagmanager aparece nas nove, e medir no HTML inteiro aprovaria uma pagina muda. Em 12/09/2026 ganhou a secao \"Exatamente no limiar\" da R2 medida no HTML SERVIDO: os dois modelos que estao exatamente em 4.000 Pa na situacao-ancora (escritos literalmente aqui, nunca lidos do r2-respostas.json), a frase com as DUAS procedencias, a linha \"Como sabemos\" com data, a ressalva do degrau, o link de fonte discreto, a ausencia de porta de compra COM a frase que explica a ausencia, e a secao servida depois da lista principal."
-    },
-    {
-      "id": "conferir-atribuicao-no-ar",
-      "arquivo": "ferramentas/conferir-atribuicao-no-ar.py",
-      "descricao": "Mede no HTML SERVIDO as DUAS atribuicoes da R1. (1) Que ela so atribui ao fabricante a FUNCAO que ele escreveu (secao 26.3), nos dois lados da regra: onde a ilha derivou a funcao, nada no corpo a atribui ao fabricante e a ressalva que diz quem a leu esta la; onde o TITULO declara, a atribuicao continua servida e a ressalva nao aparece. (2) Desde 14/09/2026, que quem DECLAROU a compatibilidade e o PUBLICADOR do item, medido DENTRO da classe do cartao (rbm-vitrine-porque) e nunca no texto corrido — a cauda da divergencia diz 'Um canal do fabricante declara alcance diferente' e esta CERTA, e medir as duas juntas da falso positivo. Um modelo por DEGRAU da escada, escolhido do combustivel e nunca digitado aqui, mais a metade sem a qual todas teriam porta dos fundos: a cauda da divergencia CONTINUA nomeando o fabricante, senao uma pagina que tivesse parado de atribuir qualquer coisa a alguem passaria limpa. Tambem mede a nota que justifica a ordem comercial da lista. O teste-r1.php prova que o codigo esta certo; so o ar prova que ele esta NO AR (secao 4 do contrato). 33 afirmacoes em 14/09/2026, 0 falha."
-    },
-    {
-      "id": "atualizar-manifest",
-      "arquivo": "ferramentas/atualizar-manifest.py",
-      "descricao": "Recalcula o sha256 de todo item que o esquema do manifest declara com sha, reespelha a versao de cada snippet a partir da CONSTANTE dele, imprime cada troca que faz e sobe a revisao. Bancada: nunca e publicada."
-    },
-    {
-      "id": "mutacoes-carimbo-de-origem",
-      "arquivo": "ferramentas/mutacoes-carimbo-de-origem.py",
-      "descricao": "Quebra de proposito o carimbo de origem do link de afiliado (afiliado.sub_id_2) e exige que a secao 17 do teste-casca.php REPROVE — cinco mutacoes, cinco reprovacoes, cada uma numa afirmacao diferente. A trava que ela mede nasceu em 12/09/2026 e mede um defeito que estava no ar sem quebrar nada: o campo nomeia a PAGINA que levou o clique, era LIDO do banco, e o banco so sabe dizer um valor por registro (os 33 modelos traziam 'R2' e as 18 pecas 'R1'), entao o artigo A2 publicava a vitrine dele com o codigo da ferramenta R2 e o A1 com o da R1. Nada disso aparece na tela: o campo so vira numero no dia do primeiro link de afiliado, e ai a medicao diria que os dois artigos nao vendem nada, com cara de numero conferido. A mutacao central devolve o defeito INTEIRO (gerador voltando a ler do banco E campo de volta no banco), porque as duas metades sozinhas sao inertes; as outras cobrem o gerador copiado que carimba o codigo da pagina irma — que e como cada pagina desta ilha nasceu —, o carimbo ausente e o campo voltando ao banco sem ninguem mexer em gerador. Toda mutacao que mexe em gerador REGERA os dados dentro da copia, senao reprovaria pelo motivo errado. Ferramenta de bancada: NUNCA e publicada no site."
-    },
-    {
-      "id": "gerar-busca-de-produto",
-      "arquivo": "ferramentas/gerar-busca-de-produto.py",
-      "descricao": "Escreve o PISO da secao 25.2 do ARQUIPELAGO.md em todo registro publicavel do banco: afiliado.url_busca_produto, a URL crua da busca. Roda sem rede e sem dependencia ('python3 ferramentas/gerar-busca-de-produto.py' mostra, '--gravar' grava). Existe porque a corrente do piso tem dois elos e so um depende de alguem: ESCOLHER a palavra-chave nao exige sessao nenhuma, e ENCURTAR num link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael (remedido em 13/09/2026 as 19h17Z: affiliate.shopee.com.br/offer/custom_link responde 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link'). Ele tira a ESCOLHA da fila de espera: no dia da sessao sao 62 colagens e nenhuma linha de codigo muda. A chave e composta do nome_de_busca da marca (marcas.json) mais o codigo, no modelo, ou o tipo, na peca, mais o termo de contexto da entidade — e os dois ultimos moram no ESQUEMA, nunca dentro do gerador, para que entidade ou marca nova nao entre muda. Ferramenta de bancada: NUNCA e publicada no site."
-    },
-    {
-      "id": "teste-escada-compra",
-      "arquivo": "ferramentas/teste-escada-compra.py",
-      "descricao": "Portao da escada de compra da secao 25, com regua PROPRIA: nao importa o gerador nem o validador, porque duas metades que erram juntas ficam verdes. Roda sem rede ('python3 ferramentas/teste-escada-compra.py'). Cobra os quatro degraus da 25.1 com os nomes deles, a base da busca, o termo de contexto das duas entidades, dez chaves-ancora escritas a mao (cada uma uma borda: a marca cujo nome de tela tem parentese, o modelo cujo codigo sozinho e um celular de outra marca, a peca sem codigo_fabricante, a peca que o fabricante batiza pela posicao) e a varredura dos 70 registros, um a um. Duas afirmacoes existem para a regua nao envelhecer calada: o conjunto de marcas e o de entidades que ela conhece tem de ser igual ao do banco e ao do esquema, entao marca nova REPROVA em vez de passar por cima. Ferramenta de bancada: NUNCA e publicada no site."
-    },
-    {
-      "id": "mutacoes-escada",
-      "arquivo": "ferramentas/mutacoes-escada.py",
-      "descricao": "Quebra a escada de compra de proposito, numa copia, e exige que o portao certo reprove citando a regra que a mutacao nomeia — reprovacao pela regra vizinha prova que ALGUMA trava existe, nao que ESTA existe. 17 mutacoes, 16 que reprovam e 1 que tem de passar. A maioria PRODUZ O MUNDO que o banco nao tem: esta ilha esta com 62 publicaveis e ZERO ficha de produto, entao as travas de degrau, url_produto e degrau-3-sem-piso nasceram sobre um banco que nunca as exercita, e as quatro ultimas mutacoes criam o primeiro link de afiliado da ilha dentro da copia antes de quebrar a regra nele. A ultima entrega esse mundo INTACTO e tem de passar, senao a regua seria falso-positivo esperando o dia da monetizacao. Ferramenta de bancada: NUNCA e publicada no site."
-    },
-    {
-      "id": "conferir-reservatorio-no-ar",
-      "arquivo": "ferramentas/conferir-reservatorio-no-ar.py",
-      "descricao": "Confere NO AR o que o bloco do reservatorio (13/09/2026) mudou, e nasceu porque os tres conferidores que ja havia passaram VERDES sem tocar uma linha da mudanca — conferir-no-ar mede as nove URLs no caso-ancora, conferir-kits-no-ar mede a entrada dos kits e conferir-atribuicao-no-ar mede a funcao das escovas, e nenhum deles sabe o que e um reservatorio. Sao 25 afirmacoes em quatro estados da R1: a pagina ancora (os seis tipos oferecidos no seletor, e a frase 'o seletor acima nao oferece' SUMIDA, que era a promessa escrita na propria pagina), W300 + reservatorio, WSMART + reservatorio e um estado NEGATIVO, ERB60 + reservatorio, que TEM de recusar — sem ele as tres primeiras seriam atendidas por uma pagina que respondesse qualquer coisa a qualquer consulta. Duas travas cobram o que a fonte NAO declara: a resposta do W300 nao pode citar codigo de fabricante (a peca dele nao tem) e a recusa do ERB60 nao pode vazar nem o titulo do W300 nem o codigo do WSMART. A regua e escrita literalmente no arquivo, nunca lida de pecas.json: conferencia que deriva do mesmo lugar de onde a pagina deriva erra junto com ela. Com RBM_BANCADA no ambiente ela le cada estado de um arquivo renderizado em vez da rede, que e como ferramentas/mutacoes-reservatorio.py a viu reprovar sem tocar no site. Ferramenta de bancada: NUNCA e publicada."
-    },
-    {
-      "id": "mutacoes-reservatorio",
-      "arquivo": "ferramentas/mutacoes-reservatorio.py",
-      "descricao": "Quebra de proposito o que o bloco do reservatorio entregou e exige que conferir-reservatorio-no-ar.py REPROVE. Resolve o problema especifico de uma regua de AR, que nao pode ser mutada porque o site e um so e fabricar o defeito nele seria publicar defeito para medi-lo: cada mutacao monta a ilha inteira num diretorio temporario, quebra UMA coisa no banco, regera o catalogo da R1, renderiza os quatro estados com render-para-teste.php e roda a MESMA regua em modo bancada, sem uma linha dela mudada. Cinco mutacoes que tem de reprovar (as duas pecas saem do banco, o codigo do WSMART deixa de ser o publicado, o W300 toma emprestado o codigo do irmao, o W300 passa a ser declarado tambem para o ERB60, e o titulo do W300 deixa de ser o da loja) e uma que tem de PASSAR, o mundo intacto — porque regua que reprova o mundo sadio pega qualquer defeito sem medir nenhum. Ferramenta de bancada: NUNCA e publicada."
-    },
-    {
-      "id": "mutacoes-divergencia",
-      "arquivo": "ferramentas/mutacoes-divergencia.py",
-      "descricao": "Quebra de proposito a frase da divergencia da R1 e exige que a secao 16 do teste-r1.php REPROVE. Nove mutacoes: a cauda volta a ser a frase fixa de ontem ('Dois canais do fabricante'), o lado passa a ser lido do NOME do canal em vez do degrau, o titulo do bloco volta a nomear o fabricante em toda divergencia, o numero volta a ser digitado, a origem some das divergencias do banco, a fronteira (fala_pela_marca) some do esquema, e DUAS PRODUZEM O MUNDO — o registro do fabricante ganha um canal de revenda (o lado MISTO, que o banco de hoje nao tem) e o degrau do marketplace passa a falar pela marca. Esta ultima PASSOU na primeira rodada e foi o achado: a regua lia a fronteira do mesmo arquivo que ela conferia, entao as duas metades erravam juntas. O conserto foi escrever a fronteira A MAO dentro do teste e conferir o esquema contra ela. A nona e o mundo intacto, e ela tem de passar. Cada mutacao monta a ilha inteira num diretorio temporario; o site nao e tocado."
-    },
-    {
-      "id": "mutacoes-atribuicao-do-cartao",
-      "arquivo": "ferramentas/mutacoes-atribuicao-do-cartao.py",
-      "descricao": "Devolve de proposito a atribuicao DIGITADA ao cartao da vitrine e a frase da R1, e exige que a secao 17 do teste-r1.php REPROVE. Dez mutacoes: o cartao volta a escrever 'o fabricante declara esta peca', a frase do kit sem avulso volta a dizer 'que o fabricante declara', o cartao troca o publicador pelo ROTULO DO DEGRAU, a nota que justifica a ordem comercial volta a atribuir o criterio ao fabricante, a oracao de atribuicao deixa de ser o comeco da frase publicada (sem isso a secao viraria medicao de codigo morto), a referencia e o snippet erram JUNTOS — que e exatamente por que a secao 3, que compara as duas entre si, nao pegou nada — e o cartao cita a MARCA em vez de quem publicou. Esta ultima foi declarada como 'passa limpa' e REPROVOU: a regua cobra o publicador inteiro, e o parenteses que a coleta transcreveu ja separa 'Electrolux' de 'Electrolux (loja oficial)'. A previsao errada ficou escrita no cabecalho do arquivo. Duas PRODUZEM O MUNDO que o banco nao tem, com quem publica no degrau 4 sem dividir uma letra com o nome da marca, e as duas ultimas sao mundos sadios que tem de passar. Cada mutacao monta a ilha inteira num diretorio temporario; o site nao e tocado."
-    }
-  ],
-  "esquema": {
-    "snippets": {
-      "id": "identificador estavel, kebab-case, nunca numerado",
-      "nome": "nome descritivo do snippet no Code Snippets",
-      "arquivo": "caminho relativo a esta pasta, em snippets/",
-      "escopo": "global | front-end | admin",
-      "ativo": "true se deve ficar ativo no site",
-      "publicar": "true para o Sync aplicar no site",
-      "sha256": "hash do arquivo, conferido pelo Sync apos gravar",
-      "descricao": "o que o snippet faz",
-      "versao": "versao declarada no cabecalho do arquivo. Obrigatoria no item do Sync: e o que o snippet atualizador compara com a versao que esta rodando no site"
-    },
-    "conteudo": {
-      "id": "identificador estavel, kebab-case",
-      "tipo": "artigo | pagina | pagina-programatica | widget",
-      "titulo": "titulo publicado",
-      "slug": "slug da URL",
-      "arquivo": "caminho relativo a esta pasta, em conteudo/",
-      "cluster": "cluster do corpus de buscas a que pertence",
-      "fontes": "lista de fontes tecnicas citadas no texto",
-      "verificado_em": "data da ultima conferencia dos dados",
-      "publicar": "true para o Sync aplicar no site. Ferramenta, pagina-ancora e artigo saem com true; pagina-programatica em escala continua false"
-    },
-    "dados": {
-      "id": "identificador estavel, kebab-case",
-      "arquivo": "caminho relativo a esta pasta, em dados/",
-      "formato": "json | csv | md",
-      "entidade": "modelo-robo | peca | marca | constante | cotacao | esquema",
-      "fonte": "de onde vem cada campo (manual do fabricante, pagina de peca oficial, etc.)",
-      "verificado_em": "data da ultima conferencia",
-      "registros": "quantidade de linhas",
-      "publicar": "false ate o dado virar pagina publicada",
-      "sha256": "hash do arquivo, conferido pelo Sync apos gravar",
-      "descricao": "o que o arquivo contem"
-    },
-    "ferramentas": {
-      "id": "identificador estavel, kebab-case",
-      "arquivo": "caminho relativo a esta pasta, em ferramentas/",
-      "descricao": "o que a ferramenta faz e quando roda. Ferramenta NUNCA e publicada no site."
-    }
+  {
+   "id": "robometria-r1",
+   "nome": "Robometria R1 — Qual peca serve no meu robo aspirador",
+   "arquivo": "snippets/robometria-r1.php",
+   "escopo": "global",
+   "ativo": true,
+   "publicar": true,
+   "sha256": "ba7e0cd9cf215c86545d14ff041f5b803044907d33b309d18701a7d561632235",
+   "descricao": "A R1 NA 1.5.0 — QUEM DECLARA E O PUBLICADOR, E NUNCA O ROTULO DO LADO. O cartao da vitrine escrevia 'o fabricante declara esta peca', DIGITADO, para qualquer degrau, e a frase do kit sem avulso escrevia 'que o fabricante declara' numa oracao que ja abria com 'A Electrolux (loja oficial) nao vende...' — uma frase, duas atribuicoes, em 18 itens no ar; e 52 dos 73 itens do banco vem do degrau 4, cujo publicador e a loja oficial da marca. O degrau 4 tem fala_pela_marca verdadeiro, e e por isso que o item cai do lado do fabricante na divisao da pagina, mas a escada de fontes ja decidia, com todas as letras, que a atribuicao dele e 'pela loja oficial da marca', porque quem transcreveu foi a loja: FALAR PELA MARCA NAO E SER A MARCA, e o rotulo do LADO nunca serve de sujeito para a frase de UM item. As quatro frases de resposta e o cartao passam a citar o publicador, lido do banco. Junto saiu a nota que justifica a ORDEM comercial da lista, que dizia 'decidida pela declaracao do fabricante' logo acima dos botoes de afiliado. NENHUM PORTAO VIA O DEFEITO: a secao 3 do teste-r1.php compara a frase do PHP com a da referencia e as duas erravam IGUAL; a secao 16 media o LADO, que estava certo. A regua nova e a secao 17, e ela mede a oracao de atribuicao — nao a frase inteira, porque a cauda da divergencia fala do fabricante com toda a razao. Para isso a oracao ganhou NOME nos dois lados (robometria_r1_atribuicao_do_item e atribuicao_do_item na referencia): fronteira de teste e marcador escrito, nunca 'a primeira coisa parecida com'. Nenhuma URL mudou e nenhuma peca entrou ou saiu. NOTA DE VERSAO: a constante do snippet ficou em 1.3.0 de 13/09 ate 14/09 enquanto o cabecalho ja dizia 1.4.0, e este manifest nunca registrou a 1.4.0 — o bloco daquele dia moveu o texto e nao a constante. Sem efeito no ar (a constante so decide se a ESTRUTURA da pagina e refeita). A 1.4.0 esta descrita abaixo, e a terceira copia da versao, o cabecalho do arquivo, ganhou portao na secao 16 do teste-casca.php. || A R1 NA 1.4.0 — QUEM DIVERGE DECIDE A FRASE (13/09/2026). A cauda da divergencia era fixa ('Dois canais do fabricante discordam') e o titulo do bloco dizia o mesmo; as duas eram verdadeiras por acidente do banco, porque toda divergencia de peca vinha de canal de fabricante. Com o primeiro registro cujos canais divergentes sao marketplace e varejista, elas passaram a emprestar a autoridade do FABRICANTE a quem so revende. O numero passou a sair CONTADO e o lado a ser LIDO do degrau (fala_pela_marca, no esquema). Nenhuma URL mudou. || A R1 NA 1.3.0 — a frase devolve a FUNCAO a quem a leu (secao 26.3 do ARQUIPELAGO.md). Estava no ar 'A WAP declara a escova lateral \"Escova Direita Para Robo Aspirador W300\"', e a WAP nunca usou a palavra 'lateral': ela batiza a peca pela POSICAO, e a Xiaomi nem isso — publica so 'Brush'. Quem leu a funcao no contraste do catalogo do fabricante foi esta ilha, e a frase emprestava a ele a unica coisa que a Robometria vende, que e a declaracao dele. Onde funcao.declarada_por nao e 'titulo', o verbo 'declara' passa a recair sobre o que o fabricante de fato declarou (o nome da peca e a lista de modelos) e a atribuicao vira ressalva propria, que nomeia quem classificou. Nenhum portao da ilha via o defeito porque todos comparavam a frase do PHP com a da referencia, e as duas diziam a mesma coisa errada: o portao 15 do teste-r1.php recomputa quem e derivada lendo dados/pecas.json e o esquema, sem chamar nenhuma das duas. Cinco pecas do banco mudaram de frase; nenhuma URL mudou e nenhuma peca saiu do banco. || A R1 NA 1.2.0 — a abertura na voz e o titulo que envelhecia calado. A linha-mestra deixou de ser 'Esta ferramenta responde qual filtro... o fabricante declarou...' e passou a falar com quem entrou ('Diga a marca e o modelo do seu robo...'); a contagem e a regra de procedencia desceram para o paragrafo seguinte, marcado com rbm-prova (secao 15.2 do ARQUIPELAGO.md). O catalogo da casca passa a receber o titulo da constante deste snippet, entao o nome da pagina tem um dono so. E garantir_pagina() passou a REESPELHAR o post_title quando o nome muda: sem isso, renomear no repositorio trocava o og:title, o cartao e a trilha, e deixava o H1 e o <title> do ar com o nome antigo — duas fontes para o mesmo campo, que e a cicatriz da Aquametria de 11/09/2026.",
+   "versao": "1.6.0"
+  },
+  {
+   "id": "robometria-a1",
+   "nome": "Robometria A1 — Por que nao existe filtro universal de robo aspirador",
+   "arquivo": "snippets/robometria-a1.php",
+   "escopo": "global",
+   "ativo": true,
+   "publicar": true,
+   "sha256": "6b26f4cacf6a5f57747856eb3cfaa46c9abb9a29423fd5b8f82810c081549316",
+   "versao": "1.2.0",
+   "descricao": "O A1 NA 1.1.0 — o TITULO deixou de afirmar a tese. A tese deste artigo e uma contagem do banco, e por isso a frase de abertura, a description do JSON-LD e a resposta do FAQPage tem DUAS formas, escolhidas pela contagem do dia. O titulo tinha uma so, digitada ('Por que nao existe filtro universal de robo aspirador'), e ia junto para o headline do JSON-LD: no dia em que uma peca do banco atravessar marca, ele seria a unica metade da pagina a continuar afirmando o que deixou de valer. Virou a pergunta, que sobrevive as duas formas e e o que a pessoa digita — e teste-a1.php cobra isso por estrutura. A abertura ganhou segunda pessoa nas duas formas, o par com a ferramenta passou a ser declarado por slug (nao por nome), e garantir_pagina() reespelha o post_title."
+  },
+  {
+   "id": "robometria-r2",
+   "nome": "Robometria R2 — Quantos Pa e quanto tempo o seu robo precisa",
+   "arquivo": "snippets/robometria-r2.php",
+   "escopo": "global",
+   "ativo": true,
+   "publicar": true,
+   "sha256": "11ecc749d68601ada66404423a43fae4762cff7995937a63c05ea1a90ba6b66e",
+   "versao": "1.4.0",
+   "descricao": "A R2 NA 1.1.0 — o nome virou a consulta que a pessoa digita, e ela esta no proprio endereco: 'Quantos Pa o seu robo aspirador precisa'. O nome anterior prometia duas coisas no mesmo folego e nao batia com o og:title, que dizia outra; a segunda metade (o tempo) continua inteira na promessa acima do formulario e na resposta. A abertura passou a falar com quem entrou e a ressalva de que os limiares de Pa sao recomendacao editorial desceu para a camada de prova. Como na R1: o catalogo recebe o titulo da constante, e garantir_pagina() reespelha o post_title."
+  },
+  {
+   "id": "robometria-a2",
+   "nome": "Robometria A2 — Quantos m2 um robo aspirador limpa por carga",
+   "arquivo": "snippets/robometria-a2.php",
+   "escopo": "global",
+   "ativo": true,
+   "publicar": true,
+   "sha256": "7e650a097acfb270b95dd01013d73d63da5f3b4b50f1e3f740c94f6acedbfea8",
+   "versao": "1.2.0",
+   "descricao": "O A2 NA 1.1.0 — a tese passou a falar com quem entrou, e o NOME DA MARCA saiu da abertura. A forma antiga comecava 'Uma marca so declara... e os 5 sao da Electrolux': o numero e a resposta e fica, mas nome de fabricante e procedencia, e a secao 15.2 manda procedencia morar na camada de prova. Ele desceu um paragrafo, para robometria_a2_quem_declara(), dentro da mesma caixa — e continua derivado, como tudo nesta pagina. As duas mutacoes do proprio teste passaram a medir o PARAGRAFO certo em vez da pagina inteira: uma delas estava aprovando porque a frase procurada existia em outra secao do artigo. Par com a ferramenta por slug, e post_title reespelhado."
   }
+ ],
+ "conteudo": [],
+ "dados": [
+  {
+   "id": "corpus-buscas",
+   "arquivo": "dados/corpus-buscas.md",
+   "formato": "md",
+   "entidade": "constante",
+   "fonte": "Bloco 1 da Fundacao: coleta de busca web em 09/09/2026 (paginas oficiais de fabricante, marketplaces, foruns, titulos de video), sem ferramenta de volume de busca disponivel nesta coleta",
+   "verificado_em": "2026-09-09",
+   "registros": 8,
+   "publicar": false,
+   "sha256": "7157ac0094994ee5a7eb3441bbca8585247ef02ff64e749b71b262181097fcca",
+   "descricao": "Levantamento de buscas parametricas do nicho robo aspirador, separado nos eixos compatibilidade (filtro, escova lateral, mop, bateria) e dimensionamento (Pa, cobertura em m2, autonomia por carga, pelo de pet), com procedencia por consulta e lista inicial de modelos/codigos de peca citados para o Bloco 3."
+  },
+  {
+   "id": "especificacao-calculadoras",
+   "arquivo": "dados/especificacao-calculadoras.md",
+   "formato": "md",
+   "entidade": "esquema",
+   "fonte": "Bloco 2 da Fundacao: especificacao das duas ferramentas ancora a partir do corpus do Bloco 1, com coleta de confirmacao por busca web restrita ao dominio em 09/09/2026 (Multilaser, Electrolux, Xiaomi Brasil, Positivo Casa Inteligente, Canaltech, Mundo Conectado)",
+   "verificado_em": "2026-09-09",
+   "registros": 2,
+   "publicar": false,
+   "sha256": "b8c6b91a024fda51c443638c3ea2c6b3407a7a73035f912e6eaaaa9f861358ed",
+   "descricao": "Especificacao das ferramentas R1 (localizador de peca compativel por modelo) e R2 (dimensionador de succao e autonomia por area, piso e pelo): entradas, saidas, os tres selos de certeza da compatibilidade, a regra de divergencia pelo conjunto mais estreito, a formula propria de ciclos e tempo real ate terminar, a classificacao de SERP de cada consulta-alvo (secao 14.9) e a lista de campos que o Bloco 3 tem que entregar."
+  },
+  {
+   "id": "constantes",
+   "arquivo": "dados/constantes.json",
+   "formato": "json",
+   "entidade": "constante",
+   "fonte": "Paginas oficiais de fabricante (Multilaser/Multi, Electrolux, Xiaomi Brasil, Positivo Casa Inteligente), manual do usuario Electrolux ERB10/ERB11/ERB20, e veiculos editoriais brasileiros (Canaltech, Mundo Conectado, Guia de Compras Brasil) para as recomendacoes de faixa de Pa, que NAO sao especificacao de fabricante Bloco 3c (09/09/2026): expansao do banco por busca web restrita aos dominios oficiais de Electrolux (loja, content, cuida e compraparceiros), Positivo Casa Inteligente/meupositivo e Xiaomi (mi.com). A leitura direta continua devolvendo EGRESS_BLOCKED e segue como coleta em aberto.",
+   "verificado_em": "2026-09-09",
+   "registros": 22,
+   "publicar": false,
+   "sha256": "918928d22c8513ae8a75cbbca0a6478965711e2e74e9883d72952b2ea9ae81c1",
+   "descricao": "22 constantes das ferramentas R1 e R2, cada uma com classe de fonte, URL, canal de coleta e data. A segunda leva do Bloco 3c reescreveu a taxa de cobertura m2/min: ela continua pendente e PROIBIDA em formula publicada, e agora por um motivo medido e mais forte — Xiaomi, WAP, Multi e Positivo foram varridas e NENHUMA declara area em m2 em canal nenhum. A lacuna deixou de ser de esforco e virou fato de mercado, o que transforma a recusa da R2 em conteudo publicavel."
+  },
+  {
+   "id": "esquema-banco",
+   "arquivo": "dados/esquema-banco.json",
+   "formato": "json",
+   "entidade": "esquema",
+   "fonte": "Bloco 3 da Fundacao: contrato do banco derivado da secao 4 da especificacao (Bloco 2) e das secoes 6, 7 e 10 do ARQUIPELAGO.md Bloco 3c (09/09/2026): expansao do banco por busca web restrita aos dominios oficiais de Electrolux (loja, content, cuida e compraparceiros), Positivo Casa Inteligente/meupositivo e Xiaomi (mi.com). A leitura direta continua devolvendo EGRESS_BLOCKED e segue como coleta em aberto.",
+   "verificado_em": "2026-09-09",
+   "registros": 4,
+   "publicar": false,
+   "sha256": "6d5a3130f9c353327caf19f7074771f0143189026d6e6ac8c60564c6161bd5bc",
+   "descricao": "Contrato do banco da Robometria, versao 3 do esquema (elevada na segunda leva do Bloco 3c). A versao 3 acrescenta divergencias[] e resolucao tambem em MODELO_ROBO — ate entao so PECA divergia, e o PRA500 declara 1600 Pa na ficha e 2000 Pa no texto de venda da MESMA pagina — e escreve a regra da FAIXA DECLARADA: faixa e tolerancia resolvem para o lado em que errar doi menos, nunca para o meio, com a faixa inteira preservada em declarado_como. Pa e autonomia resolvem para baixo; tempo de recarga resolve para cima."
+  },
+  {
+   "id": "marcas",
+   "arquivo": "dados/marcas.json",
+   "formato": "json",
+   "entidade": "marca",
+   "fonte": "Bloco 3 da Fundacao: modelagem a partir da secao 4 da especificacao (Bloco 2), mais coleta de confirmacao por busca web restrita ao dominio do fabricante em 09/09/2026 (multilaser.com.br, multilaserempresas.com.br, suporte.multilaser.com.br, lamina.multilaser.com.br). A leitura direta das paginas devolveu EGRESS_BLOCKED nesta execucao e continua sendo coleta em aberto — o canal esta declarado campo a campo. Bloco 3c (09/09/2026): expansao do banco por busca web restrita aos dominios oficiais de Electrolux (loja, content, cuida e compraparceiros), Positivo Casa Inteligente/meupositivo e Xiaomi (mi.com). A leitura direta continua devolvendo EGRESS_BLOCKED e segue como coleta em aberto.",
+   "verificado_em": "2026-09-09",
+   "registros": 5,
+   "publicar": false,
+   "sha256": "a391fa97a7d78c3df89d9f605d6d7b2b7a6a92218e67ad0c17b3ee006c7cb367",
+   "descricao": "Cinco marcas com site oficial, canal de pecas e sameAs[] para o JSON-LD Organization: Multi (ex-Multilaser), Electrolux, Xiaomi, Positivo Casa Inteligente e WAP. A WAP entrou na segunda leva do Bloco 3c e e a unica da coleta que publica manual em PDF por modelo em endereco proprio e estavel — e portanto a candidata a primeira fonte de NIVEL 2 desta ilha no dia em que o egresso abrir."
+  },
+  {
+   "id": "publicadores",
+   "arquivo": "dados/publicadores.json",
+   "formato": "json",
+   "entidade": "publicador",
+   "fonte": "Decisao de lingua da ilha, escrita em 14/09/2026: o artigo que vem antes do nome de quem publicou era digitado dentro das frases e estava certo por acidente do banco. Nenhum artigo foi colhido de fonte externa, e por isso cada registro carrega o motivo da escolha.",
+   "verificado_em": "2026-09-14",
+   "registros": 25,
+   "publicar": false,
+   "sha256": "9f221ec20e044ac7358bc1d42e5e2c6f2b0c541adf4730cba57a2e4a15c3ff65",
+   "descricao": "Gramatica de quem publica: para cada nome que o banco escreve (fontes[].publicador de pecas.json e modelos-robo.json, registros[].nome de marcas.json e os limiares da R2), o artigo declarado. O que se deriva do artigo — maiuscula de comeco de frase, contracao com 'de', pronome possessivo e numero do verbo — mora em artigos_de_publicador, no esquema. publicar=false: a gramatica chega ao site dentro dos fatos gerados (r1-respostas, a1-fatos, r2-respostas), nunca como arquivo proprio."
+  },
+  {
+   "id": "modelos-robo",
+   "arquivo": "dados/modelos-robo.json",
+   "formato": "json",
+   "entidade": "modelo-robo",
+   "fonte": "Bloco 3 da Fundacao: modelagem a partir da secao 4 da especificacao (Bloco 2), mais coleta de confirmacao por busca web restrita ao dominio do fabricante em 09/09/2026 (multilaser.com.br, multilaserempresas.com.br, suporte.multilaser.com.br, lamina.multilaser.com.br). A leitura direta das paginas devolveu EGRESS_BLOCKED nesta execucao e continua sendo coleta em aberto — o canal esta declarado campo a campo. Bloco 3c (09/09/2026): expansao do banco por busca web restrita aos dominios oficiais de Electrolux (loja, content, cuida e compraparceiros), Positivo Casa Inteligente/meupositivo e Xiaomi (mi.com). A leitura direta continua devolvendo EGRESS_BLOCKED e segue como coleta em aberto.",
+   "verificado_em": "2026-09-09",
+   "registros": 33,
+   "publicar": false,
+   "sha256": "800d48cb9d2c02d9a0cdbfc9d3ed19411846b94bf1e0988b5064e37212d2b616",
+   "descricao": "33 modelos: 28 publicaveis, 1 nao publicavel (HO401, categoria a confirmar) e 4 excluidos por NAO serem robo. A segunda leva do Bloco 3c acrescentou seis Xiaomi (S10, E10, S40, S40C, H40 e Mop 2) e tres WAP (W400, W1000, W310), e preencheu a ficha de PRA500 e PRA2000. O campo pa_declarado saiu de 2 para 11 modelos publicaveis, em 3 marcas, cobrindo de 1.400 a 10.000 Pa — a R2 deixa de sair com lista vazia. Traz a varredura cobertura_de_faixa_r2 exigida pela secao 14.3: cinco das seis faixas passam no portao de 3 itens, acima de 6.000 Pa a faixa esta DESCOBERTA, e toda faixa acima de 3.000 Pa e 100% Xiaomi."
+  },
+  {
+   "id": "pecas",
+   "arquivo": "dados/pecas.json",
+   "formato": "json",
+   "entidade": "peca",
+   "fonte": "Bloco 3 da Fundacao: modelagem a partir da secao 4 da especificacao (Bloco 2), mais coleta de confirmacao por busca web restrita ao dominio do fabricante em 09/09/2026 (multilaser.com.br, multilaserempresas.com.br, suporte.multilaser.com.br, lamina.multilaser.com.br). A leitura direta das paginas devolveu EGRESS_BLOCKED nesta execucao e continua sendo coleta em aberto — o canal esta declarado campo a campo. Bloco 3c (09/09/2026): expansao do banco por busca web restrita aos dominios oficiais de Electrolux (loja, content, cuida e compraparceiros), Positivo Casa Inteligente/meupositivo e Xiaomi (mi.com). A leitura direta continua devolvendo EGRESS_BLOCKED e segue como coleta em aberto.",
+   "verificado_em": "2026-09-09",
+   "registros": 18,
+   "publicar": false,
+   "sha256": "10bafcd377db4ab543a90386628612f333a233ef582f36ed39e8793806effc93",
+   "descricao": "18 pecas com 33 pares peca x modelo, TODOS declarados pelo fabricante e nenhum inferido. O Bloco 3c acrescentou 10: o Kit Performance KPCEL01 (que finalmente da dono a vida util de 6 meses do manual da Electrolux), o filtro HEPA com espuma do ERB44/60/61/62, o kit do ERB60/61/62, a escova rotativa central do ERB60/61/62/80, os kits do ERB44 e do ERB30, as tres pecas da Positivo para PRA800/PRA2000 e os acessorios do Xiaomi S20. Duas divergencias seguem resolvidas pelo conjunto mais estreito, com as duas declaracoes publicadas."
+  },
+  {
+   "id": "cobertura-r1",
+   "arquivo": "dados/cobertura-r1.json",
+   "formato": "json",
+   "entidade": "medicao",
+   "fonte": "Terceira leva do Bloco 3c da Fundacao (10/09/2026): medicao propria sobre o banco ja commitado, gerada por ferramentas/cobertura-r1.py. Nao houve coleta nesta execucao — a busca web devolveu 'unavailable' e o egresso HTTP devolveu EGRESS_BLOCKED em wap.ind.br, positivocasainteligente.com.br e roborock.com, entao nenhum dado tecnico novo entrou no banco. Nenhum numero deste arquivo vem de fora do repositorio.",
+   "verificado_em": "2026-09-10",
+   "registros": 28,
+   "publicar": false,
+   "sha256": "4b8944853b1250eb7ff4ee073ffcd99ba3769080e1da070f6979ff01a25867a3",
+   "descricao": "Varredura da entrada da R1 de ponta a ponta (secao 14.3 do ARQUIPELAGO.md), o equivalente para a R1 do que cobertura_de_faixa_r2 e para a R2. Mede as 168 celulas (28 modelos publicaveis x 6 tipos consultaveis) em tres estados: declarada, kit_sem_composicao e vazia. Resultado: a R1 responde em 15 dos 28 modelos e sai VAZIA em 12; 116 das 168 celulas nao tem o que responder; o tipo 'reservatorio' tem zero pecas no banco inteiro. O achado que so aparece no cruzamento com a R2: apenas 3 dos 28 modelos sao atendidos pelas DUAS ferramentas — Electrolux e Multi publicam peca e nao publicam Pa, Xiaomi e WAP publicam Pa e nao publicam peca com codigo. A cobertura das duas ferramentas da ilha e quase disjunta, e isso parte o funil na emenda entre elas."
+  },
+  {
+   "id": "tabela-exemplos-r1",
+   "arquivo": "dados/tabela-exemplos-r1.md",
+   "formato": "md",
+   "entidade": "medicao",
+   "fonte": "Terceira leva do Bloco 3c da Fundacao (10/09/2026): medicao propria sobre o banco ja commitado, gerada por ferramentas/cobertura-r1.py. Nao houve coleta nesta execucao — a busca web devolveu 'unavailable' e o egresso HTTP devolveu EGRESS_BLOCKED em wap.ind.br, positivocasainteligente.com.br e roborock.com, entao nenhum dado tecnico novo entrou no banco. Nenhum numero deste arquivo vem de fora do repositorio.",
+   "verificado_em": "2026-09-10",
+   "registros": 45,
+   "publicar": false,
+   "sha256": "e374323c8b6bf7dc659954bc76f8ef12b21dadac8325232795cdaacaa3eaf1ac",
+   "descricao": "Tabela de exemplos pre-renderizada da R1, exigida pela secao 5 do ARQUIPELAGO.md e pela secao 1.7 da especificacao — 45 linhas, contra um minimo de 8. GERADA por ferramentas/cobertura-r1.py --gravar e nunca editada a mao: cada linha carrega o codigo, o selo e a data que o banco tem, entao ela nao pode discordar do banco em silencio. A ordem alterna marcas de proposito, porque em ordem alfabetica as nove primeiras linhas seriam todas Electrolux e a promessa desta ilha e comparacao cross-marca. publicar=false porque ela nao e pagina: e a fonte que o snippet da R1 serve em HTML quando o Bloco 4 for escrito."
+  },
+  {
+   "id": "r1-respostas",
+   "arquivo": "dados/r1-respostas.json",
+   "formato": "json",
+   "entidade": "medicao",
+   "fonte": "Bloco 4 da Fundacao (10/09/2026): derivado por ferramentas/gerar-r1.py da implementacao de referencia ferramentas/cobertura-r1.py, sobre o banco ja commitado. Nao houve coleta nesta execucao — o egresso HTTP devolveu falha em wap.ind.br, mais.conteudo.wap.ind.br, mi.com e xiaomi.com.br. Nenhum numero deste arquivo vem de fora do repositorio.",
+   "verificado_em": "2026-09-10",
+   "registros": 28,
+   "publicar": true,
+   "sha256": "99db75d72af8d8d1c777c53c1805e3ef6ade3d1d0b0ea8218752d98f25784f05",
+   "descricao": "O COMBUSTIVEL DA FERRAMENTA R1 NO SITE, e o primeiro item de dados desta ilha com publicar=true: o Sync o grava na option robometria_dados_r1-respostas e o snippet robometria-r1.php monta a pagina a partir dele. Para cada um dos 28 modelos publicaveis, os FATOS de cada peca que o fabricante declarou compativel — tipo respondido, codigo, publicador, conjunto declarado, endereco, data, se vem dentro de kit, se existe a peca avulsa, se ha divergencia registrada e se ainda espera link de afiliado. Traz tambem o seletor gerado da varredura (os 5 tipos que o banco consegue responder, sem 'reservatorio', que tem zero pecas), o modelo-ancora escolhido por regra, as 45 linhas da tabela de exemplos na ordem cross-marca da referencia, as duas divergencias com as duas declaracoes e as duas datas, a lista dos 12 modelos de entrada vazia e a tabela de rotulos da escada de fontes. SEM PROSA de proposito: a frase que o visitante le e montada pelo snippet, em portugues acentuado, e conferida contra a referencia por ferramentas/teste-r1.php."
+  },
+  {
+   "id": "r1-referencia",
+   "arquivo": "dados/r1-referencia.json",
+   "formato": "json",
+   "entidade": "medicao",
+   "fonte": "Bloco 4 da Fundacao (10/09/2026): saida direta de ferramentas/cobertura-r1.py, gravada por ferramentas/gerar-r1.py.",
+   "verificado_em": "2026-09-10",
+   "registros": 28,
+   "publicar": false,
+   "sha256": "2a64980566870075a602c111a94a55b112329b2d7df3065cf734990a0b4a301c",
+   "descricao": "GABARITO da R1: a resposta de cada modelo ja em frase, escrita pela implementacao de REFERENCIA. Nunca vai para o site (publicar=false) — existe para ferramentas/teste-r1.php provar, frase a frase e ignorando acento, que o PHP do snippet diz a MESMA coisa que a referencia, que e o que a especificacao exige. Sao 188 frases comparadas a cada rodada do teste: se alguem mexer no molde de um lado so, o teste reprova em vez de o site publicar duas versoes da mesma afirmacao."
+  },
+  {
+   "id": "a1-fatos",
+   "arquivo": "dados/a1-fatos.json",
+   "formato": "json",
+   "entidade": "medicao",
+   "fonte": "Bloco 5 da Fundacao (10/09/2026): derivado por ferramentas/gerar-a1.py do banco ja commitado, importando ferramentas/cobertura-r1.py para a varredura por tipo nao ser uma contagem paralela a da R1. Nao houve coleta nesta execucao; nenhum numero deste arquivo vem de fora do repositorio. CORRIGIDO em 10/09/2026, na execucao das 23h18Z: as tres respostas do FAQPage saiam em ASCII e iam INTEIRAS para o JSON-LD do snippet, entao o site publicava 'Nao. Nas 16 pecas de reposicao...' justamente no canal que a secao 5 do ARQUIPELAGO.md diz valer tanto quanto ranquear. O banco desta ilha e ASCII porque ele CITA fontes; o que a ilha ESCREVE sai acentuado (fase 4b do playbook). Achado ao escrever o A2, que nasceu com a trava que mede isso.",
+   "verificado_em": "2026-09-10",
+   "registros": 16,
+   "publicar": true,
+   "sha256": "54e296f4e39cc0785973556dcb5c126e64d767f6078fa522e3b8904f13b394b2",
+   "descricao": "O COMBUSTIVEL DO ARTIGO-ANCORA A1: o Sync o grava na option robometria_dados_a1-fatos e o snippet robometria-a1.php escreve as frases a partir dele. Tres medicoes separadas de proposito. (1) ALCANCE: quantos codigos de modelo cada uma das 16 pecas publicaveis tem declarados, com os codigos como a fonte os escreve. (2) TRAVESSIA DE MARCA: quantas pecas sao declaradas para modelos de mais de uma marca — hoje zero, e e essa a tese do artigo. (3) DISPERSAO DENTRO DA MARCA: quantos conjuntos DISTINTOS de modelos as pecas de cada fabricante formam; quando o numero iguala o de pecas, nenhuma repete a lista de outra. Traz ainda a cobertura por tipo vinda da varredura da R1, a vitrine de 4 itens (ordenada por alcance declarado, com kit de composicao nao transcrita FORA, porque oferecer a compra de um produto cuja composicao a pagina diz nao saber e o defeito da secao 7) e as tres perguntas do FAQPage, derivadas dos mesmos numeros."
+  },
+  {
+   "id": "cobertura-r2",
+   "arquivo": "dados/cobertura-r2.json",
+   "formato": "json",
+   "entidade": "medicao",
+   "fonte": "Bloco 4 da Fundacao (10/09/2026): varredura da entrada da R2 de ponta a ponta, exigida pela secao 14.3 do ARQUIPELAGO.md, gerada por ferramentas/cobertura-r2.py sobre o banco ja commitado. Nao houve coleta nesta execucao — o egresso HTTP continua fechado para os dominios de fabricante — e nenhum numero deste arquivo vem de fora do repositorio.",
+   "verificado_em": "2026-09-10",
+   "registros": 9,
+   "publicar": false,
+   "sha256": "49082a33737613bbbe799b59511f5ea01dbd400a0037d25c9f78ce5a18715c41"
+  },
+  {
+   "id": "tabela-exemplos-r2",
+   "arquivo": "dados/tabela-exemplos-r2.md",
+   "formato": "md",
+   "entidade": "medicao",
+   "fonte": "Bloco 4 da Fundacao (10/09/2026): gerada por ferramentas/cobertura-r2.py do banco commitado. Tabela GERADA, nunca digitada.",
+   "verificado_em": "2026-09-10",
+   "registros": 63,
+   "publicar": false,
+   "sha256": "1d6008a2c826e2821b7e1015ba332435933d0f1b538edea610ac15ddd2e872b7"
+  },
+  {
+   "id": "r2-respostas",
+   "arquivo": "dados/r2-respostas.json",
+   "formato": "json",
+   "entidade": "medicao",
+   "fonte": "Bloco 4 da Fundacao (10/09/2026): combustivel da R2 no site, derivado por ferramentas/gerar-r2.py da implementacao de referencia ferramentas/cobertura-r2.py. Sem prosa: a frase que o visitante le e montada pelo snippet e conferida contra a referencia por ferramentas/teste-r2.php.",
+   "verificado_em": "2026-09-10",
+   "registros": 9,
+   "publicar": true,
+   "sha256": "b7a7216b2ae1850aa09e5943fbddccbfb033288090caa1d0ea7fafbad4fb19e4"
+  },
+  {
+   "id": "r2-referencia",
+   "arquivo": "dados/r2-referencia.json",
+   "formato": "json",
+   "entidade": "medicao",
+   "fonte": "Bloco 4 da Fundacao (10/09/2026): GABARITO da R2 — a grade de respostas ja em frase, escrita pela implementacao de referencia. Nao vai para o site; existe para o teste de bancada comparar as duas implementacoes caso a caso.",
+   "verificado_em": "2026-09-10",
+   "registros": 9,
+   "publicar": false,
+   "sha256": "585a8a496e1a4a2f22c3cd8f9e62f49c7943409a1c643cf5772ae4316612775e"
+  },
+  {
+   "id": "a2-fatos",
+   "arquivo": "dados/a2-fatos.json",
+   "formato": "json",
+   "entidade": "medicao",
+   "fonte": "Bloco 5 da Fundacao (10/09/2026, execucao das 23h18Z): derivado por ferramentas/gerar-a2.py do banco ja commitado, lendo o banco pela mesma implementacao de referencia que a R2 usa (ferramentas/cobertura-r2.py) para as duas paginas nunca publicarem contagens diferentes da mesma coisa. Nao houve coleta nesta execucao; nenhum numero deste arquivo vem de fora do repositorio. O campo `serp` registra que a SERP da consulta-alvo NAO foi verificada nesta execucao.",
+   "verificado_em": "2026-09-10",
+   "registros": 5,
+   "publicar": true,
+   "sha256": "46536a0135a06f7fd13e93b58bd1dea385629f1fa0f908b6317701cf50a50875"
+  },
+  {
+   "id": "casca-fatos",
+   "arquivo": "dados/casca-fatos.json",
+   "formato": "json",
+   "entidade": "medicao",
+   "fonte": "Bloco de dados da Fundacao (11/09/2026): derivado por ferramentas/gerar-casca-fatos.py de pecas.json, modelos-robo.json e constantes.json. E a coluna 'Temos hoje' da escada de fontes na pagina de metodologia — afirmacao da pagina sobre o proprio banco, que ate esta data estava DIGITADA no snippet e o contradizia.",
+   "publicar": true,
+   "verificado_em": "2026-09-11",
+   "registros": 7,
+   "descricao": "Fatos que a casca publica sobre o proprio banco, derivados por ferramentas/gerar-casca-fatos.py. Desde 11/09/2026 traz duas coisas: a coluna 'Temos hoje' da escada de fontes, e a MEDICAO da secao 4 da metodologia — os onze numeros que a ilha afirma sobre si mesma, com a regua de cada um escrita no proprio arquivo, em reguas_da_medicao. Contagem so de registro publicavel: a coluna fala do que a ilha PUBLICA, nao do que ela guarda, e e por isso que 'pares peca x modelo' conta 32 (as duas pontas publicaveis) onde o cabecalho de pecas.json conta 33 (tudo que o arquivo declara). O gerador RECUSA gravar quando cobertura-r1.json nao bate com o banco de hoje, para a ilha nunca publicar medicao de ontem com data de hoje.",
+   "sha256": "83f031838e2cec9c11745862e73c413f3ca142f888dc356bb78dd8bf13ad761d"
+  },
+  {
+   "id": "acentuacao-restaurada",
+   "arquivo": "dados/acentuacao-restaurada.json",
+   "formato": "json",
+   "entidade": "medicao",
+   "fonte": "Bloco de dados da Fundacao (11/09/2026): saida de ferramentas/acentuar-banco.py. Nenhuma coleta; nenhum numero vem de fora do repositorio.",
+   "verificado_em": "2026-09-11",
+   "registros": 121,
+   "publicar": false,
+   "descricao": "LIVRO-RAZAO da restauracao de acentos: as 121 strings do banco que a ilha PUBLICA e que estavam em ASCII, com arquivo, registro, campo, antes e depois. Serve para duas coisas. (1) PROVA que a operacao mexeu so em diacritico: reduzida a sem-diacritico, a coluna 'depois' e byte a byte igual a coluna 'antes', e ferramentas/teste-acentuacao.php confere isso linha a linha com uma regua propria. (2) E a LISTA DE CONFERENCIA de quem reler os manuais quando a rede abrir, porque diacritico restaurado pela ilha nao e diacritico lido na fonte — se alguma fonte de fato escrever sem acento, a linha correspondente volta atras e vira excecao declarada. Nao e publicado: e conferencia de bancada, o site nao precisa dele.",
+   "sha256": "a856444a11cd09c5c4f05ece9b29f5a317f78c154ee054ab1ee9e33bf37bebf7"
+  }
+ ],
+ "ferramentas": [
+  {
+   "id": "validar-banco",
+   "arquivo": "ferramentas/validar-banco.py",
+   "descricao": "Verifica se marcas.json, modelos-robo.json e pecas.json cumprem esquema-banco.json. Roda sem rede e sem dependencia (python3 ferramentas/validar-banco.py) e sai com codigo 1 quando qualquer invariante e violada: id duplicado, numero sem fonte, null sem motivo, registro publicavel com categoria que nao e robo, divergencia sem resolucao escrita, peca apontando para modelo inexistente ou excluido, e contagem de cabecalho que nao bate com o arquivo. O Bloco 3c acrescentou cinco invariantes da versao 2 do esquema: kit sem composicao, kit dentro de kit, tipo de composicao fora do vocabulario, item de composicao sem tipo e sem descricao, composicao em peca que nao e kit, e codigo_fabricante null sem motivo_sem_codigo. As cinco foram testadas quebrando o banco de proposito numa copia e conferindo que reprovam. Ferramenta de bancada: NUNCA e publicada no site. A segunda leva do Bloco 3c acrescentou tres invariantes da versao 3: modelo sem divergencias[], modelo com divergencias e sem resolucao escrita, e item de divergencia que nao nomeia um campo existente ou nao traz a transcricao do fabricante; mais a conferencia das contagens do cabecalho de modelos-robo.json (publicavel, com_pa_declarado, com_par_minutos_m2_declarado, marcas_que_declaram_pa e esperando_link_de_afiliado), para que nenhuma execucao futura acredite num numero de cobertura que o arquivo nao sustenta. Todas foram testadas quebrando o banco de proposito numa copia e conferindo que reprovam."
+  },
+  {
+   "id": "cobertura-r1",
+   "arquivo": "ferramentas/cobertura-r1.py",
+   "descricao": "Implementacao de REFERENCIA da R1 e varredura da entrada dela de ponta a ponta. Roda sem rede e sem dependencia: 'python3 ferramentas/cobertura-r1.py' imprime o relatorio, '--gravar' escreve dados/cobertura-r1.json e dados/tabela-exemplos-r1.md. Implementa num lugar so as regras que ate agora existiam apenas em prosa na especificacao: os tres selos da secao 1.3, o conjunto MAIS ESTREITO da secao 1.4, o aviso de variante de hardware, a recusa explicita do selo nao_declarada, e o kit que responde por uma peca que o fabricante nao vende avulsa. Existe para que o Bloco 4 nao escreva essas regras pela primeira vez direto em PHP, dentro de um snippet que so da para testar com o site no ar: a saida do PHP tem que BATER com a daqui. Ja rendeu: rodar a regra contra o banco de verdade pegou duas frases que iriam quebradas para a tela — 'vem dentro do sem codigo publicado', quando o fabricante nao publica codigo de peca, e 'nao vende escova lateral avulso', sem concordancia de genero. Ferramenta de bancada: NUNCA e publicada no site."
+  },
+  {
+   "id": "gerar-favicon",
+   "arquivo": "ferramentas/gerar-favicon.php",
+   "descricao": "Gera o icone do site a partir da MESMA geometria do logotipo (anel aberto de raio 15 com corte de 50 graus a direita, e a peca de lingueta entrando no corte) e grava as tres constantes dentro de snippets/robometria-casca.php, entre os marcadores FAVICON-INICIO e FAVICON-FIM. Existe porque desenho mantido em dois lugares diverge em silencio, e porque o apple-touch-icon PRECISA ser PNG (o iOS nao aceita SVG nesse rel) e a regra do projeto proibe subir arquivo para a biblioteca de midia — entao o PNG viaja como data URI base64. O SVG da aba tem canto arredondado; o PNG do iOS nao tem, porque o iOS aplica a propria mascara e canto arredondado por baixo dela vira borda dupla. Ferramenta de bancada: NUNCA e publicada no site."
+  },
+  {
+   "id": "render-para-teste",
+   "arquivo": "ferramentas/render-para-teste.php",
+   "descricao": "Monta uma pagina do site fora do WordPress, para MEDIR o HTML servido sem depender do site no ar. Imita de proposito o que muda a medicao: add_action com prioridade de verdade em wp_head/wp_footer, o escape de '&' que os filtros do the_content aplicam (foi ele que matou cinco calculadoras da Aquametria), e remove_action casando gancho, funcao e prioridade. Ganhou na casca 1.2.0: robometria_teste_carregar_options(), que era codigo solto no caminho de linha de comando e virou funcao quando o teste da casca passou a precisar dela; os atalhos de pagina atual (is_front_page, get_queried_object_id, get_post_meta do _robometria_id e get_post_field), que fazem a bancada IMITAR o caminho real pelo qual a casca escolhe a description da pagina — em vez de a casca ganhar um filtro que so o teste usa, que seria regua de teste dentro do codigo medido; e robometria_teste_slug_do_alvo(), que deriva o slug de cada shortcode da definicao de paginas da casca e das constantes de slug dos snippets, sem digitar nada duas vezes."
+  },
+  {
+   "id": "teste-casca",
+   "arquivo": "ferramentas/teste-casca.php",
+   "descricao": "A secao 8 do ARQUIPELAGO.md executada onde da para executa-la nesta ilha: 133 verificacoes medidas, sem site e sem rede, saindo com codigo 1 quando qualquer uma falha. Confere, entre outras: nenhum <script>/<style> dentro do retorno dos cinco shortcodes; ZERO &#038; dentro dos blocos <script> (contando so os blocos, nunca a pagina inteira, que e o teste ERRADO); o botao do menu com aria-expanded e um aria-controls cujo id existe mesmo, e os tres links como <a href> reais dentro de <nav>; o icone do WordPress removido e o proprio servido; JSON-LD que decodifica e traz Organization + WebSite em toda pagina, e nenhum sameAs inventado; corpo que nao comeca por metadado YAML; um unico rodape; nenhuma cor fora da paleta e nenhum gradiente no CSS; a varredura ausente do corpo, porque e cor de sinal de um uso por tela; cada numero da tela conferido contra o banco COMMITADO, com a conta feita aqui e nao lida da casca; o sitemap deixando de ser 404 sem que endereco inexistente passe a responder 200; e todo apelido apontando para pagina, ferramenta ou artigo que existe. ENTROU NA CASCA 1.2.0 (11/09/2026), e quase tudo veio de defeito medido: a CABECA DE PAGINA (uma description por pagina, com 110 a 160 caracteres, todas diferentes, sem digito nenhum, e o mapa cobrado nas DUAS DIRECOES — pagina publicada sem cabeca reprova e cabeca sobrando tambem, porque cobrar um lado so foi o defeito do Clube do Mosaico em 11/09); o NEGATIVO dela, que exige que pagina desconhecida NAO ganhe description generica; a VOZ (titulo da raiz e primeiro paragrafo da home sem termo da lista do VOZ.md, medidos por ESTRUTURA e nunca na pagina inteira, o seletor servido no HTML e os atalhos contados contra os tipos do banco); os BLOCOS DE RECUSA declarados no markup, poucos, contados, e com todo item ABRINDO com negacao, mais a proibicao do termo de escassez em todo o resto do corpo por RADICAL e nao por palavra inteira ('mais vendid', nao 'mais vendido' — foi assim que uma mutacao passou); PAGINA FINA, corpo abaixo de 1.500 caracteres reprova, e foi ele que pegou a pagina de divulgacao de afiliados com 1.325; e a folha do formulario existindo em UM arquivo so. Carrega as options do manifest como o Sync as grava, porque sem elas a home serve o aviso de 'seletor fora do ar', que e uma pagina valida — seria a terceira vez que esta ilha mede uma pagina pela metade sem ver."
+  },
+  {
+   "id": "gerar-r1",
+   "arquivo": "ferramentas/gerar-r1.py",
+   "descricao": "Deriva o combustivel da R1 da implementacao de referencia: 'python3 ferramentas/gerar-r1.py --gravar' escreve dados/r1-respostas.json (fatos, publicado) e dados/r1-referencia.json (gabarito, nao publicado). Importa ferramentas/cobertura-r1.py como modulo, entao as regras da R1 continuam tendo UM dono. Carrega tambem a tabela de rotulos da escada de fontes (como cada origem do banco e nomeada na tela e que ressalva ela obriga) e para com erro se alguma origem do banco nao tiver rotulo declarado — origem sem rotulo faria a tela imprimir o apelido de campo cru no meio de uma frase publicada, em silencio. Ferramenta de bancada: NUNCA e publicada no site."
+  },
+  {
+   "id": "teste-r1",
+   "arquivo": "ferramentas/teste-r1.php",
+   "descricao": "Verificacao MEDIDA da ferramenta R1, sem site e sem rede: 'php ferramentas/teste-r1.php .' — 70 medicoes, e o teste sai com codigo 1 quando qualquer uma falha. O que ele mede e o teste-casca.php nao mede: cada uma das 188 frases publicadas contra a frase da implementacao de referencia, modelo a modelo, ignorando acento e aplicando a mesma tabela de rotulos de origem. Mede tambem, em cinco estados da pagina (sem consulta, modelo que responde, modelo + tipo, modelo de entrada vazia e modelo inexistente): nenhum <script> nem <style> no retorno do shortcode; zero &#038; DENTRO dos blocos <script>; a resposta-ancora e as 45 linhas da tabela no HTML servido; a recusa explicita onde nao ha declaracao; o seletor sem o tipo que o banco nao responde; declaracao de terceiro nunca antes da do fabricante; um cartao de vitrine por peca, com espaco reservado onde nao ha imagem e sem botao de loja fingido; JSON-LD que decodifica, com toda resposta do FAQPage conferida contra o que a pagina serve; noindex e canonica so no endereco com consulta; paleta fechada, nenhum gradiente e nenhuma sombra colorida; e os numeros da tela contra o banco commitado. Ferramenta de bancada: NUNCA e publicada no site."
+  },
+  {
+   "id": "gerar-a1",
+   "arquivo": "ferramentas/gerar-a1.py",
+   "descricao": "Deriva os fatos do artigo-ancora do banco commitado: 'python3 ferramentas/gerar-a1.py --gravar' escreve dados/a1-fatos.json. Importa ferramentas/cobertura-r1.py como modulo, entao a varredura por tipo do artigo e a mesma da R1 e as duas paginas nunca publicam contagens diferentes da mesma coisa. Existe porque a tese do artigo E um numero, e numero de tese digitado dentro do HTML passa a mentir em silencio no dia em que o banco cresce. Ferramenta de bancada: NUNCA e publicada no site."
+  },
+  {
+   "id": "teste-a1",
+   "arquivo": "ferramentas/teste-a1.php",
+   "descricao": "53 medicoes sobre o artigo-ancora, sem site e sem rede. O que ele tem que os outros dois testes desta ilha nao tem: RECALCULA a tese em PHP, direto de dados/pecas.json e dados/modelos-robo.json, sem olhar para o que o gerador em Python escreveu — duas contas independentes que batem sao medicao, uma conta sozinha e o que o autor achou. Mede tambem a malha da secao 9 nos dois sentidos (duas listagens, tres irmas, e a R1 apontando de volta), a ordem da secao 7 na pagina e dentro de cada cartao, o aviso de comissao no bloco de compra, nofollow e noopener em todo link externo, o JSON-LD Article + FAQPage com as respostas conferidas contra os fatos, e a trava que impede a pagina de afirmar 'nenhuma peca atravessa marca' quando o banco deixar de sustentar isso. Ferramenta de bancada: NUNCA e publicada."
+  },
+  {
+   "id": "cobertura-r2",
+   "arquivo": "ferramentas/cobertura-r2.py",
+   "descricao": "Implementacao de REFERENCIA da R2 e varredura da entrada dela de ponta a ponta. Roda sem site e sem rede. Guarda a regra num lugar so: quais fontes brasileiras nomeiam cada situacao de piso x animal e com que palavras, qual limiar vale, quem passa na elegibilidade e em que ordem a lista sai. Tambem e onde mora a PONTE — a unica situacao (tapete fino sem animal) que fonte nenhuma nomeia, e que a ferramenta resolve para o limiar de cima dizendo que esta estendendo, em vez de fingir que citou alguem. A grade que ela varre inclui os multiplos EXATOS da cobertura declarada e os vizinhos deles, porque foi so ali que a quebra proposital de 10/09/2026 conseguiu separar ceil de floor+1: grade que nao cobre a borda e amostra com nome de grade."
+  },
+  {
+   "id": "gerar-r2",
+   "arquivo": "ferramentas/gerar-r2.py",
+   "descricao": "Deriva dados/r2-respostas.json (o que o site consome) e dados/r2-referencia.json (o gabarito do teste) da implementacao de referencia. A prova da R2 tem forma diferente da prova da R1 porque a entrada dela e continua: o que e REGRA sai apurado da referencia e viaja como fato; a ARITMETICA declarada dos ciclos o PHP faz, e a prova de que faz igual e uma grade que o teste percorre inteira."
+  },
+  {
+   "id": "teste-r2",
+   "arquivo": "ferramentas/teste-r2.php",
+   "descricao": "Verificacao MEDIDA da R2 sem site e sem rede: 86 medicoes. Percorre a GRADE inteira do gabarito — as 9 situacoes frase a frase, 114 cartoes de recomendacao com ordem e ressalvas, e a metragem varrida contra cada modelo de referencia, bordas incluidas — e mais a elegibilidade, o JSON-LD contra o que a tela diz, a porta de compra antes da procedencia, a malha e a higiene do snippet. As travas foram PROVADAS reprovando, quebrando o codigo de proposito numa copia, e duas delas so viraram medicao por causa disso: a regua da elegibilidade saiu do snippet (o teste conferia o dado com a regua de quem produziu o dado) e a busca das respostas do FAQPage passou a ser no corpo da pagina (no HTML inteiro ela achava o texto dentro do proprio JSON-LD e passava sempre)."
+  },
+  {
+   "id": "gerar-a2",
+   "arquivo": "ferramentas/gerar-a2.py",
+   "descricao": "Deriva dados/a2-fatos.json do banco commitado. A tese de um artigo que e um NUMERO nao pode estar digitada no HTML, porque no dia em que o banco crescer o texto passa a mentir em silencio — e ninguem rele artigo publicado. O texto publicavel que sai daqui (perguntas e respostas do FAQPage) sai ACENTUADO, diferente do que o A1 fez."
+  },
+  {
+   "id": "teste-a2",
+   "arquivo": "ferramentas/teste-a2.php",
+   "descricao": "Verificacao MEDIDA do A2 sem site e sem rede: 62 medicoes. A secao que justifica o arquivo PLANTA SEIS BANCOS ADULTERADOS num subprocesso, um por molde, e exige que o texto troque de forma E que os numeros de hoje sumam da tela — porque ler a pagina de hoje so prova que ela esta certa hoje, e a decisao 1 do bloco 5 e sobre amanha. Mede tambem que as respostas do FAQPage saem acentuadas e que todo numero que elas afirmam esta escrito no CORPO da pagina, nao so dentro do proprio JSON-LD."
+  },
+  {
+   "id": "varrer-corpo",
+   "arquivo": "ferramentas/varrer-corpo.php",
+   "descricao": "Monta os 72 estados que a ilha serve — a R1 modelo a modelo, a R2 situacao a situacao — UM PROCESSO POR ESTADO, e devolve o CORPO de cada um. O processo por estado nao e zelo: montados no mesmo processo, um static legitimo do snippet da marca fazia o cabecalho aparecer no primeiro estado e sumir nos 71 seguintes, e a varredura media 915 KB do que no ar tem 960 KB, sem erro nenhum. Desde a casca 1.2.0 passa o slug canonico de cada estado para a bancada, para o corpo medido incluir a cabeca de pagina que o site serve."
+  },
+  {
+   "id": "acentuar-banco",
+   "arquivo": "ferramentas/acentuar-banco.py",
+   "descricao": "Restaura os acentos dos campos do banco que vao para a TELA (nome_na_fonte, titulo_na_fonte, publicador, linha, nome, nome_comercial, o_que_muda, canal, conjunto_declarado). A operacao e deliberadamente pequena e PROVAVEL: so diacritico. Toda mudanca passa pela trava sem_acento(depois) == antes e o programa se recusa a gravar se alguma falhar, o que torna impossivel, por construcao, trocar palavra, codigo de peca, numero ou modelo. A borda das palavras inclui o hifen de proposito, para nao acentuar pedaco de URL citada. Cada mudanca vai para dados/acentuacao-restaurada.json, que e a lista de conferencia de quem reler os manuais quando a rede abrir — porque diacritico RESTAURADO nao e diacritico LIDO na fonte. Palavra ambigua (o 'e' que pode ser 'é') fica fora do mapa. Ferramenta de bancada: NUNCA e publicada no site."
+  },
+  {
+   "id": "gerar-casca-fatos",
+   "arquivo": "ferramentas/gerar-casca-fatos.py",
+   "descricao": "Deriva dados/casca-fatos.json: a coluna 'Temos hoje' da escada de fontes, que a pagina de metodologia publica. Existe porque ate 11/09/2026 essa coluna estava DIGITADA no snippet e contradizia o banco — dizia que a ilha nao tinha nenhuma fonte de nivel 2 enquanto quatro fontes se declaravam nivel 2, e as duas metades nunca se falavam. Conta so registro publicavel, e conta TRES arquivos: pecas.json, modelos-robo.json e constantes.json. A primeira versao lia so os dois primeiros e declarava, com ar de medicao, que a ilha nao tinha fonte editorial — quando tem sete, usadas pela R2 em toda resposta de Pa; trocar um numero digitado errado por um numero medido errado e pior, porque este parece conferido. A ponte tipo-de-constante para nivel mora no esquema, nao aqui. Recusa-se a gerar se alguma fonte declarar nivel e origem que nao batem com a escada. Ferramenta de bancada: NUNCA e publicada no site."
+  },
+  {
+   "id": "teste-acentuacao",
+   "arquivo": "ferramentas/teste-acentuacao.php",
+   "descricao": "16 medicoes que impedem a volta do portugues sem acento no que a ilha SERVE, e a coerencia da escada de fontes. Le o corpo dos 72 estados por ferramentas/varrer-corpo.php e reprova qualquer palavra da propria regua — escrita NO TESTE, a mao, sem importar a do corretor, porque regua compartilhada faz as duas metades errarem juntas. A excecao do wordmark (ROBO+METRIA colados, onde ROBO e a assinatura e nao a palavra) e declarada no markup pela classe rbm-wordmark, retirada pelo varredor e CONFERIDA uma a uma: exige um bloco por estado e que cada bloco seja exatamente a assinatura. Confere ainda o livro-razao da restauracao (todo 'depois', reduzido a sem-diacritico, e identico ao 'antes', e todo 'depois' esta no banco de hoje) e RECONTA a escada direto do banco, sem olhar para o que o gerador escreveu. Seis mutacoes deliberadas em 11/09/2026, e as seis reprovaram: devolver 'Robo' ao banco, marcar um paragrafo comum como wordmark para calar o teste, adulterar o livro-razao, repor uma fonte no nivel 2 sem declarar leitura, repor com leitura declarada (a confissao da pagina passa a mentir) e tirar a classe do wordmark — esta ultima faz 'ROBO' ser pego 72 vezes, que e a prova de que a excecao e carregada e nao decorativa. Ferramenta de bancada: NUNCA e publicada no site."
+  },
+  {
+   "id": "mutacoes-cabeca-e-voz",
+   "arquivo": "ferramentas/mutacoes-cabeca-e-voz.py",
+   "descricao": "A PROVA DE QUE AS TRAVAS DA CASCA 1.2.0 REPROVAM. Quinze mutacoes deliberadas, cada uma numa copia da arvore inteira num diretorio temporario, exigindo que teste-casca.php saia com codigo diferente de zero: a tag de description sumindo do wp_head, duas paginas com a mesma description, um numero dentro de uma description, uma description acima de 160 caracteres, uma pagina publicada sem cabeca, uma cabeca sobrando sem pagina, o H1 da raiz voltando a ser 'Inicio', termo de dentro da fabrica no primeiro paragrafo da home, a home perdendo o seletor, os atalhos deixando de ser contados, escassez inventada fora do bloco de recusa, uma promessa escondida dentro do bloco de recusa, uma pagina voltando a ser fina, description generica de reserva para pagina desconhecida, e a folha do formulario voltando a ser copiada na R1. DUAS PASSARAM NA PRIMEIRA RODADA e as duas viraram conserto: a regua de escassez listava 'mais vendido' e deixou passar 'a peca mais vendida da categoria' — genero e numero em portugues sao o buraco por onde a frase proibida entra inteira, e a regua passou a usar radical; e a mutacao de pagina fina era fraca demais, cortando 409 caracteres de uma pagina que tinha 522 de folga. Toda substituicao e obrigada a acertar um alvo UNICO: mutacao que nao encontra o alvo edita nada e o teste passa, e teste verde por mutacao que nao aconteceu e a mesma ilusao que este arquivo existe para desfazer."
+  },
+  {
+   "id": "teste-arvore",
+   "arquivo": "ferramentas/teste-arvore.php",
+   "descricao": "Portao da arvore e do cluster (secao 16 do ARQUIPELAGO.md): trilha, BreadcrumbList e 'Veja tambem' nas nove paginas, um processo por pagina, lendo o ARVORE.md para cobrar que documento e codigo digam a mesma coisa. Bancada: nunca e publicada."
+  },
+  {
+   "id": "mutacoes-arvore",
+   "arquivo": "ferramentas/mutacoes-arvore.py",
+   "descricao": "Quebra de proposito a arvore da casca e exige que teste-arvore.php e teste-casca.php reprovem. Bancada: nunca e publicada."
+  },
+  {
+   "id": "mutacoes-ga4",
+   "arquivo": "ferramentas/mutacoes-ga4.py",
+   "descricao": "A PROVA DE QUE A TRAVA DA TAG DE MEDICAO REPROVA (casca 1.5.0). Nove mutacoes deliberadas, cada uma numa copia da arvore inteira, exigindo que teste-casca.php saia com codigo diferente de zero. A tag de medicao e o alvo mais facil que existe para uma trava que mede a si mesma: ela nao muda NADA na tela, entao nenhum leitor, nenhuma ronda e nenhum olho humano separa medir a propriedade certa de medir a errada. A mutacao 5 e a razao de o portao medir ORDEM e nao presenca — um JSON-LD novo nascendo na prioridade 24 deixa a tag na pagina e a poe antes do bloco que ela nao pode preceder, e uma trava de presenca aprova isso com folga. A mutacao 2 e a que acontece de verdade: o ID trocado pelo da Aquametria, que e o que sobra quando alguem copia esta casca para a ilha seguinte como esta foi copiada da Aquametria em 10/09/2026 — e e por isso que o ID desta ilha esta ESCRITO na regua do teste. As outras sete: a tag sumindo, o config medindo outra propriedade com o src certo, o async caindo, a prioridade subindo para 3, o ID voltando a ser digitado no meio do codigo, um segundo script de terceiro entrando na pagina publica, e a pagina parando de contar o que o site mede. Ferramenta de bancada: NUNCA e publicada no site."
+  },
+  {
+   "id": "teste-navegador-arvore",
+   "arquivo": "ferramentas/teste-navegador-arvore.mjs",
+   "descricao": "Medicao em Chromium das nove paginas em seis larguras: rolagem horizontal e a trilha visivel. Bancada: nunca e publicada."
+  },
+  {
+   "id": "teste-voz",
+   "arquivo": "ferramentas/teste-voz.php",
+   "descricao": "Portao da voz (secao 15) e do nome unico da pagina: H1, <title>, og:title, degrau da trilha e rotulo do cartao derivando da mesma fonte, palavras proibidas lidas do VOZ.md, um processo por pagina. Bancada: nunca e publicada."
+  },
+  {
+   "id": "mutacoes-atribuicao-da-funcao",
+   "arquivo": "ferramentas/mutacoes-atribuicao-da-funcao.py",
+   "descricao": "Escreve de volta a atribuicao falsa da funcao da peca e exige REPROVACAO do teste-r1.php, numa copia da ilha por mutacao. Dez mutacoes: nove reprovam e a decima TEM de passar. Ela cobre os dois lados, porque proibir a atribuicao na peca derivada sozinho seria atendido por uma frase que nunca atribui nada a ninguem, e a ilha perderia de graca a autoridade que o titulo do fabricante lhe da: peca derivada nunca atribui e sempre traz a ressalva; peca de titulo sempre atribui e nunca traz ressalva. Tres PRODUZEM O MUNDO que o esquema permite e o banco nunca teve — funcao declarada pelo canal de manutencao do fabricante —, porque regua escrita para um caso que nunca aconteceu fica verde sem nunca ter podido falhar; a decima e o mesmo mundo INTACTO, e ela existe para provar que a regua nao e falso-positivo esperando a primeira peca de manual entrar no banco. A do ESQUEMA nao estraga registro nenhum: apaga a lista de tipos e mede se a regua cai para 'nada a cobrar' em silencio. Bancada: nunca e publicada."
+  },
+  {
+   "id": "mutacoes-procedencia",
+   "arquivo": "ferramentas/mutacoes-procedencia.py",
+   "descricao": "Quebra de proposito a procedencia do Pa no cartao da R2 (linha de fonte, ordem, ressalva do degrau, atribuicao digitada, escada mutilada) e exige que teste-r2.php reprove as onze. Bancada: nunca e publicada."
+  },
+  {
+   "id": "mutacoes-a2-procedencia",
+   "arquivo": "ferramentas/mutacoes-a2-procedencia.py",
+   "descricao": "Quebra de proposito a procedencia da area por carga no cartao do A2 e exige REPROVACAO da bancada, numa copia da ilha por mutacao. Quinze mutacoes, quinze reprovadas. O que ele tem de diferente do irmao da R2 e o achado do bloco: la, 'a atribuicao volta a ser digitada' era INERTE com o banco de hoje e precisava PRODUZIR o mundo em que o defeito aparece; aqui esse mundo ja era o mundo — os cinco modelos que declaram area por carga declaram pela loja oficial da marca (degrau 4), e a frase 'O fabricante declara' que estava no ar era falsa, entao a mutacao reprova sem tocar no banco. O banco mutado continua sendo necessario para as duas travas LATENTES, que sao as escritas de olho no amanha: a atribuicao do SEGUNDO numero do cartao (a autonomia, hoje da mesma fonte nos cinco) e o titulo da secao quando os degraus se misturam. Tres mutacoes passaram na primeira rodada e viraram trava nova: a ressalva empurrada para depois do botao de compra (o teste media que ela existisse, nunca onde), a tabela rotulos_de_origem divergindo da escada no lado que o site consome, e uma que nao era trava faltando e sim bancada incompleta — mutacao no BANCO julgada so pelo teste da pagina, sem chamar validar-banco.py, que ja tinha a trava desde 11/09/2026."
+  },
+  {
+   "id": "conferir-no-ar",
+   "arquivo": "ferramentas/conferir-no-ar.py",
+   "descricao": "Mede no HTML SERVIDO, depois do desembarque, o que a bancada so consegue medir no repositorio: as nove URLs em 200, o nome unico em cada superficie e zero entidade dentro de <script>. Os enderecos e os nomes estao escritos literalmente dentro dele, para as duas metades nao errarem juntas. Bancada: nunca e publicada. GANHOU NA CASCA 1.5.0 a conferencia da TAG DE MEDICAO no ar, e o que ela mede e ORDEM, nao presenca: o ID desta ilha escrito literalmente aqui (a copia cega para a ilha seguinte vai ao ar funcionando e grava na propriedade da anterior — nenhuma comparacao com a constante do snippet pegaria isso), o async no script de terceiro, o gtag('config') na propriedade certa, a tag depois do <title> e depois do ULTIMO JSON-LD, um unico script de terceiro na pagina publica, e a frase que conta o que o site mede medida no CORPO da pagina de divulgacao — no <head> a palavra googletagmanager aparece nas nove, e medir no HTML inteiro aprovaria uma pagina muda. Em 12/09/2026 ganhou a secao \"Exatamente no limiar\" da R2 medida no HTML SERVIDO: os dois modelos que estao exatamente em 4.000 Pa na situacao-ancora (escritos literalmente aqui, nunca lidos do r2-respostas.json), a frase com as DUAS procedencias, a linha \"Como sabemos\" com data, a ressalva do degrau, o link de fonte discreto, a ausencia de porta de compra COM a frase que explica a ausencia, e a secao servida depois da lista principal."
+  },
+  {
+   "id": "conferir-atribuicao-no-ar",
+   "arquivo": "ferramentas/conferir-atribuicao-no-ar.py",
+   "descricao": "Mede no HTML SERVIDO as DUAS atribuicoes da R1. (1) Que ela so atribui ao fabricante a FUNCAO que ele escreveu (secao 26.3), nos dois lados da regra: onde a ilha derivou a funcao, nada no corpo a atribui ao fabricante e a ressalva que diz quem a leu esta la; onde o TITULO declara, a atribuicao continua servida e a ressalva nao aparece. (2) Desde 14/09/2026, que quem DECLAROU a compatibilidade e o PUBLICADOR do item, medido DENTRO da classe do cartao (rbm-vitrine-porque) e nunca no texto corrido — a cauda da divergencia diz 'Um canal do fabricante declara alcance diferente' e esta CERTA, e medir as duas juntas da falso positivo. Um modelo por DEGRAU da escada, escolhido do combustivel e nunca digitado aqui, mais a metade sem a qual todas teriam porta dos fundos: a cauda da divergencia CONTINUA nomeando o fabricante, senao uma pagina que tivesse parado de atribuir qualquer coisa a alguem passaria limpa. Tambem mede a nota que justifica a ordem comercial da lista. O teste-r1.php prova que o codigo esta certo; so o ar prova que ele esta NO AR (secao 4 do contrato). 33 afirmacoes em 14/09/2026, 0 falha."
+  },
+  {
+   "id": "atualizar-manifest",
+   "arquivo": "ferramentas/atualizar-manifest.py",
+   "descricao": "Recalcula o sha256 de todo item que o esquema do manifest declara com sha, reespelha a versao de cada snippet a partir da CONSTANTE dele, imprime cada troca que faz e sobe a revisao. Bancada: nunca e publicada."
+  },
+  {
+   "id": "mutacoes-carimbo-de-origem",
+   "arquivo": "ferramentas/mutacoes-carimbo-de-origem.py",
+   "descricao": "Quebra de proposito o carimbo de origem do link de afiliado (afiliado.sub_id_2) e exige que a secao 17 do teste-casca.php REPROVE — cinco mutacoes, cinco reprovacoes, cada uma numa afirmacao diferente. A trava que ela mede nasceu em 12/09/2026 e mede um defeito que estava no ar sem quebrar nada: o campo nomeia a PAGINA que levou o clique, era LIDO do banco, e o banco so sabe dizer um valor por registro (os 33 modelos traziam 'R2' e as 18 pecas 'R1'), entao o artigo A2 publicava a vitrine dele com o codigo da ferramenta R2 e o A1 com o da R1. Nada disso aparece na tela: o campo so vira numero no dia do primeiro link de afiliado, e ai a medicao diria que os dois artigos nao vendem nada, com cara de numero conferido. A mutacao central devolve o defeito INTEIRO (gerador voltando a ler do banco E campo de volta no banco), porque as duas metades sozinhas sao inertes; as outras cobrem o gerador copiado que carimba o codigo da pagina irma — que e como cada pagina desta ilha nasceu —, o carimbo ausente e o campo voltando ao banco sem ninguem mexer em gerador. Toda mutacao que mexe em gerador REGERA os dados dentro da copia, senao reprovaria pelo motivo errado. Ferramenta de bancada: NUNCA e publicada no site."
+  },
+  {
+   "id": "gerar-busca-de-produto",
+   "arquivo": "ferramentas/gerar-busca-de-produto.py",
+   "descricao": "Escreve o PISO da secao 25.2 do ARQUIPELAGO.md em todo registro publicavel do banco: afiliado.url_busca_produto, a URL crua da busca. Roda sem rede e sem dependencia ('python3 ferramentas/gerar-busca-de-produto.py' mostra, '--gravar' grava). Existe porque a corrente do piso tem dois elos e so um depende de alguem: ESCOLHER a palavra-chave nao exige sessao nenhuma, e ENCURTAR num link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael (remedido em 13/09/2026 as 19h17Z: affiliate.shopee.com.br/offer/custom_link responde 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link'). Ele tira a ESCOLHA da fila de espera: no dia da sessao sao 62 colagens e nenhuma linha de codigo muda. A chave e composta do nome_de_busca da marca (marcas.json) mais o codigo, no modelo, ou o tipo, na peca, mais o termo de contexto da entidade — e os dois ultimos moram no ESQUEMA, nunca dentro do gerador, para que entidade ou marca nova nao entre muda. Ferramenta de bancada: NUNCA e publicada no site."
+  },
+  {
+   "id": "teste-escada-compra",
+   "arquivo": "ferramentas/teste-escada-compra.py",
+   "descricao": "Portao da escada de compra da secao 25, com regua PROPRIA: nao importa o gerador nem o validador, porque duas metades que erram juntas ficam verdes. Roda sem rede ('python3 ferramentas/teste-escada-compra.py'). Cobra os quatro degraus da 25.1 com os nomes deles, a base da busca, o termo de contexto das duas entidades, dez chaves-ancora escritas a mao (cada uma uma borda: a marca cujo nome de tela tem parentese, o modelo cujo codigo sozinho e um celular de outra marca, a peca sem codigo_fabricante, a peca que o fabricante batiza pela posicao) e a varredura dos 70 registros, um a um. Duas afirmacoes existem para a regua nao envelhecer calada: o conjunto de marcas e o de entidades que ela conhece tem de ser igual ao do banco e ao do esquema, entao marca nova REPROVA em vez de passar por cima. Ferramenta de bancada: NUNCA e publicada no site."
+  },
+  {
+   "id": "mutacoes-escada",
+   "arquivo": "ferramentas/mutacoes-escada.py",
+   "descricao": "Quebra a escada de compra de proposito, numa copia, e exige que o portao certo reprove citando a regra que a mutacao nomeia — reprovacao pela regra vizinha prova que ALGUMA trava existe, nao que ESTA existe. 17 mutacoes, 16 que reprovam e 1 que tem de passar. A maioria PRODUZ O MUNDO que o banco nao tem: esta ilha esta com 62 publicaveis e ZERO ficha de produto, entao as travas de degrau, url_produto e degrau-3-sem-piso nasceram sobre um banco que nunca as exercita, e as quatro ultimas mutacoes criam o primeiro link de afiliado da ilha dentro da copia antes de quebrar a regra nele. A ultima entrega esse mundo INTACTO e tem de passar, senao a regua seria falso-positivo esperando o dia da monetizacao. Ferramenta de bancada: NUNCA e publicada no site."
+  },
+  {
+   "id": "conferir-reservatorio-no-ar",
+   "arquivo": "ferramentas/conferir-reservatorio-no-ar.py",
+   "descricao": "Confere NO AR o que o bloco do reservatorio (13/09/2026) mudou, e nasceu porque os tres conferidores que ja havia passaram VERDES sem tocar uma linha da mudanca — conferir-no-ar mede as nove URLs no caso-ancora, conferir-kits-no-ar mede a entrada dos kits e conferir-atribuicao-no-ar mede a funcao das escovas, e nenhum deles sabe o que e um reservatorio. Sao 25 afirmacoes em quatro estados da R1: a pagina ancora (os seis tipos oferecidos no seletor, e a frase 'o seletor acima nao oferece' SUMIDA, que era a promessa escrita na propria pagina), W300 + reservatorio, WSMART + reservatorio e um estado NEGATIVO, ERB60 + reservatorio, que TEM de recusar — sem ele as tres primeiras seriam atendidas por uma pagina que respondesse qualquer coisa a qualquer consulta. Duas travas cobram o que a fonte NAO declara: a resposta do W300 nao pode citar codigo de fabricante (a peca dele nao tem) e a recusa do ERB60 nao pode vazar nem o titulo do W300 nem o codigo do WSMART. A regua e escrita literalmente no arquivo, nunca lida de pecas.json: conferencia que deriva do mesmo lugar de onde a pagina deriva erra junto com ela. Com RBM_BANCADA no ambiente ela le cada estado de um arquivo renderizado em vez da rede, que e como ferramentas/mutacoes-reservatorio.py a viu reprovar sem tocar no site. Ferramenta de bancada: NUNCA e publicada."
+  },
+  {
+   "id": "mutacoes-reservatorio",
+   "arquivo": "ferramentas/mutacoes-reservatorio.py",
+   "descricao": "Quebra de proposito o que o bloco do reservatorio entregou e exige que conferir-reservatorio-no-ar.py REPROVE. Resolve o problema especifico de uma regua de AR, que nao pode ser mutada porque o site e um so e fabricar o defeito nele seria publicar defeito para medi-lo: cada mutacao monta a ilha inteira num diretorio temporario, quebra UMA coisa no banco, regera o catalogo da R1, renderiza os quatro estados com render-para-teste.php e roda a MESMA regua em modo bancada, sem uma linha dela mudada. Cinco mutacoes que tem de reprovar (as duas pecas saem do banco, o codigo do WSMART deixa de ser o publicado, o W300 toma emprestado o codigo do irmao, o W300 passa a ser declarado tambem para o ERB60, e o titulo do W300 deixa de ser o da loja) e uma que tem de PASSAR, o mundo intacto — porque regua que reprova o mundo sadio pega qualquer defeito sem medir nenhum. Ferramenta de bancada: NUNCA e publicada."
+  },
+  {
+   "id": "mutacoes-divergencia",
+   "arquivo": "ferramentas/mutacoes-divergencia.py",
+   "descricao": "Quebra de proposito a frase da divergencia da R1 e exige que a secao 16 do teste-r1.php REPROVE. Nove mutacoes: a cauda volta a ser a frase fixa de ontem ('Dois canais do fabricante'), o lado passa a ser lido do NOME do canal em vez do degrau, o titulo do bloco volta a nomear o fabricante em toda divergencia, o numero volta a ser digitado, a origem some das divergencias do banco, a fronteira (fala_pela_marca) some do esquema, e DUAS PRODUZEM O MUNDO — o registro do fabricante ganha um canal de revenda (o lado MISTO, que o banco de hoje nao tem) e o degrau do marketplace passa a falar pela marca. Esta ultima PASSOU na primeira rodada e foi o achado: a regua lia a fronteira do mesmo arquivo que ela conferia, entao as duas metades erravam juntas. O conserto foi escrever a fronteira A MAO dentro do teste e conferir o esquema contra ela. A nona e o mundo intacto, e ela tem de passar. Cada mutacao monta a ilha inteira num diretorio temporario; o site nao e tocado."
+  },
+  {
+   "id": "mutacoes-atribuicao-do-cartao",
+   "arquivo": "ferramentas/mutacoes-atribuicao-do-cartao.py",
+   "descricao": "Devolve de proposito a atribuicao DIGITADA ao cartao da vitrine e a frase da R1, e exige que a secao 17 do teste-r1.php REPROVE. Dez mutacoes: o cartao volta a escrever 'o fabricante declara esta peca', a frase do kit sem avulso volta a dizer 'que o fabricante declara', o cartao troca o publicador pelo ROTULO DO DEGRAU, a nota que justifica a ordem comercial volta a atribuir o criterio ao fabricante, a oracao de atribuicao deixa de ser o comeco da frase publicada (sem isso a secao viraria medicao de codigo morto), a referencia e o snippet erram JUNTOS — que e exatamente por que a secao 3, que compara as duas entre si, nao pegou nada — e o cartao cita a MARCA em vez de quem publicou. Esta ultima foi declarada como 'passa limpa' e REPROVOU: a regua cobra o publicador inteiro, e o parenteses que a coleta transcreveu ja separa 'Electrolux' de 'Electrolux (loja oficial)'. A previsao errada ficou escrita no cabecalho do arquivo. Duas PRODUZEM O MUNDO que o banco nao tem, com quem publica no degrau 4 sem dividir uma letra com o nome da marca, e as duas ultimas sao mundos sadios que tem de passar. Cada mutacao monta a ilha inteira num diretorio temporario; o site nao e tocado."
+  },
+  {
+   "id": "publicadores",
+   "arquivo": "ferramentas/publicadores.py",
+   "descricao": "A gramatica de quem publica, num lugar so (14/09/2026). Le dados/publicadores.json e a tabela artigos_de_publicador do esquema, e entrega artigo, maiuscula de comeco de frase, contracao com 'de', pronome possessivo e numero do verbo. Publicador sem registro DERRUBA a execucao com o nome dele na mensagem, de proposito: a alternativa e a tela publicar a concordancia adivinhada em silencio, no meio de uma oracao que a pagina afirma — que e o defeito que este arquivo existe para impedir. Antes dele a mesma decisao de lingua morava em dois lugares que nunca se falavam: uma tabela digitada dentro de cobertura-r2.py e um 'A %s' digitado dentro de quatro frases da R1. Importado por cobertura-r1.py e cobertura-r2.py; rodado sozinho (python3 ferramentas/publicadores.py) imprime a tabela inteira. Ferramenta de bancada: NUNCA e publicada no site."
+  },
+  {
+   "id": "mutacoes-artigo-do-publicador",
+   "arquivo": "ferramentas/mutacoes-artigo-do-publicador.py",
+   "descricao": "17 mutacoes deliberadas que devolvem o artigo digitado as frases publicadas e exigem reprovacao (14/09/2026). Cobre as cinco formas que estavam digitadas — 'A %s declara', 'que a %s declara', 'a %s declara esta peca', ' da ' antes do nome e 'a recomendacao dele' — mais o verbo cravado no singular, o padrao silencioso que adivinha 'a', o gerador que para de carregar a gramatica, o banco que declara o artigo errado, o publicador que perde o registro e a lista de artigos que some do esquema. CINCO delas PRODUZEM O MUNDO que o banco nao tem: um publicador plural publicando peca, a marca do artigo-ancora com nome plural, e a faixa confortavel da R2 publicada por quem e feminina — sem esses mundos, tres das trocas passam limpas, o que foi medido antes de elas virarem par. Ferramenta de bancada: NUNCA e publicada no site."
+  }
+ ],
+ "esquema": {
+  "snippets": {
+   "id": "identificador estavel, kebab-case, nunca numerado",
+   "nome": "nome descritivo do snippet no Code Snippets",
+   "arquivo": "caminho relativo a esta pasta, em snippets/",
+   "escopo": "global | front-end | admin",
+   "ativo": "true se deve ficar ativo no site",
+   "publicar": "true para o Sync aplicar no site",
+   "sha256": "hash do arquivo, conferido pelo Sync apos gravar",
+   "descricao": "o que o snippet faz",
+   "versao": "versao declarada no cabecalho do arquivo. Obrigatoria no item do Sync: e o que o snippet atualizador compara com a versao que esta rodando no site"
+  },
+  "conteudo": {
+   "id": "identificador estavel, kebab-case",
+   "tipo": "artigo | pagina | pagina-programatica | widget",
+   "titulo": "titulo publicado",
+   "slug": "slug da URL",
+   "arquivo": "caminho relativo a esta pasta, em conteudo/",
+   "cluster": "cluster do corpus de buscas a que pertence",
+   "fontes": "lista de fontes tecnicas citadas no texto",
+   "verificado_em": "data da ultima conferencia dos dados",
+   "publicar": "true para o Sync aplicar no site. Ferramenta, pagina-ancora e artigo saem com true; pagina-programatica em escala continua false"
+  },
+  "dados": {
+   "id": "identificador estavel, kebab-case",
+   "arquivo": "caminho relativo a esta pasta, em dados/",
+   "formato": "json | csv | md",
+   "entidade": "modelo-robo | peca | marca | constante | cotacao | esquema",
+   "fonte": "de onde vem cada campo (manual do fabricante, pagina de peca oficial, etc.)",
+   "verificado_em": "data da ultima conferencia",
+   "registros": "quantidade de linhas",
+   "publicar": "false ate o dado virar pagina publicada",
+   "sha256": "hash do arquivo, conferido pelo Sync apos gravar",
+   "descricao": "o que o arquivo contem"
+  },
+  "ferramentas": {
+   "id": "identificador estavel, kebab-case",
+   "arquivo": "caminho relativo a esta pasta, em ferramentas/",
+   "descricao": "o que a ferramenta faz e quando roda. Ferramenta NUNCA e publicada no site."
+  }
+ }
 }
