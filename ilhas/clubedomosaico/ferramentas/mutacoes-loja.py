@@ -332,8 +332,8 @@ def m33(r):
     """O script sai do rodape e entra no retorno da ficha — o `the_content` escapa
     o que ele nao entende e o script vai ao ar quebrado, que e a cicatriz de 08/09
     desta ilha."""
-    trocar(r, SNIPPET, "\t\t$html .= '<div class=\"cdm-gal-lupa-palco\" data-cdm-lupa-palco></div>';",
-           "\t\t$html .= '<div class=\"cdm-gal-lupa-palco\" data-cdm-lupa-palco></div><script>var x=1;</script>';")
+    trocar(r, SNIPPET, "\t\t$html .= cdm_loja_miniaturas_html( $galeria, $titulo );",
+           "\t\t$html .= cdm_loja_miniaturas_html( $galeria, $titulo ) . '<scr' . 'ipt>var x=1;</scr' . 'ipt>';")
 
 
 def m34(r):
