@@ -1,0 +1,258 @@
+{
+  "id": "esquema-banco",
+  "ilha": "jornadafly",
+  "bloco": 3,
+  "gerado_em": "2026-09-14",
+  "versao_esquema": 1,
+  "descricao": "Modelo do banco da JornadaFly: entidades CIDADE, EXPERIENCIA (com VERSAO e DECLARACAO dentro dela) e FONTE. Define campo a campo o tipo, a unidade, a obrigatoriedade, o vocabulario controlado e a ORIGEM esperada do dado. Este arquivo e o contrato que dados/experiencias.json cumpre e que ferramentas/validar-banco.py verifica. Nenhum preco entra no banco sem data_leitura e sem uma entrada correspondente em fontes{}.",
+  "depende_de": [
+    "dados/especificacao-calculadoras.md",
+    "dados/constantes.json",
+    "dados/corpus-buscas.md"
+  ],
+
+  "principios": [
+    "PRECO SEM DATA DE LEITURA NAO EXISTE. Nas oito consultas dos blocos 1 e 2, em tres continentes, NENHUMA pagina de topo declarou quando leu o numero que publica. O preco datado nao e um campo a mais desta ilha: e o produto. Por isso data_leitura e obrigatoria dentro de cada VERSAO, e nao no registro — um mesmo passeio pode ter o diurno lido hoje e o noturno lido em outro dia, e a media das duas datas seria uma data que nao aconteceu.",
+    "A UNIDADE DO PRECO E O CAMPO QUE NINGUEM DECLARA, E E ELE QUE DECIDE A CONTA. Achado do bloco 2: a unidade troca dentro da MESMA resposta, sem aviso — a gondola foi publicada em tres unidades diferentes na mesma pagina de resultados. Ler a unidade do texto do publicador e chute com cara de dado. Por isso unidade_de_preco e capacidade_maxima nascem com declarada_por, e sem uma das tres origens legitimas o registro NAO nasce. E a secao 26 do ARQUIPELAGO.md aplicada ao campo que doi nesta ilha: la o fabricante batiza a peca pela posicao e o banco classifica pela funcao; aqui o publicador escreve um numero e o banco tem de saber de quem e a unidade.",
+    "NULL E RESPOSTA, NAO LACUNA. temporada, faixa_etaria e imagem ausentes sao campo null COM motivo escrito. 'O ato nao declara preco de crianca' e um fato sobre a fonte e vai para a tela com essas palavras. Lacuna com causa nomeada e dado; lacuna preenchida por semelhanca e defeito que ninguem ve ate alguem chegar na bilheteria com a conta errada.",
+    "LISTA VAZIA NAO SOME. inclui[] e nao_inclui[] vazios exigem motivo_lista_vazia e vao para a tela dizendo que o operador nao declara o que esta incluso — que e informacao sobre o operador, e e a metade da pergunta que a pessoa digita ('o que esta incluso no X').",
+    "DIVERGENCIA E CONTEUDO, E SO VAI PARA A TELA COM NOME. A ilha publica as declaracoes que discordam, cada uma com quem a publicou e quando foi lida. Declaracao sem publicador nomeado fica no banco como evidencia de coleta e NAO e publicavel: publicar 'algumas paginas dizem X' e exatamente a frase sem dono que esta ilha existe para nao escrever.",
+    "MEDIA E PROIBIDA, E A PROIBICAO E MECANICA. Havendo tarifa de poder publico, o valor resolvido e o DELA. Nao havendo autoridade, e o MAIOR das declaracoes. Qualquer valor que nao seja um dos dois e reprovado pelo validador — inclusive um valor que por acaso caia entre o minimo e o maximo, que e a forma que a media tem quando ninguem a chama de media.",
+    "A DIVERGENCIA E SOBRE A VERSAO, NUNCA SOBRE A EXPERIENCIA. Achado da bancada desta execucao, e ele so existe a partir da segunda versao: 'o maior das declaracoes' comparava, num mundo com escada de dias, o preco de 1 dia com o de 3 dias — dois produtos diferentes com a mesma unidade. Enquanto a experiencia tem versao unica, as duas contas dao o mesmo numero e ninguem ve. Por isso DECLARACAO carrega versao, e declaracao sem versao atribuida nao participa da resolucao: ela e conteudo na tela e nao e voto na conta.",
+    "O ERRO CARO DESTA ILHA E SUBESTIMAR, E E ELE QUE DA A DIRECAO. Quem chega com dinheiro a menos perde a experiencia na porta; quem chega com dinheiro a mais volta com troco. E a mesma familia do banco de especies da Aquametria (errar para cima so da mais espaco ao peixe) e o oposto da compatibilidade da Robometria (peca que nao encaixa). A direcao sai do custo, nunca do gosto de quem grava.",
+    "O NIVEL DA FONTE E O DO ELO MAIS FRACO. Autoria, custodia e leitura sao tres coisas e a escada guarda uma so. A Delibera da Giunta Comunale de Veneza e documento de poder publico — elo de autoria forte — e foi colhida por BUSCA, porque o egresso desta nuvem recusou www.comune.venezia.it. Ela entra no nivel 3, nao no 1. Os degraus que exigem leitura direta exigem o campo leitura declarado: silencio nunca promove.",
+    "O PISO DE COMPRA NASCE COM O ITEM E NAO DEPENDE DE NINGUEM (25.2). Nesta ilha o piso e a pagina de cidade da plataforma, fabricavel sozinha a partir do campo cidade. Ele e DERIVADO pelo validador a partir do molde deste esquema e comparado com o que esta gravado: URL de piso digitada a mao envelhece calada no dia em que o molde mudar. 'Link de loja em breve' esta proibido (secao 7).",
+    "LINK CRU SAI SEM rel=sponsored. Nenhum programa de afiliado esta cadastrado nesta ilha, e sponsored declara relacao PAGA. Enquanto afiliado.programa for null, o link e saida de compra honesta e a pagina de divulgacao diz ao leitor qual link rende comissao e qual nao rende.",
+    "PRECO EM REAL NAO ENTRA NO BANCO. As constantes cambio-eur-brl e cambio-usd-brl estao pendentes e constante pendente e proibida em formula publicada (secao 10). O banco guarda a moeda que o operador cobra, que e a que nao muda. Campo em BRL convertido por esta ilha e erro duro do validador, nao aviso.",
+    "PRECO APROXIMADO SE GRAVA COMO APROXIMADO. A fonte da gondola diz 'cerca de 40 euros a cada 20 minutos adicionais'. 'Cerca de' e da fonte e nao pode virar numero seco na tela: o campo carrega aproximado=true e declarado_como com a frase inteira.",
+    "O BANCO COMECA QUASE VAZIO DE PROPOSITO, E ISSO NAO AFROUXA A REGUA. Um banco de um item so deixa passar qualquer regua que nunca pode falhar (secao 8 do ARQUIPELAGO.md). Por isso toda regra deste esquema e provada por mutacao que PRODUZ O MUNDO — ferramentas/mutacoes-banco.py cria o caso que o banco ainda nao tem (preco por pessoa, preco por cabine, escada de dias, preco de crianca, temporada) em vez de esperar por ele."
+  ],
+
+  "escada_de_fontes": {
+    "descricao": "Nivel de confianca de uma origem. Em conflito, o nivel mais alto vence e o outro fica registrado em declaracoes[]. Dentro do mesmo nivel, ninguem vence: a divergencia resolve pela regra do valor MAIOR e as duas declaracoes vao para a tela.",
+    "niveis": [
+      {
+        "nivel": 1,
+        "origem": "ato-de-poder-publico-lido",
+        "exige_leitura_direta": true,
+        "na_tela": {"rotulo": "tarifa oficial", "ressalva": null, "quem_declara": "pela prefeitura"},
+        "o_que_pode_sustentar": "tarifa tabelada, capacidade maxima legal, duracao regulamentada. Exige o ato ou a pagina do orgao LIDOS no endereco do orgao.",
+        "existe_hoje": false,
+        "observacao": "Bloqueado hoje: o egresso desta nuvem devolveu EGRESS_BLOCKED em www.comune.venezia.it em 14/09/2026. Releitura na fonte primaria e coleta em aberto, nao dependencia humana."
+      },
+      {
+        "nivel": 2,
+        "origem": "operador-lido",
+        "exige_leitura_direta": true,
+        "na_tela": {"rotulo": "site do operador", "ressalva": null, "quem_declara": "pelo operador"},
+        "o_que_pode_sustentar": "preco, versoes vendidas, o que esta incluso, capacidade, politica de cancelamento. Exige a pagina de reserva do proprio operador LIDA no endereco dele.",
+        "existe_hoje": false,
+        "observacao": "Mesmo bloqueio de egresso. E o degrau que o criterio de entrada do corpus PREFERE — operador privado sem tabela publica — e e o que a ilha ainda nao alcanca."
+      },
+      {
+        "nivel": 3,
+        "origem": "poder-publico-via-busca",
+        "exige_leitura_direta": false,
+        "na_tela": {"rotulo": "tarifa oficial", "ressalva": "lida por busca, a reconferir na fonte", "quem_declara": "pela prefeitura"},
+        "o_que_pode_sustentar": "o mesmo que o nivel 1, com a ressalva na tela. E o nivel de tudo que este banco tem hoje.",
+        "existe_hoje": true
+      },
+      {
+        "nivel": 4,
+        "origem": "operador-via-busca",
+        "exige_leitura_direta": false,
+        "na_tela": {"rotulo": "site do operador", "ressalva": "lido por busca, a reconferir na fonte", "quem_declara": "pelo operador"},
+        "o_que_pode_sustentar": "o mesmo que o nivel 2, com a ressalva na tela.",
+        "existe_hoje": false
+      },
+      {
+        "nivel": 5,
+        "origem": "plataforma",
+        "exige_leitura_direta": false,
+        "na_tela": {"rotulo": "plataforma de reserva", "ressalva": "preco de revenda, pode nao ser o do operador", "quem_declara": "pela plataforma"},
+        "o_que_pode_sustentar": "preco de revenda e disponibilidade. NUNCA sustenta sozinho a tarifa de uma experiencia com operador ou ato publico conhecido.",
+        "existe_hoje": false,
+        "observacao": "A plataforma e tambem o elo que pagaria comissao a esta ilha. Fonte com interesse comercial se declara ao lado do numero (regra herdada de constantes.json)."
+      },
+      {
+        "nivel": 6,
+        "origem": "publicador-editorial",
+        "exige_leitura_direta": false,
+        "na_tela": {"rotulo": "publicado por", "ressalva": "leitura de terceiro", "quem_declara": "por quem publicou"},
+        "o_que_pode_sustentar": "NADA sozinho. Serve para registrar declaracao divergente com nome e data. Blog, portal e imprensa entram aqui, por melhor que escrevam.",
+        "existe_hoje": true
+      }
+    ]
+  },
+
+  "regra_de_divergencia": {
+    "com_autoridade": "Havendo fonte de nivel 1 ou 3 (ato de poder publico), o valor resolvido e o DELA, e as declaracoes divergentes vao para a tela com o nome de quem as publicou. Foi o caso da gondola: as duas paginas de topo que publicam 80 euros nao estao arredondando, estao tres anos desatualizadas.",
+    "sem_autoridade": "Resolve para o valor MAIOR das declaracoes. O erro caro e subestimar.",
+    "erro_caro": "subestimar o preco. Quem chega com dinheiro a menos perde a experiencia na porta.",
+    "media": "PROIBIDA. O validador reprova qualquer valor resolvido que nao seja o da autoridade (quando houver) ou o maximo das declaracoes (quando nao houver).",
+    "recomendacao_editorial": "Nunca resolve e nunca entra dentro de um total. Aparece como faixa, com o nome de quem recomenda cada numero — e a regra da gorjeta de free tour em constantes.json."
+  },
+
+  "vocabularios": {
+    "unidade_de_preco": ["por_pessoa", "por_veiculo", "por_cabine", "por_grupo"],
+    "declarada_por": ["no_ato_oficial", "no_texto_da_fonte", "no_contraste_da_propria_fonte"],
+    "categoria": ["atividade_de_operador", "atividade_com_tarifa_tabelada", "ingresso_de_sitio_publico", "passe_de_cidade", "free_tour", "aluguel_de_carro"],
+    "tipo_de_operador": ["operador_privado", "poder_publico", "plataforma", "receptivo"],
+    "momento_do_dia": ["diurno", "noturno", "qualquer"],
+    "canal_de_leitura": ["leitura_direta", "busca_web"],
+    "moeda": ["EUR", "USD", "BRL_do_operador"],
+    "status_do_registro": ["publicavel", "pendente_de_releitura", "excluido_do_banco"]
+  },
+
+  "campos_que_exigem_declaracao_de_origem": {
+    "descricao": "Campos cujo valor o publicador quase nunca escreve com todas as letras, e que por isso nascem com declarada_por. Sem uma das tres origens do vocabulario declarada_por, o registro NAO nasce. A lista mora AQUI, no esquema, e nunca dentro do validador (secao 26.2 do ARQUIPELAGO.md): o dia em que um campo novo sofrer do mesmo mal, ele entra nesta lista e a trava passa a cobra-lo sem uma linha de codigo.",
+    "campos": ["unidade_de_preco", "capacidade_maxima"],
+    "por_que_estes_dois": "Sao os dois que fecham a conta do grupo, e sao os dois que o bloco 2 mediu como nao declarados: a gondola saiu publicada como 'por gondola ate 4', 'por gondola ate 5', '30 a 90 por pessoa' e '16 por pessoa com lotacao completa' na mesma pagina de resultados. Preco e duracao o publicador escreve; unidade e capacidade ele deixa implicitas e quem le supoe.",
+    "e_a_frase_da_tela": "Quando a unidade veio de no_contraste_da_propria_fonte, a pagina NAO pode dizer que o operador declarou a unidade — ele declarou o numero e a ilha classificou. Quem monta a frase le declarada_por e escolhe a atribuicao (secao 26.3). A frase ainda nao existe, porque nao existe pagina: fica como divida nomeada no ESTADO.md ate o bloco 4."
+  },
+
+  "entidades": {
+    "CIDADE": {
+      "descricao": "A cidade e a chave do piso de compra e da malha do 5b (experiencia -> cidade -> pais). Ela existe como entidade propria porque o piso e DERIVADO dela: sem cidade no banco, a experiencia nao tem saida de compra.",
+      "campos": {
+        "id": {"tipo": "slug", "obrigatorio": true, "unico": true},
+        "nome": {"tipo": "texto", "obrigatorio": true},
+        "pais": {"tipo": "texto", "obrigatorio": true},
+        "moeda_local": {"tipo": "enum:moeda", "obrigatorio": true, "observacao": "a moeda em que o operador daquela cidade cobra, nunca a moeda do leitor"},
+        "slug_plataforma": {"tipo": "slug", "obrigatorio": true, "observacao": "o segmento de cidade da plataforma. E dele que o piso de compra e fabricado."},
+        "slug_plataforma_conferido_em": {"tipo": "data", "obrigatorio": true, "observacao": "data em que a URL de cidade da plataforma foi vista. Sem isso o piso e uma URL suposta."}
+      }
+    },
+
+    "EXPERIENCIA": {
+      "descricao": "O registro central da ilha. Uma experiencia tem uma ou mais VERSOES — as que o operador realmente vende, nunca uma escada inventada pela ilha — e cada versao carrega o proprio preco, a propria unidade e a propria data de leitura.",
+      "campos": {
+        "id": {"tipo": "slug", "obrigatorio": true, "unico": true},
+        "nome": {"tipo": "texto", "obrigatorio": true},
+        "cidade": {"tipo": "ref:CIDADE.id", "obrigatorio": true},
+        "categoria": {"tipo": "enum:categoria", "obrigatorio": true},
+        "operador": {
+          "tipo": "objeto",
+          "obrigatorio": true,
+          "campos": {
+            "nome": {"tipo": "texto", "obrigatorio": true},
+            "tipo": {"tipo": "enum:tipo_de_operador", "obrigatorio": true},
+            "url": {"tipo": "url|null", "obrigatorio": true, "null_exige": "motivo_sem_url"}
+          }
+        },
+        "versoes": {"tipo": "lista:VERSAO", "obrigatorio": true, "minimo": 1},
+        "temporada": {"tipo": "objeto|null", "obrigatorio": true, "null_exige": "motivo_sem_temporada", "observacao": "as fontes do bloco 1 dizem que a diaria de carro na Islandia varia ate tres vezes entre inverno e verao. Chutar temporada seria inventar o dado mais caro da pagina."},
+        "faixa_etaria": {"tipo": "lista|null", "obrigatorio": true, "null_exige": "motivo_sem_faixa_etaria", "observacao": "o city tour de Buenos Aires foi o unico caso medido no bloco 2 que declara preco de crianca. A regra existe no mundo, entao a ausencia dela no banco e falta de dado DAQUELE operador, e a pagina diz isso."},
+        "imagem": {"tipo": "url|null", "obrigatorio": true, "null_exige": "motivo_sem_imagem", "observacao": "experiencia sem imagem aparece na vitrine com espaco reservado neutro. Perder a resposta certa por falta de foto e trocar o certo pelo bonito (secao 6)."},
+        "declaracoes": {"tipo": "lista:DECLARACAO", "obrigatorio": true, "observacao": "lista vazia e afirmacao: significa que ninguem mais publicou numero para esta experiencia. Lista nao vazia exige resolucao."},
+        "resolucao": {"tipo": "objeto|null", "obrigatorio": true, "exigido_quando": "declaracoes nao vazia"},
+        "afiliado": {"tipo": "objeto:AFILIADO", "obrigatorio": true},
+        "status": {"tipo": "enum:status_do_registro", "obrigatorio": true},
+        "entra_por": {"tipo": "texto", "obrigatorio": true, "observacao": "por que este registro esta no banco. O criterio de entrada do corpus PREFERE operador privado sem tabela publica; registro que entra por outro motivo diz qual e."}
+      }
+    },
+
+    "VERSAO": {
+      "descricao": "Uma versao vendida daquela experiencia. Diurno/noturno, padrao/deluxe, 1 dia/3 dias. NUNCA uma escada inventada pela ilha: o seletor da F1 so oferece o que o banco conhece.",
+      "campos": {
+        "id": {"tipo": "slug", "obrigatorio": true, "unico_dentro_da_experiencia": true},
+        "rotulo": {"tipo": "texto", "obrigatorio": true, "observacao": "como o leitor chama, na voz do VOZ.md"},
+        "preco": {"tipo": "numero|null", "obrigatorio": true, "null_exige": "motivo_sem_preco"},
+        "moeda": {"tipo": "enum:moeda", "obrigatorio": true},
+        "unidade_de_preco": {"tipo": "enum:unidade_de_preco", "obrigatorio": true, "exige_declaracao_de_origem": true},
+        "capacidade_maxima": {"tipo": "inteiro|null", "obrigatorio": true, "exige_declaracao_de_origem": true, "null_permitido_quando": "unidade_de_preco == por_pessoa", "observacao": "quando a unidade nao e por pessoa, e a capacidade que produz o degrau: 6 pessoas na gondola sao DUAS gondolas."},
+        "duracao_minutos": {"tipo": "inteiro|null", "obrigatorio": true, "null_exige": "motivo_sem_duracao"},
+        "momento_do_dia": {"tipo": "enum:momento_do_dia", "obrigatorio": true},
+        "janela_horaria": {"tipo": "texto|null", "obrigatorio": false},
+        "acrescimos": {"tipo": "lista", "obrigatorio": true, "observacao": "cobranca adicional declarada pela fonte (tempo extra, taxa). Valor aproximado exige aproximado=true e declarado_como com a frase inteira da fonte."},
+        "inclui": {"tipo": "lista", "obrigatorio": true, "vazia_exige": "motivo_lista_vazia"},
+        "nao_inclui": {"tipo": "lista", "obrigatorio": true, "vazia_exige": "motivo_lista_vazia"},
+        "fonte": {"tipo": "ref:FONTE.id", "obrigatorio": true},
+        "data_leitura": {"tipo": "data", "obrigatorio": true, "observacao": "obrigatoria E visivel na pagina. E o produto desta ilha."},
+        "declarado_como": {"tipo": "texto", "obrigatorio": true, "observacao": "a frase da fonte, inteira, do jeito que ela escreveu. E o que permite a tela citar em vez de parafrasear."}
+      }
+    },
+
+    "DECLARACAO": {
+      "descricao": "Um numero que OUTRA fonte publicou para a mesma experiencia e que discorda do resolvido. Divergencia e conteudo: ela aparece na tela com nome e data, e e exatamente o que nenhuma pagina medida nos blocos 1 e 2 mostra.",
+      "campos": {
+        "versao": {"tipo": "ref:VERSAO.id|null", "obrigatorio": true, "null_exige": "motivo_sem_versao", "observacao": "DE QUAL VERSAO este numero discorda. Achado da bancada do bloco 3, e ele so aparece quando a experiencia tem escada: Petra vende 1, 2 e 3 dias por 70, 75 e 80; uma declaracao de 65 discorda do de UM dia, e comparar 65 com 80 e comparar dois produtos diferentes. Enquanto a experiencia tem uma versao so, os dois numeros coincidem por acidente — que e exatamente a forma do defeito que a secao 8 manda procurar. Declaracao com versao null e evidencia de coleta e vai para a tela como divergencia, mas NAO participa da resolucao: nao se resolve para o maior entre coisas que podem nao ser a mesma coisa."},
+        "publicador": {"tipo": "texto|null", "obrigatorio": true, "null_exige": "motivo_sem_publicador", "observacao": "sem nome, a declaracao NAO e publicavel — 'algumas paginas dizem X' e a frase sem dono que esta ilha existe para nao escrever. Ela fica no banco como evidencia de coleta."},
+        "url": {"tipo": "url|null", "obrigatorio": true, "null_exige": "motivo_sem_url"},
+        "valor": {"tipo": "numero|objeto|null", "obrigatorio": true, "observacao": "objeto {minimo, maximo} quando a fonte publica faixa"},
+        "moeda": {"tipo": "enum:moeda", "obrigatorio": true},
+        "unidade_de_preco": {"tipo": "enum:unidade_de_preco", "obrigatorio": true},
+        "diz": {"tipo": "texto", "obrigatorio": true},
+        "data_leitura": {"tipo": "data", "obrigatorio": true},
+        "fonte": {"tipo": "ref:FONTE.id", "obrigatorio": true},
+        "publicavel_na_tela": {"tipo": "booleano", "obrigatorio": true, "observacao": "DERIVADO: verdadeiro quando ha publicador nomeado. O validador recomputa e reprova o valor gravado que discordar."},
+        "interesse_comercial": {"tipo": "texto|null", "obrigatorio": false, "observacao": "quando quem publica ganha se o numero for alto, isso vai escrito. Nao desqualifica a fonte; muda o que o leitor sabe sobre ela."}
+      }
+    },
+
+    "FONTE": {
+      "descricao": "Uma origem de dado, com o nivel dado pelo ELO MAIS FRACO entre autoria, custodia e leitura.",
+      "campos": {
+        "id": {"tipo": "slug", "obrigatorio": true, "unico": true},
+        "nivel": {"tipo": "inteiro", "obrigatorio": true},
+        "origem": {"tipo": "texto", "obrigatorio": true, "observacao": "tem de bater com a origem que a escada da aquele nivel. Conferir so o numero e por onde o defeito entra (secao 10)."},
+        "leitura": {"tipo": "enum:canal_de_leitura", "obrigatorio": true, "observacao": "degrau que exige leitura direta exige este campo declarado. Silencio nunca promove."},
+        "autor": {"tipo": "texto", "obrigatorio": true},
+        "documento": {"tipo": "texto|null", "obrigatorio": true, "null_exige": "motivo_sem_documento", "observacao": "resposta que nao cita o documento que a sustenta (ato, numero, data) nao e fonte, e parafrase (secao 8)."},
+        "url": {"tipo": "url|null", "obrigatorio": true, "null_exige": "motivo_sem_url"},
+        "data_leitura": {"tipo": "data", "obrigatorio": true}
+      }
+    },
+
+    "AFILIADO": {
+      "descricao": "A saida de compra do item. O piso da 25.2 nasce com o registro e nao espera ninguem.",
+      "campos": {
+        "programa": {"tipo": "texto|null", "obrigatorio": true, "observacao": "null hoje: nenhum programa cadastrado. A Civitatis nao aceita quem so tem rede social e o cadastro vem DEPOIS de conteudo no ar."},
+        "url": {"tipo": "texto", "obrigatorio": true, "observacao": "nasce PRESENTE E VAZIA. String vazia e a declaracao de que o campo existe e nao tem link rastreado; chave ausente e esquecimento."},
+        "url_produto": {"tipo": "url|null", "obrigatorio": true, "null_exige": "motivo_sem_url_produto", "observacao": "25.4-b: a URL crua da pagina do produto, sem a qual o teste de vida e impossivel."},
+        "url_busca_produto": {"tipo": "url", "obrigatorio": true, "observacao": "O PISO. DERIVADO do molde piso_de_compra.molde com o slug_plataforma da cidade. O validador refaz a derivacao e compara: URL de piso digitada a mao envelhece calada."},
+        "rel": {"tipo": "texto", "obrigatorio": true, "observacao": "enquanto programa for null, tem de ser 'nofollow noopener'. sponsored declara relacao paga e ninguem esta pagando por este clique."},
+        "intestavel": {"tipo": "booleano", "obrigatorio": true, "observacao": "DERIVADO: verdadeiro quando ha url rastreada e nao ha url_produto para testar a vida dela. O validador recomputa."}
+      }
+    }
+  },
+
+  "piso_de_compra": {
+    "por_que_a_escada_da_25_1_nao_serve": "A 25.1 e uma escada de marketplace (loja oficial na Shopee, catalogo /p/ do Mercado Livre, anuncio de vendedor, link de busca). Nenhum dos quatro degraus existe no nicho de experiencia, e fingir que existem seria copiar a forma da regra perdendo o que ela protege. O PRINCIPIO da 25.2 vale inteiro: o piso nunca depende de ninguem, todo item nasce com ele, e 'link de loja em breve' esta proibido.",
+    "degraus": [
+      {"degrau": 1, "o_que_e": "pagina da experiencia na plataforma, em portugues", "exemplo_medido": "civitatis.com/br/veneza/passeio-gondola-veneza/ e civitatis.com/br/dubai/oferta-dubai-safari/, vistas em 14/09/2026"},
+      {"degrau": 2, "o_que_e": "pagina de cidade da plataforma. E O PISO.", "por_que": "nao esgota, nao sai do ar quando uma atividade encerra, e e fabricavel sozinha a partir do campo cidade — que e exatamente o que a 25.2 exige do piso"},
+      {"degrau": 3, "o_que_e": "pagina de reserva do proprio operador, quando existir e a plataforma nao cobrir", "por_que": "converte e nao paga comissao enquanto nao houver programa; entra como saida de compra honesta, nunca como se fosse afiliado"}
+    ],
+    "molde": "https://civitatis.com/br/{slug_plataforma}/",
+    "molde_observacao": "O host esta escrito exatamente na forma em que foi VISTO no bloco 2, sem 'www'. Nao foi possivel abrir a URL para conferir a forma canonica: o egresso desta nuvem recusa dominio de terceiro. Reconferir no dia em que a rede abrir, e o lugar de corrigir e este molde, uma vez, nunca item a item.",
+    "rel_enquanto_nao_ha_programa": "nofollow noopener"
+  },
+
+  "validade_do_preco": {
+    "origem": "constantes.json -> validade-do-preco-antes-de-reler",
+    "operador_privado_dias": 60,
+    "tarifa_de_poder_publico_dias": 180,
+    "o_que_a_regra_nao_autoriza": "Preco vencido nao vira preco errado em silencio: a data de leitura aparece na tela SEMPRE, vencida ou nao, e item vencido e defeito de ronda, nunca item escondido."
+  },
+
+  "criterio_de_entrada": {
+    "preferir": "experiencia de operador privado, com versoes vendidas diferentes entre si e SEM tabela publica",
+    "por_que": "achado do bloco 1, pelo contraexemplo de Fernando de Noronha: onde a taxa e publica, datada e obrigatoria, o mercado brasileiro JA faz a conta direito e a ilha nao acrescenta. A vaga esta onde o preco e de operador privado, muda sem aviso e ninguem data.",
+    "excecao_declarada": "A gondola de Veneza entra por outro motivo e o registro diz qual: ela e o exemplo trabalhado que ESPECIFICA a F1, e a especificacao do bloco 2 manda grava-la no banco uma vez. Ela e tarifa tabelada, ou seja, o tipo que o criterio de entrada NAO prefere — e mesmo assim as paginas de topo discordam sobre ela, o que e a prova mais forte que a ilha tem."
+  },
+
+  "o_que_o_esquema_permite_e_o_banco_ainda_nao_tem": [
+    "preco por_pessoa (Petra, Angkor, Dubai, Buenos Aires, medidos no bloco 2 e ainda nao gravados)",
+    "preco por_cabine (cruzeiro de Ha Long)",
+    "escada de dias como versoes (Petra 1/2/3 dias, Angkor 1/3/7 dias)",
+    "faixa_etaria preenchida (city tour de Buenos Aires: adulto e crianca de 2 a 7)",
+    "temporada preenchida (aluguel de carro na Islandia, ate tres vezes entre inverno e verao)",
+    "divergencia SEM autoridade, que resolve pelo valor maior",
+    "declaracao ATRIBUIDA a uma versao — as quatro declaracoes do banco de hoje estao com versao null, porque nenhuma das fontes diz se fala do passeio diurno ou do noturno. Ou seja: a ilha tem quatro divergencias e ZERO votos na conta, e e a autoridade que resolve sozinha",
+    "experiencia com afiliado.url preenchida, que e quando intestavel pode virar verdadeiro",
+    "cidade com mais de uma experiencia",
+    "fonte de nivel 1 ou 2, que exige leitura direta"
+  ],
+  "por_que_essa_lista_existe": "Todo caso que o ESQUEMA permite e o banco ainda nao tem e um caso que a regua precisa tratar HOJE, nao no dia em que aparecer (secao 8 do ARQUIPELAGO.md). ferramentas/mutacoes-banco.py produz cada um destes mundos e verifica que o validador decide certo nos dois lados da fronteira — o mundo valido tem de PASSAR, e e essa metade que prova que a trava nao esta apenas dizendo nao para tudo."
+}

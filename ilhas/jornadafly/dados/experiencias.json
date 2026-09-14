@@ -1,0 +1,248 @@
+{
+  "ilha": "jornadafly",
+  "bloco": 3,
+  "versao": 1,
+  "publicar": false,
+  "cumpre": "dados/esquema-banco.json",
+  "nota_de_procedencia": "O banco nasce com UM registro, e isso e decisao, nao atraso. O corpus do bloco 1 fecha dizendo 'o banco comeca vazio no bloco 3 e se enche por leitura na fonte de quem opera', e a secao 5 da especificacao do bloco 2 manda o contrario para UM caso: 'quem for escrever o bloco 3 le a 2.2 e grava o numero no banco, uma vez'. As duas frases falam de coisas diferentes e as duas valem: nenhum preco do CORPUS entra no banco, e a tarifa da gondola — colhida no bloco 2 com o ato que a sustenta — entra, uma vez. Nenhuma coleta nova foi feita nesta execucao: gravar Petra, Angkor, Ha Long, Dubai ou Buenos Aires exigiria ler a fonte de quem opera, e isso e trabalho de coleta, nao de modelo.",
+  "acentuacao": "Texto destinado a tela (rotulo, declarado_como, diz, motivos) e gravado ACENTUADO. Chave, id, slug e valor de vocabulario sao sem acento. E a cicatriz da Robometria, que publicou portugues sem acento vindo do banco e precisou de uma ferramenta so para restaurar.",
+  "cidades": [
+    {
+      "id": "veneza",
+      "nome": "Veneza",
+      "pais": "Itália",
+      "moeda_local": "EUR",
+      "slug_plataforma": "veneza",
+      "slug_plataforma_conferido_em": "2026-09-14"
+    }
+  ],
+  "fontes": [
+    {
+      "id": "comune-venezia-tarifa-gondola",
+      "nivel": 3,
+      "origem": "poder-publico-via-busca",
+      "leitura": "busca_web",
+      "autor": "Comune di Venezia — Servizio Gondola",
+      "documento": "Delibera della Giunta Comunale n. 89, de 20/04/2023",
+      "url": null,
+      "motivo_sem_url": "O endereço exato da página do Servizio Gondola não foi registrado no bloco 2, e a leitura direta de www.comune.venezia.it foi recusada pelo egresso desta nuvem (EGRESS_BLOCKED, 14/09/2026). O documento está nomeado e datado; o endereço fica como coleta em aberto, e é o que faz esta fonte ser nível 3 e não nível 1.",
+      "data_leitura": "2026-09-14"
+    },
+    {
+      "id": "eurodicas-gondola",
+      "nivel": 6,
+      "origem": "publicador-editorial",
+      "leitura": "busca_web",
+      "autor": "turismo.eurodicas.com.br",
+      "documento": null,
+      "motivo_sem_documento": "Portal editorial: publica o número sem citar ato, tabela ou data de leitura. É exatamente o defeito que esta ilha existe para não repetir, e por isso a declaração dele fica registrada como divergência e nunca como preço.",
+      "url": null,
+      "motivo_sem_url": "O bloco 2 registrou o domínio e o que ele diz, não a URL do artigo. Reconferir na próxima coleta desta experiência.",
+      "data_leitura": "2026-09-14"
+    },
+    {
+      "id": "getyourguide-gondola-via-terceiros",
+      "nivel": 6,
+      "origem": "publicador-editorial",
+      "leitura": "busca_web",
+      "autor": "GetYourGuide, citada por terceiros",
+      "documento": null,
+      "motivo_sem_documento": "O número da plataforma não foi lido na plataforma: ele apareceu citado dentro de páginas de terceiros. A custódia e a leitura são de terceiro, então o elo mais fraco derruba a fonte para nível 6 — não é nível 5, que seria a plataforma lida na própria plataforma.",
+      "url": null,
+      "motivo_sem_url": "Mesma razão: a citação é de terceiro e o endereço do produto na plataforma não foi registrado.",
+      "data_leitura": "2026-09-14"
+    },
+    {
+      "id": "paginas-de-topo-pt-sem-atribuicao",
+      "nivel": 6,
+      "origem": "publicador-editorial",
+      "leitura": "busca_web",
+      "autor": "conjunto de páginas de topo em português, não atribuídas uma a uma",
+      "documento": null,
+      "motivo_sem_documento": "Nenhuma delas cita documento. E há um defeito de coleta registrado junto: o bloco 2 anotou o que o CONJUNTO publica, sem separar qual página disse qual número. Declaração sem publicador nomeado não vai para a tela.",
+      "url": null,
+      "motivo_sem_url": "idem",
+      "data_leitura": "2026-09-14"
+    }
+  ],
+  "experiencias": [
+    {
+      "id": "veneza-passeio-de-gondola",
+      "nome": "Passeio de gôndola em Veneza",
+      "cidade": "veneza",
+      "categoria": "atividade_com_tarifa_tabelada",
+      "operador": {
+        "nome": "gondoleiros de Veneza, com tarifa fixada pelo Comune di Venezia",
+        "tipo": "poder_publico",
+        "url": null,
+        "motivo_sem_url": "Não há um operador único com página de reserva: quem cobra é cada gondoleiro, e quem fixa o preço é a prefeitura. É por isso que esta experiência tem autoridade e as outras seis medidas no bloco 2 não têm."
+      },
+      "versoes": [
+        {
+          "id": "diurno",
+          "rotulo": "De dia, 30 minutos",
+          "preco": 90,
+          "moeda": "EUR",
+          "unidade_de_preco": "por_veiculo",
+          "unidade_de_preco_declarada_por": "no_ato_oficial",
+          "capacidade_maxima": 5,
+          "capacidade_maxima_declarada_por": "no_ato_oficial",
+          "duracao_minutos": 30,
+          "momento_do_dia": "diurno",
+          "janela_horaria": "das 9h às 19h",
+          "acrescimos": [
+            {
+              "o_que_e": "cada 20 minutos adicionais",
+              "valor": 40,
+              "moeda": "EUR",
+              "aproximado": true,
+              "declarado_como": "cerca de €40 a cada 20 minutos adicionais"
+            }
+          ],
+          "inclui": [],
+          "inclui_motivo_lista_vazia": "A tarifa oficial fixa preço, duração e capacidade, e não declara o que está incluso. A página diz isso ao leitor: é um fato sobre a fonte, não um vazio a esconder.",
+          "nao_inclui": [],
+          "nao_inclui_motivo_lista_vazia": "Mesma razão.",
+          "fonte": "comune-venezia-tarifa-gondola",
+          "data_leitura": "2026-09-14",
+          "declarado_como": "€90 por 30 minutos, das 9h às 19h, máximo de 5 passageiros por gôndola. A fonte diz a unidade com todas as letras: não se paga por pessoa, e sim pelo aluguel da embarcação inteira."
+        },
+        {
+          "id": "noturno",
+          "rotulo": "À noite, 35 minutos",
+          "preco": 110,
+          "moeda": "EUR",
+          "unidade_de_preco": "por_veiculo",
+          "unidade_de_preco_declarada_por": "no_ato_oficial",
+          "capacidade_maxima": 5,
+          "capacidade_maxima_declarada_por": "no_ato_oficial",
+          "duracao_minutos": 35,
+          "momento_do_dia": "noturno",
+          "janela_horaria": "das 19h às 4h",
+          "acrescimos": [
+            {
+              "o_que_e": "cada 20 minutos adicionais",
+              "valor": 50,
+              "moeda": "EUR",
+              "aproximado": true,
+              "declarado_como": "cerca de €50 a cada 20 minutos adicionais"
+            }
+          ],
+          "inclui": [],
+          "inclui_motivo_lista_vazia": "Mesma razão do diurno.",
+          "nao_inclui": [],
+          "nao_inclui_motivo_lista_vazia": "Mesma razão do diurno.",
+          "fonte": "comune-venezia-tarifa-gondola",
+          "data_leitura": "2026-09-14",
+          "declarado_como": "€110 por 35 minutos, das 19h às 4h, máximo de 5 passageiros por gôndola."
+        }
+      ],
+      "temporada": null,
+      "motivo_sem_temporada": "O ato não declara variação por temporada, e a leitura de 14/09/2026 não alcançou nenhuma declaração de alta e baixa. Inventar temporada aqui seria inventar o dado mais caro da página — as fontes do bloco 1 mostram diária de carro variando até três vezes entre inverno e verão, e é esse tipo de número que não se chuta.",
+      "faixa_etaria": null,
+      "motivo_sem_faixa_etaria": "Não há preço de criança a declarar, e a causa é o próprio desenho da unidade: a tarifa é pela embarcação inteira, não por passageiro. Este é o único caso em que o campo vazio não é falta de dado do operador — é consequência da unidade, e a página pode dizer isso.",
+      "imagem": null,
+      "motivo_sem_imagem": "A ilha não tem imagem própria e não usa foto de terceiro sem licença. A vitrine reserva o espaço e destaca o nome (seção 6 do ARQUIPELAGO.md).",
+      "declaracoes": [
+        {
+          "versao": null,
+          "motivo_sem_versao": "A fonte publica €80 sem dizer se é o passeio diurno ou o noturno — e a tarifa oficial separa os dois, com preço e duração diferentes. Sem saber de qual versão ela fala, a declaração vai para a tela como divergência e não entra na conta.",
+          "publicador": "turismo.eurodicas.com.br",
+          "url": null,
+          "motivo_sem_url": "O bloco 2 registrou o domínio e o número, não a URL do artigo.",
+          "valor": 80,
+          "moeda": "EUR",
+          "unidade_de_preco": "por_veiculo",
+          "diz": "€80 por gôndola, para até 4 pessoas",
+          "data_leitura": "2026-09-14",
+          "fonte": "eurodicas-gondola",
+          "publicavel_na_tela": true,
+          "observacao": "Não está arredondando: está três anos desatualizada. A tarifa vigente é de abril de 2023, e é isso que a página vai dizer — o defeito que a ilha corrige não é imprecisão, é preço sem data envelhecendo em silêncio num resultado que continua no topo."
+        },
+        {
+          "versao": null,
+          "motivo_sem_versao": "Preço de plataforma 'a partir de', sem horário nem duração: não dá para dizer de qual versão ele fala.",
+          "publicador": "GetYourGuide, citada por terceiros",
+          "url": null,
+          "motivo_sem_url": "A citação é de terceiro; o endereço do produto na plataforma não foi registrado.",
+          "valor": 34,
+          "moeda": "EUR",
+          "unidade_de_preco": "por_pessoa",
+          "diz": "a partir de €34 por pessoa",
+          "data_leitura": "2026-09-14",
+          "fonte": "getyourguide-gondola-via-terceiros",
+          "publicavel_na_tela": true,
+          "interesse_comercial": "SIM — é plataforma de reserva e ganha se o clique virar reserva. Não a desqualifica; vai escrito ao lado do número.",
+          "observacao": "É a leitura que custa mais caro ao leitor: quem chega com €34 por pessoa leva €136 para quatro pessoas num passeio de €90."
+        },
+        {
+          "versao": null,
+          "motivo_sem_versao": "A leitura não foi atribuída nem a um publicador nem a uma versão.",
+          "publicador": null,
+          "motivo_sem_publicador": "O bloco 2 anotou o que o CONJUNTO de páginas de topo publica, sem separar qual delas disse este número. Sem nome, a declaração não vai para a tela — 'algumas páginas dizem €30 a €90' é a frase sem dono que esta ilha existe para não escrever. Fica no banco como evidência de coleta e como pendência nomeada da próxima leitura desta experiência.",
+          "url": null,
+          "motivo_sem_url": "idem",
+          "valor": {
+            "minimo": 30,
+            "maximo": 90
+          },
+          "moeda": "EUR",
+          "unidade_de_preco": "por_pessoa",
+          "diz": "€30 a €90 por pessoa, em gôndola compartilhada",
+          "data_leitura": "2026-09-14",
+          "fonte": "paginas-de-topo-pt-sem-atribuicao",
+          "publicavel_na_tela": false
+        },
+        {
+          "versao": null,
+          "motivo_sem_versao": "A leitura não foi atribuída nem a um publicador nem a uma versão.",
+          "publicador": null,
+          "motivo_sem_publicador": "Mesma razão da declaração anterior.",
+          "url": null,
+          "motivo_sem_url": "idem",
+          "valor": 16,
+          "moeda": "EUR",
+          "unidade_de_preco": "por_pessoa",
+          "diz": "€16 por pessoa, com lotação completa de 5",
+          "data_leitura": "2026-09-14",
+          "fonte": "paginas-de-topo-pt-sem-atribuicao",
+          "publicavel_na_tela": false
+        }
+      ],
+      "resolucao": {
+        "versao_resolvida": "diurno",
+        "valor": 90,
+        "moeda": "EUR",
+        "unidade_de_preco": "por_veiculo",
+        "por_autoridade": true,
+        "fonte": "comune-venezia-tarifa-gondola",
+        "erro_caro": "Subestimar. Quem chega com a conta de €34 por pessoa acha que vai pagar €136 por quatro e o passeio custa €90 no total; quem chega com a de €80 paga €90 e não perde o passeio. As duas direções do erro existem e não custam a mesma coisa — e a que dói é a de quem chega com dinheiro a menos.",
+        "texto": "Vale a tarifa fixada pelo Comune di Venezia: €90 por gôndola, de dia, 30 minutos, até 5 pessoas. As declarações divergentes vão para a tela com o nome de quem as publicou e a data em que foram lidas, porque a divergência é o produto — não a média delas, que é proibida."
+      },
+      "afiliado": {
+        "programa": null,
+        "url": "",
+        "url_produto": "https://civitatis.com/br/veneza/passeio-gondola-veneza/",
+        "url_busca_produto": "https://civitatis.com/br/veneza/",
+        "rel": "nofollow noopener",
+        "intestavel": false
+      },
+      "status": "publicavel",
+      "entra_por": "Exceção declarada ao critério de entrada. O critério do bloco 1 prefere operador privado sem tabela pública, e esta é tarifa tabelada — o tipo que o mercado brasileiro costuma servir direito. Ela entra assim mesmo porque é o exemplo trabalhado que ESPECIFICA a F1 (seção 2.2 do bloco 2) e porque é a prova mais forte que a ilha tem: quatro leituras diferentes, em três unidades, sobre o número mais verificável de toda a consulta."
+    }
+  ],
+  "resumo": {
+    "cidades": 1,
+    "experiencias": 1,
+    "versoes": 2,
+    "fontes": 4,
+    "declaracoes": 4,
+    "declaracoes_publicaveis": 2,
+    "itens_sem_saida_de_compra": 0,
+    "itens_com_piso_nao_rastreavel": 1,
+    "itens_intestaveis": 0,
+    "experiencias_com_preco_em_brl": 0,
+    "fontes_de_leitura_direta": 0,
+    "declaracoes_sem_versao": 4
+  }
+}

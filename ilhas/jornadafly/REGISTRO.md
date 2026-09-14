@@ -3,6 +3,135 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-09-14 19h19Z — Bloco 3: o modelo do banco, e uma régua que só podia errar num mundo que o banco não tem
+
+**A ESCOLHA DA ILHA: SEGUNDA TENTADA, uma perdida na corrida do push.** Li os cinco
+`ESTADO.md` do `main` real. A **ohmetria** já estava reservada às 19h16Z por outra
+execução e saiu pelo passo 3 da seção 1. Pela **18.1**, sobrava **uma** ilha com
+despacho aberto do Raphael — a jornadafly, com o "ESTA ILHA NASCE AGORA" de 14/09.
+(A aquametria e a robometria tiveram o despacho do piso de busca **cumprido e
+conferido no ar** mais cedo hoje; a clubedomosaico não tem despacho aberto, e o que
+sobrou do dela está declarado no próprio despacho como bloco de malha.) Meu primeiro
+push de reserva foi **recusado** — e não porque alguém tivesse pegado a jornadafly:
+outra execução acabara de reservar a robometria e o `main` andou. Voltei ao passo 2
+sem force push, confirmei `executando_desde: null` na jornadafly e a reserva foi
+aceita às **19h19Z**. Nenhum branch `claude/*` e nenhum PR aberto para mesclar.
+
+**REDE PELA 20.2, RETESTADA E NÃO HERDADA.** Três passadas: `jornadafly.com.br` e
+`www.jornadafly.com.br` em **000** nas três, `aquametria.com.br` em **200** nas mesmas
+três. Seis medições de bloqueio contra três de controle verde — é rede, não túnel. O
+despacho ALTO para o Raphael segue aberto. O bloco 3 é arquivo no repositório: não
+aciona Sync, não abre URL e não afirma nada sobre o ar.
+
+### O que foi entregue
+
+- **`dados/esquema-banco.json`** — o contrato. Entidades **CIDADE**, **EXPERIENCIA**,
+  **VERSAO**, **DECLARACAO**, **FONTE** e **AFILIADO**, campo a campo, com escada de
+  fontes de seis níveis, regra de divergência, vocabulários controlados, molde do piso
+  de compra e a lista de `campos_que_exigem_declaracao_de_origem`.
+- **`dados/experiencias.json`** — o banco, com **um** registro: o passeio de gôndola de
+  Veneza, duas versões (diurno €90/30 min, noturno €110/35 min), quatro declarações
+  divergentes e a resolução pela autoridade.
+- **`ferramentas/validar-banco.py`** — a régua, 0 falha sobre o banco real.
+- **`ferramentas/mutacoes-banco.py`** — **45 mutações**, todas decidindo certo.
+
+### Por que o banco nasce com UM registro, e por que isso não é atraso
+
+Duas frases do repositório pareciam brigar. O corpus do bloco 1 fecha dizendo *"o banco
+começa vazio no bloco 3 e se enche por leitura na fonte de quem opera"*; a seção 5 da
+especificação do bloco 2 manda o contrário para um caso: *"quem for escrever o bloco 3
+lê a 2.2 e grava o número no banco, uma vez"*. **As duas falam de coisas diferentes e as
+duas valem:** nenhum preço do **corpus** entra no banco, e a tarifa da gôndola — colhida
+no bloco 2 **com o ato que a sustenta**, a *Delibera della Giunta Comunale n. 89 de
+20/04/2023* — entra uma vez.
+
+**Nenhuma coleta nova foi feita nesta execução.** Gravar Petra, Angkor, Ha Long, Dubai
+ou Buenos Aires exigiria ler a fonte de quem opera com `data_leitura` própria, e isso é
+bloco de **carga**, não de **modelo**. Escrever aqui os números que o bloco 2 anotou
+como *leitura de SERP* seria transformar medição de desacordo em dado de produto — o
+defeito que o `VOZ.md` desta ilha nomeia como o mais grave possível.
+
+### O ACHADO, e ele é de régua: a divergência é sobre a VERSÃO, nunca sobre a EXPERIÊNCIA
+
+A regra da ilha diz que, sem autoridade, a divergência resolve para o **maior** — o erro
+caro é subestimar. Escrevi isso varrendo todas as versões de mesma unidade da
+experiência. **Verde sobre o banco real, e errado.**
+
+Quem mostrou foi a mutação que **produz o mundo** que o banco não tem: Petra, com escada
+de dias (1, 2 e 3 dias por US$ 70, 75 e 80) e uma declaração de US$ 65 discordando do
+preço de **um** dia. A régua comparou 65 com **80** — o preço de outro produto — e
+reprovou uma resolução correta. **Enquanto a experiência tem uma versão só, as duas
+contas dão o mesmo número e ninguém vê.** É a mesma forma dos dois `63` da R1 da
+Robometria: duas grandezas diferentes que coincidem por acidente do banco.
+
+Conserto na raiz, não no sintoma: **DECLARACAO ganhou o campo `versao`**; declaração sem
+versão atribuída **não participa da resolução** (é conteúdo na tela, não voto na conta);
+e a conta passou a varrer só a versão resolvida. Quatro mutações novas guardam isso.
+
+**E o conserto acendeu uma dívida real do próprio banco:** as **quatro** declarações da
+gôndola estão com `versao: null`, porque nenhuma das fontes diz se fala do passeio
+diurno ou do noturno. A ilha tem quatro divergências e **zero votos na conta** — quem
+resolve hoje é a autoridade, sozinha. Está contado no resumo como
+`declaracoes_sem_versao`, não escondido.
+
+**A segunda dívida é de coleta e já estava no bloco 2:** duas das quatro declarações
+**não têm publicador nomeado**. O bloco 2 anotou o que o *conjunto* de páginas de topo
+publica, sem separar quem disse qual número. Pela regra desta ilha, declaração sem nome
+não vai para a tela — *"algumas páginas dizem €30 a €90"* é exatamente a frase sem dono
+que a ilha existe para não escrever. As duas ficam no banco como evidência de coleta,
+com `publicavel_na_tela` **derivado** e conferido pelo validador.
+
+### A seção 26 aplicada ao campo que dói nesta ilha
+
+Na Robometria o fabricante batiza a peça pela **posição** e o banco classifica pela
+**função**. Aqui o publicador escreve um **número** e **ninguém declara a unidade** — foi
+o achado central do bloco 2, com a gôndola publicada em três unidades diferentes na mesma
+página de resultados. Então `unidade_de_preco` e `capacidade_maxima` nascem com
+`declarada_por` ∈ {`no_ato_oficial`, `no_texto_da_fonte`, `no_contraste_da_propria_fonte`},
+e **sem uma das três o registro não nasce**. A lista dos campos mora no **esquema**, nunca
+dentro da régua (26.2) — e a mutação que **apaga a chave do esquema** reprova, que é a
+metade que a 26.2 exige e que uma régua ingênua deixaria passar em silêncio.
+
+**Dívida nomeada pela 26.3:** a frase de tela que lê `declarada_por` e escolhe a
+atribuição ("o operador declarou" × "a ilha classificou") **não existe** — não há página.
+Fica escrita no `ESTADO.md` como dívida, nunca como detalhe.
+
+### As outras três coisas que a régua faz e que não são "conferir campo obrigatório"
+
+1. **A proibição de média virada em código.** Média não se reconhece pelo nome: reconhece-se
+   por **cair entre o mínimo e o máximo sem ser nenhum dos dois**. A mutação que prova isso
+   precisou de **duas** declarações sobre a mesma versão — com uma só, o preço da versão é
+   sempre um extremo e nenhuma média é construível. Descobrir isso foi metade do trabalho.
+2. **O piso da 25.2 é DERIVADO.** `url_busca_produto` é fabricada a partir do molde do
+   esquema com o `slug_plataforma` da cidade e comparada com o que está gravado. URL de piso
+   digitada à mão envelhece calada no dia em que o molde mudar. **Itens sem saída de compra:
+   0**, erro duro. **Piso não rastreável: 1** — dívida de comissão, não defeito de página.
+3. **O resumo nasce contado.** As doze contagens do `resumo` são recomputadas e comparadas
+   uma a uma, nas **duas** direções: número gravado que não bate reprova, e número no resumo
+   que ninguém sabe refazer também reprova.
+
+### Verificação, 0 falha
+
+- `python3 ferramentas/validar-banco.py` — verde sobre o banco real.
+- `python3 ferramentas/mutacoes-banco.py` — **45 mutações**: **4 MUNDOS que têm de PASSAR**
+  (preço por pessoa com escada de dias, preço de criança e temporada; preço por cabine; item
+  com link rastreado e `intestavel`; experiência sem divergência nenhuma) e **41 QUEBRAS que
+  têm de REPROVAR**. Todas decidiram certo, **nos dois lados da fronteira**. Três das quebras
+  atacam o **esquema** e não o dado.
+- Os três JSON da pasta passam por `json.load`; o cabeçalho do `ESTADO.md` passa por
+  `yaml.safe_load`.
+- **Nada foi ao ar, e não havia o que pôr no ar:** esta ilha não tem site, Sync nem
+  `/status`. Dizer que verifiquei no ar seria inventar.
+
+### Próximo passo desbloqueado
+
+**A CARGA do banco** — ler na fonte de quem opera as experiências que o bloco 2 mediu
+(Petra, Angkor, Ha Long, Dubai, Buenos Aires, balão da Capadócia), com `data_leitura` e
+unidade declarada, até haver banco suficiente para o portão de dado da seção 9 (3 itens
+reais por página). Não depende de site nem da rede da ilha; depende de busca web, que
+está aberta. **A F1 (bloco 4) depende dela, e não o contrário** — ferramenta sobre banco
+vazio é a promessa que a seção 9 proíbe.
+
 ## 2026-09-14 15h19Z — Bloco 1: corpus de buscas paramétricas
 
 **A ESCOLHA DA ILHA: TERCEIRA TENTADA, duas perdidas na corrida do push.** Pela
