@@ -4260,3 +4260,144 @@ não se desfaz com mais busca. E há uma decisão de vocabulário madurando: a
 **categoria descoberta** já tem TRÊS itens de duas marcas (saco descartável do
 ERB80, tampa de escova `D106-BZSZ` do S20, tampa `B106GL-ZSZ` do S10) — três já é
 faixa e não acidente, e quem pegar decide se o tipo nasce pela régua da 14.3.
+
+## 2026-09-14, 23h35Z — a descrição em JSON-LD da R1 estava velha no ar, e a causa eram três cópias da mesma lista
+
+**Bloco de CORREÇÃO, zero URL nova.** Manifest na revisão **45**, `/status`
+conferido às 23h31Z em **um** disparo. Nenhuma peça entrou ou saiu do banco, e o
+único texto servido que muda é uma frase.
+
+### O DEFEITO, e ele estava na superfície que a seção 5 chama de primeira classe
+
+Medido no HTML servido às 23h20Z, antes de qualquer trabalho. A descrição do
+`WebApplication` no JSON-LD da R1 — a frase que um modelo de linguagem lê para
+saber o que a ferramenta faz — servia isto:
+
+> Localiza a peça de reposição que o fabricante declarou compatível com um modelo
+> de robô aspirador: **filtro, escova lateral, escova principal, mop e bateria**,
+> com o código do fabricante [...]. Cobre **71** pares peça × modelo em **5**
+> marcas.
+
+**Cinco** tipos. O seletor oferecia **seis** desde 13/09, quando o reservatório
+entrou com quatro peças declaradas — e a varredura de cobertura já imprimia "198
+células (33 modelos × 6 tipos)" naquele mesmo dia. A frase passou um dia inteira
+errada.
+
+**O que faz isso ser defeito de família e não descuido:** a lista digitada estava
+colada, na mesma frase, a dois números que **sempre** foram computados do banco.
+Os "71 pares" e as "5 marcas" são medidos; a lista ao lado deles, não. **Número
+computado ao lado de lista digitada faz a lista parecer medida** — e ninguém
+reconfere o que parece medido. É a mesma família do número de tela digitado que
+esta ilha já pagou duas vezes.
+
+### Eram TRÊS cópias da lista, não duas
+
+1. `vocabularios.tipo_de_peca`, no esquema — a fonte.
+2. `TIPOS_CONSULTAVEIS`, digitada dentro de `ferramentas/cobertura-r1.py`, sob um
+   comentário que dizia "vocabulário de tipo_de_peca do esquema, menos 'kit'".
+   **O arquivo descrevia a derivação e implementava uma cópia.**
+3. a frase em português, digitada dentro do `sprintf` do snippet.
+
+A cópia 2 estava certa por sorte no dia da medição; a 3 não. Cópia de lista
+dentro de régua é o defeito que a **seção 26.2** nomeia com todas as letras.
+
+**O conserto:** nasceu `tipos_consultaveis_na_r1` no esquema, e ela é **regra de
+derivação, não segunda cópia** — `derivado_de` mais `excluidos`, com o porquê de
+o kit ficar fora. A referência deriva dela e **falha alto quando a chave some**.
+A descrição passou a sair do campo `tipos`, que já era gerado da varredura.
+
+### A bateria achou dois buracos na régua que este bloco acabara de escrever
+
+É a parte útil, e os dois foram fechados antes do commit.
+
+**(a) A lista digitada mas CERTA hoje passava.** Texto digitado e texto derivado
+são idênticos enquanto o mundo fica parado: nenhuma afirmação sobre a saída de
+hoje consegue separá-los. **Só o mundo se mexendo separa as duas** — então a
+mutação passou a fazer nascer um tipo **e dar a ele a primeira peça**, por
+reclassificação. Aí a lista digitada envelhece na hora, que é exatamente o que
+aconteceu em 13/09.
+
+**(b) A cópia dentro da referência passava porque errava JUNTO com a frase.** As
+duas saem da mesma varredura: encolhendo `TIPOS_CONSULTAVEIS` para cinco, a
+varredura mede cinco faixas, o seletor oferece cinco, a descrição deriva cinco, e
+**nenhuma peça saiu do banco**. Tudo internamente coerente e tudo menor. Duas
+metades que erram juntas ficam verdes. A seção 20 do `teste-r1.php` passou a
+**rederivar os tipos do esquema**, por um caminho que não é o do gerador nem o da
+referência.
+
+### A decisão de vocabulário, aberta havia três execuções, está fechada
+
+**E a conta que sustentava a pergunta estava errada.** A entrada anterior da
+lista de compras dizia "são TRÊS na mesma prateleira" — saco descartável do
+ERB80, tampa `D106-BZSZ` do S20, tampa `B106GL-ZSZ` do S10 — e concluía que "três
+já é faixa e não acidente". **Não são três itens de uma prateleira: são DUAS
+funções.** Tampa de escova tem dois itens, de uma marca; saco descartável tem um,
+de outra. Somar funções diferentes para chegar a três é a mesma aritmética que
+fez os dois 63 desta ilha parecerem o mesmo número em 14/09. Nenhuma das duas era
+faixa.
+
+- **`tampa de escova` NASCE**, junto com a coleta da primeira peça e **nunca antes
+  dela**. Medido hoje em duas passadas limpas restritas a `mi.com`: a Xiaomi
+  publica a tampa como **produto próprio, com código próprio**, em pelo menos três
+  famílias de acessório — `D106-BZSZ` (S20, lida hoje e já lida em 13/09, duas
+  leituras independentes em dias diferentes), `B101CN-ZSZ` (X10+/S10+/X20+/S20+/X20
+  Pro) e a página de Brush Cover do S10/S12. Linha de produto, não acidente. E o
+  título **nomeia a função** ("Brush Cover"), então o tipo **não** entra em
+  `tipos_que_exigem_funcao_declarada`: é o caso 1 da 26.1.
+- **`saco descartável` fica de fora**, e a causa é de **mercado**, não de
+  vocabulário: saco só existe em robô com base de autoesvaziamento, e o banco
+  declara `base_autoesvaziamento` verdadeira em **dois dos 38 modelos** (ERB80 e
+  PRA2000). Um item, duas bases declaradas e 35 modelos que nem declaram o campo.
+  É lacuna de dado do banco, não tipo faltando.
+
+**O portão de três itens da 14.3 não se aplica à R1**, e quem diz isso é a própria
+varredura desta ilha, com todas as letras: "na R1 a resposta certa costuma ser UMA
+peça, e exigir três levaria a ilha a inventar concorrente onde o fabricante tem uma
+peça só". A prova de que a R1 já vive assim está contada no banco de hoje: o tipo
+`bateria` responde em **um** modelo e sai vazio em 32.
+
+**E o que destravou a decisão não foi dado novo: foi o PREÇO.** A entrada anterior
+dizia, com razão, que "acrescentar tipo mexe no seletor da R1, na cobertura e nos
+portões" — e ninguém paga isso no meio de um bloco de coleta. Este bloco derrubou
+esse preço para **uma linha** no vocabulário do esquema, e a chave
+`tipo_novo_nasce_assim` diz o que fazer. A prova de que é mesmo uma linha está
+medida na bateria, na mutação **"MUNDO NOVO (tipo no vocabulário) intacto — esta
+TEM de passar"**: o tipo nasce e nenhum portão reprova.
+
+### O Xiaomi Mop 2 foi remedido, e o negativo FECHA a pergunta
+
+Quatro passadas limpas restritas a `mi.com`, com consultas diferentes (acessórios
+em português, peças com código em inglês, kit de escova e filtro, e a página de
+acessórios do próprio Mop 2). A busca devolve a página do robô e as páginas de
+acessório de S20, S10, E10, E5, X10+, S40C e H40/S40 — e **nenhuma delas nomeia o
+Mop 2**. A Xiaomi publica página de acessório **por família**, e a família
+Vacuum-Mop 2 (2021) não tem uma.
+
+**Isso não é falha de canal como no lado da WAP:** lá o canal responde a página e
+esconde o campo; aqui o canal responde que **a página não existe**. O modelo fica
+no vazio da R1 com a causa escrita — que é dado, não lacuna de procura.
+
+### Verificação
+
+**Bancada, 0 falha:** teste-r1 **223** (eram 216), teste-r2 107, teste-casca 205,
+teste-a1 68, teste-a2 74, teste-arvore 219, teste-voz 155, teste-acentuacao 17,
+teste-escada-compra 739, `validar-banco` aprovado, `php -l` limpo nos seis
+snippets. **No ar:** `conferir-no-ar.py` **229 afirmações, 0 falha**, seções 9, 10
+e 11 incluídas. **Mutações: 20 baterias, todas no resultado esperado, zero
+inertes**, com `ferramentas/mutacoes-lista-de-tipos.py` nascendo nesta passada.
+
+**Pronto quando** (18.4), conferido no ar às **23h32Z** e às **23h33Z**, em duas
+medições independentes com `Accept-Encoding: identity`: a descrição servida nomeia
+os **seis** tipos, com o reservatório incluído.
+
+**Itens esperando link (seção 7):** 68 publicáveis, 68 com saída de compra, **0
+sem saída**, 68 com saída que não rastreia. O que falta é só o **encurtamento** da
+25.6, que exige a sessão logada do painel da Shopee — e isso nunca bloqueia página.
+
+**PRÓXIMO PASSO:** a coleta da **tampa de escova `D106-BZSZ` do S20**, que agora
+tem a decisão tomada e o caminho barato — o tipo entra no vocabulário na mesma
+passada em que a peça entra. Depois dela, a `B106GL-ZSZ` do S10, cujo código
+**não voltou em passada limpa hoje**: buscando sem citá-lo, o único `B106GL` que a
+busca devolve é o **modelo do robô**, que é a mesma armadilha que deixou o mop do
+S10 sem código em 14/09. O lado WAP segue atrás do egresso e não se desfaz com mais
+busca, e o Mop 2 está fechado como negativo medido.
