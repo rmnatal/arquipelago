@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 9
 primeira_indexacao: desconhecida
 ultima_execucao: 2026-09-13T23:47Z
-executando_desde: 2026-09-14T11:28Z
+executando_desde: 2026-09-14T11:50Z
 bloco_atual: |
   O RECIPIENTE DE PO DO W100 E DO W90 ENTRA, E QUEM DIVERGE PASSA A DECIDIR A FRASE (manifest revisao 34, /status conferido e a revisao batendo com o manifest; NENHUMA URL nova, NENHUMA URL mudou).
   A ESCOLHA DA ILHA: rotacao da secao 1, sem despacho aberto para a Fundacao em nenhuma das tres (os tres PROMPT.md lidos antes de escolher; o que resta nos desta ilha e a metade HUMANA do reenvio do sitemap). robometria com a ultima_execucao mais antiga, 21h16Z, e executando_desde null nas tres — pela 1.1 o null ja significa que nao ha bloco da Fundacao vivo, entao o git nao precisou desempatar. Reserva as 23h18Z empurrada de primeira, nenhum push recusado, nenhum force push.

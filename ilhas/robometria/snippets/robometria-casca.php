@@ -1,5 +1,12 @@
 /**
  * Robometria Casca — identidade e estrutura do site
+ * NOTA DE VERSÃO (14/09/2026): a constante ROBOMETRIA_CASCA_VERSAO ficou em
+ * 1.5.0 enquanto este cabeçalho já dizia 1.5.1 — a execução de 13/09 moveu o
+ * texto e não a constante, e a R1 tinha exatamente a mesma drenagem no mesmo
+ * dia. Duas de cinco. O manifest e a constante já tinham régua entre si desde
+ * 11/09; o cabeçalho, que é a primeira coisa que alguém lê neste arquivo, não
+ * tinha nenhuma. Agora tem, na seção 16 do teste-casca.php, e a constante sobe
+ * para 1.5.1 sem que uma linha de comportamento mude.
  * Versão: 1.5.1 (13/09/2026) — a frase de método do rodapé descrevia só a
  * metade que o banco tinha no dia em que foi escrita ("quando dois canais do
  * MESMO FABRICANTE discordam"). Divergência de revendedor é outra coisa, e nela
@@ -116,7 +123,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_CASCA_VERSAO' ) ) {
-	define( 'ROBOMETRIA_CASCA_VERSAO', '1.5.0' );
+	define( 'ROBOMETRIA_CASCA_VERSAO', '1.5.1' );
 	define( 'ROBOMETRIA_CASCA_TAGLINE', 'Qual peça o fabricante declarou para o seu robô aspirador — com código, endereço e data' );
 
 	/* GA4 DESTA ILHA — robometria, propriedade 553889920 da conta Arquipélago.

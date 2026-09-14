@@ -311,6 +311,73 @@ def identificar_peca(peca):
     return ('"%s"' % peca["nome_na_fonte"], True)
 
 
+def atribuicao_do_item(peca, par, modelo, dentro_do_kit=None, existe_avulso=False):
+    """A ORACAO EM QUE ESTE ITEM ATRIBUI A COMPATIBILIDADE (14/09/2026).
+
+    Ela sempre esteve aqui, como o comeco de frase_declarada(); o que nao existia
+    era um NOME para ela. Sem nome, uma regua que quisesse medir "a quem este item
+    atribui" so podia medir a frase inteira — e a frase inteira carrega a cauda da
+    divergencia, que fala do fabricante com toda a razao ("Um canal do fabricante
+    declara alcance diferente"). Medir as duas juntas da falso positivo, e foi
+    exatamente o que aconteceu ao escrever a secao 17 do teste-r1.php: a regua
+    reprovou a cauda certa. Fronteira de teste e marcador escrito, nunca "a
+    primeira coisa parecida com" — a cicatriz que a tabela de exemplos da R1
+    deixou em 13/09/2026.
+
+    O resto da documentacao desta frase esta em frase_declarada(), logo abaixo,
+    que a chama e acrescenta as caudas.
+    """
+    fonte = peca["fontes"][par["fonte"]]
+    publicador = fonte.get("publicador") or marcas[peca["marca"]]["nome"]
+    codigos = [c.get("codigo_declarado") for c in peca.get("compatibilidade", [])
+               if c.get("codigo_declarado")]
+    lista = ", ".join(codigos[:-1]) + " e " + codigos[-1] if len(codigos) > 1 else codigos[0]
+    identificacao, sem_codigo = identificar_peca(peca)
+    data = formatar_data(fonte.get("verificado_em"))
+
+    if dentro_do_kit and existe_avulso:
+        artigo, _avulso = GENERO_DO_TIPO.get(dentro_do_kit, ("o", "avulso"))
+        frase = (
+            "%s %s tambem vem dentro do kit %s, que a %s declara compativel com %s "
+            "(%s, verificado em %s)."
+            % (artigo.capitalize(), dentro_do_kit, identificacao, publicador, lista,
+               fonte.get("origem"), data)
+        )
+    elif dentro_do_kit:
+        artigo, avulso = GENERO_DO_TIPO.get(dentro_do_kit, ("o", "avulso"))
+        pronome = "ele" if artigo == "o" else "ela"
+        frase = (
+            "A %s nao vende %s %s %s para este modelo: %s vem dentro do kit %s, que a %s "
+            "declara compativel com %s (%s, verificado em %s)."
+            % (publicador, artigo, dentro_do_kit, avulso, pronome, identificacao,
+               publicador, lista, fonte.get("origem"), data)
+        )
+    elif atribuicao_da_funcao(peca) in (None, "titulo"):
+        # O fabricante escreveu a palavra do eixo no titulo ("Escova Lateral",
+        # "Side Brush", "Escova Central"), ou o tipo nem depende disso (filtro,
+        # mop, bateria, reservatorio). So aqui a frase pode dizer que ele
+        # DECLARA o tipo: e o que ele fez.
+        artigo, _ = GENERO_DO_TIPO.get(peca["tipo"], ("o", "avulso"))
+        frase = (
+            "A %s declara %s %s %s compativel com %s (%s, verificado em %s)."
+            % (publicador, artigo, peca["tipo"], identificacao, lista,
+               fonte.get("origem"), data)
+        )
+    else:
+        # A FUNCAO NAO VEIO DO TITULO (secao 26.3). O fabricante declarou duas
+        # coisas — o nome da peca e a compatibilidade dela — e a frase diz
+        # exatamente essas duas. O tipo abre a frase, para o leitor continuar
+        # sabendo de que peca se fala na primeira oracao, mas fora do escopo do
+        # verbo 'declara'. Quem nomeou a funcao vai na ressalva, logo abaixo.
+        frase = (
+            "%s: %s, que a %s declara compativel com %s (%s, verificado em %s)."
+            % (peca["tipo"][0].upper() + peca["tipo"][1:], identificacao, publicador,
+               lista, fonte.get("origem"), data)
+        )
+
+    return frase
+
+
 def frase_declarada(peca, par, modelo, dentro_do_kit=None, existe_avulso=False):
     """A frase que vai para a tela, com procedencia DENTRO dela (secao 5 do contrato).
 
@@ -350,54 +417,20 @@ def frase_declarada(peca, par, modelo, dentro_do_kit=None, existe_avulso=False):
     modelos — e a atribuicao da funcao vai para uma ressalva propria. O campo
     funcao{declarada_por} da secao 26.1 e o que tornou essa diferenca
     mensuravel; antes dele, a frase nao tinha como saber.
-    """
-    fonte = peca["fontes"][par["fonte"]]
-    publicador = fonte.get("publicador") or marcas[peca["marca"]]["nome"]
-    codigos = [c.get("codigo_declarado") for c in peca.get("compatibilidade", [])
-               if c.get("codigo_declarado")]
-    lista = ", ".join(codigos[:-1]) + " e " + codigos[-1] if len(codigos) > 1 else codigos[0]
-    identificacao, sem_codigo = identificar_peca(peca)
-    data = formatar_data(fonte.get("verificado_em"))
 
-    if dentro_do_kit and existe_avulso:
-        artigo, _avulso = GENERO_DO_TIPO.get(dentro_do_kit, ("o", "avulso"))
-        frase = (
-            "%s %s tambem vem dentro do kit %s, que a %s declara compativel com %s "
-            "(%s, verificado em %s)."
-            % (artigo.capitalize(), dentro_do_kit, identificacao, publicador, lista,
-               fonte.get("origem"), data)
-        )
-    elif dentro_do_kit:
-        artigo, avulso = GENERO_DO_TIPO.get(dentro_do_kit, ("o", "avulso"))
-        pronome = "ele" if artigo == "o" else "ela"
-        frase = (
-            "A %s nao vende %s %s %s para este modelo: %s vem dentro do kit %s, que o "
-            "fabricante declara compativel com %s (%s, verificado em %s)."
-            % (publicador, artigo, dentro_do_kit, avulso, pronome, identificacao, lista,
-               fonte.get("origem"), data)
-        )
-    elif atribuicao_da_funcao(peca) in (None, "titulo"):
-        # O fabricante escreveu a palavra do eixo no titulo ("Escova Lateral",
-        # "Side Brush", "Escova Central"), ou o tipo nem depende disso (filtro,
-        # mop, bateria, reservatorio). So aqui a frase pode dizer que ele
-        # DECLARA o tipo: e o que ele fez.
-        artigo, _ = GENERO_DO_TIPO.get(peca["tipo"], ("o", "avulso"))
-        frase = (
-            "A %s declara %s %s %s compativel com %s (%s, verificado em %s)."
-            % (publicador, artigo, peca["tipo"], identificacao, lista,
-               fonte.get("origem"), data)
-        )
-    else:
-        # A FUNCAO NAO VEIO DO TITULO (secao 26.3). O fabricante declarou duas
-        # coisas — o nome da peca e a compatibilidade dela — e a frase diz
-        # exatamente essas duas. O tipo abre a frase, para o leitor continuar
-        # sabendo de que peca se fala na primeira oracao, mas fora do escopo do
-        # verbo 'declara'. Quem nomeou a funcao vai na ressalva, logo abaixo.
-        frase = (
-            "%s: %s, que a %s declara compativel com %s (%s, verificado em %s)."
-            % (peca["tipo"][0].upper() + peca["tipo"][1:], identificacao, publicador,
-               lista, fonte.get("origem"), data)
-        )
+    E QUEM DECLARA E O PUBLICADOR, NAS QUATRO FRASES (14/09/2026). Tres destes
+    quatro moldes ja citavam o publicador; o do kit sem avulso escrevia "que o
+    fabricante declara", DIGITADO, e a mesma frase abria com "A Electrolux (loja
+    oficial) nao vende..." — o publicador correto na primeira oracao e a
+    autoridade do fabricante emprestada na segunda, dentro de UMA frase, em 18
+    itens que ja estavam no ar. A escada de fontes ja separava as duas coisas: o
+    degrau 4 FALA PELA MARCA (por isso o item fica do lado do fabricante na
+    pagina) e ao mesmo tempo declara quem_declara "pela loja oficial da marca",
+    "porque quem transcreveu foi a loja". Falar pela marca nao e ser a marca, e a
+    atribuicao de UM item nunca sai do rotulo do lado: sai de quem publicou.
+    """
+    frase = atribuicao_do_item(peca, par, modelo, dentro_do_kit, existe_avulso)
+    _identificacao, sem_codigo = identificar_peca(peca)
 
     # A RESSALVA VEM ANTES DAS OUTRAS CAUDAS porque ela qualifica a afirmacao
     # principal — quem leu a funcao —, enquanto as de baixo qualificam detalhes

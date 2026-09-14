@@ -1240,6 +1240,198 @@ rbm_ok( 0 === $div_sem_origem && $div_total > 0,
 	'toda divergencia de peca do banco declara a origem do canal', $div_total . ' divergencia(s)' );
 
 /* ---------------------------------------------------------------------------
+ * 17. A ATRIBUICAO DE UM ITEM E O PUBLICADOR, NUNCA O ROTULO DO LADO
+ *     (14/09/2026).
+ *
+ * A secao 16, logo acima, mede o LADO: quem fala PELA marca e quem fala SOBRE
+ * ela. Esta mede outra coisa, e a diferenca entre as duas e o defeito inteiro:
+ * o degrau 4 (loja oficial da marca) FALA PELA MARCA — por isso o item cai do
+ * lado do fabricante na divisao da pagina — e a MESMA escada declara que a
+ * atribuicao dele e "pela loja oficial da marca", "porque quem transcreveu foi
+ * a loja". **Falar pela marca nao e ser a marca.** O rotulo do lado responde
+ * "de que lado esta este item"; ele nunca responde "quem declarou".
+ *
+ * O que estava no ar: o cartao da vitrine escrevia "o fabricante declara esta
+ * peca", DIGITADO, para qualquer degrau — em 52 dos 73 itens do banco de hoje o
+ * publicador e a loja oficial —, e a frase do kit sem avulso escrevia "que o
+ * fabricante declara" na mesma oracao que ja abria com "A Electrolux (loja
+ * oficial) nao vende...". Uma frase, duas atribuicoes, 18 itens ja publicados.
+ *
+ * NENHUMA REGUA DESTE ARQUIVO MORDIA, e vale dizer por que: a secao 3 compara
+ * cada frase do PHP com a da implementacao de referencia, e as duas erravam
+ * IGUAL, entao ela ficava verde; a secao 16 media o lado, que estava certo. Foi
+ * a leitura da resposta como um leitor le — a mesma que achou a contradicao do
+ * "nao vende avulso" — que viu as duas atribuicoes na mesma tela.
+ * ------------------------------------------------------------------------- */
+
+echo "\n17. Quem declara e o publicador do item, nunca o rotulo do lado (14/09/2026)\n";
+
+/* A REGUA E ESCRITA A MAO AQUI, pelo mesmo motivo da fronteira da secao 16: se
+   ela derivasse do mesmo lugar que o snippet, as duas metades errariam juntas.
+   Estas sao as atribuicoes PROIBIDAS dentro da oracao de atribuicao de um item e
+   dentro do cartao — as formas digitadas que emprestam a autoridade de quem nao
+   publicou.
+
+   E O QUE SE MEDE E A ORACAO, NAO A FRASE INTEIRA, porque a frase inteira leva
+   as caudas: a da divergencia diz "Um canal do fabricante declara alcance
+   diferente" e esta CERTA — quem diverge ali e canal do fabricante, e a secao 16
+   mede isso. Medir as duas juntas deu falso positivo na primeira escrita desta
+   secao, em tres itens, e o conserto NAO foi afinar a lista de palavras: foi dar
+   um NOME a fronteira. robometria_r1_atribuicao_do_item() e esse nome, e o
+   espelho dela na referencia e atribuicao_do_item(). Fronteira de teste e
+   marcador escrito, nunca "a primeira coisa parecida com" — a mesma cicatriz que
+   a tabela de exemplos da R1 deixou em 13/09/2026. */
+$atribuicoes_digitadas = array(
+	'o fabricante declara',
+	'que o fabricante declara',
+	'pelo fabricante declara',
+	'a fabricante declara',
+);
+
+/* E A FRONTEIRA NOVA E CONFERIDA CONTRA A FRASE INTEIRA: a oracao tem de ser o
+   COMECO dela, e a frase inteira tem de crescer a partir da oracao. Sem isto,
+   uma oracao que deixasse de ser usada pela frase publicada tornaria esta secao
+   inteira uma medicao de codigo morto. */
+$item_fronteira = $dados['respostas'][ $dados['ancora'] ]['fabricante'][0];
+rbm_ok( 0 === strpos(
+		robometria_r1_frase( $item_fronteira ),
+		robometria_r1_atribuicao_do_item( $item_fronteira )
+	),
+	'a frase publicada COMECA pela oracao de atribuicao — a fronteira e usada, nao decorativa' );
+
+/* -- o mundo real: todo item de toda resposta ----------------------------- */
+$itens_medidos   = 0;
+$sem_publicador  = array();
+$com_digitada    = array();
+foreach ( $dados['respostas'] as $mid => $resp ) {
+	foreach ( array( 'fabricante', 'terceiro' ) as $grupo ) {
+		foreach ( $resp[ $grupo ] as $item ) {
+			$itens_medidos++;
+			$frase = rbm_sem_acento( robometria_r1_atribuicao_do_item( $item ) );
+			$pub   = rbm_sem_acento( $item['publicador'] );
+
+			/* (1) A frase NOMEIA quem publicou. Sem isto, tirar a atribuicao
+			   digitada seria trocar uma mentira por um silencio. */
+			if ( false === strpos( $frase, $pub ) ) {
+				$sem_publicador[] = $mid . '/' . $item['peca'];
+			}
+			/* (2) E nao carrega nenhuma das formas digitadas. */
+			foreach ( $atribuicoes_digitadas as $proibida ) {
+				if ( false !== strpos( $frase, $proibida ) ) {
+					$com_digitada[] = $mid . '/' . $item['peca'] . ' (' . $proibida . ')';
+					break;
+				}
+			}
+		}
+	}
+}
+rbm_ok( $itens_medidos > 0, 'ha item de resposta para esta secao medir', $itens_medidos . ' item(ns)' );
+rbm_ok( empty( $sem_publicador ), 'toda oracao de atribuicao NOMEIA o publicador dela',
+	empty( $sem_publicador ) ? $itens_medidos . ' de ' . $itens_medidos : implode( ', ', array_slice( $sem_publicador, 0, 4 ) ) );
+rbm_ok( empty( $com_digitada ), 'nenhuma oracao de atribuicao escreve "o fabricante" no lugar de quem publicou',
+	empty( $com_digitada ) ? 'nenhuma' : implode( ', ', array_slice( $com_digitada, 0, 4 ) ) );
+
+/* O BANCO DE HOJE TEM OS DOIS DEGRAUS, e isto e o que impede a afirmacao acima
+   de ser verdadeira por sorte: se um dia todos os itens vierem do degrau 3, a
+   frase "o fabricante declara" voltaria a ser inofensiva e a regua nao teria
+   como saber que parou de medir alguma coisa. */
+$degraus_vistos = array();
+foreach ( $dados['respostas'] as $resp ) {
+	foreach ( array( 'fabricante', 'terceiro' ) as $grupo ) {
+		foreach ( $resp[ $grupo ] as $item ) {
+			$degraus_vistos[ $item['origem'] ] = true;
+		}
+	}
+}
+rbm_ok( count( $degraus_vistos ) > 1,
+	'o banco tem item de MAIS DE UM degrau, entao a atribuicao nao e a mesma para todos',
+	implode( ' + ', array_keys( $degraus_vistos ) ) );
+
+/* -- o cartao da vitrine, no mundo real ----------------------------------- */
+$ancora_html = rbm_sem_acento( robometria_r1_vitrine(
+	$dados['respostas'][ $dados['ancora'] ]['fabricante'],
+	$dados['ancora']
+) );
+foreach ( $atribuicoes_digitadas as $proibida ) {
+	rbm_ok( false === strpos( $ancora_html, $proibida ),
+		'o cartao da vitrine nao escreve "' . $proibida . '"' );
+}
+$pubs_da_ancora = array();
+foreach ( $dados['respostas'][ $dados['ancora'] ]['fabricante'] as $item ) {
+	$pubs_da_ancora[ $item['publicador'] ] = true;
+}
+$faltou = array();
+foreach ( array_keys( $pubs_da_ancora ) as $pub ) {
+	if ( false === strpos( $ancora_html, rbm_sem_acento( $pub ) ) ) {
+		$faltou[] = $pub;
+	}
+}
+rbm_ok( empty( $faltou ), 'cada publicador da ancora aparece no proprio cartao',
+	empty( $faltou ) ? implode( ' / ', array_keys( $pubs_da_ancora ) ) : implode( ', ', $faltou ) );
+
+/* -- O MUNDO PRODUZIDO, e ele tem de ser produzido -------------------------
+   Todo publicador do banco de hoje carrega o nome da MARCA dentro dele
+   ("Electrolux (loja oficial)", "WAP (loja oficial)", "Xiaomi"). Entao uma
+   regua que so olhasse o banco real nao distinguiria "cita o publicador" de
+   "cita a marca" — e no dia em que entrar uma assistencia autorizada, que fala
+   pela marca sem ser a marca e sem ter o nome dela, o cartao voltaria a poder
+   mentir com a bancada verde. Os itens abaixo sao montados em memoria; nenhum
+   arquivo do banco e tocado. */
+$item_base = $dados['respostas'][ $dados['ancora'] ]['fabricante'][0];
+
+$mundos_de_publicador = array(
+	'assistencia autorizada, sem o nome da marca' => 'Rede Autorizada Sul Servicos',
+	'loja oficial, com o nome da marca'           => 'Electrolux (loja oficial)',
+	'o proprio fabricante'                        => 'Electrolux',
+);
+foreach ( $mundos_de_publicador as $nome_do_mundo => $publicador ) {
+	foreach ( array( false, true ) as $dentro_de_kit ) {
+		$forjado                    = $item_base;
+		$forjado['publicador']      = $publicador;
+		$forjado['dentro_de_kit']   = $dentro_de_kit;
+		$forjado['existe_avulso']   = false;
+		$forjado['peca']            = '__forjada__';
+		$forjado['tipos']           = array( $forjado['tipo'] );
+
+		$rotulo = $nome_do_mundo . ( $dentro_de_kit ? ' [kit sem avulso]' : ' [peca avulsa]' );
+
+		$frase_f = rbm_sem_acento( robometria_r1_atribuicao_do_item( $forjado ) );
+		rbm_ok( false !== strpos( $frase_f, rbm_sem_acento( $publicador ) ),
+			'oracao: ' . $rotulo . ' nomeia quem publicou' );
+		$digitou = false;
+		foreach ( $atribuicoes_digitadas as $proibida ) {
+			if ( false !== strpos( $frase_f, $proibida ) ) {
+				$digitou = true;
+			}
+		}
+		rbm_ok( ! $digitou, 'oracao: ' . $rotulo . ' nao troca o publicador por "o fabricante"' );
+
+		$cartao_f = rbm_sem_acento( robometria_r1_vitrine( array( $forjado ), $dados['ancora'] ) );
+		rbm_ok( false !== strpos( $cartao_f, rbm_sem_acento( $publicador ) ),
+			'cartao: ' . $rotulo . ' nomeia quem publicou' );
+		$digitou = false;
+		foreach ( $atribuicoes_digitadas as $proibida ) {
+			if ( false !== strpos( $cartao_f, $proibida ) ) {
+				$digitou = true;
+			}
+		}
+		rbm_ok( ! $digitou, 'cartao: ' . $rotulo . ' nao troca o publicador por "o fabricante"' );
+	}
+}
+
+/* -- E A NOTA QUE JUSTIFICA A ORDEM COMERCIAL --------------------------------
+   Ela dizia "a ordem e decidida pela declaracao do fabricante, e so ela" — a
+   mesma atribuicao digitada, no lugar mais caro da pagina para empresta-la: a
+   frase que diz ao leitor por que a lista esta nessa ordem, logo acima dos
+   botoes de afiliado. */
+rbm_ok( false !== strpos( $ancora_html, 'aviso-comissao' ),
+	'o bloco de compra traz o aviso de comissao (secao 7)' );
+rbm_ok( false === strpos( $ancora_html, 'decidida pela declaracao do fabricante' ),
+	'a nota da ordem nao atribui o criterio a "o fabricante"' );
+rbm_ok( false !== strpos( $ancora_html, 'declaracao de compatibilidade publicada na fonte' ),
+	'a nota da ordem diz qual e o criterio de verdade' );
+
+/* ---------------------------------------------------------------------------
  * Fecho
  * ------------------------------------------------------------------------- */
 

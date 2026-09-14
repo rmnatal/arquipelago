@@ -1,5 +1,20 @@
 /**
  * Robometria R1 — Qual peça serve no meu robô aspirador
+ * Versão: 1.5.0 (14/09/2026) — QUEM DECLARA É O PUBLICADOR, E NUNCA O RÓTULO DO
+ * LADO. O cartão da vitrine escrevia "o fabricante declara esta peça", digitado,
+ * para qualquer degrau, e a frase do kit sem avulso escrevia "que o fabricante
+ * declara" na mesma oração que já nomeava "A Electrolux (loja oficial)". O
+ * degrau 4 tem fala_pela_marca verdadeiro — por isso o item fica do lado do
+ * fabricante na divisão da página —, e a escada de fontes decidiu, com todas as
+ * letras, que a atribuição dele é "pela loja oficial da marca", porque quem
+ * transcreveu foi a loja. Falar pela marca não é ser a marca. Agora as quatro
+ * frases de resposta e o cartão citam o publicador do item, lido do banco.
+ * Nenhuma URL mudou e nenhuma peça entrou ou saiu.
+ * NOTA DE VERSÃO: a constante ROBOMETRIA_R1_VERSAO estava em 1.3.0 enquanto este
+ * cabeçalho já dizia 1.4.0 — a execução de 13/09 moveu o texto e não a constante.
+ * Não houve efeito no ar (a constante só decide se a ESTRUTURA da página é
+ * refeita, e a 1.4.0 não mexeu em título, slug nem shortcode), mas era a versão
+ * que o teste imprime e que o manifest descreve. Sobe para 1.5.0 nas duas.
  * Versão: 1.4.0 (13/09/2026) — QUEM DIVERGE DECIDE A FRASE. A cauda da
  * divergência era fixa ("Dois canais do fabricante discordam") e o título do
  * bloco dizia o mesmo; as duas eram verdadeiras por acidente do banco, porque
@@ -102,7 +117,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_R1_VERSAO' ) ) {
-	define( 'ROBOMETRIA_R1_VERSAO', '1.3.0' );
+	define( 'ROBOMETRIA_R1_VERSAO', '1.5.0' );
 	define( 'ROBOMETRIA_R1_SLUG', 'qual-peca-serve-no-meu-robo-aspirador' );
 	define( 'ROBOMETRIA_R1_TITULO', 'Qual peça serve no meu robô aspirador' );
 	define( 'ROBOMETRIA_R1_DADOS', 'robometria_dados_r1-respostas' );
@@ -539,8 +554,25 @@ function robometria_r1_ressalva_da_funcao( $item, $tipo ) {
 }
 }
 
-if ( ! function_exists( 'robometria_r1_frase' ) ) {
-function robometria_r1_frase( $item ) {
+/**
+ * A ORAÇÃO EM QUE ESTE ITEM ATRIBUI A COMPATIBILIDADE — e o nome dela é a
+ * fronteira (14/09/2026).
+ *
+ * Ela sempre esteve aqui, como as quatro primeiras linhas de
+ * robometria_r1_frase(); o que não existia era um NOME para ela. Sem nome, uma
+ * régua que quisesse medir "a quem este item atribui" só podia medir a frase
+ * inteira — e a frase inteira carrega a cauda da divergência, que fala do
+ * fabricante com toda a razão ("Um canal do fabricante declara alcance
+ * diferente"). Medir as duas juntas dá falso positivo, e foi exatamente o que
+ * aconteceu ao escrever a seção 17 do teste: a régua reprovou a cauda certa.
+ *
+ * A saída é a mesma que a tabela de exemplos da R1 aprendeu em 13/09, quando os
+ * conferidores delimitavam "a resposta" pela primeira coisa parecida com uma
+ * tabela: **fronteira de teste é marcador escrito, nunca "a primeira coisa
+ * parecida com".** Aqui o marcador é esta função.
+ */
+if ( ! function_exists( 'robometria_r1_atribuicao_do_item' ) ) {
+function robometria_r1_atribuicao_do_item( $item ) {
 	list( $identificacao, $sem_codigo ) = robometria_r1_identificacao( $item );
 	list( $rotulo_origem )              = robometria_r1_origem( $item['origem'] );
 
@@ -568,9 +600,13 @@ function robometria_r1_frase( $item ) {
 	} elseif ( ! empty( $item['dentro_de_kit'] ) ) {
 		list( $artigo, $avulso, $pronome ) = robometria_r1_genero( $item['tipo'] );
 		$frase = sprintf(
-			'A %1$s não vende %2$s %3$s %4$s para este modelo: %5$s vem dentro do kit %6$s, que o fabricante declara compatível com %7$s (%8$s, verificado em %9$s).',
+			/* "que o fabricante declara" era DIGITADO aqui, e a mesma frase
+			   já abria com o publicador certo — "A Electrolux (loja oficial)
+			   não vende…". Ver robometria_r1_vitrine() para o porquê inteiro:
+			   falar pela marca não é ser a marca. */
+			'A %1$s não vende %2$s %3$s %4$s para este modelo: %5$s vem dentro do kit %6$s, que a %7$s declara compatível com %8$s (%9$s, verificado em %10$s).',
 			$item['publicador'], $artigo, $tipo, $avulso, $pronome,
-			$identificacao, $lista, $rotulo_origem, $data
+			$identificacao, $item['publicador'], $lista, $rotulo_origem, $data
 		);
 	} elseif ( ! robometria_r1_funcao_derivada( $item ) ) {
 		/* O fabricante escreveu a palavra do eixo no título ("Escova Lateral",
@@ -596,6 +632,16 @@ function robometria_r1_frase( $item ) {
 			$lista, $rotulo_origem, $data
 		);
 	}
+
+	return $frase;
+}
+}
+
+if ( ! function_exists( 'robometria_r1_frase' ) ) {
+function robometria_r1_frase( $item ) {
+	list( , $sem_codigo ) = robometria_r1_identificacao( $item );
+	$tipo  = robometria_r1_nome_do_tipo( $item['tipo'] );
+	$frase = robometria_r1_atribuicao_do_item( $item );
 
 	/* A RESSALVA VEM ANTES DAS OUTRAS CAUDAS porque ela qualifica a afirmação
 	   principal — quem leu a função —, enquanto as de baixo qualificam detalhes
@@ -791,7 +837,12 @@ function robometria_r1_vitrine( $itens, $modelo ) {
 
 	/* AVISO DE COMISSÃO VISÍVEL NA PÁGINA (seção 7), e no bloco de compra — não
 	   só no rodapé. Quem vê o botão precisa ver o aviso sem rolar. */
-	$html .= '<p class="rbm-aviso-comissao">Os botões de compra abaixo são links de afiliado: se você comprar por eles, a Robometria pode receber comissão, sem custo a mais para você. Isso não muda a ordem da lista — ela é decidida pela declaração do fabricante, e só ela. '
+	/* "decidida pela declaração do fabricante" era a mesma atribuição digitada,
+	   e na frase que justifica a ORDEM comercial da lista — o lugar mais caro
+	   da página para emprestar autoridade. O critério verdadeiro é a declaração
+	   de compatibilidade publicada na fonte de cada peça, seja ela o fabricante
+	   ou a loja oficial dele. */
+	$html .= '<p class="rbm-aviso-comissao">Os botões de compra abaixo são links de afiliado: se você comprar por eles, a Robometria pode receber comissão, sem custo a mais para você. Isso não muda a ordem da lista — ela é decidida pela declaração de compatibilidade publicada na fonte de cada peça, e só por ela. '
 		. ( function_exists( 'robometria_casca_link_html' )
 			? robometria_casca_link_html( 'divulgacao-de-afiliados', 'Como isto funciona' )
 			: 'Veja a página de divulgação de afiliados' ) . '.</p>';
@@ -813,7 +864,7 @@ function robometria_r1_vitrine( $itens, $modelo ) {
 		}
 
 		$html .= '<p class="rbm-nota">' . esc_html( $quantas )
-			. esc_html( ', e o cartão diz isso em vez de fazer o bloco sumir. Enquanto o link não existe, o endereço da declaração do fabricante continua aqui — embaixo de cada cartão, como "fonte", para você conferir.' )
+			. esc_html( ', e o cartão diz isso em vez de fazer o bloco sumir. Enquanto o link não existe, o endereço da declaração continua aqui — embaixo de cada cartão, como "fonte", para você conferir.' )
 			. '</p>';
 	}
 
@@ -840,13 +891,30 @@ function robometria_r1_vitrine( $itens, $modelo ) {
 		$html .= '<span class="rbm-vitrine-nome">' . esc_html( $i['nome_na_fonte'] ) . '</span>';
 
 		/* A especificação que fez a peça entrar, com o modelo consultado dentro
-		   da frase — é o que a seção 6 pede do cartão. */
+		   da frase — é o que a seção 6 pede do cartão.
+
+		   QUEM DECLARA É O PUBLICADOR, LIDO DO ITEM (14/09/2026). Até aqui o
+		   cartão escrevia "o fabricante declara", digitado, para QUALQUER
+		   degrau — e 52 dos 73 itens deste banco vêm do degrau 4, cujo
+		   publicador é a loja oficial da marca. A página se atribuía duas
+		   coisas diferentes na mesma tela: a frase da resposta dizia "A
+		   Electrolux (loja oficial) declara o filtro…" e o cartão da MESMA
+		   peça, três linhas abaixo, dizia "o fabricante declara esta peça".
+
+		   O degrau 4 tem `fala_pela_marca` verdadeiro, e é por isso que o item
+		   fica do lado do fabricante na divisão da página — mas a escada de
+		   fontes decidiu, com todas as letras, que a ATRIBUIÇÃO dele é "pela
+		   loja oficial da marca", "porque quem transcreveu foi a loja".
+		   **Falar pela marca não é ser a marca**: o rótulo do LADO não serve
+		   de sujeito para a frase de UM item. É a mesma cicatriz da cauda de
+		   divergência de 13/09, e a mesma do artigo A2 de 12/09. */
 		$html .= '<span class="rbm-vitrine-porque">' . esc_html( sprintf(
 			$i['dentro_de_kit']
-				? 'o fabricante declara este kit compatível com o seu %1$s, e é dentro dele que vem %2$s'
-				: 'o fabricante declara esta peça (%2$s) compatível com o seu %1$s',
+				? 'a %3$s declara este kit compatível com o seu %1$s, e é dentro dele que vem %2$s'
+				: 'a %3$s declara esta peça (%2$s) compatível com o seu %1$s',
 			robometria_r1_rotulo_modelo( $modelo ),
-			robometria_r1_lista( $tipos_do_cartao )
+			robometria_r1_lista( $tipos_do_cartao ),
+			$i['publicador']
 		) ) . '</span>';
 
 		if ( ! empty( $i['vida_util'] ) && null !== $i['vida_util']['valor'] ) {

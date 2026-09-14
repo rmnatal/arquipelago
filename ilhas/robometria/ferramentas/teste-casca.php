@@ -745,6 +745,19 @@ foreach ( (array) $manifest['snippets'] as $item ) {
 	if ( ! preg_match( "#define\(\s*'ROBOMETRIA_[A-Z0-9]+_VERSAO',\s*'([^']+)'#", $fonte_s, $mv2 ) ) { continue; }
 	rbm_ok( $mv2[1] === $item['versao'], "[{$item['id']}] a versao do manifest e a da constante",
 		'manifest ' . $item['versao'] . ' / snippet ' . $mv2[1] );
+
+	/* E A TERCEIRA COPIA E O CABECALHO DO ARQUIVO, que ate 14/09/2026 nao tinha
+	   portao nenhum — e foi por ali que a drenagem aconteceu. A R1 passou de
+	   13/09 ate 14/09 com o cabecalho dizendo "Versao: 1.4.0" e a constante em
+	   1.3.0: o bloco daquele dia moveu o texto e nao a constante. Nao houve
+	   efeito no ar (a constante so decide se a ESTRUTURA da pagina e refeita),
+	   e e exatamente por isso que ninguem veria — defeito sem sintoma so
+	   aparece quando alguma coisa o mede. Duas copias ja tinham regua entre si;
+	   a terceira ficava de fora, e quem le o arquivo le ELA primeiro. */
+	if ( preg_match( '#^\s*\*\s*Vers[ãa]o:\s*([0-9][0-9A-Za-z.\-]*)#mu', $fonte_s, $mc ) ) {
+		rbm_ok( $mc[1] === $mv2[1], "[{$item['id']}] a versao do cabecalho e a da constante",
+			'cabecalho ' . $mc[1] . ' / constante ' . $mv2[1] );
+	}
 }
 
 echo "\n17. Cada pagina carimba o PROPRIO codigo de origem no link de afiliado\n";
