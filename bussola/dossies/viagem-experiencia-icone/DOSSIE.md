@@ -1,32 +1,88 @@
-# DOSSIÊ — VIAGEM: "VALE A PENA?" SOBRE EXPERIÊNCIA ICÔNICA — rodada 004 (14/09/2026)
+# DOSSIÊ — VIAGEM: "VALE A PENA?" SOBRE EXPERIÊNCIA ICÔNICA — rodadas 004 e 005 (14/09/2026)
 
 Nome: **JORNADAFLY** · domínio: **jornadafly.com.br — JÁ REGISTRADO pelo Raphael em 13/09/2026** (titular RAPHAEL NATAL,
-expira 13/09/2028) · molde de casca: **GUIA** · **índice não calculado — ver o portão aberto abaixo**
+expira 13/09/2028) · molde de casca: **GUIA** · **índice 3,92** (faixa 3,77 a 4,10) — **2º da fila**
 
 Entra por **despacho do Raphael de 13/09/2026** (`bussola/despacho-viagem.md`), com os critérios da seção 2 já ampliados
 para serviço. **A parte (d) do dossiê — naming — não se aplica**, conforme o despacho determina.
 
 ---
 
-## ⚠️ O PORTÃO QUE ESTA RODADA NÃO CONSEGUIU FECHAR — leia antes de tudo
+## O PORTÃO FECHOU — atualização da rodada 005, 14/09/2026
 
-**O M (retorno por venda) deste nicho NÃO É CALCULÁVEL COM FONTE, e por isso o índice não foi calculado.**
+A rodada 004 entregou este dossiê com o M em aberto: não conseguia ler a página de comissão de nenhum programa do núcleo,
+porque `WebFetch` exige aprovação humana e travaria a execução automática. **Com o Raphael na conversa, a 005 leu.**
+Esta seção substitui o portão aberto. A lista de programas da seção (c) continua válida e é completada aqui pelos
+percentuais.
 
-De **doze** programas de afiliado consultados, **um** declarou número na própria página: **Discover Cars, "Payouts $20+ Per
-Client"** (`discovercars.com/affiliate`) — e aluguel de carro é o entorno logístico da viagem, **não o núcleo da tese**.
-Civitatis, GetYourGuide, Viator, Tiqets, Klook, Holafly e os cinco programas de seguro têm a página do programa localizada e
-nomeada, mas **o percentual vivo mora atrás de FAQ, login de parceiro ou central de ajuda** — páginas que existem, que foram
-localizadas, e que este ambiente não conseguiu abrir (`WebFetch` trava a rodada pedindo aprovação; `curl` para hosts externos
-deu 403 CONNECT). **Isso não é ausência de dado: é dado atrás de uma porta**, e as URLs que a abrem estão na seção (c).
+### Comissões verificadas na própria página do programa
 
-A **faixa de 10% a 30% do seguro segue NÃO CONFIRMADA** e continua fora do modelo, exatamente como o despacho mandou.
-**Nenhum percentual foi inventado neste dossiê.**
+| Programa | Comissão | Cookie | Entrada |
+|---|---|---|---|
+| **Civitatis** — o motor | **8% a 10%**, por faixa de volume mensal, **+ €1 fixo por pessoa em free tour** | **30 dias** | **Exige site ou blog de viagem ativo: "does not partner with individuals who only operate social media accounts".** Sem taxa, sem contrato, sem mínimo de seguidores. Pagamento mensal por transferência ou PayPal |
+| **Discover Cars** | 70% do lucro da locação + 30% na Full Coverage, **≈ US$ 20 por reserva** | **365 dias** | Grátis, sem mínimo de tráfego |
+| **Saily** (eSIM, grupo NordVPN) | **15% por novo usuário** | não publicado | Formulário + aprovação, gerente dedicado |
+| **Airalo** (eSIM) | **10% padrão**, via Impact.com | não publicado | Grátis |
+| **RentCars** | **até 50% da comissão deles** por reserva resgatada | não publicado | Cadastro passa por avaliação |
+| Tiqets | share do gross transaction margin, **% não publicado** | não publicado | **Sem mínimo de visitantes ou pedidos** |
+| GetYourGuide · Viator · Klook | **seguem atrás de login** | — | Cadastro self-service aberto |
+| Holafly | **% não publicado**; funciona por **cupom**, não só por link | — | Formulário de contato |
+| Parceiros Promo (seguro) | varia por produto e marca; **incide sobre "o valor líquido ou rentabilidade da venda"** (cláusula 3.1 do termo de adesão) | — | Pagamento dia 23, PF ou PJ |
 
-**Consequência prática:** o dossiê está pronto em tudo que não depende disso — SERPs medidas, recorte testado, identidade,
-plano, `VOZ.md`. O que falta para o "sim" ser um sim informado é uma leitura de seis URLs. **Mas o domínio já está pago e o
-relógio do Google já corre**, e pela seção 5 do `BUSSOLA.md` a única coisa entre a aprovação e o nascimento é este dossiê —
-o que muda o cálculo: **o custo de nascer agora já foi pago; o que está em jogo é só a escolha do motor de monetização**, e
-essa escolha pode ser feita depois que a casca e a F1 estiverem no ar.
+**A faixa de "10% a 30% da apólice" está definitivamente derrubada.** O termo de adesão diz que a comissão incide sobre a
+**margem**, não sobre a apólice — a estimativa que circulava estava errada até na forma, não só no número. Somado à
+reclamação pública sobre não pagamento de comissão, **seguro sai do plano de monetização.**
+
+### A descoberta que justifica a ilha existir
+
+**A Civitatis não aceita quem só tem rede social.** O @jornadafly, com 10 mil seguidores e sem site, **não entra no melhor
+programa verificado do núcleo**. O site é a chave que destrava — e esse é um argumento a favor do nascimento que o dossiê
+da 004 não tinha. **Ressalva de execução que sai daí: o cadastro na Civitatis é feito DEPOIS que o site tiver conteúdo
+real no ar**, não no dia 1, porque a avaliação olha o site.
+
+### O M, calculado sobre preço colhido na fonte
+
+Preços lidos na Civitatis em 14/09/2026: **Blue Lagoon US$ 149,09 por pessoa**; **safári no deserto de Dubai US$ 30,60 por
+pessoa** (4 h, com transfer do hotel, dune bashing de 45 min, sandboard e passeio de camelo). Câmbio **US$ 1 = R$ 5,1231**
+(xe.com, 08:28 UTC de 14/09/2026). Reserva típica = 2 pessoas. Comissão na **faixa de entrada, 8%** (conservador):
+
+| cenário | R$ por venda | M | índice |
+|---|---|---|---|
+| piso — safári Dubai, 2 pax | R$ 25,08 | 3,01 | **3,77** |
+| **central — média geométrica dos dois preços verificados** | **R$ 55,37** | **3,77** | **3,92** |
+| teto — Blue Lagoon, 2 pax | R$ 122,21 | 4,52 | **4,06** |
+
+A 10% (faixa alta da Civitatis, também verificada): central 3,96, teto 4,10.
+
+**ÍNDICE: 3,92.** Notas: S_par 3,25 · S_com 2,25 · S 3,10 · P 5 · D 4 · **M 3,77** · R 4 · A 4,5 · V 4
+→ **Facilidade 3,86 · Retorno 3,98 · Índice 3,92 — 2º da fila.**
+
+**Por que ele ganha do resto da fila no dinheiro: não é o ticket, é a taxa.** A rodada 005 corrigiu a âncora do M de toda
+a Bússola — as ilhas de marketplace passaram a ser medidas pelo **piso publicado da Shopee, 3%**, e não mais pela tabela da
+Amazon (7–8%), que a seção 7 do `ARQUIPELAGO.md` proíbe em todas as ilhas. **O JornadaFly é ancorado nos 8% verificados da
+Civitatis**, e é essa diferença de programa — não de preço — que o coloca à frente de quase tudo. A comparação só é justa
+porque agora cada nicho é medido pela taxa do programa que ele de fato usa.
+
+### A arquitetura de monetização: por MOMENTO, não por produto
+
+O dado que organiza tudo é o contraste entre **30 dias de cookie na Civitatis** e **365 dias na Discover Cars**:
+
+- **6 meses antes — a pessoa sonhando.** Nada converte na Civitatis: a janela é curta demais e o clique morre antes da compra. Conteúdo aqui existe para autoridade orgânica. **A exceção é o aluguel de carro, cujo cookie de um ano atravessa o intervalo inteiro entre pesquisar e viajar** — que é justamente o intervalo que mata todo afiliado de viagem.
+- **2 a 8 semanas antes — a pessoa comprando.** Civitatis 8–10%. É a página do dinheiro, e é exatamente o recorte "vale a pena / quanto custa de verdade / o que está incluso" que esta ilha já escolheu. **O cookie curto VALIDA o recorte**: ele obriga a mirar quem está com o cartão na mão, não quem está sonhando.
+- **Semana da viagem.** eSIM (Saily 15%, Airalo 10%) e acessório pela Shopee/ML, que a fábrica já tem montado.
+- **Cluster próprio: FREE TOUR.** A Civitatis paga **€1 fixo por pessoa que comparece**, e free tour não custa nada ao usuário — a fricção de conversão é quase zero, e uma família de quatro vale €4 sem ninguém tirar o cartão. "Free tour em Roma vale a pena?" é literalmente uma consulta de julgamento, o recorte da ilha. **Ninguém no mercado brasileiro constrói para isso.**
+
+**REGRA DE COLOCAÇÃO DE LINK, e é o achado operacional desta rodada:** **link de aluguel de carro nas páginas de início de
+funil** (onde o cookie de 365 dias trabalha sozinho por meses) e **link de experiência nas páginas de fim de funil** (onde
+30 dias bastam). O erro clássico do afiliado de viagem é pôr o link de experiência na página de sonho e perder a
+atribuição por vencimento de cookie.
+
+### O que continua não verificado
+
+GetYourGuide, Viator e Klook seguem com o percentual atrás de login — **não monte o plano em cima deles**. A Civitatis é a
+âncora verificada, cobre o mesmo catálogo e aceita site pequeno; os outros entram depois, como segunda porta. A Holafly
+não publica percentual, mas o **cupom** dela continua sendo o único instrumento levantado que atravessa o Instagram sem
+link na bio.
 
 ---
 
