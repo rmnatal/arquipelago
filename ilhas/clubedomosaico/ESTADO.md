@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 11
 primeira_indexacao: desconhecida
 ultima_execucao: 2026-09-14T13:21Z
-executando_desde: null
+executando_desde: 2026-09-14T17:18Z
 bloco_atual: |
   A ORDEM DAS DUAS VITRINES DA F1: A PASTILHA VEM PRIMEIRO, E O TITULO DEIXA DE DEPENDER DA POSICAO (f1 1.3.0, manifest revisao 31, /status conferido; NENHUMA URL nova, NENHUMA pagina criada, NENHUM produto entrou ou saiu do banco). Este era o item mais antigo da fila desta ilha e o unico que mexe em como a pagina apresenta produto.
   ESCOLHA DA ILHA: TERCEIRA TENTADA. Nenhuma ilha tinha despacho aberto para a Fundacao (os quatro achados da artesa de 14/09 sairam inteiros na execucao das 11h18Z e o que restou e bloco de malha), entao valeu a rotacao da secao 1. A aquametria (ultima_execucao 11h25Z) e a robometria (11h44Z) foram perdidas na corrida do push, reservadas por outras execucoes as 13h19Z e 13h20Z. A clubedomosaico estava com executando_desde null, que pela 1.1 ja significa que nao ha bloco da Fundacao vivo. Nenhum force push; nada de execucao anterior para mesclar. Rede pela 20.2 antes de trabalhar: home 200 e /status na revisao 30 igual a do manifest, em UMA passada.
