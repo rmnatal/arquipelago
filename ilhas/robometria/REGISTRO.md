@@ -3745,3 +3745,182 @@ mas fica escrito, e o `ultima_execucao` do cabeçalho é a hora **medida**.
    ela está atrás do egresso fechado.
 3. A página de privacidade, com o molde da aquametria.
 4. A escada na tela, no minuto em que houver `url_busca`.
+
+## 2026-09-14 (13h54Z) — O artigo de quem publica sai do banco, e a concordancia junto
+
+**Entregue:** `dados/publicadores.json` (novo, entidade PUBLICADOR, 25 registros),
+`ferramentas/publicadores.py` (novo), `ferramentas/mutacoes-artigo-do-publicador.py`
+(novo, 17 mutacoes), esquema versao 6 com a tabela `artigos_de_publicador`,
+`robometria-r1.php` **1.6.0**, `robometria-a1.php` **1.2.0**, `robometria-r2.php`
+**1.4.0**, manifest na **revisao 36**, `/status` em 36 as 13h51Z.
+**Nenhuma URL nova, nenhuma URL mudou, nenhuma frase mudou de texto, nenhuma peca
+entrou ou saiu do banco.**
+
+### Por que este bloco
+
+Era a **divida (c)** do estado anterior e o item (1) do PROXIMO dele. O item (2)
+daquele bloco (o recipiente dos outros quatro modelos WAP) segue atras do egresso
+fechado aos dominios da WAP.
+
+### A escolha da ilha
+
+Segunda tentada. **Nenhuma das tres ilhas tinha despacho ABERTO para a Fundacao**
+— os tres `PROMPT.md` foram lidos antes de escolher, e o que resta neles e metade
+humana (o reenvio do sitemap desta ilha no Search Console) ou foi reclassificado
+como bloco de malha (a familia `/tecnicas/` da clubedomosaico, no despacho de
+14/09 dela). Os quatro despachos de `dados/despachos.md` sao todos para o
+Raphael. Sobrou a rotacao da secao 1: a **aquametria** tinha a `ultima_execucao`
+mais antiga (11h25Z), e o meu push de reserva foi **recusado** — outra execucao a
+reservou as 13h19Z, no mesmo minuto e com a mesma mensagem de commit. Voltei ao
+passo 2 como manda o passo 5, sem force push, e peguei a robometria (11h44Z).
+Rede pela 20.2 antes de trabalhar: home em 200 e `/status` na revisao 35, igual a
+do manifest.
+
+### O defeito, e ele era a sombra do que o bloco anterior consertou
+
+O bloco das 11h44Z tirou **"o fabricante declara"**, digitado, do lugar de quem
+publicou. O que ficou digitado foi o **ARTIGO**, em cinco formas e quatro
+arquivos:
+
+1. `'A %s declara'` — a frase da peca avulsa, o molde mais comum da R1;
+2. `'que a %s declara'` — a frase do kit sem avulso, que cita o publicador duas vezes;
+3. `'a %s declara esta peca'` — o cartao da vitrine da R1;
+4. `' da '` antes do nome — o bloco do maior alcance do A1, e `"da %s"` na resposta do FAQ dele;
+5. `'a recomendacao DELE fica folgada'` — a frase da faixa confortavel da R2.
+
+As cinco estavam certas, e **nenhuma por saber de nada**: todo publicador que
+chega a essas frases e feminino singular. O banco ja tinha os dois
+contraexemplos, sem que nenhuma frase os citasse: **"Mundo Conectado"** e
+masculino e **"Lojas WAP"** e PLURAL — este esta em `modelos-robo.json` desde
+09/09 e nunca passou por uma oracao.
+
+### A R2 prova que isso nao se conserta sozinho
+
+E o achado mais util do bloco. Na R2 o artigo **ja vinha do dado** desde 11/09,
+por uma tabela `ARTIGO_DO_PUBLICADOR` digitada dentro de `cobertura-r2.py` — e
+mesmo assim o **pronome** estava digitado, certo pelo acidente ao contrario (o
+unico publicador com faixa confortavel no banco e masculino). **Meia regra
+aplicada parece regra aplicada.** E aquela tabela era a SEGUNDA copia da mesma
+decisao de lingua, convivendo com o `"A %s"` digitado da R1: duas metades que
+nunca se falavam, cada uma certa so para quem passava por ela.
+
+### O conserto, e onde cada metade mora
+
+- **O artigo e DADO**, declarado ao lado do nome em `dados/publicadores.json`.
+  Cada registro carrega o `motivo` da escolha, porque nenhum artigo foi colhido
+  de fonte externa: e decisao de lingua da ilha, e decisao sem motivo escrito
+  envelhece como se fosse medicao.
+- **O que se DERIVA do artigo** — maiuscula de comeco de frase, contracao com
+  "de", pronome possessivo e numero do verbo — mora em `artigos_de_publicador`,
+  no **esquema**, pela 26.2 ("a lista mora no esquema, nunca dentro da regua").
+- Os geradores levam `gramatica_do_publicador` como **fato**, e os tres snippets
+  compoem. Nenhuma tabela de lingua ficou dentro de snippet ou de gerador.
+- **A falta e explicita:** publicador sem registro DERRUBA o gerador com o nome
+  dele na mensagem, como `ROTULOS_DE_ORIGEM` ja fazia com origem sem rotulo de
+  tela. O validador cobra as duas direcoes — citado sem registro e ERRO, registro
+  sem citacao e AVISO (os dois da R2 vivem em `constantes.json`).
+
+**Nenhuma palavra mudou na tela**, e isso e o esperado: o HTML servido e
+identico ao de antes, porque todo publicador de hoje e feminino singular. O que
+mudou foi **de onde a concordancia vem**.
+
+### Tres reguas nasceram INERTES, e a bateria as achou
+
+As trocas do cartao do A1, do `' da '` do A1 e do `'dele'` da R2 **passaram
+limpas** na primeira rodada da bateria nova — porque no mundo de hoje o digitado
+e o derivado sao a **mesma letra**. Viraram PARES com mundo produzido: a marca do
+artigo-ancora com nome plural, e a faixa da R2 publicada por quem e feminina.
+**Nenhuma regua foi afinada**; o que mudou foi o mundo em que ela e medida.
+
+### Duas baterias antigas ficaram inertes e foram reapontadas
+
+Pelo corolario da secao 8 ("quando a bancada muda de fonte, toda mutacao que
+editava a fonte antiga vira inerte"): `mutacoes-frase-nomeia-o-tipo` (4 mutacoes,
+todas acusando "achei 0 ocorrencias") e `mutacoes-atribuicao-do-cartao` (5 alvos).
+E o mundo da segunda passou a exigir a **declaracao do publicador novo** em
+`publicadores.json` — que e exatamente o que um bloco de verdade teria de
+escrever, e o sinal de que a trava nova morde.
+
+### Uma regua antiga estava presa ao singular
+
+So o mundo produzido mostrou: a secao 15 do `teste-r1.php` procurava
+`"declara a <tipo>"`, cravado no singular, e **reprovou 32 frases CERTAS** quando
+o publicador virou plural ("as Lojas WAP DECLARAM a escova lateral X"). Passou a
+cobrar as duas flexoes. Regua presa a uma flexao e regua escrita para um mundo de
+um elemento so.
+
+### Verificacao
+
+**Bancada, 0 falha:** casca 205, r1 de 175 para **202**, a1 de 56 para **68**, r2
+de 92 para **100**, a2 73, acentuacao 17, arvore 219, voz 155, escada 511,
+`validar-banco` aprovado com 25 publicadores declarados e 23 citados, `php -l`
+limpo.
+
+**Mutacoes:** 17 baterias, **0 inertes**. Nasce
+`mutacoes-artigo-do-publicador.py` com 17 mutacoes, **cinco delas produzindo
+mundo** (publicador plural publicando peca; marca do A1 com nome plural; faixa da
+R2 publicada por quem e feminina — cada uma com a sua "o mundo sozinho tem de
+passar").
+
+**Navegador:** 258 medicoes nas nove paginas x seis larguras, 0 falha e console
+limpo, mais **duas passadas inteiras** com a R1 em estado de CONSULTA
+(`multi-ho041`, que serve os tres publicadores da Multi, e `wap-w100`) — sem elas
+o cartao nao seria medido em navegador nenhum.
+
+**No ar, depois do Sync:** `conferir-atribuicao-no-ar` de 33 para **42**
+afirmacoes, `conferir-no-ar` 149, `conferir-kits-no-ar` 163,
+`conferir-reservatorio-no-ar` 48, 0 falha nas quatro. As 9 afirmacoes novas medem,
+**dentro da classe do cartao servido**, que todo cartao escreve o artigo DECLARADO
+e o verbo concordado, que a flexao errada NAO aparece, e que no corpo servido o
+nome de quem publica nunca vem sem o artigo — lendo `publicadores.json` e nunca a
+copia que o gerador gravou. As 9 URLs em 200, zero `&#038;` dentro de `<script>`
+nas nove, sitemap com as mesmas 9.
+
+**O que o ar NAO prova, dito como e:** hoje todo publicador que chega a R1 e
+feminino singular, entao o ar nao consegue separar artigo derivado de artigo
+digitado. Quem separa e a bancada, que produz o mundo. A afirmacao do ar quebra no
+minuto em que um publicador de outro genero entrar e a pagina nao acompanhar, e e
+para isso que ela serve.
+
+### Receita
+
+Sem mudanca, porque este bloco nao tocou o banco de pecas: 35 registros de peca,
+32 publicaveis, 63 pares declarados; **32 esperando link, 32 SEM PISO, 0 com
+ficha**; 33 modelos publicaveis, 33 esperando link. Pauta da secao 17: `pauta.md`
+ainda nao existe — 0 escritos, 0 na fila, 0 recusados.
+
+### Aberto e nomeado
+
+- (a) **A divida (c) do estado anterior esta PAGA** — era exatamente esta — e este
+  bloco **nao criou nenhuma no lugar dela**.
+- (b) A divisao da pagina continua chamando de "o que o fabricante declara" o lado
+  que inclui a loja oficial, e continua **nao sendo defeito**: ali o rotulo
+  descreve o LADO (`fala_pela_marca`) e nao atribui item nenhum.
+- (c) A concordancia de outras classes de palavra nao foi tocada, e **nao e divida
+  escondida**: as frases de hoje so flexionam artigo e verbo em torno do
+  publicador. Adjetivo concordando com o nome de quem publica nao existe em
+  nenhuma delas — e o dia em que existir, o esquema ja tem genero e numero
+  declarados para derivar.
+- (d) A matriz de divergencia dos **modelos** (`modelos-robo.json`) segue sem
+  origem.
+- (e) Os 32 `url_busca` dependem de **uma** sessao do painel da Shopee.
+- (f) O reenvio do sitemap no Search Console, metade humana do despacho de 10/09,
+  segue travando a leva de malha 5b e a categoria de reservatorios.
+- (g) **11 arquivos** seguem fora do manifest — eram 13, e os **dois que este
+  bloco criou entraram**, entao a divida ENCOLHEU.
+- (h) A ilha **nao tem pagina de privacidade**, com GA4 no ar.
+- (i) As quatro escovas WAP seguem sem codigo, e o egresso direto aos tres
+  dominios da WAP segue fechado.
+
+### Proximo passo, com ordem e motivo
+
+1. **A pagina de privacidade**, com o molde da aquametria (que nasceu e foi
+   conferida no ar em 13/09). E a unica pendencia desta ilha que **nao** depende
+   de egresso, de sessao de painel nem do navegador do Raphael — e a ilha serve
+   GA4 sem ela. A secao "o que falta nesta pagina" e a mesma da aquametria
+   enquanto nao houver caixa de e-mail (despacho aberto de 13/09 em
+   `dados/despachos.md`).
+2. **O recipiente dos outros quatro modelos WAP** (W400, W1000, W310 e W100C),
+   que depende do egresso fechado aos dominios da WAP.
+3. A escada de compra na TELA, no minuto em que houver `url_busca`.
+4. A leva de malha 5b segue travada pelo Search Console.
