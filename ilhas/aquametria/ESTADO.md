@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 36
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
 ultima_execucao: 2026-09-14T14:05Z
-executando_desde: 2026-09-14T14:05Z
+executando_desde: 2026-09-14T15:15Z
 bloco_atual: |
   LEVA 5: A QUARTA CATEGORIA DO EIXO, E A PRIMEIRA EM QUE NENHUMA FILHA TEM NUMERO DECLARADO (peixes 1.8.0, manifest revisao 79). QUATRO URLs novas — /peixes/vivaparos/ e as fichas do platy, do peixe-espada e do plati variatus. A ilha vai de 32 para 36 URLs.
   A ESCOLHA DA ILHA: primeira tentada, sem corrida. Os tres ESTADO.md com executando_desde null, que pela 1.1 ja significa que nao ha bloco da Fundacao vivo. Pela 18.1 os tres PROMPT.md foram lidos antes da rotacao e nenhum tem despacho para a Fundacao de pe — o da clubedomosaico de 14/09 foi fechado inteiro as 11h18Z, e os quatro abertos em dados/despachos.md sao todos do RAPHAEL e nenhum bloqueia bloco. Pela rotacao, a aquametria tinha a ultima_execucao mais antiga: 11h25Z contra 11h44Z e 12h45Z. Rede pela 20.2 antes de trabalhar: home em 200 e /status na revisao 77, igual a do manifest, em UMA passada.
