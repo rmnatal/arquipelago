@@ -92,6 +92,108 @@ vocabulário de dentro da fábrica.
 
 ATUALIZAÇÃO 11/09 (Pauta): quando existir `pauta.md` nesta pasta (seção 17 do contrato), os guias entram na fila depois da árvore, em levas por cluster; registrar no fecho de cada bloco quantos temas estão escritos / na fila / recusados.
 
+## DESPACHO DA SENTINELA — 14/09/2026 (ronda diária, 14h32Z, no Chrome do Raphael)
+
+**Isto tem prioridade sobre a fila (seções 18.1 e 18.5).** Aplique antes de qualquer bloco, verifique pela seção 8, registre no `REGISTRO.md` como "despacho da Sentinela de 14/09 — item N cumprido", e apague daqui o item cumprido **só depois de abrir a URL no ar e conferir o "pronto quando"** (18.4).
+
+**RECONFERÊNCIA DO QUE A RONDA ANTERIOR DEIXOU (regra 19.4c).** Não existia `dados/consertos.md` nesta ilha — a ronda de 11/09 não consertou nada —, então não havia conserto a reconferir. O arquivo nasce nesta ronda, com zero conserto. **O que a ronda de 11/09 mediu e aprovou continua valendo e foi reconferido hoje sem defeito novo:** 9 de 9 URLs do sitemap em HTTP 200; zero `&#038;` dentro de `<script>`; JSON-LD em todas; favicon próprio; `aria-expanded`/`aria-controls` no botão de menu; nenhuma imagem sem `alt` (a ilha não serve imagem nenhuma hoje); canonical em todas; nenhum `noindex` indevido; corpo nunca começa por metadado YAML; **console sem uma mensagem sequer**; `/status` na **revisão 36**, igual à do `manifest.json`.
+
+**O QUE MAIS PASSOU NESTA RONDA, para a Fundação não refazer** (medido por `fetch` + `DOMParser` no navegador, portanto no HTML servido e sem depender de render): trilha da 16.3 presente nas 8 páginas que não são a home e **ausente na home**, que é o certo; `BreadcrumbList` nas mesmas 8; bloco "Veja também" nas 4 páginas de conteúdo; **zero página órfã** — a URL com menos links internos de entrada tem 4, e o mínimo da 16.4f é 2; **nenhum alvo interno fora do sitemap** (zero link interno quebrado); **nenhuma palavra da lista "Proibidas" do `VOZ.md`** em `<title>` nem no primeiro parágrafo de nenhuma das 9. **R1 executada com entrada real:** `electrolux-erb44` + `bateria` devolve "não localizamos declaração do fabricante de bateria para este modelo; não vamos supor", sem bloco de compra — igual à linha de base de 11/09. **R2 executada com entrada real:** 200 m², piso liso, sem animal, referência `electrolux-erb60` devolve limiar de 3.000 Pa e **6 modelos** — igual à linha de base de 11/09.
+
+**CORREÇÕES APLICADAS PELA SENTINELA NESTA RONDA: NENHUMA.** Os quatro achados abaixo caem todos na lista fechada 19.2 — camada de hospedagem, lógica de ferramenta e dado de banco —, e a 19.2 manda parar e despachar. Nenhum deles é da 19.1.
+
+---
+
+### 1. A ILHA SERVE HTML DE 11/09 A QUEM NÃO PEDE `gzip` — e é por isso que `curl` da nuvem "confere" uma página que não existe mais
+
+**O que foi medido, hoje, nas 9 URLs.** Um cliente HTTP que **não** manda `Accept-Encoding: gzip` recebe uma cópia em cache congelada em 11/09/2026, **anterior à casca 1.3.0**. Um cliente que manda `gzip` — todo navegador, e o Googlebot — recebe a página de hoje. Exemplos medidos em `/metodologia/`:
+
+| cliente | bytes | `<title>` servido | trilha | `BreadcrumbList` |
+|---|---|---|---|---|
+| `curl` sem `Accept-Encoding` | 88.876 | `Metodologia – Robometria` | ausente | ausente |
+| `curl --compressed` / navegador | 96.061 | `Como a gente decide o que publicar – Robometria` | presente | presente |
+
+O cabeçalho da variante velha diz `last-modified: Fri, 11 Sep 2026 13:03:17 GMT` e `cache-control: max-age=7200` — dois valores que discordam entre si: o `max-age` é de 2 horas e a cópia tem 3 dias, ou seja **a camada de cache não está expirando por esse cabeçalho**; ela só troca quando há um miss. As 9 URLs diferem entre a versão limpa e a versão pedida com quebra de cache; a diferença vai de 438 bytes (a home, que a 16.3 manda não ter trilha) a 14.353 bytes (`/qual-peca-serve-no-meu-robo-aspirador/`).
+
+**Por que isto importa mais do que parece, e por que não é só cosmético.** (a) A **leitura do leitor e do Google está certa** — os dois negociam `gzip`. (b) Mas **toda verificação que a Fundação faz da nuvem com `curl` está lendo uma página de 11/09**, e passando, porque a página de 11/09 também era válida. É a família do "parece conferido" que o contrato já nomeou duas vezes (o número de tela digitado, na seção 2; o `conferir-no-ar` que extraía vitrine pelo texto do H2, na clubedomosaico de 14/09). (c) Pela seção 5, **visibilidade em IA é regra de primeira classe**, e rastreador de IA que não negocia compressão lê a ilha de três dias atrás, sem trilha e sem `BreadcrumbList`.
+
+**Isto NÃO é conserto de Sentinela (19.2):** é a camada de hospedagem, não está na lista fechada 19.1, e escolher entre purgar o cache, desligar a variante sem compressão, mandar `Vary: Accept-Encoding` ou baixar o `max-age` é exatamente "escolher entre duas opções defensáveis".
+
+**Pronto quando:** para **cada uma das 9 URLs do sitemap**, `curl -s <URL> | grep -c 'rbm-trilha'` **sem** `--compressed` e `curl -s --compressed <URL> | grep -c 'rbm-trilha'` devolverem o **mesmo** número, e o `<title>` servido nas duas variantes for idêntico. Medir as duas variantes, não uma; e medir de novo **duas horas depois**, porque uma medição logo após o purge só prova que o purge aconteceu.
+
+**Não feche este item ampliando a régua para `--compressed`.** Isso troca o defeito por uma régua que não o enxerga. A régua tem de continuar medindo a variante que hoje está errada.
+
+---
+
+### 2. A R1 diz DOIS números para a mesma coisa na mesma página: 63 pares no alto, 73 na tabela
+
+**Medido no ar** em `/qual-peca-serve-no-meu-robo-aspirador/`:
+
+- Parágrafo de promessa: *"Hoje são **63** pares peça × modelo declarados, em 5 marcas, cobrindo 24 dos 33 modelos do banco."*
+- Frase da tabela pré-renderizada, duas telas abaixo: *"São **73** pares peça × modelo, cada um com o código, quem declarou, o endereço e a data."*
+- A tabela tem **exatamente 73 linhas** em `<tbody>` (contadas no DOM).
+
+**A causa, medida no banco e não suposta.** `dados/pecas.json` declara `contagem.pares_peca_x_modelo_declarados: 63`, e 63 é a soma de `len(compatibilidade)` sobre os **32 registros `publicavel`** (os 3 `excluido_do_banco` somam mais 5 e ficam de fora, corretamente). Os 10 de diferença vêm dos **5 registros com `composicao`** — os kits —, que a tabela expande em **uma linha por peça de dentro do kit** (as linhas "DENTRO DE KIT"). Ou seja: **os dois números estão certos e contam coisas diferentes com o mesmo nome.** 63 são pares declarados; 73 são linhas renderizadas.
+
+**Por que é da Fundação (19.2):** os dois números saem de código, não de texto; e decidir qual dos dois é "pares peça × modelo" — e como chamar o outro — é escolha entre duas opções defensáveis. A Sentinela não escolhe.
+
+**Pronto quando:** na página no ar, os dois números ou forem **iguais**, ou tiverem **nomes diferentes** que digam o que cada um é (por exemplo "63 pares declarados" no alto e "73 linhas, porque cada kit abre uma linha por peça" na tabela), **e** existir uma régua que quebre se eles voltarem a divergir sem explicação — a régua tem de derivar os dois do mesmo banco, nunca repetir a constante.
+
+---
+
+### 3. A R2 diz "as fontes brasileiras divergem" e nomeia o Mundo Conectado DUAS VEZES — e é justamente na situação-âncora
+
+**Medido no ar**, `/quantos-pa-o-robo-aspirador-precisa/?area=200&piso=liso&pelo=nao&referencia=electrolux-erb60`, no bloco `.rbm-resposta`:
+
+> "Para piso liso sem animal que solta pelo, as fontes brasileiras divergem: **o Mundo Conectado** recomenda 3.000 Pa e **o Mundo Conectado** trata até 1.500 Pa já basta como o piso do consenso (verificado em 09/09/2026)."
+
+E a linha de procedência logo abaixo repete `Mundo Conectado · 09/09/2026 fonte` **três vezes**.
+
+**A origem é dado, não código:** `dados/r2-referencia.json`, chave `situacoes["liso|nao"].frase`. **É a única das 12 situações assim.** Todas as outras nomeiam dois publicadores diferentes — "a Canaltech recomenda acima de 4.000 Pa e o Mundo Conectado trata 3.000 Pa como o piso do consenso".
+
+**São dois defeitos na mesma frase, e o segundo só aparece lendo como um leitor leria:**
+1. **A frase afirma divergência entre "fontes" e apresenta uma fonte só.** Ou a atribuição do limiar de 1.500 Pa está errada, ou não há divergência nenhuma e a frase promete o que não entrega.
+2. **A frase está quebrada em português:** *"trata até 1.500 Pa já basta como o piso do consenso"*. O molde das outras 11 é *"trata X Pa como o piso do consenso"*. Faltou o encaixe quando o limiar virou "até 1.500 Pa".
+
+**E o agravante:** `liso|nao` é a **situação-âncora** — é o que a página serve a quem chega sem preencher nada, e portanto é o que um modelo de linguagem lê (seção 5) e o que o Google indexa.
+
+**Por que é da Fundação (19.2):** `r2-referencia.json` é dado técnico do banco, gerado por ferramenta; e escolher entre "corrigir a atribuição" e "deixar de chamar de divergência" é escolha entre duas opções defensáveis. A Sentinela não conserta só a gramática: consertar só a gramática deixaria uma afirmação falsa lendo bem, que é pior.
+
+**Pronto quando:** com aquela URL aberta no ar, a frase da situação `liso|nao` ou nomear **dois publicadores distintos**, ou **não usar a palavra "divergem"**; a oração estiver gramatical no mesmo molde das outras 11; e a linha de procedência não repetir o mesmo publicador três vezes. Some uma régua que reprove qualquer situação cuja frase diga "divergem" e cite o mesmo publicador nos dois lados — hoje ela não existe, e é por isso que isto ficou no ar desde 09/09.
+
+---
+
+### 4. O PISO DA 25.2 NÃO EXISTE EM NENHUM DOS 32 ITENS — e a metade que falta é do Raphael, não da Fundação
+
+**Contado, não estimado**, em `dados/pecas.json`: 35 registros, **32 `publicavel`**. Dos 32:
+
+- **32 sem `afiliado.url`** — a ilha continua no ar sem **uma** porta de compra.
+- **32 sem `afiliado.url_busca`** — nenhum item tem o piso que a 25.2 chama de obrigatório.
+- **32 sem `afiliado.url_produto`** — pela 25.4-b, **32 itens intestáveis**: a ronda não consegue saber se eles estão vivos, hoje nem nunca. (Consequência do anterior: não há link de produto porque não há link nenhum.)
+
+**A parte que já está feita, e que muda de quem é a dívida:** os **32** têm `afiliado.url_busca_produto` preenchido com a URL crua da busca e `motivo_sem_url_busca` escrito. Exemplo: `multi-pr10124` → `https://shopee.com.br/search?keyword=Multilaser%20escova%20lateral%20robo%20aspirador`. **A escolha da palavra-chave já foi feita; falta só o encurtamento**, que pela 25.6 exige a sessão logada do painel de afiliado da Shopee.
+
+**Portanto isto NÃO é despacho para a Fundação: é linha de "Precisa do Raphael"**, e está assim no `dados/PAINEL.md` desta ronda. A Fundação não tem o que fazer aqui, e a seção 12 proíbe a ronda diária de gerar link de afiliado novo. **Escrito aqui só para que a próxima execução não trate isto como trabalho de construção.**
+
+---
+
+### 5. ACHADO DE MÉTODO: o teste de vida da 25.4, do jeito que está escrito, NÃO É EXECUTÁVEL hoje — e existe um caminho que funciona
+
+Isto não é defeito desta ilha. Está aqui porque a 25.4 manda a ronda diária abrir a página do produto, e **isso falhou nas duas vias, medido hoje**:
+
+- **Da nuvem:** `shopee.com.br` e `www.mercadolivre.com.br` devolvem **0 bytes** (egresso). Não é intermitência: repetido.
+- **Do Chrome do Raphael, navegando:** a Shopee redireciona para `shopee.com.br/verify/captcha?...&scene=crawler_item` depois de poucos segundos, tanto em `/search?keyword=` quanto em `/product/<shop>/<item>`. **A Sentinela não resolve CAPTCHA, por regra**, e parou ali.
+
+**O caminho que funcionou, medido hoje no navegador dele, e que a 25.4 deveria passar a mandar usar:** a API de ficha da própria Shopee, chamada por `fetch` de dentro de uma aba já no domínio —
+
+```
+https://shopee.com.br/api/v4/pdp/get_pc?shop_id=<shop_id>&item_id=<item_id>&detail_level=0
+```
+
+devolve `data.item.title` e `data.item.item_status`. Os dois ids saem tanto de `.../product/<shop_id>/<item_id>` quanto do sufixo `i.<shop_id>.<item_id>` das URLs de slug. **Não gasta clique de afiliado, não depende de ler texto de página renderizada e não esbarra no anti-robô.** Isto pede uma linha na 25.4 do `ARQUIPELAGO.md` — e essa linha é do Raphael, não da Fundação.
+
+**Medição de hoje com esse método, feita na clubedomosaico porque a robometria não tem link nenhum para testar** (a ronda é desta ilha; o teste foi onde havia o que testar): **10 de 10 itens vivos**, 0 mortos, 0 esgotados — 6 da Shopee (`tekbond-silicone-acetico-construcao`, `cascola-cascorez-extra`, `quartzolit-rejunte-acrilico`, `quartzolit-rejunte-ceramicas`, `quartzolit-rejunte-porcelanatos-e-ceramicas`, `quartzolit-rejunte-piscinas`), todos com `item_status: normal` e o nome batendo com o do banco; e 4 catálogos `/p/MLB...` do Mercado Livre (`tekbond-silicone-neutro`, `quartzolit-cimentcola-externo-acii`, `loctite-durepoxi`, `quartzolit-rejunte-epoxi`), todos HTTP 200 com o `<h1>` do produto certo. **Nenhum dos 4 links que morreram em 13/09 reapareceu, e nenhum novo morreu em 24 h.**
+
 ## DESPACHO DA SENTINELA — 11/09/2026 (ronda diária, medida no navegador do Raphael)
 
 **Isto tem prioridade sobre a fila.** Aplique antes de qualquer bloco, verifique pela seção 8 do contrato, registre no `REGISTRO.md` como "despacho de 11/09 — item N cumprido" e apague daqui o item cumprido no mesmo commit.
