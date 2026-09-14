@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 11
 primeira_indexacao: desconhecida
 ultima_execucao: 2026-09-14T18:45Z
-executando_desde: 2026-09-14T21:17Z
+executando_desde: 2026-09-14T21:31Z
 bloco_atual: |
   DOIS BLOCOS NUMA EXECUCAO (mutirao da secao 13, cada um verificado inteiro antes do seguinte). NENHUMA URL nova, NENHUMA pagina criada, NENHUMA peca entrou ou saiu.
 

@@ -1,0 +1,1581 @@
+{
+  "id": "tecnica-x-material",
+  "ilha": "clubedomosaico",
+  "bloco": "o outro lado do banco — a tecnica encontra o material",
+  "gerado_por": "ferramentas/tecnica-x-material.py",
+  "derivado_de": {
+    "esquema-banco.json": "2026-09-10",
+    "tecnicas.json": "2026-09-14",
+    "materiais-colas.json": "2026-09-13",
+    "materiais-pastilhas.json": "2026-09-12",
+    "ferramentas/validar-banco.py": "a regua, importada e nunca copiada"
+  },
+  "o_que_este_arquivo_e": "A ligacao TECNICA x MATERIAL desta ilha, calculada e nunca digitada: para cada tecnica, quais itens do banco uma pagina dela poderia recomendar, e em que estados de base e ambiente. Fotografia do banco de hoje, nao serie.",
+  "o_que_este_arquivo_NAO_e": "Nao e pagina e nao autoriza nenhuma. Onde a familia das tecnicas mora esta decidido na ARVORE.md secao 4b; aqui esta so o numero que aquela secao mandava medir. Tambem nao e coleta: nenhuma linha daqui saiu de fonte nova.",
+  "criterio": "secao 9 do ARQUIPELAGO.md: pelo menos 3 itens de banco reais e um numero calculado proprio por pagina",
+  "minimo_exigido": 3,
+  "o_que_conta_como_item_de_banco": "as pastilhas do banco cujo tipo e a tessela que a tecnica declara, MAIS as colas que o fabricante declara elegiveis para aquela tessela em algum par base x ambiente do vocabulario. Mencao com ressalva NAO conta (mesma razao do cobertura.py). REJUNTE NAO CONTA: a regua dele decide por junta em milimetro e ambiente e nao olha a tessela, e as cinco tecnicas tem junta_tipica_mm null.",
+  "por_que_a_varredura_e_sobre_o_vocabulario": "A pergunta aqui e sobre o BANCO — quantos itens esta tecnica pode recomendar —, nao sobre o formulario da F2. Por isso base e ambiente vem do vocabulario do esquema, e nao da faixa medida no snippet como faz o cobertura.py, que responde outra pergunta.",
+  "resumo": {
+    "tecnicas": 5,
+    "com_o_portao_aberto": 2,
+    "quais": [
+      "trencadis",
+      "picassiette"
+    ],
+    "com_o_portao_fechado": 3
+  },
+  "tecnicas": [
+    {
+      "tecnica": "direto",
+      "nome": "Direto",
+      "consulta_alvo": "mosaico tecnica direta",
+      "serp_classe": "ABERTA",
+      "tesselas_declaradas": [],
+      "itens_de_banco": 0,
+      "portao_da_secao_9": "FECHADO",
+      "pastilhas_do_banco": [],
+      "colas_elegiveis": [],
+      "estados_varridos": 0,
+      "estados_com_o_minimo": 0,
+      "estados_sem_nenhum_elegivel": 0,
+      "maior_numero_de_elegiveis_em_um_estado": 0,
+      "estados": [],
+      "por_que_fechado": "Idem: o metodo direto aceita qualquer tessela. Nenhuma fonte colhida restringe."
+    },
+    {
+      "tecnica": "indireto",
+      "nome": "Indireto",
+      "consulta_alvo": "mosaico metodo indireto",
+      "serp_classe": "ABERTA",
+      "tesselas_declaradas": [],
+      "itens_de_banco": 0,
+      "portao_da_secao_9": "FECHADO",
+      "pastilhas_do_banco": [],
+      "colas_elegiveis": [],
+      "estados_varridos": 0,
+      "estados_com_o_minimo": 0,
+      "estados_sem_nenhum_elegivel": 0,
+      "maior_numero_de_elegiveis_em_um_estado": 0,
+      "estados": [],
+      "por_que_fechado": "Nenhuma fonte colhida restringe a tessela pelo metodo."
+    },
+    {
+      "tecnica": "bizantino",
+      "nome": "Bizantino",
+      "consulta_alvo": "mosaico bizantino",
+      "serp_classe": "ABERTA",
+      "tesselas_declaradas": [],
+      "itens_de_banco": 0,
+      "portao_da_secao_9": "FECHADO",
+      "pastilhas_do_banco": [],
+      "colas_elegiveis": [],
+      "estados_varridos": 0,
+      "estados_com_o_minimo": 0,
+      "estados_sem_nenhum_elegivel": 0,
+      "maior_numero_de_elegiveis_em_um_estado": 0,
+      "estados": [],
+      "por_que_fechado": "E O CAMPO MAIS TENTADOR DO ARQUIVO E ELE FICA VAZIO DE PROPOSITO. A fonte fala de tessela de vidro cortada em cubo e de folha de ouro; o banco desta ilha tem `pastilha_vidro`, que e produto de loja de revestimento, de 1,2 a 3 cm e vendido em placa. Dizer que uma e a outra seria traduzir documento historico em produto de prateleira, e nenhuma fonte colhida sustenta a traducao. E esta ausencia e o que trava a pagina: sem ela, bizantino tem ZERO itens de banco e nao passa no portao de 3 da secao 9."
+    },
+    {
+      "tecnica": "trencadis",
+      "nome": "Trencadis (caquinho)",
+      "consulta_alvo": "o que e trencadis",
+      "serp_classe": "ABERTA",
+      "tesselas_declaradas": [
+        "caco_azulejo",
+        "caco_louca"
+      ],
+      "itens_de_banco": 5,
+      "portao_da_secao_9": "ABERTO",
+      "pastilhas_do_banco": [],
+      "colas_elegiveis": [
+        "cascola-cascorez-extra",
+        "cascola-pl500-adesivo-de-montagem",
+        "tekbond-silicone-acetico-construcao",
+        "tekbond-silicone-acetico-maxx",
+        "tekbond-silicone-neutro"
+      ],
+      "estados_varridos": 90,
+      "estados_com_o_minimo": 10,
+      "estados_sem_nenhum_elegivel": 22,
+      "maior_numero_de_elegiveis_em_um_estado": 4,
+      "estados": [
+        {
+          "tessela": "caco_azulejo",
+          "base": "ceramica_esmaltada_porcelana",
+          "ambiente": "interno_seco",
+          "elegiveis": [
+            "cascola-pl500-adesivo-de-montagem",
+            "tekbond-silicone-acetico-construcao",
+            "tekbond-silicone-acetico-maxx",
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 4,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "ceramica_esmaltada_porcelana",
+          "ambiente": "interno_molhado",
+          "elegiveis": [
+            "tekbond-silicone-acetico-construcao",
+            "tekbond-silicone-acetico-maxx",
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 3,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "ceramica_esmaltada_porcelana",
+          "ambiente": "externo_abrigado",
+          "elegiveis": [
+            "tekbond-silicone-acetico-construcao",
+            "tekbond-silicone-acetico-maxx",
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 3,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "ceramica_esmaltada_porcelana",
+          "ambiente": "externo_exposto",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "ceramica_esmaltada_porcelana",
+          "ambiente": "contato_permanente_agua",
+          "elegiveis": [
+            "tekbond-silicone-acetico-maxx"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "vidro",
+          "ambiente": "interno_seco",
+          "elegiveis": [
+            "cascola-pl500-adesivo-de-montagem",
+            "tekbond-silicone-acetico-construcao",
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 3,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "vidro",
+          "ambiente": "interno_molhado",
+          "elegiveis": [
+            "tekbond-silicone-acetico-construcao",
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 2,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "vidro",
+          "ambiente": "externo_abrigado",
+          "elegiveis": [
+            "tekbond-silicone-acetico-construcao",
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 2,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "vidro",
+          "ambiente": "externo_exposto",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "vidro",
+          "ambiente": "contato_permanente_agua",
+          "elegiveis": [],
+          "quantos_elegiveis": 0,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "vidro_laminado",
+          "ambiente": "interno_seco",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "vidro_laminado",
+          "ambiente": "interno_molhado",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "vidro_laminado",
+          "ambiente": "externo_abrigado",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "vidro_laminado",
+          "ambiente": "externo_exposto",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "vidro_laminado",
+          "ambiente": "contato_permanente_agua",
+          "elegiveis": [],
+          "quantos_elegiveis": 0,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "espelho",
+          "ambiente": "interno_seco",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "espelho",
+          "ambiente": "interno_molhado",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "espelho",
+          "ambiente": "externo_abrigado",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "espelho",
+          "ambiente": "externo_exposto",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "espelho",
+          "ambiente": "contato_permanente_agua",
+          "elegiveis": [],
+          "quantos_elegiveis": 0,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "mdf_madeira",
+          "ambiente": "interno_seco",
+          "elegiveis": [
+            "cascola-cascorez-extra",
+            "cascola-pl500-adesivo-de-montagem",
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 3,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "mdf_madeira",
+          "ambiente": "interno_molhado",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "mdf_madeira",
+          "ambiente": "externo_abrigado",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "mdf_madeira",
+          "ambiente": "externo_exposto",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "mdf_madeira",
+          "ambiente": "contato_permanente_agua",
+          "elegiveis": [],
+          "quantos_elegiveis": 0,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "cimento_concreto",
+          "ambiente": "interno_seco",
+          "elegiveis": [
+            "cascola-pl500-adesivo-de-montagem",
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 2,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "cimento_concreto",
+          "ambiente": "interno_molhado",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "cimento_concreto",
+          "ambiente": "externo_abrigado",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "cimento_concreto",
+          "ambiente": "externo_exposto",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "cimento_concreto",
+          "ambiente": "contato_permanente_agua",
+          "elegiveis": [],
+          "quantos_elegiveis": 0,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "alvenaria_tijolo",
+          "ambiente": "interno_seco",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "alvenaria_tijolo",
+          "ambiente": "interno_molhado",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "alvenaria_tijolo",
+          "ambiente": "externo_abrigado",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "alvenaria_tijolo",
+          "ambiente": "externo_exposto",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "alvenaria_tijolo",
+          "ambiente": "contato_permanente_agua",
+          "elegiveis": [],
+          "quantos_elegiveis": 0,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "metal",
+          "ambiente": "interno_seco",
+          "elegiveis": [
+            "cascola-pl500-adesivo-de-montagem",
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 2,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "metal",
+          "ambiente": "interno_molhado",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "metal",
+          "ambiente": "externo_abrigado",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "metal",
+          "ambiente": "externo_exposto",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "metal",
+          "ambiente": "contato_permanente_agua",
+          "elegiveis": [],
+          "quantos_elegiveis": 0,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "plastico",
+          "ambiente": "interno_seco",
+          "elegiveis": [
+            "cascola-pl500-adesivo-de-montagem"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "plastico",
+          "ambiente": "interno_molhado",
+          "elegiveis": [],
+          "quantos_elegiveis": 0,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "plastico",
+          "ambiente": "externo_abrigado",
+          "elegiveis": [],
+          "quantos_elegiveis": 0,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "plastico",
+          "ambiente": "externo_exposto",
+          "elegiveis": [],
+          "quantos_elegiveis": 0,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_azulejo",
+          "base": "plastico",
+          "ambiente": "contato_permanente_agua",
+          "elegiveis": [],
+          "quantos_elegiveis": 0,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "ceramica_esmaltada_porcelana",
+          "ambiente": "interno_seco",
+          "elegiveis": [
+            "cascola-pl500-adesivo-de-montagem",
+            "tekbond-silicone-acetico-construcao",
+            "tekbond-silicone-acetico-maxx",
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 4,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "ceramica_esmaltada_porcelana",
+          "ambiente": "interno_molhado",
+          "elegiveis": [
+            "tekbond-silicone-acetico-construcao",
+            "tekbond-silicone-acetico-maxx",
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 3,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "ceramica_esmaltada_porcelana",
+          "ambiente": "externo_abrigado",
+          "elegiveis": [
+            "tekbond-silicone-acetico-construcao",
+            "tekbond-silicone-acetico-maxx",
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 3,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "ceramica_esmaltada_porcelana",
+          "ambiente": "externo_exposto",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "ceramica_esmaltada_porcelana",
+          "ambiente": "contato_permanente_agua",
+          "elegiveis": [
+            "tekbond-silicone-acetico-maxx"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "vidro",
+          "ambiente": "interno_seco",
+          "elegiveis": [
+            "cascola-pl500-adesivo-de-montagem",
+            "tekbond-silicone-acetico-construcao",
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 3,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "vidro",
+          "ambiente": "interno_molhado",
+          "elegiveis": [
+            "tekbond-silicone-acetico-construcao",
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 2,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "vidro",
+          "ambiente": "externo_abrigado",
+          "elegiveis": [
+            "tekbond-silicone-acetico-construcao",
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 2,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "vidro",
+          "ambiente": "externo_exposto",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "vidro",
+          "ambiente": "contato_permanente_agua",
+          "elegiveis": [],
+          "quantos_elegiveis": 0,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "vidro_laminado",
+          "ambiente": "interno_seco",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "vidro_laminado",
+          "ambiente": "interno_molhado",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "vidro_laminado",
+          "ambiente": "externo_abrigado",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "vidro_laminado",
+          "ambiente": "externo_exposto",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "vidro_laminado",
+          "ambiente": "contato_permanente_agua",
+          "elegiveis": [],
+          "quantos_elegiveis": 0,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "espelho",
+          "ambiente": "interno_seco",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "espelho",
+          "ambiente": "interno_molhado",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "espelho",
+          "ambiente": "externo_abrigado",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "espelho",
+          "ambiente": "externo_exposto",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "espelho",
+          "ambiente": "contato_permanente_agua",
+          "elegiveis": [],
+          "quantos_elegiveis": 0,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "mdf_madeira",
+          "ambiente": "interno_seco",
+          "elegiveis": [
+            "cascola-cascorez-extra",
+            "cascola-pl500-adesivo-de-montagem",
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 3,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "mdf_madeira",
+          "ambiente": "interno_molhado",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "mdf_madeira",
+          "ambiente": "externo_abrigado",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "mdf_madeira",
+          "ambiente": "externo_exposto",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "mdf_madeira",
+          "ambiente": "contato_permanente_agua",
+          "elegiveis": [],
+          "quantos_elegiveis": 0,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "cimento_concreto",
+          "ambiente": "interno_seco",
+          "elegiveis": [
+            "cascola-pl500-adesivo-de-montagem",
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 2,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "cimento_concreto",
+          "ambiente": "interno_molhado",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "cimento_concreto",
+          "ambiente": "externo_abrigado",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "cimento_concreto",
+          "ambiente": "externo_exposto",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "cimento_concreto",
+          "ambiente": "contato_permanente_agua",
+          "elegiveis": [],
+          "quantos_elegiveis": 0,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "alvenaria_tijolo",
+          "ambiente": "interno_seco",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "alvenaria_tijolo",
+          "ambiente": "interno_molhado",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "alvenaria_tijolo",
+          "ambiente": "externo_abrigado",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "alvenaria_tijolo",
+          "ambiente": "externo_exposto",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "alvenaria_tijolo",
+          "ambiente": "contato_permanente_agua",
+          "elegiveis": [],
+          "quantos_elegiveis": 0,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "metal",
+          "ambiente": "interno_seco",
+          "elegiveis": [
+            "cascola-pl500-adesivo-de-montagem",
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 2,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "metal",
+          "ambiente": "interno_molhado",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "metal",
+          "ambiente": "externo_abrigado",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "metal",
+          "ambiente": "externo_exposto",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "metal",
+          "ambiente": "contato_permanente_agua",
+          "elegiveis": [],
+          "quantos_elegiveis": 0,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "plastico",
+          "ambiente": "interno_seco",
+          "elegiveis": [
+            "cascola-pl500-adesivo-de-montagem"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "plastico",
+          "ambiente": "interno_molhado",
+          "elegiveis": [],
+          "quantos_elegiveis": 0,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "plastico",
+          "ambiente": "externo_abrigado",
+          "elegiveis": [],
+          "quantos_elegiveis": 0,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "plastico",
+          "ambiente": "externo_exposto",
+          "elegiveis": [],
+          "quantos_elegiveis": 0,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "plastico",
+          "ambiente": "contato_permanente_agua",
+          "elegiveis": [],
+          "quantos_elegiveis": 0,
+          "com_ressalva": []
+        }
+      ]
+    },
+    {
+      "tecnica": "picassiette",
+      "nome": "Picassiete (louca quebrada)",
+      "consulta_alvo": "o que e mosaico picassiete",
+      "serp_classe": "ABERTA",
+      "tesselas_declaradas": [
+        "caco_louca"
+      ],
+      "itens_de_banco": 5,
+      "portao_da_secao_9": "ABERTO",
+      "pastilhas_do_banco": [],
+      "colas_elegiveis": [
+        "cascola-cascorez-extra",
+        "cascola-pl500-adesivo-de-montagem",
+        "tekbond-silicone-acetico-construcao",
+        "tekbond-silicone-acetico-maxx",
+        "tekbond-silicone-neutro"
+      ],
+      "estados_varridos": 45,
+      "estados_com_o_minimo": 5,
+      "estados_sem_nenhum_elegivel": 11,
+      "maior_numero_de_elegiveis_em_um_estado": 4,
+      "estados": [
+        {
+          "tessela": "caco_louca",
+          "base": "ceramica_esmaltada_porcelana",
+          "ambiente": "interno_seco",
+          "elegiveis": [
+            "cascola-pl500-adesivo-de-montagem",
+            "tekbond-silicone-acetico-construcao",
+            "tekbond-silicone-acetico-maxx",
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 4,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "ceramica_esmaltada_porcelana",
+          "ambiente": "interno_molhado",
+          "elegiveis": [
+            "tekbond-silicone-acetico-construcao",
+            "tekbond-silicone-acetico-maxx",
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 3,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "ceramica_esmaltada_porcelana",
+          "ambiente": "externo_abrigado",
+          "elegiveis": [
+            "tekbond-silicone-acetico-construcao",
+            "tekbond-silicone-acetico-maxx",
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 3,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "ceramica_esmaltada_porcelana",
+          "ambiente": "externo_exposto",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "ceramica_esmaltada_porcelana",
+          "ambiente": "contato_permanente_agua",
+          "elegiveis": [
+            "tekbond-silicone-acetico-maxx"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "vidro",
+          "ambiente": "interno_seco",
+          "elegiveis": [
+            "cascola-pl500-adesivo-de-montagem",
+            "tekbond-silicone-acetico-construcao",
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 3,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "vidro",
+          "ambiente": "interno_molhado",
+          "elegiveis": [
+            "tekbond-silicone-acetico-construcao",
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 2,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "vidro",
+          "ambiente": "externo_abrigado",
+          "elegiveis": [
+            "tekbond-silicone-acetico-construcao",
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 2,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "vidro",
+          "ambiente": "externo_exposto",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "vidro",
+          "ambiente": "contato_permanente_agua",
+          "elegiveis": [],
+          "quantos_elegiveis": 0,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "vidro_laminado",
+          "ambiente": "interno_seco",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "vidro_laminado",
+          "ambiente": "interno_molhado",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "vidro_laminado",
+          "ambiente": "externo_abrigado",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "vidro_laminado",
+          "ambiente": "externo_exposto",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "vidro_laminado",
+          "ambiente": "contato_permanente_agua",
+          "elegiveis": [],
+          "quantos_elegiveis": 0,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "espelho",
+          "ambiente": "interno_seco",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "espelho",
+          "ambiente": "interno_molhado",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "espelho",
+          "ambiente": "externo_abrigado",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "espelho",
+          "ambiente": "externo_exposto",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "espelho",
+          "ambiente": "contato_permanente_agua",
+          "elegiveis": [],
+          "quantos_elegiveis": 0,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "mdf_madeira",
+          "ambiente": "interno_seco",
+          "elegiveis": [
+            "cascola-cascorez-extra",
+            "cascola-pl500-adesivo-de-montagem",
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 3,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "mdf_madeira",
+          "ambiente": "interno_molhado",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "mdf_madeira",
+          "ambiente": "externo_abrigado",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "mdf_madeira",
+          "ambiente": "externo_exposto",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "mdf_madeira",
+          "ambiente": "contato_permanente_agua",
+          "elegiveis": [],
+          "quantos_elegiveis": 0,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "cimento_concreto",
+          "ambiente": "interno_seco",
+          "elegiveis": [
+            "cascola-pl500-adesivo-de-montagem",
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 2,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "cimento_concreto",
+          "ambiente": "interno_molhado",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "cimento_concreto",
+          "ambiente": "externo_abrigado",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "cimento_concreto",
+          "ambiente": "externo_exposto",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "cimento_concreto",
+          "ambiente": "contato_permanente_agua",
+          "elegiveis": [],
+          "quantos_elegiveis": 0,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "alvenaria_tijolo",
+          "ambiente": "interno_seco",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "alvenaria_tijolo",
+          "ambiente": "interno_molhado",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "alvenaria_tijolo",
+          "ambiente": "externo_abrigado",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "alvenaria_tijolo",
+          "ambiente": "externo_exposto",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "alvenaria_tijolo",
+          "ambiente": "contato_permanente_agua",
+          "elegiveis": [],
+          "quantos_elegiveis": 0,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "metal",
+          "ambiente": "interno_seco",
+          "elegiveis": [
+            "cascola-pl500-adesivo-de-montagem",
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 2,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "metal",
+          "ambiente": "interno_molhado",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "metal",
+          "ambiente": "externo_abrigado",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "metal",
+          "ambiente": "externo_exposto",
+          "elegiveis": [
+            "tekbond-silicone-neutro"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "metal",
+          "ambiente": "contato_permanente_agua",
+          "elegiveis": [],
+          "quantos_elegiveis": 0,
+          "com_ressalva": [
+            "loctite-durepoxi"
+          ]
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "plastico",
+          "ambiente": "interno_seco",
+          "elegiveis": [
+            "cascola-pl500-adesivo-de-montagem"
+          ],
+          "quantos_elegiveis": 1,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "plastico",
+          "ambiente": "interno_molhado",
+          "elegiveis": [],
+          "quantos_elegiveis": 0,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "plastico",
+          "ambiente": "externo_abrigado",
+          "elegiveis": [],
+          "quantos_elegiveis": 0,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "plastico",
+          "ambiente": "externo_exposto",
+          "elegiveis": [],
+          "quantos_elegiveis": 0,
+          "com_ressalva": []
+        },
+        {
+          "tessela": "caco_louca",
+          "base": "plastico",
+          "ambiente": "contato_permanente_agua",
+          "elegiveis": [],
+          "quantos_elegiveis": 0,
+          "com_ressalva": []
+        }
+      ]
+    }
+  ]
+}

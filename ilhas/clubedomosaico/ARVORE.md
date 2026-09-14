@@ -96,14 +96,26 @@ Nível 3 = o tutorial, com a lista de materiais ligada ao Guia e o "prefere pron
 
 **A família das técnicas também mora aqui, e não na raiz.** Ver a seção 4b.
 
-### 4b. A FAMÍLIA DAS TÉCNICAS — o endereço é decidido, e ela NÃO nasce hoje (14/09/2026)
+### 4b. A FAMÍLIA DAS TÉCNICAS — o endereço é decidido, e o portão ABRIU para duas delas (14/09/2026)
+
+> **LEIA ESTA CAIXA ANTES DO RESTO DA SEÇÃO.** Esta seção foi escrita às 18h45Z de
+> 14/09/2026 concluindo que a família não nascia hoje, por **três** portões
+> fechados. Às **21h17Z do mesmo dia** os três foram remedidos, e **nenhum dos
+> três estava certo como estava escrito**: um contava a categoria errada, outro
+> não se aplicava à página que a própria seção decidiu criar, e o terceiro
+> contradizia a seção 21 do contrato. O texto original ficou riscado no lugar,
+> porque apagá-lo esconderia o que uma execução seguinte precisa saber — que os
+> três erros são de LEITURA de régua, não de falta de dado, e que os três
+> passaram por uma execução inteira parecendo medição.
+
+
 
 Esta seção fecha o item que estava aberto desde 14/09/2026, quando o despacho do
 Raphael pediu a página `/tecnicas/Picassiete/` e a execução daquele dia respondeu
 que criar uma técnica sozinha seria abrir a família inteira por uma porta lateral,
 e que isso era **bloco de malha com o orçamento de rastreamento na mesa**. Este é
 o bloco. Ele decide três coisas — **onde a família mora**, **o que abre o portão
-dela** e **quanto falta, em número** — e conclui que ela não nasce hoje.
+dela** e **quanto falta, em número**.
 
 **1. O ENDEREÇO NÃO É A RAIZ, e essa parte é do contrato, não desta ilha.** O
 `dados/corpus-buscas.md` desta ilha, escrito em 10/09/2026, colocou o item 5 da
@@ -133,27 +145,64 @@ publica — do mesmo jeito que a seção 2 registra para as duas ferramentas. O 
 já guarda a consulta-alvo de cada técnica (`dados/tecnicas.json`), então a escolha
 não nascerá do zero.
 
-**3. POR QUE ELA NÃO NASCE HOJE — três portões em série, e os três estão
-fechados.** Nenhum é opinião:
+**3. OS TRÊS PORTÕES, REMEDIDOS ÀS 21h17Z — e os três decidiam errado.** Nenhum
+é opinião, e é por isso que foi possível remedir cada um contra a régua e contra
+o contrato em vez de contra a lembrança de quem escreveu:
 
-- **Seção 9 e 13 — 3 itens de banco reais e um número calculado próprio por
-  página.** Medido: **0 para 5 de 5 técnicas**, e o `validar-banco.py` passou a
-  imprimir essa contagem a cada execução. O motivo é mais estreito do que
-  "falta banco", e é o achado deste bloco: as duas únicas técnicas com lado de
-  material declarado por fonte (trencadís e picassiete) apontam para
-  `caco_azulejo` e `caco_louca` — **caco de prato e de azulejo não têm
-  fabricante**, e `caco_louca` nem sequer é um valor de `tipo` de pastilha no
-  vocabulário do esquema. Os 13 itens do banco de pastilhas são todos
-  `pastilha_vidro` de fabricante. **A distância entre a técnica e o banco desta
-  ilha é a distância entre o caco e o produto.**
-- **16.5 — categoria só nasce com 3 filhas.** Sem as filhas, não há o que listar.
-- **14.6 e 14.8 — a rampa é autorizada por número, nunca por vontade.** O
-  `dados/indexacao.md` desta ilha tem **uma linha só**, de 10/09/2026, escrita
-  quando o WordPress ainda não existia: zero URL no sitemap, zero impressão,
-  rampa "nada a decidir". **Nenhum número autoriza leva nova de página nesta
-  ilha hoje** — nem desta família, nem de nenhuma outra. Publicar cinco páginas
-  de técnica agora seria gastar o orçamento de rastreamento de um domínio de
-  quatro dias em páginas que ninguém mediu (14.1).
+- ~~**Seção 9 e 13 — 3 itens de banco reais.** Medido: **0 para 5 de 5
+  técnicas**.~~ **REABERTO E REMEDIDO ÀS 21h17Z DE 14/09/2026: o portão
+  contava uma categoria que a página não recomenda.** Ele contava só TESSELA —
+  quantos produtos da categoria `pastilha` o banco tem com o tipo que a técnica
+  cita. As duas únicas técnicas com material declarado por fonte apontam para
+  `caco_azulejo` e `caco_louca`, e **caco de prato e de azulejo não têm
+  fabricante**: o portão lia zero, e leria zero para sempre, por mais coleta que
+  acontecesse. Só que **a página de uma técnica não recomenda caquinho** — ela
+  responde o que comprar para COLAR aquele caquinho, que é o eixo desta ilha e é
+  produto com fabricante, declaração datada e link de afiliado. O item 6 desta
+  mesma seção já dizia isso com todas as letras enquanto o item 3 contava caco;
+  **as duas metades da mesma seção discordavam, e quem decidia era a que tinha
+  número.** A conta agora é a que o item 6 descreve, feita pela régua da F2 que
+  já existe no `validar-banco.py` (`itens_de_banco_da_tecnica`, uma cópia só), e
+  o resultado está em `dados/tecnica-x-material.json`:
+
+  | técnica | tesselas declaradas | itens de banco | portão |
+  |---|---|---|---|
+  | direto | nenhuma | 0 | FECHADO |
+  | indireto | nenhuma | 0 | FECHADO |
+  | bizantino | nenhuma | 0 | FECHADO |
+  | trencadís | caco de azulejo, caco de louça | **5** | **ABERTO** |
+  | Picassiete | caco de louça | **5** | **ABERTO** |
+
+  **Isto não afrouxou o portão, e é por isso que três das cinco continuam
+  fechadas:** técnica que não declara material segue em zero, cada uma com o
+  `motivo_sem_materiais` escrito. Menção com ressalva continua fora da conta, e
+  rejunte não entra — a régua dele decide por junta em milímetro e ambiente, não
+  olha a tessela, e as cinco técnicas têm `junta_tipica_mm` null. A bateria
+  `ferramentas/mutacoes-tecnica-x-material.py` afirma o **número**, não o
+  veredito, exatamente para pegar a mutação que INFLA a conta e fica verde por
+  ter aberto.
+- ~~**16.5 — categoria só nasce com 3 filhas.**~~ **NÃO SE APLICA à página de
+  hoje**, e isso a tabela do item 2 já dizia: a técnica nasce **filha direta de
+  `/como-fazer/`**, não dentro de uma categoria. A 16.5 vale para o dia em que
+  `/como-fazer/tecnicas/` for criada — e é justamente por isso que a tabela
+  manda não criá-la antes das três filhas.
+- ~~**14.6 e 14.8 — a rampa é autorizada por número.** Nenhum número autoriza
+  leva nova de página nesta ilha hoje.~~ **ERRADO, E É A SEGUNDA ILHA A LER
+  ISSO ERRADO.** A seção 21.1 do contrato é literal: abaixo do piso — **40 URLs
+  publicadas e 21 dias desde a primeira URL indexada** —, "zero impressão"
+  **não é informação** e **nunca** trava, adia ou reduz leva nenhuma. Esta ilha
+  tem **11 URLs publicadas** e `piso: abaixo` escrito no cabeçalho do
+  `ESTADO.md`, que é o campo que a 21.6 manda a Fundação ler em vez de
+  recalcular de cabeça. O cabeçalho da própria seção 9 repete: *"a rampa desta
+  seção só passa a ler o sinal de impressão depois do PISO da seção 21"*. O que
+  a 14.6 e a 14.8 decidem é **dobrar, manter ou parar** uma leva já medida — não
+  a existência da primeira. A Aquametria pagou este mesmo erro em 12/09/2026, e
+  o item 6 do despacho da Sentinela dela está lá, riscado, com "SUSPENSO pela
+  seção 21" escrito ao lado. Continuam de pé, abaixo do piso e acima dele: o teto
+  de **10 URLs por leva e 3 levas por semana** (21.4), o portão de dado da 13, a
+  classificação de SERP da 14.9, a verificação no ar da 8, a voz da 15 e a árvore
+  da 16 — a 21.3 é explícita em que o piso afrouxa a **leitura do sinal**, nunca
+  a qualidade.
 
 **4. O QUE ESTE BLOCO ENTREGOU NO LUGAR DA PÁGINA.** O banco da entidade TECNICA,
 que o esquema do bloco 3 previu em 12/09 e que nunca tinha nascido:
@@ -165,18 +214,44 @@ não finge revisão que não houve. **As três técnicas `opus_*` do vocabulári
 ficaram de fora com motivo escrito:** nenhuma é oferecida a ela, então nenhuma
 peça pode ser marcada com elas.
 
-**5. A TAXONOMIA `tecnica` CONTINUA `public => false`**, e agora por uma razão
-medida em vez de herdada: enquanto o portão de 3 itens estiver em zero, o arquivo
-de taxonomia nasceria com página vazia. O dia em que ele abrir, o que muda é uma
-linha no snippet da Loja e o texto editorial aqui — como a decisão 4 daquele
-arquivo já dizia.
+**5. A TAXONOMIA `tecnica` CONTINUA `public => false`, e a razão MUDOU às 21h17Z
+— o que a mantém fechada não é mais o portão de 3 itens.** A razão escrita aqui
+às 18h45Z era "enquanto o portão de 3 itens estiver em zero, o arquivo de
+taxonomia nasceria com página vazia", e ele não está mais em zero. A razão que
+vale agora é a de orçamento de rastreamento, que é a decisão 4 do snippet da
+Loja, de 12/09, e ela é independente do portão: **taxonomia pública nasce com
+arquivo próprio para CADA termo** — cinco técnicas, cinco arquivos, mais os
+termos de coleção —, e arquivo de taxonomia com uma peça dentro é página fina
+que a 14.1 existe para impedir. **A página da técnica não é o arquivo da
+taxonomia**: é página de conteúdo, filha direta de `/como-fazer/`, escrita e
+medida uma a uma. Abrir a taxonomia é outra decisão, e ela continua adiada — o
+que muda quando for a hora é uma linha no snippet da Loja, como aquela decisão 4
+já dizia.
 
-**6. O QUE ABRE O PORTÃO, na ordem, e nada disso é opinião.** O caminho mais curto
-**não** é catalogar caco: é ligar a técnica à **cola** e ao **rejunte**, que é
-onde esta ilha tem banco de verdade (7 colas, 5 rejuntes) e uma ferramenta que já
-decide (F2). A técnica declara a base e o material do caco; a F2 diz qual cola
-serve. Isso é número calculado próprio, e é a resposta que nenhuma das páginas
-lidas na SERP de 14/09 dá.
+**6. O QUE ABRE O PORTÃO — e às 21h17Z isto deixou de ser plano e virou conta.**
+O caminho mais curto **não** é catalogar caco: é ligar a técnica à **cola** e ao
+**rejunte**, que é onde esta ilha tem banco de verdade (7 colas, 5 rejuntes) e
+uma ferramenta que já decide (F2). A técnica declara o material do caco; a F2 diz
+qual cola serve. Isso é número calculado próprio, e é a resposta que nenhuma das
+páginas lidas na SERP de 14/09 dá.
+
+**O que faltava era só escrever a conta**, e ela está em
+`ferramentas/tecnica-x-material.py`, derivando `dados/tecnica-x-material.json` da
+mesma régua do `validar-banco.py`. **A metade do rejunte continua descoberta, e
+por medição:** a régua dele decide por junta em milímetro e ambiente e não olha a
+tessela, e as cinco técnicas têm `junta_tipica_mm` null porque nenhuma fonte
+colhida declara folga em milímetro. Enquanto isso valer, uma página de técnica
+responde a cola e **não** responde o rejunte — e tem de dizer isso ao leitor em
+vez de escolher um por semelhança.
+
+**7. O QUE AINDA SEGURA A PÁGINA, depois dos três portões.** Nada de portão:
+só o trabalho de escrevê-la. A página nasce em `/como-fazer/<consulta-alvo>/`
+pela tabela do item 2, com a prestação de contas da seção 7 do contrato (cada
+item do banco consultado nomeado uma vez na prosa, a vitrine servindo exatamente
+o que a frase nomeia), a tabela pré-renderizada da seção 5, e o piso de busca da
+25.2 em todo cartão. **A ordem entre as duas técnicas abertas é: Picassiete
+primeiro**, porque foi a que o Raphael pediu por nome em 14/09 e porque a
+artesã já marca o termo no ateliê.
 
 ---
 

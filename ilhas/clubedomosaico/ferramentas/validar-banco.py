@@ -960,6 +960,95 @@ if rejuntes:
 #      declarar pagina depois de reunir 3 itens de banco reais (secao 9). A
 #      contagem e feita aqui, item a item, traduzindo categoria+tipo do banco de
 #      material para o vocabulario `material_tessela` — nunca comparando texto.
+#
+# 14/09/2026, 21h17Z — O PORTAO CONTAVA UMA CATEGORIA QUE A PAGINA NAO
+# RECOMENDA, E POR ISSO DAVA ZERO COM CINCO ITENS ATRAS DELE. Como estava
+# escrito, o item 5 contava SO tessela: quantos produtos da categoria `pastilha`
+# o banco tem com o tipo que a tecnica cita. As duas unicas tecnicas com material
+# declarado por fonte citam `caco_azulejo` e `caco_louca` — caco de prato e de
+# azulejo NAO tem fabricante e nunca terao ficha de produto nesta ilha. O portao
+# lia zero, e lia zero para sempre, por mais coleta que acontecesse.
+#
+# So que a pagina de uma tecnica nao recomenda caquinho: ela responde O QUE
+# COMPRAR PARA COLAR AQUELE CAQUINHO, que e o eixo desta ilha escrito no
+# PROMPT.md ("o que comprar para fazer a peca X"), e e produto que o banco tem,
+# com fabricante, declaracao e link de afiliado. A propria `ARVORE.md` ja dizia
+# isso na secao 4b, item 6 — "o caminho mais curto nao e catalogar caco: e ligar
+# a tecnica a COLA e ao REJUNTE" —, e o item 3 da mesma secao contava caco assim
+# mesmo. As duas metades da mesma secao discordavam, e quem decidia era a que
+# tinha numero.
+#
+# E a mesma familia da V24 da Aquametria, consertada em 14/09 poucas horas antes:
+# uma regua que amarra o portao a um campo que o caso certo nunca preenche
+# reprova o mundo inteiro e parece rigor. Entao o que a regua conta passa a ser
+# O QUE A PAGINA PODE RECOMENDAR, medido pela regua da F2 que ja existe neste
+# arquivo, e nunca uma segunda copia dela:
+#
+#     itens de banco de uma tecnica = as pastilhas do banco cujo tipo e a tessela
+#     que a tecnica declara  +  as colas que o fabricante declara elegiveis para
+#     aquela tessela, em qualquer par base x ambiente do vocabulario.
+#
+# TRES COISAS QUE ISSO NAO AFROUXA, e elas sao o que separa conserto de porta dos
+# fundos: (a) tecnica que nao declara material continua em ZERO — direto,
+# indireto e bizantino seguem sem passar, e cada um tem o `motivo_sem_materiais`
+# escrito dizendo por que nao declara; (b) `mencionados_com_ressalva` continua
+# fora da conta, pela mesma razao do `cobertura.py`; (c) o rejunte NAO entra:
+# a regua dele decide por junta em milimetro e ambiente, nao olha a tessela, e as
+# cinco tecnicas tem `junta_tipica_mm` null com motivo. Somar rejunte aqui seria
+# contar item que a tecnica nao seleciona.
+#
+# A VARREDURA E SOBRE O VOCABULARIO, NAO SOBRE A FAIXA DO SNIPPET, e a diferenca
+# importa: o `cobertura.py` pergunta "quantos estados da F2 saem descobertos" e
+# por isso mede a faixa provocando o PHP. Aqui a pergunta e outra — "quantos
+# itens do banco esta tecnica pode recomendar" —, e ela e sobre o banco e o
+# vocabulario, nao sobre o formulario de uma ferramenta que nem e a desta pagina.
+
+
+def itens_de_banco_da_tecnica(tecnica, tesselas_do_banco, tessela_por_tipo=None):
+    """O portao de 3 da secao 9 para uma TECNICA, com a conta aberta.
+
+    Devolve o detalhe inteiro — nao so o total — porque e dele que
+    `ferramentas/tecnica-x-material.py` monta o arquivo derivado. Uma conta, dois
+    leitores: o portao daqui le `total`, o derivado le o resto.
+    """
+    tesselas = list(tecnica.get("materiais_tipicos") or [])
+
+    pastilhas = []
+    for valor in tesselas:
+        pastilhas.extend(tesselas_do_banco.get(valor, []))
+    pastilhas = sorted(set(pastilhas))
+
+    colas = set()
+    estados = []
+    for tessela in tesselas:
+        for base in VOC["base"]:
+            for ambiente in VOC["ambiente"]:
+                c = computar_celula_com_condicao(base, ambiente, tessela)
+                eleg = sorted(c["recomendados_topo"] + c["elegiveis_abaixo_do_topo"])
+                colas.update(eleg)
+                estados.append({
+                    "tessela": tessela,
+                    "base": base,
+                    "ambiente": ambiente,
+                    "elegiveis": eleg,
+                    "quantos_elegiveis": len(eleg),
+                    "com_ressalva": c["mencionados_com_ressalva"],
+                })
+
+    colas = sorted(colas)
+    contagens = [e["quantos_elegiveis"] for e in estados]
+    return {
+        "tesselas_declaradas": tesselas,
+        "pastilhas_do_banco": pastilhas,
+        "colas_elegiveis": colas,
+        "total": len(pastilhas) + len(colas),
+        "estados": estados,
+        "estados_varridos": len(estados),
+        "estados_com_o_minimo": sum(1 for n in contagens if n >= 3),
+        "estados_sem_nenhum_elegivel": sum(1 for n in contagens if n == 0),
+        "maior_numero_de_elegiveis_em_um_estado": max(contagens) if contagens else 0,
+    }
+
 
 tecnicas = carregar("tecnicas.json")
 if tecnicas is None:
@@ -1051,21 +1140,29 @@ else:
             erro("%s: junta_tipica_mm tem de ser numero ou null" % onde)
 
         # (5) O PORTAO DA FAMILIA.
-        itens = []
-        for valor in (t.get("materiais_tipicos") or []):
-            itens.extend(tesselas_do_banco.get(valor, []))
-        t["__itens_de_banco"] = len(set(itens))
-        if t.get("pagina_publicada") and len(set(itens)) < 3:
+        conta = itens_de_banco_da_tecnica(t, tesselas_do_banco, TESSELA_POR_TIPO)
+        t["__conta_de_banco"] = conta
+        t["__itens_de_banco"] = conta["total"]
+        if t.get("pagina_publicada") and conta["total"] < 3:
             erro("%s: declara pagina publicada com %d itens de banco. O portao da secao 9 "
-                 "pede 3 itens reais e um numero calculado proprio, e a 16.5 pede 3 filhas "
-                 "antes da categoria — pagina de tecnica sem material que a sustente e "
-                 "pagina fina em dominio que ainda nao indexou nada (14.1)"
-                 % (onde, len(set(itens))))
+                 "pede 3 itens reais e um numero calculado proprio — pagina de tecnica sem "
+                 "material que a sustente e pagina fina em dominio que ainda nao indexou "
+                 "nada (14.1)" % (onde, conta["total"]))
+
+        # O OUTRO SENTIDO DO MESMO PORTAO, e sem ele a bandeira nunca reprovaria
+        # nada: tecnica que REUNE os 3 itens e nao declara pagina e trabalho
+        # parado, nao defeito — entao isso e `aviso`, nao `erro`. O que seria
+        # defeito e a bandeira dizer o contrario do que a conta diz, e e por isso
+        # que os dois lados sao medidos.
+        if not t.get("pagina_publicada") and conta["total"] >= 3:
+            aviso("%s: reune %d itens de banco e ainda nao declara pagina. O portao da "
+                  "secao 9 esta ABERTO para esta tecnica" % (onde, conta["total"]))
 
     if tecnicas.get("tecnicas"):
         resumo = ", ".join("%s %d" % (t.get("id"), t.get("__itens_de_banco", 0))
                            for t in tecnicas["tecnicas"])
-        nota("tecnicas: itens de banco por tecnica (portao de 3 da secao 9) — %s" % resumo)
+        nota("tecnicas: itens de banco por tecnica (portao de 3 da secao 9; pastilha do "
+             "banco + cola que o fabricante declara para a tessela) — %s" % resumo)
 
 
 # ---------------------------------------------------------------- COTACAO
