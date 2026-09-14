@@ -148,7 +148,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_C5_VERSAO' ) ) {
-	define( 'AQUAMETRIA_C5_VERSAO', '1.5.1' );
+	define( 'AQUAMETRIA_C5_VERSAO', '1.6.0' );
 	define( 'AQUAMETRIA_C5_SLUG', 'calculadora-de-potencia-do-aquecedor' );
 	define( 'AQUAMETRIA_C5_VERIFICADO_EM', '08/09/2026' );
 	define( 'AQUAMETRIA_C5_ARTIGO', 'quantos-watts-de-aquecedor-para-aquario' );
@@ -378,21 +378,6 @@ function aquametria_c5_produto_exemplo( $e ) {
 }
 }
 
-/* O primeiro da MESMA ordem que já tem link de loja hoje. Existe porque o modelo
-   que atende melhor costuma ser um que o banco ainda não conseguiu link, e aí a
-   pessoa fica sem saber onde comprar nenhum. A ordem não muda por isso: quem
-   atende melhor continua em primeiro, e o comprável sai embaixo e rotulado. */
-if ( ! function_exists( 'aquametria_c5_produto_com_link' ) ) {
-function aquametria_c5_produto_com_link( $e ) {
-	foreach ( aquametria_c5_produtos_exemplo( $e ) as $p ) {
-		if ( $p['link'] ) {
-			return $p;
-		}
-	}
-	return null;
-}
-}
-
 /* Espelho em PHP do dataBr() do script, feito por partes de propósito: converter
    com strtotime traria o fuso do servidor para dentro de uma data que é só um
    rótulo de coleta, e um dia a mais aqui viraria contradição entre a tabela
@@ -516,9 +501,11 @@ function aquametria_c5_produto_celula_html( $e ) {
 			. esc_html( aquametria_c5_watts( $e['teto'] ) ) . ' W e a prateleira não tem esse número.</span>';
 	}
 
-	if ( $p['link'] ) {
-		$h .= '<a class="aqm-c5-prod" href="' . esc_url( $p['link'] ) . '" target="_blank" rel="sponsored noopener">'
-			. esc_html( $nome ) . '</a>';
+	$compra = aquametria_c5_compra( $p );
+
+	if ( null !== $compra ) {
+		$h .= '<a class="aqm-c5-prod" href="' . esc_url( $compra['url'] ) . '" target="_blank" rel="'
+			. esc_attr( aquametria_c5_compra_rel( $compra ) ) . '">' . esc_html( $nome ) . '</a>';
 	} else {
 		$h .= '<span class="aqm-c5-prod">' . esc_html( $nome ) . '</span>';
 	}
@@ -532,27 +519,15 @@ function aquametria_c5_produto_celula_html( $e ) {
 		$h .= '<span class="aqm-c5-sem">' . esc_html( $ressalva ) . '</span>';
 	}
 
-	if ( $p['link'] ) {
-		$h .= '<span class="aqm-c5-wl">link patrocinado</span>';
-		$h .= '</td>';
-		return $h;
-	}
-
-	$h .= '<span class="aqm-c5-wl">ainda sem link de loja</span>';
-
-	$c = aquametria_c5_produto_com_link( $e );
-
-	if ( null === $c ) {
-		$h .= '<span class="aqm-c5-sem">Nenhum aquecedor dessa faixa tem link de loja no banco hoje.</span>';
-		$h .= '</td>';
-		return $h;
-	}
-
-	$h .= '<span class="aqm-c5-sem">Com link hoje, na mesma faixa: <a class="aqm-c5-prod" href="'
-		. esc_url( $c['link'] ) . '" target="_blank" rel="sponsored noopener">' . esc_html( $c['marca'] . ' ' . $c['modelo'] )
-		. '</a> — ' . esc_html( number_format_i18n( $c['potencia_w'], 0 ) ) . ' W, '
-		. esc_html( aquametria_c5_voltagem_texto( $c ) ) . '. Link patrocinado. '
-		. esc_html( aquametria_c5_volume_ressalva( $c, $e['volume'] ) ) . '</span>';
+	/* A LINHA QUE DIZ O QUE É O LINK, e ela substitui um desvio inteiro.
+	   Até 14/09/2026 esta célula tinha três saídas: "link patrocinado", "ainda
+	   sem link de loja", e — quando o modelo certo não tinha link — um segundo
+	   aquecedor oferecido como consolo. O consolo nasceu de uma falta que deixou
+	   de existir: com o piso da 25.2 todo modelo tem para onde levar, e oferecer
+	   OUTRO produto porque este não tinha link era a única coisa nesta página em
+	   que a presença de link mexia no que o leitor via — exatamente o que a
+	   seção 7 proíbe. As três saídas viraram uma. */
+	$h .= '<span class="aqm-c5-wl">' . esc_html( null === $compra ? 'sem saída de compra no banco' : $compra['selo'] ) . '</span>';
 
 	$h .= '</td>';
 
@@ -676,6 +651,133 @@ function aquametria_c5_vt_ressalva_curta( $p, $volume ) {
 }
 }
 
+/* ---------------------------------------------------------------------------
+ * A SAÍDA DE COMPRA DE UM PRODUTO — 14/09/2026, item 4 do despacho do Raphael
+ *
+ * A escada da seção 25 do ARQUIPELAGO.md, e ela para no PRIMEIRO degrau que
+ * servir: a FICHA (`link`) quando existe, e o PISO (`busca`, a página de busca
+ * da Shopee, degrau 4) quando não existe. Até 14/09/2026 o segundo caso saía na
+ * tela como "link de loja em breve" — beco sem saída com cara de promessa, hoje
+ * proibido com todas as letras pela seção 7 corrigida naquele dia.
+ *
+ * O piso pode estar ENCURTADO (link de afiliado, rende comissão) ou CRU (a URL
+ * de busca como ela é). Hoje os 78 itens do banco estão com o piso cru, porque
+ * encurtar exige a sessão logada do painel da Shopee, que mora no navegador do
+ * Raphael — e a 25.2 é explícita, "nada, nunca, fica na fila esperando o
+ * Raphael". Então o cru vai para a tela e o SELO diz o que ele é: chamar de
+ * patrocinado um link que não paga nada seria mentir para o leitor sobre a
+ * única coisa que ele tem o direito de saber sobre nós.
+ * ------------------------------------------------------------------------- */
+if ( ! function_exists( 'aquametria_c5_compra' ) ) {
+function aquametria_c5_compra( $p ) {
+	if ( ! empty( $p['link'] ) ) {
+		$loja = 'shopee' === $p['loja'] ? 'Shopee' : $p['loja'];
+		return array(
+			'url'      => $p['link'],
+			'afiliado' => true,
+			'busca'    => false,
+			'botao'    => 'Ver na ' . $loja,
+			'selo'     => 'link patrocinado',
+		);
+	}
+
+	if ( ! empty( $p['busca'] ) ) {
+		$paga = ! empty( $p['busca_afiliada'] );
+		return array(
+			'url'      => $p['busca'],
+			'afiliado' => $paga,
+			'busca'    => true,
+			'botao'    => 'Ver ofertas na Shopee',
+			'selo'     => $paga ? 'busca patrocinada' : 'busca na Shopee, sem comissão',
+		);
+	}
+
+	return null;
+}
+}
+
+/* `rel` sai do que o link É, não de onde ele aparece. `sponsored` é a marcação
+   que o Google pede para link pago; busca crua não é paga, e marcar como pago
+   um link que não é seria declarar em formato de máquina o contrário do que a
+   página diz em texto. */
+if ( ! function_exists( 'aquametria_c5_compra_rel' ) ) {
+function aquametria_c5_compra_rel( $compra ) {
+	return $compra['afiliado'] ? 'sponsored noopener' : 'nofollow noopener';
+}
+}
+
+/* A linha discreta do piso, que só aparece no cartão que TEM ficha. A 25.2 manda
+   a busca descer para baixo do botão quando a ficha existe, e a razão é a
+   cicatriz que criou a seção 25: quatro de nove links de afiliado do Clube do
+   Mosaico morreram em menos de doze horas. Quando a ficha apodrecer, o leitor
+   ainda tem para onde ir, sem esperar a próxima ronda. Ela fica FORA da âncora
+   do cartão: âncora dentro de âncora não é HTML válido. */
+if ( ! function_exists( 'aquametria_c5_vitrine_piso_html' ) ) {
+function aquametria_c5_vitrine_piso_html( $p ) {
+	if ( empty( $p['link'] ) || empty( $p['busca'] ) ) {
+		return '';
+	}
+
+	$rel = ! empty( $p['busca_afiliada'] ) ? 'sponsored noopener' : 'nofollow noopener';
+
+	return '<a class="aqm-c5-vt-piso" href="' . esc_url( $p['busca'] ) . '" target="_blank" rel="'
+		. esc_attr( $rel ) . '">Ver todas as ofertas</a>';
+}
+}
+
+/* A PRESTAÇÃO DE CONTAS DA SAÍDA DE COMPRA. Substitui a frase "N de M têm link
+   de loja hoje; os outros aparecem do mesmo jeito, com o lugar do botão
+   reservado", que deixou de ser verdadeira no mesmo commit: não há mais lugar
+   de botão reservado, porque não há mais cartão sem botão. Os três números são
+   CONTADOS da lista que a página acabou de montar, nunca digitados, e a frase
+   só nomeia o grupo que existe — grupo vazio não ganha oração. As orações são
+   nominais de propósito: "N com anúncio escolhido" não tem verbo para
+   concordar. */
+if ( ! function_exists( 'aquametria_c5_criterio_compra_texto' ) ) {
+function aquametria_c5_criterio_compra_texto( $lista ) {
+	$total     = count( $lista );
+	$com_ficha = 0;
+	$sem_saida = 0;
+
+	foreach ( $lista as $p ) {
+		$compra = aquametria_c5_compra( $p );
+		if ( null === $compra ) {
+			$sem_saida++;
+		} elseif ( ! $compra['busca'] ) {
+			$com_ficha++;
+		}
+	}
+
+	$com_busca = $total - $com_ficha - $sem_saida;
+	$partes    = array();
+
+	if ( $com_ficha > 0 ) {
+		$partes[] = $com_ficha . ' com anúncio escolhido e link patrocinado';
+	}
+	if ( $com_busca > 0 ) {
+		$partes[] = $com_busca . ' com a busca do modelo na Shopee';
+	}
+	if ( $sem_saida > 0 ) {
+		$partes[] = $sem_saida . ' sem saída de compra';
+	}
+
+	$frase = $total . ( 1 === $total ? ' modelo na lista' : ' modelos na lista' );
+
+	if ( $partes ) {
+		$ultima = array_pop( $partes );
+		$frase .= ': ' . ( $partes ? implode( ', ', $partes ) . ' e ' . $ultima : $ultima );
+	}
+
+	$frase .= '. ';
+
+	if ( 0 === $sem_saida ) {
+		$frase .= 'Nenhum fica sem saída de compra. ';
+	}
+
+	return $frase . 'Quem entra na lista é decidido pela ficha técnica, e nunca por ter ou não link.';
+}
+}
+
 /* Um cartão. O MESMO HTML que o script monta em vitrineCartao(). */
 if ( ! function_exists( 'aquametria_c5_vitrine_cartao_html' ) ) {
 function aquametria_c5_vitrine_cartao_html( $p, $e, $acima ) {
@@ -684,11 +786,16 @@ function aquametria_c5_vitrine_cartao_html( $p, $e, $acima ) {
 
 	$h = '<li class="aqm-c5-vt-item">';
 
-	if ( $p['link'] ) {
-		$h .= '<a class="aqm-c5-vt-cartao" href="' . esc_url( $p['link'] ) . '" target="_blank" rel="sponsored noopener">';
+	$compra = aquametria_c5_compra( $p );
+
+	if ( null !== $compra ) {
+		$h .= '<a class="aqm-c5-vt-cartao' . ( $compra['busca'] ? ' aqm-c5-vt-cartao-busca' : '' )
+			. '" href="' . esc_url( $compra['url'] ) . '" target="_blank" rel="'
+			. esc_attr( aquametria_c5_compra_rel( $compra ) ) . '">';
 	} else {
-		/* Sem link não existe destino, e cartão sem destino não é âncora. O que o
-		   contrato proíbe é div com onclick fingindo ser link. */
+		/* Só sobra quando o banco chega aqui sem ficha E sem piso, o que o
+		   gerador do catálogo recusa gravar. Fica como <div> em vez de âncora
+		   morta. */
 		$h .= '<div class="aqm-c5-vt-cartao aqm-c5-vt-sem-link">';
 	}
 
@@ -722,12 +829,12 @@ function aquametria_c5_vitrine_cartao_html( $p, $e, $acima ) {
 		$h .= '<span class="aqm-c5-vt-preco aqm-c5-vt-sem-preco">sem cotação coletada</span>';
 	}
 
-	if ( $p['link'] ) {
-		$h .= '<span class="aqm-c5-vt-botao">Ver na ' . esc_html( 'shopee' === $p['loja'] ? 'Shopee' : $p['loja'] ) . '</span>';
-		$h .= '<span class="aqm-c5-vt-selo">link patrocinado</span>';
+	if ( null !== $compra ) {
+		$h .= '<span class="aqm-c5-vt-botao">' . esc_html( $compra['botao'] ) . '</span>';
+		$h .= '<span class="aqm-c5-vt-selo">' . esc_html( $compra['selo'] ) . '</span>';
 		$h .= '</a>';
+		$h .= aquametria_c5_vitrine_piso_html( $p );
 	} else {
-		$h .= '<span class="aqm-c5-vt-espera">link de loja em breve</span>';
 		$h .= '<span class="aqm-c5-vt-selo">entrou pela ficha técnica, não pelo link</span>';
 		$h .= '</div>';
 	}
@@ -767,18 +874,11 @@ function aquametria_c5_vitrine_servida_html() {
 		return $h;
 	}
 
-	$com_link = 0;
-	foreach ( $lista as $p ) {
-		if ( $p['link'] ) {
-			$com_link++;
-		}
-	}
-
 	$h .= '<p class="aqm-c5-sub">Um aquário de ' . esc_html( aquametria_c5_litros( $volume ) )
 		. ' litros num cômodo que cai até ' . esc_html( AQUAMETRIA_C5_DELTA_COBERTO ) . ' °C abaixo da água pede de '
 		. esc_html( aquametria_c5_watts( $e['piso'] ) ) . ' a ' . esc_html( aquametria_c5_watts( $e['teto'] ) )
 		. ' W, e estes são os aquecedores do banco da Aquametria cuja potência cai nessa faixa. '
-		. 'A ordem é pela proximidade do topo dela; nada aqui é ordenado por comissão, e modelo sem link de loja aparece do mesmo jeito. '
+		. 'A ordem é pela proximidade do topo dela; nada aqui é ordenado por comissão, e modelo sem anúncio escolhido aparece do mesmo jeito. '
 		. 'Esta lista de exemplo não aplica as duas barreiras de segurança do formulário — a voltagem da sua tomada e a faixa de ajuste alcançar a sua temperatura-alvo —, '
 		. 'porque um exemplo não sabe nenhuma das duas. Preencha o formulário acima para ver a lista do seu caso.</p>';
 
@@ -788,14 +888,13 @@ function aquametria_c5_vitrine_servida_html() {
 	}
 	$h .= '</ul>';
 
-	$h .= '<p class="aqm-c5-criterio">' . esc_html( $com_link ) . ' de ' . esc_html( count( $lista ) )
-		. ' têm link de loja hoje; os outros aparecem do mesmo jeito, com o lugar do botão reservado — '
-		. 'quem entra é decidido pela ficha técnica, e nunca por ter ou não link.</p>';
+	$h .= '<p class="aqm-c5-criterio">' . esc_html( aquametria_c5_criterio_compra_texto( $lista ) ) . '</p>';
 
 	$h .= '<p class="aqm-c5-aviso-afiliado"><strong>Sobre o preço e o botão.</strong> '
 		. 'O valor de cada cartão <strong>não é preço de hoje</strong>: é a cotação que a Aquametria leu naquele anúncio na data escrita ao lado, '
 		. 'e preço de aquarismo muda toda semana. Confira no anúncio antes de comprar. '
-		. 'Os botões levam a lojas por link de afiliado, marcado como patrocinado: se você comprar por eles, a Aquametria pode receber comissão, sem custo a mais para você. '
+		. 'Os botões marcados como <strong>link patrocinado</strong> são links de afiliado: se você comprar por eles, a Aquametria pode receber comissão, sem custo a mais para você. '
+		. 'Os que levam à <strong>busca na Shopee</strong> não rendem comissão nenhuma hoje, e o cartão diz isso — eles existem para você não ficar sem para onde ir quando não temos anúncio escolhido. '
 		. 'A ficha técnica de cada aquecedor vem do fabricante ou do varejo especializado, com o endereço e a data — o anúncio da loja nunca é a nossa fonte. '
 		. '<a href="' . esc_url( $divulgacao ) . '">Como a Aquametria ganha dinheiro</a>.</p>';
 
@@ -868,6 +967,8 @@ function aquametria_c5_catalogo() {
 			'fonte_status' => 'transcrita-varejo',
 			'verificado_em' => '2026-09-08',
 			'link' => null,
+			'busca' => 'https://shopee.com.br/search?keyword=Roxin%20HT-1300%2025%20W%20aquecedor%20aquario',
+			'busca_afiliada' => false,
 			'anuncio' => null,
 			'voltagem_anuncio' => null,
 			'loja' => null,
@@ -896,6 +997,8 @@ function aquametria_c5_catalogo() {
 			'fonte_status' => 'transcrita-varejo',
 			'verificado_em' => '2026-09-08',
 			'link' => null,
+			'busca' => 'https://shopee.com.br/search?keyword=Eheim%20Jager%2050%20W%20aquecedor%20aquario',
+			'busca_afiliada' => false,
 			'anuncio' => null,
 			'voltagem_anuncio' => null,
 			'loja' => null,
@@ -924,6 +1027,8 @@ function aquametria_c5_catalogo() {
 			'fonte_status' => 'transcrita-varejo',
 			'verificado_em' => '2026-09-08',
 			'link' => 'https://s.shopee.com.br/Ln66ZQPqy',
+			'busca' => 'https://shopee.com.br/search?keyword=Roxin%20HT-1300%2050%20W%20aquecedor%20aquario',
+			'busca_afiliada' => false,
 			'anuncio' => 'Roxin Q3 50 W 220 V',
 			'voltagem_anuncio' => '220',
 			'loja' => 'shopee',
@@ -964,6 +1069,8 @@ function aquametria_c5_catalogo() {
 			'fonte_status' => 'transcrita-varejo',
 			'verificado_em' => '2026-09-09',
 			'link' => null,
+			'busca' => 'https://shopee.com.br/search?keyword=Atman%20AT-100%20aquecedor%20aquario',
+			'busca_afiliada' => false,
 			'anuncio' => null,
 			'voltagem_anuncio' => null,
 			'loja' => null,
@@ -992,6 +1099,8 @@ function aquametria_c5_catalogo() {
 			'fonte_status' => 'transcrita-varejo',
 			'verificado_em' => '2026-09-08',
 			'link' => null,
+			'busca' => 'https://shopee.com.br/search?keyword=Eheim%20Jager%20100%20W%20aquecedor%20aquario',
+			'busca_afiliada' => false,
 			'anuncio' => null,
 			'voltagem_anuncio' => null,
 			'loja' => null,
@@ -1020,6 +1129,8 @@ function aquametria_c5_catalogo() {
 			'fonte_status' => 'transcrita-varejo',
 			'verificado_em' => '2026-09-08',
 			'link' => 'https://s.shopee.com.br/50YsvKBY0s',
+			'busca' => 'https://shopee.com.br/search?keyword=Roxin%20HT-1300%20100%20W%20aquecedor%20aquario',
+			'busca_afiliada' => false,
 			'anuncio' => 'ROXIN HT-1300 Q3 100W 127V para aquario ate 100 litros',
 			'voltagem_anuncio' => '127',
 			'loja' => 'shopee',
@@ -1054,6 +1165,8 @@ function aquametria_c5_catalogo() {
 			'fonte_status' => 'transcrita-varejo',
 			'verificado_em' => '2026-09-09',
 			'link' => null,
+			'busca' => 'https://shopee.com.br/search?keyword=Atman%20AT-150%20aquecedor%20aquario',
+			'busca_afiliada' => false,
 			'anuncio' => null,
 			'voltagem_anuncio' => null,
 			'loja' => null,
@@ -1082,6 +1195,8 @@ function aquametria_c5_catalogo() {
 			'fonte_status' => 'transcrita-varejo',
 			'verificado_em' => '2026-09-08',
 			'link' => null,
+			'busca' => 'https://shopee.com.br/search?keyword=Eheim%20Jager%20150%20W%20aquecedor%20aquario',
+			'busca_afiliada' => false,
 			'anuncio' => null,
 			'voltagem_anuncio' => null,
 			'loja' => null,
@@ -1110,6 +1225,8 @@ function aquametria_c5_catalogo() {
 			'fonte_status' => 'transcrita-varejo',
 			'verificado_em' => '2026-09-09',
 			'link' => 'https://s.shopee.com.br/6VNjRo5IKE',
+			'busca' => 'https://shopee.com.br/search?keyword=Ocean%20Tech%20Warmer%20X-5%20150%20W%20aquecedor%20aquario',
+			'busca_afiliada' => false,
 			'anuncio' => 'OceanTech X-5 150 W 220 V / 110 V',
 			'voltagem_anuncio' => '220',
 			'loja' => 'shopee',
@@ -1150,6 +1267,8 @@ function aquametria_c5_catalogo() {
 			'fonte_status' => 'transcrita-varejo',
 			'verificado_em' => '2026-09-09',
 			'link' => null,
+			'busca' => 'https://shopee.com.br/search?keyword=Atman%20AT-200%20aquecedor%20aquario',
+			'busca_afiliada' => false,
 			'anuncio' => null,
 			'voltagem_anuncio' => null,
 			'loja' => null,
@@ -1178,6 +1297,8 @@ function aquametria_c5_catalogo() {
 			'fonte_status' => 'fabricante-via-busca',
 			'verificado_em' => '2026-09-08',
 			'link' => null,
+			'busca' => 'https://shopee.com.br/search?keyword=Eheim%20Jager%20200%20W%20aquecedor%20aquario',
+			'busca_afiliada' => false,
 			'anuncio' => null,
 			'voltagem_anuncio' => null,
 			'loja' => null,
@@ -1206,6 +1327,8 @@ function aquametria_c5_catalogo() {
 			'fonte_status' => 'transcrita-varejo',
 			'verificado_em' => '2026-09-08',
 			'link' => 'https://s.shopee.com.br/6L4GVnErqJ',
+			'busca' => 'https://shopee.com.br/search?keyword=Roxin%20HT-1300%20200%20W%20aquecedor%20aquario',
+			'busca_afiliada' => false,
 			'anuncio' => 'Roxin Q3 Ht-1300 Q3 200w 110V',
 			'voltagem_anuncio' => '110',
 			'loja' => 'shopee',
@@ -1240,6 +1363,8 @@ function aquametria_c5_catalogo() {
 			'fonte_status' => 'transcrita-varejo',
 			'verificado_em' => '2026-09-09',
 			'link' => null,
+			'busca' => 'https://shopee.com.br/search?keyword=Ocean%20Tech%20Warmer%20X-5%20250%20W%20aquecedor%20aquario',
+			'busca_afiliada' => false,
 			'anuncio' => null,
 			'voltagem_anuncio' => null,
 			'loja' => null,
@@ -1268,6 +1393,8 @@ function aquametria_c5_catalogo() {
 			'fonte_status' => 'transcrita-varejo',
 			'verificado_em' => '2026-09-09',
 			'link' => null,
+			'busca' => 'https://shopee.com.br/search?keyword=Atman%20AT-300%20aquecedor%20aquario',
+			'busca_afiliada' => false,
 			'anuncio' => null,
 			'voltagem_anuncio' => null,
 			'loja' => null,
@@ -1296,6 +1423,8 @@ function aquametria_c5_catalogo() {
 			'fonte_status' => 'transcrita-varejo',
 			'verificado_em' => '2026-09-08',
 			'link' => 'https://s.shopee.com.br/AUtpTbdMqc',
+			'busca' => 'https://shopee.com.br/search?keyword=Roxin%20HT-1300%20300%20W%20aquecedor%20aquario',
+			'busca_afiliada' => false,
 			'anuncio' => 'Termostato Com Aquecedor Roxin HT-1300 - Q3 - 300w - 220v',
 			'voltagem_anuncio' => '220',
 			'loja' => 'shopee',
@@ -1330,6 +1459,8 @@ function aquametria_c5_catalogo() {
 			'fonte_status' => 'transcrita-varejo',
 			'verificado_em' => '2026-09-09',
 			'link' => null,
+			'busca' => 'https://shopee.com.br/search?keyword=Hopar%20J-226%20400%20W%20aquecedor%20aquario',
+			'busca_afiliada' => false,
 			'anuncio' => null,
 			'voltagem_anuncio' => null,
 			'loja' => null,
@@ -1358,6 +1489,8 @@ function aquametria_c5_catalogo() {
 			'fonte_status' => 'transcrita-varejo',
 			'verificado_em' => '2026-09-09',
 			'link' => null,
+			'busca' => 'https://shopee.com.br/search?keyword=Hopar%20J-226%20500%20W%20aquecedor%20aquario',
+			'busca_afiliada' => false,
 			'anuncio' => null,
 			'voltagem_anuncio' => null,
 			'loja' => null,
@@ -1386,6 +1519,8 @@ function aquametria_c5_catalogo() {
 			'fonte_status' => 'transcrita-varejo',
 			'verificado_em' => '2026-09-09',
 			'link' => null,
+			'busca' => 'https://shopee.com.br/search?keyword=Ocean%20Tech%20Warmer%20X-5%20500%20W%20aquecedor%20aquario',
+			'busca_afiliada' => false,
 			'anuncio' => null,
 			'voltagem_anuncio' => null,
 			'loja' => null,
@@ -1518,7 +1653,10 @@ a.aqm-c5-vt-cartao:focus-visible{outline:2px solid var(--c5-lamina);outline-offs
 .aqm-c5-vt-preco{font-family:var(--c5-mono);font-size:.8rem;font-variant-numeric:tabular-nums;color:var(--c5-tinta);}
 .aqm-c5-vt-preco.aqm-c5-vt-sem-preco{font-family:var(--c5-texto);font-size:.76rem;color:var(--c5-legenda);font-style:italic;}
 .aqm-c5-vt-botao{margin-top:auto;text-align:center;font-family:var(--c5-texto);font-weight:600;font-size:.85rem;padding:.42rem .7rem;border-radius:2px;background:var(--c5-lamina);color:var(--c5-superficie);}
-.aqm-c5-vt-espera{margin-top:auto;text-align:center;font-family:var(--c5-texto);font-weight:600;font-size:.82rem;padding:.42rem .7rem;border-radius:2px;background:var(--c5-papel);border:1px dashed var(--c5-traco);color:var(--c5-legenda);}
+.aqm-c5-vt-piso{display:block;text-align:center;font-family:var(--c5-texto);font-size:.78rem;line-height:1.4;margin-top:.4rem;color:var(--c5-legenda);text-decoration:underline;}
+.aqm-c5-vt-piso:hover{color:var(--c5-lamina);}
+.aqm-c5-piso{display:inline-block;font-family:var(--c5-texto);font-size:.82rem;margin-top:.4rem;color:var(--c5-legenda);text-decoration:underline;}
+.aqm-c5-piso:hover{color:var(--c5-lamina);}
 .aqm-c5-vt-selo{font-family:var(--c5-mono);font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;color:var(--c5-legenda);text-align:center;margin-top:.25rem;}
 .aqm-c5-vitrine-servida .aqm-c5-criterio{margin-top:.5rem;}
 .aqm-c5-barra{position:fixed;left:0;right:0;bottom:0;z-index:40;display:none;align-items:center;gap:.7rem;background:var(--c5-superficie);border-top:1px solid var(--c5-traco);padding:.55rem .85rem;}
@@ -1978,7 +2116,7 @@ function aquametria_c5_js() {
 			'São os aquecedores do nosso banco que entregam entre ' + watts(r.piso) + ' e '
 			+ (r.comercial ? fmt(r.comercial, 0) : watts(r.teto)) + ' W, existem em ' + r.entradas.voltagem
 			+ ' V e têm termostato capaz de chegar aos ' + graus(r.alvo.valor) + ' °C que você quer. '
-			+ 'A ordem é pela proximidade do topo da faixa. Nada aqui é ordenado por comissão, e modelo sem link de loja aparece do mesmo jeito.';
+			+ 'A ordem é pela proximidade do topo da faixa. Nada aqui é ordenado por comissão, e modelo sem anúncio escolhido aparece do mesmo jeito.';
 
 		/* DOIS GRUPOS, e o segundo tem título e frase próprios.
 		   Item 2 do despacho da Sentinela de 10/09/2026: com 108 L a faixa
@@ -2126,13 +2264,14 @@ function aquametria_c5_js() {
 		ficha.innerHTML = linhas.map(function (t) { return '<li>' + t + '</li>'; }).join('');
 		corpo.appendChild(ficha);
 
-		if (p.link) {
+		var compraFicha = compraDe(p);
+		if (compraFicha) {
 			var a = document.createElement('a');
 			a.className = 'aqm-c5-loja';
-			a.href = p.link;
+			a.href = compraFicha.url;
 			a.target = '_blank';
-			a.rel = 'sponsored noopener';
-			a.textContent = 'Ver na ' + (p.loja === 'shopee' ? 'Shopee' : p.loja);
+			a.rel = compraFicha.afiliado ? 'sponsored noopener' : 'nofollow noopener';
+			a.textContent = compraFicha.botao;
 			corpo.appendChild(a);
 			var nota = document.createElement('p');
 			nota.className = 'aqm-c5-voltaviso';
@@ -2142,19 +2281,33 @@ function aquametria_c5_js() {
 			corpo.appendChild(nota);
 			var patro = document.createElement('p');
 			patro.className = 'aqm-c5-semloja';
-			patro.textContent = 'Link patrocinado. O anúncio não é a nossa fonte técnica; a ficha acima é.';
+			/* A frase de sempre dizia "ele aparece aqui porque atende ao seu
+			   número". Verdade para quem cabe na faixa; mentira para o degrau
+			   comercial acima, que aparece justamente porque a prateleira não
+			   tem o número da faixa. Uma frase só para os dois casos era a
+			   metade errada da contradição do item 2 do despacho de 10/09/2026,
+			   e a distinção continua valendo no texto do piso. */
+			patro.textContent = compraFicha.busca
+				? (acimaDaFaixa
+					? 'Não temos anúncio escolhido para este modelo, então o botão leva à busca dele na Shopee — ela não rende comissão hoje. Ele aparece aqui porque é o degrau comercial que cobre o topo da sua faixa, e nada além disso decide a lista.'
+					: 'Não temos anúncio escolhido para este modelo, então o botão leva à busca dele na Shopee — ela não rende comissão hoje. Ele aparece aqui porque atende ao seu número, e é só isso que decide a lista.')
+				: 'Link patrocinado. O anúncio não é a nossa fonte técnica; a ficha acima é.';
 			corpo.appendChild(patro);
+			if (p.link && p.busca) {
+				var todas = document.createElement('a');
+				todas.className = 'aqm-c5-piso';
+				todas.href = p.busca;
+				todas.target = '_blank';
+				todas.rel = p.busca_afiliada ? 'sponsored noopener' : 'nofollow noopener';
+				todas.textContent = 'Ver todas as ofertas deste modelo';
+				corpo.appendChild(todas);
+			}
 		} else {
 			var sem = document.createElement('p');
 			sem.className = 'aqm-c5-semloja';
-			/* A frase de sempre dizia "ele aparece aqui porque atende ao seu
-			   número". Verdade para quem cabe na faixa; mentira para o degrau
-			   comercial acima, que aparece justamente porque a prateleira não tem
-			   o número da faixa. Uma frase só para os dois casos era a metade
-			   errada da contradição do item 2 do despacho de 10/09/2026. */
-			sem.textContent = acimaDaFaixa
-				? 'Ainda não temos link de loja para este modelo. Ele aparece aqui porque é o degrau comercial que cobre o topo da sua faixa, e nada além disso decide a lista.'
-				: 'Ainda não temos link de loja para este modelo. Ele aparece aqui porque atende ao seu número, e é só isso que decide a lista.';
+			sem.textContent = 'Este modelo está sem saída de compra no banco da Aquametria. Ele aparece aqui porque '
+				+ (acimaDaFaixa ? 'é o degrau comercial que cobre o topo da sua faixa' : 'atende ao seu número')
+				+ ', e nada além disso decide a lista.';
 			corpo.appendChild(sem);
 		}
 
@@ -2207,16 +2360,20 @@ function aquametria_c5_js() {
 		var li = document.createElement('li');
 		li.className = 'aqm-c5-vt-item';
 
+		/* A MESMA escada do PHP: o cartão servido no HTML e o cartão pintado no
+		   clique têm de levar o leitor ao mesmo lugar. */
+		var compra = compraDe(p);
+
 		var cartao;
-		if (p.link) {
+		if (compra) {
 			cartao = document.createElement('a');
-			cartao.className = 'aqm-c5-vt-cartao';
-			cartao.href = p.link;
+			cartao.className = 'aqm-c5-vt-cartao' + (compra.busca ? ' aqm-c5-vt-cartao-busca' : '');
+			cartao.href = compra.url;
 			cartao.target = '_blank';
-			cartao.rel = 'sponsored noopener';
+			cartao.rel = compra.afiliado ? 'sponsored noopener' : 'nofollow noopener';
 		} else {
-			/* Sem link não existe destino, e cartão sem destino não é âncora. O
-			   que o contrato proíbe é div com onclick fingindo ser link. */
+			/* Sem ficha E sem piso não existe destino, e cartão sem destino não
+			   é âncora. O gerador do catálogo recusa produzir este caso. */
 			cartao = document.createElement('div');
 			cartao.className = 'aqm-c5-vt-cartao aqm-c5-vt-sem-link';
 		}
@@ -2257,16 +2414,80 @@ function aquametria_c5_js() {
 			? linha('aqm-c5-vt-preco', preco)
 			: linha('aqm-c5-vt-preco aqm-c5-vt-sem-preco', 'sem cotação coletada'));
 
-		if (p.link) {
-			cartao.appendChild(linha('aqm-c5-vt-botao', 'Ver na ' + (p.loja === 'shopee' ? 'Shopee' : p.loja)));
-			cartao.appendChild(linha('aqm-c5-vt-selo', 'link patrocinado'));
+		if (compra) {
+			cartao.appendChild(linha('aqm-c5-vt-botao', compra.botao));
+			cartao.appendChild(linha('aqm-c5-vt-selo', compra.selo));
 		} else {
-			cartao.appendChild(linha('aqm-c5-vt-espera', 'link de loja em breve'));
 			cartao.appendChild(linha('aqm-c5-vt-selo', 'entrou pela ficha técnica, não pelo link'));
 		}
 
 		li.appendChild(cartao);
+
+		/* A linha discreta do piso, FORA da âncora do cartão, só para quem tem
+		   ficha: âncora dentro de âncora não é HTML válido. */
+		if (p.link && p.busca) {
+			var piso = document.createElement('a');
+			piso.className = 'aqm-c5-vt-piso';
+			piso.href = p.busca;
+			piso.target = '_blank';
+			piso.rel = p.busca_afiliada ? 'sponsored noopener' : 'nofollow noopener';
+			piso.textContent = 'Ver todas as ofertas';
+			li.appendChild(piso);
+		}
+
 		return li;
+	}
+
+	/* A escada da seção 25 em JavaScript. Ela devolve exatamente o que
+	   aquametria_c5_compra() devolve no PHP, com os mesmos textos — duas escadas
+	   para a mesma decisão divergiriam, e a que diverge em silêncio é sempre a
+	   que o leitor vê. */
+	function compraDe(p) {
+		if (p.link) {
+			return {
+				url: p.link,
+				afiliado: true,
+				busca: false,
+				botao: 'Ver na ' + (p.loja === 'shopee' ? 'Shopee' : p.loja),
+				selo: 'link patrocinado'
+			};
+		}
+		if (p.busca) {
+			return {
+				url: p.busca,
+				afiliado: !!p.busca_afiliada,
+				busca: true,
+				botao: 'Ver ofertas na Shopee',
+				selo: p.busca_afiliada ? 'busca patrocinada' : 'busca na Shopee, sem comissão'
+			};
+		}
+		return null;
+	}
+
+	function criterioCompraTexto(produtos) {
+		var total = produtos.length;
+		var comFicha = 0;
+		var semSaida = 0;
+		produtos.forEach(function (p) {
+			var c = compraDe(p);
+			if (!c) { semSaida += 1; }
+			else if (!c.busca) { comFicha += 1; }
+		});
+		var comBusca = total - comFicha - semSaida;
+
+		var partes = [];
+		if (comFicha > 0) { partes.push(comFicha + ' com anúncio escolhido e link patrocinado'); }
+		if (comBusca > 0) { partes.push(comBusca + ' com a busca do modelo na Shopee'); }
+		if (semSaida > 0) { partes.push(semSaida + ' sem saída de compra'); }
+
+		var frase = total + (total === 1 ? ' modelo na lista' : ' modelos na lista');
+		if (partes.length) {
+			var ultima = partes.pop();
+			frase += ': ' + (partes.length ? partes.join(', ') + ' e ' + ultima : ultima);
+		}
+		frase += '. ';
+		if (semSaida === 0) { frase += 'Nenhum fica sem saída de compra. '; }
+		return frase + 'Quem entra na lista é decidido pela ficha técnica, e nunca por ter ou não link.';
 	}
 
 	function linha(classe, texto) {
@@ -2293,15 +2514,11 @@ function aquametria_c5_js() {
 
 		bloco.classList.remove('aqm-c5-oculto');
 
-		var comLink = 0;
 		sequencia.forEach(function (par) {
-			if (par.p.link) { comLink += 1; }
 			trilho.appendChild(vitrineCartao(par.p, r, par.acima));
 		});
 
-		el('aqm-c5-vitrine-nota').textContent = comLink + ' de ' + sequencia.length
-			+ ' têm link de loja hoje; os outros aparecem do mesmo jeito, com o lugar do botão reservado — '
-			+ 'quem entra é decidido pela ficha técnica, e nunca por ter ou não link.';
+		el('aqm-c5-vitrine-nota').textContent = criterioCompraTexto(sequencia.map(function (par) { return par.p; }));
 	}
 
 	/* ------------------------------------------------- rolagem e barra fixa */
@@ -2697,7 +2914,7 @@ function aquametria_c5_exemplos_html() {
 
 	$h .= '<p class="aqm-c5-aviso-afiliado"><strong>Sobre a última coluna.</strong> ';
 	$h .= 'Ela mostra o aquecedor do banco técnico da Aquametria cuja potência cai mais perto do topo da faixa daquela linha, no cenário da coluna da esquerda — ';
-	$h .= 'é o mesmo critério que a calculadora acima aplica, e a comissão não entra nele: modelo sem link de loja aparece do mesmo jeito. ';
+	$h .= 'é o mesmo critério que a calculadora acima aplica, e a comissão não entra nele: modelo sem anúncio escolhido aparece do mesmo jeito. ';
 	$h .= 'Quando esse modelo ainda não tem link no banco, aparece embaixo, rotulada, a opção da MESMA faixa que já tem — o primeiro da mesma ordem, não o de maior comissão. ';
 	$h .= '<strong>Leia a voltagem antes de comprar.</strong> A tabela não sabe duas coisas que o formulário pergunta e que decidem segurança: a voltagem da sua tomada e a temperatura que você quer manter. ';
 	$h .= 'Aquecedor ligado na voltagem errada queima, e por isso a célula publica a voltagem que a ficha declara — e diz quando ela não está confirmada — em vez de supor 110 ou 220. ';
@@ -2724,21 +2941,26 @@ function aquametria_c5_exemplos_html() {
  * página não mostra é lixo, e seria lixo detectável.
  * ------------------------------------------------------------------------- */
 
-/* A frase de "onde comprar" da resposta do FAQ, quando quem atende melhor ainda
-   não tem link. Fica separada porque só existe nesse caso, e escrevê-la dentro
-   do array do FAQ deixaria o array ilegível. */
-if ( ! function_exists( 'aquametria_c5_faq_com_link' ) ) {
-function aquametria_c5_faq_com_link( $e, $volume ) {
-	$c = aquametria_c5_produto_com_link( $e );
+/* A frase de "onde comprar" da resposta do FAQ.
+   REESCRITA EM 14/09/2026 pelo item 4 do despacho. Ela existia para o caso de
+   quem atende melhor não ter link de loja, e então oferecia OUTRO aquecedor no
+   lugar — o que é promover por link, exatamente o que a seção 7 proíbe. Com o
+   piso da 25.2 esse caso deixou de existir: todo modelo do banco tem saída de
+   compra, então a frase diz onde comprar ESTE, e diz o que o link é. */
+if ( ! function_exists( 'aquametria_c5_faq_onde_comprar' ) ) {
+function aquametria_c5_faq_onde_comprar( $p ) {
+	$compra = aquametria_c5_compra( $p );
 
-	if ( null === $c ) {
-		return 'Nenhum aquecedor dessa faixa tem link de loja no banco da Aquametria hoje. ';
+	if ( null === $compra ) {
+		return '';
 	}
 
-	$ressalva = aquametria_c5_volume_ressalva( $c, $volume );
+	if ( ! $compra['busca'] ) {
+		return 'O link de compra desse modelo é um anúncio patrocinado na Shopee. ';
+	}
 
-	return 'Esse modelo ainda não tem link de loja no banco; na mesma faixa, o primeiro que tem é o '
-		. aquametria_c5_produto_frase( $c, $volume ) . '. ' . ( '' === $ressalva ? '' : $ressalva . ' ' );
+	return 'Esse modelo não tem anúncio escolhido no banco da Aquametria, então o botão leva à '
+		. 'busca dele na Shopee, onde dá para comparar as ofertas de quem está vendendo hoje. ';
 }
 }
 
@@ -2835,9 +3057,9 @@ function aquametria_c5_jsonld_dados() {
 					. 'que cai mais perto do topo dela é o ' . aquametria_c5_produto_frase( $p, $v ) . '. '
 					. ( $e['comercial'] ? '' : 'Atenção: nesse volume a faixa passa do maior degrau da linha de referência (300 W), '
 						. 'então a resposta é mais de um aparelho, e esse modelo é um deles. ' )
-					. 'O critério é a potência declarada, nunca a comissão: modelo sem link de loja aparece na lista do mesmo jeito. '
+					. 'O critério é a potência declarada, nunca a comissão: modelo sem anúncio escolhido aparece na lista do mesmo jeito. '
 					. aquametria_c5_volume_ressalva( $p, $v ) . ( aquametria_c5_volume_ressalva( $p, $v ) ? ' ' : '' )
-					. ( $p['link'] ? '' : aquametria_c5_faq_com_link( $e, $v ) )
+					. aquametria_c5_faq_onde_comprar( $p )
 					. 'Antes de comprar, confirme dois números que esta indicação não conhece: a voltagem da sua tomada, porque aquecedor ligado na voltagem errada queima, '
 					. 'e se a faixa de ajuste do termostato alcança a temperatura que você quer manter.',
 			),

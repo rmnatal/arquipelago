@@ -67,7 +67,9 @@
         "url_busca": null,
         "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "observacao": "Link curto gerado no painel Shopee Afiliados em 07/09/2026. Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data.",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=Eheim%20classic%20250%20%282213%29%20filtro%20aquario"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Eheim%20classic%20250%20%282213%29%20filtro%20aquario",
+        "conferido_em": "2026-09-14",
+        "intestavel": true
       },
       "fontes": [
         {
@@ -145,11 +147,13 @@
       "afiliado": {
         "plataforma": null,
         "verificado_em": "2026-09-07",
-        "degrau": null,
+        "degrau": 4,
         "url_busca": null,
         "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "motivo": "sem anuncio do produto na Shopee em 07/09/2026 (busca do painel de afiliados so devolveu pecas de reposicao e lampadas UV). Enquanto nao houver link, este produto NAO e sugerido no bloco de produto das calculadoras.",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=SunSun%20HW-303B%20filtro%20aquario"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=SunSun%20HW-303B%20filtro%20aquario",
+        "conferido_em": "2026-09-14",
+        "intestavel": false
       },
       "fontes": [
         {
@@ -235,11 +239,13 @@
       "afiliado": {
         "plataforma": null,
         "verificado_em": "2026-09-07",
-        "degrau": null,
+        "degrau": 4,
         "url_busca": null,
         "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "motivo": "sem anuncio do produto na Shopee em 07/09/2026 (busca do painel de afiliados so devolveu pecas de reposicao e lampadas UV). Enquanto nao houver link, este produto NAO e sugerido no bloco de produto das calculadoras.",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=Atman%20AT-3338%20filtro%20aquario"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Atman%20AT-3338%20filtro%20aquario",
+        "conferido_em": "2026-09-14",
+        "intestavel": false
       },
       "fontes": [
         {
@@ -330,11 +336,13 @@
       "afiliado": {
         "plataforma": null,
         "verificado_em": "2026-09-07",
-        "degrau": null,
+        "degrau": 4,
         "url_busca": null,
         "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "motivo": "sem anuncio do produto na Shopee em 07/09/2026 (busca do painel de afiliados so devolveu pecas de reposicao e lampadas UV). Enquanto nao houver link, este produto NAO e sugerido no bloco de produto das calculadoras.",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=Atman%20AT-3338S%20filtro%20aquario"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Atman%20AT-3338S%20filtro%20aquario",
+        "conferido_em": "2026-09-14",
+        "intestavel": false
       },
       "fontes": [
         {
@@ -450,7 +458,9 @@
         "url_busca": null,
         "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "observacao": "Link curto gerado no painel Shopee Afiliados em 07/09/2026. Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data.",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=Seachem%20Tidal%2055%20filtro%20aquario"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Seachem%20Tidal%2055%20filtro%20aquario",
+        "conferido_em": "2026-09-14",
+        "intestavel": true
       },
       "fontes": [
         {
@@ -540,11 +550,13 @@
       "afiliado": {
         "plataforma": null,
         "verificado_em": "2026-09-09",
-        "degrau": null,
+        "degrau": 4,
         "url_busca": null,
         "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "motivo": "produto novo no banco em 09/09/2026, entrou pela expansao do catalogo (bloco 4b). O link de afiliado e gerado pela Sentinela Estrategica no painel da Shopee; enquanto nao houver, pela regra V16 o produto continua sendo sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=Atman%20HF-0400%20filtro%20aquario"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Atman%20HF-0400%20filtro%20aquario",
+        "conferido_em": "2026-09-14",
+        "intestavel": false
       },
       "fontes": [
         {
@@ -642,11 +654,13 @@
       "afiliado": {
         "plataforma": null,
         "verificado_em": "2026-09-09",
-        "degrau": null,
+        "degrau": 4,
         "url_busca": null,
         "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "motivo": "produto novo no banco em 09/09/2026, entrou pela expansao do catalogo (bloco 4b). O link de afiliado e gerado pela Sentinela Estrategica no painel da Shopee; enquanto nao houver, pela regra V16 o produto continua sendo sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=Atman%20HF-0600%20filtro%20aquario"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Atman%20HF-0600%20filtro%20aquario",
+        "conferido_em": "2026-09-14",
+        "intestavel": false
       },
       "fontes": [
         {
@@ -721,11 +735,13 @@
       "afiliado": {
         "plataforma": null,
         "verificado_em": "2026-09-09",
-        "degrau": null,
+        "degrau": 4,
         "url_busca": null,
         "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "motivo": "produto novo no banco em 09/09/2026, entrou pela expansao do catalogo (bloco 4b). O link de afiliado e gerado pela Sentinela Estrategica no painel da Shopee; enquanto nao houver, pela regra V16 o produto continua sendo sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=Atman%20HF-0800%20filtro%20aquario"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Atman%20HF-0800%20filtro%20aquario",
+        "conferido_em": "2026-09-14",
+        "intestavel": false
       },
       "fontes": [
         {
@@ -822,11 +838,13 @@
       "afiliado": {
         "plataforma": null,
         "verificado_em": "2026-09-09",
-        "degrau": null,
+        "degrau": 4,
         "url_busca": null,
         "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "motivo": "produto novo no banco em 09/09/2026, entrou pela expansao do catalogo (bloco 4b). O link de afiliado e gerado pela Sentinela Estrategica no painel da Shopee; enquanto nao houver, pela regra V16 o produto continua sendo sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=Atman%20AT-3336%20filtro%20aquario"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Atman%20AT-3336%20filtro%20aquario",
+        "conferido_em": "2026-09-14",
+        "intestavel": false
       },
       "fontes": [
         {
@@ -902,11 +920,13 @@
       "afiliado": {
         "plataforma": null,
         "verificado_em": "2026-09-09",
-        "degrau": null,
+        "degrau": 4,
         "url_busca": null,
         "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "motivo": "produto novo no banco em 09/09/2026, entrou pela expansao do catalogo (bloco 4b). O link de afiliado e gerado pela Sentinela Estrategica no painel da Shopee; enquanto nao houver, pela regra V16 o produto continua sendo sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=SunSun%20HW-603B%20filtro%20aquario"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=SunSun%20HW-603B%20filtro%20aquario",
+        "conferido_em": "2026-09-14",
+        "intestavel": false
       },
       "fontes": [
         {
@@ -1016,11 +1036,13 @@
       "afiliado": {
         "plataforma": null,
         "verificado_em": "2026-09-09",
-        "degrau": null,
+        "degrau": 4,
         "url_busca": null,
         "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "motivo": "produto novo no banco em 09/09/2026, entrou pela expansao do catalogo (bloco 4b). O link de afiliado e gerado pela Sentinela Estrategica no painel da Shopee; enquanto nao houver, pela regra V16 o produto continua sendo sugerido pela adequacao tecnica e o cartao sai sem botao de loja.",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=SunSun%20HW-302%20filtro%20aquario"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=SunSun%20HW-302%20filtro%20aquario",
+        "conferido_em": "2026-09-14",
+        "intestavel": false
       },
       "fontes": [
         {
@@ -1098,7 +1120,9 @@
         "url_busca": null,
         "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "observacao": "Link curto colhido a mao pelo operador no painel Shopee Afiliados em 09/09/2026, as 11h40. A pagina do anuncio nao abre para a nuvem (o egresso barra shopee.com.br). Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data.",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=Ocean%20Tech%20CT-1000-3%20filtro%20aquario"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Ocean%20Tech%20CT-1000-3%20filtro%20aquario",
+        "conferido_em": "2026-09-14",
+        "intestavel": true
       },
       "fontes": [
         {
@@ -1176,7 +1200,9 @@
         "url_busca": null,
         "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "observacao": "Link curto colhido a mao pelo operador no painel Shopee Afiliados em 09/09/2026, as 11h40, com 39 vendas registradas no anuncio. voltagem_anuncio e a voltagem DAQUELE anuncio, transcrita do painel, e NAO campo tecnico do produto: anuncio de marketplace nao sustenta numero tecnico. Preco mora em dados/produtos-cotacoes.json.",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=SunSun%20HW-702A%20filtro%20aquario"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=SunSun%20HW-702A%20filtro%20aquario",
+        "conferido_em": "2026-09-14",
+        "intestavel": true
       },
       "fontes": [
         {
@@ -1268,7 +1294,9 @@
         "url_busca": null,
         "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "observacao": "Link curto colhido a mao pelo operador no painel Shopee Afiliados em 09/09/2026, as 11h40. A pagina do anuncio nao abre para a nuvem (o egresso barra shopee.com.br). Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data.",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=SunSun%20HW-702B%20filtro%20aquario"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=SunSun%20HW-702B%20filtro%20aquario",
+        "conferido_em": "2026-09-14",
+        "intestavel": true
       },
       "fontes": [
         {
@@ -1375,7 +1403,9 @@
         "url_busca": null,
         "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "observacao": "Link curto colhido a mao pelo operador no painel Shopee Afiliados em 09/09/2026, as 11h40. A pagina do anuncio nao abre para a nuvem (o egresso barra shopee.com.br). Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data.",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=Maxxi%20MP-600%20filtro%20aquario"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Maxxi%20MP-600%20filtro%20aquario",
+        "conferido_em": "2026-09-14",
+        "intestavel": true
       },
       "fontes": [
         {
@@ -1449,7 +1479,9 @@
         "url_busca": null,
         "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "observacao": "Link curto colhido a mao pelo operador no painel Shopee Afiliados em 09/09/2026, as 11h40. A pagina do anuncio nao abre para a nuvem (o egresso barra shopee.com.br). Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data.",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=SunSun%20XBL-600%20filtro%20aquario"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=SunSun%20XBL-600%20filtro%20aquario",
+        "conferido_em": "2026-09-14",
+        "intestavel": true
       },
       "fontes": [
         {
@@ -1524,7 +1556,9 @@
         "url_busca": null,
         "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "observacao": "Link curto colhido a mao pelo operador no painel Shopee Afiliados em 09/09/2026, as 11h40. A pagina do anuncio nao abre para a nuvem (o egresso barra shopee.com.br). Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data.",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=Aquaverso%20APK-600%20filtro%20aquario"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Aquaverso%20APK-600%20filtro%20aquario",
+        "conferido_em": "2026-09-14",
+        "intestavel": true
       },
       "fontes": [
         {
@@ -1609,7 +1643,9 @@
         "url_busca": null,
         "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "observacao": "Link curto colhido a mao pelo operador no painel Shopee Afiliados em 09/09/2026, as 11h40. A pagina do anuncio nao abre para a nuvem (o egresso barra shopee.com.br). Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data.",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=Eheim%20classic%20600%20%282217%29%20filtro%20aquario"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Eheim%20classic%20600%20%282217%29%20filtro%20aquario",
+        "conferido_em": "2026-09-14",
+        "intestavel": true
       },
       "fontes": [
         {
@@ -1711,7 +1747,9 @@
         "url_busca": null,
         "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "observacao": "Link curto colhido a mao pelo operador no painel Shopee Afiliados em 09/09/2026, as 11h40. A pagina do anuncio nao abre para a nuvem (o egresso barra shopee.com.br). Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data.",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=Eheim%20classic%20600%20%282217%29%20filtro%20aquario"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Eheim%20classic%20600%20%282217%29%20filtro%20aquario",
+        "conferido_em": "2026-09-14",
+        "intestavel": true
       },
       "fontes": [
         {

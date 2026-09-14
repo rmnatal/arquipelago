@@ -110,7 +110,11 @@ const LER_TRILHO = (seletor) => {
       rende: t('.aqm-c12-vt-rende'),
       preco: t('.aqm-c12-vt-preco'),
       botao: t('.aqm-c12-vt-botao'),
-      espera: t('.aqm-c12-vt-espera'),
+      selo: t('.aqm-c12-vt-selo'),
+      // O PISO DA 25.2, colhido do <li> e NAO do cartao: ele fica FORA
+      // da ancora do cartao de proposito, porque ancora dentro de
+      // ancora nao e HTML valido.
+      piso: (function () { var a = li.querySelector('.aqm-c12-vt-piso'); return a ? a.getAttribute('href') : null; })(),
       temFoto: !!img,
       imgAlt: img ? img.getAttribute('alt') : null,
       imgLazy: img ? img.getAttribute('loading') : null,
@@ -236,13 +240,23 @@ esperadaServida.forEach((item, i) => {
       c.placeholder === true && c.temFoto === false);
   }
 
+  // A ESCADA DA 25.1 NO CARTAO SERVIDO. Ate 14/09/2026 a segunda metade desta
+  // afirmacao cobrava o contrario: midia sem link de afiliado NAO virava ancora
+  // e escrevia "link de loja em breve" no lugar do botao. A secao 7 proibiu
+  // essa frase e o item 4 do despacho mandou tirar do ar; o piso da 25.2 — a
+  // pagina de busca do modelo — virou o botao de quem nao tem anuncio, e desceu
+  // para a linha discreta de quem tem. O `rel` acompanha: `sponsored` e de quem
+  // paga comissao, `nofollow` de quem nao paga.
   if (m.link) {
-    conferir('servido: ' + m.modelo + ' tem cartao ancora com sponsored',
-      c.tag === 'a' && c.href === m.link && /sponsored/.test(c.rel) && /noopener/.test(c.rel) && c.alvo === '_blank',
-      c.rel);
+    conferir('servido: ' + m.modelo + ' tem cartao ancora com sponsored, e carrega o piso embaixo',
+      c.tag === 'a' && c.href === m.link && /sponsored/.test(c.rel) && /noopener/.test(c.rel)
+        && c.alvo === '_blank' && c.piso === m.busca,
+      c.rel + ' | piso: ' + (c.piso || 'NENHUM'));
   } else {
-    conferir('servido: ' + m.modelo + ' sem link nao vira ancora falsa',
-      c.tag === 'div' && c.href === null && /link de loja em breve/.test(c.espera || ''));
+    conferir('servido: ' + m.modelo + ' sem anuncio sai pelo piso da 25.2, e nunca sem saida',
+      c.tag === 'a' && c.href === m.busca && /nofollow/.test(c.rel || '')
+        && !/sponsored/.test(c.rel || '') && c.piso === null,
+      c.href + ' | ' + c.rel);
   }
 
   if (m.preco) {
@@ -272,8 +286,14 @@ const motivo = await semJs.evaluate(() => {
 });
 conferir('a pagina publica POR QUE o aquario de referencia e esse',
   /Por que o exemplo/.test(motivo) && /teto físico/.test(motivo), motivo.slice(0, 90) + '…');
-conferir('a pagina conta quantos cartoes tem link, em vez de calar',
-  /de \d+ têm link de loja hoje/.test(motivo));
+// A PRESTACAO DE CONTAS DA SAIDA DE COMPRA, e ela mudou de forma junto com a
+// tela: a frase antiga era "N de M têm link de loja hoje". Hoje ela conta os
+// tres grupos que existem e afirma que nenhum fica sem saida.
+conferir('a pagina presta contas da saida de compra de cada cartao, em vez de calar',
+  /\d+ mídias? na lista/.test(motivo)
+    && /com a busca do modelo na Shopee|com anúncio escolhido/.test(motivo)
+    && /Nenhuma fica sem saída de compra/.test(motivo),
+  motivo.slice(0, 120) + '…');
 
 await ctxSemJs.close();
 

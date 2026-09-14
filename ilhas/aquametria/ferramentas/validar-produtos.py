@@ -201,19 +201,43 @@ def valida_escada_de_compra(esquema, entidade, produto, afil, pid):
     sem_ficha_conferivel = preenchido(afil.get("motivo_sem_url_produto"))
 
     # V24 - o degrau da escolha, ou a causa unica que apaga os dois
+    #
+    # REESCRITA EM 14/09/2026, e o defeito era de regua e nao de dado. Ate hoje
+    # esta regra amarrava o degrau a 'plataforma', isto e, ao ANUNCIO PROPRIO:
+    # com plataforma, degrau obrigatorio; sem plataforma, degrau PROIBIDO. Ela
+    # nasceu junto com a 25.1 e estava certa para os degraus 1, 2 e 3, que sao
+    # tres formas de ficha de produto. So que o degrau 4 da 25.1 e a PAGINA DE
+    # BUSCA, e busca nao tem anuncio proprio por definicao — entao esta regra
+    # tornava impossivel escrever no banco exatamente o degrau que a 25.2 chama
+    # de PISO. Ela reprovou os 39 itens no minuto em que o piso foi gravado, e
+    # reprovou estando os 39 certos. E a familia da "regua escrita para um mundo
+    # que nunca aconteceu" da secao 8 do contrato, com um agravante: aqui o
+    # mundo que ela nao previa e o que o proprio contrato manda existir.
     degrau = afil.get("degrau")
-    if afil.get("plataforma"):
-        if degrau is None:
-            if not sem_ficha_conferivel:
-                erro("V24", pid, "afiliado com plataforma e sem 'degrau': em qual degrau da "
-                                 "escada da 25.1 esta escolha parou? A unica ausencia aceita e "
-                                 "a do link sem url crua, e ela se declara em "
-                                 "motivo_sem_url_produto")
-        elif degrau not in degraus:
-            erro("V24", pid, "degrau %r fora da escada declarada no esquema (%s)"
-                 % (degrau, ", ".join(str(x) for x in sorted(degraus))))
+    if degrau is not None and degrau not in degraus:
+        erro("V24", pid, "degrau %r fora da escada declarada no esquema (%s)"
+             % (degrau, ", ".join(str(x) for x in sorted(degraus))))
+    elif degrau == 4:
+        # O degrau 4 responde ao PISO, nao ao anuncio. Quem o declara tem de ter
+        # piso; e quem tem ficha nao para no 4, porque a escada para no PRIMEIRO
+        # degrau que servir e a ficha vem antes.
+        if not preenchido(afil.get("url_busca_produto")):
+            erro("V24", pid, "degrau 4 e sem 'url_busca_produto': o degrau 4 da 25.1 e a "
+                             "pagina de busca, entao declara-lo sem piso nenhum e afirmar "
+                             "uma saida de compra que nao existe")
+        if afil.get("plataforma"):
+            erro("V24", pid, "degrau 4 com ficha de anuncio ('%s'): a escada da 25.1 para no "
+                             "PRIMEIRO degrau que serve, e a ficha vem antes da busca"
+                 % afil.get("plataforma"))
+    elif afil.get("plataforma"):
+        if degrau is None and not sem_ficha_conferivel:
+            erro("V24", pid, "afiliado com plataforma e sem 'degrau': em qual degrau da "
+                             "escada da 25.1 esta escolha parou? A unica ausencia aceita e "
+                             "a do link sem url crua, e ela se declara em "
+                             "motivo_sem_url_produto")
     elif degrau is not None:
-        erro("V24", pid, "produto sem plataforma com degrau %r: sem link nao ha degrau" % degrau)
+        erro("V24", pid, "produto sem plataforma com degrau %r: fora o 4, que e a busca, "
+                         "degrau fala de ficha de anuncio e sem anuncio nao ha ficha" % degrau)
 
     # V25 - sem url crua nao existe teste de vida (25.4-b)
     if preenchido(afil.get("url")) and not preenchido(afil.get("url_produto")) \
@@ -226,6 +250,16 @@ def valida_escada_de_compra(esquema, entidade, produto, afil, pid):
         erro("V25", pid, "tem 'url_busca' e nao tem 'url_busca_produto': busca nao esgota, mas "
                          "muda de nome, e palavra-chave que parou de trazer resultado e defeito "
                          "silencioso")
+
+    # A bandeira da 25.4-b, nos DOIS sentidos. Ela e derivada, e campo derivado
+    # que alguem pode digitar a mao volta a ser prosa: o que se cobra aqui e que
+    # ela diga a mesma coisa que os dois campos de onde ela sai.
+    intestavel_de_fato = preenchido(afil.get("url")) and not preenchido(afil.get("url_produto"))
+    if bool(afil.get("intestavel")) != intestavel_de_fato:
+        erro("V25", pid, "'intestavel' diz %r e os campos dizem %r: a bandeira e derivada de "
+                         "ter 'url' e nao ter 'url_produto', e quem a escreve e "
+                         "ferramentas/gerar-busca-de-produto.py"
+             % (bool(afil.get("intestavel")), intestavel_de_fato))
 
     # V26 - o piso e a busca, e o piso nunca depende de ninguem (25.2)
     if not preenchido(afil.get("url_busca_produto")):
@@ -615,7 +649,8 @@ def main():
     total = 0
     sugeribilidade = {}
     escada = {"com_ficha": 0, "com_piso": 0, "sem_piso": 0, "sem_degrau": 0,
-              "sem_url_produto": 0, "por_degrau": {}}
+              "sem_url_produto": 0, "intestaveis": 0, "sem_saida_na_tela": 0,
+              "por_degrau": {}}
 
     for entidade, caminho in ARQUIVOS.items():
         arquivo = carregar(caminho)
@@ -646,6 +681,15 @@ def main():
             if afil.get("degrau") is not None:
                 chave = str(afil["degrau"])
                 escada["por_degrau"][chave] = escada["por_degrau"].get(chave, 0) + 1
+            if preenchido(afil.get("url")) and not preenchido(afil.get("url_produto")):
+                escada["intestaveis"] += 1
+            # A SAIDA DE COMPRA QUE CHEGA NA TELA, que nao e a mesma coisa que
+            # "tem piso encurtado". O item 4 do despacho de 14/09/2026 cobra que
+            # NENHUMA pagina fique sem saida de compra, e a saida e a primeira
+            # destas tres que existir: ficha, piso encurtado, busca crua.
+            if not (preenchido(afil.get("url")) or preenchido(afil.get("url_busca"))
+                    or preenchido(afil.get("url_busca_produto"))):
+                escada["sem_saida_na_tela"] += 1
             if preenchido(afil.get("url_busca")):
                 escada["com_piso"] += 1
             else:
@@ -689,6 +733,8 @@ def main():
     print("  %-24s %d de %d" % ("itens_sem_piso", escada["sem_piso"], total))
     print("  %-24s %d de %d" % ("links_sem_degrau", escada["sem_degrau"], escada["com_ficha"]))
     print("  %-24s %d de %d" % ("links sem url crua", escada["sem_url_produto"], escada["com_ficha"]))
+    print("  %-24s %d de %d" % ("intestaveis", escada["intestaveis"], escada["com_ficha"]))
+    print("  %-24s %d de %d" % ("sem saida na tela", escada["sem_saida_na_tela"], total))
     for degrau in sorted(escada["por_degrau"]):
         print("  %-24s %d" % ("degrau %s" % degrau, escada["por_degrau"][degrau]))
 

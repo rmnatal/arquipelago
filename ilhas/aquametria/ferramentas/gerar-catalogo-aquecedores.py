@@ -278,6 +278,18 @@ def main():
         item["fonte_status"] = fonte.get("status")
         item["verificado_em"] = p.get("verificado_em")
         item["link"] = afiliado.get("url")
+        # O PISO DA 25.2 VIAJA COM O ITEM. Ate 14/09/2026 o snippet recebia so
+        # 'link' (a ficha) e, sem ela, imprimia "link de loja em breve" — a
+        # frase que a secao 7 corrigida naquele dia proibiu, e que o item 4 do
+        # despacho do Raphael mandou tirar do ar. 'busca' e a saida de compra
+        # que nunca falta; 'busca_afiliada' diz se ela rende comissao, porque o
+        # selo do cartao nao pode chamar de patrocinado um link que nao e.
+        item["busca"] = afiliado.get("url_busca") or afiliado.get("url_busca_produto")
+        item["busca_afiliada"] = bool(afiliado.get("url_busca"))
+        if not item["busca"]:
+            problemas.append("%s entraria na vitrine sem PISO de compra: a 25.2 nao "
+                             "deixa item publicavel sem saida de compra. Rode "
+                             "ferramentas/gerar-busca-de-produto.py --gravar" % p["id"])
         item["anuncio"] = afiliado.get("anuncio_shopee")
         item["voltagem_anuncio"] = afiliado.get("voltagem_anuncio")
         item["loja"] = afiliado.get("plataforma")

@@ -456,7 +456,7 @@
           4,
           null
         ],
-        "observacao": "Em qual degrau da escada da secao 25.1 este link parou. 1 loja oficial do fabricante na Shopee; 2 pagina de catalogo /p/ do Mercado Livre; 3 anuncio de vendedor comum na Shopee; 4 link de busca. null so quando plataforma e null, OU quando a url crua se perdeu — e nesse caso quem diz isso e motivo_sem_url_produto. O degrau fica GRAVADO porque durabilidade nao se le olhando o link curto: s.shopee.com.br encurta a loja oficial e o anuncio de vendedor com a mesma cara, e os dois apodrecem de forma oposta."
+        "observacao": "Em qual degrau da escada da 25.1 parou a saida de compra que vai para a TELA. 1 loja oficial do fabricante na Shopee; 2 pagina de catalogo /p/ do Mercado Livre; 3 anuncio de vendedor comum na Shopee; 4 link de busca. REESCRITO EM 14/09/2026, e a correcao e de regua e nao de dado: ate hoje esta observacao dizia 'null so quando plataforma e null', o que amarrava o degrau ao ANUNCIO PROPRIO e tornava o degrau 4 impossivel de escrever — justamente o degrau que a 25.2 chama de PISO e que nao tem anuncio proprio por definicao. Os degraus 1, 2 e 3 continuam exigindo plataforma, porque os tres SAO ficha de produto; o 4 exige piso (url_busca_produto) e nada mais. null so sobra quando a url crua da ficha se perdeu, e nesse caso quem diz isso e motivo_sem_url_produto. O degrau fica GRAVADO porque durabilidade nao se le olhando o link curto: s.shopee.com.br encurta a loja oficial e o anuncio de vendedor com a mesma cara, e os dois apodrecem de forma oposta."
       },
       {
         "campo": "url_produto",
@@ -469,6 +469,12 @@
         "observacao": "Obrigatorio quando ha 'url' e nao ha 'url_produto'. Item assim e link cuja saude ninguem consegue conferir, e a 25.4-b manda trata-lo com o mesmo peso de link morto — entao o motivo existe para a divida ser CONTADA a cada rodada em vez de sumir em silencio."
       },
       {
+        "campo": "intestavel",
+        "tipo": "bool",
+        "valor_quando_ausente": false,
+        "observacao": "true quando ha 'url' de afiliado e NAO ha 'url_produto'. A 25.4-b diz que item assim e 'um link cuja saude e desconhecida e permanecera desconhecida', e o item 3 do despacho de 14/09/2026 manda que isso fique VISIVEL em vez de escondido dentro da prosa de motivo_sem_url_produto. E campo derivado, escrito pelo gerador do piso e conferido pela V25: prosa nao se conta, bandeira se conta."
+      },
+      {
         "campo": "url_busca",
         "tipo": "string|null",
         "observacao": "O PISO da 25.2: o link de AFILIADO da pagina de busca. Busca nao esgota e nao some, e e o unico elo que a maquina fabrica do comeco ao fim sem clique de ninguem — quando existe, ou vira o botao (sem ficha) ou desce para a linha discreta 'Veja todos disponiveis aqui' (com ficha)."
@@ -477,6 +483,11 @@
         "campo": "url_busca_produto",
         "tipo": "string|null",
         "observacao": "A URL CRUA da busca, antes de virar link de afiliado (25.4-b). Guarda a PALAVRA-CHAVE escolhida: busca nao esgota, mas muda de nome, e palavra-chave que deixou de trazer resultado e defeito silencioso. Quem a escreve e ferramentas/gerar-busca-de-produto.py, a partir de campos que ja estao no banco — nunca digitada a mao."
+      },
+      {
+        "campo": "conferido_em",
+        "tipo": "data ISO|null",
+        "observacao": "A data em que o PISO deste item foi escrito ou reconferido. Nao e verificado_em, que e a data da ficha tecnica: sao duas coisas com vida propria, e o item 2 do despacho do Raphael de 14/09/2026 pede esta. Escrita por ferramentas/gerar-busca-de-produto.py quando ela falta, nunca reescrita a cada passada — gerador que reescreve data a cada rodada nao e idempotente e move o piso de 78 itens sem ninguem decidir."
       },
       {
         "campo": "motivo_sem_url_busca",
@@ -494,7 +505,8 @@
       "A ordem dos produtos no resultado e por adequacao tecnica ao numero calculado. Comissao nao ordena, nao promove e nao entra no criterio.",
       "Produto sem link de ficha APARECE no bloco de produto do mesmo jeito (V16: link de afiliado nao decide quem e sugerido). Esta linha dizia o contrario ate 13/09/2026, e contradizia a V16 escrita no mesmo arquivo. O que produto sem ficha nao pode e ficar SEM PISO: pela 25.2 o piso e a busca, e nada, nunca, fica na fila esperando o Raphael.",
       "Toda pagina que renderiza link de afiliado traz aviso visivel de que a Aquametria pode receber comissao.",
-      "Link de afiliado que aponta para OUTRA variante (outra medida, outra potencia) e defeito, nao aproximacao: ou existe o registro daquela variante, ou o produto fica sem link."
+      "Link de afiliado que aponta para OUTRA variante (outra medida, outra potencia) e defeito, nao aproximacao: ou existe o registro daquela variante, ou o produto fica sem link.",
+      "O PISO APARECE NA TELA, SEMPRE (25.2, item 4 do despacho de 14/09/2026). Nenhum produto que chega ao leitor fica sem saida de compra: quando ha ficha (url) ela e o botao e o piso desce para a linha discreta de 'ver todas as ofertas'; quando nao ha, o piso SOBE e vira o botao. A frase 'link de loja em breve' esta proibida pela secao 7 desde 14/09/2026 — item que chegaria a ela e defeito, nao estado aceitavel de pagina no ar. Enquanto url_busca (o piso ENCURTADO, que rende comissao) nao existir, quem vai para a tela e url_busca_produto, a busca CRUA: ela nao rende comissao e tambem nao e link patrocinado, entao o selo do cartao diz o que ela e."
     ],
     "links_sem_produto": "dados/afiliados-sem-produto.json guarda o link gerado que ainda nao tem registro no banco. Fica fora do banco de proposito: link sem ficha verificada nao pode ser sugerido por calculadora.",
     "escada_de_compra": {
@@ -529,7 +541,8 @@
         "iluminacao": "luminaria aquario",
         "midia": "midia filtrante aquario"
       },
-      "por_que_o_termo_mora_aqui": "A 25.3 proibe escolher produto so por MARCA: marca sem contexto e armadilha, porque JBL e som e e aquario, Aquario e roteador e e peixe, Betta e peixe e e movel. Entao a palavra-chave da busca carrega marca, modelo E um termo de contexto. A lista dos termos mora NO ESQUEMA e nao dentro do gerador pelo mesmo motivo que a Robometria tirou a lista de tipos de dentro da regua em 13/09/2026: lista dentro da regua envelhece calada, e entidade nova entraria sem termo nenhum com o banco verde."
+      "por_que_o_termo_mora_aqui": "A 25.3 proibe escolher produto so por MARCA: marca sem contexto e armadilha, porque JBL e som e e aquario, Aquario e roteador e e peixe, Betta e peixe e e movel. Entao a palavra-chave da busca carrega marca, modelo E um termo de contexto. A lista dos termos mora NO ESQUEMA e nao dentro do gerador pelo mesmo motivo que a Robometria tirou a lista de tipos de dentro da regua em 13/09/2026: lista dentro da regua envelhece calada, e entidade nova entraria sem termo nenhum com o banco verde.",
+      "o_que_vai_para_a_tela": "A saida de compra que o leitor ve sai desta ordem, e ela e calculada no snippet: (1) afiliado.url, a ficha, quando existe; (2) afiliado.url_busca, o piso encurtado; (3) afiliado.url_busca_produto, a busca crua. O terceiro existe porque o segundo depende da sessao logada do painel da Shopee, que mora no navegador do Raphael, e a 25.2 e explicita: 'nada, nunca, fica na fila esperando o Raphael'. Trocar o encurtado pelo cru custa a comissao daquele clique e nao custa a saida de compra do leitor — e no dia em que o encurtamento acontecer, nenhuma linha de snippet muda."
     }
   },
   "entidades": {

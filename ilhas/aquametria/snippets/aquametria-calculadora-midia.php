@@ -107,7 +107,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_C12_VERSAO' ) ) {
-	define( 'AQUAMETRIA_C12_VERSAO', '1.3.1' );
+	define( 'AQUAMETRIA_C12_VERSAO', '1.4.0' );
 	define( 'AQUAMETRIA_C12_SLUG', 'calculadora-de-midia-filtrante' );
 	define( 'AQUAMETRIA_C12_VERIFICADO_EM', '08/09/2026' );
 	define( 'AQUAMETRIA_C12_ARTIGO', 'quanta-midia-biologica-o-aquario-precisa' );
@@ -187,6 +187,8 @@ function aquametria_c12_catalogo_midias() {
 			'fonte_status' => 'fabricante-via-busca',
 			'verificado_em' => '2026-09-08',
 			'link' => null,
+			'busca' => 'https://shopee.com.br/search?keyword=Seachem%20Purigen%20100%20mL%20midia%20filtrante%20aquario',
+			'busca_afiliada' => false,
 			'anuncio' => null,
 			'loja' => null,
 			'imagem' => null,
@@ -218,6 +220,8 @@ function aquametria_c12_catalogo_midias() {
 			'fonte_status' => 'fabricante-via-busca',
 			'verificado_em' => '2026-09-08',
 			'link' => null,
+			'busca' => 'https://shopee.com.br/search?keyword=Seachem%20MatrixCarbon%20250%20mL%20midia%20filtrante%20aquario',
+			'busca_afiliada' => false,
 			'anuncio' => null,
 			'loja' => null,
 			'imagem' => null,
@@ -249,6 +253,8 @@ function aquametria_c12_catalogo_midias() {
 			'fonte_status' => 'fabricante-via-busca',
 			'verificado_em' => '2026-09-07',
 			'link' => 'https://s.shopee.com.br/9Khs5ozO8W',
+			'busca' => 'https://shopee.com.br/search?keyword=Seachem%20Matrix%201%20L%20midia%20filtrante%20aquario',
+			'busca_afiliada' => false,
 			'anuncio' => 'Mídia biológica - Matrix 1 Litro (Granel) com Bolsa - Seachem',
 			'loja' => 'shopee',
 			'imagem' => array(
@@ -292,6 +298,8 @@ function aquametria_c12_catalogo_midias() {
 			'fonte_status' => 'fabricante-via-busca',
 			'verificado_em' => '2026-09-08',
 			'link' => null,
+			'busca' => 'https://shopee.com.br/search?keyword=JBL%20MicroMec%201%20L%20midia%20filtrante%20aquario',
+			'busca_afiliada' => false,
 			'anuncio' => null,
 			'loja' => null,
 			'imagem' => null,
@@ -323,6 +331,8 @@ function aquametria_c12_catalogo_midias() {
 			'fonte_status' => 'fabricante-via-busca',
 			'verificado_em' => '2026-09-08',
 			'link' => null,
+			'busca' => 'https://shopee.com.br/search?keyword=Ocean%20Tech%20Bio%20Glass%201%20L%20midia%20filtrante%20aquario',
+			'busca_afiliada' => false,
 			'anuncio' => null,
 			'loja' => null,
 			'imagem' => null,
@@ -354,6 +364,8 @@ function aquametria_c12_catalogo_midias() {
 			'fonte_status' => 'fabricante-via-busca',
 			'verificado_em' => '2026-09-07',
 			'link' => 'https://s.shopee.com.br/9051hAWjge',
+			'busca' => 'https://shopee.com.br/search?keyword=Eheim%20SUBSTRAT%20pro%201%20L%20midia%20filtrante%20aquario',
+			'busca_afiliada' => false,
 			'anuncio' => 'Mídia Biológica Eheim Substrat Pro 1L',
 			'loja' => 'shopee',
 			'imagem' => null,
@@ -577,7 +589,8 @@ a.aqm-c12-vt-cartao:focus-visible{outline:2px solid var(--c12-lamina);outline-of
 .aqm-c12-vt-preco{font-family:var(--c12-mono);font-size:.8rem;font-variant-numeric:tabular-nums;color:var(--c12-tinta);}
 .aqm-c12-vt-preco.aqm-c12-vt-sem-preco{font-family:var(--c12-texto);font-size:.76rem;color:var(--c12-legenda);font-style:italic;}
 .aqm-c12-vt-botao{margin-top:auto;text-align:center;font-family:var(--c12-texto);font-weight:600;font-size:.85rem;padding:.42rem .7rem;border-radius:2px;background:var(--c12-lamina);color:var(--c12-superficie);}
-.aqm-c12-vt-espera{margin-top:auto;text-align:center;font-family:var(--c12-texto);font-weight:600;font-size:.82rem;padding:.42rem .7rem;border-radius:2px;background:var(--c12-papel);border:1px dashed var(--c12-traco);color:var(--c12-legenda);}
+.aqm-c12-vt-piso{display:block;text-align:center;font-family:var(--c12-texto);font-size:.78rem;line-height:1.4;margin-top:.4rem;color:var(--c12-legenda);text-decoration:underline;}
+.aqm-c12-vt-piso:hover{color:var(--c12-lamina);}
 .aqm-c12-vt-selo{font-family:var(--c12-mono);font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;color:var(--c12-legenda);text-align:center;margin-top:.25rem;}
 .aqm-c12-vitrine-servida .aqm-c12-criterio{margin-top:.5rem;}
 .aqm-c12-aviso-vitrine{background:var(--c12-papel);border:1px solid var(--c12-traco);border-left:3px solid var(--c12-alerta);border-radius:2px;padding:.8rem 1rem;font-size:.86rem;line-height:1.5;color:var(--c12-legenda);margin:1rem 0 0;}
@@ -1100,7 +1113,7 @@ function aquametria_c12_js() {
 			'<strong>Não repartimos o cesto em porcentagens.</strong> Nenhuma fonte do nosso corpus diz quanto do volume é mecânica, quanto é biológica e quanto é química. Publicamos a ordem, que tem fonte, e o teto físico, que é do fabricante do filtro.',
 			'<strong>Não convertemos grama em mililitro.</strong> A regra brasileira de carvão é em gramas por litro; a do fabricante é em mililitros por litro. Sem a densidade aparente do carvão com fonte, converter uma na outra seria inventar constante.',
 			'<strong>A área de superfície não compara marcas.</strong> Cada fabricante mede como quer e nenhum publica o método. Os números aparecem com atribuição e nunca como ranking.',
-			'<strong>A ordem dos produtos é a da dosagem declarada</strong>, da mais econômica para a mais generosa. É critério técnico, e não comissão: mídia sem link de loja aparece na mesma lista, na mesma ordem.'
+			'<strong>A ordem dos produtos é a da dosagem declarada</strong>, da mais econômica para a mais generosa. É critério técnico, e não comissão: mídia sem anúncio escolhido aparece na mesma lista, na mesma ordem.'
 		];
 		if (r.midiaOrigem === 'manual') {
 			itens.push('<strong>O volume de mídia foi medido por você</strong>, não declarado pelo fabricante. A conta do teto físico é tão boa quanto a sua fita métrica.');
@@ -1183,7 +1196,7 @@ function aquametria_c12_js() {
 			+ 'e é por isso que a quantidade muda de marca para marca na mesma coluna de água. '
 			+ 'A ordem é da dosagem declarada mais econômica para a mais generosa, que é a única ordem que as próprias '
 			+ 'declarações sustentam; não é ranking de qualidade e não é ordem de comissão. '
-			+ 'Mídia sem link de loja aparece na mesma lista, no mesmo lugar.';
+			+ 'Mídia sem anúncio escolhido aparece na mesma lista, no mesmo lugar.';
 
 		/* A vitrine vem ANTES da ficha e da procedência (contrato 7), e desenha a
 		   MESMA sequência que esta lista. */
@@ -1349,21 +1362,78 @@ function aquametria_c12_js() {
 
 	/* Espelho de aquametria_c12_vitrine_cartao_html(). Mesma marcação, mesmo CSS
 	   — duas marcações para o mesmo cartão viram duas aparências. */
+	/* A escada da seção 25 em JavaScript. Devolve exatamente o que
+	   aquametria_c12_compra() devolve no PHP, com os mesmos textos — duas
+	   escadas para a mesma decisão divergiriam, e a que diverge em silêncio é
+	   sempre a que o leitor vê. */
+	function compraDe(m) {
+		if (m.link) {
+			return {
+				url: m.link,
+				afiliado: true,
+				busca: false,
+				botao: 'Ver na ' + (m.loja === 'shopee' ? 'Shopee' : m.loja),
+				selo: 'link patrocinado'
+			};
+		}
+		if (m.busca) {
+			return {
+				url: m.busca,
+				afiliado: !!m.busca_afiliada,
+				busca: true,
+				botao: 'Ver ofertas na Shopee',
+				selo: m.busca_afiliada ? 'busca patrocinada' : 'busca na Shopee, sem comissão'
+			};
+		}
+		return null;
+	}
+
+	function criterioCompraTexto(midias) {
+		var total = midias.length;
+		var comFicha = 0;
+		var semSaida = 0;
+		midias.forEach(function (m) {
+			var c = compraDe(m);
+			if (!c) { semSaida += 1; }
+			else if (!c.busca) { comFicha += 1; }
+		});
+		var comBusca = total - comFicha - semSaida;
+
+		var partes = [];
+		if (comFicha > 0) { partes.push(comFicha + ' com anúncio escolhido e link patrocinado'); }
+		if (comBusca > 0) { partes.push(comBusca + ' com a busca do modelo na Shopee'); }
+		if (semSaida > 0) { partes.push(semSaida + ' sem saída de compra'); }
+
+		var frase = total + (total === 1 ? ' mídia na lista' : ' mídias na lista');
+		if (partes.length) {
+			var ultima = partes.pop();
+			frase += ': ' + (partes.length ? partes.join(', ') + ' e ' + ultima : ultima);
+		}
+		frase += '. ';
+		if (semSaida === 0) { frase += 'Nenhuma fica sem saída de compra. '; }
+		return frase + 'Quem entra na lista é decidido pela ficha técnica, e nunca por ter ou não link.';
+	}
+
 	function vitrineCartao(m, r, grupo) {
 		var preco = precoTexto(m);
 
 		var li = document.createElement('li');
 		li.className = 'aqm-c12-vt-item aqm-c12-vt-grupo-' + grupo;
 
+		/* A MESMA escada do PHP: o cartão servido e o cartão pintado no clique
+		   têm de levar o leitor ao mesmo lugar. */
+		var compra = compraDe(m);
+
 		var cartao;
-		if (m.link) {
+		if (compra) {
 			cartao = document.createElement('a');
-			cartao.className = 'aqm-c12-vt-cartao';
-			cartao.href = m.link;
+			cartao.className = 'aqm-c12-vt-cartao' + (compra.busca ? ' aqm-c12-vt-cartao-busca' : '');
+			cartao.href = compra.url;
 			cartao.target = '_blank';
-			cartao.rel = 'sponsored noopener';
+			cartao.rel = compra.afiliado ? 'sponsored noopener' : 'nofollow noopener';
 		} else {
-			/* Sem link não existe destino, e cartão sem destino não é âncora. */
+			/* Sem ficha E sem piso não existe destino, e cartão sem destino não
+			   é âncora. O gerador do catálogo recusa produzir este caso. */
 			cartao = document.createElement('div');
 			cartao.className = 'aqm-c12-vt-cartao';
 		}
@@ -1391,16 +1461,27 @@ function aquametria_c12_js() {
 			? '<span class="aqm-c12-vt-preco">' + esc(preco) + '</span>'
 			: '<span class="aqm-c12-vt-preco aqm-c12-vt-sem-preco">sem cotação coletada</span>';
 
-		if (m.link) {
-			partes += '<span class="aqm-c12-vt-botao">Ver na ' + esc(m.loja === 'shopee' ? 'Shopee' : m.loja) + '</span>';
-			partes += '<span class="aqm-c12-vt-selo">link patrocinado</span>';
+		if (compra) {
+			partes += '<span class="aqm-c12-vt-botao">' + esc(compra.botao) + '</span>';
+			partes += '<span class="aqm-c12-vt-selo">' + esc(compra.selo) + '</span>';
 		} else {
-			partes += '<span class="aqm-c12-vt-espera">link de loja em breve</span>';
 			partes += '<span class="aqm-c12-vt-selo">entrou pela ficha técnica, não pelo link</span>';
 		}
 
 		cartao.innerHTML = partes;
 		li.appendChild(cartao);
+
+		/* A linha discreta do piso, FORA da âncora do cartão, só para quem tem
+		   ficha: âncora dentro de âncora não é HTML válido. */
+		if (m.link && m.busca) {
+			var piso = document.createElement('a');
+			piso.className = 'aqm-c12-vt-piso';
+			piso.href = m.busca;
+			piso.target = '_blank';
+			piso.rel = m.busca_afiliada ? 'sponsored noopener' : 'nofollow noopener';
+			piso.textContent = 'Ver todas as ofertas';
+			li.appendChild(piso);
+		}
 		return li;
 	}
 
@@ -1418,15 +1499,11 @@ function aquametria_c12_js() {
 		}
 		bloco.classList.remove('aqm-c12-oculto');
 
-		var comLink = 0;
 		sequencia.forEach(function (item) {
-			if (item.m.link) { comLink++; }
 			trilho.appendChild(vitrineCartao(item.m, r, item.grupo));
 		});
 
-		el('aqm-c12-vitrine-nota').textContent = comLink + ' de ' + sequencia.length
-			+ ' têm link de loja hoje; os outros aparecem do mesmo jeito, com o lugar do botão reservado — '
-			+ 'quem entra é decidido pela ficha técnica, e nunca por ter ou não link.';
+		el('aqm-c12-vitrine-nota').textContent = criterioCompraTexto(sequencia.map(function (item) { return item.m; }));
 	}
 
 	/* ------------------------------------------------- estado compartilhado */
@@ -1842,7 +1919,8 @@ function aquametria_c12_produtos_html() {
 
 	$h .= '<ul class="aqm-c12-lista" id="aqm-c12-produtos-lista"></ul>';
 	$h .= '<p class="aqm-c12-aviso-afiliado"><strong>Aviso de publicidade.</strong> ';
-	$h .= 'Alguns dos botões acima levam a lojas por links de afiliado: se você comprar por eles, a Aquametria pode receber uma comissão, sem custo nenhum a mais para você. ';
+	$h .= 'Os botões acima marcados como link patrocinado são links de afiliado: se você comprar por eles, a Aquametria pode receber uma comissão, sem custo nenhum a mais para você. ';
+	$h .= 'Os que levam à busca na Shopee não rendem comissão nenhuma hoje — eles existem para nenhum item da lista ficar sem para onde ir. ';
 	$h .= 'Isso não muda quem aparece na lista nem em que ordem — a ordem é a da dosagem declarada, da mais econômica para a mais generosa, e mídia sem link aparece do mesmo jeito e no mesmo lugar. ';
 	$h .= 'A quantidade que aparece em cada cartão é calculada com a dosagem que <em>aquele</em> fabricante publica, e não com um número escolhido por nós. ';
 	$h .= 'A ficha técnica de cada mídia vem do fabricante ou do varejo especializado, com o endereço e a data ao lado; o anúncio da loja nunca é a nossa fonte. ';
@@ -2046,6 +2124,9 @@ function aquametria_c12_ancoras_bio() {
 			'leitura'     => null,
 			'embalagem_L' => $m['embalagem_L'],
 			'link'        => $m['link'],
+			'loja'        => $m['loja'],
+			'busca'       => $m['busca'],
+			'busca_afiliada' => $m['busca_afiliada'],
 			'verificado'  => $m['verificado_em'],
 		);
 		if ( null !== $m['dose_alt_mL_por_L'] ) {
@@ -2058,6 +2139,9 @@ function aquametria_c12_ancoras_bio() {
 				'leitura'     => $m['dose_alt_ref'],
 				'embalagem_L' => $m['embalagem_L'],
 				'link'        => $m['link'],
+				'loja'        => $m['loja'],
+				'busca'       => $m['busca'],
+				'busca_afiliada' => $m['busca_afiliada'],
 				'verificado'  => $m['verificado_em'],
 			);
 		}
@@ -2260,7 +2344,21 @@ function aquametria_c12_compra_celula_html( $e ) {
 			. esc_html( aquametria_c12_litros( $rende ) ) . ' L de aquário';
 	}
 
-	$h .= $a['link'] ? '' : ' · sem link de loja';
+	/* A SAÍDA DE COMPRA DA CÉLULA. Até 14/09/2026 esta linha escrevia
+	   " · sem link de loja" e parava ali: a tabela servida no HTML — que é o
+	   que um modelo de linguagem lê sem preencher formulário — anunciava a
+	   mídia recomendada e não dizia onde comprá-la. Com o piso da 25.2 ela
+	   sempre diz, e o texto do link declara se ele é patrocinado. */
+	$compra_celula = aquametria_c12_compra( $a );
+
+	if ( null !== $compra_celula ) {
+		$h .= ' · <a class="aqm-c12-prod" href="' . esc_url( $compra_celula['url'] ) . '" target="_blank" rel="'
+			. esc_attr( aquametria_c12_compra_rel( $compra_celula ) ) . '">' . esc_html( $compra_celula['botao'] )
+			. '</a> (' . esc_html( $compra_celula['selo'] ) . ')';
+	} else {
+		$h .= ' · sem saída de compra no banco';
+	}
+
 	$h .= '</span></td>';
 	return $h;
 }
@@ -2395,6 +2493,132 @@ function aquametria_c12_vt_rende_frase( $m, $volume, $grupo ) {
 }
 }
 
+/* ---------------------------------------------------------------------------
+ * A SAÍDA DE COMPRA DE UM PRODUTO — 14/09/2026, item 4 do despacho do Raphael
+ *
+ * A escada da seção 25 do ARQUIPELAGO.md, e ela para no PRIMEIRO degrau que
+ * servir: a FICHA (`link`) quando existe, e o PISO (`busca`, a página de busca
+ * da Shopee, degrau 4) quando não existe. Até 14/09/2026 o segundo caso saía na
+ * tela como "link de loja em breve" — beco sem saída com cara de promessa, hoje
+ * proibido com todas as letras pela seção 7 corrigida naquele dia.
+ *
+ * O piso pode estar ENCURTADO (link de afiliado, rende comissão) ou CRU (a URL
+ * de busca como ela é). Hoje os 78 itens do banco estão com o piso cru, porque
+ * encurtar exige a sessão logada do painel da Shopee, que mora no navegador do
+ * Raphael — e a 25.2 é explícita, "nada, nunca, fica na fila esperando o
+ * Raphael". Então o cru vai para a tela e o SELO diz o que ele é: chamar de
+ * patrocinado um link que não paga nada seria mentir para o leitor sobre a
+ * única coisa que ele tem o direito de saber sobre nós.
+ * ------------------------------------------------------------------------- */
+if ( ! function_exists( 'aquametria_c12_compra' ) ) {
+function aquametria_c12_compra( $p ) {
+	if ( ! empty( $p['link'] ) ) {
+		$loja = 'shopee' === $p['loja'] ? 'Shopee' : $p['loja'];
+		return array(
+			'url'      => $p['link'],
+			'afiliado' => true,
+			'busca'    => false,
+			'botao'    => 'Ver na ' . $loja,
+			'selo'     => 'link patrocinado',
+		);
+	}
+
+	if ( ! empty( $p['busca'] ) ) {
+		$paga = ! empty( $p['busca_afiliada'] );
+		return array(
+			'url'      => $p['busca'],
+			'afiliado' => $paga,
+			'busca'    => true,
+			'botao'    => 'Ver ofertas na Shopee',
+			'selo'     => $paga ? 'busca patrocinada' : 'busca na Shopee, sem comissão',
+		);
+	}
+
+	return null;
+}
+}
+
+/* `rel` sai do que o link É, não de onde ele aparece. `sponsored` é a marcação
+   que o Google pede para link pago; busca crua não é paga, e marcar como pago
+   um link que não é seria declarar em formato de máquina o contrário do que a
+   página diz em texto. */
+if ( ! function_exists( 'aquametria_c12_compra_rel' ) ) {
+function aquametria_c12_compra_rel( $compra ) {
+	return $compra['afiliado'] ? 'sponsored noopener' : 'nofollow noopener';
+}
+}
+
+/* A linha discreta do piso, que só aparece no cartão que TEM ficha. A 25.2 manda
+   a busca descer para baixo do botão quando a ficha existe, e a razão é a
+   cicatriz que criou a seção 25: quatro de nove links de afiliado do Clube do
+   Mosaico morreram em menos de doze horas. Quando a ficha apodrecer, o leitor
+   ainda tem para onde ir. Fica FORA da âncora do cartão: âncora dentro de
+   âncora não é HTML válido. */
+if ( ! function_exists( 'aquametria_c12_vitrine_piso_html' ) ) {
+function aquametria_c12_vitrine_piso_html( $p ) {
+	if ( empty( $p['link'] ) || empty( $p['busca'] ) ) {
+		return '';
+	}
+
+	$rel = ! empty( $p['busca_afiliada'] ) ? 'sponsored noopener' : 'nofollow noopener';
+
+	return '<a class="aqm-c12-vt-piso" href="' . esc_url( $p['busca'] ) . '" target="_blank" rel="'
+		. esc_attr( $rel ) . '">Ver todas as ofertas</a>';
+}
+}
+
+/* A PRESTAÇÃO DE CONTAS DA SAÍDA DE COMPRA. Substitui "N de M têm link de loja
+   hoje; os outros aparecem do mesmo jeito, com o lugar do botão reservado", que
+   deixou de ser verdade no mesmo commit: não há mais lugar de botão reservado,
+   porque não há mais cartão sem botão. Os três números são CONTADOS da lista
+   que a página acabou de montar, e a frase só nomeia o grupo que existe. As
+   orações são nominais de propósito: "N com anúncio escolhido" não tem verbo
+   para concordar. */
+if ( ! function_exists( 'aquametria_c12_criterio_compra_texto' ) ) {
+function aquametria_c12_criterio_compra_texto( $lista ) {
+	$total     = count( $lista );
+	$com_ficha = 0;
+	$sem_saida = 0;
+
+	foreach ( $lista as $p ) {
+		$compra = aquametria_c12_compra( $p );
+		if ( null === $compra ) {
+			$sem_saida++;
+		} elseif ( ! $compra['busca'] ) {
+			$com_ficha++;
+		}
+	}
+
+	$com_busca = $total - $com_ficha - $sem_saida;
+	$partes    = array();
+
+	if ( $com_ficha > 0 ) {
+		$partes[] = $com_ficha . ' com anúncio escolhido e link patrocinado';
+	}
+	if ( $com_busca > 0 ) {
+		$partes[] = $com_busca . ' com a busca do modelo na Shopee';
+	}
+	if ( $sem_saida > 0 ) {
+		$partes[] = $sem_saida . ' sem saída de compra';
+	}
+
+	$frase = $total . ( 1 === $total ? ' mídia na lista' : ' mídias na lista' );
+
+	if ( $partes ) {
+		$ultima = array_pop( $partes );
+		$frase .= ': ' . ( $partes ? implode( ', ', $partes ) . ' e ' . $ultima : $ultima );
+	}
+
+	$frase .= '. ';
+
+	if ( 0 === $sem_saida ) {
+		$frase .= 'Nenhuma fica sem saída de compra. ';
+	}
+
+	return $frase . 'Quem entra na lista é decidido pela ficha técnica, e nunca por ter ou não link.';
+}
+}
+
 /* Um cartão. O MESMO HTML que o script monta em vitrineCartao(). */
 if ( ! function_exists( 'aquametria_c12_vitrine_cartao_html' ) ) {
 function aquametria_c12_vitrine_cartao_html( $m, $volume, $grupo ) {
@@ -2404,8 +2628,12 @@ function aquametria_c12_vitrine_cartao_html( $m, $volume, $grupo ) {
 
 	$classe = 'aqm-c12-vt-cartao' . ( 'sem-dose' === $grupo ? ' aqm-c12-vt-sem-dose' : '' );
 
-	if ( $m['link'] ) {
-		$h .= '<a class="' . esc_attr( $classe ) . '" href="' . esc_url( $m['link'] ) . '" target="_blank" rel="sponsored noopener">';
+	$compra = aquametria_c12_compra( $m );
+
+	if ( null !== $compra ) {
+		$h .= '<a class="' . esc_attr( $classe . ( $compra['busca'] ? ' aqm-c12-vt-cartao-busca' : '' ) )
+			. '" href="' . esc_url( $compra['url'] ) . '" target="_blank" rel="'
+			. esc_attr( aquametria_c12_compra_rel( $compra ) ) . '">';
 	} else {
 		/* Sem link não existe destino, e cartão sem destino não é âncora. O que o
 		   contrato proíbe é div com onclick fingindo ser link. */
@@ -2439,12 +2667,12 @@ function aquametria_c12_vitrine_cartao_html( $m, $volume, $grupo ) {
 		$h .= '<span class="aqm-c12-vt-preco aqm-c12-vt-sem-preco">sem cotação coletada</span>';
 	}
 
-	if ( $m['link'] ) {
-		$h .= '<span class="aqm-c12-vt-botao">Ver na ' . esc_html( 'shopee' === $m['loja'] ? 'Shopee' : $m['loja'] ) . '</span>';
-		$h .= '<span class="aqm-c12-vt-selo">link patrocinado</span>';
+	if ( null !== $compra ) {
+		$h .= '<span class="aqm-c12-vt-botao">' . esc_html( $compra['botao'] ) . '</span>';
+		$h .= '<span class="aqm-c12-vt-selo">' . esc_html( $compra['selo'] ) . '</span>';
 		$h .= '</a>';
+		$h .= aquametria_c12_vitrine_piso_html( $m );
 	} else {
-		$h .= '<span class="aqm-c12-vt-espera">link de loja em breve</span>';
 		$h .= '<span class="aqm-c12-vt-selo">entrou pela ficha técnica, não pelo link</span>';
 		$h .= '</div>';
 	}
@@ -2474,12 +2702,10 @@ function aquametria_c12_vitrine_servida_html() {
 		return $h;
 	}
 
-	$com_link = 0;
 	$com_dose = 0;
+	$midias   = array();
 	foreach ( $seq as $item ) {
-		if ( $item['m']['link'] ) {
-			$com_link++;
-		}
+		$midias[] = $item['m'];
 		if ( 'dimensionada' === $item['grupo'] ) {
 			$com_dose++;
 		}
@@ -2497,9 +2723,7 @@ function aquametria_c12_vitrine_servida_html() {
 	}
 	$h .= '</ul>';
 
-	$h .= '<p class="aqm-c12-criterio">' . esc_html( $com_link ) . ' de ' . esc_html( count( $seq ) )
-		. ' têm link de loja hoje; os outros aparecem do mesmo jeito, com o lugar do botão reservado — '
-		. 'quem entra é decidido pela ficha técnica, e nunca por ter ou não link. '
+	$h .= '<p class="aqm-c12-criterio">' . esc_html( aquametria_c12_criterio_compra_texto( $midias ) ) . ' '
 		. esc_html( $com_dose ) . ' das ' . esc_html( count( $seq ) )
 		. ' publicam dosagem por litro de água: a que não publica aparece com a borda tracejada e sem número, porque esta página não dimensiona a compra por ela.</p>';
 
@@ -2514,7 +2738,8 @@ function aquametria_c12_vitrine_servida_html() {
 	$h .= '<p class="aqm-c12-aviso-vitrine"><strong>Sobre o preço e o botão.</strong> '
 		. 'O valor de cada cartão <strong>não é preço de hoje</strong>: é a cotação que a Aquametria leu naquele anúncio na data escrita ao lado, e preço de aquarismo muda toda semana. '
 		. 'Confira no anúncio antes de comprar, e confira também o volume da embalagem: a mesma mídia é vendida em vários tamanhos e a granel, e o nosso número é por litro. '
-		. 'Os botões levam a lojas por link de afiliado, marcado como patrocinado: se você comprar por eles, a Aquametria pode receber comissão, sem custo a mais para você. '
+		. 'Os botões marcados como <strong>link patrocinado</strong> são links de afiliado: se você comprar por eles, a Aquametria pode receber comissão, sem custo a mais para você. '
+		. 'Os que levam à <strong>busca na Shopee</strong> não rendem comissão nenhuma hoje, e o cartão diz isso — eles existem para nenhuma mídia da lista ficar sem para onde ir. '
 		. 'A ficha técnica de cada mídia vem do fabricante ou do varejo especializado, com o endereço e a data — o anúncio da loja nunca é a nossa fonte. '
 		. '<a href="' . esc_url( $divulgacao ) . '">Como a Aquametria ganha dinheiro</a>.</p>';
 
@@ -2650,9 +2875,10 @@ function aquametria_c12_exemplos_html() {
 	   duas ocorrências da mesma classe quebram o localizador. */
 	$h .= '<p class="aqm-c12-aviso-tabela"><strong>Sobre a última coluna.</strong> ';
 	$h .= 'Ela mostra a mídia do banco técnico da Aquametria que abre a faixa — a de dosagem declarada mais econômica — com a quantidade calculada pela dosagem que <em>aquela</em> marca publica, nunca por um número escolhido por nós. ';
-	$h .= 'A ordem é essa e só essa: dosagem declarada, da mais econômica para a mais generosa. A comissão não entra em degrau nenhum, e mídia sem link de loja aparece do mesmo jeito e no mesmo lugar — a coluna diz quando é o caso. ';
+	$h .= 'A ordem é essa e só essa: dosagem declarada, da mais econômica para a mais generosa. A comissão não entra em degrau nenhum, e mídia sem anúncio escolhido aparece do mesmo jeito e no mesmo lugar — a coluna diz quando é o caso. ';
 	$h .= 'Escolher a mais econômica não é dizer que ela é a melhor: é o piso da faixa, e a página inteira existe para mostrar que o teto está dez vezes acima dele. ';
-	$h .= 'Alguns desses nomes levam a lojas por link de afiliado, marcado como patrocinado: se você comprar por ele, a Aquametria pode receber comissão, sem custo a mais para você. ';
+	$h .= 'Cada nome dessa coluna leva à loja: os marcados como patrocinado são links de afiliado, e se você comprar por eles a Aquametria pode receber comissão, sem custo a mais para você; ';
+	$h .= 'os marcados como busca levam à página de busca do modelo na Shopee e não rendem comissão nenhuma hoje. ';
 	$h .= 'Esta coluna não traz cotação: o preço com data aparece nos cartões da vitrine, logo abaixo, e nunca como preço de hoje. ';
 	$h .= '<a href="' . esc_url( $divulgacao ) . '">Como a Aquametria ganha dinheiro</a>.</p>';
 

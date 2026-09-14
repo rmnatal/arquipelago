@@ -123,6 +123,69 @@ MUTACOES = [
          (base / BANCO).read_text(encoding='utf-8').replace(
              'escada["com_piso"], total))', '78, total))'), encoding='utf-8')),
 
+    # ---- A ESCADA DENTRO DO BANCO, nos campos que nasceram em 14/09/2026 ----
+
+    (BANCO, 'V24', 'o item declara o degrau 4 e nao tem piso nenhum: saida de compra que nao existe',
+     no_produto(MIDIA, SEM_FICHA, lambda a: a.update({'url_busca_produto': None, 'degrau': 4}))),
+
+    (BANCO, 'V24', 'o item com FICHA e rebaixado para o degrau 4: a escada para no primeiro que serve',
+     no_produto(MIDIA, COM_FICHA, lambda a: a.update({'degrau': 4}))),
+
+    (BANCO, 'V25', 'a bandeira intestavel MENTE: o link sem url crua se declara conferivel',
+     no_produto(MIDIA, COM_FICHA, lambda a: a.update({'intestavel': False}))),
+
+    (BANCO, 'V25', 'a bandeira intestavel mente ao CONTRARIO: item sem ficha nenhuma se declara inconferivel',
+     no_produto(MIDIA, SEM_FICHA, lambda a: a.update({'intestavel': True}))),
+
+    # ---- A ESCADA NA TELA, que e a metade que faltava ate 14/09/2026 --------
+    #
+    # As quatro abaixo nao tocam no banco: elas quebram o SNIPPET, que e onde a
+    # divida morava. O banco estava certo desde 13/09 — a palavra-chave da busca
+    # escrita nos 78 itens — e a pagina continuava servindo "link de loja em
+    # breve" porque nenhum portao media o que o leitor recebe.
+
+    # A PRIMEIRA ESCRITA DESTA MUTACAO PASSOU, e o defeito era dela e nao do
+    # portao: ela trocava o texto do ramo `else` de vitrine_cartao_html(), que
+    # so roda quando o item chega sem ficha E sem piso — um mundo que o banco de
+    # hoje nao produz. Mutacao que nao muda o HTML servido nao mede nada, do
+    # mesmo jeito que regua escrita para um mundo que nunca aconteceu nasce sem
+    # poder falhar (secao 8 do ARQUIPELAGO.md). Esta versao PRODUZ o mundo: ela
+    # devolve a frase proibida ao selo do cartao que sai pelo piso, que e o ramo
+    # que 39 dos 78 itens percorrem.
+    (ESCADA, None, 'A FRASE PROIBIDA VOLTA ao selo do cartao que sai pelo piso',
+     lambda base: (base / 'snippets/aquametria-calculadora-vazao.php').write_text(
+         (base / 'snippets/aquametria-calculadora-vazao.php').read_text(encoding='utf-8').replace(
+             "'selo'     => $paga ? 'busca patrocinada' : 'busca na Shopee, sem comissão',",
+             "'selo'     => 'link de loja em breve',", 1),
+         encoding='utf-8')),
+
+    (ESCADA, None, 'A URL INVENTADA: o cartao passa a apontar para um endereco que o banco nao conhece',
+     lambda base: (base / 'snippets/aquametria-calculadora-vazao.php').write_text(
+         (base / 'snippets/aquametria-calculadora-vazao.php').read_text(encoding='utf-8').replace(
+             "'url'      => $p['busca'],",
+             "'url'      => 'https://shopee.com.br/search?keyword=aquario',", 1),
+         encoding='utf-8')),
+
+    (ESCADA, None, 'O PISO SOME DO CATALOGO do snippet e o cartao volta a ser <div> sem destino',
+     lambda base: (base / 'snippets/aquametria-calculadora-midia.php').write_text(
+         (base / 'snippets/aquametria-calculadora-midia.php').read_text(encoding='utf-8').replace(
+             "'busca' => 'https://shopee.com.br/search?keyword=JBL",
+             "'busca' => null, 'busca_nao' => 'https://shopee.com.br/search?keyword=JBL", 1),
+         encoding='utf-8')),
+
+    (ESCADA, None, 'A MENTIRA DE MAQUINA: a busca CRUA vai para a tela marcada como patrocinada',
+     lambda base: (base / 'snippets/aquametria-calculadora-aquecedor.php').write_text(
+         (base / 'snippets/aquametria-calculadora-aquecedor.php').read_text(encoding='utf-8').replace(
+             "return $compra['afiliado'] ? 'sponsored noopener' : 'nofollow noopener';",
+             "return 'sponsored noopener';", 1),
+         encoding='utf-8')),
+
+    (ESCADA, None, 'o cartao COM ficha perde a linha discreta do piso, e volta a morrer com o anuncio',
+     lambda base: (base / 'snippets/aquametria-calculadora-iluminacao.php').write_text(
+         (base / 'snippets/aquametria-calculadora-iluminacao.php').read_text(encoding='utf-8').replace(
+             "\t\t$h .= aquametria_c15_vitrine_piso_html( $p );\n", "", 1),
+         encoding='utf-8')),
+
     (ESCADA, None, 'o gerador da busca deixa de ser idempotente e move o piso a cada passada',
      lambda base: (base / 'ferramentas/gerar-busca-de-produto.py').write_text(
          (base / 'ferramentas/gerar-busca-de-produto.py').read_text(encoding='utf-8').replace(

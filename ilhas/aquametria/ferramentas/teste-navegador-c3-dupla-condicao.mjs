@@ -153,12 +153,32 @@ if (primeiro) {
     recomendados.map((n) => { const p = fichaDe(n); return p ? degrau(p) : '?'; }).join(' '));
 }
 
+// O `rel` SAI DO QUE O LINK E, e desde 14/09/2026 ha dois tipos de botao de
+// loja: a ficha, que e link de afiliado e paga comissao, e o piso da 25.2
+// servido CRU, que nao paga nada. Marcar o segundo como `sponsored` seria
+// declarar em formato de maquina o contrario do que a pagina diz em texto. A
+// regua le a NOTA que acompanha cada botao para saber qual e qual, em vez de
+// chamar a funcao da pagina que decidiu o botao.
 const links = await pagina.$$eval('#aqm-c3-produtos a.aqm-c3-loja, #aqm-c3-fora a.aqm-c3-loja',
-  (ns) => ns.map((n) => ({ rel: n.getAttribute('rel') || '', alvo: n.getAttribute('target') || '',
-    texto: (n.textContent || '').trim() })));
-conferir('todo botao de loja e sponsored + noopener + aba nova e tem texto',
-  links.every((l) => /sponsored/.test(l.rel) && /noopener/.test(l.rel) && l.alvo === '_blank' && l.texto.length > 0),
+  (ns) => ns.map((n) => {
+    const nota = n.parentElement
+      ? Array.from(n.parentElement.querySelectorAll('.aqm-c3-semloja')).map((x) => x.textContent).join(' ')
+      : '';
+    return { rel: n.getAttribute('rel') || '', alvo: n.getAttribute('target') || '',
+      texto: (n.textContent || '').trim(), patrocinado: /patrocinad/i.test(nota) };
+  }));
+conferir('todo botao de loja abre em aba nova com noopener e tem texto',
+  links.every((l) => /noopener/.test(l.rel) && l.alvo === '_blank' && l.texto.length > 0),
   links.length + ' link(s)');
+conferir('botao de anuncio e sponsored, botao de busca e nofollow — nunca o contrario',
+  links.every((l) => l.patrocinado
+    ? /sponsored/.test(l.rel)
+    : /nofollow/.test(l.rel) && !/sponsored/.test(l.rel)),
+  links.map((l) => (l.patrocinado ? 'anuncio' : 'busca') + ' => ' + l.rel).join(' | ') || 'nenhum');
+conferir('nenhum produto do bloco fica sem botao de loja (piso da 25.2)',
+  links.length === await pagina.$$eval('#aqm-c3-produtos li.aqm-c3-produto, #aqm-c3-fora li.aqm-c3-produto',
+    (ns) => ns.length),
+  links.length + ' botao(oes)');
 
 const aviso = await pagina.textContent('#aqm-c3-produtos .aqm-c3-aviso-afiliado');
 conferir('o aviso de comissao continua junto do bloco e diz a palavra comissao',

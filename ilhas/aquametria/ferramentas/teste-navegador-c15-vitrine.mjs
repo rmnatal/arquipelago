@@ -110,7 +110,11 @@ const LER_TRILHO = (seletor) => {
       ressalva: t('.aqm-c15-vt-ressalva'),
       preco: t('.aqm-c15-vt-preco'),
       botao: t('.aqm-c15-vt-botao'),
-      espera: t('.aqm-c15-vt-espera'),
+      selo: t('.aqm-c15-vt-selo'),
+      // O PISO DA 25.2, colhido do <li> e NAO do cartao: ele fica FORA
+      // da ancora do cartao de proposito, porque ancora dentro de
+      // ancora nao e HTML valido.
+      piso: (function () { var a = li.querySelector('.aqm-c15-vt-piso'); return a ? a.getAttribute('href') : null; })(),
       temFoto: !!img,
       imgSrc: img ? img.getAttribute('src') : null,
       imgAlt: img ? img.getAttribute('alt') : null,
@@ -168,16 +172,31 @@ if (servidos && servidos.length) {
   conferir('cartao com link e ancora de verdade, nunca div com onclick',
     anco.every((c) => c.href && /^https?:/.test(c.href)),
     anco.length + ' ancora(s)');
-  conferir('toda ancora da vitrine e sponsored + noopener em aba nova',
-    anco.every((c) => /sponsored/.test(c.rel || '') && /noopener/.test(c.rel || '') && c.alvo === '_blank'),
+  // O `rel` SAI DO QUE O LINK E, e desde 14/09/2026 ha dois tipos de ancora na
+  // vitrine: a ficha (patrocinada, `sponsored`) e o piso da 25.2 servido CRU,
+  // que nao rende comissao e por isso nao pode ser marcado como pago. A regua
+  // antiga cobrava `sponsored` de todas — ela passaria numa pagina que declara
+  // em formato de maquina o contrario do que diz em texto.
+  conferir('toda ancora da vitrine abre em aba nova com noopener',
+    anco.every((c) => /noopener/.test(c.rel || '') && c.alvo === '_blank'),
     anco.map((c) => c.rel).join(' | ') || 'nenhuma');
+  conferir('ancora de anuncio e sponsored, ancora de busca e nofollow — nunca o contrario',
+    anco.every((c) => (c.selo && /patrocinad/i.test(c.selo))
+      ? /sponsored/.test(c.rel || '')
+      : /nofollow/.test(c.rel || '') && !/sponsored/.test(c.rel || '')),
+    anco.map((c) => (c.selo || '?') + ' => ' + (c.rel || '?')).join(' | ') || 'nenhuma');
   conferir('toda ancora da vitrine tem botao de loja escrito',
     anco.every((c) => c.botao && c.botao.length > 0),
     anco.map((c) => c.botao).join(' / ') || 'nenhuma');
 
-  conferir('cartao SEM link nao vira ancora e reserva o lugar do botao (contrato 7)',
-    semLink.every((c) => c.espera && /link de loja em breve/i.test(c.espera)),
-    semLink.length ? semLink.length + ' cartao(oes) com o lugar reservado' : 'nenhum cartao sem link neste caso');
+  // NENHUM CARTAO FICA SEM SAIDA DE COMPRA (25.2, item 4 do despacho de
+  // 14/09/2026). Ate hoje esta afirmacao era a inversa: cartao sem link de
+  // afiliado NAO virava ancora e escrevia "link de loja em breve" no lugar do
+  // botao. A secao 7 proibiu essa frase, e o piso — a pagina de busca do
+  // modelo — virou o botao de quem nao tem anuncio escolhido.
+  conferir('nenhum cartao da vitrine fica sem saida de compra',
+    semLink.length === 0,
+    semLink.length ? semLink.length + ' cartao(oes) SEM ancora' : 'todos os cartoes sao ancora');
 
   const comFoto = servidos.filter((c) => c.temFoto);
   conferir('toda imagem da vitrine tem alt descritivo',
@@ -417,9 +436,14 @@ if (pintados && pintados.length && Array.isArray(catalogo)) {
   const linkErrado = pintados.filter((c) => {
     const p = porNome[nomeVitrine(c)];
     if (!p) { return true; }
-    return p.link ? c.href !== p.link : c.tag === 'a';
+    // A ESCADA DA 25.1, medida no href de verdade: com ficha, o cartao aponta
+    // para a ficha E carrega o piso na linha discreta; sem ficha, o proprio
+    // cartao aponta para o piso. Regua propria, montada do catalogo — ela nao
+    // chama nenhuma funcao da pagina que produziu o cartao.
+    if (p.link) { return c.href !== p.link || c.piso !== p.busca; }
+    return c.href !== p.busca || c.piso !== null;
   });
-  conferir('cartao aponta para o link do banco, e cartao sem link nao vira ancora',
+  conferir('cartao com ficha aponta para a ficha e leva o piso; cartao sem ficha aponta para o piso',
     linkErrado.length === 0, linkErrado.map(nomeVitrine).join(' / ') || 'todos conferidos');
 
   const fotoErrada = pintados.filter((c) => {
@@ -442,9 +466,9 @@ if (pintados && pintados.length && Array.isArray(catalogo)) {
     ressalvaFaltando.map(nomeVitrine).join(' / ') ||
       pintados.filter((c) => c.ressalva).length + ' cartao(oes) com ressalva de regulagem');
 
-  const esperando = pintados.filter((c) => c.tag !== 'a').length;
-  console.log('  nota  ' + esperando + ' de ' + pintados.length +
-    ' cartoes deste caso esperam link de afiliado');
+  const naBusca = pintados.filter((c) => c.selo && /busca/i.test(c.selo)).length;
+  console.log('  nota  ' + naBusca + ' de ' + pintados.length +
+    ' cartoes deste caso saem pelo piso da 25.2 (busca), e nenhum sem saida');
   console.log('  nota  ' + pintados.filter((c) => c.temFoto).length + ' de ' + pintados.length +
     ' cartoes deste caso tem foto');
 }

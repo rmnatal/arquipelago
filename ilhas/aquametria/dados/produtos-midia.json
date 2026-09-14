@@ -65,7 +65,9 @@
         "url_busca": null,
         "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "observacao": "Link curto gerado no painel Shopee Afiliados em 07/09/2026. Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data.",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=Seachem%20Matrix%201%20L%20midia%20filtrante%20aquario"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Seachem%20Matrix%201%20L%20midia%20filtrante%20aquario",
+        "conferido_em": "2026-09-14",
+        "intestavel": true
       },
       "fontes": [
         {
@@ -157,7 +159,9 @@
         "url_busca": null,
         "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "observacao": "Link curto gerado no painel Shopee Afiliados em 07/09/2026. Preco NAO mora aqui: a cotacao correspondente esta em dados/produtos-cotacoes.json, com data.",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=Eheim%20SUBSTRAT%20pro%201%20L%20midia%20filtrante%20aquario"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Eheim%20SUBSTRAT%20pro%201%20L%20midia%20filtrante%20aquario",
+        "conferido_em": "2026-09-14",
+        "intestavel": true
       },
       "fontes": [
         {
@@ -216,11 +220,13 @@
       "afiliado": {
         "plataforma": null,
         "verificado_em": "2026-09-08",
-        "degrau": null,
+        "degrau": 4,
         "url_busca": null,
         "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "motivo": "sem link de afiliado gerado ate 08/09/2026 (a geracao do link curto e feita a mao no painel Shopee Afiliados, fora desta sessao). O registro entra no banco e no cartao da C12 do mesmo jeito, sem botao de loja: link de afiliado nao decide quem e sugerido (regra V16).",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=JBL%20MicroMec%201%20L%20midia%20filtrante%20aquario"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=JBL%20MicroMec%201%20L%20midia%20filtrante%20aquario",
+        "conferido_em": "2026-09-14",
+        "intestavel": false
       },
       "fontes": [
         {
@@ -284,11 +290,13 @@
       "afiliado": {
         "plataforma": null,
         "verificado_em": "2026-09-08",
-        "degrau": null,
+        "degrau": 4,
         "url_busca": null,
         "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "motivo": "sem link de afiliado gerado ate 08/09/2026 (geracao manual no painel Shopee Afiliados, fora desta sessao). Entra no cartao sem botao de loja, pela regra V16.",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=Ocean%20Tech%20Bio%20Glass%201%20L%20midia%20filtrante%20aquario"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Ocean%20Tech%20Bio%20Glass%201%20L%20midia%20filtrante%20aquario",
+        "conferido_em": "2026-09-14",
+        "intestavel": false
       },
       "fontes": [
         {
@@ -348,11 +356,13 @@
       "afiliado": {
         "plataforma": null,
         "verificado_em": "2026-09-08",
-        "degrau": null,
+        "degrau": 4,
         "url_busca": null,
         "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "motivo": "sem link de afiliado gerado ate 08/09/2026 (geracao manual no painel Shopee Afiliados, fora desta sessao). Entra no cartao sem botao de loja, pela regra V16.",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=Seachem%20MatrixCarbon%20250%20mL%20midia%20filtrante%20aquario"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Seachem%20MatrixCarbon%20250%20mL%20midia%20filtrante%20aquario",
+        "conferido_em": "2026-09-14",
+        "intestavel": false
       },
       "fontes": [
         {
@@ -412,11 +422,13 @@
       "afiliado": {
         "plataforma": null,
         "verificado_em": "2026-09-08",
-        "degrau": null,
+        "degrau": 4,
         "url_busca": null,
         "motivo_sem_url_busca": "Falta o ENCURTAMENTO, nao a escolha: url_busca_produto ja tem a palavra-chave, escrita por ferramentas/gerar-busca-de-produto.py sem depender de ninguem. Transformar a busca em link de afiliado exige a sessao logada do painel da Shopee, que mora no navegador do Raphael. MEDIDO DESTA NUVEM EM 13/09/2026, duas passadas: affiliate.shopee.com.br/offer/custom_link responde HTTP 200 e serve casca de JavaScript com zero ocorrencia de 'custom_link', de 'sub_id' e de 'input' — nao e bloqueio de rede, e falta de sessao, e criar conta ou tocar na conta dele esta fora do que esta camada faz. No dia em que houver sessao, e colar: nenhuma linha de codigo muda.",
         "motivo": "sem link de afiliado gerado ate 08/09/2026 (geracao manual no painel Shopee Afiliados, fora desta sessao). Entra no cartao sem botao de loja, pela regra V16.",
-        "url_busca_produto": "https://shopee.com.br/search?keyword=Seachem%20Purigen%20100%20mL%20midia%20filtrante%20aquario"
+        "url_busca_produto": "https://shopee.com.br/search?keyword=Seachem%20Purigen%20100%20mL%20midia%20filtrante%20aquario",
+        "conferido_em": "2026-09-14",
+        "intestavel": false
       },
       "fontes": [
         {

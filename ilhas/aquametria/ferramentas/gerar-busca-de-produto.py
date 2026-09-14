@@ -1,6 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Escreve `afiliado.url_busca_produto` em todo produto do banco da Aquametria.
+"""Escreve o PISO DE COMPRA em todo produto do banco da Aquametria.
+
+Quatro campos, e os quatro sao derivados de coisa que ja esta no banco:
+`afiliado.url_busca_produto` (a busca crua), `afiliado.degrau` (4 para quem so
+tem o piso), `afiliado.conferido_em` (a data em que o piso foi escrito) e
+`afiliado.intestavel` (a bandeira da 25.4-b). Os tres ultimos entraram em
+14/09/2026 pelos itens 2 e 3 do despacho do Raphael.
 
 POR QUE ISTO EXISTE. A secao 25.2 do ARQUIPELAGO.md decidiu que o PISO de todo
 item e o link de busca, e que "o piso nunca depende de ninguem". A corrente
@@ -26,6 +32,7 @@ sem termo nenhum com o banco verde. Aqui, entidade sem termo declarado e ERRO.
 
 Rodar sem argumento mostra o que mudaria; com --gravar, grava.
 """
+import datetime
 import json
 import os
 import sys
@@ -33,6 +40,11 @@ from urllib.parse import quote
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ESQUEMA = os.path.join(RAIZ, "dados", "esquema-produtos.json")
+# A data em que o piso de um item foi escrito. E o dia de hoje de verdade, e nao
+# uma constante, porque produto que entrar no banco em dezembro tem piso de
+# dezembro. A idempotencia nao sofre com isso porque conferido_em so e escrito
+# quando FALTA: rodar de novo amanha nao reescreve data nenhuma.
+HOJE = datetime.date.today().isoformat()
 ARQUIVOS = {
     "filtro": "dados/produtos-filtro.json",
     "aquecedor": "dados/produtos-aquecedor.json",
@@ -50,6 +62,10 @@ def gravar(caminho, dados):
     with open(os.path.join(RAIZ, caminho), "w", encoding="utf-8") as f:
         json.dump(dados, f, ensure_ascii=False, indent=2)
         f.write("\n")
+
+
+def preenchido(valor):
+    return valor is not None and valor != "" and valor != []
 
 
 def palavra_chave(produto, termo):
@@ -95,18 +111,51 @@ def main():
             afil = produto.setdefault("afiliado", {})
             chave = palavra_chave(produto, termo)
             nova = url_da_busca(base, chave)
-            atual = afil.get("url_busca_produto")
-            if atual == nova:
+            antes = (afil.get("url_busca_produto"), afil.get("degrau"),
+                     afil.get("conferido_em"), afil.get("intestavel"))
+
+            if afil.get("url_busca_produto") != nova:
+                afil["url_busca_produto"] = nova
+
+            # O DEGRAU DE QUEM SO TEM O PISO. O item 2 do despacho do Raphael de
+            # 14/09/2026 manda gravar 4 nos itens que so tem piso, e "so tem
+            # piso" e exatamente "nao tem ficha": os degraus 1, 2 e 3 da 25.1
+            # sao formas de ficha de produto, o 4 e a pagina de busca. Quem tem
+            # ficha nao e mexido aqui — o degrau dele fala do anuncio, e este
+            # gerador nao sabe nada sobre anuncio.
+            if not preenchido(afil.get("url")):
+                afil["degrau"] = 4
+
+            # A DATA DO PISO, escrita UMA vez. Reescreve-la a cada passada
+            # tornaria este gerador nao idempotente, e idempotencia e o que
+            # impede o piso de 78 itens de se mover sem ninguem decidir
+            # (afirmacao 3 de ferramentas/teste-escada-compra.py).
+            if not preenchido(afil.get("conferido_em")):
+                afil["conferido_em"] = HOJE
+
+            # A BANDEIRA DA 25.4-b, item 3 do mesmo despacho. Link encurtado sem
+            # a url crua e link cuja saude ninguem consegue conferir; ate hoje
+            # isso vivia so dentro da prosa de motivo_sem_url_produto, e prosa
+            # nao se conta. E derivada, nunca digitada: some sozinha no dia em
+            # que a url crua for reescolhida pelo feed.
+            afil["intestavel"] = bool(preenchido(afil.get("url"))
+                                      and not preenchido(afil.get("url_produto")))
+
+            depois = (afil.get("url_busca_produto"), afil.get("degrau"),
+                      afil.get("conferido_em"), afil.get("intestavel"))
+            if antes == depois:
                 igual += 1
                 continue
             mudou += 1
-            print("  %-28s %s" % (produto.get("id"), chave))
-            afil["url_busca_produto"] = nova
+            print("  %-28s piso: %s | degrau %s | conferido %s%s"
+                  % (produto.get("id"), chave, afil.get("degrau"),
+                     afil.get("conferido_em"),
+                     " | INTESTAVEL" if afil.get("intestavel") else ""))
 
         if gravando:
             gravar(caminho, arquivo)
 
-    print("\n%d produto(s): %d ja estava(m) com a busca escrita, %d %s"
+    print("\n%d produto(s): %d ja estava(m) com o piso escrito, %d %s"
           % (total, igual, mudou, "gravado(s)" if gravando else "a gravar (rode com --gravar)"))
     for e in erros:
         print("  ERRO %s" % e)
