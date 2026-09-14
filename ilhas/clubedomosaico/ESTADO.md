@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 12
 primeira_indexacao: desconhecida
 ultima_execucao: 2026-09-14T21:17Z
-executando_desde: null
+executando_desde: 2026-09-14T23:19Z
 bloco_atual: |
   A PAGINA DO PICASSIETE NASCE E O DESPACHO DO RAPHAEL DE 14/09 FECHA (casca 1.11.0, tecnicas 1.0.0, manifest revisao 34, /status conferido na 34 em UM disparo com 12 aplicados). UMA URL nova: /como-fazer/o-que-e-mosaico-picassiete/, a primeira filha da Escola. Nenhuma peca entrou ou saiu. Dois blocos numa execucao, pelo mutirao da secao 13, o primeiro verificado inteiro antes do segundo.
 
