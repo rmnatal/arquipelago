@@ -20,8 +20,11 @@
     {
       "id": "direto",
       "nome": "Direto",
-      "nomes_alternativos": ["metodo direto", "tecnica direta"],
-      "definicao": "A peca e montada com a face de cima virada para cima, colada direto na base em que ela vai ficar. O que a pessoa ve enquanto trabalha e o que fica pronto no fim.",
+      "nomes_alternativos": [
+        "metodo direto",
+        "tecnica direta"
+      ],
+      "definicao": "A peça é montada com a face de cima virada para cima, colada direto na base em que ela vai ficar. O que a pessoa vê enquanto trabalha é o que fica pronto no fim.",
       "definicao_fonte_id": "run-unl-santos-2025",
       "como_se_executa": null,
       "motivo_sem_como_se_executa": "O esquema exige fonte para este campo e nenhuma das fontes colhidas foi ABERTA. Passo a passo escrito a partir de resumo de busca seria paráfrase, nao fonte — e passo a passo errado nesta ilha faz a peca da pessoa descolar.",
@@ -36,21 +39,30 @@
       "por_que_chega_ao_top_10": "SERP lida em 14/09/2026: o topo e video do YouTube, blog de decoracao (suadecoracao, chaledemadeira, cidesp), pagina de curso (onomosaicos) e uma pagina de resumo escolar (lucidarium). Nenhuma define o metodo nomeando a fonte, e nenhuma diz o que muda na pratica entre direto e indireto. E a resposta generica sem numero da secao 14.9.",
       "serp_lida_em": "2026-09-14",
       "serp_classe": "ABERTA",
-      "serp_quem_apareceu": ["youtube.com", "suadecoracao.com", "historiadasartes.com", "varivetri.com", "cidesp.com.br", "onomosaicos.com", "chaledemadeira.com", "lucidarium.com.br"],
+      "serp_quem_apareceu": [
+        "youtube.com",
+        "suadecoracao.com",
+        "historiadasartes.com",
+        "varivetri.com",
+        "cidesp.com.br",
+        "onomosaicos.com",
+        "chaledemadeira.com",
+        "lucidarium.com.br"
+      ],
       "imagem": null,
       "fontes": {
         "run-unl-santos-2025": {
           "url": "https://run.unl.pt/bitstream/10362/187739/1/Santos_2025.pdf",
           "origem": "instituicao-de-ensino-ou-museu",
-          "o_que_e": "Dissertacao depositada no repositorio da Universidade Nova de Lisboa (RUN), 2025, que trata dos metodos direto e indireto de assentamento de mosaico.",
-          "leitura": "colhido por busca; documento NAO aberto (egresso da nuvem barra o dominio)",
+          "o_que_e": "Dissertação depositada no repositório da Universidade Nova de Lisboa (RUN), 2025, que trata dos métodos direto e indireto de assentamento de mosaico.",
+          "leitura": "Colhido por busca; o documento não foi aberto, porque o egresso da nuvem barra o domínio.",
           "data_leitura": "2026-09-14"
         },
         "faecpr-manual-assentamento": {
           "url": "https://www.faecpr.edu.br/site/documentos/assentamento_de_ceramica/assentamento_de_azulejos_e_mosaicos.pdf",
           "origem": "instituicao-de-ensino-ou-museu",
-          "o_que_e": "Manual de assentamento de azulejos e mosaicos hospedado por instituicao de ensino.",
-          "leitura": "colhido por busca; documento NAO aberto",
+          "o_que_e": "Manual de assentamento de azulejos e mosaicos hospedado por instituição de ensino.",
+          "leitura": "Colhido por busca; o documento não foi aberto.",
           "data_leitura": "2026-09-14"
         }
       },
@@ -60,8 +72,12 @@
     {
       "id": "indireto",
       "nome": "Indireto",
-      "nomes_alternativos": ["metodo indireto", "tecnica indireta", "veneziano"],
-      "definicao": "A peca e montada ao contrario: as tesselas sao coladas com a face de cima para baixo sobre papel ou tela, com cola que sai com agua. Depois o conjunto inteiro e transferido para a base e o papel e removido.",
+      "nomes_alternativos": [
+        "metodo indireto",
+        "tecnica indireta",
+        "veneziano"
+      ],
+      "definicao": "A peça é montada ao contrário: as tesselas são coladas com a face de cima para baixo sobre papel ou tela, com cola que sai com água. Depois o conjunto inteiro é transferido para a base e o papel é removido.",
       "definicao_fonte_id": "camara-ciranda-do-mosaico",
       "como_se_executa": null,
       "motivo_sem_como_se_executa": "Mesmo motivo do direto: nenhuma fonte foi aberta.",
@@ -76,21 +92,30 @@
       "por_que_chega_ao_top_10": "SERP lida em 14/09/2026: uma pagina institucional de exposicao (Camara dos Deputados), dois sites de atelie (houdelier, sarasa), um blogspot de 2017, um video e duas paginas de artesanato generico. Nenhuma pagina brasileira explica o metodo E diz qual cola e qual papel comprar — que e a metade que esta ilha tem banco para responder.",
       "serp_lida_em": "2026-09-14",
       "serp_classe": "ABERTA",
-      "serp_quem_apareceu": ["camara.leg.br", "mg-perez.blogspot.com", "artesanatopassoapassoja.com.br", "houdelier.com", "youtube.com", "onomosaicos.com", "lucidarium.com.br", "sarasa.com.br"],
+      "serp_quem_apareceu": [
+        "camara.leg.br",
+        "mg-perez.blogspot.com",
+        "artesanatopassoapassoja.com.br",
+        "houdelier.com",
+        "youtube.com",
+        "onomosaicos.com",
+        "lucidarium.com.br",
+        "sarasa.com.br"
+      ],
       "imagem": null,
       "fontes": {
         "camara-ciranda-do-mosaico": {
           "url": "https://www2.camara.leg.br/a-camara/visiteacamara/cultura-na-camara/exposicoes-2014/ate-2012/exposicoes-artisticas/dialogo-entre-tesselas-grupo-ciranda-do-mosaico",
           "origem": "instituicao-de-ensino-ou-museu",
-          "o_que_e": "Pagina da exposicao 'Dialogo entre tesselas' no portal da Camara dos Deputados, que descreve o metodo indireto ('veneziano') como composicao preparada sobre papel, as avessas.",
-          "leitura": "colhido por busca; pagina NAO aberta",
+          "o_que_e": "Página da exposição “Diálogo entre tesselas” no portal da Câmara dos Deputados, que descreve o método indireto (“veneziano”) como composição preparada sobre papel, às avessas.",
+          "leitura": "Colhido por busca; a página não foi aberta.",
           "data_leitura": "2026-09-14"
         },
         "sarasa-metodo-indireto": {
           "url": "https://sarasa.com.br/article.php?recid=50",
           "origem": "editorial-da-ilha",
-          "o_que_e": "Atelier Artistico Sarasa, pagina 'Tecnicas de Mosaico: Metodo Indireto'. NAO e enciclopedia nem instituicao: e atelie, e por isso entra como apoio e nunca sozinha.",
-          "leitura": "colhido por busca; pagina NAO aberta",
+          "o_que_e": "Atelier Artístico Sarasa, página “Técnicas de Mosaico: Método Indireto”. NÃO é enciclopédia nem instituição: é ateliê, e por isso entra como apoio e nunca sozinha.",
+          "leitura": "Colhido por busca; a página não foi aberta.",
           "data_leitura": "2026-09-14"
         }
       },
@@ -100,8 +125,10 @@
     {
       "id": "bizantino",
       "nome": "Bizantino",
-      "nomes_alternativos": ["mosaico bizantino"],
-      "definicao": "Mosaico de tesselas pequenas e regulares, cortadas em cubo e assentadas uma a uma sobre argamassa ainda fresca. A marca da tecnica e o vidro colorido e a tessela de folha de ouro ou prata prensada entre duas camadas de vidro.",
+      "nomes_alternativos": [
+        "mosaico bizantino"
+      ],
+      "definicao": "Mosaico de tesselas pequenas e regulares, cortadas em cubo e assentadas uma a uma sobre argamassa ainda fresca. A marca da técnica é o vidro colorido e a tessela de folha de ouro ou prata prensada entre duas camadas de vidro.",
       "definicao_fonte_id": "wikipedia-mosaicos-bizantinos",
       "como_se_executa": null,
       "motivo_sem_como_se_executa": "Nenhuma fonte aberta.",
@@ -116,21 +143,28 @@
       "por_que_chega_ao_top_10": "E a unica consulta de cabeca do corpus desta ilha que passa nos DOIS criterios da secao 14.9 ao mesmo tempo, e isso foi medido duas vezes: em 10/09/2026 o bloco 1 achou faixa de 1k a 100k com a primeira pagina em ESPANHOL (laguia2000, blogs de historia da arte) e quase nada em pt-BR; em 14/09/2026, na leitura desta execucao, o topo em portugues e um portal de vestibular, um blog de revista, um wordpress de disciplina e a Wikipedia — historia da arte, nenhuma pagina que diga a quem quer FAZER o que comprar.",
       "serp_lida_em": "2026-09-14",
       "serp_classe": "ABERTA",
-      "serp_quem_apareceu": ["vestibulares.estrategia.com", "pt.wikipedia.org", "fasbam.edu.br", "revistaarqdesign.com.br", "haac1.wordpress.com", "repositorio.pgsscogna.com.br"],
+      "serp_quem_apareceu": [
+        "vestibulares.estrategia.com",
+        "pt.wikipedia.org",
+        "fasbam.edu.br",
+        "revistaarqdesign.com.br",
+        "haac1.wordpress.com",
+        "repositorio.pgsscogna.com.br"
+      ],
       "imagem": null,
       "fontes": {
         "wikipedia-mosaicos-bizantinos": {
           "url": "https://pt.wikipedia.org/wiki/Mosaicos_bizantinos",
           "origem": "enciclopedico",
-          "o_que_e": "Verbete 'Mosaicos bizantinos' da Wikipedia em portugues.",
-          "leitura": "colhido por busca; verbete NAO aberto (egresso barra pt.wikipedia.org)",
+          "o_que_e": "Verbete “Mosaicos bizantinos” da Wikipédia em português.",
+          "leitura": "Colhido por busca; o verbete não foi aberto, porque o egresso barra pt.wikipedia.org.",
           "data_leitura": "2026-09-14"
         },
         "fasbam-mosaicos-bizantinos": {
           "url": "https://fasbam.edu.br/2019/10/09/a-beleza-de-tirar-o-folego-dos-mosaicos-bizantinos/",
           "origem": "instituicao-de-ensino-ou-museu",
-          "o_que_e": "Faculdade Sao Basilio Magno, texto sobre mosaicos bizantinos.",
-          "leitura": "colhido por busca; pagina NAO aberta",
+          "o_que_e": "Faculdade São Basílio Magno, texto sobre mosaicos bizantinos.",
+          "leitura": "Colhido por busca; a página não foi aberta.",
           "data_leitura": "2026-09-14"
         }
       },
@@ -139,15 +173,22 @@
     },
     {
       "id": "trencadis",
-      "nome": "Trencadis (caquinho)",
-      "nomes_alternativos": ["caquinho", "trincadis", "trencadis"],
-      "definicao": "Mosaico de cacos irregulares de azulejo, louca ou vidro, quebrados a martelo e encaixados um a um. O nome vem do catalao `trencar`, quebrar, e a tecnica e a marca da obra de Antoni Gaudi.",
+      "nome": "Trencadís (caquinho)",
+      "nomes_alternativos": [
+        "caquinho",
+        "trincadis",
+        "trencadis"
+      ],
+      "definicao": "Mosaico de cacos irregulares de azulejo, louça ou vidro, quebrados a martelo e encaixados um a um. O nome vem do catalão “trencar”, quebrar, e a técnica é a marca da obra de Antoni Gaudí.",
       "definicao_fonte_id": "mnceramica-gaudi-trencadis",
       "como_se_executa": null,
       "motivo_sem_como_se_executa": "Nenhuma fonte aberta.",
       "bases_compativeis": null,
       "motivo_sem_bases": "As fontes falam de superficie curva de arquitetura; nenhuma nomeia base do vocabulario desta ilha.",
-      "materiais_tipicos": ["caco_azulejo", "caco_louca"],
+      "materiais_tipicos": [
+        "caco_azulejo",
+        "caco_louca"
+      ],
       "materiais_tipicos_fonte_id": "mnceramica-gaudi-trencadis",
       "junta_tipica_mm": null,
       "motivo_sem_junta": "As fontes dizem 'o espaco minimo entre as pecas' e nenhuma da milimetro. Frase nao e numero.",
@@ -156,21 +197,28 @@
       "por_que_chega_ao_top_10": "SERP lida em 14/09/2026, e ela repete o padrao do bizantino num idioma diferente: de sete resultados, CINCO estao em espanhol (rubi.com/es, batallon.es, antictiles.com, spain.info, trencadisenbarcelona) e apenas um esta em portugues do Brasil — e esse fala de PISO de caquinho, que e arquitetura e nao artesanato. A pergunta de quem tem um vaso na mao nao tem resposta em pt-BR.",
       "serp_lida_em": "2026-09-14",
       "serp_classe": "ABERTA",
-      "serp_quem_apareceu": ["blog.archtrends.com", "rubi.com", "spain.info", "batallon.es", "antictiles.com", "trencadisenbarcelona.wordpress.com"],
+      "serp_quem_apareceu": [
+        "blog.archtrends.com",
+        "rubi.com",
+        "spain.info",
+        "batallon.es",
+        "antictiles.com",
+        "trencadisenbarcelona.wordpress.com"
+      ],
       "imagem": null,
       "fontes": {
         "mnceramica-gaudi-trencadis": {
           "url": "https://www.cultura.gob.es/mnceramica/exposiciones/historico/2020/gaudi-trencadis.html",
           "origem": "instituicao-de-ensino-ou-museu",
-          "o_que_e": "Museo Nacional de Ceramica y Artes Suntuarias Gonzalez Marti (Ministerio de Cultura da Espanha), exposicao 'Gaudi & trencadis'.",
-          "leitura": "colhido por busca; pagina NAO aberta",
+          "o_que_e": "Museo Nacional de Cerámica y Artes Suntuarias González Martí (Ministério de Cultura da Espanha), exposição “Gaudí & trencadís”.",
+          "leitura": "Colhido por busca; a página não foi aberta.",
           "data_leitura": "2026-09-14"
         },
         "sagrada-familia-trencadis": {
           "url": "https://blog.sagradafamilia.org/en/trencadis-mosaic-hallmark-of-gaudi/",
           "origem": "instituicao-de-ensino-ou-museu",
-          "o_que_e": "Blog oficial da Basilica da Sagrada Familia sobre o trencadis de Gaudi.",
-          "leitura": "colhido por busca; pagina NAO aberta",
+          "o_que_e": "Blog oficial da Basílica da Sagrada Família sobre o trencadís de Gaudí.",
+          "leitura": "Colhido por busca; a página não foi aberta.",
           "data_leitura": "2026-09-14"
         }
       },
@@ -179,15 +227,21 @@
     },
     {
       "id": "picassiette",
-      "nome": "Picassiete (louca quebrada)",
-      "nomes_alternativos": ["picassiette", "pique-assiette", "pique assiette"],
-      "definicao": "Mosaico feito com caco de louca de mesa — prato, xicara, bule — em que ainda se reconhece de onde o caco veio. O nome vem de Raymond Isidore, apelidado Picassiette em Chartres, que revestiu a propria casa com louca quebrada; a casa e monumento historico e hoje e museu aberto ao publico.",
+      "nome": "Picassiete (louça quebrada)",
+      "nomes_alternativos": [
+        "picassiette",
+        "pique-assiette",
+        "pique assiette"
+      ],
+      "definicao": "Mosaico feito com caco de louça de mesa — prato, xícara, bule — em que ainda se reconhece de onde o caco veio. O nome vem de Raymond Isidore, apelidado Picassiette em Chartres, que revestiu a própria casa com louça quebrada; a casa é monumento histórico e hoje é museu aberto ao público.",
       "definicao_fonte_id": "wikipedia-maison-picassiette",
       "como_se_executa": null,
       "motivo_sem_como_se_executa": "Nenhuma fonte aberta.",
       "bases_compativeis": null,
       "motivo_sem_bases": "As fontes falam de parede, piso, teto e movel de uma casa inteira; nenhuma nomeia base do vocabulario desta ilha.",
-      "materiais_tipicos": ["caco_louca"],
+      "materiais_tipicos": [
+        "caco_louca"
+      ],
       "materiais_tipicos_fonte_id": "wikipedia-maison-picassiette",
       "junta_tipica_mm": null,
       "motivo_sem_junta": "Nenhuma fonte colhida declara folga em milimetro.",
@@ -196,31 +250,44 @@
       "por_que_chega_ao_top_10": "SERP lida em 14/09/2026: o topo em pt-BR e blog de decoracao e de artesanato (praquemtemestilo, defrenteparaomar, patiohype), Pinterest, e um resultado de outra intencao (kintsukuroi, que e conserto de ceramica com ouro e nao mosaico). Nenhuma pagina brasileira liga a tecnica a origem dela nem diz com que cola se prende caco de louca vitrificada — e a segunda metade e exatamente o que a F2 desta ilha responde.",
       "serp_lida_em": "2026-09-14",
       "serp_classe": "ABERTA",
-      "serp_quem_apareceu": ["dwsemanadedesign.com.br", "pt.mozaico.com", "pinterest.com", "praquemtemestilo.com.br", "defrenteparaomar.com", "patiohype.com.br"],
+      "serp_quem_apareceu": [
+        "dwsemanadedesign.com.br",
+        "pt.mozaico.com",
+        "pinterest.com",
+        "praquemtemestilo.com.br",
+        "defrenteparaomar.com",
+        "patiohype.com.br"
+      ],
       "imagem": null,
       "fontes": {
         "wikipedia-maison-picassiette": {
           "url": "https://en.wikipedia.org/wiki/Maison_Picassiette",
           "origem": "enciclopedico",
-          "o_que_e": "Verbete 'Maison Picassiette' da Wikipedia em ingles, sobre a casa de Raymond Isidore em Chartres.",
-          "leitura": "colhido por busca; verbete NAO aberto",
+          "o_que_e": "Verbete “Maison Picassiette” da Wikipédia em inglês, sobre a casa de Raymond Isidore em Chartres.",
+          "leitura": "Colhido por busca; o verbete não foi aberto.",
           "data_leitura": "2026-09-14"
         },
         "spaces-maison-picassiette": {
           "url": "https://spacesarchives.org/explore/search-the-online-collection/la-maison-de-picassiette/",
           "origem": "instituicao-de-ensino-ou-museu",
-          "o_que_e": "SPACES Archives, acervo dedicado a ambientes de arte construidos; ficha da Maison Picassiette.",
-          "leitura": "colhido por busca; pagina NAO aberta",
+          "o_que_e": "SPACES Archives, acervo dedicado a ambientes de arte construídos; ficha da Maison Picassiette.",
+          "leitura": "Colhido por busca; a página não foi aberta.",
           "data_leitura": "2026-09-14"
         }
       },
       "revisao_tecnica": "pendente",
-      "observacao": "A GRAFIA E DECISAO DO RAPHAEL, de 14/09/2026: na tela le-se 'Picassiete', palavra unica e sem hifen; a chave interna e `picassiette`, que e o valor do vocabulario e o slug do termo no WordPress. Os dois convivem de proposito e nenhum dos dois se corrige sozinho."
+      "observacao": "A GRAFIA E DECISAO DO RAPHAEL, de 14/09/2026: na tela le-se 'Picassiete', palavra unica e sem hifen; a chave interna e `picassiette`, que e o valor do vocabulario e o slug do termo no WordPress. Os dois convivem de proposito e nenhum dos dois se corrige sozinho.",
+      "pagina_publicada": true,
+      "pagina_publicada_url": "/como-fazer/o-que-e-mosaico-picassiete/"
     }
   ],
   "o_que_ficou_de_fora_e_por_que": [
     {
-      "ids": ["opus_palladianum", "opus_tesselatum", "opus_vermiculatum"],
+      "ids": [
+        "opus_palladianum",
+        "opus_tesselatum",
+        "opus_vermiculatum"
+      ],
       "motivo": "Os tres estao no vocabulario `tecnica` do esquema e NENHUM e oferecido a artesa no formulario do atelie (a lista dela tem cinco: direto, indireto, bizantino, trencadis, picassiette). Peca nenhuma pode ser marcada com eles, entao pagina nenhuma teria peca para listar. Alem disso os tres sao padrao de ASSENTAMENTO e nao metodo de execucao, o que joga a decisao para dentro da divida METODO x ESTILO que o Raphael mandou nao mexer agora.",
       "o_que_falta": "A decisao de modelagem do campo `tecnica`, que e do Raphael, e so depois a coleta."
     }

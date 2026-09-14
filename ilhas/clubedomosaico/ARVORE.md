@@ -266,6 +266,7 @@ artesã já marca o termo no ateliê.
 | `/materiais/como-sabemos/` | 2 | `/materiais/` | Início › Materiais › Como sabemos |
 | `/materiais/qual-cola-usar-no-mosaico/` | 3 | `/materiais/` | Início › Materiais › Qual cola usar no mosaico, e qual rejunte |
 | `/materiais/quantas-pastilhas-para-mosaico/` | 3 | `/materiais/` | Início › Materiais › Quantas pastilhas e quanto rejunte comprar |
+| `/como-fazer/o-que-e-mosaico-picassiete/` | 3 | `/como-fazer/` | Início › Como fazer › O que é mosaico Picassiete, e como colar |
 | `/sobre/` | raiz | — | Início › Sobre |
 | `/contato/` | raiz | — | Início › Contato |
 | `/divulgacao-de-afiliados/` | raiz | — | Início › Divulgação de afiliados |

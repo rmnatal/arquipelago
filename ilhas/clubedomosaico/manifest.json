@@ -4,7 +4,7 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 33,
+  "revisao": 34,
   "atualizado_em": "2026-09-14",
   "estado": "nascendo",
   "desembarque": {
@@ -20,8 +20,8 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.10.1",
-      "sha256": "10505865a7f982daf72c9397a06f05811787650f0511a51a2ca98e3baa095c02",
+      "versao": "1.11.0",
+      "sha256": "3a67b5702919a92eefbd24ecfcafb4db38c40e4a2845dd168feae9545da91630",
       "descricao": "Casca 1.9.1 — TRES NUMEROS DA TELA ENTRARAM NA VIA VIVA. `celulas_matriz`, `celulas_com_saida` e `celulas_sem_saida` eram os unicos do instantaneo de `cdm_casca_numeros()` que nenhuma linha recontava do repositorio, e em 13/09/2026 os dois produtos novos da categoria cola fecharam as duas ultimas combinacoes sem saida — com a pagina de metodologia, cujo unico produto e o rigor, continuando a publicar que a ilha tinha duas. Agora elas saem contadas do `matriz_esperada_da_F2` gravado nas options, como as contagens de banco ja saiam. A frase da metodologia tambem ganhou o ESCOPO do que ela mede: os numeros sao de base x ambiente, e desde a f2 1.3.0 a ferramenta decide tambem pelo caquinho — sem essa linha, o numero certo virava promessa errada. Nada mais foi tocado."
     },
     {
@@ -34,6 +34,17 @@
       "versao": "1.5.0",
       "sha256": "155527e01efce6fe55880c072bce752dab335fae0b15251e8f4b169bd6b174fb",
       "descricao": "F2 1.3.0 — A REGRA 6 NASCE, E AS DUAS FAIXAS QUE ESTA PAGINA DECLARAVA NAO SABER RESPONDER DEIXAM DE SER BURACO. Entraram no banco o Silicone Acetico Maxx (BRSA005), primeiro produto da ilha que pode ser recomendado em contato permanente com agua por fonte de nivel 3, e o Cascola Adesivo de Montagem PL500, primeiro indicado sobre PLASTICO. O PL500 trouxe junto a condicao que obrigou a regra: 'ao menos uma das superficies deve ser porosa, ja que o produto seca por evaporacao da agua' — isso nao e base e nao e ambiente, e o PAR de superficies coladas. A regra 6 e a primeira regua de cola que olha o CAQUINHO, entrada que a ferramenta coleta desde a 1.0.0 e que nenhuma regua de cola lia. Ela roda DEPOIS das cinco e ANTES da ordenacao por score, e quem cai por ela vai para um QUINTO grupo, com frase propria: nao e proibicao (o fabricante nao proibe) e nao e silencio (ele falou). A atribuicao sai dividida ao meio pela secao 26.3 — a condicao e dele, a classificacao de quais superficies sao porosas e nossa, e a pagina diz isso com essas palavras. A secao 'o que a gente ainda nao responde' deixou de ser duas frases escritas a mao (as duas viraram mentira no mesmo dia em que os produtos entraram) e passou a ser CONTADA a cada requisicao: 270 combinacoes de base, lugar e caquinho, 68 delas ainda sem resposta. A tabela pre-renderizada ganhou a coluna da condicao, porque ela e a metade que um modelo de linguagem le sem preencher formulario e era onde 'use PL500 em plastico' sairia sem escopo."
+    },
+    {
+      "id": "tecnicas",
+      "nome": "Clube do Mosaico Tecnicas",
+      "arquivo": "snippets/clubedomosaico-tecnicas.php",
+      "escopo": "global",
+      "ativo": true,
+      "publicar": true,
+      "versao": "1.0.0",
+      "sha256": "cf46f79b4d93fffc5a7cd0b8bc4b7c98f8fa1a4732498d82e2851bb4e9adcf5f",
+      "descricao": "TECNICAS 1.0.0 — a primeira pagina da Escola, e a que o Raphael pediu por nome em 14/09/2026: /como-fazer/o-que-e-mosaico-picassiete/. Ela NAO decide nada: quem escolhe a cola e cdm_f2_celula_cola(), a regua da F2 que ja esta no ar desde 11/09, chamada aqui para o caquinho de louca — sem segunda copia da decisao, que e a cicatriz que esta ilha pagou duas vezes so em 14/09. A tabela pre-renderizada da secao 5 e a grade inteira de 9 superficies por 5 lugares, 45 casos servidos no HTML e recalculados a cada requisicao. A prestacao de contas da secao 7 fecha com o banco: das 7 colas, 5 entram na vitrine e as 2 que nao entram sao nomeadas com a causa CONTADA celula a celula, nunca com hipotese. E a pagina se RECUSA a responder o rejunte, com a causa que ela mediu: ele se decide pela largura da junta em milimetro e nenhuma fonte colhida sobre Picassiete declara essa folga. Texto, definicao e fontes saem de dados/tecnicas.json, nunca digitados aqui."
     },
     {
       "id": "f1",
@@ -143,9 +154,9 @@
       "fonte": "Bloco da familia das tecnicas, 14/09/2026. Definicao e origem de cada tecnica colhidas por busca web da nuvem, sem NENHUM documento aberto (o egresso barra pt.wikipedia.org, britannica.com e google.com; medido as 17h30Z). Cada fonte declara isso no campo `leitura`, que e a regra do elo mais fraco da secao 10 aplicada a uma entidade sem fabricante. A SERP de cada consulta-alvo foi lida no mesmo canal e na mesma data, com os dominios que apareceram escritos um a um.",
       "verificado_em": "2026-09-14",
       "registros": 5,
-      "publicar": false,
-      "sha256": "9f612787aa7934dd5a62641738166fee398d0a6f7e6e5f8600cc3bbf333e1a6a",
-      "descricao": "O banco da entidade TECNICA, que o esquema do bloco 3 previu em 12/09/2026 e que so nasceu em 14/09. Cinco tecnicas — direto, indireto, bizantino, trencadis e picassiette —, as mesmas cinco que a artesa pode marcar no ateliê, cada uma com definicao sustentada por fonte de enciclopedia, museu ou instituicao de ensino, consulta-alvo, SERP lida e `revisao_tecnica: pendente`, porque a revisora existe e e ela. O achado que o arquivo carrega: as duas unicas tecnicas com lado de material declarado (trencadis e picassiette) apontam para caco de azulejo e caco de louca, que nao tem fabricante e nao correspondem a nenhum dos 13 itens do banco de pastilhas — o portao de 3 itens da secao 9 fica em ZERO para 5 de 5, e e por isso que a familia de paginas nao nasce hoje (ARVORE.md, secao 4b). `publicar` false porque nenhum snippet o le."
+      "publicar": true,
+      "sha256": "71a517749179e1179ebec3a4eab9fdfe27d18c366cc82a2948cf389eb2c8c563",
+      "descricao": "O banco da entidade TECNICA, que o esquema do bloco 3 previu em 12/09/2026 e que nasceu em 14/09. Cinco tecnicas — direto, indireto, bizantino, trencadis e picassiette —, as mesmas cinco que a artesa pode marcar no atelie, cada uma com definicao sustentada por fonte de enciclopedia, museu ou instituicao de ensino, consulta-alvo, SERP lida e `revisao_tecnica: pendente`, porque a revisora existe e e ela. PASSOU A `publicar` true as 21h17Z de 14/09/2026, porque agora existe snippet que o le: a pagina do Picassiete tira dali a definicao, as fontes e a data de leitura, em vez de carregar uma copia do texto dentro do PHP. O QUE ESTE CAMPO DIZIA E DEIXOU DE VALER: que o portao de 3 itens da secao 9 ficava em ZERO para 5 de 5. Ele contava caco, que nao tem fabricante; a pagina de uma tecnica recomenda a COLA do caco, e nisso trencadis e picassiette tem 5 itens cada. Ver ARVORE.md secao 4b e dados/tecnica-x-material.json."
     },
     {
       "id": "materiais-colas",
@@ -298,7 +309,7 @@
     {
       "id": "render-para-teste",
       "arquivo": "ferramentas/render-para-teste.php",
-      "sha256": "b85fb41795512c3d780777e82d3abb7406be70d1238c78a5a5d5a72980db7f01",
+      "sha256": "8a62934e8fd9eddfe330ad47220ac50f8bdeea498874f522f62a547f9c73c8ec",
       "descricao": "Monta uma pagina do site fora do WordPress para poder medir o HTML servido sem depender do site no ar — necessario porque o gateway da rede das rotinas respondeu 403 ao CONNECT para clubedomosaico.com.br em 11/09/2026. Imita de verdade os ganchos wp_head/wp_footer com prioridade, o escape de '&' que os filtros do the_content aplicam ao retorno do shortcode, e o remove_action casando gancho + funcao + prioridade. Carrega nas options o que o Sync carrega, pela cicatriz da bancada pela metade (secao 8). NUNCA e publicada no site."
     },
     {
@@ -340,7 +351,7 @@
     {
       "id": "validar-banco",
       "arquivo": "ferramentas/validar-banco.py",
-      "sha256": "7f39d9ee5a6089910b7ce818665895adfad5289e64c82cf0791f768589b9e43b",
+      "sha256": "fb8c88094cc762a96731ab86d319a41e468188bf8df8cd04a160c481d3f6ce96",
       "descricao": "Verifica o banco contra dados/esquema-banco.json sem rede e sem dependencia: campos obrigatorios, vocabularios, fonte por campo tecnico, nivel de fonte, afiliado presente mesmo vazio, contagem declarada no cabecalho e passo de fabrica das pastilhas. O principal: RECOMPUTA as 18 celulas da matriz da F2 pelas cinco regras de elegibilidade e falha se o banco e a pagina se separarem. E a implementacao de referencia que o snippet PHP do bloco 4 tem que repetir. NUNCA e publicada no site. BLOCO 3c: ganhou a regua propria do REJUNTE, escrita sem reaproveitar perfil() nem avaliar() da cola — nao por cerimonia, mas porque as declaracoes nomeiam coisas diferentes nas duas categorias. Confere os cinco perfis e as nove celulas junta x ambiente contra o que esta escrito A MAO no esquema, exige que a grade pise em toda borda declarada e em pelo menos um valor acima da maior delas, reprova faixa de junta pela metade ou invertida, cobra perfil escrito para todo rejunte do banco, e guarda a regressao do defeito que o bloco corrigiu: rejunte que aparecer em qualquer lista da matriz da F2 e erro."
     },
     {
@@ -444,6 +455,30 @@
       "arquivo": "ferramentas/mutacoes-tecnicas.py",
       "sha256": "62d1f331eaf700deca6b19bb0b6afe9f6e03ce55cb9882d5e36bc7ec52cc79c9",
       "descricao": "Quebra o banco de TECNICA de proposito, 14 mutacoes, e exige que o validar-banco.py decida certo em cada uma. Nasceu junto com dados/tecnicas.json porque a regua daquela entidade estava escrita desde 12/09 e NUNCA tinha rodado — verde por ausencia do arquivo que ela media. TEM OS DOIS LADOS DA FRONTEIRA: 13 mutacoes que precisam reprovar (id fora do vocabulario, definicao sem fonte, blog sustentando definicao, folga em milimetro inventada, pagina de tecnica declarada com zero item de banco) e UMA que precisa PASSAR — a mesma pagina com o lado do material resolvido —, porque portao que reprova tudo nunca deixaria a familia nascer. Bancada."
+    },
+    {
+      "id": "tecnica-x-material",
+      "arquivo": "ferramentas/tecnica-x-material.py",
+      "sha256": "3b8cb781de2b1e401762eb8a709215d6feaaaba7073c73f7c6effc46560b3755",
+      "descricao": "O OUTRO LADO DO BANCO: para cada tecnica, quais itens do banco uma pagina dela poderia recomendar e em que estados de base e ambiente. Deriva dados/tecnica-x-material.json IMPORTANDO a conta de validar-banco.py (itens_de_banco_da_tecnica) em vez de reescreve-la — uma conta, dois leitores. Aceita --conferir, que reprova quando o derivado esta velho em relacao ao banco. Bancada; nunca vai para o site."
+    },
+    {
+      "id": "mutacoes-tecnica-x-material",
+      "arquivo": "ferramentas/mutacoes-tecnica-x-material.py",
+      "sha256": "ff0b81809cffdeedb4b6db6a26280e795101a8d576ee58634af1c3ff46a82883",
+      "descricao": "Quebra a CONTA que liga tecnica a material, uma mutacao por vez, e exige o NUMERO certo em cada uma — nao o veredito, porque afirmar so 'abriu ou fechou' deixaria passar a mutacao que INFLA a conta e fica verde por ter aberto. 8 mutacoes com os dois lados da fronteira: a que fecha o portao, a que o abre para uma terceira tecnica, duas que inflam, uma que encolhe a varredura, uma que tira a pastilha da soma, a que arrasta a conta para fora do validador (o gerador tem de morrer) e a do derivado nao regerado (--conferir tem de acusar). Bancada."
+    },
+    {
+      "id": "teste-tecnicas",
+      "arquivo": "ferramentas/teste-tecnicas.php",
+      "sha256": "535f1e7ee05b2ff35c3c60a9539d09dcff7e2245e98ee450a7e2bc9f5ae32af4",
+      "descricao": "Verificacao MEDIDA da pagina de tecnica. 49 afirmacoes no corpo servido, e o ESPERADO nao vem do snippet: as 45 celulas da grade sao comparadas com dados/cobertura.json, gerado pela regua em Python — duas metades independentes, em linguagens diferentes, que tem de dar o mesmo numero. Ele comeca rodando cobertura.py --conferir, porque regua velha aprova a pagina de ontem. Mede tambem a prestacao de contas da secao 7 (a soma dos nomeados fecha com o banco contado do arquivo), a escada de compra e o rel de cada link, a recusa do rejunte com a causa, os termos que o VOZ.md proibe no titulo e no primeiro paragrafo, e o FAQ do schema sendo o MESMO da tela. Bancada; nunca vai para o site."
+    },
+    {
+      "id": "mutacoes-tecnicas-pagina",
+      "arquivo": "ferramentas/mutacoes-tecnicas-pagina.py",
+      "sha256": "5b63d1a9e90444de152fdfee6c2c8fc8decafe44595faba6f8affbd7c1615c7e",
+      "descricao": "Quebra a PAGINA de tecnica de proposito, uma mutacao por vez. 9 mutacoes: tessela digitada no snippet contra banco que diz outra, celula da grade cravada a mao, cartao que some da vitrine que a frase nomeia, recusa que volta a nomear so a causa maior, busca CRUA se declarando patrocinada, FAQPage prometendo pergunta que a tela nao responde, numero da frase digitado, pagina sumindo da listagem da mae (reprova no teste-casca, nao no proprio). A nona NAO reprova por reprovar: com o banco fora do ar a pagina tem de ficar HONESTA — dizer que nao mediu e NAO servir a grade. Bancada."
     }
   ],
   "esquema": {

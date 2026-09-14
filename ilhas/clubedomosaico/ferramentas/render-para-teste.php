@@ -757,7 +757,7 @@ function cdm_teste_pagina_peca($peca, $titulo = 'Clube do Mosaico — teste') {
 /**
  * AS PAGINAS QUE "EXISTEM" no site de teste.
  *
- *   'hoje'  — exatamente as nove que estao no ar em 11/09/2026.
+ *   'hoje'  — exatamente as que estao no ar (11 desde 14/09/2026).
  *   'todas' — as nove MAIS as seis categorias do Guia, para FABRICAR A BORDA que
  *             o mundo ainda nao tem: com tres secoes, nenhuma pagina chega a ter
  *             cinco irmas candidatas, entao trocar o teto de 4 do 16.4(c) por 5
@@ -772,6 +772,8 @@ function cdm_teste_paginas_no_ar($modo = 'hoje') {
 		/* As duas ferramentas, nivel 3 com mae /materiais/, desde o bloco 4. */
 		'materiais/qual-cola-usar-no-mosaico'=>true,
 		'materiais/quantas-pastilhas-para-mosaico'=>true,
+		/* A primeira pagina da Escola, do bloco das tecnicas de 14/09/2026. */
+		'como-fazer/o-que-e-mosaico-picassiete'=>true,
 	);
 	if ('todas' !== $modo) { return $hoje; }
 	foreach (cdm_casca_categorias_do_guia() as $c) {

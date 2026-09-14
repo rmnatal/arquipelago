@@ -98,10 +98,37 @@ def trocar_no_validador(raiz, velho, novo):
 
 # ------------------------------------------------------------------ mutacoes
 
+def _despublicar(t):
+    t.pop("pagina_publicada", None)
+    t.pop("pagina_publicada_url", None)
+
+
 def m_tecnica_perde_a_tessela(raiz):
     """A unica ligacao do Picassiete com o banco e a louca quebrada. Sem ela, a
     tecnica volta a ser texto sem material e o portao FECHA — e e assim que uma pagina
-    fina nasce: alguem limpa um campo que parecia editorial."""
+    fina nasce: alguem limpa um campo que parecia editorial.
+
+    A MUTACAO TIRA A PAGINA DO AR JUNTO, e isso nao e enfeite: desde que o
+    Picassiete passou a declarar `pagina_publicada`, tirar o material sem tirar a
+    pagina produz um mundo INCOERENTE — pagina publicada com zero item —, que o
+    validador reprova antes de o gerador chegar a contar coisa alguma. O mundo
+    incoerente tem mutacao propria, logo abaixo; esta aqui mede a CONTA, e para
+    medir a conta o mundo tem de existir.
+    """
+    b = carregar(raiz, "tecnicas.json")
+    t = tecnica(b, "picassiette")
+    t["materiais_tipicos"] = None
+    t.pop("materiais_tipicos_fonte_id", None)
+    t["motivo_sem_materiais"] = "mutacao de bancada"
+    _despublicar(t)
+    gravar(raiz, "tecnicas.json", b)
+
+
+def m_pagina_publicada_perde_o_material(raiz):
+    """O MUNDO INCOERENTE: a pagina continua declarada no ar e o material que a
+    sustenta some. E o caminho real pelo qual uma pagina fina sobrevive a uma
+    limpeza de banco — ninguem apaga a pagina, apagam o que a justificava. O
+    gerador TEM de morrer, porque o validador reprova o banco antes."""
     b = carregar(raiz, "tecnicas.json")
     t = tecnica(b, "picassiette")
     t["materiais_tipicos"] = None
@@ -197,6 +224,7 @@ def m_derivado_nao_regerado(raiz):
 MUTACOES = [
     ("Picassiete perde a louca quebrada: o portao FECHA", m_tecnica_perde_a_tessela,
      dict(INTACTO, picassiette=(0, 0))),
+    ("a pagina segue declarada e o material some", m_pagina_publicada_perde_o_material, "morre"),
     ("bizantino ganha pastilha de vidro com fonte", m_bizantino_ganha_pastilha_de_vidro,
      dict(INTACTO, bizantino=(18, 4))),
     ("mencao com ressalva entra na conta", m_ressalva_entra_na_conta, "inflou"),

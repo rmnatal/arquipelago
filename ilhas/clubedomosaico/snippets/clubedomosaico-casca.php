@@ -226,7 +226,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'CDM_CASCA_VERSAO' ) ) {
-	define( 'CDM_CASCA_VERSAO', '1.10.1' );
+	define( 'CDM_CASCA_VERSAO', '1.11.0' );
 	/* O nome do site e a linha que o WordPress serve no <title> da home. A
 	   Aquametria descobriu em 11/09/2026 que a tagline nunca tocada desde o
 	   nascimento da ilha continuava sendo a linha mais lida do site — a do
@@ -377,6 +377,25 @@ if ( ! function_exists( 'cdm_casca_tutoriais' ) ) {
 /** Os tutoriais da Escola. Cada um se registra pelo filtro no snippet dele. */
 function cdm_casca_tutoriais() {
 	$lista = apply_filters( 'cdm_tutoriais', array() );
+
+	return is_array( $lista ) ? $lista : array();
+}
+}
+
+if ( ! function_exists( 'cdm_casca_tecnicas' ) ) {
+/**
+ * As páginas de TÉCNICA da Escola — 1.11.0.
+ *
+ * FILTRO PRÓPRIO E NÃO `cdm_tutoriais`, e a distinção é para o leitor antes de
+ * ser para o código: tutorial é passo a passo de uma peça ("mosaico em vaso de
+ * barro"); técnica é o que a palavra nomeia ("o que é Picassiete"). Jogar as
+ * duas na mesma lista faria a Escola prometer um passo a passo que a página de
+ * técnica não entrega — e a 16.4(a) manda a mãe listar as filhas, não
+ * confundi-las. São duas listas com dois títulos, e cada uma some inteira
+ * quando está vazia.
+ */
+function cdm_casca_tecnicas() {
+	$lista = apply_filters( 'cdm_tecnicas_publicadas', array() );
 
 	return is_array( $lista ) ? $lista : array();
 }
@@ -1369,6 +1388,39 @@ function cdm_casca_tutoriais_html() {
 }
 }
 
+if ( ! function_exists( 'cdm_casca_tecnicas_html' ) ) {
+/**
+ * A listagem das páginas de técnica — 1.11.0.
+ *
+ * Mesma forma da de tutoriais, e pela mesma razão: sai '' quando não há nenhuma
+ * publicada, e quem chama só imprime o título se receber HTML. Listagem vazia
+ * com título em cima é promessa não cumprida.
+ *
+ * `cdm_casca_url_se_existir()` continua sendo o portão: técnica registrada pelo
+ * filtro cuja página ainda não existe no site NÃO vira link. É a trava que a
+ * Aquametria pagou em 08/09/2026 com link de hub para página inexistente.
+ */
+function cdm_casca_tecnicas_html() {
+	$itens = array();
+	foreach ( cdm_casca_tecnicas() as $t ) {
+		$url = cdm_casca_url_se_existir( isset( $t['slug'] ) ? $t['slug'] : '' );
+		if ( '' === $url ) {
+			continue;
+		}
+		$itens[] = '<li class="cdm-card">'
+			. '<h3><a href="' . esc_url( $url ) . '">' . esc_html( $t['titulo'] ) . '</a></h3>'
+			. '<p>' . esc_html( isset( $t['resumo'] ) ? $t['resumo'] : '' ) . '</p>'
+			. '</li>';
+	}
+
+	if ( ! $itens ) {
+		return '';
+	}
+
+	return '<ul class="cdm-cards">' . implode( '', $itens ) . '</ul>';
+}
+}
+
 if ( ! function_exists( 'cdm_casca_vitrine_de_pecas_html' ) ) {
 /**
  * As peças publicadas pela artesã, quando existirem.
@@ -1497,6 +1549,20 @@ function cdm_casca_arvore() {
 	/* Os tutoriais se registram pelo filtro do snippet de cada um, como na
 	   listagem da Escola. Mãe /como-fazer/ enquanto não houver categoria. */
 	foreach ( cdm_casca_tutoriais() as $t ) {
+		if ( empty( $t['slug'] ) || isset( $mapa[ $t['slug'] ] ) ) {
+			continue;
+		}
+		$mapa[ $t['slug'] ] = array( 'nivel' => 3, 'mae' => 'como-fazer', 'rotulo' => $t['titulo'] );
+	}
+
+	/* As técnicas, 1.11.0 — MESMO estado de transição das ferramentas: nível 3
+	   com a mãe de nível 1 direto, dois segmentos de URL em vez de três. A
+	   categoria `/como-fazer/tecnicas/` só nasce com três filhas (16.5), e mover
+	   a URL de uma página já posicionada é proibido pela 12.1 — então o endereço
+	   de hoje pendura na mãe que JÁ existe, exatamente como a F2 e a F1 fizeram
+	   em /materiais/. O nível declarado é o da árvore final, não o da contagem de
+	   barras: foi essa a escolha do bloco 4 e ela vale aqui igual. */
+	foreach ( cdm_casca_tecnicas() as $t ) {
 		if ( empty( $t['slug'] ) || isset( $mapa[ $t['slug'] ] ) ) {
 			continue;
 		}
@@ -1844,6 +1910,20 @@ add_shortcode( 'cdm_home', function () {
 	$html .= cdm_casca_cards_ferramentas_html();
 	$html .= '</div>';
 
+	/* AS TÉCNICAS NA HOME, 1.11.0 — e a razão não é de vitrine, é da 16.4(f): a
+	   home é o segundo link interno que tira a página de técnica da condição de
+	   órfã. Com um link só, vindo da mãe, o portão desta ilha reprova, e ele está
+	   certo: página que recebe um link só é página que o robô visita uma vez. O
+	   mesmo desenho das ferramentas, que já aparecem aqui e em /materiais/. */
+	$tecnicas_home = cdm_casca_tecnicas_html();
+	if ( '' !== $tecnicas_home ) {
+		$html .= '<div class="cdm-secao">';
+		$html .= '<h2>O nome daquilo que você viu</h2>';
+		$html .= '<p>Viu uma peça de caquinho e ficou com o nome na ponta da língua? Aqui a gente explica a técnica e, junto, com o que se cola aquele caquinho em cada superfície.</p>';
+		$html .= $tecnicas_home;
+		$html .= '</div>';
+	}
+
 	$tutoriais = cdm_casca_tutoriais_html();
 	if ( '' !== $tutoriais ) {
 		$html .= '<div class="cdm-secao">';
@@ -2072,6 +2152,19 @@ add_shortcode( 'cdm_como_fazer', function () {
 	$html  = '<div class="cdm-bloco">';
 	$html .= '<p class="cdm-linha-mestra">Passo a passo de mosaico com a lista de materiais ligada ao Guia — e, quando a peça é para presentear, o caminho para comprar uma pronta.</p>';
 	$html .= '<p>Um tutorial que manda "passe a cola" sem dizer qual cola serve naquela base e naquele ambiente é meio tutorial. Aqui cada passo a passo termina com a lista do que comprar, e cada item dessa lista aponta para a ficha do material, onde está a declaração do fabricante.</p>';
+
+	/* AS TÉCNICAS VÊM ANTES DOS TUTORIAIS, 1.11.0 — a 16.4(a) manda a mãe listar
+	   as filhas, e hoje a única filha desta seção é uma página de técnica. Duas
+	   listas com dois títulos: técnica é "o que é isso"; tutorial é "como se
+	   faz". Cada bloco some inteiro quando está vazio. */
+	$tecnicas = cdm_casca_tecnicas_html();
+	if ( '' !== $tecnicas ) {
+		$html .= '<div class="cdm-secao">';
+		$html .= '<h2>As técnicas</h2>';
+		$html .= '<p>O nome que a peça tem, o que ele significa e — porque é disso que esta casa trata — com o que colar aquele caquinho em cada superfície.</p>';
+		$html .= $tecnicas;
+		$html .= '</div>';
+	}
 
 	$tutoriais = cdm_casca_tutoriais_html();
 	if ( '' !== $tutoriais ) {
