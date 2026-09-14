@@ -314,6 +314,18 @@ function aquametria_seo_metas_por_slug() {
 			'titulo'    => 'Quantos litros para um cardume de mato-grosso?',
 			'descricao' => 'Quantos litros para um cardume de mato-grosso? As duas fontes discordam da frente mínima, e esta página publica as duas com o nome de cada uma.',
 		),
+		'quantos-litros-para-peixe-espada' => array(
+			'titulo'    => 'Quantos litros para um peixe-espada?',
+			'descricao' => 'Quantos litros para um peixe-espada? Os 120 × 30 cm de base que a ficha da espécie declara, com nome da fonte e data: o dobro da frente do platy.',
+		),
+		'quantos-litros-para-plati-variatus' => array(
+			'titulo'    => 'Quantos litros para plati variatus?',
+			'descricao' => 'Quantos litros para plati variatus? Os 60 cm de frente que a ficha da espécie declara, com nome e data, e o que separa esta espécie do platy comum.',
+		),
+		'quantos-litros-para-platy' => array(
+			'titulo'    => 'Quantos litros para platy?',
+			'descricao' => 'Quantos litros para platy? Os 60 cm de frente que a ficha da espécie declara, com nome da fonte e data — e por que o litro sozinho engana aqui.',
+		),
 		'quantos-litros-para-rodostomo' => array(
 			'titulo'    => 'Quantos litros para um cardume de rodóstomo?',
 			'descricao' => 'Quantos litros para um cardume de rodóstomo? A fonte declara 90 cm de comprimento e nenhuma largura — e esta página diz isso em vez de inventar.',
@@ -341,6 +353,10 @@ function aquametria_seo_metas_por_slug() {
 		'tetras' => array(
 			'titulo'    => 'Tetras: quantos litros o cardume pede',
 			'descricao' => 'Porte, cardume mínimo e frente mínima dos tetras lado a lado, com a fonte de cada linha — e a conta em litros pelas duas réguas brasileiras.',
+		),
+		'vivaparos' => array(
+			'titulo'    => 'Vivíparos: quantos litros o harém pede',
+			'descricao' => 'Platy, peixe-espada e plati variatus vivem em harém e pedem frentes que diferem em duas vezes: a base mínima de cada um, com nome da fonte e data.',
 		),
 	);
 }

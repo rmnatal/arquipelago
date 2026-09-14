@@ -78,6 +78,13 @@ const PAGINAS = [
   'quantos-litros-para-betta',
   'quantos-litros-para-colisa-anao',
   'quantos-litros-para-gurami-mel',
+  /* A leva 5 (14/09/2026): a categoria /peixes/vivaparos/ e as tres fichas. O
+     peixe-espada traz a maior tabela de companheiro do eixo — 19 linhas —, que e
+     o pior caso de rolagem horizontal que esta ilha ja mediu. */
+  'vivaparos',
+  'quantos-litros-para-platy',
+  'quantos-litros-para-peixe-espada',
+  'quantos-litros-para-plati-variatus',
 ];
 const LARGURAS = [360, 390, 781, 782, 783, 1200];
 

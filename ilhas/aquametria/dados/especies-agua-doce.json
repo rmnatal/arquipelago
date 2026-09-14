@@ -3231,9 +3231,9 @@
     "Xiphophorus guntheri"
    ],
    "nomes_populares_br": [
+    "peixe-espada",
     "espada",
-    "espadinha",
-    "peixe-espada"
+    "espadinha"
    ],
    "familia": "Poeciliidae",
    "origem_geografica": null,
@@ -3307,7 +3307,7 @@
    "conflitos": [],
    "verificado_em": "2026-09-09",
    "status_registro": "completo",
-   "observacao": "O contraste com o platy (X. maculatus, ja no banco) e o achado: dois vivipara da mesma familia, vendidos lado a lado na mesma loja, e as fontes pedem 60 cm de frente para um e 120 cm para o outro. A espada e o peixe que mais aparece em aquario de 60 L no Brasil e o que menos cabe nele. Convivencia harem, e nao grupo, porque a fonte declara varias femeas por macho: e o assedio do macho, nao a lotacao, que define o arranjo. ATRIBUICAO CORRIGIDA em 13/09/2026: a frase acima dizia 'o compendio pede 60 cm para um e 120 para o outro', e o sujeito estava errado na metade dos 60 - quem declara os 60 cm do platy e a BASE CIENTIFICA (e esta no campos[] da fonte dele), enquanto os 120 x 30 cm desta especie sao do COMPENDIO. Nao muda numero nenhum e muda o que a frase afirma: o contraste continua valendo e agora esta no escopo do que foi medido, que e a regra da secao 7. Achado de carona na coleta do X. variatus, quando a base devolveu 80 cm para ESTA especie - numero mais baixo que os 120 do compendio, e que nao entra no campo justamente porque o dominio_por_campo poe o compendio na frente em campo de manutencao. Os 80 cm ficam escritos aqui, sem virar conflito[], porque conflito e a estrutura dos valores que o banco ACEITA e a faixa de frente usa o MAIOR: gravar 80 ali nao mudaria a resposta e publicaria um segundo numero sem necessidade."
+   "observacao": "O contraste com o platy (X. maculatus, ja no banco) e o achado: dois vivipara da mesma familia, vendidos lado a lado na mesma loja, e as fontes pedem 60 cm de frente para um e 120 cm para o outro. A espada e o peixe que mais aparece em aquario de 60 L no Brasil e o que menos cabe nele. Convivencia harem, e nao grupo, porque a fonte declara varias femeas por macho: e o assedio do macho, nao a lotacao, que define o arranjo. ATRIBUICAO CORRIGIDA em 13/09/2026: a frase acima dizia 'o compendio pede 60 cm para um e 120 para o outro', e o sujeito estava errado na metade dos 60 - quem declara os 60 cm do platy e a BASE CIENTIFICA (e esta no campos[] da fonte dele), enquanto os 120 x 30 cm desta especie sao do COMPENDIO. Nao muda numero nenhum e muda o que a frase afirma: o contraste continua valendo e agora esta no escopo do que foi medido, que e a regra da secao 7. Achado de carona na coleta do X. variatus, quando a base devolveu 80 cm para ESTA especie - numero mais baixo que os 120 do compendio, e que nao entra no campo justamente porque o dominio_por_campo poe o compendio na frente em campo de manutencao. Os 80 cm ficam escritos aqui, sem virar conflito[], porque conflito e a estrutura dos valores que o banco ACEITA e a faixa de frente usa o MAIOR: gravar 80 ali nao mudaria a resposta e publicaria um segundo numero sem necessidade. ORDEM DOS NOMES POPULARES TROCADA EM 14/09/2026, na leva que publicou a ficha, pelo mesmo precedente da colisa-anao em 14/09: aquametria_peixes_nome() le o PRIMEIRO deste campo e e ele que vai para o titulo, para o corpo e para a tabela da categoria, e a consulta classificada na SERP em 13/09/2026 e 'quantos litros para peixe espada', nao 'espada'. Com 'espada' na frente o titulo da ficha e o corpo dela serviriam nomes diferentes a uma linha de distancia, e 'espada' sozinho e ambiguo fora do aquarismo."
   },
   {
    "id": "chromobotia-macracanthus",

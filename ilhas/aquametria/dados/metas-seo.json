@@ -118,6 +118,26 @@
    "titulo": "Quantos litros para um grupo de gurami mel?",
    "url": "https://aquametria.com.br/peixes/bettas/quantos-litros-para-gurami-mel/",
    "meta_descricao": "Quantos litros para um grupo de gurami mel? A base e o grupo mínimo de 4 a 6 que a ficha da espécie declara, com nome da fonte e data."
+  },
+  "vivaparos": {
+   "titulo": "Vivíparos: quantos litros o harém pede",
+   "url": "https://aquametria.com.br/peixes/vivaparos/",
+   "meta_descricao": "Platy, peixe-espada e plati variatus vivem em harém e pedem frentes que diferem em duas vezes: a base mínima de cada um, com nome da fonte e data."
+  },
+  "quantos-litros-para-platy": {
+   "titulo": "Quantos litros para platy?",
+   "url": "https://aquametria.com.br/peixes/vivaparos/quantos-litros-para-platy/",
+   "meta_descricao": "Quantos litros para platy? Os 60 cm de frente que a ficha da espécie declara, com nome da fonte e data — e por que o litro sozinho engana aqui."
+  },
+  "quantos-litros-para-peixe-espada": {
+   "titulo": "Quantos litros para um peixe-espada?",
+   "url": "https://aquametria.com.br/peixes/vivaparos/quantos-litros-para-peixe-espada/",
+   "meta_descricao": "Quantos litros para um peixe-espada? Os 120 × 30 cm de base que a ficha da espécie declara, com nome da fonte e data: o dobro da frente do platy."
+  },
+  "quantos-litros-para-plati-variatus": {
+   "titulo": "Quantos litros para plati variatus?",
+   "url": "https://aquametria.com.br/peixes/vivaparos/quantos-litros-para-plati-variatus/",
+   "meta_descricao": "Quantos litros para plati variatus? Os 60 cm de frente que a ficha da espécie declara, com nome e data, e o que separa esta espécie do platy comum."
   }
  }
 }

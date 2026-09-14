@@ -112,6 +112,16 @@ $GLOBALS['__paginas'] = array(
 	'quantos-litros-para-betta'                 => true,
 	'quantos-litros-para-colisa-anao'           => true,
 	'quantos-litros-para-gurami-mel'            => true,
+	/* A leva 5 (14/09/2026): a QUARTA categoria, e a primeira em que NENHUMA
+	   filha tem numero declarado. As tres vivem em harem, que e o unico arranjo
+	   do mapa cujo `fixo` e nulo E que nao traz numero do banco — ate aqui ele
+	   era o terceiro mundo da escada de lotacao sem uma pagina que o exercitasse.
+	   E o peixe-espada, com 16 cm, e o maior peixe com ficha da ilha: e nele que
+	   a tabela de "quantos cabem" chega a UM exemplar pela primeira vez. */
+	'vivaparos'                                 => true,
+	'quantos-litros-para-platy'                 => true,
+	'quantos-litros-para-peixe-espada'          => true,
+	'quantos-litros-para-plati-variatus'        => true,
 );
 
 aquametria_teste_carregar( $raiz );

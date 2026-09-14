@@ -1,6 +1,82 @@
 /**
  * Aquametria Peixes — a malha do eixo /peixes/
- * Versão: 1.7.0 (14/09/2026) — LEVA 4: A TERCEIRA CATEGORIA DO EIXO, E O EIXO
+ * Versão: 1.8.0 (14/09/2026) — LEVA 5: A QUARTA CATEGORIA, E A PRIMEIRA EM QUE
+ * NENHUMA FILHA TEM NÚMERO DECLARADO. Quatro URLs novas: /peixes/vivaparos/ e as
+ * fichas do platy, do peixe-espada e do plati variatus. A ilha vai de 32 para
+ * 36 URLs.
+ *
+ *   O QUE A CATEGORIA CUSTOU, e de novo não foi preencher a lista. As três
+ *   vivem em `harem`, e harém é o único valor do vocabulário fechado em que a
+ *   fonte descreve a PROPORÇÃO entre os sexos — mais fêmeas do que machos, para
+ *   dissipar o assédio — e nunca o tamanho do grupo. A leva 4 escreveu os três
+ *   mundos da escada de lotação e publicou dois; o terceiro, o do arranjo sem
+ *   número, ficou como ramo de RESGATE, e ramo de resgate é régua que não pode
+ *   falhar.
+ *
+ *   ELE ESTAVA ERRADO, e do jeito exato que o contrato prevê: abria pela
+ *   tradução do `como_vive()`, que carrega a oração do temperamento. A primeira
+ *   frase da ficha do platy sairia como "Para o platy, que vive em harém, um
+ *   macho para várias fêmeas, E A FONTE O DECLARA PACÍFICO, o seu aquário
+ *   precisa de..." — procedência abrindo a página, que é o que o item 4 do
+ *   despacho da Sentinela de 13/09/2026 tirou das onze fichas antigas (15.2).
+ *   O ramo virou branch com nome, com abertura própria no mapa do arranjo, e o
+ *   resgate deixou de existir: `aquametria_peixes_pode_virar_ficha()` passa a
+ *   exigir que o termo esteja no vocabulário fechado, que é o que o cabeçalho
+ *   da 1.7.0 já afirmava e o código não fazia — bastava `cardume_minimo`
+ *   preenchido para uma `convivencia` qualquer virar página chamando o peixe de
+ *   cardume.
+ *
+ *   E DOIS DEFEITOS QUE JÁ ESTAVAM NO AR SAÍRAM JUNTO, os dois de CONCORDÂNCIA,
+ *   os dois medidos no HTML servido em 14/09/2026:
+ *
+ *   1. "1 ficaram fora porque o banco OS declara agressivoS" — a frase da
+ *      prestação de contas nasceu plural e o banco tem UM peixe agressivo, o
+ *      mato-grosso. Até esta leva ele ou aparecia junto com o betta (dois) ou
+ *      não aparecia (zero, e a frase nem sai); a coridora sterbai já servia a
+ *      versão errada desde 12/09. Nasceu `aquametria_peixes_concorda()`.
+ *
+ *   2. "cabem 1 coridora sterbai ... A diferença entre os dois é de 4 vezes" —
+ *      duas coisas na mesma frase. O verbo, e o número: o "4 vezes" saía das
+ *      CONSTANTES (4 L/cm contra 1 cm/L), e a razão entre as réguas só é a razão
+ *      entre os NÚMEROS DA TELA enquanto o arredondamento para baixo não morde.
+ *      Ele mordia em DEZ das quatorze fichas no ar — 4,2 no cardinal, 5 no
+ *      tetra-negro, 5,5 no gurami mel, 6 na sterbai — e morde mais no
+ *      peixe-espada, que com 16 cm é o maior peixe com ficha da ilha: a linha do
+ *      meio dá 7 e 1, que é SETE vezes, com a frase anunciando quatro a uma
+ *      linha de distância dos dois números que a desmentem. É o escopo de
+ *      afirmação da seção 8: a frase fala do que ela imprimiu, e agora a razão é
+ *      derivada dos dois números impressos.
+ *
+ *   A LINHA MESTRA DA CATEGORIA FOI REESCRITA NA LEVA QUE A PUBLICOU, pelo mesmo
+ *   motivo que a da `bettas`: a de 13/09 prometia um número que a página não
+ *   paga — "quantos vão existir daqui a três meses, e o macho é quem manda nessa
+ *   conta" —, e nenhuma fonte deste banco declara taxa de reprodução. Pior: ela
+ *   dizia que manda o MACHO e o critério logo abaixo dizia que manda a FÊMEA, as
+ *   duas na mesma tela e nenhuma medida. O critério também perdeu a frase da
+ *   fêmea: dos três registros, dois declaram o porte da fêmea e o do plati
+ *   variatus não declara sexo nenhum. O que as duas dizem agora é o que a tabela
+ *   paga linha a linha — o arranjo sem número, e a frente que varia em duas
+ *   vezes DENTRO de um gênero só.
+ *
+ *   A CATEGORIA DECLARA AS CINCO POECILIIDAE, e aqui os dois barrados não são
+ *   vizinhança: são o guppy e o molly, os dois vivíparos MAIS vendidos do
+ *   Brasil, cada um a UM campo de entrar. Saem na página com nome e causa.
+ *
+ *   A SERP DA MÃE FOI CLASSIFICADA EM 14/09/2026 e é a única do eixo em que o
+ *   top 7 não fala do assunto: devolve as páginas genéricas de "quantos peixes
+ *   cabem no aquário", com a regra por centímetro em três versões que discordam
+ *   entre si e o "10 litros vagos + 5 litros por peixe" — a conta per capita que
+ *   esta ilha recusa desde a leva 1. As três fichas seguem com `serp_em`
+ *   13/09/2026, que é quando elas foram medidas.
+ *
+ *   E UMA TROCA DE TELA NO BANCO, declarada, pelo precedente da colisa-anão: os
+ *   nomes populares do `xiphophorus-hellerii` foram reordenados para pôr
+ *   "peixe-espada" na frente. `aquametria_peixes_nome()` lê o PRIMEIRO do campo e
+ *   é ele que vai para o título, para o corpo e para a tabela da categoria; a
+ *   consulta classificada é "quantos litros para peixe espada", e "espada"
+ *   sozinho é ambíguo fora do aquarismo.
+ *
+ * HISTÓRICO — versão 1.7.0 (14/09/2026) — LEVA 4: A TERCEIRA CATEGORIA DO EIXO, E O EIXO
  * APRENDE QUE PEIXE NEM SEMPRE VIVE EM CARDUME. Quatro URLs novas:
  * /peixes/bettas/ e as fichas do betta, da colisa-anão e do gurami mel.
  *
@@ -300,7 +376,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AQUAMETRIA_PEIXES_VERSAO' ) ) {
-	define( 'AQUAMETRIA_PEIXES_VERSAO', '1.7.0' );
+	define( 'AQUAMETRIA_PEIXES_VERSAO', '1.8.0' );
 }
 
 /* A data em que a SERP das consultas foi classificada (seção 14.9).
@@ -2151,9 +2227,9 @@ function aquametria_peixes_catalogo() {
 				'Xiphophorus guntheri',
 			),
 			'populares' => array(
+				'peixe-espada',
 				'espada',
 				'espadinha',
-				'peixe-espada',
 			),
 			'familia' => 'Poeciliidae',
 			'origem' => '',
@@ -2944,6 +3020,57 @@ function aquametria_peixes_registro() {
 			'serp_em'  => '13/09/2026',
 			'porque'   => 'Medido em 13/09/2026: o top é seis fichas de aquarismo e três páginas de produto de loja, com 40 L, 36 L para um exemplar sozinho e 56 L para um grupo de três — e um deles chega a declarar a BASE, 60 × 30 × 30 cm, que é o número que esta ilha publica com o nome da fonte do lado. É ALVO, e a vantagem daqui é a outra metade: o compêndio declara que a espécie NÃO é de cardume no sentido dos lambaris, que a compra recomendada é de 4 a 6 exemplares e que o grupo forma hierarquia, com o dominante enxotando o rival na hora da comida. Nenhuma resposta do top publica o arranjo ao lado do espaço.',
 		),
+
+		/* --- LEVA 5, 14/09/2026: a QUARTA categoria do eixo, e a primeira em
+		   que NENHUMA filha tem número declarado. A mãe e as três filhas saem
+		   juntas, que é o 16.6. Nenhuma URL das levas 1 a 4 muda.
+
+		   AS TRÊS FICHAS declaram `serp_em` => '13/09/2026', porque foi nesse
+		   dia que as três consultas foram classificadas, na execução das 21h21Z
+		   que preparou a categoria. A MÃE declara 14/09/2026, que é o dia da
+		   própria leva: a consulta dela não existia classificada e foi medida
+		   nesta execução. --- */
+
+		'vivaparos' => array(
+			'nivel'    => 2,
+			'pai'      => 'peixes',
+			'titulo'   => 'Vivíparos: quantos litros o harém pede',
+			'conteudo' => '[aquametria_peixes_categoria]',
+			'consulta' => 'quantos litros para peixes vivíparos',
+			'serp_em'  => '14/09/2026',
+			'porque'   => 'Medido em 14/09/2026, e o achado é a ausência: NENHUMA das sete primeiras respostas fala de vivíparo. A consulta devolve as páginas genéricas de "quantos peixes cabem no meu aquário" — dois blogs de pet shop, uma ficha de aquarismo, uma loja portuguesa, um fórum, um artigo de 2020 e um Blogspot de 2013 —, e o que elas publicam é a regra por centímetro de peixe, em três versões que discordam entre si na mesma página de resultados (1 L por cm até 2 cm, 1,5 L por cm de 2 a 5 cm, 2 L por cm de 5 a 10 cm), mais o "10 litros vagos + 5 litros por peixe" que apareceu na busca vizinha. É a conta per capita que esta ilha recusa desde a leva 1, publicada ali como se fosse regra. Nenhum domínio forte, nenhuma atribuição, e o próprio resumo da busca termina mandando o leitor pesquisar espécie por espécie — que é exatamente a tabela que esta página é. ALVO, e do tipo mais limpo do eixo: aqui a ilha não disputa um número com ninguém, ela ocupa um lugar vazio.',
+		),
+		'quantos-litros-para-platy' => array(
+			'nivel'    => 3,
+			'pai'      => 'vivaparos',
+			'especie'  => 'xiphophorus-maculatus',
+			'titulo'   => 'Quantos litros para platy?',
+			'conteudo' => '[aquametria_peixes_ficha]',
+			'consulta' => 'quantos litros para platy',
+			'serp_em'  => '13/09/2026',
+			'porque'   => 'Medido em 13/09/2026: top 8 com UM domínio forte de varejo (blog da Cobasi) e sete entre loja, blog e ficha estrangeira. A mesma página de resultados dá 40 L, 30 L para um trio, 50 L para comunitário, 80 L e 60 L para seis; nenhum atribui o número a fonte nomeada e nenhum publica a base. Um domínio forte não é "quase tudo" (14.9), e o que ele serve é blog de varejo sem procedência. É ALVO, e a vantagem daqui é o que o mercado não diz: a base de 60 cm é declarada, e o que decide a lotação depois não é quantos você comprou.',
+		),
+		'quantos-litros-para-peixe-espada' => array(
+			'nivel'    => 3,
+			'pai'      => 'vivaparos',
+			'especie'  => 'xiphophorus-hellerii',
+			'titulo'   => 'Quantos litros para um peixe-espada?',
+			'conteudo' => '[aquametria_peixes_ficha]',
+			'consulta' => 'quantos litros para peixe espada',
+			'serp_em'  => '13/09/2026',
+			'serp_nota' => 'Esta é a consulta mais valiosa da categoria, e virou medição em vez de leitura: a SERP brasileira recomenda 60 L para o peixe que o compêndio declara com 120 cm de frente. A observação do registro dele já dizia, desde 09/09/2026, que é "o peixe que mais aparece em aquário de 60 L no Brasil e o que menos cabe nele" — era leitura de quem escreveu o registro; em 13/09/2026 passou a ser o que o top 10 publica.',
+			'porque'   => 'Medido em 13/09/2026: top 10 de blog, loja e um blogspot de 2013, dando 60 L para grupo e 100 L para casal, nenhum atribuído. É ALVO, e é a ficha em que a distância entre a fonte e o mercado é a maior desta categoria: o compêndio declara base de 120 × 30 cm, que é o dobro da frente do platy — o peixe vendido na prateleira do lado, no mesmo gênero.',
+		),
+		'quantos-litros-para-plati-variatus' => array(
+			'nivel'    => 3,
+			'pai'      => 'vivaparos',
+			'especie'  => 'xiphophorus-variatus',
+			'titulo'   => 'Quantos litros para plati variatus?',
+			'conteudo' => '[aquametria_peixes_ficha]',
+			'consulta' => 'quantos litros para plati variatus',
+			'serp_em'  => '13/09/2026',
+			'porque'   => 'Medido em 13/09/2026: a SERP responde com páginas do OUTRO peixe — o resultado editorial do topo é a ficha do Xiphophorus maculatus e o resumo mistura os números dos dois. A SERP trata as duas espécies como uma, e a mesma base que sustenta este banco as separa em DOIS campos ao mesmo tempo: 7,0 contra 6,0 cm TL de porte e 15 a 25 contra 18 a 25 °C de faixa. É o buraco mais limpo que esta categoria tem para ocupar, e a página ganha por publicar a diferença entre os dois em vez de repeti-los como um só.',
+		),
 	);
 }
 }
@@ -3046,9 +3173,47 @@ function aquametria_peixes_categorias() {
 			'rotulo'   => 'Vivíparos',
 			'plural'   => 'vivíparos',
 			'singular' => 'todo vivíparo',
-			'linha_mestra' => 'Estes peixes não põem ovo: nascem nadando, e nascem muitos — então o número que decide o seu aquário não é quantos você comprou, é quantos vão existir daqui a três meses, e o macho é quem manda nessa conta.',
-			'criterio' => 'Os vivíparos da família Poeciliidae que a loja brasileira vende como plati, espada, molinésia e lebiste. A família serve de critério e o gênero não, e por um motivo que o aquarista reconhece na prateleira: plati e espada são o mesmo gênero e pedem frentes de aquário que diferem em duas vezes, enquanto plati e molinésia são gêneros diferentes e pedem água da mesma dureza. Quem decide a resposta aqui é o tamanho adulto da fêmea, porque nesta família é ela que carrega a carga — e é ela que o vendedor não separa na hora de vender. O que esta tabela publica é o vivíparo cujos sete campos os dois corpos de fonte sustentam; espécie a um campo de distância fica de fora e a frente mínima dela NÃO é completada pela da espécie vizinha, que é o atalho que faria esta lista crescer hoje e mentir amanhã. Quantas estão dentro e quantas esperam está contado logo abaixo da tabela, nunca escrito aqui.',
-			'especies' => array(),
+			/* A LINHA MESTRA FOI REESCRITA EM 14/09/2026, na leva que publicou a
+			   página, e pelo mesmo motivo que a da `bettas` tinha sido: a de
+			   13/09 prometia um número que esta página não paga. Ela dizia que o
+			   que decide o aquário é "quantos vão existir daqui a três meses, e o
+			   macho é quem manda nessa conta" — e nenhuma fonte deste banco
+			   declara taxa de reprodução, ninhada nem prazo. Pior: ela dizia que
+			   manda o MACHO e o critério logo abaixo dizia que manda a fêmea, as
+			   duas afirmações na mesma tela, nenhuma das duas medida.
+
+			   O que a tabela paga, linha a linha, são duas coisas, e a linha
+			   mestra agora diz exatamente essas duas: as três declaram o ARRANJO
+			   e nenhuma declara o NÚMERO (a coluna "Como vive" repete "número não
+			   declarado" três vezes — é a única categoria do eixo assim), e a
+			   frente mínima varia em duas vezes DENTRO de um gênero só. */
+			/* E A PRIMEIRA ESCRITA DESTA LINHA REPROVOU NO PORTÃO DA VOZ, por
+			   duas coisas ao mesmo tempo: ela abria por "as fontes destes três
+			   declaram", que é procedência na primeira frase (15.2), e falava do
+			   banco em vez de falar com quem lê. A versão abaixo diz os mesmos
+			   dois fatos medidos, na segunda pessoa e sem citar quem declarou —
+			   quem declarou está duas telas abaixo, na tabela. */
+			'linha_mestra' => 'Vivíparo não tem um número: destes três está declarado com quem cada um vive — mais fêmeas do que machos — e nunca quantos. O que decide o seu aquário é a frente, e entre dois peixes do mesmo gênero, vendidos na mesma prateleira, ela varia em duas vezes.',
+			'criterio' => 'Os vivíparos da família Poeciliidae que a loja brasileira vende como plati, espada, molinésia e lebiste. A família serve de critério e o gênero não, e por um motivo que o aquarista reconhece na prateleira: plati e espada são o mesmo gênero e pedem frentes de aquário que diferem em duas vezes, enquanto plati e molinésia são gêneros diferentes e pedem água da mesma dureza. Quem decide a resposta aqui é a frente mínima que a fonte declara para cada espécie, uma por uma, e ela não se deduz do parentesco: a maior distância desta tabela está dentro do gênero Xiphophorus, e não entre gêneros. O que esta tabela publica é o vivíparo cujos sete campos os dois corpos de fonte sustentam; espécie a um campo de distância fica de fora e a frente mínima dela NÃO é completada pela da espécie vizinha, que é o atalho que faria esta lista crescer hoje e mentir amanhã. Quantas estão dentro e quantas esperam está contado logo abaixo da tabela, nunca escrito aqui.',
+			/* A LEVA 5, 14/09/2026: a lista sai do vazio. As três que passam no
+			   portão de página são as três `Xiphophorus`, e a categoria nasce no
+			   mínimo exato do 16.5, sem folga — a mesma posição da `bettas`.
+
+			   AS DUAS `Poecilia` SÃO DECLARADAS AQUI E O PORTÃO AS BARRA, e aqui
+			   isso não é refinamento: são os dois vivíparos MAIS vendidos do
+			   Brasil. Sem declará-los, a frase de lista fechada desta página
+			   diria que todo vivíparo que o banco sustenta já tem página — e o
+			   banco sustenta os dois registros, cada um a um campo de distância.
+			   Declarados, eles saem da tabela e entram na lista de fora, com nome
+			   e causa: o guppy por ter duas urls de um corpo só e o molly por não
+			   ter frente mínima declarada por ninguém. */
+			'especies' => array(
+				'xiphophorus-maculatus',
+				'xiphophorus-hellerii',
+				'xiphophorus-variatus',
+				'poecilia-reticulata',
+				'poecilia-sphenops',
+			),
 		),
 	);
 }
@@ -3098,6 +3263,19 @@ function aquametria_peixes_porte_faixa( $e ) {
  */
 if ( ! function_exists( 'aquametria_peixes_pode_virar_ficha' ) ) {
 function aquametria_peixes_pode_virar_ficha( $e ) {
+	/* O VOCABULÁRIO FECHADO É PARTE DO PORTÃO desde 14/09/2026 (leva 5), e essa
+	   metade faltava. O cabeçalho da 1.7.0 já dizia que termo fora do mapa do
+	   arranjo "devolve null e a espécie não vira ficha" — e não era verdade:
+	   bastava `cardume_minimo` preenchido para a espécie passar por aqui com
+	   `convivencia` qualquer, e a ficha então abriria chamando de "cardume
+	   mínimo" um peixe que a fonte não declarou de cardume. É a mesma família do
+	   defeito que a leva 4 consertou, um nível mais fundo. O esquema enumera os
+	   cinco valores e o validador reprova o sexto; esta linha é o que garante
+	   que, se um sexto nascer no esquema sem nascer no mapa, a página não sai em
+	   vez de sair com o vocabulário errado. */
+	if ( null === aquametria_peixes_arranjo( $e ) ) {
+		return false;
+	}
 	if ( ! empty( $e['cardume'] ) ) {
 		return true;
 	}
@@ -3253,7 +3431,22 @@ function aquametria_peixes_arranjo( $e ) {
 			'acao'     => 'viver em harém',
 			'curto'    => 'em harém',
 			'vive'     => 'vive em harém',
-			'abertura' => '',
+			/* A ABERTURA DO HARÉM NASCEU NA LEVA 5 (14/09/2026), e antes dela
+			   este campo era a string vazia porque nenhuma página o usava. Sem
+			   ela a ficha caía no ramo de resgate, que abre pela tradução do
+			   `como_vive()` — e essa tradução carrega a oração do temperamento,
+			   "e a fonte o declara pacífico". A abertura da ficha citando quem
+			   declarou é exatamente o que o item 4 do despacho da Sentinela de
+			   13/09/2026 tirou das onze fichas antigas (15.2), e ele voltaria
+			   pela porta de trás na primeira página de harém.
+
+			   O que a frase diz é a tradução do próprio termo do esquema, do
+			   mesmo jeito que "e é um por aquário, não dois" traduz `solitario`:
+			   os três registros de harém do banco têm a mesma sentença de fonte
+			   por trás — mais fêmeas do que machos, para dissipar o assédio do
+			   macho — e nenhum deles declara QUANTAS. É por isso que a frase
+			   não traz número, e é por isso que `minimo` fica vazio. */
+			'abertura' => 'e harém quer dizer mais fêmeas do que machos, nunca um casal',
 			'de'       => 'um harém de',
 			'este'     => 'este harém',
 			'minimo'   => '',
@@ -3508,6 +3701,28 @@ function aquametria_peixes_como_vive( $e ) {
 }
 }
 
+/**
+ * Concordância de número: a forma singular quando a contagem é UM.
+ *
+ * Nasceu na leva 5 (14/09/2026), e as três frases que ela conserta estavam no ar
+ * desde 12/09 sem poder errar. "N ficaram fora porque o banco os declara
+ * agressivos" é verdade com dois e é agramatical com um — e até esta leva o
+ * único peixe agressivo do banco, o mato-grosso, ou encostava na faixa de
+ * temperatura da ficha junto com o betta (dois) ou não encostava (zero, e a
+ * frase nem sai). O platy e o plati variatus são as primeiras fichas em que ele
+ * aparece SOZINHO. Mesma coisa em "cabem N": só um peixe grande o bastante faz
+ * o critério conservador arredondar para baixo até um, e o peixe-espada, com
+ * 16 cm, é o maior peixe com ficha desta ilha.
+ *
+ * A régua é a contagem, nunca o texto: quem chama passa as duas formas e o
+ * número que ele mesmo contou.
+ */
+if ( ! function_exists( 'aquametria_peixes_concorda' ) ) {
+function aquametria_peixes_concorda( $n, $singular, $plural ) {
+	return ( 1 === (int) $n ) ? $singular : $plural;
+}
+}
+
 /** O nome que a pessoa digita: o primeiro popular do banco. */
 if ( ! function_exists( 'aquametria_peixes_nome' ) ) {
 function aquametria_peixes_nome( $e ) {
@@ -3692,9 +3907,30 @@ function aquametria_peixes_ficha_html( $slug ) {
 			. esc_html( $nome ) . ', o seu aquário precisa de '
 			. esc_html( aquametria_peixes_num( $frente[1] ) ) . ' cm de frente';
 	} else {
-		$html .= 'Para o ' . esc_html( $nome ) . ', que vive '
-			. esc_html( aquametria_peixes_como_vive( $e ) )
-			. ', o seu aquário precisa de '
+		/* O TERCEIRO MUNDO, e a leva 5 (14/09/2026) foi a primeira a publicá-lo:
+		   o arranjo está declarado e o NÚMERO não está — é o harém, e é o único
+		   valor do vocabulário fechado em que a fonte descreve a proporção entre
+		   os sexos e nunca o tamanho do grupo.
+
+		   ATÉ AQUI ESTE RAMO ERA O DE RESGATE: ele abria pela tradução do
+		   `como_vive()`, que carrega a oração do temperamento — "que vive em
+		   harém, um macho para várias fêmeas, E A FONTE O DECLARA PACÍFICO" —, e
+		   a primeira frase da página voltaria a citar quem declarou, contra a
+		   15.2 e contra o item 4 do despacho da Sentinela de 13/09/2026. Como
+		   nenhuma das 14 fichas no ar caía aqui, o defeito não tinha como ser
+		   medido por página nenhuma: régua escrita para um mundo que nunca
+		   aconteceu (seção 8 do ARQUIPELAGO.md).
+
+		   E O RAMO DE RESGATE DEIXOU DE EXISTIR, em vez de ser consertado: o
+		   vocabulário é fechado nos DOIS lados — o esquema enumera os cinco
+		   valores de `convivencia` e o validador reprova qualquer outro, e
+		   `aquametria_peixes_arranjo()` tem os mesmos cinco. Quem não estiver no
+		   mapa não passa mais no portão de página (ver
+		   `aquametria_peixes_pode_virar_ficha()`), então aqui o arranjo é sempre
+		   conhecido e os três ramos cobrem o mundo inteiro. Ramo que não pode
+		   ser alcançado é régua que não pode falhar. */
+		$html .= 'Para ' . esc_html( $arranjo['de'] ) . ' ' . esc_html( $nome )
+			. ' — ' . esc_html( $arranjo['abertura'] ) . ' —, o seu aquário precisa de '
 			. esc_html( aquametria_peixes_num( $frente[1] ) ) . ' cm de frente';
 	}
 	if ( $larg ) {
@@ -3855,12 +4091,38 @@ function aquametria_peixes_ficha_html( $slug ) {
 		} elseif ( isset( $litros_alturas[ $meio_altura ] ) ) {
 			$q = aquametria_peixes_quantos_cabem( $litros_alturas[ $meio_altura ], $porte[1] );
 			$html .= '<p>Traduzindo a linha do meio: no aquário mínimo com '
-				. esc_html( aquametria_peixes_num( $meio_altura ) ) . ' cm de altura cabem '
-				. esc_html( $q['conservadora'] ) . ' ' . esc_html( $nome )
-				. ' pelo critério apertado e ' . esc_html( $q['classica'] )
-				. ' pelo critério folgado. A diferença entre os dois é de '
-				. esc_html( aquametria_peixes_num( AQUAMETRIA_PEIXES_LOTACAO_CONSERVADORA / AQUAMETRIA_PEIXES_LOTACAO_CLASSICA ) )
-				. ' vezes, e é assim que as fontes brasileiras estão. Quem está montando o primeiro aquário faz melhor ficando perto do número apertado: o que sobra de espaço vira margem para o dia em que a filtragem falhar.</p>';
+				. esc_html( aquametria_peixes_num( $meio_altura ) ) . ' cm de altura ';
+			if ( (int) $q['conservadora'] < 1 ) {
+				/* O CASO EM QUE O CRITÉRIO APERTADO NÃO PÕE NEM UM, e ele é a
+				   borda deste bloco: com peixe grande o bastante, o conservador
+				   arredonda para baixo até zero DENTRO do aquário que a própria
+				   fonte declara como mínimo. Dizer "cabem 0" ali seria publicar
+				   uma contradição sem nome; o que a página deve é a contradição
+				   COM nome, porque ela é o assunto da ficha. Nenhum peixe do
+				   banco com ficha chega a isso hoje — a mutação que produz o
+				   mundo é quem mede este ramo (seção 8 do ARQUIPELAGO.md). */
+				$html .= 'o critério apertado não põe nem um ' . esc_html( $nome )
+					. ', e o folgado põe ' . esc_html( $q['classica'] )
+					. '. Os dois números saem do mesmo litro, e é a base declarada — não a régua de lotação — que decide aqui.';
+			} else {
+				$html .= esc_html( aquametria_peixes_concorda( $q['conservadora'], 'cabe', 'cabem' ) ) . ' '
+					. esc_html( $q['conservadora'] ) . ' ' . esc_html( $nome )
+					. ' pelo critério apertado e ' . esc_html( $q['classica'] )
+					. ' pelo critério folgado. ';
+				/* A DIFERENÇA É ENTRE OS DOIS NÚMEROS DA TELA, e não entre as duas
+				   constantes. Até 14/09/2026 esta frase imprimia 4 vezes, que é a
+				   razão entre as réguas — e ela é a razão entre os NÚMEROS só
+				   enquanto o arredondamento para baixo não morde. No peixe-espada
+				   morde: a linha do meio dá 7 e 1, que é SETE vezes, e a frase
+				   anunciava quatro a uma linha de distância dos dois números que
+				   a desmentem. É o escopo de afirmação da seção 8, e ele só podia
+				   aparecer numa ficha de peixe grande, que esta ilha não tinha. */
+				$vezes = $q['classica'] / $q['conservadora'];
+				$html .= 'A diferença entre os dois é de '
+					. esc_html( aquametria_peixes_num( $vezes ) )
+					. ' vezes, e é assim que as fontes brasileiras estão.';
+			}
+			$html .= ' Quem está montando o primeiro aquário faz melhor ficando perto do número apertado: o que sobra de espaço vira margem para o dia em que a filtragem falhar.</p>';
 		}
 	}
 
@@ -4043,15 +4305,22 @@ function aquametria_peixes_ficha_html( $slug ) {
 		   (seção 7 — causa que o código separa, o texto separa). */
 		$html .= '<p class="aqm-px-fora">';
 		$total_faixa = count( $vizinhos['dentro'] ) + count( $vizinhos['maior'] ) + count( $vizinhos['agressivos'] );
-		$html .= 'Entre as ' . esc_html( $total_faixa ) . ' espécies do banco com faixa de temperatura que encosta na do '
-			. esc_html( $nome ) . ', ' . esc_html( count( $vizinhos['dentro'] ) ) . ' estão na tabela acima. ';
+		$html .= 'Entre ' . esc_html( aquametria_peixes_concorda( $total_faixa, 'a', 'as' ) ) . ' '
+			. esc_html( $total_faixa ) . ' '
+			. esc_html( aquametria_peixes_concorda( $total_faixa, 'espécie', 'espécies' ) )
+			. ' do banco com faixa de temperatura que encosta na do '
+			. esc_html( $nome ) . ', ' . esc_html( count( $vizinhos['dentro'] ) ) . ' '
+			. esc_html( aquametria_peixes_concorda( count( $vizinhos['dentro'] ), 'está', 'estão' ) )
+			. ' na tabela acima. ';
 		if ( $vizinhos['maior'] ) {
 			$nomes = array();
 			foreach ( $vizinhos['maior'] as $outro_id ) {
 				$of = aquametria_peixes_frente_faixa( $catalogo[ $outro_id ] );
 				$nomes[] = aquametria_peixes_nome( $catalogo[ $outro_id ] ) . ' (' . aquametria_peixes_num( $of[1] ) . ' cm)';
 			}
-			$html .= esc_html( count( $vizinhos['maior'] ) ) . ' ficaram fora por pedir aquário mais largo que esta ficha: '
+			$html .= esc_html( count( $vizinhos['maior'] ) ) . ' '
+				. esc_html( aquametria_peixes_concorda( count( $vizinhos['maior'] ), 'ficou', 'ficaram' ) )
+				. ' fora por pedir aquário mais largo que esta ficha: '
 				. esc_html( implode( ', ', $nomes ) ) . '. ';
 		}
 		if ( $vizinhos['agressivos'] ) {
@@ -4059,8 +4328,13 @@ function aquametria_peixes_ficha_html( $slug ) {
 			foreach ( $vizinhos['agressivos'] as $outro_id ) {
 				$nomes[] = aquametria_peixes_nome( $catalogo[ $outro_id ] );
 			}
-			$html .= esc_html( count( $vizinhos['agressivos'] ) ) . ' ficaram fora porque o banco os declara agressivos: '
-				. esc_html( implode( ', ', $nomes ) ) . '. ';
+			$html .= esc_html( count( $vizinhos['agressivos'] ) ) . ' '
+				. esc_html( aquametria_peixes_concorda( count( $vizinhos['agressivos'] ), 'ficou', 'ficaram' ) )
+				. ' fora porque o banco '
+				. esc_html( aquametria_peixes_concorda( count( $vizinhos['agressivos'] ), 'o', 'os' ) )
+				. ' declara '
+				. esc_html( aquametria_peixes_concorda( count( $vizinhos['agressivos'] ), 'agressivo', 'agressivos' ) )
+				. ': ' . esc_html( implode( ', ', $nomes ) ) . '. ';
 		}
 		$html .= '</p>';
 	}

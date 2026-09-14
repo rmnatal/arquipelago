@@ -75,6 +75,12 @@ FICHAS = {
     "quantos-litros-para-betta": "betta-splendens",
     "quantos-litros-para-colisa-anao": "trichogaster-lalius",
     "quantos-litros-para-gurami-mel": "trichogaster-chuna",
+    # leva 5, 14/09/2026 — a categoria vivaparos inteira, e a PRIMEIRA em que
+    # NENHUMA filha tem numero declarado: as tres vivem em harem, e harem e o
+    # unico arranjo do mapa que nao fixa o numero nem o traz do banco.
+    "quantos-litros-para-platy": "xiphophorus-maculatus",
+    "quantos-litros-para-peixe-espada": "xiphophorus-hellerii",
+    "quantos-litros-para-plati-variatus": "xiphophorus-variatus",
 }
 
 # As especies do catalogo que NAO declaram o fundo do aquario: a fonte publica o
@@ -82,7 +88,16 @@ FICHAS = {
 # cima — se o teste perguntasse ao banco quem tem base nula, ele mediria o banco
 # contra ele mesmo e a afirmacao "a pagina diz COMPRIMENTO quando nao ha fundo"
 # passaria verde com o banco inteiro nulo.
-SEM_FUNDO_DECLARADO = {"hemigrammus-rhodostomus"}
+SEM_FUNDO_DECLARADO = {
+    "hemigrammus-rhodostomus",
+    # leva 5, 14/09/2026: DUAS das tres filhas dos vivaparos entram aqui, e e a
+    # primeira vez que o ramo do comprimento sem fundo sai do caso unico. A base
+    # cientifica declara "aquario minimo de 60 cm" para o platy e para o plati
+    # variatus e nao diz uma palavra sobre o fundo; quem declara base dos tres e
+    # so o compendio, e so para o peixe-espada (120 x 30 cm).
+    "xiphophorus-maculatus",
+    "xiphophorus-variatus",
+}
 SECAO = "peixes"
 
 # A DATA DA CLASSIFICACAO DE SERP (14.9), com a regua propria deste arquivo.
@@ -197,6 +212,22 @@ CATEGORIAS = {
             "trichogaster-chuna",
         ],
     },
+    # leva 5, 14/09/2026. `barradas` aqui nao e vizinhanca: sao os DOIS viviparos
+    # mais vendidos do Brasil, cada um a UM campo de entrar. Sem declara-los, a
+    # frase de lista fechada desta pagina diria que todo viviparo do banco ja tem
+    # pagina, e as duas Poecilia sumiriam de uma pagina que se chama Viviparos.
+    "vivaparos": {
+        "rotulo": "vivíparos",
+        "barradas": [
+            "poecilia-reticulata",
+            "poecilia-sphenops",
+        ],
+        "especies": [
+            "xiphophorus-maculatus",
+            "xiphophorus-hellerii",
+            "xiphophorus-variatus",
+        ],
+    },
 }
 # O SUJEITO DA FRASE DE LISTA FECHADA e A CONSULTA DE CADA CATEGORIA, escritos
 # aqui a mao como tudo o mais deste arquivo. Os dois eram texto DIGITADO dentro
@@ -208,11 +239,13 @@ SINGULAR_DA_CATEGORIA = {
     "tetras": "todo tetra",
     "corydoras": "toda coridora",
     "bettas": "todo betta e todo gurami",
+    "vivaparos": "todo vivíparo",
 }
 CONSULTA_DA_CATEGORIA = {
     "tetras": "quantos litros para tetras",
     "corydoras": "quantos litros para coridoras",
     "bettas": "quantos litros para gourami",
+    "vivaparos": "quantos litros para peixes vivíparos",
 }
 
 PAGINAS = [SECAO] + list(CATEGORIAS) + list(FICHAS)
@@ -250,6 +283,23 @@ def carregar_banco():
         return {e["id"]: e for e in json.load(f)["especies"]}
 
 
+def no_catalogo_pelo_banco(e):
+    """O portao de CATALOGO do esquema, recomputado do banco.
+
+    Sete campos e dois corpos de fonte distintos — sem a clausula do cardume,
+    que e do portao de PAGINA. Escrito aqui a mao, como tudo neste arquivo:
+    quem confere escreve a propria regua e nunca chama a de quem produziu o dado
+    (secao 8 do ARQUIPELAGO.md).
+    """
+    campos = ("nome_cientifico", "nomes_populares_br", "porte_adulto_cm",
+              "porte_medida", "comprimento_minimo_aquario_cm", "convivencia",
+              "temperatura_C")
+    if any(not e.get(c) for c in campos):
+        return False
+    corpos = {f["origem"].replace("-via-busca", "") for f in e.get("fontes", [])}
+    return len(corpos) >= 2
+
+
 def faixa_do_campo(e, campo):
     """[min, max] do campo, juntando o valor e os extremos do conflito declarado."""
     valores = [float(e[campo])] if e.get(campo) is not None else []
@@ -279,6 +329,21 @@ ARRANJO_CURTO = {
     "harem": "em harém",
     "solitario": "sozinho",
     "casal": "em casal",
+}
+# A ABERTURA DE CADA ARRANJO, escrita aqui a mao. Ela nasceu na leva 5
+# (14/09/2026) para o harem, e as duas do arranjo fixo desceram para ca no mesmo
+# commit: ate entao elas eram literais no meio do ramo que as media, e cada ramo
+# so conhecia as suas. Com as tres num mapa so, trocar a frase de um arranjo pela
+# do outro passa a ser mutacao possivel — e por isso mensuravel.
+ARRANJO_DE = {
+    "solitario": "um",
+    "casal": "um casal de",
+    "harem": "um harém de",
+}
+ARRANJO_ABERTURA = {
+    "solitario": "e é um por aquário, não dois",
+    "casal": "e são dois, não um macho sozinho",
+    "harem": "e harém quer dizer mais fêmeas do que machos, nunca um casal",
 }
 
 
@@ -532,9 +597,8 @@ def medir_ficha(slug, ident, banco):
     conviv = e.get("convivencia")
     if conviv in ARRANJO_FIXO:
         quantos = ARRANJO_FIXO[conviv]
-        de = "um" if conviv == "solitario" else "um casal de"
-        abertura = ("e é um por aquário, não dois" if conviv == "solitario"
-                    else "e são dois, não um macho sozinho")
+        de = ARRANJO_DE[conviv]
+        abertura = ARRANJO_ABERTURA[conviv]
         ok("%s: a abertura diz o arranjo declarado, nao um cardume" % slug,
            ("Para %s %s — %s —, o seu aquário precisa de" % (de, nome, abertura)) in t,
            t[:130])
@@ -589,6 +653,34 @@ def medir_ficha(slug, ident, banco):
             ok("%s: a tabela de quantos cabem declara que a regua nao decide aqui" % slug,
                "é aqui que a régua responde à pergunta errada" in t
                and "esse limite não sai de conta de litro nenhuma" in t)
+    elif not e.get("cardume_minimo"):
+        # O TERCEIRO MUNDO: o arranjo esta declarado e o NUMERO nao esta. E o
+        # harem, e a leva 5 (14/09/2026) foi a primeira a publica-lo. A regua e
+        # escrita aqui a mao, como todo o resto deste arquivo.
+        #
+        # ATE 14/09/2026 ESTE RAMO CAIA NO RESGATE DO SNIPPET, que abre pela
+        # traducao do `como_vive()` — e essa traducao carrega a oracao do
+        # temperamento, "e a fonte o declara pacifico". A primeira frase da
+        # pagina voltaria a citar quem declarou, que e o que o item 4 do despacho
+        # da Sentinela de 13/09 tirou das onze fichas antigas (15.2). Nenhuma das
+        # 14 fichas no ar caia aqui, entao nenhum portao podia falhar.
+        de = ARRANJO_DE[conviv]
+        abertura = ARRANJO_ABERTURA[conviv]
+        ok("%s: a abertura diz o arranjo declarado, sem numero" % slug,
+           ("Para %s %s — %s —, o seu aquário precisa de" % (de, nome, abertura)) in t,
+           t[:150])
+        direta_p1 = texto(re.search(r'<p class="aqm-px-linha-mestra">(.*?)</p>', c, re.S).group(1))
+        ok("%s: a abertura nao cita quem declarou" % slug,
+           "fonte" not in direta_p1.lower(), direta_p1[:140])
+        # E NAO CHAMA DE CARDUME, nem de grupo, quem a fonte nao declarou assim.
+        ok("%s: a palavra cardume nao aparece no corpo" % slug,
+           "cardume" not in t.lower(), t.lower()[max(0, t.lower().find("cardume") - 60):][:160])
+        # A LINHA DA TABELA DE FONTES: aqui ela e "Como vive", e nao um minimo.
+        ok("%s: a tabela de fontes chama a linha de 'Como vive'" % slug,
+           "Como vive" in t)
+        ok("%s: a tabela de fontes nao publica numero de exemplares nenhum" % slug,
+           "Frente mínima do aquário" in t
+           and "Cardume mínimo" not in t and "Grupo mínimo" not in t)
     else:
         # O NUMERO DA ABERTURA E A FAIXA, quando a fonte declarou uma. Recomputado
         # aqui do banco: o piso sozinho publica metade da recomendacao, e o piso
@@ -671,6 +763,35 @@ def medir_ficha(slug, ident, banco):
                 ok("%s: a linha de %d cm de altura diz %s" % (slug, a, " | ".join(esperado)),
                    linha == esperado, " | ".join(linha))
 
+        # --- A FRASE DA LINHA DO MEIO FALA DOS DOIS NUMEROS QUE ELA IMPRIMIU.
+        #
+        # Nasceu na leva 5 (14/09/2026). Ate aqui a frase anunciava "a diferenca
+        # entre os dois e de 4 vezes" com o 4 saindo das CONSTANTES (4 L/cm
+        # contra 1 cm/L) — e a razao entre as constantes so e a razao entre os
+        # numeros da tela enquanto o arredondamento para baixo nao morde. No
+        # peixe-espada, que com 16 cm e o maior peixe com ficha da ilha, a linha
+        # do meio da 7 e 1: SETE vezes, com a frase anunciando quatro a uma linha
+        # de distancia dos dois numeros que a desmentem. Nenhuma das 14 fichas no
+        # ar podia mostrar isso, porque a maior delas tem 9,5 cm.
+        #
+        # A regua e recomputada aqui, do banco, e o ramo do arranjo fixo tem
+        # frase propria (medida logo acima) — entao esta afirmacao so vale onde a
+        # frase da traducao existe.
+        if conviv not in ARRANJO_FIXO:
+            v_meio = frente[1] * float(largura) * ALTURAS[1] / 1000.0
+            classica = int(math.floor((v_meio / CLASSICA) / porte[1]))
+            conserv = int(math.floor((v_meio / CONSERVADORA) / porte[1]))
+            if conserv < 1:
+                trecho = ("o critério apertado não põe nem um %s, e o folgado põe %d"
+                          % (nome, classica))
+            else:
+                trecho = ("%s %d %s pelo critério apertado e %d pelo critério folgado. "
+                          "A diferença entre os dois é de %s vezes"
+                          % ("cabe" if conserv == 1 else "cabem", conserv, nome,
+                             classica, numero_br(classica / conserv)))
+            ok("%s: a linha do meio traduzida bate com os dois numeros dela" % slug,
+               trecho in t, trecho)
+
     # --- O DERIVADO PER CAPITA NAO SE MULTIPLICA. A tabela de lotacao nao tem
     #     coluna de centimetro por exemplar, e a pagina diz por escrito que
     #     multiplicar nao tem fonte. Sem esta afirmacao, a proxima versao do
@@ -743,6 +864,60 @@ def medir_ficha(slug, ident, banco):
             tabela = re.search(r"Quem divide a mesma faixa.*?</table>", c, re.S)
             ok("%s: %s (agressivo) nao esta na tabela de companheiro" % (slug, i),
                tabela is None or banco[i]["nomes_populares_br"][0] not in texto(tabela.group(0)))
+
+        # --- A PRESTACAO DE CONTAS CONCORDA EM NUMERO COM O QUE ELA CONTOU.
+        #
+        # Nasceu na leva 5 (14/09/2026) e ela mede uma frase que estava no ar
+        # desde 12/09 sem poder errar: "N ficaram fora porque o banco os declara
+        # agressivos" e verdade com dois e e agramatical com UM. O unico peixe
+        # agressivo do banco e o mato-grosso, e ate 14/09 ele ou aparecia junto
+        # com o betta (dois) ou nao aparecia (zero, e a frase nem sai). O platy e
+        # o plati variatus sao as primeiras fichas em que ele aparece sozinho.
+        #
+        # A regua e recomputada AQUI, do banco, com a mesma conta de tres partes
+        # que a pagina faz — nunca lendo o numero da tela para depois conferir a
+        # tela com ele.
+        frente_alvo = faixa_do_campo(e, "comprimento_minimo_aquario_cm")[1]
+        dentro, maior, agressiva = [], [], []
+        for outro_id, o in banco.items():
+            if outro_id == ident or not no_catalogo_pelo_banco(o):
+                continue
+            to = o.get("temperatura_C") or {}
+            ta = e.get("temperatura_C") or {}
+            if None in (to.get("min"), to.get("max"), ta.get("min"), ta.get("max")):
+                continue
+            if min(ta["max"], to["max"]) - max(ta["min"], to["min"]) < 2:
+                continue
+            if o.get("comportamento") == "agressivo":
+                agressiva.append(outro_id)
+            elif faixa_do_campo(o, "comprimento_minimo_aquario_cm")[1] > frente_alvo:
+                maior.append(outro_id)
+            else:
+                dentro.append(outro_id)
+        total = len(dentro) + len(maior) + len(agressiva)
+        esperado = "Entre %s %d %s do banco com faixa de temperatura que encosta na do %s, %d %s na tabela acima." % (
+            "a" if total == 1 else "as", total,
+            "espécie" if total == 1 else "espécies", nome,
+            len(dentro), "está" if len(dentro) == 1 else "estão")
+        ok("%s: a prestacao de contas concorda em numero (%d na faixa, %d na tabela)"
+           % (slug, total, len(dentro)), esperado in t, esperado)
+        if maior:
+            trecho = "%d %s fora por pedir aquário mais largo" % (
+                len(maior), "ficou" if len(maior) == 1 else "ficaram")
+            ok("%s: %s de aquario maior concorda(m) em numero" % (
+                slug,
+                "o unico" if len(maior) == 1 else "os %d" % len(maior)),
+               trecho in t, trecho)
+        if agressiva:
+            trecho = "%d %s fora porque o banco %s declara %s:" % (
+                len(agressiva),
+                "ficou" if len(agressiva) == 1 else "ficaram",
+                "o" if len(agressiva) == 1 else "os",
+                "agressivo" if len(agressiva) == 1 else "agressivos")
+            ok("%s: %s concorda(m) em numero" % (
+                slug,
+                "o agressivo" if len(agressiva) == 1 else "os %d agressivos" % len(agressiva)),
+               trecho in t, trecho)
 
     # --- a trilha: quatro degraus, os tres primeiros com link
     passos = trilha(pagina)

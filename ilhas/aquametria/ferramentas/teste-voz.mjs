@@ -481,6 +481,16 @@ const CONTEUDO = [
   'quantos-litros-para-betta',
   'quantos-litros-para-colisa-anao',
   'quantos-litros-para-gurami-mel',
+  /* A leva 5 (14/09/2026): a categoria /peixes/vivaparos/ e as tres fichas. O
+     risco novo da voz aqui e o mesmo lugar da leva 4 e um degrau adiante: a
+     abertura do HAREM nasceu dentro do mesmo mapa de configuracao, e ate esta
+     leva o ramo que a serve abria pela traducao do `como_vive()` — que carrega
+     a oracao do temperamento e punha a palavra "fonte" na primeira frase da
+     pagina, contra a 15.2. Nenhuma das 14 fichas no ar caia nesse ramo. */
+  'vivaparos',
+  'quantos-litros-para-platy',
+  'quantos-litros-para-peixe-espada',
+  'quantos-litros-para-plati-variatus',
 ];
 
 /* As onze fichas de espécie, separadas do resto do CONTEUDO porque têm duas
@@ -503,6 +513,9 @@ const FICHAS_PEIXE = new Set([
   'quantos-litros-para-betta',
   'quantos-litros-para-colisa-anao',
   'quantos-litros-para-gurami-mel',
+  'quantos-litros-para-platy',
+  'quantos-litros-para-peixe-espada',
+  'quantos-litros-para-plati-variatus',
 ]);
 
 /* A lista de MARCAS subiu para o alto do arquivo em 13/09/2026 — ver o bloco

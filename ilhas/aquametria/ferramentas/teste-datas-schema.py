@@ -78,6 +78,10 @@ FICHAS = [
     "quantos-litros-para-betta",
     "quantos-litros-para-colisa-anao",
     "quantos-litros-para-gurami-mel",
+    # leva 5, 14/09/2026
+    "quantos-litros-para-platy",
+    "quantos-litros-para-peixe-espada",
+    "quantos-litros-para-plati-variatus",
 ]
 
 # A data editorial que os tres artigos declaram no registro, e que o endereco

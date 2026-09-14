@@ -4,6 +4,73 @@ Log append-only da Fundacao. Cada execucao escreve aqui o bloco entregue e
 o proximo passo desbloqueado, e espelha o mesmo resumo em
 `/areas/projeto-aquametria.md` na memoria.
 
+## 2026-09-14 13h19Z — LEVA 5: A QUARTA CATEGORIA, E A PRIMEIRA EM QUE NENHUMA FILHA TEM NÚMERO DECLARADO (peixes 1.8.0, manifest revisão 78; QUATRO URLs novas — `/peixes/vivaparos/` e as fichas do platy, do peixe-espada e do plati variatus)
+
+**A ESCOLHA DA ILHA: primeira tentada, e sem corrida.** Os três `ESTADO.md` estavam com `executando_desde: null`, que pela 1.1 já significa que não há bloco da Fundação vivo — o git não precisou desempatar nada. Pela 18.1 procurei despacho aberto antes da rotação: os três `PROMPT.md` foram lidos e nenhum tem despacho para a Fundação de pé (o da clubedomosaico, de 14/09, foi fechado inteiro na execução das 11h18Z e já está em FECHADOS; `dados/despachos.md` tem quatro abertos e os quatro são do RAPHAEL, nenhum bloqueando bloco). Sobrou a rotação da seção 1, e a aquametria tinha a `ultima_execucao` mais antiga: 11h25Z, contra 11h44Z da robometria e 12h45Z da clubedomosaico. Nenhum branch `claude/*` com o que mesclar e nenhum PR aberto. **Rede pela 20.2, antes de trabalhar:** home em 200 e `/status` na revisão 77, igual à do manifest, em UMA passada.
+
+**POR QUE ESTE BLOCO:** era o item (1) do PRÓXIMO da execução das 11h25Z, e o teto da 21.4 estava em 1 de 3 nesta semana. A categoria estava preparada desde 13/09 às 21h21Z — banco fechado em três elegíveis, critério e linha mestra escritos, SERP das três fichas classificada. Faltava a leva.
+
+### 1. O TERCEIRO MUNDO DA ESCADA DE LOTAÇÃO ERA UM RAMO DE RESGATE, E RAMO DE RESGATE É RÉGUA QUE NÃO PODE FALHAR
+
+A leva 4 escreveu, em 14/09 de manhã, os **três** mundos da tabela de lotação: arranjo que FIXA o número (solitário, casal), número declarado (cardume, grupo) e **arranjo sem número** (harém). Publicou os dois primeiros. O terceiro ficou escrito e sem nenhuma página que o alcançasse — o banco não tinha ficha de harém e o mapa do arranjo trazia `abertura` vazia para ele.
+
+**Ele estava errado, e do jeito exato que a seção 8 do contrato descreve.** Sem abertura própria, a ficha caía no ramo de resgate, que abre pela tradução do `aquametria_peixes_como_vive()` — e essa tradução carrega a oração do temperamento. A primeira frase da ficha do platy sairia assim, e foi assim que ela saiu na primeira renderização de bancada desta execução:
+
+> Para o platy, que vive em harém, um macho para várias fêmeas, **e a fonte o declara pacífico**, o seu aquário precisa de 60 cm de frente…
+
+Procedência abrindo a página é exatamente o que o **item 4 do despacho da Sentinela de 13/09/2026** tirou das onze fichas antigas (15.2). Ele voltaria pela porta de trás, na primeira ficha de harém, e nenhum portão podia ver: as 14 fichas no ar não passam por ali.
+
+O conserto não foi dar uma abertura ao harém e parar: **o ramo de resgate deixou de existir**. `aquametria_peixes_pode_virar_ficha()` passa a exigir que o termo esteja no vocabulário fechado — que é o que o cabeçalho da 1.7.0 já afirmava ("termo fora dele devolve null e a espécie não vira ficha") e o código **não fazia**: bastava `cardume_minimo` preenchido para uma `convivencia` qualquer virar página, e a ficha abriria chamando de "cardume mínimo" um peixe que ninguém declarou de cardume. Com o portão fechado dos dois lados — o esquema enumera os cinco valores, o validador reprova o sexto, o mapa tem os mesmos cinco — os três ramos da abertura cobrem o mundo inteiro e nenhum deles é inalcançável.
+
+A abertura do harém é a tradução do próprio termo, do mesmo jeito que "e é um por aquário, não dois" traduz `solitario`: **"e harém quer dizer mais fêmeas do que machos, nunca um casal"**. Ela não traz número porque os três registros têm a mesma sentença de fonte por trás — mais fêmeas por macho, para dissipar o assédio — e **nenhum deles declara quantas**.
+
+### 2. DOIS DEFEITOS DE CONCORDÂNCIA QUE JÁ ESTAVAM NO AR, os dois medidos no HTML servido
+
+Os dois nasceram com a frase no plural, e os dois só erram quando a contagem é UM — por isso passaram por 14 fichas sem ninguém ver.
+
+1. **"1 ficaram fora porque o banco os declara agressivos: mato-grosso."** Lido com `curl` em `/peixes/corydoras/quantos-litros-para-coridora-sterbai/` em 14/09/2026. O banco tem **um** peixe agressivo, e até esta leva ele ou aparecia junto com o betta (dois, e a frase fica certa) ou não encostava na faixa de temperatura da ficha (zero, e a frase nem sai). A coridora sterbai já servia a versão errada desde 12/09. Nasceu `aquametria_peixes_concorda()`, e ela vale para as três contagens da prestação de contas.
+
+2. **"cabem 1 coridora sterbai pelo critério apertado e 6 pelo folgado. A diferença entre os dois é de 4 vezes."** Mesma página, mesmo `curl`, e são **duas** coisas numa frase só. O verbo — e o número: o "4 vezes" saía das CONSTANTES da ilha (4 L/cm contra 1 cm/L), e a razão entre as réguas só é a razão entre os NÚMEROS DA TELA enquanto o arredondamento para baixo não morde. **Ele mordia em dez das quatorze fichas no ar** — 4,2 no cardinal e no mato-grosso, 4,6 no tetra ember e no tetra-brilhante, 5 no tetra-negro, 5,5 no gurami mel e na coridora bronze, 6 na sterbai — e morde mais no peixe-espada, que com 16 cm é o maior peixe com ficha desta ilha: a linha do meio dá 7 e 1, que é **sete** vezes, com a frase anunciando quatro a uma linha de distância dos dois números que a desmentem.
+
+É o **escopo de afirmação** da seção 8, na forma mais silenciosa dele: a frase estava certa sobre as duas réguas e falsa sobre os dois números que ela mesma acabara de imprimir. A razão agora é derivada dos dois números impressos. E o caso em que o critério apertado não põe **nem um** ganhou frase própria, porque "cabem 0" no aquário que a própria fonte declara como mínimo seria publicar uma contradição sem nome — nenhum peixe do banco chega lá hoje, e quem mede esse ramo é a mutação que PRODUZ o mundo.
+
+### 3. A LINHA MESTRA E O CRITÉRIO DA CATEGORIA FORAM REESCRITOS NA LEVA QUE OS PUBLICOU
+
+Mesma família do que a `bettas` teve de fazer em 14/09 de manhã: **texto de categoria escrito antes da leva promete o que a tabela não paga.** A linha mestra de 13/09 dizia que o número que decide o aquário "não é quantos você comprou, é quantos vão existir daqui a três meses, e o macho é quem manda nessa conta" — e nenhuma fonte deste banco declara taxa de reprodução, ninhada ou prazo. Pior que isso: ela dizia que manda o **macho** e o critério, duas telas abaixo, dizia que manda "o tamanho adulto da **fêmea**". Duas afirmações contrárias na mesma página, nenhuma medida.
+
+E a do critério era falsa por mais um motivo, que o próprio banco registra: dos três, **dois declaram o porte da fêmea e o do plati variatus não declara sexo nenhum** (a base publica 7,0 cm TL para macho/não sexado). A página não mostra o sexo em lugar nenhum, então a frase afirmava sobre um dado que ela não serve.
+
+As duas dizem agora o que a tabela paga linha a linha: o **arranjo sem número** (a coluna "Como vive" repete "em harém, número não declarado" três vezes — é a única categoria do eixo assim) e a **frente que varia em duas vezes dentro de um gênero só**. E a primeira escrita da nova linha mestra **reprovou no portão da voz**, por duas coisas ao mesmo tempo: abria por "as fontes destes três declaram", que é procedência na primeira frase, e falava do banco em vez de falar com quem lê.
+
+### 4. A SERP DA MÃE, CLASSIFICADA NESTA EXECUÇÃO — e é a única do eixo em que o top não fala do assunto
+
+As três fichas mantêm `serp_em` **13/09/2026**, que é quando foram medidas. A mãe declara **14/09/2026**, porque a consulta dela não existia classificada e herdar o padrão seria mentira.
+
+**"quantos litros para peixes vivíparos"**, medida em 14/09/2026: nenhuma das sete primeiras respostas fala de vivíparo. A consulta devolve as páginas genéricas de "quantos peixes cabem no meu aquário" — dois blogs de pet shop (Terra Zoo, Agrosete), uma ficha de aquarismo (peixeseaquarismo), uma loja portuguesa (Kiwoko), um fórum (Brasil Reef), a MyAquarium e um Blogspot de 2013 —, e o que elas publicam é a regra por centímetro de peixe **em três versões que discordam entre si na mesma página de resultados** (1 L por cm até 2 cm, 1,5 L por cm de 2 a 5 cm, 2 L por cm de 5 a 10 cm). Na busca vizinha, com os nomes dos peixes, aparece ainda o "10 litros vagos + 5 litros por peixe" — a conta per capita que esta ilha recusa desde a leva 1, publicada ali como se fosse regra. Nenhum domínio forte, nenhuma atribuição, e o próprio resumo da busca termina mandando o leitor pesquisar espécie por espécie, **que é exatamente a tabela que esta página é**. ALVO, e do tipo mais limpo do eixo: aqui a ilha não disputa um número com ninguém, ela ocupa um lugar vazio.
+
+### 5. A CATEGORIA DECLARA AS CINCO POECIIDAE, e aqui os dois barrados não são vizinhança
+
+São o **guppy** e o **molly**, os dois vivíparos mais vendidos do Brasil, cada um a UM campo de entrar — o guppy tem duas urls de um corpo só (aviso E15, espelho não confere espelho) e o molly não tem `comprimento_minimo_aquario_cm`. Sem declará-los, a frase de lista fechada desta página diria que todo vivíparo que o banco sustenta já tem página, e o banco sustenta os dois registros. Declarados, eles saem da tabela e entram na lista de fora, com nome e causa.
+
+**A parede do molly não mudou nesta execução e continua sendo a mesma:** os dois corpos já foram perguntados em 13/09 — o compêndio publica a seção de dimensões vazia e a base científica, em duas passadas limpas, devolveu o número da espécie vizinha. O desbloqueio depende da leitura direta, que é o **despacho de egresso aberto para o Raphael** em `dados/despachos.md`. Nada foi tentado de novo aqui, e nada foi completado por vizinhança.
+
+### 6. UMA TROCA DE TELA NO BANCO, declarada
+
+Os nomes populares do `xiphophorus-hellerii` foram reordenados para pôr **"peixe-espada"** na frente de "espada". É o precedente da colisa-anão, de 14/09 de manhã, aplicado pelo mesmo motivo: `aquametria_peixes_nome()` lê o PRIMEIRO do campo e é ele que vai para o título, para o corpo e para a tabela da categoria; a consulta classificada é "quantos litros para peixe espada", e "espada" sozinho é ambíguo fora do aquarismo. Nenhum número mudou, e a troca está escrita na observação do registro.
+
+### Verificação
+
+**Bancada, 0 falha:** `teste-peixes` **2219** afirmações (eram 1775), `teste-voz` TUDO OK com as quatro páginas novas dentro, `teste-arvore`, `teste-datas-schema` 102 (eram 90), `teste-seo-tecnico` 411, `teste-ga4` 568, `teste-apelidos` 59, `teste-escada-compra` 522, `conferir-entidades`, `conferir-slugs`, `conferir-protecao-funcoes`, `validar-especies` 37 registros com o mesmo aviso E15 do guppy, `testar-validador-especies` 24 casos, `validar-produtos`, `php -l` limpo em tudo.
+
+**Receita, sem mudança:** espécie não é produto e nenhum produto entrou ou saiu do banco. Seguem 39 dos 78 com ficha de loja, **0 com piso**, 78 sem piso; dos 39 sem ficha, 9 não têm loja possível hoje. **Pauta da seção 17:** `pauta.md` ainda não existe — 0 escritos, 0 na fila, 0 recusados.
+
+### Próximo passo
+
+1. **A LISTA DOS BARRADOS NA TELA DA CATEGORIA já existe** — esta leva a viu funcionar pela primeira vez com barrados que importam. O que continua aberto é o **molly** e o **guppy**, e os dois dependem do despacho de egresso do Raphael. `/peixes/vivaparos/` iria de 3 para 5 fichas no dia em que ele abrir, e é a categoria com o maior salto disponível do eixo.
+2. **A PRÓXIMA CATEGORIA DO EIXO**, e ela é decisão de banco antes de ser de leva: `/peixes/ciclideos-anoes/` tem **1** elegível (ramirezi) e `/peixes/plecos-e-limpa-vidros/` tem **1** (otocinclo). As duas estão longe do mínimo de três do 16.5, e nenhuma nasce sem coleta nova.
+3. **A escada de compra na tela**, no minuto em que houver `url_busca` — bloco inteiro nas quatro calculadoras de uma vez.
+4. **A leitura de 16/09** continua tendo o que responder sobre a leva de 08/09 e continua não travando leva nenhuma: 36 URLs, abaixo do piso de 40.
+
 ## 2026-09-14 11h25Z — LEVA 4: A TERCEIRA CATEGORIA DO EIXO, E O EIXO APRENDE QUE PEIXE NEM SEMPRE VIVE EM CARDUME (peixes 1.7.0, esquema de espécies versão 4, manifest revisão 77, `/status` conferido às 12h09Z; QUATRO URLs novas, a primeira leva desde 12/09)
 
 **A ESCOLHA DA ILHA: segunda tentada.** A clubedomosaico era a primeira pela 18.1 — tem despacho ABERTO do Raphael de 14/09, os quatro achados da artesã usando o ateliê — e o meu push de reserva foi recusado: outra execução a reservou às 11h18Z pelo mesmo motivo. O passo 5 da seção 1 manda voltar ao passo 2, e nenhum force push aconteceu. Das duas que sobraram, a aquametria tinha a `ultima_execucao` mais antiga (23h19Z contra 23h47Z da robometria), e as duas estavam com `executando_desde: null` — que pela 1.1 já significa que não há bloco da Fundação vivo, então o git não precisou desempatar. Os três `PROMPT.md` foram lidos antes de escolher. **Rede pela 20.2, antes de trabalhar:** home em 200 e `/status` na revisão 76, igual à do manifest, em UMA passada.

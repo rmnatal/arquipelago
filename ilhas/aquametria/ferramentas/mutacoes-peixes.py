@@ -445,7 +445,7 @@ MUTACOES = [
     # nem familia preparada abaixo do minimo do 16.5.
     ("A PREPARACAO VIRA MEIA PREPARACAO: o criterio dos vivaparos fica e a linha mestra some",
      troca(PEIXES,
-           "\t\t\t'linha_mestra' => 'Estes peixes não põem ovo: nascem nadando, e nascem muitos — então o número que decide o seu aquário não é quantos você comprou, é quantos vão existir daqui a três meses, e o macho é quem manda nessa conta.',\n",
+           "\t\t\t'linha_mestra' => 'Vivíparo não tem um número: destes três está declarado com quem cada um vive — mais fêmeas do que machos — e nunca quantos. O que decide o seu aquário é a frente, e entre dois peixes do mesmo gênero, vendidos na mesma prateleira, ela varia em duas vezes.',\n",
            "")),
 
     ("A LISTA DE ESPECIES E PREENCHIDA ANTES DA LEVA: a categoria sem URL ja nomeia as tres",
@@ -705,6 +705,62 @@ MUTACOES = [
      troca(PEIXES,
            "\t\tif ( isset( $litros_alturas[ $meio_altura ] ) && $arranjo && null !== $arranjo['fixo'] ) {",
            "\t\tif ( false ) {")),
+
+    # ---------------------------------------------------------------------
+    # LEVA 5 (14/09/2026) — o mundo do HAREM, e as tres frases que erravam de
+    # numero em paginas que ja estavam no ar.
+    # ---------------------------------------------------------------------
+
+    ("A ABERTURA DO HAREM VOLTA A CITAR A FONTE: o ramo de resgate abre pela traducao do como_vive()",
+     troca(PEIXES,
+           "\t\t$html .= 'Para ' . esc_html( $arranjo['de'] ) . ' ' . esc_html( $nome )\n"
+           "\t\t\t. ' — ' . esc_html( $arranjo['abertura'] ) . ' —, o seu aquário precisa de '",
+           "\t\t$html .= 'Para o ' . esc_html( $nome ) . ', que vive '\n"
+           "\t\t\t. esc_html( aquametria_peixes_como_vive( $e ) ) . ', o seu aquário precisa de '")),
+
+    ("O HAREM PERDE A ABERTURA PROPRIA e a frase sai com um travessao vazio no meio",
+     troca(PEIXES,
+           "\t\t\t'abertura' => 'e harém quer dizer mais fêmeas do que machos, nunca um casal',",
+           "\t\t\t'abertura' => '',")),
+
+    ("A ABERTURA DO HAREM TROCA DE ARRANJO: o harem passa a se anunciar como casal",
+     troca(PEIXES,
+           "\t\t\t'abertura' => 'e harém quer dizer mais fêmeas do que machos, nunca um casal',",
+           "\t\t\t'abertura' => 'e são dois, não um macho sozinho',")),
+
+    ("O PORTAO DE PAGINA VOLTA A ACEITAR TERMO FORA DO VOCABULARIO FECHADO",
+     troca(PEIXES,
+           "\tif ( null === aquametria_peixes_arranjo( $e ) ) {\n\t\treturn false;\n\t}\n",
+           "")),
+
+    ("A CONCORDANCIA DE NUMERO MORRE: a funcao devolve sempre o plural",
+     troca(PEIXES,
+           "\treturn ( 1 === (int) $n ) ? $singular : $plural;",
+           "\treturn $plural;")),
+
+    ("A DIFERENCA VOLTA A SAIR DAS CONSTANTES em vez dos dois numeros da tela",
+     troca(PEIXES,
+           "\t\t\t\t$vezes = $q['classica'] / $q['conservadora'];",
+           "\t\t\t\t$vezes = AQUAMETRIA_PEIXES_LOTACAO_CONSERVADORA / AQUAMETRIA_PEIXES_LOTACAO_CLASSICA;")),
+
+    # O MUNDO QUE O BANCO NAO TEM, PRODUZIDO. Nenhum peixe com ficha e grande o
+    # bastante para o criterio conservador nao por nem UM no aquario minimo que a
+    # propria fonte declara. O maior e o peixe-espada, com 16 cm, e ele chega a
+    # um. Esta mutacao cria o mundo em vez de esperar por ele (secao 8): com
+    # 40 cm de porte, o conservador zera na base de 120 x 30 cm.
+    ("MUNDO PRODUZIDO: o peixe fica grande demais e o criterio apertado nao poe nem um",
+     varias(
+         banco_json(lambda d: mut_campo(d, "xiphophorus-hellerii", "porte_adulto_cm", 40.0)),
+         troca(PEIXES, "\t\t\t'porte_cm' => 16,", "\t\t\t'porte_cm' => 40,"),
+     )),
+
+    # E O AVESSO: o mundo do UM, que hoje existe em duas fichas (coridora sterbai
+    # e peixe-espada) e que ate 14/09/2026 ia ao ar como "cabem 1".
+    ("MUNDO PRODUZIDO: o peixe encolhe e a linha do meio deixa de passar por UM",
+     varias(
+         banco_json(lambda d: mut_campo(d, "xiphophorus-hellerii", "porte_adulto_cm", 3.1)),
+         troca(PEIXES, "\t\t\t'porte_cm' => 16,", "\t\t\t'porte_cm' => 3.1,"),
+     )),
 ]
 
 

@@ -4,7 +4,7 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 77,
+  "revisao": 78,
   "atualizado_em": "2026-09-14",
   "estado": "fundacao",
   "desembarque": {
@@ -54,7 +54,7 @@
       "ativo": true,
       "versao": "1.1.0",
       "publicar": true,
-      "sha256": "f716dd3a056bd5350459a502075ca85cf3803e98afd1fdb886e1ea4cedaa5990",
+      "sha256": "8eec1a14fed3fa18b835a4e68ee0e5632b6d0909432699e4c51aa7876922c91d",
       "descricao": "Conserta o item 1 do despacho da Sentinela de 09/09/2026: /category/uncategorized/ respondia 200 e estava no wp-sitemap.xml, gastando o orcamento de rastreamento de um dominio novo com um artefato do CMS enquanto a leva de 6 paginas de 08/09 nao indexava. A causa de raiz e o Sync, que grava artigo sem atribuir categoria e por isso deixa tudo cair na padrao; este snippet conserta pelo lado que se auto-corrige, sem mexer no Sync (que so chega ao site pelo atualizador). Faz cinco coisas: (a) cria a categoria de verdade \"Metodos\" (slug metodos), move para ela todo post que estiver na categoria padrao e passa a categoria padrao a ser ela, para o problema nao voltar pela porta que o criou; (b) tira do wp-sitemap.xml o provedor de autores sempre, e o de taxonomias enquanto nenhuma categoria estiver curada — sitemap e curadoria, nao inventario (secao 14.1 do ARQUIPELAGO.md); (c) manda noindex,follow para arquivo por data, autor, tag, categoria nao curada (a sem categoria inclusive), anexo, busca e 404, pelo filtro wp_robots do proprio nucleo, para nao sair meta robots repetida; (d) desliga a pagina de anexo pelo interruptor do nucleo (wp_attachment_pages_enabled); (e) nao toca em pagina, artigo nem home. A categoria Metodos nasce FORA do sitemap e com noindex de proposito: o item 2 do mesmo despacho congelou pagina nova ate 16/09 e a secao 14.4 exige texto proprio na listagem — quando ela tiver esse texto, basta acrescentar o slug em aquametria_seo_categorias_no_sitemap(). A decisao de indexar mora numa funcao pura (aquametria_seo_deve_noindex), exercitada por ferramentas/teste-seo-tecnico.php em 28 afirmacoes sem subir WordPress. v1.1.0 (10/09/2026): meta description e cartao de compartilhamento nas 13 URLs do sitemap. Item 1 do despacho da Sentinela de 10/09/2026: nenhuma pagina servia <meta name=description> e nenhuma tinha tag og:. O snippet passa a imprimir description, og:title, og:description, og:type, og:locale, og:site_name, og:url e twitter:card, a partir de um mapa GERADO por ferramentas/gerar-metas-descricao.py entre os marcadores METAS-INICIO e METAS-FIM — o texto mora no front matter de cada pagina de conteudo/ e, para as quatro paginas da casca, em dados/metas-seo.json. Slug fora do mapa nao imprime nada: description inventada seria pior que o recorte do Google. Sem og:image de proposito, ate a ilha ter imagem propria hospedada."
     },
     {
@@ -128,10 +128,10 @@
       "arquivo": "snippets/aquametria-peixes.php",
       "escopo": "front-end",
       "ativo": true,
-      "versao": "1.7.0",
+      "versao": "1.8.0",
       "publicar": true,
-      "sha256": "54cf65d601b3f151848e76e1ef67d575329c4e550ded6cbd1db78d78049b4037",
-      "descricao": "T4, levas 1 a 4 da malha: DEZOITO URLs no eixo que a Bussola verificou ABERTO e que e o de maior volume de busca da ilha. Nivel 1 /peixes/, TRES categorias de nivel 2 (/peixes/tetras/ com 7 fichas, /peixes/corydoras/ com 4 e /peixes/bettas/ com 3) e as quatorze fichas de especie. v1.7.0 (14/09/2026), LEVA 4: a terceira categoria do eixo, e a primeira em que as filhas NAO vivem do mesmo jeito — o betta sozinho, a colisa-anao em casal e o gurami mel em grupo de 4 a 6. Ate 13/09 as ONZE fichas no ar eram todas convivencia cardume e a palavra estava DIGITADA em sete lugares do corpo da ficha; era verdade em toda pagina publicada e e falsa em tres das quatro desta leva. O vocabulario do arranjo passa a ser FECHADO, num mapa so, e decide a frase, a escada de lotacao, o rotulo da linha minima, a coluna da categoria e o rabicho do JSON-LD. Duas recusas: a escada so sobe onde a fonte deixa (no betta ela subiria ate 20 exemplares, oferecendo o numero que a fonte recusa) e o conselho do bloco da especie agressiva se inverte com o arranjo (diluir agressao em numero e conselho de peixe de cardume, e o betta e agressivo E solitario). Um defeito que ja estava NO AR saiu junto: /peixes/corydoras/ servia 'fechada quer dizer que todo TETRA que o banco desta ilha sustenta', porque o substantivo digitado sobrevivia num ramo que so e alcancado quando a categoria fecha. O esquema de especies foi a versao 4 por um campo, cardume_recomendado_ate, que e o outro lado do 'nao menos que 4 a 6 exemplares' do gurami mel. A categoria declara as CINCO Osphronemidae do banco e o portao barra duas por convivencia: e o primeiro mundo REAL do ramo de barrados que a 1.6.0 escreveu sem ter caso para exercita-lo. As quatro paginas declaram serp_em 13/09/2026, primeiro uso real do campo nascido na 1.3.0."
+      "sha256": "0753f3bd7cf3dea0f2b95cf3f02393c6531db5428aa06b11d87040c12fe43cb6",
+      "descricao": "T4, levas 1 a 5 da malha: VINTE E DUAS URLs no eixo que a Bussola verificou ABERTO e que e o de maior volume de busca da ilha. Nivel 1 /peixes/, QUATRO categorias de nivel 2 (/peixes/tetras/ com 7 fichas, /peixes/corydoras/ com 4, /peixes/bettas/ com 3 e /peixes/vivaparos/ com 3) e as dezessete fichas de especie. v1.8.0 (14/09/2026), LEVA 5: a quarta categoria, e a primeira em que NENHUMA filha tem numero declarado — as tres vivem em harem, que e o unico valor do vocabulario fechado em que a fonte descreve a proporcao entre os sexos e nunca o tamanho do grupo. A leva 4 escreveu os tres mundos da escada de lotacao e publicou dois; o terceiro ficou como ramo de RESGATE e estava errado: abria pela traducao de como_vive(), que carrega a oracao do temperamento, e a primeira frase da ficha citaria quem declarou, contra a 15.2. O ramo virou branch com nome e o resgate deixou de existir — pode_virar_ficha() passa a exigir que o termo esteja no vocabulario fechado, que e o que o cabecalho da 1.7.0 ja afirmava e o codigo nao fazia. DOIS DEFEITOS QUE JA ESTAVAM NO AR sairam junto, os dois de concordancia e os dois medidos no HTML servido: '1 ficaram fora porque o banco os declara agressivos', com um unico peixe agressivo no banco; e 'cabem 1 coridora sterbai ... a diferenca entre os dois e de 4 vezes', em que o verbo estava no plural e o numero saia das CONSTANTES em vez dos dois numeros impressos — ele errava em DEZ das quatorze fichas no ar e erra por SETE vezes no peixe-espada, o maior peixe com ficha da ilha. A linha mestra e o criterio da categoria foram reescritos na leva que os publicou: a versao de 13/09 prometia numero de reproducao que nenhuma fonte declara e dizia que manda o macho enquanto o criterio dizia que manda a femea. A categoria declara as CINCO Poeciliidae e o portao barra duas — o guppy e o molly, os dois viviparos mais vendidos do Brasil, cada um a um campo de entrar —, com nome e causa na pagina. SERP da MAE classificada em 14/09/2026, a unica do eixo em que o top 7 nao fala do assunto; as tres fichas seguem com serp_em 13/09/2026."
     }
   ],
   "conteudo": [
@@ -466,9 +466,9 @@
       "entidade": "especie",
       "fonte": "ver fontes[] de cada registro: FishBase (base-cientifica-via-busca) e Seriously Fish (compendio-via-busca), os dois colhidos por busca restrita ao dominio porque o egresso bloqueia leitura direta",
       "verificado_em": "2026-09-13",
-      "registros": 36,
+      "registros": 37,
       "publicar": false,
-      "sha256": "618a8eab07fe8c7606fd9f3b2ca3539382c622d59263bf334cefee93093d691b",
+      "sha256": "988b1d59eb95836cd974f43b24f266060895429f821f5d7767d55f115c3ef0fe",
       "descricao": "Banco de especies: 36 peixes do varejo brasileiro, de 2,0 cm (tetra ember) a 48,0 cm (kinguio), com porte, faixa termica, pH, dureza, cardume minimo, frente e base minimas de aquario, familia e convivencia, cada campo atribuido a uma fonte com url e data. Frentes minimas declaradas de 45 a 180 cm, em dez degraus — e a malha de pagina de volume sem repetir numero. 28 dos 36 passam no portao de pagina de especie e 32 alimentam a C8; os 8 barrados dizem no proprio registro qual campo falta e por que nao foi estimado. Em 13/09/2026 o gurami mel saiu dos barrados: o porte que a FishBase declara (13,7 cm TL) segue RECUSADO pela contradicao interna da propria ficha, e quem sustenta o campo agora e a ficha da mesma especie no compendio, com 55 mm SL colhidos em duas passadas independentes — mais o cardume de 4 a 6 que a mesma ficha declara. Os dois guramis grandes (perola e tricogaster) continuam sem convivencia depois de quatro passadas em dois corpos, e a ausencia esta medida, nao presumida. Existe para destravar o eixo aberto \"quantos litros para X peixes\" com dado em vez da regra de bolso de 1 cm por litro."
     },
     {
@@ -484,7 +484,7 @@
       "arquivo": "dados/metas-seo.json",
       "formato": "json",
       "publicar": false,
-      "sha256": "ad943d0e771cf1bf2b8970f6a8023da6484142e1462f26cb0bea298940e876b3",
+      "sha256": "7b8394dc34ca2d7098780995931dca0a95a5f466b429efafab98976a89683fca",
       "descricao": "Meta description das QUATRO paginas da casca (inicio, calculadoras, metodologia, sobre), que nascem do snippet e nao tem arquivo em conteudo/. As nove paginas vindas de conteudo/*.md tem a delas no proprio front matter, campo meta_descricao, e nao se repetem aqui: uma pagina, um lugar. Nasce do despacho da Sentinela de 10/09/2026, item 1 — nenhuma das 13 URLs do sitemap servia meta description. Nao vai para o site por si: quem leva o texto ao ar e o mapa gerado dentro de aquametria-seo-tecnico.php."
     }
   ],
@@ -772,14 +772,14 @@
       "id": "teste-peixes",
       "arquivo": "ferramentas/teste-peixes.py",
       "publicar": false,
-      "sha256": "b400ef6a8ad7879e75d24e774bddd1748120f05c183f6d5ec1669d36f836bb04",
+      "sha256": "c8f3c7b6eade141bd76a20928d9a7a56069115ccbba1689492c14b389bf68b20",
       "descricao": "O portao da leva 1 do eixo /peixes/: 295 afirmacoes, um processo php por pagina, medidas no CORPO do que a bancada serve. Toda aritmetica e recomputada do dados/especies-agua-doce.json, do zero, e o mapa pagina->especie esta escrito no teste — ler o mapa do snippet seria perguntar ao snippet qual e a resposta certa, e a proxima leva vai copiar este registro. Compara CELULA POR CELULA, e nao 'o numero esta na pagina': duas mutacoes deliberadas passaram na primeira rodada porque o numero errado que elas produziam existia em outra tabela (o 28 de 'cabem 28 neons' foi achado dentro de '20 a 28 C'). Mede tambem o que nao e numero: especie agressiva sem lista de companheiro, categoria de nivel 2 com 3 filhas ou mais no registro (16.5), ancora que nao diz 'saiba mais', ausencia de Product no JSON-LD, resposta de FAQ citando so numero que a pagina serve, trilha de quatro degraus com os tres primeiros linkados, e a colisao de slug entre a secao /peixes/ e a categoria de calculadora."
     },
     {
       "id": "mutacoes-peixes",
       "arquivo": "ferramentas/mutacoes-peixes.py",
       "publicar": false,
-      "sha256": "e71e784c3bed921a79b979f37abfc6d926efdd6b291be6ab4e6504633d2b117c",
+      "sha256": "0b5539ee5a6ce368328c2ab2af248920266005f32ec648bda0711c7d679ad384",
       "descricao": "24 mutacoes deliberadas contra o portao do eixo /peixes/, em tres familias: o numero muda (regua de lotacao trocada, extremo errado de conflito declarado, borda da tabela que desaparece); o numero fica e a ESTRUTURA quebra (a especie agressiva ganha lista de companheiro, o derivado per capita volta a ser multiplicado, categoria vazia registrada como pagina, Product no JSON-LD); e a regua perde o chao (o catalogo do snippet envelhece em relacao ao banco, a colisao de slug volta). 24 de 24 reprovadas — duas delas so depois de o portao passar a comparar celula, e nao texto da pagina."
     },
     {
@@ -808,7 +808,7 @@
       "arquivo": "ferramentas/teste-datas-schema.py",
       "publicar": false,
       "descricao": "Portao das duas datas do JSON-LD, medidas no HTML servido das tres paginas de artigo e das onze fichas de peixe: dateModified e datePublished tem de ser a data do post em W3C, recomputada AQUI do valor que o proprio portao injeta no post — nada e importado do snippet nem comparado com data digitada. Produz tres mundos que o banco nao tem: post sem data de modificacao, post sem nenhuma das duas, e campo com texto que nao se le como data. Nasceu dos itens 1 e 2 do despacho da Sentinela de 13/09/2026.",
-      "sha256": "5be9aa87930c3c826ef7ad6cf5c1fe43281bf2e411d7fa6925150a087773cf9e"
+      "sha256": "87185f7281792277151986d150ed3dc13b41e2f144c241b33fef458b91e275cf"
     },
     {
       "id": "mutacoes-datas",
