@@ -315,7 +315,7 @@ A hora do envio do e-mail para `mina196@hotmail.com`, o que dos cinco itens saiu
 peça do Arquipélago** — "Quadro flores do campo", quatro fotos, R$ 500, pronta
 entrega. O ateliê funcionou de ponta a ponta com uma pessoa de verdade. Os quatro
 itens que ela encontrou usando foram cumpridos e verificados no ar em 14/09/2026
-(ateliê 1.3.0, loja 1.2.0, manifest na revisão 28, `/status` com revisão 28); o que
+(ateliê 1.3.0, loja 1.2.0, casca 1.9.2, manifest na revisão 30, `/status` com revisão 30); o que
 cada um era, o que estava errado e como foi medido está no `REGISTRO.md` desta
 execução. **Um resumo de uma linha por item, e só para não voltarem a eles:**
 

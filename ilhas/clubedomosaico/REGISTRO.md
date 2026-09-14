@@ -3229,14 +3229,14 @@ site.**
 
 ## A verificação, em números
 
-- **Bancada, 0 falha:** `teste-casca` 546, `teste-loja` **178** (eram 148),
+- **Bancada, 0 falha:** `teste-casca` **549** (eram 546), `teste-loja` **178** (eram 148),
   `teste-atelie` **288** (eram 251), `teste-leads` 211, `teste-f1` 182, `teste-f2`
   107, `teste-prestacao-rejunte` 5 sobre 540 e 180 estados, `conferir-cobertura` 353,
   `validar-banco` aprovado com 25 materiais e 45 células, `validar-pastilhas`
-  aprovado, `php -l` limpo nos dois snippets tocados.
+  aprovado, `php -l` limpo nos três snippets tocados.
 - **Mutações:** `mutacoes-atelie` de 37 para **48**, com **48 reprovadas**, 0
   passaram, 0 inertes. `mutacoes-loja` de 23 para **36**, com **36 reprovadas**, 0
-  passaram, 0 inertes.
+  passaram, 0 inertes. `mutacoes-arvore` de 20 para **21**, com **21 reprovadas**.
 - **Duas mutações antigas foram consertadas, e as duas por causa deste bloco:** a 26
   do ateliê ficou INERTE porque o alvo dela citava `'peca' => $id`, que o conserto
   renomeou; a 33 da loja ficou INERTE porque a lupa saiu do retorno da ficha.
@@ -3247,7 +3247,7 @@ site.**
   Agora ela lê a declaração `.cdm-carrossel img{…}` isolada e imprime o conteúdo
   dela na medida. **Régua que procura no documento inteiro mede a existência da
   palavra, não a do comportamento.**
-- **No ar:** `conferir-atelie-no-ar.py` **78 afirmações** (eram 65), 0 falha, 0
+- **No ar:** `conferir-atelie-no-ar.py` **79 afirmações** (eram 65), 0 falha, 0
   pulada, com a seção 4d nova — o parâmetro, a faixa, a contagem de técnicas — e a
   galeria medida na ficha servida. `conferir-no-ar.py` **416 afirmações, 0 falha**,
   sem tocar uma linha do que mudou.
@@ -3265,6 +3265,36 @@ site.**
   página FUNCIONAR sem ele. O que ela cobra agora: UM script, no rodapé, depois do
   conteúdo, e **nenhuma** ocorrência de `fetch(`, `XMLHttpRequest`, `import(`,
   `document.write`, `cdn.`, `swiper` ou `elementor` dentro dele.
+
+## E UM TERCEIRO DEFEITO, ACHADO NA CONFERÊNCIA, QUE NINGUÉM ESCREVEU
+
+Contando as URLs do `wp-sitemap.xml` para fechar o bloco, apareceu uma que não é
+página desta ilha: **`/author/artesa/`**. Ela não foi escrita por ninguém e nenhuma
+linha de código mudou para ela existir — **o provedor `users` do núcleo só lista
+autor que TEM conteúdo publicado**, e até 13/09 esta ilha não tinha peça nenhuma.
+No minuto em que a artesã publicou a primeira, o arquivo de autor dela entrou no
+sitemap: **uma de doze URLs de um domínio de quatro dias.**
+
+Duas razões para tirar, e cada uma bastaria. **É página fina e repetida** — o
+arquivo do autor lista as peças publicadas, que é o que `/loja/` já faz com texto
+editorial em volta, e orçamento de rastreamento é o recurso escasso da seção 14.1.
+E **ele confirma o login dela**: o endereço carrega o `user_nicename`, que nesta
+ilha é o mesmo `artesa` com que ela entra; este snippet e o do ateliê gastam
+trabalho para a conta de uma pessoa de verdade não ficar exposta, e publicar o nome
+de usuário num arquivo XML desfaz metade disso de graça.
+
+Casca **1.9.2**: o provedor `users` sai, pelo mesmo mecanismo que a Aquametria já
+media desde 10/09 — aqui ele só não existia porque não havia autor com conteúdo. A
+régua entrou no `teste-casca.php` escrita à mão (o nome do provedor e a resposta
+esperada estão na linha, não lidos do snippet) e cobra os dois lados: `users` sai,
+`posts` e `taxonomies` ficam, para a remoção não vazar. Mutação nova na bateria da
+árvore, **21 de 21 reprovadas**. **No ar: o sitemap foi de 12 para 11 URLs, e
+nenhum arquivo de autor pede rastreamento.**
+
+**E o `atualizar-manifest.py` fez o trabalho dele nesta passada**, o que é raro o
+bastante para ficar escrito: ele **recusou gravar** a revisão 30 porque a versão da
+casca no manifest (1.9.1) não batia com a constante do snippet (1.9.2). A recusa
+veio antes do commit da revisão, não depois.
 
 ## A cópia da seção 24 nasceu, com peça de verdade dentro
 
