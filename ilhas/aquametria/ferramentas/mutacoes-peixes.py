@@ -721,12 +721,24 @@ MUTACOES = [
     # numero em paginas que ja estavam no ar.
     # ---------------------------------------------------------------------
 
-    ("A ABERTURA DO HAREM VOLTA A CITAR A FONTE: o ramo de resgate abre pela traducao do como_vive()",
+    ("A ABERTURA PELO ARRANJO VOLTA A SER O RAMO DE RESGATE: abre pela traducao do como_vive()",
      troca(PEIXES,
            "\t\t$html .= 'Para ' . esc_html( $arranjo['de'] ) . ' ' . esc_html( $nome )\n"
            "\t\t\t. ' — ' . esc_html( $arranjo['abertura'] ) . ' —, o seu aquário precisa de '",
            "\t\t$html .= 'Para o ' . esc_html( $nome ) . ', que vive '\n"
            "\t\t\t. esc_html( aquametria_peixes_como_vive( $e ) ) . ', o seu aquário precisa de '")),
+
+    # A GUARDA DA ABERTURA E O ROTULO, e nao a presenca do numero. Esta mutacao
+    # PRODUZ o mundo que o esquema permite e o banco nunca teve: cardume_minimo
+    # preenchido numa especie de casal. Com a guarda antiga (`$card` sozinho) a
+    # pagina abriria "Para um  de 5 colisa-anao", com o rotulo vazio no meio.
+    ("MUNDO PRODUZIDO: a especie de casal ganha cardume no banco e a guarda da abertura e testada",
+     varias(
+         banco_json(lambda d: mut_campo(d, "trichogaster-lalius", "cardume_minimo", 5)),
+         troca(PEIXES,
+               "\tif ( $card && '' !== $arranjo['minimo'] ) {",
+               "\tif ( $card ) {"),
+     )),
 
     ("O HAREM PERDE A ABERTURA PROPRIA e a frase sai com um travessao vazio no meio",
      troca(PEIXES,

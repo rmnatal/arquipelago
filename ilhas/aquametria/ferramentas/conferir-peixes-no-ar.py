@@ -252,6 +252,37 @@ def main():
                "Quem divide a mesma faixa de temperatura" not in t)
         ok("%s: no ar, nenhum link de loja" % slug, 'rel="sponsored"' not in servidas[slug])
 
+        # --- AS DUAS FRASES QUE A LEVA 5 CONSERTOU, medidas NO AR (14/09/2026).
+        #
+        # As duas estavam servidas e erradas antes deste bloco, e as duas so
+        # erram quando a contagem e UM — por isso atravessaram quatorze fichas
+        # sem ninguem ver. A bancada mede as duas desde hoje; elas moram TAMBEM
+        # aqui porque o corpo da ficha e um shortcode, entao a mudanca que vem do
+        # snippet nao move `post_modified` e nao aparece em log de desembarque
+        # nenhum: a unica prova de que o conserto chegou e o HTML servido.
+        if e.get("comportamento") != "agressivo":
+            ok("%s: no ar, a prestacao de contas nunca diz '1 ficaram'" % slug,
+               "1 ficaram fora" not in t,
+               t[max(0, t.find("1 ficaram fora") - 90):][:180])
+            ok("%s: no ar, a prestacao de contas nunca diz '1 estao'" % slug,
+               "1 estão na tabela" not in t)
+        if largura and e.get("convivencia") not in TP.ARRANJO_FIXO:
+            v_meio = frente[1] * float(largura) * TP.ALTURAS[1] / 1000.0
+            classica = int(math.floor((v_meio / TP.CLASSICA) / porte[1]))
+            conserv = int(math.floor((v_meio / TP.CONSERVADORA) / porte[1]))
+            ok("%s: no ar, 'cabe'/'cabem' concorda com o numero" % slug,
+               ("%s %d " % ("cabe" if conserv == 1 else "cabem", conserv)) in t,
+               t[max(0, t.find("de altura cab")):][:120])
+            if conserv >= 1:
+                # A RAZAO E A DOS DOIS NUMEROS IMPRESSOS, nunca a das constantes:
+                # ate 14/09 a pagina anunciava 4 vezes em toda ficha, e o
+                # arredondamento para baixo fazia disso mentira em dez das
+                # quatorze no ar — 6 vezes na sterbai, 7 no peixe-espada.
+                ok("%s: no ar, a razao publicada e a dos dois numeros da tela" % slug,
+                   ("A diferença entre os dois é de %s vezes"
+                    % TP.numero_br(classica / conserv)) in t,
+                   t[max(0, t.find("A diferença entre os dois")):][:110])
+
     # --- A PRESTACAO DE CONTAS DE QUEM NAO ESTA NA TABELA, no HTML servido.
     #
     # Mora aqui e nao so na bancada porque o corpo da secao e um SHORTCODE: a

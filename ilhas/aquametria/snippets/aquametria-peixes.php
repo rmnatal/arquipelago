@@ -3879,56 +3879,61 @@ function aquametria_peixes_ficha_html( $slug ) {
 	   palavra final é BASE ou COMPRIMENTO. Quem tem só o comprimento diz que o
 	   fundo FICA EM ABERTO — que é o que um aquarista diria, e não um buraco
 	   escondido. */
-	/* A ABERTURA SEGUE O ARRANJO QUE A FONTE DECLARA (1.7.0). Até a leva 3 havia
-	   dois caminhos aqui, e o primeiro dizia "cardume mínimo" para qualquer
-	   espécie com número — o que teria posto a palavra "cardume" na primeira
-	   linha da ficha do gurami mel, cuja fonte escreve que ele NÃO é peixe de
-	   cardume. Agora são quatro, um por forma de viver, e o rótulo do número sai
-	   do mapa do arranjo em vez de sair digitado. */
-	if ( $arranjo && null !== $arranjo['fixo'] ) {
-		/* A ABERTURA NÃO CITA QUEM DECLAROU — 15.2, e é a mesma régua que o item 4
-		   do despacho da Sentinela de 13/09/2026 cobrou nas onze fichas. A
-		   primeira escrita deste ramo dizia "que é o que a fonte declara por
-		   aquário" e o portão da voz reprovou antes de a página existir: a
-		   distinção que importa é O NÚMERO, não quem o disse, e quem o disse
-		   está um parágrafo abaixo, na camada de prova. A frase de cada arranjo
-		   vem declarada no mapa, junto do resto do vocabulário. */
-		$html .= 'Para ' . esc_html( $arranjo['de'] ) . ' ' . esc_html( $nome )
-			. ' — ' . esc_html( $arranjo['abertura'] ) . ' —, o seu aquário precisa de '
-			. esc_html( aquametria_peixes_num( $frente[1] ) ) . ' cm de frente';
-	} elseif ( $card ) {
+	/* DOIS RAMOS, e eram TRÊS até a leva 5 (14/09/2026). O ramo do arranjo que
+	   FIXA o número (solitário, casal) e o do arranjo SEM número (harém) davam,
+	   depois do conserto desta leva, a MESMA frase byte a byte — e foi a mutação
+	   82 que mostrou isso, ao recusar operar sobre um alvo que aparecia DUAS
+	   vezes. Duas cópias da mesma frase são duas frases que vão divergir, e o
+	   motivo de elas serem iguais não é coincidência: o que a abertura precisa
+	   dizer, nos dois casos, é O ARRANJO — porque em nenhum dos dois existe um
+	   número de exemplares que a fonte declare para a página abrir. O que separa
+	   solitário e casal do harém é a ESCADA, e ela é decidida em
+	   `aquametria_peixes_degraus_de_cardume()`, que continua com os três mundos.
+
+	   A GUARDA DO PRIMEIRO RAMO É O RÓTULO, e não a presença do número: espécie
+	   com `cardume_minimo` preenchido e `convivencia` de casal abriria "Para um
+	   de 5 <peixe>", com o rótulo vazio no meio da frase. O esquema permite (o
+	   campo é anulável e a convivência é outro campo) e o banco nunca produziu.
+	   Quem manda aqui é o mapa do arranjo: se ele declara um rótulo de mínimo, a
+	   abertura é a do número; se não declara, é a do arranjo. */
+	if ( $card && '' !== $arranjo['minimo'] ) {
 		/* A FAIXA, quando a fonte declarou uma: o compêndio do gurami mel
 		   recomenda "não menos que 4 a 6 exemplares", e abrir a página em 4 é
 		   publicar metade da recomendação. O teto vem do banco (esquema versão
 		   4) e nunca de aritmética sobre o piso. */
-		$html .= 'Para um ' . esc_html( $arranjo ? $arranjo['minimo'] : 'cardume mínimo' ) . ' de '
+		$html .= 'Para um ' . esc_html( $arranjo['minimo'] ) . ' de '
 			. esc_html( $card )
 			. ( ! empty( $e['cardume_ate'] ) ? ' a ' . esc_html( (int) $e['cardume_ate'] ) : '' ) . ' '
 			. esc_html( $nome ) . ', o seu aquário precisa de '
 			. esc_html( aquametria_peixes_num( $frente[1] ) ) . ' cm de frente';
 	} else {
-		/* O TERCEIRO MUNDO, e a leva 5 (14/09/2026) foi a primeira a publicá-lo:
-		   o arranjo está declarado e o NÚMERO não está — é o harém, e é o único
-		   valor do vocabulário fechado em que a fonte descreve a proporção entre
-		   os sexos e nunca o tamanho do grupo.
+		/* A ABERTURA PELO ARRANJO, e ela cobre os três valores em que a fonte não
+		   entrega número para a frase: solitário e casal, em que o arranjo FIXA o
+		   número e a escada tem um degrau; e o harém, em que a fonte descreve a
+		   proporção entre os sexos — mais fêmeas do que machos — e nunca o tamanho
+		   do grupo.
 
-		   ATÉ AQUI ESTE RAMO ERA O DE RESGATE: ele abria pela tradução do
-		   `como_vive()`, que carrega a oração do temperamento — "que vive em
-		   harém, um macho para várias fêmeas, E A FONTE O DECLARA PACÍFICO" —, e
-		   a primeira frase da página voltaria a citar quem declarou, contra a
-		   15.2 e contra o item 4 do despacho da Sentinela de 13/09/2026. Como
-		   nenhuma das 14 fichas no ar caía aqui, o defeito não tinha como ser
-		   medido por página nenhuma: régua escrita para um mundo que nunca
+		   O HARÉM FOI PUBLICADO PELA PRIMEIRA VEZ NA LEVA 5, e até ali ele caía num
+		   RAMO DE RESGATE que abria pela tradução do `como_vive()` — a que carrega a
+		   oração do temperamento, "que vive em harém, um macho para várias fêmeas,
+		   E A FONTE O DECLARA PACÍFICO". A primeira frase da página voltaria a citar
+		   quem declarou, contra a 15.2 e contra o item 4 do despacho da Sentinela de
+		   13/09/2026; como nenhuma das 14 fichas no ar caía ali, o defeito não tinha
+		   como ser medido por página nenhuma — régua escrita para um mundo que nunca
 		   aconteceu (seção 8 do ARQUIPELAGO.md).
 
 		   E O RAMO DE RESGATE DEIXOU DE EXISTIR, em vez de ser consertado: o
-		   vocabulário é fechado nos DOIS lados — o esquema enumera os cinco
-		   valores de `convivencia` e o validador reprova qualquer outro, e
-		   `aquametria_peixes_arranjo()` tem os mesmos cinco. Quem não estiver no
+		   vocabulário é fechado nos DOIS lados — o esquema enumera os cinco valores
+		   de `convivencia` e o validador reprova qualquer outro, e
+		   `aquametria_peixes_arranjo()` tem os mesmos cinco —, e quem não estiver no
 		   mapa não passa mais no portão de página (ver
-		   `aquametria_peixes_pode_virar_ficha()`), então aqui o arranjo é sempre
-		   conhecido e os três ramos cobrem o mundo inteiro. Ramo que não pode
-		   ser alcançado é régua que não pode falhar. */
+		   `aquametria_peixes_pode_virar_ficha()`). Aqui o arranjo é sempre conhecido
+		   e sempre tem abertura declarada.
+
+		   A PRIMEIRA ESCRITA DESTA FRASE, na leva 4, dizia "que é o que a fonte
+		   declara por aquário", e o portão da voz reprovou antes de a página
+		   existir: a distinção que importa é O NÚMERO, não quem o disse, e quem o
+		   disse está um parágrafo abaixo, na camada de prova. */
 		$html .= 'Para ' . esc_html( $arranjo['de'] ) . ' ' . esc_html( $nome )
 			. ' — ' . esc_html( $arranjo['abertura'] ) . ' —, o seu aquário precisa de '
 			. esc_html( aquametria_peixes_num( $frente[1] ) ) . ' cm de frente';

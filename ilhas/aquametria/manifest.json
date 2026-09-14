@@ -4,7 +4,7 @@
   "nicho": "aquarismo — calculadoras de dimensionamento e banco de dados tecnico",
   "dominio": "https://aquametria.com.br",
   "versao_manifest": 1,
-  "revisao": 79,
+  "revisao": 80,
   "atualizado_em": "2026-09-14",
   "estado": "fundacao",
   "desembarque": {
@@ -130,7 +130,7 @@
       "ativo": true,
       "versao": "1.8.0",
       "publicar": true,
-      "sha256": "f638cb95c49443d158c990988926de1ff4a637f706886310e7d5a2034dbcedf4",
+      "sha256": "3f4c8d9f8c53cbc7a297dca9faffe80cd00706e0e53886144bec3c6092dd538e",
       "descricao": "T4, levas 1 a 5 da malha: VINTE E DUAS URLs no eixo que a Bussola verificou ABERTO e que e o de maior volume de busca da ilha. Nivel 1 /peixes/, QUATRO categorias de nivel 2 (/peixes/tetras/ com 7 fichas, /peixes/corydoras/ com 4, /peixes/bettas/ com 3 e /peixes/vivaparos/ com 3) e as dezessete fichas de especie. v1.8.0 (14/09/2026), LEVA 5: a quarta categoria, e a primeira em que NENHUMA filha tem numero declarado — as tres vivem em harem, que e o unico valor do vocabulario fechado em que a fonte descreve a proporcao entre os sexos e nunca o tamanho do grupo. A leva 4 escreveu os tres mundos da escada de lotacao e publicou dois; o terceiro ficou como ramo de RESGATE e estava errado: abria pela traducao de como_vive(), que carrega a oracao do temperamento, e a primeira frase da ficha citaria quem declarou, contra a 15.2. O ramo virou branch com nome e o resgate deixou de existir — pode_virar_ficha() passa a exigir que o termo esteja no vocabulario fechado, que e o que o cabecalho da 1.7.0 ja afirmava e o codigo nao fazia. DOIS DEFEITOS QUE JA ESTAVAM NO AR sairam junto, os dois de concordancia e os dois medidos no HTML servido: '1 ficaram fora porque o banco os declara agressivos', com um unico peixe agressivo no banco; e 'cabem 1 coridora sterbai ... a diferenca entre os dois e de 4 vezes', em que o verbo estava no plural e o numero saia das CONSTANTES em vez dos dois numeros impressos — ele errava em DEZ das quatorze fichas no ar e erra por SETE vezes no peixe-espada, o maior peixe com ficha da ilha. A linha mestra e o criterio da categoria foram reescritos na leva que os publicou: a versao de 13/09 prometia numero de reproducao que nenhuma fonte declara e dizia que manda o macho enquanto o criterio dizia que manda a femea. A categoria declara as CINCO Poeciliidae e o portao barra duas — o guppy e o molly, os dois viviparos mais vendidos do Brasil, cada um a um campo de entrar —, com nome e causa na pagina. SERP da MAE classificada em 14/09/2026, a unica do eixo em que o top 7 nao fala do assunto; as tres fichas seguem com serp_em 13/09/2026."
     }
   ],
@@ -772,21 +772,21 @@
       "id": "teste-peixes",
       "arquivo": "ferramentas/teste-peixes.py",
       "publicar": false,
-      "sha256": "c8f3c7b6eade141bd76a20928d9a7a56069115ccbba1689492c14b389bf68b20",
+      "sha256": "d30b6ac30412210b162dd9473a92427f4e1e777e990600976cfdd2870e672f42",
       "descricao": "O portao da leva 1 do eixo /peixes/: 295 afirmacoes, um processo php por pagina, medidas no CORPO do que a bancada serve. Toda aritmetica e recomputada do dados/especies-agua-doce.json, do zero, e o mapa pagina->especie esta escrito no teste — ler o mapa do snippet seria perguntar ao snippet qual e a resposta certa, e a proxima leva vai copiar este registro. Compara CELULA POR CELULA, e nao 'o numero esta na pagina': duas mutacoes deliberadas passaram na primeira rodada porque o numero errado que elas produziam existia em outra tabela (o 28 de 'cabem 28 neons' foi achado dentro de '20 a 28 C'). Mede tambem o que nao e numero: especie agressiva sem lista de companheiro, categoria de nivel 2 com 3 filhas ou mais no registro (16.5), ancora que nao diz 'saiba mais', ausencia de Product no JSON-LD, resposta de FAQ citando so numero que a pagina serve, trilha de quatro degraus com os tres primeiros linkados, e a colisao de slug entre a secao /peixes/ e a categoria de calculadora."
     },
     {
       "id": "mutacoes-peixes",
       "arquivo": "ferramentas/mutacoes-peixes.py",
       "publicar": false,
-      "sha256": "6e76976b396ba6a537182e434b6cbfb3ced44260f414e7521c150c36e0421522",
+      "sha256": "b1954f48305d7013dae18997c33f8d8d5eb8bf4eb1577e6e16e9256c2560500a",
       "descricao": "24 mutacoes deliberadas contra o portao do eixo /peixes/, em tres familias: o numero muda (regua de lotacao trocada, extremo errado de conflito declarado, borda da tabela que desaparece); o numero fica e a ESTRUTURA quebra (a especie agressiva ganha lista de companheiro, o derivado per capita volta a ser multiplicado, categoria vazia registrada como pagina, Product no JSON-LD); e a regua perde o chao (o catalogo do snippet envelhece em relacao ao banco, a colisao de slug volta). 24 de 24 reprovadas — duas delas so depois de o portao passar a comparar celula, e nao texto da pagina."
     },
     {
       "id": "conferir-peixes-no-ar",
       "arquivo": "ferramentas/conferir-peixes-no-ar.py",
       "publicar": false,
-      "sha256": "bd848c39dd17eee7f917b52aa713c481fabe6b749aedc519758c697c8f29bbb1",
+      "sha256": "eab09c26f979affbac507ea71866466938c77433a6106643a95a58ea4ff393b0",
       "descricao": "Confere a leva 1 do eixo /peixes/ no HTML SERVIDO, nao no repositorio: 103 afirmacoes, 0 falha em 12/09/2026. A lista de URLs vem do INDICE do sitemap (os dois provedores, page e post), nunca digitada, e toda requisicao leva ?v=<hora> por causa do cache duplo da secao 4. A aritmetica e a MESMA do teste-peixes.py, importada de la para a conta morar num lugar so; o que muda e o sujeito. Foi ela que achou os DOIS defeitos que a bancada nao podia ver: o degrau de nivel 2 da trilha que nao resolvia (url_se_existir pedia o slug solto e get_page_by_path casa o caminho inteiro) e as TRES FICHAS DUPLICADAS com '-2' que a remontagem publicou e mandou para o sitemap, sem uma linha de erro. Mede ainda que cada degrau do BreadcrumbList responde 200, que a tag do GA4 sobreviveu a troca de versao da casca, e conta as ligacoes internas das 18 paginas para provar que nenhuma das cinco e orfa (16.4f) — descontando menu e trilha, que estao em todas."
     },
     {

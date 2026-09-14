@@ -595,6 +595,17 @@ def medir_ficha(slug, ident, banco):
     # cardume nao pode servir a palavra em lugar nenhum do corpo. Afirmacao
     # positiva ("diz sozinho") passaria com a frase errada logo ao lado.
     conviv = e.get("convivencia")
+    # QUEM MANDA NA ABERTURA E O ROTULO DO ARRANJO, e nao a presenca do numero.
+    # A regua e a daqui: arranjo que declara rotulo de minimo (cardume, grupo)
+    # abre pelo numero; os outros tres abrem pelo arranjo. Escrita assim porque o
+    # esquema PERMITE cardume_minimo preenchido numa especie de casal — os dois
+    # campos sao independentes — e o banco nunca produziu o caso; com a guarda
+    # sendo o numero, a pagina abriria "Para um  de 5 <peixe>", com o rotulo
+    # vazio no meio da frase. Quem produz esse mundo e a mutacao.
+    abre_pelo_numero = bool(e.get("cardume_minimo")) and conviv in ARRANJO_ROTULO_MINIMO
+    ok("%s: quem decide a forma da abertura e o rotulo do arranjo (%s)"
+       % (slug, "número" if abre_pelo_numero else "arranjo"),
+       abre_pelo_numero == (("Para um %s de" % ARRANJO_ROTULO_MINIMO.get(conviv, "\0")) in t))
     if conviv in ARRANJO_FIXO:
         quantos = ARRANJO_FIXO[conviv]
         de = ARRANJO_DE[conviv]
