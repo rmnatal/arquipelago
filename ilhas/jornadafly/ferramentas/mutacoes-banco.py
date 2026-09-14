@@ -320,6 +320,53 @@ def q_capacidade_sem_declarada_por(banco):
     return banco
 
 
+def _achar(banco, eid):
+    return next(e for e in banco["experiencias"] if e["id"] == eid)
+
+
+def _fonte(banco, fid):
+    return next(f for f in banco["fontes"] if f["id"] == fid)
+
+
+def mundo_autoridade_com_documento_nomeado(banco):
+    """O outro lado da regra do documento nomeado, e sem ele a regra nao esta medida.
+
+    O mesmo registro do Angkor, com a fonte citando o ato que a sustenta, tem de
+    poder ser `publicavel`. Uma trava que so sabe dizer nao aprovaria igualmente um
+    banco em que NADA e publicavel — e o dia em que a busca devolver a tabela de
+    tarifa, e este mundo que vira o banco real.
+    """
+    _fonte(banco, "angkor-enterprise-tarifa-via-busca")["documento"] = \
+        "Tabela de tarifas do Angkor Pass publicada pela Angkor Enterprise"
+    _achar(banco, "siem-reap-angkor-pass")["status"] = "publicavel"
+    return sincronizar_resumo(banco)
+
+
+def q_autoridade_muda_publicavel(banco):
+    """A quebra que a carga de 14/09 pagou para descobrir: autoridade de que so se
+    ouviu falar sustentando registro `publicavel`."""
+    _achar(banco, "siem-reap-angkor-pass")["status"] = "publicavel"
+    return banco
+
+
+def q_autoridade_muda_na_gondola(banco):
+    """A mesma quebra do OUTRO lado do banco, e ela e a que prova que a trava le a
+    escada e nao um id: some o ato da gondola e o registro dela, que segue
+    `publicavel`, tem de reprovar igual."""
+    _fonte(banco, "comune-venezia-tarifa-gondola")["documento"] = None
+    _fonte(banco, "comune-venezia-tarifa-gondola")["motivo_sem_documento"] = \
+        "apagado de proposito por esta mutacao"
+    return banco
+
+
+def q_esquema_sem_regra_do_documento(banco):
+    """A mutacao da secao 26.2 aplicada a regra nova: nao estraga registro nenhum,
+    apaga a chave do ESQUEMA. Sem ela o banco de hoje volta a passar com o Angkor
+    marcado publicavel, e a trava fica verde sem medir nada."""
+    _achar(banco, "siem-reap-angkor-pass")["status"] = "publicavel"
+    return banco
+
+
 def q_esquema_sem_lista_de_origem(banco):
     """A mutacao da secao 26.2: nao estraga registro nenhum, apaga a chave do
     ESQUEMA. Regua que le a propria lista de um arquivo de dados aprova tudo, em
@@ -499,6 +546,7 @@ MUTACOES = [
     ("MUNDO preco por cabine", mundo_por_cabine, "passa", None),
     ("MUNDO item com link rastreado e intestavel", mundo_com_link_rastreado, "passa", None),
     ("MUNDO experiencia sem divergencia nenhuma", mundo_sem_divergencia, "passa", None),
+    ("MUNDO autoridade COM documento nomeado vira publicavel", mundo_autoridade_com_documento_nomeado, "passa", None),
 
     ("preco sem data de leitura", q_preco_sem_data, "reprova", None),
     ("divergencia sem resolucao", q_divergencia_sem_resolucao, "reprova", None),
@@ -511,6 +559,9 @@ MUTACOES = [
     ("unidade de preco sem declarada_por", q_unidade_sem_declarada_por, "reprova", None),
     ("declarada_por fora do vocabulario", q_declarada_por_invalida, "reprova", None),
     ("capacidade maxima sem declarada_por", q_capacidade_sem_declarada_por, "reprova", None),
+    ("autoridade sem documento sustentando publicavel", q_autoridade_muda_publicavel, "reprova", None),
+    ("a mesma quebra na gondola, para a trava nao ser um id", q_autoridade_muda_na_gondola, "reprova", None),
+    ("ESQUEMA sem a regra do documento nomeado", q_esquema_sem_regra_do_documento, "reprova", "sem_regra_documento"),
     ("ESQUEMA sem a lista de campos que exigem origem", q_esquema_sem_lista_de_origem, "reprova", "sem_lista"),
     ("ESQUEMA sem a escada de fontes", q_esquema_sem_escada, "reprova", "sem_escada"),
     ("ESQUEMA sem o molde do piso", q_esquema_sem_molde, "reprova", "sem_molde"),
@@ -546,7 +597,9 @@ MUTACOES = [
 
 def esquema_para(mutacao):
     esquema = copy.deepcopy(ESQUEMA)
-    if mutacao == "sem_lista":
+    if mutacao == "sem_regra_documento":
+        del esquema["regra_do_documento_nomeado"]
+    elif mutacao == "sem_lista":
         del esquema["campos_que_exigem_declaracao_de_origem"]["campos"]
     elif mutacao == "sem_escada":
         del esquema["escada_de_fontes"]["niveis"]

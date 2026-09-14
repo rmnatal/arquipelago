@@ -3,7 +3,8 @@
   "ilha": "jornadafly",
   "bloco": 3,
   "gerado_em": "2026-09-14",
-  "versao_esquema": 1,
+  "versao_esquema": 2,
+  "versao_2_mudou": "Nasceu `regra_do_documento_nomeado`, na carga de 14/09/2026 as 23h. Nenhum campo de registro mudou: o que mudou e que autoridade sem documento nomeado deixou de valer o mesmo que autoridade com documento nomeado.",
   "descricao": "Modelo do banco da JornadaFly: entidades CIDADE, EXPERIENCIA (com VERSAO e DECLARACAO dentro dela) e FONTE. Define campo a campo o tipo, a unidade, a obrigatoriedade, o vocabulario controlado e a ORIGEM esperada do dado. Este arquivo e o contrato que dados/experiencias.json cumpre e que ferramentas/validar-banco.py verifica. Nenhum preco entra no banco sem data_leitura e sem uma entrada correspondente em fontes{}.",
   "depende_de": [
     "dados/especificacao-calculadoras.md",
@@ -242,17 +243,26 @@
     "excecao_declarada": "A gondola de Veneza entra por outro motivo e o registro diz qual: ela e o exemplo trabalhado que ESPECIFICA a F1, e a especificacao do bloco 2 manda grava-la no banco uma vez. Ela e tarifa tabelada, ou seja, o tipo que o criterio de entrada NAO prefere — e mesmo assim as paginas de topo discordam sobre ela, o que e a prova mais forte que a ilha tem."
   },
 
+  "regra_do_documento_nomeado": {
+    "descricao": "Fonte de nivel de AUTORIDADE que nao nomeia o documento que a sustenta nao deixa o registro com status publicavel. O registro entra no banco — ele so entra como pendente_de_releitura.",
+    "niveis_de_autoridade": [1, 3],
+    "status_quando_falta_documento": "pendente_de_releitura",
+    "nascida_em": "2026-09-14",
+    "por_que": "A escada ja cobra o elo mais fraco entre autoria, custodia e leitura, e faltava o quarto elo: o DOCUMENTO. A tarifa da gondola e nivel 3 porque a busca devolveu o ato que a sustenta (Delibera 89 de 20/04/2023) — o numero tem endereco proprio dentro da autoridade. A tarifa do Angkor voltou igual em duas passadas independentes, em duas linguas, atribuida por nome ao vendedor oficial, e NENHUMA das duas devolveu ato, tabela ou pagina de tarifa. As duas sao 'autoridade lida por busca' e nao valem o mesmo, e antes desta regra o esquema nao tinha como dizer isso: ele so tinha o nivel, e o nivel empatava as duas.",
+    "o_que_ela_nao_faz": "Nao impede o registro de existir nem de ir para a tela — a ressalva do nivel 3 ja manda escrever 'lida por busca, a reconferir na fonte'. Ela impede que a ilha chame de publicavel um numero cuja autoridade ela so ouviu falar. A diferenca entre os dois casos passa a ser MEDIDA em vez de argumentada.",
+    "como_sai_dela": "nomeando o documento — o ato, a tabela ou a pagina de tarifa da propria autoridade — ou lendo a fonte direto, que promove para nivel 1."
+  },
+
   "o_que_o_esquema_permite_e_o_banco_ainda_nao_tem": [
-    "preco por_pessoa (Petra, Angkor, Dubai, Buenos Aires, medidos no bloco 2 e ainda nao gravados)",
     "preco por_cabine (cruzeiro de Ha Long)",
-    "escada de dias como versoes (Petra 1/2/3 dias, Angkor 1/3/7 dias)",
-    "faixa_etaria preenchida (city tour de Buenos Aires: adulto e crianca de 2 a 7)",
     "temporada preenchida (aluguel de carro na Islandia, ate tres vezes entre inverno e verao)",
     "divergencia SEM autoridade, que resolve pelo valor maior",
     "declaracao ATRIBUIDA a uma versao — as quatro declaracoes do banco de hoje estao com versao null, porque nenhuma das fontes diz se fala do passeio diurno ou do noturno. Ou seja: a ilha tem quatro divergencias e ZERO votos na conta, e e a autoridade que resolve sozinha",
     "experiencia com afiliado.url preenchida, que e quando intestavel pode virar verdadeiro",
     "cidade com mais de uma experiencia",
-    "fonte de nivel 1 ou 2, que exige leitura direta"
+    "fonte de nivel 1 ou 2, que exige leitura direta — remedida em 14/09/2026 as 23h30Z e ainda fora de alcance: o WebFetch de www.angkorenterprise.gov.kh devolveu EGRESS_BLOCKED e o curl devolveu 000 em visitpetra.jo, angkorenterprise.gov.kh, civitatis.com, www.getyourguide.com.br, www.viator.com e api.bcb.gov.br",
+    "fonte de nivel 5 (plataforma lida na propria plataforma) — a busca de 14/09 devolveu a pagina de produto da Civitatis para o safari de Dubai no conjunto de resultados e NAO devolveu o preco dela; sem ler a plataforma, o numero dela chega por terceiro e cai para nivel 6, que e o que ja aconteceu com a GetYourGuide na gondola"
   ],
+  "o_que_saiu_desta_lista_em_14_09_2026_as_23h": "preco por_pessoa, escada de dias como versoes e faixa_etaria preenchida sairam porque o Angkor Pass entrou no banco com os tres — 1, 3 e 7 dias como versoes, preco por pessoa e a gratuidade de menores de 12 anos como faixa_etaria. Eles continuam tendo mutacao em mutacoes-banco.py: mundo produzido que virou banco real nao dispensa a regua, porque o mundo produzido cobre a combinacao inteira e o registro real cobre so a dele.",
   "por_que_essa_lista_existe": "Todo caso que o ESQUEMA permite e o banco ainda nao tem e um caso que a regua precisa tratar HOJE, nao no dia em que aparecer (secao 8 do ARQUIPELAGO.md). ferramentas/mutacoes-banco.py produz cada um destes mundos e verifica que o validador decide certo nos dois lados da fronteira — o mundo valido tem de PASSAR, e e essa metade que prova que a trava nao esta apenas dizendo nao para tudo."
 }

@@ -197,6 +197,23 @@ A primeira é a que faz a fábrica crescer; a segunda só para de gastar execuç
 
 **O que isto bloqueia hoje, e o que NÃO bloqueia.** Não bloqueia os blocos 3 e 4 da ohmetria na parte que importa: a **F1 tem uma metade que é aritmética pura** (`ilhas/ohmetria/ferramentas/impedancias.py`, 24 montagens enumeradas, 73 afirmações de régua própria) e publica sem constante nenhuma. **Bloqueia a F3 inteira** e bloqueia a promoção das 8 pendentes — inclusive a única que não é de rede: `queda-de-tensao-maxima-aceitavel` foi procurada e **não existe em fonte nenhuma** que a busca tenha alcançado, e sem ela a F3 calcula a queda e não pode dar veredito sobre ela.
 
+**ACRESCENTADO ÀS 23h35Z DE 14/09 PELA CARGA DO BANCO DA JORNADAFLY — o egresso fechado não bloqueia só o 3b: ele bloqueia o CRITÉRIO DE ENTRADA do banco, e isso foi medido em seis passadas.** O item de 15h22Z acima diz, e disse certo para o que se sabia então, que o bloqueio "não bloqueia os blocos 1, 2 e 3 — arquivo no repositório". O bloco 3 saiu mesmo. **O que veio depois dele foi a carga, e é aí que a conta muda.**
+
+O critério de entrada desta ilha, escrito no esquema e vindo do corpus do bloco 1, **prefere experiência de operador privado sem tabela pública** — porque onde a tarifa é pública e datada o mercado brasileiro já faz a conta direito e a ilha não acrescenta. Medido em 14/09/2026 entre 23h25Z e 23h40Z, sobre três das seis experiências que o bloco 2 nomeou, com pergunta limpa e sem número plantado:
+
+| Experiência | Passadas | O que a busca devolveu |
+|---|---|---|
+| Balão da Capadócia | 2 (pt e en) | US$ 150; "em média a partir de €190"; €90 a €160; €130 a €150; €130/€180/€300/€800; €150 a €450; €70; €60 a €250. **Nenhum número atribuído a um operador nomeado com data** |
+| Cruzeiro de Ha Long | 2 (pt e en) | US$ 180 a 480 por cabine; US$ 90 por pessoa; "a partir de" US$ 292; e na segunda passada os mesmos passeios em **VND por pessoa**. **As duas passadas discordam da UNIDADE e da MOEDA** |
+| Quadriciclo no deserto de Dubai | 1 | US$ 30 a 44; ≈ AED 110 a 160; US$ 85; R$ 300 a 800. **Três moedas, nenhum operador, nenhuma data** |
+| **Angkor Pass** (contraexemplo) | 2 (pt e en) | **US$ 37, US$ 62 e US$ 72**, os mesmos três nas duas, atribuídos por nome ao vendedor oficial |
+
+**A leitura, e ela é a razão de este acréscimo existir:** a busca web devolve **faixa** onde o preço é de operador privado e devolve **número** onde há tabela pública. Ou seja, **o único canal aberto hoje serve exatamente o tipo que o critério de entrada NÃO prefere.** Enquanto o egresso estiver fechado, o banco desta ilha só cresce pela exceção — e um banco feito só de tarifa tabelada é um banco que não sustenta a tese da ilha, que é preço colhido na fonte de quem opera.
+
+**Isto não muda o que fazer** (é a mesma lista "Domínios permitidos", e o pedido continua sendo o mesmo gesto). **Muda o que está em jogo:** antes, a leitura era "trava o 3b, que é publicação". Agora é "trava o 3b **e** trava a carga do banco pelo tipo que a ilha existe para cobrir". O que os domínios de operador abririam está escrito, e o endereço exato de cada um sai do campo `url` da fonte que se quiser reler, nunca desta prosa (seção 4 do contrato).
+
+**Pronto quando:** de dentro de uma rotina, um `curl` a `www.angkorenterprise.gov.kh` ou a `civitatis.com` devolver qualquer código HTTP de verdade. Hoje os dois devolvem `000`, e o WebFetch do primeiro devolve `EGRESS_BLOCKED` — medidos às 23h30Z, não herdados.
+
 ## FECHADOS
 
 ### prioridade NORMAL — O CABEÇALHO DE ESTADO DE UMA ILHA PODE NÃO SER YAML VÁLIDO, E NADA MEDE ISSO

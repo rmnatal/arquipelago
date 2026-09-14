@@ -17,7 +17,7 @@ resposta sem aviso. Um banco que deixe entrar preco sem data, ou unidade sem diz
 de onde ela foi lida, publica a ilha inteira cometendo o defeito que ela existe
 para corrigir.
 
-AS TRES COISAS QUE ELE FAZ E QUE NAO SAO "CONFERIR CAMPO OBRIGATORIO":
+AS QUATRO COISAS QUE ELE FAZ E QUE NAO SAO "CONFERIR CAMPO OBRIGATORIO":
 
   1. RECOMPUTA A RESOLUCAO DE DIVERGENCIA a partir das declaracoes e da escada de
      fontes, e reprova o valor resolvido que nao seja o da autoridade (quando ha) ou
@@ -31,6 +31,14 @@ AS TRES COISAS QUE ELE FAZ E QUE NAO SAO "CONFERIR CAMPO OBRIGATORIO":
      (secao 26.2) — e REPROVA SE A CHAVE SUMIR. Regua que le a propria lista de um
      arquivo de dados aprova tudo, em silencio, no dia em que o arquivo perder a
      chave.
+  4. COBRA A REGRA DO DOCUMENTO NOMEADO (nascida na carga de 14/09/2026, e tambem
+     lida do esquema): fonte de nivel de autoridade que nao nomeia o documento que
+     a sustenta nao deixa o registro `publicavel` — ele entra como
+     `pendente_de_releitura`. A escada ja cobrava o elo mais fraco entre autoria,
+     custodia e leitura, e faltava o quarto elo. A tarifa da gondola e nivel 3 e
+     cita a Delibera 89/2023; a do Angkor e nivel 3 e voltou em duas passadas sem
+     nenhum ato, tabela ou pagina de tarifa junto. Sao coisas diferentes, e ate
+     esta regra o esquema nao tinha como dizer isso.
 
 E ele e importavel: `validar(esquema, banco, constantes, hoje)` devolve
 (erros, avisos, resumo_calculado) sobre dicionarios em memoria. E assim que
@@ -157,6 +165,26 @@ def validar(esquema, banco, constantes=None, hoje=None):
     if not isinstance(regra_div, dict) or not regra_div.get("media"):
         erro("esquema: `regra_de_divergencia` ausente ou sem a linha da media. A "
              "proibicao de media (secao 10) mora no esquema e e daqui que ela e cobrada.")
+
+    # A regra do documento nomeado (nascida na carga de 14/09/2026). Ela tambem
+    # mora no ESQUEMA e nao aqui dentro (26.2): se a chave sumir, autoridade de
+    # ouvir falar volta a valer o mesmo que autoridade com ato nomeado, e a regua
+    # fica verde sem medir nada.
+    regra_doc = esquema.get("regra_do_documento_nomeado")
+    niveis_de_autoridade = []
+    status_sem_documento = None
+    if not isinstance(regra_doc, dict) \
+            or not isinstance(regra_doc.get("niveis_de_autoridade"), list) \
+            or not regra_doc.get("niveis_de_autoridade") \
+            or not regra_doc.get("status_quando_falta_documento"):
+        erro("esquema: `regra_do_documento_nomeado` ausente ou incompleta. Sem ela, "
+             "fonte de autoridade que nao nomeia o documento que a sustenta volta a "
+             "sustentar registro `publicavel` — que e a distancia entre a tarifa da "
+             "gondola, com ato citado, e a do Angkor, que duas passadas atribuiram ao "
+             "vendedor oficial sem nenhuma delas trazer o ato.")
+    else:
+        niveis_de_autoridade = regra_doc["niveis_de_autoridade"]
+        status_sem_documento = regra_doc["status_quando_falta_documento"]
 
     validade = esquema.get("validade_do_preco", {})
 
@@ -417,6 +445,23 @@ def validar(esquema, banco, constantes=None, hoje=None):
             if not versao.get("declarado_como"):
                 erro("%s: sem `declarado_como`. Sem a frase da fonte, a tela parafraseia "
                      "em vez de citar." % ondev)
+
+        # ---------------- a regra do documento nomeado (esquema, 26.2)
+        # O que sustenta o PRECO de um registro sao as fontes das versoes dele. Se
+        # alguma delas e de nivel de autoridade e nao nomeia documento, o registro
+        # entra como pendente_de_releitura e nunca como publicavel.
+        if status_sem_documento:
+            mudas = [v.get("fonte") for v in versoes
+                     if fontes.get(v.get("fonte"), {}).get("nivel") in niveis_de_autoridade
+                     and fontes.get(v.get("fonte"), {}).get("documento") is None]
+            if mudas and exp.get("status") != status_sem_documento:
+                erro("%s: `status` %r com preco sustentado por fonte de autoridade que "
+                     "NAO nomeia documento (%s). O esquema manda %r nesse caso: o "
+                     "registro entra, e entra a reconferir. Autoridade de que so se "
+                     "ouviu falar nao vale o mesmo que autoridade com ato citado, e "
+                     "antes desta regra as duas tinham o mesmo nivel."
+                     % (onde, exp.get("status"), ", ".join(sorted(set(mudas))),
+                        status_sem_documento))
 
         # ---------------- declaracoes divergentes
         declaracoes = exp.get("declaracoes")

@@ -1,10 +1,11 @@
 {
   "ilha": "jornadafly",
   "bloco": 3,
-  "versao": 1,
+  "versao": 2,
   "publicar": false,
   "cumpre": "dados/esquema-banco.json",
-  "nota_de_procedencia": "O banco nasce com UM registro, e isso e decisao, nao atraso. O corpus do bloco 1 fecha dizendo 'o banco comeca vazio no bloco 3 e se enche por leitura na fonte de quem opera', e a secao 5 da especificacao do bloco 2 manda o contrario para UM caso: 'quem for escrever o bloco 3 le a 2.2 e grava o numero no banco, uma vez'. As duas frases falam de coisas diferentes e as duas valem: nenhum preco do CORPUS entra no banco, e a tarifa da gondola — colhida no bloco 2 com o ato que a sustenta — entra, uma vez. Nenhuma coleta nova foi feita nesta execucao: gravar Petra, Angkor, Ha Long, Dubai ou Buenos Aires exigiria ler a fonte de quem opera, e isso e trabalho de coleta, nao de modelo.",
+  "nota_da_versao_2": "Carga de 14/09/2026, as 23h. Entrou o Angkor Pass, com Siem Reap como segunda cidade e a escada de dias (1, 3 e 7) como versoes. E entrou o que a coleta MEDIU sobre o canal: das seis experiencias que o bloco 2 nomeou, tres foram tentadas por busca (balao da Capadocia, cruzeiro de Ha Long e quadriciclo de Dubai, em cinco passadas somadas) e as tres devolveram FAIXA sem dono, sem data e as vezes sem unidade — as duas passadas de Ha Long discordam entre por cabine e por pessoa, e entre dolar e dongue. A busca devolve numero onde ha tabela publica e devolve faixa onde o preco e de operador privado, que e justamente o tipo que o criterio de entrada PREFERE. As tres ficam como coleta em aberto com a causa medida, nunca como silencio.",
+  "nota_de_procedencia": "ESCRITA NO BLOCO 3 E VERDADEIRA PARA AQUELE DIA; a versao 2 acima diz o que mudou. O banco nasce com UM registro, e isso e decisao, nao atraso. O corpus do bloco 1 fecha dizendo 'o banco comeca vazio no bloco 3 e se enche por leitura na fonte de quem opera', e a secao 5 da especificacao do bloco 2 manda o contrario para UM caso: 'quem for escrever o bloco 3 le a 2.2 e grava o numero no banco, uma vez'. As duas frases falam de coisas diferentes e as duas valem: nenhum preco do CORPUS entra no banco, e a tarifa da gondola — colhida no bloco 2 com o ato que a sustenta — entra, uma vez. Nenhuma coleta nova foi feita nesta execucao: gravar Petra, Angkor, Ha Long, Dubai ou Buenos Aires exigiria ler a fonte de quem opera, e isso e trabalho de coleta, nao de modelo.",
   "acentuacao": "Texto destinado a tela (rotulo, declarado_como, diz, motivos) e gravado ACENTUADO. Chave, id, slug e valor de vocabulario sao sem acento. E a cicatriz da Robometria, que publicou portugues sem acento vindo do banco e precisou de uma ferramenta so para restaurar.",
   "cidades": [
     {
@@ -14,6 +15,16 @@
       "moeda_local": "EUR",
       "slug_plataforma": "veneza",
       "slug_plataforma_conferido_em": "2026-09-14"
+    },
+    {
+      "id": "siem-reap",
+      "nome": "Siem Reap",
+      "pais": "Camboja",
+      "moeda_local": "USD",
+      "slug_plataforma": "siem-reap",
+      "slug_plataforma_conferido_em": "2026-09-14",
+      "nota_da_moeda": "A moeda oficial do Camboja é o riel, e o campo não pergunta qual é a moeda do país: pergunta em que moeda o operador daquela cidade cobra. O Angkor Pass é vendido em dólar, e foi em dólar que as duas passadas independentes leram os três preços. Gravar KHR aqui seria descrever a bandeira e não o caixa.",
+      "nota_do_slug": "O segmento de cidade foi visto em 14/09/2026 no conjunto de resultados de uma busca restrita a civitatis.com, que devolveu duas páginas de produto no caminho brasileiro — /br/siem-reap/excursao-koh-ker/ e /br/siem-reap/tour-tres-dias-angkor/ — além da página em inglês da cidade. O endereço do piso não foi aberto: o egresso desta nuvem recusou civitatis.com no mesmo dia."
     }
   ],
   "fontes": [
@@ -62,6 +73,18 @@
       "motivo_sem_documento": "Nenhuma delas cita documento. E há um defeito de coleta registrado junto: o bloco 2 anotou o que o CONJUNTO publica, sem separar qual página disse qual número. Declaração sem publicador nomeado não vai para a tela.",
       "url": null,
       "motivo_sem_url": "idem",
+      "data_leitura": "2026-09-14"
+    },
+    {
+      "id": "angkor-enterprise-tarifa-via-busca",
+      "nivel": 3,
+      "origem": "poder-publico-via-busca",
+      "leitura": "busca_web",
+      "autor": "Angkor Enterprise — a empresa pública cambojana que vende o ingresso do Parque Arqueológico de Angkor",
+      "documento": null,
+      "motivo_sem_documento": "E é este vazio que fez nascer a `regra_do_documento_nomeado` do esquema. Duas passadas independentes, uma em português e uma em inglês, nenhuma delas carregando número dentro da pergunta, devolveram os MESMOS três preços e atribuíram os três, por nome, ao vendedor oficial. Nenhuma das duas devolveu ato, deliberação, tabela de tarifa ou página de preço da própria autoridade. É a diferença exata para a tarifa da gôndola, que é do mesmo nível e cita a Delibera 89 de 20/04/2023: lá o número tem endereço dentro da autoridade, aqui ele tem só procedência falada. Por isso o registro que esta fonte sustenta nasce `pendente_de_releitura`.",
+      "url": null,
+      "motivo_sem_url": "O endereço da autoridade apareceu por nome no conjunto de resultados de duas buscas — a raiz `angkorenterprise.gov.kh/en` e a página de perguntas frequentes `/en/faqs` —, mas nenhuma das duas foi lida: às 23h30Z de 14/09/2026 o WebFetch de www.angkorenterprise.gov.kh devolveu EGRESS_BLOCKED e o curl devolveu 000 no mesmo minuto. Endereço visto no resultado de busca não é página lida, e gravar a URL aqui daria à fonte uma procedência que ela não tem.",
       "data_leitura": "2026-09-14"
     }
   ],
@@ -229,17 +252,128 @@
       },
       "status": "publicavel",
       "entra_por": "Exceção declarada ao critério de entrada. O critério do bloco 1 prefere operador privado sem tabela pública, e esta é tarifa tabelada — o tipo que o mercado brasileiro costuma servir direito. Ela entra assim mesmo porque é o exemplo trabalhado que ESPECIFICA a F1 (seção 2.2 do bloco 2) e porque é a prova mais forte que a ilha tem: quatro leituras diferentes, em três unidades, sobre o número mais verificável de toda a consulta."
+    },
+    {
+      "id": "siem-reap-angkor-pass",
+      "nome": "Angkor Pass — o ingresso do Parque Arqueológico de Angkor",
+      "cidade": "siem-reap",
+      "categoria": "ingresso_de_sitio_publico",
+      "operador": {
+        "nome": "Angkor Enterprise, a empresa pública que vende o Angkor Pass",
+        "tipo": "poder_publico",
+        "url": "https://www.angkorenterprise.gov.kh/",
+        "url_vista_como": "Endereço devolvido por nome no conjunto de resultados de duas buscas independentes em 14/09/2026, uma delas trazendo a página de perguntas frequentes em /en/faqs. A página NÃO foi lida — EGRESS_BLOCKED no WebFetch e 000 no curl, medidos às 23h30Z. É endereço visto, não página lida, e é exatamente por isso que a fonte é nível 3 e não nível 1."
+      },
+      "versoes": [
+        {
+          "id": "1-dia",
+          "rotulo": "1 dia",
+          "preco": 37,
+          "moeda": "USD",
+          "unidade_de_preco": "por_pessoa",
+          "unidade_de_preco_declarada_por": "no_contraste_da_propria_fonte",
+          "capacidade_maxima": null,
+          "capacidade_maxima_declarada_por": null,
+          "motivo_sem_capacidade": "Ingresso individual não tem lotação: a unidade já é a pessoa, e não existe o degrau que a gôndola tem, onde 6 pessoas viram duas embarcações.",
+          "duracao_minutos": null,
+          "motivo_sem_duracao": "A duração deste produto se mede em DIAS de validade, não em minutos de passeio — e a validade é o que separa as três versões. Preencher minutos aqui seria inventar o horário de visitação, que nenhuma das duas passadas declarou.",
+          "momento_do_dia": "qualquer",
+          "inclui": [],
+          "inclui_motivo_lista_vazia": "As duas passadas declaram preço e validade e não declaram o que o ingresso cobre além da entrada no parque. A página vai dizer isso ao leitor: é um fato sobre a leitura, não um vazio a esconder.",
+          "nao_inclui": [],
+          "nao_inclui_motivo_lista_vazia": "Mesma razão. Há templos do Camboja que se sabe terem bilhete próprio, e nenhuma das duas passadas os nomeou — nomeá-los aqui de memória seria inventar a exclusão mais cara da página.",
+          "fonte": "angkor-enterprise-tarifa-via-busca",
+          "data_leitura": "2026-09-14",
+          "declarado_como": "US$ 37 para a visitação de um dia. O passe de um dia vale na data impressa nele."
+        },
+        {
+          "id": "3-dias",
+          "rotulo": "3 dias, usáveis dentro de uma semana",
+          "preco": 62,
+          "moeda": "USD",
+          "unidade_de_preco": "por_pessoa",
+          "unidade_de_preco_declarada_por": "no_contraste_da_propria_fonte",
+          "capacidade_maxima": null,
+          "capacidade_maxima_declarada_por": null,
+          "motivo_sem_capacidade": "Mesma razão da versão de 1 dia.",
+          "duracao_minutos": null,
+          "motivo_sem_duracao": "Mesma razão da versão de 1 dia.",
+          "momento_do_dia": "qualquer",
+          "inclui": [],
+          "inclui_motivo_lista_vazia": "Mesma razão da versão de 1 dia.",
+          "nao_inclui": [],
+          "nao_inclui_motivo_lista_vazia": "Mesma razão da versão de 1 dia.",
+          "fonte": "angkor-enterprise-tarifa-via-busca",
+          "data_leitura": "2026-09-14",
+          "declarado_como": "US$ 62 para 3 dias. Os três dias não precisam ser seguidos: valem em três dias quaisquer dentro de uma janela de sete."
+        },
+        {
+          "id": "7-dias",
+          "rotulo": "7 dias, usáveis dentro de um mês",
+          "preco": 72,
+          "moeda": "USD",
+          "unidade_de_preco": "por_pessoa",
+          "unidade_de_preco_declarada_por": "no_contraste_da_propria_fonte",
+          "capacidade_maxima": null,
+          "capacidade_maxima_declarada_por": null,
+          "motivo_sem_capacidade": "Mesma razão da versão de 1 dia.",
+          "duracao_minutos": null,
+          "motivo_sem_duracao": "Mesma razão da versão de 1 dia.",
+          "momento_do_dia": "qualquer",
+          "inclui": [],
+          "inclui_motivo_lista_vazia": "Mesma razão da versão de 1 dia.",
+          "nao_inclui": [],
+          "nao_inclui_motivo_lista_vazia": "Mesma razão da versão de 1 dia.",
+          "fonte": "angkor-enterprise-tarifa-via-busca",
+          "data_leitura": "2026-09-14",
+          "declarado_como": "US$ 72 para 7 dias. Os sete dias não precisam ser seguidos: valem em sete dias quaisquer dentro de um mês."
+        }
+      ],
+      "temporada": null,
+      "motivo_sem_temporada": "Nenhuma das duas passadas declarou variação de preço por temporada, e ausência de declaração não é declaração de ausência. Escrever que o preço é igual o ano inteiro seria afirmar sobre o que não foi lido — e temporada é, pelo próprio esquema, o dado mais caro de chutar desta ilha.",
+      "faixa_etaria": [
+        {
+          "rotulo": "menores de 12 anos",
+          "preco": 0,
+          "moeda": "USD",
+          "condicao": "gratuito, com o passaporte da criança apresentado na bilheteria como prova de idade",
+          "se_nao_cumprir": "sem passaporte, cobra-se a tarifa cheia de US$ 37 pela criança, inclusive de bebê",
+          "declarado_como": "Crianças menores de 12 anos entram sem pagar; o passaporte é exigido como prova de idade, e sem ele paga-se US$ 37 por criança.",
+          "fonte": "angkor-enterprise-tarifa-via-busca",
+          "data_leitura": "2026-09-14",
+          "duas_passadas": "Sim: uma em português e uma em inglês, com perguntas independentes, ambas devolvendo a mesma regra e a mesma consequência de não cumpri-la."
+        }
+      ],
+      "nota_da_faixa_etaria": "É esta regra que DECLARA a unidade do preço, e ela é o exemplo mais limpo de `no_contraste_da_propria_fonte` que a ilha tem até hoje: a fonte nunca escreve 'por pessoa'. Ela escreve que a criança sem passaporte paga US$ 37 — o mesmo valor do adulto, por cabeça. Um preço que se cobra de cada criança é preço por pessoa, e quem classificou foi a ilha, não o operador. A frase da tela tem de dizer isso (seção 26.3 do ARQUIPELAGO.md).",
+      "imagem": null,
+      "motivo_sem_imagem": "A ilha não tem imagem própria e não usa foto de terceiro sem licença. A vitrine reserva o espaço e destaca o nome (seção 6 do ARQUIPELAGO.md).",
+      "declaracoes": [],
+      "motivo_sem_declaracoes": "Lista vazia aqui NÃO quer dizer que ninguém mais publicou número — quer dizer que ninguém publicou número DIFERENTE, e a distinção importa. Duas passadas independentes, em duas línguas, varrendo publicadores brasileiros, portugueses e de língua inglesa, devolveram os mesmos US$ 37, US$ 62 e US$ 72. Declaração, pelo esquema, é número de outra fonte que DISCORDA do resolvido; não havendo discordância, não há o que registrar. E o contraste com a gôndola é o achado: lá, quatro leituras em três unidades sobre uma tarifa igualmente tabelada; aqui, convergência total. Tabela pública não garante convergência — a gôndola prova isso —, mas onde ela converge, converge inteira.",
+      "resolucao": null,
+      "motivo_sem_resolucao": "Não há divergência para resolver. Resolução sem divergência seria a ilha encenando uma dúvida que não mediu.",
+      "afiliado": {
+        "programa": null,
+        "url": "",
+        "url_produto": null,
+        "motivo_sem_url_produto": "Não existe página de produto para ESTE item em plataforma nenhuma, e a causa não é falta de coleta: o Angkor Pass é vendido pela própria Angkor Enterprise, e o que a Civitatis vende em Siem Reap são passeios guiados — as duas páginas vistas na busca de hoje, /br/siem-reap/excursao-koh-ker/ e /br/siem-reap/tour-tres-dias-angkor/, são produto diferente do ingresso. Apontar uma delas como se fosse o passe seria vender uma coisa no lugar de outra, que é pior do que não ter link.",
+        "url_busca_produto": "https://civitatis.com/br/siem-reap/",
+        "rel": "nofollow noopener",
+        "intestavel": false
+      },
+      "status": "pendente_de_releitura",
+      "entra_por": "Entra pela mesma porta da gôndola e por uma razão a mais, que foi MEDIDA nesta coleta. Pela porta velha: é tarifa tabelada, o tipo que o critério de entrada NÃO prefere, e traz a escada de dias — 1, 3 e 7 — que o esquema listava como caso que ele permite e o banco não tinha. Pela razão nova: das seis experiências que o bloco 2 mediu, esta foi a ÚNICA em que a busca devolveu um preço reproduzível e atribuível. Capadócia, Ha Long e Dubai foram tentadas hoje, em cinco passadas, e todas devolveram FAIXA sem dono e sem data. Enquanto o egresso estiver fechado, o banco só consegue crescer pelo tipo que o critério de entrada não prefere — e este registro é a prova disso, não a exceção a isso.",
+      "status_por_que": "`pendente_de_releitura` e não `publicavel`: a fonte é de autoridade e não nomeia documento, e a `regra_do_documento_nomeado` do esquema, nascida nesta carga, cobra exatamente isso. Sai deste estado no dia em que a busca devolver o ato ou a tabela de tarifa, ou no dia em que o egresso deixar ler angkorenterprise.gov.kh."
     }
   ],
   "resumo": {
-    "cidades": 1,
-    "experiencias": 1,
-    "versoes": 2,
-    "fontes": 4,
+    "cidades": 2,
+    "experiencias": 2,
+    "versoes": 5,
+    "fontes": 5,
     "declaracoes": 4,
     "declaracoes_publicaveis": 2,
     "itens_sem_saida_de_compra": 0,
-    "itens_com_piso_nao_rastreavel": 1,
+    "itens_com_piso_nao_rastreavel": 2,
     "itens_intestaveis": 0,
     "experiencias_com_preco_em_brl": 0,
     "fontes_de_leitura_direta": 0,

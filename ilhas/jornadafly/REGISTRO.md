@@ -3,6 +3,154 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-09-14 23h18Z — A CARGA DO BANCO, e o achado é sobre o CANAL: a busca devolve faixa onde o preço é de operador e devolve número onde há tabela pública
+
+**O que saiu:** o **Angkor Pass** entra no banco com as três versões da escada de dias
+(1, 3 e 7 dias), preço por pessoa, faixa etária preenchida e cidade nova (Siem Reap).
+Nasceu no esquema a **`regra_do_documento_nomeado`**, com régua e três mutações. O banco
+foi de 1 para 2 experiências, de 2 para 5 versões, de 1 para 2 cidades e de 4 para 5
+fontes. **Nada foi ao ar: esta ilha não tem site, Sync nem `/status`, e dizer que
+verifiquei no ar seria inventar.**
+
+**A ESCOLHA DA ILHA: SEGUNDA TENTADA, uma perdida na corrida do push.** Os cinco
+`ESTADO.md` do `main` real parseiam em `yaml.safe_load` e os cinco estavam com
+`executando_desde: null`, que pela 1.1 já significa que nenhum bloco da Fundação está
+vivo — não houve reserva vencida para o git desempatar. Pela **18.1** li o topo dos
+cinco `PROMPT.md` antes da rotação e **nenhuma ilha tem despacho corretivo com item
+acionável em aberto**: o da robometria, da Sentinela de 14/09, tem os itens 1, 2 e 3
+**CUMPRIDOS** e o item 4 dependendo da sessão logada do painel da Shopee, que é do
+Raphael pela 25.6; os da ohmetria e da jornadafly são despachos de **nascimento**, que
+carregam a fila inteira e por isso não cabem na 18.2; o da aquametria deixou aberto o
+item 5, que diz de si mesmo que a ordem não muda, e o 6, suspenso pela seção 21. Sobrou
+a rotação da seção 1. A **robometria** era a mais antiga (19h17Z) e meu push de reserva
+foi **RECUSADO** — outra execução a reservou às 23h16Z, cerca de um minuto antes. Voltei
+ao passo 2 sem force push, e a próxima da ordem era a jornadafly (19h31Z). Reserva
+aceita às 23h18Z. Nenhum branch `claude/*` e nenhum PR aberto para mesclar.
+
+**REDE PELA 20.2, RETESTADA E NÃO HERDADA:** três passadas, `jornadafly.com.br` e
+`www.jornadafly.com.br` em `000` nas três, com `aquametria.com.br` e `robometria.com.br`
+em `200` nas mesmas três. Seis medições de bloqueio contra seis de controle verde, igual
+às duas execuções anteriores. Segue bloqueada, e `bloqueada_por` segue `null` de
+propósito: o que a rede trava é o 3b em diante, não o bloco de arquivo.
+
+### O achado, e ele não estava na lista de coisas a procurar
+
+O próximo passo escrito pelo bloco 3 era ler, na fonte de quem opera, as seis
+experiências que o bloco 2 mediu. **Três foram tentadas e três recusaram entrar, pelo
+mesmo motivo, e é o motivo que interessa.**
+
+| Experiência | Passadas | O que voltou |
+|---|---|---|
+| Balão da Capadócia | 2 (pt e en) | US$ 150; "em média a partir de €190"; €90 a €160; €130 a €150; €130/€180/€300/€800; €150 a €450; €70; €60 a €250 |
+| Cruzeiro de Ha Long | 2 (pt e en) | US$ 180 a 480 **por cabine**; US$ 90 **por pessoa**; "a partir de" US$ 292; e a segunda passada em **VND por pessoa** |
+| Quadriciclo no deserto de Dubai | 1 | US$ 30 a 44; ≈ AED 110 a 160; US$ 85; R$ 300 a 800 |
+| **Angkor Pass** | 2 (pt e en) | **US$ 37, US$ 62 e US$ 72** nas duas, atribuídos por nome ao vendedor oficial |
+
+**A busca web devolve FAIXA onde o preço é de operador privado e devolve NÚMERO onde há
+tabela pública.** Nenhuma das sete leituras de faixa tinha as três coisas que esta ilha
+exige de um preço: dono, data e unidade. A de Ha Long é a mais dura, porque as duas
+passadas **discordam da unidade e da moeda da mesma experiência** — que é, literalmente,
+o defeito que a ilha existe para corrigir, aparecendo dentro do canal com que ela
+pretendia se abastecer.
+
+**A consequência não é sobre estas três experiências, é sobre o plano:** o critério de
+entrada do esquema **prefere operador privado sem tabela pública**, e o único canal
+aberto hoje serve exatamente o tipo que ele **não** prefere. Enquanto o egresso estiver
+fechado, o banco só cresce pela exceção. Isso virou acréscimo ao despacho ALTO de rede
+em `dados/despachos.md`, às 23h35Z: o que muda lá não é o pedido — é o que está em jogo,
+que antes era "trava o 3b" e agora é "trava o 3b **e** a carga pelo tipo que sustenta a
+tese da ilha".
+
+**O canal foi remedido nesta execução, não herdado da prosa** (seção 4): `curl` devolveu
+`000` em `visitpetra.jo`, `angkorenterprise.gov.kh`, `civitatis.com`,
+`www.getyourguide.com.br`, `www.viator.com` e `api.bcb.gov.br`, e o **WebFetch** de
+`www.angkorenterprise.gov.kh` devolveu `EGRESS_BLOCKED` às 23h30Z. As duas portas,
+medidas hoje.
+
+### A regra que nasceu, e ela é sobre o QUARTO elo
+
+O Angkor entrou, e entrar levantou uma pergunta que o esquema não sabia responder.
+A escada de fontes cobra o **elo mais fraco** entre autoria, custódia e leitura — e
+tanto a tarifa da gôndola quanto a do Angkor são "autoridade lida por busca", nível 3,
+o mesmo degrau. **Só que elas não valem o mesmo.** A da gôndola voltou com o ato que a
+sustenta (Delibera 89 de 20/04/2023): o número tem endereço dentro da autoridade. A do
+Angkor voltou duas vezes, em duas línguas, atribuída por nome ao vendedor oficial, e
+**nenhuma das duas passadas trouxe ato, deliberação, tabela ou página de tarifa** — ela
+tem procedência falada. O endereço da autoridade apareceu nos resultados
+(`angkorenterprise.gov.kh/en` e `/en/faqs`) e **não foi lido**, porque o egresso recusou.
+
+Nasceu no esquema a `regra_do_documento_nomeado`: **fonte de nível de autoridade que não
+nomeia documento não deixa o registro `publicavel` — ele entra como
+`pendente_de_releitura`.** O registro entra, e entra a reconferir. É o quarto elo, ao
+lado de autoria, custódia e leitura.
+
+A régua lê a regra **do esquema** e nunca de dentro de si (26.2), e a lista de níveis de
+autoridade mora lá. Três mutações medem os dois lados: a que marca o Angkor como
+`publicavel` reprova; **a que apaga o ato da gôndola reprova igual**, e é ela que prova
+que a trava lê a escada e não um `id`; e a que apaga a chave do **esquema** reprova pela
+mensagem do próprio esquema. E há um **mundo que tem de passar**: o mesmo registro com o
+documento nomeado vira `publicavel` — sem ele a regra estaria só dizendo não, e o dia em
+que a busca devolver a tabela de tarifa é esse mundo que vira o banco real.
+
+### Duas decisões de dado que não são óbvias e ficam escritas
+
+1. **A moeda de Siem Reap é `USD`, não a moeda do Camboja.** O campo `moeda_local`
+   pergunta em que moeda o operador daquela cidade **cobra**, e o Angkor Pass é vendido
+   em dólar. Gravar o riel seria descrever a bandeira e não o caixa.
+2. **A unidade "por pessoa" foi DECLARADA pelo contraste, e a fonte nunca escreve "por
+   pessoa".** Ela escreve que a criança sem passaporte paga **US$ 37 — o mesmo valor do
+   adulto, por cabeça**. Preço que se cobra de cada criança é preço por pessoa, e quem
+   classificou foi a ilha. É o exemplo mais limpo de `no_contraste_da_propria_fonte` que
+   o banco tem, e a frase da tela terá de dizer quem classificou (26.3).
+
+**E uma terceira, sobre a monetização:** este item **não tem página de produto em
+plataforma nenhuma**, e a causa não é falta de coleta. O passe é vendido pela própria
+Angkor Enterprise; o que a Civitatis vende em Siem Reap são passeios guiados — as duas
+páginas vistas hoje, `/br/siem-reap/excursao-koh-ker/` e
+`/br/siem-reap/tour-tres-dias-angkor/`, são **produto diferente do ingresso**. Apontar
+uma delas como se fosse o passe seria vender uma coisa no lugar de outra, que é pior do
+que não ter link. O **piso da 25.2 continua de pé** e é derivado da cidade:
+`https://civitatis.com/br/siem-reap/`. Itens sem saída de compra: **0**. Piso não
+rastreável: **2**, que é dívida de comissão e não defeito de página.
+
+### A lista vazia que é uma afirmação, e ela é o contrário da gôndola
+
+`declaracoes` do Angkor é **vazia**, e o registro diz o que isso significa: **não é que
+ninguém mais publicou número — é que ninguém publicou número DIFERENTE.** Duas passadas,
+duas línguas, publicadores brasileiros, portugueses e de língua inglesa, os mesmos três
+valores. Declaração, pelo esquema, é número que **discorda** do resolvido; sem
+discordância não há o que registrar, e por isso `resolucao` é `null` com o motivo
+escrito — resolução sem divergência seria a ilha encenando uma dúvida que não mediu.
+É o contraste que vale: a gôndola é tarifa igualmente tabelada e tem **quatro leituras
+em três unidades**. Tabela pública não garante convergência; onde ela converge, converge
+inteira.
+
+### Verificação, 0 falha
+
+- `python3 ferramentas/validar-banco.py` — verde sobre o banco real, com a régua nova.
+- `python3 ferramentas/mutacoes-banco.py` — **49 mutações** (eram 45): **5 mundos que
+  têm de PASSAR** e **44 quebras que têm de REPROVAR**, todas decidindo certo nos dois
+  lados da fronteira. As três quebras novas foram lidas **uma a uma pela mensagem que
+  devolvem**, não só pelo veredito: nenhuma é inerte, nenhuma reprova por outra trava.
+- A régua pegou o que existe para pegar: as cinco contagens do `resumo` ficaram para
+  trás quando o registro entrou, e o validador reprovou as cinco antes do commit.
+  Número que a ilha publica sobre si mesma nasce contado.
+- Os três JSON passam por `json.load`; o cabeçalho do `ESTADO.md` passa por
+  `yaml.safe_load`.
+
+### Próximo passo desbloqueado
+
+**Continuar a carga pelo que o canal aberto alcança, e é uma lista curta e nomeada:**
+ingresso de sítio público com bilheteria oficial — Petra, Coliseu, Torre Eiffel —, que
+é o tipo que a medição de hoje mostrou ser o único reproduzível por busca. **Petra tem
+uma trava a mais e ela é de esquema:** a Jordânia cobra em dinar, e `JOD` não está no
+vocabulário de `moeda`, que hoje é `EUR`, `USD` e `BRL_do_operador`. O mesmo vale para
+Dubai (AED), Buenos Aires (ARS) e Ha Long (VND). **Quem for gravar a próxima cidade
+decide isso primeiro**, e a decisão mora no esquema, nunca dentro da régua: ou o
+vocabulário cresce com as moedas que os operadores realmente cobram, ou o banco fica
+restrito a três moedas e a ilha diz por quê. **Não depende de site, de domínio nem da
+rede bloqueada.**
+
 ## 2026-09-14 19h19Z — Bloco 3: o modelo do banco, e uma régua que só podia errar num mundo que o banco não tem
 
 **A ESCOLHA DA ILHA: SEGUNDA TENTADA, uma perdida na corrida do push.** Li os cinco
