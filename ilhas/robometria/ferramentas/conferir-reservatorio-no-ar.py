@@ -340,9 +340,14 @@ for _rot, _pag in (('W300', w300), ('WSMART', wsmart)):
     ok('em breve' not in _pag.lower(),
        'o recipiente do %s nao serve a frase proibida pela secao 7' % _rot,
        'ausente' if 'em breve' not in _pag.lower() else 'AINDA NO AR')
-    ok('rbm-comprar' in _pag,
+    # O ROTULO VISIVEL, NAO A CLASSE. A primeira escrita desta afirmacao procurava
+    # 'rbm-comprar' dentro de texto(), que e justamente o bloco COM A MARCACAO
+    # REMOVIDA — nome de classe nunca apareceria ali, e ela reprovou uma pagina
+    # correta. Este arquivo le como um leitor le, entao o que ele mede e a palavra
+    # que o leitor ve no botao.
+    ok('ver ofertas' in _pag.lower(),
        'o recipiente do %s tem saida de compra que clica (25.2)' % _rot,
-       'presente' if 'rbm-comprar' in _pag else 'AUSENTE')
+       'presente' if 'ver ofertas' in _pag.lower() else 'AUSENTE')
 
 print('\n' + '=' * 78)
 if falhas:

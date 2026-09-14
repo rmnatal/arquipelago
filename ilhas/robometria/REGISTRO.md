@@ -4075,7 +4075,16 @@ a decide escrito no próprio código.
 compra pela busca, **zero** ocorrências da frase proibida, "73 linhas" na tabela, a
 `/divulgacao-de-afiliados/` limpa, e a frase da R2 nomeando duas fontes distintas.
 `conferir-no-ar.py`: **220 afirmações, 0 falha**, incluindo as seções 9, 10 e 11 que
-nasceram hoje. **O bloco está entregue.**
+nasceram hoje, e `conferir-reservatorio-no-ar.py` com 50, 0 falha. **O bloco está
+entregue.** A revisão 42, que restaurou a purga, desembarcou e o canônico serviu as
+quatro saídas de compra **em minutos** — segundo ponto a favor da atribuição.
+
+**E uma régua minha nasceu errada e foi consertada na mesma passada, o que vale
+registrar porque é a terceira vez que esta ilha paga por isso:** a afirmação nova do
+`conferir-reservatorio-no-ar.py` procurava a classe `rbm-comprar` dentro de
+`texto()`, que é justamente o bloco **com a marcação removida**. Nome de classe
+nunca apareceria ali, e ela reprovou uma página correta. Aquele arquivo lê como um
+leitor lê, então o que ele mede passou a ser a palavra que o leitor vê no botão.
 
 **O que sobra, e não bloqueia nada:** entre o Sync e a purga o `/status` afirma que
 está tudo aplicado enquanto o leitor pode estar na página de antes — hoje isso
