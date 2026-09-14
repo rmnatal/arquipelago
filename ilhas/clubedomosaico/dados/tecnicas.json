@@ -13,8 +13,8 @@
     "serp": "Leitura propria, busca web da nuvem, 14/09/2026, uma consulta por tecnica, em portugues do Brasil. Cada registro cita quem apareceu, por dominio. NAO e a SERP do navegador do Raphael e nao substitui a leitura semanal: e o mesmo canal e a mesma ressalva que o `dados/corpus-buscas.md` carrega desde 10/09/2026."
   },
   "publicacao": {
-    "publicar": false,
-    "por_que": "Nenhum snippet le este arquivo. Enquanto a familia nao nascer, publica-lo gravaria uma option no site que nada leria — e dado publicado que ninguem le e a porta por onde uma copia vira fonte sem ninguem decidir (a mesma razao escrita para `dados/pecas.json` no validador)."
+    "publicar": true,
+    "por_que": "A familia das tecnicas nasceu: o snippet clubedomosaico-tecnicas.php le este arquivo na option clubedomosaico_dados_tecnicas e a definicao, as fontes e o material do caquinho de cada pagina saem daqui. Ate 14/09/2026 este campo dizia false com o motivo 'nenhum snippet le este arquivo', e ele ficou false depois de a primeira pagina nascer — o manifest ja publicava o arquivo e as duas metades discordavam em silencio, cada uma certa quando foi escrita. Quem pega isso agora e o teste-tecnicas.php, que exige este campo e o publicar do manifest dizendo a mesma coisa."
   },
   "tecnicas": [
     {
@@ -223,7 +223,9 @@
         }
       },
       "revisao_tecnica": "pendente",
-      "observacao": "DUAS COISAS PARA QUEM ESCREVER A PAGINA. (1) O rotulo que a artesa marca no atelie e 'Trencadis (caquinho)', e caquinho e a palavra que a pessoa usa no Brasil — a fonte brasileira que apareceu na SERP e sobre 'piso de caquinho' das decadas de 1940 e 1950, inspirado no trencadis. (2) As fontes tambem citam VIDRO entre os cacos, e o vocabulario `material_tessela` desta ilha nao tem valor para caco de vidro comum: tem `caco_espelho` e nao tem `caco_vidro`. Por isso o vidro ficou FORA de `materiais_tipicos` — falta de valor no vocabulario nao se resolve escolhendo o valor mais parecido."
+      "observacao": "DUAS COISAS PARA QUEM ESCREVER A PAGINA. (1) O rotulo que a artesa marca no atelie e 'Trencadis (caquinho)', e caquinho e a palavra que a pessoa usa no Brasil — a fonte brasileira que apareceu na SERP e sobre 'piso de caquinho' das decadas de 1940 e 1950, inspirado no trencadis. (2) As fontes tambem citam VIDRO entre os cacos, e o vocabulario `material_tessela` desta ilha nao tem valor para caco de vidro comum: tem `caco_espelho` e nao tem `caco_vidro`. Por isso o vidro ficou FORA de `materiais_tipicos` — falta de valor no vocabulario nao se resolve escolhendo o valor mais parecido.",
+      "pagina_publicada": true,
+      "pagina_publicada_url": "/como-fazer/o-que-e-trencadis/"
     },
     {
       "id": "picassiette",

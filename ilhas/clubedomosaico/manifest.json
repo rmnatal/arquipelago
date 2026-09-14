@@ -4,7 +4,7 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 34,
+  "revisao": 35,
   "atualizado_em": "2026-09-14",
   "estado": "nascendo",
   "desembarque": {
@@ -42,9 +42,9 @@
       "escopo": "global",
       "ativo": true,
       "publicar": true,
-      "versao": "1.0.0",
-      "sha256": "cf46f79b4d93fffc5a7cd0b8bc4b7c98f8fa1a4732498d82e2851bb4e9adcf5f",
-      "descricao": "TECNICAS 1.0.0 — a primeira pagina da Escola, e a que o Raphael pediu por nome em 14/09/2026: /como-fazer/o-que-e-mosaico-picassiete/. Ela NAO decide nada: quem escolhe a cola e cdm_f2_celula_cola(), a regua da F2 que ja esta no ar desde 11/09, chamada aqui para o caquinho de louca — sem segunda copia da decisao, que e a cicatriz que esta ilha pagou duas vezes so em 14/09. A tabela pre-renderizada da secao 5 e a grade inteira de 9 superficies por 5 lugares, 45 casos servidos no HTML e recalculados a cada requisicao. A prestacao de contas da secao 7 fecha com o banco: das 7 colas, 5 entram na vitrine e as 2 que nao entram sao nomeadas com a causa CONTADA celula a celula, nunca com hipotese. E a pagina se RECUSA a responder o rejunte, com a causa que ela mediu: ele se decide pela largura da junta em milimetro e nenhuma fonte colhida sobre Picassiete declara essa folga. Texto, definicao e fontes saem de dados/tecnicas.json, nunca digitados aqui."
+      "versao": "1.1.0",
+      "sha256": "00438b24668391658b2afbb2e2dc8733bc57a85d5679f6c2a02870a2ecc7aea8",
+      "descricao": "TECNICAS 1.1.0 — a familia da Escola, e nao mais uma pagina so: /como-fazer/o-que-e-mosaico-picassiete/ e /como-fazer/o-que-e-trencadis/. A 1.0.0 guardava id, slug e titulo em tres CONSTANTES; agora eles moram em cdm_tecnicas_registro() e cada pagina tem shortcode proprio ([cdm_tecnica_<id>]), porque a bancada descobre que pagina esta medindo casando o shortcode com a definicao de paginas — duas paginas com o mesmo shortcode seriam medidas como uma so e a segunda nasceria sem regua. A pagina NAO decide nada: quem escolhe a cola e cdm_f2_celula_cola(), a regua da F2 no ar desde 11/09, chamada aqui para o caquinho que o banco declara — sem segunda copia da decisao. O trencadis declara DOIS caquinhos (caco de azulejo e caco de louca) e o snippet calcula uma grade por caquinho e AGRUPA as que saem iguais: hoje as 90 combinacoes viram uma tabela so, e a pagina diz na tela que comparou as 90 e por que elas empatam — o caquinho so entra na regua na condicao de superficie porosa, e os dois absorvem. Com caquinhos de porosidades diferentes o agrupamento devolve duas tabelas, e esse ramo e medido com mundo fabricado em mutacoes-tecnicas-pagina.py. A prestacao de contas da secao 7 fecha com o banco em cada pagina: das 7 colas, 5 entram na vitrine e as 2 que nao entram sao nomeadas com a causa CONTADA celula a celula. As paginas se RECUSAM a responder o rejunte, com a causa medida; a do trencadis recusa tambem o caco de vidro comum, porque o vocabulario desta ilha nao tem valor para ele. Texto, definicao e fontes saem de dados/tecnicas.json, nunca digitados aqui."
     },
     {
       "id": "f1",
@@ -155,7 +155,7 @@
       "verificado_em": "2026-09-14",
       "registros": 5,
       "publicar": true,
-      "sha256": "71a517749179e1179ebec3a4eab9fdfe27d18c366cc82a2948cf389eb2c8c563",
+      "sha256": "c77b010464854ab37714ae01d0447ef3681380f7f94535ca60882053f09da456",
       "descricao": "O banco da entidade TECNICA, que o esquema do bloco 3 previu em 12/09/2026 e que nasceu em 14/09. Cinco tecnicas — direto, indireto, bizantino, trencadis e picassiette —, as mesmas cinco que a artesa pode marcar no atelie, cada uma com definicao sustentada por fonte de enciclopedia, museu ou instituicao de ensino, consulta-alvo, SERP lida e `revisao_tecnica: pendente`, porque a revisora existe e e ela. PASSOU A `publicar` true as 21h17Z de 14/09/2026, porque agora existe snippet que o le: a pagina do Picassiete tira dali a definicao, as fontes e a data de leitura, em vez de carregar uma copia do texto dentro do PHP. O QUE ESTE CAMPO DIZIA E DEIXOU DE VALER: que o portao de 3 itens da secao 9 ficava em ZERO para 5 de 5. Ele contava caco, que nao tem fabricante; a pagina de uma tecnica recomenda a COLA do caco, e nisso trencadis e picassiette tem 5 itens cada. Ver ARVORE.md secao 4b e dados/tecnica-x-material.json."
     },
     {
@@ -309,7 +309,7 @@
     {
       "id": "render-para-teste",
       "arquivo": "ferramentas/render-para-teste.php",
-      "sha256": "8a62934e8fd9eddfe330ad47220ac50f8bdeea498874f522f62a547f9c73c8ec",
+      "sha256": "7fd961c830e376f06eed4d55c84c016955890ee7f54d42901cb8176533243199",
       "descricao": "Monta uma pagina do site fora do WordPress para poder medir o HTML servido sem depender do site no ar — necessario porque o gateway da rede das rotinas respondeu 403 ao CONNECT para clubedomosaico.com.br em 11/09/2026. Imita de verdade os ganchos wp_head/wp_footer com prioridade, o escape de '&' que os filtros do the_content aplicam ao retorno do shortcode, e o remove_action casando gancho + funcao + prioridade. Carrega nas options o que o Sync carrega, pela cicatriz da bancada pela metade (secao 8). NUNCA e publicada no site."
     },
     {
@@ -471,19 +471,19 @@
     {
       "id": "teste-tecnicas",
       "arquivo": "ferramentas/teste-tecnicas.php",
-      "sha256": "535f1e7ee05b2ff35c3c60a9539d09dcff7e2245e98ee450a7e2bc9f5ae32af4",
+      "sha256": "953ef8c636e7da6acecb41494e0a8b9946f1a0fc245eacb16fab03543275df9a",
       "descricao": "Verificacao MEDIDA da pagina de tecnica. 49 afirmacoes no corpo servido, e o ESPERADO nao vem do snippet: as 45 celulas da grade sao comparadas com dados/cobertura.json, gerado pela regua em Python — duas metades independentes, em linguagens diferentes, que tem de dar o mesmo numero. Ele comeca rodando cobertura.py --conferir, porque regua velha aprova a pagina de ontem. Mede tambem a prestacao de contas da secao 7 (a soma dos nomeados fecha com o banco contado do arquivo), a escada de compra e o rel de cada link, a recusa do rejunte com a causa, os termos que o VOZ.md proibe no titulo e no primeiro paragrafo, e o FAQ do schema sendo o MESMO da tela. Bancada; nunca vai para o site."
     },
     {
       "id": "mutacoes-tecnicas-pagina",
       "arquivo": "ferramentas/mutacoes-tecnicas-pagina.py",
-      "sha256": "5b63d1a9e90444de152fdfee6c2c8fc8decafe44595faba6f8affbd7c1615c7e",
+      "sha256": "c5b5a7f1d8322719bad7577283cce26f9043e7ed74360b28adf401e690bd1212",
       "descricao": "Quebra a PAGINA de tecnica de proposito, uma mutacao por vez. 9 mutacoes: tessela digitada no snippet contra banco que diz outra, celula da grade cravada a mao, cartao que some da vitrine que a frase nomeia, recusa que volta a nomear so a causa maior, busca CRUA se declarando patrocinada, FAQPage prometendo pergunta que a tela nao responde, numero da frase digitado, pagina sumindo da listagem da mae (reprova no teste-casca, nao no proprio). A nona NAO reprova por reprovar: com o banco fora do ar a pagina tem de ficar HONESTA — dizer que nao mediu e NAO servir a grade. Bancada."
     },
     {
       "id": "conferir-tecnica-no-ar",
       "arquivo": "ferramentas/conferir-tecnica-no-ar.py",
-      "sha256": "2081736164e2817e9692ea35d6f0f1f4d3c2d7149d224c8785ed464bbe9a91b0",
+      "sha256": "b3a6f2ceedb9190c53e0c56b7cff1e7f82a91c384ee20dce385c8157d3856168",
       "descricao": "O irmao no ar do teste-tecnicas: abre a pagina de tecnica com curl e afirma sobre o HTML que o SITE serve. 23 afirmacoes. Reconta as 45 celulas da grade contra dados/cobertura.json (o banco commitado), refaz a prestacao de contas da secao 7 na tela, confere a escada de compra e o rel de cada link, os dois links internos que tiram a pagina da condicao de orfa, o sitemap, e o JSON-LD servido. A secao 4 compara o endereco CANONICO com o mesmo endereco com quebra de cache, por MARCADOR e nunca por bytes — e a trava do cache do hospedeiro, que o /status nao enxerga. O endereco esta literal no arquivo, copiado a mao: ler a constante do snippet seria conferir a pagina com a propria pagina. Accept-Encoding identity em toda requisicao. Bancada."
     }
   ],

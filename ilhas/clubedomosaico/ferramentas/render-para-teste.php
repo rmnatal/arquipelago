@@ -772,9 +772,20 @@ function cdm_teste_paginas_no_ar($modo = 'hoje') {
 		/* As duas ferramentas, nivel 3 com mae /materiais/, desde o bloco 4. */
 		'materiais/qual-cola-usar-no-mosaico'=>true,
 		'materiais/quantas-pastilhas-para-mosaico'=>true,
-		/* A primeira pagina da Escola, do bloco das tecnicas de 14/09/2026. */
-		'como-fazer/o-que-e-mosaico-picassiete'=>true,
 	);
+	/* AS PAGINAS DA ESCOLA SAEM DO REGISTRO DO SNIPPET, nao de uma lista escrita
+	   aqui. A primeira delas (o Picassiete, 14/09/2026) entrou a mao, e a
+	   segunda mostrou o custo disso: a mae deixou de listar a filha e as duas
+	   afirmacoes que cobram a 16.4(a) reprovaram, num arquivo de bancada que
+	   nada tem a ver com a pagina. Quem publica tecnica ja declara o endereco no
+	   registro; repetir o endereco aqui e a segunda copia da mesma decisao.
+	   QUEM MEDE SE ELA ESTA MESMO NO AR e o conferir-tecnica-no-ar.py, que abre
+	   a URL — esta lista e sobre o que a bancada monta, nunca sobre o site. */
+	if (function_exists('cdm_tecnicas_registro')) {
+		foreach (cdm_tecnicas_registro() as $ficha) {
+			if (!empty($ficha['slug'])) { $hoje[$ficha['slug']] = true; }
+		}
+	}
 	if ('todas' !== $modo) { return $hoje; }
 	foreach (cdm_casca_categorias_do_guia() as $c) {
 		if (!empty($c['slug'])) { $hoje[$c['slug']] = true; }

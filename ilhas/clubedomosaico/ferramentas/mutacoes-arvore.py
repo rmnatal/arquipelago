@@ -181,9 +181,17 @@ def m_slug_de_categoria_foge_da_voz(raiz):
     trocar(raiz, CASCA,
            "'slug'     => 'materiais/colas-e-adesivos',",
            "'slug'     => 'materiais/colas',")
-    trocar(raiz, ARVORE,
-           "| Colas e adesivos | `/materiais/colas-e-adesivos/` | 5 itens | não |",
-           "| Colas e adesivos | `/materiais/colas/` | 5 itens | não |")
+    # A CONTAGEM DE ITENS NAO ENTRA NA BUSCA, e isto e conserto de 14/09/2026 as
+    # 23h: a linha estava escrita inteira aqui, com "5 itens", e o banco cresceu
+    # para 7 — entao a mutacao parou de achar o alvo e esta trava ficou INERTE,
+    # sem reprovar nada e sem acusar nada. Mutacao amarrada a um numero que o
+    # banco move envelhece calada, que e a mesma familia da bateria do publicador
+    # da Robometria. Agora o alvo e so o endereco.
+    texto = ler(raiz, ARVORE)
+    alvo = [l for l in texto.splitlines() if "`/materiais/colas-e-adesivos/`" in l and l.startswith("|")]
+    if not alvo:
+        raise AssertionError("mutacao nao achou a linha da categoria colas no ARVORE.md")
+    trocar(raiz, ARVORE, alvo[0], alvo[0].replace("/materiais/colas-e-adesivos/", "/materiais/colas/"))
 
 
 def m_pagina_publicada_sem_lugar_na_arvore(raiz):

@@ -244,6 +244,61 @@ colhida declara folga em milímetro. Enquanto isso valer, uma página de técnic
 responde a cola e **não** responde o rejunte — e tem de dizer isso ao leitor em
 vez de escolher um por semelhança.
 
+**7b. A SEGUNDA FILHA NASCEU EM 14/09/2026, 23h19Z, E COM ELA A FAMÍLIA VIROU FAMÍLIA.**
+`/como-fazer/o-que-e-trencadis/`, o segundo e último endereço que o portão da
+tabela do item 3 autoriza hoje. O que mudou de estrutura, e é o que a próxima
+execução precisa saber:
+
+- **O snippet deixou de ser uma página.** A 1.0.0 guardava id, slug e título em
+  três constantes; a 1.1.0 tem um registro (`cdm_tecnicas_registro()`) e **um
+  shortcode por página** (`[cdm_tecnica_<id>]`). A razão do shortcode próprio não
+  é asseio: a bancada descobre QUE página está medindo casando o shortcode com a
+  definição de páginas, então duas páginas com o mesmo shortcode seriam medidas
+  como uma só — a primeira duas vezes, a segunda nenhuma, e o verde continuaria
+  lá. Está medido pela mutação `as duas paginas voltam a servir o MESMO
+  shortcode`.
+- **`cdm_teste_paginas_no_ar()` parou de listar página de técnica à mão.** A
+  primeira entrou escrita; a segunda mostrou o custo — a mãe deixou de listar a
+  filha e as duas afirmações da 16.4(a) reprovaram num arquivo de bancada que
+  nada tem a ver com a página. Agora a lista sai do registro do snippet.
+- **A 16.4(c) continua proibindo o bloco "Veja também" nas duas**, e ninguém
+  editou nada para isso: com duas filhas, cada uma tem UMA irmã, e a régua da
+  seção 6 deste arquivo exige duas. A frase que linka a mãe (16.4b) sai no corpo
+  das duas, onde o cluster não chega.
+
+**A MEDIÇÃO QUE DECIDIU O FORMATO DA PÁGINA DO TRENCADÍS, e ela é o achado do
+bloco.** O trencadís declara DOIS caquinhos (`caco_azulejo` e `caco_louca`) e o
+Picassiete declara um. A pergunta "uma grade ou duas?" estava escrita no
+`PROMPT.md` como escolha de quem publicasse. Ela não foi escolhida: o snippet
+calcula **uma grade por caquinho** e agrupa as que saem idênticas, célula a
+célula — e as duas do trencadís saem **iguais nas 45**, então a página serve uma
+tabela e **diz na tela que comparou as 90**.
+
+A causa está no código da F2 e é de uma linha: **o caquinho entra na régua num
+lugar só**, a condição de superfície porosa (`cdm_f2_condicao_cumprida`), e o
+esquema classifica `caco_azulejo` e `caco_louca` como POROSOS os dois. Medido
+sobre `dados/cobertura.json`, que é a metade independente: dos seis caquinhos do
+vocabulário, os quatro porosos (`pastilha_ceramica`, `caco_azulejo`,
+`caco_louca`, `pedra`) têm as 45 células **idênticas entre si**, e os dois que
+não absorvem (`pastilha_vidro`, `caco_espelho`) divergem deles em **4 células** —
+sempre as mesmas quatro, sempre pelo mesmo produto. Ou seja: **a grade não
+depende do caquinho, depende da CLASSE de porosidade dele**. Isso não vira regra
+de página nenhuma até estar medido em cada caso, e é por isso que a comparação é
+recalculada a cada carregamento em vez de virar uma frase.
+
+**O ramo das DUAS tabelas existe e é medido, embora o banco de hoje não o
+pise:** `mutacoes-tecnicas-pagina.py` fabrica o mundo em que o trencadís declara
+`caco_louca` e `caco_espelho`, exige duas tabelas e exige que o teste APROVE; e a
+mutação seguinte quebra o agrupamento no mesmo mundo e exige que ele REPROVE. É a
+disciplina da borda fabricada da seção 6 deste arquivo.
+
+**E UMA DIVERGÊNCIA VELHA FOI FECHADA DE PASSAGEM:** `dados/tecnicas.json` dizia
+de si mesmo `publicacao.publicar: false`, com o motivo "nenhum snippet lê este
+arquivo" — escrito antes de existir página de técnica —, enquanto o manifest já
+gravava a option que a página do Picassiete lia desde 14/09. As duas metades
+estavam certas no dia em que foram escritas, que é sempre como esta divergência
+nasce. Agora o `teste-tecnicas.php` exige que as duas digam a mesma coisa.
+
 **7. O QUE AINDA SEGURA A PÁGINA, depois dos três portões.** Nada de portão:
 só o trabalho de escrevê-la. A página nasce em `/como-fazer/<consulta-alvo>/`
 pela tabela do item 2, com a prestação de contas da seção 7 do contrato (cada
@@ -267,6 +322,7 @@ artesã já marca o termo no ateliê.
 | `/materiais/qual-cola-usar-no-mosaico/` | 3 | `/materiais/` | Início › Materiais › Qual cola usar no mosaico, e qual rejunte |
 | `/materiais/quantas-pastilhas-para-mosaico/` | 3 | `/materiais/` | Início › Materiais › Quantas pastilhas e quanto rejunte comprar |
 | `/como-fazer/o-que-e-mosaico-picassiete/` | 3 | `/como-fazer/` | Início › Como fazer › O que é mosaico Picassiete, e como colar |
+| `/como-fazer/o-que-e-trencadis/` | 3 | `/como-fazer/` | Início › Como fazer › O que é trencadís, e com o que colar o caco |
 | `/sobre/` | raiz | — | Início › Sobre |
 | `/contato/` | raiz | — | Início › Contato |
 | `/divulgacao-de-afiliados/` | raiz | — | Início › Divulgação de afiliados |
