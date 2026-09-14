@@ -305,6 +305,31 @@ def main():
             ok('id="cdm-peca-jsonld"' in h, f"[{curto}] serve o JSON-LD da peca")
             ok("noindex" not in h, f"[{curto}] a ficha NAO sai do indice")
             ok("cdm-trilha" in h, f"[{curto}] serve a trilha")
+
+            # ---- A GALERIA (item 4 do despacho de 14/09), medida NO AR ----
+            #
+            # ELA PRECISA SER MEDIDA AQUI, e nao so na bancada: o que monta esta
+            # pagina e `the_content`, e o `wpautop` so existe no site. Foi ele que
+            # deixou um `</p>` orfao colado no `</button>` das setas na primeira
+            # versao deste bloco — HTML quebrado que a bancada nao tinha como ver,
+            # porque la o filtro do WordPress nao roda.
+            ok("data-cdm-galeria" in h, f"[{curto}] serve a galeria nova")
+            ok(h.count('aria-label="Foto anterior"') == 1 and h.count('aria-label="Próxima foto"') == 1,
+               f"[{curto}] as duas setas, com nome")
+            ok('<div class="cdm-gal-setas">' in h, f"[{curto}] as setas vivem dentro de um bloco")
+            minis = len(re.findall(r'<a class="cdm-gal-mini" href="#cdm-foto-', h))
+            fotos_n = len(re.findall(r'<figure class="cdm-foto', h))
+            ok(minis > 0 and minis == fotos_n,
+               f"[{curto}] uma miniatura por foto, e cada uma e ancora", f"{minis} de {fotos_n}")
+            ok(len(re.findall(r'data-cdm-grande="http', h)) == fotos_n,
+               f"[{curto}] cada foto carrega o endereco da versao grande")
+            ok('<dialog class="cdm-gal-lupa"' in h, f"[{curto}] a lupa esta na pagina")
+            ok(not re.search(r"<dialog[^>]*\bopen\b", h), f"[{curto}] e nasce FECHADA")
+            ok('id="cdm-loja-js"' in h, f"[{curto}] o script da galeria sai no rodape")
+            # O DEFEITO EXATO DE 14/09, nomeado: nenhum `<p>` em volta de botao,
+            # nenhum `</p>` orfao colado num `</button>`, e a lupa inteira.
+            for marca in ("<p><button", "</button></p>", "<p><dialog", "</dialog></p>", "<p></dialog>"):
+                ok(marca not in h, f"[{curto}] o wpautop NAO deixou '{marca}' na pagina")
             # O Product tem de ser JSON valido — schema invalido e schema ignorado.
             mm = re.search(r'id="cdm-peca-jsonld">(.*?)</script>', h, re.S)
             valido = False

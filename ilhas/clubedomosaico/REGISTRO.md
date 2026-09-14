@@ -3036,3 +3036,275 @@ muda 7 das 12 linhas da tabela da F1; (3) **a matriz do rejunte de amostra para
 grade**, se e quando a junta virar um vocabulário fechado — hoje ela é contínua e
 a amostra de borda é a escolha certa, então isto é pergunta antes de bloco; (4)
 os 15 `url_busca`, no minuto em que houver sessão — e é copiar e colar.
+
+---
+
+# 14/09/2026, 11h18Z — O 404 DEPOIS DE PUBLICAR NÃO ERA REGRA DE REESCRITA: ERA UM NOME QUE JÁ TINHA DONO
+
+**Despacho do Raphael de 14/09, os quatro itens, e é o primeiro despacho desta
+fábrica escrito a partir do que uma PESSOA encontrou usando o que ela construiu.**
+A mãe dele recebeu o e-mail, criou a senha, entrou e cadastrou a primeira peça do
+Arquipélago — "Quadro flores do campo", quatro fotos, R$ 500, pronta entrega. O que
+vem abaixo é o que ela encontrou no caminho.
+
+**Ilha escolhida pela 18.1, não pela rotação.** A clubedomosaico tinha o despacho do
+Raphael mais recente e aberto no topo do `PROMPT.md`; a aquametria e a robometria
+foram lidas antes de escolher e não tinham despacho aberto para a Fundação (o item
+1 do de 10/09 da robometria é metade humana, no Search Console, e não é nossa). As
+outras duas execuções da mesma janela registraram nos próprios commits que
+perderam a corrida por esta ilha; nenhum force push aconteceu, dos dois lados.
+
+## ITEM 1 — a causa não era a que o despacho supôs, e ele mandava confirmar
+
+O despacho escreveu a hipótese e a marcou como hipótese: regras de reescrita do
+CPT `peca` não descarregadas. **Medido antes de uma linha mudar, às 11h19Z:**
+`/loja/quadro-flores-do-campo/` — a peça que ela publicou — responde **200**. A
+regra de reescrita está de pé e nasce sozinha desde a Loja 1.0.0.
+
+O que estava errado era **o nome de um parâmetro**. O painel carregava o id da peça
+na URL como `peca`, e `peca` é o nome do TIPO DE CONTEÚDO, registrado com
+`query_var` true — ou seja, uma variável PÚBLICA do WordPress. Para o núcleo,
+`/atelie/?peca=24` não é "o painel com a peça 24": é "me dê a peça de slug 24", que
+não existe, e o tema serve o 404 dele. As quatro medições, no ar, antes do
+conserto:
+
+| endereço | resposta |
+|---|---|
+| `/atelie/` | 200 |
+| `/atelie/?aviso=publicada` | 200 |
+| `/atelie/?peca=24` | **404** |
+| `/atelie/?estado=editar&peca=24` | **404** |
+| `/atelie/?estado=editar&cdm_peca=24` | 200 |
+
+E a confirmação que fecha a frase dele: o corpo daquele 404 serve
+`themes/twentytwentyfive/assets/images/404-image.webp`, com `alt="Pequena árvore
+totara no topo acima de Long Point"`. **É a foto em preto e branco que ele viu.**
+
+**Isto atingia mais que o publicar, e o despacho não sabia.** Seis voltas do painel
+carregam o id — publicou, salvou rascunho, pausou, faltou um campo, atualizou fotos
+— mais o link "Editar" da lista. **As sete caíam no mesmo 404.** Publicar era só o
+caminho em que ela chegou primeiro.
+
+**O conserto é o nome:** o parâmetro passou a ser `cdm_peca`, o mesmo prefixo que os
+campos do POST deste painel já usam. Nenhum filtro tirando variável do núcleo no meio
+do caminho — a colisão se resolve não colidindo. E como isso é uma regra que ninguém
+enxerga lendo a linha (`'peca' => $id` parece certo), ela virou **portão**:
+`teste-atelie.php` varre o snippet, extrai toda chave literal passada a
+`cdm_atelie_url()`, resolve a constante do parâmetro de peça, e compara a lista
+inteira com as variáveis públicas do WordPress — escritas à mão no teste, copiadas
+de `WP::$public_query_vars`, mais o tipo e as duas taxonomias desta ilha. Quem
+escrever uma chamada nova amanhã cai no portão sem precisar lembrar dele.
+
+**A segunda metade do item 1**, que é o que ela devia ver no lugar do 404: a volta
+para `/atelie/` já era PRG desde a 1.0.0 e continua sendo, agora com **faixa de
+"Peça publicada!"**, botão **"Ver no site"** e botão **"Cadastrar outra peça"**. O
+"Ver no site" **não é incondicional**: só nasce se a peça existe, é dela, está
+PUBLICADA de verdade e tem endereço — a trava do núcleo devolve ao rascunho a peça
+que não cumpre a regra de qualidade, então "publiquei" e "está no ar" são duas
+coisas, e um botão que promete o site e cai num 404 seria o mesmo defeito, dentro
+da tela que o conserta.
+
+## ITEM 2 — "o que seria 'escolha'? Não tem nada"
+
+Duas coisas erradas na mesma linha, e são independentes. **A palavra:** "Escolha"
+nomeia uma opção que não existe; lida por quem não sabe o que é uma lista, é um item
+como os outros. **O estado:** era `value=""` selecionável e inicial, então dava para
+voltar a ela. Agora a primeira linha de toda lista de escolha do painel é
+`<option value="" disabled hidden selected>Selecione…</option>` — instrução, não
+item —, escrita por **uma função só**, porque foi exatamente dois lugares
+escrevendo a mesma linha à mão que deixou "Escolha" sobreviver nos dois.
+
+**A trava.** As duas listas que ligam a peça ao site — coleção e técnica — ganharam
+`required`, e o botão **"Salvar e terminar depois" ganhou `formnovalidate`**: sem
+essa palavra, o `required` transformaria guardar rascunho em refém de uma lista e
+ela perderia o texto que já tinha escrito (decisão 5 do snippet). A frase que
+aparece é do painel e não do navegador — "Escolha a técnica que você usou nesta
+peça." —, trocada por `setCustomValidity`; com o JavaScript desligado sobra a do
+navegador, que é seca mas trava do mesmo jeito, e travar é o que protege a peça
+órfã. No servidor a régua já existia e não foi duplicada:
+`cdm_loja_peca_publicavel()` recusa publicar sem coleção e sem técnica desde 12/09.
+
+## ITEM 3 — pica-sete, e a prova de que o campo obrigava a mentir
+
+A peça que ela cadastrou tem **"Picassiette" escrito na descrição por ela mesma** e
+**"Trencadís" marcado no campo** — porque pica-sete não existia para marcar. É o
+caso literal do campo que obriga a pessoa a responder o que não é.
+
+A técnica entrou. **E a versão da Loja subiu com ela, que é a metade que faltava:**
+`cdm_loja_termos_iniciais()` só é percorrida quando `CDM_LOJA_VERSAO` difere da
+option `cdm_loja_termos` — termo novo sem versão nova é linha no repositório que
+nunca vira linha na lista dela. Medido: antes deste bloco a rota pública `/v1/loja`
+dizia `tecnica: 4`; depois do Sync diz **5**.
+
+A distinção que o despacho mandou escrever está na **ajuda do campo**, que é onde ela
+decide: *"Trincadís é caquinho de azulejo ou cerâmica, sem dar para reconhecer de
+onde veio; pica-sete é caco de louça em que dá para reconhecer a peça original —
+alça, bico, estampa. Também chamada pique-assiette."* O trincadís **fica**, como o
+esclarecimento do mesmo dia manda.
+
+**O slug gravado é `picassiette`, e isto é escolha registrada, não descuido.** O
+despacho pediu `pica-sete`; o esclarecimento do mesmo dia diz que "entrou como
+`picassiette`" e não o desfaz. As duas taxonomias desta ilha são registradas com
+`rewrite` false, então o slug do TERMO não decide endereço nenhum hoje: no dia em
+que houver página de técnica, `/tecnicas/pica-sete/` continua inteiramente
+disponível, e quem decide o endereço é a malha, não este campo. Na tela, onde ela
+lê, o nome é **"Pica-sete"** — o `VOZ.md` manda na palavra.
+
+## ITEM 4 — o comportamento do Real 21, com código nosso
+
+O Raphael deu a referência e **mudou a instrução na mesma frase**: a galeria do
+Real 21 é Elementor + Swiper, medido por ele em 14/09, e isso é construtor de página
+mais biblioteca JavaScript — o que a 22.3 proíbe na página pública e a 11.7 proíbe
+instalar. Copiar aquilo trocaria ranqueamento por beleza.
+
+O que nasceu, todo ele sobre o HTML que já estava servido:
+
+- **Foto grande em proporção fixa 4:5** com `object-fit: cover`. Era metade do "está
+  muito feio": foto de celular vem em pé e deitada, e sem proporção fixa a página
+  saltava de altura entre uma peça e outra.
+- **Tira de miniaturas quadradas de verdade** — `aspect-ratio: 1/1` mais
+  `object-fit: cover`, o quadrado é do CSS e o arquivo nunca é cortado. **Cada
+  miniatura é um link para a âncora da foto**, então ela funciona com o JavaScript
+  desligado: `#cdm-foto-3` rola o contêiner de `scroll-snap` sem uma linha de
+  script. O `alt` delas é vazio de propósito — a foto grande já descreve a peça, e
+  repetir faria o leitor de tela ler a peça inteira duas vezes.
+- **Setas de 44 px**, botões de verdade com `aria-label` e `aria-controls`, que só
+  rolam o contêiner. Aparecem no ponteiro e somem no toque, onde o dedo já arrasta.
+- **Ampliar com `<dialog>` nativo**, X grande, `Esc` (que é do navegador) e clique
+  fora. **Zoom** na ampliada com `transform: scale(2)` e origem no ponto tocado.
+- **O endereço da foto grande viaja no HTML**, em `data-cdm-grande`: o zoom não é a
+  foto pequena esticada, e o script **não busca nada** — que é o outro lado da 22.3.
+- Tokens do `DESIGN.md` desta ilha, que ganhou a entrada "Galeria da ficha da peça"
+  ANTES do código, como a 22.6 manda.
+
+## O DEFEITO QUE SÓ O AR TINHA, E QUE EU PUBLIQUEI ANTES DE VER
+
+Esta é a parte que vale mais que as quatro acima, porque ela é sobre o portão e não
+sobre a tela.
+
+A ficha é montada por `the_content`, e **o retorno desse filtro passa pelo
+`wpautop`** — que usa as etiquetas de BLOCO como fronteira de parágrafo, embrulha
+cada pedaço em `<p>…</p>`, e depois tira o `<p>` que encosta num bloco e o `</p>`
+que vem logo depois de um. **`button`, `dialog`, `span`, `a` e `img` não são blocos
+para ele.** A bancada desta ilha não tem WordPress: ela mede o HTML que a função
+devolve, e o `wpautop` só existe no site.
+
+Eu previ metade disso e errei a outra. A `<dialog>` foi para o `wp_footer` antes de
+qualquer medição, e isso estava certo. As duas setas eu deixei soltas logo depois da
+abertura do palco, achando que bastava não vir depois de um `</div>`. **Fui olhar o
+HTML servido e ele trazia:**
+
+```
+<div class="cdm-gal-palco"><button …>‹</button><button …>›</button></p>
+```
+
+Um `</p>` órfão colado no `</button>`: a abertura do parágrafo foi removida por
+encostar num `<div>` e o fechamento ficou, porque encostava num `</button>`. Nada
+quebra na tela. O navegador engole. **E o portão tinha passado verde**, porque a
+régua que eu tinha escrito olhava só um lado — etiqueta de linha DEPOIS de um
+fechamento de bloco — e o defeito era do outro, ANTES de uma abertura.
+
+A regra que sobra, e ela vale para tudo que esta ficha imprimir daqui para a frente:
+**etiqueta que não é bloco nunca encosta numa fronteira de bloco, de nenhum dos dois
+lados.** As setas passaram a morar dentro de um `<div class="cdm-gal-setas">` — uma
+camada absoluta que cobre o palco, deixa o dedo passar e ancora as duas. A régua do
+`teste-loja.php` passou a medir os dois lados e **nomeia qual** apareceu; a mutação
+37 devolve exatamente o HTML que foi ao ar e a régua reprova dizendo
+`antes de bloco: </button>`. E o `conferir-atelie-no-ar.py` passou a procurar as
+cinco marcas do estrago — `<p><button`, `</button></p>`, `<p><dialog`,
+`</dialog></p>`, `<p></dialog>` — **no HTML servido**, porque é lá que o `wpautop`
+existe.
+
+## A OUTRA COISA QUE O AR ENSINOU: a ficha é servida de cache por duas horas
+
+Conferindo o conserto, a primeira leitura de `/loja/quadro-flores-do-campo/` veio
+com `last-modified` de **13/09 17h01** e `cache-control: max-age=7200`, servindo a
+ficha ANTERIOR — com a revisão 28 já aplicada e a rota `/v1/loja` já dizendo
+`versao_loja: 1.2.0`. É a família da seção 4 do contrato com uma cara nova: o site
+não ficou para trás, a CÓPIA que o visitante recebe ficou. O `conferir-atelie-no-ar.py`
+já se protegia disso — o `buscar()` dele anexa `?v=<timestamp>` a toda URL, escrito
+lá desde 12/09 — e foi o `curl` a mão desta execução que caiu no cache. Fica
+registrado para a próxima passada: **`curl` a mão nesta ilha mede o cache, não o
+site.**
+
+## A verificação, em números
+
+- **Bancada, 0 falha:** `teste-casca` 546, `teste-loja` **178** (eram 148),
+  `teste-atelie` **288** (eram 251), `teste-leads` 211, `teste-f1` 182, `teste-f2`
+  107, `teste-prestacao-rejunte` 5 sobre 540 e 180 estados, `conferir-cobertura` 353,
+  `validar-banco` aprovado com 25 materiais e 45 células, `validar-pastilhas`
+  aprovado, `php -l` limpo nos dois snippets tocados.
+- **Mutações:** `mutacoes-atelie` de 37 para **48**, com **48 reprovadas**, 0
+  passaram, 0 inertes. `mutacoes-loja` de 23 para **36**, com **36 reprovadas**, 0
+  passaram, 0 inertes.
+- **Duas mutações antigas foram consertadas, e as duas por causa deste bloco:** a 26
+  do ateliê ficou INERTE porque o alvo dela citava `'peca' => $id`, que o conserto
+  renomeou; a 33 da loja ficou INERTE porque a lupa saiu do retorno da ficha.
+  Mutação inerte é teste verde com outro nome.
+- **Uma afirmação foi endurecida depois de a mutação 25 passar limpa:** a régua da
+  proporção fixa procurava `aspect-ratio:4/5` no documento inteiro, e o cartão da
+  vitrine também tem essa linha — tirar a proporção da foto grande passava verde.
+  Agora ela lê a declaração `.cdm-carrossel img{…}` isolada e imprime o conteúdo
+  dela na medida. **Régua que procura no documento inteiro mede a existência da
+  palavra, não a do comportamento.**
+- **No ar, `conferir-atelie-no-ar.py`:** 0 falha, 0 pulada, com a seção 4d nova
+  (o parâmetro, a faixa e a contagem de técnicas) e a galeria medida na ficha.
+- **A régua do `teste-loja` mudou de forma numa linha, e ela ENDURECEU:** até 13/09
+  a afirmação era "a Loja não serve JavaScript nenhum", e ela media a coisa certa
+  pelo motivo errado — o que a 22.8 protege não é a ausência de JavaScript, é a
+  página FUNCIONAR sem ele. O que ela cobra agora: UM script, no rodapé, depois do
+  conteúdo, e **nenhuma** ocorrência de `fetch(`, `XMLHttpRequest`, `import(`,
+  `document.write`, `cdn.`, `swiper` ou `elementor` dentro dele.
+
+## A cópia da seção 24 nasceu, com peça de verdade dentro
+
+`dados/pecas.json` existe desde hoje, com a peça que ela cadastrou: título, slug,
+estado, descrição, campos, coleção, técnica e as quatro URLs de foto. Até 13/09 a
+rota devolvia `total: 0`, e zero peça é resposta, não falha.
+
+**Uma decisão de formato, e ela é o que faz a regra 24.2 funcionar:** o campo
+`gerado_em` da rota **não entra na cópia**. Com ele dentro, toda passada da ronda
+seria um commit, e a 24.2 manda commitar só quando o JSON MUDOU. Quando a cópia foi
+tirada é o git que sabe — é para isso que ele serve. `publicar: false`, porque este
+arquivo é cópia do site e nunca fonte dele; desembarcá-lo devolveria ao WordPress o
+que veio de lá.
+
+## Receita, contada do arquivo (nada mudou neste bloco)
+
+7 colas, 25 itens de fabricante, 15 esperando link, 15 sem piso, 22 sem imagem. Os
+15 `url_busca` seguem dependendo de UMA sessão do painel da Shopee. Pauta da seção
+17: `pauta.md` ainda não existe — 0 escritos, 0 na fila, 0 recusados.
+**A loja tem 1 peça publicada e 0 rascunhos**, e é a primeira linha de receita
+própria do Arquipélago inteiro.
+
+## Aberto e nomeado
+
+- **(a) A página `/tecnicas/pica-sete/` NÃO nasceu, e o item 3 pedia.** Não é
+  esquecimento e não é conserto: **nenhuma** técnica desta ilha tem página. As duas
+  taxonomias são registradas `public => false` por decisão medida de orçamento de
+  rastreamento (decisão 4 do snippet da Loja, 12/09) — taxonomia pública nasce com
+  arquivo e põe de sete a doze URLs finas no sitemap de um domínio de quatro dias.
+  Criar a página do pica-sete sozinha seria criar a família inteira por uma porta
+  lateral. **Isto é bloco de malha, não item de despacho**, e ficou reescrito no
+  `PROMPT.md` como o que falta.
+- **(b) A metade humana do item 4 continua aberta:** o dedo dela na galeria, num
+  telefone. A Fundação mediu o HTML servido, as marcas do `wpautop`, os
+  `aria-label` e a proporção; **ninguém tocou a tela**. Isso fica como o que falta,
+  nunca como conferido.
+- (c) Os 15 `url_busca` dependem da sessão da Shopee.
+- (d) O egresso a fabricante segue fechado e a ficha BRSA005 segue localizada e não
+  lida.
+- (e) `1x1` de fabricante segue com zero elegível, e é o tamanho de 7 das 12 linhas
+  da tabela da F1.
+- (f) `contato@clubedomosaico.com.br` ainda não existe como caixa.
+- (g) A dívida de modelagem que o esclarecimento do Raphael registrou e mandou NÃO
+  mexer agora: o campo "técnica" mistura MÉTODO (direto, indireto) com ESTILO
+  (bizantino, trincadís, pica-sete), e ela pode marcar um achando que marcou o
+  outro.
+
+**PRÓXIMO, com ordem e motivo:** (1) **a família `/tecnicas/<slug>/`**, que é o que
+sobrou do item 3 e agora tem peça publicada para linkar — e é decisão de malha, com
+o orçamento de rastreamento na mesa; (2) **a ordem das duas vitrines na F1**, o item
+mais antigo da fila e o único que mexe em como a página apresenta produto; (3) `1x1`
+de fabricante, a pendência mais cara da categoria pastilha; (4) os 15 `url_busca`,
+no minuto em que houver sessão.

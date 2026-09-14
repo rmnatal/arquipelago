@@ -4,7 +4,7 @@
   "nicho": "mosaico artesanal — loja de pecas proprias, guia de materiais com afiliado e escola de tecnicas",
   "dominio": "https://clubedomosaico.com.br",
   "versao_manifest": 1,
-  "revisao": 28,
+  "revisao": 29,
   "atualizado_em": "2026-09-14",
   "estado": "nascendo",
   "desembarque": {
@@ -54,7 +54,7 @@
       "ativo": true,
       "publicar": true,
       "versao": "1.2.0",
-      "sha256": "6bdbecca4b9871ea4d208d532ecab26e0a03771a1033deb421753581e70a67aa",
+      "sha256": "046129dc485b318df084ba19093fccd3b4d19ff9fa2804d319217db1586f35ef",
       "descricao": "1.1.0 (13/09/2026): UMA mudanca, e ela e de tomada e nao de comportamento — o bloco de acao da ficha (preco, disponibilidade, botao) passou a sair por apply_filters('cdm_peca_acao', $padrao, $peca, $dados). Sem ninguem atendendo, a ficha serve exatamente o que servia ontem; quem atende e o snippet de Leads. Consequencia que vale registrar: a option `cdm_whatsapp` deixou de decidir se a peca tem como ser pedida. BLOCO 4d, O MODELO E O LADO PUBLICO — o CORTE do despacho do Raphael das 18h20 BRT de 12/09/2026 (itens 1 e 5). Registra o CPT `peca` e as taxonomias `colecao` e `tecnica`, serve a ficha publica da peca em /loja/<slug>/ e troca a vitrine da casca pela versao com foto. SEIS DECISOES. (1) O CPT NAO TEM ARQUIVO PROPRIO em /loja/, contra o que a especificacao de 10/09 pedia: /loja/ JA e uma pagina desta ilha, com o texto editorial do VOZ.md e a secao 'Como a compra vai funcionar', e ela ja lista as pecas; um arquivo de CPT no mesmo endereco disputaria a URL e o vencedor dependeria da ordem das regras de reescrita. has_archive false, rewrite slug `loja`: a peca nasce em dois segmentos e a pagina de um segmento continua dela. Nada foi perdido — quem lista e a pagina, que e MELHOR que o arquivo porque tem texto de verdade em volta. (2) A FICHA E MONTADA POR `the_content`, nao por template: a peca herda de graca tudo que a casca ja testou (logo, trilha, H1, Veja tambem, rodape, favicon, GA4), e escrever um template seria ficar com duas cascas divergindo em silencio. (3) A TRILHA E O BreadcrumbList SAEM DO MAPA DA CASCA, pelo filtro cdm_arvore, na hora em que a peca esta sendo servida — trilha de peca e a MESMA trilha do resto da ilha, e e por isso que ela nao pode ser um segundo codigo. (4) AS TAXONOMIAS EXISTEM, AS PAGINAS DELAS NAO: public=false, porque taxonomia publica nasce com arquivo e entra no wp-sitemap.xml, e seriam de sete a doze URLs finas pedindo rastreamento num dominio de dois dias (14.1); as paginas de colecao e tecnica estao no corte como o que NAO entra hoje. (5) O BOTAO E O WHATSAPP DA ARTESA, nao o formulario de lead do adendo 3, que esta explicitamente fora do corte; e enquanto a option cdm_whatsapp estiver vazia o botao NAO e inventado — a ficha diz que o contato nao foi publicado. (6) PECA SEM FOTO OU SEM PRECO NAO PUBLICA, e a regua e UMA: cdm_loja_peca_publicavel() devolve os MOTIVOS, o painel mostra os motivos, e a trava tambem esta no nucleo por transition_post_status — botao desabilitado e regra de tela, que some no dia em que alguem publicar por outro caminho. CONTEM O ENDPOINT DE COPIA DA SECAO 24 (/wp-json/clubedomosaico/v1/pecas, protegido pelo token do Sync): as pecas dela sao o UNICO dado do Arquipelago que nao existe fora do banco do WordPress, e sem isto nao ha de onde reconstruir. A contagem sai por rota PUBLICA separada (/v1/loja) e nao pelo /status, porque o /status mora no snippet do Sync, que se pula a si mesmo e nao aplica filtro nenhum — um add_filter ali seria portao que nunca roda. ZERO JavaScript: o carrossel e scroll-snap puro, portao 22.8."
     },
     {
@@ -370,7 +370,7 @@
     {
       "id": "teste-loja",
       "arquivo": "ferramentas/teste-loja.php",
-      "sha256": "7e4161116630e3570207b45005fb36eebf19391b2167cb3cfadf720f22cdff8d",
+      "sha256": "614b31ef334bd5fa277901f44bd71e716faf6dd52b3e2f57ead29c5e9107bb09",
       "descricao": "Portao da Loja (bloco 4d). 140 afirmacoes, regua escrita a mao: os slugs dos termos, as frases de disponibilidade, o formato do preco, os motivos de recusa e as bordas do telefone estao NO TESTE, nunca lidos do snippet. Varre a ficha em 72 estados (6 bases x 2 disponibilidades x 3 quantidades de foto x 2 estados do telefone), UM PROCESSO POR ESTADO — o `static` do logotipo da casca faz o cabecalho sumir a partir do segundo render no mesmo processo. Mede no HTML SERVIDO: description e og: nos 72, Product+Offer valido, PreOrder contra InStock, preco do Offer com ponto, BreadcrumbList de tres degraus, canonical UNICO sob /loja/, zero &#038; dentro de <script>, toda foto com alt e com width/height, exatamente uma foto prioritaria, e a ORDEM da secao 5 medida por POSICAO (preco e botao antes da ficha tecnica). O PISO DE TAMANHO DE PAGINA E DERIVADO de /contato/ nesta mesma bancada, e nao cravado: a primeira escrita cravou 40 KB calibrado na F2 e reprovou fichas corretas de 26 KB. UMA afirmacao le o FONTE, e so uma: hash_equals contra === na comparacao do token, porque os dois devolvem o mesmo resultado e o que muda e o tempo, que nenhuma bancada observa. Bancada."
     },
     {
@@ -382,7 +382,7 @@
     {
       "id": "mutacoes-loja",
       "arquivo": "ferramentas/mutacoes-loja.py",
-      "sha256": "5b99c688dfd2fc0891c797259c29f317fe3363475738cf1835b9d17e2135bb6e",
+      "sha256": "d0009ff5e4182358945a3f5c2db105b3e4eb1d16bd6f97c6b1fad5f3393bea7f",
       "descricao": "23 defeitos escritos de volta no snippet da Loja, 23 reprovados, 22 SO o portao novo pegou. Separa 'reprovou' de 'nao compila', porque codigo que nem carrega nao e evidencia de trava. ACHOU TRES COISAS na primeira passada: (a) a afirmacao da regra de reescrita lia um contador COMPARTILHADO com a casca, que ja estava acima de zero — apagar o flush da Loja passava verde; agora o teste zera o contador, limpa a marca, roda o init de novo e afirma sobre o delta, e cobra tambem que NAO remonte na visita seguinte; (b) a mutacao do %0D%0A na mensagem do WhatsApp nao fez portao nenhum reprovar porque o `str_replace` que ela apagava era CODIGO MORTO — rawurlencode de \\n ja devolve %0A —, e o conserto foi tirar a linha do snippet e a mutacao junto; (c) `===` contra `hash_equals` nao e observavel por comportamento, e a trava correspondente passou a ler o fonte, com a razao escrita. Bancada."
     },
     {
@@ -394,7 +394,7 @@
     {
       "id": "conferir-atelie-no-ar",
       "arquivo": "ferramentas/conferir-atelie-no-ar.py",
-      "sha256": "c8c356cd120f59a488fb1c5425e9806140a5830d49d62305d1066b76927494f9",
+      "sha256": "567c0676077301f92eddbf92f297873227eda7ad126360db99d2d9d69a0057ca",
       "descricao": "Mede NO AR o bloco 4d. Separado do conferir-no-ar.py porque aquele mede as onze URLs no caso-ANCORA e este bloco trouxe uma pagina que muda conforme QUEM abre (o painel) e uma URL que so existe quando a artesa publica (a ficha) — a mesma razao do conferir-kits-no-ar.py da Robometria. PROVA: /atelie/ em 200 servindo a tela de entrar, com noindex, FORA do sitemap (varrendo o indice e os sub-mapas), e ZERO links para ela nas oito paginas publicas; que a vitrine da Loja mostre exatamente as pecas que a rota publica de contagem conta (duas metades lendo o mesmo banco: divergencia e cache velho, que e como o site fica para tras em silencio); que cada ficha publicada sirva description, og:, Product+Offer valido e trilha, e que o preco da TELA e o do SCHEMA sejam o mesmo numero; e, com o token do Sync, que o papel tenha as 7 capacidades e NENHUMA das proibidas, que a usuaria exista, e A HORA EM UTC em que o e-mail de acesso saiu — que e o que o despacho manda escrever no ESTADO.md. Mede a RECUSA da rota sem token antes de usar o token. Sem token, as afirmacoes que dependem dela sao contadas como PULADAS, nunca como aprovadas. NAO PROVA, e diz isso no fim: se o e-mail chegou na caixa da Hotmail (wp_mail true diz que o servidor aceitou, nao que passou do filtro de spam) e se o dedo dela funciona a 360 px."
     },
     {

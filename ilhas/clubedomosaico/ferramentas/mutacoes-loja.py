@@ -301,8 +301,7 @@ def m36(r):
     botao certo, com nome certo — e o `wpautop` a embrulha num paragrafo que
     ninguem escreveu, cuja margem empurra a foto para baixo. E o defeito que so
     aparece como "esta feio"."""
-    trocar(r, SNIPPET, "\t\t\t$html .= '<button class=\"cdm-gal-seta cdm-gal-seta-prox\" type=\"button\" data-cdm-rolar=\"1\" aria-label=\"Próxima foto\" aria-controls=\"cdm-carrossel-' . $id . '\">&#8250;</button>';\n\t\t}",
-           "\t\t}")
+    trocar(r, SNIPPET, "\t\t\t$html .= '<button class=\"cdm-gal-seta cdm-gal-seta-prox\" type=\"button\" data-cdm-rolar=\"1\" aria-label=\"Próxima foto\" aria-controls=\"cdm-carrossel-' . $id . '\">&#8250;</button>';\n", "")
     trocar(r, SNIPPET, "\t\t$html .= '</div></div>';",
            "\t\t$html .= '</div>';\n\t\tif ( $varias ) {\n\t\t\t$html .= '<button class=\"cdm-gal-seta cdm-gal-seta-prox\" type=\"button\" data-cdm-rolar=\"1\" aria-label=\"Próxima foto\" aria-controls=\"cdm-carrossel-' . $id . '\">&#8250;</button>';\n\t\t}\n\t\t$html .= '</div>';")
 
@@ -343,6 +342,17 @@ def m34(r):
            "          fetch(img.getAttribute('data-cdm-grande')).then(function(r){ return r.blob(); }).then(function(b){ grande.src = URL.createObjectURL(b); });")
 
 
+def m37(r):
+    """As setas perdem o `<div>` que as segura e voltam a encostar direto na
+    abertura da faixa. Foi assim que o HTML servido da peca saiu, em 14/09, com um
+    `</p>` orfao colado no `</button>`: o `wpautop` tirou a abertura do paragrafo
+    porque ela encostava num bloco e deixou o fechamento, que encostava num botao.
+    Nada quebra na tela — e e por isso que so uma regua pega."""
+    trocar(r, SNIPPET, "\t\t\t$html .= '<div class=\"cdm-gal-setas\">';\n", "")
+    trocar(r, SNIPPET, "\t\t\t$html .= '<button class=\"cdm-gal-seta cdm-gal-seta-prox\" type=\"button\" data-cdm-rolar=\"1\" aria-label=\"Próxima foto\" aria-controls=\"cdm-carrossel-' . $id . '\">&#8250;</button>';\n\t\t\t$html .= '</div>';\n",
+           "\t\t\t$html .= '<button class=\"cdm-gal-seta cdm-gal-seta-prox\" type=\"button\" data-cdm-rolar=\"1\" aria-label=\"Próxima foto\" aria-controls=\"cdm-carrossel-' . $id . '\">&#8250;</button>';\n")
+
+
 MUTACOES = [
     ("01 o tipo peca volta a aparecer no wp-admin", m01),
     ("02 o CPT disputa /loja/ com a pagina", m02),
@@ -379,6 +389,7 @@ MUTACOES = [
     ("34 o script passa a BUSCAR a foto grande (22.3)", m34),
     ("35 a lupa volta para dentro do the_content (wpautop)", m35),
     ("36 a seta nasce depois do fechamento da faixa (wpautop)", m36),
+    ("37 as setas voltam a encostar na abertura da faixa (</p> orfao)", m37),
 ]
 
 

@@ -591,23 +591,35 @@ cdm_ok( false !== strpos( $html_3, 'aria-label="Fechar a foto ampliada"' ), 'o X
 cdm_ok( false === strpos( $html_3, '<img src=""' ), 'a lupa nao serve img de src vazio' );
 
 /* O QUE O `the_content` FAZ COM ETIQUETA QUE NAO E BLOCO — regua nascida em
-   14/09 junto com a galeria, e ela vale para tudo que esta ficha imprimir daqui
-   para a frente.
-   O `wpautop` poe UMA quebra antes de toda etiqueta de bloco e DUAS depois de
-   todo fechamento, e depois embrulha em `<p>` o que sobrou solto entre duas
-   quebras. `button` e `dialog` NAO sao blocos para ele. Entao um `<button>` logo
-   depois de um `</div>` nasce dentro de um paragrafo que ninguem escreveu, com a
-   margem dele empurrando a pagina — e um `<dialog>` sai partido ao meio.
-   Isto nao aparece na tela como erro: aparece como "esta feio". */
+   14/09 junto com a galeria, e a segunda metade dela foi MEDIDA NO AR, nao
+   deduzida: a primeira versao desta afirmacao so olhava um lado e o defeito saiu
+   publicado assim mesmo.
+   O `wpautop` usa as etiquetas de BLOCO como fronteira de paragrafo, embrulha
+   cada pedaco em `<p>…</p>`, e depois tira o `<p>` que encosta num bloco e o
+   `</p>` que vem logo depois de um. `button`, `span`, `a`, `img` e `dialog` NAO
+   sao blocos para ele. Duas coisas ruins saem disso, e sao independentes:
+     - etiqueta de linha LOGO DEPOIS de um fechamento de bloco nasce dentro de um
+       paragrafo que ninguem escreveu, com a margem dele empurrando a pagina;
+     - etiqueta de linha LOGO ANTES de uma abertura de bloco deixa um `</p>`
+       orfao — foi exatamente o que o HTML servido da peca trouxe em 14/09,
+       colado no `</button>` das setas.
+   Nenhuma das duas aparece como erro na tela. Aparecem como "esta feio". */
+$blocos_re = 'div|p|figure|figcaption|ul|ol|li|table|tbody|tr|td|th|form|section|article|aside|header|footer|nav|details|summary|blockquote|h[1-6]';
+$linha_re  = 'button|dialog|span|a|img|input|select|label';
 $fora_de_bloco = array();
-if ( preg_match_all( '#</(?:div|p|figure|figcaption|ul|ol|li|table|tbody|tr|td|th|form|section|article|aside|header|footer|nav|details|summary|blockquote|h[1-6])>\s*<(button|dialog|span|a|img|input|select|label)\b#', $ficha_crua, $mb, PREG_SET_ORDER ) ) {
+if ( preg_match_all( '#</(?:' . $blocos_re . ')>\s*<(' . $linha_re . ')\b#', $ficha_crua, $mb, PREG_SET_ORDER ) ) {
 	foreach ( $mb as $achado ) {
-		$fora_de_bloco[] = $achado[1];
+		$fora_de_bloco[] = 'depois de bloco: <' . $achado[1] . '>';
+	}
+}
+if ( preg_match_all( '#</(' . $linha_re . ')>\s*<(?:' . $blocos_re . ')[ >]#', $ficha_crua, $mc, PREG_SET_ORDER ) ) {
+	foreach ( $mc as $achado ) {
+		$fora_de_bloco[] = 'antes de bloco: </' . $achado[1] . '>';
 	}
 }
 cdm_ok( ! $fora_de_bloco,
-	'nenhuma etiqueta de linha da ficha vem logo depois de um fechamento de bloco (o wpautop a embrulharia)',
-	$fora_de_bloco ? implode( ', ', array_unique( $fora_de_bloco ) ) : 'nenhuma' );
+	'nenhuma etiqueta de linha da ficha encosta numa fronteira de bloco (o wpautop deixaria <p> orfao)',
+	$fora_de_bloco ? implode( ' | ', array_unique( $fora_de_bloco ) ) : 'nenhuma' );
 cdm_ok( false === strpos( $ficha_crua, '<dialog' ),
 	'e a ficha nao devolve <dialog> nenhum (ele nao e bloco para o wpautop)' );
 /* O ARQUIVO GRANDE VIAJA NO HTML: o zoom nao e a foto pequena esticada, e o

@@ -774,19 +774,28 @@ function cdm_loja_ficha_html( $peca ) {
 	if ( $galeria ) {
 		$varias = count( $galeria ) > 1;
 		$html  .= '<div class="cdm-peca-fotos" data-cdm-galeria>';
-		/* AS DUAS SETAS VÊM COLADAS NA ABERTURA DO PALCO, e isto não é gosto: o
-		   retorno deste filtro passa pelo `wpautop`, que põe uma quebra ANTES de
-		   toda etiqueta de bloco e duas DEPOIS de todo fechamento — e o que sobra
-		   solto entre duas quebras vira parágrafo. Botão não é bloco para o
-		   `wpautop`. Com a seta depois de `</div>` ela nasceria dentro de um `<p>`
-		   que ninguém escreveu, com a margem dele empurrando a foto para baixo.
-		   Coladas aqui, as duas ficam no mesmo pedaço da abertura do palco e nada
-		   é embrulhado. Ordem de foco: anterior, próxima, fotos — e a posição na
-		   tela é do CSS, que as ancora nas duas beiradas. */
+		/* AS DUAS SETAS MORAM DENTRO DE UM `<div>` PRÓPRIO, e a razão foi MEDIDA no
+		   ar em 14/09/2026, não deduzida. O retorno deste filtro passa pelo
+		   `wpautop`, que quebra o texto em parágrafos usando as etiquetas de BLOCO
+		   como fronteira e embrulha cada pedaço em `<p>…</p>` — depois tirando o
+		   `<p>` que encosta num bloco e o `</p>` que vem logo depois de um.
+		   `button` não é bloco para ele. A primeira versão deste bloco punha as
+		   duas setas soltas logo depois da abertura do palco, e o HTML servido saiu
+		   com um `</p>` órfão colado no `</button>`: a abertura do parágrafo foi
+		   removida por encostar num `<div>` e o fechamento ficou, porque encostava
+		   num `</button>`.
+		   A regra que sobra disto, e ela vale para tudo que esta ficha imprimir:
+		   ETIQUETA QUE NÃO É BLOCO NUNCA ENCOSTA NUMA FRONTEIRA DE BLOCO — nem
+		   depois de um fechamento, nem antes de uma abertura. O jeito de garantir
+		   isso é o que está aqui: um bloco por perto, sempre.
+		   O `<div>` das setas não ocupa espaço: ele é a camada absoluta que cobre o
+		   palco, deixa o dedo passar, e as duas setas se ancoram nele. */
 		$html  .= '<div class="cdm-gal-palco">';
 		if ( $varias ) {
+			$html .= '<div class="cdm-gal-setas">';
 			$html .= '<button class="cdm-gal-seta cdm-gal-seta-ant" type="button" data-cdm-rolar="-1" aria-label="Foto anterior" aria-controls="cdm-carrossel-' . $id . '">&#8249;</button>';
 			$html .= '<button class="cdm-gal-seta cdm-gal-seta-prox" type="button" data-cdm-rolar="1" aria-label="Próxima foto" aria-controls="cdm-carrossel-' . $id . '">&#8250;</button>';
+			$html .= '</div>';
 		}
 		$html .= '<div class="cdm-carrossel" id="cdm-carrossel-' . $id . '" role="group" aria-label="Fotos da peça ' . esc_attr( $titulo ) . '">';
 		$n = 0;
@@ -1244,7 +1253,8 @@ add_action( 'wp_footer', function () {
 /* O PALCO segura as setas sobre a foto. `position:relative` e so isso: a faixa
    continua sendo o carrossel de scroll-snap que sempre foi. */
 .cdm-gal-palco{position:relative;}
-.cdm-gal-seta{display:none;position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:44px;height:44px;align-items:center;justify-content:center;padding:0;font-family:var(--cdm-display);font-size:1.6rem;line-height:1;color:var(--cdm-tinta);background:var(--cdm-papel);border:1px solid var(--cdm-traco);border-radius:999px;box-shadow:0 2px 8px rgba(31,23,21,.06);cursor:pointer;}
+.cdm-gal-setas{position:absolute;inset:0;z-index:2;pointer-events:none;}
+.cdm-gal-seta{display:none;position:absolute;top:50%;transform:translateY(-50%);pointer-events:auto;width:44px;height:44px;align-items:center;justify-content:center;padding:0;font-family:var(--cdm-display);font-size:1.6rem;line-height:1;color:var(--cdm-tinta);background:var(--cdm-papel);border:1px solid var(--cdm-traco);border-radius:999px;box-shadow:0 2px 8px rgba(31,23,21,.06);cursor:pointer;}
 .cdm-gal-seta-ant{left:.6rem;}
 .cdm-gal-seta-prox{right:.6rem;}
 .cdm-gal-seta:hover{border-color:var(--cdm-coral);color:var(--cdm-coral);}
