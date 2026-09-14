@@ -307,3 +307,57 @@ Antes de dar por pronto: entre em `/atelie/` como `artesa`, **numa janela de 360
 
 ### O que escrever no `ESTADO.md` ao fechar
 A hora do envio do e-mail para `mina196@hotmail.com`, o que dos cinco itens saiu, o que ficou de fora, e **uma frase que o Raphael possa ler no domingo de manhã dizendo se ele pode ou não ensinar a mãe hoje**. Se não deu, diga que não deu — ele prefere saber antes de chegar lá do que descobrir na frente dela.
+
+## DESPACHO DO RAPHAEL — 14/09/2026 — A ARTESÃ USOU O ATELIÊ, E ACHOU QUATRO COISAS
+
+**A mãe do Raphael recebeu o e-mail, criou a senha, entrou e cadastrou a primeira peça.** O ateliê funcionou de ponta a ponta com uma pessoa de verdade — é a primeira vez que isso acontece no Arquipélago inteiro. O que vem abaixo é o que ela encontrou usando, e por isso vale mais que qualquer teste: **prioridade alta, na frente da fila de banco.**
+
+### 1. O 404 depois de publicar — CONSERTE ESTE PRIMEIRO
+
+Palavras dele: *"assim que ela cadastra o produto, vai pra uma página de página não encontrada… com uma foto preto e branca do WordPress, nada a ver."*
+
+É o pior dos quatro, e não pelo técnico: **ela publica e a tela diz que não existe.** Quem não é de informática entende isso como "deu errado, perdi o que fiz". Custa a confiança dela no painel inteiro.
+
+**Hipótese de causa, a confirmar antes de consertar** (não tratem como fato): o fluxo redireciona para a URL pública da peça e essa URL devolve 404 **porque as regras de reescrita do CPT `peca` não foram descarregadas** — o caso clássico do WordPress quando se registra CPT por snippet sem `flush_rewrite_rules()` numa execução controlada. Confirme abrindo a peça que ela cadastrou: se a ficha pública responde 404 mas o mesmo conteúdo aparece por `?p=<id>`, é isso.
+
+**O destino certo depois de publicar não é a ficha pública.** É voltar a `/atelie/` — o padrão PRG que o snippet já usa em todo o resto — com **faixa verde de sucesso: "Peça publicada!"**, um botão **"Ver no site"** e outro **"Cadastrar outra peça"**. Ela fica onde sabe estar, e visita a ficha se quiser. Use o mesmo mecanismo de `aviso` do `cdm_atelie_url()` que já existe.
+
+### 2. Tirar "Escolha" de dentro da lista
+
+`clubedomosaico-atelie.php`, linha ~1543: `'<option value="">Escolha</option>'`. Ele está **selecionável** e é o valor inicial, nos dois campos (coleção e técnica).
+
+Palavras dele: *"tirar esse 'escolha', porque… o que seria 'escolha'? Não tem nada. Aí fica fora de categoria, não adianta."* Ele está certo, e é mais grave do que parece: a regra do despacho de 10/09 diz que **sem coleção e técnica o botão Publicar não habilita** — se o placeholder vazio passa pela validação, a peça nasce órfã e a malha automática da seção 9 não acontece.
+
+Conserto: o placeholder vira `disabled selected hidden`, com texto **"Selecione…"** em vez de "Escolha", e a validação recusa valor vazio de verdade, no cliente **e** no servidor. Mensagem amigável no padrão do painel, nada de "campo obrigatório" seco.
+
+### 3. Falta a técnica PICA-SETE
+
+Palavras dele: *"tem uma técnica chamada mosaico pica-sete… precisa adicionar."*
+
+**Grafia e definição, conferidas:** no Brasil a técnica é escrita **"pica-sete"** (aportuguesamento) e também aparece como **"pique-assiette"** ou "picassiette" — do francês *pique-assiette*, literalmente "rouba-prato". É o mosaico feito com **cacos de louça e objetos quebrados em que as peças continuam reconhecíveis** — alça de xícara, bico de bule, fundo de prato com estampa.
+
+**Ela é diferente do trincadís, que já está na lista**, e a distinção importa para a artesã escolher certo: trincadís (trencadís) é caco de azulejo ou cerâmica quebrado em pedaço irregular **sem identidade do objeto**; pica-sete é caco em que **se reconhece de onde veio**. Escreva isso no texto de ajuda do campo, curto.
+
+- Rótulo no seletor: **Pica-sete** — é como a artesã fala, e VOZ.md manda na palavra.
+- `slug`: `pica-sete`.
+- Ajuda curta ao lado: *"cacos de louça em que dá para reconhecer a peça original — alça, bico, estampa. Também chamada pique-assiette."*
+- Entra em `cdm_loja_termos_iniciais()` junto com as outras, e **a página `/tecnicas/pica-sete/` nasce com ela** pela malha da seção 9.
+
+### 4. O carrossel de fotos da ficha da peça
+
+Palavras dele: *"não está padronizada as imagens quadradinhas… não está um carrossel bonito com setas… está muito feio."* E ele deu a referência: a galeria da ficha de imóvel do **Real 21**, que ele considera boa no celular e no desktop — miniatura quadrada, clique amplia, X para fechar, zoom.
+
+**ATENÇÃO, E ISTO MUDA A INSTRUÇÃO: NÃO COPIEM O CÓDIGO DO REAL 21.** Foi medido em `https://real21.com.br/vista-cyrela/` em 14/09/2026: a galeria de lá é **Elementor + Swiper** (`elementor-widget-image-carousel`, `swiper-slide`, `swiper-slide-duplicate`). Isso é construtor de página mais biblioteca JavaScript — exatamente o que a **seção 22.3 proíbe na página pública de uma ilha**, e o que a seção 11.7 proíbe instalar. Copiar aquilo troca ranqueamento por beleza, que é a inversão que o Raphael mais rejeita.
+
+**Copie o COMPORTAMENTO, escreva o código nosso.** O que ele descreveu é inteiramente possível dentro da 22.3, e o carrossel que já existe (`scroll-snap` puro) é a base certa — falta forma, não mecanismo:
+
+- **Miniaturas quadradas de verdade:** `aspect-ratio: 1 / 1` e `object-fit: cover` na tira de miniaturas, para foto de celular em pé e deitada ficarem iguais. Foto principal em proporção fixa também, nunca saltando de tamanho entre uma peça e outra.
+- **Setas para a esquerda e para a direita**, botões de verdade, com `aria-label`, que apenas rolam o contêiner de `scroll-snap` (`scrollBy`). Some no toque, aparece no ponteiro.
+- **Clicar amplia**, com **X grande para fechar**, fechar no `Esc` e no clique fora. Use o elemento nativo `<dialog>`: é do navegador, não é biblioteca.
+- **Zoom** na imagem ampliada — `transform: scale()` no clique ou no duplo toque. Sem biblioteca.
+- **TUDO isso sobre HTML que já está servido.** Todas as fotos já vêm no HTML (é o que a 22.3 chama de "mostrar e esconder o que já está lá"); o JavaScript só rola, abre e fecha. Com JavaScript desligado, a pessoa vê todas as fotos empilhadas e o Google vê todas as `<img>` com `alt`, `width` e `height`. **O portão `ferramentas/teste-desenho.mjs` roda com JavaScript desligado e tem de continuar passando.**
+- **Identidade do Clube do Mosaico, não do Real 21.** Os tokens estão em `ilhas/clubedomosaico/DESIGN.md` — raios suaves de 8 e 14 px, entrelinha 1,7, a paleta de lá. O Raphael já avisou: *"se você for copiar o do Real 21 vai ter que parametrizar em relação à identidade visual do Clube do Mosaico."* Nada de fundo preto com bolinha; o ateliê é claro e macio. **Token novo não nasce em despacho** (seção 22.6): se faltar token, ele nasce no `DESIGN.md` primeiro.
+
+### E uma consequência boa que ninguém pediu
+
+Com a primeira peça cadastrada, **a cópia da seção 24 deixa de ser hipótese**: o endpoint `/wp-json/clubedomosaico/v1/pecas?token=…` agora tem conteúdo para devolver, e a próxima ronda commita `ilhas/clubedomosaico/dados/pecas.json` com peça de verdade dentro. Confira que nasceu.
