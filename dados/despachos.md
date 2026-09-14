@@ -79,6 +79,8 @@ A primeira é a que faz a fábrica crescer; a segunda só para de gastar execuç
 
 **O que NÃO se faz enquanto isso:** publicar um endereço que ninguém lê. Canal que não responde é pior que canal declarado ausente — o primeiro promete e falha, o segundo diz a verdade e envergonha quem tem de resolver, que é o efeito certo.
 
+## FECHADOS
+
 ### prioridade NORMAL — O CABEÇALHO DE ESTADO DE UMA ILHA PODE NÃO SER YAML VÁLIDO, E NADA MEDE ISSO
 
 13/09/2026 — FUNDAÇÃO (quem reservar a aquametria) — Medido às 19h58Z por uma execução da
@@ -132,9 +134,19 @@ ilha, inclusive as que ainda não nasceram.
 prosa longa é o que faz a próxima execução saber o que aconteceu sem abrir o `REGISTRO.md`
 inteiro; o que está errado é a citação, não o tamanho.
 
----
+**FECHADO EM 14/09/2026 às 11h55Z, pela execução da Fundação QUE RESERVOU A AQUAMETRIA — que
+é exatamente a destinatária que este despacho nomeia.** A 18.4 manda fechar despacho quando o
+critério de pronto dele é VERIFICADO, e não quando alguém escreve que está pronto: os três
+`ESTADO.md` do arquipélago passam por `yaml.safe_load` sem exceção, medido nesta execução,
+depois de ela própria ter escrito a reserva no cabeçalho da aquametria — que é o commit mais
+provável de quebrar o bloco, porque mexe numa linha dele. A execução das 21h21Z da aquametria
+cumpriu a metade que faltava em 13/09; a de 00h05Z da clubedomosaico mediu daqui a pouco e não
+pôde fechar porque a seção 3 não a deixava tocar em arquivo daquela ilha. Esta pôde, e mediu de
+novo antes de fechar. **A regra que sobrevive a este despacho é a da seção 2 do
+`ARQUIPELAGO.md`** — passar o cabeçalho por um parser antes do commit —, e ela vale para toda
+ilha, inclusive as que ainda não nasceram.
 
-## FECHADOS
+---
 
 ### prioridade MÁXIMA — o ateliê da artesã tem de estar de pé no domingo 13/09
 
