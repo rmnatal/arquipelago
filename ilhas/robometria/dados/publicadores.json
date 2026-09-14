@@ -56,6 +56,18 @@
    "motivo": "o nucleo do nome e 'Lojas', feminino PLURAL: 'as Lojas WAP declaram'. E o unico publicador plural do banco, e e ele que prova que a concordancia do verbo tambem tem de sair do dado — nenhuma frase o cita hoje, e o dia em que citar nao pode ser o dia em que se descobre isso."
   },
   {
+   "id": "multi-empresas",
+   "nome": "Multi (multilaserempresas.com.br)",
+   "artigo": "a",
+   "motivo": "mesmo nucleo da marca; o parenteses diz de qual dominio da propria marca a leitura saiu."
+  },
+  {
+   "id": "multi-empresas-e-site",
+   "nome": "Multi (multilaserempresas.com.br e multilaser.com.br)",
+   "artigo": "a",
+   "motivo": "mesmo nucleo da marca; o parenteses diz que a declaracao aparece nos dois dominios dela."
+  },
+  {
    "id": "multi-ex-multilaser",
    "nome": "Multi (ex-Multilaser)",
    "artigo": "a",
@@ -74,28 +86,16 @@
    "motivo": "mesmo nucleo da marca; o parenteses diz de qual dominio da propria marca a leitura saiu."
   },
   {
-   "id": "multi-varejo",
-   "nome": "Multi (multilaser.com.br, canal varejo)",
-   "artigo": "a",
-   "motivo": "mesmo nucleo da marca; o parenteses diz o dominio e o canal."
-  },
-  {
-   "id": "multi-empresas-e-site",
-   "nome": "Multi (multilaserempresas.com.br e multilaser.com.br)",
-   "artigo": "a",
-   "motivo": "mesmo nucleo da marca; o parenteses diz que a declaracao aparece nos dois dominios dela."
-  },
-  {
-   "id": "multi-empresas",
-   "nome": "Multi (multilaserempresas.com.br)",
-   "artigo": "a",
-   "motivo": "mesmo nucleo da marca; o parenteses diz de qual dominio da propria marca a leitura saiu."
-  },
-  {
    "id": "multi-suporte",
    "nome": "Multi (suporte.multilaser.com.br)",
    "artigo": "a",
    "motivo": "mesmo nucleo da marca; o parenteses diz que a leitura saiu do canal de manutencao dela."
+  },
+  {
+   "id": "multi-varejo",
+   "nome": "Multi (multilaser.com.br, canal varejo)",
+   "artigo": "a",
+   "motivo": "mesmo nucleo da marca; o parenteses diz o dominio e o canal."
   },
   {
    "id": "mundo-conectado",
@@ -134,16 +134,16 @@
    "motivo": "'a Xiaomi' — nome de empresa, feminino singular no uso corrente."
   },
   {
-   "id": "xiaomi-suporte",
-   "nome": "Xiaomi (suporte)",
-   "artigo": "a",
-   "motivo": "mesmo nucleo da marca; o parenteses diz que a leitura saiu do canal de manutencao dela."
-  },
-  {
    "id": "xiaomi-brasil",
    "nome": "Xiaomi Brasil",
    "artigo": "a",
    "motivo": "mesmo nucleo da marca; 'Brasil' nomeia a subsidiaria e nao muda o artigo."
+  },
+  {
+   "id": "xiaomi-colombia",
+   "nome": "Xiaomi Colombia",
+   "artigo": "a",
+   "motivo": "mesmo nucleo da marca; 'Colombia' nomeia a loja regional dela e nao muda o artigo."
   },
   {
    "id": "xiaomi-global",
@@ -156,6 +156,18 @@
    "nome": "Xiaomi Global (suporte)",
    "artigo": "a",
    "motivo": "mesmo nucleo da marca; o parenteses diz que a leitura saiu do canal de manutencao do site global."
+  },
+  {
+   "id": "xiaomi-singapura",
+   "nome": "Xiaomi Singapore",
+   "artigo": "a",
+   "motivo": "mesmo nucleo da marca; 'Singapore' nomeia a loja regional dela, do mesmo jeito que 'Global' e 'Brasil' ja nomeiam nesta lista, e nao muda o artigo."
+  },
+  {
+   "id": "xiaomi-suporte",
+   "nome": "Xiaomi (suporte)",
+   "artigo": "a",
+   "motivo": "mesmo nucleo da marca; o parenteses diz que a leitura saiu do canal de manutencao dela."
   }
  ]
 }

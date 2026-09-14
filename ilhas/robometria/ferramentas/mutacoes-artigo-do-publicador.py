@@ -51,6 +51,7 @@ PUBLICADORES = 'dados/publicadores.json'
 ESQUEMA = 'dados/esquema-banco.json'
 PECAS = 'dados/pecas.json'
 MARCAS = 'dados/marcas.json'
+A1_FATOS = 'dados/a1-fatos.json'
 CONSTANTES = 'dados/constantes.json'
 
 
@@ -139,7 +140,7 @@ def publicador_vira_plural(doc):
                              'mutacao nao pode ser produzido, e ela mediria nada')
 
 
-def marca_de_maior_alcance_vira_plural(doc):
+def marca_de_maior_alcance_vira_plural(base_dir):
     """PRODUZ O MUNDO do artigo-ancora: a marca que ele mais cita passa a ter
     nome PLURAL.
 
@@ -149,13 +150,34 @@ def marca_de_maior_alcance_vira_plural(doc):
     digitado publica "a Lojas WAP declara" e " da Lojas WAP", e a regua morde.
     "Lojas WAP" ja e citado em modelos-robo.json e ja tem artigo declarado: o
     mundo produzido nao inventa publicador nenhum.
+
+    A MARCA E COMPUTADA, NUNCA CRAVADA, e isso custou uma mutacao INERTE em
+    14/09/2026 para ficar claro. Esta funcao dizia `if reg['id'] == 'multi'`,
+    porque a peca de maior alcance do banco era da Multi no dia em que a bateria
+    nasceu. A leva do Xiaomi S10 alargou a B106GL-BX para SEIS codigos
+    declarados e o maior alcance trocou de dono — a mutacao do " da " digitado
+    passou a produzir um mundo em que a Multi e plural e a frase do maior
+    alcance nomeia a Xiaomi, singular. O digitado e o derivado voltaram a ser a
+    mesma letra, a mutacao editou o arquivo e NAO reprovou nada: verde por nao
+    medir. Regua que crava o dado de hoje envelhece calada assim que o banco
+    cresce, que e justamente o que o banco existe para fazer. Agora o alvo sai
+    de `a1-fatos.json`, que e o mesmo lugar de onde a frase mutada tira o nome.
     """
+    with open(os.path.join(base_dir, A1_FATOS), encoding='utf-8') as fh:
+        alvo = json.load(fh)['maior_alcance']['marca']
+    caminho = os.path.join(base_dir, MARCAS)
+    with open(caminho, encoding='utf-8') as fh:
+        doc = json.load(fh)
     for reg in doc['registros']:
-        if reg['id'] == 'multi':
+        if reg['id'] == alvo:
             reg['nome'] = 'Lojas WAP'
+            with open(caminho, 'w', encoding='utf-8') as fh:
+                json.dump(doc, fh, ensure_ascii=False, indent=1)
+                fh.write('\n')
             return
-    raise AssertionError('a marca multi saiu de marcas.json: esta mutacao nao '
-                         'tem mundo para produzir')
+    raise AssertionError(
+        'a marca %r, que o maior alcance do A1 nomeia, nao existe em '
+        'marcas.json: esta mutacao nao tem mundo para produzir' % alvo)
 
 
 def faixa_confortavel_vira_feminina(doc):
@@ -275,7 +297,7 @@ MUTACOES = [
         'digitado e o derivado sao a mesma letra. Com a marca plural, o digitado '
         'publica "a Lojas WAP declara" e a regua morde',
         lambda base: (
-            editar_json(MARCAS, marca_de_maior_alcance_vira_plural)(base),
+            marca_de_maior_alcance_vira_plural(base),
             trocar(
                 A1,
                 "				? '%1$s %5$s este kit para %2$d código%3$s de modelo: %4$s'\n"
@@ -292,7 +314,7 @@ MUTACOES = [
         'a CONTRACAO e o caso que mais engana, porque nem parece artigo: '
         '"do Mundo Conectado" e "das Lojas WAP" quebram na mesma linha',
         lambda base: (
-            editar_json(MARCAS, marca_de_maior_alcance_vira_plural)(base),
+            marca_de_maior_alcance_vira_plural(base),
             trocar(
                 A1,
                 "		. esc_html( robometria_a1_quem_publica_com_de( $maior ) ) . ': o fabricante a declara para '",
@@ -305,7 +327,7 @@ MUTACOES = [
         'o mundo produzido, sozinho, tem de continuar passando — senao as duas de '
         'cima estariam reprovando por causa do nome trocado, e nao por causa do '
         'artigo digitado',
-        editar_json(MARCAS, marca_de_maior_alcance_vira_plural),
+        marca_de_maior_alcance_vira_plural,
         True,
     ),
     (

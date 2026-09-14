@@ -7,42 +7,72 @@
   "resumo": {
     "marcas": 5,
     "modelos_publicaveis": 33,
-    "pecas_publicaveis": 32,
-    "pares_declarados": 63,
+    "pecas_publicaveis": 35,
+    "pares_declarados": 71,
     "pecas_que_atravessam_marca": 0,
     "celulas_total": 198,
-    "celulas_sem_resposta": 135,
-    "pecas_esperando_link": 32
+    "celulas_sem_resposta": 130,
+    "pecas_esperando_link": 35
   },
   "maior_alcance": {
-    "peca": "multi-pr10124",
+    "peca": "xiaomi-b106gl-bx",
     "tipo": "escova lateral",
-    "marca": "multi",
-    "publicador": "Multi (ex-Multilaser)",
+    "marca": "xiaomi",
+    "publicador": "Xiaomi",
     "gramatica_do_publicador": {
       "artigo": "a",
       "maiuscula": "A",
       "com_de": "da",
       "numero": "singular"
     },
-    "identificacao": "PR10124",
+    "identificacao": "B106GL-BX",
     "sem_codigo_publicado": false,
-    "nome_na_fonte": "Escova Lateral para Aspirador Robô Mars, Moon e Duster",
-    "codigos_declarados": 5,
+    "nome_na_fonte": "Xiaomi Robot Vacuum S20 Side Brush",
+    "codigos_declarados": 6,
     "codigos_na_fonte": [
-      "HO041",
-      "HO400",
-      "HO401",
-      "HO407",
-      "OB010"
+      "S20",
+      "S10",
+      "E10",
+      "S12",
+      "E12",
+      "X20"
     ],
-    "modelos_publicaveis": 4,
+    "modelos_publicaveis": 3,
     "marcas_atendidas": [
-      "multi"
+      "xiaomi"
     ],
     "atravessa_marca": false
   },
   "alcance": [
+    {
+      "peca": "xiaomi-b106gl-bx",
+      "tipo": "escova lateral",
+      "marca": "xiaomi",
+      "publicador": "Xiaomi",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
+      "identificacao": "B106GL-BX",
+      "sem_codigo_publicado": false,
+      "nome_na_fonte": "Xiaomi Robot Vacuum S20 Side Brush",
+      "codigos_declarados": 6,
+      "codigos_na_fonte": [
+        "S20",
+        "S10",
+        "E10",
+        "S12",
+        "E12",
+        "X20"
+      ],
+      "modelos_publicaveis": 3,
+      "marcas_atendidas": [
+        "xiaomi"
+      ],
+      "atravessa_marca": false
+    },
     {
       "peca": "multi-pr10124",
       "tipo": "escova lateral",
@@ -771,8 +801,8 @@
       "atravessa_marca": false
     },
     {
-      "peca": "xiaomi-b106gl-bx",
-      "tipo": "escova lateral",
+      "peca": "xiaomi-b106gl-lw",
+      "tipo": "filtro",
       "marca": "xiaomi",
       "publicador": "Xiaomi",
       "gramatica_do_publicador": {
@@ -781,12 +811,36 @@
         "com_de": "da",
         "numero": "singular"
       },
-      "identificacao": "B106GL-BX",
+      "identificacao": "B106GL-LW",
       "sem_codigo_publicado": false,
-      "nome_na_fonte": "Xiaomi Robot Vacuum S20 Side Brush",
+      "nome_na_fonte": "Xiaomi Robot Vacuum S10 Filter",
       "codigos_declarados": 1,
       "codigos_na_fonte": [
-        "S20"
+        "S10"
+      ],
+      "modelos_publicaveis": 1,
+      "marcas_atendidas": [
+        "xiaomi"
+      ],
+      "atravessa_marca": false
+    },
+    {
+      "peca": "xiaomi-b106gl-zx",
+      "tipo": "escova principal",
+      "marca": "xiaomi",
+      "publicador": "Xiaomi",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
+      "identificacao": "B106GL-ZX",
+      "sem_codigo_publicado": false,
+      "nome_na_fonte": "Xiaomi Robot Vacuum S10 Main Brush",
+      "codigos_declarados": 1,
+      "codigos_na_fonte": [
+        "S10"
       ],
       "modelos_publicaveis": 1,
       "marcas_atendidas": [
@@ -841,25 +895,49 @@
         "xiaomi"
       ],
       "atravessa_marca": false
-    }
-  ],
-  "dispersao": [
+    },
     {
-      "marca": "electrolux",
-      "publicador": "Electrolux",
+      "peca": "xiaomi-mop-s10",
+      "tipo": "mop",
+      "marca": "xiaomi",
+      "publicador": "Xiaomi",
       "gramatica_do_publicador": {
         "artigo": "a",
         "maiuscula": "A",
         "com_de": "da",
         "numero": "singular"
       },
-      "pecas": 8,
-      "conjuntos_distintos": 7,
-      "nenhuma_repete": false
-    },
+      "identificacao": "\"Xiaomi Robot Vacuum S10 Mop Pad\"",
+      "sem_codigo_publicado": true,
+      "nome_na_fonte": "Xiaomi Robot Vacuum S10 Mop Pad",
+      "codigos_declarados": 1,
+      "codigos_na_fonte": [
+        "S10"
+      ],
+      "modelos_publicaveis": 1,
+      "marcas_atendidas": [
+        "xiaomi"
+      ],
+      "atravessa_marca": false
+    }
+  ],
+  "dispersao": [
     {
       "marca": "xiaomi",
       "publicador": "Xiaomi",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
+      "pecas": 11,
+      "conjuntos_distintos": 9,
+      "nenhuma_repete": false
+    },
+    {
+      "marca": "electrolux",
+      "publicador": "Electrolux",
       "gramatica_do_publicador": {
         "artigo": "a",
         "maiuscula": "A",
@@ -914,25 +992,25 @@
     {
       "tipo": "escova lateral",
       "nome": "escova lateral",
-      "modelos_com_declaracao": 19,
+      "modelos_com_declaracao": 21,
       "modelos_publicaveis": 33
     },
     {
       "tipo": "mop",
       "nome": "mop",
-      "modelos_com_declaracao": 15,
+      "modelos_com_declaracao": 16,
       "modelos_publicaveis": 33
     },
     {
       "tipo": "filtro",
       "nome": "filtro",
-      "modelos_com_declaracao": 13,
+      "modelos_com_declaracao": 14,
       "modelos_publicaveis": 33
     },
     {
       "tipo": "escova principal",
       "nome": "escova principal",
-      "modelos_com_declaracao": 11,
+      "modelos_com_declaracao": 12,
       "modelos_publicaveis": 33
     },
     {
@@ -949,6 +1027,51 @@
     }
   ],
   "vitrine": [
+    {
+      "peca": "xiaomi-b106gl-bx",
+      "tipo": "escova lateral",
+      "nome_do_tipo": "escova lateral",
+      "publicador": "Xiaomi",
+      "gramatica_do_publicador": {
+        "artigo": "a",
+        "maiuscula": "A",
+        "com_de": "da",
+        "numero": "singular"
+      },
+      "identificacao": "B106GL-BX",
+      "sem_codigo_publicado": false,
+      "nome_na_fonte": "Xiaomi Robot Vacuum S20 Side Brush",
+      "codigos_na_fonte": [
+        "S20",
+        "S10",
+        "E10",
+        "S12",
+        "E12",
+        "X20"
+      ],
+      "codigos_declarados": 6,
+      "tipos_do_kit": [],
+      "imagem": {
+        "url": null,
+        "largura": null,
+        "altura": null,
+        "fonte": null,
+        "coletado_em": null,
+        "alt": null,
+        "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o codigo da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+      },
+      "afiliado": {
+        "url": "",
+        "url_busca": "",
+        "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20lateral%20robo%20aspirador",
+        "programa": null,
+        "sub_id_1": "robometria",
+        "sub_id_2": "A1"
+      },
+      "fonte_url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s20-accessories/specs/",
+      "fonte_publicador": "Xiaomi Global",
+      "verificado_em": "2026-09-14"
+    },
     {
       "peca": "multi-pr10124",
       "tipo": "escova lateral",
@@ -1078,63 +1201,20 @@
       "fonte_url": "https://loja.electrolux.com.br/filtro-hepa-com-espuma-electrolux-para-robos-aspiradores-erb44--erb60--erb61-e-erb62/p",
       "fonte_publicador": "Electrolux (loja oficial)",
       "verificado_em": "2026-09-09"
-    },
-    {
-      "peca": "electrolux-pano-microfibra-erb60-erb61-erb62-erb80",
-      "tipo": "mop",
-      "nome_do_tipo": "mop",
-      "publicador": "Electrolux",
-      "gramatica_do_publicador": {
-        "artigo": "a",
-        "maiuscula": "A",
-        "com_de": "da",
-        "numero": "singular"
-      },
-      "identificacao": "\"Pano de Microfibra Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80\"",
-      "sem_codigo_publicado": true,
-      "nome_na_fonte": "Pano de Microfibra Electrolux para Robôs Aspiradores ERB60, ERB61, ERB62 e ERB80",
-      "codigos_na_fonte": [
-        "ERB60",
-        "ERB61",
-        "ERB62",
-        "ERB80"
-      ],
-      "codigos_declarados": 4,
-      "tipos_do_kit": [],
-      "imagem": {
-        "url": null,
-        "largura": null,
-        "altura": null,
-        "fonte": null,
-        "coletado_em": null,
-        "alt": null,
-        "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o nome da peca em destaque (secao 6 do ARQUIPELAGO.md)."
-      },
-      "afiliado": {
-        "url": "",
-        "url_busca": "",
-        "url_busca_cru": "https://shopee.com.br/search?keyword=Electrolux%20mop%20robo%20aspirador",
-        "programa": null,
-        "sub_id_1": "robometria",
-        "sub_id_2": "A1"
-      },
-      "fonte_url": "https://loja.electrolux.com.br/pano-de-microfibra-electrolux-para-robos-aspiradores-erb60--erb61--erb62-e-erb80/p",
-      "fonte_publicador": "Electrolux (loja oficial)",
-      "verificado_em": "2026-09-12"
     }
   ],
   "perguntas": [
     {
       "pergunta": "Existe filtro universal para robô aspirador?",
-      "resposta": "Não. Nas 32 peças de reposição com compatibilidade declarada pelo fabricante que a Robometria conferiu, nenhuma é declarada para modelos de mais de uma marca, e a lista mais longa do banco nomeia 5 códigos de modelo, todos da mesma marca."
+      "resposta": "Não. Nas 35 peças de reposição com compatibilidade declarada pelo fabricante que a Robometria conferiu, nenhuma é declarada para modelos de mais de uma marca, e a lista mais longa do banco nomeia 6 códigos de modelo, todos da mesma marca."
     },
     {
       "pergunta": "Uma peça que serve num modelo da marca serve nos outros modelos dela?",
-      "resposta": "Nem sempre, e o próprio catálogo dos fabricantes mostra isso: as 8 peças da Electrolux no banco formam 7 conjuntos de modelos diferentes. Compatibilidade é declarada por código de peça, uma a uma, e não se herda de uma peça para a seguinte."
+      "resposta": "Nem sempre, e o próprio catálogo dos fabricantes mostra isso: as 11 peças da Xiaomi no banco formam 9 conjuntos de modelos diferentes. Compatibilidade é declarada por código de peça, uma a uma, e não se herda de uma peça para a seguinte."
     },
     {
       "pergunta": "Como descobrir o código da peça certa para o meu robô aspirador?",
-      "resposta": "Procurando o modelo na lista de compatibilidade publicada pelo próprio fabricante. A Robometria reúne essas listas: são 63 pares peça × modelo em 5 marcas, todos declarados pelo fabricante e nenhum inferido, cada um com o endereço da declaração e a data em que ela foi verificada."
+      "resposta": "Procurando o modelo na lista de compatibilidade publicada pelo próprio fabricante. A Robometria reúne essas listas: são 71 pares peça × modelo em 5 marcas, todos declarados pelo fabricante e nenhum inferido, cada um com o endereço da declaração e a data em que ela foi verificada."
     }
   ]
 }

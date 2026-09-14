@@ -710,6 +710,11 @@
           "tipo": "mop",
           "peca": "xiaomi-b112-tb",
           "frase": "A Xiaomi declara o mop B112-TB compativel com E10, E12 e E10C (fabricante-via-busca, verificado em 13/09/2026)."
+        },
+        {
+          "tipo": "escova lateral",
+          "peca": "xiaomi-b106gl-bx",
+          "frase": "A Xiaomi Colombia declara a escova lateral B106GL-BX compativel com S20, S10, E10, S12, E12 e X20 (fabricante-via-busca, verificado em 14/09/2026)."
         }
       ],
       "terceiro": [],
@@ -764,7 +769,28 @@
     },
     "xiaomi-s10": {
       "aviso_de_variante": null,
-      "fabricante": [],
+      "fabricante": [
+        {
+          "tipo": "escova lateral",
+          "peca": "xiaomi-b106gl-bx",
+          "frase": "A Xiaomi Colombia declara a escova lateral B106GL-BX compativel com S20, S10, E10, S12, E12 e X20 (fabricante-via-busca, verificado em 14/09/2026)."
+        },
+        {
+          "tipo": "escova principal",
+          "peca": "xiaomi-b106gl-zx",
+          "frase": "A Xiaomi Singapore declara a escova principal B106GL-ZX compativel com S10 (fabricante-via-busca, verificado em 14/09/2026)."
+        },
+        {
+          "tipo": "filtro",
+          "peca": "xiaomi-b106gl-lw",
+          "frase": "A Xiaomi Singapore declara o filtro B106GL-LW compativel com S10 (fabricante-via-busca, verificado em 14/09/2026)."
+        },
+        {
+          "tipo": "mop",
+          "peca": "xiaomi-mop-s10",
+          "frase": "A Xiaomi Singapore declara o mop \"Xiaomi Robot Vacuum S10 Mop Pad\" compativel com S10 (fabricante-via-busca, verificado em 14/09/2026). Este fabricante nao publica codigo de peca nesta pagina: identifique o item pelo titulo e pela lista de modelos."
+        }
+      ],
       "terceiro": [],
       "kits_sem_composicao": [],
       "recusa_por_tipo": {
@@ -797,7 +823,7 @@
         {
           "tipo": "escova lateral",
           "peca": "xiaomi-b106gl-bx",
-          "frase": "A Xiaomi Global declara a escova lateral B106GL-BX compativel com S20 (fabricante-via-busca, verificado em 13/09/2026)."
+          "frase": "A Xiaomi Global declara a escova lateral B106GL-BX compativel com S20, S10, E10, S12, E12 e X20 (fabricante-via-busca, verificado em 13/09/2026)."
         }
       ],
       "terceiro": [],

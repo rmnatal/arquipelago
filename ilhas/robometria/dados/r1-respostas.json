@@ -319,7 +319,7 @@
       "marca": "xiaomi",
       "codigo": "S10",
       "linha": null,
-      "responde": false,
+      "responde": true,
       "so_kit": false
     },
     {
@@ -2974,6 +2974,50 @@
             "sub_id_1": "robometria",
             "sub_id_2": "R1"
           }
+        },
+        {
+          "tipo": "escova lateral",
+          "peca": "xiaomi-b106gl-bx",
+          "codigo": "B106GL-BX",
+          "nome_na_fonte": "Xiaomi Robot Vacuum S20 Side Brush",
+          "tipo_da_peca": "escova lateral",
+          "funcao_declarada_por": "titulo",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Xiaomi Colombia",
+          "gramatica_do_publicador": {
+            "artigo": "a",
+            "maiuscula": "A",
+            "numero": "singular"
+          },
+          "origem": "fabricante-via-busca",
+          "nivel_da_fonte": 3,
+          "url": "https://www.mi.com/co/product/xiaomi-robot-vacuum-s10-accessories/specs/",
+          "verificado_em": "2026-09-14",
+          "declarados": [
+            "S20",
+            "S10",
+            "E10",
+            "S12",
+            "E12",
+            "X20"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": {
+            "valor": "3 a 6",
+            "unidade": "meses"
+          },
+          "tem_imagem": false,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "url_busca": "",
+            "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20lateral%20robo%20aspirador",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
         }
       ],
       "terceiro": [],
@@ -3069,7 +3113,160 @@
     },
     "xiaomi-s10": {
       "aviso_de_variante": null,
-      "fabricante": [],
+      "fabricante": [
+        {
+          "tipo": "escova lateral",
+          "peca": "xiaomi-b106gl-bx",
+          "codigo": "B106GL-BX",
+          "nome_na_fonte": "Xiaomi Robot Vacuum S20 Side Brush",
+          "tipo_da_peca": "escova lateral",
+          "funcao_declarada_por": "titulo",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Xiaomi Colombia",
+          "gramatica_do_publicador": {
+            "artigo": "a",
+            "maiuscula": "A",
+            "numero": "singular"
+          },
+          "origem": "fabricante-via-busca",
+          "nivel_da_fonte": 3,
+          "url": "https://www.mi.com/co/product/xiaomi-robot-vacuum-s10-accessories/specs/",
+          "verificado_em": "2026-09-14",
+          "declarados": [
+            "S20",
+            "S10",
+            "E10",
+            "S12",
+            "E12",
+            "X20"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": {
+            "valor": "3 a 6",
+            "unidade": "meses"
+          },
+          "tem_imagem": false,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "url_busca": "",
+            "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20lateral%20robo%20aspirador",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        },
+        {
+          "tipo": "escova principal",
+          "peca": "xiaomi-b106gl-zx",
+          "codigo": "B106GL-ZX",
+          "nome_na_fonte": "Xiaomi Robot Vacuum S10 Main Brush",
+          "tipo_da_peca": "escova principal",
+          "funcao_declarada_por": "titulo",
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Xiaomi Singapore",
+          "gramatica_do_publicador": {
+            "artigo": "a",
+            "maiuscula": "A",
+            "numero": "singular"
+          },
+          "origem": "fabricante-via-busca",
+          "nivel_da_fonte": 3,
+          "url": "https://www.mi.com/sg/product/xiaomi-robot-vacuum-s10-accessories/specs/",
+          "verificado_em": "2026-09-14",
+          "declarados": [
+            "S10"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "url_busca": "",
+            "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20principal%20robo%20aspirador",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        },
+        {
+          "tipo": "filtro",
+          "peca": "xiaomi-b106gl-lw",
+          "codigo": "B106GL-LW",
+          "nome_na_fonte": "Xiaomi Robot Vacuum S10 Filter",
+          "tipo_da_peca": "filtro",
+          "funcao_declarada_por": null,
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Xiaomi Singapore",
+          "gramatica_do_publicador": {
+            "artigo": "a",
+            "maiuscula": "A",
+            "numero": "singular"
+          },
+          "origem": "fabricante-via-busca",
+          "nivel_da_fonte": 3,
+          "url": "https://www.mi.com/sg/product/xiaomi-robot-vacuum-s10-accessories/specs/",
+          "verificado_em": "2026-09-14",
+          "declarados": [
+            "S10"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "url_busca": "",
+            "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20filtro%20robo%20aspirador",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        },
+        {
+          "tipo": "mop",
+          "peca": "xiaomi-mop-s10",
+          "codigo": null,
+          "nome_na_fonte": "Xiaomi Robot Vacuum S10 Mop Pad",
+          "tipo_da_peca": "mop",
+          "funcao_declarada_por": null,
+          "dentro_de_kit": false,
+          "existe_avulso": false,
+          "publicador": "Xiaomi Singapore",
+          "gramatica_do_publicador": {
+            "artigo": "a",
+            "maiuscula": "A",
+            "numero": "singular"
+          },
+          "origem": "fabricante-via-busca",
+          "nivel_da_fonte": 3,
+          "url": "https://www.mi.com/sg/product/xiaomi-robot-vacuum-s10-accessories/specs/",
+          "verificado_em": "2026-09-14",
+          "declarados": [
+            "S10"
+          ],
+          "divergencia": false,
+          "variante_do_par": null,
+          "vida_util": null,
+          "tem_imagem": false,
+          "esperando_link": true,
+          "afiliado": {
+            "url": "",
+            "url_busca": "",
+            "url_busca_cru": "https://shopee.com.br/search?keyword=Xiaomi%20mop%20robo%20aspirador",
+            "programa": null,
+            "sub_id_1": "robometria",
+            "sub_id_2": "R1"
+          }
+        }
+      ],
       "terceiro": [],
       "kits_sem_composicao": []
     },
@@ -3218,7 +3415,12 @@
           "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s20-accessories/specs/",
           "verificado_em": "2026-09-13",
           "declarados": [
-            "S20"
+            "S20",
+            "S10",
+            "E10",
+            "S12",
+            "E12",
+            "X20"
           ],
           "divergencia": false,
           "variante_do_par": null,
@@ -3592,8 +3794,8 @@
       "verificado_em": "2026-09-12"
     },
     {
-      "modelo": "xiaomi-s20",
-      "modelo_rotulo": "Xiaomi S20",
+      "modelo": "xiaomi-e10",
+      "modelo_rotulo": "Xiaomi E10",
       "tipo": "escova principal",
       "peca": "xiaomi-b112-zs",
       "codigo": "B112-ZS",
@@ -3605,8 +3807,8 @@
       "verificado_em": "2026-09-13"
     },
     {
-      "modelo": "xiaomi-s20",
-      "modelo_rotulo": "Xiaomi S20",
+      "modelo": "xiaomi-e10",
+      "modelo_rotulo": "Xiaomi E10",
       "tipo": "filtro",
       "peca": "xiaomi-b112-ch",
       "codigo": "B112-CH",
@@ -3618,21 +3820,21 @@
       "verificado_em": "2026-09-13"
     },
     {
-      "modelo": "xiaomi-s20",
-      "modelo_rotulo": "Xiaomi S20",
+      "modelo": "xiaomi-e10",
+      "modelo_rotulo": "Xiaomi E10",
       "tipo": "mop",
-      "peca": "xiaomi-d106-tb",
-      "codigo": "D106-TB",
-      "nome_na_fonte": "Xiaomi Robot Vacuum S20 Mop Pad",
+      "peca": "xiaomi-b112-tb",
+      "codigo": "B112-TB",
+      "nome_na_fonte": "Xiaomi Robot Vacuum E10/E12/E10C Mop Pad",
       "dentro_de_kit": false,
       "divergencia": false,
       "origem": "fabricante-via-busca",
-      "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s20-accessories/specs/",
+      "url": "https://www.mi.com/uk/product/xiaomi-robot-vacuum-e10-accessories/specs/",
       "verificado_em": "2026-09-13"
     },
     {
-      "modelo": "xiaomi-s20",
-      "modelo_rotulo": "Xiaomi S20",
+      "modelo": "xiaomi-e10",
+      "modelo_rotulo": "Xiaomi E10",
       "tipo": "escova lateral",
       "peca": "xiaomi-b106gl-bx",
       "codigo": "B106GL-BX",
@@ -3640,8 +3842,8 @@
       "dentro_de_kit": false,
       "divergencia": false,
       "origem": "fabricante-via-busca",
-      "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s20-accessories/specs/",
-      "verificado_em": "2026-09-13"
+      "url": "https://www.mi.com/co/product/xiaomi-robot-vacuum-s10-accessories/specs/",
+      "verificado_em": "2026-09-14"
     },
     {
       "modelo": "multi-ho041",
@@ -3852,6 +4054,58 @@
       "verificado_em": "2026-09-12"
     },
     {
+      "modelo": "xiaomi-s10",
+      "modelo_rotulo": "Xiaomi S10",
+      "tipo": "escova lateral",
+      "peca": "xiaomi-b106gl-bx",
+      "codigo": "B106GL-BX",
+      "nome_na_fonte": "Xiaomi Robot Vacuum S20 Side Brush",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.mi.com/co/product/xiaomi-robot-vacuum-s10-accessories/specs/",
+      "verificado_em": "2026-09-14"
+    },
+    {
+      "modelo": "xiaomi-s10",
+      "modelo_rotulo": "Xiaomi S10",
+      "tipo": "escova principal",
+      "peca": "xiaomi-b106gl-zx",
+      "codigo": "B106GL-ZX",
+      "nome_na_fonte": "Xiaomi Robot Vacuum S10 Main Brush",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.mi.com/sg/product/xiaomi-robot-vacuum-s10-accessories/specs/",
+      "verificado_em": "2026-09-14"
+    },
+    {
+      "modelo": "xiaomi-s10",
+      "modelo_rotulo": "Xiaomi S10",
+      "tipo": "filtro",
+      "peca": "xiaomi-b106gl-lw",
+      "codigo": "B106GL-LW",
+      "nome_na_fonte": "Xiaomi Robot Vacuum S10 Filter",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.mi.com/sg/product/xiaomi-robot-vacuum-s10-accessories/specs/",
+      "verificado_em": "2026-09-14"
+    },
+    {
+      "modelo": "xiaomi-s10",
+      "modelo_rotulo": "Xiaomi S10",
+      "tipo": "mop",
+      "peca": "xiaomi-mop-s10",
+      "codigo": null,
+      "nome_na_fonte": "Xiaomi Robot Vacuum S10 Mop Pad",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.mi.com/sg/product/xiaomi-robot-vacuum-s10-accessories/specs/",
+      "verificado_em": "2026-09-14"
+    },
+    {
       "modelo": "multi-ob010",
       "modelo_rotulo": "Multi (ex-Multilaser) OB010",
       "tipo": "escova lateral",
@@ -3928,45 +4182,6 @@
       "origem": "varejo-oficial-da-marca",
       "url": "https://loja.meupositivo.com.br/mop-para-smart-robo-aspirador-laser-pra800-e-autolimpante-pra2000-11206540/p",
       "verificado_em": "2026-09-09"
-    },
-    {
-      "modelo": "xiaomi-e10",
-      "modelo_rotulo": "Xiaomi E10",
-      "tipo": "escova principal",
-      "peca": "xiaomi-b112-zs",
-      "codigo": "B112-ZS",
-      "nome_na_fonte": "Xiaomi Robot Vacuum E10/E12/E10C/S20 Brush",
-      "dentro_de_kit": false,
-      "divergencia": false,
-      "origem": "fabricante-via-busca",
-      "url": "https://www.mi.com/sg/product/xiaomi-robot-vacuum-e10-accessories/",
-      "verificado_em": "2026-09-13"
-    },
-    {
-      "modelo": "xiaomi-e10",
-      "modelo_rotulo": "Xiaomi E10",
-      "tipo": "filtro",
-      "peca": "xiaomi-b112-ch",
-      "codigo": "B112-CH",
-      "nome_na_fonte": "Xiaomi Robot Vacuum E10/E10C/S20 Filter",
-      "dentro_de_kit": false,
-      "divergencia": true,
-      "origem": "fabricante-via-busca",
-      "url": "https://www.mi.com/sg/product/xiaomi-robot-vacuum-e10-accessories/",
-      "verificado_em": "2026-09-13"
-    },
-    {
-      "modelo": "xiaomi-e10",
-      "modelo_rotulo": "Xiaomi E10",
-      "tipo": "mop",
-      "peca": "xiaomi-b112-tb",
-      "codigo": "B112-TB",
-      "nome_na_fonte": "Xiaomi Robot Vacuum E10/E12/E10C Mop Pad",
-      "dentro_de_kit": false,
-      "divergencia": false,
-      "origem": "fabricante-via-busca",
-      "url": "https://www.mi.com/uk/product/xiaomi-robot-vacuum-e10-accessories/specs/",
-      "verificado_em": "2026-09-13"
     },
     {
       "modelo": "wap-w300",
@@ -4086,29 +4301,55 @@
       "verificado_em": "2026-09-12"
     },
     {
-      "modelo": "xiaomi-h40",
-      "modelo_rotulo": "Xiaomi H40",
-      "tipo": "escova lateral",
-      "peca": "xiaomi-ov81gl-bs",
-      "codigo": "OV81GL-BS",
-      "nome_na_fonte": "Xiaomi Robot Vacuum H40/ S40/ S40 Pro Anti-tangle Side Brush",
-      "dentro_de_kit": false,
-      "divergencia": true,
-      "origem": "fabricante-via-busca",
-      "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-anti-tangle-side-brush/specs/",
-      "verificado_em": "2026-09-13"
-    },
-    {
-      "modelo": "xiaomi-h40",
-      "modelo_rotulo": "Xiaomi H40",
+      "modelo": "xiaomi-s20",
+      "modelo_rotulo": "Xiaomi S20",
       "tipo": "escova principal",
-      "peca": "xiaomi-escova-principal-h40-s40",
-      "codigo": null,
-      "nome_na_fonte": "Xiaomi Robot Vacuum H40/S40 Brush",
+      "peca": "xiaomi-b112-zs",
+      "codigo": "B112-ZS",
+      "nome_na_fonte": "Xiaomi Robot Vacuum E10/E12/E10C/S20 Brush",
       "dentro_de_kit": false,
       "divergencia": false,
       "origem": "fabricante-via-busca",
-      "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-h40-and-s40-brush/",
+      "url": "https://www.mi.com/sg/product/xiaomi-robot-vacuum-e10-accessories/",
+      "verificado_em": "2026-09-13"
+    },
+    {
+      "modelo": "xiaomi-s20",
+      "modelo_rotulo": "Xiaomi S20",
+      "tipo": "filtro",
+      "peca": "xiaomi-b112-ch",
+      "codigo": "B112-CH",
+      "nome_na_fonte": "Xiaomi Robot Vacuum E10/E10C/S20 Filter",
+      "dentro_de_kit": false,
+      "divergencia": true,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.mi.com/sg/product/xiaomi-robot-vacuum-e10-accessories/",
+      "verificado_em": "2026-09-13"
+    },
+    {
+      "modelo": "xiaomi-s20",
+      "modelo_rotulo": "Xiaomi S20",
+      "tipo": "mop",
+      "peca": "xiaomi-d106-tb",
+      "codigo": "D106-TB",
+      "nome_na_fonte": "Xiaomi Robot Vacuum S20 Mop Pad",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s20-accessories/specs/",
+      "verificado_em": "2026-09-13"
+    },
+    {
+      "modelo": "xiaomi-s20",
+      "modelo_rotulo": "Xiaomi S20",
+      "tipo": "escova lateral",
+      "peca": "xiaomi-b106gl-bx",
+      "codigo": "B106GL-BX",
+      "nome_na_fonte": "Xiaomi Robot Vacuum S20 Side Brush",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s20-accessories/specs/",
       "verificado_em": "2026-09-13"
     },
     {
@@ -4203,8 +4444,8 @@
       "verificado_em": "2026-09-12"
     },
     {
-      "modelo": "xiaomi-s40",
-      "modelo_rotulo": "Xiaomi S40",
+      "modelo": "xiaomi-h40",
+      "modelo_rotulo": "Xiaomi H40",
       "tipo": "escova lateral",
       "peca": "xiaomi-ov81gl-bs",
       "codigo": "OV81GL-BS",
@@ -4216,8 +4457,8 @@
       "verificado_em": "2026-09-13"
     },
     {
-      "modelo": "xiaomi-s40",
-      "modelo_rotulo": "Xiaomi S40",
+      "modelo": "xiaomi-h40",
+      "modelo_rotulo": "Xiaomi H40",
       "tipo": "escova principal",
       "peca": "xiaomi-escova-principal-h40-s40",
       "codigo": null,
@@ -4294,16 +4535,29 @@
       "verificado_em": "2026-09-09"
     },
     {
-      "modelo": "xiaomi-s40c",
-      "modelo_rotulo": "Xiaomi S40C",
-      "tipo": "mop",
-      "peca": "xiaomi-e101-tb",
-      "codigo": "E101-TB",
-      "nome_na_fonte": "Xiaomi Robot Vacuum S40C Mop Pad",
+      "modelo": "xiaomi-s40",
+      "modelo_rotulo": "Xiaomi S40",
+      "tipo": "escova lateral",
+      "peca": "xiaomi-ov81gl-bs",
+      "codigo": "OV81GL-BS",
+      "nome_na_fonte": "Xiaomi Robot Vacuum H40/ S40/ S40 Pro Anti-tangle Side Brush",
       "dentro_de_kit": false,
       "divergencia": true,
       "origem": "fabricante-via-busca",
-      "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s40c-mop-pad/specs/",
+      "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-anti-tangle-side-brush/specs/",
+      "verificado_em": "2026-09-13"
+    },
+    {
+      "modelo": "xiaomi-s40",
+      "modelo_rotulo": "Xiaomi S40",
+      "tipo": "escova principal",
+      "peca": "xiaomi-escova-principal-h40-s40",
+      "codigo": null,
+      "nome_na_fonte": "Xiaomi Robot Vacuum H40/S40 Brush",
+      "dentro_de_kit": false,
+      "divergencia": false,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-h40-and-s40-brush/",
       "verificado_em": "2026-09-13"
     },
     {
@@ -4344,6 +4598,19 @@
       "origem": "varejo-oficial-da-marca",
       "url": "https://loja.electrolux.com.br/kit-performance-para-robos-aspiradores-erb10-erb11-e-erb20---electrolux/p",
       "verificado_em": "2026-09-09"
+    },
+    {
+      "modelo": "xiaomi-s40c",
+      "modelo_rotulo": "Xiaomi S40C",
+      "tipo": "mop",
+      "peca": "xiaomi-e101-tb",
+      "codigo": "E101-TB",
+      "nome_na_fonte": "Xiaomi Robot Vacuum S40C Mop Pad",
+      "dentro_de_kit": false,
+      "divergencia": true,
+      "origem": "fabricante-via-busca",
+      "url": "https://www.mi.com/global/product/xiaomi-robot-vacuum-s40c-mop-pad/specs/",
+      "verificado_em": "2026-09-13"
     },
     {
       "modelo": "electrolux-erb20",
@@ -4471,25 +4738,24 @@
     "wap-w100c",
     "wap-w310",
     "wap-w400",
-    "xiaomi-mop-2",
-    "xiaomi-s10"
+    "xiaomi-mop-2"
   ],
   "resumo": {
-    "linhas_da_tabela": 73,
-    "celulas_respondidas": 63,
-    "pares_na_tabela": 56,
+    "linhas_da_tabela": 78,
+    "celulas_respondidas": 68,
+    "pares_na_tabela": 61,
     "linhas_de_segunda_peca": 10,
     "modelos_publicaveis": 33,
-    "modelos_que_respondem": 24,
-    "modelos_com_entrada_vazia": 9,
+    "modelos_que_respondem": 25,
+    "modelos_com_entrada_vazia": 8,
     "celulas": 198,
-    "celulas_sem_resposta": 135,
-    "pares_declarados": 63,
-    "pecas_publicaveis": 32,
+    "celulas_sem_resposta": 130,
+    "pares_declarados": 71,
+    "pecas_publicaveis": 35,
     "marcas": 5,
-    "as_duas_ferramentas": 7,
-    "pecas_recomendadas": 32,
-    "pecas_esperando_link": 32,
+    "as_duas_ferramentas": 8,
+    "pecas_recomendadas": 35,
+    "pecas_esperando_link": 35,
     "pecas_com_link": 0
   }
 }

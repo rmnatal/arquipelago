@@ -4,18 +4,18 @@
  "entidade": "peca",
  "esquema": "dados/esquema-banco.json",
  "gerado_em": "2026-09-13",
- "nota_de_procedencia": "Coleta de 09/09/2026 por busca restrita aos dominios do proprio fabricante; o egresso HTTP direto devolveu EGRESS_BLOCKED para multilaser.com.br nesta execucao. TODA compatibilidade abaixo e DECLARADA pelo fabricante — nenhuma foi inferida, e nenhuma linha diz 'serve' sem que o fabricante tenha dito. Onde nao ha declaracao, nao ha linha. Bloco 3c (09/09/2026): 10 pecas novas — 6 da Electrolux, 3 da Positivo e 1 da Xiaomi. LEVA DE 13/09/2026: 8 pecas da XIAOMI COM CODIGO, e a coleta so aconteceu porque o dominio testado ate entao estava errado. O PROMPT.md e o ESTADO.md mandavam testar mi.com.br e xiaomi.com.br; o banco desta ilha sempre citou www.mi.com/br. O egresso direto segue fechado por politica nos tres (000, 403 ao CONNECT, duas passadas), mas a BUSCA alcanca mi.com — e nunca tinha sido testada nele. A REGUA DE COMPATIBILIDADE DESTA LEVA, escrita antes de gravar: a Xiaomi declara compatibilidade no TITULO PUBLICADO da peca ('Xiaomi Robot Vacuum E10/E12/E10C/S20 Brush'), e o codigo mora na subpagina /specs/ como 'Product model'. Um par entra quando o modelo e nomeado num titulo que aparece na pagina de acessorio daquele modelo ou numa pagina de peca dedicada; titulo de listagem que nomeia modelo que a especificacao da peca nao repete vai para divergencias e e resolvido pelo MAIS ESTREITO (secao 10 do ARQUIPELAGO.md). LEVA DE 13/09/2026 (segunda do dia): 4 pecas da WAP, as primeiras da marca — 2 do W300 e 2 do WSMART. TODAS com codigo_fabricante null: ver lista_de_compras. A REGRA QUE ESTA LEVA ESCREVEU, e ela subiu para a secao 26 do ARQUIPELAGO.md: a FUNCAO da peca nao se le do nome do produto. O fabricante batiza pela POSICAO (Direita, Esquerda, Central, Frontal, Rotativa) e este banco classifica pela FUNCAO (escova lateral, escova principal). A WAP desmente a si mesma no proprio canal — 'escovas giratorias direita e esquerda' e o par LATERAL do W300, e 'Escova Principal (Escova giratoria)' e a PRINCIPAL do W90 —, entao toda escova passa a carregar funcao{} dizendo onde a funcao foi declarada: no titulo, no contraste do catalogo daquele modelo, ou no canal de manutencao. Sem nenhum dos tres o registro nao nasce, e foi por isso que a escova do W90 ficou de fora.",
+ "nota_de_procedencia": "Coleta de 09/09/2026 por busca restrita aos dominios do proprio fabricante; o egresso HTTP direto devolveu EGRESS_BLOCKED para multilaser.com.br nesta execucao. TODA compatibilidade abaixo e DECLARADA pelo fabricante — nenhuma foi inferida, e nenhuma linha diz 'serve' sem que o fabricante tenha dito. Onde nao ha declaracao, nao ha linha. Bloco 3c (09/09/2026): 10 pecas novas — 6 da Electrolux, 3 da Positivo e 1 da Xiaomi. LEVA DE 13/09/2026: 8 pecas da XIAOMI COM CODIGO, e a coleta so aconteceu porque o dominio testado ate entao estava errado. O PROMPT.md e o ESTADO.md mandavam testar mi.com.br e xiaomi.com.br; o banco desta ilha sempre citou www.mi.com/br. O egresso direto segue fechado por politica nos tres (000, 403 ao CONNECT, duas passadas), mas a BUSCA alcanca mi.com — e nunca tinha sido testada nele. A REGUA DE COMPATIBILIDADE DESTA LEVA, escrita antes de gravar: a Xiaomi declara compatibilidade no TITULO PUBLICADO da peca ('Xiaomi Robot Vacuum E10/E12/E10C/S20 Brush'), e o codigo mora na subpagina /specs/ como 'Product model'. Um par entra quando o modelo e nomeado num titulo que aparece na pagina de acessorio daquele modelo ou numa pagina de peca dedicada; titulo de listagem que nomeia modelo que a especificacao da peca nao repete vai para divergencias e e resolvido pelo MAIS ESTREITO (secao 10 do ARQUIPELAGO.md). LEVA DE 13/09/2026 (segunda do dia): 4 pecas da WAP, as primeiras da marca — 2 do W300 e 2 do WSMART. TODAS com codigo_fabricante null: ver lista_de_compras. A REGRA QUE ESTA LEVA ESCREVEU, e ela subiu para a secao 26 do ARQUIPELAGO.md: a FUNCAO da peca nao se le do nome do produto. O fabricante batiza pela POSICAO (Direita, Esquerda, Central, Frontal, Rotativa) e este banco classifica pela FUNCAO (escova lateral, escova principal). A WAP desmente a si mesma no proprio canal — 'escovas giratorias direita e esquerda' e o par LATERAL do W300, e 'Escova Principal (Escova giratoria)' e a PRINCIPAL do W90 —, entao toda escova passa a carregar funcao{} dizendo onde a funcao foi declarada: no titulo, no contraste do catalogo daquele modelo, ou no canal de manutencao. Sem nenhum dos tres o registro nao nasce, e foi por isso que a escova do W90 ficou de fora. LEVA DE 14/09/2026 (19h17Z): a familia B106GL do Xiaomi S10. O registro B106GL-BX, que estava no banco desde 13/09 com compatibilidade so do S20, foi ALARGADO — nao duplicado — porque a propria Xiaomi publica o mesmo codigo sob titulo que nomeia S10, E10, S12, E12 e X20. Nasceram B106GL-ZX (escova principal), B106GL-LW (filtro) e o mop do S10 sem codigo, com a causa medida. Canal: busca web restrita a mi.com; o egresso direto e o WebFetch seguem devolvendo EGRESS_BLOCKED, remedido nesta execucao, e por isso as fontes sao de nivel 3.",
  "nota_vida_util": "Nenhuma peca da Multi declara vida util nas paginas desta coleta. O unico numero de fabricante que a ilha tem e o do manual da Electrolux — 6 meses para o filtro HEPA do ERB10/ERB11/ERB20 — e ele esta em constantes.json preso AQUELES modelos. Veiculos editoriais dizem 3 meses e 2-3 meses, e divergem do manual. Manual de fabricante e recomendacao editorial nao se misturam numa frase: a R1 publica o intervalo do FABRICANTE do modelo consultado, e a recomendacao editorial so aparece rotulada como tal. Bloco 3c: a vida util de 6 meses do manual da Electrolux finalmente tem peca — e o filtro HEPA dentro do Kit Performance KPCEL01. E a Xiaomi trouxe o primeiro conjunto de intervalos por TIPO de peca (filtro 3-6, escova lateral 3-6, escova principal 6-12, mop 3 meses), que valem para o S20 e para nenhum outro modelo do banco.",
  "contagem": {
-  "total": 35,
-  "publicavel": 32,
+  "total": 38,
+  "publicavel": 35,
   "excluido_do_banco": 3,
   "nao_publicavel": 0,
-  "pares_peca_x_modelo_declarados": 63,
-  "esperando_link_de_afiliado": 32,
+  "pares_peca_x_modelo_declarados": 71,
+  "esperando_link_de_afiliado": 35,
   "itens_com_ficha": 0,
   "itens_sem_saida_de_compra": 0,
-  "itens_com_piso_nao_rastreavel": 32,
+  "itens_com_piso_nao_rastreavel": 35,
   "links_sem_degrau": 0
  },
  "lista_de_compras": [
@@ -30,9 +30,14 @@
    "por_que": "A RECUSA DESTE BLOCO, e ela e do tipo que nao se desfaz com esforco. O catalogo do W90 publica UMA escova, 'Escova Rotativa Para Robo Aspirador de Po WAP Robot W90', sem vizinha para contrastar — e o artigo de limpeza do W90 no blog da propria WAP declara que o modelo tem DUAS escovas, lateral e principal. Pelos tres caminhos da secao 26 do ARQUIPELAGO.md nao ha de onde ler a funcao. O que resolve e o manual do W90 (FW010263 REV00JAN24, nomeado na busca), que traz a lista de pecas — e ele esta atras do egresso fechado em mais.conteudo.wap.ind.br. NAO grave pelo nome: 'giratoria' e a palavra que a WAP usa para o par LATERAL do W300 e para a PRINCIPAL do W90."
   },
   {
-   "codigo": "B106GL-BX e as escovas laterais de titulo largo da familia E10/S10",
+   "codigo": "o mop do S10 sem codigo proprio, e a familia E10/S10 de titulo largo que sobrou",
    "marca": "xiaomi",
-   "por_que": "Nao mudou desde 13/09: ha titulos de escova lateral mais largos na pagina de acessorios do E10 ('S10/E10/X20/S20' e 'S10/E10/S12/E12/X20') que nao foram vistos ao lado de um codigo. Juntar titulo de uma pagina com codigo de outra seria inventar a declaracao. O S10 e o Mop 2 sao os dois Xiaomi que continuam com a R1 vazia."
+   "por_que": "REESCRITA EM 14/09/2026, e a metade grande desta linha FOI FECHADA — a frase anterior dizia que os titulos largos de escova lateral 'nao foram vistos ao lado de um codigo', e isso deixou de ser verdade. Em tres passadas independentes restritas a mi.com, B106GL-BX voltou ligado a titulo que nomeia o S10, e com ele vieram B106GL-ZX (escova principal) e B106GL-LW (filtro), os dois em duas passadas. O S10 saiu do vazio da R1. O QUE SOBRA SAO DUAS COISAS, E ELAS NAO SE PARECEM. (1) O MOP DO S10 ENTROU SEM CODIGO de proposito: a especificacao dele publica 'B106GL', a mesma string que a especificacao do ROBO S10 publica como modelo do aparelho — codigo de peca igual ao do aparelho nao distingue peca nenhuma na busca da loja. So se desfaz lendo a etiqueta ou a embalagem. (2) O XIAOMI MOP 2 e o unico Xiaomi que continua com a R1 vazia, e nenhuma das paginas de acessorio lidas hoje o nomeia. Nao junte titulo de uma pagina com codigo de outra: foi essa regra que fez B106GL-BX esperar um dia inteiro, e e ela que faz o achado de hoje valer."
+  },
+  {
+   "codigo": "B106GL-ZSZ — tampa de escova do S10",
+   "marca": "xiaomi",
+   "por_que": "CATEGORIA DESCOBERTA, NAO COLETA PENDENTE, e agora sao TRES na mesma prateleira: o saco descartavel do ERB80, a tampa de escova D106-BZSZ do S20 e esta. A peca esta publicada pela Xiaomi com codigo e com titulo que nomeia a funcao ('Brush Cover'), ou seja, nada falta do lado da fonte — o que falta e TIPO: 'tampa de escova' nao existe em tipo_de_peca no esquema-banco.json. Acrescentar tipo mexe no seletor da R1, na varredura de cobertura e nos portoes, entao quem pegar isto decide primeiro se o tipo nasce, pela regua da secao 14.3 do ARQUIPELAGO.md, e so depois grava. Tres itens de duas marcas ja e faixa, e nao acidente: e o que essa decisao passou a ter de pesar."
   }
  ],
  "registros": [
@@ -1972,6 +1977,41 @@
      "variante_de_hardware": null,
      "selo": "declarada_fabricante",
      "fonte": "f-peca"
+    },
+    {
+     "modelo": "xiaomi-s10",
+     "codigo_declarado": "S10",
+     "variante_de_hardware": null,
+     "selo": "declarada_fabricante",
+     "fonte": "f-peca-largo"
+    },
+    {
+     "modelo": "xiaomi-e10",
+     "codigo_declarado": "E10",
+     "variante_de_hardware": null,
+     "selo": "declarada_fabricante",
+     "fonte": "f-peca-largo"
+    },
+    {
+     "modelo": null,
+     "codigo_declarado": "S12",
+     "variante_de_hardware": null,
+     "selo": "declarada_fabricante",
+     "fonte": "f-peca-largo"
+    },
+    {
+     "modelo": null,
+     "codigo_declarado": "E12",
+     "variante_de_hardware": null,
+     "selo": "declarada_fabricante",
+     "fonte": "f-peca-largo"
+    },
+    {
+     "modelo": null,
+     "codigo_declarado": "X20",
+     "variante_de_hardware": null,
+     "selo": "declarada_fabricante",
+     "fonte": "f-peca-largo"
     }
    ],
    "divergencias": [],
@@ -2022,11 +2062,20 @@
      "url": "https://www.mi.com/uk/support/faq/details/KA-233335/",
      "canal_de_coleta": "busca web restrita ao dominio mi.com. O egresso HTTP direto para mi.com.br, www.mi.com.br e xiaomi.com.br devolveu 000 (403 ao CONNECT, politica de egresso) em duas passadas nesta execucao, e o WebFetch da URL devolveu EGRESS_BLOCKED. A LEITURA NAO E DIRETA NA FONTE PRIMARIA, e por isso o nivel e 3 e nao 2",
      "verificado_em": "2026-09-13"
+    },
+    "f-peca-largo": {
+     "nivel": 3,
+     "origem": "fabricante-via-busca",
+     "publicador": "Xiaomi Colombia",
+     "titulo_na_fonte": "Xiaomi Robot Vacuum S10/E10/S12/E12/X20 Side Brush Especificaciones",
+     "url": "https://www.mi.com/co/product/xiaomi-robot-vacuum-s10-accessories/specs/",
+     "canal_de_coleta": "busca web restrita ao dominio mi.com, em TRES passadas independentes nesta execucao. O egresso HTTP direto e o WebFetch para mi.com continuam devolvendo EGRESS_BLOCKED, medido de novo em 14/09/2026. A LEITURA NAO E DIRETA NA FONTE PRIMARIA, e por isso o nivel e 3 e nao 2",
+     "verificado_em": "2026-09-14"
     }
    },
    "status": "publicavel",
-   "observacao": "Pacote: 2 escovas laterais. Ha titulos mais largos de escova lateral na pagina de acessorios do E10 ('S10/E10/X20/S20' e 'S10/E10/S12/E12/X20'), mas NENHUM deles foi visto ao lado de um codigo, e juntar titulo de uma pagina com codigo de outra e inventar a declaracao. Ficam fora ate alguem ler a especificacao daquela peca.",
-   "verificado_em": "2026-09-13"
+   "observacao": "Pacote: 2 escovas laterais. ESTE REGISTRO FOI ALARGADO EM 14/09/2026, e a frase que ficava aqui — 'ha titulos mais largos de escova lateral na pagina de acessorios do E10, mas NENHUM deles foi visto ao lado de um codigo' — deixou de ser verdade e por isso foi REESCRITA, nao acrescentada. Em tres passadas independentes restritas a mi.com, o codigo B106GL-BX voltou ligado a um titulo que nomeia o S10, na pagina cujo proprio endereco e 'xiaomi-robot-vacuum-s10-accessories'. Quem declara S12, E12 e X20 e a pagina de titulo largo (f-peca-largo); quem declara o S20 continua sendo a pagina do S20 (f-peca). Os tres modelos sem entrada no banco entram com modelo null, como manda o padrao dos registros de titulo largo.",
+   "verificado_em": "2026-09-14"
   },
   {
    "id": "xiaomi-ov81gl-bs",
@@ -2788,6 +2837,189 @@
    "status": "publicavel",
    "observacao": "TERCEIRA peca de tipo 'reservatorio' do banco, e a primeira peca WAP que tira DOIS modelos do vazio da R1 de uma vez: o W100 e o W90 estavam entre os 11 que a ferramenta nao respondia. O PAR DE MODELOS E DECLARADO PELO PROPRIO TITULO da loja oficial, que nomeia os dois. O CODIGO PASSOU NO CRITERIO DE CANAL que a leva de escovas de 13/09 escreveu ao recusar FW006267, FW008028 e FW009132: FW008543 voltou em passada restrita aos dominios da WAP com a pagina da loja oficial entre os resultados, E em passada SEM restricao nenhuma, em que quatro canais independentes entre si (Americanas, Amazon, Mercado Livre e um varejista de pecas) nomeiam o MESMO produto com o MESMO codigo. POR QUE O TIPO E 'reservatorio' E NAO 'kit', que e a palavra que o proprio fabricante usa no titulo: a secao 26 do ARQUIPELAGO.md diz que o fabricante batiza pela posicao ou pelo marketing e a ilha classifica pela FUNCAO, e a funcao esta escrita literalmente no titulo ('Recipiente de Po'). O tipo 'kit' deste esquema exige composicao com um item por PECA separada, e a WAP nao declara composicao nenhuma nesta pagina. A direcao da duvida saiu da assimetria de custo da secao 10: gravar 'reservatorio' faz a R1 deixar de oferecer esta peca a quem procura FILTRO, que e uma frase mais fraca; gravar 'kit' com a composicao lida em VAREJISTA faria a R1 dizer a uma pessoa que o filtro dela vem nesta caixa, com a autoridade do fabricante emprestada a quem so revende. Errar para baixo custa uma frase; errar para cima custa a compra errada. A COMPOSICAO QUE OS VAREJISTAS DECLARAM ('recipiente mais tampa mais filtro') FOI LIDA E RECUSADA, nao ignorada: ela esta nas divergencias pelo titulo dos anuncios, que e onde ela e verdadeira como declaracao DELES. A COMPATIBILIDADE MAIOR DO VAREJO TAMBEM FOI RECUSADA, e o proprio varejo deu o argumento: dois anuncios do MESMO codigo, na MESMA loja, declaram conjuntos DIFERENTES (um diz W90/W95/W96/W100/W100C, o outro diz W100/W100C). Canal que discorda de si mesmo nao promove modelo nenhum. O W100C esta no banco desta ilha e esta no vazio da R1 — estender a compatibilidade por vizinhanca tiraria um TERCEIRO modelo do vazio hoje, e e exatamente por isso que a recusa importa. O caminho de volta esta escrito: a vista explodida VEG02.122 do W100C existe em mais.wap.ind.br, e uma leitura dela declara ou nega o par no canal do fabricante. W95 e W96 nao estao no banco de modelos desta ilha.",
    "verificado_em": "2026-09-13"
+  },
+  {
+   "id": "xiaomi-b106gl-zx",
+   "marca": "xiaomi",
+   "codigo_fabricante": "B106GL-ZX",
+   "tipo": "escova principal",
+   "funcao": {
+    "declarada_por": "titulo",
+    "fonte": "f-peca",
+    "declarado_como": "o titulo publicado pela Xiaomi diz 'Main Brush' — a funcao esta na propria palavra, e nao na posicao. Nao foi preciso o contraste-no-catalogo que a B112-ZS exigiu, porque la o titulo era so 'Brush'"
+   },
+   "nome_na_fonte": "Xiaomi Robot Vacuum S10 Main Brush",
+   "compatibilidade": [
+    {
+     "modelo": "xiaomi-s10",
+     "codigo_declarado": "S10",
+     "variante_de_hardware": null,
+     "selo": "declarada_fabricante",
+     "fonte": "f-peca"
+    }
+   ],
+   "divergencias": [],
+   "vida_util_declarada": {
+    "valor": null,
+    "unidade": "meses",
+    "motivo_do_null": "a especificacao desta peca nao declara periodicidade de troca, e o banco nao empresta o numero que a FAQ do S20 publica para a peca de outro modelo"
+   },
+   "imagem": {
+    "url": null,
+    "largura": null,
+    "altura": null,
+    "fonte": null,
+    "coletado_em": null,
+    "alt": null,
+    "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o codigo da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+   },
+   "afiliado": {
+    "url": "",
+    "url_produto": null,
+    "motivo_sem_url_produto": null,
+    "intestavel": false,
+    "degrau": 4,
+    "conferido_em": "2026-09-14",
+    "url_busca": "",
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20escova%20principal%20robo%20aspirador",
+    "motivo_sem_url_busca": "falta o ENCURTAMENTO, nao a escolha: gerar o link de afiliado da busca exige a sessao logada do painel da Shopee (25.6). A palavra-chave ja esta escrita em url_busca_produto, e no dia da sessao e colar.",
+    "plataforma": null,
+    "coletado_em": null,
+    "sub_id_1": "robometria"
+   },
+   "fontes": {
+    "f-peca": {
+     "nivel": 3,
+     "origem": "fabricante-via-busca",
+     "publicador": "Xiaomi Singapore",
+     "titulo_na_fonte": "Xiaomi Robot Vacuum S10 Accessories Specs",
+     "url": "https://www.mi.com/sg/product/xiaomi-robot-vacuum-s10-accessories/specs/",
+     "canal_de_coleta": "busca web restrita ao dominio mi.com, em TRES passadas independentes nesta execucao. O egresso HTTP direto e o WebFetch para mi.com continuam devolvendo EGRESS_BLOCKED, medido de novo em 14/09/2026. A LEITURA NAO E DIRETA NA FONTE PRIMARIA, e por isso o nivel e 3 e nao 2",
+     "verificado_em": "2026-09-14"
+    }
+   },
+   "status": "publicavel",
+   "observacao": "Pacote: 1 escova principal e 1 ferramenta de limpeza, como a especificacao declara. O codigo voltou em DUAS passadas independentes restritas a mi.com.",
+   "verificado_em": "2026-09-14"
+  },
+  {
+   "id": "xiaomi-b106gl-lw",
+   "marca": "xiaomi",
+   "codigo_fabricante": "B106GL-LW",
+   "tipo": "filtro",
+   "nome_na_fonte": "Xiaomi Robot Vacuum S10 Filter",
+   "compatibilidade": [
+    {
+     "modelo": "xiaomi-s10",
+     "codigo_declarado": "S10",
+     "variante_de_hardware": null,
+     "selo": "declarada_fabricante",
+     "fonte": "f-peca"
+    }
+   ],
+   "divergencias": [],
+   "vida_util_declarada": {
+    "valor": null,
+    "unidade": "meses",
+    "motivo_do_null": "a especificacao desta peca nao declara periodicidade de troca, e o banco nao empresta o numero publicado para o filtro de outro modelo"
+   },
+   "imagem": {
+    "url": null,
+    "largura": null,
+    "altura": null,
+    "fonte": null,
+    "coletado_em": null,
+    "alt": null,
+    "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o codigo da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+   },
+   "afiliado": {
+    "url": "",
+    "url_produto": null,
+    "motivo_sem_url_produto": null,
+    "intestavel": false,
+    "degrau": 4,
+    "conferido_em": "2026-09-14",
+    "url_busca": "",
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20filtro%20robo%20aspirador",
+    "motivo_sem_url_busca": "falta o ENCURTAMENTO, nao a escolha: gerar o link de afiliado da busca exige a sessao logada do painel da Shopee (25.6). A palavra-chave ja esta escrita em url_busca_produto, e no dia da sessao e colar.",
+    "plataforma": null,
+    "coletado_em": null,
+    "sub_id_1": "robometria"
+   },
+   "fontes": {
+    "f-peca": {
+     "nivel": 3,
+     "origem": "fabricante-via-busca",
+     "publicador": "Xiaomi Singapore",
+     "titulo_na_fonte": "Xiaomi Robot Vacuum S10 Accessories Specs",
+     "url": "https://www.mi.com/sg/product/xiaomi-robot-vacuum-s10-accessories/specs/",
+     "canal_de_coleta": "busca web restrita ao dominio mi.com, em TRES passadas independentes nesta execucao. O egresso HTTP direto e o WebFetch para mi.com continuam devolvendo EGRESS_BLOCKED, medido de novo em 14/09/2026. A LEITURA NAO E DIRETA NA FONTE PRIMARIA, e por isso o nivel e 3 e nao 2",
+     "verificado_em": "2026-09-14"
+    }
+   },
+   "status": "publicavel",
+   "observacao": "O codigo voltou em DUAS passadas independentes restritas a mi.com.",
+   "verificado_em": "2026-09-14"
+  },
+  {
+   "id": "xiaomi-mop-s10",
+   "marca": "xiaomi",
+   "codigo_fabricante": null,
+   "motivo_sem_codigo": "MEDIDO nesta execucao, e a recusa e a parte util. A especificacao desta peca publica 'B106GL' no campo de modelo — a MESMA string que a especificacao do PROPRIO ROBO S10 publica como modelo do aparelho, lida na mesma passada em mi.com/global/product/xiaomi-robot-vacuum-s10/specs/. As irmas de prateleira trazem sufixo (BX na escova lateral, ZX na principal, LW no filtro) e esta nao traz nenhum. Codigo de peca que e igual ao codigo do aparelho nao distingue peca nenhuma na busca da loja, que e exatamente para o que o campo existe, entao ele fica null com a causa escrita em vez de entrar meio confirmado. O registro vive pelo titulo, pela mesma regra que ja vale para as escovas da WAP.",
+   "tipo": "mop",
+   "nome_na_fonte": "Xiaomi Robot Vacuum S10 Mop Pad",
+   "compatibilidade": [
+    {
+     "modelo": "xiaomi-s10",
+     "codigo_declarado": "S10",
+     "variante_de_hardware": null,
+     "selo": "declarada_fabricante",
+     "fonte": "f-peca"
+    }
+   ],
+   "divergencias": [],
+   "vida_util_declarada": {
+    "valor": null,
+    "unidade": "meses",
+    "motivo_do_null": "a especificacao desta peca nao declara periodicidade de troca"
+   },
+   "imagem": {
+    "url": null,
+    "largura": null,
+    "altura": null,
+    "fonte": null,
+    "coletado_em": null,
+    "alt": null,
+    "motivo_do_null": "Imagem nao coletada: o egresso barra os dominios de fabricante e de varejo, entao nao ha como baixar nem medir o arquivo. O registro NAO some da vitrine por isso — aparece com espaco reservado neutro e o codigo da peca em destaque (secao 6 do ARQUIPELAGO.md)."
+   },
+   "afiliado": {
+    "url": "",
+    "url_produto": null,
+    "motivo_sem_url_produto": null,
+    "intestavel": false,
+    "degrau": 4,
+    "conferido_em": "2026-09-14",
+    "url_busca": "",
+    "url_busca_produto": "https://shopee.com.br/search?keyword=Xiaomi%20mop%20robo%20aspirador",
+    "motivo_sem_url_busca": "falta o ENCURTAMENTO, nao a escolha: gerar o link de afiliado da busca exige a sessao logada do painel da Shopee (25.6). A palavra-chave ja esta escrita em url_busca_produto, e no dia da sessao e colar.",
+    "plataforma": null,
+    "coletado_em": null,
+    "sub_id_1": "robometria"
+   },
+   "fontes": {
+    "f-peca": {
+     "nivel": 3,
+     "origem": "fabricante-via-busca",
+     "publicador": "Xiaomi Singapore",
+     "titulo_na_fonte": "Xiaomi Robot Vacuum S10 Accessories Specs",
+     "url": "https://www.mi.com/sg/product/xiaomi-robot-vacuum-s10-accessories/specs/",
+     "canal_de_coleta": "busca web restrita ao dominio mi.com, em TRES passadas independentes nesta execucao. O egresso HTTP direto e o WebFetch para mi.com continuam devolvendo EGRESS_BLOCKED, medido de novo em 14/09/2026. A LEITURA NAO E DIRETA NA FONTE PRIMARIA, e por isso o nivel e 3 e nao 2",
+     "verificado_em": "2026-09-14"
+    }
+   },
+   "status": "publicavel",
+   "observacao": "Pacote: 2 mops, como a especificacao declara.",
+   "verificado_em": "2026-09-14"
   }
  ],
  "ordem_da_lista_de_compras": "Reordenada em 13/09/2026 pela varredura da entrada da R1 (dados/cobertura-r1.json), nao por impressao. O criterio e o da secao 14.3 do ARQUIPELAGO.md aplicado a R1: vale mais a peca que tira um MODELO do vazio do que a peca que acrescenta um par a um modelo que ja respondia. A leva da Xiaomi tirou quatro modelos do vazio de uma vez (E10, H40, S40 e S40C) e deu codigo ao quinto (S20), entao a entrada vazia caiu de 12 para 8 e as celulas vazias de 120 para 112. O que sobrou na emenda com a R2 e a WAP inteira, e por isso ela subiu para o topo — com o alvo trocado: o gargalo la nao e peca, e MODELO. ATUALIZADA em 13/09/2026 pelo bloco do reservatorio: o alvo mais barato da lista saiu dela. O recipiente de po do W300 e o do WSMART estavam nomeados aqui com a pagina JA LOCALIZADA — custo de uma passada limpa, nao de uma varredura — e eram o unico alvo que devolvia um TIPO INTEIRO ao seletor da R1 em vez de um par a um modelo que ja respondia. Foi o que aconteceu: reservatorio saiu de 0 para 2 pecas e o seletor, que e gerado da varredura, voltou a oferecer o tipo sem uma linha de codigo mudar. Nenhum modelo saiu do vazio, e nao era para sair — W300 e WSMART ja respondiam. O topo da lista continua sendo a WAP, e o gargalo la segue sendo MODELO."

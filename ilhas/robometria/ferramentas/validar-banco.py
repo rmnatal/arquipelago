@@ -700,7 +700,6 @@ conferir_contagem(modelos, "modelos-robo.json", "total", len(modelos["registros"
 # lista ou vazia. Contagem que nao bate com o arquivo e pior que contagem nenhuma: e um
 # numero que a proxima execucao vai acreditar sem conferir.
 _pub = [r for r in modelos["registros"] if r["status"] == "publicavel"]
-conferir_contagem(modelos, "modelos-robo.json", "publicavel", len(_pub))
 conferir_contagem(modelos, "modelos-robo.json", "com_pa_declarado",
                   sum(1 for r in _pub if r["pa_declarado"]["valor"] is not None))
 conferir_contagem(modelos, "modelos-robo.json", "com_par_minutos_m2_declarado",
@@ -709,9 +708,17 @@ conferir_contagem(modelos, "modelos-robo.json", "com_par_minutos_m2_declarado",
 conferir_contagem(modelos, "modelos-robo.json", "marcas_que_declaram_pa",
                   sorted({r["marca"] for r in _pub
                           if r["pa_declarado"]["valor"] is not None}))
-conferir_contagem(modelos, "modelos-robo.json", "esperando_link_de_afiliado",
-                  sum(1 for r in _pub if not r["afiliado"]["url"]))
 conferir_contagem(pecas, "pecas.json", "total", len(pecas["registros"]))
+
+# `publicavel` E `esperando_link_de_afiliado` ERAM CONFERIDOS SO EM UM DOS DOIS BANCOS,
+# e a assimetria custou uma reprovacao em 14/09/2026: a leva do Xiaomi S10 levou
+# pecas.json de 32 para 35 publicaveis, o cabecalho continuou dizendo 32, e ESTE
+# validador aprovou. Quem pegou foi a secao 10 do teste-r1.php, comparando o numero da
+# TELA com o banco — ou seja, o portao que morde depois. Nao ha nada de especial em
+# modelos-robo.json que justificasse a conferencia morar so la; o que houve foi a ordem
+# em que os dois arquivos nasceram. As duas chaves descem para o laco que ja roda nos
+# dois bancos, e a linha exclusiva de modelos-robo.json morre junto — duas copias da
+# mesma regra e como a ilha perde a segunda.
 
 # A DIVIDA DO PISO DEIXA DE SER PROSA E VIRA NUMERO CONTADO, em 13/09/2026. Enquanto
 # ela morava no ESTADO.md em forma de frase, a divida nao tinha tamanho: o cabecalho
@@ -721,6 +728,9 @@ conferir_contagem(pecas, "pecas.json", "total", len(pecas["registros"]))
 # digitado — e numero de cabecalho de banco tambem.
 for _doc, _arq in ((modelos, "modelos-robo.json"), (pecas, "pecas.json")):
     _p = [r for r in _doc["registros"] if r["status"] == "publicavel"]
+    conferir_contagem(_doc, _arq, "publicavel", len(_p))
+    conferir_contagem(_doc, _arq, "esperando_link_de_afiliado",
+                      sum(1 for r in _p if not r["afiliado"]["url"]))
     conferir_contagem(_doc, _arq, "itens_com_ficha",
                       sum(1 for r in _p if r["afiliado"]["url"]))
     # A CHAVE `itens_sem_piso` MORREU EM 14/09/2026, e o motivo e o proprio despacho
