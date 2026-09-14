@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 0
 primeira_indexacao: null
 ultima_execucao: 2026-09-14T15:19Z
-executando_desde: null
+executando_desde: 2026-09-14T17:20Z
 rede: bloqueada em 2026-09-14   # 20.1: o dominio nao esta na lista de Dominios permitidos. Despacho ALTO para o Raphael em dados/despachos.md
 bloco_atual: |
   BLOCO 1 ENTREGUE — o primeiro da vida desta ilha. dados/corpus-buscas.md, 15 consultas novas medidas em pt-BR em 14/09/2026 entre 15h25Z e 15h40Z, nos tres eixos do PROMPT.md (custo de experiencia, custo de estadia, passe x avulso) mais o cluster FREE TOUR do 5c, cada linha com os dominios que de fato responderam. ZERO numero de volume de busca, porque nao houve acesso a ferramenta de volume — mesma disciplina do corpus da Robometria. ZERO preco deste arquivo entra no banco, e isso esta escrito duas vezes la dentro.
