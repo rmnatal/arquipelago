@@ -3924,3 +3924,156 @@ ainda nao existe — 0 escritos, 0 na fila, 0 recusados.
    que depende do egresso fechado aos dominios da WAP.
 3. A escada de compra na TELA, no minuto em que houver `url_busca`.
 4. A leva de malha 5b segue travada pelo Search Console.
+
+## 2026-09-14, 15h17Z — O PISO DA 25.2 CHEGA À TELA, e o desembarque desta ilha parava no cache do hospedeiro
+
+**Bloco:** o DESPACHO DO RAPHAEL de 14/09 (o piso de busca), inteiro, mais os
+itens 1, 2 e 3 do DESPACHO DA SENTINELA de 14/09. Casca 1.6.2, R1 1.8.0, R2
+1.6.0, A1 1.3.0, A2 1.3.0, esquema do banco versão 7, manifest na revisão 40.
+Nenhuma URL nova, nenhuma URL mudou, nenhum modelo ou peça entrou ou saiu do
+banco.
+
+**A ESCOLHA DA ILHA:** primeira tentada, sem corrida. Os cinco `ESTADO.md` com
+`executando_desde: null`, que pela 1.1 já significa que não há bloco da Fundação
+vivo. Pela 18.1, duas ilhas tinham despacho ABERTO do Raphael, os dois de 14/09
+e escritos no mesmo commit (`29099ba`, 14h59Z): aquametria e robometria. Empate
+de data, então valeu a rotação da seção 1 — a robometria tinha a
+`ultima_execucao` mais antiga (13h54Z contra 14h34Z). Rede pela 20.2 antes de
+trabalhar: home em 200 e `/status` na revisão 36, igual à do manifest.
+
+**ITEM 1 DO DESPACHO DO RAPHAEL: O CAMPO JÁ EXISTIA, E NÃO FOI DUPLICADO.** Ele
+pede `afiliado.url_busca_bruta`; o contrato já batizou o mesmo fato de
+`afiliado.url_busca_produto` na 25.4-b, e esta ilha o preencheu em 65 de 65
+publicáveis em 13/09. Gravar o mesmo valor sob um segundo nome é a cicatriz que a
+R2 pagou na manhã do mesmo dia — duas metades que nunca se falam, cada uma certa
+no seu lugar e nenhuma capaz de corrigir a outra. Fica valendo o nome do contrato,
+e isto está escrito no despacho fechado para ninguém refazer a pergunta.
+
+**ITEM 2: O DEGRAU ERA UMA DECISÃO TOMADA E NÃO GRAVADA.** Os 65 publicáveis
+tinham piso escrito e `degrau: null` — e `null` quer dizer "ninguém decidiu",
+então a dívida parecia maior do que era. Agora o degrau sai DERIVADO do próprio
+campo (ficha → 1, 2 ou 3, escrito por quem escolheu a ficha; sem ficha e com piso
+→ 4), com `conferido_em` do dia em que ele foi decidido. **A régua do validador
+estava INVERTIDA e foi reescrita:** ela dizia "degrau sem ficha não parou em lugar
+nenhum", o que contradiz a própria 25.1, cujo degrau 4 É a busca e por definição
+não tem ficha. Escrita quando o degrau descrevia só a ficha, ela obrigava a ilha
+inteira a ficar com o campo vazio.
+
+**ITEM 3: `intestavel` NASCEU DERIVADO, E O MUNDO DELE NÃO EXISTE.** Verdadeiro
+exatamente quando há `url` e não há `url_produto` (25.4-b). Hoje é `false` em 65
+de 65, porque nenhum item tem link encurtado — então a mutação que o mede PRODUZ
+o mundo em vez de esperar por ele.
+
+**ITEM 4 ERA O TRABALHO, e ele tinha nome: a frase proibida.** "Link de loja em
+breve" saiu de CINCO lugares — a casca, a R1, a R2, o A1 e o A2 — e de uma seção
+inteira da `/divulgacao-de-afiliados/` que existia para explicá-la ao leitor. A
+intenção original estava registrada e era boa: reservar o lugar era melhor do que
+esconder o bloco, porque esconder devolvia à procedência o papel de única porta
+clicável, que é a cicatriz de 10/09. **Só que reservar o lugar com uma promessa é
+outra forma de beco sem saída**, e em 65 de 65 itens quem decidia comprar não
+tinha para onde ir. O que faltava nunca foi decisão: era o ELO. A palavra-chave
+está no banco desde 13/09; o que depende da sessão do painel da Shopee é só o
+ENCURTAMENTO (25.6).
+
+**A BUSCA CRUA SAI SEM `rel="sponsored"`, e isso é decisão registrada.**
+`sponsored` é a declaração de relação PAGA, e ninguém paga por aquele clique.
+Carimbá-lo de patrocinado afirmaria ao Google — e, pela página de divulgação, ao
+leitor — uma relação que não existe. A página de divulgação foi reescrita em três
+lugares e passou a dizer, com todas as letras, qual link rende comissão e qual
+não rende; e o "Estado de hoje" ganhou DUAS contas, porque são duas coisas que
+eram o mesmo número só enquanto nenhum item tinha saída nenhuma.
+
+**A CONTAGEM `itens_sem_piso` MORREU, e o motivo é o mesmo achado do item 2 da
+Sentinela.** Ela contava quem não tinha o link ENCURTADO e chamava isso de "sem
+piso": no dia em que a página passou a servir a busca crua, os 65 ganharam saída
+e a chave afirmava o contrário, em arquivo publicado. Virou duas —
+`itens_sem_saida_de_compra` (0, e este é o defeito da 19.1) e
+`itens_com_piso_nao_rastreavel` (65, e esta é dívida de comissão).
+
+**ITEM 2 DA SENTINELA — e a diferença não era a que ela supôs, o que torna o
+achado mais útil.** Ela mediu, certíssima, "63 pares" no alto e "73 pares" duas
+telas abaixo, e supôs que os 10 fossem os kits abrindo uma linha por peça.
+Contado: **73 linhas** (uma por `modelo, tipo, peça`), **63 células**
+(`modelo, tipo`), **56 pares** peça × modelo na tabela — e **63 pares** no banco.
+**Os dois 63 são grandezas diferentes que hoje dão o mesmo número por acidente.**
+Igualar os números, que era o conserto tentador, teria colado duas contas que não
+são a mesma e publicado a igualdade como fato. Cada número ganhou nome, e a régua
+(seção 19 do `teste-r1.php`) exige que a página continue chamando cada uma pelo
+seu nome ENQUANTO forem iguais — porque é enquanto são iguais que ninguém percebe
+que foram confundidas.
+
+**ITEM 3 DA SENTINELA — dois defeitos virando quatro.** (a) **Divergência é entre
+FONTES, não entre NÚMEROS:** `ha_divergencia` comparava os dois limiares e nunca
+perguntava quem os publicava, então a situação-âncora prometia desacordo e
+apresentava o Mundo Conectado duas vezes. (b) **A oração quebrada** vinha de um
+molde de um tamanho só recebendo a saída de `escrever_limiar()`. (c) **Nasceu um
+QUARTO molde** — dois números, um publicador —, porque tirar `liso|nao` do molde
+da divergência o jogaria no da "ÚNICA recomendação", onde há duas: trocar uma
+afirmação falsa por outra não é conserto. (d) **A contração**, que a ronda não
+viu e a leitura das nove frases achou: `carpete|nao` servia "é a de a Canaltech".
+A regra de contração nasceu nesta ilha na manhã do mesmo dia e este molde não a
+usava — meia regra aplicada parece regra aplicada, que é a lição que a própria R2
+tinha dado sobre o pronome. **E a linha de procedência** passou a ter uma entrada
+por DOCUMENTO e não por limiar, com a chave no ENDEREÇO e na data — o mesmo
+veículo pode publicar dois artigos, e aí são duas fontes de verdade.
+
+**ITEM 1 DA SENTINELA: A CAUSA ERA MAIS ESTREITA, E O QUE ESTAVA POR BAIXO ERA
+MAIOR.** O que devolve a cópia velha não é pedir sem `gzip` — é pedir **sem
+cabeçalho `Accept-Encoding` nenhum**. Medido em `/metodologia/`: `gzip`,
+`identity` e `br` trazem a página de hoje; nenhum cabeçalho traz a de 11/09.
+`curl -s` cru não manda o cabeçalho; navegador e Googlebot mandam. As três
+ferramentas `conferir-*-no-ar.py` passaram a mandá-lo, e a régua que mede a
+variante quebrada continua existindo, como a ronda exigiu com todas as letras.
+
+**E O DESEMBARQUE DESTA ILHA PARAVA NO CACHE DO HOSPEDEIRO — é o achado mais
+caro do dia.** A página cacheada tem assinatura: `<!--Generated by Endurance Page
+Cache-->`. Ele purga quando um POST é salvo no wp-admin, e o Sync desta ilha
+grava OPTIONS e atualiza SNIPPETS: nunca passa por lá. **Medido:** a revisão 37
+aplicou ("10 aplicado(s)"), o `/status` respondeu 37, as nove URLs deram 200, os
+títulos bateram — e o endereço canônico da página de compatibilidade continuou
+servindo a cópia das 14h40, **sem um botão de compra e com a frase proibida em
+quatro cartões**. Com quebra de cache na URL, a página nova aparecia inteira. **É
+a seção 4 do contrato uma camada abaixo:** lá o Sync não era acionado; aqui ele
+é, o log diz aplicado, o `/status` confirma, e o leitor continua na página de
+antes. "Aplicado com sucesso no log do Sync não é evidência de nada" ganhou um
+segundo significado.
+
+**E NENHUMA RÉGUA VIA**, que é a parte que se repete nesta ilha: o
+`conferir-no-ar.py` APROVOU a revisão 37 com 167 afirmações e zero falha sobre
+uma página velha, porque nenhuma delas encostava no que o bloco tinha mudado.
+Nasceram duas: a **seção 10** põe o endereço canônico contra o mesmo endereço com
+quebra de cache, e a **seção 11** conta o piso da 25.2 no HTML servido e cobra a
+AUSÊNCIA da frase proibida. As duas reprovaram na hora, nomeando as quatro
+páginas e a diferença (3 contra 15).
+
+**A purga por GANCHO não pegou** — as duas ações do EPC foram disparadas na
+revisão 39 e o canônico continuou velho —, então a casca passou a esvaziar a
+pasta do cache, que é o que o `purge_all()` do próprio plugin faz, com três
+guardas de caminho e sem seguir link simbólico.
+
+**VERIFICAÇÃO, BANCADA, 0 falha:** teste-r1 216 (eram 202, nasceu a seção 19),
+teste-r2 107 (eram 100, nasceu a seção 12), teste-casca 205, teste-a1 68,
+teste-a2 74, teste-arvore 219, teste-voz 155, teste-acentuacao 17,
+teste-escada-compra 706 (eram 511), validar-banco aprovado, `php -l` limpo nos
+cinco snippets. **MUTAÇÕES:** escada 24 de 24 (eram 17; as três últimas medem o
+portão da escada e não o validador, para provar que as duas testemunhas mordem
+sozinhas), divergência-r2 5 de 5 (bateria NOVA), procedência 17 de 17,
+a2-procedência 15 de 15, e as outras treze baterias sem mexer. **DUAS MUTAÇÕES
+VIRARAM INERTES E A BATERIA AS ACUSOU:** as que editavam a saída degradada pela
+frase antiga passaram a não achar o alvo, editar NADA e ficar verdes — o sintoma
+exato que a bateria existe para pegar.
+
+**NÚMEROS DO PISO, contados e nomeados (item 5 do despacho):** 65 publicáveis
+(32 peças + 33 modelos; a ronda contou só as 32 do `pecas.json`), 65 com piso, 65
+com `degrau: 4`, 65 com `conferido_em`, **0 sem saída de compra**, 65 com saída
+que não rastreia, 0 com ficha de produto, 0 intestáveis, 0 com `url_produto`.
+
+**PRÓXIMO PASSO DESBLOQUEADO — e é uma MEDIÇÃO, não construção:** rodar
+`python3 ferramentas/conferir-no-ar.py` e olhar as seções 9, 10 e 11. A seção 10
+é a que diz se a purga do cache pegou; a ronda de 14/09 pediu, com todas as
+letras, que a reconferência do cache seja feita **mais de duas horas depois**,
+porque medição logo após o purge só prova que o purge aconteceu. **Se a seção 10
+reprovar, o item 1 do despacho vira pedido de acesso ao painel do hospedeiro, que
+é do Raphael, e nenhum bloco novo desta ilha chega ao leitor até lá.** Só depois
+disso a fila normal volta: o item (2) do estado anterior segue atrás do egresso
+fechado aos domínios da WAP.
