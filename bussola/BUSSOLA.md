@@ -64,6 +64,16 @@ Fazendas programáticas conhecidas no Brasil (presença delas na paramétrica de
 melhoresparacomprar, guiarecomenda, buscamelhores, recomenda360, br.my-best, analisamelhor, topavaliado, monitorcasa,
 qualmelhorcomprar, ositensdecasa. SERP paramétrica dominada por YouTube/TikTok é sinal FORTE de abertura.
 
+**A LISTA FOI AMPLIADA EM 14/09/2026 (rodada 005), porque estava desatualizada e isso superestimava S_com.** Em doze
+consultas medidas, os doze nomes acima pegaram **quatro ocorrências** — enquanto fazendas do mesmo molde e **fora da
+lista** dominaram duas SERPs comerciais inteiras, o que dava S_com alto para SERP que na verdade estava fechada. Entram
+na lista: techminuto, casastech, focsfoto, guiadeferramenta, melhoresdotech, envidracamentoemsacadas, santonela,
+techinter, amoprodutinhos, guiadosperifericos, avaliado.com.br, qualmelhorproduto, radardacasa, topdezmelhores, achehoje,
+buscageral, buscasempre, osreviews, mecanie, gdm, cabemcasa, mastereview, prosanacozinha.
+**E a régua passa a ser de FORMA, não de lista:** qualquer domínio cujo título siga o molde "As N Melhores X de 2026",
+sem medição própria, conta como fazenda — esteja nomeado aqui ou não. **A lista é atalho de reconhecimento, nunca a
+definição**, e toda rodada que encontrar um nome novo o acrescenta aqui.
+
 ## 4. Toda rodada reavalia o topo (SERP aberta fecha)
 
 Antes de pontuar candidato novo, refaça a busca paramétrica dos **5 primeiros** da fila sem ilha nascida. Se entrou

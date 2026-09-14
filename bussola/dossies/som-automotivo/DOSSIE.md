@@ -1,6 +1,60 @@
-# DOSSIÊ — SOM AUTOMOTIVO — 1º da fila, rodada 004 (14/09/2026)
+# DOSSIÊ — SOM AUTOMOTIVO — 1º da fila, rodadas 004 e 005 (14/09/2026)
 
-Nome proposto: **OHMETRIA** · domínio: **ohmetria.com.br** · molde de casca: **FERRAMENTA** · índice **4,23**
+Nome proposto: **OHMETRIA** · domínio: **ohmetria.com.br** · molde de casca: **FERRAMENTA** · índice **4,00**
+
+---
+
+## ATUALIZAÇÃO DA RODADA 005 — 14/09/2026 — quatro portões fecharam
+
+**1. O DOMÍNIO ESTÁ LIVRE, confirmado na fonte.** `registro.br/v2/ajax/avail/raw/ohmetria.com.br` devolveu
+`{"status":0,"fqdn":"ohmetria.com.br","fqdnace":"","exempt":false}`. **`status: 0` = livre.** A pendência P5 da rodada 004
+está fechada — o filtro de DNS deixou de ser a única evidência. **O nome está pronto para ser pago.**
+
+**2. V MEDIDO POR FERRAMENTA, como a seção 3.1 do `BUSSOLA.md` passou a exigir.** O dossiê da 004 dava V=5 ao nicho
+inteiro apoiado nos manuais da **Taramps**, que são de **módulo** — não provavam nada sobre a ferramenta de caixa. Medido
+agora, uma por uma:
+
+| ferramenta | o número que ela precisa | quem publica | V |
+|---|---|---|---|
+| **F1** — casa o módulo com o falante | RMS por impedância estável | **Taramps**, manual PDF por modelo no domínio oficial (`MN_012477_R03_HD-3000_V2_SITE.pdf`: "3000W RMS — 1 OHM 2 OHMS 4 OHMS"); Soundigital e JBL Selenium publicam impedância de bobina e RMS na ficha | **5** |
+| **F2** — litragem da caixa | Vas, Qts, Fs por alto-falante | **6 de 7 fabricantes publicam** — detalhe abaixo | **4** |
+| **F3** — bitola do cabo | mm² por corrente e distância | **Taramps**, tabela oficial no SAC ("Technical Table: Power Cable Gauge for 12V Taramps Amplifiers") | **5** |
+
+**Nenhuma das três entra no plano sem fonte — e as três têm.** A F2 leva 4 e não 5 porque a Oversound ficou em aberto e
+porque o dado mora em PDF, não em ficha web.
+
+**3. A F2 É CONSTRUÍVEL — 6 dos 7 fabricantes publicam Thiele-Small**, com valor lido em documento oficial:
+- **Bomber** (o melhor material): Bicho Papão 12" 800W 4Ω → `Vas 31,50 L · Qts 0,50 · Fs 37 Hz · Xmax 13 mm · Sd 453 cm²`, **e ainda projetos de caixa de 37 a 66 L** em selada, duto circular, retangular e triangular
+- **JBL/Selenium**: seção "PARÂMETROS DE THIELE-SMALL" por modelo — Bass 10SW17A → `Fs 35,8 · Qts 0,80 · Vas 41 L`; Matador 15SW21A com "CAIXAS ACÚSTICAS SUGERIDAS" (selada 55 L, dutada 65 mm × 19,5 cm)
+- **Eros**: E-12 MB 2.2K → `Fs 57,36 · Qts 0,323 · Vas 29,61 L`. **Cuidado: os PDFs "Projeto-" NÃO trazem T-S — use os de especificação**
+- **Ultravox**: Ultra 700+ 12" → `Fs 80 · Vas 22,34 L · Qts 0,77`, com nota de rastreabilidade (equipamento CLIO)
+- **Hinor**: 12 EVO 550 4Ω → `Fs 82,96 · Vas 19,37 L · Qts 0,661`
+- **Triton**: AK 6.1 → `Fs 80 · Qts 0,422 · Vas 10,31 L`
+- **Pioneer BR**: **o único em HTML raspável** — TS-W3090BR → `Fs 37 · Qts 0,78 · Vas 46,5 L · Xmax 9,5 mm`, e já publica selada 35 L / dutada 35 ou 50 L com a medida do duto
+- **Oversound**: **não verificado** — publica datasheet oficial por produto, mas em PDF sem camada de texto. Não é "não publica"; é "não foi lido". Abrir manualmente.
+
+**Três regras que isso impõe à F2, e não são opcionais:**
+- O formato dominante é **PDF**, não HTML. Montar o banco é extração por modelo, não scraping. Só a Pioneer entrega em página.
+- **A extração automática erra, e erra feio.** Nos testes apareceram `Fs 4 Hz` num manual Hinor (fisicamente impossível) e `Vas 672,3 cm³` num JBL (unidade trocada). **O banco nasce com validação de faixa obrigatória — Fs 20 a 90 Hz, Vas 10 a 250 L, Qts 0,2 a 0,9 — e conferência manual por modelo.** Sem isso a ferramenta cospe litragem absurda com cara de número exato, que é o pior defeito possível nesta ilha.
+- **Bomber e Pioneer já publicam a litragem recomendada.** É conjunto de validação de graça: a fórmula da F2 tem de bater com o que o fabricante recomenda, e onde não bater o erro é nosso. Serve também de conteúdo de reserva para modelo sem T-S encontrado.
+- **Ordem de carga do banco: Bomber, JBL/Selenium, Eros e Pioneer primeiro.** Triton, Ultravox e Hinor na segunda leva. Oversound quando alguém abrir os PDFs.
+
+**4. O ÍNDICE CAIU DE 4,23 PARA 4,00 — e não foi por nada que o nicho fez.** A rodada 005 descobriu que o M de toda a fila
+estava ancorado na tabela da **Amazon Associados BR**, um programa que a seção 7 do `ARQUIPELAGO.md` **proíbe em todas as
+ilhas** (o `BUSSOLA.md` já foi corrigido). A âncora passou a ser o piso publicado da **Shopee: 3%**, cookie de 7 dias por
+último clique, lido em 14/09/2026. Para esta ilha: **ticket típico R$ 202 × 3% = R$ 6,06 por venda → M 1,65** (era 2,59
+sobre os 8% da Amazon). **Som automotivo continua em 1º lugar nas duas réguas** — mudou o nível de todo mundo, não a
+posição dele. **Mas o aviso do dossiê original fica mais duro, não menos: o ticket é a fraqueza desta ilha, e agora com
+número pior.** A comissão extra de vendedor parceiro da Shopee (até 30%, acumulável) é o que pode reverter isso, **e ela
+não é publicada por categoria** — medir isso no painel vale mais para esta ilha do que para qualquer outra da fila.
+
+**5. "Áudio residencial" foi fundido neste nicho, e não pode virar ilha separada.** A rodada 005 mediu a interseção de
+SERP: apenas 2 domínios em comum (`discabos.com.br`, `somaovivo.org`), **e os dois só na pergunta de cabo e bitola**. O
+artigo da discabos que ranqueia no lado automotivo é, lido de perto, **residencial** — fala de "amplificador, home theater
+ou multiroom" e não menciona carro em lugar nenhum. Ele vaza para cá porque **bitola por potência e casamento de
+impedância são a mesma física** dos dois lados. Consequência prática: **a F3 e a F1 são a fronteira compartilhada**, e uma
+ilha de áudio residencial canibalizaria exatamente as duas páginas mais fortes desta. Se um dia áudio residencial for
+construído, é **como cluster dentro da Ohmetria**, nunca como domínio próprio.
 
 ---
 
