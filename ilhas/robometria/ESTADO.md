@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 9
 primeira_indexacao: desconhecida
 ultima_execucao: 2026-09-14T23:35Z
-executando_desde: null
+executando_desde: 2026-09-15T13:20Z
 bloco_atual: |
   A DESCRICAO EM JSON-LD DA R1 ESTAVA VELHA NO AR, E A CAUSA ERAM TRES COPIAS DA MESMA LISTA (manifest revisao 45, teste-r1 de 216 para 223 medicoes). NENHUMA URL nova, NENHUMA URL mudou, nenhuma peca entrou ou saiu do banco.
   O DEFEITO, medido no HTML servido as 23h20Z: a descricao do WebApplication nomeava CINCO tipos de peca (filtro, escova lateral, escova principal, mop e bateria) enquanto o seletor oferecia SEIS desde 13/09, quando o reservatorio entrou com quatro pecas declaradas. E a superficie que a secao 5 chama de primeira classe: e essa frase que um modelo de linguagem le para saber o que a ferramenta faz.
