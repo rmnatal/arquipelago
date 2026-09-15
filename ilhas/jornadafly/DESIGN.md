@@ -25,6 +25,17 @@ A identidade desta ilha **não foi desenhada pela fábrica**. O Raphael trouxe a
 - Regra de uso: o símbolo nunca aparece dentro de um quadrado colorido de fundo. Fundo transparente ou sólido claro (`--papel` / `--superficie`); em fundo escuro, usar a versão branca.
 - Favicon e avatar: exportar do SVG em 512 / 180 / 32 / 16 px, PNG com fundo transparente.
 
+### Lockups — RESOLVIDO
+
+- `lockup-horizontal.svg` — símbolo + JORNADA FLY em uma linha. É o logo do cabeçalho do site. viewBox `0 0 943.1 160`.
+- `lockup-vertical.svg` — símbolo em cima, JORNADA FLY embaixo, assinatura `A CONTA ANTES DA VIAGEM.` no pé. Rodapé, redes sociais, qualquer peça quadrada. viewBox `0 0 695.7 454.6`.
+- `lockup-horizontal-branco.svg` e `lockup-vertical-branco.svg` — mesmas formas com a tipografia e a haste do J em `#FFFFFF`, para uso sobre `--tinta`. O rasgo continua `#378AD0`.
+- Tipografia já convertida em curvas (Montserrat SemiBold na marca, Light na assinatura). Nenhum lockup depende de webfont carregar — o cabeçalho nunca aparece com a fonte errada.
+- A palavra JORNADA e a palavra FLY têm o MESMO peso e a MESMA cor. Ninguém pinta FLY de azul: o azul da marca é do rasgo do símbolo e de mais nada.
+- Área de respiro mínima em volta de qualquer lockup: a altura do símbolo dividida por 4. Nada entra nessa faixa.
+- Tamanho mínimo do lockup horizontal: 180 px de largura. Abaixo disso, usa-se só o símbolo (`logo.svg`).
+- Ninguém redigita a marca com `<text>` e webfont, e ninguém remonta lockup novo. Precisou de outra proporção, exporta destes arquivos.
+
 ## Cor — amostrada da arte oficial, contraste calculado em 14/09/2026
 
 | token | valor | onde | contraste |
