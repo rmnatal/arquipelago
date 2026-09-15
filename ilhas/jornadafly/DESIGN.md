@@ -42,11 +42,16 @@ A identidade desta ilha **não foi desenhada pela fábrica**. O Raphael trouxe a
 
 ## Tipografia
 
-- **Títulos e marca:** grotesca geométrica de caixa alta espaçada, no espírito da arte oficial. A família definitiva entra aqui quando o Raphael entregar o vetor e o nome da fonte usada. **Até lá, a casca não fixa fonte de título.**
-- **Texto:** Source Sans 3 400/600. Corpo 1,0625 rem, altura de linha 1,7, medida máxima 66 caracteres.
-- **Dinheiro, dias, número de pessoas e data de coleta:** JetBrains Mono 500 com `tabular-nums`. Texto corrido nunca vai em mono.
+Três famílias, uma monoespaçada — o teto da seção 15 do `ARQUIPELAGO.md`.
 
-Escala (rem, base 16): `--t-xs .8125` · `--t-sm .9375` · `--t-base 1` · `--t-lg 1.3125` · `--t-xl 1.75` · `--t-2xl 2.375`.
+- **Marca e títulos: Montserrat.** É a fonte da arte oficial, informada pelo Raphael em 14/09/2026 — não é escolha da fábrica, é o que está no logo.
+  - `JORNADA` e `FLY`: **Montserrat 500/600** (Medium a SemiBold), caixa alta.
+  - Assinatura `A CONTA ANTES DA VIAGEM.`: **Montserrat 300/400** (Light a Regular), caixa alta, com **entreletra generosa** (`letter-spacing` de 0,18 a 0,24 em), e o **ponto final faz parte da assinatura**.
+  - H1–H3 das páginas: Montserrat 600.
+- **Texto corrido: Source Sans 3 400/600.** Corpo 1,0625 rem, altura de linha 1,7, medida máxima 66 caracteres. Montserrat é geométrica e cansa em parágrafo longo — ela manda no topo da página, não no meio.
+- **Dinheiro, dias, número de pessoas e data de coleta: JetBrains Mono 500 com `tabular-nums`.** Texto corrido nunca vai em mono.
+
+**Carregamento (seção 22.4 — desempenho é parte do desenho):** carregue **apenas os pesos usados** — Montserrat 300, 500 e 600; Source Sans 3 400 e 600; JetBrains Mono 500. Todas com `font-display: swap`. Peso que não está nesta lista não é carregado; se uma página precisar de um peso novo, ele entra **aqui** antes de entrar na casca.
 
 ## Espaço, raio, sombra
 
