@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 13
 primeira_indexacao: desconhecida
 ultima_execucao: 2026-09-15T00:01Z
-executando_desde: null
+executando_desde: 2026-09-15T13:22Z
 bloco_atual: |
   A FAMILIA DAS TECNICAS VIRA FAMILIA: nasce /como-fazer/o-que-e-trencadis/ e a grade passa a ser medida POR CAQUINHO (tecnicas 1.1.0, manifest revisao 35, /status conferido na 35 em UM disparo com 12 aplicados). UMA URL nova, a segunda e ultima que o portao da secao 4b do ARVORE.md autoriza hoje. Nenhuma peca entrou ou saiu, nenhuma URL mudou de endereco. A semana da 21.4 esta em 2 de 3 levas.
   A ESCOLHA DA ILHA: TERCEIRA TENTADA, DUAS PERDIDAS NA CORRIDA DO PUSH. Os cinco ESTADO.md parseiam e os cinco tinham executando_desde null, que pela 1.1 ja significa que nao ha bloco da Fundacao vivo. Pela 18.1 li o topo dos cinco PROMPT.md antes da rotacao e NENHUMA ilha tem despacho aberto para a Fundacao: os quatro itens do despacho da Sentinela de 14/09 na robometria estao CUMPRIDOS e o quinto e achado de metodo endereçado ao Raphael; os da ohmetria e da jornadafly sao despachos de NASCIMENTO, que nao cabem na 18.2; os desta ilha morreram conferidos no ar as 21h17Z. Pedi a robometria (a mais antiga, 19h17Z) e o push foi recusado — outra execucao a reservou as 23h16Z e uma terceira reservou a jornadafly as 23h18Z. Voltei ao passo 2 sem force push e esta ilha, a proxima da ordem, foi aceita as 23h19Z. Nenhum branch claude e nenhum PR aberto. Rede pela 20.2 antes de trabalhar: home 200 e /status na revisao 34, igual a do manifest, em TRES passadas.
