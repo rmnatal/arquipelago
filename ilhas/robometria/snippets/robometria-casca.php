@@ -7,6 +7,21 @@
  * 11/09; o cabeçalho, que é a primeira coisa que alguém lê neste arquivo, não
  * tinha nenhuma. Agora tem, na seção 16 do teste-casca.php, e a constante sobe
  * para 1.5.1 sem que uma linha de comportamento mude.
+ * Versão: 1.6.5 (15/09/2026) — A FUNÇÃO QUE APAGA ARQUIVO PASSA A RECUSAR O
+ * CAMINHO VAZIO, e ganha o portão que ela nunca teve. Despacho NORMAL da Fundação
+ * em dados/despachos.md, achado na aquametria: realpath('') NÃO devolve false em
+ * PHP, devolve o diretório de trabalho atual — então com os dois argumentos
+ * vazios a guarda de contenção compara o diretório atual consigo mesmo, aprova, e
+ * a recursão esvazia de onde o processo estiver rodando. Lá isso apagou os 117
+ * arquivos da pasta da ilha na primeira vez em que o portão rodou. Aqui, no site,
+ * nada disso acontecia: o único chamador monta o caminho de WP_CONTENT_DIR e já
+ * exige caminho não vazio e is_dir — o defeito era da FUNÇÃO e não do caminho de
+ * produção, e por isso o despacho é NORMAL e não ALTA. NENHUMA página muda de
+ * texto; o que muda é o que a função faz quando alguém a chama de outro lugar.
+ * Portados junto, porque linha sem portão é linha que alguém retira por parecer
+ * redundante: ferramentas/teste-purga-cache.php (21 afirmações, com as armadilhas
+ * construídas em disco e uma testemunha do lado de fora de cada uma) e
+ * ferramentas/mutacoes-purga-cache.py (8 baterias, zero inertes).
  * Versão: 1.6.4 (14/09/2026) — a purga por sistema de arquivos VOLTA, e o motivo
  * da ida e da volta fica escrito. Ela foi retirada na 1.6.3 por uma medição que
  * comparava cabeçalhos de um HEAD com o corpo de um GET feito segundos depois —
@@ -168,7 +183,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_CASCA_VERSAO' ) ) {
-	define( 'ROBOMETRIA_CASCA_VERSAO', '1.6.4' );
+	define( 'ROBOMETRIA_CASCA_VERSAO', '1.6.5' );
 	define( 'ROBOMETRIA_CASCA_TAGLINE', 'Qual peça o fabricante declarou para o seu robô aspirador — com código, endereço e data' );
 
 	/* GA4 DESTA ILHA — robometria, propriedade 553889920 da conta Arquipélago.
@@ -2974,9 +2989,30 @@ function robometria_casca_purgar_cache() {
  * exclusão em outro lugar do disco. A pasta raiz em si não é removida — só
  * esvaziada —, porque o plugin a recria e não é desta ilha o direito de sumir
  * com ela.
+ *
+ * O VAZIO É RECUSADO ANTES DA COMPARAÇÃO, e essa linha não é asseio: é o
+ * conserto de um acidente medido na aquametria em 15/09/2026, quando o portão
+ * desta função nasceu lá. `realpath('')` **não devolve `false` em PHP — devolve
+ * o DIRETÓRIO DE TRABALHO ATUAL.** Com os dois argumentos vazios, a guarda de
+ * contenção abaixo compara o diretório atual consigo mesmo, aprova, e a recursão
+ * esvazia de onde o processo estiver rodando. Lá isso apagou os 117 arquivos da
+ * pasta da ilha, recuperados com `git checkout` porque o repositório é o lugar
+ * do trabalho (seção 3); num servidor não haveria de onde recuperar.
+ *
+ * NO SITE, HOJE, o único chamador monta o caminho a partir de `WP_CONTENT_DIR` e
+ * já exige `'' !== $pasta && is_dir( $pasta )` — o defeito era da FUNÇÃO e não do
+ * caminho de produção, e morava aqui esperando o dia em que alguém a chamasse de
+ * outro lugar. A lição é maior que o caso: **guarda que confia numa função de
+ * biblioteca para dizer "isto não existe" herda todos os valores que essa função
+ * devolve quando a entrada é degenerada.** O que impede esta linha de ser
+ * retirada por parecer redundante é o caso 5 de `ferramentas/teste-purga-cache.php`.
  */
 if ( ! function_exists( 'robometria_casca_esvaziar_pasta' ) ) {
 function robometria_casca_esvaziar_pasta( $pasta, $raiz ) {
+	if ( ! is_string( $pasta ) || ! is_string( $raiz ) || '' === $pasta || '' === $raiz ) {
+		return;
+	}
+
 	$real_raiz = realpath( $raiz );
 	$real      = realpath( $pasta );
 	if ( ! $real_raiz || ! $real || 0 !== strpos( $real . DIRECTORY_SEPARATOR,
