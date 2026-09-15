@@ -3,32 +3,22 @@ ilha: clubedomosaico
 estado: nascendo
 prioridade: 1
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
-urls_publicadas: 12
+urls_publicadas: 13
 primeira_indexacao: desconhecida
-ultima_execucao: 2026-09-14T21:17Z
-executando_desde: 2026-09-14T23:45Z
+ultima_execucao: 2026-09-15T00:01Z
+executando_desde: null
 bloco_atual: |
-  A PAGINA DO PICASSIETE NASCE E O DESPACHO DO RAPHAEL DE 14/09 FECHA (casca 1.11.0, tecnicas 1.0.0, manifest revisao 34, /status conferido na 34 em UM disparo com 12 aplicados). UMA URL nova: /como-fazer/o-que-e-mosaico-picassiete/, a primeira filha da Escola. Nenhuma peca entrou ou saiu. Dois blocos numa execucao, pelo mutirao da secao 13, o primeiro verificado inteiro antes do segundo.
-
-  A ESCOLHA DA ILHA: SEGUNDA TENTADA. Os cinco ESTADO.md parseiam e os cinco tinham executando_desde null, que pela 1.1 ja significa que nao ha bloco da Fundacao vivo. Pela 18.1, TRES ilhas tinham despacho aberto do Raphael de 14/09 (clubedomosaico, ohmetria e jornadafly), empate de data, e a rotacao da secao 1 desempatou: clubedomosaico com ultima_execucao 18h45Z, a mais antiga das tres. O primeiro push de reserva foi RECUSADO, mas NAO porque alguem pegou esta ilha: outra execucao reservou a aquametria as 21h18Z e o main andou. Voltei ao passo 2 sem force push e a reserva foi aceita. Nenhum branch claude e nenhum PR aberto para mesclar. Rede pela 20.2: home 200 e /status na revisao 33, igual a do manifest, em TRES passadas.
-
-  BLOCO A — O PORTAO DA FAMILIA DAS TECNICAS CONTAVA A CATEGORIA QUE A PAGINA NAO RECOMENDA, e por isso lia ZERO com cinco itens atras dele. Ele contava so TESSELA: quantos produtos da categoria pastilha o banco tem com o tipo que a tecnica cita. As duas unicas tecnicas com material declarado apontam para caco de azulejo e caco de louca, e caco de prato NAO TEM FABRICANTE — o portao leria zero para sempre, por mais coleta que acontecesse. So que a pagina de uma tecnica nao recomenda caquinho: ela responde COM O QUE COLAR o caquinho, que e o eixo desta ilha e e produto com fabricante, declaracao datada e link.
-  A conta passou a ser as pastilhas da tessela declarada MAIS as colas que o fabricante declara elegiveis para ela, medida pela regua da F2 que ja existia no validar-banco. Trencadis 5, Picassiete 5, e direto, indireto e bizantino seguem em ZERO, cada um com o motivo escrito — regua que abre tudo nao mede nada.
-  AS DUAS METADES DA MESMA SECAO DISCORDAVAM, E QUEM DECIDIA ERA A QUE TINHA NUMERO: o item 6 da ARVORE 4b ja dizia, desde as 18h45Z, que o caminho era ligar a tecnica a cola; o item 3 da MESMA secao contava caco. E a familia da V24 da aquametria, consertada poucas horas antes no mesmo dia — regua amarrada a um campo que o caso certo nunca preenche reprova o mundo inteiro e parece rigor.
-  NASCEU tecnica-x-material.py, que deriva o arquivo IMPORTANDO a conta do validar-banco em vez de reescreve-la, e mutacoes-tecnica-x-material.py, que afirma o NUMERO e nao o veredito — porque a mutacao mais perigosa desta familia e a que INFLA a conta e fica verde por ter aberto. 9 mutacoes, 9 certas. UMA EXPECTATIVA MINHA ESTAVA ERRADA e a bancada corrigiu: previ 5 colas e 2 estados onde eram 4 e 6. Ficou registrada no arquivo, porque e o proprio argumento a favor de afirmar numero em vez de veredito.
-  OS OUTROS DOIS PORTOES TAMBEM DECIDIAM ERRADO. A 16.5 nao se aplica a uma pagina que nasce filha DIRETA de /como-fazer/. E 'nenhum numero autoriza leva nova' e o OPOSTO do que a secao 21.1 manda para ilha abaixo do piso — esta tem 11 URLs e piso abaixo escrito no cabecalho. Virou a 21.8 do contrato: e a SEGUNDA ilha a ler a 21 ao contrario, depois da aquametria em 12/09, e a armadilha e que 'a serie nao autoriza' e 'a serie proibe' nao sao a mesma frase.
-
-  BLOCO B — A PAGINA. /como-fazer/o-que-e-mosaico-picassiete/, nivel 3 com mae de nivel 1 direto, o mesmo estado de transicao das duas ferramentas. NAO e /tecnicas/Picassiete/ como o despacho pediu, e a 16.1 proibe pagina solta na raiz desde 11/09.
-  ELA NAO DECIDE NADA: quem escolhe a cola e cdm_f2_celula_cola, chamada para o caquinho de louca. 45 celulas de 9 superficies por 5 lugares, servidas no HTML e recalculadas a cada requisicao, sem uma segunda copia da decisao. Texto, definicao e fontes saem do banco, que passou a publicar.
-  A PRESTACAO DE CONTAS FECHA COM O BANCO: das 7 colas, 5 entram na vitrine e as 2 que ficam de fora sao nomeadas com TODAS as causas que o calculo separou. Isso foi conserto dentro do proprio bloco: a primeira versao escrevia so o balde maior, e o Durepoxi cai por silencio em 25 celulas E entra com ressalva em 20 — dizer so o silencio seria afirmar algo falso em 20 delas.
-  E ELA SE RECUSA A RESPONDER O REJUNTE, com a causa medida: ele se decide pela largura da junta em milimetro e nenhuma fonte colhida sobre Picassiete declara essa folga. Onze das 45 celulas dizem, com todas as letras, que nao ha cola que o fabricante sustente.
-  A CASCA SUBIU PARA 1.11.0 POR UM MOTIVO DE MALHA, nao de vitrine: com um link so, vindo da mae, a pagina nasceria ORFA pela 16.4-f e o portao pegou isso. A Escola e a home passaram a listar as tecnicas em bloco proprio, separado dos tutoriais — tecnica e 'o que e isso', tutorial e 'como se faz', e junta-las faria a Escola prometer um passo a passo que a pagina nao entrega.
-  O BANCO DE TECNICAS GANHOU ACENTOS, e isso so virou defeito no dia em que uma PAGINA passou a servi-lo: 'louca', 'xicara', 'monumento historico'. Vieram junto as aspas tipograficas, porque aspa reta vira entidade e o filtro do WordPress a escapa de novo, servindo a entidade crua na tela. A troca tem prova: reduzido a sem-diacritico, o arquivo e identico fora de 10 frases do campo leitura, reescritas de proposito e declaradas uma a uma.
-
-  VERIFICACAO, 0 falha. BANCADA: teste-tecnicas 52 afirmacoes com o esperado das 45 celulas vindo de cobertura.json (a regua em Python — duas metades independentes, em linguagens diferentes), teste-casca 549, teste-f2 111, teste-f1, teste-loja, teste-atelie, teste-leads, teste-prestacao-rejunte, validar-banco, validar-pastilhas, cobertura --conferir, tecnica-x-material --conferir, php -l limpo nos sete snippets. MUTACOES: 9 da pagina, 9 da conta e as 14 do banco de tecnicas, todas decididas certo. NO AR: conferir-tecnica-no-ar.py, 23 afirmacoes sobre o HTML SERVIDO, incluindo o endereco canonico comparado com o mesmo endereco sem cache nos marcadores deste bloco — a trava do cache do hospedeiro, que o /status nao enxerga.
-  UMA SECAO DO TESTE FOI APAGADA PELO PROPRIO AUTOR: a primeira versao do teste-tecnicas tinha uma secao 8 que imprimia ok sem medir nada. Ela virou a nona mutacao da pagina, que produz o mundo sem banco e exige a pagina HONESTA — dizendo que nao mediu e sem servir a grade.
-ultima_ronda: 2026-09-12T14:43Z
-bloqueada_por: null
+  A FAMILIA DAS TECNICAS VIRA FAMILIA: nasce /como-fazer/o-que-e-trencadis/ e a grade passa a ser medida POR CAQUINHO (tecnicas 1.1.0, manifest revisao 35, /status conferido na 35 em UM disparo com 12 aplicados). UMA URL nova, a segunda e ultima que o portao da secao 4b do ARVORE.md autoriza hoje. Nenhuma peca entrou ou saiu, nenhuma URL mudou de endereco. A semana da 21.4 esta em 2 de 3 levas.
+  A ESCOLHA DA ILHA: TERCEIRA TENTADA, DUAS PERDIDAS NA CORRIDA DO PUSH. Os cinco ESTADO.md parseiam e os cinco tinham executando_desde null, que pela 1.1 ja significa que nao ha bloco da Fundacao vivo. Pela 18.1 li o topo dos cinco PROMPT.md antes da rotacao e NENHUMA ilha tem despacho aberto para a Fundacao: os quatro itens do despacho da Sentinela de 14/09 na robometria estao CUMPRIDOS e o quinto e achado de metodo endereçado ao Raphael; os da ohmetria e da jornadafly sao despachos de NASCIMENTO, que nao cabem na 18.2; os desta ilha morreram conferidos no ar as 21h17Z. Pedi a robometria (a mais antiga, 19h17Z) e o push foi recusado — outra execucao a reservou as 23h16Z e uma terceira reservou a jornadafly as 23h18Z. Voltei ao passo 2 sem force push e esta ilha, a proxima da ordem, foi aceita as 23h19Z. Nenhum branch claude e nenhum PR aberto. Rede pela 20.2 antes de trabalhar: home 200 e /status na revisao 34, igual a do manifest, em TRES passadas.
+  A ESCOLHA QUE O PROMPT.md DEIXAVA PARA QUEM ESCREVESSE NAO FOI ESCOLHIDA, FOI MEDIDA. O trencadis declara DOIS caquinhos e a pergunta era 'duas grades ou uma'. O snippet passou a calcular UMA GRADE POR CAQUINHO e a AGRUPAR as que saem identicas, celula a celula; as duas saem iguais nas 45, entao a pagina serve UMA tabela e diz na tela que comparou as 90 e por que elas empatam.
+  A CAUSA E DE UMA LINHA DA REGUA DA F2, e ela vale para toda tecnica futura: o caquinho entra na decisao num lugar so, a condicao de superficie porosa do Cascola PL500, e o esquema classifica caco de azulejo e caco de louca como POROSOS os dois. Medido sobre a cobertura, que e a metade independente: dos seis caquinhos do vocabulario, os QUATRO porosos tem as 45 celulas identicas entre si e os DOIS que nao absorvem divergem deles em 4, sempre as mesmas quatro. A grade nao depende do caquinho, depende da CLASSE de porosidade dele — e isso NAO virou frase na pagina, a comparacao e recalculada a cada carregamento.
+  O RAMO DAS DUAS TABELAS EXISTE E E MEDIDO, embora o banco de hoje nao o pise: a bateria fabrica o mundo em que o trencadis declara caco de louca e caco de espelho, exige DUAS tabelas e exige que o teste APROVE; a mutacao seguinte quebra o agrupamento no mesmo mundo e exige que ele REPROVE.
+  O SNIPPET DEIXOU DE SER UMA PAGINA. Id, slug e titulo eram tres constantes; agora moram em cdm_tecnicas_registro() e cada pagina tem SHORTCODE PROPRIO. Nao e asseio: a bancada descobre que pagina esta medindo casando o shortcode com a definicao de paginas, entao duas paginas com o mesmo shortcode seriam medidas como uma so — a primeira duas vezes, a segunda nenhuma — e o verde continuaria la. E cdm_teste_paginas_no_ar() parou de listar pagina de tecnica a mao: a primeira entrou escrita, a segunda mostrou o custo na hora, com a mae deixando de listar a filha.
+  DUAS REGUAS INERTES CONSERTADAS DE PASSAGEM, as duas da familia 'regua amarrada a um numero que o banco move': dados/tecnicas.json dizia de si mesmo que nao ia ao ar, com o motivo 'nenhum snippet le este arquivo', enquanto o manifest ja publicava a option que a pagina le desde 14/09; e a mutacao do slug de categoria em mutacoes-arvore estava presa a linha da tabela com '5 itens' dentro, o banco cresceu para 7 e a trava ficou sem achar o alvo — a bateria voltou de 20 para 21 decididas.
+  A SEGUNDA RECUSA, que a irma nao tem: o CACO DE VIDRO COMUM. As fontes citam vidro entre os cacos de Gaudi e o vocabulario desta ilha nao tem valor para caco de garrafa — tem caco de espelho, que e vidro com prata atras e cai do outro lado da conta que decide a cola. A pagina diz que nao responde e por que. Divida de VOCABULARIO, nao defeito de pagina.
+  BANCADA, 0 falha: teste-tecnicas 123 afirmacoes (era 52, e agora varre as DUAS paginas), teste-casca 549, teste-f2 111, teste-f1 195, teste-prestacao-rejunte 5 com 540 estados da F2 e 180 da F1, teste-loja, teste-atelie e teste-leads aprovados, validar-banco e validar-pastilhas OK, php -l limpo. MUTACOES, a bateria inteira da ilha e todas decidindo certo: tecnicas-pagina 14 de 14 (eram 9), tecnicas 14, tecnica-x-material 9, arvore 21 (era 20 medindo e 1 inerte), cobertura 14, voz-e-cabeca 24, pastilhas 14, rejunte 16, prestacao 11.
+  NO AR: Sync as 23h42Z, /status na revisao 35 igual a do manifest. conferir-tecnica-no-ar 54 afirmacoes 0 falha, varrendo as duas paginas e comparando uma com a outra — titulo, description e primeiro paragrafo tem de ser DIFERENTES, porque duas paginas geradas pelo mesmo codigo sao o jeito mais facil de publicar malha fina sem que nenhuma medicao acuse. conferir-no-ar 450 afirmacoes 0 falha. O canonico ja servia o conteudo novo na primeira medicao.
+  PROXIMO PASSO: o eixo das tecnicas ficou SEM PROXIMA PAGINA — as duas que o portao autoriza nasceram. As tres em zero (direto, indireto, bizantino) sao trabalho de FONTE e nao de texto. O que destrava mais coisa continua sendo a coleta das quatro categorias vazias do vocabulario (alicate, base, acabamento, apoio), que abre o bloco 4c.
 ---
 
 # Estado da ilha CLUBE DO MOSAICO
@@ -74,6 +64,28 @@ Espelho legível do estado do projeto. **Nunca guarde credencial aqui.**
   11/09/2026. Agora os números da tela vêm do banco servido, não do instantâneo digitado.
 
 ## O que já foi entregue
+- 14/09/2026 23h19Z — **A FAMÍLIA DAS TÉCNICAS VIRA FAMÍLIA, E A GRADE PASSA A SER
+  MEDIDA POR CAQUINHO.** Snippet `clubedomosaico-tecnicas` **1.1.0**, manifest na
+  revisão **35**, `/status` com revisão 35 em UM disparo com 12 aplicados. **Uma
+  URL nova:** `/como-fazer/o-que-e-trencadis/` — a ilha vai de 12 para **13** URLs
+  publicadas. É a segunda e última filha que o portão da seção 4b do `ARVORE.md`
+  autoriza hoje: das cinco técnicas do banco, só duas declaram material com fonte.
+  **A escolha que o `PROMPT.md` deixava em aberto — "duas grades ou uma?" — não foi
+  escolhida, foi medida.** O snippet calcula uma grade por caquinho e agrupa as
+  idênticas; as duas do trencadís saem iguais nas 45 células, então a página serve
+  UMA tabela **dizendo na tela que comparou as 90 e por quê**. A causa está numa
+  linha da régua da F2: o caquinho entra na decisão num lugar só, a condição de
+  superfície porosa, e os dois cacos são porosos. Medido sobre a cobertura, os
+  quatro caquinhos porosos do vocabulário têm as 45 células idênticas entre si e os
+  dois que não absorvem divergem em 4.
+  **O ramo das DUAS tabelas existe e é medido** com mundo fabricado nas mutações,
+  embora o banco de hoje não o pise.
+  **Uma segunda recusa, que a página irmã não tem:** o caco de vidro comum, porque
+  o vocabulário desta ilha não tem valor para ele — dívida de vocabulário, não
+  defeito de página.
+  **Bancada:** `teste-tecnicas` de 52 para **123** afirmações, varrendo as duas
+  páginas; mutações da página de 9 para **14**, todas decididas certo; `teste-casca`
+  549, `conferir-tecnica-no-ar` **54** e `conferir-no-ar` **450**, zero falha.
 - 14/09/2026 21h17Z — **A ESCOLA GANHA A PRIMEIRA FILHA, E O DESPACHO DO RAPHAEL DE
   14/09 FECHA INTEIRO.** Casca **1.11.0**, snippet novo `clubedomosaico-tecnicas`
   **1.0.0**, manifest na revisão **34**, `/status` com revisão 34 em UM disparo

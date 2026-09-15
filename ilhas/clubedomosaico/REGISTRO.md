@@ -3867,3 +3867,121 @@ Depois dela, na ordem: a coleta das quatro categorias vazias do vocabulário
 nenhuma coleta de cola ou rejunte fecha; e a linha da peça na tabela da seção 5 do
 `ARVORE.md`, que é conserto de **teste** e não de documento — o que falta está
 escrito lá.
+
+14/09/2026 23h19Z — A FAMILIA DAS TECNICAS VIRA FAMILIA: nasce a pagina do trencadis, e a grade passa a ser medida POR CAQUINHO (tecnicas 1.1.0, manifest revisao 35)
+
+UMA URL nova: `/como-fazer/o-que-e-trencadis/`, a segunda filha da Escola e a
+segunda e ultima que o portao da secao 4b do `ARVORE.md` autoriza hoje. Nenhuma
+peca entrou ou saiu; nenhuma URL mudou de endereco.
+
+- **A ESCOLHA DA ILHA: TERCEIRA TENTADA, DUAS PERDIDAS NA CORRIDA DO PUSH.** Os
+  cinco `ESTADO.md` do `main` real tinham `executando_desde: null`, que pela 1.1
+  ja significa que nao ha bloco da Fundacao vivo. Pela 18.1 li o topo dos cinco
+  `PROMPT.md` antes da rotacao e **nenhuma ilha tem despacho aberto para a
+  Fundacao**: os quatro itens do despacho da Sentinela de 14/09 na robometria
+  estao CUMPRIDOS e o quinto e um achado de metodo endereçado ao Raphael (uma
+  linha da 25.4 do contrato); os da ohmetria e da jornadafly sao despachos de
+  NASCIMENTO, que carregam a fila inteira e nao cabem na 18.2; os desta ilha
+  morreram conferidos no ar as 21h17Z. Sobrou a rotacao da secao 1. Pedi a
+  robometria (19h17Z, a mais antiga) e o push foi recusado — outra execucao a
+  reservou as 23h16Z e uma terceira reservou a jornadafly as 23h18Z. Voltei ao
+  passo 2 sem force push e a clubedomosaico, que era a proxima da ordem (21h17Z),
+  foi aceita as 23h19Z. Nenhum branch `claude/*` e nenhum PR aberto para mesclar.
+- **REDE PELA 20.2, antes de trabalhar:** home em 200 e `/status` na revisao 34,
+  igual a do manifest, em TRES passadas.
+
+**O QUE O BLOCO ENTREGOU, e a parte que vale para as proximas paginas nao e a
+pagina.** O `PROMPT.md` deixava uma escolha escrita para quem publicasse: *"o
+trencadis declara DUAS tesselas e a pagina de hoje resolve a primeira — quem
+escrever decide se serve duas grades ou uma, e diz qual na tela"*. **Ela nao foi
+escolhida, foi medida.** O snippet passou a calcular **uma grade por caquinho** e
+a **agrupar as que saem identicas**, celula a celula; as duas do trencadis saem
+iguais nas 45, entao a pagina serve **uma** tabela e diz na tela que **comparou as
+90** e por que elas empatam.
+
+**A CAUSA, e ela e de uma linha da regua da F2:** o caquinho entra na decisao num
+lugar so — `cdm_f2_condicao_cumprida()`, a condicao de superficie porosa que o
+Cascola PL500 declara — e o esquema classifica `caco_azulejo` e `caco_louca` como
+POROSOS os dois. Medido sobre `dados/cobertura.json`, que e a metade
+independente: dos seis caquinhos do vocabulario, os **quatro porosos**
+(`pastilha_ceramica`, `caco_azulejo`, `caco_louca`, `pedra`) tem as 45 celulas
+**identicas entre si**, e os **dois que nao absorvem** (`pastilha_vidro`,
+`caco_espelho`) divergem deles em **4 celulas**, sempre as mesmas quatro. **A
+grade nao depende do caquinho: depende da CLASSE de porosidade dele.** Isso nao
+virou frase escrita na pagina — a comparacao e recalculada a cada carregamento,
+porque frase que resume uma medicao e a primeira coisa a envelhecer sozinha.
+
+**O RAMO DAS DUAS TABELAS EXISTE E E MEDIDO, embora o banco de hoje nao o pise.**
+`mutacoes-tecnicas-pagina.py` fabrica o mundo em que o trencadis declara
+`caco_louca` e `caco_espelho` — um poroso e um nao —, exige **duas** tabelas e
+exige que o teste **APROVE**; e a mutacao seguinte quebra o agrupamento no mesmo
+mundo e exige que ele **REPROVE**. E a disciplina da borda fabricada: grade que
+so pisa no caso que o banco tem hoje nao e grade.
+
+**O SNIPPET DEIXOU DE SER UMA PAGINA (tecnicas 1.0.0 -> 1.1.0).** Id, slug e
+titulo eram tres constantes; agora moram em `cdm_tecnicas_registro()` e cada
+pagina tem **shortcode proprio** (`[cdm_tecnica_<id>]`). A razao nao e asseio: a
+bancada descobre QUE pagina esta medindo casando o shortcode com a definicao de
+paginas (`cdm_teste_caminho_da_pagina`), entao duas paginas com o mesmo shortcode
+seriam medidas como uma so — a primeira duas vezes, a segunda nenhuma — e o verde
+continuaria la. Esta medido pela mutacao `as duas paginas voltam a servir o MESMO
+shortcode`. O `[cdm_tecnica]` da 1.0.0 continua registrado como atalho que resolve
+pelo endereco servido, para o caso de a reescrita do conteudo da pagina nao pegar
+no Sync.
+
+**E `cdm_teste_paginas_no_ar()` PAROU DE LISTAR PAGINA DE TECNICA A MAO.** A
+primeira entrou escrita; a segunda mostrou o custo na hora — a mae deixou de
+listar a filha e as duas afirmacoes da 16.4(a) reprovaram num arquivo de bancada
+que nada tem a ver com a pagina. A lista passou a sair do registro do snippet.
+
+**DUAS REGUAS INERTES, ACHADAS DE PASSAGEM E CONSERTADAS NA MESMA EXECUCAO** — e
+as duas sao da mesma familia, a de regua amarrada a um numero que o banco move:
+- `dados/tecnicas.json` dizia de si mesmo `publicacao.publicar: false`, com o
+  motivo *"nenhum snippet le este arquivo"*, escrito antes de existir pagina de
+  tecnica — enquanto o manifest ja gravava a option que a pagina do Picassiete le
+  desde 14/09. As duas metades estavam certas no dia em que foram escritas, que e
+  sempre como esta divergencia nasce. Agora o `teste-tecnicas.php` exige que as
+  duas digam a mesma coisa.
+- A mutacao `slug de categoria foge do VOZ.md`, em `mutacoes-arvore.py`, estava
+  amarrada a linha inteira da tabela do `ARVORE.md` com **"5 itens"** dentro. O
+  banco de colas cresceu para 7, a mutacao parou de achar o alvo e essa trava
+  ficou **inerte** — sem reprovar nada e sem acusar nada. O alvo passou a ser so
+  o endereco: a bateria voltou de 20 para **21 mutacoes decididas**.
+
+**O QUE A PAGINA DO TRENCADIS ENTREGA, e nao e o mesmo que a irma.** A definicao
+e a origem catala vem do Museo Nacional de Ceramica (exposicao "Gaudi &
+trencadis"); a resposta de com o que colar sai das 45 combinacoes de superficie e
+lugar, 11 delas dizendo com todas as letras que nao ha adesivo que o fabricante
+sustente. E ela tem uma **segunda recusa** que a do Picassiete nao tem: **o caco
+de vidro comum**. As fontes citam vidro entre os cacos de Gaudi e o vocabulario
+`material_tessela` desta ilha nao tem valor para caco de vidro de garrafa — tem
+`caco_espelho`, que e vidro com prata atras e cai do outro lado da conta que
+decide a cola. Responder pelo mais parecido seria trocar um material por outro no
+meio de uma recomendacao, entao a pagina diz que nao responde e por que. Fica
+como **divida de vocabulario**, nao como defeito de pagina.
+
+**BANCADA, 0 falha:** teste-tecnicas **123** afirmacoes (era 52, e agora varre as
+DUAS paginas), teste-casca 549, teste-f2 111, teste-f1 195,
+teste-prestacao-rejunte 5 (540 estados da F2 e 180 da F1, um processo cada),
+teste-loja, teste-atelie e teste-leads aprovados, validar-banco e
+validar-pastilhas OK, `php -l` limpo. **MUTACOES:** mutacoes-tecnicas-pagina **14
+de 14** (eram 9), mutacoes-tecnicas 14 de 14, mutacoes-tecnica-x-material 9 de 9,
+mutacoes-arvore **21 de 21** (era 20 medindo e uma inerte). A bateria inteira da ilha foi rodada, nao so a do bloco: mutacoes-cobertura 14 de 14, mutacoes-voz-e-cabeca 24 de 24, mutacoes-pastilhas 14 de 14, mutacoes-rejunte 16 de 16, mutacoes-prestacao 11 de 11 — todas decidindo certo.
+
+**NO AR:** Sync as 23h42Z, `/status` na revisao **35**, igual a do manifest, em UM
+disparo com 12 aplicados. `conferir-tecnica-no-ar.py` **54 afirmacoes, 0 falha**,
+agora varrendo as duas paginas e comparando uma com a outra — titulo, description
+e primeiro paragrafo tem de ser diferentes, porque duas paginas geradas pelo mesmo
+codigo sao o jeito mais facil de uma ilha publicar malha fina sem que nenhuma
+medicao acuse. `conferir-no-ar.py` **450 afirmacoes, 0 falha**. O endereco
+canonico ja servia o conteudo novo na primeira medicao, batendo com a versao com
+quebra de cache nos cinco marcadores deste bloco.
+
+**PROXIMO PASSO DESBLOQUEADO:** o eixo das tecnicas **ficou sem proxima pagina** —
+as duas que o portao autoriza nasceram. As tres que seguem em ZERO (direto,
+indireto, bizantino) sao trabalho de **FONTE**, nao de texto: nenhuma declara
+material, e o bizantino e o de maior valor de indexacao da ilha. O que destrava
+mais coisa continua sendo a **coleta das quatro categorias vazias do
+vocabulario** (`alicate`, `base`, `acabamento`, `apoio`), que e o que abre o bloco
+4c — e o canal de busca alcanca, o egresso direto aos dominios de fabricante nao.
+A semana da 21.4 esta em **2 de 3 levas**, uma URL cada.
