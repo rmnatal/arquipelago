@@ -518,3 +518,117 @@ recusa `rms_por_impedancia` que **cresça** quando a impedância sobe. Módulo e
 watt quando a impedância cai — é física, não convenção — então a tabela invertida é
 sinal de transcrição errada ou de dois números de unidades diferentes na mesma tabela,
 que é o achado 0.1 deste arquivo aparecendo dentro de um único registro.
+
+---
+
+## 7. O QUE O BLOCO 4 ENTREGOU — a F1 existe, e ainda não é uma página (15/09/2026)
+
+Esta seção foi acrescentada pelo **bloco 4**. Ela substitui a seção 6 como primeiro
+lugar a abrir: quem for escrever o snippet PHP da F1 (bloco 3b em diante) encontra
+aqui a regra pronta e não precisa reler a seção 1.
+
+| O que a F1 é hoje | Onde |
+|---|---|
+| o cérebro: entrada → resposta inteira, já em frase acentuada | `ferramentas/f1-referencia.py` |
+| as 144 respostas gravadas, com a tabela pré-renderizada | `dados/f1-respostas.json` (`publicar: false`) |
+| a bancada, régua própria, varrendo a entrada inteira | `ferramentas/teste-f1.py` |
+| a prova de que a bancada reprova | `ferramentas/mutacoes-f1.py` |
+
+**A F1 NÃO tem snippet PHP, e isso é decisão e não pendência esquecida.** A ilha não
+tem WordPress: o passo 3b é trabalho de navegador e está com o Raphael. Sem casca, um
+snippet só poderia ser medido por um render de bancada que serve **menos** do que o
+site serve — a cicatriz da seção 8 do `ARQUIPELAGO.md`, paga três vezes pela
+Robometria. Então a regra nasceu onde ela pode ser conferida hoje, e o PHP, quando
+nascer, é **tradutor** desta referência, frase a frase, do jeito que a Robometria faz
+entre `cobertura-r1.py` e `robometria-r1.php`.
+
+### 7.1 O domínio de resposta é 144, e ele é contado
+
+24 montagens × (as 5 impedâncias de módulo do vocabulário + o pedido vazio). Os
+vereditos se distribuem assim, e os cinco números saem da varredura, nunca digitados:
+**FECHA 37 · NÃO FECHA, SOBE 36 · NÃO FECHA, SÓ ABAIXO 17 · NÃO FECHA EM NENHUMA 30 ·
+SEM PEDIDO 24.**
+
+### 7.2 A distinção que a seção 1 não tinha, e que é o coração da ferramenta
+
+A seção 1.3 previa dois vereditos — "fecha" e "não fecha" — e o gerador do bloco 2
+devolvia, para todo pedido que não fechasse, um campo `mais_perto_que_fecha`. **Servir
+esse campo sempre da mesma maneira seria publicar, em 17 dos 144 estados, a resposta
+que queima o módulo.** Porque `abaixo_do_pedido: true` quer dizer que **nada** na
+montagem alcança o mínimo que aquele módulo estabiliza, e o valor devolvido é o menos
+ruim de um conjunto que é todo ruim. São coisas diferentes e a tela as separa:
+
+- **NÃO FECHA, SOBE** (36 estados) — existe valor alcançável ≥ o pedido. A página o
+  nomeia, diz com que ligação, e diz o que se perde: *"em 2 ohms o módulo entrega menos
+  watt e roda frio, e esse é o lado seguro de errar"*.
+- **NÃO FECHA, SÓ ABAIXO** (17 estados) — não existe. A página **não oferece valor**:
+  *"Não ligue assim… abaixo do mínimo é o que queima. Troque o módulo ou mude a
+  quantidade de alto-falantes."* E o bloco de compra fica sem piso, de propósito.
+- **NÃO FECHA EM NENHUMA** (30 estados) — a montagem não cai em impedância de módulo
+  alguma. São as seis montagens de três alto-falantes, e só elas.
+
+É a regra da assimetria de custo da seção 10 do `ARQUIPELAGO.md` aplicada a um campo
+que já existia: **quem separa as duas causas no código separa as duas no texto.**
+
+### 7.3 O piso de compra quando o banco tem zero itens
+
+A seção 25.2 do contrato dá o piso por **item**: marca + modelo viram a palavra-chave.
+Com zero módulos não existe item, e a saída honesta não é inventar produto: é derivar a
+busca da **própria resposta** — a impedância em que o módulo precisa estabilizar. É a
+mesma manobra que a jornadafly registrou em 14/09/2026 ao derivar o piso da cidade.
+
+O molde vem de `esquema-banco.json → piso_de_compra.moldes.shopee` e **nunca** é
+digitado na ferramenta; a bancada refabrica cada URL do molde e compara. O link sai
+**sem** `rel=sponsored`, porque busca crua não rende comissão e carimbá-la de
+patrocinada seria mentir para o leitor sobre a única coisa que ele tem o direito de
+saber sobre nós. **Itens sem saída de compra: 0. Piso não rastreável: todos** — as
+etiquetas de afiliado desta ilha ainda não existem, e isso é dívida de comissão, não
+defeito de página.
+
+**E onde o bloco fica sem piso, ele fala.** São **53** estados, contra 91 com piso, e a
+conta vale a pena ser escrita por extenso porque a primeira versão desta frase dizia
+**47** — eu somei os 30 de NÃO FECHA EM NENHUMA com os 17 de SÓ ABAIXO e esqueci os
+**6 estados SEM PEDIDO das montagens de três**, que também não têm o que oferecer. O
+número saiu errado pelo motivo que a seção 8 do contrato mais repete: ele foi somado de
+cabeça em vez de contado da varredura. Nos 53, o bloco não lista e **diz por quê** — que
+é o que a seção 7 manda fazer em vez de deixar silêncio com cara de defeito. Mandar quem
+não tem montagem válida para uma busca de módulo seria vender uma coisa no lugar de
+outra, e isso é pior do que não ter link.
+
+### 7.4 As três frases que a F1 está proibida de dizer, e quem as vigia
+
+1. **Qualquer afirmação sobre o MERCADO**, enquanto `vocabulario_sem_lastro` não for
+   vazio (hoje é 5 de 5). A única frase verdadeira é *"nenhum módulo do nosso banco"*.
+2. **Qualquer teto de RMS**, enquanto `criterio-rms-modulo-nao-passa-do-falante`
+   estiver `pendente`. A página imprime o RMS do falante e **diz o que ainda não pode
+   dizer**, em vez de calar.
+3. **As cinco expressões proibidas pelo `VOZ.md`** no veredito.
+
+As três são varridas em todos os 144 estados, no **corpo** — o que o visitante lê —, e
+cada uma tem mutação própria. A vigilância não é opcional porque ela já pegou coisa:
+a régua de acento reprovou uma frase que citava `dados/modulos.json` **na tela**. O
+defeito não era o acento; era a página falando com o visitante no vocabulário de quem
+a escreveu.
+
+### 7.5 O que a bancada mede, e as duas coisas que ela achou
+
+**8.262 afirmações, 0 falha.** A régua é própria: a aritmética de associação está
+reescrita dentro de `teste-f1.py` com `Fraction` e divisores, e pode discordar do
+gerador. **41 mutações decidiram certo**, em cinco famílias — quatro **mundos que têm de
+passar** (banco vazio, com 1, com 2 e com um módulo que estabiliza em todas as cinco
+impedâncias), 28 **quebras que têm de reprovar**, cada uma declarando a frase que espera
+ouvir, quatro **mortes** (chave que some da fonte tem de matar a referência, nunca virar
+literal), quatro sobre a **prosa desta seção** (os números publicados aqui em cima são
+conferidos contra a varredura, porque número em prosa envelhece calado) e o **autoteste
+da própria bateria**, que troca a frase esperada de uma quebra pela de outra trava real
+e exige que a bateria acuse.
+
+As duas coisas que as mutações acharam, e as duas já estão fechadas:
+
+- **A bancada não conferia a lista de módulos por ligação.** Com o banco vazio, a
+  afirmação passava sobre lista vazia; com um módulo dentro, a linha da ligação podia
+  continuar dizendo que não havia nenhum e a bancada aprovava. É exatamente o mundo que
+  o esquema permite e o banco ainda não tem.
+- **A referência não conferia o banco de casos contra o vocabulário do esquema.**
+  Apagando `impedancia_de_bobina` do esquema, a F1 continuava respondendo a partir do
+  banco de casos de ontem. Duas metades contando a mesma coisa sem nunca se falarem.

@@ -66,6 +66,7 @@ Saída é sempre **faixa com critério e fonte**, nunca número seco.
 **3c. CARGA DO BANCO — não depende de site.** Ver "Específico desta ilha" para a ordem e as travas.
 
 **4. FERRAMENTAS**, uma por execução, já nascendo com JSON-LD, tabela de exemplos pré-renderizada, resposta antes da explicação e procedência na frase. **Não deixe retrofit para depois.**
+> **A F1 está construída como REGRA e ainda não como PÁGINA (bloco 4, 15/09/2026).** `ferramentas/f1-referencia.py` responde os 144 estados com veredito, ligações, prestação de contas, bloco de compra e "como sabemos"; `dados/f1-respostas.json` guarda a varredura e a tabela pré-renderizada; `teste-f1.py` e `mutacoes-f1.py` medem. **Falta o snippet PHP, e ele depende do 3b**: sem casca, um render de bancada serve menos do que o site serve, e isso é o defeito que a seção 8 do contrato mais cobra. Quem pegar o 3b escreve a F1 em PHP como TRADUTOR da referência, frase a frase, e a bancada compara as duas. O que cada coisa é e onde está: seção 7 de `dados/especificacao-calculadoras.md`.
 **Ordem obrigatória: F1, depois F2, depois F3.** A F3 é a última de propósito — é a única que entra contra um concorrente que **já tem a ferramenta pronta** (`infinitysom.com.br`), e só entra se for melhor: tabela oficial da Taramps citada como fonte datada, distância de ida e volta, e o fusível junto, que é onde a do concorrente para.
 
 **5. ARTIGOS-ÂNCORA** pareados com cada ferramenta, na mesma execução.

@@ -496,3 +496,164 @@ espera o canal, não a decisão. A seção 14 do contrato (indexação é priori
 nova) puxa para construir a F1 com a lista vazia **declarada na tela**. A seção 6 nova da
 especificação diz onde cada coisa está, para quem pegar o bloco 4 não ter de reler dois
 arquivos inteiros.
+
+---
+
+## 2026-09-15, 11h17Z–11h45Z — BLOCO 4: a F1 existe como regra, e ainda não como página
+
+**Entregue:** `ferramentas/f1-referencia.py` (o cérebro da F1: entrada → resposta
+inteira, já em frase acentuada), `ferramentas/gerar-f1.py`, `dados/f1-respostas.json`
+(os **144 estados** varridos, mais a tabela pré-renderizada de 24 linhas,
+`publicar: false`), `ferramentas/teste-f1.py` (**8.262 afirmações, 0 falha**) e
+`ferramentas/mutacoes-f1.py` (**41 mutações, 41 decidiram certo**). Mais a seção 7 de
+`dados/especificacao-calculadoras.md`, que é onde quem pegar o 3b encontra a regra
+pronta. **Nada foi ao ar**: esta ilha não tem site, não tem Sync e não tem `/status`,
+e dizer que verificou no ar seria inventar.
+
+### A escolha da ilha, e a corrida
+
+Os cinco `ESTADO.md` parseiam em `yaml.safe_load` e os cinco estavam com
+`executando_desde: null` — que pela **1.1** já significa que não há bloco da Fundação
+vivo, sem precisar do git para desempatar reserva vencida. Pela **18.1** li o topo dos
+cinco `PROMPT.md` antes de aplicar a rotação, e **nenhuma ilha tem despacho corretivo
+com item acionável aberto**: o do Raphael de 14/09 na aquametria está *cumprido e
+conferido no ar*; o de 14/09 na clubedomosaico foi *fechado às 21h17Z* daquele dia,
+com os quatro itens da artesã verificados; o de 14/09 na robometria idem; e os desta
+ilha e o da jornadafly são despachos de **nascimento**, que carregam a fila inteira e
+por isso não cabem na 18.2. Sobrou a rotação da seção 1, e a ohmetria tinha a
+`ultima_execucao` mais antiga por quase uma hora (21h20Z de 14/09, contra 22h16Z,
+23h35Z, 23h35Z e 00h01Z).
+
+**O push da reserva foi recusado na primeira tentativa** — outra execução tinha
+reservado a **aquametria** às 11h17Z, citando um despacho ALTA da Fundação em
+`dados/despachos.md`. O `main` tinha andado; `fetch` + `rebase`, **sem force push**, e
+a reserva da ohmetria entrou às 11h19Z. Nenhum branch `claude/*` e nenhum PR aberto.
+
+**Rede pela 20.2, retestada e não herdada:** três passadas, `ohmetria.com.br` e
+`www.ohmetria.com.br` em `000` nas três, com `aquametria.com.br` e `robometria.com.br`
+em `200` nas mesmas passadas. Seis medições de bloqueio contra seis de controle verde,
+igual às três execuções anteriores. Segue bloqueada, e `bloqueada_por` segue `null` de
+propósito: o que a rede trava é o 3b em diante, não bloco de arquivo.
+
+### Por que a F1 não tem PHP, e isso é decisão registrada
+
+A seção 8 do `ARQUIPELAGO.md` cobra três vezes, todas pagas pela Robometria, a mesma
+coisa: **render de bancada que serve menos do que o site serve mede a página errada e
+não acusa**. Sem casca — e a casca é o 3b, trabalho de navegador que está com o
+Raphael — um snippet PHP desta ilha só poderia ser medido assim. Então a regra nasceu
+onde ela pode ser conferida hoje, em Python, e o PHP, quando nascer, é **tradutor**
+desta referência, frase a frase, com a bancada comparando as duas. É o mesmo desenho
+que a Robometria usa entre `cobertura-r1.py` e `robometria-r1.php`.
+
+### O achado do bloco, e ele estava num campo que o bloco 2 já tinha gerado
+
+`dados/impedancias-alcancaveis.json` devolve, para todo pedido que não fecha, um campo
+`mais_perto_que_fecha`. **Servir esse campo sempre do mesmo jeito publicaria, em 17 dos
+144 estados, a resposta que queima o módulo.** Porque `abaixo_do_pedido: true` quer
+dizer que **nada** na montagem alcança o mínimo que aquele módulo estabiliza, e o valor
+devolvido é o menos ruim de um conjunto que é todo ruim. Concretamente: quatro falantes
+de 1 Ω pedindo módulo de 8 Ω alcançam 0,25, 1 e 4 Ω — o campo devolve 4, e 4 Ω num
+módulo que só estabiliza até 8 Ω é menos ohm do que ele aguenta.
+
+A especificação previa **dois** vereditos e a tela passou a ter **três**:
+
+- **NÃO FECHA, SOBE** (36 estados) — existe valor alcançável ≥ o pedido. A página o
+  nomeia, diz com que ligação, e diz o que se perde: *"em 2 ohms o módulo entrega menos
+  watt e roda frio, e esse é o lado seguro de errar"*.
+- **NÃO FECHA, SÓ ABAIXO** (17 estados) — não existe. A página **não oferece valor**:
+  *"Não ligue assim… abaixo do mínimo é o que queima."* E o bloco de compra fica sem
+  piso, de propósito.
+- **NÃO FECHA EM NENHUMA** (30 estados) — as seis montagens de três alto-falantes.
+
+É a assimetria de custo da seção 10 aplicada a um campo que já existia, e é a mesma
+regra que o Clube do Mosaico escreveu em 12/09: **causa que o código separa, o texto
+separa.** Misturar as duas numa frase é inventar uma delas.
+
+### O piso de compra quando o banco tem zero itens
+
+A **25.2** dá o piso por item — marca + modelo viram a palavra-chave — e com zero
+módulos não existe item. A saída honesta não é inventar produto: é derivar a busca da
+**própria resposta**, pela impedância em que o módulo precisa estabilizar. É a mesma
+manobra que a jornadafly registrou em 14/09 ao derivar o piso da cidade. O molde vem de
+`esquema-banco.json → piso_de_compra.moldes.shopee` e nunca é digitado na ferramenta; a
+bancada refabrica cada URL do molde e compara. Sai **sem** `rel=sponsored`, porque
+busca crua não rende comissão e carimbá-la de patrocinada mentiria para o leitor.
+
+**91 estados com piso, 53 sem** — e os 53 dizem por quê. Mandar quem não tem montagem
+válida para uma busca de módulo seria vender uma coisa no lugar de outra, que é pior do
+que não ter link.
+
+### A conta que eu ia publicar estava errada, e o conserto não foi trocar o número
+
+A primeira versão da seção 7 da especificação dizia **47** estados sem piso: somei 30 e
+17 de cabeça e esqueci os **6 estados SEM PEDIDO das montagens de três**, que também não
+têm o que oferecer. São 53. O número saiu errado pelo motivo que a seção 8 mais repete
+— foi somado, não contado.
+
+Trocar o 47 por 53 devolveria o verde e deixaria o defeito de pé. Então **a bancada
+passou a ler a prosa**: ela extrai da seção 7 os cinco números da distribuição de
+vereditos e as duas contas do piso, e compara com a varredura. Quatro mutações provam
+que morde — contagem trocada, conta de piso trocada, a linha sumindo, e o texto de
+verdade tendo de passar. É a **terceira conta** que a seção 8 pede quando duas metades
+contam a mesma coisa, e o defeito que ela impede é o mais barato de cometer.
+
+### As duas coisas que as mutações acharam, as duas fechadas antes do commit
+
+1. **A bancada não conferia a lista de módulos por ligação.** Com o banco vazio, a
+   afirmação passava sobre lista vazia; com um módulo dentro, a linha da ligação podia
+   continuar dizendo que não havia nenhum e a bancada aprovava. É exatamente o mundo que
+   o **esquema permite e o banco ainda não tem**, e só a mutação que *produz* o mundo o
+   enxerga — verde sobre um banco de zero elementos é ausência de contraexemplo
+   confundida com prova.
+2. **A referência não conferia o banco de casos contra o vocabulário do esquema.**
+   Apagando `impedancia_de_bobina` do esquema, a F1 continuava respondendo, feliz, a
+   partir do banco de casos de ontem. Duas metades contando a mesma coisa sem nunca se
+   falarem. Agora ela **para**, e a mutação mede os dois sentidos: esquema sem a chave, e
+   esquema intacto com o banco de casos velho — que é o caso que acontece de verdade,
+   quando alguém acrescenta bobina ao vocabulário e esquece de rodar
+   `ferramentas/impedancias.py`.
+
+### E a régua de acento pegou um defeito que não era de acento
+
+A frase da prestação de contas citava `dados/modulos.json` **na tela**. Caminho de
+arquivo do repositório numa página é a ilha falando com o visitante no vocabulário de
+quem a escreveu, e a regra da fase 4b sobre texto acentuado foi o único portão que o
+viu. A frase passou a dizer, na língua da pessoa, que a ilha ainda não conferiu nenhum
+módulo com a ficha do fabricante na mão e por isso não recomenda nenhum.
+
+### O que a F1 está proibida de dizer, e quem vigia
+
+1. **Qualquer afirmação sobre o MERCADO**, enquanto `vocabulario_sem_lastro` não for
+   vazio (hoje 5 de 5). A única frase verdadeira é *"nenhum módulo do nosso banco"*.
+2. **Qualquer teto de RMS**, enquanto `criterio-rms-modulo-nao-passa-do-falante`
+   estiver `pendente`. A página imprime o RMS do falante e diz **o que ainda não pode
+   dizer**, em vez de calar.
+3. **As cinco expressões proibidas pelo `VOZ.md`** no veredito.
+
+As três são varridas nos 144 estados, no **corpo** — `texto_de_tela()` junta o que o
+visitante lê e deixa de fora `id`, URL e palavra-chave de busca, que são ASCII por
+desenho e não são frase.
+
+### Verificação
+
+`teste-f1.py` **8.262 afirmações, 0 falha**, com a aritmética de associação reescrita à
+mão dentro dele (`Fraction` e divisores) para poder discordar do gerador.
+`impedancias.py --conferir` 73, `validar-banco.py` sem erro com o aviso de
+`vocabulario_sem_lastro` 5 de 5, `mutacoes-banco.py` 39 de 39. **`mutacoes-f1.py`: 41
+de 41** — 4 mundos que têm de passar, 28 quebras cada uma declarando a frase que espera
+ouvir, 4 mortes, 4 sobre a prosa da especificação, e o autoteste da própria bateria,
+que troca a frase esperada de uma quebra pela de outra trava real e exige que a bateria
+acuse. `validar-banco.py` ganhou `f1-respostas.json` na lista do que **não é banco de
+produto**: cobrá-lo como banco seria medir a coisa errada com a régua certa.
+
+**NADA FOI AO AR.** Sem WordPress não há manifest, não há Sync e não há `/status`.
+
+### Próximo passo desbloqueado
+
+**A F2 como regra**, pelo mesmo desenho da F1 — e com uma diferença que muda tudo:
+`formula-volume-caixa-selada` está `aguarda_validacao` e `faixa-qtc-alvo` está
+`pendente`, então **a F2 não pode publicar litragem** enquanto a leitura não abrir. O
+que ela pode fazer hoje é o que a F1 fez com o banco vazio: o domínio de entrada, as
+recusas declaradas, o que ela se recusa a afirmar e por quê, e a trava de faixa de
+Thiele-Small, que é constante `publicavel`. O 3b e o 3c continuam esperando,
+respectivamente, o WordPress e o egresso.

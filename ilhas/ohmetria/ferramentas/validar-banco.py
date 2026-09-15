@@ -72,7 +72,13 @@ PASTA_DADOS = os.path.join(RAIZ, "dados")
 
 # Arquivos da pasta dados/ que NAO sao banco de produto. Qualquer outro .json de la
 # tem de estar declarado por alguma entidade do esquema -- e o contrario tambem.
-NAO_SAO_BANCO = ("esquema-banco.json", "constantes.json", "impedancias-alcancaveis.json")
+NAO_SAO_BANCO = ("esquema-banco.json", "constantes.json", "impedancias-alcancaveis.json",
+                 # Saida derivada da F1 (bloco 4): e o dominio de resposta da
+                 # ferramenta, gerado de ferramentas/f1-referencia.py e medido por
+                 # ferramentas/teste-f1.py. Nao tem item, nao tem fabricante e nao
+                 # tem procedencia propria -- cobra-lo como banco de produto seria
+                 # medir a coisa errada com a regua certa.
+                 "f1-respostas.json")
 
 
 # ----------------------------------------------------------------------------
