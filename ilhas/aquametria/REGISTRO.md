@@ -8075,10 +8075,14 @@ com **maior atraso de 0 s** até o canônico concordar (orçamento declarado de
 360 s, o dobro dos 166 s medidos na robometria). `conferir-peixes-no-ar` **707
 afirmações, 0 falha**.
 
-**O que ficou rodando e não entrou na contagem:** `mutacoes-peixes` (90 mutações
-sobre 2683 afirmações) passou de 20 minutos e não fechou dentro desta execução.
-Ela não toca nada do que este bloco mudou — a casca não entra na régua dos peixes
-—, mas o honesto é dizer que ela **não foi vista verde aqui**, e não somá-la.
+**O que ficou rodando e fechou depois** — corrigido às 11h53Z, e a correção vale
+mais que o número: quando este parágrafo foi escrito, a bateria de mutações da
+ilha passava de 20 minutos sem fechar e foi registrada como "não vista verde
+aqui". Ela fechou em seguida, e o resultado **não era todo verde**:
+`mutacoes-peixes` 90 de 90, `mutacoes-arvore` 14 de 14, `mutacoes-escada` 23 de
+23, `mutacoes-datas` 12 de 12, `mutacoes-dimensao` 14 de 14, `mutacoes-ga4` 13 de
+13, `mutacoes-privacidade` 23 afirmações 0 falha — e **`mutacoes-voz` VERMELHA**,
+com duas mutações inertes. Ver a correção das 11h59Z, logo abaixo.
 
 ### As três ferramentas novas
 
@@ -8116,3 +8120,63 @@ Ela não toca nada do que este bloco mudou — a casca não entra na régua dos 
 4. **Para a próxima execução que reservar robometria ou clubedomosaico**: o
    despacho NORMAL de `dados/despachos.md` já traz o patch de uma linha e os dois
    arquivos para copiar. É barato e fecha o mesmo buraco nas outras duas.
+
+---
+
+## 2026-09-15 11h49Z–11h56Z — CORREÇÃO: `mutacoes-voz` estava vermelha com duas mutações inertes
+
+**Nenhuma versão mudou, nenhum snippet mudou, nada foi ao ar.** O que mudou foi
+uma régua: `ferramentas/mutacoes-voz.py`, de **20 mutações alcançadas** para
+**27 de 27 reprovadas pelo portão**.
+
+### Como apareceu
+
+A bateria de mutações desta ilha foi posta para rodar durante o bloco do cache e
+só fechou **depois** que a execução foi dada por encerrada. Seis baterias
+voltaram verdes; `mutacoes-voz` voltou **vermelha**, com `ALVO SUMIU` e a frase
+que a própria ferramenta escreve: *"a mutação não pode ser aplicada, então ela
+não prova nada. Atualize esta lista junto com o código."*
+
+**Não é defeito do bloco do cache** — ele não tocou `aquametria-peixes.php`, e o
+diff dos dois commits prova isso. É dívida anterior: as duas mutações citavam o
+literal `'Para um cardume mínimo de ' . esc_html( $card )`, que **deixou de
+existir** quando a abertura das fichas passou a sair do mapa do arranjo
+(`$arranjo['minimo']`) para cobrir solitário, casal e harém, nas levas 4 e 5.
+
+**A ferramenta se comportou exatamente como foi desenhada**, e é isso que faz a
+dívida ser barata: `troca()` levanta `SystemExit` quando o alvo some, em vez de
+substituir nada e seguir verde. O custo de ela falhar alto foi a bateria morrer
+na mutação 21 — **as 7 últimas nunca eram alcançadas**, e nenhuma delas estava
+sendo medida havia dois dias. O custo de ela *não* falhar alto teria sido pior:
+duas mutações verdes para sempre, provando nada.
+
+### O que se atualiza é o ALVO, nunca o que a mutação afirma
+
+As duas continuam afirmando o item 4 do despacho da Sentinela de 13/09 — a
+primeira frase da ficha **não cita quem declarou** e **nunca perde o número**.
+Só o endereço no código mudou.
+
+### A reescrita errou uma vez, e o erro é a armadilha do conserto
+
+A primeira versão de "a abertura perde o número e vira conselho sem medida"
+tirava apenas o número do **cardume** e deixava os "cm de frente" de pé. O portão
+**aprovou** — com razão: a frase continuava trazendo uma medida. Ficou registrado
+no próprio arquivo, porque é a armadilha de reescrever mutação inerte:
+**mutação que passa não acusa portão fraco quando o defeito que ela monta não é o
+defeito que ela nomeia.** "Conselho sem medida" exige tirar os **dois** números,
+como a versão original tirava. Com os dois fora, o portão reprova.
+
+### Verificação
+
+`mutacoes-voz` **27 de 27 reprovadas, exit 0**, com as mutações 21 e 25 — as duas
+que estavam mortas — decidindo certo. `php -l` limpo em
+`aquametria-peixes.php`, que **não foi tocado**: a mutação só escreve em cópia
+temporária.
+
+### Uma nota de cabeçalho, para não repetir
+
+A reserva desta correção foi escrita como **11h59Z** quando o relógio marcava
+**11h49Z** — dez minutos no futuro. A direção é conservadora (a 1.1 leria a ilha
+como ocupada por mais tempo, nunca por menos), mas é número errado num campo que
+decide escolha de ilha. Corrigido no fecho. Carimbo de reserva se lê do relógio,
+não da memória de quem escreve.

@@ -229,11 +229,23 @@ MUTACOES = [
     # cada uma tinha de ser reprovada sozinha, senao consertar uma devolveria o
     # verde com a outra no ar.
     # ------------------------------------------------------------------
+    # AS DUAS MUTACOES ABAIXO FICARAM INERTES E FORAM REESCRITAS EM 15/09/2026.
+    # Elas citavam o literal "'Para um cardume mínimo de ' . esc_html( $card )",
+    # que deixou de existir quando a abertura passou a sair do MAPA DO ARRANJO
+    # (`$arranjo['minimo']`) para cobrir solitario, casal e harem. O alvo sumiu,
+    # `troca()` passou a levantar SystemExit e a bateria inteira morria na
+    # primeira das duas — 20 mutacoes decidindo certo e as ULTIMAS nunca sendo
+    # alcancadas. A ferramenta se comportou como foi desenhada ("falha alto se o
+    # alvo nao existir mais"), e e por isso que o defeito apareceu em vez de
+    # virar verde silencioso: mutacao que nao pode ser aplicada nao prova nada.
+    # O que se atualiza e o ALVO; o que a mutacao AFIRMA continua identico, e e
+    # o item 4 do despacho da Sentinela de 13/09 — a primeira frase da ficha nao
+    # cita quem declarou, e nunca perde o numero.
     (
         'O DEFEITO DE 13/09, primeira metade: a fonte volta a declarar o cardume na abertura',
         troca(PEIXES,
-              "\t\t$html .= 'Para um cardume mínimo de ' . esc_html( $card ) . ' '\n\t\t\t. esc_html( $nome ) . ', o seu aquário precisa de '",
-              "\t\t$html .= 'Para os ' . esc_html( $card ) . ' ' . esc_html( $nome )\n\t\t\t. ' que a fonte declara como cardume mínimo, o seu aquário precisa de '"),
+              "\t\t\t. esc_html( $nome ) . ', o seu aquário precisa de '",
+              "\t\t\t. esc_html( $nome ) . ' que a fonte declara como cardume mínimo, o seu aquário precisa de '"),
     ),
     (
         'O DEFEITO DE 13/09, segunda metade: a fonte volta a declarar a BASE na abertura',
@@ -254,10 +266,23 @@ MUTACOES = [
               "\t\t$html .= '. O que manda é a BASE do aquário, não o litro.</p>';"),
     ),
     (
+        # A REESCRITA DESTA MUTACAO ERROU UMA VEZ, EM 15/09/2026, E O ERRO FICA
+        # REGISTRADO PORQUE ELE E A ARMADILHA DE REESCREVER MUTACAO INERTE. A
+        # primeira tentativa tirou so o numero do CARDUME e deixou os "cm de
+        # frente" de pe — e o portao APROVOU, com razao: a frase continuava
+        # trazendo uma medida. Mutacao que passa nao acusa portao fraco quando o
+        # defeito que ela monta nao e o defeito que ela nomeia. O que esta
+        # mutacao afirma e "conselho SEM MEDIDA", entao ela tem de tirar os
+        # DOIS numeros, como a versao original tirava.
         'a abertura perde o numero e vira conselho sem medida',
         troca(PEIXES,
-              "\t\t$html .= 'Para um cardume mínimo de ' . esc_html( $card ) . ' '\n\t\t\t. esc_html( $nome ) . ', o seu aquário precisa de '\n\t\t\t. esc_html( aquametria_peixes_num( $frente[1] ) ) . ' cm de frente';",
-              "\t\t$html .= 'Para um cardume mínimo de ' . esc_html( $nome )\n\t\t\t. ', o seu aquário precisa de uma base generosa de frente';"),
+              "\t\t$html .= 'Para um ' . esc_html( $arranjo['minimo'] ) . ' de '\n"
+              "\t\t\t. esc_html( $card )\n"
+              "\t\t\t. ( ! empty( $e['cardume_ate'] ) ? ' a ' . esc_html( (int) $e['cardume_ate'] ) : '' ) . ' '\n"
+              "\t\t\t. esc_html( $nome ) . ', o seu aquário precisa de '\n"
+              "\t\t\t. esc_html( aquametria_peixes_num( $frente[1] ) ) . ' cm de frente';",
+              "\t\t$html .= 'Para um ' . esc_html( $arranjo['minimo'] ) . ' de '\n"
+              "\t\t\t. esc_html( $nome ) . ', o seu aquário precisa de uma base generosa de frente';"),
     ),
     (
         'a abertura deixa de dizer que o litro nao e a medida que manda',
