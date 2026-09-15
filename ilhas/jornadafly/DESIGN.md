@@ -16,7 +16,14 @@ A identidade desta ilha **não foi desenhada pela fábrica**. O Raphael trouxe a
 
 **Imperativo só em botão.** `Calcule sua viagem` é rótulo de botão da ferramenta. Nunca vira assinatura de marca — embaixo do logo a pessoa ainda está decidindo se fica.
 
-**PENDENTE — arquivo vetorial.** A marca existe hoje como imagem de apresentação. O `logo.svg` desta pasta ainda **não** foi entregue pelo Raphael; enquanto não for, nenhuma casca publica header ou favicon definitivos. Não redesenhe um substituto.
+### Arquivo do símbolo — RESOLVIDO
+
+- `ilhas/jornadafly/logo.svg` — símbolo oficial, duas cores: rasgo `#378AD0`, haste `#0F2539`. viewBox `0 0 1570 1960`.
+- `ilhas/jornadafly/logo-branco.svg` — mesma forma com a haste em `#FFFFFF`, para uso sobre `--tinta`. Usar SÓ em fundo escuro.
+- Procedência: vetorização da arte do próprio Raphael (a placa de marca que ele enviou em 15/09/2026). Não é a curva original do autor da arte — é um traço fiel de um raster pequeno. Se algum dia aparecer o SVG/AI original, ele substitui estes dois arquivos e esta nota some.
+- Ninguém redesenha este símbolo. Quem precisar de outro tamanho exporta a partir do SVG.
+- Regra de uso: o símbolo nunca aparece dentro de um quadrado colorido de fundo. Fundo transparente ou sólido claro (`--papel` / `--superficie`); em fundo escuro, usar a versão branca.
+- Favicon e avatar: exportar do SVG em 512 / 180 / 32 / 16 px, PNG com fundo transparente.
 
 ## Cor — amostrada da arte oficial, contraste calculado em 14/09/2026
 
