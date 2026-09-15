@@ -1,40 +1,54 @@
-# DESIGN — JornadaFly
+# DESIGN — JORNADA FLY
 
-Dono dos tokens desta ilha. A casca renderiza a partir daqui; o `PROMPT.md` não é dono da paleta. Cor, fonte ou medida que não está neste arquivo é defeito, não identidade (seção 22.6 do `ARQUIPELAGO.md`). O `VOZ.md` manda na palavra, este arquivo manda na forma; quando discordarem, o `VOZ.md` decide.
+Dono dos tokens desta ilha (seção 22.6 do `ARQUIPELAGO.md`). A casca renderiza a partir daqui.
+**Token novo não nasce em despacho:** cor, fonte ou medida que não estiver neste arquivo é defeito, não identidade.
+Quando este arquivo e o `VOZ.md` discordarem, **manda o `VOZ.md`** (seção 22.2).
 
-**Molde de casca: GUIA.** A pergunta mais frequente em cima, ferramentas como cartões na linguagem da pessoa, guias embaixo. (A Aquametria também é GUIA — por isso a paleta quente, a serifada editorial e a foto grande de cartão separam as duas à primeira vista.)
+## Marca — trazida pelo Raphael em 14/09/2026
 
-## Cor
-| token | valor | onde | contraste medido |
+A identidade desta ilha **não foi desenhada pela fábrica**. O Raphael trouxe a marca pronta e ela é a versão oficial: monograma em "J" com traço ascendente azul, nas versões horizontal, vertical e ícone, em fundo claro e escuro.
+
+**O que o dossiê propunha está descartado** — as duas barras horizontais com marcador vertical não são mais a marca desta ilha. Fica escrito para ninguém "restaurar" o desenho do dossiê achando que corrige um desvio.
+
+**Assinatura:** `A CONTA ANTES DA VIAGEM.` — caixa alta, espaçada, com ponto final. É a promessa da ilha, e tem consequência operacional: ver a seção "O que esta assinatura obriga", abaixo.
+
+**Linha secundária, só em peça institucional (rodapé, perfil):** `PLANEJAR HOJE, VIAJAR SEMPRE.` Nunca substitui a assinatura.
+
+**Imperativo só em botão.** `Calcule sua viagem` é rótulo de botão da ferramenta. Nunca vira assinatura de marca — embaixo do logo a pessoa ainda está decidindo se fica.
+
+**PENDENTE — arquivo vetorial.** A marca existe hoje como imagem de apresentação. O `logo.svg` desta pasta ainda **não** foi entregue pelo Raphael; enquanto não for, nenhuma casca publica header ou favicon definitivos. Não redesenhe um substituto.
+
+## Cor — amostrada da arte oficial, contraste calculado em 14/09/2026
+
+| token | valor | onde | contraste |
 |---|---|---|---|
-| `--tinta` | `#1A1714` | texto corrido, H1–H3 | 17,85:1 sobre branco · 16,70:1 sobre `--papel` |
-| `--sinal` | `#2F3E9E` (índigo de fim de tarde) | marca, link, botão, barra do resultado. **Um uso forte por tela** | 9,12:1 sobre branco · 8,53:1 sobre `--papel` |
-| `--custo` | `#8A5A12` (ocre) | **o número de dinheiro** e a etiqueta de preço coletado. Só isso | 5,91:1 sobre branco · 5,53:1 sobre `--papel` |
-| `--papel` | `#FAF7F2` (areia) | fundo da página. Quente, ao contrário do cinza frio da Ohmetria e do `#F4F7F7` da Aquametria | — |
+| `--tinta` | `#0F2539` | texto corrido, H1–H3, fundo das faixas escuras | **15,36:1** sobre `--papel` |
+| `--sinal` | `#378AD0` | a cor da marca: traço do monograma, "FLY", preenchimento, barra do resultado | **3,62:1** sobre `--papel` → **só preenchimento, ícone e texto ≥ 24 px. NUNCA texto corrido** · 4,25:1 sobre `--tinta` |
+| `--sinal-texto` | `#1F6AAF` | o mesmo azul em versão de texto: link, rótulo, número em destaque | **5,52:1** sobre `--papel` |
+| `--papel` | `#FDFDFD` | fundo da página | — |
 | `--superficie` | `#FFFFFF` | cartão, tabela, caixa do resultado | — |
-| `--traco` | `#E3DCD1` | borda de 1 px, divisor | 1,27:1 — decorativo, **nunca carrega informação sozinho** |
-| `--legenda` | `#6B625A` | operador, data da coleta, moeda, nota de rodapé | 5,97:1 sobre branco · 5,58:1 sobre `--papel` |
-| `--alerta` | `#9A2B1E` | ressalva ("preço de 09/2026, alta temporada") | 7,67:1 sobre branco |
-| `--ouro` | `#C79A3A` | **só sobre `--tinta`**, no rodapé escuro. Nunca sobre papel | 6,89:1 sobre `--tinta` |
+| `--traco` | `#B0C0CD` | borda de 1 px e divisor (**1,83:1 sobre papel — decorativo, nunca carrega informação sozinho**); sobre `--tinta` vale como texto de apoio, com 8,38:1 | — |
+| `--legenda` | `#5A6675` | operador, data da coleta do preço, moeda, nota de rodapé | ≥ 4,5:1 sobre `--papel` — **conferir antes do primeiro uso; se reprovar, escurecer até passar e corrigir aqui** |
+| `--custo` | `#8A5A12` | **o número de dinheiro** e a etiqueta de preço coletado | **5,91:1** sobre branco |
+| `--alerta` | `#9A2B1E` | ressalva de preço e temporada | **7,67:1** sobre branco |
 
-Todos os pares de texto ficam acima de 4,5:1. Sem gradiente. Fundo escuro só no rodapé.
-**REGRA DURA: nunca foto de fundo atrás de texto.** É o vício visual do nicho de viagem e quebra contraste em toda tela. Foto grande é bem-vinda **no cartão de experiência**, com o texto fora dela.
+**Portão:** `#378AD0` reprova em texto normal. Onde for texto, é `#1F6AAF`. Isso não é preferência, é o critério de contraste da seção 5, e a Sentinela confere na ronda.
+
+**Sobre `--tinta`:** branco tem 15,62:1 e o cinza `--traco` tem 8,38:1 — os dois passam. O azul da marca tem 4,25:1: serve para título e elemento gráfico, não para texto pequeno.
+
+## O que esta assinatura obriga
+
+"A conta antes da viagem" é promessa medível. **Página de experiência sem preço com data de coleta e moeda original é defeito**, não falta de dado — vira item de despacho na ronda da Sentinela, porque a marca está dizendo uma coisa que a página não entrega.
 
 ## Tipografia
-- Títulos: **Fraunces** 600. Serifada de contraste alto, editorial — é o que separa esta ilha das três primeiras, todas em grotesca.
-- Texto: **Source Sans 3** 400/600.
-- Dinheiro, dias, número de pessoas, data de coleta: **JetBrains Mono** 500 com `tabular-nums`. Texto corrido nunca vai em Mono.
-- Assinatura da marca: `JORNADA` em 700 caixa alta + `fly` em 400 caixa baixa, coladas, sem espaço. **`fly` nunca maior que `JORNADA`** — o olho lê "jornada" primeiro, e é isso que o produto promete.
-- Três famílias é o teto. Todas com `font-display: swap`.
 
-Escala (rem): `--t-xs .8125` · `--t-sm .9375` · `--t-base 1` · `--t-lg 1.3125` · `--t-xl 1.75` · `--t-2xl 2.375`. Corpo 1,0625 rem, altura de linha **1,7**, medida máxima **66 caracteres**.
+- **Títulos e marca:** grotesca geométrica de caixa alta espaçada, no espírito da arte oficial. A família definitiva entra aqui quando o Raphael entregar o vetor e o nome da fonte usada. **Até lá, a casca não fixa fonte de título.**
+- **Texto:** Source Sans 3 400/600. Corpo 1,0625 rem, altura de linha 1,7, medida máxima 66 caracteres.
+- **Dinheiro, dias, número de pessoas e data de coleta:** JetBrains Mono 500 com `tabular-nums`. Texto corrido nunca vai em mono.
 
-## Espaço, raio, borda
-Escala de 4: `4 · 8 · 12 · 16 · 24 · 32 · 48 · 64`. Raio `--r-sm 6px` · `--r-md 12px` — mais macios que os da Ohmetria, porque a leitura aqui é de planejamento, não de emergência. Borda 1 px em `--traco`. Sombra única: `0 1px 2px rgba(26,23,20,.06)`.
+Escala (rem, base 16): `--t-xs .8125` · `--t-sm .9375` · `--t-base 1` · `--t-lg 1.3125` · `--t-xl 1.75` · `--t-2xl 2.375`.
 
-## Símbolo
-Gesto do nicho: **comparar o que se paga com o que se recebe**. Grade de 24, traço de 2 px, cantos retos.
-Uma barra horizontal de `(3,9)` a `(21,9)` em `--tinta`; outra, menor, de `(3,16)` a `(14,16)` em `--sinal`; e um marcador vertical de `(14,12)` a `(14,20)` em `--custo`, na ponta da menor — é o ponto em que a decisão é tomada. Duas leituras postas lado a lado, com parentesco visual de régua vista de lado, e nada mais.
-O vão entre as barras nunca fecha abaixo de 3 px, para o favicon de 16 px funcionar.
-**PROIBIDO no símbolo: avião, asa, mala, globo, passaporte, carimbo, mapa dobrado, bússola, montanha e balão.** O domínio diz "Fly", o produto não voa — se o símbolo voar, a contradição vira a cara do site.
-O desenho de referência está em `bussola/dossies/viagem-experiencia-icone/logo.svg`.
+## Espaço, raio, sombra
+
+Espaço na escala de 4: `4 · 8 · 12 · 16 · 24 · 32 · 48 · 64`. Raio `--r-sm 6px` · `--r-md 12px`. Borda 1 px em `--traco`.
+Sombra única: `0 1px 2px rgba(15,37,57,.06)`. **A caixa do resultado não usa sombra: usa borda esquerda de 3 px em `--sinal`.**
