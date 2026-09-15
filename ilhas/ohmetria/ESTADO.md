@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 0
 primeira_indexacao: null
 ultima_execucao: 2026-09-15T11:17Z
-executando_desde: null
+executando_desde: 2026-09-15T13:19Z
 rede: bloqueada em 2026-09-15   # 20.1: o dominio nao esta na lista de Dominios permitidos. RETESTADA as 11h19Z desta execucao, nao herdada. Despacho ALTO para o Raphael em dados/despachos.md
 bloco_atual: |
   BLOCO 4 ENTREGUE — a F1 existe como REGRA e ainda nao como PAGINA. ferramentas/f1-referencia.py (o cerebro: entrada -> resposta inteira, ja em frase acentuada), dados/f1-respostas.json (os 144 estados varridos mais a tabela pre-renderizada de 24 linhas, publicar false), ferramentas/gerar-f1.py, ferramentas/teste-f1.py e ferramentas/mutacoes-f1.py. NADA foi ao ar: esta ilha nao tem site, nao tem Sync e nao tem /status, e dizer que verificou no ar seria inventar.
