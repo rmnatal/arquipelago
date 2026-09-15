@@ -11,6 +11,30 @@ Prioridade: `alta` fura a fila da próxima execução do destinatário.
 
 ## ABERTOS
 
+### prioridade NORMAL — a função que apaga o cache tem um buraco em DUAS ilhas, e o que o fecha é uma linha
+
+15/09/2026 — FUNDAÇÃO — Achado na aquametria, ao portar a purga do cache do hospedeiro e escrever para ela o portão que a robometria e a clubedomosaico nunca tiveram. Está aqui, e não no `PROMPT.md` daquelas ilhas, porque a seção 3 proíbe editar arquivo de ilha que não se reservou — o conserto é de quem reservar cada uma.
+
+**A armadilha, e ela é da linguagem:** `realpath('')` **não devolve `false` em PHP — devolve o DIRETÓRIO DE TRABALHO ATUAL.** `<ilha>_casca_esvaziar_pasta( $pasta, $raiz )` contém a raiz certa (o caminho real tem de começar pelo caminho real da raiz), e com os dois argumentos vazios essa guarda compara o diretório atual **consigo mesmo**, aprova, e a recursão esvazia de onde o processo estiver rodando.
+
+**Não é teoria: aconteceu.** Na primeira execução do portão novo, um caso que passava `''` nos dois argumentos apagou a pasta inteira da aquametria — **117 arquivos**, recuperados na hora com `git checkout` porque o repositório é o lugar do trabalho (seção 3). Num servidor não haveria de onde recuperar.
+
+**No site, hoje, nada disso acontece nas três ilhas**, e é importante dizer: o único chamador monta o caminho a partir de `WP_CONTENT_DIR` e já exige `'' !== $pasta && is_dir( $pasta )`. O defeito é da **função**, não do caminho de produção — mora ali esperando o dia em que alguém a chamar de outro lugar, ou refatorar o chamador. Por isso **NORMAL e não ALTA**: é risco guardado, não sangramento.
+
+**O que fazer, e é uma linha, na primeira execução que reservar cada ilha:** no começo de `robometria_casca_esvaziar_pasta()` (em `ilhas/robometria/snippets/robometria-casca.php`) e de `cdm_casca_esvaziar_pasta()` (em `ilhas/clubedomosaico/snippets/clubedomosaico-casca.php`), recusar o vazio **antes** da comparação:
+
+```php
+if ( ! is_string( $pasta ) || ! is_string( $raiz ) || '' === $pasta || '' === $raiz ) {
+	return;
+}
+```
+
+**E a metade que importa mais que a linha:** copiar o portão junto, senão a linha é retirada no primeiro dia em que alguém a achar redundante. Os dois arquivos estão prontos para copiar da aquametria e não dependem de nada dela: `ilhas/aquametria/ferramentas/teste-purga-cache.php` (constrói as armadilhas em disco numa pasta temporária — pasta irmã, `..`, pasta cujo nome apenas COMEÇA pelo da raiz, link simbólico, raiz inexistente e caminho vazio —, com uma **testemunha** do lado de fora em cada caso, e reproduz o acidente numa pasta sacrificável) e `ilhas/aquametria/ferramentas/mutacoes-purga-cache.py` (quebra a casca de sete jeitos e cobra que o portão reprove **pela afirmação certa**, mais o mundo intacto, que tem de passar). Medidos: 21 afirmações e 8 baterias, zero inertes.
+
+**A lição de método, porque ela é maior que o caso:** a guarda estava escrita como "o caminho real tem de estar DENTRO da raiz real", que é a pergunta certa — e `realpath()` respondeu por um caminho que nunca foi pedido. **Guarda que confia numa função de biblioteca para dizer "isto não existe" herda todos os valores que essa função devolve quando a entrada é degenerada.** É a mesma família do número de tela digitado da seção 8, um nível abaixo: aqui o que parece medido é a *impossibilidade*, não o número.
+
+**Pronto quando:** as duas ilhas recusarem o caminho vazio e cada uma tiver a bateria rodando verde e com zero inertes, registrado no `REGISTRO.md` da própria ilha.
+
 ### prioridade NORMAL — o cache do hospedeiro atrasa a entrega de toda ilha, e existe um jeito de encurtar isso
 
 14/09/2026 — RAPHAEL — **Este despacho foi aberto como ALTA e rebaixado na mesma execução, e o motivo está escrito porque ele vale mais que o pedido.** Por volta das 16h eu escrevi aqui que a robometria estava "publicando para ninguém" e pedi purga urgente no painel. **Estava errado**, e o erro era de método: eu comparava cabeçalhos obtidos com `curl -I` (HEAD) com o corpo obtido num GET feito segundos depois — duas requisições, dois estados do cache. Medidos juntos, os dois concordam. **Às 16h07 o endereço canônico servia o bloco de hoje inteiro**, com as quatro saídas de compra, sem a frase proibida e com "73 linhas" na tabela. Se você já tiver ido ao painel por causa do aviso que eu mandei, desculpe o passeio.
@@ -24,6 +48,37 @@ Prioridade: `alta` fura a fila da próxima execução do destinatário.
 **Pronto quando:** existir, no ambiente das rotinas, uma credencial de purga — ou a confirmação escrita de que o painel não oferece nenhuma, e aí a purga por código fica sendo a resposta final.
 
 ### prioridade ALTA — o cache do hospedeiro pode estar segurando bloco de OUTRA ilha, e ninguém saberia
+
+> **FECHADO em 15/09/2026, 11h36Z, com a AQUAMETRIA — a ilha que faltava.** O
+> "pronto quando" deste despacho pedia, nas três ilhas, uma afirmação pondo o
+> endereço canônico contra o mesmo endereço com quebra de cache, **e ela
+> passando**. A aquametria agora tem `ferramentas/conferir-cache-do-host.py`:
+> **43 afirmações, 0 falha**, sobre as **40 URLs do sitemap**, com a lista
+> nascendo do sitemap e não digitada. Casca 1.10.0, manifest revisão 88,
+> `/status` em 88.
+>
+> **E O QUE ESTE DESPACHO SUPUNHA SOBRE A AQUAMETRIA ESTAVA MEIO CERTO — a
+> metade errada é a que vale para as próximas ilhas.** Ele registrou, medindo a
+> home em 14/09, que esta ilha "não traz a assinatura" do Endurance e que "não
+> foi medido página por página", deixando no ar a hipótese de que talvez ela não
+> tivesse a camada. Medido agora nas 40 URLs, com cabeçalho e corpo na MESMA
+> requisição: a assinatura realmente **não** aparece no corpo — e
+> `x-server-cache: true` aparece nas **40**, com `x-proxy-cache` e
+> `cache-control: max-age=7200`. **A ausência da assinatura nunca foi prova de
+> ausência do cache**: era a régua procurando um comentário no corpo quando a
+> camada se anuncia no cabeçalho. Toda ilha futura confere o CABEÇALHO.
+>
+> **A purga entregou, e a atribuição é do relógio, não do otimismo.** Às 11h18Z,
+> antes do bloco, a home servia `expires: 13:17:13` — entrada criada às 11h17:13,
+> que só venceria sozinha às 13h17:13. Depois do segundo Sync (11h34:02Z) a home
+> serve `expires: 13:34:09`, ou seja **entrada recriada às 11h34:09**, com
+> `x-proxy-cache` saindo de HIT para MISS. O vencimento por tempo está descartado
+> pelo relógio, e sobra a purga. Continua sendo atribuição e não prova, como na
+> robometria — e é a causa mais forte que se tem sem acesso ao painel.
+>
+> **O segundo Sync foi disparado por regra, não por sintoma:** a descoberta da
+> clubedomosaico (logo abaixo) diz que no Sync que INSTALA a casca o PHP já
+> carregado é o anterior. Dois disparos, 11h33:55Z e 11h34:02Z.
 
 > **CUMPRIDO NA CLUBEDOMOSAICO em 14/09/2026, 18h40Z — e a medição achou uma coisa
 > que o despacho não previa e que vale para TODA ilha: a purga só passa a valer no
