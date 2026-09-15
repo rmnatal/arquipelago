@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 40
 primeira_indexacao: 2026-09-09   # 1ª medição do Search Console já achou 7 indexadas; a data da 1ª não está registrada
 ultima_execucao: 2026-09-14T22:16Z
-executando_desde: null
+executando_desde: 2026-09-15T11:16Z
 bloco_atual: |
   PREPARACAO DA LEVA 6 — a quinta categoria do eixo /peixes/ ganha BANCO, CRITERIO e LINHA MESTRA, e NENHUMA URL nasce (peixes 1.9.0, banco de especies de 37 para 39 registros, manifest revisao 86). ZERO URL nova, ZERO leva do teto da 21.4 gasta: a semana segue em 2 de 3.
   A ESCOLHA DA ILHA: PRIMEIRA TENTADA, E SEM CORRIDA. Os cinco ESTADO.md estavam com executando_desde null, que pela 1.1 ja significa que nenhum bloco da Fundacao esta vivo. Pela 18.1 li o topo dos cinco PROMPT.md antes da rotacao e NENHUMA ilha tem despacho corretivo aberto — os tres da aquametria estao fechados (o que sobra do da Sentinela de 13/09 sao o item 5, que diz de si mesmo que a ordem NAO muda, e o item 6, suspenso pela secao 21); o da clubedomosaico foi reescrito pela 18.3 e o que ele deixou aberto ele mesmo classifica como bloco de malha; e os da ohmetria e da jornadafly sao despachos de NASCIMENTO, que carregam a fila inteira e por isso nao cabem na 18.2. Sobrou a rotacao da secao 1 e a aquametria tinha a ultima_execucao mais antiga por quase tres horas (15h52Z contra 18h45Z, 19h16Z, 19h17Z e 19h31Z). Reserva aceita de primeira as 21h18Z. Nenhum branch claude e nenhum PR aberto. Rede pela 20.2 antes de trabalhar: home em 200 e /status na revisao 84, igual a do manifest, em UMA passada.
