@@ -3,6 +3,229 @@
 Log append-only da Fundação. Cada execução escreve aqui o bloco entregue e o
 próximo passo desbloqueado.
 
+## 2026-09-15 11h25Z — Coliseu e Torre Eiffel entram, a pergunta da moeda é respondida com uma regra, e `existe_hoje` deixa de ser prosa
+
+**O que saiu:** o **Coliseu de Roma** e a **Torre Eiffel** entram no banco, com Roma e
+Paris como terceira e quarta cidades. O banco foi de 2 para 4 experiências, de 5 para
+11 versões, de 2 para 4 cidades e de 5 para 7 fontes; esquema e banco passam à versão 3.
+Nasceram no esquema a `regra_de_crescimento_de_vocabulario` e o valor
+`concessionaria_de_bem_publico`, e `existe_hoje` da escada virou campo **derivado**, com
+régua. **Nada foi ao ar: esta ilha não tem site, Sync nem `/status`, e dizer que
+verifiquei no ar seria inventar.**
+
+**A ESCOLHA DA ILHA: SEGUNDA TENTADA, uma perdida na corrida do push.** Os cinco
+`ESTADO.md` do `main` real parseiam em `yaml.safe_load` e os cinco estavam com
+`executando_desde: null`, que pela 1.1 já significa que nenhum bloco da Fundação está
+vivo — não houve reserva vencida para o git desempatar. Pela **18.1** li o topo dos
+cinco `PROMPT.md` antes da rotação e **nenhuma ilha tem despacho com item acionável pela
+Fundação**: o da robometria tem os itens 1, 2 e 3 **cumpridos**, o 4 dependendo da sessão
+logada da Shopee (25.6) e o 5 sendo achado de método endereçado ao Raphael; os da
+ohmetria e da jornadafly são de **nascimento**, que carregam a fila inteira e não cabem
+na 18.2; os da aquametria e da clubedomosaico estão fechados. Os despachos de
+`dados/despachos.md` que estão abertos são todos para o **Raphael**, não para a Fundação.
+Sobrou a rotação da seção 1: pedi a **ohmetria**, a mais antiga (21h20Z), e o push foi
+**RECUSADO** — duas outras execuções tinham reservado a aquametria às 11h16Z e a
+ohmetria às 11h17Z. Voltei ao passo 2 sem force push. Sobraram três, com **jornadafly e
+robometria empatadas em 23h35Z** e as duas de prioridade 1; o desempate alfabético da
+seção 1 dá a jornadafly. Reserva aceita às **11h25Z**. Nenhum PR aberto, e as branches
+`claude/*` do repositório ou já estão mescladas no `main` ou são anteriores a uma
+reescrita de história dele — nenhuma carrega trabalho a mesclar.
+
+**REDE PELA 20.2, RETESTADA E NÃO HERDADA:** três passadas, `jornadafly.com.br` e
+`www.jornadafly.com.br` em `000` nas três, com `aquametria.com.br` e `robometria.com.br`
+em `200` nas mesmas três. Seis medições de bloqueio contra seis de controle verde, igual
+às três execuções anteriores. Segue bloqueada, e `bloqueada_por` segue `null` de
+propósito: o que a rede trava é o 3b em diante, não o bloco de arquivo.
+
+### A pergunta da moeda tinha duas saídas postas, e a resposta não era nenhuma das duas
+
+A carga de 14/09 fechou mandando quem gravasse a próxima cidade decidir primeiro: **ou o
+vocabulário de `moeda` cresce com as moedas que os operadores realmente cobram, ou o
+banco fica restrito a três moedas e a ilha diz por quê.** As duas saídas tratam o
+vocabulário como uma lista a dimensionar. Ele não é: é uma promessa.
+
+Nasceu a **`regra_de_crescimento_de_vocabulario`**: valor de vocabulário controlado
+nasce **junto com o primeiro registro que o usa**, nunca antes dele. Então JOD, AED, ARS
+e VND **não entram hoje**, e o motivo fica escrito — nenhum registro do banco cobra
+nelas. Entram no commit de Petra, Dubai, Buenos Aires ou Ha Long. É a cicatriz que a
+ohmetria pagou em 14/09: vocabulário sem lastro faz o gerador oferecer um valor que
+nenhum registro sustenta, e toda frase de inexistência da tela fica sem como ser
+conferida.
+
+**E a regra foi exercida no mesmo commit, por outro vocabulário.** `tipo_de_operador`
+ganhou `concessionaria_de_bem_publico` porque a Torre Eiffel precisa dele: a SETE opera o
+monumento **sob concessão da cidade de Paris**, e não é o poder público declarando tarifa
+nem uma empresa privada qualquer. Chamar de um dos dois seria pôr o número na boca de
+quem não o publicou. O valor nasce com o registro que o carrega, que é a regra se
+cumprindo na mesma passada em que foi escrita.
+
+### O Coliseu é o primeiro registro publicável por PÁGINA DE TARIFA, e não por ato
+
+A `regra_do_documento_nomeado` nasceu em 14/09 dizendo que se sai dela "nomeando o
+documento — o ato, a **tabela** ou a **página de tarifa** da própria autoridade". Até
+hoje **só o ato tinha sido exercido**, pela gôndola e a sua Delibera 89/2023; o Angkor
+não saiu porque a autoridade dele só devolveu uma página de perguntas frequentes, e por
+isso segue `pendente_de_releitura`.
+
+O Coliseu sai pelo terceiro caminho. A passada em inglês devolveu, por endereço, a
+página de horários e bilhetes do próprio órgão (`colosseo.it/en/opening-times-and-tickets/`)
+e a página de categorias de bilhete do sistema oficial de venda
+(`ticketing.colosseo.it/en/categorie/singoli-1-8-persone/`), e a passada em português já
+tinha devolvido `ticketing.colosseo.it` por nome como o canal oficial. **Duas versões,
+convergentes nas duas passadas:** €18 no ingresso comum de 24 horas, que inclui Coliseu
+nos níveis 1 e 2 mais uma entrada no Fórum Romano e no Palatino, e €22 na Experiência
+Completa, que acrescenta uma área restrita. `url` continua `null` nas duas fontes desta
+carga, e o motivo é o de sempre: **endereço visto em resultado de busca não é página
+lida** — `colosseo.it`, `www.coopculture.it`, `www.toureiffel.paris` e `civitatis.com`
+deram `000` às 11h31Z, com o proxy declarando CONNECT recusado por política. É isso que
+mantém a fonte no nível 3 e não no 1.
+
+### A Torre Eiffel é o primeiro registro de NÍVEL 4 deste banco
+
+O degrau do **operador lido por busca** estava marcado no esquema como `existe_hoje:
+false`. Ele passou a existir, e a diferença não é de grau: o que a busca devolveu não é
+alguém falando da tarifa, são **as páginas de tarifa do próprio operador, uma por
+bilhete, com o preço no título de cada uma** — 14,80€ pela escada até o segundo piso,
+23,50€ pelo elevador até o segundo, 28,00€ no combinado escada mais elevador até o topo e
+36,70€ pelo elevador até o topo. A segunda passada, em inglês, devolveu a grade inteira
+por faixa etária e bate nas pontas com a primeira (3,80€ e 18,40€ para criança e jovem).
+
+**Quatro versões, e nenhuma delas é escada de dias** — é escada de *acesso*, que o banco
+não tinha. E a fonte declara a duração pelo avesso: "o seu ingresso só tem horário para
+entrar, a saída é livre". Gravar minutos ali inventaria um limite que o operador diz não
+ter, e é o contrário do Coliseu, que declara validade de 24 horas. **Das duas formas quem
+declara é a fonte**, e é por isso que `duracao_minutos` é `null` nas seis versões desta
+carga, cada uma com o seu motivo escrito.
+
+### O achado de modelo, e os dois registros são a prova
+
+**`faixa_etaria` é da VERSÃO e o esquema a põe na EXPERIÊNCIA.** Na Torre Eiffel a
+criança de 4 a 11 anos paga **3,80€ pela escada e 9,20€ pelo elevador até o topo** — a
+mesma faixa, quatro preços; o jovem de 12 a 24 vai de 7,40€ a 18,40€ pelo mesmo caminho.
+`faixa_etaria` guarda **um** preço por faixa, então gravar essas três publicaria o número
+errado para três das quatro versões. Só a gratuidade dos menores de 4 anos, que vale
+igual nos quatro bilhetes, cabe no campo como ele é hoje — e é só ela que está gravada.
+
+**Não apareceu antes porque o mundo não se movia:** a gôndola não tem faixa etária e a do
+Angkor vale igual nas três versões do passe. Campo que só erra quando o mundo se move
+parece certo até o mundo se mover — a mesma forma que esta ilha já pagou no resumo e no
+piso.
+
+### A divergência mais cara que esta ilha já mediu, e ela ficou FORA de `declaracoes`
+
+As duas passadas do Coliseu **discordam sobre quem não paga**, e discordam exatamente
+onde o leitor brasileiro tem mais a perder:
+
+| | Passada em português | Passada em inglês |
+|---|---|---|
+| gratuidade até 18 anos | só para cidadão de Estado-membro da UE | «free to citizens of **EU and non-EU** countries» |
+| gratuidade universal | menores de 6 anos | menores de 18, de qualquer nacionalidade |
+| reduzida de 18 a 25 (UE) | €4 | cerca de €2 |
+| 18 a 25 de fora da UE | não diz | paga a tarifa cheia |
+
+Nenhuma das duas é autoridade — as duas são **publicador editorial, nível 6** —, e a
+regra de divergência **sem autoridade** desta ilha resolve para o valor **maior**, porque
+o erro caro é subestimar. Resolvido pelo maior, **o adolescente brasileiro paga os €18 do
+adulto**, e é isso que a página vai dizer: que a gratuidade está em disputa entre as
+fontes, com o nome de quem publicou cada versão, e que a conta do grupo é feita pelo
+cheio até a autoridade declarar.
+
+**E ela não entrou em `declaracoes`, de propósito.** Declaração, neste esquema, discorda
+de uma **VERSÃO** — e faixa etária não é versão. Gravar ali diria que essas fontes
+discordam do preço do bilhete, e elas não discordam: os €18 e os €22 voltaram idênticos
+nas duas passadas. É a mesma raiz do achado acima, e está nomeada no esquema em
+`faixa_etaria_e_da_VERSAO_e_o_esquema_a_poe_na_EXPERIENCIA`.
+
+### `existe_hoje` era a prosa mais silenciosa do esquema
+
+Cada degrau da escada declara `existe_hoje`, e **nenhuma régua recomputava isso**. É a
+família do número de tela digitado, na sua forma mais quieta: um `existe_hoje: false`
+velho faz a ilha **negar um degrau que ela já alcançou**, e nada no banco contradiz a
+frase. Esta carga é justamente a ocasião em que um campo desses envelhece — o nível 4
+passou de `false` a `true`.
+
+O validador passou a **derivar `existe_hoje` das fontes do banco** e a reprovar o gravado
+que discordar, **nas duas direções**: degrau negado que o banco pisa, e degrau prometido
+que nenhuma fonte pisa. E a régua nova achou uma interação **no mesmo dia em que
+nasceu**: ela reprovou um MUNDO que passava havia uma carga — o `mundo_sem_divergencia`,
+que apaga as declarações e, com elas, as fontes editoriais, e portanto tem de apagar o
+degrau 6 junto. **Régua que só mede o banco real é régua com metade do mundo desligada**,
+e foi o mundo produzido que mostrou isso.
+
+### A bancada passou a cobrar a FRASE, e não só o veredito
+
+Mutação ganhou um quinto elemento opcional: a frase que a quebra tem de ouvir de volta.
+**Reprovar não é a mesma coisa que reprovar pelo motivo certo** — sem isso, uma mutação
+pode disparar outra trava, voltar verde e nunca ter medido a sua, que é a forma de
+mutação inerte mais difícil de ver, porque o relatório fica todo `ok`. É a régua que a
+ohmetria escreveu em 14/09, trazida para cá.
+
+### Verificação, 0 falha
+
+- `python3 ferramentas/validar-banco.py` — verde sobre o banco real, com as duas réguas
+  novas.
+- `python3 ferramentas/mutacoes-banco.py` — **53 mutações** (eram 49): **6 mundos que têm
+  de PASSAR** e **47 quebras que têm de REPROVAR**, todas decidindo certo nos dois lados
+  da fronteira, **3 delas cobradas pela frase**.
+- **Nenhuma mutação nova é inerte, e as duas foram provadas uma a uma.** Trocando a frase
+  esperada de uma quebra por outra trava real, a bancada acusa e sai com código 1. E
+  tirando do mundo do degrau novo o ajuste do esquema, ele **reprova** — ou seja, ele não
+  passava de graça.
+- **A régua pegou o que existe para pegar:** as cinco contagens do `resumo` ficaram para
+  trás quando os dois registros entraram, e o validador reprovou as cinco antes do
+  commit. Número que a ilha publica sobre si mesma nasce contado.
+- Os três JSON passam por `json.load` e o cabeçalho do `ESTADO.md` por `yaml.safe_load`.
+  Conferida também a acentuação nas duas direções: **zero** id, slug ou valor de
+  vocabulário acentuado, e os nomes de tela acentuados.
+- **`vocabulario_sem_lastro` passou a ser publicado a cada passada**, que é a outra
+  metade da regra de crescimento: hoje **4 de 6** em `categoria`, **3 de 5** em
+  `tipo_de_operador`, **2 de 4** em `unidade_de_preco`, **1 de 3** em `moeda` e **1 de 3**
+  em `status_do_registro`; `momento_do_dia` é o único com lastro inteiro. É **aviso e não
+  erro**, de propósito: os valores que o bloco 3 já trazia são anteriores à regra e não
+  viram defeito retroativo. O que fica proibido enquanto a lista não for vazia é a ilha
+  publicar **frase de inexistência**.
+
+### Uma diferença que ninguém tinha medido, e ela é sobre o piso
+
+Os resultados de hoje trazem o host da plataforma com `www.`
+(`www.civitatis.com/br/roma/`), e o molde do esquema foi escrito no bloco 2 com o host
+**sem** `www`, do jeito que ele foi visto lá. As duas formas apareceram em dias
+diferentes e nenhuma das duas páginas foi aberta. O piso continua sendo **derivado do
+molde**, e é assim que fica: piso derivado que envelhece junto é melhor que piso digitado
+que envelhece calado. Está escrito na `nota_do_slug` das duas cidades novas.
+
+### Achado de higiene, e ele não é desta carga
+
+Os commits de **00h20Z, 00h32Z e 00h45Z de 15/09** fizeram o símbolo, a fonte da marca e
+os quatro lockups desta ilha e **não fecharam a execução**: não há entrada neste
+`REGISTRO.md`, o cabeçalho do `ESTADO.md` nunca foi tocado e nenhuma reserva foi escrita.
+Os arquivos estão no `main` e o `DESIGN.md` os documenta — **o que falta é o rastro**.
+Fica dito aqui para a próxima execução não procurar o registro que não existe, e para o
+`ultima_execucao` de 23h35Z não ser lido como se nada tivesse acontecido depois dele.
+
+### Aberto e nomeado
+
+(a) a **rede** da ilha, despacho ALTO, que trava 3b em diante — remedida hoje, não
+herdada; (b) o **câmbio**, no mesmo despacho, que custa uma linha e não trava bloco;
+(c) a **seção pendente do `VOZ.md`** — as 10 a 15 legendas reais do @jornadafly, que o
+`PROMPT.md` exige antes da primeira página; (d) a **identidade visual**, que precisa da
+aprovação do Raphael antes do 3b (o símbolo e os lockups existem desde 15/09, e é a
+aprovação que falta); (e) **nenhum programa de afiliado cadastrado**; (f) **não existe
+`manifest.json`**, e criá-lo vazio seria inventar infraestrutura antes do WordPress.
+
+### Próximo passo desbloqueado
+
+**Mover `faixa_etaria` de EXPERIENCIA para VERSAO**, com a régua e as mutações junto, e
+migrar os registros da gôndola e do Angkor na mesma passada. Esta carga mediu que o campo
+está no lugar errado e deixou os dois registros novos pagando o preço disso: a Torre
+Eiffel publica **uma** das quatro faixas que a fonte declara, e o Coliseu publica
+**nenhuma**. É a mudança que destrava a divergência do Coliseu sair do motivo e virar
+dado — e ela **não depende de site, de domínio nem da rede bloqueada**.
+
+**A carga continua disponível pelo mesmo canal e pela mesma lista:** dos três nomes que a
+carga de 14/09 deixou, **dois saíram hoje** e sobra **Petra**, que trai a moeda (JOD) e
+agora tem regra dizendo o que fazer com isso — o valor nasce no commit do registro.
+
 ## 2026-09-14 23h18Z — A CARGA DO BANCO, e o achado é sobre o CANAL: a busca devolve faixa onde o preço é de operador e devolve número onde há tabela pública
 
 **O que saiu:** o **Angkor Pass** entra no banco com as três versões da escada de dias

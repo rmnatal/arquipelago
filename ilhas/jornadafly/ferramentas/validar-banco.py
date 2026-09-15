@@ -259,6 +259,27 @@ def validar(esquema, banco, constantes=None, hoje=None):
         if not _e_data(fonte.get("data_leitura")):
             erro("%s: `data_leitura` ausente ou nao e data." % onde)
 
+    # `existe_hoje` de cada degrau e DERIVADO: verdadeiro quando alguma fonte do
+    # banco declara aquele nivel. Ate 15/09/2026 este campo era prosa que ninguem
+    # recomputava, e e a familia mais silenciosa do numero digitado — um
+    # `existe_hoje: false` velho faz a ilha dizer que nao alcanca um degrau que ela
+    # ja alcancou, e nada no banco contradiz a frase.
+    niveis_no_banco = set(f.get("nivel") for f in banco.get("fontes", []))
+    for nivel, degrau in sorted(niveis.items()):
+        if "existe_hoje" not in degrau:
+            erro("esquema: escada_de_fontes nivel %s sem `existe_hoje`. O campo e "
+                 "derivado do banco e a regua precisa dele para ter o que comparar."
+                 % nivel)
+            continue
+        derivado = nivel in niveis_no_banco
+        if bool(degrau.get("existe_hoje")) != derivado:
+            erro("esquema: escada_de_fontes nivel %s grava `existe_hoje` %r e o banco "
+                 "da %r (%s fonte(s) neste degrau). O campo e DERIVADO das fontes do "
+                 "banco; gravado a mao ele envelhece calado, e um `false` velho faz a "
+                 "ilha negar um degrau que ja alcancou."
+                 % (nivel, degrau.get("existe_hoje"), derivado,
+                    sum(1 for f in banco.get("fontes", []) if f.get("nivel") == nivel)))
+
     fontes_usadas = set()
 
     # ------------------------------------------------------------------
@@ -718,6 +739,43 @@ def validar(esquema, banco, constantes=None, hoje=None):
     for v in vencidos:
         aviso("preco vencido: %s. Item vencido e defeito de ronda, nunca item escondido — "
               "a data de leitura vai para a tela vencida ou nao." % v)
+
+    # VOCABULARIO SEM LASTRO — a outra metade da regra de crescimento de vocabulario
+    # do esquema, e ela e AVISO e nao erro de proposito. A regra nasceu em 15/09/2026
+    # dizendo que valor novo nasce junto com o registro que o usa; os valores que o
+    # esquema do bloco 3 ja trazia sao anteriores a ela e nao viram defeito
+    # retroativo. O que a regra proibe enquanto esta lista nao for vazia e a ilha
+    # publicar FRASE DE INEXISTENCIA — "nenhuma experiencia cobra em real", "nao ha
+    # free tour no banco" —, porque essa frase so tem lastro quando o vocabulario e
+    # a cobertura dizem a mesma coisa. Publicada a cada passada para ser contada, que
+    # e a diferenca entre uma divida conhecida e uma frase que ninguem confere.
+    if vocab:
+        usados = {
+            "moeda": set(),
+            "unidade_de_preco": set(),
+            "categoria": set(),
+            "tipo_de_operador": set(),
+            "momento_do_dia": set(),
+            "status_do_registro": set(),
+        }
+        for cidade in banco.get("cidades", []):
+            usados["moeda"].add(cidade.get("moeda_local"))
+        for exp in banco.get("experiencias", []):
+            usados["categoria"].add(exp.get("categoria"))
+            usados["status_do_registro"].add(exp.get("status"))
+            usados["tipo_de_operador"].add((exp.get("operador") or {}).get("tipo"))
+            for versao in exp.get("versoes", []):
+                usados["moeda"].add(versao.get("moeda"))
+                usados["unidade_de_preco"].add(versao.get("unidade_de_preco"))
+                usados["momento_do_dia"].add(versao.get("momento_do_dia"))
+        for chave in sorted(usados):
+            sem_lastro = [v for v in vocab.get(chave, []) if v not in usados[chave]]
+            if sem_lastro:
+                aviso("vocabulario_sem_lastro em `%s`: %d de %d sem um registro que os "
+                      "use (%s). Enquanto isto nao for vazio, frase de inexistencia "
+                      "sobre este vocabulario esta proibida na tela."
+                      % (chave, len(sem_lastro), len(vocab.get(chave, [])),
+                         ", ".join(sem_lastro)))
 
     return erros, avisos, calculado
 

@@ -367,6 +367,52 @@ def q_esquema_sem_regra_do_documento(banco):
     return banco
 
 
+# ---------------------------------------------------------------------------
+# A ESCADA SABER DE SI MESMA — mutacoes de 15/09/2026, com a carga do Coliseu e
+# da Torre Eiffel. `existe_hoje` era prosa do esquema que nenhuma regua
+# recomputava, e a carga que o moveu (nivel 4 de false para true) e exatamente a
+# ocasiao em que um campo desses envelhece calado.
+# ---------------------------------------------------------------------------
+
+def mundo_degrau_novo_alcancado(banco):
+    """O lado que tem de PASSAR: um degrau que o banco nao pisava passa a ter fonte,
+    e o esquema e atualizado junto. Sem este mundo a trava so saberia dizer nao, e
+    uma trava assim aprovaria um esquema em que NENHUM degrau existe."""
+    banco["fontes"].append({
+        "id": "plataforma-lida-na-propria-plataforma",
+        "nivel": 5,
+        "origem": "plataforma",
+        "leitura": "busca_web",
+        "autor": "plataforma de reserva, lida na propria plataforma",
+        "documento": "pagina de produto da plataforma",
+        "url": None,
+        "motivo_sem_url": "mundo produzido por mutacao",
+        "data_leitura": "2026-09-15",
+    })
+    # e a fonte tem de ser USADA: fonte colhida que ninguem usa ja e reprovada por
+    # outra trava, e mundo que reprova por trava alheia nao mede a sua.
+    _achar(banco, "roma-coliseu-ingresso")["versoes"][1]["fonte"] = \
+        "plataforma-lida-na-propria-plataforma"
+    return sincronizar_resumo(banco)
+
+
+def q_degrau_alcancado_declarado_inexistente(banco):
+    """O `false` velho, que e a direcao SILENCIOSA do defeito: a ilha nega um degrau
+    que ja alcancou, e nada no banco contradiz a frase."""
+    return banco
+
+
+def q_degrau_inexistente_declarado_alcancado(banco):
+    """A outra direcao: o esquema promete um degrau que nenhuma fonte pisa."""
+    return banco
+
+
+def q_degrau_sem_o_campo(banco):
+    """Apagar a chave do ESQUEMA (secao 26.2). Regua que le `existe_hoje` do esquema
+    fica sem o que comparar e nao pode aprovar em silencio."""
+    return banco
+
+
 def q_esquema_sem_lista_de_origem(banco):
     """A mutacao da secao 26.2: nao estraga registro nenhum, apaga a chave do
     ESQUEMA. Regua que le a propria lista de um arquivo de dados aprova tudo, em
@@ -545,8 +591,9 @@ MUTACOES = [
     ("MUNDO preco por pessoa, escada de dias, crianca e temporada", mundo_por_pessoa, "passa", None),
     ("MUNDO preco por cabine", mundo_por_cabine, "passa", None),
     ("MUNDO item com link rastreado e intestavel", mundo_com_link_rastreado, "passa", None),
-    ("MUNDO experiencia sem divergencia nenhuma", mundo_sem_divergencia, "passa", None),
+    ("MUNDO experiencia sem divergencia nenhuma", mundo_sem_divergencia, "passa", "degrau_6_negado"),
     ("MUNDO autoridade COM documento nomeado vira publicavel", mundo_autoridade_com_documento_nomeado, "passa", None),
+    ("MUNDO degrau novo alcancado, esquema e banco juntos", mundo_degrau_novo_alcancado, "passa", "degrau_5_prometido"),
 
     ("preco sem data de leitura", q_preco_sem_data, "reprova", None),
     ("divergencia sem resolucao", q_divergencia_sem_resolucao, "reprova", None),
@@ -565,6 +612,9 @@ MUTACOES = [
     ("ESQUEMA sem a lista de campos que exigem origem", q_esquema_sem_lista_de_origem, "reprova", "sem_lista"),
     ("ESQUEMA sem a escada de fontes", q_esquema_sem_escada, "reprova", "sem_escada"),
     ("ESQUEMA sem o molde do piso", q_esquema_sem_molde, "reprova", "sem_molde"),
+    ("ESCADA nega um degrau que o banco ja alcancou", q_degrau_alcancado_declarado_inexistente, "reprova", "degrau_4_negado", "existe_hoje"),
+    ("ESCADA promete um degrau que nenhuma fonte pisa", q_degrau_inexistente_declarado_alcancado, "reprova", "degrau_5_prometido", "existe_hoje"),
+    ("ESQUEMA sem o campo existe_hoje no degrau", q_degrau_sem_o_campo, "reprova", "degrau_sem_campo", "sem `existe_hoje`"),
     ("item sem piso de compra", q_item_sem_piso, "reprova", None),
     ("piso digitado a mao, fora do molde", q_piso_digitado, "reprova", None),
     ("afiliado.url ausente em vez de vazia", q_url_de_afiliado_ausente, "reprova", None),
@@ -605,6 +655,28 @@ def esquema_para(mutacao):
         del esquema["escada_de_fontes"]["niveis"]
     elif mutacao == "sem_molde":
         del esquema["piso_de_compra"]["molde"]
+    elif mutacao == "degrau_4_negado":
+        for d in esquema["escada_de_fontes"]["niveis"]:
+            if d["nivel"] == 4:
+                d["existe_hoje"] = False
+    elif mutacao == "degrau_5_prometido":
+        for d in esquema["escada_de_fontes"]["niveis"]:
+            if d["nivel"] == 5:
+                d["existe_hoje"] = True
+    elif mutacao == "degrau_6_negado":
+        # O mundo sem divergencia apaga as fontes editoriais junto com as
+        # declaracoes que elas sustentavam. Sem elas o degrau 6 deixa de existir
+        # NAQUELE mundo, e o esquema tem de acompanhar — e essa e a regra inteira:
+        # `existe_hoje` e derivado do banco, entao mundo que muda as fontes muda o
+        # campo junto. Foi a regua nova que descobriu isto, em 15/09/2026, ao
+        # reprovar um mundo que passava havia uma carga.
+        for d in esquema["escada_de_fontes"]["niveis"]:
+            if d["nivel"] == 6:
+                d["existe_hoje"] = False
+    elif mutacao == "degrau_sem_campo":
+        for d in esquema["escada_de_fontes"]["niveis"]:
+            if d["nivel"] == 3:
+                del d["existe_hoje"]
     return esquema
 
 
@@ -619,7 +691,15 @@ def main():
         sys.exit(1)
 
     falhas = []
-    for nome, funcao, espera, mut_esquema in MUTACOES:
+    com_frase = 0
+    for entrada in MUTACOES:
+        nome, funcao, espera, mut_esquema = entrada[:4]
+        # Quinto elemento, opcional: a FRASE que esta quebra tem de ouvir de volta.
+        # Nasceu em 15/09/2026, e o motivo cabe numa linha: reprovar nao e a mesma
+        # coisa que reprovar PELO MOTIVO CERTO. Sem isto, uma mutacao pode disparar
+        # outra trava, voltar verde e nunca ter medido a sua — que e a forma de
+        # mutacao inerte mais dificil de ver, porque o relatorio fica todo `ok`.
+        frase = entrada[4] if len(entrada) > 4 else None
         banco = funcao(copy.deepcopy(BANCO))
         esquema = esquema_para(mut_esquema)
         erros, _, _ = validar(esquema, banco, CONSTANTES)
@@ -627,12 +707,20 @@ def main():
         marca = "ok " if decidiu == espera else "NAO"
         if decidiu != espera:
             falhas.append((nome, espera, decidiu, erros))
+        elif frase is not None:
+            com_frase += 1
+            if not any(frase in e for e in erros):
+                marca = "NAO"
+                falhas.append((nome + " (reprovou, mas nao pela frase %r)" % frase,
+                               espera, decidiu, erros))
         print("  %s  %-52s espera %-7s deu %s" % (marca, nome[:52], espera, decidiu))
 
     mundos = sum(1 for m in MUTACOES if m[2] == "passa")
     quebras = len(MUTACOES) - mundos
     print("\n%d mutacoes: %d mundos que tem de PASSAR e %d quebras que tem de REPROVAR."
           % (len(MUTACOES), mundos, quebras))
+    print("%d delas declaram a FRASE que esperam ouvir de volta, e foram cobradas por ela."
+          % com_frase)
 
     if falhas:
         print("\n%d DECIDIRAM ERRADO:" % len(falhas))

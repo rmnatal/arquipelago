@@ -1,382 +1,679 @@
 {
-  "ilha": "jornadafly",
-  "bloco": 3,
-  "versao": 2,
-  "publicar": false,
-  "cumpre": "dados/esquema-banco.json",
-  "nota_da_versao_2": "Carga de 14/09/2026, as 23h. Entrou o Angkor Pass, com Siem Reap como segunda cidade e a escada de dias (1, 3 e 7) como versoes. E entrou o que a coleta MEDIU sobre o canal: das seis experiencias que o bloco 2 nomeou, tres foram tentadas por busca (balao da Capadocia, cruzeiro de Ha Long e quadriciclo de Dubai, em cinco passadas somadas) e as tres devolveram FAIXA sem dono, sem data e as vezes sem unidade — as duas passadas de Ha Long discordam entre por cabine e por pessoa, e entre dolar e dongue. A busca devolve numero onde ha tabela publica e devolve faixa onde o preco e de operador privado, que e justamente o tipo que o criterio de entrada PREFERE. As tres ficam como coleta em aberto com a causa medida, nunca como silencio.",
-  "nota_de_procedencia": "ESCRITA NO BLOCO 3 E VERDADEIRA PARA AQUELE DIA; a versao 2 acima diz o que mudou. O banco nasce com UM registro, e isso e decisao, nao atraso. O corpus do bloco 1 fecha dizendo 'o banco comeca vazio no bloco 3 e se enche por leitura na fonte de quem opera', e a secao 5 da especificacao do bloco 2 manda o contrario para UM caso: 'quem for escrever o bloco 3 le a 2.2 e grava o numero no banco, uma vez'. As duas frases falam de coisas diferentes e as duas valem: nenhum preco do CORPUS entra no banco, e a tarifa da gondola — colhida no bloco 2 com o ato que a sustenta — entra, uma vez. Nenhuma coleta nova foi feita nesta execucao: gravar Petra, Angkor, Ha Long, Dubai ou Buenos Aires exigiria ler a fonte de quem opera, e isso e trabalho de coleta, nao de modelo.",
-  "acentuacao": "Texto destinado a tela (rotulo, declarado_como, diz, motivos) e gravado ACENTUADO. Chave, id, slug e valor de vocabulario sao sem acento. E a cicatriz da Robometria, que publicou portugues sem acento vindo do banco e precisou de uma ferramenta so para restaurar.",
-  "cidades": [
-    {
-      "id": "veneza",
-      "nome": "Veneza",
-      "pais": "Itália",
-      "moeda_local": "EUR",
-      "slug_plataforma": "veneza",
-      "slug_plataforma_conferido_em": "2026-09-14"
-    },
-    {
-      "id": "siem-reap",
-      "nome": "Siem Reap",
-      "pais": "Camboja",
-      "moeda_local": "USD",
-      "slug_plataforma": "siem-reap",
-      "slug_plataforma_conferido_em": "2026-09-14",
-      "nota_da_moeda": "A moeda oficial do Camboja é o riel, e o campo não pergunta qual é a moeda do país: pergunta em que moeda o operador daquela cidade cobra. O Angkor Pass é vendido em dólar, e foi em dólar que as duas passadas independentes leram os três preços. Gravar KHR aqui seria descrever a bandeira e não o caixa.",
-      "nota_do_slug": "O segmento de cidade foi visto em 14/09/2026 no conjunto de resultados de uma busca restrita a civitatis.com, que devolveu duas páginas de produto no caminho brasileiro — /br/siem-reap/excursao-koh-ker/ e /br/siem-reap/tour-tres-dias-angkor/ — além da página em inglês da cidade. O endereço do piso não foi aberto: o egresso desta nuvem recusou civitatis.com no mesmo dia."
-    }
-  ],
-  "fontes": [
-    {
-      "id": "comune-venezia-tarifa-gondola",
-      "nivel": 3,
-      "origem": "poder-publico-via-busca",
-      "leitura": "busca_web",
-      "autor": "Comune di Venezia — Servizio Gondola",
-      "documento": "Delibera della Giunta Comunale n. 89, de 20/04/2023",
-      "url": null,
-      "motivo_sem_url": "O endereço exato da página do Servizio Gondola não foi registrado no bloco 2, e a leitura direta de www.comune.venezia.it foi recusada pelo egresso desta nuvem (EGRESS_BLOCKED, 14/09/2026). O documento está nomeado e datado; o endereço fica como coleta em aberto, e é o que faz esta fonte ser nível 3 e não nível 1.",
-      "data_leitura": "2026-09-14"
-    },
-    {
-      "id": "eurodicas-gondola",
-      "nivel": 6,
-      "origem": "publicador-editorial",
-      "leitura": "busca_web",
-      "autor": "turismo.eurodicas.com.br",
-      "documento": null,
-      "motivo_sem_documento": "Portal editorial: publica o número sem citar ato, tabela ou data de leitura. É exatamente o defeito que esta ilha existe para não repetir, e por isso a declaração dele fica registrada como divergência e nunca como preço.",
-      "url": null,
-      "motivo_sem_url": "O bloco 2 registrou o domínio e o que ele diz, não a URL do artigo. Reconferir na próxima coleta desta experiência.",
-      "data_leitura": "2026-09-14"
-    },
-    {
-      "id": "getyourguide-gondola-via-terceiros",
-      "nivel": 6,
-      "origem": "publicador-editorial",
-      "leitura": "busca_web",
-      "autor": "GetYourGuide, citada por terceiros",
-      "documento": null,
-      "motivo_sem_documento": "O número da plataforma não foi lido na plataforma: ele apareceu citado dentro de páginas de terceiros. A custódia e a leitura são de terceiro, então o elo mais fraco derruba a fonte para nível 6 — não é nível 5, que seria a plataforma lida na própria plataforma.",
-      "url": null,
-      "motivo_sem_url": "Mesma razão: a citação é de terceiro e o endereço do produto na plataforma não foi registrado.",
-      "data_leitura": "2026-09-14"
-    },
-    {
-      "id": "paginas-de-topo-pt-sem-atribuicao",
-      "nivel": 6,
-      "origem": "publicador-editorial",
-      "leitura": "busca_web",
-      "autor": "conjunto de páginas de topo em português, não atribuídas uma a uma",
-      "documento": null,
-      "motivo_sem_documento": "Nenhuma delas cita documento. E há um defeito de coleta registrado junto: o bloco 2 anotou o que o CONJUNTO publica, sem separar qual página disse qual número. Declaração sem publicador nomeado não vai para a tela.",
-      "url": null,
-      "motivo_sem_url": "idem",
-      "data_leitura": "2026-09-14"
-    },
-    {
-      "id": "angkor-enterprise-tarifa-via-busca",
-      "nivel": 3,
-      "origem": "poder-publico-via-busca",
-      "leitura": "busca_web",
-      "autor": "Angkor Enterprise — a empresa pública cambojana que vende o ingresso do Parque Arqueológico de Angkor",
-      "documento": null,
-      "motivo_sem_documento": "E é este vazio que fez nascer a `regra_do_documento_nomeado` do esquema. Duas passadas independentes, uma em português e uma em inglês, nenhuma delas carregando número dentro da pergunta, devolveram os MESMOS três preços e atribuíram os três, por nome, ao vendedor oficial. Nenhuma das duas devolveu ato, deliberação, tabela de tarifa ou página de preço da própria autoridade. É a diferença exata para a tarifa da gôndola, que é do mesmo nível e cita a Delibera 89 de 20/04/2023: lá o número tem endereço dentro da autoridade, aqui ele tem só procedência falada. Por isso o registro que esta fonte sustenta nasce `pendente_de_releitura`.",
-      "url": null,
-      "motivo_sem_url": "O endereço da autoridade apareceu por nome no conjunto de resultados de duas buscas — a raiz `angkorenterprise.gov.kh/en` e a página de perguntas frequentes `/en/faqs` —, mas nenhuma das duas foi lida: às 23h30Z de 14/09/2026 o WebFetch de www.angkorenterprise.gov.kh devolveu EGRESS_BLOCKED e o curl devolveu 000 no mesmo minuto. Endereço visto no resultado de busca não é página lida, e gravar a URL aqui daria à fonte uma procedência que ela não tem.",
-      "data_leitura": "2026-09-14"
-    }
-  ],
-  "experiencias": [
-    {
-      "id": "veneza-passeio-de-gondola",
-      "nome": "Passeio de gôndola em Veneza",
-      "cidade": "veneza",
-      "categoria": "atividade_com_tarifa_tabelada",
-      "operador": {
-        "nome": "gondoleiros de Veneza, com tarifa fixada pelo Comune di Venezia",
-        "tipo": "poder_publico",
-        "url": null,
-        "motivo_sem_url": "Não há um operador único com página de reserva: quem cobra é cada gondoleiro, e quem fixa o preço é a prefeitura. É por isso que esta experiência tem autoridade e as outras seis medidas no bloco 2 não têm."
-      },
-      "versoes": [
-        {
-          "id": "diurno",
-          "rotulo": "De dia, 30 minutos",
-          "preco": 90,
-          "moeda": "EUR",
-          "unidade_de_preco": "por_veiculo",
-          "unidade_de_preco_declarada_por": "no_ato_oficial",
-          "capacidade_maxima": 5,
-          "capacidade_maxima_declarada_por": "no_ato_oficial",
-          "duracao_minutos": 30,
-          "momento_do_dia": "diurno",
-          "janela_horaria": "das 9h às 19h",
-          "acrescimos": [
-            {
-              "o_que_e": "cada 20 minutos adicionais",
-              "valor": 40,
-              "moeda": "EUR",
-              "aproximado": true,
-              "declarado_como": "cerca de €40 a cada 20 minutos adicionais"
-            }
-          ],
-          "inclui": [],
-          "inclui_motivo_lista_vazia": "A tarifa oficial fixa preço, duração e capacidade, e não declara o que está incluso. A página diz isso ao leitor: é um fato sobre a fonte, não um vazio a esconder.",
-          "nao_inclui": [],
-          "nao_inclui_motivo_lista_vazia": "Mesma razão.",
-          "fonte": "comune-venezia-tarifa-gondola",
-          "data_leitura": "2026-09-14",
-          "declarado_como": "€90 por 30 minutos, das 9h às 19h, máximo de 5 passageiros por gôndola. A fonte diz a unidade com todas as letras: não se paga por pessoa, e sim pelo aluguel da embarcação inteira."
-        },
-        {
-          "id": "noturno",
-          "rotulo": "À noite, 35 minutos",
-          "preco": 110,
-          "moeda": "EUR",
-          "unidade_de_preco": "por_veiculo",
-          "unidade_de_preco_declarada_por": "no_ato_oficial",
-          "capacidade_maxima": 5,
-          "capacidade_maxima_declarada_por": "no_ato_oficial",
-          "duracao_minutos": 35,
-          "momento_do_dia": "noturno",
-          "janela_horaria": "das 19h às 4h",
-          "acrescimos": [
-            {
-              "o_que_e": "cada 20 minutos adicionais",
-              "valor": 50,
-              "moeda": "EUR",
-              "aproximado": true,
-              "declarado_como": "cerca de €50 a cada 20 minutos adicionais"
-            }
-          ],
-          "inclui": [],
-          "inclui_motivo_lista_vazia": "Mesma razão do diurno.",
-          "nao_inclui": [],
-          "nao_inclui_motivo_lista_vazia": "Mesma razão do diurno.",
-          "fonte": "comune-venezia-tarifa-gondola",
-          "data_leitura": "2026-09-14",
-          "declarado_como": "€110 por 35 minutos, das 19h às 4h, máximo de 5 passageiros por gôndola."
-        }
-      ],
-      "temporada": null,
-      "motivo_sem_temporada": "O ato não declara variação por temporada, e a leitura de 14/09/2026 não alcançou nenhuma declaração de alta e baixa. Inventar temporada aqui seria inventar o dado mais caro da página — as fontes do bloco 1 mostram diária de carro variando até três vezes entre inverno e verão, e é esse tipo de número que não se chuta.",
-      "faixa_etaria": null,
-      "motivo_sem_faixa_etaria": "Não há preço de criança a declarar, e a causa é o próprio desenho da unidade: a tarifa é pela embarcação inteira, não por passageiro. Este é o único caso em que o campo vazio não é falta de dado do operador — é consequência da unidade, e a página pode dizer isso.",
-      "imagem": null,
-      "motivo_sem_imagem": "A ilha não tem imagem própria e não usa foto de terceiro sem licença. A vitrine reserva o espaço e destaca o nome (seção 6 do ARQUIPELAGO.md).",
-      "declaracoes": [
-        {
-          "versao": null,
-          "motivo_sem_versao": "A fonte publica €80 sem dizer se é o passeio diurno ou o noturno — e a tarifa oficial separa os dois, com preço e duração diferentes. Sem saber de qual versão ela fala, a declaração vai para a tela como divergência e não entra na conta.",
-          "publicador": "turismo.eurodicas.com.br",
-          "url": null,
-          "motivo_sem_url": "O bloco 2 registrou o domínio e o número, não a URL do artigo.",
-          "valor": 80,
-          "moeda": "EUR",
-          "unidade_de_preco": "por_veiculo",
-          "diz": "€80 por gôndola, para até 4 pessoas",
-          "data_leitura": "2026-09-14",
-          "fonte": "eurodicas-gondola",
-          "publicavel_na_tela": true,
-          "observacao": "Não está arredondando: está três anos desatualizada. A tarifa vigente é de abril de 2023, e é isso que a página vai dizer — o defeito que a ilha corrige não é imprecisão, é preço sem data envelhecendo em silêncio num resultado que continua no topo."
-        },
-        {
-          "versao": null,
-          "motivo_sem_versao": "Preço de plataforma 'a partir de', sem horário nem duração: não dá para dizer de qual versão ele fala.",
-          "publicador": "GetYourGuide, citada por terceiros",
-          "url": null,
-          "motivo_sem_url": "A citação é de terceiro; o endereço do produto na plataforma não foi registrado.",
-          "valor": 34,
-          "moeda": "EUR",
-          "unidade_de_preco": "por_pessoa",
-          "diz": "a partir de €34 por pessoa",
-          "data_leitura": "2026-09-14",
-          "fonte": "getyourguide-gondola-via-terceiros",
-          "publicavel_na_tela": true,
-          "interesse_comercial": "SIM — é plataforma de reserva e ganha se o clique virar reserva. Não a desqualifica; vai escrito ao lado do número.",
-          "observacao": "É a leitura que custa mais caro ao leitor: quem chega com €34 por pessoa leva €136 para quatro pessoas num passeio de €90."
-        },
-        {
-          "versao": null,
-          "motivo_sem_versao": "A leitura não foi atribuída nem a um publicador nem a uma versão.",
-          "publicador": null,
-          "motivo_sem_publicador": "O bloco 2 anotou o que o CONJUNTO de páginas de topo publica, sem separar qual delas disse este número. Sem nome, a declaração não vai para a tela — 'algumas páginas dizem €30 a €90' é a frase sem dono que esta ilha existe para não escrever. Fica no banco como evidência de coleta e como pendência nomeada da próxima leitura desta experiência.",
-          "url": null,
-          "motivo_sem_url": "idem",
-          "valor": {
-            "minimo": 30,
-            "maximo": 90
-          },
-          "moeda": "EUR",
-          "unidade_de_preco": "por_pessoa",
-          "diz": "€30 a €90 por pessoa, em gôndola compartilhada",
-          "data_leitura": "2026-09-14",
-          "fonte": "paginas-de-topo-pt-sem-atribuicao",
-          "publicavel_na_tela": false
-        },
-        {
-          "versao": null,
-          "motivo_sem_versao": "A leitura não foi atribuída nem a um publicador nem a uma versão.",
-          "publicador": null,
-          "motivo_sem_publicador": "Mesma razão da declaração anterior.",
-          "url": null,
-          "motivo_sem_url": "idem",
-          "valor": 16,
-          "moeda": "EUR",
-          "unidade_de_preco": "por_pessoa",
-          "diz": "€16 por pessoa, com lotação completa de 5",
-          "data_leitura": "2026-09-14",
-          "fonte": "paginas-de-topo-pt-sem-atribuicao",
-          "publicavel_na_tela": false
-        }
-      ],
-      "resolucao": {
-        "versao_resolvida": "diurno",
-        "valor": 90,
-        "moeda": "EUR",
-        "unidade_de_preco": "por_veiculo",
-        "por_autoridade": true,
-        "fonte": "comune-venezia-tarifa-gondola",
-        "erro_caro": "Subestimar. Quem chega com a conta de €34 por pessoa acha que vai pagar €136 por quatro e o passeio custa €90 no total; quem chega com a de €80 paga €90 e não perde o passeio. As duas direções do erro existem e não custam a mesma coisa — e a que dói é a de quem chega com dinheiro a menos.",
-        "texto": "Vale a tarifa fixada pelo Comune di Venezia: €90 por gôndola, de dia, 30 minutos, até 5 pessoas. As declarações divergentes vão para a tela com o nome de quem as publicou e a data em que foram lidas, porque a divergência é o produto — não a média delas, que é proibida."
-      },
-      "afiliado": {
-        "programa": null,
-        "url": "",
-        "url_produto": "https://civitatis.com/br/veneza/passeio-gondola-veneza/",
-        "url_busca_produto": "https://civitatis.com/br/veneza/",
-        "rel": "nofollow noopener",
-        "intestavel": false
-      },
-      "status": "publicavel",
-      "entra_por": "Exceção declarada ao critério de entrada. O critério do bloco 1 prefere operador privado sem tabela pública, e esta é tarifa tabelada — o tipo que o mercado brasileiro costuma servir direito. Ela entra assim mesmo porque é o exemplo trabalhado que ESPECIFICA a F1 (seção 2.2 do bloco 2) e porque é a prova mais forte que a ilha tem: quatro leituras diferentes, em três unidades, sobre o número mais verificável de toda a consulta."
-    },
-    {
-      "id": "siem-reap-angkor-pass",
-      "nome": "Angkor Pass — o ingresso do Parque Arqueológico de Angkor",
-      "cidade": "siem-reap",
-      "categoria": "ingresso_de_sitio_publico",
-      "operador": {
-        "nome": "Angkor Enterprise, a empresa pública que vende o Angkor Pass",
-        "tipo": "poder_publico",
-        "url": "https://www.angkorenterprise.gov.kh/",
-        "url_vista_como": "Endereço devolvido por nome no conjunto de resultados de duas buscas independentes em 14/09/2026, uma delas trazendo a página de perguntas frequentes em /en/faqs. A página NÃO foi lida — EGRESS_BLOCKED no WebFetch e 000 no curl, medidos às 23h30Z. É endereço visto, não página lida, e é exatamente por isso que a fonte é nível 3 e não nível 1."
-      },
-      "versoes": [
-        {
-          "id": "1-dia",
-          "rotulo": "1 dia",
-          "preco": 37,
-          "moeda": "USD",
-          "unidade_de_preco": "por_pessoa",
-          "unidade_de_preco_declarada_por": "no_contraste_da_propria_fonte",
-          "capacidade_maxima": null,
-          "capacidade_maxima_declarada_por": null,
-          "motivo_sem_capacidade": "Ingresso individual não tem lotação: a unidade já é a pessoa, e não existe o degrau que a gôndola tem, onde 6 pessoas viram duas embarcações.",
-          "duracao_minutos": null,
-          "motivo_sem_duracao": "A duração deste produto se mede em DIAS de validade, não em minutos de passeio — e a validade é o que separa as três versões. Preencher minutos aqui seria inventar o horário de visitação, que nenhuma das duas passadas declarou.",
-          "momento_do_dia": "qualquer",
-          "inclui": [],
-          "inclui_motivo_lista_vazia": "As duas passadas declaram preço e validade e não declaram o que o ingresso cobre além da entrada no parque. A página vai dizer isso ao leitor: é um fato sobre a leitura, não um vazio a esconder.",
-          "nao_inclui": [],
-          "nao_inclui_motivo_lista_vazia": "Mesma razão. Há templos do Camboja que se sabe terem bilhete próprio, e nenhuma das duas passadas os nomeou — nomeá-los aqui de memória seria inventar a exclusão mais cara da página.",
-          "fonte": "angkor-enterprise-tarifa-via-busca",
-          "data_leitura": "2026-09-14",
-          "declarado_como": "US$ 37 para a visitação de um dia. O passe de um dia vale na data impressa nele."
-        },
-        {
-          "id": "3-dias",
-          "rotulo": "3 dias, usáveis dentro de uma semana",
-          "preco": 62,
-          "moeda": "USD",
-          "unidade_de_preco": "por_pessoa",
-          "unidade_de_preco_declarada_por": "no_contraste_da_propria_fonte",
-          "capacidade_maxima": null,
-          "capacidade_maxima_declarada_por": null,
-          "motivo_sem_capacidade": "Mesma razão da versão de 1 dia.",
-          "duracao_minutos": null,
-          "motivo_sem_duracao": "Mesma razão da versão de 1 dia.",
-          "momento_do_dia": "qualquer",
-          "inclui": [],
-          "inclui_motivo_lista_vazia": "Mesma razão da versão de 1 dia.",
-          "nao_inclui": [],
-          "nao_inclui_motivo_lista_vazia": "Mesma razão da versão de 1 dia.",
-          "fonte": "angkor-enterprise-tarifa-via-busca",
-          "data_leitura": "2026-09-14",
-          "declarado_como": "US$ 62 para 3 dias. Os três dias não precisam ser seguidos: valem em três dias quaisquer dentro de uma janela de sete."
-        },
-        {
-          "id": "7-dias",
-          "rotulo": "7 dias, usáveis dentro de um mês",
-          "preco": 72,
-          "moeda": "USD",
-          "unidade_de_preco": "por_pessoa",
-          "unidade_de_preco_declarada_por": "no_contraste_da_propria_fonte",
-          "capacidade_maxima": null,
-          "capacidade_maxima_declarada_por": null,
-          "motivo_sem_capacidade": "Mesma razão da versão de 1 dia.",
-          "duracao_minutos": null,
-          "motivo_sem_duracao": "Mesma razão da versão de 1 dia.",
-          "momento_do_dia": "qualquer",
-          "inclui": [],
-          "inclui_motivo_lista_vazia": "Mesma razão da versão de 1 dia.",
-          "nao_inclui": [],
-          "nao_inclui_motivo_lista_vazia": "Mesma razão da versão de 1 dia.",
-          "fonte": "angkor-enterprise-tarifa-via-busca",
-          "data_leitura": "2026-09-14",
-          "declarado_como": "US$ 72 para 7 dias. Os sete dias não precisam ser seguidos: valem em sete dias quaisquer dentro de um mês."
-        }
-      ],
-      "temporada": null,
-      "motivo_sem_temporada": "Nenhuma das duas passadas declarou variação de preço por temporada, e ausência de declaração não é declaração de ausência. Escrever que o preço é igual o ano inteiro seria afirmar sobre o que não foi lido — e temporada é, pelo próprio esquema, o dado mais caro de chutar desta ilha.",
-      "faixa_etaria": [
-        {
-          "rotulo": "menores de 12 anos",
-          "preco": 0,
-          "moeda": "USD",
-          "condicao": "gratuito, com o passaporte da criança apresentado na bilheteria como prova de idade",
-          "se_nao_cumprir": "sem passaporte, cobra-se a tarifa cheia de US$ 37 pela criança, inclusive de bebê",
-          "declarado_como": "Crianças menores de 12 anos entram sem pagar; o passaporte é exigido como prova de idade, e sem ele paga-se US$ 37 por criança.",
-          "fonte": "angkor-enterprise-tarifa-via-busca",
-          "data_leitura": "2026-09-14",
-          "duas_passadas": "Sim: uma em português e uma em inglês, com perguntas independentes, ambas devolvendo a mesma regra e a mesma consequência de não cumpri-la."
-        }
-      ],
-      "nota_da_faixa_etaria": "É esta regra que DECLARA a unidade do preço, e ela é o exemplo mais limpo de `no_contraste_da_propria_fonte` que a ilha tem até hoje: a fonte nunca escreve 'por pessoa'. Ela escreve que a criança sem passaporte paga US$ 37 — o mesmo valor do adulto, por cabeça. Um preço que se cobra de cada criança é preço por pessoa, e quem classificou foi a ilha, não o operador. A frase da tela tem de dizer isso (seção 26.3 do ARQUIPELAGO.md).",
-      "imagem": null,
-      "motivo_sem_imagem": "A ilha não tem imagem própria e não usa foto de terceiro sem licença. A vitrine reserva o espaço e destaca o nome (seção 6 do ARQUIPELAGO.md).",
-      "declaracoes": [],
-      "motivo_sem_declaracoes": "Lista vazia aqui NÃO quer dizer que ninguém mais publicou número — quer dizer que ninguém publicou número DIFERENTE, e a distinção importa. Duas passadas independentes, em duas línguas, varrendo publicadores brasileiros, portugueses e de língua inglesa, devolveram os mesmos US$ 37, US$ 62 e US$ 72. Declaração, pelo esquema, é número de outra fonte que DISCORDA do resolvido; não havendo discordância, não há o que registrar. E o contraste com a gôndola é o achado: lá, quatro leituras em três unidades sobre uma tarifa igualmente tabelada; aqui, convergência total. Tabela pública não garante convergência — a gôndola prova isso —, mas onde ela converge, converge inteira.",
-      "resolucao": null,
-      "motivo_sem_resolucao": "Não há divergência para resolver. Resolução sem divergência seria a ilha encenando uma dúvida que não mediu.",
-      "afiliado": {
-        "programa": null,
-        "url": "",
-        "url_produto": null,
-        "motivo_sem_url_produto": "Não existe página de produto para ESTE item em plataforma nenhuma, e a causa não é falta de coleta: o Angkor Pass é vendido pela própria Angkor Enterprise, e o que a Civitatis vende em Siem Reap são passeios guiados — as duas páginas vistas na busca de hoje, /br/siem-reap/excursao-koh-ker/ e /br/siem-reap/tour-tres-dias-angkor/, são produto diferente do ingresso. Apontar uma delas como se fosse o passe seria vender uma coisa no lugar de outra, que é pior do que não ter link.",
-        "url_busca_produto": "https://civitatis.com/br/siem-reap/",
-        "rel": "nofollow noopener",
-        "intestavel": false
-      },
-      "status": "pendente_de_releitura",
-      "entra_por": "Entra pela mesma porta da gôndola e por uma razão a mais, que foi MEDIDA nesta coleta. Pela porta velha: é tarifa tabelada, o tipo que o critério de entrada NÃO prefere, e traz a escada de dias — 1, 3 e 7 — que o esquema listava como caso que ele permite e o banco não tinha. Pela razão nova: das seis experiências que o bloco 2 mediu, esta foi a ÚNICA em que a busca devolveu um preço reproduzível e atribuível. Capadócia, Ha Long e Dubai foram tentadas hoje, em cinco passadas, e todas devolveram FAIXA sem dono e sem data. Enquanto o egresso estiver fechado, o banco só consegue crescer pelo tipo que o critério de entrada não prefere — e este registro é a prova disso, não a exceção a isso.",
-      "status_por_que": "`pendente_de_releitura` e não `publicavel`: a fonte é de autoridade e não nomeia documento, e a `regra_do_documento_nomeado` do esquema, nascida nesta carga, cobra exatamente isso. Sai deste estado no dia em que a busca devolver o ato ou a tabela de tarifa, ou no dia em que o egresso deixar ler angkorenterprise.gov.kh."
-    }
-  ],
-  "resumo": {
-    "cidades": 2,
-    "experiencias": 2,
-    "versoes": 5,
-    "fontes": 5,
-    "declaracoes": 4,
-    "declaracoes_publicaveis": 2,
-    "itens_sem_saida_de_compra": 0,
-    "itens_com_piso_nao_rastreavel": 2,
-    "itens_intestaveis": 0,
-    "experiencias_com_preco_em_brl": 0,
-    "fontes_de_leitura_direta": 0,
-    "declaracoes_sem_versao": 4
+ "ilha": "jornadafly",
+ "bloco": 3,
+ "versao": 3,
+ "publicar": false,
+ "cumpre": "dados/esquema-banco.json",
+ "nota_da_versao_2": "Carga de 14/09/2026, as 23h. Entrou o Angkor Pass, com Siem Reap como segunda cidade e a escada de dias (1, 3 e 7) como versoes. E entrou o que a coleta MEDIU sobre o canal: das seis experiencias que o bloco 2 nomeou, tres foram tentadas por busca (balao da Capadocia, cruzeiro de Ha Long e quadriciclo de Dubai, em cinco passadas somadas) e as tres devolveram FAIXA sem dono, sem data e as vezes sem unidade — as duas passadas de Ha Long discordam entre por cabine e por pessoa, e entre dolar e dongue. A busca devolve numero onde ha tabela publica e devolve faixa onde o preco e de operador privado, que e justamente o tipo que o criterio de entrada PREFERE. As tres ficam como coleta em aberto com a causa medida, nunca como silencio.",
+ "nota_de_procedencia": "ESCRITA NO BLOCO 3 E VERDADEIRA PARA AQUELE DIA; a versao 2 acima diz o que mudou. O banco nasce com UM registro, e isso e decisao, nao atraso. O corpus do bloco 1 fecha dizendo 'o banco comeca vazio no bloco 3 e se enche por leitura na fonte de quem opera', e a secao 5 da especificacao do bloco 2 manda o contrario para UM caso: 'quem for escrever o bloco 3 le a 2.2 e grava o numero no banco, uma vez'. As duas frases falam de coisas diferentes e as duas valem: nenhum preco do CORPUS entra no banco, e a tarifa da gondola — colhida no bloco 2 com o ato que a sustenta — entra, uma vez. Nenhuma coleta nova foi feita nesta execucao: gravar Petra, Angkor, Ha Long, Dubai ou Buenos Aires exigiria ler a fonte de quem opera, e isso e trabalho de coleta, nao de modelo.",
+ "acentuacao": "Texto destinado a tela (rotulo, declarado_como, diz, motivos) e gravado ACENTUADO. Chave, id, slug e valor de vocabulario sao sem acento. E a cicatriz da Robometria, que publicou portugues sem acento vindo do banco e precisou de uma ferramenta so para restaurar.",
+ "cidades": [
+  {
+   "id": "veneza",
+   "nome": "Veneza",
+   "pais": "Itália",
+   "moeda_local": "EUR",
+   "slug_plataforma": "veneza",
+   "slug_plataforma_conferido_em": "2026-09-14"
+  },
+  {
+   "id": "siem-reap",
+   "nome": "Siem Reap",
+   "pais": "Camboja",
+   "moeda_local": "USD",
+   "slug_plataforma": "siem-reap",
+   "slug_plataforma_conferido_em": "2026-09-14",
+   "nota_da_moeda": "A moeda oficial do Camboja é o riel, e o campo não pergunta qual é a moeda do país: pergunta em que moeda o operador daquela cidade cobra. O Angkor Pass é vendido em dólar, e foi em dólar que as duas passadas independentes leram os três preços. Gravar KHR aqui seria descrever a bandeira e não o caixa.",
+   "nota_do_slug": "O segmento de cidade foi visto em 14/09/2026 no conjunto de resultados de uma busca restrita a civitatis.com, que devolveu duas páginas de produto no caminho brasileiro — /br/siem-reap/excursao-koh-ker/ e /br/siem-reap/tour-tres-dias-angkor/ — além da página em inglês da cidade. O endereço do piso não foi aberto: o egresso desta nuvem recusou civitatis.com no mesmo dia."
+  },
+  {
+   "id": "roma",
+   "nome": "Roma",
+   "pais": "Itália",
+   "moeda_local": "EUR",
+   "slug_plataforma": "roma",
+   "slug_plataforma_conferido_em": "2026-09-15",
+   "nota_da_moeda": "A Itália cobra em euro e o ingresso do Coliseu é vendido em euro nas duas passadas independentes desta coleta. Não há aqui a pergunta que Siem Reap levantou, onde a moeda do país e a do caixa são diferentes.",
+   "nota_do_slug": "O segmento de cidade foi visto em 15/09/2026 no conjunto de resultados de uma busca por passeios da plataforma, que devolveu varias paginas no caminho brasileiro (/br/roma/4/, /br/roma/5/, /br/roma/free-tours/ e /br/roma/passeio-pracas-roma/). O endereco NAO foi aberto: o curl a civitatis.com devolveu 000 nesta mesma execucao, com o proxy declarando CONNECT recusado por politica. E fica registrada uma diferenca que ninguem tinha medido: os resultados de hoje trazem o host com `www.`, e o molde do esquema foi escrito no bloco 2 com o host SEM `www`, do jeito que ele foi visto la. As duas formas apareceram em dias diferentes; o piso continua sendo derivado do molde, porque piso derivado que envelhece junto e melhor que piso digitado que envelhece calado."
+  },
+  {
+   "id": "paris",
+   "nome": "Paris",
+   "pais": "França",
+   "moeda_local": "EUR",
+   "slug_plataforma": "paris",
+   "slug_plataforma_conferido_em": "2026-09-15",
+   "nota_da_moeda": "A França cobra em euro e a tabela de tarifas do operador da Torre Eiffel publica os quatro bilhetes em euro, nas duas passadas.",
+   "nota_do_slug": "O segmento de cidade foi visto em 15/09/2026 no conjunto de resultados de uma busca por passeios da plataforma, que devolveu varias paginas no caminho brasileiro (/br/paris/2/, /br/paris/5/ e /br/paris/visita-guiada-paris/). O endereco NAO foi aberto: o curl a civitatis.com devolveu 000 nesta mesma execucao, com o proxy declarando CONNECT recusado por politica. E fica registrada uma diferenca que ninguem tinha medido: os resultados de hoje trazem o host com `www.`, e o molde do esquema foi escrito no bloco 2 com o host SEM `www`, do jeito que ele foi visto la. As duas formas apareceram em dias diferentes; o piso continua sendo derivado do molde, porque piso derivado que envelhece junto e melhor que piso digitado que envelhece calado."
   }
+ ],
+ "fontes": [
+  {
+   "id": "comune-venezia-tarifa-gondola",
+   "nivel": 3,
+   "origem": "poder-publico-via-busca",
+   "leitura": "busca_web",
+   "autor": "Comune di Venezia — Servizio Gondola",
+   "documento": "Delibera della Giunta Comunale n. 89, de 20/04/2023",
+   "url": null,
+   "motivo_sem_url": "O endereço exato da página do Servizio Gondola não foi registrado no bloco 2, e a leitura direta de www.comune.venezia.it foi recusada pelo egresso desta nuvem (EGRESS_BLOCKED, 14/09/2026). O documento está nomeado e datado; o endereço fica como coleta em aberto, e é o que faz esta fonte ser nível 3 e não nível 1.",
+   "data_leitura": "2026-09-14"
+  },
+  {
+   "id": "eurodicas-gondola",
+   "nivel": 6,
+   "origem": "publicador-editorial",
+   "leitura": "busca_web",
+   "autor": "turismo.eurodicas.com.br",
+   "documento": null,
+   "motivo_sem_documento": "Portal editorial: publica o número sem citar ato, tabela ou data de leitura. É exatamente o defeito que esta ilha existe para não repetir, e por isso a declaração dele fica registrada como divergência e nunca como preço.",
+   "url": null,
+   "motivo_sem_url": "O bloco 2 registrou o domínio e o que ele diz, não a URL do artigo. Reconferir na próxima coleta desta experiência.",
+   "data_leitura": "2026-09-14"
+  },
+  {
+   "id": "getyourguide-gondola-via-terceiros",
+   "nivel": 6,
+   "origem": "publicador-editorial",
+   "leitura": "busca_web",
+   "autor": "GetYourGuide, citada por terceiros",
+   "documento": null,
+   "motivo_sem_documento": "O número da plataforma não foi lido na plataforma: ele apareceu citado dentro de páginas de terceiros. A custódia e a leitura são de terceiro, então o elo mais fraco derruba a fonte para nível 6 — não é nível 5, que seria a plataforma lida na própria plataforma.",
+   "url": null,
+   "motivo_sem_url": "Mesma razão: a citação é de terceiro e o endereço do produto na plataforma não foi registrado.",
+   "data_leitura": "2026-09-14"
+  },
+  {
+   "id": "paginas-de-topo-pt-sem-atribuicao",
+   "nivel": 6,
+   "origem": "publicador-editorial",
+   "leitura": "busca_web",
+   "autor": "conjunto de páginas de topo em português, não atribuídas uma a uma",
+   "documento": null,
+   "motivo_sem_documento": "Nenhuma delas cita documento. E há um defeito de coleta registrado junto: o bloco 2 anotou o que o CONJUNTO publica, sem separar qual página disse qual número. Declaração sem publicador nomeado não vai para a tela.",
+   "url": null,
+   "motivo_sem_url": "idem",
+   "data_leitura": "2026-09-14"
+  },
+  {
+   "id": "angkor-enterprise-tarifa-via-busca",
+   "nivel": 3,
+   "origem": "poder-publico-via-busca",
+   "leitura": "busca_web",
+   "autor": "Angkor Enterprise — a empresa pública cambojana que vende o ingresso do Parque Arqueológico de Angkor",
+   "documento": null,
+   "motivo_sem_documento": "E é este vazio que fez nascer a `regra_do_documento_nomeado` do esquema. Duas passadas independentes, uma em português e uma em inglês, nenhuma delas carregando número dentro da pergunta, devolveram os MESMOS três preços e atribuíram os três, por nome, ao vendedor oficial. Nenhuma das duas devolveu ato, deliberação, tabela de tarifa ou página de preço da própria autoridade. É a diferença exata para a tarifa da gôndola, que é do mesmo nível e cita a Delibera 89 de 20/04/2023: lá o número tem endereço dentro da autoridade, aqui ele tem só procedência falada. Por isso o registro que esta fonte sustenta nasce `pendente_de_releitura`.",
+   "url": null,
+   "motivo_sem_url": "O endereço da autoridade apareceu por nome no conjunto de resultados de duas buscas — a raiz `angkorenterprise.gov.kh/en` e a página de perguntas frequentes `/en/faqs` —, mas nenhuma das duas foi lida: às 23h30Z de 14/09/2026 o WebFetch de www.angkorenterprise.gov.kh devolveu EGRESS_BLOCKED e o curl devolveu 000 no mesmo minuto. Endereço visto no resultado de busca não é página lida, e gravar a URL aqui daria à fonte uma procedência que ela não tem.",
+   "data_leitura": "2026-09-14"
+  },
+  {
+   "id": "parco-colosseo-tarifa-via-busca",
+   "nivel": 3,
+   "origem": "poder-publico-via-busca",
+   "leitura": "busca_web",
+   "autor": "Parco archeologico del Colosseo — o órgão público italiano que administra o Coliseu, o Fórum Romano e o Palatino e vende o ingresso pelo sistema oficial ticketing.colosseo.it",
+   "documento": "A página de horários e bilhetes da própria autoridade — «Opening Times and tickets», em colosseo.it/en/opening-times-and-tickets/ — e a página de categorias de bilhete do sistema oficial de venda, «Individuals», em ticketing.colosseo.it/en/categorie/singoli-1-8-persone/. As duas voltaram por endereço na passada em inglês, e a passada em português já tinha devolvido ticketing.colosseo.it por nome como o canal oficial. É página de TARIFA da própria autoridade, que é o que a regra_do_documento_nomeado pede — e é a diferença exata para o Angkor Pass, cuja autoridade só devolveu uma página de perguntas frequentes.",
+   "url": null,
+   "motivo_sem_url": "Nenhuma das duas páginas foi lida. Medido às 11h31Z de 15/09/2026: colosseo.it e www.coopculture.it devolveram 000 no curl, com o proxy declarando CONNECT recusado por política da organização. Endereço visto em resultado de busca não é página lida, e gravar a URL aqui daria à fonte uma procedência que ela não tem — é justamente isso que mantém esta fonte no nível 3 e não no 1.",
+   "data_leitura": "2026-09-15"
+  },
+  {
+   "id": "sete-toureiffel-tarifa-via-busca",
+   "nivel": 4,
+   "origem": "operador-via-busca",
+   "leitura": "busca_web",
+   "autor": "SETE — Société d'Exploitation de la Tour Eiffel, a empresa que opera o monumento sob concessão da cidade de Paris e vende o bilhete em toureiffel.paris",
+   "documento": "A tabela de tarifas do próprio operador, «Preços e horários dos ingressos» em toureiffel.paris/pt/tarifas-horarios, mais uma página de tarifa por bilhete, cada uma com o preço no próprio título: /pt/tarifas-ofertas/bilhete-ate-ao-topo-por-elevador (36,70€), /pt/tarifas-ofertas/bilhete-para-o-segundo-piso-por-escada (14,80€), /pt/tarifas-ofertas/bilhete-ate-ao-topo-por-escada-elevador (28,00€) e, na passada em inglês, /en/rates-offers/ticket-second-floor-lift (23,50€). Quatro documentos nomeados, um por versão.",
+   "url": null,
+   "motivo_sem_url": "Nenhuma das páginas foi lida: às 11h31Z de 15/09/2026 o curl a www.toureiffel.paris devolveu 000, com CONNECT recusado por política. É por isso que esta fonte é nível 4 (operador lido por busca) e não nível 2 (operador lido no endereço dele) — e é a mesma distância que separa o nível 3 do 1.",
+   "data_leitura": "2026-09-15"
+  }
+ ],
+ "experiencias": [
+  {
+   "id": "veneza-passeio-de-gondola",
+   "nome": "Passeio de gôndola em Veneza",
+   "cidade": "veneza",
+   "categoria": "atividade_com_tarifa_tabelada",
+   "operador": {
+    "nome": "gondoleiros de Veneza, com tarifa fixada pelo Comune di Venezia",
+    "tipo": "poder_publico",
+    "url": null,
+    "motivo_sem_url": "Não há um operador único com página de reserva: quem cobra é cada gondoleiro, e quem fixa o preço é a prefeitura. É por isso que esta experiência tem autoridade e as outras seis medidas no bloco 2 não têm."
+   },
+   "versoes": [
+    {
+     "id": "diurno",
+     "rotulo": "De dia, 30 minutos",
+     "preco": 90,
+     "moeda": "EUR",
+     "unidade_de_preco": "por_veiculo",
+     "unidade_de_preco_declarada_por": "no_ato_oficial",
+     "capacidade_maxima": 5,
+     "capacidade_maxima_declarada_por": "no_ato_oficial",
+     "duracao_minutos": 30,
+     "momento_do_dia": "diurno",
+     "janela_horaria": "das 9h às 19h",
+     "acrescimos": [
+      {
+       "o_que_e": "cada 20 minutos adicionais",
+       "valor": 40,
+       "moeda": "EUR",
+       "aproximado": true,
+       "declarado_como": "cerca de €40 a cada 20 minutos adicionais"
+      }
+     ],
+     "inclui": [],
+     "inclui_motivo_lista_vazia": "A tarifa oficial fixa preço, duração e capacidade, e não declara o que está incluso. A página diz isso ao leitor: é um fato sobre a fonte, não um vazio a esconder.",
+     "nao_inclui": [],
+     "nao_inclui_motivo_lista_vazia": "Mesma razão.",
+     "fonte": "comune-venezia-tarifa-gondola",
+     "data_leitura": "2026-09-14",
+     "declarado_como": "€90 por 30 minutos, das 9h às 19h, máximo de 5 passageiros por gôndola. A fonte diz a unidade com todas as letras: não se paga por pessoa, e sim pelo aluguel da embarcação inteira."
+    },
+    {
+     "id": "noturno",
+     "rotulo": "À noite, 35 minutos",
+     "preco": 110,
+     "moeda": "EUR",
+     "unidade_de_preco": "por_veiculo",
+     "unidade_de_preco_declarada_por": "no_ato_oficial",
+     "capacidade_maxima": 5,
+     "capacidade_maxima_declarada_por": "no_ato_oficial",
+     "duracao_minutos": 35,
+     "momento_do_dia": "noturno",
+     "janela_horaria": "das 19h às 4h",
+     "acrescimos": [
+      {
+       "o_que_e": "cada 20 minutos adicionais",
+       "valor": 50,
+       "moeda": "EUR",
+       "aproximado": true,
+       "declarado_como": "cerca de €50 a cada 20 minutos adicionais"
+      }
+     ],
+     "inclui": [],
+     "inclui_motivo_lista_vazia": "Mesma razão do diurno.",
+     "nao_inclui": [],
+     "nao_inclui_motivo_lista_vazia": "Mesma razão do diurno.",
+     "fonte": "comune-venezia-tarifa-gondola",
+     "data_leitura": "2026-09-14",
+     "declarado_como": "€110 por 35 minutos, das 19h às 4h, máximo de 5 passageiros por gôndola."
+    }
+   ],
+   "temporada": null,
+   "motivo_sem_temporada": "O ato não declara variação por temporada, e a leitura de 14/09/2026 não alcançou nenhuma declaração de alta e baixa. Inventar temporada aqui seria inventar o dado mais caro da página — as fontes do bloco 1 mostram diária de carro variando até três vezes entre inverno e verão, e é esse tipo de número que não se chuta.",
+   "faixa_etaria": null,
+   "motivo_sem_faixa_etaria": "Não há preço de criança a declarar, e a causa é o próprio desenho da unidade: a tarifa é pela embarcação inteira, não por passageiro. Este é o único caso em que o campo vazio não é falta de dado do operador — é consequência da unidade, e a página pode dizer isso.",
+   "imagem": null,
+   "motivo_sem_imagem": "A ilha não tem imagem própria e não usa foto de terceiro sem licença. A vitrine reserva o espaço e destaca o nome (seção 6 do ARQUIPELAGO.md).",
+   "declaracoes": [
+    {
+     "versao": null,
+     "motivo_sem_versao": "A fonte publica €80 sem dizer se é o passeio diurno ou o noturno — e a tarifa oficial separa os dois, com preço e duração diferentes. Sem saber de qual versão ela fala, a declaração vai para a tela como divergência e não entra na conta.",
+     "publicador": "turismo.eurodicas.com.br",
+     "url": null,
+     "motivo_sem_url": "O bloco 2 registrou o domínio e o número, não a URL do artigo.",
+     "valor": 80,
+     "moeda": "EUR",
+     "unidade_de_preco": "por_veiculo",
+     "diz": "€80 por gôndola, para até 4 pessoas",
+     "data_leitura": "2026-09-14",
+     "fonte": "eurodicas-gondola",
+     "publicavel_na_tela": true,
+     "observacao": "Não está arredondando: está três anos desatualizada. A tarifa vigente é de abril de 2023, e é isso que a página vai dizer — o defeito que a ilha corrige não é imprecisão, é preço sem data envelhecendo em silêncio num resultado que continua no topo."
+    },
+    {
+     "versao": null,
+     "motivo_sem_versao": "Preço de plataforma 'a partir de', sem horário nem duração: não dá para dizer de qual versão ele fala.",
+     "publicador": "GetYourGuide, citada por terceiros",
+     "url": null,
+     "motivo_sem_url": "A citação é de terceiro; o endereço do produto na plataforma não foi registrado.",
+     "valor": 34,
+     "moeda": "EUR",
+     "unidade_de_preco": "por_pessoa",
+     "diz": "a partir de €34 por pessoa",
+     "data_leitura": "2026-09-14",
+     "fonte": "getyourguide-gondola-via-terceiros",
+     "publicavel_na_tela": true,
+     "interesse_comercial": "SIM — é plataforma de reserva e ganha se o clique virar reserva. Não a desqualifica; vai escrito ao lado do número.",
+     "observacao": "É a leitura que custa mais caro ao leitor: quem chega com €34 por pessoa leva €136 para quatro pessoas num passeio de €90."
+    },
+    {
+     "versao": null,
+     "motivo_sem_versao": "A leitura não foi atribuída nem a um publicador nem a uma versão.",
+     "publicador": null,
+     "motivo_sem_publicador": "O bloco 2 anotou o que o CONJUNTO de páginas de topo publica, sem separar qual delas disse este número. Sem nome, a declaração não vai para a tela — 'algumas páginas dizem €30 a €90' é a frase sem dono que esta ilha existe para não escrever. Fica no banco como evidência de coleta e como pendência nomeada da próxima leitura desta experiência.",
+     "url": null,
+     "motivo_sem_url": "idem",
+     "valor": {
+      "minimo": 30,
+      "maximo": 90
+     },
+     "moeda": "EUR",
+     "unidade_de_preco": "por_pessoa",
+     "diz": "€30 a €90 por pessoa, em gôndola compartilhada",
+     "data_leitura": "2026-09-14",
+     "fonte": "paginas-de-topo-pt-sem-atribuicao",
+     "publicavel_na_tela": false
+    },
+    {
+     "versao": null,
+     "motivo_sem_versao": "A leitura não foi atribuída nem a um publicador nem a uma versão.",
+     "publicador": null,
+     "motivo_sem_publicador": "Mesma razão da declaração anterior.",
+     "url": null,
+     "motivo_sem_url": "idem",
+     "valor": 16,
+     "moeda": "EUR",
+     "unidade_de_preco": "por_pessoa",
+     "diz": "€16 por pessoa, com lotação completa de 5",
+     "data_leitura": "2026-09-14",
+     "fonte": "paginas-de-topo-pt-sem-atribuicao",
+     "publicavel_na_tela": false
+    }
+   ],
+   "resolucao": {
+    "versao_resolvida": "diurno",
+    "valor": 90,
+    "moeda": "EUR",
+    "unidade_de_preco": "por_veiculo",
+    "por_autoridade": true,
+    "fonte": "comune-venezia-tarifa-gondola",
+    "erro_caro": "Subestimar. Quem chega com a conta de €34 por pessoa acha que vai pagar €136 por quatro e o passeio custa €90 no total; quem chega com a de €80 paga €90 e não perde o passeio. As duas direções do erro existem e não custam a mesma coisa — e a que dói é a de quem chega com dinheiro a menos.",
+    "texto": "Vale a tarifa fixada pelo Comune di Venezia: €90 por gôndola, de dia, 30 minutos, até 5 pessoas. As declarações divergentes vão para a tela com o nome de quem as publicou e a data em que foram lidas, porque a divergência é o produto — não a média delas, que é proibida."
+   },
+   "afiliado": {
+    "programa": null,
+    "url": "",
+    "url_produto": "https://civitatis.com/br/veneza/passeio-gondola-veneza/",
+    "url_busca_produto": "https://civitatis.com/br/veneza/",
+    "rel": "nofollow noopener",
+    "intestavel": false
+   },
+   "status": "publicavel",
+   "entra_por": "Exceção declarada ao critério de entrada. O critério do bloco 1 prefere operador privado sem tabela pública, e esta é tarifa tabelada — o tipo que o mercado brasileiro costuma servir direito. Ela entra assim mesmo porque é o exemplo trabalhado que ESPECIFICA a F1 (seção 2.2 do bloco 2) e porque é a prova mais forte que a ilha tem: quatro leituras diferentes, em três unidades, sobre o número mais verificável de toda a consulta."
+  },
+  {
+   "id": "siem-reap-angkor-pass",
+   "nome": "Angkor Pass — o ingresso do Parque Arqueológico de Angkor",
+   "cidade": "siem-reap",
+   "categoria": "ingresso_de_sitio_publico",
+   "operador": {
+    "nome": "Angkor Enterprise, a empresa pública que vende o Angkor Pass",
+    "tipo": "poder_publico",
+    "url": "https://www.angkorenterprise.gov.kh/",
+    "url_vista_como": "Endereço devolvido por nome no conjunto de resultados de duas buscas independentes em 14/09/2026, uma delas trazendo a página de perguntas frequentes em /en/faqs. A página NÃO foi lida — EGRESS_BLOCKED no WebFetch e 000 no curl, medidos às 23h30Z. É endereço visto, não página lida, e é exatamente por isso que a fonte é nível 3 e não nível 1."
+   },
+   "versoes": [
+    {
+     "id": "1-dia",
+     "rotulo": "1 dia",
+     "preco": 37,
+     "moeda": "USD",
+     "unidade_de_preco": "por_pessoa",
+     "unidade_de_preco_declarada_por": "no_contraste_da_propria_fonte",
+     "capacidade_maxima": null,
+     "capacidade_maxima_declarada_por": null,
+     "motivo_sem_capacidade": "Ingresso individual não tem lotação: a unidade já é a pessoa, e não existe o degrau que a gôndola tem, onde 6 pessoas viram duas embarcações.",
+     "duracao_minutos": null,
+     "motivo_sem_duracao": "A duração deste produto se mede em DIAS de validade, não em minutos de passeio — e a validade é o que separa as três versões. Preencher minutos aqui seria inventar o horário de visitação, que nenhuma das duas passadas declarou.",
+     "momento_do_dia": "qualquer",
+     "inclui": [],
+     "inclui_motivo_lista_vazia": "As duas passadas declaram preço e validade e não declaram o que o ingresso cobre além da entrada no parque. A página vai dizer isso ao leitor: é um fato sobre a leitura, não um vazio a esconder.",
+     "nao_inclui": [],
+     "nao_inclui_motivo_lista_vazia": "Mesma razão. Há templos do Camboja que se sabe terem bilhete próprio, e nenhuma das duas passadas os nomeou — nomeá-los aqui de memória seria inventar a exclusão mais cara da página.",
+     "fonte": "angkor-enterprise-tarifa-via-busca",
+     "data_leitura": "2026-09-14",
+     "declarado_como": "US$ 37 para a visitação de um dia. O passe de um dia vale na data impressa nele."
+    },
+    {
+     "id": "3-dias",
+     "rotulo": "3 dias, usáveis dentro de uma semana",
+     "preco": 62,
+     "moeda": "USD",
+     "unidade_de_preco": "por_pessoa",
+     "unidade_de_preco_declarada_por": "no_contraste_da_propria_fonte",
+     "capacidade_maxima": null,
+     "capacidade_maxima_declarada_por": null,
+     "motivo_sem_capacidade": "Mesma razão da versão de 1 dia.",
+     "duracao_minutos": null,
+     "motivo_sem_duracao": "Mesma razão da versão de 1 dia.",
+     "momento_do_dia": "qualquer",
+     "inclui": [],
+     "inclui_motivo_lista_vazia": "Mesma razão da versão de 1 dia.",
+     "nao_inclui": [],
+     "nao_inclui_motivo_lista_vazia": "Mesma razão da versão de 1 dia.",
+     "fonte": "angkor-enterprise-tarifa-via-busca",
+     "data_leitura": "2026-09-14",
+     "declarado_como": "US$ 62 para 3 dias. Os três dias não precisam ser seguidos: valem em três dias quaisquer dentro de uma janela de sete."
+    },
+    {
+     "id": "7-dias",
+     "rotulo": "7 dias, usáveis dentro de um mês",
+     "preco": 72,
+     "moeda": "USD",
+     "unidade_de_preco": "por_pessoa",
+     "unidade_de_preco_declarada_por": "no_contraste_da_propria_fonte",
+     "capacidade_maxima": null,
+     "capacidade_maxima_declarada_por": null,
+     "motivo_sem_capacidade": "Mesma razão da versão de 1 dia.",
+     "duracao_minutos": null,
+     "motivo_sem_duracao": "Mesma razão da versão de 1 dia.",
+     "momento_do_dia": "qualquer",
+     "inclui": [],
+     "inclui_motivo_lista_vazia": "Mesma razão da versão de 1 dia.",
+     "nao_inclui": [],
+     "nao_inclui_motivo_lista_vazia": "Mesma razão da versão de 1 dia.",
+     "fonte": "angkor-enterprise-tarifa-via-busca",
+     "data_leitura": "2026-09-14",
+     "declarado_como": "US$ 72 para 7 dias. Os sete dias não precisam ser seguidos: valem em sete dias quaisquer dentro de um mês."
+    }
+   ],
+   "temporada": null,
+   "motivo_sem_temporada": "Nenhuma das duas passadas declarou variação de preço por temporada, e ausência de declaração não é declaração de ausência. Escrever que o preço é igual o ano inteiro seria afirmar sobre o que não foi lido — e temporada é, pelo próprio esquema, o dado mais caro de chutar desta ilha.",
+   "faixa_etaria": [
+    {
+     "rotulo": "menores de 12 anos",
+     "preco": 0,
+     "moeda": "USD",
+     "condicao": "gratuito, com o passaporte da criança apresentado na bilheteria como prova de idade",
+     "se_nao_cumprir": "sem passaporte, cobra-se a tarifa cheia de US$ 37 pela criança, inclusive de bebê",
+     "declarado_como": "Crianças menores de 12 anos entram sem pagar; o passaporte é exigido como prova de idade, e sem ele paga-se US$ 37 por criança.",
+     "fonte": "angkor-enterprise-tarifa-via-busca",
+     "data_leitura": "2026-09-14",
+     "duas_passadas": "Sim: uma em português e uma em inglês, com perguntas independentes, ambas devolvendo a mesma regra e a mesma consequência de não cumpri-la."
+    }
+   ],
+   "nota_da_faixa_etaria": "É esta regra que DECLARA a unidade do preço, e ela é o exemplo mais limpo de `no_contraste_da_propria_fonte` que a ilha tem até hoje: a fonte nunca escreve 'por pessoa'. Ela escreve que a criança sem passaporte paga US$ 37 — o mesmo valor do adulto, por cabeça. Um preço que se cobra de cada criança é preço por pessoa, e quem classificou foi a ilha, não o operador. A frase da tela tem de dizer isso (seção 26.3 do ARQUIPELAGO.md).",
+   "imagem": null,
+   "motivo_sem_imagem": "A ilha não tem imagem própria e não usa foto de terceiro sem licença. A vitrine reserva o espaço e destaca o nome (seção 6 do ARQUIPELAGO.md).",
+   "declaracoes": [],
+   "motivo_sem_declaracoes": "Lista vazia aqui NÃO quer dizer que ninguém mais publicou número — quer dizer que ninguém publicou número DIFERENTE, e a distinção importa. Duas passadas independentes, em duas línguas, varrendo publicadores brasileiros, portugueses e de língua inglesa, devolveram os mesmos US$ 37, US$ 62 e US$ 72. Declaração, pelo esquema, é número de outra fonte que DISCORDA do resolvido; não havendo discordância, não há o que registrar. E o contraste com a gôndola é o achado: lá, quatro leituras em três unidades sobre uma tarifa igualmente tabelada; aqui, convergência total. Tabela pública não garante convergência — a gôndola prova isso —, mas onde ela converge, converge inteira.",
+   "resolucao": null,
+   "motivo_sem_resolucao": "Não há divergência para resolver. Resolução sem divergência seria a ilha encenando uma dúvida que não mediu.",
+   "afiliado": {
+    "programa": null,
+    "url": "",
+    "url_produto": null,
+    "motivo_sem_url_produto": "Não existe página de produto para ESTE item em plataforma nenhuma, e a causa não é falta de coleta: o Angkor Pass é vendido pela própria Angkor Enterprise, e o que a Civitatis vende em Siem Reap são passeios guiados — as duas páginas vistas na busca de hoje, /br/siem-reap/excursao-koh-ker/ e /br/siem-reap/tour-tres-dias-angkor/, são produto diferente do ingresso. Apontar uma delas como se fosse o passe seria vender uma coisa no lugar de outra, que é pior do que não ter link.",
+    "url_busca_produto": "https://civitatis.com/br/siem-reap/",
+    "rel": "nofollow noopener",
+    "intestavel": false
+   },
+   "status": "pendente_de_releitura",
+   "entra_por": "Entra pela mesma porta da gôndola e por uma razão a mais, que foi MEDIDA nesta coleta. Pela porta velha: é tarifa tabelada, o tipo que o critério de entrada NÃO prefere, e traz a escada de dias — 1, 3 e 7 — que o esquema listava como caso que ele permite e o banco não tinha. Pela razão nova: das seis experiências que o bloco 2 mediu, esta foi a ÚNICA em que a busca devolveu um preço reproduzível e atribuível. Capadócia, Ha Long e Dubai foram tentadas hoje, em cinco passadas, e todas devolveram FAIXA sem dono e sem data. Enquanto o egresso estiver fechado, o banco só consegue crescer pelo tipo que o critério de entrada não prefere — e este registro é a prova disso, não a exceção a isso.",
+   "status_por_que": "`pendente_de_releitura` e não `publicavel`: a fonte é de autoridade e não nomeia documento, e a `regra_do_documento_nomeado` do esquema, nascida nesta carga, cobra exatamente isso. Sai deste estado no dia em que a busca devolver o ato ou a tabela de tarifa, ou no dia em que o egresso deixar ler angkorenterprise.gov.kh."
+  },
+  {
+   "id": "roma-coliseu-ingresso",
+   "nome": "Coliseu de Roma — o ingresso do Parco archeologico del Colosseo",
+   "cidade": "roma",
+   "categoria": "ingresso_de_sitio_publico",
+   "operador": {
+    "nome": "Parco archeologico del Colosseo, o órgão público que administra o sítio e vende o ingresso",
+    "tipo": "poder_publico",
+    "url": null,
+    "motivo_sem_url": "O endereço da autoridade (colosseo.it) e o do sistema oficial de venda (ticketing.colosseo.it) voltaram por nome nas duas passadas, e nenhum dos dois foi aberto: curl em 000 às 11h31Z de 15/09/2026, com CONNECT recusado por política. Endereço visto não é página lida."
+   },
+   "versoes": [
+    {
+     "id": "padrao-24h",
+     "rotulo": "O ingresso comum, válido por 24 horas",
+     "preco": 18,
+     "moeda": "EUR",
+     "unidade_de_preco": "por_pessoa",
+     "unidade_de_preco_declarada_por": "no_texto_da_fonte",
+     "capacidade_maxima": null,
+     "capacidade_maxima_declarada_por": null,
+     "motivo_sem_capacidade": "Ingresso individual não tem lotação: a unidade já é a pessoa. O degrau que a gôndola tem, onde 6 pessoas viram duas embarcações, não existe aqui.",
+     "duracao_minutos": null,
+     "motivo_sem_duracao": "A fonte não declara duração de visita: ela declara VALIDADE, e a validade está na janela horária. A passada em inglês devolveu ainda um limite de permanência de 75 minutos dentro do anfiteatro, que voltou em UMA passada só — e limite de permanência não é duração de passeio. Gravar 75 aqui seria transformar um teto em programação.",
+     "momento_do_dia": "qualquer",
+     "janela_horaria": "válido por 24 horas a partir da primeira entrada, que pode ser no Coliseu ou no Fórum Romano e Palatino",
+     "acrescimos": [],
+     "inclui": [
+      "entrada com horário marcado no Coliseu, nos níveis 1 e 2, que são os abertos ao público",
+      "uma entrada no Fórum Romano e no Monte Palatino"
+     ],
+     "nao_inclui": [
+      "o piso da arena",
+      "os subterrâneos",
+      "o ático",
+      "audioguia",
+      "visita guiada"
+     ],
+     "fonte": "parco-colosseo-tarifa-via-busca",
+     "data_leitura": "2026-09-15",
+     "declarado_como": "€18 por adulto, entrada com horário marcado no Coliseu mais uma entrada no Fórum Romano e no Palatino, válido por 24 horas a partir da primeira entrada. Não dá acesso ao piso da arena, aos subterrâneos nem ao ático, e não inclui audioguia nem guia."
+    },
+    {
+     "id": "experiencia-completa",
+     "rotulo": "A Experiência Completa, com uma área restrita a mais",
+     "preco": 22,
+     "moeda": "EUR",
+     "unidade_de_preco": "por_pessoa",
+     "unidade_de_preco_declarada_por": "no_texto_da_fonte",
+     "capacidade_maxima": null,
+     "capacidade_maxima_declarada_por": null,
+     "motivo_sem_capacidade": "Ingresso individual não tem lotação: a unidade já é a pessoa. O degrau que a gôndola tem, onde 6 pessoas viram duas embarcações, não existe aqui.",
+     "duracao_minutos": null,
+     "motivo_sem_duracao": "A fonte não declara duração de visita: ela declara VALIDADE, e a validade está na janela horária. A passada em inglês devolveu ainda um limite de permanência de 75 minutos dentro do anfiteatro, que voltou em UMA passada só — e limite de permanência não é duração de passeio. Gravar 75 aqui seria transformar um teto em programação.",
+     "momento_do_dia": "qualquer",
+     "janela_horaria": "mesma validade de 24 horas do ingresso comum",
+     "acrescimos": [],
+     "inclui": [
+      "tudo o que o ingresso comum dá",
+      "acesso a UMA área restrita além do circuito comum"
+     ],
+     "nao_inclui": [
+      "as outras áreas restritas, que são vendidas em bilhetes separados pelo mesmo preço",
+      "audioguia",
+      "visita guiada"
+     ],
+     "fonte": "parco-colosseo-tarifa-via-busca",
+     "data_leitura": "2026-09-15",
+     "declarado_como": "€22 por adulto para a Experiência Completa, que é o ingresso comum mais o acesso a uma área restrita. A passada em inglês nomeou três áreas vendidas por esse mesmo preço — o piso da arena, os subterrâneos e o ático —, e a passada em português devolveu o preço de €22 sem nomeá-las."
+    }
+   ],
+   "temporada": null,
+   "motivo_sem_temporada": "Nenhuma das duas passadas declarou variação de preço por temporada. Ausência de declaração não é declaração de ausência, e temporada é, pelo próprio esquema, o dado mais caro de chutar desta ilha.",
+   "faixa_etaria": null,
+   "motivo_sem_faixa_etaria": "E este vazio é o achado mais caro desta carga, porque as duas passadas DISCORDAM exatamente onde o leitor brasileiro tem mais a perder. A passada em português diz que a gratuidade para menores de 18 anos é de cidadão de Estado-membro da União Europeia, e que a gratuidade universal é só para menores de 6 anos. A passada em inglês diz o contrário com todas as letras: «tickets for 18 and under are free to citizens of EU and non-EU countries», e acrescenta que o visitante de 18 a 25 anos de fora da UE paga a tarifa cheia. As duas ainda divergem no valor da tarifa reduzida da faixa de 18 a 25 anos da UE: €4 na primeira, cerca de €2 na segunda. Nenhuma das duas é autoridade — as duas são publicador editorial, nível 6 —, e a regra de divergência sem autoridade desta ilha resolve para o valor MAIOR, porque o erro caro é subestimar. Resolvido pelo maior, o adolescente brasileiro paga os €18 do adulto. E é isso que a página vai dizer: que a gratuidade está em disputa entre as fontes, com o nome de quem publicou cada versão, e que a conta do grupo é feita pelo cheio até a autoridade declarar. Não entra em `faixa_etaria` porque `faixa_etaria` guarda PREÇO, e aqui o que existe é uma divergência sobre quem tem direito — e não entra em `declaracoes` porque declaração, neste esquema, discorda de uma VERSÃO, e faixa etária não é versão. O buraco está nomeado no esquema, em `faixa_etaria_e_da_VERSAO_e_o_esquema_a_poe_na_EXPERIENCIA`.",
+   "imagem": null,
+   "motivo_sem_imagem": "A ilha não tem imagem própria e não usa foto de terceiro sem licença. A vitrine reserva o espaço e destaca o nome (seção 6 do ARQUIPELAGO.md).",
+   "declaracoes": [],
+   "motivo_sem_declaracoes": "Ninguém publicou preço DIFERENTE para o bilhete. As duas passadas independentes, em duas línguas, devolveram os mesmos €18 e €22, e a de inglês ainda devolveu um quarto produto pelo mesmo €18 (o Forum Pass SUPER, que não dá entrada no Coliseu e por isso não é versão deste registro). Segundo caso de convergência total em tarifa tabelada, depois do Angkor — e o contraste com a gôndola, que é igualmente tabelada e tem quatro leituras em três unidades, continua de pé. A divergência que esta coleta achou não é de preço de bilhete: é de quem tem direito a não pagá-lo, e o motivo de ela não estar aqui está escrito em `motivo_sem_faixa_etaria`.",
+   "resolucao": null,
+   "motivo_sem_resolucao": "Não há divergência de preço para resolver. Resolução sem divergência seria a ilha encenando uma dúvida que não mediu.",
+   "afiliado": {
+    "programa": null,
+    "url": "",
+    "url_produto": null,
+    "motivo_sem_url_produto": "Nenhuma página de produto foi lida. A busca restrita à plataforma devolveu páginas de passeio guiado em Roma e uma página de free tours, e nenhuma delas é o ingresso do Parco archeologico del Colosseo — apontar um passeio guiado como se fosse o ingresso seria vender uma coisa no lugar de outra, que é pior do que não ter link. Mesma decisão do Angkor Pass, e pela mesma razão.",
+    "url_busca_produto": "https://civitatis.com/br/roma/",
+    "rel": "nofollow noopener",
+    "intestavel": false
+   },
+   "status": "publicavel",
+   "entra_por": "Entra por ser o tipo que a carga de 14/09/2026 mediu como o ÚNICO reproduzível pelo canal aberto: ingresso de sítio público com bilheteria oficial. O registro anterior fechou dizendo isso e nomeando três candidatos — Petra, Coliseu e Torre Eiffel —, e este é um deles. E entra trazendo uma primeira: é o primeiro registro desta ilha que fica `publicavel` por NOMEAR PÁGINA DE TARIFA da própria autoridade, e não um ato. A gôndola saiu da regra_do_documento_nomeado citando a Delibera 89/2023; o Angkor não saiu, porque a autoridade dele só devolveu uma página de perguntas frequentes. A regra dizia desde que nasceu que o ato, a tabela OU a página de tarifa servem; até hoje só o ato tinha sido exercido.",
+   "status_por_que": "`publicavel`: a fonte é de autoridade (nível 3) e nomeia o documento que a sustenta — a página de horários e bilhetes do próprio órgão e a página de categorias do sistema oficial de venda. A ressalva do nível 3 continua obrigatória na tela: tarifa oficial, lida por busca, a reconferir na fonte."
+  },
+  {
+   "id": "paris-torre-eiffel",
+   "nome": "Torre Eiffel — o bilhete de subida",
+   "cidade": "paris",
+   "categoria": "ingresso_de_sitio_publico",
+   "operador": {
+    "nome": "SETE — Société d'Exploitation de la Tour Eiffel, a empresa que opera o monumento sob concessão da cidade de Paris",
+    "tipo": "concessionaria_de_bem_publico",
+    "url": null,
+    "motivo_sem_url": "O endereço do operador (toureiffel.paris) voltou por nome nas duas passadas, com quatro páginas de tarifa nomeadas uma a uma, e nenhuma foi aberta: curl a www.toureiffel.paris em 000 às 11h31Z de 15/09/2026, com CONNECT recusado por política."
+   },
+   "versoes": [
+    {
+     "id": "segundo-piso-escada",
+     "rotulo": "Até o segundo piso, a pé",
+     "preco": 14.8,
+     "moeda": "EUR",
+     "unidade_de_preco": "por_pessoa",
+     "unidade_de_preco_declarada_por": "no_texto_da_fonte",
+     "capacidade_maxima": null,
+     "capacidade_maxima_declarada_por": null,
+     "motivo_sem_capacidade": "Bilhete individual não tem lotação: a unidade já é a pessoa.",
+     "duracao_minutos": null,
+     "motivo_sem_duracao": "A fonte declara, com todas as letras, que o bilhete marca HORA DE ENTRADA e que a saída é livre — «o seu ingresso só tem horário para entrar, a saída é livre». Gravar minutos aqui inventaria um limite que o operador diz não ter. É o contrário do Coliseu, que declara validade de 24 horas, e das duas formas quem declara é a fonte.",
+     "momento_do_dia": "qualquer",
+     "janela_horaria": "entrada com horário marcado; a permanência não tem limite declarado",
+     "acrescimos": [],
+     "inclui": [
+      "subida pela escada até o segundo piso",
+      "primeiro e segundo pisos"
+     ],
+     "nao_inclui": [
+      "o topo",
+      "restaurante, bar de champanhe e loja, que são cobrados à parte"
+     ],
+     "fonte": "sete-toureiffel-tarifa-via-busca",
+     "data_leitura": "2026-09-15",
+     "declarado_como": "14,80€ por adulto no bilhete até ao segundo piso por escada. É o bilhete mais barato da tabela e o único em que a subida não usa elevador."
+    },
+    {
+     "id": "segundo-piso-elevador",
+     "rotulo": "Até o segundo piso, de elevador",
+     "preco": 23.5,
+     "moeda": "EUR",
+     "unidade_de_preco": "por_pessoa",
+     "unidade_de_preco_declarada_por": "no_texto_da_fonte",
+     "capacidade_maxima": null,
+     "capacidade_maxima_declarada_por": null,
+     "motivo_sem_capacidade": "Bilhete individual não tem lotação: a unidade já é a pessoa.",
+     "duracao_minutos": null,
+     "motivo_sem_duracao": "A fonte declara, com todas as letras, que o bilhete marca HORA DE ENTRADA e que a saída é livre — «o seu ingresso só tem horário para entrar, a saída é livre». Gravar minutos aqui inventaria um limite que o operador diz não ter. É o contrário do Coliseu, que declara validade de 24 horas, e das duas formas quem declara é a fonte.",
+     "momento_do_dia": "qualquer",
+     "janela_horaria": "entrada com horário marcado; a permanência não tem limite declarado",
+     "acrescimos": [],
+     "inclui": [
+      "elevador até o segundo piso",
+      "primeiro e segundo pisos"
+     ],
+     "nao_inclui": [
+      "o topo",
+      "restaurante, bar de champanhe e loja, que são cobrados à parte"
+     ],
+     "fonte": "sete-toureiffel-tarifa-via-busca",
+     "data_leitura": "2026-09-15",
+     "declarado_como": "23,50€ por adulto no bilhete até ao segundo piso por elevador."
+    },
+    {
+     "id": "topo-escada-e-elevador",
+     "rotulo": "Até o topo, subindo a pé até o segundo piso",
+     "preco": 28.0,
+     "moeda": "EUR",
+     "unidade_de_preco": "por_pessoa",
+     "unidade_de_preco_declarada_por": "no_texto_da_fonte",
+     "capacidade_maxima": null,
+     "capacidade_maxima_declarada_por": null,
+     "motivo_sem_capacidade": "Bilhete individual não tem lotação: a unidade já é a pessoa.",
+     "duracao_minutos": null,
+     "motivo_sem_duracao": "A fonte declara, com todas as letras, que o bilhete marca HORA DE ENTRADA e que a saída é livre — «o seu ingresso só tem horário para entrar, a saída é livre». Gravar minutos aqui inventaria um limite que o operador diz não ter. É o contrário do Coliseu, que declara validade de 24 horas, e das duas formas quem declara é a fonte.",
+     "momento_do_dia": "qualquer",
+     "janela_horaria": "entrada com horário marcado; a permanência não tem limite declarado",
+     "acrescimos": [],
+     "inclui": [
+      "subida pela escada até o segundo piso",
+      "elevador do segundo piso até o topo",
+      "primeiro e segundo pisos",
+      "topo"
+     ],
+     "nao_inclui": [
+      "o elevador na subida até o segundo piso",
+      "o topo",
+      "restaurante, bar de champanhe e loja, que são cobrados à parte"
+     ],
+     "fonte": "sete-toureiffel-tarifa-via-busca",
+     "data_leitura": "2026-09-15",
+     "declarado_como": "28,00€ por adulto no bilhete combinado, que sobe a pé pelas escadas até ao segundo piso e depois vai ao topo por elevador. A passada em inglês acrescenta que já não existe bilhete que suba de escada até o topo, e que este combinado é o caminho mais barato para chegar lá em cima."
+    },
+    {
+     "id": "topo-elevador",
+     "rotulo": "Até o topo, de elevador",
+     "preco": 36.7,
+     "moeda": "EUR",
+     "unidade_de_preco": "por_pessoa",
+     "unidade_de_preco_declarada_por": "no_texto_da_fonte",
+     "capacidade_maxima": null,
+     "capacidade_maxima_declarada_por": null,
+     "motivo_sem_capacidade": "Bilhete individual não tem lotação: a unidade já é a pessoa.",
+     "duracao_minutos": null,
+     "motivo_sem_duracao": "A fonte declara, com todas as letras, que o bilhete marca HORA DE ENTRADA e que a saída é livre — «o seu ingresso só tem horário para entrar, a saída é livre». Gravar minutos aqui inventaria um limite que o operador diz não ter. É o contrário do Coliseu, que declara validade de 24 horas, e das duas formas quem declara é a fonte.",
+     "momento_do_dia": "qualquer",
+     "janela_horaria": "entrada com horário marcado; a permanência não tem limite declarado",
+     "acrescimos": [],
+     "inclui": [
+      "primeiro elevador até o segundo piso",
+      "segundo elevador até o topo",
+      "primeiro e segundo pisos",
+      "topo"
+     ],
+     "nao_inclui": [
+      "restaurante, bar de champanhe e loja, que são cobrados à parte"
+     ],
+     "fonte": "sete-toureiffel-tarifa-via-busca",
+     "data_leitura": "2026-09-15",
+     "declarado_como": "36,70€ por adulto no bilhete até ao topo por elevador, que a fonte descreve como um primeiro elevador e depois um segundo. É o teto da tabela."
+    }
+   ],
+   "temporada": null,
+   "motivo_sem_temporada": "Nenhuma das duas passadas declarou variação de preço por temporada. A passada em português menciona um terraço sazonal no primeiro piso — sazonalidade de SERVIÇO, não de preço —, e transformar isso em temporada de tarifa seria inventar.",
+   "faixa_etaria": [
+    {
+     "rotulo": "menores de 4 anos",
+     "preco": 0,
+     "moeda": "EUR",
+     "condicao": "gratuito em qualquer um dos quatro bilhetes",
+     "se_nao_cumprir": "a partir dos 4 anos passa a valer o preço de criança daquele bilhete, que muda de bilhete para bilhete",
+     "declarado_como": "Crianças com menos de 4 anos: gratuito, nas quatro linhas da tabela.",
+     "fonte": "sete-toureiffel-tarifa-via-busca",
+     "data_leitura": "2026-09-15",
+     "duas_passadas": "Sim: a passada em inglês devolve a grade inteira com «Children under 4: Free» repetido nos quatro bilhetes, e a passada em português declara a faixa de crianças e jovens entre 3,80€ e 18,40€, que são exatamente o piso e o teto dessa grade — as duas leituras batem nas pontas."
+    }
+   ],
+   "nota_da_faixa_etaria": "Só UMA faixa está gravada, e a ausência das outras é o achado de modelo desta carga. A fonte declara quatro faixas — adulto, jovem de 12 a 24 anos, criança de 4 a 11 anos e menor de 4 —, e o preço de três delas MUDA de versão para versão: a criança de 4 a 11 anos paga 3,80€ pela escada até o segundo piso e 9,20€ pelo elevador até o topo; o jovem paga de 7,40€ a 18,40€ pelo mesmo caminho. `faixa_etaria` é campo de EXPERIÊNCIA e guarda UM preço por faixa, então gravar essas três aqui publicaria o número errado para três das quatro versões. A única que cabe no campo como ele é hoje é a gratuidade dos menores de 4 anos, que vale igual nos quatro bilhetes. O buraco está nomeado no esquema, em `faixa_etaria_e_da_VERSAO_e_o_esquema_a_poe_na_EXPERIENCIA`, com os dois registros desta carga como prova — e ele não tinha como aparecer antes: a gôndola não tem faixa etária e o Angkor tem uma que vale igual nas três versões.",
+   "imagem": null,
+   "motivo_sem_imagem": "A ilha não tem imagem própria e não usa foto de terceiro sem licença. A vitrine reserva o espaço e destaca o nome (seção 6 do ARQUIPELAGO.md).",
+   "declaracoes": [],
+   "motivo_sem_declaracoes": "Ninguém publicou preço diferente. As duas passadas independentes, em duas línguas, devolveram a mesma tabela — e a convergência aqui é mais forte do que a do Angkor, porque a passada em português não repetiu números soltos: ela devolveu as PÁGINAS de tarifa do operador, cada uma com o preço no próprio título, e a passada em inglês devolveu a grade completa por faixa etária. Os dois extremos batem: 14,80€ e 36,70€ para adulto, 3,80€ e 18,40€ para criança e jovem.",
+   "resolucao": null,
+   "motivo_sem_resolucao": "Não há divergência para resolver.",
+   "afiliado": {
+    "programa": null,
+    "url": "",
+    "url_produto": null,
+    "motivo_sem_url_produto": "Nenhuma página de produto foi lida. A busca restrita à plataforma devolveu páginas de passeio em Paris e um free tour, e nenhuma delas é o bilhete de subida vendido pelo operador do monumento. Apontar um passeio como se fosse o bilhete seria vender uma coisa no lugar de outra.",
+    "url_busca_produto": "https://civitatis.com/br/paris/",
+    "rel": "nofollow noopener",
+    "intestavel": false
+   },
+   "status": "publicavel",
+   "entra_por": "Entra pelo mesmo motivo do Coliseu — ingresso de sítio público, o tipo que a carga de 14/09 mediu como o único reproduzível pelo canal aberto — e traz o degrau que este banco nunca tinha alcançado: a fonte é de NÍVEL 4, operador lido por busca. Até hoje o banco só tinha nível 3 (autoridade por busca) e nível 6 (publicador editorial); o degrau do operador estava marcado no esquema como `existe_hoje: false`. A diferença não é de grau: o que a busca devolveu aqui não é alguém falando da tarifa, são as páginas de tarifa do próprio operador, uma por bilhete, com o preço no título de cada uma. E é também o registro que faz nascer `concessionaria_de_bem_publico` no vocabulário de `tipo_de_operador` — a SETE não é o poder público declarando tarifa, nem uma empresa privada qualquer: é a concessionária de um bem público, e chamar de qualquer um dos dois seria pôr o número na boca de quem não o publicou.",
+   "status_por_que": "`publicavel`: a regra_do_documento_nomeado cobra documento dos níveis de AUTORIDADE, que são o 1 e o 3, e este é nível 4 — mas ele nomeia documento assim mesmo, quatro deles, um por versão. A ressalva do nível 4 é obrigatória na tela: site do operador, lido por busca, a reconferir na fonte."
+  }
+ ],
+ "resumo": {
+  "cidades": 4,
+  "experiencias": 4,
+  "versoes": 11,
+  "fontes": 7,
+  "declaracoes": 4,
+  "declaracoes_publicaveis": 2,
+  "itens_sem_saida_de_compra": 0,
+  "itens_com_piso_nao_rastreavel": 4,
+  "itens_intestaveis": 0,
+  "experiencias_com_preco_em_brl": 0,
+  "fontes_de_leitura_direta": 0,
+  "declaracoes_sem_versao": 4
+ },
+ "nota_da_versao_3": "Carga de 15/09/2026, as 11h25Z. Entraram o COLISEU DE ROMA e a TORRE EIFFEL, com Roma e Paris como terceira e quarta cidades, e o banco foi de 2 para 4 experiencias, de 5 para 11 versoes, de 2 para 4 cidades e de 5 para 7 fontes. Os dois sao `ingresso_de_sitio_publico`, que e o tipo que a carga de 14/09 mediu como o unico reproduzivel enquanto o egresso estiver fechado. Tres coisas nasceram com eles: (1) o Coliseu e o primeiro registro que fica `publicavel` por nomear PAGINA DE TARIFA da propria autoridade, e nao um ato — a regra_do_documento_nomeado dizia isso desde que nasceu e so o ato tinha sido exercido; (2) a Torre Eiffel e o primeiro registro de NIVEL 4 deste banco, o degrau do operador lido por busca, que o esquema marcava como `existe_hoje: false`, e ela faz nascer `concessionaria_de_bem_publico` no vocabulario de `tipo_de_operador`; (3) os dois juntos mediram que `faixa_etaria` e da VERSAO e o esquema a poe na EXPERIENCIA. Nada foi ao ar: esta ilha nao tem site, nao tem Sync e nao tem /status, e dizer que verificou no ar seria inventar."
 }
