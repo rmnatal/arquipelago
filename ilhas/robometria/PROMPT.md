@@ -63,30 +63,11 @@ Em 16/09/2026 o Raphael habilitou a API de Afiliados da Shopee e o endereco `ope
 
 **COMO SE SABE QUE FICOU PRONTO:** `ferramentas/shopee-api.py` roda e devolve JSON para pelo menos uma consulta real; o banco tem pelo menos um registro com `imagem.url` e `afiliado.url_produto` preenchidos e conferidos a mao; o HTML servido de uma pagina mostra a foto desse registro; `validar-banco.py` passa; e **nenhum arquivo do repositorio, nenhuma linha de log e nenhuma mensagem de commit contem o AppID ou a Senha** — confira isto com `git grep` antes de empurrar, procurando pelo nome dos campos, nunca imprimindo valor.
 
-## DESPACHO DO RAPHAEL — 16/09/2026 — o espaco reservado da foto esta desenhado como uma roda de carregamento
+## DESPACHO DO RAPHAEL — 16/09/2026 — o espaço reservado da foto ~~está desenhado como uma roda de carregamento~~ — **CUMPRIDO E CONFERIDO NO AR EM 16/09/2026, 16h26Z**
 
-O Raphael olhou um cartao da vitrine e perguntou se a ilha vai ao ar sem foto. A resposta de regra e sim, e esta certa (secao 6 e 25.3 do ARQUIPELAGO.md): a foto legitima sai do `image_link` do feed da Shopee, peca fora do feed nao tem foto, e perder a recomendacao tecnica certa por falta de foto seria trocar o certo pelo bonito. **O problema nao e a ausencia da foto — e o desenho do lugar vazio.**
+As duas edições saíram (casca 1.7.1, R1 1.9.1, R2 1.7.1, A1 1.3.1, A2 1.3.1, manifest na revisão 53). **Conferido no ar pela regra 18.4, e não pelo log do Sync:** nas quatro páginas de ferramenta a folha servida traz `.rbm-vitrine-vazia::after{content:"sem foto";}`, a regra do painel não tem `border-radius` nem lado transparente, e os **17 painéis** servidos trazem cada um OU a foto OU o aviso — nunca os dois, nunca nenhum. `conferir-no-ar.py` ganhou a seção 12 e fechou com **250 afirmações, 0 falha**.
 
-O que esta no ar hoje, em `robometria-casca.php`:
-
-    .rbm-vitrine-vazia{display:block;width:2.4rem;height:2.4rem;border:2px solid var(--rbm-traco);border-radius:50%;border-right-color:transparent;}
-
-Isso e um anel com um quarto faltando, centralizado num painel cinza. E exatamente a forma universal de um **spinner de carregamento**. Quem chega na pagina nao le "esta peca nao tem foto"; le "a foto esta carregando" — e, como ela nunca carrega, le "este site esta quebrado". Numa ilha cujo argumento inteiro e procedencia, parecer quebrada custa mais do que aparentar simplicidade. O proprio comentario do `robometria-r1.php` promete outra coisa — "o desenho e o mesmo encaixe da marca, em traco" — e o que foi para o ar nao e isso.
-
-**EDICAO 1 — trocar a regra de CSS.** Em `snippets/robometria-casca.php`, substitua aquela linha unica por estas duas:
-
-    .rbm-vitrine-vazia{display:block;font-family:var(--rbm-texto);font-size:.78rem;color:var(--rbm-legenda);}
-    .rbm-vitrine-vazia::after{content:"sem foto";}
-
-O painel continua sendo o espaco reservado neutro que a secao 6 manda; o que muda e que ele passa a **dizer** o que e, em vez de imitar um carregamento que nunca termina. A classe so e emitida quando nao ha imagem, entao a frase nunca aparece em cartao com foto. Uma regra so conserta as quatro ferramentas (R1, R2, A1 e A2), sem tocar no HTML de nenhuma.
-
-**EDICAO 2 — o defeito que so aparece quando a foto chegar.** `robometria-r1.php` (linha ~983) e `robometria-a1.php` (linha ~391) so emitem `rbm-vitrine-vazia` quando `tem_imagem` e falso, que e o certo. Mas `robometria-r2.php` (linha ~938) e `robometria-a2.php` (linha ~422) emitem **sempre**, sem checar nada:
-
-    $html .= '<span class="rbm-vitrine-foto" aria-hidden="true"><span class="rbm-vitrine-vazia"></span></span>';
-
-Hoje isso nao aparece porque nenhum item tem foto. No dia em que o primeiro `image_link` do feed entrar no banco, a R2 e a A2 vao escrever "sem foto" por cima de um cartao que tem foto. Ponha nas duas a mesma checagem que a R1 e a A1 ja fazem, lendo o campo de imagem do item da mesma forma que elas leem.
-
-**COMO SE SABE QUE FICOU PRONTO:** no HTML servido de uma pagina de cada ferramenta, o painel de cartao sem foto traz a palavra "sem foto" e nenhum elemento com `border-radius:50%` dentro de `.rbm-vitrine-foto`; e as quatro ferramentas so emitem `rbm-vitrine-vazia` quando o item nao tem imagem. Suba a `revisao` do `manifest.json`, grave o `sha256` novo e acione o Sync como manda a secao 3 — esta correcao fura a fila pela secao 18.
+**O que o despacho não pedia e entrou junto, porque a trava não muda uma linha do banco de hoje:** `ferramentas/mutacoes-lugar-vazio-da-foto.py`, 6 de 6 no resultado esperado, **quatro delas plantando a foto que o banco ainda não tem** (seção 8: o caso que o esquema permite, a régua trata hoje) e a sexta sendo o MUNDO SADIO, que tem de passar. E a régua da R1 parou de cobrar "um painel por peça" — que é a mesma coisa que exigir que nenhuma peça tenha foto, e teria reprovado a primeira imagem que a API trouxesse.
 
 ## DESPACHO DO RAPHAEL — 11/09/2026 — a ilha ganha voz
 

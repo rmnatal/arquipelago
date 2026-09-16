@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 9
 primeira_indexacao: desconhecida
 ultima_execucao: 2026-09-16T14:05Z
-executando_desde: 2026-09-16T16:18Z
+executando_desde: 2026-09-16T16:32Z
 bloco_atual: |
   O CANAL BRASILEIRO VIRA PORTAO DA R2, E O BANCO QUEBRADO NO MAIN VOLTA A PARSEAR (esquema versao 8, casca 1.7.0, R2 1.7.0, manifest revisao 52). ZERO URL nova, ZERO URL mudada. A ilha ganhou 5 modelos e a R2 recomenda exatamente os MESMOS 11 de antes — que e a prova de que o portao esta certo, nao de que ele e inutil.
   A ESCOLHA DA ILHA: PELO FOCO DA 1.2, SEM CORRIDA. foco.md nomeia robometria desde 16/09, entao nao houve rotacao a aplicar. Os cinco ESTADO.md parseiam, robometria com executando_desde null, que pela 1.1 ja significa que nenhum bloco da Fundacao esta vivo. Nenhum branch claude fora do main e nenhum PR aberto. Reserva aceita de primeira as 13h17Z. Rede pela 20.2 antes de trabalhar: home 200 em TRES passadas, com aquametria.com.br de controle nas mesmas tres.
