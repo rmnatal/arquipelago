@@ -409,9 +409,21 @@ rbm_ok( false !== strpos( $pagina, 'rbm-vitrine' ), 'a pagina serve vitrine' );
    que clica, nao um lugar reservado com promessa. */
 rbm_ok( false === strpos( $pagina, 'em breve' ),
 	'a pagina nao serve a frase proibida pela secao 7' );
-rbm_ok( substr_count( $pagina, 'rbm-comprar-cru' ) > 0,
-	'os modelos da vitrine saem pela busca enquanto nao ha link de afiliado',
-	substr_count( $pagina, 'rbm-comprar-cru' ) . ' saida(s) pela busca' );
+/* EM 16/09/2026 ESTA REGUA PAROU DE MEDIR UM DEGRAU E PASSOU A MEDIR A ESCADA.
+   Ela exigia `rbm-comprar-cru` > 0 — ou seja, exigia que a pagina saisse pelo
+   degrau 4 da 25.1, a busca CRUA. Foi a QUARTA regua desta ilha a reprovar por
+   isso no mesmo dia (teste-r1, teste-a1 e a secao 11 do conferir-no-ar.py foram
+   as outras tres), sempre pelo mesmo motivo e sempre no mesmo sentido: chegaram
+   os links de busca encurtada, a pagina SUBIU de degrau, e a regua reprovou a
+   melhora. Regua amarrada a um degrau reprova a subida — e quando quatro reguas
+   cometem o mesmo erro no mesmo dia, o erro nao e de nenhuma delas: e de terem
+   sido escritas quando so existia um degrau alcancavel, cada uma sem saber das
+   outras. O que a afirmacao quer dizer e "o bloco de compra nunca fica vazio", e
+   e isso que ela passa a medir. O degrau sai impresso ao lado, como informacao. */
+rbm_ok( substr_count( $pagina, 'rbm-comprar-busca' ) > 0,
+	'todo modelo sem ficha sai por alguma busca — o bloco de compra nunca fica vazio',
+	substr_count( $pagina, 'rbm-comprar-busca' ) . ' saida(s) de busca, '
+		. substr_count( $pagina, 'rbm-comprar-cru' ) . ' crua(s)' );
 rbm_ok( false !== strpos( $texto, 'links de afiliado' ),
 	'o aviso de comissao aparece dentro do bloco de compra' );
 rbm_ok( false !== stripos( $texto, 'não é um ranking' ),

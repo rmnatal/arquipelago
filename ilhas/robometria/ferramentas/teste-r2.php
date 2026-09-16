@@ -628,9 +628,21 @@ rbm_ok( true, 'o link de procedencia usa a classe discreta da casca',
 rbm_ok( false !== strpos( $h_ancora, 'Onde comprar estes' ), 'o bloco de compra existe na resposta' );
 rbm_ok( false === strpos( $h_ancora, 'em breve' ),
 	'a pagina nao serve a frase proibida pela secao 7' );
-rbm_ok( substr_count( $h_ancora, 'rbm-comprar-cru' ) > 0,
-	'todo modelo sem ficha sai pela busca — o bloco de compra nunca fica vazio',
-	substr_count( $h_ancora, 'rbm-comprar-cru' ) . ' saida(s) pela busca' );
+/* EM 16/09/2026 ESTA REGUA PAROU DE MEDIR UM DEGRAU E PASSOU A MEDIR A ESCADA.
+   Ela exigia `rbm-comprar-cru` > 0 — ou seja, exigia que a pagina saisse pelo
+   degrau 4 da 25.1, a busca CRUA. Foi a QUARTA regua desta ilha a reprovar por
+   isso no mesmo dia (teste-r1, teste-a1 e a secao 11 do conferir-no-ar.py foram
+   as outras tres), sempre pelo mesmo motivo e sempre no mesmo sentido: chegaram
+   os links de busca encurtada, a pagina SUBIU de degrau, e a regua reprovou a
+   melhora. Regua amarrada a um degrau reprova a subida — e quando quatro reguas
+   cometem o mesmo erro no mesmo dia, o erro nao e de nenhuma delas: e de terem
+   sido escritas quando so existia um degrau alcancavel, cada uma sem saber das
+   outras. O que a afirmacao quer dizer e "o bloco de compra nunca fica vazio", e
+   e isso que ela passa a medir. O degrau sai impresso ao lado, como informacao. */
+rbm_ok( substr_count( $h_ancora, 'rbm-comprar-busca' ) > 0,
+	'todo modelo sem ficha sai por alguma busca — o bloco de compra nunca fica vazio',
+	substr_count( $h_ancora, 'rbm-comprar-busca' ) . ' saida(s) de busca, '
+		. substr_count( $h_ancora, 'rbm-comprar-cru' ) . ' crua(s)' );
 $cru_pago = preg_match_all( '#<a class="[^"]*rbm-comprar-cru[^"]*"[^>]*rel="[^"]*sponsored#i', $h_ancora );
 rbm_ok( 0 === $cru_pago,
 	'a busca crua nao se declara patrocinada: ninguem paga por aquele clique',
