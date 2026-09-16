@@ -345,7 +345,14 @@ for _rot, _pag in (('W300', w300), ('WSMART', wsmart)):
     # REMOVIDA — nome de classe nunca apareceria ali, e ela reprovou uma pagina
     # correta. Este arquivo le como um leitor le, entao o que ele mede e a palavra
     # que o leitor ve no botao.
-    ok('ver ofertas' in _pag.lower(),
+    # E O ROTULO MUDA COM O DEGRAU — setima regua desta ilha amarrada a um
+    # degrau da 25.1, todas descobertas em 16/09/2026. "Ver ofertas na Shopee" e
+    # o rotulo da BUSCA; quando o item ganha ficha de produto, a casca sobe o
+    # degrau e o botao passa a dizer "Ver na Shopee". Esta afirmacao reprovava a
+    # subida. O que ela quer dizer e "existe botao de compra", entao ela passa a
+    # aceitar os rotulos dos DOIS degraus — e o dia em que nascer um terceiro,
+    # ele entra aqui junto com a linha que o cria na casca.
+    ok('ver ofertas' in _pag.lower() or 'ver na ' in _pag.lower(),
        'o recipiente do %s tem saida de compra que clica (25.2)' % _rot,
        'presente' if 'ver ofertas' in _pag.lower() else 'AUSENTE')
 

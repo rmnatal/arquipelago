@@ -561,10 +561,26 @@ def conferir_piso_no_ar():
             # compra". O degrau e informacao, nao criterio — e sai impresso ao
             # lado, porque saber em qual degrau cada pagina esta e o jeito de ver
             # o encurtamento avancando sem precisar de outra medicao.
+            # E EM 16/09/2026, A TARDE, ELA CAIU DE NOVO — pelo MESMO motivo,
+            # um degrau acima. A correcao da manha trocou `rbm-comprar-cru` por
+            # `rbm-comprar-busca` e continuou amarrada a UM degrau: quando a
+            # Open API da Shopee trouxe ficha de produto, os cinco modelos do
+            # A2 subiram outra vez, a busca sumiu da pagina e a regua reprovou
+            # a melhora NO AR. Sexta regua desta ilha a cometer o mesmo erro.
+            #
+            # Trocar a classe de novo so adiaria a terceira queda. O que
+            # sobrevive a qualquer degrau e contar CARTAO contra BLOCO DE
+            # COMPRA: a vitrine tem saida quando todo cartao tem um, e o degrau
+            # de cada um sai impresso ao lado como informacao.
             cru = miolo.count('rbm-comprar-cru')
             busca = miolo.count('rbm-comprar-busca')
-            ok(busca > 0, '%s: a vitrine sai pela busca da 25.2' % caminho,
-               '%d saida(s) de busca, %d crua(s)' % (busca, cru))
+            cartoes = miolo.count('class="rbm-vitrine-item"')
+            blocos = miolo.count('class="rbm-vitrine-acao"')
+            ficha = blocos - busca - cru
+            ok(cartoes > 0 and blocos == cartoes,
+               '%s: todo cartao da vitrine tem bloco de compra' % caminho,
+               '%d cartao(oes), %d bloco(s) | degraus: %d ficha, %d busca, %d crua'
+               % (cartoes, blocos, ficha, busca, cru))
             pagos = re.findall(r'<a class="[^"]*rbm-comprar-cru[^"]*"[^>]*rel="[^"]*sponsored',
                                miolo, re.I)
             ok(not pagos,

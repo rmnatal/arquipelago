@@ -82,7 +82,14 @@ def _refazer_contagem(d):
     mutacao reprovaria pela contagem e nunca chegaria na regra que ela nomeia."""
     pub = [r for r in d['registros'] if r['status'] == 'publicavel']
     c = d['contagem']
-    c['itens_com_ficha'] = sum(1 for r in pub if r['afiliado']['url'])
+    # `itens_com_ficha` CONTAVA O LINK DE AFILIADO, igual ao validador contava —
+    # as duas copias do mesmo engano, erradas juntas, que e o estado em que uma
+    # afirmacao fica verde sem medir nada. Corrigido nos dois lugares em
+    # 16/09/2026, quando a Open API da Shopee fez a ficha existir e os dois
+    # numeros deixarem de coincidir em zero.
+    c['itens_com_ficha'] = sum(1 for r in pub if r['afiliado'].get('url_produto'))
+    c['itens_com_link_de_afiliado'] = sum(1 for r in pub if r['afiliado']['url'])
+    c['itens_com_foto'] = sum(1 for r in pub if (r.get('imagem') or {}).get('url'))
     c['itens_sem_saida_de_compra'] = sum(
         1 for r in pub if not (r['afiliado']['url'] or r['afiliado']['url_busca']
                                or r['afiliado']['url_busca_produto']))
@@ -114,6 +121,12 @@ def _dar_ficha(base, rel, ident, **campos):
     a['coletado_em'] = '2026-09-13'
     a['conferido_em'] = '2026-09-13'
     a.update(campos)
+    # E AS CONTAGENS DO CABECALHO ANDAM JUNTO. Sem isto a mutacao reprova por
+    # um numero de cabecalho desatualizado em vez de pela regra que ela nomeia —
+    # e a unica que TEM de passar (m16) reprovaria por um defeito que ela mesma
+    # criou. Descoberto em 16/09/2026, quando as chaves itens_com_ficha,
+    # itens_com_link_de_afiliado e itens_com_foto passaram a ser conferidas.
+    _refazer_contagem(d)
     # `intestavel` e DERIVADO no banco de verdade, entao o mundo de bancada tambem o
     # deriva — DEPOIS do update, para a mutacao que estraga `url_produto` continuar
     # reprovando pela regra que ela NOMEIA (a URL crua que falta) e nao por um campo
@@ -269,9 +282,25 @@ def m10_registro_excluido_ganha_piso(base):
 def m11_motivo_apagado(base):
     """O item fica sem piso E sem motivo. A divida continua exatamente do mesmo
     tamanho e deixa de ter causa escrita — e divida sem causa a proxima execucao
-    nao sabe se e trabalho dela ou espera de terceiro."""
+    nao sabe se e trabalho dela ou espera de terceiro.
+
+    ELA ESTAVA INERTE E NINGUEM VIU, descoberto em 16/09/2026. A mutacao so
+    apagava o `motivo_sem_url_busca`, e isso funcionava enquanto o ALVO_MODELO
+    nao tinha piso: motivo ausente com piso ausente e defeito. No dia em que os
+    links de busca encurtada chegaram aos modelos, o alvo GANHOU piso, o motivo
+    virou legitimamente null — e a mutacao passou a apagar um campo que ja
+    estava vazio. Mutacao que nao morde e teste verde com outro nome, e o
+    contrato ja nomeia esta armadilha: quando o banco melhora, a regua escrita
+    sobre o mundo anterior morre calada.
+
+    O conserto e PRODUZIR O MUNDO em vez de esperar por ele: a mutacao tira o
+    piso E o motivo, que e a situacao sobre a qual a regra fala.
+    """
     d = _ler_json(base, MODELOS)
-    _registro(d, ALVO_MODELO)['afiliado']['motivo_sem_url_busca'] = None
+    a = _registro(d, ALVO_MODELO)['afiliado']
+    a['url_busca'] = ''
+    a['motivo_sem_url_busca'] = None
+    _refazer_contagem(d)
     _gravar_json(base, MODELOS, d)
 
 

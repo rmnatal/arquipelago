@@ -166,9 +166,24 @@ ESTADOS = [
      'a B112-CH atravessa a familia E10 e o S20 porque o reservatorio 2 em 1 e o mesmo'),
     ('xiaomi-e10',   'mop',              True,
      'a B112-TB e declarada para E10/E12/E10C'),
-    ('xiaomi-e10',   'escova lateral',   False,
-     'os titulos largos de escova lateral do E10 nunca foram vistos ao lado de um codigo, '
-     'e juntar titulo de uma pagina com codigo de outra seria inventar a declaracao'),
+    # CORRIGIDO EM 16/09/2026, e a correcao e do TABELA e nao da pagina: esta
+    # linha esperava recusa porque, quando ela foi escrita, "os titulos largos de
+    # escova lateral do E10 nunca foram vistos ao lado de um codigo". Em
+    # 14/09/2026, as 19h17Z, a leva da familia B106GL ALARGOU o registro
+    # B106GL-BX — a propria Xiaomi publica o codigo sob titulo que nomeia S20,
+    # S10, E10, S12, E12 e X20 —, e desde entao o banco declara este par. A
+    # pagina passou a responder, corretamente, e este arquivo continuou
+    # esperando a recusa de dois dias antes.
+    #
+    # Ele nao foi rodado desde a leva, e e isso que faz a cicatriz valer a pena
+    # escrever: regua de estado ESPERADO, digitada, envelhece calada quando o
+    # banco cresce — e ninguem descobre ate alguem rodar. E o avesso exato da
+    # regua que morre quando o banco melhora: aqui ela nao morreu, ficou
+    # VERMELHA sobre uma pagina certa, que e o jeito mais rapido de a proxima
+    # execucao aprender a ignorar a bancada.
+    ('xiaomi-e10',   'escova lateral',   True,
+     'a B106GL-BX foi alargada em 14/09/2026: a Xiaomi publica o codigo sob titulo '
+     'que nomeia S20, S10, E10, S12, E12 e X20'),
     ('xiaomi-s20',   'escova lateral',   True,
      'a B106GL-BX e a escova lateral do S20, com pacote de 2'),
     ('xiaomi-s20',   'mop',              True,
