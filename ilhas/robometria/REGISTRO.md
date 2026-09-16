@@ -4583,3 +4583,78 @@ do 3c continua fechado pelo egresso, agora com a URL exata registrada.
 **O PRÓXIMO PASSO, MEDIDO E NÃO LEMBRADO:** o **item 2 da DEFINIÇÃO DE PRONTA não andou, e a API não o resolve.** Ela trouxe foto, ficha e link; a interseção das duas ferramentas conta `pa_declarado` **e** `canal_brasileiro`, e nenhum dos dois veio da Shopee. Segue **8 de 38**. Os três caminhos continuam os do bloco anterior, e o primeiro é o único que mexe nos dois lados: **(1) POSITIVO** — `positivo-pra500` está em "só a R2" esperando UMA peça, e PRA100/PRA600/PRA90 apareceram fora do banco; as duas passadas de busca **divergiram** sobre o Pa do PRA800 e do PRA2000 (2.300/2.800 contra 2.800/3.000), então a coleta tem de resolver pela regra de divergência antes de gravar. **(2) WAP** medida NEGATIVA para Pa. **(3) Electrolux e Multi** sem Pa em canal nenhum, já medido três vezes.
 
 **E UM ALVO NOVO QUE ESTA EXECUÇÃO ABRIU:** com `item_id_shopee` e `shop_id_shopee` no banco, **o teste de vida da 25.4-b passa a ser possível nesta ilha** — 27 links têm ficha, e a API de ficha da Shopee aceita o par. Era a coisa que o item 5 do despacho de 14/09 dizia não existir aqui.
+
+## 2026-09-16, 20h — O DESPACHO DA SENTINELA DE 16/09 INTEIRO: a palavra-chave da busca passa a ser MEDIDA, o par ganha universo e as duas datas ganham fonte (casca 1.9.0, A1 1.5.0, A2 1.5.0, R1 1.10.0, manifest revisão 58)
+
+**Os QUATRO itens do despacho da Sentinela de 16/09/2026 saíram na mesma execução, pela 18.2, e foram conferidos no ar pela 18.4.** ZERO URL nova, ZERO URL mudada de endereço.
+
+**A ESCOLHA DA ILHA: PELO FOCO DA 1.2, SEM CORRIDA.** `foco.md` nomeia `robometria` desde 16/09. `executando_desde` estava `null`, que pela 1.1 já significa que nenhum bloco da Fundação está vivo; o último commit na pasta era de 17h15Z, duas horas antes. Nenhum branch `claude/*` fora do `main` e nenhum PR aberto. Reserva aceita de primeira às 19h18Z e **renovada às 19h38Z e às 19h53Z** pela 1.1. Rede pela 20.2 antes de trabalhar: home em 200 e `/status` na revisão 54, igual à do `manifest.json`, em TRÊS passadas.
+
+### ITENS 1 E 3 — A CAUSA ERA UMA SÓ, E ELA JÁ ESTAVA NO CONTRATO ANTES DE SER MEDIDA
+
+O item 1 mediu quatro registros mandando o leitor a uma busca de ZERO resultado; o item 3 mediu que em 9 das 18 palavras-chave o primeiro resultado não era a peça pedida. **A seção 26 já dizia a causa:** *o vocabulário da ilha classifica pela FUNÇÃO e o fabricante batiza pela POSIÇÃO*. A chave era composta do `tipo` — `escova principal`, `escova lateral` —, que é vocabulário da ILHA. **Vendedor nenhum digita isso.**
+
+Nasceu `ferramentas/medir-palavras-chave.py`: chama a Open API da Shopee e desce uma **escada de cinco degraus** — tipo, **batismo do fabricante** (a cabeça de `nome_na_fonte`, cortada na primeira preposição e sem o nome da marca), código da peça, código do modelo compatível, marca. Para no PRIMEIRO degrau que serve e grava o que a API devolveu em `dados/palavras-chave-medidas.json`, com a data e com o degrau.
+
+**O ESQUEMA PROMETIA ISTO POR ESCRITO DESDE 13/09**, em `por_que_a_peca_nao_leva_o_codigo`: *"o estreitamento é melhoria, não conserto, e ele já tem data e dono: a Open API da 25.6 (...) No dia em que ela responder, quem estreita a chave consegue provar que ela traz resultado antes de gravar."* Este foi o dia. **E a mesma frase supunha que o código de peça não aparece em título de anúncio — medido, é FALSO:** loja de reposição digita `FW008024` e `PR10205`, e o degrau do código é hoje o que salva dois reservatórios da WAP.
+
+**OS NÚMEROS, MEDIDOS:** das 18 chaves de ontem, a API devolve **zero em três**, e as três são `escova principal` — da Electrolux, da Positivo e da WAP. A quarta, `Xiaomi escova principal`, só sobrevivia porque um vendedor de kit por acaso escreveu a palavra da ilha no título. Depois da escada: **20 de 20 chaves com resultado** e **16 de 20** no critério do item 3, contra as **14 de 18** que o despacho pediu.
+
+**AS DUAS RÉGUAS SÃO IMPRESSAS LADO A LADO, e isso é decisão.** Pela régua dura da 25.7 — o tipo é a CABEÇA do título — são **7 de 20**. O despacho pediu um número (o título CONTÉM a marca e o tipo) e o contrato cobra o outro, e as duas estão certas na sua pergunta: a da 25.7 foi escrita para decidir se um anúncio É este registro, e aí kit misto é engano; a do item 3 foi escrita para decidir se uma VITRINE serve o leitor, e aí *"Kit de Reposição para Xiaomi S10+: Escova Principal, Escova Lateral, Filtro"* no topo é exatamente o que ele queria ver. **Esconder a folga entre as duas seria escolher qual citar depois de ver o resultado.**
+
+**A BATERIA DA MULTILASER É A ÚNICA SEM CONSERTO DE CHAVE.** Por qualquer caminho da escada o topo é o **carregador**: o catálogo de ofertas não tem bateria de robô Multilaser. Medição honesta, não falha.
+
+### O QUE O DESPACHO NÃO PEDIA E FOI JUNTO, PORQUE O DADO NOVO O COBROU
+
+**O ENCURTAMENTO DEIXOU DE ESPERAR ALGUÉM.** A 25.2 chama o link de busca de PISO e diz que é o único elo que a máquina fabrica sozinha do começo ao fim — e isso era meia verdade: a escolha da palavra era automática e o encurtamento esperava a sessão logada do painel. `generateShortLink` com sub-id fechou o elo. **"Saída crua, sem rastreio" foi de 5 para 0 em 73 publicáveis**, e os cinco modelos Xiaomi que tinham entrado no banco depois da última geração ganharam o link deles.
+
+**E A RÉGUA ACHOU UM BECO SEM SAÍDA QUE DESPACHO NENHUM APONTAVA:** o modelo `multi-ob010`. `Multilaser OB010 robo aspirador` devolve **zero** — a Multi vende aquele aparelho como **ObaDuster**, da Obabox, e ninguém anuncia o OB010. É a seção 26 pelo outro lado: *o código do modelo É o nome comercial — menos quando não é*. O modelo ganhou um segundo degrau com a MESMA regra da peça (a cabeça de `linha`, cortada no parêntese) e `Multilaser ObaDuster robo aspirador` responde com três. **Quem pegou foi a varredura inteira da seção 14 do `conferir-no-ar.py`, não o caso-âncora: uma página não é a ilha.**
+
+### ITEM 2 — OS DOIS UNIVERSOS DO PAR GANHARAM NOME, E NENHUM FOI IGUALADO
+
+A R1 servia *"71 pares peça × modelo declarados (...) cobrindo 30 dos 38 modelos do banco"*, e os dois números saíam de universos diferentes: o 71 conta um par para `multi-ho401`, que é `nao_publicavel` e que os 38 excluem. Esse par não está no seletor, não tem célula na tabela, e **nenhum leitor chega nele**.
+
+A promessa passa a servir **70** — o par com as DUAS pontas publicáveis, contado por régua escrita dentro do `gerar-r1.py` e não lida de `contagem`. Os outros dois existem com nome próprio: `pares_declarados_no_banco` (71) e `pares_para_modelo_nao_publicavel` (1). **É o mesmo conserto dos dois 63 do despacho de 14/09**, um nível adiante: lá eram dois números certos com o mesmo nome, aqui é um número certo no universo errado — e a régua criada naquele dia recomputava as quatro contas sem nunca perguntar **de que universo** cada uma sai, que é por isso que ela aprovou o 71 por dois dias.
+
+`teste-r1.php` reconta os **dois** universos por conta própria, e `ferramentas/mutacoes-universo-do-par.py` prova o que o *pronto quando* exigia — *"a régua tem de reprovar o mundo de hoje antes de aprovar o de amanhã"*: **3 de 3**, uma delas quebrando o gerador. Ela também **para e avisa** se um dia não houver mais par para modelo não publicável, em vez de imprimir verde: é a morte por melhora que a `mutacoes-par-sem-modelo.py` já pagou nesta ilha.
+
+### ITEM 4 — `dateModified` PASSOU A SAIR DE UM CAMPO NOVO, E A DECISÃO ESTÁ ESCRITA
+
+O despacho deixou a escolha entre três e mandou registrar **de qual campo** o valor passa a sair. É um **campo novo**, e as outras duas foram descartadas com motivo medido:
+
+- **`gerado_em` dos fatos** mede *a geração dos FATOS*, e ficou cego para metade do que a página serve: a revisão 52 mexeu na **casca** e não regerou fato nenhum.
+- **a revisão do manifest** é da **ilha inteira**: faria a data do artigo do filtro andar porque a R2 ganhou uma linha. Data que se mexe sem a página ter mudado é ruído num campo que o Google usa para decidir se vale reindexar — e ruído ali é pior que campo velho, porque ensina a ignorar o campo.
+
+`ferramentas/gerar-datas-das-paginas.py` mede do **git** o commit mais recente entre os arquivos que compõem cada página, **a casca inclusa** — é ela que escreve a cabeça, a trilha, o painel da foto e o bloco de compra DENTRO do artigo. O preço está na mesa: a casca muda com frequência e as duas datas vão andar com ela; em troca o campo nunca afirma que a página está parada quando não está, que é a direção em que errar custa menos (seção 10). `modificada_por` grava **qual** arquivo deu a data, para o dia em que alguém quiser medir quanto a casca pesa.
+
+**`datePublished` NÃO SAI DO GIT, e a razão é medida:** o histórico do `main` foi reescrito, e `git log --reverse` jura que **todo** arquivo desta ilha nasceu em 15/09/2026 — inclusive os que estão no ar desde 10/09. Ele é **declarado**, com a entrada do `REGISTRO.md` que o sustenta citada ao lado, que é a mesma exigência que o banco faz de todo número.
+
+`robometria_casca_datas_da_pagina()` é **uma função só**, chamada pelas duas páginas, pelo mesmo motivo que o painel da foto virou uma em 16/09 (25.7). **Sem a option, nenhuma data é publicada:** ausente o Google infere, errada ele acredita.
+
+**E A BANCADA PASSOU A CARREGAR TODAS AS OPTIONS DO MANIFEST**, não só as que cada teste escreve à mão. Ela mediu uma página sem o dado novo enquanto o site sairia com ele, e o teste ficou VERDE sobre uma página sem data nenhuma — **bancada que vê menos que o ar aprova o que o ar reprova.**
+
+### AS TRAVAS QUE MUDARAM, E UMA DELAS MANDOU QUE A MUDASSEM
+
+`teste-escada-compra.py` carregava, desde 13/09, o aviso *"se isto mudar de propósito, mude também esta trava e escreva a medição que sustenta a mudança"*. A medição chegou. **A lei nova é mais dura, não mais frouxa:** chave que foge da composição de sempre só passa se for EXATAMENTE a que a medição escolheu **e** se a medição tiver registrado resultado para ela; chave sem medição continua obrigada ao tipo e proibida de levar o código. Duas mutações novas provam isso — a chave medida em ZERO e a chave estreitada no olho.
+
+`coletar-shopee.py`: **alvo de duas palavras só casa com as duas, em sequência.** A comparação antiga deixava a palavra solta casar com o alvo composto, e `escova` casava com `escova principal` — dentro da coleta isso nunca apareceu porque o código já tinha amarrado o anúncio antes, mas a régua nova aprovou *"Escova Frontal (...) Wap W90"* como topo legítimo de uma busca de escova PRINCIPAL. Frontal é lateral; a seção 26 diz que são funções opostas.
+
+E **duas mutações da `mutacoes-escada` tinham ficado inertes de melhora:** `m12` mentia zero num número que virou zero de verdade quando os cinco modelos ganharam link (agora ela **tira** o link antes de mentir), e `m05` deixou de conseguir injetar o nome de tela na chave porque a chave agora é a medida — quem pega passou a ser o validador, o que é endurecimento e está escrito.
+
+### A CONTA QUE FICA ABERTA, E NÃO É DESTA ILHA
+
+**A busca do site não é mensurável desta nuvem, e as duas medições discordam.** `shopee.com.br/api/v4/search/search_items` devolve `error 90309999, redirect_to_error_page`, e a página de busca serve casca de JavaScript **idêntica byte a byte** para palavras diferentes — remedido hoje. Então a régua nova prova que a chave existe no catálogo que **paga comissão**, que não é o universo do leitor: `WAP escova lateral robo aspirador` devolve **zero** na busca do site (Sentinela, no Chrome do Raphael) e **dez** na API. **As duas chaves mortas do site e as três da API não são o mesmo conjunto.** A única via para medir o universo do leitor continua sendo o navegador dele — e isso é linha para a Sentinela, não para a Fundação.
+
+### BANCADA E AR
+
+**BANCADA, 0 falha:** casca 219, r1 227, r2 107, a1 74, a2 80, árvore 219, voz 155, acentuação 17, escada-compra 681, `validar-banco` aprovado, `php -l` limpo nos seis snippets. **MUTAÇÕES:** `mutacoes-escada` **26 de 26** (duas novas), `mutacoes-universo-do-par` **3 de 3** (arquivo novo), `mutacoes-par-sem-modelo` **6 de 6** — **zero inertes**.
+
+**NO AR:** Sync disparado em duas revisões (57 e 58), `/status` na revisão do manifest nas duas, e `conferir-no-ar.py` com as seções **13** e **14** novas.
+
+**UMA FALHA INTERMITENTE FOI MEDIDA E NÃO É DEFEITO DA ILHA.** A seção 9 (a variante sem cabeçalho, do despacho de 14/09) devolveu corpo VAZIO uma vez em `/metodologia/` e, na passada seguinte, uma vez em `/divulgacao-de-afiliados/`. Repetido à mão: **três passadas em uma e quatro na outra, todas 200 com a trilha inteira** — e URL que muda a cada passada é rede, defeito de cache fica parado. A função passou a **repetir quando o corpo vem vazio**, e isso não é ampliar a régua que a Sentinela proibiu ampliar: o pedido continua sendo o mesmo pedido errado de sempre, sem cabeçalho nenhum. O que mudou é que **vazio não é "outra página", é NENHUMA página** — comparar página com nada mede o túnel, não o cache.
+
+**CREDENCIAL:** o `AppID` e a `Senha` vieram do documento privado `arquipelago-credenciais` do Drive, passaram ao processo só como variável de ambiente e **não estão em arquivo, log, relatório nem mensagem de commit** — conferido com `git grep` na árvore inteira antes de cada push.
+
+**E A REGRA QUE ESTA EXECUÇÃO VIOLOU NO PRÓPRIO DIA EM QUE ELA FOI ESCRITA:** o registro anterior fecha dizendo *"mensagem de commit longa passa a ir por arquivo (`-F`), nunca por `-m`"*. O commit `433c11c` foi por `-m` e o bash comeu os dois trechos entre crases da mensagem. O conteúdo está certo e legível, a mensagem está furada, e não há conserto sem reescrever histórico já empurrado. **Segunda vez em dois dias; os commits seguintes desta execução foram por `-F`.**
+
+**O PRÓXIMO PASSO, MEDIDO E NÃO LEMBRADO:** o **item 2 da DEFINIÇÃO DE PRONTA continua sem andar**, e nada nesta execução o toca — a interseção das duas ferramentas conta `pa_declarado` **e** `canal_brasileiro`, e segue **8 de 38**. Os três caminhos são os mesmos do bloco anterior, e o primeiro continua sendo o único que mexe nos dois lados: **(1) POSITIVO** — `positivo-pra500` está em "só a R2" esperando UMA peça, e as duas passadas de busca divergiram sobre o Pa do PRA800 e do PRA2000, então a coleta tem de resolver pela regra de divergência antes de gravar; **(2) WAP**, medida NEGATIVA para Pa; **(3) Electrolux e Multi**, sem Pa em canal nenhum, já medido três vezes. **E o alvo que o bloco anterior abriu continua aberto:** com `item_id_shopee` e `shop_id_shopee` no banco, o teste de vida da 25.4-b passou a ser possível nesta ilha e ainda não foi escrito — 27 links têm ficha.

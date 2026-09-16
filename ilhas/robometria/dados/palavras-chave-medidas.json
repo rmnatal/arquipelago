@@ -30,11 +30,12 @@
   }
  ],
  "contagem": {
-  "palavras_chave_distintas": 20,
+  "palavras_chave_distintas_de_peca": 20,
   "com_resultado": 20,
   "com_a_peca_no_topo": 7,
   "criterio_literal_do_despacho": 16,
-  "registros_publicaveis": 73
+  "registros_de_peca": 35,
+  "registros_medidos": 73
  },
  "registros": [
   {

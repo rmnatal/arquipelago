@@ -616,9 +616,25 @@ def conferir_variante_sem_cabecalho():
     for caminho, _nome in PAGINAS:
         url = DOMINIO + caminho
         com, _c1 = buscar(url)
-        r = subprocess.run(['curl', '-s', '--max-time', '40', url],
-                           capture_output=True, text=True)
-        sem = r.stdout
+        # REPETIR RESPOSTA VAZIA NAO E AMPLIAR A REGUA, e a diferenca importa
+        # porque a Sentinela proibiu ampliar com todas as letras em 14/09/2026:
+        # *"nao feche este item ampliando a regua"*. O pedido continua sendo o
+        # MESMO pedido errado de sempre — sem cabecalho nenhum, que e o defeito
+        # que esta funcao existe para medir. O que mudou e que corpo VAZIO deixou
+        # de ser comparado com uma pagina: vazio nao e "outra pagina", e
+        # NENHUMA pagina, e comparar pagina com nada mede o tunel e nao o cache.
+        # Medido em 16/09/2026: a resposta vazia caiu em /metodologia/ numa
+        # passada e em /divulgacao-de-afiliados/ na seguinte, e as duas
+        # devolveram 200 com a trilha inteira em tres e quatro repeticoes.
+        # URL que muda a cada passada e rede; defeito de cache fica parado.
+        sem = ''
+        for _tentativa in range(3):
+            r = subprocess.run(['curl', '-s', '--max-time', '40', url],
+                               capture_output=True, text=True)
+            sem = r.stdout
+            if sem.strip():
+                break
+            time.sleep(2)
 
         t_com = texto_da_tag(com, r'<title[^>]*>(.*?)</title>')
         t_sem = texto_da_tag(sem, r'<title[^>]*>(.*?)</title>')

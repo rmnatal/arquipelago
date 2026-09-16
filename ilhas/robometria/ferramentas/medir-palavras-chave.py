@@ -566,12 +566,21 @@ def main():
                 {'degrau': 4, 'composicao': 'marca + codigo do modelo compativel + substantivo do tipo + contexto'},
                 {'degrau': 5, 'composicao': 'marca + contexto'},
             ],
+            # CADA NUMERO DESTA CONTAGEM DIZ DE QUE UNIVERSO ELE SAI, e a licao
+            # e do item 2 do mesmo despacho que pediu esta ferramenta: `71 pares`
+            # ao lado de `38 modelos` sao dois numeros certos contando universos
+            # diferentes na mesma frase. A primeira versao daqui chamava de
+            # `registros_publicaveis` um numero que valia 73 — peca MAIS modelo —
+            # enquanto as quatro chaves acima falavam so de PECA, e a tela da
+            # propria ferramenta imprimia 35. Errar do mesmo jeito no mesmo dia
+            # em que se conserta o erro e o motivo de ele estar escrito aqui.
             'contagem': {
-                'palavras_chave_distintas': len(chaves),
+                'palavras_chave_distintas_de_peca': len(chaves),
                 'com_resultado': len(vivas),
                 'com_a_peca_no_topo': len(com_peca),
                 'criterio_literal_do_despacho': len(literal),
-                'registros_publicaveis': len(medidas),
+                'registros_de_peca': len([m for m in medidas if m.get('tipo')]),
+                'registros_medidos': len(medidas),
             },
             'registros': medidas,
             'nota_das_contagens': (
