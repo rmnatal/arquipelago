@@ -400,3 +400,66 @@ Nenhum. A ancora era exata e foi conferida por `grep -n` antes da gravacao, o di
 insercao pura, o push foi aceito de primeira e o commit aparece em `origin/main`. Sync nao foi
 acionado, nenhum PR foi aberto, nenhuma ilha foi reservada e nenhum outro arquivo foi tocado,
 conforme a instrucao.
+
+## Disparo de 16/09/2026 16h10Z — adendo ao despacho da API da Shopee (robometria): escada de palavra-chave e sub-id
+
+Instrucao recebida: uma tarefa unica, um arquivo, uma insercao literal. Arquivo `ilhas/robometria/PROMPT.md`.
+O bloco do adendo de 16h07Z entrou imediatamente antes da linha `**COMO SE SABE QUE FICOU PRONTO:**` do
+despacho da API da Shopee (a que fala do `git grep` pelo AppID e pela Senha), com uma linha em branco entre
+o fim do bloco e essa linha. Nada foi apagado, nada foi reformatado.
+
+Partida: `git fetch origin main && git checkout -B trabalho origin/main`, a partir de `773e55f`.
+
+### `git status --porcelain` (depois do commit do trabalho, antes deste log)
+
+```
+(vazio — arvore limpa)
+```
+
+### `git diff --stat` (do commit que foi ao `main`)
+
+```
+ ilhas/robometria/PROMPT.md | 6 ++++++
+ 1 file changed, 6 insertions(+)
+```
+
+### Commit que foi ao `main`
+
+```
+d0b4049760471345dae2ba2a1a6840ccfe79b73c
+robometria: adendo ao despacho da API — escada de palavra-chave e sub-id obrigatorio no link gerado
+```
+
+Push: `git push origin HEAD:main` aceito de primeira (`773e55f..d0b4049  HEAD -> main`). Nenhum rebase foi
+preciso, nenhum force push foi dado, nenhum PR foi aberto. Conferido com `git fetch origin main &&
+git log -1 origin/main`: `origin/main` esta em `d0b4049`, que e o commit acima.
+
+### Contagem, conferida relendo o arquivo depois de gravar
+
+```
+$ git show HEAD~1:ilhas/robometria/PROMPT.md | wc -l
+881
+$ wc -l < ilhas/robometria/PROMPT.md
+887
+$ grep -n "ADENDO DE 16/09/2026, 16h07Z" ilhas/robometria/PROMPT.md
+58:**ADENDO DE 16/09/2026, 16h07Z — A CHAMADA FOI FEITA DE VERDADE, ...
+$ grep -n "COMO SE SABE QUE FICOU PRONTO" ilhas/robometria/PROMPT.md
+64:**COMO SE SABE QUE FICOU PRONTO:** `ferramentas/shopee-api.py` roda e devolve JSON ...
+89:**COMO SE SABE QUE FICOU PRONTO:** no HTML servido de uma pagina de cada ferramenta, ...
+```
+
+Numeros: 6 linhas inseridas, 0 apagadas, 1 arquivo tocado alem deste log. O arquivo foi de 881 para 887
+linhas. O bloco novo ocupa as linhas 58 a 62 — cabecalho do adendo na 58, branco na 59, o item 1 (escada de
+palavra-chave) na 60, branco na 61, o item 2 (`offerLink` sem `subId`) na 62 —, a linha 63 esta em branco e
+a linha 64 e a ancora `**COMO SE SABE QUE FICOU PRONTO:**` do despacho da API, intacta, que antes estava na
+58. A segunda ancora de mesmo nome, a da roda de carregamento, desceu de 83 para 89: as mesmas 6 linhas de
+diferenca, nada mais se mexeu. O texto foi conferido palavra por palavra contra a instrucao: cabecalho,
+os dois itens numerados, os grifos e as crases estao como vieram. Nenhuma palavra acrescentada, nenhuma
+corrigida.
+
+### Passos que falharam
+
+Nenhum. A ancora era exata e foi localizada por `grep -n` antes da gravacao, o diff saiu como insercao pura
+de 6 linhas, o push foi aceito de primeira e o commit aparece em `origin/main`. Sync nao foi acionado,
+nenhuma ilha foi reservada, nenhum bloco de fila foi executado e nenhum outro arquivo foi tocado, conforme
+a instrucao.
