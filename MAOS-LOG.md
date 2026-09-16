@@ -310,3 +310,93 @@ bloco foi conferido contra a instrucao: 7 paragrafos, 3 trechos indentados como 
 Nenhum. A ancora da linha 33 era exata e foi validada por assercao antes da gravacao, o diff saiu como
 insercao pura, o push foi aceito de primeira e o commit aparece em `origin/main`. Sync nao foi
 acionado, nenhum PR foi aberto e nenhum outro arquivo foi tocado, conforme a instrucao.
+
+---
+
+## Disparo de 16/09/2026 16h01Z — insercao do despacho do Raphael sobre a API de Afiliados da Shopee (robometria)
+
+Instrucao do disparo: tarefa unica, um arquivo, uma insercao literal — inserir um bloco novo em
+`ilhas/robometria/PROMPT.md` imediatamente ANTES da linha `## DESPACHO DO RAPHAEL — 16/09/2026 — o
+espaco reservado da foto esta desenhado como uma roda de carregamento` (linha 33 antes da edicao),
+com uma linha em branco entre o fim do bloco e essa linha, sem apagar nem reordenar nada. As MAOS
+NAO executaram nenhum dos trabalhos descritos DENTRO do bloco (criar `ferramentas/shopee-api.py`,
+mexer em `dados/esquema-banco.json`, `validar-banco.py`, `dados/pecas.json`,
+`dados/modelos-robo.json` ou na vitrine; ler documento no Google Drive; tocar em credencial de
+qualquer especie): isso e texto do despacho, trabalho da Fundacao, e a instrucao proibia tocar em
+arquivo nao nomeado. Nenhuma credencial foi lida, gravada, impressa ou passada adiante neste
+disparo — o bloco inserido cita apenas NOMES de campo, nunca valores.
+
+### Ponto de partida
+
+```
+$ git fetch origin main && git checkout -B trabalho origin/main
+ * branch            main       -> FETCH_HEAD
+ + e7b1889...22e59b1 main       -> origin/main  (forced update)
+Switched to a new branch 'trabalho'
+22e59b1 MAOS-LOG: secao do disparo de 16/09 15h17Z (despacho do espaco vazio da foto na robometria)
+```
+
+### git status --porcelain (antes do commit do trabalho)
+
+```
+ M ilhas/robometria/PROMPT.md
+```
+
+### git diff --stat
+
+```
+ ilhas/robometria/PROMPT.md | 27 +++++++++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
+```
+
+Insercao pura, conferida: `git diff -U0 | grep -c '^-[^-]'` devolveu `0` (nenhuma linha apagada).
+
+### Commit que foi ao main
+
+```
+8769bbb397ea7b4ad14b81525f2f13f0886a41f8 robometria: despacho — a API da Shopee abriu e fecha foto, encurtamento, ficha de produto e o portao do canal brasileiro
+```
+
+Push direto: `git push origin HEAD:main` aceito na primeira tentativa (`22e59b1..8769bbb`). Sem
+rebase, sem force, sem PR. Conferido com `git fetch origin main && git log -1 origin/main`: o hash
+acima e o topo de `origin/main`.
+
+### Contagem, relida do arquivo DEPOIS de gravar
+
+```
+$ grep -n '^## DESPACHO' ilhas/robometria/PROMPT.md
+33:## DESPACHO DO RAPHAEL — 16/09/2026 — A API DA SHOPEE FOI LIBERADA, E ELA FECHA QUATRO BURACOS DESTA ILHA DE UMA VEZ
+60:## DESPACHO DO RAPHAEL — 16/09/2026 — o espaco reservado da foto esta desenhado como uma roda de carregamento
+85:## DESPACHO DO RAPHAEL — 11/09/2026 — a ilha ganha voz
+147:## DESPACHO DA SENTINELA — 16/09/2026 (ronda diária, 14h50Z, no Chrome do Raphael)
+245:## DESPACHO DA SENTINELA — 14/09/2026 — O QUE RESTOU, E É TUDO DO RAPHAEL
+282:## DESPACHO DA SENTINELA — 11/09/2026 (ronda diária, medida no navegador do Raphael)
+310:## DESPACHO DA SENTINELA — 10/09/2026 (medição pela nuvem)
+323:## DESPACHO DO RAPHAEL — 14/09/2026 — O PISO DE BUSCA — **CUMPRIDO E CONFERIDO NO AR EM 14/09/2026, 15h**
+
+$ wc -l ilhas/robometria/PROMPT.md
+881 ilhas/robometria/PROMPT.md
+
+$ sed -n '57,60p' ilhas/robometria/PROMPT.md | cat -A   (so as pontas de cada linha)
+$
+**COMO SE SABE QUE FICOU PRONTO:** ... nunca imprimindo valor.$
+$
+## DESPACHO DO RAPHAEL M-bM-^@M-^T 16/09/2026 M-bM-^@M-^T o espaco reservado da foto ...$
+```
+
+Numeros: 27 linhas inseridas, 0 apagadas, 1 arquivo tocado alem deste log. O arquivo foi de 854 para
+881 linhas. O bloco novo comeca na linha 33 — exatamente onde ficava o cabecalho da roda de
+carregamento, que desceu intacto para a linha 60 — e termina na 58; a linha 59 esta em branco, como
+a instrucao pediu. Os outros 7 despachos seguem na mesma ordem relativa de antes, apenas 27 linhas
+mais abaixo. O texto do bloco foi conferido contra a instrucao: cabecalho, 3 paragrafos de abertura,
+a lista numerada de 4 buracos, o paragrafo das credenciais, a linha `**O QUE CONSTRUIR, nesta
+ordem:**`, os 4 itens (a) a (d) e o paragrafo de pronta — 26 linhas de bloco mais a linha em branco
+de separacao. Nenhuma palavra acrescentada, nenhuma corrigida: o `afiltado.url` do item (c) veio
+assim na instrucao e foi gravado assim.
+
+### Passos que falharam
+
+Nenhum. A ancora era exata e foi conferida por `grep -n` antes da gravacao, o diff saiu como
+insercao pura, o push foi aceito de primeira e o commit aparece em `origin/main`. Sync nao foi
+acionado, nenhum PR foi aberto, nenhuma ilha foi reservada e nenhum outro arquivo foi tocado,
+conforme a instrucao.
