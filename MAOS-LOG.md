@@ -85,3 +85,79 @@ check-ignore saiu com 1
   Os dados escritos sao exatamente os do mapa.
 - **`modelos-robo.json` tem 43 registros agora** (eram 38): `fb9197e` acrescentou cinco
   codigos Xiaomi sem canal brasileiro. Nenhum deles esta no mapa, e nenhum foi tocado.
+
+---
+
+## 16/09/2026 — disparo das 14h50 UTC — ronda da Sentinela na robometria: 4 operacoes, 1 commit no `main`
+
+Instrucao recebida no disparo: quatro operacoes no `rmnatal/arquipelago`, branch `main`, num commit so.
+Base: `git fetch origin main && git checkout -B trabalho origin/main` — partiu de `7578db7`.
+As quatro ancoras da instrucao foram conferidas ANTES de qualquer escrita e as quatro bateram, cada uma
+uma unica vez no arquivo. Nada foi adivinhado, nada foi reformatado, nenhuma linha fora da instrucao.
+
+### `git status --porcelain` (antes do commit)
+
+```
+ M dados/PAINEL.md
+ M ilhas/robometria/ESTADO.md
+ M ilhas/robometria/PROMPT.md
+ M ilhas/robometria/dados/consertos.md
+```
+
+Depois do commit, `git status --porcelain` voltou vazio (so o `MAOS-LOG.md` deste registro ficou pendente,
+e vai no commit seguinte).
+
+### `git diff --stat`
+
+```
+ dados/PAINEL.md                     | 51 +++++++++++---------
+ ilhas/robometria/ESTADO.md          |  2 +-
+ ilhas/robometria/PROMPT.md          | 96 +++++++++++++++++++++++++++----------
+ ilhas/robometria/dados/consertos.md |  1 +
+ 4 files changed, 101 insertions(+), 49 deletions(-)
+```
+
+### Hash do commit que foi ao `main`
+
+```
+07be6b115e2a11d6be08b9775fc1d5c41b977b71
+ronda da Sentinela 16/09: despacho novo na robometria (4 itens), ultima_ronda, consertos.md e PAINEL.md
+```
+
+Push aceito de primeira: `git push origin HEAD:main` devolveu `7578db7..07be6b1  HEAD -> main`.
+Sem rebase, sem force, sem PR. Conferido depois com `git fetch origin main && git log -1 origin/main`:
+
+```
+07be6b115e2a11d6be08b9775fc1d5c41b977b71 ronda da Sentinela 16/09: despacho novo na robometria (4 itens), ultima_ronda, consertos.md e PAINEL.md
+```
+
+### Contagem do que mudou — relida DOS ARQUIVOS DEPOIS DE GRAVAR
+
+- **OP1 `ilhas/robometria/PROMPT.md`:** o trecho das linhas 95 a 146 (52 linhas, do titulo
+  `## DESPACHO DA SENTINELA — 14/09/2026 ...` ate a linha em branco anterior ao
+  `### 4. O PISO DA 25.2 — **a conta mudou em 14/09/2026...`) foi apagado e no lugar entraram
+  **96 linhas** do bloco novo. Arquivo: **779 -> 823 linhas**. Relendo: `## DESPACHO DA SENTINELA — 16/09/2026`
+  aparece **1** vez, `## DESPACHO DA SENTINELA — 14/09/2026` aparece **0** vezes, e os quatro itens do
+  despacho novo estao nas linhas 109, 134, 154 e 179. A linha `### 4. O PISO DA 25.2 — **a conta mudou
+  em 14/09/2026...` continua no arquivo, agora na linha 191, e tudo dali para baixo ficou intacto —
+  por isso o arquivo tem hoje dois cabecalhos comecando por `### 4.`, que e o resultado correto da instrucao.
+- **OP2 `ilhas/robometria/ESTADO.md`:** **1 linha** trocada. Relendo, a linha 23 e
+  `ultima_ronda: 2026-09-16T14:50Z`; `2026-09-14T14:32Z` nao aparece mais. O bloco multilinha
+  `bloco_atual: |` nao foi tocado. Validacao pedida pela instrucao:
+
+```
+$ python3 -c "import io,yaml;yaml.safe_load(io.open('ilhas/robometria/ESTADO.md',encoding='utf-8').read().split('---')[1]);print('YAML ok')"
+YAML ok
+```
+
+- **OP3 `ilhas/robometria/dados/consertos.md`:** **1 linha acrescentada**, na linha 9, logo abaixo da
+  linha `| 2026-09-14 | — | **Nenhum conserto.** ...`. Arquivo: **12 -> 13 linhas**; a tabela tem agora
+  **2** linhas de dados (`2026-09-14` e `2026-09-16`). Nenhuma linha anterior foi tocada.
+- **OP4 `dados/PAINEL.md`:** arquivo inteiro substituido. **47 -> 54 linhas**, 7974 bytes.
+  Relendo, a linha 5 e `**Escrito em:** 16/09/2026 14h50Z, pela ronda diária da **robometria**.`
+  A tabela de despachos abertos tem 6 linhas, as 4 primeiras desta ronda.
+
+### Passos que falharam
+
+Nenhum. As quatro ancoras bateram, o YAML validou, o push foi aceito na primeira tentativa e o commit
+aparece em `origin/main`.
