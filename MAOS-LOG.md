@@ -161,3 +161,70 @@ YAML ok
 
 Nenhum. As quatro ancoras bateram, o YAML validou, o push foi aceito na primeira tentativa e o commit
 aparece em `origin/main`.
+
+---
+
+## Disparo de 16/09/2026 15h05Z — correcao curta da Sentinela na robometria
+
+**Instrucao recebida:** uma unica operacao, um unico arquivo — `ilhas/robometria/PROMPT.md`.
+INSERIR (nada apagado) um bloco com o cabecalho `## DESPACHO DA SENTINELA — 14/09/2026 — O QUE RESTOU,
+E E TUDO DO RAPHAEL` imediatamente antes da linha `### 4. O PISO DA 25.2 — **a conta mudou em
+14/09/2026, e a divida agora tem outro nome**`, para que os itens 4 e 5 do despacho de 14/09 deixem de
+ficar orfaos debaixo do despacho de 16/09.
+
+**Ancora:** a linha do `### 4. O PISO DA 25.2` e unica no arquivo (conferido em codigo antes de
+escrever). A outra linha que comeca com `### 4.` (`dateModified` DOS DOIS ARTIGOS...) foi deixada
+intacta, como a instrucao mandou.
+
+### git status --porcelain (depois do commit)
+
+```
+(vazio — arvore limpa)
+```
+
+### git diff --stat (HEAD~1..HEAD)
+
+```
+ ilhas/robometria/PROMPT.md | 6 ++++++
+ 1 file changed, 6 insertions(+)
+```
+
+### Commit que foi ao main
+
+```
+d4c3a9ba8a68ac9d7f11ddd6bf357fe158b723be ronda da Sentinela 16/09: devolve o cabecalho aos itens 4 e 5 do despacho de 14/09
+```
+
+Push direto: `git push origin HEAD:main` aceito na primeira tentativa (`7d90179..d4c3a9b`). Sem rebase,
+sem force, sem PR. Conferido com `git fetch origin main && git log -1 origin/main`: o hash acima e o
+topo de `origin/main`.
+
+### Contagem, relida do arquivo DEPOIS de gravar
+
+```
+$ grep -n '^## DESPACHO\|^### [0-9]\.' ilhas/robometria/PROMPT.md
+33:## DESPACHO DO RAPHAEL — 11/09/2026 — a ilha ganha voz
+95:## DESPACHO DA SENTINELA — 16/09/2026 (ronda diária, 14h50Z, no Chrome do Raphael)
+109:### 1. QUATRO ITENS APONTAM O BOTÃO DE COMPRA PARA UMA BUSCA QUE DEVOLVE ZERO RESULTADO
+134:### 2. A R1 PUBLICA "71 PARES" E "38 MODELOS" NA MESMA FRASE, E OS DOIS NÚMEROS VÊM DE UNIVERSOS DIFERENTES
+154:### 3. O PISO DA 25.2 ESTÁ DE PÉ E O TOPO DELE MANDA O LEITOR PARA OUTRO PRODUTO
+179:### 4. `dateModified` DOS DOIS ARTIGOS DIZ 13/09 E A PÁGINA MUDOU EM 16/09
+193:## DESPACHO DA SENTINELA — 14/09/2026 — O QUE RESTOU, E É TUDO DO RAPHAEL
+197:### 4. O PISO DA 25.2 — **a conta mudou em 14/09/2026, e a dívida agora tem outro nome**
+213:### 5. ACHADO DE MÉTODO: o teste de vida da 25.4, do jeito que está escrito, NÃO É EXECUTÁVEL hoje — e existe um caminho que funciona
+230:## DESPACHO DA SENTINELA — 11/09/2026 (ronda diária, medida no navegador do Raphael)
+258:## DESPACHO DA SENTINELA — 10/09/2026 (medição pela nuvem)
+271:## DESPACHO DO RAPHAEL — 14/09/2026 — O PISO DE BUSCA — **CUMPRIDO E CONFERIDO NO AR EM 14/09/2026, 15h**
+```
+
+Numeros: 6 linhas inseridas, 0 apagadas, 1 arquivo tocado alem deste log. O `### 4. O PISO DA 25.2`
+(linha 197) esta agora abaixo do cabecalho `## DESPACHO DA SENTINELA — 14/09/2026 — O QUE RESTOU`
+(linha 193), e nao mais abaixo do despacho de 16/09 (linha 95). O item 5 (linha 213) segue no mesmo
+bloco. As duas secoes `### 4.` continuam existindo, mas cada uma sob o seu proprio despacho, que era o
+ponto da correcao.
+
+### Passos que falharam
+
+Nenhum. A ancora era unica, o diff saiu como insercao pura (6 `+`, 0 `-`), o push foi aceito de
+primeira e o commit aparece em `origin/main`. Sync nao foi acionado e nenhum PR foi aberto, conforme a
+instrucao.
