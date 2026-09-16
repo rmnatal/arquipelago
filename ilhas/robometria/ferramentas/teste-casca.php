@@ -825,6 +825,67 @@ foreach ( array( 'dados/modelos-robo.json', 'dados/pecas.json' ) as $arquivo ) {
 rbm_ok( empty( $sem_carimbo ), 'o banco nao carrega codigo de pagina de origem',
 	empty( $sem_carimbo ) ? 'modelos-robo.json e pecas.json limpos' : implode( ' ', $sem_carimbo ) );
 
+/* ---------------------------------------------------------------------------
+ * 18. O LUGAR VAZIO DA FOTO DIZ O QUE E, e nao imita carregamento
+ *     (despacho do Raphael, 16/09/2026).
+ *
+ * O que foi ao ar era `border-radius:50%` com um lado transparente: a forma
+ * universal do spinner. Numa ilha cujo argumento inteiro e procedencia,
+ * parecer quebrada custa mais que parecer simples — quem chega le "a foto
+ * esta carregando" e, como ela nunca carrega, le "este site esta quebrado".
+ *
+ * A regua mede a FOLHA, que e onde a decisao mora: a regra e emitida uma vez
+ * pela casca e as quatro ferramentas a herdam. Medir pagina por pagina aqui
+ * seria medir quatro vezes a mesma linha.
+ * ------------------------------------------------------------------------- */
+
+echo "\n18. O espaco reservado da foto DIZ que esta vazio (secao 6)\n";
+
+$css_vitrine = robometria_casca_css_vitrine();
+
+preg_match( '#\.rbm-vitrine-vazia\{([^}]*)\}#', $css_vitrine, $mv );
+$regra_vazia = isset( $mv[1] ) ? $mv[1] : '';
+
+rbm_ok( '' !== $regra_vazia, 'a folha da vitrine declara .rbm-vitrine-vazia' );
+rbm_ok( false === strpos( $regra_vazia, 'border-radius' ),
+	'o espaco reservado NAO e um anel — nada de border-radius nele',
+	'' === $regra_vazia ? 'regra ausente' : trim( $regra_vazia ) );
+rbm_ok( false === strpos( $regra_vazia, 'transparent' ),
+	'nenhum lado transparente: e isso que faz um anel virar spinner' );
+rbm_ok( false !== strpos( $css_vitrine, '.rbm-vitrine-vazia::after{content:"sem foto";}' ),
+	'o painel vazio ESCREVE "sem foto", em vez de desenhar um carregamento' );
+
+/* E AS QUATRO FERRAMENTAS SO EMITEM O PAINEL QUANDO NAO HA FOTO. Ate 16/09 a
+   R2 e a A2 o emitiam SEMPRE, e isso nao aparecia porque nenhum item tinha
+   imagem: verdade por coincidencia do banco. A afirmacao mede o CODIGO das
+   quatro de uma vez, porque o defeito e de emissao e nao de conteudo — e um
+   snippet que voltasse a emitir incondicionalmente passaria por qualquer
+   medicao feita no banco de hoje. */
+$sem_checagem = array();
+$emissoes     = 0;
+foreach ( array( 'r1', 'r2', 'a1', 'a2' ) as $ferramenta ) {
+	$fonte_php = file_get_contents( $raiz . '/snippets/robometria-' . $ferramenta . '.php' );
+	/* So a linha que EMITE, nunca a que comenta: comentario citando a classe
+	   nao muda uma pagina, e conta-lo daria falha onde nao ha defeito — o mesmo
+	   engano de contar `&#038;` na pagina inteira em vez de dentro do
+	   <script> (secao 8 do ARQUIPELAGO.md). */
+	preg_match_all( '#[^\n]*<span class="rbm-vitrine-vazia"[^\n]*#', $fonte_php, $mf );
+	foreach ( $mf[0] as $linha_php ) {
+		$emissoes++;
+		if ( false === strpos( $linha_php, 'tem_imagem' ) ) {
+			$sem_checagem[] = $ferramenta;
+		}
+	}
+}
+/* CONTRA O PORTAO INERTE: quatro ferramentas, quatro emissoes. Zero passaria
+   varrendo o vazio, e e justamente assim que uma trava morre sem aviso. */
+rbm_ok( 4 === $emissoes, 'as quatro ferramentas emitem o painel vazio',
+	$emissoes . ' emissao(oes)' );
+rbm_ok( empty( $sem_checagem ),
+	'as quatro ferramentas so emitem o painel vazio quando o item nao tem foto',
+	empty( $sem_checagem ) ? 'r1, r2, a1 e a2 checam tem_imagem'
+		: 'emite sem checar: ' . implode( ', ', array_unique( $sem_checagem ) ) );
+
 echo "\n";
 if ( $falhas ) {
 	printf( "REPROVADO: %d de %d verificacoes falharam.\n", $falhas, $feitos );

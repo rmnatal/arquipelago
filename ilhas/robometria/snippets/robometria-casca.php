@@ -7,6 +7,10 @@
  * 11/09; o cabeçalho, que é a primeira coisa que alguém lê neste arquivo, não
  * tinha nenhuma. Agora tem, na seção 16 do teste-casca.php, e a constante sobe
  * para 1.5.1 sem que uma linha de comportamento mude.
+ * Versão: 1.7.1 (16/09/2026) — O LUGAR VAZIO DA FOTO DIZ O QUE É.
+ * O painel do cartão sem foto era um anel com um quarto faltando — a forma
+ * universal do spinner — e lia como site quebrado. Agora ele escreve "sem foto".
+ *
  * Versão: 1.7.0 (16/09/2026) — A PÁGINA DE DIVULGAÇÃO DIZIA AO LEITOR QUE NADA
  * RENDIA COMISSÃO ENQUANTO 35 LINKS RENDIAM. A segunda conta da frase vinha de
  * `com_link`, que conta FICHA de produto; os dois números foram o mesmo
@@ -193,7 +197,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_CASCA_VERSAO' ) ) {
-	define( 'ROBOMETRIA_CASCA_VERSAO', '1.7.0' );
+	define( 'ROBOMETRIA_CASCA_VERSAO', '1.7.1' );
 	define( 'ROBOMETRIA_CASCA_TAGLINE', 'Qual peça o fabricante declarou para o seu robô aspirador — com código, endereço e data' );
 
 	/* GA4 DESTA ILHA — robometria, propriedade 553889920 da conta Arquipélago.
@@ -1198,7 +1202,8 @@ function robometria_casca_css_vitrine() {
 .rbm-vitrine{display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;list-style:none;margin:1rem 0 0;padding:0 0 .6rem;}
 .rbm-vitrine-item{scroll-snap-align:start;flex:0 0 17rem;max-width:100%;background:var(--rbm-superficie);border:1px solid var(--rbm-traco);border-radius:3px;padding:1rem;display:flex;flex-direction:column;gap:.4rem;margin:0;}
 .rbm-vitrine-foto{display:flex;aspect-ratio:4/3;max-width:100%;background:var(--rbm-piso);border:1px solid var(--rbm-traco);border-radius:2px;align-items:center;justify-content:center;}
-.rbm-vitrine-vazia{display:block;width:2.4rem;height:2.4rem;border:2px solid var(--rbm-traco);border-radius:50%;border-right-color:transparent;}
+.rbm-vitrine-vazia{display:block;font-family:var(--rbm-texto);font-size:.78rem;color:var(--rbm-legenda);}
+.rbm-vitrine-vazia::after{content:"sem foto";}
 .rbm-vitrine-tipo{font-family:var(--rbm-display);font-weight:600;font-size:1rem;}
 .rbm-vitrine-nome{font-size:.86rem;color:var(--rbm-legenda);line-height:1.45;}
 .rbm-vitrine-porque{font-size:.88rem;line-height:1.45;}

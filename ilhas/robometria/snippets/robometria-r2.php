@@ -1,5 +1,9 @@
 /**
  * Robometria R2 — Quantos Pa o seu robô aspirador precisa
+ * Versão: 1.7.1 (16/09/2026) — a vitrine só emite o painel "sem foto" quando o
+ * item NÃO tem imagem. Até aqui ela o emitia sempre, e só não aparecia porque
+ * nenhum modelo tinha foto: verdade por coincidência do banco.
+ *
  * Versão: 1.7.0 (16/09/2026) — O PORTÃO DO CANAL BRASILEIRO. Esta ferramenta
  * recomenda uma COMPRA, e até hoje a elegibilidade pedia status publicável e
  * Pa declarado e nunca perguntava se o leitor consegue comprar o aparelho
@@ -131,7 +135,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_R2_VERSAO' ) ) {
-	define( 'ROBOMETRIA_R2_VERSAO', '1.7.0' );
+	define( 'ROBOMETRIA_R2_VERSAO', '1.7.1' );
 	define( 'ROBOMETRIA_R2_SLUG', 'quantos-pa-o-robo-aspirador-precisa' );
 	/* O NOME DA PÁGINA É A CONSULTA QUE A PESSOA DIGITA (seção 14.5), e ela está
 	   literalmente no endereço: "quantos pa o robô aspirador precisa". O nome
@@ -933,9 +937,18 @@ function robometria_r2_vitrine( $itens, $s ) {
 		$html .= '<li class="rbm-vitrine-item">';
 
 		/* Produto sem imagem NÃO some (seção 6 do ARQUIPELAGO.md): entra com
-		   espaço reservado neutro. Perder a recomendação técnica certa por falta
-		   de foto é trocar o certo pelo bonito. */
-		$html .= '<span class="rbm-vitrine-foto" aria-hidden="true"><span class="rbm-vitrine-vazia"></span></span>';
+		   espaço reservado neutro, e o painel DIZ que está vazio em vez de
+		   imitar carregamento. Perder a recomendação técnica certa por falta de
+		   foto é trocar o certo pelo bonito.
+
+		   A CHECAGEM É O CONSERTO DE 16/09/2026: até aqui esta linha emitia o
+		   painel vazio SEMPRE, sem perguntar nada ao item. Não aparecia porque
+		   nenhum item tinha foto — verdade por coincidência do banco, a mesma
+		   família dos dois 63 da R1. No dia em que a primeira imagem entrasse,
+		   a R2 escreveria "sem foto" por cima de um cartão com foto. */
+		$html .= '<span class="rbm-vitrine-foto" aria-hidden="true">'
+			. ( $m['tem_imagem'] ? '' : '<span class="rbm-vitrine-vazia"></span>' )
+			. '</span>';
 
 		$html .= '<span class="rbm-vitrine-tipo">' . esc_html( $m['rotulo'] ) . '</span>';
 		$html .= '<span class="rbm-vitrine-nome rbm-num">' . esc_html( robometria_r2_n( $m['pa'] ) . ' Pa' ) . '</span>';

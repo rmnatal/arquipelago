@@ -1,5 +1,8 @@
 /**
  * Robometria A2 — Quantos m² um robô aspirador limpa por carga
+ * Versão: 1.3.1 (16/09/2026) — a vitrine só emite o painel "sem foto" quando o
+ * item NÃO tem imagem; antes ela o emitia sempre.
+ *
  * Versão: 1.3.0 (14/09/2026) — a vitrine do artigo passa a servir o piso da
  * 25.2 em vez da frase "Link de loja em breve", proibida pela seção 7 hoje.
  * Versão: 1.2.0 (12/09/2026) — a procedência da ÁREA POR CARGA chega ao cartão, e
@@ -69,7 +72,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_A2_VERSAO' ) ) {
-	define( 'ROBOMETRIA_A2_VERSAO', '1.3.0' );
+	define( 'ROBOMETRIA_A2_VERSAO', '1.3.1' );
 	define( 'ROBOMETRIA_A2_SLUG', 'quantos-m2-o-robo-aspirador-limpa-por-carga' );
 	define( 'ROBOMETRIA_A2_TITULO', 'Quantos m² um robô aspirador limpa por carga' );
 	define( 'ROBOMETRIA_A2_DADOS', 'robometria_dados_a2-fatos' );
@@ -419,7 +422,13 @@ function robometria_a2_vitrine() {
 	$html .= '<ul class="rbm-vitrine">';
 	foreach ( $itens as $i ) {
 		$html .= '<li class="rbm-vitrine-item">';
-		$html .= '<span class="rbm-vitrine-foto" aria-hidden="true"><span class="rbm-vitrine-vazia"></span></span>';
+		/* Produto sem imagem NÃO some (seção 6): entra com espaço reservado
+		   neutro, e o painel DIZ que está vazio. A checagem entrou em
+		   16/09/2026 — até aqui a linha emitia o painel vazio SEMPRE, e só não
+		   se via porque nenhum item tinha foto. */
+		$html .= '<span class="rbm-vitrine-foto" aria-hidden="true">'
+			. ( $i['tem_imagem'] ? '' : '<span class="rbm-vitrine-vazia"></span>' )
+			. '</span>';
 		$html .= '<span class="rbm-vitrine-tipo">' . esc_html( $i['rotulo'] ) . '</span>';
 		$html .= '<span class="rbm-vitrine-nome rbm-num">'
 			. esc_html( robometria_a2_n( $i['cobertura_m2'] ) . ' m² por carga' ) . '</span>';

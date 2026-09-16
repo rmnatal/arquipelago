@@ -437,6 +437,7 @@ def main():
     conferir_variante_sem_cabecalho()
     conferir_cache_do_host()
     conferir_piso_no_ar()
+    conferir_lugar_vazio_da_foto(carimbo)
 
     print('\n' + '=' * 78)
     if falhas:
@@ -611,6 +612,87 @@ def conferir_variante_sem_cabecalho():
         ok(n_com == n_sem,
            'mesma trilha com e sem cabecalho em %s' % (caminho or '/'),
            '%d contra %d' % (n_com, n_sem))
+
+
+def conferir_lugar_vazio_da_foto(carimbo):
+    """O DESPACHO DO RAPHAEL DE 16/09/2026, medido no HTML SERVIDO.
+
+    O lugar vazio da foto estava desenhado como `border-radius:50%` com um lado
+    transparente — a forma universal do spinner. Quem chegava na pagina nao lia
+    "esta peca nao tem foto"; lia "a foto esta carregando" e, como ela nunca
+    carrega, lia "este site esta quebrado". Numa ilha cujo argumento inteiro e
+    procedencia, parecer quebrada custa mais do que parecer simples.
+
+    POR QUE ISTO E MEDIDO NO AR E NAO SO NA BANCADA: a frase "sem foto" nao
+    esta no HTML que o shortcode devolve — ela sai de `content:` numa regra da
+    folha da casca, e a folha so chega ao leitor porque a casca a imprime num
+    <style> da propria pagina. Bancada verde com folha que nao embarcou e
+    exatamente o defeito do titulo da Aquametria em 11/09/2026: cada portao
+    lendo a metade que estava certa.
+
+    E A AFIRMACAO DO PAINEL E LIDA POR ESTRUTURA, NUNCA POR CONTAGEM FIXA. Cada
+    `.rbm-vitrine-foto` tem de trazer OU uma <img> OU o painel vazio, nunca os
+    dois e nunca nenhum. Contar "um painel por cartao" seria o mesmo que exigir
+    que nenhum item tenha foto — a regua morreria no dia da primeira imagem, que
+    e o dia que o despacho da API da Shopee esta trazendo.
+    """
+    print('\n12. O LUGAR VAZIO DA FOTO DIZ O QUE E (despacho do Raphael, 16/09)')
+
+    # Uma pagina por ferramenta: R1, R2, A1 e A2, nesta ordem.
+    das_ferramentas = [
+        '/qual-peca-serve-no-meu-robo-aspirador/',
+        '/quantos-pa-o-robo-aspirador-precisa/',
+        '/filtro-universal-de-robo-aspirador/',
+        '/quantos-m2-o-robo-aspirador-limpa-por-carga/',
+    ]
+
+    paineis_medidos = 0
+    for caminho in das_ferramentas:
+        corpo_servido, codigo = buscar(DOMINIO + caminho + '?v=' + carimbo)
+        if not ok('200' == codigo, 'HTTP 200 em %s' % caminho, codigo):
+            continue
+
+        folha = '\n'.join(re.findall(r'<style\b[^>]*>(.*?)</style>',
+                                     corpo_servido, re.S | re.I))
+        ok('.rbm-vitrine-vazia::after{content:"sem foto";}' in folha,
+           '%s: a folha servida escreve "sem foto" no painel vazio' % caminho)
+
+        regra = re.search(r'\.rbm-vitrine-vazia\{([^}]*)\}', folha)
+        ok(regra is not None, '%s: a folha servida declara .rbm-vitrine-vazia' % caminho)
+        if regra:
+            ok('border-radius' not in regra.group(1),
+               '%s: o painel vazio NAO e um anel' % caminho,
+               regra.group(1)[:60])
+
+        # AS AFIRMACOES SOBRE O QUE A PAGINA DIZ SE MEDEM NO CORPO (secao 8):
+        # a folha tambem cita a classe, e conta-la no HTML inteiro daria um a
+        # mais sem nenhum cartao a mais.
+        miolo = corpo_da_pagina(corpo_servido)
+        # O recorte vai do painel ate o irmao seguinte, que e sempre
+        # `rbm-vitrine-tipo` nas quatro ferramentas. Contar aninhamento de
+        # <span> na mao seria mais fragil, nao menos: o painel guarda OU um
+        # <img> OU um <span>, e o irmao seguinte e o mesmo nas quatro.
+        paineis = re.findall(
+            r'<span class="rbm-vitrine-foto"[^>]*>(.*?)<span class="rbm-vitrine-tipo"',
+            miolo, re.S)
+        painel_ruim = []
+        for dentro in paineis:
+            tem_img = '<img' in dentro
+            tem_vazio = 'rbm-vitrine-vazia' in dentro
+            if tem_img and tem_vazio:
+                painel_ruim.append('foto E "sem foto" no mesmo painel')
+            elif not tem_img and not tem_vazio:
+                painel_ruim.append('painel sem foto e sem aviso')
+        paineis_medidos += len(paineis)
+        ok(not painel_ruim,
+           '%s: todo painel traz OU a foto OU o aviso, nunca os dois' % caminho,
+           '%d painel(eis)%s' % (len(paineis),
+                                 '' if not painel_ruim else ': ' + painel_ruim[0]))
+
+    # CONTRA O PORTAO INERTE: quatro paginas de ferramenta servem vitrine, entao
+    # zero painel medido e defeito da regua, nao aprovacao da pagina.
+    ok(paineis_medidos > 0, 'a conferencia mediu painel de verdade',
+       '%d painel(eis) nas quatro ferramentas' % paineis_medidos)
 
 
 if __name__ == '__main__':

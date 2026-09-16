@@ -942,6 +942,24 @@ foreach ( array_keys( $dados['classificacao'] ) as $chave ) {
 			continue;
 		}
 
+		/* 6. O ESPACO RESERVADO DA FOTO SAI QUANDO NAO HA FOTO, e so entao
+		      (secao 6, e o despacho do Raphael de 16/09/2026). Ate hoje a R2
+		      emitia o painel vazio SEMPRE, sem perguntar nada ao item: nao
+		      aparecia porque nenhum modelo tinha imagem, e no dia da primeira
+		      foto a pagina escreveria "sem foto" por cima dela. Esta afirmacao
+		      mede as DUAS direcoes, que e o que faz a regua nao adoecer junto
+		      com o banco. */
+		$tem_foto  = ! empty( ( ( $reg['imagem'] ?? array() )['url'] ?? '' ) );
+		$tem_vazio = false !== strpos( $cartao, 'rbm-vitrine-vazia' );
+		if ( $tem_foto && $tem_vazio ) {
+			$erros_proc[] = $chave . '/' . $id . ': espaco reservado em cartao COM foto';
+			continue;
+		}
+		if ( ! $tem_foto && ! $tem_vazio ) {
+			$erros_proc[] = $chave . '/' . $id . ': cartao sem foto e sem espaco reservado';
+			continue;
+		}
+
 		$cartoes_medidos++;
 	}
 }

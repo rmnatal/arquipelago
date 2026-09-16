@@ -413,14 +413,25 @@ rbm_ok( substr_count( $vitrine, 'class="rbm-fonte"' ) > 0,
 	substr_count( $vitrine, 'class="rbm-fonte"' ) . ' link(s)' );
 
 $pecas_distintas = array();
+$sem_foto        = array();
 foreach ( $dados['respostas'][ $ancora ]['fabricante'] as $i ) {
 	$pecas_distintas[ $i['peca'] ] = true;
+	if ( empty( $i['tem_imagem'] ) ) { $sem_foto[ $i['peca'] ] = true; }
 }
 rbm_ok( substr_count( $vitrine, 'rbm-vitrine-item' ) === count( $pecas_distintas ),
 	'um cartao por PECA, nao por par peca x tipo',
 	substr_count( $vitrine, 'rbm-vitrine-item' ) . ' de ' . count( $pecas_distintas ) );
-rbm_ok( substr_count( $vitrine, 'rbm-vitrine-vazia' ) === count( $pecas_distintas ),
-	'peca sem imagem entra com espaco reservado neutro, e nao some (secao 6)' );
+/* A CONTAGEM E DE ITEM SEM FOTO, e nao de item. Ate 16/09/2026 esta afirmacao
+   cobrava um espaco reservado por PECA — certo por coincidencia do banco,
+   porque nenhuma peca tinha imagem. No dia em que a primeira foto entrasse, a
+   regua reprovaria a melhora. Ver a mesma cicatriz nas quatro reguas da escada
+   de compra. */
+rbm_ok( substr_count( $vitrine, 'rbm-vitrine-vazia' ) === count( $sem_foto ),
+	'peca sem imagem entra com espaco reservado neutro, e nao some (secao 6)',
+	count( $sem_foto ) . ' sem foto de ' . count( $pecas_distintas ) );
+rbm_ok( false === strpos( $vitrine, 'rbm-vitrine-vazia' )
+	|| count( $sem_foto ) > 0,
+	'nenhum espaco reservado em cartao QUE TEM foto' );
 
 /* ---------------------------------------------------------------------------
  * 8. JSON-LD, canonica e noindex (secoes 5.3 e 14.1).

@@ -1,5 +1,9 @@
 /**
  * Robometria R1 — Qual peça serve no meu robô aspirador
+ * Versão: 1.9.1 (16/09/2026) — o comentário do painel vazio deixa de prometer
+ * um encaixe em traço que nunca foi ao ar, e a régua da vitrine passa a contar
+ * item SEM foto em vez de um painel por peça.
+ *
  * Versão: 1.9.0 (14/09/2026) — A DESCRIÇÃO EM JSON-LD PARA DE ENUMERAR OS TIPOS
  * DE CABEÇA, e ela estava VELHA no ar. A frase que um modelo de linguagem lê
  * para saber o que esta ferramenta faz dizia "filtro, escova lateral, escova
@@ -154,7 +158,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_R1_VERSAO' ) ) {
-	define( 'ROBOMETRIA_R1_VERSAO', '1.9.0' );
+	define( 'ROBOMETRIA_R1_VERSAO', '1.9.1' );
 	define( 'ROBOMETRIA_R1_SLUG', 'qual-peca-serve-no-meu-robo-aspirador' );
 	define( 'ROBOMETRIA_R1_TITULO', 'Qual peça serve no meu robô aspirador' );
 	define( 'ROBOMETRIA_R1_DADOS', 'robometria_dados_r1-respostas' );
@@ -976,9 +980,16 @@ function robometria_r1_vitrine( $itens, $modelo ) {
 
 		$html .= '<li class="rbm-vitrine-item">';
 
-		/* Espaço reservado neutro: o desenho é o mesmo encaixe da marca, em
-		   traço, e nunca uma foto de banco de imagem — a peça não tem foto e a
-		   página não finge que tem. */
+		/* Espaço reservado neutro, e nunca uma foto de banco de imagem: a peça
+		   não tem foto e a página não finge que tem.
+
+		   O PAINEL DIZ O QUE É, e esse é o conserto de 16/09/2026. Este
+		   comentário prometia "o mesmo encaixe da marca, em traço" e o que foi
+		   ao ar era um anel com um quarto faltando — a forma universal do
+		   carregamento. Quem chegava na página não lia "sem foto", lia "a foto
+		   está carregando" e, como ela nunca carrega, "este site está
+		   quebrado". Hoje o painel escreve "sem foto", pela regra de
+		   `.rbm-vitrine-vazia` em `robometria_casca_css_vitrine()`. */
 		$html .= '<span class="rbm-vitrine-foto" aria-hidden="true">'
 			. ( $i['tem_imagem'] ? '' : '<span class="rbm-vitrine-vazia"></span>' )
 			. '</span>';
