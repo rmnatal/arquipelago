@@ -463,3 +463,95 @@ Nenhum. A ancora era exata e foi localizada por `grep -n` antes da gravacao, o d
 de 6 linhas, o push foi aceito de primeira e o commit aparece em `origin/main`. Sync nao foi acionado,
 nenhuma ilha foi reservada, nenhum bloco de fila foi executado e nenhum outro arquivo foi tocado, conforme
 a instrucao.
+
+---
+
+## Disparo de 16/09/2026 16h19Z — contrato na raiz: a API da Shopee aposenta a fila de links pendentes e a credencial muda de casa
+
+**Instrucao recebida:** tarefa unica, documental, na raiz. Arquivo `ARQUIPELAGO.md`, tres substituicoes
+literais. Nenhuma ilha tocada, nenhum outro arquivo tocado alem deste log.
+
+**O que mudou, nas palavras da instrucao:**
+
+1. Dentro da linha longa do cano de links de afiliado (secao das regras de raiz), o trecho entre parenteses
+   que mandava a Sentinela montar `dados/links-afiliado-pendentes.md` foi trocado pela regra nova: a fila
+   so existe onde o gerador exige clique humano; onde ha API de afiliado (Shopee, desde 16/09/2026, secao
+   25.6) o arquivo **nao e criado**; onde nao ha e o gerador tem reCAPTCHA (Mercado Livre) a fila continua
+   valendo como antes.
+2. Na secao 25.6, o item `Open API da Shopee — APROVADA em 13/09/2026` (cinco linhas: o cabecalho mais as
+   quatro recuadas da pegadinha de processo, do aviso de que a Shopee nao da suporte, de onde a credencial
+   mora e do que a API mudaria) foi apagado inteiro e substituido pelo item novo de sete linhas
+   `Open API da Shopee — LIBERADA E MEDIDA EM 16/09/2026`: endpoint e cabecalho de assinatura, o egresso e
+   a lista de dominios permitidos da conta, a correcao da regra anterior sobre onde a credencial mora (sai
+   da variavel de ambiente da rotina e vai para o documento privado do Drive), o que a chamada real de
+   16h07Z devolveu, as duas descobertas viradas regra (escada de palavra-chave, `offerLink` sem sub-id), o
+   que a API aposenta e o que nao aposenta, e o alcance de contrato valendo para o arquipelago inteiro com
+   implementacao so na ilha em foco.
+3. A linha `A aposta e o piso sao coisas diferentes` virou `A aposta virou chao em 16/09/2026, e o piso
+   continua sendo o piso`.
+
+### git status --porcelain
+
+```
+$ git status --porcelain
+(vazio — arvore limpa; o commit do trabalho ja estava gravado e empurrado quando este log foi escrito)
+```
+
+### git diff --stat
+
+```
+$ git show --stat --format='' c862832
+ ARQUIPELAGO.md | 18 ++++++++++--------
+ 1 file changed, 10 insertions(+), 8 deletions(-)
+```
+
+### Hash do commit que foi ao main
+
+```
+$ git fetch origin main && git log -1 origin/main --format='%H %s'
+c86283222a2203b805459956abee537a83729d61 contrato: a API da Shopee aposenta a fila de links pendentes, e a
+credencial sai da variavel de ambiente para o Drive privado
+```
+
+O push para `main` foi recusado na primeira tentativa (`fetch first` — o `main` tinha andado para a211e2a
+enquanto o trabalho era feito). Um `git fetch origin main && git rebase origin/main` resolveu, sem
+conflito, e o segundo `git push origin HEAD:main` foi aceito (`a211e2a..c862832  HEAD -> main`). Nenhum
+force push.
+
+### Contagem, conferida relendo o arquivo depois de gravar
+
+```
+$ git show c862832^:ARQUIPELAGO.md | wc -l
+850
+$ wc -l < ARQUIPELAGO.md
+852
+$ grep -n "O CANO DE LINKS DE AFILIADO ENCHE EM PARALELO" ARQUIPELAGO.md
+233:- **O CANO DE LINKS DE AFILIADO ENCHE EM PARALELO, SEMPRE — ...
+$ grep -n "### 25.6" ARQUIPELAGO.md
+793:### 25.6 O QUE E AUTOMATICO HOJE, E O QUE SO SERIA COM CREDENCIAL
+$ grep -n "Open API da Shopee" ARQUIPELAGO.md
+804:- **Open API da Shopee — LIBERADA E MEDIDA EM 16/09/2026. Deixou de ser aposta.** ...
+$ grep -n "A aposta virou chao" ARQUIPELAGO.md
+812:**A aposta virou chao em 16/09/2026, e o piso continua sendo o piso.** ...
+$ grep -c "A aposta e o piso sao coisas diferentes" ARQUIPELAGO.md
+0
+$ grep -c "APROVADA em 13/09/2026" ARQUIPELAGO.md
+0
+```
+
+Numeros: um unico arquivo tocado alem deste log. O arquivo foi de 850 para 852 linhas — saldo de duas
+linhas, que e exatamente o item da 25.6 saindo com cinco linhas e entrando com sete. As tres substituicoes
+foram aplicadas por casamento literal do texto exato, com a contagem de ocorrencias conferida antes de
+gravar: cada trecho procurado aparecia **uma unica vez** no arquivo, e o programa abortaria se fosse
+diferente. O `git diff -U0` mostra somente as tres regioes: a linha 233, o bloco de 804 a 810 e a linha
+812; a linha em branco entre o item da 25.6 e a linha da aposta aparece no diff porque as duas regioes sao
+vizinhas e o git juntou o trecho, mas o conteudo dela e identico ao de antes. Os dois textos antigos
+sumiram do arquivo (`grep -c` devolve 0 para ambos), o que confirma que a troca foi substituicao e nao
+duplicacao. Nenhuma linha foi reformatada, nenhum acento ou crase mexido, nada acrescentado alem do que a
+instrucao trouxe.
+
+### Passos que falharam
+
+A recusa do primeiro push, descrita acima, resolvida por rebase — nada mais. Nenhuma ilha foi reservada,
+nenhum `executando_desde` foi escrito, nenhum bloco de fila foi executado, o Sync nao foi acionado, nada
+foi publicado e nenhum arquivo alem de `ARQUIPELAGO.md` e deste log foi tocado.
