@@ -48,6 +48,19 @@ Se **nenhuma** ilha estiver elegível, não invente trabalho: registre "nada ele
 
 **Por que assim:** com uma rotina por ilha, 50 ilhas seriam 50 rotinas e 50 prompts para manter. Aqui, ilha nova é uma pasta nova — nenhuma rotina muda. E como a reserva é feita por commit, várias execuções podem rodar ao mesmo tempo sem se atropelar: quem perde a corrida do push simplesmente pega outra ilha.
 
+### 1.2 FOCO ÚNICO — UMA ILHA DE CADA VEZ (16/09/2026)
+
+Quando `foco.md` na raiz do repositório nomeia uma ilha, a Fundação trabalha **só nela**. A rotação da seção 1 fica suspensa.
+
+1. Leia `foco.md` ANTES de listar as ilhas. Se a linha `ilha:` trouxer um slug que existe em `ilhas/`, essa é a ilha desta execução — não escolha, não compare `ultima_execucao`, não olhe prioridade.
+2. Reserve, execute e feche exatamente como nos passos 5 a 7 da seção 1. A reserva por commit continua obrigatória.
+3. Se a ilha em foco estiver reservada há menos de 40 minutos, **pare e registre "ilha em foco ocupada"**. NÃO pegue outra ilha — pegar outra é justamente o que esta seção existe para impedir.
+4. Se a linha disser `ilha: nenhuma`, ou o arquivo não existir, ou o slug não existir em `ilhas/`, volte à rotação normal da seção 1 e diga isso no relatório.
+
+**A ÚNICA coisa que fura o foco** é despacho marcado **ALTO** em ilha que está no ar e quebrada — página servindo erro, ferramenta devolvendo número errado, site fora do ar. Nesse caso a seção 18 vence, você conserta e volta ao foco na execução seguinte. Despacho NORMAL de ilha fora do foco **espera**, por mais antigo que seja.
+
+**O que isto custa, escrito para ninguém se assustar depois:** as ilhas fora do foco param de receber bloco. Defeito NORMAL nelas acumula. A Sentinela continua rondando todas e continua escrevendo despacho — o despacho fica esperando, não some. Foi uma escolha do Raphael, com o custo na mesa: com 20 execuções por semana, cinco ilhas andando devagar valem menos que uma ilha terminada.
+
 ### 1.1 A RESERVA ENVELHECE ENQUANTO A EXECUÇÃO ESTÁ VIVA — quem decide é o último commit da ilha (12/09/2026)
 
 Medido em 12/09/2026 às 23h17Z, por uma execução da Fundação que não achou ilha. O passo 3 descarta a ilha com `executando_desde` de menos de 40 minutos — e **sozinho ele entrega ilha VIVA para uma segunda execução**, porque o relógio da reserva é escrito **uma vez**, no começo do bloco, e nunca mais é tocado. A clubedomosaico estava com reserva de 22h25Z, **53 minutos atrás**, portanto "livre" pela letra do passo 3; e estava trabalhando: commit `360f150` às 23h13m12Z e o Sync aplicando a **revisão 16** às 23h13m30Z, lido no `/status`. **Bloco longo não é bloco abandonado**, e a janela de 40 minutos é um palpite sobre abandono, não uma medição dele.
