@@ -112,6 +112,29 @@ def medir_o_banco():
     itens = modelos_pub + pecas_pub
     esperando = sum(1 for r in itens if not (r.get('afiliado') or {}).get('url'))
 
+    # QUEM RENDE COMISSAO NAO E QUEM TEM `url`, E ISSO DIVERGIU EM 16/09/2026.
+    #
+    # `esperando_link` conta quem nao tem FICHA de produto (degrau 1 ou 2 da
+    # 25.1), e a pagina de divulgacao usava esse numero para dizer ao leitor
+    # quantos links rendem comissao. Os dois foram o mesmo numero enquanto a
+    # unica alternativa a ficha era a busca CRUA, que nao rende nada.
+    #
+    # Nesse dia entraram 35 buscas ENCURTADAS (`url_busca`): degrau 3, que
+    # rastreia e paga, e que a casca ja carimbava com rel="sponsored". A frase da
+    # divulgacao continuou dizendo "nenhum deles e link de afiliado ainda" —
+    # falsa no ar, e falsa justamente na pagina cujo assunto e nao enganar o
+    # leitor sobre o que rende dinheiro. Subdeclarar relacao paga e tao defeito
+    # quanto superdeclarar: as duas descrevem errado a relacao.
+    #
+    # Entao a conta passa a ser a da ESCADA, nao a de um degrau: rende comissao
+    # quem tem ficha OU busca encurtada. O item 1 da definicao de pronta desta
+    # ilha pede exatamente as duas contas na tela.
+    def rende(r):
+        a = r.get('afiliado') or {}
+        return bool(a.get('url') or a.get('url_busca'))
+
+    com_comissao = sum(1 for r in itens if rende(r))
+
     return {
         'marcas': len({r['marca'] for r in itens if r.get('marca')}),
         'modelos_publicaveis': len(modelos_pub),
@@ -119,6 +142,8 @@ def medir_o_banco():
         'pares_declarados': pares,
         'itens_publicaveis': len(itens),
         'esperando_link': esperando,
+        'rendem_comissao': com_comissao,
+        'nao_rendem_comissao': len(itens) - com_comissao,
     }
 
 

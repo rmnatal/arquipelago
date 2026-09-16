@@ -7,6 +7,16 @@
  * 11/09; o cabeçalho, que é a primeira coisa que alguém lê neste arquivo, não
  * tinha nenhuma. Agora tem, na seção 16 do teste-casca.php, e a constante sobe
  * para 1.5.1 sem que uma linha de comportamento mude.
+ * Versão: 1.7.0 (16/09/2026) — A PÁGINA DE DIVULGAÇÃO DIZIA AO LEITOR QUE NADA
+ * RENDIA COMISSÃO ENQUANTO 35 LINKS RENDIAM. A segunda conta da frase vinha de
+ * `com_link`, que conta FICHA de produto; os dois números foram o mesmo
+ * enquanto a única alternativa à ficha era a busca crua, que não rende nada. No
+ * dia em que entraram 35 buscas ENCURTADAS — degrau 3 da 25.1, que rastreia,
+ * paga, e que esta casca já carimbava com rel="sponsored" —, a frase ficou
+ * falsa. Subdeclarar relação paga é tão errado quanto superdeclarar, e a página
+ * de divulgação é o pior lugar possível para errar nisso. A conta passa a ser a
+ * da ESCADA: rende quem tem ficha OU busca encurtada.
+ *
  * Versão: 1.6.5 (15/09/2026) — A FUNÇÃO QUE APAGA ARQUIVO PASSA A RECUSAR O
  * CAMINHO VAZIO, e ganha o portão que ela nunca teve. Despacho NORMAL da Fundação
  * em dados/despachos.md, achado na aquametria: realpath('') NÃO devolve false em
@@ -183,7 +193,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_CASCA_VERSAO' ) ) {
-	define( 'ROBOMETRIA_CASCA_VERSAO', '1.6.5' );
+	define( 'ROBOMETRIA_CASCA_VERSAO', '1.7.0' );
 	define( 'ROBOMETRIA_CASCA_TAGLINE', 'Qual peça o fabricante declarou para o seu robô aspirador — com código, endereço e data' );
 
 	/* GA4 DESTA ILHA — robometria, propriedade 553889920 da conta Arquipélago.
@@ -2612,10 +2622,24 @@ add_shortcode( 'robometria_afiliados', function () {
 		   mente na primeira vez que elas divergem. */
 		$html .= '<p class="rbm-nota"><strong>Estado de hoje:</strong> ';
 		$html .= 'todos os ' . robometria_casca_num( $n['itens_publicaveis'] ) . ' itens do banco têm saída de compra na página. ';
-		if ( $n['com_link'] < 1 ) {
-			$html .= 'Nenhum deles é link de afiliado ainda: os ' . robometria_casca_num( $n['esperando_link'] ) . ' saem pela busca, e por eles a gente não recebe nada. ';
+		/* A SEGUNDA CONTA MUDOU DE FONTE EM 16/09/2026, e o motivo é o mesmo que
+		   fez nascerem as duas: ela vinha de `com_link`, que conta FICHA de
+		   produto, e a página a apresentava como "quantos rendem comissão". Os
+		   dois foram o mesmo número enquanto a única alternativa à ficha era a
+		   busca crua, que não rende nada. No dia em que entraram 35 buscas
+		   ENCURTADAS — degrau 3 da 25.1, que rastreia, paga, e que esta casca já
+		   carimbava com rel="sponsored" —, a frase passou a dizer ao leitor que
+		   nada rendia comissão enquanto 35 links rendiam. Subdeclarar relação
+		   paga é tão errado quanto superdeclarar, e numa página cujo assunto é
+		   justamente essa relação é o pior lugar possível para errar. */
+		$rendem = isset( $n['rendem_comissao'] ) ? (int) $n['rendem_comissao'] : 0;
+		$nao    = $n['itens_publicaveis'] - $rendem;
+		if ( $rendem < 1 ) {
+			$html .= 'Nenhum deles é link de afiliado ainda: os ' . robometria_casca_num( $nao ) . ' saem pela busca crua, e por eles a gente não recebe nada. ';
+		} elseif ( $nao < 1 ) {
+			$html .= 'Todos eles saem por link de afiliado, e por eles a gente pode receber comissão — é o que o selo <em>sponsored</em> declara em cada um. ';
 		} else {
-			$html .= robometria_casca_num( $n['com_link'] ) . ' já saem por link de afiliado, e ' . robometria_casca_num( $n['esperando_link'] ) . ' ainda saem pela busca, que não rende comissão. ';
+			$html .= robometria_casca_num( $rendem ) . ' saem por link de afiliado e podem render comissão (é o que o selo <em>sponsored</em> declara neles); os outros ' . robometria_casca_num( $nao ) . ' saem pela busca crua, sem rastreio, e por eles a gente não recebe nada. ';
 		}
 		$html .= 'Esta página existe desde o primeiro dia porque a divulgação precisa estar publicada <em>antes</em> do primeiro link, não depois.</p>';
 	}

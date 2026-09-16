@@ -547,9 +547,23 @@ def conferir_piso_no_ar():
         ok('rbm-sem-saida' not in miolo,
            '%s: nenhum item sem saida de compra' % (caminho or '/'))
         if caminho in com_vitrine:
-            n = miolo.count('rbm-comprar-cru')
-            ok(n > 0, '%s: a vitrine sai pela busca da 25.2' % caminho,
-               '%d saida(s) crua(s)' % n)
+            # EM 16/09/2026 ESTA CONTA PAROU DE MEDIR UM DEGRAU E PASSOU A MEDIR A
+            # ESCADA. Ela cobrava `rbm-comprar-cru` > 0, ou seja, exigia que a
+            # vitrine saisse pelo degrau 4 da 25.1 — a busca CRUA. No dia em que
+            # os 35 links de busca encurtada entraram no banco, as duas paginas de
+            # PECA subiram para o degrau 3 e esta regua reprovou as duas, no ar,
+            # por terem melhorado. As de MODELO continuaram cruas, porque os links
+            # chegaram nas pecas e nao nos modelos — entao a regua nem sequer
+            # reprovava de forma uniforme: ela premiava quem nao tinha avancado.
+            #
+            # O que ela quer dizer, e sempre quis, e "a vitrine TEM saida de
+            # compra". O degrau e informacao, nao criterio — e sai impresso ao
+            # lado, porque saber em qual degrau cada pagina esta e o jeito de ver
+            # o encurtamento avancando sem precisar de outra medicao.
+            cru = miolo.count('rbm-comprar-cru')
+            busca = miolo.count('rbm-comprar-busca')
+            ok(busca > 0, '%s: a vitrine sai pela busca da 25.2' % caminho,
+               '%d saida(s) de busca, %d crua(s)' % (busca, cru))
             pagos = re.findall(r'<a class="[^"]*rbm-comprar-cru[^"]*"[^>]*rel="[^"]*sponsored',
                                miolo, re.I)
             ok(not pagos,

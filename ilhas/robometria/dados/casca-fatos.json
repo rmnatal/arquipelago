@@ -63,6 +63,8 @@
     "pares_declarados": 70,
     "itens_publicaveis": 73,
     "esperando_link": 73,
+    "rendem_comissao": 35,
+    "nao_rendem_comissao": 38,
     "r1_responde": 30,
     "r1_vazia": 8,
     "celulas": 228,
