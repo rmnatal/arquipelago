@@ -555,3 +555,99 @@ instrucao trouxe.
 A recusa do primeiro push, descrita acima, resolvida por rebase — nada mais. Nenhuma ilha foi reservada,
 nenhum `executando_desde` foi escrito, nenhum bloco de fila foi executado, o Sync nao foi acionado, nada
 foi publicado e nenhum arquivo alem de `ARQUIPELAGO.md` e deste log foi tocado.
+
+---
+
+## 16/09/2026 — disparo das 20h23 UTC — leitura semanal da Sentinela na Robometria (4 passos de arquivo)
+
+Instrucao recebida no disparo: acrescentar uma linha em `ilhas/robometria/dados/indexacao.md`, criar
+`ilhas/robometria/dados/posicoes.md`, inserir uma secao de despacho no topo da fila do
+`ilhas/robometria/PROMPT.md` e trocar dois campos do cabecalho do `ilhas/robometria/ESTADO.md`. Partida em
+`origin/main` = `d188d71`, branch de trabalho criada com `git checkout -B trabalho origin/main`. Editor web do
+GitHub nao foi usado (27.2): tudo por copia de trabalho local.
+
+### `git status --porcelain` (antes do commit)
+
+```
+ M ilhas/robometria/ESTADO.md
+ M ilhas/robometria/PROMPT.md
+ M ilhas/robometria/dados/indexacao.md
+?? ilhas/robometria/dados/posicoes.md
+```
+
+### `git diff --stat` (antes do commit, so os rastreados; `posicoes.md` ainda era `??`)
+
+```
+ ilhas/robometria/ESTADO.md          |  4 ++--
+ ilhas/robometria/PROMPT.md          | 38 +++++++++++++++++++++++++++++++++++++
+ ilhas/robometria/dados/indexacao.md |  1 +
+ 3 files changed, 41 insertions(+), 2 deletions(-)
+```
+
+### `git show --stat` do commit ja em `origin/main` (com o arquivo novo dentro)
+
+```
+ ilhas/robometria/ESTADO.md          |  4 ++--
+ ilhas/robometria/PROMPT.md          | 38 +++++++++++++++++++++++++++++++++++++
+ ilhas/robometria/dados/indexacao.md |  1 +
+ ilhas/robometria/dados/posicoes.md  | 18 ++++++++++++++++++
+ 4 files changed, 59 insertions(+), 2 deletions(-)
+```
+
+### Hash do commit que foi ao `main`
+
+```
+0deaaf5416108a3d4fc57a572f1b48d305f36165
+robometria: leitura semanal da Sentinela de 16/09 — primeira medição com sinal, série de posições nasce
+```
+
+Empurrado com `git push origin HEAD:main` de primeira, sem recusa e sem rebase: `d188d71..0deaaf5  HEAD -> main`.
+Conferido depois com `git fetch origin main && git log -1 origin/main`, que devolve este mesmo hash — o push
+esta em `origin/main`, nao so na copia local.
+
+### Contagem do que mudou, conferida RELENDO os arquivos depois de gravar
+
+```
+$ test -f ilhas/robometria/dados/posicoes.md && echo SIM
+SIM
+$ grep -c '^| 2026-' ilhas/robometria/dados/posicoes.md
+5
+$ wc -l < ilhas/robometria/dados/posicoes.md
+18
+$ grep -c '^| 2026-' ilhas/robometria/dados/indexacao.md
+2
+$ grep -o '^| 2026-[0-9-]*' ilhas/robometria/dados/indexacao.md
+| 2026-09-10
+| 2026-09-16
+$ grep -n '^## DESPACHO' ilhas/robometria/PROMPT.md | head -2
+33:## DESPACHO DA SENTINELA — 16/09/2026 (leitura semanal, 19h40Z) — a primeira medicao com sinal...
+71:## DESPACHO DO RAPHAEL — 16/09/2026 — a API da Shopee ~~fecha quatro buracos desta ilha~~ ...
+$ grep -c '^## DESPACHO' ilhas/robometria/PROMPT.md
+9
+$ grep -n '^primeira_indexacao:\|^ultima_ronda:' ilhas/robometria/ESTADO.md
+7:primeira_indexacao: 2026-09-11
+21:ultima_ronda: 2026-09-16T19:40Z
+```
+
+Os dois numeros que o passo 6 mandou conferir batem: `dados/posicoes.md` existe e tem **5 linhas de dados**
+(mais cabecalho, tabela e as 4 notas da primeira medicao, 18 linhas no total), e `dados/indexacao.md` tem
+**2 linhas de dados** — a de 10/09, que ja estava la e nao foi tocada, mais a de 16/09 que entrou agora como
+ultima linha. O `PROMPT.md` foi de 8 para 9 secoes `## DESPACHO` e a nova ficou na linha 33, imediatamente
+antes da que era a primeira da fila (a da API da Shopee, agora na 71) — **nada foi apagado**, as 38 linhas
+do diff sao todas insercao. O `ESTADO.md` mudou exatamente 2 linhas: `primeira_indexacao` de
+`desconhecida` para `2026-09-11` e `ultima_ronda` de `2026-09-16T14:50Z` para `2026-09-16T19:40Z`.
+
+As tres edicoes em arquivo existente foram feitas por casamento literal do texto exato, com a contagem de
+ocorrencias conferida ANTES de gravar e o programa abortando se fosse diferente de 1: a ancora
+`## DESPACHO DO RAPHAEL — 16/09/2026 — a API da Shopee` aparecia uma unica vez, e cada um dos dois campos
+do `ESTADO.md` tambem. A linha do `indexacao.md` foi acrescentada depois de confirmar que o arquivo
+terminava em `\n` e que a linha ainda nao existia. A mensagem de commit foi passada por arquivo com `-F`,
+nunca com `-m`, para nao perder as crases. Nada foi reformatado, nenhum acento ou crase mexido, nenhuma
+linha acrescentada alem das que a instrucao trouxe.
+
+### Passos que falharam
+
+Nenhum. Push aceito na primeira tentativa, sem rebase e sem force. Nenhuma ilha foi reservada, nenhum
+`executando_desde` foi escrito, nenhum bloco de fila foi executado, o Sync nao foi acionado, nada foi
+publicado, nenhuma conta foi criada e nenhum arquivo alem dos quatro nomeados pela instrucao e deste log
+foi tocado.
