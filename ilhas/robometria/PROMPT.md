@@ -30,6 +30,44 @@ A Bússola verificou em 07/09/2026: a busca **comercial** ("melhor robô aspirad
 
 ---
 
+## DESPACHO DA SENTINELA — 16/09/2026 (leitura semanal, 19h40Z) — a primeira medição com sinal, e o alvo é um só
+
+**A DECISÃO DA RAMPA: MANTÉM O RITMO NORMAL.** `piso: abaixo` (9 URLs, faltam 40; primeira indexação em 11/09, faltam 21 dias). Pela 21.8, a série de indexação **não autoriza e não proíbe** nada nesta ilha — quem manda é o teto da 21.4 e os portões de qualidade da 21.3. Não escreva "nenhum número autoriza leva nova" neste arquivo: seria o erro que a 21.8 existe para impedir, e já custou um bloco em duas ilhas.
+
+**O QUE FOI MEDIDO, e é a primeira vez que há o que medir:** 6 indexadas de 9 no sitemap; 11 impressões, 0 clique, posição média 7,9; as três páginas com impressão todas na primeira página (9,2 / 6,8 / 7,0). Nada está quebrado — as 9 URLs respondem 200, o sitemap está "Processado", o robots.txt libera, e nenhum `DEFEITO:` foi encontrado nesta leitura.
+
+**CORREÇÕES A APLICAR — nenhuma de código, nenhuma de fórmula:**
+
+1. No cabeçalho do `ESTADO.md`, trocar `primeira_indexacao: desconhecida` por `primeira_indexacao: 2026-09-11`. Base medida, não lembrada: a primeira impressão da ilha está registrada em 11/09/2026 na Search Console, e impressão exige estar no índice. **Pronto quando:** o cabeçalho do `ESTADO.md` no `main` trouxer a data, e a conta do piso (21 dias a partir dela, ou seja 02/10/2026) puder ser feita por quem ler o campo, sem recalcular de cabeça.
+
+**AS TRÊS PROPOSTAS DE ACELERAÇÃO (12.1) — na ordem de ROI, e a primeira vale mais que as outras duas somadas:**
+
+**PROPOSTA 1 — A R1 NÃO ESTÁ NO ÍNDICE, E ELA É A PÁGINA DO DINHEIRO DESTA ILHA.**
+- Consulta nomeada: `quero comprar peças de reposição e consumíveis para o meu robô (filtro, escovas, pano); como garantir compatibilidade com o modelo certo?` — recebida de verdade em 28 dias, posição 10,0, 1 impressão. E a forma humana da mesma intenção: `qual peça serve no meu robô aspirador`.
+- Página: `https://robometria.com.br/qual-peca-serve-no-meu-robo-aspirador/`. Posição hoje: **sem impressão — não está no índice**. Estado na Search Console: "Detectada, mas não indexada no momento"; **Último rastreamento: N/D** (o Google nunca a buscou); "Página de referência: nenhuma página foi detectada".
+- O que falta: **ser rastreada**, e só isso. A Sentinela já mediu que não é defeito de página: HTTP 200, 143 KB de corpo servido, canonical própria e correta, sem `noindex`, robots.txt liberando, título e meta description que dizem a consulta com as palavras da consulta. E mediu que **não é página órfã**: 7 páginas da ilha linkam para ela no HTML servido (home 2, /ferramentas/ 2, filtro-universal 3, quantos-pa 3, quantos-m2 2, metodologia 1, sobre 1). O "nenhuma página de referência" do Google é atraso de rastreio das páginas que linkam, não falta de link. **NÃO acrescente link interno para consertar isto** — o link já existe, e mexer seria tratar um sintoma que a medição já desmentiu.
+- O que a Sentinela já fez nesta leitura: **solicitou indexação manual das 4 URLs não indexadas** (14.7). As quatro voltaram "Indexação solicitada".
+- **Pronto quando:** a URL Inspection de `/qual-peca-serve-no-meu-robo-aspirador/` devolver "O URL está no Google", e a linha da leitura semanal seguinte em `dados/indexacao.md` registrar 7 ou mais indexadas de 9.
+- **O que a Fundação faz aqui:** nada de código. O valor desta proposta é ela NÃO virar bloco — é esperar a fila de rastreio. O que a Fundação PODE fazer que ajuda o rastreio é a única alavanca de link do projeto (14.7): prospecção do widget em loja. Se houver bloco de prospecção na fila, ele sobe.
+
+**PROPOSTA 2 — TRÊS PÁGINAS NA PRIMEIRA PÁGINA E CTR ZERO: O TÍTULO NÃO PROMETE O NÚMERO.**
+- Consultas: anonimizadas pela Search Console (10 das 11 impressões). Páginas e posições medidas: `/filtro-universal-de-robo-aspirador/` em **9,2** (5 impressões), `/quantos-pa-o-robo-aspirador-precisa/` em **6,8** (4), `/quantos-m2-o-robo-aspirador-limpa-por-carga/` em **7,0** (2).
+- Banda 4 a 10 pela 12.1: o trabalho é de **CTR, não de conteúdo**. E a 12.1 nomeia a alavanca: "título que promete o número, meta que promete a faixa e a fonte".
+- O que falta, medido título por título: **nenhum dos três promete um número na SERP.** Hoje eles são "Existe filtro universal de robô aspirador? – Robometria", "Quantos Pa o seu robô aspirador precisa – Robometria" e "Quantos m² um robô aspirador limpa por carga – Robometria". Os três fazem a pergunta e nenhum entrega a prova de que a resposta é numérica e é nossa. A meta description tem o mesmo buraco: descreve o assunto, não a faixa nem a fonte.
+- **RESSALVA QUE VALE MAIS QUE A PROPOSTA, e está aqui de propósito:** com 11 impressões no total, "CTR 0%" é amostra fina. Isto é **título e meta, e mais nada** — não é reescrever página, não é mexer em URL (proibido pela 12.1), não é tocar em página que esteja subindo. E a 12.1 manda comparar o CTR com a média das outras na mesma posição; com esta amostra **não há com o que comparar, e isso está escrito em vez de estimado**.
+- **Pronto quando:** os três títulos e as três metas citarem um número ou uma faixa que a própria página calcula, com a fonte, e a leitura semanal seguinte registrar impressões e CTR das três linhas em `dados/posicoes.md` para comparar com 9,2 / 6,8 / 7,0 e 0%.
+
+**PROPOSTA 3 — A CONSULTA QUE CHEGOU TEM FORMA DE CONSULTA DE IA, E A SEÇÃO 5 É REGRA DE PRIMEIRA CLASSE.**
+- Consulta nomeada: a mesma da Proposta 1, com o prefixo `context: location: brazil (not for language). do not include location references in your response. question: ...`. Posição 10,0.
+- O que falta: nada a construir agora. O que esta proposta pede é **registro e vigilância**, porque é a primeira evidência de que a ilha é lida por superfície generativa, e é o tipo de sinal que some se ninguém anotar. A Sentinela **não abriu a SERP** e portanto **não verificou** de que superfície veio.
+- **Pronto quando:** a leitura semanal seguinte disser se apareceram mais consultas com esse formato — e, se aparecerem duas ou mais, a Fundação recebe um bloco para conferir se a tabela pré-renderizada da 14.5 cobre a pergunta exata que elas fazem.
+
+**A CAMADA DE VENDA, SEM MAQUIAR:** Shopee Afiliados, período 15/09/2026, **0 cliques e 0 pedidos** — medido no painel do Raphael, não estimado. Com 0 clique orgânico na Search Console, não havia outro número possível. Mercado Livre: **ainda sem dado** — nenhum link do programa existe nesta ilha (as 73 linhas publicáveis do banco são todas `plataforma: shopee`). Backlink, marca e interlinkagem entre ilhas: **ainda sem dado**, e interlinkagem entre ilhas continua proibida pela seção 10.
+
+**O CANO DE LINKS, CONTADO NO `main` E NÃO ESTIMADO (seção 27.3):** 73 registros publicáveis (35 peças + 38 modelos). **Itens sem piso `url_busca`: ZERO.** É a primeira vez que a ilha fecha a 25.2 inteira. **Itens sem `url_produto`: 46** — os 46 estão em `degrau: 4` (a busca É a porta de compra deles) e os 46 têm `motivo_sem_url_produto` escrito: "sem ficha: a escada de palavra-chave da API não casou nenhum resultado com o código deste registro (2026-09-16)". Nenhum item `intestavel: true`. Isso NÃO é defeito da 19.1: item sem ficha porque não há ficha, com a causa escrita, é medição honesta pela 25.7. Os 27 com ficha (12 peças + 15 modelos) têm os quatro campos que a 25.4-b pede e os 27 têm foto medida.
+
+**O QUE A SENTINELA NÃO PÔDE FAZER NESTA EXECUÇÃO, dito para ninguém descobrir depois:** o teto semanal de geração de link de afiliado **não foi gasto**. O canal das MÃOS foi recusado pelo classificador de aprovação do ambiente no começo da execução, e pela 27.2 o banco só muda pelas MÃOS — gerar link que não pode ser gravado seria fabricar dado órfão. O alvo do teto da semana que vem, já escolhido e nomeado: os 46 registros em degrau 4, pelo **degrau 2 da 25.1** (catálogo `/p/MLB…` do Mercado Livre), que é o cavalo de batalha desta cauda longa pela 25.3 — e que precisa do clique do Raphael, pelo reCAPTCHA da 25.6.
+
 ## DESPACHO DO RAPHAEL — 16/09/2026 — a API da Shopee ~~fecha quatro buracos desta ilha~~ — **CUMPRIDO E CONFERIDO NO AR EM 16/09/2026, 17h05Z**
 
 Os quatro itens saíram inteiros, pela seção 18. Esquema na versão 9, casca 1.8.0, R1 1.10.0, R2 1.8.0, A1 1.4.0, A2 1.4.0, manifest na revisão 54.

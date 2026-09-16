@@ -4,7 +4,7 @@ estado: nascendo
 prioridade: 1
 piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 9
-primeira_indexacao: desconhecida
+primeira_indexacao: 2026-09-11
 ultima_execucao: 2026-09-16T20:15Z
 executando_desde: null
 bloco_atual: |
@@ -18,7 +18,7 @@ bloco_atual: |
   A BANCADA PASSOU A CARREGAR TODAS AS OPTIONS DO MANIFEST, nao so as que cada teste escreve a mao: ela media uma pagina sem o dado novo enquanto o site sairia com ele. Bancada que ve menos que o ar aprova o que o ar reprova.
   A CONTA QUE FICA ABERTA, E NAO E DESTA ILHA: a busca do SITE nao e mensuravel desta nuvem (error 90309999 na API de busca, e casca de JavaScript identica byte a byte para palavras diferentes). A regua nova prova que a chave existe no catalogo que PAGA comissao, que nao e o universo do leitor — as duas chaves mortas que a ronda mediu no site e as tres que a API mediu NAO sao o mesmo conjunto.
   BANCADA 0 falha: casca 219, r1 227, r2 107, a1 74, a2 80, arvore 219, voz 155, acentuacao 17, escada-compra 681, validar-banco aprovado. MUTACOES: escada 26 de 26, universo-do-par 3 de 3, par-sem-modelo 6 de 6, zero inertes. NO AR: conferir-no-ar.py com as secoes 13 e 14 novas, 264 afirmacoes e 0 falha, na revisao 58.
-ultima_ronda: 2026-09-16T14:50Z
+ultima_ronda: 2026-09-16T19:40Z
 bloqueada_por: null
 ---
 
