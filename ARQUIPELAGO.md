@@ -836,3 +836,15 @@ Medido em 13/09/2026. Escrito aqui para ninguém replanejar em cima de suposiç�
 ### 26.3 A frase da tela é a outra metade, e ela é mais difícil
 
 Quando a função veio do **contraste** e não do título, a página **não pode dizer que o fabricante declarou a função** — ele declarou a compatibilidade e o nome; a classificação é da ilha. "A marca declara a escova lateral X compatível com o modelo Y" está certo no caso 1 e empresta autoridade no caso 2. O campo de 26.1 é o que torna essa diferença mensurável pela primeira vez: quem monta a frase lê `declarada_por` e escolhe a atribuição. Ilha que já tenha o campo e ainda não a frase escreve isso no `ESTADO.md` como dívida nomeada, nunca como detalhe.
+
+---
+
+## 27. AS MAOS DEIXAM RASTRO, E BANCO DE DADOS SO ENTRA POR ELAS (16/09/2026)
+
+Em 16/09/2026 quatro disparos seguidos das MAOS responderam SUCCEEDED e **nada chegou ao `main`**. As paginas de sessao devolvem "Not Found", entao nao havia como ler a saida de nenhum deles. O canal estava certo o tempo todo; o que faltava era prova. Sem prova, um disparo que some e indistinguivel de um disparo que funcionou, e o trabalho fica parado esperando um resultado que nunca vem.
+
+**27.1 TODO DISPARO DAS MAOS TERMINA ESCREVENDO EM `MAOS-LOG.md`.** O arquivo fica na raiz, e a raiz e o lugar certo: as MAOS atravessam ilhas e tambem mexem em arquivo de raiz, entao o log nao e dado de nenhuma ilha. E **append-only**: secao nova no fim, com data e hora UTC no titulo, nunca sobrescrevendo secao anterior. Dentro dela: `git status --porcelain`, `git diff --stat`, o hash do commit no `main`, e a contagem do que mudou, conferida relendo o arquivo DEPOIS de gravar. Disparo que falhou escreve a mensagem de erro completa e commita assim mesmo — e o erro registrado que vale, nao o silencio.
+
+**27.2 `dados/*.json` SO MUDA PELAS MAOS.** O editor web do GitHub e a pagina de upload ficam PROIBIDOS para banco de dados de ilha. Os dois substituem o arquivo INTEIRO pela copia de quem esta editando, e essa copia sempre e mais velha que o `main` — no mesmo dia 16/09, um upload desses teria apagado cinco registros que a Fundacao tinha acabado de acrescentar em `modelos-robo.json`, sem aviso nenhum. So as MAOS clonam o `main` do momento, aplicam a mudanca em cima do que existe agora e empurram. O editor web continua valendo para `.md` pequeno, e so.
+
+**27.3 NINGUEM DECLARA FEITO SEM CONTAR NO `main`.** Relatorio de rotina nao e prova, "SUCCEEDED" nao e prova, e a leitura de `raw.githubusercontent.com` tambem nao serve sozinha: ela vem de cache de CDN e no mesmo 16/09 devolveu zero link num arquivo que ja tinha 33. A prova e clonar o `main` e contar. Quem disser que entregou sem ter contado, nao entregou — descobriu que achava.

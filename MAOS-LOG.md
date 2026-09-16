@@ -1,4 +1,12 @@
-# MAOS-LOG
+# MAOS-LOG — serie historica dos disparos das MAOS
+
+**ESTE ARQUIVO E APPEND-ONLY.** Cada disparo das MAOS acrescenta uma secao NOVA no FIM do arquivo, com data e hora UTC no titulo. Nenhum disparo apaga, reescreve ou resume a secao de um disparo anterior — do mesmo jeito que `dados/indexacao.md` e `dados/audiencia.md` de cada ilha. Um log que se sobrescreve nao serve para nada: ele existe justamente para o caso em que um disparo diz SUCCEEDED e nao chega nada no `main`, e nesse caso o que importa e comparar com os disparos de antes.
+
+O que toda secao tem de conter, sem excecao: a saida de `git status --porcelain`, a de `git diff --stat`, o hash do commit que foi ao `main`, e a contagem do que mudou (quantos registros, quantas linhas, o que foi conferido relendo o arquivo depois de gravar). Se algum passo falhou, a mensagem de erro completa entra aqui tambem — disparo que falhou e o que mais precisa de rastro.
+
+---
+
+## 16/09/2026 — disparo das 13h38 UTC — 68 links de afiliado Shopee na Robometria
 
 ## Passo 4 — saida do script (rodado da raiz da copia de trabalho, sobre `origin/main` em `fb9197e`)
 
