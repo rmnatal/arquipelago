@@ -144,6 +144,29 @@ def carregar(rel):
         return json.load(fh)
 
 
+def _cabeca(nome, nome_de_busca):
+    """A cabeca de um nome comercial, cortada em FIM_DA_CABECA e sem a marca.
+
+    E a mesma regra do `batismo_do_fabricante`, extraida para valer nas duas
+    entidades: "ObaDuster (Obabox)" -> "ObaDuster". Uma funcao, dois chamadores —
+    duas copias da mesma regra divergiriam calado, que e a licao da 25.7.
+    """
+    nome = (nome or '').strip()
+    if not nome:
+        return None
+    cabeca = []
+    for p in re.split(r'\s+', nome):
+        limpo = COLETA.sem_acento(p).strip('.,;:')
+        if limpo in FIM_DA_CABECA or limpo.startswith('('):
+            break
+        cabeca.append(p)
+    marca_tokens = COLETA.sem_acento(nome_de_busca).split()
+    cabeca = [p for p in cabeca
+              if COLETA.sem_acento(p).strip('.,;:') not in marca_tokens]
+    texto = ' '.join(cabeca).strip(' ,;:-')
+    return texto or None
+
+
 def batismo_do_fabricante(registro, nome_de_busca):
     """A cabeca de `nome_na_fonte`, sem o nome da marca.
 
@@ -151,22 +174,7 @@ def batismo_do_fabricante(registro, nome_de_busca):
     a secao 26 diz que e outro nome que o da ilha. Devolve None quando a cabeca
     sai igual ao `tipo` — ai o degrau 2 seria o degrau 1 com outra roupa.
     """
-    nome = (registro.get('nome_na_fonte') or '').strip()
-    if not nome:
-        return None
-    palavras = [p for p in re.split(r'\s+', nome) if p]
-    cabeca = []
-    for p in palavras:
-        limpo = COLETA.sem_acento(p).strip('.,;:')
-        if limpo in FIM_DA_CABECA or limpo.startswith('('):
-            break
-        cabeca.append(p)
-    # o nome da marca dentro da cabeca nao conta: ele ja e o primeiro token da
-    # chave, e repetido duas vezes ele estreita a busca sem acrescentar nada.
-    marca_sem_acento = COLETA.sem_acento(nome_de_busca)
-    cabeca = [p for p in cabeca
-              if COLETA.sem_acento(p).strip('.,;:') not in marca_sem_acento.split()]
-    texto = ' '.join(cabeca).strip(' ,;:-')
+    texto = _cabeca(registro.get('nome_na_fonte'), nome_de_busca)
     if not texto:
         return None
     if COLETA.sem_acento(texto) == COLETA.sem_acento(registro.get('tipo') or ''):
@@ -407,9 +415,36 @@ def medir_modelos(modelos, marcas, contexto, base, sub_id, pecas_e_modelos_no_ba
         marca = marcas.get(m['marca'], {})
         nome_de_busca = marca.get('nome_de_busca') or marca.get('nome') or m['marca']
         codigo = (m.get('codigo_fabricante') or '').strip()
-        chave = ' '.join(p for p in [nome_de_busca, codigo, contexto] if p)
+        degraus = [(1, 'marca + codigo do modelo + contexto',
+                    ' '.join(p for p in [nome_de_busca, codigo, contexto] if p))]
+        # O SEGUNDO DEGRAU DO MODELO, e ele nasceu de um beco sem saida que esta
+        # propria ferramenta achou em 16/09/2026, fora do despacho que a pediu:
+        # `Multilaser OB010 robo aspirador` devolve ZERO. O codigo do modelo E o
+        # nome comercial — menos quando nao e. A Multi vende esse aparelho como
+        # ObaDuster, da Obabox, e ninguem anuncia o OB010. A cabeca de `linha`,
+        # cortada no parentese e sem o nome da marca, devolve "ObaDuster" e a
+        # busca passa a ter tres resultados. Mesma regra da peca, mesmo campo de
+        # origem: o nome que o FABRICANTE deu, transcrito do banco.
+        linha = _cabeca(m.get('linha') or m.get('nome_comercial') or '', nome_de_busca)
+        if linha and COLETA.sem_acento(linha) != COLETA.sem_acento(codigo):
+            degraus.append((2, 'marca + cabeca da linha comercial + contexto',
+                            ' '.join(p for p in [nome_de_busca, linha, contexto] if p)))
+
+        escolhido = None
+        tentativas = []
+        for numero, composicao, chave in degraus:
+            ofertas = API.buscar(chave, quantos=QUANTOS)
+            tentativas.append({'degrau': numero, 'composicao': composicao,
+                               'chave': chave, 'resultados': len(ofertas),
+                               'titulo_do_topo': (ofertas[0].get('titulo')
+                                                  if ofertas else None)})
+            if ofertas:
+                escolhido = tentativas[-1]
+                break
+        passo = escolhido or tentativas[0]
+        numero, composicao, chave = passo['degrau'], passo['composicao'], passo['chave']
+        ofertas = [] if passo['resultados'] == 0 else [{'titulo': passo['titulo_do_topo']}]
         url = base + urllib.parse.quote(chave)
-        ofertas = API.buscar(chave, quantos=QUANTOS)
         afil = (pecas_e_modelos_no_banco.get(m['id']) or {}).get('afiliado') or {}
         if afil.get('url_busca_produto') == url and (afil.get('url_busca') or '').strip():
             curto = afil['url_busca']
@@ -420,16 +455,19 @@ def medir_modelos(modelos, marcas, contexto, base, sub_id, pecas_e_modelos_no_ba
         saida.append({
             'id': m['id'], 'marca': m['marca'], 'tipo': None, 'nome_na_fonte': None,
             'escolhido': {
-                'degrau': 1, 'composicao': 'marca + codigo do modelo + contexto',
-                'chave': chave, 'resultados': len(ofertas),
-                'titulo_do_topo': (ofertas[0].get('titulo') if ofertas else None),
+                'degrau': numero, 'composicao': composicao,
+                'chave': chave, 'resultados': passo['resultados'],
+                'titulo_do_topo': passo['titulo_do_topo'],
                 'topo_e_a_peca': None,
-                'por_que': 'modelo nao desce escada: o codigo E o nome comercial',
+                'por_que': ('o codigo do modelo E o nome comercial' if numero == 1
+                            else 'o codigo devolveu zero: quem vende chama pela linha'),
                 'criterio_literal_do_despacho': None,
                 'url_busca_produto': url, 'url_busca': curto,
             },
-            'parou_por': 'entidade MODELO_ROBO: chave unica, conferida e nao escolhida',
-            'tentativas': [],
+            'parou_por': ('entidade MODELO_ROBO: o codigo bastou' if numero == 1
+                          else 'entidade MODELO_ROBO: o codigo devolveu zero e a '
+                               'linha comercial respondeu'),
+            'tentativas': tentativas,
         })
     print('modelos: %d medido(s), %d link(s) novo(s), %d reaproveitado(s)'
           % (len(saida), novos, reaproveitados))

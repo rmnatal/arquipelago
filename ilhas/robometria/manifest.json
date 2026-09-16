@@ -4,7 +4,7 @@
   "nicho": "robo aspirador — compatibilidade de pecas e consumiveis, e dimensionamento de succao e autonomia",
   "dominio": "https://robometria.com.br",
   "versao_manifest": 1,
-  "revisao": 57,
+  "revisao": 58,
   "atualizado_em": "2026-09-16",
   "estado": "nascendo",
   "desembarque": {
@@ -152,7 +152,7 @@
       "verificado_em": "2026-09-09",
       "registros": 33,
       "publicar": false,
-      "sha256": "57e4f9c6f6fe10c6a92c82e85ffa89fdd28210adbe6fa5eb643492417f10a401",
+      "sha256": "3db82a78d28428772ac16ddd30ad264118ef2611bb6c224388bc5bf588b58c12",
       "descricao": "33 modelos: 28 publicaveis, 1 nao publicavel (HO401, categoria a confirmar) e 4 excluidos por NAO serem robo. A segunda leva do Bloco 3c acrescentou seis Xiaomi (S10, E10, S40, S40C, H40 e Mop 2) e tres WAP (W400, W1000, W310), e preencheu a ficha de PRA500 e PRA2000. O campo pa_declarado saiu de 2 para 11 modelos publicaveis, em 3 marcas, cobrindo de 1.400 a 10.000 Pa — a R2 deixa de sair com lista vazia. Traz a varredura cobertura_de_faixa_r2 exigida pela secao 14.3: cinco das seis faixas passam no portao de 3 itens, acima de 6.000 Pa a faixa esta DESCOBERTA, e toda faixa acima de 3.000 Pa e 100% Xiaomi."
     },
     {
@@ -224,7 +224,7 @@
       "verificado_em": "2026-09-10",
       "registros": 16,
       "publicar": true,
-      "sha256": "974d6b1b59e0c7348ea22fa5d1bd814f5dc60e5082ccbae5bb588cb75065513b",
+      "sha256": "72bc3bc4fe1aff3b310f18dc0ad772372d7978d13ee6069560b7ba49b64a1ef5",
       "descricao": "O COMBUSTIVEL DO ARTIGO-ANCORA A1: o Sync o grava na option robometria_dados_a1-fatos e o snippet robometria-a1.php escreve as frases a partir dele. Tres medicoes separadas de proposito. (1) ALCANCE: quantos codigos de modelo cada uma das 16 pecas publicaveis tem declarados, com os codigos como a fonte os escreve. (2) TRAVESSIA DE MARCA: quantas pecas sao declaradas para modelos de mais de uma marca — hoje zero, e e essa a tese do artigo. (3) DISPERSAO DENTRO DA MARCA: quantos conjuntos DISTINTOS de modelos as pecas de cada fabricante formam; quando o numero iguala o de pecas, nenhuma repete a lista de outra. Traz ainda a cobertura por tipo vinda da varredura da R1, a vitrine de 4 itens (ordenada por alcance declarado, com kit de composicao nao transcrita FORA, porque oferecer a compra de um produto cuja composicao a pagina diz nao saber e o defeito da secao 7) e as tres perguntas do FAQPage, derivadas dos mesmos numeros."
     },
     {
@@ -291,7 +291,7 @@
       "verificado_em": "2026-09-16",
       "registros": 2,
       "publicar": true,
-      "sha256": "60094778ada5e7eb83f4bd1de6fb035d99f2a08aed87f28b72127dbb479afc9b",
+      "sha256": "dbf8d577fe1e9c475da2c3ee5676d21e80f4e08db1e07997f4427b36728ee48c",
       "descricao": "AS DUAS DATAS DO JSON-LD DOS ARTIGOS, com uma fonte so. O Sync o grava na option robometria_dados_datas-das-paginas e robometria_casca_datas_da_pagina() na casca o le — uma funcao, chamada pelas duas paginas, pelo mesmo motivo que o painel da foto virou uma so em 16/09 (25.7). Ate este arquivo existir, `datePublished` era digitado dentro do snippet do A1 e ausente no A2, e `dateModified` saia de `gerado_em` dos fatos, que mede a geracao dos FATOS e nao a mudanca da PAGINA: em 16/09 as duas paginas mudaram na revisao 52 sem regerar fato nenhum, e o JSON-LD servido continuou dizendo 13/09. A revisao do manifest tambem nao serve: ela e da ilha inteira e faria a data do artigo do filtro andar porque a R2 ganhou uma linha."
     },
     {
@@ -304,7 +304,7 @@
       "verificado_em": "2026-09-11",
       "registros": 7,
       "descricao": "Fatos que a casca publica sobre o proprio banco, derivados por ferramentas/gerar-casca-fatos.py. Desde 11/09/2026 traz duas coisas: a coluna 'Temos hoje' da escada de fontes, e a MEDICAO da secao 4 da metodologia — os onze numeros que a ilha afirma sobre si mesma, com a regua de cada um escrita no proprio arquivo, em reguas_da_medicao. Contagem so de registro publicavel: a coluna fala do que a ilha PUBLICA, nao do que ela guarda, e e por isso que 'pares peca x modelo' conta 32 (as duas pontas publicaveis) onde o cabecalho de pecas.json conta 33 (tudo que o arquivo declara). O gerador RECUSA gravar quando cobertura-r1.json nao bate com o banco de hoje, para a ilha nunca publicar medicao de ontem com data de hoje.",
-      "sha256": "68b8931204a41fe008a3d59c74d412052487f959568fa381e2516f8ed0f65a9e"
+      "sha256": "3039835305a94484871d8a17c9e952d777938c11d1193e231438f017c3292eb3"
     },
     {
       "id": "acentuacao-restaurada",

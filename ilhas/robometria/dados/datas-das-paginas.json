@@ -21,15 +21,15 @@
    "arquivos": {
     "snippets/robometria-a1.php": {
      "data": "2026-09-16",
-     "como": "nao commitado"
+     "como": "commit"
     },
     "dados/a1-fatos.json": {
      "data": "2026-09-16",
-     "como": "commit"
+     "como": "nao commitado"
     },
     "snippets/robometria-casca.php": {
      "data": "2026-09-16",
-     "como": "nao commitado"
+     "como": "commit"
     }
    }
   },
@@ -47,7 +47,7 @@
    "arquivos": {
     "snippets/robometria-a2.php": {
      "data": "2026-09-16",
-     "como": "nao commitado"
+     "como": "commit"
     },
     "dados/a2-fatos.json": {
      "data": "2026-09-16",
@@ -55,7 +55,7 @@
     },
     "snippets/robometria-casca.php": {
      "data": "2026-09-16",
-     "como": "nao commitado"
+     "como": "commit"
     }
    }
   }

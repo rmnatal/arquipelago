@@ -229,10 +229,32 @@ for rel, doc in bancos.items():
         # duas, alguem inverte a composicao um dia e nada reprova.
         codigo = (reg.get("codigo_fabricante") or "").strip()
         if entidade == "modelo_robo":
-            ok(codigo and (" %s " % codigo) in (" %s " % chave),
-               "%s: modelo sem o codigo %r dentro da busca %r. O codigo do modelo E o "
-               "nome comercial: ninguem vende 'Electrolux robo aspirador'"
-               % (onde, codigo, chave))
+            # O CODIGO DO MODELO E O NOME COMERCIAL — MENOS QUANDO NAO E, e isso
+            # foi medido em 16/09/2026 pela regua de palavra-chave, num registro
+            # que despacho nenhum tinha apontado: `Multilaser OB010 robo
+            # aspirador` devolve ZERO. A Multi vende aquele aparelho como
+            # ObaDuster, da Obabox, e ninguem anuncia o OB010 — entao a lei de
+            # cima transformava a assimetria certa (modelo leva codigo, peca
+            # leva tipo) num beco sem saida de compra, que e o defeito da 19.1
+            # que o piso da 25.2 existe para impedir.
+            #
+            # A excecao e a MESMA da peca, e por isso ela nao abre porta: so
+            # passa a chave que a medicao escolheu, e so se a medicao tiver
+            # registrado resultado para ela. Fora disso, o codigo continua
+            # obrigatorio.
+            medida = MEDIDAS.get(reg["id"]) or {}
+            if medida.get("chave") == chave and codigo and (" %s " % codigo) not in (" %s " % chave):
+                ok((medida.get("resultados") or 0) > 0,
+                   "%s: a busca %r larga o codigo %r e e a chave MEDIDA, e a medicao "
+                   "de %s registrou %r resultado(s). Modelo so troca o codigo pela "
+                   "linha comercial quando o codigo devolve zero e a linha nao"
+                   % (onde, chave, codigo, MEDIDO_EM, medida.get("resultados")))
+            else:
+                ok(codigo and (" %s " % codigo) in (" %s " % chave),
+                   "%s: modelo sem o codigo %r dentro da busca %r, e esta chave NAO e "
+                   "a que a medicao de %s escolheu (%r). O codigo do modelo E o nome "
+                   "comercial: ninguem vende 'Electrolux robo aspirador'"
+                   % (onde, codigo, chave, MEDIDO_EM, medida.get("chave")))
         else:
             # ESTA TRAVA MUDOU EM 16/09/2026, E O AVISO QUE ELA CARREGAVA E QUEM
             # MANDOU MUDA-LA: *"Se isto mudar de proposito, mude tambem esta trava
