@@ -1,5 +1,10 @@
 /**
  * Robometria A1 — Existe filtro universal de robô aspirador?
+ * Versão: 1.5.0 (16/09/2026) — datePublished e dateModified passam a sair de
+ * robometria_casca_datas_da_pagina(). Antes datePublished era digitado aqui
+ * (e no A2 não existia) e dateModified vinha de `gerado_em` dos fatos, que
+ * diz quando os FATOS foram gerados e não quando a PÁGINA mudou.
+ *
  * Versão: 1.4.0 (16/09/2026) — a vitrine mostra a foto, e o painel dela sai da
  * casca.
  *
@@ -71,7 +76,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_A1_VERSAO' ) ) {
-	define( 'ROBOMETRIA_A1_VERSAO', '1.4.0' );
+	define( 'ROBOMETRIA_A1_VERSAO', '1.5.0' );
 	define( 'ROBOMETRIA_A1_SLUG', 'filtro-universal-de-robo-aspirador' );
 	/* O TÍTULO DEIXOU DE AFIRMAR A TESE, e este é o terceiro lugar da mesma
 	   família. A tese deste artigo é uma contagem do banco, e por isso a frase de
@@ -653,14 +658,24 @@ add_action( 'wp_head', function () {
 
 	$url = robometria_a1_url_da_pagina();
 
+	$datas = robometria_casca_datas_da_pagina( ROBOMETRIA_A1_SLUG );
+
 	$artigo = array(
 		'@type'            => 'Article',
 		'@id'              => $url . '#artigo',
 		'headline'         => ROBOMETRIA_A1_TITULO,
 		'url'              => $url,
 		'inLanguage'       => 'pt-BR',
-		'datePublished'    => '2026-09-10',
-		'dateModified'     => isset( $f['gerado_em'] ) ? $f['gerado_em'] : '2026-09-10',
+		/* AS DUAS DATAS SAEM DE UMA FONTE SO, e nao mais de dois lugares que nao
+		   sabem a resposta — item 4 do despacho da Sentinela de 16/09/2026.
+		   `datePublished` era DIGITADO aqui e `dateModified` saia de `gerado_em`
+		   dos fatos, que significa a data em que os FATOS foram gerados: em
+		   16/09 a pagina mudou (revisao 52, bloco de compra com link encurtado)
+		   sem que fato nenhum fosse regerado, e o JSON-LD servido continuou
+		   dizendo 13/09. Agora as duas vem de
+		   `robometria_casca_datas_da_pagina()`, que le o arquivo derivado do
+		   git. Sem a option, NENHUMA data e publicada: ausente o Google infere,
+		   errada ele acredita. */
 		/* A DESCRIÇÃO É DERIVADA, pelo mesmo motivo da frase de abertura — e
 		   aqui o motivo é mais forte: é esta linha que um modelo de linguagem lê
 		   como resposta (seção 5). Uma página que se corrige na tela e mantém a
@@ -693,6 +708,12 @@ add_action( 'wp_head', function () {
 			'url'   => home_url( '/qual-peca-serve-no-meu-robo-aspirador/' ),
 		),
 	);
+
+	foreach ( array( 'datePublished', 'dateModified' ) as $campo ) {
+		if ( '' !== $datas[ $campo ] ) {
+			$artigo[ $campo ] = $datas[ $campo ];
+		}
+	}
 
 	/* FAQPage montado dos FATOS, nunca escrito à mão: cada pergunta é uma
 	   formulação real do corpus e cada resposta é o que a própria página serve. */

@@ -81,6 +81,24 @@ def _carregar_referencia():
 ref = _carregar_referencia()
 
 
+def _pares_entre_publicaveis():
+    """Par peca x modelo com selo do fabricante e as DUAS pontas publicaveis.
+
+    A regua esta escrita aqui de proposito, e a frase que ela alimenta diz
+    "cobrindo N dos M modelos do banco": o N e o M tem de sair do mesmo universo,
+    senao a promessa mede uma cobertura que a ferramenta nao entrega. Par que
+    aponta para modelo nao publicavel nao tem celula na tabela, nao esta no
+    seletor e nenhum leitor chega nele.
+    """
+    ids_publicaveis = {m["id"] for m in ref.doc_modelos["registros"]
+                       if m.get("status") == "publicavel"}
+    return sum(1
+               for p in ref.doc_pecas["registros"] if p.get("status") == "publicavel"
+               for c in (p.get("compatibilidade") or [])
+               if c.get("selo") == "declarada_fabricante"
+               and c.get("modelo") in ids_publicaveis)
+
+
 def sem_acento(txt):
     return "".join(
         c for c in unicodedata.normalize("NFD", txt)
@@ -515,7 +533,32 @@ def montar():
         "modelos_com_entrada_vazia": len(varredura["entrada_vazia"]),
         "celulas": sum(varredura["celulas"].values()),
         "celulas_sem_resposta": varredura["celulas"][ref.VAZIA],
-        "pares_declarados": ref.doc_pecas["contagem"].get("pares_peca_x_modelo_declarados"),
+        # OS DOIS UNIVERSOS DO MESMO NUMERO, SEPARADOS EM 16/09/2026 (item 2 do
+        # despacho da Sentinela). Ate hoje esta linha lia
+        # `pecas.json > contagem.pares_peca_x_modelo_declarados` — 71 — e a frase
+        # servida dizia *"71 pares peca x modelo declarados (...) cobrindo 30 dos 38
+        # modelos do banco"*. Os dois numeros da MESMA frase saiam de universos
+        # diferentes: o 71 conta um par para `multi-ho401`, que tem status
+        # nao_publicavel e que os 38 excluem. Esse par nao esta no seletor, nao tem
+        # celula na tabela e nenhum leitor chega nele — a promessa contava uma
+        # cobertura que a ferramenta nao entrega.
+        #
+        # E a mesma familia dos dois 63 que o item 2 do despacho de 14/09 desmontou,
+        # um nivel adiante: la eram dois numeros certos com o mesmo nome, aqui e um
+        # numero certo no lugar errado. O conserto e o mesmo dos dois 63 — nada se
+        # iguala, cada um ganha NOME e o que vai para a promessa e o que vive no
+        # mesmo universo dela.
+        #
+        # A CONTA E FEITA AQUI, a mao, e nao lida de `contagem` nem importada do
+        # `gerar-casca-fatos.py`, que conta a mesma coisa por conta propria. Se as
+        # duas lessem a mesma fonte, errariam juntas e todo portao ficaria verde —
+        # a cicatriz que a frase da R1 ja pagou uma vez.
+        "pares_declarados": _pares_entre_publicaveis(),
+        "pares_declarados_no_banco": ref.doc_pecas["contagem"].get(
+            "pares_peca_x_modelo_declarados"),
+        "pares_para_modelo_nao_publicavel": (
+            (ref.doc_pecas["contagem"].get("pares_peca_x_modelo_declarados") or 0)
+            - _pares_entre_publicaveis()),
         "pecas_publicaveis": sum(1 for p in ref.pecas if p["status"] == "publicavel"),
         "marcas": len(marcas_usadas),
         "as_duas_ferramentas": len(varredura["cruzamento"]["as_duas_respondem"]),

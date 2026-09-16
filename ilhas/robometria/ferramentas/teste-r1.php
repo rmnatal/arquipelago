@@ -524,8 +524,32 @@ rbm_ok( 0 !== strpos( trim( $corpo ), '---' ) && 0 !== strpos( trim( $corpo ), '
 
 echo "\n10. Numeros da tela x banco commitado (secao 10: nunca invente dado)\n";
 
+/* OS DOIS UNIVERSOS DO PAR, RECONTADOS AQUI — item 2 do despacho da Sentinela
+ * de 16/09/2026. Ate hoje esta regua lia `contagem.pares_peca_x_modelo_declarados`
+ * e aprovava o 71 servido ao lado de "30 dos 38 modelos": o 71 conta um par para
+ * `multi-ho401`, que e nao_publicavel e que os 38 excluem. A regua recontava o
+ * numero e nunca perguntava DE QUE UNIVERSO ele sai — que e o unico jeito de
+ * pegar este defeito. */
+$modelos_pub_ids = array();
+foreach ( $modelos_b['registros'] as $m ) {
+	if ( 'publicavel' === $m['status'] ) { $modelos_pub_ids[ $m['id'] ] = true; }
+}
+$pares_entre_publicaveis = 0;
+$pares_para_excluido     = 0;
+foreach ( $pecas_b['registros'] as $p ) {
+	if ( 'publicavel' !== $p['status'] ) { continue; }
+	foreach ( $p['compatibilidade'] as $c ) {
+		if ( 'declarada_fabricante' !== $c['selo'] ) { continue; }
+		if ( isset( $modelos_pub_ids[ $c['modelo'] ] ) ) {
+			$pares_entre_publicaveis++;
+		} else {
+			$pares_para_excluido++;
+		}
+	}
+}
+
 $esperado_num = array(
-	'pares_declarados'      => (int) $pecas_b['contagem']['pares_peca_x_modelo_declarados'],
+	'pares_declarados'      => $pares_entre_publicaveis,
 	'modelos_publicaveis'   => (int) $modelos_b['contagem']['publicavel'],
 	'pecas_publicaveis'     => (int) $pecas_b['contagem']['publicavel'],
 );
@@ -546,9 +570,27 @@ rbm_ok( 0 === $intrusos, 'nenhum modelo do seletor esta fora do banco publicavel
 
 rbm_ok(
 	false !== strpos( $sem_consulta, '>' . number_format_i18n( $esperado_num['pares_declarados'] ) . '<' ),
-	'o numero de pares declarados na tela e o do banco',
+	'o numero de pares na tela sai do universo dos publicaveis',
 	$esperado_num['pares_declarados']
 );
+
+/* A AFIRMACAO QUE REPROVA O MUNDO DE ONTEM, e ela e o "pronto quando" do item 2:
+ * enquanto existir par apontando para modelo nao publicavel, a promessa NAO pode
+ * servir o numero que o inclui. Hoje ha exatamente um (`multi-pr10124` ->
+ * `multi-ho401`), entao esta linha reprova a pagina de 16/09 as 14h50Z e aprova a
+ * de agora. No dia em que nao houver nenhum, os dois numeros coincidem e ela
+ * continua valendo — a trava so dorme, nao some. */
+$pares_no_banco_inteiro = (int) $pecas_b['contagem']['pares_peca_x_modelo_declarados'];
+rbm_ok( $pares_entre_publicaveis + $pares_para_excluido === $pares_no_banco_inteiro,
+	'as duas metades somam o par declarado do banco inteiro',
+	$pares_entre_publicaveis . ' + ' . $pares_para_excluido . ' = ' . $pares_no_banco_inteiro );
+rbm_ok( 0 === $pares_para_excluido
+		|| false === strpos( $sem_consulta, '>' . number_format_i18n( $pares_no_banco_inteiro ) . '</span> pares' ),
+	'a promessa NAO serve o numero que conta par para modelo fora do seletor',
+	$pares_para_excluido . ' par(es) para modelo nao publicavel' );
+rbm_ok( (int) $dados['resumo']['pares_para_modelo_nao_publicavel'] === $pares_para_excluido,
+	'o resumo nomeia, com numero, os pares que a promessa deixa de fora',
+	$dados['resumo']['pares_para_modelo_nao_publicavel'] . ' contra ' . $pares_para_excluido );
 
 /* ---------------------------------------------------------------------------
  * 11. Interlinkagem e cartao do hub.
@@ -1720,13 +1762,10 @@ $n_linhas  = count( $linhas_t );
 $n_celulas = count( $cel );
 $n_extras  = $n_linhas - $n_celulas;
 
-/* O quarto número, e ele vem de OUTRO arquivo: os pares que o BANCO declara. */
-$pares_no_banco = 0;
-foreach ( $pecas_b['registros'] as $p ) {
-	if ( 'publicavel' === $p['status'] ) {
-		$pares_no_banco += count( $p['compatibilidade'] );
-	}
-}
+/* O quarto número, e ele vem de OUTRO arquivo: os pares que o BANCO declara
+ * ENTRE PUBLICAVEIS. A contagem antiga somava `count( compatibilidade )` inteiro,
+ * sem olhar o status do modelo do outro lado — era ela que aprovava o 71. */
+$pares_no_banco = $pares_entre_publicaveis;
 
 rbm_ok( $dados['resumo']['linhas_da_tabela'] === $n_linhas,
 	'o resumo conta as linhas da tabela como elas sao',
@@ -1741,7 +1780,7 @@ rbm_ok( $dados['resumo']['pares_na_tabela'] === count( $par_tab ),
 	'o resumo conta os pares peca x modelo que a tabela mostra',
 	$dados['resumo']['pares_na_tabela'] . ' contra ' . count( $par_tab ) );
 rbm_ok( $dados['resumo']['pares_declarados'] === $pares_no_banco,
-	'o numero do alto da pagina e o do BANCO, recontado aqui',
+	'o numero do alto da pagina e o do banco ENTRE PUBLICAVEIS, recontado aqui',
 	$dados['resumo']['pares_declarados'] . ' contra ' . $pares_no_banco );
 
 /* A PAGINA: a tabela nao chama as linhas dela de "pares". Era esse o defeito. */

@@ -7,6 +7,12 @@
  * 11/09; o cabeçalho, que é a primeira coisa que alguém lê neste arquivo, não
  * tinha nenhuma. Agora tem, na seção 16 do teste-casca.php, e a constante sobe
  * para 1.5.1 sem que uma linha de comportamento mude.
+ * Versão: 1.9.0 (16/09/2026) — AS DUAS DATAS DO ARTIGO SAEM DE UMA FONTE SÓ.
+ * robometria_casca_datas_da_pagina() nasce aqui e o A1 e o A2 passam a
+ * chamá-la. Item 4 do despacho da Sentinela de 16/09: as duas páginas
+ * serviam dateModified de 13/09 tendo mudado em 16/09, porque o campo saía
+ * de `gerado_em` dos fatos — que mede a geração dos FATOS, e a revisão 52
+ * mexeu na casca sem regerar fato nenhum. A fonte nova é medida do git.
  * Versão: 1.8.0 (16/09/2026) — A FOTO CHEGOU, E O PAINEL DELA E UM SO.
  * robometria_casca_painel_da_foto() nasce aqui e as quatro ferramentas passam a
  * chamá-la: com foto sai <img> com width, height, alt e lazy; sem foto, o
@@ -203,7 +209,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_CASCA_VERSAO' ) ) {
-	define( 'ROBOMETRIA_CASCA_VERSAO', '1.8.0' );
+	define( 'ROBOMETRIA_CASCA_VERSAO', '1.9.0' );
 	define( 'ROBOMETRIA_CASCA_TAGLINE', 'Qual peça o fabricante declarou para o seu robô aspirador — com código, endereço e data' );
 
 	/* GA4 DESTA ILHA — robometria, propriedade 553889920 da conta Arquipélago.
@@ -290,6 +296,47 @@ function robometria_casca_artigos() {
  * Link do hub para página inexistente é 404 no ar — a Aquametria pagou esse
  * defeito em 08/09/2026 e a Robometria nasce com a trava.
  */
+/* ---------------------------------------------------------------------------
+ * AS DATAS DA PÁGINA — item 4 do despacho da Sentinela de 16/09/2026.
+ *
+ * Uma função, chamada pelas páginas que publicam `datePublished` e
+ * `dateModified` no JSON-LD. Ela mora na CASCA pelo mesmo motivo que o painel da
+ * foto passou a morar aqui em 16/09 (seção 25.7 do contrato): quatro páginas
+ * escrevendo a mesma regra por conta própria foi como esta ilha passou dias com
+ * duas delas servindo data de três dias atrás sem ninguém ver.
+ *
+ * A fonte é `dados/datas-das-paginas.json`, gravado pelo Sync na option
+ * `robometria_dados_datas-das-paginas` e derivado do git por
+ * `ferramentas/gerar-datas-das-paginas.py` — o porquê de ser um campo novo, e
+ * não `gerado_em` dos fatos nem a revisão do manifest, está escrito lá.
+ *
+ * SEM A OPTION ELA DEVOLVE VAZIO, e quem chama NÃO publica data nenhuma. Data
+ * errada no JSON-LD é pior que data ausente: ausente o Google infere, errada ele
+ * acredita — e o campo existe justamente para ele decidir se vale reindexar.
+ * ------------------------------------------------------------------------- */
+if ( ! function_exists( 'robometria_casca_datas_da_pagina' ) ) {
+function robometria_casca_datas_da_pagina( $slug ) {
+	static $cache = null;
+	if ( null === $cache ) {
+		$cache = array();
+		$d = get_option( 'robometria_dados_datas-das-paginas' );
+		$d = apply_filters( 'robometria_casca_datas_das_paginas', $d );
+		if ( is_array( $d ) && ! empty( $d['registros'] ) && is_array( $d['registros'] ) ) {
+			foreach ( $d['registros'] as $r ) {
+				if ( empty( $r['slug'] ) ) {
+					continue;
+				}
+				$cache[ $r['slug'] ] = array(
+					'datePublished' => isset( $r['publicada_em'] ) ? $r['publicada_em'] : '',
+					'dateModified'  => isset( $r['modificada_em'] ) ? $r['modificada_em'] : '',
+				);
+			}
+		}
+	}
+	return isset( $cache[ $slug ] ) ? $cache[ $slug ] : array( 'datePublished' => '', 'dateModified' => '' );
+}
+}
+
 if ( ! function_exists( 'robometria_casca_url_se_existir' ) ) {
 function robometria_casca_url_se_existir( $slug ) {
 	$slug = sanitize_title( $slug );

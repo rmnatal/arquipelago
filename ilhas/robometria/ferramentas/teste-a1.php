@@ -75,6 +75,13 @@ $GLOBALS['__paginas'] = array(
 );
 $GLOBALS['__options']['robometria_dados_a1-fatos'] = $fatos;
 
+/* AS OPTIONS QUE O SYNC GRAVA, todas as do manifest com publicar=true — e nao
+   so as que este teste escreve a mao. Ate 16/09/2026 esta linha nao existia e
+   a bancada media uma pagina sem dado que o site TEM: o arquivo novo
+   datas-das-paginas.json chegou, o snippet o pediu, e a pagina de bancada
+   saiu sem data nenhuma enquanto o site sairia com as duas. Bancada que ve
+   menos que o ar aprova o que o ar reprova. */
+robometria_teste_carregar_options( $raiz );
 robometria_teste_carregar( $raiz );
 add_filter( 'robometria_a1_na_pagina', function ( $v ) { return true; } );
 
@@ -707,6 +714,49 @@ foreach ( $mundos_a1 as $rotulo => $m ) {
 	rbm_ok( robometria_a1_verbo( $forjado, 'declara', 'declaram' ) === $verbo,
 		'verbo: ' . $rotulo . ' concorda com o numero declarado', $verbo );
 }
+
+/* ---------------------------------------------------------------------------
+ * AS DUAS DATAS DO JSON-LD — item 4 do despacho da Sentinela de 16/09/2026.
+ *
+ * A regua e propria e nao le o snippet: ela abre dados/datas-das-paginas.json,
+ * acha o registro DESTE slug e exige que o JSON-LD SERVIDO traga exatamente
+ * aquelas duas datas — extraidas da pagina renderizada, nao de uma funcao
+ * chamada de lado. E exige a segunda testemunha que a secao 8 pede: a data de
+ * modificacao nao pode ser anterior a geracao dos fatos que a pagina serve.
+ *
+ * O QUE ELA REPROVA DO MUNDO DE ONTEM: ate 16/09 o dateModified saia de
+ * `gerado_em` dos fatos. Com esta regua, servir `gerado_em` reprova sempre que
+ * os dois divergirem — que e o caso toda vez que a casca muda sozinha, que foi
+ * exatamente o que aconteceu na revisao 52.
+ * ------------------------------------------------------------------------- */
+$__doc_datas = json_decode( file_get_contents( $raiz . '/dados/datas-das-paginas.json' ), true );
+$__pag_datas = array();
+foreach ( $__doc_datas['registros'] as $__r ) {
+	if ( ROBOMETRIA_A1_SLUG === $__r['slug'] ) { $__pag_datas = $__r; }
+}
+rbm_ok( ! empty( $__pag_datas ), 'a pagina tem registro em datas-das-paginas.json', ROBOMETRIA_A1_SLUG );
+
+$__ld = array();
+if ( preg_match( '#<script type="application/ld\\+json" id="robometria-a1-jsonld">(.*?)</script>#s', $pagina, $__m ) ) {
+	$__grafo = json_decode( $__m[1], true );
+	$__nos = isset( $__grafo['@graph'] ) ? $__grafo['@graph'] : array( $__grafo );
+	foreach ( $__nos as $__no ) {
+		if ( isset( $__no['@type'] ) && 'Article' === $__no['@type'] ) { $__ld = $__no; }
+	}
+}
+rbm_ok( ! empty( $__ld ), 'o no Article do JSON-LD servido foi encontrado' );
+rbm_ok( isset( $__ld['datePublished'] ) && $__ld['datePublished'] === $__pag_datas['publicada_em'],
+	'o JSON-LD servido traz datePublished da fonte unica',
+	( isset( $__ld['datePublished'] ) ? $__ld['datePublished'] : '(ausente)' ) . ' x ' . $__pag_datas['publicada_em'] );
+rbm_ok( isset( $__ld['dateModified'] ) && $__ld['dateModified'] === $__pag_datas['modificada_em'],
+	'o JSON-LD servido traz dateModified da fonte unica, medida do git',
+	( isset( $__ld['dateModified'] ) ? $__ld['dateModified'] : '(ausente)' ) . ' x ' . $__pag_datas['modificada_em'] );
+rbm_ok( $__pag_datas['modificada_em'] >= $__pag_datas['publicada_em'],
+	'a pagina nao mudou antes de existir',
+	$__pag_datas['modificada_em'] . ' >= ' . $__pag_datas['publicada_em'] );
+rbm_ok( $__pag_datas['modificada_em'] >= $fatos['gerado_em'],
+	'a data da pagina nao e anterior a geracao dos fatos que ela serve',
+	$__pag_datas['modificada_em'] . ' >= ' . $fatos['gerado_em'] );
 
 echo "\n";
 if ( $falhas ) {

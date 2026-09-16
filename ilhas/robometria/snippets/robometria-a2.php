@@ -1,5 +1,10 @@
 /**
  * Robometria A2 — Quantos m² um robô aspirador limpa por carga
+ * Versão: 1.5.0 (16/09/2026) — datePublished e dateModified passam a sair de
+ * robometria_casca_datas_da_pagina(). Antes datePublished era digitado aqui
+ * (e no A2 não existia) e dateModified vinha de `gerado_em` dos fatos, que
+ * diz quando os FATOS foram gerados e não quando a PÁGINA mudou.
+ *
  * Versão: 1.4.0 (16/09/2026) — a vitrine mostra a foto, e o painel dela sai da
  * casca.
  *
@@ -75,7 +80,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ROBOMETRIA_A2_VERSAO' ) ) {
-	define( 'ROBOMETRIA_A2_VERSAO', '1.4.0' );
+	define( 'ROBOMETRIA_A2_VERSAO', '1.5.0' );
 	define( 'ROBOMETRIA_A2_SLUG', 'quantos-m2-o-robo-aspirador-limpa-por-carga' );
 	define( 'ROBOMETRIA_A2_TITULO', 'Quantos m² um robô aspirador limpa por carga' );
 	define( 'ROBOMETRIA_A2_DADOS', 'robometria_dados_a2-fatos' );
@@ -657,6 +662,8 @@ add_action( 'wp_head', function () {
 	   abre a página. Marcação que afirma o que a página deixou de afirmar é pior
 	   do que marcação nenhuma, porque é justamente ela que um modelo de
 	   linguagem lê como resposta (seção 5 do ARQUIPELAGO.md). */
+	$datas = robometria_casca_datas_da_pagina( ROBOMETRIA_A2_SLUG );
+
 	$artigo = array(
 		'@type'            => 'Article',
 		'@id'              => $url . '#artigo',
@@ -665,7 +672,16 @@ add_action( 'wp_head', function () {
 		'inLanguage'       => 'pt-BR',
 		'description'      => robometria_a2_tese_da_area(),
 		'articleSection'   => 'Dimensionamento',
-		'dateModified'     => isset( $d['gerado_em'] ) ? $d['gerado_em'] : '',
+		/* AS DUAS DATAS SAEM DE UMA FONTE SO, e nao mais de dois lugares que nao
+		   sabem a resposta — item 4 do despacho da Sentinela de 16/09/2026.
+		   `datePublished` era DIGITADO aqui e `dateModified` saia de `gerado_em`
+		   dos fatos, que significa a data em que os FATOS foram gerados: em
+		   16/09 a pagina mudou (revisao 52, bloco de compra com link encurtado)
+		   sem que fato nenhum fosse regerado, e o JSON-LD servido continuou
+		   dizendo 13/09. Agora as duas vem de
+		   `robometria_casca_datas_da_pagina()`, que le o arquivo derivado do
+		   git. Sem a option, NENHUMA data e publicada: ausente o Google infere,
+		   errada ele acredita. */
 		'publisher'        => array( '@id' => home_url( '/#organizacao' ) ),
 		'isBasedOn'        => array(
 			'@type'       => 'Dataset',
@@ -676,6 +692,12 @@ add_action( 'wp_head', function () {
 			),
 		),
 	);
+	foreach ( array( 'datePublished', 'dateModified' ) as $campo ) {
+		if ( '' !== $datas[ $campo ] ) {
+			$artigo[ $campo ] = $datas[ $campo ];
+		}
+	}
+
 
 	$perguntas = array();
 	foreach ( (array) $d['perguntas'] as $p ) {

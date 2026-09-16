@@ -438,6 +438,8 @@ def main():
     conferir_cache_do_host()
     conferir_piso_no_ar()
     conferir_lugar_vazio_da_foto(carimbo)
+    conferir_datas_no_ar(carimbo)
+    conferir_busca_com_resultado(carimbo)
 
     print('\n' + '=' * 78)
     if falhas:
@@ -751,6 +753,108 @@ def conferir_lugar_vazio_da_foto(carimbo):
        '%d foto(s) nas quatro ferramentas%s'
        % (fotos_servidas, '' if not defeitos else ' | ' + defeitos[0]))
 
+
+def conferir_datas_no_ar(carimbo):
+    """AS DUAS DATAS DO JSON-LD SERVIDO — item 4 do despacho da Sentinela de
+    16/09/2026.
+
+    A regua le `dados/datas-das-paginas.json`, que e a fonte unica do campo, e
+    exige que o HTML SERVIDO traga exatamente aquelas duas datas no no Article.
+    Nao basta o snippet estar certo: o defeito que o despacho mediu era de
+    ORIGEM do campo, e origem errada passa por qualquer bancada que compare o
+    snippet consigo mesmo.
+
+    E ela cobra a AUSENCIA do valor antigo: enquanto `gerado_em` dos fatos
+    divergir da data da pagina, servir `gerado_em` reprova. Medir so o valor
+    novo aprovaria uma pagina que servisse os dois.
+    """
+    print('\n13. AS DUAS DATAS DO JSON-LD (item 4 do despacho da Sentinela)')
+    doc = json.load(open('dados/datas-das-paginas.json', encoding='utf-8'))
+    for registro in doc['registros']:
+        caminho = '/%s/' % registro['slug']
+        corpo, codigo = buscar(DOMINIO + caminho + '?v=' + carimbo)
+        if not ok('200' == codigo, '%s: HTTP 200' % caminho, codigo):
+            continue
+        artigo = {}
+        for bruto in re.findall(
+                r'<script type="application/ld\+json"[^>]*>(.*?)</script>',
+                corpo, re.S | re.I):
+            try:
+                grafo = json.loads(html.unescape(bruto))
+            except Exception:
+                continue
+            for no in (grafo.get('@graph') if isinstance(grafo, dict)
+                       and grafo.get('@graph') else [grafo]):
+                if isinstance(no, dict) and no.get('@type') == 'Article':
+                    artigo = no
+        if not ok(bool(artigo), '%s: o no Article do JSON-LD foi encontrado' % caminho):
+            continue
+        ok(artigo.get('datePublished') == registro['publicada_em'],
+           '%s: datePublished servido e o da fonte unica' % caminho,
+           '%s x %s' % (artigo.get('datePublished'), registro['publicada_em']))
+        ok(artigo.get('dateModified') == registro['modificada_em'],
+           '%s: dateModified servido e o da fonte unica, medida do git' % caminho,
+           '%s x %s' % (artigo.get('dateModified'), registro['modificada_em']))
+
+def conferir_busca_com_resultado(carimbo):
+    """A BUSCA DO BOTAO TEM RESULTADO? — itens 1 e 3 do despacho da Sentinela de
+    16/09/2026.
+
+    O item 1 mediu que quatro registros mandavam o leitor a uma busca de ZERO
+    resultado, e nomeou a pagina em que isso doi mais: a de PECA do W300, cujo
+    assunto inteiro e a saida de compra. A trava nao consegue contar resultado
+    daqui — `shopee.com.br/api/v4/search/search_items` devolve
+    `error 90309999, redirect_to_error_page` desta nuvem e a pagina de busca serve
+    casca de JavaScript identica byte a byte para palavras diferentes (remedido em
+    16/09/2026). O que ela CONSEGUE, e e o que fecha o item: exigir que todo link
+    de compra servido nessa pagina seja um link cuja palavra-chave foi MEDIDA e
+    devolveu resultado.
+
+    O elo que isso guarda e o unico que o encurtamento esconde: depois de
+    encurtado, `s.shopee.com.br/XXXX` nao diz mais para onde vai. Sem esta
+    conferencia, trocar a palavra-chave sem regerar o link curto serviria a busca
+    de ontem com o carimbo de hoje, e nenhuma regua veria.
+    """
+    print('\n14. A BUSCA DO BOTAO TEM RESULTADO (itens 1 e 3 do despacho)')
+    medicao = json.load(open('dados/palavras-chave-medidas.json', encoding='utf-8'))
+    pecas = json.load(open('dados/pecas.json', encoding='utf-8'))['registros']
+    por_id = {r['id']: r for r in pecas}
+    medido = {r['id']: r['escolhido'] for r in medicao['registros']}
+
+    caminho = '/qual-peca-serve-no-meu-robo-aspirador/?modelo=wap-w300&peca=escova%20lateral'
+    corpo, codigo = buscar(DOMINIO + caminho + '&v=' + carimbo)
+    if not ok('200' == codigo, 'a pagina do W300 com escova lateral responde 200', codigo):
+        return
+    curtos = set(re.findall(r'https://s\.shopee\.com\.br/[A-Za-z0-9]+', corpo))
+    ok(len(curtos) >= 2, 'a pagina serve os botoes de compra das duas escovas',
+       '%d link(s) curto(s)' % len(curtos))
+
+    # De quem e cada link curto servido, e a chave dele tinha resultado?
+    dono = {}
+    for ident, reg in por_id.items():
+        for chave in ('url', 'url_busca'):
+            valor = (reg.get('afiliado') or {}).get(chave) or ''
+            if valor:
+                dono[valor] = ident
+    orfaos = [u for u in curtos if u not in dono]
+    ok(not orfaos, 'todo link curto servido esta no banco desta ilha',
+       'orfaos: %s' % (orfaos[:2] if orfaos else 'nenhum'))
+
+    sem_resultado = []
+    for u in curtos:
+        ident = dono.get(u)
+        if ident and (medido.get(ident) or {}).get('resultados', 0) <= 0:
+            sem_resultado.append(ident)
+    ok(not sem_resultado,
+       'nenhum botao servido aponta para busca medida em ZERO resultado',
+       'medicao de %s | %s' % (medicao['gerado_em'],
+                               sem_resultado or 'todos com resultado'))
+
+    # E A VARREDURA INTEIRA, porque uma pagina nao e a ilha (secao 8).
+    zeradas = [r['id'] for r in medicao['registros']
+               if (r.get('escolhido') or {}).get('resultados', 0) <= 0]
+    ok(not zeradas, 'nenhum registro publicavel tem palavra-chave medida em zero',
+       '%d de %d registros medidos' % (len(zeradas), len(medicao['registros'])))
 
 if __name__ == '__main__':
     sys.exit(main())
