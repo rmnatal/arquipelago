@@ -7,14 +7,16 @@ Este contrato tem mais de 500 linhas e continua crescendo. **Ninguém lê tudo.*
 | Papel | Seções |
 |---|---|
 | **Fundação** | 1 a 11, 13 a 18, 20, 21, 22, 24, 26 |
-| **Sentinela — ronda diária** | 2, 3, 4, 10, 12, 15, 16, 18, 19, 21, 22, 23, 24 |
+| **Sentinela — ronda diária** | **1.2**, 2, 3, 4, 10, 12, 15, 16, 18, 19, 21, 22, 23, 24 |
 | **Painel** | quem escreve é a ronda diária, pela seção 23. Quem quiser saber o estado do Arquipélago lê `dados/PAINEL.md` e não precisa de seção nenhuma |
-| **Sentinela — leitura semanal** | 2, 3, 4, 10, 12, 12.1, 14, 18, 21 |
+| **Sentinela — leitura semanal** | **1.2**, 2, 3, 4, 10, 12, 12.1, 14, 18, 21 |
 | **Bússola** | 10, 11, 14, 20, 21 — e `bussola/BUSSOLA.md`, que é a lei dela |
 | **Pauta das ilhas** | 10, 14, 15, 16, 17, 21 |
 | **Mãos no repositório** | nenhuma. A decisão já vem no disparo; ler o contrato é sinal de que virou Fundação |
 
-**Sempre, para todo papel:** seções **2** (cabeçalho de estado), **3** (o repositório é o lugar do trabalho), **4** (o site fica para trás em silêncio), **10** (regras que valem sempre) e **18** (correção fura a fila).
+**Sempre, para todo papel:** seções **1.2** (foco único — enquanto `foco.md` nomear uma ilha, ela manda em quem trabalha em quê), **2** (cabeçalho de estado), **3** (o repositório é o lugar do trabalho), **4** (o site fica para trás em silêncio), **10** (regras que valem sempre) e **18** (correção fura a fila).
+
+*(A 1.2 entrou neste mapa em 16/09/2026, pelo Pente Fino: ela nasceu no mesmo dia declarando, no próprio texto, que vale "para o arquipélago inteiro, não só para a Fundação" e que mora na seção 1 "por acidente de lugar, não de alcance" — e as duas linhas de Sentinela deste mapa mandavam, ao pé da letra, NÃO ler a seção 1. A regra que decide o trabalho das duas era invisível para as duas.)*
 
 **Como extrair só o que é seu**, sem carregar o arquivo inteiro:
 
@@ -32,7 +34,7 @@ Vocabulário: cada site de nicho é uma **ilha**, o conjunto é o **arquipélago
 
 ## 1. COMO A FUNDAÇÃO ESCOLHE A ILHA DE CADA EXECUÇÃO
 
-> ANTES de aplicar a rotação desta seção, leia a seção 18: ilha com despacho aberto tem prioridade sobre a ilha mais atrasada.
+> ANTES de aplicar a rotação desta seção, leia a **1.2**: enquanto `foco.md` nomear uma ilha, a rotação inteira está suspensa e não há o que escolher. Só quando o foco estiver em `nenhuma` valem esta seção e a 18: ilha com despacho aberto tem prioridade sobre a ilha mais atrasada.
 
 Existe **uma** Fundação para o arquipélago inteiro, não uma por ilha. A cada execução:
 
@@ -59,7 +61,8 @@ Quando `foco.md` na raiz do repositório nomeia uma ilha, a Fundação trabalha 
 
 **A ÚNICA coisa que fura o foco** é despacho marcado **ALTO** em ilha que está no ar e quebrada — página servindo erro, ferramenta devolvendo número errado, site fora do ar. Nesse caso a seção 18 vence, você conserta e volta ao foco na execução seguinte. Despacho NORMAL de ilha fora do foco **espera**, por mais antigo que seja.
 
-**O que isto custa, escrito para ninguém se assustar depois:** as ilhas fora do foco param de receber bloco. Defeito NORMAL nelas acumula. A Sentinela continua rondando todas e continua escrevendo despacho — o despacho fica esperando, não some. Foi uma escolha do Raphael, com o custo na mesa: com 20 execuções por semana, cinco ilhas andando devagar valem menos que uma ilha terminada.
+**O que isto custa, escrito para ninguém se assustar depois:** as ilhas fora do foco param de receber bloco. Defeito NORMAL nelas acumula. **Ninguém ronda as ilhas fora do foco** — o despacho que já estava escrito fica esperando, não some, e despacho novo nelas não nasce, porque não há quem as olhe. Foi uma escolha do Raphael, com o custo na mesa: com 20 execuções por semana, cinco ilhas andando devagar valem menos que uma ilha terminada. *(Esta frase dizia "A Sentinela continua rondando todas e continua escrevendo despacho", escrito às 11h33Z de 16/09/2026; às 11h42Z do mesmo dia o parágrafo seguinte passou a dizer o contrário, com todas as letras — "Não abre, não mede e não relata nenhuma outra ilha". Alinhada à decisão mais nova pelo Pente Fino em 16/09/2026.)*
+
 **O FOCO VALE PARA O ARQUIPÉLAGO INTEIRO, NÃO SÓ PARA A FUNDAÇÃO (16/09/2026).** Esta seção mora na seção 1 por acidente de lugar, não de alcance. Enquanto `foco.md` nomear uma ilha:
 
 - **Leitura semanal (Sentinela estratégica):** trabalha **só na ilha em foco**. Toda a leitura — indexação, vigilância de loja, lacuna de conteúdo, tráfego, posição — é dela e de mais nenhuma. E o teto semanal de geração de link de afiliado vai **inteiro** para a ilha em foco: é a camada que enche o cano de links, e com uma ilha só o cano dela enche em uma fração do tempo.
@@ -334,9 +337,9 @@ São duas, separadas por **ritmo**, não por assunto. Não as junte: quando o te
 
 **LEITURA SEMANAL — o negócio.** Indexação em primeiro lugar (`dados/indexacao.md`, série nova); visitas; vendas por Sub_id; Shopee (link morto, comissão melhor, produto novo vendendo); lacuna de produto e de conteúdo; backlink; **interlinkagem entre ilhas**, que só dá para julgar olhando o arquipélago inteiro; marca. Critério único: ROI. Camada sem dado ainda escreve "ainda sem dado" em vez de inventar análise.
 
-**VERIFICAR POR DÍVIDA, NÃO VARRENDO TUDO.** Primeiro o que foi publicado desde a última ronda (código novo é onde mora defeito), depois a ilha de `ultima_ronda` mais antiga. Mesma reserva por commit da seção 1. Com muitas ilhas, varrer tudo todo dia não cabe numa execução — e tentar é como a verificação morre.
+**VERIFICAR POR DÍVIDA, NÃO VARRENDO TUDO.** Primeiro o que foi publicado desde a última ronda (código novo é onde mora defeito), depois a ilha de `ultima_ronda` mais antiga. Mesma reserva por commit da seção 1. Com muitas ilhas, varrer tudo todo dia não cabe numa execução — e tentar é como a verificação morre. **ENQUANTO `foco.md` NOMEAR UMA ILHA, esta regra de dívida está SUSPENSA: a ronda diária e a leitura semanal trabalham só na ilha em foco e não abrem nenhuma outra — seção 1.2, 16/09/2026.** *(Ponteiro inserido pelo Pente Fino em 16/09/2026: a 1.2 suspendeu esta regra no dia em que nasceu e não a nomeou, e esta seção é a que as duas Sentinelas leem.)*
 
-**As duas precisam do computador do Raphael ligado.** A nuvem agendada não alcança os sites: o proxy bloqueia e o WebFetch exige aprovação humana por URL, que não existe em rotina. Por isso a ronda tem que ser econômica.
+**As duas precisam do computador do Raphael ligado**, e a causa é uma só: **o WebFetch exige aprovação humana por URL**, que não existe em rotina agendada, e a Sentinela não tem repositório (rotina com navegador não commita — seção 12.2). *(Esta frase dizia também "a nuvem agendada não alcança os sites: o proxy bloqueia". **Isso é falso desde 10/09/2026** e contradiz as seções 4, 10 e 20.2, que mandam a própria Fundação acionar o Sync e conferir o `/status` por `curl`. Remedido pelo Pente Fino em 16/09/2026: as 9 URLs do sitemap da robometria responderam **200 da nuvem**, numa passada. É o mesmo defeito que a auditoria de 14/09 consertou na seção 10 e que esta cópia manteve de pé.)* Por isso a ronda tem que ser econômica.
 
 **Não incomode com "está tudo bem".** Só sinalize defeito, bloqueio ou achado que mude decisão.
 
@@ -553,7 +556,7 @@ Na Aquametria a descoberta parte do corpus do bloco 1 (`aquametria-corpus-buscas
 
 Decisão do Raphael em 11/09/2026, depois de uma correção de cabeçalho esperar três execuções: "está demorando muito essas passadas pras correções do site". A fábrica constrói rápido e conserta devagar — e é o contrário que ele precisa, porque defeito no ar custa mais caro que bloco não construído.
 
-18.1 **Prioridade de ilha (substitui a rotação da seção 1 quando houver conflito).** Ao escolher a ilha da execução, a ordem é: (1ª) ilha com **DESPACHO aberto** no topo do `PROMPT.md` — despacho do Raphael antes de despacho da Sentinela; entre dois despachos do Raphael, o mais antigo; (2ª) ilha com defeito aberto registrado pela ronda; (3ª) a rotação normal da seção 1 (a de `ultima_execucao` mais antiga). A reserva por commit continua igual: quem perde a corrida escolhe a próxima da ordem.
+18.1 **Prioridade de ilha (substitui a rotação da seção 1 quando houver conflito).** **Antes de tudo, leia a 1.2: enquanto `foco.md` nomear uma ilha, não há escolha de ilha a fazer e esta ordem inteira fica suspensa — só fura o foco despacho ALTO em ilha que esteja no ar e quebrada, e nesse caso esta seção 18 vence. Despacho NORMAL de ilha fora do foco espera, por mais antigo que seja.** *(Ponteiro inserido pelo Pente Fino em 16/09/2026: a 1.2 é de 16/09 e a 18.1 é de 11/09; a 18 está na lista de leitura obrigatória de TODO papel e mandava, ao pé da letra, sair da ilha em foco atrás de despacho aberto. A ordem abaixo não foi alterada e volta a valer inteira quando o foco for `nenhuma`.)* Com o foco em `nenhuma`, a ordem é: (1ª) ilha com **DESPACHO aberto** no topo do `PROMPT.md` — despacho do Raphael antes de despacho da Sentinela; entre dois despachos do Raphael, o mais antigo; (2ª) ilha com defeito aberto registrado pela ronda; (3ª) a rotação normal da seção 1 (a de `ultima_execucao` mais antiga). A reserva por commit continua igual: quem perde a corrida escolhe a próxima da ordem.
 
 18.2 **Despacho sai INTEIRO, não um item por execução.** Um despacho pode ter vários itens; a execução resolve **todos os itens do despacho** e só então fecha — não vale pegar um item e deixar o resto para a próxima passada. Correção não é bloco de construção e não consome a vez de um: se sobrar fôlego na execução depois de fechar o despacho, ela segue para o próximo bloco da fila normalmente.
 

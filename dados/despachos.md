@@ -47,84 +47,6 @@ if ( ! is_string( $pasta ) || ! is_string( $raiz ) || '' === $pasta || '' === $r
 
 **Pronto quando:** existir, no ambiente das rotinas, uma credencial de purga — ou a confirmação escrita de que o painel não oferece nenhuma, e aí a purga por código fica sendo a resposta final.
 
-### prioridade ALTA — o cache do hospedeiro pode estar segurando bloco de OUTRA ilha, e ninguém saberia
-
-> **FECHADO em 15/09/2026, 11h36Z, com a AQUAMETRIA — a ilha que faltava.** O
-> "pronto quando" deste despacho pedia, nas três ilhas, uma afirmação pondo o
-> endereço canônico contra o mesmo endereço com quebra de cache, **e ela
-> passando**. A aquametria agora tem `ferramentas/conferir-cache-do-host.py`:
-> **43 afirmações, 0 falha**, sobre as **40 URLs do sitemap**, com a lista
-> nascendo do sitemap e não digitada. Casca 1.10.0, manifest revisão 88,
-> `/status` em 88.
->
-> **E O QUE ESTE DESPACHO SUPUNHA SOBRE A AQUAMETRIA ESTAVA MEIO CERTO — a
-> metade errada é a que vale para as próximas ilhas.** Ele registrou, medindo a
-> home em 14/09, que esta ilha "não traz a assinatura" do Endurance e que "não
-> foi medido página por página", deixando no ar a hipótese de que talvez ela não
-> tivesse a camada. Medido agora nas 40 URLs, com cabeçalho e corpo na MESMA
-> requisição: a assinatura realmente **não** aparece no corpo — e
-> `x-server-cache: true` aparece nas **40**, com `x-proxy-cache` e
-> `cache-control: max-age=7200`. **A ausência da assinatura nunca foi prova de
-> ausência do cache**: era a régua procurando um comentário no corpo quando a
-> camada se anuncia no cabeçalho. Toda ilha futura confere o CABEÇALHO.
->
-> **A purga entregou, e a atribuição é do relógio, não do otimismo.** Às 11h18Z,
-> antes do bloco, a home servia `expires: 13:17:13` — entrada criada às 11h17:13,
-> que só venceria sozinha às 13h17:13. Depois do segundo Sync (11h34:02Z) a home
-> serve `expires: 13:34:09`, ou seja **entrada recriada às 11h34:09**, com
-> `x-proxy-cache` saindo de HIT para MISS. O vencimento por tempo está descartado
-> pelo relógio, e sobra a purga. Continua sendo atribuição e não prova, como na
-> robometria — e é a causa mais forte que se tem sem acesso ao painel.
->
-> **O segundo Sync foi disparado por regra, não por sintoma:** a descoberta da
-> clubedomosaico (logo abaixo) diz que no Sync que INSTALA a casca o PHP já
-> carregado é o anterior. Dois disparos, 11h33:55Z e 11h34:02Z.
-
-> **CUMPRIDO NA CLUBEDOMOSAICO em 14/09/2026, 18h40Z — e a medição achou uma coisa
-> que o despacho não previa e que vale para TODA ilha: a purga só passa a valer no
-> SEGUNDO Sync.** A casca que contém a purga faz parte da carga que está sendo
-> entregue; no Sync que a instala, o PHP já carregado é o ANTERIOR, e por isso
-> nenhuma purga roda. Minuto a minuto: às 17h40Z, antes do bloco, as 11 URLs desta
-> ilha serviam a assinatura do Endurance e o canônico **concordava** com a quebra
-> de cache — não havia divergência a consertar, havia a janela. Às 18h29 o Sync da
-> revisão 32 aplicou com a casca 1.9.2 na memória, e aí sim o canônico ficou para
-> trás: as duas páginas do bloco com entrada de 17h36Z e **a home com uma entrada
-> de 13h53Z, do bloco anterior, velha havia cinco horas sem ninguém ver**. Às 18h34
-> um segundo Sync, já com a 1.10.0 carregada; poucos minutos depois o canônico
-> servia o bloco novo nas onze URLs, com **zero** ocorrência da frase proibida.
->
-> **São DUAS camadas e os cabeçalhos as nomeiam** — `x-server-cache: true` e
-> `x-proxy-cache` (nginx), com `max-age=7200`. A purga da casca esvazia o cache em
-> arquivo do plugin; o que se observou é que a camada de proxy acompanhou. Isso é
-> atribuição, não prova: o que está provado é o antes e o depois.
->
-> **O `conferir-no-ar.py` desta ilha ganhou a afirmação que o "pronto quando" pede,
-> e ela passa — mas ela reprova pela ORIGEM, não pelo canônico**, e a escolha é
-> deliberada: fazer o canônico reprovar transformaria toda entrega em duas horas de
-> portão vermelho que ninguém consegue fechar, e portão assim se aprende a ignorar.
-> Defeito de verdade é a origem não servir o bloco; canônico velho é janela, e ela
-> é relatada com a hora da entrada e a da expiração, para a próxima execução saber
-> o que está vendo.
->
-> **O que fica para as outras duas ilhas:** copiar daqui (ou da robometria) a purga
-> e a seção do `conferir-no-ar.py`, e **rodar o Sync DUAS vezes no bloco que
-> instalar a purga** — a primeira instala, a segunda purga. Falta a aquametria.
-
-14/09/2026 — FUNDAÇÃO — Achado na robometria, fechando o item 1 do despacho da Sentinela do mesmo dia, e escrito aqui porque **não é da robometria**: é do hospedeiro, e ele serve mais de uma ilha.
-
-**O que aconteceu, medido:** a revisão 37 da robometria foi aplicada (log do Sync "10 aplicado(s)"), o `/status` respondeu 37 igual ao manifest, as nove URLs deram 200, os títulos bateram — e o **endereço canônico** continuou servindo, por cerca de hora e meia, a cópia anterior: sem um botão de compra e com a frase que a seção 7 acabava de proibir em quatro cartões. A mesma URL com chave de quebra de cache mostrava a página nova inteira. **Isso se resolveu às 16h06**, quando o cache foi purgado; o ponto que fica é que, entre o Sync e a purga, o `/status` afirma que está tudo entregue e o leitor está na página de antes. A assinatura está no HTML: `<!--Generated by Endurance Page Cache-->`, o cache em arquivo do hospedeiro, que purga quando um POST é salvo no wp-admin e **nunca vê o Sync**, que grava options e atualiza snippets. A regra nova está na seção 4 do `ARQUIPELAGO.md`.
-
-**O que foi medido nas outras duas ilhas, às 16h de 14/09, e é só isto — não é diagnóstico fechado:**
-
-- **clubedomosaico:** serve a mesma assinatura do Endurance Page Cache na home. **Provavelmente tem o mesmo problema**, e o último bloco dela é de 13h21Z.
-- **aquametria:** a home **não** traz a assinatura, e o canônico e o recém-gerado deram o mesmo tamanho. Pode ser que o cache não a cubra, pode ser que só a home escape. **Não foi medido página por página.**
-
-**O que fazer, e é curto:** quem pegar a clubedomosaico ou a aquametria numa próxima execução, ANTES de dar qualquer bloco por entregue, roda para cada URL do sitemap um `curl` limpo e um com `?v=<agora>` e compara os marcadores que o bloco mudou. Se discordarem, copie da robometria as duas coisas que já existem e estão medidas: a purga (`robometria_casca_purgar_cache`, em `ilhas/robometria/snippets/robometria-casca.php`, com a guarda de caminho) e as seções 10 e 11 do `ilhas/robometria/ferramentas/conferir-no-ar.py`.
-
-**Pronto quando:** as três ilhas tiverem, no `conferir-no-ar.py` de cada uma, uma afirmação que põe o endereço canônico contra o mesmo endereço com quebra de cache, e ela passar.
-
-**Nada aqui é do Raphael**, e é por isso que este despacho é da Fundação: a correção inteira mora na casca de cada ilha. Só vira pedido a ele se a purga não pegar — aí o que falta é acesso ao painel do hospedeiro.
-
 ### prioridade NORMAL — duas linhas de configuração que destravam a medição inteira
 
 12/09/2026 — RAPHAEL — Nada aqui é código, e nenhuma das duas bloqueia bloco: as duas ampliam o que a nuvem consegue **verificar sozinha**, em toda ilha presente e futura.
@@ -270,6 +192,86 @@ O critério de entrada desta ilha, escrito no esquema e vindo do corpus do bloco
 **Pronto quando:** de dentro de uma rotina, um `curl` a `www.angkorenterprise.gov.kh` ou a `civitatis.com` devolver qualquer código HTTP de verdade. Hoje os dois devolvem `000`, e o WebFetch do primeiro devolve `EGRESS_BLOCKED` — medidos às 23h30Z, não herdados.
 
 ## FECHADOS
+
+### prioridade ALTA — o cache do hospedeiro pode estar segurando bloco de OUTRA ilha, e ninguém saberia
+
+> **FECHADO em 15/09/2026, 11h36Z, com a AQUAMETRIA — a ilha que faltava.** O
+> "pronto quando" deste despacho pedia, nas três ilhas, uma afirmação pondo o
+> endereço canônico contra o mesmo endereço com quebra de cache, **e ela
+> passando**. A aquametria agora tem `ferramentas/conferir-cache-do-host.py`:
+> **43 afirmações, 0 falha**, sobre as **40 URLs do sitemap**, com a lista
+> nascendo do sitemap e não digitada. Casca 1.10.0, manifest revisão 88,
+> `/status` em 88.
+>
+> **E O QUE ESTE DESPACHO SUPUNHA SOBRE A AQUAMETRIA ESTAVA MEIO CERTO — a
+> metade errada é a que vale para as próximas ilhas.** Ele registrou, medindo a
+> home em 14/09, que esta ilha "não traz a assinatura" do Endurance e que "não
+> foi medido página por página", deixando no ar a hipótese de que talvez ela não
+> tivesse a camada. Medido agora nas 40 URLs, com cabeçalho e corpo na MESMA
+> requisição: a assinatura realmente **não** aparece no corpo — e
+> `x-server-cache: true` aparece nas **40**, com `x-proxy-cache` e
+> `cache-control: max-age=7200`. **A ausência da assinatura nunca foi prova de
+> ausência do cache**: era a régua procurando um comentário no corpo quando a
+> camada se anuncia no cabeçalho. Toda ilha futura confere o CABEÇALHO.
+>
+> **A purga entregou, e a atribuição é do relógio, não do otimismo.** Às 11h18Z,
+> antes do bloco, a home servia `expires: 13:17:13` — entrada criada às 11h17:13,
+> que só venceria sozinha às 13h17:13. Depois do segundo Sync (11h34:02Z) a home
+> serve `expires: 13:34:09`, ou seja **entrada recriada às 11h34:09**, com
+> `x-proxy-cache` saindo de HIT para MISS. O vencimento por tempo está descartado
+> pelo relógio, e sobra a purga. Continua sendo atribuição e não prova, como na
+> robometria — e é a causa mais forte que se tem sem acesso ao painel.
+>
+> **O segundo Sync foi disparado por regra, não por sintoma:** a descoberta da
+> clubedomosaico (logo abaixo) diz que no Sync que INSTALA a casca o PHP já
+> carregado é o anterior. Dois disparos, 11h33:55Z e 11h34:02Z.
+
+> **CUMPRIDO NA CLUBEDOMOSAICO em 14/09/2026, 18h40Z — e a medição achou uma coisa
+> que o despacho não previa e que vale para TODA ilha: a purga só passa a valer no
+> SEGUNDO Sync.** A casca que contém a purga faz parte da carga que está sendo
+> entregue; no Sync que a instala, o PHP já carregado é o ANTERIOR, e por isso
+> nenhuma purga roda. Minuto a minuto: às 17h40Z, antes do bloco, as 11 URLs desta
+> ilha serviam a assinatura do Endurance e o canônico **concordava** com a quebra
+> de cache — não havia divergência a consertar, havia a janela. Às 18h29 o Sync da
+> revisão 32 aplicou com a casca 1.9.2 na memória, e aí sim o canônico ficou para
+> trás: as duas páginas do bloco com entrada de 17h36Z e **a home com uma entrada
+> de 13h53Z, do bloco anterior, velha havia cinco horas sem ninguém ver**. Às 18h34
+> um segundo Sync, já com a 1.10.0 carregada; poucos minutos depois o canônico
+> servia o bloco novo nas onze URLs, com **zero** ocorrência da frase proibida.
+>
+> **São DUAS camadas e os cabeçalhos as nomeiam** — `x-server-cache: true` e
+> `x-proxy-cache` (nginx), com `max-age=7200`. A purga da casca esvazia o cache em
+> arquivo do plugin; o que se observou é que a camada de proxy acompanhou. Isso é
+> atribuição, não prova: o que está provado é o antes e o depois.
+>
+> **O `conferir-no-ar.py` desta ilha ganhou a afirmação que o "pronto quando" pede,
+> e ela passa — mas ela reprova pela ORIGEM, não pelo canônico**, e a escolha é
+> deliberada: fazer o canônico reprovar transformaria toda entrega em duas horas de
+> portão vermelho que ninguém consegue fechar, e portão assim se aprende a ignorar.
+> Defeito de verdade é a origem não servir o bloco; canônico velho é janela, e ela
+> é relatada com a hora da entrada e a da expiração, para a próxima execução saber
+> o que está vendo.
+>
+> **O que fica para as outras duas ilhas:** copiar daqui (ou da robometria) a purga
+> e a seção do `conferir-no-ar.py`, e **rodar o Sync DUAS vezes no bloco que
+> instalar a purga** — a primeira instala, a segunda purga. Falta a aquametria.
+
+14/09/2026 — FUNDAÇÃO — Achado na robometria, fechando o item 1 do despacho da Sentinela do mesmo dia, e escrito aqui porque **não é da robometria**: é do hospedeiro, e ele serve mais de uma ilha.
+
+**O que aconteceu, medido:** a revisão 37 da robometria foi aplicada (log do Sync "10 aplicado(s)"), o `/status` respondeu 37 igual ao manifest, as nove URLs deram 200, os títulos bateram — e o **endereço canônico** continuou servindo, por cerca de hora e meia, a cópia anterior: sem um botão de compra e com a frase que a seção 7 acabava de proibir em quatro cartões. A mesma URL com chave de quebra de cache mostrava a página nova inteira. **Isso se resolveu às 16h06**, quando o cache foi purgado; o ponto que fica é que, entre o Sync e a purga, o `/status` afirma que está tudo entregue e o leitor está na página de antes. A assinatura está no HTML: `<!--Generated by Endurance Page Cache-->`, o cache em arquivo do hospedeiro, que purga quando um POST é salvo no wp-admin e **nunca vê o Sync**, que grava options e atualiza snippets. A regra nova está na seção 4 do `ARQUIPELAGO.md`.
+
+**O que foi medido nas outras duas ilhas, às 16h de 14/09, e é só isto — não é diagnóstico fechado:**
+
+- **clubedomosaico:** serve a mesma assinatura do Endurance Page Cache na home. **Provavelmente tem o mesmo problema**, e o último bloco dela é de 13h21Z.
+- **aquametria:** a home **não** traz a assinatura, e o canônico e o recém-gerado deram o mesmo tamanho. Pode ser que o cache não a cubra, pode ser que só a home escape. **Não foi medido página por página.**
+
+**O que fazer, e é curto:** quem pegar a clubedomosaico ou a aquametria numa próxima execução, ANTES de dar qualquer bloco por entregue, roda para cada URL do sitemap um `curl` limpo e um com `?v=<agora>` e compara os marcadores que o bloco mudou. Se discordarem, copie da robometria as duas coisas que já existem e estão medidas: a purga (`robometria_casca_purgar_cache`, em `ilhas/robometria/snippets/robometria-casca.php`, com a guarda de caminho) e as seções 10 e 11 do `ilhas/robometria/ferramentas/conferir-no-ar.py`.
+
+**Pronto quando:** as três ilhas tiverem, no `conferir-no-ar.py` de cada uma, uma afirmação que põe o endereço canônico contra o mesmo endereço com quebra de cache, e ela passar.
+
+**Nada aqui é do Raphael**, e é por isso que este despacho é da Fundação: a correção inteira mora na casca de cada ilha. Só vira pedido a ele se a purga não pegar — aí o que falta é acesso ao painel do hospedeiro.
+
+*(Movido de `## ABERTOS` para cá pelo Pente Fino em 16/09/2026, sem uma palavra alterada: ele já se declarava FECHADO em 15/09/2026 e continuava listado como aberto. Pela seção 1.2 do `ARQUIPELAGO.md`, despacho **ALTO** é a única coisa que fura a ilha em foco — um ALTA fechado na lista dos abertos é exatamente a armadilha que tira a Fundação do foco por nada.)*
 
 ### prioridade NORMAL — O CABEÇALHO DE ESTADO DE UMA ILHA PODE NÃO SER YAML VÁLIDO, E NADA MEDE ISSO
 

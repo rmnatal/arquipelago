@@ -3,9 +3,17 @@
 Leia o `ARQUIPELAGO.md` da raiz antes deste arquivo. Ele carrega todas as regras comuns; aqui fica só o que é desta ilha. **Nunca copie regra do `ARQUIPELAGO.md` para cá.**
 O dossiê que aprovou esta ilha é `bussola/dossies/som-automotivo/DOSSIE.md` — leia-o na primeira execução e não repita o que ele já mediu.
 
+> **ESTA ILHA NÃO ESTÁ EM FOCO — 16/09/2026.** `foco.md` na raiz nomeia a **robometria**, e pela seção **1.2** do
+> `ARQUIPELAGO.md` nenhuma outra ilha recebe bloco da Fundação e nenhuma outra ilha é rondada. **Nada deste arquivo
+> é executado enquanto isso valer**, por mais antigo ou prioritário que um despacho daqui pareça: só fura o foco
+> despacho **ALTO** em ilha que esteja **no ar e quebrada**. Quando `foco.md` disser `ilha: nenhuma`, apague este
+> aviso e este arquivo volta a valer inteiro. *(Inserido pelo Pente Fino em 16/09/2026: a 1.2 nasceu hoje e nenhum
+> `PROMPT.md` de ilha fora do foco a mencionava.)*
+
 ## Identidade
 - Nicho: **casar impedância, RMS, litragem e bitola** — o eixo paramétrico, não "som automotivo" como categoria comercial.
-- Domínio: `ohmetria.com.br`, **ainda não registrado** (disponibilidade confirmada em 14/09/2026, `status: 0`). Ilha nº 4 do Arquipélago.
+- Domínio: `ohmetria.com.br`, **registrado e pago** (despacho do Raphael de 14/09/2026, mais abaixo neste arquivo; a `bussola/fila.md` também registra "ohmetria.com.br pago"). Ilha nº 4 do Arquipélago. *(Esta linha dizia "ainda não registrado — disponibilidade confirmada em 14/09/2026, `status: 0`", que era o mundo de antes da aprovação e contradizia o despacho no mesmo arquivo. Corrigido pelo Pente Fino em 16/09/2026.)*
+- **OS TOKENS E O SÍMBOLO DESTA ILHA MORAM EM `DESIGN.md`, nesta mesma pasta, e é de lá que a casca renderiza (seção 22.6).** Onde este arquivo e o `DESIGN.md` discordarem, **vale o `DESIGN.md`**. Isso vale em especial para o símbolo: o `DESIGN.md` registra, com data de 14/09/2026, que o Raphael **RECUSOU** a ferradura de dois arcos do dossiê e aprovou "o paralelo" (duas barras horizontais com o traço âmbar no meio). **A geometria dos arcos descrita abaixo não é mais a marca desta ilha — não a redesenhe.** *(Ponteiro inserido pelo Pente Fino em 16/09/2026, copiado do `PROMPT.md` da robometria, que já o tinha.)*
 - Paleta, 7 valores e nada além: tinta `#101A24` · marca `#B86E00` (**cor de sinal**: um uso por tela) · papel `#F1F3F6` · superfície `#FFFFFF` · traço `#D5DBE3` · legenda `#5E6B7A` · alerta `#B3261E`.
   **Trava de contraste medida:** `#B86E00` dá 3,99:1 sobre branco — **reprova em texto normal**. Onde for texto (link, rótulo, número em destaque), use `#8A5200`, que dá 6,39:1. Isso não é preferência, é portão.
 - Tipografia: **Saira Condensed** 700 (títulos) · **Public Sans** 400/600 (corpo) · **Roboto Mono** 500 com `tabular-nums` para todo ohm, watt RMS, litro, mm² e hertz. Texto corrido nunca em Mono. **Nenhuma delas é a da Robometria** — as duas usam molde FERRAMENTA e precisam parecer sites diferentes.

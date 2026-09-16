@@ -241,10 +241,10 @@ Fechado pela execução das 15h17Z, item por item, e o que ele achou pelo caminh
 **Esta seção manda sobre a FILA DE BLOCOS.** A fila abaixo é aberta por natureza — "expandir o banco" não tem fim. A partir de agora, bloco que não fecha um dos cinco itens desta lista NÃO é executado antes dos que fecham. Quando os cinco estiverem fechados, a ilha é declarada PRONTA no `ESTADO.md` (`estado: viva`) e a fila volta a valer normalmente.
 
 1. **PORTA DE COMPRA EM TODO ITEM PUBLICÁVEL.** Nenhum cartão com "Link de loja em breve". Todo item publicável com `afiliado.url` preenchido, `rel="sponsored"` no link e o aviso de comissão visível na página. Pronto quando: uma varredura das páginas no ar não encontra a frase "em breve" e não encontra item publicável sem link.
-2. **A EMENDA DO FUNIL FECHADA.** Hoje, das 28 entradas publicáveis, só **3** são atendidas pelas DUAS ferramentas — a pessoa chega pela R2 e volta pela R1 sem encontrar. É o defeito estrutural que esta ilha já mediu sozinha. Pronto quando: `cobertura-r1.py --gravar` mostrar pelo menos **15** das 28 atendidas pelas duas, e a medição estiver commitada.
+2. **A EMENDA DO FUNIL FECHADA.** A pessoa chega pela R2 e volta pela R1 sem encontrar. É o defeito estrutural que esta ilha já mediu sozinha. Pronto quando: `cobertura-r1.py --gravar` mostrar pelo menos **15** modelos publicáveis atendidos pelas duas ferramentas, e a medição estiver commitada. **Linha de base medida pelo Pente Fino em 16/09/2026, rodando a própria ferramenta: 33 modelos publicáveis, dos quais 8 atendidos pelas duas** (`positivo-pra2000`, `positivo-pra800`, `xiaomi-e10`, `xiaomi-h40`, `xiaomi-s10`, `xiaomi-s20`, `xiaomi-s40`, `xiaomi-s40c`). *(Este item dizia "das 28 entradas publicáveis, só 3" — os dois números são a varredura de 13/09/2026 e envelheceram com a leva do Xiaomi S10 de 14/09. A meta de 15 não foi tocada: ela é absoluta e continua de pé.)*
 3. **ZERO DEFEITO ABERTO DE RONDA.** Nenhum item pendente nos despachos da Sentinela dentro deste arquivo. Pronto quando: as seções de despacho não tiverem item sem "CUMPRIDO E CONFERIDO NO AR".
 4. **SITEMAP ACEITO NO SEARCH CONSOLE.** Hoje está em "Não foi possível buscar". É metade humana e está no despacho de 10/09. Pronto quando: a propriedade `sc-domain:robometria.com.br` mostrar o sitemap lido, com contagem de URLs. **— FECHADO em 16/09/2026: processado, última leitura 15/09, 9 páginas encontradas.**
-5. **TODA PÁGINA COM `<meta name="description">` E TAGS `og:`.** Defeito levantado na ronda de 11/09. Pronto quando: varredura das páginas no ar não achar nenhuma sem os dois.
+5. **TODA PÁGINA COM `<meta name="description">` E TAGS `og:`.** Defeito levantado na ronda de 11/09. Pronto quando: varredura das páginas no ar não achar nenhuma sem os dois. — **JÁ ATENDIDO. Medido no ar pelo Pente Fino em 16/09/2026: 9 de 9 URLs do sitemap em HTTP 200, todas com `<meta name="description">` e com cinco propriedades `og:` (`og:title`, `og:type`, `og:url`, `og:description`, `og:locale`).** *(O defeito de 11/09 é o item 1 daquela ronda, e o próprio arquivo o registra cumprido em 11/09/2026, poucas linhas acima — este item nasceu descrevendo o mundo anterior. Quem fechar o placar reconfere e marca feito; nenhum bloco precisa ser gasto nele.)*
 
 **O QUE "PRONTA" NÃO SIGNIFICA, escrito para ninguém se iludir com o prazo:** pronta é a ilha completa e capaz de faturar — não é a ilha faturando. Indexação e posição são relógio do Google, não nosso: dias para indexar, semanas para posicionar. Cumprir os cinco itens até 23/09 é a nossa parte, e é a única parte que depende de nós.
 
@@ -415,11 +415,19 @@ nova nasce com elas, nunca com retrofit depois:**
    de procedência e perfeita para a Electrolux. Agora o bloco "Onde comprar estas peças"
    vem antes, com o aviso de comissão dentro dele; a procedência é link de texto "fonte"
    com `rel="nofollow noopener"`, nunca um botão e sem fundo no CSS; e o bloco **nasce
-   mesmo sem link**, reservando o lugar com "Link de loja em breve" — esconder o bloco
-   enquanto o cano de links enche devolveria a procedência ao papel de única porta
-   clicável, que é exatamente o defeito. Quando não há o que recomendar, o bloco não
-   lista **e a página diz por quê**. `teste-r1.php` mede os cinco pontos (seção 13 dele),
-   e a R2 nasce com isso, não com retrofit.
+   com a porta de compra já aberta**, descendo a escada da 25.1 e parando no primeiro
+   degrau que servir — ficha (`url`), busca encurtada (`url_busca`) ou, enquanto o
+   encurtamento não existir, a busca crua de `url_busca_produto`, que sai **sem**
+   `rel="sponsored"` porque ninguém paga por aquele clique. Quando não há o que
+   recomendar, o bloco não lista **e a página diz por quê**. `teste-r1.php` mede os
+   cinco pontos (seção 13 dele), e a R2 nasce com isso, não com retrofit.
+   *(Esta decisão mandava o bloco nascer "reservando o lugar com 'Link de loja em breve'",
+   com o argumento — correto na época — de que esconder o bloco devolveria à procedência o
+   papel de única porta clicável. A frase foi **PROIBIDA pela seção 7 do `ARQUIPELAGO.md`
+   em 14/09/2026** e retirada de cinco lugares desta ilha no mesmo dia (casca 1.6.0, R1
+   1.7.0, R2 1.5.0); medido no ar em 16/09/2026 pelo Pente Fino: **zero ocorrências de
+   "em breve" nas 9 URLs do sitemap**. A ordem velha ficou de pé e faria a próxima
+   ferramenta nascer com o defeito. Corrigido pelo Pente Fino em 16/09/2026.)*
 
 **O QUE A R2 ACRESCENTOU À DECISÃO 2, e vale para toda ferramenta de entrada
 contínua.** A entrada da R1 é uma lista fechada, então o gerador pré-calcula toda

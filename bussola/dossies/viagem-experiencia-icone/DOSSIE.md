@@ -172,8 +172,11 @@ declarada**. Dez itens que uma ferramenta desta ilha indicaria, e onde cada um t
 | + | Acessório de viagem (mala, adaptador, organizador) | **Shopee / Mercado Livre**, infraestrutura que a fábrica já tem — zero montagem nova | tabela dos programas já em uso |
 
 **Leitura:** **10 de 10 têm programa acessível com link rastreável** — o critério eliminatório da seção 2 **passa**. O que
-**não** passa é a segunda metade da mesma regra: **comissão declarada**, verificada em 1 de 10. Por isso o M não foi calculado
-e o índice não foi fechado. **Assist Card e Affinity:** página de programa **não localizada** nesta rodada.
+**não** passa é a segunda metade da mesma regra: **comissão declarada**, verificada em 1 de 10 **nesta varredura**.
+*(Esta frase terminava em "Por isso o M não foi calculado e o índice não foi fechado" — falso desde 14/09/2026: o commit
+`e1cd745` verificou a comissão da Civitatis na fonte, calculou **M 3,77** e fechou o **índice 3,92**, que é o que o
+cabeçalho deste dossiê e a `fila.md` trazem. Corrigido pelo Pente Fino em 16/09/2026; a tabela acima continua válida como
+está.)* **Assist Card e Affinity:** página de programa **não localizada** nesta rodada.
 
 **Descartado e não revisitar** (decisão do Raphael, 13/09): companhia aérea (comissão ínfima sobre passagem) e pacote/grupo de
 viagem (isso não é afiliação, é **operar agência** — CADASTUR, responsabilidade sobre a viagem de terceiros, risco operacional
@@ -319,7 +322,7 @@ que a Fundação escreva a primeira página. **O despacho pedia exatamente isso:
 
 ## O que o Raphael precisa saber antes de dizer sim
 
-1. **O índice não foi calculado** porque a comissão do núcleo (Civitatis, GetYourGuide, Viator, Tiqets, Klook, Holafly, seguro) **não foi verificada na fonte**. Um único número verificado em doze: Discover Cars, ≥ US$ 20/cliente — e é aluguel de carro.
+1. **O índice FOI calculado e é 3,92** (faixa 3,77–4,10), com **M 3,77** sobre a comissão da **Civitatis verificada na fonte (8%)** — ver o cabeçalho deste dossiê e a seção de monetização acima. *(Este item dizia "o índice não foi calculado porque a comissão do núcleo não foi verificada na fonte — um único número verificado em doze". Era verdade quando foi escrito e deixou de ser no commit `e1cd745` de 14/09/2026, que fechou o portão de monetização e escreveu o índice no próprio arquivo. Alinhado por transcrição — nada foi recalculado — pelo Pente Fino em 16/09/2026.)* **O que continua verdadeiro e é a ressalva a ler:** a comissão declarada dos OUTROS programas do núcleo (GetYourGuide, Viator, Tiqets, Klook, Holafly, seguro) segue **não verificada na fonte**, então o M apoia-se numa fonte só.
 2. **O recorte não caiu, mas encolheu.** A distância entre julgamento e ingresso é de um ponto, não de quatro; em pt-BR o muro é portal veterano, não OTA; e um blog pequeno já ocupa o nosso ângulo no #1 da Torre Eiffel. **A aposta mudou de ângulo para formato: preço colhido na fonte, datado.**
 3. **Um concorrente de formato já está posicionado** (`quantocustaviajar.com`, top 3 da Islândia). Por isso a F2 é a segunda, não a primeira.
 4. **A voz do Instagram não pôde ser observada.** O `VOZ.md` tem uma seção pendente e ela depende de você colar as legendas.

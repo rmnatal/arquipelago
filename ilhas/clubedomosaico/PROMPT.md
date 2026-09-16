@@ -2,6 +2,13 @@
 
 Leia o `ARQUIPELAGO.md` da raiz antes deste arquivo. Ele carrega todas as regras comuns; aqui fica só o que é desta ilha. **Nunca copie regra do `ARQUIPELAGO.md` para cá.**
 
+> **ESTA ILHA NÃO ESTÁ EM FOCO — 16/09/2026.** `foco.md` na raiz nomeia a **robometria**, e pela seção **1.2** do
+> `ARQUIPELAGO.md` nenhuma outra ilha recebe bloco da Fundação e nenhuma outra ilha é rondada. **Nada deste arquivo
+> é executado enquanto isso valer**, por mais antigo ou prioritário que um despacho daqui pareça: só fura o foco
+> despacho **ALTO** em ilha que esteja **no ar e quebrada**. Quando `foco.md` disser `ilha: nenhuma`, apague este
+> aviso e este arquivo volta a valer inteiro. *(Inserido pelo Pente Fino em 16/09/2026: a 1.2 nasceu hoje e nenhum
+> `PROMPT.md` de ilha fora do foco a mencionava.)*
+
 ## O que esta ilha tem de diferente (leia antes de tudo)
 Esta é a **terceira ilha** e a primeira que **não veio da Bússola**: é um projeto pessoal do Raphael. A mãe dele faz mosaico artesanal (vasos, colares, quadros). O site tem **três motores num domínio só**, e a malha fecha um ciclo comercial completo:
 1. **LOJA** — venda direta das peças da mãe (margem cheia, produto próprio, sem afiliado).

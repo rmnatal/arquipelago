@@ -20,5 +20,9 @@ uma rotina por ilha. A estrutura que sustenta isso:
 - **Ilha nova se cria copiando `ilhas/_modelo/`** e preenchendo o que estiver
   entre `< >`. Nenhuma rotina muda quando uma ilha nasce.
 
-Ilhas atuais: `ilhas/aquametria/` (aquarismo, no ar) e `ilhas/robometria/`
-(robo aspirador, nascendo).
+Ilhas atuais (contadas em `ilhas/` pelo Pente Fino em 16/09/2026 — eram duas ate 09/09
+e o texto anterior listava so essas duas): `ilhas/aquametria/` (aquarismo, no ar),
+`ilhas/robometria/` (robo aspirador, no ar), `ilhas/clubedomosaico/` (mosaico artesanal,
+no ar), `ilhas/ohmetria/` (som automotivo, nascida em 14/09/2026) e `ilhas/jornadafly/`
+(custo de experiencia iconica, nascida em 14/09/2026). A ilha em foco de cada momento
+esta em `foco.md` na raiz (secao 1.2 do `ARQUIPELAGO.md`).

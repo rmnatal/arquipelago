@@ -2,6 +2,13 @@
 
 Leia o `ARQUIPELAGO.md` da raiz antes deste arquivo. Ele carrega todas as regras comuns; aqui fica só o que é desta ilha.
 
+> **ESTA ILHA NÃO ESTÁ EM FOCO — 16/09/2026.** `foco.md` na raiz nomeia a **robometria**, e pela seção **1.2** do
+> `ARQUIPELAGO.md` nenhuma outra ilha recebe bloco da Fundação e nenhuma outra ilha é rondada. **Nada deste arquivo
+> é executado enquanto isso valer**, por mais antigo ou prioritário que um despacho daqui pareça: só fura o foco
+> despacho **ALTO** em ilha que esteja **no ar e quebrada**. Quando `foco.md` disser `ilha: nenhuma`, apague este
+> aviso e este arquivo volta a valer inteiro. *(Inserido pelo Pente Fino em 16/09/2026: a 1.2 nasceu hoje e nenhum
+> `PROMPT.md` de ilha fora do foco a mencionava.)*
+
 ## Identidade
 - Nicho: aquarismo — calculadoras de dimensionamento e banco técnico.
 - Domínio: https://aquametria.com.br (no ar desde 06/09/2026). Primeira ilha do Arquipélago.
