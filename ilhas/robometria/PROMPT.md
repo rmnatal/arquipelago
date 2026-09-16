@@ -230,6 +230,22 @@ Fechado pela execução das 15h17Z, item por item, e o que ele achou pelo caminh
 
 **O QUE ESTE DESPACHO ACHOU E NÃO PEDIA, e é a parte que importa para as outras ilhas:** o desembarque desta ilha parava no **cache do hospedeiro**. Ver o item 1 do despacho da Sentinela, reescrito acima.
 
+## DEFINIÇÃO DE PRONTA — PRAZO 23/09/2026 (dado pelo Raphael em 16/09/2026)
+
+[stated] Ele disse: "robometria deve estar pronta em no maximo 7 dias". Esta ilha é a única em foco (`foco.md`), então recebe todas as execuções da Fundação e o teto semanal inteiro de geração de link.
+
+**Esta seção manda sobre a FILA DE BLOCOS.** A fila abaixo é aberta por natureza — "expandir o banco" não tem fim. A partir de agora, bloco que não fecha um dos cinco itens desta lista NÃO é executado antes dos que fecham. Quando os cinco estiverem fechados, a ilha é declarada PRONTA no `ESTADO.md` (`estado: viva`) e a fila volta a valer normalmente.
+
+1. **PORTA DE COMPRA EM TODO ITEM PUBLICÁVEL.** Nenhum cartão com "Link de loja em breve". Todo item publicável com `afiliado.url` preenchido, `rel="sponsored"` no link e o aviso de comissão visível na página. Pronto quando: uma varredura das páginas no ar não encontra a frase "em breve" e não encontra item publicável sem link.
+2. **A EMENDA DO FUNIL FECHADA.** Hoje, das 28 entradas publicáveis, só **3** são atendidas pelas DUAS ferramentas — a pessoa chega pela R2 e volta pela R1 sem encontrar. É o defeito estrutural que esta ilha já mediu sozinha. Pronto quando: `cobertura-r1.py --gravar` mostrar pelo menos **15** das 28 atendidas pelas duas, e a medição estiver commitada.
+3. **ZERO DEFEITO ABERTO DE RONDA.** Nenhum item pendente nos despachos da Sentinela dentro deste arquivo. Pronto quando: as seções de despacho não tiverem item sem "CUMPRIDO E CONFERIDO NO AR".
+4. **SITEMAP ACEITO NO SEARCH CONSOLE.** Hoje está em "Não foi possível buscar". É metade humana e está no despacho de 10/09. Pronto quando: a propriedade `sc-domain:robometria.com.br` mostrar o sitemap lido, com contagem de URLs.
+5. **TODA PÁGINA COM `<meta name="description">` E TAGS `og:`.** Defeito levantado na ronda de 11/09. Pronto quando: varredura das páginas no ar não achar nenhuma sem os dois.
+
+**O QUE "PRONTA" NÃO SIGNIFICA, escrito para ninguém se iludir com o prazo:** pronta é a ilha completa e capaz de faturar — não é a ilha faturando. Indexação e posição são relógio do Google, não nosso: dias para indexar, semanas para posicionar. Cumprir os cinco itens até 23/09 é a nossa parte, e é a única parte que depende de nós.
+
+**Em toda execução, o relatório final abre com o placar dos cinco itens**, cada um com feito ou faltando e o número medido ao lado. Sem placar, a execução não fechou.
+
 ## FILA DE BLOCOS
 
 **1. LEVANTAMENTO DE BUSCAS PARAMÉTRICAS.** Consultas reais do nicho no Brasil, agrupadas em clusters de ferramenta, com procedência marcada consulta a consulta (autocomplete, buscas relacionadas, fórum, YouTube). Grave em `dados/corpus-buscas.md`. Separe explicitamente o eixo de **compatibilidade** (peça × modelo) do de **dimensionamento** (Pa, m², autonomia). Não depende de site nem de domínio.

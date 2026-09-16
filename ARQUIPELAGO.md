@@ -63,17 +63,7 @@ Quando `foco.md` na raiz do repositório nomeia uma ilha, a Fundação trabalha 
 **O FOCO VALE PARA O ARQUIPÉLAGO INTEIRO, NÃO SÓ PARA A FUNDAÇÃO (16/09/2026).** Esta seção mora na seção 1 por acidente de lugar, não de alcance. Enquanto `foco.md` nomear uma ilha:
 
 - **Leitura semanal (Sentinela estratégica):** trabalha **só na ilha em foco**. Toda a leitura — indexação, vigilância de loja, lacuna de conteúdo, tráfego, posição — é dela e de mais nenhuma. E o teto semanal de geração de link de afiliado vai **inteiro** para a ilha em foco: é a camada que enche o cano de links, e com uma ilha só o cano dela enche em uma fração do tempo.
-- **Ronda diária:** faz a **ronda completa só na ilha em foco**. Nas outras ilhas que estão no ar, ela faz apenas o **CHECK DE VIDA**, descrito abaixo, e nada além disso.
-
-**CHECK DE VIDA — o mínimo que impede o arquipélago de ficar cego (16/09/2026).** Ilha fora do foco não é ilha abandonada. Em cada ronda, para cada ilha com `estado: viva` ou com páginas no ar que NÃO esteja em foco, a ronda diária mede três coisas e só três:
-
-1. A home responde **200**.
-2. `/status` responde 200 e a revisão bate com a do `manifest.json`.
-3. O console da home não tem erro de JavaScript.
-
-Passou nas três, escreve uma linha no relatório e segue. **Falhou em qualquer uma, isso é despacho ALTO** — e despacho ALTO é justamente o que fura o foco pela regra acima, então a Fundação conserta na execução seguinte e volta.
-
-**Por que o check de vida existe, e por que ele é curto:** sem ele, a exceção do despacho ALTO seria letra morta — ninguém estaria olhando para descobrir que a ilha caiu. Mas ele é deliberadamente raso: três medições que custam segundos, sem executar ferramenta, sem varrer página, sem teste de vida de link. Ilha fora do foco recebe vigilância de queda, não vigilância de qualidade. Defeito de qualidade nela acumula até ela voltar ao foco, e isso é a decisão, não um esquecimento.
+- **Ronda diária:** trabalha **só na ilha em foco**. Não abre, não mede e não relata nenhuma outra ilha. Decisão do Raphael em 16/09/2026: foco é foco. Vigilância das ilhas fora do foco volta a existir quando o arquipélago tiver muitas ilhas ao mesmo tempo — hoje o custo de olhar quatro ilhas paradas é maior que o risco de uma delas cair sem ninguém ver.
 
 ### 1.1 A RESERVA ENVELHECE ENQUANTO A EXECUÇÃO ESTÁ VIVA — quem decide é o último commit da ilha (12/09/2026)
 
