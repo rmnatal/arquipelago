@@ -103,6 +103,8 @@ Os cinco itens saíram inteiros numa execução só, como a 18.2 manda. Conferid
 
 ## FILA DE BLOCOS — reordenada em 09/09/2026 pela meta de tráfego
 
+> **MUTIRÃO SUSPENSO EM 16/09/2026 — o "o quanto antes" mudou de ilha.** Este modo foi ligado em 09/09 porque o Raphael queria a aquametria fechada o quanto antes; em 16/09 ele deu a mesma ordem para a **robometria** e ela virou a única ilha em foco (`foco.md`, seção 1.2). Enquanto o foco não voltar para cá, este parágrafo não vale — e quando voltar, releia se o mutirão ainda é o que ele quer, em vez de ligar de novo por inércia.
+
 **MODO MUTIRÃO, ligado em 09/09/2026 a pedido do Raphael:** ele quer a ilha fechada o quanto antes e tirou a regra de um bloco por execução PARA ESTA ILHA. Entregue quantos blocos couberem na sessão, em sequência, na ordem da fila — **verificando cada um pela seção 8 do `ARQUIPELAGO.md` antes de começar o próximo**, e respeitando integralmente a seção 13. O que **não** entra no mutirão: publicar a malha em massa. A malha continua saindo em leva de 5 a 10 páginas com medição no meio, porque é justamente o que protege a indexação — e indexação é a meta desta ilha.
 
 Blocos 1 a 3b (buscas, especificação, banco inicial, casca) estão CONCLUÍDOS. Calculadoras publicadas e verificadas rodando: C1, C3, C5, C12, C15. C2, C7 e C8 saem da fila por ora — ferramenta nova não traz tráfego enquanto as que existem não estiverem indexadas.

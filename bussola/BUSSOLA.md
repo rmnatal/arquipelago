@@ -82,6 +82,8 @@ nicho aprovado que fechou tem que ser desmarcado antes de alguém pagar domínio
 
 ## 5. Cadência e o que a rodada entrega
 
+> **BÚSSOLA PAUSADA EM 16/09/2026, por decisão do Raphael.** A rotina semanal está desligada e a meta de duas ilhas por semana **está suspensa**: são cinco ilhas na carteira e a Fundação tem ~20 execuções por semana, então achar nicho novo produz candidato para uma fila que não vaza. A cadência abaixo descreve o regime normal e volta a valer quando a Bússola for religada — o gatilho combinado é **uma ilha terminada e dando dinheiro**. Nada abaixo desta linha deve ser lido como ordem de nascer ilha enquanto esta pausa estiver escrita aqui.
+
 - A Bússola roda **uma vez por semana** (segunda de manhã). O Arquipélago nasce **duas ilhas por semana** enquanto a meta
   for ~10 ilhas (decisão do Raphael em 10/09/2026): o relógio do Google é o único recurso que não se compra depois, e cada
   ilha nova herda as cicatrizes das anteriores — por isso escalonado, não dez de uma vez.
