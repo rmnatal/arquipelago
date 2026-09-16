@@ -6,7 +6,7 @@ piso: abaixo            # abaixo | atingido — ver seção 21 do ARQUIPELAGO.md
 urls_publicadas: 9
 primeira_indexacao: desconhecida
 ultima_execucao: 2026-09-16T17:15Z
-executando_desde: null
+executando_desde: 2026-09-16T19:18Z
 bloco_atual: |
   DOIS DESPACHOS DO RAPHAEL, INTEIROS: o lugar vazio da foto e a Open API da Shopee (esquema versao 9, casca 1.8.0, R1 1.10.0, R2 1.8.0, A1 1.4.0, A2 1.4.0, manifest revisao 54). A ilha tem FOTO NO AR pela primeira vez. ZERO URL nova, ZERO URL mudada.
   A ESCOLHA DA ILHA: PELO FOCO DA 1.2, SEM CORRIDA. foco.md nomeia robometria desde 16/09. executando_desde null, que pela 1.1 ja significa que nenhum bloco da Fundacao esta vivo; nenhum branch claude fora do main e nenhum PR aberto. Reserva aceita de primeira as 16h18Z e RENOVADA as 16h32Z pela 1.1. Rede pela 20.2 antes de trabalhar: home e /status em 200 nas TRES passadas.
