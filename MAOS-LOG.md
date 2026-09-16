@@ -228,3 +228,85 @@ ponto da correcao.
 Nenhum. A ancora era unica, o diff saiu como insercao pura (6 `+`, 0 `-`), o push foi aceito de
 primeira e o commit aparece em `origin/main`. Sync nao foi acionado e nenhum PR foi aberto, conforme a
 instrucao.
+
+---
+
+## Disparo de 16/09/2026 15h17Z — insercao do despacho do Raphael sobre o espaco vazio da foto (robometria)
+
+Instrucao do disparo: tarefa unica, um arquivo, uma insercao literal — inserir um bloco novo em
+`ilhas/robometria/PROMPT.md` imediatamente ANTES da linha 33 (`## DESPACHO DO RAPHAEL — 11/09/2026 —
+a ilha ganha voz`), com uma linha em branco entre o fim do bloco e essa linha. Nada de snippet, nada
+de `manifest.json`, nada de `ESTADO.md`. As MAOS nao executaram nenhuma das edicoes descritas DENTRO
+do bloco (EDICAO 1 e EDICAO 2 em `robometria-casca.php`, `robometria-r2.php` e `robometria-a2.php`,
+subir `revisao`/`sha256` do manifest, acionar Sync): isso e texto do despacho, trabalho da Fundacao,
+e a instrucao proibia tocar em arquivo nao nomeado.
+
+### Ponto de partida
+
+```
+$ git fetch origin main && git checkout -B trabalho origin/main
+ * branch            main       -> FETCH_HEAD
+ + e7b1889...d5e9332 main       -> origin/main  (forced update)
+Switched to a new branch 'trabalho'
+d5e9332 MAOS-LOG: secao do disparo de 16/09 15h05Z (cabecalho dos itens 4 e 5 do despacho de 14/09)
+```
+
+### git status --porcelain (antes do commit do trabalho)
+
+```
+ M ilhas/robometria/PROMPT.md
+```
+
+### git diff --stat
+
+```
+ ilhas/robometria/PROMPT.md | 25 +++++++++++++++++++++++++
+ 1 file changed, 25 insertions(+)
+```
+
+`git diff --numstat` confirma insercao pura: `25	0	ilhas/robometria/PROMPT.md`. Nenhuma linha
+apagada, nenhum despacho existente reescrito ou reordenado.
+
+### Commit que foi ao main
+
+```
+82b7b891e381e7907d211923678872bad402ad81 robometria: despacho — o lugar vazio da foto esta desenhado como spinner e le como site quebrado
+```
+
+Push direto: `git push origin HEAD:main` aceito na primeira tentativa (`d5e9332..82b7b89`). Sem rebase,
+sem force, sem PR. Conferido com `git fetch origin main && git log -1 origin/main`: o hash acima e o
+topo de `origin/main`.
+
+### Contagem, relida do arquivo DEPOIS de gravar
+
+```
+$ grep -n '^## DESPACHO' ilhas/robometria/PROMPT.md
+33:## DESPACHO DO RAPHAEL — 16/09/2026 — o espaco reservado da foto esta desenhado como uma roda de carregamento
+58:## DESPACHO DO RAPHAEL — 11/09/2026 — a ilha ganha voz
+120:## DESPACHO DA SENTINELA — 16/09/2026 (ronda diária, 14h50Z, no Chrome do Raphael)
+218:## DESPACHO DA SENTINELA — 14/09/2026 — O QUE RESTOU, E É TUDO DO RAPHAEL
+255:## DESPACHO DA SENTINELA — 11/09/2026 (ronda diária, medida no navegador do Raphael)
+283:## DESPACHO DA SENTINELA — 10/09/2026 (medição pela nuvem)
+296:## DESPACHO DO RAPHAEL — 14/09/2026 — O PISO DE BUSCA — **CUMPRIDO E CONFERIDO NO AR EM 14/09/2026, 15h**
+
+$ wc -l ilhas/robometria/PROMPT.md
+854 ilhas/robometria/PROMPT.md
+
+$ sed -n '56,58p' ilhas/robometria/PROMPT.md | cat -A   (so as pontas de cada linha)
+**COMO SE SABE QUE FICOU PRONTO:** ... secao 18.$
+$
+## DESPACHO DO RAPHAEL M-bM-^@M-^T 11/09/2026 M-bM-^@M-^T a ilha ganha voz$
+```
+
+Numeros: 25 linhas inseridas, 0 apagadas, 1 arquivo tocado alem deste log. O arquivo foi de 829 para
+854 linhas. O bloco novo comeca na linha 33 — exatamente onde ficava o cabecalho de 11/09, que desceu
+intacto para a linha 58 — e termina na 56; a linha 57 esta em branco, como a instrucao pediu. Os
+outros 5 despachos seguem na mesma ordem relativa de antes, apenas 25 linhas mais abaixo. O texto do
+bloco foi conferido contra a instrucao: 7 paragrafos, 3 trechos indentados como bloco de codigo
+(a regra CSS antiga, as duas regras novas, a linha de `$html .=`), nenhuma palavra acrescentada.
+
+### Passos que falharam
+
+Nenhum. A ancora da linha 33 era exata e foi validada por assercao antes da gravacao, o diff saiu como
+insercao pura, o push foi aceito de primeira e o commit aparece em `origin/main`. Sync nao foi
+acionado, nenhum PR foi aberto e nenhum outro arquivo foi tocado, conforme a instrucao.
